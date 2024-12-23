@@ -87,19 +87,13 @@ this.legend_redback_dagger <- this.inherit("scripts/items/weapons/weapon", {
 	function onDamageDealt( _target, _skill, _hitInfo )
 	{
 		if (_target.getCurrentProperties().IsImmuneToPoison || _hitInfo.DamageInflictedHitpoints <= this.Const.Combat.PoisonEffectMinDamage || _target.getHitpoints() <= 0)
-		{
 			return;
-		}
 
 		if (!_target.isAlive())
-		{
 			return;
-		}
 
 		if (_target.getFlags().has("undead"))
-		{
 			return;
-		}
 
 		if (!_target.isHiddenToPlayer())
 		{
@@ -118,7 +112,10 @@ this.legend_redback_dagger <- this.inherit("scripts/items/weapons/weapon", {
 		if (actor.getFaction() == this.Const.Faction.Player )
 		{
 			effect.setActor(actor);
-			poison.setActor(actor);
+			if (poison != null)
+			{
+				poison.setActor(actor);
+			}
 		}
 
 		if (poison == null)
