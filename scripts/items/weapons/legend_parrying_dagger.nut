@@ -2,7 +2,7 @@ this.legend_parrying_dagger <- this.inherit("scripts/items/shields/shield", {
 	m = {
 		Variants = [],
 		WeaponType = ::Const.Items.WeaponType.Dagger, // workaround: hardcode WeaponType since this is actually a shield
-		OffHandWeaponSkills = [],
+		OffHandWeaponSkills = {},
 		// for offhand weapon
 		RegularDamage = 20,
 		RegularDamageMax = 40,
@@ -117,14 +117,14 @@ this.legend_parrying_dagger <- this.inherit("scripts/items/shields/shield", {
 		m.OffHandWeaponSkills.clear(); // reset
 
 		local stab = this.new("scripts/skills/actives/stab");
+		m.OffHandWeaponSkills[stab.m.ID] <- ::MSU.asWeakTableRef(stab);
 		stab.m.Order = this.Const.SkillOrder.UtilityTargeted - 3;
-		m.OffHandWeaponSkills.push(stab.m.ID);
 		stab.m.ID = stab.m.ID + "_offhand";
 		this.addSkill(stab);
 
 		local puncture = this.new("scripts/skills/actives/puncture");
-		stab.m.Order = this.Const.SkillOrder.UtilityTargeted - 2;
-		m.OffHandWeaponSkills.push(puncture.m.ID);
+		m.OffHandWeaponSkills[puncture.m.ID] <- ::MSU.asWeakTableRef(puncture);
+		puncture.m.Order = this.Const.SkillOrder.UtilityTargeted - 2;
 		puncture.m.ID = puncture.m.ID + "_offhand";
 		this.addSkill(puncture);
 
@@ -152,24 +152,24 @@ this.legend_parrying_dagger <- this.inherit("scripts/items/shields/shield", {
 		shield.onUpdateProperties(_properties);
 		local main = getContainer().getActor().getMainhandItem();
 
-		if (main == null || !main.isWeaponType(::Const.Items.WeaponType.Dagger))
+		if (main == null)
 			return;
 
-		_properties.MeleeDamageMult *= 1.1;
-		local skills = getContainer().getActor().getSkills();
-		local shouldHidden = main.m.RegularDamageMax >= m.RegularDamageMax;
-		
-		foreach (id in m.OffHandWeaponSkills)
-		{
-			local _skill = skills.getSkillByID(id);
+		if (main.isWeaponType(::Const.Items.WeaponType.Dagger))
+			_properties.MeleeDamageMult *= 1.1;
 
-			if (_skill = null) {
-				skills.getSkillByID(id + "_offhand").m.IsHidden = false;
+		local shouldHidden = main.m.RegularDamageMax >= m.RegularDamageMax;
+		foreach (id, offhandSkill in m.OffHandWeaponSkills)
+		{
+			local mainhandSkill = getContainer().getActor().getSkills().getSkillByID(id);
+
+			if (mainhandSkill == null) {
+				offhandSkill.m.IsHidden = false;
 				continue;
 			}
-
-			skills.getSkillByID(id + "_offhand").m.IsHidden = shouldHidden;
-			_skill.m.IsHidden = !shouldHidden;
+			
+			offhandSkill.m.IsHidden = shouldHidden;
+			mainhandSkill.m.IsHidden = !shouldHidden;
 		}
 	}
 
