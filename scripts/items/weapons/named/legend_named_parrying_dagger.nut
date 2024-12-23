@@ -123,13 +123,6 @@ this.legend_named_parrying_dagger <- this.inherit("scripts/items/shields/named/n
 		local result = this.shield.getTooltip();
 		local find;
 
-		result.push({
-			id = 4,
-			type = "text",
-			icon = "ui/icons/special.png",
-			text = "Grants [color=" + ::Const.UI.Color.PositiveValue + "]+10%[/color] melee damage if having a dagger on your mainhand"
-		});
-
 		foreach(i, tooltip in result)
 		{
 			if (tooltip.id != 4 || tooltip.type != "progressbar") continue;
@@ -180,6 +173,13 @@ this.legend_named_parrying_dagger <- this.inherit("scripts/items/shields/named/n
 				});
 			}
 		}
+
+		result.push({
+			id = 4,
+			type = "text",
+			icon = "ui/icons/special.png",
+			text = "Grants [color=" + ::Const.UI.Color.PositiveValue + "]+10%[/color] melee damage if having a dagger on your mainhand"
+		});
 
 		return result;
 	}
