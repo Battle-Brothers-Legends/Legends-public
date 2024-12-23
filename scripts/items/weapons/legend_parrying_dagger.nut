@@ -147,6 +147,19 @@ this.legend_parrying_dagger <- this.inherit("scripts/items/shields/shield", {
 		this.getContainer().getActor().getSkills().add(parrying);
 	}
 
+	function onUnequip()
+	{
+		shield.onUnequip();
+
+		foreach (id, offhandSkill in m.OffHandWeaponSkills)
+		{
+			local mainhandSkill = getContainer().getActor().getSkills().getSkillByID(id);
+
+			if (mainhandSkill != null)
+				mainhandSkill.m.IsHidden = false; // stop hiding the main hand skills
+		}
+	}
+
 	function onUpdateProperties( _properties )
 	{
 		shield.onUpdateProperties(_properties);

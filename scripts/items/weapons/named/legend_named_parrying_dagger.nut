@@ -151,7 +151,7 @@ this.legend_named_parrying_dagger <- this.inherit("scripts/items/shields/named/n
 
 	function onEquip()
 	{
-		this.shield.onEquip();
+		named_shield.onEquip();
 		m.OffHandWeaponSkills.clear(); // reset
 
 		local stab = this.new("scripts/skills/actives/stab");
@@ -182,6 +182,19 @@ this.legend_named_parrying_dagger <- this.inherit("scripts/items/shields/named/n
 		parrying.setItem(this);
 		this.m.SkillPtrs.push(parrying);
 		this.getContainer().getActor().getSkills().add(parrying);
+	}
+
+	function onUnequip()
+	{
+		named_shield.onUnequip();
+
+		foreach (id, offhandSkill in m.OffHandWeaponSkills)
+		{
+			local mainhandSkill = getContainer().getActor().getSkills().getSkillByID(id);
+
+			if (mainhandSkill != null)
+				mainhandSkill.m.IsHidden = false; // stop hiding the main hand skills
+		}
 	}
 
 	function onUpdateProperties( _properties )
