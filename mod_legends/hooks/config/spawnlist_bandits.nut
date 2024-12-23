@@ -348,7 +348,7 @@
 				}
 				// {
 				// 	MinR = 600,
-				// 	Type = this.Const.World.Spawn.Troops.BanditVeteran.BanditWarlord,
+				// 	Type = this.Const.World.Spawn.Troops.BanditWarlord,
 				// 	Cost = 125,
 				// 	Roll = true
 				// }
@@ -520,7 +520,7 @@
 				},
 				{
 					MinR = 600,
-					Type = this.Const.World.Spawn.Troops.BanditVeteran.BanditWarlord,
+					Type = this.Const.World.Spawn.Troops.BanditWarlord,
 					Cost = 100,
 					Roll = true
 				}
@@ -619,7 +619,7 @@
 		{
 			MinR = 600,
 			Weight = 1,
-			Type = this.Const.World.Spawn.Troops.BanditVeteran.BanditWarlord,
+			Type = this.Const.World.Spawn.Troops.BanditWarlord,
 			Cost = 50,
 			Roll = true
 		}
@@ -693,7 +693,7 @@
 				},
 				{
 					MinR = 600,
-					Type = this.Const.World.Spawn.Troops.BanditVeteran.BanditWarlord,
+					Type = this.Const.World.Spawn.Troops.BanditWarlord,
 					Cost = 50,
 					Roll = true
 				}
