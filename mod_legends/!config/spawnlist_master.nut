@@ -104,7 +104,7 @@
 	Script = "scripts/entity/tactical/enemies/legend_bandit_veteran"
 };
 
-::Const.World.Spawn.Troops.BanditVeteran.BanditWarlord <- {
+::Const.World.Spawn.Troops.BanditWarlord <- {
 	ID = this.Const.EntityType.BanditWarlord,
 	Variant = 1,
 	Strength = 60,
@@ -114,7 +114,7 @@
 	NameList = this.Const.Strings.BanditLeaderNames,
 	TitleList = null
 };
-::Const.World.Spawn.Troops.BanditVeteran.BanditOutrider <- {
+::Const.World.Spawn.Troops.BanditOutrider <- {
 	ID = this.Const.EntityType.BanditOutrider,
 	Variant = 0,
 	Strength = 40,
