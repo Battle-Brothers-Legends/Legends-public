@@ -2,6 +2,7 @@ this.legend_parrying_dagger <- this.inherit("scripts/items/shields/shield", {
 	m = {
 		Variants = [],
 		WeaponType = ::Const.Items.WeaponType.Dagger, // workaround: hardcode WeaponType since this is actually a shield
+		OffHandWeaponSkills = [],
 		// for offhand weapon
 		RegularDamage = 20,
 		RegularDamageMax = 40,
@@ -43,6 +44,13 @@ this.legend_parrying_dagger <- this.inherit("scripts/items/shields/shield", {
 	{
 		local result = this.shield.getTooltip();
 		local find;
+
+		result.push({
+			id = 4,
+			type = "text",
+			icon = "ui/icons/special.png",
+			text = "Grants [color=" + ::Const.UI.Color.PositiveValue + "]+10%[/color] if having a dagger on your mainhand"
+		});
 
 		foreach(i, tooltip in result)
 		{
@@ -106,14 +114,24 @@ this.legend_parrying_dagger <- this.inherit("scripts/items/shields/shield", {
 	function onEquip()
 	{
 		this.shield.onEquip();
+		m.OffHandWeaponSkills.clear(); // reset
+
 		local stab = this.new("scripts/skills/actives/stab");
-		stab.m.Order = this.Const.SkillOrder.UtilityTargeted + 1;
+		stab.m.Order = this.Const.SkillOrder.UtilityTargeted - 3;
+		m.OffHandWeaponSkills.push(stab.m.ID);
+		stab.m.ID = stab.m.ID + "_offhand";
 		this.addSkill(stab);
+
+		local puncture = this.new("scripts/skills/actives/puncture");
+		stab.m.Order = this.Const.SkillOrder.UtilityTargeted - 2;
+		m.OffHandWeaponSkills.push(puncture.m.ID);
+		puncture.m.ID = puncture.m.ID + "_offhand";
+		this.addSkill(puncture);
+
 		this.addSkill(this.new("scripts/skills/actives/legend_en_garde_skill"));
-		this.addSkill(this.new("scripts/skills/actives/puncture"));
 
 		local parryDaggerEffect = this.new("scripts/skills/effects/legend_parrying_dagger_effect");
-		parryDaggerEffect.m.Order = this.Const.SkillOrder.UtilityTargeted + 1;
+		parryDaggerEffect.m.Order = this.Const.SkillOrder.UtilityTargeted;
 		parryDaggerEffect.setItem(this);
 		this.m.SkillPtrs.push(parryDaggerEffect);
 		this.getContainer().getActor().getSkills().add(parryDaggerEffect);
@@ -127,6 +145,32 @@ this.legend_parrying_dagger <- this.inherit("scripts/items/shields/shield", {
 		parrying.setItem(this);
 		this.m.SkillPtrs.push(parrying);
 		this.getContainer().getActor().getSkills().add(parrying);
+	}
+
+	function onUpdateProperties( _properties )
+	{
+		shield.onUpdateProperties(_properties);
+		local main = getContainer().getActor().getMainhandItem();
+
+		if (main == null || !main.isWeaponType(::Const.Items.WeaponType.Dagger))
+			return;
+
+		_properties.MeleeDamageMult *= 1.1;
+		local skills = getContainer().getActor().getSkills();
+		local shouldHidden = main.m.RegularDamageMax >= m.RegularDamageMax;
+		
+		foreach (id in m.OffHandWeaponSkills)
+		{
+			local _skill = skills.getSkillByID(id);
+
+			if (_skill = null) {
+				skills.getSkillByID(id + "_offhand").m.IsHidden = false;
+				continue;
+			}
+
+			skills.getSkillByID(id + "_offhand").m.IsHidden = shouldHidden;
+			_skill.m.IsHidden = !shouldHidden;
+		}
 	}
 
 	function getAmmoMax()

@@ -107,23 +107,22 @@ this.legend_redback_dagger <- this.inherit("scripts/items/weapons/weapon", {
 
 		this.spawnIcon("status_effect_54", _target.getTile());
 		local poison = _target.getSkills().getSkillByID("effects.legend_redback_spider_poison");
-		local effect = this.new("scripts/skills/effects/legend_redback_spider_poison_effect");
 		local actor = this.getContainer().getActor();
-		if (actor.getFaction() == this.Const.Faction.Player )
-		{
-			effect.setActor(actor);
-			if (poison != null)
-			{
-				poison.setActor(actor);
-			}
-		}
 
 		if (poison == null)
 		{
+			local effect = this.new("scripts/skills/effects/legend_redback_spider_poison_effect");
+
+			if (actor.getFaction() == this.Const.Faction.Player )
+				effect.setActor(actor);
+
 			_target.getSkills().add(effect);
 		}
 		else
 		{
+			if (actor.getFaction() == this.Const.Faction.Player )
+				poison.setActor(actor);
+			
 			poison.resetTime();
 		}
 	}
