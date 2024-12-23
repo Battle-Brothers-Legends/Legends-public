@@ -22,9 +22,9 @@ this.perk_legend_slaughterer <- this.inherit("scripts/skills/skill", {
 		if (!this.getContainer().hasSkill("trait.bloodthirsty"))
 			return;
 
-		if (!_targetEntity.isAlliedWith(this.getContainer().getActor()))
+		local killer = this.getContainer().getActor();
+		if (!_targetEntity.isAlliedWith(killer)
 		{
-			local killer = this.getContainer().getActor();
 			local difficulty = this.Const.Morale.EnemyKilledBaseDifficulty + _targetEntity.getXPValue() * this.Const.Morale.EnemyKilledXPMult - this.Math.pow(_targetEntity.getTile().getDistanceTo(this.getTile()), this.Const.Morale.EnemyKilledDistancePow);
 
 			if (killer != null && killer.isAlive() && killer.getID() == this.getID())
