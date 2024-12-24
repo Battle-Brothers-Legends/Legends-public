@@ -60,11 +60,6 @@
 		return tooltip;
 	}
 
-	o.isUsable = function ()
-	{
-		return !this.Tactical.isActive() || this.skill.isUsable() && this.getAmmo() > 0 && !this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions());
-	}
-
 	o.getAmmo <- function ()
 	{
 		local item = this.getContainer().getActor().getItems().getItemAtSlot(this.Const.ItemSlot.Mainhand);
@@ -87,11 +82,20 @@
 		}
 	}
 
+	o.isUsable = function ()
+	{
+		local isUsable = !this.Tactical.isActive() || this.skill.isUsable() && this.getAmmo() > 0;
+		if (bro.getSkills().hasPerk(::Const.Perks.PerkDefs.LegendCloseCombatArcher))
+			return isUsable;
+
+		return isUsable && !this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions());
+	}
+
 	local onAfterUpdate = o.onAfterUpdate;
 	o.onAfterUpdate = function ( _properties )
 	{
 		onAfterUpdate(_properties);
-		if (this.getContainer().hasSkill("perk.legend_close_combat_archer"))
+		if (bro.getSkills().hasPerk(::Const.Perks.PerkDefs.LegendCloseCombatArcher))
 		{
 			this.m.MinRange = 1;
 			this.m.MaxRange = 3;
