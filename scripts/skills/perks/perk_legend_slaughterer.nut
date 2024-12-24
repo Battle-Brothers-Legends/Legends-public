@@ -23,7 +23,7 @@ this.perk_legend_slaughterer <- this.inherit("scripts/skills/skill", {
 			return;
 
 		local killer = this.getContainer().getActor();
-		if (!_targetEntity.isAlliedWith(killer)
+		if (!_targetEntity.isAlliedWith(killer))
 		{
 			local difficulty = this.Const.Morale.EnemyKilledBaseDifficulty + _targetEntity.getXPValue() * this.Const.Morale.EnemyKilledXPMult - this.Math.pow(_targetEntity.getTile().getDistanceTo(killer.getTile()), this.Const.Morale.EnemyKilledDistancePow);
 
