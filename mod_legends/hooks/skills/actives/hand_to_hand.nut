@@ -155,7 +155,7 @@
 				hasWraps = true;
 			if (item.getID() == "accessory.legend_cestus")
 				hasCestus = true;
-			if (item.getID() == "accessory.legend_spiked_gauntlets_item")
+			if (item.getID() == "accessory.legend_spiked_gauntlets")
 				hasGauntlets = true;
 		}
 
