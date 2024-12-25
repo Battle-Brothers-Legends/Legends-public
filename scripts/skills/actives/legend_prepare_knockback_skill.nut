@@ -33,6 +33,7 @@ this.legend_prepare_knockback_skill <- this.inherit("scripts/skills/skill", {
 		this.m.FatigueCost = 15;
 		this.m.MinRange = 0;
 		this.m.MaxRange = 0;
+		this.m.IsHidden = false;
 	}
 
 	function getTooltip()
@@ -52,23 +53,53 @@ this.legend_prepare_knockback_skill <- this.inherit("scripts/skills/skill", {
 				id = 3,
 				type = "text",
 				text = this.getCostString()
-			},
-			{
+			}
+		];
+
+		local canUse = this.getContainer().getSkillByID("effects.legend_knockback_prepared");
+
+		if (canUse != null)
+		{
+			ret.push({
+				id = 7,
+				type = "text",
+				icon = "ui/icons/warning.png",
+				text = "This character is already wound up."
+			});
+			return ret;
+		}
+
+		local item = this.getContainer().getActor().getItems().getItemAtSlot(this.Const.ItemSlot.Mainhand);
+		local hasMelee = item == null || item.isItemType(this.Const.Items.ItemType.MeleeWeapon);
+
+		if (hasMelee)
+		{
+			ret.push({
 				id = 7,
 				type = "text",
 				icon = "ui/icons/special.png",
 				text = "The next attack will push the enemy back and baffle them if it connects, otherwise the effect is wasted."
-			}
-		];
+			});
+		}
+		else
+		{
+			ret.push({
+				id = 7,
+				type = "text",
+				icon = "ui/icons/warning.png",
+				text = "Requires a melee weapon or an unarmed attack"
+			});
+		}
+
 		return ret;
 	}
 
-	function isUsable()
-	{
+	function isHidden()
+	{	
 		local canUse = this.getContainer().getSkillByID("effects.legend_knockback_prepared");
-		local item = actor.getItems().getItemAtSlot(this.Const.ItemSlot.Mainhand);
+		local item = this.getContainer().getActor().getItems().getItemAtSlot(this.Const.ItemSlot.Mainhand);
 		local hasMelee = item == null || item.isItemType(this.Const.Items.ItemType.MeleeWeapon);
-		return !this.Tactical.isActive() || this.skill.isUsable() && canUse == null && hasMelee;
+		return !((!this.Tactical.isActive() || this.skill.isUsable() && canUse == null) && hasMelee);
 	}
 
 	function onUse( _user, _targetTile )
