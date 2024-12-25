@@ -66,7 +66,9 @@ this.legend_prepare_knockback_skill <- this.inherit("scripts/skills/skill", {
 	function isUsable()
 	{
 		local canUse = this.getContainer().getSkillByID("effects.legend_knockback_prepared");
-		return !this.Tactical.isActive() || this.skill.isUsable() && canUse == null;
+		local item = actor.getItems().getItemAtSlot(this.Const.ItemSlot.Mainhand);
+		local hasMelee = item == null || item.isItemType(this.Const.Items.ItemType.MeleeWeapon);
+		return !this.Tactical.isActive() || this.skill.isUsable() && canUse == null && hasMelee;
 	}
 
 	function onUse( _user, _targetTile )
@@ -84,8 +86,8 @@ this.legend_prepare_knockback_skill <- this.inherit("scripts/skills/skill", {
 		return true;
 	}
 
-	function onAfterUpdate( _properties ){
-
+	function onAfterUpdate( _properties )
+	{
 		local actor = this.getContainer().getActor();
 		local item = actor.getItems().getItemAtSlot(this.Const.ItemSlot.Mainhand)
 		
