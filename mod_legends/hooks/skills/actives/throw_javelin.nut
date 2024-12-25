@@ -44,8 +44,7 @@
 	o.isUsable = function ()
 	{
 		local isUsable = !this.Tactical.isActive() || this.skill.isUsable() && this.getAmmo() > 0;
-		local actor = this.getContainer().getActor();
-		if (actor != null && actor.getSkills().hasPerk(::Const.Perks.PerkDefs.LegendCloseCombatArcher))
+		if (this.getContainer().hasPerk(::Const.Perks.PerkDefs.LegendCloseCombatArcher))
 			return isUsable;
 
 		return isUsable && !this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions());
@@ -53,8 +52,7 @@
 
 	o.onAfterUpdate = function ( _properties )
 	{
-		local actor = this.getContainer().getActor();
-		if (actor.getSkills().hasPerk(::Const.Perks.PerkDefs.LegendCloseCombatArcher))
+		if (this.getContainer().hasPerk(::Const.Perks.PerkDefs.LegendCloseCombatArcher))
 		{
 			this.m.MinRange = 1;
 			this.m.MaxRange = 3;
