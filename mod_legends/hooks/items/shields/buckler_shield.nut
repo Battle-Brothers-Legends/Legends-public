@@ -18,5 +18,17 @@
 		effect.setItem(this);
 		this.m.SkillPtrs.push(effect);
 		this.getContainer().getActor().getSkills().add(effect);
+
+		local ambidex = this.getContainer().getSkillByID("perk.legend_ambidextrous");
+		if (ambidex)
+			ambidex.setOffhandSkill("actives.legend_buckler_bash");
+	}
+
+	o.onUnequip <- function()
+	{
+		shield.onUnequip();
+		local ambidex = this.getContainer().getSkillByID("perk.legend_ambidextrous");
+		if (ambidex)
+			ambidex.resetOffhandSkill();
 	}
 });
