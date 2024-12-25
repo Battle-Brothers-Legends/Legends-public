@@ -39,7 +39,7 @@
 					id = 7,
 					type = "text",
 					icon = "ui/icons/regular_damage.png",
-					text = "[color=" + this.Const.UI.Color.PositiveValue + "]+50%[/color] damage from background"
+					text = "[color=" + this.Const.UI.Color.PositiveValue + "]+25%[/color] damage from background"
 				});
 				break;
 			}
