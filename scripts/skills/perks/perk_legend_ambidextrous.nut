@@ -24,9 +24,10 @@ this.perk_legend_ambidextrous <- this.inherit("scripts/skills/skill", {
 		this.m.IsHidden = false;
 	}
 
-
 	function isHidden()
-	{
+	{	
+		if (this.m.offHandSkill != null)
+			return false;
 		local items = this.getContainer().getActor().getItems();
 		local off = items.getItemAtSlot(this.Const.ItemSlot.Offhand);
 		local main = items.getItemAtSlot(this.Const.ItemSlot.Mainhand);
@@ -35,7 +36,9 @@ this.perk_legend_ambidextrous <- this.inherit("scripts/skills/skill", {
 
 	function getDescription()
 	{
-		return "Fluid like water!\n\nThis character will follow up any attack with a punch from their off hand! If both hands are free, they also gain additional melee skill and melee defense.";
+		local skill = this.m.offHandSkill != null ? this.m.offHandSkill : "actives.hand_to_hand";
+		skill = this.getContainer().getSkillByID(skill).getName();
+		return format("Fluid like water!\n\nThis character will follow up any attack with a [color=" + ::Const.UI.Color.Active + "]%s[/color] from their off hand! If both hands are free, they also gain additional melee skill and melee defense.", skill);
 	}
 
 	function getTooltip()
@@ -55,24 +58,24 @@ this.perk_legend_ambidextrous <- this.inherit("scripts/skills/skill", {
 				type = "description",
 				text = this.getDescription() // Since the passive should have a different name than the perk in this case
 			}
-
 		];
 
-		if (main == null)
+		if ((main == null || this.getContainer().hasSkill("effects.disarmed")) && off == null && !items.hasBlockedSlot(this.Const.ItemSlot.Offhand))
 		{
 			ret.push({
-					id = 3,
-					type = "text",
-					icon = "ui/icons/melee_skill.png",
-					text = "[color=" + this.Const.UI.Color.PositiveValue + "]+5[/color] melee skill"
-				});
+				id = 3,
+				type = "text",
+				icon = "ui/icons/melee_skill.png",
+				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+5[/color] melee skill"
+			});
 			ret.push({
-					id = 4,
-					type = "text",
-					icon = "ui/icons/melee_defense.png",
-					text = "[color=" + this.Const.UI.Color.PositiveValue + "]+10[/color] melee defense"
-				});
+				id = 4,
+				type = "text",
+				icon = "ui/icons/melee_defense.png",
+				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+10[/color] melee defense"
+			});
 		}
+
 		return ret;
 	}
 
@@ -85,6 +88,7 @@ this.perk_legend_ambidextrous <- this.inherit("scripts/skills/skill", {
 		}
 		local items = this.getContainer().getActor().getItems();
 		local off = items.getItemAtSlot(this.Const.ItemSlot.Offhand);
+
 		if (_targetEntity != null && !items.hasBlockedSlot(this.Const.ItemSlot.Offhand) && (off == null || this.m.offHandSkill != null))
 		{
 			if (!_forFree)
@@ -105,6 +109,7 @@ this.perk_legend_ambidextrous <- this.inherit("scripts/skills/skill", {
 	function executeFollowUpAttack( _info )
 	{
 		local attack = this.getContainer().getSkillByID(_info.skillID);
+
 		if (attack != null)
 		{
 			attack.useForFree(_info.TargetTile);
