@@ -1,5 +1,19 @@
 this.perk_legend_ambidextrous <- this.inherit("scripts/skills/skill", {
-	m = {},
+	m = {
+		offHandSkill = null
+	},
+
+	// takes a text string
+	function setOffhandSkill ( _a )
+	{
+		this.m.offHandSkill = _a;
+	}
+
+	function resetOffhandSkill ()
+	{
+		this.m.offHandSkill = null;
+	}
+
 	function create()
 	{
 		::Const.Perks.setup(this.m, ::Const.Perks.PerkDefs.LegendAmbidextrous);
@@ -71,26 +85,25 @@ this.perk_legend_ambidextrous <- this.inherit("scripts/skills/skill", {
 		}
 		local items = this.getContainer().getActor().getItems();
 		local off = items.getItemAtSlot(this.Const.ItemSlot.Offhand);
-		if (_targetEntity != null && !items.hasBlockedSlot(this.Const.ItemSlot.Offhand) && (off == null || off.getID() == "shield.buckler"))
+		if (_targetEntity != null && !items.hasBlockedSlot(this.Const.ItemSlot.Offhand) && (off == null || this.m.offHandSkill != null))
 		{
 			if (!_forFree)
 			{
-				local skill = off.getID() == "shield.buckler" ? "actives.legend_buckler_bash" : "actives.hand_to_hand";
 				if (_targetTile == null) // Is this necessary?
-				{
 					return;
-				}
+				local skill = this.m.offHandSkill != null ? this.m.offHandSkill : "actives.hand_to_hand";
 				local info = {
-					TargetTile = _targetTile
+					TargetTile = _targetTile,
+					skillID = skill
 				};
-				::Time.scheduleEvent(::TimeUnit.Virtual, ::Const.Combat.RiposteDelay, this.executeFollowUpAttack(_skillID).bindenv(this), info);
+				::Time.scheduleEvent(::TimeUnit.Virtual, ::Const.Combat.RiposteDelay, this.executeFollowUpAttack.bindenv(this), info);
 			}
 		}
 	}
 
-	function executeFollowUpAttack( _info, _skillID = "actives.hand_to_hand")
+	function executeFollowUpAttack( _info )
 	{
-		local attack = this.getContainer().getSkillByID(_skillID);
+		local attack = this.getContainer().getSkillByID(_info.skillID);
 		if (attack != null)
 		{
 			attack.useForFree(_info.TargetTile);

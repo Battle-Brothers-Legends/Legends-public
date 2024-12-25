@@ -166,6 +166,11 @@
 
 	o.use = function( _targetTile, _forFree = false )
 	{
+		local container = this.m.Container;
+		local targetEntity = _targetTile.IsOccupiedByActor ? _targetTile.getEntity() : null;
+
+		container.onBeforeAnySkillExecuted(this, _targetTile, targetEntity, _forFree);
+
 		if (!_forFree && !this.isAffordable() || !this.isUsable())
 		{
 			return false;
@@ -241,6 +246,8 @@
 		}
 
 		user.setPreviewSkillID("");
+
+		container.onAnySkillExecuted(this, _targetTile, targetEntity, _forFree);
 
 		local recoverSkill = this.getContainer().getSkillByID("actives.recover");
 		if (recoverSkill != null)
