@@ -91,6 +91,7 @@ this.perk_legend_ambidextrous <- this.inherit("scripts/skills/skill", {
 			{
 				if (_targetTile == null) // Is this necessary?
 					return;
+				// i need to somehow do this more dynamically
 				local skill = this.m.offHandSkill != null ? this.m.offHandSkill : "actives.hand_to_hand";
 				local info = {
 					TargetTile = _targetTile,

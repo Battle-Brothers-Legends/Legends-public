@@ -145,6 +145,10 @@ this.legend_parrying_dagger <- this.inherit("scripts/items/shields/shield", {
 		parrying.setItem(this);
 		this.m.SkillPtrs.push(parrying);
 		this.getContainer().getActor().getSkills().add(parrying);
+
+		local ambidex = this.getContainer().getSkillByID("perk.legend_ambidextrous");
+		if (ambidex)
+			ambidex.setOffhandSkill("actives.stab_offhand");
 	}
 
 	function onUnequip()
@@ -160,6 +164,10 @@ this.legend_parrying_dagger <- this.inherit("scripts/items/shields/shield", {
 		}
 
 		m.OffHandWeaponSkills.clear(); // reset
+
+		local ambidex = this.getContainer().getSkillByID("perk.legend_ambidextrous");
+		if (ambidex)
+			ambidex.resetOffhandSkill();
 	}
 
 	function onUpdateProperties( _properties )
