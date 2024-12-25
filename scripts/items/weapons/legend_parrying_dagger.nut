@@ -113,9 +113,9 @@ this.legend_parrying_dagger <- this.inherit("scripts/items/shields/shield", {
 
 	function onEquip()
 	{
-		this.shield.onEquip();
-		m.OffHandWeaponSkills.clear(); // reset
+		m.OffHandWeaponSkills.clear(); // reset, it isn't bad for being too careful
 
+		this.shield.onEquip();
 		local stab = this.new("scripts/skills/actives/stab");
 		m.OffHandWeaponSkills[stab.m.ID] <- ::MSU.asWeakTableRef(stab);
 		stab.m.Order = this.Const.SkillOrder.UtilityTargeted - 3;
@@ -158,6 +158,8 @@ this.legend_parrying_dagger <- this.inherit("scripts/items/shields/shield", {
 			if (mainhandSkill != null)
 				mainhandSkill.m.IsHidden = false; // stop hiding the main hand skills
 		}
+
+		m.OffHandWeaponSkills.clear(); // reset
 	}
 
 	function onUpdateProperties( _properties )
@@ -178,6 +180,10 @@ this.legend_parrying_dagger <- this.inherit("scripts/items/shields/shield", {
 
 			if (mainhandSkill == null) {
 				offhandSkill.m.IsHidden = false;
+				continue;
+			}
+			else if (::MSU.isNull(offhandSkill)) {
+				mainhandSkill.m.IsHidden = false;
 				continue;
 			}
 			
