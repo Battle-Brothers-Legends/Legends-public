@@ -1,3 +1,4 @@
+/*
 ::mods_hookExactClass("skills/actives/slash_lightning", function(o)
 {
 	o.onUse = function ( _user, _targetTile )
@@ -134,3 +135,4 @@
 	}
 
 });
+*/
