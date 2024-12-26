@@ -257,7 +257,7 @@
 			{
 				if (stashLocked == true)
 				{
-					if (_item.getSlotType() != this.Const.ItemSlot.Bag && (_entity.getItems().getItemAtSlot(_item.getSlotType()) == null || _entity.getItems().getItemAtSlot(_item.getSlotType()) == "-1" || _entity.getItems().getItemAtSlot(_item.getSlotType()).isAllowedInBag(_entity)))
+					if (_item.getSlotType() != this.Const.ItemSlot.Bag && (_entity.getItems().getItemAtSlot(_item.getSlotType()) == null || _entity.getItems().getItemAtSlot(_item.getSlotType()) == "-1" || _entity.getItems().getItemAtSlot(_item.getSlotType()).isAllowedInBag()))
 					{
 						tooltip.push({
 							id = 1,
@@ -282,7 +282,7 @@
 				}
 				else
 				{
-					if (_item.getSlotType() != this.Const.ItemSlot.Bag && (_entity.getItems().getItemAtSlot(_item.getSlotType()) == null || _entity.getItems().getItemAtSlot(_item.getSlotType()) == "-1" || _entity.getItems().getItemAtSlot(_item.getSlotType()).isAllowedInBag(_entity)))
+					if (_item.getSlotType() != this.Const.ItemSlot.Bag && (_entity.getItems().getItemAtSlot(_item.getSlotType()) == null || _entity.getItems().getItemAtSlot(_item.getSlotType()) == "-1" || _entity.getItems().getItemAtSlot(_item.getSlotType()).isAllowedInBag()))
 					{
 						tooltip.push({
 							id = 1,
@@ -302,7 +302,7 @@
 			}
 			else if (stashLocked == true)
 			{
-				if (_item.isChangeableInBattle(_entity) && _item.isAllowedInBag(_entity) && _entity.getItems().hasEmptySlot(this.Const.ItemSlot.Bag))
+				if (_item.isChangeableInBattle(_entity) && _item.isAllowedInBag() && _entity.getItems().hasEmptySlot(this.Const.ItemSlot.Bag))
 				{
 					tooltip.push({
 						id = 1,
@@ -325,7 +325,7 @@
 			}
 			else
 			{
-				if (_item.isChangeableInBattle(_activeEntity) && _item.isAllowedInBag(_activeEntity))
+				if (_item.isChangeableInBattle(_activeEntity) && _item.isAllowedInBag())
 				{
 					tooltip.push({
 						id = 1,
@@ -363,7 +363,7 @@
 					});
 				}
 
-				if (_item.isAllowedInBag(_entity))
+				if (_item.isAllowedInBag())
 				{
 					tooltip.push({
 						id = 2,
@@ -399,7 +399,7 @@
 				});
 			}
 
-			if (_item.isChangeableInBattle(_entity) == true && _item.isAllowedInBag(_entity))
+			if (_item.isChangeableInBattle(_entity) == true && _item.isAllowedInBag())
 			{
 				tooltip.push({
 					id = 2,

@@ -17,6 +17,7 @@
 	o.m.LastTransactionPrice <- null;
 	o.m.IsQueryingSellPrice <- 0;
 	o.m.IsQueryingBuyPrice <- 0;
+	o.m.AddToBagActor <- null;
 
 	local setSold = o.setSold;
 	o.setSold = function (_f) {
@@ -28,16 +29,6 @@
 	o.setBought = function (_f) {
 		setBought(_f);
 		this.m.IsBought = _f;
-	}
-
-	o.isAllowedInBag = function ( _actor = null )
-	{
-		if (!this.m.IsAllowedInBag || this.m.SlotType == this.Const.ItemSlot.Body || this.m.SlotType == this.Const.ItemSlot.Head || this.m.SlotType == this.Const.ItemSlot.None)
-		{
-			return false;
-		}
-
-		return true;
 	}
 
 	o.getOldInstanceID <- function ()
@@ -58,11 +49,6 @@
 	o.getType <- function ()
 	{
 		return this.m.Type;
-	}
-
-	o.isChangeableInBattle = function ( _actor = null)
-	{
-		return this.m.SlotType >= 0 ? this.m.IsChangeableInBattle && this.Const.ItemSlotChangeableInBattle[this.m.SlotType] : false;
 	}
 
 	o.isDroppedAsLoot = function ()

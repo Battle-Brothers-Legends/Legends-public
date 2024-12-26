@@ -24,62 +24,15 @@
 	o.m.Appearance.HelmetLayerVanityCorpse <- "";
 	o.m.Appearance.HelmetLayerVanity2Corpse <- "";
 
-	o.addToBag = function ( _item, _slot = -1, _force = false)
+	local addToBag = o.addToBag;
+	o.addToBag = function ( _item, _slot = -1 )
 	{
-		if (_item.getCurrentSlotType() != this.Const.ItemSlot.None)
-		{
-			this.logWarning("Attempted to add item " + _item.getName() + " to bag, but is already placed somewhere else");
-			return false;
-		}
+		if (_item == null) return false;
 
-		if (!_force && !_item.isAllowedInBag(this.getActor()))
-		{
-			return false;
-		}
-
-		local vacancy = -1;
-
-		if (_slot != -1)
-		{
-			if (_slot >= this.m.UnlockedBagSlots || this.m.Items[this.Const.ItemSlot.Bag][_slot] != null)
-			{
-				this.logWarning("Attempted to add item " + _item.getName() + " to bag slot which isn\'t empty or is locked");
-				return false;
-			}
-
-			vacancy = _slot;
-		}
-		else
-		{
-			for( local i = 0; i < this.Math.min(this.m.Items[this.Const.ItemSlot.Bag].len(), this.m.UnlockedBagSlots); i = ++i )
-			{
-				if (this.m.Items[this.Const.ItemSlot.Bag][i] == null)
-				{
-					vacancy = i;
-					break;
-				}
-			}
-		}
-
-		if (vacancy != -1)
-		{
-			this.m.Items[this.Const.ItemSlot.Bag][vacancy] = _item;
-			_item.setContainer(this);
-			_item.setCurrentSlotType(this.Const.ItemSlot.Bag);
-			_item.onPutIntoBag();
-
-			if (this.m.Actor.isPlayerControlled())
-			{
-				this.m.Actor.getSkills().update();
-			}
-
-			return true;
-		}
-		else
-		{
-			this.logWarning("Could not add " + _item.getName() + " to bag because no empty slot was found");
-			return false;
-		}
+		_item.m.AddToBagActor = getActor();
+		local result = addToBag(_item, _slot);
+		_item.m.AddToBagActor = null;
+		return result;
 	}
 
 	o.drop <- function( item )
