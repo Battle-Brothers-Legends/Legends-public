@@ -168,8 +168,7 @@
 			_properties.DamageRegularMax += 12;
 			_properties.DamageArmorMult += 0.3;
 		}
-
-		if (hasCestus)
+		else if (hasCestus)
 		{
 			_properties.DamageRegularMin += 6;
 			_properties.DamageRegularMax += 12;
