@@ -32,7 +32,7 @@ this.perk_legend_slaughterer <- this.inherit("scripts/skills/skill", {
 				difficulty = difficulty + this.Const.Morale.EnemyKilledSelfBonus;
 			}
 
-			this.checkMorale(1, difficulty);
+			killer.checkMorale(1, difficulty);
 		}
 	}
 });
