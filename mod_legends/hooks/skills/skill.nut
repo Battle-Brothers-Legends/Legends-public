@@ -164,100 +164,6 @@
 		return ret;
 	}
 
-	o.use = function( _targetTile, _forFree = false )
-	{
-		local container = this.m.Container;
-		local targetEntity = _targetTile.IsOccupiedByActor ? _targetTile.getEntity() : null;
-
-		container.onBeforeAnySkillExecuted(this, _targetTile, targetEntity, _forFree);
-
-		if (!_forFree && !this.isAffordable() || !this.isUsable())
-		{
-			return false;
-		}
-
-		local user = this.m.Container.getActor();
-
-		if (!_forFree)
-		{
-			this.logDebug(user.getName() + " uses skill " + this.getName());
-		}
-
-		if (this.isTargeted())
-		{
-			if (this.m.IsVisibleTileNeeded && !_targetTile.IsVisibleForEntity)
-			{
-				return false;
-			}
-
-			if (!this.onVerifyTarget(user.getTile(), _targetTile))
-			{
-				return false;
-			}
-
-			local d = user.getTile().getDistanceTo(_targetTile);
-			local levelDifference = user.getTile().Level - _targetTile.Level;
-
-			if (d < this.m.MinRange || !this.m.IsRanged && d > this.getMaxRange())
-			{
-				return false;
-			}
-
-			if (this.m.IsRanged && d > this.getMaxRange() + this.Math.min(this.m.MaxRangeBonus, this.Math.max(0, levelDifference)))
-			{
-				return false;
-			}
-		}
-
-		this.onBeforeUse(user, _targetTile);
-		if (!_forFree)
-		{
-			++this.Const.SkillCounter;
-		}
-
-		if ((this.m.IsAudibleWhenHidden || user.getTile().IsVisibleForPlayer) && this.m.SoundOnUse.len() != 0)
-		{
-			if (!this.m.IsUsingActorPitch)
-			{
-				this.Sound.play(this.m.SoundOnUse[this.Math.rand(0, this.m.SoundOnUse.len() - 1)], this.Const.Sound.Volume.Skill * this.m.SoundVolume, user.getPos());
-			}
-			else
-			{
-				this.Sound.play(this.m.SoundOnUse[this.Math.rand(0, this.m.SoundOnUse.len() - 1)], this.Const.Sound.Volume.Skill * this.m.SoundVolume, user.getPos(), user.getSoundPitch());
-			}
-
-			if (this.m.IsAttack)
-			{
-				user.playAttackSound();
-			}
-		}
-
-		this.spawnOverlay(user, _targetTile);
-
-		if (!_forFree)
-		{
-			user.setActionPoints(user.getActionPoints() - this.getActionPointCost() - user.getCurrentProperties().AdditionalActionPointCost);
-			user.setFatigue(user.getFatigue() + this.getFatigueCost());
-		}
-
-		if (this.m.Item != null && !this.m.Item.isNull())
-		{
-			this.m.Item.onUse(this);
-		}
-
-		user.setPreviewSkillID("");
-
-		container.onAnySkillExecuted(this, _targetTile, targetEntity, _forFree);
-
-		local recoverSkill = this.getContainer().getSkillByID("actives.recover");
-		if (recoverSkill != null)
-		{
-			recoverSkill.m.CanRecover = false;
-		}
-
-		return this.onUse(user, _targetTile);
-	}
-
 	o.getExpectedDamage = function( _target )
 	{
 		local actor = this.m.Container.getActor();
@@ -292,10 +198,6 @@
 			TotalDamage = hitpointDamage + armorDamage + directDamage
 		};
 		return ret;
-	}
-
-	o.onBeforeUse <- function( _user, _targetEntity)
-	{
 	}
 
 	o.onUnlocked <- function()
