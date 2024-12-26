@@ -65,6 +65,8 @@ this.legend_fortify_skill <- this.inherit("scripts/skills/skill", {
 				text = "Grants [color=" + this.Const.UI.Color.PositiveValue + "]+" + this.Math.floor(item.getRangedDefense() * mult + 5) + "[/color] Ranged Defense for one turn"
 			}
 		];
+
+		return tooltip;
 	}
 
 	function isUsable()
