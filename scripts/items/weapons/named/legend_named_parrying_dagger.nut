@@ -3,6 +3,7 @@ this.legend_named_parrying_dagger <- this.inherit("scripts/items/shields/named/n
 		Variants = [],
 		WeaponType = ::Const.Items.WeaponType.Dagger, // workaround: hardcode WeaponType since this is actually a shield
 		OffHandWeaponSkills = {},
+		PrimaryOffhandAttack = null,
 		// for offhand weapon
 		RegularDamage = 20,
 		RegularDamageMax = 40,
@@ -11,6 +12,11 @@ this.legend_named_parrying_dagger <- this.inherit("scripts/items/shields/named/n
 		DirectDamageAdd = 0.0,
 		ChanceToHitHead = 0,
 	},
+	function getPrimaryOffhandAttack()
+	{
+		return m.PrimaryOffhandAttack;
+	}
+
 	function create()
 	{
 		this.named_shield.create();
@@ -156,6 +162,7 @@ this.legend_named_parrying_dagger <- this.inherit("scripts/items/shields/named/n
 		named_shield.onEquip();
 		local stab = this.new("scripts/skills/actives/stab");
 		m.OffHandWeaponSkills[stab.m.ID] <- ::MSU.asWeakTableRef(stab);
+		m.PrimaryOffhandAttack = m.OffHandWeaponSkills[stab.m.ID];
 		stab.m.Order = this.Const.SkillOrder.UtilityTargeted - 3;
 		stab.m.ID = stab.m.ID + "_offhand";
 		this.addSkill(stab);
@@ -182,10 +189,6 @@ this.legend_named_parrying_dagger <- this.inherit("scripts/items/shields/named/n
 		parrying.setItem(this);
 		this.m.SkillPtrs.push(parrying);
 		this.getContainer().getActor().getSkills().add(parrying);
-
-		local ambidex = this.getContainer().getActor().getSkills().getSkillByID("perk.legend_ambidextrous");
-		if (ambidex)
-			ambidex.setOffhandSkill("actives.stab_offhand");
 	}
 
 	function onUnequip()
@@ -201,10 +204,7 @@ this.legend_named_parrying_dagger <- this.inherit("scripts/items/shields/named/n
 		}
 
 		m.OffHandWeaponSkills.clear(); // reset
-
-		local ambidex = this.getContainer().getActor().getSkills().getSkillByID("perk.legend_ambidextrous");
-		if (ambidex)
-			ambidex.resetOffhandSkill();
+		m.PrimaryOffhandAttack = null;
 	}
 
 	function onUpdateProperties( _properties )
