@@ -157,97 +157,10 @@
 		_tile.IsContainingItemsFlipped = _flip;
 	}
 
+	local equip = o.equip;
 	o.equip = function (_item)
 	{
-		if (_item == null)
-		{
-			return false
-		}
-
-		if (_item.getSlotType() == this.Const.ItemSlot.None)
-		{
-			return false;
-		}
-
-		if (_item.getCurrentSlotType() != this.Const.ItemSlot.None)
-		{
-			this.logWarning("Attempted to equip item " + _item.getName() + ", but it is already placed somewhere else");
-			return false;
-		}
-
-		// if (!this.getActor().getFlags().has("IsHorseRider"))
-		// {
-		// 	if  (  (_item.getItemType() == this.Const.Items.ItemType.HorseArmor && !this.getActor().getFlags().has("IsHorse"))
-		// 		|| (_item.getItemType() != this.Const.Items.ItemType.HorseArmor && this.getActor().getFlags().has("IsHorse")))
-		// 	{
-		// 		return false;
-		// 	}
-
-		// 	if  (  (_item.getItemType() == this.Const.Items.ItemType.HorseHelmet && !this.getActor().getFlags().has("IsHorse"))
-		// 		|| (_item.getItemType() != this.Const.Items.ItemType.HorseHelmet && this.getActor().getFlags().has("IsHorse")))
-		// 	{
-		// 		return false;
-		// 	}
-		// }
-
-		local vacancy = -1;
-
-		for( local i = 0; i < this.m.Items[_item.getSlotType()].len(); i = ++i )
-		{
-			if (this.m.Items[_item.getSlotType()][i] == null)
-			{
-				vacancy = i;
-				break;
-			}
-		}
-
-		local blocked = -1;
-
-		if (_item.getBlockedSlotType() != null)
-		{
-			for( local i = 0; i < this.m.Items[_item.getBlockedSlotType()].len(); i = ++i )
-			{
-				if (this.m.Items[_item.getBlockedSlotType()][i] == null)
-				{
-					blocked = i;
-					break;
-				}
-			}
-		}
-
-		if (vacancy != -1 && (_item.getBlockedSlotType() == null || blocked != -1))
-		{
-			if (_item.getContainer() != null)
-			{
-				_item.getContainer().unequip(_item);
-			}
-
-			this.m.Items[_item.getSlotType()][vacancy] = _item;
-
-			if (_item.getBlockedSlotType() != null)
-			{
-				this.m.Items[_item.getBlockedSlotType()][blocked] = -1;
-			}
-
-			_item.setContainer(this);
-			_item.setCurrentSlotType(_item.getSlotType());
-
-			if (_item.getSlotType() == this.Const.ItemSlot.Bag)
-			{
-				_item.onPutIntoBag();
-			}
-			else
-			{
-				_item.onEquip();
-			}
-
-			this.m.Actor.getSkills().update();
-			return true;
-		}
-		else
-		{
-			return false;
-		}
+		return _item == null ? false : equip(_item);
 	}
 
 	o.unequipNoUpdate <- function (_item)
