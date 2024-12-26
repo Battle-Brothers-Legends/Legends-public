@@ -96,7 +96,7 @@
 	o.onAfterUpdate = function ( _properties )
 	{
 		onAfterUpdate(_properties);
-		if (this.getContainer().hasPerk.hasPerk(::Const.Perks.PerkDefs.LegendCloseCombatArcher))
+		if (this.getContainer().hasPerk(::Const.Perks.PerkDefs.LegendCloseCombatArcher))
 		{
 			this.m.MinRange = 1;
 			this.m.MaxRange = 3;
