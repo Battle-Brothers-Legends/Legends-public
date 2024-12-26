@@ -243,7 +243,7 @@
 		if (result == null)
 			return null;
 
-		result.isChangeableInBattle = _item.isChangeableInBattle(null);
+		result.isChangeableInBattle = _item.isChangeableInBattle();
 		result.isAllowedInBag = _item.isAllowedInBag();
 
 		result.salvage <- _item.isToBeSalvaged();

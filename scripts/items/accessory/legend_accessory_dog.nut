@@ -36,7 +36,7 @@ this.legend_accessory_dog <- this.inherit("scripts/items/accessory/accessory", {
 		return !::MSU.isNull(m.AddToBagActor) && m.AddToBagActor.getSkills().hasSkill("perk.legend_packleader");
 	}
 
-	function isChangeableInBattle(_actor = null)
+	function isChangeableInBattle()
 	{
 		//Wierd work around - since player stash queries this in order to enabled drag/drop onto
 		//paperdoll - but there is no actor or container yet so we have to allow
@@ -44,27 +44,10 @@ this.legend_accessory_dog <- this.inherit("scripts/items/accessory/accessory", {
 		//this function again, we can check actor and set it to false if not perk
 		//is present
 
-		if (_actor == null && this.getContainer() == null)
-		{
+		if (::MSU.isNull(m.IsChangeableInBattleActor) && ::MSU.isNull(getContainer()))
 			return true;
-		}
 
-		if (_actor == null && this.getContainer() != null)
-		{
-			_actor = this.getContainer().getActor();
-		}
-
-		if (typeof _actor == "instance")
-		{
-			return false;
-		}
-
-		if (_actor.getSkills().hasSkill("perk.legend_packleader"))
-		{
-			return true;
-		}
-
-		return false;
+		return !::MSU.isNull(m.IsChangeableInBattleActor) && m.IsChangeableInBattleActor.getSkills().hasSkill("perk.legend_packleader");
 	}
 
 	function isUnleashed()

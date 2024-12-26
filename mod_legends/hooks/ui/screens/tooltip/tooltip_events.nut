@@ -212,7 +212,7 @@
 
 		if (stashLocked == true && _ignoreStashLocked == false)
 		{
-			if (_item.isChangeableInBattle(_entity) == false)
+			if (_item.isChangeableInBattle() == false)
 			{
 				tooltip.push({
 					id = 1,
@@ -302,7 +302,7 @@
 			}
 			else if (stashLocked == true)
 			{
-				if (_item.isChangeableInBattle(_entity) && _item.isAllowedInBag() && _entity.getItems().hasEmptySlot(this.Const.ItemSlot.Bag))
+				if (_item.isChangeableInBattle() && _item.isAllowedInBag() && _entity.getItems().hasEmptySlot(this.Const.ItemSlot.Bag))
 				{
 					tooltip.push({
 						id = 1,
@@ -325,7 +325,7 @@
 			}
 			else
 			{
-				if (_item.isChangeableInBattle(_activeEntity) && _item.isAllowedInBag())
+				if (_item.isChangeableInBattle() && _item.isAllowedInBag())
 				{
 					tooltip.push({
 						id = 1,
@@ -347,7 +347,7 @@
 
 		case "ground":
 		case "character-screen-inventory-list-module.ground":
-			if (_item.isChangeableInBattle(_entity))
+			if (_item.isChangeableInBattle())
 			{
 				if (_item.getSlotType() != this.Const.ItemSlot.None)
 				{
@@ -399,7 +399,7 @@
 				});
 			}
 
-			if (_item.isChangeableInBattle(_entity) == true && _item.isAllowedInBag())
+			if (_item.isChangeableInBattle() == true && _item.isAllowedInBag())
 			{
 				tooltip.push({
 					id = 2,
