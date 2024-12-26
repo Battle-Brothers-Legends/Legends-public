@@ -1,12 +1,18 @@
 this.perk_legend_ambidextrous <- this.inherit("scripts/skills/skill", {
 	m = {
-		offHandSkill = null
+		offHandSkill = null,
+		HandToHand = null,
+		ApplicableItems = [
+			"shield.legend_named_parrying_dagger",
+			"shield.legend_parrying_dagger",
+			"shield.buckler"
+		],
 	},
 
-	// takes a text string
+	// takes a weakTableRef
 	function setOffhandSkill ( _a )
 	{
-		this.m.offHandSkill = _a;
+		this.m.offHandSkill = ::MSU.asWeakTableRef(_a);
 	}
 
 	function resetOffhandSkill ()
@@ -26,7 +32,7 @@ this.perk_legend_ambidextrous <- this.inherit("scripts/skills/skill", {
 
 	function isHidden()
 	{	
-		if (this.m.offHandSkill != null)
+		if (!::MSU.isNull(m.offHandSkill))
 			return false;
 		local items = this.getContainer().getActor().getItems();
 		local off = items.getItemAtSlot(this.Const.ItemSlot.Offhand);
@@ -36,9 +42,8 @@ this.perk_legend_ambidextrous <- this.inherit("scripts/skills/skill", {
 
 	function getDescription()
 	{
-		local skill = this.m.offHandSkill != null ? this.m.offHandSkill : "actives.hand_to_hand";
-		skill = this.getContainer().getSkillByID(skill).getName();
-		return format("Fluid like water!\n\nThis character will follow up any attack with a [color=" + ::Const.UI.Color.Active + "]%s[/color] from their off hand! If both hands are free, they also gain additional melee skill and melee defense.", skill);
+		local skill = !::MSU.isNull(m.offHandSkill) ? this.m.offHandSkill : m.HandToHand;
+		return format("Fluid like water!\n\nThis character will follow up any attack with a [color=" + ::Const.UI.Color.Active + "]%s[/color] from their off hand! If both hands are free, they also gain additional melee skill and melee defense.", skill.getName());
 	}
 
 	function getTooltip()
@@ -89,31 +94,25 @@ this.perk_legend_ambidextrous <- this.inherit("scripts/skills/skill", {
 		local items = this.getContainer().getActor().getItems();
 		local off = items.getItemAtSlot(this.Const.ItemSlot.Offhand);
 
-		if (_targetEntity != null && !items.hasBlockedSlot(this.Const.ItemSlot.Offhand) && (off == null || this.m.offHandSkill != null))
+		if (_targetEntity != null && !items.hasBlockedSlot(this.Const.ItemSlot.Offhand) && (off == null || !::MSU.isNull(m.offHandSkill)))
 		{
 			if (!_forFree)
 			{
 				if (_targetTile == null) // Is this necessary?
 					return;
 				// i need to somehow do this more dynamically
-				local skill = this.m.offHandSkill != null ? this.m.offHandSkill : "actives.hand_to_hand";
-				local info = {
+				::Time.scheduleEvent(::TimeUnit.Virtual, ::Const.Combat.RiposteDelay, this.executeFollowUpAttack.bindenv(this), {
 					TargetTile = _targetTile,
-					skillID = skill
-				};
-				::Time.scheduleEvent(::TimeUnit.Virtual, ::Const.Combat.RiposteDelay, this.executeFollowUpAttack.bindenv(this), info);
+					Skill = !::MSU.isNull(m.offHandSkill) ? m.offHandSkill : m.HandToHand;
+				});
 			}
 		}
 	}
 
 	function executeFollowUpAttack( _info )
 	{
-		local attack = this.getContainer().getSkillByID(_info.skillID);
-
-		if (attack != null)
-		{
-			attack.useForFree(_info.TargetTile);
-		}
+		if (!::MSU.isNull(_info.Skill))
+			_info.Skill.useForFree(_info.TargetTile);
 	}
 
 	function onUpdate( _properties )
@@ -128,6 +127,32 @@ this.perk_legend_ambidextrous <- this.inherit("scripts/skills/skill", {
 			_properties.MeleeSkill += 5;
 
 		}
+	}
+
+	function onAdded()
+	{
+		m.HandToHand = ::MSU.asWeakTableRef(getContainer().getSkillByID("actives.hand_to_hand"));
+
+		local off = getContainer().getActor().getOffhandItem();
+
+		if (off != null)
+			onEquip(off);
+	}
+
+	function onEquip( _item )
+	{
+		if (m.ApplicableItems.find(_item.getID()) == null)
+			return; // not a right one
+
+		setOffhandSkill(_item.getPrimaryOffhandAttack());
+	}
+
+	function onUnequip( _item )
+	{
+		if (m.ApplicableItems.find(_item.getID()) == null)
+			return;
+
+		resetOffhandSkill();
 	}
 
 });
