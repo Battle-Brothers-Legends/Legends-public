@@ -5,6 +5,7 @@ if (!("Food" in ::Legends))
 	"effects.legend_beer_buzz_effect",
 	"effects.legend_wine_tipsy_effect",
 	"effects.legend_mead_warmth_effect",
+	"effects.legend_liquor_burn_effect",
 ]
 
 ::Legends.Food.isTipsy <- function (_actor) {
