@@ -4,7 +4,7 @@
 	o.onUpdate = function ( _faction )
 	{
 		onUpdate(_faction);
-		
+
 		if (this.m.Settlement == null || this.m.Settlement.numShips() > 1)
 			this.m.Score = 0;
 	}
@@ -19,6 +19,7 @@
 			return result;
 
 		local party = _faction.getUnits().top();
+		local c = party.getController();
 		local start, best = 9999, curentTile = party.getTile();
 
 		foreach (settlement in World.EntityManager.getSettlements())
@@ -33,8 +34,9 @@
 			start = settlement;
 		}
 
-		if (start == null) return result;
-		
+		if (start == null)
+			return result;
+
 		party.setDescription(format("A ship from %s transporting goods and passengers.", start.getName()));
 		party.getFlags().set("IsCaravan", true);
 		// set up trade
@@ -43,7 +45,7 @@
 		local dock = ::new("scripts/ai/world/orders/unload_order");
 		dock.setController(c);
 		c.m.Orders.insert(1, dock);
-		
+
 		return result;
 	}
 });

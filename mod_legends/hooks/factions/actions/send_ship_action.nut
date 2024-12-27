@@ -41,14 +41,15 @@
 			destination = settlement;
 		}
 
-		if (destination == null) return result;
+		if (destination == null)
+			return result;
 		// set up trade
 		::Const.World.Common.WorldEconomy.Trade.setupTrade(party, m.Settlement, destination);
 		// insert new order
 		local dock = ::new("scripts/ai/world/orders/unload_order");
 		dock.setController(c);
 		c.m.Orders.insert(1, dock);
-		
+
 		return result;
 	}
 });
