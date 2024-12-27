@@ -2,7 +2,7 @@ this.legend_drink_potion_skill <- this.inherit("scripts/skills/skill", {
 	m = {
 		Item = null,
 		Effects = [],
-		StatusEffect = null;
+		StatusEffect = null
 	},
 
 	function setItem( _i ) {
