@@ -11,7 +11,7 @@
 
 		local settlement = ::World.getEntityByID(_entity.getFlags().get("CaravanDestinationID"));
 
-		if (settlement == null || !settlement.isLocation() || !settlement.isLocationType(::Const.World.LocationType.Settlement)) {
+		if (settlement == null || !settlement.isLocation() || !settlement.isLocationType(::Const.World.LocationType.Settlemesnt)) {
 			::logError("Error: Can not unloading caravan stash. Reason: Desitnation settlement is missing or not a valid settlement.")
 			getController().popOrder();
 			return true;
@@ -19,6 +19,8 @@
 
 		local inv = _entity.getStashInventory().getItems();
 		local origin = _entity.getOrigin();
+		local investment = _entity.getFlags().getAsInt("CaravanInvestment");
+		local profit = _entity.getFlags().getAsInt("CaravanProfit");
 
 		if (origin != null) {
 			local coords = settlement.getTile().Coords;
