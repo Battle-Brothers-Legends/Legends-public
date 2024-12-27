@@ -8,7 +8,7 @@
 	{
 		create();
 		this.m.Categories = "Cleaver, Whip, One-Handed";
-		this.m.ItemType = this.Const.Items.ItemType.Named | this.Const.Items.ItemType.Weapon | this.Const.Items.ItemType.MeleeWeapon | this.Const.Items.ItemType.OneHanded | this.Const.Items.ItemType.Cultist;
+		this.m.ItemType = this.m.ItemType | this.Const.Items.ItemType.Cultist;
 	}
 
 	o.getTooltip <- function ()

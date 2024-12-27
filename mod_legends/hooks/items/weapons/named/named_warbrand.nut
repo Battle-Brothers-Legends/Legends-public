@@ -5,8 +5,6 @@
 	{
 		create();
 		this.m.Variants = [1,2,3]
-		this.m.Variant = this.m.Variants[this.Math.rand(0, this.m.Variants.len() -1)];
-		this.m.Value = 4200;
 	}
 
 	o.addSkill <- function( _skill )

@@ -17,8 +17,5 @@
 		}
 		return result;
 	}
-
-	o.onUpdateProperties = function ( _properties )
-	{
-	}
+	
 });

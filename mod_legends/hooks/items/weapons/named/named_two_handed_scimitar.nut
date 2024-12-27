@@ -4,8 +4,7 @@
 	o.create = function ()
 	{
 		create();
-		this.m.Variants = [1,2]
-		this.m.Variant = this.m.Variants[this.Math.rand(0, this.m.Variants.len() -1)];
+		this.m.Variants = [1,2];
 		this.m.Categories = "Cleaver, Sword, Two-Handed";
 	}
 });

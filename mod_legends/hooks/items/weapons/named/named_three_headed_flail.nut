@@ -8,7 +8,6 @@
 	{
 		create();
 		this.m.Variants = [1, 2]
-		this.m.Variant = this.m.Variants[this.Math.rand(0, this.m.Variants.len() -1)];
 		this.m.Description = "An very rare weapon built from valuable and strong materials. Despite its ceremonial look it makes for a terrifying tool of destruction.";
 	}
 

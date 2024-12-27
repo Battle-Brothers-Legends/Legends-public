@@ -11,9 +11,9 @@
 
 		local settlement = ::World.getEntityByID(_entity.getFlags().get("CaravanDestinationID"));
 
-		if (settlement == null || !settlement.isLocation() || !settlement.isLocationType(::Const.World.LocationType.Settlemesnt)) {
-			::logError("Error: Can not unloading caravan stash. Reason: Desitnation settlement is missing or not a valid settlement.")
-			getController().popOrder();
+		if (settlement == null || !settlement.isLocation() || !settlement.isLocationType(::Const.World.LocationType.Settlement)) {
+			::logError("Error: Can not unloading caravan stash. Reason: Desitnation settlement is missing or not a valid settlement.");
+			this.getController().popOrder();
 			return true;
 		}
 
