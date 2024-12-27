@@ -1790,7 +1790,7 @@
 		foreach (item in this.World.Assets.getStash().getItems()) {
 			if (item == null)
 				continue;
-			if (item.isBought()) {
+			if (item.isBought() && !item.isSold()) {
 				if (item.isItemType(this.Const.Items.ItemType.TradeGood)) {
 					this.World.Statistics.getFlags().increment("TradeGoodsBought");
 					if (::Legends.Mod.ModSettings.getSetting("WorldEconomy").getValue())
@@ -1816,7 +1816,7 @@
 				foreach (item in stash.getItems())
 				{
 					if (item == null) continue;
-					if (item.isSold())
+					if (item.isSold() && !item.isBought())
 					{
 						if (item.isItemType(this.Const.Items.ItemType.TradeGood))
 						{

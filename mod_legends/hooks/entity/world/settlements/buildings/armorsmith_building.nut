@@ -574,6 +574,11 @@
 				R = 70,
 				P = 1.0,
 				S = "legend_armor/armor_upgrades/legend_pauldron_heavy_upgrade"
+			},
+			{
+				R = 70,
+				P = 1.0,
+				S = "accessory/legend_spiked_gauntlets_item"
 			}
 		]
 

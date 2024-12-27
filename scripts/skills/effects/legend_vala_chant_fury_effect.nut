@@ -79,7 +79,7 @@ this.legend_vala_chant_fury_effect <- this.inherit("scripts/skills/effects/legen
 				id = 11,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]" + paybackchance + "%[/color] chance to retaliate against an attacker that hits you in melee range"
+				text = "[color=" + this.Const.UI.Color.PositiveValue + "]" + paybackchance + "%[/color] chance to retaliate against an attacker that hits you in melee range, for [color=" + this.Const.UI.Color.PositiveValue + "]" + paybackdamage + "%[/color] damage"
 			}
 		];
 	}
@@ -93,6 +93,9 @@ this.legend_vala_chant_fury_effect <- this.inherit("scripts/skills/effects/legen
 		if (_damageHitpoints >= actor.getHitpoints())
 			return;
 
+		if (!actor.isAlive() || actor.isDying())
+			return;
+
 		if (!this.checkEntities() || !this.isInRange())
 			return;
 
@@ -100,7 +103,7 @@ this.legend_vala_chant_fury_effect <- this.inherit("scripts/skills/effects/legen
 
 		if (this.Math.rand(1, 100) <= chance)
 		{
-			local payback = this.getContainer().getSkills().getAttackOfOpportunity();
+			local payback = this.getContainer().getAttackOfOpportunity();
 			if (payback != null)
 			{
 				this.getContainer().setBusy(true);
@@ -167,13 +170,13 @@ this.legend_vala_chant_fury_effect <- this.inherit("scripts/skills/effects/legen
 		if (!this.checkEntities())
 		{
 			this.updateEffect(false);
-			return
+			return;
 		}
 
 		if (!this.isInRange())
 		{
 			this.updateEffect(false);
-			return
+			return;
 		}
 
 		if (this.getContainer().getActor().getID() != this.m.Vala.getID())
@@ -190,13 +193,13 @@ this.legend_vala_chant_fury_effect <- this.inherit("scripts/skills/effects/legen
 		if (!this.checkEntities())
 		{
 			this.updateEffect(false);
-			return
+			return;
 		}
 
 		if (!this.isInRange())
 		{
 			this.updateEffect(false);
-			return
+			return;
 		}
 
 		local distance = this.getContainer().getActor().getTile().getDistanceTo(this.m.Vala.getTile());

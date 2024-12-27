@@ -19,34 +19,26 @@ this.perk_legend_bloodbath <- this.inherit("scripts/skills/skill", {
 	function getTooltip()
 	{
 		local bleeders = this.getBleeders();
-		local bonus = bleeders * 100;
+		local resolveBonus = bleeders * 100;
+		local fatigueRegen = this.getFatigueRegen();
 		local tooltip = this.skill.getTooltip();
-		// Just some different wordings depending on the amount of characters bleeding
-		if (bleeders > 0.8)
+		if (bleeders > 0)
 		{
-			tooltip.push({
+			tooltip.extend([
+			{
 				id = 6,
 				type = "text",
-				icon = "ui/icons/special.png",
-				text = "There are a lot of characters bleeding, giving a bonus of [color=" + this.Const.UI.Color.PositiveValue + "]+" + bonus + "%[/color] to resolve and fatigue"
-			});
-		} else if (bleeders > 0.5)
-		{
-			tooltip.push({
-				id = 6,
+				icon = "ui/icons/bravery.png",
+				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+" + resolveBonus + "%[/color] to resolve"
+			},
+			{
+				id = 7,
 				type = "text",
-				icon = "ui/icons/special.png",
-				text = "There are some characters bleeding, giving a bonus of [color=" + this.Const.UI.Color.PositiveValue + "]+" + bonus + "%[/color] to resolve and fatigue"
-			});
-		} else
-		{
-			tooltip.push({
-				id = 6,
-				type = "text",
-				icon = "ui/icons/special.png",
-				text = "There are a few characters bleeding, giving a bonus of [color=" + this.Const.UI.Color.PositiveValue + "]+" + bonus + "%[/color] to resolve and fatigue"
-			});
+				icon = "ui/icons/fatigue.png",
+				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+" + fatigueRegen + "%[/color] Fatigue Recovery per turn"
+			}]);
 		}
+		
 		return tooltip;
 	}
 
@@ -83,11 +75,15 @@ this.perk_legend_bloodbath <- this.inherit("scripts/skills/skill", {
 		return (count == 0) ? 0 : bleeders / count;
 	}
 
+	function getFatigueRegen()
+	{
+		return this.Math.max(5, this.Math.floor(this.getBleeders() * 20));
+	}
+
 	function onUpdate( _properties )
 	{
-		local bonus = this.getBleeders();
-		_properties.BraveryMult += bonus;
-		_properties.StaminaMult += bonus;
+		_properties.BraveryMult += this.getBleeders();
+		_properties.FatigueRecoveryRate += this.getFatigueRegen(); // up to 5 extra fatigue regen, can be achieved if at least 1/4 of all characters on the map are bleeding or have temp injuries
 	}
 
 });

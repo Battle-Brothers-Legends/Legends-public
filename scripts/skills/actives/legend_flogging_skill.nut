@@ -47,6 +47,11 @@ this.legend_flogging_skill <- this.inherit("scripts/skills/skill", {
 		return ret;
 	}
 
+	function onAfterUpdate( _properties )
+	{
+		this.m.FatigueCostMult = _properties.IsSpecializedInCleavers ? this.Const.Combat.WeaponSpecFatigueMult : 1.0;
+	}
+
 	function onTargetSelected( _targetTile )
 	{
 		local ownTile = this.m.Container.getActor().getTile();
@@ -76,7 +81,6 @@ this.legend_flogging_skill <- this.inherit("scripts/skills/skill", {
 			}
 		}
 	}
-	
 
 	function onUse( _user, _targetTile )
 	{

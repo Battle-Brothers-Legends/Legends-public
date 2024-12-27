@@ -302,11 +302,11 @@ if (!("Perks" in ::Const))
 	},
 	Tree = [
 		[],
-		[::Const.Perks.PerkDefs.LegendBloodyHarvest],
+		[],
 		[],
 		[::Const.Perks.PerkDefs.LegendSpecGreatSword],
-		[],
-		[::Const.Perks.PerkDefs.LegendForcefulSwing],
+		[::Const.Perks.PerkDefs.LegendSlaughterer],
+		[::Const.Perks.PerkDefs.LegendBloodyHarvest],
 		[]
 	]
 };

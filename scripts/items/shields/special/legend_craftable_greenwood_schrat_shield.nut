@@ -36,7 +36,7 @@ this.legend_craftable_greenwood_schrat_shield <- this.inherit("scripts/items/shi
 			id = 6,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "Regenerates itself by up to [color=" + this.Const.UI.Color.PositiveValue + "]" + this.Math.floor(this.getConditionMax() * 0.1) + "[/color] of maximum durability each turn."
+			text = "Regenerates itself by up to [color=" + this.Const.UI.Color.PositiveValue + "]" + this.Math.floor(this.getConditionMax() * 0.2) + "[/color] of maximum durability each turn."
 		});
 		return result;
 	}
@@ -56,7 +56,7 @@ this.legend_craftable_greenwood_schrat_shield <- this.inherit("scripts/items/shi
 	function onTurnStart()
 	{
 		local shieldMissing = this.getConditionMax() - this.getCondition();
-		local shieldAdded = this.Math.min(shieldMissing, this.Math.floor(this.getConditionMax() * 0.1));
+		local shieldAdded = this.Math.min(shieldMissing, this.Math.floor(this.getConditionMax() * 0.2));
 
 		if (shieldAdded <= 0)
 		{

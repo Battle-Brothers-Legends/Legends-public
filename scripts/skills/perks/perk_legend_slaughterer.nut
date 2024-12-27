@@ -13,8 +13,27 @@ this.perk_legend_slaughterer <- this.inherit("scripts/skills/skill", {
 	function onUpdate( _properties )
 	{
 		local actor = this.getContainer().getActor();
-		_properties.FatalityChanceMult = 100.0;
+		_properties.FatalityChanceMult = 1000.0;
 		_properties.FlatOnKillOtherActorModifier -= 5;
+	}
+
+	function onTargetKilled( _targetEntity, _skill )
+	{
+		if (!this.getContainer().hasSkill("trait.bloodthirsty"))
+			return;
+
+		local killer = this.getContainer().getActor();
+		if (!_targetEntity.isAlliedWith(killer))
+		{
+			local difficulty = this.Const.Morale.EnemyKilledBaseDifficulty + _targetEntity.getXPValue() * this.Const.Morale.EnemyKilledXPMult - this.Math.pow(_targetEntity.getTile().getDistanceTo(killer.getTile()), this.Const.Morale.EnemyKilledDistancePow);
+
+			if (killer != null && killer.isAlive() && killer.getID() == this.getID())
+			{
+				difficulty = difficulty + this.Const.Morale.EnemyKilledSelfBonus;
+			}
+
+			killer.checkMorale(1, difficulty);
+		}
 	}
 });
 

@@ -87,8 +87,8 @@ this.legend_prosthetic_eye_item <- this.inherit("scripts/items/item", {
 		this.Sound.play("sounds/combat/armor_leather_impact_03.wav", this.Const.Sound.Volume.Inventory);
 		if (_actor.getSkills().hasSkill("injury.missing_eye"))
 		{
-			actor.getSkills().add(this.new("scripts/skills/traits/legend_prosthetic_eye"));
-			actor.getSkills().removeByID("injury.missing_eye");
+			_actor.getSkills().add(this.new("scripts/skills/traits/legend_prosthetic_eye"));
+			_actor.getSkills().removeByID("injury.missing_eye");
 			return true;
 		}
 		return false;

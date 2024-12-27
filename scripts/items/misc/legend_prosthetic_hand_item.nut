@@ -111,8 +111,8 @@ this.legend_prosthetic_hand_item <- this.inherit("scripts/items/item", {
 		this.Sound.play("sounds/combat/armor_leather_impact_03.wav", this.Const.Sound.Volume.Inventory);
 		if (_actor.getSkills().hasSkill("injury.missing_hand"))
 		{
-			actor.getSkills().add(this.new("scripts/skills/traits/legend_prosthetic_hand"));
-			actor.getSkills().removeByID("injury.missing_hand");
+			_actor.getSkills().add(this.new("scripts/skills/traits/legend_prosthetic_hand"));
+			_actor.getSkills().removeByID("injury.missing_hand");
 			return true;
 		}
 		return false;

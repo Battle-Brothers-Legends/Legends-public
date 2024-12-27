@@ -11,10 +11,7 @@ this.deserters_scenario <- this.inherit("scripts/scenarios/world/starting_scenar
 		this.setRosterReputationTiers(this.Const.Roster.createReputationTiers(this.m.StartingBusinessReputation));
 	}
 
-	function isValid()
-	{
-		return this.Const.DLC.Wildmen;
-	}
+
 
 	function setupBro( _bro, _faction )
 	{

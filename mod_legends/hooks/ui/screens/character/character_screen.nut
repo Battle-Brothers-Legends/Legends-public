@@ -624,33 +624,14 @@
 		return null;
 	}
 
+	local helper_isActionAllowed = o.helper_isActionAllowed;
 	o.helper_isActionAllowed = function ( _entity, _items, _putIntoBags )
 	{
-		if (this.m.InventoryMode == this.Const.CharacterScreen.InventoryMode.Ground)
-		{
-			local activeEntity = this.Tactical.TurnSequenceBar.getActiveEntity();
-
-			if (activeEntity != null && _entity != null && activeEntity.getID() != _entity.getID())
-			{
-				return this.helper_convertErrorToUIData(this.Const.CharacterScreen.ErrorCode.OnlyActiveEntityIsAllowedToChangeItems);
-			}
-
-			if (_entity.getItems().isActionAffordable(_items) == false)
-			{
-				return this.helper_convertErrorToUIData(this.Const.CharacterScreen.ErrorCode.NotEnoughActionPoints);
-			}
-
-			if (_items[0] != null && !_items[0].isChangeableInBattle(_entity))
-			{
-				return this.helper_convertErrorToUIData(this.Const.CharacterScreen.ErrorCode.ItemIsNotChangableInBattle);
-			}
-		}
-		else if (_items[0] != null && !_items[0].isChangeableInBattle(_entity) && _putIntoBags == true)
-		{
-			return this.helper_convertErrorToUIData(this.Const.CharacterScreen.ErrorCode.ItemIsNotChangableInBattle);
-		}
-
-		return null;
+		local isRight = typeof _items == "array" && _items[0] != null;
+		if (isRight) _items[0].m.IsChangeableInBattleActor = _entity;
+		local result = helper_isActionAllowed(_entity, _items, _putIntoBags);
+		if (isRight) _items[0].m.IsChangeableInBattleActor = null;
+		return result;
 	}
 
 	o.onFormationChanged <- function ( _data )

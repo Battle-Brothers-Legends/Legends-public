@@ -14,11 +14,6 @@ this.legends_necro_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 		this.setRosterReputationTiers(this.Const.Roster.createReputationTiers(this.m.StartingBusinessReputation));
 	}
 
-	function isValid()
-	{
-		return this.Const.DLC.Wildmen;
-	}
-
 	function onSpawnAssets()
 	{
 		local roster = this.World.getPlayerRoster();

@@ -99,8 +99,8 @@ this.legend_prosthetic_leg_item <- this.inherit("scripts/items/item", {
 		this.Sound.play("sounds/combat/armor_leather_impact_03.wav", this.Const.Sound.Volume.Inventory);
 		if (_actor.getSkills().hasSkill("injury.broken_knee"))
 		{
-			actor.getSkills().add(this.new("scripts/skills/traits/legend_prosthetic_leg"));
-			actor.getSkills().removeByID("injury.broken_knee");
+			_actor.getSkills().add(this.new("scripts/skills/traits/legend_prosthetic_leg"));
+			_actor.getSkills().removeByID("injury.broken_knee");
 			return true;
 		}
 		return false;

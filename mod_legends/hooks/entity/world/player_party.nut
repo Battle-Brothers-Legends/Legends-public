@@ -8,6 +8,15 @@
 	o.m.MedsMultiplier <- 0;
 	o.m.StashMultiplier <- 0;
 
+	o.setPath <- function( _path )
+	{
+		party.setPath(::World.Camp.isCamping() ? null : _path);
+	}
+
+	o.setDestination <- function( _destination )
+	{
+		party.setDestination(::World.Camp.isCamping() ? null : _destination);
+	}
 
 	o.updateStrength = function ()
 	{

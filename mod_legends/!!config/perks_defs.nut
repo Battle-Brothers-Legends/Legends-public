@@ -842,7 +842,7 @@ perkDefObjects.push({
 });
 perkDefObjects.push({
 	ID = "perk.legend_sprint",
-	Script = "scripts/skills/perks/perk_sprint",
+	Script = "scripts/skills/perks/perk_legend_sprint",
 	Name = this.Const.Strings.PerkName.LegendSprint,
 	Tooltip = this.Const.Strings.PerkDescription.LegendSprint,
 	Icon = "ui/perks/perk_sprint.png",
@@ -1454,7 +1454,7 @@ perkDefObjects.push({
 });
 perkDefObjects.push({
 	ID = "perk.legends.legend_off_book_deal",
-	Script = "scripts/skills/perks/legends/perk_legend_off_book_deal",
+	Script = "scripts/skills/perks/perk_legend_off_book_deal",
 	Name = this.Const.Strings.PerkName.LegendOffBookDeal,
 	Tooltip = this.Const.Strings.PerkDescription.LegendOffBookDeal,
 	Icon = "ui/perks/coins_circle.png",
@@ -3676,8 +3676,8 @@ perkDefObjects.push({
 	Script = "scripts/skills/perks/perk_legend_taste_the_pain",
 	Name = this.Const.Strings.PerkName.LegendTasteThePain,
 	Tooltip = this.Const.Strings.PerkDescription.LegendTasteThePain,
-	Icon = "ui/perks/passive_03.png", // todo icons?
-	IconDisabled = "ui/perks/passive_03_sw.png",
+	Icon = "ui/perks/twirl_circle.png", // todo icons?
+	IconDisabled = "ui/perks/twirl_circle_bw.png",
 	Const = "LegendTasteThePain"
 });
 

@@ -98,6 +98,19 @@
 			local name = item.getName();
 			local text = name;
 
+			// debug for if there is a null entry so that the tt wont crash
+			if(name == null && text == null){
+				// ::logInfo("weird NULL issue for perk tooltips");
+				::logWarning("There is a somthing with a null name: ");
+				local id = item.getID();
+				local desc = item.getDescription();
+				local type = item.getType();
+				::logInfo("id of the thing: " + id);
+				::logInfo("description of the thing: " + desc);
+				::logInfo("type of the thing: " + type);
+				continue;
+			}
+
 			if (filter != 0)
 			{
 				shownPerks[name] <- 1;
