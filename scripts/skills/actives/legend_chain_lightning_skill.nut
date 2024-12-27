@@ -193,6 +193,7 @@ this.legend_chain_lightning_skill <- this.inherit("scripts/skills/skill", {
 	function summonChainLighting( _user, _targetTile )
 	{
 		local target, selectedTargets = [], currentTargetTile = _targetTile;
+		local myTile = _user.getTile();
 		selectedTargets.push(currentTargetTile.ID);
 
 		if (m.SoundOnLightning.len() != 0)
