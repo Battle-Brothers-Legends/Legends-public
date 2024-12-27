@@ -11,10 +11,7 @@ this.legends_berserker_scenario <- this.inherit("scripts/scenarios/world/startin
 		this.m.StartingRosterTier = this.Const.Roster.getTierForSize(3);
 	}
 
-	function isValid()
-	{
-		return this.Const.DLC.Wildmen;
-	}
+
 
 	function onSpawnAssets()
 	{

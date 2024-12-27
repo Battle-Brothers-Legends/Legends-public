@@ -11,10 +11,7 @@ this.legends_scaling_beggar_scenario <- this.inherit("scripts/scenarios/world/st
 		this.m.StartingBusinessReputation = -200; // Still use default reputation tiers even if starting at negative reputation
 	}
 
-	function isValid()
-	{
-		return this.Const.DLC.Wildmen;
-	}
+
 
 	function onSpawnAssets()
 	{
