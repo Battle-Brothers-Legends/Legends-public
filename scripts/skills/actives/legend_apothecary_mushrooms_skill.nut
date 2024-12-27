@@ -1,11 +1,5 @@
 this.legend_apothecary_mushrooms_skill <- this.inherit("scripts/skills/actives/base/legend_eat_skill", {
-	m = {
-		Item = null
-	},
-	function setItem( _i )
-	{
-		this.m.Item = this.WeakTableRef(_i);
-	}
+	m = {},
 
 	function create()
 	{
