@@ -8,11 +8,6 @@ this.legend_warbear_item <- this.inherit("scripts/items/accessory/accessory", {
 			"sounds/enemies/bear_idle2.wav"
 		]
 	},
-	function isAllowedInBag(_actor = null)
-	{
-		return false;
-	}
-
 	function getScript()
 	{
 		return this.m.Script;
@@ -57,6 +52,7 @@ this.legend_warbear_item <- this.inherit("scripts/items/accessory/accessory", {
 		this.m.Description = "A strong and wild bear, not fully tamed, but powerful in battle. Can be unleashed to devastating effect, perhaps not near your allies.";
 		this.m.SlotType = this.Const.ItemSlot.Accessory;
 		this.m.IsDroppedAsLoot = true;
+		this.m.IsAllowedInBag = false;
 		this.m.ShowOnCharacter = false;
 		this.m.IsChangeableInBattle = false;
 		this.m.Value = 2000;

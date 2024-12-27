@@ -1,3 +1,4 @@
+/*
 ::mods_hookExactClass("skills/actives/slash_lightning", function(o)
 {
 	o.onUse = function ( _user, _targetTile )
@@ -5,6 +6,10 @@
 		this.spawnAttackEffect(_targetTile, this.Const.Tactical.AttackEffectSlash);
 		local success = this.attackEntity(_user, _targetTile.getEntity());
 		local myTile = _user.getTile();
+		local target = _targetTile.getEntity();
+
+		if (!_targetTile.IsEmpty || ::MSU.isNull(target) || !target.isAlive() || target.isDying())
+			return success;
 
 		if (success && _user.isAlive() && this.Tactical.TurnSequenceBar.getActiveEntity().getID() == _user.getID())
 		{
@@ -130,3 +135,4 @@
 	}
 
 });
+*/

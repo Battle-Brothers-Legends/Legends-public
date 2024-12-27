@@ -14,6 +14,7 @@ this.perk_legend_bloody_harvest <- this.inherit("scripts/skills/skill", {
 	{
 		if (_skill.isAOE() && _skill.isAttack())
 		{
+			_properties.DamageTotalMult *= 1.1;
 			_properties.MeleeSkill += 10;
 		}
 	}

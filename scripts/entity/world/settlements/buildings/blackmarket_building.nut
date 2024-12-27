@@ -704,6 +704,16 @@ this.blackmarket_building <- this.inherit("scripts/entity/world/settlements/buil
 				R = 40,
 				P = 2.0,
 				S = "accessory/legend_pack_large"
+			},
+			{
+				R = 80,
+				P = 3.0,
+				S = "accessory/legend_cestus_item"
+			},
+			{
+				R = 80,
+				P = 3.0,
+				S = "accessory/legend_spiked_gauntlets_item"
 			}
 
 		];

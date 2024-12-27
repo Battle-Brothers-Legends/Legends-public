@@ -18,7 +18,7 @@ this.legend_safeguard_skill <- this.inherit("scripts/skills/skill", {
 			"sounds/combat/weapon_break_01.wav"
 		];
 		this.m.Type = this.Const.SkillType.Active;
-		this.m.Order = this.Const.SkillOrder.OffensiveTargeted;
+		this.m.Order = this.Const.SkillOrder.UtilityTargeted;
 		this.m.IsSerialized = false;
 		this.m.IsActive = true;
 		this.m.IsTargeted = true;
@@ -110,6 +110,10 @@ this.legend_safeguard_skill <- this.inherit("scripts/skills/skill", {
 		return true;
 	}
 
+	function onAfterUpdate( _properties )
+	{
+		this.m.FatigueCostMult = _properties.IsSpecializedInShields || _properties.IsProficientWithShieldSkills ? this.Const.Combat.WeaponSpecFatigueMult : 1.0;
+	}
 
 	function onRemoved()
 	{

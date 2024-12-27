@@ -154,7 +154,7 @@
 
 		
 		if(::Legends.Mod.ModSettings.getSetting("WorldEconomy").getValue()) // yes world economy
-			::Const.World.Common.WorldEconomy.Trade.setupTrade(party, this.m.Start, this.m.Dest);
+			::Const.World.Common.WorldEconomy.Trade.setupTrade(party, this.m.Start, this.m.Dest, budget);
 		else // no world economy
 			this.addToPartyInventory(party);
 

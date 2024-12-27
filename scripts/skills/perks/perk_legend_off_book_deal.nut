@@ -19,7 +19,8 @@ this.perk_legend_off_book_deal <- this.inherit("scripts/skills/skill", {
         local numberOfOffBookDealer = 0;
 		foreach (bro in roster)
 		{
-			if(bro.getSkills().hasSkill("perk.legends.off_book_deal")) ++numberOfOffBookDealer;
+			if(bro.getSkills().hasPerk(::Const.Perks.PerkDefs.LegendOffBookDeal))
+				++numberOfOffBookDealer;
 		}
         return numberOfOffBookDealer;
     }

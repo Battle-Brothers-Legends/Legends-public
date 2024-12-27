@@ -10,10 +10,7 @@ this.legends_troupe_scenario <- this.inherit("scripts/scenarios/world/starting_s
 		this.m.IsFixedLook = true;
 	}
 
-	function isValid()
-	{
-		return this.Const.DLC.Wildmen;
-	}
+
 
 	function onSpawnAssets()
 	{
@@ -42,7 +39,7 @@ this.legends_troupe_scenario <- this.inherit("scripts/scenarios/world/starting_s
 		items.unequip(items.getItemAtSlot(this.Const.ItemSlot.Head));
 		items.equip(this.Const.World.Common.pickHelmet([[1, "jesters_hat"]]));
 		items.unequip(items.getItemAtSlot(this.Const.ItemSlot.Mainhand));
-		items.equip(this.new("scripts/items/weapons/legend_slingstaff"));
+		items.equip(this.new("scripts/items/weapons/legend_northern_sling"));
 		bros[1].setStartValuesEx(["minstrel_background"],true,0);
 		bros[1].getBackground().m.RawDescription = "{%name% worked providing entertainment at inns around the country, but the bar fights and road bandits make it no life for a solo artist. Joining with others was for safety as much as the show.}";
 		bros[1].setPlaceInFormation(12);

@@ -366,7 +366,7 @@
 
 		foreach( skill in skills.m.Skills)
 		{
-			if (!skill.isGarbage() && skill.isType(this.Const.SkillType.Perk) && !skill.isType(this.Const.SkillType.Racial))
+			if (!skill.isGarbage() && skill.m.IsSerialized && skill.isType(this.Const.SkillType.Perk) && !skill.isType(this.Const.SkillType.Racial))
 			{
 				perks += 1;
 			}
@@ -410,7 +410,7 @@
 		this.m.PerkPoints = 0;
 		this.m.PerkPointsSpent = 0;
 
-		local skillsToRemove = this.getSkills().getSkillsByFunction(@(_skill) _skill.isType(this.Const.SkillType.Perk) && nonRefundable.find(_skill.getID()) == null);
+		local skillsToRemove = this.getSkills().getSkillsByFunction(@(_skill) _skill.isType(this.Const.SkillType.Perk) && _skill.m.IsSerialized && nonRefundable.find(_skill.getID()) == null);
 		foreach (s in skillsToRemove)
 		{
 			this.getSkills().removeByID(s.getID());

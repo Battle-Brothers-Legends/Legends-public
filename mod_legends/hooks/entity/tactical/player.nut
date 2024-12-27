@@ -1981,7 +1981,7 @@
 		local skills = [
 			"perk.legend_barter_trustworthy",
 			"perk.legend_barter_convincing",
-			"perk.legend_off_book_deal",
+			"perk.legends.legend_off_book_deal",
 			"trait.legend_seductive"
 		];
 

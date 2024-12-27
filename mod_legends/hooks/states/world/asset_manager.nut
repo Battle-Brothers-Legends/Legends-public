@@ -81,6 +81,11 @@
 		return this.World.Camp.isCamping();
 	}
 
+	o.setCamping = function( _c )
+	{
+		::World.Camp.onCamp();
+	}
+
 	o.setAmmo = function( _f )
 	{
 		this.m.Ammo = this.Math.min(this.Math.max(0, _f), this.getMaxAmmo());
@@ -351,7 +356,6 @@
 				}
 
 				food.remove(i);
-				  // [136]  OP_JMP            0      8    0    0
 			}
 			else
 			{
@@ -365,6 +369,9 @@
 
 	o.update = function ( _worldState )
 	{
+		if (isCamping())
+			::World.State.m.Camp.update(_worldState);
+
 		if (this.World.Flags.getAsInt("MandatoryShopRefreshDayMark") + 50 <= this.World.getTime().Days)
 		{
 			this.World.Flags.set("MandatoryShopRefreshDayMark", this.World.getTime().Days);

@@ -8,7 +8,7 @@
 			if (s.ID == "C") {
 				local start = s.start;
 				s.start <- function (_event) {
-					start();
+					start(_event);
 					if (_event.m.Guildmaster != null) {
 						this.Options.push({
 							Text = "Let the Guildmaster speak.",

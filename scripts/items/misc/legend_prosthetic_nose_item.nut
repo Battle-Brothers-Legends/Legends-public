@@ -87,8 +87,8 @@ this.legend_prosthetic_nose_item <- this.inherit("scripts/items/item", {
 		this.Sound.play("sounds/combat/armor_leather_impact_03.wav", this.Const.Sound.Volume.Inventory);
 		if (_actor.getSkills().hasSkill("injury.missing_nose"))
 		{
-			actor.getSkills().add(this.new("scripts/skills/traits/legend_prosthetic_nose"));
-			actor.getSkills().removeByID("injury.missing_nose");
+			_actor.getSkills().add(this.new("scripts/skills/traits/legend_prosthetic_nose"));
+			_actor.getSkills().removeByID("injury.missing_nose");
 			return true;
 		}
 		return false;

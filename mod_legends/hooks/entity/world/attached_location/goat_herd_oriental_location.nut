@@ -42,7 +42,7 @@
 			_list.push({
 				R = 20,
 				P = 1.0,
-				S = "weapons/legend_slingstaff"
+				S = "weapons/legend_northern_sling"
 			});
 				_list.push({
 				R = 90,

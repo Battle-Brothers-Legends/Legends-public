@@ -386,7 +386,7 @@ this.repair_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 			{
 				local consumed = needed * modifiers.Consumption;
 				this.m.ToolsUsed += consumed * perkMod;
-				this.World.Assets.addArmorPartsF(consumed * -1.0);
+				this.World.Assets.addArmorPartsF(consumed * perkMod * -1.0);
 			}
 
 			if (r.Item.getRepair() >= r.Item.getRepairMax())

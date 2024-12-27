@@ -11,10 +11,7 @@ this.rangers_scenario <- this.inherit("scripts/scenarios/world/starting_scenario
 		this.setRosterReputationTiers(this.Const.Roster.createReputationTiers(this.m.StartingBusinessReputation));
 	}
 
-	function isValid()
-	{
-		return this.Const.DLC.Wildmen;
-	}
+
 
 	function onSpawnAssets()
 	{
@@ -82,7 +79,7 @@ this.rangers_scenario <- this.inherit("scripts/scenarios/world/starting_scenario
 		local items = bros[2].getItems();
 		items.unequip(items.getItemAtSlot(this.Const.ItemSlot.Mainhand));
 		items.unequip(items.getItemAtSlot(this.Const.ItemSlot.Ammo));
-		items.equip(this.new("scripts/items/weapons/legend_slingstaff"));
+		items.equip(this.new("scripts/items/weapons/legend_northern_sling"));
 		this.World.Flags.set("HasLegendCampHunting", true);
 		this.World.Assets.addBusinessReputation(this.m.StartingBusinessReputation);
 		//this.World.Assets.getStash().resize(this.World.Assets.getStash().getCapacity() - 18); creates a crash on legendary eco difficulty due to taking too many slots away

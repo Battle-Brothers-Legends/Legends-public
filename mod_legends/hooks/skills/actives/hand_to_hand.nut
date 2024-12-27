@@ -39,7 +39,7 @@
 					id = 7,
 					type = "text",
 					icon = "ui/icons/regular_damage.png",
-					text = "[color=" + this.Const.UI.Color.PositiveValue + "]+50%[/color] damage from background"
+					text = "[color=" + this.Const.UI.Color.PositiveValue + "]+25%[/color] damage from background"
 				});
 				break;
 			}
@@ -148,18 +148,27 @@
 		local items = actor.getItems().getAllItems();
 		local hasCestus = false;
 		local hasWraps = false;
+		local hasGauntlets = false;
 		foreach (item in items)
 		{
 			if (item.getID() == "accessory.legend_hand_wraps")
 				hasWraps = true;
 			if (item.getID() == "accessory.legend_cestus")
 				hasCestus = true;
+			if (item.getID() == "accessory.legend_spiked_gauntlets")
+				hasGauntlets = true;
 		}
 
 		if (_skill != this)
 			return;
 
-		if (hasCestus)
+		if (hasGauntlets)
+		{
+			_properties.DamageRegularMin += 6;
+			_properties.DamageRegularMax += 12;
+			_properties.DamageArmorMult += 0.3;
+		}
+		else if (hasCestus)
 		{
 			_properties.DamageRegularMin += 6;
 			_properties.DamageRegularMax += 12;

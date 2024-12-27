@@ -16,7 +16,7 @@ this.perk_legend_specialist_sling_skill <- this.inherit("scripts/skills/skill", 
 		if (item != null && item.isWeaponType(this.Const.Items.WeaponType.Sling))
 		{
 			_properties.RangedSkill += 12;
-			if (item.getID() != "weapon.legend_slingstaff")
+			if (item.getID() != "weapon.legend_northern_sling")
 			{
 				_properties.DamageArmorMult += 0.25;
 			}

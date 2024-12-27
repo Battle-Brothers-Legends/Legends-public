@@ -34,7 +34,7 @@ this.legend_buckler_bash_skill <- this.inherit("scripts/skills/skill", {
 		this.m.InjuriesOnHead = this.Const.Injury.BluntHead;
 		this.m.DirectDamageMult = 0.5;
 		this.m.ActionPointCost = 4;
-		this.m.FatigueCost = 20;
+		this.m.FatigueCost = 10;
 		this.m.MinRange = 1;
 		this.m.MaxRange = 1;
 		this.m.ChanceDecapitate = 0;
@@ -63,18 +63,12 @@ this.legend_buckler_bash_skill <- this.inherit("scripts/skills/skill", {
 
 	function onAfterUpdate( _properties )
 	{
+		this.m.FatigueCostMult = _properties.IsSpecializedInShields ? this.Const.Combat.WeaponSpecFatigueMult : 1.0;
 
-		this.m.FatigueCostMult = 1.0;
-
-		if (this.getContainer().getActor().getSkills().hasSkill("perk.legend_specialist_shield_push"))
+		if (this.getContainer().hasSkill("perk.shield_bash"))
 		{
-			this.m.FatigueCostMult = this.Const.Combat.WeaponSpecFatigueMult;
-			this.m.ActionPointCost = 3;
-		}
-
-		if (this.getContainer().getActor().getSkills().hasSkill("perk.shield_bash"))
-		{
-			this.m.FatigueCostMult *= 0.9;
+			this.m.FatigueCostMult = this.m.FatigueCostMult *= 0.75;
+			this.m.ActionPointCost = 3
 		}
 	}
 
@@ -109,6 +103,11 @@ this.legend_buckler_bash_skill <- this.inherit("scripts/skills/skill", {
 			_properties.DamageRegularMin = 5;
 			_properties.DamageRegularMax = 10;
 			_properties.FatigueDealtPerHitMult += 1.0;
+			if (this.getContainer().hasSkill("perk.shield_bash"))
+			{
+				_properties.DamageRegularMin = 8;
+				_properties.DamageRegularMax = 15;
+			}
 		}
 	}
 

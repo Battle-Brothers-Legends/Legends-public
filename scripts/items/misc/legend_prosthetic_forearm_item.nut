@@ -98,8 +98,8 @@ this.legend_prosthetic_forearm_item <- this.inherit("scripts/items/item", {
 		this.Sound.play("sounds/combat/armor_leather_impact_03.wav", this.Const.Sound.Volume.Inventory);
 		if (_actor.getSkills().hasSkill("injury.broken_elbow_joint"))
 		{
-			actor.getSkills().add(this.new("scripts/skills/traits/legend_prosthetic_forearm"));
-			actor.getSkills().removeByID("injury.broken_elbow_joint");
+			_actor.getSkills().add(this.new("scripts/skills/traits/legend_prosthetic_forearm"));
+			_actor.getSkills().removeByID("injury.broken_elbow_joint");
 			return true;
 		}
 		return false;

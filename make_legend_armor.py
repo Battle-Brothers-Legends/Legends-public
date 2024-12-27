@@ -1238,6 +1238,7 @@ this.$name <- this.inherit("scripts/items/legend_armor/legend_cloth_named", {
 
 CloakNut = '''
 this.$name <- this.inherit("scripts/items/legend_armor/legend_armor_cloak", {
+	m = {},
 	function create()
 	{
 		this.legend_armor_cloak.create();
@@ -1274,6 +1275,7 @@ this.$name <- this.inherit("scripts/items/legend_armor/legend_armor_cloak", {
 
 TabardNut = '''
 this.$name <- this.inherit("scripts/items/legend_armor/legend_armor_tabard", {
+	m = {},
 	function create()
 	{
 		this.legend_armor_tabard.create();

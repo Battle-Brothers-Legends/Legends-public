@@ -176,9 +176,9 @@ if (!("Perks" in ::Const))
 		[],
 		[::Const.Perks.PerkDefs.LegendSpecialistButcherDamage],
 		[],
-		[::Const.Perks.PerkDefs.LegendPrepareBleed],
-		[::Const.Perks.PerkDefs.LegendPrepareGraze],
-		[::Const.Perks.PerkDefs.LegendSlaughter]
+		[::Const.Perks.PerkDefs.LegendSlaughter],
+		[],
+		[]
 	]
 };
 

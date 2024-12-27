@@ -1,42 +1,14 @@
-this.legend_eat_rations_skill <- this.inherit("scripts/skills/skill", {
-	m = {
-		Item = null,
-		Amount = 0
-	},
-	function setItem( _i )
-	{
-		this.m.Item = this.WeakTableRef(_i);
-	}
-
-	function setAmount( _a )
-	{
-		this.m.Amount = _a;
-	}
+this.legend_eat_rations_skill <- this.inherit("scripts/skills/actives/base/legend_eat_skill", {
+	m = {},
 
 	function create()
 	{
+		this.legend_eat_skill.create();
 		this.m.ID = "actives.legend_eat_rations";
 		this.m.Name = "Eat or Give Food";
 		this.m.Description = "Give to an adjacent ally or eat food that slowly heals. Can not be used while engaged in melee, and anyone receiving the item needs to have a free bag slot.";
 		this.m.Icon = "skills/rations_square.png";
 		this.m.IconDisabled = "skills/rations_square_bw.png";
-		this.m.Overlay = "active_144";
-		this.m.SoundOnUse = [
-			"sounds/combat/eat_01.wav"
-		];
-		this.m.Type = this.Const.SkillType.Active;
-		this.m.Order = this.Const.SkillOrder.Any;
-		this.m.IsSerialized = false;
-		this.m.IsActive = true;
-		this.m.IsTargeted = true;
-		this.m.IsStacking = true;
-		this.m.IsAttack = false;
-		this.m.IsUsingHitchance = false;
-		this.m.IsIgnoredAsAOO = true;
-		this.m.ActionPointCost = 3;
-		this.m.FatigueCost = 5;
-		this.m.MinRange = 0;
-		this.m.MaxRange = 1;
 	}
 
 	function getTooltip()
@@ -103,46 +75,6 @@ this.legend_eat_rations_skill <- this.inherit("scripts/skills/skill", {
 		return ret;
 	}
 
-
-	function getCursorForTile( _tile )
-	{
-		if (_tile.ID == this.getContainer().getActor().getTile().ID)
-		{
-			return this.Const.UI.Cursor.Drink;
-		}
-		else
-		{
-			return this.Const.UI.Cursor.Give;
-		}
-	}
-
-	function isUsable()
-	{
-		return !this.Tactical.isActive() || this.skill.isUsable() && !this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions());
-	}
-
-	function onVerifyTarget( _originTile, _targetTile )
-	{
-		if (!this.skill.onVerifyTarget(_originTile, _targetTile))
-		{
-			return false;
-		}
-
-		local target = _targetTile.getEntity();
-
-		if (!this.m.Container.getActor().isAlliedWith(target))
-		{
-			return false;
-		}
-
-		if (target.getID() != _originTile.getEntity().getID() && !target.getItems().hasEmptySlot(this.Const.ItemSlot.Bag))
-		{
-			return false;
-		}
-
-		return true;
-	}
-
 	function onUse( _user, _targetTile )
 	{
 		local target = _targetTile.getEntity();
@@ -197,7 +129,7 @@ this.legend_eat_rations_skill <- this.inherit("scripts/skills/skill", {
 		{
 			if (!_user.isHiddenToPlayer())
 			{
-				this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(_user) + " eats food and become stuffed");
+				this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(_user) + " eats food and becomes stuffed");
 			}
 
 			_user.getSkills().add(this.new("scripts/skills/effects/legend_stuffed_effect"));
@@ -256,6 +188,5 @@ this.legend_eat_rations_skill <- this.inherit("scripts/skills/skill", {
 		//We are satiated stuffed and sick and fat- we can't eat no more, do nothing with food
 		return false;
 	}
-
 });
 

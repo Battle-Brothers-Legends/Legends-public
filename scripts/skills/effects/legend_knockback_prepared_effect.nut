@@ -52,7 +52,7 @@ this.legend_knockback_prepared_effect <- this.inherit("scripts/skills/skill", {
 		if (_skill != this)
 			return;
 
-		if (!_targetEntity.isAlive())
+		if (!_targetEntity.isAlive() || _targetEntity.isDying())
 			return;
 
 		local skill = _targetEntity.getSkills().getSkillByID("effects.legend_baffled");

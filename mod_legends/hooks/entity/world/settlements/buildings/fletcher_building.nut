@@ -51,7 +51,7 @@
 			{
 				R = 70,
 				P = 1.0,
-				S = "weapons/legend_slingstaff"
+				S = "weapons/legend_northern_sling"
 			},
 			{
 				R = 10,

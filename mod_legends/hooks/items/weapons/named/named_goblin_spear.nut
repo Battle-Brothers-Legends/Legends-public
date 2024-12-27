@@ -5,9 +5,15 @@
 		create();
 		this.m.Description = "A masterfully crafted goblin glaive. Accurate, fast and deadly in the hands of any skilled fighter.";
 		this.m.Value = 2500;
+	}
+
+	o.randomizeValues <- function ()
+	{
 		this.m.StaminaModifier = -5;
 		this.m.RegularDamage = 30;
 		this.m.RegularDamageMax = 40;
+
+		named_weapon.randomizeValues();
 	}
 
 	o.onEquip = function ()

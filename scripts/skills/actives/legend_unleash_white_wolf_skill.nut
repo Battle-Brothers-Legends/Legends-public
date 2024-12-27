@@ -72,7 +72,7 @@ this.legend_unleash_white_wolf_skill <- this.inherit("scripts/skills/actives/leg
 
 	function addResources()
 	{
-		this.unleash_animal.addResources();
+		this.legend_unleash_animal_skill.addResources();
 
 		foreach( r in this.m.Sounds0 )
 		{
