@@ -2,14 +2,14 @@
 
 	o.m.PossibleEffects <- ["scripts/skills/effects/legend_named_hammer_stun_effect"];
 	o.m.EffectBounds <- [ [3, 7] ];
-
-	local create = o.create;
-	o.create = function ()
+	
+	o.randomizeValues <- function ()
 	{
-		create();
 		this.m.StaminaModifier = -17;
 		this.m.RegularDamage = 50;
 		this.m.RegularDamageMax = 70;
+
+		named_weapon.randomizeValues();
 	}
 
 	o.getTooltip <- function ()
