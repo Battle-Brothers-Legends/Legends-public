@@ -12,7 +12,7 @@ this.strange_scribe_encounter <- this.inherit("scripts/encounters/encounter", {
         this.m.Screens.extend([{
             ID = "Start",
             Title = "Title",
-            Text = "{[img]gfx/ui/events/event_31.png[/img]Description}",
+            Text = "[img]gfx/ui/events/event_31.png[/img]{Description}",
             Image = "",
             List = [],
             Options = [
