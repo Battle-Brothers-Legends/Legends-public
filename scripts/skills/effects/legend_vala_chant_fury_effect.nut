@@ -103,7 +103,7 @@ this.legend_vala_chant_fury_effect <- this.inherit("scripts/skills/effects/legen
 
 		if (this.Math.rand(1, 100) <= chance)
 		{
-			local payback = this.getContainer().getSkills().getAttackOfOpportunity();
+			local payback = this.getContainer().getAttackOfOpportunity();
 			if (payback != null)
 			{
 				this.getContainer().setBusy(true);
