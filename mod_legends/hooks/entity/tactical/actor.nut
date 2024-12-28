@@ -685,183 +685,45 @@
 	local onAppearanceChanged = o.onAppearanceChanged;
 	o.onAppearanceChanged = function( _appearance, _setDirty = true )
 	{
+		if (!isAlive() || isDying()) return;
 
-		if (!this.m.IsAlive || this.m.IsDying)
+		foreach(key, id in ::Const.LegendOnAppearanceChangedSprites.Helmet) // for layered helmet
 		{
-			return;
-		}
+			if (!hasSprite(id))
+				continue;
 
-		if (this.hasSprite("helmet_vanity_lower"))
-		{
-			if (_appearance.HelmetLayerVanityLower.len() != 0 && !this.m.IsHidingHelmet)
-			{
-				local helmet = this.getSprite("helmet_vanity_lower");
-				helmet.setBrush(_appearance.HelmetLayerVanityLower);
+			if (_appearance[key].len() != 0 && !m.IsHidingHelmet) {
+				local helmet = getSprite(id);
+				helmet.setBrush(_appearance[key]);
 				helmet.Color = _appearance.HelmetColor;
 				helmet.Visible = true;
 			}
-			else
-			{
-				this.getSprite("helmet_vanity_lower").Visible = false;
+			else {
+				getSprite(id).Visible = false;
 			}
 		}
 
-
-		if (this.hasSprite("helmet_vanity_lower_2"))
+		foreach(key, id in ::Const.LegendOnAppearanceChangedSprites.Armor) // for layered armor
 		{
-			if (_appearance.HelmetLayerVanity2Lower.len() != 0 && !this.m.IsHidingHelmet)
-			{
-				local helmet = this.getSprite("helmet_vanity_lower_2");
-				helmet.setBrush(_appearance.HelmetLayerVanity2Lower);
-				helmet.Color = _appearance.HelmetColor;
+			if (!hasSprite(id))
+				continue;
+
+			if (_appearance[key].len() != 0) {
+				local helmet = getSprite(id);
+				helmet.setBrush(_appearance[key]);
 				helmet.Visible = true;
 			}
-			else
-			{
-				this.getSprite("helmet_vanity_lower_2").Visible = false;
+			else {
+				getSprite(id).Visible = false;
 			}
 		}
 
-		if (this.hasSprite("helmet_helm"))
-		{
-			if (_appearance.HelmetLayerHelm.len() != 0 && !this.m.IsHidingHelmet)
-			{
-				local helmet = this.getSprite("helmet_helm");
-				helmet.setBrush(_appearance.HelmetLayerHelm);
-				helmet.Color = _appearance.HelmetColor;
-				helmet.Visible = true;
-			}
-			else
-			{
-				this.getSprite("helmet_helm").Visible = false;
-			}
-		}
+		if (hasSprite("permanent_injury_scarred"))
+			getSprite("permanent_injury_scarred").Visible = !_appearance.HideHead;
 
-		if (this.hasSprite("helmet_top"))
-		{
-			if (_appearance.HelmetLayerTop.len() != 0 && !this.m.IsHidingHelmet)
-			{
-				local helmet = this.getSprite("helmet_top");
-				helmet.setBrush(_appearance.HelmetLayerTop);
-				helmet.Color = _appearance.HelmetColor;
-				helmet.Visible = true;
-			}
-			else
-			{
-				this.getSprite("helmet_top").Visible = false;
-			}
-		}
-
-		if (this.hasSprite("helmet_vanity"))
-		{
-			if (_appearance.HelmetLayerVanity.len() != 0 && !this.m.IsHidingHelmet)
-			{
-				local helmet = this.getSprite("helmet_vanity");
-				helmet.setBrush(_appearance.HelmetLayerVanity);
-				helmet.Color = _appearance.HelmetColor;
-				helmet.Visible = true;
-			}
-			else
-			{
-				this.getSprite("helmet_vanity").Visible = false;
-			}
-		}
-
-		if (this.hasSprite("helmet_vanity_2"))
-		{
-			if (_appearance.HelmetLayerVanity2.len() != 0 && !this.m.IsHidingHelmet)
-			{
-				local helmet = this.getSprite("helmet_vanity_2");
-				helmet.setBrush(_appearance.HelmetLayerVanity2);
-				helmet.Color = _appearance.HelmetColor;
-				helmet.Visible = true;
-			}
-			else
-			{
-				this.getSprite("helmet_vanity_2").Visible = false;
-			}
-		}
-
-		if (this.hasSprite("armor_layer_chain"))
-		{
-				if (_appearance.ArmorLayerChain.len() != 0)
-			{
-				local armor = this.getSprite("armor_layer_chain");
-				armor.setBrush(_appearance.ArmorLayerChain);
-				armor.Visible = true;
-			}
-			else
-			{
-				this.getSprite("armor_layer_chain").Visible = false;
-			}
-		}
-
-		if (this.hasSprite("armor_layer_plate"))
-		{
-			if (_appearance.ArmorLayerPlate.len() != 0)
-			{
-				local armor = this.getSprite("armor_layer_plate");
-				armor.setBrush(_appearance.ArmorLayerPlate);
-				armor.Visible = true;
-			}
-			else
-			{
-				this.getSprite("armor_layer_plate").Visible = false;
-			}
-		}
-
-		if (this.hasSprite("armor_layer_tabbard"))
-		{
-			if (_appearance.ArmorLayerTabbard.len() != 0)
-			{
-				local armor = this.getSprite("armor_layer_tabbard");
-				armor.setBrush(_appearance.ArmorLayerTabbard);
-				armor.Visible = true;
-			}
-			else
-			{
-				this.getSprite("armor_layer_tabbard").Visible = false;
-			}
-		}
-
-		if (this.hasSprite("armor_layer_cloak_front"))
-		{
-			if (_appearance.ArmorLayerCloakFront.len() != 0)
-			{
-				local armor = this.getSprite("armor_layer_cloak_front");
-				armor.setBrush(_appearance.ArmorLayerCloakFront);
-				armor.Visible = true;
-			}
-			else
-			{
-				this.getSprite("armor_layer_cloak_front").Visible = false;
-			}
-		}
-
-		if (this.hasSprite("armor_layer_cloak"))
-		{
-			if (_appearance.ArmorLayerCloakBack.len() != 0)
-			{
-				local armor = this.getSprite("armor_layer_cloak");
-				armor.setBrush(_appearance.ArmorLayerCloakBack);
-				armor.Visible = true;
-			}
-			else
-			{
-				this.getSprite("armor_layer_cloak").Visible = false;
-			}
-		}
-
-		if (this.hasSprite("permanent_injury_scarred"))
-		{
-			this.getSprite("permanent_injury_scarred").Visible = !_appearance.HideHead;
-		}
-
-		if (this.hasSprite("permanent_injury_burned"))
-		{
-			this.getSprite("permanent_injury_burned").Visible = !_appearance.HideHead;
-		}
-
+		if (hasSprite("permanent_injury_burned"))
+			getSprite("permanent_injury_burned").Visible = !_appearance.HideHead;
+		
 		onAppearanceChanged(_appearance, _setDirty);
 	}
 
