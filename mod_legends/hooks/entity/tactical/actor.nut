@@ -208,13 +208,6 @@
 		return false;
 	}
 
-	local onMovementFinish = o.onMovementFinish;
-	o.onMovementFinish = function (_tile)
-	{
-		onMovementFinish(_tile);
-		this.m.Skills.MovementCompleted(_tile);
-	}
-
 	o.isArmedWithMagicStaff <- function()
 	{
 		local item = this.getMainhandItem();
@@ -228,24 +221,12 @@
 
 	o.bagItem <- function (_item)
 	{
-		this.getItems().addToBag(_item);
+		return this.getItems().addToBag(_item);
 	}
 
 	o.setArmor <- function (_bodyPart, _value)
 	{
 		this.m.BaseProperties.Armor[_bodyPart] = _value;
-	}
-
-	o.getFatigueCosts = function ()
-	{
-		local c = clone this.m.FatigueCosts;
-
-		for( local i = 0; i < c.len(); i = ++i )
-		{
-			c[i] = this.Math.round((c[i] + this.m.CurrentProperties.MovementFatigueCostAdditional) * this.m.CurrentProperties.MovementFatigueCostMult * this.m.CurrentProperties.FatigueEffectMult);
-		}
-
-		return c;
 	}
 
 	local onMissed = o.onMissed;
