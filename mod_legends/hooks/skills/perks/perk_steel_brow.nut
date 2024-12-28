@@ -1,34 +1,34 @@
 ::mods_hookExactClass("skills/perks/perk_steel_brow", function(o) {
-	o.onAdded <- function ()
+	local create = o.create;
+	o.create = function()
 	{
-		if (!this.m.Container.hasSkill("effects.legend_steel_brow"))
-		{
-			this.m.Container.add(this.new("scripts/skills/effects/legend_steel_brow_effect"));
-		}
+		create();
+		this.m.Type = this.m.Type | this.Const.SkillType.StatusEffect;
+		this.m.Description = "Will turn any stun attacks made against you into dazes instead.";
+		this.m.IconMini = "mini_steel_brow";
 	}
 
-	o.onRemoved <- function ()
+	o.getTooltip <- function()
 	{
-		this.m.Container.removeByID("effects.legend_steel_brow");
+		return [
+			{
+				id = 1,
+				type = "title",
+				text = getName()
+			},
+			{
+				id = 10,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = "Any stun attack that hits you will turn into a daze instead"
+			}
+		];
 	}
 
-	// 		//if (effect) -> remove and replace with diff. effect
-    // function onUse( _user, _targetTile )
-    // {
-    //     local bonk = this.attackEntity(_user, _targetTile.getEntity());
+	o.onBeforeDamageReceived <- function( _attacker, _skill, _hitInfo, _properties )
+	{
+		if (_hitInfo.BodyPart == ::Const.BodyPart.Head)
+			_hitInfo.BodyDamageMult = _hitInfo.BodyDamageMultBeforeSteelBrow * 0.67;
+	}
 
-    //     if (bonk)
-    //     {
-    //         local target = _targetTile.getEntity();
-
-    //         if (target.getCurrentProperties().IsStunned)
-    //         {
-    //             // target.getSprite("status_stunned").Visible = false; //Not needed - is managed by dazed_effect.nut
-    //             target.getSkills().removeByID("effects.stunned");
-    //             target.getSkills().add(this.new("scripts/skills/effects/dazed_effect"));
-    //         }
-    //     }
-
-    //     return success;
-    // }
 });
