@@ -278,9 +278,9 @@ this.enchanter_building <- this.inherit("scripts/entity/world/camp/camp_building
 			}
 
 			local rm = this.m.BaseCraft * bro.getBackground().getModifiers().Enchanting;
-			if (bro.getLevel() >= 11)
+			if (bro.getLevel() >= 12)
 			{
-				rm += 0.3 * rm;
+				rm *= 1.3;
 			}
 			ret.Craft += rm
 			++ret.Assigned
