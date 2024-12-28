@@ -248,27 +248,6 @@
 		return c;
 	}
 
-	o.onMovementUndo = function ( _tile, _levelDifference )
-	{
-		local apCost = this.Math.max(1, (this.m.ActionPointCosts[_tile.Type] + this.m.CurrentProperties.MovementAPCostAdditional) * this.m.CurrentProperties.MovementAPCostMult);
-		local fatigueCost = this.Math.round((this.m.FatigueCosts[_tile.Type] + this.m.CurrentProperties.MovementFatigueCostAdditional) * this.m.CurrentProperties.MovementFatigueCostMult) * this.m.CurrentProperties.FatigueEffectMult;
-
-		if (_levelDifference != 0)
-		{
-			apCost = apCost + this.m.LevelActionPointCost;
-			fatigueCost = fatigueCost + this.m.LevelFatigueCost;
-
-			if (_levelDifference > 0)
-			{
-				fatigueCost = fatigueCost + this.Const.Movement.LevelClimbingFatigueCost;
-			}
-		}
-
-		fatigueCost = fatigueCost * this.m.CurrentProperties.FatigueEffectMult;
-		this.m.ActionPoints = this.Math.round(this.m.ActionPoints + apCost);
-		this.m.Fatigue = this.Math.min(this.getFatigueMax(), this.Math.round(this.m.Fatigue - fatigueCost));
-	}
-
 	local onMissed = o.onMissed;
 	o.onMissed = function ( _attacker, _skill, _dontShake = false )
 	{
