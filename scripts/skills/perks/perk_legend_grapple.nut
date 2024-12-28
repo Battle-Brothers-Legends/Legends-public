@@ -20,7 +20,7 @@ this.perk_legend_grapple <- this.inherit("scripts/skills/skill", {
 
 	function onRemoved()
 	{
-		this.m.Container.removeByID("actives.legend_grapple_skill");
+		this.m.Container.removeByID("actives.legend_grapple");
 	}
 
 

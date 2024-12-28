@@ -7,7 +7,7 @@ this.legend_violent_decomposition_skill <- this.inherit("scripts/skills/skill", 
 	},
 	function create()
 	{
-		this.m.ID = "actives.legend_violent_decomposition_skill";
+		this.m.ID = "actives.legend_violent_decomposition";
 		this.m.Name = "Violent Decomposition";
 		this.m.Icon = "skills/violent_decomposition.png";
 		this.m.IconDisabled = "skills/violent_decomposition_bw.png";

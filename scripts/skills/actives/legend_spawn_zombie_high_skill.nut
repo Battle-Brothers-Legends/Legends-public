@@ -3,7 +3,7 @@ this.legend_spawn_zombie_high_skill <- this.inherit("scripts/skills/actives/lege
 	function create()
 	{
 		this.legend_spawn_skill.create();
-		this.m.ID = "actives.legend_spawn_zombie_high_skill";
+		this.m.ID = "actives.legend_spawn_zombie_high";
 		this.m.Name = "Summon Heavy Zombie";
 		this.m.Description = "Summon a fallen knight and send them charging into the enemy. Needs a free tile adjacent.";
 		this.m.Icon = "skills/remake_man.png";

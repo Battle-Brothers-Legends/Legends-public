@@ -12,7 +12,7 @@ this.perk_legend_miasma <- this.inherit("scripts/skills/skill", {
 
 	function onAdded()
 	{
-		if (!this.m.Container.hasSkill("actives.legend_miasma_skill"))
+		if (!this.m.Container.hasSkill("actives.legend_miasma"))
 		{
 			this.m.Container.add(this.new("scripts/skills/actives/legend_miasma_skill"));
 		}

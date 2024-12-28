@@ -12,14 +12,14 @@ this.perk_legend_insects <- this.inherit("scripts/skills/skill", {
 
 	function onAdded()
 	{
-		if (!this.m.Container.hasSkill("actives.insects_skill"))
+		if (!this.m.Container.hasSkill("actives.insects"))
 		{
 			this.m.Container.add(this.new("scripts/skills/actives/insects_skill"));
 		}
 	}
 		function onRemoved()
 	{
-		this.m.Container.removeByID("actives.insects_skill");
+		this.m.Container.removeByID("actives.insects");
 	}
 
 });

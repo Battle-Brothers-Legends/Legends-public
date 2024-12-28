@@ -18,6 +18,6 @@
 	o.onRemoved = function()
 	{
 		this.m.Container.removeByID("actives.rotation");
-		this.m.Container.removeByID("actives.legend_ai_rotation_skill");
+		this.m.Container.removeByID("actives.legend_ai_rotation");
 	}
 });

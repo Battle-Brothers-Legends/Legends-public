@@ -22,7 +22,7 @@ this.perk_legend_spawn_skeleton_med <- this.inherit("scripts/skills/skill", {
 
 	function onAdded()
 	{
-		if (!this.m.Container.hasSkill("actives.legend_spawn_skeleton_med_skill"))
+		if (!this.m.Container.hasSkill("actives.legend_spawn_skeleton_med"))
 		{
 			this.m.Container.add(this.new("scripts/skills/actives/legend_spawn_skeleton_med_skill"));
 			this.m.Container.add(this.new("scripts/skills/actives/legend_spawn_skeleton_med_archer_skill"));
@@ -31,8 +31,8 @@ this.perk_legend_spawn_skeleton_med <- this.inherit("scripts/skills/skill", {
 
 	function onRemoved()
 	{
-		this.m.Container.removeByID("actives.legend_spawn_skeleton_med_skill");
-		this.m.Container.removeByID("actives.legend_spawn_skeleton_med_archer_skill");
+		this.m.Container.removeByID("actives.legend_spawn_skeleton_med");
+		this.m.Container.removeByID("actives.legend_spawn_skeleton_med_archer");
 	}
 
 });
