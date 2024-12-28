@@ -175,7 +175,9 @@ if (!("Perks" in ::Const))
 	},
 	Tree = [
 		[],
-		[],
+		[
+			::Const.Perks.PerkDefs.Taunt
+		],
 		[],
 		[],
 		[
