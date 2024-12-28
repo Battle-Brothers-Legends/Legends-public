@@ -865,13 +865,13 @@
 		onAppearanceChanged(_appearance, _setDirty);
 	}
 
-	o.setHitpoints <- function ( _h)
+	local setHitpoints = o.setHitpoints;
+	o.setHitpoints = function( _h )
 	{
-		local healGoal = _h + this.m.HealRemainder;
-		local healTick = this.Math.floor(healGoal);
-		this.m.Hitpoints = this.Math.round(healTick);
-		this.m.HealRemainder = healGoal - healTick;
-		this.onUpdateInjuryLayer();
+		local healGoal = _h + m.HealRemainder;
+		local healTick = ::Math.floor(healGoal);
+		m.HealRemainder = healGoal - healTick;
+		setHitpoints(healTick);
 	}
 
 	o.removeArmorUpgrade <- function ( _slot, _item)
