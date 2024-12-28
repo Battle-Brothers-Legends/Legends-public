@@ -12,7 +12,7 @@ this.oathtakers_skull_cracked_camp_encounter <- this.inherit("scripts/encounters
         this.m.Screens.extend([{
             ID = "Start",
             Title = "Title",
-            Text = "[img]gfx/ui/events/event_183.png[/img]{You hear some ruckus near the camp entrance.}",
+            Text = "[img]gfx/ui/events/event_183.png[/img]{" + ::Legends.Encounters.getCampIntroduction() + "}",
             Image = "",
             List = [],
             Options = [

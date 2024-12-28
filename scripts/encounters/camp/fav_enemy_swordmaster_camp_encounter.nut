@@ -12,7 +12,7 @@ this.fav_enemy_swordmaster_camp_encounter <- this.inherit("scripts/encounters/en
         this.m.Screens.extend([{
             ID = "Start",
             Title = "Looking for a fight",
-            Text = "[img]gfx/ui/events/event_134.png[/img]{You hear some ruckus near the camp entrance.}",
+            Text = "[img]gfx/ui/events/event_134.png[/img]{" + ::Legends.Encounters.getCampIntroduction() + "}",
             Image = "",
             List = [],
             Options = [

@@ -12,7 +12,7 @@ this.anatomist_creeps_out_locals_encounter <- this.inherit("scripts/encounters/e
         this.m.Screens.extend([{
             ID = "Start",
             Title = "Title",
-            Text = "[img]gfx/ui/events/event_43.png[/img]{Description}",
+            Text = "[img]gfx/ui/events/event_43.png[/img]{" + ::Legends.Encounters.getTownIntroduction() + "}",
             Image = "",
             List = [],
             Options = [

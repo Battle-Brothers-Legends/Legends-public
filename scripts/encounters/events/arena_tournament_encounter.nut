@@ -12,7 +12,7 @@ this.arena_tournament_encounter <- this.inherit("scripts/encounters/encounter", 
         this.m.Screens.extend([{
             ID = "Start",
             Title = "Title",
-            Text = "[img]gfx/ui/events/event_97.png[/img]{Description}",
+            Text = "[img]gfx/ui/events/event_97.png[/img]{" + ::Legends.Encounters.getTownIntroduction() + "}",
             Image = "",
             List = [],
             Options = [

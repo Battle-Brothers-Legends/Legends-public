@@ -12,7 +12,7 @@ this.volunteers_camp_encounter <- this.inherit("scripts/encounters/encounter", {
         this.m.Screens.extend([{
             ID = "Start",
             Title = "Title",
-            Text = "[img]gfx/ui/events/event_80.png[/img]{You hear some ruckus near the camp entrance.}",
+            Text = "[img]gfx/ui/events/event_80.png[/img]{" + ::Legends.Encounters.getCampIntroduction() + "}",
             Image = "",
             List = [],
             Options = [
