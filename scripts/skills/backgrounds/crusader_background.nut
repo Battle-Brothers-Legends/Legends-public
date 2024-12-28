@@ -63,7 +63,7 @@ this.crusader_background <- this.inherit("scripts/skills/backgrounds/character_b
 		this.m.PerkTreeDynamic = {
 			Weapon = [
 				this.Const.Perks.ShieldTree,
-				this.Const.Perks.GreatSwordTree,			
+				this.Const.Perks.TwoHandedTree,			
 				this.Const.Perks.FlailTree,
 				this.Const.Perks.HammerTree,
 				this.Const.Perks.MaceTree,

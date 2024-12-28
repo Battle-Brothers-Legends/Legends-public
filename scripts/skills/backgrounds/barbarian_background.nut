@@ -75,7 +75,7 @@ this.barbarian_background <- this.inherit("scripts/skills/backgrounds/character_
 		];
 		this.m.PerkTreeDynamic = {
 			Weapon = [
-				this.Const.Perks.GreatSwordTree,
+				this.Const.Perks.TwoHandedTree,
 				this.Const.Perks.AxeTree,
 				this.Const.Perks.HammerTree,
 				this.Const.Perks.MaceTree,

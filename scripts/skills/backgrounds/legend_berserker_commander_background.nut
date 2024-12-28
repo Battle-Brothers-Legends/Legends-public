@@ -135,7 +135,7 @@ this.legend_berserker_commander_background <- this.inherit("scripts/skills/backg
 				this.Const.Perks.PerkDefs.SpecHammer,
 				this.Const.Perks.PerkDefs.SpecAxe,
 				this.Const.Perks.PerkDefs.SpecCleaver,
-				this.Const.Perks.PerkDefs.LegendSpecGreatSword,
+				this.Const.Perks.PerkDefs.SpecSword,
 				this.Const.Perks.PerkDefs.LegendSpecFists,
 				this.Const.Perks.PerkDefs.SpecThrowing
 			],

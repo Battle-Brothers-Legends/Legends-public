@@ -62,7 +62,7 @@ this.legend_noble_2h <- this.inherit("scripts/skills/backgrounds/character_backg
 				this.Const.Perks.PolearmTree,
 				this.Const.Perks.ThrowingTree,
 				this.Const.Perks.AxeTree,
-				this.Const.Perks.GreatSwordTree
+				this.Const.Perks.TwoHandedTree
 			],
 			Defense = [
 				this.Const.Perks.HeavyArmorTree

@@ -777,7 +777,7 @@
     //Greatsword				
     if (_item.isWeaponType(this.Const.Items.WeaponType.Sword) && _item.isItemType(this.Const.Items.ItemType.TwoHanded))
     {    
-        return [this.Const.Perks.GreatSwordTree];
+        return [this.Const.Perks.TwoHandedTree];
     }
 
     // WeaponTypes

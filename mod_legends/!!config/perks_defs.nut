@@ -2222,15 +2222,6 @@ perkDefObjects.push({
 	HasUnactivatedPerkTooltipHints = true // Inform general_queryUIPerkTooltipData() in tooltip_events.nut that the Perk has additional hints from getUnactivatedPerkTooltipHints()
 });
 perkDefObjects.push({
-	ID = "perk.legend_mastery_greatsword",
-	Script = "scripts/skills/perks/perk_legend_mastery_greatsword",
-	Name = this.Const.Strings.PerkName.LegendSpecGreatSword,
-	Tooltip = this.Const.Strings.PerkDescription.LegendSpecGreatSword,
-	Icon = "ui/perks/spec_greatsword.png",
-	IconDisabled = "ui/perks/spec_greatsword_bw.png",
-	Const = "LegendSpecGreatSword"
-});
-perkDefObjects.push({
 	ID = "perk.legend_forceful_swing",
 	Script = "scripts/skills/perks/perk_legend_forceful_swing",
 	Name = this.Const.Strings.PerkName.LegendForcefulSwing,
