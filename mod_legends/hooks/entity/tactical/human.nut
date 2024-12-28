@@ -22,11 +22,8 @@
 
 	o.setGender <- function ( _v, _reroll = true)
 	{
-
 		if ("LegendMod" in this.World && ::Legends.Mod.ModSettings.getSetting("GenderEquality").getValue() == "Disabled")
-		{
 			_v = 0;
-		}
 
 		this.m.Gender = _v;
 		if(this.m.Gender == 1)
@@ -103,49 +100,6 @@
 		this.Sound.play(this.m.Sound[_type][this.Math.rand(0, this.m.Sound[_type].len() - 1)], volume, this.getPos(), _pitch);
 	}
 
-	o.onUpdateInjuryLayer = function ()
-	{
-		if (!this.hasSprite("injury"))
-		{
-			return;
-		}
-
-		local injury = this.getSprite("injury");
-		local injury_body = this.getSprite("injury_body");
-		local p = this.m.Hitpoints / this.getHitpointsMax();
-
-		if (p > 0.66)
-		{
-			this.setDirty(this.m.IsDirty || injury.Visible || injury_body.Visible);
-			injury.Visible = false;
-			injury_body.Visible = false;
-		}
-		else
-		{
-			this.setDirty(this.m.IsDirty || !injury.Visible || !injury_body.Visible);
-			injury.Visible = true;
-			injury_body.Visible = true;
-
-			if (p > 0.33)
-			{
-				injury.setBrush("bust_head_injured_01");
-			}
-			else
-			{
-				injury.setBrush("bust_head_injured_02");
-			}
-
-			if (p > 0.4)
-			{
-				injury_body.Visible = false;
-			}
-			else
-			{
-				injury_body.Visible = true;
-			}
-		}
-	}
-
 	local onDeath = o.onDeath;
 	o.onDeath = function ( _killer, _skill, _tile, _fatalityType )
 	{
@@ -155,56 +109,25 @@
 			_tile.Properties.get("Corpse").isHuman = 1;
 	}
 
-	o.onFactionChanged = function ()
+	local onFactionChanged = o.onFactionChanged;
+	o.onFactionChanged = function()
 	{
-		this.actor.onFactionChanged();
+		onFactionChanged();
 		local flip = !this.isAlliedWithPlayer();
-		this.getSprite("background").setHorizontalFlipping(flip);
-		this.getSprite("quiver").setHorizontalFlipping(flip);
-		this.getSprite("body").setHorizontalFlipping(flip);
-		this.getSprite("tattoo_body").setHorizontalFlipping(flip);
-		this.getSprite("injury_body").setHorizontalFlipping(flip);
-		this.getSprite("armor").setHorizontalFlipping(flip);
+		this.getSprite("permanent_injury_scarred").setHorizontalFlipping(flip);
+		this.getSprite("permanent_injury_burned").setHorizontalFlipping(flip);
 		this.getSprite("armor_layer_chain").setHorizontalFlipping(flip);
 		this.getSprite("armor_layer_plate").setHorizontalFlipping(flip);
 		this.getSprite("armor_layer_tabbard").setHorizontalFlipping(flip);
 		this.getSprite("armor_layer_cloak_front").setHorizontalFlipping(flip);
 		this.getSprite("armor_layer_cloak").setHorizontalFlipping(flip);
-		this.getSprite("surcoat").setHorizontalFlipping(flip);
-		this.getSprite("armor_upgrade_back").setHorizontalFlipping(flip);
-		this.getSprite("armor_upgrade_front").setHorizontalFlipping(flip);
-		this.getSprite("shaft").setHorizontalFlipping(flip);
-		this.getSprite("head").setHorizontalFlipping(flip);
-		this.getSprite("closed_eyes").setHorizontalFlipping(flip);
-		this.getSprite("eye_rings").setHorizontalFlipping(flip);
-		this.getSprite("tattoo_head").setHorizontalFlipping(flip);
-		this.getSprite("injury").setHorizontalFlipping(flip);
-		this.getSprite("beard").setHorizontalFlipping(flip);
-		this.getSprite("hair").setHorizontalFlipping(flip);
 
-		foreach (a in this.Const.CharacterSprites.Helmets)
-		{
-			if (!this.hasSprite(a))
-			{
-				continue;
-			}
-			this.getSprite(a).setHorizontalFlipping(flip);
-		}
-
-		this.getSprite("beard_top").setHorizontalFlipping(flip);
-		this.getSprite("body_blood").setHorizontalFlipping(flip);
-		this.getSprite("accessory").setHorizontalFlipping(flip);
-		this.getSprite("accessory_special").setHorizontalFlipping(flip);
-		this.getSprite("dirt").setHorizontalFlipping(flip);
-		this.getSprite("permanent_injury_1").setHorizontalFlipping(flip);
-		this.getSprite("permanent_injury_2").setHorizontalFlipping(flip);
-		this.getSprite("permanent_injury_3").setHorizontalFlipping(flip);
-		this.getSprite("permanent_injury_4").setHorizontalFlipping(flip);
-		this.getSprite("permanent_injury_scarred").setHorizontalFlipping(flip);
-		this.getSprite("permanent_injury_burned").setHorizontalFlipping(flip);
-		this.getSprite("bandage_1").setHorizontalFlipping(flip);
-		this.getSprite("bandage_2").setHorizontalFlipping(flip);
-		this.getSprite("bandage_3").setHorizontalFlipping(flip);
+		this.getSprite("helmet_vanity_lower").setHorizontalFlipping(flip);
+		this.getSprite("helmet_vanity_lower_2").setHorizontalFlipping(flip);
+		this.getSprite("helmet_helm").setHorizontalFlipping(flip);
+		this.getSprite("helmet_top").setHorizontalFlipping(flip);
+		this.getSprite("helmet_vanity").setHorizontalFlipping(flip);
+		this.getSprite("helmet_vanity_2").setHorizontalFlipping(flip);
 	}
 
 	o.onInit = function ()
