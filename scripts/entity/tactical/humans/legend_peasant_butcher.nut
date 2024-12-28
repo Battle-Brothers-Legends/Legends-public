@@ -81,7 +81,7 @@ this.legend_peasant_butcher <- this.inherit("scripts/entity/tactical/human", {
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_colossus"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_lacerate"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_slaughter"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_slaughterer"));
+		this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_slaughterer"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_killing_frenzy"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_specialist_butcher_damage"));
 		this.m.Skills.add(this.new("scripts/skills/traits/fearless_trait"));
