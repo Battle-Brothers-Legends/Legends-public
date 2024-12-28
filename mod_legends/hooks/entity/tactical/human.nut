@@ -103,10 +103,23 @@
 	local onDeath = o.onDeath;
 	o.onDeath = function ( _killer, _skill, _tile, _fatalityType )
 	{
+		local originalFunc, needToCheese = getFlags().get("donkey");
+
+		if (_tile != null && needToCheese) { // a cheese to stop donkey background from being raised back as zombie during undead crisis
+			originalFunc = ::World.FactionManager.get().isUndeadScourge;
+			::World.FactionManager.get().isUndeadScourge = function() { return false };
+		}
+
 		onDeath(_killer, _skill, _tile, _fatalityType);
 
-		if (_tile != null)
+		if (_tile != null) {
 			_tile.Properties.get("Corpse").isHuman = 1;
+
+			if (needToCheese) {
+				_tile.Properties.get("Corpse").IsResurrectable = false; // mark as can't be raised back as undead
+				::World.FactionManager.get().isUndeadScourge = originalFunc; // undo the cheese
+			}
+		}
 	}
 
 	local onFactionChanged = o.onFactionChanged;
