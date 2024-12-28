@@ -1155,37 +1155,10 @@
 		return;
 	}
 
-
+	local getSurroundedCount = o.getSurroundedCount;
 	o.getSurroundedCount = function ()
 	{
-		local tile = this.getTile();
-		local c = 0;
-
-		for( local i = 0; i != 6; i = ++i )
-		{
-			if (tile == null)
-			{
-				continue
-			}
-
-			if (!tile.hasNextTile(i))
-			{
-				continue
-			}
-
-			local next = tile.getNextTile(i);
-			if (next.getEntity() == null)
-			{
-				continue
-			}
-
-			if (next.IsOccupiedByActor && this.Math.abs(next.Level - tile.Level) <= 1 && !next.getEntity().isNonCombatant() && !next.getEntity().isAlliedWith(this) && !next.getEntity().getCurrentProperties().IsStunned && !next.getEntity().isArmedWithRangedWeapon())
-			{
-				c = ++c;
-			}
-		}
-
-		return this.Math.max(0, c - 1 - this.m.CurrentProperties.StartSurroundCountAt);
+		return !this.isPlacedOnMap() ? 0 : getSurroundedCount();
 	}
 
 	o.setBrushAlpha <- function(level)
