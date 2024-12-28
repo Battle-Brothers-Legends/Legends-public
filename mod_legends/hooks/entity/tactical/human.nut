@@ -130,93 +130,54 @@
 		this.getSprite("helmet_vanity_2").setHorizontalFlipping(flip);
 	}
 
+	local onInit = o.onInit;
 	o.onInit = function ()
 	{
-		if (this.m.Body >= this.m.Bodies.len()){
+		if (this.m.Body >= this.m.Bodies.len())
 			this.m.Body = this.Math.rand(0, this.m.Bodies.len() - 1);
-		}
-		this.actor.onInit();
-		this.m.ActionPointCosts = this.Const.DefaultMovementAPCost;
-		this.m.FatigueCosts = this.Const.DefaultMovementFatigueCost;
-		local app = this.getItems().getAppearance();
-		app.Quiver = this.Const.Items.Default.PlayerQuiver;
-		app.Body = this.m.Bodies[this.m.Body];
-		app.Corpse = this.m.Bodies[this.m.Body] + "_dead";
-		this.addSprite("background");
-		this.addSprite("socket").setBrush("bust_base_player");
-		this.addSprite("quiver");
-		local body = this.addSprite("body");
-		body.setBrush(this.m.Bodies[this.m.Body]);
-		this.addSprite("tattoo_body");
-		this.addSprite("scar_body");
-		local injury_body = this.addSprite("injury_body");
-		injury_body.Visible = false;
-		injury_body.setBrush("bust_naked_body_0" + this.m.Body + "_injured");
-		this.addSprite("armor");
-		this.addSprite("armor_layer_chain");
-		this.addSprite("armor_layer_plate");
-		this.addSprite("armor_layer_tabbard");
-		this.addSprite("surcoat");
-		this.addSprite("armor_layer_cloak");
-		this.addSprite("armor_layer_cloak_front");	// Usually this should be below the helmets. But most Layer-5-Upgrades only consist of a back-piece which would make a two-piece cloak look very weird.
-		this.addSprite("armor_upgrade_back");
-		local bandage2 = this.addSprite("bandage_2");
-		bandage2.Visible = false;
-		bandage2.setBrush("bandage_clean_02");
-		local bandage3 = this.addSprite("bandage_3");
-		bandage3.Visible = false;
-		bandage3.setBrush("bandage_clean_03");
-		this.addSprite("shaft");
-		this.addSprite("head");
-		local eye_rings = this.addSprite("eye_rings");
-		eye_rings.setBrush("bust_eye_rings");
-		eye_rings.Visible = false;
-		local closed_eyes = this.addSprite("closed_eyes");
-		closed_eyes.setBrush("sleep_eyes");
-		closed_eyes.Visible = false;
-		this.addSprite("tattoo_head");
-		this.addSprite("scar_head");
-		this.addSprite("injury").Visible = false;
-		this.addSprite("permanent_injury_3");
-		this.addSprite("permanent_injury_2");
-		this.addSprite("permanent_injury_scarred");
-		this.addSprite("permanent_injury_burned");
-		this.addSprite("beard");
-		this.addSprite("hair");
-		this.addSprite("permanent_injury_4");
-		this.addSprite("permanent_injury_1");
 
-		this.addSprite("accessory");
-		this.addSprite("accessory_special");
-		this.addSprite("beard_top");
-
-		foreach (a in this.Const.CharacterSprites.Helmets)
+		local self = this; // attempting to inject new sprite layer at certain positions
+		local original_addSprite = self.addSprite;
+		self.addSprite = function( _id )
 		{
-			this.addSprite(a)
+			if (_id == "accessory" || _id == "accessory_special")
+				return null;
+			else if (_id == "surcoat") {
+				original_addSprite("armor_layer_chain");
+				original_addSprite("armor_layer_plate");
+				original_addSprite("armor_layer_tabbard");
+			}
+			else if (_id == "helmet") {
+				original_addSprite("accessory");
+				original_addSprite("accessory_special");
+				original_addSprite("helmet_vanity_lower");
+				original_addSprite("helmet_vanity_lower_2");
+			}
+
+			local layer = original_addSprite(_id);
+
+			if (_id == "surcoat") {
+				original_addSprite("armor_layer_cloak");
+				original_addSprite("armor_layer_cloak_front");
+			}
+			else if (_id == "permanent_injury_2") {
+				original_addSprite("permanent_injury_scarred");
+				original_addSprite("permanent_injury_burned");
+			}
+			else if (_id == "helmet_damage") {
+				original_addSprite("helmet_helm");
+				original_addSprite("helmet_top");
+				original_addSprite("helmet_vanity");
+				original_addSprite("helmet_vanity_2");
+			}
+
+			return layer;
 		}
 
-		this.addSprite("armor_upgrade_front");
-		local bandage1 = this.addSprite("bandage_1");
-		bandage1.Visible = false;
-		bandage1.setBrush("bandage_clean_01");
-		local body_blood = this.addSprite("body_blood");
-		body_blood.setBrush("bust_body_bloodied_02");
-		body_blood.Visible = false;
-		local body_dirt = this.addSprite("dirt");
-		body_dirt.setBrush("bust_body_dirt_02");
-		body_dirt.Visible = false;
-		this.addDefaultStatusSprites();
-		this.getSprite("status_rooted").Scale = 0.55;
-		this.setSpriteOffset("status_rooted", this.createVec(0, 5));
-		this.m.Skills.add(this.new("scripts/skills/actives/hand_to_hand"));
-
-		if (this.Const.DLC.Unhold)
-		{
-			this.m.Skills.add(this.new("scripts/skills/actives/wake_ally_skill"));
-		}
-
-		this.m.Skills.add(this.new("scripts/skills/special/double_grip"));
-		this.m.Skills.add(this.new("scripts/skills/effects/captain_effect"));
+		onInit();
+		// return to normal
+		self.addSprite = original_addSprite;
+		// add this as aura effect
 		this.m.Skills.add(this.new("scripts/skills/effects/legend_demon_hound_aura_effect"));
 	}
 
