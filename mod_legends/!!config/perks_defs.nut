@@ -1453,7 +1453,7 @@ perkDefObjects.push({
 	Const = "LegendBribe"
 });
 perkDefObjects.push({
-	ID = "perk.legends.legend_off_book_deal",
+	ID = "perk.legend_off_book_deal",
 	Script = "scripts/skills/perks/perk_legend_off_book_deal",
 	Name = this.Const.Strings.PerkName.LegendOffBookDeal,
 	Tooltip = this.Const.Strings.PerkDescription.LegendOffBookDeal,
