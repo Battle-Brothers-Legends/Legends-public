@@ -50,8 +50,12 @@ this.legend_named_estoc <- this.inherit("scripts/items/weapons/named/named_weapo
 	function onEquip()
 	{
 		this.named_weapon.onEquip();
-		this.addSkill(this.new("scripts/skills/actives/legend_great_slash"));
-		this.addSkill(this.new("scripts/skills/actives/legend_greatlunge_skill"));
+		skillToAdd = this.new("scripts/skills/actives/slash")
+		skillToAdd.m.isGreatSlash = true;
+		this.addSkill(skillToAdd);
+		skillToAdd = this.new("scripts/skills/actives/lunge_skill")
+		skillToAdd.m.isGreatLunge = true;
+		this.addSkill(skillToAdd);
 	}
 
 });
