@@ -1,7 +1,8 @@
 ::mods_hookExactClass("entity/tactical/actor", function(o)
 {
 //	while(!("BloodSaturation" in o.m)) o = o[o.SuperName];
-
+	o.m.KillerPercentOnKillOtherActorModifier <- 1.0;
+	o.m.KillerFlatOnKillOtherActorModifier <- 0;
 	o.m.BloodSaturation = 1.5;
 	o.m.DeathBloodAmount = 1.5;
 	o.m.BloodPoolScale = 1.25;
@@ -159,38 +160,29 @@
 		return -1;
 	}
 
-	o.onOtherActorDeath <- function ( _killer, _victim, _skill )
+	local onOtherActorDeath = o.onOtherActorDeath;
+	o.onOtherActorDeath = function ( _killer, _victim, _skill )
 	{
-		if (!this.m.IsAlive || this.m.IsDying)
-		{
+		if (!isAlive() || isDying())
 			return;
+
+		if (_killer != null && getAlliedFactions().find(_victim.getFaction()) != null) {
+			m.KillerPercentOnKillOtherActorModifier = _killer.getPercentOnKillOtherActorModifier();
+			m.KillerFlatOnKillOtherActorModifier = _killer.getFlatOnKillOtherActorModifier();
 		}
 
-		if (_victim.getXPValue() <= 0)
-		{
-			return;
-		}
+		onOtherActorDeath(_killer, _victim, _skill);
+		m.KillerPercentOnKillOtherActorModifier = 1.0;
+		m.KillerFlatOnKillOtherActorModifier = 0;
+	}
 
-		if (_victim.getFaction() == this.getFaction() && _victim.getCurrentProperties().TargetAttractionMult > 0.5 && this.getCurrentProperties().IsAffectedByDyingAllies)
-		{
-			local difficulty = this.Const.Morale.AllyKilledBaseDifficulty - _victim.getXPValue() * this.Const.Morale.AllyKilledXPMult + this.Math.pow(_victim.getTile().getDistanceTo(this.getTile()), this.Const.Morale.AllyKilledDistancePow);
-			if (_killer != null)
-			{
-				difficulty = this.Math.floor((this.Const.Morale.AllyKilledBaseDifficulty - _victim.getXPValue() * this.Const.Morale.AllyKilledXPMult + this.Math.pow(_victim.getTile().getDistanceTo(this.getTile()), this.Const.Morale.AllyKilledDistancePow)) * _killer.getPercentOnKillOtherActorModifier()) + _killer.getFlatOnKillOtherActorModifier();
-			}
-			this.checkMorale(-1, difficulty, this.Const.MoraleCheckType.Default, "", true);
-		}
-		else if (this.getAlliedFactions().find(_victim.getFaction()) == null)
-		{
-			local difficulty = this.Const.Morale.EnemyKilledBaseDifficulty + _victim.getXPValue() * this.Const.Morale.EnemyKilledXPMult - this.Math.pow(_victim.getTile().getDistanceTo(this.getTile()), this.Const.Morale.EnemyKilledDistancePow);
+	local checkMorale = o.checkMorale;
+	o.checkMorale( _change, _difficulty, _type = this.Const.MoraleCheckType.Default, _showIconBeforeMoraleIcon = "", _noNewLine = false )
+	{
+		if (m.KillerPercentOnKillOtherActorModifier != 1.0)
+			_difficulty = ::Math.floor(_difficulty * m.KillerPercentOnKillOtherActorModifier);
 
-			if (_killer != null && _killer.isAlive() && _killer.getID() == this.getID())
-			{
-				difficulty = difficulty + this.Const.Morale.EnemyKilledSelfBonus;
-			}
-
-			this.checkMorale(1, difficulty);
-		}
+		return checkMorale(_change, _difficulty + m.KillerFlatOnKillOtherActorModifier, _type, _showIconBeforeMoraleIcon, _noNewLine);
 	}
 
 	o.getPercentOnKillOtherActorModifier <- function ()
