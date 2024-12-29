@@ -58,10 +58,9 @@ this.legend_recruitment_vala_encounter <- this.inherit("scripts/encounters/encou
 		if (playerTile.SquareCoords.Y < ::World.getMapSize().Y * 0.7)
 			return false;
 
-		local brothers = ::World.getPlayerRoster().getAll();
 		local totalbrothers = 0;
 		local brotherlevels = 0;
-		foreach (bro in brothers) {
+		foreach (bro in ::World.getPlayerRoster().getAll()) {
 			if (bro.getBackground().getID() == "background.legend_vala")
 				return false;
 			if (bro.getBackground().getID() == "background.legend_commander_vala")
