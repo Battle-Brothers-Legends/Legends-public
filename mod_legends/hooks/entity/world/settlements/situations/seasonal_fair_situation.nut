@@ -4,20 +4,15 @@
 	o.create = function ()
 	{
 		create();
-		this.m.Rumors = [
-			"What\'s going on around here you\'re asking? Well, there\'s a fair over in %settlement%. Merchants from far and wide gather to offer their wares.",
-			"Big fairs like the one over in %settlement% atract the worst kinds of people, minstrels and troubadours.",
-			"Me, I am more of the solitary type. Big fairs like the one over in %settlement% just don\'t appeal to me at all...."
-		];
+		this.m.Rumors.push("Big fairs like the one over in %settlement% atract the worst kinds of people, minstrels and troubadours.");
 	}
 
 	local onAdded = o.onAdded;
 	o.onAdded = function ( _settlement )
 	{
 		if(::Legends.Mod.ModSettings.getSetting("WorldEconomy").getValue())
-		{
 			_settlement.setResources(_settlement.getResources() + _settlement.getResources() * 0.1);
-		}
+		
 		onAdded( _settlement );
 	}
 

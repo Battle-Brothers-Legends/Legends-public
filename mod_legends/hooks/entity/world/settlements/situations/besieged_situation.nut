@@ -4,9 +4,8 @@
 	o.onAdded = function ( _settlement )
 	{
 		if(::Legends.Mod.ModSettings.getSetting("WorldEconomy").getValue())
-		{
 			_settlement.setResources(_settlement.getResources() + _settlement.getResources() * -0.25);
-		}
+		
 		onAdded( _settlement );
 	}
 
