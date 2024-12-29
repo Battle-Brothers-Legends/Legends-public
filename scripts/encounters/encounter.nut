@@ -4,7 +4,7 @@ this.encounter <- {
         Type = "",
         Name = "",
         Icon = "ui/encounters/encounter_01.png",
-        Cooldown = 7.0 * this.World.getTime().SecondsPerDay,
+        Cooldown = 7.0 * ::World.getTime().SecondsPerDay,
         CooldownUntil = 0.0,
         Screens = [],
         ActiveScreen = null,
@@ -382,7 +382,8 @@ this.encounter <- {
 
     function fire()
     {
-        this.setScreen(this.m.Screens[0]);
+		if (this.m.Screens.len() > 0)
+        	this.setScreen(this.m.Screens[0]);
         this.m.CooldownUntil = this.Time.getVirtualTimeF() + this.m.Cooldown;
     }
 

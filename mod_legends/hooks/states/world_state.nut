@@ -1179,24 +1179,28 @@
 	o.showEncounterScreenFromTown <- function (_encounter, _playSound = true) {
 		if (!this.m.EventScreen.isVisible() && !this.m.EventScreen.isAnimating())
 		{
-			if (_playSound && this.Const.Events.GlobalSound != "")
-			{
-				this.Sound.play(this.Const.Events.GlobalSound, 1.0);
-			}
+			if ("Event" in _encounter.m) {
+				::World.State.getMenuStack().popAll(true);
+				::Time.scheduleEvent(::TimeUnit.Virtual, 1, ::World.Events.fire, _encounter.m.Event);
+				::Time.scheduleEvent(::TimeUnit.Real, 500, function ( _tag ) {
+					::World.State.setPause(false);
+				}, null);
+			} else {
+				if (_playSound && ::Const.Events.GlobalSound != "")
+					::Sound.play(::Const.Events.GlobalSound, 1.0);
 
-			this.m.WorldTownScreen.hideAllDialogs();
-			this.m.EventScreen.setIsEncounter(true);
-			this.m.EventScreen.show(_encounter);
-			this.m.MenuStack.push(function ()
-			{
-				this.m.EventScreen.hide();
-				this.m.WorldTownScreen.showLastActiveDialog();
-				this.m.EventScreen.setIsEncounter(false);
-				this.m.WorldTownScreen.refresh();
-			}, function ()
-			{
-				return false;
-			});
+				this.m.WorldTownScreen.hideAllDialogs();
+				this.m.EventScreen.setIsEncounter(true);
+				this.m.EventScreen.show(_encounter);
+				this.m.MenuStack.push(function () {
+					this.m.EventScreen.hide();
+					this.m.WorldTownScreen.showLastActiveDialog();
+					this.m.EventScreen.setIsEncounter(false);
+					this.m.WorldTownScreen.refresh();
+				}, function () {
+					return false;
+				});
+			}
 		}
 	}
 
@@ -1207,24 +1211,28 @@
 	o.showEncounterScreenFromCamp <- function (_encounter, _playSound = true) {
 		if (!this.m.EventScreen.isVisible() && !this.m.EventScreen.isAnimating())
 		{
-			if (_playSound && this.Const.Events.GlobalSound != "")
-			{
-				this.Sound.play(this.Const.Events.GlobalSound, 1.0);
-			}
+			if ("Event" in _encounter.m) {
+				::World.State.getMenuStack().popAll(true);
+				::Time.scheduleEvent(::TimeUnit.Virtual, 1, ::World.Events.fire, _encounter.m.Event);
+				::Time.scheduleEvent(::TimeUnit.Real, 500, function ( _tag ) {
+					::World.State.setPause(false);
+				}, null);
+			} else {
+				if (_playSound && ::Const.Events.GlobalSound != "")
+					::Sound.play(::Const.Events.GlobalSound, 1.0);
 
-			this.m.CampScreen.hide();
-			this.m.EventScreen.setIsEncounter(true);
-			this.m.EventScreen.show(_encounter);
-			this.m.MenuStack.push(function ()
-			{
-				this.m.EventScreen.hide();
-				this.m.CampScreen.show();
-				this.m.EventScreen.setIsEncounter(false);
-				this.m.WorldTownScreen.refresh();
-			}, function ()
-			{
-				return false;
-			});
+				this.m.CampScreen.hide();
+				this.m.EventScreen.setIsEncounter(true);
+				this.m.EventScreen.show(_encounter);
+				this.m.MenuStack.push(function() {
+					this.m.EventScreen.hide();
+					this.m.CampScreen.show();
+					this.m.EventScreen.setIsEncounter(false);
+					this.m.WorldTownScreen.refresh();
+				}, function() {
+					return false;
+				});
+			}
 		}
 	}
 
