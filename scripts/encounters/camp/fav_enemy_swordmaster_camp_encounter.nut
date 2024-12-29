@@ -30,7 +30,7 @@ this.fav_enemy_swordmaster_camp_encounter <- this.inherit("scripts/encounters/en
                 }
             }
             ],
-            function start() {
+            function start(_event) {
 
             }
         }]);

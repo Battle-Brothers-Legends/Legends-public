@@ -30,7 +30,7 @@ this.anatomist_creeps_out_locals_encounter <- this.inherit("scripts/encounters/e
                 }
             }
             ],
-            function start() {
+            function start(_event) {
 
             }
         }]);

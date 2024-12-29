@@ -31,12 +31,12 @@ this.fav_enemy_swordmaster_encounter <- this.inherit("scripts/encounters/encount
             },
             {
                 Text = "It's not worth it",
-                function getResult() {
+                function getResult(_event) {
                     return 0;
                 }
             }
             ],
-            function start() {
+            function start(_event) {
 
             }
         }]);

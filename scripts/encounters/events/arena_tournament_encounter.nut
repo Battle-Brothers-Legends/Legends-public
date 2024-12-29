@@ -30,7 +30,7 @@ this.arena_tournament_encounter <- this.inherit("scripts/encounters/encounter", 
                 }
             }
             ],
-            function start() {
+            function start(_event) {
 
             }
         }]);

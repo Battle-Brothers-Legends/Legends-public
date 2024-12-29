@@ -23,12 +23,12 @@ this._tips_encounter <- this.inherit("scripts/encounters/encounter", {
             Options = [
             {
                 Text = "Nice",
-                function getResult() {
+                function getResult(_event) {
                     return 0;
                 }
             }
             ],
-            function start() {}
+            function start(_event) {}
         }]);
     }
 

@@ -30,7 +30,7 @@ this.jousting_tournament_camp_encounter <- this.inherit("scripts/encounters/enco
                 }
             }
             ],
-            function start() {
+            function start(_event) {
 
             }
         }]);

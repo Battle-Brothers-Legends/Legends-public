@@ -30,7 +30,7 @@ this.volunteers_camp_encounter <- this.inherit("scripts/encounters/encounter", {
                 }
             }
             ],
-            function start() {
+            function start(_event) {
 
             }
         }]);

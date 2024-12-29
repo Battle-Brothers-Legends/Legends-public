@@ -30,7 +30,7 @@ this.wild_dog_sounds_camp_encounter <- this.inherit("scripts/encounters/encounte
                 }
             }
             ],
-            function start() {
+            function start(_event) {
 
             }
         }]);

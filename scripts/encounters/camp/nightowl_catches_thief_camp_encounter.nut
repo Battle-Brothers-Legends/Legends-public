@@ -30,7 +30,7 @@ this.nightowl_catches_thief_camp_encounter <- this.inherit("scripts/encounters/e
                 }
             }
             ],
-            function start() {
+            function start(_event) {
 
             }
         }]);

@@ -30,7 +30,7 @@ this.oathtakers_skull_cracked_camp_encounter <- this.inherit("scripts/encounters
                 }
             }
             ],
-            function start() {
+            function start(_event) {
 
             }
         }]);

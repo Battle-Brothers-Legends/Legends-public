@@ -24,12 +24,12 @@ this.test_encounter <- this.inherit("scripts/encounters/encounter", {
             },
             {
                 Text = "Not now",
-                function getResult() {
+                function getResult(_event) {
                     return 0;
                 }
             }
             ],
-            function start() {
+            function start(_event) {
                 this.List.push({
                     id = 1,
                     icon = "ui/icons/fatigue.png",
@@ -54,7 +54,7 @@ this.test_encounter <- this.inherit("scripts/encounters/encounter", {
                 }
             }
             ],
-            function start() {}
+            function start(_event) {}
         }]);
     }
 

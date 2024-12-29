@@ -31,12 +31,12 @@ this.recruitment_vala_encounter <- this.inherit("scripts/encounters/encounter", 
             },
             {
                 Text = "Not now.",
-                function getResult() {
+                function getResult(_event) {
                     return 0;
                 }
             }
             ],
-            function start() {
+            function start(_event) {
 
             }
         }]);

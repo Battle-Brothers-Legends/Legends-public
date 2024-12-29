@@ -163,7 +163,7 @@ this.encounter <- {
 
         if (("start" in this.m.ActiveScreen) && (_restartIfAlreadyActive || this.m.ActiveScreen.ID != oldID))
         {
-            this.m.ActiveScreen.start();
+            this.m.ActiveScreen.start(this);
         }
 
         this.m.ActiveScreen.Title = this.buildText(this.m.ActiveScreen.Title);

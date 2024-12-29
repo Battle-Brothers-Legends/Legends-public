@@ -30,7 +30,7 @@ this.traveling_troupe_camp_encounter <- this.inherit("scripts/encounters/encount
                 }
             }
             ],
-            function start() {
+            function start(_event) {
 
             }
         }]);

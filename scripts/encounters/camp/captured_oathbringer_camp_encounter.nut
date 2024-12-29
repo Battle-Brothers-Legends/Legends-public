@@ -30,7 +30,7 @@ this.captured_oathbringer_camp_encounter <- this.inherit("scripts/encounters/enc
                 }
             }
             ],
-            function start() {
+            function start(_event) {
 
             }
         }]);

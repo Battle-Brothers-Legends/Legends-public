@@ -30,7 +30,7 @@ this.strange_scribe_encounter <- this.inherit("scripts/encounters/encounter", {
                 }
             }
             ],
-            function start() {
+            function start(_event) {
 
             }
         }]);
