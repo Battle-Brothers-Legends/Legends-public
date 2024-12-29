@@ -18,7 +18,7 @@ this.fav_enemy_swordmaster_camp_encounter <- this.inherit("scripts/encounters/en
             Options = [
             {
                 Text = "Check it out",
-                function getResult() {
+                function getResult(_event) {
                     this.World.State.getMenuStack().popAll(true);
                     this.Time.scheduleEvent(this.TimeUnit.Virtual, 1, function ( _tag ) {
                         this.World.Events.fire("event.legend_swordmaster_fav_enemy");

@@ -100,7 +100,7 @@ this.encounter <- {
             return true;
         }
 
-        local result = this.m.ActiveScreen.Options[_option].getResult();
+        local result = this.m.ActiveScreen.Options[_option].getResult(this);
 
         if (typeof result != "string" && result <= 0)
         {

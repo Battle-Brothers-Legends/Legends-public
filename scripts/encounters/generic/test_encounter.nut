@@ -18,7 +18,7 @@ this.test_encounter <- this.inherit("scripts/encounters/encounter", {
             Options = [
             {
                 Text = "Click me for free puppies!",
-                function getResult() {
+                function getResult(_event) {
                     return "screen2";
                 }
             },
@@ -49,7 +49,7 @@ this.test_encounter <- this.inherit("scripts/encounters/encounter", {
             Options = [
             {
                 Text = "Bummer, let's go!",
-                function getResult() {
+                function getResult(_event) {
                     return 0;
                 }
             }

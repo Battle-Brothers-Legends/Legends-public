@@ -18,7 +18,7 @@ this.wild_dog_sounds_camp_encounter <- this.inherit("scripts/encounters/encounte
             Options = [
             {
                 Text = "Check it out",
-                function getResult() {
+                function getResult(_event) {
                     this.World.State.getMenuStack().popAll(true);
                     this.Time.scheduleEvent(this.TimeUnit.Virtual, 1, function ( _tag ) {
                         this.World.Events.fire("event.wild_dog_sounds");

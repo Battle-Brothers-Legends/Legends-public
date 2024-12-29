@@ -18,7 +18,7 @@ this.anatomist_creeps_out_locals_encounter <- this.inherit("scripts/encounters/e
             Options = [
             {
                 Text = "Check it out",
-                function getResult() {
+                function getResult(_event) {
                     this.World.State.getMenuStack().popAll(true);
                     this.Time.scheduleEvent(this.TimeUnit.Virtual, 1, function ( _tag ) {
                         this.World.Events.fire("event.event.anatomist_creeps_out_locals");

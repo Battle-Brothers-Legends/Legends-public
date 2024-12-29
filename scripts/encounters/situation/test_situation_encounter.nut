@@ -19,7 +19,7 @@ this.test_situation_encounter <- this.inherit("scripts/encounters/encounter", {
             Options = [
                 {
                     Text = "Damn",
-                    function getResult() {
+                    function getResult(_event) {
                         return 0;
                     }
                 }

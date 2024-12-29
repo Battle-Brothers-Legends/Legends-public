@@ -18,7 +18,7 @@ this.strange_scribe_encounter <- this.inherit("scripts/encounters/encounter", {
             Options = [
             {
                 Text = "Check it out",
-                function getResult() {
+                function getResult(_event) {
                     this.World.State.getMenuStack().popAll(true);
                     this.Time.scheduleEvent(this.TimeUnit.Virtual, 1, function ( _tag ) {
                         this.World.Events.fire("event.strange_scribe");
