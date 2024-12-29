@@ -16,11 +16,6 @@ this.legend_upgrading_locations_effort_situation <- this.inherit("scripts/entity
 		return "In an effort to expand and upgrade the settlement, building materials are in high demand and low supply.";
 	}
 
-	function isValid()
-	{
-		return this.situation.isValid();
-	}
-
 	function onAdded( _settlement )
 	{
 		_settlement.resetShop();
@@ -39,22 +34,9 @@ this.legend_upgrading_locations_effort_situation <- this.inherit("scripts/entity
 		_settlement.m.AttachedLocationsMax + 1;
 	}
 
-	function onSerialize( _out )
+	function onUpdateDraftList( _draftList )
 	{
-		this.situation.onSerialize(_out);
-	}
-
-	function onDeserialize( _in )
-	{
-		this.situation.onDeserialize(_in);
-	}
-
-
-	function onUpdateDraftList( _draftList, _gender = null)
-	{
-		_gender = ::Legends.Mod.ModSettings.getSetting("GenderEquality").getValue() != "Disabled";
-		if (this.m.IsSouthern)
-		{
+		if (this.m.IsSouthern) {
 			_draftList.push("daytaler_southern_background");
 			_draftList.push("daytaler_southern_background");
 			_draftList.push("daytaler_southern_background");
@@ -66,8 +48,7 @@ this.legend_upgrading_locations_effort_situation <- this.inherit("scripts/entity
 			_draftList.push("slave_southern_background");
 			_draftList.push("slave_southern_background");
 		}
-		else
-		{
+		else {
 			_draftList.push("lumberjack_background");
 			_draftList.push("lumberjack_background");
 			_draftList.push("mason_background");
@@ -75,9 +56,7 @@ this.legend_upgrading_locations_effort_situation <- this.inherit("scripts/entity
 			_draftList.push("daytaler_background");
 			_draftList.push("daytaler_background");
 			_draftList.push("daytaler_background");
-
 			_draftList.push("legend_inventor_background");
-
 		}
 
 		_draftList.push("legend_blacksmith_background");
@@ -86,7 +65,6 @@ this.legend_upgrading_locations_effort_situation <- this.inherit("scripts/entity
 		_draftList.push("legend_blacksmith_background");
 		_draftList.push("legend_blacksmith_background");
 		_draftList.push("legend_blacksmith_background");
-
 	}
 
 });

@@ -1121,248 +1121,132 @@
 		}
 	}
 
+	local updateRoster = o.updateRoster;
 	o.updateRoster = function ( _force = false )
 	{
-		local daysPassed = (this.Time.getVirtualTimeF() - this.m.LastRosterUpdate) / this.World.getTime().SecondsPerDay;
-
-		if (!_force && this.m.LastRosterUpdate != 0 && daysPassed < 2)
-		{
-			return;
-		}
-
-		if (this.m.RosterSeed != 0)
-		{
-			this.Math.seedRandom(this.m.RosterSeed);
-		}
-
-		this.m.RosterSeed = this.Math.floor(this.Time.getRealTime() + this.Math.rand());
-		this.m.LastRosterUpdate = this.Time.getVirtualTimeF();
-		local roster = this.World.getRoster(this.getID());
-		local allbros = roster.getAll();
-		local current = [];
-		for( local i = 0; i < allbros.len(); i = ++i )
-		{
-			if (allbros[i].isStabled())
+		if (_force || m.LastRosterUpdate == 0 || ((::Time.getVirtualTimeF() - m.LastRosterUpdate) / ::World.getTime().SecondsPerDay) >= 2) {
+			m.DraftList = getDraftList(); // apply the draftlist
+			::World.getTemporaryRoster().clear(); // using this to store the stabled
+			::World.Assets.getOrigin().setCurrentSettlement(this); // new thing added by Hanter, so i put it here
+			local stable = ::World.getTemporaryRoster(), roster = ::World.getRoster(getID());
+			foreach(bro in roster.getAll())
 			{
-				continue
-			}
-			else
-			{
-				current.push(allbros[i]);
-			}
-		}
-
-		local iterations = this.Math.max(1, daysPassed / 2);
-		local activeLocations = 0;
-
-		foreach( loc in this.m.AttachedLocations )
-		{
-			if (loc.isActive())
-			{
-				activeLocations = ++activeLocations;
-				activeLocations = activeLocations;
-			}
-		}
-
-		local minRosterSizes = [
-			0,
-			3,
-			6,
-			9
-		];
-		local rosterMin = minRosterSizes[this.m.Size] + (this.isSouthern() ? 2 : 0);
-		local rosterMax = minRosterSizes[this.m.Size] + activeLocations + (this.isSouthern() ? 1 : 0);
-
-		if (this.World.FactionManager.getFaction(this.m.Factions[0]).getPlayerRelation() < 50)
-		{
-			rosterMin = rosterMin * (this.World.FactionManager.getFaction(this.m.Factions[0]).getPlayerRelation() / 50.0);
-			rosterMax = rosterMax * (this.World.FactionManager.getFaction(this.m.Factions[0]).getPlayerRelation() / 50.0);
-		}
-
-		rosterMin = rosterMin * this.m.Modifiers.RecruitsMult;
-		rosterMax = rosterMax * this.m.Modifiers.RecruitsMult;
-		rosterMin = rosterMin + this.World.Assets.m.RosterSizeAdditionalMin;
-		rosterMax = rosterMax + this.World.Assets.m.RosterSizeAdditionalMax;
-
-		if (iterations < 7)
-		{
-			for( local i = 0; i < iterations; i = i )
-			{
-				for( local maxRecruits = this.Math.rand(this.Math.max(0, rosterMax / 2 - 1), rosterMax - 1); current.len() > maxRecruits;  )
-				{
-					local n = this.Math.rand(0, current.len() - 1);
-					roster.remove(current[n]);
-					current.remove(n);
+				if (bro.isStabled()) {
+					stable.add(bro); // store in temp, this is also a way to help them dodge the background purge in noble or militia origin
+					roster.remove(bro); // temporarily remove them so they won't be considered in the original function
+					continue;
 				}
 
-				i = ++i;
+				bro.getFlags().set("Legend_onGenerateBroPass", true);
 			}
-		}
-		else
-		{
-			for( local i = 0; i < current.len(); i = i )
+
+			updateRoster(_force); // run the original function
+
+			foreach (bro in roster.getAll())
 			{
-				roster.remove(current[i]);
-				i = ++i;
+				if (bro.getFlags().get("Legend_onGenerateBroPass")) {
+					bro.getFlags().remove("Legend_onGenerateBroPass"); // remove this flag, no need to serialize it afterward
+					continue; // flag found so this isn't a newly generated brother
+				}
+
+				::World.Assets.getOrigin().onGenerateBro(bro); // call this new function added by Hanter
 			}
 
-			current = [];
-		}
-
-		local maxRecruits = this.Math.rand(rosterMin, rosterMax);
-		local draftList;
-		draftList = this.getDraftList();
-
-		foreach( loc in this.m.AttachedLocations )
-		{
-			loc.onUpdateDraftList(draftList);
-		}
-
-		foreach( b in this.m.Buildings )
-		{
-			if (b != null)
+			foreach (bro in stable.getAll())
 			{
-				b.onUpdateDraftList(draftList);
+				roster.add(bro); // return the donkey
+				stable.remove(bro);
 			}
+
+			::World.getTemporaryRoster().clear(); // clean up
 		}
-
-		foreach( s in this.m.Situations )
-		{
-			s.onUpdateDraftList(draftList);
-		}
-
-		::World.Assets.getOrigin().setCurrentSettlement(this);
-		this.World.Assets.getOrigin().onUpdateDraftList(draftList);
-
-		while (maxRecruits > current.len())
-		{
-			local bro = roster.create("scripts/entity/tactical/player");
-			bro.setStartValuesEx(draftList);
-			this.World.Assets.getOrigin().onGenerateBro(bro);
-			current.push(bro);
-		}
-
-		this.updateStables(_force);
-		this.World.Assets.getOrigin().onUpdateHiringRoster(roster);
+		
+		updateStables(_force);
 	}
 
 	o.updateStables <- function ( _force = false )
 	{
-		if (!this.hasBuilding("building.stables"))
-		{
+		if (!hasBuilding("building.stables"))
 			return;
-		}
 
-		local daysPassed = (this.Time.getVirtualTimeF() - this.m.LastStablesUpdate) / this.World.getTime().SecondsPerDay;
+		local daysPassed = (::Time.getVirtualTimeF() - m.LastStablesUpdate) / ::World.getTime().SecondsPerDay;
 
-		if (!_force && this.m.LastStablesUpdate != 0 && daysPassed < 2)
-		{
+		if (!_force && m.LastStablesUpdate != 0 && daysPassed < 2)
 			return;
-		}
 
-		if (this.m.StablesSeed != 0)
-		{
-			this.Math.seedRandom(this.m.StablesSeed);
-		}
+		if (m.StablesSeed != 0)
+			::Math.seedRandom(m.StablesSeed);
 
-		this.m.StablesSeed = this.Math.floor(this.Time.getRealTime() + this.Math.rand());
-		this.m.LastStablesUpdate = this.Time.getVirtualTimeF();
-		local roster = this.World.getRoster(this.getID());
-		local allbros = roster.getAll();
-		local current = [];
+		m.StablesSeed = ::Math.floor(::Time.getRealTime() + ::Math.rand());
+		m.LastStablesUpdate = ::Time.getVirtualTimeF();
+		local current = [], roster = ::World.getRoster(getID());
+		local iterations = ::Math.max(1, daysPassed / 2), activeLocations = 0;
 
-		for( local i = 0; i < allbros.len(); i = ++i )
-		{
-			if (!allbros[i].isStabled())
-			{
-				continue
-			}
-
-			current.push(allbros[i]);
-		}
-
-		local iterations = this.Math.max(1, daysPassed / 2);
-		local activeLocations = 0;
-
-		foreach( loc in this.m.AttachedLocations )
+		foreach( loc in getAttachedLocations() )
 		{
 			if (loc.isActive())
-			{
-				activeLocations = ++activeLocations;
-				activeLocations = activeLocations;
-			}
+				++activeLocations;
 		}
 
-		local minRosterSizes = [
-			0,
-			1,
-			3,
-			5
-		];
-		local rosterMin = minRosterSizes[this.m.Size];
-		local rosterMax = minRosterSizes[this.m.Size] + activeLocations;
-
-		if (this.World.FactionManager.getFaction(this.m.Factions[0]).getPlayerRelation() < 50)
+		foreach (bro in roster.getAll())
 		{
-			rosterMin = rosterMin * (this.World.FactionManager.getFaction(this.m.Factions[0]).getPlayerRelation() / 50.0);
-			rosterMax = rosterMax * (this.World.FactionManager.getFaction(this.m.Factions[0]).getPlayerRelation() / 50.0);
+			if (bro.isStabled())
+				current.push(bro);
 		}
 
-		rosterMin = rosterMin * this.m.Modifiers.StablesMult;
-		rosterMax = rosterMax * this.m.Modifiers.StablesMult;
+		local minRosterSizes = [0,1,3,5];
+		local rosterMin = minRosterSizes[m.Size];
+		local rosterMax = minRosterSizes[m.Size] + activeLocations;
 
-		if (iterations < 5)
-		{
-			for( local i = 0; i < iterations; i = i )
+		if (::World.FactionManager.getFaction(m.Factions[0]).getPlayerRelation() < 50) {
+			rosterMin *= (::World.FactionManager.getFaction(m.Factions[0]).getPlayerRelation() / 50.0);
+			rosterMax *= (::World.FactionManager.getFaction(m.Factions[0]).getPlayerRelation() / 50.0);
+		}
+
+		rosterMin *= m.Modifiers.StablesMult;
+		rosterMax *= m.Modifiers.StablesMult;
+
+		if (iterations < 5) {
+			for( local i = 0; i < iterations; ++i )
 			{
-				for( local maxRecruits = this.Math.rand(this.Math.max(0, rosterMax / 2 - 1), rosterMax - 1); current.len() > maxRecruits;  )
+				for( local maxRecruits = ::Math.rand(::Math.max(0, rosterMax / 2 - 1), rosterMax - 1); current.len() > maxRecruits;  )
 				{
-					local n = this.Math.rand(0, current.len() - 1);
-					roster.remove(current[n]);
-					current.remove(n);
+					local n = ::Math.rand(0, current.len() - 1);
+					roster.remove(current.remove(n));
 				}
-
-				i = ++i;
 			}
 		}
-		else
-		{
-			for( local i = 0; i < current.len(); i = ++i )
+		else {
+			foreach( bro in current )
 			{
-				if (current[i].isStabled())
-				{
-					continue
-				}
-				current = [];
+				roster.remove(bro);
 			}
+
+			current.clear();
 		}
 
-		local maxRecruits = this.Math.rand(rosterMin, rosterMax);
-		local draftList;
-		draftList = this.getStablesList();
+		local maxRecruits = ::Math.rand(rosterMin, rosterMax);
+		local draftList = ["legend_donkey_background"]; //getStablesList();
 
-		foreach( loc in this.m.AttachedLocations )
+		/* stable list currently only contains donkey so there is no need to update in other places
+		foreach( loc in getAttachedLocations() )
 		{
 			loc.onUpdateStablesList(draftList);
 		}
 
-		foreach( b in this.m.Buildings )
+		foreach( b in m.Buildings )
 		{
 			if (b != null)
-			{
 				b.onUpdateStablesList(draftList);
-			}
 		}
 
-		foreach( s in this.m.Situations )
+		foreach( s in getSituations() )
 		{
 			s.onUpdateStablesList(draftList);
 		}
 
-		this.World.Assets.getOrigin().onUpdateStablesList(draftList);
-		draftList = [
-			"legend_donkey_background"
-		];
+		::World.Assets.getOrigin().onUpdateStablesList(draftList);
+		*/
 
 		while (maxRecruits > current.len())
 		{

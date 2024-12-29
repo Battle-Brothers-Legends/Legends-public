@@ -2,7 +2,7 @@ this.legend_fortify_skill <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "actives.legend_fortify_skill";
+		this.m.ID = "actives.legend_fortify";
 		this.m.Name = "Fortify";
 		this.m.Description = "The shield is raised to a fortified stance until next turn.";
 		this.m.Icon = "skills/fortify_square.png";

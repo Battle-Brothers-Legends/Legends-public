@@ -10,7 +10,7 @@
 	o.addSkill <- function( _skill )
 	{
 		if (_skill.getID() == "actives.slash")
-			_skill = ::new("scripts/skills/actives/legend_great_slash"); // replace slash with great slash
+			_skill.m.isGreatSlash = true;
 
 		named_weapon.addSkill(_skill);
 	}

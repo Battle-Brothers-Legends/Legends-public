@@ -191,6 +191,9 @@ this.legend_donkey_background <- this.inherit("scripts/skills/backgrounds/charac
 	}
 	function onAdded()
 	{
+		if (m.IsNew)
+			getContainer().getActor().getFlags().set("donkey", true);
+
 		this.character_background.onAdded();
 		this.m.Container.add(this.new("scripts/skills/injury_permanent/legend_donkey_injury"));
 		this.m.Container.add(this.new("scripts/skills/actives/legend_donkey_kick_skill"));

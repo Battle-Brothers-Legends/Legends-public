@@ -14,7 +14,7 @@ this.perk_legend_possession <- this.inherit("scripts/skills/skill", {
 
 	function onAdded()
 	{
-		if (!this.m.Container.hasSkill("actives.legend_possession_skill"))
+		if (!this.m.Container.hasSkill("actives.legend_possession"))
 		{
 			this.m.Container.add(this.new("scripts/skills/actives/legend_possession_skill"));
 		}
@@ -22,7 +22,7 @@ this.perk_legend_possession <- this.inherit("scripts/skills/skill", {
 
 	function onRemoved()
 	{
-		this.m.Container.removeByID("actives.legend_possession_skill");
+		this.m.Container.removeByID("actives.legend_possession");
 	}
 
 });

@@ -28,11 +28,11 @@ this.perk_legend_slaughter <- this.inherit("scripts/skills/skill", {
 		{
 			return;
 		}
-		if (!this.getContainer().hasSkill("actives.legend_prepare_bleed_skill"))
+		if (!this.getContainer().hasSkill("actives.legend_prepare_bleed"))
 		{
 			this.getContainer().add(this.new("scripts/skills/actives/legend_prepare_bleed_skill"));
 		}
-		if (!this.getContainer().hasSkill("actives.legend_prepare_graze_skill"))
+		if (!this.getContainer().hasSkill("actives.legend_prepare_graze"))
 		{
 			this.getContainer().add(this.new("scripts/skills/actives/legend_prepare_graze_skill"));
 		}
@@ -40,8 +40,8 @@ this.perk_legend_slaughter <- this.inherit("scripts/skills/skill", {
 
 	function onRemoved()
 	{
-		this.getContainer().removeByID("actives.legend_prepare_bleed_skill");
-		this.getContainer().removeByID("actives.legend_prepare_graze_skill");
+		this.getContainer().removeByID("actives.legend_prepare_bleed");
+		this.getContainer().removeByID("actives.legend_prepare_graze");
 	}
 
 });

@@ -13,7 +13,9 @@
 	o.onEquip = function ()
 	{
 		this.weapon.onEquip();
-		this.addSkill(this.new("scripts/skills/actives/legend_glaive_slash_skill"));
+		skillToAdd = this.new("scripts/skills/actives/slash")
+		skillToAdd.m.isGlaiveSlash = true;
+		this.addSkill(skillToAdd);
 		local skill = this.new("scripts/skills/actives/spearwall");
 		skill.m.BaseAttackName = "Glaive Slash";
 		this.addSkill(skill);

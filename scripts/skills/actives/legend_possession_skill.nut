@@ -2,7 +2,7 @@ this.legend_possession_skill <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "actives.legend_possession_skill";
+		this.m.ID = "actives.legend_possession";
 		this.m.Name = "Possess Undead";
 		this.m.Description = "";
 		this.m.Icon = "skills/possession.png";

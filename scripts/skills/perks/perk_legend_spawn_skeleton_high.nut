@@ -22,7 +22,7 @@ this.perk_legend_spawn_skeleton_high <- this.inherit("scripts/skills/skill", {
 
 	function onAdded()
 	{
-		if (!this.m.Container.hasSkill("actives.legend_spawn_skeleton_high_skill"))
+		if (!this.m.Container.hasSkill("actives.legend_spawn_skeleton_high"))
 		{
 			this.m.Container.add(this.new("scripts/skills/actives/legend_spawn_skeleton_high_skill"));
 			this.m.Container.add(this.new("scripts/skills/actives/legend_spawn_skeleton_high_archer_skill"));
@@ -31,8 +31,8 @@ this.perk_legend_spawn_skeleton_high <- this.inherit("scripts/skills/skill", {
 
 	function onRemoved()
 	{
-		this.m.Container.removeByID("actives.legend_spawn_skeleton_high_skill");
-		this.m.Container.removeByID("actives.legend_spawn_skeleton_high_archerskill");
+		this.m.Container.removeByID("actives.legend_spawn_skeleton_high");
+		this.m.Container.removeByID("actives.legend_spawn_skeleton_high_archer");
 	}
 
 });

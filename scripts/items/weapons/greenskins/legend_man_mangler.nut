@@ -52,9 +52,10 @@ this.legend_man_mangler <- this.inherit("scripts/items/weapons/weapon", {
 		overheadStrike.setStunChance(this.m.StunChance);
 		this.addSkill(overheadStrike);
 
-		local slash = this.new("scripts/skills/actives/legend_great_slash");
-		slash.m.DirectDamageMult = this.m.DirectDamageMult; //Sets Slash's Direct Damage Mult to Man Mangler's Direct Damage Mult
-		this.addSkill(slash);
+		skillToAdd = this.new("scripts/skills/actives/slash")
+		skillToAdd.m.isGreatSlash = true;
+		skillToAdd.m.DirectDamageMult = this.m.DirectDamageMult;
+		this.addSkill(skillToAdd);
 
 		local splitShield = this.new("scripts/skills/actives/split_shield");
 		splitShield.setFatigueCost(splitShield.getFatigueCostRaw() + 10); // 10 because 2h weapons should get +5 on split shield (see 2h mace), and then +5 because of being orc weapon.

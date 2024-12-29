@@ -281,7 +281,7 @@ this.perk_legend_adaptive <- this.inherit("scripts/skills/skill", {
 
 			//Greatsword
 				case _item.isWeaponType(this.Const.Items.WeaponType.Sword) && _item.isItemType(this.Const.Items.ItemType.TwoHanded):
-					return this.Const.Perks.GreatSwordTree;
+					return this.Const.Perks.TwoHandedTree;
 
 			// WeaponTypes
 				default:

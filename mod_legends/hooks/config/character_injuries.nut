@@ -96,11 +96,11 @@
 		Threshold = 0.50000000,
 		Script = "injury_permanent/legend_scarred_injury"
 	},
-	{
-		ID = "injury.legend_burned_injury",
-		Threshold = 0.50000000,
-		Script = "injury_permanent/legend_burned_injury"
-	}
+	//{
+	//	ID = "injury.legend_burned_injury",
+	//	Threshold = 0.50000000,
+	//	Script = "injury_permanent/legend_burned_injury"
+	//} a weird one should only get when being hit by firearms or burnt by flame
 ];
 ::Const.Injury.Flagellation = [
 	{

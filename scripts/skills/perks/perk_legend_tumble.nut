@@ -4,7 +4,6 @@ this.perk_legend_tumble <- this.inherit("scripts/skills/skill", {
 			"actives.lunge",
 			"actives.footwork",
 			"actives.rotation",
-			"actives.legend_greatlunge",
 			"actives.legend_tumble",
 			"actives.legend_leap",
 			"actives.legend_horse_pirouette"
@@ -32,10 +31,6 @@ this.perk_legend_tumble <- this.inherit("scripts/skills/skill", {
 				if (skill.getID() == "actives.legend_leap")
 				{
 					skill.m.ActionPointCost /= 2;
-				}
-				else if (skill.getID() != "actives.lunge")
-				{
-					skill.m.ActionPointCost -= 1;
 				}
 			}
 		}

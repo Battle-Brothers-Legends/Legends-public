@@ -65,7 +65,7 @@ this.perk_legend_specialist_shield_skill <- this.inherit("scripts/skills/skill",
 				this.m.TurnsLeft--;
 			}
 			# Check if they have tower shield
-			else if (actor.getSkills().hasSkill("actives.legend_fortify_skill"))
+			else if (actor.getSkills().hasSkill("actives.legend_fortify"))
 			{
 				actor.getSkills().add(this.new("scripts/skills/effects/legend_fortify_effect"));
 				this.m.TurnsLeft--;

@@ -13,15 +13,7 @@
 		onUpdateProduce(_list);
 		_list.push("supplies/legend_fresh_fruit_item");
 	}
-
-	local onUpdateDraftList = o.onUpdateDraftList;
-	o.onUpdateDraftList = function ( _list, _gender = null )
-	{
-		_gender = ::Legends.Mod.ModSettings.getSetting("GenderEquality").getValue() != "Disabled";
-
-		onUpdateDraftList(_list);
-	}
-
+	
 	local onUpdateShopList = o.onUpdateShopList;
 	o.onUpdateShopList = function ( _id, _list )
 	{

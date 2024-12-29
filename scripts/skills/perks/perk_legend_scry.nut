@@ -12,7 +12,7 @@ this.perk_legend_scry <- this.inherit("scripts/skills/skill", {
 
 	function onAdded()
 	{
-		if (!this.m.Container.hasSkill("actives.legend_scry_skill"))
+		if (!this.m.Container.hasSkill("actives.legend_scry"))
 		{
 			this.m.Container.add(this.new("scripts/skills/actives/legend_scry_skill"));
 		}
@@ -20,7 +20,7 @@ this.perk_legend_scry <- this.inherit("scripts/skills/skill", {
 
 	function onRemoved()
 	{
-		this.m.Container.removeByID("actives.legend_scry_skill");
+		this.m.Container.removeByID("actives.legend_scry");
 	}
 
 });

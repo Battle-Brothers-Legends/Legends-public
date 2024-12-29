@@ -260,11 +260,11 @@ if (!("Perks" in ::Const))
 	]
 };
 
-::Const.Perks.GreatSwordTree <- {
-	ID = "GreatSword",
-	Name = "Two-Handed Sword",
+::Const.Perks.TwoHandedTree <- {
+	ID = "TwoHanded",
+	Name = "Two-Handed",
 	Descriptions = [
-		"greatswords"
+		"two handed weapons"
 	],
 	Attributes = {
 		Hitpoints = [
@@ -304,8 +304,8 @@ if (!("Perks" in ::Const))
 		[],
 		[],
 		[],
-		[::Const.Perks.PerkDefs.LegendSpecGreatSword],
-		[::Const.Perks.PerkDefs.LegendSlaughterer],
+		[],
+		[::Const.Perks.PerkDefs.LegendSlaughterer, ::Const.Perks.PerkDefs.ReachAdvantage],
 		[::Const.Perks.PerkDefs.LegendBloodyHarvest],
 		[]
 	]
@@ -313,7 +313,7 @@ if (!("Perks" in ::Const))
 
 ::Const.Perks.SwordTree <- {
 	ID = "Sword",
-	Name = "One-Handed Sword",
+	Name = "Sword",
 	Descriptions = [
 		"swords"
 	],

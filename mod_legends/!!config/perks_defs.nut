@@ -1453,7 +1453,7 @@ perkDefObjects.push({
 	Const = "LegendBribe"
 });
 perkDefObjects.push({
-	ID = "perk.legends.legend_off_book_deal",
+	ID = "perk.legend_off_book_deal",
 	Script = "scripts/skills/perks/perk_legend_off_book_deal",
 	Name = this.Const.Strings.PerkName.LegendOffBookDeal,
 	Tooltip = this.Const.Strings.PerkDescription.LegendOffBookDeal,
@@ -2220,15 +2220,6 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/favoured_nomad_bw.png",
 	Const = "LegendFavouredEnemyNomad",
 	HasUnactivatedPerkTooltipHints = true // Inform general_queryUIPerkTooltipData() in tooltip_events.nut that the Perk has additional hints from getUnactivatedPerkTooltipHints()
-});
-perkDefObjects.push({
-	ID = "perk.legend_mastery_greatsword",
-	Script = "scripts/skills/perks/perk_legend_mastery_greatsword",
-	Name = this.Const.Strings.PerkName.LegendSpecGreatSword,
-	Tooltip = this.Const.Strings.PerkDescription.LegendSpecGreatSword,
-	Icon = "ui/perks/spec_greatsword.png",
-	IconDisabled = "ui/perks/spec_greatsword_bw.png",
-	Const = "LegendSpecGreatSword"
 });
 perkDefObjects.push({
 	ID = "perk.legend_forceful_swing",

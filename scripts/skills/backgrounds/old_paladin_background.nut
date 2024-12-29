@@ -7,7 +7,7 @@ this.old_paladin_background <- this.inherit("scripts/skills/backgrounds/paladin_
 
 		this.m.PerkTreeDynamic = {
 			Weapon = [
-				this.Const.Perks.GreatSwordTree,
+				this.Const.Perks.TwoHandedTree,
 				this.Const.Perks.AxeTree,
 				this.Const.Perks.ShieldTree,
 				this.Const.Perks.MaceTree,
