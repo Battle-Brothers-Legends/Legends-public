@@ -497,198 +497,93 @@
 		this.m.Skills.add(this.new("scripts/skills/effects/legend_veteran_levels_effect"));
 	}
 
-	o.onHired = function ()
+	local onHired = o.onHired;
+	o.onHired = function()
 	{
-		this.m.HireTime = this.Time.getVirtualTimeF();
-
-		if (this.getBackground().getID() != "background.slave")
-		{
-			this.improveMood(1.5, "Joined a mercenary company");
-		}
-
-		if (("State" in this.World) && this.World.State != null && this.World.Assets.getOrigin() != null)
-		{
-			this.World.Assets.getOrigin().onHired(this);
-		}
-
-		if (this.World.getPlayerRoster().getSize() >= 12)
-		{
-			this.updateAchievement("AFullCompany", 1, 1);
-		}
-
-		if (this.World.getPlayerRoster().getSize() >= 20)
-		{
-			this.updateAchievement("PowerInNumbers", 1, 1);
-		}
-
-		this.World.Assets.getOrigin().onHiredByScenario(this);
 		// this.m.CompanyID = this.World.State.addNewID(this);
 
-		if (this.getSkills().hasSkill("trait.legend_intensive_training_trait") && this.getLevel() > 1 )
-		{
-			if ( this.getBackground().getNameOnly()=="Donkey" )
-			{
-				return;
-			}
-			local inTraining = this.getSkills().getSkillByID("trait.legend_intensive_training_trait");
+		onHired();
 
-			local addSkills = this.Math.rand(0, this.getLevel()+2);
-			addSkills = this.Math.min(addSkills, inTraining.getMaxSkillsCanBeAdded() - 1);
+		if (!isStabled() && getSkills().hasSkill("trait.legend_intensive_training_trait") && getLevel() > 1 ) {
+			local inTraining = getSkills().getSkillByID("trait.legend_intensive_training_trait");
+			local addSkills = ::Math.rand(0, getLevel()+2);
+			addSkills = ::Math.min(addSkills, inTraining.getMaxSkillsCanBeAdded() - 1);
 			inTraining.addRandomSkills(this, addSkills);
 		}
 
-		if (this.World.State.getBrothersInFrontline() > this.World.Assets.getBrothersMaxInCombat())
-		{
-			this.setInReserves(true);
-		}
+		::World.Assets.getOrigin().onHiredByScenario(this);
 
-		if (this.World.getPlayerRoster().getSize() == 25 && this.World.Assets.getOrigin().getID() == "scenario.militia")
-		{
-			this.updateAchievement("HumanWave", 1, 1);
-		}
-
-		if (this.World.State.getPlayer() != null)
-		{
-			this.World.State.getPlayer().calculateModifiers();
-		}
+		if (::World.State.getBrothersInFrontline() > ::World.Assets.getBrothersMaxInCombat())
+			setInReserves(true);
+		
+		if (::World.State.getPlayer() != null)
+			::World.State.getPlayer().calculateModifiers();
 	}
 
+	local isReallyKilled = o.isReallyKilled;
 	o.isReallyKilled = function ( _fatalityType )
 	{
-		if (_fatalityType != this.Const.FatalityType.None)
-		{
+		if (getBackground() == null)
 			return true;
+
+		local shouldNotGet = [], original = [];
+		original.extend(::Const.Injury.Permanent); // save the original
+
+		foreach (index, injury in ::Const.Injury.Permanent)
+		{
+			if (::Const.Injury.PermaInjuryToProsthetic.rawin(injury.ID) && getSkills().hasSkill(::Const.Injury.PermaInjuryToProsthetic[injury.ID]))
+				shouldNotGet.push(index);
 		}
 
-		if (this.Tactical.State.isScenarioMode())
+		for (local i = shouldNotGet.len() - 1; i >= 0; --i) 
 		{
-			return true;
+		    ::Const.Injury.Permanent.remove(i);
 		}
 
-		if (this.Tactical.State.isAutoRetreat())
-		{
-			return true;
-		}
-
-		if (this.isGuest())
-		{
-			return true;
-		}
-
-		if (this.getBackground() == null)
-		{
-			return true;
-		}
-
-		if (this.Math.rand(1, 100) <= this.Const.Combat.SurviveWithInjuryChance * this.m.CurrentProperties.SurviveWithInjuryChanceMult || this.World.Assets.m.IsSurvivalGuaranteed && !this.m.Skills.hasSkillOfType(this.Const.SkillType.PermanentInjury) && (this.World.Assets.getOrigin().getID() != "scenario.manhunters" || this.getBackground().getID() != "background.slave"))
-		{
-			local potential = [];
-			local injuries = this.Const.Injury.Permanent;
-			local numPermInjuries = 0;
-
-			foreach (inj in injuries)
+		if (!getSkills().hasSkill("injury.legend_burned_injury")) {
+			foreach (burn in ::Const.Injury.Burning)
 			{
-				if (inj.ID == "injury.broken_elbow_joint" && this.m.Skills.hasSkill("trait.legend_prosthetic_forearm"))
-				{
-					continue;
-				}
-				else if (inj.ID == "injury.broken_knee" && this.m.Skills.hasSkill("trait.legend_prosthetic_leg"))
-				{
-					continue;
-				}
-				else if (inj.ID == "injury.maimed_foot" && this.m.Skills.hasSkill("trait.legend_prosthetic_foot"))
-				{
-					continue;
-				}
-				else if (inj.ID == "injury.missing_ear" && this.m.Skills.hasSkill("trait.legend_prosthetic_ear"))
-				{
-					continue;
-				}
-				else if (inj.ID == "injury.missing_eye" && this.m.Skills.hasSkill("trait.legend_prosthetic_eye"))
-				{
-					continue;
-				}
-				else if (inj.ID == "injury.missing_finger" && this.m.Skills.hasSkill("trait.legend_prosthetic_finger"))
-				{
-					continue;
-				}
-				else if (inj.ID == "injury.missing_hand" && this.m.Skills.hasSkill("trait.legend_prosthetic_hand"))
-				{
-					continue;
-				}
-				else if (inj.ID == "injury.missing_nose" && this.m.Skills.hasSkill("trait.legend_prosthetic_nose"))
-				{
-					continue;
-				}
-				else if (inj.ID == "injury.legend_burned_injury")
-				{
-
-					if (this.m.Skills.hasSkill(inj.ID))
-					{
-						numPermInjuries = ++numPermInjuries;
-						continue
-					}
-
-					local isBurned = false;
-					foreach (b in this.Const.Injury.Burning)
-					{
-						if (this.m.Skills.hasSkill(b.ID))
-						{
-							isBurned = true;
-							break
-						}
-					}
-					if (isBurned) {
-						potential.push(inj);
-					}
-				}
-				else if (!this.m.Skills.hasSkill(inj.ID))
-				{
-					potential.push(inj);
-				}
-				else
-				{
-					numPermInjuries = ++numPermInjuries;
+				if (getSkills().hasSkill(burn.ID)) {
+					::Const.Injury.Permanent.push({
+						ID = "injury.legend_burned_injury",
+						Script = "injury_permanent/legend_burned_injury",
+						Threshold = 0.5,
+					});
+					break
 				}
 			}
+		}
+		// call the original
+		local result = isReallyKilled(_fatalityType);
+		// return this array back to normal
+		::Const.Injury.Permanent = original; 
 
-			if (potential.len() == 0)
-			{
-				return true;
+		if (getCurrentProperties().SurvivesAsUndead // i'm back as undead baby
+			&& !isStabled() // isn't donkey
+			&& !getFlags().has("undead") // isn't undead already
+			&& !::Tactical.State.isScenarioMode() // not real run
+			&& !::Tactical.State.isAutoRetreat() // left behind
+			&& !isGuest() // not player
+		) {
+			getFlags().add("undead");
+			getFlags().add("zombie_minion");
+			getFlags().add("PlayerZombie");
+			improveMood(1.0, "Reborned to live again");
+			setMoraleState(::Const.MoraleState.Ignore);
+			getSkills().add(::new("scripts/skills/traits/legend_rotten_flesh_trait"));
+			addScenarioPerk(getBackground(), ::Const.Perks.PerkDefs.LegendZombieBite);
+			addScenarioPerk(getBackground(), ::Const.Perks.PerkDefs.NineLives);
+
+			if (result) {
+				m.IsDying = false;
+				::updateAchievement("ScarsForLife", 1, 1);
+				::Tactical.getSurvivorRoster().add(this);
 			}
 
-			if (numPermInjuries + 1 >= 3)
-			{
-				this.updateAchievement("HardToKill", 1, 1);
-			}
-
-			this.m.Skills.add(this.new("scripts/skills/" + potential[this.Math.rand(0, potential.len() - 1)].Script));
-
-			if (this.getBackground().getID() != "background.legend_donkey") //deathly spectre for Cabal/solo necro
-			{
-				// if (this.m.CurrentProperties.SurvivesAsUndead && !this.getFlags().has("PlayerZombie")) //original that we know works but has conflicts - Luft
-				// if (this.m.CurrentProperties.SurvivesAsUndead && this.m.IsDying == true && !this.getFlags().has("PlayerZombie")) //attempt to add 'isdying' into the formula to stop the durgeon retinue from basically not working at all and bros still becoming zombies. But I think isdying is casuing a recursive loop because the bro is 'dying' but then being put back into the roster by the zombie mechanic. - Luft
-				if (this.m.CurrentProperties.SurvivesAsUndead && !this.World.Assets.m.IsSurvivalGuaranteed && !this.getFlags().has("PlayerZombie")) //Lastest attempt. we have ignored 'issurvivalgarenteed' which is what the surgeon retinue uses to bring bros back from the dead. THis isn't ideal but it will stop recursive errors from flagging up. Using this if the player has the surgeon retinue, deathly spectre will never proc because every bro will be saved and still living instead of undead. Once we confirm this works across other use cases we can update the tooltips as needed. - Luft 30/4/23
-				{
-					this.m.MoraleState = this.Const.MoraleState.Ignore;
-					this.getFlags().add("PlayerZombie");
-					this.getFlags().add("undead");
-					this.getFlags().add("zombie_minion");
-					local skill = this.new("scripts/skills/traits/legend_rotten_flesh_trait");
-					this.m.Skills.add(skill);
-					this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_zombie_bite"));
-					this.m.Skills.add(this.new("scripts/skills/perks/perk_nine_lives"));
-				}
-			}
-
-			this.Tactical.getSurvivorRoster().add(this);
-			this.m.IsDying = false;
-			this.worsenMood(this.Const.MoodChange.PermanentInjury, "Suffered a permanent injury");
-			this.updateAchievement("ScarsForLife", 1, 1);
 			return false;
 		}
 
-		return true;
+		return result;
 	}
 
 	local onDeath = o.onDeath;
