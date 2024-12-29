@@ -14,12 +14,6 @@
 		_list.push("trade/legend_gem_shards_item");
 	}
 
-	local onUpdateDraftList = o.onUpdateDraftList;
-	o.onUpdateDraftList = function ( _list, _gender = null )
-	{
-		onUpdateDraftList(_list);
-	}
-
 	local onUpdateShopList = o.onUpdateShopList;
 	o.onUpdateShopList = function ( _id, _list )
 	{

@@ -29,34 +29,19 @@ this.legend_rallied_militia_situation <- this.inherit("scripts/entity/world/sett
 		_modifiers.RecruitsMult *= 1.3;
 	}
 
-	function onUpdateDraftList( _draftList, _gender = null)
+	function onUpdateDraftList( _draftList )
 	{
-		_gender = ::Legends.Mod.ModSettings.getSetting("GenderEquality").getValue() != "Disabled";
-		_draftList.push("militia_background");
-		_draftList.push("militia_background");
-		_draftList.push("militia_background");
-		_draftList.push("militia_background");
-		_draftList.push("militia_background");
-		_draftList.push("militia_background");
-		_draftList.push("militia_background");
-		_draftList.push("militia_background");
-		_draftList.push("militia_background");
-		_draftList.push("militia_background");
-		_draftList.push("militia_background");
-		_draftList.push("militia_background");
-		_draftList.push("militia_background");
-		_draftList.push("militia_background");
-		_draftList.push("militia_background");
-		_draftList.push("militia_background");
+		for (local i = 0; i < 15; ++i)
+		{
+			_draftList.push("militia_background");
+		}
 
 		if  (this.World.Assets.getOrigin().getID() == "scenario.militia")
 		{
-			_draftList.push("legend_man_at_arms_background");
-			_draftList.push("legend_man_at_arms_background");
-			_draftList.push("legend_man_at_arms_background");
-			_draftList.push("legend_man_at_arms_background");
-			_draftList.push("legend_man_at_arms_background");
-			_draftList.push("legend_man_at_arms_background");
+			for (local i = 0; i < 6; ++i)
+			{
+				_draftList.push("legend_man_at_arms_background");
+			}
 		}
 
 	}

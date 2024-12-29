@@ -16,9 +16,8 @@
 		onAdded( _settlement );
 	}
 
-	o.onUpdateDraftList = function ( _draftList, _gender = null)
+	o.onUpdateDraftList = function ( _draftList )
 	{
-		_gender = ::Legends.Mod.ModSettings.getSetting("GenderEquality").getValue() != "Disabled";
 		_draftList.push("peddler_background");
 		_draftList.push("peddler_background");
 		_draftList.push("peddler_background");
@@ -48,9 +47,7 @@
 		_draftList.push("legend_master_archer_background");
 		_draftList.push("legend_master_archer_background");
 
-
-		if  ( this.World.Assets.getOrigin().getID() == "scenario.militia")
-		{
+		if ( this.World.Assets.getOrigin().getID() == "scenario.militia") {
 			_draftList.push("legend_leech_peddler_background");
 			_draftList.push("legend_leech_peddler_background");
 			_draftList.push("legend_leech_peddler_background");
@@ -60,9 +57,7 @@
 			_draftList.push("legend_leech_peddler_background");
 			_draftList.push("legend_leech_peddler_background");
 		}
-
-		if  ( this.World.Assets.getOrigin().getID() == "scenario.legends_troupe")
-		{
+		else if ( this.World.Assets.getOrigin().getID() == "scenario.legends_troupe") {
 			_draftList.push("legend_illusionist_background");
 		}
 	}

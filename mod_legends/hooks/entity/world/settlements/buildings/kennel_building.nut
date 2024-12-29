@@ -1,10 +1,5 @@
 ::mods_hookExactClass("entity/world/settlements/buildings/kennel_building", function(o)
 {
-	o.onUpdateDraftList = function ( _draftList, _gender = null)
-	{
-		_gender = ::Legends.Mod.ModSettings.getSetting("GenderEquality").getValue() != "Disabled";
-	}
-
 	o.onUpdateShopList = function ()
 	{
 		local list = [

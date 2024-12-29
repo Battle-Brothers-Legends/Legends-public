@@ -124,9 +124,8 @@ this.starting_scenario <- {
 	{
 	}
 
-	function onUpdateDraftList( _list, _gender = null)
+	function onUpdateDraftList( _list )
 	{
-		_gender = ::Legends.Mod.ModSettings.getSetting("GenderEquality").getValue() != "Disabled";
 	}
 
 	function onUpdateStablesList( _list )

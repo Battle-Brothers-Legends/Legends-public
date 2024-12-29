@@ -27,11 +27,9 @@
 			_settlement.addSituation(this.new("scripts/entity/world/settlements/situations/legend_militant_townsfolk_situation"), this.getDefaultDays() + ::Math.rand(1,3));
 	}
 
-	o.onUpdateDraftList <- function ( _draftList, _gender = null)
+	o.onUpdateDraftList <- function ( _draftList )
 	{
-		_gender = ::Legends.Mod.ModSettings.getSetting("GenderEquality").getValue() != "Disabled";
-		if  ( this.World.Assets.getOrigin().getID() == "scenario.militia")
-		{
+		if ( this.World.Assets.getOrigin().getID() == "scenario.militia") {
 			_draftList.push("legend_nightwatch_background");
 			_draftList.push("legend_nightwatch_background");
 			_draftList.push("legend_nightwatch_background");

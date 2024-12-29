@@ -184,15 +184,6 @@ this.legends_free_company_scenario <- this.inherit("scripts/scenarios/world/star
 		}, null);
 	}
 
-	function onInit()
-	{
-		this.starting_scenario.onInit();
-	}
-
-	function onUpdateDraftList( _list, _gender = null )
-	{
-	}
-
 	function onHiredByScenario( bro )
 	{
 	}

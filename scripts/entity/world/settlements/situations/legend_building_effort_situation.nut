@@ -87,12 +87,9 @@ this.legend_building_effort_situation <- this.inherit("scripts/entity/world/sett
 		this.m.Target = _in.readString();
 	}
 
-
-	function onUpdateDraftList( _draftList, _gender = null)
+	function onUpdateDraftList( _draftList )
 	{
-		_gender = ::Legends.Mod.ModSettings.getSetting("GenderEquality").getValue() != "Disabled";
-		if (this.m.IsSouthern)
-		{
+		if (this.m.IsSouthern) {
 			_draftList.push("daytaler_southern_background");
 			_draftList.push("daytaler_southern_background");
 			_draftList.push("daytaler_southern_background");
@@ -104,8 +101,7 @@ this.legend_building_effort_situation <- this.inherit("scripts/entity/world/sett
 			_draftList.push("slave_southern_background");
 			_draftList.push("slave_southern_background");
 		}
-		else
-		{
+		else {
 			_draftList.push("lumberjack_background");
 			_draftList.push("lumberjack_background");
 			_draftList.push("mason_background");
@@ -113,7 +109,6 @@ this.legend_building_effort_situation <- this.inherit("scripts/entity/world/sett
 			_draftList.push("daytaler_background");
 			_draftList.push("daytaler_background");
 			_draftList.push("daytaler_background");
-
 			_draftList.push("legend_inventor_background");
 		}
 

@@ -140,10 +140,6 @@ this.lone_wolf_scenario <- this.inherit("scripts/scenarios/world/starting_scenar
 		return false;
 	}
 
-	function onUpdateDraftList( _list, _gender = null )
-	{
-	}
-
 	function onUpdateHiringRoster( _roster )
 	{
 		local garbage = [];

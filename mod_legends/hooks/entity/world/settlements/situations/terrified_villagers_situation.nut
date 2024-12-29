@@ -27,15 +27,11 @@
 			_settlement.addSituation(this.new("scripts/entity/world/settlements/situations/legend_militant_townsfolk_situation"), this.getDefaultDays() + ::Math.rand(1,3));
 	}
 
-	o.onUpdateDraftList <- function ( _draftList, _gender = null)
+	o.onUpdateDraftList <- function ( _draftList )
 	{
-		_gender = ::Legends.Mod.ModSettings.getSetting("GenderEquality").getValue() != "Disabled";
-
-		_draftList.push("gravedigger_background");
-		_draftList.push("gravedigger_background");
-		_draftList.push("gravedigger_background");
-		_draftList.push("gravedigger_background");
-		_draftList.push("graverobber_background");
-		_draftList.push("graverobber_background");
+		for (local i = 0; i < 6; ++i)
+		{
+			_draftList.push("gravedigger_background");
+		}
 	}
 });

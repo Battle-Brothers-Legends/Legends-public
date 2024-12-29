@@ -34,14 +34,11 @@
 			_settlement.setResources(_settlement.getResources() + _settlement.getResources() * 0.125);
 	}
 
-	o.onUpdateDraftList <- function ( _draftList, _gender = null)
+	o.onUpdateDraftList <- function ( _draftList )
 	{
-		_gender = ::Legends.Mod.ModSettings.getSetting("GenderEquality").getValue() != "Disabled";
-		_draftList.push("witchhunter_background");
-		_draftList.push("witchhunter_background");
-		_draftList.push("witchhunter_background");
-		_draftList.push("witchhunter_background");
-		_draftList.push("witchhunter_background");
-		_draftList.push("witchhunter_background");
+		for (local i = 0; i < 6; ++i)
+		{
+			_draftList.push("witchhunter_background");
+		}
 	}
 });
