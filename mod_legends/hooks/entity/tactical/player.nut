@@ -497,453 +497,104 @@
 		this.m.Skills.add(this.new("scripts/skills/effects/legend_veteran_levels_effect"));
 	}
 
-	o.onHired = function ()
+	local onHired = o.onHired;
+	o.onHired = function()
 	{
-		this.m.HireTime = this.Time.getVirtualTimeF();
-
-		if (this.getBackground().getID() != "background.slave")
-		{
-			this.improveMood(1.5, "Joined a mercenary company");
-		}
-
-		if (("State" in this.World) && this.World.State != null && this.World.Assets.getOrigin() != null)
-		{
-			this.World.Assets.getOrigin().onHired(this);
-		}
-
-		if (this.World.getPlayerRoster().getSize() >= 12)
-		{
-			this.updateAchievement("AFullCompany", 1, 1);
-		}
-
-		if (this.World.getPlayerRoster().getSize() >= 20)
-		{
-			this.updateAchievement("PowerInNumbers", 1, 1);
-		}
-
-		this.World.Assets.getOrigin().onHiredByScenario(this);
 		// this.m.CompanyID = this.World.State.addNewID(this);
 
-		if (this.getSkills().hasSkill("trait.legend_intensive_training_trait") && this.getLevel() > 1 )
-		{
-			if ( this.getBackground().getNameOnly()=="Donkey" )
-			{
-				return;
-			}
-			local inTraining = this.getSkills().getSkillByID("trait.legend_intensive_training_trait");
+		onHired();
 
-			local addSkills = this.Math.rand(0, this.getLevel()+2);
-			addSkills = this.Math.min(addSkills, inTraining.getMaxSkillsCanBeAdded() - 1);
+		if (!isStabled() && getSkills().hasSkill("trait.legend_intensive_training_trait") && getLevel() > 1 ) {
+			local inTraining = getSkills().getSkillByID("trait.legend_intensive_training_trait");
+			local addSkills = ::Math.rand(0, getLevel()+2);
+			addSkills = ::Math.min(addSkills, inTraining.getMaxSkillsCanBeAdded() - 1);
 			inTraining.addRandomSkills(this, addSkills);
 		}
 
-		if (this.World.State.getBrothersInFrontline() > this.World.Assets.getBrothersMaxInCombat())
-		{
-			this.setInReserves(true);
-		}
+		::World.Assets.getOrigin().onHiredByScenario(this);
 
-		if (this.World.getPlayerRoster().getSize() == 25 && this.World.Assets.getOrigin().getID() == "scenario.militia")
-		{
-			this.updateAchievement("HumanWave", 1, 1);
-		}
-
-		if (this.World.State.getPlayer() != null)
-		{
-			this.World.State.getPlayer().calculateModifiers();
-		}
+		if (::World.State.getBrothersInFrontline() > ::World.Assets.getBrothersMaxInCombat())
+			setInReserves(true);
+		
+		if (::World.State.getPlayer() != null)
+			::World.State.getPlayer().calculateModifiers();
 	}
 
+	local isReallyKilled = o.isReallyKilled;
 	o.isReallyKilled = function ( _fatalityType )
 	{
-		if (_fatalityType != this.Const.FatalityType.None)
-		{
+		if (getBackground() == null)
 			return true;
+
+		local shouldNotGet = [], original = [];
+		original.extend(::Const.Injury.Permanent); // save the original
+
+		foreach (index, injury in ::Const.Injury.Permanent)
+		{
+			if (::Const.Injury.PermaInjuryToProsthetic.rawin(injury.ID) && getSkills().hasSkill(::Const.Injury.PermaInjuryToProsthetic[injury.ID]))
+				shouldNotGet.push(index);
 		}
 
-		if (this.Tactical.State.isScenarioMode())
+		for (local i = shouldNotGet.len() - 1; i >= 0; --i) 
 		{
-			return true;
+		    ::Const.Injury.Permanent.remove(i);
 		}
 
-		if (this.Tactical.State.isAutoRetreat())
-		{
-			return true;
-		}
-
-		if (this.isGuest())
-		{
-			return true;
-		}
-
-		if (this.getBackground() == null)
-		{
-			return true;
-		}
-
-		if (this.Math.rand(1, 100) <= this.Const.Combat.SurviveWithInjuryChance * this.m.CurrentProperties.SurviveWithInjuryChanceMult || this.World.Assets.m.IsSurvivalGuaranteed && !this.m.Skills.hasSkillOfType(this.Const.SkillType.PermanentInjury) && (this.World.Assets.getOrigin().getID() != "scenario.manhunters" || this.getBackground().getID() != "background.slave"))
-		{
-			local potential = [];
-			local injuries = this.Const.Injury.Permanent;
-			local numPermInjuries = 0;
-
-			foreach (inj in injuries)
+		if (!getSkills().hasSkill("injury.legend_burned_injury")) {
+			foreach (burn in ::Const.Injury.Burning)
 			{
-				if (inj.ID == "injury.broken_elbow_joint" && this.m.Skills.hasSkill("trait.legend_prosthetic_forearm"))
-				{
-					continue;
-				}
-				else if (inj.ID == "injury.broken_knee" && this.m.Skills.hasSkill("trait.legend_prosthetic_leg"))
-				{
-					continue;
-				}
-				else if (inj.ID == "injury.maimed_foot" && this.m.Skills.hasSkill("trait.legend_prosthetic_foot"))
-				{
-					continue;
-				}
-				else if (inj.ID == "injury.missing_ear" && this.m.Skills.hasSkill("trait.legend_prosthetic_ear"))
-				{
-					continue;
-				}
-				else if (inj.ID == "injury.missing_eye" && this.m.Skills.hasSkill("trait.legend_prosthetic_eye"))
-				{
-					continue;
-				}
-				else if (inj.ID == "injury.missing_finger" && this.m.Skills.hasSkill("trait.legend_prosthetic_finger"))
-				{
-					continue;
-				}
-				else if (inj.ID == "injury.missing_hand" && this.m.Skills.hasSkill("trait.legend_prosthetic_hand"))
-				{
-					continue;
-				}
-				else if (inj.ID == "injury.missing_nose" && this.m.Skills.hasSkill("trait.legend_prosthetic_nose"))
-				{
-					continue;
-				}
-				else if (inj.ID == "injury.legend_burned_injury")
-				{
-
-					if (this.m.Skills.hasSkill(inj.ID))
-					{
-						numPermInjuries = ++numPermInjuries;
-						continue
-					}
-
-					local isBurned = false;
-					foreach (b in this.Const.Injury.Burning)
-					{
-						if (this.m.Skills.hasSkill(b.ID))
-						{
-							isBurned = true;
-							break
-						}
-					}
-					if (isBurned) {
-						potential.push(inj);
-					}
-				}
-				else if (!this.m.Skills.hasSkill(inj.ID))
-				{
-					potential.push(inj);
-				}
-				else
-				{
-					numPermInjuries = ++numPermInjuries;
+				if (getSkills().hasSkill(burn.ID)) {
+					::Const.Injury.Permanent.push({
+						ID = "injury.legend_burned_injury",
+						Script = "injury_permanent/legend_burned_injury",
+						Threshold = 0.5,
+					});
+					break
 				}
 			}
+		}
+		// call the original
+		local result = isReallyKilled(_fatalityType);
+		// return this array back to normal
+		::Const.Injury.Permanent = original; 
 
-			if (potential.len() == 0)
-			{
-				return true;
+		if (getCurrentProperties().SurvivesAsUndead // i'm back as undead baby
+			&& !isStabled() // isn't donkey
+			&& !getFlags().has("undead") // isn't undead already
+			&& !::Tactical.State.isScenarioMode() // not real run
+			&& !::Tactical.State.isAutoRetreat() // left behind
+			&& !isGuest() // not player
+		) {
+			getFlags().add("undead");
+			getFlags().add("zombie_minion");
+			getFlags().add("PlayerZombie");
+			improveMood(1.0, "Reborned to live again");
+			setMoraleState(::Const.MoraleState.Ignore);
+			getSkills().add(::new("scripts/skills/traits/legend_rotten_flesh_trait"));
+			addScenarioPerk(getBackground(), ::Const.Perks.PerkDefs.LegendZombieBite);
+			addScenarioPerk(getBackground(), ::Const.Perks.PerkDefs.NineLives);
+
+			if (result) {
+				m.IsDying = false;
+				::updateAchievement("ScarsForLife", 1, 1);
+				::Tactical.getSurvivorRoster().add(this);
 			}
 
-			if (numPermInjuries + 1 >= 3)
-			{
-				this.updateAchievement("HardToKill", 1, 1);
-			}
-
-			this.m.Skills.add(this.new("scripts/skills/" + potential[this.Math.rand(0, potential.len() - 1)].Script));
-
-			if (this.getBackground().getID() != "background.legend_donkey") //deathly spectre for Cabal/solo necro
-			{
-				// if (this.m.CurrentProperties.SurvivesAsUndead && !this.getFlags().has("PlayerZombie")) //original that we know works but has conflicts - Luft
-				// if (this.m.CurrentProperties.SurvivesAsUndead && this.m.IsDying == true && !this.getFlags().has("PlayerZombie")) //attempt to add 'isdying' into the formula to stop the durgeon retinue from basically not working at all and bros still becoming zombies. But I think isdying is casuing a recursive loop because the bro is 'dying' but then being put back into the roster by the zombie mechanic. - Luft
-				if (this.m.CurrentProperties.SurvivesAsUndead && !this.World.Assets.m.IsSurvivalGuaranteed && !this.getFlags().has("PlayerZombie")) //Lastest attempt. we have ignored 'issurvivalgarenteed' which is what the surgeon retinue uses to bring bros back from the dead. THis isn't ideal but it will stop recursive errors from flagging up. Using this if the player has the surgeon retinue, deathly spectre will never proc because every bro will be saved and still living instead of undead. Once we confirm this works across other use cases we can update the tooltips as needed. - Luft 30/4/23
-				{
-					this.m.MoraleState = this.Const.MoraleState.Ignore;
-					this.getFlags().add("PlayerZombie");
-					this.getFlags().add("undead");
-					this.getFlags().add("zombie_minion");
-					local skill = this.new("scripts/skills/traits/legend_rotten_flesh_trait");
-					this.m.Skills.add(skill);
-					this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_zombie_bite"));
-					this.m.Skills.add(this.new("scripts/skills/perks/perk_nine_lives"));
-				}
-			}
-
-			this.Tactical.getSurvivorRoster().add(this);
-			this.m.IsDying = false;
-			this.worsenMood(this.Const.MoodChange.PermanentInjury, "Suffered a permanent injury");
-			this.updateAchievement("ScarsForLife", 1, 1);
 			return false;
 		}
 
-		return true;
+		return result;
 	}
 
+	local onDeath = o.onDeath;
 	o.onDeath = function ( _killer, _skill, _tile, _fatalityType )
 	{
-		if (!this.Tactical.State.isScenarioMode() && _fatalityType != this.Const.FatalityType.Unconscious)
-		{
-			if (this.getLevel() >= 11 && this.World.Assets.isIronman())
-			{
-				this.updateAchievement("ToughFarewell", 1, 1);
-			}
-			else
-			{
-				this.updateAchievement("BloodyToll", 1, 1);
-			}
+		local numBefore = ::World.Statistics.getFallen().len();
 
-			if (_killer != null && this.isKindOf(_killer, "player") && _killer.getSkills().hasSkill("effects.charmed"))
-			{
-				this.updateAchievement("NothingPersonal", 1, 1);
-			}
-		}
+		onDeath(_killer, _skill, _tile, _fatalityType);
 
-		local flip = this.Math.rand(0, 100) < 50;
-		this.m.IsCorpseFlipped = flip;
-		local isResurrectable = _fatalityType == this.Const.FatalityType.None || _fatalityType == this.Const.FatalityType.Disemboweled;
-		local appearance = this.getItems().getAppearance();
-		local sprite_body = this.getSprite("body");
-		local sprite_head = this.getSprite("head");
-		local sprite_hair = this.getSprite("hair");
-		local sprite_beard = this.getSprite("beard");
-		local sprite_beard_top = this.getSprite("beard_top");
-		local tattoo_body = this.getSprite("tattoo_body");
-		local tattoo_head = this.getSprite("tattoo_head");
-		local sprite_surcoat = this.getSprite("surcoat");
-		local sprite_accessory = this.getSprite("accessory");
-
-		if (!this.isGuest())
-		{
-			local stub = this.Tactical.getCasualtyRoster().create("scripts/entity/tactical/player_corpse_stub");
-			stub.setCommander(this.isCommander());
-			stub.setOriginalID(this.getID());
-			stub.setName(this.getNameOnly());
-			stub.setTitle(this.getTitle());
-			stub.setCombatStats(this.m.CombatStats);
-			stub.setLifetimeStats(this.m.LifetimeStats);
-			stub.m.DaysWithCompany = this.getDaysWithCompany();
-			stub.m.Level = this.getLevel();
-			stub.m.DailyCost = this.getDailyCost();
-			stub.addSprite("blood_1").setBrush(this.Const.BloodPoolDecals[this.Const.BloodType.Red][this.Math.rand(0, this.Const.BloodPoolDecals[this.Const.BloodType.Red].len() - 1)]);
-			stub.addSprite("blood_2").setBrush(this.Const.BloodDecals[this.Const.BloodType.Red][this.Math.rand(0, this.Const.BloodDecals[this.Const.BloodType.Red].len() - 1)]);
-			stub.setSpriteOffset("blood_1", this.createVec(0, -15));
-			stub.setSpriteOffset("blood_2", this.createVec(0, -30));
-			stub.setGender(this.getGender());
-
-			if (_fatalityType == this.Const.FatalityType.Devoured)
-			{
-				for( local i = 0; i != this.Const.CorpsePart.len(); i = ++i )
-				{
-					stub.addSprite("stuff_" + i).setBrush(this.Const.CorpsePart[i]);
-
-				}
-			}
-			else
-			{
-				local decal = stub.addSprite("body");
-				decal.setBrush(sprite_body.getBrush().Name + "_dead");
-				decal.Color = sprite_head.Color;
-				decal.Saturation = sprite_head.Saturation;
-
-				if (tattoo_body.HasBrush)
-				{
-					decal = stub.addSprite("tattoo_body");
-					decal.setBrush(tattoo_body.getBrush().Name + "_dead");
-					decal.Color = tattoo_body.Color;
-					decal.Saturation = tattoo_body.Saturation;
-				}
-
-				if (appearance.CorpseArmor != "")
-				{
-					decal = stub.addSprite("armor");
-					decal.setBrush(appearance.CorpseArmor);
-				}
-
-				if (sprite_surcoat.HasBrush)
-				{
-					decal = stub.addSprite("surcoat");
-					decal.setBrush("surcoat_" + (this.m.Surcoat < 10 ? "0" + this.m.Surcoat : this.m.Surcoat) + "_dead");
-				}
-
-				if (appearance.CorpseArmorUpgradeBack != "")
-				{
-					decal = stub.addSprite("upgrade_back");
-					decal.setBrush(appearance.CorpseArmorUpgradeBack);
-				}
-
-				if (sprite_accessory.HasBrush)
-				{
-					decal = stub.addSprite("accessory");
-					decal.setBrush(sprite_accessory.getBrush().Name + "_dead");
-				}
-
-				if (_fatalityType == this.Const.FatalityType.Disemboweled)
-				{
-					stub.addSprite("guts").setBrush("bust_body_guts_01");
-				}
-				else if (_skill && _skill.getProjectileType() == this.Const.ProjectileType.Arrow)
-				{
-					if (appearance.CorpseArmor != "")
-					{
-						stub.addSprite("arrows").setBrush(appearance.CorpseArmor + "_arrows");
-					}
-					else
-					{
-						stub.addSprite("arrows").setBrush(appearance.Corpse + "_arrows");
-					}
-				}
-				else if (_skill && _skill.getProjectileType() == this.Const.ProjectileType.Javelin)
-				{
-					if (appearance.CorpseArmor != "")
-					{
-						stub.addSprite("arrows").setBrush(appearance.CorpseArmor + "_javelin");
-					}
-					else
-					{
-						stub.addSprite("arrows").setBrush(appearance.Corpse + "_javelin");
-					}
-				}
-
-				if (_fatalityType != this.Const.FatalityType.Decapitated)
-				{
-					if (!appearance.HideCorpseHead)
-					{
-						decal = stub.addSprite("head");
-						decal.setBrush(sprite_head.getBrush().Name + "_dead");
-						decal.Color = sprite_head.Color;
-						decal.Saturation = sprite_head.Saturation;
-
-						if (tattoo_head.HasBrush)
-						{
-							decal = stub.addSprite("tattoo_head");
-							decal.setBrush(this.getSprite("tattoo_head").getBrush().Name + "_dead");
-							decal.Color = tattoo_head.Color;
-							decal.Saturation = tattoo_head.Saturation;
-						}
-					}
-
-					if (!appearance.HideBeard && !appearance.HideCorpseHead && sprite_beard.HasBrush)
-					{
-						decal = stub.addSprite("beard");
-						decal.setBrush(sprite_beard.getBrush().Name + "_dead");
-						decal.Color = sprite_beard.Color;
-						decal.Saturation = sprite_beard.Saturation;
-					}
-
-					if (!appearance.HideHair && !appearance.HideCorpseHead && sprite_hair.HasBrush)
-					{
-						decal = stub.addSprite("hair");
-						decal.setBrush(sprite_hair.getBrush().Name + "_dead");
-						decal.Color = sprite_hair.Color;
-						decal.Saturation = sprite_hair.Saturation;
-					}
-
-					if (_fatalityType == this.Const.FatalityType.Smashed)
-					{
-						stub.addSprite("smashed").setBrush("bust_head_smashed_01");
-					}
-					else if (appearance.HelmetCorpse != "")
-					{
-						decal = stub.addSprite("helmet");
-						decal.setBrush(this.getItems().getAppearance().HelmetCorpse);
-					}
-
-					if (!appearance.HideBeard && !appearance.HideCorpseHead && sprite_beard_top.HasBrush)
-					{
-						decal = stub.addSprite("beard_top");
-						decal.setBrush(sprite_beard_top.getBrush().Name + "_dead");
-						decal.Color = sprite_beard.Color;
-						decal.Saturation = sprite_beard.Saturation;
-					}
-				}
-
-				if (appearance.CorpseArmorUpgradeFront != "")
-				{
-					decal = stub.addSprite("upgrade_front");
-					decal.setBrush(appearance.CorpseArmorUpgradeFront);
-				}
-			}
-		}
-
-		if (_tile != null)
-		{
-			this.human.onDeath(_killer, _skill, _tile, _fatalityType);
-			local corpse = _tile.Properties.get("Corpse");
-			corpse.IsPlayer = true;
-			corpse.Value = 10.0;
-
-			if (this.getBackground() != null && this.getBackground().getID() == "background.legend_donkey")
-				corpse.IsResurrectable = false;
-		}
-
-		if (!this.m.IsGuest && !this.Tactical.State.isScenarioMode())
-		{
-			this.World.Assets.addScore(-5 * this.getLevel());
-		}
-
-		if (!this.m.IsGuest && !this.Tactical.State.isScenarioMode() && _fatalityType != this.Const.FatalityType.Unconscious && (_skill != null && _killer != null || _fatalityType == this.Const.FatalityType.Devoured || _fatalityType == this.Const.FatalityType.Kraken))
-		{
-			local killedBy;
-
-			if (_fatalityType == this.Const.FatalityType.Devoured)
-			{
-				killedBy = "Devoured by a Nachzehrer";
-			}
-			else if (_fatalityType == this.Const.FatalityType.Kraken)
-			{
-				killedBy = "Devoured by a Kraken";
-			}
-			else if (_fatalityType == this.Const.FatalityType.Suicide)
-			{
-				killedBy = "Committed Suicide";
-			}
-			else if (_skill.isType(this.Const.SkillType.StatusEffect))
-			{
-				killedBy = _skill.getKilledString();
-			}
-			else if (_killer.getID() == this.getID())
-			{
-				killedBy = "Killed in battle";
-			}
-			else
-			{
-				if (_fatalityType == this.Const.FatalityType.Decapitated)
-				{
-					killedBy = "Beheaded";
-				}
-				else if (_fatalityType == this.Const.FatalityType.Disemboweled)
-				{
-					if (this.Math.rand(1, 2) == 1)
-					{
-						killedBy = "Disemboweled";
-					}
-					else
-					{
-						killedBy = "Gutted";
-					}
-				}
-				else
-				{
-					killedBy = _skill.getKilledString();
-				}
-
-				killedBy = killedBy + (" by " + _killer.getKilledName());
-			}
-
-			this.World.Statistics.addFallen(this, killedBy);
-		}
+		if (numBefore < ::World.Statistics.getFallen().len());
+			::World.Statistics.finalizeLastFallen(this);
 	}
 
 	local onActorKilled = o.onActorKilled;

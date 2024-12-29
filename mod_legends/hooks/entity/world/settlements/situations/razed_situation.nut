@@ -10,9 +10,8 @@
 		onAdded( _settlement );
 	}
 
-	o.onUpdateDraftList <- function ( _draftList, _gender = null)
+	o.onUpdateDraftList <- function ( _draftList )
 	{
-		_gender = ::Legends.Mod.ModSettings.getSetting("GenderEquality").getValue() != "Disabled";
 		_draftList.push("beggar_background");
 		_draftList.push("beggar_background");
 		_draftList.push("beggar_background");
@@ -22,9 +21,7 @@
 		_draftList.push("graverobber_background");
 		_draftList.push("raider_background");
 
-
-		if  (this.World.Assets.getOrigin().getID() == "scenario.legends_necro" || this.World.Assets.getOrigin().getID() == "scenario.legends_solo_necro")
-		{
+		if (this.World.Assets.getOrigin().getID() == "scenario.legends_necro" || this.World.Assets.getOrigin().getID() == "scenario.legends_solo_necro") {
 			_draftList.push("legend_puppet_background");
 			_draftList.push("legend_puppet_background");
 			_draftList.push("legend_puppet_background");
@@ -35,8 +32,7 @@
 			_draftList.push("legend_puppet_background");
 			_draftList.push("legend_puppet_background");
 		}
-
-		if (this.World.Assets.getOrigin().getID() == "scenario.legends_berserker")
+		else if (this.World.Assets.getOrigin().getID() == "scenario.legends_berserker")
 		{
 			_draftList.push("legend_berserker_background");
 		}

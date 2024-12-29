@@ -170,3 +170,10 @@ foreach (i in garbage)
 	//Extra spot for second vanity
 	COUNT = 5
 };
+
+
+::Const.Items.LegendItemWithSpearwall <- [
+	"weapon.legend_mage_swordstaff",
+	"weapon.legend_named_swordstaff",
+	"weapon.legend_swordstaff",
+];

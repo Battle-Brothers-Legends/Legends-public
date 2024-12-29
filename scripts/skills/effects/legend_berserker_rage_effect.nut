@@ -19,6 +19,7 @@ this.legend_berserker_rage_effect <- this.inherit("scripts/skills/skill", {
 			"sounds/enemies/orc_rage_06.wav"
 		];
 		this.m.Type = this.Const.SkillType.StatusEffect;
+		this.m.IsSerialized = false;
 		this.m.IsActive = false;
 	}
 	function getTooltip()

@@ -32,7 +32,7 @@
 		f.setSpawnListener(function(entity) {
 			party = entity;
 		});
-		spawnAlly();
+		spawnAllies();
 		party.getLoot().Money = this.Math.rand(100, 300);
 		party.getLoot().ArmorParts = this.Math.rand(10, 35);
 		party.getLoot().Medicine = this.Math.rand(5, 15);

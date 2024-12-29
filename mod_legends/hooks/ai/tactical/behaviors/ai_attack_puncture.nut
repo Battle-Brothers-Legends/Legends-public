@@ -48,7 +48,7 @@
 				continue;
 			}
 
-			if (target.getFatigue() >= (target.getFatigueMax() / 2))
+			if (target.getFatigue() < (target.getFatigueMax() / 2))
 			{
 				continue;
 			}
