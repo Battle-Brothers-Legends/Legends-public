@@ -1116,7 +1116,7 @@
 			m.DraftList = getDraftList(); // apply the draftlist
 			::World.getTemporaryRoster().clear(); // using this to store the stabled
 			::World.Assets.getOrigin().setCurrentSettlement(this); // new thing added by Hanter, so i put it here
-			local stable = ::World.getTemporaryRoster(), roster = ::World.getRoster(getID()), record = [];
+			local stable = ::World.getTemporaryRoster(), roster = ::World.getRoster(getID());
 			foreach(bro in roster.getAll())
 			{
 				if (bro.isStabled()) {
@@ -1125,22 +1125,25 @@
 					continue;
 				}
 
-				record.push(bro.getID()); // record the id of all recruit before running the original
+				bro.getFlags().set("Legend_onGenerateBroPass", true);
 			}
 
 			updateRoster(_force); // run the original function
 
 			foreach (bro in roster.getAll())
 			{
-				if (record.find(bro.getID()) != null)
-					continue; // id found so this isn't a newly generated brother
+				if (bro.getFlags().get("Legend_onGenerateBroPass")) {
+					bro.getFlags().remove("Legend_onGenerateBroPass"); // remove this flag, no need to serialize it afterward
+					continue; // flag found so this isn't a newly generated brother
+				}
 
 				::World.Assets.getOrigin().onGenerateBro(bro); // call this new function added by Hanter
 			}
 
 			foreach (bro in stable.getAll())
 			{
-				roster.add(bro);
+				roster.add(bro); // return the donkey
+				stable.remove(bro);
 			}
 
 			::World.getTemporaryRoster().clear(); // clean up
