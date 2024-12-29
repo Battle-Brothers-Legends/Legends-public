@@ -1529,6 +1529,10 @@
 		{
 			this.setGender(1);
 		}
+		else
+		{
+			this.setGender(0);  //Making sure that m.Gender is set properly for the player class, preventing genderbending
+		}
 
 		local attributes = background.buildPerkTree();
 		local maxTraits = 0;
