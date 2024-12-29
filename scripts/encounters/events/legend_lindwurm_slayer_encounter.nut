@@ -1,18 +1,18 @@
-this.volunteers_camp_encounter <- this.inherit("scripts/encounters/encounter", {
+this.legend_lindwurm_slayer_encounter <- this.inherit("scripts/encounters/encounter", {
     m = {
 
     },
     function create() {
         this.createScreens();
-        this.m.Type = "encounter.volunteers_camp_encounter";
-        this.m.Name = "volunteers_camp_encounter";
+        this.m.Type = "encounter.legend_lindwurm_slayer_encounter";
+        this.m.Name = "lindwurm_slayer_encounter";
     }
 
     function createScreens() {
         this.m.Screens.extend([{
             ID = "Start",
             Title = "Title",
-            Text = "[img]gfx/ui/events/event_80.png[/img]{" + ::Legends.Encounters.getCampIntroduction() + "}",
+            Text = "[img]gfx/ui/events/event_35.png[/img]{" + ::Legends.Encounters.getTownIntroduction() + "}",
             Image = "",
             List = [],
             Options = [
@@ -21,7 +21,7 @@ this.volunteers_camp_encounter <- this.inherit("scripts/encounters/encounter", {
                 function getResult(_event) {
                     this.World.State.getMenuStack().popAll(true);
                     this.Time.scheduleEvent(this.TimeUnit.Virtual, 1, function ( _tag ) {
-                        this.World.Events.fire("event.volunteers");
+                        this.World.Events.fire("event.crisis.lindwurm_slayer");
                     }, null);
                     this.Time.scheduleEvent(this.TimeUnit.Real, 500, function ( _tag ) {
                         this.World.State.setPause(false);
@@ -36,8 +36,8 @@ this.volunteers_camp_encounter <- this.inherit("scripts/encounters/encounter", {
         }]);
     }
 
-    function isValid(_camp) {
-        local event = this.World.Events.getEvent("event.volunteers");
+    function isValid(_settlement) {
+        local event = this.World.Events.getEvent("event.crisis.lindwurm_slayer");
         if (event == null) {
             return false;
         }

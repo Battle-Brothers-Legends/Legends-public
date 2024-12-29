@@ -1,10 +1,10 @@
-this.test_situation_encounter <- this.inherit("scripts/encounters/encounter", {
+this.legend_test_situation_encounter <- this.inherit("scripts/encounters/encounter", {
     m = {
 
     },
     function create() {
         this.createScreens();
-        this.m.Type = "encounter.test_situation_encounter";
+        this.m.Type = "encounter.legend_test_situation_encounter";
         this.m.Name = "Situation related encounter";
 //        this.m.Icon = "ui/encounters/encounter.png"
     }

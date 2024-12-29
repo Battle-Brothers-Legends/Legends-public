@@ -1,18 +1,18 @@
-this.jousting_tournament_camp_encounter <- this.inherit("scripts/encounters/encounter", {
+this.legend_anatomist_creeps_out_locals_encounter <- this.inherit("scripts/encounters/encounter", {
     m = {
 
     },
     function create() {
         this.createScreens();
-        this.m.Type = "encounter.jousting_tournament_camp_encounter";
-        this.m.Name = "jousting_tournament_camp_encounter";
+        this.m.Type = "encounter.legend_anatomist_creeps_out_locals_encounter";
+        this.m.Name = "anatomist_creeps_out_locals_encounter";
     }
 
     function createScreens() {
         this.m.Screens.extend([{
             ID = "Start",
             Title = "Title",
-            Text = "[img]gfx/ui/events/event_05.png[/img]{" + ::Legends.Encounters.getCampIntroduction() + "}",
+            Text = "[img]gfx/ui/events/event_43.png[/img]{" + ::Legends.Encounters.getTownIntroduction() + "}",
             Image = "",
             List = [],
             Options = [
@@ -21,7 +21,7 @@ this.jousting_tournament_camp_encounter <- this.inherit("scripts/encounters/enco
                 function getResult(_event) {
                     this.World.State.getMenuStack().popAll(true);
                     this.Time.scheduleEvent(this.TimeUnit.Virtual, 1, function ( _tag ) {
-                        this.World.Events.fire("event.jousting_tournament_event");
+                        this.World.Events.fire("event.event.anatomist_creeps_out_locals");
                     }, null);
                     this.Time.scheduleEvent(this.TimeUnit.Real, 500, function ( _tag ) {
                         this.World.State.setPause(false);
@@ -36,8 +36,8 @@ this.jousting_tournament_camp_encounter <- this.inherit("scripts/encounters/enco
         }]);
     }
 
-    function isValid(_camp) {
-        local event = this.World.Events.getEvent("event.jousting_tournament_event");
+    function isValid(_settlement) {
+        local event = this.World.Events.getEvent("event.event.anatomist_creeps_out_locals");
         if (event == null) {
             return false;
         }

@@ -1,18 +1,18 @@
-this.strange_scribe_encounter <- this.inherit("scripts/encounters/encounter", {
+this.legend_fav_enemy_swordmaster_camp_encounter <- this.inherit("scripts/encounters/encounter", {
     m = {
 
     },
     function create() {
         this.createScreens();
-        this.m.Type = "encounter.strange_scribe_encounter";
-        this.m.Name = "strange_scribe_encounter";
+        this.m.Type = "encounter.legend_fav_enemy_swordmaster_camp_encounter";
+        this.m.Name = "fav_enemy_swordmaster_camp_encounter";
     }
 
     function createScreens() {
         this.m.Screens.extend([{
             ID = "Start",
-            Title = "Title",
-            Text = "[img]gfx/ui/events/event_31.png[/img]{" + ::Legends.Encounters.getTownIntroduction() + "}",
+            Title = "Looking for a fight",
+            Text = "[img]gfx/ui/events/event_134.png[/img]{" + ::Legends.Encounters.getCampIntroduction() + "}",
             Image = "",
             List = [],
             Options = [
@@ -21,7 +21,7 @@ this.strange_scribe_encounter <- this.inherit("scripts/encounters/encounter", {
                 function getResult(_event) {
                     this.World.State.getMenuStack().popAll(true);
                     this.Time.scheduleEvent(this.TimeUnit.Virtual, 1, function ( _tag ) {
-                        this.World.Events.fire("event.strange_scribe");
+                        this.World.Events.fire("event.legend_swordmaster_fav_enemy");
                     }, null);
                     this.Time.scheduleEvent(this.TimeUnit.Real, 500, function ( _tag ) {
                         this.World.State.setPause(false);
@@ -36,8 +36,8 @@ this.strange_scribe_encounter <- this.inherit("scripts/encounters/encounter", {
         }]);
     }
 
-    function isValid(_settlement) {
-        local event = this.World.Events.getEvent("event.strange_scribe");
+    function isValid(_camp) {
+        local event = this.World.Events.getEvent("event.legend_swordmaster_fav_enemy");
         if (event == null) {
             return false;
         }

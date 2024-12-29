@@ -1,23 +1,23 @@
-this.fav_enemy_swordmaster_camp_encounter <- this.inherit("scripts/encounters/encounter", {
+this.legend_fav_enemy_swordmaster_encounter <- this.inherit("scripts/encounters/encounter", {
     m = {
 
     },
     function create() {
         this.createScreens();
-        this.m.Type = "encounter.fav_enemy_swordmaster_camp_encounter";
-        this.m.Name = "fav_enemy_swordmaster_camp_encounter";
+        this.m.Type = "encounter.legend_fav_enemy_swordmaster_encounter";
+        this.m.Name = "fav_enemy_swordmaster_encounter";
     }
 
     function createScreens() {
         this.m.Screens.extend([{
             ID = "Start",
             Title = "Looking for a fight",
-            Text = "[img]gfx/ui/events/event_134.png[/img]{" + ::Legends.Encounters.getCampIntroduction() + "}",
+            Text = "[img]gfx/ui/events/event_134.png[/img]{You hear that there's some cocky bastard looking for a fight.}",
             Image = "",
             List = [],
             Options = [
             {
-                Text = "Check it out",
+                Text = "Check him out",
                 function getResult(_event) {
                     this.World.State.getMenuStack().popAll(true);
                     this.Time.scheduleEvent(this.TimeUnit.Virtual, 1, function ( _tag ) {
@@ -28,6 +28,12 @@ this.fav_enemy_swordmaster_camp_encounter <- this.inherit("scripts/encounters/en
                     }, null);
                     return 0;
                 }
+            },
+            {
+                Text = "It's not worth it",
+                function getResult(_event) {
+                    return 0;
+                }
             }
             ],
             function start(_event) {
@@ -36,7 +42,7 @@ this.fav_enemy_swordmaster_camp_encounter <- this.inherit("scripts/encounters/en
         }]);
     }
 
-    function isValid(_camp) {
+    function isValid(_settlement) {
         local event = this.World.Events.getEvent("event.legend_swordmaster_fav_enemy");
         if (event == null) {
             return false;

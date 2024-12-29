@@ -1,11 +1,11 @@
-this.captured_oathbringer_camp_encounter <- this.inherit("scripts/encounters/encounter", {
+this.legend_traveling_troupe_camp_encounter <- this.inherit("scripts/encounters/encounter", {
     m = {
 
     },
     function create() {
         this.createScreens();
-        this.m.Type = "encounter.captured_oathbringer_camp_encounter";
-        this.m.Name = "captured_oathbringer_camp_encounter";
+        this.m.Type = "encounter.legend_traveling_troupe_camp_encounter";
+        this.m.Name = "traveling_troupe_camp_encounter";
     }
 
     function createScreens() {
@@ -21,7 +21,7 @@ this.captured_oathbringer_camp_encounter <- this.inherit("scripts/encounters/enc
                 function getResult(_event) {
                     this.World.State.getMenuStack().popAll(true);
                     this.Time.scheduleEvent(this.TimeUnit.Virtual, 1, function ( _tag ) {
-                        this.World.Events.fire("event.captured_oathbringer");
+                        this.World.Events.fire("event.traveling_troupe");
                     }, null);
                     this.Time.scheduleEvent(this.TimeUnit.Real, 500, function ( _tag ) {
                         this.World.State.setPause(false);
@@ -37,7 +37,7 @@ this.captured_oathbringer_camp_encounter <- this.inherit("scripts/encounters/enc
     }
 
     function isValid(_camp) {
-        local event = this.World.Events.getEvent("event.captured_oathbringer");
+        local event = this.World.Events.getEvent("event.traveling_troupe");
         if (event == null) {
             return false;
         }

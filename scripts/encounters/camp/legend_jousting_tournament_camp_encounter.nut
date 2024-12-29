@@ -1,18 +1,18 @@
-this.oathtakers_skull_cracked_camp_encounter <- this.inherit("scripts/encounters/encounter", {
+this.legend_jousting_tournament_camp_encounter <- this.inherit("scripts/encounters/encounter", {
     m = {
 
     },
     function create() {
         this.createScreens();
-        this.m.Type = "encounter.oathtakers_skull_cracked_camp_encounter";
-        this.m.Name = "oathtakers_skull_cracked_camp_encounter";
+        this.m.Type = "encounter.legend_jousting_tournament_camp_encounter";
+        this.m.Name = "jousting_tournament_camp_encounter";
     }
 
     function createScreens() {
         this.m.Screens.extend([{
             ID = "Start",
             Title = "Title",
-            Text = "[img]gfx/ui/events/event_183.png[/img]{" + ::Legends.Encounters.getCampIntroduction() + "}",
+            Text = "[img]gfx/ui/events/event_05.png[/img]{" + ::Legends.Encounters.getCampIntroduction() + "}",
             Image = "",
             List = [],
             Options = [
@@ -21,7 +21,7 @@ this.oathtakers_skull_cracked_camp_encounter <- this.inherit("scripts/encounters
                 function getResult(_event) {
                     this.World.State.getMenuStack().popAll(true);
                     this.Time.scheduleEvent(this.TimeUnit.Virtual, 1, function ( _tag ) {
-                        this.World.Events.fire("event.oathtakers_skull_cracked");
+                        this.World.Events.fire("event.jousting_tournament_event");
                     }, null);
                     this.Time.scheduleEvent(this.TimeUnit.Real, 500, function ( _tag ) {
                         this.World.State.setPause(false);
@@ -37,7 +37,7 @@ this.oathtakers_skull_cracked_camp_encounter <- this.inherit("scripts/encounters
     }
 
     function isValid(_camp) {
-        local event = this.World.Events.getEvent("event.oathtakers_skull_cracked");
+        local event = this.World.Events.getEvent("event.jousting_tournament_event");
         if (event == null) {
             return false;
         }

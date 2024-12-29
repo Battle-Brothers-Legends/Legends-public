@@ -1,10 +1,10 @@
-this.test_encounter <- this.inherit("scripts/encounters/encounter", {
+this.legend_test_encounter <- this.inherit("scripts/encounters/encounter", {
     m = {
 
     },
     function create() {
         this.createScreens();
-        this.m.Type = "encounter.test_encounter";
+        this.m.Type = "encounter.legend_test_encounter";
         this.m.Name = "Scout report";
     }
 

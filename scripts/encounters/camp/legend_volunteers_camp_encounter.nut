@@ -1,37 +1,31 @@
-this.recruitment_vala_encounter <- this.inherit("scripts/encounters/encounter", {
+this.legend_volunteers_camp_encounter <- this.inherit("scripts/encounters/encounter", {
     m = {
 
     },
     function create() {
         this.createScreens();
-        this.m.Type = "encounter.recruitment_vala_encounter";
-        this.m.Name = "recruitment_vala_encounter";
+        this.m.Type = "encounter.legend_volunteers_camp_encounter";
+        this.m.Name = "volunteers_camp_encounter";
     }
 
     function createScreens() {
         this.m.Screens.extend([{
             ID = "Start",
-            Title = "Recruitment",
-            Text = "[img]gfx/ui/events/event_134.png[/img]{Recruit Vala.}",
+            Title = "Title",
+            Text = "[img]gfx/ui/events/event_80.png[/img]{" + ::Legends.Encounters.getCampIntroduction() + "}",
             Image = "",
             List = [],
             Options = [
             {
-                Text = "Check her out",
+                Text = "Check it out",
                 function getResult(_event) {
                     this.World.State.getMenuStack().popAll(true);
                     this.Time.scheduleEvent(this.TimeUnit.Virtual, 1, function ( _tag ) {
-                        this.World.Events.fire("event.legend_vala_recruitment");
+                        this.World.Events.fire("event.volunteers");
                     }, null);
                     this.Time.scheduleEvent(this.TimeUnit.Real, 500, function ( _tag ) {
                         this.World.State.setPause(false);
                     }, null);
-                    return 0;
-                }
-            },
-            {
-                Text = "Not now.",
-                function getResult(_event) {
                     return 0;
                 }
             }
@@ -42,8 +36,8 @@ this.recruitment_vala_encounter <- this.inherit("scripts/encounters/encounter", 
         }]);
     }
 
-    function isValid(_settlement) {
-        local event = this.World.Events.getEvent("event.legend_vala_recruitment");
+    function isValid(_camp) {
+        local event = this.World.Events.getEvent("event.volunteers");
         if (event == null) {
             return false;
         }

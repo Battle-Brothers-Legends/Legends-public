@@ -1,11 +1,11 @@
-this.wild_dog_sounds_camp_encounter <- this.inherit("scripts/encounters/encounter", {
+this.legend_captured_oathbringer_camp_encounter <- this.inherit("scripts/encounters/encounter", {
     m = {
 
     },
     function create() {
         this.createScreens();
-        this.m.Type = "encounter.wild_dog_sounds_camp_encounter";
-        this.m.Name = "wild_dog_sounds_camp_encounter";
+        this.m.Type = "encounter.legend_captured_oathbringer_camp_encounter";
+        this.m.Name = "captured_oathbringer_camp_encounter";
     }
 
     function createScreens() {
@@ -21,7 +21,7 @@ this.wild_dog_sounds_camp_encounter <- this.inherit("scripts/encounters/encounte
                 function getResult(_event) {
                     this.World.State.getMenuStack().popAll(true);
                     this.Time.scheduleEvent(this.TimeUnit.Virtual, 1, function ( _tag ) {
-                        this.World.Events.fire("event.wild_dog_sounds");
+                        this.World.Events.fire("event.captured_oathbringer");
                     }, null);
                     this.Time.scheduleEvent(this.TimeUnit.Real, 500, function ( _tag ) {
                         this.World.State.setPause(false);
@@ -37,7 +37,7 @@ this.wild_dog_sounds_camp_encounter <- this.inherit("scripts/encounters/encounte
     }
 
     function isValid(_camp) {
-        local event = this.World.Events.getEvent("event.wild_dog_sounds");
+        local event = this.World.Events.getEvent("event.captured_oathbringer");
         if (event == null) {
             return false;
         }
