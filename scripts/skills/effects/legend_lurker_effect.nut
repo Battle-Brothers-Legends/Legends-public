@@ -11,6 +11,7 @@ this.legend_lurker_effect <- this.inherit("scripts/skills/skill", {
 		this.m.Order = this.Const.SkillOrder.VeryLast;
 		this.m.IsActive = false;
 		this.m.IsStacking = false;
+		this.m.IsSerialized = false;
 	}
 
 	function getTooltip()
