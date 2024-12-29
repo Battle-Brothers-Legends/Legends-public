@@ -206,21 +206,13 @@ this.encounter <- {
         brothers.remove(r);
 
         if (brothers.len() != 0)
-        {
             brother2 = brothers[this.Math.rand(0, brothers.len() - 1)].getName();
-        }
         else if (slaves.len() != 0)
-        {
             brother2 = slaves[this.Math.rand(0, slaves.len() - 1)].getName();
-        }
         else if (notnagel != null)
-            {
-                brother2 = notnagel.getName();
-            }
-            else
-            {
-                brother2 = brother1;
-            }
+			brother2 = notnagel.getName();
+		else
+			brother2 = brother1;
 
         local villages = this.World.EntityManager.getSettlements();
         local randomTown;
@@ -228,40 +220,40 @@ this.encounter <- {
         local text;
         local vars = [
         [
-        "SPEECH_ON",
-        "\n\n[color=#bcad8c]\""
+			"SPEECH_ON",
+			"\n\n[color=#bcad8c]\""
         ],
         [
-        "SPEECH_START",
-        "[color=#bcad8c]\""
+			"SPEECH_START",
+			"[color=#bcad8c]\""
         ],
         [
-        "SPEECH_OFF",
-        "\"[/color]\n\n"
+			"SPEECH_OFF",
+			"\"[/color]\n\n"
         ],
         [
-        "companyname",
-        this.World.Assets.getName()
+			"companyname",
+			this.World.Assets.getName()
         ],
         [
-        "randomname",
-        this.Const.Strings.CharacterNames[this.Math.rand(0, this.Const.Strings.CharacterNames.len() - 1)]
+			"randomname",
+			this.Const.Strings.CharacterNames[this.Math.rand(0, this.Const.Strings.CharacterNames.len() - 1)]
         ],
         [
-        "randomnoble",
-        this.Const.Strings.KnightNames[this.Math.rand(0, this.Const.Strings.KnightNames.len() - 1)]
+			"randomnoble",
+			this.Const.Strings.KnightNames[this.Math.rand(0, this.Const.Strings.KnightNames.len() - 1)]
         ],
         [
-        "randombrother",
-        brother1
+			"randombrother",
+			brother1
         ],
         [
-        "randombrother2",
-        brother2
+			"randombrother2",
+			brother2
         ],
         [
-        "randomtown",
-        randomTown
+			"randomtown",
+			randomTown
         ]
         ];
         this.onPrepareVariables(vars);
