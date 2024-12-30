@@ -103,7 +103,8 @@
 	local onDeath = o.onDeath;
 	o.onDeath = function ( _killer, _skill, _tile, _fatalityType )
 	{
-		local originalFunc, needToCheese = getFlags().get("donkey");
+		local originalFunc = null;
+		local needToCheese = getFlags().get("donkey");
 
 		if (_tile != null && needToCheese) { // a cheese to stop donkey background from being raised back as zombie during undead crisis
 			originalFunc = ::World.FactionManager.get().isUndeadScourge;

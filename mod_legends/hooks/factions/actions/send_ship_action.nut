@@ -20,7 +20,9 @@
 		if (_faction.getUnits().len() <= beforeNum || !::Legends.Mod.ModSettings.getSetting("WorldEconomy").getValue())
 			return result;
 
-		local destination, best = 9999, party = _faction.getUnits().top();
+		local destination = null;
+		local best = 9999;
+		local party = _faction.getUnits().top();
 		party.setDescription(format("A ship from %s transporting goods and passengers.", m.Settlement.getName()));
 		party.getFlags().set("IsCaravan", true);
 		local c = party.getController();

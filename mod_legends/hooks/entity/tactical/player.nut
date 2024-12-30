@@ -515,7 +515,7 @@
 
 		if (::World.State.getBrothersInFrontline() > ::World.Assets.getBrothersMaxInCombat())
 			setInReserves(true);
-		
+
 		if (::World.State.getPlayer() != null)
 			::World.State.getPlayer().calculateModifiers();
 	}
@@ -535,7 +535,7 @@
 				shouldNotGet.push(index);
 		}
 
-		for (local i = shouldNotGet.len() - 1; i >= 0; --i) 
+		for (local i = shouldNotGet.len() - 1; i >= 0; --i)
 		{
 		    ::Const.Injury.Permanent.remove(i);
 		}
@@ -556,7 +556,7 @@
 		// call the original
 		local result = isReallyKilled(_fatalityType);
 		// return this array back to normal
-		::Const.Injury.Permanent = original; 
+		::Const.Injury.Permanent = original;
 
 		if (getCurrentProperties().SurvivesAsUndead // i'm back as undead baby
 			&& !isStabled() // isn't donkey
@@ -593,7 +593,7 @@
 
 		onDeath(_killer, _skill, _tile, _fatalityType);
 
-		if (numBefore < ::World.Statistics.getFallen().len());
+		if (numBefore < ::World.Statistics.getFallen().len())
 			::World.Statistics.finalizeLastFallen(this);
 	}
 

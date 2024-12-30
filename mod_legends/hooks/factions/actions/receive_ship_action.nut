@@ -20,7 +20,9 @@
 
 		local party = _faction.getUnits().top();
 		local c = party.getController();
-		local start, best = 9999, curentTile = party.getTile();
+		local start = null;
+		local best = 9999;
+		local curentTile = party.getTile();
 
 		foreach (settlement in World.EntityManager.getSettlements())
 		{
