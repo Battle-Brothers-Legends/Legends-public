@@ -144,7 +144,7 @@
 	}
 
 	local checkMorale = o.checkMorale;
-	o.checkMorale( _change, _difficulty, _type = this.Const.MoraleCheckType.Default, _showIconBeforeMoraleIcon = "", _noNewLine = false )
+	o.checkMorale = function ( _change, _difficulty, _type = this.Const.MoraleCheckType.Default, _showIconBeforeMoraleIcon = "", _noNewLine = false )
 	{
 		if (m.KillerPercentOnKillOtherActorModifier != 1.0)
 			_difficulty = ::Math.floor(_difficulty * m.KillerPercentOnKillOtherActorModifier);
@@ -210,7 +210,7 @@
 
 			::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(this) + " Parries the attack from " + ::Const.UI.getColorizedEntityName(_attacker));
 		}
-		
+
 		if (isParrying) m.CurrentProperties.IsRiposting = false;
 		onMissed(_attacker, _skill, _dontShake);
 	}
@@ -378,7 +378,7 @@
 
 		if (hasSprite("permanent_injury_burned"))
 			getSprite("permanent_injury_burned").Visible = !_appearance.HideHead;
-		
+
 		onAppearanceChanged(_appearance, _setDirty);
 	}
 
