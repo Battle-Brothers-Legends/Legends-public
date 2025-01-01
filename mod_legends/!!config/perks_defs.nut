@@ -1004,7 +1004,7 @@ perkDefObjects.push({
 });
 perkDefObjects.push({
 	ID = "perk.legend_slaughterer",
-	Script = "scripts/skills/perks/perk_legend_slaughterer",
+	Script = "scripts/skills/perks/perk_legend_carnageer",
 	Name = this.Const.Strings.PerkName.LegendSlaughterer,
 	Tooltip = this.Const.Strings.PerkDescription.LegendSlaughterer,
 	Icon = "ui/perks/slaughterer_circle.png",
@@ -2582,13 +2582,13 @@ perkDefObjects.push({
 	Const = "LegendPrepareGraze"
 });
 perkDefObjects.push({
-	ID = "perk.legend_slaughter",
-	Script = "scripts/skills/perks/perk_legend_slaughter",
-	Name = this.Const.Strings.PerkName.LegendSlaughter,
-	Tooltip = this.Const.Strings.PerkDescription.LegendSlaughter,
+	ID = "perk.legend_carnage",
+	Script = "scripts/skills/perks/perk_legend_carnage",
+	Name = this.Const.Strings.PerkName.LegendCarnage,
+	Tooltip = this.Const.Strings.PerkDescription.LegendCarnage,
 	Icon = "ui/perks/slaughter_circle.png",
 	IconDisabled = "ui/perks/slaughter_circle_bw.png",
-	Const = "LegendSlaughter"
+	Const = "LegendCarnage"
 });
 perkDefObjects.push({
 	ID = "perk.legend_untouchable",

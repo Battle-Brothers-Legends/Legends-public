@@ -176,7 +176,7 @@ if (!("Perks" in ::Const))
 		[],
 		[::Const.Perks.PerkDefs.LegendSpecialistButcherDamage],
 		[],
-		[::Const.Perks.PerkDefs.LegendSlaughter],
+		[::Const.Perks.PerkDefs.LegendCarnage],
 		[],
 		[]
 	]
