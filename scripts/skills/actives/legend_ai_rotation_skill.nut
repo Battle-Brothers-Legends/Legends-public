@@ -84,9 +84,7 @@ this.legend_ai_rotation_skill <- this.inherit("scripts/skills/skill", {
 	function onVerifyTarget( _originTile, _targetTile )
 	{
 		if (!_targetTile.IsOccupiedByActor)
-		{
 			return false;
-		}
 
 		local target = _targetTile.getEntity();
 
@@ -94,6 +92,9 @@ this.legend_ai_rotation_skill <- this.inherit("scripts/skills/skill", {
 			return false;
 
 		if (!target.isAlliedWith(this.getContainer().getActor()) && !this.getContainer().hasSkill("perk.legend_twirl"))
+			return false;
+
+		if (target.isPlayerControlled() && !this.getContainer().hasSkill("perk.legend_twirl"))
 			return false;
 
 		return this.skill.onVerifyTarget(_originTile, _targetTile) && !target.getCurrentProperties().IsStunned && !target.getCurrentProperties().IsRooted && target.getCurrentProperties().IsMovable && !target.getCurrentProperties().IsImmuneToRotation;
