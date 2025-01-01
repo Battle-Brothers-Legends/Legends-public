@@ -58,7 +58,7 @@ this.legend_ai_rotation_skill <- this.inherit("scripts/skills/skill", {
 		// 	});
 		// }
 
-		// return ret;
+		return ret;
 	}
 
 	// function getCursorForTile( _tile )
