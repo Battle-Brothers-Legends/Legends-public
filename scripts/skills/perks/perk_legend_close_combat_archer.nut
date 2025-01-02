@@ -14,7 +14,7 @@ this.perk_legend_close_combat_archer <- this.inherit("scripts/skills/skill", {
 	{
 		local tooltip = this.skill.getTooltip();
 		local actor = this.getContainer().getActor();
-		local bonus = this.getBonus();
+		local bonus = this.getBonus(actor.getCurrentProperties());
 
 		tooltip.extend([
 		{
