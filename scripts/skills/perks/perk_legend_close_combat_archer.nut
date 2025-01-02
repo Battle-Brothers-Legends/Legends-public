@@ -68,12 +68,8 @@ this.perk_legend_close_combat_archer <- this.inherit("scripts/skills/skill", {
 			return;
 
 		local bonus = this.getBonus(_properties) / 100;
-		local actor = this.getContainer().getActor();
 
-		if (actor == null)
-			return;
-
-		if (!actor.getMainhandItem().isWeaponType(this.Const.Items.WeaponType.Throwing) || actor.getTile().getDistanceTo(_targetEntity.getTile()) > 4)
+		if (actor.getTile().getDistanceTo(_targetEntity.getTile()) > 4)
 			return;
 
 		_properties.DamageRegularMult *= 1 + bonus;
