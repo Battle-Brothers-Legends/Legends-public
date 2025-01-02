@@ -515,7 +515,7 @@
 
 		if (::World.State.getBrothersInFrontline() > ::World.Assets.getBrothersMaxInCombat())
 			setInReserves(true);
-		
+
 		if (::World.State.getPlayer() != null)
 			::World.State.getPlayer().calculateModifiers();
 	}
@@ -535,7 +535,7 @@
 				shouldNotGet.push(index);
 		}
 
-		for (local i = shouldNotGet.len() - 1; i >= 0; --i) 
+		for (local i = shouldNotGet.len() - 1; i >= 0; --i)
 		{
 		    ::Const.Injury.Permanent.remove(i);
 		}
@@ -556,7 +556,7 @@
 		// call the original
 		local result = isReallyKilled(_fatalityType);
 		// return this array back to normal
-		::Const.Injury.Permanent = original; 
+		::Const.Injury.Permanent = original;
 
 		if (getCurrentProperties().SurvivesAsUndead // i'm back as undead baby
 			&& !isStabled() // isn't donkey
@@ -586,15 +586,33 @@
 		return result;
 	}
 
+	o.finalizeFallen <- function(_fallen)
+	{
+		_fallen.level <- this.getLevel();
+		_fallen.traits <- this.getDeadTraits();
+		_fallen.talents <- this.getTalents();
+		_fallen.stats <- [
+			this.getBaseProperties().Hitpoints,
+			this.getBaseProperties().Stamina,
+			this.getBaseProperties().Bravery,
+			this.getBaseProperties().Initiative,
+			this.getBaseProperties().MeleeSkill,
+			this.getBaseProperties().RangedSkill,
+			this.getBaseProperties().MeleeDefense,
+			this.getBaseProperties().RangedDefense
+		];
+		return _fallen;
+	}
+
 	local onDeath = o.onDeath;
 	o.onDeath = function ( _killer, _skill, _tile, _fatalityType )
 	{
-		local numBefore = ::World.Statistics.getFallen().len();
-
+		local originalAddFallen = ::World.Statistics.addFallen;
+		::World.Statistics.addFallen = function (_fallen) {
+			originalAddFallen(this.finalizeFallen(_fallen));
+		}
 		onDeath(_killer, _skill, _tile, _fatalityType);
-
-		if (numBefore < ::World.Statistics.getFallen().len());
-			::World.Statistics.finalizeLastFallen(this);
+		::World.Statistics.addFallen = originalAddFallen;
 	}
 
 	local onActorKilled = o.onActorKilled;
