@@ -42,8 +42,6 @@ this.legend_named_flail_effect <- this.inherit("scripts/skills/skill", {
 
 		local user = this.getContainer().getActor();
 
-		local user = this.getContainer().getActor();
-
 		if (_bodyPart == ::Const.BodyPart.Head && !_targetEntity.getCurrentProperties().IsImmuneToDaze)
 		{
 			_targetEntity.getSkills().add(this.new("scripts/skills/effects/dazed_effect"));
