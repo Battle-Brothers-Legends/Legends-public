@@ -33,10 +33,6 @@ this.perk_legend_tumble <- this.inherit("scripts/skills/skill", {
 				{
 					skill.m.ActionPointCost /= 2;
 				}
-				else if (skill.getID() != "actives.lunge")
-				{
-					skill.m.ActionPointCost -= 1;
-				}
 			}
 		}
 	}
