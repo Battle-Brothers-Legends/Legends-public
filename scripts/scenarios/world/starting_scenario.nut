@@ -22,11 +22,6 @@ this.starting_scenario <- {
 		return this.m.IsFixedLook;
 	}
 
-	function isDroppedAsLoot( _item )
-	{
-		return false;
-	}
-
 	function getID()
 	{
 		return this.m.ID;
