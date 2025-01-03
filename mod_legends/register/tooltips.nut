@@ -1,6 +1,23 @@
 // MSU Tooltips Features
 // Documentation available at https://github.com/MSUTeam/MSU/wiki/Tooltips
 // Setup custom tooltips to bind to UI elements
+::Legends.getEncounterUIData <- function(_data) {
+	local encounterType = _data.encounterType;
+	local title = "Error"
+	local encounter = this.World.Encounters.getEncounter(_data.encounterType)
+	if (encounter != null)
+		title = encounter.getName();
+	return [{
+		id = 1,
+		type = "title",
+		text = title
+	}, {
+		id = 2,
+		type = "description",
+		text = "Click to check what is going on here."
+	}];
+}
+
 ::Legends.Mod.Tooltips.setTooltips({
 
 	// Camping - Commander's Tent
@@ -122,7 +139,12 @@
 	},
 	CombatResult = {
 		Sort = ::MSU.Class.BasicTooltip("Sort Items", "Sort items by type.")
-	}
+	},
+	Encounters = {
+		Element = ::MSU.Class.CustomTooltip(function(_data) {
+			return ::Legends.getEncounterUIData(_data);
+		})
+	},
 
 	Placeholder = ::MSU.Class.BasicTooltip("Placeholder","Under development"),
 });

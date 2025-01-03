@@ -82,7 +82,7 @@ this.camp_screen <- {
 	{
 		return this.m.PainterDialogModule;
 	}
-	
+
 	function getRepairDialogModule()
 	{
 		return this.m.RepairDialogModule;
@@ -268,6 +268,7 @@ this.camp_screen <- {
 
 	function show()
 	{
+		this.World.Camp.onEnter();
 		if (this.m.JSHandle != null)
 		{
 			this.m.LastActiveModule = null;
@@ -425,7 +426,7 @@ this.camp_screen <- {
 		case this.Const.World.CampBuildings.Painter:
 			this.showPainterDialog();
 			break;
-			
+
 		case this.Const.World.CampBuildings.Repair:
 			this.showRepairDialog();
 			break;
@@ -445,7 +446,7 @@ this.camp_screen <- {
 		case this.Const.World.CampBuildings.Workshop:
 			this.showWorkshopDialog();
 			break;
-			
+
 		}
 	}
 
@@ -528,7 +529,7 @@ this.camp_screen <- {
 			this.m.JSHandle.asyncCall("showPainterDialog", this.m.PainterDialogModule.queryRosterInformation());
 		}
 	}
-	
+
 	function showRepairDialog()
 	{
 		if (this.m.JSHandle != null && this.isVisible())
@@ -669,6 +670,12 @@ this.camp_screen <- {
 		return true;
 	}
 
+	function onEncounterClicked (_data) {
+		if (this.isAnimating())
+			return;
+		this.World.Camp.onEncounterClicked(_data, this);
+	}
+
 	function onModuleClosed()
 	{
 		if (this.m.OnModuleClosedListener != null)
@@ -709,51 +716,7 @@ this.camp_screen <- {
 
 	function getUITerrain()
 	{
-		local tile = this.World.State.getPlayer().getTile();
-		local terrain = [];
-		terrain.resize(this.Const.World.TerrainType.COUNT, 0);
-
-		for( local i = 0; i < 6; i = i )
-		{
-			if (!tile.hasNextTile(i))
-			{
-			}
-			else
-			{
-				++terrain[tile.getNextTile(i).Type];
-			}
-
-			i = ++i;
-		}
-
-		terrain[this.Const.World.TerrainType.Plains] = this.Math.max(0, terrain[this.Const.World.TerrainType.Plains] - 1);
-
-		if (terrain[this.Const.World.TerrainType.Steppe] != 0 && this.Math.abs(terrain[this.Const.World.TerrainType.Steppe] - terrain[this.Const.World.TerrainType.Hills]) <= 2)
-		{
-			terrain[this.Const.World.TerrainType.Steppe] += 2;
-		}
-
-		if (terrain[this.Const.World.TerrainType.Snow] != 0 && this.Math.abs(terrain[this.Const.World.TerrainType.Snow] - terrain[this.Const.World.TerrainType.Hills]) <= 2)
-		{
-			terrain[this.Const.World.TerrainType.Snow] += 2;
-		}
-
-		local highest = 0;
-
-		for( local i = 0; i < this.Const.World.TerrainType.COUNT; i = i )
-		{
-			if (i == this.Const.World.TerrainType.Ocean || i == this.Const.World.TerrainType.Shore)
-			{
-			}
-			else if (terrain[i] >= terrain[highest])
-			{
-				highest = i;
-			}
-
-			i = ++i;
-		}
-
-		return highest;
+		return this.World.Camp.getUITerrain();
 	}
 
 	function queryCampInformation()
@@ -768,54 +731,8 @@ this.camp_screen <- {
 
 	function getUIInformation()
 	{
-		local night = !this.World.getTime().IsDaytime;
-		local highest = this.getUITerrain();
-		local foreground = this.Const.World.TerrainCampImages[highest].Foreground;
-		local result = {
-			Title = this.World.Assets.getName() + " Camp",
-			SubTitle = this.getTimeRequired(),
-			Assets = this.queryAssetsInformation(),
-			HeaderImagePath = null,
-			Background = this.Const.World.TerrainCampImages[highest].Background + (night ? "_night" : "") + ".jpg",
-			Mood = this.Const.World.TerrainCampImages[highest].Mood + ".png",
-			Foreground = foreground != null ? foreground + (night ? "_night" : "") + ".png" : null,
-			Slots = [],
-			Situations = []
-		};
-		local slots = this.World.Camp.getBuildings();
-
-		foreach( building in slots )
-		{
-			if (building == null || building.isHidden())
-			{
-				result.Slots.push(null);
-				continue;
-			}
-
-			local image;
-
-			switch(highest)
-			{
-			case 9:
-			case 8:
-			case 4:
-				image = building.getUIImage(highest);
-				break;
-
-			default:
-				image = building.getUIImage(0);
-				break;
-			}
-
-			local b = {
-				Image = image,
-				Tooltip = building.getTooltipID(),
-				Slot = building.getSlot(),
-				CanEnter = building.canEnter()
-			};
-			result.Slots.push(b);
-		}
-
+		local result = this.World.Camp.getUIInformation();
+		result.Assets <- this.queryAssetsInformation();
 		return result;
 	}
 

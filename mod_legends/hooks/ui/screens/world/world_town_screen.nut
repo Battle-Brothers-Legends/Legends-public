@@ -59,4 +59,13 @@
 			this.m.JSHandle.asyncCall("showStablesDialog", this.m.StablesDialogModule.queryHireInformation());
 		}
 	}
+
+	o.onEncounterClicked <- function(_data){
+		if (this.isAnimating()) {
+			return;
+		}
+		if (this.m.Town != null) {
+			this.m.Town.onEncounterClicked(_data, this);
+		}
+	}
 });

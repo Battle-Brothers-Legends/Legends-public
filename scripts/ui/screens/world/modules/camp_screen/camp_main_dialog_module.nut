@@ -38,4 +38,7 @@ this.camp_main_dialog_module <- this.inherit("scripts/ui/screens/ui_module", {
 		this.m.Parent.onCampClosed();
 	}
 
+	function onEncounterClicked (_data) {
+		this.m.Parent.onEncounterClicked(_data);
+	}
 });

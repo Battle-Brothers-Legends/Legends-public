@@ -10,6 +10,8 @@
 	o.m.CaravanSentHistory <- array(7,[]); // 7-day rolling window recording all caravans sent
 	o.m.SurroundingTileData <- null;
 	o.m.SurroundingTileDataDefaultRadius <- 10;
+	o.m.SettlementEncountersCooldownUntil <- 0.0;
+	o.m.SettlementEncounters <- [];
 
 	o.setUpgrading <- function ( _v )
 	{
@@ -580,6 +582,16 @@
 		if (result.Contracts.len() == 0 && this.m.IsMilitary && !this.World.Ambitions.getAmbition("ambition.make_nobles_aware").isDone())
 		{
 			result.IsContractsLocked = true;
+		}
+
+		result.Encounters <- [];
+		foreach(encounter in this.m.SettlementEncounters) {
+			if (encounter != null) {
+				result.Encounters.push({
+					Icon = encounter.m.Icon,
+					Type = encounter.getType(),
+				});
+			}
 		}
 
 		return result;
@@ -2073,6 +2085,62 @@
 		return this.m.SurroundingTileData.getCountOfTypesBetweenRadius(_types, _maxRadius, _minRadius);
 	}
 
+	o.onEncounterClicked <- function(_i, _townScreen){
+		this.World.Encounters.fireEncounter(this.m.SettlementEncounters[_i]);
+		this.m.SettlementEncounters.remove(_i);
+	}
+
+	/**
+	 * On settlement enter, check if it should show event.
+	 */
+	local onEnter = o.onEnter;
+	o.onEnter = function () {
+		local ret = onEnter();
+		this.updateEncounters();
+		if(::World.Encounters.onSettlementEntered(this)) {
+			::World.State.m.LastEnteredTown = null;
+			return false;
+		}
+		return ret;
+	}
+
+	/**
+	 * Updates encounters in the town.
+	 */
+	o.updateEncounters <- function() {
+		if (this.m.SettlementEncountersCooldownUntil > this.Time.getVirtualTimeF()) {
+			local notValid = [];
+			foreach (e in this.m.SettlementEncounters) {
+				if (!e.isValid(this))
+					notValid.push(e);
+			}
+			foreach (e in notValid) {
+				::logInfo("encounter became non valid " + e.getType());
+				::MSU.Array.removeByValue(this.m.SettlementEncounters, e);
+			}
+			::logInfo("cooldown still on, skipping the creation");
+			return;
+		}
+
+		local list = [];
+		foreach (e in this.World.Encounters.m.SettlementEncounters) {
+			if (e.isValid(this)) {
+				list.push(e);
+			}
+		}
+
+		local count = this.Math.rand(3, 5);
+		while(list.len() > count) {
+			local r = this.Math.rand(0, list.len() - 1);
+			list.remove(r);
+		}
+		this.m.SettlementEncounters.clear();
+		foreach (e in list) {
+			this.m.SettlementEncounters.push(e);
+		}
+		this.m.SettlementEncountersCooldownUntil = this.Time.getVirtualTimeF() + (5 * this.World.getTime().SecondsPerDay);
+	}
+
 	o.onSerialize = function ( _out )
 	{
 		this.location.onSerialize(_out);
@@ -2155,6 +2223,12 @@
 		this.m.ImportedGoodsInventory.onSerialize(_out);
 		::MSU.Utils.serialize(this.m.CaravanReceivedHistory, _out);
 		::MSU.Utils.serialize(this.m.CaravanSentHistory, _out);
+
+		_out.writeF32(this.m.SettlementEncountersCooldownUntil);
+		_out.writeU32(this.m.SettlementEncounters.len());
+		foreach(e in this.m.SettlementEncounters) {
+			_out.writeString(e.getType());
+		}
 	}
 
 	o.onDeserialize = function ( _in )
@@ -2271,6 +2345,17 @@
 		{
 			this.m.CaravanReceivedHistory = ::MSU.Utils.deserialize(_in);
 			this.m.CaravanSentHistory = ::MSU.Utils.deserialize(_in);
+		}
+
+		if (::Legends.Mod.Serialization.isSavedVersionAtLeast("19.1.0", _in.getMetaData())) {
+			this.m.SettlementEncountersCooldownUntil = _in.readF32();
+			local size = _in.readU32();
+			for(local i = 0; i < size; i++) {
+				local e = this.World.Encounters.getEncounter(_in.readString());
+				if(e != null) {
+					this.m.SettlementEncounters.push(e);
+				}
+			}
 		}
 
 		this.updateSprites();
