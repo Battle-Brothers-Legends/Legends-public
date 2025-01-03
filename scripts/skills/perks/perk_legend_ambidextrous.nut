@@ -5,7 +5,8 @@ this.perk_legend_ambidextrous <- this.inherit("scripts/skills/skill", {
 		ApplicableItems = [
 			"shield.legend_named_parrying_dagger",
 			"shield.legend_parrying_dagger",
-			"shield.buckler"
+			"shield.buckler",
+			"shield.legend_mummy_shield"
 		],
 	},
 
