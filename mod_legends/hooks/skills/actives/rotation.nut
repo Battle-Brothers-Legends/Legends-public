@@ -10,9 +10,9 @@
 		if (!target.isAlive() && ::MSU.isNull(target))
 			return false;
 
-		if (!target.isPlayerControlled() && (target.getFaction() != this.Const.Faction.PlayerAnimals || !this.getContainer().hasPerk(::Const.Perks.PerkDefs.LegendTwirl)))
-			return false;
-
-		return this.skill.onVerifyTarget(_originTile, _targetTile) && !target.getCurrentProperties().IsStunned && !target.getCurrentProperties().IsRooted && target.getCurrentProperties().IsMovable && !target.getCurrentProperties().IsImmuneToRotation;
+		// if (!target.isPlayerControlled() && (target.getFaction() != this.Const.Faction.PlayerAnimals || !this.getContainer().hasPerk(::Const.Perks.PerkDefs.LegendTwirl)))
+		// 	return false;
+		if (target.isPlayerControlled() || target.getFaction() == this.Const.Faction.PlayerAnimals || this.getContainer().hasPerk(::Const.Perks.PerkDefs.LegendTwirl))
+			return this.skill.onVerifyTarget(_originTile, _targetTile) && !target.getCurrentProperties().IsStunned && !target.getCurrentProperties().IsRooted && target.getCurrentProperties().IsMovable && !target.getCurrentProperties().IsImmuneToRotation;
 	}
 });
