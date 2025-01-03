@@ -1025,6 +1025,7 @@ brush_only_layers = [
     {"name": "cloak_hexe", "layer": "cloak"},
     {"name": "cloak_spider", "layer": "cloak"},
     {"name" :"named_emperors_cloak", "min" : 1, "max" : 1, "layer" : "cloak"},
+    {"name" :"named_emperors_armor", "min" : 1, "max" : 1, "layer" : "plate"},
     {"name": "cloak_rich", "min" : 1, "max" : 5, "layer": "cloak"},
     {"name": "tabard_named", "min" : 1, "max" : 26, "layer": "tabard"}
 ]
@@ -1237,6 +1238,7 @@ this.$name <- this.inherit("scripts/items/legend_armor/legend_cloth_named", {
 
 CloakNut = '''
 this.$name <- this.inherit("scripts/items/legend_armor/legend_armor_cloak", {
+	m = {},
 	function create()
 	{
 		this.legend_armor_cloak.create();
@@ -1273,6 +1275,7 @@ this.$name <- this.inherit("scripts/items/legend_armor/legend_armor_cloak", {
 
 TabardNut = '''
 this.$name <- this.inherit("scripts/items/legend_armor/legend_armor_tabard", {
+	m = {},
 	function create()
 	{
 		this.legend_armor_tabard.create();

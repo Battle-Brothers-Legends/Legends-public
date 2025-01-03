@@ -80,7 +80,7 @@ this.legend_alp_summon_nightmare_skill <- this.inherit("scripts/skills/skill", {
 			local type = ::MSU.Array.rand(["direwolf","human","serpent","tentacle"]);
 
 			//this.Time.scheduleEvent(this.TimeUnit.Virtual, 100 * i, function(_a) {
-				local nightmare = this.Tactical.spawnEntity("scripts/entity/tactical/enemies/alp_nightmare_" + type, tile.Coords.X, tile.Coords.Y);
+				local nightmare = this.Tactical.spawnEntity("scripts/entity/tactical/enemies/legend_alp_nightmare_" + type, tile.Coords.X, tile.Coords.Y);
 				nightmare.setFaction(_user.getFaction());
 				nightmare.spawnSpecialEffect(tile);
 				nightmare.assignRandomEquipment();

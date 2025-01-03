@@ -62,7 +62,7 @@
 		local myTile = _user.getTile();
 		local bravery = this.getBonus();
 		local actors = this.Tactical.Entities.getInstancesOfFaction(_user.getFaction());
-
+		
 		foreach( a in actors )
 		{
 			if (a.getID() == _user.getID())
@@ -75,11 +75,17 @@
 				continue;
 			}
 
-			if (a.getFaction() != _user.getFaction())
+			local effect = a.getSkills().getSkillByID("effects.charmed");
+			local notCharmedBro = effect != null && effect.m.OriginalFaction != _user.getFaction();
+			effect = a.getSkills().getSkillByID("effects.legend_intensely_charmed");
+			local notIntenselyCharmedBro = effect != null && effect.m.OriginalFaction != _user.getFaction();
+			if (a.getFaction() != _user.getFaction() && notCharmedBro && notIntenselyCharmedBro) //Charmed bros belong to a different faction, additional conditions make sure they are not excluded
 			{
 				continue;
 			}
-				this.logInfo("attempting to rally");
+
+			// Next part was probably added for testing purposes
+			/*	this.logInfo("attempting to rally");
 				if (a.getSkills().hasSkill("effects.charmed") || a.getSkills().hasSkill("effects.legend_intensely_charmed") || a.getSkills().hasSkill("effects.sleeping"))
 				{
 					local rand = this.Math.rand(1, 100);
@@ -91,11 +97,13 @@
 						a.getSkills().removeByID("effects.legend_intensely_charmed");
 						}
 				}
+			
 				if ( a.getMoraleState() >= this.Const.MoraleState.Steady )
 				{
 					continue;
 				}
-				  this.logInfo("finding rally difficulty");
+			
+				this.logInfo("finding rally difficulty");
 				local difficulty = bravery;
 					this.logInfo("getting distance");
 				local distance = a.getTile().getDistanceTo(myTile) * 10;
@@ -111,13 +119,7 @@
 				{
 					this.logInfo("moral check for the rest");
 					a.checkMorale(1, difficulty - distance, this.Const.MoraleCheckType.Default, "status_effect_56");
-				}
-
-			if (a.getSkills().hasSkill("effects.rallied"))
-			{
-				continue;
-			}
-
+				} */
 
 			if (a.getSkills().hasSkill("effects.charmed") || a.getSkills().hasSkill("effects.legend_intensely_charmed") || a.getSkills().hasSkill("effects.sleeping"))
 			{
@@ -130,6 +132,16 @@
 				}
 			}
 
+			if (a.getFaction() != _user.getFaction()) //If charm removal was not successful, continue
+			{
+				continue;
+			}
+
+			if (a.getSkills().hasSkill("effects.rallied"))
+			{
+				continue;
+			}
+			
 			if ( a.getMoraleState() >= this.Const.MoraleState.Steady )
 			{
 				continue;

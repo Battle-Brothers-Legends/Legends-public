@@ -95,8 +95,8 @@
 			"misc/legend_masterwork_tools"
 		], _lootTable);
 
-		_lootTable.push(this.Const.World.Common.pickArmor([
-			[1, "legendary/legend_emperors_armor"]
-		]))
+		// _lootTable.push(this.Const.World.Common.pickArmor([
+		// 	[1, "legendary/legend_emperors_armor"]
+		// ]))
 	}
 });

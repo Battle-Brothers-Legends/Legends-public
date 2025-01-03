@@ -2,7 +2,7 @@
 {
 	return this.Const.Strings.CharacterNamesFemale[this.Math.rand(0, this.Const.Strings.CharacterNamesFemale.len() - 1)];
 };
-	
+
 ::Const.Tactical.Common.onApplyFirefield <- function(_tile, _entity)
 {
 	this.Tactical.spawnIconEffect("fire_circle", _tile, this.Const.Tactical.Settings.SkillIconOffsetX, this.Const.Tactical.Settings.SkillIconOffsetY, this.Const.Tactical.Settings.SkillIconScale, this.Const.Tactical.Settings.SkillIconFadeInDuration, this.Const.Tactical.Settings.SkillIconStayDuration, this.Const.Tactical.Settings.SkillIconFadeOutDuration, this.Const.Tactical.Settings.SkillIconMovement);
@@ -27,7 +27,7 @@
 
 ::Const.Tactical.Common.onApplyDemonShadows <- function(_tile, _entity)
 {
-	if (_entity.getSkills().hasSkill("racial.alp") || ::MSU.isKindOf(_entity, "alp_shadow"))
+	if (_entity.getSkills().hasSkill("racial.alp") || ::MSU.isKindOf(_entity, "legend_alp_shadow"))
 	{
 		return;
 	}
@@ -74,4 +74,4 @@
 			_entity.getSkills().add(this.new("scripts/skills/effects/legend_sanctified_effect"));
 		}
 	}
-};	
+};

@@ -2,16 +2,13 @@ this.perk_legend_specialist_ninetails_damage <- this.inherit("scripts/skills/ski
 	m = {},
 	function create()
 	{
-		this.m.ID = "perk.legend_specialist_ninetails_damage";
-		this.m.Name = this.Const.Strings.PerkName.LegendSpecialistNinetailsDamage;
-		this.m.Description = this.Const.Strings.PerkDescription.LegendSpecialistNinetailsDamage;
-		this.m.Icon = "ui/perks/ninetails_02.png";
+		::Const.Perks.setup(this.m, ::Const.Perks.PerkDefs.LegendSpecialistNinetailsDamage);
 		this.m.Type = this.Const.SkillType.Perk;
 		this.m.Order = this.Const.SkillOrder.Perk;
 		this.m.IsActive = false;
 		this.m.IsStacking = false;
 		this.m.IsHidden = false;
-	} 
+	}
 
 	function onAfterUpdate( _properties )
 	{

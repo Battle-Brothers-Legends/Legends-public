@@ -19,9 +19,7 @@ this.perk_legend_push_the_advantage <- this.inherit("scripts/skills/skill", {
 	},
 	function create()
 	{
-		this.m.ID = "perk.push_the_advantage";
-		this.m.Name = this.Const.Strings.PerkName.LegendPushTheAdvantage;
-		this.m.Description = this.Const.Strings.PerkDescription.LegendPushTheAdvantage;
+		::Const.Perks.setup(this.m, ::Const.Perks.PerkDefs.LegendPushTheAdvantage);
 		this.m.Icon = "ui/perks/onslaught_circle.png";
 		this.m.IconDisabled = "ui/perks/onslaught_circle_bw.png";
 		this.m.Type = this.Const.SkillType.Perk;
@@ -35,7 +33,7 @@ this.perk_legend_push_the_advantage <- this.inherit("scripts/skills/skill", {
 	{
 		local targetSkills = _targetEntity.getSkills();
 
-		foreach ( effect in this.m.EffectsToGiveBonus ) 
+		foreach ( effect in this.m.EffectsToGiveBonus )
 		{
 			if ( targetSkills.hasSkill(effect) )
 			{

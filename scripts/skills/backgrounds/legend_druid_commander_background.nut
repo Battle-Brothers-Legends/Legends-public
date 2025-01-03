@@ -101,9 +101,9 @@ this.legend_druid_commander_background <- this.inherit("scripts/skills/backgroun
 			[
 				this.Const.Perks.PerkDefs.LegendMedIngredients,
 				this.Const.Perks.PerkDefs.LegendWither,
-				this.Const.Perks.PerkDefs.LegendUnarmedTraining,
 				this.Const.Perks.PerkDefs.LegendSpecStaffSkill,
 				this.Const.Perks.PerkDefs.LegendSpecialistSickleSkill,
+				this.Const.Perks.PerkDefs.LegendAmbidextrous,
 				this.Const.Perks.PerkDefs.Student,
 				this.Const.Perks.PerkDefs.Colossus,
 				this.Const.Perks.PerkDefs.NineLives,
@@ -114,9 +114,9 @@ this.legend_druid_commander_background <- this.inherit("scripts/skills/backgroun
 			[
 				this.Const.Perks.PerkDefs.LegendScryTrance,
 				this.Const.Perks.PerkDefs.LegendGatherer,
-				this.Const.Perks.PerkDefs.LegendKick,
 				this.Const.Perks.PerkDefs.FortifiedMind,
 				this.Const.Perks.PerkDefs.CoupDeGrace,
+				this.Const.Perks.PerkDefs.LegendChoke,
 				this.Const.Perks.PerkDefs.Dodge,
 				this.Const.Perks.PerkDefs.HoldOut,
 				// this.Const.Perks.PerkDefs.LegendComposure,
@@ -133,7 +133,7 @@ this.legend_druid_commander_background <- this.inherit("scripts/skills/backgroun
 				this.Const.Perks.PerkDefs.Rotation,
 				this.Const.Perks.PerkDefs.Taunt,
 				this.Const.Perks.PerkDefs.LegendFeint,
-				this.Const.Perks.PerkDefs.Relentless,
+				this.Const.Perks.PerkDefs.LegendOnslaught,
 				this.Const.Perks.PerkDefs.LegendSecondWind
 			],
 			[
@@ -149,7 +149,6 @@ this.legend_druid_commander_background <- this.inherit("scripts/skills/backgroun
 			],
 			[
 				this.Const.Perks.PerkDefs.LegendPotionBrewer,
-				this.Const.Perks.PerkDefs.LegendChoke,
 				this.Const.Perks.PerkDefs.LegendReadOmensTrance,
 				this.Const.Perks.PerkDefs.LegendInsects,
 				this.Const.Perks.PerkDefs.LoneWolf,
@@ -162,7 +161,6 @@ this.legend_druid_commander_background <- this.inherit("scripts/skills/backgroun
 			[
 				this.Const.Perks.PerkDefs.LegendDrumsOfLife,
 				this.Const.Perks.PerkDefs.LegendDistantVisions,
-				this.Const.Perks.PerkDefs.LegendUnarmedLunge,
 				this.Const.Perks.PerkDefs.LegendMuscularity,
 				this.Const.Perks.PerkDefs.LegendSummonStorm,
 				this.Const.Perks.PerkDefs.LegendClarity,
@@ -173,6 +171,7 @@ this.legend_druid_commander_background <- this.inherit("scripts/skills/backgroun
 				this.Const.Perks.PerkDefs.LegendRebound
 			],
 			[
+				this.Const.Perks.PerkDefs.LegendUnarmedTraining,
 				this.Const.Perks.PerkDefs.LegendMiasma,
 				this.Const.Perks.PerkDefs.LegendFieldTriage,
 				this.Const.Perks.PerkDefs.LegendTumble,

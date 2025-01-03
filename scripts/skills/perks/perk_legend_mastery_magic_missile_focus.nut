@@ -3,9 +3,7 @@ this.perk_legend_mastery_magic_missile_focus <- this.inherit("scripts/skills/ski
 	m = {},
 	function create()
 	{
-		this.m.ID = "perk.legend_mastery_magic_missile_focus";
-		this.m.Name = this.Const.Strings.PerkName.LegendMasteryMagicMissileFocus;
-		this.m.Description = this.Const.Strings.PerkDescription.LegendMasteryMagicMissileFocus;
+		::Const.Perks.setup(this.m, ::Const.Perks.PerkDefs.LegendMasteryMagicMissileFocus);
 		this.m.Icon = "ui/perks/missile_circle.png";
 		this.m.Type = this.Const.SkillType.Perk;
 		this.m.Order = this.Const.SkillOrder.Perk;

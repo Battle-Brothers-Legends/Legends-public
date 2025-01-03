@@ -46,7 +46,7 @@ if (!("Perks" in ::Const))
 	Tree = [
 		[],
 		[],
-		[::Const.Perks.PerkDefs.Relentless],
+		[::Const.Perks.PerkDefs.LegendOnslaught],
 		[::Const.Perks.PerkDefs.SpecMace],
 		[],
 		[::Const.Perks.PerkDefs.LegendReturnFavor],
@@ -260,11 +260,11 @@ if (!("Perks" in ::Const))
 	]
 };
 
-::Const.Perks.GreatSwordTree <- {
-	ID = "GreatSword",
-	Name = "Two-Handed Sword",
+::Const.Perks.TwoHandedTree <- {
+	ID = "TwoHanded",
+	Name = "Two-Handed",
 	Descriptions = [
-		"greatswords"
+		"two handed weapons"
 	],
 	Attributes = {
 		Hitpoints = [
@@ -302,18 +302,18 @@ if (!("Perks" in ::Const))
 	},
 	Tree = [
 		[],
+		[],
+		[],
+		[],
+		[::Const.Perks.PerkDefs.LegendSlaughterer, ::Const.Perks.PerkDefs.ReachAdvantage],
 		[::Const.Perks.PerkDefs.LegendBloodyHarvest],
-		[],
-		[::Const.Perks.PerkDefs.LegendSpecGreatSword],
-		[],
-		[::Const.Perks.PerkDefs.LegendForcefulSwing],
 		[]
 	]
 };
 
 ::Const.Perks.SwordTree <- {
 	ID = "Sword",
-	Name = "One-Handed Sword",
+	Name = "Sword",
 	Descriptions = [
 		"swords"
 	],
@@ -879,7 +879,7 @@ if (!("Perks" in ::Const))
 		::Const.Perks.HammerTree,
 		::Const.Perks.AxeTree,
 		::Const.Perks.CleaverTree,
-		::Const.Perks.GreatSwordTree,
+		::Const.Perks.TwoHandedTree,
 		::Const.Perks.SwordTree,
 		::Const.Perks.DaggerTree,
 		::Const.Perks.PolearmTree,
@@ -916,7 +916,7 @@ if (!("Perks" in ::Const))
 		::Const.Perks.HammerTree,
 		::Const.Perks.AxeTree,
 		::Const.Perks.CleaverTree,
-		::Const.Perks.GreatSwordTree,
+		::Const.Perks.TwoHandedTree,
 		::Const.Perks.SwordTree,
 		::Const.Perks.DaggerTree,
 		::Const.Perks.PolearmTree,

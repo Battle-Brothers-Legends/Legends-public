@@ -157,35 +157,19 @@ this.legends_horse_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 		return false;
 	}
 
-	function onUpdateDraftList( _list, _gender = null )
+	function onUpdateDraftList( _list )
 	{
-		_gender = ::Legends.Mod.ModSettings.getSetting("GenderEquality").getValue() != "Disabled";
 		if (_list.len() < 10)
-		{
 			return;
-		}
-
-		local r;
-		r = this.Math.rand(0, 1);
-
-		if (r == 0)
-		{
+			
+		if (this.Math.rand(0, 1) == 0)
 			_list.push("legend_donkey_background");
-		}
 
-		r = this.Math.rand(0, 4);
-
-		if (r == 0)
-		{
+		if (this.Math.rand(0, 4) == 0)
 			_list.push("peddler_background");
-		}
 
-		r = this.Math.rand(0, 2);
-
-		if (r == 0)
-		{
+		if (this.Math.rand(0, 2) == 0)
 			_list.push("caravan_hand_background");
-		}
 	}
 
 });

@@ -99,7 +99,7 @@ this.legend_assassin_commander_background <- this.inherit("scripts/skills/backgr
 				this.Const.Perks.PerkDefs.Rotation,
 				this.Const.Perks.PerkDefs.LegendFeint,
 				this.Const.Perks.PerkDefs.LegendDebilitate,
-				this.Const.Perks.PerkDefs.Relentless,
+				this.Const.Perks.PerkDefs.LegendOnslaught,
 				this.Const.Perks.PerkDefs.LegendPrepared,
 				this.Const.Perks.PerkDefs.LegendFavouredEnemyBandit
 			],

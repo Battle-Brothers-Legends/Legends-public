@@ -89,30 +89,7 @@ this.legend_hunting_white_direwolf_contract <- this.inherit("scripts/contracts/c
 				}
 
 				this.Flags.set("StartTime", this.Time.getVirtualTimeF());
-				local playerTile = this.World.State.getPlayer().getTile();
-				local tile = this.Contract.getTileToSpawnLocation(playerTile, 6, 12, [
-					this.Const.World.TerrainType.Mountains
-				]);
-				local nearTile = this.Contract.getTileToSpawnLocation(playerTile, 4, 8);
-				local party;
-				party = this.World.FactionManager.getFactionOfType(this.Const.FactionType.Beasts).spawnEntity(tile, "White Wolf Pack", false, this.Const.World.Spawn.LegendWhiteDirewolf, 200 * this.Contract.getDifficultyMult() * this.Contract.getScaledDifficultyMult());
-				party.setDescription("The wolf pack of the legendary White Wolf.");
-				party.setAttackableByAI(false);
-				party.setFootprintSizeOverride(0.75);
-				this.Const.World.Common.addFootprintsFromTo(nearTile, party.getTile(), this.Const.BeastFootprints, 0.75);
-				this.Contract.m.Target = this.WeakTableRef(party);
-				party.getSprite("banner").setBrush("banner_beasts_01");
-				local c = party.getController();
-				c.getBehavior(this.Const.World.AI.Behavior.ID.Flee).setEnabled(true);
-				c.getBehavior(this.Const.World.AI.Behavior.ID.Attack).setEnabled(true);
-				local roam = this.new("scripts/ai/world/orders/roam_order");
-				roam.setPivot(this.Contract.m.Home);
-				roam.setMinRange(2);
-				roam.setMaxRange(16);
-				roam.setAllTerrainAvailable();
-				roam.setTerrain(this.Const.World.TerrainType.Ocean, false);
-				roam.setTerrain(this.Const.World.TerrainType.Shore, false);
-				c.addOrder(roam);
+				this.Contract.spawnEnemies();
 				this.Contract.m.Home.setLastSpawnTimeToNow();
 				this.Contract.setScreen("Overview");
 				this.World.Contracts.setActiveContract(this.Contract);
@@ -500,6 +477,33 @@ this.legend_hunting_white_direwolf_contract <- this.inherit("scripts/contracts/c
 			}
 
 		});
+	}
+
+	function spawnEnemies() {
+		local playerTile = this.World.State.getPlayer().getTile();
+		local tile = this.getTileToSpawnLocation(playerTile, 6, 12, [
+			this.Const.World.TerrainType.Mountains
+		]);
+		local nearTile = this.getTileToSpawnLocation(playerTile, 4, 8);
+		local party = this.World.FactionManager.getFactionOfType(this.Const.FactionType.Beasts).spawnEntity(tile, "White Wolf Pack", false, this.Const.World.Spawn.LegendWhiteDirewolf, 200 * this.getDifficultyMult() * this.getScaledDifficultyMult());
+		party.setDescription("The wolf pack of the legendary White Wolf.");
+		party.setAttackableByAI(false);
+		party.setFootprintSizeOverride(0.75);
+		this.Const.World.Common.addFootprintsFromTo(nearTile, party.getTile(), this.Const.BeastFootprints, 0.75);
+		this.m.Target = this.WeakTableRef(party);
+		party.getSprite("banner").setBrush("banner_beasts_01");
+		local c = party.getController();
+		c.getBehavior(this.Const.World.AI.Behavior.ID.Flee).setEnabled(true);
+		c.getBehavior(this.Const.World.AI.Behavior.ID.Attack).setEnabled(true);
+		local roam = this.new("scripts/ai/world/orders/roam_order");
+		roam.setPivot(this.m.Home);
+		roam.setMinRange(2);
+		roam.setMaxRange(16);
+		roam.setAllTerrainAvailable();
+		roam.setTerrain(this.Const.World.TerrainType.Ocean, false);
+		roam.setTerrain(this.Const.World.TerrainType.Shore, false);
+		c.addOrder(roam);
+		return party;
 	}
 
 	function onPrepareVariables( _vars )

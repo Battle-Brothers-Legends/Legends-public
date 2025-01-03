@@ -1,3 +1,29 @@
+/**
+ * This file contains definitions and helper function for perks used in Legends.
+ *
+ * To add new perk, add definition to perkDefObjects:
+ * perkDefObjects.push({
+ *		ID = "perk.legend_ballistics", 									<- by convention, use legend_ prefix for your perk name or use your own if that's submod
+ *		Script = "scripts/skills/perks/perk_legend_ballistics", 		<- same here
+ *		Name = this.Const.Strings.PerkName.LegendBallistics,   			<- Name and Tooltip should be defined in perk_strings.nut
+ *		Tooltip = this.Const.Strings.PerkDescription.LegendBallistics,
+ *		Icon = "ui/perks/ballistics56_circle.png",						<- provide both icons, that will be used on perk screen, here's perk granted version
+ *		IconDisabled = "ui/perks/ballistics56_circle_bw.png",			<- perk not granted version
+ *		Const = "LegendBallistics" 										<- constant name this definition will be available at ::Const.Perks.PerkDefs, by convention, use Legend prefix for your perk or use your own if that's submod
+ *	});
+ *
+ *	In perk implementation create() method it's encouraged to use helper function to set defined fields automatically by using
+ *  ::Const.Perks.setup(this.m, ::Const.Perks.PerkDefs.LegendBallistics);
+ *  Use your name, this will ensure there's not mismatch or typos in ID, Icons etc.
+ *  If your perk is an effect or requires to show different icons when used as a skill or whatever other reason, you can still set values you need regardless what helper sets.
+ *
+ * 	If you need to reference perk in other place, it's best to use reference to the ID instead of raw string literal.
+ *  For example, instead of using:
+ *  	bro.getSkills().hasSkill("perk.legend_ballistics")
+ *  Use:
+ *  	bro.getSkills().hasPerk(::Const.Perks.PerkDefs.LegendBallistics)
+ */
+
 if (!("Perks" in ::Const))
 {
 	::Const.Perks <- {};
@@ -8,10 +34,11 @@ if (!("Perks" in ::Const))
 
 ::Const.Perks.addPerkDefObjects <- function( _perkDefObjects )
 {
+	local size = ::Const.Perks.PerkDefObjects.len();
 	::Const.Perks.PerkDefObjects.extend(_perkDefObjects);
 	foreach (i, perkDefObject in _perkDefObjects)
 	{
-		::Const.Perks.PerkDefs[perkDefObject.Const] <- i;
+		::Const.Perks.PerkDefs[perkDefObject.Const] <- size + i;
 		::Const.Perks.LookupMap[perkDefObject.ID] <- perkDefObject;
 	}
 }
@@ -104,6 +131,15 @@ if (!("Perks" in ::Const))
 			::Const.Perks.PerkDefObjects[table.Const].Tooltip = ret;
 		}
 	}
+}
+
+::Const.Perks.setup <- function (_m, _perkDef) {
+	local def = ::Const.Perks.PerkDefObjects[_perkDef];
+	_m.ID = def.ID;
+	_m.Name = ::Const.Strings.PerkName[def.Const]
+	_m.Description = ::Const.Strings.PerkDescription[def.Const];
+	_m.Icon = def.Icon;
+	_m.IconDisabled = def.IconDisabled;
 }
 
 local perkDefObjects = [];
@@ -755,7 +791,7 @@ perkDefObjects.push({
 	Script = "scripts/skills/perks/perk_legend_push",
 	Name = this.Const.Strings.PerkName.LegendPush,
 	Tooltip = this.Const.Strings.PerkDescription.LegendPush,
-	Icon = "ui/perks/revolt56_circle.png",
+	Icon = "ui/perks/revolt56_circle.png", // todo wtf is that icon
 	IconDisabled = "ui/perks/revolt56_circle_bw.png",
 	Const = "LegendPush"
 });
@@ -806,7 +842,7 @@ perkDefObjects.push({
 });
 perkDefObjects.push({
 	ID = "perk.legend_sprint",
-	Script = "scripts/skills/perks/perk_sprint",
+	Script = "scripts/skills/perks/perk_legend_sprint",
 	Name = this.Const.Strings.PerkName.LegendSprint,
 	Tooltip = this.Const.Strings.PerkDescription.LegendSprint,
 	Icon = "ui/perks/perk_sprint.png",
@@ -968,7 +1004,7 @@ perkDefObjects.push({
 });
 perkDefObjects.push({
 	ID = "perk.legend_slaughterer",
-	Script = "scripts/skills/perks/perk_legend_slaughterer",
+	Script = "scripts/skills/perks/perk_legend_carnageer",
 	Name = this.Const.Strings.PerkName.LegendSlaughterer,
 	Tooltip = this.Const.Strings.PerkDescription.LegendSlaughterer,
 	Icon = "ui/perks/slaughterer_circle.png",
@@ -1133,8 +1169,8 @@ perkDefObjects.push({
 	Script = "scripts/skills/perks/perk_legend_battleheart",
 	Name = this.Const.Strings.PerkName.LegendBattleheart,
 	Tooltip = this.Const.Strings.PerkDescription.LegendBattleheart,
-	Icon = "ui/perks/battlheart_circle.png",
-	IconDisabled = "ui/perks/battlheart_circle_bw.png",
+	Icon = "ui/perks/battleheart_circle.png",
+	IconDisabled = "ui/perks/battleheart_circle_bw.png",
 	Const = "LegendBattleheart"
 });
 perkDefObjects.push({
@@ -1417,8 +1453,8 @@ perkDefObjects.push({
 	Const = "LegendBribe"
 });
 perkDefObjects.push({
-	ID = "perk.legends.legend_off_book_deal",
-	Script = "scripts/skills/perks/legends/perk_legend_off_book_deal",
+	ID = "perk.legend_off_book_deal",
+	Script = "scripts/skills/perks/perk_legend_off_book_deal",
 	Name = this.Const.Strings.PerkName.LegendOffBookDeal,
 	Tooltip = this.Const.Strings.PerkDescription.LegendOffBookDeal,
 	Icon = "ui/perks/coins_circle.png",
@@ -2186,15 +2222,6 @@ perkDefObjects.push({
 	HasUnactivatedPerkTooltipHints = true // Inform general_queryUIPerkTooltipData() in tooltip_events.nut that the Perk has additional hints from getUnactivatedPerkTooltipHints()
 });
 perkDefObjects.push({
-	ID = "perk.legend_mastery_greatsword",
-	Script = "scripts/skills/perks/perk_legend_mastery_greatsword",
-	Name = this.Const.Strings.PerkName.LegendSpecGreatSword,
-	Tooltip = this.Const.Strings.PerkDescription.LegendSpecGreatSword,
-	Icon = "ui/perks/spec_greatsword.png",
-	IconDisabled = "ui/perks/spec_greatsword_bw.png",
-	Const = "LegendSpecGreatSword"
-});
-perkDefObjects.push({
 	ID = "perk.legend_forceful_swing",
 	Script = "scripts/skills/perks/perk_legend_forceful_swing",
 	Name = this.Const.Strings.PerkName.LegendForcefulSwing,
@@ -2442,8 +2469,8 @@ perkDefObjects.push({
 	Script = "scripts/skills/perks/perk_legend_onslaught",
 	Name = this.Const.Strings.PerkName.LegendOnslaught,
 	Tooltip = this.Const.Strings.PerkDescription.LegendOnslaught,
-	Icon = "ui/perks/onslaught_circle.png",
-	IconDisabled = "ui/perks/onslaught_circle_bw.png",
+	Icon = "ui/perks/perk_26.png",
+	IconDisabled = "ui/perks/perk_26_sw.png",
 	Const = "LegendOnslaught"
 });
 perkDefObjects.push({
@@ -2460,7 +2487,7 @@ perkDefObjects.push({
 	Script = "scripts/skills/perks/perk_legend_push_the_advantage",
 	Name = this.Const.Strings.PerkName.LegendPushTheAdvantage,
 	Tooltip = this.Const.Strings.PerkDescription.LegendPushTheAdvantage,
-	Icon = "ui/perks/perk_32.png",
+	Icon = "ui/perks/perk_32.png", // todo is that correct icon?
 	IconDisabled = "ui/perks/perk_32_sw.png",
 	Const = "LegendPushTheAdvantage"
 });
@@ -2555,13 +2582,13 @@ perkDefObjects.push({
 	Const = "LegendPrepareGraze"
 });
 perkDefObjects.push({
-	ID = "perk.legend_slaughter",
-	Script = "scripts/skills/perks/perk_legend_slaughter",
-	Name = this.Const.Strings.PerkName.LegendSlaughter,
-	Tooltip = this.Const.Strings.PerkDescription.LegendSlaughter,
+	ID = "perk.legend_carnage",
+	Script = "scripts/skills/perks/perk_legend_carnage",
+	Name = this.Const.Strings.PerkName.LegendCarnage,
+	Tooltip = this.Const.Strings.PerkDescription.LegendCarnage,
 	Icon = "ui/perks/slaughter_circle.png",
 	IconDisabled = "ui/perks/slaughter_circle_bw.png",
-	Const = "LegendSlaughter"
+	Const = "LegendCarnage"
 });
 perkDefObjects.push({
 	ID = "perk.legend_untouchable",
@@ -3262,7 +3289,7 @@ perkDefObjects.push({
 	Script = "scripts/skills/perks/perk_legend_citrinitas",
 	Name = this.Const.Strings.PerkName.LegendCitrinitas,
 	Tooltip = this.Const.Strings.PerkName.LegendCitrinitas,
-	Icon = "ui/perks/perk_34.png",
+	Icon = "ui/perks/perk_34.png", //todo: add icon
 	IconDisabled = "ui/perks/perk_34_sw.png",
 	Const = "LegendCitrinitas"
 });
@@ -3271,7 +3298,7 @@ perkDefObjects.push({
 	Script = "scripts/skills/perks/perk_legend_albedo",
 	Name = this.Const.Strings.PerkName.LegendAlbedo,
 	Tooltip = this.Const.Strings.PerkName.LegendAlbedo,
-	Icon = "ui/perks/MaxToolsT1.png",
+	Icon = "ui/perks/MaxToolsT1.png", //todo icons
 	IconDisabled = "ui/perks/MaxToolsT1_bw.png",
 	Const = "LegendAlbedo"
 });
@@ -3625,6 +3652,24 @@ perkDefObjects.push({
 	Icon = "ui/perks/twirl_circle.png",
 	IconDisabled = "ui/perks/twirl_circle_bw.png",
 	Const = "LegendTwirl"
+});
+perkDefObjects.push({
+	ID = "perk.legend_deflect",
+	Script = "scripts/skills/perks/perk_legend_deflect",
+	Name = this.Const.Strings.PerkName.LegendDeflect,
+	Tooltip = this.Const.Strings.PerkDescription.LegendDeflect,
+	Icon = "ui/perks/perk_02.png", // todo icons?
+	IconDisabled = "ui/perks/perk_02_sw.png",
+	Const = "LegendDeflect"
+});
+perkDefObjects.push({
+	ID = "perk.legend_taste_the_pain",
+	Script = "scripts/skills/perks/perk_legend_taste_the_pain",
+	Name = this.Const.Strings.PerkName.LegendTasteThePain,
+	Tooltip = this.Const.Strings.PerkDescription.LegendTasteThePain,
+	Icon = "ui/perks/twirl_circle.png", // todo icons?
+	IconDisabled = "ui/perks/twirl_circle_bw.png",
+	Const = "LegendTasteThePain"
 });
 
 ::Const.Perks.addPerkDefObjects(perkDefObjects);

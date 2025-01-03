@@ -3,10 +3,7 @@ this.perk_mage_legend_magic_imbue <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "perk.legend_magic_imbue";
-		this.m.Name = this.Const.Strings.PerkName.LegendMagicImbue;
-		this.m.Description = this.Const.Strings.PerkDescription.LegendMagicImbue;
-		this.m.Icon = "ui/perks/legend_magic_imbue_circle.png";
+		::Const.Perks.setup(this.m, ::Const.Perks.PerkDefs.LegendMagicImbue);
 		this.m.Type = this.Const.SkillType.Perk;
 		this.m.Order = this.Const.SkillOrder.Perk;
 		this.m.IsActive = false;

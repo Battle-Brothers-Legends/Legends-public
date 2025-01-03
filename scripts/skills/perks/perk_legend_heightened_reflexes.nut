@@ -2,10 +2,7 @@ this.perk_legend_heightened_reflexes <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "perk.legend_heightened_reflexes";
-		this.m.Name = this.Const.Strings.PerkName.LegendHeightenedReflexes;
-		this.m.Description = this.Const.Strings.PerkDescription.LegendHeightenedReflexes;
-		this.m.Icon = "ui/perks/heightened_reflexes.png";
+		::Const.Perks.setup(this.m, ::Const.Perks.PerkDefs.LegendHeightenedReflexes);
 		this.m.Type = this.Const.SkillType.Perk | this.Const.SkillType.StatusEffect;
 		this.m.Order = this.Const.SkillOrder.Perk;
 		this.m.IsActive = false;
@@ -43,7 +40,7 @@ this.perk_legend_heightened_reflexes <- this.inherit("scripts/skills/skill", {
 				icon = "ui/icons/special.png",
 				text = "You are gaining [color=" + this.Const.UI.Color.PositiveValue + "]" + bonus + "[/color] initiative due to heightened reflexes"
 			});
-	
+
 
 		return tooltip;
 	}
@@ -53,7 +50,7 @@ this.perk_legend_heightened_reflexes <- this.inherit("scripts/skills/skill", {
 		local bonus = this.getBonus();
 		_properties.Initiative += bonus;
 	}
-	
+
 
 });
 

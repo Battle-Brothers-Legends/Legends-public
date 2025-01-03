@@ -15,5 +15,6 @@ this.legend_coordinating_volleys <- this.inherit("scripts/skills/effects/legend_
 	function onUpdate( _properties )
 	{
 		_properties.RangedSkill += 10;
+		_properties.RangedDamageMult *= 1.05;
 	}
 });

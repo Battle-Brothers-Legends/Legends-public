@@ -86,7 +86,7 @@ this.legend_redback_spider_poison_effect <- this.inherit("scripts/skills/skill",
 		{
 			local actor = this.getContainer().getActor();
 			this.m.LastRoundApplied = this.Time.getRound();
-			this.spawnIcon("status_effect_54", actor);
+			this.spawnIcon("status_effect_54", this.getContainer().getActor().getTile());
 
 			if (this.m.SoundOnUse.len() != 0)
 			{

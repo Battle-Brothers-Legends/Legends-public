@@ -1,13 +1,16 @@
 <brush name="gfx/legend_armor_4.png" version="17">
-<sprite id="bust_tabard_named_16_dead" offsetX="6" offsetY="10" f="64FE" ic="FF24382F" width="131" height="125" img="..\entity\legend_armor\bust_tabard_named_16_dead.png" left="-57" right="59" top="-53" bottom="55" />
-<sprite id="bust_tabard_named_17_dead" offsetX="6" offsetY="10" f="64FE" ic="FF243830" width="131" height="125" img="..\entity\legend_armor\bust_tabard_named_17_dead.png" left="-57" right="59" top="-53" bottom="55" />
-<sprite id="bust_tabard_named_18_dead" offsetX="6" offsetY="10" f="64FE" ic="FF243831" width="131" height="125" img="..\entity\legend_armor\bust_tabard_named_18_dead.png" left="-57" right="59" top="-53" bottom="55" />
-<sprite id="bust_tabard_named_19_dead" offsetX="6" offsetY="10" f="64FE" ic="FF243832" width="131" height="125" img="..\entity\legend_armor\bust_tabard_named_19_dead.png" left="-57" right="59" top="-53" bottom="55" />
-<sprite id="bust_tabard_named_20_dead" offsetX="6" offsetY="10" f="64FE" ic="FF243833" width="131" height="125" img="..\entity\legend_armor\bust_tabard_named_20_dead.png" left="-57" right="59" top="-53" bottom="55" />
-<sprite id="bust_tabard_named_21_dead" offsetX="6" offsetY="10" f="64FE" ic="FF243834" width="131" height="125" img="..\entity\legend_armor\bust_tabard_named_21_dead.png" left="-57" right="59" top="-53" bottom="55" />
-<sprite id="bust_tabard_named_22_dead" offsetX="6" offsetY="10" f="64FE" ic="FF243835" width="131" height="125" img="..\entity\legend_armor\bust_tabard_named_22_dead.png" left="-57" right="59" top="-53" bottom="55" />
-<sprite id="bust_tabard_named_23_dead" offsetX="6" offsetY="10" f="64FE" ic="FF243836" width="131" height="125" img="..\entity\legend_armor\bust_tabard_named_23_dead.png" left="-57" right="59" top="-53" bottom="55" />
-<sprite id="bust_tabard_named_24_dead" offsetX="6" offsetY="10" f="64FE" ic="FF243837" width="131" height="125" img="..\entity\legend_armor\bust_tabard_named_24_dead.png" left="-57" right="59" top="-53" bottom="55" />
-<sprite id="bust_tabard_named_25_dead" offsetX="6" offsetY="10" f="64FE" ic="FF243838" width="131" height="125" img="..\entity\legend_armor\bust_tabard_named_25_dead.png" left="-57" right="59" top="-53" bottom="55" />
-<sprite id="bust_tabard_named_26_dead" offsetX="6" offsetY="10" f="64FE" ic="FF243839" width="131" height="125" img="..\entity\legend_armor\bust_tabard_named_26_dead.png" left="-57" right="59" top="-53" bottom="55" />
+<sprite id="bust_tabard_named_13_dead" offsetX="6" offsetY="10" f="64FE" ic="FF24382F" width="131" height="125" img="..\entity\legend_armor\bust_tabard_named_13_dead.png" left="-57" right="59" top="-53" bottom="55" />
+<sprite id="bust_tabard_named_14_dead" offsetX="6" offsetY="10" f="64FE" ic="FF243830" width="131" height="125" img="..\entity\legend_armor\bust_tabard_named_14_dead.png" left="-57" right="59" top="-53" bottom="55" />
+<sprite id="bust_tabard_named_15_dead" offsetX="6" offsetY="10" f="64FE" ic="FF243831" width="131" height="125" img="..\entity\legend_armor\bust_tabard_named_15_dead.png" left="-57" right="59" top="-53" bottom="55" />
+<sprite id="bust_tabard_named_16_dead" offsetX="6" offsetY="10" f="64FE" ic="FF243832" width="131" height="125" img="..\entity\legend_armor\bust_tabard_named_16_dead.png" left="-57" right="59" top="-53" bottom="55" />
+<sprite id="bust_tabard_named_17_dead" offsetX="6" offsetY="10" f="64FE" ic="FF243833" width="131" height="125" img="..\entity\legend_armor\bust_tabard_named_17_dead.png" left="-57" right="59" top="-53" bottom="55" />
+<sprite id="bust_tabard_named_18_dead" offsetX="6" offsetY="10" f="64FE" ic="FF243834" width="131" height="125" img="..\entity\legend_armor\bust_tabard_named_18_dead.png" left="-57" right="59" top="-53" bottom="55" />
+<sprite id="bust_tabard_named_19_dead" offsetX="6" offsetY="10" f="64FE" ic="FF243835" width="131" height="125" img="..\entity\legend_armor\bust_tabard_named_19_dead.png" left="-57" right="59" top="-53" bottom="55" />
+<sprite id="bust_tabard_named_20_dead" offsetX="6" offsetY="10" f="64FE" ic="FF243836" width="131" height="125" img="..\entity\legend_armor\bust_tabard_named_20_dead.png" left="-57" right="59" top="-53" bottom="55" />
+<sprite id="bust_tabard_named_21_dead" offsetX="6" offsetY="10" f="64FE" ic="FF243837" width="131" height="125" img="..\entity\legend_armor\bust_tabard_named_21_dead.png" left="-57" right="59" top="-53" bottom="55" />
+<sprite id="bust_tabard_named_22_dead" offsetX="6" offsetY="10" f="64FE" ic="FF243838" width="131" height="125" img="..\entity\legend_armor\bust_tabard_named_22_dead.png" left="-57" right="59" top="-53" bottom="55" />
+<sprite id="bust_tabard_named_23_dead" offsetX="6" offsetY="10" f="64FE" ic="FF243839" width="131" height="125" img="..\entity\legend_armor\bust_tabard_named_23_dead.png" left="-57" right="59" top="-53" bottom="55" />
+<sprite id="bust_tabard_named_24_dead" offsetX="6" offsetY="10" f="64FE" ic="FF24383A" width="131" height="125" img="..\entity\legend_armor\bust_tabard_named_24_dead.png" left="-57" right="59" top="-53" bottom="55" />
+<sprite id="bust_tabard_named_25_dead" offsetX="6" offsetY="10" f="64FE" ic="FF24383B" width="131" height="125" img="..\entity\legend_armor\bust_tabard_named_25_dead.png" left="-57" right="59" top="-53" bottom="55" />
+<sprite id="bust_tabard_named_26_dead" offsetX="6" offsetY="10" f="64FE" ic="FF24383C" width="131" height="125" img="..\entity\legend_armor\bust_tabard_named_26_dead.png" left="-57" right="59" top="-53" bottom="55" />
 </brush>

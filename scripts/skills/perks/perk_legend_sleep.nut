@@ -2,11 +2,7 @@ this.perk_legend_sleep <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "perk.legend_sleep";
-		this.m.Name = this.Const.Strings.PerkName.LegendSleep;
-		this.m.Description = this.Const.Strings.PerkDescription.LegendSleep;
-		this.m.Icon = "ui/perks/sleep56.png";
-		this.m.IconDisabled = "ui/perks/sleep56_bw.png"
+		::Const.Perks.setup(this.m, ::Const.Perks.PerkDefs.LegendSleep);
 		this.m.Type = this.Const.SkillType.Perk;
 		this.m.Order = this.Const.SkillOrder.Perk;
 		this.m.IsActive = false;

@@ -2,10 +2,7 @@ this.perk_legend_mind_over_body <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "perk.legend_mind_over_body";
-		this.m.Name = this.Const.Strings.PerkName.LegendMindOverBody;
-		this.m.Description = this.Const.Strings.PerkDescription.LegendMindOverBody;
-		this.m.Icon = "ui/perks/relax_circle.png";
+		::Const.Perks.setup(this.m, ::Const.Perks.PerkDefs.LegendMindOverBody);
 		this.m.Type = this.Const.SkillType.Perk | this.Const.SkillType.StatusEffect;
 		this.m.Order = this.Const.SkillOrder.Last;
 		this.m.IsActive = false;

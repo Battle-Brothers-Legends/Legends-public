@@ -2,10 +2,7 @@ this.perk_legend_horse_movement <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "perk.legend_horse_movment";
-		this.m.Name = this.Const.Strings.PerkName.LegendHorseMovement;
-		this.m.Description = this.Const.Strings.PerkDescription.LegendHorseMovement;
-		this.m.Icon = "ui/perks/perk_23.png";
+		::Const.Perks.setup(this.m, ::Const.Perks.PerkDefs.LegendHorseMovement);
 		this.m.Type = this.Const.SkillType.Perk;
 		this.m.Order = this.Const.SkillOrder.Perk;
 		this.m.IsActive = false;

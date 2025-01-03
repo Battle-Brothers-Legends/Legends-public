@@ -1,0 +1,11 @@
+::mods_hookExactClass("events/events/crisis/civilwar_outro_event", function(o) {
+	local create = o.create;
+	o.create = function() {
+		create();
+		foreach (s in this.m.Screens) {
+			if (s.ID == "A") {
+				s.Text = "[img]gfx/ui/events/event_96.png[/img]You\'re in your tent when %dude% makes an entrance. He speaks bluntly.%SPEECH_ON%Nobles be talking. Big fancy tent setup yonder and they\'re in there.%SPEECH_OFF%Putting your quill pen down, you respond.%SPEECH_ON%Just talking?%SPEECH_OFF%The mercenary shrugs.%SPEECH_ON%It\'s quiet. So they\'re either talking, or killing one another real quiet like.%SPEECH_OFF%You get up and step outside. A brisk air hits you, and on it is the scent of spices and flavors. Looking upwind, you spot the tent. Cooks and chefs are hurrying about with orders of food and other makings. Servants carry platters of meats, vegetables, and fruits. An opulent tent, black with gold embroidering, houses the nobles. Bannermen stand outside. They take no part in the festivities. They\'re mostly playing cards while occasionally glancing at one another. Some are bandaged with blood splotched linens. One man stands on crutches with a haggard, half-cocked knee. You ask %dude% what the news is. He nods toward the scene.%SPEECH_ON%Well, they rolled up about an hour ago while you were checking the maps. We didn\'t want to bother ya, but, well, they seemed intent on staying so, you know.%SPEECH_OFF%You get a good look at the noble tent. Through its opening, you can see the faint glisten of crowned heads passing back and forth. %dude% spits and asks.%SPEECH_ON%Well, who do you think won the war?%SPEECH_OFF%You hock a loogie, spit, and shake your head.%SPEECH_ON%Who gives a shite?%SPEECH_OFF%All that matters to you is that peace means fewer contracts. Perhaps now would be a good time to put up the sword and enjoy your crowns? Or maybe say to hell with all that sentimental crap and just keep pressing forward, leading the company to even greater things?\n\n%OOC%Something burns down inside of you. Something that struggles to be free. Perhaps it is the success you have have had along the way, or the failings that you couldn\'t stop in time. Maybe there is more out there to see?%OOC_OFF%";
+			}
+		}
+	}
+})

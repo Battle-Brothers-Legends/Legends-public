@@ -2,10 +2,7 @@ this.perk_legend_specialist_pickaxe_skill <- this.inherit("scripts/skills/skill"
 	m = {},
 	function create()
 	{
-		this.m.ID = "perk.legend_specialist_pickaxe_skill";
-		this.m.Name = this.Const.Strings.PerkName.LegendSpecialistPickaxeSkill;
-		this.m.Description = this.Const.Strings.PerkDescription.LegendSpecialistPickaxeSkill;
-		this.m.Icon = "ui/perks/pickaxe_02.png";
+		::Const.Perks.setup(this.m, ::Const.Perks.PerkDefs.LegendSpecialistPickaxeSkill);
 		this.m.Type = this.Const.SkillType.Perk;
 		this.m.Order = this.Const.SkillOrder.Perk;
 		this.m.IsActive = false;

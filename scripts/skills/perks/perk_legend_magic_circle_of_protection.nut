@@ -3,10 +3,7 @@ this.perk_legend_magic_circle_of_protection <- this.inherit("scripts/skills/skil
 	m = {},
 	function create()
 	{
-		this.m.ID = "perk.legend_magic_circle_of_protection";
-		this.m.Name = this.Const.Strings.PerkName.LegendMagicCircleOfProtection;
-		this.m.Description = this.Const.Strings.PerkDescription.LegendMagicCircleOfProtection;
-		this.m.Icon = "ui/perks/mage_legend_magic_circle_of_protection_circle.png";
+		::Const.Perks.setup(this.m, ::Const.Perks.PerkDefs.LegendMagicCircleOfProtection);
 		this.m.Type = this.Const.SkillType.Perk;
 		this.m.Order = this.Const.SkillOrder.Perk;
 		this.m.IsActive = false;

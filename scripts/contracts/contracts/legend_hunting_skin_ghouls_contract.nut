@@ -15,7 +15,7 @@ this.legend_hunting_skin_ghouls_contract <- this.inherit("scripts/contracts/cont
 		this.m.TimeOut = this.Time.getVirtualTimeF() + this.World.getTime().SecondsPerDay * 7.0;
 		this.m.DifficultyMult = this.Math.rand(145, 175) * 0.01;
 		this.m.DescriptionTemplates = [
-			"Corpse-eaters... always wretched, malevolent, yet predictable. However there is an intelligence being hinted in these disturbing reports that gives you pause.",	
+			"Corpse-eaters... always wretched, malevolent, yet predictable. However there is an intelligence being hinted in these disturbing reports that gives you pause.",
 			"Skin ghouls are abominations of nature, their pallid forms and insatiable hunger for flesh making them a terror to encounter.",
 			"Skin ghouls are cursed beings, their rotting flesh and ravenous appetites make them a gruesome sight to behold.",
 		];
@@ -73,39 +73,7 @@ this.legend_hunting_skin_ghouls_contract <- this.inherit("scripts/contracts/cont
 				this.World.Assets.addMoney(this.Contract.m.Payment.getInAdvance());
 				local r = this.Math.rand(1, 100);
 				this.Flags.set("StartTime", this.Time.getVirtualTimeF());
-				local playerTile = this.World.State.getPlayer().getTile();
-				local tile = this.Contract.getTileToSpawnLocation(playerTile, 5, 10);
-				local party;
-				party = this.World.FactionManager.getFactionOfType(this.Const.FactionType.Beasts).spawnEntity(tile, "Skin Ghouls", false, this.Const.World.Spawn.LegendSkinGhouls, 200 * this.Contract.getDifficultyMult() * this.Contract.getScaledDifficultyMult());
-				party.setDescription("A horde of terrorizing skin ghouls.");
-				party.setAttackableByAI(false);
-				party.setFootprintSizeOverride(0.75);
-
-				for( local i = 0; i < 2; i = i )
-				{
-					local nearTile = this.Contract.getTileToSpawnLocation(playerTile, 4, 5);
-
-					if (nearTile != null)
-					{
-						this.Const.World.Common.addFootprintsFromTo(nearTile, party.getTile(), this.Const.BeastFootprints, 0.75);
-					}
-
-					i = ++i;
-				}
-
-				this.Contract.m.Target = this.WeakTableRef(party);
-				party.getSprite("banner").setBrush("banner_beasts_01");
-				local c = party.getController();
-				c.getBehavior(this.Const.World.AI.Behavior.ID.Flee).setEnabled(false);
-				c.getBehavior(this.Const.World.AI.Behavior.ID.Attack).setEnabled(false);
-				local roam = this.new("scripts/ai/world/orders/roam_order");
-				roam.setMinRange(2);
-				roam.setMaxRange(8);
-				roam.setAllTerrainAvailable();
-				roam.setTerrain(this.Const.World.TerrainType.Ocean, false);
-				roam.setTerrain(this.Const.World.TerrainType.Shore, false);
-				roam.setTerrain(this.Const.World.TerrainType.Mountains, false);
-				c.addOrder(roam);
+				this.Contract.spawnEnemies();
 				this.Contract.m.Home.setLastSpawnTimeToNow();
 				this.Contract.setScreen("Overview");
 				this.World.Contracts.setActiveContract(this.Contract);
@@ -298,6 +266,35 @@ this.legend_hunting_skin_ghouls_contract <- this.inherit("scripts/contracts/cont
 			}
 
 		});
+	}
+
+	function spawnEnemies() {
+		local playerTile = this.World.State.getPlayer().getTile();
+		local tile = this.getTileToSpawnLocation(playerTile, 5, 10);
+		local party = this.World.FactionManager.getFactionOfType(this.Const.FactionType.Beasts).spawnEntity(tile, "Skin Ghouls", false, this.Const.World.Spawn.LegendSkinGhouls, 200 * this.getDifficultyMult() * this.getScaledDifficultyMult());
+		party.setDescription("A horde of terrorizing skin ghouls.");
+		party.setAttackableByAI(false);
+		party.setFootprintSizeOverride(0.75);
+
+		for( local i = 0; i < 2; i++ ) {
+			local nearTile = this.getTileToSpawnLocation(playerTile, 4, 5);
+			if (nearTile != null)
+				this.Const.World.Common.addFootprintsFromTo(nearTile, party.getTile(), this.Const.BeastFootprints, 0.75);
+		}
+
+		this.m.Target = this.WeakTableRef(party);
+		party.getSprite("banner").setBrush("banner_beasts_01");
+		local c = party.getController();
+		c.getBehavior(this.Const.World.AI.Behavior.ID.Flee).setEnabled(false);
+		c.getBehavior(this.Const.World.AI.Behavior.ID.Attack).setEnabled(false);
+		local roam = this.new("scripts/ai/world/orders/roam_order");
+		roam.setMinRange(2);
+		roam.setMaxRange(8);
+		roam.setAllTerrainAvailable();
+		roam.setTerrain(this.Const.World.TerrainType.Ocean, false);
+		roam.setTerrain(this.Const.World.TerrainType.Shore, false);
+		roam.setTerrain(this.Const.World.TerrainType.Mountains, false);
+		c.addOrder(roam);
 	}
 
 	function onPrepareVariables( _vars )

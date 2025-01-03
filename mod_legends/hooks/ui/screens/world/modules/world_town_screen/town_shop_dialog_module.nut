@@ -113,6 +113,7 @@
 
 				if (removedItem != null)
 				{
+					removedItem.setTransactionPrice(removedItem.getSellPrice());
 					this.World.Assets.addMoney(removedItem.getSellPrice());
 					removedItem.addSettlementToTradeHistory(this.m.Shop.getSettlement());
 					shopStash.add(removedItem);
@@ -177,6 +178,7 @@
 
 					if (targetItem != null && targetItem.item == null)
 					{
+						sourceItem.item.setTransactionPrice(sourceItem.item.getBuyPrice());
 						this.World.Assets.addMoney(-sourceItem.item.getBuyPrice());
 						this.Stash.insert(sourceItem.item, targetItemIdx);
 						shopStash.removeByIndex(sourceItemIdx);
@@ -189,6 +191,7 @@
 					}
 					else if (this.Stash.hasEmptySlot())
 					{
+						sourceItem.item.setTransactionPrice(sourceItem.item.getBuyPrice());
 						this.World.Assets.addMoney(-sourceItem.item.getBuyPrice());
 						this.Stash.add(sourceItem.item);
 						shopStash.removeByIndex(sourceItemIdx);
@@ -211,6 +214,7 @@
 			{
 				if (this.Stash.hasEmptySlot())
 				{
+					sourceItem.item.setTransactionPrice(sourceItem.item.getBuyPrice());
 					this.World.Assets.addMoney(-sourceItem.item.getBuyPrice());
 					this.Stash.add(sourceItem.item);
 					shopStash.removeByIndex(sourceItemIdx);

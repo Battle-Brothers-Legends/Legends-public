@@ -2,10 +2,7 @@ this.perk_legend_net_repair <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "perk.legend_net_repair";
-		this.m.Name = this.Const.Strings.PerkName.LegendNetRepair;
-		this.m.Description = this.Const.Strings.PerkDescription.LegendNetRepair;
-		this.m.Icon = "ui/perks/net_perk.png";
+		::Const.Perks.setup(this.m, ::Const.Perks.PerkDefs.LegendNetRepair);
 		this.m.Type = this.Const.SkillType.Perk;
 		this.m.Order = this.Const.SkillOrder.Perk;
 		this.m.IsActive = false;
@@ -24,7 +21,7 @@ this.perk_legend_net_repair <- this.inherit("scripts/skills/skill", {
 		{
 			if(item.isItemType(this.Const.Items.ItemType.Net))
 			{
-				_properties.MeleeDefense += 10;		
+				_properties.MeleeDefense += 10;
 			}
 
 		}

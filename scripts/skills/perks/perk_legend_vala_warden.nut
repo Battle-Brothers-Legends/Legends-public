@@ -5,10 +5,7 @@ this.perk_legend_vala_warden <- this.inherit("scripts/skills/skill", {
 	},
 	function create()
 	{
-		this.m.ID = "perk.legend_vala_warden";
-		this.m.Name = "Warden";
-		this.m.Name = this.Const.Strings.PerkName.LegendValaWarden;
-		this.m.Description = this.Const.Strings.PerkDescription.LegendValaWarden;
+		::Const.Perks.setup(this.m, ::Const.Perks.PerkDefs.LegendValaWarden);
 		this.m.Type = this.Const.SkillType.Perk | this.Const.SkillType.StatusEffect;
 		this.m.Order = this.Const.SkillOrder.VeryLast + 10;
 		this.m.IsSerialized = true;

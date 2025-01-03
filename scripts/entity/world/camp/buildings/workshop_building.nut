@@ -340,23 +340,16 @@ this.workshop_building <- this.inherit("scripts/entity/world/camp/camp_building"
 	function getUpdateText()
 	{
 		if (this.m.PointsNeeded == 0)
-		{
 			return "No salvage queued";
-		}
+
+		if (this.getRequiredSupplies() == 0)
+			return "Salvaged ... 100%";
 
 		local percent = this.Math.floor(this.m.PointsSalvaged / this.m.PointsNeeded * 10000) / 100.0;
-
-		if (percent >= 100)
-		{
-			return "Salvaged ... 100%";
-		}
-
 		local text = "Salvaged ... " + percent + "%";
 
 		if (this.World.Assets.getArmorPartsF() == this.World.Assets.getMaxArmorParts())
-		{
 			return text + " (At max tools!)";
-		}
 
 		return text;
 	}

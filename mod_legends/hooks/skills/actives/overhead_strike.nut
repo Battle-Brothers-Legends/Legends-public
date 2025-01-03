@@ -14,7 +14,7 @@
 			});
 		}
 
-		if (this.getContainer().getActor().getCurrentProperties().IsSpecializedInGreatSwords)
+		if (this.getContainer().getActor().getCurrentProperties().IsSpecializedInSwords)
 		{
 			tooltip.push({
 				id = 6,
@@ -29,7 +29,7 @@
 
 	o.onAfterUpdate = function ( _properties )
 	{
-		this.m.FatigueCostMult = _properties.IsSpecializedInGreatSwords ? this.Const.Combat.WeaponSpecFatigueMult : 1.0;
+		this.m.FatigueCostMult = _properties.IsSpecializedInSwords ? this.Const.Combat.WeaponSpecFatigueMult : 1.0;
 	}
 
 	o.onUse = function ( _user, _targetTile )
@@ -62,7 +62,7 @@
 		onAnySkillUsed( _skill, _targetEntity, _properties );
 		if (_skill == this)
 		{
-			if (this.getContainer().getActor().getCurrentProperties().IsSpecializedInGreatSwords)
+			if (this.getContainer().getActor().getCurrentProperties().IsSpecializedInSwords)
 			{
 				_properties.MeleeSkill += 5;
 			}

@@ -54,52 +54,39 @@ this.legend_prosthetic_foot_item <- this.inherit("scripts/items/item", {
 		}
 
 		result.extend([
-		{
-			id = 7,
-			type = "text",
-			icon = "ui/icons/action_points.png",
-			text = "Removes the [color=" + this.Const.UI.Color.NegativeValue + "]1[/color] Additional Action Point per tile moved penalty from Maimed Foot Injury"
-		},
-		{
-			id = 8,
-			type = "text",
-			icon = "ui/icons/initiative.png",
-			text = "Reduces the penalty of Missing Foot to [color=" + this.Const.UI.Color.NegativeValue + "]-10%[/color] Initiative"
-		},
-		{
-			id = 9,
-			type = "text",
-			icon = "ui/icons/special.png",
-			text = "Builds up [color=" + this.Const.UI.Color.NegativeValue + "]3[/color] more fatigue for each tile travelled"
-		}
+			{
+				id = 7,
+				type = "text",
+				icon = "ui/icons/action_points.png",
+				text = "Removes the [color=" + this.Const.UI.Color.NegativeValue + "]1[/color] Additional Action Point per tile moved penalty from Maimed Foot Injury"
+			},
+			{
+				id = 8,
+				type = "text",
+				icon = "ui/icons/initiative.png",
+				text = "Reduces the penalty of Missing Foot to [color=" + this.Const.UI.Color.NegativeValue + "]-10%[/color] Initiative"
+			},
+			{
+				id = 9,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = "Builds up [color=" + this.Const.UI.Color.NegativeValue + "]3[/color] more fatigue for each tile travelled"
+			},
+			{
+				id = 65,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = "Right-click or drag onto the currently selected character in order to apply it. This item will be consumed in the process."
+			},
+			{
+				id = 65,
+				type = "text",
+				icon = "ui/icons/warning.png",
+				text = "Can only be used if this character has a maimed foot"
+			}
 		]);
 
-		if (!("getActor" in this.getContainer())) {
-			return result;
-		}
-
-		if (this.getContainer().getActor().getSkills().hasSkill("injury.maimed_foot"))
-		{
-			result.push({
-				id = 65,
-				type = "text",
-				text = "Right-click or drag onto the currently selected character in order to apply it. This item will be consumed in the process."
-			});
-		}
-		else
-		{
-			result.push({
-				id = 65,
-				type = "text",
-				text = "Item can not be used, because this character still has both his feet"
-			});
-		}
 		return result;
-	}
-
-	function isUsable()
-	{
-		return this.getContainer().getActor().getSkills().hasSkill("injury.maimed_foot") && this.m.IsUsable;
 	}
 
 	function playInventorySound( _eventType )
@@ -110,11 +97,13 @@ this.legend_prosthetic_foot_item <- this.inherit("scripts/items/item", {
 	function onUse( _actor, _item = null )
 	{
 		this.Sound.play("sounds/combat/armor_leather_impact_03.wav", this.Const.Sound.Volume.Inventory);
-		local actor = this.getContainer().getActor();
-		actor.getSkills().add(this.new("scripts/skills/traits/legend_prosthetic_foot"));
-		actor.getSkills().removeByID("injury.maimed_foot");
-
-		return true;
+		if (_actor.getSkills().hasSkill("injury.maimed_foot"))
+		{
+			_actor.getSkills().add(this.new("scripts/skills/traits/legend_prosthetic_foot"));
+			_actor.getSkills().removeByID("injury.maimed_foot");
+			return true;
+		}
+		return false;
 	}
 });
 

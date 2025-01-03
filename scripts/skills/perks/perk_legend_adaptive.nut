@@ -2,10 +2,7 @@ this.perk_legend_adaptive <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "perk.legend_adaptive";
-		this.m.Name = this.Const.Strings.PerkName.LegendAdaptive;
-		this.m.Description = this.Const.Strings.PerkDescription.LegendAdaptive;
-		this.m.Icon = "ui/perks/adaptive_circle.png";
+		::Const.Perks.setup(this.m, ::Const.Perks.PerkDefs.LegendAdaptive);
 		this.m.Type = this.Const.SkillType.Perk;
 		this.m.Order = this.Const.SkillOrder.Perk;
 		this.m.IsActive = false;
@@ -16,11 +13,11 @@ this.perk_legend_adaptive <- this.inherit("scripts/skills/skill", {
 	function onAdded()
 	{
 		if (!this.m.IsNew || this.m.IsForPerkTooltip) return; // m.IsForPerkTooltip will be true if the instance of this perk is just a dummy being used to generate unactivated perk tooltip hints
-		
+
 		this.m.IsNew = false;
 		local possibleTrees = this.getPossibleTrees();
 		this.chooseAndAddTree(possibleTrees);
-		
+
 	}
 
 	// When the Perk is yet to be activated, show in the Tooltip which Perk Group will be awarded
@@ -68,10 +65,10 @@ this.perk_legend_adaptive <- this.inherit("scripts/skills/skill", {
 		local itemtype = null;
 		local newTree = null; // newTree may be a single Tree or an array of Trees
 		local actor = this.getContainer().getActor();
-		
+
 
 		// First, try to give a new Tree based on the equipped mainhand item
-		if (actor.getItems().getItemAtSlot(this.Const.ItemSlot.Mainhand) != null) 
+		if (actor.getItems().getItemAtSlot(this.Const.ItemSlot.Mainhand) != null)
 		{
 			item = actor.getMainhandItem();
 			if (item.isItemType(this.Const.Items.ItemType.Weapon))
@@ -126,7 +123,7 @@ this.perk_legend_adaptive <- this.inherit("scripts/skills/skill", {
 				this.Const.Perks.TrainedTree
 			];
 		}
-		
+
 		newTree = this.getOnlyNonExistingTrees(newTree); // filter out Trees this character already has
 
 		// Give PhilosophyMagicTree if there are still no possible Trees
@@ -164,7 +161,7 @@ this.perk_legend_adaptive <- this.inherit("scripts/skills/skill", {
 	}
 
 	// Give the character the new Tree.
-	// If _newTree is an array, randomly choose a Tree from the array 
+	// If _newTree is an array, randomly choose a Tree from the array
 	// _newTree: either a single Tree or an array of Trees
 	function chooseAndAddTree( _newTree )
 	{
@@ -178,12 +175,12 @@ this.perk_legend_adaptive <- this.inherit("scripts/skills/skill", {
 		// Otherwise, randomly select one from the array
 		else
 		{
-			if(_newTree.len() > 0) 
+			if(_newTree.len() > 0)
 			{
 				local randomIndex = this.Math.rand(0, _newTree.len()-1);
 				local randomTree = _newTree[randomIndex];
 				actor.getBackground().addPerkGroup(randomTree.Tree);
-			} 
+			}
 			else
 			{
 				this.logWarning("Adaptive Perk had no Tree to add");
@@ -214,8 +211,8 @@ this.perk_legend_adaptive <- this.inherit("scripts/skills/skill", {
 
 			//Net
 			case "tool.throwing_net":
-				return this.Const.Perks.BeastClassTree;        
-        
+				return this.Const.Perks.BeastClassTree;
+
 			//Healer
 			case "weapon.acid_flask":
 				return this.Const.Perks.HealerClassTree;
@@ -282,9 +279,9 @@ this.perk_legend_adaptive <- this.inherit("scripts/skills/skill", {
 				case _item.getID() == "weapon.militia_spear" || _item.getID() == "weapon.legend_wooden_spear" || _item.getID() == "weapon.ancient_spear":
 					return this.Const.Perks.MilitiaClassTree;
 
-			//Greatsword				
+			//Greatsword
 				case _item.isWeaponType(this.Const.Items.WeaponType.Sword) && _item.isItemType(this.Const.Items.ItemType.TwoHanded):
-					return this.Const.Perks.GreatSwordTree;
+					return this.Const.Perks.TwoHandedTree;
 
 			// WeaponTypes
 				default:
@@ -338,21 +335,21 @@ this.perk_legend_adaptive <- this.inherit("scripts/skills/skill", {
 		}
 
 		if (armor_weight >= -15 && armor_weight <= -1)
-		{	
+		{
 			// Attempt to give light armor tree if in range or naked
 			newTree = this.getOnlyNonExistingTrees(this.Const.Perks.LightArmorTree);
 			if (newTree != null && newTree.len()>0) return newTree;
 		}
 
 		if (armor_weight >= -35 && armor_weight < -15)
-		{	
+		{
 			// Attempt to give medium armor tree
 			newTree = this.getOnlyNonExistingTrees(this.Const.Perks.MediumArmorTree);
 			if (newTree != null && newTree.len()>0) return newTree;
 		}
 
 		if (armor_weight < -35)
-		{	
+		{
 			// Attempt to give heavy armor tree
 			newTree = this.getOnlyNonExistingTrees(this.Const.Perks.HeavyArmorTree);
 			if (newTree != null && newTree.len()>0) return newTree;

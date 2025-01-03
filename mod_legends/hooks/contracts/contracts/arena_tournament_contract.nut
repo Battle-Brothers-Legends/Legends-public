@@ -49,25 +49,16 @@
 		else
 		{
 			local nameList = [];
-			if ( (item.m.ItemType & this.Const.Items.ItemType.Named) != 0) //if base layer named
-			{
-				nameList.push(item)
-			}
-			foreach(i in item.getUpgrades()) //if upgrade named
-			{
-				if (i != 1)
-				{
+			if ((item.m.ItemType & this.Const.Items.ItemType.Named) != 0) //if base layer named
+				nameList.push(item);
+			foreach(i, type in item.getUpgrades()) { //if upgrade named
+				if (type != 1)
 					continue;
-				}
-
 				local u = item.getUpgrade(i);
-				if (u != null && u.isItemType(this.Const.Items.ItemType.Named))
-				{
-					nameList.push(u)
-				}
+				if (u != null && u.isNamed())
+					nameList.push(u);
 			}
-			local idx = this.Math.rand(0, nameList.len() - 1);
-			local item = nameList[idx];
+			local item = nameList[this.Math.rand(0, nameList.len() - 1)];
 			this.m.Flags.set("PrizeName", item.getName());
 			cnh = item.ClassNameHash;
 		}
@@ -429,8 +420,7 @@
 	local onPrepareVariables = o.onPrepareVariables;
 	o.onPrepareVariables = function ( _vars )
 	{
-		onPrepareVariables();
-
+		onPrepareVariables(_vars);
 		this.prepareBroVariables(5, _vars)
 	}
 });

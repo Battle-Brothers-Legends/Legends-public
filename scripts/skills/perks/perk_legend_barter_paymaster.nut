@@ -2,10 +2,7 @@ this.perk_legend_barter_paymaster <- this.inherit("scripts/skills/skill", {
 
 	function create()
 	{
-		this.m.ID = "perk.legend_barter_paymaster";
-		this.m.Name = this.Const.Strings.PerkName.LegendPaymaster;
-		this.m.Description = this.Const.Strings.PerkDescription.LegendPaymaster;
-		this.m.Icon = "ui/perks/BarterT1.png";
+		::Const.Perks.setup(this.m, ::Const.Perks.PerkDefs.LegendPaymaster);
 		this.m.Type = this.Const.SkillType.Perk;
 		this.m.Order = this.Const.SkillOrder.Perk;
 		this.m.IsActive = false;
@@ -16,11 +13,8 @@ this.perk_legend_barter_paymaster <- this.inherit("scripts/skills/skill", {
 
 	function onAdded()
 	{
-					if (this.World.State.getPlayer() == null)
-			{
-				return;
-			}
-
+		if (this.World.State.getPlayer() == null)
+			return;
 		this.World.State.getPlayer().calculateBarterMult();
 		this.World.State.getPlayer().calculateWageModifier();
 	}
@@ -28,14 +22,8 @@ this.perk_legend_barter_paymaster <- this.inherit("scripts/skills/skill", {
 	function onRemoved()
 	{
 		if (this.World.State.getPlayer() == null)
-		{
 			return;
-		}
-
 		this.World.State.getPlayer().calculateWageModifier();
 		this.World.State.getPlayer().calculateBarterMult();
-
 	}
-
-
 });

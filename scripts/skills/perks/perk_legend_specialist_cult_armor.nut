@@ -2,10 +2,8 @@ this.perk_legend_specialist_cult_armor <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "perk.legend_specialist_cult_armor";
-		this.m.Name = this.Const.Strings.PerkName.LegendSpecCultArmor;
+		::Const.Perks.setup(this.m, ::Const.Perks.PerkDefs.LegendSpecCultArmor);
 		this.m.Description = "This character is gaining increased Maximum Damage because of adjacent opponents.";
-		this.m.Icon = "ui/perks/penance_circle.png";
 		this.m.Type = this.Const.SkillType.Perk | this.Const.SkillType.StatusEffect;
 		this.m.Order = this.Const.SkillOrder.Perk;
 		this.m.IsActive = false;

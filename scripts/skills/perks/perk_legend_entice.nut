@@ -2,11 +2,7 @@ this.perk_legend_entice <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "perk.legend_entice";
-		this.m.Name = this.Const.Strings.PerkName.LegendEntice;
-		this.m.Description = this.Const.Strings.PerkDescription.LegendEntice;
-		this.m.Icon = "skills/entice_circle_56.png";
-		this.m.IconDisabled = "ui/perks/entice_circle_56_bw.png"
+		::Const.Perks.setup(this.m, ::Const.Perks.PerkDefs.LegendEntice);
 		this.m.Type = this.Const.SkillType.Perk;
 		this.m.Order = this.Const.SkillOrder.Perk;
 		this.m.IsActive = false;

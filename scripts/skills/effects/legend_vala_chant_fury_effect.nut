@@ -1,5 +1,7 @@
 this.legend_vala_chant_fury_effect <- this.inherit("scripts/skills/effects/legend_vala_chant", {
-	m = {},
+	m = {
+		isPerformingPayback = false
+	},
 	function create()
 	{
 		this.legend_vala_chant.create();
@@ -41,7 +43,7 @@ this.legend_vala_chant_fury_effect <- this.inherit("scripts/skills/effects/legen
 		{
 			return 0.75;
 		}
-		
+
 		return 1.0;
 	}
 
@@ -82,63 +84,66 @@ this.legend_vala_chant_fury_effect <- this.inherit("scripts/skills/effects/legen
 		];
 	}
 
-	function onAnySkillUsed( _skill, _targetEntity, _properties )
-	{
-		if (!::Tactical) return;
-
-		if (!::Tactical.isActive()) return;
-
-		if (::Tactical.TurnSequenceBar.isActiveEntity(this.getContainer().getActor()))
-			return;
-
-		if (!this.checkEntities() || !this.isInRange())
-			return;
-		
-		local distance = this.getContainer().getActor().getTile().getDistanceTo(this.m.Vala.getTile());
-		local paybackdamage = this.getPayBackDamage();
-		
-		_properties.DamageTotalMult *= paybackdamage * 0.01;
-	}
-
 	function onDamageReceived( _attacker, _damageHitpoints, _damageArmor )
 	{
-		if (_attacker == null || _attacker.isAlliedWith(this.getContainer().getActor()) || ::Tactical.TurnSequenceBar.isActiveEntity(this.getContainer().getActor()) || this.getContainer().getActor().getTile().getDistanceTo(_attacker.getTile()) != 1)
+		local actor = this.getContainer().getActor();
+		if (_attacker == null || _attacker.isAlliedWith(actor) || ::Tactical.TurnSequenceBar.isActiveEntity(actor) || actor.getTile().getDistanceTo(_attacker.getTile()) != 1)
 			return;
 
-		if (_damageHitpoints >= this.getContainer().getActor().getHitpoints())
+		if (_damageHitpoints >= actor.getHitpoints())
+			return;
+
+		if (!actor.isAlive() || actor.isDying())
 			return;
 
 		if (!this.checkEntities() || !this.isInRange())
 			return;
-		
+
 		local chance = this.getPayBackChance();
 
 		if (this.Math.rand(1, 100) <= chance)
 		{
-			local payback = this.getContainer().getActor().getSkills().getAttackOfOpportunity();
-
+			local payback = this.getContainer().getAttackOfOpportunity();
 			if (payback != null)
 			{
 				this.getContainer().setBusy(true);
 				local attackinfo = {
-					User = this.getContainer().getActor(),
+					User = actor,
 					Skill = payback,
 					TargetTile = _attacker.getTile(),
-					Container = this.getContainer()
+					Container = this.getContainer(),
 				};
-				this.Time.scheduleEvent(this.TimeUnit.Virtual, this.Const.Combat.RiposteDelay, this.onPerformPaypack, attackinfo);
+				this.Time.scheduleEvent(this.TimeUnit.Virtual, this.Const.Combat.RiposteDelay, this.onPerformPaypack.bindenv(this), attackinfo);
 			}
 		}
+	}
+
+	function onAnySkillUsed( _skill, _targetEntity, _properties )
+	{
+		local actor = this.getContainer().getActor();
+
+		if (!actor.isPlacedOnMap() || ("State" in this.Tactical) && this.Tactical.State.isBattleEnded())
+			return;
+
+		if (!this.checkEntities() || !this.isInRange())
+			return;
+
+		if (this.Tactical.TurnSequenceBar.getActiveEntity() != null && this.Tactical.TurnSequenceBar.getActiveEntity().getID() == this.getContainer().getActor().getID())
+			return;
+
+		if (this.m.isPerformingPayback == true)
+			_properties.DamageTotalMult *= paybackdamage * 0.01;
 	}
 
 	function onPerformPaypack(_attackinfo)
 	{
 		_attackinfo.Container.setBusy(false);
-
+		this.m.isPerformingPayback = true;
 		if (_attackinfo.User.isAlive() && _attackinfo.TargetTile.getEntity().isAlive())
 		{
 			return _attackinfo.Skill.attackEntity(_attackinfo.User, _attackinfo.TargetTile.getEntity());
 		}
+		this.m.isPerformingPayback = false;
 	}
 
 	function updateEffect(_v)
@@ -165,13 +170,13 @@ this.legend_vala_chant_fury_effect <- this.inherit("scripts/skills/effects/legen
 		if (!this.checkEntities())
 		{
 			this.updateEffect(false);
-			return
+			return;
 		}
 
 		if (!this.isInRange())
 		{
 			this.updateEffect(false);
-			return 
+			return;
 		}
 
 		if (this.getContainer().getActor().getID() != this.m.Vala.getID())
@@ -188,13 +193,13 @@ this.legend_vala_chant_fury_effect <- this.inherit("scripts/skills/effects/legen
 		if (!this.checkEntities())
 		{
 			this.updateEffect(false);
-			return
+			return;
 		}
 
 		if (!this.isInRange())
 		{
 			this.updateEffect(false);
-			return 
+			return;
 		}
 
 		local distance = this.getContainer().getActor().getTile().getDistanceTo(this.m.Vala.getTile());

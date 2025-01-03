@@ -8,11 +8,6 @@ this.legend_catapult_item <- this.inherit("scripts/items/accessory/accessory", {
 				"sounds/enemies/unhold_idle_01.wav"
 		]
 	},
-	function isAllowedInBag(_actor = null)
-	{
-		return false;
-	}
-
 	function getScript()
 	{
 		return this.m.Script;
@@ -67,6 +62,7 @@ this.legend_catapult_item <- this.inherit("scripts/items/accessory/accessory", {
 		this.m.Description = "A war machine, can be constructed in battle to inflict damage from afar.";
 		this.m.SlotType = this.Const.ItemSlot.Accessory;
 		this.m.IsDroppedAsLoot = true;
+		this.m.IsAllowedInBag = false;
 		this.m.ShowOnCharacter = false;
 		this.m.IsChangeableInBattle = false;
 		this.m.Value = 10000;

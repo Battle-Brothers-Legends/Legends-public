@@ -83,7 +83,7 @@ this.legend_huge_quiver_of_bolts <- this.inherit("scripts/items/ammo/ammo", {
 			id = 7,
 			type = "text",
 			icon = "ui/icons/fatigue.png",
-			text = "[color=" + this.Const.UI.Color.NegativeValue + "]-" + this.m.StaminaModifier + "[/color] fatigue"
+			text = "[color=" + this.Const.UI.Color.NegativeValue + "]" + this.m.StaminaModifier + "[/color] fatigue"
 		});
 
 		return result;

@@ -131,24 +131,7 @@ this.legend_bandit_army_contract <- this.inherit("scripts/contracts/contract", {
 				this.Contract.setScreen("Overview");
 				this.World.Contracts.setActiveContract(this.Contract);
 				this.Flags.set("BribeEventDone", false);
-				local party;
-				local tile;
-				local tile = this.Contract.m.Destination.getTile();
-				party = this.World.FactionManager.getFactionOfType(this.Const.FactionType.Bandits).spawnEntity(tile, "Raiding party", false, this.Const.World.Spawn.BanditRoamers, 80 * this.Contract.getDifficultyMult() * this.Contract.getScaledDifficultyMult());
-				party.getSprite("banner").setBrush(this.Contract.m.Destination.getBanner());
-				party.setAttackableByAI(false);
-				this.Contract.m.Target = this.WeakTableRef(party);
-				local c = party.getController();
-				local intercept = this.new("scripts/ai/world/orders/intercept_order");
-				intercept.setTarget(this.World.State.getPlayer());
-				c.addOrder(intercept);
-				c.getBehavior(this.Const.World.AI.Behavior.ID.Flee).setEnabled(true);
-				c.getBehavior(this.Const.World.AI.Behavior.ID.Attack).setEnabled(true);
-				party.setDescription("A group of brigands, more coordinated than usual.");
-				party.getLoot().Money = this.Math.rand(150, 300);
-				party.getLoot().ArmorParts = this.Math.rand(0, 20);
-				party.getLoot().Medicine = this.Math.rand(0, 10);
-				party.getLoot().Ammo = this.Math.rand(0, 30);
+				this.Contract.spawnRaidingParty();
 			}
 
 		});
@@ -488,10 +471,7 @@ this.legend_bandit_army_contract <- this.inherit("scripts/contracts/contract", {
 					function getResult()
 					{
 						this.Flags.set("BribeEventDone", true);
-						local playerTile = this.World.State.getPlayer().getTile();
-						local party;
-						party = this.World.FactionManager.getFactionOfType(this.Const.FactionType.Settlement).spawnEntity(playerTile, "Bribed Raiders", false, this.Const.World.Spawn.BanditArmy, 50 * this.Contract.getDifficultyMult() * this.Contract.getScaledDifficultyMult());
-						party.setDescription("Those who like gold above all");
+						this.Contract.spawnBribedParty();
 						this.World.Contracts.showCombatDialog();
 						return 0;
 					}
@@ -858,6 +838,33 @@ this.legend_bandit_army_contract <- this.inherit("scripts/contracts/contract", {
 			}
 		}
 		return false;
+	}
+
+	function spawnRaidingParty() {
+		local tile = this.m.Destination.getTile();
+		local party = this.World.FactionManager.getFactionOfType(this.Const.FactionType.Bandits).spawnEntity(tile, "Raiding party", false, this.Const.World.Spawn.BanditRoamers, 80 * this.getDifficultyMult() * this.getScaledDifficultyMult());
+		party.getSprite("banner").setBrush(this.m.Destination.getBanner());
+		party.setAttackableByAI(false);
+		this.m.Target = this.WeakTableRef(party);
+		local c = party.getController();
+		local intercept = this.new("scripts/ai/world/orders/intercept_order");
+		intercept.setTarget(this.World.State.getPlayer());
+		c.addOrder(intercept);
+		c.getBehavior(this.Const.World.AI.Behavior.ID.Flee).setEnabled(true);
+		c.getBehavior(this.Const.World.AI.Behavior.ID.Attack).setEnabled(true);
+		party.setDescription("A group of brigands, more coordinated than usual.");
+		party.getLoot().Money = this.Math.rand(150, 300);
+		party.getLoot().ArmorParts = this.Math.rand(0, 20);
+		party.getLoot().Medicine = this.Math.rand(0, 10);
+		party.getLoot().Ammo = this.Math.rand(0, 30);
+		return party;
+	}
+
+	function spawnBribedParty() {
+		local playerTile = this.World.State.getPlayer().getTile();
+		local party = this.World.FactionManager.getFactionOfType(this.Const.FactionType.Settlement).spawnEntity(playerTile, "Bribed Raiders", false, this.Const.World.Spawn.BanditArmy, 50 * this.getDifficultyMult() * this.getScaledDifficultyMult());
+		party.setDescription("Those who like gold above all");
+		return party;
 	}
 
 	function onSerialize( _out )

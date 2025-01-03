@@ -16,17 +16,14 @@
 	}
 
 	local onUpdateDraftList = o.onUpdateDraftList;
-	o.onUpdateDraftList = function ( _list, _gender = null )
+	o.onUpdateDraftList = function ( _list )
 	{
-		_gender = ::Legends.Mod.ModSettings.getSetting("GenderEquality").getValue() != "Disabled";
 		_list.push("poacher_background");
 		_list.push("poacher_background");
 		_list.push("legend_taxidermist_background");
 
 		if (this.Math.rand(0, 9) == 1)
-		{
 			_list.push("legend_master_archer_background");
-		}
 
 		// todo delete it - chopeks
 //		if(this.LegendsMod.Configs().LegendMagicEnabled())

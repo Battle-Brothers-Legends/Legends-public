@@ -264,6 +264,9 @@ this.healer_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 
 		foreach (b in this.m.InjuriesHealed)
 		{
+			if (b == null)
+				continue;
+			local ID = b.getID();
 			if (b.getIcon() != null && b.getName() != null)
 			{
 				res.push({

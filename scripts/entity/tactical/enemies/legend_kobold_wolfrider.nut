@@ -8,7 +8,7 @@ this.legend_kobold_wolfrider <- this.inherit("scripts/entity/tactical/legend_kob
 	{
 		this.m.Type = this.Const.EntityType.KoboldWolfrider;
 		this.m.XP = this.Const.Tactical.Actor.KoboldWolfrider.XP;
-		this.kobold.create();
+		this.legend_kobold.create();
 		this.m.ShakeLayers = [
 			[
 				"wolf",
@@ -286,7 +286,7 @@ this.legend_kobold_wolfrider <- this.inherit("scripts/entity/tactical/legend_kob
 	function spawnGoblin( _info )
 	{
 		this.Sound.play(this.m.Sound[this.Const.Sound.ActorEvent.Other1][this.Math.rand(0, this.m.Sound[this.Const.Sound.ActorEvent.Other1].len() - 1)], this.Const.Sound.Volume.Actor * this.m.SoundVolume[this.Const.Sound.ActorEvent.Other1], _info.Tile.Pos, 1.0);
-		local entity = this.Tactical.spawnEntity("scripts/entity/tactical/enemies/kobold_fighter", _info.Tile.Coords.X, _info.Tile.Coords.Y);
+		local entity = this.Tactical.spawnEntity("scripts/entity/tactical/enemies/legend_kobold_fighter", _info.Tile.Coords.X, _info.Tile.Coords.Y);
 
 		if (entity != null)
 		{

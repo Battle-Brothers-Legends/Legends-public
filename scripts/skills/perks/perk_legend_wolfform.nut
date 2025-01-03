@@ -2,11 +2,7 @@ this.perk_legend_wolfform <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "perk.legend_wolfform";
-		this.m.Name = this.Const.Strings.PerkName.LegendWolfform;
-		this.m.Description = this.Const.Strings.PerkDescription.LegendWolfform;
-		this.m.Icon = "ui/perks/wolf_circle.png";
-		this.m.IconDisabled = "ui/perks/wolf_circle_bw.png"
+		::Const.Perks.setup(this.m, ::Const.Perks.PerkDefs.LegendWolfform);
 		this.m.Type = this.Const.SkillType.Perk;
 		this.m.Order = this.Const.SkillOrder.Perk;
 		this.m.IsActive = false;

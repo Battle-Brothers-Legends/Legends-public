@@ -87,79 +87,7 @@ this.legend_hunting_greenwood_schrats_contract <- this.inherit("scripts/contract
 				}
 
 				this.Flags.set("StartTime", this.Time.getVirtualTimeF());
-				local disallowedTerrain = [];
-
-				for( local i = 0; i < this.Const.World.TerrainType.COUNT; i = i )
-				{
-					if (i == this.Const.World.TerrainType.Forest || i == this.Const.World.TerrainType.LeaveForest || i == this.Const.World.TerrainType.AutumnForest)
-					{
-					}
-					else
-					{
-						disallowedTerrain.push(i);
-					}
-
-					i = ++i;
-				}
-
-				local playerTile = this.World.State.getPlayer().getTile();
-				local mapSize = this.World.getMapSize();
-				local x = this.Math.max(3, playerTile.SquareCoords.X - 11);
-				local x_max = this.Math.min(mapSize.X - 3, playerTile.SquareCoords.X + 11);
-				local y = this.Math.max(3, playerTile.SquareCoords.Y - 11);
-				local y_max = this.Math.min(mapSize.Y - 3, playerTile.SquareCoords.Y + 11);
-				local numWoods = 0;
-
-				while (x <= x_max)
-				{
-					while (y <= y_max)
-					{
-						local tile = this.World.getTileSquare(x, y);
-
-						if (tile.Type == this.Const.World.TerrainType.Forest || tile.Type == this.Const.World.TerrainType.LeaveForest || tile.Type == this.Const.World.TerrainType.AutumnForest)
-						{
-							numWoods = ++numWoods;
-						}
-
-						y = ++y;
-					}
-
-					x = ++x;
-				}
-
-				local tile = this.Contract.getTileToSpawnLocation(playerTile, numWoods >= 12 ? 6 : 3, 11, disallowedTerrain);
-				local party;
-				party = this.World.FactionManager.getFactionOfType(this.Const.FactionType.Beasts).spawnEntity(tile, "Heartwood Schrats", false, this.Const.World.Spawn.LegendGreenwoodSchrat, 200 * this.Contract.getDifficultyMult() * this.Contract.getScaledDifficultyMult());
-				party.setDescription("A creature of bark and wood, blending between trees and shambling slowly, its roots digging through the soil.");
-				party.setAttackableByAI(false);
-				party.setFootprintSizeOverride(0.85);
-
-				for( local i = 0; i < 2; i = i )
-				{
-					local nearTile = this.Contract.getTileToSpawnLocation(playerTile, 4, 7, disallowedTerrain);
-
-					if (nearTile != null)
-					{
-						this.Const.World.Common.addFootprintsFromTo(nearTile, party.getTile(), this.Const.BeastFootprints, 0.85);
-					}
-
-					i = ++i;
-				}
-
-				this.Contract.m.Target = this.WeakTableRef(party);
-				party.getSprite("banner").setBrush("banner_beasts_01");
-				local c = party.getController();
-				c.getBehavior(this.Const.World.AI.Behavior.ID.Flee).setEnabled(false);
-				local roam = this.new("scripts/ai/world/orders/roam_order");
-				roam.setPivot(this.Contract.m.Home);
-				roam.setMinRange(5);
-				roam.setMaxRange(10);
-				roam.setNoTerrainAvailable();
-				roam.setTerrain(this.Const.World.TerrainType.Forest, true);
-				roam.setTerrain(this.Const.World.TerrainType.SnowyForest, true);
-				roam.setTerrain(this.Const.World.TerrainType.LeaveForest, true);
-				roam.setTerrain(this.Const.World.TerrainType.AutumnForest, true);
-				c.addOrder(roam);
+				this.Contract.spawnEnemies();
 				this.Contract.m.Home.setLastSpawnTimeToNow();
 				this.Contract.setScreen("Overview");
 				this.World.Contracts.setActiveContract(this.Contract);
@@ -499,6 +427,61 @@ this.legend_hunting_greenwood_schrats_contract <- this.inherit("scripts/contract
 			}
 
 		});
+	}
+
+	function spawnEnemies() {
+		local disallowedTerrain = [];
+		for( local i = 0; i < this.Const.World.TerrainType.COUNT; i++ ) {
+			if (i == this.Const.World.TerrainType.Forest || i == this.Const.World.TerrainType.LeaveForest || i == this.Const.World.TerrainType.AutumnForest)
+				continue;
+			disallowedTerrain.push(i);
+		}
+
+		local playerTile = this.World.State.getPlayer().getTile();
+		local mapSize = this.World.getMapSize();
+		local x = this.Math.max(3, playerTile.SquareCoords.X - 11);
+		local x_max = this.Math.min(mapSize.X - 3, playerTile.SquareCoords.X + 11);
+		local y = this.Math.max(3, playerTile.SquareCoords.Y - 11);
+		local y_max = this.Math.min(mapSize.Y - 3, playerTile.SquareCoords.Y + 11);
+		local numWoods = 0;
+
+		while (x <= x_max) {
+			while (y <= y_max) {
+				local tile = this.World.getTileSquare(x, y);
+				if (tile.Type == this.Const.World.TerrainType.Forest || tile.Type == this.Const.World.TerrainType.LeaveForest || tile.Type == this.Const.World.TerrainType.AutumnForest)
+					numWoods = ++numWoods;
+				y++;
+			}
+			x++;
+		}
+
+		local tile = this.getTileToSpawnLocation(playerTile, numWoods >= 12 ? 6 : 3, 11, disallowedTerrain);
+		local party= this.World.FactionManager.getFactionOfType(this.Const.FactionType.Beasts).spawnEntity(tile, "Heartwood Schrats", false, this.Const.World.Spawn.LegendGreenwoodSchrat, 200 * this.getDifficultyMult() * this.getScaledDifficultyMult());
+		party.setDescription("A creature of bark and wood, blending between trees and shambling slowly, its roots digging through the soil.");
+		party.setAttackableByAI(false);
+		party.setFootprintSizeOverride(0.85);
+
+		for( local i = 0; i < 2; i++ ) {
+			local nearTile = this.getTileToSpawnLocation(playerTile, 4, 7, disallowedTerrain);
+			if (nearTile != null)
+				this.Const.World.Common.addFootprintsFromTo(nearTile, party.getTile(), this.Const.BeastFootprints, 0.85);
+		}
+
+		this.m.Target = this.WeakTableRef(party);
+		party.getSprite("banner").setBrush("banner_beasts_01");
+		local c = party.getController();
+		c.getBehavior(this.Const.World.AI.Behavior.ID.Flee).setEnabled(false);
+		local roam = this.new("scripts/ai/world/orders/roam_order");
+		roam.setPivot(this.m.Home);
+		roam.setMinRange(5);
+		roam.setMaxRange(10);
+		roam.setNoTerrainAvailable();
+		roam.setTerrain(this.Const.World.TerrainType.Forest, true);
+		roam.setTerrain(this.Const.World.TerrainType.SnowyForest, true);
+		roam.setTerrain(this.Const.World.TerrainType.LeaveForest, true);
+		roam.setTerrain(this.Const.World.TerrainType.AutumnForest, true);
+		c.addOrder(roam);
+		return party;
 	}
 
 	function onPrepareVariables( _vars )

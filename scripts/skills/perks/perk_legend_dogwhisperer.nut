@@ -2,11 +2,7 @@ this.perk_legend_dogwhisperer <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "perk.legend_dogwhisperer";
-		this.m.Name = this.Const.Strings.PerkName.LegendDogWhisperer;
-		this.m.Description = this.Const.Strings.PerkDescription.LegendDogWhisperer;
-		this.m.Icon = "ui/perks/perk_hound.png";
-		this.m.IconDisabled = "ui/perks/perk_hound_bw.png";
+		::Const.Perks.setup(this.m, ::Const.Perks.PerkDefs.LegendDogWhisperer);
 		this.m.Type = this.Const.SkillType.Perk;
 		this.m.Order = this.Const.SkillOrder.Perk;
 		this.m.IsActive = false;

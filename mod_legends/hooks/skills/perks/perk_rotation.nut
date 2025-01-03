@@ -3,7 +3,7 @@
 	{
 		if (!this.m.Container.hasSkill("actives.rotation"))
 		{
-			if (!this.getContainer().getActor().isPlayerControlled())
+			if (this.getContainer().getActor().isPlayerControlled())
 			{
 				this.m.Container.add(this.new("scripts/skills/actives/rotation"));
 			}
@@ -18,6 +18,6 @@
 	o.onRemoved = function()
 	{
 		this.m.Container.removeByID("actives.rotation");
-		this.m.Container.removeByID("actives.legend_ai_rotation_skill");
+		this.m.Container.removeByID("actives.legend_ai_rotation");
 	}
 });

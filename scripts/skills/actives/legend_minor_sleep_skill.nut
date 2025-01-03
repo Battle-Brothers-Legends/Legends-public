@@ -18,7 +18,7 @@ this.legend_minor_sleep_skill <- this.inherit("scripts/skills/skill", {
 
 	function create()
 	{
-		this.m.ID = "actives.legend_minor_sleep_skill";
+		this.m.ID = "actives.legend_minor_sleep";
 		this.m.Name = "Minor Sleep";
 		this.m.Description = "";
 		this.m.Icon = "skills/sleep_square.png";

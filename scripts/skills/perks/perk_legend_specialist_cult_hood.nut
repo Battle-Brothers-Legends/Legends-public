@@ -2,16 +2,13 @@ this.perk_legend_specialist_cult_hood <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "perk.legend_specialist_cult_hood";
-		this.m.Name = this.Const.Strings.PerkName.LegendSpecCultHood;
-		this.m.Description = this.Const.Strings.PerkDescription.LegendSpecCultHood;
-		this.m.Icon = "ui/perks/dedication_circle.png";
+		::Const.Perks.setup(this.m, ::Const.Perks.PerkDefs.LegendSpecCultHood);
 		this.m.Type = this.Const.SkillType.Perk;
 		this.m.Order = this.Const.SkillOrder.Perk;
 		this.m.IsActive = false;
 		this.m.IsStacking = false;
 		this.m.IsHidden = false;
-	} 
+	}
 
 	function getCultistPieces(){
 		local item = this.getContainer().getActor().getItems().getItemAtSlot(this.Const.ItemSlot.Head);

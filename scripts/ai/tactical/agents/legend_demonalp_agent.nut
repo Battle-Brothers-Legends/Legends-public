@@ -33,7 +33,7 @@ this.legend_demonalp_agent <- this.inherit("scripts/ai/tactical/agent", {
 		this.addBehavior(this.new("scripts/ai/tactical/behaviors/legend_ai_alp_realm_of_shadow"));
 
 		local behavior = this.new("scripts/ai/tactical/behaviors/ai_always_use");
-		behavior.m.PossibleSkills.push("actives.alp_summon_nightmare");
+		behavior.m.PossibleSkills.push("actives.legend_alp_summon_nightmare");
 		this.addBehavior(behavior);
 
 		behavior = this.new("scripts/ai/tactical/behaviors/ai_attack_default");

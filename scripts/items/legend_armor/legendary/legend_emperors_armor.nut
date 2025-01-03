@@ -8,13 +8,7 @@ this.legend_emperors_armor <- this.inherit("scripts/items/legend_armor/legend_ar
 		this.m.Name = "The Emperor\'s Armor";
 		this.m.Description = "A shining armor once worn by the emperor of an age long past, made from the most woundrous of materials, imbued with mystical energies. Light reflects easily off the polished armor, turning the wearer into a shimmering figure of light during the day.";
 		this.m.SlotType = this.Const.ItemSlot.Body;
-		this.m.SpriteBack = "bust_named_emperors_armor_01";
-		this.m.SpriteDamagedBack = "bust_named_emperors_armor_01_damaged";
-		this.m.SpriteCorpseBack = "bust_named_emperors_armor_01_dead";
-		this.m.Icon = "legend_armor/icon_named_emperors_armor_01.png";
-		this.m.IconLarge = "inventory_named_emperors_armor_01";
-		this.m.OverlayIcon = "legend_armor/icon_named_emperors_armor_01.png";
-		this.m.OverlayIconLarge = "inventory_named_emperors_armor_01";
+		this.updateVariant();
 		this.m.ImpactSound = this.Const.Sound.ArmorHalfplateImpact;
 		this.m.InventorySound = this.Const.Sound.ArmorHalfplateImpact;
 		this.m.Value = 20000;
@@ -66,14 +60,13 @@ this.legend_emperors_armor <- this.inherit("scripts/items/legend_armor/legend_ar
 
 	function updateVariant()
 	{
-		local variant = this.m.Variant > 9 ? this.m.Variant : "0" + this.m.Variant;
-		this.m.SpriteBack = "bust_cr_emperors_armor" + "_" + variant;
-		this.m.SpriteDamagedBack = "bust_cr_emperors_armor" + "_" + variant + "_damaged";
-		this.m.SpriteCorpseBack = "bust_cr_emperors_armor" + "_" + variant + "_dead";
-		this.m.Icon = "legend_armor/icon_cr_emperors_armor" + "_" + variant + ".png";
-		this.m.IconLarge = this.m.Icon;
-		this.m.OverlayIcon = "legend_armor/icon_cr_emperors_armor" + "_" + variant + ".png";
-		this.m.OverlayIconLarge = "legend_armor/inventory_cr_emperors_armor" + "_" + variant + ".png";
+		this.m.SpriteBack = "bust_named_emperors_armor_01";
+		this.m.SpriteDamagedBack = "bust_named_emperors_armor_01_damaged";
+		this.m.SpriteCorpseBack = "bust_named_emperors_armor_01_dead";
+		this.m.Icon = "legend_armor/icon_named_emperors_armor_01.png";
+		this.m.IconLarge = "legend_armor/inventory_named_emperors_armor_01.png";
+		this.m.OverlayIcon = "legend_armor/icon_named_emperors_armor_01.png";
+		this.m.OverlayIconLarge = "legend_armor/inventory_named_emperors_armor_01.png";
 	}
 
 });

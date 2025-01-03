@@ -10,31 +10,11 @@
 		onAdded( _settlement );
 	}
 
-	o.onUpdateDraftList = function ( _draftList, _gender = null)
+	o.onUpdateDraftList = function ( _draftList )
 	{
-		_gender = ::Legends.Mod.ModSettings.getSetting("GenderEquality").getValue() != "Disabled";
-		_draftList.push("witchhunter_background");
-		_draftList.push("witchhunter_background");
-		_draftList.push("witchhunter_background");
-		_draftList.push("witchhunter_background");
-		_draftList.push("witchhunter_background");
-		_draftList.push("witchhunter_background");
-		_draftList.push("witchhunter_background");
-		_draftList.push("witchhunter_background");
-		_draftList.push("witchhunter_background");
-		_draftList.push("witchhunter_background");
-		_draftList.push("witchhunter_background");
-		_draftList.push("witchhunter_background");
-		_draftList.push("witchhunter_background");
-		_draftList.push("witchhunter_background");
-		_draftList.push("witchhunter_background");
-		_draftList.push("witchhunter_background");
-		_draftList.push("witchhunter_background");
-		_draftList.push("witchhunter_background");
-		_draftList.push("witchhunter_background");
-		_draftList.push("witchhunter_background");
-		_draftList.push("witchhunter_background");
-		_draftList.push("witchhunter_background");
-		_draftList.push("witchhunter_background");
+		for (local i = 0; i < 22; ++i)
+		{
+			_draftList.push("witchhunter_background");
+		}
 	}
 });

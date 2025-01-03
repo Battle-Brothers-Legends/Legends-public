@@ -2,10 +2,7 @@ this.perk_legend_meal_preperation <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "perk.legend_meal_preperation";
-		this.m.Name = this.Const.Strings.PerkName.LegendMealPreperation;
-		this.m.Description = this.Const.Strings.PerkDescription.LegendMealPreperation;
-		this.m.Icon = "ui/perks/meal_prep_circle.png";
+		::Const.Perks.setup(this.m, ::Const.Perks.PerkDefs.LegendMealPreperation);
 		this.m.Type = this.Const.SkillType.Perk;
 		this.m.Order = this.Const.SkillOrder.Perk;
 		this.m.IsActive = false;

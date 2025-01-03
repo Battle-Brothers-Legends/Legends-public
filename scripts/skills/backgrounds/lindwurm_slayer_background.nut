@@ -6,6 +6,9 @@ this.lindwurm_slayer_background <- this.inherit("scripts/skills/backgrounds/char
 		this.m.ID = "background.lindwurm_slayer";
 		this.m.Name = "Lindwurm Slayer";
 		this.m.Icon = "ui/backgrounds/background_71.png";
+		this.m.BackgroundDescription = "This mercenary is a one of a kind Lindwurm hunter, descendant of Dirk the Dragonslayer.";
+		this.m.GoodEnding = "%name% left the %companyname% and started a lucrative career as a \'dragon specialist\' advisor to the nobility. As far as you can tell %they% does very little actual work, instead spending %their% days attending lavish banquets, entertaining hosts and their guests with war-stories whilst quaffing their wine.";
+		this.m.BadEnding = "Disillusioned with the %companyname%, %name% left to pursue a solo dragon hunting career in order to finally live-up to the legacy of %their% famous father. %They% was last seen taking odd beast hunting contracts, but news of his exploits has no spread far and you fear the worst.";
 		this.m.DailyCost = 31;
 		this.m.Excluded = [
 			"trait.ailing",
@@ -74,7 +77,7 @@ this.lindwurm_slayer_background <- this.inherit("scripts/skills/backgrounds/char
 
 		this.m.PerkTreeDynamic = {
 			Weapon = [
-				this.Const.Perks.GreatSwordTree,
+				this.Const.Perks.TwoHandedTree,
 				this.Const.Perks.PolearmTree,
 				this.Const.Perks.SpearTree,
 				this.Const.Perks.AxeTree,
@@ -137,7 +140,7 @@ this.lindwurm_slayer_background <- this.inherit("scripts/skills/backgrounds/char
 
 	function onBuildDescription()
 	{
-		return "";
+		return "{%name% is apparently something of a celebrity and could be mistaken for house nobility, except for the glistening lindwurm scales adorning %their% armor and the particular talent for slaying lindwurms. Claiming to be the child of Dirk the Dragonslayer, the monster hunter who ostensibly slew the last living dragon. %they% has long sought to join a mercenary company with the mettle to go up against the most dangerous foes, clearly not content with inherited fame. %name% wants to kill a dragon %themself% even if the dragons are extinct and something in %their% eyes assures you this is no idle boast, this slayer clearly means business.}";
 	}
 
 	function onChangeAttributes()

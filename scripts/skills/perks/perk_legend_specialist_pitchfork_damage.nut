@@ -2,10 +2,7 @@ this.perk_legend_specialist_pitchfork_damage <- this.inherit("scripts/skills/ski
 	m = {},
 	function create()
 	{
-		this.m.ID = "perk.legend_specialist_pitchfork_damage";
-		this.m.Name = this.Const.Strings.PerkName.LegendSpecialistPitchforkDamage;
-		this.m.Description = this.Const.Strings.PerkDescription.LegendSpecialistPitchforkDamage;
-		this.m.Icon = "ui/perks/pitchfork_01.png";
+		::Const.Perks.setup(this.m, ::Const.Perks.PerkDefs.LegendSpecialistPitchforkDamage);
 		this.m.Type = this.Const.SkillType.Perk;
 		this.m.Order = this.Const.SkillOrder.Perk;
 		this.m.IsActive = false;

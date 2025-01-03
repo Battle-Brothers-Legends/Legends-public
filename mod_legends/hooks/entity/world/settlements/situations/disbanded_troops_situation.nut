@@ -10,70 +10,55 @@
 		onAdded( _settlement );
 	}
 
-	o.onUpdateDraftList = function ( _draftList, _gender = null)
+	o.onUpdateDraftList = function ( _draftList )
 	{
-		_gender = ::Legends.Mod.ModSettings.getSetting("GenderEquality").getValue() != "Disabled";
-		_draftList.push("deserter_background");
-		_draftList.push("deserter_background");
-		_draftList.push("deserter_background");
-		_draftList.push("deserter_background");
-		_draftList.push("deserter_background");
-		_draftList.push("deserter_background");
-		_draftList.push("militia_background");
-		_draftList.push("militia_background");
-		_draftList.push("militia_background");
-		_draftList.push("militia_background");
-		_draftList.push("militia_background");
-		_draftList.push("militia_background");
-		_draftList.push("militia_background");
-		_draftList.push("militia_background");
-		_draftList.push("militia_background");
-		_draftList.push("militia_background");
-		_draftList.push("sellsword_background");
-		_draftList.push("sellsword_background");
-		_draftList.push("sellsword_background");
-		_draftList.push("retired_soldier_background");
-		_draftList.push("retired_soldier_background");
-		_draftList.push("retired_soldier_background");
-		_draftList.push("retired_soldier_background");
-		_draftList.push("retired_soldier_background");
-		_draftList.push("retired_soldier_background");
-		_draftList.push("retired_soldier_background");
-		_draftList.push("retired_soldier_background");
-		_draftList.push("squire_background");
-		_draftList.push("squire_background");
-		_draftList.push("squire_background");
-		_draftList.push("squire_background");
-		_draftList.push("squire_background");
-		_draftList.push("hedge_knight_background");
-		_draftList.push("hedge_knight_background");
-		_draftList.push("hedge_knight_background");
-		_draftList.push("legend_noble_2h");
-		_draftList.push("legend_noble_2h");
-		_draftList.push("legend_noble_ranged");
-		_draftList.push("legend_noble_ranged");
-		_draftList.push("legend_noble_shield");
-		_draftList.push("legend_noble_shield");
-		_draftList.push("legend_master_archer_background");
-		_draftList.push("legend_master_archer_background");
-		_draftList.push("legend_master_archer_background");
-
-		if (_gender)
+		for (local i = 0; i < 6; ++i)
 		{
-		_draftList.push("legend_shieldmaiden_background");
-		_draftList.push("legend_shieldmaiden_background");
-		_draftList.push("legend_shieldmaiden_background");
-
+			_draftList.push("deserter_background");
 		}
 
-		if  ( this.World.Assets.getOrigin().getID() == "scenario.militia")
+		for (local i = 0; i < 9; ++i)
 		{
-			_draftList.push("legend_man_at_arms_background");
-			_draftList.push("legend_man_at_arms_background");
-			_draftList.push("legend_man_at_arms_background");
-			_draftList.push("legend_man_at_arms_background");
-			_draftList.push("legend_man_at_arms_background");
-			_draftList.push("legend_man_at_arms_background");
+			_draftList.push("militia_background");
+		}
+		
+		for (local i = 0; i < 8; ++i)
+		{
+			_draftList.push("retired_soldier_background");
+		}
+
+		for (local i = 0; i < 5; ++i)
+		{
+			_draftList.push("squire_background");
+		}
+		
+		_draftList.push("sellsword_background");
+		_draftList.push("sellsword_background");
+		_draftList.push("sellsword_background");
+		_draftList.push("hedge_knight_background");
+		_draftList.push("hedge_knight_background");
+		_draftList.push("hedge_knight_background");
+		_draftList.push("legend_noble_2h");
+		_draftList.push("legend_noble_2h");
+		_draftList.push("legend_noble_ranged");
+		_draftList.push("legend_noble_ranged");
+		_draftList.push("legend_noble_shield");
+		_draftList.push("legend_noble_shield");
+		_draftList.push("legend_master_archer_background");
+		_draftList.push("legend_master_archer_background");
+		_draftList.push("legend_master_archer_background");
+
+		if (::Legends.Mod.ModSettings.getSetting("GenderEquality").getValue() != "Disabled") {
+			_draftList.push("legend_shieldmaiden_background");
+			_draftList.push("legend_shieldmaiden_background");
+			_draftList.push("legend_shieldmaiden_background");
+		}
+
+		if  ( this.World.Assets.getOrigin().getID() == "scenario.militia") {
+			for (local i = 0; i < 6; ++i)
+			{
+				_draftList.push("legend_man_at_arms_background");
+			}
 		}
 	}
 });

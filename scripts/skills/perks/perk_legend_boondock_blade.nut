@@ -2,10 +2,7 @@ this.perk_legend_boondock_blade <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "perk.legend_boondock_blade";
-		this.m.Name = this.Const.Strings.PerkName.LegendBoondockBlade;
-		this.m.Description = this.Const.Strings.PerkDescription.LegendBoondockBlade;
-		this.m.Icon = "skills/status_effect_08.png";
+		::Const.Perks.setup(this.m, ::Const.Perks.PerkDefs.LegendBoondockBlade);
 		this.m.Type = this.Const.SkillType.Perk;
 		this.m.Order = this.Const.SkillOrder.Perk;
 		this.m.IsActive = false;

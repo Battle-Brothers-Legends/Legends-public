@@ -87,13 +87,13 @@ this.legend_vala_chant_senses_effect <- this.inherit("scripts/skills/effects/leg
 		if (!this.checkEntities())
 		{
 			this.updateEffect(false);
-			return
+			return;
 		}
 
 		if (!this.isInRange())
 		{
 			this.updateEffect(false);
-			return 
+			return;
 		}
 
 		local distance = this.getContainer().getActor().getTile().getDistanceTo(this.m.Vala.getTile());

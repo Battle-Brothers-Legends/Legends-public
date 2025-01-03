@@ -10,21 +10,22 @@ this.legend_hexen_leader_cloak <- this.inherit("scripts/items/legend_armor/legen
 		this.m.Name = "Hexen Leader Silk Cloak";
 		this.m.Description = "This elegant cloak is made from spider web that bolsters its users resolve";
 		this.m.ArmorDescription = "A Hexen cloak able to increase its users resolve";
-		this.m.Icon = "legend_armor/icon_cloak_hexe.png";
-		this.m.IconLarge = this.m.Icon;
-		this.m.OverlayIcon = "legend_armor/icon_cloak_hexe.png";
-		this.m.OverlayIconLarge = this.m.Icon;
-		this.m.SpriteFront = null;
-		this.m.SpriteBack = "bust_cloak_hexe";
-		this.m.SpriteDamagedFront = null;
-		this.m.SpriteDamagedBack = "bust_cloak_hexe_damaged";
-		this.m.SpriteCorpseFront = null;
-		this.m.SpriteCorpseBack = "bust_cloak_hexe_dead";
 
 		this.m.Value = 7500;
 		this.m.Condition = 25;
 		this.m.ConditionMax = 25;
 		this.m.StaminaModifier = -2;
+	}
+
+	function updateVariant()
+	{
+		this.m.SpriteBack = "bust_cloak_hexe";
+		this.m.SpriteDamagedBack = "bust_cloak_hexe_damaged";
+		this.m.SpriteCorpseBack = "bust_cloak_hexe_dead";
+		this.m.Icon = "legend_armor/icon_cloak_hexe.png";
+		this.m.IconLarge = this.m.Icon;
+		this.m.OverlayIcon = "legend_armor/inventory_cloak_hexe.png";
+		this.m.OverlayIconLarge = this.m.OverlayIcon;
 	}
 
 	function getTooltip()

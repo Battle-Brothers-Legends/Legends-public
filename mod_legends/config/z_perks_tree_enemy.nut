@@ -445,9 +445,12 @@ if (!("Perks" in ::Const))
 	Tree = [
 		[],
 		[],
-		[::Const.Perks.PerkDefs.Steadfast],
+		[
+			::Const.Perks.PerkDefs.Steadfast,
+			::Const.Perks.PerkDefs.LegendSmackdown
+		],
 		[],
-		[::Const.Perks.PerkDefs.SunderingStrikes],
+		[],
 		[::Const.Perks.PerkDefs.LegendFavouredEnemySwordmaster],
 		[]
 	]

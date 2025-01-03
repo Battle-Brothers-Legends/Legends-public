@@ -5,10 +5,8 @@ this.perk_legend_balance <- this.inherit("scripts/skills/skill", {
 	},
 	function create()
 	{
-		this.m.ID = "perk.legend_balance";
-		this.m.Name = this.Const.Strings.PerkName.LegendBalance;
+		::Const.Perks.setup(this.m, ::Const.Perks.PerkDefs.LegendBalance);
 		this.m.Description = "%name% gains increased Melee and Ranged defense by balancing %their% armor weight and mobility.";
-		this.m.Icon = "ui/perks/balance.png";
 		this.m.Type = this.Const.SkillType.Perk | this.Const.SkillType.StatusEffect;
 		this.m.Order = this.Const.SkillOrder.Perk;
 		this.m.IsActive = false;
@@ -75,9 +73,9 @@ this.perk_legend_balance <- this.inherit("scripts/skills/skill", {
 		local currIni = actor.getInitiative();
 
 		if (currIni < armorFatPen * 2)
-		{			
+		{
 			bonus -= (armorFatPen * 2 - currIni) / 10;
-		}		
+		}
 
 		return this.Math.max(this.m.BonusMin, bonus);
 	}

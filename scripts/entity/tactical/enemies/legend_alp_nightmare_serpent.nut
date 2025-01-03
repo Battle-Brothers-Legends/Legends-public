@@ -2,7 +2,7 @@ this.legend_alp_nightmare_serpent <- this.inherit("scripts/entity/tactical/enemi
 	m = {},
 	function create()
 	{
-		this.alp_shadow.create();
+		this.legend_alp_shadow.create();
 
 		this.m.Sound[this.Const.Sound.ActorEvent.DamageReceived] = [
 			"sounds/enemies/dlc6/snake_hurt_01.wav",
@@ -35,7 +35,7 @@ this.legend_alp_nightmare_serpent <- this.inherit("scripts/entity/tactical/enemi
 
 	function onInit()
 	{
-		this.alp_shadow.onInit();
+		this.legend_alp_shadow.onInit();
 		local b = this.m.BaseProperties;
 		b.setValues(this.Const.Tactical.Actor.Serpent);
 		b.Initiative += this.Math.rand(40, 50);
@@ -55,7 +55,7 @@ this.legend_alp_nightmare_serpent <- this.inherit("scripts/entity/tactical/enemi
 
 		this.m.ActionPoints = b.ActionPoints;
 		this.addSprite("socket").setBrush("bust_base_shadow");
-		
+
 		local blurAlpha = 110;
 		local body_brush = "bust_alp_snake_0" + this.Math.rand(1, 2);
 		local body = this.addSprite("body");
@@ -86,21 +86,21 @@ this.legend_alp_nightmare_serpent <- this.inherit("scripts/entity/tactical/enemi
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_relentless"));
 		this.m.Skills.add(this.new("scripts/skills/actives/legend_alp_serpent_hook_skill"));
 		this.m.Skills.add(this.new("scripts/skills/actives/serpent_bite_skill"));
-		
+
 		if ("Assets" in this.World && this.World.Assets != null && this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Legendary)
 		{
 			this.m.Skills.add(this.new("scripts/skills/perks/perk_dodge"));
 			this.m.Skills.add(this.new("scripts/skills/perks/perk_anticipation"));
 			this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_alert"));
 			this.m.Skills.add(this.new("scripts/skills/traits/fearless_trait"));
-		}			
+		}
 
 		this.applySignatureAbilities();
 	}
 
 	function onFactionChanged()
 	{
-		this.alp_shadow.onFactionChanged();
+		this.legend_alp_shadow.onFactionChanged();
 		local flip = this.isAlliedWithPlayer();
 		this.getSprite("body").setHorizontalFlipping(flip);
 		this.getSprite("head").setHorizontalFlipping(flip);

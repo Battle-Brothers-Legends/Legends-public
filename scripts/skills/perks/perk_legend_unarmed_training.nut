@@ -2,10 +2,7 @@ this.perk_legend_unarmed_training <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "perk.legend_unarmed_training";
-		this.m.Name = this.Const.Strings.PerkName.LegendUnarmedTraining;
-		this.m.Description = this.Const.Strings.PerkDescription.LegendUnarmedTraining;
-		this.m.Icon = "ui/perks/perk_10.png";
+		::Const.Perks.setup(this.m, ::Const.Perks.PerkDefs.LegendUnarmedTraining);
 		this.m.Type = this.Const.SkillType.Perk;
 		this.m.Order = this.Const.SkillOrder.First + 2;
 		this.m.IsActive = false;
@@ -40,22 +37,6 @@ this.perk_legend_unarmed_training <- this.inherit("scripts/skills/skill", {
 		{
 			_properties.DamageTotalMult *= 1.5;
 			_properties.MeleeSkill += 10;
-		}
-	}
-
-	function onAfterUpdate( _properties )
-	{
-		local handToHand = this.getContainer().getSkillByID("actives.hand_to_hand");
-		if (handToHand != null && handToHand.m.ActionPointCost >= 1) // 0 check should be somewhere else
-		{
-			handToHand.m.ActionPointCost -= 1;
-			handToHand.m.FatigueCostMult *= this.Const.Combat.WeaponSpecFatigueMult;
-		}
-
-		local lunge = this.getContainer().getSkillByID("actives.legend_unarmed_lunge");
-		if (lunge != null)
-		{
-			lunge.m.FatigueCostMult *= 0.5
 		}
 	}
 

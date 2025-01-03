@@ -53,38 +53,27 @@ this.legend_prosthetic_ear_item <- this.inherit("scripts/items/item", {
 			});
 		}
 
-		result.push({
-			id = 64,
-			type = "text",
-			text = "Reduces the penalty of Missing Ear to [color=" + this.Const.UI.Color.NegativeValue + "]-5%[/color] Initiative"
-		});
-
-		if (!("getActor" in this.getContainer())) {
-			return result;
-		}
-
-		if (this.getContainer().getActor().getSkills().hasSkill("injury.missing_ear"))
-		{
-			result.push({
+		result.extend([
+			{
+				id = 64,
+				type = "text",
+				text = "Reduces the penalty of Missing Ear to [color=" + this.Const.UI.Color.NegativeValue + "]-5%[/color] Initiative"
+			},
+			{
 				id = 65,
 				type = "text",
+				icon = "ui/icons/special.png",
 				text = "Right-click or drag onto the currently selected character in order to apply it. This item will be consumed in the process."
-			});
-		}
-		else
-		{
-			result.push({
+			},
+			{
 				id = 65,
 				type = "text",
-				text = "Item can not be used, because this character still has both his ears"
-			});
-		}
-		return result;
-	}
+				icon = "ui/icons/warning.png",
+				text = "Can only be used if this character has a missing ear"
+			}
+		]);
 
-	function isUsable()
-	{
-		return this.getContainer().getActor().getSkills().hasSkill("injury.missing_ear") && this.m.IsUsable;
+		return result;
 	}
 
 	function playInventorySound( _eventType )
@@ -95,11 +84,13 @@ this.legend_prosthetic_ear_item <- this.inherit("scripts/items/item", {
 	function onUse( _actor, _item = null )
 	{
 		this.Sound.play("sounds/combat/armor_leather_impact_03.wav", this.Const.Sound.Volume.Inventory);
-		local actor = this.getContainer().getActor();
-		actor.getSkills().add(this.new("scripts/skills/traits/legend_prosthetic_ear"));
-		actor.getSkills().removeByID("injury.missing_ear");
-
-		return true;
+		if (_actor.getSkills().hasSkill("injury.missing_ear"))
+		{
+			_actor.getSkills().add(this.new("scripts/skills/traits/legend_prosthetic_ear"));
+			_actor.getSkills().removeByID("injury.missing_ear");
+			return true;
+		}
+		return false;
 	}
 });
 

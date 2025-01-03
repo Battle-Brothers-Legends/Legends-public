@@ -1,26 +1,19 @@
 ::mods_hookExactClass("ui/screens/world/world_town_screen", function(o) {
-	o.m.BlackmarketDialogModule <- null;
 	o.m.StablesDialogModule <- null;
 
+	local isAnimating = o.isAnimating;
 	o.isAnimating = function ()
 	{
-		if (this.m.Animating != null && this.m.MainDialogModule != null && this.m.HireDialogModule != null && this.m.ShopDialogModule != null && this.m.StablesDialogModule != null)
-		{
-			return this.m.Animating == true || this.m.MainDialogModule.isAnimating() || this.m.HireDialogModule.isAnimating() || this.m.ShopDialogModule.isAnimating() || this.m.TrainingDialogModule.isAnimating() || this.m.BarberDialogModule.isAnimating() || this.m.StablesDialogModule.isAnimating();
-		}
-		else
-		{
-			return false;
-		}
+		if (isAnimating())
+			return true;
+		if (this.m.StablesDialogModule != null && this.m.StablesDialogModule.isAnimating())
+			return true;
+		return false;
 	}
 
 	o.getStablesDialogModule <- function ()
 	{
 		return this.m.StablesDialogModule;
-	}
-	o.getBlackmarketDialogModule <- function ()
-	{
-		return this.m.BlackmarketDialogModule;
 	}
 
 	local create = o.create;
@@ -35,59 +28,25 @@
 	local destroy = o.destroy;
 	o.destroy = function ()
 	{
-		destroy();
 		this.m.StablesDialogModule.destroy();
 		this.m.StablesDialogModule = null;
+		destroy();
 	}
 
 	local clear = o.clear;
 	o.clear = function ()
 	{
-		clear();
 		this.m.StablesDialogModule.clear();
+		clear();
 	}
 
+	local showLastActiveDialog = o.showLastActiveDialog;
 	o.showLastActiveDialog = function ()
 	{
-		if (this.m.LastActiveModule == this.m.HireDialogModule)
-		{
-			this.showHireDialog();
-		}
-		else if (this.m.LastActiveModule == this.m.ShopDialogModule)
-		{
-			this.showShopDialog();
-		}
-		else if (this.m.LastActiveModule == this.m.TravelDialogModule)
-		{
-			this.showTravelDialog();
-		}
-		else if (this.m.LastActiveModule == this.m.BarberDialogModule)
-		{
-			this.showBarberDialog();
-		}
-		else if (this.m.LastActiveModule == this.m.TavernDialogModule)
-		{
-			this.showTavernDialog();
-		}
-		else if (this.m.LastActiveModule == this.m.TempleDialogModule)
-		{
-			this.showTempleDialog();
-		}
-		else if (this.m.LastActiveModule == this.m.TrainingDialogModule)
-		{
-			this.showTrainingDialog();
-		}
-		else if (this.m.LastActiveModule == this.m.TaxidermistDialogModule)
-		{
-			this.showTaxidermistDialog();
-		}
-		if (this.m.LastActiveModule == this.m.StablesDialogModule)
-		{
+		if (this.m.LastActiveModule == this.m.StablesDialogModule) {
 			this.showStablesDialog();
-		}
-		else
-		{
-			this.showMainDialog();
+		} else {
+			showLastActiveDialog();
 		}
 	}
 
@@ -98,15 +57,6 @@
 			this.m.LastActiveModule = this.m.StablesDialogModule;
 			this.Tooltip.hide();
 			this.m.JSHandle.asyncCall("showStablesDialog", this.m.StablesDialogModule.queryHireInformation());
-		}
-	}
-	o.showBlackmarketDialog <- function ()
-	{
-		if (this.m.JSHandle != null && this.isVisible())
-		{
-			this.m.LastActiveModule = this.m.BlackmarketDialogModule;
-			this.Tooltip.hide();
-			this.m.JSHandle.asyncCall("showBlackmarketDialog", this.m.BlackmarketDialogModule.queryRosterInformation());
 		}
 	}
 });

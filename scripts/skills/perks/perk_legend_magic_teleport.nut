@@ -2,10 +2,7 @@ this.perk_legend_magic_teleport <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "perk.legend_magic_teleport";
-		this.m.Name = this.Const.Strings.PerkName.LegendMagicTeleport;
-		this.m.Description = this.Const.Strings.PerkDescription.LegendMagicTeleport;
-		this.m.Icon = "ui/perks/teleport_perk.png";
+		::Const.Perks.setup(this.m, ::Const.Perks.PerkDefs.LegendMagicTeleport);
 		this.m.Type = this.Const.SkillType.Perk;
 		this.m.Order = this.Const.SkillOrder.Perk;
 		this.m.IsActive = false;

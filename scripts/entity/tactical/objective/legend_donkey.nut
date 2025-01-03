@@ -1,4 +1,4 @@
-this.legend_donkey_background <- this.inherit("scripts/entity/tactical/actor", {
+this.legend_donkey <- this.inherit("scripts/entity/tactical/actor", {
 	m = {},
 	function create()
 	{

@@ -44,9 +44,15 @@ this.legend_vala_chant <- this.inherit("scripts/skills/skill", {
 		return this.m.Vala.getSkills().hasSkill("perk.legend_vala_chanting_mastery");
 	}
 
-	function checkEntities()
+	function doValaChecks()
 	{
-		if (("State" in ::Tactical) && ::Tactical.Entities.isCombatFinished())
+		if (!::Tactical.isActive())
+			return false;
+
+		if (!("Entities" in ::Tactical))
+			return false;
+
+		if (("isCombatFinished" in ::Tactical.Entities) && ::Tactical.Entities.isCombatFinished())
 			return false;
 
 		if (::MSU.isNull(this.getContainer()) || ::MSU.isNull(this.getContainer().getActor()))
@@ -61,6 +67,14 @@ this.legend_vala_chant <- this.inherit("scripts/skills/skill", {
 			return false;
 
 		if (::MSU.isNull(this.m.Vala))
+			return false;
+
+		return true;
+	}
+
+	function checkEntities()
+	{
+		if (!this.doValaChecks())
 			return false;
 
 		return this.m.Vala.getTile() != null;

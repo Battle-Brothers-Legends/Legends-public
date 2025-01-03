@@ -609,7 +609,7 @@ if (!("HelmObjs" in ::Const.LegendMod))
 			 [1, "helm/legend_helmet_swan_helm"] //140, -7, -2
 		],
 		Tops = [
-			
+
 			[3, ""],
 			[5, "top/legend_helmet_faceplate_winged"],
 			[3, "top/legend_helmet_faceplate_long"],

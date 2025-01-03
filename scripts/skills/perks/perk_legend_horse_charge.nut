@@ -2,10 +2,7 @@ this.perk_legend_horse_charge <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "perk.perk_horse_charge";
-		this.m.Name = this.Const.Strings.PerkName.LegendHorseCharge;
-		this.m.Description = this.Const.Strings.PerkDescription.LegendHorseCharge;
-		this.m.Icon = "ui/perks/charge_perk.png";
+		::Const.Perks.setup(this.m, ::Const.Perks.PerkDefs.LegendHorseCharge);
 		this.m.Type = this.Const.SkillType.Perk;
 		this.m.Order = this.Const.SkillOrder.Perk;
 		this.m.IsActive = false;

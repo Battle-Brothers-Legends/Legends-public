@@ -22,11 +22,6 @@ this.starting_scenario <- {
 		return this.m.IsFixedLook;
 	}
 
-	function isDroppedAsLoot( _item )
-	{
-		return false;
-	}
-
 	function getID()
 	{
 		return this.m.ID;
@@ -59,7 +54,20 @@ this.starting_scenario <- {
 
 	function isDroppedAsLoot( _item )
 	{
-		return false;
+		local chanceIsLucky = 0;
+		local brothers = this.World.getPlayerRoster().getAll();
+		foreach (bro in brothers)
+		{
+			if (bro.getSkills().hasPerk(::Const.Perks.PerkDefs.LegendScholar))
+			{
+				chanceIsLucky += 10;
+			}
+			if (bro.getSkills().hasPerk(::Const.Perks.PerkDefs.LegendFavouredEnemyCaravan))
+			{
+				chanceIsLucky += 5;
+			}
+		}
+		return this.Math.rand(1, 100) < chanceIsLucky;
 	}
 
 	function getDifficultyForUI()
@@ -113,27 +121,24 @@ this.starting_scenario <- {
 	function onInit()
 	{
 		this.m.StaticRelationsToFaction.resize(this.Const.FactionType.len());
+		
 		if (this.World.State.getPlayer() != null)
-		{
 			this.World.State.getPlayer().calculateModifiers();
-		}
-
 	}
 
 	function onUpdateHiringRoster( _roster )
 	{
 	}
 
-	function onUpdateDraftList( _list, _gender = null)
+	function onUpdateDraftList( _list )
 	{
-		_gender = ::Legends.Mod.ModSettings.getSetting("GenderEquality").getValue() != "Disabled";
 	}
 
 	function onUpdateStablesList( _list )
 	{
 	}
 
-	function onHiredByScenario( bro )
+	function onHiredByScenario( _bro )
 	{
 	}
 
@@ -239,25 +244,18 @@ this.starting_scenario <- {
 		if (!isRefundable) _background.getPerk(_perk).IsRefundable = false;
 	}
 
-	function onGenerateBro(bro)
+	function onGenerateBro(_bro)
 	{
 	}
 
-	function addBroToRoster(_roster, background, chance)
+	function addBroToRoster(_roster, _background, _chance)
 	{
-		local multiplier = 1;
-		if (_roster.getAll().len() < 8)
-		{
-			multiplier = 2; // Short little change to make these spawns less common in tiny villages
-		}
+		local multiplier = _roster.getAll().len() < 8 ? 2 : 1; // Short little change to make these spawns less common in tiny villages
 
-		local r;
-		r = this.Math.rand(0, chance * multiplier);
-		if (r == 0)
-		{
+		if (::Math.rand(0, _chance * multiplier) == 0) {
 			local bro = _roster.create("scripts/entity/tactical/player")
-			bro.setStartValuesEx([background]);
-			this.World.Assets.getOrigin().onGenerateBro(bro);
+			bro.setStartValuesEx([_background]);
+			//this.World.Assets.getOrigin().onGenerateBro(bro); will be called at the end of `updateRoster` in `settlement` anyway
 		}
 	}
 

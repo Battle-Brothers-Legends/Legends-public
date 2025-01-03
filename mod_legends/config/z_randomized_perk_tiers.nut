@@ -324,10 +324,10 @@
         [1, ["pike", 70], ["perks/perk_reach_advantage"]],
         [1, ["warbrand", 70], ["perks/perk_legend_bloody_harvest"]],
         [1, ["longaxe", 70], ["perks/perk_killing_frenzy"]],
-        [1, ["two_handed_wooden_hammer", 70], ["perks/perk_sundering_strikes"]],
+        [1, ["two_handed_wooden_hammer", 70], ["perks/perk_legend_smackdown"]],
         [1, ["two_handed_wooden_flail", 70], ["perks/perk_head_hunter"]],
         [1, ["legend_ranged_flail", 70], ["perks/perk_colossus"]],
-        [1, ["legend_reinforced_flail", 70], ["perks/perk_vengeance"]],
+        [1, ["legend_reinforced_flail", 70], ["perks/perk_legend_vengeance"]],
         [1, ["two_handed_mace", 70], ["perks/perk_legend_forceful_swing"]],
         [1, ["longsword", 70], ["perks/perk_colossus"]],
         [1, ["legend_longsword",  70], ["perks/perk_duelist"]],
@@ -544,7 +544,7 @@
     LegendaryPerks = [
         "perks/perk_crippling_strikes",
         "perks/perk_legend_clarity",
-        "perks/perk_sundering_strikes",
+        "perks/perk_legend_smackdown",
         "traits/fearless_trait"
     ],
     LevelRange = [6, 8],
@@ -777,7 +777,7 @@
     //Greatsword				
     if (_item.isWeaponType(this.Const.Items.WeaponType.Sword) && _item.isItemType(this.Const.Items.ItemType.TwoHanded))
     {    
-        return [this.Const.Perks.GreatSwordTree];
+        return [this.Const.Perks.TwoHandedTree];
     }
 
     // WeaponTypes

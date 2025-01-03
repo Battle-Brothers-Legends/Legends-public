@@ -2,10 +2,7 @@ this.perk_legend_magic_psybeam <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "perk.legend_magic_psybeam";
-		this.m.Name = this.Const.Strings.PerkName.LegendMagicPsybeam;
-		this.m.Description = this.Const.Strings.PerkDescription.LegendMagicPsybeam;
-		this.m.Icon = "ui/perks/mage_legend_magic_psybeam_circle.png";
+		::Const.Perks.setup(this.m, ::Const.Perks.PerkDefs.LegendMagicPsybeam);
 		this.m.Type = this.Const.SkillType.Perk;
 		this.m.Order = this.Const.SkillOrder.Perk;
 		this.m.IsActive = false;

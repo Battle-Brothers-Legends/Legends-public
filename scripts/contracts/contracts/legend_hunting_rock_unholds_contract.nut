@@ -88,35 +88,7 @@ this.legend_hunting_rock_unholds_contract <- this.inherit("scripts/contracts/con
 				}
 
 				this.Flags.set("StartTime", this.Time.getVirtualTimeF());
-				local playerTile = this.World.State.getPlayer().getTile();
-				local tile = this.Contract.getTileToSpawnLocation(playerTile, 6, 12, [
-					this.Const.World.TerrainType.Mountains
-				]);
-				local nearTile = this.Contract.getTileToSpawnLocation(playerTile, 4, 8);
-				local party;
-				party = this.World.FactionManager.getFactionOfType(this.Const.FactionType.Beasts).spawnEntity(tile, "Unholds", false, this.Const.World.Spawn.LegendRockUnhold, 200 * this.Contract.getDifficultyMult() * this.Contract.getScaledDifficultyMult());
-				party.setDescription("One or more lumbering giants.");
-				party.setAttackableByAI(false);
-				party.setFootprintSizeOverride(0.85);
-				party.getFlags().set("IsUnholds", true);
-				this.Const.World.Common.addFootprintsFromTo(nearTile, party.getTile(), this.Const.BeastFootprints, 0.85);
-				this.Contract.m.Target = this.WeakTableRef(party);
-				party.getSprite("banner").setBrush("banner_beasts_01");
-				local c = party.getController();
-				c.getBehavior(this.Const.World.AI.Behavior.ID.Flee).setEnabled(false);
-				c.getBehavior(this.Const.World.AI.Behavior.ID.Attack).setEnabled(false);
-				local roam = this.new("scripts/ai/world/orders/roam_order");
-				roam.setPivot(this.Contract.m.Home);
-				roam.setMinRange(2);
-				roam.setMaxRange(8);
-				roam.setAllTerrainAvailable();
-				roam.setTerrain(this.Const.World.TerrainType.Ocean, false);
-				roam.setTerrain(this.Const.World.TerrainType.Shore, false);
-				roam.setTerrain(this.Const.World.TerrainType.Forest, false);
-				roam.setTerrain(this.Const.World.TerrainType.LeaveForest, false);
-				roam.setTerrain(this.Const.World.TerrainType.SnowyForest, false);
-				roam.setTerrain(this.Const.World.TerrainType.AutumnForest, false);
-				c.addOrder(roam);
+				this.Contract.spawnEnemies();
 				this.Contract.m.Home.setLastSpawnTimeToNow();
 				this.Contract.setScreen("Overview");
 				this.World.Contracts.setActiveContract(this.Contract);
@@ -537,6 +509,39 @@ this.legend_hunting_rock_unholds_contract <- this.inherit("scripts/contracts/con
 			}
 
 		});
+	}
+
+	function spawnEnemies() {
+		local playerTile = this.World.State.getPlayer().getTile();
+		local tile = this.getTileToSpawnLocation(playerTile, 6, 12, [
+			this.Const.World.TerrainType.Mountains
+		]);
+		local nearTile = this.getTileToSpawnLocation(playerTile, 4, 8);
+		local party;
+		party = this.World.FactionManager.getFactionOfType(this.Const.FactionType.Beasts).spawnEntity(tile, "Unholds", false, this.Const.World.Spawn.LegendRockUnhold, 200 * this.getDifficultyMult() * this.getScaledDifficultyMult());
+		party.setDescription("One or more lumbering giants.");
+		party.setAttackableByAI(false);
+		party.setFootprintSizeOverride(0.85);
+		party.getFlags().set("IsUnholds", true);
+		this.Const.World.Common.addFootprintsFromTo(nearTile, party.getTile(), this.Const.BeastFootprints, 0.85);
+		this.m.Target = this.WeakTableRef(party);
+		party.getSprite("banner").setBrush("banner_beasts_01");
+		local c = party.getController();
+		c.getBehavior(this.Const.World.AI.Behavior.ID.Flee).setEnabled(false);
+		c.getBehavior(this.Const.World.AI.Behavior.ID.Attack).setEnabled(false);
+		local roam = this.new("scripts/ai/world/orders/roam_order");
+		roam.setPivot(this.m.Home);
+		roam.setMinRange(2);
+		roam.setMaxRange(8);
+		roam.setAllTerrainAvailable();
+		roam.setTerrain(this.Const.World.TerrainType.Ocean, false);
+		roam.setTerrain(this.Const.World.TerrainType.Shore, false);
+		roam.setTerrain(this.Const.World.TerrainType.Forest, false);
+		roam.setTerrain(this.Const.World.TerrainType.LeaveForest, false);
+		roam.setTerrain(this.Const.World.TerrainType.SnowyForest, false);
+		roam.setTerrain(this.Const.World.TerrainType.AutumnForest, false);
+		c.addOrder(roam);
+		return party;
 	}
 
 	function onPrepareVariables( _vars )

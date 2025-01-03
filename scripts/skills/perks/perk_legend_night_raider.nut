@@ -1,13 +1,10 @@
 //Author: WNTR Jimmy
 this.perk_legend_night_raider <- this.inherit("scripts/skills/skill", {
-    m = {}, 
+    m = {},
 
 	function create()
 	{
-		this.m.ID = "perk.legend_night_raider"; 
-		this.m.Name = this.Const.Strings.PerkName.LegendNightRaider;
-		this.m.Description = this.Const.Strings.PerkDescription.LegendNightRaider;
-		this.m.Icon = "ui/perks/night_raider.png";
+		::Const.Perks.setup(this.m, ::Const.Perks.PerkDefs.LegendNightRaider);
 		this.m.Type = this.Const.SkillType.Perk | this.Const.SkillType.StatusEffect;
 		this.m.Order = this.Const.SkillOrder.Perk;
 		this.m.IsActive = false;
@@ -76,4 +73,4 @@ this.perk_legend_night_raider <- this.inherit("scripts/skills/skill", {
 	// 	// !_properties.IsAffectedByNight;
 	// }
 
-}); 
+});

@@ -8,6 +8,15 @@
 	o.m.MedsMultiplier <- 0;
 	o.m.StashMultiplier <- 0;
 
+	o.setPath <- function( _path )
+	{
+		party.setPath(::World.Camp.isCamping() ? null : _path);
+	}
+
+	o.setDestination <- function( _destination )
+	{
+		party.setDestination(::World.Camp.isCamping() ? null : _destination);
+	}
 
 	o.updateStrength = function ()
 	{
@@ -221,14 +230,12 @@
 		return this.m.Strength;
 	}
 
+	local getVisionRadius = o.getVisionRadius;
 	o.getVisionRadius = function ()
 	{
 		if (this.World.Assets.isCamping())
-		{
-			local tent = this.World.Camp.getBuildingByID(this.Const.World.CampBuildings.Scout);
-			return tent.getVisionRadius();
-		}
-		return this.m.VisionRadius * this.World.Assets.m.VisionRadiusMult * this.World.getGlobalVisibilityMult() * this.Const.World.TerrainTypeVisionRadiusMult[this.getTile().Type] * (this.World.Assets.isCamping() ? 0.75 : 1.0);
+			return this.World.Camp.getBuildingByID(this.Const.World.CampBuildings.Scout).getVisionRadius();
+		return getVisionRadius();
 	}
 
 	o.setBaseImage <- function ( _version = -1)
@@ -484,6 +491,8 @@
 
 			return s;
 		}
+
+		return ::Stash.getCapacity();
 	}
 
 	local onInit = o.onInit;

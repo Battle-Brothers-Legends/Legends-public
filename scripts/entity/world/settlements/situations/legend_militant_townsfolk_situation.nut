@@ -53,7 +53,6 @@ this.legend_militant_townsfolk_situation <- this.inherit("scripts/entity/world/s
 	function onUpdateShop( _stash )
 	{
 		// Further improvement: make the items based on attached locations or settlement type
-
 		if ( _stash.getID() == "shop")
 		{
 			local wc = ::MSU.Class.WeightedContainer([
@@ -94,11 +93,8 @@ this.legend_militant_townsfolk_situation <- this.inherit("scripts/entity/world/s
 		}
 	}
 
-
-	function onUpdateDraftList( _draftList, _gender = null)
+	function onUpdateDraftList( _draftList )
 	{
-		_gender = ::Legends.Mod.ModSettings.getSetting("GenderEquality").getValue() != "Disabled";
-
 		// Future improvement: make the backgrounds dynamic based on attached locations or settlement type
 		_draftList.push("farmhand_background");
 		_draftList.push("farmhand_background");

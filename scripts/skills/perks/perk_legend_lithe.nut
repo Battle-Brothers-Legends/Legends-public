@@ -5,10 +5,8 @@ this.perk_legend_lithe <- this.inherit("scripts/skills/skill", {
 	},
 	function create()
 	{
-		this.m.ID = "perk.legend_lithe";
-		this.m.Name = this.Const.Strings.PerkName.LegendLithe;
+		::Const.Perks.setup(this.m, ::Const.Perks.PerkDefs.LegendLithe);
 		this.m.Description = "Lithe like a lizard! %name% is able to partially deflect attacks at the last moment, turning them into glancing hits.";
-		this.m.Icon = "ui/perks/lithe.png";
 		this.m.Type = this.Const.SkillType.Perk | this.Const.SkillType.StatusEffect;
 		this.m.Order = this.Const.SkillOrder.Perk;
 		this.m.IsActive = false;

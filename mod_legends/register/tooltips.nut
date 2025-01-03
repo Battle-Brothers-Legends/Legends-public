@@ -88,25 +88,25 @@
 		Cook = ::MSU.Class.BasicTooltip(
 			"Meal Preparation",
 			format(
-				"Allow cooks more time to prepare better food.\n\nDoubles the drop rate of %s, but increases foraging and hunting time by about %s", 
-				::Const.UI.getColorized("improved food items",::Const.UI.Color.PositiveValue), 
+				"Allow cooks more time to prepare better food.\n\nDoubles the drop rate of %s, but increases foraging and hunting time by about %s",
+				::Const.UI.getColorized("improved food items",::Const.UI.Color.PositiveValue),
 				::Const.UI.getColorized("40%",::Const.UI.Color.NegativeValue)
 			)
 		),
 		Brew = ::MSU.Class.BasicTooltip(
 			"Alcohol Brewing",
 			format(
-				"Focus on brewing alcoholic drinks.\n\nDoubles the drop rate of %s, but increases foraging and hunting time by about %s", 
-				::Const.UI.getColorized("brewed items",::Const.UI.Color.PositiveValue), 
+				"Focus on brewing alcoholic drinks.\n\nDoubles the drop rate of %s, but increases foraging and hunting time by about %s",
+				::Const.UI.getColorized("brewed items",::Const.UI.Color.PositiveValue),
 				::Const.UI.getColorized("40%",::Const.UI.Color.NegativeValue)
 			)
 		),
 		Hunt = ::MSU.Class.BasicTooltip(
 			"Focused Hunting",
 			format(
-				"Your hunting party will %s for animals or monsters, taking their time to scour the remains for loot.\n\nDoubles the drop rate of %s, but increases hunting time by about %s\n\n%s are required for loot items to be obtainable", 
-				::Const.UI.getColorized("only hunt",::Const.UI.Color.PositiveValue), 
-				::Const.UI.getColorized("loot items",::Const.UI.Color.PositiveValue), 
+				"Your hunting party will %s for animals or monsters, taking their time to scour the remains for loot.\n\nDoubles the drop rate of %s, but increases hunting time by about %s\n\n%s are required for loot items to be obtainable",
+				::Const.UI.getColorized("only hunt",::Const.UI.Color.PositiveValue),
+				::Const.UI.getColorized("loot items",::Const.UI.Color.PositiveValue),
 				::Const.UI.getColorized("40%",::Const.UI.Color.NegativeValue),
 				::Const.UI.getColorized("Expert Hunters",::Const.UI.Color.NegativeValue)
 			)
@@ -115,12 +115,14 @@
 			"Focused Foraging",
 			format(
 				"Your hunting party will %s for food and do so quickly.\n\nDecreases foraging time by about %s",
-				::Const.UI.getColorized("only forage",::Const.UI.Color.PositiveValue), 
-				::Const.UI.getColorized("15%",::Const.UI.Color.PositiveValue)	
+				::Const.UI.getColorized("only forage",::Const.UI.Color.PositiveValue),
+				::Const.UI.getColorized("15%",::Const.UI.Color.PositiveValue)
 			)
 		),
 	},
+	CombatResult = {
+		Sort = ::MSU.Class.BasicTooltip("Sort Items", "Sort items by type.")
+	}
 
 	Placeholder = ::MSU.Class.BasicTooltip("Placeholder","Under development"),
-	
 });

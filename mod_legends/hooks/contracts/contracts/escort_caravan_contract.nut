@@ -316,7 +316,7 @@
 	o.createScreens = function()
 	{
 		createScreens();
-		foreach (s in this.m.States)
+		foreach (s in this.m.Screens)
 		{
 			if (s.ID == "TaskSouthern")
 			{

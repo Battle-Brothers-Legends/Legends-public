@@ -2,10 +2,7 @@ this.perk_legend_quick_step <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "perk.legend_quick_step";
-		this.m.Name = "Quick Step";
-		this.m.Description = "Exert yourself to move one tile at an unusually quick speed."
-		this.m.Icon = "ui/perks/unarmed_lunge.png";
+		::Const.Perks.setup(this.m, ::Const.Perks.PerkDefs.LegendQuickStep);
 		this.m.Type = this.Const.SkillType.Perk;
 		this.m.Order = this.Const.SkillOrder.Perk;
 		this.m.IsActive = false;

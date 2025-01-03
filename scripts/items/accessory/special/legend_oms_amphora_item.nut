@@ -2,10 +2,6 @@ this.legend_oms_amphora_item <- this.inherit("scripts/items/accessory/accessory"
 	m = {
 		IsConsumed = false
 	},
-	function isAllowedInBag(_actor = null)
-	{
-		return false;
-	}
 
 	function isConsumed()
 	{
@@ -45,6 +41,7 @@ this.legend_oms_amphora_item <- this.inherit("scripts/items/accessory/accessory"
 		this.m.Name = "Ancient Amphora";
 		this.m.Description = "An ancient glazed pot that has seen much use before your time. It depicts specific characters fighting over ripe fields with the amphora at the centre - a sickly grey mulch resides inside. When emptied, the vessel appears to gradually refill from a second chamber within the walls of the item. The freshness of the drink does not improve.";
 		this.m.SlotType = this.Const.ItemSlot.Accessory;
+		this.m.IsAllowedInBag = false;
 		this.m.ShowOnCharacter = false;
 		this.m.IsDroppedAsLoot = true;
 		this.m.IconLarge = "";

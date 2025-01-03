@@ -238,22 +238,38 @@
 		}
 	}
 
-	local onFactionChanged = o.onFactionChanged;
 	o.onFactionChanged = function ()
 	{
-		onFactionChanged();
+		this.actor.onFactionChanged();
 		local flip = !this.isAlliedWithPlayer();
+		this.getSprite("background").setHorizontalFlipping(flip);
+		this.getSprite("shaft").setHorizontalFlipping(flip);
+		this.getSprite("surcoat").setHorizontalFlipping(flip);
+		this.getSprite("quiver").setHorizontalFlipping(flip);
+		this.getSprite("body").setHorizontalFlipping(flip);
+		this.getSprite("tattoo_body").setHorizontalFlipping(flip);
+		this.getSprite("armor").setHorizontalFlipping(flip);
 		this.getSprite("armor_layer_chain").setHorizontalFlipping(flip);
 		this.getSprite("armor_layer_plate").setHorizontalFlipping(flip);
 		this.getSprite("armor_layer_tabbard").setHorizontalFlipping(flip);
 		this.getSprite("armor_layer_cloak").setHorizontalFlipping(flip);
+		this.getSprite("armor_upgrade_back").setHorizontalFlipping(flip);
+		this.getSprite("armor_upgrade_front").setHorizontalFlipping(flip);
+		this.getSprite("head").setHorizontalFlipping(flip);
+		this.getSprite("tattoo_head").setHorizontalFlipping(flip);
+		this.getSprite("injury").setHorizontalFlipping(flip);
+		this.getSprite("beard").setHorizontalFlipping(flip);
+		this.getSprite("hair").setHorizontalFlipping(flip);
+		this.getSprite("beard_top").setHorizontalFlipping(flip);
+		this.getSprite("body_blood").setHorizontalFlipping(flip);
+		this.getSprite("dirt").setHorizontalFlipping(flip);
+		this.getSprite("status_rage").setHorizontalFlipping(flip);
 		foreach (a in this.Const.CharacterSprites.Helmets)
 		{
 			if (!this.hasSprite(a))
 			{
 				continue;
 			}
-			local flip = !this.isAlliedWithPlayer();
 			this.getSprite(a).setHorizontalFlipping(flip);
 		}
 	}

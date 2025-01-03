@@ -2,10 +2,7 @@ this.perk_legend_specialist_woodaxe_skill <- this.inherit("scripts/skills/skill"
 	m = {},
 	function create()
 	{
-		this.m.ID = "perk.legend_specialist_woodaxe_skill";
-		this.m.Name = this.Const.Strings.PerkName.LegendSpecialistWoodaxeSkill;
-		this.m.Description = this.Const.Strings.PerkDescription.LegendSpecialistWoodaxeSkill;
-		this.m.Icon = "ui/perks/woodaxe_02.png";
+		::Const.Perks.setup(this.m, ::Const.Perks.PerkDefs.LegendSpecialistWoodaxeSkill);
 		this.m.Type = this.Const.SkillType.Perk;
 		this.m.Order = this.Const.SkillOrder.Perk;
 		this.m.IsActive = false;

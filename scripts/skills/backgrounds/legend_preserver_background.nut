@@ -126,7 +126,7 @@ this.legend_preserver_background <- this.inherit("scripts/skills/backgrounds/cha
 			this.Const.Perks.PerkDefs.LegendMindOverBody,
 			this.Const.Perks.PerkDefs.LegendMedIngredients,
 			this.Const.Perks.PerkDefs.LegendConservation,
-			this.Const.Perks.PerkDefs.LegendSlaughter
+			this.Const.Perks.PerkDefs.LegendCarnage
 		],
 		[
 			this.Const.Perks.PerkDefs.LegendClarity,

@@ -29,10 +29,11 @@ this.legend_glaive <- this.inherit("scripts/items/weapons/weapon", {
 	function onEquip()
 	{
 		this.weapon.onEquip();
-		local p = this.new("scripts/skills/actives/legend_glaive_slash_skill");
-		this.addSkill(p);
-		local spearwall = this.new("scripts/skills/actives/spearwall");
-		spearwall.m.BaseAttackName = p.getName();
+		skillToAdd = this.new("scripts/skills/actives/slash")
+		skillToAdd.m.isGlaiveSlash = true;
+		this.addSkill(skillToAdd);
+		local skill = this.new("scripts/skills/actives/spearwall");
+		skill.m.BaseAttackName = "Glaive Slash";
 		this.addSkill(spearwall);
 	}
 

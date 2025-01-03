@@ -3,10 +3,7 @@ this.perk_legend_favoured_enemy_hyena <- this.inherit("scripts/skills/legend_fav
 	function create()
 	{
 		this.legend_favoured_enemy_skill.create();
-		this.m.ID = "perk.legend_favoured_enemy_hyena";
-		this.m.Name = this.Const.Strings.PerkName.LegendFavouredEnemyHyena;
-		this.m.Description = this.Const.Strings.PerkDescription.LegendFavouredEnemyHyena;
-		this.m.Icon = "ui/perks/favoured_hyena_01.png";
+		::Const.Perks.setup(this.m, ::Const.Perks.PerkDefs.LegendFavouredEnemyHyena);
 		this.m.ValidTypes = this.Const.LegendMod.FavoriteHyenas;
 	}
 

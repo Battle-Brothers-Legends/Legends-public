@@ -6,7 +6,7 @@
 		onInit();
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_rotation"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_recover"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_mastery_greatsword"));
+		this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_mastery_greatsword"));
 
 		if (("Assets" in this.World) && this.World.Assets != null && this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Legendary)
 		{

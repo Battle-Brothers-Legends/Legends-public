@@ -29,10 +29,10 @@ this.legend_armor_cloak <- this.inherit("scripts/items/legend_armor/legend_armor
 		this.m.SpriteBack = "bust_cloak_" + variant + "";
 		this.m.SpriteDamagedBack = "bust_cloak_" + variant + "_damaged";
 		this.m.SpriteCorpseBack = "bust_cloak_" + variant + "_dead";
-		this.m.Icon = "legend_armor/cloak/icon_cloak_" + variant + ".png";
+		this.m.Icon = "legend_armor/icon_cloak_" + variant + ".png";
 		this.m.IconLarge = this.m.Icon;
-		this.m.OverlayIcon = "legend_armor/cloak/icon_cloak_" + variant + ".png";
-		this.m.OverlayIconLarge = "legend_armor/cloak/inventory_cloak_"  + variant + ".png";
+		this.m.OverlayIcon = "legend_armor/icon_cloak_" + variant + ".png";
+		this.m.OverlayIconLarge = "legend_armor/inventory_cloak_"  + variant + ".png";
 	}
 });
 

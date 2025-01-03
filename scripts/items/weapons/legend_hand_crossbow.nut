@@ -22,7 +22,7 @@ this.legend_hand_crossbow <- this.inherit("scripts/items/weapons/weapon", {
 		this.m.Icon = "weapons/ranged/legend_hand_crossbow_01_70x70.png";
 		this.m.WeaponType = this.Const.Items.WeaponType.Crossbow;
 		this.m.SlotType = this.Const.ItemSlot.Offhand;
-		this.m.ItemType = this.Const.Items.ItemType.Weapon | this.Const.Items.ItemType.RangedWeapon | this.Const.Items.ItemType.Defensive;
+		this.m.ItemType = this.Const.Items.ItemType.Weapon | this.Const.Items.ItemType.RangedWeapon | this.Const.Items.ItemType.Defensive| this.Const.Items.ItemType.OneHanded;
 		this.m.EquipSound = this.Const.Sound.ArmorLeatherImpact;
 		this.m.AddGenericSkill = true;
 		this.m.ShowQuiver = true;

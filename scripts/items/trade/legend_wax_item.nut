@@ -6,7 +6,7 @@ this.legend_wax_item <- this.inherit("scripts/items/trade/trading_good_item", {
 		this.m.ID = "misc.wax";
 		this.m.Name = "Wax";
 		this.m.Description = "Beeswax has a variety of uses in food preservation and candle making. Traders will pay good coin for this.";
-		this.m.Icon = "supplies/legend_wax.png";
+		this.m.Icon = "supplies/legend_wax.png"; // credit to Evie
 		this.m.Culture = this.Const.World.Culture.Neutral;
 		this.m.ProducingBuildings = [
 			"attached_location.beekeeper"

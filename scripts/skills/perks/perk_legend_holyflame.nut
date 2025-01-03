@@ -2,9 +2,7 @@ this.perk_legend_holyflame <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "perk.legend_holyflame";
-		this.m.Name = this.Const.Strings.PerkName.LegendHolyFlame;
-		this.m.Description = this.Const.Strings.PerkDescription.LegendHolyFlame;
+		::Const.Perks.setup(this.m, ::Const.Perks.PerkDefs.LegendHolyFlame);
 		this.m.Icon = "ui/perks/holyfire_circle.png";
 		this.m.Type = this.Const.SkillType.Perk;
 		this.m.Order = this.Const.SkillOrder.Perk;

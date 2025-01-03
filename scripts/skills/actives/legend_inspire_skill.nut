@@ -25,6 +25,7 @@ this.legend_inspire_skill <- this.inherit("scripts/skills/skill", {
 		this.m.FatigueCost = 30;
 		this.m.MinRange = 1;
 		this.m.MaxRange = 4;
+		this.m.MaxLevelDifference = 4;
 	}
 
 	function getTooltip()
@@ -68,7 +69,7 @@ this.legend_inspire_skill <- this.inherit("scripts/skills/skill", {
 			return false;
 		}
 
-		if (_targetTile.getEntity().getSkills().hasSkill("effects.inspired"))
+		if (_targetTile.getEntity().getSkills().hasSkill("effects.legend_inspired"))
 		{
 			return false;
 		}
@@ -79,7 +80,7 @@ this.legend_inspire_skill <- this.inherit("scripts/skills/skill", {
 	function onUse( _user, _targetTile )
 	{
 		local target = _targetTile.getEntity();
-		target.getSkills().add(this.new("scripts/skills/effects/inspired_effect"));
+		target.getSkills().add(this.new("scripts/skills/effects/legend_inspired_effect"));
 		return true;
 	}
 

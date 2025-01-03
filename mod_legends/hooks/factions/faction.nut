@@ -2,6 +2,9 @@
 {
 	while(!("Flags" in o.m)) o=o[o.SuperName];
 
+	/** Added to provide party in hooks */
+	o.m.SpawnListener <- null;
+
 	o.m.ContractsByCategory <-
 	{
 		Economy = [],
@@ -20,15 +23,14 @@
 		return this.Const.Strings.Relations[this.Math.min(this.Const.Strings.Relations.len() - 1, this.m.PlayerRelation / 10)];
 	}
 
+	local addContract = o.addContract;
 	o.addContract = function ( _c )
 	{
-		_c.setFaction(this.getID());
-
 		// Contract Overhaul
 		// For the current phase, we will overhaul the system for Settlement contracts only
 		if (this.getType() == this.Const.FactionType.Settlement)
 		{
-
+			_c.setFaction(this.getID());
 			// During deserialization, if we detect the StoredAsWildcard flag, then we should straightaway push it there and finish
 			if ( _c.m.Flags.get("StoredAsWildcard"))
 			{
@@ -88,25 +90,20 @@
 		else
 		{
 			// For this phase of the Contract Categories Overhaul, non-Settlement factions will always get the contract
-			this.m.Contracts.push(_c);
+			addContract(_c);
 		}
 	}
 
-	o.removeContract = function ( _c )
+	local removeContract = o.removeContract;
+	o.removeContract = function (_c)
 	{
-		local i = this.m.Contracts.find(_c);
-
-		if (i != null)
-		{
-			this.m.Contracts.remove(i);
-		}
-
+		removeContract(_c);
 		// Contract Overhaul: Also remove from Contract Category for Settlement factions
 		if (this.getType() == this.Const.FactionType.Settlement)
 		{
 			local j = null;
 			// If the contract was stored in the Wildcard slot, we will remove it from there
-			if ( _c.m.Flags.get("StoredAsWildcard"))
+			if (_c.m.Flags.get("StoredAsWildcard"))
 			{
 				j = this.m.ContractsByCategory["Wildcard"].find(_c);
 				if (j != null)
@@ -206,6 +203,19 @@
 		}
 
 		return false;
+	}
+
+	o.setSpawnListener <- function (_listener) {
+		this.m.SpawnListener = _listener;
+	}
+
+	local spawnEntity = o.spawnEntity;
+	o.spawnEntity = function (_tile, _name, _uniqueName, _template, _resources) {
+		local entity = spawnEntity(_tile, _name, _uniqueName, _template, _resources);
+		if (this.m.SpawnListener != null)
+			this.m.SpawnListener(entity);
+		this.m.SpawnListener = null;
+		return entity;
 	}
 
 	o.onDeserialize = function ( _in )

@@ -47,6 +47,21 @@
 		return desert >= this.Const.World.Settings.MinDesertTiles;
 	}
 
+	local fill = o.fill;
+	o.fill = function ( _rect, _properties, _pass = 1 )
+	{
+		if (::Legends.IsStartingNewCampaign) {
+			::Const.World.settingsUpdate(); //
+			::logInfo("Generating world with following settings...");
+			foreach (k,v in ::Const.World.Settings)
+			{
+				::logInfo(k + " : " + v);
+			}
+			_properties = ::World.State.m.CampaignSettings;
+		}
+
+		return fill(_rect, _properties, _pass);
+	}
 	// o.fill = function ( _rect, _properties)
 	// {
 	// 	this.Const.World.Buildings.reset();

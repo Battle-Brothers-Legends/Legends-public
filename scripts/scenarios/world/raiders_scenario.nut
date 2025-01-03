@@ -4,16 +4,13 @@ this.raiders_scenario <- this.inherit("scripts/scenarios/world/starting_scenario
 	{
 		this.m.ID = "scenario.raiders";
 		this.m.Name = "Northern Raiders";
-		this.m.Description = "[p=c][img]gfx/ui/events/event_135.png[/img][/p][p]For all your adult life you have been raiding and pillaging in these lands. But with the local peasantry poor as mice, you may want to finally expand into the profitable field of mercenary work - that is, if your potential employers are willing to forgive your past transgressions.\n[color=#bcad8c]Warband:[/color] Start with three experienced barbarians, and increased chance of finding [color=#c90000]bloodthirsty brutes, barbarians, killers and assassins[/color].\n[color=#bcad8c]Pillagers:[/color] You have a higher chance to get any items from slain enemies as loot.\n[color=#bcad8c]Outlaws:[/color] Start with [color=#c90000]perks for hunting civilians[/color], bad relations to most human factions, only other outlaws are keen to work for you.[/p]";
+		this.m.Description = "[p=c][img]gfx/ui/events/event_135.png[/img][/p][p]For all your adult life you have been raiding and pillaging in these lands. But with the local peasantry poor as mice, you may want to finally expand into the profitable field of mercenary work - that is, if your potential employers are willing to forgive your past transgressions.\n[color=#bcad8c]Warband:[/color] Start with three experienced barbarians, and increased chance of finding [color=#c90000]bloodthirsty brutes, barbarians, killers and assassins[/color].\n[color=#bcad8c]Pillagers:[/color] [color=" + this.Const.UI.Color.PositiveValue + "]15%[/color] chance to get any items from slain enemies, that might not otherwise be available to loot.\n[color=#bcad8c]Outlaws:[/color] Start with [color=#c90000]perks for hunting civilians[/color], bad relations to most human factions, only other outlaws are keen to work for you.[/p]";
 		this.m.Difficulty = 2;
 		this.m.Order = 180;
 		this.m.StartingBusinessReputation = -50; // Still use default reputation tiers even if starting at negative reputation
 	}
 
-	function isValid()
-	{
-		return this.Const.DLC.Wildmen;
-	}
+
 
 	function onSpawnAssets()
 	{
@@ -277,7 +274,20 @@ this.raiders_scenario <- this.inherit("scripts/scenarios/world/starting_scenario
 
 	function isDroppedAsLoot( _item )
 	{
-		return this.Math.rand(1, 100) <= 15;
+		local chanceIsLucky = 15;
+		local brothers = this.World.getPlayerRoster().getAll();
+		foreach (bro in brothers)
+		{
+			if (bro.getSkills().hasPerk(::Const.Perks.PerkDefs.LegendScholar))
+			{
+				chanceIsLucky += 10;
+			}
+			if (bro.getSkills().hasPerk(::Const.Perks.PerkDefs.LegendFavouredEnemyCaravan))
+			{
+				chanceIsLucky += 5;
+			}
+		}
+		return this.Math.rand(1, 100) < chanceIsLucky;
 	}
 
 	function onHiredByScenario( bro )

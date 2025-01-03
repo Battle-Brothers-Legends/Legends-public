@@ -58,7 +58,7 @@ this.raider_background <- this.inherit("scripts/skills/backgrounds/character_bac
 			Weapon = [
 				this.Const.Perks.AxeTree,
 				this.Const.Perks.PolearmTree,
-				this.Const.Perks.GreatSwordTree,
+				this.Const.Perks.TwoHandedTree,
 				this.Const.Perks.ThrowingTree
 			],
 			Defense = [

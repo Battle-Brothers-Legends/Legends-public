@@ -2,10 +2,7 @@ this.perk_legend_specialist_sling_damage <- this.inherit("scripts/skills/skill",
 	m = {},
 	function create()
 	{
-		this.m.ID = "perk.legend_specialist_sling_damage";
-		this.m.Name = this.Const.Strings.PerkName.LegendSpecialistSlingDamage;
-		this.m.Description = this.Const.Strings.PerkDescription.LegendSpecialistSlingDamage;
-		this.m.Icon = "ui/perks/sling_01.png";
+		::Const.Perks.setup(this.m, ::Const.Perks.PerkDefs.LegendSpecialistSlingDamage);
 		this.m.Type = this.Const.SkillType.Perk;
 		this.m.Order = this.Const.SkillOrder.Perk;
 		this.m.IsActive = false;

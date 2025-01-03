@@ -2,10 +2,7 @@ this.perk_legend_vala_threads <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "perk.legend_vala_threads";
-		this.m.Name = this.Const.Strings.PerkName.LegendValaThreads;
-		this.m.Description = this.Const.Strings.PerkDescription.LegendValaThreads;
-		this.m.Icon = "ui/perks/legend_vala_threads.png";
+		::Const.Perks.setup(this.m, ::Const.Perks.PerkDefs.LegendValaThreads);
 		this.m.Type = this.Const.SkillType.Perk;
 		this.m.Order = this.Const.SkillOrder.VeryLast;
 		this.m.IsActive = false;

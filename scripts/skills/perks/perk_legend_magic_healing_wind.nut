@@ -3,10 +3,7 @@ this.perk_legend_magic_healing_wind <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "perk.legend_magic_healing_wind";
-		this.m.Name = this.Const.Strings.PerkName.LegendMagicHealingWind;
-		this.m.Description = this.Const.Strings.PerkDescription.LegendMagicHealingWind;
-		this.m.Icon = "ui/perks/mage_legend_magic_healing_wind_circle.png";
+		::Const.Perks.setup(this.m, ::Const.Perks.PerkDefs.LegendMagicHealingWind);
 		this.m.Type = this.Const.SkillType.Perk;
 		this.m.Order = this.Const.SkillOrder.Perk;
 		this.m.IsActive = false;

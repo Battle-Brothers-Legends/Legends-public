@@ -143,13 +143,10 @@ foreach (i in garbage)
 ::Const.Items.NamedWeapons <- clone ::Const.Items.NamedMeleeWeapons;
 ::Const.Items.NamedWeapons.extend(::Const.Items.NamedRangedWeapons);
 
-::Const.Items.NamedSouthernWeapons <- [
+::Const.Items.NamedSouthernWeapons.extend([
 	"weapons/named/named_heavy_southern_mace"
-];
+]);
 
-::Const.Items.NamedSouthernMeleeWeapons <- [];
-::Const.Items.NamedSouthernHelmets <- [];
-::Const.Items.NamedSouthernArmors <- [];
 ::Const.Items.NamedUndeadWeapons.extend([
 	"weapons/named/legend_named_great_khopesh"
 ]);
@@ -173,3 +170,10 @@ foreach (i in garbage)
 	//Extra spot for second vanity
 	COUNT = 5
 };
+
+
+::Const.Items.LegendItemWithSpearwall <- [
+	"weapon.legend_mage_swordstaff",
+	"weapon.legend_named_swordstaff",
+	"weapon.legend_swordstaff",
+];

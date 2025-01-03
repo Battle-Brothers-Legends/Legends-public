@@ -138,7 +138,7 @@
 
 		foreach( ally in allies )
 		{
-			if (ally.getID() != this.getID() && ally.getType() == this.Const.EntityType.Alp && !this.isKindOf(ally, "alp_shadow"))
+			if (ally.getID() != this.getID() && ally.getType() == this.Const.EntityType.Alp && !this.isKindOf(ally, "legend_alp_shadow"))
 			{
 				onlyIllusionsLeft = false;
 				break;
@@ -149,7 +149,7 @@
 		{
 			foreach( ally in allies )
 			{
-				if (ally.getType() == this.Const.EntityType.Alp && this.isKindOf(ally, "alp_shadow"))
+				if (ally.getType() == this.Const.EntityType.Alp && this.isKindOf(ally, "legend_alp_shadow"))
 				{
 					ally.killSilently();
 				}

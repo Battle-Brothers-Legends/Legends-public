@@ -211,3 +211,14 @@
 		Script = "injury/injured_knee_cap_injury"
 	}
 ];
+
+::Const.Injury.PermaInjuryToProsthetic <- {};
+::Const.Injury.PermaInjuryToProsthetic["injury.broken_elbow_joint"] <- "trait.legend_prosthetic_forearm";
+::Const.Injury.PermaInjuryToProsthetic["injury.broken_knee"] <- "trait.legend_prosthetic_leg";
+::Const.Injury.PermaInjuryToProsthetic["injury.maimed_foot"] <- "trait.legend_prosthetic_foot";
+::Const.Injury.PermaInjuryToProsthetic["injury.missing_ear"] <- "trait.legend_prosthetic_ear";
+::Const.Injury.PermaInjuryToProsthetic["injury.missing_eye"] <- "trait.legend_prosthetic_eye";
+::Const.Injury.PermaInjuryToProsthetic["injury.missing_finger"] <- "trait.legend_prosthetic_finger";
+::Const.Injury.PermaInjuryToProsthetic["injury.missing_hand"] <- "trait.legend_prosthetic_hand";
+::Const.Injury.PermaInjuryToProsthetic["injury.missing_nose"] <- "trait.legend_prosthetic_nose";
+::Const.Injury.PermaInjuryToProsthetic["injury.aaaa"] <- "trait.aaa";

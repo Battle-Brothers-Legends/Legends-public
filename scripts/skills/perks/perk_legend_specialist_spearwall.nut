@@ -7,10 +7,7 @@ this.perk_legend_specialist_spearwall <- this.inherit("scripts/skills/skill", {
 	},
 	function create()
 	{
-		this.m.ID = "perk.legend_specialist_spearwall";
-		this.m.Name = this.Const.Strings.PerkName.LegendSpecSpearWall;
-		this.m.Description = this.Const.Strings.PerkDescription.LegendSpecSpearWall;
-		this.m.Icon = "ui/perks/spearwall_mastery.png";
+		::Const.Perks.setup(this.m, ::Const.Perks.PerkDefs.LegendSpecSpearWall);
 		this.m.Type = this.Const.SkillType.Perk;
 		this.m.Order = this.Const.SkillOrder.Last;
 		this.m.IsActive = false;

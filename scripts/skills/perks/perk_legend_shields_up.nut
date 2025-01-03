@@ -2,10 +2,7 @@ this.perk_legend_shields_up <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "perk.legend_shields_up";
-		this.m.Name = this.Const.Strings.PerkName.LegendShieldsUp;
-		this.m.Description = this.Const.Strings.PerkDescription.LegendShieldsUp;
-		this.m.Icon = "ui/perks/holdtheline_circle.png";
+		::Const.Perks.setup(this.m, ::Const.Perks.PerkDefs.LegendShieldsUp);
 		this.m.Type = this.Const.SkillType.Perk;
 		this.m.Order = this.Const.SkillOrder.Perk;
 		this.m.IsActive = false;
@@ -29,7 +26,7 @@ this.perk_legend_shields_up <- this.inherit("scripts/skills/skill", {
 					ally.getSkills().add(this.new("scripts/skills/effects/shieldwall_effect"));
 					this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(ally) + " uses Shieldwall due to the Shields Up perk");
 				}
-				
+
 			}
 		}
 	}

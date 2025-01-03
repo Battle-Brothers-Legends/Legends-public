@@ -10,7 +10,6 @@
 	{
 		create();
 		this.m.Icon = "ui/perks/perk_41.png";
-		this.m.Icon = "ui/perks/perk_41_sw.png";
 		this.m.Type = this.Const.SkillType.Perk | this.Const.SkillType.StatusEffect;
 	}
 

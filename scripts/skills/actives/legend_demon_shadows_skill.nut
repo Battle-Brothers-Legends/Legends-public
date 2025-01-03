@@ -75,7 +75,7 @@ this.legend_demon_shadows_skill <- this.inherit("scripts/skills/skill", {
 			Callback = this.Const.Tactical.Common.onApplyDemonShadows,
 			function Applicable( _a )
 			{
-				return !_a.getSkills().hasSkill("racial.alp") && !::MSU.isKindOf(_a, "alp_shadow");
+				return !_a.getSkills().hasSkill("racial.alp") && !::MSU.isKindOf(_a, "legend_alp_shadow");
 			}
 		};
 

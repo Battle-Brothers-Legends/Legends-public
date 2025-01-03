@@ -2,7 +2,7 @@ this.legend_fortify_skill <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "actives.legend_fortify_skill";
+		this.m.ID = "actives.legend_fortify";
 		this.m.Name = "Fortify";
 		this.m.Description = "The shield is raised to a fortified stance until next turn.";
 		this.m.Icon = "skills/fortify_square.png";
@@ -36,7 +36,7 @@ this.legend_fortify_skill <- this.inherit("scripts/skills/skill", {
 			mult = mult * 1.25;
 		}
 
-		return [
+		local tooltip =  [
 			{
 				id = 1,
 				type = "title",
@@ -65,6 +65,8 @@ this.legend_fortify_skill <- this.inherit("scripts/skills/skill", {
 				text = "Grants [color=" + this.Const.UI.Color.PositiveValue + "]+" + this.Math.floor(item.getRangedDefense() * mult + 5) + "[/color] Ranged Defense for one turn"
 			}
 		];
+
+		return tooltip;
 	}
 
 	function isUsable()
@@ -98,15 +100,10 @@ this.legend_fortify_skill <- this.inherit("scripts/skills/skill", {
 
 		this.m.FatigueCostMult = 1.0;
 
-		if (this.getContainer().getActor().getSkills().hasSkill("perk.legend_specialist_shield_push"))
+		if (this.getContainer().getActor().getCurrentProperties().IsSpecializedInShields)
 		{
 			this.m.FatigueCostMult = this.Const.Combat.WeaponSpecFatigueMult;
 			this.m.ActionPointCost = 3;
-		}
-
-		if (this.getContainer().getActor().getSkills().hasSkill("perk.shield_bash"))
-		{
-			this.m.FatigueCostMult *= 0.9;
 		}
 	}
 

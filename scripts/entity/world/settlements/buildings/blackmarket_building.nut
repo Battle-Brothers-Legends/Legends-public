@@ -49,7 +49,7 @@ this.blackmarket_building <- this.inherit("scripts/entity/world/settlements/buil
 		]);
 		this.m.Description = "Psssst! Over \'ere!";
 		this.m.UIImage = "ui/settlements/blackmarket_day";
-		this.m.UIImageNight = "ui/settlements/blackmarket_night"; 
+		this.m.UIImageNight = "ui/settlements/blackmarket_night";
 		this.m.Tooltip = "world-town-screen.main-dialog-module.Blackmarket";
 		this.m.TooltipIcon = "ui/icons/buildings/blackmarket.png";
 		this.m.IsClosedAtDay = true;
@@ -77,7 +77,7 @@ this.blackmarket_building <- this.inherit("scripts/entity/world/settlements/buil
 				File = "ambience/blackmarket/blackmarket_04.ogg",
 				Volume = 0.2,
 				Pitch = 1.0
-			},	
+			},
 			{
 				File = "ambience/blackmarket/blackmarket_05.ogg",
 				Volume = 0.2,
@@ -87,17 +87,17 @@ this.blackmarket_building <- this.inherit("scripts/entity/world/settlements/buil
 				File = "ambience/blackmarket/blackmarket_06.ogg",
 				Volume = 0.2,
 				Pitch = 1.0
-			},	
+			},
 			{
 				File = "ambience/blackmarket/blackmarket_07.ogg",
 				Volume = 0.2,
 				Pitch = 1.0
-			},	
+			},
 			{
 				File = "ambience/blackmarket/blackmarket_08.ogg",
 				Volume = 0.2,
 				Pitch = 1.0
-			},		
+			},
 			{
 				File = "ambience/blackmarket/blackmarket_09.ogg",
 				Volume = 0.2,
@@ -127,7 +127,7 @@ this.blackmarket_building <- this.inherit("scripts/entity/world/settlements/buil
 				File = "ambience/blackmarket/blackmarket_14.ogg",
 				Volume = 0.2,
 				Pitch = 1.0
-			},	
+			},
 			{
 				File = "ambience/blackmarket/blackmarket_15.ogg",
 				Volume = 0.2,
@@ -137,17 +137,17 @@ this.blackmarket_building <- this.inherit("scripts/entity/world/settlements/buil
 				File = "ambience/blackmarket/blackmarket_16.ogg",
 				Volume = 0.2,
 				Pitch = 1.0
-			},	
+			},
 			{
 				File = "ambience/blackmarket/blackmarket_17.ogg",
 				Volume = 0.2,
 				Pitch = 1.0
-			},	
+			},
 			{
 				File = "ambience/blackmarket/blackmarket_18.ogg",
 				Volume = 0.2,
 				Pitch = 1.0
-			},		
+			},
 			{
 				File = "ambience/blackmarket/blackmarket_19.ogg",
 				Volume = 0.2,
@@ -157,7 +157,7 @@ this.blackmarket_building <- this.inherit("scripts/entity/world/settlements/buil
 				File = "ambience/blackmarket/blackmarket_20.ogg",
 				Volume = 0.2,
 				Pitch = 1.0
-			},	
+			},
 			{
 				File = "ambience/blackmarket/blackmarket_21.ogg",
 				Volume = 0.2,
@@ -177,7 +177,7 @@ this.blackmarket_building <- this.inherit("scripts/entity/world/settlements/buil
 				File = "ambience/blackmarket/blackmarket_24.ogg",
 				Volume = 0.2,
 				Pitch = 1.0
-			},	
+			},
 			{
 				File = "ambience/blackmarket/blackmarket_25.ogg",
 				Volume = 0.2,
@@ -187,17 +187,17 @@ this.blackmarket_building <- this.inherit("scripts/entity/world/settlements/buil
 				File = "ambience/blackmarket/blackmarket_26.ogg",
 				Volume = 0.2,
 				Pitch = 1.0
-			},	
+			},
 			{
 				File = "ambience/blackmarket/blackmarket_27.ogg",
 				Volume = 0.2,
 				Pitch = 1.0
-			},	
+			},
 			{
 				File = "ambience/blackmarket/blackmarket_28.ogg",
 				Volume = 0.2,
 				Pitch = 1.0
-			},		
+			},
 			{
 				File = "ambience/blackmarket/blackmarket_29.ogg",
 				Volume = 0.2,
@@ -207,8 +207,8 @@ this.blackmarket_building <- this.inherit("scripts/entity/world/settlements/buil
 				File = "ambience/blackmarket/blackmarket_30.ogg",
 				Volume = 0.2,
 				Pitch = 1.0
-			}	
-		]; 
+			}
+		];
 		this.m.SoundsAtNight = [ //change these sounds at some point
 			{
 				File = "ambience/blackmarket/blackmarket_01.ogg",
@@ -229,7 +229,7 @@ this.blackmarket_building <- this.inherit("scripts/entity/world/settlements/buil
 				File = "ambience/blackmarket/blackmarket_04.ogg",
 				Volume = 0.2,
 				Pitch = 1.0
-			},	
+			},
 			{
 				File = "ambience/blackmarket/blackmarket_05.ogg",
 				Volume = 0.2,
@@ -239,17 +239,17 @@ this.blackmarket_building <- this.inherit("scripts/entity/world/settlements/buil
 				File = "ambience/blackmarket/blackmarket_06.ogg",
 				Volume = 0.2,
 				Pitch = 1.0
-			},	
+			},
 			{
 				File = "ambience/blackmarket/blackmarket_07.ogg",
 				Volume = 0.2,
 				Pitch = 1.0
-			},	
+			},
 			{
 				File = "ambience/blackmarket/blackmarket_08.ogg",
 				Volume = 0.2,
 				Pitch = 1.0
-			},		
+			},
 			{
 				File = "ambience/blackmarket/blackmarket_09.ogg",
 				Volume = 0.2,
@@ -279,7 +279,7 @@ this.blackmarket_building <- this.inherit("scripts/entity/world/settlements/buil
 				File = "ambience/blackmarket/blackmarket_14.ogg",
 				Volume = 0.2,
 				Pitch = 1.0
-			},	
+			},
 			{
 				File = "ambience/blackmarket/blackmarket_15.ogg",
 				Volume = 0.2,
@@ -289,17 +289,17 @@ this.blackmarket_building <- this.inherit("scripts/entity/world/settlements/buil
 				File = "ambience/blackmarket/blackmarket_16.ogg",
 				Volume = 0.2,
 				Pitch = 1.0
-			},	
+			},
 			{
 				File = "ambience/blackmarket/blackmarket_17.ogg",
 				Volume = 0.2,
 				Pitch = 1.0
-			},	
+			},
 			{
 				File = "ambience/blackmarket/blackmarket_18.ogg",
 				Volume = 0.2,
 				Pitch = 1.0
-			},		
+			},
 			{
 				File = "ambience/blackmarket/blackmarket_19.ogg",
 				Volume = 0.2,
@@ -309,7 +309,7 @@ this.blackmarket_building <- this.inherit("scripts/entity/world/settlements/buil
 				File = "ambience/blackmarket/blackmarket_20.ogg",
 				Volume = 0.2,
 				Pitch = 1.0
-			},	
+			},
 			{
 				File = "ambience/blackmarket/blackmarket_21.ogg",
 				Volume = 0.2,
@@ -329,7 +329,7 @@ this.blackmarket_building <- this.inherit("scripts/entity/world/settlements/buil
 				File = "ambience/blackmarket/blackmarket_24.ogg",
 				Volume = 0.2,
 				Pitch = 1.0
-			},	
+			},
 			{
 				File = "ambience/blackmarket/blackmarket_25.ogg",
 				Volume = 0.2,
@@ -339,17 +339,17 @@ this.blackmarket_building <- this.inherit("scripts/entity/world/settlements/buil
 				File = "ambience/blackmarket/blackmarket_26.ogg",
 				Volume = 0.2,
 				Pitch = 1.0
-			},	
+			},
 			{
 				File = "ambience/blackmarket/blackmarket_27.ogg",
 				Volume = 0.2,
 				Pitch = 1.0
-			},	
+			},
 			{
 				File = "ambience/blackmarket/blackmarket_28.ogg",
 				Volume = 0.2,
 				Pitch = 1.0
-			},		
+			},
 			{
 				File = "ambience/blackmarket/blackmarket_29.ogg",
 				Volume = 0.2,
@@ -359,7 +359,7 @@ this.blackmarket_building <- this.inherit("scripts/entity/world/settlements/buil
 				File = "ambience/blackmarket/blackmarket_30.ogg",
 				Volume = 0.2,
 				Pitch = 1.0
-			}		
+			}
 		];
 	}
 
@@ -377,6 +377,7 @@ this.blackmarket_building <- this.inherit("scripts/entity/world/settlements/buil
 			if (item != null)
 			{
 				item.setSold(false);
+				item.setTransactionPrice(null);
 			}
 		}
 	}
@@ -703,6 +704,16 @@ this.blackmarket_building <- this.inherit("scripts/entity/world/settlements/buil
 				R = 40,
 				P = 2.0,
 				S = "accessory/legend_pack_large"
+			},
+			{
+				R = 80,
+				P = 3.0,
+				S = "accessory/legend_cestus_item"
+			},
+			{
+				R = 80,
+				P = 3.0,
+				S = "accessory/legend_spiked_gauntlets_item"
 			}
 
 		];

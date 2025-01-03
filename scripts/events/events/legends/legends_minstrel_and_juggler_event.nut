@@ -69,6 +69,7 @@ this.legends_minstrel_and_juggler_event <- this.inherit("scripts/events/event", 
 						});
 					}
 
+					local brothers = this.World.getPlayerRoster().getAll();
 					foreach( bro in brothers )
 					{
 						if (bro.getID() == _event.m.Minstrel.getID() || bro.getID() == _event.m.Juggler.getID())
@@ -118,7 +119,7 @@ this.legends_minstrel_and_juggler_event <- this.inherit("scripts/events/event", 
 
 		foreach( bro in brothers )
 		{
-			if (bro.getBackground().getID() == "background.minstrel")
+			if (bro.getBackground().getID() == "background.minstrel" && bro.getGender() == 0)
 			{
 				candidates_minstrel.push(bro);
 			}
@@ -177,4 +178,3 @@ this.legends_minstrel_and_juggler_event <- this.inherit("scripts/events/event", 
 	}
 
 });
-

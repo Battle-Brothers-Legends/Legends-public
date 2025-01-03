@@ -6,7 +6,7 @@ this.legend_kobold_fighter <- this.inherit("scripts/entity/tactical/legend_kobol
 	{
 		this.m.Type = this.Const.EntityType.KoboldFighter;
 		this.m.XP = this.Const.Tactical.Actor.KoboldFighter.XP;
-		this.kobold.create();
+		this.legend_kobold.create();
 		this.m.AIAgent = this.new("scripts/ai/tactical/agents/goblin_ranged_agent");
 		this.m.AIAgent.setActor(this);
 	}
@@ -69,7 +69,7 @@ this.legend_kobold_fighter <- this.inherit("scripts/entity/tactical/legend_kobol
 		this.m.Items.addToBag(this.new("scripts/items/weapons/greenskins/goblin_notched_blade"));
 		this.m.Items.equip(this.new("scripts/items/weapons/greenskins/legend_blowgun"));
 		this.m.Items.equip(this.new("scripts/items/ammo/legend_darts"));
-		
+
 		if("Assets" in this.World && this.World.Assets != null && this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Legendary)
 		{
 			this.m.Items.addToBag(this.new("scripts/items/accessory/poison_item"));

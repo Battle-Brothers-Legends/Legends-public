@@ -152,112 +152,78 @@ this.legend_stollwurm <- this.inherit("scripts/entity/tactical/actor", {
 
 			if (_killer == null || _killer.getFaction() == this.Const.Faction.Player || _killer.getFaction() == this.Const.Faction.PlayerAnimals)
 			{
-				local n = 1 + (!this.Tactical.State.isScenarioMode() && this.Math.rand(1, 100) <= this.World.Assets.getExtraLootChance() ? 1 : 0);
+				local n = 2 + (!this.Tactical.State.isScenarioMode() && this.Math.rand(1, 100) <= this.World.Assets.getExtraLootChance() ? 1 : 0);
 
-				for( local i = 0; i < n; i = i )
-				{
-					if (this.Const.DLC.Unhold)
+				for( local i = 0; i < n; i++ ) {
+					local r = this.Math.rand(1, 100);
+					local loot;
+					loot = this.new("scripts/items/misc/legend_stollwurm_scales_item");
+					loot.drop(_tile);
+
+					if (r <= 25)
 					{
-						local r = this.Math.rand(1, 100);
-						local loot;
+						loot = this.new("scripts/items/misc/legend_stollwurm_blood_item");
+						loot.drop(_tile);
+					}
+					else if (r <= 50)
+					{
 						loot = this.new("scripts/items/misc/legend_stollwurm_scales_item");
 						loot.drop(_tile);
-
-						if (r <= 35)
-						{
-							loot = this.new("scripts/items/misc/legend_stollwurm_blood_item");
-							loot.drop(_tile);
-						}
-						else if (r <= 70)
-						{
-							loot = this.new("scripts/items/misc/legend_stollwurm_scales_item");
-							loot.drop(_tile);
-						}
-						else
-						{
-							loot = this.new("scripts/items/misc/lindwurm_bones_item");
-							loot.drop(_tile);
-						}
-
-						local r = this.Math.rand(1, 100);
-
-						if (r <= 30)
-						{
-							loot = this.new("scripts/items/misc/legend_stollwurm_blood_item");
-							loot.drop(_tile);
-						}
-
-						local r = this.Math.rand(1, 100);
-
-						if (r <= 30)
-						{
-							loot = this.new("scripts/items/misc/lindwurm_bones_item");
-							loot.drop(_tile);
-						}
-
-						loot.drop(_tile);
-
-						if (this.Math.rand(1, 100) <= 50)
-						{
-							local rune;
-							local variant = this.Math.rand(21, 22);
-
-							switch(variant)
-							{
-							case 21:
-								rune = this.new("scripts/items/legend_armor/runes/legend_rune_endurance");
-								break;
-
-							case 22:
-								rune = this.new("scripts/items/legend_armor/runes/legend_rune_safety");
-								break;
-							}
-
-							rune.setRuneVariant(variant);
-							rune.setRuneBonus(true);
-							rune.setRuneVariant(0);
-							rune.drop(_tile);
-						}
-
-						if (this.Math.rand(1, 100) <= chance)
-						{
-							local rune;
-							local variant = this.Math.rand(21, 22);
-
-							switch(variant)
-							{
-							case 21:
-								rune = this.new("scripts/items/legend_armor/runes/legend_rune_endurance");
-								break;
-
-							case 22:
-								rune = this.new("scripts/items/legend_armor/runes/legend_rune_safety");
-								break;
-							}
-
-							rune.setRuneVariant(variant);
-							rune.setRuneBonus(true);
-							rune.setRuneVariant(0);
-							rune.drop(_tile);
-						}
 					}
 					else
 					{
-						local loot = this.new("scripts/items/tools/acid_flask_item");
+						loot = this.new("scripts/items/misc/lindwurm_bones_item");
 						loot.drop(_tile);
 					}
 
-					i = ++i;
+					local r = this.Math.rand(1, 100);
+
+					if (r <= 20)
+					{
+						loot = this.new("scripts/items/misc/legend_stollwurm_blood_item");
+						loot.drop(_tile);
+					}
+
+					local r = this.Math.rand(1, 100);
+
+					if (r <= 30)
+					{
+						loot = this.new("scripts/items/misc/lindwurm_bones_item");
+						loot.drop(_tile);
+					}
+
+					loot.drop(_tile);
+
+					if (this.Math.rand(1, 100) <= 50)
+					{
+						local rune;
+						local variant = this.Math.rand(21, 22);
+
+						switch(variant)
+						{
+						case 21:
+							rune = this.new("scripts/items/legend_armor/runes/legend_rune_endurance");
+							break;
+
+						case 22:
+							rune = this.new("scripts/items/legend_armor/runes/legend_rune_safety");
+							break;
+						}
+
+						rune.setRuneVariant(variant);
+						rune.setRuneBonus(true);
+						rune.setRuneVariant(0);
+						rune.drop(_tile);
+					}
 				}
 
-				if (!this.Const.DLC.Unhold || this.Math.rand(1, 100) <= 90)
+				if (this.Math.rand(1, 100) <= 90)
 				{
 					local loot = this.new("scripts/items/loot/lindwurm_hoard_item");
 					loot.drop(_tile);
 				}
 			}
 		}
-
 		this.actor.onDeath(_killer, _skill, _tile, _fatalityType);
 	}
 

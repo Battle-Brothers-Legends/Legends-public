@@ -114,6 +114,7 @@
 		0
 	]
 };
+
 ::Const.Tactical.Actor.LegendStollwurm <- {
 	XP = 4000,
 	ActionPoints = 15,
@@ -133,6 +134,7 @@
 		400
 	]
 };
+
 ::Const.Tactical.Actor.LegendGreenwoodSchrat <- {
 	XP = 1100,
 	ActionPoints = 10,
@@ -172,6 +174,7 @@
 		0
 	]
 };
+
 ::Const.Tactical.Actor.LegendHexeLeader <- {
 	XP = 900,
 	ActionPoints = 16,
@@ -192,6 +195,7 @@
 		0
 	]
 };
+
 ::Const.Tactical.Actor.LegendBear <- {
 	XP = 350,
 	ActionPoints = 9,
@@ -230,6 +234,7 @@
 		0
 	]
 };
+
 ::Const.Tactical.Actor.LegendBasiliskDroneLow <- {
 	XP = 220,
 	ActionPoints = 10,
@@ -249,6 +254,7 @@
 		50
 	]
 };
+
 ::Const.Tactical.Actor.LegendBasiliskDrone <- {
 	XP = 320,
 	ActionPoints = 10,
@@ -268,6 +274,7 @@
 		90
 	]
 };
+
 ::Const.Tactical.Actor.LegendBasiliskSentry <- {
 	XP = 360,
 	ActionPoints = 8,
@@ -288,3 +295,23 @@
 	]
 };
 
+::Const.Tactical.Actor.AlpShadow <- {
+	XP = 0,
+	ActionPoints = 9,
+	Hitpoints = 5,
+	Bravery = 100,
+	Stamina = 100,
+	MeleeSkill = 50,
+	RangedSkill = 50,
+	MeleeDefense = 10,
+	RangedDefense = 20,
+	Initiative = 100,
+	FatigueEffectMult = 0.0,
+	MoraleEffectMult = 0.0,
+	FatigueRecoveryRate = 15,
+	Vision = 3,
+	Armor = [
+		0,
+		0
+	]
+}

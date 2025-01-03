@@ -2,10 +2,7 @@ this.perk_legend_scholar <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "perk.legend_scholar";
-		this.m.Name = this.Const.Strings.PerkName.LegendScholar;
-		this.m.Description = this.Const.Strings.PerkDescription.LegendScholar;
-		this.m.Icon = "ui/perks/scholar_circle.png"; //todo iconn
+		::Const.Perks.setup(this.m, ::Const.Perks.PerkDefs.LegendScholar);
 		this.m.Type = this.Const.SkillType.Perk;
 		this.m.Order = this.Const.SkillOrder.Perk;
 		this.m.IsActive = false;
@@ -13,9 +10,6 @@ this.perk_legend_scholar <- this.inherit("scripts/skills/skill", {
 		this.m.IsHidden = false;
 	}
 
-	function isDroppedAsLoot( _item )
-	{
-		return this.Math.rand(1, 100) <= 10; //10% more loot, counts for beast loot, weapons, armour, scrolls and anything else tagged as "isdroppedasloot". Stacks with other sources.
-	}
+	// this perk is handled in starting scenario
 
 });

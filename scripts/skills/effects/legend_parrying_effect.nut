@@ -13,6 +13,7 @@ this.legend_parrying_effect <- this.inherit("scripts/skills/skill", {
 		this.m.Type = this.Const.SkillType.StatusEffect;
 		this.m.Order = this.Const.SkillOrder.Any;
 		this.m.IsActive = false;
+		this.m.IsSerialized = false;
 		this.m.IsRemovedAfterBattle = true;
 	}
 

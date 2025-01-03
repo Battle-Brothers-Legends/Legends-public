@@ -2,7 +2,7 @@ this.legend_cheer_on_skill <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "actives.legend_cheer_on_skill";
+		this.m.ID = "actives.legend_cheer_on";
 		this.m.Name = "Cheer On";
 		this.m.Description = "Give it your all! Put your support behind an ally, granting them two Actions Points. Targets can only be inspired once per turn and you must be adjacent.";
 		this.m.Icon = "skills/cheered_on_square.png";

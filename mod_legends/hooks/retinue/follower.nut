@@ -16,6 +16,11 @@
 		this.m.WasOwned = true;
 	}
 
+	o.resetLinkedBro <- function ()
+	{
+		this.m.LinkedBro = null;
+	}
+
 	o.getRequirementsForUI <- function ()
 	{
 		local ret = [];

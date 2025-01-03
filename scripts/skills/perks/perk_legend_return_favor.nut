@@ -2,10 +2,7 @@ this.perk_legend_return_favor <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "perk.legend_return_favor";
-		this.m.Name = this.Const.Strings.PerkName.LegendReturnFavor;
-		this.m.Description = this.Const.Strings.PerkDescription.LegendReturnFavor;
-		this.m.Icon = "ui/perks/return_favor_circle.png";
+		::Const.Perks.setup(this.m, ::Const.Perks.PerkDefs.LegendReturnFavor);
 		this.m.Type = this.Const.SkillType.Perk;
 		this.m.Order = this.Const.SkillOrder.Perk;
 		this.m.IsActive = false;

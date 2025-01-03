@@ -38,7 +38,7 @@ this.gatherer_building <- this.inherit("scripts/entity/world/camp/camp_building"
 		desc = desc + "Assigning skilled apocatheries like Herbalists, Vala, Alchemists and Druids can return more advanced medicines and bandages.";
 		desc = desc + "\n\n";
 		desc = desc + "Buying an upgraded tent will increase gathering speed by 15% and produce more kinds of medicine. ";
-		desc = desc + "Having both an upgraded tent and skilled apocatheries can provide rare medicines, and powerful potions.";
+		desc = desc + "Having both an upgraded tent and skilled apothecaries can provide rare medicines, and powerful potions.";
 		return desc;
 	}
 
@@ -324,7 +324,7 @@ this.gatherer_building <- this.inherit("scripts/entity/world/camp/camp_building"
 					"scripts/items/accessory/legend_apothecary_mushrooms_item",
 					"scripts/items/misc/happy_powder_item"
 				]);
-				
+
 				if (levels.Apothecary >= 10)
 				{
 					loot.extend([
@@ -340,7 +340,7 @@ this.gatherer_building <- this.inherit("scripts/entity/world/camp/camp_building"
 							"scripts/items/misc/miracle_drug_item",
 							"scripts/items/accessory/spider_poison_item"
 						]);
-						
+
 						if (levels.Brewer >= 35 && levels.Apothecary >= 45)
 						{
 							loot.extend([
@@ -350,7 +350,7 @@ this.gatherer_building <- this.inherit("scripts/entity/world/camp/camp_building"
 					}
 				}
 			}
-			
+
 
 			item = this.new(loot.roll());
 			this.m.Items.push(item);

@@ -154,14 +154,12 @@
 					{
 						local item = bro.getItems().getItemAtSlot(this.Const.ItemSlot.Accessory);
 
-						if (item != null && item.getID() == "accessory.arena_collar")
-						{
+						if (item != null && item.getID() == "accessory.arena_collar") {
 							local skill;
 							bro.getFlags().increment("ArenaFightsWon", 1);
 							bro.getFlags().increment("ArenaFights", 1);
 
-							if (bro.getFlags().getAsInt("ArenaFightsWon") == 1)
-							{
+							if (bro.getFlags().getAsInt("ArenaFightsWon") == 1) {
 								skill = this.new("scripts/skills/traits/arena_pit_fighter_trait");
 								bro.getSkills().add(skill);
 								this.List.push({
@@ -169,9 +167,7 @@
 									icon = skill.getIcon(),
 									text = bro.getName() + " is now " + this.Const.Strings.getArticle(skill.getName()) + skill.getName()
 								});
-							}
-							else if (bro.getFlags().getAsInt("ArenaFightsWon") == 5)
-							{
+							} else if (bro.getFlags().getAsInt("ArenaFightsWon") == 5 && bro.getSkills().hasSkill("trait.pit_fighter")) {
 								bro.getSkills().removeByID("trait.pit_fighter");
 								skill = this.new("scripts/skills/traits/arena_fighter_trait");
 								bro.getSkills().add(skill);
@@ -180,9 +176,7 @@
 									icon = skill.getIcon(),
 									text = bro.getName() + " is now " + this.Const.Strings.getArticle(skill.getName()) + skill.getName()
 								});
-							}
-							else if (bro.getFlags().getAsInt("ArenaFightsWon") == 12)
-							{
+							} else if (bro.getFlags().getAsInt("ArenaFightsWon") >= 12 && bro.getSkills().hasSkill("trait.arena_fighter")) {
 								bro.getSkills().removeByID("trait.arena_fighter");
 								skill = this.new("scripts/skills/traits/legend_arena_veteran_trait");
 								bro.getSkills().add(skill);
@@ -191,27 +185,7 @@
 									icon = skill.getIcon(),
 									text = bro.getName() + " is now " + this.Const.Strings.getArticle(skill.getName()) + skill.getName()
 								});
-							}
-							else if (bro.getFlags().getAsInt("ArenaFightsWon") > 25 && bro.getSkills().hasSkill("trait.legend_arena_veteran"))
-							{
-								bro.getSkills().removeByID("trait.legend_arena_veteran");
-								if (bro.getFlags().getAsInt("ArenaFightsWon") < 50)
-								{
-									skill = this.new("scripts/skills/traits/legend_arena_champion_trait");
-								}
-								else
-								{
-									skill = this.new("scripts/skills/traits/legend_arena_invictus_trait");
-								}
-								bro.getSkills().add(skill);
-								this.List.push({
-									id = 10,
-									icon = skill.getIcon(),
-									text = bro.getName() + " is now " + this.Const.Strings.getArticle(skill.getName()) + skill.getName()
-								});
-							}
-							else if (bro.getFlags().getAsInt("ArenaFightsWon") == 25)
-							{
+							} else if (bro.getFlags().getAsInt("ArenaFightsWon") >= 25 && bro.getSkills().hasSkill("trait.legend_arena_veteran")) {
 								bro.getSkills().removeByID("trait.legend_arena_veteran");
 								skill = this.new("scripts/skills/traits/legend_arena_champion_trait");
 								bro.getSkills().add(skill);
@@ -220,10 +194,8 @@
 									icon = skill.getIcon(),
 									text = bro.getName() + " is now " + this.Const.Strings.getArticle(skill.getName()) + skill.getName()
 								});
-							}
-							else if (bro.getFlags().getAsInt("ArenaFightsWon") == 50)
-							{
-								bro.getSkills().removeByID("trait.legend_arena_champion_trait");
+							} else if (bro.getFlags().getAsInt("ArenaFightsWon") >= 50 && bro.getSkills().hasSkill("trait.legend_arena_champion")) {
+								bro.getSkills().removeByID("trait.legend_arena_champion");
 								skill = this.new("scripts/skills/traits/legend_arena_invictus_trait");
 								bro.getSkills().add(skill);
 								this.List.push({
@@ -232,14 +204,11 @@
 									text = bro.getName() + " is now " + this.Const.Strings.getArticle(skill.getName()) + skill.getName()
 								});
 							}
-
-							n = ++n;
+							n++;
 						}
 
 						if (n >= 3)
-						{
 							break;
-						}
 					}
 
 					if (this.World.Statistics.getFlags().getAsInt("ArenaRegularFightsWon") > 0 && this.World.Statistics.getFlags().getAsInt("ArenaRegularFightsWon") % 5 == 0)
@@ -249,26 +218,17 @@
 						local u;
 
 						if (this.World.Statistics.getFlags().getAsInt("ArenaFightsWon") == 5)
-						{
 							r = 1;
-						}
 						else if (this.World.Statistics.getFlags().getAsInt("ArenaFightsWon") == 10)
-						{
 							r = 3;
-						}
 						else if (this.World.Statistics.getFlags().getAsInt("ArenaFightsWon") == 15)
-						{
 							r = 2;
-						}
 						else
-						{
 							r = this.Math.rand(1, 3);
-						}
 
 						switch(r)
 						{
 						case 1:
-
 							a = this.Const.World.Common.pickArmor([
 									[1, "oriental/gladiator_harness"],
 							]);

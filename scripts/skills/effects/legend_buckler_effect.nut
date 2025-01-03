@@ -10,12 +10,13 @@ this.legend_buckler_effect <- this.inherit("scripts/skills/skill", {
 		this.m.Type = this.Const.SkillType.StatusEffect;
 		this.m.Order = this.Const.SkillOrder.VeryLast;
 		this.m.IsActive = false;
+		this.m.IsSerialized = false;
 		this.m.IsStacking = false;
 	}
 
 	function isHidden()
 	{
-		return this.getBonus() == 0
+		return this.getBonus() == 0;
 	}
 
 	function getBonus()
@@ -25,7 +26,7 @@ this.legend_buckler_effect <- this.inherit("scripts/skills/skill", {
 		{
 			return 0;
 		}
-		
+
 		if (!actor.isPlacedOnMap() || ("State" in this.Tactical) && this.Tactical.State.isBattleEnded())
 		{
 			return 0;
@@ -34,7 +35,7 @@ this.legend_buckler_effect <- this.inherit("scripts/skills/skill", {
 		local myTile = actor.getTile();
 		local myFaction = actor.getFaction();
 		local nearbyEnemies = 0;
-		
+
 		if (myTile == null)
 		{
 			return 0;
@@ -54,7 +55,7 @@ this.legend_buckler_effect <- this.inherit("scripts/skills/skill", {
 		{
 			return 0;
 		}
-		
+
 		if (!this.Tactical.isActive())
 		{
 			return 0;
@@ -90,7 +91,7 @@ this.legend_buckler_effect <- this.inherit("scripts/skills/skill", {
 			}
 			++nearbyEnemies;
 		}
-		
+
 		if (nearbyEnemies > 3)
 		{
 			return 0;
@@ -118,7 +119,7 @@ this.legend_buckler_effect <- this.inherit("scripts/skills/skill", {
 	function getTooltip()
 	{
 		local bonus = this.getBonus();
-		return [
+		local tooltip = [
 			{
 				id = 1,
 				type = "title",
@@ -129,7 +130,10 @@ this.legend_buckler_effect <- this.inherit("scripts/skills/skill", {
 				type = "description",
 				text = this.getDescription()
 			},
-			{
+		];
+
+		if (::Tactical.isActive()) {
+			tooltip.extend([{
 				id = 10,
 				type = "text",
 				icon = "ui/icons/melee_defense.png",
@@ -140,8 +144,9 @@ this.legend_buckler_effect <- this.inherit("scripts/skills/skill", {
 				type = "text",
 				icon = "ui/icons/ranged_defense.png",
 				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+" + bonus / 2 + "[/color]  Ranged Defense"
-			}
-		];
+			}])
+		}
+		return tooltip;
 	}
 
 	function onUpdate( _properties )

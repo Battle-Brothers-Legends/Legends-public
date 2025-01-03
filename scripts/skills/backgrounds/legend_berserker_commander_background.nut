@@ -92,7 +92,6 @@ this.legend_berserker_commander_background <- this.inherit("scripts/skills/backg
 			[
 				this.Const.Perks.PerkDefs.CripplingStrikes,
 				this.Const.Perks.PerkDefs.Colossus,
-				this.Const.Perks.PerkDefs.LegendKick,
 				this.Const.Perks.PerkDefs.Adrenaline,
 				this.Const.Perks.PerkDefs.NineLives,
 				this.Const.Perks.PerkDefs.Pathfinder,
@@ -124,7 +123,7 @@ this.legend_berserker_commander_background <- this.inherit("scripts/skills/backg
 				this.Const.Perks.PerkDefs.Taunt,
 				this.Const.Perks.PerkDefs.LegendFeint,
 				this.Const.Perks.PerkDefs.LegendDebilitate,
-				this.Const.Perks.PerkDefs.Relentless,
+				this.Const.Perks.PerkDefs.LegendOnslaught,
 				this.Const.Perks.PerkDefs.LegendTrueBeliever,
 				this.Const.Perks.PerkDefs.LegendAthlete,
 				this.Const.Perks.PerkDefs.LegendSecondWind,
@@ -136,7 +135,7 @@ this.legend_berserker_commander_background <- this.inherit("scripts/skills/backg
 				this.Const.Perks.PerkDefs.SpecHammer,
 				this.Const.Perks.PerkDefs.SpecAxe,
 				this.Const.Perks.PerkDefs.SpecCleaver,
-				this.Const.Perks.PerkDefs.LegendSpecGreatSword,
+				this.Const.Perks.PerkDefs.SpecSword,
 				this.Const.Perks.PerkDefs.LegendSpecFists,
 				this.Const.Perks.PerkDefs.SpecThrowing
 			],
@@ -149,7 +148,6 @@ this.legend_berserker_commander_background <- this.inherit("scripts/skills/backg
 				this.Const.Perks.PerkDefs.LegendSlaughterer,
 				this.Const.Perks.PerkDefs.LegendVengeance,
 				this.Const.Perks.PerkDefs.LegendBattleheart,
-				this.Const.Perks.PerkDefs.SunderingStrikes,
 				this.Const.Perks.PerkDefs.LegendAmbidextrous,
 				this.Const.Perks.PerkDefs.LegendFavouredEnemyOrk,
 				this.Const.Perks.PerkDefs.LegendFavouredEnemyGoblin,
@@ -158,7 +156,6 @@ this.legend_berserker_commander_background <- this.inherit("scripts/skills/backg
 			],
 			[
 				this.Const.Perks.PerkDefs.Berserk,
-				this.Const.Perks.PerkDefs.LegendTackle,
 				this.Const.Perks.PerkDefs.LegendLacerate,
 				this.Const.Perks.PerkDefs.LegendMuscularity,
 				this.Const.Perks.PerkDefs.Nimble,

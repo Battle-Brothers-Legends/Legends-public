@@ -15,22 +15,63 @@
 		}
 	}
 
-	local onInit = o.onInit;
 	o.onInit = function ()
 	{
-		onInit();
-		foreach (a in this.Const.CharacterSprites.Helmets)
+		this.actor.onInit();
+		local b = this.m.BaseProperties;
+		b.setValues(this.Const.Tactical.Actor.OrcWarrior);
+
+		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= 200)
 		{
-			this.addSprite(a)
+			b.MeleeSkill += 5;
+			b.DamageTotalMult += 0.1;
 		}
 
+		this.m.BaseProperties.DamageTotalMult -= 0.1;
+		b.IsSpecializedInAxes = true;
+		b.IsSpecializedInCleavers = true;
+		this.m.ActionPoints = b.ActionPoints;
+		this.m.Hitpoints = b.Hitpoints;
+		this.m.CurrentProperties = clone b;
+		this.m.ActionPointCosts = this.Const.DefaultMovementAPCost;
+		this.m.FatigueCosts = this.Const.DefaultMovementFatigueCost;
+		this.m.Items.getAppearance().Body = "bust_orc_03_body";
+		this.addSprite("socket").setBrush("bust_base_orcs");
+		local body = this.addSprite("body");
+		body.setBrush("bust_orc_03_body");
+		body.varyColor(0.09, 0.09, 0.09);
+		local injury_body = this.addSprite("injury_body");
+		injury_body.Visible = false;
+		injury_body.setBrush("bust_orc_03_body_injured");
+		this.addSprite("armor");
+		local head = this.addSprite("head");
+		head.setBrush("bust_orc_03_head_0" + this.Math.rand(1, 3));
+		head.Saturation = body.Saturation;
+		head.Color = body.Color;
+		local injury = this.addSprite("injury");
+		injury.Visible = false;
+		injury.setBrush("bust_orc_03_head_injured");
 		local v = 1;
 		local v2 = -6;
 		foreach (a in this.Const.CharacterSprites.Helmets)
 		{
-			this.addSprite(a);
+			this.addSprite(a)
 			this.setSpriteOffset(a, this.createVec(v2, v));
 		}
+
+		local body_blood = this.addSprite("body_blood");
+		body_blood.setBrush("bust_orc_03_body_bloodied");
+		body_blood.Visible = false;
+		this.addDefaultStatusSprites();
+		this.getSprite("status_rooted").Scale = 0.6;
+		this.setSpriteOffset("status_rooted", this.createVec(0, 5));
+		this.m.Skills.add(this.new("scripts/skills/special/double_grip"));
+		this.m.Skills.add(this.new("scripts/skills/actives/hand_to_hand_orc"));
+		this.m.Skills.add(this.new("scripts/skills/actives/line_breaker"));
+		this.m.Skills.add(this.new("scripts/skills/perks/perk_battering_ram"));
+		this.m.Skills.add(this.new("scripts/skills/perks/perk_stalwart"));
+		this.m.Skills.add(this.new("scripts/skills/perks/perk_shield_bash"));
+		this.m.Skills.add(this.new("scripts/skills/perks/perk_hold_out"));
 
 		if("Assets" in this.World && this.World.Assets != null && this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Legendary)
 		{
@@ -38,6 +79,13 @@
 			this.m.Skills.add(this.new("scripts/skills/perks/perk_brawny"));
 			this.m.Skills.add(this.new("scripts/skills/traits/fearless_trait"));
 		}
+
+		if (this.Const.DLC.Unhold)
+		{
+			this.m.Skills.add(this.new("scripts/skills/actives/wake_ally_skill"));
+		}
+
+		this.m.Skills.add(this.new("scripts/skills/effects/captain_effect"));
 	}
 
 	o.assignRandomEquipment = function ()

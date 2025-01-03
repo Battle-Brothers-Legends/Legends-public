@@ -18,28 +18,22 @@
 	o.onUpdate = function ( _faction )
 	{
 		if (!this.World.getTime().IsDaytime)
-		{
 			return;
-		}
 
 		if (_faction.isEnemyNearby())
-		{
 			return;
-		}
 
-		if (_faction.getUnits().len() >= 1)
-		{
+		local isNobleHouse = _faction.getType() == this.Const.FactionType.NobleHouse;
+
+		if (!this.isAbleToSpawnCaravan(_faction, isNobleHouse ? 4 : 1))
 			return;
-		}
 
-		local mySettlements = _faction.getSettlements();
+		local mySettlements = this.getFactionSettlememts(_faction, isNobleHouse);
 		local allSettlements = this.World.EntityManager.getSettlements();
 		local destinations;
 
 		if (!this.World.FactionManager.isGreaterEvil())
-		{
 			destinations = allSettlements;
-		}
 		else
 		{
 			destinations = [];
@@ -47,22 +41,18 @@
 			foreach( s in allSettlements )
 			{
 				if (s.getOwner() == null || s.getOwner().isAlliedWith(_faction.getID()))
-				{
 					destinations.push(s);
-				}
 			}
 		}
 
 		local settlements = this.getRandomConnectedSettlements(2, mySettlements, destinations, true);
 
 		if (settlements.len() < 2)
-		{
 			return;
-		}
 
 		this.m.Start = settlements[0];
 		this.m.Dest = settlements[1];
-		this.m.Score = 5;
+		this.m.Score = 5 + (isNobleHouse ? this.m.Start.getSize() - 1 : 0);
 	}
 
 	o.isAbleToSpawnCaravan <- function ( _faction, _maxNum = 0 )
@@ -129,17 +119,22 @@
 
 	o.onExecute = function ( _faction )
 	{
-		local party;
+		local budget = !::Legends.Mod.ModSettings.getSetting("WorldEconomy").getValue() ? 0 : ::Const.World.Common.WorldEconomy.Trade.calculateTradingBudget(this.m.Start);
+		local mult = this.convertBudgetToMult(budget);
 
-		if (_faction.hasTrait(this.Const.FactionTrait.OrientalCityState))
-		{
-			party = _faction.spawnEntity(this.m.Start.getTile(), "Trading Caravan", false, this.Const.World.Spawn.CaravanSouthern, this.m.Start.getResources() * 0.6);
-		}
-		else
-		{
-			party = _faction.spawnEntity(this.m.Start.getTile(), "Trading Caravan", false, this.Const.World.Spawn.Caravan, this.m.Start.getResources() * 0.5);
-		}
+		// this.logWarning("FactionsCaravanRaided = " + _faction.getFlags().getAsInt("FactionsCaravansRaided"));
+		// this.logWarning("Caravan spawned from: " + this.m.Start.getName() + " with resources equal to: " + this.getResourcesForParty(this.m.Start, _faction) * mult);
+		// this.logWarning("Start town has resources equal to: " + this.m.Start.getResources());
+		// this.logWarning("Start town has a size of: " + this.m.Start.getSize() + ", and isMilitary is: " + this.m.Start.isMilitary());
 
+		local party = _faction.spawnEntity(this.m.Start.getTile(), "Trading Caravan", false, this.pickSpawnList(this.m.Start, _faction), this.getResourcesForParty(this.m.Start, _faction) * mult); 
+		
+		// this.logWarning("Spawned with the following units:");
+		// foreach(troop in party.getTroops())
+		// {
+		// 	this.logWarning(troop.Script);
+		// }
+		
 		party.getSprite("banner").Visible = false;
 		party.getSprite("base").Visible = false;
 		party.setMirrored(true);
@@ -155,51 +150,13 @@
 			party.setDiscovered(true);
 		}
 
-		if (this.m.Start.getProduce().len() != 0)
-		{
-			local e = 3;
+		this.addLoot(party);
 
-			for( local j = 0; j != e; j = ++j )
-			{
-				party.addToInventory(this.m.Start.getProduce()[this.Math.rand(0, this.m.Start.getProduce().len() - 1)]);
-			}
-		}
-
-		party.getLoot().Money = this.Math.rand(0, 100);
-
-		if (this.Math.rand(1, 100) <= 50)
-		{
-			party.getLoot().ArmorParts = this.Math.rand(0, 10);
-		}
-
-		if (this.Math.rand(1, 100) <= 50)
-		{
-			party.getLoot().Medicine = this.Math.rand(0, 10);
-		}
-
-		if (this.Math.rand(1, 100) <= 50)
-		{
-			party.getLoot().Ammo = this.Math.rand(0, 25);
-		}
-
-		local r = this.Math.rand(1, 4);
-
-		if (r == 1)
-		{
-			party.addToInventory("supplies/bread_item");
-		}
-		else if (r == 2)
-		{
-			party.addToInventory("supplies/roots_and_berries_item");
-		}
-		else if (r == 3)
-		{
-			party.addToInventory("supplies/dried_fruits_item");
-		}
-		else if (r == 4)
-		{
-			party.addToInventory("supplies/ground_grains_item");
-		}
+		
+		if(::Legends.Mod.ModSettings.getSetting("WorldEconomy").getValue()) // yes world economy
+			::Const.World.Common.WorldEconomy.Trade.setupTrade(party, this.m.Start, this.m.Dest, budget);
+		else // no world economy
+			this.addToPartyInventory(party);
 
 		local c = party.getController();
 		c.getBehavior(this.Const.World.AI.Behavior.ID.Attack).setEnabled(false);
@@ -212,5 +169,54 @@
 		c.addOrder(move);
 		c.addOrder(unload);
 		c.addOrder(despawn);
+
+		this.afterSpawnCaravan(party);
+	}
+
+	// Merc making spawnlist tweaks here, southern caravans have a pretty good power level IMO so I won't be changing their stuff around too much yet
+	// Want forts+ to be able to get mercenaries in regular caravans, and never a lowbie so instead of using MinR values I'm actually swapping around the spawnlists
+	o.pickSpawnList <- function( _settlement, _faction )
+	{
+		if (_faction.hasTrait(this.Const.FactionTrait.OrientalCityState)) return this.Const.World.Spawn.CaravanSouthern;
+
+		if (_settlement.isMilitary()) return this.Const.World.Spawn.CaravanFort;
+
+		return this.Const.World.Spawn.Caravan;
+	}
+
+	o.addLoot <- function( _party )
+	{
+		if (this.Math.rand(1, 2) <= 1) _party.getLoot().ArmorParts = this.Math.rand(0, 10);
+	
+		if (this.Math.rand(1, 2) <= 1) _party.getLoot().Medicine = this.Math.rand(0, 10);
+
+		if (this.Math.rand(1, 2) <= 1) _party.getLoot().Ammo = this.Math.rand(0, 25);
+
+		_party.getLoot().Money = this.Math.rand(0, 100);
+	}
+
+	o.addToPartyInventory <- function( _party )
+	{
+		switch(::Math.rand(1, 4))
+		{
+		case 1:
+			_party.addToInventory("supplies/bread_item");
+			break;
+
+		case 2:
+			_party.addToInventory("supplies/roots_and_berries_item");
+			break;
+
+		case 3:
+			_party.addToInventory("supplies/dried_fruits_item");
+			break;
+
+		default:
+			_party.addToInventory("supplies/ground_grains_item");
+		}
+	}
+
+	o.afterSpawnCaravan <- function(_party)
+	{
 	}
 });

@@ -8,28 +8,23 @@
 	}
 
 	local onUpdateDraftList = o.onUpdateDraftList;
-	o.onUpdateDraftList = function ( _list, _gender = null )
+	o.onUpdateDraftList = function ( _list )
 	{
-		_gender = ::Legends.Mod.ModSettings.getSetting("GenderEquality").getValue() != "Disabled";
 		_list.push("legend_blacksmith_background");
 		_list.push("legend_ironmonger_background");
-		if (this.Math.rand(0, 9) == 1)
-		{
-			_list.push("legend_master_archer_background");
-		}
 
 		if (this.Math.rand(0, 9) == 1)
-		{
+			_list.push("legend_master_archer_background");
+
+		if (this.Math.rand(0, 9) == 1)
 			_list.push("legend_noble_shield");
-		}
+		
 		if (this.Math.rand(0, 9) == 1)
-		{
 			_list.push("legend_noble_2h");
-		}
+		
 		if (this.Math.rand(0, 9) == 1)
-		{
 			_list.push("legend_noble_ranged");
-		}
+		
 		onUpdateDraftList(_list);
 	}
 

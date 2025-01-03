@@ -212,7 +212,7 @@
 
 		if (stashLocked == true && _ignoreStashLocked == false)
 		{
-			if (_item.isChangeableInBattle(_entity) == false)
+			if (_item.isChangeableInBattle() == false)
 			{
 				tooltip.push({
 					id = 1,
@@ -257,7 +257,7 @@
 			{
 				if (stashLocked == true)
 				{
-					if (_item.getSlotType() != this.Const.ItemSlot.Bag && (_entity.getItems().getItemAtSlot(_item.getSlotType()) == null || _entity.getItems().getItemAtSlot(_item.getSlotType()) == "-1" || _entity.getItems().getItemAtSlot(_item.getSlotType()).isAllowedInBag(_entity)))
+					if (_item.getSlotType() != this.Const.ItemSlot.Bag && (_entity.getItems().getItemAtSlot(_item.getSlotType()) == null || _entity.getItems().getItemAtSlot(_item.getSlotType()) == "-1" || _entity.getItems().getItemAtSlot(_item.getSlotType()).isAllowedInBag()))
 					{
 						tooltip.push({
 							id = 1,
@@ -282,7 +282,7 @@
 				}
 				else
 				{
-					if (_item.getSlotType() != this.Const.ItemSlot.Bag && (_entity.getItems().getItemAtSlot(_item.getSlotType()) == null || _entity.getItems().getItemAtSlot(_item.getSlotType()) == "-1" || _entity.getItems().getItemAtSlot(_item.getSlotType()).isAllowedInBag(_entity)))
+					if (_item.getSlotType() != this.Const.ItemSlot.Bag && (_entity.getItems().getItemAtSlot(_item.getSlotType()) == null || _entity.getItems().getItemAtSlot(_item.getSlotType()) == "-1" || _entity.getItems().getItemAtSlot(_item.getSlotType()).isAllowedInBag()))
 					{
 						tooltip.push({
 							id = 1,
@@ -302,7 +302,7 @@
 			}
 			else if (stashLocked == true)
 			{
-				if (_item.isChangeableInBattle(_entity) && _item.isAllowedInBag(_entity) && _entity.getItems().hasEmptySlot(this.Const.ItemSlot.Bag))
+				if (_item.isChangeableInBattle() && _item.isAllowedInBag() && _entity.getItems().hasEmptySlot(this.Const.ItemSlot.Bag))
 				{
 					tooltip.push({
 						id = 1,
@@ -325,7 +325,7 @@
 			}
 			else
 			{
-				if (_item.isChangeableInBattle(_activeEntity) && _item.isAllowedInBag(_activeEntity))
+				if (_item.isChangeableInBattle() && _item.isAllowedInBag())
 				{
 					tooltip.push({
 						id = 1,
@@ -347,7 +347,7 @@
 
 		case "ground":
 		case "character-screen-inventory-list-module.ground":
-			if (_item.isChangeableInBattle(_entity))
+			if (_item.isChangeableInBattle())
 			{
 				if (_item.getSlotType() != this.Const.ItemSlot.None)
 				{
@@ -363,7 +363,7 @@
 					});
 				}
 
-				if (_item.isAllowedInBag(_entity))
+				if (_item.isAllowedInBag())
 				{
 					tooltip.push({
 						id = 2,
@@ -399,7 +399,7 @@
 				});
 			}
 
-			if (_item.isChangeableInBattle(_entity) == true && _item.isAllowedInBag(_entity))
+			if (_item.isChangeableInBattle() == true && _item.isAllowedInBag())
 			{
 				tooltip.push({
 					id = 2,
@@ -733,6 +733,7 @@
 		return null;
 	}
 
+	local general_queryUIElementTooltipData = o.general_queryUIElementTooltipData;
 	o.general_queryUIElementTooltipData = function (_entityId, _elementId, _elementOwner )
 	{
 		local entity;
@@ -2933,7 +2934,7 @@
 				{
 					id = 2,
 					type = "description",
-					text = "Characters gain experience as they or their allies slay enemies in battles. If a character has accumulated sufficient experience, they\'ll level up and be able to increase attributes and pick a perk that grants a unique bonus.\n\nBeyond the 11th character level, avatars gain a perk every two levels, and normal characters gain a perk every four levels."
+					text = "Characters gain experience as they or their allies slay enemies in battles. If a character has accumulated sufficient experience, they\'ll level up and be able to increase attributes and pick a perk that grants a unique bonus.\n\nBeyond the 12th character level, avatars gain a perk every two levels, and normal characters gain a perk every four levels."
 				}
 			];
 
@@ -2947,7 +2948,7 @@
 				{
 					id = 2,
 					type = "description",
-					text = "The character\'s level measures experience in battle. Characters rise in levels as they gain experience and are able to increase their attributes and gain perks that make them better at the mercenary profession.\n\nBeyond the 11th character level, avatars gain a perk every two levels, and normal characters gain a perk every four levels."
+					text = "The character\'s level measures experience in battle. Characters rise in levels as they gain experience and are able to increase their attributes and gain perks that make them better at the mercenary profession.\n\nBeyond the 12th character level, avatars gain a perk every two levels, and normal characters gain a perk every four levels."
 				}
 			];
 
@@ -4650,6 +4651,6 @@
 			return ret;
 		}
 
-		return null;
+		return general_queryUIElementTooltipData(_entityId, _elementId, _elementOwner);
 	}
 });

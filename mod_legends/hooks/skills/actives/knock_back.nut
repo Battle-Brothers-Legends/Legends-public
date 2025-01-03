@@ -1,5 +1,21 @@
 ::mods_hookExactClass("skills/actives/knock_back", function(o)
 {
+	o.m.RegularDamage <- 10;
+	o.m.RegularDamageMax <- 25;
+
+	local create = o.create;
+	o.create = function()
+	{
+		create();
+		this.m.FatigueCost = 15;
+	}
+
+	o.setDamage <- function (_extraShieldDamageMin, _extraShieldDamageMax)
+	{
+		this.m.RegularDamage += _extraShieldDamageMin;
+		this.m.RegularDamageMax += _extraShieldDamageMax;
+	}
+
 	local getTooltip = o.getTooltip;
 	o.getTooltip = function ()
 	{
@@ -11,8 +27,8 @@
 			local p = this.getContainer().getActor().getCurrentProperties();
 			local bodyHealth = actor.getHitpointsMax();
 			local mult = p.MeleeDamageMult;
-			local damagemin = this.Math.abs(10 * p.DamageTotalMult);
-			local damagemax = this.Math.abs(25 * p.DamageTotalMult);
+			local damagemin = this.Math.abs(this.m.RegularDamage * p.DamageTotalMult);
+			local damagemax = this.Math.abs(this.m.RegularDamageMax * p.DamageTotalMult);
 			if (this.getContainer().getActor().getSkills().hasSkill("perk.legend_muscularity"))
 			{
 				local muscularity = this.Math.floor(bodyHealth * 0.1);
@@ -53,7 +69,7 @@
 	o.onUse = function ( _user, _targetTile )
 	{
 		local target = _targetTile.getEntity();
-
+		local actor = this.getContainer().getActor();
 		if (this.m.SoundOnUse.len() != 0)
 		{
 			this.Sound.play(this.m.SoundOnUse[this.Math.rand(0, this.m.SoundOnUse.len() - 1)], this.Const.Sound.Volume.Skill, _user.getPos());
@@ -61,7 +77,7 @@
 
 		if (this.Math.rand(1, 100) > this.getHitchance(_targetTile.getEntity()))
 		{
-			target.onMissed(this.getContainer().getActor(), this);
+			target.onMissed(actor, this);
 			return false;
 		}
 
@@ -114,7 +130,7 @@
 		}
 		else
 		{
-			local p = this.getContainer().getActor().getCurrentProperties();
+			local p = actor.getCurrentProperties();
 			local tag = {
 				Attacker = _user,
 				Skill = this,
@@ -130,12 +146,13 @@
 
 			if (hasShieldBash)
 			{
-				local p = this.getContainer().getActor().getCurrentProperties();
-				local bodyHealth = this.getContainer().getActor().getHitpointsMax();
-				local damagemin = this.Math.abs(10 * p.DamageTotalMult);
-				local damagemax = this.Math.abs(25 * p.DamageTotalMult);
+				local p = actor.getCurrentProperties();
+				local bodyHealth = actor.getHitpointsMax();
+				local shieldBonus = this.Math.min(10, this.Math.floor(actor.getOffhandItem().m.ConditionMax * 0.05));
+				local damagemin = this.Math.abs((this.m.RegularDamage + shieldBonus) * p.DamageTotalMult);
+				local damagemax = this.Math.abs((this.m.RegularDamageMax + shieldBonus) * p.DamageTotalMult);
 
-				if (this.getContainer().getActor().getSkills().hasSkill("perk.legend_muscularity"))
+				if (actor.getSkills().hasSkill("perk.legend_muscularity"))
 				{
 					local muscularity = this.Math.floor(bodyHealth * 0.1);
 					damagemax += muscularity;
@@ -159,19 +176,15 @@
 
 	o.onAfterUpdate <- function ( _properties )
 	{
-		this.m.FatigueCostMult = 1.0; //swap around to resetting the fatiguecostmult & only changing that with shield_bash perk ; this way our specialist stacks alongside shield bash but doesn't go reach limit of 0 fatigue eventually
+		this.m.FatigueCostMult = _properties.IsSpecializedInShields ? this.Const.Combat.WeaponSpecFatigueMult : 1.0;
 
 		if (this.getContainer().getActor().getSkills().hasSkill("perk.shield_bash"))
 		{
-			this.m.FatigueCostMult = this.Const.Combat.WeaponSpecFatigueMult;
-			this.m.ActionPointCost = 3; // Maybe not both? not sure tbh
+			this.m.FatigueCostMult = this.m.FatigueCostMult *= 0.75;
+			this.m.ActionPointCost = 3
 		}
-
-		// if (this.getContainer().getActor().getSkills().hasSkill("perk.shield_bash"))
-		// {
-		// 	this.m.FatigueCostMult *= 0.9;
-		// }
 	}
+
 	o.onTargetSelected <- function ( _targetTile )
 	{
 		local knockToTile = this.findTileToKnockBackTo(getContainer().getActor().getTile(), _targetTile);

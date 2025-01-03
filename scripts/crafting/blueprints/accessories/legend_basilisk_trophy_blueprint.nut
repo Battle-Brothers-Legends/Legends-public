@@ -22,7 +22,7 @@ this.legend_basilisk_trophy_blueprint <- this.inherit("scripts/crafting/blueprin
 
 	function onCraft( _stash )
 	{
-		_stash.add(this.new("scripts/items/accessory/basilisk_trophy_item"));
+		_stash.add(this.new("scripts/items/accessory/legend_basilisk_trophy_item"));
 	}
 
 });

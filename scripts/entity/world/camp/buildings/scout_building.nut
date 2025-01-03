@@ -124,15 +124,11 @@ this.scout_building <- this.inherit("scripts/entity/world/camp/camp_building", {
 		foreach( bro in roster )
 		{
 			if (bro.getCampAssignment() != this.m.ID)
-			{
-				continue
-			}
+				continue;
 			local mod = this.m.BaseCraft + this.m.BaseCraft * bro.getBackground().getModifiers().Scout;
 
-			if (bro.getSkills().hasSkill("perk.lookout"))
-			{
-			mod = mod * 1.1;
-			}
+			if (bro.getSkills().hasPerk(::Const.Perks.PerkDefs.LegendLookout))
+				mod = mod * 1.1;
 
 			++ret.Assigned
 			ret.Modifiers.push([mod, bro.getName(), bro.getBackground().getNameOnly()]);

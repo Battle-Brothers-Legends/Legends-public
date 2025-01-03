@@ -12,6 +12,7 @@ this.legend_emperors_countenance <- this.inherit("scripts/items/legend_helmets/l
 		this.updateVariant();
 		this.m.ImpactSound = this.Const.Sound.ArmorHalfplateImpact;
 		this.m.InventorySound = this.Const.Sound.ArmorHalfplateImpact;
+		this.m.ItemType = this.m.ItemType | this.Const.Items.ItemType.Legendary;
 		this.m.Value = 20000;
 		this.m.Condition = 300;
 		this.m.ConditionMax = 300;
@@ -20,7 +21,18 @@ this.legend_emperors_countenance <- this.inherit("scripts/items/legend_helmets/l
 		this.m.IsLowerVanity = false;
 		this.m.HideHair = true;
 		this.m.HideBeard = true;
-		this.m.ItemType = this.m.ItemType | this.Const.Items.ItemType.Legendary;
+	}
+
+	function updateVariant()
+	{
+		local variant = this.m.Variant > 9 ? this.m.Variant : "0" + this.m.Variant;
+		this.m.Sprite = "bust_helmet_" + variant;
+		this.m.SpriteDamaged = "bust_helmet_" + variant + "_damaged";
+		this.m.SpriteCorpse = "bust_helmet_" + variant + "_dead";
+		this.m.Icon = "legend_helmets/inventory_golden_helm_01.png";
+		this.m.IconLarge = this.m.Icon;
+		this.m.OverlayIcon = this.m.Icon;
+		this.m.OverlayIconLarge = this.m.OverlayIcon;
 	}
 
 	function getTooltip()
@@ -42,8 +54,7 @@ this.legend_emperors_countenance <- this.inherit("scripts/items/legend_helmets/l
 
 	function onDamageReceived( _damage, _fatalityType, _attacker )
 	{
-		this.helmet.onDamageReceived(_damage, _fatalityType, _attacker);
-
+		local ret = this.legend_helmet_upgrade.onDamageReceived(_damage, _fatalityType, _attacker);
 		if (_attacker != null && _attacker.isAlive() && _attacker.getHitpoints() > 0 && _attacker.getID() != this.getContainer().getActor().getID() && _attacker.getTile().getDistanceTo(this.getContainer().getActor().getTile()) == 1 && !_attacker.getCurrentProperties().IsImmuneToDamageReflection)
 		{
 			local hitInfo = clone this.Const.Tactical.HitInfo;
@@ -55,6 +66,7 @@ this.legend_emperors_countenance <- this.inherit("scripts/items/legend_helmets/l
 			hitInfo.FatalityChanceMult = 0.0;
 			_attacker.onDamageReceived(_attacker, null, hitInfo);
 		}
+		return ret;
 	}
 
 });

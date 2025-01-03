@@ -8,3 +8,5 @@
 ::Const.Tactical.TileBlendPriority.COUNT = 44;
 
 ::Const.Tactical.CombatInfo.PlayerDeploymentWithFrontlineCallback <- null;
+
+::Const.Tactical.HitInfo.BodyDamageMultBeforeSteelBrow <- 1.0;

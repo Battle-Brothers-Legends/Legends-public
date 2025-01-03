@@ -1,4 +1,4 @@
-::mods_hookExactClass("entity/world/party", function(o) 
+::mods_hookExactClass("entity/world/party", function(o)
 {
 	o.m.StashInventory <- false;
 
@@ -6,7 +6,7 @@
 	{
 		return this.m.StashInventory;
 	}
-	
+
 	o.setOrigin <- function ( _origin )
 	{
 		this.getFlags().set("CaravanOrigin", _origin.getID());
@@ -37,16 +37,6 @@
 					text = "A caravan from " + town.getName()
 				});
 			}
-		}
-
-		else if (f != null && !f.isAlwaysHidden())
-		{
-			ret.push({
-				id = 50,
-				type = "hint",
-				icon = f.getUIBanner(),
-				text = "From " + f.getName()
-			});
 		}
 
 		if (::Legends.Mod.ModSettings.getSetting("WorldEconomy").getValue() && this.World.Assets.m.IsBrigand && this.m.Flags.get("IsCaravan"))
@@ -315,10 +305,10 @@
 				local inv = this.getStashInventory().getItems();
 				local coords = this.getTile().Coords;
 				local caravanHistoryData = ::Const.World.Common.WorldEconomy.Trade.createCaravanHistoryData(::Const.World.Common.WorldEconomy.Trade.CaravanHistoryType.Destroyed, origin.getID(), destinationID, investment, profit, inv, [coords.X, coords.Y]);
-				origin.updateCaravanSentHistory(caravanHistoryData);	
+				origin.updateCaravanSentHistory(caravanHistoryData);
 			}
 		}
-		
+
 		this.World.EntityManager.onWorldEntityDestroyed(this, false);
 		this.world_entity.onCombatLost();
 	}
@@ -329,14 +319,14 @@
 		// temporarily removed until we figure out what's going on with the caravan hunter retinue - Breaky 23.10.2024
 		// local playerRoster = this.World.getPlayerRoster().getAll();
 		// local lookout = 0;
-		
+
 		// if(!World.State.isPaused() && isAttackable() && getFaction() != 0 && !isAlliedWithPlayer() && getTile().getDistanceTo(World.State.getPlayer().getTile()) <= 12)
 		// {
 		// 	foreach( bro in playerRoster )
 		// 	{
 		// 		if (bro.getCampAssignment() != this.Const.World.CampBuildings.Scout)
 		// 			{
-		// 				if (bro.getSkills().hasSkill("perk.lookout"))
+		// 				if (bro.getSkills().hasPerk(::Const.Perks.PerkDefs.LegendLookout)
 		// 					{
 		// 					lookout += 1;
 		// 					}
@@ -354,7 +344,7 @@
 		if (typeof _i == "string") this.world_entity.addToInventory(_i);
 		else this.m.StashInventory.add(_i);
 	}
-	
+
 	o.clearInventory <- function ()
 	{
 		this.world_entity.clearInventory();
