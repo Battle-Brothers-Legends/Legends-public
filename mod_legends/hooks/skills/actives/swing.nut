@@ -1,5 +1,17 @@
 ::mods_hookExactClass("skills/actives/swing", function(o)
 {
+	o.m.ApplyAxeMastery <- false;
+
+	o.isAxeMasteryApplied <- function ()
+	{
+		return this.m.ApplyAxeMastery;
+	}
+
+	o.setApplyAxeMastery <- function ( _f )
+	{
+		this.m.ApplyAxeMastery = _f;
+	}
+
 	o.getTooltip = function ()
 	{
 		local tooltip = this.getDefaultTooltip();
@@ -34,7 +46,14 @@
 
 	o.onAfterUpdate = function ( _properties )
 	{
-		this.m.FatigueCostMult = _properties.IsSpecializedInSwords ? this.Const.Combat.WeaponSpecFatigueMult : 1.0;
+		if (this.m.ApplyAxeMastery)
+		{
+			this.m.FatigueCostMult = _properties.IsSpecializedInAxes ? this.Const.Combat.WeaponSpecFatigueMult : 1.0;
+		}
+		else
+		{
+			this.m.FatigueCostMult = _properties.IsSpecializedInSwords ? this.Const.Combat.WeaponSpecFatigueMult : 1.0;
+		}
 	}
 
 	o.onAnySkillUsed = function ( _skill, _targetEntity, _properties )
