@@ -10,8 +10,6 @@
 	o.onEquip = function ()
 	{
 		onEquip();
-		local skill = this.new("scripts/skills/actives/swing");
-		skill.setApplyAxeMastery(true);
-		this.addSkill(skill);
+		this.addSkill(this.new("scripts/skills/actives/swing"));
 	}
 });
