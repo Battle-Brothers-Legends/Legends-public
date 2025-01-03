@@ -36,7 +36,7 @@
 				type = "text",
 				icon = "ui/icons/warning.png",
 				text = "[color=" + ::Const.UI.Color.NegativeValue + "]Must be the first skill to be used on this character\'s turn[/color]"
-			})
+			});
 
 		return ret;
 	}

@@ -82,6 +82,7 @@ this.legends_necro_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 		this.World.Assets.getStash().add(this.new("scripts/items/supplies/strange_meat_item"));
 		this.World.Assets.getStash().add(this.new("scripts/items/supplies/strange_meat_item"));
 		this.World.Assets.getStash().add(this.new("scripts/items/supplies/black_marsh_stew_item"));
+		this.World.Flags.set("IsLegendNecroOrigin", true);
 	}
 
 	function onSpawnPlayer()

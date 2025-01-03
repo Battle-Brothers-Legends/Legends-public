@@ -46,6 +46,16 @@ unpacked/legend_helmets/4
 unpacked/legend_helmets/4/metadata.xml
 
 .vscode
+.vscode/
 
 build_compile_*.sh
 unstaged_build_*.sh
+
+*.sublime-workspace
+*.sublime-project
+
+.bbbuilder/
+brushes/
+*.zip
+.editorconfig
+.utils/

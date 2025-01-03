@@ -1,6 +1,6 @@
 ::Legends <- {
 	ID = "mod_legends",
-	Version = "19.0.6",
+	Version = "19.0.8",
 	Name = "Legends Mod",
 	BuildName = "Aspiration and Reality",
 	IsStartingNewCampaign = false
@@ -15,7 +15,7 @@ else
 	::mods_registerMod(::Legends.ID, ::Legends.Version, ::Legends.Name);
 }
 
-::mods_queue(::Legends.ID, "mod_msu, vanilla(>=1.5.0-15), dlc_lindwurm, dlc_unhold, dlc_wildmen, dlc_desert, dlc_paladins, mod_events_delayed_fix, !mod_tooltip_extension(<=1.01)", function()
+::mods_queue(::Legends.ID, "mod_msu, vanilla(>=1.5.0-15), dlc_lindwurm, dlc_unhold, dlc_wildmen, dlc_desert, dlc_paladins, mod_events_delayed_fix_legends, !mod_tooltip_extension(<=1.01)", function()
 {
 	::Legends.Mod <- ::MSU.Class.Mod(::Legends.ID, ::Legends.Version, ::Legends.Name);
 

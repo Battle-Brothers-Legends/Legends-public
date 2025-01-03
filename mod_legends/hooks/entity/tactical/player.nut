@@ -586,15 +586,34 @@
 		return result;
 	}
 
+	o.finalizeFallen <- function(_fallen)
+	{
+		_fallen.level <- this.getLevel();
+		_fallen.traits <- this.getDeadTraits();
+		_fallen.talents <- this.getTalents();
+		_fallen.stats <- [
+			this.getBaseProperties().Hitpoints,
+			this.getBaseProperties().Stamina,
+			this.getBaseProperties().Bravery,
+			this.getBaseProperties().Initiative,
+			this.getBaseProperties().MeleeSkill,
+			this.getBaseProperties().RangedSkill,
+			this.getBaseProperties().MeleeDefense,
+			this.getBaseProperties().RangedDefense
+		];
+		return _fallen;
+	}
+
 	local onDeath = o.onDeath;
 	o.onDeath = function ( _killer, _skill, _tile, _fatalityType )
 	{
-		local numBefore = ::World.Statistics.getFallen().len();
-
+		local bro = this;
+		local originalAddFallen = ::World.Statistics.addFallen;
+		::World.Statistics.addFallen = function (_fallen) {
+			originalAddFallen(bro.finalizeFallen(_fallen));
+		}
 		onDeath(_killer, _skill, _tile, _fatalityType);
-
-		if (numBefore < ::World.Statistics.getFallen().len())
-			::World.Statistics.finalizeLastFallen(this);
+		::World.Statistics.addFallen = originalAddFallen;
 	}
 
 	local onActorKilled = o.onActorKilled;

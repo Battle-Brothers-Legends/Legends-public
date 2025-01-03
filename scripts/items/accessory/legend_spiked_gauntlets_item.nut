@@ -80,13 +80,13 @@ this.legend_spiked_gauntlets_item <- this.inherit("scripts/items/accessory/acces
 				type = "text",
 				icon = "ui/icons/fatigue.png",
 				text = "[color=" + this.Const.UI.Color.NegativeValue + "]-3[/color] Fatigue."
-			},
-			{
-				id = 15,
-				type = "text",
-				icon = "ui/icons/special.png",
-				text = "Allows you to grapple any weapon on unarmed attacks"
 			}
+			// {
+			// 	id = 15,
+			// 	type = "text",
+			// 	icon = "ui/icons/special.png",
+			// 	text = "Allows you to grapple any weapon on unarmed attacks"
+			// }
 		]);
 		return result;
 	}

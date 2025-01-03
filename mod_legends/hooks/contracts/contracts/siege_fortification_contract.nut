@@ -17,7 +17,26 @@
 	o.start = function ()
 	{
 		start();
-		this.m.Name = "Siege %objective%";
+		this.m.Name = this.buildText("Siege %objective%");
+	}
+
+	o.formatDescription <- function ()
+	{
+		local r = ::MSU.Array.rand(this.m.DescriptionTemplates);
+		local count = 0;
+		local find = r.find("%");
+
+		while (find != null) {
+			find = r.find("%", find + 1);
+			count++;
+		}
+
+		if (count == 1)
+			r = this.format(r, ::Const.UI.getColorized(::World.FactionManager.getFaction(this.getFaction()).getName(), ::Const.UI.Color.getHighlightLightBackgroundValue()));
+		else if (count == 2)
+			r = this.format(r, ::Const.UI.getColorized(this.m.Location.getSettlement().getName(), ::Const.UI.Color.getHighlightLightBackgroundValue()), ::Const.UI.getColorized(this.m.Location.getName(), ::Const.UI.Color.getHighlightLightBackgroundValue()));
+
+		this.m.Description = r;
 	}
 
 	local createScreens = o.createScreens;

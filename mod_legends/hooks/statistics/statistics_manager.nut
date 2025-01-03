@@ -1,22 +1,5 @@
 ::mods_hookNewObject("statistics/statistics_manager", function(o) {
 
-	o.finalizeLastFallen <- function( _bro )
-	{
-		m.Fallen[0].level <- _bro.getLevel();
-		m.Fallen[0].traits <- _bro.getDeadTraits();
-		m.Fallen[0].talents <- _bro.getTalents();
-		m.Fallen[0].stats <- [
-			_bro.getBaseProperties().Hitpoints,
-			_bro.getBaseProperties().Stamina,
-			_bro.getBaseProperties().Bravery,
-			_bro.getBaseProperties().Initiative,
-			_bro.getBaseProperties().MeleeSkill,
-			_bro.getBaseProperties().RangedSkill,
-			_bro.getBaseProperties().MeleeDefense,
-			_bro.getBaseProperties().RangedDefense
-		];
-	}
-
 	o.onSerialize = function ( _out )
 	{
 		this.m.Flags.onSerialize(_out);

@@ -3,7 +3,7 @@
 	{
 		if (!this.m.Container.hasSkill("actives.rotation"))
 		{
-			if (!this.getContainer().getActor().isPlayerControlled())
+			if (this.getContainer().getActor().isPlayerControlled())
 			{
 				this.m.Container.add(this.new("scripts/skills/actives/rotation"));
 			}
