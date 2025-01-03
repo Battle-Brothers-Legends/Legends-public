@@ -154,7 +154,7 @@ if (!("Perks" in ::Const))
 		[::Const.Perks.PerkDefs.LegendDebilitate],
 		[],
 		[::Const.Perks.PerkDefs.LegendBloodbath],
-		[::Const.Perks.PerkDefs.LegendSlaughter],
+		[::Const.Perks.PerkDefs.LegendCarnage],
 		[::Const.Perks.PerkDefs.LegendGruesomeFeast],
 		[::Const.Perks.PerkDefs.LegendDarkflight]
 	]

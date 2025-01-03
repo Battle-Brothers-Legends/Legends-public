@@ -29,10 +29,10 @@ this.legends_troubadour_and_juggler_event <- this.inherit("scripts/events/event"
 				this.Characters.push(_event.m.Troubadour.getImagePath());
 				this.Characters.push(_event.m.Juggler.getImagePath());
 				local r = this.Math.rand(0, 20);
-				local tmdef = _event.m.Troubadour.getCurrentProperties().getMeleeDefense;
-				local jmdef = _event.m.Juggler.getCurrentProperties().getMeleeDefense;
+				local tmdef = _event.m.Troubadour.getCurrentProperties().getMeleeDefense();
+				local jmdef = _event.m.Juggler.getCurrentProperties().getMeleeDefense();
 				local avgmdef = this.Math.floor((tmdef + jmdef) / 2);
-				if (r > rdef)
+				if (r > avgmdef)
 				{
 				r = this.Math.rand(1, 5);
 
@@ -60,21 +60,21 @@ this.legends_troubadour_and_juggler_event <- this.inherit("scripts/events/event"
 
 					if (r == 3)
 					{
-						local injury = _event.m.Minstrel.addInjury(this.Const.Injury.BluntBody);
+						local injury = _event.m.Troubadour.addInjury(this.Const.Injury.BluntBody);
 						this.List.push({
 						id = 10,
 						icon = injury.getIcon(),
-						text = _event.m.Minstrel.getName() + " suffers " + injury.getNameOnly()
+						text = _event.m.Troubadour.getName() + " suffers " + injury.getNameOnly()
 						});
 					}
 
 					else
 					{
-						local injury = _event.m.Minstrel.addInjury(this.Const.Injury.PiercingBody);
+						local injury = _event.m.Troubadour.addInjury(this.Const.Injury.PiercingBody);
 						this.List.push({
-						id = 10,
-						icon = injury.getIcon(),
-						text = _event.m.Minstrel.getName() + " suffers " + injury.getNameOnly()
+							id = 10,
+							icon = injury.getIcon(),
+							text = _event.m.Troubadour.getName() + " suffers " + injury.getNameOnly()
 						});
 					}
 				}
@@ -107,28 +107,28 @@ this.legends_troubadour_and_juggler_event <- this.inherit("scripts/events/event"
 
 					if (r == 3)
 					{
-						local injury = _event.m.Minstrel.addInjury(this.Const.Injury.BluntBody);
+						local injury = _event.m.Troubadour.addInjury(this.Const.Injury.BluntBody);
 						this.List.push({
-						id = 10,
-						icon = injury.getIcon(),
-						text = _event.m.Minstrel.getName() + " suffers " + injury.getNameOnly()
+							id = 10,
+							icon = injury.getIcon(),
+							text = _event.m.Troubadour.getName() + " suffers " + injury.getNameOnly()
 						});
 					}
 
 					if (r == 4)
 					{
-						local injury = _event.m.Minstrel.addInjury(this.Const.Injury.PiercingBody);
+						local injury = _event.m.Troubadour.addInjury(this.Const.Injury.PiercingBody);
 						this.List.push({
-						id = 10,
-						icon = injury.getIcon(),
-						text = _event.m.Minstrel.getName() + " suffers " + injury.getNameOnly()
+							id = 10,
+							icon = injury.getIcon(),
+							text = _event.m.Troubadour.getName() + " suffers " + injury.getNameOnly()
 						});
 					}
 
-
+					local brothers = this.World.getPlayerRoster().getAll();
 					foreach( bro in brothers )
 					{
-						if (bro.getID() == _event.m.Minstrel.getID() || bro.getID() == _event.m.Juggler.getID())
+						if (bro.getID() == _event.m.Troubadour.getID() || bro.getID() == _event.m.Juggler.getID())
 						{
 							continue;
 						}
@@ -177,7 +177,7 @@ this.legends_troubadour_and_juggler_event <- this.inherit("scripts/events/event"
 
 		foreach( bro in brothers )
 		{
-			if (bro.getBackground().getID() == "background.minstrel" && bro.getGender()==1)
+			if (bro.getBackground().getID() == "background.minstrel" && bro.getGender() == 1)
 			{
 				candidates_troubadour.push(bro);
 			}
@@ -236,4 +236,3 @@ this.legends_troubadour_and_juggler_event <- this.inherit("scripts/events/event"
 	}
 
 });
-

@@ -39,7 +39,7 @@
 					id = 7,
 					type = "text",
 					icon = "ui/icons/regular_damage.png",
-					text = "[color=" + this.Const.UI.Color.PositiveValue + "]+50%[/color] damage from background"
+					text = "[color=" + this.Const.UI.Color.PositiveValue + "]+25%[/color] damage from background"
 				});
 				break;
 			}
@@ -155,7 +155,7 @@
 				hasWraps = true;
 			if (item.getID() == "accessory.legend_cestus")
 				hasCestus = true;
-			if (item.getID() == "accessory.legend_spiked_gauntlets_item")
+			if (item.getID() == "accessory.legend_spiked_gauntlets")
 				hasGauntlets = true;
 		}
 
@@ -168,8 +168,7 @@
 			_properties.DamageRegularMax += 12;
 			_properties.DamageArmorMult += 0.3;
 		}
-
-		if (hasCestus)
+		else if (hasCestus)
 		{
 			_properties.DamageRegularMin += 6;
 			_properties.DamageRegularMax += 12;

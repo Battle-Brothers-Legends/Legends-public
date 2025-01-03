@@ -149,9 +149,6 @@ this.legends_sisterhood_scenario <- this.inherit("scripts/scenarios/world/starti
 		local bros = _roster.getAll();
 
 		this.addBroToRoster(_roster, "legend_shieldmaiden_background", 6);
-		this.addBroToRoster(_roster, "disowned_noble_background", 6);
-		this.addBroToRoster(_roster, "adventurous_noble_background", 8);
-		this.addBroToRoster(_roster, "monk_background", 6);
 
 		foreach( i, bro in bros )
 		{

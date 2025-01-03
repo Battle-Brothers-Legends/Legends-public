@@ -9,10 +9,7 @@ this.legend_random_party_scenario <- this.inherit("scripts/scenarios/world/start
 		this.m.Order = 200;
 	}
 
-	function isValid()
-	{
-		return this.Const.DLC.Wildmen;
-	}
+
 
 	function onSpawnAssets()
 	{

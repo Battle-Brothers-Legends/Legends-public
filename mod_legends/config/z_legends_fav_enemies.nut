@@ -645,7 +645,7 @@ if (!("LegendMod" in ::Const))
 {
 	if (_actor == null)
 	{
-		{
+		return {
 			Kills = 0,
 			Strength = 0,
 			HitChance = 0,

@@ -66,7 +66,7 @@ this.legend_demon_hound_bite_skill <- this.inherit("scripts/skills/skill", {
 				this.Sound.play(this.m.SoundOnUse[this.Math.rand(0, this.m.SoundOnUse.len() - 1)], this.Const.Sound.Volume.RacialEffect * 1.5, _targetEntity.getPos());
 			}
 
-			this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(_targetEntity) + " sprit is being drained");
+			this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(_targetEntity) + " spirit is being drained");
 		}
 
 		local poison = _targetEntity.getSkills().getSkillByID("effects.legend_demon_hound_bite_effect");

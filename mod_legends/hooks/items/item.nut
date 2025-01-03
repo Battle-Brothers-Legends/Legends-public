@@ -15,16 +15,10 @@
 	o.m.OriginSettlementID <- 0; // the Settlement ID where the item was originally produced
 	o.m.TradeHistorySettlementIDs <- []; // an array of Settlement IDs to track the item's trade history
 	o.m.LastTransactionPrice <- null;
-
-	o.isAllowedInBag = function ( _actor = null )
-	{
-		if (!this.m.IsAllowedInBag || this.m.SlotType == this.Const.ItemSlot.Body || this.m.SlotType == this.Const.ItemSlot.Head || this.m.SlotType == this.Const.ItemSlot.None)
-		{
-			return false;
-		}
-
-		return true;
-	}
+	o.m.IsQueryingSellPrice <- 0;
+	o.m.IsQueryingBuyPrice <- 0;
+	o.m.AddToBagActor <- null;
+	o.m.IsChangeableInBattleActor <- null;
 
 	local setSold = o.setSold;
 	o.setSold = function (_f) {
@@ -56,11 +50,6 @@
 	o.getType <- function ()
 	{
 		return this.m.Type;
-	}
-
-	o.isChangeableInBattle = function ( _actor = null)
-	{
-		return this.m.SlotType >= 0 ? this.m.IsChangeableInBattle && this.Const.ItemSlotChangeableInBattle[this.m.SlotType] : false;
 	}
 
 	o.isDroppedAsLoot = function ()
@@ -151,6 +140,10 @@
 
 	o.setTransactionPrice <- function (_price) {
 		this.m.LastTransactionPrice = _price;
+		if (_price == null) {
+			this.m.IsSold = false;
+			this.m.IsBought = false;
+		}
 	}
 
 	o.getBuyPrice = function ()

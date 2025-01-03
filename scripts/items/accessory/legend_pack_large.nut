@@ -8,6 +8,7 @@ this.legend_pack_large <- this.inherit("scripts/items/accessory/accessory", {
 		this.m.Description = "A backpack worn by merchants to carry many more supplies";
 		this.m.SlotType = this.Const.ItemSlot.Accessory;
 		this.m.IsDroppedAsLoot = true;
+		this.m.IsAllowedInBag = false;
 		this.m.ShowOnCharacter = true;
 		this.m.IconLarge = "accessory/legend_pack_large.png";
 		this.m.Icon = "accessory/legend_pack_large.png";
@@ -21,11 +22,6 @@ this.legend_pack_large <- this.inherit("scripts/items/accessory/accessory", {
 	function playInventorySound( _eventType )
 	{
 		this.Sound.play("sounds/cloth_01.wav", this.Const.Sound.Volume.Inventory);
-	}
-
-	function isAllowedInBag(_actor = null)
-	{
-		return false;
 	}
 
 });

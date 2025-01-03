@@ -24,7 +24,7 @@ this.legend_en_garde_skill <- this.inherit("scripts/skills/skill", {
 			"sounds/combat/weapon_break_01.wav"
 		];
 		this.m.Type = this.Const.SkillType.Active;
-		this.m.Order = this.Const.SkillOrder.UtilityTargeted + 2;
+		this.m.Order = this.Const.SkillOrder.UtilityTargeted - 1;
 		this.m.IsSerialized = false;
 		this.m.IsActive = true;
 		this.m.IsTargeted = true;

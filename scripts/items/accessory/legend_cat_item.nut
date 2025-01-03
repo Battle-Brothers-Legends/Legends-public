@@ -10,11 +10,6 @@ this.legend_cat_item <- this.inherit("scripts/items/accessory/accessory", {
 
 		]
 	},
-	function isAllowedInBag(_actor = null)
-	{
-		return false;
-	}
-
 	function getScript()
 	{
 		return this.m.Script;
@@ -68,6 +63,7 @@ this.legend_cat_item <- this.inherit("scripts/items/accessory/accessory", {
 		this.m.Name = this.Const.Strings.LegendCatNames[this.Math.rand(0, this.Const.Strings.LegendCatNames.len() - 1)] + " the Cat";
 		this.m.Description = "A mysterious cat that seems all too intelligent";
 		this.m.SlotType = this.Const.ItemSlot.Accessory;
+		this.m.IsAllowedInBag = false;
 		this.m.IsDroppedAsLoot = true;
 		this.m.ShowOnCharacter = false;
 		this.m.IsChangeableInBattle = false;

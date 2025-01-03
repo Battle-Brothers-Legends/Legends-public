@@ -10,10 +10,7 @@ this.legends_troupe_scenario <- this.inherit("scripts/scenarios/world/starting_s
 		this.m.IsFixedLook = true;
 	}
 
-	function isValid()
-	{
-		return this.Const.DLC.Wildmen;
-	}
+
 
 	function onSpawnAssets()
 	{

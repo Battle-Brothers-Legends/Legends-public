@@ -47,20 +47,18 @@
 		return ret;
 	}
 
-		local onAfterUpdate = o.onAfterUpdate;
-	o.onAfterUpdate = function ( _properties )
+	o.isUsable = function ()
 	{
-		onAfterUpdate(_properties);
-		if (this.getContainer().hasSkill("perk.legend_close_combat_archer"))
-		{
-			this.m.MinRange = 1;
-			this.m.MaxRange = 3;
-		}
+		local isUsable = !this.Tactical.isActive() || this.skill.isUsable() && this.getAmmo() > 0;
+		if (this.getContainer().hasPerk(::Const.Perks.PerkDefs.LegendCloseCombatArcher))
+			return isUsable;
+
+		return isUsable && !this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions());
 	}
 
 	o.onAfterUpdate = function ( _properties )
 	{
-		if (this.getContainer().hasSkill("perk.legend_close_combat_archer"))
+		if (this.getContainer().hasPerk(::Const.Perks.PerkDefs.LegendCloseCombatArcher))
 		{
 			this.m.MinRange = 1;
 			this.m.MaxRange = 3;

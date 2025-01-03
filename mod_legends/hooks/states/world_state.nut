@@ -7,6 +7,7 @@
 	o.m.IDToRef <- array(27, -1);
 	o.m.DistantVisionBonus <- false;
 	o.m.AppropriateTimeToRecalc <- 0; //Leonion's fix
+	o.m.Encounters <- null;
 
 	o.getBrothersInReserves <- function ()
 	{
@@ -47,6 +48,9 @@
 		this.m.CommanderDied = false;
 		this.m.Camp = this.new("scripts/states/world/camp_manager");
 		::World.Camp <- this.WeakTableRef(this.m.Camp);
+		this.m.Encounters = this.new("scripts/states/world/encounter_manager");
+		::World.Encounters <- this.WeakTableRef(this.m.Encounters);
+		this.m.Encounters.onInit();
 		onInit();
 	}
 
@@ -76,6 +80,9 @@
 		this.m.Camp.destroy();
 		this.m.Camp = null;
 		::World.Camp = null;
+		this.m.Encounters.clear();
+		this.m.Encounters = null;
+		::World.Encounters = null;
 		onFinish();
 	}
 
@@ -191,7 +198,7 @@
 		properties.InCombatAlready = false;
 		properties.IsAttackingLocation = false;
 		local factions = [];
-		factions.resize(48, 0); // handled by MSU
+		factions.resize(256, 0); // handled by MSU
 
 		foreach( party in raw_parties )
 		{
@@ -1165,6 +1172,70 @@
 		return this.m.DistantVisionBonus;
 	}
 
+	/**
+	 * Adds convenience method to world state to mimic original
+	 * Shows encouter dialog while in settlement
+	 */
+	o.showEncounterScreenFromTown <- function (_encounter, _playSound = true) {
+		if (!this.m.EventScreen.isVisible() && !this.m.EventScreen.isAnimating())
+		{
+			if ("Event" in _encounter.m) {
+				::World.State.getMenuStack().popAll(true);
+				::Time.scheduleEvent(::TimeUnit.Virtual, 1, ::World.Events.fire, _encounter.m.Event);
+				::Time.scheduleEvent(::TimeUnit.Real, 500, function ( _tag ) {
+					::World.State.setPause(false);
+				}, null);
+			} else {
+				if (_playSound && ::Const.Events.GlobalSound != "")
+					::Sound.play(::Const.Events.GlobalSound, 1.0);
+
+				this.m.WorldTownScreen.hideAllDialogs();
+				this.m.EventScreen.setIsEncounter(true);
+				this.m.EventScreen.show(_encounter);
+				this.m.MenuStack.push(function () {
+					this.m.EventScreen.hide();
+					this.m.WorldTownScreen.showLastActiveDialog();
+					this.m.EventScreen.setIsEncounter(false);
+					this.m.WorldTownScreen.refresh();
+				}, function () {
+					return false;
+				});
+			}
+		}
+	}
+
+	/**
+	 * Adds convenience method to world state to mimic original
+	 * Shows encouter dialog while in camp
+	 */
+	o.showEncounterScreenFromCamp <- function (_encounter, _playSound = true) {
+		if (!this.m.EventScreen.isVisible() && !this.m.EventScreen.isAnimating())
+		{
+			if ("Event" in _encounter.m) {
+				::World.State.getMenuStack().popAll(true);
+				::Time.scheduleEvent(::TimeUnit.Virtual, 1, ::World.Events.fire, _encounter.m.Event);
+				::Time.scheduleEvent(::TimeUnit.Real, 500, function ( _tag ) {
+					::World.State.setPause(false);
+				}, null);
+			} else {
+				if (_playSound && ::Const.Events.GlobalSound != "")
+					::Sound.play(::Const.Events.GlobalSound, 1.0);
+
+				this.m.CampScreen.hide();
+				this.m.EventScreen.setIsEncounter(true);
+				this.m.EventScreen.show(_encounter);
+				this.m.MenuStack.push(function() {
+					this.m.EventScreen.hide();
+					this.m.CampScreen.show();
+					this.m.EventScreen.setIsEncounter(false);
+					this.m.WorldTownScreen.refresh();
+				}, function() {
+					return false;
+				});
+			}
+		}
+	}
+
 	o.showCombatDialog = function ( _isPlayerInitiated = true, _isCombatantsVisible = true, _allowFormationPicking = true, _properties = null, _pos = null )
 	{
 		local entities = [];
@@ -1456,6 +1527,7 @@
 	local onSerialize = o.onSerialize;
 	o.onSerialize = function ( _out )
 	{
+		this.m.Encounters.onSerialize(_out);
 		onSerialize( _out );
 		::World.Camp.onSerialize(_out);
 	}
@@ -1463,6 +1535,9 @@
 	local onDeserialize = o.onDeserialize;
 	o.onDeserialize = function ( _in )
 	{
+		if (::Legends.Mod.Serialization.isSavedVersionAtLeast("19.1.0", _in.getMetaData())) {
+			this.m.Encounters.onDeserialize(_in);
+		}
 		onDeserialize(_in);
 		if (this.m.EscortedEntity == null) {
 			::World.State.setCampingAllowed(true);

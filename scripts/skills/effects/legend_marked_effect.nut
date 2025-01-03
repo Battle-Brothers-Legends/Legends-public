@@ -1,9 +1,9 @@
 // this isn't currently used so i haven't renamed it
-this.marked_effect <- this.inherit("scripts/skills/skill", {
+this.legend_marked_effect <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "effects.marked_target";
+		this.m.ID = "effects.legend_marked_target";
 		this.m.Name = "Marked";
 		this.m.Description = "This character has gotten the attention of nearby opponents and is more likely to get attacked over other potential targets.";
 		this.m.Icon = "ui/perks/perk_38.png";

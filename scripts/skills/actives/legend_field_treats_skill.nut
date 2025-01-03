@@ -49,64 +49,30 @@ this.legend_field_treats_skill <- this.inherit("scripts/skills/skill", {
 
 	function isUsable()
 	{
-		if (!this.skill.isUsable())
-		{
-			return false
-		}
-		local food = this.World.Assets.getFood();
-		if (food < 20)
-		{
-			return false
-		}
-		return true
+		return skill.isUsable() && ::World.Assets.getFood() >= 20;
 	}
 
 	function onVerifyTarget( _originTile, _targetTile )
 	{
 		if (!this.skill.onVerifyTarget(_originTile, _targetTile))
-		{
 			return false;
-		}
-
-		local food = this.World.Assets.getFood();
-		if (food < 20)
-		{
-			return false
-		}
 
 		local target = _targetTile.getEntity();
-		if (target == null)
-		{
-			return false;
-		}
-
-		if (!this.m.Container.getActor().isAlliedWith(target))
-		{
-			return false;
-		}
-
-		if (target.getMoraleState() >= this.Const.MoraleState.Steady)
-		{
-			return false;
-		}
-		return true;
+		return getContainer().getActor().isAlliedWith(target) && target.getMoraleState() < ::Const.MoraleState.Steady;
 	}
 
 	function onUse( _user, _targetTile )
 	{
-		local food = this.World.Assets.getFood();
-		local a = _targetTile.getEntity();
-		a.changeMorale(this.Const.MoraleState.Steady, "status_effect_56");
-		local food = this.World.Assets.getFoodItems();
+		local food = ::World.Assets.getFoodItems();
+		_targetTile.getEntity().checkMorale(::Const.MoraleState.Steady - _targetTile.getEntity().getMoraleState(), 9000, ::Const.MoraleCheckType.Default, "status_effect_56");
 
-		for( local i = 0; i < 2; i = ++i )
+		for( local i = 0; i < 2; ++i )
 		{
-			local idx = this.Math.rand(0, food.len() - 1);
-			local item = food[idx];
-			this.World.Assets.getStash().remove(item);
-			food.remove(idx);
+			local idx = ::Math.rand(0, food.len() - 1);
+			this.World.Assets.getStash().remove(food.remove(idx));
 		}
-		this.World.Assets.updateFood();
+
+		::World.Assets.updateFood();
 		return true;
 	}
 

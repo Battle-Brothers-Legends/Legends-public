@@ -58,8 +58,8 @@ this.perk_legend_small_target <- this.inherit("scripts/skills/skill", {
 			return tooltip;
 		}
 
-		local sourceEffect = this.getContainer().getSkillByID("effects.legend_blend_in");
-		if (this.getContainer().getActor().getSkills().hasPerk(::Const.Perks.PerkDefs.LegendUnburdened) && bonus >= this.m.BonusUnburdenedMin && sourceEffect != null && sourceEffect.m.MeekStacks > 0)
+		local sourcePerk = this.getContainer().getSkillByID("perk.legend_blend_in");
+		if (this.getContainer().getActor().getSkills().hasPerk(::Const.Perks.PerkDefs.LegendUnburdened) && bonus >= this.m.BonusUnburdenedMin && sourcePerk != null && sourcePerk.m.MeekStacks > 0)
 		{
 			tooltip.push({
 				id = 6,
@@ -155,11 +155,11 @@ this.perk_legend_small_target <- this.inherit("scripts/skills/skill", {
 		_properties.MeleeDefense += this.getCurrentBonus();
 		_properties.RangedDefense += this.getCurrentBonus();
 
-		local sourceEffect = this.getContainer().getSkillByID("effects.legend_blend_in");
-		if (sourceEffect == null)
+		local sourcePerk = this.getContainer().getSkillByID("perk.legend_blend_in");
+		if (sourcePerk == null)
 			return;
 
-		if (this.getContainer().getActor().getSkills().hasPerk(::Const.Perks.PerkDefs.LegendUnburdened) && bonus >= this.m.BonusUnburdenedMin && sourceEffect.m.MeekStacks > 0)
+		if (this.getContainer().getActor().getSkills().hasPerk(::Const.Perks.PerkDefs.LegendUnburdened) && bonus >= this.m.BonusUnburdenedMin && sourcePerk.m.MeekStacks > 0)
 		{
 			_properties.ActionPoints += 1;
 		}

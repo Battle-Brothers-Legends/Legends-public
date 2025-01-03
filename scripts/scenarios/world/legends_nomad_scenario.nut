@@ -37,7 +37,7 @@ this.legends_nomad_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 		bros[0].setPlaceInFormation(2);
 		bros[0].setVeteranPerks(2);
 		bros[0].getSprite("socket").setBrush("bust_base_nomads");		
-    bros[0].getSkills().add(this.new("scripts/skills/traits/legend_nomad_trait"));
+		bros[0].getSkills().add(this.new("scripts/skills/traits/legend_nomad_trait"));
 		bros[0].getSkills().add(this.new("scripts/skills/perks/perk_legend_wind_reader"));
 		bros[0].setStartValuesEx([ // melee
 			"nomad_background"
@@ -46,14 +46,14 @@ this.legends_nomad_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 
 		bros[1].setPlaceInFormation(3);
 		bros[1].setVeteranPerks(2);
-    bros[1].getSprite("socket").setBrush("bust_base_nomads");
-  	bros[1].getSkills().add(this.new("scripts/skills/traits/legend_nomad_trait"));
+		bros[1].getSprite("socket").setBrush("bust_base_nomads");
+		bros[1].getSkills().add(this.new("scripts/skills/traits/legend_nomad_trait"));
 		bros[1].getSkills().add(this.new("scripts/skills/perks/perk_legend_wind_reader"));
 		bros[1].setStartValuesEx([ //melee always to prevent all ranged parties
 			"nomad_background"
 		]);
 		bros[1].getBackground().m.RawDescription = "{%name% came from another tribe that merged with yours not too long ago. Their family was butched in the night by \'skin men\' who could travel thirty paces in a blink of the eye. While many think them unsettled by what appears to be a raid, you can\'t help but notice how they always sleep closest to the fire every night.}";
-    
+
 		bros[2].setPlaceInFormation(4);
 		bros[2].setVeteranPerks(2);
 		bros[2].getSkills().add(this.new("scripts/skills/effects_world/exhausted_effect"));

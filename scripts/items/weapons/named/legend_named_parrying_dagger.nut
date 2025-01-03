@@ -2,7 +2,8 @@ this.legend_named_parrying_dagger <- this.inherit("scripts/items/shields/named/n
 	m = {
 		Variants = [],
 		WeaponType = ::Const.Items.WeaponType.Dagger, // workaround: hardcode WeaponType since this is actually a shield
-
+		OffHandWeaponSkills = {},
+		PrimaryOffhandAttack = null,
 		// for offhand weapon
 		RegularDamage = 20,
 		RegularDamageMax = 40,
@@ -11,6 +12,11 @@ this.legend_named_parrying_dagger <- this.inherit("scripts/items/shields/named/n
 		DirectDamageAdd = 0.0,
 		ChanceToHitHead = 0,
 	},
+	function getPrimaryOffhandAttack()
+	{
+		return m.PrimaryOffhandAttack;
+	}
+
 	function create()
 	{
 		this.named_shield.create();
@@ -83,26 +89,6 @@ this.legend_named_parrying_dagger <- this.inherit("scripts/items/shields/named/n
 		this.Sound.play(::Const.Sound.DefaultWeaponEquip[this.Math.rand(0, ::Const.Sound.DefaultWeaponEquip.len() - 1)], this.Const.Sound.Volume.Inventory);
 	}
 
-	function onEquip()
-	{
-		this.shield.onEquip();
-		local stab = this.new("scripts/skills/actives/stab");
-		stab.m.Order = this.Const.SkillOrder.UtilityTargeted + 1;
-		this.addSkill(stab);
-		this.addSkill(this.new("scripts/skills/actives/legend_en_garde_skill"));
-		this.addSkill(this.new("scripts/skills/actives/puncture"));
-		local parryDaggerEffect = this.new("scripts/skills/effects/legend_parrying_dagger_effect");
-		parryDaggerEffect.m.Order = this.Const.SkillOrder.UtilityTargeted + 1;
-		this.getContainer().getActor().getSkills().add(parryDaggerEffect);
-		// Manually add the effect so that it will be ordered after perks in the skill container instead of before background
-		// Even though this effect is being granted by equipping this weapon, we are adding it this way because of possible future plans to make legend_parrying_effect available not just by equipping this weapon.
-		// Hence, making ordering it with the other effects/perks instead of the row above background (for item-granted effects) is for consistency
-		local parrying = this.new("scripts/skills/effects/legend_parrying_effect");
-		parrying.m.IsFromItem = true;
-		parrying.m.Order = this.Const.SkillOrder.UtilityTargeted + 2;
-		this.getContainer().getActor().getSkills().add(parrying);
-	}
-
 	function getTooltip()
 	{
 		local result = this.shield.getTooltip();
@@ -159,17 +145,96 @@ this.legend_named_parrying_dagger <- this.inherit("scripts/items/shields/named/n
 			}
 		}
 
+		result.push({
+			id = 4,
+			type = "text",
+			icon = "ui/icons/special.png",
+			text = "Grants [color=" + ::Const.UI.Color.PositiveValue + "]+10%[/color] melee damage if having a dagger on your mainhand"
+		});
+
 		return result;
+	}
+
+	function onEquip()
+	{
+		m.OffHandWeaponSkills.clear(); // reset, it isn't bad for being too careful
+
+		named_shield.onEquip();
+		local stab = this.new("scripts/skills/actives/stab");
+		m.OffHandWeaponSkills[stab.m.ID] <- ::MSU.asWeakTableRef(stab);
+		m.PrimaryOffhandAttack = m.OffHandWeaponSkills[stab.m.ID];
+		stab.m.Order = this.Const.SkillOrder.UtilityTargeted - 3;
+		stab.m.ID = stab.m.ID + "_offhand";
+		this.addSkill(stab);
+
+		local puncture = this.new("scripts/skills/actives/puncture");
+		m.OffHandWeaponSkills[puncture.m.ID] <- ::MSU.asWeakTableRef(puncture);
+		puncture.m.Order = this.Const.SkillOrder.UtilityTargeted - 2;
+		puncture.m.ID = puncture.m.ID + "_offhand";
+		this.addSkill(puncture);
+
+		this.addSkill(this.new("scripts/skills/actives/legend_en_garde_skill"));
+
+		local parryDaggerEffect = this.new("scripts/skills/effects/legend_parrying_dagger_effect");
+		parryDaggerEffect.m.Order = this.Const.SkillOrder.UtilityTargeted + 1;
+		parryDaggerEffect.setItem(this);
+		this.m.SkillPtrs.push(parryDaggerEffect);
+		this.getContainer().getActor().getSkills().add(parryDaggerEffect);
+		// Manually add the effect so that it will be ordered after perks in the skill container instead of before background
+		// Even though this effect is being granted by equipping this weapon, we are adding it this way because of possible future plans to make legend_parrying_effect available not just by equipping this weapon.
+		// Hence, making ordering it with the other effects/perks instead of the row above background (for item-granted effects) is for consistency
+		local parrying = this.new("scripts/skills/effects/legend_parrying_effect");
+		parrying.m.IsFromItem = true;
+		parrying.m.Order = this.Const.SkillOrder.UtilityTargeted + 2;
+		parrying.setItem(this);
+		this.m.SkillPtrs.push(parrying);
+		this.getContainer().getActor().getSkills().add(parrying);
 	}
 
 	function onUnequip()
 	{
-		local skill = this.getContainer().getActor().getSkills().getSkillByID("effects.legend_parrying");
-		if (skill != null && skill.m.IsFromItem)
+		named_shield.onUnequip();
+
+		foreach (id, offhandSkill in m.OffHandWeaponSkills)
 		{
-			this.getContainer().getActor().getSkills().removeByID("effects.legend_parrying");
+			local mainhandSkill = getContainer().getActor().getSkills().getSkillByID(id);
+
+			if (mainhandSkill != null)
+				mainhandSkill.m.IsHidden = false; // stop hiding the main hand skills
 		}
-		this.named_shield.onUnequip();
+
+		m.OffHandWeaponSkills.clear(); // reset
+		m.PrimaryOffhandAttack = null;
+	}
+
+	function onUpdateProperties( _properties )
+	{
+		named_shield.onUpdateProperties(_properties);
+		local main = getContainer().getActor().getMainhandItem();
+
+		if (main == null)
+			return;
+
+		if (main.isWeaponType(::Const.Items.WeaponType.Dagger))
+			_properties.MeleeDamageMult *= 1.1;
+
+		local shouldHidden = main.m.RegularDamageMax >= m.RegularDamageMax;
+		foreach (id, offhandSkill in m.OffHandWeaponSkills)
+		{
+			local mainhandSkill = getContainer().getActor().getSkills().getSkillByID(id);
+
+			if (mainhandSkill == null) {
+				offhandSkill.m.IsHidden = false;
+				continue;
+			}
+			else if (::MSU.isNull(offhandSkill)) {
+				mainhandSkill.m.IsHidden = false;
+				continue;
+			}
+			
+			offhandSkill.m.IsHidden = shouldHidden;
+			mainhandSkill.m.IsHidden = !shouldHidden;
+		}
 	}
 
 	function getAmmoMax()

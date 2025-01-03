@@ -6,7 +6,7 @@
 			if (s.ID == "B") {
 				local start = s.start;
 				s.start <- function (_event) {
-					start();
+					start(_event);
 					this.List.push({
 						id = 10,
 						icon = "ui/icons/relations.png",

@@ -4,14 +4,9 @@
 	o.onAdded = function ( _settlement )
 	{
 		if(::Legends.Mod.ModSettings.getSetting("WorldEconomy").getValue())
-		{
 			_settlement.setResources(_settlement.getResources() + _settlement.getResources() * -0.05);
-		}
+		
 		onAdded( _settlement );
 	}
 
-	o.onUpdateDraftList <- function ( _draftList, _gender = null)
-	{
-		_gender = ::Legends.Mod.ModSettings.getSetting("GenderEquality").getValue() != "Disabled";
-	}
 });

@@ -1,5 +1,10 @@
 this.legend_vala_in_trance <- this.inherit("scripts/skills/skill", {
-	m = {},
+	m = {
+		trances = [
+			"perk.legend_vala_trance_perspective",
+			"perk.legend_vala_trance_malevolent"
+		]
+	},
 	function create()
 	{
 		this.m.ID = "effects.legend_vala_in_trance";
@@ -23,41 +28,32 @@ this.legend_vala_in_trance <- this.inherit("scripts/skills/skill", {
 
 	function getTooltip()
 	{
-		if (!this.isHidden())
-		{
-			return [
-				{
-					id = 1,
-					type = "title",
-					text = this.getName()
-				},
-				{
-					id = 10,
-					type = "text",
-					icon = "ui/icons/special.png",
-					text = "This character is currently in trance."
-				}
-			];
-		}
-		else
-		{
-			return;
-		}
+		return [
+			{
+				id = 1,
+				type = "title",
+				text = this.getName()
+			},
+			{
+				id = 10,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = "This character is currently in trance."
+			}
+		];
 	}
 
 
 	function onRemoved()
 	{
-		local TrancePerspective = this.getContainer().getActor().getSkills().getSkillByID("perk.legend_vala_trance_perspective");
-		local TranceMalevolent = this.getContainer().getActor().getSkills().getSkillByID("perk.legend_vala_trance_malevolent");
-
-		if (TrancePerspective != null)
+		local skill;
+		foreach (trance in this.m.trances)
 		{
-			TrancePerspective.resetTrance();
-		}
-		if (TranceMalevolent != null)
-		{
-			TranceMalevolent.resetTrance();
+			skill = this.getContainer().getSkillByID(trance);
+			if (skill != null)
+			{
+				skill.resetTrance();
+			}
 		}
 
 		if (this.Tactical.isActive())

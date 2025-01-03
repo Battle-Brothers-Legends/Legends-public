@@ -12,10 +12,7 @@ this.legend_random_solo_scenario <- this.inherit("scripts/scenarios/world/starti
 		this.setRosterReputationTiers(this.Const.Roster.createReputationTiers(this.m.StartingBusinessReputation));
 	}
 
-	function isValid()
-	{
-		return this.Const.DLC.Wildmen;
-	}
+
 
 	function onSpawnAssets()
 	{

@@ -16,11 +16,6 @@ this.legend_degrading_effort_situation <- this.inherit("scripts/entity/world/set
 		return this.m.Description;
 	}
 
-	function isValid()
-	{
-		return this.situation.isValid();
-	}
-
 	function onAdded( _settlement )
 	{
 		_settlement.resetShop();
@@ -36,22 +31,6 @@ this.legend_degrading_effort_situation <- this.inherit("scripts/entity/world/set
 	function onRemoved( _settlement )
 	{
 		_settlement.changeSize(_settlement.getSize() - 1);
-	}
-
-	function onSerialize( _out )
-	{
-		this.situation.onSerialize(_out);
-	}
-
-	function onDeserialize( _in )
-	{
-		this.situation.onDeserialize(_in);
-	}
-
-
-	function onUpdateDraftList( _draftList, _gender = null)
-	{
-		_gender = ::Legends.Mod.ModSettings.getSetting("GenderEquality").getValue() != "Disabled";
 	}
 
 });

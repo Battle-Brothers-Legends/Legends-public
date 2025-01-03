@@ -351,22 +351,40 @@ if (!("HelmObjs" in ::Const.LegendMod))
 		Vanity = [
 		]
 	}]
-	},{ //
+	},
+	{ //
 		ID = "feathered_hat", //30
 		Script = "",
 		Sets = [{
-		Hoods = [
-			[1, "hood/legend_helmet_cloth_cap"] //10
-		],
-		Helms = [
-		],
-		Tops = [
-		],
-		Vanity = [
-			[1, "vanity/legend_helmet_feathered_hat"] //10
-		]
-	}]
-	},{
+			Hoods = [
+				[1, "hood/legend_helmet_cloth_cap"] //10
+			],
+			Helms = [
+			],
+			Tops = [
+			],
+			Vanity = [
+				[1, "vanity/legend_helmet_feathered_hat"] //10
+			]
+		}]
+	},
+	{ //
+		ID = "pimp_hat", //30
+		Script = "",
+		Sets = [{
+			Hoods = [
+				[1, "hood/legend_helmet_cloth_cap"] //10
+			],
+			Helms = [
+			],
+			Tops = [
+			],
+			Vanity = [
+				[1, "vanity/legend_helmet_pimp_hat"] //10
+			]
+		}]
+	},
+	{
 		ID = "flat_top_helmet", //125, -7, -1
 		Script = "",
 		Sets = [{

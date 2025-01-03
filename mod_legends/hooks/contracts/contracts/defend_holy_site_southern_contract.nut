@@ -115,14 +115,11 @@
 	local spawnAlly = o.spawnAlly;
 	o.spawnAlly = function () {
 		local f = this.World.FactionManager.getFaction(this.getFaction());
-		local party = null;
-		f.setSpawnListener(function(entity) {
-			party = entity;
-		});
-		spawnAlly();
+		local party = spawnAlly();
 		party.getLoot().Money = this.Math.rand(100, 300);
 		party.getLoot().ArmorParts = this.Math.rand(10, 35);
 		party.getLoot().Medicine = this.Math.rand(5, 15);
 		party.getLoot().Ammo = this.Math.rand(10, 40);
+		return party;
 	}
 });

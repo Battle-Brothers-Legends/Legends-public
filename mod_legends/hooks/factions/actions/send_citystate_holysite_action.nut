@@ -130,6 +130,7 @@
 		_party.getLoot().Medicine = this.Math.rand(5, 15);
 		_party.getLoot().Ammo = this.Math.rand(10, 40);
 
+		local r = this.Math.rand(1, 4);
 		local arr = ["trade/silk_item", "trade/silk_item", "trade/incense_item", "trade/spices_item"]
 		for(local i = 0; i < this.Math.round(r/2); i++) //adds either 1 silk, 1 silk, 2 incense, 2 spices
 			_party.addToInventory(arr[r-1])

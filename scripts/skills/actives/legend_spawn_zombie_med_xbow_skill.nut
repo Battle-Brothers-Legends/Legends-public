@@ -3,7 +3,7 @@ this.legend_spawn_zombie_med_xbow_skill <- this.inherit("scripts/skills/actives/
 	function create()
 	{
 		this.legend_spawn_skill.create();
-		this.m.ID = "actives.legend_spawn_zombie_med_xbow_skill";
+		this.m.ID = "actives.legend_spawn_zombie_med_xbow";
 		this.m.Name = "Summon Medium Xbow Zombie";
 		this.m.Description = "Unleash your zombie and send him charging into the enemy. Needs a free tile adjacent.";
 		this.m.Icon = "skills/zombie_archer_02_square.png";

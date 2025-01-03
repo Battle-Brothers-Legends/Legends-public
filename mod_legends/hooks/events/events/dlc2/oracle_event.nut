@@ -45,7 +45,7 @@
 						icon = "ui/icons/asset_moral_reputation.png",
 						text = "The company\'s moral reputation decreases slightly"
 					});
-					start();
+					start(_event);
 				}
 			}
 			if (s.ID == "C") {
@@ -56,7 +56,7 @@
 						icon = "ui/icons/asset_moral_reputation.png",
 						text = "The company\'s moral reputation decreases slightly"
 					});
-					start();
+					start(_event);
 				}
 			}
 			if (s.ID == "A") {

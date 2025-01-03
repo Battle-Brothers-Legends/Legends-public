@@ -1,7 +1,7 @@
 this.legend_ai_buff_howl <- this.inherit("scripts/ai/tactical/behavior", {
 	m = {
 		PossibleSkills = [
-			"actives.legend_werewolf_howl_skill",
+			"actives.legend_werewolf_howl",
 			"actives.legend_white_wolf_howl"
 		],
 		Skill = null

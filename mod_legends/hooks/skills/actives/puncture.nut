@@ -3,12 +3,19 @@
 		o.getTooltip = function ()
 	{
 		local tooltip = this.getDefaultTooltip();
+		local penalty = this.getContainer().getActor().getCurrentProperties().IsSpecializedInDaggers ? 50 : 65;
 		tooltip.extend([
+			{
+				id = 6,
+				type = "text",
+				icon = "ui/icons/hitchance.png",
+				text = "Has [color=" + this.Const.UI.Color.NegativeValue + "]-" + penalty + "%[/color] chance to hit"
+			},
 			{
 				id = 7,
 				type = "text",
 				icon = "ui/icons/hitchance.png",
-				text = "Hit chance determined by your targets fatigue, 0% if they are fresh and 100% if they are exhausted. If your target is dazed or parried hitchance is increased by +10%.  If they are stunned or netted you gain +25%. If they are grappled, sleeping, or fleeing you gain +50%. Dagger mastery doubles your chance to hit. These bonuses stack up to 100%.  "
+				text = "Hit chance is increased by up to +50% depending on target\'s fatigue, +0% if they are fresh and +50% if they are exhausted. Additionally if your target is dazed or parried hitchance is increased by +10%,  if they are stunned or netted you gain +25%, if they are grappled, sleeping, or fleeing you gain +50%."
 			},
 			{
 				id = 8,
@@ -72,12 +79,13 @@
 	{
 		if (_skill == this)
 		{
-			local chance = this.getHitChance(_targetEntity);
+			this.m.HitChanceBonus = -15;
+			this.m.HitChanceBonus += this.getHitChance(_targetEntity);
 			if (_properties.IsSpecializedInDaggers)
 			{
-				chance += 15;
+				this.m.HitChanceBonus += 15;
 			}
-			_properties.MeleeSkill += chance;
+			_properties.MeleeSkill += this.m.HitChanceBonus;
 			_properties.DamageArmorMult *= 0.0;
 			_properties.IsIgnoringArmorOnAttack = true;
 			_properties.HitChanceMult[this.Const.BodyPart.Head] = 0.0;

@@ -10,14 +10,11 @@
 		onAdded( _settlement );
 	}
 
-	o.onUpdateDraftList <- function ( _draftList, _gender = null)
+	o.onUpdateDraftList <- function ( _draftList )
 	{
-		_gender = ::Legends.Mod.ModSettings.getSetting("GenderEquality").getValue() != "Disabled";
-		_draftList.push("fisherman_background");
-		_draftList.push("fisherman_background");
-		_draftList.push("fisherman_background");
-		_draftList.push("fisherman_background");
-		_draftList.push("fisherman_background");
-		_draftList.push("fisherman_background");
+		for (local i = 0; i < 6; ++i)
+		{
+			_draftList.push("fisherman_background");
+		}
 	}
 });

@@ -36,7 +36,6 @@ this.legend_scroll_blueprint <- this.inherit("scripts/crafting/blueprint", {
 		local item = this.new("scripts/items/misc/legend_scroll_item");
 		local r = this.Math.rand(1, 5);
 		item.m.Selection = r;
-		item.setupTooltip(r);
 
 		_stash.add(item);
 	}

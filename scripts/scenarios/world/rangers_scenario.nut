@@ -11,10 +11,7 @@ this.rangers_scenario <- this.inherit("scripts/scenarios/world/starting_scenario
 		this.setRosterReputationTiers(this.Const.Roster.createReputationTiers(this.m.StartingBusinessReputation));
 	}
 
-	function isValid()
-	{
-		return this.Const.DLC.Wildmen;
-	}
+
 
 	function onSpawnAssets()
 	{

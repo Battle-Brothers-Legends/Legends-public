@@ -42,3 +42,6 @@
 // provides longer tooltip backgrounds and attempts to prevent tooltips from extending outside of the screen
 ::mods_registerCSS("mod_tooltip_extension.css");
 ::mods_registerJS("mod_tooltip_extension.js");
+
+::mods_registerJS("legends/hooks/encounters.js");
+::mods_registerCSS("legends/hooks/encounters.css");

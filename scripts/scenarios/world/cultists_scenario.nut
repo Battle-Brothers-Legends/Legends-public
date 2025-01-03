@@ -11,10 +11,7 @@ this.cultists_scenario <- this.inherit("scripts/scenarios/world/starting_scenari
 		this.m.StartingRosterTier = this.Const.Roster.getTierForSize(8);
 	}
 
-	function isValid()
-	{
-		return this.Const.DLC.Wildmen;
-	}
+
 
 	function onSpawnAssets()
 	{

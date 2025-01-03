@@ -14,7 +14,7 @@ this.perk_legend_close_combat_archer <- this.inherit("scripts/skills/skill", {
 	{
 		local tooltip = this.skill.getTooltip();
 		local actor = this.getContainer().getActor();
-		local bonus = this.getBonus();
+		local bonus = this.getBonus(actor.getCurrentProperties());
 
 		tooltip.extend([
 		{
@@ -41,7 +41,7 @@ this.perk_legend_close_combat_archer <- this.inherit("scripts/skills/skill", {
 
 	function getBonus(_properties)
 	{
-		local actor = this.getContainer().getActor()
+		local actor = this.getContainer().getActor();
 		local mskillBonus = 0;
 		local rdefBonus = 0;
 
@@ -67,10 +67,9 @@ this.perk_legend_close_combat_archer <- this.inherit("scripts/skills/skill", {
 		if (!_skill.isRanged())
 			return;
 
-		local bonus = this.getBonus() / 100;
-		local actor = this.getContainer().getActor();
+		local bonus = this.getBonus(_properties) / 100;
 
-		if (!actor.getMainhandItem().isWeaponType(this.Const.Items.WeaponType.Throwing) || actor.getTile().getDistanceTo(_targetEntity.getTile()) > 4)
+		if (this.getContainer().getActor().getTile().getDistanceTo(_targetEntity.getTile()) > 4)
 			return;
 
 		_properties.DamageRegularMult *= 1 + bonus;

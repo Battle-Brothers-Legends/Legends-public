@@ -103,7 +103,7 @@ this.legend_vala_chant_fury_effect <- this.inherit("scripts/skills/effects/legen
 
 		if (this.Math.rand(1, 100) <= chance)
 		{
-			local payback = this.getContainer().getSkills().getAttackOfOpportunity();
+			local payback = this.getContainer().getAttackOfOpportunity();
 			if (payback != null)
 			{
 				this.getContainer().setBusy(true);
@@ -113,7 +113,7 @@ this.legend_vala_chant_fury_effect <- this.inherit("scripts/skills/effects/legen
 					TargetTile = _attacker.getTile(),
 					Container = this.getContainer(),
 				};
-				this.Time.scheduleEvent(this.TimeUnit.Virtual, this.Const.Combat.RiposteDelay, this.onPerformPaypack, attackinfo);
+				this.Time.scheduleEvent(this.TimeUnit.Virtual, this.Const.Combat.RiposteDelay, this.onPerformPaypack.bindenv(this), attackinfo);
 			}
 		}
 	}

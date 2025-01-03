@@ -12,11 +12,6 @@ this.legends_inquisition_scenario <- this.inherit("scripts/scenarios/world/start
 		this.m.StartingBusinessReputation = 1100;
 	}
 
-	function isValid()
-	{
-		return this.Const.DLC.Wildmen;
-	}
-
 	function onSpawnAssets()
 	{
 	local roster = this.World.getPlayerRoster();

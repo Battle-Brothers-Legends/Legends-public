@@ -146,54 +146,35 @@
 
 		this.getSprite("miniboss").setBrush("bust_miniboss");
 		local weapons = [
-			"weapons/named/named_axe",
-			"weapons/named/named_cleaver",
 			"weapons/named/named_greataxe",
 			"weapons/named/named_greatsword",
-			"weapons/named/named_mace",
-			"weapons/named/named_sword",
+			"weapons/named/named_bardiche",
 			"weapons/named/named_two_handed_hammer",
-			"weapons/named/named_warbrand"
+			"weapons/named/named_two_handed_mace",
+			"weapons/named/named_two_handed_flail"
 		];
 
-		if (this.Const.DLC.Unhold)
-		{
-			weapons.extend([
-				"weapons/named/named_two_handed_mace",
-				"weapons/named/named_two_handed_flail"
-			]);
-		}
-
-		if (this.Const.DLC.Wildmen)
-		{
-			weapons.extend([
-				"weapons/named/named_bardiche"
-			]);
-		}
-
-		local shields = clone this.Const.Items.NamedShields;
-		shields.extend([
-			"shields/named/named_bandit_kite_shield",
-			"shields/named/named_bandit_heater_shield"
-		]);
-		local armor = [
-			"armor/named/brown_coat_of_plates_armor",
-			"armor/named/golden_scale_armor",
-			"armor/named/green_coat_of_plates_armor"
-		];
-		local r = this.Math.rand(1, 3);
-
+		this.m.Items.equip(this.new("scripts/items/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
+		local r = this.Math.rand(1, 2);
 		if (r == 1)
 		{
-			this.m.Items.equip(this.new("scripts/items/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
-		}
-		else if (r == 2)
-		{
-			this.m.Items.equip(this.new("scripts/items/" + shields[this.Math.rand(0, shields.len() - 1)]));
+			this.m.Items.equip(this.Const.World.Common.pickArmor([
+				[1, "named/brown_coat_of_plates_armor"],
+				[1, "named/golden_scale_armor"],
+				[1, "named/green_coat_of_plates_armor"]
+			]));
 		}
 		else
 		{
-			this.m.Items.equip(this.new("scripts/items/" + armor[this.Math.rand(0, armor.len() - 1)]));
+			this.m.Items.equip(this.Const.World.Common.pickHelmet([
+				[3, "named/bascinet_named"],
+				[3, "named/kettle_helm_named"],
+				[3, "named/deep_sallet_named"],
+				[3, "named/barbute_named"],
+				[3, "named/italo_norman_helm_named"],
+				[3, "named/wallace_sallet_named"],
+				[3, "named/named_helm_with_lion_pelt"]
+			]));
 		}
 
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_relentless"));

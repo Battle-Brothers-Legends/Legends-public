@@ -1004,7 +1004,7 @@ perkDefObjects.push({
 });
 perkDefObjects.push({
 	ID = "perk.legend_slaughterer",
-	Script = "scripts/skills/perks/perk_legend_slaughterer",
+	Script = "scripts/skills/perks/perk_legend_carnageer",
 	Name = this.Const.Strings.PerkName.LegendSlaughterer,
 	Tooltip = this.Const.Strings.PerkDescription.LegendSlaughterer,
 	Icon = "ui/perks/slaughterer_circle.png",
@@ -1453,8 +1453,8 @@ perkDefObjects.push({
 	Const = "LegendBribe"
 });
 perkDefObjects.push({
-	ID = "perk.legends.legend_off_book_deal",
-	Script = "scripts/skills/perks/legends/perk_legend_off_book_deal",
+	ID = "perk.legend_off_book_deal",
+	Script = "scripts/skills/perks/perk_legend_off_book_deal",
 	Name = this.Const.Strings.PerkName.LegendOffBookDeal,
 	Tooltip = this.Const.Strings.PerkDescription.LegendOffBookDeal,
 	Icon = "ui/perks/coins_circle.png",
@@ -2222,15 +2222,6 @@ perkDefObjects.push({
 	HasUnactivatedPerkTooltipHints = true // Inform general_queryUIPerkTooltipData() in tooltip_events.nut that the Perk has additional hints from getUnactivatedPerkTooltipHints()
 });
 perkDefObjects.push({
-	ID = "perk.legend_mastery_greatsword",
-	Script = "scripts/skills/perks/perk_legend_mastery_greatsword",
-	Name = this.Const.Strings.PerkName.LegendSpecGreatSword,
-	Tooltip = this.Const.Strings.PerkDescription.LegendSpecGreatSword,
-	Icon = "ui/perks/spec_greatsword.png",
-	IconDisabled = "ui/perks/spec_greatsword_bw.png",
-	Const = "LegendSpecGreatSword"
-});
-perkDefObjects.push({
 	ID = "perk.legend_forceful_swing",
 	Script = "scripts/skills/perks/perk_legend_forceful_swing",
 	Name = this.Const.Strings.PerkName.LegendForcefulSwing,
@@ -2591,13 +2582,13 @@ perkDefObjects.push({
 	Const = "LegendPrepareGraze"
 });
 perkDefObjects.push({
-	ID = "perk.legend_slaughter",
-	Script = "scripts/skills/perks/perk_legend_slaughter",
-	Name = this.Const.Strings.PerkName.LegendSlaughter,
-	Tooltip = this.Const.Strings.PerkDescription.LegendSlaughter,
+	ID = "perk.legend_carnage",
+	Script = "scripts/skills/perks/perk_legend_carnage",
+	Name = this.Const.Strings.PerkName.LegendCarnage,
+	Tooltip = this.Const.Strings.PerkDescription.LegendCarnage,
 	Icon = "ui/perks/slaughter_circle.png",
 	IconDisabled = "ui/perks/slaughter_circle_bw.png",
-	Const = "LegendSlaughter"
+	Const = "LegendCarnage"
 });
 perkDefObjects.push({
 	ID = "perk.legend_untouchable",
@@ -3676,8 +3667,8 @@ perkDefObjects.push({
 	Script = "scripts/skills/perks/perk_legend_taste_the_pain",
 	Name = this.Const.Strings.PerkName.LegendTasteThePain,
 	Tooltip = this.Const.Strings.PerkDescription.LegendTasteThePain,
-	Icon = "ui/perks/passive_03.png", // todo icons?
-	IconDisabled = "ui/perks/passive_03_sw.png",
+	Icon = "ui/perks/twirl_circle.png", // todo icons?
+	IconDisabled = "ui/perks/twirl_circle_bw.png",
 	Const = "LegendTasteThePain"
 });
 

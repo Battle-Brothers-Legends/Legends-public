@@ -9,7 +9,7 @@
 ::Const.Tactical.Actor.Hyena.ActionPoints = 10;
 ::Const.Tactical.Actor.Hyena.MeleeSkill = 50;
 
-::Const.Tactical.Actor.FrenziedHyena.Hitpoints = 50;
+::Const.Tactical.Actor.FrenziedHyena.Hitpoints = 140;
 
 ::Const.Tactical.Actor.Spider.Hitpoints = 50;
 ::Const.Tactical.Actor.Spider.Armor = [

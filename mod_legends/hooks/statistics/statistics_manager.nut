@@ -1,34 +1,5 @@
 ::mods_hookNewObject("statistics/statistics_manager", function(o) {
 
-	o.addFallen = function ( bro, _killedby = "Left to die")
-	{
-		local b = bro.getBaseProperties();
-		local bstats = [
-			b.Hitpoints,
-			b.Stamina,
-			b.Bravery,
-			b.Initiative,
-			b.MeleeSkill,
-			b.RangedSkill,
-			b.MeleeDefense,
-			b.RangedDefense
-		];
-		local _fallen = {
-			Name = bro.getName(),
-			Time = this.World.getTime().Days,
-			TimeWithCompany = this.Math.max(1, bro.getDaysWithCompany()),
-			Kills = bro.getLifetimeStats().Kills,
-			Battles = bro.getLifetimeStats().Battles,
-			KilledBy = _killedby,
-			Expendable = bro.getBackground().getID() == "background.slave",
-			level = bro.getLevel(),
-			traits = bro.getDeadTraits(),
-			stats = bstats,
-			talents = bro.getTalents(),
-		};
-		this.m.Fallen.insert(0, _fallen);
-	}
-
 	o.onSerialize = function ( _out )
 	{
 		this.m.Flags.onSerialize(_out);

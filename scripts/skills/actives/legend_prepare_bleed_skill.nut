@@ -9,7 +9,7 @@ this.legend_prepare_bleed_skill <- this.inherit("scripts/skills/skill", {
 
 	function create()
 	{
-		this.m.ID = "actives.legend_prepare_bleed_skill";
+		this.m.ID = "actives.legend_prepare_bleed";
 		this.m.Name = "Prepare to Bleed";
 		this.m.Description = "Evaluate your enemy, preparing your next attack to leave them bleeding";
 		this.m.Icon = "skills/bleed_square.png";

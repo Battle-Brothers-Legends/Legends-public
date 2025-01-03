@@ -394,7 +394,7 @@
 						}
 
 						item.onCombatFinished();
-						if (!item.isChangeableInBattle(null) && item.isDroppedAsLoot())
+						if (!item.isChangeableInBattle() && item.isDroppedAsLoot())
 						{
 							if (item.getCondition() > 1 && item.getConditionMax() > 1 && item.getCondition() > item.getConditionMax() * 0.66 && this.Math.rand(1, 100) <= 66)
 							{

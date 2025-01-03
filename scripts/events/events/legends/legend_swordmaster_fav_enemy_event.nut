@@ -6,7 +6,8 @@ this.legend_swordmaster_fav_enemy_event <- this.inherit("scripts/events/event", 
 		Champion = null,
 		Flags = null,
 		Perk = "perk.legend_favoured_enemy_swordmaster",
-		ValidTypes = this.Const.LegendMod.FavoriteSwordmaster
+		ValidTypes = this.Const.LegendMod.FavoriteSwordmaster,
+		isValidForEncounter = false
 	},
 	function create()
 	{
@@ -498,7 +499,7 @@ this.legend_swordmaster_fav_enemy_event <- this.inherit("scripts/events/event", 
 				continue;
 			}
 //
-			if (bro.getLevel() < 11) // level check		
+			if (bro.getLevel() < 11) // level check
 			{
 				continue;
 			}
@@ -521,6 +522,9 @@ this.legend_swordmaster_fav_enemy_event <- this.inherit("scripts/events/event", 
 
 		this.m.Candidates = candidates;
 		this.m.Score = 9999 + this.m.Stats * 0.1;
+
+		this.m.isValidForEncounter = this.m.Score > 0 && this.Time.getVirtualTimeF() > this.m.CooldownUntil;
+		this.m.Score = 0; // this disables event from happening normally
 	}
 
 	function onPrepare()

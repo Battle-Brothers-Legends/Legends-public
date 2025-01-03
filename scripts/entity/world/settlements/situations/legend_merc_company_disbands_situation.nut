@@ -29,9 +29,8 @@ this.legend_merc_company_disbands_situation <- this.inherit("scripts/entity/worl
 		_modifiers.RecruitsMult *= 1.5;
 	}
 
-	function onUpdateDraftList( _draftList, _gender = null)
+	function onUpdateDraftList( _draftList )
 	{
-		_gender = ::Legends.Mod.ModSettings.getSetting("GenderEquality").getValue() != "Disabled";
 		_draftList.push("sellsword_background");
 		_draftList.push("sellsword_background");
 		_draftList.push("sellsword_background");
@@ -54,8 +53,7 @@ this.legend_merc_company_disbands_situation <- this.inherit("scripts/entity/worl
 		_draftList.push("militia_background");
 		_draftList.push("militia_background");
 
-		if  (this.World.Assets.getOrigin().getID() == "scenario.legends_noble")
-		{
+		if (this.World.Assets.getOrigin().getID() == "scenario.legends_noble") {
 			_draftList.push("legend_noble_2h");
 			_draftList.push("legend_noble_shield");
 			_draftList.push("legend_noble_ranged");

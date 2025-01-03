@@ -2,7 +2,7 @@ this.legend_oms_amphora_skill <- ::inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "actives.legend_oms_amphora_skill";
+		this.m.ID = "actives.legend_oms_amphora";
 		this.m.Name = "Drink from Amphora";
 		this.m.Description = "Drink from the Amphora. You can\'t be sure what this might do...";
 		this.m.Icon = "skills/amphora_active.png";

@@ -1,13 +1,12 @@
 ::mods_hookExactClass("skills/actives/recover_skill", function(o)
 {
-	o.m.CanRecover <- true;
-	o.m.AP <- 0;
+	o.m.CurrentSkillCount <- 0;
+	o.m.FatPerAP <- 0.055;
+	o.m.UsedAP <- 0;
 
 	o.getTooltip = function ()
 	{
-		local actor = this.getContainer().getActor();
-		local fatReduc = actor.getActionPoints() * 3.0;
-		return [
+		local ret = [
 			{
 				id = 1,
 				type = "title",
@@ -27,45 +26,61 @@
 				id = 7,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "Current Fatigue is reduced by [color=" + this.Const.UI.Color.PositiveValue + "]" + fatReduc + "%[/color] of maximum fatigue"
+				text = "Current Fatigue is reduced by [color=" + ::Const.UI.Color.PositiveValue + "]" + getRecoveredFat(getActionPointCost()) + "%[/color] of maximum fatigue"
 			}
 		];
+
+		if (!isFirstSkillBeUsed())
+			ret.push({
+				id = 7,
+				type = "text",
+				icon = "ui/icons/warning.png",
+				text = "[color=" + ::Const.UI.Color.NegativeValue + "]Must be the first skill to be used on this character\'s turn[/color]"
+			});
+
+		return ret;
 	}
 
-	o.onTurnStart <- function ()
+	o.isFirstSkillBeUsed <- function()
 	{
-		this.m.CanRecover = true;
-		this.m.AP = 0;
+		return ::Const.SkillCounter == m.CurrentSkillCount;
 	}
 
-	o.isUsable <- function ()
+	o.onTurnStart <- function()
 	{
-		return this.skill.isUsable() && this.m.CanRecover;
+		m.CurrentSkillCount = ::Const.SkillCounter;
 	}
 
-	o.getActionPointCost <- function ()
+	o.isUsable <- function()
 	{
-		local actor = this.getContainer().getActor();
-		return actor.getActionPoints();
+		return skill.isUsable() && isFirstSkillBeUsed();
 	}
 
-	o.onBeforeUse <- function ( _user, _targetTile )
+	o.getActionPointCost <- function()
 	{
-		this.m.AP = _user.getActionPoints();
+		return getContainer().getActor().getActionPoints();
+	}
+
+	o.use <- function( _targetTile, _forFree = false )
+	{
+		m.UsedAP = getActionPointCost();
+		return skill.use(_targetTile, _forFree);
 	}
 
 	o.onUse = function ( _user, _targetTile )
 	{
-		local actor = this.getContainer().getActor();
-		local fatMult = this.m.AP * 0.055;
-
-		_user.setFatigue(_user.getFatigue() - fatMult * _user.getFatigueMax() );
+		_user.setFatigue(::Math.max(0, _user.getFatigue() - getRecoveredFat(m.UsedAP)));
 
 		if (!_user.isHiddenToPlayer())
-		{
 			_user.playSound(this.Const.Sound.ActorEvent.Fatigue, this.Const.Sound.Volume.Actor * _user.getSoundVolume(this.Const.Sound.ActorEvent.Fatigue));
-		}
 
+		m.UsedAP = 0;
 		return true;
 	}
+
+	o.getRecoveredFat <- function( _usedAP )
+	{
+		return _usedAP * m.FatPerAP * getContainer().getActor().getFatigueMax();
+	}
+
 });

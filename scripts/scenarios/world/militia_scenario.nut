@@ -13,10 +13,7 @@ this.militia_scenario <- this.inherit("scripts/scenarios/world/starting_scenario
 		this.m.StartingBusinessReputation = -100; // Still use default reputation tiers even if starting at negative reputation
 	}
 
-	function isValid()
-	{
-		return this.Const.DLC.Wildmen;
-	}
+
 
 	function onSpawnAssets()
 	{

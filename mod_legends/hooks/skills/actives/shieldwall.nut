@@ -26,4 +26,9 @@
 		return true;
 	}
 
+	o.onAfterUpdate = function ( _properties )
+	{
+		this.m.FatigueCostMult = _properties.IsSpecializedInShields || _properties.IsProficientWithShieldWall || _properties.IsProficientWithShieldSkills ? this.Const.Combat.WeaponSpecFatigueMult : 1.0;
+	}
+
 });

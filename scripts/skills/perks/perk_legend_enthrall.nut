@@ -16,7 +16,7 @@ this.perk_legend_enthrall <- this.inherit("scripts/skills/skill", {
 
 	function onAdded()
 	{
-		if (!this.m.Container.hasSkill("actives.legend_enthrall_skill"))
+		if (!this.m.Container.hasSkill("actives.legend_enthrall"))
 		{
 			this.m.Container.add(this.new("scripts/skills/actives/legend_enthrall_skill"));
 		}
@@ -24,7 +24,7 @@ this.perk_legend_enthrall <- this.inherit("scripts/skills/skill", {
 
 	function onRemoved()
 	{
-		this.m.Container.removeByID("actives.legend_enthrall_skill");
+		this.m.Container.removeByID("actives.legend_enthrall");
 	}
 
 });

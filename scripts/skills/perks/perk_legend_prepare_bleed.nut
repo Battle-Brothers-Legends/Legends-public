@@ -12,14 +12,14 @@ this.perk_legend_prepare_bleed <- this.inherit("scripts/skills/skill", {
 
 	function onAdded()
 	{
-		if (!this.m.Container.hasSkill("actives.legend_prepare_bleed_skill"))
+		if (!this.m.Container.hasSkill("actives.legend_prepare_bleed"))
 		{
 			this.m.Container.add(this.new("scripts/skills/actives/legend_prepare_bleed_skill"));
 		}
 	}
 		function onRemoved()
 	{
-		this.m.Container.removeByID("actives.legend_prepare_bleed_skill");
+		this.m.Container.removeByID("actives.legend_prepare_bleed");
 	}
 
 });

@@ -116,7 +116,7 @@ this.legend_warlock_summoner_background <- this.inherit("scripts/skills/backgrou
 				this.Const.Perks.PerkDefs.LegendSpecStaffStun,
 				this.Const.Perks.PerkDefs.LegendBlendIn,
 				this.Const.Perks.PerkDefs.LegendReclamation,
-				this.Const.Perks.PerkDefs.LegendSlaughter
+				this.Const.Perks.PerkDefs.LegendCarnage
 			],
 			[
 				this.Const.Perks.PerkDefs.LegendClarity,
