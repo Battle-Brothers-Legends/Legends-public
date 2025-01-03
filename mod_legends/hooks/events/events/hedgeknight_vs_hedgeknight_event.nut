@@ -62,7 +62,7 @@
 					this.World.Assets.addMoralReputation(-1);
 					this.Characters.push(_event.m.HedgeKnight1.getImagePath());
 					local dead = _event.m.HedgeKnight2;
-					this.World.Statistics.addFallen(dead, "Killed in a duel by " + _event.m.HedgeKnight1.getName());
+					::Legends.addFallen(dead, "Killed in a duel by " + _event.m.HedgeKnight1.getName());
 					this.List.push({
 						id = 13,
 						icon = "ui/icons/kills.png",
@@ -113,7 +113,7 @@
 					this.World.Assets.addMoralReputation(-1);
 					this.Characters.push(_event.m.HedgeKnight2.getImagePath());
 					local dead = _event.m.HedgeKnight1;
-					this.World.Statistics.addFallen(dead,  "Killed in a duel by " + _event.m.HedgeKnight2.getName());
+					::Legends.addFallen(dead,  "Killed in a duel by " + _event.m.HedgeKnight2.getName());
 					this.List.push({
 						id = 13,
 						icon = "ui/icons/kills.png",

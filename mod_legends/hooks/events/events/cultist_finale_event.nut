@@ -8,7 +8,7 @@
 					this.World.Assets.addMoralReputation(-10);
 					this.Characters.push(_event.m.Sacrifice.getImagePath());
 					local dead = _event.m.Sacrifice;
-					this.World.Statistics.addFallen(dead, "Sacrificed to Davkul");
+					::Legends.addFallen(dead, "Sacrificed to Davkul");
 					this.List.push({
 						id = 13,
 						icon = "ui/icons/kills.png",

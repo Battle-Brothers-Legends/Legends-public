@@ -9,7 +9,7 @@
 					Text = "I see, time to part ways then.",
 					function getResult( _event ) {
 						_event.m.Sellsword.getSkills().onDeath(this.Const.FatalityType.None);
-						this.World.Statistics.addFallen(_event.m.Sellsword, "Got a better paying offer");
+						::Legends.addFallen(_event.m.Sellsword, "Got a better paying offer");
 						this.World.getPlayerRoster().remove(_event.m.Sellsword);
 						return 0;
 					}
@@ -28,7 +28,7 @@
 					});
 					_event.m.Sellsword.getItems().transferToStash(this.World.Assets.getStash());
 					_event.m.Sellsword.getSkills().onDeath(this.Const.FatalityType.None);
-					this.World.Statistics.addFallen(_event.m.Sellsword, "Got a better paying offer");
+					::Legends.addFallen(_event.m.Sellsword, "Got a better paying offer");
 					this.World.getPlayerRoster().remove(_event.m.Sellsword);
 				}
 			}

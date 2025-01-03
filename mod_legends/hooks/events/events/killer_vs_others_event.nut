@@ -38,7 +38,7 @@
 					});
 					_event.m.Killer.getItems().transferToStash(this.World.Assets.getStash());
 					_event.m.Killer.getSkills().onDeath(this.Const.FatalityType.None);
-					this.World.Statistics.addFallen(_event.m.Killer, "Hanged for attempted murder");
+					::Legends.addFallen(_event.m.Killer, "Hanged for attempted murder");
 					this.World.getPlayerRoster().remove(_event.m.Killer);
 					_event.m.OtherGuy1.improveMood(2.0, "Got satisfaction with " + _event.m.Killer.getNameOnly() + "\'s hanging");
 
@@ -76,7 +76,7 @@
 					});
 					this.Characters.push(_event.m.OtherGuy1.getImagePath());
 					local dead = _event.m.Killer;
-					this.World.Statistics.addFallen(dead, "Murdered by his fellow brothers");
+					::Legends.addFallen(dead, "Murdered by his fellow brothers");
 					this.List.push({
 						id = 13,
 						icon = "ui/icons/kills.png",
@@ -84,7 +84,7 @@
 					});
 					_event.m.Killer.getItems().transferToStash(this.World.Assets.getStash());
 					_event.m.Killer.getSkills().onDeath(this.Const.FatalityType.None);
-					this.World.Statistics.addFallen(_event.m.Killer, "Murdered by his fellow comrades");
+					::Legends.addFallen(_event.m.Killer, "Murdered by his fellow comrades");
 					this.World.getPlayerRoster().remove(_event.m.Killer);
 					local brothers = this.World.getPlayerRoster().getAll();
 
