@@ -1,6 +1,6 @@
 ::Legends <- {
 	ID = "mod_legends",
-	Version = "19.0.8",
+	Version = "19.0.9",
 	Name = "Legends Mod",
 	BuildName = "Aspiration and Reality",
 	IsStartingNewCampaign = false
