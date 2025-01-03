@@ -607,9 +607,10 @@
 	local onDeath = o.onDeath;
 	o.onDeath = function ( _killer, _skill, _tile, _fatalityType )
 	{
+		local bro = this;
 		local originalAddFallen = ::World.Statistics.addFallen;
 		::World.Statistics.addFallen = function (_fallen) {
-			originalAddFallen(this.finalizeFallen(_fallen));
+			originalAddFallen(bro.finalizeFallen(_fallen));
 		}
 		onDeath(_killer, _skill, _tile, _fatalityType);
 		::World.Statistics.addFallen = originalAddFallen;
