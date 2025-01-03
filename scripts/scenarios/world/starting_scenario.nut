@@ -59,7 +59,20 @@ this.starting_scenario <- {
 
 	function isDroppedAsLoot( _item )
 	{
-		return false;
+		local chanceIsLucky = 0;
+		local brothers = this.World.getPlayerRoster().getAll();
+		foreach (bro in brothers)
+		{
+			if (bro.getSkills().hasPerk(::Const.Perks.PerkDefs.LegendScholar))
+			{
+				chanceIsLucky += 10;
+			}
+			if (bro.getSkills().hasPerk(::Const.Perks.PerkDefs.LegendFavouredEnemyCaravan))
+			{
+				chanceIsLucky += 5;
+			}
+		}
+		return this.Math.rand(1, 100) < chanceIsLucky;
 	}
 
 	function getDifficultyForUI()
