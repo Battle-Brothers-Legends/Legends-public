@@ -41,6 +41,9 @@ this.legend_named_flail_effect <- this.inherit("scripts/skills/skill", {
 		if ( _skill == null || _skill.m.IsWeaponSkill == false ) 
 			return;
 
+		if (!_targetEntity.isAlive() || _targetEntity.isDying())
+			return;
+
 		local user = this.getContainer().getActor();
 
 		if (_bodyPart == ::Const.BodyPart.Head && !_targetEntity.getCurrentProperties().IsImmuneToDaze)
