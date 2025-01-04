@@ -121,7 +121,7 @@
 
 	o.setResources <- function (_v)
 	{
-		this.m.Resources = this.Math.max(0, this.Math.round(_v));
+		this.m.Resources = this.Math.max(1, this.Math.round(_v));
 	}
 
 	o.onSerialize = function ( _out )
@@ -177,7 +177,7 @@
 		_out.writeBool(this.m.IsShowingName);
 		_out.writeBool(this.m.IsLooting);
 		_out.writeBool(this.m.IsDroppingLoot);
-		_out.writeU16(this.m.Resources);
+		_out.writeU16(::Math.abs(this.m.Resources));
 		this.m.Flags.onSerialize(_out);
 		//_out.writeBool(false);
 	}
