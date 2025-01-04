@@ -704,8 +704,8 @@ this.training_building <- this.inherit("scripts/entity/world/camp/camp_building"
 				"scripts/skills/traits/teamplayer_trait"
 			],
 			[
-				"trait.steady_hands",
-				"scripts/skills/traits/steady_hands_trait"
+				"trait.legend_steady_hands",
+				"scripts/skills/traits/legend_steady_hands_trait"
 			]
 		];
 		local broCurTraits = _bro.getSkills().query(this.Const.SkillType.Trait);
