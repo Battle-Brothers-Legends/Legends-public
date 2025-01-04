@@ -132,7 +132,7 @@ this.legend_vala_chant_fury_effect <- this.inherit("scripts/skills/effects/legen
 			return;
 
 		if (this.m.isPerformingPayback == true)
-			_properties.DamageTotalMult *= paybackdamage * 0.01;
+			_properties.DamageTotalMult *= this.getPayBackDamage() * 0.01;
 	}
 
 	function onPerformPaypack(_attackinfo)

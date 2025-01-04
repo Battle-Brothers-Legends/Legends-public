@@ -13,7 +13,7 @@
 				local start = s.start;
 				s.start <- function ( _event )
 				{
-					this.World.Statistics.addFallen(_event.m.Criminal, "Handed over to authorities");
+					::Legends.addFallen(_event.m.Criminal, "Handed over to authorities");
 					start(_event);
 				}
 			}

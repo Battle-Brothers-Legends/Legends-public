@@ -41,6 +41,9 @@ this.legend_named_flail_effect <- this.inherit("scripts/skills/skill", {
 		if ( _skill == null || _skill.m.IsWeaponSkill == false ) 
 			return;
 
+		if (!_targetEntity.isAlive() || _targetEntity.isDying())
+			return;
+
 		local user = this.getContainer().getActor();
 
 		if (_bodyPart == ::Const.BodyPart.Head && !_targetEntity.getCurrentProperties().IsImmuneToDaze)
@@ -49,7 +52,7 @@ this.legend_named_flail_effect <- this.inherit("scripts/skills/skill", {
 
 			if (!user.isHiddenToPlayer() && _targetEntity.getTile().IsVisibleForPlayer && !_targetEntity.isHiddenToPlayer())
 			{
-				this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(user.getName()) + " struck a hit that leaves " + this.Const.UI.getColorizedEntityName(_targetEntity) + " dazed");
+				this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(user) + " struck a hit that leaves " + this.Const.UI.getColorizedEntityName(_targetEntity) + " dazed");
 			}
 		}
 	}

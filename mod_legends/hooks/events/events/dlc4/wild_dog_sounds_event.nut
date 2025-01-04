@@ -99,7 +99,7 @@
 				s.start <- function ( _event ) {
 					this.Characters.push(_event.m.Expendable.getImagePath());
 					local dead = _event.m.Expendable;
-					this.World.Statistics.addFallen(dead, "Went missing");
+					::Legends.addFallen(dead, "Went missing");
 					this.List.push({
 						id = 13,
 						icon = "ui/icons/kills.png",

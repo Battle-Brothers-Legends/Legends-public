@@ -226,6 +226,7 @@
 		if (getCurrentProperties().IsParrying && !getCurrentProperties().IsStunned && validAttackerToParry && validSkillToParry && !_attacker.getCurrentProperties().IsImmuneToDisarm && !_attacker.getSkills().hasSkill("effects.legend_parried")) {
 			if (isHiddenToPlayer()) {
 				_attacker.getSkills().add(::new("scripts/skills/effects/legend_parried_effect"));
+				this.onBeforeRiposte(_attacker, _skill);
 			}
 			else {
 				isParrying = true;
@@ -237,6 +238,10 @@
 			}
 
 			::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(this) + " Parries the attack from " + ::Const.UI.getColorizedEntityName(_attacker));
+		}
+		else
+		{
+			this.onBeforeRiposte(_attacker,_skill);
 		}
 
 		if (isParrying) m.CurrentProperties.IsRiposting = false;
@@ -257,6 +262,27 @@
 		this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(_info.Attacker) + " is Vulnerable");
 		// Attempt to perform a Riposte after the Parry (with a delay so that it only begins after the Parry animation is finished)
 		this.onBeforeRiposte(_info.Attacker,_info.Skill,1.5);
+	}
+
+	// Preparation to call onRiposte(). Given its own function so it can be easily reused
+	o.onBeforeRiposte <- function ( _attacker, _skill, _delayMultiplier=1 )
+	{
+		if (this.m.CurrentProperties.IsRiposting && _attacker != null && !_attacker.isAlliedWith(this) && _attacker.getTile().getDistanceTo(this.getTile()) == 1 && this.Tactical.TurnSequenceBar.getActiveEntity() != null && this.Tactical.TurnSequenceBar.getActiveEntity().getID() == _attacker.getID() && _skill != null && !_skill.isIgnoringRiposte())
+		{
+			local skill = this.m.Skills.getAttackOfOpportunity();
+
+			if (skill != null)
+			{
+				local info = {
+					User = this,
+					Skill = skill,
+					TargetTile = _attacker.getTile()
+				};
+				this.Time.scheduleEvent(this.TimeUnit.Virtual, this.Const.Combat.RiposteDelay * _delayMultiplier, this.onRiposte.bindenv(this), info);
+			}
+
+			this.getFlags().set("PerformedRiposte", true);
+		}
 	}
 
 	o.resetPerks <- function ()
