@@ -13,7 +13,7 @@
 						_event.m.Assassin.onHired();
 						_event.m.Bastard.getItems().transferToStash(this.World.Assets.getStash());
 						_event.m.Bastard.getSkills().onDeath(this.Const.FatalityType.None);
-						this.World.Statistics.addFallen(_event.m.Bastard, "Left to claim their birthright");
+						::Legends.addFallen(_event.m.Bastard, "Left to claim their birthright");
 						this.World.getPlayerRoster().remove(_event.m.Bastard);
 						_event.m.Bastard = null;
 						return 0;

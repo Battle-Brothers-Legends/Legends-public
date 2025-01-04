@@ -514,16 +514,7 @@
 		{
 			foreach( bro in survivor )
 			{
-				local fallen = {
-					Name = bro.getName(),
-					Time = this.World.getTime().Days,
-					TimeWithCompany = this.Math.max(1, bro.getDaysWithCompany()),
-					Kills = bro.getLifetimeStats().Kills,
-					Battles = bro.getLifetimeStats().Battles,
-					KilledBy = "Left to die",
-					Expendable = bro.getBackground().getID() == "background.slave"
-				};
-				this.World.Statistics.addFallen(bro, "Left to die");
+				::Legends.addFallen(bro, "Left to die");
 				bro.getSkills().onDeath(this.Const.FatalityType.None);
 				this.World.getPlayerRoster().remove(bro);
 				bro.die();
