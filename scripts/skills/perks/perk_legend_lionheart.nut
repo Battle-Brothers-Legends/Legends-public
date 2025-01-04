@@ -12,7 +12,7 @@ this.perk_legend_lionheart <- this.inherit("scripts/skills/skill", {
 
 	function onUpdate( _properties )
 	{
-		_properties.IsAffectedByMovementMorale = true;
+		_properties.IsAffectedByMovementMorale = false;
 		_properties.BraveryMult *= 1.10;
 	}
 

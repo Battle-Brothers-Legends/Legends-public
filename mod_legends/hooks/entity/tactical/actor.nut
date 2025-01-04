@@ -183,7 +183,7 @@
 		foreach (i, a in actors) {
 			pointers.push(a.checkMorale);
 			a.checkMorale = function (_change, _difficulty) {
-				if (!this.m.CurrentProperties.IsAffectedByMovementMorale) {
+				if (this.m.CurrentProperties.IsAffectedByMovementMorale) {
 					pointers[i](_change, _difficulty);
 				}
 			}
