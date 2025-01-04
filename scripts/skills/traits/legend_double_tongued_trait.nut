@@ -74,7 +74,7 @@ this.legend_double_tongued_trait <- this.inherit("scripts/skills/traits/characte
 				
 				local ally_morale = ally.getMoraleState();
 				
-				if (ally_morale > this.Const.MoraleState.Fleeing)
+				if (ally_morale > this.Const.MoraleState.Fleeing && ally_morale < ::Const.MoraleState.Ignore)
 				{
 					ally.setMoraleState(ally_morale - 1);
 				}

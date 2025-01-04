@@ -4,10 +4,7 @@ this.perk_legend_specialist_shield_skill <- this.inherit("scripts/skills/skill",
 		},
 	function create()
 	{
-		this.m.ID = "perk.legend_specialist_shield_skill";
-		this.m.Name = this.Const.Strings.PerkName.LegendSpecialistShieldSkill;
-		this.m.Description = this.Const.Strings.PerkDescription.LegendSpecialistShieldSkill;
-		this.m.Icon = "ui/perks/perk_05.png";
+		::Const.Perks.setup(this.m, ::Const.Perks.PerkDefs.LegendSpecialistShieldSkill);
 		this.m.Type = this.Const.SkillType.Perk | this.Const.SkillType.StatusEffect;
 		this.m.Order = this.Const.SkillOrder.Perk;
 		this.m.IsActive = false;
@@ -68,7 +65,7 @@ this.perk_legend_specialist_shield_skill <- this.inherit("scripts/skills/skill",
 				this.m.TurnsLeft--;
 			}
 			# Check if they have tower shield
-			else if (actor.getSkills().hasSkill("actives.legend_fortify_skill"))
+			else if (actor.getSkills().hasSkill("actives.legend_fortify"))
 			{
 				actor.getSkills().add(this.new("scripts/skills/effects/legend_fortify_effect"));
 				this.m.TurnsLeft--;

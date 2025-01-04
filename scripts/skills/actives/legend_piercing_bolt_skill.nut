@@ -88,7 +88,7 @@ this.legend_piercing_bolt_skill <- ::inherit("scripts/skills/actives/shoot_bolt"
 		if (targetTile.IsVisibleForPlayer)
 			::Tactical.EventLog.logEx(format("%s pierces %s and hits %s", _info.Skill.getName(), targetName, ::Const.UI.getColorizedEntityName(forwardTile.getEntity())));
 
-		_info.Skill.attackEntity(_info.User, forwardTile.getEntity());
+		_info.Skill.attackEntity(_info.User, forwardTile.getEntity(), false);
 
 		// reset back to normal lol
 		_info.Skill.m.IsUsingHitchance = true;

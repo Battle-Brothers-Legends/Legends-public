@@ -2,10 +2,7 @@ this.perk_legend_specialist_knife_skill <- this.inherit("scripts/skills/skill", 
 	m = {},
 	function create()
 	{
-		this.m.ID = "perk.legend_specialist_knife_skill";
-		this.m.Name = this.Const.Strings.PerkName.LegendSpecialistKnifeSkill;
-		this.m.Description = this.Const.Strings.PerkDescription.LegendSpecialistKnifeSkill;
-		this.m.Icon = "ui/perks/knife_02.png";
+		::Const.Perks.setup(this.m, ::Const.Perks.PerkDefs.LegendSpecialistKnifeSkill);
 		this.m.Type = this.Const.SkillType.Perk;
 		this.m.Order = this.Const.SkillOrder.Perk;
 		this.m.IsActive = false;
@@ -22,7 +19,7 @@ this.perk_legend_specialist_knife_skill <- this.inherit("scripts/skills/skill", 
 			{
 				_properties.MeleeSkill += 12;
 				_properties.DamageDirectAdd += 0.4;
-			} 
+			}
 			else if (item.isWeaponType(this.Const.Items.WeaponType.Dagger))
 			{
 				_properties.MeleeSkill += 3;

@@ -283,8 +283,8 @@ this.legend_basilisk_drone <- this.inherit("scripts/entity/tactical/actor", {
 		{
 			b.MeleeDefense += 5;
 			b.RangedDefense += 5;
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_sundering_strikes"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_relentless"));
+			this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_smackdown"));
+			this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_onslaught"));
 		}
 
 	}

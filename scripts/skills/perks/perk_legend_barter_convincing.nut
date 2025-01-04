@@ -4,10 +4,7 @@ this.perk_legend_barter_convincing <- this.inherit("scripts/skills/skill", {
 	},
 	function create()
 	{
-		this.m.ID = "perk.legend_barter_convincing";
-		this.m.Name = this.Const.Strings.PerkName.LegendBarterConvincing;
-		this.m.Description = this.Const.Strings.PerkDescription.LegendBarterConvincing;
-		this.m.Icon = "ui/perks/BarterT1.png";
+		::Const.Perks.setup(this.m, ::Const.Perks.PerkDefs.LegendBarterConvincing);
 		this.m.Type = this.Const.SkillType.Perk;
 		this.m.Order = this.Const.SkillOrder.Perk;
 		this.m.IsActive = false;
@@ -40,10 +37,10 @@ this.perk_legend_barter_convincing <- this.inherit("scripts/skills/skill", {
 
 	function onNewDay()
 	{
-		local bonus = 10 + this.getContainer().getActor().getLevel();		
+		local bonus = 10 + this.getContainer().getActor().getLevel();
 		::World.Assets.addMoney(bonus);
 	}
-	
+
 	function onUpdate( _properties )
 	{
 		_properties.DailyWageMult *= 1.1;

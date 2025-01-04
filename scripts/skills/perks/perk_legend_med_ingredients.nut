@@ -4,10 +4,7 @@ this.perk_legend_med_ingredients <- this.inherit("scripts/skills/skill", {
 	},
 	function create()
 	{
-		this.m.ID = "perk.legend_med_ingredients";
-		this.m.Name = this.Const.Strings.PerkName.LegendMedIngredients;
-		this.m.Description = this.Const.Strings.PerkDescription.LegendMedIngredients;
-		this.m.Icon = "ui/perks/MaxMedsT2.png";
+		::Const.Perks.setup(this.m, ::Const.Perks.PerkDefs.LegendMedIngredients);
 		this.m.Type = this.Const.SkillType.Perk;
 		this.m.Order = this.Const.SkillOrder.Perk;
 		this.m.IsActive = false;
@@ -37,7 +34,7 @@ this.perk_legend_med_ingredients <- this.inherit("scripts/skills/skill", {
 		}
 		this.World.State.getPlayer().calculateMedsModifier();
 	}
-	
+
 	function onUpdate( _properties )
 	{
 		_properties.BraveryMult *= 1.05;

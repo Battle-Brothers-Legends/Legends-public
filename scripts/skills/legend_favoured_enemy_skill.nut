@@ -212,7 +212,7 @@ this.legend_favoured_enemy_skill <- this.inherit("scripts/skills/skill", {
 		{
 			foreach (vt in this.m.ValidTypes)
 			{
-				if (a.getType() == vt)
+				if (a.getType() == vt && !a.isAlliedWithPlayer())
 				{
 					_properties.BraveryMult *= this.m.BraveryMult;
 					return;

@@ -1,5 +1,5 @@
 ::ModJimmysTooltips <- {
-	ID = "mod_Jimmys_Tooltips",
+	ID = "mod_Jimmys_Tooltips_legends",
 	Name = "ModJimmysTooltips",
 	Version = "1.0.5"
 }

@@ -57,7 +57,7 @@ if (!("Perks" in ::Const))
 			::Const.Perks.PerkDefs.Dodge
 		],
 		[
-			::Const.Perks.PerkDefs.Relentless
+			::Const.Perks.PerkDefs.LegendOnslaught
 		],
 		[],
 		[],

@@ -19,7 +19,7 @@ this.legend_coordinated_volleys_skill <- this.inherit("scripts/skills/skill", {
 		this.m.IsStacking = false;
 		this.m.IsAttack = false;
 		this.m.IsIgnoredAsAOO = true;
-		this.m.ActionPointCost = 4;
+		this.m.ActionPointCost = 5;
 		this.m.FatigueCost = 20;
 		this.m.MinRange = 0;
 		this.m.MaxRange = 0;
@@ -47,9 +47,15 @@ this.legend_coordinated_volleys_skill <- this.inherit("scripts/skills/skill", {
 			{
 				id = 6,
 				type = "text",
-				icon = "ui/icons/special.png",
+				icon = "ui/icons/ranged_skill.png",
 				text =  "[color=" + this.Const.UI.Color.PositiveValue + "]10[/color] ranged attack to all allies within [color=" + this.Const.UI.Color.PositiveValue + "]4[/color] tiles for one turn"
-			}			
+			},
+			{
+				id = 7,
+				type = "text",
+				icon = "ui/icons/damage_dealt.png",
+				text =  "[color=" + this.Const.UI.Color.PositiveValue + "]5%[/color] damage bonus to all allies within [color=" + this.Const.UI.Color.PositiveValue + "]4[/color] tiles for one turn"
+			}		
 		];
 	}
 

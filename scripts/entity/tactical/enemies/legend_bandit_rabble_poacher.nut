@@ -65,19 +65,6 @@ this.legend_bandit_rabble_poacher <- this.inherit("scripts/entity/tactical/legen
 		{
 			this.m.Skills.add(this.new("scripts/skills/traits/craven_trait"));
 		}
-
-		// if (this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Hard)
-		// {
-		// 	this.m.Skills.add(this.new("scripts/skills/traits/brave_trait"));
-		// }
-
-		//  if ("Assets" in this.World && this.World.Assets != null && this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Legendary)
-		// {
-		// this.m.Skills.add(this.new("scripts/skills/perks/perk_dodge"));
-		// this.m.Skills.add(this.new("scripts/skills/perks/perk_backstabber"));
-		// this.m.Skills.add(this.new("scripts/skills/traits/fearless_trait"));
-		// this.m.Skills.add(this.new("scripts/skills/traits/determined_trait"));
-		// }
 		this.m.Skills.update();
 	}
 
@@ -94,58 +81,4 @@ this.legend_bandit_rabble_poacher <- this.inherit("scripts/entity/tactical/legen
 		this.m.Items.equip(this.new("scripts/items/ammo/quiver_of_arrows"));
 		this.m.Items.addToBag(this.new("scripts/items/weapons/knife"));
 	}
-
-	// function assignRandomEquipment()
-	// {
-	// 	local weapons = [
-	// 		[
-	// 			"weapons/short_bow",
-	// 			"ammo/quiver_of_arrows"
-	// 		],
-	// 		[
-	// 			"weapons/legend_sling"
-	// 		],
-	// 		[
-	// 			"weapons/legend_sling"
-	// 		]
-	// 	];
-	// 	local n = this.Math.rand(0, weapons.len() - 1);
-
-	// 	foreach( w in weapons[n] )
-	// 	{
-	// 		this.m.Items.equip(this.new("scripts/items/" + w));
-	// 	}
-
-	// 	this.m.Items.addToBag(this.new("scripts/items/weapons/knife"));
-
-
-
-	// 	if (this.Math.rand(1, 100) <= 90)
-	// 	{
-	// 		local item = this.Const.World.Common.pickArmor([
-	// 			[20, "leather_wraps"],
-	// 			[20, "tattered_sackcloth"],
-	// 			[20,"legend_rabble_tunic"],
-	// 			[20,"monk_robe"],
-	// 			[20, "legend_rabble_fur"]
-	// 		])
-	// 		this.m.Items.equip(item);
-
-	// 	}
-
-
-
-	// 	if (this.Math.rand(1, 100) <= 50)
-	// 	{
-	// 		local item = this.Const.World.Common.pickHelmet([
-	// 			[1, "headscarf"],
-	// 			[1, "mouth_piece"]
-	// 		])
-	// 		if (item != null)
-	// 		{
-	// 			this.m.Items.equip(item);
-	// 		}
-	// 	}
-	// }
-
 });

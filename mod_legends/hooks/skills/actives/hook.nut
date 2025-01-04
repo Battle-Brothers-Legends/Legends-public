@@ -1,5 +1,19 @@
 ::mods_hookExactClass("skills/actives/hook", function(o)
 {
+	o.m.isChain <- false;
+
+	local create = o.create;
+	o.create = function ()
+	{
+		create();
+		if (this.m.isChain)
+		{
+			this.m.Description = "A target up to 3 tiles away is hooked and pulled close if there is space. Anyone hit will be staggered and lose initiative. A target can not be pulled up a level of height, but may take damage if it is pulled down several levels of height at once. Shieldwall, Spearwall and Riposte will be canceled for a successfully hooked-in target. A rooted target can not be hooked.";
+			this.m.MaxRange = 3;
+			this.m.FatigueCost = 30;
+		}
+	}
+
 	o.onVerifyTarget = function ( _originTile, _targetTile )
 	{
 		this.m.IsAttack = false; // work around to allow targeting on allies
@@ -84,6 +98,20 @@
 		}
 
 		return true;
+	}
+
+	local onAfterUpdate = o.onAfterUpdate;
+	o.onAfterUpdate = function ( _properties )
+	{
+		if (this.m.isChain)
+		{
+			this.m.FatigueCostMult = _properties.IsSpecializedInFlails ? this.Const.Combat.WeaponSpecFatigueMult : 1.0;
+			this.m.ActionPointCost = _properties.IsSpecializedInFlails ? 5 : 6;
+		}
+		else
+		{
+			onAfterUpdate( _properties );
+		}
 	}
 
 	o.onTargetSelected <- function ( _targetTile )

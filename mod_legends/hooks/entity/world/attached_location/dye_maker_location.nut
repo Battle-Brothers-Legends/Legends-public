@@ -14,14 +14,6 @@
 		_list.push("trade/dies_item");
 	}
 
-	local onUpdateDraftList = o.onUpdateDraftList;
-	o.onUpdateDraftList = function ( _list, _gender = null )
-	{
-		_gender = ::Legends.Mod.ModSettings.getSetting("GenderEquality").getValue() != "Disabled";
-
-		onUpdateDraftList(_list);
-	}
-
 	# completely replaced due to my dye renaming shennanigans
 	o.onUpdateShopList = function ( _id, _list )
 	{

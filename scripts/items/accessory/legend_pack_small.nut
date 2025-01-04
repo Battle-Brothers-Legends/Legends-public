@@ -8,6 +8,7 @@ this.legend_pack_small <- this.inherit("scripts/items/accessory/accessory", {
 		this.m.Description = "A sash worn by travelers to help carry additional supplies";
 		this.m.SlotType = this.Const.ItemSlot.Accessory;
 		this.m.IsDroppedAsLoot = true;
+		this.m.IsAllowedInBag = false;
 		this.m.ShowOnCharacter = true;
 		this.m.IconLarge = "accessory/legend_pack_small.png";
 		this.m.Icon = "accessory/legend_pack_small.png";
@@ -21,11 +22,6 @@ this.legend_pack_small <- this.inherit("scripts/items/accessory/accessory", {
 	function playInventorySound( _eventType )
 	{
 		this.Sound.play("sounds/cloth_01.wav", this.Const.Sound.Volume.Inventory);
-	}
-
-	function isAllowedInBag(_actor = null)
-	{
-		return false;
 	}
 
 });

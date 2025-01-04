@@ -11,38 +11,30 @@
 	o.onAdded = function ( _settlement )
 	{
 		onAdded( _settlement );
+
 		if(::Legends.Mod.ModSettings.getSetting("WorldEconomy").getValue())
-		{
 			_settlement.setResources(_settlement.getResources() + _settlement.getResources() * -0.025);
-		}
-		_settlement.resetShop();
 
 		if (::Math.rand(1,10)==1)
-		{
 			_settlement.addSituation(this.new("scripts/entity/world/settlements/situations/legend_militant_townsfolk_situation"), this.getDefaultDays() + ::Math.rand(1,3));
-		}
 	}
 
+	local onUpdate = o.onUpdate;
 	o.onUpdate = function ( _modifiers )
 	{
-		_modifiers.BuyPriceMult *= 1.2;
-		_modifiers.SellPriceMult *= 1.2;
-		_modifiers.RarityMult *= 0.75;
+		onUpdate(_modifiers);
+		_modifiers.SellPriceMult *= 1.2 / 1.1;
 	}
 
 	o.onResolved <- function ( _settlement )
 	{
 		if(::Legends.Mod.ModSettings.getSetting("WorldEconomy").getValue())
-		{
 			_settlement.setResources(_settlement.getResources() + _settlement.getResources() * 0.125);
-		}
 	}
 
-	o.onUpdateDraftList <- function ( _draftList, _gender = null)
+	o.onUpdateDraftList <- function ( _draftList )
 	{
-		_gender = ::Legends.Mod.ModSettings.getSetting("GenderEquality").getValue() != "Disabled";
-		if  (this.World.Assets.getOrigin().getID() == "scenario.legends_necro" || this.World.Assets.getOrigin().getID() == "scenario.legends_solo_necro")
-		{
+		if  (this.World.Assets.getOrigin().getID() == "scenario.legends_necro" || this.World.Assets.getOrigin().getID() == "scenario.legends_solo_necro") {
 			_draftList.push("legend_puppet_background");
 			_draftList.push("legend_puppet_background");
 		}

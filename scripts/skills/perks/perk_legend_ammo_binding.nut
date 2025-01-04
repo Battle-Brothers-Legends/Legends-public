@@ -4,10 +4,7 @@ this.perk_legend_ammo_binding <- this.inherit("scripts/skills/skill", {
 	},
 	function create()
 	{
-		this.m.ID = "perk.legend_ammo_binding";
-		this.m.Name = this.Const.Strings.PerkName.LegendAmmoBinding;
-		this.m.Description = this.Const.Strings.PerkDescription.LegendAmmoBinding;
-		this.m.Icon = "ui/perks/MaxAmmoT1.png";
+		::Const.Perks.setup(this.m, ::Const.Perks.PerkDefs.LegendAmmoBinding);
 		this.m.Type = this.Const.SkillType.Perk;
 		this.m.Order = this.Const.SkillOrder.Perk;
 		this.m.IsActive = false;

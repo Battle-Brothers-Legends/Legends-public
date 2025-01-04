@@ -170,7 +170,6 @@
 ::Const.CharacterProperties.SurvivesAsUndead <- false;
 ::Const.CharacterProperties.IsAffectedByMovementMorale <- false;
 ::Const.CharacterProperties.IsSpecializedInOneHandedSwords <- false;
-::Const.CharacterProperties.IsSpecializedInGreatSwords <- false;
 ::Const.CharacterProperties.IsSpecializedInSpearThrust <- false;
 ::Const.CharacterProperties.IsSpecializedInShieldPush <- false;
 ::Const.CharacterProperties.IsSpecializedInNets <- false;

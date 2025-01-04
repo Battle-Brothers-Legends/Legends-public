@@ -3,10 +3,7 @@ this.perk_legend_favoured_enemy_swordmaster <- this.inherit("scripts/skills/lege
 	function create()
 	{
 		this.legend_favoured_enemy_skill.create();
-		this.m.ID = "perk.legend_favoured_enemy_swordmaster";
-		this.m.Name = this.Const.Strings.PerkName.LegendFavouredEnemySwordmaster;
-		this.m.Description = this.Const.Strings.PerkDescription.LegendFavouredEnemySwordmaster;
-		this.m.Icon = "ui/perks/favoured_knight_01.png";
+		::Const.Perks.setup(this.m, ::Const.Perks.PerkDefs.LegendFavouredEnemySwordmaster);
 		this.m.ValidTypes = this.Const.LegendMod.FavoriteSwordmaster;
 	}
 

@@ -2,11 +2,7 @@ this.perk_legend_rebound <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "perk.legend_rebound";
-		this.m.Name = this.Const.Strings.PerkName.LegendRebound;
-		this.m.Description = this.Const.Strings.PerkDescription.LegendRebound;
-		this.m.Icon = "ui/perks/rebound_circle.png";
-		this.m.IconDisabled = "ui/perks/rebound_circle_bw.png";
+		::Const.Perks.setup(this.m, ::Const.Perks.PerkDefs.LegendRebound);
 		this.m.Type = this.Const.SkillType.Perk;
 		this.m.Order = this.Const.SkillOrder.Perk;
 		this.m.IsActive = false;

@@ -61,7 +61,7 @@ this.legend_flaggelate_skill <- this.inherit("scripts/skills/skill", {
 	function getTooltip()
 	{
 		local ret = this.getDefaultTooltip();
-		local dmg = 2 * (this.getContainer().getActor().getCurrentProperties().IsSpecializedInCleavers ? 10 : 5);
+		local dmg = this.getContainer().getActor().getCurrentProperties().IsSpecializedInCleavers ? 10 : 5;
 		ret.push({
 			id = 7,
 			type = "text",
@@ -72,7 +72,7 @@ this.legend_flaggelate_skill <- this.inherit("scripts/skills/skill", {
 			id = 8,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "Inflicts additional stacking [color=" + this.Const.UI.Color.DamageValue + "]" + dmg + "[/color] bleeding damage per turn, for 2 turns"
+			text = "Inflicts 3 bleeds each dealing a stacking [color=" + this.Const.UI.Color.DamageValue + "]" + dmg + "[/color] bleeding damage per turn, for 2 turns"
 		});
 		return ret;
 	}

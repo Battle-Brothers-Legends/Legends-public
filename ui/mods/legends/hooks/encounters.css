@@ -1,0 +1,82 @@
+/*region town screen*/
+/* 48rem is around the center, 58px is image size (56px) + 2px margin*/
+.world-town-screen > .l-main-dialog-container .encounter0
+{
+    position: absolute;
+    top: 1.5rem;
+    right: 48.0rem;
+}
+
+.world-town-screen > .l-main-dialog-container .encounter1
+{
+    position: absolute;
+    top: 1.5rem;
+    right: calc(48rem - 58px);
+}
+
+.world-town-screen > .l-main-dialog-container .encounter2
+{
+    position: absolute;
+    top: 1.5rem;
+    right: calc(48rem + 58px);
+}
+
+.world-town-screen > .l-main-dialog-container .encounter3
+{
+    position: absolute;
+    top: 1.5rem;
+    right: calc(48rem - 2*58px);
+}
+
+.world-town-screen > .l-main-dialog-container .encounter4
+{
+    position: absolute;
+    top: 1.5rem;
+    right: calc(48rem + 2*58px);
+}
+/*endregion*/
+
+/*region camp screen*/
+/* 48rem is around the center, 58px is image size (56px) + 2px margin*/
+.camp-screen > .l-main-dialog-container .encounter0
+{
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+}
+
+.camp-screen > .l-main-dialog-container .encounter1
+{
+    position: absolute;
+    top: 1.5rem;
+    right: 48.0rem;
+}
+
+.camp-screen > .l-main-dialog-container .encounter2
+{
+    position: absolute;
+    top: 1.5rem;
+    right: calc(48rem - 58px);
+}
+
+.camp-screen > .l-main-dialog-container .encounter3
+{
+    position: absolute;
+    top: 1.5rem;
+    right: calc(48rem + 58px);
+}
+
+.camp-screen > .l-main-dialog-container .encounter4
+{
+    position: absolute;
+    top: 1.5rem;
+    right: calc(48rem - 2*58px);
+}
+
+.camp-screen > .l-main-dialog-container .encounter5
+{
+    position: absolute;
+    top: 1.5rem;
+    right: calc(48rem + 2*58px);
+}
+/*endregion*/

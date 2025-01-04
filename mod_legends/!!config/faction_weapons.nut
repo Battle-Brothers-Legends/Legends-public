@@ -133,7 +133,7 @@
 //Military - high tier north ranged weapons 2h
 ::Const.MilitaryRangedWeapons2h <- [
 	"weapon.war_bow",
-	"weapon.legend_slingstaff",
+	"weapon.legend_northern_sling",
 	"weapon.heavy_crossbow"
 ];
 

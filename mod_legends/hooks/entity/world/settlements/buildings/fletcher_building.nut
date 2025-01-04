@@ -1,10 +1,5 @@
 ::mods_hookExactClass("entity/world/settlements/buildings/fletcher_building", function(o)
 {
-	o.onUpdateDraftList = function ( _draftList, _gender = null)
-	{
-		_gender = ::Legends.Mod.ModSettings.getSetting("GenderEquality").getValue() != "Disabled";
-	}
-
 	o.onUpdateShopList = function ()
 	{
 		local list = [
@@ -51,7 +46,7 @@
 			{
 				R = 70,
 				P = 1.0,
-				S = "weapons/legend_slingstaff"
+				S = "weapons/legend_northern_sling"
 			},
 			{
 				R = 10,

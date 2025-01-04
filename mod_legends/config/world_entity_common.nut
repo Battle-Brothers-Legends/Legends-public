@@ -1105,7 +1105,7 @@ if (!("World" in ::Const))
 
 ::Const.World.Common.buildDynamicTroopList <- function( _template, _resources)
 {
-	::logInfo("*DynamicTroopList : template = " + _template.Name + " : resources = " + _resources)
+//	::logInfo("*DynamicTroopList : template = " + _template.Name + " : resources = " + _resources)
 	local credits = _resources;
 	if ("MinR" in _template)
 	{
@@ -1138,10 +1138,10 @@ if (!("World" in ::Const))
 
 
 	//TESTING
-	 foreach (t in T)
-	 {
-	 	::logInfo(t.Type.Script + " : " + t.Num);
-	 }
+//	 foreach (t in T)
+//	 {
+//	 	::logInfo(t.Type.Script + " : " + t.Num);
+//	 }
 
 	return {
 		MovementSpeedMult = _template.MovementSpeedMult,

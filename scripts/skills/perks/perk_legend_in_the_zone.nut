@@ -5,10 +5,8 @@ this.perk_legend_in_the_zone <- this.inherit("scripts/skills/skill", {
 	},
 	function create()
 	{
-		this.m.ID = "perk.legend_in_the_zone";
-		this.m.Name = this.Const.Strings.PerkName.LegendInTheZone;
+		::Const.Perks.setup(this.m, ::Const.Perks.PerkDefs.LegendInTheZone);
 		this.m.Description = "%name% utilizes %their% armor\'s blend of protection and mobility to deal increased damage and gain increased accuracy when foes miss attacks against %them%.";
-		this.m.Icon = "ui/perks/in_the_zone.png";
 		this.m.Type = this.Const.SkillType.Perk | this.Const.SkillType.StatusEffect;
 		this.m.Order = this.Const.SkillOrder.Perk;
 		this.m.IsActive = false;
@@ -78,7 +76,7 @@ this.perk_legend_in_the_zone <- this.inherit("scripts/skills/skill", {
 		if (!actor.isPlacedOnMap())
 		{
 			this.m.Stacks = 0;
-			
+
 			local armorFat = actor.getItems().getStaminaModifier([::Const.ItemSlot.Body, ::Const.ItemSlot.Head]) * -1;
 
 			if (actor.getInitiative() >= 2*armorFat)
@@ -97,7 +95,7 @@ this.perk_legend_in_the_zone <- this.inherit("scripts/skills/skill", {
 				bonus *= 2;
 			}
 
-			_properties.MeleeDamageMult *= 1 + bonus * 0.01;			
+			_properties.MeleeDamageMult *= 1 + bonus * 0.01;
 		}
 	}
 

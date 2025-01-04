@@ -30,7 +30,7 @@ this.legend_peasant_blacksmith <- this.inherit("scripts/entity/tactical/human", 
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_specialist_hammer_skill"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_specialist_hammer_damage"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_mastery_hammer"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_sundering_strikes"));
+		this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_smackdown"));
 		this.getSprite("socket").setBrush("bust_base_militia");
 
 		if("Assets" in this.World && this.World.Assets != null && this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Legendary)

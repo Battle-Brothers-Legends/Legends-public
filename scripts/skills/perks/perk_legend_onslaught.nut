@@ -4,10 +4,7 @@ this.perk_legend_onslaught <- this.inherit("scripts/skills/skill", {
 	},
 	function create()
 	{
-		this.m.ID = "perk.legend_onslaught";
-		this.m.Name = this.Const.Strings.PerkName.LegendOnslaught;
-		this.m.Description = this.Const.Strings.PerkDescription.LegendOnslaught;
-		this.m.Icon = "ui/perks/onslaught_circle.png";
+		::Const.Perks.setup(this.m, ::Const.Perks.PerkDefs.LegendOnslaught);
 		this.m.Type = this.Const.SkillType.Perk;
 		this.m.Order = this.Const.SkillOrder.Perk;
 		this.m.IsActive = false;
@@ -23,6 +20,12 @@ this.perk_legend_onslaught <- this.inherit("scripts/skills/skill", {
 			"sounds/combat/bash_hit_02.wav",
 			"sounds/combat/bash_hit_03.wav"
 		];
+	}
+
+	function onUpdate( _properties )
+	{
+		_properties.FatigueToInitiativeRate *= 0.5;
+		_properties.InitiativeAfterWaitMult = 1.0;
 	}
 
 	function onTargetHit( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor )

@@ -82,75 +82,7 @@ this.legend_hunting_basilisks_contract <- this.inherit("scripts/contracts/contra
 				}
 
 				this.Flags.set("StartTime", this.Time.getVirtualTimeF());
-				local disallowedTerrain = [];
-
-				for( local i = 0; i < this.Const.World.TerrainType.COUNT; i = ++i )
-				{
-					if (i == this.Const.World.TerrainType.Forest || i == this.Const.World.TerrainType.LeaveForest || i == this.Const.World.TerrainType.AutumnForest)
-					{
-					}
-					else
-					{
-						disallowedTerrain.push(i);
-					}
-				}
-
-				local playerTile = this.World.State.getPlayer().getTile();
-				local mapSize = this.World.getMapSize();
-				local x = this.Math.max(3, playerTile.SquareCoords.X - 9);
-				local x_max = this.Math.min(mapSize.X - 3, playerTile.SquareCoords.X + 9);
-				local y = this.Math.max(3, playerTile.SquareCoords.Y - 9);
-				local y_max = this.Math.min(mapSize.Y - 3, playerTile.SquareCoords.Y + 9);
-				local numWoods = 0;
-
-				while (x <= x_max)
-				{
-					while (y <= y_max)
-					{
-						local tile = this.World.getTileSquare(x, y);
-
-						if (tile.Type == this.Const.World.TerrainType.Forest || tile.Type == this.Const.World.TerrainType.LeaveForest || tile.Type == this.Const.World.TerrainType.AutumnForest)
-						{
-							numWoods = ++numWoods;
-						}
-
-						y = ++y;
-					}
-
-					x = ++x;
-				}
-
-				local tile = this.Contract.getTileToSpawnLocation(playerTile, numWoods >= 12 ? 6 : 3, 9, disallowedTerrain);
-				local party;
-				party = this.World.FactionManager.getFactionOfType(this.Const.FactionType.Beasts).spawnEntity(tile, "Basilisks", false, this.Const.World.Spawn.LegendBasiliskLOW, 110 * this.Contract.getDifficultyMult() * this.Contract.getScaledDifficultyMult());
-				party.setDescription("A stampede of basilisks hunting for food");
-				party.setFootprintType(this.Const.World.FootprintsType.Basilisks);
-				party.setAttackableByAI(false);
-				party.setFootprintSizeOverride(1.10);
-
-				for( local i = 0; i < 2; i = ++i )
-				{
-					local nearTile = this.Contract.getTileToSpawnLocation(playerTile, 4, 5);
-
-					if (nearTile != null)
-					{
-						this.Const.World.Common.addFootprintsFromTo(nearTile, party.getTile(), this.Const.BeastFootprints, this.Const.World.FootprintsType.Basilisks, 0.75);
-					}
-				}
-
-				this.Contract.m.Target = this.WeakTableRef(party);
-				party.getSprite("banner").setBrush("banner_beasts_01");
-				local c = party.getController();
-				c.getBehavior(this.Const.World.AI.Behavior.ID.Flee).setEnabled(false);
-				c.getBehavior(this.Const.World.AI.Behavior.ID.Attack).setEnabled(true);
-				local roam = this.new("scripts/ai/world/orders/roam_order");
-				roam.setNoTerrainAvailable();
-				roam.setTerrain(this.Const.World.TerrainType.Forest, true);
-				roam.setTerrain(this.Const.World.TerrainType.LeaveForest, true);
-				roam.setTerrain(this.Const.World.TerrainType.AutumnForest, true);
-				roam.setMinRange(1);
-				roam.setMaxRange(1);
-				c.addOrder(roam);
+				this.Contract.spawnEnemies();
 				this.Contract.m.Home.setLastSpawnTimeToNow();
 				this.Contract.setScreen("Overview");
 				this.World.Contracts.setActiveContract(this.Contract);
@@ -290,46 +222,47 @@ this.legend_hunting_basilisks_contract <- this.inherit("scripts/contracts/contra
 
 				}
 			],
-			function start( _event )
+			function start()
 			{
-				if (_event.m.Beastslayer != null)
-				{
-					this.Options.push({
-						Text = "%beastslayer% is an expert in these things.",
-						function getResult( _event )
-						{
-							return "beastslayer";
-						}
-					});
-				}
+			// TODO there's no _event in contracts! - chopeks
+//				if (_event.m.Beastslayer != null)
+//				{
+//					this.Options.push({
+//						Text = "%beastslayer% is an expert in these things.",
+//						function getResult( _event )
+//						{
+//							return "beastslayer";
+//						}
+//					});
+//				}
 			}
 		});
-		this.m.Screens.push({ //lore
-			ID = "beastslayer",
-			Title = "The Beastslayer Speaks...",
-			Text = "[img]gfx/ui/events/event_122.png[/img]{%beastslayer% pokes through the remains...} {%SPEECH_ON%These things are pure evil. And I don\'t mean that lightly. I could spin you a yarn \'bout how man is the real monster and such but it\'d be farkin\' nonsense. I\'ve seen \'knechts with better table manners than a noble and farmers with more balls than\' a giant. We\'re as bad as them and they\'re as bad as us. But these \'lisks invade \'wurm nests and eat their eggs, then lay their own in \'em and let the stupid lizard take care of it while it falls off a cliff or eats a child or somethin\'. All I\'m sayin\' is I won\'t hesitate killing these devils when\' we find \'em.%SPEECH_OFF% | %SPEECH_ON%Look at this poor fark here%SPEECH_OFF% The slayer pokes through human remains with their boot, the figure is barely covered in rags and even as a skeleton, looks in unimaginable agony - twisted this way and that like the tree roots around them. %SPEECH_ON%He\'s got egg shell where his stomach should be, looks like he tried to eat one of the eggs. I haven\'t seen it myself but apparently the eggs taste rotten and smell just as bad. Must\'ve been a wildman or maybe a slave on the run to be this desperate. Probably went rotten from the inside himself and had a slow death here.%SPEECH_OFF% | %SPEECH_ON% Back in %randomtownname% I spent time in the tavern with two farmers who saw one of these things hatch on their own farm. Swore it hatched from a rotten egg and within a day it was trying to kill the other hatchlings. Considering the man was eight cups deep before I even sat down I wouldn\'t put much faith in it. Some think they\'re hatched by toads, snakes or even roosters when people aren\'t looking. What I do know is they\'re vermin. Plain and simple.%SPEECH_OFF%}\n\n{With this said, you should get back to the hunt.}",
-			Image = "",
-			List = [],
-			Options = [
-				{
-					Text = "Good to know.",
-					function getResult()
-					{
-						local xp = this.Math.rand (9, 43); //Query: can the player exploit this to farm xp? I think this event will keep triggering? - Luft
-						foreach( bro in playerRoster )		//Follow up: now that I think about it, if they are willing to lose gold per day in exchange for rabble-tier xp maybe they deserve it. Plus there's no free beastslayer so they'd need to pay at least this background for this event to MAYBE fire multiple times and drip feed them xp. - Luft
-						{
-							bro.addXP(xp);
-							bro.updateLevel();
-						}
-						return 0;
-					}
-				}
-			],
-			function start( _event )
-			{
-				this.Characters.push(_event.m.Beastslayer.getImagePath());
-			}
-		});
+//		this.m.Screens.push({ //lore
+//			ID = "beastslayer",
+//			Title = "The Beastslayer Speaks...",
+//			Text = "[img]gfx/ui/events/event_122.png[/img]{%beastslayer% pokes through the remains...} {%SPEECH_ON%These things are pure evil. And I don\'t mean that lightly. I could spin you a yarn \'bout how man is the real monster and such but it\'d be farkin\' nonsense. I\'ve seen \'knechts with better table manners than a noble and farmers with more balls than\' a giant. We\'re as bad as them and they\'re as bad as us. But these \'lisks invade \'wurm nests and eat their eggs, then lay their own in \'em and let the stupid lizard take care of it while it falls off a cliff or eats a child or somethin\'. All I\'m sayin\' is I won\'t hesitate killing these devils when\' we find \'em.%SPEECH_OFF% | %SPEECH_ON%Look at this poor fark here%SPEECH_OFF% The slayer pokes through human remains with their boot, the figure is barely covered in rags and even as a skeleton, looks in unimaginable agony - twisted this way and that like the tree roots around them. %SPEECH_ON%He\'s got egg shell where his stomach should be, looks like he tried to eat one of the eggs. I haven\'t seen it myself but apparently the eggs taste rotten and smell just as bad. Must\'ve been a wildman or maybe a slave on the run to be this desperate. Probably went rotten from the inside himself and had a slow death here.%SPEECH_OFF% | %SPEECH_ON% Back in %randomtownname% I spent time in the tavern with two farmers who saw one of these things hatch on their own farm. Swore it hatched from a rotten egg and within a day it was trying to kill the other hatchlings. Considering the man was eight cups deep before I even sat down I wouldn\'t put much faith in it. Some think they\'re hatched by toads, snakes or even roosters when people aren\'t looking. What I do know is they\'re vermin. Plain and simple.%SPEECH_OFF%}\n\n{With this said, you should get back to the hunt.}",
+//			Image = "",
+//			List = [],
+//			Options = [
+//				{
+//					Text = "Good to know.",
+//					function getResult()
+//					{
+//						local xp = this.Math.rand (9, 43); //Query: can the player exploit this to farm xp? I think this event will keep triggering? - Luft
+//						foreach( bro in playerRoster )		//Follow up: now that I think about it, if they are willing to lose gold per day in exchange for rabble-tier xp maybe they deserve it. Plus there's no free beastslayer so they'd need to pay at least this background for this event to MAYBE fire multiple times and drip feed them xp. - Luft
+//						{
+//							bro.addXP(xp);
+//							bro.updateLevel();
+//						}
+//						return 0;
+//					}
+//				}
+//			],
+//			function start( _event )
+//			{
+//				this.Characters.push(_event.m.Beastslayer.getImagePath());
+//			}
+//		});
 		this.m.Screens.push({ //battle
 			ID = "Encounter",
 			Title = "As you approach...",
@@ -562,6 +495,61 @@ this.legend_hunting_basilisks_contract <- this.inherit("scripts/contracts/contra
 		{
 			this.m.SituationID = this.m.Home.addSituation(this.new("scripts/entity/world/settlements/situations/disappearing_villagers_situation"));
 		}
+	}
+
+	function spawnEnemies() {
+		local disallowedTerrain = [];
+		for( local i = 0; i < this.Const.World.TerrainType.COUNT; i = ++i ) {
+			if (i == this.Const.World.TerrainType.Forest || i == this.Const.World.TerrainType.LeaveForest || i == this.Const.World.TerrainType.AutumnForest)
+				continue;
+			disallowedTerrain.push(i);
+		}
+
+		local playerTile = this.World.State.getPlayer().getTile();
+		local mapSize = this.World.getMapSize();
+		local x = this.Math.max(3, playerTile.SquareCoords.X - 9);
+		local x_max = this.Math.min(mapSize.X - 3, playerTile.SquareCoords.X + 9);
+		local y = this.Math.max(3, playerTile.SquareCoords.Y - 9);
+		local y_max = this.Math.min(mapSize.Y - 3, playerTile.SquareCoords.Y + 9);
+		local numWoods = 0;
+
+		while (x <= x_max) {
+			while (y <= y_max) {
+				local tile = this.World.getTileSquare(x, y);
+				if (tile.Type == this.Const.World.TerrainType.Forest || tile.Type == this.Const.World.TerrainType.LeaveForest || tile.Type == this.Const.World.TerrainType.AutumnForest)
+					numWoods++;
+				y++;
+			}
+			x++;
+		}
+
+		local tile = this.getTileToSpawnLocation(playerTile, numWoods >= 12 ? 6 : 3, 9, disallowedTerrain);
+		local party = this.World.FactionManager.getFactionOfType(this.Const.FactionType.Beasts).spawnEntity(tile, "Basilisks", false, this.Const.World.Spawn.LegendBasiliskLOW, 110 * this.getDifficultyMult() * this.getScaledDifficultyMult());
+		party.setDescription("A stampede of basilisks hunting for food");
+		party.setFootprintType(this.Const.World.FootprintsType.Basilisks);
+		party.setAttackableByAI(false);
+		party.setFootprintSizeOverride(1.10);
+
+		for( local i = 0; i < 2; i = ++i ) {
+			local nearTile = this.getTileToSpawnLocation(playerTile, 4, 5);
+			if (nearTile != null)
+				this.Const.World.Common.addFootprintsFromTo(nearTile, party.getTile(), this.Const.BeastFootprints, this.Const.World.FootprintsType.Basilisks, 0.75);
+		}
+
+		this.m.Target = this.WeakTableRef(party);
+		party.getSprite("banner").setBrush("banner_beasts_01");
+		local c = party.getController();
+		c.getBehavior(this.Const.World.AI.Behavior.ID.Flee).setEnabled(false);
+		c.getBehavior(this.Const.World.AI.Behavior.ID.Attack).setEnabled(true);
+		local roam = this.new("scripts/ai/world/orders/roam_order");
+		roam.setNoTerrainAvailable();
+		roam.setTerrain(this.Const.World.TerrainType.Forest, true);
+		roam.setTerrain(this.Const.World.TerrainType.LeaveForest, true);
+		roam.setTerrain(this.Const.World.TerrainType.AutumnForest, true);
+		roam.setMinRange(1);
+		roam.setMaxRange(1);
+		c.addOrder(roam);
+		return party;
 	}
 
 	function onClear()

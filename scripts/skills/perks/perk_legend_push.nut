@@ -2,11 +2,7 @@ this.perk_legend_push <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "perk.legend_push";
-		this.m.Name = this.Const.Strings.PerkName.LegendPush;
-		this.m.Description = this.Const.Strings.PerkDescription.LegendPush;
-		this.m.Icon = "skills/revolt56.png";
-		this.m.IconDisabled = "skills/revolt56_bw.png";
+		::Const.Perks.setup(this.m, ::Const.Perks.PerkDefs.LegendPush);
 		this.m.Type = this.Const.SkillType.Perk;
 		this.m.Order = this.Const.SkillOrder.Perk;
 		this.m.IsActive = false;

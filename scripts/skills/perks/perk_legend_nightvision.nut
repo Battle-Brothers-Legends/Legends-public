@@ -2,11 +2,7 @@ this.perk_legend_nightvision <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "perk.legend_nightvision";
-		this.m.Name = this.Const.Strings.PerkName.LegendNightvision;
-		this.m.Description = this.Const.Strings.PerkDescription.LegendNightvision;
-		this.m.Icon = "ui/perks/nightvision_circle.png";
-		this.m.IconDisabled = "ui/perks/nightvision_circle_bw.png"
+		::Const.Perks.setup(this.m, ::Const.Perks.PerkDefs.LegendNightvision);
 		this.m.Type = this.Const.SkillType.Perk;
 		this.m.Order = this.Const.SkillOrder.Perk;
 		this.m.IsActive = false;
@@ -21,7 +17,7 @@ this.perk_legend_nightvision <- this.inherit("scripts/skills/skill", {
 			this.m.Container.add(this.new("scripts/skills/actives/legend_nightvision_skill"));
 		}
 	}
-	
+
 	function onRemoved()
 	{
 		this.m.Container.removeByID("actives.legend_nightvision");

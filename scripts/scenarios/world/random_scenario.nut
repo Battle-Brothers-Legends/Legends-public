@@ -9,10 +9,7 @@ this.random_scenario <- this.inherit("scripts/scenarios/world/starting_scenario"
 		this.m.Order = 0;
 	}
 
-	function isValid()
-	{
-		return this.Const.DLC.Wildmen;
-	}
+
 
 });
 

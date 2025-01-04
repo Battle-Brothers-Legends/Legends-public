@@ -11,9 +11,7 @@ this.perk_legend_vala_trance_perspective <- this.inherit("scripts/skills/skill",
 	}
 	function create()
 	{
-		this.m.ID = "perk.legend_vala_trance_perspective";
-		this.m.Name = this.Const.Strings.PerkName.LegendValaTrancePerspective;
-		this.m.Description = this.Const.Strings.PerkDescription.LegendValaTrancePerspective;
+		::Const.Perks.setup(this.m, ::Const.Perks.PerkDefs.LegendValaTrancePerspective);
 		this.m.Icon = "ui/perks/legend_vala_trance_perspective_active.png";
 		this.m.IconDisabled = "ui/perks/legend_vala_trance_perspective_active_sw.png";
 		this.m.Type = this.Const.SkillType.Active | this.Const.SkillType.Perk;
@@ -276,6 +274,7 @@ this.perk_legend_vala_trance_perspective <- this.inherit("scripts/skills/skill",
 
 	function onDeath( _fatalityType )
 	{
+		local actor =  this.getContainer().getActor();
 		if (!actor.isPlacedOnMap() || ("State" in this.Tactical) && this.Tactical.State.isBattleEnded())
 			return;
 

@@ -172,23 +172,7 @@ this.legend_barbarian_prisoner_contract <- this.inherit("scripts/contracts/contr
 				this.Contract.m.BarbCamp.setResources(this.Math.min(this.Contract.m.BarbCamp.getResources(), 200 * this.Contract.getDifficultyMult() * this.Contract.getScaledDifficultyMult()));
 				this.Contract.m.BarbCamp.setLootScaleBasedOnResources(200 * this.Contract.getDifficultyMult() * this.Contract.getScaledDifficultyMult());
 				this.Contract.m.BarbCamp.updateStrength();
-				local party;
-				party = this.World.FactionManager.getFactionOfType(this.Const.FactionType.Barbarians).spawnEntity(this.Contract.m.BarbCamp.getTile(), "Barbarian Retaliation", false, this.Const.World.Spawn.Barbarians, 200 * this.Contract.getDifficultyMult() * this.Contract.getScaledDifficultyMult());
-				party.getSprite("banner").setBrush(this.Contract.m.BarbCamp.getBanner());
-				party.setAttackableByAI(false);
-				this.Contract.m.BarbRetal = this.WeakTableRef(party);
-				local c = party.getController();
-				local intercept = this.new("scripts/ai/world/orders/intercept_order");
-				intercept.setTarget(this.World.State.getPlayer());
-				c.addOrder(intercept);
-				c.getBehavior(this.Const.World.AI.Behavior.ID.Flee).setEnabled(false);
-				c.getBehavior(this.Const.World.AI.Behavior.ID.Attack).setEnabled(true);
-				party.setDescription("These savages would like to have their buddy back.");
-				party.setMovementSpeed(this.Const.World.MovementSettings.Speed * 1.4);
-				party.getLoot().Money = this.Math.rand(150, 500);
-				party.getLoot().ArmorParts = this.Math.rand(0, 20);
-				party.getLoot().Medicine = this.Math.rand(0, 10);
-				party.getLoot().Ammo = this.Math.rand(0, 15);
+				this.Contract.spawnEnemies();
 				this.Contract.m.BarbCamp.getSprite("selection").Visible = false;
 				this.Contract.m.BarbRetal.getSprite("selection").Visible = false;
 			}
@@ -653,6 +637,26 @@ this.legend_barbarian_prisoner_contract <- this.inherit("scripts/contracts/contr
 		});
 	}
 
+	function spawnEnemies() {
+		local party = this.World.FactionManager.getFactionOfType(this.Const.FactionType.Barbarians).spawnEntity(this.m.BarbCamp.getTile(), "Barbarian Retaliation", false, this.Const.World.Spawn.Barbarians, 200 * this.getDifficultyMult() * this.getScaledDifficultyMult());
+		party.getSprite("banner").setBrush(this.m.BarbCamp.getBanner());
+		party.setAttackableByAI(false);
+		this.m.BarbRetal = this.WeakTableRef(party);
+		local c = party.getController();
+		local intercept = this.new("scripts/ai/world/orders/intercept_order");
+		intercept.setTarget(this.World.State.getPlayer());
+		c.addOrder(intercept);
+		c.getBehavior(this.Const.World.AI.Behavior.ID.Flee).setEnabled(false);
+		c.getBehavior(this.Const.World.AI.Behavior.ID.Attack).setEnabled(true);
+		party.setDescription("These savages would like to have their buddy back.");
+		party.setMovementSpeed(this.Const.World.MovementSettings.Speed * 1.4);
+		party.getLoot().Money = this.Math.rand(150, 500);
+		party.getLoot().ArmorParts = this.Math.rand(0, 20);
+		party.getLoot().Medicine = this.Math.rand(0, 10);
+		party.getLoot().Ammo = this.Math.rand(0, 15);
+		return party;
+	}
+
 	function spawnCaravan()
 	{
 		local faction = this.World.FactionManager.getFaction(this.getFaction());
@@ -679,6 +683,7 @@ this.legend_barbarian_prisoner_contract <- this.inherit("scripts/contracts/contr
 		c.addOrder(wait);
 		c.addOrder(despawn);
 		this.m.Caravan = this.WeakTableRef(party);
+		return party;
 	}
 
 	function onPrepareVariables( _vars )

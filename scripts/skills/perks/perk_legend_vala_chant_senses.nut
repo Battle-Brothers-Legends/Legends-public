@@ -9,9 +9,7 @@ this.perk_legend_vala_chant_senses <- this.inherit("scripts/skills/skill", {
 
 	function create()
 	{
-		this.m.ID = "perk.legend_vala_chant_senses";
-		this.m.Name = this.Const.Strings.PerkName.LegendValaChantMastery;
-		this.m.Description = this.Const.Strings.PerkDescription.LegendValaChantMastery;
+		::Const.Perks.setup(this.m, ::Const.Perks.PerkDefs.LegendValaChantSenses);
 		this.m.Icon = "ui/perks/legend_vala_chant_senses_active.png";
 		this.m.IconDisabled = "ui/perks/legend_vala_chant_senses_active_sw.png";
 		this.m.Type = this.Const.SkillType.Active | this.Const.SkillType.Perk;
@@ -124,13 +122,13 @@ this.perk_legend_vala_chant_senses <- this.inherit("scripts/skills/skill", {
 	}
 
 	function onCombatFinished()
-	{	
+	{
 		this.endChant();
 	}
 
 	function onDeath( _fatalityType )
-	{	
-
+	{
+		local actor = this.getContainer().getActor();
 		if (!actor.isPlacedOnMap() || ("State" in this.Tactical) && this.Tactical.State.isBattleEnded())
 			return;
 

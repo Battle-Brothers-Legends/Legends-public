@@ -2,11 +2,7 @@ this.perk_legend_choke <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "perk.legend_choke";
-		this.m.Name = this.Const.Strings.PerkName.LegendChoke;
-		this.m.Description = this.Const.Strings.PerkDescription.LegendChoke;
-		this.m.Icon = "ui/perks/choke_circle.png";
-		this.m.IconDisabled = "ui/perks/choke_circle_bw.png"
+		::Const.Perks.setup(this.m, ::Const.Perks.PerkDefs.LegendChoke);
 		this.m.Type = this.Const.SkillType.Perk;
 		this.m.Order = this.Const.SkillOrder.Perk;
 		this.m.IsActive = false;

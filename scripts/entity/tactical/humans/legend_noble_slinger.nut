@@ -63,7 +63,7 @@ this.legend_noble_slinger <- this.inherit("scripts/entity/tactical/human", {
 			this.getSprite("surcoat").setBrush("surcoat_" + (banner < 10 ? "0" + banner : banner));
 		}
 
-			this.m.Items.equip(this.new("scripts/items/weapons/legend_slingstaff"));
+			this.m.Items.equip(this.new("scripts/items/weapons/legend_northern_sling"));
 
 		r = this.Math.rand(1, 2);
 

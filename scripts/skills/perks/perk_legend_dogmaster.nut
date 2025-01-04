@@ -2,11 +2,7 @@ this.perk_legend_dogmaster <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "perk.legend_dogmaster";
-		this.m.Name = this.Const.Strings.PerkName.LegendDogMaster;
-		this.m.Description = this.Const.Strings.PerkDescription.LegendDogMaster;
-		this.m.Icon = "ui/perks/dog_handling.png";
-		this.m.IconDisabled = "ui/perks/dog_handling_bw.png"
+		::Const.Perks.setup(this.m, ::Const.Perks.PerkDefs.LegendDogMaster);
 		this.m.Type = this.Const.SkillType.Perk;
 		this.m.Order = this.Const.SkillOrder.Perk;
 		this.m.IsActive = false;

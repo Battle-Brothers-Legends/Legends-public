@@ -61,49 +61,7 @@ this.legend_hunting_mummies_contract <- this.inherit("scripts/contracts/contract
 				local r = this.Math.rand(1, 100);
 
 				this.Flags.set("StartTime", this.Time.getVirtualTimeF());
-				local disallowedTerrain = [];
-
-				for( local i = 0; i < this.Const.World.TerrainType.COUNT; i = ++i )
-				{
-					if (i == this.Const.World.TerrainType.Desert)
-					{
-						continue
-					}
-					disallowedTerrain.push(i);
-				}
-
-				local playerTile = this.World.State.getPlayer().getTile();
-				local mapSize = this.World.getMapSize();
-				local tile = this.Contract.getTileToSpawnLocation(playerTile, 8, 12, disallowedTerrain);
-				local party;
-				party = this.World.FactionManager.getFactionOfType(this.Const.FactionType.Zombies).spawnEntity(tile, "Embalmed", false, this.Const.World.Spawn.MummiesPatrol, 110 * this.Contract.getDifficultyMult() * this.Contract.getScaledDifficultyMult());
-				party.setDescription("Glints of gold and heavy steps serve as a warning to all.");
-				party.setFootprintType(this.Const.World.FootprintsType.Undead);
-				party.setAttackableByAI(false);
-				party.setFootprintSizeOverride(0.75);
-
-				for( local i = 0; i < 1; i = ++i )
-				{
-					local nearTile = this.Contract.getTileToSpawnLocation(playerTile, 5, 10, disallowedTerrain);
-
-					if (nearTile != null)
-					{
-						this.Const.World.Common.addFootprintsFromTo(nearTile, party.getTile(), this.Const.UndeadFootprints, this.Const.World.FootprintsType.Undead, 0.75);
-					}
-				}
-
-				this.Contract.m.Target = this.WeakTableRef(party);
-				local nearestUndead = this.Contract.getNearestLocationTo(this.Contract.m.Home, this.World.FactionManager.getFactionOfType(this.Const.FactionType.Undead).getSettlements());
-				party.getSprite("banner").setBrush(nearestUndead.getBanner());
-				local c = party.getController();
-				c.getBehavior(this.Const.World.AI.Behavior.ID.Flee).setEnabled(false);
-				local roam = this.new("scripts/ai/world/orders/roam_order");
-				roam.setPivot(this.Contract.m.Home);
-				roam.setMinRange(8);
-				roam.setMaxRange(12);
-				roam.setNoTerrainAvailable();
-				roam.setTerrain(this.Const.World.TerrainType.Desert, true);
-				c.addOrder(roam);
+				this.Contract.spawnEnemies();
 				this.Contract.m.Home.setLastSpawnTimeToNow();
 				this.Contract.setScreen("Overview");
 				this.World.Contracts.setActiveContract(this.Contract);
@@ -317,6 +275,45 @@ this.legend_hunting_mummies_contract <- this.inherit("scripts/contracts/contract
 		{
 			this.m.SituationID = this.m.Home.addSituation(this.new("scripts/entity/world/settlements/situations/terrified_villagers_situation"));
 		}
+	}
+
+	function spawnEnemies() {
+		local disallowedTerrain = [];
+		for( local i = 0; i < this.Const.World.TerrainType.COUNT; i = ++i ) {
+			if (i == this.Const.World.TerrainType.Desert)
+				continue
+			disallowedTerrain.push(i);
+		}
+
+		local playerTile = this.World.State.getPlayer().getTile();
+		local mapSize = this.World.getMapSize();
+		local tile = this.getTileToSpawnLocation(playerTile, 8, 12, disallowedTerrain);
+		local party;
+		party = this.World.FactionManager.getFactionOfType(this.Const.FactionType.Zombies).spawnEntity(tile, "Embalmed", false, this.Const.World.Spawn.MummiesPatrol, 110 * this.getDifficultyMult() * this.getScaledDifficultyMult());
+		party.setDescription("Glints of gold and heavy steps serve as a warning to all.");
+		party.setFootprintType(this.Const.World.FootprintsType.Undead);
+		party.setAttackableByAI(false);
+		party.setFootprintSizeOverride(0.75);
+
+		for( local i = 0; i < 1; i = ++i ) {
+			local nearTile = this.getTileToSpawnLocation(playerTile, 5, 10, disallowedTerrain);
+			if (nearTile != null)
+				this.Const.World.Common.addFootprintsFromTo(nearTile, party.getTile(), this.Const.UndeadFootprints, this.Const.World.FootprintsType.Undead, 0.75);
+		}
+
+		this.m.Target = this.WeakTableRef(party);
+		local nearestUndead = this.getNearestLocationTo(this.m.Home, this.World.FactionManager.getFactionOfType(this.Const.FactionType.Undead).getSettlements());
+		party.getSprite("banner").setBrush(nearestUndead.getBanner());
+		local c = party.getController();
+		c.getBehavior(this.Const.World.AI.Behavior.ID.Flee).setEnabled(false);
+		local roam = this.new("scripts/ai/world/orders/roam_order");
+		roam.setPivot(this.m.Home);
+		roam.setMinRange(8);
+		roam.setMaxRange(12);
+		roam.setNoTerrainAvailable();
+		roam.setTerrain(this.Const.World.TerrainType.Desert, true);
+		c.addOrder(roam);
+		return party;
 	}
 
 	function onClear()

@@ -91,7 +91,7 @@ this.legend_vala_background <- this.inherit("scripts/skills/backgrounds/characte
 			icon = "ui/icons/xp_received.png",
 			text = "[color=" + this.Const.UI.Color.PositiveValue + "]+15%[/color] Experience Gain"
 		}]);
-		if (this.getContainer().getActor().getLevel() >= 11)
+		if (this.getContainer().getActor().getLevel() >= 12)
 		{
 			ret.push({
 				id = 13,

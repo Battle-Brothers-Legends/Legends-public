@@ -106,7 +106,7 @@ this.legend_ranger_background <- this.inherit("scripts/skills/backgrounds/charac
 				this.Const.Perks.PerkDefs.Anticipation,
 				this.Const.Perks.PerkDefs.Rotation,
 				this.Const.Perks.PerkDefs.LegendFeint,
-				this.Const.Perks.PerkDefs.Relentless,
+				this.Const.Perks.PerkDefs.LegendOnslaught,
 				this.Const.Perks.PerkDefs.LegendDoubleStrike,
 				this.Const.Perks.PerkDefs.LegendSummonFalcon,
 				this.Const.Perks.PerkDefs.LegendAmmoBinding,

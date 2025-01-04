@@ -6,7 +6,7 @@ this.legend_clams_item <- this.inherit("scripts/items/supplies/food_item", {
 		this.m.ID = "supplies.legend_clams";
 		this.m.Name = "Clams";
 		this.m.Description = "Provisions. Shelled fish, a bit slimy but a filling meal favored by fishmongers. Can be eaten in battle to provide up to 1 healing and fatigue recovery over ten turns, based on the amount remaining. Will be gradually used as provisions if left in the company stash.";
-		this.m.Icon = "supplies/legend_white_clams.png";
+		this.m.Icon = "supplies/legend_white_clams.png"; // credit to Emo
 		this.m.Amount = 10;
 		this.m.Value = 15;
 		this.m.GoodForDays = 1;

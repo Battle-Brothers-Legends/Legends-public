@@ -1,12 +1,9 @@
 this.perk_legend_knifeplay <- this.inherit("scripts/skills/skill", {
 	m = {},
-	
+
 	function create()
 	{
-		this.m.ID = "perk.legend_knifeplay";
-		this.m.Name = this.Const.Strings.PerkName.LegendKnifeplay;
-		this.m.Description = this.Const.Strings.PerkDescription.LegendKnifeplay;
-		this.m.Icon = "ui/perks/knifeplay.png";
+		::Const.Perks.setup(this.m, ::Const.Perks.PerkDefs.LegendKnifeplay);
 		this.m.Type = this.Const.SkillType.Perk;
 		this.m.Order = this.Const.SkillOrder.Perk;
 		this.m.IsActive = false;
@@ -21,7 +18,7 @@ this.perk_legend_knifeplay <- this.inherit("scripts/skills/skill", {
 			this.m.Container.add(this.new("scripts/skills/actives/legend_throw_knife_skill"));
 		}
 	}
-	
+
 	function onRemoved()
 	{
 		this.m.Container.removeByID("actives.legend_throw_knife");

@@ -116,7 +116,7 @@ this.legend_spider_abductions_contract <- this.inherit("scripts/contracts/contra
 				// }
 
 				// TODO: Handle "successful retreat" (player rescued the townsfolk and retreated without destroying the nest)
-				
+
 				if (::MSU.isNull(this.Contract.m.Destination))
 				{
 					this.Contract.setScreen("NestDestroyed");
@@ -191,7 +191,7 @@ this.legend_spider_abductions_contract <- this.inherit("scripts/contracts/contra
 
 						// spawn player units, abductees take priority as it may attempting to remove object
 						::Tactical.Entities.placePlayersAtCenter(entities); // this is from the tactical_entity_manager
-						
+
 						// Spawn eggs in center
 						::Tactical.Entities.spawnEntitiesAtCenter(eggs);
 
@@ -259,7 +259,7 @@ this.legend_spider_abductions_contract <- this.inherit("scripts/contracts/contra
 					this.Contract.setScreen("Nest1");
 					::World.Contracts.showActiveContract();
 				}
-				
+
 			}
 
 			function onEggPlaced( _entity, _tag)
@@ -326,13 +326,13 @@ this.legend_spider_abductions_contract <- this.inherit("scripts/contracts/contra
 
 					if (survivorCount > 0)
 					{
-						this.Contract.setScreen("Success1");	
+						this.Contract.setScreen("Success1");
 					}
 					else
 					{
 						this.Contract.setScreen("Failure1");
 					}
-					
+
 					this.World.Contracts.showActiveContract();
 				}
 			}
@@ -347,7 +347,7 @@ this.legend_spider_abductions_contract <- this.inherit("scripts/contracts/contra
 		this.m.Screens.push({
 			ID = "Task",
 			Title = "Horror In The Woods",
-			Text = "[img]gfx/ui/events/event_62.png[/img]{You enter to find %employer% slumped down in their chair as if the world were crushing down on them. A small spider no bigger than half a crown begins to climb up their cup, only to be detected and sent flying, along with the cup, across the room. The cup bounces off a wall, spilling it\'s contents across the floor as the spider escapes, dazed yet unharmed, from the flood of wine now escaping from the vessel. %employer% locks their gaze with yours, refusing to move any other part of their body except their eyes. You ask about the contract, and are met with a hand wave followed by a grunt. A steward quickly steps in, with rehearsed practice and precision. %SPEECH_ON%You must forgive him, times have been tough with these nightmares scurrying about. I will keep this short for you - there is a nest somewhere nearby. Find it. Destroy it. Then bring anyone there back here ALIVE.%SPEECH_OFF% The steward made a special effort to draw attention to that last part, clearly after making the mistake of not doing so with a previous band of mercenaries... | A steward ushers you into a fine study, where a %employer% sits in an ornate chair facing a crackling fireplace. He doesn/'t seem to notice your arrival, apparently preoccupied with staring vacantly into the flames. You hesitate, unsure whether to approach or not. The steward realises your predicament and pointedly clears his throat. %SPEECH_ON%Ahem! The uhm, sellsword you asked for my Lord?%SPEECH_OFF% %employer% jolts out of his reverie and rises to his feet. As he approaches you recognise an emotion on his face you see far too often with the people you deal with, grief. %SPEECH_ON%A sellsword captain? Yes, yes of course. You are here to deal with the problem. Six... just six days ago sellsword, my precious Imelda was out practice riding her pony when she was taken by the web creatures. We... we never found her and apparently there have been others. Many, many others recently...%SPEECH_OFF% His voice cracks, and he suddenly grabs the front of your shirt. You reflexively reach for your absent sword, which a guard took from you before the meeting. %employer% seems not to notice. %SPEECH_ON%I knew! I knew they were a problem, sellsword! I ignored it... ignored it for far too long, so many other pressing problems you see. Now... this is my punishment.%SPEECH_OFF% A shadow passes over his face and he releases his grip on you. This is just as well as you were thinking of going for the hidden dagger in your boot. He turns away, idly running a hand through his hair to master his emotions. When he faces you once again his eyes and intent are firm. %SPEECH_ON%Find their nest. Burn it. Burn the whole forest for all I care if that/'s what it takes. Return any survivors you find and you will be handsomely rewarded.%SPEECH_OFF%}",
+			Text = "[img]gfx/ui/events/event_62.png[/img]{You enter to find %employer% slumped down in their chair as if the world were crushing down on them. A small spider no bigger than half a crown begins to climb up their cup, only to be detected and sent flying, along with the cup, across the room. The cup bounces off a wall, spilling it\'s contents across the floor as the spider escapes, dazed yet unharmed, from the flood of wine now escaping from the vessel. %employer% locks their gaze with yours, refusing to move any other part of their body except their eyes. You ask about the contract, and are met with a hand wave followed by a grunt. A steward quickly steps in, with rehearsed practice and precision. %SPEECH_ON%You must forgive him, times have been tough with these nightmares scurrying about. I will keep this short for you - there is a nest somewhere nearby. Find it. Destroy it. Then bring anyone there back here ALIVE.%SPEECH_OFF% The steward made a special effort to draw attention to that last part, clearly after making the mistake of not doing so with a previous band of mercenaries... | A steward ushers you into a fine study, where a %employer% sits in an ornate chair facing a crackling fireplace. He doesn/'t seem to notice your arrival, apparently preoccupied with staring vacantly into the flames. You hesitate, unsure whether to approach or not. The steward realises your predicament and pointedly clears his throat. %SPEECH_ON%Ahem! The uhm, sellsword you asked for my Lord?%SPEECH_OFF% %employer% jolts out of his reverie and rises to his feet. As he approaches you recognise an emotion on his face you see far too often with the people you deal with, grief. %SPEECH_ON%A sellsword captain? Yes, yes of course. You are here to deal with the problem. Six... just six days ago sellsword, my precious Imelda was out practice riding her pony when she was taken by the web creatures. We... we never found her and apparently there have been others. Many, many others recently...%SPEECH_OFF% His voice cracks, and he suddenly grabs the front of your shirt. You reflexively reach for your absent sword, which a guard took from you before the meeting. %employer% seems not to notice. %SPEECH_ON%I knew! I knew they were a problem, sellsword! I ignored it... ignored it for far too long, so many other pressing problems you see. Now... this is my punishment.%SPEECH_OFF% A shadow passes over his face and he releases his grip on you. This is just as well as you were thinking of going for the hidden dagger in your boot. He turns away, idly running a hand through his hair to master his emotions. When he faces you once again his eyes and intent are firm. %SPEECH_ON%Find their nest. Burn it. Burn the whole forest for all I care if that\'s what it takes. Return any survivors you find and you will be handsomely rewarded.%SPEECH_OFF%}",
 			Image = "",
 			List = [],
 			ShowEmployer = true,
@@ -396,7 +396,7 @@ this.legend_spider_abductions_contract <- this.inherit("scripts/contracts/contra
 				{
 
 //For result, 'We'll come back later', how about turning it into a night battle, with 50% of victims already dead, and no large spiders?
-//"You wait until nightfall, when the larger creatures are away hunting for prey. It seems quieter now, many of the victims seem to have expired during the day. Regrettable, but you reckon that if can still grab a few survivors and torch the nest you'll likely get paid the same regardless." 					
+//"You wait until nightfall, when the larger creatures are away hunting for prey. It seems quieter now, many of the victims seem to have expired during the day. Regrettable, but you reckon that if can still grab a few survivors and torch the nest you'll likely get paid the same regardless."
 					Text = "{We\'ll come back later.}",
 					function getResult()
 					{
@@ -412,7 +412,7 @@ this.legend_spider_abductions_contract <- this.inherit("scripts/contracts/contra
 		this.m.Screens.push({
 			ID = "Nest2",
 			Title = "At the Webknecht Nest...",
-			Text = "[img]gfx/ui/events/event_110.png[/img]{You give the signal and %companyname% start to grimly advance towards the trapped victims, wading through webs and eggs along the way, some getting caught in the webs themselves and jumping over the larger clusters of eggs.\n\n The whole nest reverberates like a silent lyre string. At first this is just your movement, but then something further away pulls a different chord. Once, twice then thrice the smaller, faster notes are plucked. With mounting dread you feel the notes being played from a different direction and quickly draw your weapon. They are all around you now, in silent communion with one another as an excited, frantic song is played.\n\n They know you are here.}",			
+			Text = "[img]gfx/ui/events/event_110.png[/img]{You give the signal and %companyname% start to grimly advance towards the trapped victims, wading through webs and eggs along the way, some getting caught in the webs themselves and jumping over the larger clusters of eggs.\n\n The whole nest reverberates like a silent lyre string. At first this is just your movement, but then something further away pulls a different chord. Once, twice then thrice the smaller, faster notes are plucked. With mounting dread you feel the notes being played from a different direction and quickly draw your weapon. They are all around you now, in silent communion with one another as an excited, frantic song is played.\n\n They know you are here.}",
 			Image = "",
 			List = [],
 			Options = [
@@ -473,7 +473,7 @@ this.legend_spider_abductions_contract <- this.inherit("scripts/contracts/contra
 			{
 			}
 		});
-		
+
 		// Return home
 		// TODO: Different outcomes based on the number of survivors
 		this.m.Screens.push({
@@ -569,7 +569,7 @@ this.legend_spider_abductions_contract <- this.inherit("scripts/contracts/contra
 				});
 			}
 		});
-		
+
 	}
 
 	function onPrepareVariables( _vars )

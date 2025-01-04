@@ -90,4 +90,8 @@
 
 		return ret;
 	}
+
+	o.hasPerk <- function (_const) {
+		return this.hasSkill(::Const.Perks.PerkDefObjects[_const].ID);
+	}
 });

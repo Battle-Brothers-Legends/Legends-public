@@ -273,7 +273,7 @@ this.legend_companion_ranged_background <- this.inherit("scripts/skills/backgrou
 		}
 		else if (r == 7)
 		{
-			items.equip(this.new("scripts/items/weapons/legend_slingstaff"));
+			items.equip(this.new("scripts/items/weapons/legend_northern_sling"));
 			items.addToBag(this.new("scripts/items/weapons/militia_spear"));
 		}
 		else if (r == 8)

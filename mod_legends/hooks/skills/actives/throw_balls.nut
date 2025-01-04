@@ -47,8 +47,22 @@
 		return ret;
 	}
 
+	o.isUsable = function ()
+	{
+		local isUsable = !this.Tactical.isActive() || this.skill.isUsable() && this.getAmmo() > 0;
+		if (this.getContainer().hasPerk(::Const.Perks.PerkDefs.LegendCloseCombatArcher))
+			return isUsable;
+
+		return isUsable && !this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions());
+	}
+
 	o.onAfterUpdate = function ( _properties )
 	{
+		if (this.getContainer().hasPerk(::Const.Perks.PerkDefs.LegendCloseCombatArcher))
+		{
+			this.m.MinRange = 1;
+			this.m.MaxRange = 3;
+		}
 		this.m.FatigueCostMult = _properties.IsSpecializedInThrowing ? this.Const.Combat.WeaponSpecFatigueMult : 1.0;
 		// this.m.AdditionalAccuracy = 20 + this.m.Item.getAdditionalAccuracy();
 	}

@@ -2,10 +2,7 @@ this.perk_legend_prayer_of_life <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "perk.legend_prayer_of_life";
-		this.m.Name = this.Const.Strings.PerkName.LegendPrayerOfLife;
-		this.m.Description = this.Const.Strings.PerkDescription.LegendPrayerOfLife;
-		this.m.Icon = "ui/perks/prayer_green.png";
+		::Const.Perks.setup(this.m, ::Const.Perks.PerkDefs.LegendPrayerOfLife);
 		this.m.Type = this.Const.SkillType.Perk;
 		this.m.Order = this.Const.SkillOrder.Perk;
 		this.m.IsActive = false;

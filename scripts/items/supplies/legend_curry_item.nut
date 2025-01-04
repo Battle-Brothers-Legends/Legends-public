@@ -6,7 +6,7 @@ this.legend_curry_item <- this.inherit("scripts/items/supplies/food_item", {
 		this.m.ID = "supplies.legend_curry";
 		this.m.Name = "Curry";
 		this.m.Description = "Provisions. A delicious meal. Can be eaten in battle to grant morale, and gradually restore health and fatigue over ten turns. The amount restored per turn is determined by how much of the curry remains when eaten.";
-		this.m.Icon = "supplies/legend_curry.png";
+		this.m.Icon = "supplies/legend_curry.png"; // credit to Emo
 		this.m.Value = 250;
 		this.m.Amount = 50.0;
 		this.m.GoodForDays = 7;

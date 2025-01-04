@@ -222,7 +222,7 @@ this.legend_ai_corruption <- this.inherit("scripts/ai/tactical/behavior", {
 			{
 				affectedTiles.push(tile);
 			}
-			else if (tile.IsOccupiedByActor && this.isKindOf(tile.getEntity(), "alp_shadow") && tile.Properties.Effect.Timeout - this.Time.getRound() == 1)
+			else if (tile.IsOccupiedByActor && this.isKindOf(tile.getEntity(), "legend_alp_shadow") && tile.Properties.Effect.Timeout - this.Time.getRound() == 1)
 			{
 				affectedTiles.push(tile);
 			}
@@ -243,7 +243,7 @@ this.legend_ai_corruption <- this.inherit("scripts/ai/tactical/behavior", {
 					}
 					else if (affectedTile.Properties.Effect.Timeout - this.Time.getRound() == 1)
 					{
-						if (advancedAI && tile.IsOccupiedByActor && this.isKindOf(tile.getEntity(), "alp_shadow"))
+						if (advancedAI && tile.IsOccupiedByActor && this.isKindOf(tile.getEntity(), "legend_alp_shadow"))
 						{
 							redundantTiles = redundantTiles + 0.25;
 						}

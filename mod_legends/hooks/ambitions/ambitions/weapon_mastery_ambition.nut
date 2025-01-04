@@ -16,7 +16,6 @@
 				case p.IsSpecializedInThrowing:
 				case p.IsSpecializedInSlings: // legends
 				case p.IsSpecializedInSwords:
-				case p.IsSpecializedInGreatSwords: // legends
 				case p.IsSpecializedInCleavers:
 				case p.IsSpecializedInMaces:
 				case p.IsSpecializedInHammers:

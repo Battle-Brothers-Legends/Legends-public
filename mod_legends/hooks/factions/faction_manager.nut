@@ -1,5 +1,7 @@
 ::mods_hookNewObject("factions/faction_manager", function(o)
 {
+	o.m.IsCreatingFactions <- false;
+
 	o.setGreaterEvilType <- function ( _type )
 	{
 		return this.m.GreaterEvil.Type = _type;
@@ -95,43 +97,23 @@
 		}
 	}
 
-	o.createFactions = function ( _settings )
+	local createFactions = o.createFactions;
+	o.createFactions = function ()
 	{
-		this.createGenericEnemy();
+		m.IsCreatingFactions = true;
+		createFactions();
+		m.IsCreatingFactions = false;
+	}
 
-		if (this.Const.DLC.Desert)
-		{
-			this.createArena();
+	local createAlliances = o.createAlliances;
+	o.createAlliances = function()
+	{
+		if (m.IsCreatingFactions) {
+			createFreeCompany();
+			createDummyFaction();
 		}
 
-		this.createSettlements();
-
-		if (this.Const.DLC.Desert)
-		{
-			local cityStates = this.createCityStates();
-			this.assignSettlementsToCityStates(cityStates);
-		}
-
-		local nobles = this.createNobleHouses(::Legends.Mod.ModSettings.getSetting("Factions").getValue());
-		this.assignSettlementsToNobleHouses(nobles);
-		this.createBandits();
-		this.createBarbarians();
-		this.createNomads();
-		this.createOrcs();
-		this.createGoblins();
-		this.createUndead();
-		this.createZombies();
-		this.createFreeCompany();
-		this.createDummyFaction();
-		this.createAlliances();
-
-		foreach( f in this.m.Factions )
-		{
-			if (f != null)
-			{
-				f.onUpdateRoster();
-			}
-		}
+		createAlliances();
 	}
 
 	o.createFreeCompany <- function ()
@@ -154,8 +136,9 @@
 		this.m.Factions.push(f)
 	}
 
-	o.createNobleHouses = function ( _num )
+	o.createNobleHouses = function()
 	{
+		local _num = ::Legends.Mod.ModSettings.getSetting("Factions").getValue();
 		local banners = [];
 		local names = [];
 		local nobleHouses = [];

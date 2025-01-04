@@ -55,12 +55,14 @@
 	o.isUsable = function()
 	{
 		if (!this.Tactical.isActive())
-		{
 			return false;
-		}
 
-		local tile = this.getContainer().getActor().getTile();
-		return this.skill.isUsable() && (!tile.hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions()) || this.m.Container.hasSkill("perk.legend_mastery_bandage"));
+		local actor = this.getContainer().getActor();
+		if (actor.getBackground().getID() == "background.legend_donkey")
+			return false;
+
+		local tile = actor.getTile();
+		return this.skill.isUsable() && (!tile.hasZoneOfControlOtherThan(actor.getAlliedFactions()) || this.m.Container.hasSkill("perk.legend_mastery_bandage"));
 	}
 
 	o.onVerifyTarget = function( _originTile, _targetTile )

@@ -2,10 +2,7 @@ this.perk_legend_scry_trance <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "perk.legend_scry_trance";
-		this.m.Name = this.Const.Strings.PerkName.LegendScryTrance;
-		this.m.Description = this.Const.Strings.PerkDescription.LegendScryTrance;
-		this.m.Icon = "ui/perks/perk_34.png"; //todo: add icon
+		::Const.Perks.setup(this.m, ::Const.Perks.PerkDefs.LegendScryTrance);
 		this.m.Type = this.Const.SkillType.Perk;
 		this.m.Order = this.Const.SkillOrder.Perk;
 		this.m.IsActive = false;

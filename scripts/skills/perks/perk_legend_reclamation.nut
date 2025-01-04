@@ -4,9 +4,7 @@ this.perk_legend_reclamation <- this.inherit("scripts/skills/skill", {
 	},
 	function create()
 	{
-		this.m.ID = "perk.legend_reclamation";
-		this.m.Name = this.Const.Strings.PerkName.LegendReclamation;
-		this.m.Description = this.Const.Strings.PerkDescription.LegendReclamation;
+		::Const.Perks.setup(this.m, ::Const.Perks.PerkDefs.LegendReclamation);
 		this.m.Icon = "ui/perks/possess56.png";
 		this.m.IconDisabled = "ui/perks/possess56_bw.png";
 		this.m.Type = this.Const.SkillType.Perk;

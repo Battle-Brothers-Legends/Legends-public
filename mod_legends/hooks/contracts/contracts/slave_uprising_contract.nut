@@ -4,7 +4,7 @@
 	o.create = function()
 	{
 		create();
-		this.m.Name = "Purge the Undead";
+		this.m.Name = "Slave Uprising";
 		this.m.DescriptionTemplates = [
 			"Some of the indebted slaves have uprisen, casting off their shackles! The Viziers desire a swift and cruel response.",
 			"The rebel slaves are weak and malnourished, there will be no glory in this action.",

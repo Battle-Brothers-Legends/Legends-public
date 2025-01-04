@@ -622,7 +622,7 @@
 
 	o.getAttributesTooltip <- function()
 	{
-		if (this.getContainer().getActor().getLevel() >= 11) {
+		if (this.getContainer().getActor().getLevel() >= 12) {
 			return [];
 		}
 
@@ -632,7 +632,7 @@
 			local attributeMin = this.Const.AttributesLevelUp[attribute].Min + this.Math.min(bro.m.Talents[attribute], 2);
 			local attributeMax = this.Const.AttributesLevelUp[attribute].Max;
 			if (bro.m.Talents[attribute] == 3) attributeMax += 1;
-			local levelUps = this.Math.max(11 - bro.getLevel() + bro.getLevelUps(), 0);
+			local levelUps = this.Math.max(12 - bro.getLevel() + bro.getLevelUps(), 0);
 			local attributeValue = maximum ? attributeMax * levelUps : attributeMin * levelUps;
 
 			switch (attribute)
@@ -760,7 +760,7 @@
 			{
 				id = 103,
 				type = "hint",
-				text = "Projection of this character\'s base attribute ranges calculated as if that attribute is improved on every level up from current level to 11."
+				text = "Projection of this character\'s base attribute ranges calculated as if that attribute is improved on every level up from current level to 12."
 			},
 			{
 				id = 104,
@@ -1033,8 +1033,8 @@
 		{
 			a = {
 				Hitpoints = [
-					65,
-					65
+					75,
+					75
 				],
 				Bravery = [
 					100,
@@ -1070,8 +1070,8 @@
 		{
 			a = {
 				Hitpoints = [
-					40,
-					40
+					50,
+					50
 				],
 				Bravery = [
 					100,
@@ -1107,8 +1107,8 @@
 		{
 			a = {
 				Hitpoints = [
-					50,
-					50
+					60,
+					60
 				],
 				Bravery = [
 					40,
@@ -1404,7 +1404,7 @@
 			local wage = this.Math.round(this.m.DailyCost * this.m.DailyCostMult);
 			_properties.DailyWage += wage * this.Math.pow(1.1, this.Math.min(10, level - 1));
 
-			if (level > 11)
+			if (level > 12)
 			{
 				local previous = wage * this.Math.pow(1.1, 10);
 				_properties.DailyWage += previous * this.Math.pow(1.03, level - 1 - 10) - previous;
@@ -1669,7 +1669,7 @@
 
 		if (this.m.Level != 1)
 		{
-			if (this.m.Level <= 11)
+			if (this.m.Level <= 12)
 			{
 				actor.m.PerkPoints = this.m.Level - 1;
 			}
@@ -1678,11 +1678,11 @@
 				local vetPerk = this.getContainer().getActor().getVeteranPerks();
 				if (vetPerk == 0)
 				{
-					actor.m.PerkPoints = 10;
+					actor.m.PerkPoints = 11;
 				}
 				else
 				{
-					actor.m.PerkPoints = 10 + this.Math.floor((this.m.Level - 11) / this.getContainer().getActor().getVeteranPerks());
+					actor.m.PerkPoints = 11 + this.Math.floor((this.m.Level - 12) / this.getContainer().getActor().getVeteranPerks());
 				}
 			}
 			actor.m.PerkPoints = this.m.Level - 1;

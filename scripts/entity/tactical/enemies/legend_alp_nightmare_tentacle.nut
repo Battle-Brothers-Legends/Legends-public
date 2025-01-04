@@ -7,7 +7,7 @@ this.legend_alp_nightmare_tentacle <- this.inherit("scripts/entity/tactical/enem
 
 	function create()
 	{
-		this.alp_shadow.create();
+		this.legend_alp_shadow.create();
 
 		this.m.Sound[this.Const.Sound.ActorEvent.DamageReceived] = [
 			"sounds/enemies/dlc2/tentacle_hurt_01.wav",
@@ -33,7 +33,7 @@ this.legend_alp_nightmare_tentacle <- this.inherit("scripts/entity/tactical/enem
 
 	function onInit()
 	{
-		this.alp_shadow.onInit();
+		this.legend_alp_shadow.onInit();
 		local b = this.m.BaseProperties;
 		b.setValues(this.Const.Tactical.Actor.KrakenTentacle);
 
@@ -51,7 +51,7 @@ this.legend_alp_nightmare_tentacle <- this.inherit("scripts/entity/tactical/enem
 
 		this.m.ActionPoints = b.ActionPoints;
 		this.addSprite("socket").setBrush("bust_base_shadow");
-		
+
 		local blurAlpha = 110;
 		local body_brush = "bust_alp_kraken_tentacle_0" + (this.Math.rand(1, 100) <= 33 ? 1 : 2);
 		local body = this.addSprite("body");
@@ -90,7 +90,7 @@ this.legend_alp_nightmare_tentacle <- this.inherit("scripts/entity/tactical/enem
 
 	function onFactionChanged()
 	{
-		this.alp_shadow.onFactionChanged();
+		this.legend_alp_shadow.onFactionChanged();
 		local flip = this.isAlliedWithPlayer();
 		this.getSprite("body").setHorizontalFlipping(flip);
 		this.getSprite("head").setHorizontalFlipping(flip);
@@ -98,6 +98,6 @@ this.legend_alp_nightmare_tentacle <- this.inherit("scripts/entity/tactical/enem
 		this.getSprite("blur_2").setHorizontalFlipping(flip);
 	}
 
-	
+
 });
 

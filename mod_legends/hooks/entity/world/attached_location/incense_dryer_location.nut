@@ -8,9 +8,8 @@
 	}
 
 	local onUpdateDraftList = o.onUpdateDraftList;
-	o.onUpdateDraftList = function ( _list, _gender = null )
+	o.onUpdateDraftList = function ( _list )
 	{
-		_gender = ::Legends.Mod.ModSettings.getSetting("GenderEquality").getValue() != "Disabled";
 		_list.push("legend_dervish_background");
 		_list.push("legend_alchemist_background");
 		onUpdateDraftList(_list);

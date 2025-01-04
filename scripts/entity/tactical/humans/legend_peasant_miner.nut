@@ -29,14 +29,14 @@ this.legend_peasant_miner <- this.inherit("scripts/entity/tactical/human", {
 		dirt.Alpha = this.Math.rand(0, 255);
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_specialist_pickaxe_skill"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_specialist_pickaxe_damage"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_sundering_strikes"));
+		this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_smackdown"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_mastery_hammer"));
 		this.getSprite("socket").setBrush("bust_base_militia");
 			if("Assets" in this.World && this.World.Assets != null && this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Legendary)
 			{
 			this.m.Hitpoints = b.Hitpoints * 1.5;
 			this.m.Skills.add(this.new("scripts/skills/perks/perk_battle_flow"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_relentless"));
+			this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_onslaught"));
 			this.m.Skills.add(this.new("scripts/skills/perks/perk_stalwart"));
 			this.m.Skills.add(this.new("scripts/skills/perks/perk_indomitable"));
 			this.m.Skills.add(this.new("scripts/skills/perks/perk_recover"));

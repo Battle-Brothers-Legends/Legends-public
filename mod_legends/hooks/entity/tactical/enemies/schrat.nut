@@ -20,6 +20,7 @@
 		}
 	}
 
+	local onDeath = o.onDeath;
 	o.onDeath = function ( _killer, _skill, _tile, _fatalityType )
 	{
 		onDeath( _killer, _skill, _tile, _fatalityType );

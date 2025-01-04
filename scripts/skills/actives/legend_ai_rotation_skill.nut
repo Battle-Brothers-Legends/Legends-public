@@ -58,7 +58,7 @@ this.legend_ai_rotation_skill <- this.inherit("scripts/skills/skill", {
 		// 	});
 		// }
 
-		// return ret;
+		return ret;
 	}
 
 	// function getCursorForTile( _tile )
@@ -84,24 +84,18 @@ this.legend_ai_rotation_skill <- this.inherit("scripts/skills/skill", {
 	function onVerifyTarget( _originTile, _targetTile )
 	{
 		if (!_targetTile.IsOccupiedByActor)
-		{
 			return false;
-		}
 
 		local target = _targetTile.getEntity();
 
-		if (target.isAlive() && !target.isPlayerControlled())
-		{
+		if (!target.isAlive() && ::MSU.isNull(target))
 			return false;
-		}
 
-		if (!target.isAlliedWith(this.getContainer().getActor()))
-		{
-			if (target.getCurrentProperties().IsImmuneToKnockBackAndGrab || !this.getContainer().getActor().getSkills().hasSkill("perk.legend_twirl"))
-			{
-				return false;
-			}
-		}
+		if (!target.isAlliedWith(this.getContainer().getActor()) && !this.getContainer().hasPerk(::Const.Perks.PerkDefs.LegendTwirl))
+			return false;
+
+		if (target.isPlayerControlled() && !this.getContainer().hasPerk(::Const.Perks.PerkDefs.LegendTwirl))
+			return false;
 
 		return this.skill.onVerifyTarget(_originTile, _targetTile) && !target.getCurrentProperties().IsStunned && !target.getCurrentProperties().IsRooted && target.getCurrentProperties().IsMovable && !target.getCurrentProperties().IsImmuneToRotation;
 	}

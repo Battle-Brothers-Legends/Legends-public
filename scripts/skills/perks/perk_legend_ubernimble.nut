@@ -2,9 +2,7 @@ this.perk_legend_ubernimble <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "perk.legend_ubernimble";
-		this.m.Name = this.Const.Strings.PerkName.LegendUberNimble;
-		this.m.Icon = "ui/perks/ubernimble_circle.png";
+		::Const.Perks.setup(this.m, ::Const.Perks.PerkDefs.LegendUberNimble);
 		this.m.Type = this.Const.SkillType.Perk | this.Const.SkillType.StatusEffect;
 		this.m.Order = this.Const.SkillOrder.Perk;
 		this.m.IsActive = false;
@@ -53,7 +51,7 @@ this.perk_legend_ubernimble <- this.inherit("scripts/skills/skill", {
 	}
 
 	function getChance()
-	{		
+	{
 		return 0.4;
 	}
 
@@ -61,7 +59,7 @@ this.perk_legend_ubernimble <- this.inherit("scripts/skills/skill", {
 	{
 	   local  bodyitem = this.getContainer().getActor().getItems().getItemAtSlot(this.Const.ItemSlot.Body);
 	   local  headitem = this.getContainer().getActor().getItems().getItemAtSlot(this.Const.ItemSlot.Head);
-	   
+
 	   if (bodyitem != null || headitem != null)
 	   {
 		   return

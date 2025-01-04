@@ -7,11 +7,6 @@
 		return this.m.IsClosedAtDay;
 	}
 
-	o.onUpdateDraftList = function ( _draftList, _gender = null)
-	{
-		_gender = ::Legends.Mod.ModSettings.getSetting("GenderEquality").getValue() != "Disabled";
-	}
-
 	o.fillStash = function ( _list, _stash, _priceMult, _allowDamagedEquipment = false )
 	{
 		_stash.clear();

@@ -14,7 +14,7 @@
 			this.m.Skills.add(this.new("scripts/skills/perks/perk_killing_frenzy"));
 			this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_last_stand"));
 			this.m.Skills.add(this.new("scripts/skills/perks/perk_underdog"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_slaughter"));
+			this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_carnage"));
 			this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_battleheart"));
 			this.m.Skills.add(this.new("scripts/skills/traits/fearless_trait"));
 		}

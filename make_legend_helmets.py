@@ -317,6 +317,7 @@ BLayerDead = '<sprite id="$dead" offsetX="6" offsetY="10" f="64F0" ic="FF222933"
 
 brush_only_layers = [
     {"name": "hunter_cap", "min" : 1, "max" : 1, "layer": "vanity"},
+    {"name": "pimp_hat", "min" : 1, "max" : 1, "layer": "vanity"},
     {"name": "jester_hat", "min" : 1, "max" : 64, "layer": "vanity"},
     {"name": "witchhunter_helm", "min" : 1, "max" : 7, "layer" : "vanity"},
     {"name": "white_wolf_helm", "min" : 1, "max" : 1, "layer": "vanity"},

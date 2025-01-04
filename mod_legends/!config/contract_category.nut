@@ -57,6 +57,7 @@
 	defend_settlement_greenskins_contract = this.Const.Contracts.Categories.Battle,
 	discover_location_contract = this.Const.Contracts.Categories.Battle,
 	drive_away_bandits_contract = this.Const.Contracts.Categories.Battle,
+	drive_away_nomads_contract = this.Const.Contracts.Categories.Battle,
 	drive_away_barbarians_contract = this.Const.Contracts.Categories.Battle,
 	investigate_cemetery_contract = this.Const.Contracts.Categories.Battle,
 	return_item_contract = this.Const.Contracts.Categories.Battle,

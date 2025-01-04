@@ -3,10 +3,7 @@ this.perk_legend_favoured_enemy_serpent <- this.inherit("scripts/skills/legend_f
 	function create()
 	{
 		this.legend_favoured_enemy_skill.create();
-		this.m.ID = "perk.legend_favoured_enemy_serpent";
-		this.m.Name = this.Const.Strings.PerkName.LegendFavouredEnemySerpent;
-		this.m.Description = this.Const.Strings.PerkDescription.LegendFavouredEnemySerpent;
-		this.m.Icon = "ui/perks/favoured_serpent_01.png";
+		::Const.Perks.setup(this.m, ::Const.Perks.PerkDefs.LegendFavouredEnemySerpent);
 		this.m.ValidTypes = this.Const.LegendMod.FavoriteSerpents;
 	}
 

@@ -2,11 +2,7 @@ this.perk_legend_grapple <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "perk.legend_grapple";
-		this.m.Name = this.Const.Strings.PerkName.LegendGrapple;
-		this.m.Description = this.Const.Strings.PerkDescription.LegendGrapple;
-		this.m.Icon = "ui/perks/grapple_circle.png";
-		this.m.IconDisabled = "ui/perks/rapple_circle_bw.png"
+		::Const.Perks.setup(this.m, ::Const.Perks.PerkDefs.LegendGrapple);
 		this.m.Type = this.Const.SkillType.Perk;
 		this.m.Order = this.Const.SkillOrder.Perk;
 		this.m.IsActive = false;
@@ -24,7 +20,7 @@ this.perk_legend_grapple <- this.inherit("scripts/skills/skill", {
 
 	function onRemoved()
 	{
-		this.m.Container.removeByID("actives.legend_grapple_skill");
+		this.m.Container.removeByID("actives.legend_grapple");
 	}
 
 

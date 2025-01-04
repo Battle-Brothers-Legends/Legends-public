@@ -14,7 +14,7 @@
 			this.m.Skills.add(this.new("scripts/skills/perks/perk_head_hunter"));
 			this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_back_to_basics"));
 			this.m.Skills.add(this.new("scripts/skills/perks/perk_lone_wolf"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_relentless"));
+			this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_onslaught"));
 			this.m.Skills.add(this.new("scripts/skills/perks/perk_crippling_strikes"));
 			this.m.Skills.add(this.new("scripts/skills/traits/fearless_trait"));
 		}

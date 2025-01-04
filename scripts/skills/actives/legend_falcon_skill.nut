@@ -4,7 +4,7 @@ this.legend_falcon_skill <- this.inherit("scripts/skills/skill", {
 	},
 	function create()
 	{
-		this.m.ID = "actives.legend_falcon_skill";
+		this.m.ID = "actives.legend_falcon";
 		this.m.Name = "Unleash Falcon";
 		this.m.Description = "Use your falcon to gain vision of the surrounding 12 tiles for the duration of the current round. Can be used once per battle.";
 		this.m.Icon = "skills/active_104.png";

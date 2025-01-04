@@ -13,9 +13,9 @@ this.legend_armor_of_davkul <- this.inherit("scripts/items/legend_armor/legend_n
 		this.m.IsIndestructible = true;
 		this.m.Icon = "legend_armor/icon_named_davkul_armor_01.png";
 		this.m.IconLarge = "legend_armor/inventory_named_davkul_armor_01.png";
-		this.m.Sprite = "bust_davkul_01";
-		this.m.SpriteDamaged = "bust_davkul_01_damaged";
-		this.m.SpriteCorpse= "bust_davkul_01_dead";
+		this.m.Sprite = "bust_body_81";
+		this.m.SpriteDamaged = "bust_body_81_damaged";
+		this.m.SpriteCorpse= "bust_body_81_dead";
 		this.m.ImpactSound = [
 			"sounds/combat/cleave_hit_hitpoints_01.wav",
 			"sounds/combat/cleave_hit_hitpoints_02.wav",

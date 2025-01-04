@@ -54,51 +54,39 @@ this.legend_prosthetic_leg_item <- this.inherit("scripts/items/item", {
 		}
 
 		result.extend([
-		{
-			id = 7,
-			type = "text",
-			icon = "ui/icons/melee_defense.png",
-			text = "Reduces the penalty of Broken Knee to [color=" + this.Const.UI.Color.NegativeValue + "]-15%[/color] Melee Skill"
-		},
-		{
-			id = 8,
-			type = "text",
-			icon = "ui/icons/ranged_defense.png",
-			text = "Reduces the penalty of Broken Knee to [color=" + this.Const.UI.Color.NegativeValue + "]-15%[/color] Ranged Skill"
-		},
-		{
-			id = 9,
-			type = "text",
-			icon = "ui/icons/initiative.png",
-			text = "Reduces the penalty of Broken Knee to [color=" + this.Const.UI.Color.NegativeValue + "]-20%[/color] Initiative"
-		}]);
-
-		if (!("getActor" in this.getContainer())) {
-			return result;
-		}
-
-		if (this.getContainer().getActor().getSkills().hasSkill("injury.broken_knee"))
-		{
-			result.push({
+			{
+				id = 7,
+				type = "text",
+				icon = "ui/icons/melee_defense.png",
+				text = "Reduces the penalty of Broken Knee to [color=" + this.Const.UI.Color.NegativeValue + "]-15%[/color] Melee Skill"
+			},
+			{
+				id = 8,
+				type = "text",
+				icon = "ui/icons/ranged_defense.png",
+				text = "Reduces the penalty of Broken Knee to [color=" + this.Const.UI.Color.NegativeValue + "]-15%[/color] Ranged Skill"
+			},
+			{
+				id = 9,
+				type = "text",
+				icon = "ui/icons/initiative.png",
+				text = "Reduces the penalty of Broken Knee to [color=" + this.Const.UI.Color.NegativeValue + "]-20%[/color] Initiative"
+			},
+			{
 				id = 65,
 				type = "text",
+				icon = "ui/icons/special.png",
 				text = "Right-click or drag onto the currently selected character in order to apply it. This item will be consumed in the process."
-			});
-		}
-		else
-		{
-			result.push({
+			},
+			{
 				id = 65,
 				type = "text",
-				text = "Item can not be used, because this character still has both his knees intact"
-			});
-		}
-		return result;
-	}
+				icon = "ui/icons/warning.png",
+				text = "Can only be used if this character has a broken knee"
+			}
+		]);
 
-	function isUsable()
-	{
-		return this.getContainer().getActor().getSkills().hasSkill("injury.broken_knee") && this.m.IsUsable;
+		return result;
 	}
 
 	function playInventorySound( _eventType )
@@ -109,11 +97,13 @@ this.legend_prosthetic_leg_item <- this.inherit("scripts/items/item", {
 	function onUse( _actor, _item = null )
 	{
 		this.Sound.play("sounds/combat/armor_leather_impact_03.wav", this.Const.Sound.Volume.Inventory);
-		local actor = this.getContainer().getActor();
-		actor.getSkills().add(this.new("scripts/skills/traits/legend_prosthetic_leg"));
-		actor.getSkills().removeByID("injury.broken_knee");
-
-		return true;
+		if (_actor.getSkills().hasSkill("injury.broken_knee"))
+		{
+			_actor.getSkills().add(this.new("scripts/skills/traits/legend_prosthetic_leg"));
+			_actor.getSkills().removeByID("injury.broken_knee");
+			return true;
+		}
+		return false;
 	}
 });
 

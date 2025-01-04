@@ -118,7 +118,7 @@ this.legend_puppet_background <- this.inherit("scripts/skills/backgrounds/charac
 			];
 		this.m.PerkTreeDynamic = {
 			Weapon = [
-				this.Const.Perks.GreatSwordTree,
+				this.Const.Perks.TwoHandedTree,
 				this.Const.Perks.AxeTree,
 				this.Const.Perks.MaceTree,
 				this.Const.Perks.FlailTree,

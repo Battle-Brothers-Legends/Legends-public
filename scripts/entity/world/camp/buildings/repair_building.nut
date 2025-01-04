@@ -213,6 +213,7 @@ this.repair_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 		return this.m.Repairs;
 	}
 
+
 	function getCapacity()
 	{
 		return this.m.Capacity;
@@ -309,22 +310,17 @@ this.repair_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 	function getUpdateText()
 	{
 		if (this.m.PointsNeeded == 0)
-		{
 			return "No repairs queued";
-		}
+
+		if (this.getRequiredSupplies() == 0)
+			return "Repaired ... 100%";
 
 		local percent = this.Math.floor((this.m.PointsRepaired / this.m.PointsNeeded) * 10000) / 100.0;
-		if (percent >= 100)
-		{
-			return "Repaired ... 100%";
-		}
-
 		local text = "Repaired ... " + percent + "%";
 
 		if (this.World.Assets.getArmorParts() == 0)
-		{
 			return text + " (No tools left!)";
-		}
+
 		return text;
 	}
 
@@ -390,7 +386,7 @@ this.repair_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 			{
 				local consumed = needed * modifiers.Consumption;
 				this.m.ToolsUsed += consumed * perkMod;
-				this.World.Assets.addArmorPartsF(consumed * -1.0);
+				this.World.Assets.addArmorPartsF(consumed * perkMod * -1.0);
 			}
 
 			if (r.Item.getRepair() >= r.Item.getRepairMax())
@@ -401,7 +397,7 @@ this.repair_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 
 			if (modifiers.Craft <= 0)
 			{
-				break
+				break;
 			}
 
 			if ( this.World.Assets.getArmorPartsF() == 0)

@@ -53,38 +53,28 @@ this.legend_prosthetic_eye_item <- this.inherit("scripts/items/item", {
 			});
 		}
 
-		result.push({
-			id = 64,
-			type = "text",
-			text = "[color=" + this.Const.UI.Color.PositiveValue + "]+7[/color] Resolve"
-		});
-
-		if (!("getActor" in this.getContainer())) {
-			return result;
-		}
-
-		if (this.getContainer().getActor().getSkills().hasSkill("injury.missing_eye"))
-		{
-			result.extend([{
+		result.extend([
+			{
+				id = 64,
+				type = "text",
+				icon = "ui/icons/bravery.png",
+				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+7[/color] Resolve"
+			},
+			{
 				id = 65,
 				type = "text",
+				icon = "ui/icons/special.png",
 				text = "Right-click or drag onto the currently selected character in order to apply it. This item will be consumed in the process."
-			}]);
-		}
-		else
-		{
-			result.push({
+			},
+			{
 				id = 65,
 				type = "text",
-				text = "Item can not be used, because this character still has both his eyes"
-			});
-		}
-		return result;
-	}
+				icon = "ui/icons/warning.png",
+				text = "Can only be used if this character has a missing eye"
+			}
+		]);
 
-	function isUsable()
-	{
-		return this.getContainer().getActor().getSkills().hasSkill("injury.missing_eye") && this.m.IsUsable;
+		return result;
 	}
 
 	function playInventorySound( _eventType )
@@ -95,11 +85,13 @@ this.legend_prosthetic_eye_item <- this.inherit("scripts/items/item", {
 	function onUse( _actor, _item = null )
 	{
 		this.Sound.play("sounds/combat/armor_leather_impact_03.wav", this.Const.Sound.Volume.Inventory);
-		local actor = this.getContainer().getActor();
-		actor.getSkills().add(this.new("scripts/skills/traits/legend_prosthetic_eye"));
-		actor.getSkills().removeByID("injury.missing_eye");
-
-		return true;
+		if (_actor.getSkills().hasSkill("injury.missing_eye"))
+		{
+			_actor.getSkills().add(this.new("scripts/skills/traits/legend_prosthetic_eye"));
+			_actor.getSkills().removeByID("injury.missing_eye");
+			return true;
+		}
+		return false;
 	}
 });
 

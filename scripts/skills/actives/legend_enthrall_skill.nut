@@ -2,7 +2,7 @@ this.legend_enthrall_skill <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "actives.legend_enthrall_skill";
+		this.m.ID = "actives.legend_enthrall";
 		this.m.Name = "Enthrall";
 		this.m.Icon = "skills/enthrall.png";
 		this.m.IconDisabled = "skills/enthrall_bw.png";

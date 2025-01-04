@@ -49,7 +49,7 @@
 	o.createStates = function()
 	{
 		createStates();
-		foreach (s in this.m.Screens)
+		foreach (s in this.m.States)
 		{
 			if (s.ID == "Escort")
 			{

@@ -23,4 +23,9 @@
 
 		return ret;
 	}
+
+	o.onSortButtonClicked <- function() {
+		this.Stash.sort();
+		this.loadStashList();
+	}
 });

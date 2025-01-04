@@ -139,6 +139,7 @@ this.legends_solo_necro_scenario <- this.inherit("scripts/scenarios/world/starti
 		this.World.Assets.getStash().add(this.new("scripts/items/spawns/legend_zombie_item"));
 		this.World.Assets.m.Money = this.World.Assets.m.Money + 300;
 		this.World.Assets.m.Medicine = this.World.Assets.m.Medicine + 15;
+		this.World.Flags.set("IsLegendNecroOrigin", true);
 	}
 
 	function onSpawnPlayer()

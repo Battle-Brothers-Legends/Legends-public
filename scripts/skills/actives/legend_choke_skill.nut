@@ -38,7 +38,7 @@ this.legend_choke_skill <- this.inherit("scripts/skills/skill", {
 		this.m.IsWeaponSkill = true;
 		this.m.InjuriesOnBody = this.Const.Injury.BluntBody;
 		this.m.InjuriesOnHead = this.Const.Injury.BluntHead;
-		//this.m.HitChanceBonus = -50;
+		this.m.HitChanceBonus = -15;
 		this.m.DirectDamageMult = 1.0;
 		this.m.ActionPointCost = 4;
 		this.m.FatigueCost = 20;
@@ -71,8 +71,8 @@ this.legend_choke_skill <- this.inherit("scripts/skills/skill", {
 		{
 			if (actor.getSkills().hasSkill(bg)) // Hopefully there is a better way
 			{
-				damage_min = this.Math.floor(damage_min*1.50);
-				damage_max = this.Math.floor(damage_max*1.50);
+				damage_min = this.Math.floor(damage_min*1.25);
+				damage_max = this.Math.floor(damage_max*1.25);
 				has_unarmed_background = true;
 				break;
 			}
@@ -224,7 +224,7 @@ this.legend_choke_skill <- this.inherit("scripts/skills/skill", {
 			mod = mod + 50;
 		}
 
-		local chance = (1.0 - _targetEntity.getFatiguePct()) * 50; 
+		local chance = (1.0 - _targetEntity.getFatiguePct()) * 50;
 		return mod - this.Math.round(chance);
 	}
 
@@ -242,7 +242,7 @@ this.legend_choke_skill <- this.inherit("scripts/skills/skill", {
 		if (success && _targetTile.IsOccupiedByActor)
 		{
 			local target = _targetTile.getEntity();
-			target.getSkills().add(this.new("scripts/skills/effects/legend_choked_effect_skill"));
+			target.getSkills().add(this.new("scripts/skills/effects/legend_choked_effect"));
 			this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(_user) + " choked " + this.Const.UI.getColorizedEntityName(target) + " ");
 		}
 		return success;
@@ -257,19 +257,19 @@ this.legend_choke_skill <- this.inherit("scripts/skills/skill", {
 
 		local chance = this.getHitChance(_targetEntity); // Calculates the hitchance bonus from other status effects
 		local actor = this.getContainer().getActor();
-		
+
 		_properties.DamageRegularMin += 10; // If you change these values, change them in the tooltip above too.
 		_properties.DamageRegularMax += 15;
 		_properties.IsIgnoringArmorOnAttack = true;
 		_properties.DamageArmorMult *= 0.0;
 		_properties.MeleeSkill += chance;
 
-		
+
 		foreach( bg in this.m.Backgrounds )
 		{
 			if (actor.getSkills().hasSkill(bg))
 			{
-				_properties.DamageTotalMult *= 1.5;
+				_properties.DamageTotalMult *= 1.25;
 				break;
 			}
 		}
@@ -285,10 +285,7 @@ this.legend_choke_skill <- this.inherit("scripts/skills/skill", {
 		}
 		_properties.HitChance[this.Const.BodyPart.Head] += 90.0; // copied what was used in lash for flails.
 
-		local items = actor.getAllItems();
-		local hasCestus = false;
-		if (_skill != this)
-			return;
+		local items = actor.getItems().getAllItems();
 		foreach (item in items)
 		{
 			if (item.getID() == "accessory.legend_cestus" || item.getID() == "accessory.legend_hand_wraps")

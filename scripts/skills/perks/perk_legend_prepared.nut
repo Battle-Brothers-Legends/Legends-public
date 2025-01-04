@@ -1,15 +1,12 @@
 //Author: WNTR Jimmy
 this.perk_legend_prepared <- this.inherit("scripts/skills/skill", {
-	m  = { 
-		PoisonChance = 33 
+	m  = {
+		PoisonChance = 33
 	},
 
 	function create()
 	{
-		this.m.ID = "perk.legend_prepared"; 
-		this.m.Name = this.Const.Strings.PerkName.LegendPrepared;
-		this.m.Description = this.Const.Strings.PerkDescription.LegendPrepared;
-		this.m.Icon = "ui/perks/prepared.png";
+		::Const.Perks.setup(this.m, ::Const.Perks.PerkDefs.LegendPrepared);
 		this.m.Type = this.Const.SkillType.Perk;
 		this.m.Order = this.Const.SkillOrder.Perk;
 		this.m.IsActive = false;

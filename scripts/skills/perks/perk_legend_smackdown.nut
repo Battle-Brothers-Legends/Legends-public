@@ -4,10 +4,7 @@ this.perk_legend_smackdown <- this.inherit("scripts/skills/skill", {
 	},
 	function create()
 	{
-		this.m.ID = "perk.legend_smackdown";
-		this.m.Name = this.Const.Strings.PerkName.LegendSmackdown;
-		this.m.Description = this.Const.Strings.PerkDescription.LegendSmackdown;
-		this.m.Icon = "ui/perks/smackdown_circle.png";
+		::Const.Perks.setup(this.m, ::Const.Perks.PerkDefs.LegendSmackdown);
 		this.m.Type = this.Const.SkillType.Perk;
 		this.m.Order = this.Const.SkillOrder.Perk;
 		this.m.IsActive = false;
@@ -27,14 +24,14 @@ this.perk_legend_smackdown <- this.inherit("scripts/skills/skill", {
 
 	function onAdded()
 	{
-		if (!this.m.Container.hasSkill("actives.legend_prepare_knockdown_skill"))
+		if (!this.m.Container.hasSkill("actives.legend_prepare_knockdown"))
 		{
 			this.m.Container.add(this.new("scripts/skills/actives/legend_prepare_knockback_skill"));
 		}
 	}
 		function onRemoved()
 	{
-		this.m.Container.removeByID("actives.legend_prepare_knockdown_skill");
+		this.m.Container.removeByID("actives.legend_prepare_knockdown");
 	}
 
 	function findTileToKnockBackTo( _userTile, _targetTile )
@@ -96,7 +93,7 @@ this.perk_legend_smackdown <- this.inherit("scripts/skills/skill", {
 		{
 			return false;
 		}
-		
+
 		if (_targetEntity.getCurrentProperties().IsImmuneToKnockBackAndGrab)
 		{
 			return false;
@@ -113,8 +110,8 @@ this.perk_legend_smackdown <- this.inherit("scripts/skills/skill", {
 		{
 			return false;
 		}
-		
-		
+
+
 
 		local knockToTile = this.findTileToKnockBackTo(user.getTile(), _targetEntity.getTile());
 
@@ -164,7 +161,7 @@ this.perk_legend_smackdown <- this.inherit("scripts/skills/skill", {
 
 		this.m.TilesUsed = [];
 		return true;
-		
+
 	}
 
 	function onKnockedDown( _entity, _tag )
@@ -185,6 +182,6 @@ this.perk_legend_smackdown <- this.inherit("scripts/skills/skill", {
 		_properties.DamageArmorMult += 0.30;
 	}
 
-	
+
 });
 

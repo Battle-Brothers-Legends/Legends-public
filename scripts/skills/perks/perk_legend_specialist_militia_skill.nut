@@ -2,10 +2,7 @@ this.perk_legend_specialist_militia_skill <- this.inherit("scripts/skills/skill"
 	m = {},
 	function create()
 	{
-		this.m.ID = "perk.legend_specialist_militia_skill";
-		this.m.Name = this.Const.Strings.PerkName.LegendSpecialistMilitiaSkill;
-		this.m.Description = this.Const.Strings.PerkDescription.LegendSpecialistMilitiaSkill;
-		this.m.Icon = "ui/perks/spear_02.png";
+		::Const.Perks.setup(this.m, ::Const.Perks.PerkDefs.LegendSpecialistMilitiaSkill);
 		this.m.Type = this.Const.SkillType.Perk;
 		this.m.Order = this.Const.SkillOrder.Perk;
 		this.m.IsActive = false;
@@ -24,7 +21,7 @@ this.perk_legend_specialist_militia_skill <- this.inherit("scripts/skills/skill"
 			}
 			else if (item.isWeaponType(this.Const.Items.WeaponType.Spear))
 			{
-				_properties.MeleeSkill += 3;				
+				_properties.MeleeSkill += 3;
 			}
 		}
 	}

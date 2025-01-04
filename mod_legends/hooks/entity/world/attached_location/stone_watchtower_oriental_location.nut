@@ -8,19 +8,17 @@
 	}
 
 	local onUpdateDraftList = o.onUpdateDraftList;
-	o.onUpdateDraftList = function ( _list, _gender = null )
+	o.onUpdateDraftList = function ( _list )
 	{
-		_gender = ::Legends.Mod.ModSettings.getSetting("GenderEquality").getValue() != "Disabled";
 		_list.push("nomad_background");
 		_list.push("nomad_background");
+
 		if (this.Math.rand(0, 6) == 1)
-		{
 			_list.push("legend_conscript_background");
-		}
+		
 		if (this.Math.rand(0, 6) == 1)
-		{
 			_list.push("legend_conscript_ranged_background");
-		}
+		
 		onUpdateDraftList(_list);
 	}
 

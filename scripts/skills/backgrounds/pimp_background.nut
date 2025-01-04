@@ -121,7 +121,7 @@ this.pimp_background <- this.inherit("scripts/skills/backgrounds/character_backg
 			[1, "noble_tunic"]
 		]))
 		items.equip(this.Const.World.Common.pickHelmet([
-			[1, "feathered_hat"]
+			[1, "pimp_hat"]
 		]));
 	}
 

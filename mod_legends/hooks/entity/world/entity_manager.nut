@@ -293,7 +293,7 @@
 				local wait2 = this.new("scripts/ai/world/orders/wait_order");
 				wait2.setTime(this.Math.rand(10, 60) * 1.0);
 				c.addOrder(wait2);
-				local fco = this.new("scripts/ai/world/orders/free_company_order");
+				local fco = this.new("scripts/ai/world/orders/legend_free_company_order");
 				fco.setSettlement(dest);
 				c.addOrder(fco);
 			}

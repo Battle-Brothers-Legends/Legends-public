@@ -156,7 +156,10 @@ this.legend_redback_puncture_skill <- this.inherit("scripts/skills/skill", {
 		if (actor.getFaction() == this.Const.Faction.Player )
 		{
 			effect.setActor(actor);
-			poison.setActor(actor);
+			if (poison != null)
+			{
+				poison.setActor(actor);
+			}
 		}
 
 		if (poison == null)

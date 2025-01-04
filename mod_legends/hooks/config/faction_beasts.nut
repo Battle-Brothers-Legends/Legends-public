@@ -6,14 +6,15 @@
 ::Const.Tactical.Actor.Direwolf.MeleeDefense = 5;
 ::Const.Tactical.Actor.Direwolf.Initiative = 135;
 
-::Const.Tactical.Actor.Hyena.ActionPoints = 12;
+::Const.Tactical.Actor.Hyena.ActionPoints = 10;
 ::Const.Tactical.Actor.Hyena.MeleeSkill = 50;
 
-::Const.Tactical.Actor.FrenziedHyena.Hitpoints = 50;
+::Const.Tactical.Actor.FrenziedHyena.Hitpoints = 140;
 
+::Const.Tactical.Actor.Spider.Hitpoints = 50;
 ::Const.Tactical.Actor.Spider.Armor = [
-	20,
-	20
+	10,
+	10
 ];
 
 ::Const.Tactical.Actor.SpiderEggs.RangedDefense = -10;

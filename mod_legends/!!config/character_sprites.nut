@@ -1,3 +1,25 @@
+::Const.LegendOnAppearanceChangedSprites <- {
+	Helmet = 
+	{
+		HelmetLayerVanityLower = "helmet_vanity_lower",
+		HelmetLayerVanity2Lower = "helmet_vanity_lower_2",
+		HelmetLayerHelm = "helmet_helm",
+		HelmetLayerTop = "helmet_top",
+		HelmetLayerVanity = "helmet_vanity",
+		HelmetLayerVanity2 = "helmet_vanity_2",
+	},
+
+	Armor = 
+	{
+		ArmorLayerChain = "armor_layer_chain",
+		ArmorLayerPlate = "armor_layer_plate",
+		ArmorLayerTabbard = "armor_layer_tabbard",
+		ArmorLayerCloakFront = "armor_layer_cloak_front",
+		ArmorLayerCloakBack = "armor_layer_cloak",
+	}
+	 
+}
+
 ::Const.CharacterSprites <- {
 	Armor = [
 		"armor",

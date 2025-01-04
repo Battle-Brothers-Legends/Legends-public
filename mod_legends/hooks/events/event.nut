@@ -353,6 +353,9 @@
 		this.onPrepareVariables(vars);
 		return this.buildTextFromTemplate(_text, vars);
 	}
+
+	o.onPrepareVariables <- function ( _vars ) {}
+
 	o.addPronounVars <- function ( _vars, _bro, _suffix )
 	{
 		if (_suffix == "1" || _suffix == "2")

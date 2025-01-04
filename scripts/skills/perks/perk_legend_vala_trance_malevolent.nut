@@ -12,9 +12,7 @@ this.perk_legend_vala_trance_malevolent <- this.inherit("scripts/skills/skill", 
 
 	function create()
 	{
-		this.m.ID = "perk.legend_vala_trance_malevolent";
-		this.m.Name = this.Const.Strings.PerkName.LegendValaTranceMalevolent;
-		this.m.Description = this.Const.Strings.PerkDescription.LegendValaTranceMalevolent;
+		::Const.Perks.setup(this.m, ::Const.Perks.PerkDefs.LegendValaTranceMalevolent);
 		this.m.Icon = "ui/perks/legend_vala_trance_malevolent_active.png";
 		this.m.IconDisabled = "ui/perks/legend_vala_trance_malevolent_active_sw.png";
 		this.m.Type = this.Const.SkillType.Active | this.Const.SkillType.Perk;
@@ -325,6 +323,8 @@ this.perk_legend_vala_trance_malevolent <- this.inherit("scripts/skills/skill", 
 
 	function onDeath( _fatalityType )
 	{
+		local actor = this.getContainer().getActor();
+
 		if (!actor.isPlacedOnMap() || ("State" in this.Tactical) && this.Tactical.State.isBattleEnded())
 			return;
 

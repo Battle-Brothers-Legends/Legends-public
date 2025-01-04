@@ -305,7 +305,7 @@ if (!("Spawn" in ::Const.World))
 					Cost = 80,
 				},
 				{
-					Type = this.Const.World.Spawn.Troops.BanditVeteran.BanditWarlord,
+					Type = this.Const.World.Spawn.Troops.BanditWarlord,
 					Cost = 80,
 				}
 			]
@@ -916,7 +916,7 @@ if (!("Spawn" in ::Const.World))
 					Cost = 80,
 				},
 				{
-					Type = this.Const.World.Spawn.Troops.BanditVeteran.BanditWarlord,
+					Type = this.Const.World.Spawn.Troops.BanditWarlord,
 					Cost = 80,
 				},
 				{

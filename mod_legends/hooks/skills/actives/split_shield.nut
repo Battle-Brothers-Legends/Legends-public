@@ -26,13 +26,21 @@
 			local conditionBefore = shield.getCondition();
 			shield.applyShieldDamage(damage);
 
-			if (shield != null && shield.getCondition() == 0 && this.getContainer().hasSkill("perk.legend_smashing_shields"))
+			if (shield != null && shield.getCondition() == 0)
 			{
 				if (!_user.isHiddenToPlayer() && _targetTile.IsVisibleForPlayer)
 				{
-					this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(_user) + " uses Split Shield and destroys " + this.Const.UI.getColorizedEntityName(target) + "\'s shield");
+					local logMessage = this.Const.UI.getColorizedEntityName(_user) + " has destroyed " + this.Const.UI.getColorizedEntityName(_targetTile.getEntity()) + "\'s shield"
+					if (this.getContainer().hasPerk(::Const.Perks.PerkDefs.LegendSmashingShields))
+					{
+						_user.setActionPoints(this.Math.min(_user.getActionPointsMax(), _user.getActionPoints() + 4));
+						this.Tactical.EventLog.log(logMessage + " and recovered 4 Action Points");
+					}
+					else
+					{
+						this.Tactical.EventLog.log(logMessage);
+					}
 				}
-				_user.setActionPoints(this.Math.min(_user.getActionPointsMax(), _user.getActionPoints() + 4));
 			}
 			else
 			{

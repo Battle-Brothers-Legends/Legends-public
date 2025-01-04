@@ -2,10 +2,7 @@ this.perk_legend_wind_reader <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "perk.legend_wind_reader";
-		this.m.Name = this.Const.Strings.PerkName.LegendWindReader;
-		this.m.Description = this.Const.Strings.PerkDescription.LegendWindReader;
-		this.m.Icon = "ui/perks/wind_reader.png";
+		::Const.Perks.setup(this.m, ::Const.Perks.PerkDefs.LegendWindReader);
 		this.m.Type = this.Const.SkillType.Perk | this.Const.SkillType.StatusEffect;
 		this.m.Order = this.Const.SkillOrder.Perk;
 		this.m.IsActive = false;
@@ -44,7 +41,7 @@ this.perk_legend_wind_reader <- this.inherit("scripts/skills/skill", {
 				icon = "ui/icons/special.png",
 				text = "You are gaining [color=" + this.Const.UI.Color.PositiveValue + "]" + bonus + "[/color] ranged skill due to wind reading"
 			});
-	
+
 
 		return tooltip;
 	}
@@ -55,7 +52,7 @@ this.perk_legend_wind_reader <- this.inherit("scripts/skills/skill", {
 		_properties.RangedSkill += bonus;
 
 	}
-	
+
 
 });
 

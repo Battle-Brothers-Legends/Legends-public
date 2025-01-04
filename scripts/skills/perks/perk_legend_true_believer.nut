@@ -2,10 +2,7 @@ this.perk_legend_true_believer <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "perk.legend_true_believer";
-		this.m.Name = this.Const.Strings.PerkName.LegendTrueBeliever;
-		this.m.Description = this.Const.Strings.PerkDescription.LegendTrueBeliever;
-		this.m.Icon = "ui/perks/true_believer_circle.png";
+		::Const.Perks.setup(this.m, ::Const.Perks.PerkDefs.LegendTrueBeliever);
 		this.m.Type = this.Const.SkillType.Perk;
 		this.m.Order = this.Const.SkillOrder.Perk;
 		this.m.IsActive = false;
@@ -32,14 +29,14 @@ this.perk_legend_true_believer <- this.inherit("scripts/skills/skill", {
 		{
 			return 0;
 		}
-		
+
 		if (!this.Tactical.isActive())
 		{
 			return 0;
 		}
 
 		local fleeing = 0;
-	
+
 		local actors = this.Tactical.Entities.getAllInstancesAsArray();
 
 		foreach( a in actors )
@@ -67,10 +64,10 @@ this.perk_legend_true_believer <- this.inherit("scripts/skills/skill", {
 		if (this.m.Container.hasSkill("trait.insecure"))
 		{
 			this.m.Container.removeByID("trait.insecure");
-		}	
+		}
 		if (this.m.Container.hasSkill("trait.craven"))
 		{
 			this.m.Container.removeByID("trait.craven");
-		}		
+		}
 	}
 });

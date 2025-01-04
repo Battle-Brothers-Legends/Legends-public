@@ -4,10 +4,7 @@ this.perk_legend_barter_trustworthy <- this.inherit("scripts/skills/skill", {
 	},
 	function create()
 	{
-		this.m.ID = "perk.legend_barter_trustworthy";
-		this.m.Name = this.Const.Strings.PerkName.LegendBarterTrustworthy;
-		this.m.Description = this.Const.Strings.PerkDescription.LegendBarterTrustworthy;
-		this.m.Icon = "ui/perks/BarterT2.png";
+		::Const.Perks.setup(this.m, ::Const.Perks.PerkDefs.LegendBarterTrustworthy);
 		this.m.Type = this.Const.SkillType.Perk;
 		this.m.Order = this.Const.SkillOrder.Perk;
 		this.m.IsActive = false;

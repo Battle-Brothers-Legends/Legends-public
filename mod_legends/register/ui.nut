@@ -1,6 +1,8 @@
 ::mods_registerJS("legends_assets.js");
+::mods_registerJS("legends/hooks/!container.js");
 ::mods_registerJS("legends/hooks/character_screen.js");
 ::mods_registerCSS("legends/hooks/character_screen.css");
+::mods_registerJS("legends/hooks/tactical_combat_result.js");
 
 // formations
 ::mods_registerJS("screens/character/modules/character_screen_right_panel/character_screen_formations_module.js");
@@ -40,3 +42,6 @@
 // provides longer tooltip backgrounds and attempts to prevent tooltips from extending outside of the screen
 ::mods_registerCSS("mod_tooltip_extension.css");
 ::mods_registerJS("mod_tooltip_extension.js");
+
+::mods_registerJS("legends/hooks/encounters.js");
+::mods_registerCSS("legends/hooks/encounters.css");

@@ -2,11 +2,7 @@ this.perk_legend_lacerate <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "perk.legend_lacerate";
-		this.m.Name = this.Const.Strings.PerkName.LegendLacerate;
-		this.m.Description = this.Const.Strings.PerkDescription.LegendLacerate;
-		this.m.Icon = "ui/perks/graze_circle.png";
-		this.m.IconDisabled = "ui/perks/graze_circle_bw.png";
+		::Const.Perks.setup(this.m, ::Const.Perks.PerkDefs.LegendLacerate);
 		this.m.Type = this.Const.SkillType.Perk;
 		this.m.Order = this.Const.SkillOrder.Perk;
 		this.m.IsActive = false;
@@ -25,7 +21,7 @@ this.perk_legend_lacerate <- this.inherit("scripts/skills/skill", {
 		{
 			return false;
 		}
-		
+
 		if (_targetEntity.getCurrentProperties().IsImmuneToBleeding)
 		{
 			return false;
@@ -43,9 +39,9 @@ this.perk_legend_lacerate <- this.inherit("scripts/skills/skill", {
 		{
 			this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(user) + " lacerated " + this.Const.UI.getColorizedEntityName(_targetEntity) + " leaving them grazed");
 		}
-	
+
 		return true;
-		
+
 	}
 
 });

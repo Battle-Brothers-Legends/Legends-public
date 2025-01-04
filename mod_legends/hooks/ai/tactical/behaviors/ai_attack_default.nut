@@ -6,8 +6,6 @@
 		"actives.legend_skin_ghoul_claws",
 		"actives.legend_white_wolf_bite",
 		"actives.legend_redback_spider_bite",
-		"actives.legend_great_slash",
-		"actives.legend_glaive_slash",
 		"actives.legend_chain_flail",
 		"actives.legend_demon_hound_bite",
 		"actives.legend_ranged_flail",

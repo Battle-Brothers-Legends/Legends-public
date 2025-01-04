@@ -4,10 +4,7 @@ this.perk_legend_tools_spares <- this.inherit("scripts/skills/skill", {
 	},
 	function create()
 	{
-		this.m.ID = "perk.legend_tools_spares";
-		this.m.Name = this.Const.Strings.PerkName.LegendToolsSpares;
-		this.m.Description = this.Const.Strings.PerkDescription.LegendToolsSpares;
-		this.m.Icon = "ui/perks/MaxToolsT2.png";
+		::Const.Perks.setup(this.m, ::Const.Perks.PerkDefs.LegendToolsSpares);
 		this.m.Type = this.Const.SkillType.Perk;
 		this.m.Order = this.Const.SkillOrder.Perk;
 		this.m.IsActive = false;
@@ -37,7 +34,7 @@ this.perk_legend_tools_spares <- this.inherit("scripts/skills/skill", {
 		}
 		this.World.State.getPlayer().calculateArmorPartsModifier();
 	}
-	
+
 	function onUpdate( _properties )
 	{
 		_properties.Stamina += 6;

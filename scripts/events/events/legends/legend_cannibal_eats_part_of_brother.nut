@@ -121,6 +121,9 @@ this.legend_cannibal_eats_part_of_brother <- this.inherit("scripts/events/event"
 
 		foreach( bro in brothers )
 		{
+			if (bro.getBackground().getID() == "background.legend_donkey")
+				continue;
+
 			if (bro.getID() != this.m.Cannibal.getID())
 			{
 				local potential = [];

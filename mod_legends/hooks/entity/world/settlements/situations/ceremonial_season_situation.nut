@@ -10,15 +10,14 @@
 		onAdded( _settlement );
 	}
 
-	o.onUpdateDraftList <- function ( _draftList, _gender = null)
+	o.onUpdateDraftList <- function ( _draftList )
 	{
-		_gender = ::Legends.Mod.ModSettings.getSetting("GenderEquality").getValue() != "Disabled";
 		_draftList.push("monk_background");
 		_draftList.push("monk_background");
 		_draftList.push("cultist_background");
 		_draftList.push("flagellant_background");
-		if  ( this.World.Assets.getOrigin().getID() == "scenario.cultists")
-		{
+
+		if ( this.World.Assets.getOrigin().getID() == "scenario.cultists") {
 			_draftList.push("legend_husk_background");
 			_draftList.push("legend_husk_background");
 			_draftList.push("legend_lurker_background");
@@ -26,26 +25,11 @@
 			_draftList.push("legend_lurker_background");
 			_draftList.push("legend_magister_background");
 		}
-		if  ( this.World.Assets.getOrigin().getID() == "scenario.legends_crusader")
-		{
-			_draftList.push("legend_pilgrim_background");
-			_draftList.push("legend_pilgrim_background");
-			_draftList.push("legend_pilgrim_background");
-			_draftList.push("legend_pilgrim_background");
-			_draftList.push("legend_pilgrim_background");
-			_draftList.push("legend_pilgrim_background");
-			_draftList.push("legend_pilgrim_background");
-			_draftList.push("legend_pilgrim_background");
-			_draftList.push("legend_pilgrim_background");
-			_draftList.push("legend_pilgrim_background");
-			_draftList.push("legend_pilgrim_background");
-			_draftList.push("legend_pilgrim_background");
-			_draftList.push("legend_pilgrim_background");
-			_draftList.push("legend_pilgrim_background");
-			_draftList.push("legend_pilgrim_background");
-			_draftList.push("legend_pilgrim_background");
-			_draftList.push("legend_pilgrim_background");
-			_draftList.push("legend_pilgrim_background");
+		else if ( this.World.Assets.getOrigin().getID() == "scenario.legends_crusader") {
+			for (local i = 0; i < 17; ++i)
+			{
+				_draftList.push("legend_pilgrim_background");
+			}
 		}
 	}
 });

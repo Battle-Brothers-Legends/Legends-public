@@ -77,7 +77,7 @@ this.legend_unleash_hound_skill <- this.inherit("scripts/skills/actives/legend_u
 
 	function addResources()
 	{
-		this.unleash_animal.addResources();
+		this.legend_unleash_animal_skill.addResources();
 
 		foreach( r in this.m.Sounds0 )
 		{

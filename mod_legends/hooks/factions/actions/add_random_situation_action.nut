@@ -78,8 +78,8 @@
 		{
 			if (this.m.Settlement.hasSituation("situation.ambushed_trade_routes") || this.m.Settlement.hasSituation("situation.abducted_children") || this.m.Settlement.hasSituation("situation.disappearing_villagers") || this.m.Settlement.hasSituation("situation.raided") || this.m.Settlement.hasSituation("situation.unhold_attacks"))
 			{
-				possible_situations.push("rallied_militia_situation");
-				possible_situations.push("merc_company_disbands_situation");
+				possible_situations.push("legend_rallied_militia_situation");
+				possible_situations.push("legend_merc_company_disbands_situation");
 			}
 		}
 

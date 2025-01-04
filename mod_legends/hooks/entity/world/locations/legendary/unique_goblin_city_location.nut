@@ -22,8 +22,11 @@
 			"loot/ancient_gold_coins_item",
 			"loot/silver_bowl_item",
 			"loot/signet_ring_item",
-			"misc/legend_ancient_scroll_item"
+			"misc/legend_ancient_scroll_item",
+			"misc/legend_masterwork_metal",
+			"misc/legend_masterwork_fabric",
+			"misc/legend_masterwork_tools"
 		], _lootTable);
-		_lootTable.push(this.Const.World.Common.pickHelmet([[1, "legendary/legend_emperors_countenance"]]));
+		// _lootTable.push(this.Const.World.Common.pickHelmet([[1, "legendary/legend_emperors_countenance"]]));
 	}
 });

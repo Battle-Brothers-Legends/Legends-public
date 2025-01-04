@@ -20,7 +20,10 @@ this.camp_manager <- {
 		], // CAUTION: the length of this array is tightly coupled with mSaveSlotNum in camp_screen_commander_dialog_module.js
 		StartedWhileEscorting = false,
 		LastCampingUpdateText = [],
+		CampEncountersCooldownUntil = 0.0,
+		CampEncounters = [],
 	},
+
 	function create()
 	{
 		this.addBuilding(this.new("scripts/entity/world/camp/buildings/commander_building"));
@@ -52,6 +55,8 @@ this.camp_manager <- {
 	function clear()
 	{
 		this.m.Tents = [];
+		this.m.CampEncountersCooldownUntil = 0.0;
+		this.m.CampEncounters = [];
 	}
 
 	function init()
@@ -206,6 +211,21 @@ this.camp_manager <- {
 		}
 	}
 
+	function onEnter () {
+		this.updateEncounters();
+		return true;
+	}
+
+	/**
+	 * Callback function for UI, called on encounter icon click
+	 */
+	function onEncounterClicked (_i, _townScreen) {
+		this.World.Encounters.fireCampEncounter(this.m.CampEncounters[_i]);
+		if (_i > 0) { // 1st are tips, don't remove them
+			this.m.CampEncounters.remove(_i);
+		}
+	}
+
 	function assignRepairs()
 	{
 		this.getBuildingByID(this.Const.World.CampBuildings.Repair).assignEquipped();
@@ -301,7 +321,6 @@ this.camp_manager <- {
 			{
 				me.fireEvent(_eventID, _name);
 			}, null);
-			  // [033]  OP_CLOSE          0      4    0    0
 		}
 	}
 
@@ -349,6 +368,131 @@ this.camp_manager <- {
 		return this.m.PresetNames[_index];
 	}
 
+	/**
+	 * Updates encounters in the camp.
+	 */
+	function updateEncounters () {
+		if (this.m.CampEncountersCooldownUntil > this.Time.getVirtualTimeF()) {
+			local notValid = [];
+			foreach (i, e in this.m.CampEncounters) {
+				if (i > 0 && !e.isValid(this))
+					notValid.push(e);
+			}
+			foreach (e in notValid) {
+//				::logInfo("encounter became non valid " + e.getType());
+				::MSU.Array.removeByValue(this.m.CampEncounters, e);
+			}
+//			::logInfo("cooldown still on, skipping the creation");
+			return;
+		}
+
+		local list = [this.World.Encounters.m.CampEncounters[0]];
+		foreach (e in this.World.Encounters.m.CampEncounters) {
+			if (e.isValid(this)) {
+				list.push(e);
+			}
+		}
+
+		local count = this.Math.rand(3, 5);
+		while(list.len() > count + 1) {
+			local r = this.Math.rand(1, list.len() - 1);
+			list.remove(r);
+		}
+		this.m.CampEncounters.clear();
+		foreach (e in list) {
+			this.m.CampEncounters.push(e);
+		}
+		this.m.CampEncountersCooldownUntil = this.Time.getVirtualTimeF() + (5 * this.World.getTime().SecondsPerDay);
+	}
+
+	function getUITerrain () {
+		local tile = this.World.State.getPlayer().getTile();
+		local terrain = [];
+		terrain.resize(this.Const.World.TerrainType.COUNT, 0);
+
+		for(local i = 0; i < 6; i++) {
+			if (tile.hasNextTile(i))
+				++terrain[tile.getNextTile(i).Type];
+		}
+
+		terrain[this.Const.World.TerrainType.Plains] = this.Math.max(0, terrain[this.Const.World.TerrainType.Plains] - 1);
+
+		if (terrain[this.Const.World.TerrainType.Steppe] != 0 && this.Math.abs(terrain[this.Const.World.TerrainType.Steppe] - terrain[this.Const.World.TerrainType.Hills]) <= 2)
+			terrain[this.Const.World.TerrainType.Steppe] += 2;
+
+		if (terrain[this.Const.World.TerrainType.Snow] != 0 && this.Math.abs(terrain[this.Const.World.TerrainType.Snow] - terrain[this.Const.World.TerrainType.Hills]) <= 2)
+			terrain[this.Const.World.TerrainType.Snow] += 2;
+
+		local highest = 0;
+
+		for(local i = 0; i < this.Const.World.TerrainType.COUNT; i++)
+		{
+			if (i == this.Const.World.TerrainType.Ocean || i == this.Const.World.TerrainType.Shore)
+			{
+			}
+			else if (terrain[i] >= terrain[highest])
+			{
+				highest = i;
+			}
+		}
+		return highest;
+	}
+
+	function getUIInformation () {
+		local night = !this.World.getTime().IsDaytime;
+		local highest = this.getUITerrain();
+		local foreground = this.Const.World.TerrainCampImages[highest].Foreground;
+		local result = {
+			Title = this.World.Assets.getName() + " Camp",
+			SubTitle = "No camp tasks have been scheduled...",
+			HeaderImagePath = null,
+			Background = this.Const.World.TerrainCampImages[highest].Background + (night ? "_night" : "") + ".jpg",
+			Mood = this.Const.World.TerrainCampImages[highest].Mood + ".png",
+			Foreground = foreground != null ? foreground + (night ? "_night" : "") + ".png" : null,
+				Slots = [],
+				Situations = []
+		};
+		foreach (building in this.getBuildings())
+		{
+			if (building == null || building.isHidden())
+			{
+				result.Slots.push(null);
+				continue;
+			}
+
+			local image = null;
+
+			// how about consts here? magic numbers are bad practice
+			if (highest == 4 || highest == 8 || highest == 9) {
+				image = building.getUIImage(highest);
+			} else {
+				image = building.getUIImage(0);
+			}
+
+			local b = {
+				Image = image,
+				Tooltip = building.getTooltipID(),
+				Slot = building.getSlot(),
+				CanEnter = building.canEnter()
+			};
+			result.Slots.push(b);
+		}
+
+		local isEscorting = this.World.State.m.EscortedEntity != null && !this.World.State.m.EscortedEntity.isNull();
+		if (!isEscorting) {
+			result.Encounters <- [];
+			foreach(encounter in this.m.CampEncounters) {
+				if (encounter != null) {
+					result.Encounters.push({
+						Icon = encounter.m.Icon,
+						Type = encounter.getType(),
+					});
+				}
+			}
+		}
+		return result;
+	}
+
 	function onSerialize( _out )
 	{
 		_out.writeBool(this.m.IsCamping);
@@ -372,6 +516,13 @@ this.camp_manager <- {
 
 		//_out.writeBool(false);
 		::MSU.Utils.serialize(this.m.PresetNames, _out);
+		// serialize encounters
+		_out.writeF32(this.m.CampEncountersCooldownUntil);
+		_out.writeU32(this.m.CampEncounters.len());
+		foreach(e in this.m.CampEncounters) {
+			_out.writeString(e.getType());
+			e.onSerialize(_out)
+		}
 	}
 
 	function onDeserialize( _in )
@@ -411,7 +562,19 @@ this.camp_manager <- {
 		{
 			this.m.PresetNames = ::MSU.Utils.deserialize(_in);
 		}
-		
+
+		if (::Legends.Mod.Serialization.isSavedVersionAtLeast("19.1.0", _in.getMetaData())) {
+			this.m.CampEncountersCooldownUntil = _in.readF32();
+			local size = _in.readU32();
+			for(local i = 0; i < size; i++) {
+				local e = this.World.Encounters.getEncounter(_in.readString());
+				if (e != null) {
+					this.m.CampEncounters.push(e);
+				} else {
+					_in.readF32(); // same as in encounter
+				}
+			}
+		}
 	}
 
 };

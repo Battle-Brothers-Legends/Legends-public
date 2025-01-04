@@ -4,26 +4,20 @@
 	o.create = function ()
 	{
 		create();
-		this.m.Rumors = [
-			"What\'s going on around here you\'re asking? Well, there\'s a fair over in %settlement%. Merchants from far and wide gather to offer their wares.",
-			"Big fairs like the one over in %settlement% atract the worst kinds of people, minstrels and troubadours.",
-			"Me, I am more of the solitary type. Big fairs like the one over in %settlement% just don\'t appeal to me at all...."
-		];
+		this.m.Rumors.push("Big fairs like the one over in %settlement% atract the worst kinds of people, minstrels and troubadours.");
 	}
 
 	local onAdded = o.onAdded;
 	o.onAdded = function ( _settlement )
 	{
 		if(::Legends.Mod.ModSettings.getSetting("WorldEconomy").getValue())
-		{
 			_settlement.setResources(_settlement.getResources() + _settlement.getResources() * 0.1);
-		}
+		
 		onAdded( _settlement );
 	}
 
-	o.onUpdateDraftList = function ( _draftList, _gender = null)
+	o.onUpdateDraftList = function ( _draftList )
 	{
-		_gender = ::Legends.Mod.ModSettings.getSetting("GenderEquality").getValue() != "Disabled";
 		_draftList.push("peddler_background");
 		_draftList.push("peddler_background");
 		_draftList.push("peddler_background");
@@ -53,9 +47,7 @@
 		_draftList.push("legend_master_archer_background");
 		_draftList.push("legend_master_archer_background");
 
-
-		if  ( this.World.Assets.getOrigin().getID() == "scenario.militia")
-		{
+		if ( this.World.Assets.getOrigin().getID() == "scenario.militia") {
 			_draftList.push("legend_leech_peddler_background");
 			_draftList.push("legend_leech_peddler_background");
 			_draftList.push("legend_leech_peddler_background");
@@ -65,9 +57,7 @@
 			_draftList.push("legend_leech_peddler_background");
 			_draftList.push("legend_leech_peddler_background");
 		}
-
-		if  ( this.World.Assets.getOrigin().getID() == "scenario.legends_troupe")
-		{
+		else if ( this.World.Assets.getOrigin().getID() == "scenario.legends_troupe") {
 			_draftList.push("legend_illusionist_background");
 		}
 	}

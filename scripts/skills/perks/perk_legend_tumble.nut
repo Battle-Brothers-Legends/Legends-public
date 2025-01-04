@@ -4,7 +4,6 @@ this.perk_legend_tumble <- this.inherit("scripts/skills/skill", {
 			"actives.lunge",
 			"actives.footwork",
 			"actives.rotation",
-			"actives.legend_greatlunge",
 			"actives.legend_tumble",
 			"actives.legend_leap",
 			"actives.legend_horse_pirouette"
@@ -12,10 +11,7 @@ this.perk_legend_tumble <- this.inherit("scripts/skills/skill", {
 	},
 	function create()
 	{
-		this.m.ID = "perk.legend_tumble";
-		this.m.Name = this.Const.Strings.PerkName.LegendTumble;
-		this.m.Description = this.Const.Strings.PerkDescription.LegendTumble;
-		this.m.Icon = "ui/perks/tumble_circle.png";
+		::Const.Perks.setup(this.m, ::Const.Perks.PerkDefs.LegendTumble);
 		this.m.Type = this.Const.SkillType.Perk;
 		this.m.Order = this.Const.SkillOrder.Last;
 		this.m.IsActive = false;
@@ -36,10 +32,6 @@ this.perk_legend_tumble <- this.inherit("scripts/skills/skill", {
 				{
 					skill.m.ActionPointCost /= 2;
 				}
-				else if (skill.getID() != "actives.lunge")
-				{
-					skill.m.ActionPointCost -= 1;
-				}		
 			}
 		}
 	}

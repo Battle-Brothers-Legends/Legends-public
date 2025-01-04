@@ -4,10 +4,7 @@ this.perk_legend_efficient_packing <- this.inherit("scripts/skills/skill", {
 	},
 	function create()
 	{
-		this.m.ID = "perk.legend_efficient_packing";
-		this.m.Name = this.Const.Strings.PerkName.LegendEfficientPacking;
-		this.m.Description = this.Const.Strings.PerkDescription.LegendEfficientPacking;
-		this.m.Icon = "ui/perks/MaxStashT1.png";
+		::Const.Perks.setup(this.m, ::Const.Perks.PerkDefs.LegendEfficientPacking);
 		this.m.Type = this.Const.SkillType.Perk;
 		this.m.Order = this.Const.SkillOrder.Perk;
 		this.m.IsActive = false;

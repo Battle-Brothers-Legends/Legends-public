@@ -27,10 +27,7 @@ this.bounty_hunter_follower <- this.inherit("scripts/retinue/follower", {
 		]);
 	}
 
-	function isValid()
-	{
-		return this.Const.DLC.Wildmen;
-	}
+
 
 	function onUpdate()
 	{

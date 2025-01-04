@@ -19,9 +19,12 @@ this.legend_donkey_background <- this.inherit("scripts/skills/backgrounds/charac
 			"trait.clubfooted",
 			"trait.bright",
 			"trait.asthmatic",
+			"trait.legend_ambitious",
 			"trait.legend_seductive",
 			"trait.legend_gift_of_people",
-			"trait.legend_double_tongued"
+			"trait.legend_double_tongued",
+			"trait.legend_deathly_spectre",
+			"trait.legend_sureshot"
 		];
 		this.m.Faces = this.Const.Faces.Donkey;
 		this.m.Hairs = this.Const.Hair.None;
@@ -74,7 +77,7 @@ this.legend_donkey_background <- this.inherit("scripts/skills/backgrounds/charac
 				this.Const.Perks.PerkDefs.HoldOut,
 				// this.Const.Perks.PerkDefs.LegendComposure,
 				this.Const.Perks.PerkDefs.LegendAlert,
-				this.Const.Perks.PerkDefs.Relentless,
+				this.Const.Perks.PerkDefs.LegendOnslaught,
 				this.Const.Perks.PerkDefs.SteelBrow
 			],
 			[
@@ -188,6 +191,9 @@ this.legend_donkey_background <- this.inherit("scripts/skills/backgrounds/charac
 	}
 	function onAdded()
 	{
+		if (m.IsNew)
+			getContainer().getActor().getFlags().set("donkey", true);
+
 		this.character_background.onAdded();
 		this.m.Container.add(this.new("scripts/skills/injury_permanent/legend_donkey_injury"));
 		this.m.Container.add(this.new("scripts/skills/actives/legend_donkey_kick_skill"));

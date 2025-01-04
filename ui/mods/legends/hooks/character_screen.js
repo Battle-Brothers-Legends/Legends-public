@@ -36,9 +36,20 @@ CharacterScreen.prototype.openPopupDialog = function(_text)
 		removeMisalignedTags: false,
 		addInLineBreaks: true
 	});
-									
+
 	label.html(parsedText.html);
 	// the end of the content
 
 	this.mPopupDialog.addPopupDialogContent(result);
 };
+
+/**
+ * Changes lvl 12 exp bar color as normal
+ */
+mod_legends.Hooks.CharacterScreenLeftPanelHeaderModule_setXP = CharacterScreenLeftPanelHeaderModule.prototype.setXP;
+CharacterScreenLeftPanelHeaderModule.prototype.setXP = function(_xpValue, _xpValueMax, _level, _hasLevelUp) {
+	mod_legends.Hooks.CharacterScreenLeftPanelHeaderModule_setXP.call(this, _xpValue, _xpValueMax, _level, _hasLevelUp);
+	this.mXPProgressbar.removeClass('xp-paragon');
+	if(_level >= 12)
+		this.mXPProgressbar.addClass('xp-paragon');
+}

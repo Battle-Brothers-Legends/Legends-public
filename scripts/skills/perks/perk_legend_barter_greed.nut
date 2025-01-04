@@ -11,9 +11,7 @@ this.perk_legend_barter_greed <- this.inherit("scripts/skills/skill", {
 
 	function create()
 	{
-		this.m.ID = "perk.legend_barter_greed";
-		this.m.Name = this.Const.Strings.PerkName.LegendBarterGreed;
-		this.m.Description = this.Const.Strings.PerkDescription.LegendBarterGreed;
+		::Const.Perks.setup(this.m, ::Const.Perks.PerkDefs.LegendBarterGreed);
 		this.m.Icon = "ui/perks/BarterT1.png";
 		this.m.Type = this.Const.SkillType.Perk | this.Const.SkillType.StatusEffect;
 		this.m.Order = this.Const.SkillOrder.Perk;

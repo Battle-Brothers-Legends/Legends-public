@@ -7,14 +7,6 @@
 		this.m.Description = "A road checkpoint manned by professional soldiers. Contributes military weapons, armor and soldiers to the local town.";
 	}
 
-	local onUpdateDraftList = o.onUpdateDraftList;
-	o.onUpdateDraftList = function ( _list, _gender = null )
-	{
-		_gender = ::Legends.Mod.ModSettings.getSetting("GenderEquality").getValue() != "Disabled";
-
-		onUpdateDraftList(_list);
-	}
-
 	local onUpdateShopList = o.onUpdateShopList;
 	o.onUpdateShopList = function ( _id, _list )
 	{
@@ -44,7 +36,7 @@
 			_list.push({
 				R = 60,
 				P = 1.0,
-				S = "weapons/legend_slingstaff"
+				S = "weapons/legend_northern_sling"
 			});
 		}
 	}

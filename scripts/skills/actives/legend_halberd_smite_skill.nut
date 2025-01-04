@@ -111,6 +111,15 @@ this.legend_halberd_smite_skill <- this.inherit("scripts/skills/skill", {
 			_properties.DamageRegularMin += 20;
 			_properties.DamageRegularMax += 20;
 		}
+
+		if (_targetEntity != null && !this.getContainer().getActor().getCurrentProperties().IsSpecializedInPolearms && this.getContainer().getActor().getTile().getDistanceTo(_targetEntity.getTile()) == 1)
+		{
+			this.m.HitChanceBonus = -15;
+		}
+		else
+		{
+			this.m.HitChanceBonus = 0;
+		}
 	}
 	
 

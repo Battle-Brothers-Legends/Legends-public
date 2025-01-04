@@ -1,13 +1,10 @@
 //Author: WNTR Jimmy
 this.perk_legend_lurker <- this.inherit("scripts/skills/skill", {
-    m = {}, 
+    m = {},
 
 	function create()
 	{
-		this.m.ID = "perk.legend_lurker"; 
-		this.m.Name = this.Const.Strings.PerkName.LegendLurker;
-		this.m.Description = this.Const.Strings.PerkDescription.LegendLurker;
-		this.m.Icon = "ui/perks/lurker.png";
+		::Const.Perks.setup(this.m, ::Const.Perks.PerkDefs.LegendLurker);
 		this.m.Type = this.Const.SkillType.Perk;
 		this.m.Order = this.Const.SkillOrder.Perk;
 		this.m.IsActive = false;
@@ -54,11 +51,11 @@ this.perk_legend_lurker <- this.inherit("scripts/skills/skill", {
        	{
 			if(this.getContainer().getActor().getSkills().hasSkill("hidden_effect").isActive())
 			{
-				_properties.FatigueRecoveryRate += 10; 
+				_properties.FatigueRecoveryRate += 10;
 			}
 		}
     }
-   
+
 });
 
 
