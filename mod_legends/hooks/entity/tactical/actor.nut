@@ -167,6 +167,34 @@
 		return false;
 	}
 
+	local onMovementFinish = o.onMovementFinish;
+	o.onMovementFinish = function (_tile)
+	{
+		local actors = [this];
+		for (local i = 0; i != 6; i++) {
+			if (_tile.hasNextTile(i)) {
+				local tile = _tile.getNextTile(i);
+				if (!tile.IsOccupiedByActor)
+					continue;
+				actors.push(tile.getEntity());
+			}
+		}
+		local pointers = [];
+		foreach (i, a in actors) {
+			pointers.push(a.checkMorale);
+			a.checkMorale = function (_change, _difficulty) {
+				if (this.m.CurrentProperties.IsAffectedByMovementMorale) {
+					pointers[i](_change, _difficulty);
+				}
+			}
+		}
+		onMovementFinish(_tile);
+		foreach (i, a in actors)
+			a.checkMorale = pointers[i];
+
+		this.m.Skills.MovementCompleted(_tile);
+	}
+
 	o.isArmedWithMagicStaff <- function()
 	{
 		local item = this.getMainhandItem();

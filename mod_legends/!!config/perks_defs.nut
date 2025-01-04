@@ -3671,6 +3671,15 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/twirl_circle_bw.png",
 	Const = "LegendTasteThePain"
 });
+perkDefObjects.push({
+	ID = "perk.legend_lionheart",
+	Script = "scripts/skills/perks/perk_legend_lionheart",
+	Name = this.Const.Strings.PerkName.LegendLionheart,
+	Tooltip = this.Const.Strings.PerkDescription.LegendLionheart,
+	Icon = "ui/perks/lionheart.png",
+	IconDisabled = "ui/perks/lionheart_bw.png",
+	Const = "LegendLionheart"
+});
 
 ::Const.Perks.addPerkDefObjects(perkDefObjects);
 ::Const.Perks.updatePerkGroupTooltips();
