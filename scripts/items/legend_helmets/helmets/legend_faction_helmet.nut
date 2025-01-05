@@ -21,11 +21,11 @@ this.legend_faction_helmet <- this.inherit("scripts/items/legend_helmets/hood/le
 	function updateVariant()
 	{
 		local variant = this.m.Variant > 9 ? this.m.Variant : "0" + this.m.Variant;
-		this.m.Sprite = "chain_hood" + "_" + variant;
-		this.m.SpriteDamaged = "chain_hood" + "_" + variant + "_damaged";
-		this.m.SpriteCorpse = "chain_hood" + "_" + variant + "_dead";
-		this.m.IconLarge = "";
-		this.m.Icon = "legend_helmets/inventory_chain_hood" + "_" + variant + ".png"
+		this.m.Sprite = "legendhelms_chain_hood" + "_" + variant;
+		this.m.SpriteDamaged = "legendhelms_chain_hood" + "_" + variant + "_damaged";
+		this.m.SpriteCorpse = "legendhelms_chain_hood" + "_" + variant + "_dead";
+		this.m.Icon = "legend_helmets/inventory_chain_hood" + "_" + variant + ".png";
+		this.m.IconLarge = this.m.Icon;
 	}
 
 	function setupArmor( _variant ) {
