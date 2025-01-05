@@ -1,4 +1,7 @@
 <brush name="gfx/legend_helmets_15.png" version="17">
+<sprite id="legendhelms_witchhunter_helm_01" offsetY="35" f="64F0" ic="FF4E5053" width="184" height="222" img="..\entity\legend_helmets\layers\witchhunter_helm_01.png" left="-67" right="68" top="-40" bottom="108" />
+<sprite id="legendhelms_witchhunter_helm_02" offsetY="35" f="64F0" ic="FF4E5053" width="184" height="222" img="..\entity\legend_helmets\layers\witchhunter_helm_02.png" left="-67" right="68" top="-40" bottom="108" />
+<sprite id="legendhelms_witchhunter_helm_03" offsetY="35" f="64F0" ic="FF4E5053" width="184" height="222" img="..\entity\legend_helmets\layers\witchhunter_helm_03.png" left="-67" right="68" top="-40" bottom="108" />
 <sprite id="legendhelms_witchhunter_helm_04" offsetY="35" f="64F0" ic="FF4E5053" width="184" height="222" img="..\entity\legend_helmets\layers\witchhunter_helm_04.png" left="-67" right="68" top="-40" bottom="108" />
 <sprite id="legendhelms_witchhunter_helm_05" offsetY="35" f="64F0" ic="FF4E5053" width="184" height="222" img="..\entity\legend_helmets\layers\witchhunter_helm_05.png" left="-67" right="68" top="-40" bottom="108" />
 <sprite id="legendhelms_witchhunter_helm_06" offsetY="35" f="64F0" ic="FF4E5053" width="184" height="222" img="..\entity\legend_helmets\layers\witchhunter_helm_06.png" left="-67" right="68" top="-40" bottom="108" />
