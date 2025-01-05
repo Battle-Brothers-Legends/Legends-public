@@ -26,6 +26,7 @@ gfx/*.png
 *.cnut
 *.DS_Store
 temp.nut
+NUL
 
 unpacked/legend_enemies/metadata.xml
 unpacked/**/*dead_arrows.png
