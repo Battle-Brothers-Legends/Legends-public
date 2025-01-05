@@ -52,7 +52,7 @@ this.legend_man_mangler <- this.inherit("scripts/items/weapons/weapon", {
 		overheadStrike.setStunChance(this.m.StunChance);
 		this.addSkill(overheadStrike);
 
-		skillToAdd = this.new("scripts/skills/actives/slash")
+		local skillToAdd = this.new("scripts/skills/actives/slash");
 		skillToAdd.m.isGreatSlash = true;
 		skillToAdd.m.DirectDamageMult = this.m.DirectDamageMult;
 		this.addSkill(skillToAdd);

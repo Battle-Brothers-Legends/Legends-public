@@ -29,7 +29,7 @@ this.legend_glaive <- this.inherit("scripts/items/weapons/weapon", {
 	function onEquip()
 	{
 		this.weapon.onEquip();
-		skillToAdd = this.new("scripts/skills/actives/slash")
+		local skillToAdd = this.new("scripts/skills/actives/slash");
 		skillToAdd.m.isGlaiveSlash = true;
 		this.addSkill(skillToAdd);
 		local skill = this.new("scripts/skills/actives/spearwall");

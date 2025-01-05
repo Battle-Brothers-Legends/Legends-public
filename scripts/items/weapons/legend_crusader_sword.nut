@@ -39,7 +39,7 @@ this.legend_crusader_sword <- this.inherit("scripts/items/weapons/weapon", {
 		local skillToAdd = this.new("scripts/skills/actives/overhead_strike");
 		skillToAdd.setStunChance(this.m.StunChance);
 		this.addSkill(skillToAdd);
-		skillToAdd = this.new("scripts/skills/actives/slash")
+		skillToAdd = this.new("scripts/skills/actives/slash");
 		skillToAdd.m.isGreatSlash = true;
 		this.addSkill(skillToAdd);
 		this.addSkill(this.new("scripts/skills/actives/swing"));		
