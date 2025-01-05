@@ -16,7 +16,7 @@
 		}
 	}
 
-	o.onAnySkillUsed = function ( _skill, _targetEntity, _properties )
+	o.onAnySkillUsed <- function ( _skill, _targetEntity, _properties )
 	{
 		if (_skill == this && this.m.isChain)
 		{
