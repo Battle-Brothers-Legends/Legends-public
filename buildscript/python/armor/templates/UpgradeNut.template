@@ -1,0 +1,34 @@
+this.$name <- this.inherit("scripts/items/legend_armor/legend_armor_upgrade", {
+	m = {},
+	function create()
+	{
+		this.legend_armor_upgrade.create();
+		this.m.Type = this.Const.Items.ArmorUpgrades.$type;
+		this.m.ID = "$id";
+		this.m.Name = "$title";
+		this.m.Description = "$desc";
+		this.m.ArmorDescription = "$adesc";
+		this.m.Variants = $variants;
+        this.m.Variant = this.m.Variants[this.Math.rand(0, this.m.Variants.len() - 1)];
+		this.updateVariant();
+		this.m.ImpactSound = $impactSound;
+		this.m.InventorySound = $invSound;
+		this.m.Value = $value;
+		this.m.Condition = $condition;
+		this.m.ConditionMax = $condition;
+		this.m.StaminaModifier = $stamina;
+        this.m.ItemType = $itemType;
+	}
+
+	function updateVariant()
+	{
+		local variant = this.m.Variant > 9 ? this.m.Variant : "0" + this.m.Variant;
+		this.m.SpriteBack = "$brush" + "_" + variant;
+		this.m.SpriteDamagedBack = "$brush" + "_" + variant + "_damaged";
+		this.m.SpriteCorpseBack = "$brush" + "_" + variant + "_dead";
+		this.m.Icon = "$icon" + "_" + variant + ".png";
+		this.m.IconLarge = this.m.Icon;
+		this.m.OverlayIcon = "$overlay" + "_" + variant + ".png";
+		this.m.OverlayIconLarge = "$overlayLarge" + "_" + variant + ".png";
+	}
+});
