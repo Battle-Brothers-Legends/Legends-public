@@ -1,4 +1,3 @@
-
 checkForCompileError() {
 code=0
 while read -r line; do
@@ -16,11 +15,9 @@ fi
 }
 
 handleExit() {
-    # Get exit code of the previous command, instead of echo
     exitCode=$?
-    if [ $exitCode -ne "0" ]
-    then
-        echo "Failed to build Legends!"
+    if [ $exitCode -ne 0 ]; then
+        echo "Failed to build ${1:-"Legends"}!"
         exit 1
     fi
 }

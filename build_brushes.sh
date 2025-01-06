@@ -1,16 +1,9 @@
 BBDir="${1-"c:\\Steam\\steamapps\\common\\Battle Brothers\\data"}"
 RepoDir="${2-"battlebrothers"}"
 
+source "./buildscript/lib.sh"
 
-function handleExit() {
-    # Get exit code of the previous command, instead of echo
-    exitCode=$?
-    if [ $exitCode -ne "0" ]
-    then
-        echo "Failed to build Legends!"
-        exit 1
-    fi
-}
+current_dir=$(pwd)
 
 function checkForError() {
 if [[ $1 == *"ERROR"* ]]; then
@@ -22,13 +15,12 @@ if [[ $1 == *"ERROR"* ]]; then
 fi
 }
 
-
 echo "Building helmets..."
 rm -rf helmet_scripts
 handleExit
 mkdir -p "helmet_scripts"
 handleExit
-python make_legend_helmets.py
+python "$current_dir\\buildscript\\python\\make_legend_helmets.py" "$current_dir"
 handleExit
 mkdir -p "$BBDir\\scripts\\items\\legend_helmets"
 cp -R helmet_scripts/. "$BBDir\\scripts\\items\\legend_helmets"
@@ -39,14 +31,14 @@ rm -rf legend_armor_scripts
 handleExit
 mkdir -p "legend_armor_scripts"
 handleExit
-python make_legend_armor.py
+python "$current_dir\\buildscript\\python\\make_legend_armor.py" "$current_dir"
 handleExit
 mkdir -p "$BBDir\scripts\\items\\legend_armor"
 cp -R legend_armor_scripts/. "$BBDir\\scripts\\items\\legend_armor"
 handleExit
 
 echo "Building enemies..."
-python make_legend_enemies.py
+python "$current_dir\\buildscript\\python\\make_legend_enemies.py" "$current_dir"
 handleExit
 
 declare -a BRUSHES=(

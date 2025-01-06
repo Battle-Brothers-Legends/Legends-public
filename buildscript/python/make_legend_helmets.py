@@ -1,7 +1,6 @@
-
 from string import Template
 from shutil import copyfile
-import os
+import os, argparse
 
 vanilla = [
     "aketon_cap",
@@ -1860,8 +1859,8 @@ helmets = r"""
 
 """
 
-def checkForIcon(iconpath, variants):
-    dirpath = os.path.join(os.path.dirname(os.path.abspath(__file__)), "gfx", "ui", "items", "legend_helmets")
+def checkForIcon(path, iconpath, variants):
+    dirpath = os.path.join(path, "gfx", "ui", "items", "legend_helmets")
     parts = iconpath.split("/")
 
     for p in parts:
@@ -1884,8 +1883,8 @@ def checkForIcon(iconpath, variants):
 
     return has_missing
 
-def makeSheet(num):
-    dirpath = os.path.join(os.path.dirname(os.path.abspath(__file__)), "unpacked", "legend_helmets", "" + str(num))
+def makeSheet(path, num):
+    dirpath = os.path.join(path, "unpacked", "legend_helmets", "" + str(num))
     if not os.path.exists(dirpath):
         os.makedirs(dirpath)
 
@@ -1894,8 +1893,8 @@ def makeSheet(num):
     F.write('<brush name="gfx/legend_helmets_' + str(num) + '.png" version="17">\n')
     return F
 
-def makeBrushes():
-    filepath = os.path.join(os.path.dirname(os.path.abspath(__file__)), "unpacked", "legend_helmets", "metadata.xml")
+def makeBrushes(path):
+    filepath = os.path.join(path, "unpacked", "legend_helmets", "metadata.xml")
     F = open(filepath, "w")
     F.write('<brush name="gfx/legend_helmets.png" version="17">\n')
     F.write(helmets)
@@ -1904,7 +1903,7 @@ def makeBrushes():
 
     fileCount = 0
     imageCount = 0
-    F = makeSheet(fileCount)
+    F = makeSheet(path, fileCount)
 
     L = [BLayer, BLayerDamaged, BLayerDead]
     for d in layers:
@@ -1945,7 +1944,7 @@ def makeBrushes():
                     F.close()
                     imageCount = 0
                     fileCount += 1
-                    F = makeSheet(fileCount)
+                    F = makeSheet(path, fileCount)
 
     for d in brush_only_layers:
         R = L
@@ -1981,13 +1980,18 @@ def makeBrushes():
                     F.close()
                     imageCount = 0
                     fileCount += 1
-                    F = makeSheet(fileCount)
+                    F = makeSheet(path, fileCount)
 
 
     F.write('</brush>\n')
     F.close()
 
 def main():
+    parser = argparse.ArgumentParser(description='Legends armor generator.')
+    parser.add_argument('path', type=str, help='The file or directory path')
+    args = parser.parse_args()
+    path = args.path;
+
     has_missing = False
     for d in layers:
 
@@ -2010,7 +2014,7 @@ def main():
         # print('"' + layer + '/' + fname + '",')
         # continue
 
-        dirpath = os.path.join(os.path.dirname(os.path.abspath(__file__)), "helmet_scripts", layer)
+        dirpath = os.path.join(path, "helmet_scripts", layer)
         if not os.path.exists(dirpath):
             os.makedirs(dirpath)
 
@@ -2023,7 +2027,7 @@ def main():
         title = d["title"]
         desc = d["desc"]
 
-        has_missing = has_missing or checkForIcon("inventory_" + d["name"], variants)
+        has_missing = has_missing or checkForIcon(path, "inventory_" + d["name"], variants)
 
         itemType = "this.m.ItemType"
         if "itemType" in d:
@@ -2086,7 +2090,7 @@ def main():
         # WR.close()
 
 
-    makeBrushes()
+    makeBrushes(path)
 
     if has_missing:
         raise ValueError("Missing gfx icons")

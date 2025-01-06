@@ -4,7 +4,7 @@ BBDir="${1-"c:\\Steam\\steamapps\\common\\Battle Brothers\\data"}"
 RepoDir="${2-"battlebrothers"}"
 BuildDir="${3-".\\build"}"
 
-source "./lib.sh"
+source "./buildscript/lib.sh"
 
 rm "$BuildDir" -r
 

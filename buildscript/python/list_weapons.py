@@ -13,7 +13,7 @@ def getFiles(dirName):
     return completeFileList
 
 
-dirName = os.path.join(os.path.dirname(os.path.abspath(__file__)), "scripts", "items", "weapons")
+dirName = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", "scripts", "items", "weapons"))
 listOfFiles = getFiles(dirName)
 for fpath in listOfFiles:
     print(fpath)

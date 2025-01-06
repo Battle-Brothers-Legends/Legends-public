@@ -1,7 +1,7 @@
 
 from string import Template
 from shutil import copyfile
-import os
+import os, argparse
 
 Names = [
 "Beast",
@@ -1317,8 +1317,8 @@ LayerArrow = '<sprite id="$arrow" offsetX="6" offsetY="10" f="64FB" ic="$ic" wid
 LayerJavelin = '<sprite id="$javelin" offsetX="6" offsetY="10" f="64FB" ic="$ic" width="131" height="134" img="$javelin_path" left="-11" right="35" top="-5" bottom="67" />\n'
 
 
-def checkForIcon(iconpath, variants):
-    dirpath = os.path.join(os.path.dirname(os.path.abspath(__file__)), "gfx", "ui", "items")
+def checkForIcon(path, iconpath, variants):
+    dirpath = os.path.join(path, "gfx", "ui", "items")
     parts = iconpath.split("/")
     if parts[0] == "armor":
         return False
@@ -1343,8 +1343,8 @@ def checkForIcon(iconpath, variants):
     return has_missing
 
 
-def makeSheet(num):
-    dirpath = os.path.join(os.path.dirname(os.path.abspath(__file__)), "unpacked", "legend_armor", "" + str(num))
+def makeSheet(path, num):
+    dirpath = os.path.join(path, "unpacked", "legend_armor", "" + str(num))
     if not os.path.exists(dirpath):
         os.makedirs(dirpath)
 
@@ -1353,12 +1353,17 @@ def makeSheet(num):
     F.write('<brush name="gfx/legend_armor_' + str(num) + '.png" version="17">\n')
     return F
 
+
 def main():
+    parser = argparse.ArgumentParser(description='Legends armor generator.')
+    parser.add_argument('path', type=str, help='The file or directory path')
+    args = parser.parse_args()
+    path = args.path;
 
     #Build Brushes
     fileCount = 0
     imageCount = 0
-    Brush = makeSheet(fileCount)
+    Brush = makeSheet(path, fileCount)
     L = [Layer, LayerDamaged, LayerDead]
     LBase = [Layer, LayerDamaged, LayerDead, LayerArrow, LayerJavelin]
 
@@ -1388,7 +1393,7 @@ def main():
             temp = NamedUpgradeNut
 
         fname = d["name"]
-        dirpath = os.path.join(os.path.dirname(os.path.abspath(__file__)),  "legend_armor_scripts", layer)
+        dirpath = os.path.join(path, "legend_armor_scripts", layer)
         if not os.path.exists(dirpath):
             os.makedirs(dirpath)
 
@@ -1434,14 +1439,14 @@ def main():
 
         if inherit != "":
             if inherit == "legend_padded_surcoat":
-                has_missing = has_missing or checkForIcon("legend_armor/inventory_" + "legend_gambeson", variants)
-                has_missing = has_missing or checkForIcon("legend_armor/icon_" + "legend_gambeson", variants)
+                has_missing = has_missing or checkForIcon(path, "legend_armor/inventory_" + "legend_gambeson", variants)
+                has_missing = has_missing or checkForIcon(path, "legend_armor/icon_" + "legend_gambeson", variants)
             else:
-                has_missing = has_missing or checkForIcon("legend_armor/inventory_" + inherit, variants)
-                has_missing = has_missing or checkForIcon("legend_armor/icon_" + inherit, variants)
+                has_missing = has_missing or checkForIcon(path, "legend_armor/inventory_" + inherit, variants)
+                has_missing = has_missing or checkForIcon(path, "legend_armor/icon_" + inherit, variants)
         else:
-            has_missing = has_missing or checkForIcon(overlayLarge, variants)
-            has_missing = has_missing or checkForIcon(icon, variants)
+            has_missing = has_missing or checkForIcon(path, overlayLarge, variants)
+            has_missing = has_missing or checkForIcon(path, icon, variants)
 
 
         namesL = []
@@ -1537,7 +1542,7 @@ def main():
                     Brush.close()
                     imageCount = 0
                     fileCount += 1
-                    Brush = makeSheet(fileCount)
+                    Brush = makeSheet(path, fileCount)
 
     for d in brush_only_layers:
         R = L
@@ -1589,7 +1594,7 @@ def main():
                     Brush.close()
                     imageCount = 0
                     fileCount += 1
-                    Brush = makeSheet(fileCount)
+                    Brush = makeSheet(path, fileCount)
 
 
     Brush.write('</brush>\n')

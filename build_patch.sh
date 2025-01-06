@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source "./lib.sh"
+source "./buildscript/lib.sh"
 
 current_dir=$(pwd)
 log_file="$current_dir\\log.txt"
@@ -24,7 +24,7 @@ rm -rf helmet_scripts
 handleExit
 mkdir -p "helmet_scripts"
 handleExit
-python make_legend_helmets.py
+python "$current_dir\\buildscript\\python\\make_legend_helmets.py" "$current_dir"
 handleExit
 mkdir -p "$BuildDir\\scripts\\items\\legend_helmets"
 cp -R helmet_scripts/. "$BuildDir\\scripts\\items\\legend_helmets"
@@ -35,14 +35,14 @@ rm -rf legend_armor_scripts
 handleExit
 mkdir -p "legend_armor_scripts"
 handleExit
-python make_legend_armor.py
+python "$current_dir\\buildscript\\python\\make_legend_armor.py" "$current_dir"
 handleExit
 mkdir -p "$BuildDir\scripts\\items\\legend_armor"
 cp -R legend_armor_scripts/. "$BuildDir\\scripts\\items\\legend_armor"
 handleExit
 
 echo "Building enemies..."
-python make_legend_enemies.py
+python "$current_dir\\buildscript\\python\\make_legend_enemies.py" "$current_dir"
 handleExit
 
 7z a -tzip "$zip_archive" mod_legends scripts ui >> $log_file

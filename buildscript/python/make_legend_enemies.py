@@ -1,7 +1,7 @@
 
 from string import Template
 from shutil import copyfile
-import os
+import os, argparse
 
 Normal = '<sprite id="$name" offsetY="$offsetY" ic="FF4E5053" width="$w" height="$h" img="$img" left="$left" right="$right" top="$top" bottom="$bottom" />\n'
 Full = '<sprite id="$name" offsetX="$offsetX" offsetY="$offsetY" f="64F6" f1="$f1" f2="$f2" ic="FF313D49" width="$w" height="$h" img="$img" left="$left" right="$right" top="$top" bottom="$bottom" />\n'
@@ -411,8 +411,8 @@ enemies = r"""
 <sprite id="bust_skeleton_body_02_injured" offsetY="35" ic="FF3C6073" width="104" height="142" img="entity\undead\bust_skeleton_body_injured.png" left="-37" right="33" top="-45" bottom="3" />
 """
 
-def makeBrushes():
-    dirpath = os.path.join(os.path.dirname(os.path.abspath(__file__)), "unpacked", "legend_enemies")
+def makeBrushes(path):
+    dirpath = os.path.join(path, "unpacked", "legend_enemies")
     if not os.path.exists(dirpath):
         os.makedirs(dirpath)
 
@@ -473,7 +473,12 @@ def makeBrushes():
     F.close()
 
 def main():
-    makeBrushes()
+    parser = argparse.ArgumentParser(description='Legends armor generator.')
+    parser.add_argument('path', type=str, help='The file or directory path')
+    args = parser.parse_args()
+    path = args.path;
+
+    makeBrushes(path)
 
 main()
 
