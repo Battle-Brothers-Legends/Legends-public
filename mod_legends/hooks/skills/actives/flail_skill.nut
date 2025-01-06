@@ -1,12 +1,12 @@
 ::mods_hookExactClass("skills/actives/flail_skill", function(o)
 {
-	o.m.isChain <- false;
+	o.m.IsChain <- false;
 
 	local create = o.create;
 	o.create = function ()
 	{
 		create();
-		if (this.m.isChain)
+		if (this.m.IsChain)
 		{
 			this.m.Name = "Chain Flail";
 			this.m.MaxRange = 3;
@@ -18,7 +18,7 @@
 
 	o.onAnySkillUsed <- function ( _skill, _targetEntity, _properties )
 	{
-		if (_skill == this && this.m.isChain)
+		if (_skill == this && this.m.IsChain)
 		{
 			_properties.MeleeSkill -= 10;
 		}

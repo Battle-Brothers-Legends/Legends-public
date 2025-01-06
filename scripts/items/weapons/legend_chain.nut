@@ -37,13 +37,13 @@ this.legend_chain <- this.inherit("scripts/items/weapons/weapon", {
 	{
 		this.weapon.onEquip();
 		local skillToAdd = this.new("scripts/skills/actives/flail_skill")
-		skillToAdd.m.isChain = true;
+		skillToAdd.m.IsChain = true;
 		this.addSkill(skillToAdd);
 		skillToAdd = this.new("scripts/skills/actives/thresh")
-		skillToAdd.m.isChain = true;
+		skillToAdd.m.IsChain = true;
 		this.addSkill(skillToAdd);
 		skillToAdd = this.new("scripts/skills/actives/hook")
-		skillToAdd.m.isChain = true;
+		skillToAdd.m.IsChain = true;
 		this.addSkill(skillToAdd);
 	}
 

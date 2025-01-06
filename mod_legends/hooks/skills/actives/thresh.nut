@@ -1,12 +1,12 @@
 ::mods_hookExactClass("skills/actives/thresh", function(o)
 {
-	o.m.isChain <- false;
+	o.m.IsChain <- false;
 
 	local create = o.create;
 	o.create = function ()
 	{
 		create();
-		if (this.m.isChainThresh)
+		if (this.m.IsChain)
 		{
 			this.m.Name = "Chain Thresh";
 			this.m.Description = "Threshing all the targets around you, foe and friend alike, with a reckless round swing. Not hard to evade because it is not aimed at anything. Has a chance to daze targets hit for one turn. Be careful around your own men unless you want to relieve your payroll!";
@@ -21,7 +21,7 @@
 	{
 		ret = getTooltip();
 
-		if (this.m.isChain)
+		if (this.m.IsChain)
 		{
 			foreach (tooltip in ret)
 			{
@@ -39,7 +39,7 @@
 		local ret = false;
 		local ownTile = this.m.Container.getActor().getTile();
 		local soundBackup = [];
-		local skillToApply = this.m.isChain ? "dazed_effect" : "stunned_effect";
+		local skillToApply = this.m.IsChain ? "dazed_effect" : "stunned_effect";
 		this.spawnAttackEffect(ownTile, this.Const.Tactical.AttackEffectThresh);
 
 		for( local i = 0; i != 6; i = ++i )
@@ -64,7 +64,7 @@
 
 					if (_user.isAlive() && !_user.isDying())
 					{
-						if (this.m.isChain && success && tile.IsOccupiedByActor && this.Math.rand(1, 100) <= this.m.StunChance && !tile.getEntity().getCurrentProperties().IsImmuneToBleeding && !tile.getEntity().getSkills().hasSkill("effects.dazed_effect"))
+						if (this.m.IsChain && success && tile.IsOccupiedByActor && this.Math.rand(1, 100) <= this.m.StunChance && !tile.getEntity().getCurrentProperties().IsImmuneToBleeding && !tile.getEntity().getSkills().hasSkill("effects.dazed_effect"))
 						{
 							tile.getEntity().getSkills().add(this.new("scripts/skills/effects/dazed_effect"));
 
