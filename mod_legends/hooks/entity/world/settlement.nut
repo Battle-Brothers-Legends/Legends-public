@@ -2221,10 +2221,13 @@
 		::MSU.Utils.serialize(this.m.CaravanSentHistory, _out);
 
 		_out.writeF32(this.m.SettlementEncountersCooldownUntil);
-		_out.writeU32(this.m.SettlementEncounters.len());
 		foreach(e in this.m.SettlementEncounters) {
-			_out.writeString(e.getType());
+			if (e.isValid(this)) {
+				_out.writeBool(true);
+				_out.writeString(e.getType());
+			}
 		}
+		_out.writeBool(false);
 	}
 
 	o.onDeserialize = function ( _in )
@@ -2345,8 +2348,7 @@
 
 		if (::Legends.Mod.Serialization.isSavedVersionAtLeast("19.1.0", _in.getMetaData())) {
 			this.m.SettlementEncountersCooldownUntil = _in.readF32();
-			local size = _in.readU32();
-			for(local i = 0; i < size; i++) {
+			while(_in.readBool()) {
 				local e = this.World.Encounters.getEncounter(_in.readString());
 				if(e != null) {
 					this.m.SettlementEncounters.push(e);

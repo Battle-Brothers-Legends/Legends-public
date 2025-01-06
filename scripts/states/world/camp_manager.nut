@@ -379,10 +379,8 @@ this.camp_manager <- {
 					notValid.push(e);
 			}
 			foreach (e in notValid) {
-//				::logInfo("encounter became non valid " + e.getType());
 				::MSU.Array.removeByValue(this.m.CampEncounters, e);
 			}
-//			::logInfo("cooldown still on, skipping the creation");
 			return;
 		}
 
@@ -514,19 +512,21 @@ this.camp_manager <- {
 			}
 		}
 
-		//_out.writeBool(false);
 		::MSU.Utils.serialize(this.m.PresetNames, _out);
 		// serialize encounters
 		_out.writeF32(this.m.CampEncountersCooldownUntil);
-		_out.writeU32(this.m.CampEncounters.len());
-		foreach(e in this.m.CampEncounters) {
-			_out.writeString(e.getType());
-			e.onSerialize(_out)
+		foreach(i, e in this.m.CampEncounters) {
+			if (e.isValid(this)) {
+				_out.writeBool(true);
+				_out.writeString(e.getType());
+			}
 		}
+		_out.writeBool(false);
 	}
 
 	function onDeserialize( _in )
 	{
+		::logInfo("camp deserialize start");
 		this.m.IsCamping = _in.readBool();
 		this.m.LastHourUpdated = _in.readU8();
 		this.m.StartTime = _in.readF32();
@@ -556,25 +556,23 @@ this.camp_manager <- {
 			}
 		}
 
-		//_in.readBool();
-
 		if (::Legends.Mod.Serialization.isSavedVersionAtLeast("17.1.0", _in.getMetaData()))
 		{
 			this.m.PresetNames = ::MSU.Utils.deserialize(_in);
 		}
 
+		::logInfo("camp deserialize encounters start");
 		if (::Legends.Mod.Serialization.isSavedVersionAtLeast("19.1.0", _in.getMetaData())) {
 			this.m.CampEncountersCooldownUntil = _in.readF32();
-			local size = _in.readU32();
-			for(local i = 0; i < size; i++) {
-				local e = this.World.Encounters.getEncounter(_in.readString());
+			this.m.CampEncounters.push(::World.Encounters.m.CampEncounters[0]);
+			while(_in.readBool()) {
+				local e = ::World.Encounters.getEncounter(_in.readString());
 				if (e != null) {
 					this.m.CampEncounters.push(e);
-				} else {
-					_in.readF32(); // same as in encounter
 				}
 			}
 		}
+		::logInfo("camp deserialize encounters end");
 	}
 
 };

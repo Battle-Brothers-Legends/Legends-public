@@ -46,11 +46,11 @@
 	o.onInit = function()
 	{
 		this.m.CommanderDied = false;
-		this.m.Camp = this.new("scripts/states/world/camp_manager");
-		::World.Camp <- this.WeakTableRef(this.m.Camp);
 		this.m.Encounters = this.new("scripts/states/world/encounter_manager");
 		::World.Encounters <- this.WeakTableRef(this.m.Encounters);
 		this.m.Encounters.onInit();
+		this.m.Camp = this.new("scripts/states/world/camp_manager");
+		::World.Camp <- this.WeakTableRef(this.m.Camp);
 		onInit();
 	}
 
@@ -1189,6 +1189,7 @@
 				::Time.scheduleEvent(::TimeUnit.Real, 500, function ( _tag ) {
 					::World.State.setPause(false);
 				}, null);
+				::World.Encounters.clearActiveEvent();
 			} else {
 				if (_playSound && ::Const.Events.GlobalSound != "")
 					::Sound.play(::Const.Events.GlobalSound, 1.0);
@@ -1225,6 +1226,7 @@
 				::Time.scheduleEvent(::TimeUnit.Real, 500, function ( _tag ) {
 					::World.State.setPause(false);
 				}, null);
+				::World.Encounters.clearActiveEvent();
 			} else {
 				if (_playSound && ::Const.Events.GlobalSound != "")
 					::Sound.play(::Const.Events.GlobalSound, 1.0);
@@ -1535,8 +1537,8 @@
 	local onSerialize = o.onSerialize;
 	o.onSerialize = function ( _out )
 	{
-		this.m.Encounters.onSerialize(_out);
-		onSerialize( _out );
+		::World.Encounters.onSerialize(_out);
+		onSerialize(_out);
 		::World.Camp.onSerialize(_out);
 	}
 
@@ -1544,7 +1546,7 @@
 	o.onDeserialize = function ( _in )
 	{
 		if (::Legends.Mod.Serialization.isSavedVersionAtLeast("19.1.0", _in.getMetaData())) {
-			this.m.Encounters.onDeserialize(_in);
+			::World.Encounters.onDeserialize(_in);
 		}
 		onDeserialize(_in);
 		if (this.m.EscortedEntity == null) {

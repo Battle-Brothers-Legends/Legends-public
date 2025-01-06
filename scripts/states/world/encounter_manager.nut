@@ -35,6 +35,11 @@ this.encounter_manager <- {
         }
     }
 
+	function clearActiveEvent() {
+		this.m.ActiveEvent.clear();
+		this.m.ActiveEvent = null;
+	}
+
     function getEncounter(_typeID) {
         foreach (e in this.m.SettlementEncounters) {
             if (e.getType() == _typeID)
@@ -134,8 +139,7 @@ this.encounter_manager <- {
             }
             else
             {
-                this.m.ActiveEvent.clear();
-                this.m.ActiveEvent = null;
+				this.clearActiveEvent();
                 return false;
             }
         } else {
@@ -153,7 +157,7 @@ this.encounter_manager <- {
         this.m.ActiveEvent = _encounter;
         this.m.ActiveEvent.fire();
 
-        this.World.State.showEncounterScreenFromTown(_encounter);
+        ::World.State.showEncounterScreenFromTown(_encounter);
         return true;
     }
 
@@ -166,7 +170,7 @@ this.encounter_manager <- {
         this.m.ActiveCampEvent = _encounter;
         this.m.ActiveCampEvent.fire();
 
-        this.World.State.showEncounterScreenFromCamp(_encounter);
+        ::World.State.showEncounterScreenFromCamp(_encounter);
         return true;
     }
 
@@ -182,16 +186,18 @@ this.encounter_manager <- {
     function onDeserialize( _in )
     {
 		if (::Legends.Mod.Serialization.isSavedVersionAtLeast("19.1.0", _in.getMetaData())) {
+			::logInfo("deserializing encounters");
             local numEncounters = _in.readU32();
             for (local i = 0; i < numEncounters; i++) {
                 local e = this.getEncounter(_in.readString());
                 if (e != null) {
-                    e.onDeserialize(_in);
+					e.onDeserialize(_in);
                 } else {
-                    // this here has to be the same as encounter's onDeserialize, to skip all stored data
-                    _in.readF32();
+					::logInfo("deserializing encounters null? why");
+					_in.readF32(); // this here has to be the same as encounter's onDeserialize, to skip all stored data
                 }
             }
+			::logInfo("deserializing encounters done");
         }
     }
 };
