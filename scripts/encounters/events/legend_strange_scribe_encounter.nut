@@ -2,7 +2,7 @@ this.legend_strange_scribe_encounter <- this.inherit("scripts/encounters/encount
     m = {},
     function create() {
         this.m.Type = "encounter.legend_strange_scribe_encounter";
-        this.m.Name = "strange_scribe_encounter";
+        this.m.Name = "Strange scribe";
 		this.m.Event = "event.strange_scribe";
     }
 })

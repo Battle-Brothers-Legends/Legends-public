@@ -2,7 +2,7 @@ this.legend_jousting_tournament_camp_encounter <- this.inherit("scripts/encounte
     m = {},
     function create() {
         this.m.Type = "encounter.legend_jousting_tournament_camp_encounter";
-        this.m.Name = "jousting_tournament_camp_encounter";
+        this.m.Name = "Jousting Tournament";
 		this.m.Event = "event.jousting_tournament_event";
 	}
 })
