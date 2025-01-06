@@ -135,7 +135,7 @@ this.legend_kick_skill <- this.inherit("scripts/skills/skill", {
 		skills.removeByID("effects.shieldwall");
 		skills.removeByID("effects.spearwall");
 		skills.removeByID("effects.riposte");
-		skills.removeByID("effects.return_favor");
+		skills.removeByID("effects.legend_return_favor");
 
 		if (this.m.SoundOnHit.len() != 0)
 		{

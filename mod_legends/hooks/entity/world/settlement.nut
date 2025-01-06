@@ -350,27 +350,12 @@
 
 	o.getWealthBaseLevel <- function ()
 	{
-		local baseLevel = 0.0;
+		local baseLevel = 50 + this.getSize() * 50;
+		if (this.isMilitary())
+			baseLevel += 50.0;
 
-		if (this.isMilitary()) baseLevel += 50.0;
-
-		if (this.isKindOf(this, "city_state")) baseLevel += 100;
-
-		switch(this.getSize())
-		{
-		case 1:
-			baseLevel += 100.0;
-			break;
-
-		case 2:
-			baseLevel += 150.0;
-			break;
-
-		case 3:
-			baseLevel += 200.0;
-			break;
-		}
-
+		if (this.isKindOf(this, "city_state"))
+			baseLevel += 100;
 		return baseLevel;
 	}
 
@@ -1045,28 +1030,13 @@
 
 		this.onBuild(_settings);
 
-		if (this.m.Size <= 1)
-		{
-			this.m.Resources = 100;
-		}
-		else if (this.m.Size == 2)
-		{
-			this.m.Resources = 150;
-		}
-		else if (this.m.Size == 3)
-		{
-			this.m.Resources = 200;
-		}
+		this.m.Resources = 50 + this.getSize() * 50;
 
 		if (this.isMilitary())
-		{
 			this.m.Resources += 50;
-		}
 
 		if (this.isKindOf(this, "city_state"))
-		{
 			this.m.Resources += 100;
-		}
 
 		if (this.getHousesMax() > 0)
 		{
@@ -1822,33 +1792,11 @@
 
 	o.getBaseResourceLevel  <- function ()
 	{
-		local minResources = 50;
-
+		local minResources = 50 + this.getSize() * 50;
 		if (this.isMilitary())
-		{
 			minResources = minResources + 50;
-		}
-
 		if (this.isKindOf(this, "city_state"))
-		{
 			minResources = minResources + 100;
-		}
-
-		switch(this.m.Size)
-		{
-		case 1:
-			minResources = minResources + 100;
-			break;
-
-		case 2:
-			minResources = minResources + 150;
-			break;
-
-		case 3:
-			minResources = minResources + 200;
-			break;
-		}
-
 		return minResources;
 	}
 

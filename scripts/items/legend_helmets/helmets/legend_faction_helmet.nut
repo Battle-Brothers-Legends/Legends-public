@@ -18,16 +18,6 @@ this.legend_faction_helmet <- this.inherit("scripts/items/legend_helmets/hood/le
 		this.m.Vision = 0;
 	}
 
-	function updateVariant()
-	{
-		local variant = this.m.Variant > 9 ? this.m.Variant : "0" + this.m.Variant;
-		this.m.Sprite = "chain_hood" + "_" + variant;
-		this.m.SpriteDamaged = "chain_hood" + "_" + variant + "_damaged";
-		this.m.SpriteCorpse = "chain_hood" + "_" + variant + "_dead";
-		this.m.IconLarge = "";
-		this.m.Icon = "legend_helmets/inventory_chain_hood" + "_" + variant + ".png"
-	}
-
 	function setupArmor( _variant ) {
 		local helm = this.new("scripts/items/legend_helmets/helm/legend_helmet_great_helm");
 		helm.setVariant(1);
