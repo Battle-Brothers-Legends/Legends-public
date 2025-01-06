@@ -34,7 +34,9 @@ this.legend_drum <- this.inherit("scripts/items/weapons/weapon", {
 	function onEquip()
 	{
 		this.weapon.onEquip();
-		this.addSkill(this.new("scripts/skills/actives/legend_drum_bash_skill"));
+		local s = this.new("scripts/skills/actives/bash");
+		s.m.IsDrumBash = true;
+		this.addSkill(s);
 		local s = this.new("scripts/skills/actives/knock_out");
 		this.addSkill(s);
 	}

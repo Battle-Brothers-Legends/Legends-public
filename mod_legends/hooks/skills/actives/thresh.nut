@@ -19,7 +19,7 @@
 	local getTooltip = o.getTooltip;
 	o.getTooltip = function ()
 	{
-		ret = getTooltip();
+		local ret = getTooltip();
 
 		if (this.m.IsChain)
 		{
