@@ -526,7 +526,6 @@ this.camp_manager <- {
 
 	function onDeserialize( _in )
 	{
-		::logInfo("camp deserialize start");
 		this.m.IsCamping = _in.readBool();
 		this.m.LastHourUpdated = _in.readU8();
 		this.m.StartTime = _in.readF32();
@@ -561,7 +560,6 @@ this.camp_manager <- {
 			this.m.PresetNames = ::MSU.Utils.deserialize(_in);
 		}
 
-		::logInfo("camp deserialize encounters start");
 		if (::Legends.Mod.Serialization.isSavedVersionAtLeast("19.1.0", _in.getMetaData())) {
 			this.m.CampEncountersCooldownUntil = _in.readF32();
 			this.m.CampEncounters.push(::World.Encounters.m.CampEncounters[0]);
@@ -572,7 +570,6 @@ this.camp_manager <- {
 				}
 			}
 		}
-		::logInfo("camp deserialize encounters end");
 	}
 
 };

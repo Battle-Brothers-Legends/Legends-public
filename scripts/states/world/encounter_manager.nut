@@ -186,18 +186,15 @@ this.encounter_manager <- {
     function onDeserialize( _in )
     {
 		if (::Legends.Mod.Serialization.isSavedVersionAtLeast("19.1.0", _in.getMetaData())) {
-			::logInfo("deserializing encounters");
             local numEncounters = _in.readU32();
             for (local i = 0; i < numEncounters; i++) {
                 local e = this.getEncounter(_in.readString());
                 if (e != null) {
 					e.onDeserialize(_in);
                 } else {
-					::logInfo("deserializing encounters null? why");
 					_in.readF32(); // this here has to be the same as encounter's onDeserialize, to skip all stored data
                 }
             }
-			::logInfo("deserializing encounters done");
         }
     }
 };
