@@ -183,7 +183,7 @@ this.encounter_manager <- {
     {
 		if (::Legends.Mod.Serialization.isSavedVersionAtLeast("19.1.0", _in.getMetaData())) {
             local numEncounters = _in.readU32();
-            for (local i = 0; i < numEncounters; i = ++i) {
+            for (local i = 0; i < numEncounters; i++) {
                 local e = this.getEncounter(_in.readString());
                 if (e != null) {
                     e.onDeserialize(_in);
