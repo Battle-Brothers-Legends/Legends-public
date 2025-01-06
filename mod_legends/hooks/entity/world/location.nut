@@ -1,4 +1,4 @@
-::mods_hookExactClass("entity/world/location", function(o) 
+::mods_hookExactClass("entity/world/location", function(o)
 {
 	o.isShowingDefenders = function ()
 	{
@@ -201,6 +201,11 @@
 		}
 
 		this.updateStrength();
+	}
+
+	local setResources = o.setResources;
+	o.setResources <- function (_v) {
+		setResources(::Math.max(0, ::Math.round(_v)));
 	}
 
 	o.getNewResources <- function ()
