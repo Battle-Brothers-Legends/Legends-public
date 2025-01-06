@@ -34,8 +34,12 @@ this.legend_staff <- this.inherit("scripts/items/weapons/weapon", {
 	function onEquip()
 	{
 		this.weapon.onEquip();
-		this.addSkill(this.new("scripts/skills/actives/legend_staff_bash_skill"));
-		this.addSkill(this.new("scripts/skills/actives/legend_staff_knock_out_skill"));
+		local s = this.new("scripts/skills/actives/bash");
+		s.m.IsStaffBash = true;
+		this.addSkill(s);
+		s = this.new("scripts/skills/actives/knock_out")
+		s.m.IsStaffKnockOut = true;
+		this.addSkill(s);
 	}
 
 });
