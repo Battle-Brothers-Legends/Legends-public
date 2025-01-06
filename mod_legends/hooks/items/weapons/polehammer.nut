@@ -8,7 +8,7 @@
 
 	o.addSkill <- function( _skill )
 	{
-		weapon.addSkill(_skill);
+		this.weapon.addSkill(_skill);
 
 		if (_skill.getID() != "actives.batter")
 			return;

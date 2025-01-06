@@ -12,6 +12,6 @@
 		if (_skill.getID() == "actives.slash")
 			_skill.m.isGreatSlash = true;
 
-		named_weapon.addSkill(_skill);
+		this.named_weapon.addSkill(_skill);
 	}
 });
