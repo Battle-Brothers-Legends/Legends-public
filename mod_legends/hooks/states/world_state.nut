@@ -1179,9 +1179,13 @@
 	o.showEncounterScreenFromTown <- function (_encounter, _playSound = true) {
 		if (!this.m.EventScreen.isVisible() && !this.m.EventScreen.isAnimating())
 		{
-			if ("Event" in _encounter.m) {
+			if (::isKindOf(_encounter, "encounter_event")) {
 				::World.State.getMenuStack().popAll(true);
-				::Time.scheduleEvent(::TimeUnit.Virtual, 1, ::World.Events.fire, _encounter.m.Event);
+				local event = _encounter.m.Event;
+				::Time.scheduleEvent(::TimeUnit.Virtual, 1, function (_tag) {
+					::World.State.setPause(true);
+					::World.Events.fire(_tag);
+				}, event);
 				::Time.scheduleEvent(::TimeUnit.Real, 500, function ( _tag ) {
 					::World.State.setPause(false);
 				}, null);
@@ -1211,9 +1215,13 @@
 	o.showEncounterScreenFromCamp <- function (_encounter, _playSound = true) {
 		if (!this.m.EventScreen.isVisible() && !this.m.EventScreen.isAnimating())
 		{
-			if ("Event" in _encounter.m) {
+			if (::isKindOf(_encounter, "encounter_event")) {
 				::World.State.getMenuStack().popAll(true);
-				::Time.scheduleEvent(::TimeUnit.Virtual, 1, ::World.Events.fire, _encounter.m.Event);
+				local event = _encounter.m.Event;
+				::Time.scheduleEvent(::TimeUnit.Virtual, 1, function (_tag) {
+					::World.State.setPause(true);
+					::World.Events.fire(_tag);
+				}, event);
 				::Time.scheduleEvent(::TimeUnit.Real, 500, function ( _tag ) {
 					::World.State.setPause(false);
 				}, null);

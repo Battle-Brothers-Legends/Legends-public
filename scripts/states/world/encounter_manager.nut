@@ -48,28 +48,6 @@ this.encounter_manager <- {
     }
 
     /**
-     * Decides if event on settlement enter should be fired or not
-	 * TODO, do we want it?
-     */
-    function onSettlementEntered(_settlement) {
-//        local validEvents = [];
-//        foreach(event in this.m.SettlementEvents) {
-//            if (event.isTriggerValid(_settlement)) {
-//                validEvents.push(event);
-//            }
-//        }
-//        if (validEvents.len() == 0)
-//            return false;
-//
-//        if (this.canFireEvent()) {
-//            return this.World.Events.fireEvent(validEvents[0]);
-//        } else {
-//            ::logWarning("couldn't fire an event")
-//        }
-        return false;
-    }
-
-    /**
      * Encounter click handler
      */
     function processInput(_buttonID) {
@@ -172,10 +150,6 @@ this.encounter_manager <- {
             return false;
         }
 
-//        if (_update) {
-//            _encounter.update();
-//        }
-
         this.m.ActiveEvent = _encounter;
         this.m.ActiveEvent.fire();
 
@@ -188,10 +162,6 @@ this.encounter_manager <- {
             this.logInfo("Failed to fire event - another event with id \'" + this.m.ActiveCampEvent.getID() + "\' is already queued.");
             return false;
         }
-
-//        if (_update) {
-//            _encounter.update();
-//        }
 
         this.m.ActiveCampEvent = _encounter;
         this.m.ActiveCampEvent.fire();

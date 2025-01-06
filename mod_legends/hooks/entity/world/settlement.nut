@@ -1160,7 +1160,7 @@
 
 			::World.getTemporaryRoster().clear(); // clean up
 		}
-		
+
 		updateStables(_force);
 	}
 
@@ -2097,10 +2097,6 @@
 	o.onEnter = function () {
 		local ret = onEnter();
 		this.updateEncounters();
-		if(::World.Encounters.onSettlementEntered(this)) {
-			::World.State.m.LastEnteredTown = null;
-			return false;
-		}
 		return ret;
 	}
 
