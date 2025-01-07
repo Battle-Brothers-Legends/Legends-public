@@ -35,9 +35,10 @@
 	}
 
 	local getTooltip = o.getTooltip;
-	o.getTooltip()
+	o.getTooltip = function ()
 	{
 		if (this.m.IsDrumBash)
+		{
 			local ret = this.getDefaultTooltip();
 			local fatPerHit = (this.getContainer().getActor().getCurrentProperties().FatigueDealtPerHitMult + 1) * this.Const.Combat.FatigueReceivedPerHit;
 			ret.push({
@@ -47,6 +48,7 @@
 				text = "Inflicts [color=" + this.Const.UI.Color.DamageValue + "]" + fatPerHit + "[/color] extra fatigue"
 			});
 			return ret;
+		}
 		else
 		{
 			return getTooltip();
@@ -82,5 +84,4 @@
 			onAnySkillUsed( _skill, _targetEntity, _properties );
 		}
 	}
-
 });
