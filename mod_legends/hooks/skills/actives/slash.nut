@@ -39,7 +39,7 @@
 
 		if (this.m.isGlaiveSlash && this.getContainer().getActor().getCurrentProperties().IsSpecializedInSpears || !this.m.isGlaiveSlash && this.getContainer().getActor().getCurrentProperties().IsSpecializedInSwords)
 		{
-			ret.push({
+			tooltip.push({
 				id = 6,
 				type = "text",
 				icon = "ui/icons/hitchance.png",
