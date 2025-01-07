@@ -2,8 +2,7 @@
 {
 	o.m.IsStaffKnockOut <- false;
 
-	local setItem = o.setItem;
-	o.setItem = function (_item)
+	o.setItem <- function (_item)
 	{
 		if (this.m.IsStaffKnockOut)
 		{
@@ -13,7 +12,7 @@
 			this.m.IconDisabled = "skills/staff_knock_out_bw.png";
 			this.m.MaxRange = 2;
 		}
-		setItem(_item);
+		this.skill.setItem(_item);
 	}
 
 	local getTooltip = o.getTooltip;

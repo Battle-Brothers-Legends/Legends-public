@@ -2,8 +2,7 @@
 {
 	o.m.IsChain <- false;
 
-	local setItem = o.setItem;
-	o.setItem = function (_item)
+	o.setItem <- function (_item)
 	{
 		if (this.m.IsChain)
 		{
@@ -13,7 +12,7 @@
 			this.m.ChanceDisembowel = 10;
 			this.m.ChanceSmash = 33;
 		}
-		setItem(_item);
+		this.skill.setItem(_item);
 	}
 
 	local getTooltip = o.getTooltip;

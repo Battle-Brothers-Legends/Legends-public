@@ -4,8 +4,7 @@
 	o.m.IsDrumBash <- false;
 	o.m.IsStaffBash <- false;
 
-	local setItem = o.setItem;
-	o.setItem = function (_item) {
+	o.setItem <- function (_item) {
 		if (this.m.IsDrumBash)
 		{
 			this.m.Name = "Drum Bash";
@@ -30,7 +29,7 @@
 			this.m.IconDisabled = "skills/staff_bash_bw.png";
 			this.m.MaxRange = 2;
 		}
-		setItem(_item);
+		this.skill.setItem(_item);
 	}
 
 	local getTooltip = o.getTooltip;
