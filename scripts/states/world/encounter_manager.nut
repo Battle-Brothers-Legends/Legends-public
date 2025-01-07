@@ -16,16 +16,13 @@ this.encounter_manager <- {
         foreach(i, scriptFile in this.IO.enumerateFiles("scripts/encounters/situation")) {
             this.m.SettlementEncounters.push(this.new(scriptFile));
         }
-        ::logInfo("initialized SettlementEncounters, len=" +  this.m.SettlementEncounters.len());
 
         foreach(i, scriptFile in this.IO.enumerateFiles("scripts/encounters/camp")) {
             this.m.CampEncounters.push(this.new(scriptFile));
         }
-        ::logInfo("initialized CampEncounters, len=" +  this.m.CampEncounters.len());
     }
 
     function clear() {
-        ::logInfo("clearing event manager, events atm: " + this.m.SettlementEncounters.len());
         this.m.ActiveEvent = null;
         foreach(e in this.m.SettlementEncounters) {
             e.reset();
@@ -36,7 +33,8 @@ this.encounter_manager <- {
     }
 
 	function clearActiveEvent() {
-		this.m.ActiveEvent.clear();
+		if (this.m.ActiveEvent != null)
+			this.m.ActiveEvent.clear();
 		this.m.ActiveEvent = null;
 	}
 
