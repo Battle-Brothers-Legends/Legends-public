@@ -23,7 +23,7 @@ this.perk_legend_vala_premonition <- this.inherit("scripts/skills/skill", {
 	function getTooltip()
 	{
 		local bonus = this.getBonus();
-		local ret = this.getDefaultTooltip();
+		local ret = this.getDefaultUtilityTooltip();
 
 		ret.push({
 			id = 10,
