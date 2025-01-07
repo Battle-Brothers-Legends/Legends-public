@@ -121,7 +121,7 @@
 
 	o.setResources <- function (_v)
 	{
-		this.m.Resources = this.Math.max(1, this.Math.round(_v));
+		this.m.Resources = this.Math.max(0, this.Math.round(_v));
 	}
 
 	o.onSerialize = function ( _out )

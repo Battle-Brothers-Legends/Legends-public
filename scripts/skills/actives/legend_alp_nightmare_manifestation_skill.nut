@@ -59,7 +59,7 @@ this.legend_alp_nightmare_manifestation_skill <- this.inherit("scripts/skills/sk
 	}
 
 	function onVerifyTarget( _originTile, _targetTile )
-	{	
+	{
 		if (!_targetTile.getEntity().getSkills().hasSkill("effects.sleeping"))
 			return false;
 
@@ -85,7 +85,7 @@ this.legend_alp_nightmare_manifestation_skill <- this.inherit("scripts/skills/sk
 			local type = ::MSU.Array.rand(["direwolf","human","serpent","tentacle"]);
 
 			//this.Time.scheduleEvent(this.TimeUnit.Virtual, 100 * i, function(_a) {
-				local nightmare = this.Tactical.spawnEntity("scripts/entity/tactical/enemies/alp_nightmare_" + type, tile.Coords.X, tile.Coords.Y);
+				local nightmare = this.Tactical.spawnEntity("scripts/entity/tactical/enemies/legend_alp_nightmare_" + type, tile.Coords.X, tile.Coords.Y);
 				nightmare.setFaction(_user.getFaction());
 				nightmare.spawnSpecialEffect(tile);
 				nightmare.assignRandomEquipment();
