@@ -2,10 +2,9 @@
 {
 	o.m.IsChain <- false;
 
-	local create = o.create;
-	o.create = function ()
+	local setItem = o.setItem;
+	o.setItem = function (_item)
 	{
-		create();
 		if (this.m.IsChain)
 		{
 			this.m.Name = "Chain Thresh";
@@ -14,6 +13,7 @@
 			this.m.ChanceDisembowel = 10;
 			this.m.ChanceSmash = 33;
 		}
+		setItem(_item);
 	}
 
 	local getTooltip = o.getTooltip;

@@ -4,10 +4,8 @@
 	o.m.IsDrumBash <- false;
 	o.m.IsStaffBash <- false;
 
-	local create = o.create;
-	o.create = function ()
-	{
-		create();
+	local setItem = o.setItem;
+	o.setItem = function (_item) {
 		if (this.m.IsDrumBash)
 		{
 			this.m.Name = "Drum Bash";
@@ -19,7 +17,7 @@
 		else if (this.m.IsLuteBash)
 		{
 			this.m.Name = "Lute Bash";
-			this.m.Description = "A brute force attack with a stringed instrument";
+			this.m.Description = "A brute force attack with a string instrument";
 			this.m.KilledString = "Luted";
 			this.m.ActionPointCost = 3;
 			this.m.FatigueCost = 9;
@@ -32,6 +30,7 @@
 			this.m.IconDisabled = "skills/staff_bash_bw.png";
 			this.m.MaxRange = 2;
 		}
+		setItem(_item);
 	}
 
 	local getTooltip = o.getTooltip;

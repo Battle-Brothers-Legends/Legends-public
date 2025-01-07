@@ -2,10 +2,9 @@
 {
 	o.m.IsStaffKnockOut <- false;
 
-	local create = o.create;
-	o.create = function ()
+	local setItem = o.setItem;
+	o.setItem = function (_item)
 	{
-		create();
 		if (this.m.IsStaffKnockOut)
 		{
 			this.m.Name = "Staff Daze";
@@ -14,6 +13,7 @@
 			this.m.IconDisabled = "skills/staff_knock_out_bw.png";
 			this.m.MaxRange = 2;
 		}
+		setItem(_item);
 	}
 
 	local getTooltip = o.getTooltip;
@@ -89,8 +89,8 @@
 				if (_user.getCurrentProperties().IsSpecializedInStaffStun)
 				{
 					target.getSkills().add(this.new("scripts/skills/effects/staggered_effect"));
-					
-					if (!target.getCurrentProperties().IsImmuneToStun) 
+
+					if (!target.getCurrentProperties().IsImmuneToStun)
 					{
 						target.getSkills().add(this.new("scripts/skills/effects/stunned_effect"));
 					}
