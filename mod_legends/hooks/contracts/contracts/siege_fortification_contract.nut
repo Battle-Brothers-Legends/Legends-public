@@ -79,7 +79,7 @@
 
 	local spawnReliefForces = o.spawnReliefForces;
 	o.spawnReliefForces = function () {
-		local f = this.World.FactionManager.getFaction(this.getFaction());
+		local f = this.m.Origin.getOwner();
 		local party = null;
 		f.setSpawnListener(function(entity) {
 			party = entity;
