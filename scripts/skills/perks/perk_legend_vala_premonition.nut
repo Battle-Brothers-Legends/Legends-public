@@ -24,6 +24,7 @@ this.perk_legend_vala_premonition <- this.inherit("scripts/skills/skill", {
 	{
 		local bonus = this.getBonus();
 		local ret = this.getDefaultUtilityTooltip();
+		ret.pop(); // pop cost
 
 		ret.push({
 			id = 10,
