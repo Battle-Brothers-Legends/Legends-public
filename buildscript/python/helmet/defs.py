@@ -284,7 +284,7 @@ class Defs:
  "title" :  "Flat Top Helm",
  "desc" :  "A flat full-metal helmet with noseguard."
  },
-{"name" : "flat_top_helm_polished"                     , "layer" : "helm", "min" : 1, "max" : 6, "value" : 550, "con" : 100, "stam" : -5, "vis" : -1, "hair" : "true", "beard" : "false",
+{"name" : "flat_top_helm_polished"                     , "layer" : "helm", "min" : 1, "max" : 6, "value" : 750, "con" : 100, "stam" : -5, "vis" : -1, "hair" : "true", "beard" : "false",
  "title" :  "Hardened Flat Top Helm",
  "desc" :  "An outstandingly well made and maintained flat full-metal helmet with noseguard."
  },
@@ -296,15 +296,15 @@ class Defs:
  "title" :  "Barbute",
  "desc" :  "A superb barbute helmet of foreign origin, this helmet has been blackened and polished to a dark shine. "
  },
-{"name" : "horsetail"                     , "layer" : "helm", "min" : 1, "max" : 6, "value" : 200, "con" : 60, "stam" : -3, "vis" : -1, "hair" : "true", "beard" : "false",
+{"name" : "horsetail"                     , "layer" : "helm", "min" : 1, "max" : 6, "value" : 350, "con" : 60, "stam" : -3, "vis" : -1, "hair" : "true", "beard" : "false",
  "title" :  "Steppe Helm",
  "desc" :  "A nasal helmet witch an attached mail neck guard fashioned in the way of the steppe folks."
  },
-{"name" : "basinet"                     , "layer" : "helm", "min" : 1, "max" : 7, "value" : 1250, "con" : 80, "stam" : -5, "vis" : -1, "hair" : "true", "beard" : "false",
+{"name" : "basinet"                     , "layer" : "helm", "min" : 1, "max" : 7, "value" : 400, "con" : 80, "stam" : -5, "vis" : -1, "hair" : "true", "beard" : "false",
  "title" :  "Bascinet",
  "desc" :  "A well made metal bascinet."
  },
-{"name" : "bascinet_named"                     , "layer" : "helm", "min" : 1, "max" : 1, "value" : 2500, "con" : 90, "stam" : -4, "vis" : -1, "hair" : "true", "beard" : "false", "named" : True, "rmaxViz" : 0, "rminViz" : 1, "rmaxStam" : 2, "rminStam" : 4, "rminCond" : 90, "rmaxCond" : 115, "names" : Names,
+{"name" : "bascinet_named"                     , "layer" : "helm", "min" : 1, "max" : 1, "value" : 1700, "con" : 90, "stam" : -4, "vis" : -1, "hair" : "true", "beard" : "false", "named" : True, "rmaxViz" : 0, "rminViz" : 1, "rmaxStam" : 2, "rminStam" : 4, "rminCond" : 90, "rmaxCond" : 115, "names" : Names,
  "title" :  "Bascinet",
  "desc" :  "A heavy and durable bascinet. This one has a pointed head and is blackened."
  },
