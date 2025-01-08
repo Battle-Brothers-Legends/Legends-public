@@ -143,7 +143,7 @@ this.legend_firefield_skill <- this.inherit("scripts/skills/skill", {
 			for (local i = 0; i < 2; ++i)
 			{
 				if (entity.isAlive() && !entity.isDying())
-					p.Callback.onApplyFire(tile, entity);
+					this.Const.Tactical.Common.onApplyFire(tile, entity);
 			}
 		}
 
