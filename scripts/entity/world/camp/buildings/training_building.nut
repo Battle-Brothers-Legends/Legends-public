@@ -358,6 +358,14 @@ this.training_building <- this.inherit("scripts/entity/world/camp/camp_building"
 		});
 	}
 
+	function getBreak( _bro )
+	{
+		this.m.Results.push({
+			Icon = "", //Should get an icon for failed training
+			Text = _bro.getName() + " was recovering from an injury so didn't train."
+		});
+	}
+
 	function getBonus( bro )
 	{
 		if (!bro.getSkills().hasSkill("trait.legend_intensive_training_trait"))
@@ -487,11 +495,17 @@ this.training_building <- this.inherit("scripts/entity/world/camp/camp_building"
 				continue;
 			}
 
+			if (this.getInjury(bro))
+			{
+				this.getBreak(bro);
+				continue;
+			}
+
 			local r = this.Math.min(95, 100 * this.Math.pow(this.m.Camp.getCampTimeHours() / 12.0, 0.6 + 0.1 * bro.getLevel()));
 
 			if ( this.Math.rand(1, 100) < r)
 			{
-				if ( bro.getLevel() < 11 )
+				if ( bro.getLevel() < 12 )
 				{
 					this.getTrained(bro);
 				}
@@ -539,8 +553,8 @@ this.training_building <- this.inherit("scripts/entity/world/camp/camp_building"
 	
 			if (this.Math.rand(1, 100) < r)
 			{
-					local effect = this.new("scripts/skills/effects_world/exhausted_effect");
-					bro.getSkills().add(effect);
+				local effect = this.new("scripts/skills/effects_world/exhausted_effect");
+				bro.getSkills().add(effect);
 			}
 		
 		}
