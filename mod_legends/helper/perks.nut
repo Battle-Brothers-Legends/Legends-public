@@ -1,6 +1,17 @@
 if (!("Perks" in ::Legends))
 	::Legends.Perks <- {};
 
+::Legends.Perks.getContainer <- function (_target) {
+	local container = null;
+	if (::isKindOf(_target, "skill_container"))
+		container = _target;
+	else if (::isKindOf(_target, "actor"))
+		container = _target.getSkills();
+	else
+		throw "Unsupported _target class";
+	return container;
+}
+
 /**
  * Helper function, that checks existence of perk on _target, adds it if needed,
  * with optional lambda to modify perk on the fly.
@@ -13,14 +24,7 @@ if (!("Perks" in ::Legends))
  *	});
  */
 ::Legends.Perks.grant <- function (_target, _def, _applyFn = null) {
-	local container = null;
-	if (::isKindOf(_target, "skill_container"))
-		container = _target;
-	else if (::isKindOf(_target, "actor"))
-		contailer = _target.getSkills();
-	else
-		throw "Unsupported _target class";
-
+	local container = ::Legends.Perks.getContainer(_target);
 	local perkDef = ::Const.Perks.PerkDefObjects[_def];
 
 	if (container.hasPerk(_def)) {
