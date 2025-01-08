@@ -193,7 +193,7 @@ this.legend_basilisk_sentry <- this.inherit("scripts/entity/tactical/actor", {
 
 				if (r <= 40)
 				{
-					loot = this.new("scripts/items/misc/basilisk_feathers_item");
+					loot = this.new("scripts/items/misc/legend_basilisk_feathers_item");
 				}
 				else if (r <= 80)
 				{
