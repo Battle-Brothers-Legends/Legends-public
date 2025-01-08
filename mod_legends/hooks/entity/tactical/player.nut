@@ -523,7 +523,7 @@
 	local isReallyKilled = o.isReallyKilled;
 	o.isReallyKilled = function ( _fatalityType )
 	{
-		if (getBackground() == null)
+		if (this.getBackground() == null)
 			return true;
 
 		local shouldNotGet = [], original = [];
@@ -540,10 +540,10 @@
 		    ::Const.Injury.Permanent.remove(i);
 		}
 
-		if (!getSkills().hasSkill("injury.legend_burned_injury")) {
+		if (!this.getSkills().hasSkill("injury.legend_burned_injury")) {
 			foreach (burn in ::Const.Injury.Burning)
 			{
-				if (getSkills().hasSkill(burn.ID)) {
+				if (this.getSkills().hasSkill(burn.ID)) {
 					::Const.Injury.Permanent.push({
 						ID = "injury.legend_burned_injury",
 						Script = "injury_permanent/legend_burned_injury",
@@ -558,24 +558,39 @@
 		// return this array back to normal
 		::Const.Injury.Permanent = original;
 
-		if (getCurrentProperties().SurvivesAsUndead // i'm back as undead baby
-			&& !isStabled() // isn't donkey
-			&& !getFlags().has("undead") // isn't undead already
+		if (this.getCurrentProperties().SurvivesAsUndead // i'm back as undead baby
+			&& !this.isStabled() // isn't donkey
+			&& !this.getFlags().has("undead") // isn't undead already
 			&& !::Tactical.State.isScenarioMode() // not real run
 			&& !::Tactical.State.isAutoRetreat() // left behind
-			&& !isGuest() // not player
+			&& !this.isGuest() // not player
 		) {
-			getFlags().add("undead");
-			getFlags().add("zombie_minion");
-			getFlags().add("PlayerZombie");
-			improveMood(1.0, "Reborned to live again");
-			setMoraleState(::Const.MoraleState.Ignore);
-			getSkills().add(::new("scripts/skills/traits/legend_rotten_flesh_trait"));
-			addScenarioPerk(getBackground(), ::Const.Perks.PerkDefs.LegendZombieBite);
-			addScenarioPerk(getBackground(), ::Const.Perks.PerkDefs.NineLives);
+			this.getFlags().add("undead");
+			this.getFlags().add("zombie_minion");
+			this.getFlags().add("PlayerZombie");
+			this.improveMood(1.0, "Reborned to live again");
+			this.setMoraleState(::Const.MoraleState.Ignore);
+			this.getSkills().add(::new("scripts/skills/traits/legend_rotten_flesh_trait"));
+
+			local perk = ::new("scripts/skills/perks/perk_legend_zombie_bite");
+			perk.IsRefundable = false;
+			this.getSkills().add(perk);
+
+			if (this.getSkills().hasPerk(::Const.Perks.PerkDefs.NineLives)) {
+				local perk = this.getSkills().getSkillByID("perk.nine_lives");
+				if (perk.IsRefundable) {
+					this.m.PerkPoints += 1;
+					this.m.PerkPointsSpent -= 1;
+				}
+				perk.IsRefundable = false;
+			} else {
+				local perk = ::new("scripts/skills/perks/perk_nine_lives");
+				perk.IsRefundable = false;
+				this.getSkills().add(perk);
+			}
 
 			if (result) {
-				m.IsDying = false;
+				this.m.IsDying = false;
 				::updateAchievement("ScarsForLife", 1, 1);
 				::Tactical.getSurvivorRoster().add(this);
 			}

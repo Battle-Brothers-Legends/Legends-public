@@ -5,9 +5,10 @@
 	{
 		create();
 		this.m.Name = "Wiederganger Bite";
-		this.m.Description = "A vicious bite with a 15% increased chance to hit the head. Infects on legendary difficulty. Will revive humanoid enemies as allied Wiedergangers if dealt as a killing blow.";	
+		this.m.Description = "A vicious bite with a 15% increased chance to hit the head. Infects on legendary difficulty. Will revive humanoid enemies as allied Wiedergangers if dealt as a killing blow.";
 		this.m.IconDisabled = "skills/active_24_bw.png";
-		this.m.Order = this.Const.SkillOrder.OffensiveTargeted+2;
+		this.m.Order = this.Const.SkillOrder.OffensiveTargeted + 2;
+		this.m.IsIgnoredAsAOO = true;
 	}
 
 	o.getTooltip <- function ()
@@ -51,7 +52,7 @@
 			_properties.DamageRegularMax += 35;
 			_properties.DamageArmorMult = 0.5;
 			_properties.HitChance[this.Const.BodyPart.Head] += 15;
-			
+
 			if (this.canDoubleGrip())
 			{
 				_properties.DamageTotalMult /= 1.25;
