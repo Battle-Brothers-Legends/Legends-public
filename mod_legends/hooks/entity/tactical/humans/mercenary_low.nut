@@ -6,16 +6,16 @@
 		onInit();
 		local b = this.m.BaseProperties;
 		this.m.Skills.removeByID("perk.battle_forged");
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_nimble"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_backstabber"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_overwhelm"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_rotation"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_recover"));
+		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Nimble);
+		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Backstabber);
+		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Overwhelm);
+		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Rotation);
+		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Recover);
 		if (::Legends.isLegendaryDifficulty())
 		{
 			this.m.Hitpoints = b.Hitpoints * 2;
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_battle_forged"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_pathfinder"));
+			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.BattleForged);
+			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Pathfinder);
 			this.m.Skills.add(this.new("scripts/skills/traits/fearless_trait"));
 		}
 	}

@@ -283,24 +283,24 @@ this.legend_redback_spider <- this.inherit("scripts/entity/tactical/actor", {
 		this.setSize(this.Math.rand(70, 90) * 0.01);
 		this.m.Skills.add(this.new("scripts/skills/actives/legend_redback_spider_bite_skill"));
 		this.m.Skills.add(this.new("scripts/skills/actives/web_skill"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_footwork"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_rotation"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_recover"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_pathfinder"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_backstabber"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_nimble"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_fast_adaption"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_killing_frenzy"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_underdog"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_overwhelm"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_poison_immunity"));
+		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Footwork);
+		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Rotation);
+		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Recover);
+		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Pathfinder);
+		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Backstabber);
+		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Nimble);
+		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.FastAdaption);
+		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.KillingFrenzy);
+		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Underdog);
+		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Overwhelm);
+		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendPoisonImmunity);
 		this.m.Skills.add(this.new("scripts/skills/racial/legend_redback_spider_racial"));
 		if(::Legends.isLegendaryDifficulty())
 		{
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_levitation"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_battle_forged"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_crippling_strikes"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_inspiring_presence"));
+			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendLevitate);
+			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.BattleForged);
+			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.CripplingStrikes);
+			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.InspiringPresence);
 			this.m.Skills.add(this.new("scripts/skills/traits/fearless_trait"));
 		}
 		if (!this.Tactical.State.isScenarioMode())

@@ -6,8 +6,8 @@
 		onInit();
 		if (::Legends.isLegendaryDifficulty())
 		{
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_killing_frenzy"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_nimble"));
+			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.KillingFrenzy);
+			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Nimble);
 		}
 	}
 });

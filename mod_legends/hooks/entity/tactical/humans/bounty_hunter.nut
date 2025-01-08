@@ -5,23 +5,23 @@
 	{
 		onInit();
 		this.m.Skills.removeByID("effects.dodge");
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_dodge"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_rotation"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_footwork"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_recover"));
+		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Dodge);
+		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Rotation);
+		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Footwork);
+		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Recover);
 
 		if (::Legends.isLegendaryDifficulty())
 		{
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_battle_forged"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_pathfinder"));
+			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.BattleForged);
+			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Pathfinder);
 			// this.m.Skills.add(this.new("scripts/skills/perks/perk_trophy_hunter"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_big_game_hunter"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_head_hunter"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_back_to_basics"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_push_the_advantage"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_mastery_nets"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_onslaught"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_backstabber"));
+			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendBigGameHunter);
+			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.HeadHunter);
+			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendBackToBasics);
+			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendPushTheAdvantage);
+			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendMasteryNets);
+			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendOnslaught);
+			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Backstabber);
 			this.m.Skills.add(this.new("scripts/skills/traits/fearless_trait"));
 		}
 	}
@@ -65,7 +65,7 @@
 
 			if (this.m.Items.getItemAtSlot(this.Const.ItemSlot.Mainhand).getID() == "weapon.dagger")
 			{
-				this.m.Skills.add(this.new("scripts/skills/perks/perk_duelist"));
+				::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Duelist);
 			}
 		}
 

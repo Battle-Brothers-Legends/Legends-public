@@ -38,14 +38,14 @@ this.legend_caravan_guard <- this.inherit("scripts/entity/tactical/legend_random
 		this.getSprite("dirt").Visible = true;
 		if(::Legends.isLegendaryDifficulty())
 			{
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_specialist_shield_skill"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_specialist_shield_push"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_shield_bash"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_hold_out"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_underdog"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_rotation"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_alert"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_crippling_strikes"));
+			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendSpecialistShieldSkill);
+			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendSpecialistShieldPush);
+			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.ShieldBash);
+			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.HoldOut);
+			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Underdog);
+			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Rotation);
+			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendAlert);
+			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.CripplingStrikes);
 			this.m.Skills.add(this.new("scripts/skills/traits/fearless_trait"));
 			}
 	}

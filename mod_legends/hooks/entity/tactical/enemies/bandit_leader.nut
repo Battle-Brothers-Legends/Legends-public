@@ -34,23 +34,23 @@
 		this.setArmorSaturation(0.85);
 		this.getSprite("shield_icon").setBrightness(0.85);
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_captain"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_shield_expert"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_brawny"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_coup_de_grace"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_smackdown"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_quick_hands"));
+		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.ShieldExpert);
+		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Brawny);
+		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.CoupDeGrace);
+		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendSmackdown);
+		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.QuickHands);
 		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.NineLives);
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_rotation"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_recover"));
+		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Rotation);
+		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Recover);
 
 		if (::Legends.isLegendaryDifficulty())
 		{
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_battle_forged"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_composure"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_relentless"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_dodge"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_backstabber"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_underdog"));
+			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.BattleForged);
+			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendComposure);
+			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Relentless);
+			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Dodge);
+			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Backstabber);
+			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Underdog);
 			this.m.Skills.add(this.new("scripts/skills/traits/fearless_trait"));
 			this.m.Skills.add(this.new("scripts/skills/actives/rally_the_troops"));
 		}
@@ -234,7 +234,7 @@
 			this.m.Items.equip(this.Const.World.Common.pickHelmet(weightName));
 		}
 
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_underdog"));
+		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Underdog);
 		return true;
 	}
 });

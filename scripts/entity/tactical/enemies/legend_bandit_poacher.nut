@@ -44,12 +44,12 @@ this.legend_bandit_poacher <- this.inherit("scripts/entity/tactical/legend_rando
 
 		this.setArmorSaturation(0.85);
 		this.getSprite("shield_icon").setBrightness(0.85);
-		// this.m.Skills.add(this.new("scripts/skills/perks/perk_rotation"));
-		// this.m.Skills.add(this.new("scripts/skills/perks/perk_recover"));
+		// ::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Rotation);
+		// ::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Recover);
 		// if (::Legends.isLegendaryDifficulty())
 		// 	{
-		// 	this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_ballistics"));
-		// 	this.m.Skills.add(this.new("scripts/skills/perks/perk_crippling_strikes"));
+		// 	::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendBallistics);
+		// 	::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.CripplingStrikes);
 		// 	this.m.Skills.add(this.new("scripts/skills/traits/fearless_trait"));
 		// 	}
 

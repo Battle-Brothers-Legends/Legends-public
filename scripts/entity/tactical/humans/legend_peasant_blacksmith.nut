@@ -27,16 +27,16 @@ this.legend_peasant_blacksmith <- this.inherit("scripts/entity/tactical/human", 
 		local dirt = this.getSprite("dirt");
 		dirt.Visible = true;
 		dirt.Alpha = this.Math.rand(0, 255);
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_specialist_hammer_skill"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_specialist_hammer_damage"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_mastery_hammer"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_smackdown"));
+		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendSpecialistHammerSkill);
+		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendSpecialistHammerDamage);
+		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.SpecHammer);
+		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendSmackdown);
 		this.getSprite("socket").setBrush("bust_base_militia");
 
 		if(::Legends.isLegendaryDifficulty())
 		{
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_smackdown"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_nimble"));
+			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendSmackdown);
+			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Nimble);
 			this.m.Skills.add(this.new("scripts/skills/traits/fearless_trait"));
 		}
 	}

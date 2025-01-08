@@ -121,9 +121,9 @@ this.legend_donkey <- this.inherit("scripts/entity/tactical/actor", {
 		injury.Visible = false;
 		injury.setBrush("donkey_tactical_injured");
 		this.addDefaultStatusSprites();
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_stalwart"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_composure"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_poison_immunity"));
+		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Stalwart);
+		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendComposure);
+		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendPoisonImmunity);
 		this.m.Skills.update();
 	}
 

@@ -4,9 +4,9 @@
 	o.onInit = function ()
 	{
 		onInit();
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_dodge"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_rotation"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_recover"));
+		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Dodge);
+		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Rotation);
+		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Recover);
 	}
 
 	o.assignRandomEquipment = function ()
@@ -143,7 +143,7 @@
 			));
 		}
 
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_underdog"));
+		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Underdog);
 		return true;
 	}
 });

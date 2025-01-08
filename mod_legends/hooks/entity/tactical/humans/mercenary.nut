@@ -4,21 +4,21 @@
 	o.onInit = function ()
 	{
 		onInit();
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_rotation"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_recover"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_smashing_shields"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_crippling_strikes"));
+		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Rotation);
+		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Recover);
+		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendSmashingShields);
+		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.CripplingStrikes);
 		if(::Legends.isLegendaryDifficulty())
 		{
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_colossus"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_rebound"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_stalwart"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_clarity"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_footwork"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_underdog"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_steadfast"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_berserk"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_steel_brow"));
+			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Colossus);
+			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendRebound);
+			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Stalwart);
+			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendClarity);
+			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Footwork);
+			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Underdog);
+			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Steadfast);
+			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Berserk);
+			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.SteelBrow);
 			this.m.Skills.add(this.new("scripts/skills/traits/fearless_trait"));
 		}
 	}

@@ -69,14 +69,14 @@
 		this.m.Skills.add(this.new("scripts/skills/actives/hand_to_hand_orc"));
 		this.m.Skills.add(this.new("scripts/skills/actives/line_breaker"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_battering_ram"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_stalwart"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_shield_bash"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_hold_out"));
+		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Stalwart);
+		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.ShieldBash);
+		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.HoldOut);
 
 		if(::Legends.isLegendaryDifficulty())
 		{
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_battle_forged"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_brawny"));
+			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.BattleForged);
+			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Brawny);
 			this.m.Skills.add(this.new("scripts/skills/traits/fearless_trait"));
 		}
 

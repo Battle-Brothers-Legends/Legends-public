@@ -80,12 +80,12 @@
 		this.setSpriteOffset("status_rooted", this.createVec(-10, 16));
 		this.setSpriteOffset("status_stunned", this.createVec(0, 10));
 		this.setSpriteOffset("arrow", this.createVec(0, 10));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_crippling_strikes"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_pathfinder"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_steel_brow"));
+		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.CripplingStrikes);
+		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Pathfinder);
+		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.SteelBrow);
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_battering_ram"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_stalwart"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_hold_out"));
+		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Stalwart);
+		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.HoldOut);
 		this.m.Skills.add(this.new("scripts/skills/racial/unhold_racial"));
 		this.m.Skills.add(this.new("scripts/skills/actives/sweep_skill"));
 		this.m.Skills.add(this.new("scripts/skills/actives/sweep_zoc_skill"));
@@ -95,8 +95,8 @@
 		{
 			this.m.Hitpoints = 2 * b.Hitpoints;
 			b.MeleeSkill += 10;
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_battleheart"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_last_stand"));
+			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendBattleheart);
+			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendLastStand);
 			this.m.Skills.add(this.new("scripts/skills/traits/fearless_trait"));
 		}
 	}

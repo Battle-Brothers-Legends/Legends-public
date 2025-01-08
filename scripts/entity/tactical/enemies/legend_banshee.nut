@@ -191,19 +191,19 @@ this.legend_banshee <- this.inherit("scripts/entity/tactical/actor", {
 		this.setSpriteOffset("status_rooted", this.createVec(-5, -5));
 		this.m.Skills.add(this.new("scripts/skills/actives/ghastly_touch"));
 		this.m.Skills.add(this.new("scripts/skills/actives/legend_banshee_scream"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_anticipation"));
+		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Anticipation);
 		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.NineLives);
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_stalwart"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_composure"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_poison_immunity"));
+		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Stalwart);
+		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendComposure);
+		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendPoisonImmunity);
 		if (::Legends.isLegendaryDifficulty())
 		{
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_fearsome"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_dodge"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_levitation"));
+			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Fearsome);
+			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Dodge);
+			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendLevitate);
 			this.m.Skills.add(this.new("scripts/skills/actives/legend_nightmare_touch_skill"));
 			this.m.Skills.add(this.new("scripts/skills/actives/legend_nightmare_touch_zoc_skill"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_footwork"));
+			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Footwork);
 		}
 
 	}

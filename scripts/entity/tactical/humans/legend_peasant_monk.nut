@@ -27,19 +27,19 @@ this.legend_peasant_monk <- this.inherit("scripts/entity/tactical/human", {
 		local dirt = this.getSprite("dirt");
 		dirt.Visible = true;
 		dirt.Alpha = this.Math.rand(0, 255);
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_specialist_staff_skill"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_mastery_staff_stun"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_push_the_advantage"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_rally_the_troops"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_mastery_staves"));
+		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendSpecStaffSkill);
+		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendSpecStaffStun);
+		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendPushTheAdvantage);
+		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.RallyTheTroops);
+		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendMasteryStaves);
 		this.getSprite("socket").setBrush("bust_base_militia");
 			if(::Legends.isLegendaryDifficulty())
 			{
 			this.m.Hitpoints = b.Hitpoints * 1.5;
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_inspire"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_hold_out"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_fortified_mind"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_onslaught"));
+			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendInspire);
+			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.HoldOut);
+			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.FortifiedMind);
+			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendOnslaught);
 			this.m.Skills.add(this.new("scripts/skills/traits/fearless_trait"));
 			}
 	}

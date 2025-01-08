@@ -42,27 +42,27 @@ this.legend_peasant_armed_infected <- this.inherit("scripts/entity/tactical/huma
 		// }
 		// if (this.Math.rand(1, 100) <= 40)
 		// {
-		// 	this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_master_anger"));
+		// 	::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendMasterAnger);
 		// }
 
 		if (this.Math.rand(1, 100) <= 20)
 		{
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_fortified_mind"));
+			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.FortifiedMind);
 		}
 
 		if (this.Math.rand(1, 100) <= 10)
 		{
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_fortified_mind"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_rally_the_troops"));
+			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.FortifiedMind);
+			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.RallyTheTroops);
 		}
 
 		this.m.Skills.add(this.new("scripts/skills/traits/weasel_trait"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_back_to_basics"));
+		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendBackToBasics);
 		if(::Legends.isLegendaryDifficulty())
 		{
 			this.m.Hitpoints = b.Hitpoints * 1.5;
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_nimble"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_backstabber"));
+			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Nimble);
+			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Backstabber);
 
 			this.m.Skills.add(this.new("scripts/skills/traits/fearless_trait"));
 		}

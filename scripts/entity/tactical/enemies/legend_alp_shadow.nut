@@ -56,10 +56,10 @@ this.legend_alp_shadow <- this.inherit("scripts/entity/tactical/actor", {
 		this.m.Skills.add(this.new("scripts/skills/racial/ghost_racial"));
 		this.m.Skills.add(this.new("scripts/skills/racial/alp_racial"));
 		// basic perks
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_fearsome"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_stalwart"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_composure"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_poison_immunity"));
+		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Fearsome);
+		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Stalwart);
+		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendComposure);
+		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendPoisonImmunity);
 	}
 
 	// must be called after the onInit of the child class
@@ -92,10 +92,10 @@ this.legend_alp_shadow <- this.inherit("scripts/entity/tactical/actor", {
 
 		if (::Legends.isLegendaryDifficulty())
 		{
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_footwork"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_rotation"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_anticipation"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_dodge"));
+			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Footwork);
+			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Rotation);
+			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Anticipation);
+			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Dodge);
 		}
 
 		this.getSkills().update();

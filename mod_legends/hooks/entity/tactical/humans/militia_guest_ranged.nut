@@ -4,15 +4,15 @@
 	o.onInit = function ()
 	{
 		onInit();
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_bullseye"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_recover"));
+		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Bullseye);
+		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Recover);
 		if(::Legends.isLegendaryDifficulty())
 		{
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_specialist_shortbow_skill"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_specialist_shortbow_damage"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_crippling_strikes"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_lone_wolf"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_pathfinder"));
+			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendSpecialistShortbowSkill);
+			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendSpecialistShortbowDamage);
+			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.CripplingStrikes);
+			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LoneWolf);
+			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Pathfinder);
 			this.m.Skills.add(this.new("scripts/skills/traits/fearless_trait"));
 		}
 	}

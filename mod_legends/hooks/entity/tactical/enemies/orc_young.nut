@@ -74,8 +74,8 @@
 		if(::Legends.isLegendaryDifficulty())
 		{
 			b.MeleeSkill += 10;
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_crippling_strikes"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_brawny"));
+			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.CripplingStrikes);
+			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Brawny);
 			this.m.Skills.add(this.new("scripts/skills/traits/fearless_trait"));
 		}
 

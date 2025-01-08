@@ -1,4 +1,4 @@
-::mods_hookExactClass("entity/tactical/enemies/trickster_god", function(o) 
+::mods_hookExactClass("entity/tactical/enemies/trickster_god", function(o)
 {
 	local onInit = o.onInit;
 	o.onInit = function ()
@@ -6,16 +6,16 @@
 		onInit();
 		local b = this.m.BaseProperties;
 		b.IsAffectedByRain = false;
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_composure"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_poison_immunity"));
+		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendComposure);
+		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendPoisonImmunity);
 		{
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_colossus"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_fearsome"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_killing_frenzy"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_last_stand"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_underdog"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_carnage"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_battleheart"));
+			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Colossus);
+			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Fearsome);
+			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.KillingFrenzy);
+			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendLastStand);
+			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Underdog);
+			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendCarnage);
+			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendBattleheart);
 			this.m.Skills.add(this.new("scripts/skills/traits/fearless_trait"));
 		}
 	}

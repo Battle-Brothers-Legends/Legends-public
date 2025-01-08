@@ -10,12 +10,12 @@
 		{
 			this.m.Hitpoints = b.Hitpoints * 1.5;
 		}
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_poison_immunity"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_backstabber"));
+		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendPoisonImmunity);
+		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Backstabber);
 		if(::Legends.isLegendaryDifficulty())
 		{
 			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.NineLives);
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_last_stand"));
+			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendLastStand);
 		}
 	}
 });

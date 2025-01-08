@@ -53,18 +53,18 @@ this.legend_wildman <- this.inherit("scripts/entity/tactical/human", {
 		tattoo_body.Visible = true;
 		tattoo_head.setBrush(tattoo ? "warpaint_01_head" : "scar_02_head");
 		tattoo_head.Visible = true;
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_berserk"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_coup_de_grace"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_crippling_strikes"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_dodge"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_nimble"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_steel_brow"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_hold_out"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_killing_frenzy"));
+		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Berserk);
+		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.CoupDeGrace);
+		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.CripplingStrikes);
+		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Dodge);
+		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Nimble);
+		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.SteelBrow);
+		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.HoldOut);
+		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.KillingFrenzy);
 		if(::Legends.isLegendaryDifficulty())
 			{
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_ubernimble"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_muscularity"));
+			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendUberNimble);
+			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendMuscularity);
 			this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_mastery_fists"));
 			this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_kick_skill"));
 			this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_grapple_skill"));

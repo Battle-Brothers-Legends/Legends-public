@@ -27,19 +27,19 @@ this.legend_peasant_farmhand <- this.inherit("scripts/entity/tactical/human", {
 		local dirt = this.getSprite("dirt");
 		dirt.Visible = true;
 		dirt.Alpha = this.Math.rand(0, 255);
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_specialist_pitchfork_skill"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_specialist_pitchfork_damage"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_reach_advantage"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_mastery_polearm"));
+		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendSpecialistPitchforkSkill);
+		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendSpecialistPitchforkDamage);
+		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.ReachAdvantage);
+		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.SpecPolearm);
 		this.getSprite("socket").setBrush("bust_base_militia");
 			if(::Legends.isLegendaryDifficulty())
 			{
 			this.m.Hitpoints = b.Hitpoints * 1.5;
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_coup_de_grace"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_stalwart"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_steadfast"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_relentless"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_footwork"));
+			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.CoupDeGrace);
+			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Stalwart);
+			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Steadfast);
+			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Relentless);
+			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Footwork);
 			this.m.Skills.add(this.new("scripts/skills/traits/fearless_trait"));
 			}
 	}

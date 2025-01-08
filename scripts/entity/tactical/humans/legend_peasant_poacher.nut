@@ -27,17 +27,17 @@ this.legend_peasant_poacher <- this.inherit("scripts/entity/tactical/human", {
 		local dirt = this.getSprite("dirt");
 		dirt.Visible = true;
 		dirt.Alpha = this.Math.rand(0, 255);
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_specialist_shortbow_skill"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_specialist_shortbow_damage"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_bullseye"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_mastery_bow"));
+		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendSpecialistShortbowSkill);
+		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendSpecialistShortbowDamage);
+		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Bullseye);
+		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.SpecBow);
 		this.getSprite("socket").setBrush("bust_base_militia");
 
 		if(::Legends.isLegendaryDifficulty())
 		{
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_overwhelm"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_ballistics"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_crippling_strikes"));
+			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Overwhelm);
+			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendBallistics);
+			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.CripplingStrikes);
 			this.m.Skills.add(this.new("scripts/skills/traits/fearless_trait"));
 		}
 	}

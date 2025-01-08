@@ -8,9 +8,9 @@
 		this.m.Skills.add(this.new("scripts/skills/actives/legend_donkey_kick_skill"));
 		if(::Legends.isLegendaryDifficulty())
 		{
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_muscularity"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_steadfast"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_stalwart"));
+			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendMuscularity);
+			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Steadfast);
+			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Stalwart);
 		}
 		this.m.Skills.update();
 	}

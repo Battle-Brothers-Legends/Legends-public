@@ -51,11 +51,11 @@ this.sato_manhunter <- this.inherit("scripts/entity/tactical/human", {
 		b.IsSpecializedInSwords = true;
 		b.IsSpecializedInThrowing = true;
 
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_crippling_strikes"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_anticipation"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_quick_hands"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_fearsome"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_rotation"));
+		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.CripplingStrikes);
+		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Anticipation);
+		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.QuickHands);
+		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Fearsome);
+		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Rotation);
 	}
 
 	function onOtherActorDeath( _killer, _victim, _skill )

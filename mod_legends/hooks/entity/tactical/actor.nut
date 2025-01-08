@@ -357,7 +357,7 @@
 		// todo delete it - chopeks
 //		if (this.getBackground().getID() == "background.legend_witch" && this.LegendsMod.Configs().LegendMagicEnabled())
 //		{
-//			this.getSkills().add(this.new("scripts/skills/perks/perk_legend_magic_missile"));
+//			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendMagicMissile);
 //			perks = perks - 1;
 //		}
 
@@ -366,7 +366,7 @@
 		if (hasStudent)
 		{
 			this.m.PerkPointsSpent += 1;
-			this.getSkills().add(this.new("scripts/skills/perks/perk_student"));
+			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Student);
 		}
 
 		if (hasGifted)

@@ -1,4 +1,4 @@
-::mods_hookExactClass("entity/tactical/enemies/skeleton_lich", function(o) 
+::mods_hookExactClass("entity/tactical/enemies/skeleton_lich", function(o)
 {
 	o.onFactionChanged <- function ()
 	{
@@ -37,8 +37,8 @@
 		{
 			this.addSprite(a)
 		}
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_composure"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_poison_immunity"));
+		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendComposure);
+		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendPoisonImmunity);
 	}
 
 	o.assignRandomEquipment = function ()

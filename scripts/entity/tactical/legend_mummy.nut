@@ -506,11 +506,11 @@ this.legend_mummy <- this.inherit("scripts/entity/tactical/actor", {
 		this.m.Skills.add(this.new("scripts/skills/racial/legend_mummy_racial"));
 		this.m.Skills.add(this.new("scripts/skills/special/double_grip"));
 		this.m.Skills.add(this.new("scripts/skills/actives/hand_to_hand"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_rotation"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_battle_forged"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_steel_brow"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_shield_expert"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_fearsome"));
+		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Rotation);
+		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.BattleForged);
+		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.SteelBrow);
+		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.ShieldExpert);
+		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Fearsome);
 	}
 
 });

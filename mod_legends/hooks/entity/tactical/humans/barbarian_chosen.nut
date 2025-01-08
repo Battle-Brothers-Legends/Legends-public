@@ -6,12 +6,12 @@
 		onInit();
 		if (::Legends.isLegendaryDifficulty())
 		{
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_overwhelm"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_onslaught"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_alert"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_balance"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_backstabber"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_mastery_fist"));
+			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Overwhelm);
+			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendOnslaught);
+			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendAlert);
+			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendBalance);
+			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Backstabber);
+			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendSpecFists);
 			this.m.Skills.add(this.new("scripts/skills/traits/fearless_trait"));
 		}
 	}
@@ -116,7 +116,7 @@
 		this.getSprite("miniboss").setBrush("bust_miniboss");
 		local weapons = this.Const.Items.NamedBarbarianWeapons;
 		this.m.Items.equip(this.new("scripts/items/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_fearsome"));
+		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Fearsome);
 		return true;
 	}
 });

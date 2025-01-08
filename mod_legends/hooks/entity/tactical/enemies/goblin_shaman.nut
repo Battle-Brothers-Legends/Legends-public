@@ -4,12 +4,12 @@
 	o.onInit = function ()
 	{
 		onInit();
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_true_believer"));
+		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendTrueBeliever);
 		if(::Legends.isLegendaryDifficulty())
 		{
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_nimble"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_pathfinder"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_anticipation"));
+			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Nimble);
+			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Pathfinder);
+			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Anticipation);
 			this.m.Skills.add(this.new("scripts/skills/traits/fearless_trait"));
 		}
 	}

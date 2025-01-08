@@ -5,17 +5,17 @@ this.legends_zombie_med <- this.inherit("scripts/entity/tactical/legend_zombie",
 	{
 		this.m.SpawnType = this.Const.Tactical.Actor.LegendZombieMedium;
 		this.legend_zombie.onInit();
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_battle_forged"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_rotation"));
+		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.BattleForged);
+		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Rotation);
 		this.m.Skills.add(this.new("scripts/skills/actives/zombie_bite"));
 		// this.m.Skills.add(this.new("scripts/skills/traits/legend_rotten_flesh_trait"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_poison_immunity"));
+		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendPoisonImmunity);
 		if(::Legends.isLegendaryDifficulty())
 		{
 			this.m.BaseProperties.Hitpoints *= 1.5;
 			this.m.Hitpoints *= 1.5;
 			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.NineLives);
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_last_stand"));
+			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendLastStand);
 		}
 		this.m.Skills.update();
 	}

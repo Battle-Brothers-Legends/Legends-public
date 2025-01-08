@@ -159,15 +159,15 @@ this.legends_player_horserider <- this.inherit("scripts/entity/tactical/player",
 
 		if (this.getHorse().getSkills().hasSkill("perk.legend_horse_movement") && !this.getHorse().getSkills().hasSkill("perk.legend_horse_passage"))
 		{
-			this.getSkills().add(this.new("scripts/skills/perks/perk_legend_horse_movement"));
+			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendHorseMovement);
 		}
 		if (this.getHorse().getSkills().hasSkill("perk.legend_horse_passage"))
 		{
-			this.getSkills().add(this.new("scripts/skills/perks/perk_legend_horse_passage"));
+			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendHorsePassage);
 		}
 		//if (this.getHorse().getSkills().hasSkill("perk.legend_horse_pirouette"))
 		//{
-			this.getSkills().add(this.new("scripts/skills/perks/perk_legend_horse_pirouette"));
+			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendHorsePirouette);
 		//}
 		//if (this.getHorse().getSkills().hasSkill("perk.legend_horse_charge"))
 		//{
@@ -177,7 +177,7 @@ this.legends_player_horserider <- this.inherit("scripts/entity/tactical/player",
 		//add rider skills
 		if (this.getRider().getSkills().hasSkill("perk.legend_horse_movement") && !this.getHorse().getSkills().hasSkill("perk.legend_horse_passage"))
 		{
-			this.getSkills().add(this.new("scripts/skills/perks/perk_legend_horse_movement"));
+			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendHorseMovement);
 		}
 
 		//add all rider items except for body armor

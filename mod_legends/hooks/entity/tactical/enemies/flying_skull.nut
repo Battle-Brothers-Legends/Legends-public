@@ -1,4 +1,4 @@
-::mods_hookExactClass("entity/tactical/enemies/flying_skull", function(o) 
+::mods_hookExactClass("entity/tactical/enemies/flying_skull", function(o)
 {
 	o.m.IsExploded <- false;
 	o.m.HasKilledPlayer <- false;
@@ -7,8 +7,8 @@
 	o.onInit = function ()
 	{
 		onInit();
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_composure"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_poison_immunity"));
+		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendComposure);
+		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendPoisonImmunity);
 	}
 
 	o.onActorKilled <- function ( _actor, _tile, _skill ) //Fixes suicide exploit

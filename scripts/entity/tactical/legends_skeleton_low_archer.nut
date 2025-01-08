@@ -5,12 +5,12 @@ this.legends_skeleton_low_archer <- this.inherit("scripts/entity/tactical/legend
 	{
 		this.m.SpawnType = this.Const.Tactical.Actor.LegendSkeletonLightArcher;
 		this.legend_skeleton.onInit();
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_crippling_strikes"));
+		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.CripplingStrikes);
 		this.m.Skills.add(this.new("scripts/skills/traits/legend_fleshless_trait"));
 		if(::Legends.isLegendaryDifficulty())
 		{
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_battle_forged"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_coup_de_grace"));
+			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.BattleForged);
+			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.CoupDeGrace);
 		}
 		this.m.Skills.update();
 	}

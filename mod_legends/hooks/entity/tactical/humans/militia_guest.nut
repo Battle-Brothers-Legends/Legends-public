@@ -4,15 +4,15 @@
 	o.onInit = function ()
 	{
 		onInit();
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_recover"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_specialist_militia_skill"));
+		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Recover);
+		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendSpecialistMilitiaSkill);
 		if(::Legends.isLegendaryDifficulty())
 		{
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_mastery_spear"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_shield_expert"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_specialist_militia_damage"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_specialist_spearwall"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_specialist_spearthrust"));
+			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.SpecSpear);
+			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.ShieldExpert);
+			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendSpecialistMilitiaDamage);
+			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendSpecSpearWall);
+			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendSpecSpearThrust);
 			this.m.Skills.add(this.new("scripts/skills/traits/fearless_trait"));
 		}
 	}

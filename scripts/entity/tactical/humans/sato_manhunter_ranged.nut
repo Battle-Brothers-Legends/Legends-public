@@ -51,10 +51,10 @@ this.sato_manhunter_ranged <- this.inherit("scripts/entity/tactical/human", {
 		b.IsSpecializedInBows = true;
 		b.IsSpecializedInCrossbows = true;
 
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_coup_de_grace"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_quick_hands"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_head_hunter"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_fearsome"));
+		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.CoupDeGrace);
+		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.QuickHands);
+		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.HeadHunter);
+		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Fearsome);
 	}
 
 	function onOtherActorDeath( _killer, _victim, _skill )

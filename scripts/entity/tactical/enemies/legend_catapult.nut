@@ -56,15 +56,15 @@ this.legend_catapult <- this.inherit("scripts/entity/tactical/human", {
 
 		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= 20)
 		{
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_bullseye"));
+			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Bullseye);
 		}
 
 		if (::Legends.isLegendaryDifficulty())
 		{
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_ballistics"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_close_combat_archer"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_crippling_strikes"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_lone_wolf"));
+			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendBallistics);
+			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendCloseCombatArcher);
+			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.CripplingStrikes);
+			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LoneWolf);
 			this.m.Skills.add(this.new("scripts/skills/traits/fearless_trait"));
 		}
 	}

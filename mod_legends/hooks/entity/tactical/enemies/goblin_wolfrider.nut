@@ -6,8 +6,8 @@
 		onInit();
 		if(::Legends.isLegendaryDifficulty())
 		{
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_fast_adaption"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_overwhelm"));
+			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.FastAdaption);
+			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Overwhelm);
 			this.m.Skills.add(this.new("scripts/skills/traits/fearless_trait"));
 		}
 	}
