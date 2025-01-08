@@ -1,4 +1,4 @@
-::mods_hookExactClass("entity/tactical/enemies/ghost", function(o) 
+::mods_hookExactClass("entity/tactical/enemies/ghost", function(o)
 {
 	local onInit = o.onInit;
 	o.onInit = function ()
@@ -29,7 +29,7 @@
 
 		this.getSprite("miniboss").setBrush("bust_miniboss");
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_underdog"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_nine_lives"));
+		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.NineLives);
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_fast_adaption"));
 		this.m.ActionPoints = 12;
 		this.m.BaseProperties.ActionPoints = 12;

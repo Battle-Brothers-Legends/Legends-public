@@ -576,18 +576,14 @@
 			perk.IsRefundable = false;
 			this.getSkills().add(perk);
 
-			if (this.getSkills().hasPerk(::Const.Perks.PerkDefs.NineLives)) {
-				local perk = this.getSkills().getSkillByID("perk.nine_lives");
-				if (perk.IsRefundable) {
+			local has9L = this.getSkills().hasPerk(::Const.Perks.PerkDefs.NineLives);
+			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.NineLives, function (perk) {
+				if (has9L && perk.IsRefundable) {
 					this.m.PerkPoints += 1;
 					this.m.PerkPointsSpent -= 1;
 				}
 				perk.IsRefundable = false;
-			} else {
-				local perk = ::new("scripts/skills/perks/perk_nine_lives");
-				perk.IsRefundable = false;
-				this.getSkills().add(perk);
-			}
+			});
 
 			if (result) {
 				this.m.IsDying = false;

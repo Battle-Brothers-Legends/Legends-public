@@ -10,10 +10,10 @@ this.legends_zombie_low_xbow <- this.inherit("scripts/entity/tactical/legend_zom
 		this.m.Skills.add(this.new("scripts/skills/injury_permanent/legend_rotten_flesh"));
 		if("Assets" in this.World && this.World.Assets != null && this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Legendary)
 		{
-		this.m.BaseProperties.Hitpoints *= 1.5;
+			this.m.BaseProperties.Hitpoints *= 1.5;
 			this.m.Hitpoints *= 1.5;
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_nine_lives"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_last_stand"));
+			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.NineLives);
+			this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_last_stand"));
 		}
 		this.m.Skills.update();
 	}

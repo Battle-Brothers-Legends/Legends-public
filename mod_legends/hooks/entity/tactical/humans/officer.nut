@@ -102,7 +102,7 @@
 			));
 		}
 
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_nine_lives"));
+		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.NineLives);
 		return true;
 	}
 });

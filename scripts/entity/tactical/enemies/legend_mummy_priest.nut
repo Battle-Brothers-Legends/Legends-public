@@ -36,7 +36,7 @@ this.legend_mummy_priest <- this.inherit("scripts/entity/tactical/legend_mummy",
 		this.m.Skills.add(this.new("scripts/skills/special/double_grip"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_anticipation"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_head_hunter"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_nine_lives"));
+		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.NineLives);
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_bloodbath"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_carnage"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_poison_immunity"));

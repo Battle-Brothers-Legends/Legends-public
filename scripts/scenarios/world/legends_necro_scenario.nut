@@ -56,7 +56,7 @@ this.legends_necro_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 		bros[1].getSkills().add(this.new("scripts/skills/traits/ailing_trait"));
 		bros[1].getFlags().set("IsPlayerCharacter", true); //player character
 		bros[1].getSkills().add(this.new("scripts/skills/traits/player_character_trait"));
-		bros[1].getSkills().add(this.new("scripts/skills/perks/perk_nine_lives"));
+		::Legends.Perks.grant(bros[1], ::Const.Perks.PerkDefs.NineLives);
  		bros[1].getSkills().add(this.new("scripts/skills/traits/legend_deathly_spectre_trait"));
 
 		bros[2].setStartValuesEx([
