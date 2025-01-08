@@ -494,7 +494,7 @@ this.legend_swordmaster_fav_enemy_event <- this.inherit("scripts/events/event", 
 
 		foreach( bro in this.World.getPlayerRoster().getAll() )
 		{
-			if (!bro.getSkills().hasSkill("perk.legend_favoured_enemy_swordmaster")) // perk check
+			if (!bro.getSkills().hasPerk(::Const.Perks.PerkDefs.LegendFavouredEnemySwordmaster)) // perk check
 			{
 				continue;
 			}

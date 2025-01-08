@@ -64,7 +64,7 @@ this.legend_hidden_skill <- this.inherit("scripts/skills/skill", {
 			});
 		}
 
-		if (this.m.Container.hasSkill("perk.legend_untouchable")) 
+		if (this.m.Container.hasPerk(::Const.Perks.PerkDefs.LegendUntouchable))
 		{
 			ret.push({
 				id = 8,
@@ -80,7 +80,7 @@ this.legend_hidden_skill <- this.inherit("scripts/skills/skill", {
 				text = "Will last for " + this.m.Duration + " end of rounds"
 			})
 		}
-		
+
 		return ret;
 	}
 
@@ -123,7 +123,7 @@ this.legend_hidden_skill <- this.inherit("scripts/skills/skill", {
 
 		_user.setHidden(true);
 		local effect = this.new("scripts/skills/effects/legend_hidden_effect");
-		effect.m.TurnsLeft = (this.m.Container.hasSkill("perk.legend_untouchable")) ? this.m.DurationUntouchable : this.m.Duration;
+		effect.m.TurnsLeft = (this.m.Container.hasPerk(::Const.Perks.PerkDefs.LegendUntouchable)) ? this.m.DurationUntouchable : this.m.Duration;
 		this.m.Container.add(effect);
 
 

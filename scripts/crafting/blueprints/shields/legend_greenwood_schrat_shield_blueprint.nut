@@ -19,9 +19,7 @@ this.legend_greenwood_schrat_shield_blueprint <- this.inherit("scripts/crafting/
 		];
 		this.init(ingredients);
 		local skills = [
-			{
-				Scripts = ["scripts/skills/perks/perk_legend_woodworking"]
-			}
+			::Legends.Perks.blueprint(::Const.Perks.PerkDefs.LegendWoodworking)
 		];
 		this.initSkills(skills);
 	}
@@ -31,7 +29,7 @@ this.legend_greenwood_schrat_shield_blueprint <- this.inherit("scripts/crafting/
 	{
 		return this.blueprint.isQualified();
 	}
-	
+
 	function onCraft( _stash )
 	{
 		_stash.add(this.new("scripts/items/shields/special/legend_craftable_greenwood_schrat_shield"));

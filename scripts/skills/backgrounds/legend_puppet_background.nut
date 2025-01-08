@@ -126,7 +126,7 @@ this.legend_puppet_background <- this.inherit("scripts/skills/backgrounds/charac
 				this.Const.Perks.HammerTree
 			],
 			Defense = [
-				this.Const.Perks.HeavyArmorTree	
+				this.Const.Perks.HeavyArmorTree
 			],
 			Traits = [
 				this.Const.Perks.MartyrTree,
@@ -217,10 +217,10 @@ this.legend_puppet_background <- this.inherit("scripts/skills/backgrounds/charac
 		}
 
 		this.character_background.onAdded();
-		this.m.Container.add(this.new("scripts/skills/perks/perk_legend_zombie_bite"));
+		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendZombieBite);
 
 		local actor = this.getContainer().getActor();
-		actor.m.ExcludedInjuries = [ //all injuries associated with stamina regen, health or resolve 
+		actor.m.ExcludedInjuries = [ //all injuries associated with stamina regen, health or resolve
 		//perma injuries must be managed in actor.nut, NOT here!
 		//	"injury.traumatized",
 		//	"injury.brain_damage",
@@ -296,7 +296,7 @@ this.legend_puppet_background <- this.inherit("scripts/skills/backgrounds/charac
 
 		items.equip(this.Const.World.Common.pickArmor([ //1 = least likely
 		//	[1, "decayed_coat_of_plates"],
-		//	[1, "southern_knight_armor"],		
+		//	[1, "southern_knight_armor"],
 			[1, "decayed_coat_of_scales"],
 			[1, "dark_southern_armor_00"],
 			[2, ""],
@@ -316,9 +316,9 @@ this.legend_puppet_background <- this.inherit("scripts/skills/backgrounds/charac
 			[1, "decayed_closed_flat_top_with_mail"],
 			[1, "decayed_closed_flat_top_with_sack"],
 		//	[1, "decayed_full_helm"],
-		//	[2, "legend_noble_southern_hat"],			
+		//	[2, "legend_noble_southern_hat"],
 			[2, "full_aketon_cap"],
-			[2, "kettle_hat"],			
+			[2, "kettle_hat"],
 		//	[2, "dark_southern_helmet_00"],
 			[3, "open_leather_cap"],
 			[3, "full_leather_cap"],

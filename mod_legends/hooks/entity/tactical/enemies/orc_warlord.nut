@@ -187,8 +187,8 @@
 		this.m.Skills.add(this.new("scripts/skills/actives/hand_to_hand_orc"));
 		this.m.Skills.add(this.new("scripts/skills/actives/warcry"));
 		this.m.Skills.add(this.new("scripts/skills/actives/line_breaker"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_captain"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_battering_ram"));
+		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Captain);
+		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.BatteringRam);
 		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.HoldOut);
 		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Stalwart);
 		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.ShieldBash);

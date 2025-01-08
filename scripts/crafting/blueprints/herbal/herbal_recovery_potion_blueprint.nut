@@ -27,10 +27,8 @@ this.herbal_recovery_potion_blueprint <- this.inherit("scripts/crafting/blueprin
 		];
 		this.init(ingredients);
 		local skills = [
-			{
-				Scripts = ["scripts/skills/perks/perk_legend_potion_brewer"]
-			}
-		]
+			::Legends.Perks.blueprint(::Const.Perks.PerkDefs.LegendPotionBrewer)
+		];
 		this.initSkills(skills);
 	}
 

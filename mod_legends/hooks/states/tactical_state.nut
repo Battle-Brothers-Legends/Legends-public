@@ -78,7 +78,7 @@
 						this.World.getPlayerRoster().remove(bro);
 					}
 
-					else if (bro.getSkills().hasSkill("perk.legend_pacifist") && bro.isPlacedOnMap())
+					else if (bro.getSkills().hasPerk(::Const.Perks.PerkDefs.LegendPacifist) && bro.isPlacedOnMap())
 					{
 							bro.getLifetimeStats().BattlesWithoutMe = 0;
 							bro.worsenMood(this.Const.MoodChange.BattleWithoutMe, "Forced into battle against their wishes");
@@ -291,24 +291,24 @@
 					break;
 			}
 
-			if (bro.getSkills().hasSkill("perk.legends_reclamation"))
+			if (bro.getSkills().hasPerk(::Const.Perks.PerkDefs.LegendReclamationhasSkill))
 			{
-				local skill = bro.getSkills().getSkillByID("perk.legends_reclamation");
+				local skill = bro.getSkills().getSkillByID("perk.legend_reclamation");
 				zombieSalvage += skill.m.LootChance;
 			}
 
-			if (bro.getSkills().hasSkill("perk.legend_resurrectionist"))
+			if (bro.getSkills().hasPerk(::Const.Perks.PerkDefs.LegendResurrectionist))
 			{
 				local skill = bro.getSkills().getSkillByID("perk.legend_resurrectionist");
 				zombieSalvage += skill.m.LootChance;
 			}
 
-			if (bro.getSkills().hasSkill("perk.legend_spawn_zombie_low") || bro.getSkills().hasSkill("perk.legend_spawn_zombie_med") || bro.getSkills().hasSkill("perk.legend_spawn_zombie_high"))
+			if (bro.getSkills().hasPerk(::Const.Perks.PerkDefs.LegendSpawnZombieLow) || bro.getSkills().hasPerk(::Const.Perks.PerkDefs.LegendSpawnZombieMed) || bro.getSkills().hasPerk(::Const.Perks.PerkDefs.LegendSpawnZombieHigh))
 			{
 				zombieLoot = true;
 			}
 
-			if (bro.getSkills().hasSkill("perk.legend_spawn_skeleton_low") || bro.getSkills().hasSkill("perk.legend_spawn_skeleton_med") || bro.getSkills().hasSkill("perk.legend_spawn_skeleton_high"))
+			if (bro.getSkills().hasPerk(::Const.Perks.PerkDefs.LegendSpawnSkeletonLow) || bro.getSkills().hasPerk(::Const.Perks.PerkDefs.LegendSpawnSkeletonMed) || bro.getSkills().hasPerk(::Const.Perks.PerkDefs.LegendSpawnSkeletonHigh))
 			{
 				skeletonLoot = true;
 			}

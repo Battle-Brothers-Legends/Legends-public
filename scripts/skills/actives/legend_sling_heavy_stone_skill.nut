@@ -111,12 +111,12 @@ this.legend_sling_heavy_stone_skill <- this.inherit("scripts/skills/skill", {
 		this.m.AdditionalAccuracy = _properties.IsSpecializedInSlings ? 0 : -5;
 		this.m.AdditionalHitChance = _properties.IsSpecializedInSlings ? -2 : -4;
 		this.m.FatigueCostMult = _properties.IsSpecializedInSlings ? this.Const.Combat.WeaponSpecFatigueMult : 1.0;
-		if (this.getContainer().hasSkill("perk.legend_specialist_sling_damage") && this.getContainer().hasSkill("perk.legend_specialist_sling_skill"))
+		if (this.getContainer().hasPerk(::Const.Perks.PerkDefs.LegendSpecialistSlingDamage) && this.getContainer().hasPerk(::Const.Perks.PerkDefs.LegendSpecialistSlingSkill))
 		{
 			this.m.ActionPointCost = 7;
 			this.m.FatigueCost = 25;
 		}
-		else if (this.getContainer().hasSkill("perk.legend_specialist_sling_damage") || this.getContainer().hasSkill("perk.legend_specialist_sling_skill"))
+		else if (this.getContainer().hasPerk(::Const.Perks.PerkDefs.LegendSpecialistSlingDamage) || this.getContainer().hasPerk(::Const.Perks.PerkDefs.LegendSpecialistSlingSkill))
 		{
 			this.m.ActionPointCost = 6;
 			this.m.FatigueCost = 21;
@@ -161,13 +161,13 @@ this.legend_sling_heavy_stone_skill <- this.inherit("scripts/skills/skill", {
 			_properties.RangedSkill += this.m.AdditionalAccuracy;
 			_properties.HitChanceAdditionalWithEachTile += this.m.AdditionalHitChance;
 			_properties.FatigueDealtPerHitMult += 3.0;
-			if (this.getContainer().hasSkill("perk.legend_specialist_sling_damage"))
+			if (this.getContainer().hasPerk(::Const.Perks.PerkDefs.LegendSpecialistSlingDamage))
 			{
 				_properties.DamageRegularMin += 15;
 				_properties.DamageRegularMax += 30;
 				//_properties.DamageDirectAdd += 0.2;
 			}
-			if (this.getContainer().hasSkill("perk.legend_specialist_sling_skill"))
+			if (this.getContainer().hasPerk(::Const.Perks.PerkDefs.LegendSpecialistSlingSkill))
 			{
 				_properties.DamageArmorMult *= 1.5;
 			}
@@ -180,7 +180,7 @@ this.legend_sling_heavy_stone_skill <- this.inherit("scripts/skills/skill", {
 		{
 			_targetEntity.getSkills().add(this.new("scripts/skills/effects/staggered_effect"));
 		}
-		
+
 		if (_skill == this && _targetEntity.isAlive() && !_targetEntity.isDying() && !_targetEntity.getCurrentProperties().IsImmuneToStun)
 		{
 			local targetTile = _targetEntity.getTile();

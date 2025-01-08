@@ -14,14 +14,8 @@ this.perk_legend_infectious_rage <- this.inherit("scripts/skills/skill", {
 	function onCombatStarted()
 	{
 		local actors = this.Tactical.Entities.getInstancesOfFaction(this.Const.Faction.Player);
-
 		foreach( a in actors )
-		{
-			if (!a.getSkills().hasSkill("perk.berserk"))
-			{
-				a.getSkills().add(this.new("scripts/skills/perks/perk_berserk"));
-			}
-		}
+			::Legends.Perks.grant(a, ::Const.Perks.PerkDefs.Berserk);
 	}
 
 });

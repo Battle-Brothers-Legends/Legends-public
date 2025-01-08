@@ -86,7 +86,7 @@ this.legend_infected_injury <- this.inherit("scripts/skills/injury_permanent/per
 			return;
 		}
 
-		if (actor.getSkills().hasSkill("perk.legend_master_anger"))
+		if (actor.getSkills().hasPerk(::Const.Perks.PerkDefs.LegendMasterAnger))
 		{
 			return;
 		}

@@ -47,14 +47,14 @@ this.legend_helmet_demon_alp_helm <- this.inherit("scripts/items/legend_helmets/
 			icon = "ui/icons/special.png",
 			text = "Grants the Horrific Scream active skill"
 		});
-		
+
 		return result;
 	}
 
 	function onEquip()
 	{
 		this.legend_helmet_upgrade.onEquip();
-		if (!this.getContainer().getActor().getSkills().hasSkill("perk.legend_horrify"))
+		if (!this.getContainer().getActor().getSkills().hasPerk(::Const.Perks.PerkDefs.LegendHorrify))
 		{
 			this.addSkill(this.new("scripts/skills/actives/legend_horrific_scream"))
 		}

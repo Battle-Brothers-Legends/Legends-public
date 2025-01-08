@@ -114,7 +114,7 @@ this.legend_spawn_item <- this.inherit("scripts/items/item", {
 	{
 		foreach (bro in this.World.getPlayerRoster().getAll())
 		{
-			if (!bro.getSkills().hasSkill("perk.legend_conservation"))
+			if (!bro.getSkills().hasPerk(::Const.Perks.PerkDefs.LegendConservation))
 			{
 				continue
 			}

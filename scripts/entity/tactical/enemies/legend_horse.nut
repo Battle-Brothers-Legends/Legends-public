@@ -172,7 +172,7 @@ this.legend_horse <- this.inherit("scripts/entity/tactical/actor", {
 		local horse_kick = this.new("scripts/skills/actives/legend_horse_kick_skill");
 		this.m.Skills.add(horse_kick);
 		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendHorseMovement);
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_horse_charge"));
+		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendHorseCharge);
 		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendHorsePirouette);
 
 		if (::Legends.isLegendaryDifficulty())

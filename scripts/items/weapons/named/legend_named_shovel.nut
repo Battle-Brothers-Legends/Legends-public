@@ -56,7 +56,7 @@ this.legend_named_shovel <- this.inherit("scripts/items/weapons/named/named_weap
 		b.m.IconDisabled = "skills/shovel_bash_bw.png";
 		this.addSkill(b);
 
-		if (this.getContainer().getActor().getSkills().hasSkill("perk.legend_specialist_shovel_skill"))
+		if (this.getContainer().getActor().getSkills().hasPerk(::Const.Perks.PerkDefs.LegendSpecialistShovelSkill))
 		{
 			this.addSkill(this.new("scripts/skills/actives/knock_out"));
 		}

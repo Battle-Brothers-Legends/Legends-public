@@ -54,7 +54,7 @@ this.legend_transformed_boar_effect <- this.inherit("scripts/skills/effects/lege
 		local actor = this.getContainer().getActor();
 		actor.getSkills().removeByID("actives.legend_boar_gore");
 		actor.getSkills().removeByID("actives.legend_boar_charge");
-		if (!actor.getSkills().hasSkill("perk.footwork"))
+		if (!actor.getSkills().hasPerk(::Const.Perks.PerkDefs.Footwork))
 		{
 			actor.getSkills().removeByID("actives.footwork");
 		}

@@ -14,7 +14,6 @@
 		{
 			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.BattleForged);
 			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Pathfinder);
-			// this.m.Skills.add(this.new("scripts/skills/perks/perk_trophy_hunter"));
 			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendBigGameHunter);
 			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.HeadHunter);
 			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendBackToBasics);
@@ -69,7 +68,7 @@
 			}
 		}
 
-		if (this.m.Items.getItemAtSlot(this.Const.ItemSlot.Offhand) == null && !this.m.Skills.hasSkill("perk.duelist"))
+		if (this.m.Items.getItemAtSlot(this.Const.ItemSlot.Offhand) == null && !this.m.Skills.hasPerk(::Const.Perks.PerkDefs.Duelist))
 		{
 			if (this.Math.rand(1, 100) <= 75)
 			{

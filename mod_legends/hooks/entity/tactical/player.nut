@@ -32,7 +32,7 @@
 	o.getDailyFood = function ()
 	{
 		local food = this.Math.maxf(0.0, this.m.CurrentProperties.DailyFood);
-		if (this.isInReserves() && !this.m.Skills.hasSkill("perk.legend_peaceful"))
+		if (this.isInReserves() && !this.m.Skills.hasPerk(::Const.Perks.PerkDefs.LegendPeaceful))
 		{
 			food *= 2;
 		}
@@ -572,9 +572,9 @@
 			this.setMoraleState(::Const.MoraleState.Ignore);
 			this.getSkills().add(::new("scripts/skills/traits/legend_rotten_flesh_trait"));
 
-			local perk = ::new("scripts/skills/perks/perk_legend_zombie_bite");
-			perk.IsRefundable = false;
-			this.getSkills().add(perk);
+			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendZombieBite, function (perk) {
+				perk.IsRefundable = false;
+			});
 
 			local has9L = this.getSkills().hasPerk(::Const.Perks.PerkDefs.NineLives);
 			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.NineLives, function (perk) {
@@ -638,7 +638,7 @@
 
 		foreach( bro in roster )
 		{
-			if (bro.isInReserves() && bro.getSkills().hasSkill("perk.legend_pacifist"))
+			if (bro.isInReserves() && bro.getSkills().hasPerk(::Const.Perks.PerkDefs.LegendPacifist))
 			{
 				bro.addXP(this.Math.max(1, this.Math.floor(XPgroup / brothers.len())));
 			}
@@ -824,7 +824,7 @@
 				++this.m.PerkPoints;
 			}
 
-			if (this.m.Level == 12 && this.m.Skills.hasSkill("perk.student"))
+			if (this.m.Level == 12 && this.m.Skills.hasPerk(::Const.Perks.PerkDefs.Student))
 			{
 				++this.m.PerkPoints;
 			}

@@ -18,7 +18,7 @@ this.perk_legend_unarmed_training <- this.inherit("scripts/skills/skill", {
 		{
 			if (_properties.IsSpecializedInFists)
 				_properties.DamageArmorMult *= 1.2;
-			if (this.getContainer().hasSkill("perk.sundering_strikes"))
+			if (this.getContainer().hasPerk(::Const.Perks.PerkDefs.SunderingStrikes))
 				_properties.DamageArmorMult *= 1.2;
 
 			local damage = (actor.getHitpointsMax()) / 15;

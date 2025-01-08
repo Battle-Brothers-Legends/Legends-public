@@ -91,7 +91,7 @@
 		this.m.Skills.add(this.new("scripts/skills/actives/hand_to_hand_orc"));
 		this.m.Skills.add(this.new("scripts/skills/actives/charge"));
 		this.m.Skills.add(this.new("scripts/skills/effects/berserker_rage_effect"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_battering_ram"));
+		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.BatteringRam);
 		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Berserk);
 		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.BattleFlow);
 		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Pathfinder);

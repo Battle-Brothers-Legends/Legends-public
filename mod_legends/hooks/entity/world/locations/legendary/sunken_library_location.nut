@@ -1,4 +1,4 @@
-::mods_hookExactClass("entity/world/locations/legendary/sunken_library_location", function(o) 
+::mods_hookExactClass("entity/world/locations/legendary/sunken_library_location", function(o)
 {
 	o.onDropLootForPlayer <- function ( _lootTable )
 	{
@@ -17,7 +17,7 @@
 		local hasHistorian = false;
 		foreach (bro in this.World.getPlayerRoster().getAll())
 		{
-			if (bro.getSkills().hasSkill("perk.legend_scholar"))
+			if (bro.getSkills().hasPerk(::Const.Perks.PerkDefs.LegendScholar))
 			{
 				hasHistorian = true;
 			}

@@ -131,7 +131,7 @@ this.perk_legend_vala_warden <- this.inherit("scripts/skills/skill", {
 				this.m.WardenEntity = ::MSU.asWeakTableRef(entity);
 				this.m.WardenSummonSpent = true;
 
-				if (this.getContainer().getActor().getSkills().hasSkill("perk.legend_vala_spiritual_bond"))
+				if (this.getContainer().getActor().getSkills().hasPerk(::Const.Perks.PerkDefs.LegendValaSpiritualBond))
 				{
 					if (!this.getContainer().getActor().getSkills().hasSkill("effects.legend_vala_spiritual_bond_effect"))
 					{

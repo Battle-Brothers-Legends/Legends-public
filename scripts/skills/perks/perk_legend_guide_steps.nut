@@ -14,14 +14,8 @@ this.perk_legend_guide_steps <- this.inherit("scripts/skills/skill", {
 	function onCombatStarted()
 	{
 		local actors = this.Tactical.Entities.getInstancesOfFaction(this.Const.Faction.Player);
-
 		foreach( a in actors )
-		{
-			if (!a.getSkills().hasSkill("perk.pathfinder"))
-			{
-				a.getSkills().add(this.new("scripts/skills/perks/perk_pathfinder"));
-			}
-		}
+			::Legends.Perks.grant(a, ::Const.Perks.PerkDefs.Pathfinder);
 	}
 
 });

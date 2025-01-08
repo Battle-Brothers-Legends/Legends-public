@@ -62,7 +62,7 @@ this.legend_arena_invictus_trait <- this.inherit("scripts/skills/traits/characte
 			}
 		];
 
-		if (this.getContainer().getActor().getSkills().hasSkill("perk.fearsome"))
+		if (this.getContainer().getActor().getSkills().hasPerk(::Const.Perks.PerkDefs.Fearsome))
 		{
 			ret.push({
 				id = 12,
@@ -86,7 +86,7 @@ this.legend_arena_invictus_trait <- this.inherit("scripts/skills/traits/characte
 
 	function onTargetHit( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor )
 	{
-		if (this.getContainer().getActor().getSkills().hasSkill("perk.fearsome")) return;
+		if (this.getContainer().getActor().getSkills().hasPerk(::Const.Perks.PerkDefs.Fearsome)) return;
 
 		if (_targetEntity == null || !_targetEntity.isAlive()) return;
 
@@ -120,7 +120,7 @@ this.legend_arena_invictus_trait <- this.inherit("scripts/skills/traits/characte
 		_properties.DamageTotalMult *= 1.05;
 		_properties.SurviveWithInjuryChanceMult *= 2.27;
 	}
-	
+
 	function onAfterUpdate( _properties )
 	{
 		local won = this.getContainer().getActor().getFlags().getAsInt("ArenaFightsWon");

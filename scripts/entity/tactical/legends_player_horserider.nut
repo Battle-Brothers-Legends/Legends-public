@@ -75,7 +75,7 @@ this.legends_player_horserider <- this.inherit("scripts/entity/tactical/player",
 			this.logInfo("riderBravery is " + riderBravery)
 		local totalBravery = (horseBravery + riderBravery) / 2;
 
-		if (this.getHorse().getSkills().hasSkill("perk.legend_horse_liberty"))
+		if (this.getHorse().getSkills().hasPerk(::Const.Perks.PerkDefs.LegendHorseLiberty))
 		{
 			totalBravery += riderBravery * 0.25;
 		}
@@ -97,7 +97,7 @@ this.legends_player_horserider <- this.inherit("scripts/entity/tactical/player",
 		local riderMeleeSkill  = this.getRider().getBaseProperties().MeleeSkill;
 		local totalMeleeSkill  = (horseMeleeSkill  + riderMeleeSkill ) / 2;
 
-		if (this.getHorse().getSkills().hasSkill("perk.legend_horse_desensitization"))
+		if (this.getHorse().getSkills().hasPerk(::Const.Perks.PerkDefs.LegendHorseDesensitization))
 		{
 			totalMeleeSkill += riderMeleeSkill * 0.25;
 		}
@@ -109,7 +109,7 @@ this.legends_player_horserider <- this.inherit("scripts/entity/tactical/player",
 		local riderRangedSkill  = this.getRider().getBaseProperties().RangedSkill;
 		local totalRangedSkill  = (horseRangedSkill  + riderRangedSkill ) / 2;
 
-		if (this.getHorse().getSkills().hasSkill("perk.legend_horse_parthian_shot"))
+		if (this.getHorse().getSkills().hasPerk(::Const.Perks.PerkDefs.LegendHorseParthianShot))
 		{
 			totalRangedSkill += riderRangedSkill * 0.25;
 		}
@@ -121,7 +121,7 @@ this.legends_player_horserider <- this.inherit("scripts/entity/tactical/player",
 		local riderMeleeDefense  = this.getRider().getBaseProperties().MeleeDefense;
 		local totalMeleeDefense  = (horseMeleeDefense  + riderMeleeDefense ) / 2;
 
-		if (this.getHorse().getSkills().hasSkill("perk.legend_horse_bitting"))
+		if (this.getHorse().getSkills().hasPerk(::Const.Perks.PerkDefs.LegendHorseBitting))
 		{
 			totalMeleeDefense += riderMeleeDefense * 0.25;
 		}
@@ -157,11 +157,12 @@ this.legends_player_horserider <- this.inherit("scripts/entity/tactical/player",
 		this.getSkills().add(this.new("scripts/skills/actives/legend_horse_kick_skill"));
 		this.getSkills().add(this.new("scripts/skills/actives/legend_horse_charge_skill"));
 
-		if (this.getHorse().getSkills().hasSkill("perk.legend_horse_movement") && !this.getHorse().getSkills().hasSkill("perk.legend_horse_passage"))
+		// this dumb, what's the purpose of it?
+		if (this.getHorse().getSkills().hasPerk(::Const.Perks.PerkDefs.LegendHorseMovement) && !this.getHorse().getSkills().hasPerk(::Const.Perks.PerkDefs.LegendHorsePassage))
 		{
 			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendHorseMovement);
 		}
-		if (this.getHorse().getSkills().hasSkill("perk.legend_horse_passage"))
+		if (this.getHorse().getSkills().hasPerk(::Const.Perks.PerkDefs.LegendHorsePassage))
 		{
 			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendHorsePassage);
 		}
@@ -171,11 +172,11 @@ this.legends_player_horserider <- this.inherit("scripts/entity/tactical/player",
 		//}
 		//if (this.getHorse().getSkills().hasSkill("perk.legend_horse_charge"))
 		//{
-			this.getSkills().add(this.new("scripts/skills/perks/perk_horse_charge"));
+			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendHorseCharge);
 		//}
 
 		//add rider skills
-		if (this.getRider().getSkills().hasSkill("perk.legend_horse_movement") && !this.getHorse().getSkills().hasSkill("perk.legend_horse_passage"))
+		if (this.getRider().getSkills().hasPerk(::Const.Perks.PerkDefs.LegendHorseMovement) && !this.getHorse().getSkills().hasPerk(::Const.Perks.PerkDefs.LegendHorsePassage))
 		{
 			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendHorseMovement);
 		}

@@ -1,7 +1,7 @@
 this.legend_cascade_skill <- this.inherit("scripts/skills/skill", {
 	m = {
 		AdditionalAccuracy = 0,
-		AdditionalHitChance = -4		
+		AdditionalHitChance = -4
 	},
 	function create()
 	{
@@ -115,7 +115,7 @@ this.legend_cascade_skill <- this.inherit("scripts/skills/skill", {
 			return true;
 		}
 
-		if (!actor.getSkills().hasSkill("perk.legend_cascade"))
+		if (!actor.getSkills().hasPerk(::Const.Perks.PerkDefs.LegendCascade))
 		{
 			return true;
 		}
@@ -140,11 +140,11 @@ this.legend_cascade_skill <- this.inherit("scripts/skills/skill", {
 
 	function isUsable()
 	{
-		if (!this.getContainer().getActor().isArmedWithRangedWeapon()) 
+		if (!this.getContainer().getActor().isArmedWithRangedWeapon())
 		{
 			return false
 		}
-		return (!this.Tactical.isActive() || this.skill.isUsable()) && this.getAmmo() > 2 && !this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions());	
+		return (!this.Tactical.isActive() || this.skill.isUsable()) && this.getAmmo() > 2 && !this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions());
 	}
 
 

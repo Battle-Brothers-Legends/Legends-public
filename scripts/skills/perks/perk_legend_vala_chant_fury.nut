@@ -137,7 +137,7 @@ this.perk_legend_vala_chant_fury <- this.inherit("scripts/skills/skill", {
 	{
 		local actor = this.getContainer().getActor();
 
-		if (actor.getSkills().hasSkill("perk.legend_vala_chanting_mastery"))
+		if (actor.getSkills().hasPerk(::Const.Perks.PerkDefs.LegendValaChantMastery))
 		{
 			this.m.FatigueCostMult = 0.75;
 		}

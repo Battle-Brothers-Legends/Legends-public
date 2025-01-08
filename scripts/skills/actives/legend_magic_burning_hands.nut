@@ -63,7 +63,7 @@ this.legend_magic_burning_hands <- this.inherit("scripts/skills/actives/legend_m
 	}
 
 	function applyPerks() {
-		if (this.m.Container.hasSkill("perk.legend_mastery_burning_hands"))
+		if (this.m.Container.hasPerk(::Const.Perks.PerkDefs.LegendMasteryBurningHands))
 		{
 			//doubles total output
 			this.m.BaseDamageRegularMin = 20;

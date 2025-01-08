@@ -75,7 +75,7 @@ this.perk_legend_blend_in <- this.inherit("scripts/skills/skill", {
 		}
 		else
 		{
-			
+
 			if (this.m.MeekStacks > 0)
 			{
 				tooltip.push(
@@ -86,7 +86,7 @@ this.perk_legend_blend_in <- this.inherit("scripts/skills/skill", {
 					text = "Always evade the next attack made against this character in combat."
 				});
 			}
-			else if (this.getContainer().hasSkill("perk.legend_unburdened"))
+			else if (this.getContainer().hasPerk(::Const.Perks.PerkDefs.LegendUnburdened))
 			{
 				tooltip.push(
 				{
@@ -159,7 +159,7 @@ this.perk_legend_blend_in <- this.inherit("scripts/skills/skill", {
 
 	function onTurnEnd()
 	{
-		if (this.getContainer().hasSkill("perk.legend_unburdened"))
+		if (this.getContainer().hasPerk(::Const.Perks.PerkDefs.LegendUnburdened))
 			this.m.MeekCounter += 1;
 
 		if (this.m.MeekCounter == 2)

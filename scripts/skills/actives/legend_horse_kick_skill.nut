@@ -71,7 +71,7 @@ this.legend_horse_kick_skill <- this.inherit("scripts/skills/skill", {
 		local damage_Armor_max = this.Math.floor(damageMax * p.DamageArmorMult * p.DamageTotalMult);
 		local damage_direct_max = this.Math.floor(damageMax * this.m.DirectDamageMult);
 
-		if (this.getContainer().getActor().getSkills().hasSkill("perk.legend_muscularity"))
+		if (this.getContainer().getActor().getSkills().hasPerk(::Const.Perks.PerkDefs.LegendMuscularity))
 		{
 			local muscularity = this.Math.floor(bodyHealth * 0.1);
 			damage_regular_max = damage_regular_max + muscularity;
@@ -175,7 +175,7 @@ this.legend_horse_kick_skill <- this.inherit("scripts/skills/skill", {
 				damageMax = damageMax + avgMax;
 			}
 
-			if (this.getContainer().getActor().getSkills().hasSkill("perk.legend_muscularity"))
+			if (this.getContainer().getActor().getSkills().hasPerk(::Const.Perks.PerkDefs.LegendMuscularity))
 			{
 				local muscularity = this.Math.floor(bodyHealth * 0.1);
 				damageMax = damageMax + muscularity;

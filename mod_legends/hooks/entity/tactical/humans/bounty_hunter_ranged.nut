@@ -9,7 +9,6 @@
 		{
 			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Nimble);
 			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Pathfinder);
-			// this.m.Skills.add(this.new("scripts/skills/perks/perk_trophy_hunter"));
 			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendBigGameHunter);
 			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.HeadHunter);
 			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendBackToBasics);

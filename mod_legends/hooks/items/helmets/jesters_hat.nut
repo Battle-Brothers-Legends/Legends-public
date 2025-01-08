@@ -48,7 +48,7 @@
 
 	o.onEquip <- function() {
 		this.helmet.onEquip();
-		if (!this.getContainer().getActor().getSkills().hasSkill("perk.taunt"))
+		if (!this.getContainer().getActor().getSkills().hasPerk(::Const.Perks.PerkDefs.Taunt))
 		{
 			this.addSkill(this.new("scripts/skills/actives/taunt"));
 		}
@@ -56,7 +56,7 @@
 
 	o.onUnequip <- function() {
 		this.helmet.onUnequip();
-		if (this.getContainer().getActor().getSkills().hasSkill("perk.taunt"))
+		if (this.getContainer().getActor().getSkills().hasPerk(::Const.Perks.PerkDefs.Taunt))
 		{
 			this.addSkill(this.new("scripts/skills/actives/taunt"));
 		}

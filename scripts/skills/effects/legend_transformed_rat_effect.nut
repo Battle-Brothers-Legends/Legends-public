@@ -61,7 +61,7 @@ this.legend_transformed_rat_effect <- this.inherit("scripts/skills/effects/legen
 		actor.getSkills().removeByID("actives.legend_rat_claws");
 		actor.getSkills().removeByID("actives.legend_rat_bite");
 		actor.getSkills().removeByID("racial.spider");
-		if (!actor.getSkills().hasSkill("perk.footwork"))
+		if (!actor.getSkills().hasPerk(::Const.Perks.PerkDefs.Footwork))
 		{
 			actor.getSkills().removeByID("actives.footwork");
 		}

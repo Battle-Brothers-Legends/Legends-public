@@ -8,9 +8,7 @@
 		this.m.Cost = 650;
 		this.m.Type = this.Const.Items.ItemType.Shield;
 		local skills = [
-			{
-				Scripts = ["scripts/skills/perks/perk_legend_woodworking"]
-			}
+			::Legends.Perks.blueprint(::Const.Perks.PerkDefs.LegendWoodworking)
 		];
 		this.initSkills(skills);
 	}

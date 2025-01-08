@@ -162,7 +162,7 @@ this.perk_legend_vala_trance_perspective <- this.inherit("scripts/skills/skill",
 				}
 			}
 
-			if (actor.getSkills().hasSkill("perk.legend_vala_trance_mastery"))
+			if (actor.getSkills().hasPerk(::Const.Perks.PerkDefs.LegendValaTranceMastery))
 			{
 				expertise += 15.0 / this.m.Difficulty;
 
@@ -235,7 +235,7 @@ this.perk_legend_vala_trance_perspective <- this.inherit("scripts/skills/skill",
 	{
 		local actor = this.getContainer().getActor();
 
-		if (actor.getSkills().hasSkill("perk.legend_vala_trance_mastery"))
+		if (actor.getSkills().hasPerk(::Const.Perks.PerkDefs.LegendValaTranceMastery))
 		{
 			this.m.FatigueCostMult = 0.75;
 		}
@@ -257,7 +257,7 @@ this.perk_legend_vala_trance_perspective <- this.inherit("scripts/skills/skill",
 
 		if (actor.getSkills().hasSkill("effects.legend_vala_in_trance"))
 		{
-			if (actor.getSkills().hasSkill("perk.legend_vala_trance_mastery"))
+			if (actor.getSkills().hasPerk(::Const.Perks.PerkDefs.LegendValaTranceMastery))
 			{
 				if (this.Math.rand(1, 100) <= 50)  //  MASTERY GRANTS A 50% CHANCE TO AVOID DROPPING OUT OF TRANCE
 				{

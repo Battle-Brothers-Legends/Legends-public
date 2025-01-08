@@ -61,33 +61,33 @@
 				break;
 			}
 
-			if (bro.getSkills().hasSkill("perk.legend_pacifist"))
+			if (bro.getSkills().hasPerk(::Const.Perks.PerkDefs.LegendPacifist))
 			{
 				continue;
 			}
 
-			if (bro.getSkills().hasSkill("perk.legend_spawn_zombie_high"))
+			if (bro.getSkills().hasPerk(::Const.Perks.PerkDefs.LegendSpawnZombieHigh))
 			{
 				zombieSummonLevel = 7;
 			}
-			else if (bro.getSkills().hasSkill("perk.legend_spawn_zombie_med"))
+			else if (bro.getSkills().hasPerk(::Const.Perks.PerkDefs.LegendSpawnZombieMed))
 			{
 				zombieSummonLevel = 5;
 			}
-			else if (bro.getSkills().hasSkill("perk.legend_spawn_zombie_low"))
+			else if (bro.getSkills().hasPerk(::Const.Perks.PerkDefs.LegendSpawnZombieLow))
 			{
 				zombieSummonLevel = 2;
 			}
 
-			if (bro.getSkills().hasSkill("perk.legend_spawn_skeleton_high"))
+			if (bro.getSkills().hasPerk(::Const.Perks.PerkDefs.LegendSpawnSkeletonHigh))
 			{
 				skeletonSummonLevel = 7;
 			}
-			else if (bro.getSkills().hasSkill("perk.legend_spawn_skeleton_med"))
+			else if (bro.getSkills().hasPerk(::Const.Perks.PerkDefs.LegendSpawnSkeletonMed))
 			{
 				skeletonSummonLevel = 5;
 			}
-			else if (bro.getSkills().hasSkill("perk.legend_spawn_skeleton_low"))
+			else if (bro.getSkills().hasPerk(::Const.Perks.PerkDefs.LegendSpawnSkeletonLow))
 			{
 				skeletonSummonLevel = 2;
 			}
@@ -373,7 +373,7 @@
 
 		foreach( bro in this.World.getPlayerRoster().getAll() )
 		{
-			if (!bro.getSkills().hasSkill("perk.legend_quartermaster"))
+			if (!bro.getSkills().hasPerk(::Const.Perks.PerkDefs.LegendQuartermaster))
 			{
 				continue;
 			}
@@ -392,7 +392,7 @@
 
 		foreach( bro in this.World.getPlayerRoster().getAll() )
 		{
-			if (bro.getSkills().hasSkill("perk.legend_barter_paymaster"))
+			if (bro.getSkills().hasPerk(::Const.Perks.PerkDefs.LegendPaymaster))
 			{
 				this.m.WageMultiplier = bro.getBarterModifier();
 				return;
@@ -412,7 +412,7 @@
 		foreach (bro in this.World.getPlayerRoster().getAll())
 		{
 			barterMult += bro.getBarterModifier();
-			if (bro.getSkills().hasSkill("perk.legend_barter_greed"))
+			if (bro.getSkills().hasPerk(::Const.Perks.PerkDefs.LegendBarterGreed))
 			{
 				greed += 1;
 			}

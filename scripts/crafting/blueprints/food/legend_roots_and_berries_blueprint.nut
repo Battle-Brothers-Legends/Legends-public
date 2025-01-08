@@ -13,11 +13,9 @@ this.legend_roots_and_berries_blueprint <- this.inherit("scripts/crafting/legend
 		];
 		this.init(ingredients);
 		local skills = [
-			{
-				Scripts = ["scripts/skills/perks/perk_legend_camp_cook"]
-			}
-		]
-		this.initSkills(skills);		
+			::Legends.Perks.blueprint(::Const.Perks.PerkDefs.LegendCampCook)
+		];
+		this.initSkills(skills);
 	}
 
 	function onCraft( _stash )

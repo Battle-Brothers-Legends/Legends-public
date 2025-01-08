@@ -14,14 +14,8 @@ this.perk_legend_prepared_for_anything <- this.inherit("scripts/skills/skill", {
 	function onCombatStarted()
 	{
 		local actors = this.Tactical.Entities.getInstancesOfFaction(this.Const.Faction.Player);
-
 		foreach( a in actors )
-		{
-			if (!a.getSkills().hasSkill("perk.bags_and_belts"))
-			{
-				a.getSkills().add(this.new("scripts/skills/perks/perk_bags_and_belts"));
-			}
-		}
+			::Legends.Perks.grant(a, ::Const.Perks.PerkDefs.BagsAndBelts);
 	}
 
 });

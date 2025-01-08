@@ -21,7 +21,7 @@
 		local tooltip = this.getDefaultTooltip();
 		local actor = this.getContainer().getActor();
 		local fatigueMultiplier = 1;
-		if (this.getContainer().getActor().getCurrentProperties().IsSpecializedInFists) 
+		if (this.getContainer().getActor().getCurrentProperties().IsSpecializedInFists)
 			fatigueMultiplier = 2;
 		local fatPerHit = (this.getContainer().getActor().getCurrentProperties().FatigueDealtPerHitMult + fatigueMultiplier) * this.Const.Combat.FatigueReceivedPerHit;
 		tooltip.push({
@@ -53,8 +53,8 @@
 		local items = this.getContainer().getActor().getItems();
 		local off = items.getItemAtSlot(this.Const.ItemSlot.Offhand);
 		local main = items.getItemAtSlot(this.Const.ItemSlot.Mainhand);
-		
-		if (this.m.Container.hasSkill("perk.legend_ambidextrous") && off == null && !items.hasBlockedSlot(this.Const.ItemSlot.Offhand) && this.skill.isUsable)
+
+		if (this.m.Container.hasPerk(::Const.Perks.PerkDefs.LegendAmbidextrous) && off == null && !items.hasBlockedSlot(this.Const.ItemSlot.Offhand) && this.skill.isUsable)
 		{
 			return true;
 		}
@@ -67,7 +67,7 @@
 		local items = this.getContainer().getActor().getItems();
 		local off = items.getItemAtSlot(this.Const.ItemSlot.Offhand);
 		local main = items.getItemAtSlot(this.Const.ItemSlot.Mainhand);
-		if (this.m.Container.hasSkill("perk.legend_ambidextrous") && off == null && !items.hasBlockedSlot(this.Const.ItemSlot.Offhand)) // if ambidextrous && offhand free, then NOT hidden
+		if (this.m.Container.hasPerk(::Const.Perks.PerkDefs.LegendAmbidextrous) && off == null && !items.hasBlockedSlot(this.Const.ItemSlot.Offhand)) // if ambidextrous && offhand free, then NOT hidden
 		{
 			return false;
 		}
@@ -80,12 +80,12 @@
 		if(_properties.IsSpecializedInFists)
 		{
 			this.m.FatigueCostMult = _properties.IsSpecializedInFists ? this.Const.Combat.WeaponSpecFatigueMult : 1.0;
-			if (this.m.Container.hasSkill("perk.legend_ambidextrous")) //ambidextrous & specialzed
+			if (this.m.Container.hasPerk(::Const.Perks.PerkDefs.LegendAmbidextrous)) //ambidextrous & specialzed
 			{
 				this.m.ActionPointCost = 3
 			}
 		}
-		if (this.m.Container.hasSkill("perk.legend_ambidextrous")) 
+		if (this.m.Container.hasPerk(::Const.Perks.PerkDefs.LegendAmbidextrous))
 		{
 			// If ambidextrous & you have a mainhand use that as your AOO.
 			if (this.getContainer().getActor().getItems().getItemAtSlot(this.Const.ItemSlot.Mainhand) != null)
@@ -110,7 +110,7 @@
 		_properties.DamageRegularMax += 10;
 		_properties.DamageArmorMult = 0.5;
 
-		if (this.m.Container.hasSkill("effects.disarmed") || this.m.Container.hasSkill("perk.legend_ambidextrous"))
+		if (this.m.Container.hasSkill("effects.disarmed") || this.m.Container.hasPerk(::Const.Perks.PerkDefs.LegendAmbidextrous))
 		{
 			local mhand = actor.getMainhandItem();
 
@@ -122,7 +122,7 @@
 		}
 		_properties.FatigueDealtPerHitMult += 1.0; // Increase fatigue damage from 5 to 10
 
-		if (this.m.Container.hasSkill("perk.legend_ambidextrous"))
+		if (this.m.Container.hasPerk(::Const.Perks.PerkDefs.LegendAmbidextrous))
 		{
 			if (actor.getMainhandItem() != null)
 			{

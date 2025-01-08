@@ -2,8 +2,8 @@
 {
 	o.onAfterUpdate = function ( _properties )
 	{
-		if (this.getContainer().getActor().getSkills().hasSkill("perk.legend_backflip"))
-		{	
+		if (this.getContainer().getActor().getSkills().hasPerk(::Const.Perks.PerkDefs.LegendBackflip))
+		{
 			this.m.MaxRange = 2;
 		}
 

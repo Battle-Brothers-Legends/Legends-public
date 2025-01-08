@@ -81,7 +81,7 @@ this.legend_peasant_butcher <- this.inherit("scripts/entity/tactical/human", {
 		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Colossus);
 		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendLacerate);
 		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendCarnage);
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_slaughterer"));
+		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendSlaughterer);
 		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.KillingFrenzy);
 		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendSpecialistButcherDamage);
 		this.m.Skills.add(this.new("scripts/skills/traits/fearless_trait"));

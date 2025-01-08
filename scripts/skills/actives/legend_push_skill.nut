@@ -154,7 +154,7 @@ this.legend_push_skill <- this.inherit("scripts/skills/skill", {
 		}
 
 		target.setCurrentMovementType(this.Const.Tactical.MovementType.Involuntary);
-		local hasShieldBash = _user.getSkills().hasSkill("perk.shield_bash");
+		local hasShieldBash = _user.getSkills().hasPerk(::Const.Perks.PerkDefs.ShieldBash);
 		local damage = this.Math.max(0, this.Math.abs(knockToTile.Level - _targetTile.Level) - 1) * this.Const.Combat.FallingDamage;
 
 		if (damage == 0)

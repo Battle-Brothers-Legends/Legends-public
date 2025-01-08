@@ -9,21 +9,17 @@ this.legend_leather_robe_blueprint <- this.inherit("scripts/crafting/blueprint",
 		this.m.Cost = 150;
 		local ingredients = [
 			{
-				Script = "scripts/items/trade/furs_item", 
+				Script = "scripts/items/trade/furs_item",
 				Num = 1
 			},
 			{
-				Script = "scripts/items/trade/cloth_rolls_item", 
+				Script = "scripts/items/trade/cloth_rolls_item",
 				Num = 1
 			}
 		];
 		this.init(ingredients);
 		local skills = [
-			{
-				Scripts = [
-					"scripts/skills/perks/perk_legend_specialist_cult_armor",
-				]
-			}
+			::Legends.Perks.blueprint(::Const.Perks.PerkDefs.LegendSpecCultArmor)
 		];
 		this.initSkills(skills);
 	}

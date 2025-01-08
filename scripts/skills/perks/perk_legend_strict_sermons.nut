@@ -14,14 +14,8 @@ this.perk_legend_strict_sermons <- this.inherit("scripts/skills/skill", {
 	function onCombatStarted()
 	{
 		local actors = this.Tactical.Entities.getInstancesOfFaction(this.Const.Faction.Player);
-
 		foreach( a in actors )
-		{
-			if (!a.getSkills().hasSkill("perk.fortified_mind"))
-			{
-				a.getSkills().add(this.new("scripts/skills/perks/perk_fortified_mind"));
-			}
-		}
+			::Legends.Perks.grant(a, ::Const.Perks.PerkDefs.FortifiedMind);
 	}
 
 });

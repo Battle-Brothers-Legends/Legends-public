@@ -112,7 +112,7 @@ this.legend_bandit_outrider <- this.inherit("scripts/entity/tactical/human", {
 		wolf_bite.m.ActionPointCost = 0;
 		this.m.Skills.add(wolf_bite);
 		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendHorseMovement);
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_horse_charge"));
+		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendHorseCharge);
 		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendHorsePirouette);
 
 		if (::Legends.isLegendaryDifficulty())

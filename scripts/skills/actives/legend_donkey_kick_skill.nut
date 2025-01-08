@@ -63,7 +63,7 @@ function getTooltip()
 		local damage_Armor_min = this.Math.floor(damageMin * p.DamageArmorMult * p.DamageTotalMult);
 		local damage_Armor_max = this.Math.floor(damageMax * p.DamageArmorMult * p.DamageTotalMult);
 		local damage_direct_max = this.Math.floor(damageMax * this.m.DirectDamageMult);
-		if (this.getContainer().getActor().getSkills().hasSkill("perk.legend_muscularity"))
+		if (this.getContainer().getActor().getSkills().hasPerk(::Const.Perks.PerkDefs.LegendMuscularity))
 		{
 			local muscularity = this.Math.floor(bodyHealth * 0.1);
 			 damage_regular_max += muscularity;
@@ -167,7 +167,7 @@ function onAnySkillUsed( _skill, _targetEntity, _properties )
 				damageMax += avgMax;
 				}
 
-			if (this.getContainer().getActor().getSkills().hasSkill("perk.legend_muscularity"))
+			if (this.getContainer().getActor().getSkills().hasPerk(::Const.Perks.PerkDefs.LegendMuscularity))
 			{
 				local muscularity = this.Math.floor(bodyHealth * 0.1);
 				damageMax += muscularity;

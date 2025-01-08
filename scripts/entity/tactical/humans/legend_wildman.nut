@@ -62,14 +62,14 @@ this.legend_wildman <- this.inherit("scripts/entity/tactical/human", {
 		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.HoldOut);
 		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.KillingFrenzy);
 		if(::Legends.isLegendaryDifficulty())
-			{
+		{
 			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendUberNimble);
 			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendMuscularity);
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_mastery_fists"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_kick_skill"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_grapple_skill"));
+			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendSpecFists);
+			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendKick);
+			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendGrapple);
 			this.m.Skills.add(this.new("scripts/skills/traits/fearless_trait"));
-			}
+		}
 
 	}
 

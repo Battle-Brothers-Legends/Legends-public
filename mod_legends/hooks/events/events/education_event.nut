@@ -29,7 +29,7 @@
 		foreach( bro in brothers ) {
 			if (bro.getSkills().hasSkill("trait.dumb"))
 				dumb_candidates.push(bro);
-			else if ((bro.getBackground().getID() == "background.monk" || bro.getBackground().getID() == "background.historian" || bro.getBackground().getID() == "background.legend_inventor"  ||  bro.getBackground().getID() == "background.legend_witch" || bro.getBackground().getID() == "background.legend_commander_witch" ) && !bro.getSkills().hasSkill("trait.hesitant") || bro.getSkills().hasSkill("perk.legend_scholar"))
+			else if ((bro.getBackground().getID() == "background.monk" || bro.getBackground().getID() == "background.historian" || bro.getBackground().getID() == "background.legend_inventor"  ||  bro.getBackground().getID() == "background.legend_witch" || bro.getBackground().getID() == "background.legend_commander_witch" ) && !bro.getSkills().hasSkill("trait.hesitant") || bro.getSkills().hasPerk(::Const.Perks.PerkDefs.LegendScholar))
 				scholar_candidates.push(bro);
 		}
 

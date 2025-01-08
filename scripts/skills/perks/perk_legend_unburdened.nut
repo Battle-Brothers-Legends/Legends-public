@@ -47,7 +47,7 @@ this.perk_legend_unburdened <- this.inherit("scripts/skills/skill", {
 			bg.addPerk(_perk, row);
 		}
 
-		if (!this.getContainer().hasSkill("perk.footwork"))
+		if (!this.getContainer().hasPerk(::Const.Perks.PerkDefs.Footwork))
 			addPerk(this.Const.Perks.PerkDefs.Footwork, 5);
 	}
 });

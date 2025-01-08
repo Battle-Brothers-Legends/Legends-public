@@ -44,7 +44,7 @@ this.cultists_scenario <- this.inherit("scripts/scenarios/world/starting_scenari
 			"legend_magister_background"
 		]);
 		bros[0].getBackground().m.RawDescription = "When %name% joined, the cultist warmly called you captain, saying \"tis a proper manner to pursue the path into the Black from whence we came\".";
-		bros[0].getSkills().add(this.new("scripts/skills/perks/perk_rally_the_troops"));
+		::Legends.Perks.grant(bros[0], ::Const.Perks.PerkDefs.RallyTheTroops);
 		this.addScenarioPerk(bros[0].getBackground(), this.Const.Perks.PerkDefs.LegendTrueBeliever);
 		bros[0].getBaseProperties().MeleeSkill += 10;
 		bros[0].setPlaceInFormation(2);
@@ -116,7 +116,7 @@ this.cultists_scenario <- this.inherit("scripts/scenarios/world/starting_scenari
 		]);
 		bros[4].getBackground().m.RawDescription = "%name% banded with you outside a tavern. The first time you saw the cultist, there were scars running up %name%\'s arms and across veins that could not be survived. But each morning it appears as though the scars move, slowly creeping in one direction: toward the forehead.";
 		this.addScenarioPerk(bros[4].getBackground(), this.Const.Perks.PerkDefs.LegendTrueBeliever);
-		bros[4].getBaseProperties().MeleeSkill += 10;	
+		bros[4].getBaseProperties().MeleeSkill += 10;
 		bros[4].setPlaceInFormation(6);
 		local items = bros[4].getItems();
 		items.unequip(items.getItemAtSlot(this.Const.ItemSlot.Mainhand));
@@ -223,12 +223,12 @@ this.cultists_scenario <- this.inherit("scripts/scenarios/world/starting_scenari
 	{
 		this.starting_scenario.onInit();
 	}
-  
+
 	function onGenerateBro(bro)
-	{																
+	{
 		//Can't really recruit converted cultists but its here anyway for posterity
 		if (bro.getBackground().getID() == "background.cultist" || bro.getBackground().getID() == "background.converted_cultist" || bro.getBackground().getID() == "background.legend_lurker" || bro.getBackground().getID() == "background.legend_darksoul" || bro.getBackground().getID() == "background.legend_magister")
-		{				
+		{
 			bro.m.HiringCost = this.Math.floor(bro.m.HiringCost * 0.75) //1.0 = default
 			bro.getBaseProperties().DailyWageMult *= 0.75; //1.0 = default
 			bro.getBaseProperties().MeleeSkill += 10;
@@ -257,7 +257,7 @@ this.cultists_scenario <- this.inherit("scripts/scenarios/world/starting_scenari
 				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+10[/color] Melee Skill from being a cultist in a cultist mercenary company"
 			});
 		}
-		
+
 		if (_background.getID() == "background.legend_husk" || _background.getID() == "background.legend_magister")
 		{
 			//_tooltip.pop();
@@ -271,7 +271,7 @@ this.cultists_scenario <- this.inherit("scripts/scenarios/world/starting_scenari
 	}
 
 	function onBuildPerkTree( _background ) //give true believer
-	{		
+	{
 		if (this.isCultist(_background))
 		{
 			this.addScenarioPerk(_background, this.Const.Perks.PerkDefs.LegendTrueBeliever);

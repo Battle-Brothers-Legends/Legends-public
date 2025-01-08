@@ -182,6 +182,24 @@ perkDefObjects.push({
 	Const = "FastAdaption"
 });
 perkDefObjects.push({
+	ID = "perk.captain",
+	Script = "scripts/skills/perks/perk_captain",
+	Name = this.Const.Strings.PerkName.Captain,
+	Tooltip = this.Const.Strings.PerkDescription.Captain,
+	Icon = "ui/perks/perk_26.png",
+	IconDisabled = "ui/perks/perk_26_sw.png",
+	Const = "Captain"
+});
+perkDefObjects.push({
+	ID = "perk.battering_ram",
+	Script = "scripts/skills/perks/perk_battering_ram",
+	Name = this.Const.Strings.PerkName.BatteringRam,
+	Tooltip = this.Const.Strings.PerkDescription.BatteringRam,
+	Icon = "ui/perks/passive_03.png",
+	IconDisabled = "ui/perks/passive_03_sw.png",
+	Const = "BatteringRam"
+});
+perkDefObjects.push({
 	ID = "perk.crippling_strikes",
 	Script = "scripts/skills/perks/perk_crippling_strikes",
 	Name = this.Const.Strings.PerkName.CripplingStrikes,
@@ -1004,7 +1022,7 @@ perkDefObjects.push({
 });
 perkDefObjects.push({
 	ID = "perk.legend_slaughterer",
-	Script = "scripts/skills/perks/perk_legend_carnageer",
+	Script = "scripts/skills/perks/perk_legend_slaughterer",
 	Name = this.Const.Strings.PerkName.LegendSlaughterer,
 	Tooltip = this.Const.Strings.PerkDescription.LegendSlaughterer,
 	Icon = "ui/perks/slaughterer_circle.png",

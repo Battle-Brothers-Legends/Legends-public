@@ -51,7 +51,7 @@
 		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Pathfinder);
 		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.SteelBrow);
 		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.KillingFrenzy);
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_battering_ram"));
+		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.BatteringRam);
 		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Stalwart);
 		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.HoldOut);
 		this.m.Skills.add(this.new("scripts/skills/racial/unhold_racial"));

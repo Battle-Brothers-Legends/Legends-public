@@ -13,7 +13,7 @@
 	o.onUpdateProperties <- function( _properties ) {
 		local staminaMult = 1.0;
 
-		if (this.getContainer().getActor().getSkills().hasSkill("perk.brawny"))
+		if (this.getContainer().getActor().getSkills().hasPerk(::Const.Perks.PerkDefs.Brawny))
 			staminaMult = 0.75;
 		_properties.Armor[this.Const.BodyPart.Head] += this.m.Condition;
 		_properties.ArmorMax[this.Const.BodyPart.Head] += this.m.ConditionMax;

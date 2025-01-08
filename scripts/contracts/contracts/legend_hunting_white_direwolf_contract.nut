@@ -141,7 +141,7 @@ this.legend_hunting_white_direwolf_contract <- this.inherit("scripts/contracts/c
 
 					foreach( bro in bros )
 					{
-						if (bro.getBackground().getID() == "background.houndmaster" || bro.getBackground().getID() == "background.wildman" || bro.getBackground().getID() == "background.beast_slayer" || bro.getBackground().getID() == "background.legend_muladi" || bro.getBackground().getID() == "background.legend_ranger" || bro.getBackground().getID() == "background.legend_vala" || bro.getBackground().getID() == "background.legend_commander_vala" || bro.getBackground().getID() == "background.legend_commander_ranger" || bro.getSkills().hasSkill("perk.legend_favoured_enemy_direwolf"))
+						if (bro.getBackground().getID() == "background.houndmaster" || bro.getBackground().getID() == "background.wildman" || bro.getBackground().getID() == "background.beast_slayer" || bro.getBackground().getID() == "background.legend_muladi" || bro.getBackground().getID() == "background.legend_ranger" || bro.getBackground().getID() == "background.legend_vala" || bro.getBackground().getID() == "background.legend_commander_vala" || bro.getBackground().getID() == "background.legend_commander_ranger" || bro.getSkills().hasPerk(::Const.Perks.PerkDefs.LegendFavouredEnemyDirewolf))
 						{
 							candidates.push(bro);
 						}

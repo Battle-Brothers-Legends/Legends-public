@@ -68,7 +68,7 @@ this.legend_daze_skill <- this.inherit("scripts/skills/skill", {
 
 		local chance = getContainer().getActor().getCurrentProperties().getRangedSkill() - _targetEntity.getCurrentProperties().getRangedDefense();
 
-		if (getContainer().hasSkill("perk.taunt"))
+		if (getContainer().hasPerk(::Const.Perks.PerkDefs.Taunt))
 			chance *= 2;
 
 		return ::Math.max(0, ::Math.min(100, chance));

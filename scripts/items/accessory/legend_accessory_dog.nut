@@ -33,7 +33,7 @@ this.legend_accessory_dog <- this.inherit("scripts/items/accessory/accessory", {
 		if (::MSU.isNull(m.AddToBagActor) && ::MSU.isNull(getContainer()))
 			return true;
 
-		return !::MSU.isNull(m.AddToBagActor) && m.AddToBagActor.getSkills().hasSkill("perk.legend_packleader");
+		return !::MSU.isNull(m.AddToBagActor) && m.AddToBagActor.getSkills().hasPerk(::Const.Perks.PerkDefs.LegendPackleader);
 	}
 
 	function isChangeableInBattle()
@@ -47,7 +47,7 @@ this.legend_accessory_dog <- this.inherit("scripts/items/accessory/accessory", {
 		if (::MSU.isNull(m.IsChangeableInBattleActor) && ::MSU.isNull(getContainer()))
 			return true;
 
-		return !::MSU.isNull(m.IsChangeableInBattleActor) && m.IsChangeableInBattleActor.getSkills().hasSkill("perk.legend_packleader");
+		return !::MSU.isNull(m.IsChangeableInBattleActor) && m.IsChangeableInBattleActor.getSkills().hasPerk(::Const.Perks.PerkDefs.LegendPackleader);
 	}
 
 	function isUnleashed()
@@ -128,11 +128,11 @@ this.legend_accessory_dog <- this.inherit("scripts/items/accessory/accessory", {
 			entity.setName(this.getName());
 			entity.setVariant(this.getVariant());
 
-			if (this.getContainer().getActor().getSkills().hasSkill("perk.legend_dogwhisperer"))
+			if (this.getContainer().getActor().getSkills().hasPerk(::Const.Perks.PerkDefs.LegendDogWhisperer))
 			{
-				entity.getSkills().add(this.new("scripts/skills/perks/perk_fortified_mind"));
-				entity.getSkills().add(this.new("scripts/skills/perks/perk_colossus"));
-				entity.getSkills().add(this.new("scripts/skills/perks/perk_underdog"));
+				::Legends.Perks.grant(entity, ::Const.Perks.PerkDefs.FortifiedMind);
+				::Legends.Perks.grant(entity, ::Const.Perks.PerkDefs.Colossus);
+				::Legends.Perks.grant(entity, ::Const.Perks.PerkDefs.Underdog);
 			}
 
 			this.setEntity(entity);

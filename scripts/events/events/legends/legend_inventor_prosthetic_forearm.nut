@@ -116,7 +116,7 @@ this.legend_inventor_prosthetic_forearm <- this.inherit("scripts/events/event", 
 	{
 		this.m.Score = 0;
 		return;
-		
+
 		local brothers = this.World.getPlayerRoster().getAll();
 		local inventor_candidates = [];
 		local nofoot_candidates = [];
@@ -130,7 +130,7 @@ this.legend_inventor_prosthetic_forearm <- this.inherit("scripts/events/event", 
 
 		foreach (bro in brothers)
 		{
-			if (bro.getSkills().hasSkill("perk.legend_inventor_anatomy"))
+			if (bro.getSkills().hasPerk(::Const.Perks.PerkDefs.LegendInventorAnatomy))
 			{
 				inventor_candidates.push(bro);
 			}

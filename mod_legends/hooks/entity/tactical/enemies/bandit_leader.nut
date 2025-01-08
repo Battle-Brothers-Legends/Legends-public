@@ -33,7 +33,7 @@
 		dirt.Alpha = this.Math.rand(150, 255);
 		this.setArmorSaturation(0.85);
 		this.getSprite("shield_icon").setBrightness(0.85);
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_captain"));
+		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Captain);
 		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.ShieldExpert);
 		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Brawny);
 		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.CoupDeGrace);

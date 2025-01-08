@@ -20,7 +20,7 @@ this.perk_legend_horrify <- this.inherit("scripts/skills/skill", {
 
 	function onRemoved()
 	{
-		if (!this.m.Container.hasSkill("perk.legend_item_horrify"))
+		if (!this.m.Container.hasPerk(::Const.Perks.PerkDefs.LegendHorrify))
 		{
 			this.m.Container.removeByID("actives.legend_horrific_scream");
 		}

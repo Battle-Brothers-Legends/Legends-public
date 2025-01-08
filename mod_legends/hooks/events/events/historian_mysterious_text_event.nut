@@ -23,7 +23,7 @@
 		local candidates_historian = [];
 
 		foreach( bro in brothers ) {
-			if (bro.getLevel() >= 3 && (bro.getBackground().getID() == "background.historian" || bro.getSkills().hasSkill("perk.legend_scholar"))) {
+			if (bro.getLevel() >= 3 && (bro.getBackground().getID() == "background.historian" || bro.getSkills().hasPerk(::Const.Perks.PerkDefs.LegendScholar))) {
 				candidates_historian.push(bro);
 			}
 		}

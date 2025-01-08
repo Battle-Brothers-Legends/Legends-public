@@ -313,17 +313,17 @@
 		local hasGifted = false;
 		local hasAdaptive = false;
 
-		if (this.getLevel() >= 12 && this.getSkills().hasSkill("perk.student"))
+		if (this.getLevel() >= 12 && this.getSkills().hasPerk(::Const.Perks.PerkDefs.Student))
 		{
 			perks = perks - 1;
 			hasStudent = true;
 		}
-		if (this.getSkills().hasSkill("perk.gifted"))
+		if (this.getSkills().hasPerk(::Const.Perks.PerkDefs.Gifted))
 		{
 			perks = perks - 1;
 			hasGifted = true;
 		}
-		if (this.getSkills().hasSkill("perk.legend_adaptive"))
+		if (this.getSkills().hasPerk(::Const.Perks.PerkDefs.LegendAdaptive))
 		{
 			perks = perks - 1;
 			hasAdaptive = true;
@@ -372,16 +372,17 @@
 		if (hasGifted)
 		{
 			this.m.PerkPointsSpent += 1;
-			local giftedPerk = this.new("scripts/skills/perks/perk_gifted");
-			giftedPerk.m.IsApplied = true;
-			this.getSkills().add(giftedPerk);
+			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Gifted, function (_perk) {
+				_perk.m.IsApplied = true;
+			});
 		}
 
 		if (hasAdaptive)
 		{
-			local giftedPerk = this.new("scripts/skills/perks/perk_legend_adaptive");
-			giftedPerk.m.IsNew = false;
-				if (this.getLevel() >= 15)
+			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendAdaptive, function (_perk) {
+				_perk.m.IsNew = true;
+			});
+			if (this.getLevel() >= 15)
 				this.m.PerkPointsSpent += 1;
 		}
 

@@ -129,7 +129,7 @@
 			return;
 		}
 
-		if (this.getContainer().getActor().getSkills().hasSkill("perk.brawny"))
+		if (this.getContainer().getActor().getSkills().hasPerk(::Const.Perks.PerkDefs.Brawny))
 		{
 			staminaMult = 0.7;
 		}

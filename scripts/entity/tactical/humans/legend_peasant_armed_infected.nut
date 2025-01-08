@@ -30,15 +30,16 @@ this.legend_peasant_armed_infected <- this.inherit("scripts/entity/tactical/huma
 		this.getSprite("socket").setBrush("bust_base_militia");
 
 		this.m.Skills.add(this.new("scripts/skills/injury_permanent/legend_vermesthropy_injury"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_true_form"));
+		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendTrueForm);
+
 
 		// if (this.Math.rand(1, 100) <= 80)
 		// {
-		// 	this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_control_instincts"));
+		// 	::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendControlInstincts);
 		// }
 		// if (this.Math.rand(1, 100) <= 60)
 		// {
-		// 	this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_surpress_urges"));
+		// 	::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendSurpressUrges);
 		// }
 		// if (this.Math.rand(1, 100) <= 40)
 		// {

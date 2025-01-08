@@ -60,7 +60,7 @@ this.legend_harvest_bush_skill <- this.inherit("scripts/skills/skill", {
 			return true;
 		}
 
-		if (!actor.getSkills().hasSkill("perk.legend_specialist_sickle_skill"))
+		if (!actor.getSkills().hasPerk(::Const.Perks.PerkDefs.LegendSpecialistSickleSkill))
 		{
 			return true;
 		}

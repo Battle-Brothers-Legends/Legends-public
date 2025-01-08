@@ -261,7 +261,7 @@ this.legend_orc_behemoth <- this.inherit("scripts/entity/tactical/actor", {
 		this.m.Skills.add(this.new("scripts/skills/special/double_grip"));
 		this.m.Skills.add(this.new("scripts/skills/actives/hand_to_hand"));
 		this.m.Skills.add(this.new("scripts/skills/actives/line_breaker"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_battering_ram"));
+		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.BatteringRam);
 		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Stalwart);
 		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.HoldOut);
 		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Berserk);

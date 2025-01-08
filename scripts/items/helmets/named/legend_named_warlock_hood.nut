@@ -58,14 +58,9 @@ this.legend_named_warlock_hood <- this.inherit("scripts/items/helmets/named/name
 		local a = this.getContainer().getActor();
 
 		if (a == null)
-		{
 			return;
-		}
 
-		if (!a.getSkills().hasSkill("perk.legend_taste_the_pain"))
-		{
-			a.getSkills().add(this.new("scripts/skills/perks/perk_legend_taste_the_pain"));
-		}
+		::Legends.Perks.grant(a, ::Const.Perks.PerkDefs.LegendTasteThePain);
 	}
 
 	function onUnequip()

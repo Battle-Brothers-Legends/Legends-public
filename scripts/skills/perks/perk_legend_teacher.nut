@@ -14,14 +14,8 @@ this.perk_legend_teacher <- this.inherit("scripts/skills/skill", {
 	function onCombatStarted()
 	{
 		local actors = this.Tactical.Entities.getInstancesOfFaction(this.Const.Faction.Player);
-
 		foreach( a in actors )
-		{
-			if (!a.getSkills().hasSkill("perk.student"))
-			{
-				a.getSkills().add(this.new("scripts/skills/perks/perk_student"));
-			}
-		}
+			::Legends.Perks.grant(a, ::Const.Perks.PerkDefs.Student);
 	}
 
 });

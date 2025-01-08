@@ -19,11 +19,7 @@ this.legend_armored_hound_blueprint <- this.inherit("scripts/crafting/blueprint"
 		];
 		this.init(ingredients);
 		local skills = [
-			{
-				Scripts = [
-					"scripts/skills/perks/perk_legend_dogbreeder"
-				]
-			}
+			::Legends.Perks.blueprint(::Const.Perks.PerkDefs.LegendDogBreeder)
 		];
 		this.initSkills(skills);
 	}

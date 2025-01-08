@@ -9,17 +9,13 @@ this.legend_sack_hood_blueprint <- this.inherit("scripts/crafting/blueprint", {
 		this.m.Cost = 75;
 		local ingredients = [
 			{
-				Script = "scripts/items/trade/cloth_rolls_item", 
+				Script = "scripts/items/trade/cloth_rolls_item",
 				Num = 1
 			}
 		];
 		this.init(ingredients);
 		local skills = [
-			{
-				Scripts = [
-					"scripts/skills/perks/perk_legend_specialist_cult_hood",
-				]
-			}
+			::Legends.Perks.blueprint(::Const.Perks.PerkDefs.LegendSpecCultHood)
 		];
 		this.initSkills(skills);
 	}

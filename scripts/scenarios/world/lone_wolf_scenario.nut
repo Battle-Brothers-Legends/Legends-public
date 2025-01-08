@@ -30,7 +30,7 @@ this.lone_wolf_scenario <- this.inherit("scripts/scenarios/world/starting_scenar
 		]);
 		bros[0].getBackground().buildDescription(true);
 		bros[0].setTitle("the Lone Wolf");
-		bros[0].getSkills().add(this.new("scripts/skills/perks/perk_legend_favoured_enemy_swordmaster"));
+		::Legends.Perks.grant(bros[0], ::Const.Perks.PerkDefs.LegendFavouredEnemySwordmaster);
 		bros[0].getSkills().add(this.new("scripts/skills/traits/player_character_trait"));
 		bros[0].getSkills().add(this.new("scripts/skills/traits/legend_lw_relationship_trait"));
 		bros[0].setPlaceInFormation(4);
@@ -148,7 +148,7 @@ this.lone_wolf_scenario <- this.inherit("scripts/scenarios/world/starting_scenar
 		foreach( i, bro in bros )
 		{
 			if (bro.getBackground().getID() != "background.legend_donkey") //this.Const.BackgroundType.Stabled
-			{			
+			{
 				garbage.push(bro);
 			}
 	        else if (bro.getSkills().hasSkill("background.legend_donkey"))

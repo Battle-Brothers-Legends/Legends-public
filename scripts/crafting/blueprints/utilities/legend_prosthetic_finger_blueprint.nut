@@ -15,9 +15,7 @@ this.legend_prosthetic_finger_blueprint <- this.inherit("scripts/crafting/bluepr
 		];
 		this.init(ingredients);
 		local skills = [
-			{
-				Scripts = ["scripts/skills/perks/perk_legend_inventor_anatomy"]
-			}
+			::Legends.Perks.blueprint(::Const.Perks.PerkDefs.LegendInventorAnatomy)
 		];
 		this.initSkills(skills);
 	}

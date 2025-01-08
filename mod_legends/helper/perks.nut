@@ -7,6 +7,8 @@ if (!("Perks" in ::Legends))
 		container = _target;
 	else if (::isKindOf(_target, "actor"))
 		container = _target.getSkills();
+	else if (::isKindOf(_target, "character_background"))
+		container = _target.m.Container;
 	else
 		throw "Unsupported _target class";
 	return container;
@@ -36,4 +38,8 @@ if (!("Perks" in ::Legends))
 			_applyFn(perk);
 		container.add(perk);
 	}
+}
+
+::Legends.Perks.blueprint <- function (_def) {
+	return { Scripts = [::Const.Perks.PerkDefObjects[_def].Script] }
 }

@@ -6,7 +6,7 @@
 		onInit();
 		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Rotation);
 		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Recover);
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_mastery_greatsword"));
+		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.SpecSword);
 
 		if (::Legends.isLegendaryDifficulty())
 		{

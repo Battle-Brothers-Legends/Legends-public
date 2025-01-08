@@ -9,7 +9,7 @@ this.legend_bear_claws_skill <- this.inherit("scripts/skills/skill", {
 			"sounds/combat/chop_hit_01.wav",
 			"sounds/combat/chop_hit_02.wav",
 			"sounds/combat/chop_hit_03.wav"
-		]		
+		]
 	},
 	function create()
 	{
@@ -83,7 +83,7 @@ this.legend_bear_claws_skill <- this.inherit("scripts/skills/skill", {
 		local damage_Armor_max = this.Math.floor(damageMax * p.DamageArmorMult * p.DamageTotalMult);
 		local damage_direct_max = this.Math.floor(damageMax * this.m.DirectDamageMult);
 
-		if (this.getContainer().getActor().getSkills().hasSkill("perk.legend_muscularity"))
+		if (this.getContainer().getActor().getSkills().hasPerk(::Const.Perks.PerkDefs.LegendMuscularity))
 		{
 			local muscularity = this.Math.floor(bodyHealth * 0.1);
 			 damage_regular_max += muscularity;
@@ -294,10 +294,10 @@ this.legend_bear_claws_skill <- this.inherit("scripts/skills/skill", {
 			damageMax = 50 + maxFalloff;
 			}
 
-			
 
 
-			if (this.getContainer().getActor().getSkills().hasSkill("perk.legend_muscularity"))
+
+			if (this.getContainer().getActor().getSkills().hasPerk(::Const.Perks.PerkDefs.LegendMuscularity))
 			{
 				local muscularity = this.Math.floor(bodyHealth * 0.1);
 				damageMax += muscularity;

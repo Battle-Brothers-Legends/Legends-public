@@ -422,15 +422,15 @@ this.legend_armor <- this.inherit("scripts/items/armor/armor", {
 		if (_upgrade != null && this.m.Blocked[_upgrade.getType()]) return false;
 
 		local oldIndex;
-		
-		
+
+
 		if ("Assets" in this.World && this.World.Assets.getStash())
 		{
 
 			oldIndex = this.World.Assets.getStash().getItemByInstanceID(_upgrade.getInstanceID())
-			
+
 		}
-		
+
 		if (oldIndex != null) oldIndex = oldIndex.index
 
 		local oldItem;
@@ -603,7 +603,7 @@ this.legend_armor <- this.inherit("scripts/items/armor/armor", {
 		}
 
 		local upgradeNum = this.m.Upgrades.filter(@(idx, val) val != null).len();
-		if ( upgradeNum > 0 && ::Legends.Mod.ModSettings.getSetting("ShowExpandedArmorLayerTooltip").getValue() ) 
+		if ( upgradeNum > 0 && ::Legends.Mod.ModSettings.getSetting("ShowExpandedArmorLayerTooltip").getValue() )
 		{
 			result.push({	// An empty line is put in to improve formatting
 				id = 10,
@@ -623,7 +623,7 @@ this.legend_armor <- this.inherit("scripts/items/armor/armor", {
 				icon = "ui/icons/armor_body.png",
 				text = "Armor: " + this.m.ConditionMax
 			});
-			if ( this.m.StaminaModifier != 0 ) 
+			if ( this.m.StaminaModifier != 0 )
 			{
 				result.push({
 					id = 10,
@@ -881,7 +881,7 @@ this.legend_armor <- this.inherit("scripts/items/armor/armor", {
 
 		local staminaMult = 1.0;
 
-		if (this.getContainer().getActor().getSkills().hasSkill("perk.brawny"))
+		if (this.getContainer().getActor().getSkills().hasPerk(::Const.Perks.PerkDefs.Brawny))
 		{
 			staminaMult = 0.70;
 		}

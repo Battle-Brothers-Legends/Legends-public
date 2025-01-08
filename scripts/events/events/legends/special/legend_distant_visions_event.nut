@@ -40,7 +40,7 @@ this.legend_distant_visions_event <- this.inherit("scripts/events/event", {
 
 		foreach( bro in this.brothers )
 		{
-			if (bro.getSkills().hasSkill("perk.legend_distant_visions"))
+			if (bro.getSkills().hasPerk(::Const.Perks.PerkDefs.LegendDistantVisions))
 			{
 				Characters.push(bro);
 			}
