@@ -26,7 +26,7 @@ this.legend_caravan_hand <- this.inherit("scripts/entity/tactical/legend_randomi
 		this.setAppearance();
 		this.getSprite("socket").setBrush("bust_base_caravan");
 		this.getSprite("dirt").Visible = true;
-		if("Assets" in this.World && this.World.Assets != null && this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Legendary)
+		if(::Legends.isLegendaryDifficulty())
 			{
 			this.m.Skills.add(this.new("scripts/skills/perks/perk_shield_bash"));
 			this.m.Skills.add(this.new("scripts/skills/perks/perk_pathfinder"));

@@ -1,4 +1,4 @@
-::mods_hookExactClass("entity/tactical/humans/militia_guest", function(o) 
+::mods_hookExactClass("entity/tactical/humans/militia_guest", function(o)
 {
 	local onInit = o.onInit;
 	o.onInit = function ()
@@ -6,7 +6,7 @@
 		onInit();
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_recover"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_specialist_militia_skill"));
-		if("Assets" in this.World && this.World.Assets != null && this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Legendary)
+		if(::Legends.isLegendaryDifficulty())
 		{
 			this.m.Skills.add(this.new("scripts/skills/perks/perk_mastery_spear"));
 			this.m.Skills.add(this.new("scripts/skills/perks/perk_shield_expert"));

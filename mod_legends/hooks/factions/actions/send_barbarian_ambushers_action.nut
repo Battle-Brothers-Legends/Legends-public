@@ -86,7 +86,7 @@
 		local settlement = this.pickWeightedRandom(settlements);
 		settlement.setLastSpawnTimeToNow();
 		local mult = this.World.FactionManager.isCivilWar() ? 1.1 : 1.0;
-		if (this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Legendary)
+		if (::Legends.isLegendaryDifficulty())
 		{
 			local mult = this.World.FactionManager.isCivilWar() ? 1.2 : 1.0;
 		}

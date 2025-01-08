@@ -36,9 +36,9 @@ this.legend_peasant_minstrel <- this.inherit("scripts/entity/tactical/human", {
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_entice"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_daze"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_drums_of_war"));
-		
+
 		this.getSprite("socket").setBrush("bust_base_militia");
-			if("Assets" in this.World && this.World.Assets != null && this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Legendary)
+			if(::Legends.isLegendaryDifficulty())
 			{
 			this.m.Hitpoints = b.Hitpoints * 1.5;
 			this.m.Skills.add(this.new("scripts/skills/perks/perk_taunt"));
@@ -71,7 +71,7 @@ this.legend_peasant_minstrel <- this.inherit("scripts/entity/tactical/human", {
 		{
 			this.m.Items.equip(this.new("scripts/items/weapons/legend_drum"));
 		}
-		
+
 		local r;
 		r = this.Math.rand(1, 10);
 		if (r == 1)

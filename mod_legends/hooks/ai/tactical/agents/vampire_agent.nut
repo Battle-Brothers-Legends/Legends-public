@@ -1,10 +1,10 @@
 ::mods_hookExactClass("ai/tactical/agents/vampire_agent", function(o)
-{	
+{
 	local create = o.create;
 	o.create = function ()
 	{
 		create();
-		if ("Assets" in this.World && this.World.Assets != null && this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Legendary)
+		if (::Legends.isLegendaryDifficulty())
 		{
 			this.m.Properties.BehaviorMult[this.Const.AI.Behavior.ID.EngageMelee] = 0.5;
 			this.m.Properties.TargetPriorityHitchanceMult = 1.5;

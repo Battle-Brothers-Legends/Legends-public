@@ -1,4 +1,4 @@
-::mods_hookExactClass("entity/tactical/humans/militia", function(o) 
+::mods_hookExactClass("entity/tactical/humans/militia", function(o)
 {
 	local onInit = o.onInit;
 	o.onInit = function ()
@@ -8,7 +8,7 @@
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_specialist_militia_skill"));
 
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_shield_bash"));
-		if("Assets" in this.World && this.World.Assets != null && this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Legendary)
+		if(::Legends.isLegendaryDifficulty())
 		{
 			this.m.Skills.add(this.new("scripts/skills/perks/perk_mastery_spear"));
 			this.m.Skills.add(this.new("scripts/skills/perks/perk_shield_expert"));
@@ -71,7 +71,7 @@
 			[1, "thick_tunic"],
 			[1, "apron"]
 		]));
-		
+
 		if (this.Math.rand(1, 100) <= 50)
 		{
 			this.m.Items.equip(this.Const.World.Common.pickHelmet([

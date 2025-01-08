@@ -1,4 +1,4 @@
-::mods_hookExactClass("entity/tactical/humans/noble_footman", function(o) 
+::mods_hookExactClass("entity/tactical/humans/noble_footman", function(o)
 {
 	local onInit = o.onInit;
 	o.onInit = function ()
@@ -6,7 +6,7 @@
 		onInit();
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_rotation"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_recover"));
-		if("Assets" in this.World && this.World.Assets != null && this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Legendary)
+		if(::Legends.isLegendaryDifficulty())
 		{
 			this.m.Skills.add(this.new("scripts/skills/perks/perk_steel_brow"));
 			this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_feint"));

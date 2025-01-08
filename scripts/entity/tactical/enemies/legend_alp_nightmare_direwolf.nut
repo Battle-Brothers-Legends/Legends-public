@@ -116,7 +116,7 @@ this.legend_alp_nightmare_direwolf <- this.inherit("scripts/entity/tactical/enem
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_overwhelm"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_relentless"));
 
-		if ("Assets" in this.World && this.World.Assets != null && this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Legendary)
+		if (::Legends.isLegendaryDifficulty())
 		{
 			this.m.Skills.add(this.new("scripts/skills/traits/fearless_trait"));
 			this.m.Skills.add(this.new("scripts/skills/perks/perk_backstabber"));

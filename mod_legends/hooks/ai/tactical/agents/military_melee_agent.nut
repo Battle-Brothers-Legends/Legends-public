@@ -4,7 +4,7 @@
 	o.create = function ()
 	{
 		create();
-		if("Assets" in this.World && this.World.Assets != null && this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Legendary)
+		if(::Legends.isLegendaryDifficulty())
 		{
 			this.m.Properties.TargetPriorityHitchanceMult = 0.9;
 			this.m.Properties.TargetPriorityHitpointsMult = 0.8;

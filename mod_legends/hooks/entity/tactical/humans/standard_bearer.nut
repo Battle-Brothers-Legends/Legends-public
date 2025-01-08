@@ -1,4 +1,4 @@
-::mods_hookExactClass("entity/tactical/humans/standard_bearer", function(o) 
+::mods_hookExactClass("entity/tactical/humans/standard_bearer", function(o)
 {
 	local onInit = o.onInit;
 	o.onInit = function ()
@@ -7,7 +7,7 @@
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_rotation"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_recover"));
 
-		if (("Assets" in this.World) && this.World.Assets != null && this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Legendary)
+		if (::Legends.isLegendaryDifficulty())
 		{
 			this.m.Skills.add(this.new("scripts/skills/perks/perk_battle_forged"));
 			this.m.Skills.add(this.new("scripts/skills/perks/perk_fortified_mind"));

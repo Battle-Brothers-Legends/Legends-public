@@ -71,7 +71,7 @@
 		this.m.Skills.add(this.new("scripts/skills/actives/hand_to_hand_orc"));
 		this.m.Skills.add(this.new("scripts/skills/actives/charge"));
 
-		if("Assets" in this.World && this.World.Assets != null && this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Legendary)
+		if(::Legends.isLegendaryDifficulty())
 		{
 			b.MeleeSkill += 10;
 			this.m.Skills.add(this.new("scripts/skills/perks/perk_crippling_strikes"));

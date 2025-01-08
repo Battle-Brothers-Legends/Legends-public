@@ -1,10 +1,10 @@
-::mods_hookExactClass("entity/tactical/humans/barbarian_madman", function(o) 
+::mods_hookExactClass("entity/tactical/humans/barbarian_madman", function(o)
 {
 	local onInit = o.onInit;
 	o.onInit = function ()
 	{
 		onInit();
-		if("Assets" in this.World && this.World.Assets != null && this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Legendary)
+		if(::Legends.isLegendaryDifficulty())
 		{
 			this.m.Skills.add(this.new("scripts/skills/perks/perk_overwhelm"));
 			this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_alert"));
@@ -26,8 +26,8 @@
 			this.m.Items.equip(this.new("scripts/items/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
 		}
 
-		
-		
+
+
 		if (this.m.Items.hasEmptySlot(this.Const.ItemSlot.Body))
 		{
 			this.m.Items.equip(this.Const.World.Common.pickArmor([

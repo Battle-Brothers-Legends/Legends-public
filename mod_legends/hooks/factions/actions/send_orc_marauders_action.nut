@@ -1,4 +1,4 @@
-::mods_hookExactClass("factions/actions/send_orc_marauders_action", function(o) 
+::mods_hookExactClass("factions/actions/send_orc_marauders_action", function(o)
 {
 	o.onExecute = function ( _faction )
 	{
@@ -25,13 +25,13 @@
 		local settlement = this.pickWeightedRandom(settlements);
 		settlement.setLastSpawnTimeToNow();
 		local mult = this.World.FactionManager.isGreenskinInvasion() ? 1.1 : 1.0;
-		if (this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Legendary)
+		if (::Legends.isLegendaryDifficulty())
 			{
 			local mult = this.World.FactionManager.isGreenskinInvasion() ? 1.2 : 1.0;
 			}
 		local rand = this.Math.rand(75, 120);
 		//	local nearestOrcs = this.getNearestLocationTo(origin, this.World.FactionManager.getFactionOfType(this.Const.FactionType.Orcs).getSettlements());
-		//		if (this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Legendary && nearestOrcs > 28)
+		//		if (::Legends.isLegendaryDifficulty() && nearestOrcs > 28)
 		//		{
 		//			rand *= nearestOrcs / 28.0;
 		//		}

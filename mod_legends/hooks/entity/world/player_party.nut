@@ -155,7 +155,7 @@
 		}
 
 		//  Scaling based on money and stash - was controversial
-		//	if (this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Legendary)
+		//	if (::Legends.isLegendaryDifficulty())
 		//	{
 		//		local items = this.World.Assets.getStash().getItems();
 		//

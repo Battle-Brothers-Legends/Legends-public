@@ -288,7 +288,7 @@ this.legend_hexe_leader <- this.inherit("scripts/entity/tactical/actor", {
 		this.m.Skills.add(this.new("scripts/skills/actives/fake_drink_night_vision_skill"));
 
 
-		if("Assets" in this.World && this.World.Assets != null && this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Legendary)
+		if(::Legends.isLegendaryDifficulty())
 		{
 			this.m.Skills.add(this.new("scripts/skills/racial/schrat_racial"));
 			this.m.Skills.add(this.new("scripts/skills/perks/perk_inspiring_presence"));

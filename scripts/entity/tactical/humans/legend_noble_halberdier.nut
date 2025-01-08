@@ -44,7 +44,7 @@ this.legend_noble_halberdier <- this.inherit("scripts/entity/tactical/human", {
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_berserk"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_rotation"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_recover"));
-		if("Assets" in this.World && this.World.Assets != null && this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Legendary)
+		if(::Legends.isLegendaryDifficulty())
 			{
 			this.m.Hitpoints = b.Hitpoints * 2;
 			this.m.Skills.add(this.new("scripts/skills/perks/perk_nimble"));

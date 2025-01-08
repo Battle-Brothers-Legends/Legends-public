@@ -57,7 +57,7 @@
 		local b = this.m.BaseProperties;
 		this.m.Skills.add(this.new("scripts/skills/actives/legend_wither_skill"));
 
-		if("Assets" in this.World && this.World.Assets != null && this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Legendary)
+		if(::Legends.isLegendaryDifficulty())
 		{
 			this.m.Skills.add(this.new("scripts/skills/perks/perk_inspiring_presence"));
 			this.m.Skills.add(this.new("scripts/skills/perks/perk_anticipation"));
@@ -72,7 +72,7 @@
 
 	o.assignRandomEquipment = function ()
 	{
-		 if("Assets" in this.World && this.World.Assets != null && this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Legendary)
+		 if(::Legends.isLegendaryDifficulty())
 		 {
 		 this.m.Items.equip(this.new("scripts/items/weapons/legend_staff_gnarled"));
 		 }

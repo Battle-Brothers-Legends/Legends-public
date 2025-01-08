@@ -1,11 +1,11 @@
-::mods_hookExactClass("entity/tactical/humans/barbarian_beastmaster", function(o) 
+::mods_hookExactClass("entity/tactical/humans/barbarian_beastmaster", function(o)
 {
 	local onInit = o.onInit;
 	o.onInit = function ()
 	{
 		onInit();
 		this.m.Skills.removeByID("effects.dodge");
-		if("Assets" in this.World && this.World.Assets != null && this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Legendary)
+		if(::Legends.isLegendaryDifficulty())
 		{
 			this.m.Skills.add(this.new("scripts/skills/perks/perk_overwhelm"));
 			this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_onslaught"));
@@ -25,7 +25,7 @@
 	o.assignRandomEquipment = function ()
 	{
 		this.m.Items.equip(this.new("scripts/items/weapons/barbarians/thorned_whip"));
-		
+
 		this.m.Items.equip(this.Const.World.Common.pickArmor([
 				[1, "barbarians/hide_and_bone_armor"]
 		]));

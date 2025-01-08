@@ -115,7 +115,7 @@ this.legend_bandit_outrider <- this.inherit("scripts/entity/tactical/human", {
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_horse_charge"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_horse_pirouette"));
 
-		if (("Assets" in this.World) && this.World.Assets != null && this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Legendary)
+		if (::Legends.isLegendaryDifficulty())
 		{
 			this.m.Skills.add(this.new("scripts/skills/perks/perk_relentless"));
 			this.m.Skills.add(this.new("scripts/skills/perks/perk_dodge"));

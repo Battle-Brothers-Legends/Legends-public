@@ -6,7 +6,7 @@
 		onInit();
 
 		this.m.Skills.add(this.new("scripts/skills/actives/legend_donkey_kick_skill"));
-		if("Assets" in this.World && this.World.Assets != null && this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Legendary)
+		if(::Legends.isLegendaryDifficulty())
 		{
 			this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_muscularity"));
 			this.m.Skills.add(this.new("scripts/skills/perks/perk_steadfast"));

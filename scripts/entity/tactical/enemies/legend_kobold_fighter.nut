@@ -42,7 +42,7 @@ this.legend_kobold_fighter <- this.inherit("scripts/entity/tactical/legend_kobol
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_pathfinder"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_backflip"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_hair_splitter"));
-		if ("Assets" in this.World && this.World.Assets != null && this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Legendary)
+		if (::Legends.isLegendaryDifficulty())
 			{
 			this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_ballistics"));
 			this.m.Skills.add(this.new("scripts/skills/perks/perk_crippling_strikes"));
@@ -70,7 +70,7 @@ this.legend_kobold_fighter <- this.inherit("scripts/entity/tactical/legend_kobol
 		this.m.Items.equip(this.new("scripts/items/weapons/greenskins/legend_blowgun"));
 		this.m.Items.equip(this.new("scripts/items/ammo/legend_darts"));
 
-		if("Assets" in this.World && this.World.Assets != null && this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Legendary)
+		if(::Legends.isLegendaryDifficulty())
 		{
 			this.m.Items.addToBag(this.new("scripts/items/accessory/poison_item"));
 			this.m.Items.addToBag(this.new("scripts/items/accessory/spider_poison_item"));

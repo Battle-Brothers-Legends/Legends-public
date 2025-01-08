@@ -24,7 +24,7 @@ this.legend_mummy_queen_agent <- this.inherit("scripts/ai/tactical/agent", {
 		this.m.Properties.EngageTargetAlreadyBeingEngagedMult = 1.0;
 		this.m.Properties.EngageLockDownTargetMult = 1.0;
 
-		if("Assets" in this.World && this.World.Assets != null && this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Legendary)
+		if(::Legends.isLegendaryDifficulty())
 			{
 			this.m.Properties.BehaviorMult[this.Const.AI.Behavior.ID.EngageMelee] = 0.5;
 			this.m.Properties.TargetPriorityHitchanceMult = 1.5;

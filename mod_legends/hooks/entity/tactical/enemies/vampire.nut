@@ -119,7 +119,7 @@
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_head_hunter"));
 		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.NineLives);
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_poison_immunity"));
-		if("Assets" in this.World && this.World.Assets != null && this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Legendary)
+		if(::Legends.isLegendaryDifficulty())
 		{
 			b.MeleeSkill += 10;
 			this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_composure"));

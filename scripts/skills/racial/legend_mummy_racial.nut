@@ -20,12 +20,12 @@ this.legend_mummy_racial <- this.inherit("scripts/skills/skill", {
 			case this.Const.Damage.DamageType.Piercing:
 				if (_skill == null)
 				{
-					_properties.DamageReceivedRegularMult *= 0.2; 
+					_properties.DamageReceivedRegularMult *= 0.2;
 				}
 				else
-				{					
+				{
 					if (_skill.isRanged())
-					{				
+					{
 						local weapon = _skill.getItem();
 						if (weapon != null && weapon.isItemType(this.Const.Items.ItemType.Weapon))
 						{
@@ -63,7 +63,7 @@ this.legend_mummy_racial <- this.inherit("scripts/skills/skill", {
 				break;
 		}
 
-		if (_skill != null && "Assets" in this.World && this.World.Assets != null && this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Legendary)
+		if (_skill != null && ::Legends.isLegendaryDifficulty())
 		{
 			_properties.DamageReceivedRegularMult *= 0.75;
 		}

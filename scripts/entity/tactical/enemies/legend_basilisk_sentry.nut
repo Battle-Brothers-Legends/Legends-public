@@ -221,7 +221,7 @@ this.legend_basilisk_sentry <- this.inherit("scripts/entity/tactical/actor", {
 	{
 		this.actor.onInit();
 		local b = this.m.BaseProperties;
-		b.setValues(this.Const.Tactical.Actor.LegendBasiliskSentry); 
+		b.setValues(this.Const.Tactical.Actor.LegendBasiliskSentry);
 		b.IsImmuneToDisarm = true;
 		b.IsImmuneToPoison = true;
 
@@ -249,7 +249,7 @@ this.legend_basilisk_sentry <- this.inherit("scripts/entity/tactical/actor", {
 		this.getSprite("status_rooted").Scale = 0.65;
 		this.setSpriteOffset("status_rooted", this.createVec(-10, 16));
 		this.setSpriteOffset("status_stunned", this.createVec(0, 10));
-		this.setSpriteOffset("arrow", this.createVec(0, 10));		
+		this.setSpriteOffset("arrow", this.createVec(0, 10));
 
 		this.m.Skills.add(this.new("scripts/skills/actives/legend_basilisk_sentry_inject_skill"));
 		this.m.Skills.add(this.new("scripts/skills/actives/legend_basilisk_sentry_fowleye_skill"));
@@ -267,7 +267,7 @@ this.legend_basilisk_sentry <- this.inherit("scripts/entity/tactical/actor", {
 			this.m.Skills.add(this.new("scripts/skills/perks/perk_head_hunter"));
 		}
 
-		if("Assets" in this.World && this.World.Assets != null && this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Legendary)
+		if(::Legends.isLegendaryDifficulty())
 		{
 			b.MeleeDefense += 5;
 			b.RangedDefense += 5;

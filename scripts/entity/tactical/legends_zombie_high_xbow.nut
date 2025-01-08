@@ -10,7 +10,7 @@ this.legends_zombie_high_xbow <- this.inherit("scripts/entity/tactical/legend_zo
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_battle_forged"));
 		this.m.Skills.add(this.new("scripts/skills/actives/zombie_bite"));
 		this.m.Skills.add(this.new("scripts/skills/injury_permanent/legend_rotten_flesh"));
-		if("Assets" in this.World && this.World.Assets != null && this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Legendary)
+		if(::Legends.isLegendaryDifficulty())
 		{
 			this.m.BaseProperties.Hitpoints *= 1.5;
 			this.m.Hitpoints *= 1.5;

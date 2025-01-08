@@ -42,7 +42,7 @@
 		b.IsAffectedByRain = false;
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_stalwart"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_composure"));
-		if("Assets" in this.World && this.World.Assets != null && this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Legendary)
+		if(::Legends.isLegendaryDifficulty())
 		{
 			this.m.Hitpoints = b.Hitpoints * 1.5;
 			this.m.ActionPoints = b.ActionPoints + 5;

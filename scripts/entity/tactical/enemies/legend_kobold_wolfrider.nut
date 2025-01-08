@@ -127,7 +127,7 @@ this.legend_kobold_wolfrider <- this.inherit("scripts/entity/tactical/legend_kob
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_backstabber"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_pathfinder"));
 
-		if("Assets" in this.World && this.World.Assets != null && this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Legendary)
+		if(::Legends.isLegendaryDifficulty())
 		{
 			this.m.Skills.add(this.new("scripts/skills/perks/perk_fast_adaption"));
 			this.m.Skills.add(this.new("scripts/skills/perks/perk_overwhelm"));
@@ -329,7 +329,7 @@ this.legend_kobold_wolfrider <- this.inherit("scripts/entity/tactical/legend_kob
 		this.m.Items.equip(this.new("scripts/items/weapons/greenskins/legend_blowgun"));
 		this.m.Items.equip(this.new("scripts/items/ammo/legend_darts"));
 
-		if("Assets" in this.World && this.World.Assets != null && this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Legendary)
+		if(::Legends.isLegendaryDifficulty())
 		{
 			this.m.Items.addToBag(this.new("scripts/items/accessory/poison_item"));
 		}

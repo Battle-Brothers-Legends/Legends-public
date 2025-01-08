@@ -90,7 +90,7 @@ this.legend_alp_shadow <- this.inherit("scripts/entity/tactical/actor", {
 		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= 150)
 			b.MeleeDefense += 5;
 
-		if ("Assets" in this.World && this.World.Assets != null && this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Legendary)
+		if (::Legends.isLegendaryDifficulty())
 		{
 			this.m.Skills.add(this.new("scripts/skills/perks/perk_footwork"));
 			this.m.Skills.add(this.new("scripts/skills/perks/perk_rotation"));

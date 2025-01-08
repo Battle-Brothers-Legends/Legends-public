@@ -1,4 +1,4 @@
-::mods_hookExactClass("entity/tactical/humans/cultist", function(o) 
+::mods_hookExactClass("entity/tactical/humans/cultist", function(o)
 {
 	local onInit = o.onInit;
 	o.onInit = function ()
@@ -17,7 +17,7 @@
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_specialist_ninetails_damage"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_specialist_cult_hood"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_specialist_cult_armor"));
-		if("Assets" in this.World && this.World.Assets != null && this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Legendary)
+		if(::Legends.isLegendaryDifficulty())
 		{
 			this.m.Skills.add(this.new("scripts/skills/perks/perk_battle_flow"));
 			this.m.Skills.add(this.new("scripts/skills/traits/fearless_trait"));

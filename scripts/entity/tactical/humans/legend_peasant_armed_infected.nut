@@ -58,7 +58,7 @@ this.legend_peasant_armed_infected <- this.inherit("scripts/entity/tactical/huma
 
 		this.m.Skills.add(this.new("scripts/skills/traits/weasel_trait"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_back_to_basics"));
-		if("Assets" in this.World && this.World.Assets != null && this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Legendary)
+		if(::Legends.isLegendaryDifficulty())
 		{
 			this.m.Hitpoints = b.Hitpoints * 1.5;
 			this.m.Skills.add(this.new("scripts/skills/perks/perk_nimble"));
