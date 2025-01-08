@@ -30,23 +30,34 @@
 			}
 		];
 
-		if (this.getContainer().getActor().getCurrentProperties().IsSpecializedInNets)
+		local actor = this.getContainer().getActor();
+		if (actor.getCurrentProperties().IsSpecializedInNets)
 		{
 			tooltip.push({
 				id = 5,
 				type = "hint",
 				icon = "ui/icons/special.png",
-				text = "Net Mastery makes this signficantly easier",
+				text = "Net Mastery makes this significantly easier",
 			});
 		}
 
-		if (this.getContainer().getActor().getSkills().hasSkill("perk.legend_escape_artist"))
+		if (actor.getSkills().hasSkill("perk.legend_escape_artist"))
 		{
 			tooltip.push({
 				id = 5,
 				type = "hint",
 				icon = "ui/icons/special.png",
-				text = "Escape Artist makes this signficantly easier",
+				text = "Escape Artist makes this significantly easier",
+			});
+		}
+
+		if (actor.getSkills().getSize() >= 2)
+		{
+			tooltip.push({
+				id = 5,
+				type = "hint",
+				icon = "ui/icons/special.png",
+				text = "The size of this character makes this significantly",
 			});
 		}
 
@@ -58,7 +69,7 @@
 		local actor = this.getContainer().getActor();
 		local skill = this.m.SkillBonus == null ? actor.getCurrentProperties().getMeleeSkill() : this.m.SkillBonus;
 		local toHit = this.Math.min(100, skill - 10 + this.m.ChanceBonus + (actor.getSkills().hasSkill("effects.goblin_shaman_potion") ? 100 : 0));
-		if (actor.getCurrentProperties().IsSpecializedInNets || this.m.IsByNetSpecialist || actor.getSkills().hasSkill("perk.legend_escape_artist"))
+		if (actor.getCurrentProperties().IsSpecializedInNets || this.m.IsByNetSpecialist || actor.getSkills().hasSkill("perk.legend_escape_artist") || actor.getSkills().getSize() >= 2)
 		{
 			toHit = this.Math.max(99, toHit);
 		}
