@@ -31,14 +31,14 @@
 	"We spotted something on our way here, hidden way off the road, %terrain% %distance% %direction% of %townname%. Don\'t know what the locals call it, or if they even know about it, but it might be worth it going back there."
 ];
 ::Const.Strings.RumorsContract = [
-	"I\'ve heard the council of %settlement% is looking to hire mercenaries %direction% of here. Don\'t know what for.",
-	"A group of young lads left %direction% for %settlement% some days ago. They\'re looking to hire armed fighters over there, willing to pay real good. I just hope they make it back alive.",
-	"If you lot is looking for work, I\'ve heard that they\'re hiring sellswords over at %settlement% to the %direction%.",
-	"You heard that they\'re looking to hire fighting folk at %settlement%? its %direction% from here",
-	"Some guy from %settlement% was here just the other day, wanted to hire strong lads for some problem they have over there. Don\'t think many went %direction% with him, though.",
-	"Mercenaries, eh? We got a few of those these days. Just some days ago a bunch that called themselves %randommercenarycompany% travelled through. On their way %direction%  to %settlement%, they said, good coin to be made there.",
-	"If it\'s work you\'re looking for, they\'re taking crowns in to the %direction% over at %settlement% to hire strong men.",
-	"Heard that some fancy fat merchant or so from %settlement% is looking to hire armed guards the other day. Well, I ain\'t going %direction% to die to there for him, no thanks. Have me house and wife right here."
+	"I\'ve heard the council of %settlement% is looking to hire mercenaries %direction_settlement% of here. Don\'t know what for.",
+	"A group of young lads left %direction_settlement% for %settlement% some days ago. They\'re looking to hire armed fighters over there, willing to pay real good. I just hope they make it back alive.",
+	"If you lot is looking for work, I\'ve heard that they\'re hiring sellswords over at %settlement% to the %direction_settlement%.",
+	"You heard that they\'re looking to hire fighting folk at %settlement%? its %direction_settlement% from here",
+	"Some guy from %settlement% was here just the other day, wanted to hire strong lads for some problem they have over there. Don\'t think many went %direction_settlement% with him, though.",
+	"Mercenaries, eh? We got a few of those these days. Just some days ago a bunch that called themselves %randommercenarycompany% travelled through. On their way %direction_settlement%  to %settlement%, they said, good coin to be made there.",
+	"If it\'s work you\'re looking for, they\'re taking crowns in to the %direction_settlement% over at %settlement% to hire strong men.",
+	"Heard that some fancy fat merchant or so from %settlement% is looking to hire armed guards the other day. Well, I ain\'t going %direction_settlement% to die to there for him, no thanks. Have me house and wife right here."
 ];
 ::Const.Strings.RumorsGeneral = [
 	"If you\'re looking to fetch a good price for your trading goods, my friend, you should go to one of the large cities or castles and not some run-down poor village at world\'s ass.",
