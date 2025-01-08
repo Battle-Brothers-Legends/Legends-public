@@ -42,18 +42,18 @@
 
 	o.getRumorPrice = function ()
 	{
-		local bonus = 1; 
+		local bonus = 1;
 		if (this.World.Assets.getOrigin().getID() == "scenario.legends_troupe")
 		{
 		bonus *= 0.5;
 		}
-		
+
 		return this.Math.round(20 * this.m.Settlement.getBuyPriceMult() * bonus);
 	}
 
 	o.getDrinkPrice = function ()
 	{
-		local bonus = 1; 
+		local bonus = 1;
 		if (this.World.Assets.getOrigin().getID() == "scenario.legends_troupe")
 		{
 		bonus = 0.5;
@@ -167,5 +167,17 @@
 		}
 
 		return result;
+	}
+
+	local buildText = o.buildText;
+	o.buildText = function (_text) {
+		local text = buildText(_text);
+		local vars = [
+			[
+				"direction_settlement",
+				this.m.ContractSettlement != null && !this.m.ContractSettlement.isNull() ? this.Const.Strings.Direction8[this.m.Settlement.getTile().getDirection8To(this.m.ContractSettlement.getTile())] : ""
+			],
+		];
+		return this.buildTextFromTemplate(text, vars);
 	}
 });

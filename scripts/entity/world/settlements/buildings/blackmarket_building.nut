@@ -7,6 +7,11 @@ this.blackmarket_building <- this.inherit("scripts/entity/world/settlements/buil
 		return this.m.Stash;
 	}
 
+	function isHidden()
+	{
+		return ::World.getTime().IsDaytime;
+	}
+
 	function create()
 	{
 		this.building.create();
