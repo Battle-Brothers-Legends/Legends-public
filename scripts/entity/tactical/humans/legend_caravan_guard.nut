@@ -36,7 +36,7 @@ this.legend_caravan_guard <- this.inherit("scripts/entity/tactical/legend_random
 		this.setAppearance();
 		this.getSprite("socket").setBrush("bust_base_caravan");
 		this.getSprite("dirt").Visible = true;
-		if("Assets" in this.World && this.World.Assets != null && this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Legendary)
+		if(::Legends.isLegendaryDifficulty())
 			{
 			this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_specialist_shield_skill"));
 			this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_specialist_shield_push"));

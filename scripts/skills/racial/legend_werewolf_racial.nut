@@ -17,7 +17,7 @@ this.legend_werewolf_racial <- this.inherit("scripts/skills/skill", {
 	{
 		local healthMissing = _properties.Hitpoints - this.getContainer().getActor().getHitpoints();
 		local additionalDamage = this.Math.floor(healthMissing * 0.25);
-		if("Assets" in this.World && this.World.Assets != null && this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Legendary)
+		if(::Legends.isLegendaryDifficulty())
 		{
 			local additionalDamage = this.Math.floor(healthMissing * 0.5);
 		}

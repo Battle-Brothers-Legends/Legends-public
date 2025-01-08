@@ -83,7 +83,7 @@ this.legend_demon_alp <- this.inherit("scripts/entity/tactical/actor", {
 	function loadResources()
 	{
 		this.actor.loadResources();
-		
+
 		foreach( r in [
 			"sounds/enemies/dlc2/alp_nightmare_01.wav",
 			"sounds/enemies/dlc2/alp_nightmare_02.wav",
@@ -202,7 +202,7 @@ this.legend_demon_alp <- this.inherit("scripts/entity/tactical/actor", {
 
 			if (a.getFlags().get("living_nightmare") != id)
 				continue;
-			
+
 			a.killSilently();
 		}
 	}
@@ -266,7 +266,7 @@ this.legend_demon_alp <- this.inherit("scripts/entity/tactical/actor", {
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_footwork"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_anticipation"));
 
-		if ("Assets" in this.World && this.World.Assets != null && this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Legendary)
+		if (::Legends.isLegendaryDifficulty())
 		{
 			b.Hitpoints -= 100;
 			this.m.Skills.add(this.new("scripts/skills/perks/perk_nimble"));

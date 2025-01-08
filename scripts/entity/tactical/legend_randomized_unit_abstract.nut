@@ -1,9 +1,9 @@
-this.legend_randomized_unit_abstract <- this.inherit("scripts/entity/tactical/human", { 
+this.legend_randomized_unit_abstract <- this.inherit("scripts/entity/tactical/human", {
 	// Most of the m table is filled out inthe config file z_randomized_perk_tiers
 	// Outfits  		| [chance to roll, outfit] | outfits are defined in the z_mods_legends_outfits.nut config file
 	// ClassPerkList  	| Virtually always empty, this is for magic
 	// DefensePerkList 	| Defensive perk list | e.g. ClothArmorTree
-	// TraitsPerkList  	| Traits lists, generally very filled out | e.g. FitTree	
+	// TraitsPerkList  	| Traits lists, generally very filled out | e.g. FitTree
 	// WeaponsAndTrees 	| [Weapon Script, Chance to roll weapon perk, chance to roll weapon class perk]
 	// Shields          | Chance to roll a shield, assuming no 2hander and assuming no duelist
 	// GuaranteedPerks 	| Guaranteed perks for units
@@ -13,8 +13,8 @@ this.legend_randomized_unit_abstract <- this.inherit("scripts/entity/tactical/hu
 	// PerkPower  		| How many perks the unit gets to purchase with
 	m = {
 		Outfits = [],
-		ClassPerkList = [], 
-		DefensePerkList = [], 
+		ClassPerkList = [],
+		DefensePerkList = [],
 		TraitsPerkList = [],
 		WeaponsAndTrees = [],
 		Shields = [],
@@ -25,16 +25,16 @@ this.legend_randomized_unit_abstract <- this.inherit("scripts/entity/tactical/hu
 		PerkPower = this.Const.PerkPurchasePower.Low
 	},
 
-	//TODO: 
+	//TODO:
 	// 1. Add in chances for shields alongside the weapon tree?
 	// 		Check if the main hand is null after selecting, allows us to purchase and use nets/bucklers/any shield/offhand dagger and then another weapon?
-	//		Would also adding in a way to check if the weapon we're trying to add is 2h vs 1h, and purchasing only a 1h 
+	//		Would also adding in a way to check if the weapon we're trying to add is 2h vs 1h, and purchasing only a 1h
 	// 2. Debate making higher tier perks cost more, alongside adding more of a curve (mostly linear currently) for PerkPower growth
 	// 		Higher tier units would get much higher power to purchase with, and would spend much more
 	// 		We already limit how high units can purchase however, so this might not be necessary
-	// 
+	//
 
-	function onInit() 
+	function onInit()
 	{
 		this.human.onInit();
 		if (::Math.rand(0, 3) == 0) { this.setFemale(); }
@@ -43,7 +43,7 @@ this.legend_randomized_unit_abstract <- this.inherit("scripts/entity/tactical/hu
 	}
 
 
-	// Sets the actual m-tables keys to the values, reasoning is listed directly below 
+	// Sets the actual m-tables keys to the values, reasoning is listed directly below
 	function writeTablesFromParam( _table )
 	{
 		foreach(k, v in _table)
@@ -68,16 +68,16 @@ this.legend_randomized_unit_abstract <- this.inherit("scripts/entity/tactical/hu
 		local writeTable = clone this.Const.RandomizedCharacterInfo["Default"];
 		this.writeTablesFromParam(writeTable);
 
-		if (this.m.Type in this.Const.RandomizedCharacterInfo) 
+		if (this.m.Type in this.Const.RandomizedCharacterInfo)
 		{
 			writeTable = clone this.Const.RandomizedCharacterInfo[this.m.Type];
 			this.writeTablesFromParam(writeTable);
 		}
-		else 
+		else
 		{
 			this.logWarning("Entity type didnt exist: " + this.m.Type);
 		}
-		
+
 		this.m.EnemyLevel = this.Math.rand( this.m.LevelRange[0], this.m.LevelRange[1] )
 		this.m.XP = this.m.EnemyLevel * 35;
 		if (!("Assets" in this.World) || (this.World.Assets != null && this.World.Assets.getCombatDifficulty() != this.Const.Difficulty.Legendary))
@@ -109,7 +109,7 @@ this.legend_randomized_unit_abstract <- this.inherit("scripts/entity/tactical/hu
 	{
 		// Sets the cap to either 6 (maximum of the player tree) | OR | sets the cap to the tree's length, assuming it's missing the last row (some trees randomly are)
 		if ( _cap > 6 ) { _cap = 6; }
-		if ( _cap > _tree.len() ) { _cap = _tree.len() - 1; } 
+		if ( _cap > _tree.len() ) { _cap = _tree.len() - 1; }
 
 		// We purchase as much as we can from any given tree that got piped in, i.e. we go deeper into a tree of perks than we do wide
 		// We check the perkdef's numeric id, and ask the PerkDefObject tree (array?) to give us the actual perk's tree
@@ -129,13 +129,13 @@ this.legend_randomized_unit_abstract <- this.inherit("scripts/entity/tactical/hu
 						_purchaseLimit--;
 						this.m.PerkPower--;
 					}
-				}	
+				}
 			}
 		}
 	}
 
 	// Adds all of the possible perks to the unit in any given array
-	function addAll( _arr ) 
+	function addAll( _arr )
 	{
 		foreach (p in _arr)
 		{
@@ -176,7 +176,7 @@ this.legend_randomized_unit_abstract <- this.inherit("scripts/entity/tactical/hu
 	{
 		this.addAll(this.m.GuaranteedPerks)
 
-		if("Assets" in this.World && this.World.Assets != null && this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Legendary)
+		if(::Legends.isLegendaryDifficulty())
 		{
 			this.addAll(this.m.LegendaryPerks);
 		}
@@ -195,7 +195,7 @@ this.legend_randomized_unit_abstract <- this.inherit("scripts/entity/tactical/hu
 	// Picks and equips our units outfit
 	function assignOutfit()
 	{
-		foreach( item in this.Const.World.Common.pickOutfit(this.m.Outfits) ) 
+		foreach( item in this.Const.World.Common.pickOutfit(this.m.Outfits) )
 		{
 			this.m.Items.equip(item);
 		}
@@ -213,7 +213,7 @@ this.legend_randomized_unit_abstract <- this.inherit("scripts/entity/tactical/hu
 		local weapon = this.getMainhandItem();
 		local weaponID = this.getMainhandItem().getID();
 
-		if (selection.len() > 1 && "Assets" in this.World && this.World.Assets != null && this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Legendary)
+		if (selection.len() > 1 && ::Legends.isLegendaryDifficulty())
 		{
 			this.addAll(selection[1]);
 		}
@@ -230,7 +230,7 @@ this.legend_randomized_unit_abstract <- this.inherit("scripts/entity/tactical/hu
 		{
 			this.pickPerk( this.m.PerkPower,  weaponClassTree, this.m.EnemyLevel - 1, true);
 		}
-	
+
 	}
 
 	function assignShield()
@@ -250,7 +250,7 @@ this.legend_randomized_unit_abstract <- this.inherit("scripts/entity/tactical/hu
 			candidates.push(shield);
 			totalWeight += shield[0];
 		}
-		
+
 		local r = this.Math.rand(0, totalWeight);
 		foreach (shield in candidates)
 		{
@@ -297,18 +297,18 @@ this.legend_randomized_unit_abstract <- this.inherit("scripts/entity/tactical/hu
 	// assignWeapon() also assigns weapon-related perks, these are purchased first before any other perks
 	// assignShield() gives us a shield based on the array (assuming it rolls it), and won't try if we have duelist or a 2hander
 	// assignOutfit() does not assign any armor related perks
-	// assignPerks() finishes spending the units PerkPower 
+	// assignPerks() finishes spending the units PerkPower
 	function assignRandomEquipment()
 	{
 		this.assignWeapon();
 		this.assignOutfit();
-		this.assignPerks(); 
+		this.assignPerks();
 		this.assignShield();
 		this.assignAmmo();
 	}
 
 
-	// Can override setfemale/male if we want southern units etc. Enemy defaults are setMale anyways 
+	// Can override setfemale/male if we want southern units etc. Enemy defaults are setMale anyways
 	// Defaulting to 1 in 4 chance of female
     function setFemale()
     {
@@ -319,4 +319,4 @@ this.legend_randomized_unit_abstract <- this.inherit("scripts/entity/tactical/hu
     {
 		this.setGender(0);
     }
-}); 
+});

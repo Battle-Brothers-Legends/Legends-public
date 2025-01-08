@@ -37,7 +37,7 @@
 		local settlement = this.pickWeightedRandom(settlements);
 		settlement.setLastSpawnTimeToNow();
 		local mult = this.World.FactionManager.isUndeadScourge() ? 1.1 : 1.0;
-		if (this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Legendary)
+		if (::Legends.isLegendaryDifficulty())
 			{
 			 mult = this.World.FactionManager.isUndeadScourge() ? 1.2 : 1.0;
 			}

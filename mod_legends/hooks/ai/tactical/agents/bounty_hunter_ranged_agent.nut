@@ -1,10 +1,10 @@
 ::mods_hookExactClass("ai/tactical/agents/bounty_hunter_ranged_agent", function(o)
-{	
+{
 	local create = o.create;
 	o.create = function ()
 	{
 		create();
-		if ("Assets" in this.World && this.World.Assets != null && this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Legendary)
+		if (::Legends.isLegendaryDifficulty())
 		{
 			this.m.Properties.BehaviorMult[this.Const.AI.Behavior.ID.Defend] = 1.0;
 			this.m.Properties.BehaviorMult[this.Const.AI.Behavior.ID.EngageMelee] = 0.0;

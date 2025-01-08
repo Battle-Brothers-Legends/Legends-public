@@ -6,7 +6,7 @@ this.legends_skeleton_low <- this.inherit("scripts/entity/tactical/legend_skelet
 		this.m.SpawnType = this.Const.Tactical.Actor.LegendSkeletonLight;
 		this.legend_skeleton.onInit();
 		this.m.Skills.add(this.new("scripts/skills/traits/legend_fleshless_trait"));
-		if("Assets" in this.World && this.World.Assets != null && this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Legendary)
+		if(::Legends.isLegendaryDifficulty())
 		{
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_shield_expert"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_crippling_strikes"));

@@ -1,4 +1,4 @@
-::mods_hookExactClass("factions/actions/send_bandit_ambushers_action", function(o) 
+::mods_hookExactClass("factions/actions/send_bandit_ambushers_action", function(o)
 {
 	o.m.timeBetweenSpawnsPerSettlement <- 150;
 	o.onUpdate = function ( _faction )
@@ -86,10 +86,10 @@
 		local settlement = this.pickWeightedRandom(settlements);
 		settlement.setLastSpawnTimeToNow();
 		local mult = this.World.FactionManager.isCivilWar() ? 1.1 : 1.0;
-		if (this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Legendary)
-			{
+		if (::Legends.isLegendaryDifficulty())
+		{
 			local mult = this.World.FactionManager.isCivilWar() ? 1.2 : 1.0;
-			}
+		}
 		local distanceToNextSettlement = this.getDistanceToSettlements(settlement.getTile());
 		if (::Legends.Mod.ModSettings.getSetting("DistanceScaling").getValue() && distanceToNextSettlement > 14)
 			{

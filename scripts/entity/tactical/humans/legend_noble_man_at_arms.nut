@@ -50,7 +50,7 @@ this.legend_noble_man_at_arms <- this.inherit("scripts/entity/tactical/human", {
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_smashing_shields"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_back_to_basics"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_shield_bash"));
-		if("Assets" in this.World && this.World.Assets != null && this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Legendary)
+		if(::Legends.isLegendaryDifficulty())
 			{
 
 			this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_full_force"));

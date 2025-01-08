@@ -165,7 +165,7 @@
 		onInit();
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_stalwart"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_poison_immunity"));
-		 if ("Assets" in this.World && this.World.Assets != null && this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Legendary)
+		 if (::Legends.isLegendaryDifficulty())
 		{
 			this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_levitation"));
 			this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_push_the_advantage"));

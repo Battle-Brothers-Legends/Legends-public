@@ -16,6 +16,11 @@ foreach (file in ::IO.enumerateFiles("mod_legends/config")) {
 	::include(file);
 }
 
+// load helpers
+foreach (file in ::IO.enumerateFiles("mod_legends/helper")) {
+	::include(file);
+}
+
 // load query folder
 foreach (file in ::IO.enumerateFiles("mod_legends/system"))
 {

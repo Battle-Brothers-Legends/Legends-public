@@ -86,7 +86,7 @@ this.legend_bandit_veteran <- this.inherit("scripts/entity/tactical/human", {
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_lithe"));
 		this.m.Skills.add(this.new("scripts/skills/traits/fearless_trait"));
 
-		if (("Assets" in this.World) && this.World.Assets != null && this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Legendary)
+		if (::Legends.isLegendaryDifficulty())
 		{
 			this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_full_force"));
 			this.m.Skills.add(this.new("scripts/skills/perks/perk_steel_brow"));
@@ -118,7 +118,7 @@ this.legend_bandit_veteran <- this.inherit("scripts/entity/tactical/human", {
 					this.m.Items.equip(this.new("scripts/items/weapons/legend_infantry_axe"));
 					this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_smashing_shields"));
 
-					if (("Assets" in this.World) && this.World.Assets != null && this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Legendary)
+					if (::Legends.isLegendaryDifficulty())
 					{
 						this.m.Skills.add(this.new("scripts/skills/perks/perk_killing_frenzy"));
 					}
@@ -128,7 +128,7 @@ this.legend_bandit_veteran <- this.inherit("scripts/entity/tactical/human", {
 					this.m.Items.equip(this.new("scripts/items/weapons/hooked_blade"));
 					this.m.Skills.add(this.new("scripts/skills/perks/perk_crippling_strikes"));
 
-					if (("Assets" in this.World) && this.World.Assets != null && this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Legendary)
+					if (::Legends.isLegendaryDifficulty())
 					{
 						this.m.Skills.add(this.new("scripts/skills/perks/perk_fearsome"));
 					}
@@ -138,7 +138,7 @@ this.legend_bandit_veteran <- this.inherit("scripts/entity/tactical/human", {
 					this.m.Items.equip(this.new("scripts/items/weapons/pike"));
 					this.m.Skills.add(this.new("scripts/skills/perks/perk_reach_advantage"));
 
-					if (("Assets" in this.World) && this.World.Assets != null && this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Legendary)
+					if (::Legends.isLegendaryDifficulty())
 					{
 						this.m.Skills.add(this.new("scripts/skills/perks/perk_backstabber"));
 					}
@@ -148,7 +148,7 @@ this.legend_bandit_veteran <- this.inherit("scripts/entity/tactical/human", {
 					this.m.Items.equip(this.new("scripts/items/weapons/warbrand"));
 					this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_bloody_harvest"));
 
-					if (("Assets" in this.World) && this.World.Assets != null && this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Legendary)
+					if (::Legends.isLegendaryDifficulty())
 					{
 						this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_forceful_swing"));
 					}
@@ -158,7 +158,7 @@ this.legend_bandit_veteran <- this.inherit("scripts/entity/tactical/human", {
 					this.m.Items.equip(this.new("scripts/items/weapons/longaxe"));
 					this.m.Skills.add(this.new("scripts/skills/perks/perk_killing_frenzy"));
 
-					if (("Assets" in this.World) && this.World.Assets != null && this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Legendary)
+					if (::Legends.isLegendaryDifficulty())
 					{
 						this.m.Skills.add(this.new("scripts/skills/perks/perk_backstabber"));
 					}
@@ -168,7 +168,7 @@ this.legend_bandit_veteran <- this.inherit("scripts/entity/tactical/human", {
 					this.m.Items.equip(this.new("scripts/items/weapons/two_handed_wooden_hammer"));
 					this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_smackdown"));
 
-					if (("Assets" in this.World) && this.World.Assets != null && this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Legendary)
+					if (::Legends.isLegendaryDifficulty())
 					{
 						this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_smackdown"));
 					}
@@ -183,7 +183,7 @@ this.legend_bandit_veteran <- this.inherit("scripts/entity/tactical/human", {
 					this.m.Items.equip(this.new("scripts/items/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
 					this.m.Skills.add(this.new("scripts/skills/perks/perk_head_hunter"));
 
-					if (("Assets" in this.World) && this.World.Assets != null && this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Legendary)
+					if (::Legends.isLegendaryDifficulty())
 					{
 						this.m.Skills.add(this.new("scripts/skills/perks/perk_battle_flow"));
 					}
@@ -193,7 +193,7 @@ this.legend_bandit_veteran <- this.inherit("scripts/entity/tactical/human", {
 					this.m.Items.equip(this.new("scripts/items/weapons/two_handed_mace"));
 					this.m.Skills.add(this.new("scripts/skills/perks/perk_colossus"));
 
-					if (("Assets" in this.World) && this.World.Assets != null && this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Legendary)
+					if (::Legends.isLegendaryDifficulty())
 					{
 						this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_onslaught"));
 					}
@@ -203,7 +203,7 @@ this.legend_bandit_veteran <- this.inherit("scripts/entity/tactical/human", {
 					this.m.Items.equip(this.new("scripts/items/weapons/longsword"));
 					this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_vengeance"));
 
-					if (("Assets" in this.World) && this.World.Assets != null && this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Legendary)
+					if (::Legends.isLegendaryDifficulty())
 					{
 						this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_feint"));
 					}
@@ -213,7 +213,7 @@ this.legend_bandit_veteran <- this.inherit("scripts/entity/tactical/human", {
 					this.m.Items.equip(this.new("scripts/items/weapons/legend_longsword"));
 					this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_forceful_swing"));
 
-					if (("Assets" in this.World) && this.World.Assets != null && this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Legendary)
+					if (::Legends.isLegendaryDifficulty())
 					{
 						this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_bloody_harvest"));
 					}
@@ -223,7 +223,7 @@ this.legend_bandit_veteran <- this.inherit("scripts/entity/tactical/human", {
 					this.m.Items.equip(this.new("scripts/items/weapons/legend_two_handed_club"));
 					this.m.Skills.add(this.new("scripts/skills/perks/perk_colossus"));
 
-					if (("Assets" in this.World) && this.World.Assets != null && this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Legendary)
+					if (::Legends.isLegendaryDifficulty())
 					{
 						this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_onslaught"));
 					}
@@ -264,7 +264,7 @@ this.legend_bandit_veteran <- this.inherit("scripts/entity/tactical/human", {
 				this.m.Items.equip(this.new("scripts/items/weapons/shortsword"));
 				this.m.Skills.add(this.new("scripts/skills/perks/perk_duelist"));
 
-				if (("Assets" in this.World) && this.World.Assets != null && this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Legendary)
+				if (::Legends.isLegendaryDifficulty())
 				{
 					this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_feint"));
 				}
@@ -274,7 +274,7 @@ this.legend_bandit_veteran <- this.inherit("scripts/entity/tactical/human", {
 				this.m.Items.equip(this.new("scripts/items/weapons/hand_axe"));
 				this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_smashing_shields"));
 
-				if (("Assets" in this.World) && this.World.Assets != null && this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Legendary)
+				if (::Legends.isLegendaryDifficulty())
 				{
 					this.m.Skills.add(this.new("scripts/skills/perks/perk_killing_frenzy"));
 				}
@@ -284,7 +284,7 @@ this.legend_bandit_veteran <- this.inherit("scripts/entity/tactical/human", {
 				this.m.Items.equip(this.new("scripts/items/weapons/boar_spear"));
 				this.m.Skills.add(this.new("scripts/skills/perks/perk_overwhelm"));
 
-				if (("Assets" in this.World) && this.World.Assets != null && this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Legendary)
+				if (::Legends.isLegendaryDifficulty())
 				{
 					this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_specialist_spearthrust"));
 				}
@@ -294,7 +294,7 @@ this.legend_bandit_veteran <- this.inherit("scripts/entity/tactical/human", {
 				this.m.Items.equip(this.new("scripts/items/weapons/morning_star"));
 				this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_onslaught"));
 
-				if (("Assets" in this.World) && this.World.Assets != null && this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Legendary)
+				if (::Legends.isLegendaryDifficulty())
 				{
 					this.m.Skills.add(this.new("scripts/skills/perks/perk_head_hunter"));
 				}
@@ -304,7 +304,7 @@ this.legend_bandit_veteran <- this.inherit("scripts/entity/tactical/human", {
 				this.m.Items.equip(this.new("scripts/items/weapons/falchion"));
 				this.m.Skills.add(this.new("scripts/skills/perks/perk_duelist"));
 
-				if (("Assets" in this.World) && this.World.Assets != null && this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Legendary)
+				if (::Legends.isLegendaryDifficulty())
 				{
 					this.m.Skills.add(this.new("scripts/skills/perks/perk_fearsome"));
 				}
@@ -314,7 +314,7 @@ this.legend_bandit_veteran <- this.inherit("scripts/entity/tactical/human", {
 				this.m.Items.equip(this.new("scripts/items/weapons/arming_sword"));
 				this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_feint"));
 
-				if (("Assets" in this.World) && this.World.Assets != null && this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Legendary)
+				if (::Legends.isLegendaryDifficulty())
 				{
 					this.m.Skills.add(this.new("scripts/skills/perks/perk_duelist"));
 				}
@@ -324,7 +324,7 @@ this.legend_bandit_veteran <- this.inherit("scripts/entity/tactical/human", {
 				this.m.Items.equip(this.new("scripts/items/weapons/flail"));
 				this.m.Skills.add(this.new("scripts/skills/perks/perk_head_hunter"));
 
-				if (("Assets" in this.World) && this.World.Assets != null && this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Legendary)
+				if (::Legends.isLegendaryDifficulty())
 				{
 					this.m.Skills.add(this.new("scripts/skills/perks/perk_battle_flow"));
 				}
@@ -334,7 +334,7 @@ this.legend_bandit_veteran <- this.inherit("scripts/entity/tactical/human", {
 				this.m.Items.equip(this.new("scripts/items/weapons/scramasax"));
 				this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_bloodbath"));
 
-				if (("Assets" in this.World) && this.World.Assets != null && this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Legendary)
+				if (::Legends.isLegendaryDifficulty())
 				{
 					this.m.Skills.add(this.new("scripts/skills/perks/perk_fearsome"));
 				}
@@ -344,7 +344,7 @@ this.legend_bandit_veteran <- this.inherit("scripts/entity/tactical/human", {
 				this.m.Items.equip(this.new("scripts/items/weapons/military_pick"));
 				this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_smackdown"));
 
-				if (("Assets" in this.World) && this.World.Assets != null && this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Legendary)
+				if (::Legends.isLegendaryDifficulty())
 				{
 					this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_smackdown"));
 				}
@@ -354,7 +354,7 @@ this.legend_bandit_veteran <- this.inherit("scripts/entity/tactical/human", {
 				this.m.Items.equip(this.new("scripts/items/weapons/legend_glaive"));
 				this.m.Skills.add(this.new("scripts/skills/perks/perk_killing_frenzy"));
 
-				if (("Assets" in this.World) && this.World.Assets != null && this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Legendary)
+				if (::Legends.isLegendaryDifficulty())
 				{
 					this.m.Skills.add(this.new("scripts/skills/perks/perk_fearsome"));
 				}

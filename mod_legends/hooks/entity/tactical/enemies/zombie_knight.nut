@@ -1,4 +1,4 @@
-::mods_hookExactClass("entity/tactical/enemies/zombie_knight", function(o) 
+::mods_hookExactClass("entity/tactical/enemies/zombie_knight", function(o)
 {
 	local onInit = o.onInit;
 	o.onInit = function ()
@@ -6,7 +6,7 @@
 		onInit();
 		local b = this.m.BaseProperties;
 		b.SurroundedBonus = 5; // resetting from vanilla
-		if (("Assets" in this.World) && this.World.Assets != null && this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Legendary)
+		if (::Legends.isLegendaryDifficulty())
 		{
 			this.m.Hitpoints = b.Hitpoints * 1.5;
 			this.m.Skills.add(this.new("scripts/skills/perks/perk_backstabber"));

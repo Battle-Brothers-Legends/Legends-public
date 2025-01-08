@@ -49,7 +49,7 @@
 			this.m.Skills.add(this.new("scripts/skills/perks/perk_bullseye"));
 		}
 
-		if ("Assets" in this.World && this.World.Assets != null && this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Legendary)
+		if (::Legends.isLegendaryDifficulty())
 		{
 			this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_ballistics"));
 			this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_close_combat_archer"));

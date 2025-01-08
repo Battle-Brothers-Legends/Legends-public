@@ -26,7 +26,7 @@
 		settlement.setLastSpawnTimeToNow();
 		local rand = this.Math.rand(50, 100);
 		//	local nearestOrcs = this.getNearestLocationTo(settlement, this.World.FactionManager.getFactionOfType(this.Const.FactionType.Orcs).getSettlements());
-		//		if (this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Legendary && nearestOrcs > 28)
+		//		if (::Legends.isLegendaryDifficulty() && nearestOrcs > 28)
 		//		{
 		//			rand *=  nearestOrcs / 28.0;
 		//		}

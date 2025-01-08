@@ -172,7 +172,7 @@ this.legend_white_direwolf <- this.inherit("scripts/entity/tactical/actor", {
 
 				for( local i = 0; i < n; i = ++i )
 				{
-	
+
 					local loot = this.new("scripts/items/misc/legend_white_wolf_pelt_item");
 					loot.drop(_tile);
 					local loot = this.new("scripts/items/loot/sabertooth_item");
@@ -185,12 +185,12 @@ this.legend_white_direwolf <- this.inherit("scripts/entity/tactical/actor", {
 					{
 					local loot = this.new("scripts/items/loot/sabertooth_item");
 					loot.drop(_tile);
-					}	
+					}
 					if (this.Math.rand(1, 100) <= 33)
 					{
 					local loot = this.new("scripts/items/loot/valuable_furs_item");
 					loot.drop(_tile);
-					}						
+					}
 					if (this.Math.rand(1, 100) <= 33)
 					{
 					local loot = this.new("scripts/items/supplies/strange_meat_item");
@@ -268,7 +268,7 @@ this.legend_white_direwolf <- this.inherit("scripts/entity/tactical/actor", {
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_terrifying_visage"));
 		this.m.Skills.add(this.new("scripts/skills/racial/legend_werewolf_racial"));
 
-		 if ("Assets" in this.World && this.World.Assets != null && this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Legendary)
+		 if (::Legends.isLegendaryDifficulty())
 			{
 			this.m.Skills.add(this.new("scripts/skills/perks/perk_battle_forged"));
 			this.m.Skills.add(this.new("scripts/skills/perks/perk_battle_flow"));

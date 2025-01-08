@@ -221,8 +221,8 @@ this.legend_warbear <- this.inherit("scripts/entity/tactical/actor", {
 		this.m.Skills.add(this.new("scripts/skills/actives/legend_bear_bite_skill"));
 		this.m.Skills.add(this.new("scripts/skills/actives/legend_bear_claws_skill"));
 		this.m.Skills.add(this.new("scripts/skills/actives/unstoppable_charge_skill"));
-		
-		if("Assets" in this.World && this.World.Assets != null && this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Legendary)
+
+		if(::Legends.isLegendaryDifficulty())
 			{
 			this.m.Hitpoints = 1.5 * b.Hitpoints;
 			b.MeleeSkill += 10;

@@ -24,7 +24,7 @@
 
 		if (success)
 		{
-			if (!target.getCurrentProperties().IsImmuneToPoison && ("Assets" in this.World) && this.World.Assets != null && this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Legendary && hp - target.getHitpoints() >= this.Const.Combat.PoisonEffectMinDamage)
+			if (!target.getCurrentProperties().IsImmuneToPoison && ::Legends.isLegendaryDifficulty() && hp - target.getHitpoints() >= this.Const.Combat.PoisonEffectMinDamage)
 			{
 				local effect = this.new("scripts/skills/effects/legend_zombie_poison_effect");
 				target.getSkills().add(effect);

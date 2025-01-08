@@ -76,7 +76,7 @@ this.legend_alp_nightmare_human <- this.inherit("scripts/entity/tactical/enemies
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_bullseye"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_rotation"));
 
-		if (("Assets" in this.World) && this.World.Assets != null && this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Legendary)
+		if (::Legends.isLegendaryDifficulty())
 		{
 			this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_full_force"));
 			this.m.Skills.add(this.new("scripts/skills/perks/perk_steel_brow"));
@@ -114,7 +114,7 @@ this.legend_alp_nightmare_human <- this.inherit("scripts/entity/tactical/enemies
 					this.m.Items.equip(this.new("scripts/items/weapons/legend_infantry_axe"));
 					this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_smashing_shields"));
 
-					if (("Assets" in this.World) && this.World.Assets != null && this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Legendary)
+					if (::Legends.isLegendaryDifficulty())
 						this.m.Skills.add(this.new("scripts/skills/perks/perk_killing_frenzy"));
 				}
 				else if (r == 1)
@@ -122,7 +122,7 @@ this.legend_alp_nightmare_human <- this.inherit("scripts/entity/tactical/enemies
 					this.m.Items.equip(this.new("scripts/items/weapons/hooked_blade"));
 					this.m.Skills.add(this.new("scripts/skills/perks/perk_crippling_strikes"));
 
-					if (("Assets" in this.World) && this.World.Assets != null && this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Legendary)
+					if (::Legends.isLegendaryDifficulty())
 						this.m.Skills.add(this.new("scripts/skills/perks/perk_fearsome"));
 				}
 				else if (r == 2)
@@ -130,7 +130,7 @@ this.legend_alp_nightmare_human <- this.inherit("scripts/entity/tactical/enemies
 					this.m.Items.equip(this.new("scripts/items/weapons/pike"));
 					this.m.Skills.add(this.new("scripts/skills/perks/perk_reach_advantage"));
 
-					if (("Assets" in this.World) && this.World.Assets != null && this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Legendary)
+					if (::Legends.isLegendaryDifficulty())
 						this.m.Skills.add(this.new("scripts/skills/perks/perk_backstabber"));
 				}
 				else if (r == 3)
@@ -138,7 +138,7 @@ this.legend_alp_nightmare_human <- this.inherit("scripts/entity/tactical/enemies
 					this.m.Items.equip(this.new("scripts/items/weapons/warbrand"));
 					this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_bloody_harvest"));
 
-					if (("Assets" in this.World) && this.World.Assets != null && this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Legendary)
+					if (::Legends.isLegendaryDifficulty())
 						this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_forceful_swing"));
 				}
 				else if (r == 4)
@@ -146,7 +146,7 @@ this.legend_alp_nightmare_human <- this.inherit("scripts/entity/tactical/enemies
 					this.m.Items.equip(this.new("scripts/items/weapons/longaxe"));
 					this.m.Skills.add(this.new("scripts/skills/perks/perk_killing_frenzy"));
 
-					if (("Assets" in this.World) && this.World.Assets != null && this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Legendary)
+					if (::Legends.isLegendaryDifficulty())
 						this.m.Skills.add(this.new("scripts/skills/perks/perk_backstabber"));
 				}
 				else if (r == 5)
@@ -154,7 +154,7 @@ this.legend_alp_nightmare_human <- this.inherit("scripts/entity/tactical/enemies
 					this.m.Items.equip(this.new("scripts/items/weapons/two_handed_wooden_hammer"));
 					this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_smackdown"));
 
-					if (("Assets" in this.World) && this.World.Assets != null && this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Legendary)
+					if (::Legends.isLegendaryDifficulty())
 						this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_smackdown"));
 				}
 				else if (r == 6)
@@ -167,7 +167,7 @@ this.legend_alp_nightmare_human <- this.inherit("scripts/entity/tactical/enemies
 					this.m.Items.equip(this.new("scripts/items/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
 					this.m.Skills.add(this.new("scripts/skills/perks/perk_head_hunter"));
 
-					if (("Assets" in this.World) && this.World.Assets != null && this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Legendary)
+					if (::Legends.isLegendaryDifficulty())
 						this.m.Skills.add(this.new("scripts/skills/perks/perk_battle_flow"));
 				}
 				else if (r == 7)
@@ -175,7 +175,7 @@ this.legend_alp_nightmare_human <- this.inherit("scripts/entity/tactical/enemies
 					this.m.Items.equip(this.new("scripts/items/weapons/two_handed_mace"));
 					this.m.Skills.add(this.new("scripts/skills/perks/perk_colossus"));
 
-					if (("Assets" in this.World) && this.World.Assets != null && this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Legendary)
+					if (::Legends.isLegendaryDifficulty())
 						this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_onslaught"));
 				}
 				else if (r == 8)
@@ -183,7 +183,7 @@ this.legend_alp_nightmare_human <- this.inherit("scripts/entity/tactical/enemies
 					this.m.Items.equip(this.new("scripts/items/weapons/longsword"));
 					this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_vengeance"));
 
-					if (("Assets" in this.World) && this.World.Assets != null && this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Legendary)
+					if (::Legends.isLegendaryDifficulty())
 						this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_feint"));
 				}
 				else if (r == 9)
@@ -191,7 +191,7 @@ this.legend_alp_nightmare_human <- this.inherit("scripts/entity/tactical/enemies
 					this.m.Items.equip(this.new("scripts/items/weapons/legend_longsword"));
 					this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_forceful_swing"));
 
-					if (("Assets" in this.World) && this.World.Assets != null && this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Legendary)
+					if (::Legends.isLegendaryDifficulty())
 						this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_bloody_harvest"));
 				}
 				else if (r == 10)
@@ -199,7 +199,7 @@ this.legend_alp_nightmare_human <- this.inherit("scripts/entity/tactical/enemies
 					this.m.Items.equip(this.new("scripts/items/weapons/legend_two_handed_club"));
 					this.m.Skills.add(this.new("scripts/skills/perks/perk_colossus"));
 
-					if (("Assets" in this.World) && this.World.Assets != null && this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Legendary)
+					if (::Legends.isLegendaryDifficulty())
 						this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_onslaught"));
 				}
 			}
@@ -238,7 +238,7 @@ this.legend_alp_nightmare_human <- this.inherit("scripts/entity/tactical/enemies
 				this.m.Items.equip(this.new("scripts/items/weapons/shortsword"));
 				this.m.Skills.add(this.new("scripts/skills/perks/perk_duelist"));
 
-				if (("Assets" in this.World) && this.World.Assets != null && this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Legendary)
+				if (::Legends.isLegendaryDifficulty())
 					this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_feint"));
 			}
 			else if (r == 3)
@@ -246,7 +246,7 @@ this.legend_alp_nightmare_human <- this.inherit("scripts/entity/tactical/enemies
 				this.m.Items.equip(this.new("scripts/items/weapons/hand_axe"));
 				this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_smashing_shields"));
 
-				if (("Assets" in this.World) && this.World.Assets != null && this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Legendary)
+				if (::Legends.isLegendaryDifficulty())
 					this.m.Skills.add(this.new("scripts/skills/perks/perk_killing_frenzy"));
 			}
 			else if (r == 4)
@@ -254,7 +254,7 @@ this.legend_alp_nightmare_human <- this.inherit("scripts/entity/tactical/enemies
 				this.m.Items.equip(this.new("scripts/items/weapons/boar_spear"));
 				this.m.Skills.add(this.new("scripts/skills/perks/perk_overwhelm"));
 
-				if (("Assets" in this.World) && this.World.Assets != null && this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Legendary)
+				if (::Legends.isLegendaryDifficulty())
 					this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_specialist_spearthrust"));
 			}
 			else if (r == 5)
@@ -262,7 +262,7 @@ this.legend_alp_nightmare_human <- this.inherit("scripts/entity/tactical/enemies
 				this.m.Items.equip(this.new("scripts/items/weapons/morning_star"));
 				this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_onslaught"));
 
-				if (("Assets" in this.World) && this.World.Assets != null && this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Legendary)
+				if (::Legends.isLegendaryDifficulty())
 					this.m.Skills.add(this.new("scripts/skills/perks/perk_head_hunter"));
 			}
 			else if (r == 6)
@@ -270,7 +270,7 @@ this.legend_alp_nightmare_human <- this.inherit("scripts/entity/tactical/enemies
 				this.m.Items.equip(this.new("scripts/items/weapons/falchion"));
 				this.m.Skills.add(this.new("scripts/skills/perks/perk_duelist"));
 
-				if (("Assets" in this.World) && this.World.Assets != null && this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Legendary)
+				if (::Legends.isLegendaryDifficulty())
 					this.m.Skills.add(this.new("scripts/skills/perks/perk_fearsome"));
 			}
 			else if (r == 7)
@@ -278,7 +278,7 @@ this.legend_alp_nightmare_human <- this.inherit("scripts/entity/tactical/enemies
 				this.m.Items.equip(this.new("scripts/items/weapons/arming_sword"));
 				this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_feint"));
 
-				if (("Assets" in this.World) && this.World.Assets != null && this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Legendary)
+				if (::Legends.isLegendaryDifficulty())
 					this.m.Skills.add(this.new("scripts/skills/perks/perk_duelist"));
 			}
 			else if (r == 8)
@@ -286,7 +286,7 @@ this.legend_alp_nightmare_human <- this.inherit("scripts/entity/tactical/enemies
 				this.m.Items.equip(this.new("scripts/items/weapons/flail"));
 				this.m.Skills.add(this.new("scripts/skills/perks/perk_head_hunter"));
 
-				if (("Assets" in this.World) && this.World.Assets != null && this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Legendary)
+				if (::Legends.isLegendaryDifficulty())
 					this.m.Skills.add(this.new("scripts/skills/perks/perk_battle_flow"));
 			}
 			else if (r == 9)
@@ -294,7 +294,7 @@ this.legend_alp_nightmare_human <- this.inherit("scripts/entity/tactical/enemies
 				this.m.Items.equip(this.new("scripts/items/weapons/scramasax"));
 				this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_bloodbath"));
 
-				if (("Assets" in this.World) && this.World.Assets != null && this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Legendary)
+				if (::Legends.isLegendaryDifficulty())
 					this.m.Skills.add(this.new("scripts/skills/perks/perk_fearsome"));
 			}
 			else if (r == 10)
@@ -302,7 +302,7 @@ this.legend_alp_nightmare_human <- this.inherit("scripts/entity/tactical/enemies
 				this.m.Items.equip(this.new("scripts/items/weapons/military_pick"));
 				this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_smackdown"));
 
-				if (("Assets" in this.World) && this.World.Assets != null && this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Legendary)
+				if (::Legends.isLegendaryDifficulty())
 					this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_smackdown"));
 			}
 			else if (r == 11)
@@ -310,7 +310,7 @@ this.legend_alp_nightmare_human <- this.inherit("scripts/entity/tactical/enemies
 				this.m.Items.equip(this.new("scripts/items/weapons/legend_glaive"));
 				this.m.Skills.add(this.new("scripts/skills/perks/perk_killing_frenzy"));
 
-				if (("Assets" in this.World) && this.World.Assets != null && this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Legendary)
+				if (::Legends.isLegendaryDifficulty())
 					this.m.Skills.add(this.new("scripts/skills/perks/perk_fearsome"));
 			}
 

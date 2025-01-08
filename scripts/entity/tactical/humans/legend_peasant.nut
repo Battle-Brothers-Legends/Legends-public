@@ -29,7 +29,7 @@ this.legend_peasant <- this.inherit("scripts/entity/tactical/legend_randomized_u
 		dirt.Visible = true;
 		dirt.Alpha = this.Math.rand(0, 255);
 		this.getSprite("socket").setBrush("bust_base_militia");
-		// if("Assets" in this.World && this.World.Assets != null && this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Legendary)
+		// if(::Legends.isLegendaryDifficulty())
 		// 	{
 		// 	this.m.Hitpoints = b.Hitpoints * 1.5;
 		// 	this.m.Skills.add(this.new("scripts/skills/perks/perk_nimble"));

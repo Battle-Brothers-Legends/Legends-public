@@ -63,7 +63,7 @@ this.legend_redback_spider_poison_effect <- this.inherit("scripts/skills/skill",
 	function getDescription()
 	{
 		local timeDamage = (this.m.Damage * this.m.TurnsLeft);
-		if("Assets" in this.World && this.World.Assets != null && this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Legendary)
+		if(::Legends.isLegendaryDifficulty())
 		{
 			timeDamage *= 2;
 		}
@@ -95,8 +95,8 @@ this.legend_redback_spider_poison_effect <- this.inherit("scripts/skills/skill",
 			local timeDamage = (this.m.Damage * this.m.TurnsLeft);
 			local hitInfo = clone this.Const.Tactical.HitInfo;
 			hitInfo.DamageRegular = timeDamage;
-		
-		if ("Assets" in this.World && this.World.Assets != null && this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Legendary)
+
+		if (::Legends.isLegendaryDifficulty())
 			{
 			local timeDamage = (this.m.Damage * this.m.TurnsLeft);
 			hitInfo.DamageRegular = 2 * timeDamage;

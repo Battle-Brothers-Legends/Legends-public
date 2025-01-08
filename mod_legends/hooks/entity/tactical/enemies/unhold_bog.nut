@@ -1,4 +1,4 @@
-::mods_hookExactClass("entity/tactical/enemies/unhold_bog", function(o) 
+::mods_hookExactClass("entity/tactical/enemies/unhold_bog", function(o)
 {
 	o.onInit = function ()
 	{
@@ -59,7 +59,7 @@
 		this.m.Skills.add(this.new("scripts/skills/actives/sweep_zoc_skill"));
 		this.m.Skills.add(this.new("scripts/skills/actives/fling_back_skill"));
 		this.m.Skills.add(this.new("scripts/skills/actives/unstoppable_charge_skill"));
-		if("Assets" in this.World && this.World.Assets != null && this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Legendary)
+		if(::Legends.isLegendaryDifficulty())
 		{
 			this.m.Skills.add(this.new("scripts/skills/racial/legend_bog_unhold_racial"));
 			this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_battleheart"));

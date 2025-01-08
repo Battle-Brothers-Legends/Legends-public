@@ -1,4 +1,4 @@
-::mods_hookExactClass("entity/tactical/enemies/unhold", function(o) 
+::mods_hookExactClass("entity/tactical/enemies/unhold", function(o)
 {
 	o.onFactionChanged = function ()
 	{
@@ -91,7 +91,7 @@
 		this.m.Skills.add(this.new("scripts/skills/actives/sweep_zoc_skill"));
 		this.m.Skills.add(this.new("scripts/skills/actives/fling_back_skill"));
 		this.m.Skills.add(this.new("scripts/skills/actives/unstoppable_charge_skill"));
-		if("Assets" in this.World && this.World.Assets != null && this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Legendary)
+		if(::Legends.isLegendaryDifficulty())
 		{
 			this.m.Hitpoints = 2 * b.Hitpoints;
 			b.MeleeSkill += 10;

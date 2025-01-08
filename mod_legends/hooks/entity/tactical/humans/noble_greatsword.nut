@@ -1,4 +1,4 @@
-::mods_hookExactClass("entity/tactical/humans/noble_greatsword", function(o) 
+::mods_hookExactClass("entity/tactical/humans/noble_greatsword", function(o)
 {
 	local onInit = o.onInit;
 	o.onInit = function ()
@@ -8,7 +8,7 @@
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_recover"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_mastery_greatsword"));
 
-		if (("Assets" in this.World) && this.World.Assets != null && this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Legendary)
+		if (::Legends.isLegendaryDifficulty())
 		{
 			this.m.Skills.add(this.new("scripts/skills/perks/perk_underdog"));
 			this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_forceful_swing"));
