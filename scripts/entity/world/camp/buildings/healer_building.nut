@@ -169,11 +169,11 @@ this.healer_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 
 	function getCost(_injury)
 	{
+		if (!("getCost" in _injury))
+			return 0;
 		local cost = _injury.getCost();
 		if (this.getUpgraded())
-		{
 			cost = this.Math.floor(cost * 0.75);
-		}
 		return cost;
 	}
 
