@@ -91,10 +91,7 @@ this.legend_ai_rotation_skill <- this.inherit("scripts/skills/skill", {
 		if (!target.isAlive() && ::MSU.isNull(target))
 			return false;
 
-		if (!target.isAlliedWith(this.getContainer().getActor()) && !this.getContainer().hasPerk(::Const.Perks.PerkDefs.LegendTwirl))
-			return false;
-
-		if (target.isPlayerControlled() && !this.getContainer().hasPerk(::Const.Perks.PerkDefs.LegendTwirl))
+		if (target.getFaction() != _entity.getFaction() && !this.getContainer().hasPerk(::Const.Perks.PerkDefs.LegendTwirl))
 			return false;
 
 		return this.skill.onVerifyTarget(_originTile, _targetTile) && !target.getCurrentProperties().IsStunned && !target.getCurrentProperties().IsRooted && target.getCurrentProperties().IsMovable && !target.getCurrentProperties().IsImmuneToRotation;
@@ -104,6 +101,7 @@ this.legend_ai_rotation_skill <- this.inherit("scripts/skills/skill", {
 	{
 		local target = _targetTile.getEntity();
 		this.Tactical.getNavigator().switchEntities(_user, target, null, null, 1.0);
+		::logInfo("i'm an enemy and i'm rotating");
 		return true;
 	}
 
