@@ -66,7 +66,7 @@ this.legend_hand_wraps_item <- this.inherit("scripts/items/accessory/accessory",
 				id = 15,
 				type = "text",
 				icon = "ui/icons/damage_dealt.png",
-				text = "Deal [color=" + this.Const.UI.Color.PositiveValue + "]10%[/color] more damage (multiplicative) on [color=#400080]Choke[/color]."
+				text = "Deal [color=" + this.Const.UI.Color.PositiveValue + "]5%[/color] more damage (multiplicative) on [color=#400080]Choke[/color]."
 			}
 		]);
 		return result;
