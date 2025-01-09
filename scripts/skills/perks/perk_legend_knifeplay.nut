@@ -3,7 +3,7 @@ this.perk_legend_knifeplay <- this.inherit("scripts/skills/skill", {
 
 	function create()
 	{
-		::Const.Perks.setup(this.m, ::Const.Perks.PerkDefs.LegendKnifeplay);
+		::Const.Perks.setup(this.m, ::Legends.Perk.LegendKnifeplay);
 		this.m.Type = this.Const.SkillType.Perk;
 		this.m.Order = this.Const.SkillOrder.Perk;
 		this.m.IsActive = false;

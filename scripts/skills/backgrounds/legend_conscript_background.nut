@@ -167,7 +167,7 @@ this.legend_conscript_background <- this.inherit("scripts/skills/backgrounds/cha
 	function onAdded()
 	{
 		this.character_background.onAdded();
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendThrowSand);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendThrowSand);
 	}
 
 	function onAddEquipment()

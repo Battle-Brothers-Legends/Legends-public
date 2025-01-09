@@ -135,8 +135,8 @@ this.legend_zombie <- this.inherit("scripts/entity/tactical/enemies/zombie", {
 		this.addDefaultStatusSprites();
 		this.getSprite("arms_icon").setBrightness(0.85);
 		this.getSprite("status_rooted").Scale = 0.55;
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendPoisonImmunity);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Backstabber);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendPoisonImmunity);
+		::Legends.Perks.grant(this, ::Legends.Perk.Backstabber);
 		this.m.Skills.add(this.new("scripts/skills/special/double_grip"));
 		this.m.Skills.add(this.new("scripts/skills/actives/zombie_bite"));
 	}

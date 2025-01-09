@@ -3,7 +3,7 @@ this.perk_legend_favoured_enemy_master_archer <- this.inherit("scripts/skills/le
 	function create()
 	{
 		this.legend_favoured_enemy_skill.create();
-		::Const.Perks.setup(this.m, ::Const.Perks.PerkDefs.LegendFavouredEnemyArcher);
+		::Const.Perks.setup(this.m, ::Legends.Perk.LegendFavouredEnemyArcher);
 		this.m.ValidTypes = this.Const.LegendMod.FavoriteArcher;
 	}
 

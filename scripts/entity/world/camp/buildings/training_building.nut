@@ -171,7 +171,7 @@ this.training_building <- this.inherit("scripts/entity/world/camp/camp_building"
 
 			local mod = this.m.BaseCraft + this.m.BaseCraft * bro.getBackground().getModifiers().Training;
 
-			if (bro.getSkills().hasPerk(::Const.Perks.PerkDefs.LegendBackToBasics))
+			if (bro.getSkills().hasPerk(::Legends.Perk.LegendBackToBasics))
 			{
 				mod += 0.1;
 			}

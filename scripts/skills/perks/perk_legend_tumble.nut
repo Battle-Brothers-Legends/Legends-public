@@ -11,7 +11,7 @@ this.perk_legend_tumble <- this.inherit("scripts/skills/skill", {
 	},
 	function create()
 	{
-		::Const.Perks.setup(this.m, ::Const.Perks.PerkDefs.LegendTumble);
+		::Const.Perks.setup(this.m, ::Legends.Perk.LegendTumble);
 		this.m.Type = this.Const.SkillType.Perk;
 		this.m.Order = this.Const.SkillOrder.Last;
 		this.m.IsActive = false;

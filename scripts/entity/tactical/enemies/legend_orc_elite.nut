@@ -267,21 +267,21 @@ this.legend_orc_elite <- this.inherit("scripts/entity/tactical/actor", {
 		this.m.Skills.add(this.new("scripts/skills/special/double_grip"));
 		this.m.Skills.add(this.new("scripts/skills/actives/hand_to_hand"));
 		this.m.Skills.add(this.new("scripts/skills/actives/line_breaker"));
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.BatteringRam);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Stalwart);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.ShieldBash);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.HoldOut);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendTrueBeliever);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendPerfectFocus);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.BattleForged);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Recover);
+		::Legends.Perks.grant(this, ::Legends.Perk.BatteringRam);
+		::Legends.Perks.grant(this, ::Legends.Perk.Stalwart);
+		::Legends.Perks.grant(this, ::Legends.Perk.ShieldBash);
+		::Legends.Perks.grant(this, ::Legends.Perk.HoldOut);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendTrueBeliever);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendPerfectFocus);
+		::Legends.Perks.grant(this, ::Legends.Perk.BattleForged);
+		::Legends.Perks.grant(this, ::Legends.Perk.Recover);
 		if(::Legends.isLegendaryDifficulty())
 		{
 			this.m.Hitpoints = 1.5 * b.Hitpoints;
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendLastStand);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Underdog);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendFullForce);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendSecondWind);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendLastStand);
+			::Legends.Perks.grant(this, ::Legends.Perk.Underdog);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendFullForce);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendSecondWind);
 			this.m.Skills.add(this.new("scripts/skills/traits/fearless_trait"));
 		}
 
@@ -418,9 +418,9 @@ this.legend_orc_elite <- this.inherit("scripts/entity/tactical/actor", {
 
 		if("Assets" in this.World && this.World.Assets != null && this.World.Assets.getCombatDifficulty() != this.Const.Difficulty.Legendary)
 		{
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendLastStand);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Underdog);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendSecondWind);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendLastStand);
+			::Legends.Perks.grant(this, ::Legends.Perk.Underdog);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendSecondWind);
 		}
 
 		return true;

@@ -4,9 +4,9 @@
 	o.onInit = function ()
 	{
 		onInit();
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Dodge);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Footwork);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Recover);
+		::Legends.Perks.grant(this, ::Legends.Perk.Dodge);
+		::Legends.Perks.grant(this, ::Legends.Perk.Footwork);
+		::Legends.Perks.grant(this, ::Legends.Perk.Recover);
 	}
 
 	o.assignRandomEquipment = function ()
@@ -157,7 +157,7 @@
 
 		}
 
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.NineLives);
+		::Legends.Perks.grant(this, ::Legends.Perk.NineLives);
 		return true;
 	}
 });

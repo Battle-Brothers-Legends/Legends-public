@@ -114,19 +114,19 @@
 		this.m.Skills.add(this.new("scripts/skills/special/double_grip"));
 		this.m.Skills.add(this.new("scripts/skills/racial/vampire_racial"));
 		this.m.Skills.add(this.new("scripts/skills/actives/darkflight"));
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Anticipation);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.CripplingStrikes);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.HeadHunter);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.NineLives);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendPoisonImmunity);
+		::Legends.Perks.grant(this, ::Legends.Perk.Anticipation);
+		::Legends.Perks.grant(this, ::Legends.Perk.CripplingStrikes);
+		::Legends.Perks.grant(this, ::Legends.Perk.HeadHunter);
+		::Legends.Perks.grant(this, ::Legends.Perk.NineLives);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendPoisonImmunity);
 		if(::Legends.isLegendaryDifficulty())
 		{
 			b.MeleeSkill += 10;
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendComposure);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Fearsome);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.CoupDeGrace);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendBloodbath);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Nimble);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendComposure);
+			::Legends.Perks.grant(this, ::Legends.Perk.Fearsome);
+			::Legends.Perks.grant(this, ::Legends.Perk.CoupDeGrace);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendBloodbath);
+			::Legends.Perks.grant(this, ::Legends.Perk.Nimble);
 			this.m.Skills.add(this.new("scripts/skills/traits/fearless_trait"));
 		}
 	}

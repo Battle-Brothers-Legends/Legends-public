@@ -351,8 +351,8 @@ this.repair_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 		{
 			local items = bro.getItems().getAllItems();
 			local skills = [
-				::Const.Perks.PerkDefs.LegendToolsSpares,
-				::Const.Perks.PerkDefs.LegendToolsDrawers
+				::Legends.Perk.LegendToolsSpares,
+				::Legends.Perk.LegendToolsDrawers
 			];
 			foreach( s in skills )
 			{

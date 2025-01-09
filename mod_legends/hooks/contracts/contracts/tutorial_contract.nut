@@ -17,8 +17,8 @@
 					e.setName("One-Eye");
 					e.getSprite("socket").setBrush("bust_base_player");
 					e.assignRandomEquipment();
-					::Legends.Perks.remove(e, ::Const.Perks.PerkDefs.Overwhelm);
-					::Legends.Perks.remove(e, ::Const.Perks.PerkDefs.Nimble);
+					::Legends.Perks.remove(e, ::Legends.Perk.Overwhelm);
+					::Legends.Perks.remove(e, ::Legends.Perk.Nimble);
 					e.getItems().getItemAtSlot(this.Const.ItemSlot.Body).setArmor(0);
 
 					if (e.getItems().getItemAtSlot(this.Const.ItemSlot.Head) != null)
@@ -42,8 +42,8 @@
 					e.setFaction(this.Const.Faction.PlayerAnimals);
 					e.setName("Captain Bernhard");
 					e.getSprite("socket").setBrush("bust_base_player");
-					::Legends.Perks.remove(e, ::Const.Perks.PerkDefs.Overwhelm);
-					::Legends.Perks.remove(e, ::Const.Perks.PerkDefs.Nimble);
+					::Legends.Perks.remove(e, ::Legends.Perk.Overwhelm);
+					::Legends.Perks.remove(e, ::Legends.Perk.Nimble);
 					local armor = this.Const.World.Common.pickArmor([
 						[1, "mail_hauberk", 32],
 					]);

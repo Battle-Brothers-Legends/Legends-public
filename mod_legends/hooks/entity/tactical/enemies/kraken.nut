@@ -6,8 +6,8 @@
 		onInit();
 		local b = this.m.BaseProperties;
 		b.IsAffectedByRain = false;
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Stalwart);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendComposure);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendPoisonImmunity);
+		::Legends.Perks.grant(this, ::Legends.Perk.Stalwart);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendComposure);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendPoisonImmunity);
 	}
 });

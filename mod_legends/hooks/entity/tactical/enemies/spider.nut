@@ -4,11 +4,11 @@
 	o.onInit = function ()
 	{
 		onInit();
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Footwork);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendPoisonImmunity);
+		::Legends.Perks.grant(this, ::Legends.Perk.Footwork);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendPoisonImmunity);
 		if(::Legends.isLegendaryDifficulty())
 		{
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendLevitate);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendLevitate);
 			this.m.Skills.add(this.new("scripts/skills/effects/dodge_effect"));
 			this.m.Skills.add(this.new("scripts/skills/traits/fearless_trait"));
 		}

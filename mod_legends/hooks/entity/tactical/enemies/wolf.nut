@@ -6,8 +6,8 @@
 		onInit();
 		if(::Legends.isLegendaryDifficulty())
 		{
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Berserk);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Backstabber);
+			::Legends.Perks.grant(this, ::Legends.Perk.Berserk);
+			::Legends.Perks.grant(this, ::Legends.Perk.Backstabber);
 			this.m.Skills.add(this.new("scripts/skills/traits/fearless_trait"));
 		}
 	}

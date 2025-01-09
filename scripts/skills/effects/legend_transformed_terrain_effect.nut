@@ -63,7 +63,7 @@ this.legend_transformed_terrain_effect <- this.inherit("scripts/skills/skill", {
 		actor.getSprite("beard").Visible = false;
 		this.m.TurnsLeft = 5;
 
-		if (this.getContainer().getActor().getSkills().hasPerk(::Const.Perks.PerkDefs.LegendTrueForm))
+		if (this.getContainer().getActor().getSkills().hasPerk(::Legends.Perk.LegendTrueForm))
 		{
 			this.m.TurnsLeft = 6;
 		}
@@ -101,7 +101,7 @@ this.legend_transformed_terrain_effect <- this.inherit("scripts/skills/skill", {
 	{
 
 		local actor = this.getContainer().getActor();
-		if (actor.getSkills().hasPerk(::Const.Perks.PerkDefs.LegendAssassinate))
+		if (actor.getSkills().hasPerk(::Legends.Perk.LegendAssassinate))
 		{
 			_properties.DamageRegularMin *= 2;
 			_properties.DamageRegularMax *= 2;

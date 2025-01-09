@@ -5,11 +5,11 @@
 	{
 		onInit();
 		local b = this.m.BaseProperties;
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendComposure);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendPoisonImmunity);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendComposure);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendPoisonImmunity);
 		if (::Legends.isLegendaryDifficulty())
 		{
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendLastStand);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendLastStand);
 			this.m.Hitpoints = b.Hitpoints * 1.5;
 			this.m.Skills.add(this.new("scripts/skills/traits/fearless_trait"));
 			this.m.Skills.add(this.new("scripts/skills/traits/determined_trait"));

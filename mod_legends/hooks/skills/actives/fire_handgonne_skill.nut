@@ -54,9 +54,9 @@
 			});
 		}
 
-		if (this.getContainer().hasPerk(::Const.Perks.PerkDefs.LegendPiercingShot))
+		if (this.getContainer().hasPerk(::Legends.Perk.LegendPiercingShot))
 		{
-			local s = ::Legends.Perks.get(this, ::Const.Perks.PerkDefs.LegendPiercingShot);
+			local s = ::Legends.Perks.get(this, ::Legends.Perk.LegendPiercingShot);
 			tooltip.push({
 				id = 6,
 				type = "text",

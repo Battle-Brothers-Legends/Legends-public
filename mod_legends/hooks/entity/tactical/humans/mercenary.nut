@@ -4,21 +4,21 @@
 	o.onInit = function ()
 	{
 		onInit();
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Rotation);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Recover);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendSmashingShields);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.CripplingStrikes);
+		::Legends.Perks.grant(this, ::Legends.Perk.Rotation);
+		::Legends.Perks.grant(this, ::Legends.Perk.Recover);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendSmashingShields);
+		::Legends.Perks.grant(this, ::Legends.Perk.CripplingStrikes);
 		if(::Legends.isLegendaryDifficulty())
 		{
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Colossus);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendRebound);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Stalwart);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendClarity);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Footwork);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Underdog);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Steadfast);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Berserk);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.SteelBrow);
+			::Legends.Perks.grant(this, ::Legends.Perk.Colossus);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendRebound);
+			::Legends.Perks.grant(this, ::Legends.Perk.Stalwart);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendClarity);
+			::Legends.Perks.grant(this, ::Legends.Perk.Footwork);
+			::Legends.Perks.grant(this, ::Legends.Perk.Underdog);
+			::Legends.Perks.grant(this, ::Legends.Perk.Steadfast);
+			::Legends.Perks.grant(this, ::Legends.Perk.Berserk);
+			::Legends.Perks.grant(this, ::Legends.Perk.SteelBrow);
 			this.m.Skills.add(this.new("scripts/skills/traits/fearless_trait"));
 		}
 	}

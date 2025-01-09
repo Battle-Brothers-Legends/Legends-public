@@ -5,9 +5,9 @@
 	{
 		onInit();
 		this.m.Skills.add(this.new("scripts/skills/effects/dodge_effect"));
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Relentless);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Rotation);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Recover);
+		::Legends.Perks.grant(this, ::Legends.Perk.Relentless);
+		::Legends.Perks.grant(this, ::Legends.Perk.Rotation);
+		::Legends.Perks.grant(this, ::Legends.Perk.Recover);
 	}
 
 	o.assignRandomEquipment = function ()

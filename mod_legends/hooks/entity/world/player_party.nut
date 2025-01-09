@@ -61,33 +61,33 @@
 				break;
 			}
 
-			if (bro.getSkills().hasPerk(::Const.Perks.PerkDefs.LegendPacifist))
+			if (bro.getSkills().hasPerk(::Legends.Perk.LegendPacifist))
 			{
 				continue;
 			}
 
-			if (bro.getSkills().hasPerk(::Const.Perks.PerkDefs.LegendSpawnZombieHigh))
+			if (bro.getSkills().hasPerk(::Legends.Perk.LegendSpawnZombieHigh))
 			{
 				zombieSummonLevel = 7;
 			}
-			else if (bro.getSkills().hasPerk(::Const.Perks.PerkDefs.LegendSpawnZombieMed))
+			else if (bro.getSkills().hasPerk(::Legends.Perk.LegendSpawnZombieMed))
 			{
 				zombieSummonLevel = 5;
 			}
-			else if (bro.getSkills().hasPerk(::Const.Perks.PerkDefs.LegendSpawnZombieLow))
+			else if (bro.getSkills().hasPerk(::Legends.Perk.LegendSpawnZombieLow))
 			{
 				zombieSummonLevel = 2;
 			}
 
-			if (bro.getSkills().hasPerk(::Const.Perks.PerkDefs.LegendSpawnSkeletonHigh))
+			if (bro.getSkills().hasPerk(::Legends.Perk.LegendSpawnSkeletonHigh))
 			{
 				skeletonSummonLevel = 7;
 			}
-			else if (bro.getSkills().hasPerk(::Const.Perks.PerkDefs.LegendSpawnSkeletonMed))
+			else if (bro.getSkills().hasPerk(::Legends.Perk.LegendSpawnSkeletonMed))
 			{
 				skeletonSummonLevel = 5;
 			}
-			else if (bro.getSkills().hasPerk(::Const.Perks.PerkDefs.LegendSpawnSkeletonLow))
+			else if (bro.getSkills().hasPerk(::Legends.Perk.LegendSpawnSkeletonLow))
 			{
 				skeletonSummonLevel = 2;
 			}
@@ -373,7 +373,7 @@
 
 		foreach( bro in this.World.getPlayerRoster().getAll() )
 		{
-			if (!bro.getSkills().hasPerk(::Const.Perks.PerkDefs.LegendQuartermaster))
+			if (!bro.getSkills().hasPerk(::Legends.Perk.LegendQuartermaster))
 			{
 				continue;
 			}
@@ -392,7 +392,7 @@
 
 		foreach( bro in this.World.getPlayerRoster().getAll() )
 		{
-			if (bro.getSkills().hasPerk(::Const.Perks.PerkDefs.LegendPaymaster))
+			if (bro.getSkills().hasPerk(::Legends.Perk.LegendPaymaster))
 			{
 				this.m.WageMultiplier = bro.getBarterModifier();
 				return;
@@ -412,7 +412,7 @@
 		foreach (bro in this.World.getPlayerRoster().getAll())
 		{
 			barterMult += bro.getBarterModifier();
-			if (bro.getSkills().hasPerk(::Const.Perks.PerkDefs.LegendBarterGreed))
+			if (bro.getSkills().hasPerk(::Legends.Perk.LegendBarterGreed))
 			{
 				greed += 1;
 			}

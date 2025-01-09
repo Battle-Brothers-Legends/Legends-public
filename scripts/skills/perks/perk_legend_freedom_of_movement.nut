@@ -2,7 +2,7 @@ this.perk_legend_freedom_of_movement <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		::Const.Perks.setup(this.m, ::Const.Perks.PerkDefs.LegendFreedomOfMovement);
+		::Const.Perks.setup(this.m, ::Legends.Perk.LegendFreedomOfMovement);
 		this.m.Description = "You are moving with freedom.";
 		this.m.Type = this.Const.SkillType.Perk | this.Const.SkillType.StatusEffect;
 		this.m.Order = this.Const.SkillOrder.Perk;

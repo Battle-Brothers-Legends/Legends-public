@@ -19,13 +19,13 @@
 	o.onInit = function ()
 	{
 		onInit();
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendPoisonImmunity);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendPoisonImmunity);
 		if(::Legends.isLegendaryDifficulty())
 		{
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.ShieldExpert);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.BattleForged);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.CripplingStrikes);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.CoupDeGrace);
+			::Legends.Perks.grant(this, ::Legends.Perk.ShieldExpert);
+			::Legends.Perks.grant(this, ::Legends.Perk.BattleForged);
+			::Legends.Perks.grant(this, ::Legends.Perk.CripplingStrikes);
+			::Legends.Perks.grant(this, ::Legends.Perk.CoupDeGrace);
 		}
 	}
 

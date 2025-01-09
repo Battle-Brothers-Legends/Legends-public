@@ -132,7 +132,7 @@ this.legend_inventor_prosthetic_hand <- this.inherit("scripts/events/event", {
 
 		foreach (bro in brothers)
 		{
-			if (bro.getSkills().hasPerk(::Const.Perks.PerkDefs.LegendInventorAnatomy))
+			if (bro.getSkills().hasPerk(::Legends.Perk.LegendInventorAnatomy))
 			{
 				inventor_candidates.push(bro);
 			}

@@ -48,7 +48,7 @@ this.nomad_ranged_background <- this.inherit("scripts/skills/backgrounds/nomad_b
 	function onAdded()
 	{
 		this.character_background.onAdded();
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendThrowSand);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendThrowSand);
 	}
 
 	function onAddEquipment()

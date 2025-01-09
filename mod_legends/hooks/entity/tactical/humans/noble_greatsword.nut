@@ -4,18 +4,18 @@
 	o.onInit = function ()
 	{
 		onInit();
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Rotation);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Recover);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.SpecSword);
+		::Legends.Perks.grant(this, ::Legends.Perk.Rotation);
+		::Legends.Perks.grant(this, ::Legends.Perk.Recover);
+		::Legends.Perks.grant(this, ::Legends.Perk.SpecSword);
 
 		if (::Legends.isLegendaryDifficulty())
 		{
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Underdog);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendForcefulSwing);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendFeint);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendBackToBasics);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendBloodyHarvest);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendFullForce);
+			::Legends.Perks.grant(this, ::Legends.Perk.Underdog);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendForcefulSwing);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendFeint);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendBackToBasics);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendBloodyHarvest);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendFullForce);
 			this.m.Skills.add(this.new("scripts/skills/traits/fearless_trait"));
 		}
 	}

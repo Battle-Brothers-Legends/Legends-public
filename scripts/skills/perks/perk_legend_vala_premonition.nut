@@ -2,7 +2,7 @@ this.perk_legend_vala_premonition <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		::Const.Perks.setup(this.m, ::Const.Perks.PerkDefs.LegendValaPremonition);
+		::Const.Perks.setup(this.m, ::Legends.Perk.LegendValaPremonition);
 		this.m.Type = this.Const.SkillType.Perk | this.Const.SkillType.StatusEffect;
 		this.m.Order = this.Const.SkillOrder.VeryLast + 9;
 		this.m.IsActive = false;

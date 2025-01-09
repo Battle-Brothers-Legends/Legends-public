@@ -19,13 +19,13 @@
 	o.onInit = function ()
 	{
 		onInit();
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendPoisonImmunity);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendPoisonImmunity);
 		if(::Legends.isLegendaryDifficulty())
 		{
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.BattleForged);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendFullForce);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendComposure);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.ShieldExpert);
+			::Legends.Perks.grant(this, ::Legends.Perk.BattleForged);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendFullForce);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendComposure);
+			::Legends.Perks.grant(this, ::Legends.Perk.ShieldExpert);
 		}
 	}
 

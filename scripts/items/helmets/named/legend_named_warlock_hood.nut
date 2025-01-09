@@ -60,7 +60,7 @@ this.legend_named_warlock_hood <- this.inherit("scripts/items/helmets/named/name
 		if (a == null)
 			return;
 
-		::Legends.Perks.grant(a, ::Const.Perks.PerkDefs.LegendTasteThePain);
+		::Legends.Perks.grant(a, ::Legends.Perk.LegendTasteThePain);
 	}
 
 	function onUnequip()
@@ -68,7 +68,7 @@ this.legend_named_warlock_hood <- this.inherit("scripts/items/helmets/named/name
 		local a = this.getContainer().getActor();
 		if (a == null)
 			return;
-		::Legends.Perks.remove(a, ::Const.Perks.PerkDefs.LegendTasteThePain);
+		::Legends.Perks.remove(a, ::Legends.Perk.LegendTasteThePain);
 		this.named_helmet.onUnequip();
 	}
 

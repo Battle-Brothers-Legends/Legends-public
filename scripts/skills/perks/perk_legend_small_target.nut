@@ -6,7 +6,7 @@ this.perk_legend_small_target <- this.inherit("scripts/skills/skill", {
 	},
 	function create()
 	{
-		::Const.Perks.setup(this.m, ::Const.Perks.PerkDefs.LegendSmallTarget);
+		::Const.Perks.setup(this.m, ::Legends.Perk.LegendSmallTarget);
 		this.m.Description = "Use your physique to minimize your hit profile."
 		this.m.Type = this.Const.SkillType.Perk | this.Const.SkillType.StatusEffect;
 		this.m.Order = this.Const.SkillOrder.Perk;
@@ -58,8 +58,8 @@ this.perk_legend_small_target <- this.inherit("scripts/skills/skill", {
 			return tooltip;
 		}
 
-		local sourcePerk = ::Legends.Perks.get(this, ::Const.Perks.PerkDefs.LegendBlendIn);
-		if (this.getContainer().getActor().getSkills().hasPerk(::Const.Perks.PerkDefs.LegendUnburdened) && bonus >= this.m.BonusUnburdenedMin && sourcePerk != null && sourcePerk.m.MeekStacks > 0)
+		local sourcePerk = ::Legends.Perks.get(this, ::Legends.Perk.LegendBlendIn);
+		if (this.getContainer().getActor().getSkills().hasPerk(::Legends.Perk.LegendUnburdened) && bonus >= this.m.BonusUnburdenedMin && sourcePerk != null && sourcePerk.m.MeekStacks > 0)
 		{
 			tooltip.push({
 				id = 6,
@@ -88,7 +88,7 @@ this.perk_legend_small_target <- this.inherit("scripts/skills/skill", {
 		if (headItem != null)
 			headArmor = actor.getArmor(this.Const.BodyPart.Head);
 
-		if (actor.getSkills().hasPerk(::Const.Perks.PerkDefs.LegendFashionable)) {
+		if (actor.getSkills().hasPerk(::Legends.Perk.LegendFashionable)) {
 			local layer = bodyItem.getUpgrade(this.Const.Items.ArmorUpgrades.Tabbard);
 			if (layer != null)
 				bodyArmor -= layer.getRepair();
@@ -102,7 +102,7 @@ this.perk_legend_small_target <- this.inherit("scripts/skills/skill", {
 					headArmor -= layer.getRepair();
 			}
 
-			if (actor.getSkills().hasPerk(::Const.Perks.PerkDefs.LegendUnburdened)) {
+			if (actor.getSkills().hasPerk(::Legends.Perk.LegendUnburdened)) {
 				if (bodyItem != null && bodyItem.m.StaminaModifier == 0) {
 					bodyArmor -= bodyItem.m.Condition;
 				}
@@ -155,11 +155,11 @@ this.perk_legend_small_target <- this.inherit("scripts/skills/skill", {
 		_properties.MeleeDefense += this.getCurrentBonus();
 		_properties.RangedDefense += this.getCurrentBonus();
 
-		local sourcePerk = ::Legends.Perks.get(this, ::Const.Perks.PerkDefs.LegendBlendIn);
+		local sourcePerk = ::Legends.Perks.get(this, ::Legends.Perk.LegendBlendIn);
 		if (sourcePerk == null)
 			return;
 
-		if (this.getContainer().getActor().getSkills().hasPerk(::Const.Perks.PerkDefs.LegendUnburdened) && bonus >= this.m.BonusUnburdenedMin && sourcePerk.m.MeekStacks > 0)
+		if (this.getContainer().getActor().getSkills().hasPerk(::Legends.Perk.LegendUnburdened) && bonus >= this.m.BonusUnburdenedMin && sourcePerk.m.MeekStacks > 0)
 		{
 			_properties.ActionPoints += 1;
 		}

@@ -19,7 +19,7 @@ this.herbal_mushrooms_blueprint <- this.inherit("scripts/crafting/blueprint", {
 		];
 		this.init(ingredients);
 		local skills = [
-			::Legends.Perks.blueprint(::Const.Perks.PerkDefs.LegendHerbcraft)
+			::Legends.Perks.blueprint(::Legends.Perk.LegendHerbcraft)
 		];
 		this.initSkills(skills);
 	}

@@ -33,21 +33,21 @@ this.legend_noble_fencer <- this.inherit("scripts/entity/tactical/human", {
 		this.m.CurrentProperties = clone b;
 		this.setAppearance();
 		this.getSprite("socket").setBrush("bust_base_military");
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Nimble);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Dodge);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Backstabber);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Footwork);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.FastAdaption);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendBackToBasics);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendFeint);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Berserk);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Rotation);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Recover);
+		::Legends.Perks.grant(this, ::Legends.Perk.Nimble);
+		::Legends.Perks.grant(this, ::Legends.Perk.Dodge);
+		::Legends.Perks.grant(this, ::Legends.Perk.Backstabber);
+		::Legends.Perks.grant(this, ::Legends.Perk.Footwork);
+		::Legends.Perks.grant(this, ::Legends.Perk.FastAdaption);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendBackToBasics);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendFeint);
+		::Legends.Perks.grant(this, ::Legends.Perk.Berserk);
+		::Legends.Perks.grant(this, ::Legends.Perk.Rotation);
+		::Legends.Perks.grant(this, ::Legends.Perk.Recover);
 		if(::Legends.isLegendaryDifficulty())
 			{
 			this.m.Hitpoints = b.Hitpoints * 2;
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.BattleForged);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.BattleFlow);
+			::Legends.Perks.grant(this, ::Legends.Perk.BattleForged);
+			::Legends.Perks.grant(this, ::Legends.Perk.BattleFlow);
 			this.m.Skills.add(this.new("scripts/skills/traits/fearless_trait"));
 			}
 	}
@@ -172,7 +172,7 @@ this.legend_noble_fencer <- this.inherit("scripts/entity/tactical/human", {
 		}
 
 		this.m.BaseProperties.DamageDirectMult *= 1.25;
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Relentless);
+		::Legends.Perks.grant(this, ::Legends.Perk.Relentless);
 		return true;
 	}
 

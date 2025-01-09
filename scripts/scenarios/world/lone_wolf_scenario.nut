@@ -30,7 +30,7 @@ this.lone_wolf_scenario <- this.inherit("scripts/scenarios/world/starting_scenar
 		]);
 		bros[0].getBackground().buildDescription(true);
 		bros[0].setTitle("the Lone Wolf");
-		::Legends.Perks.grant(bros[0], ::Const.Perks.PerkDefs.LegendFavouredEnemySwordmaster);
+		::Legends.Perks.grant(bros[0], ::Legends.Perk.LegendFavouredEnemySwordmaster);
 		bros[0].getSkills().add(this.new("scripts/skills/traits/player_character_trait"));
 		bros[0].getSkills().add(this.new("scripts/skills/traits/legend_lw_relationship_trait"));
 		bros[0].setPlaceInFormation(4);

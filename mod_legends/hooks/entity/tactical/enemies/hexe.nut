@@ -59,10 +59,10 @@
 
 		if(::Legends.isLegendaryDifficulty())
 		{
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.InspiringPresence);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Anticipation);
+			::Legends.Perks.grant(this, ::Legends.Perk.InspiringPresence);
+			::Legends.Perks.grant(this, ::Legends.Perk.Anticipation);
 			this.m.Skills.add(this.new("scripts/skills/actives/legend_magic_missile_skill"));
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendComposure);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendComposure);
 			b.Initiative += 50;
 			b.RangedSkill += 75;
 			b.Stamina += 70;

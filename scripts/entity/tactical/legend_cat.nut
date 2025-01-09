@@ -215,9 +215,9 @@ this.legend_cat <- this.inherit("scripts/entity/tactical/actor", {
 		this.setSpriteOffset("status_stunned", this.createVec(0, -25));
 		this.setSpriteOffset("arrow", this.createVec(0, -25));
 		this.m.Skills.add(this.new("scripts/skills/actives/legend_cat_bite_skill"));
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Pathfinder);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.NineLives);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendEvasion);
+		::Legends.Perks.grant(this, ::Legends.Perk.Pathfinder);
+		::Legends.Perks.grant(this, ::Legends.Perk.NineLives);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendEvasion);
 		this.setName(this.Const.Strings.LegendCatNames[this.Math.rand(0, this.Const.Strings.LegendCatNames.len() - 1)]);
 
 	}

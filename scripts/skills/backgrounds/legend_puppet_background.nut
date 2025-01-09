@@ -217,7 +217,7 @@ this.legend_puppet_background <- this.inherit("scripts/skills/backgrounds/charac
 		}
 
 		this.character_background.onAdded();
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendZombieBite);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendZombieBite);
 
 		local actor = this.getContainer().getActor();
 		actor.m.ExcludedInjuries = [ //all injuries associated with stamina regen, health or resolve

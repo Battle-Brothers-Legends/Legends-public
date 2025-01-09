@@ -32,7 +32,7 @@
 	o.getDailyFood = function ()
 	{
 		local food = this.Math.maxf(0.0, this.m.CurrentProperties.DailyFood);
-		if (this.isInReserves() && !this.m.Skills.hasPerk(::Const.Perks.PerkDefs.LegendPeaceful))
+		if (this.isInReserves() && !this.m.Skills.hasPerk(::Legends.Perk.LegendPeaceful))
 		{
 			food *= 2;
 		}
@@ -572,12 +572,12 @@
 			this.setMoraleState(::Const.MoraleState.Ignore);
 			this.getSkills().add(::new("scripts/skills/traits/legend_rotten_flesh_trait"));
 
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendZombieBite, function (perk) {
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendZombieBite, function (perk) {
 				perk.IsRefundable = false;
 			});
 
-			local has9L = this.getSkills().hasPerk(::Const.Perks.PerkDefs.NineLives);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.NineLives, function (perk) {
+			local has9L = this.getSkills().hasPerk(::Legends.Perk.NineLives);
+			::Legends.Perks.grant(this, ::Legends.Perk.NineLives, function (perk) {
 				if (has9L && perk.IsRefundable) {
 					this.m.PerkPoints += 1;
 					this.m.PerkPointsSpent -= 1;
@@ -638,7 +638,7 @@
 
 		foreach( bro in roster )
 		{
-			if (bro.isInReserves() && bro.getSkills().hasPerk(::Const.Perks.PerkDefs.LegendPacifist))
+			if (bro.isInReserves() && bro.getSkills().hasPerk(::Legends.Perk.LegendPacifist))
 			{
 				bro.addXP(this.Math.max(1, this.Math.floor(XPgroup / brothers.len())));
 			}
@@ -799,7 +799,7 @@
 		p.onUnlocked();
 		this.m.Skills.update();
 
-		if (this.m.Level >= 12 && _id == ::Legends.Perks.getID(::Const.Perks.PerkDefs.Student))
+		if (this.m.Level >= 12 && _id == ::Legends.Perks.getID(::Legends.Perk.Student))
 		{
 			++this.m.PerkPoints;
 		}
@@ -824,7 +824,7 @@
 				++this.m.PerkPoints;
 			}
 
-			if (this.m.Level == 12 && this.m.Skills.hasPerk(::Const.Perks.PerkDefs.Student))
+			if (this.m.Level == 12 && this.m.Skills.hasPerk(::Legends.Perk.Student))
 			{
 				++this.m.PerkPoints;
 			}
@@ -1575,8 +1575,8 @@
 		}
 
 		local skills = [
-			::Const.Perks.PerkDefs.LegendSkillfulStacking,
-			::Const.Perks.PerkDefs.LegendEfficientPacking
+			::Legends.Perk.LegendSkillfulStacking,
+			::Legends.Perk.LegendEfficientPacking
 		];
 		foreach( s in skills )
 		{
@@ -1594,8 +1594,8 @@
 	{
 		local mod = this.getBackground().getModifiers().Ammo;
 		local skills = [
-			::Const.Perks.PerkDefs.LegendAmmoBundles,
-			::Const.Perks.PerkDefs.LegendAmmoBinding
+			::Legends.Perk.LegendAmmoBundles,
+			::Legends.Perk.LegendAmmoBinding
 		];
 
 		foreach( s in skills )
@@ -1614,8 +1614,8 @@
 	{
 		local mod = this.getBackground().getModifiers().ArmorParts;
 		local skills = [
-			::Const.Perks.PerkDefs.LegendToolsSpares,
-			::Const.Perks.PerkDefs.LegendToolsDrawers
+			::Legends.Perk.LegendToolsSpares,
+			::Legends.Perk.LegendToolsDrawers
 		];
 
 		foreach( s in skills )
@@ -1634,8 +1634,8 @@
 	{
 		local mod = this.getBackground().getModifiers().Meds;
 		local skills = [
-			::Const.Perks.PerkDefs.LegendMedPackages,
-			::Const.Perks.PerkDefs.LegendMedIngredients
+			::Legends.Perk.LegendMedPackages,
+			::Legends.Perk.LegendMedIngredients
 		];
 
 		foreach( s in skills )
@@ -1659,9 +1659,9 @@
 		}
 		local mod = this.getBackground().getModifiers().Barter;
 		local skills = [
-			::Const.Perks.PerkDefs.LegendBarterTrustworthy,
-			::Const.Perks.PerkDefs.LegendBarterConvincing,
-			::Const.Perks.PerkDefs.LegendOffBookDeal
+			::Legends.Perk.LegendBarterTrustworthy,
+			::Legends.Perk.LegendBarterConvincing,
+			::Legends.Perk.LegendOffBookDeal
 		];
 
 		foreach( s in skills )

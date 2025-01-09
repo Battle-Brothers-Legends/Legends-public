@@ -5,17 +5,17 @@ this.legends_skeleton_high <- this.inherit("scripts/entity/tactical/legend_skele
 	{
 		this.m.SpawnType = this.Const.Tactical.Actor.LegendSkeletonHeavy;
 		this.legend_skeleton.onInit();
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.ReachAdvantage);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.BattleForged);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Fearsome);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.ShieldExpert);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.ReachAdvantage);
+		::Legends.Perks.grant(this, ::Legends.Perk.ReachAdvantage);
+		::Legends.Perks.grant(this, ::Legends.Perk.BattleForged);
+		::Legends.Perks.grant(this, ::Legends.Perk.Fearsome);
+		::Legends.Perks.grant(this, ::Legends.Perk.ShieldExpert);
+		::Legends.Perks.grant(this, ::Legends.Perk.ReachAdvantage);
 		this.m.Skills.add(this.new("scripts/skills/traits/legend_fleshless_trait"));
 		if(::Legends.isLegendaryDifficulty())
 		{
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.BattleForged);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.CripplingStrikes);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.CoupDeGrace);
+			::Legends.Perks.grant(this, ::Legends.Perk.BattleForged);
+			::Legends.Perks.grant(this, ::Legends.Perk.CripplingStrikes);
+			::Legends.Perks.grant(this, ::Legends.Perk.CoupDeGrace);
 		}
 		this.m.Skills.update();
 	}

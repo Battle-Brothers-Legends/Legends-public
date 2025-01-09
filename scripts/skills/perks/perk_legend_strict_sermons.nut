@@ -2,7 +2,7 @@ this.perk_legend_strict_sermons <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		::Const.Perks.setup(this.m, ::Const.Perks.PerkDefs.LegendStrictSermons);
+		::Const.Perks.setup(this.m, ::Legends.Perk.LegendStrictSermons);
 		this.m.Type = this.Const.SkillType.Perk;
 		this.m.Order = this.Const.SkillOrder.Perk;
 		this.m.IsActive = false;
@@ -15,7 +15,7 @@ this.perk_legend_strict_sermons <- this.inherit("scripts/skills/skill", {
 	{
 		local actors = this.Tactical.Entities.getInstancesOfFaction(this.Const.Faction.Player);
 		foreach( a in actors )
-			::Legends.Perks.grant(a, ::Const.Perks.PerkDefs.FortifiedMind);
+			::Legends.Perks.grant(a, ::Legends.Perk.FortifiedMind);
 	}
 
 });

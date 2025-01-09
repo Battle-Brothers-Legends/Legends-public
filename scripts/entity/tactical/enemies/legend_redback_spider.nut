@@ -283,24 +283,24 @@ this.legend_redback_spider <- this.inherit("scripts/entity/tactical/actor", {
 		this.setSize(this.Math.rand(70, 90) * 0.01);
 		this.m.Skills.add(this.new("scripts/skills/actives/legend_redback_spider_bite_skill"));
 		this.m.Skills.add(this.new("scripts/skills/actives/web_skill"));
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Footwork);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Rotation);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Recover);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Pathfinder);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Backstabber);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Nimble);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.FastAdaption);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.KillingFrenzy);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Underdog);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Overwhelm);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendPoisonImmunity);
+		::Legends.Perks.grant(this, ::Legends.Perk.Footwork);
+		::Legends.Perks.grant(this, ::Legends.Perk.Rotation);
+		::Legends.Perks.grant(this, ::Legends.Perk.Recover);
+		::Legends.Perks.grant(this, ::Legends.Perk.Pathfinder);
+		::Legends.Perks.grant(this, ::Legends.Perk.Backstabber);
+		::Legends.Perks.grant(this, ::Legends.Perk.Nimble);
+		::Legends.Perks.grant(this, ::Legends.Perk.FastAdaption);
+		::Legends.Perks.grant(this, ::Legends.Perk.KillingFrenzy);
+		::Legends.Perks.grant(this, ::Legends.Perk.Underdog);
+		::Legends.Perks.grant(this, ::Legends.Perk.Overwhelm);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendPoisonImmunity);
 		this.m.Skills.add(this.new("scripts/skills/racial/legend_redback_spider_racial"));
 		if(::Legends.isLegendaryDifficulty())
 		{
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendLevitate);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.BattleForged);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.CripplingStrikes);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.InspiringPresence);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendLevitate);
+			::Legends.Perks.grant(this, ::Legends.Perk.BattleForged);
+			::Legends.Perks.grant(this, ::Legends.Perk.CripplingStrikes);
+			::Legends.Perks.grant(this, ::Legends.Perk.InspiringPresence);
 			this.m.Skills.add(this.new("scripts/skills/traits/fearless_trait"));
 		}
 		if (!this.Tactical.State.isScenarioMode())

@@ -27,19 +27,19 @@ this.legend_peasant_farmhand <- this.inherit("scripts/entity/tactical/human", {
 		local dirt = this.getSprite("dirt");
 		dirt.Visible = true;
 		dirt.Alpha = this.Math.rand(0, 255);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendSpecialistPitchforkSkill);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendSpecialistPitchforkDamage);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.ReachAdvantage);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.SpecPolearm);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecialistPitchforkSkill);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecialistPitchforkDamage);
+		::Legends.Perks.grant(this, ::Legends.Perk.ReachAdvantage);
+		::Legends.Perks.grant(this, ::Legends.Perk.SpecPolearm);
 		this.getSprite("socket").setBrush("bust_base_militia");
 			if(::Legends.isLegendaryDifficulty())
 			{
 			this.m.Hitpoints = b.Hitpoints * 1.5;
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.CoupDeGrace);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Stalwart);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Steadfast);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Relentless);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Footwork);
+			::Legends.Perks.grant(this, ::Legends.Perk.CoupDeGrace);
+			::Legends.Perks.grant(this, ::Legends.Perk.Stalwart);
+			::Legends.Perks.grant(this, ::Legends.Perk.Steadfast);
+			::Legends.Perks.grant(this, ::Legends.Perk.Relentless);
+			::Legends.Perks.grant(this, ::Legends.Perk.Footwork);
 			this.m.Skills.add(this.new("scripts/skills/traits/fearless_trait"));
 			}
 	}

@@ -8,18 +8,18 @@
 		b.IsSpecializedInFlails = true;
 		b.IsSpecializedInCleavers = true;
 		this.getSprite("socket").setBrush("bust_base_orcs");
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Dodge);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.SpecFlail);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendLacerate);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.HeadHunter);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendBloodbath);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendSpecialistNinetailsSkill);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendSpecialistNinetailsDamage);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendSpecCultHood);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendSpecCultArmor);
+		::Legends.Perks.grant(this, ::Legends.Perk.Dodge);
+		::Legends.Perks.grant(this, ::Legends.Perk.SpecFlail);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendLacerate);
+		::Legends.Perks.grant(this, ::Legends.Perk.HeadHunter);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendBloodbath);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecialistNinetailsSkill);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecialistNinetailsDamage);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecCultHood);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecCultArmor);
 		if(::Legends.isLegendaryDifficulty())
 		{
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.BattleFlow);
+			::Legends.Perks.grant(this, ::Legends.Perk.BattleFlow);
 			this.m.Skills.add(this.new("scripts/skills/traits/fearless_trait"));
 		}
 	}

@@ -78,12 +78,12 @@ this.legend_alp_nightmare_tentacle <- this.inherit("scripts/entity/tactical/enem
 		this.setSpriteOffset("status_stunned", this.createVec(0, 25));
 		this.m.Skills.add(this.new("scripts/skills/actives/kraken_move_skill"));
 		this.m.Skills.add(this.new("scripts/skills/actives/kraken_bite_skill"));
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.HoldOut);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Fearsome);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.SteelBrow);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Underdog);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Stalwart);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendPoisonImmunity);
+		::Legends.Perks.grant(this, ::Legends.Perk.HoldOut);
+		::Legends.Perks.grant(this, ::Legends.Perk.Fearsome);
+		::Legends.Perks.grant(this, ::Legends.Perk.SteelBrow);
+		::Legends.Perks.grant(this, ::Legends.Perk.Underdog);
+		::Legends.Perks.grant(this, ::Legends.Perk.Stalwart);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendPoisonImmunity);
 
 		this.applySignatureAbilities();
 	}

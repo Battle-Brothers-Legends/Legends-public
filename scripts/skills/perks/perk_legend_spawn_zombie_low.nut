@@ -2,7 +2,7 @@ this.perk_legend_spawn_zombie_low <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		::Const.Perks.setup(this.m, ::Const.Perks.PerkDefs.LegendSpawnZombieLow);
+		::Const.Perks.setup(this.m, ::Legends.Perk.LegendSpawnZombieLow);
 		this.m.Type = this.Const.SkillType.Perk;
 		this.m.Order = this.Const.SkillOrder.Perk;
 		this.m.Icon = "ui/perks/possess56.png";

@@ -53,21 +53,21 @@ this.legend_wildman <- this.inherit("scripts/entity/tactical/human", {
 		tattoo_body.Visible = true;
 		tattoo_head.setBrush(tattoo ? "warpaint_01_head" : "scar_02_head");
 		tattoo_head.Visible = true;
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Berserk);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.CoupDeGrace);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.CripplingStrikes);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Dodge);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Nimble);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.SteelBrow);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.HoldOut);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.KillingFrenzy);
+		::Legends.Perks.grant(this, ::Legends.Perk.Berserk);
+		::Legends.Perks.grant(this, ::Legends.Perk.CoupDeGrace);
+		::Legends.Perks.grant(this, ::Legends.Perk.CripplingStrikes);
+		::Legends.Perks.grant(this, ::Legends.Perk.Dodge);
+		::Legends.Perks.grant(this, ::Legends.Perk.Nimble);
+		::Legends.Perks.grant(this, ::Legends.Perk.SteelBrow);
+		::Legends.Perks.grant(this, ::Legends.Perk.HoldOut);
+		::Legends.Perks.grant(this, ::Legends.Perk.KillingFrenzy);
 		if(::Legends.isLegendaryDifficulty())
 		{
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendUberNimble);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendMuscularity);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendSpecFists);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendKick);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendGrapple);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendUberNimble);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendMuscularity);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecFists);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendKick);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendGrapple);
 			this.m.Skills.add(this.new("scripts/skills/traits/fearless_trait"));
 		}
 

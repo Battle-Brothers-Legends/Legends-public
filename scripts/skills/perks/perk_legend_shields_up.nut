@@ -2,7 +2,7 @@ this.perk_legend_shields_up <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		::Const.Perks.setup(this.m, ::Const.Perks.PerkDefs.LegendShieldsUp);
+		::Const.Perks.setup(this.m, ::Legends.Perk.LegendShieldsUp);
 		this.m.Type = this.Const.SkillType.Perk;
 		this.m.Order = this.Const.SkillOrder.Perk;
 		this.m.IsActive = false;

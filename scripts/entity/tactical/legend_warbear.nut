@@ -215,9 +215,9 @@ this.legend_warbear <- this.inherit("scripts/entity/tactical/actor", {
 		this.addDefaultStatusSprites();
 		this.getSprite("status_rooted").Scale = 0.58;
 		this.setSpriteOffset("status_rooted", this.createVec(-6, -29));
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Pathfinder);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.HoldOut);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Berserk);
+		::Legends.Perks.grant(this, ::Legends.Perk.Pathfinder);
+		::Legends.Perks.grant(this, ::Legends.Perk.HoldOut);
+		::Legends.Perks.grant(this, ::Legends.Perk.Berserk);
 		this.m.Skills.add(this.new("scripts/skills/actives/legend_bear_bite_skill"));
 		this.m.Skills.add(this.new("scripts/skills/actives/legend_bear_claws_skill"));
 		this.m.Skills.add(this.new("scripts/skills/actives/unstoppable_charge_skill"));
@@ -226,8 +226,8 @@ this.legend_warbear <- this.inherit("scripts/entity/tactical/actor", {
 			{
 			this.m.Hitpoints = 1.5 * b.Hitpoints;
 			b.MeleeSkill += 10;
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendBattleheart);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendLastStand);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendBattleheart);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendLastStand);
 			this.m.Skills.add(this.new("scripts/skills/traits/fearless_trait"));
 			}
 	}

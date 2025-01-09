@@ -6,12 +6,12 @@
 		onInit();
 		if (::Legends.isLegendaryDifficulty())
 		{
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Overwhelm);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendOnslaught);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendAlert);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendBalance);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Backstabber);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendSpecFists);
+			::Legends.Perks.grant(this, ::Legends.Perk.Overwhelm);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendOnslaught);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendAlert);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendBalance);
+			::Legends.Perks.grant(this, ::Legends.Perk.Backstabber);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecFists);
 			this.m.Skills.add(this.new("scripts/skills/traits/fearless_trait"));
 		}
 	}
@@ -94,7 +94,7 @@
 			this.m.Items.equip(this.Const.World.Common.pickHelmet(weightName));
 		}
 
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Fearsome);
+		::Legends.Perks.grant(this, ::Legends.Perk.Fearsome);
 		return true;
 	}
 });

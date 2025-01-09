@@ -95,7 +95,7 @@ this.legend_leap_skill <- this.inherit("scripts/skills/skill", {
 			}
 		}
 
-		if (this.getContainer().getActor().getSkills().hasPerk(::Const.Perks.PerkDefs.LegendBackflip))
+		if (this.getContainer().getActor().getSkills().hasPerk(::Legends.Perk.LegendBackflip))
 		{
 			bonus += 1;
 		}

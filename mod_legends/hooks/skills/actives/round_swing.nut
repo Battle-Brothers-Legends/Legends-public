@@ -10,7 +10,7 @@
 			hitchanceBonus = hitchanceBonus + 5;
 		}
 
-		if (this.getContainer().getActor().getSkills().hasPerk(::Const.Perks.PerkDefs.LegendBloodyHarvest))
+		if (this.getContainer().getActor().getSkills().hasPerk(::Legends.Perk.LegendBloodyHarvest))
 			hitchanceBonus += 10;
 
 		if (hitchanceBonus != 0)

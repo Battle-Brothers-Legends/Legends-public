@@ -6,8 +6,8 @@
 		onInit();
 		if (::Legends.isLegendaryDifficulty())
 		{
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendMuscularity);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.KillingFrenzy);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendMuscularity);
+			::Legends.Perks.grant(this, ::Legends.Perk.KillingFrenzy);
 			this.m.Skills.add(this.new("scripts/skills/traits/fearless_trait"));
 		}
 	}

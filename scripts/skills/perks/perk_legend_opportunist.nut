@@ -3,7 +3,7 @@ this.perk_legend_opportunist <- this.inherit("scripts/skills/skill", {
 
 	function create()
 	{
-		::Const.Perks.setup(this.m, ::Const.Perks.PerkDefs.LegendOpportunist);
+		::Const.Perks.setup(this.m, ::Legends.Perk.LegendOpportunist);
 		this.m.Type = this.Const.SkillType.Perk;
 		this.m.Order = this.Const.SkillOrder.Perk;
 		this.m.IsActive = false;

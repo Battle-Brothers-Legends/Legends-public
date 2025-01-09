@@ -223,13 +223,13 @@ this.legend_kobold <- this.inherit("scripts/entity/tactical/actor", {
 		this.m.Skills.add(this.new("scripts/skills/effects/captain_effect"));
 		this.m.Skills.add(this.new("scripts/skills/special/double_grip"));
 		this.m.Skills.add(this.new("scripts/skills/actives/hand_to_hand"));
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Pathfinder);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.QuickHands);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Bullseye);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Anticipation);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Footwork);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendBoondockBlade);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendTumble);
+		::Legends.Perks.grant(this, ::Legends.Perk.Pathfinder);
+		::Legends.Perks.grant(this, ::Legends.Perk.QuickHands);
+		::Legends.Perks.grant(this, ::Legends.Perk.Bullseye);
+		::Legends.Perks.grant(this, ::Legends.Perk.Anticipation);
+		::Legends.Perks.grant(this, ::Legends.Perk.Footwork);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendBoondockBlade);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendTumble);
 		this.m.Skills.add(this.new("scripts/skills/actives/wake_ally_skill"));
 	}
 

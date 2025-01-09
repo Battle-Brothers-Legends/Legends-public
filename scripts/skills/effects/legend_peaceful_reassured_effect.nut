@@ -60,7 +60,7 @@ this.legend_peaceful_reassured_effect <- this.inherit("scripts/skills/skill", {
 
 		foreach( a in actors )
 		{
-			if (a.getFaction() == this.Const.Faction.Player && a.getSkills().hasPerk(::Const.Perks.PerkDefs.LegendPeaceful))
+			if (a.getFaction() == this.Const.Faction.Player && a.getSkills().hasPerk(::Legends.Perk.LegendPeaceful))
 			{
 				hippies += 1;
 			}

@@ -130,14 +130,14 @@
 		this.setHitpoints(this.getHitpointsMax() * this.Math.rand(45, 100) * 0.01);
 		this.m.Skills.add(this.new("scripts/skills/special/double_grip"));
 		this.m.Skills.add(this.new("scripts/skills/actives/zombie_bite"));
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.BattleForged);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendPoisonImmunity);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Backstabber);
+		::Legends.Perks.grant(this, ::Legends.Perk.BattleForged);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendPoisonImmunity);
+		::Legends.Perks.grant(this, ::Legends.Perk.Backstabber);
 
 		if(::Legends.isLegendaryDifficulty())
 		{
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Backstabber);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Colossus);
+			::Legends.Perks.grant(this, ::Legends.Perk.Backstabber);
+			::Legends.Perks.grant(this, ::Legends.Perk.Colossus);
 		}
 	}
 

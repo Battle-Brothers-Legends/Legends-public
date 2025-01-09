@@ -13,7 +13,7 @@ this.legend_roots_and_berries_blueprint <- this.inherit("scripts/crafting/legend
 		];
 		this.init(ingredients);
 		local skills = [
-			::Legends.Perks.blueprint(::Const.Perks.PerkDefs.LegendCampCook)
+			::Legends.Perks.blueprint(::Legends.Perk.LegendCampCook)
 		];
 		this.initSkills(skills);
 	}

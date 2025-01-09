@@ -11,7 +11,7 @@
 	o.onAdded = function ()
 	{
 		// Legends Steel Brow Stun -> Daze logic here
-		local skill = ::Legends.Perks.get(this, ::Const.Perks.PerkDefs.SteelBrow);
+		local skill = ::Legends.Perks.get(this, ::Legends.Perk.SteelBrow);
 
 		if (skill != null)
 		{

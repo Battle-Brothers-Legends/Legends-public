@@ -31,18 +31,18 @@ this.legend_mummy_heavy <- this.inherit("scripts/entity/tactical/legend_mummy", 
 		this.m.CurrentProperties = clone b;
 		this.m.ActionPointCosts = this.Const.DefaultMovementAPCost;
 		this.m.FatigueCosts = this.Const.DefaultMovementFatigueCost;
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.ReachAdvantage);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.CoupDeGrace);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.CripplingStrikes);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.FastAdaption);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendBloodbath);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendCarnage);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendPoisonImmunity);
+		::Legends.Perks.grant(this, ::Legends.Perk.ReachAdvantage);
+		::Legends.Perks.grant(this, ::Legends.Perk.CoupDeGrace);
+		::Legends.Perks.grant(this, ::Legends.Perk.CripplingStrikes);
+		::Legends.Perks.grant(this, ::Legends.Perk.FastAdaption);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendBloodbath);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendCarnage);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendPoisonImmunity);
 		if(::Legends.isLegendaryDifficulty())
 		{
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.BattleForged);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.CripplingStrikes);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.CoupDeGrace);
+			::Legends.Perks.grant(this, ::Legends.Perk.BattleForged);
+			::Legends.Perks.grant(this, ::Legends.Perk.CripplingStrikes);
+			::Legends.Perks.grant(this, ::Legends.Perk.CoupDeGrace);
 		}
 
 	}
@@ -115,9 +115,9 @@ this.legend_mummy_heavy <- this.inherit("scripts/entity/tactical/legend_mummy", 
 
 		local weaponAdd = this.Const.World.Common.pickItem(weapons, "scripts/items/weapons/named/");
 		this.m.Items.equip(weaponAdd);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendForcefulSwing);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendSmackdown);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Underdog);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendForcefulSwing);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendSmackdown);
+		::Legends.Perks.grant(this, ::Legends.Perk.Underdog);
 
 	}
 

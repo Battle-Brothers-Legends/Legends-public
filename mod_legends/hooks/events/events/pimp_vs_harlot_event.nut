@@ -102,7 +102,7 @@
 				candidate_minstrel.push(bro);
 			else if (bro.getBackground().getID() == "background.monk")
 				candidate_monk.push(bro);
-			else if (bro.getSkills().hasPerk(::Const.Perks.PerkDefs.LegendScholar))
+			else if (bro.getSkills().hasPerk(::Legends.Perk.LegendScholar))
 				candidate_monk.push(bro);
 			else if (bro.getBackground().getID() == "background.tailor")
 				candidate_tailor.push(bro);

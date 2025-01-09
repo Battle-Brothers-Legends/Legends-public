@@ -33,22 +33,22 @@ this.legend_noble_halberdier <- this.inherit("scripts/entity/tactical/human", {
 		this.m.CurrentProperties = clone b;
 		this.setAppearance();
 		this.getSprite("socket").setBrush("bust_base_military");
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.BattleForged);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Brawny);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.ReachAdvantage);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Backstabber);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Footwork);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.SpecPolearm);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.FastAdaption);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.CoupDeGrace);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Berserk);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Rotation);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Recover);
+		::Legends.Perks.grant(this, ::Legends.Perk.BattleForged);
+		::Legends.Perks.grant(this, ::Legends.Perk.Brawny);
+		::Legends.Perks.grant(this, ::Legends.Perk.ReachAdvantage);
+		::Legends.Perks.grant(this, ::Legends.Perk.Backstabber);
+		::Legends.Perks.grant(this, ::Legends.Perk.Footwork);
+		::Legends.Perks.grant(this, ::Legends.Perk.SpecPolearm);
+		::Legends.Perks.grant(this, ::Legends.Perk.FastAdaption);
+		::Legends.Perks.grant(this, ::Legends.Perk.CoupDeGrace);
+		::Legends.Perks.grant(this, ::Legends.Perk.Berserk);
+		::Legends.Perks.grant(this, ::Legends.Perk.Rotation);
+		::Legends.Perks.grant(this, ::Legends.Perk.Recover);
 		if(::Legends.isLegendaryDifficulty())
 			{
 			this.m.Hitpoints = b.Hitpoints * 2;
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Nimble);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.BattleFlow);
+			::Legends.Perks.grant(this, ::Legends.Perk.Nimble);
+			::Legends.Perks.grant(this, ::Legends.Perk.BattleFlow);
 			this.m.Skills.add(this.new("scripts/skills/traits/fearless_trait"));
 			}
 	}

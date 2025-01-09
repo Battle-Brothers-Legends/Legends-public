@@ -34,18 +34,18 @@
 			}
 		}
 
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Rotation);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Recover);
+		::Legends.Perks.grant(this, ::Legends.Perk.Rotation);
+		::Legends.Perks.grant(this, ::Legends.Perk.Recover);
 
 		if (::Legends.isLegendaryDifficulty())
 		{
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendLastStand);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.BattleForged);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendComposure);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendLastStand);
+			::Legends.Perks.grant(this, ::Legends.Perk.BattleForged);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendComposure);
 			this.m.Skills.add(this.new("scripts/skills/actives/rally_the_troops"));
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendFeint);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendBackToBasics);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendFullForce);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendFeint);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendBackToBasics);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendFullForce);
 			this.m.Skills.add(this.new("scripts/skills/traits/fearless_trait"));
 		}
 	}

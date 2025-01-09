@@ -3,7 +3,7 @@ this.perk_legend_favoured_enemy_bandit<- this.inherit("scripts/skills/legend_fav
 	function create()
 	{
 		this.legend_favoured_enemy_skill.create();
-		::Const.Perks.setup(this.m, ::Const.Perks.PerkDefs.LegendFavouredEnemyBandit);
+		::Const.Perks.setup(this.m, ::Legends.Perk.LegendFavouredEnemyBandit);
 		this.m.ValidTypes = this.Const.LegendMod.FavoriteBandit;
 	}
 

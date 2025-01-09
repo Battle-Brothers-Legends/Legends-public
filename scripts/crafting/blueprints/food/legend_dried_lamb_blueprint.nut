@@ -17,7 +17,7 @@ this.legend_dried_lamb_blueprint <- this.inherit("scripts/crafting/legend_food_b
 		];
 		this.init(ingredients);
 		local skills = [
-			::Legends.Perks.blueprint(::Const.Perks.PerkDefs.LegendCampCook)
+			::Legends.Perks.blueprint(::Legends.Perk.LegendCampCook)
 		];
 		this.initSkills(skills);
 	}

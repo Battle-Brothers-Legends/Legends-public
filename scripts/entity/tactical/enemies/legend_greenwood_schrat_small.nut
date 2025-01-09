@@ -110,20 +110,20 @@ this.legend_greenwood_schrat_small <- this.inherit("scripts/entity/tactical/acto
 		this.setSpriteOffset("status_rooted", this.createVec(0, 0));
 		this.setSpriteOffset("status_stunned", this.createVec(-10, -10));
 		this.setSpriteOffset("arrow", this.createVec(-10, -10));
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Pathfinder);
+		::Legends.Perks.grant(this, ::Legends.Perk.Pathfinder);
 		this.m.Skills.add(this.new("scripts/skills/racial/schrat_racial"));
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.CripplingStrikes);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.SteelBrow);
+		::Legends.Perks.grant(this, ::Legends.Perk.CripplingStrikes);
+		::Legends.Perks.grant(this, ::Legends.Perk.SteelBrow);
 		this.m.Skills.add(this.new("scripts/skills/actives/uproot_small_skill"));
 		this.m.Skills.add(this.new("scripts/skills/actives/uproot_small_zoc_skill"));
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Stalwart);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendComposure);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendPoisonImmunity);
+		::Legends.Perks.grant(this, ::Legends.Perk.Stalwart);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendComposure);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendPoisonImmunity);
 
 		if(::Legends.isLegendaryDifficulty())
 		{
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendLacerate);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.FastAdaption);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendLacerate);
+			::Legends.Perks.grant(this, ::Legends.Perk.FastAdaption);
 			this.m.Skills.add(this.new("scripts/skills/traits/fearless_trait"));
 		}
 		if (!this.Tactical.State.isScenarioMode())

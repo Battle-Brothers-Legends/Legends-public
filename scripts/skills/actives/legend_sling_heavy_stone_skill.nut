@@ -111,12 +111,12 @@ this.legend_sling_heavy_stone_skill <- this.inherit("scripts/skills/skill", {
 		this.m.AdditionalAccuracy = _properties.IsSpecializedInSlings ? 0 : -5;
 		this.m.AdditionalHitChance = _properties.IsSpecializedInSlings ? -2 : -4;
 		this.m.FatigueCostMult = _properties.IsSpecializedInSlings ? this.Const.Combat.WeaponSpecFatigueMult : 1.0;
-		if (this.getContainer().hasPerk(::Const.Perks.PerkDefs.LegendSpecialistSlingDamage) && this.getContainer().hasPerk(::Const.Perks.PerkDefs.LegendSpecialistSlingSkill))
+		if (this.getContainer().hasPerk(::Legends.Perk.LegendSpecialistSlingDamage) && this.getContainer().hasPerk(::Legends.Perk.LegendSpecialistSlingSkill))
 		{
 			this.m.ActionPointCost = 7;
 			this.m.FatigueCost = 25;
 		}
-		else if (this.getContainer().hasPerk(::Const.Perks.PerkDefs.LegendSpecialistSlingDamage) || this.getContainer().hasPerk(::Const.Perks.PerkDefs.LegendSpecialistSlingSkill))
+		else if (this.getContainer().hasPerk(::Legends.Perk.LegendSpecialistSlingDamage) || this.getContainer().hasPerk(::Legends.Perk.LegendSpecialistSlingSkill))
 		{
 			this.m.ActionPointCost = 6;
 			this.m.FatigueCost = 21;
@@ -161,13 +161,13 @@ this.legend_sling_heavy_stone_skill <- this.inherit("scripts/skills/skill", {
 			_properties.RangedSkill += this.m.AdditionalAccuracy;
 			_properties.HitChanceAdditionalWithEachTile += this.m.AdditionalHitChance;
 			_properties.FatigueDealtPerHitMult += 3.0;
-			if (this.getContainer().hasPerk(::Const.Perks.PerkDefs.LegendSpecialistSlingDamage))
+			if (this.getContainer().hasPerk(::Legends.Perk.LegendSpecialistSlingDamage))
 			{
 				_properties.DamageRegularMin += 15;
 				_properties.DamageRegularMax += 30;
 				//_properties.DamageDirectAdd += 0.2;
 			}
-			if (this.getContainer().hasPerk(::Const.Perks.PerkDefs.LegendSpecialistSlingSkill))
+			if (this.getContainer().hasPerk(::Legends.Perk.LegendSpecialistSlingSkill))
 			{
 				_properties.DamageArmorMult *= 1.5;
 			}

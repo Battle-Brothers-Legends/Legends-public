@@ -7,14 +7,14 @@
 
 		if(::Legends.isLegendaryDifficulty())
 		{
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Nimble);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Pathfinder);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendBigGameHunter);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.HeadHunter);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendBackToBasics);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LoneWolf);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendOnslaught);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.CripplingStrikes);
+			::Legends.Perks.grant(this, ::Legends.Perk.Nimble);
+			::Legends.Perks.grant(this, ::Legends.Perk.Pathfinder);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendBigGameHunter);
+			::Legends.Perks.grant(this, ::Legends.Perk.HeadHunter);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendBackToBasics);
+			::Legends.Perks.grant(this, ::Legends.Perk.LoneWolf);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendOnslaught);
+			::Legends.Perks.grant(this, ::Legends.Perk.CripplingStrikes);
 			this.m.Skills.add(this.new("scripts/skills/traits/fearless_trait"));
 		}
 	}

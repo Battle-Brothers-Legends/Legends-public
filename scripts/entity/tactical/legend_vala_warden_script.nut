@@ -264,13 +264,13 @@ this.legend_vala_warden_script <- this.inherit("scripts/entity/tactical/actor", 
 
 		this.m.Skills.add(this.new("scripts/skills/actives/legend_vala_warden_pale_touch_skill"));
 		this.m.Skills.add(this.new("scripts/skills/actives/legend_vala_warden_wail_skill"));
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.SteelBrow);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Anticipation);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Underdog);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Stalwart);
+		::Legends.Perks.grant(this, ::Legends.Perk.SteelBrow);
+		::Legends.Perks.grant(this, ::Legends.Perk.Anticipation);
+		::Legends.Perks.grant(this, ::Legends.Perk.Underdog);
+		::Legends.Perks.grant(this, ::Legends.Perk.Stalwart);
 		this.m.Skills.add(this.new("scripts/skills/traits/loyal_trait")); //Should prevent charm
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendComposure);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendPoisonImmunity);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendComposure);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendPoisonImmunity);
 		// additional skills based on Vala's daily swap?
 	}
 });

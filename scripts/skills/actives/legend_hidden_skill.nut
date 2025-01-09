@@ -64,7 +64,7 @@ this.legend_hidden_skill <- this.inherit("scripts/skills/skill", {
 			});
 		}
 
-		if (this.m.Container.hasPerk(::Const.Perks.PerkDefs.LegendUntouchable))
+		if (this.m.Container.hasPerk(::Legends.Perk.LegendUntouchable))
 		{
 			ret.push({
 				id = 8,
@@ -123,7 +123,7 @@ this.legend_hidden_skill <- this.inherit("scripts/skills/skill", {
 
 		_user.setHidden(true);
 		local effect = this.new("scripts/skills/effects/legend_hidden_effect");
-		effect.m.TurnsLeft = (this.m.Container.hasPerk(::Const.Perks.PerkDefs.LegendUntouchable)) ? this.m.DurationUntouchable : this.m.Duration;
+		effect.m.TurnsLeft = (this.m.Container.hasPerk(::Legends.Perk.LegendUntouchable)) ? this.m.DurationUntouchable : this.m.Duration;
 		this.m.Container.add(effect);
 
 

@@ -4,7 +4,7 @@
 		local candidates = [];
 
 		foreach( bro in brothers )
-			if (bro.getLevel() >= 9 && (bro.getBackground().getID() == "background.historian" || bro.getSkills().hasPerk(::Const.Perks.PerkDefs.LegendScholar)))
+			if (bro.getLevel() >= 9 && (bro.getBackground().getID() == "background.historian" || bro.getSkills().hasPerk(::Legends.Perk.LegendScholar)))
 				candidates.push(bro);
 
 		if (candidates.len() == 0)

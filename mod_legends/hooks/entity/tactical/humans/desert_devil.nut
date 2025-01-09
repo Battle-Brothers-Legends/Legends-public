@@ -4,10 +4,10 @@
 	o.onInit = function ()
 	{
 		onInit();
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Dodge);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Adrenaline);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Footwork);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Recover);
+		::Legends.Perks.grant(this, ::Legends.Perk.Dodge);
+		::Legends.Perks.grant(this, ::Legends.Perk.Adrenaline);
+		::Legends.Perks.grant(this, ::Legends.Perk.Footwork);
+		::Legends.Perks.grant(this, ::Legends.Perk.Recover);
 	}
 
 	o.assignRandomEquipment = function ()
@@ -70,7 +70,7 @@
 		}
 
 		this.m.BaseProperties.DamageDirectMult *= 1.25;
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Relentless);
+		::Legends.Perks.grant(this, ::Legends.Perk.Relentless);
 		return true;
 	}
 });

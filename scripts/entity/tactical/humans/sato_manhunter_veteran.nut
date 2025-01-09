@@ -52,15 +52,15 @@ this.sato_manhunter_veteran <- this.inherit("scripts/entity/tactical/human", {
 		b.IsSpecializedInDaggers = true;
 		b.IsSpecializedInThrowing = true;
 
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.CripplingStrikes);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Anticipation);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.QuickHands);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Brawny);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Relentless);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Overwhelm);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.BattleForged);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Fearsome);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Rotation);
+		::Legends.Perks.grant(this, ::Legends.Perk.CripplingStrikes);
+		::Legends.Perks.grant(this, ::Legends.Perk.Anticipation);
+		::Legends.Perks.grant(this, ::Legends.Perk.QuickHands);
+		::Legends.Perks.grant(this, ::Legends.Perk.Brawny);
+		::Legends.Perks.grant(this, ::Legends.Perk.Relentless);
+		::Legends.Perks.grant(this, ::Legends.Perk.Overwhelm);
+		::Legends.Perks.grant(this, ::Legends.Perk.BattleForged);
+		::Legends.Perks.grant(this, ::Legends.Perk.Fearsome);
+		::Legends.Perks.grant(this, ::Legends.Perk.Rotation);
 	}
 
 	function onOtherActorDeath( _killer, _victim, _skill )
@@ -223,8 +223,8 @@ this.sato_manhunter_veteran <- this.inherit("scripts/entity/tactical/human", {
 			));
 		}
 
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Underdog);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Duelist);
+		::Legends.Perks.grant(this, ::Legends.Perk.Underdog);
+		::Legends.Perks.grant(this, ::Legends.Perk.Duelist);
 		return true;
 	}
 });

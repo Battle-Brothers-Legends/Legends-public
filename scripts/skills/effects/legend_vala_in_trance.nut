@@ -1,8 +1,8 @@
 this.legend_vala_in_trance <- this.inherit("scripts/skills/skill", {
 	m = {
 		Trances = [
-			::Const.Perks.PerkDefs.LegendValaTrancePerspective,
-			::Const.Perks.PerkDefs.LegendValaTranceMalevolent,
+			::Legends.Perk.LegendValaTrancePerspective,
+			::Legends.Perk.LegendValaTranceMalevolent,
 		]
 	},
 	function create()

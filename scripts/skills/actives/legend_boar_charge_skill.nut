@@ -203,7 +203,7 @@ this.legend_boar_charge_skill <- this.inherit("scripts/skills/skill", {
 
 
 
-			if (this.getContainer().getActor().getSkills().hasPerk(::Const.Perks.PerkDefs.LegendMuscularity))
+			if (this.getContainer().getActor().getSkills().hasPerk(::Legends.Perk.LegendMuscularity))
 			{
 				local muscularity = this.Math.floor(bodyHealth * 0.1);
 				damageMax += muscularity;

@@ -253,28 +253,28 @@ this.legend_basilisk_sentry <- this.inherit("scripts/entity/tactical/actor", {
 
 		this.m.Skills.add(this.new("scripts/skills/actives/legend_basilisk_sentry_inject_skill"));
 		this.m.Skills.add(this.new("scripts/skills/actives/legend_basilisk_sentry_fowleye_skill"));
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendEscapeArtist);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Pathfinder);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.SteelBrow);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.ReachAdvantage);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Backstabber);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Footwork);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.CoupDeGrace);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendEscapeArtist);
+		::Legends.Perks.grant(this, ::Legends.Perk.Pathfinder);
+		::Legends.Perks.grant(this, ::Legends.Perk.SteelBrow);
+		::Legends.Perks.grant(this, ::Legends.Perk.ReachAdvantage);
+		::Legends.Perks.grant(this, ::Legends.Perk.Backstabber);
+		::Legends.Perks.grant(this, ::Legends.Perk.Footwork);
+		::Legends.Perks.grant(this, ::Legends.Perk.CoupDeGrace);
 		b.Threat += 5; //remove
 
 		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= 35)
 		{
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.HeadHunter);
+			::Legends.Perks.grant(this, ::Legends.Perk.HeadHunter);
 		}
 
 		if(::Legends.isLegendaryDifficulty())
 		{
 			b.MeleeDefense += 5;
 			b.RangedDefense += 5;
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendSmackdown);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendFeint);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendOnslaught);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendPushTheAdvantage);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendSmackdown);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendFeint);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendOnslaught);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendPushTheAdvantage);
 		}
 
 	}

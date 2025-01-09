@@ -23,7 +23,7 @@ this.perk_legend_ambidextrous <- this.inherit("scripts/skills/skill", {
 
 	function create()
 	{
-		::Const.Perks.setup(this.m, ::Const.Perks.PerkDefs.LegendAmbidextrous);
+		::Const.Perks.setup(this.m, ::Legends.Perk.LegendAmbidextrous);
 		this.m.Type = this.Const.SkillType.Perk | this.Const.SkillType.StatusEffect;
 		this.m.Order = this.Const.SkillOrder.Perk;
 		this.m.IsActive = false;
@@ -32,7 +32,7 @@ this.perk_legend_ambidextrous <- this.inherit("scripts/skills/skill", {
 	}
 
 	function isHidden()
-	{	
+	{
 		if (!::MSU.isNull(m.offHandSkill))
 			return false;
 		local items = this.getContainer().getActor().getItems();

@@ -27,16 +27,16 @@ this.legend_peasant_witchhunter <- this.inherit("scripts/entity/tactical/human",
 		local dirt = this.getSprite("dirt");
 		dirt.Visible = true;
 		dirt.Alpha = this.Math.rand(0, 255);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Fearsome);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendBallistics);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Bullseye);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.SpecCrossbow);
+		::Legends.Perks.grant(this, ::Legends.Perk.Fearsome);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendBallistics);
+		::Legends.Perks.grant(this, ::Legends.Perk.Bullseye);
+		::Legends.Perks.grant(this, ::Legends.Perk.SpecCrossbow);
 		this.getSprite("socket").setBrush("bust_base_militia");
 
 		if(::Legends.isLegendaryDifficulty())
 		{
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Overwhelm);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Nimble);
+			::Legends.Perks.grant(this, ::Legends.Perk.Overwhelm);
+			::Legends.Perks.grant(this, ::Legends.Perk.Nimble);
 			this.m.Skills.add(this.new("scripts/skills/traits/fearless_trait"));
 		}
 	}

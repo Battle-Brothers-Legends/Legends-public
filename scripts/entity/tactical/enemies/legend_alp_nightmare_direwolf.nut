@@ -111,17 +111,17 @@ this.legend_alp_nightmare_direwolf <- this.inherit("scripts/entity/tactical/enem
 		this.getSprite("status_rooted").Scale = 0.54;
 		this.setSpriteOffset("status_rooted", this.createVec(0, 0));
 		this.m.Skills.add(this.new("scripts/skills/actives/werewolf_bite"));
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.CoupDeGrace);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Berserk);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Overwhelm);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Relentless);
+		::Legends.Perks.grant(this, ::Legends.Perk.CoupDeGrace);
+		::Legends.Perks.grant(this, ::Legends.Perk.Berserk);
+		::Legends.Perks.grant(this, ::Legends.Perk.Overwhelm);
+		::Legends.Perks.grant(this, ::Legends.Perk.Relentless);
 
 		if (::Legends.isLegendaryDifficulty())
 		{
 			this.m.Skills.add(this.new("scripts/skills/traits/fearless_trait"));
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Backstabber);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.KillingFrenzy);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Nimble);
+			::Legends.Perks.grant(this, ::Legends.Perk.Backstabber);
+			::Legends.Perks.grant(this, ::Legends.Perk.KillingFrenzy);
+			::Legends.Perks.grant(this, ::Legends.Perk.Nimble);
 		}
 
 		this.applySignatureAbilities();

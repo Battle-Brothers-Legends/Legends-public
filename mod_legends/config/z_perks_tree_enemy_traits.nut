@@ -42,11 +42,11 @@ if (!("Perks" in ::Const))
 	},
 	Tree = [
 		[
-			::Const.Perks.PerkDefs.LegendFeint
+			::Legends.Perk.LegendFeint
 		],
 		[
-			::Const.Perks.PerkDefs.Backstabber,
-			::Const.Perks.PerkDefs.CoupDeGrace
+			::Legends.Perk.Backstabber,
+			::Legends.Perk.CoupDeGrace
 		],
 		[],
 		[],
@@ -99,11 +99,11 @@ if (!("Perks" in ::Const))
 		[],
 		[],
 		[
-			::Const.Perks.PerkDefs.Berserk
+			::Legends.Perk.Berserk
 		],
 		[
-			::Const.Perks.PerkDefs.KillingFrenzy,
-			::Const.Perks.PerkDefs.Fearsome
+			::Legends.Perk.KillingFrenzy,
+			::Legends.Perk.Fearsome
 		]
 	]
 };
@@ -146,11 +146,11 @@ if (!("Perks" in ::Const))
 	},
 	Tree = [
 		[
-			::Const.Perks.PerkDefs.LegendBackToBasics
+			::Legends.Perk.LegendBackToBasics
 		],
 		[
-			::Const.Perks.PerkDefs.Rotation,
-			::Const.Perks.PerkDefs.Anticipation
+			::Legends.Perk.Rotation,
+			::Legends.Perk.Anticipation
         ],
 		[],
 		[],
@@ -198,17 +198,17 @@ if (!("Perks" in ::Const))
 	},
 	Tree = [
 		[
-			::Const.Perks.PerkDefs.LegendLookout,
-            ::Const.Perks.PerkDefs.Pathfinder
+			::Legends.Perk.LegendLookout,
+            ::Legends.Perk.Pathfinder
 		],
 		[
-			::Const.Perks.PerkDefs.Anticipation
+			::Legends.Perk.Anticipation
         ],
 		[],
 		[],
 		[],
 		[
-			::Const.Perks.PerkDefs.LegendBallistics
+			::Legends.Perk.LegendBallistics
 		],
 		[]
 	]
@@ -252,18 +252,18 @@ if (!("Perks" in ::Const))
 	},
 	Tree = [
 		[
-			::Const.Perks.PerkDefs.Colossus
+			::Legends.Perk.Colossus
 		],
 		[
-			::Const.Perks.PerkDefs.HoldOut
+			::Legends.Perk.HoldOut
         ],
 		[],
 		[],
 		[],
 		[],
 		[
-            ::Const.Perks.PerkDefs.LegendMuscularity,
-            ::Const.Perks.PerkDefs.Indomitable
+            ::Legends.Perk.LegendMuscularity,
+            ::Legends.Perk.Indomitable
         ]
 	]
 };

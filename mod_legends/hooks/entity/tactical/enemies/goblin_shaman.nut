@@ -4,12 +4,12 @@
 	o.onInit = function ()
 	{
 		onInit();
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendTrueBeliever);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendTrueBeliever);
 		if(::Legends.isLegendaryDifficulty())
 		{
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Nimble);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Pathfinder);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Anticipation);
+			::Legends.Perks.grant(this, ::Legends.Perk.Nimble);
+			::Legends.Perks.grant(this, ::Legends.Perk.Pathfinder);
+			::Legends.Perks.grant(this, ::Legends.Perk.Anticipation);
 			this.m.Skills.add(this.new("scripts/skills/traits/fearless_trait"));
 		}
 	}

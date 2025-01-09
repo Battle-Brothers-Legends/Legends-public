@@ -17,7 +17,7 @@ this.paymaster_follower <- this.inherit("scripts/retinue/follower", {
 		];
 
 		this.addSkillRequirement("Have a mercenary who has taken the Paymaster perk. Guaranteed on Peddlers, Eunuchs and Servants", [
-			::Legends.Perks.getID(::Const.Perks.PerkDefs.LegendPaymaster),
+			::Legends.Perks.getID(::Legends.Perk.LegendPaymaster),
 			"background.legend_companion_melee",
 			"background.legend_companion_ranged"
 		]);

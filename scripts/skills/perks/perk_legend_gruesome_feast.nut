@@ -2,7 +2,7 @@ this.perk_legend_gruesome_feast <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		::Const.Perks.setup(this.m, ::Const.Perks.PerkDefs.LegendGruesomeFeast);
+		::Const.Perks.setup(this.m, ::Legends.Perk.LegendGruesomeFeast);
 		this.m.Type = this.Const.SkillType.Perk;
 		this.m.Order = this.Const.SkillOrder.Perk;
 		this.m.IsActive = false;
@@ -20,7 +20,7 @@ this.perk_legend_gruesome_feast <- this.inherit("scripts/skills/skill", {
 
 	function onRemoved()
 	{
-		if (!this.m.Container.hasPerk(::Const.Perks.PerkDefs.LegendGruesomeFeast))
+		if (!this.m.Container.hasPerk(::Legends.Perk.LegendGruesomeFeast))
 		{
 			this.m.Container.removeByID("actives.legend_gruesome_feast");
 		}

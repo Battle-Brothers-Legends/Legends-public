@@ -144,11 +144,11 @@ this.legend_unleash_bear_skill <- this.inherit("scripts/skills/skill", {
 		local entity = this.Tactical.spawnEntity(this.m.Script, _targetTile.Coords.X, _targetTile.Coords.Y);
 		entity.setFaction(this.Const.Faction.PlayerAnimals);
 		entity.setName(this.m.EntityName);
-		if (this.getContainer().getActor().getSkills().hasPerk(::Const.Perks.PerkDefs.LegendDogWhisperer))
+		if (this.getContainer().getActor().getSkills().hasPerk(::Legends.Perk.LegendDogWhisperer))
 		{
-			::Legends.Perks.grant(entity, ::Const.Perks.PerkDefs.FortifiedMind);
-			::Legends.Perks.grant(entity, ::Const.Perks.PerkDefs.Colossus);
-			::Legends.Perks.grant(entity, ::Const.Perks.PerkDefs.Underdog);
+			::Legends.Perks.grant(entity, ::Legends.Perk.FortifiedMind);
+			::Legends.Perks.grant(entity, ::Legends.Perk.Colossus);
+			::Legends.Perks.grant(entity, ::Legends.Perk.Underdog);
 		}
 		return true;
 	}

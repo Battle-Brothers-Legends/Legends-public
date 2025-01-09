@@ -74,7 +74,7 @@ this.legend_magic_hailstone_skill <- this.inherit("scripts/skills/actives/legend
 	}
 
 	function applyPerks() {
-		if (this.m.Container.hasPerk(::Const.Perks.PerkDefs.LegendMasteryHailstone))
+		if (this.m.Container.hasPerk(::Legends.Perk.LegendMasteryHailstone))
 		{
 			this.m.DirectDamageMult = 0.65;
 			this.m.DamageArmorMult = 1.25;

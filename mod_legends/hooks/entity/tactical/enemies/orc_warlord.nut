@@ -187,19 +187,19 @@
 		this.m.Skills.add(this.new("scripts/skills/actives/hand_to_hand_orc"));
 		this.m.Skills.add(this.new("scripts/skills/actives/warcry"));
 		this.m.Skills.add(this.new("scripts/skills/actives/line_breaker"));
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Captain);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.BatteringRam);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.HoldOut);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Stalwart);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.ShieldBash);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Fearsome);
+		::Legends.Perks.grant(this, ::Legends.Perk.Captain);
+		::Legends.Perks.grant(this, ::Legends.Perk.BatteringRam);
+		::Legends.Perks.grant(this, ::Legends.Perk.HoldOut);
+		::Legends.Perks.grant(this, ::Legends.Perk.Stalwart);
+		::Legends.Perks.grant(this, ::Legends.Perk.ShieldBash);
+		::Legends.Perks.grant(this, ::Legends.Perk.Fearsome);
 		this.m.Skills.add(this.new("scripts/skills/effects/captain_effect"));
 		if(::Legends.isLegendaryDifficulty())
 		{
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.BattleForged);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendComposure);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Brawny);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.InspiringPresence);
+			::Legends.Perks.grant(this, ::Legends.Perk.BattleForged);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendComposure);
+			::Legends.Perks.grant(this, ::Legends.Perk.Brawny);
+			::Legends.Perks.grant(this, ::Legends.Perk.InspiringPresence);
 			this.m.Skills.add(this.new("scripts/skills/traits/fearless_trait"));
 		}
 
@@ -306,7 +306,7 @@
 			this.m.Items.equip(this.new("scripts/items/" + shields[this.Math.rand(0, shields.len() - 1)]));
 		}
 
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.CripplingStrikes);
+		::Legends.Perks.grant(this, ::Legends.Perk.CripplingStrikes);
 		return true;
 	}
 });

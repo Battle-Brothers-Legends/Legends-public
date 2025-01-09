@@ -4,17 +4,17 @@
 	o.onInit = function ()
 	{
 		onInit();
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Recover);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendSpecialistMilitiaSkill);
+		::Legends.Perks.grant(this, ::Legends.Perk.Recover);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecialistMilitiaSkill);
 
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.ShieldBash);
+		::Legends.Perks.grant(this, ::Legends.Perk.ShieldBash);
 		if(::Legends.isLegendaryDifficulty())
 		{
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.SpecSpear);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.ShieldExpert);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendSpecialistMilitiaDamage);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendSpecSpearWall);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendSpecSpearThrust);
+			::Legends.Perks.grant(this, ::Legends.Perk.SpecSpear);
+			::Legends.Perks.grant(this, ::Legends.Perk.ShieldExpert);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecialistMilitiaDamage);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecSpearWall);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecSpearThrust);
 			this.m.Skills.add(this.new("scripts/skills/traits/fearless_trait"));
 		}
 	}

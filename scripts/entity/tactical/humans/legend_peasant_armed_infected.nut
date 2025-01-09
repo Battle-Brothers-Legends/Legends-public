@@ -30,40 +30,40 @@ this.legend_peasant_armed_infected <- this.inherit("scripts/entity/tactical/huma
 		this.getSprite("socket").setBrush("bust_base_militia");
 
 		this.m.Skills.add(this.new("scripts/skills/injury_permanent/legend_vermesthropy_injury"));
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendTrueForm);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendTrueForm);
 
 
 		// if (this.Math.rand(1, 100) <= 80)
 		// {
-		// 	::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendControlInstincts);
+		// 	::Legends.Perks.grant(this, ::Legends.Perk.LegendControlInstincts);
 		// }
 		// if (this.Math.rand(1, 100) <= 60)
 		// {
-		// 	::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendSurpressUrges);
+		// 	::Legends.Perks.grant(this, ::Legends.Perk.LegendSurpressUrges);
 		// }
 		// if (this.Math.rand(1, 100) <= 40)
 		// {
-		// 	::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendMasterAnger);
+		// 	::Legends.Perks.grant(this, ::Legends.Perk.LegendMasterAnger);
 		// }
 
 		if (this.Math.rand(1, 100) <= 20)
 		{
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.FortifiedMind);
+			::Legends.Perks.grant(this, ::Legends.Perk.FortifiedMind);
 		}
 
 		if (this.Math.rand(1, 100) <= 10)
 		{
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.FortifiedMind);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.RallyTheTroops);
+			::Legends.Perks.grant(this, ::Legends.Perk.FortifiedMind);
+			::Legends.Perks.grant(this, ::Legends.Perk.RallyTheTroops);
 		}
 
 		this.m.Skills.add(this.new("scripts/skills/traits/weasel_trait"));
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendBackToBasics);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendBackToBasics);
 		if(::Legends.isLegendaryDifficulty())
 		{
 			this.m.Hitpoints = b.Hitpoints * 1.5;
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Nimble);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Backstabber);
+			::Legends.Perks.grant(this, ::Legends.Perk.Nimble);
+			::Legends.Perks.grant(this, ::Legends.Perk.Backstabber);
 
 			this.m.Skills.add(this.new("scripts/skills/traits/fearless_trait"));
 		}

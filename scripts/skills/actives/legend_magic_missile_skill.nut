@@ -95,11 +95,11 @@ this.legend_magic_missile_skill <- this.inherit("scripts/skills/legend_magic_ski
 		this.m.FatigueCostMult = _properties.IsSpecializedInStaves ? this.Const.Combat.WeaponSpecFatigueMult : 1.0;
 		this.m.ActionPointCost = _properties.IsSpecializedInStaves ? 5 : 6;
 
-		if (this.m.Container.hasPerk(::Const.Perks.PerkDefs.LegendMagicMissileFocus))
+		if (this.m.Container.hasPerk(::Legends.Perk.LegendMagicMissileFocus))
 		{
 			this.m.ActionPointCost -= 1;
 		}
-		if (this.m.Container.hasPerk(::Const.Perks.PerkDefs.LegendMagicMissileMastery))
+		if (this.m.Container.hasPerk(::Legends.Perk.LegendMagicMissileMastery))
 		{
 			this.m.ActionPointCost -= 1;
 			this.m.FatigueCost -= 6;

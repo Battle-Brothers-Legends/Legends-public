@@ -25,7 +25,7 @@ this.legend_bandage_tunic_blueprint <- this.inherit("scripts/crafting/blueprint"
 		];
 		this.init(ingredients);
 		local skills = [
-			::Legends.Perks.blueprint(::Const.Perks.PerkDefs.LegendMedIngredients)
+			::Legends.Perks.blueprint(::Legends.Perk.LegendMedIngredients)
 		];
 		this.initSkills(skills);
 	}

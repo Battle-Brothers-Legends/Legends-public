@@ -4,7 +4,7 @@ this.perk_legend_skillful_stacking <- this.inherit("scripts/skills/skill", {
 	},
 	function create()
 	{
-		::Const.Perks.setup(this.m, ::Const.Perks.PerkDefs.LegendSkillfulStacking);
+		::Const.Perks.setup(this.m, ::Legends.Perk.LegendSkillfulStacking);
 		this.m.Type = this.Const.SkillType.Perk;
 		this.m.Order = this.Const.SkillOrder.Perk;
 		this.m.IsActive = false;

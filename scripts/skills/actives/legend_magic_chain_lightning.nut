@@ -67,7 +67,7 @@ this.legend_magic_chain_lightning_skill <- this.inherit("scripts/skills/actives/
 	}
 
 	function applyPerks() {
-		if (this.m.Container.hasPerk(::Const.Perks.PerkDefs.LegendMasteryChainLightning))
+		if (this.m.Container.hasPerk(::Legends.Perk.LegendMasteryChainLightning))
 		{
 			this.m.AdditionalAccuracy = 10;
 			this.m.MaxRange= 5;

@@ -4,11 +4,11 @@
 	o.onInit = function ()
 	{
 		onInit();
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Rotation);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Recover);
+		::Legends.Perks.grant(this, ::Legends.Perk.Rotation);
+		::Legends.Perks.grant(this, ::Legends.Perk.Recover);
 		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= 40)
 		{
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Dodge);
+			::Legends.Perks.grant(this, ::Legends.Perk.Dodge);
 		}
 	}
 

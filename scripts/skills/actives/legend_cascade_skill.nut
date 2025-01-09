@@ -115,7 +115,7 @@ this.legend_cascade_skill <- this.inherit("scripts/skills/skill", {
 			return true;
 		}
 
-		if (!actor.getSkills().hasPerk(::Const.Perks.PerkDefs.LegendCascade))
+		if (!actor.getSkills().hasPerk(::Legends.Perk.LegendCascade))
 		{
 			return true;
 		}

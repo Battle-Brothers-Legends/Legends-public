@@ -19,7 +19,7 @@ this.legend_leather_robe_blueprint <- this.inherit("scripts/crafting/blueprint",
 		];
 		this.init(ingredients);
 		local skills = [
-			::Legends.Perks.blueprint(::Const.Perks.PerkDefs.LegendSpecCultArmor)
+			::Legends.Perks.blueprint(::Legends.Perk.LegendSpecCultArmor)
 		];
 		this.initSkills(skills);
 	}

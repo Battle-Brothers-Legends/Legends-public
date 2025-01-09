@@ -23,7 +23,7 @@ this.herbal_cat_potion_blueprint <- this.inherit("scripts/crafting/blueprint", {
 		];
 		this.init(ingredients);
 		local skills = [
-			::Legends.Perks.blueprint(::Const.Perks.PerkDefs.LegendPotionBrewer)
+			::Legends.Perks.blueprint(::Legends.Perk.LegendPotionBrewer)
 		];
 		this.initSkills(skills);
 	}

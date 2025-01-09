@@ -11,7 +11,7 @@
 		foreach( bro in brothers ) {
 			if (bro.getBackground().getID() == "background.graverobber")
 				candidates_graverobber.push(bro);
-			else if (bro.getBackground().getID() == "background.historian" || bro.getSkills().hasPerk(::Const.Perks.PerkDefs.LegendScholar))
+			else if (bro.getBackground().getID() == "background.historian" || bro.getSkills().hasPerk(::Legends.Perk.LegendScholar))
 				candidates_historian.push(bro);
 		}
 

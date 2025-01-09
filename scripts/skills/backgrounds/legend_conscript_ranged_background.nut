@@ -79,7 +79,7 @@ this.legend_conscript_ranged_background <- this.inherit("scripts/skills/backgrou
 	function onAdded()
 	{
 		this.character_background.onAdded();
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendThrowSand);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendThrowSand);
 	}
 
 	function onAddEquipment()

@@ -60,7 +60,7 @@ this.legend_harvest_rock_skill <- this.inherit("scripts/skills/skill", {
 			return true;
 		}
 
-		if (!actor.getSkills().hasPerk(::Const.Perks.PerkDefs.LegendSpecialistPickaxeSkill))
+		if (!actor.getSkills().hasPerk(::Legends.Perk.LegendSpecialistPickaxeSkill))
 		{
 			return true;
 		}

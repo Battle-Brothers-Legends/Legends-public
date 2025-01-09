@@ -4,15 +4,15 @@
 	o.onInit = function ()
 	{
 		onInit();
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Rotation);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Recover);
+		::Legends.Perks.grant(this, ::Legends.Perk.Rotation);
+		::Legends.Perks.grant(this, ::Legends.Perk.Recover);
 
 		if (::Legends.isLegendaryDifficulty())
 		{
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.BattleForged);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.FortifiedMind);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendForwardPush);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendHoldTheLine);
+			::Legends.Perks.grant(this, ::Legends.Perk.BattleForged);
+			::Legends.Perks.grant(this, ::Legends.Perk.FortifiedMind);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendForwardPush);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendHoldTheLine);
 			this.m.Skills.add(this.new("scripts/skills/traits/fearless_trait"));
 		}
 	}

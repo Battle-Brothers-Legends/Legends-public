@@ -313,17 +313,17 @@
 		local hasGifted = false;
 		local hasAdaptive = false;
 
-		if (this.getLevel() >= 12 && this.getSkills().hasPerk(::Const.Perks.PerkDefs.Student))
+		if (this.getLevel() >= 12 && this.getSkills().hasPerk(::Legends.Perk.Student))
 		{
 			perks = perks - 1;
 			hasStudent = true;
 		}
-		if (this.getSkills().hasPerk(::Const.Perks.PerkDefs.Gifted))
+		if (this.getSkills().hasPerk(::Legends.Perk.Gifted))
 		{
 			perks = perks - 1;
 			hasGifted = true;
 		}
-		if (this.getSkills().hasPerk(::Const.Perks.PerkDefs.LegendAdaptive))
+		if (this.getSkills().hasPerk(::Legends.Perk.LegendAdaptive))
 		{
 			perks = perks - 1;
 			hasAdaptive = true;
@@ -357,7 +357,7 @@
 		// todo delete it - chopeks
 //		if (this.getBackground().getID() == "background.legend_witch" && this.LegendsMod.Configs().LegendMagicEnabled())
 //		{
-//			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendMagicMissile);
+//			::Legends.Perks.grant(this, ::Legends.Perk.LegendMagicMissile);
 //			perks = perks - 1;
 //		}
 
@@ -366,20 +366,20 @@
 		if (hasStudent)
 		{
 			this.m.PerkPointsSpent += 1;
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Student);
+			::Legends.Perks.grant(this, ::Legends.Perk.Student);
 		}
 
 		if (hasGifted)
 		{
 			this.m.PerkPointsSpent += 1;
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Gifted, function (_perk) {
+			::Legends.Perks.grant(this, ::Legends.Perk.Gifted, function (_perk) {
 				_perk.m.IsApplied = true;
 			});
 		}
 
 		if (hasAdaptive)
 		{
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendAdaptive, function (_perk) {
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendAdaptive, function (_perk) {
 				_perk.m.IsNew = true;
 			});
 			if (this.getLevel() >= 15)

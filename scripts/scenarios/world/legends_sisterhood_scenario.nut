@@ -20,7 +20,7 @@ this.legends_sisterhood_scenario <- this.inherit("scripts/scenarios/world/starti
 			local bro;
 			bro = roster.create("scripts/entity/tactical/player");
 			bro.m.HireTime = this.Time.getVirtualTimeF();
-			::Legends.Perks.grant(bro, ::Const.Perks.PerkDefs.HoldOut);
+			::Legends.Perks.grant(bro, ::Legends.Perk.HoldOut);
 			bro.m.PerkPointsSpent += 1;
 			i = ++i;
 		}

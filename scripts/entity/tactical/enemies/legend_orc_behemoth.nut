@@ -261,17 +261,17 @@ this.legend_orc_behemoth <- this.inherit("scripts/entity/tactical/actor", {
 		this.m.Skills.add(this.new("scripts/skills/special/double_grip"));
 		this.m.Skills.add(this.new("scripts/skills/actives/hand_to_hand"));
 		this.m.Skills.add(this.new("scripts/skills/actives/line_breaker"));
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.BatteringRam);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Stalwart);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.HoldOut);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Berserk);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendAssuredConquest);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendTasteThePain);
+		::Legends.Perks.grant(this, ::Legends.Perk.BatteringRam);
+		::Legends.Perks.grant(this, ::Legends.Perk.Stalwart);
+		::Legends.Perks.grant(this, ::Legends.Perk.HoldOut);
+		::Legends.Perks.grant(this, ::Legends.Perk.Berserk);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendAssuredConquest);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendTasteThePain);
 		if(::Legends.isLegendaryDifficulty())
 		{
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.BattleForged);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendLastStand);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendSecondWind);
+			::Legends.Perks.grant(this, ::Legends.Perk.BattleForged);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendLastStand);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendSecondWind);
 		}
 	}
 
@@ -295,7 +295,7 @@ this.legend_orc_behemoth <- this.inherit("scripts/entity/tactical/actor", {
 
 		this.m.Items.equip(this.new("scripts/items/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
 
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendTrueBeliever);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendTrueBeliever);
 		return true;
 	}
 

@@ -8,7 +8,7 @@
 		if(::Legends.isLegendaryDifficulty())
 		{
 			this.m.Hitpoints = b.Hitpoints * 1.5;
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Nimble);
+			::Legends.Perks.grant(this, ::Legends.Perk.Nimble);
 			this.m.Skills.add(this.new("scripts/skills/traits/fearless_trait"));
 		}
 	}

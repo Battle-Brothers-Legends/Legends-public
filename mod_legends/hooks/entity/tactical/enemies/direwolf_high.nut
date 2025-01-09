@@ -6,8 +6,8 @@
 		onInit();
 		if (::Legends.isLegendaryDifficulty())
 		{
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.KillingFrenzy);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Nimble);
+			::Legends.Perks.grant(this, ::Legends.Perk.KillingFrenzy);
+			::Legends.Perks.grant(this, ::Legends.Perk.Nimble);
 		}
 	}
 });

@@ -4,7 +4,7 @@ this.legend_hunting_skin_ghouls_contract <- this.inherit("scripts/contracts/cont
 		Dude = null,
 		IsPlayerAttacking = false,
 		MinStrength = 10, // player needs to earn 10% of bonus (not including base 5% bonus) for this contract to be valid
-		Perk = ::Const.Perks.PerkDefs.LegendFavouredEnemyGhoul,
+		Perk = ::Legends.Perk.LegendFavouredEnemyGhoul,
 		ValidTypes = this.Const.LegendMod.FavoriteGhoul
 	},
 	function create()

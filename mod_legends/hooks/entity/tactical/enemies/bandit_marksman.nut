@@ -41,20 +41,20 @@
 			b.RangedDefense += 5;
 		}
 
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Rotation);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Recover);
+		::Legends.Perks.grant(this, ::Legends.Perk.Rotation);
+		::Legends.Perks.grant(this, ::Legends.Perk.Recover);
 
 		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= 20)
 		{
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Bullseye);
+			::Legends.Perks.grant(this, ::Legends.Perk.Bullseye);
 		}
 
 		if (::Legends.isLegendaryDifficulty())
 		{
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendBallistics);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendCloseCombatArcher);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.CripplingStrikes);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LoneWolf);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendBallistics);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendCloseCombatArcher);
+			::Legends.Perks.grant(this, ::Legends.Perk.CripplingStrikes);
+			::Legends.Perks.grant(this, ::Legends.Perk.LoneWolf);
 			this.m.Skills.add(this.new("scripts/skills/traits/fearless_trait"));
 		}
 	}

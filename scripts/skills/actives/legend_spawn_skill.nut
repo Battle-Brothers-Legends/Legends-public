@@ -54,7 +54,7 @@ this.legend_spawn_skill <- this.inherit("scripts/skills/skill", {
 		}
 
 		local perkMult = 1.0;
-		local skill = ::Legends.Perks.get(this, ::Const.Perks.PerkDefs.LegendChanneledPower);
+		local skill = ::Legends.Perks.get(this, ::Legends.Perk.LegendChanneledPower);
 		if (skill != null)
 		{
 			perkMult = skill.m.FatigueMult;

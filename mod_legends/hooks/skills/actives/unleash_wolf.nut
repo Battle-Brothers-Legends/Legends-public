@@ -35,14 +35,14 @@
 
 	o.addAnimalSkills <- function( _entity )
 	{
-		if (this.getContainer().getActor().getSkills().hasPerk(::Const.Perks.PerkDefs.LegendDogWhisperer))
+		if (this.getContainer().getActor().getSkills().hasPerk(::Legends.Perk.LegendDogWhisperer))
 		{
-			::Legends.Perks.grant(_entity, ::Const.Perks.PerkDefs.FortifiedMind);
-			::Legends.Perks.grant(_entity, ::Const.Perks.PerkDefs.Colossus);
-			::Legends.Perks.grant(_entity, ::Const.Perks.PerkDefs.Underdog);
+			::Legends.Perks.grant(_entity, ::Legends.Perk.FortifiedMind);
+			::Legends.Perks.grant(_entity, ::Legends.Perk.Colossus);
+			::Legends.Perks.grant(_entity, ::Legends.Perk.Underdog);
 		}
 
-		if (!this.getContainer().hasPerk(::Const.Perks.PerkDefs.LegendDogHandling))
+		if (!this.getContainer().hasPerk(::Legends.Perk.LegendDogHandling))
 		{
 			return;
 		}

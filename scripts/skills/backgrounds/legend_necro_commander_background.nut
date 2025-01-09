@@ -253,7 +253,7 @@ this.legend_necro_commander_background <- this.inherit("scripts/skills/backgroun
 	function onAdded()
 	{
 		this.character_background.onAdded();
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendSiphon);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendSiphon);
 		this.m.Container.add(this.new("scripts/skills/traits/old_trait"));
 	}
 

@@ -4,18 +4,18 @@
 	o.onInit = function ()
 	{
 		onInit();
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Stalwart);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendComposure);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendPoisonImmunity);
+		::Legends.Perks.grant(this, ::Legends.Perk.Stalwart);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendComposure);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendPoisonImmunity);
 		if(::Legends.isLegendaryDifficulty())
 		{
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.CripplingStrikes);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.CoupDeGrace);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.ShieldExpert);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.ShieldBash);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendLacerate);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendSpecialistShieldSkill);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendSpecialistShieldPush);
+			::Legends.Perks.grant(this, ::Legends.Perk.CripplingStrikes);
+			::Legends.Perks.grant(this, ::Legends.Perk.CoupDeGrace);
+			::Legends.Perks.grant(this, ::Legends.Perk.ShieldExpert);
+			::Legends.Perks.grant(this, ::Legends.Perk.ShieldBash);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendLacerate);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecialistShieldSkill);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecialistShieldPush);
 			this.m.Skills.add(this.new("scripts/skills/traits/fearless_trait"));
 		}
 	}

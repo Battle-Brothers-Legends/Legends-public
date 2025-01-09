@@ -10,7 +10,7 @@ this.perk_legend_blend_in <- this.inherit("scripts/skills/skill", {
 	},
 	function create()
 	{
-		::Const.Perks.setup(this.m, ::Const.Perks.PerkDefs.LegendBlendIn);
+		::Const.Perks.setup(this.m, ::Legends.Perk.LegendBlendIn);
 		this.m.Type = this.Const.SkillType.Perk | this.Const.SkillType.StatusEffect;
 		this.m.Order = this.Const.SkillOrder.Perk;
 		this.m.IsActive = false;
@@ -86,7 +86,7 @@ this.perk_legend_blend_in <- this.inherit("scripts/skills/skill", {
 					text = "Always evade the next attack made against this character in combat."
 				});
 			}
-			else if (this.getContainer().hasPerk(::Const.Perks.PerkDefs.LegendUnburdened))
+			else if (this.getContainer().hasPerk(::Legends.Perk.LegendUnburdened))
 			{
 				tooltip.push(
 				{
@@ -159,7 +159,7 @@ this.perk_legend_blend_in <- this.inherit("scripts/skills/skill", {
 
 	function onTurnEnd()
 	{
-		if (this.getContainer().hasPerk(::Const.Perks.PerkDefs.LegendUnburdened))
+		if (this.getContainer().hasPerk(::Legends.Perk.LegendUnburdened))
 			this.m.MeekCounter += 1;
 
 		if (this.m.MeekCounter == 2)

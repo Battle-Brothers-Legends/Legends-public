@@ -5,68 +5,68 @@ if (!("Perks" in ::Const))
 
 local VanillaTree = [
 	[
-		::Const.Perks.PerkDefs.FastAdaption,
-		::Const.Perks.PerkDefs.CripplingStrikes,
-		::Const.Perks.PerkDefs.Colossus,
-		::Const.Perks.PerkDefs.BagsAndBelts,
-		::Const.Perks.PerkDefs.NineLives,
-		::Const.Perks.PerkDefs.Pathfinder,
-		::Const.Perks.PerkDefs.Adrenaline,
-		::Const.Perks.PerkDefs.Recover,
-		::Const.Perks.PerkDefs.Student
+		::Legends.Perk.FastAdaption,
+		::Legends.Perk.CripplingStrikes,
+		::Legends.Perk.Colossus,
+		::Legends.Perk.BagsAndBelts,
+		::Legends.Perk.NineLives,
+		::Legends.Perk.Pathfinder,
+		::Legends.Perk.Adrenaline,
+		::Legends.Perk.Recover,
+		::Legends.Perk.Student
 	],
 	[
-		::Const.Perks.PerkDefs.CoupDeGrace,
-		::Const.Perks.PerkDefs.Bullseye,
-		::Const.Perks.PerkDefs.Dodge,
-		::Const.Perks.PerkDefs.FortifiedMind,
-		::Const.Perks.PerkDefs.HoldOut,
-		::Const.Perks.PerkDefs.SteelBrow,
-		::Const.Perks.PerkDefs.QuickHands,
-		::Const.Perks.PerkDefs.Gifted
+		::Legends.Perk.CoupDeGrace,
+		::Legends.Perk.Bullseye,
+		::Legends.Perk.Dodge,
+		::Legends.Perk.FortifiedMind,
+		::Legends.Perk.HoldOut,
+		::Legends.Perk.SteelBrow,
+		::Legends.Perk.QuickHands,
+		::Legends.Perk.Gifted
 	],
 	[
-		::Const.Perks.PerkDefs.Backstabber,
-		::Const.Perks.PerkDefs.Anticipation,
-		::Const.Perks.PerkDefs.ShieldExpert,
-		::Const.Perks.PerkDefs.Brawny,
-		::Const.Perks.PerkDefs.LegendOnslaught,
-		::Const.Perks.PerkDefs.Rotation,
-		::Const.Perks.PerkDefs.RallyTheTroops,
-		::Const.Perks.PerkDefs.Taunt
+		::Legends.Perk.Backstabber,
+		::Legends.Perk.Anticipation,
+		::Legends.Perk.ShieldExpert,
+		::Legends.Perk.Brawny,
+		::Legends.Perk.LegendOnslaught,
+		::Legends.Perk.Rotation,
+		::Legends.Perk.RallyTheTroops,
+		::Legends.Perk.Taunt
 	],
 	[
-		::Const.Perks.PerkDefs.SpecMace,
-		::Const.Perks.PerkDefs.SpecFlail,
-		::Const.Perks.PerkDefs.SpecHammer,
-		::Const.Perks.PerkDefs.SpecAxe,
-		::Const.Perks.PerkDefs.SpecCleaver,
-		::Const.Perks.PerkDefs.SpecSword,
-		::Const.Perks.PerkDefs.SpecDagger,
-		::Const.Perks.PerkDefs.SpecPolearm,
-		::Const.Perks.PerkDefs.SpecSpear,
-		::Const.Perks.PerkDefs.SpecCrossbow,
-		::Const.Perks.PerkDefs.SpecBow,
-		::Const.Perks.PerkDefs.SpecThrowing
+		::Legends.Perk.SpecMace,
+		::Legends.Perk.SpecFlail,
+		::Legends.Perk.SpecHammer,
+		::Legends.Perk.SpecAxe,
+		::Legends.Perk.SpecCleaver,
+		::Legends.Perk.SpecSword,
+		::Legends.Perk.SpecDagger,
+		::Legends.Perk.SpecPolearm,
+		::Legends.Perk.SpecSpear,
+		::Legends.Perk.SpecCrossbow,
+		::Legends.Perk.SpecBow,
+		::Legends.Perk.SpecThrowing
 	],
 	[
-		::Const.Perks.PerkDefs.Underdog,
-		::Const.Perks.PerkDefs.LoneWolf,
-		::Const.Perks.PerkDefs.ReachAdvantage,
-		::Const.Perks.PerkDefs.Overwhelm,
-		::Const.Perks.PerkDefs.Footwork
+		::Legends.Perk.Underdog,
+		::Legends.Perk.LoneWolf,
+		::Legends.Perk.ReachAdvantage,
+		::Legends.Perk.Overwhelm,
+		::Legends.Perk.Footwork
 	],
 	[
-		::Const.Perks.PerkDefs.HeadHunter,
-		::Const.Perks.PerkDefs.Berserk,
-		::Const.Perks.PerkDefs.Nimble,
-		::Const.Perks.PerkDefs.BattleForged
+		::Legends.Perk.HeadHunter,
+		::Legends.Perk.Berserk,
+		::Legends.Perk.Nimble,
+		::Legends.Perk.BattleForged
 	],
 	[
-		::Const.Perks.PerkDefs.Fearsome,
-		::Const.Perks.PerkDefs.Duelist,
-		::Const.Perks.PerkDefs.KillingFrenzy,
-		::Const.Perks.PerkDefs.Indomitable
+		::Legends.Perk.Fearsome,
+		::Legends.Perk.Duelist,
+		::Legends.Perk.KillingFrenzy,
+		::Legends.Perk.Indomitable
 	],
 	[],
 	[],

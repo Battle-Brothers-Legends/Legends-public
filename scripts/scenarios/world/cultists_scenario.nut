@@ -44,7 +44,7 @@ this.cultists_scenario <- this.inherit("scripts/scenarios/world/starting_scenari
 			"legend_magister_background"
 		]);
 		bros[0].getBackground().m.RawDescription = "When %name% joined, the cultist warmly called you captain, saying \"tis a proper manner to pursue the path into the Black from whence we came\".";
-		::Legends.Perks.grant(bros[0], ::Const.Perks.PerkDefs.RallyTheTroops);
+		::Legends.Perks.grant(bros[0], ::Legends.Perk.RallyTheTroops);
 		this.addScenarioPerk(bros[0].getBackground(), this.Const.Perks.PerkDefs.LegendTrueBeliever);
 		bros[0].getBaseProperties().MeleeSkill += 10;
 		bros[0].setPlaceInFormation(2);

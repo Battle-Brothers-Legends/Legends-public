@@ -4,7 +4,7 @@
 	o.onInit = function ()
 	{
 		onInit();
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Recover);
+		::Legends.Perks.grant(this, ::Legends.Perk.Recover);
 	}
 
 	o.assignRandomEquipment = function ()
@@ -102,7 +102,7 @@
 			));
 		}
 
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.ReachAdvantage);
+		::Legends.Perks.grant(this, ::Legends.Perk.ReachAdvantage);
 		return true;
 	}
 });

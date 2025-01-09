@@ -1,10 +1,12 @@
 if (!("Perks" in ::Legends))
 	::Legends.Perks <- {};
 
-::Legends.Perks.getContainer <- function (_target) {
+::Legends.Perks.getContainer <- function (_target, _onError = "") {
 	local container = null;
-	if (_target == null)
-		throw "_target == null"
+	if (_target == null) {
+		::logError( "_target == null " + _onError);
+		throw "_target == null";
+	}
 	if (::isKindOf(_target, "skill"))
 		return _target.getContainer();
 	if (::isKindOf(_target, "skill_container"))
@@ -15,6 +17,7 @@ if (!("Perks" in ::Legends))
 		return _target.getContainer();
 	if (::isKindOf(_target, "item"))
 		return ::Legends.Perks.getContainer(_target.getContainer().getActor())
+	::logError( "Unsupported _target class " + _onError);
 	throw "Unsupported _target class";
 }
 
@@ -25,12 +28,12 @@ if (!("Perks" in ::Legends))
  *
  * Example here:
  *
- * ::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.NineLives, @(_perk) {
+ * ::Legends.Perks.grant(this, ::Legends.Perk.NineLives, @(_perk) {
  *		_perk.IsRefundable = false;
  *	});
  */
 ::Legends.Perks.grant <- function (_target, _def, _applyFn = null) {
-	local container = ::Legends.Perks.getContainer(_target);
+	local container = ::Legends.Perks.getContainer(_target, "on grant");
 	local perkDef = ::Const.Perks.PerkDefObjects[_def];
 
 	if (container.hasPerk(_def)) {
@@ -49,14 +52,14 @@ if (!("Perks" in ::Legends))
 }
 
 ::Legends.Perks.get <- function (_target, _def) {
-	local container = ::Legends.Perks.getContainer(_target);
+	local container = ::Legends.Perks.getContainer(_target, "on get");
 	if (container.hasPerk(_def))
 		return container.getSkillByID(::Legends.Perks.getID(_def))
 	return null;
 }
 
 ::Legends.Perks.remove <- function (_target, _def) {
-	local container = ::Legends.Perks.getContainer(_target);
+	local container = ::Legends.Perks.getContainer(_target, "on remove");
 	if (container.hasPerk(_def))
 		container.removeByID(::Legends.Perks.getID(_def))
 }

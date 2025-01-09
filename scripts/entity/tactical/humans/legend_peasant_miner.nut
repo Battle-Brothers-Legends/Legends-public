@@ -27,19 +27,19 @@ this.legend_peasant_miner <- this.inherit("scripts/entity/tactical/human", {
 		local dirt = this.getSprite("dirt");
 		dirt.Visible = true;
 		dirt.Alpha = this.Math.rand(0, 255);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendSpecialistPickaxeSkill);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendSpecialistPickaxeDamage);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendSmackdown);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.SpecHammer);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecialistPickaxeSkill);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecialistPickaxeDamage);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendSmackdown);
+		::Legends.Perks.grant(this, ::Legends.Perk.SpecHammer);
 		this.getSprite("socket").setBrush("bust_base_militia");
 			if(::Legends.isLegendaryDifficulty())
 			{
 			this.m.Hitpoints = b.Hitpoints * 1.5;
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.BattleFlow);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendOnslaught);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Stalwart);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Indomitable);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Recover);
+			::Legends.Perks.grant(this, ::Legends.Perk.BattleFlow);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendOnslaught);
+			::Legends.Perks.grant(this, ::Legends.Perk.Stalwart);
+			::Legends.Perks.grant(this, ::Legends.Perk.Indomitable);
+			::Legends.Perks.grant(this, ::Legends.Perk.Recover);
 			this.m.Skills.add(this.new("scripts/skills/traits/fearless_trait"));
 			}
 	}

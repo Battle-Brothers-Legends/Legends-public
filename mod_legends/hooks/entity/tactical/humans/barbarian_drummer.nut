@@ -4,23 +4,23 @@
 	o.onInit = function ()
 	{
 		onInit();
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendDrumsOfWar);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendDrumsOfWar);
 
 		if(::Legends.isLegendaryDifficulty())
 		{
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Overwhelm);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendAlert);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendBalance);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendOnslaught);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Backstabber);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendSpecFists);
+			::Legends.Perks.grant(this, ::Legends.Perk.Overwhelm);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendAlert);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendBalance);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendOnslaught);
+			::Legends.Perks.grant(this, ::Legends.Perk.Backstabber);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecFists);
 			this.m.Skills.add(this.new("scripts/skills/traits/fearless_trait"));
 		}
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Pathfinder);
+		::Legends.Perks.grant(this, ::Legends.Perk.Pathfinder);
 
 		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= 30)
 		{
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Dodge);
+			::Legends.Perks.grant(this, ::Legends.Perk.Dodge);
 		}
 	}
 

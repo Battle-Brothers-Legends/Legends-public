@@ -2,7 +2,7 @@ this.perk_legend_unburdened <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		::Const.Perks.setup(this.m, ::Const.Perks.PerkDefs.LegendUnburdened);
+		::Const.Perks.setup(this.m, ::Legends.Perk.LegendUnburdened);
 		this.m.IconMini = "mini_meek";
 		this.m.Type = this.Const.SkillType.Perk;
 		this.m.Order = this.Const.SkillOrder.Perk | this.Const.SkillOrder.Any;
@@ -47,7 +47,7 @@ this.perk_legend_unburdened <- this.inherit("scripts/skills/skill", {
 			bg.addPerk(_perk, row);
 		}
 
-		if (!this.getContainer().hasPerk(::Const.Perks.PerkDefs.Footwork))
+		if (!this.getContainer().hasPerk(::Legends.Perk.Footwork))
 			addPerk(this.Const.Perks.PerkDefs.Footwork, 5);
 	}
 });

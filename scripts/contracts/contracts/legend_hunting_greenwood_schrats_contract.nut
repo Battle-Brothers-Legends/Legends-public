@@ -4,7 +4,7 @@ this.legend_hunting_greenwood_schrats_contract <- this.inherit("scripts/contract
 		Dude = null,
 		IsPlayerAttacking = false,
 		MinStrength = 10, // player needs to earn 10% of bonus (not including base 5% bonus) for this contract to be valid
-		Perk =  ::Const.Perks.PerkDefs.LegendFavouredEnemySchrat,
+		Perk =  ::Legends.Perk.LegendFavouredEnemySchrat,
 		ValidTypes = this.Const.LegendMod.FavoriteSchrat
 	},
 	function create()

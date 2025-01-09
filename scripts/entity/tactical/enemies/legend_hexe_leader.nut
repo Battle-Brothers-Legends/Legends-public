@@ -279,7 +279,7 @@ this.legend_hexe_leader <- this.inherit("scripts/entity/tactical/actor", {
 		this.getSprite("status_rooted").Scale = 0.55;
 
 		this.m.Skills.add(this.new("scripts/skills/actives/legend_intensely_charm_skill"));
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Anticipation);
+		::Legends.Perks.grant(this, ::Legends.Perk.Anticipation);
 		this.m.Skills.add(this.new("scripts/skills/actives/hex_skill"));
 		this.m.Skills.add(this.new("scripts/skills/actives/legend_wither_skill"));
 		this.m.Skills.add(this.new("scripts/skills/actives/sleep_skill"));
@@ -291,10 +291,10 @@ this.legend_hexe_leader <- this.inherit("scripts/entity/tactical/actor", {
 		if(::Legends.isLegendaryDifficulty())
 		{
 			this.m.Skills.add(this.new("scripts/skills/racial/schrat_racial"));
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.InspiringPresence);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendLevitate);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.HoldOut);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendComposure);
+			::Legends.Perks.grant(this, ::Legends.Perk.InspiringPresence);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendLevitate);
+			::Legends.Perks.grant(this, ::Legends.Perk.HoldOut);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendComposure);
 			this.m.Skills.add(this.new("scripts/skills/traits/fearless_trait"));
 		}
 		if (!this.Tactical.State.isScenarioMode())

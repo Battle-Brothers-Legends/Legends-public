@@ -27,20 +27,20 @@ this.legend_peasant_woodsman <- this.inherit("scripts/entity/tactical/human", {
 		local dirt = this.getSprite("dirt");
 		dirt.Visible = true;
 		dirt.Alpha = this.Math.rand(0, 255);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendSpecialistWoodaxeSkill);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendSpecialistWoodaxeDamage);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendSmashingShields);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.SpecAxe);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecialistWoodaxeSkill);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecialistWoodaxeDamage);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendSmashingShields);
+		::Legends.Perks.grant(this, ::Legends.Perk.SpecAxe);
 		this.getSprite("socket").setBrush("bust_base_militia");
 
 		if (::Legends.isLegendaryDifficulty())
 		{
 			this.m.Hitpoints = b.Hitpoints * 1.5;
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.KillingFrenzy);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendBloodyHarvest);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendForcefulSwing);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Recover);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Footwork);
+			::Legends.Perks.grant(this, ::Legends.Perk.KillingFrenzy);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendBloodyHarvest);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendForcefulSwing);
+			::Legends.Perks.grant(this, ::Legends.Perk.Recover);
+			::Legends.Perks.grant(this, ::Legends.Perk.Footwork);
 			this.m.Skills.add(this.new("scripts/skills/traits/fearless_trait"));
 		}
 	}

@@ -6,9 +6,9 @@
 		onInit();
 		if (::Legends.isLegendaryDifficulty())
 		{
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendBallistics);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Pathfinder);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.CripplingStrikes);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendBallistics);
+			::Legends.Perks.grant(this, ::Legends.Perk.Pathfinder);
+			::Legends.Perks.grant(this, ::Legends.Perk.CripplingStrikes);
 		}
 	}
 

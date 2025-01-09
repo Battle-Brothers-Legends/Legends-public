@@ -4,19 +4,19 @@
 	o.onInit = function ()
 	{
 		onInit();
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Rotation);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Recover);
+		::Legends.Perks.grant(this, ::Legends.Perk.Rotation);
+		::Legends.Perks.grant(this, ::Legends.Perk.Recover);
 		if(::Legends.isLegendaryDifficulty())
 		{
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.SteelBrow);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendFeint);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Stalwart);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendSpecialistShieldSkill);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendSpecialistShieldPush);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendSmashingShields);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendBackToBasics);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.ShieldBash);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendFullForce);
+			::Legends.Perks.grant(this, ::Legends.Perk.SteelBrow);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendFeint);
+			::Legends.Perks.grant(this, ::Legends.Perk.Stalwart);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecialistShieldSkill);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecialistShieldPush);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendSmashingShields);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendBackToBasics);
+			::Legends.Perks.grant(this, ::Legends.Perk.ShieldBash);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendFullForce);
 			this.m.Skills.add(this.new("scripts/skills/traits/fearless_trait"));
 		}
 	}

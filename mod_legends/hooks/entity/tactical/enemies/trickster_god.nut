@@ -6,16 +6,16 @@
 		onInit();
 		local b = this.m.BaseProperties;
 		b.IsAffectedByRain = false;
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendComposure);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendPoisonImmunity);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendComposure);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendPoisonImmunity);
 		{
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Colossus);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Fearsome);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.KillingFrenzy);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendLastStand);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Underdog);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendCarnage);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendBattleheart);
+			::Legends.Perks.grant(this, ::Legends.Perk.Colossus);
+			::Legends.Perks.grant(this, ::Legends.Perk.Fearsome);
+			::Legends.Perks.grant(this, ::Legends.Perk.KillingFrenzy);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendLastStand);
+			::Legends.Perks.grant(this, ::Legends.Perk.Underdog);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendCarnage);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendBattleheart);
 			this.m.Skills.add(this.new("scripts/skills/traits/fearless_trait"));
 		}
 	}

@@ -7,8 +7,8 @@
 	o.onInit = function ()
 	{
 		onInit();
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendPoisonImmunity);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendComposure);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendPoisonImmunity);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendComposure);
 
 	}
 

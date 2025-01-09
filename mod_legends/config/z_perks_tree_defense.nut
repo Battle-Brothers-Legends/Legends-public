@@ -11,12 +11,12 @@ if (!("Perks" in ::Const))
 	],
 	Tree = [
 		[],
-		[::Const.Perks.PerkDefs.SteelBrow],
-		[::Const.Perks.PerkDefs.Brawny],
+		[::Legends.Perk.SteelBrow],
+		[::Legends.Perk.Brawny],
 		[],
 		[],
-		[::Const.Perks.PerkDefs.BattleForged],
-		[::Const.Perks.PerkDefs.LegendFullForce]
+		[::Legends.Perk.BattleForged],
+		[::Legends.Perk.LegendFullForce]
 	]
 };
 
@@ -29,18 +29,18 @@ if (!("Perks" in ::Const))
 	Tree = [
 		[],
 		[
-			::Const.Perks.PerkDefs.LegendBalance
+			::Legends.Perk.LegendBalance
 		],
 		[
-			::Const.Perks.PerkDefs.LegendPerfectFit
+			::Legends.Perk.LegendPerfectFit
 		],
 		[],
 		[],
 		[
-			::Const.Perks.PerkDefs.LegendLithe
+			::Legends.Perk.LegendLithe
 		],
 		[
-			::Const.Perks.PerkDefs.LegendInTheZone
+			::Legends.Perk.LegendInTheZone
 		]
 	]
 };
@@ -54,18 +54,18 @@ if (!("Perks" in ::Const))
 	Tree = [
 		[],
 		[
-			::Const.Perks.PerkDefs.Dodge
+			::Legends.Perk.Dodge
 		],
 		[
-			::Const.Perks.PerkDefs.LegendOnslaught
+			::Legends.Perk.LegendOnslaught
 		],
 		[],
 		[],
 		[
-			::Const.Perks.PerkDefs.Nimble
+			::Legends.Perk.Nimble
 		],
 		[
-			::Const.Perks.PerkDefs.LegendFreedomOfMovement
+			::Legends.Perk.LegendFreedomOfMovement
 		]
 	]
 };
@@ -78,19 +78,19 @@ if (!("Perks" in ::Const))
 	],
 	Tree = [
 		[
-			::Const.Perks.PerkDefs.LegendBlendIn
+			::Legends.Perk.LegendBlendIn
 		],
 		[],
 		[
-			::Const.Perks.PerkDefs.LegendSmallTarget
+			::Legends.Perk.LegendSmallTarget
 		],
 		[],
 		[],
 		[
-			::Const.Perks.PerkDefs.LegendFashionable
+			::Legends.Perk.LegendFashionable
 		],
 		[
-			::Const.Perks.PerkDefs.LegendUnburdened
+			::Legends.Perk.LegendUnburdened
 		]
 	]
 };
@@ -102,9 +102,9 @@ if (!("Perks" in ::Const))
 	//	"helmets"
 	//],
 	//Tree = [
-	//	[::Const.Perks.PerkDefs.LegendLookout],
-	//	[::Const.Perks.PerkDefs.SteelBrow],
-	//	[],//::Const.Perks.PerkDefs.
+	//	[::Legends.Perk.LegendLookout],
+	//	[::Legends.Perk.SteelBrow],
+	//	[],//::Legends.Perk.
 	//	[],
 	//	[],
 	//	[],

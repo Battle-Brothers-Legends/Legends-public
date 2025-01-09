@@ -4,25 +4,25 @@
 	o.onInit = function ()
 	{
 		onInit();
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Recover);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendSpecialistMilitiaSkill);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.ShieldBash);
+		::Legends.Perks.grant(this, ::Legends.Perk.Recover);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecialistMilitiaSkill);
+		::Legends.Perks.grant(this, ::Legends.Perk.ShieldBash);
 		if(::Legends.isLegendaryDifficulty())
 		{
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.SpecSpear);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.ShieldExpert);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendSpecialistMilitiaDamage);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendSpecSpearWall);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendSpecSpearThrust);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Rotation);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.ReachAdvantage);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.CoupDeGrace);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendSpecialistShieldSkill);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendSpecialistShieldPush);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendSmashingShields);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendBackToBasics);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.ShieldBash);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Backstabber);
+			::Legends.Perks.grant(this, ::Legends.Perk.SpecSpear);
+			::Legends.Perks.grant(this, ::Legends.Perk.ShieldExpert);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecialistMilitiaDamage);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecSpearWall);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecSpearThrust);
+			::Legends.Perks.grant(this, ::Legends.Perk.Rotation);
+			::Legends.Perks.grant(this, ::Legends.Perk.ReachAdvantage);
+			::Legends.Perks.grant(this, ::Legends.Perk.CoupDeGrace);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecialistShieldSkill);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecialistShieldPush);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendSmashingShields);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendBackToBasics);
+			::Legends.Perks.grant(this, ::Legends.Perk.ShieldBash);
+			::Legends.Perks.grant(this, ::Legends.Perk.Backstabber);
 			this.m.Skills.add(this.new("scripts/skills/traits/fearless_trait"));
 		}
 	}

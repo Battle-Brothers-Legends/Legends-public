@@ -4,18 +4,18 @@
 	o.onInit = function ()
 	{
 		onInit();
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Rotation);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Footwork);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Recover);
+		::Legends.Perks.grant(this, ::Legends.Perk.Rotation);
+		::Legends.Perks.grant(this, ::Legends.Perk.Footwork);
+		::Legends.Perks.grant(this, ::Legends.Perk.Recover);
 		if(::Legends.isLegendaryDifficulty())
 		{
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendBallistics);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.NineLives);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Pathfinder);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LoneWolf);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendLookout);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Berserk);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendCloseCombatArcher);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendBallistics);
+			::Legends.Perks.grant(this, ::Legends.Perk.NineLives);
+			::Legends.Perks.grant(this, ::Legends.Perk.Pathfinder);
+			::Legends.Perks.grant(this, ::Legends.Perk.LoneWolf);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendLookout);
+			::Legends.Perks.grant(this, ::Legends.Perk.Berserk);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendCloseCombatArcher);
 			this.m.Skills.add(this.new("scripts/skills/traits/fearless_trait"));
 		}
 	}

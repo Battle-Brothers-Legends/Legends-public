@@ -2,7 +2,7 @@ this.perk_legend_lionheart <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		::Const.Perks.setup(this.m, ::Const.Perks.PerkDefs.LegendLionheart);
+		::Const.Perks.setup(this.m, ::Legends.Perk.LegendLionheart);
 		this.m.Type = this.Const.SkillType.Perk;
 		this.m.Order = this.Const.SkillOrder.Perk;
 		this.m.IsActive = false;

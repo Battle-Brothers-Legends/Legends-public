@@ -15,7 +15,7 @@ this.legend_sack_hood_blueprint <- this.inherit("scripts/crafting/blueprint", {
 		];
 		this.init(ingredients);
 		local skills = [
-			::Legends.Perks.blueprint(::Const.Perks.PerkDefs.LegendSpecCultHood)
+			::Legends.Perks.blueprint(::Legends.Perk.LegendSpecCultHood)
 		];
 		this.initSkills(skills);
 	}

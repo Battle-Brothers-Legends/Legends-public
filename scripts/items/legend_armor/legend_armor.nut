@@ -881,7 +881,7 @@ this.legend_armor <- this.inherit("scripts/items/armor/armor", {
 
 		local staminaMult = 1.0;
 
-		if (this.getContainer().getActor().getSkills().hasPerk(::Const.Perks.PerkDefs.Brawny))
+		if (this.getContainer().getActor().getSkills().hasPerk(::Legends.Perk.Brawny))
 		{
 			staminaMult = 0.70;
 		}

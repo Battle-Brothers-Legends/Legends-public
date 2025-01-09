@@ -7,7 +7,7 @@
 		this.m.Type = this.Const.Items.ItemType.Shield;
 		this.m.PreviewCraftable = this.new("scripts/items/shields/named/named_lindwurm_shield");
 		local skills = [
-			::Legends.Perks.blueprint(::Const.Perks.PerkDefs.LegendWoodworking)
+			::Legends.Perks.blueprint(::Legends.Perk.LegendWoodworking)
 		];
 		this.initSkills(skills);
 	}

@@ -13,7 +13,7 @@
  *	});
  *
  *	In perk implementation create() method it's encouraged to use helper function to set defined fields automatically by using
- *  ::Const.Perks.setup(this.m, ::Const.Perks.PerkDefs.LegendBallistics);
+ *  ::Const.Perks.setup(this.m, ::Legends.Perk.LegendBallistics);
  *  Use your name, this will ensure there's not mismatch or typos in ID, Icons etc.
  *  If your perk is an effect or requires to show different icons when used as a skill or whatever other reason, you can still set values you need regardless what helper sets.
  *
@@ -21,13 +21,14 @@
  *  For example, instead of using:
  *  	bro.getSkills().hasSkill("perk.legend_ballistics")
  *  Use:
- *  	bro.getSkills().hasPerk(::Const.Perks.PerkDefs.LegendBallistics)
+ *  	bro.getSkills().hasPerk(::Legends.Perk.LegendBallistics)
  */
 
 if (!("Perks" in ::Const))
-{
 	::Const.Perks <- {};
-}
+
+if (!("Perk" in ::Legends))
+	::Legends.Perk <- {};
 
 ::Const.Perks.PerkDefObjects <- [];
 ::Const.Perks.PerkDefs <- {};
@@ -38,6 +39,7 @@ if (!("Perks" in ::Const))
 	::Const.Perks.PerkDefObjects.extend(_perkDefObjects);
 	foreach (i, perkDefObject in _perkDefObjects)
 	{
+		::Legends.Perk[perkDefObject.Const] <- size + i;
 		::Const.Perks.PerkDefs[perkDefObject.Const] <- size + i;
 		::Const.Perks.LookupMap[perkDefObject.ID] <- perkDefObject;
 	}

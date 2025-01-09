@@ -62,7 +62,7 @@
 			return false;
 
 		local tile = actor.getTile();
-		return this.skill.isUsable() && (!tile.hasZoneOfControlOtherThan(actor.getAlliedFactions()) || this.m.Container.hasPerk(::Const.Perks.PerkDefs.LegendSpecBandage));
+		return this.skill.isUsable() && (!tile.hasZoneOfControlOtherThan(actor.getAlliedFactions()) || this.m.Container.hasPerk(::Legends.Perk.LegendSpecBandage));
 	}
 
 	o.onVerifyTarget = function( _originTile, _targetTile )
@@ -79,7 +79,7 @@
 			return false;
 		}
 
-		if (_targetTile.hasZoneOfControlOtherThan(this.m.Container.getActor().getAlliedFactions()) && !this.m.Container.hasPerk(::Const.Perks.PerkDefs.LegendSpecBandage))
+		if (_targetTile.hasZoneOfControlOtherThan(this.m.Container.getActor().getAlliedFactions()) && !this.m.Container.hasPerk(::Legends.Perk.LegendSpecBandage))
 		{
 			return false;
 		}

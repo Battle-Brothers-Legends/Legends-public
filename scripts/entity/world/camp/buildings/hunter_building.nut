@@ -347,7 +347,7 @@ this.hunter_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 			{
 				continue;
 			}
-			if (c.getBackground().getID() in ::Const.HuntingLoot.CookBackgrounds || c.getSkills().hasPerk(::Const.Perks.PerkDefs.LegendMealPreperation))
+			if (c.getBackground().getID() in ::Const.HuntingLoot.CookBackgrounds || c.getSkills().hasPerk(::Legends.Perk.LegendMealPreperation))
 			{
 				ret[c.getNameOnly()] <- c.getBackground().getNameOnly();
 			}
@@ -365,7 +365,7 @@ this.hunter_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 			{
 				continue;
 			}
-			if (c.getBackground().getID() in ::Const.HuntingLoot.CookBackgrounds || c.getSkills().hasPerk(::Const.Perks.PerkDefs.LegendAlcoholBrewing))
+			if (c.getBackground().getID() in ::Const.HuntingLoot.CookBackgrounds || c.getSkills().hasPerk(::Legends.Perk.LegendAlcoholBrewing))
 			{
 				ret[c.getNameOnly()] <- c.getBackground().getNameOnly();
 			}
@@ -434,7 +434,7 @@ this.hunter_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 				}
 			}
 
-			if (bro.getSkills().hasPerk(::Const.Perks.PerkDefs.LegendMealPreperation))
+			if (bro.getSkills().hasPerk(::Legends.Perk.LegendMealPreperation))
 			{
 				cookLevel += bro.getLevel();
 				if (_updateVerboseResults && !added)
@@ -475,7 +475,7 @@ this.hunter_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 				}
 			}
 
-			if (bro.getSkills().hasPerk(::Const.Perks.PerkDefs.LegendAlcoholBrewing))
+			if (bro.getSkills().hasPerk(::Legends.Perk.LegendAlcoholBrewing))
 			{
 				brewerLevel += bro.getLevel();
 				if (_updateVerboseResults && !added)

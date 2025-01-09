@@ -26,18 +26,18 @@ this.legend_noble_slinger <- this.inherit("scripts/entity/tactical/human", {
 		this.m.CurrentProperties = clone b;
 		this.setAppearance();
 		this.getSprite("socket").setBrush("bust_base_military");
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Bullseye);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Brawny);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Anticipation);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendSpecialistSlingSkill);
-		//::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendSpecialistSlingDamage);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendMasterySlings);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Rotation);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Recover);
+		::Legends.Perks.grant(this, ::Legends.Perk.Bullseye);
+		::Legends.Perks.grant(this, ::Legends.Perk.Brawny);
+		::Legends.Perks.grant(this, ::Legends.Perk.Anticipation);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecialistSlingSkill);
+		//::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecialistSlingDamage);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendMasterySlings);
+		::Legends.Perks.grant(this, ::Legends.Perk.Rotation);
+		::Legends.Perks.grant(this, ::Legends.Perk.Recover);
 		if(::Legends.isLegendaryDifficulty())
 			{
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Nimble);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.CripplingStrikes);
+			::Legends.Perks.grant(this, ::Legends.Perk.Nimble);
+			::Legends.Perks.grant(this, ::Legends.Perk.CripplingStrikes);
 			this.m.Skills.add(this.new("scripts/skills/traits/fearless_trait"));
 			}
 	}

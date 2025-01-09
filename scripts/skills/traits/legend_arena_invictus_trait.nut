@@ -62,7 +62,7 @@ this.legend_arena_invictus_trait <- this.inherit("scripts/skills/traits/characte
 			}
 		];
 
-		if (this.getContainer().getActor().getSkills().hasPerk(::Const.Perks.PerkDefs.Fearsome))
+		if (this.getContainer().getActor().getSkills().hasPerk(::Legends.Perk.Fearsome))
 		{
 			ret.push({
 				id = 12,
@@ -86,7 +86,7 @@ this.legend_arena_invictus_trait <- this.inherit("scripts/skills/traits/characte
 
 	function onTargetHit( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor )
 	{
-		if (this.getContainer().getActor().getSkills().hasPerk(::Const.Perks.PerkDefs.Fearsome)) return;
+		if (this.getContainer().getActor().getSkills().hasPerk(::Legends.Perk.Fearsome)) return;
 
 		if (_targetEntity == null || !_targetEntity.isAlive()) return;
 

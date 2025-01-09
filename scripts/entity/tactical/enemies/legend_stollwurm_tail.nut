@@ -550,20 +550,20 @@ this.legend_stollwurm_tail <- this.inherit("scripts/entity/tactical/actor", {
 		this.m.Skills.add(this.new("scripts/skills/actives/tail_slam_skill"));
 		this.m.Skills.add(this.new("scripts/skills/actives/tail_slam_big_skill"));
 		this.m.Skills.add(this.new("scripts/skills/actives/tail_slam_split_skill"));
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.HoldOut);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.ReachAdvantage);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Fearsome);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.BattleFlow);
+		::Legends.Perks.grant(this, ::Legends.Perk.HoldOut);
+		::Legends.Perks.grant(this, ::Legends.Perk.ReachAdvantage);
+		::Legends.Perks.grant(this, ::Legends.Perk.Fearsome);
+		::Legends.Perks.grant(this, ::Legends.Perk.BattleFlow);
 		this.m.Skills.add(this.new("scripts/skills/actives/legend_stollwurm_move_tail_skill"));
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Stalwart);
+		::Legends.Perks.grant(this, ::Legends.Perk.Stalwart);
 		if(::Legends.isLegendaryDifficulty())
 		{
 			this.m.Hitpoints = b.Hitpoints * 1.5;
 			this.m.ActionPoints = b.ActionPoints + 5;
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendMuscularity);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Pathfinder);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendComposure);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.KillingFrenzy);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendMuscularity);
+			::Legends.Perks.grant(this, ::Legends.Perk.Pathfinder);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendComposure);
+			::Legends.Perks.grant(this, ::Legends.Perk.KillingFrenzy);
 			this.m.Skills.add(this.new("scripts/skills/traits/fearless_trait"));
 		}
 		if (!this.Tactical.State.isScenarioMode())

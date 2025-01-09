@@ -17,7 +17,7 @@
 		local hasHistorian = false;
 		foreach (bro in this.World.getPlayerRoster().getAll())
 		{
-			if (bro.getSkills().hasPerk(::Const.Perks.PerkDefs.LegendScholar))
+			if (bro.getSkills().hasPerk(::Legends.Perk.LegendScholar))
 			{
 				hasHistorian = true;
 			}

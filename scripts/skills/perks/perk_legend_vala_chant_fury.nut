@@ -9,7 +9,7 @@ this.perk_legend_vala_chant_fury <- this.inherit("scripts/skills/skill", {
 
 	function create()
 	{
-		::Const.Perks.setup(this.m, ::Const.Perks.PerkDefs.LegendValaChantFury);
+		::Const.Perks.setup(this.m, ::Legends.Perk.LegendValaChantFury);
 		this.m.Type = this.Const.SkillType.Active | this.Const.SkillType.Perk;
 		this.m.Order = this.Const.SkillOrder.NonTargeted + 2;
 		this.m.IsSerialized = true;
@@ -137,7 +137,7 @@ this.perk_legend_vala_chant_fury <- this.inherit("scripts/skills/skill", {
 	{
 		local actor = this.getContainer().getActor();
 
-		if (actor.getSkills().hasPerk(::Const.Perks.PerkDefs.LegendValaChantMastery))
+		if (actor.getSkills().hasPerk(::Legends.Perk.LegendValaChantMastery))
 		{
 			this.m.FatigueCostMult = 0.75;
 		}

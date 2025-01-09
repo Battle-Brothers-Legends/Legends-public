@@ -566,8 +566,8 @@
 			 	local updateBro = false;
 
 				local skills = [
-					::Const.Perks.PerkDefs.LegendToolsSpares,
-					::Const.Perks.PerkDefs.LegendToolsDrawers
+					::Legends.Perk.LegendToolsSpares,
+					::Legends.Perk.LegendToolsDrawers
 				];
 				foreach (s in skills)
 				{

@@ -5,22 +5,22 @@
 	{
 		onInit();
 		this.m.Skills.removeByID("effects.dodge");
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Dodge);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Rotation);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Footwork);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Recover);
+		::Legends.Perks.grant(this, ::Legends.Perk.Dodge);
+		::Legends.Perks.grant(this, ::Legends.Perk.Rotation);
+		::Legends.Perks.grant(this, ::Legends.Perk.Footwork);
+		::Legends.Perks.grant(this, ::Legends.Perk.Recover);
 
 		if (::Legends.isLegendaryDifficulty())
 		{
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.BattleForged);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Pathfinder);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendBigGameHunter);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.HeadHunter);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendBackToBasics);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendPushTheAdvantage);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendMasteryNets);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendOnslaught);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Backstabber);
+			::Legends.Perks.grant(this, ::Legends.Perk.BattleForged);
+			::Legends.Perks.grant(this, ::Legends.Perk.Pathfinder);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendBigGameHunter);
+			::Legends.Perks.grant(this, ::Legends.Perk.HeadHunter);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendBackToBasics);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendPushTheAdvantage);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendMasteryNets);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendOnslaught);
+			::Legends.Perks.grant(this, ::Legends.Perk.Backstabber);
 			this.m.Skills.add(this.new("scripts/skills/traits/fearless_trait"));
 		}
 	}
@@ -64,11 +64,11 @@
 
 			if (this.m.Items.getItemAtSlot(this.Const.ItemSlot.Mainhand).getID() == "weapon.dagger")
 			{
-				::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Duelist);
+				::Legends.Perks.grant(this, ::Legends.Perk.Duelist);
 			}
 		}
 
-		if (this.m.Items.getItemAtSlot(this.Const.ItemSlot.Offhand) == null && !this.m.Skills.hasPerk(::Const.Perks.PerkDefs.Duelist))
+		if (this.m.Items.getItemAtSlot(this.Const.ItemSlot.Offhand) == null && !this.m.Skills.hasPerk(::Legends.Perk.Duelist))
 		{
 			if (this.Math.rand(1, 100) <= 75)
 			{

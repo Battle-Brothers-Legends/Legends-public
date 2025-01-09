@@ -56,10 +56,10 @@ this.legend_alp_shadow <- this.inherit("scripts/entity/tactical/actor", {
 		this.m.Skills.add(this.new("scripts/skills/racial/ghost_racial"));
 		this.m.Skills.add(this.new("scripts/skills/racial/alp_racial"));
 		// basic perks
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Fearsome);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Stalwart);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendComposure);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendPoisonImmunity);
+		::Legends.Perks.grant(this, ::Legends.Perk.Fearsome);
+		::Legends.Perks.grant(this, ::Legends.Perk.Stalwart);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendComposure);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendPoisonImmunity);
 	}
 
 	// must be called after the onInit of the child class
@@ -92,10 +92,10 @@ this.legend_alp_shadow <- this.inherit("scripts/entity/tactical/actor", {
 
 		if (::Legends.isLegendaryDifficulty())
 		{
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Footwork);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Rotation);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Anticipation);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Dodge);
+			::Legends.Perks.grant(this, ::Legends.Perk.Footwork);
+			::Legends.Perks.grant(this, ::Legends.Perk.Rotation);
+			::Legends.Perks.grant(this, ::Legends.Perk.Anticipation);
+			::Legends.Perks.grant(this, ::Legends.Perk.Dodge);
 		}
 
 		this.getSkills().update();

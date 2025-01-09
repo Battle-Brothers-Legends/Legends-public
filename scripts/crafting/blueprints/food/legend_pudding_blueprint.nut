@@ -21,7 +21,7 @@ this.legend_pudding_blueprint <- this.inherit("scripts/crafting/legend_food_blue
 		];
 		this.init(ingredients);
 		local skills = [
-			::Legends.Perks.blueprint(::Const.Perks.PerkDefs.LegendCampCook)
+			::Legends.Perks.blueprint(::Legends.Perk.LegendCampCook)
 		];
 		this.initSkills(skills);
 

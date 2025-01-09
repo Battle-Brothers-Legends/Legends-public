@@ -15,7 +15,7 @@ this.legend_net_restored_blueprint <- this.inherit("scripts/crafting/blueprint",
 		];
 		this.init(ingredients);
 		local skills = [
-			::Legends.Perks.blueprint(::Const.Perks.PerkDefs.LegendNetRepair)
+			::Legends.Perks.blueprint(::Legends.Perk.LegendNetRepair)
 		];
 		this.initSkills(skills);
 

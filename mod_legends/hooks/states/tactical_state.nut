@@ -78,7 +78,7 @@
 						this.World.getPlayerRoster().remove(bro);
 					}
 
-					else if (bro.getSkills().hasPerk(::Const.Perks.PerkDefs.LegendPacifist) && bro.isPlacedOnMap())
+					else if (bro.getSkills().hasPerk(::Legends.Perk.LegendPacifist) && bro.isPlacedOnMap())
 					{
 							bro.getLifetimeStats().BattlesWithoutMe = 0;
 							bro.worsenMood(this.Const.MoodChange.BattleWithoutMe, "Forced into battle against their wishes");
@@ -291,24 +291,24 @@
 					break;
 			}
 
-			if (bro.getSkills().hasPerk(::Const.Perks.PerkDefs.LegendReclamationhasSkill))
+			if (bro.getSkills().hasPerk(::Legends.Perk.LegendReclamationhasSkill))
 			{
-				local skill = ::Legends.Perks.get(bro, ::Const.Perks.PerkDefs.LegendReclamation);
+				local skill = ::Legends.Perks.get(bro, ::Legends.Perk.LegendReclamation);
 				zombieSalvage += skill.m.LootChance;
 			}
 
-			if (bro.getSkills().hasPerk(::Const.Perks.PerkDefs.LegendResurrectionist))
+			if (bro.getSkills().hasPerk(::Legends.Perk.LegendResurrectionist))
 			{
-				local skill = ::Legends.Perks.get(bro, ::Const.Perks.PerkDefs.LegendResurrectionist);
+				local skill = ::Legends.Perks.get(bro, ::Legends.Perk.LegendResurrectionist);
 				zombieSalvage += skill.m.LootChance;
 			}
 
-			if (bro.getSkills().hasPerk(::Const.Perks.PerkDefs.LegendSpawnZombieLow) || bro.getSkills().hasPerk(::Const.Perks.PerkDefs.LegendSpawnZombieMed) || bro.getSkills().hasPerk(::Const.Perks.PerkDefs.LegendSpawnZombieHigh))
+			if (bro.getSkills().hasPerk(::Legends.Perk.LegendSpawnZombieLow) || bro.getSkills().hasPerk(::Legends.Perk.LegendSpawnZombieMed) || bro.getSkills().hasPerk(::Legends.Perk.LegendSpawnZombieHigh))
 			{
 				zombieLoot = true;
 			}
 
-			if (bro.getSkills().hasPerk(::Const.Perks.PerkDefs.LegendSpawnSkeletonLow) || bro.getSkills().hasPerk(::Const.Perks.PerkDefs.LegendSpawnSkeletonMed) || bro.getSkills().hasPerk(::Const.Perks.PerkDefs.LegendSpawnSkeletonHigh))
+			if (bro.getSkills().hasPerk(::Legends.Perk.LegendSpawnSkeletonLow) || bro.getSkills().hasPerk(::Legends.Perk.LegendSpawnSkeletonMed) || bro.getSkills().hasPerk(::Legends.Perk.LegendSpawnSkeletonHigh))
 			{
 				skeletonLoot = true;
 			}

@@ -5,7 +5,7 @@ this.perk_legend_vala_warden <- this.inherit("scripts/skills/skill", {
 	},
 	function create()
 	{
-		::Const.Perks.setup(this.m, ::Const.Perks.PerkDefs.LegendValaWarden);
+		::Const.Perks.setup(this.m, ::Legends.Perk.LegendValaWarden);
 		this.m.Type = this.Const.SkillType.Perk | this.Const.SkillType.StatusEffect;
 		this.m.Order = this.Const.SkillOrder.VeryLast + 10;
 		this.m.IsSerialized = true;
@@ -131,7 +131,7 @@ this.perk_legend_vala_warden <- this.inherit("scripts/skills/skill", {
 				this.m.WardenEntity = ::MSU.asWeakTableRef(entity);
 				this.m.WardenSummonSpent = true;
 
-				if (this.getContainer().getActor().getSkills().hasPerk(::Const.Perks.PerkDefs.LegendValaSpiritualBond))
+				if (this.getContainer().getActor().getSkills().hasPerk(::Legends.Perk.LegendValaSpiritualBond))
 				{
 					if (!this.getContainer().getActor().getSkills().hasSkill("effects.legend_vala_spiritual_bond_effect"))
 					{

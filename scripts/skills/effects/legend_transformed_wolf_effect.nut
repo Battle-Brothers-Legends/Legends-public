@@ -52,7 +52,7 @@ this.legend_transformed_wolf_effect <- this.inherit("scripts/skills/effects/lege
 		local actor = this.getContainer().getActor();
 		actor.getSkills().removeByID("actives.werewolf_claws");
 		actor.getSkills().removeByID("actives.werewolf_bite");
-		if (!actor.getSkills().hasPerk(::Const.Perks.PerkDefs.Footwork))
+		if (!actor.getSkills().hasPerk(::Legends.Perk.Footwork))
 		{
 			actor.getSkills().removeByID("actives.footwork");
 		}

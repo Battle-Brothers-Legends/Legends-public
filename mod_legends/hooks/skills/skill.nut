@@ -330,7 +330,7 @@
 
 		if (this.m.IsAttack)
 		{
-			local fast_adaption = ::Legends.Perks.get(this.getContainer(), ::Const.Perks.PerkDefs.FastAdaption);
+			local fast_adaption = ::Legends.Perks.get(this.getContainer(), ::Legends.Perk.FastAdaption);
 
 			if (fast_adaption != null && fast_adaption.isBonusActive())
 			{
@@ -651,7 +651,7 @@
 		};
 		modifier["Fast Adaption"] <- function ( row, description )
 		{
-			local fast_adaption = ::Legends.Perks.get(this, ::Const.Perks.PerkDefs.FastAdaption);
+			local fast_adaption = ::Legends.Perks.get(this, ::Legends.Perk.FastAdaption);
 			local bonus = 10 * fast_adaption.m.Stacks;
 			row.text = green(bonus + "%") + " " + description;
 		};

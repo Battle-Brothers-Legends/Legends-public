@@ -2,7 +2,7 @@ this.perk_legend_muscularity <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		::Const.Perks.setup(this.m, ::Const.Perks.PerkDefs.LegendMuscularity);
+		::Const.Perks.setup(this.m, ::Legends.Perk.LegendMuscularity);
 		this.m.Type = this.Const.SkillType.Perk;
 		this.m.Order = this.Const.SkillOrder.Perk;
 		this.m.IsActive = false;

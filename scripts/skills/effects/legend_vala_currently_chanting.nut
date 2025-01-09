@@ -48,8 +48,8 @@ this.legend_vala_currently_chanting <- this.inherit("scripts/skills/skill", {
 
 	function onRemoved()
 	{
-		local ChantDisharmony = ::Legends.Perks.get(this.getContainer().getActor(), ::Const.Perks.PerkDefs.LegendValaChantDisharmony);
-		local ChantFury = ::Legends.Perks.get(this.getContainer().getActor(), ::Const.Perks.PerkDefs.LegendValaChantFury);
+		local ChantDisharmony = ::Legends.Perks.get(this.getContainer().getActor(), ::Legends.Perk.LegendValaChantDisharmony);
+		local ChantFury = ::Legends.Perks.get(this.getContainer().getActor(), ::Legends.Perk.LegendValaChantFury);
 
 		if (ChantDisharmony != null)
 		{

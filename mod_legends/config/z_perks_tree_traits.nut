@@ -51,15 +51,15 @@ if (!("Perks" in ::Const))
 	},
 	Tree = [
 		[
-			::Const.Perks.PerkDefs.Pathfinder
+			::Legends.Perk.Pathfinder
 		],
 		[],
 		[
-			::Const.Perks.PerkDefs.LegendAthlete
+			::Legends.Perk.LegendAthlete
 		],
 		[],
 		[
-			::Const.Perks.PerkDefs.Footwork
+			::Legends.Perk.Footwork
 		],
 		[],
 		[]
@@ -113,17 +113,17 @@ if (!("Perks" in ::Const))
 	},
 	Tree = [
 		[
-			::Const.Perks.PerkDefs.NineLives
+			::Legends.Perk.NineLives
 		],
 		[],
 		[
-			::Const.Perks.PerkDefs.HoldOut
+			::Legends.Perk.HoldOut
 		],
 		[],
 		[],
 		[],
 		[
-			::Const.Perks.PerkDefs.Indomitable
+			::Legends.Perk.Indomitable
 		]
 	]
 };
@@ -176,18 +176,18 @@ if (!("Perks" in ::Const))
 	Tree = [
 		[],
 		[
-			::Const.Perks.PerkDefs.Taunt
+			::Legends.Perk.Taunt
 		],
 		[],
 		[],
 		[
-			::Const.Perks.PerkDefs.LoneWolf
+			::Legends.Perk.LoneWolf
 		],
 		[
-			::Const.Perks.PerkDefs.LegendVengeance
+			::Legends.Perk.LegendVengeance
 		],
 		[
-			::Const.Perks.PerkDefs.LegendLastStand
+			::Legends.Perk.LegendLastStand
 		]
 	]
 };
@@ -239,18 +239,18 @@ if (!("Perks" in ::Const))
 	},
 	Tree = [
 		[
-			::Const.Perks.PerkDefs.CripplingStrikes
+			::Legends.Perk.CripplingStrikes
 		],
 		[],
 		[
-			::Const.Perks.PerkDefs.LegendDebilitate
+			::Legends.Perk.LegendDebilitate
 		],
 		[],
 		[
-			::Const.Perks.PerkDefs.Berserk
+			::Legends.Perk.Berserk
 		],
 		[
-			::Const.Perks.PerkDefs.LegendAssuredConquest
+			::Legends.Perk.LegendAssuredConquest
 		],
 		[]
 	]
@@ -302,11 +302,11 @@ if (!("Perks" in ::Const))
 		]
 	},
 	Tree = [
-		[::Const.Perks.PerkDefs.LegendBlendIn],
-		[::Const.Perks.PerkDefs.LegendTrueBeliever],
+		[::Legends.Perk.LegendBlendIn],
+		[::Legends.Perk.LegendTrueBeliever],
 		[],
 		[],
-		[::Const.Perks.PerkDefs.LegendEvasion],
+		[::Legends.Perk.LegendEvasion],
 		[],
 		[]
 	]
@@ -360,18 +360,18 @@ if (!("Perks" in ::Const))
 	Tree = [
 		[],
 		[
-			::Const.Perks.PerkDefs.RallyTheTroops
+			::Legends.Perk.RallyTheTroops
 		],
 		[
-			::Const.Perks.PerkDefs.Taunt
+			::Legends.Perk.Taunt
 		],
 		[],
 		[],
 		[
-			::Const.Perks.PerkDefs.InspiringPresence
+			::Legends.Perk.InspiringPresence
 		],
 		[
-			::Const.Perks.PerkDefs.LegendInspire
+			::Legends.Perk.LegendInspire
 		]
 	]
 };
@@ -423,18 +423,18 @@ if (!("Perks" in ::Const))
 	},
 	Tree = [
 		[
-			::Const.Perks.PerkDefs.Student
+			::Legends.Perk.Student
 		],
 		[
-			::Const.Perks.PerkDefs.Gifted,
+			::Legends.Perk.Gifted,
 		],
 		[],
 		[],
 		[
-			::Const.Perks.PerkDefs.LegendAdaptive
+			::Legends.Perk.LegendAdaptive
 		],
 		[
-			::Const.Perks.PerkDefs.LegendMindOverBody
+			::Legends.Perk.LegendMindOverBody
 		],
 		[]
 	]
@@ -486,19 +486,19 @@ if (!("Perks" in ::Const))
 	},
 	Tree = [
 		[
-			::Const.Perks.PerkDefs.LegendAlert
+			::Legends.Perk.LegendAlert
 		],
 		[],
 		[],
 		[
-			::Const.Perks.PerkDefs.LegendPeaceful
+			::Legends.Perk.LegendPeaceful
 		],
 		[
-			::Const.Perks.PerkDefs.LegendClarity
+			::Legends.Perk.LegendClarity
 		],
 		[],
 		[
-			::Const.Perks.PerkDefs.LegendPerfectFocus
+			::Legends.Perk.LegendPerfectFocus
 		]
 	]
 };
@@ -550,12 +550,12 @@ if (!("Perks" in ::Const))
 	},
 	Tree = [
 		[
-			::Const.Perks.PerkDefs.FastAdaption,
-			::Const.Perks.PerkDefs.Adrenaline
+			::Legends.Perk.FastAdaption,
+			::Legends.Perk.Adrenaline
 		],
 		[
-			::Const.Perks.PerkDefs.Anticipation,
-			::Const.Perks.PerkDefs.LegendQuickStep
+			::Legends.Perk.Anticipation,
+			::Legends.Perk.LegendQuickStep
 		],
 		[],
 		[],
@@ -612,17 +612,17 @@ if (!("Perks" in ::Const))
 	},
 	Tree = [
 		[
-			::Const.Perks.PerkDefs.Colossus
+			::Legends.Perk.Colossus
 		],
 		[],
 		[],
 		[],
 		[
-			::Const.Perks.PerkDefs.LegendSecondWind
+			::Legends.Perk.LegendSecondWind
 		],
 		[],
 		[
-			::Const.Perks.PerkDefs.LegendMuscularity
+			::Legends.Perk.LegendMuscularity
 		]
 	]
 };
@@ -674,18 +674,18 @@ if (!("Perks" in ::Const))
 	},
 	Tree = [
 		[
-			::Const.Perks.PerkDefs.BagsAndBelts,
-			::Const.Perks.PerkDefs.LegendPacifist
+			::Legends.Perk.BagsAndBelts,
+			::Legends.Perk.LegendPacifist
 		],
 		[
-			::Const.Perks.PerkDefs.LegendHelpful
+			::Legends.Perk.LegendHelpful
 		],
 		[
-			::Const.Perks.PerkDefs.LegendEfficientPacking
+			::Legends.Perk.LegendEfficientPacking
 		],
 		[],
 		[
-			::Const.Perks.PerkDefs.LegendSkillfulStacking
+			::Legends.Perk.LegendSkillfulStacking
 		],
 		[],
 		[]
@@ -739,19 +739,19 @@ if (!("Perks" in ::Const))
 	},
 	Tree = [
 		[
-			::Const.Perks.PerkDefs.LegendRecuperation
+			::Legends.Perk.LegendRecuperation
 		],
 		[
-			::Const.Perks.PerkDefs.FortifiedMind
+			::Legends.Perk.FortifiedMind
 		],
 		[
-			::Const.Perks.PerkDefs.Steadfast
+			::Legends.Perk.Steadfast
 		],
 		[],
 		[],
 		[],
 		[
-			::Const.Perks.PerkDefs.LegendRebound
+			::Legends.Perk.LegendRebound
 		]
 	]
 };
@@ -802,18 +802,18 @@ if (!("Perks" in ::Const))
 	},
 	Tree = [
 		[
-			::Const.Perks.PerkDefs.Recover,
-			::Const.Perks.PerkDefs.LegendRecuperation
+			::Legends.Perk.Recover,
+			::Legends.Perk.LegendRecuperation
 		],
 		[],
 		[],
 		[],
 		[],
 		[
-			::Const.Perks.PerkDefs.Overwhelm
+			::Legends.Perk.Overwhelm
 		],
 		[
-			::Const.Perks.PerkDefs.LegendRebound
+			::Legends.Perk.LegendRebound
 		]
 	]
 };
@@ -865,15 +865,15 @@ if (!("Perks" in ::Const))
 	},
 	Tree = [
 		[
-			::Const.Perks.PerkDefs.LegendBackToBasics
+			::Legends.Perk.LegendBackToBasics
 		],
 		[],
 		[
-			::Const.Perks.PerkDefs.Rotation
+			::Legends.Perk.Rotation
 		],
 		[],
 		[
-			::Const.Perks.PerkDefs.Underdog
+			::Legends.Perk.Underdog
 		],
 		[],
 		[]

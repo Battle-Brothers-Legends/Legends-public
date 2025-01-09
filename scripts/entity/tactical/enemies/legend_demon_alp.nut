@@ -262,14 +262,14 @@ this.legend_demon_alp <- this.inherit("scripts/entity/tactical/actor", {
 		this.m.Skills.add(this.new("scripts/skills/actives/legend_alp_summon_nightmare_skill"));
 		this.m.Skills.add(this.new("scripts/skills/actives/legend_alp_nightmare_manifestation_skill"));
 		this.m.Skills.add(this.new("scripts/skills/racial/alp_racial"));
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Underdog);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Footwork);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Anticipation);
+		::Legends.Perks.grant(this, ::Legends.Perk.Underdog);
+		::Legends.Perks.grant(this, ::Legends.Perk.Footwork);
+		::Legends.Perks.grant(this, ::Legends.Perk.Anticipation);
 
 		if (::Legends.isLegendaryDifficulty())
 		{
 			b.Hitpoints -= 100;
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Nimble);
+			::Legends.Perks.grant(this, ::Legends.Perk.Nimble);
 			this.m.Skills.add(this.new("scripts/skills/traits/fearless_trait"));
 		}
 	}

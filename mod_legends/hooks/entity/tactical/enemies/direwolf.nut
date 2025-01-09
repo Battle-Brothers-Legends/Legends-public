@@ -6,7 +6,7 @@
 		onInit();
 		if (::Legends.isLegendaryDifficulty())
 		{
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Backstabber);
+			::Legends.Perks.grant(this, ::Legends.Perk.Backstabber);
 			this.m.Skills.add(this.new("scripts/skills/racial/legend_werewolf_racial"));
 			this.m.Skills.add(this.new("scripts/skills/traits/fearless_trait"));
 		}

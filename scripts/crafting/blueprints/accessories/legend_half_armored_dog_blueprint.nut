@@ -23,7 +23,7 @@ this.legend_half_armored_dog_blueprint <- this.inherit("scripts/crafting/bluepri
 		];
 		this.init(ingredients);
 		local skills = [
-			::Legends.Perks.blueprint(::Const.Perks.PerkDefs.LegendDogBreeder)
+			::Legends.Perks.blueprint(::Legends.Perk.LegendDogBreeder)
 		];
 		this.initSkills(skills);
 	}

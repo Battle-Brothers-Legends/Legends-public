@@ -5,7 +5,7 @@
 	{
 		onInit();
 		this.m.Skills.removeByID("effects.dodge");
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Dodge);
+		::Legends.Perks.grant(this, ::Legends.Perk.Dodge);
 	}
 
 	o.assignRandomEquipment = function ()
@@ -63,8 +63,8 @@
 		}
 
 		this.m.BaseProperties.DamageDirectMult *= 1.25;
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendEscapeArtist);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Relentless);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendEscapeArtist);
+		::Legends.Perks.grant(this, ::Legends.Perk.Relentless);
 		return true;
 	}
 });

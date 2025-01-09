@@ -5,7 +5,7 @@ this.legend_swordmaster_fav_enemy_event <- this.inherit("scripts/events/event", 
 		Candidates = null,
 		Champion = null,
 		Flags = null,
-		Perk = ::Legends.Perks.getID(::Const.Perks.PerkDefs.LegendFavouredEnemySwordmaster),
+		Perk = ::Legends.Perks.getID(::Legends.Perk.LegendFavouredEnemySwordmaster),
 		ValidTypes = this.Const.LegendMod.FavoriteSwordmaster,
 		isValidForEncounter = false
 	},
@@ -494,7 +494,7 @@ this.legend_swordmaster_fav_enemy_event <- this.inherit("scripts/events/event", 
 
 		foreach( bro in this.World.getPlayerRoster().getAll() )
 		{
-			if (!bro.getSkills().hasPerk(::Const.Perks.PerkDefs.LegendFavouredEnemySwordmaster)) // perk check
+			if (!bro.getSkills().hasPerk(::Legends.Perk.LegendFavouredEnemySwordmaster)) // perk check
 			{
 				continue;
 			}

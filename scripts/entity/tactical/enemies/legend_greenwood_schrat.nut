@@ -216,27 +216,27 @@ this.legend_greenwood_schrat <- this.inherit("scripts/entity/tactical/actor", {
 		this.setSpriteOffset("status_stunned", this.createVec(0, 10));
 		this.setSpriteOffset("arrow", this.createVec(0, 10));
 		this.m.Skills.add(this.new("scripts/skills/racial/legend_greenwood_schrat_racial"));
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Pathfinder);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.CripplingStrikes);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.SteelBrow);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.HoldOut);
+		::Legends.Perks.grant(this, ::Legends.Perk.Pathfinder);
+		::Legends.Perks.grant(this, ::Legends.Perk.CripplingStrikes);
+		::Legends.Perks.grant(this, ::Legends.Perk.SteelBrow);
+		::Legends.Perks.grant(this, ::Legends.Perk.HoldOut);
 		this.m.Skills.add(this.new("scripts/skills/actives/legend_grow_greenwood_shield_skill"));
 		this.m.Skills.add(this.new("scripts/skills/actives/uproot_skill"));
 		this.m.Skills.add(this.new("scripts/skills/actives/uproot_zoc_skill"));
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Stalwart);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendComposure);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendPoisonImmunity);
+		::Legends.Perks.grant(this, ::Legends.Perk.Stalwart);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendComposure);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendPoisonImmunity);
 		if(::Legends.isLegendaryDifficulty())
 		{
 			this.m.Hitpoints = 2 * b.Hitpoints;
 			b.MeleeSkill += 10;
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.CripplingStrikes);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.CoupDeGrace);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.ShieldExpert);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendLacerate);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendSpecialistShieldSkill);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendSpecialistShieldPush);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.ShieldBash);
+			::Legends.Perks.grant(this, ::Legends.Perk.CripplingStrikes);
+			::Legends.Perks.grant(this, ::Legends.Perk.CoupDeGrace);
+			::Legends.Perks.grant(this, ::Legends.Perk.ShieldExpert);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendLacerate);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecialistShieldSkill);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecialistShieldPush);
+			::Legends.Perks.grant(this, ::Legends.Perk.ShieldBash);
 			this.m.Skills.add(this.new("scripts/skills/traits/fearless_trait"));
 		}
 		if (!this.Tactical.State.isScenarioMode())

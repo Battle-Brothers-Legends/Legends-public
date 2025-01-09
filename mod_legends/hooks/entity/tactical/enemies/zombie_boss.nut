@@ -10,12 +10,12 @@
 		{
 			this.m.Hitpoints = b.Hitpoints * 1.5;
 		}
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendPoisonImmunity);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Backstabber);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendPoisonImmunity);
+		::Legends.Perks.grant(this, ::Legends.Perk.Backstabber);
 		if(::Legends.isLegendaryDifficulty())
 		{
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.NineLives);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendLastStand);
+			::Legends.Perks.grant(this, ::Legends.Perk.NineLives);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendLastStand);
 		}
 	}
 });

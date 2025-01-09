@@ -6,9 +6,9 @@
 		this.m.Skills.add(this.new("scripts/skills/actives/legend_donkey_kick_skill"));
 		if(::Legends.isLegendaryDifficulty())
 		{
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendMuscularity);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Steadfast);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Stalwart);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendMuscularity);
+			::Legends.Perks.grant(this, ::Legends.Perk.Steadfast);
+			::Legends.Perks.grant(this, ::Legends.Perk.Stalwart);
 		}
 		this.m.Skills.update();
 	}

@@ -47,13 +47,13 @@
 		this.addDefaultStatusSprites();
 		this.getSprite("status_rooted").Scale = 0.65;
 		this.setSpriteOffset("status_rooted", this.createVec(-10, 16));
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.CripplingStrikes);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Pathfinder);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.SteelBrow);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.KillingFrenzy);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.BatteringRam);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Stalwart);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.HoldOut);
+		::Legends.Perks.grant(this, ::Legends.Perk.CripplingStrikes);
+		::Legends.Perks.grant(this, ::Legends.Perk.Pathfinder);
+		::Legends.Perks.grant(this, ::Legends.Perk.SteelBrow);
+		::Legends.Perks.grant(this, ::Legends.Perk.KillingFrenzy);
+		::Legends.Perks.grant(this, ::Legends.Perk.BatteringRam);
+		::Legends.Perks.grant(this, ::Legends.Perk.Stalwart);
+		::Legends.Perks.grant(this, ::Legends.Perk.HoldOut);
 		this.m.Skills.add(this.new("scripts/skills/racial/unhold_racial"));
 		this.m.Skills.add(this.new("scripts/skills/actives/sweep_skill"));
 		this.m.Skills.add(this.new("scripts/skills/actives/sweep_zoc_skill"));
@@ -62,7 +62,7 @@
 		if(::Legends.isLegendaryDifficulty())
 		{
 			b.MeleeSkill += 10;
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendBattleheart);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendBattleheart);
 			this.m.Hitpoints = 2 * b.Hitpoints;
 			this.m.Skills.add(this.new("scripts/skills/traits/fearless_trait"));
 		}

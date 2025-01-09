@@ -14,7 +14,7 @@ this.legend_prosthetic_forearm_blueprint <- this.inherit("scripts/crafting/bluep
 			}
 		];
 		local skills = [
-			::Legends.Perks.blueprint(::Const.Perks.PerkDefs.LegendInventorAnatomy)
+			::Legends.Perks.blueprint(::Legends.Perk.LegendInventorAnatomy)
 		];
 		this.initSkills(skills);
 	}

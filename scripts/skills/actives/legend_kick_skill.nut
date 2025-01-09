@@ -114,7 +114,7 @@ this.legend_kick_skill <- this.inherit("scripts/skills/skill", {
 	function onUse( _user, _targetTile )
 	{
 		local target = _targetTile.getEntity();
-		local hasFistMastery = _user.getSkills().hasPerk(::Const.Perks.PerkDefs.LegendSpecFists);
+		local hasFistMastery = _user.getSkills().hasPerk(::Legends.Perk.LegendSpecFists);
 		local skills = target.getSkills();
 
 		if (this.m.SoundOnUse.len() != 0)

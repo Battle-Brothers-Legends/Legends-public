@@ -31,7 +31,7 @@
 				if (!_user.isHiddenToPlayer() && _targetTile.IsVisibleForPlayer)
 				{
 					local logMessage = this.Const.UI.getColorizedEntityName(_user) + " has destroyed " + this.Const.UI.getColorizedEntityName(_targetTile.getEntity()) + "\'s shield"
-					if (this.getContainer().hasPerk(::Const.Perks.PerkDefs.LegendSmashingShields))
+					if (this.getContainer().hasPerk(::Legends.Perk.LegendSmashingShields))
 					{
 						_user.setActionPoints(this.Math.min(_user.getActionPointsMax(), _user.getActionPoints() + 4));
 						this.Tactical.EventLog.log(logMessage + " and recovered 4 Action Points");
@@ -62,7 +62,7 @@
 				], 1.0);
 			}
 
-			local overwhelm = ::Legends.Perks.get(this, ::Const.Perks.PerkDefs.Overwhelm);
+			local overwhelm = ::Legends.Perks.get(this, ::Legends.Perk.Overwhelm);
 
 			if (overwhelm != null)
 			{

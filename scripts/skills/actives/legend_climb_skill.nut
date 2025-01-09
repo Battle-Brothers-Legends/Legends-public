@@ -96,7 +96,7 @@ this.legend_climb_skill <- this.inherit("scripts/skills/skill", {
 
 	function onAfterUpdate( _properties )
 	{
-		if (this.getContainer().getActor().getSkills().hasPerk(::Const.Perks.PerkDefs.LegendBackflip))
+		if (this.getContainer().getActor().getSkills().hasPerk(::Legends.Perk.LegendBackflip))
 		{
 			this.m.MaxRange = 2;
 		}

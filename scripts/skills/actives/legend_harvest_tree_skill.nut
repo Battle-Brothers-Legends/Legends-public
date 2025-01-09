@@ -60,7 +60,7 @@ this.legend_harvest_tree_skill <- this.inherit("scripts/skills/skill", {
 			return true;
 		}
 
-		if (!actor.getSkills().hasPerk(::Const.Perks.PerkDefs.LegendSpecialistWoodaxeSkill))
+		if (!actor.getSkills().hasPerk(::Legends.Perk.LegendSpecialistWoodaxeSkill))
 		{
 			return true;
 		}

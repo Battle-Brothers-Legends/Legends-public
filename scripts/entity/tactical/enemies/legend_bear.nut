@@ -231,13 +231,13 @@ this.legend_bear <- this.inherit("scripts/entity/tactical/actor", {
 		this.setSpriteOffset("status_rooted", this.createVec(-10, 16));
 		this.setSpriteOffset("status_stunned", this.createVec(0, 10));
 		this.setSpriteOffset("arrow", this.createVec(0, 10));
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.CripplingStrikes);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Pathfinder);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.SteelBrow);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.BatteringRam);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Stalwart);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.HoldOut);
-		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Berserk);
+		::Legends.Perks.grant(this, ::Legends.Perk.CripplingStrikes);
+		::Legends.Perks.grant(this, ::Legends.Perk.Pathfinder);
+		::Legends.Perks.grant(this, ::Legends.Perk.SteelBrow);
+		::Legends.Perks.grant(this, ::Legends.Perk.BatteringRam);
+		::Legends.Perks.grant(this, ::Legends.Perk.Stalwart);
+		::Legends.Perks.grant(this, ::Legends.Perk.HoldOut);
+		::Legends.Perks.grant(this, ::Legends.Perk.Berserk);
 		this.m.Skills.add(this.new("scripts/skills/actives/legend_grapple_skill"));
 		this.m.Skills.add(this.new("scripts/skills/actives/legend_bear_bite_skill"));
 		this.m.Skills.add(this.new("scripts/skills/actives/legend_bear_claws_skill"));
@@ -246,8 +246,8 @@ this.legend_bear <- this.inherit("scripts/entity/tactical/actor", {
 		{
 			this.m.Hitpoints = 2 * b.Hitpoints;
 			b.MeleeSkill += 10;
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendBattleheart);
-			::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.LegendLastStand);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendBattleheart);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendLastStand);
 			this.m.Skills.add(this.new("scripts/skills/traits/fearless_trait"));
 		}
 

@@ -2,7 +2,7 @@ this.perk_legend_possession <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		::Const.Perks.setup(this.m, ::Const.Perks.PerkDefs.LegendPossession);
+		::Const.Perks.setup(this.m, ::Legends.Perk.LegendPossession);
 		this.m.Icon = "ui/perks/possess56.png";
 		this.m.IconDisabled = "ui/perks/possess56_bw.png";
 		this.m.Type = this.Const.SkillType.Perk;

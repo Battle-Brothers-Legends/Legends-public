@@ -2,7 +2,7 @@ this.perk_legend_infectious_rage <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		::Const.Perks.setup(this.m, ::Const.Perks.PerkDefs.LegendInfectiousRage);
+		::Const.Perks.setup(this.m, ::Legends.Perk.LegendInfectiousRage);
 		this.m.Type = this.Const.SkillType.Perk;
 		this.m.Order = this.Const.SkillOrder.Perk;
 		this.m.IsActive = false;
@@ -15,7 +15,7 @@ this.perk_legend_infectious_rage <- this.inherit("scripts/skills/skill", {
 	{
 		local actors = this.Tactical.Entities.getInstancesOfFaction(this.Const.Faction.Player);
 		foreach( a in actors )
-			::Legends.Perks.grant(a, ::Const.Perks.PerkDefs.Berserk);
+			::Legends.Perks.grant(a, ::Legends.Perk.Berserk);
 	}
 
 });

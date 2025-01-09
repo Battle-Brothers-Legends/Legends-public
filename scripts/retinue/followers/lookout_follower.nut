@@ -14,7 +14,7 @@ this.lookout_follower <- this.inherit("scripts/retinue/follower", {
 		];
 
 		this.addSkillRequirement("Have someone with the Lookout perk. Guaranteed on Thief, Poacher, Nomad and many others", [
-			::Legends.Perks.getID(::Const.Perks.PerkDefs.LegendLookout),
+			::Legends.Perks.getID(::Legends.Perk.LegendLookout),
 			"background.legend_companion_melee",
 			"background.legend_companion_ranged"
 		]);

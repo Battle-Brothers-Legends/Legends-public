@@ -2,7 +2,7 @@ this.perk_legend_rebound <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		::Const.Perks.setup(this.m, ::Const.Perks.PerkDefs.LegendRebound);
+		::Const.Perks.setup(this.m, ::Legends.Perk.LegendRebound);
 		this.m.Type = this.Const.SkillType.Perk;
 		this.m.Order = this.Const.SkillOrder.Perk;
 		this.m.IsActive = false;
@@ -21,7 +21,7 @@ this.perk_legend_rebound <- this.inherit("scripts/skills/skill", {
 		{
 			_properties.FatigueRecoveryRate += 5;
 		}
-		else if (ratio > 0.75 && actor.getSkills().hasPerk(::Const.Perks.PerkDefs.LegendRecuperation))
+		else if (ratio > 0.75 && actor.getSkills().hasPerk(::Legends.Perk.LegendRecuperation))
 		{
 			_properties.FatigueRecoveryRate += 5;
 		}

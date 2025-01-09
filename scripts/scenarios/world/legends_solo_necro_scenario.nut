@@ -45,8 +45,8 @@ this.legends_solo_necro_scenario <- this.inherit("scripts/scenarios/world/starti
 		bros[0].getSprite("socket").setBrush("bust_base_undead");
 		bros[0].getFlags().set("IsPlayerCharacter", true); //player character
 		bros[0].getSkills().add(this.new("scripts/skills/traits/player_character_trait"));
-		::Legends.Perks.grant(bros[0], ::Const.Perks.PerkDefs.LegendPossession);
-		::Legends.Perks.grant(bros[0], ::Const.Perks.PerkDefs.LegendSpawnZombieLow);
+		::Legends.Perks.grant(bros[0], ::Legends.Perk.LegendPossession);
+		::Legends.Perks.grant(bros[0], ::Legends.Perk.LegendSpawnZombieLow);
 
 		bros[1].setStartValuesEx([ //ur a wizard, Harold
 			"legend_puppet_background"

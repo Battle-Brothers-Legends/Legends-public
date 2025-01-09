@@ -14,7 +14,7 @@ this.surgeon_follower <- this.inherit("scripts/retinue/follower", {
 		];
 
 		this.addSkillRequirement("Have someone with the Field Triage perk. Guaranteed on Monks and Nuns", [
-			::Legends.Perks.getID(::Const.Perks.PerkDefs.LegendFieldTriage),
+			::Legends.Perks.getID(::Legends.Perk.LegendFieldTriage),
 			"background.legend_companion_melee",
 			"background.legend_companion_ranged"
 		]);

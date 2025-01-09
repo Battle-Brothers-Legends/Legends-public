@@ -7,7 +7,7 @@
 		{
 			return this.m.ShieldDamage;
 		}
-		local perk = ::Legends.Perks.get(this, ::Const.Perks.PerkDefs.LegendSmashingShields);
+		local perk = ::Legends.Perks.get(this, ::Legends.Perk.LegendSmashingShields);
 
 		return perk == null ? this.m.ShieldDamage : this.Math.round(this.m.ShieldDamage * skill.getModifier());
 	}
