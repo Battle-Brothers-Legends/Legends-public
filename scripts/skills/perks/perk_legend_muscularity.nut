@@ -10,11 +10,19 @@ this.perk_legend_muscularity <- this.inherit("scripts/skills/skill", {
 		this.m.IsHidden = false;
 	}
 
-	function onUpdate( _properties )
+	function onAnySkillUsed( _skill, _targetEntity, _properties )
 	{
-		local bodyHealth = this.getContainer().getActor().getHitpoints();
-		_properties.DamageRegularMin += this.Math.min(50, this.Math.floor(bodyHealth * 0.1));
-		_properties.DamageRegularMax += this.Math.min(50, this.Math.floor(bodyHealth * 0.1));
-	}
+		local item = _skill.getItem();
 
+		if (item != null && item.isItemType(this.Const.Items.ItemType.Defensive) && !item.isItemType(this.Const.Items.ItemType.Weapon))
+			return;
+
+		local isValidRanged = item.isWeaponType(this.Const.Items.WeaponType.Throwing) || item.isWeaponType(this.Const.Items.WeaponType.Bow);
+		if (!_skill.isRanged() || (item != null && item.isItemType(this.Const.Items.ItemType.Weapon) && isValidRanged))
+		{
+			local actor = this.getContainer().getActor();
+			local damageBonus = this.Math.maxf(actor.getHitpoints(), actor.getHitpointsMax() / 2.0) * 0.001; // either half of the max hitpoints or hitpoints so there's a lower bound
+			_properties.DamageTotalMult *= 1 + this.Math.min(0.5, damageBonus);
+		}
+	}
 });
