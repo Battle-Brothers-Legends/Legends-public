@@ -184,24 +184,6 @@ perkDefObjects.push({
 	Const = "FastAdaption"
 });
 perkDefObjects.push({
-	ID = "perk.captain",
-	Script = "scripts/skills/perks/perk_captain",
-	Name = ::Const.Strings.PerkName.Captain,
-	Tooltip = ::Const.Strings.PerkDescription.Captain,
-	Icon = "ui/perks/perk_26.png",
-	IconDisabled = "ui/perks/perk_26_sw.png",
-	Const = "Captain"
-});
-perkDefObjects.push({
-	ID = "perk.battering_ram",
-	Script = "scripts/skills/perks/perk_battering_ram",
-	Name = ::Const.Strings.PerkName.BatteringRam,
-	Tooltip = ::Const.Strings.PerkDescription.BatteringRam,
-	Icon = "ui/perks/passive_03.png",
-	IconDisabled = "ui/perks/passive_03_sw.png",
-	Const = "BatteringRam"
-});
-perkDefObjects.push({
 	ID = "perk.crippling_strikes",
 	Script = "scripts/skills/perks/perk_crippling_strikes",
 	Name = ::Const.Strings.PerkName.CripplingStrikes,
@@ -3699,6 +3681,24 @@ perkDefObjects.push({
 	Icon = "ui/perks/lionheart.png",
 	IconDisabled = "ui/perks/lionheart_bw.png",
 	Const = "LegendLionheart"
+});
+perkDefObjects.push({
+	ID = "perk.captain",
+	Script = "scripts/skills/perks/perk_captain",
+	Name = ::Const.Strings.PerkName.Captain,
+	Tooltip = ::Const.Strings.PerkDescription.Captain,
+	Icon = "ui/perks/perk_26.png",
+	IconDisabled = "ui/perks/perk_26_sw.png",
+	Const = "Captain"
+});
+perkDefObjects.push({
+	ID = "perk.battering_ram",
+	Script = "scripts/skills/perks/perk_battering_ram",
+	Name = ::Const.Strings.PerkName.BatteringRam,
+	Tooltip = ::Const.Strings.PerkDescription.BatteringRam,
+	Icon = "ui/perks/passive_03.png",
+	IconDisabled = "ui/perks/passive_03_sw.png",
+	Const = "BatteringRam"
 });
 
 ::Const.Perks.addPerkDefObjects(perkDefObjects);
