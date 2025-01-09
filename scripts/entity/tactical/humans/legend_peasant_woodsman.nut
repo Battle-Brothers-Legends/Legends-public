@@ -41,7 +41,7 @@ this.legend_peasant_woodsman <- this.inherit("scripts/entity/tactical/human", {
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendForcefulSwing);
 			::Legends.Perks.grant(this, ::Legends.Perk.Recover);
 			::Legends.Perks.grant(this, ::Legends.Perk.Footwork);
-			this.m.Skills.add(this.new("scripts/skills/traits/fearless_trait"));
+			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
 		}
 	}
 

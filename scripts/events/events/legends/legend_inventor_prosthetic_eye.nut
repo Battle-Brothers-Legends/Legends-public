@@ -97,12 +97,12 @@ this.legend_inventor_prosthetic_eye <- this.inherit("scripts/events/event", {
 					text = "You spend [color=" + this.Const.UI.Color.NegativeEventValue + "]5[/color] Tools and Supplies"
 				});
 
-				local glass_eye_trait = this.new("scripts/skills/traits/legend_prosthetic_eye");
-				_event.m.Noeye.getSkills().add(glass_eye_trait);
-				this.List.push({
+				local trait = ::Legends.Traits.grant(_event.m.Noeye, ::Legends.Trait.LegendProstheticEye, function (_trait) {
+					this.List.push({
 						id = 10,
-						icon = glass_eye_trait.getIcon(),
-						text = _event.m.Noeye.m.Name + " receives a " + glass_eye_trait.m.Name
+						icon = _trait.getIcon(),
+						text = _event.m.Noeye.m.Name + " receives a " + _trait.m.Name
+					});
 				});
 
 				local missing_eye_bye = this.new("scripts/skills/injury_permanent/missing_eye_injury");
@@ -114,8 +114,8 @@ this.legend_inventor_prosthetic_eye <- this.inherit("scripts/events/event", {
 						text = _event.m.Noeye.m.Name + " no longer has a " + missing_eye_bye.m.Name
 				});
 
-				_event.m.Inventor.improveMood(2.0, "Created a " + glass_eye_trait.m.Name + " for " + _event.m.Noeye.m.Name);
-				_event.m.Noeye.improveMood(2.0, "Received a " + glass_eye_trait.m.Name + " from " + _event.m.Inventor.m.Name);
+				_event.m.Inventor.improveMood(2.0, "Created a " + trait.m.Name + " for " + _event.m.Noeye.m.Name);
+				_event.m.Noeye.improveMood(2.0, "Received a " + trait.m.Name + " from " + _event.m.Inventor.m.Name);
 			}
 		});
 		this.m.Screens.push({

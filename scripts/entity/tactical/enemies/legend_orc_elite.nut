@@ -282,7 +282,7 @@ this.legend_orc_elite <- this.inherit("scripts/entity/tactical/actor", {
 			::Legends.Perks.grant(this, ::Legends.Perk.Underdog);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendFullForce);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendSecondWind);
-			this.m.Skills.add(this.new("scripts/skills/traits/fearless_trait"));
+			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
 		}
 
 		if (!this.Tactical.State.isScenarioMode())

@@ -32,7 +32,7 @@ this.legends_risen_legion_scenario <- this.inherit("scripts/scenarios/world/star
 			bro.getFlags().add("skeleton");
 			// bro.getSkills().add(this.new("scripts/skills/traits/legend_deathly_spectre_trait"));
 			bro.getSkills().add(this.new("scripts/skills/racial/skeleton_racial"));
-			bro.getSkills().add(this.new("scripts/skills/traits/legend_fleshless_trait"));
+			::Legends.Traits.grant(bro, ::Legends.Trait.LegendFleshless);
 			local items = bro.getItems();
 			items.unequip(items.getItemAtSlot(this.Const.ItemSlot.Mainhand));
 			items.unequip(items.getItemAtSlot(this.Const.ItemSlot.Offhand));
@@ -481,7 +481,7 @@ this.legends_risen_legion_scenario <- this.inherit("scripts/scenarios/world/star
 		if (!bro.getSkills().hasSkill("racial.skeleton") && bro.getFlags().has("skeleton"))
 		{
 			bro.getSkills().add(this.new("scripts/skills/racial/skeleton_racial"));
-			bro.getSkills().add(this.new("scripts/skills/traits/legend_fleshless_trait"));
+			::Legends.Traits.grant(bro, ::Legends.Trait.LegendFleshless);
 		}
 
 		local r = this.Math.rand(0, 2);
@@ -492,7 +492,7 @@ this.legends_risen_legion_scenario <- this.inherit("scripts/scenarios/world/star
 
 			if (r == 0)
 			{
-				bro.getSkills().add(this.new("scripts/skills/traits/paranoid_trait"));
+				::Legends.Traits.grant(bro, ::Legends.Trait.Paranoid);
 			}
 		}
 		else if (bro.getBackground().isBackgroundType(this.Const.BackgroundType.Crusader))
@@ -501,12 +501,12 @@ this.legends_risen_legion_scenario <- this.inherit("scripts/scenarios/world/star
 
 			if (r == 0)
 			{
-				bro.getSkills().add(this.new("scripts/skills/traits/superstitious_trait"));
+				::Legends.Traits.grant(bro, ::Legends.Trait.Superstitious);
 			}
 
 			if (r == 1)
 			{
-				bro.getSkills().add(this.new("scripts/skills/traits/paranoid_trait"));
+				::Legends.Traits.grant(bro, ::Legends.Trait.Paranoid);
 			}
 		}
 	}

@@ -38,16 +38,16 @@ this.legend_peasant_minstrel <- this.inherit("scripts/entity/tactical/human", {
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendDrumsOfWar);
 
 		this.getSprite("socket").setBrush("bust_base_militia");
-			if(::Legends.isLegendaryDifficulty())
-			{
+		if(::Legends.isLegendaryDifficulty())
+		{
 			this.m.Hitpoints = b.Hitpoints * 1.5;
 			::Legends.Perks.grant(this, ::Legends.Perk.Taunt);
 			::Legends.Perks.grant(this, ::Legends.Perk.Anticipation);
 			::Legends.Perks.grant(this, ::Legends.Perk.Dodge);
 			::Legends.Perks.grant(this, ::Legends.Perk.Relentless);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendDrumsOfLife);
-			this.m.Skills.add(this.new("scripts/skills/traits/fearless_trait"));
-			}
+			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
+		}
 	}
 
 	function assignRandomEquipment()

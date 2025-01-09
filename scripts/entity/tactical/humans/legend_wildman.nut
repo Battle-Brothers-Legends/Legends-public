@@ -68,7 +68,7 @@ this.legend_wildman <- this.inherit("scripts/entity/tactical/human", {
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecFists);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendKick);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendGrapple);
-			this.m.Skills.add(this.new("scripts/skills/traits/fearless_trait"));
+			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
 		}
 
 	}

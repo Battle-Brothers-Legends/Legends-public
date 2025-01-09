@@ -56,7 +56,7 @@ this.legend_nightwatch_background <- this.inherit("scripts/skills/backgrounds/ch
 			Weapon = [
 				this.Const.Perks.PolearmTree,
 				this.Const.Perks.StaffTree,
-				this.Const.Perks.CrossbowTree,			
+				this.Const.Perks.CrossbowTree,
 				this.Const.Perks.SlingTree
 			],
 			Defense = [
@@ -149,8 +149,7 @@ this.legend_nightwatch_background <- this.inherit("scripts/skills/backgrounds/ch
 	function onAdded() // always has night owl
 	{
 		this.character_background.onAdded();
-		local actor = this.getContainer().getActor();
-		this.m.Container.add(this.new("scripts/skills/traits/night_owl_trait"));
+		::Legends.Traits.grant(this, ::Legends.Trait.NightOwl);
 	}
 
 	function onAddEquipment()

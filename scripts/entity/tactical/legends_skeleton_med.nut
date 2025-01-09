@@ -7,7 +7,7 @@ this.legends_skeleton_med <- this.inherit("scripts/entity/tactical/legend_skelet
 		this.legend_skeleton.onInit();
 		::Legends.Perks.grant(this, ::Legends.Perk.SteelBrow);
 		::Legends.Perks.grant(this, ::Legends.Perk.ShieldExpert);
-		this.m.Skills.add(this.new("scripts/skills/traits/legend_fleshless_trait"));
+		::Legends.Traits.grant(this, ::Legends.Trait.LegendFleshless);
 		if(::Legends.isLegendaryDifficulty())
 		{
 			::Legends.Perks.grant(this, ::Legends.Perk.BattleForged);

@@ -5,12 +5,12 @@ this.legends_skeleton_low <- this.inherit("scripts/entity/tactical/legend_skelet
 	{
 		this.m.SpawnType = this.Const.Tactical.Actor.LegendSkeletonLight;
 		this.legend_skeleton.onInit();
-		this.m.Skills.add(this.new("scripts/skills/traits/legend_fleshless_trait"));
+		::Legends.Traits.grant(this, ::Legends.Trait.LegendFleshless);
 		if(::Legends.isLegendaryDifficulty())
 		{
-		::Legends.Perks.grant(this, ::Legends.Perk.ShieldExpert);
-		::Legends.Perks.grant(this, ::Legends.Perk.CripplingStrikes);
-		::Legends.Perks.grant(this, ::Legends.Perk.CoupDeGrace);
+			::Legends.Perks.grant(this, ::Legends.Perk.ShieldExpert);
+			::Legends.Perks.grant(this, ::Legends.Perk.CripplingStrikes);
+			::Legends.Perks.grant(this, ::Legends.Perk.CoupDeGrace);
 		}
 		this.m.Skills.update();
 	}

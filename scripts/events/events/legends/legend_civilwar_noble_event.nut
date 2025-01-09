@@ -38,25 +38,24 @@ this.legend_civilwar_noble_event <- this.inherit("scripts/events/event", {
 			{
 				local roster = this.World.getTemporaryRoster();
 				_event.m.Dude = roster.create("scripts/entity/tactical/player");
-					if (this.World.Assets.getOrigin().getID() == "scenario.legend_risen_legion")
-						{
-							_event.m.Dude.getFlags().add("PlayerSkeleton");
-							_event.m.Dude.getFlags().add("undead");
-							_event.m.Dude.getFlags().add("skeleton");
-							_event.m.Dude.setStartValuesEx([
-								"legend_noble_commander_background"
-						]);
-							_event.m.Dude.getSkills().add(this.new("scripts/skills/racial/skeleton_racial"));
-							_event.m.Dude.getSkills().add(this.new("scripts/skills/traits/legend_fleshless_trait"));
-						}
-					else
+				if (this.World.Assets.getOrigin().getID() == "scenario.legend_risen_legion")
 					{
+						_event.m.Dude.getFlags().add("PlayerSkeleton");
+						_event.m.Dude.getFlags().add("undead");
+						_event.m.Dude.getFlags().add("skeleton");
 						_event.m.Dude.setStartValuesEx([
 							"legend_noble_commander_background"
-						]);
+					]);
+						_event.m.Dude.getSkills().add(this.new("scripts/skills/racial/skeleton_racial"));
+						::Legends.Traits.grant(_event.m.Dude, ::Legends.Trait.LegendFleshless);
 					}
-
-				_event.m.Dude.getSkills().add(this.new("scripts/skills/traits/legend_hate_nobles_trait"));
+				else
+				{
+					_event.m.Dude.setStartValuesEx([
+						"legend_noble_commander_background"
+					]);
+				}
+				::Legends.Traits.grant(_event.m.Dude, ::Legends.Trait.LegendHateNobles);
 				this.Characters.push(_event.m.Dude.getImagePath());
 			}
 

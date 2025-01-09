@@ -135,11 +135,11 @@
 				{
 					if (this.Math.rand(1, 100) <= this.m.RoundsGiven + 5)
 					{
-						local drunk = this.new("scripts/skills/traits/drunkard_trait");
-						b.getSkills().add(drunk);
-						result.Result.push({
-							Icon = drunk.getIcon(),
-							Text = b.getName() + " is now a drunkard."
+						::Legends.Traits.grant(b, ::Legends.Trait.Drunkard, function(_trait) {
+							result.Result.push({
+								Icon = _trait.getIcon(),
+								Text = b.getName() + " is now a drunkard."
+							});
 						});
 					}
 				}

@@ -45,12 +45,12 @@ this.legend_noble_halberdier <- this.inherit("scripts/entity/tactical/human", {
 		::Legends.Perks.grant(this, ::Legends.Perk.Rotation);
 		::Legends.Perks.grant(this, ::Legends.Perk.Recover);
 		if(::Legends.isLegendaryDifficulty())
-			{
+		{
 			this.m.Hitpoints = b.Hitpoints * 2;
 			::Legends.Perks.grant(this, ::Legends.Perk.Nimble);
 			::Legends.Perks.grant(this, ::Legends.Perk.BattleFlow);
-			this.m.Skills.add(this.new("scripts/skills/traits/fearless_trait"));
-			}
+			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
+		}
 	}
 
 	function assignRandomEquipment()

@@ -8,7 +8,7 @@
 		{
 			::Legends.Perks.grant(this, ::Legends.Perk.Berserk);
 			::Legends.Perks.grant(this, ::Legends.Perk.Backstabber);
-			this.m.Skills.add(this.new("scripts/skills/traits/fearless_trait"));
+			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
 		}
 	}
 });

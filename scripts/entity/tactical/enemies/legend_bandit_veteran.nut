@@ -84,7 +84,7 @@ this.legend_bandit_veteran <- this.inherit("scripts/entity/tactical/human", {
 		::Legends.Perks.grant(this, ::Legends.Perk.Recover);
 		::Legends.Perks.grant(this, ::Legends.Perk.BattleForged);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendLithe);
-		this.m.Skills.add(this.new("scripts/skills/traits/fearless_trait"));
+		::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
 
 		if (::Legends.isLegendaryDifficulty())
 		{

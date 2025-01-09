@@ -15,7 +15,7 @@
 			::Legends.Perks.grant(this, ::Legends.Perk.LoneWolf);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendOnslaught);
 			::Legends.Perks.grant(this, ::Legends.Perk.CripplingStrikes);
-			this.m.Skills.add(this.new("scripts/skills/traits/fearless_trait"));
+			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
 		}
 	}
 

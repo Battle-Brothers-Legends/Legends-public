@@ -19,7 +19,7 @@ this.perk_legend_brink_of_death <- this.inherit("scripts/skills/skill", {
 		{
 			if (!a.getSkills().hasSkill("trait.survivor"))
 			{
-				a.getSkills().add(this.new("scripts/skills/traits/legend_deathly_spectre_trait"));
+				::Legends.Traits.grant(a, ::Legends.Trait.LegendDeathlySpectre);
 			}
 		}
 	}

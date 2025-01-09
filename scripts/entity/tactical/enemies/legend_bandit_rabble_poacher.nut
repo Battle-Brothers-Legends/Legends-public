@@ -62,9 +62,7 @@ this.legend_bandit_rabble_poacher <- this.inherit("scripts/entity/tactical/legen
 		this.getSprite("shield_icon").setBrightness(0.9);
 
 		if (this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Easy)
-		{
-			this.m.Skills.add(this.new("scripts/skills/traits/craven_trait"));
-		}
+			::Legends.Traits.grant(this, ::Legends.Trait.Craven);
 		this.m.Skills.update();
 	}
 

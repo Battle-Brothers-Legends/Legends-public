@@ -243,7 +243,7 @@ this.legend_assassin_background <- this.inherit("scripts/skills/backgrounds/char
 		this.character_background.onAdded();
 		local actor = this.getContainer().getActor();
 		//this.m.Container.add(this.new("scripts/skills/perks/perk_legend_hidden"));
-		this.m.Container.add(this.new("scripts/skills/traits/quick_trait"));
+		::Legends.Traits.grant(this, ::Legends.Trait.Quick);
 		//this.m.Container.add(this.new("scripts/skills/traits/loyal_trait"));
 	}
 

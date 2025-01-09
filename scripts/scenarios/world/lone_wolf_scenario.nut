@@ -31,8 +31,8 @@ this.lone_wolf_scenario <- this.inherit("scripts/scenarios/world/starting_scenar
 		bros[0].getBackground().buildDescription(true);
 		bros[0].setTitle("the Lone Wolf");
 		::Legends.Perks.grant(bros[0], ::Legends.Perk.LegendFavouredEnemySwordmaster);
-		bros[0].getSkills().add(this.new("scripts/skills/traits/player_character_trait"));
-		bros[0].getSkills().add(this.new("scripts/skills/traits/legend_lw_relationship_trait"));
+		::Legends.Traits.grant(bros[0], ::Legends.Trait.Player);
+		::Legends.Traits.grant(bros[0], ::Legends.Trait.LegendLWRelationship);
 		bros[0].setPlaceInFormation(4);
 		bros[0].getFlags().set("IsPlayerCharacter", true);
 		bros[0].getSprite("miniboss").setBrush("bust_miniboss_lone_wolf");
@@ -178,7 +178,7 @@ this.lone_wolf_scenario <- this.inherit("scripts/scenarios/world/starting_scenar
 	{
 		_bro.m.HiringCost = 0;
 		_bro.getBaseProperties().DailyWage = 0;
-		_bro.getSkills().add(this.new("scripts/skills/traits/legend_lw_relationship_trait"));
+		::Legends.Traits.grant(_bro, ::Legends.Trait.LegendLWRelationship);
 	}
 
 });

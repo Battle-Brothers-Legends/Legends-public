@@ -270,7 +270,7 @@ this.legend_demon_alp <- this.inherit("scripts/entity/tactical/actor", {
 		{
 			b.Hitpoints -= 100;
 			::Legends.Perks.grant(this, ::Legends.Perk.Nimble);
-			this.m.Skills.add(this.new("scripts/skills/traits/fearless_trait"));
+			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
 		}
 	}
 

@@ -26,10 +26,10 @@ this.mage_legends_mage_scenario <- this.inherit("scripts/scenarios/world/startin
 		bro.setStartValuesEx([
 			"mage_legend_mage_commander_background"
 		]);
-		bro.getSkills().add(this.new("scripts/skills/traits/player_character_trait"));
+		::Legends.Traits.grant(bro, ::Legends.Trait.Player);
 		this.addScenarioPerk(bro.getBackground(), this.Const.Perks.PerkDefs.Student);
 		this.addScenarioPerk(bro.getBackground(), this.Const.Perks.PerkDefs.LegendMindOverBody);
-		this.addScenarioPerk(bro.getBackground(), this.Const.Perks.PerkDefs.LegendMagicMissile);		
+		this.addScenarioPerk(bro.getBackground(), this.Const.Perks.PerkDefs.LegendMagicMissile);
 		bro.setPlaceInFormation(4);
 		bro.setVeteranPerks(2);
 		bro.getFlags().set("IsPlayerCharacter", true);

@@ -19,7 +19,7 @@ this.legends_noble_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 		local roster = this.World.getPlayerRoster();
 		for( local i = 0; i < 6; i = ++i )
 		{
-			local bro = roster.create("scripts/entity/tactical/player");			
+			local bro = roster.create("scripts/entity/tactical/player");
 			if (i != 0)
 			{
 				bro.fillTalentValues(3); //quick way to skip noble commander's fill talent values
@@ -33,11 +33,11 @@ this.legends_noble_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 		bros[0].setStartValuesEx([
 			"legend_noble_commander_background"
 		], false);
-		bros[0].getSkills().add(this.new("scripts/skills/traits/player_character_trait"));
+		::Legends.Traits.grant(bros[0], ::Legends.Trait.Player);
 		bros[0].setPlaceInFormation(13);
-		bros[0].setVeteranPerks(2);		
-		bros[0].getSkills().add(this.new("scripts/skills/traits/drunkard_trait"));
-		bros[0].getSkills().add(this.new("scripts/skills/traits/legend_noble_killer_trait"));
+		bros[0].setVeteranPerks(2);
+		::Legends.Traits.grant(bros[0], ::Legends.Trait.Drunkard);
+		::Legends.Traits.grant(bros[0], ::Legends.Trait.LegendNobleKiller);
 		bros[0].getSkills().add(this.new("scripts/skills/effects_world/drunk_effect"));
 		this.addScenarioPerk(bros[0].getBackground(), this.Const.Perks.PerkDefs.Rotation);
 		this.addScenarioPerk(bros[0].getBackground(), this.Const.Perks.PerkDefs.RallyTheTroops);
@@ -46,7 +46,7 @@ this.legends_noble_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 		// Noble Shield 1 Create
 
 		bros[1].setStartValuesEx([
-		"legend_noble_shield"
+			"legend_noble_shield"
 		], false);
 		local items = bros[1].getItems();
 		items.unequip(items.getItemAtSlot(this.Const.ItemSlot.Offhand));
@@ -64,9 +64,9 @@ this.legends_noble_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 
 		bros[1].getBackground().m.RawDescription = "Though a lowly foot soldier %name% has one of the most upbeat outlooks on life you\'ve ever encountered. Unfortunately that extends to an over evaluation of self worth, expecting more pay than most.";
 		bros[1].getBackground().buildDescription(true);
-		bros[1].getSkills().add(this.new("scripts/skills/traits/optimist_trait"));
-		bros[1].getSkills().add(this.new("scripts/skills/traits/determined_trait"));
-		bros[1].getSkills().add(this.new("scripts/skills/traits/greedy_trait"));
+		::Legends.Traits.grant(bros[1], ::Legends.Trait.Optimist);
+		::Legends.Traits.grant(bros[1], ::Legends.Trait.Determined);
+		::Legends.Traits.grant(bros[1], ::Legends.Trait.Greedy);
 		this.addScenarioPerk(bros[1].getBackground(), this.Const.Perks.PerkDefs.Rotation);
 		bros[1].setPlaceInFormation(3);
 
@@ -74,14 +74,14 @@ this.legends_noble_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 		// Noble 2h create
 
 		bros[2].setStartValuesEx([
-		"legend_noble_2h"
+			"legend_noble_2h"
 		], false);
 		bros[2].getBackground().m.RawDescription = "%name% is a hulking figure, both upward and outward. Not much of a talker, but a big eater.";
 		bros[2].getBackground().buildDescription(true);
 		bros[2].getSkills().removeByID("trait.tiny");
-		bros[2].getSkills().add(this.new("scripts/skills/traits/huge_trait"));
-		bros[2].getSkills().add(this.new("scripts/skills/traits/fat_trait"));
-		bros[2].getSkills().add(this.new("scripts/skills/traits/gluttonous_trait"));
+		::Legends.Traits.grant(bros[2], ::Legends.Trait.Huge);
+		::Legends.Traits.grant(bros[2], ::Legends.Trait.Fat);
+		::Legends.Traits.grant(bros[2], ::Legends.Trait.Gluttonous);
 		this.addScenarioPerk(bros[2].getBackground(), this.Const.Perks.PerkDefs.Rotation);
 		bros[2].setPlaceInFormation(4);
 
@@ -107,9 +107,9 @@ this.legends_noble_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 		items.equip(shield);
 		bros[3].getBackground().m.RawDescription = "%name%\'s parents both served your family, it runs in the blood. While %name% is dependable in a fight and would never dream of leaving you, it also reduces their %name%\'s ambition and drive";
 		bros[3].getBackground().buildDescription(true);
-		bros[3].getSkills().add(this.new("scripts/skills/traits/legend_pragmatic_trait"));
-		bros[3].getSkills().add(this.new("scripts/skills/traits/loyal_trait"));
-		bros[3].getSkills().add(this.new("scripts/skills/traits/legend_slack_trait"));
+		::Legends.Traits.grant(bros[3], ::Legends.Trait.LegendPragmatic);
+		::Legends.Traits.grant(bros[3], ::Legends.Trait.Loyal);
+		::Legends.Traits.grant(bros[3], ::Legends.Trait.LegendSlack);
 		this.addScenarioPerk(bros[3].getBackground(), this.Const.Perks.PerkDefs.Rotation);
 		bros[3].setPlaceInFormation(5);
 
@@ -117,14 +117,14 @@ this.legends_noble_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 		// Noble Servant Create
 
 		bros[4].setStartValuesEx([
-		"servant_background"
+			"servant_background"
 		], false);
 		bros[4].getBackground().m.RawDescription = "%name% has been a servant in your family for 5 generations now, it is unclear how anyone has survived this long, but there are no indications of the old coot giving up any time soon.";
 		bros[4].getBackground().buildDescription(true);
-		bros[4].getSkills().add(this.new("scripts/skills/traits/old_trait"));
-		bros[4].getSkills().add(this.new("scripts/skills/traits/loyal_trait"));
-		bros[4].getSkills().add(this.new("scripts/skills/traits/lucky_trait"));
-		bros[4].getSkills().add(this.new("scripts/skills/traits/survivor_trait"));
+		::Legends.Traits.grant(bros[4], ::Legends.Trait.Old);
+		::Legends.Traits.grant(bros[4], ::Legends.Trait.Loyal);
+		::Legends.Traits.grant(bros[4], ::Legends.Trait.Lucky);
+		::Legends.Traits.grant(bros[4], ::Legends.Trait.Survivor);
 		this.addScenarioPerk(bros[4].getBackground(), this.Const.Perks.PerkDefs.Rotation);
 		bros[4].setPlaceInFormation(12);
 		local items = bros[4].getItems();
@@ -141,13 +141,13 @@ this.legends_noble_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 		// Arbalester Create
 
 		bros[5].setStartValuesEx([
-		"legend_noble_ranged"
+			"legend_noble_ranged"
 		], false);
 		bros[5].getBackground().m.RawDescription = "%name% has won the house archery contest several years running, but never shuts up about it. The constant stream of narration makes the great aim easy to dodge.";
 		bros[5].getBackground().buildDescription(true);
-		bros[5].getSkills().add(this.new("scripts/skills/traits/legend_sureshot_trait"));
-		bros[5].getSkills().add(this.new("scripts/skills/traits/teamplayer_trait"));
-		bros[5].getSkills().add(this.new("scripts/skills/traits/legend_predictable_trait"));
+		::Legends.Traits.grant(bros[5], ::Legends.Trait.LegendSureshot);
+		::Legends.Traits.grant(bros[5], ::Legends.Trait.Teamplayer);
+		::Legends.Traits.grant(bros[5], ::Legends.Trait.LegendPredictable);
 		this.addScenarioPerk(bros[5].getBackground(), this.Const.Perks.PerkDefs.Rotation);
 		if (bros[5].getBaseProperties().RangedSkill  <= 60) {
 			bros[5].getBaseProperties().RangedSkill  += 5;

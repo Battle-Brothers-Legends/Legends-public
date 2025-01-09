@@ -181,7 +181,7 @@ this.legend_trader_commander_background <- this.inherit("scripts/skills/backgrou
 		this.character_background.onAdded();
 		local actor = this.getContainer().getActor();
 		actor.setTitle(this.Const.Strings.PeddlerTitles[this.Math.rand(0, this.Const.Strings.PeddlerTitles.len() - 1)]);
-		this.m.Container.add(this.new("scripts/skills/traits/fat_trait"));
+		::Legends.Traits.grant(this, ::Legends.Trait.Fat);
 		//this.m.Container.add(this.new("scripts/skills/traits/loyal_trait"));
 		//this.m.Container.add(this.new("scripts/skills/perks/perk_legend_bribe"));
 		//this.m.Container.add(this.new("scripts/skills/perks/perk_legend_roster_2"));

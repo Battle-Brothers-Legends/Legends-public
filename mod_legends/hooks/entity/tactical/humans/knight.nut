@@ -21,7 +21,7 @@
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendForcefulSwing);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendBloodyHarvest);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendComposure);
-			this.m.Skills.add(this.new("scripts/skills/traits/fearless_trait"));
+			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
 		}
 	}
 

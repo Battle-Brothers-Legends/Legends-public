@@ -24,8 +24,7 @@ this.legends_beggar_scenario <- this.inherit("scripts/scenarios/world/starting_s
 		bro.setStartValuesEx([
 			"legend_beggar_commander_background"
 		]);
-		
-		bro.getSkills().add(this.new("scripts/skills/traits/player_character_trait"));		
+		::Legends.Traits.grant(bro, ::Legends.Trait.Player);
 		bro.getFlags().set("IsPlayerCharacter", true);
 		bro.worsenMood(1.5, "Saw something awful");
 

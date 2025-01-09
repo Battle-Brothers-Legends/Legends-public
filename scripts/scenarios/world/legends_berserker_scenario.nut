@@ -28,7 +28,7 @@ this.legends_berserker_scenario <- this.inherit("scripts/scenarios/world/startin
 		bros[0].setStartValuesEx([
 			"legend_berserker_commander_background"
 		]);
-		bros[0].getSkills().add(this.new("scripts/skills/traits/player_character_trait"));
+		::Legends.Traits.grant(bros[0], ::Legends.Trait.Player);
 		this.addScenarioPerk(bros[0].getBackground(), this.Const.Perks.PerkDefs.Berserk);
 		bros[0].getFlags().set("IsPlayerCharacter", true);
 		bros[0].setVeteranPerks(2);

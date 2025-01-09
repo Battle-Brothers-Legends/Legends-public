@@ -24,7 +24,7 @@
 						_event.m.Dude.getBackground().m.RawDescription = "Part of an ancient order somewhere in the forests, %name% vowed to maintain balance of nature and all other things, even if violence was necessary.";
 						_event.m.Dude.getBackground().buildDescription(true);
 					}
-					_event.m.Dude.getSkills().add(this.new("scripts/skills/traits/hate_greenskins_trait"));
+					::Legends.Traits.grant(_event.m.Dude, ::Legends.Trait.HateGreenskins);
 					local necklace = this.new("scripts/items/accessory/special/slayer_necklace_item");
 					necklace.m.Name = _event.m.Dude.getNameOnly() + "\'s Necklace";
 					_event.m.Dude.getItems().equip(necklace);

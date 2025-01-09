@@ -157,7 +157,7 @@ this.legend_lonewolf_companion_melee_event <- this.inherit("scripts/events/event
 				_event.m.Dude.getBaseProperties().MeleeDefense += 0;
 				_event.m.Dude.getBaseProperties().RangedDefense += 0;
 				_event.m.Dude.getBaseProperties().Initiative += 0;
-				_event.m.Dude.getSkills().add(this.new("scripts/skills/traits/bright_trait"));
+				::Legends.Traits.grant(_event.m.Dude, ::Legends.Trait.Bright);
 			}
 
 		});

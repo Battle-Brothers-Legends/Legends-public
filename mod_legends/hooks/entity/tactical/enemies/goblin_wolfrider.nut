@@ -8,7 +8,7 @@
 		{
 			::Legends.Perks.grant(this, ::Legends.Perk.FastAdaption);
 			::Legends.Perks.grant(this, ::Legends.Perk.Overwhelm);
-			this.m.Skills.add(this.new("scripts/skills/traits/fearless_trait"));
+			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
 		}
 	}
 

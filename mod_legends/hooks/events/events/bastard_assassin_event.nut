@@ -25,12 +25,12 @@
 					this.Characters.push(_event.m.Bastard.getImagePath());
 
 					if (!_event.m.Bastard.getSkills().hasSkill("trait.loyal") && !_event.m.Bastard.getSkills().hasSkill("trait.disloyal")) {
-						local loyal = this.new("scripts/skills/traits/loyal_trait");
-						_event.m.Bastard.getSkills().add(loyal);
-						this.List.push({
-							id = 10,
-							icon = loyal.getIcon(),
-							text = _event.m.Bastard.getName() + " is now loyal"
+						::Legends.Traits.grant(_event.m.Bastard, ::Legends.Trait.Loyal, function(_trait) {
+							this.List.push({
+								id = 10,
+								icon = _trait.getIcon(),
+								text = _event.m.Bastard.getName() + " is now loyal"
+							});
 						});
 					}
 					this.World.Assets.addMoralReputation(2);

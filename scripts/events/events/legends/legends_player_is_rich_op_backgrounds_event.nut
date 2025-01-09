@@ -173,12 +173,12 @@ this.legends_player_is_rich_op_backgrounds_event <- this.inherit("scripts/events
 					{
 						if (this.Math.rand(1, 100) <= 20)
 						{
-							local trait = this.new("scripts/skills/traits/greedy_trait");
-							bro.getSkills().add(trait);
-							this.List.push({
-								id = 10,
-								icon = trait.getIcon(),
-								text = bro.getName() + " gets greedy"
+							::Legends.Traits.grant(bro, ::Legends.Trait.Greedy, function (_trait) {
+								this.List.push({
+									id = 10,
+									icon = _trait.getIcon(),
+									text = bro.getName() + " gets greedy"
+								});
 							});
 						}
 						else

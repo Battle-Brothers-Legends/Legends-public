@@ -94,7 +94,7 @@
 				local roster = this.World.getTemporaryRoster();
 				_event.m.Dude = roster.create("scripts/entity/tactical/player");
 				_event.m.Dude.setStartValuesEx(["legend_noble_commander_background"]);
-				_event.m.Dude.getSkills().add(this.new("scripts/skills/traits/addict_trait"));
+				::Legends.Traits.grant(_event.m.Dude, ::Legends.Trait.Addict);
 				_event.m.Dude.getSkills().add(this.new("scripts/skills/effects_world/drunk_effect"));
 				this.Characters.push(_event.m.Dude.getImagePath());
 			}

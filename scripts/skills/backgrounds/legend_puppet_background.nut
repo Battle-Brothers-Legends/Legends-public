@@ -213,7 +213,7 @@ this.legend_puppet_background <- this.inherit("scripts/skills/backgrounds/charac
 	{
 		if (this.m.IsNew)
 		{
-			this.m.Container.add(this.new("scripts/skills/traits/legend_rotten_flesh_trait"));
+			::Legends.Traits.grant(this, ::Legends.Trait.LegendRottenFlesh);
 		}
 
 		this.character_background.onAdded();

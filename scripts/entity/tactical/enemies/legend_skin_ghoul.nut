@@ -279,14 +279,14 @@ this.legend_skin_ghoul <- this.inherit("scripts/entity/tactical/actor", {
 		::Legends.Perks.grant(this, ::Legends.Perk.Footwork);
 		::Legends.Perks.grant(this, ::Legends.Perk.Nimble);
 		::Legends.Perks.grant(this, ::Legends.Perk.KillingFrenzy);
-		this.m.Skills.add(this.new("scripts/skills/traits/fearless_trait"));
+		::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
 		if (::Legends.isLegendaryDifficulty())
-			{
-		::Legends.Perks.grant(this, ::Legends.Perk.BattleFlow);
-		::Legends.Perks.grant(this, ::Legends.Perk.LegendMuscularity);
-		::Legends.Perks.grant(this, ::Legends.Perk.Anticipation);
-		::Legends.Perks.grant(this, ::Legends.Perk.FastAdaption);
-			}
+		{
+			::Legends.Perks.grant(this, ::Legends.Perk.BattleFlow);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendMuscularity);
+			::Legends.Perks.grant(this, ::Legends.Perk.Anticipation);
+			::Legends.Perks.grant(this, ::Legends.Perk.FastAdaption);
+		}
 		if (!this.Tactical.State.isScenarioMode())
 		{
 			local dateToSkip = 0;

@@ -34,7 +34,7 @@ this.legend_prosthetic_finger_item <- this.inherit("scripts/items/item", {
 				text = this.getValueString()
 			}
 		];
-		
+
 		if (this.getIconLarge() != null)
 		{
 			result.push({
@@ -92,7 +92,7 @@ this.legend_prosthetic_finger_item <- this.inherit("scripts/items/item", {
 		this.Sound.play("sounds/combat/armor_leather_impact_03.wav", this.Const.Sound.Volume.Inventory);
 		if (_actor.getSkills().hasSkill("injury.missing_finger"))
 		{
-			_actor.getSkills().add(this.new("scripts/skills/traits/legend_prosthetic_finger"));
+			::Legends.Traits.grant(_actor, ::Legends.Trait.LegendProstheticFinger);
 			_actor.getSkills().removeByID("injury.missing_finger");
 			return true;
 		}

@@ -25,19 +25,24 @@ if (!("Traits" in ::Legends))
  * Helper function, that checks existence of trait on _target, adds it if needed,
  * with optional lambda to modify trait on the fly.
  * Can be used to modify existing traits too.
+ *
+ * Returns newly added trait
  */
 ::Legends.Traits.grant <- function (_target, _def, _applyFn = null) {
 	local container = ::Legends.Traits.getContainer(_target, "on grant");
 	local traitDef = ::Legends.Traits.TraitDefObjects[_def];
 
 	if (container.hasSkill(traitDef.ID)) {
+		local trait = container.getSkillByID(traitDef.ID);
 		if (_applyFn != null)
-			_applyFn(container.getSkillByID(traitDef.ID));
+			_applyFn(trait);
+		return trait;
 	} else {
 		local trait = ::new(traitDef.Script);
 		if (_applyFn != null)
 			_applyFn(trait);
 		container.add(trait);
+		return trait;
 	}
 }
 

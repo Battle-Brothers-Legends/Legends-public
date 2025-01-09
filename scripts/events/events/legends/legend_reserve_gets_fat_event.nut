@@ -26,14 +26,13 @@ this.legend_reserve_gets_fat_event <- this.inherit("scripts/events/event", {
 			function start( _event )
 			{
 				this.Characters.push(_event.m.FatGuy.getImagePath());
-				_event.m.FatGuy.getSkills().add(this.new("scripts/skills/traits/gluttonous_trait"));
-				this.List = [
-					{
+				::Legends.Traits.grant(_event.m.FatGuy, ::Legends.Trait.Gluttonous, function (_trait) {
+					this.List = [{
 						id = 10,
-						icon = "ui/traits/trait_icon_07.png",
+						icon = _trait.getIcon(),
 						text = _event.m.FatGuy.getName() + " is now gluttonous"
-					}
-				];
+					}];
+				});
 			}
 
 		});
@@ -45,12 +44,12 @@ this.legend_reserve_gets_fat_event <- this.inherit("scripts/events/event", {
 		{
 			return;
 		}
-		
+
 		if (this.World.Assets.getFood() < 100)
 		{
 			return;
 		}
-		
+
 		local brothers = this.World.getPlayerRoster().getAll();
 		local candidates = [];
 

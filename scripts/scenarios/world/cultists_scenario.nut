@@ -24,7 +24,7 @@ this.cultists_scenario <- this.inherit("scripts/scenarios/world/starting_scenari
 			bro = roster.create("scripts/entity/tactical/player");
 			bro.getSprite("socket").setBrush("bust_base_orcs");
 			bro.m.HireTime = this.Time.getVirtualTimeF();
-			bro.getSkills().add(this.new("scripts/skills/traits/cultist_fanatic_trait"));
+			::Legends.Traits.grant(bro, ::Legends.Trait.CultistFanatic);
 			bro.getSkills().removeByID("trait.superstitious"); //If cultist, this ID will be removed as True believer is not removing them on start
 			bro.getSkills().removeByID("trait.dastard"); //If cultist, this ID will be removed as True believer is not removing them on start
 			bro.getSkills().removeByID("trait.insecure"); //If cultist, this ID will be removed as True believer is not removing them on start

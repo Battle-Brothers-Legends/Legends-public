@@ -64,8 +64,7 @@
 					_event.m.Dude.m.LevelUps = 0;
 					_event.m.Dude.m.Level = 1;
 					_event.m.Dude.m.XP = this.Const.LevelXP[_event.m.Dude.m.Level - 1];
-					local trait = this.new("scripts/skills/traits/drunkard_trait");
-					_event.m.Dude.getSkills().add(trait);
+					::Legends.Traits.grant(_event.m.Dude, ::Legends.Trait.Drunkard);
 					local dudeItems = _event.m.Dude.getItems();
 
 					if (dudeItems.getItemAtSlot(this.Const.ItemSlot.Mainhand) != null)

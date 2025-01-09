@@ -61,8 +61,8 @@ this.beast_hunters_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 		bros[0].setPlaceInFormation(3);
 		bros[0].setVeteranPerks(2);
 		bros[0].addLightInjury();
-		bros[0].getSkills().add(this.new("scripts/skills/traits/legend_beastslayers_trait"));
-		bros[0].getSkills().add(this.new("scripts/skills/traits/hate_beasts_trait"));
+		::Legends.Traits.grant(bros[0], ::Legends.Trait.LegendBeastslayers);
+		::Legends.Traits.grant(bros[0], ::Legends.Trait.HateBeasts);
  		bros[0].getSprite("miniboss").setBrush("bust_miniboss");
 		bros[0].m.Talents = [];
 		local talents = bros[0].getTalents();
@@ -85,8 +85,8 @@ this.beast_hunters_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 		bros[1].setPlaceInFormation(4);
 		bros[1].setVeteranPerks(2);
 		bros[1].addLightInjury();
-		bros[1].getSkills().add(this.new("scripts/skills/traits/legend_beastslayers_trait"));
-		bros[1].getSkills().add(this.new("scripts/skills/traits/hate_beasts_trait"));
+		::Legends.Traits.grant(bros[1], ::Legends.Trait.LegendBeastslayers);
+		::Legends.Traits.grant(bros[1], ::Legends.Trait.HateBeasts);
  		bros[1].getSprite("socket").setBrush("bust_base_beasthunters"); //custom base
 		bros[1].m.Talents = [];
 		local talents = bros[1].getTalents();
@@ -108,8 +108,8 @@ this.beast_hunters_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 		bros[2].setPlaceInFormation(5);
 		bros[2].setVeteranPerks(2);
 		bros[2].addInjury(this.Const.Injury.Brawl);
-		bros[2].getSkills().add(this.new("scripts/skills/traits/legend_beastslayers_trait"));
-		bros[2].getSkills().add(this.new("scripts/skills/traits/hate_beasts_trait"));
+		::Legends.Traits.grant(bros[2], ::Legends.Trait.LegendBeastslayers);
+		::Legends.Traits.grant(bros[2], ::Legends.Trait.HateBeasts);
  		bros[2].getSprite("socket").setBrush("bust_base_beasthunters"); //custom base
 		bros[2].m.Talents = [];
 		local talents = bros[2].getTalents();
@@ -217,7 +217,7 @@ this.beast_hunters_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 			bro.m.HiringCost = this.Math.floor(bro.m.HiringCost * 0.8);
 			bro.getBaseProperties().DailyWageMult *= 0.8;
 			bro.getSprite("socket").setBrush("bust_base_beasthunters");
-			bro.getSkills().add(this.new("scripts/skills/traits/legend_beastslayers_trait"));
+			::Legends.Traits.grant(bro, ::Legends.Trait.LegendBeastslayers);
 			bro.improveMood(1.5, "Hates beasts as much as you do");
 		}
 		else if (bro.getBackground().getID() == "background.legend_guildmaster")
@@ -225,21 +225,21 @@ this.beast_hunters_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 			bro.m.HiringCost = this.Math.floor(bro.m.HiringCost * 1.0);
 			bro.getBaseProperties().DailyWageMult *= 1.0;
 			bro.getSprite("miniboss").setBrush("bust_miniboss");
-			bro.getSkills().add(this.new("scripts/skills/traits/legend_beastslayers_trait"));
+			::Legends.Traits.grant(bro, ::Legends.Trait.LegendBeastslayers);
 			bro.improveMood(1.5, "Excited to teach the new blood");
 		}
 		else if (bro.getBackground().getID() == "background.legend_vala")
 		{
 			bro.m.HiringCost = this.Math.floor(bro.m.HiringCost * 1.0);
 			bro.getBaseProperties().DailyWageMult *= 0.0;
-			bro.getSkills().add(this.new("scripts/skills/traits/legend_beastslayers_trait"));
+			::Legends.Traits.grant(bro, ::Legends.Trait.LegendBeastslayers);
 			bro.improveMood(1.5, "Feels at one with nature");
 		}
 		else if (r == 0 || bro.getSkills().hasSkill("trait.hate_beasts"))
 		{
 			bro.m.HiringCost = this.Math.floor(bro.m.HiringCost * 0.9);
 			bro.getBaseProperties().DailyWageMult *= 0.9;
-			bro.getSkills().add(this.new("scripts/skills/traits/hate_beasts_trait"));
+			::Legends.Traits.grant(bro, ::Legends.Trait.HateBeasts);
 			bro.improveMood(1.5, "Hates beasts as much as you do");
 		}
 		else

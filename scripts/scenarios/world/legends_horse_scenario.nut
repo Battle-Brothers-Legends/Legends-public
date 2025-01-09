@@ -49,7 +49,7 @@ this.legends_horse_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 		bros[2].setStartValuesEx([
 			"legend_trader_commander_background"
 		]);
-		bros[2].getSkills().add(this.new("scripts/skills/traits/player_character_trait"));
+		::Legends.Traits.grant(bros[2], ::Legends.Trait.Player);
 		bros[2].getFlags().set("IsPlayerCharacter", true);
 		bros[2].setPlaceInFormation(4);
 		local items = bros[2].getItems();
@@ -161,7 +161,7 @@ this.legends_horse_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 	{
 		if (_list.len() < 10)
 			return;
-			
+
 		if (this.Math.rand(0, 1) == 0)
 			_list.push("legend_donkey_background");
 

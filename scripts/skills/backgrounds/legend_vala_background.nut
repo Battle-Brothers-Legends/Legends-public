@@ -167,8 +167,7 @@ this.legend_vala_background <- this.inherit("scripts/skills/backgrounds/characte
 	function onAdded()
 	{
 		this.character_background.onAdded();
-		local skills = this.getContainer().getActor().getSkills();
-		this.getContainer().getActor().getSkills().add(this.new("scripts/skills/traits/loyal_trait"));
+		::Legends.Traits.grant(this, ::Legends.Trait.Loyal);
 	}
 
 	function onUpdate( _properties )

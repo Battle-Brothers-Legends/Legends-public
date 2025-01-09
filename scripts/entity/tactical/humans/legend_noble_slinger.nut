@@ -35,11 +35,11 @@ this.legend_noble_slinger <- this.inherit("scripts/entity/tactical/human", {
 		::Legends.Perks.grant(this, ::Legends.Perk.Rotation);
 		::Legends.Perks.grant(this, ::Legends.Perk.Recover);
 		if(::Legends.isLegendaryDifficulty())
-			{
+		{
 			::Legends.Perks.grant(this, ::Legends.Perk.Nimble);
 			::Legends.Perks.grant(this, ::Legends.Perk.CripplingStrikes);
-			this.m.Skills.add(this.new("scripts/skills/traits/fearless_trait"));
-			}
+			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
+		}
 	}
 
 	function assignRandomEquipment()

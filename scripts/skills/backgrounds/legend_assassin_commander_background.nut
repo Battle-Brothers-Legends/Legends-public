@@ -256,8 +256,7 @@ this.legend_assassin_commander_background <- this.inherit("scripts/skills/backgr
 	function onAdded()
 	{
 		this.character_background.onAdded();
-		local actor = this.getContainer().getActor();
-		this.m.Container.add(this.new("scripts/skills/traits/legend_aggressive_trait"));
+		::Legends.Traits.grant(this, ::Legends.Trait.LegendAggressive);
 	}
 
 	function onAddEquipment()

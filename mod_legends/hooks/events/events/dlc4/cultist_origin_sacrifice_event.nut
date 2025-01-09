@@ -65,27 +65,21 @@
 									icon = skill.getIcon(),
 									text = bro.getName() + " has received " + this.Const.Strings.getArticle(skill.getName()) + skill.getName()
 								});
-								skill = this.new("scripts/skills/traits/cultist_prophet_trait");
-								skills.add(skill);
+								::Legends.Traits.grant(skills, ::Legends.Trait.CultistProphet);
 							} else if (skills.hasSkill("trait.cultist_disciple")) {
 								skills.removeByID("trait.cultist_disciple");
-								skill = this.new("scripts/skills/traits/cultist_chosen_trait");
-								skills.add(skill);
+								::Legends.Traits.grant(skills, ::Legends.Trait.CultistChosen);
 							} else if (skills.hasSkill("trait.cultist_acolyte")) {
 								skills.removeByID("trait.cultist_acolyte");
-								skill = this.new("scripts/skills/traits/cultist_disciple_trait");
-								skills.add(skill);
+								::Legends.Traits.grant(skills, ::Legends.Trait.CultistDisciple);
 							} else if (skills.hasSkill("trait.cultist_zealot")) {
-							skills.removeByID("trait.cultist_zealot");
-								skill = this.new("scripts/skills/traits/cultist_acolyte_trait");
-								skills.add(skill);
+								skills.removeByID("trait.cultist_zealot");
+								::Legends.Traits.grant(skills, ::Legends.Trait.CultistAcolyte);
 							} else if (skills.hasSkill("trait.cultist_fanatic")) {
 								skills.removeByID("trait.cultist_fanatic");
-								skill = this.new("scripts/skills/traits/cultist_zealot_trait");
-								skills.add(skill);
+								::Legends.Traits.grant(skills, ::Legends.Trait.CultistZealot);
 							} else {
-								skill = this.new("scripts/skills/traits/cultist_fanatic_trait");
-								skills.add(skill);
+								::Legends.Traits.grant(skills, ::Legends.Trait.CultistFanatic);
 							}
 
 							if (skill != null) {

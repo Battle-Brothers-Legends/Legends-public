@@ -178,7 +178,7 @@ this.legend_horse <- this.inherit("scripts/entity/tactical/actor", {
 		if (::Legends.isLegendaryDifficulty())
 		{
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendMuscularity);
-			this.m.Skills.add(this.new("scripts/skills/traits/fearless_trait"));
+			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
 		}
 
 	}

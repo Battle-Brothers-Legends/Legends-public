@@ -27,12 +27,12 @@ this.legend_cannibal_corrupts_butcher <- this.inherit("scripts/events/event", {
 			function start( _event )
 			{
 				this.Characters.push(_event.m.Cannibal.getImagePath());
-				local cannibalistic_trait = this.new("scripts/skills/traits/legend_cannibalistic");
-				_event.m.Butcher.getSkills().add(cannibalistic_trait);
-				this.List.push({
-					id = 10,
-					icon = cannibalistic_trait.getIcon(),
-					text = _event.m.Butcher.m.Name + " now enjoys forbidden meat"
+				::Legends.Traits.grant(_event.m.Butcher, ::Legends.Trait.LegendCannibalistic, function(_trait) {
+					this.List.push({
+						id = 10,
+						icon = _trait.getIcon(),
+						text = _event.m.Butcher.m.Name + " now enjoys forbidden meat"
+					});
 				});
 				_event.m.Cannibal.improveMood(2.0, "Spread the joys of cannibalism");
 				_event.m.Butcher.improveMood(2.0, "Started appreciating forbidden meat");

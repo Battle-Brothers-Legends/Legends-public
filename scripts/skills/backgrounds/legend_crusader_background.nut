@@ -195,8 +195,8 @@ this.legend_crusader_background <- this.inherit("scripts/skills/backgrounds/char
 		this.character_background.onAdded();
 		local actor = this.getContainer().getActor();
 		actor.setTitle("the Crusader");
-		this.m.Container.add(this.new("scripts/skills/traits/loyal_trait"));
-		this.m.Container.add(this.new("scripts/skills/traits/legend_undead_killer_trait"));
+		::Legends.Traits.grant(this, ::Legends.Trait.Loyal);
+		::Legends.Traits.grant(this, ::Legends.Trait.LegendUndeadKiller);
 		//this.m.Container.add(this.new("scripts/skills/perks/perk_legend_rebound"));
 
 	}

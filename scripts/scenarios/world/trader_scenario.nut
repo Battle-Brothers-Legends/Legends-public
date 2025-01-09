@@ -40,7 +40,7 @@ this.trader_scenario <- this.inherit("scripts/scenarios/world/starting_scenario"
 		]);
 		bros[0].setPlaceInFormation(4);
 		bros[0].setVeteranPerks(2);
-		bros[0].getSkills().add(this.new("scripts/skills/traits/player_character_trait"));	
+		::Legends.Traits.grant(bros[0], ::Legends.Trait.Player);
 		bros[0].getFlags().set("IsPlayerCharacter", true);
 		bros[0].getSprite("socket").setBrush("bust_base_caravan");
 		bros[0].getSprite("miniboss").setBrush("bust_miniboss_trader");
@@ -212,32 +212,32 @@ this.trader_scenario <- this.inherit("scripts/scenarios/world/starting_scenario"
 
 				if (r == 0)
 				{
-					bro.getSkills().add(this.new("scripts/skills/traits/disloyal_trait"));
+					::Legends.Traits.grant(bro, ::Legends.Trait.Disloyal);
 				}
 
 				if (r == 1)
 				{
-					bro.getSkills().add(this.new("scripts/skills/traits/greedy_trait"));
+					::Legends.Traits.grant(bro, ::Legends.Trait.Greedy);
 				}
 
 				if (r == 2)
 				{
-					bro.getSkills().add(this.new("scripts/skills/traits/weasel_trait"));
+					::Legends.Traits.grant(bro, ::Legends.Trait.Weasel);
 				}
 
 				if (r == 3)
 				{
-					bro.getSkills().add(this.new("scripts/skills/traits/legend_slack_trait"));
+					::Legends.Traits.grant(bro, ::Legends.Trait.LegendSlack);
 				}
 
 				if (r == 4)
 				{
-					bro.getSkills().add(this.new("scripts/skills/traits/legend_double_tongued_trait"));
+					::Legends.Traits.grant(bro, ::Legends.Trait.LegendDoubleTongued);
 				}
 
 				if (r == 5)
 				{
-					bro.getSkills().add(this.new("scripts/skills/traits/dastard_trait"));
+					::Legends.Traits.grant(bro, ::Legends.Trait.Dastard);
 				}
 			}
 

@@ -157,7 +157,7 @@ this.legend_lonewolf_companion_ranged_event <- this.inherit("scripts/events/even
 				_event.m.Dude.getBaseProperties().MeleeDefense += 0;
 				_event.m.Dude.getBaseProperties().RangedDefense += 2;
 				_event.m.Dude.getBaseProperties().Initiative -= 15;
-				_event.m.Dude.getSkills().add(this.new("scripts/skills/traits/legend_sureshot_trait"));
+				::Legends.Traits.grant(_event.m.Dude, ::Legends.Trait.LegendSureshot);
 			}
 
 		});

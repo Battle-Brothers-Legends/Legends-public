@@ -214,7 +214,7 @@ this.legend_witch_commander_background <- this.inherit("scripts/skills/backgroun
 	function onAdded()
 	{
 		this.character_background.onAdded();
-		this.m.Container.add(this.new("scripts/skills/traits/bright_trait"));
+		::Legends.Traits.grant(this, ::Legends.Trait.Bright);
 	}
 
 	function onAddEquipment()

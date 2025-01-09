@@ -35,12 +35,12 @@ this.legends_scaling_beggar_scenario <- this.inherit("scripts/scenarios/world/st
 		}
 
 		local bros = roster.getAll();
-		
+
 		bros[0].setStartValuesEx([
 			"legend_beggar_commander_op_background"
 		]);
 		bros[0].setVeteranPerks(2);
-		bros[0].getSkills().add(this.new("scripts/skills/traits/player_character_trait"));
+		::Legends.Traits.grant(bros[0], ::Legends.Trait.Player);
 		bros[0].getFlags().set("IsPlayerCharacter", true);
 		this.World.Assets.addBusinessReputation(this.m.StartingBusinessReputation);
 		this.World.Assets.getStash().resize(this.World.Assets.getStash().getCapacity() + 9);

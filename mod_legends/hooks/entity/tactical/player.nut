@@ -570,8 +570,8 @@
 			this.getFlags().add("PlayerZombie");
 			this.improveMood(1.0, "Reborned to live again");
 			this.setMoraleState(::Const.MoraleState.Ignore);
-			this.getSkills().add(::new("scripts/skills/traits/legend_rotten_flesh_trait"));
 
+			::Legends.Traits.grant(this, ::Legends.Trait.LegendRottenFlesh);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendZombieBite, function (perk) {
 				perk.IsRefundable = false;
 			});
@@ -1232,12 +1232,8 @@
 		}
 
 		background.buildDescription();
-		local inTraining = this.new("scripts/skills/traits/legend_intensive_training_trait");
 
-		if (!this.getSkills().hasSkill("trait.legend_intensive_training_trait"))
-		{
-			this.m.Skills.add(inTraining);
-		}
+		::Legends.Traits.grant(this, ::Legends.Trait.LegendIntensiveTraining);
 
 		if (_addTraits)
 		{

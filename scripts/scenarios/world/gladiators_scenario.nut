@@ -34,7 +34,7 @@ this.gladiators_scenario <- this.inherit("scripts/scenarios/world/starting_scena
 			bro.getSkills().removeByID("trait.greedy");
 			bro.getSkills().removeByID("trait.loyal");
 			bro.getSkills().removeByID("trait.disloyal");
-			bro.getSkills().add(this.new("scripts/skills/traits/arena_fighter_trait"));
+			::Legends.Traits.grant(bro, ::Legends.Trait.ArenaFighter);
 			bro.getFlags().set("ArenaFightsWon", 5);
 			bro.getFlags().set("ArenaFights", 5);
 			bro.setPlaceInFormation(3 + i);
@@ -53,7 +53,7 @@ this.gladiators_scenario <- this.inherit("scripts/scenarios/world/starting_scena
 		local a;
 		local u;
 		bros[0].setTitle("the Lion");
-		bros[0].getSkills().add(this.new("scripts/skills/traits/glorious_resolve_trait"));
+		::Legends.Traits.grant(bros[0], ::Legends.Trait.GloriousResolve);
 		bros[0].getTalents().resize(this.Const.Attributes.COUNT, 0);
 		bros[0].getTalents()[this.Const.Attributes.MeleeDefense] = 2;
 		bros[0].getTalents()[this.Const.Attributes.Fatigue] = 2;
@@ -74,7 +74,7 @@ this.gladiators_scenario <- this.inherit("scripts/scenarios/world/starting_scena
 		bros[0].improveMood(0.75, "Eager to prove himself outside the arena");
 		bros[0].setVeteranPerks(2);
 		bros[1].setTitle("the Bear");
-		bros[1].getSkills().add(this.new("scripts/skills/traits/glorious_endurance_trait"));
+		::Legends.Traits.grant(bros[1], ::Legends.Trait.GloriousEndurance);
 		bros[1].getTalents().resize(this.Const.Attributes.COUNT, 0);
 		bros[1].getTalents()[this.Const.Attributes.Hitpoints] = 3;
 		bros[1].getTalents()[this.Const.Attributes.Fatigue] = 2;
@@ -94,7 +94,7 @@ this.gladiators_scenario <- this.inherit("scripts/scenarios/world/starting_scena
 		bros[1].improveMood(0.75, "Eager to prove himself outside the arena");
 		bros[1].setVeteranPerks(2);
 		bros[2].setTitle("the Viper");
-		bros[2].getSkills().add(this.new("scripts/skills/traits/glorious_quickness_trait"));
+		::Legends.Traits.grant(bros[2], ::Legends.Trait.GloriousQuickness);
 		bros[2].getTalents().resize(this.Const.Attributes.COUNT, 0);
 		bros[2].getTalents()[this.Const.Attributes.MeleeDefense] = 2;
 		bros[2].getTalents()[this.Const.Attributes.Initiative] = 3;
@@ -120,7 +120,7 @@ this.gladiators_scenario <- this.inherit("scripts/scenarios/world/starting_scena
 		bros[2].getBackground().m.RawDescription = "{Why are you looking at %fullname%? Captain, it is I, " + bros[1].getName() + ", who is your greatest gladiator. I am the one who swept the legs of a lindwurm and choked it out with its own tail! What you bastards say? You call that a tall tale? Pah! \'Tis a horizontal lizard at best.}";
 		bros[2].getBackground().buildDescription(true);
 
-		this.World.Assets.addBusinessReputation(this.m.StartingBusinessReputation);		
+		this.World.Assets.addBusinessReputation(this.m.StartingBusinessReputation);
 		this.World.Assets.getStash().resize(this.World.Assets.getStash().getCapacity() - 9);
 		this.World.Assets.getStash().add(this.new("scripts/items/supplies/dried_lamb_item"));
 		this.World.Assets.getStash().add(this.new("scripts/items/supplies/wine_item"));

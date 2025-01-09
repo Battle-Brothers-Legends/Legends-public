@@ -10,7 +10,7 @@
 		{
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendLevitate);
 			this.m.Skills.add(this.new("scripts/skills/effects/dodge_effect"));
-			this.m.Skills.add(this.new("scripts/skills/traits/fearless_trait"));
+			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
 		}
 	}
 

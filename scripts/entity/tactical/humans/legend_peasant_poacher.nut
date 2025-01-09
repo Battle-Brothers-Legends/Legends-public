@@ -38,7 +38,7 @@ this.legend_peasant_poacher <- this.inherit("scripts/entity/tactical/human", {
 			::Legends.Perks.grant(this, ::Legends.Perk.Overwhelm);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendBallistics);
 			::Legends.Perks.grant(this, ::Legends.Perk.CripplingStrikes);
-			this.m.Skills.add(this.new("scripts/skills/traits/fearless_trait"));
+			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
 		}
 	}
 

@@ -89,7 +89,7 @@ this.manhunters_scenario <- this.inherit("scripts/scenarios/world/starting_scena
 		bros[2].getBackground().m.RawDescription = "{You found %name% being lawed by city guards. It looked like they were gonna play a game of \'catch the scimitar\' with his wrists until you intervened, opining that he owed the Gilder far before he owed any man. You hoped to offload him to high-paying Viziers, but none would take him as he was too \'learned\' and seemed the exact sort of threat to spur an uprising. Unusual to a man of his standing, he does harbor a fair bit of respect for you.}";
 		bros[2].setPlaceInFormation(2);
 		bros[2].getSkills().removeByID("trait.dumb");
-		bros[2].getSkills().add(this.new("scripts/skills/traits/bright_trait"));
+		::Legends.Traits.grant(bros[2], ::Legends.Trait.Bright);
 		bros[2].getSprite("miniboss").setBrush("bust_miniboss_indebted");
 		local items = bros[2].getItems();
 		items.unequip(items.getItemAtSlot(this.Const.ItemSlot.Mainhand));

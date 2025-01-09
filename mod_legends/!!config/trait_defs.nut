@@ -81,7 +81,7 @@ traitDefs.push({
 traitDefs.push({
 	ID = "trait.cocky",
 	Script = "scripts/skills/traits/cocky_trait",
-	Const = "",
+	Const = "Cocky",
 	Random = true
 });
 traitDefs.push({
@@ -384,6 +384,140 @@ traitDefs.push({
 	Const = "Lucky",
 	Random = true
 });
+// non random perks
+traitDefs.push({
+	ID = "trait.pit_fighter",
+	Script = "scripts/skills/traits/arena_pit_fighter_trait",
+	Const = "PitFighter"
+});
+traitDefs.push({
+	ID = "trait.arena_fighter",
+	Script = "scripts/skills/traits/arena_fighter_trait",
+	Const = "ArenaFighter"
+});
+traitDefs.push({
+	ID = "trait.addict",
+	Script = "scripts/skills/traits/addict_trait",
+	Const = "Addict"
+});
+traitDefs.push({
+	ID = "trait.mad",
+	Script = "scripts/skills/traits/mad_trait",
+	Const = "Mad"
+});
+traitDefs.push({
+	ID = "trait.old",
+	Script = "scripts/skills/traits/old_trait",
+	Const = "Old"
+});
+traitDefs.push({
+	ID = "trait.cultist_prophet",
+	Script = "scripts/skills/traits/cultist_prophet_trait",
+	Const = "CultistProphet"
+});
+traitDefs.push({
+	ID = "trait.cultist_chosen",
+	Script = "scripts/skills/traits/cultist_chosen_trait",
+	Const = "CultistChosen"
+});
+traitDefs.push({
+	ID = "trait.cultist_disciple",
+	Script = "scripts/skills/traits/cultist_disciple_trait",
+	Const = "CultistDisciple"
+});
+traitDefs.push({
+	ID = "trait.cultist_acolyte",
+	Script = "scripts/skills/traits/cultist_acolyte_trait",
+	Const = "CultistAcolyte"
+});
+traitDefs.push({
+	ID = "trait.cultist_zealot",
+	Script = "scripts/skills/traits/cultist_zealot_trait",
+	Const = "CultistZealot"
+});
+traitDefs.push({
+	ID = "trait.cultist_fanatic",
+	Script = "scripts/skills/traits/cultist_fanatic_trait",
+	Const = "CultistFanatic"
+});
+traitDefs.push({
+	ID = "trait.glorious",
+	Script = "scripts/skills/traits/glorious_resolve_trait",
+	Const = "GloriousResolve"
+});
+traitDefs.push({
+	ID = "trait.glorious",
+	Script = "scripts/skills/traits/glorious_endurance_trait",
+	Const = "GloriousEndurance"
+});
+traitDefs.push({
+	ID = "trait.cultist_fanatic",
+	Script = "scripts/skills/traits/glorious_quickness_trait",
+	Const = "GloriousQuickness"
+});
+
+// oaths
+traitDefs.push({
+	ID = "trait.oath_of_humility",
+	Script = "scripts/skills/traits/oath_of_humility_trait",
+	Const = "OathOfHumility"
+});
+traitDefs.push({
+	ID = "trait.oath_of_valor",
+	Script = "scripts/skills/traits/oath_of_valor_trait",
+	Const = "OathOfValor"
+});
+traitDefs.push({
+	ID = "trait.oath_of_endurance",
+	Script = "scripts/skills/traits/oath_of_endurance_trait",
+	Const = "OathOfEndurance"
+});
+traitDefs.push({
+	ID = "trait.oath_of_vengeance",
+	Script = "scripts/skills/traits/oath_of_vengeance_trait",
+	Const = "OathOfVengeance"
+});
+traitDefs.push({
+	ID = "trait.oath_of_righteousness",
+	Script = "scripts/skills/traits/oath_of_righteousness_trait",
+	Const = "OathOfRighteousness"
+});
+traitDefs.push({
+	ID = "trait.oath_of_dominion",
+	Script = "scripts/skills/traits/oath_of_dominion_trait",
+	Const = "OathOfDominion"
+});
+traitDefs.push({
+	ID = "trait.oath_of_wrath",
+	Script = "scripts/skills/traits/oath_of_wrath_trait",
+	Const = "OathOfWrath"
+});
+traitDefs.push({
+	ID = "trait.oath_of_honor",
+	Script = "scripts/skills/traits/oath_of_honor_trait",
+	Const = "OathOfHonor"
+});
+traitDefs.push({
+	ID = "trait.oath_of_camaraderie",
+	Script = "scripts/skills/traits/oath_of_camaraderie_trait",
+	Const = "OathOfCamaderie"
+});
+traitDefs.push({
+	ID = "trait.oath_of_sacrifice",
+	Script = "scripts/skills/traits/oath_of_sacrifice_trait",
+	Const = "OathOfSacrifice"
+});
+traitDefs.push({
+	ID = "trait.oath_of_fortification",
+	Script = "scripts/skills/traits/oath_of_fortification_trait",
+	Const = "OathOfFortification"
+});
+traitDefs.push({
+	ID = "trait.oath_of_distinction",
+	Script = "scripts/skills/traits/oath_of_distinction_trait",
+	Const = "OathOfDistinction"
+});
+
 // Legends additions
 traitDefs.push({
 	ID = "trait.legend_hate_nobles",
@@ -498,6 +632,150 @@ traitDefs.push({
 	Script = "scripts/skills/traits/legend_sureshot_trait",
 	Const = "LegendSureshot",
 	Random = true
+});
+// prosthetic
+traitDefs.push({
+	ID = "trait.legend_prosthetic_ear",
+	Script = "scripts/skills/traits/legend_prosthetic_ear",
+	Const = "LegendProstheticEar"
+});
+traitDefs.push({
+	ID = "trait.legend_prosthetic_eye",
+	Script = "scripts/skills/traits/legend_prosthetic_eye",
+	Const = "LegendProstheticEye"
+});
+traitDefs.push({
+	ID = "trait.legend_prosthetic_finger",
+	Script = "scripts/skills/traits/legend_prosthetic_finger",
+	Const = "LegendProstheticFinger"
+});
+traitDefs.push({
+	ID = "trait.legend_prosthetic_foot",
+	Script = "scripts/skills/traits/legend_prosthetic_foot",
+	Const = "LegendProstheticFoot"
+});
+traitDefs.push({
+	ID = "trait.legend_prosthetic_forearm",
+	Script = "scripts/skills/traits/legend_prosthetic_forearm",
+	Const = "LegendProstheticForearm"
+});
+traitDefs.push({
+	ID = "trait.legend_prosthetic_hand",
+	Script = "scripts/skills/traits/legend_prosthetic_hand",
+	Const = "LegendProstheticHand"
+});
+traitDefs.push({
+	ID = "trait.legend_prosthetic_leg",
+	Script = "scripts/skills/traits/legend_prosthetic_leg",
+	Const = "LegendProstheticLeg"
+});
+traitDefs.push({
+	ID = "trait.legend_prosthetic_nose",
+	Script = "scripts/skills/traits/legend_prosthetic_nose",
+	Const = "LegendProstheticNose"
+});
+
+// non random
+traitDefs.push({
+	ID = "trait.legend_arena_veteran",
+	Script = "scripts/skills/traits/legend_arena_veteran_trait",
+	Const = "LegendArenaVeteran"
+});
+traitDefs.push({
+	ID = "trait.legend_arena_champion",
+	Script = "scripts/skills/traits/legend_arena_champion_trait",
+	Const = "LegendArenaChampion"
+});
+traitDefs.push({
+	ID = "trait.legend_arena_invictus",
+	Script = "scripts/skills/traits/legend_arena_invictus_trait",
+	Const = "LegendArenaInvictus"
+});
+
+traitDefs.push({
+	ID = "trait.legend_rotten_flesh",
+	Script = "scripts/skills/traits/legend_rotten_flesh_trait",
+	Const = "LegendRottenFlesh"
+});
+traitDefs.push({
+	ID = "trait.legend_intensive_training_trait",
+	Script = "scripts/skills/traits/legend_intensive_training_trait",
+	Const = "LegendIntensiveTraining"
+});
+traitDefs.push({
+	ID = "trait.legend_fleshless",
+	Script = "scripts/skills/traits/legend_fleshless_trait",
+	Const = "LegendFleshless"
+});
+traitDefs.push({
+	ID = "trait.legend_deathly_spectre",
+	Script = "scripts/skills/traits/legend_deathly_spectre_trait",
+	Const = "LegendDeathlySpectre"
+});
+traitDefs.push({
+	ID = "trait.legend_lw_relationship",
+	Script = "scripts/skills/traits/legend_lw_relationship_trait",
+	Const = "LegendLWRelationship"
+});
+traitDefs.push({
+	ID = "trait.legend_nomad",
+	Script = "scripts/skills/traits/legend_nomad_trait",
+	Const = "LegendNomad"
+});
+traitDefs.push({
+	ID = "trait.undead_killer",
+	Script = "scripts/skills/traits/legend_undead_killer_trait",
+	Const = "LegendUndeadKiller"
+});
+traitDefs.push({
+	ID = "trait.legend_beastslayers",
+	Script = "scripts/skills/traits/legend_beastslayers_trait",
+	Const = "LegendBeastslayers"
+});
+traitDefs.push({
+	ID = "trait.legend_cannibalistic",
+	Script = "scripts/skills/traits/legend_cannibalistic",
+	Const = "LegendCannibalistic"
+});
+traitDefs.push({
+	ID = "trait.legend_necromancer",
+	Script = "scripts/skills/traits/legend_necromancer_trait",
+	Const = "LegendNecromancer"
+});
+traitDefs.push({
+	ID = "trait.legend_peasant",
+	Script = "scripts/skills/traits/legend_peasant_trait",
+	Const = "LegendPeasant"
+});
+traitDefs.push({
+	ID = "trait.legend_withering_aura",
+	Script = "scripts/skills/traits/legend_withering_aura_trait",
+	Const = "LegendWitheringAura"
+});
+traitDefs.push({
+	ID = "trait.legend_appetite_donkey",
+	Script = "scripts/skills/traits/legend_appetite_donkey",
+	Const = "LegendDonkeyAppetite"
+});
+traitDefs.push({
+	ID = "trait.legend_horse",
+	Script = "scripts/skills/traits/legend_horse_trait",
+	Const = "LegendHorse"
+});
+traitDefs.push({
+	ID = "trait.legend_inquisition_disciple",
+	Script = "scripts/skills/traits/legend_inquisition_disciple_trait",
+	Const = "LegendInquisitionDisciple"
+});
+traitDefs.push({
+	ID = "trait.noble_killer",
+	Script = "scripts/skills/traits/legend_noble_killer_trait",
+	Const = "LegendNobleKiller"
+});
+traitDefs.push({
+	ID = "trait.sato_brothers_in_chains",
+	Script = "scripts/skills/traits/sato_brothers_in_chains_trait",
+	Const = "LegendBrothersInChains"
 });
 
 ::Legends.Traits.addTraitDefObjects(traitDefs);
