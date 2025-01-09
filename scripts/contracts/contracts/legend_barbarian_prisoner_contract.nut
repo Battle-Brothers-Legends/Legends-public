@@ -8,7 +8,7 @@ this.legend_barbarian_prisoner_contract <- this.inherit("scripts/contracts/contr
 		BarbRetal = null,
 		IsEscortUpdated = false,
 		MinStrength = 10, // player needs to earn 10% of bonus (not including base 5% bonus) for this contract to be valid
-		Perk = "perk.legend_favoured_enemy_barbarian",
+		Perk = ::Const.Perks.PerkDefs.LegendFavouredEnemyBarbarian,
 		ValidTypes = this.Const.LegendMod.FavoriteBarbarian
 	},
 	function create()
@@ -753,7 +753,7 @@ this.legend_barbarian_prisoner_contract <- this.inherit("scripts/contracts/contr
 
 		foreach( bro in this.World.getPlayerRoster().getAll() )
 		{
-			if (!bro.getSkills().hasSkill(this.m.Perk))
+			if (!bro.getSkills().hasPerk(this.m.Perk))
 			{
 				continue;
 			}

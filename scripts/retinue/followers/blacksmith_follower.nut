@@ -14,7 +14,7 @@ this.blacksmith_follower <- this.inherit("scripts/retinue/follower", {
 		];
 
 		this.addSkillRequirement("Have a mercenary who has taken the Field Repairs perk. Guaranteed on Blacksmiths, Ironmongers, and Crusaders", [
-			"perk.legend_field_repairs",
+			::Legends.Perks.getID(::Const.Perks.PerkDefs.LegendFieldRepairs),
 			"background.legend_companion_melee",
 			"background.legend_companion_ranged"
 		]);

@@ -4,7 +4,7 @@ this.legend_hunting_demon_alps_contract <- this.inherit("scripts/contracts/contr
 		SpawnAtTime = 0.0,
 		IsPlayerAttacking = false,
 		MinStrength = 10, // player needs to earn 10% of bonus (not including base 5% bonus) for this contract to be valid
-		Perk = "perk.legend_favoured_enemy_alps",
+		Perk = ::Const.Perks.PerkDefs.LegendFavouredEnemyAlps,
 		ValidTypes = this.Const.LegendMod.FavoriteAlps
 	},
 	function create()
@@ -404,7 +404,7 @@ this.legend_hunting_demon_alps_contract <- this.inherit("scripts/contracts/contr
 	{
 		foreach( bro in this.World.getPlayerRoster().getAll() )
 		{
-			if (!bro.getSkills().hasSkill(this.m.Perk))
+			if (!bro.getSkills().hasPerk(this.m.Perk))
 			{
 				continue;
 			}

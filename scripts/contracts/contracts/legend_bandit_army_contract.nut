@@ -11,7 +11,7 @@ this.legend_bandit_army_contract <- this.inherit("scripts/contracts/contract", {
 		OriginalReward = 0,
 		MinStrength = 10, // player needs to earn 10% of bonus (not including base 5% bonus) for this contract to be valid
 		BribeMoney = 1000,
-		Perk = "perk.legend_favoured_enemy_bandit",
+		Perk = ::Const.Perks.PerkDefs.LegendFavouredEnemyBandit,
 		ValidTypes = this.Const.LegendMod.FavoriteBandit
 	},
 	function getBanner()
@@ -826,7 +826,7 @@ this.legend_bandit_army_contract <- this.inherit("scripts/contracts/contract", {
 
 		foreach( bro in this.World.getPlayerRoster().getAll() )
 		{
-			if (!bro.getSkills().hasSkill(this.m.Perk))
+			if (!bro.getSkills().hasPerk(this.m.Perk))
 			{
 				continue;
 			}

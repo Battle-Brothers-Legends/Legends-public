@@ -351,14 +351,12 @@ this.repair_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 		{
 			local items = bro.getItems().getAllItems();
 			local skills = [
-				"perk.legend_tools_spares",
-				"perk.legend_tools_drawers"
+				::Const.Perks.PerkDefs.LegendToolsSpares,
+				::Const.Perks.PerkDefs.LegendToolsDrawers
 			];
-
 			foreach( s in skills )
 			{
-				local skill = bro.getSkills().getSkillByID(s);
-
+				local skill = ::Legends.Perks.get(bro, s);
 				if (skill != null)
 				{
 					perkMod = this.Math.maxf(perkMod - skill.getModifier() * 0.003, 0.5);

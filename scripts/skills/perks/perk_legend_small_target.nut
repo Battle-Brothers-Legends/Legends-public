@@ -58,7 +58,7 @@ this.perk_legend_small_target <- this.inherit("scripts/skills/skill", {
 			return tooltip;
 		}
 
-		local sourcePerk = this.getContainer().getSkillByID("perk.legend_blend_in");
+		local sourcePerk = ::Legends.Perks.get(this, ::Const.Perks.PerkDefs.LegendBlendIn);
 		if (this.getContainer().getActor().getSkills().hasPerk(::Const.Perks.PerkDefs.LegendUnburdened) && bonus >= this.m.BonusUnburdenedMin && sourcePerk != null && sourcePerk.m.MeekStacks > 0)
 		{
 			tooltip.push({
@@ -155,7 +155,7 @@ this.perk_legend_small_target <- this.inherit("scripts/skills/skill", {
 		_properties.MeleeDefense += this.getCurrentBonus();
 		_properties.RangedDefense += this.getCurrentBonus();
 
-		local sourcePerk = this.getContainer().getSkillByID("perk.legend_blend_in");
+		local sourcePerk = ::Legends.Perks.get(this, ::Const.Perks.PerkDefs.LegendBlendIn);
 		if (sourcePerk == null)
 			return;
 

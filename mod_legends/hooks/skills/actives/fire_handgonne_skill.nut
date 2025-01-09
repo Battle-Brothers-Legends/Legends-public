@@ -56,7 +56,7 @@
 
 		if (this.getContainer().hasPerk(::Const.Perks.PerkDefs.LegendPiercingShot))
 		{
-			local s = this.getContainer().getSkillByID("perk.legend_piercing_shot");
+			local s = ::Legends.Perks.get(this, ::Const.Perks.PerkDefs.LegendPiercingShot);
 			tooltip.push({
 				id = 6,
 				type = "text",

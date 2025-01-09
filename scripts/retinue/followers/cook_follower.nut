@@ -13,7 +13,7 @@ this.cook_follower <- this.inherit("scripts/retinue/follower", {
 		];
 
 		this.addSkillRequirement("Have someone who's learned the Camp Cook perk. Guaranteed on Bakers, Fishwives, Cannibals and Butchers, may be rarely found on many others", [
-			"perk.legend_camp_cook",
+			::Legends.Perks.getID(::Const.Perks.PerkDefs.LegendCampCook),
 			"background.legend_companion_melee",
 			"background.legend_companion_ranged"
 		]);

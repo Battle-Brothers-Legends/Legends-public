@@ -293,13 +293,13 @@
 
 			if (bro.getSkills().hasPerk(::Const.Perks.PerkDefs.LegendReclamationhasSkill))
 			{
-				local skill = bro.getSkills().getSkillByID("perk.legend_reclamation");
+				local skill = ::Legends.Perks.get(bro, ::Const.Perks.PerkDefs.LegendReclamation);
 				zombieSalvage += skill.m.LootChance;
 			}
 
 			if (bro.getSkills().hasPerk(::Const.Perks.PerkDefs.LegendResurrectionist))
 			{
-				local skill = bro.getSkills().getSkillByID("perk.legend_resurrectionist");
+				local skill = ::Legends.Perks.get(bro, ::Const.Perks.PerkDefs.LegendResurrectionist);
 				zombieSalvage += skill.m.LootChance;
 			}
 

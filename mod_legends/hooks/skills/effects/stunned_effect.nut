@@ -1,5 +1,5 @@
 ::mods_hookExactClass("skills/effects/stunned_effect", function(o) {
-	
+
 	o.setTurns = function ( _t )
 	{
 		if (!::MSU.isNull(this.getContainer()) && !::MSU.isNull(this.getContainer().getActor()))
@@ -11,7 +11,7 @@
 	o.onAdded = function ()
 	{
 		// Legends Steel Brow Stun -> Daze logic here
-		local skill = this.getContainer().getSkillByID("perk.steel_brow");
+		local skill = ::Legends.Perks.get(this, ::Const.Perks.PerkDefs.SteelBrow);
 
 		if (skill != null)
 		{

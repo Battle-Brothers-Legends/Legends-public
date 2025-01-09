@@ -69,7 +69,7 @@
 			this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(_user) + " has staggered " + this.Const.UI.getColorizedEntityName(target) + " for one turn");
 		}
 
-		local overwhelm = this.getContainer().getSkillByID("perk.overwhelm");
+		local overwhelm = ::Legends.Perks.get(this, ::Const.Perks.PerkDefs.Overwhelm);
 
 		if (overwhelm != null)
 		{

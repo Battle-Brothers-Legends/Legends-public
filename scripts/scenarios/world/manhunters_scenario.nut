@@ -254,7 +254,7 @@ this.manhunters_scenario <- this.inherit("scripts/scenarios/world/starting_scena
 
 	function onUnlockPerk( _bro, _perkID )
 	{
-		if (_bro.getLevel() == 7 && _bro.getBackground().getID() == "background.slave" && _perkID == "perk.student")
+		if (_bro.getLevel() == 7 && _bro.getBackground().getID() == "background.slave" && _perkID == ::Legends.Perks.getID(::Const.Perks.PerkDefs.Student))
 		{
 			_bro.setPerkPoints(_bro.getPerkPoints() + 1);
 		}

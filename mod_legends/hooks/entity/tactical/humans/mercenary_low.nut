@@ -5,7 +5,7 @@
 	{
 		onInit();
 		local b = this.m.BaseProperties;
-		this.m.Skills.removeByID("perk.battle_forged");
+		::Legends.Perks.remove(this, ::Const.Perks.PerkDefs.BattleForged);
 		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Nimble);
 		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Backstabber);
 		::Legends.Perks.grant(this, ::Const.Perks.PerkDefs.Overwhelm);

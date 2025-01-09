@@ -115,11 +115,9 @@ this.legend_spawn_item <- this.inherit("scripts/items/item", {
 		foreach (bro in this.World.getPlayerRoster().getAll())
 		{
 			if (!bro.getSkills().hasPerk(::Const.Perks.PerkDefs.LegendConservation))
-			{
 				continue
-			}
 
-			local skill = bro.getSkills().getSkillByID("perk.legend_conservation");
+			local skill = ::Legends.Perks.get(bro, ::Const.Perks.PerkDefs.LegendConservation);
 			return this.Math.floor(this.m.MedicinePerDay * skill.m.MedicinePerDayMult);
 		}
 		return this.m.MedicinePerDay;

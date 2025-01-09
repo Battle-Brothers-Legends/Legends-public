@@ -1,7 +1,6 @@
 this.legend_rune <- this.inherit("scripts/crafting/blueprint", {
 	m = {
 		Rune = 0,
-		Skill = ""
 	},
 	function create()
 	{
@@ -151,7 +150,7 @@ this.legend_rune <- this.inherit("scripts/crafting/blueprint", {
 				break
 
 				// case 23: //Removed 22/1/23 as part of the steel brow rework. May rework this rune in a similar manner later where its not blanket immunity
-				// rune = this.new("scripts/items/legend_armor/runes/legend_rune_resilience"); 
+				// rune = this.new("scripts/items/legend_armor/runes/legend_rune_resilience");
 				// break
 			}
 			rune.setRuneVariant(this.m.Rune);

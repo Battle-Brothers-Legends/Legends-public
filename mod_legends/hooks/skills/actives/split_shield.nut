@@ -62,7 +62,7 @@
 				], 1.0);
 			}
 
-			local overwhelm = this.getContainer().getSkillByID("perk.overwhelm");
+			local overwhelm = ::Legends.Perks.get(this, ::Const.Perks.PerkDefs.Overwhelm);
 
 			if (overwhelm != null)
 			{

@@ -14,7 +14,7 @@ this.minstrel_follower <- this.inherit("scripts/retinue/follower", {
 		];
 
 		this.addSkillRequirement("Have someone with the Entice perk. Guaranteed on Minstrels and Troubadours", [
-			"perk.legend_entice",
+			::Legends.Perks.getID(::Const.Perks.PerkDefs.LegendEntice),
 			"background.legend_companion_melee",
 			"background.legend_companion_ranged"
 		]);

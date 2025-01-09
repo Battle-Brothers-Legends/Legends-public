@@ -66,13 +66,9 @@ this.legend_named_warlock_hood <- this.inherit("scripts/items/helmets/named/name
 	function onUnequip()
 	{
 		local a = this.getContainer().getActor();
-
 		if (a == null)
-		{
 			return;
-		}
-
-		a.getSkills().removeByID("perk.legend_taste_the_pain");
+		::Legends.Perks.remove(a, ::Const.Perks.PerkDefs.LegendTasteThePain);
 		this.named_helmet.onUnequip();
 	}
 

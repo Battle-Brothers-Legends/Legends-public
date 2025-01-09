@@ -5,7 +5,7 @@ this.legend_swordmaster_fav_enemy_event <- this.inherit("scripts/events/event", 
 		Candidates = null,
 		Champion = null,
 		Flags = null,
-		Perk = "perk.legend_favoured_enemy_swordmaster",
+		Perk = ::Legends.Perks.getID(::Const.Perks.PerkDefs.LegendFavouredEnemySwordmaster),
 		ValidTypes = this.Const.LegendMod.FavoriteSwordmaster,
 		isValidForEncounter = false
 	},

@@ -14,7 +14,7 @@ this.quartermaster_follower <- this.inherit("scripts/retinue/follower", {
 		];
 
 		this.addSkillRequirement("Have someone with the Skillful Stacking perk. Guaranteed on Vagabonds, Millers, Donkeys and many others", [
-			"perk.legend_skillful_stacking",
+			::Legends.Perks.getID(::Const.Perks.PerkDefs.LegendSkillfulStacking),
 			"background.legend_companion_melee",
 			"background.legend_companion_ranged"
 		]);

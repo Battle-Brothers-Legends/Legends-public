@@ -23,7 +23,7 @@ this.negotiator_follower <- this.inherit("scripts/retinue/follower", {
 		});
 
 		this.addSkillRequirement("Have someone with the Pacifist perk. Guaranteed on Widow, Inventor, Tailor and many others", [
-			"perk.legend_pacifist",
+			::Legends.Perks.getID(::Const.Perks.PerkDefs.LegendPacifist),
 			"background.legend_companion_melee",
 			"background.legend_companion_ranged"
 		], true);

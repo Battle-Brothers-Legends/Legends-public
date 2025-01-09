@@ -14,7 +14,7 @@ this.recruiter_follower <- this.inherit("scripts/retinue/follower", {
 		];
 
 		this.addSkillRequirement("Have a mercenary who has taken the Inspiring Presence perk. Guaranteed on Cultists, Pimps, Retired Soldiers and many others.", [
-			"perk.inspiring_presence",
+			::Legends.Perks.getID(::Const.Perks.PerkDefs.InspiringPresence),
 			"background.legend_companion_melee",
 			"background.legend_companion_ranged"
 		]);
@@ -24,7 +24,7 @@ this.recruiter_follower <- this.inherit("scripts/retinue/follower", {
 	{
 		if ("RosterSizeAdditionalMin" in this.World.Assets.m)
 			this.World.Assets.m.RosterSizeAdditionalMin += 2;
-		if ("RosterSizeAdditionalMax" in this.World.Assets.m) 
+		if ("RosterSizeAdditionalMax" in this.World.Assets.m)
 			this.World.Assets.m.RosterSizeAdditionalMax  += 4;
 		if ("HiringCostMult" in this.World.Assets.m)
 			this.World.Assets.m.HiringCostMult *= 0.9;

@@ -4,7 +4,7 @@ this.legend_hunting_stollwurms_contract <- this.inherit("scripts/contracts/contr
 		Dude = null,
 		IsPlayerAttacking = true,
 		MinStrength = 10, // player needs to earn 10% of bonus (not including base 5% bonus) for this contract to be valid
-		Perk = "perk.legend_favoured_enemy_lindwurm",
+		Perk = ::Const.Perks.PerkDefs.LegendFavouredEnemyLindwurm,
 		ValidTypes = this.Const.LegendMod.FavoriteLindwurm
 	},
 	function create()
@@ -685,7 +685,7 @@ this.legend_hunting_stollwurms_contract <- this.inherit("scripts/contracts/contr
 	{
 		foreach( bro in this.World.getPlayerRoster().getAll() )
 		{
-			if (!bro.getSkills().hasSkill(this.m.Perk))
+			if (!bro.getSkills().hasPerk(this.m.Perk))
 			{
 				continue;
 			}
