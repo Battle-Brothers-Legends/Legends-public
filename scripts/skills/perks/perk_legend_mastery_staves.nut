@@ -2,7 +2,7 @@ this.perk_legend_mastery_staves <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		::Const.Perks.setup(this.m, ::Const.Perks.PerkDefs.LegendMasteryStaves);
+		::Const.Perks.setup(this.m, ::Legends.Perk.LegendMasteryStaves);
 		this.m.Type = this.Const.SkillType.Perk;
 		this.m.Order = this.Const.SkillOrder.Perk;
 		this.m.IsActive = false;

@@ -1,14 +1,14 @@
 this.beast_hunters_scenario <- this.inherit("scripts/scenarios/world/starting_scenario", {
 	m = {
 		FavouredEnemyPerks = [
-			::Const.Perks.PerkDefs.LegendFavouredEnemyGhoul,
-			::Const.Perks.PerkDefs.LegendFavouredEnemyHexen,
-			::Const.Perks.PerkDefs.LegendFavouredEnemyAlps,
-			::Const.Perks.PerkDefs.LegendFavouredEnemyUnhold,
-			::Const.Perks.PerkDefs.LegendFavouredEnemyLindwurm,
-			::Const.Perks.PerkDefs.LegendFavouredEnemyDirewolf,
-			::Const.Perks.PerkDefs.LegendFavouredEnemySpider,
-			::Const.Perks.PerkDefs.LegendFavouredEnemySchrat,
+			::Legends.Perk.LegendFavouredEnemyGhoul,
+			::Legends.Perk.LegendFavouredEnemyHexen,
+			::Legends.Perk.LegendFavouredEnemyAlps,
+			::Legends.Perk.LegendFavouredEnemyUnhold,
+			::Legends.Perk.LegendFavouredEnemyLindwurm,
+			::Legends.Perk.LegendFavouredEnemyDirewolf,
+			::Legends.Perk.LegendFavouredEnemySpider,
+			::Legends.Perk.LegendFavouredEnemySchrat,
 		],
 	},
 	function create()
@@ -52,7 +52,7 @@ this.beast_hunters_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 		}
 
 		local bros = roster.getAll();
-		
+
 
 		bros[0].setStartValuesEx([
 			"legend_guildmaster_background"
@@ -76,7 +76,7 @@ this.beast_hunters_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 		items.unequip(items.getItemAtSlot(this.Const.ItemSlot.Ammo));
 		items.equip(this.new("scripts/items/weapons/legend_redback_dagger"));
 		items.equip(this.new("scripts/items/tools/throwing_net"));
-		
+
 
 		bros[1].setStartValuesEx([
 			"beast_hunter_background"
@@ -99,7 +99,7 @@ this.beast_hunters_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 		items.unequip(items.getItemAtSlot(this.Const.ItemSlot.Offhand));
 		items.unequip(items.getItemAtSlot(this.Const.ItemSlot.Ammo));
 		items.equip(this.new("scripts/items/weapons/woodcutters_axe"));
-		
+
 
 		bros[2].setStartValuesEx([
 			"beast_hunter_background"
@@ -132,7 +132,7 @@ this.beast_hunters_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 			bro.m.Level = 2;
 		}
 
-		this.World.Assets.addBusinessReputation(this.m.StartingBusinessReputation);		
+		this.World.Assets.addBusinessReputation(this.m.StartingBusinessReputation);
 		this.World.Flags.set("HasLegendCampCrafting", true);
 		this.World.Flags.set("HasLegendCampHunting", true);
 		this.World.Assets.getStash().add(this.new("scripts/items/supplies/bread_item"));
@@ -266,7 +266,7 @@ this.beast_hunters_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 		this.addBroToRoster(_roster, "beast_hunter_background", 7);
 		this.addBroToRoster(_roster, "legend_guildmaster_background", 10);
 	}
-	
+
 	function onBuildPerkTree( _background )
 	{
 		local perk = ::MSU.Array.rand(this.m.FavouredEnemyPerks);

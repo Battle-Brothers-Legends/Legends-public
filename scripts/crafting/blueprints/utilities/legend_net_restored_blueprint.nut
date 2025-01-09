@@ -15,11 +15,9 @@ this.legend_net_restored_blueprint <- this.inherit("scripts/crafting/blueprint",
 		];
 		this.init(ingredients);
 		local skills = [
-			{
-				Scripts = ["scripts/skills/perks/perk_legend_net_repair"]
-			}
-		]
-		this.initSkills(skills);			
+			::Legends.Perks.blueprint(::Legends.Perk.LegendNetRepair)
+		];
+		this.initSkills(skills);
 
 	}
 

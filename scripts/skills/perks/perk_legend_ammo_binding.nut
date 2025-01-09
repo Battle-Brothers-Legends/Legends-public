@@ -4,7 +4,7 @@ this.perk_legend_ammo_binding <- this.inherit("scripts/skills/skill", {
 	},
 	function create()
 	{
-		::Const.Perks.setup(this.m, ::Const.Perks.PerkDefs.LegendAmmoBinding);
+		::Const.Perks.setup(this.m, ::Legends.Perk.LegendAmmoBinding);
 		this.m.Type = this.Const.SkillType.Perk;
 		this.m.Order = this.Const.SkillOrder.Perk;
 		this.m.IsActive = false;

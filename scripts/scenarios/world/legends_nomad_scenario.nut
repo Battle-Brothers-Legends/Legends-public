@@ -4,7 +4,7 @@ this.legends_nomad_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 	{
 		this.m.ID = "scenario.legends_nomad";
 		this.m.Name = "Nomad Tribe";
-		this.m.Description = "[p=c][img]gfx/ui/events/event_170.png[/img][/p][p]Displaced from your land, take control of 4 nomads and a conscript hunted in the desert. \n[color=#bcad8c]Hunted:[/color] Start in the desert away from civilisation. City States are hostile and will always decline in favour with you while Northern Nobles will have a cold relationship with you but will not decline. The more nomads in your party the stronger this effect will be.\n[color=#bcad8c]Nomadic:[/color] Vision radius is increased by 30% on the world map. Settlements may contain Nomads and Bladedancers displaced from their lands willing to fight for you. Nomads, Muladis and Bladedancers cost 25% less to hire and upkeep.\n[color=#bcad8c]The Path of the Interloper:[/color] Nomads and Muladis gain the \'Wind Reader\' perk when recruited. Bladedancers gain the \'Dodge\' perk. Other Nomads are friendly to you.[/p]"; 
+		this.m.Description = "[p=c][img]gfx/ui/events/event_170.png[/img][/p][p]Displaced from your land, take control of 4 nomads and a conscript hunted in the desert. \n[color=#bcad8c]Hunted:[/color] Start in the desert away from civilisation. City States are hostile and will always decline in favour with you while Northern Nobles will have a cold relationship with you but will not decline. The more nomads in your party the stronger this effect will be.\n[color=#bcad8c]Nomadic:[/color] Vision radius is increased by 30% on the world map. Settlements may contain Nomads and Bladedancers displaced from their lands willing to fight for you. Nomads, Muladis and Bladedancers cost 25% less to hire and upkeep.\n[color=#bcad8c]The Path of the Interloper:[/color] Nomads and Muladis gain the \'Wind Reader\' perk when recruited. Bladedancers gain the \'Dodge\' perk. Other Nomads are friendly to you.[/p]";
 		this.m.Difficulty = 2;
 		this.m.Order = 181;
 		this.m.IsFixedLook = true;
@@ -36,9 +36,9 @@ this.legends_nomad_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 
 		bros[0].setPlaceInFormation(2);
 		bros[0].setVeteranPerks(2);
-		bros[0].getSprite("socket").setBrush("bust_base_nomads");		
+		bros[0].getSprite("socket").setBrush("bust_base_nomads");
 		bros[0].getSkills().add(this.new("scripts/skills/traits/legend_nomad_trait"));
-		bros[0].getSkills().add(this.new("scripts/skills/perks/perk_legend_wind_reader"));
+		::Legends.Perks.grant(bros[0], ::Legends.Perk.LegendWindReader);
 		bros[0].setStartValuesEx([ // melee
 			"nomad_background"
 		]);
@@ -48,7 +48,7 @@ this.legends_nomad_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 		bros[1].setVeteranPerks(2);
 		bros[1].getSprite("socket").setBrush("bust_base_nomads");
 		bros[1].getSkills().add(this.new("scripts/skills/traits/legend_nomad_trait"));
-		bros[1].getSkills().add(this.new("scripts/skills/perks/perk_legend_wind_reader"));
+		::Legends.Perks.grant(bros[1], ::Legends.Perk.LegendWindReader);
 		bros[1].setStartValuesEx([ //melee always to prevent all ranged parties
 			"nomad_background"
 		]);
@@ -65,8 +65,8 @@ this.legends_nomad_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 		bros[3].setPlaceInFormation(11);
 		bros[3].setVeteranPerks(2);
 		bros[3].getSprite("socket").setBrush("bust_base_nomads");
-    bros[3].getSkills().add(this.new("scripts/skills/traits/legend_nomad_trait"));
-		bros[3].getSkills().add(this.new("scripts/skills/perks/perk_legend_wind_reader"));
+   	 	bros[3].getSkills().add(this.new("scripts/skills/traits/legend_nomad_trait"));
+		::Legends.Perks.grant(bros[3], ::Legends.Perk.LegendWindReader);
 		bros[3].setStartValuesEx([ //wildcard 1
 			"nomad_background",
 			"nomad_ranged_background"
@@ -77,7 +77,7 @@ this.legends_nomad_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 		bros[4].setVeteranPerks(2);
 		bros[4].getSprite("socket").setBrush("bust_base_nomads");
 		bros[4].getSkills().add(this.new("scripts/skills/traits/legend_nomad_trait"));
-		bros[4].getSkills().add(this.new("scripts/skills/perks/perk_legend_wind_reader"));
+		::Legends.Perks.grant(bros[4], ::Legends.Perk.LegendWindReader);
 		bros[4].setStartValuesEx([ //always ranged for variety
 			"nomad_ranged_background"
 		]);
@@ -204,14 +204,14 @@ this.legends_nomad_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 			bro.improveMood(1.5, "I walk with those on the path of the Interloper");
 			bro.getSkills().add(this.new("scripts/skills/traits/legend_nomad_trait"));
 			bro.getSprite("socket").setBrush("bust_base_nomads");
-			bro.getSkills().add(this.new("scripts/skills/perks/perk_legend_wind_reader"));
+			::Legends.Perks.grant(bro, ::Legends.Perk.LegendWindReader);
 		}
 		else if (bro.getBackground().getID() == "background.bladedancer")
 		{
 			bro.improveMood(1.5, "I walk with those on the path of the Interloper");
 			bro.getSkills().add(this.new("scripts/skills/traits/legend_nomad_trait"));
 			bro.getSprite("socket").setBrush("bust_base_nomads");
-			bro.getSkills().add(this.new("scripts/skills/perks/perk_dodge"));
+			::Legends.Perks.grant(bro, ::Legends.Perk.Dodge);
 		}
 		else
 		{
@@ -220,9 +220,9 @@ this.legends_nomad_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 	}
 
 	function onGenerateBro(bro)
-	{																
+	{
 		if (bro.getBackground().getID() == "background.nomad" || bro.getBackground().getID() == "background.muladi" || bro.getBackground().getID() == "background.legend_bladedancer")
-		{				
+		{
 			bro.m.HiringCost = this.Math.floor(bro.m.HiringCost * 0.75) //1.0 = default
 			bro.getBaseProperties().DailyWageMult *= 0.75; //1.0 = default
 		}
@@ -233,7 +233,7 @@ this.legends_nomad_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 			bro.getSkills().update();
 		}
 	}
-															
+
 	function onUpdateHiringRoster( _roster )
 	{
 		local settlement = this.getCurrentSettlement();
@@ -253,7 +253,7 @@ this.legends_nomad_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 		{
 			this.addBroToRoster(_roster, "nomad_background", 4);
 			this.addBroToRoster(_roster, "nomad_ranged_background", 4);
-			this.addBroToRoster(_roster, "legend_bladedancer_background", 8);		
+			this.addBroToRoster(_roster, "legend_bladedancer_background", 8);
 		}
 	}
 
@@ -291,6 +291,6 @@ this.legends_nomad_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 		}
 		return false;
 	}
-	
+
 });
 

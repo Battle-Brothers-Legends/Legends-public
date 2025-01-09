@@ -12,13 +12,13 @@ if (!("Perks" in ::Const))
 		[],
 		[],
 		[
-		::Const.Perks.PerkDefs.LegendFavouredEnemyGhoul,
-		::Const.Perks.PerkDefs.LegendFavouredEnemyDirewolf,
-		::Const.Perks.PerkDefs.LegendFavouredEnemySpider
+		::Legends.Perk.LegendFavouredEnemyGhoul,
+		::Legends.Perk.LegendFavouredEnemyDirewolf,
+		::Legends.Perk.LegendFavouredEnemySpider
 		],
 		[],
 		[],
-		[::Const.Perks.PerkDefs.LegendFavouredEnemyLindwurm],
+		[::Legends.Perk.LegendFavouredEnemyLindwurm],
 		[]
 	]
 };
@@ -31,7 +31,7 @@ if (!("Perks" in ::Const))
 	Tree = [
 		[],
 		[],
-		[::Const.Perks.PerkDefs.LegendFavouredEnemyGhoul],
+		[::Legends.Perk.LegendFavouredEnemyGhoul],
 		[],
 		[],
 		[],
@@ -47,7 +47,7 @@ if (!("Perks" in ::Const))
 	Tree = [
 		[],
 		[],
-		[::Const.Perks.PerkDefs.LegendFavouredEnemyDirewolf],
+		[::Legends.Perk.LegendFavouredEnemyDirewolf],
 		[],
 		[],
 		[],
@@ -63,7 +63,7 @@ if (!("Perks" in ::Const))
 	Tree = [
 		[],
 		[],
-		[::Const.Perks.PerkDefs.LegendFavouredEnemySpider],
+		[::Legends.Perk.LegendFavouredEnemySpider],
 		[],
 		[],
 		[],
@@ -82,7 +82,7 @@ if (!("Perks" in ::Const))
 		[],
 		[],
 		[],
-		[::Const.Perks.PerkDefs.LegendFavouredEnemyLindwurm],
+		[::Legends.Perk.LegendFavouredEnemyLindwurm],
 		[]
 	]
 };
@@ -98,10 +98,10 @@ if (!("Perks" in ::Const))
 		[],
 		[],
 		[],
-		[::Const.Perks.PerkDefs.LegendFavouredEnemySchrat],
+		[::Legends.Perk.LegendFavouredEnemySchrat],
 		[
-		::Const.Perks.PerkDefs.LegendFavouredEnemyHexen,
-		::Const.Perks.PerkDefs.LegendFavouredEnemyAlps
+		::Legends.Perk.LegendFavouredEnemyHexen,
+		::Legends.Perk.LegendFavouredEnemyAlps
 		]
 	]
 };
@@ -117,7 +117,7 @@ if (!("Perks" in ::Const))
 		[],
 		[],
 		[],
-		[::Const.Perks.PerkDefs.LegendFavouredEnemySchrat],
+		[::Legends.Perk.LegendFavouredEnemySchrat],
 		[]
 	]
 };
@@ -134,7 +134,7 @@ if (!("Perks" in ::Const))
 		[],
 		[],
 		[],
-		[::Const.Perks.PerkDefs.LegendFavouredEnemyHexen]
+		[::Legends.Perk.LegendFavouredEnemyHexen]
 	]
 };
 
@@ -150,7 +150,7 @@ if (!("Perks" in ::Const))
 		[],
 		[],
 		[],
-		[::Const.Perks.PerkDefs.LegendFavouredEnemyAlps]
+		[::Legends.Perk.LegendFavouredEnemyAlps]
 	]
 };
 
@@ -165,11 +165,11 @@ if (!("Perks" in ::Const))
 		[],
 		[],
 		[
-		::Const.Perks.PerkDefs.LegendFavouredEnemySkeleton,
-		::Const.Perks.PerkDefs.LegendFavouredEnemyZombie
+		::Legends.Perk.LegendFavouredEnemySkeleton,
+		::Legends.Perk.LegendFavouredEnemyZombie
 		],
 		[],
-		[::Const.Perks.PerkDefs.LegendFavouredEnemyVampire]
+		[::Legends.Perk.LegendFavouredEnemyVampire]
 	]
 };
 
@@ -183,7 +183,7 @@ if (!("Perks" in ::Const))
 		[],
 		[],
 		[],
-		[::Const.Perks.PerkDefs.LegendFavouredEnemySkeleton],
+		[::Legends.Perk.LegendFavouredEnemySkeleton],
 		[],
 		[]
 	]
@@ -199,7 +199,7 @@ if (!("Perks" in ::Const))
 		[],
 		[],
 		[],
-		[::Const.Perks.PerkDefs.LegendFavouredEnemyZombie],
+		[::Legends.Perk.LegendFavouredEnemyZombie],
 		[],
 		[]
 	]
@@ -217,7 +217,7 @@ if (!("Perks" in ::Const))
 		[],
 		[],
 		[],
-		[::Const.Perks.PerkDefs.LegendFavouredEnemyVampire]
+		[::Legends.Perk.LegendFavouredEnemyVampire]
 	]
 };
 
@@ -232,10 +232,10 @@ if (!("Perks" in ::Const))
 		[],
 		[],
 		[
-		::Const.Perks.PerkDefs.LegendFavouredEnemyOrk,
-		::Const.Perks.PerkDefs.LegendFavouredEnemyGoblin
+		::Legends.Perk.LegendFavouredEnemyOrk,
+		::Legends.Perk.LegendFavouredEnemyGoblin
 		],
-		[::Const.Perks.PerkDefs.LegendFavouredEnemyUnhold],
+		[::Legends.Perk.LegendFavouredEnemyUnhold],
 		[]
 	]
 };
@@ -250,7 +250,7 @@ if (!("Perks" in ::Const))
 		[],
 		[],
 		[],
-		[::Const.Perks.PerkDefs.LegendFavouredEnemyOrk],
+		[::Legends.Perk.LegendFavouredEnemyOrk],
 		[],
 		[]
 	]
@@ -266,7 +266,7 @@ if (!("Perks" in ::Const))
 		[],
 		[],
 		[],
-		[::Const.Perks.PerkDefs.LegendFavouredEnemyGoblin],
+		[::Legends.Perk.LegendFavouredEnemyGoblin],
 		[],
 		[]
 	]
@@ -283,7 +283,7 @@ if (!("Perks" in ::Const))
 		[],
 		[],
 		[],
-		[::Const.Perks.PerkDefs.LegendFavouredEnemyUnhold],
+		[::Legends.Perk.LegendFavouredEnemyUnhold],
 		[]
 	]
 };
@@ -296,11 +296,11 @@ if (!("Perks" in ::Const))
 	Tree = [
 		[],
 		[],
-		[::Const.Perks.PerkDefs.LegendFavouredEnemyCaravan],
+		[::Legends.Perk.LegendFavouredEnemyCaravan],
 		[],
-		[::Const.Perks.PerkDefs.LegendFavouredEnemyMercenary],
-		[::Const.Perks.PerkDefs.LegendFavouredEnemyNoble,
-		 ::Const.Perks.PerkDefs.LegendFavouredEnemySoutherner
+		[::Legends.Perk.LegendFavouredEnemyMercenary],
+		[::Legends.Perk.LegendFavouredEnemyNoble,
+		 ::Legends.Perk.LegendFavouredEnemySoutherner
 		],
 		[]
 	]
@@ -314,7 +314,7 @@ if (!("Perks" in ::Const))
 	Tree = [
 		[],
 		[],
-		[::Const.Perks.PerkDefs.LegendFavouredEnemyCaravan],
+		[::Legends.Perk.LegendFavouredEnemyCaravan],
 		[],
 		[],
 		[],
@@ -332,7 +332,7 @@ if (!("Perks" in ::Const))
 		[],
 		[],
 		[],
-		[::Const.Perks.PerkDefs.LegendFavouredEnemyMercenary],
+		[::Legends.Perk.LegendFavouredEnemyMercenary],
 		[],
 		[]
 	]
@@ -349,7 +349,7 @@ if (!("Perks" in ::Const))
 		[],
 		[],
 		[],
-		[::Const.Perks.PerkDefs.LegendFavouredEnemyNoble],
+		[::Legends.Perk.LegendFavouredEnemyNoble],
 		[]
 	]
 };
@@ -365,10 +365,10 @@ if (!("Perks" in ::Const))
 		[],
 		[],
 		[
-		 ::Const.Perks.PerkDefs.LegendFavouredEnemyBandit,
-		 ::Const.Perks.PerkDefs.LegendFavouredEnemyNomad
+		 ::Legends.Perk.LegendFavouredEnemyBandit,
+		 ::Legends.Perk.LegendFavouredEnemyNomad
 		 ],
-		[::Const.Perks.PerkDefs.LegendFavouredEnemyBarbarian],
+		[::Legends.Perk.LegendFavouredEnemyBarbarian],
 		[]
 	]
 };
@@ -383,7 +383,7 @@ if (!("Perks" in ::Const))
 		[],
 		[],
 		[],
-		[::Const.Perks.PerkDefs.LegendFavouredEnemyBandit],
+		[::Legends.Perk.LegendFavouredEnemyBandit],
 		[],
 		[]
 	]
@@ -400,7 +400,7 @@ if (!("Perks" in ::Const))
 		[],
 		[],
 		[],
-		[::Const.Perks.PerkDefs.LegendFavouredEnemyBarbarian],
+		[::Legends.Perk.LegendFavouredEnemyBarbarian],
 		[]
 	]
 };
@@ -411,12 +411,12 @@ if (!("Perks" in ::Const))
 		"archers"
 	],
 	Tree = [
-		[::Const.Perks.PerkDefs.Pathfinder],
+		[::Legends.Perk.Pathfinder],
 		[],
 		[],
 		[],
-		[::Const.Perks.PerkDefs.Footwork],
-		[::Const.Perks.PerkDefs.LegendFavouredEnemyArcher],
+		[::Legends.Perk.Footwork],
+		[::Legends.Perk.LegendFavouredEnemyArcher],
 		[]
 	]
 };
@@ -432,7 +432,7 @@ if (!("Perks" in ::Const))
 		[],
 		[],
 		[],
-		[::Const.Perks.PerkDefs.LegendFavouredEnemyArcher],
+		[::Legends.Perk.LegendFavouredEnemyArcher],
 		[]
 	]
 };
@@ -446,12 +446,12 @@ if (!("Perks" in ::Const))
 		[],
 		[],
 		[
-			::Const.Perks.PerkDefs.Steadfast,
-			::Const.Perks.PerkDefs.LegendSmackdown
+			::Legends.Perk.Steadfast,
+			::Legends.Perk.LegendSmackdown
 		],
 		[],
 		[],
-		[::Const.Perks.PerkDefs.LegendFavouredEnemySwordmaster],
+		[::Legends.Perk.LegendFavouredEnemySwordmaster],
 		[]
 	]
 };
@@ -463,11 +463,11 @@ if (!("Perks" in ::Const))
 	],
 	Tree = [
 		[],
-		[::Const.Perks.PerkDefs.LegendTrueBeliever],
+		[::Legends.Perk.LegendTrueBeliever],
 		[],
 		[],
 		[],
-		[::Const.Perks.PerkDefs.LegendFavouredEnemySoutherner],
+		[::Legends.Perk.LegendFavouredEnemySoutherner],
 		[]
 	]
 };
@@ -478,11 +478,11 @@ if (!("Perks" in ::Const))
 		"nomads"
 	],
 	Tree = [
-		[::Const.Perks.PerkDefs.Pathfinder],
+		[::Legends.Perk.Pathfinder],
 		[],
 		[],
 		[],
-		[::Const.Perks.PerkDefs.LegendFavouredEnemyNomad],
+		[::Legends.Perk.LegendFavouredEnemyNomad],
 		[],
 		[]
 	]

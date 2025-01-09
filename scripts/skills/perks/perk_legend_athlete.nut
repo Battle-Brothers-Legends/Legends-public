@@ -2,7 +2,7 @@ this.perk_legend_athlete <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		::Const.Perks.setup(this.m, ::Const.Perks.PerkDefs.LegendAthlete);
+		::Const.Perks.setup(this.m, ::Legends.Perk.LegendAthlete);
 		this.m.Type = this.Const.SkillType.Perk;
 		this.m.Order = this.Const.SkillOrder.Perk;
 		this.m.IsActive = false;

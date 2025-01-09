@@ -29,7 +29,7 @@ this.legend_white_warwolf <- this.inherit("scripts/entity/tactical/actor", {
 	{
 		this.m.Type = this.Const.EntityType.LegendWhiteWarwolf;
 		this.m.XP = this.Const.Tactical.Actor.LegendWhiteWarwolf.XP;
-		this.m.BloodType = this.Const.BloodType.Red;		
+		this.m.BloodType = this.Const.BloodType.Red;
 		this.m.IsActingImmediately = true;
 		this.m.BloodSplatterOffset = this.createVec(0, 0);
 		this.m.DecapitateSplatterOffset = this.createVec(-4, -25);
@@ -224,16 +224,16 @@ this.legend_white_warwolf <- this.inherit("scripts/entity/tactical/actor", {
 		this.getSprite("status_rooted").Scale = 0.58;
 		this.setSpriteOffset("status_rooted", this.createVec(-6, -29));
 		this.m.Skills.add(this.new("scripts/skills/actives/wolf_bite"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_pathfinder"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_steel_brow"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_rotation"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_footwork"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_recover"));
+		::Legends.Perks.grant(this, ::Legends.Perk.Pathfinder);
+		::Legends.Perks.grant(this, ::Legends.Perk.SteelBrow);
+		::Legends.Perks.grant(this, ::Legends.Perk.Rotation);
+		::Legends.Perks.grant(this, ::Legends.Perk.Footwork);
+		::Legends.Perks.grant(this, ::Legends.Perk.Recover);
 		this.m.Skills.add(this.new("scripts/skills/actives/legend_white_wolf_howl_skill"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_coup_de_grace"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_berserk"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_nimble"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_overwhelm"));
+		::Legends.Perks.grant(this, ::Legends.Perk.CoupDeGrace);
+		::Legends.Perks.grant(this, ::Legends.Perk.Berserk);
+		::Legends.Perks.grant(this, ::Legends.Perk.Nimble);
+		::Legends.Perks.grant(this, ::Legends.Perk.Overwhelm);
 		this.m.Skills.add(this.new("scripts/skills/racial/legend_werewolf_racial"));
 	}
 

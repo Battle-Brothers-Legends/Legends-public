@@ -4,19 +4,19 @@
 	o.onInit = function ()
 	{
 		onInit();
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_rotation"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_recover"));
+		::Legends.Perks.grant(this, ::Legends.Perk.Rotation);
+		::Legends.Perks.grant(this, ::Legends.Perk.Recover);
 		if(::Legends.isLegendaryDifficulty())
 		{
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_steel_brow"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_feint"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_stalwart"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_specialist_shield_skill"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_specialist_shield_push"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_smashing_shields"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_back_to_basics"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_shield_bash"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_full_force"));
+			::Legends.Perks.grant(this, ::Legends.Perk.SteelBrow);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendFeint);
+			::Legends.Perks.grant(this, ::Legends.Perk.Stalwart);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecialistShieldSkill);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecialistShieldPush);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendSmashingShields);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendBackToBasics);
+			::Legends.Perks.grant(this, ::Legends.Perk.ShieldBash);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendFullForce);
 			this.m.Skills.add(this.new("scripts/skills/traits/fearless_trait"));
 		}
 	}

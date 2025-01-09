@@ -60,19 +60,19 @@ this.legend_peaceful_reassured_effect <- this.inherit("scripts/skills/skill", {
 
 		foreach( a in actors )
 		{
-			if (a.getFaction() == this.Const.Faction.Player && a.getSkills().hasSkill("perk.legend_peaceful"))
+			if (a.getFaction() == this.Const.Faction.Player && a.getSkills().hasPerk(::Legends.Perk.LegendPeaceful))
 			{
 				hippies += 1;
 			}
 		}
 		return hippies;
 	 }
-	
+
 	function onUpdate( _properties )
 	{
 		local peacefuls = this.getPeacefuls();
 		local peaceBravery = peacefuls * 3;
-		local peaceXP = (100 + peacefuls) * 0.01; 
+		local peaceXP = (100 + peacefuls) * 0.01;
 		_properties.Bravery += peaceBravery;
 		_properties.XPGainMult *= peaceXP;
 	}

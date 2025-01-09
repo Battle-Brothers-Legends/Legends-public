@@ -5,7 +5,7 @@ this.perk_legend_balance <- this.inherit("scripts/skills/skill", {
 	},
 	function create()
 	{
-		::Const.Perks.setup(this.m, ::Const.Perks.PerkDefs.LegendBalance);
+		::Const.Perks.setup(this.m, ::Legends.Perk.LegendBalance);
 		this.m.Description = "%name% gains increased Melee and Ranged defense by balancing %their% armor weight and mobility.";
 		this.m.Type = this.Const.SkillType.Perk | this.Const.SkillType.StatusEffect;
 		this.m.Order = this.Const.SkillOrder.Perk;

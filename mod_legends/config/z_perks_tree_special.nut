@@ -93,7 +93,7 @@ function getRandomPerk()
 }
 };
 
-::Const.Perks.SpecialTrees.addSpecialPerk(1, ::Const.Perks.PerkDefs.LegendBattleheart, 7, "Battleheart", function( _player, _chance ) {
+::Const.Perks.SpecialTrees.addSpecialPerk(1, ::Legends.Perk.LegendBattleheart, 7, "Battleheart", function( _player, _chance ) {
 
 	local talents = _player.getTalents();
 	local tl = talents.len() == 0 ? 0 : talents[::Const.Attributes.MeleeDefense];
@@ -110,7 +110,7 @@ function getRandomPerk()
 	return _chance;
 });
 
-::Const.Perks.SpecialTrees.addSpecialPerk(1, ::Const.Perks.PerkDefs.LegendSlaughterer, 5, "Slaughterer", function( _player, _chance ) {
+::Const.Perks.SpecialTrees.addSpecialPerk(1, ::Legends.Perk.LegendSlaughterer, 5, "Slaughterer", function( _player, _chance ) {
 
 	local talents = _player.getTalents();
 	local tl = talents.len() == 0 ? 0 : talents[::Const.Attributes.MeleeSkill];
@@ -123,7 +123,7 @@ function getRandomPerk()
 	return _chance;
 });
 
-::Const.Perks.SpecialTrees.addSpecialPerk(1, ::Const.Perks.PerkDefs.LegendRelax, 3, "Relax", function( _player, _chance ) {
+::Const.Perks.SpecialTrees.addSpecialPerk(1, ::Legends.Perk.LegendRelax, 3, "Relax", function( _player, _chance ) {
 
 	local talents = _player.getTalents();
 	local tl = talents.len() == 0 ? 0 : talents[::Const.Attributes.Bravery];
@@ -136,7 +136,7 @@ function getRandomPerk()
 	return _chance;
 });
 
-::Const.Perks.SpecialTrees.addSpecialPerk(1, ::Const.Perks.PerkDefs.LegendSpecPoison, 4, "Poison Mastery", function( _player, _chance ) {
+::Const.Perks.SpecialTrees.addSpecialPerk(1, ::Legends.Perk.LegendSpecPoison, 4, "Poison Mastery", function( _player, _chance ) {
 
 	local talents = _player.getTalents();
 	local tl = talents.len() == 0 ? 0 : talents[::Const.Attributes.Hitpoints];
@@ -149,7 +149,7 @@ function getRandomPerk()
 	return _chance;
 });
 
-::Const.Perks.SpecialTrees.addSpecialPerk(1, ::Const.Perks.PerkDefs.LegendGuideSteps, 5, "Guide Steps", function( _player, _chance ) {
+::Const.Perks.SpecialTrees.addSpecialPerk(1, ::Legends.Perk.LegendGuideSteps, 5, "Guide Steps", function( _player, _chance ) {
 
 	local talents = _player.getTalents();
 	local tl = talents.len() == 0 ? 0 : talents[::Const.Attributes.Fatigue];
@@ -162,7 +162,7 @@ function getRandomPerk()
 	return _chance;
 });
 
-::Const.Perks.SpecialTrees.addSpecialPerk(1, ::Const.Perks.PerkDefs.LegendTrophyHunter, 7, "Trophy Hunter", function( _player, _chance ) {
+::Const.Perks.SpecialTrees.addSpecialPerk(1, ::Legends.Perk.LegendTrophyHunter, 7, "Trophy Hunter", function( _player, _chance ) {
 
 	local talents = _player.getTalents();
 	local tl = talents.len() == 0 ? 0 : this.Math.max(talents[::Const.Attributes.MeleeSkill], talents[::Const.Attributes.RangedSkill]);
@@ -174,7 +174,7 @@ function getRandomPerk()
 	return 1;
 });
 
-::Const.Perks.SpecialTrees.addSpecialPerk(1, ::Const.Perks.PerkDefs.LegendIronside, 7, "Ironside", function( _player, _chance ) {
+::Const.Perks.SpecialTrees.addSpecialPerk(1, ::Legends.Perk.LegendIronside, 7, "Ironside", function( _player, _chance ) {
 
 	local talents = _player.getTalents();
 	local tl = talents.len() == 0 ? 0 : talents[::Const.Attributes.Hitpoints];

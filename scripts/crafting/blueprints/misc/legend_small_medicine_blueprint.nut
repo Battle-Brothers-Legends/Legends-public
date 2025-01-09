@@ -19,10 +19,8 @@ this.legend_small_medicine_blueprint <- this.inherit("scripts/crafting/blueprint
 		];
 		this.init(ingredients);
 		local skills = [
-			{
-				Scripts = ["scripts/skills/perks/perk_legend_med_ingredients"]
-			}
-		]
+			::Legends.Perks.blueprint(::Legends.Perk.LegendMedIngredients)
+		];
 		this.initSkills(skills);
 	}
 

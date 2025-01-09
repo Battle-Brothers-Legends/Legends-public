@@ -2,7 +2,7 @@ this.perk_legend_read_omens_trance <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		::Const.Perks.setup(this.m, ::Const.Perks.PerkDefs.LegendReadOmensTrance);
+		::Const.Perks.setup(this.m, ::Legends.Perk.LegendReadOmensTrance);
 		this.m.Type = this.Const.SkillType.Perk;
 		this.m.Order = this.Const.SkillOrder.Perk;
 		this.m.IsActive = false;

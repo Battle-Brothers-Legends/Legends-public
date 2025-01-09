@@ -2,7 +2,7 @@ this.perk_legend_unarmed_training <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		::Const.Perks.setup(this.m, ::Const.Perks.PerkDefs.LegendUnarmedTraining);
+		::Const.Perks.setup(this.m, ::Legends.Perk.LegendUnarmedTraining);
 		this.m.Type = this.Const.SkillType.Perk;
 		this.m.Order = this.Const.SkillOrder.First + 2;
 		this.m.IsActive = false;
@@ -18,7 +18,7 @@ this.perk_legend_unarmed_training <- this.inherit("scripts/skills/skill", {
 		{
 			if (_properties.IsSpecializedInFists)
 				_properties.DamageArmorMult *= 1.2;
-			if (this.getContainer().hasSkill("perk.sundering_strikes"))
+			if (this.getContainer().hasPerk(::Legends.Perk.SunderingStrikes))
 				_properties.DamageArmorMult *= 1.2;
 
 			local damage = (actor.getHitpointsMax()) / 15;

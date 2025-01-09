@@ -41,17 +41,17 @@ this.legend_poacher_guest <- this.inherit("scripts/entity/tactical/player", {
 		this.m.Name = this.Const.Strings.CharacterNames[this.Math.rand(0, this.Const.Strings.CharacterNames.len() - 1)];
 		this.m.Title = "the Poacher";
 		this.setAppearance();
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_specialist_shortbow_skill"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_specialist_shortbow_damage"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_bullseye"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_mastery_bow"));
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecialistShortbowSkill);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecialistShortbowDamage);
+		::Legends.Perks.grant(this, ::Legends.Perk.Bullseye);
+		::Legends.Perks.grant(this, ::Legends.Perk.SpecBow);
 		this.getSprite("socket").setBrush("bust_base_militia");
 
 		if(::Legends.isLegendaryDifficulty())
 		{
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_overwhelm"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_ballistics"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_crippling_strikes"));
+			::Legends.Perks.grant(this, ::Legends.Perk.Overwhelm);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendBallistics);
+			::Legends.Perks.grant(this, ::Legends.Perk.CripplingStrikes);
 			this.m.Skills.add(this.new("scripts/skills/traits/fearless_trait"));
 		}
 	}

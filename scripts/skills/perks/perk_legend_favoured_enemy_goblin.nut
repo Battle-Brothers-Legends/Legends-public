@@ -3,7 +3,7 @@ this.perk_legend_favoured_enemy_goblin <- this.inherit("scripts/skills/legend_fa
 	function create()
 	{
 		this.legend_favoured_enemy_skill.create();
-		::Const.Perks.setup(this.m, ::Const.Perks.PerkDefs.LegendFavouredEnemyGoblin);
+		::Const.Perks.setup(this.m, ::Legends.Perk.LegendFavouredEnemyGoblin);
 		this.m.ValidTypes = this.Const.LegendMod.FavoriteGoblin;
 	}
 

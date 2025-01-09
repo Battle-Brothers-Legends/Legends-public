@@ -4,25 +4,25 @@
 	o.onInit = function ()
 	{
 		onInit();
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_recover"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_specialist_militia_skill"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_shield_bash"));
+		::Legends.Perks.grant(this, ::Legends.Perk.Recover);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecialistMilitiaSkill);
+		::Legends.Perks.grant(this, ::Legends.Perk.ShieldBash);
 		if(::Legends.isLegendaryDifficulty())
 		{
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_mastery_spear"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_shield_expert"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_specialist_militia_damage"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_specialist_spearwall"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_specialist_spearthrust"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_rotation"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_reach_advantage"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_coup_de_grace"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_specialist_shield_skill"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_specialist_shield_push"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_smashing_shields"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_back_to_basics"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_shield_bash"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_backstabber"));
+			::Legends.Perks.grant(this, ::Legends.Perk.SpecSpear);
+			::Legends.Perks.grant(this, ::Legends.Perk.ShieldExpert);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecialistMilitiaDamage);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecSpearWall);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecSpearThrust);
+			::Legends.Perks.grant(this, ::Legends.Perk.Rotation);
+			::Legends.Perks.grant(this, ::Legends.Perk.ReachAdvantage);
+			::Legends.Perks.grant(this, ::Legends.Perk.CoupDeGrace);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecialistShieldSkill);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecialistShieldPush);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendSmashingShields);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendBackToBasics);
+			::Legends.Perks.grant(this, ::Legends.Perk.ShieldBash);
+			::Legends.Perks.grant(this, ::Legends.Perk.Backstabber);
 			this.m.Skills.add(this.new("scripts/skills/traits/fearless_trait"));
 		}
 	}

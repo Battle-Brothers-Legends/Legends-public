@@ -4,7 +4,7 @@ this.perk_legend_tools_drawers <- this.inherit("scripts/skills/skill", {
 	},
 	function create()
 	{
-		::Const.Perks.setup(this.m, ::Const.Perks.PerkDefs.LegendToolsDrawers);
+		::Const.Perks.setup(this.m, ::Legends.Perk.LegendToolsDrawers);
 		this.m.Type = this.Const.SkillType.Perk;
 		this.m.Order = this.Const.SkillOrder.Perk;
 		this.m.IsActive = false;

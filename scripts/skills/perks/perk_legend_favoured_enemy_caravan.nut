@@ -3,7 +3,7 @@ this.perk_legend_favoured_enemy_caravan <- this.inherit("scripts/skills/legend_f
 	function create()
 	{
 		this.legend_favoured_enemy_skill.create();
-		::Const.Perks.setup(this.m, ::Const.Perks.PerkDefs.LegendFavouredEnemyCaravan);
+		::Const.Perks.setup(this.m, ::Legends.Perk.LegendFavouredEnemyCaravan);
 		this.m.ValidTypes = this.Const.LegendMod.FavoriteCaravan;
 	}
 

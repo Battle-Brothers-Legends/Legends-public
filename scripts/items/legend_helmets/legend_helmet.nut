@@ -231,7 +231,7 @@ this.legend_helmet <- this.inherit("scripts/items/helmets/helmet", {
 		_argsArray.insert(0, null);
 
 		// We need this so that when legend_helmet_upgrade performs getArmorTooltip, it can check whether the current upgrade is the Extra Vanity Layer
-		if ( _addIsExtraVanityArgForGetArmorTooltip ) 
+		if ( _addIsExtraVanityArgForGetArmorTooltip )
 		{
 			_argsArray.insert(2, null);
 		}
@@ -242,7 +242,7 @@ this.legend_helmet <- this.inherit("scripts/items/helmets/helmet", {
 			{
 				_argsArray[0] = upgrade;
 				// We need this so that when legend_helmet_upgrade performs getArmorTooltip, it can check whether the current upgrade is the Extra Vanity Layer
-				if ( _addIsExtraVanityArgForGetArmorTooltip ) 
+				if ( _addIsExtraVanityArgForGetArmorTooltip )
 				{
 					_argsArray[2] = i == this.Const.Items.HelmetUpgrades.ExtraVanity;
 				}
@@ -488,11 +488,11 @@ this.legend_helmet <- this.inherit("scripts/items/helmets/helmet", {
 		}
 		local oldIndex;
 
-		if ("Assets" in this.World && this.World.Assets.getStash())   
+		if ("Assets" in this.World && this.World.Assets.getStash())
 		{
 		oldIndex =  this.World.Assets.getStash().getItemByInstanceID(_upgrade.getInstanceID());
 		}
-		
+
 		if (oldIndex != null) oldIndex = oldIndex.index
 		local oldItem;
 		if (this.m.Upgrades[slot] != null)
@@ -674,7 +674,7 @@ this.legend_helmet <- this.inherit("scripts/items/helmets/helmet", {
 		}
 
 		local upgradeNum = this.m.Upgrades.filter(@(idx, val) val != null).len();
-		if ( upgradeNum > 0 && ::Legends.Mod.ModSettings.getSetting("ShowExpandedArmorLayerTooltip").getValue() ) 
+		if ( upgradeNum > 0 && ::Legends.Mod.ModSettings.getSetting("ShowExpandedArmorLayerTooltip").getValue() )
 		{
 			result.push({	// An empty line is put in to improve formatting
 				id = 10,
@@ -694,7 +694,7 @@ this.legend_helmet <- this.inherit("scripts/items/helmets/helmet", {
 				icon = "ui/icons/armor_head.png",
 				text = "Armor: " + this.m.ConditionMax
 			});
-			if ( this.m.StaminaModifier != 0 ) 
+			if ( this.m.StaminaModifier != 0 )
 			{
 				result.push({
 					id = 10,
@@ -703,7 +703,7 @@ this.legend_helmet <- this.inherit("scripts/items/helmets/helmet", {
 					text = "Weight: " + ::Legends.S.colorize("" + ::Legends.S.getSign(this.m.StaminaModifier) + this.Math.abs(this.m.StaminaModifier), this.m.StaminaModifier)
 				});
 			}
-			if (this.m.Vision != 0) 
+			if (this.m.Vision != 0)
 			{
 				result.push({
 					id = 10,
@@ -712,7 +712,7 @@ this.legend_helmet <- this.inherit("scripts/items/helmets/helmet", {
 					text = "Vision " + ::Legends.S.colorize("" + ::Legends.S.getSign(this.m.Vision) + this.Math.abs(this.m.Vision), this.m.Vision)
 				});
 			}
-		}	
+		}
 
 		this.doOnFunction("getArmorTooltip", [result], true, true);
 
@@ -951,7 +951,7 @@ this.legend_helmet <- this.inherit("scripts/items/helmets/helmet", {
 
 		local staminaMult = 1.0;
 
-		if (this.getContainer().getActor().getSkills().hasSkill("perk.brawny"))
+		if (this.getContainer().getActor().getSkills().hasPerk(::Legends.Perk.Brawny))
 		{
 			staminaMult = 0.70;
 		}

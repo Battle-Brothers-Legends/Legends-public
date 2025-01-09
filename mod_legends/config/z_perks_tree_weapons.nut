@@ -46,10 +46,10 @@ if (!("Perks" in ::Const))
 	Tree = [
 		[],
 		[],
-		[::Const.Perks.PerkDefs.LegendOnslaught],
-		[::Const.Perks.PerkDefs.SpecMace],
+		[::Legends.Perk.LegendOnslaught],
+		[::Legends.Perk.SpecMace],
 		[],
-		[::Const.Perks.PerkDefs.LegendReturnFavor],
+		[::Legends.Perk.LegendReturnFavor],
 		[]
 	]
 };
@@ -99,10 +99,10 @@ if (!("Perks" in ::Const))
 		[],
 		[],
 		[],
-		[::Const.Perks.PerkDefs.SpecFlail],
+		[::Legends.Perk.SpecFlail],
 		[],
-		[::Const.Perks.PerkDefs.HeadHunter],
-		[::Const.Perks.PerkDefs.BattleFlow]
+		[::Legends.Perk.HeadHunter],
+		[::Legends.Perk.BattleFlow]
 	]
 };
 
@@ -150,8 +150,8 @@ if (!("Perks" in ::Const))
 	Tree = [
 		[],
 		[],
-		[::Const.Perks.PerkDefs.LegendSmackdown],
-		[::Const.Perks.PerkDefs.SpecHammer],
+		[::Legends.Perk.LegendSmackdown],
+		[::Legends.Perk.SpecHammer],
 		[],
 		[],
 		[]
@@ -200,12 +200,12 @@ if (!("Perks" in ::Const))
 	},
 	Tree = [
 		[],
-		[::Const.Perks.PerkDefs.LegendSmashingShields],
+		[::Legends.Perk.LegendSmashingShields],
 		[],
-		[::Const.Perks.PerkDefs.SpecAxe],
+		[::Legends.Perk.SpecAxe],
 		[],
 		[],
-		[::Const.Perks.PerkDefs.KillingFrenzy]
+		[::Legends.Perk.KillingFrenzy]
 	]
 };
 
@@ -253,10 +253,10 @@ if (!("Perks" in ::Const))
 		[],
 		[],
 		[],
-		[::Const.Perks.PerkDefs.SpecCleaver],
+		[::Legends.Perk.SpecCleaver],
 		[],
-		[::Const.Perks.PerkDefs.LegendBloodbath],
-		[::Const.Perks.PerkDefs.Fearsome]
+		[::Legends.Perk.LegendBloodbath],
+		[::Legends.Perk.Fearsome]
 	]
 };
 
@@ -305,8 +305,8 @@ if (!("Perks" in ::Const))
 		[],
 		[],
 		[],
-		[::Const.Perks.PerkDefs.LegendSlaughterer, ::Const.Perks.PerkDefs.ReachAdvantage],
-		[::Const.Perks.PerkDefs.LegendBloodyHarvest],
+		[::Legends.Perk.LegendSlaughterer, ::Legends.Perk.ReachAdvantage],
+		[::Legends.Perk.LegendBloodyHarvest],
 		[]
 	]
 };
@@ -353,11 +353,11 @@ if (!("Perks" in ::Const))
 	},
 	Tree = [
 		[],
-		[::Const.Perks.PerkDefs.LegendFeint],
+		[::Legends.Perk.LegendFeint],
 		[],
-		[::Const.Perks.PerkDefs.SpecSword],
+		[::Legends.Perk.SpecSword],
 		[],
-		[::Const.Perks.PerkDefs.Duelist],
+		[::Legends.Perk.Duelist],
 		[]
 	]
 };
@@ -404,10 +404,10 @@ if (!("Perks" in ::Const))
 	},
 	Tree = [
 		[],
-		[::Const.Perks.PerkDefs.Backstabber],
+		[::Legends.Perk.Backstabber],
 		[],
-		[::Const.Perks.PerkDefs.SpecDagger],
-		[::Const.Perks.PerkDefs.LegendDoubleStrike],
+		[::Legends.Perk.SpecDagger],
+		[::Legends.Perk.LegendDoubleStrike],
 		[],
 		[]
 	]
@@ -454,10 +454,10 @@ if (!("Perks" in ::Const))
 	},
 	Tree = [
 		[],
-		[::Const.Perks.PerkDefs.CoupDeGrace],
+		[::Legends.Perk.CoupDeGrace],
 		[],
-		[::Const.Perks.PerkDefs.SpecPolearm],
-		[::Const.Perks.PerkDefs.ReachAdvantage],
+		[::Legends.Perk.SpecPolearm],
+		[::Legends.Perk.ReachAdvantage],
 		[],
 		[]
 	]
@@ -505,10 +505,10 @@ if (!("Perks" in ::Const))
 	},
 	Tree = [
 		[],
-		[::Const.Perks.PerkDefs.LegendSpecSpearWall],
+		[::Legends.Perk.LegendSpecSpearWall],
 		[],
-		[::Const.Perks.PerkDefs.SpecSpear],
-		[::Const.Perks.PerkDefs.LegendSpecSpearThrust],
+		[::Legends.Perk.SpecSpear],
+		[::Legends.Perk.LegendSpecSpearThrust],
 		[],
 		[]
 	]
@@ -558,10 +558,10 @@ if (!("Perks" in ::Const))
 		[],
 		[],
 		[],
-		[::Const.Perks.PerkDefs.SpecCrossbow],
-		[::Const.Perks.PerkDefs.LegendHeightenedReflexes],
-		[::Const.Perks.PerkDefs.LegendBallistics],
-		[::Const.Perks.PerkDefs.LegendPiercingShot]
+		[::Legends.Perk.SpecCrossbow],
+		[::Legends.Perk.LegendHeightenedReflexes],
+		[::Legends.Perk.LegendBallistics],
+		[::Legends.Perk.LegendPiercingShot]
 	]
 };
 
@@ -606,11 +606,11 @@ if (!("Perks" in ::Const))
 		]
 	},
 	Tree = [
-		[::Const.Perks.PerkDefs.LegendLookout],//::Const.Perks.PerkDefs.BowRange
-		[::Const.Perks.PerkDefs.Bullseye],
+		[::Legends.Perk.LegendLookout],//::Legends.Perk.BowRange
+		[::Legends.Perk.Bullseye],
 		[],
-		[::Const.Perks.PerkDefs.SpecBow],
-		[::Const.Perks.PerkDefs.LegendWindReader],
+		[::Legends.Perk.SpecBow],
+		[::Legends.Perk.LegendWindReader],
 		[],
 		[]
 	]
@@ -658,12 +658,12 @@ if (!("Perks" in ::Const))
 	},
 	Tree = [
 		[],
-		[::Const.Perks.PerkDefs.QuickHands],
+		[::Legends.Perk.QuickHands],
 		[],
-		[::Const.Perks.PerkDefs.SpecThrowing],
+		[::Legends.Perk.SpecThrowing],
 		[],
 		[],
-		[::Const.Perks.PerkDefs.LegendCloseCombatArcher]
+		[::Legends.Perk.LegendCloseCombatArcher]
 	]
 };
 
@@ -708,11 +708,11 @@ if (!("Perks" in ::Const))
 		]
 	},
 	Tree = [
-		[::Const.Perks.PerkDefs.LegendSpecialistSlingSkill],
+		[::Legends.Perk.LegendSpecialistSlingSkill],
 		[],
 		[],
-		[::Const.Perks.PerkDefs.LegendMasterySlings],
-		[::Const.Perks.PerkDefs.LegendSpecialistSlingDamage],
+		[::Legends.Perk.LegendMasterySlings],
+		[::Legends.Perk.LegendSpecialistSlingDamage],
 		[],
 		[]
 	]
@@ -761,11 +761,11 @@ if (!("Perks" in ::Const))
 	Tree = [
 		[],
 		[],
-		[::Const.Perks.PerkDefs.LegendSpecStaffSkill],
-		[::Const.Perks.PerkDefs.LegendMasteryStaves],
-		[::Const.Perks.PerkDefs.LegendSpecStaffStun],
+		[::Legends.Perk.LegendSpecStaffSkill],
+		[::Legends.Perk.LegendMasteryStaves],
+		[::Legends.Perk.LegendSpecStaffStun],
 		[],
-		[::Const.Perks.PerkDefs.LegendPushTheAdvantage]
+		[::Legends.Perk.LegendPushTheAdvantage]
 	]
 };
 
@@ -811,10 +811,10 @@ if (!("Perks" in ::Const))
 	},
 	Tree = [
 		[],
-		[::Const.Perks.PerkDefs.ShieldBash],
+		[::Legends.Perk.ShieldBash],
 		[],
-		[::Const.Perks.PerkDefs.ShieldExpert],
-		[::Const.Perks.PerkDefs.LegendSpecialistShieldSkill],
+		[::Legends.Perk.ShieldExpert],
+		[::Legends.Perk.LegendSpecialistShieldSkill],
 		[],
 		[]
 	]
@@ -864,11 +864,11 @@ if (!("Perks" in ::Const))
 	Tree = [
 		[],
 		[],
-		[::Const.Perks.PerkDefs.LegendSpecStaffSkill],
-		[::Const.Perks.PerkDefs.LegendMasteryStaves],
-		[::Const.Perks.PerkDefs.LegendSpecStaffStun],
+		[::Legends.Perk.LegendSpecStaffSkill],
+		[::Legends.Perk.LegendMasteryStaves],
+		[::Legends.Perk.LegendSpecStaffStun],
 		[],
-		[::Const.Perks.PerkDefs.LegendPushTheAdvantage]
+		[::Legends.Perk.LegendPushTheAdvantage]
 	]
 };
 

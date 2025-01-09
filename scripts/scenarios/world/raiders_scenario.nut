@@ -278,11 +278,11 @@ this.raiders_scenario <- this.inherit("scripts/scenarios/world/starting_scenario
 		local brothers = this.World.getPlayerRoster().getAll();
 		foreach (bro in brothers)
 		{
-			if (bro.getSkills().hasPerk(::Const.Perks.PerkDefs.LegendScholar))
+			if (bro.getSkills().hasPerk(::Legends.Perk.LegendScholar))
 			{
 				chanceIsLucky += 10;
 			}
-			if (bro.getSkills().hasPerk(::Const.Perks.PerkDefs.LegendFavouredEnemyCaravan))
+			if (bro.getSkills().hasPerk(::Legends.Perk.LegendFavouredEnemyCaravan))
 			{
 				chanceIsLucky += 5;
 			}

@@ -326,7 +326,7 @@
 		// 	{
 		// 		if (bro.getCampAssignment() != this.Const.World.CampBuildings.Scout)
 		// 			{
-		// 				if (bro.getSkills().hasPerk(::Const.Perks.PerkDefs.LegendLookout)
+		// 				if (bro.getSkills().hasPerk(::Legends.Perk.LegendLookout)
 		// 					{
 		// 					lookout += 1;
 		// 					}

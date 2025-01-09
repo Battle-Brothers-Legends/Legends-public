@@ -211,7 +211,7 @@ this.manhunters_scenario <- this.inherit("scripts/scenarios/world/starting_scena
 	function onGenerateBro(bro)
 	{
 		if (bro.getBackground().getID() == "slave_background")
-		{				
+		{
 			bro.m.HiringCost = this.Math.floor(bro.m.HiringCost * 0.5) //1.0 = default
 			bro.getBaseProperties().DailyWageMult *= 1.0; //1.0 = default (costs nothing)
 			bro.getSkills().update();
@@ -254,7 +254,7 @@ this.manhunters_scenario <- this.inherit("scripts/scenarios/world/starting_scena
 
 	function onUnlockPerk( _bro, _perkID )
 	{
-		if (_bro.getLevel() == 7 && _bro.getBackground().getID() == "background.slave" && _perkID == "perk.student")
+		if (_bro.getLevel() == 7 && _bro.getBackground().getID() == "background.slave" && _perkID == ::Legends.Perks.getID(::Legends.Perk.Student))
 		{
 			_bro.setPerkPoints(_bro.getPerkPoints() + 1);
 		}
@@ -262,7 +262,7 @@ this.manhunters_scenario <- this.inherit("scripts/scenarios/world/starting_scena
 
 	function onUpdateLevel( _bro )
 	{
-		if (_bro.getLevel() == 7 && _bro.getBackground().getID() == "background.slave" && _bro.getSkills().hasSkill("perk.student"))
+		if (_bro.getLevel() == 7 && _bro.getBackground().getID() == "background.slave" && _bro.getSkills().hasPerk(::Legends.Perk.Student))
 		{
 			_bro.setPerkPoints(_bro.getPerkPoints() + 1);
 		}

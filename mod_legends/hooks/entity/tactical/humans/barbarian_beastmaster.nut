@@ -7,18 +7,18 @@
 		this.m.Skills.removeByID("effects.dodge");
 		if(::Legends.isLegendaryDifficulty())
 		{
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_overwhelm"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_onslaught"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_alert"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_balance"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_backstabber"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_mastery_fist"));
+			::Legends.Perks.grant(this, ::Legends.Perk.Overwhelm);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendOnslaught);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendAlert);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendBalance);
+			::Legends.Perks.grant(this, ::Legends.Perk.Backstabber);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecFists);
 			this.m.Skills.add(this.new("scripts/skills/traits/fearless_trait"));
 		}
 
 		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= 30)
 		{
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_dodge"));
+			::Legends.Perks.grant(this, ::Legends.Perk.Dodge);
 		}
 	}
 

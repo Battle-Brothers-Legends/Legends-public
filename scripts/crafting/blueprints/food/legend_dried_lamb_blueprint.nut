@@ -17,11 +17,9 @@ this.legend_dried_lamb_blueprint <- this.inherit("scripts/crafting/legend_food_b
 		];
 		this.init(ingredients);
 		local skills = [
-			{
-				Scripts = ["scripts/skills/perks/perk_legend_camp_cook"]
-			}
-		]
-		this.initSkills(skills);		
+			::Legends.Perks.blueprint(::Legends.Perk.LegendCampCook)
+		];
+		this.initSkills(skills);
 	}
 
 	function onCraft( _stash )

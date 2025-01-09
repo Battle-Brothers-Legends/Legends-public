@@ -3,7 +3,7 @@ this.perk_legend_magic_burning_hands <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		::Const.Perks.setup(this.m, ::Const.Perks.PerkDefs.LegendMagicBurningHands);
+		::Const.Perks.setup(this.m, ::Legends.Perk.LegendMagicBurningHands);
 		this.m.Type = this.Const.SkillType.Perk;
 		this.m.Order = this.Const.SkillOrder.Perk;
 		this.m.IsActive = false;

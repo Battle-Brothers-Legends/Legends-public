@@ -124,13 +124,13 @@ this.legend_kobold_wolfrider <- this.inherit("scripts/entity/tactical/legend_kob
 		wolf_bite.m.ActionPointCost = 0;
 		this.m.Skills.add(wolf_bite);
 		this.m.Skills.add(this.new("scripts/skills/racial/goblin_ambusher_racial"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_backstabber"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_pathfinder"));
+		::Legends.Perks.grant(this, ::Legends.Perk.Backstabber);
+		::Legends.Perks.grant(this, ::Legends.Perk.Pathfinder);
 
 		if(::Legends.isLegendaryDifficulty())
 		{
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_fast_adaption"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_overwhelm"));
+			::Legends.Perks.grant(this, ::Legends.Perk.FastAdaption);
+			::Legends.Perks.grant(this, ::Legends.Perk.Overwhelm);
 			this.m.Skills.add(this.new("scripts/skills/traits/fearless_trait"));
 		}
 

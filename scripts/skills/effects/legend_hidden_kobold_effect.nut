@@ -20,7 +20,7 @@ this.legend_hidden_kobold_effect <- this.inherit("scripts/skills/skill", {
 	{
 		local ret = this.getDefaultTooltip();
 		local actor = this.getContainer().getActor();
-		if (actor.getSkills().hasSkill("perk.legend_assassinate"))
+		if (actor.getSkills().hasPerk(::Legends.Perk.LegendAssassinate))
 		{
 			ret.extend([
 				{
@@ -146,7 +146,7 @@ this.legend_hidden_kobold_effect <- this.inherit("scripts/skills/skill", {
 	function onUpdate( _properties )
 	{
 		local actor = this.getContainer().getActor();
-		if (actor.getSkills().hasSkill("perk.legend_assassinate"))
+		if (actor.getSkills().hasPerk(::Legends.Perk.LegendAssassinate))
 		{
 			_properties.DamageRegularMin *= 1.5;
 			_properties.DamageRegularMax *= 1.5;

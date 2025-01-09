@@ -11,9 +11,9 @@ if (!("Perks" in ::Const))
 	],
 	Tree = [
 		[],
-		[::Const.Perks.PerkDefs.LegendNetRepair],
-		[::Const.Perks.PerkDefs.LegendNetCasting],
-		[::Const.Perks.PerkDefs.LegendMasteryNets],
+		[::Legends.Perk.LegendNetRepair],
+		[::Legends.Perk.LegendNetCasting],
+		[::Legends.Perk.LegendMasteryNets],
 		[], // As of 18.2.0, LegendEscapeArtist is no longer a player perk; LegendMasteryNets achieves the same effects
 		[],
 		[]
@@ -28,15 +28,15 @@ if (!("Perks" in ::Const))
 	],
 	Tree = [
 		[
-		::Const.Perks.PerkDefs.LegendCheerOn,
-		::Const.Perks.PerkDefs.LegendSpecialistLuteSkill
+		::Legends.Perk.LegendCheerOn,
+		::Legends.Perk.LegendSpecialistLuteSkill
 		],
-		[::Const.Perks.PerkDefs.LegendDaze],
-		[::Const.Perks.PerkDefs.LegendSpecialistLuteDamage],
-		[::Const.Perks.PerkDefs.LegendEntice],
-		[::Const.Perks.PerkDefs.LegendPush],
-		[::Const.Perks.PerkDefs.LegendDrumsOfWar],
-		[::Const.Perks.PerkDefs.LegendDrumsOfLife]
+		[::Legends.Perk.LegendDaze],
+		[::Legends.Perk.LegendSpecialistLuteDamage],
+		[::Legends.Perk.LegendEntice],
+		[::Legends.Perk.LegendPush],
+		[::Legends.Perk.LegendDrumsOfWar],
+		[::Legends.Perk.LegendDrumsOfLife]
 	]
 };
 
@@ -47,13 +47,13 @@ if (!("Perks" in ::Const))
 		"healing"
 	],
 	Tree = [
-		[::Const.Perks.PerkDefs.LegendMedIngredients],
+		[::Legends.Perk.LegendMedIngredients],
 		[],
 		[],
-		[::Const.Perks.PerkDefs.LegendSpecBandage],
+		[::Legends.Perk.LegendSpecBandage],
 		[],
 		[],
-		[::Const.Perks.PerkDefs.LegendFieldTriage]
+		[::Legends.Perk.LegendFieldTriage]
 	]
 };
 
@@ -68,9 +68,9 @@ if (!("Perks" in ::Const))
 		[],
 		[],
 		[],
-		[::Const.Perks.PerkDefs.LegendPrayerOfFaith],
-		[::Const.Perks.PerkDefs.LegendPrayerOfLife],
-		[::Const.Perks.PerkDefs.LegendHolyFlame]
+		[::Legends.Perk.LegendPrayerOfFaith],
+		[::Legends.Perk.LegendPrayerOfLife],
+		[::Legends.Perk.LegendHolyFlame]
 	]
 };
 
@@ -81,12 +81,12 @@ if (!("Perks" in ::Const))
 		"unarmed combat"
 	],
 	Tree = [
-		[::Const.Perks.PerkDefs.LegendAmbidextrous],
-		[::Const.Perks.PerkDefs.LegendChoke],
-		[::Const.Perks.PerkDefs.LegendGrapple],
-		[::Const.Perks.PerkDefs.LegendSpecFists],
+		[::Legends.Perk.LegendAmbidextrous],
+		[::Legends.Perk.LegendChoke],
+		[::Legends.Perk.LegendGrapple],
+		[::Legends.Perk.LegendSpecFists],
 		[],
-		[::Const.Perks.PerkDefs.LegendUnarmedTraining],
+		[::Legends.Perk.LegendUnarmedTraining],
 		[]
 	]
 };
@@ -98,13 +98,13 @@ if (!("Perks" in ::Const))
 		"cooking"
 	],
 	Tree = [
-		[::Const.Perks.PerkDefs.LegendMealPreperation],
-		[::Const.Perks.PerkDefs.LegendCampCook],
-		[::Const.Perks.PerkDefs.LegendAlcoholBrewing],
+		[::Legends.Perk.LegendMealPreperation],
+		[::Legends.Perk.LegendCampCook],
+		[::Legends.Perk.LegendAlcoholBrewing],
 		[],
 		[],
-		[::Const.Perks.PerkDefs.LegendQuartermaster],
-		[::Const.Perks.PerkDefs.LegendFieldTreats]
+		[::Legends.Perk.LegendQuartermaster],
+		[::Legends.Perk.LegendFieldTreats]
 	]
 };
 
@@ -116,12 +116,12 @@ if (!("Perks" in ::Const))
 	],
 	Tree = [
 		[],
-		[::Const.Perks.PerkDefs.LegendToolsDrawers],
-		[::Const.Perks.PerkDefs.LegendToolsSpares],
+		[::Legends.Perk.LegendToolsDrawers],
+		[::Legends.Perk.LegendToolsSpares],
 		[],
 		[],
 		[],
-		[::Const.Perks.PerkDefs.LegendFieldRepairs]
+		[::Legends.Perk.LegendFieldRepairs]
 	]
 };
 
@@ -134,16 +134,16 @@ if (!("Perks" in ::Const))
 	Tree = [
 		[],
 		[],
-		[::Const.Perks.PerkDefs.LegendBarterConvincing],
+		[::Legends.Perk.LegendBarterConvincing],
 		[],
-		[::Const.Perks.PerkDefs.LegendBarterTrustworthy],
+		[::Legends.Perk.LegendBarterTrustworthy],
 		[
-			::Const.Perks.PerkDefs.LegendDangerPay,
-			::Const.Perks.PerkDefs.LegendPaymaster
+			::Legends.Perk.LegendDangerPay,
+			::Legends.Perk.LegendPaymaster
 		],
 		[
-			::Const.Perks.PerkDefs.LegendOffBookDeal,
-			::Const.Perks.PerkDefs.LegendBarterGreed
+			::Legends.Perk.LegendOffBookDeal,
+			::Legends.Perk.LegendBarterGreed
 		]
 	]
 };
@@ -155,13 +155,13 @@ if (!("Perks" in ::Const))
 		"knives"
 	],
 	Tree = [
-		[::Const.Perks.PerkDefs.LegendSpecialistKnifeSkill],
+		[::Legends.Perk.LegendSpecialistKnifeSkill],
 		[],
-		[::Const.Perks.PerkDefs.LegendSpecialistKnifeDamage],
+		[::Legends.Perk.LegendSpecialistKnifeDamage],
 		[],
 		[],
 		[],
-		[::Const.Perks.PerkDefs.LegendAssassinate]
+		[::Legends.Perk.LegendAssassinate]
 	]
 };
 
@@ -172,11 +172,11 @@ if (!("Perks" in ::Const))
 		"butchery"
 	],
 	Tree = [
-		[::Const.Perks.PerkDefs.LegendSpecialistButcherSkill],
+		[::Legends.Perk.LegendSpecialistButcherSkill],
 		[],
-		[::Const.Perks.PerkDefs.LegendSpecialistButcherDamage],
+		[::Legends.Perk.LegendSpecialistButcherDamage],
 		[],
-		[::Const.Perks.PerkDefs.LegendCarnage],
+		[::Legends.Perk.LegendCarnage],
 		[],
 		[]
 	]
@@ -189,11 +189,11 @@ if (!("Perks" in ::Const))
 		"hammers"
 	],
 	Tree = [
-		[::Const.Perks.PerkDefs.LegendSpecialistHammerSkill],
+		[::Legends.Perk.LegendSpecialistHammerSkill],
 		[],
 		[
-			::Const.Perks.PerkDefs.LegendSpecialistHammerDamage,
-			::Const.Perks.PerkDefs.LegendSmackdown
+			::Legends.Perk.LegendSpecialistHammerDamage,
+			::Legends.Perk.LegendSmackdown
 		],
 		[],
 		[],
@@ -209,9 +209,9 @@ if (!("Perks" in ::Const))
 		"militia"
 	],
 	Tree = [
-		[::Const.Perks.PerkDefs.LegendSpecialistMilitiaSkill],
+		[::Legends.Perk.LegendSpecialistMilitiaSkill],
 		[],
-		[::Const.Perks.PerkDefs.LegendSpecialistMilitiaDamage],
+		[::Legends.Perk.LegendSpecialistMilitiaDamage],
 		[],
 		[],
 		[],
@@ -226,11 +226,11 @@ if (!("Perks" in ::Const))
 		"pickaxes"
 	],
 	Tree = [
-		[::Const.Perks.PerkDefs.LegendSpecialistPickaxeSkill],
+		[::Legends.Perk.LegendSpecialistPickaxeSkill],
 		[],
 		[
-			::Const.Perks.PerkDefs.LegendSpecialistPickaxeDamage,
-			::Const.Perks.PerkDefs.LegendSmackdown
+			::Legends.Perk.LegendSpecialistPickaxeDamage,
+			::Legends.Perk.LegendSmackdown
 		],
 		[],
 		[],
@@ -246,9 +246,9 @@ if (!("Perks" in ::Const))
 		"pitchforks"
 	],
 	Tree = [
-		[::Const.Perks.PerkDefs.LegendSpecialistPitchforkSkill],
+		[::Legends.Perk.LegendSpecialistPitchforkSkill],
 		[],
-		[::Const.Perks.PerkDefs.LegendSpecialistPitchforkDamage],
+		[::Legends.Perk.LegendSpecialistPitchforkDamage],
 		[],
 		[],
 		[],
@@ -263,9 +263,9 @@ if (!("Perks" in ::Const))
 		"shortbows"
 	],
 	Tree = [
-		[::Const.Perks.PerkDefs.LegendSpecialistShortbowSkill],
+		[::Legends.Perk.LegendSpecialistShortbowSkill],
 		[],
-		[::Const.Perks.PerkDefs.LegendSpecialistShortbowDamage],
+		[::Legends.Perk.LegendSpecialistShortbowDamage],
 		[],
 		[],
 		[],
@@ -280,9 +280,9 @@ if (!("Perks" in ::Const))
 		"shovels"
 	],
 	Tree = [
-		[::Const.Perks.PerkDefs.LegendSpecialistShovelSkill],
+		[::Legends.Perk.LegendSpecialistShovelSkill],
 		[],
-		[::Const.Perks.PerkDefs.LegendSpecialistShovelDamage],
+		[::Legends.Perk.LegendSpecialistShovelDamage],
 		[],
 		[],
 		[],
@@ -297,11 +297,11 @@ if (!("Perks" in ::Const))
 		"axes"
 	],
 	Tree = [
-		[::Const.Perks.PerkDefs.LegendSpecialistWoodaxeSkill],
+		[::Legends.Perk.LegendSpecialistWoodaxeSkill],
 		[],
-		[::Const.Perks.PerkDefs.LegendSpecialistWoodaxeDamage],
+		[::Legends.Perk.LegendSpecialistWoodaxeDamage],
 		[],
-		[::Const.Perks.PerkDefs.LegendWoodworking],
+		[::Legends.Perk.LegendWoodworking],
 		[],
 		[]
 	]
@@ -314,13 +314,13 @@ if (!("Perks" in ::Const))
 		"sickles"
 	],
 	Tree = [
-		[::Const.Perks.PerkDefs.LegendSpecialistSickleSkill],
+		[::Legends.Perk.LegendSpecialistSickleSkill],
 		[],
-		[::Const.Perks.PerkDefs.LegendSpecialistSickleDamage],
+		[::Legends.Perk.LegendSpecialistSickleDamage],
 		[],
-		[::Const.Perks.PerkDefs.LegendGatherer],
-		[::Const.Perks.PerkDefs.LegendHerbcraft],
-		[::Const.Perks.PerkDefs.LegendPotionBrewer]
+		[::Legends.Perk.LegendGatherer],
+		[::Legends.Perk.LegendHerbcraft],
+		[::Legends.Perk.LegendPotionBrewer]
 	]
 };
 
@@ -331,13 +331,13 @@ if (!("Perks" in ::Const))
 		"ninetails"
 	],
 	Tree = [
-		[::Const.Perks.PerkDefs.LegendSpecialistNinetailsSkill],
-		[::Const.Perks.PerkDefs.LegendSpecCultHood],
-		[::Const.Perks.PerkDefs.LegendSpecialistNinetailsDamage],
+		[::Legends.Perk.LegendSpecialistNinetailsSkill],
+		[::Legends.Perk.LegendSpecCultHood],
+		[::Legends.Perk.LegendSpecialistNinetailsDamage],
 		[],
-		[::Const.Perks.PerkDefs.LegendPrepareGraze],
-		[::Const.Perks.PerkDefs.LegendSpecCultArmor],
-		[::Const.Perks.PerkDefs.LegendLacerate]
+		[::Legends.Perk.LegendPrepareGraze],
+		[::Legends.Perk.LegendSpecCultArmor],
+		[::Legends.Perk.LegendLacerate]
 	]
 }
 
@@ -348,13 +348,13 @@ if (!("Perks" in ::Const))
 		"acrobatics"
 	],
 	Tree = [
-		[::Const.Perks.PerkDefs.LegendLeap],
-		[::Const.Perks.PerkDefs.LegendHairSplitter],
-		[::Const.Perks.PerkDefs.Rotation],
-		[::Const.Perks.PerkDefs.LegendTwirl],
-		[::Const.Perks.PerkDefs.Footwork],
-		[::Const.Perks.PerkDefs.LegendBackflip],
-		[::Const.Perks.PerkDefs.LegendTumble]
+		[::Legends.Perk.LegendLeap],
+		[::Legends.Perk.LegendHairSplitter],
+		[::Legends.Perk.Rotation],
+		[::Legends.Perk.LegendTwirl],
+		[::Legends.Perk.Footwork],
+		[::Legends.Perk.LegendBackflip],
+		[::Legends.Perk.LegendTumble]
 	]
 };
 
@@ -367,11 +367,11 @@ if (!("Perks" in ::Const))
 	Tree = [
 		[],
 		[],
-		[::Const.Perks.PerkDefs.LegendDogWhisperer],
-		[::Const.Perks.PerkDefs.LegendDogBreeder],
-		[::Const.Perks.PerkDefs.LegendDogHandling],
-		[::Const.Perks.PerkDefs.LegendPackleader],
-		[::Const.Perks.PerkDefs.LegendDogMaster]
+		[::Legends.Perk.LegendDogWhisperer],
+		[::Legends.Perk.LegendDogBreeder],
+		[::Legends.Perk.LegendDogHandling],
+		[::Legends.Perk.LegendPackleader],
+		[::Legends.Perk.LegendDogMaster]
 	]
 };
 
@@ -382,9 +382,9 @@ if (!("Perks" in ::Const))
 		"scythes"
 	],
 	Tree = [
-		[::Const.Perks.PerkDefs.LegendSpecialistScytheSkill],
+		[::Legends.Perk.LegendSpecialistScytheSkill],
 		[],
-		[::Const.Perks.PerkDefs.LegendSpecialistScytheDamage],
+		[::Legends.Perk.LegendSpecialistScytheDamage],
 		[],
 		[],
 		[],

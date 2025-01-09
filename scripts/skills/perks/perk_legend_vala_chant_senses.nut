@@ -9,7 +9,7 @@ this.perk_legend_vala_chant_senses <- this.inherit("scripts/skills/skill", {
 
 	function create()
 	{
-		::Const.Perks.setup(this.m, ::Const.Perks.PerkDefs.LegendValaChantSenses);
+		::Const.Perks.setup(this.m, ::Legends.Perk.LegendValaChantSenses);
 		this.m.Icon = "ui/perks/legend_vala_chant_senses_active.png";
 		this.m.IconDisabled = "ui/perks/legend_vala_chant_senses_active_sw.png";
 		this.m.Type = this.Const.SkillType.Active | this.Const.SkillType.Perk;
@@ -139,7 +139,7 @@ this.perk_legend_vala_chant_senses <- this.inherit("scripts/skills/skill", {
 	{
 		local actor = this.getContainer().getActor();
 
-		if (actor.getSkills().hasSkill("perk.legend_vala_chanting_mastery"))
+		if (actor.getSkills().hasPerk(::Legends.Perk.LegendValaChantMastery))
 		{
 			this.m.FatigueCostMult = 0.75;
 		}

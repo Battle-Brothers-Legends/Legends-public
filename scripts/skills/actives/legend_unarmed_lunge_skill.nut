@@ -111,7 +111,7 @@ this.legend_unarmed_lunge_skill <- this.inherit("scripts/skills/skill", {
 			});
 		}
 
-		if (this.getContainer().hasSkill("perk.legend_tumble"))
+		if (this.getContainer().hasPerk(::Legends.Perk.LegendTumble))
 		{
 			ret.push({
 				id = 6,
@@ -315,7 +315,7 @@ this.legend_unarmed_lunge_skill <- this.inherit("scripts/skills/skill", {
 
 		if (this.m.Backgrounds.find(this.getContainer().getActor().getBackground()) != null)
 		{
-			_properties.DamageTotalMult *= 1.25;	
+			_properties.DamageTotalMult *= 1.25;
 		}
 	}
 

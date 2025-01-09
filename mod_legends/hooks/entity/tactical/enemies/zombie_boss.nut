@@ -1,4 +1,4 @@
-::mods_hookExactClass("entity/tactical/enemies/zombie_boss", function(o) 
+::mods_hookExactClass("entity/tactical/enemies/zombie_boss", function(o)
 {
 	local onInit = o.onInit;
 	o.onInit = function ()
@@ -10,12 +10,12 @@
 		{
 			this.m.Hitpoints = b.Hitpoints * 1.5;
 		}
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_poison_immunity"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_backstabber"));
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendPoisonImmunity);
+		::Legends.Perks.grant(this, ::Legends.Perk.Backstabber);
 		if(::Legends.isLegendaryDifficulty())
 		{
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_nine_lives"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_last_stand"));
+			::Legends.Perks.grant(this, ::Legends.Perk.NineLives);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendLastStand);
 		}
 	}
 });

@@ -20,8 +20,8 @@
 	o.getTooltip = function ()
 	{
 		local tooltip = getTooltip();
-		
-		if (this.getContainer().getActor().getSkills().hasSkill("perk.shield_bash"))
+
+		if (this.getContainer().getActor().getSkills().hasPerk(::Legends.Perk.ShieldBash))
 		{
 			local actor = this.getContainer().getActor();
 			local p = this.getContainer().getActor().getCurrentProperties();
@@ -29,7 +29,7 @@
 			local mult = p.MeleeDamageMult;
 			local damagemin = this.Math.abs(this.m.RegularDamage * p.DamageTotalMult);
 			local damagemax = this.Math.abs(this.m.RegularDamageMax * p.DamageTotalMult);
-			if (this.getContainer().getActor().getSkills().hasSkill("perk.legend_muscularity"))
+			if (this.getContainer().getActor().getSkills().hasPerk(::Legends.Perk.LegendMuscularity))
 			{
 				local muscularity = this.Math.floor(bodyHealth * 0.1);
 				damagemax += muscularity;
@@ -121,7 +121,7 @@
 		}
 
 		target.setCurrentMovementType(this.Const.Tactical.MovementType.Involuntary);
-		local hasShieldBash = _user.getSkills().hasSkill("perk.shield_bash");
+		local hasShieldBash = _user.getSkills().hasPerk(::Legends.Perk.ShieldBash);
 		local damage = this.Math.max(0, this.Math.abs(knockToTile.Level - _targetTile.Level) - 1) * this.Const.Combat.FallingDamage;
 
 		if (damage == 0 && !hasShieldBash)
@@ -152,7 +152,7 @@
 				local damagemin = this.Math.abs((this.m.RegularDamage + shieldBonus) * p.DamageTotalMult);
 				local damagemax = this.Math.abs((this.m.RegularDamageMax + shieldBonus) * p.DamageTotalMult);
 
-				if (actor.getSkills().hasSkill("perk.legend_muscularity"))
+				if (actor.getSkills().hasPerk(::Legends.Perk.LegendMuscularity))
 				{
 					local muscularity = this.Math.floor(bodyHealth * 0.1);
 					damagemax += muscularity;
@@ -178,7 +178,7 @@
 	{
 		this.m.FatigueCostMult = _properties.IsSpecializedInShields ? this.Const.Combat.WeaponSpecFatigueMult : 1.0;
 
-		if (this.getContainer().getActor().getSkills().hasSkill("perk.shield_bash"))
+		if (this.getContainer().getActor().getSkills().hasPerk(::Legends.Perk.ShieldBash))
 		{
 			this.m.FatigueCostMult = this.m.FatigueCostMult *= 0.75;
 			this.m.ActionPointCost = 3

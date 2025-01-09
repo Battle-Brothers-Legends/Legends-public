@@ -59,7 +59,7 @@ this.legend_choke_skill <- this.inherit("scripts/skills/skill", {
 		local damage_min = 10; // Manual workaround because we're doing the math manually. Based on decapitate code
 		local damage_max = 15;
 		local has_unarmed_background = false;
-		if (this.getContainer().getActor().getSkills().hasSkill("perk.legend_muscularity"))
+		if (this.getContainer().getActor().getSkills().hasPerk(::Legends.Perk.LegendMuscularity))
 			{
 				local muscularity = this.Math.floor(actor.getHitpoints() * 0.1);
 				damage_min = damage_min + muscularity;

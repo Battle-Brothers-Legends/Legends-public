@@ -4,7 +4,7 @@ this.perk_legend_resurrectionist <- this.inherit("scripts/skills/skill", {
 	},
 	function create()
 	{
-		::Const.Perks.setup(this.m, ::Const.Perks.PerkDefs.LegendResurrectionist);
+		::Const.Perks.setup(this.m, ::Legends.Perk.LegendResurrectionist);
 		this.m.Icon = "ui/perks/possess56.png";
 		this.m.IconDisabled = "ui/perks/possess56_bw.png";
 		this.m.Type = this.Const.SkillType.Perk;

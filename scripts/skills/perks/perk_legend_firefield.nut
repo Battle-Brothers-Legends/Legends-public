@@ -2,7 +2,7 @@ this.perk_legend_firefield <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		::Const.Perks.setup(this.m, ::Const.Perks.PerkDefs.LegendFirefield);
+		::Const.Perks.setup(this.m, ::Legends.Perk.LegendFirefield);
 		this.m.Type = this.Const.SkillType.Perk;
 		this.m.Order = this.Const.SkillOrder.Perk;
 		this.m.IsActive = false;

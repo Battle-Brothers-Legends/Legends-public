@@ -19,7 +19,7 @@ this.perk_legend_push_the_advantage <- this.inherit("scripts/skills/skill", {
 	},
 	function create()
 	{
-		::Const.Perks.setup(this.m, ::Const.Perks.PerkDefs.LegendPushTheAdvantage);
+		::Const.Perks.setup(this.m, ::Legends.Perk.LegendPushTheAdvantage);
 		this.m.Icon = "ui/perks/onslaught_circle.png";
 		this.m.IconDisabled = "ui/perks/onslaught_circle_bw.png";
 		this.m.Type = this.Const.SkillType.Perk;

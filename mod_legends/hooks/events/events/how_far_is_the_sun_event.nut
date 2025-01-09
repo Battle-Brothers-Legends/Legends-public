@@ -119,7 +119,7 @@
 		local candidate_other = [];
 
 		foreach( bro in brothers ) {
-			if (bro.getBackground().getID() == "background.historian" || bro.getBackground().getID() == "background.legend_inventor" || bro.getBackground().getID() == "background.legend_seer"  || bro.getBackground().getID() == "background.legend_seer_commander" || bro.getSkills().hasSkill("perk.legend_scholar"))
+			if (bro.getBackground().getID() == "background.historian" || bro.getBackground().getID() == "background.legend_inventor" || bro.getBackground().getID() == "background.legend_seer"  || bro.getBackground().getID() == "background.legend_seer_commander" || bro.getSkills().hasPerk(::Legends.Perk.LegendScholar))
 				candidate_historian.push(bro);
 			else if (bro.getBackground().getID() == "background.monk")
 				candidate_monk.push(bro);

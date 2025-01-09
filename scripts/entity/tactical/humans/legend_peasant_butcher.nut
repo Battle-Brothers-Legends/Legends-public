@@ -28,16 +28,16 @@ this.legend_peasant_butcher <- this.inherit("scripts/entity/tactical/human", {
 		dirt.Visible = true;
 		dirt.Alpha = this.Math.rand(0, 255);
 		this.getSprite("socket").setBrush("bust_base_militia");
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_bloodbath"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_specialist_butcher_skill"));
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendBloodbath);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecialistButcherSkill);
 		this.m.Skills.add(this.new("scripts/skills/actives/legend_prepare_bleed_skill"));
 
 		if(::Legends.isLegendaryDifficulty())
 		{
 			this.m.Hitpoints = b.Hitpoints * 1.5;
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_lacerate"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_carnage"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_specialist_butcher_damage"));
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendLacerate);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendCarnage);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecialistButcherDamage);
 			this.m.Skills.add(this.new("scripts/skills/traits/fearless_trait"));
 		}
 
@@ -78,12 +78,12 @@ this.legend_peasant_butcher <- this.inherit("scripts/entity/tactical/human", {
 		}
 
 		this.m.Items.equip(this.new("scripts/items/weapons/named/legend_named_butchers_cleaver"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_colossus"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_lacerate"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_carnage"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_slaughterer"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_killing_frenzy"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_specialist_butcher_damage"));
+		::Legends.Perks.grant(this, ::Legends.Perk.Colossus);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendLacerate);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendCarnage);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendSlaughterer);
+		::Legends.Perks.grant(this, ::Legends.Perk.KillingFrenzy);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecialistButcherDamage);
 		this.m.Skills.add(this.new("scripts/skills/traits/fearless_trait"));
 		this.m.Items.equip(this.Const.World.Common.pickHelmet([
 			[1, "legend_champion_butcher_helmet"]

@@ -271,21 +271,21 @@ this.legend_skin_ghoul <- this.inherit("scripts/entity/tactical/actor", {
 		this.addDefaultStatusSprites();
 		this.getSprite("status_rooted").Scale = 0.45;
 		this.setSpriteOffset("status_rooted", this.createVec(-4, 7));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_pathfinder"));
+		::Legends.Perks.grant(this, ::Legends.Perk.Pathfinder);
 		this.m.Skills.add(this.new("scripts/skills/actives/legend_skin_ghoul_claws"));
 		this.m.Skills.add(this.new("scripts/skills/actives/gruesome_feast"));
 		this.m.Skills.add(this.new("scripts/skills/effects/gruesome_feast_effect"));
 		this.m.Skills.add(this.new("scripts/skills/actives/legend_skin_ghoul_swallow_whole_skill"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_footwork"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_nimble"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_killing_frenzy"));
+		::Legends.Perks.grant(this, ::Legends.Perk.Footwork);
+		::Legends.Perks.grant(this, ::Legends.Perk.Nimble);
+		::Legends.Perks.grant(this, ::Legends.Perk.KillingFrenzy);
 		this.m.Skills.add(this.new("scripts/skills/traits/fearless_trait"));
 		if (::Legends.isLegendaryDifficulty())
 			{
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_battle_flow"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_muscularity"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_anticipation"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_fast_adaption"));
+		::Legends.Perks.grant(this, ::Legends.Perk.BattleFlow);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendMuscularity);
+		::Legends.Perks.grant(this, ::Legends.Perk.Anticipation);
+		::Legends.Perks.grant(this, ::Legends.Perk.FastAdaption);
 			}
 		if (!this.Tactical.State.isScenarioMode())
 		{

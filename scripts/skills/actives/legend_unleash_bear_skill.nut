@@ -1,6 +1,6 @@
 this.legend_unleash_bear_skill <- this.inherit("scripts/skills/skill", {
 	m = {
-		Entity = null,			
+		Entity = null,
 		EntityName = "Bear",
 		Script = "scripts/entity/tactical/legend_warbear",
 		Sounds0 = [
@@ -144,13 +144,12 @@ this.legend_unleash_bear_skill <- this.inherit("scripts/skills/skill", {
 		local entity = this.Tactical.spawnEntity(this.m.Script, _targetTile.Coords.X, _targetTile.Coords.Y);
 		entity.setFaction(this.Const.Faction.PlayerAnimals);
 		entity.setName(this.m.EntityName);
-		if (this.getContainer().getActor().getSkills().hasSkill("perk.legend_dogwhisperer"))
+		if (this.getContainer().getActor().getSkills().hasPerk(::Legends.Perk.LegendDogWhisperer))
 		{
-			entity.getSkills().add(this.new("scripts/skills/perks/perk_fortified_mind"));
-			entity.getSkills().add(this.new("scripts/skills/perks/perk_colossus"));
-			entity.getSkills().add(this.new("scripts/skills/perks/perk_underdog"));
+			::Legends.Perks.grant(entity, ::Legends.Perk.FortifiedMind);
+			::Legends.Perks.grant(entity, ::Legends.Perk.Colossus);
+			::Legends.Perks.grant(entity, ::Legends.Perk.Underdog);
 		}
-
 		return true;
 	}
 

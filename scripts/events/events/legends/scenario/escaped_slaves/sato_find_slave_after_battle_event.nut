@@ -409,12 +409,12 @@ this.sato_find_slave_after_battle_event <- this.inherit("scripts/events/event", 
 
 						if (r == 1)
 						{
-							_event.m.Dude.getSkills().add(this.new("scripts/skills/perks/perk_legend_gruesome_feast"));
+							::Legends.Perks.grant(_event.m.Dude, ::Legends.Perk.LegendGruesomeFeast);
 						}
 
 						if (r == 2)
 						{
-							_event.m.Dude.getSkills().add(this.new("scripts/skills/perks/perk_legend_inventor_anatomy"));
+							::Legends.Perks.grant(_event.m.Dude, ::Legends.Perk.LegendInventorAnatomy);
 						}
 
 						if (r == 3)
@@ -429,7 +429,7 @@ this.sato_find_slave_after_battle_event <- this.inherit("scripts/events/event", 
 
 						if (r == 5)
 						{
-							_event.m.Dude.getSkills().add(this.new("scripts/skills/perks/perk_legend_raise_undead"));
+							::Legends.Perks.grant(_event.m.Dude, ::Legends.Perk.LegendRaiseUndead);
 						}
 
 						if (r == 6)
@@ -474,12 +474,12 @@ this.sato_find_slave_after_battle_event <- this.inherit("scripts/events/event", 
 
 						if (r == 13)
 						{
-							_event.m.Dude.getSkills().add(this.new("scripts/skills/perk/perk_legend_mastery_bandage"));
+							::Legends.Perks.grant(_event.m.Dude, ::Legends.Perk.LegendSpecBandage);
 						}
 
 						if (r == 14)
 						{
-							_event.m.Dude.getSkills().add(this.new("scripts/skills/perk/perk_legend_favoured_enemy_zombie"));
+							::Legends.Perks.grant(_event.m.Dude, ::Legends.Perk.LegendFavouredEnemyZombie);
 						}
 
 						_event.m.Dude.improveMood(2.0, "Was rescued from captivity");

@@ -10,7 +10,7 @@
 	o.onEquip = function ()
 	{
 		onEquip();
-		if (this.getContainer().getActor().getSkills().hasSkill("perk.legend_net_casting"))
+		if (this.getContainer().getActor().getSkills().hasPerk(::Legends.Perk.LegendNetCasting))
 		{
 			this.m.RangeMax = 5;
 		}
@@ -25,7 +25,7 @@
 	{
 		this.weapon.onUpdateProperties(_properties);
 		// Net Repair Perk negates the weight
-		if (this.getContainer().getActor().getSkills().hasSkill("perk.legend_net_repair"))
+		if (this.getContainer().getActor().getSkills().hasPerk(::Legends.Perk.LegendNetRepair))
 		{
 			_properties.Stamina -= this.m.StaminaModifier;
 		}
@@ -34,7 +34,7 @@
 	// Bag fatigue uses getStaminaModifier
 	o.getStaminaModifier <- function ()
 	{
-		if (this.getContainer().getActor().getSkills().hasSkill("perk.legend_net_repair"))
+		if (this.getContainer().getActor().getSkills().hasPerk(::Legends.Perk.LegendNetRepair))
 		{
 			return 0;
 		}

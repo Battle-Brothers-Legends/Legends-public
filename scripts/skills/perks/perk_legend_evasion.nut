@@ -2,7 +2,7 @@ this.perk_legend_evasion <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		::Const.Perks.setup(this.m, ::Const.Perks.PerkDefs.LegendEvasion);
+		::Const.Perks.setup(this.m, ::Legends.Perk.LegendEvasion);
 		this.m.Type = this.Const.SkillType.Perk;
 		this.m.Order = this.Const.SkillOrder.Perk;
 		this.m.IsActive = false;

@@ -1,21 +1,21 @@
-::mods_hookExactClass("entity/tactical/humans/mercenary_ranged", function(o) 
+::mods_hookExactClass("entity/tactical/humans/mercenary_ranged", function(o)
 {
 	local onInit = o.onInit;
 	o.onInit = function ()
 	{
 		onInit();
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_rotation"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_footwork"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_recover"));
+		::Legends.Perks.grant(this, ::Legends.Perk.Rotation);
+		::Legends.Perks.grant(this, ::Legends.Perk.Footwork);
+		::Legends.Perks.grant(this, ::Legends.Perk.Recover);
 		if(::Legends.isLegendaryDifficulty())
 		{
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_ballistics"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_nine_lives"));			
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_pathfinder"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_lone_wolf"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_lookout"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_berserk"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_close_combat_archer"));
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendBallistics);
+			::Legends.Perks.grant(this, ::Legends.Perk.NineLives);
+			::Legends.Perks.grant(this, ::Legends.Perk.Pathfinder);
+			::Legends.Perks.grant(this, ::Legends.Perk.LoneWolf);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendLookout);
+			::Legends.Perks.grant(this, ::Legends.Perk.Berserk);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendCloseCombatArcher);
 			this.m.Skills.add(this.new("scripts/skills/traits/fearless_trait"));
 		}
 	}
@@ -67,7 +67,7 @@
 			[1, "ragged_surcoat"],
 			[1, "padded_leather"]
 		]));
-				
+
 		if (this.Math.rand(1, 100) <= 75)
 		{
 			this.m.Items.equip(this.Const.World.Common.pickHelmet([

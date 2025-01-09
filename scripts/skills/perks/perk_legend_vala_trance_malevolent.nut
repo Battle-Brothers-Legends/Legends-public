@@ -12,7 +12,7 @@ this.perk_legend_vala_trance_malevolent <- this.inherit("scripts/skills/skill", 
 
 	function create()
 	{
-		::Const.Perks.setup(this.m, ::Const.Perks.PerkDefs.LegendValaTranceMalevolent);
+		::Const.Perks.setup(this.m, ::Legends.Perk.LegendValaTranceMalevolent);
 		this.m.Icon = "ui/perks/legend_vala_trance_malevolent_active.png";
 		this.m.IconDisabled = "ui/perks/legend_vala_trance_malevolent_active_sw.png";
 		this.m.Type = this.Const.SkillType.Active | this.Const.SkillType.Perk;
@@ -184,7 +184,7 @@ this.perk_legend_vala_trance_malevolent <- this.inherit("scripts/skills/skill", 
 				}
 			}
 
-			if (actor.getSkills().hasSkill("perk.legend_vala_trance_mastery"))
+			if (actor.getSkills().hasPerk(::Legends.Perk.LegendValaTranceMastery))
 			{
 				expertise = expertise + 15.0 / this.m.Difficulty;
 			}
@@ -263,7 +263,7 @@ this.perk_legend_vala_trance_malevolent <- this.inherit("scripts/skills/skill", 
 	{
 		local actor = this.getContainer().getActor();
 
-		if (actor.getSkills().hasSkill("perk.legend_vala_trance_mastery"))
+		if (actor.getSkills().hasPerk(::Legends.Perk.LegendValaTranceMastery))
 		{
 			this.m.FatigueCostMult = 0.75;
 		}
@@ -285,7 +285,7 @@ this.perk_legend_vala_trance_malevolent <- this.inherit("scripts/skills/skill", 
 
 		if (actor.getSkills().hasSkill("effects.legend_vala_in_trance"))
 		{
-			if (actor.getSkills().hasSkill("perk.legend_vala_trance_mastery"))
+			if (actor.getSkills().hasPerk(::Legends.Perk.LegendValaTranceMastery))
 			{
 				if (this.Math.rand(1, 100) <= 50)
 				{

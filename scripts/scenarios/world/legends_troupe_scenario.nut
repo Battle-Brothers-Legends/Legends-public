@@ -32,8 +32,8 @@ this.legends_troupe_scenario <- this.inherit("scripts/scenarios/world/starting_s
 		bros[0].m.LevelUps = 2;
 		bros[0].m.Level = 3;
 		bros[0].setPlaceInFormation(13);
-		bros[0].getSkills().add(this.new("scripts/skills/perks/perk_legend_leap"));
-		bros[0].getSkills().add(this.new("scripts/skills/perks/perk_legend_push"));
+		::Legends.Perks.grant(bros[0], ::Legends.Perk.LegendLeap);
+		::Legends.Perks.grant(bros[0], ::Legends.Perk.LegendPush);
 		bros[0].m.PerkPointsSpent += 1;
 		local items = bros[0].getItems();
 		items.unequip(items.getItemAtSlot(this.Const.ItemSlot.Head));
@@ -43,8 +43,8 @@ this.legends_troupe_scenario <- this.inherit("scripts/scenarios/world/starting_s
 		bros[1].setStartValuesEx(["minstrel_background"],true,0);
 		bros[1].getBackground().m.RawDescription = "{%name% worked providing entertainment at inns around the country, but the bar fights and road bandits make it no life for a solo artist. Joining with others was for safety as much as the show.}";
 		bros[1].setPlaceInFormation(12);
-		bros[1].getSkills().add(this.new("scripts/skills/perks/perk_legend_leap"));
-		bros[1].getSkills().add(this.new("scripts/skills/perks/perk_legend_drums_of_life"));
+		::Legends.Perks.grant(bros[1], ::Legends.Perk.LegendLeap);
+		::Legends.Perks.grant(bros[1], ::Legends.Perk.LegendDrumsOfLife);
 
 		bros[1].m.PerkPointsSpent += 1;
 		local items = bros[1].getItems();
@@ -59,8 +59,8 @@ this.legends_troupe_scenario <- this.inherit("scripts/scenarios/world/starting_s
 		bros[2].m.PerkPoints = 3;
 		bros[2].m.LevelUps = 3;
 		bros[2].m.Level = 4;
-		bros[2].getSkills().add(this.new("scripts/skills/perks/perk_legend_leap"));
-		bros[2].getSkills().add(this.new("scripts/skills/perks/perk_legend_drums_of_war"));
+		::Legends.Perks.grant(bros[2], ::Legends.Perk.LegendLeap);
+		::Legends.Perks.grant(bros[2], ::Legends.Perk.LegendDrumsOfWar);
 		bros[2].m.PerkPointsSpent += 1;
 		local items = bros[2].getItems();
 		items.unequip(items.getItemAtSlot(this.Const.ItemSlot.Head));
@@ -75,8 +75,8 @@ this.legends_troupe_scenario <- this.inherit("scripts/scenarios/world/starting_s
 		bros[3].m.PerkPoints = 1;
 		bros[3].m.LevelUps = 1;
 		bros[3].m.Level = 2;
-		bros[3].getSkills().add(this.new("scripts/skills/perks/perk_legend_leap"));
-		bros[3].getSkills().add(this.new("scripts/skills/perks/perk_legend_push"));
+		::Legends.Perks.grant(bros[3], ::Legends.Perk.LegendLeap);
+		::Legends.Perks.grant(bros[3], ::Legends.Perk.LegendPush);
 		bros[3].m.PerkPointsSpent += 1;
 		local items = bros[3].getItems();
 		items.unequip(items.getItemAtSlot(this.Const.ItemSlot.Head));
@@ -152,9 +152,8 @@ this.legends_troupe_scenario <- this.inherit("scripts/scenarios/world/starting_s
 
 	function onHiredByScenario( bro )
 	{
-
 		bro.improveMood(0.5, "Learned a new skill");
-		bro.getSkills().add(this.new("scripts/skills/perks/perk_legend_leap"));
+		::Legends.Perks.grant(bro, ::Legends.Perk.LegendLeap);
 	}
 
 

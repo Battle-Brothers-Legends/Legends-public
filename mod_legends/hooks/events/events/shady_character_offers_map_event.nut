@@ -47,7 +47,7 @@
 		local candidates_historian = [];
 
 		foreach( bro in brothers )
-			if (bro.getBackground().getID() == "background.historian" || bro.getSkills().hasSkill("perk.legend_scholar"))
+			if (bro.getBackground().getID() == "background.historian" || bro.getSkills().hasPerk(::Legends.Perk.LegendScholar))
 				candidates_historian.push(bro);
 			else if (bro.getBackground().getID() == "background.thief")
 				candidates_thief.push(bro);

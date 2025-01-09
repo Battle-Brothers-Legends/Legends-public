@@ -52,12 +52,12 @@ this.sato_manhunter_veteran_ranged <- this.inherit("scripts/entity/tactical/huma
 		b.IsSpecializedInCrossbows = true;
 		b.IsSpecializedInDaggers = true;
 
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_fast_adaption"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_coup_de_grace"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_quick_hands"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_head_hunter"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_battle_forged"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_fearsome"));
+		::Legends.Perks.grant(this, ::Legends.Perk.FastAdaption);
+		::Legends.Perks.grant(this, ::Legends.Perk.CoupDeGrace);
+		::Legends.Perks.grant(this, ::Legends.Perk.QuickHands);
+		::Legends.Perks.grant(this, ::Legends.Perk.HeadHunter);
+		::Legends.Perks.grant(this, ::Legends.Perk.BattleForged);
+		::Legends.Perks.grant(this, ::Legends.Perk.Fearsome);
 	}
 
 	function onOtherActorDeath( _killer, _victim, _skill )
@@ -230,8 +230,8 @@ this.sato_manhunter_veteran_ranged <- this.inherit("scripts/entity/tactical/huma
 			));
 		}
 
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_duelist"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_killing_frenzy"));
+		::Legends.Perks.grant(this, ::Legends.Perk.Duelist);
+		::Legends.Perks.grant(this, ::Legends.Perk.KillingFrenzy);
 		return true;
 	}
 });

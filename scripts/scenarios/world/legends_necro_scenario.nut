@@ -44,7 +44,7 @@ this.legends_necro_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 		bros[0].getSprite("miniboss").setBrush("bust_miniboss_undead");
 		bros[0].getFlags().set("IsPlayerCharacter", true); //player character
 		bros[0].getSkills().add(this.new("scripts/skills/traits/player_character_trait"));
-		bros[0].getSkills().add(this.new("scripts/skills/perks/perk_bags_and_belts"));
+		::Legends.Perks.grant(bros[0], ::Legends.Perk.BagsAndBelts);
  		bros[0].getSkills().add(this.new("scripts/skills/traits/legend_deathly_spectre_trait"));
 
 		bros[1].setStartValuesEx([
@@ -56,7 +56,7 @@ this.legends_necro_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 		bros[1].getSkills().add(this.new("scripts/skills/traits/ailing_trait"));
 		bros[1].getFlags().set("IsPlayerCharacter", true); //player character
 		bros[1].getSkills().add(this.new("scripts/skills/traits/player_character_trait"));
-		bros[1].getSkills().add(this.new("scripts/skills/perks/perk_nine_lives"));
+		::Legends.Perks.grant(bros[1], ::Legends.Perk.NineLives);
  		bros[1].getSkills().add(this.new("scripts/skills/traits/legend_deathly_spectre_trait"));
 
 		bros[2].setStartValuesEx([
@@ -67,8 +67,8 @@ this.legends_necro_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 		bros[2].getSprite("miniboss").setBrush("bust_miniboss_undead");
 		bros[2].getFlags().set("IsPlayerCharacter", true); //player character
 		bros[2].getSkills().add(this.new("scripts/skills/traits/player_character_trait"));
-		bros[2].getSkills().add(this.new("scripts/skills/perks/perk_legend_possession"));
- 		bros[2].getSkills().add(this.new("scripts/skills/traits/legend_deathly_spectre_trait"));
+		::Legends.Perks.grant(bros[2], ::Legends.Perk.LegendPossession);
+		bros[2].getSkills().add(this.new("scripts/skills/traits/legend_deathly_spectre_trait"));
 
 		bros[3].setStartValuesEx([
 			"legend_puppet_background" //poor fucking infantry (tm)

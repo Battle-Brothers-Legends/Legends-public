@@ -4,17 +4,15 @@ this.legend_unleash_animal_skill <- this.inherit("scripts/skills/skill", {
 	function addAnimalSkills(entity)
 	{
 
-		if (this.getContainer().getActor().getSkills().hasSkill("perk.legend_dogwhisperer"))
+		if (this.getContainer().getActor().getSkills().hasPerk(::Legends.Perk.LegendDogWhisperer))
 		{
-			entity.getSkills().add(this.new("scripts/skills/perks/perk_fortified_mind"));
-			entity.getSkills().add(this.new("scripts/skills/perks/perk_colossus"));
-			entity.getSkills().add(this.new("scripts/skills/perks/perk_underdog"));
+			::Legends.Perks.grant(entity, ::Legends.Perk.FortifiedMind);
+			::Legends.Perks.grant(entity, ::Legends.Perk.Colossus);
+			::Legends.Perks.grant(entity, ::Legends.Perk.Underdog);
 		}
 
-		if (!this.getContainer().hasSkill("perk.legend_doghandling"))
-		{
+		if (!this.getContainer().hasPerk(::Legends.Perk.LegendDogHandling))
 			return;
-		}
 
 
 		if (!this.getContainer().hasSkill("actives.legend_attack_target"))

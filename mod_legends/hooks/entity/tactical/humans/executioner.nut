@@ -4,7 +4,7 @@
 	o.onInit = function ()
 	{
 		onInit();
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_recover"));
+		::Legends.Perks.grant(this, ::Legends.Perk.Recover);
 	}
 
 	o.assignRandomEquipment = function ()
@@ -102,7 +102,7 @@
 			));
 		}
 
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_reach_advantage"));
+		::Legends.Perks.grant(this, ::Legends.Perk.ReachAdvantage);
 		return true;
 	}
 });

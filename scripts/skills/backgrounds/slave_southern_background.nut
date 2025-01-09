@@ -125,7 +125,7 @@ this.slave_southern_background <- this.inherit("scripts/skills/backgrounds/slave
 	function onAdded()
 	{
 		this.character_background.onAdded();
-		this.m.Container.add(this.new("scripts/skills/perks/perk_legend_throw_sand"));
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendThrowSand);
 	}
 
 	//no need to do legendsequipment here because it inherits from slave_background

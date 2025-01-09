@@ -20,7 +20,7 @@ this.legends_sisterhood_scenario <- this.inherit("scripts/scenarios/world/starti
 			local bro;
 			bro = roster.create("scripts/entity/tactical/player");
 			bro.m.HireTime = this.Time.getVirtualTimeF();
-			bro.getSkills().add(this.new("scripts/skills/perks/perk_hold_out"));
+			::Legends.Perks.grant(bro, ::Legends.Perk.HoldOut);
 			bro.m.PerkPointsSpent += 1;
 			i = ++i;
 		}
@@ -30,22 +30,22 @@ this.legends_sisterhood_scenario <- this.inherit("scripts/scenarios/world/starti
 			"legend_shieldmaiden_background"
 		], true, 1);
 		bros[0].setPlaceInFormation(3);
-		
+
 		bros[1].setStartValuesEx([
 			"wildman_background"
 		], true, 1);
 		bros[1].setPlaceInFormation(4);
-		
+
 		bros[2].setStartValuesEx([
 			"legend_battle_sister_background"
 		], true, 1);
 		bros[2].setPlaceInFormation(5);
-		
+
 		bros[3].setStartValuesEx([
 			"monk_background"
 		], true, 1);
 		bros[3].setPlaceInFormation(12);
-		
+
 		bros[4].setStartValuesEx([
 			"legend_vala_background"
 		], true, 1);
@@ -55,7 +55,7 @@ this.legends_sisterhood_scenario <- this.inherit("scripts/scenarios/world/starti
 		bros[4].getFlags().set("IsPlayerCharacter", true);
 		bros[4].setPlaceInFormation(13);
 		bros[4].setVeteranPerks(2);
-		
+
 		bros[5].setStartValuesEx([
 			"adventurous_noble_background"
 		], true, 1);

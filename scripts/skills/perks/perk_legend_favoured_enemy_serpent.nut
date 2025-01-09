@@ -3,7 +3,7 @@ this.perk_legend_favoured_enemy_serpent <- this.inherit("scripts/skills/legend_f
 	function create()
 	{
 		this.legend_favoured_enemy_skill.create();
-		::Const.Perks.setup(this.m, ::Const.Perks.PerkDefs.LegendFavouredEnemySerpent);
+		::Const.Perks.setup(this.m, ::Legends.Perk.LegendFavouredEnemySerpent);
 		this.m.ValidTypes = this.Const.LegendMod.FavoriteSerpents;
 	}
 

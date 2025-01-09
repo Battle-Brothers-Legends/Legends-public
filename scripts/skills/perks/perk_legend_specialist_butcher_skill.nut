@@ -2,7 +2,7 @@ this.perk_legend_specialist_butcher_skill <- this.inherit("scripts/skills/skill"
 	m = {},
 	function create()
 	{
-		::Const.Perks.setup(this.m, ::Const.Perks.PerkDefs.LegendSpecialistButcherSkill);
+		::Const.Perks.setup(this.m, ::Legends.Perk.LegendSpecialistButcherSkill);
 		this.m.Type = this.Const.SkillType.Perk;
 		this.m.Order = this.Const.SkillOrder.Perk;
 		this.m.IsActive = false;

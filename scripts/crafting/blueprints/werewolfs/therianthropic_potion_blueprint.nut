@@ -36,10 +36,8 @@ this.therianthropic_potion_blueprint <- this.inherit("scripts/crafting/blueprint
 		];
 		this.init(ingredients);
 		local skills = [
-			{
-				Scripts = ["scripts/skills/perks/perk_legend_potion_brewer"]
-			}
-		]
+			::Legends.Perks.blueprint(::Legends.Perk.LegendPotionBrewer)
+		];
 		this.initSkills(skills);
 	}
 

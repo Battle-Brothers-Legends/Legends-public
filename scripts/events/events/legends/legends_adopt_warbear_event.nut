@@ -175,7 +175,7 @@ this.legends_adopt_warbear_event <- this.inherit("scripts/events/event", {
 		local bearBros = 0;
 		foreach( bro in brothers )
 		{
-			if (bro.getSkills().hasSkill("perk.legend_summon_bear") || bro.getBackground().getID() == "background.legend_druid" || bro.getBackground().getID() == "background.legend_druid_commander")
+			if (bro.getSkills().hasPerk(::Legends.Perk.LegendSummonBear) || bro.getBackground().getID() == "background.legend_druid" || bro.getBackground().getID() == "background.legend_druid_commander")
 			{
 				candidates.push(bro);
 				bearBros++

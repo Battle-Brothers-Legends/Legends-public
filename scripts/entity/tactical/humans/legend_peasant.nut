@@ -32,7 +32,7 @@ this.legend_peasant <- this.inherit("scripts/entity/tactical/legend_randomized_u
 		// if(::Legends.isLegendaryDifficulty())
 		// 	{
 		// 	this.m.Hitpoints = b.Hitpoints * 1.5;
-		// 	this.m.Skills.add(this.new("scripts/skills/perks/perk_nimble"));
+		// 	::Legends.Perks.grant(this, ::Legends.Perk.Nimble);
 		// 	this.m.Skills.add(this.new("scripts/skills/traits/fearless_trait"));
 		// 	}
 

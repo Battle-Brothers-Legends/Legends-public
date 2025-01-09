@@ -2,7 +2,7 @@ this.perk_legend_magic_web_bolt <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		::Const.Perks.setup(this.m, ::Const.Perks.PerkDefs.LegendMagicWebBolt);
+		::Const.Perks.setup(this.m, ::Legends.Perk.LegendMagicWebBolt);
 		this.m.Type = this.Const.SkillType.Perk;
 		this.m.Order = this.Const.SkillOrder.Perk;
 		this.m.IsActive = false;

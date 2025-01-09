@@ -46,7 +46,7 @@ this.legend_ai_rotation_skill <- this.inherit("scripts/skills/skill", {
 				text = this.getCostString()
 			}
 		];
-		
+
 
 		// if (this.getContainer().getActor().getCurrentProperties().IsRooted)
 		// {
@@ -77,7 +77,7 @@ this.legend_ai_rotation_skill <- this.inherit("scripts/skills/skill", {
 	}
 
 	function isUsable()
-	{	
+	{
 		return this.skill.isUsable() && !this.getContainer().getActor().getCurrentProperties().IsRooted;
 	}
 
@@ -91,10 +91,10 @@ this.legend_ai_rotation_skill <- this.inherit("scripts/skills/skill", {
 		if (!target.isAlive() && ::MSU.isNull(target))
 			return false;
 
-		if (!target.isAlliedWith(this.getContainer().getActor()) && !this.getContainer().hasPerk(::Const.Perks.PerkDefs.LegendTwirl))
+		if (!target.isAlliedWith(this.getContainer().getActor()) && !this.getContainer().hasPerk(::Legends.Perk.LegendTwirl))
 			return false;
 
-		if (target.isPlayerControlled() && !this.getContainer().hasPerk(::Const.Perks.PerkDefs.LegendTwirl))
+		if (target.isPlayerControlled() && !this.getContainer().hasPerk(::Legends.Perk.LegendTwirl))
 			return false;
 
 		return this.skill.onVerifyTarget(_originTile, _targetTile) && !target.getCurrentProperties().IsStunned && !target.getCurrentProperties().IsRooted && target.getCurrentProperties().IsMovable && !target.getCurrentProperties().IsImmuneToRotation;

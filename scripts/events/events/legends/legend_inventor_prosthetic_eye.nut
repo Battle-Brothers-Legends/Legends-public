@@ -198,7 +198,7 @@ this.legend_inventor_prosthetic_eye <- this.inherit("scripts/events/event", {
 		local inventor_candidates = [];
 		local noeye_candidates = [];
 
-	
+
 		if (this.World.Assets.getMoney() < 2000 || this.World.Assets.getArmorParts() < 40)
 		{
 			return;
@@ -207,7 +207,7 @@ this.legend_inventor_prosthetic_eye <- this.inherit("scripts/events/event", {
 
 		foreach (bro in brothers)
 		{
-			if (bro.getSkills().hasSkill("perk.legend_inventor_anatomy"))
+			if (bro.getSkills().hasPerk(::Legends.Perk.LegendInventorAnatomy))
 			{
 				inventor_candidates.push(bro);
 			}

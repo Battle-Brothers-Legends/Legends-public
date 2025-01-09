@@ -383,17 +383,17 @@ this.gatherer_building <- this.inherit("scripts/entity/world/camp/camp_building"
 				continue;
 			}
 
-			if (bro.getSkills().hasSkill("perk.legend_potion_brewer"))
+			if (bro.getSkills().hasPerk(::Legends.Perk.LegendPotionBrewer))
 			{
 				map.Brewer += bro.getLevel();
 			}
 
-			if (bro.getSkills().hasSkill("perk.legend_specialist_woodaxe_damage"))
+			if (bro.getSkills().hasPerk(::Legends.Perk.LegendSpecialistWoodaxeDamage))
 			{
 				map.Woodsman += bro.getLevel();
 			}
 
-			if (bro.getSkills().hasSkill("perk.legend_specialist_pickaxe_damage"))
+			if (bro.getSkills().hasPerk(::Legends.Perk.LegendSpecialistPickaxeDamage))
 			{
 				map.Miner += bro.getLevel();
 			}
@@ -408,7 +408,7 @@ this.gatherer_building <- this.inherit("scripts/entity/world/camp/camp_building"
 					map.Apothecary += bro.getLevel();
 			}
 
-			if (bro.getSkills().hasSkill("perk.legend_gatherer"))
+			if (bro.getSkills().hasPerk(::Legends.Perk.LegendGatherer))
 			{
 				map.Apothecary += bro.getLevel();
 			}

@@ -5,23 +5,22 @@
 	{
 		onInit();
 		this.m.Skills.removeByID("effects.dodge");
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_dodge"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_rotation"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_footwork"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_recover"));
+		::Legends.Perks.grant(this, ::Legends.Perk.Dodge);
+		::Legends.Perks.grant(this, ::Legends.Perk.Rotation);
+		::Legends.Perks.grant(this, ::Legends.Perk.Footwork);
+		::Legends.Perks.grant(this, ::Legends.Perk.Recover);
 
 		if (::Legends.isLegendaryDifficulty())
 		{
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_battle_forged"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_pathfinder"));
-			// this.m.Skills.add(this.new("scripts/skills/perks/perk_trophy_hunter"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_big_game_hunter"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_head_hunter"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_back_to_basics"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_push_the_advantage"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_mastery_nets"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_onslaught"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_backstabber"));
+			::Legends.Perks.grant(this, ::Legends.Perk.BattleForged);
+			::Legends.Perks.grant(this, ::Legends.Perk.Pathfinder);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendBigGameHunter);
+			::Legends.Perks.grant(this, ::Legends.Perk.HeadHunter);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendBackToBasics);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendPushTheAdvantage);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendMasteryNets);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendOnslaught);
+			::Legends.Perks.grant(this, ::Legends.Perk.Backstabber);
 			this.m.Skills.add(this.new("scripts/skills/traits/fearless_trait"));
 		}
 	}
@@ -65,11 +64,11 @@
 
 			if (this.m.Items.getItemAtSlot(this.Const.ItemSlot.Mainhand).getID() == "weapon.dagger")
 			{
-				this.m.Skills.add(this.new("scripts/skills/perks/perk_duelist"));
+				::Legends.Perks.grant(this, ::Legends.Perk.Duelist);
 			}
 		}
 
-		if (this.m.Items.getItemAtSlot(this.Const.ItemSlot.Offhand) == null && !this.m.Skills.hasSkill("perk.duelist"))
+		if (this.m.Items.getItemAtSlot(this.Const.ItemSlot.Offhand) == null && !this.m.Skills.hasPerk(::Legends.Perk.Duelist))
 		{
 			if (this.Math.rand(1, 100) <= 75)
 			{

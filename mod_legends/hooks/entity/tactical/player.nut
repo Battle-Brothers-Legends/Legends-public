@@ -32,7 +32,7 @@
 	o.getDailyFood = function ()
 	{
 		local food = this.Math.maxf(0.0, this.m.CurrentProperties.DailyFood);
-		if (this.isInReserves() && !this.m.Skills.hasSkill("perk.legend_peaceful"))
+		if (this.isInReserves() && !this.m.Skills.hasPerk(::Legends.Perk.LegendPeaceful))
 		{
 			food *= 2;
 		}
@@ -572,22 +572,18 @@
 			this.setMoraleState(::Const.MoraleState.Ignore);
 			this.getSkills().add(::new("scripts/skills/traits/legend_rotten_flesh_trait"));
 
-			local perk = ::new("scripts/skills/perks/perk_legend_zombie_bite");
-			perk.IsRefundable = false;
-			this.getSkills().add(perk);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendZombieBite, function (perk) {
+				perk.IsRefundable = false;
+			});
 
-			if (this.getSkills().hasPerk(::Const.Perks.PerkDefs.NineLives)) {
-				local perk = this.getSkills().getSkillByID("perk.nine_lives");
-				if (perk.IsRefundable) {
+			local has9L = this.getSkills().hasPerk(::Legends.Perk.NineLives);
+			::Legends.Perks.grant(this, ::Legends.Perk.NineLives, function (perk) {
+				if (has9L && perk.IsRefundable) {
 					this.m.PerkPoints += 1;
 					this.m.PerkPointsSpent -= 1;
 				}
 				perk.IsRefundable = false;
-			} else {
-				local perk = ::new("scripts/skills/perks/perk_nine_lives");
-				perk.IsRefundable = false;
-				this.getSkills().add(perk);
-			}
+			});
 
 			if (result) {
 				this.m.IsDying = false;
@@ -642,7 +638,7 @@
 
 		foreach( bro in roster )
 		{
-			if (bro.isInReserves() && bro.getSkills().hasSkill("perk.legend_pacifist"))
+			if (bro.isInReserves() && bro.getSkills().hasPerk(::Legends.Perk.LegendPacifist))
 			{
 				bro.addXP(this.Math.max(1, this.Math.floor(XPgroup / brothers.len())));
 			}
@@ -803,7 +799,7 @@
 		p.onUnlocked();
 		this.m.Skills.update();
 
-		if (this.m.Level >= 12 && _id == "perk.student")
+		if (this.m.Level >= 12 && _id == ::Legends.Perks.getID(::Legends.Perk.Student))
 		{
 			++this.m.PerkPoints;
 		}
@@ -828,7 +824,7 @@
 				++this.m.PerkPoints;
 			}
 
-			if (this.m.Level == 12 && this.m.Skills.hasSkill("perk.student"))
+			if (this.m.Level == 12 && this.m.Skills.hasPerk(::Legends.Perk.Student))
 			{
 				++this.m.PerkPoints;
 			}
@@ -1578,15 +1574,13 @@
 			broStash = broStash + item.getStashModifier();
 		}
 
-		local skills =
-		[
-			"perk.legend_skillful_stacking",
-			"perk.legend_efficient_packing"
+		local skills = [
+			::Legends.Perk.LegendSkillfulStacking,
+			::Legends.Perk.LegendEfficientPacking
 		];
-
 		foreach( s in skills )
 		{
-			local skill = this.getSkills().getSkillByID(s);
+			local skill = ::Legends.Perks.get(this, s);
 			if (skill != null)
 			{
 				broStash += skill.getModifier();
@@ -1600,14 +1594,13 @@
 	{
 		local mod = this.getBackground().getModifiers().Ammo;
 		local skills = [
-			"perk.legend_ammo_bundles",
-			"perk.legend_ammo_binding"
+			::Legends.Perk.LegendAmmoBundles,
+			::Legends.Perk.LegendAmmoBinding
 		];
 
 		foreach( s in skills )
 		{
-			local skill = this.getSkills().getSkillByID(s);
-
+			local skill = ::Legends.Perks.get(this, s);
 			if (skill != null)
 			{
 				mod = mod + skill.getModifier();
@@ -1621,14 +1614,13 @@
 	{
 		local mod = this.getBackground().getModifiers().ArmorParts;
 		local skills = [
-			"perk.legend_tools_spares",
-			"perk.legend_tools_drawers"
+			::Legends.Perk.LegendToolsSpares,
+			::Legends.Perk.LegendToolsDrawers
 		];
 
 		foreach( s in skills )
 		{
-			local skill = this.getSkills().getSkillByID(s);
-
+			local skill = ::Legends.Perks.get(this, s);
 			if (skill != null)
 			{
 				mod += skill.getModifier();
@@ -1642,14 +1634,13 @@
 	{
 		local mod = this.getBackground().getModifiers().Meds;
 		local skills = [
-			"perk.legend_med_packages",
-			"perk.legend_med_ingredients"
+			::Legends.Perk.LegendMedPackages,
+			::Legends.Perk.LegendMedIngredients
 		];
 
 		foreach( s in skills )
 		{
-			local skill = this.getSkills().getSkillByID(s);
-
+			local skill = ::Legends.Perks.get(this, s);
 			if (skill != null)
 			{
 				mod = mod + skill.getModifier();
@@ -1668,22 +1659,23 @@
 		}
 		local mod = this.getBackground().getModifiers().Barter;
 		local skills = [
-			"perk.legend_barter_trustworthy",
-			"perk.legend_barter_convincing",
-			"perk.legend_off_book_deal",
-			"trait.legend_seductive"
+			::Legends.Perk.LegendBarterTrustworthy,
+			::Legends.Perk.LegendBarterConvincing,
+			::Legends.Perk.LegendOffBookDeal
 		];
 
 		foreach( s in skills )
 		{
-			local skill = this.getSkills().getSkillByID(s);
-
+			local skill = ::Legends.Perks.get(this, s);
 			if (skill != null)
 			{
 				mod += skill.getModifier();
 			}
 		}
-
+		local skill = this.getSkills().getSkillByID("trait.legend_seductive");
+		if (skill != null) {
+			mod += skill.getModifier();
+		}
 		return mod;
 	}
 

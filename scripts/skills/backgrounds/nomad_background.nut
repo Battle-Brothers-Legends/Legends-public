@@ -200,7 +200,7 @@ this.nomad_background <- this.inherit("scripts/skills/backgrounds/character_back
 	function onAdded()
 	{
 		this.character_background.onAdded();
-		this.m.Container.add(this.new("scripts/skills/perks/perk_legend_throw_sand"));
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendThrowSand);
 	}
 
 	function onAddEquipment()

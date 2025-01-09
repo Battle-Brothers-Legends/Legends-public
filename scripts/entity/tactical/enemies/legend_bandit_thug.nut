@@ -52,10 +52,10 @@ this.legend_bandit_thug <- this.inherit("scripts/entity/tactical/legend_randomiz
 
 		// if (::Legends.isLegendaryDifficulty())
 		// 	{
-		// 	this.m.Skills.add(this.new("scripts/skills/perks/perk_relentless"));
-		// 	this.m.Skills.add(this.new("scripts/skills/perks/perk_dodge"));
-		// 	this.m.Skills.add(this.new("scripts/skills/perks/perk_backstabber"));
-		// 	this.m.Skills.add(this.new("scripts/skills/perks/perk_underdog"));
+		// 	::Legends.Perks.grant(this, ::Legends.Perk.Relentless);
+		// 	::Legends.Perks.grant(this, ::Legends.Perk.Dodge);
+		// 	::Legends.Perks.grant(this, ::Legends.Perk.Backstabber);
+		// 	::Legends.Perks.grant(this, ::Legends.Perk.Underdog);
 		// 	this.m.Skills.add(this.new("scripts/skills/traits/fearless_trait"));
 
 		// 	}
@@ -89,7 +89,7 @@ this.legend_bandit_thug <- this.inherit("scripts/entity/tactical/legend_randomiz
 	// 					if (::Legends.isLegendaryDifficulty())
 	// 						{
 
-	// 							this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_smashing_shields"));
+	// 							::Legends.Perks.grant(this, ::Legends.Perk.LegendSmashingShields);
 	// 						}
 	// 			}
 	// 			else if (r == 2)
@@ -97,7 +97,7 @@ this.legend_bandit_thug <- this.inherit("scripts/entity/tactical/legend_randomiz
 	// 				this.m.Items.equip(this.new("scripts/items/weapons/goedendag"));
 	// 					if (::Legends.isLegendaryDifficulty())
 	// 						{
-	// 							this.m.Skills.add(this.new("scripts/skills/perks/perk_relentless"));
+	// 							::Legends.Perks.grant(this, ::Legends.Perk.Relentless);
 	// 						}
 	// 			}
 	// 			else if (r == 3)
@@ -105,7 +105,7 @@ this.legend_bandit_thug <- this.inherit("scripts/entity/tactical/legend_randomiz
 	// 				this.m.Items.equip(this.new("scripts/items/weapons/pitchfork"));
 	// 					 if (::Legends.isLegendaryDifficulty())
 	// 						{
-	// 							this.m.Skills.add(this.new("scripts/skills/perks/perk_coup_de_grace"));
+	// 							::Legends.Perks.grant(this, ::Legends.Perk.CoupDeGrace);
 	// 						}
 
 	// 			}
@@ -119,7 +119,7 @@ this.legend_bandit_thug <- this.inherit("scripts/entity/tactical/legend_randomiz
 	// 				this.m.Items.equip(this.new("scripts/items/weapons/woodcutters_axe"));
 	// 					if (::Legends.isLegendaryDifficulty())
 	// 						{
-	// 							this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_smashing_shields"));
+	// 							::Legends.Perks.grant(this, ::Legends.Perk.LegendSmashingShields);
 	// 						}
 	// 			}
 	// 			else if (r == 2)
@@ -127,7 +127,7 @@ this.legend_bandit_thug <- this.inherit("scripts/entity/tactical/legend_randomiz
 	// 				this.m.Items.equip(this.new("scripts/items/weapons/pitchfork"));
 	// 					 if (::Legends.isLegendaryDifficulty())
 	// 						{
-	// 							this.m.Skills.add(this.new("scripts/skills/perks/perk_coup_de_grace"));
+	// 							::Legends.Perks.grant(this, ::Legends.Perk.CoupDeGrace);
 	// 						}
 	// 			}
 	// 		}
@@ -139,7 +139,7 @@ this.legend_bandit_thug <- this.inherit("scripts/entity/tactical/legend_randomiz
 	// 			this.m.Items.equip(this.new("scripts/items/weapons/shortsword"));
 	// 					 if (::Legends.isLegendaryDifficulty())
 	// 						{
-	// 							this.m.Skills.add(this.new("scripts/skills/perks/perk_duelist"));
+	// 							::Legends.Perks.grant(this, ::Legends.Perk.Duelist);
 	// 						}
 	// 		}
 	// 		else if (r == 3)
@@ -147,7 +147,7 @@ this.legend_bandit_thug <- this.inherit("scripts/entity/tactical/legend_randomiz
 	// 			this.m.Items.equip(this.new("scripts/items/weapons/hatchet"));
 	// 					if (::Legends.isLegendaryDifficulty())
 	// 						{
-	// 							this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_smashing_shields"));
+	// 							::Legends.Perks.grant(this, ::Legends.Perk.LegendSmashingShields);
 	// 						}
 	// 		}
 	// 		else if (r == 4)
@@ -155,7 +155,7 @@ this.legend_bandit_thug <- this.inherit("scripts/entity/tactical/legend_randomiz
 	// 			this.m.Items.equip(this.new("scripts/items/weapons/bludgeon"));
 	// 					if (::Legends.isLegendaryDifficulty())
 	// 						{
-	// 							this.m.Skills.add(this.new("scripts/skills/perks/perk_relentless"));
+	// 							::Legends.Perks.grant(this, ::Legends.Perk.Relentless);
 	// 						}
 	// 		}
 	// 		else if (r == 5)
@@ -163,7 +163,7 @@ this.legend_bandit_thug <- this.inherit("scripts/entity/tactical/legend_randomiz
 	// 			this.m.Items.equip(this.new("scripts/items/weapons/militia_spear"));
 	// 				if (::Legends.isLegendaryDifficulty())
 	// 					{
-	// 						this.m.Skills.add(this.new("scripts/skills/perks/perk_overwhelm"));
+	// 						::Legends.Perks.grant(this, ::Legends.Perk.Overwhelm);
 	// 					}
 	// 		}
 	// 		else if (r == 6)
@@ -171,7 +171,7 @@ this.legend_bandit_thug <- this.inherit("scripts/entity/tactical/legend_randomiz
 	// 			this.m.Items.equip(this.new("scripts/items/weapons/pickaxe"));
 	// 			if (::Legends.isLegendaryDifficulty())
 	// 				{
-	// 					this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_smackdown"));
+	// 					::Legends.Perks.grant(this, ::Legends.Perk.LegendSmackdown);
 	// 				}
 	// 		}
 	// 		else if (r == 7)
@@ -179,7 +179,7 @@ this.legend_bandit_thug <- this.inherit("scripts/entity/tactical/legend_randomiz
 	// 			this.m.Items.equip(this.new("scripts/items/weapons/reinforced_wooden_flail"));
 	// 				if (::Legends.isLegendaryDifficulty())
 	// 					{
-	// 						this.m.Skills.add(this.new("scripts/skills/perks/perk_head_hunter"));
+	// 						::Legends.Perks.grant(this, ::Legends.Perk.HeadHunter);
 	// 					}
 	// 		}
 	// 		else if (r == 8)
@@ -187,7 +187,7 @@ this.legend_bandit_thug <- this.inherit("scripts/entity/tactical/legend_randomiz
 	// 			this.m.Items.equip(this.new("scripts/items/weapons/wooden_flail"));
 	// 				if (::Legends.isLegendaryDifficulty())
 	// 					{
-	// 						this.m.Skills.add(this.new("scripts/skills/perks/perk_head_hunter"));
+	// 						::Legends.Perks.grant(this, ::Legends.Perk.HeadHunter);
 	// 					}
 	// 		}
 	// 		else if (r == 9)
@@ -195,7 +195,7 @@ this.legend_bandit_thug <- this.inherit("scripts/entity/tactical/legend_randomiz
 	// 			this.m.Items.equip(this.new("scripts/items/weapons/butchers_cleaver"));
 	// 				if (::Legends.isLegendaryDifficulty())
 	// 					{
-	// 						this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_bloodbath"));
+	// 						::Legends.Perks.grant(this, ::Legends.Perk.LegendBloodbath);
 	// 					}
 	// 		}
 	// 		else if (r == 10)
@@ -203,7 +203,7 @@ this.legend_bandit_thug <- this.inherit("scripts/entity/tactical/legend_randomiz
 	// 			this.m.Items.equip(this.new("scripts/items/weapons/dagger"));
 	// 				if (::Legends.isLegendaryDifficulty())
 	// 					{
-	// 						this.m.Skills.add(this.new("scripts/skills/perks/perk_duelist"));
+	// 						::Legends.Perks.grant(this, ::Legends.Perk.Duelist);
 	// 					}
 	// 		}
 	// 		else if (r == 11)
@@ -211,7 +211,7 @@ this.legend_bandit_thug <- this.inherit("scripts/entity/tactical/legend_randomiz
 	// 			this.m.Items.equip(this.new("scripts/items/weapons/legend_scythe"));
 	// 					if (::Legends.isLegendaryDifficulty())
 	// 					{
-	// 						this.m.Skills.add(this.new("scripts/skills/perks/perk_coup_de_grace"));
+	// 						::Legends.Perks.grant(this, ::Legends.Perk.CoupDeGrace);
 	// 					}
 	// 		}
 	// 		else if (r == 12)
@@ -219,7 +219,7 @@ this.legend_bandit_thug <- this.inherit("scripts/entity/tactical/legend_randomiz
 	// 			this.m.Items.equip(this.new("scripts/items/weapons/legend_tipstaff"));
 	// 					if (::Legends.isLegendaryDifficulty())
 	// 					{
-	// 						this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_return_favor"));
+	// 						::Legends.Perks.grant(this, ::Legends.Perk.LegendReturnFavor);
 	// 					}
 	// 		}
 	// 		else if (r == 13)
@@ -227,7 +227,7 @@ this.legend_bandit_thug <- this.inherit("scripts/entity/tactical/legend_randomiz
 	// 			this.m.Items.equip(this.new("scripts/items/weapons/legend_militia_glaive"));
 	// 			if (::Legends.isLegendaryDifficulty())
 	// 			{
-	// 				this.m.Skills.add(this.new("scripts/skills/perks/perk_killing_frenzy"));
+	// 				::Legends.Perks.grant(this, ::Legends.Perk.KillingFrenzy);
 	// 			}
 	// 		}
 	// 		else if (r == 14)
@@ -235,7 +235,7 @@ this.legend_bandit_thug <- this.inherit("scripts/entity/tactical/legend_randomiz
 	// 			this.m.Items.equip(this.new("scripts/items/weapons/legend_tipstaff"));
 	// 			if (::Legends.isLegendaryDifficulty())
 	// 			{
-	// 				this.m.Skills.add(this.new("scripts/skills/perks/perk_killing_frenzy"));
+	// 				::Legends.Perks.grant(this, ::Legends.Perk.KillingFrenzy);
 	// 			}
 	// 		}
 	// 		else if (r == 15)
@@ -243,7 +243,7 @@ this.legend_bandit_thug <- this.inherit("scripts/entity/tactical/legend_randomiz
 	// 			this.m.Items.equip(this.new("scripts/items/weapons/legend_ranged_wooden_flail"));
 	// 			if (::Legends.isLegendaryDifficulty())
 	// 			{
-	// 				this.m.Skills.add(this.new("scripts/skills/perks/perk_killing_frenzy"));
+	// 				::Legends.Perks.grant(this, ::Legends.Perk.KillingFrenzy);
 	// 			}
 	// 		}
 

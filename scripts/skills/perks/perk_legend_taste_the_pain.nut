@@ -2,7 +2,7 @@ this.perk_legend_taste_the_pain <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		::Const.Perks.setup(this.m, ::Const.Perks.PerkDefs.LegendTasteThePain);
+		::Const.Perks.setup(this.m, ::Legends.Perk.LegendTasteThePain);
 		this.m.Type = this.Const.SkillType.Perk;
 		this.m.Order = this.Const.SkillOrder.Perk;
 		this.m.IsActive = false;

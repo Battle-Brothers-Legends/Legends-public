@@ -565,14 +565,13 @@
 			 	local items = bro.getItems().getAllItems();
 			 	local updateBro = false;
 
-				local skills =
-				[
-					"perk.legend_tools_spares",
-					"perk.legend_tools_drawers"
+				local skills = [
+					::Legends.Perk.LegendToolsSpares,
+					::Legends.Perk.LegendToolsDrawers
 				];
 				foreach (s in skills)
 				{
-					local skill = bro.getSkills().getSkillByID(s);
+					local skill = ::Legends.Perks.get(bro, s);
 					if (skill != null)
 					{
 						perkMod = perkMod * (1 - skill.getModifier() * 0.01); // /100 won't work in Squirrel, also should probably be buffed since it only works on the bro's own equipment and only outside of camp

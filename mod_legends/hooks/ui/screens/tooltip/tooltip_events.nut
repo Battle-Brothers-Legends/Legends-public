@@ -800,7 +800,7 @@
 
 			foreach(bro in this.World.getPlayerRoster().getAll())
 			{
-				if (bro.getSkills().hasSkill("perk.legend_barter_greed"))
+				if (bro.getSkills().hasPerk(::Legends.Perk.LegendBarterGreed))
 				{
 					greed += 1;
 				}
@@ -810,7 +810,7 @@
 			{
 				local L = [];
 				dailyMoney = dailyMoney + bro.getDailyCost();
-				if (bro.getSkills().hasSkill("perk.legend_barter_convincing"))
+				if (bro.getSkills().hasPerk(::Legends.Perk.LegendBarterConvincing))
 				{
 					dailyMoney -= (10 + bro.getLevel());
 				}
@@ -1118,12 +1118,12 @@
 			foreach( bro in this.World.getPlayerRoster().getAll() )
 			{
 
-				if (bro.getSkills().hasSkill("perk.legend_tools_spares"))
+				if (bro.getSkills().hasPerk(::Legends.Perk.LegendToolsSpares))
 				{
 					tools = tools - (tools * 0.06); //6%, as it is on this perk above
 					toolsMult += 6;
 				}
-				if (bro.getSkills().hasSkill("perk.legend_tools_drawers"))
+				if (bro.getSkills().hasPerk(::Legends.Perk.LegendToolsDrawers))
 				{
 					tools = tools - (tools * 0.04); //4%, as it is on this perk above
 					toolsMult += 4;

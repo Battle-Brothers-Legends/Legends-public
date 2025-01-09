@@ -8,9 +8,9 @@ this.legends_skeleton_low <- this.inherit("scripts/entity/tactical/legend_skelet
 		this.m.Skills.add(this.new("scripts/skills/traits/legend_fleshless_trait"));
 		if(::Legends.isLegendaryDifficulty())
 		{
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_shield_expert"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_crippling_strikes"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_coup_de_grace"));
+		::Legends.Perks.grant(this, ::Legends.Perk.ShieldExpert);
+		::Legends.Perks.grant(this, ::Legends.Perk.CripplingStrikes);
+		::Legends.Perks.grant(this, ::Legends.Perk.CoupDeGrace);
 		}
 		this.m.Skills.update();
 	}

@@ -2,7 +2,7 @@ this.perk_legend_horse_lead_change <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		::Const.Perks.setup(this.m, ::Const.Perks.PerkDefs.LegendHorseLeadChange);
+		::Const.Perks.setup(this.m, ::Legends.Perk.LegendHorseLeadChange);
 		this.m.Type = this.Const.SkillType.Perk;
 		this.m.Order = this.Const.SkillOrder.Perk;
 		this.m.IsActive = false;

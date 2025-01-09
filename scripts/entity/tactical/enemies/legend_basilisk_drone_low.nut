@@ -259,22 +259,22 @@ this.legend_basilisk_drone_low <- this.inherit("scripts/entity/tactical/actor", 
 		this.setSpriteOffset("arrow", this.createVec(0, 10));
 
 		this.m.Skills.add(this.new("scripts/skills/actives/legend_basilisk_peck_skill"));
-		// this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_second_wind"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_overwhelm"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_escape_artist"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_crippling_strikes"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_pathfinder"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_berserk"));
-		// this.m.Skills.add(this.new("scripts/skills/perks/perk_steel_brow"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_head_hunter"));
+		// ::Legends.Perks.grant(this, ::Legends.Perk.LegendSecondWind);
+		::Legends.Perks.grant(this, ::Legends.Perk.Overwhelm);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendEscapeArtist);
+		::Legends.Perks.grant(this, ::Legends.Perk.CripplingStrikes);
+		::Legends.Perks.grant(this, ::Legends.Perk.Pathfinder);
+		::Legends.Perks.grant(this, ::Legends.Perk.Berserk);
+		// ::Legends.Perks.grant(this, ::Legends.Perk.SteelBrow);
+		::Legends.Perks.grant(this, ::Legends.Perk.HeadHunter);
 		b.Threat += 5;
 
 		if(::Legends.isLegendaryDifficulty())
 		{
 			b.MeleeDefense += 5;
 			b.RangedDefense += 5;
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_smackdown"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_onslaught"));
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendSmackdown);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendOnslaught);
 		}
 
 	}

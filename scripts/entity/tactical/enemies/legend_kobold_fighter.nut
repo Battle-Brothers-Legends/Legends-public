@@ -39,14 +39,14 @@ this.legend_kobold_fighter <- this.inherit("scripts/entity/tactical/legend_kobol
 		}
 
 		this.m.Skills.add(this.new("scripts/skills/racial/goblin_ambusher_racial"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_pathfinder"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_backflip"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_hair_splitter"));
+		::Legends.Perks.grant(this, ::Legends.Perk.Pathfinder);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendBackflip);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendHairSplitter);
 		if (::Legends.isLegendaryDifficulty())
-			{
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_ballistics"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_crippling_strikes"));
-			}
+		{
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendBallistics);
+			::Legends.Perks.grant(this, ::Legends.Perk.CripplingStrikes);
+		}
 
 	}
 

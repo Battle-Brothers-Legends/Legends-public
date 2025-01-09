@@ -260,7 +260,7 @@
 				candidate_witchhunter.push(bro);
 			else if (bro.getBackground().getID() == "background.monk")
 				candidate_monk.push(bro);
-			else if (bro.getSkills().hasSkill("perk.legend_scholar")) //maybe add this here?
+			else if (bro.getSkills().hasPerk(::Legends.Perk.LegendScholar)) //maybe add this here?
 				candidate_monk.push(bro);
 			else if (bro.getBackground().isBackgroundType(this.Const.BackgroundType.ConvertedCultist))
 				candidate_cultist.push(bro);

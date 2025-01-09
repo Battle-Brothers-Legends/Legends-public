@@ -171,13 +171,13 @@ this.legend_horse <- this.inherit("scripts/entity/tactical/actor", {
 		this.setSpriteOffset("status_rooted", this.createVec(0, 0));
 		local horse_kick = this.new("scripts/skills/actives/legend_horse_kick_skill");
 		this.m.Skills.add(horse_kick);
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_horse_movement"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_horse_charge"))
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_horse_pirouette"));
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendHorseMovement);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendHorseCharge);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendHorsePirouette);
 
 		if (::Legends.isLegendaryDifficulty())
 		{
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_muscularity"));
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendMuscularity);
 			this.m.Skills.add(this.new("scripts/skills/traits/fearless_trait"));
 		}
 

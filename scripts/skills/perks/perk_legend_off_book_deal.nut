@@ -5,7 +5,7 @@ this.perk_legend_off_book_deal <- this.inherit("scripts/skills/skill", {
     },
 	function create()
 	{
-		::Const.Perks.setup(this.m, ::Const.Perks.PerkDefs.LegendOffBookDeal);
+		::Const.Perks.setup(this.m, ::Legends.Perk.LegendOffBookDeal);
 		this.m.Type = this.Const.SkillType.Perk;
 		this.m.Order = this.Const.SkillOrder.Perk;
 		this.m.IsActive = false;
@@ -19,7 +19,7 @@ this.perk_legend_off_book_deal <- this.inherit("scripts/skills/skill", {
         local numberOfOffBookDealer = 0;
 		foreach (bro in roster)
 		{
-			if(bro.getSkills().hasPerk(::Const.Perks.PerkDefs.LegendOffBookDeal))
+			if(bro.getSkills().hasPerk(::Legends.Perk.LegendOffBookDeal))
 				++numberOfOffBookDealer;
 		}
         return numberOfOffBookDealer;
