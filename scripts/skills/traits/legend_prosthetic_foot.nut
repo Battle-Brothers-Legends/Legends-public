@@ -3,7 +3,7 @@ this.legend_prosthetic_foot <- this.inherit("scripts/skills/traits/character_tra
 	function create()
 	{
 		this.character_trait.create();
-		this.m.ID = "trait.legend_prosthetic_foot";
+		this.m.ID = ::Legends.Traits.getID(::Legends.Trait.LegendProstheticFoot);
 		this.m.Name = "Prosthetic Foot";
 		this.m.Icon = "ui/traits/legend_prosthetic_foot.png";
 		this.m.Description = "Amputation is a thing of life, and the wearer of this prosthetic foot was lucky enough to be given a replacement after the removal of their maimed one. It\'s awful to walk on, but at least you can walk.";

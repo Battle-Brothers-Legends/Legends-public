@@ -12,9 +12,9 @@ this.legend_cannibal_background <- this.inherit("scripts/skills/backgrounds/char
 		this.m.HiringCost = 100;
 		this.m.DailyCost = 8;
 		this.m.Excluded = [
-			"trait.asthmatic",
-			"trait.clumsy",
-			"trait.cocky"
+			::Legends.Traits.getID(::Legends.Trait.Asthmatic),
+			::Legends.Traits.getID(::Legends.Trait.Clumsy),
+			::Legends.Traits.getID(::Legends.Trait.Cocky)
 		];
 		this.m.Titles = [
 			"the Cannibal"

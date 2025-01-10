@@ -13,25 +13,25 @@ this.legend_trader_background <- this.inherit("scripts/skills/backgrounds/charac
 		this.m.HiringCost = 60000;
 		this.m.DailyCost = 25;
 		this.m.Excluded = [
-			"trait.huge",
-			"trait.fear_undead",
-			"trait.hate_undead",
-			"trait.hate_beasts",
-			"trait.iron_jaw",
-			"trait.clubfooted",
-			"trait.brute",
-			"trait.athletic",
-			"trait.iron_lungs",
-			"trait.strong",
-			"trait.tough",
-			"trait.cocky",
-			"trait.dexterous",
-			"trait.dumb",
-			"trait.deathwish",
-			"trait.bloodthirsty",
-			"trait.legend_firm",
-			"trait.disloyal",
-			"trait.loyal"
+			::Legends.Traits.getID(::Legends.Trait.Huge),
+			::Legends.Traits.getID(::Legends.Trait.FearUndead),
+			::Legends.Traits.getID(::Legends.Trait.HateUndead),
+			::Legends.Traits.getID(::Legends.Trait.HateBeasts),
+			::Legends.Traits.getID(::Legends.Trait.IronJaw),
+			::Legends.Traits.getID(::Legends.Trait.Clubfooted),
+			::Legends.Traits.getID(::Legends.Trait.Brute),
+			::Legends.Traits.getID(::Legends.Trait.Athletic),
+			::Legends.Traits.getID(::Legends.Trait.IronLungs),
+			::Legends.Traits.getID(::Legends.Trait.Strong),
+			::Legends.Traits.getID(::Legends.Trait.Tough),
+			::Legends.Traits.getID(::Legends.Trait.Cocky),
+			::Legends.Traits.getID(::Legends.Trait.Dexterous),
+			::Legends.Traits.getID(::Legends.Trait.Dumb),
+			::Legends.Traits.getID(::Legends.Trait.Deathwish),
+			::Legends.Traits.getID(::Legends.Trait.Bloodthirsty),
+			::Legends.Traits.getID(::Legends.Trait.LegendFirm),
+			::Legends.Traits.getID(::Legends.Trait.Disloyal),
+			::Legends.Traits.getID(::Legends.Trait.Loyal)
 		];
 		this.m.Faces = this.Const.Faces.SmartMale;
 		this.m.Hairs = this.Const.Hair.TidyMale;

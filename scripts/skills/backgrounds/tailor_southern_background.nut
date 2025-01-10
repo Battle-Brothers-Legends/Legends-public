@@ -10,22 +10,22 @@ this.tailor_southern_background <- this.inherit("scripts/skills/backgrounds/tail
 		this.m.Beards = this.Const.Beards.Southern;
 		this.m.Ethnicity = 1;
 		this.m.Excluded = [
-			"trait.superstitious",
-			"trait.huge",
-			"trait.hate_undead",
-			"trait.athletic",
-			"trait.deathwish",
-			"trait.clumsy",
-			"trait.fearless",
-			"trait.spartan",
-			"trait.brave",
-			"trait.iron_lungs",
-			"trait.strong",
-			"trait.tough",
-			"trait.cocky",
-			"trait.dumb",
-			"trait.brute",
-			"trait.bloodthirsty"
+			::Legends.Traits.getID(::Legends.Trait.Superstitious),
+			::Legends.Traits.getID(::Legends.Trait.Huge),
+			::Legends.Traits.getID(::Legends.Trait.HateUndead),
+			::Legends.Traits.getID(::Legends.Trait.Athletic),
+			::Legends.Traits.getID(::Legends.Trait.Deathwish),
+			::Legends.Traits.getID(::Legends.Trait.Clumsy),
+			::Legends.Traits.getID(::Legends.Trait.Fearless),
+			::Legends.Traits.getID(::Legends.Trait.Spartan),
+			::Legends.Traits.getID(::Legends.Trait.Brave),
+			::Legends.Traits.getID(::Legends.Trait.IronLungs),
+			::Legends.Traits.getID(::Legends.Trait.Strong),
+			::Legends.Traits.getID(::Legends.Trait.Tough),
+			::Legends.Traits.getID(::Legends.Trait.Cocky),
+			::Legends.Traits.getID(::Legends.Trait.Dumb),
+			::Legends.Traits.getID(::Legends.Trait.Brute),
+			::Legends.Traits.getID(::Legends.Trait.Bloodthirsty)
 		];
 		this.m.Names = this.Const.Strings.SouthernNames;
 		this.m.LastNames = this.Const.Strings.SouthernNamesLast;

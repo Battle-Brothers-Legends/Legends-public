@@ -16,27 +16,27 @@ this.barbarian_background <- this.inherit("scripts/skills/backgrounds/character_
 		this.m.HiringCost = 300;
 		this.m.DailyCost = 30;
 		this.m.Excluded = [
-			"trait.weasel",
-			"trait.hate_undead",
-			"trait.legend_fear_nobles",
-			"trait.night_blind",
-			"trait.ailing",
-			"trait.asthmatic",
-			"trait.clubfooted",
-			"trait.hesitant",
-			"trait.loyal",
-			"trait.tiny",
-			"trait.fragile",
-			"trait.clumsy",
-			"trait.fainthearted",
-			"trait.craven",
-			"trait.bleeder",
-			"trait.dastard",
-			"trait.insecure",
-			"trait.legend_slack",
-			"trait.legend_frail",
-			"trait.legend_gift_of_people",
-			"trait.legend_seductive"
+			::Legends.Traits.getID(::Legends.Trait.Weasel),
+			::Legends.Traits.getID(::Legends.Trait.HateUndead),
+			::Legends.Traits.getID(::Legends.Trait.LegendFearNobles),
+			::Legends.Traits.getID(::Legends.Trait.NightBlind),
+			::Legends.Traits.getID(::Legends.Trait.Ailing),
+			::Legends.Traits.getID(::Legends.Trait.Asthmatic),
+			::Legends.Traits.getID(::Legends.Trait.Clubfooted),
+			::Legends.Traits.getID(::Legends.Trait.Hesistant),
+			::Legends.Traits.getID(::Legends.Trait.Loyal),
+			::Legends.Traits.getID(::Legends.Trait.Tiny),
+			::Legends.Traits.getID(::Legends.Trait.Fragile),
+			::Legends.Traits.getID(::Legends.Trait.Clumsy),
+			::Legends.Traits.getID(::Legends.Trait.Fainthearthed),
+			::Legends.Traits.getID(::Legends.Trait.Craven),
+			::Legends.Traits.getID(::Legends.Trait.Bleeder),
+			::Legends.Traits.getID(::Legends.Trait.Dastard),
+			::Legends.Traits.getID(::Legends.Trait.Insecure),
+			::Legends.Traits.getID(::Legends.Trait.LegendSlack),
+			::Legends.Traits.getID(::Legends.Trait.LegendFrail),
+			::Legends.Traits.getID(::Legends.Trait.LegendGiftOfPeople),
+			::Legends.Traits.getID(::Legends.Trait.LegendSeductive)
 		];
 		this.m.Titles = this.Const.Strings.BarbarianTitles;
 		this.m.Faces = this.Const.Faces.WildMale;

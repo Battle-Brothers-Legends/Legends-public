@@ -23,23 +23,23 @@ this.legend_pilgrim_background <- this.inherit("scripts/skills/backgrounds/chara
 			"the Zealous"
 		];
 		this.m.Excluded = [
-			"trait.gluttonous",
-			"trait.lucky",
-			"trait.cocky",
-			"trait.fat",
-			"trait.dastard",
-			"trait.insecure",
-			"trait.fearless",
-			"trait.brave",
-			"trait.fear_undead",
-			"trait.drunkard",
-			"trait.determined",
-			"trait.greedy",
-			"trait.athletic",
-			"trait.hate_beasts",
-			"trait.hate_greenskins",
-			"trait.legend_hate_nobles",
-			"trait.legend_slack"
+			::Legends.Traits.getID(::Legends.Trait.Gluttonous),
+			::Legends.Traits.getID(::Legends.Trait.Lucky),
+			::Legends.Traits.getID(::Legends.Trait.Cocky),
+			::Legends.Traits.getID(::Legends.Trait.Fat),
+			::Legends.Traits.getID(::Legends.Trait.Dastard),
+			::Legends.Traits.getID(::Legends.Trait.Insecure),
+			::Legends.Traits.getID(::Legends.Trait.Fearless),
+			::Legends.Traits.getID(::Legends.Trait.Brave),
+			::Legends.Traits.getID(::Legends.Trait.FearUndead),
+			::Legends.Traits.getID(::Legends.Trait.Drunkard),
+			::Legends.Traits.getID(::Legends.Trait.Determined),
+			::Legends.Traits.getID(::Legends.Trait.Greedy),
+			::Legends.Traits.getID(::Legends.Trait.Athletic),
+			::Legends.Traits.getID(::Legends.Trait.HateBeasts),
+			::Legends.Traits.getID(::Legends.Trait.HateGreenskins),
+			::Legends.Traits.getID(::Legends.Trait.LegendHateNobles),
+			::Legends.Traits.getID(::Legends.Trait.LegendSlack)
 		];
 		this.m.IsGuaranteed = ["hate_undead_trait"]
 		this.m.Faces = this.Const.Faces.AllWhiteMale;

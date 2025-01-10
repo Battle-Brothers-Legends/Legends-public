@@ -12,10 +12,10 @@ this.legend_horse_rouncey <- this.inherit("scripts/skills/backgrounds/legend_hor
 		this.m.HiringCost = 10000;
 		this.m.DailyCost = 1;
 		this.m.Excluded = [
-			"trait.tiny",
-			"trait.clubfooted",
-			"trait.bright",
-			"trait.asthmatic"
+			::Legends.Traits.getID(::Legends.Trait.Tiny),
+			::Legends.Traits.getID(::Legends.Trait.Clubfooted),
+			::Legends.Traits.getID(::Legends.Trait.Bright),
+			::Legends.Traits.getID(::Legends.Trait.Asthmatic)
 		];
 		this.m.Modifiers.Ammo = this.Const.LegendMod.ResourceModifiers.Ammo[3];
 		this.m.Modifiers.ArmorParts = this.Const.LegendMod.ResourceModifiers.ArmorParts[4];

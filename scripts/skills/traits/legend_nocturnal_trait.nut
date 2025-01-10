@@ -16,8 +16,8 @@ this.legend_nocturnal_trait <- this.inherit("scripts/skills/traits/character_tra
 			"Night Crawler"
 		];
 		this.m.Excluded = [
-			"trait.short_sighted",
-			"trait.night_blind",
+			::Legends.Traits.getID(::Legends.Trait.ShortSighted),
+			::Legends.Traits.getID(::Legends.Trait.NightBlind),
 			"trait.legend_diurnal",
 		];
 	}

@@ -3,7 +3,7 @@ this.legend_prosthetic_hand <- this.inherit("scripts/skills/traits/character_tra
 	function create()
 	{
 		this.character_trait.create();
-		this.m.ID = "trait.legend_prosthetic_hand";
+		this.m.ID = ::Legends.Traits.getID(::Legends.Trait.LegendProstheticHand);
 		this.m.Name = "Prosthetic Hand";
 		this.m.Icon = "ui/traits/legend_prosthetic_hand.png";
 		this.m.Description = "Fine craftsmanship allows the wearer of this prosthetic to articulate the joints with some effort, allowing the fingers to be bent to hold a shield or a sword. Of course, you lose quite a bit of finesse with such an item.";

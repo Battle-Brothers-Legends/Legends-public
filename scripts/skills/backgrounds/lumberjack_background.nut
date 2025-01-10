@@ -12,20 +12,20 @@ this.lumberjack_background <- this.inherit("scripts/skills/backgrounds/character
 		this.m.HiringCost = 115;
 		this.m.DailyCost = 13;
 		this.m.Excluded = [
-			"trait.weasel",
-			"trait.hate_undead",
-			"trait.night_blind",
-			"trait.ailing",
-			"trait.clubfooted",
-			"trait.asthmatic",
-			"trait.clumsy",
-			"trait.fat",
-			"trait.craven",
-			"trait.fainthearted",
-			"trait.bright",
-			"trait.bleeder",
-			"trait.fragile",
-			"trait.tiny"
+			::Legends.Traits.getID(::Legends.Trait.Weasel),
+			::Legends.Traits.getID(::Legends.Trait.HateUndead),
+			::Legends.Traits.getID(::Legends.Trait.NightBlind),
+			::Legends.Traits.getID(::Legends.Trait.Ailing),
+			::Legends.Traits.getID(::Legends.Trait.Clubfooted),
+			::Legends.Traits.getID(::Legends.Trait.Asthmatic),
+			::Legends.Traits.getID(::Legends.Trait.Clumsy),
+			::Legends.Traits.getID(::Legends.Trait.Fat),
+			::Legends.Traits.getID(::Legends.Trait.Craven),
+			::Legends.Traits.getID(::Legends.Trait.Fainthearthed),
+			::Legends.Traits.getID(::Legends.Trait.Bright),
+			::Legends.Traits.getID(::Legends.Trait.Bleeder),
+			::Legends.Traits.getID(::Legends.Trait.Fragile),
+			::Legends.Traits.getID(::Legends.Trait.Tiny)
 		];
 		this.m.Titles = [
 			"the Sturdy",

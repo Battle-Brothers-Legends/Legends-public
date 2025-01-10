@@ -12,21 +12,21 @@ this.legend_warlock_summoner_background <- this.inherit("scripts/skills/backgrou
 		this.m.HiringCost = 1200000000000;
 		this.m.DailyCost = 0;
 		this.m.Excluded = [
-			"trait.hate_undead",
-			"trait.fear_undead",
-			"trait.brute",
-			"trait.gluttonous",
-			"trait.disloyal",
-			"trait.dumb",
-			"trait.craven",
-			"trait.tough",
-			"trait.huge",
-			"trait.legend_firm",
-			"trait.strong",
-			"trait.spartan",
-			"trait.fat",
-			"trait.lumbering",
-			"trait.greedy"
+			::Legends.Traits.getID(::Legends.Trait.HateUndead),
+			::Legends.Traits.getID(::Legends.Trait.FearUndead),
+			::Legends.Traits.getID(::Legends.Trait.Brute),
+			::Legends.Traits.getID(::Legends.Trait.Gluttonous),
+			::Legends.Traits.getID(::Legends.Trait.Disloyal),
+			::Legends.Traits.getID(::Legends.Trait.Dumb),
+			::Legends.Traits.getID(::Legends.Trait.Craven),
+			::Legends.Traits.getID(::Legends.Trait.Tough),
+			::Legends.Traits.getID(::Legends.Trait.Huge),
+			::Legends.Traits.getID(::Legends.Trait.LegendFirm),
+			::Legends.Traits.getID(::Legends.Trait.Strong),
+			::Legends.Traits.getID(::Legends.Trait.Spartan),
+			::Legends.Traits.getID(::Legends.Trait.Fat),
+			::Legends.Traits.getID(::Legends.Trait.LegendHeavy),
+			::Legends.Traits.getID(::Legends.Trait.Greedy)
 		];
 		this.m.Titles = [
 			"the Raiser",

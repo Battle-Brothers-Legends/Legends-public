@@ -3,7 +3,7 @@ this.legend_slack_trait <- this.inherit("scripts/skills/traits/character_trait",
 	function create()
 	{
 		this.character_trait.create();
-		this.m.ID = "trait.legend_slack";
+		this.m.ID = ::Legends.Traits.getID(::Legends.Trait.LegendSlack);
 		this.m.Name = "Slack";
 		this.m.Icon = "ui/traits/slack_trait.png";
 		this.m.Description = "Doesn\'t really care what you are doing. Just here for salary and food.";
@@ -12,15 +12,15 @@ this.legend_slack_trait <- this.inherit("scripts/skills/traits/character_trait",
 			"the Lazy"
 		];
 		this.m.Excluded = [
-			"trait.loyal",
-			"trait.brave",
-			"trait.fearless",
-			"trait.quick",
-			"trait.teamplayer",
-			"trait.impatient",
-			"trait.legend_ambitious",
-			"trait.legend_aggressive",
-			"trait.legend_natural",
+			::Legends.Traits.getID(::Legends.Trait.Loyal),
+			::Legends.Traits.getID(::Legends.Trait.Brave),
+			::Legends.Traits.getID(::Legends.Trait.Fearless),
+			::Legends.Traits.getID(::Legends.Trait.Quick),
+			::Legends.Traits.getID(::Legends.Trait.Teamplayer),
+			::Legends.Traits.getID(::Legends.Trait.Impatient),
+			::Legends.Traits.getID(::Legends.Trait.LegendAmbitious),
+			::Legends.Traits.getID(::Legends.Trait.LegendAggressive),
+			::Legends.Traits.getID(::Legends.Trait.LegendNatural),
 		];
 	}
 

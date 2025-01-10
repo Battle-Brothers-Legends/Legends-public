@@ -12,14 +12,14 @@ this.legend_dervish_background <- this.inherit("scripts/skills/backgrounds/chara
 		this.m.HiringCost = 140;
 		this.m.DailyCost = 14;
 		this.m.Excluded = [
-			"trait.bleeder",
-			"trait.ailing",
-			"trait.fragile",
-			"trait.gluttonous",
-			"trait.legend_frail",
-			"trait.legend_light",
-			"trait.dumb",
-			"trait.legend_seductive"
+			::Legends.Traits.getID(::Legends.Trait.Bleeder),
+			::Legends.Traits.getID(::Legends.Trait.Ailing),
+			::Legends.Traits.getID(::Legends.Trait.Fragile),
+			::Legends.Traits.getID(::Legends.Trait.Gluttonous),
+			::Legends.Traits.getID(::Legends.Trait.LegendFrail),
+			::Legends.Traits.getID(::Legends.Trait.LegendLight),
+			::Legends.Traits.getID(::Legends.Trait.Dumb),
+			::Legends.Traits.getID(::Legends.Trait.LegendSeductive)
 		];
 		this.m.ExcludedTalents = [];
 		// this.m.IsGuaranteed = ["tough_trait"]

@@ -12,20 +12,20 @@ this.legend_preserver_background <- this.inherit("scripts/skills/backgrounds/cha
 		this.m.HiringCost = 1200000000000;
 		this.m.DailyCost = 0;
 		this.m.Excluded = [
-			"trait.weasel",
-			"trait.hate_undead",
-			"trait.fear_undead",
-			"trait.clubfooted",
-			"trait.brute",
-			"trait.gluttonous",
-			"trait.disloyal",
-			"trait.cocky",
-			"trait.dumb",
-			"trait.iron_lungs",
-			"trait.craven",
-			"trait.legend_aggressive",
-			"trait.greedy",
-			"trait.bloodthirsty"
+			::Legends.Traits.getID(::Legends.Trait.Weasel),
+			::Legends.Traits.getID(::Legends.Trait.HateUndead),
+			::Legends.Traits.getID(::Legends.Trait.FearUndead),
+			::Legends.Traits.getID(::Legends.Trait.Clubfooted),
+			::Legends.Traits.getID(::Legends.Trait.Brute),
+			::Legends.Traits.getID(::Legends.Trait.Gluttonous),
+			::Legends.Traits.getID(::Legends.Trait.Disloyal),
+			::Legends.Traits.getID(::Legends.Trait.Cocky),
+			::Legends.Traits.getID(::Legends.Trait.Dumb),
+			::Legends.Traits.getID(::Legends.Trait.IronLungs),
+			::Legends.Traits.getID(::Legends.Trait.Craven),
+			::Legends.Traits.getID(::Legends.Trait.LegendAggressive),
+			::Legends.Traits.getID(::Legends.Trait.Greedy),
+			::Legends.Traits.getID(::Legends.Trait.Bloodthirsty)
 		];
 		this.m.Titles = [
 			"the Morbid",

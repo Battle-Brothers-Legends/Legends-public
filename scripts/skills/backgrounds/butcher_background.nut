@@ -12,18 +12,18 @@ this.butcher_background <- this.inherit("scripts/skills/backgrounds/character_ba
 		this.m.HiringCost = 80;
 		this.m.DailyCost = 9;
 		this.m.Excluded = [
-			"trait.weasel",
-			"trait.fear_undead",
-			"trait.hate_undead",
-			"trait.swift",
-			"trait.bleeder",
-			"trait.bright",
-			"trait.clumsy",
-			"trait.fainthearted",
-			"trait.spartan",
-			"trait.iron_lungs",
-			"trait.tiny",
-			"trait.optimist"
+			::Legends.Traits.getID(::Legends.Trait.Weasel),
+			::Legends.Traits.getID(::Legends.Trait.FearUndead),
+			::Legends.Traits.getID(::Legends.Trait.HateUndead),
+			::Legends.Traits.getID(::Legends.Trait.Swift),
+			::Legends.Traits.getID(::Legends.Trait.Bleeder),
+			::Legends.Traits.getID(::Legends.Trait.Bright),
+			::Legends.Traits.getID(::Legends.Trait.Clumsy),
+			::Legends.Traits.getID(::Legends.Trait.Fainthearthed),
+			::Legends.Traits.getID(::Legends.Trait.Spartan),
+			::Legends.Traits.getID(::Legends.Trait.IronLungs),
+			::Legends.Traits.getID(::Legends.Trait.Tiny),
+			::Legends.Traits.getID(::Legends.Trait.Optimist)
 		];
 		this.m.ExcludedTalents = [
 			this.Const.Attributes.RangedSkill

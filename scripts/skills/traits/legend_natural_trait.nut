@@ -3,7 +3,7 @@ this.legend_natural_trait <- this.inherit("scripts/skills/traits/character_trait
 	function create()
 	{
 		this.character_trait.create();
-		this.m.ID = "trait.legend_natural";
+		this.m.ID = ::Legends.Traits.getID(::Legends.Trait.LegendNatural);
 		this.m.Name = "Talented";
 		this.m.Icon = "ui/traits/natural_trait.png";
 		this.m.Description = "Has natural skills, talents and abilities. Born to be successful.";
@@ -14,22 +14,22 @@ this.legend_natural_trait <- this.inherit("scripts/skills/traits/character_trait
 			"the Gifted"
 		];
 		this.m.Excluded = [
-			"trait.weasel",
-			"trait.insecure",
-			"trait.craven",
-			"trait.hesitant",
-			"trait.dastard",
-			"trait.fainthearted",
-			"trait.paranoid",
-			"trait.fear_beasts",
-			"trait.fear_undead",
-			"trait.fear_greenskins",
-			"trait.legend_fear_nobles",
-			"trait.legend_slack",
-			"trait.pessimist",
-			"trait.dumb",
-			"trait.fainthearted",
-			"trait.legend_frail"
+			::Legends.Traits.getID(::Legends.Trait.Weasel),
+			::Legends.Traits.getID(::Legends.Trait.Insecure),
+			::Legends.Traits.getID(::Legends.Trait.Craven),
+			::Legends.Traits.getID(::Legends.Trait.Hesistant),
+			::Legends.Traits.getID(::Legends.Trait.Dastard),
+			::Legends.Traits.getID(::Legends.Trait.Fainthearthed),
+			::Legends.Traits.getID(::Legends.Trait.Paranoid),
+			::Legends.Traits.getID(::Legends.Trait.FearBeasts),
+			::Legends.Traits.getID(::Legends.Trait.FearUndead),
+			::Legends.Traits.getID(::Legends.Trait.FearGreenskins),
+			::Legends.Traits.getID(::Legends.Trait.LegendFearNobles),
+			::Legends.Traits.getID(::Legends.Trait.LegendSlack),
+			::Legends.Traits.getID(::Legends.Trait.Pessimist),
+			::Legends.Traits.getID(::Legends.Trait.Dumb),
+			::Legends.Traits.getID(::Legends.Trait.Fainthearthed),
+			::Legends.Traits.getID(::Legends.Trait.LegendFrail)
 		];
 	}
 

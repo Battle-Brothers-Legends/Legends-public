@@ -3,7 +3,7 @@ this.legend_ambitious_trait <- this.inherit("scripts/skills/traits/character_tra
 	function create()
 	{
 		this.character_trait.create();
-		this.m.ID = "trait.legend_ambitious";
+		this.m.ID = ::Legends.Traits.getID(::Legends.Trait.LegendAmbitious);
 		this.m.Name = "Ambitious";
 		this.m.Icon = "ui/traits/ambitious_trait.png";
 		this.m.Description = "Determined to be a hero.";
@@ -15,20 +15,20 @@ this.legend_ambitious_trait <- this.inherit("scripts/skills/traits/character_tra
 			"the Hope"
 		];
 		this.m.Excluded = [
-			"trait.weasel",
-			"trait.insecure",
-			"trait.craven",
-			"trait.hesitant",
-			"trait.dastard",
-			"trait.fainthearted",
-			"trait.paranoid",
-			"trait.fear_beasts",
-			"trait.fear_undead",
-			"trait.fear_greenskins",
-			"trait.legend_fear_nobles",
-			"trait.legend_slack",
-			"trait.irrational",
-			"trait.pessimist"
+			::Legends.Traits.getID(::Legends.Trait.Weasel),
+			::Legends.Traits.getID(::Legends.Trait.Insecure),
+			::Legends.Traits.getID(::Legends.Trait.Craven),
+			::Legends.Traits.getID(::Legends.Trait.Hesistant),
+			::Legends.Traits.getID(::Legends.Trait.Dastard),
+			::Legends.Traits.getID(::Legends.Trait.Fainthearthed),
+			::Legends.Traits.getID(::Legends.Trait.Paranoid),
+			::Legends.Traits.getID(::Legends.Trait.FearBeasts),
+			::Legends.Traits.getID(::Legends.Trait.FearUndead),
+			::Legends.Traits.getID(::Legends.Trait.FearGreenskins),
+			::Legends.Traits.getID(::Legends.Trait.LegendFearNobles),
+			::Legends.Traits.getID(::Legends.Trait.LegendSlack),
+			::Legends.Traits.getID(::Legends.Trait.Irrational),
+			::Legends.Traits.getID(::Legends.Trait.Pessimist)
 		];
 	}
 

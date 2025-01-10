@@ -169,7 +169,7 @@ this.legends_player_is_rich_op_backgrounds_event <- this.inherit("scripts/events
 							});
 						}
 					}
-					else if (!bro.getBackground().isExcluded("trait.greedy"))
+					else if (!bro.getBackground().isExcluded(::Legends.Traits.getID(::Legends.Trait.Greedy)))
 					{
 						if (this.Math.rand(1, 100) <= 20)
 						{

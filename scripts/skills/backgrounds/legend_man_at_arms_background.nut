@@ -12,20 +12,20 @@ this.legend_man_at_arms_background <- this.inherit("scripts/skills/backgrounds/c
 		this.m.HiringCost = 130;
 		this.m.DailyCost = 15;
 		this.m.Excluded = [
-			"trait.weasel",
-			"trait.swift",
-			"trait.clubfooted",
-			"trait.irrational",
-			"trait.gluttonous",
-			"trait.disloyal",
-			"trait.clumsy",
-			"trait.craven",
-			"trait.bleeder",
-			"trait.hesitant",
-			"trait.bloodthirsty",
-			"trait.legend_slack",
-			"trait.hate_undead",
-			"trait.fat"
+			::Legends.Traits.getID(::Legends.Trait.Weasel),
+			::Legends.Traits.getID(::Legends.Trait.Swift),
+			::Legends.Traits.getID(::Legends.Trait.Clubfooted),
+			::Legends.Traits.getID(::Legends.Trait.Irrational),
+			::Legends.Traits.getID(::Legends.Trait.Gluttonous),
+			::Legends.Traits.getID(::Legends.Trait.Disloyal),
+			::Legends.Traits.getID(::Legends.Trait.Clumsy),
+			::Legends.Traits.getID(::Legends.Trait.Craven),
+			::Legends.Traits.getID(::Legends.Trait.Bleeder),
+			::Legends.Traits.getID(::Legends.Trait.Hesistant),
+			::Legends.Traits.getID(::Legends.Trait.Bloodthirsty),
+			::Legends.Traits.getID(::Legends.Trait.LegendSlack),
+			::Legends.Traits.getID(::Legends.Trait.HateUndead),
+			::Legends.Traits.getID(::Legends.Trait.Fat)
 
 		];
 		this.m.Faces = this.Const.Faces.AllWhiteMale;

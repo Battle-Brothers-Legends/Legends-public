@@ -3,7 +3,7 @@ this.legend_inquisition_disciple_trait <- this.inherit("scripts/skills/traits/ch
 	function create()
 	{
 		this.character_trait.create();
-		this.m.ID = "trait.legend_inquisition_disciple";
+		this.m.ID = ::Legends.Traits.getID(::Legends.Trait.LegendInquisitionDisciple);
 		this.m.Name = "Disciple of the Inquisition";
 		this.m.Icon = "ui/traits/trait_icon_67.png";
 		this.m.Description = "This character is a disciple of the Old Gods, an individual with unquestionable loyalty to the faith. They embrace physical pain and peril as bringing them closer to salvation.";

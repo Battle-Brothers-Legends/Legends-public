@@ -12,11 +12,11 @@ this.legend_inventor_background <- this.inherit("scripts/skills/backgrounds/char
 		this.m.HiringCost = 1250;
 		this.m.DailyCost = 25;
 		this.m.Excluded = [
-			"trait.asthmatic",
-			"trait.clumsy",
-			"trait.cocky",
-			"trait.dumb",
-			"trait.superstitious"
+			::Legends.Traits.getID(::Legends.Trait.Asthmatic),
+			::Legends.Traits.getID(::Legends.Trait.Clumsy),
+			::Legends.Traits.getID(::Legends.Trait.Cocky),
+			::Legends.Traits.getID(::Legends.Trait.Dumb),
+			::Legends.Traits.getID(::Legends.Trait.Superstitious)
 		];
 		this.m.Titles = [
 			"the Inventor",

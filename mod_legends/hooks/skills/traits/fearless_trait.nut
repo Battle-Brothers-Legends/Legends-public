@@ -6,8 +6,8 @@
 		create();
 		this.m.Excluded.extend(
 		[
-			"trait.legend_fear_nobles",
-			"trait.legend_slack"
+			::Legends.Traits.getID(::Legends.Trait.LegendFearNobles),
+			::Legends.Traits.getID(::Legends.Trait.LegendSlack)
 		]);
 	}
 });

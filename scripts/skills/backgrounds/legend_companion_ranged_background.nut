@@ -12,22 +12,22 @@ this.legend_companion_ranged_background <- this.inherit("scripts/skills/backgrou
 		this.m.HiringCost = 0;
 		this.m.DailyCost = 0;
 		this.m.Excluded = [
-			"trait.asthmatic",
-			"trait.craven",
-			"trait.dastard",
-			"trait.disloyal",
-			"trait.fainthearted",
-			"trait.fat",
-			"trait.fear_undead",
-			"trait.fear_greenskins",
-			"trait.fear_beasts",
-			"trait.greedy",
-			"trait.weasel",
-			"trait.legend_fear_nobles",
-			"trait.legend_frail",
-			"trait.legend_slack",
-			"trait.legend_double_tongued",
-			"trait.clumsy"
+			::Legends.Traits.getID(::Legends.Trait.Asthmatic),
+			::Legends.Traits.getID(::Legends.Trait.Craven),
+			::Legends.Traits.getID(::Legends.Trait.Dastard),
+			::Legends.Traits.getID(::Legends.Trait.Disloyal),
+			::Legends.Traits.getID(::Legends.Trait.Fainthearthed),
+			::Legends.Traits.getID(::Legends.Trait.Fat),
+			::Legends.Traits.getID(::Legends.Trait.FearUndead),
+			::Legends.Traits.getID(::Legends.Trait.FearGreenskins),
+			::Legends.Traits.getID(::Legends.Trait.FearBeasts),
+			::Legends.Traits.getID(::Legends.Trait.Greedy),
+			::Legends.Traits.getID(::Legends.Trait.Weasel),
+			::Legends.Traits.getID(::Legends.Trait.LegendFearNobles),
+			::Legends.Traits.getID(::Legends.Trait.LegendFrail),
+			::Legends.Traits.getID(::Legends.Trait.LegendSlack),
+			::Legends.Traits.getID(::Legends.Trait.LegendDoubleTongued),
+			::Legends.Traits.getID(::Legends.Trait.Clumsy)
 		];
 		this.m.ExcludedTalents = [
 			this.Const.Attributes.MeleeSkill

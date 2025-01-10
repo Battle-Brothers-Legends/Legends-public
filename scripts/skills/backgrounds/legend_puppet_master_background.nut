@@ -12,14 +12,14 @@ this.legend_puppet_master_background <- this.inherit("scripts/skills/backgrounds
 		this.m.HiringCost = 1200000000000;
 		this.m.DailyCost = 0;
 		this.m.Excluded = [
-			"trait.hate_undead",
-			"trait.fear_undead",
-			"trait.fearless",
-			"trait.loyal",
-			"trait.brave",
-			"trait.spartan",
-			"trait.legend_light",
-			"trait.greedy"
+			::Legends.Traits.getID(::Legends.Trait.HateUndead),
+			::Legends.Traits.getID(::Legends.Trait.FearUndead),
+			::Legends.Traits.getID(::Legends.Trait.Fearless),
+			::Legends.Traits.getID(::Legends.Trait.Loyal),
+			::Legends.Traits.getID(::Legends.Trait.Brave),
+			::Legends.Traits.getID(::Legends.Trait.Spartan),
+			::Legends.Traits.getID(::Legends.Trait.LegendLight),
+			::Legends.Traits.getID(::Legends.Trait.Greedy)
 		];
 		this.m.Titles = [
 			"the Hidden Hand",

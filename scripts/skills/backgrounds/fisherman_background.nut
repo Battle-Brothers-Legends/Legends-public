@@ -12,13 +12,13 @@ this.fisherman_background <- this.inherit("scripts/skills/backgrounds/character_
 		this.m.HiringCost = 78;
 		this.m.DailyCost = 9;
 		this.m.Excluded = [
-			"trait.weasel",
-			"trait.fear_undead",
-			"trait.hate_undead",
-			"trait.paranoid",
-			"trait.night_blind",
-			"trait.tiny",
-			"trait.fat"
+			::Legends.Traits.getID(::Legends.Trait.Weasel),
+			::Legends.Traits.getID(::Legends.Trait.FearUndead),
+			::Legends.Traits.getID(::Legends.Trait.HateUndead),
+			::Legends.Traits.getID(::Legends.Trait.Paranoid),
+			::Legends.Traits.getID(::Legends.Trait.NightBlind),
+			::Legends.Traits.getID(::Legends.Trait.Tiny),
+			::Legends.Traits.getID(::Legends.Trait.Fat)
 		];
 		this.m.Titles = [
 			"the Fisherman",

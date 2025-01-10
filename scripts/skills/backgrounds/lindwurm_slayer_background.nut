@@ -11,32 +11,32 @@ this.lindwurm_slayer_background <- this.inherit("scripts/skills/backgrounds/char
 		this.m.BadEnding = "Disillusioned with the %companyname%, %name% left to pursue a solo dragon hunting career in order to finally live-up to the legacy of %their% famous father. %They% was last seen taking odd beast hunting contracts, but news of his exploits has no spread far and you fear the worst.";
 		this.m.DailyCost = 31;
 		this.m.Excluded = [
-			"trait.ailing",
-			"trait.asthmatic",
-			"trait.bleeder",
-			"trait.bright",
-			"trait.clubfooted",
-			"trait.clumsy",
-			"trait.craven",
-			"trait.dastard",
-			"trait.disloyal",
-			"trait.legend_double_tongued",
-			"trait.fainthearted",
-			"trait.fragile",
-			"trait.legend_frail",
-			"trait.fear_beasts",
-			"trait.greedy",
-			"trait.hate_greenskins",
-			"trait.hate_undead",
-			"trait.hesitant",
-			"trait.impatient",
-			"trait.insecure",
-			"trait.irrational",
-			"trait.night_blind",
-			"trait.pessimist",
-			"trait.legend_slack",
-			"trait.team_player",
-			"trait.weasel"
+			::Legends.Traits.getID(::Legends.Trait.Ailing),
+			::Legends.Traits.getID(::Legends.Trait.Asthmatic),
+			::Legends.Traits.getID(::Legends.Trait.Bleeder),
+			::Legends.Traits.getID(::Legends.Trait.Bright),
+			::Legends.Traits.getID(::Legends.Trait.Clubfooted),
+			::Legends.Traits.getID(::Legends.Trait.Clumsy),
+			::Legends.Traits.getID(::Legends.Trait.Craven),
+			::Legends.Traits.getID(::Legends.Trait.Dastard),
+			::Legends.Traits.getID(::Legends.Trait.Disloyal),
+			::Legends.Traits.getID(::Legends.Trait.LegendDoubleTongued),
+			::Legends.Traits.getID(::Legends.Trait.Fainthearthed),
+			::Legends.Traits.getID(::Legends.Trait.Fragile),
+			::Legends.Traits.getID(::Legends.Trait.LegendFrail),
+			::Legends.Traits.getID(::Legends.Trait.FearBeasts),
+			::Legends.Traits.getID(::Legends.Trait.Greedy),
+			::Legends.Traits.getID(::Legends.Trait.HateGreenskins),
+			::Legends.Traits.getID(::Legends.Trait.HateUndead),
+			::Legends.Traits.getID(::Legends.Trait.Hesistant),
+			::Legends.Traits.getID(::Legends.Trait.Impatient),
+			::Legends.Traits.getID(::Legends.Trait.Insecure),
+			::Legends.Traits.getID(::Legends.Trait.Irrational),
+			::Legends.Traits.getID(::Legends.Trait.NightBlind),
+			::Legends.Traits.getID(::Legends.Trait.Pessimist),
+			::Legends.Traits.getID(::Legends.Trait.LegendSlack),
+			::Legends.Traits.getID(::Legends.Trait.Teamplayer),
+			::Legends.Traits.getID(::Legends.Trait.Weasel)
 		];
 		this.m.Faces = this.Const.Faces.AllMale;
 		this.m.Hairs = this.Const.Hair.UntidyMale;
@@ -52,7 +52,7 @@ this.lindwurm_slayer_background <- this.inherit("scripts/skills/backgrounds/char
 		this.m.Modifiers.Hunting = this.Const.LegendMod.ResourceModifiers.Hunting[3];
 		this.m.Modifiers.Scout = this.Const.LegendMod.ResourceModifiers.Scout[1];
 		this.m.Modifiers.Training = this.Const.LegendMod.ResourceModifiers.Training[1];
-		
+
 		this.m.Modifiers.Terrain = [
 				0.0, // ?
 				0.0, //ocean

@@ -3,7 +3,7 @@ this.legend_peaceful_trait <- this.inherit("scripts/skills/traits/character_trai
 	function create()
 	{
 		this.character_trait.create();
-		this.m.ID = "trait.legend_peaceful";
+		this.m.ID = ::Legends.Traits.getID(::Legends.Trait.LegendPeaceful);
 		this.m.Name = "Peaceful";
 		this.m.Icon = "ui/traits/peaceful_trait.png";
 		this.m.Description = "This character is not fond of fighting, and will prefer to be in reserve.";
@@ -13,15 +13,14 @@ this.legend_peaceful_trait <- this.inherit("scripts/skills/traits/character_trai
 			"the Gentle"
 		];
 		this.m.Excluded = [
-			"trait.bloodthirsty",
-			"trait.deathwish",
-			"trait.brute",
-			"trait.hard_boiled",
-			"trait.cocky",
-			"trait.hate_greenskins",
-			"trait.hate_undead",
-			"trait.hate_beasts",
-			"trait.legend_hate_nobles"
+			::Legends.Traits.getID(::Legends.Trait.Bloodthirsty),
+			::Legends.Traits.getID(::Legends.Trait.Deathwish),
+			::Legends.Traits.getID(::Legends.Trait.Brute),
+			::Legends.Traits.getID(::Legends.Trait.Cocky),
+			::Legends.Traits.getID(::Legends.Trait.HateGreenskins),
+			::Legends.Traits.getID(::Legends.Trait.HateUndead),
+			::Legends.Traits.getID(::Legends.Trait.HateBeasts),
+			::Legends.Traits.getID(::Legends.Trait.LegendHateNobles)
 		];
 	}
 

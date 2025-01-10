@@ -3,17 +3,16 @@ this.legend_hate_nobles_trait <- this.inherit("scripts/skills/traits/character_t
 	function create()
 	{
 		this.character_trait.create();
-		this.m.ID = "trait.legend_hate_nobles";
+		this.m.ID = ::Legends.Traits.getID(::Legends.Trait.LegendHateNobles);
 		this.m.Name = "Hate for Nobles";
 		this.m.Icon = "ui/traits/hatenobles.png";
 		this.m.Description = "Some past event in this character\'s life has fueled a burning hatred for all things upper class";
 		this.m.Excluded = [
-			"trait.weasel",
-			"trait.craven",
-			"trait.dastard",
-			"trait.fainthearted",
-			"trait.legend_fear_nobles",
-			"trait.legend_peaceful"
+			::Legends.Traits.getID(::Legends.Trait.Weasel),
+			::Legends.Traits.getID(::Legends.Trait.Craven),
+			::Legends.Traits.getID(::Legends.Trait.Dastard),
+			::Legends.Traits.getID(::Legends.Trait.Fainthearthed),
+			::Legends.Traits.getID(::Legends.Trait.LegendFearNobles)
 		];
 	}
 

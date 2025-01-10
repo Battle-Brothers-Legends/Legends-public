@@ -12,19 +12,19 @@ this.belly_dancer_background <- this.inherit("scripts/skills/backgrounds/charact
 		this.m.HiringCost = 500;
 		this.m.DailyCost = 20;
 		this.m.Excluded = [
-			"trait.huge",
-			"trait.clubfooted",
-			"trait.clumsy",
-			"trait.fat",
-			"trait.strong",
-			"trait.hesitant",
-			"trait.insecure",
-			"trait.clubfooted",
-			"trait.short_sighted",
-			"trait.brute",
-			"trait.strong",
-			"trait.bloodthirsty",
-			"trait.deathwish"
+			::Legends.Traits.getID(::Legends.Trait.Huge),
+			::Legends.Traits.getID(::Legends.Trait.Clubfooted),
+			::Legends.Traits.getID(::Legends.Trait.Clumsy),
+			::Legends.Traits.getID(::Legends.Trait.Fat),
+			::Legends.Traits.getID(::Legends.Trait.Strong),
+			::Legends.Traits.getID(::Legends.Trait.Hesistant),
+			::Legends.Traits.getID(::Legends.Trait.Insecure),
+			::Legends.Traits.getID(::Legends.Trait.Clubfooted),
+			::Legends.Traits.getID(::Legends.Trait.ShortSighted),
+			::Legends.Traits.getID(::Legends.Trait.Brute),
+			::Legends.Traits.getID(::Legends.Trait.Strong),
+			::Legends.Traits.getID(::Legends.Trait.Bloodthirsty),
+			::Legends.Traits.getID(::Legends.Trait.Deathwish)
 		];
 		// this.m.ExcludedTalents = [
 		// 	this.Const.Attributes.Hitpoints,

@@ -12,20 +12,20 @@ this.messenger_background <- this.inherit("scripts/skills/backgrounds/character_
 		this.m.HiringCost = 80;
 		this.m.DailyCost = 9;
 		this.m.Excluded = [
-			"trait.huge",
-			"trait.hate_undead",
-			"trait.paranoid",
-			"trait.clubfooted",
-			"trait.asthmatic",
-			"trait.cocky",
-			"trait.craven",
-			"trait.deathwish",
-			"trait.dumb",
-			"trait.fat",
-			"trait.gluttonous",
-			"trait.brute",
-			"trait.legend_heavy",
-			"trait.legend_unpredictable"
+			::Legends.Traits.getID(::Legends.Trait.Huge),
+			::Legends.Traits.getID(::Legends.Trait.HateUndead),
+			::Legends.Traits.getID(::Legends.Trait.Paranoid),
+			::Legends.Traits.getID(::Legends.Trait.Clubfooted),
+			::Legends.Traits.getID(::Legends.Trait.Asthmatic),
+			::Legends.Traits.getID(::Legends.Trait.Cocky),
+			::Legends.Traits.getID(::Legends.Trait.Craven),
+			::Legends.Traits.getID(::Legends.Trait.Deathwish),
+			::Legends.Traits.getID(::Legends.Trait.Dumb),
+			::Legends.Traits.getID(::Legends.Trait.Fat),
+			::Legends.Traits.getID(::Legends.Trait.Gluttonous),
+			::Legends.Traits.getID(::Legends.Trait.Brute),
+			::Legends.Traits.getID(::Legends.Trait.LegendHeavy),
+			::Legends.Traits.getID(::Legends.Trait.LegendUnpredictable)
 		];
 		this.m.Titles = [
 			"the Messenger",

@@ -3,7 +3,7 @@ this.legend_horse_trait <- this.inherit("scripts/skills/traits/character_trait",
 	function create()
 	{
 		this.character_trait.create();
-		this.m.ID = "trait.legend_horse";
+		this.m.ID = ::Legends.Traits.getID(::Legends.Trait.LegendHorse);
 		this.m.Name = "Horse";
 		this.m.Icon = "ui/traits/trait_icon_07.png";
 		this.m.Description = "A horse eats more than humans, can\'t wear human armor, moves much better on flat terrain, but worse on rough terrain";
@@ -13,8 +13,8 @@ this.legend_horse_trait <- this.inherit("scripts/skills/traits/character_trait",
 			"the Mare"
 		];
 		this.m.Excluded = [
-			"trait.spartan",
-			"trait.fragile"
+			::Legends.Traits.getID(::Legends.Trait.Spartan),
+			::Legends.Traits.getID(::Legends.Trait.Fragile)
 		];
 	}
 

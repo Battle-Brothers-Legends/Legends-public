@@ -12,25 +12,25 @@ this.legend_bounty_hunter_background <- this.inherit("scripts/skills/backgrounds
 		this.m.HiringCost = 500; //Equipment will factor into cost and these guys can be quite well equipped
 		this.m.DailyCost = 55;
 		this.m.Excluded = [
-			"trait.legend_fear_nobles",
-			"trait.clubfooted",
-			"trait.irrational",
-			"trait.legend_fear_dark",
-			"trait.night_blind",
-			"trait.hesitant",
-			"trait.loyal",
-			"trait.tiny",
-			"trait.fragile",
-			"trait.clumsy",
-			"trait.fainthearted",
-			"trait.craven",
-			"trait.insecure",
-			"trait.legend_frail",
-			"trait.legend_seductive"
-			"trait.fainthearted",
-			"trait.optimist",
-			"trait.short_sighted",
-			"trait.legend_gift_of_people"
+			::Legends.Traits.getID(::Legends.Trait.LegendFearNobles),
+			::Legends.Traits.getID(::Legends.Trait.Clubfooted),
+			::Legends.Traits.getID(::Legends.Trait.Irrational),
+			::Legends.Traits.getID(::Legends.Trait.LegendFearDark),
+			::Legends.Traits.getID(::Legends.Trait.NightBlind),
+			::Legends.Traits.getID(::Legends.Trait.Hesistant),
+			::Legends.Traits.getID(::Legends.Trait.Loyal),
+			::Legends.Traits.getID(::Legends.Trait.Tiny),
+			::Legends.Traits.getID(::Legends.Trait.Fragile),
+			::Legends.Traits.getID(::Legends.Trait.Clumsy),
+			::Legends.Traits.getID(::Legends.Trait.Fainthearthed),
+			::Legends.Traits.getID(::Legends.Trait.Craven),
+			::Legends.Traits.getID(::Legends.Trait.Insecure),
+			::Legends.Traits.getID(::Legends.Trait.LegendFrail),
+			::Legends.Traits.getID(::Legends.Trait.LegendSeductive)
+			::Legends.Traits.getID(::Legends.Trait.Fainthearthed),
+			::Legends.Traits.getID(::Legends.Trait.Optimist),
+			::Legends.Traits.getID(::Legends.Trait.ShortSighted),
+			::Legends.Traits.getID(::Legends.Trait.LegendGiftOfPeople)
 		];
 		this.m.Titles = [
 			"the Mancatcher",

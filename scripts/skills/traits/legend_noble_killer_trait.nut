@@ -3,16 +3,16 @@ this.legend_noble_killer_trait <- this.inherit("scripts/skills/traits/character_
 	function create()
 	{
 		this.character_trait.create();
-		this.m.ID = "trait.noble_killer";
+		this.m.ID = ::Legends.Traits.getID(::Legends.Trait.LegendNobleKiller);
 		this.m.Name = "Noble Killer";
 		this.m.Icon = "ui/traits/hatenobles.png";
 		this.m.Description = "This character has learned from birth how to fight noble houses";
 		this.m.Excluded = [
-			"trait.weasel",
-			"trait.craven",
-			"trait.dastard",
-			"trait.fainthearted",
-			"trait.fear_undead"
+			::Legends.Traits.getID(::Legends.Trait.Weasel),
+			::Legends.Traits.getID(::Legends.Trait.Craven),
+			::Legends.Traits.getID(::Legends.Trait.Dastard),
+			::Legends.Traits.getID(::Legends.Trait.Fainthearthed),
+			::Legends.Traits.getID(::Legends.Trait.FearUndead)
 		];
 	}
 

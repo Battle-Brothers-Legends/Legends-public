@@ -12,21 +12,21 @@ this.legend_youngblood_background <- this.inherit("scripts/skills/backgrounds/ch
 		this.m.HiringCost = 95;
 		this.m.DailyCost = 10;
 		this.m.Excluded = [
-			"trait.dumb",
-			"trait.clumsy",
-			"trait.asthmatic",
-			"trait.brute",
-			"trait.bloodthirsty",
-			"trait.fear_undead",
-			"trait.fear_beasts",
-			"trait.fear_greenskins",
-			"trait.legend_fear_nobles",
-			"trait.hate_beasts",
-			"trait.clubfooted",
-			"trait.short_sighted",
-			"trait.dastard",
-			"trait.legend_slack",
-			"trait.drunkard"
+			::Legends.Traits.getID(::Legends.Trait.Dumb),
+			::Legends.Traits.getID(::Legends.Trait.Clumsy),
+			::Legends.Traits.getID(::Legends.Trait.Asthmatic),
+			::Legends.Traits.getID(::Legends.Trait.Brute),
+			::Legends.Traits.getID(::Legends.Trait.Bloodthirsty),
+			::Legends.Traits.getID(::Legends.Trait.FearUndead),
+			::Legends.Traits.getID(::Legends.Trait.FearBeasts),
+			::Legends.Traits.getID(::Legends.Trait.FearGreenskins),
+			::Legends.Traits.getID(::Legends.Trait.LegendFearNobles),
+			::Legends.Traits.getID(::Legends.Trait.HateBeasts),
+			::Legends.Traits.getID(::Legends.Trait.Clubfooted),
+			::Legends.Traits.getID(::Legends.Trait.ShortSighted),
+			::Legends.Traits.getID(::Legends.Trait.Dastard),
+			::Legends.Traits.getID(::Legends.Trait.LegendSlack),
+			::Legends.Traits.getID(::Legends.Trait.Drunkard)
 		];
 		this.m.Titles = [
 			"the Learner",

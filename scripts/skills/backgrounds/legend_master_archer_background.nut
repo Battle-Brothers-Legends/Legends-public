@@ -12,22 +12,22 @@ this.legend_master_archer_background <- this.inherit("scripts/skills/backgrounds
 		this.m.HiringCost = 885;
 		this.m.DailyCost = 32;
 		this.m.Excluded = [
-			"trait.fear_undead",
-			"trait.fear_beasts",
-			"trait.hate_beasts",
-			"trait.night_blind",
-			"trait.clubfooted",
-			"trait.brute",
-			"trait.short_sighted",
-			"trait.fat",
-			"trait.fragile",
-			"trait.dumb",
-			"trait.clumsy",
-			"trait.gluttonous",
-			"trait.asthmatic",
-			"trait.craven",
-			"trait.insecure",
-			"trait.dastard"
+			::Legends.Traits.getID(::Legends.Trait.FearUndead),
+			::Legends.Traits.getID(::Legends.Trait.FearBeasts),
+			::Legends.Traits.getID(::Legends.Trait.HateBeasts),
+			::Legends.Traits.getID(::Legends.Trait.NightBlind),
+			::Legends.Traits.getID(::Legends.Trait.Clubfooted),
+			::Legends.Traits.getID(::Legends.Trait.Brute),
+			::Legends.Traits.getID(::Legends.Trait.ShortSighted),
+			::Legends.Traits.getID(::Legends.Trait.Fat),
+			::Legends.Traits.getID(::Legends.Trait.Fragile),
+			::Legends.Traits.getID(::Legends.Trait.Dumb),
+			::Legends.Traits.getID(::Legends.Trait.Clumsy),
+			::Legends.Traits.getID(::Legends.Trait.Gluttonous),
+			::Legends.Traits.getID(::Legends.Trait.Asthmatic),
+			::Legends.Traits.getID(::Legends.Trait.Craven),
+			::Legends.Traits.getID(::Legends.Trait.Insecure),
+			::Legends.Traits.getID(::Legends.Trait.Dastard)
 		];
 		this.m.Titles = [
 			"Target Finder",

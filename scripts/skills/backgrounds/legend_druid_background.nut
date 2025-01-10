@@ -14,23 +14,23 @@ this.legend_druid_background <- this.inherit("scripts/skills/backgrounds/charact
 		this.m.HiringCost = 2000;
 		this.m.DailyCost = 25;
 		this.m.Excluded = [
-			"trait.fear_beasts",
-			"trait.hate_undead",
-			"trait.dexterous",
-			"trait.insecure",
-			"trait.hesitant",
-			"trait.asthmatic",
-			"trait.greedy",
-			"trait.fragile",
-			"trait.fainthearted",
-			"trait.craven",
-			"trait.bleeder",
-			"trait.bright",
-			"trait.cocky",
-			"trait.dastard",
-			"trait.drunkard",
-			"trait.disloyal",
-			"trait.loyal"
+			::Legends.Traits.getID(::Legends.Trait.FearBeasts),
+			::Legends.Traits.getID(::Legends.Trait.HateUndead),
+			::Legends.Traits.getID(::Legends.Trait.Dexterous),
+			::Legends.Traits.getID(::Legends.Trait.Insecure),
+			::Legends.Traits.getID(::Legends.Trait.Hesistant),
+			::Legends.Traits.getID(::Legends.Trait.Asthmatic),
+			::Legends.Traits.getID(::Legends.Trait.Greedy),
+			::Legends.Traits.getID(::Legends.Trait.Fragile),
+			::Legends.Traits.getID(::Legends.Trait.Fainthearthed),
+			::Legends.Traits.getID(::Legends.Trait.Craven),
+			::Legends.Traits.getID(::Legends.Trait.Bleeder),
+			::Legends.Traits.getID(::Legends.Trait.Bright),
+			::Legends.Traits.getID(::Legends.Trait.Cocky),
+			::Legends.Traits.getID(::Legends.Trait.Dastard),
+			::Legends.Traits.getID(::Legends.Trait.Drunkard),
+			::Legends.Traits.getID(::Legends.Trait.Disloyal),
+			::Legends.Traits.getID(::Legends.Trait.Loyal)
 		];
 		this.m.Titles = [
 			"the Savage",

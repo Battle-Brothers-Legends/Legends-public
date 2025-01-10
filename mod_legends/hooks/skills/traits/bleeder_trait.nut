@@ -5,10 +5,10 @@
 	{
 		create();
 		this.m.Excluded = [
-			"trait.tough",
-			"trait.iron_jaw",
-			"trait.survivor",
-			"trait.bleeder"
+			::Legends.Traits.getID(::Legends.Trait.Tough),
+			::Legends.Traits.getID(::Legends.Trait.IronJaw),
+			::Legends.Traits.getID(::Legends.Trait.Survivor),
+			::Legends.Traits.getID(::Legends.Trait.Bleeder)
 		];
 	}
 });

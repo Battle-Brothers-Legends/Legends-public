@@ -11,13 +11,13 @@ this.caravan_hand_southern_background <- this.inherit("scripts/skills/background
 		this.m.BeardChance = 90;
 		this.m.Ethnicity = 1;
 		this.m.Excluded = [
-			"trait.superstitious",
-			"trait.tiny",
-			"trait.clubfooted",
-			"trait.gluttonous",
-			"trait.bright",
-			"trait.asthmatic",
-			"trait.fat"
+			::Legends.Traits.getID(::Legends.Trait.Superstitious),
+			::Legends.Traits.getID(::Legends.Trait.Tiny),
+			::Legends.Traits.getID(::Legends.Trait.Clubfooted),
+			::Legends.Traits.getID(::Legends.Trait.Gluttonous),
+			::Legends.Traits.getID(::Legends.Trait.Bright),
+			::Legends.Traits.getID(::Legends.Trait.Asthmatic),
+			::Legends.Traits.getID(::Legends.Trait.Fat)
 		];
 		this.m.Names = this.Const.Strings.SouthernNames;
 		this.m.LastNames = this.Const.Strings.SouthernNamesLast;

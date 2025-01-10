@@ -12,11 +12,11 @@ this.legend_shieldmaiden_background <- this.inherit("scripts/skills/backgrounds/
 		this.m.HiringCost = 450;
 		this.m.DailyCost = 30;
 		this.m.Excluded = [
-			"trait.asthmatic",
-			"trait.clumsy",
-			"trait.cocky",
-			"trait.fragile",
-			"trait.tiny"
+			::Legends.Traits.getID(::Legends.Trait.Asthmatic),
+			::Legends.Traits.getID(::Legends.Trait.Clumsy),
+			::Legends.Traits.getID(::Legends.Trait.Cocky),
+			::Legends.Traits.getID(::Legends.Trait.Fragile),
+			::Legends.Traits.getID(::Legends.Trait.Tiny)
 		];
 		this.m.ExcludedTalents = [
 			this.Const.Attributes.Initiative

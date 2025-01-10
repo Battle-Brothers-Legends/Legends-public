@@ -13,23 +13,23 @@ this.refugee_background <- this.inherit("scripts/skills/backgrounds/character_ba
 		this.m.HiringCost = 40;
 		this.m.DailyCost = 4;
 		this.m.Excluded = [
-			"trait.impatient",
-			"trait.iron_jaw",
-			"trait.athletic",
-			"trait.tough",
-			"trait.strong",
-			"trait.loyal",
-			"trait.cocky",
-			"trait.fat",
-			"trait.bright",
-			"trait.fearless",
-			"trait.brave",
-			"trait.determined",
-			"trait.deathwish",
-			"trait.greedy",
-			"trait.bloodthirsty",
-			"trait.legend_aggressive",
-			"trait.legend_natural"
+			::Legends.Traits.getID(::Legends.Trait.Impatient),
+			::Legends.Traits.getID(::Legends.Trait.IronJaw),
+			::Legends.Traits.getID(::Legends.Trait.Athletic),
+			::Legends.Traits.getID(::Legends.Trait.Tough),
+			::Legends.Traits.getID(::Legends.Trait.Strong),
+			::Legends.Traits.getID(::Legends.Trait.Loyal),
+			::Legends.Traits.getID(::Legends.Trait.Cocky),
+			::Legends.Traits.getID(::Legends.Trait.Fat),
+			::Legends.Traits.getID(::Legends.Trait.Bright),
+			::Legends.Traits.getID(::Legends.Trait.Fearless),
+			::Legends.Traits.getID(::Legends.Trait.Brave),
+			::Legends.Traits.getID(::Legends.Trait.Determined),
+			::Legends.Traits.getID(::Legends.Trait.Deathwish),
+			::Legends.Traits.getID(::Legends.Trait.Greedy),
+			::Legends.Traits.getID(::Legends.Trait.Bloodthirsty),
+			::Legends.Traits.getID(::Legends.Trait.LegendAggressive),
+			::Legends.Traits.getID(::Legends.Trait.LegendNatural)
 		];
 		this.m.Titles = [
 			"the Refugee",

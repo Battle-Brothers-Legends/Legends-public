@@ -3,7 +3,7 @@ this.legend_deathly_spectre_trait <- this.inherit("scripts/skills/traits/charact
 	function create()
 	{
 		this.character_trait.create();
-		this.m.ID = "trait.legend_deathly_spectre";
+		this.m.ID = ::Legends.Traits.getID(::Legends.Trait.LegendDeathlySpectre);
 		this.m.Name = "Deathly spectre";
 		this.m.Icon = "ui/perks/raisedead2_circle.png";
 		this.m.Description = "The shadow of undeath follows this character due to having a necromancer nearby, they will probably be resurrected after death but retain any injuries sustained.";
@@ -13,10 +13,10 @@ this.legend_deathly_spectre_trait <- this.inherit("scripts/skills/traits/charact
 			"the Dying"
 		];
 		this.m.Excluded = [
-			"trait.bleeder",
-			"trait.pessimist",
-			"trait.deathwish",
-			"trait.ailing"
+			::Legends.Traits.getID(::Legends.Trait.Bleeder),
+			::Legends.Traits.getID(::Legends.Trait.Pessimist),
+			::Legends.Traits.getID(::Legends.Trait.Deathwish),
+			::Legends.Traits.getID(::Legends.Trait.Ailing)
 		];
 	}
 

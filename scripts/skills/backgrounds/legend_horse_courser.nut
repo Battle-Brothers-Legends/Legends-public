@@ -12,14 +12,14 @@ this.legend_horse_courser <- this.inherit("scripts/skills/backgrounds/legend_hor
 		this.m.HiringCost = 20000;
 		this.m.DailyCost = 1;
 		this.m.Excluded = [
-			"trait.tiny",
-			"trait.clubfooted",
-			"trait.bright",
-			"trait.weasel",
-			"trait.craven",
-			"trait.ailing",
-			"trait.clumsy",
-			"trait.asthmatic"
+			::Legends.Traits.getID(::Legends.Trait.Tiny),
+			::Legends.Traits.getID(::Legends.Trait.Clubfooted),
+			::Legends.Traits.getID(::Legends.Trait.Bright),
+			::Legends.Traits.getID(::Legends.Trait.Weasel),
+			::Legends.Traits.getID(::Legends.Trait.Craven),
+			::Legends.Traits.getID(::Legends.Trait.Ailing),
+			::Legends.Traits.getID(::Legends.Trait.Clumsy),
+			::Legends.Traits.getID(::Legends.Trait.Asthmatic)
 		];
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Merciless;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Chivalrous;

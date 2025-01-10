@@ -12,16 +12,16 @@ this.legend_leech_peddler_background <- this.inherit("scripts/skills/backgrounds
 		this.m.HiringCost = 45;
 		this.m.DailyCost = 6;
 		this.m.Excluded = [
-			"trait.swift",
-			"trait.brave",
-			"trait.impatient",
-			"trait.clubfooted",
-			"trait.brute",
-			"trait.gluttonous",
-			"trait.cocky",
-			"trait.iron_lungs",
-			"trait.craven",
-			"trait.bloodthirsty"
+			::Legends.Traits.getID(::Legends.Trait.Swift),
+			::Legends.Traits.getID(::Legends.Trait.Brave),
+			::Legends.Traits.getID(::Legends.Trait.Impatient),
+			::Legends.Traits.getID(::Legends.Trait.Clubfooted),
+			::Legends.Traits.getID(::Legends.Trait.Brute),
+			::Legends.Traits.getID(::Legends.Trait.Gluttonous),
+			::Legends.Traits.getID(::Legends.Trait.Cocky),
+			::Legends.Traits.getID(::Legends.Trait.IronLungs),
+			::Legends.Traits.getID(::Legends.Trait.Craven),
+			::Legends.Traits.getID(::Legends.Trait.Bloodthirsty)
 		];
 		this.m.Titles = [
 			"the Unhinged",

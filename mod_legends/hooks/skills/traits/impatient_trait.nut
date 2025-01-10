@@ -1,13 +1,13 @@
 ::mods_hookExactClass("skills/traits/impatient_trait", function(o)
-{	
+{
 	local create = o.create;
 	o.create = function ()
 	{
 		create();
 		this.m.Excluded.extend(
 		[
-			"trait.sureshot",
-			"trait.legend_slack"
+			::Legends.Traits.getID(::Legends.Trait.LegendSureshot),
+			::Legends.Traits.getID(::Legends.Trait.LegendSlack)
 		]);
 	}
 
@@ -21,7 +21,7 @@
 			icon = "ui/icons/melee_defense.png",
 			text = "[color=" + this.Const.UI.Color.NegativeValue + "]-5%[/color] Melee Defense"
 		});
-		
+
 		return ret;
 	}
 

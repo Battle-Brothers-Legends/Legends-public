@@ -9,22 +9,22 @@ this.regent_in_absentia_background <- this.inherit("scripts/skills/backgrounds/c
 		this.m.HiringCost = 135;
 		this.m.DailyCost = 30;
 		this.m.Excluded = [
-			"trait.ailing",
-			"trait.clubfooted",
-			"trait.clumsy",
-			"trait.craven",
-			"trait.dastard",
-			"trait.legend_double_tongued",
-			"trait.fainthearted",
-			"trait.legend_fear_nobles",
-			"trait.fragile",
-			"trait.legend_frail",
-			"trait.hesitant",
-			"trait.insecure",
-			"trait.legend_slack",
-			"trait.spartan",
-			"trait.clubfooted",
-			"trait.weasel"
+			::Legends.Traits.getID(::Legends.Trait.Ailing),
+			::Legends.Traits.getID(::Legends.Trait.Clubfooted),
+			::Legends.Traits.getID(::Legends.Trait.Clumsy),
+			::Legends.Traits.getID(::Legends.Trait.Craven),
+			::Legends.Traits.getID(::Legends.Trait.Dastard),
+			::Legends.Traits.getID(::Legends.Trait.LegendDoubleTongued),
+			::Legends.Traits.getID(::Legends.Trait.Fainthearthed),
+			::Legends.Traits.getID(::Legends.Trait.LegendFearNobles),
+			::Legends.Traits.getID(::Legends.Trait.Fragile),
+			::Legends.Traits.getID(::Legends.Trait.LegendFrail),
+			::Legends.Traits.getID(::Legends.Trait.Hesistant),
+			::Legends.Traits.getID(::Legends.Trait.Insecure),
+			::Legends.Traits.getID(::Legends.Trait.LegendSlack),
+			::Legends.Traits.getID(::Legends.Trait.Spartan),
+			::Legends.Traits.getID(::Legends.Trait.Clubfooted),
+			::Legends.Traits.getID(::Legends.Trait.Weasel)
 		];
 		this.m.Faces = this.Const.Faces.AllMale;
 		this.m.Hairs = this.Const.Hair.AllMale;

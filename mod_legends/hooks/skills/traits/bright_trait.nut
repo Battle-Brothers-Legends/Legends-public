@@ -5,7 +5,7 @@
 	{
 		create();
 		this.m.Excluded.extend([
-			"trait.legend_predictable"
+			::Legends.Traits.getID(::Legends.Trait.LegendPredictable)
 		]);
 	}
 });

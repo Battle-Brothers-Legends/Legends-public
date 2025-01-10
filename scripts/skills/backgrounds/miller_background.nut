@@ -12,17 +12,17 @@ this.miller_background <- this.inherit("scripts/skills/backgrounds/character_bac
 		this.m.HiringCost = 65;
 		this.m.DailyCost = 7;
 		this.m.Excluded = [
-			"trait.fear_undead",
-			"trait.hate_undead",
-			"trait.bright",
-			"trait.cocky",
-			"trait.quick",
-			"trait.fragile",
-			"trait.greedy",
-			"trait.sure_footing",
-			"trait.deathwish",
-			"trait.dexterous",
-			"trait.bloodthirsty"
+			::Legends.Traits.getID(::Legends.Trait.FearUndead),
+			::Legends.Traits.getID(::Legends.Trait.HateUndead),
+			::Legends.Traits.getID(::Legends.Trait.Bright),
+			::Legends.Traits.getID(::Legends.Trait.Cocky),
+			::Legends.Traits.getID(::Legends.Trait.Quick),
+			::Legends.Traits.getID(::Legends.Trait.Fragile),
+			::Legends.Traits.getID(::Legends.Trait.Greedy),
+			::Legends.Traits.getID(::Legends.Trait.SureFooting),
+			::Legends.Traits.getID(::Legends.Trait.Deathwish),
+			::Legends.Traits.getID(::Legends.Trait.Dexterous),
+			::Legends.Traits.getID(::Legends.Trait.Bloodthirsty)
 		];
 		this.m.Titles = [
 			"the Miller"

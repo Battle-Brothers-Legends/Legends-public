@@ -3,7 +3,7 @@ this.legend_withering_aura_trait <- this.inherit("scripts/skills/traits/characte
 	function create()
 	{
 		this.character_trait.create();
-		this.m.ID = "trait.legend_withering_aura"; //should provide debuffs if not a necromancer or a puppet
+		this.m.ID = ::Legends.Traits.getID(::Legends.Trait.LegendWitheringAura); //should provide debuffs if not a necromancer or a puppet
 		this.m.Name = "Withering Aura";
 		this.m.Icon = "ui/perks/rust56_circle.png"; //placeholder for now
 		this.m.Description = "This character is under the effect of a dark aura. They are slow, sluggish and have difficulty fighting. However, the numbness has yielded beneficial side effects...";

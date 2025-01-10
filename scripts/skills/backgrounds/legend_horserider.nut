@@ -12,10 +12,10 @@ this.legend_horserider <- this.inherit("scripts/skills/backgrounds/character_bac
 		this.m.HiringCost = 10000;
 		this.m.DailyCost = 1;
 		this.m.Excluded = [
-			"trait.tiny",
-			"trait.clubfooted",
-			"trait.bright",
-			"trait.asthmatic"
+			::Legends.Traits.getID(::Legends.Trait.Tiny),
+			::Legends.Traits.getID(::Legends.Trait.Clubfooted),
+			::Legends.Traits.getID(::Legends.Trait.Bright),
+			::Legends.Traits.getID(::Legends.Trait.Asthmatic)
 		];
 		this.m.Faces = this.Const.Faces.AllWhiteMale;
 		this.m.Hairs = this.Const.Hair.None;

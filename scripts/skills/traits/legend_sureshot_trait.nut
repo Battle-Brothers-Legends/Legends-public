@@ -3,7 +3,7 @@ this.legend_sureshot_trait <- this.inherit("scripts/skills/traits/character_trai
 	function create()
 	{
 		this.character_trait.create();
-		this.m.ID = "trait.legend_sureshot";
+		this.m.ID = ::Legends.Traits.getID(::Legends.Trait.LegendSureshot);
 		this.m.Name = "Sureshot";
 		this.m.Icon = "ui/traits/sureshot_trait.png";
 		this.m.Description = "Takes time to hit the exact right spot on a target, this in turn makes them an easier target";
@@ -12,9 +12,9 @@ this.legend_sureshot_trait <- this.inherit("scripts/skills/traits/character_trai
 			"the Patient"
 		];
 		this.m.Excluded = [
-			"trait.irrational",
-			"trait.impatient",
-			"trait.quick"
+			::Legends.Traits.getID(::Legends.Trait.Irrational),
+			::Legends.Traits.getID(::Legends.Trait.Impatient),
+			::Legends.Traits.getID(::Legends.Trait.Quick)
 		];
 	}
 

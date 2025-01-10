@@ -12,9 +12,9 @@ this.legend_blacksmith_background <- this.inherit("scripts/skills/backgrounds/ch
 		this.m.HiringCost = 500;
 		this.m.DailyCost = 23;
 		this.m.Excluded = [
-			"trait.asthmatic",
-			"trait.clumsy",
-			"trait.fragile",
+			::Legends.Traits.getID(::Legends.Trait.Asthmatic),
+			::Legends.Traits.getID(::Legends.Trait.Clumsy),
+			::Legends.Traits.getID(::Legends.Trait.Fragile),
 
 		];
 		this.m.Titles = [

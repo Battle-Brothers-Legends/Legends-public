@@ -3,7 +3,7 @@ this.legend_frail_trait <- this.inherit("scripts/skills/traits/character_trait",
 	function create()
 	{
 		this.character_trait.create();
-		this.m.ID = "trait.legend_frail";
+		this.m.ID = ::Legends.Traits.getID(::Legends.Trait.LegendFrail);
 		this.m.Name = "Frail";
 		this.m.Icon = "ui/traits/frail_trait.png";
 		this.m.Description = "Weak and loose. Has to work hard to become a real warrior.";
@@ -12,17 +12,16 @@ this.legend_frail_trait <- this.inherit("scripts/skills/traits/character_trait",
 			"the Feeble"
 		];
 		this.m.Excluded = [
-			"trait.quick",
-			"trait.huge",
-			"trait.tough",
-			"trait.strong",
-			"trait.brawler",
-			"trait.brute",
-			"trait.legend_natural",
-			"trait.iron_jaw",
-			"trait.legend_natural",
-			"trait.legend_firm",
-			"trait.legend_heavy"
+			::Legends.Traits.getID(::Legends.Trait.Quick),
+			::Legends.Traits.getID(::Legends.Trait.Huge),
+			::Legends.Traits.getID(::Legends.Trait.Tough),
+			::Legends.Traits.getID(::Legends.Trait.Strong),
+			::Legends.Traits.getID(::Legends.Trait.Brute),
+			::Legends.Traits.getID(::Legends.Trait.LegendNatural),
+			::Legends.Traits.getID(::Legends.Trait.IronJaw),
+			::Legends.Traits.getID(::Legends.Trait.LegendNatural),
+			::Legends.Traits.getID(::Legends.Trait.LegendFirm),
+			::Legends.Traits.getID(::Legends.Trait.LegendHeavy)
 		];
 	}
 

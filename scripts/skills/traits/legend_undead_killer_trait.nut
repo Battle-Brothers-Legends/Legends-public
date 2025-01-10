@@ -3,16 +3,16 @@ this.legend_undead_killer_trait <- this.inherit("scripts/skills/traits/character
 	function create()
 	{
 		this.character_trait.create();
-		this.m.ID = "trait.undead_killer";
+		this.m.ID = ::Legends.Traits.getID(::Legends.Trait.LegendUndeadKiller);
 		this.m.Name = "Undead Killer";
 		this.m.Icon = "ui/traits/trait_icon_50.png";
 		this.m.Description = "This character has learned the hard way how to kill things that won\'t stay dead";
 		this.m.Excluded = [
-			"trait.weasel",
-			"trait.craven",
-			"trait.dastard",
-			"trait.fainthearted",
-			"trait.fear_undead"
+			::Legends.Traits.getID(::Legends.Trait.Weasel),
+			::Legends.Traits.getID(::Legends.Trait.Craven),
+			::Legends.Traits.getID(::Legends.Trait.Dastard),
+			::Legends.Traits.getID(::Legends.Trait.Fainthearthed),
+			::Legends.Traits.getID(::Legends.Trait.FearUndead)
 		];
 	}
 

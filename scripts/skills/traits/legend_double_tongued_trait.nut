@@ -3,15 +3,15 @@ this.legend_double_tongued_trait <- this.inherit("scripts/skills/traits/characte
 	function create()
 	{
 		this.character_trait.create();
-		this.m.ID = "trait.legend_double_tongued";
+		this.m.ID = ::Legends.Traits.getID(::Legends.Trait.LegendDoubleTongued);
 		this.m.Name = "Double tongued";
 		this.m.Icon = "ui/traits/trait_double_tongued.png";
 		this.m.Description = "The nature of humanity brings out the destructive side in many, however this one appears to be worse than the usual.";
 		this.m.Excluded = [
-			"trait.optimist",
-			"trait.teamplayer",
-			"trait.determined",
-			"trait.legend_gift_of_people"
+			::Legends.Traits.getID(::Legends.Trait.Optimist),
+			::Legends.Traits.getID(::Legends.Trait.Teamplayer),
+			::Legends.Traits.getID(::Legends.Trait.Determined),
+			::Legends.Traits.getID(::Legends.Trait.LegendGiftOfPeople)
 		];
 	}
 

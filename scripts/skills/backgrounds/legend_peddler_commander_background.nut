@@ -13,25 +13,25 @@ this.legend_peddler_commander_background <- this.inherit("scripts/skills/backgro
 		this.m.HiringCost = 10000;
 		this.m.DailyCost = 0; //avatar
 		this.m.Excluded = [
-			"trait.huge",
-			"trait.fear_undead",
-			"trait.hate_undead",
-			"trait.hate_beasts",
-			"trait.iron_jaw",
-			"trait.clubfooted",
-			"trait.brute",
-			"trait.athletic",
-			"trait.iron_lungs",
-			"trait.strong",
-			"trait.tough",
-			"trait.loyal",
-			"trait.disloyal",
-			"trait.dexterous",
-			"trait.dumb",
-			"trait.deathwish",
-			"trait.bloodthirsty",
-			"trait.legend_aggressive",
-			"trait.legend_firm"
+			::Legends.Traits.getID(::Legends.Trait.Huge),
+			::Legends.Traits.getID(::Legends.Trait.FearUndead),
+			::Legends.Traits.getID(::Legends.Trait.HateUndead),
+			::Legends.Traits.getID(::Legends.Trait.HateBeasts),
+			::Legends.Traits.getID(::Legends.Trait.IronJaw),
+			::Legends.Traits.getID(::Legends.Trait.Clubfooted),
+			::Legends.Traits.getID(::Legends.Trait.Brute),
+			::Legends.Traits.getID(::Legends.Trait.Athletic),
+			::Legends.Traits.getID(::Legends.Trait.IronLungs),
+			::Legends.Traits.getID(::Legends.Trait.Strong),
+			::Legends.Traits.getID(::Legends.Trait.Tough),
+			::Legends.Traits.getID(::Legends.Trait.Loyal),
+			::Legends.Traits.getID(::Legends.Trait.Disloyal),
+			::Legends.Traits.getID(::Legends.Trait.Dexterous),
+			::Legends.Traits.getID(::Legends.Trait.Dumb),
+			::Legends.Traits.getID(::Legends.Trait.Deathwish),
+			::Legends.Traits.getID(::Legends.Trait.Bloodthirsty),
+			::Legends.Traits.getID(::Legends.Trait.LegendAggressive),
+			::Legends.Traits.getID(::Legends.Trait.LegendFirm)
 		];
 		this.m.Ethnicity = this.Math.rand(0, 2);
 		if (this.m.Ethnicity == 0)

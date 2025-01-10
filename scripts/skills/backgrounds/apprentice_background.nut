@@ -12,15 +12,15 @@ this.apprentice_background <- this.inherit("scripts/skills/backgrounds/character
 		this.m.HiringCost = 80;
 		this.m.DailyCost = 6;
 		this.m.Excluded = [
-			"trait.fear_undead",
-			"trait.hate_undead",
-			"trait.dumb",
-			"trait.clumsy",
-			"trait.asthmatic",
-			"trait.athletic",
-			"trait.brute",
-			"trait.bloodthirsty",
-			"trait.legend_aggressive"
+			::Legends.Traits.getID(::Legends.Trait.FearUndead),
+			::Legends.Traits.getID(::Legends.Trait.HateUndead),
+			::Legends.Traits.getID(::Legends.Trait.Dumb),
+			::Legends.Traits.getID(::Legends.Trait.Clumsy),
+			::Legends.Traits.getID(::Legends.Trait.Asthmatic),
+			::Legends.Traits.getID(::Legends.Trait.Athletic),
+			::Legends.Traits.getID(::Legends.Trait.Brute),
+			::Legends.Traits.getID(::Legends.Trait.Bloodthirsty),
+			::Legends.Traits.getID(::Legends.Trait.LegendAggressive)
 		];
 		this.m.Titles = [
 			"the Learner",
