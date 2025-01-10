@@ -54,7 +54,7 @@ if (!("Traits" in ::Legends))
 	local container = ::Legends.Traits.getContainer(_target, "on get");
 	local id = ::Legends.Traits.getID(_def);
 	if (container.hasSkill(id))
-		return container.getSkillByID(id)
+		return container.getSkillByID(id);
 	return null;
 }
 
@@ -67,6 +67,6 @@ if (!("Traits" in ::Legends))
 	local container = ::Legends.Traits.getContainer(_target, "on remove");
 	local id = ::Legends.Traits.getID(_def);
 	if (container.hasSkill(id))
-		container.removeByID(id)
+		container.removeByID(id);
 }
 

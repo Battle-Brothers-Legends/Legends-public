@@ -59,16 +59,16 @@ if (!("Perks" in ::Legends))
 ::Legends.Perks.get <- function (_target, _def) {
 	local container = ::Legends.Perks.getContainer(_target, "on get");
 	if (container.hasPerk(_def))
-		return container.getSkillByID(::Legends.Perks.getID(_def))
+		return container.getSkillByID(::Legends.Perks.getID(_def));
 	return null;
 }
 
 ::Legends.Perks.remove <- function (_target, _def) {
 	local container = ::Legends.Perks.getContainer(_target, "on remove");
 	if (container.hasPerk(_def))
-		container.removeByID(::Legends.Perks.getID(_def))
+		container.removeByID(::Legends.Perks.getID(_def));
 }
 
 ::Legends.Perks.blueprint <- function (_def) {
-	return { Scripts = [::Const.Perks.PerkDefObjects[_def].Script] }
+	return { Scripts = [::Const.Perks.PerkDefObjects[_def].Script] };
 }
