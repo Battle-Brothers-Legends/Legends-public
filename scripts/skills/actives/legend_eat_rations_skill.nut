@@ -167,7 +167,7 @@ this.legend_eat_rations_skill <- this.inherit("scripts/skills/actives/base/legen
 		}
 
 		//Ate while sick - we be fat now
-		if (!_user.getSkills().hasSkill("trait.fat"))
+		if (!_user.getSkills().hasTrait(::Legends.Trait.Fat))
 		{
 			if (!_user.isHiddenToPlayer())
 			{

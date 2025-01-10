@@ -17,7 +17,7 @@
 	{
 		this.m.TurnsLeft = this.Math.max(1, 3 + this.getContainer().getActor().getCurrentProperties().NegativeStatusEffectDuration);
 
-		if (this.getContainer().hasSkill("trait.ailing"))
+		if (this.getContainer().hasTrait(::Legends.Trait.Ailing))
 		{
 			++this.m.TurnsLeft;
 		}

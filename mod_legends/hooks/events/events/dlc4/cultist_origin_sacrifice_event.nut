@@ -21,7 +21,7 @@
 					local hasProphet = false;
 
 					foreach( bro in brothers ) {
-						if (bro.getSkills().hasSkill("trait.cultist_prophet"))
+						if (bro.getSkills().hasTrait(::Legends.Trait.CultistProphet))
 						{
 							hasProphet = true;
 							break;
@@ -49,9 +49,9 @@
 							local skills = bro.getSkills();
 							local skill;
 
-							if (skills.hasSkill("trait.cultist_prophet"))
+							if (skills.hasTrait(::Legends.Trait.CultistProphet))
 								continue;
-							else if (skills.hasSkill("trait.cultist_chosen")) {
+							else if (skills.hasTrait(::Legends.Trait.CultistChosen)) {
 								if (hasProphet)
 									continue;
 
@@ -66,16 +66,16 @@
 									text = bro.getName() + " has received " + this.Const.Strings.getArticle(skill.getName()) + skill.getName()
 								});
 								::Legends.Traits.grant(skills, ::Legends.Trait.CultistProphet);
-							} else if (skills.hasSkill("trait.cultist_disciple")) {
+							} else if (skills.hasTrait(::Legends.Trait.CultistDisciple)) {
 								skills.removeByID("trait.cultist_disciple");
 								::Legends.Traits.grant(skills, ::Legends.Trait.CultistChosen);
-							} else if (skills.hasSkill("trait.cultist_acolyte")) {
+							} else if (skills.hasTrait(::Legends.Trait.CultistAcolyte)) {
 								skills.removeByID("trait.cultist_acolyte");
 								::Legends.Traits.grant(skills, ::Legends.Trait.CultistDisciple);
-							} else if (skills.hasSkill("trait.cultist_zealot")) {
+							} else if (skills.hasTrait(::Legends.Trait.CultistZealot)) {
 								skills.removeByID("trait.cultist_zealot");
 								::Legends.Traits.grant(skills, ::Legends.Trait.CultistAcolyte);
-							} else if (skills.hasSkill("trait.cultist_fanatic")) {
+							} else if (skills.hasTrait(::Legends.Trait.GloriousQuickness)) {
 								skills.removeByID("trait.cultist_fanatic");
 								::Legends.Traits.grant(skills, ::Legends.Trait.CultistZealot);
 							} else {
@@ -89,7 +89,7 @@
 									text = bro.getName() + " is now " + this.Const.Strings.getArticle(skill.getName()) + skill.getName()
 								});
 							}
-						} else if (!bro.getSkills().hasSkill("trait.mad")) {
+						} else if (!bro.getSkills().hasTrait(::Legends.Trait.Mad)) {
 							bro.worsenMood(2.5, "Horrified by the sacrifice of " + _event.m.Sacrifice.getName());
 
 							if (bro.getMoodState() < this.Const.MoodState.Neutral) {

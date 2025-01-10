@@ -147,7 +147,7 @@ this.legend_inventor_prosthetic_foot <- this.inherit("scripts/events/event", {
 
 		foreach (bro in brothers)
 		{
-			if (bro.getSkills().hasSkill("injury.maimed_foot") && !bro.getSkills().hasSkill("trait.legend_prosthetic_foot"))
+			if (bro.getSkills().hasSkill("injury.maimed_foot") && !bro.getSkills().hasTrait(::Legends.Trait.LegendProstheticFoot))
 			{
 				nofoot_candidates.push(bro);
 			}

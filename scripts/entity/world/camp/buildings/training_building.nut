@@ -380,7 +380,7 @@ this.training_building <- this.inherit("scripts/entity/world/camp/camp_building"
 
 	function getBonus( bro )
 	{
-		if (!bro.getSkills().hasSkill("trait.legend_intensive_training_trait"))
+		if (!bro.getSkills().hasTrait(::Legends.Trait.LegendIntensiveTraining))
 		{
 			return;
 		}

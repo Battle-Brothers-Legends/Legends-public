@@ -365,7 +365,7 @@ this.legend_hunting_basilisks_contract <- this.inherit("scripts/contracts/contra
 					"hunter_background"
 				]);
 
-				if (!this.Contract.m.Dude.getSkills().hasSkill("trait.fear_beasts") && !this.Contract.m.Dude.getSkills().hasSkill("trait.hate_beasts"))
+				if (!this.Contract.m.Dude.getSkills().hasTrait(::Legends.Trait.FearBeasts) && !this.Contract.m.Dude.getSkills().hasTrait(::Legends.Trait.HateBeasts))
 				{
 					this.Contract.m.Dude.getSkills().removeByID("trait.fearless");
 

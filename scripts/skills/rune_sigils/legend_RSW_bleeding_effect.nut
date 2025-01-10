@@ -87,7 +87,7 @@ this.legend_RSW_bleeding_effect <- this.inherit("scripts/skills/skill", {
 	{
 		this.m.TurnsLeft = this.Math.max(1, this.m.TurnsLeft + this.getContainer().getActor().getCurrentProperties().NegativeStatusEffectDuration);
 
-		if (this.getContainer().hasSkill("trait.bleeder"))
+		if (this.getContainer().hasTrait(::Legends.Trait.Bleeder))
 		{
 			++this.m.TurnsLeft;
 		}

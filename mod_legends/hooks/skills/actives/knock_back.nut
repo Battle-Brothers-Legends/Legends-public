@@ -105,7 +105,7 @@
 		skills.removeByID("effects.spearwall");
 		skills.removeByID("effects.riposte");
 
-		if (_user.getSkills().hasSkill("trait.oath_of_fortification") && _targetTile.IsOccupiedByActor && !target.isNonCombatant())
+		if (_user.getSkills().hasTrait(::Legends.Trait.OathOfFortification) && _targetTile.IsOccupiedByActor && !target.isNonCombatant())
 		{
 			target.getSkills().add(this.new("scripts/skills/effects/staggered_effect"));
 
@@ -197,7 +197,7 @@
 
 	o.getHitchance <- function ( _targetEntity )
 	{
-		if (this.getContainer().hasSkill("trait.teamplayer") && _targetEntity.isAlliedWith(getContainer().getActor()))
+		if (this.getContainer().hasTrait(::Legends.Trait.Teamplayer) && _targetEntity.isAlliedWith(getContainer().getActor()))
 			return 100;
 
 		return this.skill.getHitchance(_targetEntity);

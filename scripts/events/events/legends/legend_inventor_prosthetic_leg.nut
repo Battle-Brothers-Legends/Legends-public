@@ -147,7 +147,7 @@ this.legend_inventor_prosthetic_leg <- this.inherit("scripts/events/event", {
 
 		foreach (bro in brothers)
 		{
-			if (bro.getSkills().hasSkill("injury.broken_knee") && !bro.getSkills().hasSkill("trait.legend_prosthetic_leg"))
+			if (bro.getSkills().hasSkill("injury.broken_knee") && !bro.getSkills().hasTrait(::Legends.Trait.LegendProstheticLeg))
 			{
 				nofoot_candidates.push(bro);
 			}

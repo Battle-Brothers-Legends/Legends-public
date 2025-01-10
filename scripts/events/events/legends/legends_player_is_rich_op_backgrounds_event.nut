@@ -151,12 +151,12 @@ this.legends_player_is_rich_op_backgrounds_event <- this.inherit("scripts/events
 
 				foreach( bro in brothers )
 				{
-					if (bro.getSkills().hasSkill("trait.player"))
+					if (bro.getSkills().hasTrait(::Legends.Trait.Player))
 					{
 						continue;
 					}
 
-					if (bro.getSkills().hasSkill("trait.greedy"))
+					if (bro.getSkills().hasTrait(::Legends.Trait.Greedy))
 					{
 						bro.worsenMood(2.0, "Was denied a pay raise");
 
@@ -269,7 +269,7 @@ this.legends_player_is_rich_op_backgrounds_event <- this.inherit("scripts/events
 
 		foreach( bro in brothers )
 		{
-			if (bro.getSkills().hasSkill("trait.player") && bro.getBackground().getID() != "background.legend_trader_commander")
+			if (bro.getSkills().hasTrait(::Legends.Trait.Player) && bro.getBackground().getID() != "background.legend_trader_commander")
 			{
 				continue;
 			}

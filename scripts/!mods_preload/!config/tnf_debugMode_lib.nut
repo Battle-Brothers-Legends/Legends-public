@@ -44,10 +44,10 @@ gt.tnf_debug.getAttributesValues <- function (character, levelup = true, perk = 
 
   if (perk) {
     local skills = character.getSkills();
-    if (skills.hasSkill("trait.iron_lungs")) attributes.Fatigue += 20;
-    if (skills.hasSkill("trait.asthmatic")) attributes.Fatigue -= 15;
-    if (skills.hasSkill("trait.athletic")) attributes.Fatigue += 10;
-    if (skills.hasSkill("trait.clubfooted")) attributes.Fatigue -= 10;
+    if (skills.hasTrait(::Legends.Trait.IronLungs)) attributes.Fatigue += 20;
+    if (skills.hasTrait(::Legends.Trait.Asthmatic)) attributes.Fatigue -= 15;
+    if (skills.hasTrait(::Legends.Trait.Athletic)) attributes.Fatigue += 10;
+    if (skills.hasTrait(::Legends.Trait.Clubfooted)) attributes.Fatigue -= 10;
   }
 
   return attributes;

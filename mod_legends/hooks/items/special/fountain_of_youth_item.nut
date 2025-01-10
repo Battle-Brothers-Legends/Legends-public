@@ -14,7 +14,7 @@
 
 	o.onUse = function ( _actor, _item = null )
 	{
-		if (!_actor.getSkills().hasSkillOfType(this.Const.SkillType.Injury) && !_actor.getSkills().hasSkill("trait.old"))
+		if (!_actor.getSkills().hasSkillOfType(this.Const.SkillType.Injury) && !_actor.getSkills().hasTrait(::Legends.Trait.Old))
 		{
 			return false;
 		}

@@ -96,7 +96,7 @@
 				candidates_houndmaster.push(bro);
 			else if (bro.getBackground().getID() == "background.beast_slayer")
 				candidates_beastslayer.push(bro);
-			else if (!bro.getSkills().hasSkill("trait.player"))
+			else if (!bro.getSkills().hasTrait(::Legends.Trait.Player))
 				candidates_other.push(bro);
 		}
 

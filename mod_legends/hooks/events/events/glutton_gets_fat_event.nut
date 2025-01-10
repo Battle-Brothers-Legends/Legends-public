@@ -20,7 +20,7 @@
 			if (bro.getFlags().get("IsSpecial") || bro.getFlags().get("IsPlayerCharacter") || bro.getBackground().getID() == "background.legend_puppet" || bro.getBackground().getID() == "background.legend_donkey")
 				continue;
 
-			if (bro.getLevel() >= 3 && bro.getSkills().hasSkill("trait.gluttonous") && !bro.getSkills().hasSkill("trait.fat"))
+			if (bro.getLevel() >= 3 && bro.getSkills().hasTrait(::Legends.Trait.Gluttonous) && !bro.getSkills().hasTrait(::Legends.Trait.Fat))
 				candidates.push(bro);
 		}
 

@@ -224,7 +224,7 @@ this.legend_inventor_prosthetic_eye <- this.inherit("scripts/events/event", {
 
 		foreach (bro in brothers)
 		{
-			if (bro.getSkills().hasSkill("injury.missing_eye") && !bro.getSkills().hasSkill("trait.legend_prosthetic_eye"))
+			if (bro.getSkills().hasSkill("injury.missing_eye") && !bro.getSkills().hasTrait(::Legends.Trait.LegendProstheticEye))
 			{
 				noeye_candidates.push(bro);
 			}

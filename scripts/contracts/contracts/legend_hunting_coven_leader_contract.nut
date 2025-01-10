@@ -142,7 +142,7 @@ this.legend_hunting_coven_leader_contract <- this.inherit("scripts/contracts/con
 
 						foreach( bro in bros )
 						{
-							if (bro.getSkills().hasSkill("trait.superstitious"))
+							if (bro.getSkills().hasTrait(::Legends.Trait.Superstitious))
 							{
 								candidates.push(bro);
 							}

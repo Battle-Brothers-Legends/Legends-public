@@ -53,19 +53,19 @@ this.perk_legend_true_believer <- this.inherit("scripts/skills/skill", {
 
 	function onAdded()
 	{
-		if (this.m.Container.hasSkill("trait.superstitious"))
+		if (this.m.Container.hasTrait(::Legends.Trait.Superstitious))
 		{
 			this.m.Container.removeByID("trait.superstitious");
 		}
-		if (this.m.Container.hasSkill("trait.dastard"))
+		if (this.m.Container.hasTrait(::Legends.Trait.Dastard))
 		{
 			this.m.Container.removeByID("trait.dastard");
 		}
-		if (this.m.Container.hasSkill("trait.insecure"))
+		if (this.m.Container.hasTrait(::Legends.Trait.Insecure))
 		{
 			this.m.Container.removeByID("trait.insecure");
 		}
-		if (this.m.Container.hasSkill("trait.craven"))
+		if (this.m.Container.hasTrait(::Legends.Trait.Craven))
 		{
 			this.m.Container.removeByID("trait.craven");
 		}

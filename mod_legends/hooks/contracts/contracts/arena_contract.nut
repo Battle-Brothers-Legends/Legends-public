@@ -166,7 +166,7 @@
 									icon = skill.getIcon(),
 									text = bro.getName() + " is now " + this.Const.Strings.getArticle(skill.getName()) + skill.getName()
 								});
-							} else if (bro.getFlags().getAsInt("ArenaFightsWon") == 5 && bro.getSkills().hasSkill("trait.pit_fighter")) {
+							} else if (bro.getFlags().getAsInt("ArenaFightsWon") == 5 && bro.getSkills().hasTrait(::Legends.Trait.PitFighter)) {
 								::Legends.Traits.remove(bro, ::Legends.Trait.PitFighter);
 								::Legends.Traits.grant(bro, ::Legends.Trait.ArenaFighter);
 								this.List.push({
@@ -174,7 +174,7 @@
 									icon = skill.getIcon(),
 									text = bro.getName() + " is now " + this.Const.Strings.getArticle(skill.getName()) + skill.getName()
 								});
-							} else if (bro.getFlags().getAsInt("ArenaFightsWon") >= 12 && bro.getSkills().hasSkill("trait.arena_fighter")) {
+							} else if (bro.getFlags().getAsInt("ArenaFightsWon") >= 12 && bro.getSkills().hasTrait(::Legends.Trait.ArenaFighter)) {
 								::Legends.Traits.remove(bro, ::Legends.Trait.ArenaFighter);
 								::Legends.Traits.grant(bro, ::Legends.Trait.LegendArenaVeteran);
 								this.List.push({
@@ -182,7 +182,7 @@
 									icon = skill.getIcon(),
 									text = bro.getName() + " is now " + this.Const.Strings.getArticle(skill.getName()) + skill.getName()
 								});
-							} else if (bro.getFlags().getAsInt("ArenaFightsWon") >= 25 && bro.getSkills().hasSkill("trait.legend_arena_veteran")) {
+							} else if (bro.getFlags().getAsInt("ArenaFightsWon") >= 25 && bro.getSkills().hasTrait(::Legends.Trait.LegendArenaVeteran)) {
 								::Legends.Traits.remove(bro, ::Legends.Trait.LegendArenaVeteran);
 								::Legends.Traits.grant(bro, ::Legends.Trait.LegendArenaChampion);
 								this.List.push({
@@ -190,7 +190,7 @@
 									icon = skill.getIcon(),
 									text = bro.getName() + " is now " + this.Const.Strings.getArticle(skill.getName()) + skill.getName()
 								});
-							} else if (bro.getFlags().getAsInt("ArenaFightsWon") >= 50 && bro.getSkills().hasSkill("trait.legend_arena_champion")) {
+							} else if (bro.getFlags().getAsInt("ArenaFightsWon") >= 50 && bro.getSkills().hasTrait(::Legends.Trait.LegendArenaChampion)) {
 								::Legends.Traits.remove(bro, ::Legends.Trait.LegendArenaChampion);
 								::Legends.Traits.grant(bro, ::Legends.Trait.LegendArenaInvictus);
 								this.List.push({

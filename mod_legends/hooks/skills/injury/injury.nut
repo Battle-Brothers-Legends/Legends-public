@@ -86,7 +86,7 @@
 				text = "Will not heal because you have no medical supplies"
 			});
 		}
-		else if (this.getContainer().getActor().getSkills().hasSkill("trait.oath_of_sacrifice") && this.m.IsHealingMentioned)
+		else if (this.getContainer().getActor().getSkills().hasTrait(::Legends.Trait.OathOfSacrifice) && this.m.IsHealingMentioned)
 		{
 			_tooltip.push({
 				id = 7,
@@ -149,7 +149,7 @@
 
 	o.onNewDay = function ()
 	{
-		if (!(this.getContainer().getActor().getSkills().hasSkill("trait.oath_of_sacrifice") && this.m.IsTreatable) && (this.World.Assets.getMedicine() >= this.Const.World.Assets.MedicinePerInjuryDay || !this.m.IsHealingMentioned))
+		if (!(this.getContainer().getActor().getSkills().hasTrait(::Legends.Trait.OathOfSacrifice) && this.m.IsTreatable) && (this.World.Assets.getMedicine() >= this.Const.World.Assets.MedicinePerInjuryDay || !this.m.IsHealingMentioned))
 		{
 			if (this.m.IsHealingMentioned)
 			{

@@ -27,9 +27,9 @@
 		local scholar_candidates = [];
 
 		foreach( bro in brothers ) {
-			if (bro.getSkills().hasSkill("trait.dumb"))
+			if (bro.getSkills().hasTrait(::Legends.Trait.Dumb))
 				dumb_candidates.push(bro);
-			else if ((bro.getBackground().getID() == "background.monk" || bro.getBackground().getID() == "background.historian" || bro.getBackground().getID() == "background.legend_inventor"  ||  bro.getBackground().getID() == "background.legend_witch" || bro.getBackground().getID() == "background.legend_commander_witch" ) && !bro.getSkills().hasSkill("trait.hesitant") || bro.getSkills().hasPerk(::Legends.Perk.LegendScholar))
+			else if ((bro.getBackground().getID() == "background.monk" || bro.getBackground().getID() == "background.historian" || bro.getBackground().getID() == "background.legend_inventor"  ||  bro.getBackground().getID() == "background.legend_witch" || bro.getBackground().getID() == "background.legend_commander_witch" ) && !bro.getSkills().hasTrait(::Legends.Trait.Hesistant) || bro.getSkills().hasPerk(::Legends.Perk.LegendScholar))
 				scholar_candidates.push(bro);
 		}
 

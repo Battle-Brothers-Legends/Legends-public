@@ -19,7 +19,7 @@ this.perk_legend_slaughterer <- this.inherit("scripts/skills/skill", {
 
 	function onTargetKilled( _targetEntity, _skill )
 	{
-		if (!this.getContainer().hasSkill("trait.bloodthirsty"))
+		if (!this.getContainer().hasTrait(::Legends.Trait.Bloodthirsty))
 			return;
 
 		local killer = this.getContainer().getActor();

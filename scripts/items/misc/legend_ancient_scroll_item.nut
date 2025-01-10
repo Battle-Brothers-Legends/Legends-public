@@ -58,7 +58,7 @@ this.legend_ancient_scroll_item <- ::inherit("scripts/items/item", {
 
 	function isAbleToUseScroll( _actor )
 	{
-		if (_actor.getSkills().hasSkill("trait.dumb"))
+		if (_actor.getSkills().hasTrait(::Legends.Trait.Dumb))
 			return "Failed to use this scroll as the user has [color=" + ::Const.UI.Color.NegativeValue + "]Dumb[/color] trait.";
 
 		if (_actor.getSkills().hasSkill("injury.brain_damage"))
@@ -67,7 +67,7 @@ this.legend_ancient_scroll_item <- ::inherit("scripts/items/item", {
 		if (_actor.getFlags().getAsInt("LegendsScrollCount") <= 0)
 			return true;
 
-		if (!_actor.getSkills().hasSkill("trait.bright") || _actor.getFlags().getAsInt("LegendsScrollCount") >= 2)
+		if (!_actor.getSkills().hasTrait(::Legends.Trait.Bright) || _actor.getFlags().getAsInt("LegendsScrollCount") >= 2)
 			return "This character has already reached their maximum scroll usage limit. Please use this scroll on a different character.";
 
 		return true;

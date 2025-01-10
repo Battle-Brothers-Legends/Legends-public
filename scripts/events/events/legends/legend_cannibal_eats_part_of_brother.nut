@@ -31,35 +31,35 @@ this.legend_cannibal_eats_part_of_brother <- this.inherit("scripts/events/event"
 
 				foreach( inj in injuries )
 				{
-					if (inj.ID == "injury.broken_elbow_joint" && !_event.m.Dinner.getSkills().hasSkill("injury.broken_elbow_joint") && !_event.m.Dinner.getSkills().hasSkill("trait.legend_prosthetic_forearm"))
+					if (inj.ID == "injury.broken_elbow_joint" && !_event.m.Dinner.getSkills().hasSkill("injury.broken_elbow_joint") && !_event.m.Dinner.getSkills().hasTrait(::Legends.Trait.LegendProstheticForearm))
 					{
 						potential.push(inj);
 					}
-					else if (inj.ID == "injury.broken_knee" && !_event.m.Dinner.getSkills().hasSkill("injury.broken_knee") && !_event.m.Dinner.getSkills().hasSkill("trait.legend_prosthetic_leg"))
+					else if (inj.ID == "injury.broken_knee" && !_event.m.Dinner.getSkills().hasSkill("injury.broken_knee") && !_event.m.Dinner.getSkills().hasTrait(::Legends.Trait.LegendProstheticLeg))
 					{
 						potential.push(inj);
 					}
-					else if (inj.ID == "injury.maimed_foot" && !_event.m.Dinner.getSkills().hasSkill("injury.maimed_foot") && !_event.m.Dinner.getSkills().hasSkill("trait.legend_prosthetic_foot"))
+					else if (inj.ID == "injury.maimed_foot" && !_event.m.Dinner.getSkills().hasSkill("injury.maimed_foot") && !_event.m.Dinner.getSkills().hasTrait(::Legends.Trait.LegendProstheticFoot))
 					{
 						potential.push(inj);
 					}
-					else if (inj.ID == "injury.missing_ear" && !_event.m.Dinner.getSkills().hasSkill("injury.missing_ear") && !_event.m.Dinner.getSkills().hasSkill("trait.legend_prosthetic_ear"))
+					else if (inj.ID == "injury.missing_ear" && !_event.m.Dinner.getSkills().hasSkill("injury.missing_ear") && !_event.m.Dinner.getSkills().hasTrait(::Legends.Trait.LegendProstheticEar))
 					{
 						potential.push(inj);
 					}
-					else if (inj.ID == "injury.missing_eye" && !_event.m.Dinner.getSkills().hasSkill("injury.missing_eye") && !_event.m.Dinner.getSkills().hasSkill("trait.legend_prosthetic_eye"))
+					else if (inj.ID == "injury.missing_eye" && !_event.m.Dinner.getSkills().hasSkill("injury.missing_eye") && !_event.m.Dinner.getSkills().hasTrait(::Legends.Trait.LegendProstheticEye))
 					{
 						potential.push(inj);
 					}
-					else if (inj.ID == "injury.missing_finger" && !_event.m.Dinner.getSkills().hasSkill("injury.missing_finger") && !_event.m.Dinner.getSkills().hasSkill("trait.legend_prosthetic_finger"))
+					else if (inj.ID == "injury.missing_finger" && !_event.m.Dinner.getSkills().hasSkill("injury.missing_finger") && !_event.m.Dinner.getSkills().hasTrait(::Legends.Trait.LegendProstheticFinger))
 					{
 						potential.push(inj);
 					}
-					else if (inj.ID == "injury.missing_hand" && !_event.m.Dinner.getSkills().hasSkill("injury.missing_hand") && !_event.m.Dinner.getSkills().hasSkill("trait.legend_prosthetic_hand"))
+					else if (inj.ID == "injury.missing_hand" && !_event.m.Dinner.getSkills().hasSkill("injury.missing_hand") && !_event.m.Dinner.getSkills().hasTrait(::Legends.Trait.LegendProstheticHand))
 					{
 						potential.push(inj);
 					}
-					else if (inj.ID == "injury.missing_nose" && !_event.m.Dinner.getSkills().hasSkill("injury.missing_nose") && !_event.m.Dinner.getSkills().hasSkill("trait.legend_prosthetic_nose"))
+					else if (inj.ID == "injury.missing_nose" && !_event.m.Dinner.getSkills().hasSkill("injury.missing_nose") && !_event.m.Dinner.getSkills().hasTrait(::Legends.Trait.LegendProstheticNose))
 					{
 						potential.push(inj);
 					}
@@ -131,35 +131,35 @@ this.legend_cannibal_eats_part_of_brother <- this.inherit("scripts/events/event"
 
 				foreach( inj in injuries )
 				{
-					if (inj.ID == "injury.broken_elbow_joint" && !bro.getSkills().hasSkill("injury.broken_elbow_joint") && !bro.getSkills().hasSkill("trait.legend_prosthetic_forearm"))
+					if (inj.ID == "injury.broken_elbow_joint" && !bro.getSkills().hasSkill("injury.broken_elbow_joint") && !bro.getSkills().hasTrait(::Legends.Trait.LegendProstheticForearm))
 					{
 						potential.push(inj);
 					}
-					else if (inj.ID == "injury.broken_knee" && !bro.getSkills().hasSkill("injury.broken_knee") && !bro.getSkills().hasSkill("trait.legend_prosthetic_leg"))
+					else if (inj.ID == "injury.broken_knee" && !bro.getSkills().hasSkill("injury.broken_knee") && !bro.getSkills().hasTrait(::Legends.Trait.LegendProstheticLeg))
 					{
 						potential.push(inj);
 					}
-					else if (inj.ID == "injury.maimed_foot" && !bro.getSkills().hasSkill("injury.maimed_foot") && !bro.getSkills().hasSkill("trait.legend_prosthetic_foot"))
+					else if (inj.ID == "injury.maimed_foot" && !bro.getSkills().hasSkill("injury.maimed_foot") && !bro.getSkills().hasTrait(::Legends.Trait.LegendProstheticFoot))
 					{
 						potential.push(inj);
 					}
-					else if (inj.ID == "injury.missing_ear" && !bro.getSkills().hasSkill("injury.missing_ear") && !bro.getSkills().hasSkill("trait.legend_prosthetic_ear"))
+					else if (inj.ID == "injury.missing_ear" && !bro.getSkills().hasSkill("injury.missing_ear") && !bro.getSkills().hasTrait(::Legends.Trait.LegendProstheticEar))
 					{
 						potential.push(inj);
 					}
-					else if (inj.ID == "injury.missing_eye" && !bro.getSkills().hasSkill("injury.missing_eye") && !bro.getSkills().hasSkill("trait.legend_prosthetic_eye"))
+					else if (inj.ID == "injury.missing_eye" && !bro.getSkills().hasSkill("injury.missing_eye") && !bro.getSkills().hasTrait(::Legends.Trait.LegendProstheticEye))
 					{
 						potential.push(inj);
 					}
-					else if (inj.ID == "injury.missing_finger" && !bro.getSkills().hasSkill("injury.missing_finger") && !bro.getSkills().hasSkill("trait.legend_prosthetic_finger"))
+					else if (inj.ID == "injury.missing_finger" && !bro.getSkills().hasSkill("injury.missing_finger") && !bro.getSkills().hasTrait(::Legends.Trait.LegendProstheticFinger))
 					{
 						potential.push(inj);
 					}
-					else if (inj.ID == "injury.missing_hand" && !bro.getSkills().hasSkill("injury.missing_hand") && !bro.getSkills().hasSkill("trait.legend_prosthetic_hand"))
+					else if (inj.ID == "injury.missing_hand" && !bro.getSkills().hasSkill("injury.missing_hand") && !bro.getSkills().hasTrait(::Legends.Trait.LegendProstheticHand))
 					{
 						potential.push(inj);
 					}
-					else if (inj.ID == "injury.missing_nose" && !bro.getSkills().hasSkill("injury.missing_nose") && !bro.getSkills().hasSkill("trait.legend_prosthetic_nose"))
+					else if (inj.ID == "injury.missing_nose" && !bro.getSkills().hasSkill("injury.missing_nose") && !bro.getSkills().hasTrait(::Legends.Trait.LegendProstheticNose))
 					{
 						potential.push(inj);
 					}

@@ -18,7 +18,7 @@
 		local candidates = [];
 
 		foreach( bro in brothers )
-			if (bro.getLevel() >= 5 && bro.getSkills().hasSkill("trait.fat"))
+			if (bro.getLevel() >= 5 && bro.getSkills().hasTrait(::Legends.Trait.Fat))
 				candidates.push(bro);
 
 		if (candidates.len() > 0) {

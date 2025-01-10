@@ -88,7 +88,7 @@ this.legend_disintegrating_effect <- this.inherit("scripts/skills/skill", {
 	{
 		this.m.TurnsLeft = this.Math.max(1, 2 + this.getContainer().getActor().getCurrentProperties().NegativeStatusEffectDuration);
 
-		if (this.getContainer().hasSkill("trait.bleeder"))
+		if (this.getContainer().hasTrait(::Legends.Trait.Bleeder))
 		{
 			++this.m.TurnsLeft;
 		}

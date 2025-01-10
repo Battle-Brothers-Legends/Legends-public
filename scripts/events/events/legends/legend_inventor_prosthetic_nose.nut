@@ -147,7 +147,7 @@ this.legend_inventor_prosthetic_nose <- this.inherit("scripts/events/event", {
 
 		foreach (bro in brothers)
 		{
-			if (bro.getSkills().hasSkill("injury.missing_nose") && !bro.getSkills().hasSkill("trait.legend_prosthetic_nose"))
+			if (bro.getSkills().hasSkill("injury.missing_nose") && !bro.getSkills().hasTrait(::Legends.Trait.LegendProstheticNose))
 			{
 				nofoot_candidates.push(bro);
 			}

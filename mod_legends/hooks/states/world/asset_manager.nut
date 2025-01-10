@@ -443,7 +443,7 @@
 
 				if (bro.getDailyCost() > 0 && this.m.Money < bro.getDailyCost())
 				{
-					if (bro.getSkills().hasSkill("trait.greedy"))
+					if (bro.getSkills().hasTrait(::Legends.Trait.Greedy))
 					{
 						bro.worsenMood(this.Const.MoodChange.NotPaidGreedy, "Did not get paid");
 					}
@@ -471,11 +471,11 @@
 
 				if (this.m.IsUsingProvisions && this.m.Food < bro.getDailyFood())
 				{
-					if (bro.getSkills().hasSkill("trait.spartan"))
+					if (bro.getSkills().hasTrait(::Legends.Trait.Spartan))
 					{
 						bro.worsenMood(this.Const.MoodChange.NotEatenSpartan, "Went hungry");
 					}
-					else if (bro.getSkills().hasSkill("trait.gluttonous"))
+					else if (bro.getSkills().hasTrait(::Legends.Trait.Gluttonous))
 					{
 						bro.worsenMood(this.Const.MoodChange.NotEatenGluttonous, "Went hungry");
 					}

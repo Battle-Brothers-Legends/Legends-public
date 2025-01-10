@@ -17,7 +17,7 @@ this.perk_legend_brink_of_death <- this.inherit("scripts/skills/skill", {
 
 		foreach( a in actors )
 		{
-			if (!a.getSkills().hasSkill("trait.survivor"))
+			if (!a.getSkills().hasTrait(::Legends.Trait.Survivor))
 			{
 				::Legends.Traits.grant(a, ::Legends.Trait.LegendDeathlySpectre);
 			}

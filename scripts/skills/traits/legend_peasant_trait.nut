@@ -34,7 +34,7 @@ this.legend_peasant_trait <- this.inherit("scripts/skills/traits/character_trait
 
 	function onAdded() //removes fear of nobles (militia origin only!).
 	{
-		if (this.m.Container.hasSkill("trait.legend_fear_nobles"))
+		if (this.m.Container.hasTrait(::Legends.Trait.LegendFearNobles))
 		{
 			this.m.Container.removeByID("trait.legend_fear_nobles");
 		}		

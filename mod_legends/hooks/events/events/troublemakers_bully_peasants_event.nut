@@ -75,7 +75,7 @@
 
 					foreach( bro in brothers )
 					{
-						if (bro.getSkills().hasSkill("trait.bloodthirsty") || bro.getBackground().isBackgroundType(this.Const.BackgroundType.Combat))
+						if (bro.getSkills().hasTrait(::Legends.Trait.Bloodthirsty) || bro.getBackground().isBackgroundType(this.Const.BackgroundType.Combat))
 						{
 							bro.improveMood(1.0, "Enjoyed raiding and pillaging");
 

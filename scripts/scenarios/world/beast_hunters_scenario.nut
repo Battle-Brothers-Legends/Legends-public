@@ -235,7 +235,7 @@ this.beast_hunters_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 			::Legends.Traits.grant(bro, ::Legends.Trait.LegendBeastslayers);
 			bro.improveMood(1.5, "Feels at one with nature");
 		}
-		else if (r == 0 || bro.getSkills().hasSkill("trait.hate_beasts"))
+		else if (r == 0 || bro.getSkills().hasTrait(::Legends.Trait.HateBeasts))
 		{
 			bro.m.HiringCost = this.Math.floor(bro.m.HiringCost * 0.9);
 			bro.getBaseProperties().DailyWageMult *= 0.9;

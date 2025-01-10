@@ -42,7 +42,7 @@
 					local brothers = this.World.getPlayerRoster().getAll();
 
 					foreach( bro in brothers ) {
-						if (bro.getSkills().hasSkill("trait.bloodthirsty") || bro.getBackground().getID() == "background.raider") {
+						if (bro.getSkills().hasTrait(::Legends.Trait.Bloodthirsty) || bro.getBackground().getID() == "background.raider") {
 							bro.improveMood(1.0, "Enjoyed beating up a traveling troupe");
 
 							if (bro.getMoodState() >= this.Const.MoodState.Neutral)
