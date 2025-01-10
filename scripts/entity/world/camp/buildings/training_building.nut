@@ -3,7 +3,8 @@ this.training_building <- this.inherit("scripts/entity/world/camp/camp_building"
 		Results = [],
 		NumBros = 0,
 		UnTrained = 0,
-		BaseCraft = 0.15 // was 1.0, changed tp 0.4 6/11/21 - Luft - dropped to 0.15 by poss 7/3/2023
+		BaseCraft = 0.15, // was 1.0, changed tp 0.4 6/11/21 - Luft - dropped to 0.15 by poss 7/3/2023
+		TrainingTraits = []
 	},
 	function create()
 	{
@@ -48,6 +49,25 @@ this.training_building <- this.inherit("scripts/entity/world/camp/camp_building"
 				Volume = 1.0,
 				Pitch = 1.0
 			}
+		];
+
+		this.m.TrainingTraits = [
+			::Legends.Trait.EagleEyes,
+			::Legends.Trait.Tough,
+			::Legends.Trait.Strong,
+			::Legends.Trait.Quick,
+			::Legends.Trait.Fearless,
+			::Legends.Trait.Determined,
+			::Legends.Trait.Deathwish,
+			::Legends.Trait.Brave,
+			::Legends.Trait.Dexterous,
+			::Legends.Trait.SureFooting,
+			::Legends.Trait.IronLungs,
+			::Legends.Trait.Athletic,
+			::Legends.Trait.IronJaw,
+			::Legends.Trait.Swift,
+			::Legends.Trait.Teamplayer,
+			::Legends.Trait.LegendSteadyHands
 		];
 	}
 
@@ -642,32 +662,13 @@ this.training_building <- this.inherit("scripts/entity/world/camp/camp_building"
 
 	function addRandomTrainingTrait( _bro )
 	{
-		local trainTraits = [
-			::Legends.Trait.EagleEyes,
-			::Legends.Trait.Tough,
-			::Legends.Trait.Strong,
-			::Legends.Trait.Quick,
-			::Legends.Trait.Fearless,
-			::Legends.Trait.Determined,
-			::Legends.Trait.Deathwish,
-			::Legends.Trait.Brave,
-			::Legends.Trait.Dexterous,
-			::Legends.Trait.SureFooting,
-			::Legends.Trait.IronLungs,
-			::Legends.Trait.Athletic,
-			::Legends.Trait.IronJaw,
-			::Legends.Trait.Swift,
-			::Legends.Trait.Teamplayer,
-			::Legends.Trait.LegendSteadyHands
-		]
-
 		local broCurTraits = _bro.getSkills().query(this.Const.SkillType.Trait);
 		local newTraitID;
 		local newTrait;
 
 		while (true)
 		{
-			newTraitID = trainTraits[::Math.rand(0, trainTraits.len() - 1)];
+			newTraitID = this.m.TrainingTraits[::Math.rand(0, this.m.TrainingTraits.len() - 1)];
 			newTrait = this.new(::Legends.Traits.TraitDefObjects[newTraitID]); // ugh, ugly hack
 			local skipTrait = false;
 
