@@ -229,10 +229,10 @@ this.legends_necro_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 		foreach( i, bro in bros )
 		{
 			if (bro.getBackground().isBackgroundType(this.Const.BackgroundType.Crusader)) //delete crusader/pious recruits
-			{
 				garbage.push(bro);
-			}
 		}
+		foreach (g in garbage)
+			_roster.remove(g);
 	}
 
 	function onGenerateBro(bro)
