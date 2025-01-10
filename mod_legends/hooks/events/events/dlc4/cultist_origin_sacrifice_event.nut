@@ -57,7 +57,7 @@
 
 								hasProphet = true;
 								this.updateAchievement("VoiceOfDavkul", 1, 1);
-								skills.removeByID("trait.cultist_chosen");
+								::Legends.Traits.remove(skills, ::Legends.Trait.CultistChosen);
 								skill = this.new("scripts/skills/actives/voice_of_davkul_skill");
 								skills.add(skill);
 								this.List.push({
@@ -67,16 +67,16 @@
 								});
 								::Legends.Traits.grant(skills, ::Legends.Trait.CultistProphet);
 							} else if (skills.hasTrait(::Legends.Trait.CultistDisciple)) {
-								skills.removeByID("trait.cultist_disciple");
+								::Legends.Traits.remove(skills, ::Legends.Trait.CultistDisciple);
 								::Legends.Traits.grant(skills, ::Legends.Trait.CultistChosen);
 							} else if (skills.hasTrait(::Legends.Trait.CultistAcolyte)) {
-								skills.removeByID("trait.cultist_acolyte");
+								::Legends.Traits.remove(skills, ::Legends.Trait.CultistAcolyte);
 								::Legends.Traits.grant(skills, ::Legends.Trait.CultistDisciple);
 							} else if (skills.hasTrait(::Legends.Trait.CultistZealot)) {
-								skills.removeByID("trait.cultist_zealot");
+								::Legends.Traits.remove(skills, ::Legends.Trait.CultistZealot);
 								::Legends.Traits.grant(skills, ::Legends.Trait.CultistAcolyte);
 							} else if (skills.hasTrait(::Legends.Trait.GloriousQuickness)) {
-								skills.removeByID("trait.cultist_fanatic");
+								::Legends.Traits.remove(skills, ::Legends.Trait.GloriousQuickness);
 								::Legends.Traits.grant(skills, ::Legends.Trait.CultistZealot);
 							} else {
 								::Legends.Traits.grant(skills, ::Legends.Trait.CultistFanatic);

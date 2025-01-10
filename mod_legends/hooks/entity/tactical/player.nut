@@ -505,7 +505,7 @@
 		onHired();
 
 		if (!isStabled() && getSkills().hasTrait(::Legends.Trait.LegendIntensiveTraining) && getLevel() > 1 ) {
-			local inTraining = getSkills().getSkillByID("trait.legend_intensive_training_trait");
+			local inTraining = ::Legends.Traits.get(this, ::Legends.Trait.LegendIntensiveTraining);
 			local addSkills = ::Math.rand(0, getLevel()+2);
 			addSkills = ::Math.min(addSkills, inTraining.getMaxSkillsCanBeAdded() - 1);
 			inTraining.addRandomSkills(this, addSkills);
@@ -1660,7 +1660,7 @@
 				mod += skill.getModifier();
 			}
 		}
-		local skill = this.getSkills().getSkillByID("trait.legend_seductive");
+		local skill = ::Legends.Traits.get(this, ::Legends.Trait.LegendSeductive);
 		if (skill != null) {
 			mod += skill.getModifier();
 		}

@@ -367,7 +367,7 @@ this.legend_hunting_basilisks_contract <- this.inherit("scripts/contracts/contra
 
 				if (!this.Contract.m.Dude.getSkills().hasTrait(::Legends.Trait.FearBeasts) && !this.Contract.m.Dude.getSkills().hasTrait(::Legends.Trait.HateBeasts))
 				{
-					this.Contract.m.Dude.getSkills().removeByID("trait.fearless");
+					::Legends.Traits.remove(this.Contract.m.Dude, ::Legends.Trait.Fearless);
 
 					::Legends.Traits.grant(this.Contract.m.Dude, ::Legends.Trait.FearBeasts);
 				}

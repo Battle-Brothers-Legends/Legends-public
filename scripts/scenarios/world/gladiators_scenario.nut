@@ -30,10 +30,10 @@ this.gladiators_scenario <- this.inherit("scripts/scenarios/world/starting_scena
 			bro.setStartValuesEx([
 				"gladiator_origin_background"
 			]);
-			bro.getSkills().removeByID("trait.survivor");
-			bro.getSkills().removeByID("trait.greedy");
-			bro.getSkills().removeByID("trait.loyal");
-			bro.getSkills().removeByID("trait.disloyal");
+			::Legends.Traits.remove(bro, ::Legends.Trait.Survivor);
+			::Legends.Traits.remove(bro, ::Legends.Trait.Greedy);
+			::Legends.Traits.remove(bro, ::Legends.Trait.Loyal);
+			::Legends.Traits.remove(bro, ::Legends.Trait.Disloyal);
 			::Legends.Traits.grant(bro, ::Legends.Trait.ArenaFighter);
 			bro.getFlags().set("ArenaFightsWon", 5);
 			bro.getFlags().set("ArenaFights", 5);

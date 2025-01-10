@@ -5,7 +5,7 @@
 		foreach (s in this.m.Screens) {
 			if (s.ID == "D") {
 				s.start = function (_event) {
-					_event.m.Ailing.getSkills().removeByID("trait.ailing");
+					::Legends.Traits.remove(_event.m.Ailing, ::Legends.Trait.Ailing);
 					this.List.push({
 						id = 10,
 						icon = "ui/traits/trait_icon_59.png",

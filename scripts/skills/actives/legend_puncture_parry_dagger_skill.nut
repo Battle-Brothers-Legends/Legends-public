@@ -61,7 +61,7 @@ this.legend_puncture_parry_dagger_skill <- this.inherit("scripts/skills/skill", 
 	function canDoubleGrip()
 	{
 		local missinghand = this.m.Container.getSkillByID("injury.missing_hand");
-		local newhand = this.m.Container.getSkillByID("trait.legend_prosthetic_hand");
+		local newhand = ::Legends.Traits.get(this, ::Legends.Trait.LegendProstheticHand);
 		local main = this.getContainer().getActor().getItems().getItemAtSlot(this.Const.ItemSlot.Mainhand);
 		local off = this.getContainer().getActor().getItems().getItemAtSlot(this.Const.ItemSlot.Offhand);
 		return (missinghand == null || newhand != null) && main != null && off == null && main.isDoubleGrippable();

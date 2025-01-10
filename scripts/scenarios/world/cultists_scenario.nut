@@ -25,10 +25,10 @@ this.cultists_scenario <- this.inherit("scripts/scenarios/world/starting_scenari
 			bro.getSprite("socket").setBrush("bust_base_orcs");
 			bro.m.HireTime = this.Time.getVirtualTimeF();
 			::Legends.Traits.grant(bro, ::Legends.Trait.CultistFanatic);
-			bro.getSkills().removeByID("trait.superstitious"); //If cultist, this ID will be removed as True believer is not removing them on start
-			bro.getSkills().removeByID("trait.dastard"); //If cultist, this ID will be removed as True believer is not removing them on start
-			bro.getSkills().removeByID("trait.insecure"); //If cultist, this ID will be removed as True believer is not removing them on start
-			bro.getSkills().removeByID("trait.craven"); //If cultist, this ID will be removed as True believer is not removing them on start
+			::Legends.Traits.remove(bro, ::Legends.Trait.Superstitious); //If cultist, this ID will be removed as True believer is not removing them on start
+			::Legends.Traits.remove(bro, ::Legends.Trait.Dastard); //If cultist, this ID will be removed as True believer is not removing them on start
+			::Legends.Traits.remove(bro, ::Legends.Trait.Insecure); //If cultist, this ID will be removed as True believer is not removing them on start
+			::Legends.Traits.remove(bro, ::Legends.Trait.Craven); //If cultist, this ID will be removed as True believer is not removing them on start
 
 			while (names.find(bro.getNameOnly()) != null)
 			{
@@ -232,10 +232,10 @@ this.cultists_scenario <- this.inherit("scripts/scenarios/world/starting_scenari
 			bro.m.HiringCost = this.Math.floor(bro.m.HiringCost * 0.75) //1.0 = default
 			bro.getBaseProperties().DailyWageMult *= 0.75; //1.0 = default
 			bro.getBaseProperties().MeleeSkill += 10;
-			bro.getSkills().removeByID("trait.superstitious"); //If cultist, this ID will be removed as True believer is not removing them on hire
-			bro.getSkills().removeByID("trait.dastard"); //If cultist, this ID will be removed as True believer is not removing them on hire
-			bro.getSkills().removeByID("trait.insecure"); //If cultist, this ID will be removed as True believer is not removing them on hire
-			bro.getSkills().removeByID("trait.craven"); //If cultist, this ID will be removed as True believer is not removing them on hire
+			::Legends.Traits.remove(bro, ::Legends.Trait.Superstitious); //If cultist, this ID will be removed as True believer is not removing them on hire
+			::Legends.Traits.remove(bro, ::Legends.Trait.Dastard); //If cultist, this ID will be removed as True believer is not removing them on hire
+			::Legends.Traits.remove(bro, ::Legends.Trait.Insecure); //If cultist, this ID will be removed as True believer is not removing them on hire
+			::Legends.Traits.remove(bro, ::Legends.Trait.Craven); //If cultist, this ID will be removed as True believer is not removing them on hire
 			bro.getSkills().update();
 		}
 		else

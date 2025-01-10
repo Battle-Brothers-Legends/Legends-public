@@ -78,7 +78,7 @@ this.legends_noble_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 		], false);
 		bros[2].getBackground().m.RawDescription = "%name% is a hulking figure, both upward and outward. Not much of a talker, but a big eater.";
 		bros[2].getBackground().buildDescription(true);
-		bros[2].getSkills().removeByID("trait.tiny");
+		::Legends.Traits.remove(bros[2], ::Legends.Trait.Tiny);
 		::Legends.Traits.grant(bros[2], ::Legends.Trait.Huge);
 		::Legends.Traits.grant(bros[2], ::Legends.Trait.Fat);
 		::Legends.Traits.grant(bros[2], ::Legends.Trait.Gluttonous);

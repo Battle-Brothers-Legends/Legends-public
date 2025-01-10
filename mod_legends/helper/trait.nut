@@ -65,8 +65,6 @@ if (!("Traits" in ::Legends))
 
 ::Legends.Traits.remove <- function (_target, _def) {
 	local container = ::Legends.Traits.getContainer(_target, "on remove");
-	local id = ::Legends.Traits.getID(_def);
-	if (container.hasSkill(id))
-		container.removeByID(id);
+	container.removeByID(::Legends.Traits.getID(_def));
 }
 

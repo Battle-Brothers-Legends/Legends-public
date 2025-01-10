@@ -36,7 +36,7 @@ this.legend_peasant_trait <- this.inherit("scripts/skills/traits/character_trait
 	{
 		if (this.m.Container.hasTrait(::Legends.Trait.LegendFearNobles))
 		{
-			this.m.Container.removeByID("trait.legend_fear_nobles");
+			::Legends.Traits.remove(this, ::Legends.Trait.LegendFearNobles);
 		}		
 	}
 

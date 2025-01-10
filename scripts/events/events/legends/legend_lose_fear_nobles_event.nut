@@ -28,7 +28,7 @@ this.legend_lose_fear_nobles_event <- this.inherit("scripts/events/event", {
 			function start( _event )
 			{
 				this.Characters.push(_event.m.Casualty.getImagePath());
-				local trait = _event.m.Casualty.getSkills().getSkillByID("trait.legend_fear_nobles");
+				local trait = ::Legends.Traits.get(_event.m.Casualty, ::Legends.Trait.LegendFearNobles);
 				this.List.push({
 					id = 10,
 					icon = trait.getIcon(),

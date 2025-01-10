@@ -340,7 +340,7 @@
 				});
 			}
 
-			local oath = this.m.Container.getSkillByID("trait.oath_of_wrath");
+			local oath = ::Legends.Traits.get(this, ::Legends.Trait.OathOfWrath);
 
 			if (oath != null)
 			{

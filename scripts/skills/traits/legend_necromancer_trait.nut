@@ -36,7 +36,7 @@ this.legend_necromancer_trait <- this.inherit("scripts/skills/traits/character_t
 	{
 		if (this.m.Container.hasTrait(::Legends.Trait.HateUndead))
 		{
-			this.m.Container.removeByID("trait.hate_undead");
+			::Legends.Traits.remove(this, ::Legends.Trait.HateUndead);
 		}		
 	}
 

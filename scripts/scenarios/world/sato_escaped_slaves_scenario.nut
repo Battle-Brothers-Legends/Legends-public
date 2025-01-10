@@ -42,12 +42,11 @@ this.sato_escaped_slaves_scenario <- this.inherit("scripts/scenarios/world/start
 		bros[0].addLightInjury();
 		bros[0].getSprite("miniboss").setBrush("bust_miniboss_indebted");
 		this.setRetireText(bros[0]);
-		local skills = bros[0].getSkills();
-		skills.removeByID("trait.dastard");
-		skills.removeByID("trait.craven");
-		skills.removeByID("trait.fainthearted");
-		skills.removeByID("trait.insecure");
-		skills.removeByID("trait.fragile");
+		::Legends.Traits.remove(bros[0], ::Legends.Trait.Dastard);
+		::Legends.Traits.remove(bros[0], ::Legends.Trait.Craven);
+		::Legends.Traits.remove(bros[0], ::Legends.Trait.Fainthearthed);
+		::Legends.Traits.remove(bros[0], ::Legends.Trait.Insecure);
+		::Legends.Traits.remove(bros[0], ::Legends.Trait.Fragile);
 
 		if (bros[0].getBaseProperties().Bravery <= 30)
 		{
@@ -88,8 +87,8 @@ this.sato_escaped_slaves_scenario <- this.inherit("scripts/scenarios/world/start
 		bros[1].setPlaceInFormation(2);
 		bros[1].getSprite("miniboss").setBrush("bust_miniboss_indebted");
 		this.setRetireText(bros[1]);
-		skills.removeByID("trait.fragile");
-		bros[1].getSkills().removeByID("trait.tiny");
+		::Legends.Traits.remove(bros[1], ::Legends.Trait.Fragile);
+		::Legends.Traits.remove(bros[1], ::Legends.Trait.Tiny);
 		::Legends.Traits.grant(bros[1], ::Legends.Trait.Huge);
 		::Legends.Traits.grant(bros[1], ::Legends.Trait.LegendBrothersInChains);
 		local talents = bros[1].getTalents();
