@@ -17,10 +17,10 @@ this.perk_legend_brink_of_death <- this.inherit("scripts/skills/skill", {
 
 		foreach( a in actors )
 		{
+			if (a.isStabled()) // exclude donkeys
+				continue;
 			if (!a.getSkills().hasSkill("trait.survivor"))
-			{
 				a.getSkills().add(this.new("scripts/skills/traits/legend_deathly_spectre_trait"));
-			}
 		}
 	}
 

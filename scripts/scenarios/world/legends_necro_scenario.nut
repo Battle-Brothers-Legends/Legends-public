@@ -212,7 +212,7 @@ this.legends_necro_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 		{
 			bro.getSprite("socket").setBrush("bust_base_undead");
 		}
-		else
+		else if (!bro.isStabled())
 		{
 			bro.getSkills().add(this.new("scripts/skills/traits/legend_deathly_spectre_trait"));
 			bro.worsenMood(2.0, "Something doesn't feel right here...");

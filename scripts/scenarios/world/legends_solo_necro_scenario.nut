@@ -120,7 +120,7 @@ this.legends_solo_necro_scenario <- this.inherit("scripts/scenarios/world/starti
 		bros[4].getSprite("socket").setBrush("bust_base_undead");
 		bros[4].getSkills().add(this.new("scripts/skills/traits/legend_withering_aura_trait"));
 		bros[4].getSkills().add(this.new("scripts/skills/traits/legend_deathly_spectre_trait"));
- 		
+
 		bros[5].setStartValuesEx([
 			"cultist_background"
 		]);
@@ -266,7 +266,7 @@ this.legends_solo_necro_scenario <- this.inherit("scripts/scenarios/world/starti
 			bro.getSprite("socket").setBrush("bust_base_undead");
 			bro.getBaseProperties().Hitpoints += 12;
 		}
-		else
+		else if (!bro.isStabled())
 		{
 			bro.worsenMood(2.0, "Feels very sick all of a sudden...");
 			bro.getSkills().add(this.new("scripts/skills/traits/legend_withering_aura_trait"));
