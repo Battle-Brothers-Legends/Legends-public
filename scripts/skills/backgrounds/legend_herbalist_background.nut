@@ -8,7 +8,7 @@ this.legend_herbalist_background <- this.inherit("scripts/skills/backgrounds/cha
 		this.m.Icon = "ui/backgrounds/herbalist.png";
 		this.m.BackgroundDescription = "Herbalists and Apothecaries are skilled with a sickle, harvesting herbs for use in medicine";
 		this.m.GoodEnding = "%name% the herbalist left to start an Apothecary in the wetlands, business is good and remedies abound. Last you heard %name% had discovered a cure for bunions and people traveled from far and wide to try the soup";
-		this.m.BadEnding = "%name% went off to become a herbalist again, but the cures didn't work and they soon got a reputation as a quack. Looking for more potent cures, %name% poisoned themself and never recovered.";
+		this.m.BadEnding = "%name% went off to become a herbalist again, but the cures didn't work and they soon got a reputation as a quack. Looking for more potent cures, %name% poisoned %themselves% and never recovered.";
 		this.m.HiringCost = 120;
 		this.m.DailyCost = 18;
 		this.m.Excluded = [

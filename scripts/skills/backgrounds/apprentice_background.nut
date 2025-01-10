@@ -7,7 +7,7 @@ this.apprentice_background <- this.inherit("scripts/skills/backgrounds/character
 		this.m.Name = "Apprentice";
 		this.m.Icon = "ui/backgrounds/background_40.png";
 		this.m.BackgroundDescription = "Apprentices tend to be eager for knowledge and learn faster than others.";
-		this.m.GoodEnding = "Perhaps one of the sharpest men you\'ve ever met, %name% the apprentice was the quickest learner in the %companyname%. With plenty of crowns stored, %they% retired from fighting to take %their% talents to the business world. Last you heard %they% was doing very well for %themself% across multiple trades. If you ever have a child, this is the %person% you\'ll send them to for apprenticeship.";
+		this.m.GoodEnding = "Perhaps one of the sharpest men you\'ve ever met, %name% the apprentice was the quickest learner in the %companyname%. With plenty of crowns stored, %they% retired from fighting to take %their% talents to the business world. Last you heard %they% was doing very well for %themselves% across multiple trades. If you ever have a child, this is the %person% you\'ll send them to for apprenticeship.";
 		this.m.BadEnding = "%name% the apprentice was, by far, the quickest learner in the %companyname%. Little surprise then that %they% was also one of the quickest to recognize its inevitable downfall and leave while %they% still could. Had %they% been born in a different time %they% would have gone on to do great things. Instead, many wars, invasions, and plagues spreading across the land ultimately ensured %name% and many other talented men went to total waste.";
 		this.m.HiringCost = 80;
 		this.m.DailyCost = 6;
