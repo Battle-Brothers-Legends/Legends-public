@@ -1,5 +1,7 @@
 this.rest_building <- this.inherit("scripts/entity/world/camp/camp_building", {
-	m = {},
+	m = {
+		Results = []
+	},
 	function create()
 	{
 		this.camp_building.create();
@@ -84,30 +86,90 @@ this.rest_building <- this.inherit("scripts/entity/world/camp/camp_building", {
 
 			if (b.getLastCampTime() == 0 || this.Time.getVirtualTimeF() - b.getLastCampTime() > this.World.getTime().SecondsPerDay)
 			{
+				this.getRested(bro);
 				b.improveMood(mood, "Was able to rest in camp");
 				b.setLastCampTime(this.m.Camp.getStopTime());
 			}
 		}
 	}
+
+	function getRested(bro)
+	{
+		local background = bro.getBackground();
+		local activities = [
+			"While resting at camp, " + bro.getName() + " has a liquid lunch or three",
+			bro.getName() + " makes shadow puppets by the fire",
+			bro.getName() + " naps through the day", // can technically make this for multiple days
+			bro.getName() + " yells unconstructive criticism at the rest of the camp",
+			bro.getName() + " frolics through a nearby flower patch",
+			bro.getName() + " draws generously proportioned figures with a stick",
+			bro.getName() + " talks about putting a handgonne on an axe",
+			bro.getName() + " makes a makeshift flail with a stick and some onions"
+			// "Bill and Jill dance a merry jig around camp",
+			// "Bill and Jill take turns kicking a leather ball around",
+			// "Bill and Jill take turns swapping increasingly tall stories",
+			// "Bill and Jill take turns arm wrestling",
+			// "Bill and Jill play dice to wile away the hours"
+		];
+
+		if (background.getID() == "background.monk")
+			activities.push(bro.getName() + " enthusiastically lectured the camp on the importance of living a holy life")
+
+		if (background.getID() == "background.flagellant")
+			activities.push(bro.getName() + " spends their time in front of an idol of the Old Gods, slowly offering a flesh sacrifice")
+
+		if (background.getID() == "background.cultist" || background.getID() == "background.converted_cultist")
+			activities.push(bro.getName() + " enthusiastically spends their free time raving to the camp about the glories of Davkul")
+
+		if (background.getID() == "background.gladiator")
+			activities.push(bro.getName() + " decides the best use of free time is to flex freshly oiled muscles")
+
+		if (background.getID() == "background.ratcatcher")
+			activities.push(bro.getName() + " plays with a captured rat")
+
+		if (background.getID() == "background.nomad" || background.getID() == "background.legend_conscript")
+			activities.push(bro.getName() + " spends their time filling their pockets with sand")
+
+		if (background.isBackgroundType(this.Const.BackgroundType.Performing))
+			activities.push(bro.getName() + " sings and dances, to the entertainment of the entire camp")
+
+		if (bro.getSkills().hasSkillOfType(this.Const.SkillType.TemporaryInjury) || bro.getSkills().hasSkillOfType(this.Const.SkillType.SemiInjury))
+		{
+			activities.extend([
+				bro.getName() + " blew some happy powder to take away from the pain",
+				bro.getName() + " lied in a bedroll moaning in pain",
+				bro.getName() + " spent time tending to fresh wounds",
+				bro.getName() + " creatively cursed at anything and everything to distract from the pain"
+			]);
+		}
+
+		if (background.getID() == "background.assassin" || background.getID() == "background.killer_on_the_run" || background.getID() == "background.assassin_southern" || background.getID() == "background.legend_bounty_hunter")
+		{
+			activities.extend([
+				bro.getName() + " organized a growing poison collection",
+				bro.getName() + " practiced standing menacingly on doorways",
+				bro.getName() + " menacingly cleaned dirt under fingernails with a knife",
+				bro.getName() + " sharpened a dagger with an intense purpose"
+			]);
+		}
+		this.m.Results.push({
+			id = 150,
+			Icon = this.Const.MoodStateIcon[b.getMoodState()],
+			Text = activities[this.Math.rand(0, activities.len() - 1)] + " " + this.Const.MoodStateEvent[b.getMoodState()]
+		})
+
+		// if (background.isBackgroundType(this.Const.BackgroundType.Combat))
+		// {
+		// 	local randomItem = ["weapon", "shield", "armor", ];
+		// 	activities.extend([
+		// 		bro.getName() + " spends their time in front of an idol of the Old Gods, slowly offering a flesh sacrifice"
+		// 	])
+		// } i want to do have this randomly choose a weapon/armor but i'm too lazy rn
+	}
 	
 	function getResults()
 	{
-		local res = [];
-		local roster = this.World.getPlayerRoster().getAll();
-		local moodCount = 150;
-		foreach( b in roster )
-		{
-			if (b.getLastCampTime() == this.m.Camp.getStopTime())
-			{
-				++moodCount
-				res.push({
-					id = moodCount,
-					icon =  this.Const.MoodStateIcon[b.getMoodState()],
-					text = b.getName() + this.Const.MoodStateEvent[b.getMoodState()]
-				})
-			}
-		}
-		return res;
+		return this.m.Results;
 	}
 
 	function onClicked( _campScreen )
