@@ -26,6 +26,9 @@ this.legend_qiyan_background <- this.inherit("scripts/skills/backgrounds/charact
 			"trait.legend_slack",
 			"trait.craven"
 		];
+		this.m.Titles = [
+			"the Qiyan"
+		];
 		this.m.ExcludedTalents = [
 			this.Const.Attributes.Hitpoints,
 			this.Const.Attributes.Fatigue
@@ -115,8 +118,6 @@ this.legend_qiyan_background <- this.inherit("scripts/skills/backgrounds/charact
 	function onAdded()
 	{
 		this.character_background.onAdded();
-		local actor = this.getContainer().getActor();
-		actor.setTitle("the Qiyan");
 	}
 
 	function onAddEquipment()
