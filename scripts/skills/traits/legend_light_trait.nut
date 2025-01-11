@@ -3,7 +3,7 @@ this.legend_light_trait <- this.inherit("scripts/skills/traits/character_trait",
 	function create()
 	{
 		this.character_trait.create();
-		this.m.ID = "trait.legend_light";
+		this.m.ID = ::Legends.Traits.getID(::Legends.Trait.LegendLight);
 		this.m.Name = "Light";
 		this.m.Icon = "ui/traits/light_trait.png";
 		this.m.Description = "Being exceptionally light, this character\'s strikes don\'t really hurt, however they\'re also extremely fast.";
@@ -13,14 +13,14 @@ this.legend_light_trait <- this.inherit("scripts/skills/traits/character_trait",
 			"the Lightning"
 		];
 		this.m.Excluded = [
-			"trait.huge",
-			"trait.strong",
-			"trait.tough",
-			"trait.brute",
-			"trait.iron_jaw",
-			"trait.hesitant",
-			"trait.gluttonous",
-			"trait.legend_heavy"
+			::Legends.Traits.getID(::Legends.Trait.Huge),
+			::Legends.Traits.getID(::Legends.Trait.Strong),
+			::Legends.Traits.getID(::Legends.Trait.Tough),
+			::Legends.Traits.getID(::Legends.Trait.Brute),
+			::Legends.Traits.getID(::Legends.Trait.IronJaw),
+			::Legends.Traits.getID(::Legends.Trait.Hesistant),
+			::Legends.Traits.getID(::Legends.Trait.Gluttonous),
+			::Legends.Traits.getID(::Legends.Trait.LegendHeavy)
 		];
 	}
 

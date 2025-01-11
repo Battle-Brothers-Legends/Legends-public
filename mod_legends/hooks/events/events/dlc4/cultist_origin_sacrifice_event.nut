@@ -21,7 +21,7 @@
 					local hasProphet = false;
 
 					foreach( bro in brothers ) {
-						if (bro.getSkills().hasSkill("trait.cultist_prophet"))
+						if (bro.getSkills().hasTrait(::Legends.Trait.CultistProphet))
 						{
 							hasProphet = true;
 							break;
@@ -49,15 +49,15 @@
 							local skills = bro.getSkills();
 							local skill;
 
-							if (skills.hasSkill("trait.cultist_prophet"))
+							if (skills.hasTrait(::Legends.Trait.CultistProphet))
 								continue;
-							else if (skills.hasSkill("trait.cultist_chosen")) {
+							else if (skills.hasTrait(::Legends.Trait.CultistChosen)) {
 								if (hasProphet)
 									continue;
 
 								hasProphet = true;
 								this.updateAchievement("VoiceOfDavkul", 1, 1);
-								skills.removeByID("trait.cultist_chosen");
+								::Legends.Traits.remove(skills, ::Legends.Trait.CultistChosen);
 								skill = this.new("scripts/skills/actives/voice_of_davkul_skill");
 								skills.add(skill);
 								this.List.push({
@@ -65,27 +65,21 @@
 									icon = skill.getIcon(),
 									text = bro.getName() + " has received " + this.Const.Strings.getArticle(skill.getName()) + skill.getName()
 								});
-								skill = this.new("scripts/skills/traits/cultist_prophet_trait");
-								skills.add(skill);
-							} else if (skills.hasSkill("trait.cultist_disciple")) {
-								skills.removeByID("trait.cultist_disciple");
-								skill = this.new("scripts/skills/traits/cultist_chosen_trait");
-								skills.add(skill);
-							} else if (skills.hasSkill("trait.cultist_acolyte")) {
-								skills.removeByID("trait.cultist_acolyte");
-								skill = this.new("scripts/skills/traits/cultist_disciple_trait");
-								skills.add(skill);
-							} else if (skills.hasSkill("trait.cultist_zealot")) {
-							skills.removeByID("trait.cultist_zealot");
-								skill = this.new("scripts/skills/traits/cultist_acolyte_trait");
-								skills.add(skill);
-							} else if (skills.hasSkill("trait.cultist_fanatic")) {
-								skills.removeByID("trait.cultist_fanatic");
-								skill = this.new("scripts/skills/traits/cultist_zealot_trait");
-								skills.add(skill);
+								::Legends.Traits.grant(skills, ::Legends.Trait.CultistProphet);
+							} else if (skills.hasTrait(::Legends.Trait.CultistDisciple)) {
+								::Legends.Traits.remove(skills, ::Legends.Trait.CultistDisciple);
+								::Legends.Traits.grant(skills, ::Legends.Trait.CultistChosen);
+							} else if (skills.hasTrait(::Legends.Trait.CultistAcolyte)) {
+								::Legends.Traits.remove(skills, ::Legends.Trait.CultistAcolyte);
+								::Legends.Traits.grant(skills, ::Legends.Trait.CultistDisciple);
+							} else if (skills.hasTrait(::Legends.Trait.CultistZealot)) {
+								::Legends.Traits.remove(skills, ::Legends.Trait.CultistZealot);
+								::Legends.Traits.grant(skills, ::Legends.Trait.CultistAcolyte);
+							} else if (skills.hasTrait(::Legends.Trait.GloriousQuickness)) {
+								::Legends.Traits.remove(skills, ::Legends.Trait.GloriousQuickness);
+								::Legends.Traits.grant(skills, ::Legends.Trait.CultistZealot);
 							} else {
-								skill = this.new("scripts/skills/traits/cultist_fanatic_trait");
-								skills.add(skill);
+								::Legends.Traits.grant(skills, ::Legends.Trait.CultistFanatic);
 							}
 
 							if (skill != null) {
@@ -95,7 +89,7 @@
 									text = bro.getName() + " is now " + this.Const.Strings.getArticle(skill.getName()) + skill.getName()
 								});
 							}
-						} else if (!bro.getSkills().hasSkill("trait.mad")) {
+						} else if (!bro.getSkills().hasTrait(::Legends.Trait.Mad)) {
 							bro.worsenMood(2.5, "Horrified by the sacrifice of " + _event.m.Sacrifice.getName());
 
 							if (bro.getMoodState() < this.Const.MoodState.Neutral) {

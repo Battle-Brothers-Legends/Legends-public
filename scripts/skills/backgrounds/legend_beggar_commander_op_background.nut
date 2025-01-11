@@ -12,23 +12,23 @@ this.legend_beggar_commander_op_background <- this.inherit("scripts/skills/backg
 		this.m.HiringCost = 30;
 		this.m.DailyCost = 0;
 		this.m.Excluded = [
-			"trait.iron_jaw",
-			"trait.tough",
-			"trait.strong",
-			"trait.cocky",
-			"trait.fat",
-			"trait.bright",
-			"trait.fearless",
-			"trait.legend_hate_nobles",
-			"trait.brave",
-			"trait.determined",
-			"trait.deathwish",
-			"trait.greedy",
-			"trait.athletic",
-			"trait.legend_aggressive",
-			"trait.legend_natural",
-			"trait.disloyal",
-			"trait.loyal"
+			::Legends.Traits.getID(::Legends.Trait.IronJaw),
+			::Legends.Traits.getID(::Legends.Trait.Tough),
+			::Legends.Traits.getID(::Legends.Trait.Strong),
+			::Legends.Traits.getID(::Legends.Trait.Cocky),
+			::Legends.Traits.getID(::Legends.Trait.Fat),
+			::Legends.Traits.getID(::Legends.Trait.Bright),
+			::Legends.Traits.getID(::Legends.Trait.Fearless),
+			::Legends.Traits.getID(::Legends.Trait.LegendHateNobles),
+			::Legends.Traits.getID(::Legends.Trait.Brave),
+			::Legends.Traits.getID(::Legends.Trait.Determined),
+			::Legends.Traits.getID(::Legends.Trait.Deathwish),
+			::Legends.Traits.getID(::Legends.Trait.Greedy),
+			::Legends.Traits.getID(::Legends.Trait.Athletic),
+			::Legends.Traits.getID(::Legends.Trait.LegendAggressive),
+			::Legends.Traits.getID(::Legends.Trait.LegendNatural),
+			::Legends.Traits.getID(::Legends.Trait.Disloyal),
+			::Legends.Traits.getID(::Legends.Trait.Loyal)
 		];
 		this.m.ExcludedTalents = [
 			this.Const.Attributes.Hitpoints,

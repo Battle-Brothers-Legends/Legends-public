@@ -14,38 +14,38 @@ this.legend_assassin_commander_background <- this.inherit("scripts/skills/backgr
 		this.m.HiringCost = 9999999;
 		this.m.DailyCost = 0;
 		this.m.Excluded = [
-			"trait.weasel",
-			"trait.teamplayer",
-			"trait.fear_beasts",
-			"trait.hate_undead",
-			"trait.paranoid",
-			"trait.night_blind",
-			"trait.ailing",
-			"trait.clubfooted",
-			"trait.fat",
-			"trait.legend_fear_dark",
-			"trait.tiny",
-			"trait.gluttonous",
-			"trait.pessimist",
-			"trait.optimist",
-			"trait.short_sighted",
-			"trait.dexterous",
-			"trait.insecure",
-			"trait.hesitant",
-			"trait.asthmatic",
-			"trait.greedy",
-			"trait.fragile",
-			"trait.fainthearted",
-			"trait.craven",
-			"trait.bleeder",
-			"trait.bright",
-			"trait.cocky",
-			"trait.dastard",
-			"trait.drunkard",
-			"trait.disloyal",
-			"trait.loyal",
-			"trait.dumb",
-			"trait.legend_predictable"
+			::Legends.Traits.getID(::Legends.Trait.Weasel),
+			::Legends.Traits.getID(::Legends.Trait.Teamplayer),
+			::Legends.Traits.getID(::Legends.Trait.FearBeasts),
+			::Legends.Traits.getID(::Legends.Trait.HateUndead),
+			::Legends.Traits.getID(::Legends.Trait.Paranoid),
+			::Legends.Traits.getID(::Legends.Trait.NightBlind),
+			::Legends.Traits.getID(::Legends.Trait.Ailing),
+			::Legends.Traits.getID(::Legends.Trait.Clubfooted),
+			::Legends.Traits.getID(::Legends.Trait.Fat),
+			::Legends.Traits.getID(::Legends.Trait.LegendFearDark),
+			::Legends.Traits.getID(::Legends.Trait.Tiny),
+			::Legends.Traits.getID(::Legends.Trait.Gluttonous),
+			::Legends.Traits.getID(::Legends.Trait.Pessimist),
+			::Legends.Traits.getID(::Legends.Trait.Optimist),
+			::Legends.Traits.getID(::Legends.Trait.ShortSighted),
+			::Legends.Traits.getID(::Legends.Trait.Dexterous),
+			::Legends.Traits.getID(::Legends.Trait.Insecure),
+			::Legends.Traits.getID(::Legends.Trait.Hesistant),
+			::Legends.Traits.getID(::Legends.Trait.Asthmatic),
+			::Legends.Traits.getID(::Legends.Trait.Greedy),
+			::Legends.Traits.getID(::Legends.Trait.Fragile),
+			::Legends.Traits.getID(::Legends.Trait.Fainthearthed),
+			::Legends.Traits.getID(::Legends.Trait.Craven),
+			::Legends.Traits.getID(::Legends.Trait.Bleeder),
+			::Legends.Traits.getID(::Legends.Trait.Bright),
+			::Legends.Traits.getID(::Legends.Trait.Cocky),
+			::Legends.Traits.getID(::Legends.Trait.Dastard),
+			::Legends.Traits.getID(::Legends.Trait.Drunkard),
+			::Legends.Traits.getID(::Legends.Trait.Disloyal),
+			::Legends.Traits.getID(::Legends.Trait.Loyal),
+			::Legends.Traits.getID(::Legends.Trait.Dumb),
+			::Legends.Traits.getID(::Legends.Trait.LegendPredictable)
 		];
 		this.m.Titles = [
 			"the Assassin",
@@ -256,8 +256,7 @@ this.legend_assassin_commander_background <- this.inherit("scripts/skills/backgr
 	function onAdded()
 	{
 		this.character_background.onAdded();
-		local actor = this.getContainer().getActor();
-		this.m.Container.add(this.new("scripts/skills/traits/legend_aggressive_trait"));
+		::Legends.Traits.grant(this, ::Legends.Trait.LegendAggressive);
 	}
 
 	function onAddEquipment()

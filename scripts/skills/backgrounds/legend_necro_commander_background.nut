@@ -12,26 +12,26 @@ this.legend_necro_commander_background <- this.inherit("scripts/skills/backgroun
 		this.m.HiringCost = 1200000000000;
 		this.m.DailyCost = 0;
 		this.m.Excluded = [
-			"trait.brave",
-			"trait.athletic",
-			"trait.brute",
-			"trait.dexterous",
-			"trait.eagleyes",
-			"trait.loyal",
-			"trait.quick",
-			"trait.swift",
-			"trait.tough",
-			"trait.disloyal",
-			"trait.hate_undead",
-			"trait.fear_undead",
-			"trait.gluttonous",
-			"trait.cocky",
-			"trait.dumb",
-			"trait.craven",
-			"trait.greedy",
-			"trait.bloodthirsty",
-			"trait.legend_fear_dark",
-			"trait.legend_sureshot"
+			::Legends.Traits.getID(::Legends.Trait.Brave),
+			::Legends.Traits.getID(::Legends.Trait.Athletic),
+			::Legends.Traits.getID(::Legends.Trait.Brute),
+			::Legends.Traits.getID(::Legends.Trait.Dexterous),
+			::Legends.Traits.getID(::Legends.Trait.EagleEyes),
+			::Legends.Traits.getID(::Legends.Trait.Loyal),
+			::Legends.Traits.getID(::Legends.Trait.Quick),
+			::Legends.Traits.getID(::Legends.Trait.Swift),
+			::Legends.Traits.getID(::Legends.Trait.Tough),
+			::Legends.Traits.getID(::Legends.Trait.Disloyal),
+			::Legends.Traits.getID(::Legends.Trait.HateUndead),
+			::Legends.Traits.getID(::Legends.Trait.FearUndead),
+			::Legends.Traits.getID(::Legends.Trait.Gluttonous),
+			::Legends.Traits.getID(::Legends.Trait.Cocky),
+			::Legends.Traits.getID(::Legends.Trait.Dumb),
+			::Legends.Traits.getID(::Legends.Trait.Craven),
+			::Legends.Traits.getID(::Legends.Trait.Greedy),
+			::Legends.Traits.getID(::Legends.Trait.Bloodthirsty),
+			::Legends.Traits.getID(::Legends.Trait.LegendFearDark),
+			::Legends.Traits.getID(::Legends.Trait.LegendSureshot)
 		];
 		this.m.Titles = [
 			"the Sickening",
@@ -254,7 +254,7 @@ this.legend_necro_commander_background <- this.inherit("scripts/skills/backgroun
 	{
 		this.character_background.onAdded();
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendSiphon);
-		this.m.Container.add(this.new("scripts/skills/traits/old_trait"));
+		::Legends.Traits.grant(this, ::Legends.Trait.Old);
 	}
 
 	function onAddEquipment()

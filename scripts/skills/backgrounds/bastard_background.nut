@@ -12,16 +12,16 @@ this.bastard_background <- this.inherit("scripts/skills/backgrounds/character_ba
 		this.m.HiringCost = 170;
 		this.m.DailyCost = 21;
 		this.m.Excluded = [
-			"trait.teamplayer",
-			"trait.ailing",
-			"trait.clumsy",
-			"trait.fat",
-			"trait.tiny",
-			"trait.hesitant",
-			"trait.bleeder",
-			"trait.dastard",
-			"trait.asthmatic",
-			"trait.legend_hate_nobles",
+			::Legends.Traits.getID(::Legends.Trait.Teamplayer),
+			::Legends.Traits.getID(::Legends.Trait.Ailing),
+			::Legends.Traits.getID(::Legends.Trait.Clumsy),
+			::Legends.Traits.getID(::Legends.Trait.Fat),
+			::Legends.Traits.getID(::Legends.Trait.Tiny),
+			::Legends.Traits.getID(::Legends.Trait.Hesistant),
+			::Legends.Traits.getID(::Legends.Trait.Bleeder),
+			::Legends.Traits.getID(::Legends.Trait.Dastard),
+			::Legends.Traits.getID(::Legends.Trait.Asthmatic),
+			::Legends.Traits.getID(::Legends.Trait.LegendHateNobles),
 		];
 		this.m.Faces = this.Const.Faces.AllWhiteMale;
 		this.m.Hairs = this.Const.Hair.TidyMale;

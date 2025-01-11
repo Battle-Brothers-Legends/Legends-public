@@ -94,36 +94,36 @@
 
 			if (!b.getSkills().hasSkill("effects.drunk"))
 			{
-				if (b.getSkills().hasSkill("trait.drunkard"))
+				if (b.getSkills().hasTrait(::Legends.Trait.Drunkard))
 				{
 					drunkChance = drunkChance + 20;
 				}
 
-				if (b.getSkills().hasSkill("trait.strong"))
+				if (b.getSkills().hasTrait(::Legends.Trait.Strong))
 				{
 					drunkChance = drunkChance - 10;
 				}
 
-				if (b.getSkills().hasSkill("trait.tough"))
+				if (b.getSkills().hasTrait(::Legends.Trait.Tough))
 				{
 					drunkChance = drunkChance - 10;
 				}
 
-				if (b.getSkills().hasSkill("trait.fragile"))
+				if (b.getSkills().hasTrait(::Legends.Trait.Fragile))
 				{
 					drunkChance = drunkChance + 10;
 				}
 
-				if (b.getSkills().hasSkill("trait.tiny"))
+				if (b.getSkills().hasTrait(::Legends.Trait.Tiny))
 				{
 					drunkChance = drunkChance + 10;
 				}
 
-				if (b.getSkills().hasSkill("trait.bright"))
+				if (b.getSkills().hasTrait(::Legends.Trait.Bright))
 				{
 					drunkChance = drunkChance - 10;
 				}
-				else if (b.getSkills().hasSkill("trait.dumb"))
+				else if (b.getSkills().hasTrait(::Legends.Trait.Dumb))
 				{
 					drunkChance = drunkChance + 10;
 				}
@@ -131,15 +131,15 @@
 			else
 			{
 				drunkChance = 0;
-				if (!b.getSkills().hasSkill("trait.drunkard"))
+				if (!b.getSkills().hasTrait(::Legends.Trait.Drunkard))
 				{
 					if (this.Math.rand(1, 100) <= this.m.RoundsGiven + 5)
 					{
-						local drunk = this.new("scripts/skills/traits/drunkard_trait");
-						b.getSkills().add(drunk);
-						result.Result.push({
-							Icon = drunk.getIcon(),
-							Text = b.getName() + " is now a drunkard."
+						::Legends.Traits.grant(b, ::Legends.Trait.Drunkard, function(_trait) {
+							result.Result.push({
+								Icon = _trait.getIcon(),
+								Text = b.getName() + " is now a drunkard."
+							});
 						});
 					}
 				}

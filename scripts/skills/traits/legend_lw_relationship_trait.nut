@@ -3,7 +3,7 @@ this.legend_lw_relationship_trait <- this.inherit("scripts/skills/traits/charact
 	function create()
 	{
 		this.character_trait.create();
-		this.m.ID = "trait.legend_lw_relationship";
+		this.m.ID = ::Legends.Traits.getID(::Legends.Trait.LegendLWRelationship);
 		this.m.Name = "Relationship";
 		this.m.Icon = "ui/traits/aggressive_trait.png";
 		this.m.Description = "If you can see this something is fucked up";

@@ -37,7 +37,7 @@ this.legend_caravan_guard <- this.inherit("scripts/entity/tactical/legend_random
 		this.getSprite("socket").setBrush("bust_base_caravan");
 		this.getSprite("dirt").Visible = true;
 		if(::Legends.isLegendaryDifficulty())
-			{
+		{
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecialistShieldSkill);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecialistShieldPush);
 			::Legends.Perks.grant(this, ::Legends.Perk.ShieldBash);
@@ -46,8 +46,8 @@ this.legend_caravan_guard <- this.inherit("scripts/entity/tactical/legend_random
 			::Legends.Perks.grant(this, ::Legends.Perk.Rotation);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendAlert);
 			::Legends.Perks.grant(this, ::Legends.Perk.CripplingStrikes);
-			this.m.Skills.add(this.new("scripts/skills/traits/fearless_trait"));
-			}
+			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
+		}
 	}
 
 	function assignRandomEquipment()

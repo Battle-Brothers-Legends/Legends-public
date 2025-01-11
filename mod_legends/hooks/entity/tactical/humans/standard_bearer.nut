@@ -13,7 +13,7 @@
 			::Legends.Perks.grant(this, ::Legends.Perk.FortifiedMind);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendForwardPush);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendHoldTheLine);
-			this.m.Skills.add(this.new("scripts/skills/traits/fearless_trait"));
+			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
 		}
 	}
 

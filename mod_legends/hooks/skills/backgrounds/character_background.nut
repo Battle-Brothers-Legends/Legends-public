@@ -1390,7 +1390,7 @@
 
 	o.onUpdate = function ( _properties )
 	{
-		if (this.m.DailyCost == 0 || this.getContainer().hasSkill("trait.player"))
+		if (this.m.DailyCost == 0 || this.getContainer().hasTrait(::Legends.Trait.Player))
 		{
 			_properties.DailyWage = 0;
 		}

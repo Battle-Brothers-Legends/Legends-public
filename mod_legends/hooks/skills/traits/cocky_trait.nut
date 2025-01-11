@@ -6,9 +6,9 @@
 		create();
 		this.m.Description = "This character can be as dangerous to themself as to his opponent.";
 		this.m.Excluded.extend([
-			"trait.legend_fear_nobles",
-			"trait.legend_pragmatic",
-			"trait.legend_seductive"
+			::Legends.Traits.getID(::Legends.Trait.LegendFearNobles),
+			::Legends.Traits.getID(::Legends.Trait.LegendPragmatic),
+			::Legends.Traits.getID(::Legends.Trait.LegendSeductive)
 		]);
 	}
 });

@@ -12,21 +12,21 @@ this.legend_herbalist_background <- this.inherit("scripts/skills/backgrounds/cha
 		this.m.HiringCost = 120;
 		this.m.DailyCost = 18;
 		this.m.Excluded = [
-			"trait.weasel",
-			"trait.hate_beasts",
-			"trait.fear_beasts",
-			"trait.swift",
-			"trait.impatient",
-			"trait.clubfooted",
-			"trait.brute",
-			"trait.gluttonous",
-			"trait.disloyal",
-			"trait.cocky",
-			"trait.dumb",
-			"trait.iron_lungs",
-			"trait.craven",
-			"trait.greedy",
-			"trait.bloodthirsty"
+			::Legends.Traits.getID(::Legends.Trait.Weasel),
+			::Legends.Traits.getID(::Legends.Trait.HateBeasts),
+			::Legends.Traits.getID(::Legends.Trait.FearBeasts),
+			::Legends.Traits.getID(::Legends.Trait.Swift),
+			::Legends.Traits.getID(::Legends.Trait.Impatient),
+			::Legends.Traits.getID(::Legends.Trait.Clubfooted),
+			::Legends.Traits.getID(::Legends.Trait.Brute),
+			::Legends.Traits.getID(::Legends.Trait.Gluttonous),
+			::Legends.Traits.getID(::Legends.Trait.Disloyal),
+			::Legends.Traits.getID(::Legends.Trait.Cocky),
+			::Legends.Traits.getID(::Legends.Trait.Dumb),
+			::Legends.Traits.getID(::Legends.Trait.IronLungs),
+			::Legends.Traits.getID(::Legends.Trait.Craven),
+			::Legends.Traits.getID(::Legends.Trait.Greedy),
+			::Legends.Traits.getID(::Legends.Trait.Bloodthirsty)
 		];
 		this.m.Titles = [
 			"the Gentle",

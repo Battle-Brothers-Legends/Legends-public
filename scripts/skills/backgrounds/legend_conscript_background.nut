@@ -13,26 +13,26 @@ this.legend_conscript_background <- this.inherit("scripts/skills/backgrounds/cha
 		this.m.DailyCost = 35;
 		this.m.DailyCostMult = 1.0;
 		this.m.Excluded = [
-			"trait.legend_hate_nobles",
-			"trait.huge",
-			"trait.weasel",
-			"trait.fear_greenskins",
-			"trait.paranoid",
-			"trait.night_blind",
-			"trait.ailing",
-			"trait.impatient",
-			"trait.asthmatic",
-			"trait.greedy",
-			"trait.dumb",
-			"trait.clubfooted",
-			"trait.drunkard",
-			"trait.disloyal",
-			"trait.tiny",
-			"trait.fragile",
-			"trait.fainthearted",
-			"trait.craven",
-			"trait.bleeder",
-			"trait.insecure"
+			::Legends.Traits.getID(::Legends.Trait.LegendHateNobles),
+			::Legends.Traits.getID(::Legends.Trait.Huge),
+			::Legends.Traits.getID(::Legends.Trait.Weasel),
+			::Legends.Traits.getID(::Legends.Trait.FearGreenskins),
+			::Legends.Traits.getID(::Legends.Trait.Paranoid),
+			::Legends.Traits.getID(::Legends.Trait.NightBlind),
+			::Legends.Traits.getID(::Legends.Trait.Ailing),
+			::Legends.Traits.getID(::Legends.Trait.Impatient),
+			::Legends.Traits.getID(::Legends.Trait.Asthmatic),
+			::Legends.Traits.getID(::Legends.Trait.Greedy),
+			::Legends.Traits.getID(::Legends.Trait.Dumb),
+			::Legends.Traits.getID(::Legends.Trait.Clubfooted),
+			::Legends.Traits.getID(::Legends.Trait.Drunkard),
+			::Legends.Traits.getID(::Legends.Trait.Disloyal),
+			::Legends.Traits.getID(::Legends.Trait.Tiny),
+			::Legends.Traits.getID(::Legends.Trait.Fragile),
+			::Legends.Traits.getID(::Legends.Trait.Fainthearthed),
+			::Legends.Traits.getID(::Legends.Trait.Craven),
+			::Legends.Traits.getID(::Legends.Trait.Bleeder),
+			::Legends.Traits.getID(::Legends.Trait.Insecure)
 		];
 		this.m.Titles = [
 			"the Conscript"

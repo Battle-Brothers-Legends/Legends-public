@@ -7,8 +7,8 @@
 		this.m.Description = "With a physique like an eggshell, this character is not the natural born brawler.";
 		this.m.Excluded.extend(
 		[
-			"trait.legend_heavy",
-			"trait.legend_firm"
+			::Legends.Traits.getID(::Legends.Trait.LegendHeavy),
+			::Legends.Traits.getID(::Legends.Trait.LegendFirm)
 		]);
 	}
 });

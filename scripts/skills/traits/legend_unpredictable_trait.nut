@@ -3,7 +3,7 @@ this.legend_unpredictable_trait <- this.inherit("scripts/skills/traits/character
 	function create()
 	{
 		this.character_trait.create();
-		this.m.ID = "trait.legend_unpredictable";
+		this.m.ID = ::Legends.Traits.getID(::Legends.Trait.LegendUnpredictable);
 		this.m.Name = "Unpredictable";
 		this.m.Icon = "ui/traits/unpredictable_trait.png";
 		this.m.Description = "It is unclear what this character will ever do next, often dodging, faking and feinting moves. This makes it easier to score good hits.";
@@ -11,10 +11,10 @@ this.legend_unpredictable_trait <- this.inherit("scripts/skills/traits/character
 			"the Dicey"
 		];
 		this.m.Excluded = [
-			"trait.pessimist",
-			"trait.hesitant",
-			"trait.dumb",
-			"trait.legend_predictable"
+			::Legends.Traits.getID(::Legends.Trait.Pessimist),
+			::Legends.Traits.getID(::Legends.Trait.Hesistant),
+			::Legends.Traits.getID(::Legends.Trait.Dumb),
+			::Legends.Traits.getID(::Legends.Trait.LegendPredictable)
 		];
 	}
 

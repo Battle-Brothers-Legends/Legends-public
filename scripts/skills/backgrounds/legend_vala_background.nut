@@ -13,15 +13,15 @@ this.legend_vala_background <- this.inherit("scripts/skills/backgrounds/characte
 		this.m.DailyCost = 24;
 		this.m.Ethnicity = 0;
 		this.m.Excluded = [
-			"trait.asthmatic",
-			"trait.clumsy",
-			"trait.cocky",
-			"trait.craven",
-			"trait.dastard",
-			"trait.fainthearted",
-			"trait.insecure",
-			"trait.disloyal",
-			"trait.loyal"
+			::Legends.Traits.getID(::Legends.Trait.Asthmatic),
+			::Legends.Traits.getID(::Legends.Trait.Clumsy),
+			::Legends.Traits.getID(::Legends.Trait.Cocky),
+			::Legends.Traits.getID(::Legends.Trait.Craven),
+			::Legends.Traits.getID(::Legends.Trait.Dastard),
+			::Legends.Traits.getID(::Legends.Trait.Fainthearthed),
+			::Legends.Traits.getID(::Legends.Trait.Insecure),
+			::Legends.Traits.getID(::Legends.Trait.Disloyal),
+			::Legends.Traits.getID(::Legends.Trait.Loyal)
 		];
 		this.m.Titles = [
 			"the Vala"
@@ -167,8 +167,7 @@ this.legend_vala_background <- this.inherit("scripts/skills/backgrounds/characte
 	function onAdded()
 	{
 		this.character_background.onAdded();
-		local skills = this.getContainer().getActor().getSkills();
-		this.getContainer().getActor().getSkills().add(this.new("scripts/skills/traits/loyal_trait"));
+		::Legends.Traits.grant(this, ::Legends.Trait.Loyal);
 	}
 
 	function onUpdate( _properties )

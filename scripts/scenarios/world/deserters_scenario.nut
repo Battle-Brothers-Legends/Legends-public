@@ -78,7 +78,7 @@ this.deserters_scenario <- this.inherit("scripts/scenarios/world/starting_scenar
 	{
 		this.World.Assets.getStash().add(this.new("scripts/items/supplies/ground_grains_item"));
 		this.World.Assets.getStash().add(this.new("scripts/items/supplies/ground_grains_item"));
-		this.World.Assets.addBusinessReputation(this.m.StartingBusinessReputation);		
+		this.World.Assets.addBusinessReputation(this.m.StartingBusinessReputation);
 		this.World.Assets.m.Money = this.World.Assets.m.Money / 2;
 	}
 
@@ -246,32 +246,32 @@ this.deserters_scenario <- this.inherit("scripts/scenarios/world/starting_scenar
 		local r = this.Math.rand(0, 9);
 		if (r == 0)
 		{
-			bro.getSkills().add(this.new("scripts/skills/traits/dastard_trait"));
+			::Legends.Traits.grant(bro, ::Legends.Trait.Dastard);
 		}
 
 		if (r == 1)
 		{
-			bro.getSkills().add(this.new("scripts/skills/traits/craven_trait"));
+			::Legends.Traits.grant(bro, ::Legends.Trait.Craven);
 		}
 
 		if (r == 2)
 		{
-			bro.getSkills().add(this.new("scripts/skills/traits/legend_fear_nobles_trait"));
+			::Legends.Traits.grant(bro, ::Legends.Trait.LegendFearNobles);
 		}
 
 		if (r == 3)
 		{
-			bro.getSkills().add(this.new("scripts/skills/traits/pessimist_trait"));
+			::Legends.Traits.grant(bro, ::Legends.Trait.Pessimist);
 		}
 
 		if (r == 4)
 		{
-			bro.getSkills().add(this.new("scripts/skills/traits/paranoid_trait"));
+			::Legends.Traits.grant(bro, ::Legends.Trait.Paranoid);
 		}
 
 		if (r == 5)
 		{
-			bro.getSkills().add(this.new("scripts/skills/traits/superstitious_trait"));
+			::Legends.Traits.grant(bro, ::Legends.Trait.Superstitious);
 		}
 
 		if (!bro.getBackground().isBackgroundType(this.Const.BackgroundType.Combat))

@@ -3,21 +3,21 @@ this.legend_fear_nobles_trait <- this.inherit("scripts/skills/traits/character_t
 	function create()
 	{
 		this.character_trait.create();
-		this.m.ID = "trait.legend_fear_nobles";
+		this.m.ID = ::Legends.Traits.getID(::Legends.Trait.LegendFearNobles);
 		this.m.Name = "Fear of Nobles";
 		this.m.Icon = "ui/traits/noblefear.png";
 		this.m.Description = "Some past event or particularly convincing story in this character\'s life has left them scared of what nobles are capable of, making this character less reliable when facing nobles on the battlefield.";
 		this.m.Excluded = [
-			"trait.fearless",
-			"trait.brave",
-			"trait.determined",
-			"trait.cocky",
-			"trait.bloodthirsty",
-			"trait.legend_aggressive",
-			"trait.legend_ambitious",
-			"trait.legend_natural",
-			"trait.legend_pragmatic",
-			"trait.legend_hate_nobles"
+			::Legends.Traits.getID(::Legends.Trait.Fearless),
+			::Legends.Traits.getID(::Legends.Trait.Brave),
+			::Legends.Traits.getID(::Legends.Trait.Determined),
+			::Legends.Traits.getID(::Legends.Trait.Cocky),
+			::Legends.Traits.getID(::Legends.Trait.Bloodthirsty),
+			::Legends.Traits.getID(::Legends.Trait.LegendAggressive),
+			::Legends.Traits.getID(::Legends.Trait.LegendAmbitious),
+			::Legends.Traits.getID(::Legends.Trait.LegendNatural),
+			::Legends.Traits.getID(::Legends.Trait.LegendPragmatic),
+			::Legends.Traits.getID(::Legends.Trait.LegendHateNobles)
 		];
 	}
 

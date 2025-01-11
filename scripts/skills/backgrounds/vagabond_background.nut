@@ -12,15 +12,15 @@ this.vagabond_background <- this.inherit("scripts/skills/backgrounds/character_b
 		this.m.HiringCost = 70;
 		this.m.DailyCost = 9;
 		this.m.Excluded = [
-			"trait.hate_beasts",
-			"trait.hate_undead",
-			"trait.hate_greenskins",
-			"trait.legend_hate_nobles",
-			"trait.clubfooted",
-			"trait.fat",
-			"trait.loyal",
-			"trait.gluttonous",
-			"trait.asthmatic"
+			::Legends.Traits.getID(::Legends.Trait.HateBeasts),
+			::Legends.Traits.getID(::Legends.Trait.HateUndead),
+			::Legends.Traits.getID(::Legends.Trait.HateGreenskins),
+			::Legends.Traits.getID(::Legends.Trait.LegendHateNobles),
+			::Legends.Traits.getID(::Legends.Trait.Clubfooted),
+			::Legends.Traits.getID(::Legends.Trait.Fat),
+			::Legends.Traits.getID(::Legends.Trait.Loyal),
+			::Legends.Traits.getID(::Legends.Trait.Gluttonous),
+			::Legends.Traits.getID(::Legends.Trait.Asthmatic)
 		];
 		this.m.Titles = [
 			"the Vagabond",

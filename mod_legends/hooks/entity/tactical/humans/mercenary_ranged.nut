@@ -16,7 +16,7 @@
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendLookout);
 			::Legends.Perks.grant(this, ::Legends.Perk.Berserk);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendCloseCombatArcher);
-			this.m.Skills.add(this.new("scripts/skills/traits/fearless_trait"));
+			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
 		}
 	}
 

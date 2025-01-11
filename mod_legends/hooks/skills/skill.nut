@@ -124,7 +124,7 @@
 			});
 		}
 
-		if (this.m.Container.getActor().getSkills().hasSkill("trait.oath_of_honor") && (this.m.IsWeaponSkill && this.m.IsRanged || this.m.IsOffensiveToolSkill))
+		if (this.m.Container.getActor().getSkills().hasTrait(::Legends.Trait.OathOfHonor) && (this.m.IsWeaponSkill && this.m.IsRanged || this.m.IsOffensiveToolSkill))
 		{
 			ret.push({
 				id = 9,
@@ -340,7 +340,7 @@
 				});
 			}
 
-			local oath = this.m.Container.getSkillByID("trait.oath_of_wrath");
+			local oath = ::Legends.Traits.get(this, ::Legends.Trait.OathOfWrath);
 
 			if (oath != null)
 			{

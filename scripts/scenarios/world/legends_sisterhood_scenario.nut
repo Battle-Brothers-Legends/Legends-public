@@ -49,7 +49,7 @@ this.legends_sisterhood_scenario <- this.inherit("scripts/scenarios/world/starti
 		bros[4].setStartValuesEx([
 			"legend_vala_background"
 		], true, 1);
-		bros[4].getSkills().add(this.new("scripts/skills/traits/player_character_trait"));
+		::Legends.Traits.grant(bros[4], ::Legends.Trait.Player);
 		this.addScenarioPerk(bros[4].getBackground(), this.Const.Perks.PerkDefs.LegendValaWarden);
 		bros[4].m.PerkPointsSpent += 1;
 		bros[4].getFlags().set("IsPlayerCharacter", true);

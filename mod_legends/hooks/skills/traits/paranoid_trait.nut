@@ -6,9 +6,9 @@
 		create();
 		this.m.Excluded.extend(
 		[
-			"trait.legend_ambitious",
-			"trait.legend_seductive",
-			"trait.legend_natural"
+			::Legends.Traits.getID(::Legends.Trait.LegendAmbitious),
+			::Legends.Traits.getID(::Legends.Trait.LegendSeductive),
+			::Legends.Traits.getID(::Legends.Trait.LegendNatural)
 		]);
 	}
 });

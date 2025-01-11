@@ -268,16 +268,16 @@ this.legend_white_direwolf <- this.inherit("scripts/entity/tactical/actor", {
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendTerrifyingVisage);
 		this.m.Skills.add(this.new("scripts/skills/racial/legend_werewolf_racial"));
 
-		 if (::Legends.isLegendaryDifficulty())
-			{
+		if (::Legends.isLegendaryDifficulty())
+		{
 			::Legends.Perks.grant(this, ::Legends.Perk.BattleForged);
 			::Legends.Perks.grant(this, ::Legends.Perk.BattleFlow);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendLastStand);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendSecondWind);
 			::Legends.Perks.grant(this, ::Legends.Perk.CripplingStrikes);
 			::Legends.Perks.grant(this, ::Legends.Perk.KillingFrenzy);
-			this.m.Skills.add(this.new("scripts/skills/traits/fearless_trait"));
-			}
+			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
+		}
 		if (!this.Tactical.State.isScenarioMode())
 		{
 			local dateToSkip = 0;

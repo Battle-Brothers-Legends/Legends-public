@@ -9,21 +9,21 @@ this.legend_transmuter_background <- this.inherit("scripts/skills/backgrounds/ch
 		this.m.HiringCost = 1000;
 		this.m.DailyCost = 20;
 		this.m.Excluded = [
-			"trait.brave",
-			"trait.athletic",
-			"trait.bloodthirsty",
-			"trait.brute",
-			"trait.dexterous",
-			"trait.eagleyes",
-			"trait.fearless",
-			"trait.huge",
-			"trait.loyal",
-			"trait.quick",
-			"trait.swift",
-			"trait.sure_footing",
-			"trait.tough",
-			"trait.disloyal",
-			"trait.loyal"
+			::Legends.Traits.getID(::Legends.Trait.Brave),
+			::Legends.Traits.getID(::Legends.Trait.Athletic),
+			::Legends.Traits.getID(::Legends.Trait.Bloodthirsty),
+			::Legends.Traits.getID(::Legends.Trait.Brute),
+			::Legends.Traits.getID(::Legends.Trait.Dexterous),
+			::Legends.Traits.getID(::Legends.Trait.EagleEyes),
+			::Legends.Traits.getID(::Legends.Trait.Fearless),
+			::Legends.Traits.getID(::Legends.Trait.Huge),
+			::Legends.Traits.getID(::Legends.Trait.Loyal),
+			::Legends.Traits.getID(::Legends.Trait.Quick),
+			::Legends.Traits.getID(::Legends.Trait.Swift),
+			::Legends.Traits.getID(::Legends.Trait.SureFooting),
+			::Legends.Traits.getID(::Legends.Trait.Tough),
+			::Legends.Traits.getID(::Legends.Trait.Disloyal),
+			::Legends.Traits.getID(::Legends.Trait.Loyal)
 		];
 		this.m.Titles = [
 			"the Enthralling",
@@ -39,7 +39,7 @@ this.legend_transmuter_background <- this.inherit("scripts/skills/backgrounds/ch
 		this.m.Beards = null;
 		this.m.Bodies = this.Const.Bodies.AllFemale;
 		this.m.BackgroundType = this.Const.BackgroundType.Female | this.Const.BackgroundType.Educated | this.Const.BackgroundType.Untalented;
-		
+
 		this.m.Level = 1;
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Dreaded;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Chivalrous;

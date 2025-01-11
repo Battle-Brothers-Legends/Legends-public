@@ -12,19 +12,19 @@ this.manhunter_background <- this.inherit("scripts/skills/backgrounds/character_
 		this.m.HiringCost = 120;
 		this.m.DailyCost = 18;
 		this.m.Excluded = [
-			"trait.bleeder",
-			"trait.bright",
-			"trait.clumsy",
-			"trait.fainthearted",
-			"trait.iron_lungs",
-			"trait.tiny",
-			"trait.optimist",
-			"trait.dastard",
-			"trait.asthmatic",
-			"trait.craven",
-			"trait.insecure",
-			"trait.short_sighted",
-			"trait.legend_gift_of_people"
+			::Legends.Traits.getID(::Legends.Trait.Bleeder),
+			::Legends.Traits.getID(::Legends.Trait.Bright),
+			::Legends.Traits.getID(::Legends.Trait.Clumsy),
+			::Legends.Traits.getID(::Legends.Trait.Fainthearthed),
+			::Legends.Traits.getID(::Legends.Trait.IronLungs),
+			::Legends.Traits.getID(::Legends.Trait.Tiny),
+			::Legends.Traits.getID(::Legends.Trait.Optimist),
+			::Legends.Traits.getID(::Legends.Trait.Dastard),
+			::Legends.Traits.getID(::Legends.Trait.Asthmatic),
+			::Legends.Traits.getID(::Legends.Trait.Craven),
+			::Legends.Traits.getID(::Legends.Trait.Insecure),
+			::Legends.Traits.getID(::Legends.Trait.ShortSighted),
+			::Legends.Traits.getID(::Legends.Trait.LegendGiftOfPeople)
 		];
 		this.m.Titles = [
 			"the Manhunter",

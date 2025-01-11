@@ -11,8 +11,8 @@
 		{
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendLastStand);
 			this.m.Hitpoints = b.Hitpoints * 1.5;
-			this.m.Skills.add(this.new("scripts/skills/traits/fearless_trait"));
-			this.m.Skills.add(this.new("scripts/skills/traits/determined_trait"));
+			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
+			::Legends.Traits.grant(this, ::Legends.Trait.Determined);
 		}
 	}
 

@@ -3,14 +3,14 @@ this.legend_fear_dark_trait <- this.inherit("scripts/skills/traits/character_tra
 	function create()
 	{
 		this.character_trait.create();
-		this.m.ID = "trait.legend_fear_dark";
+		this.m.ID = ::Legends.Traits.getID(::Legends.Trait.LegendFearDark);
 		this.m.Name = "Nyctophobia";
 		this.m.Icon = "ui/traits/trait_fearofdark.png";
 		this.m.Description = "A dislike of the dark can be a childish fear for some, but with what\'s been running around in the wilds lately, maybe it isn\'t as odd anymore...";
 		this.m.Excluded = [
-			"trait.fearless",
-			"trait.brave",
-			"trait.night_owl"
+			::Legends.Traits.getID(::Legends.Trait.Fearless),
+			::Legends.Traits.getID(::Legends.Trait.Brave),
+			::Legends.Traits.getID(::Legends.Trait.NightOwl)
 		];
 	}
 

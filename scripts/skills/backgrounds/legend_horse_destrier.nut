@@ -11,18 +11,18 @@ this.legend_horse_destrier <- this.inherit("scripts/skills/backgrounds/legend_ho
 		this.m.HiringCost = 55000;
 		this.m.DailyCost = 1;
 		this.m.Excluded = [
-			"trait.tiny",
-			"trait.clubfooted",
-			"trait.bright",
-			"trait.weasel",
-			"trait.craven",
-			"trait.ailing",
-			"trait.clumsy",
-			"trait.asthmatic",
-			"trait.bleeder",
-			"trait.fragile",
-			"trait.insecure",
-			"trait.fainthearted"
+			::Legends.Traits.getID(::Legends.Trait.Tiny),
+			::Legends.Traits.getID(::Legends.Trait.Clubfooted),
+			::Legends.Traits.getID(::Legends.Trait.Bright),
+			::Legends.Traits.getID(::Legends.Trait.Weasel),
+			::Legends.Traits.getID(::Legends.Trait.Craven),
+			::Legends.Traits.getID(::Legends.Trait.Ailing),
+			::Legends.Traits.getID(::Legends.Trait.Clumsy),
+			::Legends.Traits.getID(::Legends.Trait.Asthmatic),
+			::Legends.Traits.getID(::Legends.Trait.Bleeder),
+			::Legends.Traits.getID(::Legends.Trait.Fragile),
+			::Legends.Traits.getID(::Legends.Trait.Insecure),
+			::Legends.Traits.getID(::Legends.Trait.Fainthearthed)
 		];
 		this.m.Modifiers.Ammo = this.Const.LegendMod.ResourceModifiers.Ammo[1];
 		this.m.Modifiers.ArmorParts = this.Const.LegendMod.ResourceModifiers.ArmorParts[1];

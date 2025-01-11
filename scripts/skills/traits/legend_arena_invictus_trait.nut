@@ -7,7 +7,7 @@ this.legend_arena_invictus_trait <- this.inherit("scripts/skills/traits/characte
 	function create()
 	{
 		this.character_trait.create();
-		this.m.ID = "trait.legend_arena_invictus";
+		this.m.ID = ::Legends.Traits.getID(::Legends.Trait.LegendArenaInvictus);
 		this.m.Name = "Invictus";
 		this.m.Icon = "ui/traits/trait_invictus.png";
 		this.m.Description = "With a single fist raised, %fullname% stops the crowd cheering. With both raised, they shout %their% name from the stands. Gladiators rather wrestle a Lindwurm than fight %them% in the arena.";

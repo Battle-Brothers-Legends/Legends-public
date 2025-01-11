@@ -10,15 +10,15 @@ this.eunuch_southern_background <- this.inherit("scripts/skills/backgrounds/eunu
 		this.m.Beards = null;
 		this.m.Ethnicity = 1;
 		this.m.Excluded = [
-			"trait.superstitious",
-			"trait.weasel",
-			"trait.lucky",
-			"trait.cocky",
-			"trait.athletic",
-			"trait.brute",
-			"trait.bloodthirsty",
-			"trait.deathwish",
-			"trait.impatient"
+			::Legends.Traits.getID(::Legends.Trait.Superstitious),
+			::Legends.Traits.getID(::Legends.Trait.Weasel),
+			::Legends.Traits.getID(::Legends.Trait.Lucky),
+			::Legends.Traits.getID(::Legends.Trait.Cocky),
+			::Legends.Traits.getID(::Legends.Trait.Athletic),
+			::Legends.Traits.getID(::Legends.Trait.Brute),
+			::Legends.Traits.getID(::Legends.Trait.Bloodthirsty),
+			::Legends.Traits.getID(::Legends.Trait.Deathwish),
+			::Legends.Traits.getID(::Legends.Trait.Impatient)
 		];
 		this.m.Names = this.Const.Strings.SouthernNames;
 		this.m.LastNames = this.Const.Strings.SouthernNamesLast;

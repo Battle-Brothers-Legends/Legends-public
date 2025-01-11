@@ -9,20 +9,20 @@ this.converted_cultist_background <- this.inherit("scripts/skills/backgrounds/ch
 		this.m.HiringCost = 45;
 		this.m.DailyCost = 4;
 		this.m.Excluded = [
-			"trait.athletic",
-			"trait.bright",
-			"trait.drunkard",
-			"trait.dastard",
-			"trait.gluttonous",
-			"trait.insecure",
-			"trait.legend_slack",
-			"trait.disloyal",
-			"trait.hesitant",
-			"trait.fat",
-			"trait.bright",
-			"trait.greedy",
-			"trait.craven",
-			"trait.fainthearted"
+			::Legends.Traits.getID(::Legends.Trait.Athletic),
+			::Legends.Traits.getID(::Legends.Trait.Bright),
+			::Legends.Traits.getID(::Legends.Trait.Drunkard),
+			::Legends.Traits.getID(::Legends.Trait.Dastard),
+			::Legends.Traits.getID(::Legends.Trait.Gluttonous),
+			::Legends.Traits.getID(::Legends.Trait.Insecure),
+			::Legends.Traits.getID(::Legends.Trait.LegendSlack),
+			::Legends.Traits.getID(::Legends.Trait.Disloyal),
+			::Legends.Traits.getID(::Legends.Trait.Hesistant),
+			::Legends.Traits.getID(::Legends.Trait.Fat),
+			::Legends.Traits.getID(::Legends.Trait.Bright),
+			::Legends.Traits.getID(::Legends.Trait.Greedy),
+			::Legends.Traits.getID(::Legends.Trait.Craven),
+			::Legends.Traits.getID(::Legends.Trait.Fainthearthed)
 		];
 		this.m.Titles = [
 			"the Cultist",

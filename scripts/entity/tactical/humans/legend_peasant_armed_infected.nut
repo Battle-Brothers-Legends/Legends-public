@@ -57,15 +57,14 @@ this.legend_peasant_armed_infected <- this.inherit("scripts/entity/tactical/huma
 			::Legends.Perks.grant(this, ::Legends.Perk.RallyTheTroops);
 		}
 
-		this.m.Skills.add(this.new("scripts/skills/traits/weasel_trait"));
+		::Legends.Traits.grant(this, ::Legends.Trait.Weasel);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendBackToBasics);
 		if(::Legends.isLegendaryDifficulty())
 		{
 			this.m.Hitpoints = b.Hitpoints * 1.5;
 			::Legends.Perks.grant(this, ::Legends.Perk.Nimble);
 			::Legends.Perks.grant(this, ::Legends.Perk.Backstabber);
-
-			this.m.Skills.add(this.new("scripts/skills/traits/fearless_trait"));
+			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
 		}
 	}
 

@@ -12,21 +12,21 @@ this.hunter_background <- this.inherit("scripts/skills/backgrounds/character_bac
 		this.m.HiringCost = 120;
 		this.m.DailyCost = 20;
 		this.m.Excluded = [
-			"trait.weasel",
-			"trait.fear_undead",
-			"trait.fear_beasts",
-			"trait.hate_beasts",
-			"trait.night_blind",
-			"trait.clubfooted",
-			"trait.brute",
-			"trait.short_sighted",
-			"trait.fat",
-			"trait.clumsy",
-			"trait.gluttonous",
-			"trait.asthmatic",
-			"trait.craven",
-			"trait.dastard",
-			"trait.drunkard"
+			::Legends.Traits.getID(::Legends.Trait.Weasel),
+			::Legends.Traits.getID(::Legends.Trait.FearUndead),
+			::Legends.Traits.getID(::Legends.Trait.FearBeasts),
+			::Legends.Traits.getID(::Legends.Trait.HateBeasts),
+			::Legends.Traits.getID(::Legends.Trait.NightBlind),
+			::Legends.Traits.getID(::Legends.Trait.Clubfooted),
+			::Legends.Traits.getID(::Legends.Trait.Brute),
+			::Legends.Traits.getID(::Legends.Trait.ShortSighted),
+			::Legends.Traits.getID(::Legends.Trait.Fat),
+			::Legends.Traits.getID(::Legends.Trait.Clumsy),
+			::Legends.Traits.getID(::Legends.Trait.Gluttonous),
+			::Legends.Traits.getID(::Legends.Trait.Asthmatic),
+			::Legends.Traits.getID(::Legends.Trait.Craven),
+			::Legends.Traits.getID(::Legends.Trait.Dastard),
+			::Legends.Traits.getID(::Legends.Trait.Drunkard)
 		];
 		this.m.Titles = [
 			"the Deerhunter",

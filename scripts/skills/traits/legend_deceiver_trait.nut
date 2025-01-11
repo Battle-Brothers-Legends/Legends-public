@@ -14,10 +14,10 @@ this.legend_deceiver_trait <- this.inherit("scripts/skills/traits/character_trai
 			"the Blessed"
 		];
 		this.m.Excluded = [
-			"trait.pessimist",
-			"trait.clumsy",
-			"trait.ailing",
-			"trait.clubfooted"
+			::Legends.Traits.getID(::Legends.Trait.Pessimist),
+			::Legends.Traits.getID(::Legends.Trait.Clumsy),
+			::Legends.Traits.getID(::Legends.Trait.Ailing),
+			::Legends.Traits.getID(::Legends.Trait.Clubfooted)
 		];
 	}
 

@@ -42,7 +42,7 @@ this.legends_druid_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 			"legend_druid_commander_background"
 		]);
 		bros[0].getBackground().m.RawDescription = "%name% has only ever known the wild woods, the worlds of men are strange and disgusting";
-		bros[0].getSkills().add(this.new("scripts/skills/traits/player_character_trait"));
+		::Legends.Traits.grant(bros[0], ::Legends.Trait.Player);
 		::Legends.Perks.grant(bros[0], ::Legends.Perk.LegendRoots);
 		//local r = this.Math.rand(1,99);
 		//

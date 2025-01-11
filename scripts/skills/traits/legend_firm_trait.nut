@@ -3,7 +3,7 @@ this.legend_firm_trait <- this.inherit("scripts/skills/traits/character_trait", 
 	function create()
 	{
 		this.character_trait.create();
-		this.m.ID = "trait.legend_firm";
+		this.m.ID = ::Legends.Traits.getID(::Legends.Trait.LegendFirm);
 		this.m.Name = "Martial";
 		this.m.Icon = "ui/traits/firm_trait.png";
 		this.m.Description = "Better not shake a hand with this one.";
@@ -13,10 +13,10 @@ this.legend_firm_trait <- this.inherit("scripts/skills/traits/character_trait", 
 			"the Iron"
 		];
 		this.m.Excluded = [
-			"trait.bleeder",
-			"trait.ailing",
-			"trait.legend_frail",
-			"trait.fragile"
+			::Legends.Traits.getID(::Legends.Trait.Bleeder),
+			::Legends.Traits.getID(::Legends.Trait.Ailing),
+			::Legends.Traits.getID(::Legends.Trait.LegendFrail),
+			::Legends.Traits.getID(::Legends.Trait.Fragile)
 		];
 	}
 

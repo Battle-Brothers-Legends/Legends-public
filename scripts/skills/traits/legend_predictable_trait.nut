@@ -3,15 +3,15 @@ this.legend_predictable_trait <- this.inherit("scripts/skills/traits/character_t
 	function create()
 	{
 		this.character_trait.create();
-		this.m.ID = "trait.legend_predictable";
+		this.m.ID = ::Legends.Traits.getID(::Legends.Trait.LegendPredictable);
 		this.m.Name = "Predictable";
 		this.m.Icon = "ui/traits/predictable_trait.png";
 		this.m.Description = "It is always quite clear what this character is about to do, announcing hits before they come and looking intently for a moment before deciding to move. This gives time for enemies to dodge away.";
 		this.m.Excluded = [
-			"trait.bright",
-			"trait.dexterous",
-			"trait.swift",
-			"trait.legend_unpredictable"
+			::Legends.Traits.getID(::Legends.Trait.Bright),
+			::Legends.Traits.getID(::Legends.Trait.Dexterous),
+			::Legends.Traits.getID(::Legends.Trait.Swift),
+			::Legends.Traits.getID(::Legends.Trait.LegendUnpredictable)
 		];
 	}
 

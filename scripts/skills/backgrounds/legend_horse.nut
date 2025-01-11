@@ -14,14 +14,14 @@ this.legend_horse <- this.inherit("scripts/skills/backgrounds/character_backgrou
 		this.m.HiringCost = 10000;
 		this.m.DailyCost = 1;
 		this.m.Excluded = [
-			"trait.tiny",
-			"trait.clubfooted",
-			"trait.bright",
-			"trait.asthmatic",
-			"trait.legend_ambitious",
-			"trait.legend_seductive",
-			"trait.legend_gift_of_people",
-			"trait.legend_double_tongued"
+			::Legends.Traits.getID(::Legends.Trait.Tiny),
+			::Legends.Traits.getID(::Legends.Trait.Clubfooted),
+			::Legends.Traits.getID(::Legends.Trait.Bright),
+			::Legends.Traits.getID(::Legends.Trait.Asthmatic),
+			::Legends.Traits.getID(::Legends.Trait.LegendAmbitious),
+			::Legends.Traits.getID(::Legends.Trait.LegendSeductive),
+			::Legends.Traits.getID(::Legends.Trait.LegendGiftOfPeople),
+			::Legends.Traits.getID(::Legends.Trait.LegendDoubleTongued)
 		];
 		this.m.Variant = this.Math.rand(1, 7)
 		this.m.Faces = this.Const.Faces.Horse;
@@ -207,7 +207,7 @@ this.legend_horse <- this.inherit("scripts/skills/backgrounds/character_backgrou
 	{
 		this.character_background.onAdded();
 		this.m.Container.add(this.new("scripts/skills/actives/legend_horse_kick_skill"));
-		this.m.Container.add(this.new("scripts/skills/traits/legend_horse_trait"));
+		::Legends.Traits.grant(this, ::Legends.Trait.LegendHorse);
 	}
 
 	function onAddEquipment()

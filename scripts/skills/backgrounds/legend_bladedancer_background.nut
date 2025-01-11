@@ -12,22 +12,22 @@ this.legend_bladedancer_background <- this.inherit("scripts/skills/backgrounds/c
 		this.m.HiringCost = 850;
 		this.m.DailyCost = 45;
 		this.m.Excluded = [
-			"trait.huge",
-			"trait.fear_beasts",
-			"trait.paranoid",
-			"trait.clubfooted",
-			"trait.irrational",
-			"trait.gluttonous",
-			"trait.dumb",
-			"trait.bright",
-			"trait.clumsy",
-			"trait.tiny",
-			"trait.insecure",
-			"trait.craven",
-			"trait.dastard",
-			"trait.hesitant",
-			"trait.fragile",
-			"trait.legend_slack"
+			::Legends.Traits.getID(::Legends.Trait.Huge),
+			::Legends.Traits.getID(::Legends.Trait.FearBeasts),
+			::Legends.Traits.getID(::Legends.Trait.Paranoid),
+			::Legends.Traits.getID(::Legends.Trait.Clubfooted),
+			::Legends.Traits.getID(::Legends.Trait.Irrational),
+			::Legends.Traits.getID(::Legends.Trait.Gluttonous),
+			::Legends.Traits.getID(::Legends.Trait.Dumb),
+			::Legends.Traits.getID(::Legends.Trait.Bright),
+			::Legends.Traits.getID(::Legends.Trait.Clumsy),
+			::Legends.Traits.getID(::Legends.Trait.Tiny),
+			::Legends.Traits.getID(::Legends.Trait.Insecure),
+			::Legends.Traits.getID(::Legends.Trait.Craven),
+			::Legends.Traits.getID(::Legends.Trait.Dastard),
+			::Legends.Traits.getID(::Legends.Trait.Hesistant),
+			::Legends.Traits.getID(::Legends.Trait.Fragile),
+			::Legends.Traits.getID(::Legends.Trait.LegendSlack)
 		];
 		this.m.ExcludedTalents = [
 			this.Const.Attributes.RangedSkill,

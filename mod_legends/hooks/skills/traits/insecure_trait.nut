@@ -7,11 +7,11 @@
 		this.m.Description = "I can\'t do it! This character cowers, dodges and could use a bit more self confidence.";
 		this.m.Excluded.extend(
 		[
-			"trait.legend_aggressive",
-			"trait.legend_pragmatic",
-			"trait.legend_ambitious",
-			"trait.legend_natural",
-			"trait.legend_gift_of_people"
+			::Legends.Traits.getID(::Legends.Trait.LegendAggressive),
+			::Legends.Traits.getID(::Legends.Trait.LegendPragmatic),
+			::Legends.Traits.getID(::Legends.Trait.LegendAmbitious),
+			::Legends.Traits.getID(::Legends.Trait.LegendNatural),
+			::Legends.Traits.getID(::Legends.Trait.LegendGiftOfPeople)
 		]);
 	}
 

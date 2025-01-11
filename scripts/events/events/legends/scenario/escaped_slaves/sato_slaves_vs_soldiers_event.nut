@@ -27,7 +27,7 @@ this.sato_slaves_vs_soldiers_event <- this.inherit("scripts/events/event", {
 
 				foreach( bro in brothers )
 				{
-					if (bro.getSkills().hasSkill("trait.loyal")) {
+					if (bro.getSkills().hasTrait(::Legends.Trait.Loyal)) {
 						bro.worsenMood(1.5, "Had his loyalty called into question");
 					} else if (bro.getBackground().isBackgroundType(this.Const.BackgroundType.Combat)) {
 						if (this.Math.rand(1, 100) <= 50) {

@@ -223,13 +223,13 @@ this.legend_warbear <- this.inherit("scripts/entity/tactical/actor", {
 		this.m.Skills.add(this.new("scripts/skills/actives/unstoppable_charge_skill"));
 
 		if(::Legends.isLegendaryDifficulty())
-			{
+		{
 			this.m.Hitpoints = 1.5 * b.Hitpoints;
 			b.MeleeSkill += 10;
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendBattleheart);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendLastStand);
-			this.m.Skills.add(this.new("scripts/skills/traits/fearless_trait"));
-			}
+			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
+		}
 	}
 
 });

@@ -94,4 +94,8 @@
 	o.hasPerk <- function (_const) {
 		return this.hasSkill(::Const.Perks.PerkDefObjects[_const].ID);
 	}
+
+	o.hasTrait <- function (_const) {
+		return ::Legends.Traits.has(this, _const);
+	}
 });

@@ -30,7 +30,7 @@
 		local clown_candidates = [];
 
 		foreach( bro in brothers ) {
-			if (bro.getSkills().hasSkill("trait.bright") || bro.getSkills().hasSkill("trait.hesitant") || bro.getSkills().hasSkill("trait.craven") || bro.getSkills().hasSkill("trait.fainthearted") || bro.getSkills().hasSkill("trait.insecure"))
+			if (bro.getSkills().hasTrait(::Legends.Trait.Bright) || bro.getSkills().hasTrait(::Legends.Trait.Hesistant) || bro.getSkills().hasTrait(::Legends.Trait.Craven) || bro.getSkills().hasTrait(::Legends.Trait.Fainthearthed) || bro.getSkills().hasTrait(::Legends.Trait.Insecure))
 				continue;
 
 			if ((bro.getBackground().getID() == "background.minstrel" || bro.getBackground().getID() == "background.juggler" || bro.getBackground().getID() == "background.vagabond") && !bro.getSkills().hasSkillOfType(this.Const.SkillType.TemporaryInjury))
@@ -44,7 +44,7 @@
 
 		foreach( bro in brothers )
 		{
-			if (bro.getSkills().hasSkill("trait.bright") || bro.getSkills().hasSkill("trait.hesitant") || bro.getSkills().hasSkill("trait.craven") || bro.getSkills().hasSkill("trait.fainthearted") || bro.getSkills().hasSkill("trait.insecure"))
+			if (bro.getSkills().hasTrait(::Legends.Trait.Bright) || bro.getSkills().hasTrait(::Legends.Trait.Hesistant) || bro.getSkills().hasTrait(::Legends.Trait.Craven) || bro.getSkills().hasTrait(::Legends.Trait.Fainthearthed) || bro.getSkills().hasTrait(::Legends.Trait.Insecure))
 				continue;
 
 			if (bro.getBackground().getID() == "background.hunter" || bro.getBackground().getID() == "background.poacher" || bro.getBackground().getID() == "background.sellsword" || bro.getBackground().getID() == "background.bowyer" || (bro.getBackground().getID() == "background.adventurous_noble" && bro.getGender() == 1) && !bro.getSkills().hasSkillOfType(this.Const.SkillType.TemporaryInjury))

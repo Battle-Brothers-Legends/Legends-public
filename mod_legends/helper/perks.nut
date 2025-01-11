@@ -31,19 +31,24 @@ if (!("Perks" in ::Legends))
  * ::Legends.Perks.grant(this, ::Legends.Perk.NineLives, @(_perk) {
  *		_perk.IsRefundable = false;
  *	});
+ *
+ * Returns newly added perk
  */
 ::Legends.Perks.grant <- function (_target, _def, _applyFn = null) {
 	local container = ::Legends.Perks.getContainer(_target, "on grant");
 	local perkDef = ::Const.Perks.PerkDefObjects[_def];
 
 	if (container.hasPerk(_def)) {
+		local perk = container.getSkillByID(perkDef.ID);
 		if (_applyFn != null)
-			_applyFn(container.getSkillByID(perkDef.ID));
+			_applyFn(perk);
+		return perk;
 	} else {
 		local perk = ::new(perkDef.Script);
 		if (_applyFn != null)
 			_applyFn(perk);
 		container.add(perk);
+		return perk;
 	}
 }
 
@@ -54,16 +59,16 @@ if (!("Perks" in ::Legends))
 ::Legends.Perks.get <- function (_target, _def) {
 	local container = ::Legends.Perks.getContainer(_target, "on get");
 	if (container.hasPerk(_def))
-		return container.getSkillByID(::Legends.Perks.getID(_def))
+		return container.getSkillByID(::Legends.Perks.getID(_def));
 	return null;
 }
 
 ::Legends.Perks.remove <- function (_target, _def) {
 	local container = ::Legends.Perks.getContainer(_target, "on remove");
 	if (container.hasPerk(_def))
-		container.removeByID(::Legends.Perks.getID(_def))
+		container.removeByID(::Legends.Perks.getID(_def));
 }
 
 ::Legends.Perks.blueprint <- function (_def) {
-	return { Scripts = [::Const.Perks.PerkDefObjects[_def].Script] }
+	return { Scripts = [::Const.Perks.PerkDefObjects[_def].Script] };
 }

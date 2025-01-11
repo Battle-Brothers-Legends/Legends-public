@@ -69,15 +69,16 @@ this.legend_inventor_prosthetic_hand <- this.inherit("scripts/events/event", {
 					text = "You spend [color=" + this.Const.UI.Color.NegativeEventValue + "]15[/color] Tools and Supplies"
 				});
 
-				local pros_hand_trait = this.new("scripts/skills/traits/legend_prosthetic_hand");
-				_event.m.Nohand.getSkills().add(pros_hand_trait);
+				local trait = ::Legends.Traits.grant(_event.m.Nohand, ::Legends.Trait.LegendProstheticHand, function (_trait) {
+					this.List.push({
+						id = 10,
+						icon = _trait.getIcon(),
+						text = _event.m.Nohand.m.Name + " receives a " + _trait.m.Name
+					});
+				});
+
 				local pros_hand_works = _event.m.Nohand.getItems();
 				pros_hand_works.getData()[this.Const.ItemSlot.Offhand][0] = null;
-				this.List.push({
-						id = 10,
-						icon = pros_hand_trait.getIcon(),
-						text = _event.m.Nohand.m.Name + " receives a " + pros_hand_trait.m.Name
-				});
 
 				local missing_hand_bye = this.new("scripts/skills/injury_permanent/missing_hand_injury");
 				_event.m.Nohand.getSkills().removeByID("injury.missing_hand");
@@ -87,8 +88,8 @@ this.legend_inventor_prosthetic_hand <- this.inherit("scripts/events/event", {
 						text = _event.m.Nohand.m.Name + " no longer has a " + missing_hand_bye.m.Name
 				});
 
-				_event.m.Inventor.improveMood(2.0, "Created a " + pros_hand_trait.m.Name + " for " + _event.m.Nohand.m.Name);
-				_event.m.Nohand.improveMood(2.0, "Received a " + pros_hand_trait.m.Name + " from " + _event.m.Inventor.m.Name);
+				_event.m.Inventor.improveMood(2.0, "Created a " + trait.m.Name + " for " + _event.m.Nohand.m.Name);
+				_event.m.Nohand.improveMood(2.0, "Received a " + trait.m.Name + " from " + _event.m.Inventor.m.Name);
 			}
 		});
 		this.m.Screens.push({
@@ -149,7 +150,7 @@ this.legend_inventor_prosthetic_hand <- this.inherit("scripts/events/event", {
 
 		foreach (bro in brothers)
 		{
-			if (bro.getSkills().hasSkill("injury.missing_hand") && !bro.getSkills().hasSkill("trait.legend_prosthetic_hand"))
+			if (bro.getSkills().hasSkill("injury.missing_hand") && !bro.getSkills().hasTrait(::Legends.Trait.LegendProstheticHand))
 			{
 				nohand_candidates.push(bro);
 			}

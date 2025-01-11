@@ -275,7 +275,7 @@ this.legend_rock_unhold <- this.inherit("scripts/entity/tactical/actor", {
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendFullForce);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendSmackdown);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendBloodyHarvest);
-			this.m.Skills.add(this.new("scripts/skills/traits/fearless_trait"));
+			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
 		}
 		if (!this.Tactical.State.isScenarioMode())
 		{

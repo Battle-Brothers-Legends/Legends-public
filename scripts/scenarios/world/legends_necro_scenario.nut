@@ -43,9 +43,9 @@ this.legends_necro_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 		bros[0].setVeteranPerks(2);
 		bros[0].getSprite("miniboss").setBrush("bust_miniboss_undead");
 		bros[0].getFlags().set("IsPlayerCharacter", true); //player character
-		bros[0].getSkills().add(this.new("scripts/skills/traits/player_character_trait"));
+		::Legends.Traits.grant(bros[0], ::Legends.Trait.Player);
 		::Legends.Perks.grant(bros[0], ::Legends.Perk.BagsAndBelts);
- 		bros[0].getSkills().add(this.new("scripts/skills/traits/legend_deathly_spectre_trait"));
+		::Legends.Traits.grant(bros[0], ::Legends.Trait.LegendDeathlySpectre);
 
 		bros[1].setStartValuesEx([
 			"legend_warlock_summoner_background" //sickly but good def. summons.
@@ -53,11 +53,11 @@ this.legends_necro_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 		bros[1].setPlaceInFormation(4);
 		bros[1].setVeteranPerks(2);
 		bros[1].getSprite("miniboss").setBrush("bust_miniboss_undead");
-		bros[1].getSkills().add(this.new("scripts/skills/traits/ailing_trait"));
+		::Legends.Traits.grant(bros[1], ::Legends.Trait.Ailing);
 		bros[1].getFlags().set("IsPlayerCharacter", true); //player character
-		bros[1].getSkills().add(this.new("scripts/skills/traits/player_character_trait"));
+		::Legends.Traits.grant(bros[1], ::Legends.Trait.Player);
 		::Legends.Perks.grant(bros[1], ::Legends.Perk.NineLives);
- 		bros[1].getSkills().add(this.new("scripts/skills/traits/legend_deathly_spectre_trait"));
+		::Legends.Traits.grant(bros[1], ::Legends.Trait.LegendDeathlySpectre);
 
 		bros[2].setStartValuesEx([
 			"legend_puppet_master_background" //strong but slow tank
@@ -66,9 +66,9 @@ this.legends_necro_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 		bros[2].setVeteranPerks(2);
 		bros[2].getSprite("miniboss").setBrush("bust_miniboss_undead");
 		bros[2].getFlags().set("IsPlayerCharacter", true); //player character
-		bros[2].getSkills().add(this.new("scripts/skills/traits/player_character_trait"));
+		::Legends.Traits.grant(bros[2], ::Legends.Trait.Player);
 		::Legends.Perks.grant(bros[2], ::Legends.Perk.LegendPossession);
-		bros[2].getSkills().add(this.new("scripts/skills/traits/legend_deathly_spectre_trait"));
+		::Legends.Traits.grant(bros[2], ::Legends.Trait.LegendDeathlySpectre);
 
 		bros[3].setStartValuesEx([
 			"legend_puppet_background" //poor fucking infantry (tm)
@@ -206,7 +206,7 @@ this.legends_necro_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 		{
 			bro.improveMood(1.5, "These people really understand me!");
 			bro.getSprite("socket").setBrush("bust_base_undead");
-			bro.getSkills().add(this.new("scripts/skills/traits/legend_deathly_spectre_trait"));
+			::Legends.Traits.grant(bro, ::Legends.Trait.LegendDeathlySpectre);
 		}
 		else if (bro.getBackground().getID() == "background.legend_puppet")
 		{
@@ -214,7 +214,7 @@ this.legends_necro_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 		}
 		else
 		{
-			bro.getSkills().add(this.new("scripts/skills/traits/legend_deathly_spectre_trait"));
+			::Legends.Traits.grant(bro, ::Legends.Trait.LegendDeathlySpectre);
 			bro.worsenMood(2.0, "Something doesn't feel right here...");
 		}
 	}

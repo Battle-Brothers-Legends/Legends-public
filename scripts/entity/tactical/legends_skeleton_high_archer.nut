@@ -9,7 +9,7 @@ this.legends_skeleton_high_archer <- this.inherit("scripts/entity/tactical/legen
 		::Legends.Perks.grant(this, ::Legends.Perk.SteelBrow);
 		::Legends.Perks.grant(this, ::Legends.Perk.Fearsome);
 		::Legends.Perks.grant(this, ::Legends.Perk.SpecBow);
-		this.m.Skills.add(this.new("scripts/skills/traits/legend_fleshless_trait"));
+		::Legends.Traits.grant(this, ::Legends.Trait.LegendFleshless);
 		if(::Legends.isLegendaryDifficulty())
 		{
 			::Legends.Perks.grant(this, ::Legends.Perk.BattleForged);

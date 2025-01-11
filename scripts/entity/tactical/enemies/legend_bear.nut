@@ -248,7 +248,7 @@ this.legend_bear <- this.inherit("scripts/entity/tactical/actor", {
 			b.MeleeSkill += 10;
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendBattleheart);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendLastStand);
-			this.m.Skills.add(this.new("scripts/skills/traits/fearless_trait"));
+			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
 		}
 
 

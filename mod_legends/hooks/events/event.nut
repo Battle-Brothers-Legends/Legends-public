@@ -63,7 +63,7 @@
 
 		for( local i = 0; i < brothers.len(); i = ++i )
 		{
-			if (brothers[i].getSkills().hasSkill("trait.player"))
+			if (brothers[i].getSkills().hasTrait(::Legends.Trait.Player))
 			{
 				notnagel = brothers[i];
 

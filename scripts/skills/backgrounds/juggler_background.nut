@@ -12,22 +12,22 @@ this.juggler_background <- this.inherit("scripts/skills/backgrounds/character_ba
 		this.m.HiringCost = 100;
 		this.m.DailyCost = 8;
 		this.m.Excluded = [
-			"trait.fear_undead",
-			"trait.hate_undead",
-			"trait.clubfooted",
-			"trait.brute",
-			"trait.clumsy",
-			"trait.tough",
-			"trait.strong",
-			"trait.short_sighted",
-			"trait.dumb",
-			"trait.hesitant",
-			"trait.deathwish",
-			"trait.insecure",
-			"trait.asthmatic",
-			"trait.bloodthirsty",
-			"trait.legend_pragmatic",
-			"trait.legend_predictable"
+			::Legends.Traits.getID(::Legends.Trait.FearUndead),
+			::Legends.Traits.getID(::Legends.Trait.HateUndead),
+			::Legends.Traits.getID(::Legends.Trait.Clubfooted),
+			::Legends.Traits.getID(::Legends.Trait.Brute),
+			::Legends.Traits.getID(::Legends.Trait.Clumsy),
+			::Legends.Traits.getID(::Legends.Trait.Tough),
+			::Legends.Traits.getID(::Legends.Trait.Strong),
+			::Legends.Traits.getID(::Legends.Trait.ShortSighted),
+			::Legends.Traits.getID(::Legends.Trait.Dumb),
+			::Legends.Traits.getID(::Legends.Trait.Hesistant),
+			::Legends.Traits.getID(::Legends.Trait.Deathwish),
+			::Legends.Traits.getID(::Legends.Trait.Insecure),
+			::Legends.Traits.getID(::Legends.Trait.Asthmatic),
+			::Legends.Traits.getID(::Legends.Trait.Bloodthirsty),
+			::Legends.Traits.getID(::Legends.Trait.LegendPragmatic),
+			::Legends.Traits.getID(::Legends.Trait.LegendPredictable)
 		];
 		this.m.Titles = [
 			"the Juggler",

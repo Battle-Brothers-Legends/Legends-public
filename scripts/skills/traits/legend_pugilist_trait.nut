@@ -8,11 +8,11 @@ this.legend_pugilist_trait <- this.inherit("scripts/skills/traits/character_trai
 		this.m.Icon = "ui/traits/pugilist_trait.png";
 		this.m.Description = "This character has spent many years street fighting and sparring. This allows them to spot opportunities to catch opponents off guard with a jab, elbow or upper cut.  They have also taken a few hits to the head in their time and may not remember things too well";
 		this.m.Excluded = [
-			"trait.legend_frail",
-			"trait.peaceful",
-			"trait.fragile",
-			"trait.asthmatic",
-			"trait.bleeder"
+			::Legends.Traits.getID(::Legends.Trait.LegendFrail),
+			::Legends.Traits.getID(::Legends.Trait.LegendPeaceful),
+			::Legends.Traits.getID(::Legends.Trait.Fragile),
+			::Legends.Traits.getID(::Legends.Trait.Asthmatic),
+			::Legends.Traits.getID(::Legends.Trait.Bleeder)
 		];
 	}
 

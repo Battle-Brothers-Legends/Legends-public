@@ -9,8 +9,8 @@
 			::Legends.Perks.grant(this, ::Legends.Perk.Dodge);
 			::Legends.Perks.grant(this, ::Legends.Perk.Anticipation);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendAlert);
-			this.m.Skills.add(this.new("scripts/skills/traits/fearless_trait"));
-			this.m.Skills.add(this.new("scripts/skills/traits/weasel_trait"));
+			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
+			::Legends.Traits.grant(this, ::Legends.Trait.Weasel);
 		}
 	}
 });

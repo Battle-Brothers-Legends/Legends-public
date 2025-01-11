@@ -37,7 +37,7 @@ this.legends_nomad_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 		bros[0].setPlaceInFormation(2);
 		bros[0].setVeteranPerks(2);
 		bros[0].getSprite("socket").setBrush("bust_base_nomads");
-		bros[0].getSkills().add(this.new("scripts/skills/traits/legend_nomad_trait"));
+		::Legends.Traits.grant(bros[0], ::Legends.Trait.LegendNomad);
 		::Legends.Perks.grant(bros[0], ::Legends.Perk.LegendWindReader);
 		bros[0].setStartValuesEx([ // melee
 			"nomad_background"
@@ -47,7 +47,7 @@ this.legends_nomad_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 		bros[1].setPlaceInFormation(3);
 		bros[1].setVeteranPerks(2);
 		bros[1].getSprite("socket").setBrush("bust_base_nomads");
-		bros[1].getSkills().add(this.new("scripts/skills/traits/legend_nomad_trait"));
+		::Legends.Traits.grant(bros[1], ::Legends.Trait.LegendNomad);
 		::Legends.Perks.grant(bros[1], ::Legends.Perk.LegendWindReader);
 		bros[1].setStartValuesEx([ //melee always to prevent all ranged parties
 			"nomad_background"
@@ -65,7 +65,7 @@ this.legends_nomad_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 		bros[3].setPlaceInFormation(11);
 		bros[3].setVeteranPerks(2);
 		bros[3].getSprite("socket").setBrush("bust_base_nomads");
-   	 	bros[3].getSkills().add(this.new("scripts/skills/traits/legend_nomad_trait"));
+		::Legends.Traits.grant(bros[3], ::Legends.Trait.LegendNomad);
 		::Legends.Perks.grant(bros[3], ::Legends.Perk.LegendWindReader);
 		bros[3].setStartValuesEx([ //wildcard 1
 			"nomad_background",
@@ -76,7 +76,7 @@ this.legends_nomad_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 		bros[4].setPlaceInFormation(12);
 		bros[4].setVeteranPerks(2);
 		bros[4].getSprite("socket").setBrush("bust_base_nomads");
-		bros[4].getSkills().add(this.new("scripts/skills/traits/legend_nomad_trait"));
+		::Legends.Traits.grant(bros[4], ::Legends.Trait.LegendNomad);
 		::Legends.Perks.grant(bros[4], ::Legends.Perk.LegendWindReader);
 		bros[4].setStartValuesEx([ //always ranged for variety
 			"nomad_ranged_background"
@@ -202,14 +202,14 @@ this.legends_nomad_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 		if (bro.getBackground().getID() == "background.nomad" || bro.getBackground().getID() == "background.muladi")
 		{
 			bro.improveMood(1.5, "I walk with those on the path of the Interloper");
-			bro.getSkills().add(this.new("scripts/skills/traits/legend_nomad_trait"));
+			::Legends.Traits.grant(bro, ::Legends.Trait.LegendNomad);
 			bro.getSprite("socket").setBrush("bust_base_nomads");
 			::Legends.Perks.grant(bro, ::Legends.Perk.LegendWindReader);
 		}
 		else if (bro.getBackground().getID() == "background.bladedancer")
 		{
 			bro.improveMood(1.5, "I walk with those on the path of the Interloper");
-			bro.getSkills().add(this.new("scripts/skills/traits/legend_nomad_trait"));
+			::Legends.Traits.grant(bro, ::Legends.Trait.LegendNomad);
 			bro.getSprite("socket").setBrush("bust_base_nomads");
 			::Legends.Perks.grant(bro, ::Legends.Perk.Dodge);
 		}

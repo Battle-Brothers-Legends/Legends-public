@@ -27,14 +27,14 @@ this.legend_caravan_hand <- this.inherit("scripts/entity/tactical/legend_randomi
 		this.getSprite("socket").setBrush("bust_base_caravan");
 		this.getSprite("dirt").Visible = true;
 		if(::Legends.isLegendaryDifficulty())
-			{
+		{
 			::Legends.Perks.grant(this, ::Legends.Perk.ShieldBash);
 			::Legends.Perks.grant(this, ::Legends.Perk.Pathfinder);
 			::Legends.Perks.grant(this, ::Legends.Perk.Underdog);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendAlert);
 			::Legends.Perks.grant(this, ::Legends.Perk.CripplingStrikes);
-			this.m.Skills.add(this.new("scripts/skills/traits/fearless_trait"));
-			}
+			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
+		}
 	}
 
 

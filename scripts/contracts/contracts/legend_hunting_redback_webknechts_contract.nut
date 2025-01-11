@@ -338,10 +338,10 @@ this.legend_hunting_redback_webknechts_contract <- this.inherit("scripts/contrac
 					"swordmaster_background"
 				]);
 
-				if (!this.Contract.m.Dude.getSkills().hasSkill("trait.fear_beasts") && !this.Contract.m.Dude.getSkills().hasSkill("trait.hate_beasts"))
+				if (!this.Contract.m.Dude.getSkills().hasTrait(::Legends.Trait.FearBeasts) && !this.Contract.m.Dude.getSkills().hasTrait(::Legends.Trait.HateBeasts))
 				{
-					this.Contract.m.Dude.getSkills().removeByID("trait.fearless");
-					this.Contract.m.Dude.getSkills().add(this.new("scripts/skills/traits/fear_beasts_trait"));
+					::Legends.Traits.remove(this.Contract.m.Dude, ::Legends.Trait.Fearless);
+					::Legends.Traits.grant(this.Contract.m.Dude, ::Legends.Trait.FearBeasts);
 				}
 
 				this.Contract.m.Dude.getBackground().m.RawDescription = "You found %name% dangling from a tree, the sellsword the last survivor of a mercenary band sent to kill redback webknechts. He joined the company after you rescued him.";

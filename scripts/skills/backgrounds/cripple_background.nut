@@ -12,22 +12,22 @@ this.cripple_background <- this.inherit("scripts/skills/backgrounds/character_ba
 		this.m.HiringCost = 30;
 		this.m.DailyCost = 2;
 		this.m.Excluded = [
-			"trait.huge",
-			"trait.weasel",
-			"trait.lucky",
-			"trait.iron_jaw",
-			"trait.tough",
-			"trait.strong",
-			"trait.cocky",
-			"trait.fat",
-			"trait.greedy",
-			"trait.athletic",
-			"trait.impatient",
-			"trait.quick",
-			"trait.swift",
-			"trait.dexterous",
-			"trait.legend_ambitious",
-			"trait.legend_natural"
+			::Legends.Traits.getID(::Legends.Trait.Huge),
+			::Legends.Traits.getID(::Legends.Trait.Weasel),
+			::Legends.Traits.getID(::Legends.Trait.Lucky),
+			::Legends.Traits.getID(::Legends.Trait.IronJaw),
+			::Legends.Traits.getID(::Legends.Trait.Tough),
+			::Legends.Traits.getID(::Legends.Trait.Strong),
+			::Legends.Traits.getID(::Legends.Trait.Cocky),
+			::Legends.Traits.getID(::Legends.Trait.Fat),
+			::Legends.Traits.getID(::Legends.Trait.Greedy),
+			::Legends.Traits.getID(::Legends.Trait.Athletic),
+			::Legends.Traits.getID(::Legends.Trait.Impatient),
+			::Legends.Traits.getID(::Legends.Trait.Quick),
+			::Legends.Traits.getID(::Legends.Trait.Swift),
+			::Legends.Traits.getID(::Legends.Trait.Dexterous),
+			::Legends.Traits.getID(::Legends.Trait.LegendAmbitious),
+			::Legends.Traits.getID(::Legends.Trait.LegendNatural)
 		];
 		this.m.ExcludedTalents = [
 			this.Const.Attributes.Hitpoints,

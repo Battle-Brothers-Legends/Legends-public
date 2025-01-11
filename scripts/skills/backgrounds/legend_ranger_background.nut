@@ -12,23 +12,23 @@ this.legend_ranger_background <- this.inherit("scripts/skills/backgrounds/charac
 		this.m.HiringCost = 2500;
 		this.m.DailyCost = 35;
 		this.m.Excluded = [
-			"trait.weasel",
-			"trait.fear_undead",
-			"trait.fear_beasts",
-			"trait.hate_beasts",
-			"trait.night_blind",
-			"trait.clubfooted",
-			"trait.brute",
-			"trait.short_sighted",
-			"trait.fat",
-			"trait.clumsy",
-			"trait.gluttonous",
-			"trait.asthmatic",
-			"trait.craven",
-			"trait.dastard",
-			"trait.drunkard",
-			"trait.disloyal",
-			"trait.loyal"
+			::Legends.Traits.getID(::Legends.Trait.Weasel),
+			::Legends.Traits.getID(::Legends.Trait.FearUndead),
+			::Legends.Traits.getID(::Legends.Trait.FearBeasts),
+			::Legends.Traits.getID(::Legends.Trait.HateBeasts),
+			::Legends.Traits.getID(::Legends.Trait.NightBlind),
+			::Legends.Traits.getID(::Legends.Trait.Clubfooted),
+			::Legends.Traits.getID(::Legends.Trait.Brute),
+			::Legends.Traits.getID(::Legends.Trait.ShortSighted),
+			::Legends.Traits.getID(::Legends.Trait.Fat),
+			::Legends.Traits.getID(::Legends.Trait.Clumsy),
+			::Legends.Traits.getID(::Legends.Trait.Gluttonous),
+			::Legends.Traits.getID(::Legends.Trait.Asthmatic),
+			::Legends.Traits.getID(::Legends.Trait.Craven),
+			::Legends.Traits.getID(::Legends.Trait.Dastard),
+			::Legends.Traits.getID(::Legends.Trait.Drunkard),
+			::Legends.Traits.getID(::Legends.Trait.Disloyal),
+			::Legends.Traits.getID(::Legends.Trait.Loyal)
 		];
 		this.m.Titles = [
 			"the Deerhunter",
@@ -244,7 +244,7 @@ this.legend_ranger_background <- this.inherit("scripts/skills/backgrounds/charac
 		local actor = this.getContainer().getActor();
 		//this.m.Container.add(this.new("scripts/skills/perks/perk_pathfinder"));
 		//this.m.Container.add(this.new("scripts/skills/perks/perk_footwork"));
-		this.m.Container.add(this.new("scripts/skills/traits/loyal_trait"));
+		::Legends.Traits.grant(this, ::Legends.Trait.Loyal);
 
 	}
 

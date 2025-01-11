@@ -12,21 +12,21 @@ this.deserter_background <- this.inherit("scripts/skills/backgrounds/character_b
 		this.m.HiringCost = 85;
 		this.m.DailyCost = 11;
 		this.m.Excluded = [
-			"trait.teamplayer",
-			"trait.impatient",
-			"trait.clubfooted",
-			"trait.fearless",
-			"trait.sure_footing",
-			"trait.brave",
-			"trait.loyal",
-			"trait.deathwish",
-			"trait.cocky",
-			"trait.determined",
-			"trait.fragile",
-			"trait.optimist",
-			"trait.bloodthirsty",
-			"trait.legend_firm",
-			"trait.legend_aggressive"
+			::Legends.Traits.getID(::Legends.Trait.Teamplayer),
+			::Legends.Traits.getID(::Legends.Trait.Impatient),
+			::Legends.Traits.getID(::Legends.Trait.Clubfooted),
+			::Legends.Traits.getID(::Legends.Trait.Fearless),
+			::Legends.Traits.getID(::Legends.Trait.SureFooting),
+			::Legends.Traits.getID(::Legends.Trait.Brave),
+			::Legends.Traits.getID(::Legends.Trait.Loyal),
+			::Legends.Traits.getID(::Legends.Trait.Deathwish),
+			::Legends.Traits.getID(::Legends.Trait.Cocky),
+			::Legends.Traits.getID(::Legends.Trait.Determined),
+			::Legends.Traits.getID(::Legends.Trait.Fragile),
+			::Legends.Traits.getID(::Legends.Trait.Optimist),
+			::Legends.Traits.getID(::Legends.Trait.Bloodthirsty),
+			::Legends.Traits.getID(::Legends.Trait.LegendFirm),
+			::Legends.Traits.getID(::Legends.Trait.LegendAggressive)
 		];
 		this.m.ExcludedTalents = [
 			this.Const.Attributes.Bravery

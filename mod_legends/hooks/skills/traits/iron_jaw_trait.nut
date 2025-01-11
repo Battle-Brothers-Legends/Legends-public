@@ -5,6 +5,6 @@
 	{
 		create();
 		this.m.Description = "This character shakes off hits that would cripple a lesser character.";
-		this.m.Excluded.push("trait.legend_slack");
+		this.m.Excluded.push(::Legends.Traits.getID(::Legends.Trait.LegendSlack));
 	}
 });

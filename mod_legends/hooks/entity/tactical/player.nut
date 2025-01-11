@@ -504,8 +504,8 @@
 
 		onHired();
 
-		if (!isStabled() && getSkills().hasSkill("trait.legend_intensive_training_trait") && getLevel() > 1 ) {
-			local inTraining = getSkills().getSkillByID("trait.legend_intensive_training_trait");
+		if (!isStabled() && getSkills().hasTrait(::Legends.Trait.LegendIntensiveTraining) && getLevel() > 1 ) {
+			local inTraining = ::Legends.Traits.get(this, ::Legends.Trait.LegendIntensiveTraining);
 			local addSkills = ::Math.rand(0, getLevel()+2);
 			addSkills = ::Math.min(addSkills, inTraining.getMaxSkillsCanBeAdded() - 1);
 			inTraining.addRandomSkills(this, addSkills);
@@ -570,8 +570,8 @@
 			this.getFlags().add("PlayerZombie");
 			this.improveMood(1.0, "Reborned to live again");
 			this.setMoraleState(::Const.MoraleState.Ignore);
-			this.getSkills().add(::new("scripts/skills/traits/legend_rotten_flesh_trait"));
 
+			::Legends.Traits.grant(this, ::Legends.Trait.LegendRottenFlesh);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendZombieBite, function (perk) {
 				perk.IsRefundable = false;
 			});
@@ -647,7 +647,7 @@
 
 	o.checkMorale = function ( _change, _difficulty, _type = this.Const.MoraleCheckType.Default, _showIconBeforeMoraleIcon = "", _noNewLine = false )
 	{
-		if (_change > 0 && this.m.MoraleState == this.Const.MoraleState.Steady && this.m.Skills.hasSkill("trait.insecure"))
+		if (_change > 0 && this.m.MoraleState == this.Const.MoraleState.Steady && this.m.Skills.hasTrait(::Legends.Trait.Insecure))
 		{
 			return false;
 		}
@@ -662,36 +662,28 @@
 			return false;
 		}
 
-		if (_change < 0 && this.m.MoraleState == this.Const.MoraleState.Breaking && this.m.Skills.hasSkill("trait.oath_of_valor"))
+		if (_change < 0 && this.m.MoraleState == this.Const.MoraleState.Breaking && this.m.Skills.hasTrait(::Legends.Trait.OathOfValor))
 		{
 			return false;
 		}
 
-		if (_change > 0 && this.m.Skills.hasSkill("trait.optimist"))
+		if (_change > 0 && this.m.Skills.hasTrait(::Legends.Trait.Optimist))
 		{
 			_difficulty = _difficulty + 5;
 		}
-		else if (_change < 0 && this.m.Skills.hasSkill("trait.pessimist"))
+		else if (_change < 0 && this.m.Skills.hasTrait(::Legends.Trait.Pessimist))
 		{
 			_difficulty = _difficulty - 5;
 		}
-		else if (this.m.Skills.hasSkill("trait.legend_haunted_01"))
-		{
-			_difficulty = _difficulty + (this.Math.rand(0, 1) == 0 ? 6 : -6);
-		}
-		else if (this.m.Skills.hasSkill("trait.irrational"))
+		else if (this.m.Skills.hasTrait(::Legends.Trait.Irrational))
 		{
 			_difficulty = _difficulty + (this.Math.rand(0, 1) == 0 ? 10 : -10);
 		}
-		else if (this.m.Skills.hasSkill("trait.mad"))
+		else if (this.m.Skills.hasTrait(::Legends.Trait.Mad))
 		{
 			_difficulty = _difficulty + (this.Math.rand(0, 1) == 0 ? 15 : -15);
 		}
-		if (_change < 0 && _type == this.Const.MoraleCheckType.MentalAttack && this.m.Skills.hasSkill("trait.legend_haunted_02"))
-		{
-			_difficulty = _difficulty - 6;
-		}
-		if (_change < 0 && _type == this.Const.MoraleCheckType.MentalAttack && this.m.Skills.hasSkill("trait.superstitious"))
+		if (_change < 0 && _type == this.Const.MoraleCheckType.MentalAttack && this.m.Skills.hasTrait(::Legends.Trait.Superstitious))
 		{
 			_difficulty = _difficulty - 10;
 		}
@@ -839,7 +831,7 @@
 				this.updateAchievement("OldAndWise", 1, 1);
 			}
 
-			if (this.m.Level == 12 && this.m.Skills.hasSkill("trait.player"))
+			if (this.m.Level == 12 && this.m.Skills.hasTrait(::Legends.Trait.Player))
 			{
 				this.updateAchievement("TooStubbornToDie", 1, 1);
 			}
@@ -1232,12 +1224,8 @@
 		}
 
 		background.buildDescription();
-		local inTraining = this.new("scripts/skills/traits/legend_intensive_training_trait");
 
-		if (!this.getSkills().hasSkill("trait.legend_intensive_training_trait"))
-		{
-			this.m.Skills.add(inTraining);
-		}
+		::Legends.Traits.grant(this, ::Legends.Trait.LegendIntensiveTraining);
 
 		if (_addTraits)
 		{
@@ -1672,7 +1660,7 @@
 				mod += skill.getModifier();
 			}
 		}
-		local skill = this.getSkills().getSkillByID("trait.legend_seductive");
+		local skill = ::Legends.Traits.get(this, ::Legends.Trait.LegendSeductive);
 		if (skill != null) {
 			mod += skill.getModifier();
 		}

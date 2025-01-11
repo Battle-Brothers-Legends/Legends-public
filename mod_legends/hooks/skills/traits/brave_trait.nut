@@ -5,19 +5,19 @@
 	{
 		create();
 		this.m.Excluded = [
-			"trait.weasel",
-			"trait.insecure",
-			"trait.craven",
-			"trait.hesitant",
-			"trait.dastard",
-			"trait.fainthearted",
-			"trait.fearless",
-			"trait.paranoid",
-			"trait.fear_beasts",
-			"trait.fear_undead",
-			"trait.fear_greenskins",
-			"trait.legend_fear_nobles",
-			"trait.legend_slack"
+			::Legends.Traits.getID(::Legends.Trait.Weasel),
+			::Legends.Traits.getID(::Legends.Trait.Insecure),
+			::Legends.Traits.getID(::Legends.Trait.Craven),
+			::Legends.Traits.getID(::Legends.Trait.Hesistant),
+			::Legends.Traits.getID(::Legends.Trait.Dastard),
+			::Legends.Traits.getID(::Legends.Trait.Fainthearthed),
+			::Legends.Traits.getID(::Legends.Trait.Fearless),
+			::Legends.Traits.getID(::Legends.Trait.Paranoid),
+			::Legends.Traits.getID(::Legends.Trait.FearBeasts),
+			::Legends.Traits.getID(::Legends.Trait.FearUndead),
+			::Legends.Traits.getID(::Legends.Trait.FearGreenskins),
+			::Legends.Traits.getID(::Legends.Trait.LegendFearNobles),
+			::Legends.Traits.getID(::Legends.Trait.LegendSlack)
 		];
 	}
 });

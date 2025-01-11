@@ -146,7 +146,7 @@ this.legend_enter_wizard_tower_event <- this.inherit("scripts/events/event", {
 
 		foreach( bro in brothers )
 		{
-			if (!bro.getBackground().isBackgroundType(this.Const.BackgroundType.Noble) && !bro.getSkills().hasSkill("trait.bright") && !bro.getSkills().hasSkill("trait.short_sighted") && !bro.getSkills().hasSkill("trait.night_blind"))
+			if (!bro.getBackground().isBackgroundType(this.Const.BackgroundType.Noble) && !bro.getSkills().hasTrait(::Legends.Trait.Bright) && !bro.getSkills().hasTrait(::Legends.Trait.ShortSighted) && !bro.getSkills().hasTrait(::Legends.Trait.NightBlind))
 			{
 				candidates.push(bro);
 			}

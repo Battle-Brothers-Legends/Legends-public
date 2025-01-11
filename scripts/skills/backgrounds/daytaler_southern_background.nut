@@ -11,12 +11,12 @@ this.daytaler_southern_background <- this.inherit("scripts/skills/backgrounds/da
 		this.m.Ethnicity = 1;
 		this.m.BeardChance = 90;
 		this.m.Excluded = [
-			"trait.superstitious",
-			"trait.fear_undead",
-			"trait.hate_beasts",
-			"trait.hate_undead",
-			"trait.hate_greenskins",
-			"trait.legend_hate_nobles",
+			::Legends.Traits.getID(::Legends.Trait.Superstitious),
+			::Legends.Traits.getID(::Legends.Trait.FearUndead),
+			::Legends.Traits.getID(::Legends.Trait.HateBeasts),
+			::Legends.Traits.getID(::Legends.Trait.HateUndead),
+			::Legends.Traits.getID(::Legends.Trait.HateGreenskins),
+			::Legends.Traits.getID(::Legends.Trait.LegendHateNobles),
 		];
 		this.m.Names = this.Const.Strings.SouthernNames;
 		this.m.LastNames = this.Const.Strings.SouthernNamesLast;

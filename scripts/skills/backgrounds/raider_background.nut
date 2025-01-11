@@ -12,23 +12,23 @@ this.raider_background <- this.inherit("scripts/skills/backgrounds/character_bac
 		this.m.HiringCost = 160;
 		this.m.DailyCost = 28;
 		this.m.Excluded = [
-			"trait.weasel",
-			"trait.hate_undead",
-			"trait.night_blind",
-			"trait.ailing",
-			"trait.asthmatic",
-			"trait.clubfooted",
-			"trait.hesitant",
-			"trait.loyal",
-			"trait.tiny",
-			"trait.fragile",
-			"trait.clumsy",
-			"trait.fainthearted",
-			"trait.craven",
-			"trait.bleeder",
-			"trait.dastard",
-			"trait.insecure",
-			"trait.legend_gift_of_people"
+			::Legends.Traits.getID(::Legends.Trait.Weasel),
+			::Legends.Traits.getID(::Legends.Trait.HateUndead),
+			::Legends.Traits.getID(::Legends.Trait.NightBlind),
+			::Legends.Traits.getID(::Legends.Trait.Ailing),
+			::Legends.Traits.getID(::Legends.Trait.Asthmatic),
+			::Legends.Traits.getID(::Legends.Trait.Clubfooted),
+			::Legends.Traits.getID(::Legends.Trait.Hesistant),
+			::Legends.Traits.getID(::Legends.Trait.Loyal),
+			::Legends.Traits.getID(::Legends.Trait.Tiny),
+			::Legends.Traits.getID(::Legends.Trait.Fragile),
+			::Legends.Traits.getID(::Legends.Trait.Clumsy),
+			::Legends.Traits.getID(::Legends.Trait.Fainthearthed),
+			::Legends.Traits.getID(::Legends.Trait.Craven),
+			::Legends.Traits.getID(::Legends.Trait.Bleeder),
+			::Legends.Traits.getID(::Legends.Trait.Dastard),
+			::Legends.Traits.getID(::Legends.Trait.Insecure),
+			::Legends.Traits.getID(::Legends.Trait.LegendGiftOfPeople)
 		];
 		this.m.Titles = [
 			"the Raider",

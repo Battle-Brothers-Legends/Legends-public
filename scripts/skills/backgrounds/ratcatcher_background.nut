@@ -12,27 +12,27 @@ this.ratcatcher_background <- this.inherit("scripts/skills/backgrounds/character
 		this.m.HiringCost = 40;
 		this.m.DailyCost = 4;
 		this.m.Excluded = [
-			"trait.huge",
-			"trait.hate_undead",
-			"trait.hate_beasts",
-			"trait.clubfooted",
-			"trait.brute",
-			"trait.tough",
-			"trait.strong",
-			"trait.cocky",
-			"trait.fat",
-			"trait.hesitant",
-			"trait.bright",
-			"trait.fearless",
-			"trait.brave",
-			"trait.determined",
-			"trait.deathwish",
-			"trait.greedy",
-			"trait.sure_footing",
-			"trait.clumsy",
-			"trait.short_sighted",
-			"trait.legend_aggressive",
-			"trait.legend_heavy"
+			::Legends.Traits.getID(::Legends.Trait.Huge),
+			::Legends.Traits.getID(::Legends.Trait.HateUndead),
+			::Legends.Traits.getID(::Legends.Trait.HateBeasts),
+			::Legends.Traits.getID(::Legends.Trait.Clubfooted),
+			::Legends.Traits.getID(::Legends.Trait.Brute),
+			::Legends.Traits.getID(::Legends.Trait.Tough),
+			::Legends.Traits.getID(::Legends.Trait.Strong),
+			::Legends.Traits.getID(::Legends.Trait.Cocky),
+			::Legends.Traits.getID(::Legends.Trait.Fat),
+			::Legends.Traits.getID(::Legends.Trait.Hesistant),
+			::Legends.Traits.getID(::Legends.Trait.Bright),
+			::Legends.Traits.getID(::Legends.Trait.Fearless),
+			::Legends.Traits.getID(::Legends.Trait.Brave),
+			::Legends.Traits.getID(::Legends.Trait.Determined),
+			::Legends.Traits.getID(::Legends.Trait.Deathwish),
+			::Legends.Traits.getID(::Legends.Trait.Greedy),
+			::Legends.Traits.getID(::Legends.Trait.SureFooting),
+			::Legends.Traits.getID(::Legends.Trait.Clumsy),
+			::Legends.Traits.getID(::Legends.Trait.ShortSighted),
+			::Legends.Traits.getID(::Legends.Trait.LegendAggressive),
+			::Legends.Traits.getID(::Legends.Trait.LegendHeavy)
 		];
 		this.m.Faces = this.Const.Faces.AllWhiteMale;
 		this.m.Hairs = this.Const.Hair.UntidyMale;

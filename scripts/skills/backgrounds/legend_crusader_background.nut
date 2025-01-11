@@ -9,34 +9,34 @@ this.legend_crusader_background <- this.inherit("scripts/skills/backgrounds/char
 		this.m.HiringCost = 3500;
 		this.m.DailyCost = 35;
 		this.m.Excluded = [
-			"trait.weasel",
-			"trait.fear_undead",
-			"trait.paranoid",
-			"trait.night_blind",
-			"trait.swift",
-			"trait.ailing",
-			"trait.brute",
-			"trait.bloodthirsty",
-			"trait.greedy",
-			"trait.gluttonous",
-			"trait.dumb",
-			"trait.clubfooted",
-			"trait.irrational",
-			"trait.hesitant",
-			"trait.disloyal",
-			"trait.tiny",
-			"trait.fragile",
-			"trait.clumsy",
-			"trait.fainthearted",
-			"trait.craven",
-			"trait.bleeder",
-			"trait.dastard",
-			"trait.insecure",
-			"trait.asthmatic",
-			"trait.legend_light",
-			"trait.legend_double_tongued",
-			"trait.disloyal",
-			"trait.loyal"
+			::Legends.Traits.getID(::Legends.Trait.Weasel),
+			::Legends.Traits.getID(::Legends.Trait.FearUndead),
+			::Legends.Traits.getID(::Legends.Trait.Paranoid),
+			::Legends.Traits.getID(::Legends.Trait.NightBlind),
+			::Legends.Traits.getID(::Legends.Trait.Swift),
+			::Legends.Traits.getID(::Legends.Trait.Ailing),
+			::Legends.Traits.getID(::Legends.Trait.Brute),
+			::Legends.Traits.getID(::Legends.Trait.Bloodthirsty),
+			::Legends.Traits.getID(::Legends.Trait.Greedy),
+			::Legends.Traits.getID(::Legends.Trait.Gluttonous),
+			::Legends.Traits.getID(::Legends.Trait.Dumb),
+			::Legends.Traits.getID(::Legends.Trait.Clubfooted),
+			::Legends.Traits.getID(::Legends.Trait.Irrational),
+			::Legends.Traits.getID(::Legends.Trait.Hesistant),
+			::Legends.Traits.getID(::Legends.Trait.Disloyal),
+			::Legends.Traits.getID(::Legends.Trait.Tiny),
+			::Legends.Traits.getID(::Legends.Trait.Fragile),
+			::Legends.Traits.getID(::Legends.Trait.Clumsy),
+			::Legends.Traits.getID(::Legends.Trait.Fainthearthed),
+			::Legends.Traits.getID(::Legends.Trait.Craven),
+			::Legends.Traits.getID(::Legends.Trait.Bleeder),
+			::Legends.Traits.getID(::Legends.Trait.Dastard),
+			::Legends.Traits.getID(::Legends.Trait.Insecure),
+			::Legends.Traits.getID(::Legends.Trait.Asthmatic),
+			::Legends.Traits.getID(::Legends.Trait.LegendLight),
+			::Legends.Traits.getID(::Legends.Trait.LegendDoubleTongued),
+			::Legends.Traits.getID(::Legends.Trait.Disloyal),
+			::Legends.Traits.getID(::Legends.Trait.Loyal)
 		];
 		this.m.ExcludedTalents = [
 			this.Const.Attributes.RangedSkill,
@@ -195,8 +195,8 @@ this.legend_crusader_background <- this.inherit("scripts/skills/backgrounds/char
 		this.character_background.onAdded();
 		local actor = this.getContainer().getActor();
 		actor.setTitle("the Crusader");
-		this.m.Container.add(this.new("scripts/skills/traits/loyal_trait"));
-		this.m.Container.add(this.new("scripts/skills/traits/legend_undead_killer_trait"));
+		::Legends.Traits.grant(this, ::Legends.Trait.Loyal);
+		::Legends.Traits.grant(this, ::Legends.Trait.LegendUndeadKiller);
 		//this.m.Container.add(this.new("scripts/skills/perks/perk_legend_rebound"));
 
 	}

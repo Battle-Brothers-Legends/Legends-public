@@ -12,13 +12,13 @@ this.legend_nightwatch_background <- this.inherit("scripts/skills/backgrounds/ch
 		this.m.HiringCost = 120;
 		this.m.DailyCost = 10;
 		this.m.Excluded = [
-			"trait.weasel",
-			"trait.fear_undead",
-			"trait.hate_undead",
-			"trait.night_blind",
-			"trait.clubfooted",
-			"trait.asthmatic",
-			"trait.legend_unpredictable"
+			::Legends.Traits.getID(::Legends.Trait.Weasel),
+			::Legends.Traits.getID(::Legends.Trait.FearUndead),
+			::Legends.Traits.getID(::Legends.Trait.HateUndead),
+			::Legends.Traits.getID(::Legends.Trait.NightBlind),
+			::Legends.Traits.getID(::Legends.Trait.Clubfooted),
+			::Legends.Traits.getID(::Legends.Trait.Asthmatic),
+			::Legends.Traits.getID(::Legends.Trait.LegendUnpredictable)
 		];
 
 		this.m.Faces = this.Const.Faces.AllWhiteMale;
@@ -56,7 +56,7 @@ this.legend_nightwatch_background <- this.inherit("scripts/skills/backgrounds/ch
 			Weapon = [
 				this.Const.Perks.PolearmTree,
 				this.Const.Perks.StaffTree,
-				this.Const.Perks.CrossbowTree,			
+				this.Const.Perks.CrossbowTree,
 				this.Const.Perks.SlingTree
 			],
 			Defense = [
@@ -149,8 +149,7 @@ this.legend_nightwatch_background <- this.inherit("scripts/skills/backgrounds/ch
 	function onAdded() // always has night owl
 	{
 		this.character_background.onAdded();
-		local actor = this.getContainer().getActor();
-		this.m.Container.add(this.new("scripts/skills/traits/night_owl_trait"));
+		::Legends.Traits.grant(this, ::Legends.Trait.NightOwl);
 	}
 
 	function onAddEquipment()

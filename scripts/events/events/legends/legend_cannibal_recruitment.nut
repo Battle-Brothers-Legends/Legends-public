@@ -49,7 +49,7 @@ this.legend_cannibal_recruitment <- this.inherit("scripts/events/event", {
 						"legend_cannibal_background"
 					]);
 					_event.m.Cannibal.getSkills().add(this.new("scripts/skills/racial/skeleton_racial"));
-					_event.m.Cannibal.getSkills().add(this.new("scripts/skills/traits/legend_fleshless_trait"));
+					::Legends.Traits.grant(_event.m.Cannibal, ::Legends.Trait.LegendFleshless);
 				}
 				else
 				{
@@ -98,7 +98,7 @@ this.legend_cannibal_recruitment <- this.inherit("scripts/events/event", {
 
 		// this.m.Score = 2.5 + brotherlevels / totalbrothers * 5.0 / this.Const.LevelXP.len();
 		//this.m.Score = 2.0; //people kept complaining they got this event too often with the score above
-		this.m.Score = 1.0; //people kept complaining they got this event too often with the scores above		
+		this.m.Score = 1.0; //people kept complaining they got this event too often with the scores above
 	}
 
 	function onPrepare()

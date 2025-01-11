@@ -174,7 +174,7 @@
 			::Legends.Perks.grant(this, ::Legends.Perk.Overwhelm);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendReturnFavor);
 			::Legends.Perks.grant(this, ::Legends.Perk.FortifiedMind);
-			this.m.Skills.add(this.new("scripts/skills/traits/fearless_trait"));
+			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
 		}
 	}
 });

@@ -12,22 +12,22 @@ this.bowyer_background <- this.inherit("scripts/skills/backgrounds/character_bac
 		this.m.HiringCost = 80;
 		this.m.DailyCost = 8;
 		this.m.Excluded = [
-			"trait.fear_undead",
-			"trait.hate_undead",
-			"trait.iron_jaw",
-			"trait.athletic",
-			"trait.clumsy",
-			"trait.short_sighted",
-			"trait.fearless",
-			"trait.brave",
-			"trait.iron_lungs",
-			"trait.strong",
-			"trait.tough",
-			"trait.cocky",
-			"trait.dumb",
-			"trait.brute",
-			"trait.bloodthirsty",
-			"trait.legend_firm"
+			::Legends.Traits.getID(::Legends.Trait.FearUndead),
+			::Legends.Traits.getID(::Legends.Trait.HateUndead),
+			::Legends.Traits.getID(::Legends.Trait.IronJaw),
+			::Legends.Traits.getID(::Legends.Trait.Athletic),
+			::Legends.Traits.getID(::Legends.Trait.Clumsy),
+			::Legends.Traits.getID(::Legends.Trait.ShortSighted),
+			::Legends.Traits.getID(::Legends.Trait.Fearless),
+			::Legends.Traits.getID(::Legends.Trait.Brave),
+			::Legends.Traits.getID(::Legends.Trait.IronLungs),
+			::Legends.Traits.getID(::Legends.Trait.Strong),
+			::Legends.Traits.getID(::Legends.Trait.Tough),
+			::Legends.Traits.getID(::Legends.Trait.Cocky),
+			::Legends.Traits.getID(::Legends.Trait.Dumb),
+			::Legends.Traits.getID(::Legends.Trait.Brute),
+			::Legends.Traits.getID(::Legends.Trait.Bloodthirsty),
+			::Legends.Traits.getID(::Legends.Trait.LegendFirm)
 		];
 		this.m.ExcludedTalents = [
 			this.Const.Attributes.MeleeSkill

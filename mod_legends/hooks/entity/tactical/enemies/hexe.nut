@@ -63,10 +63,10 @@
 			::Legends.Perks.grant(this, ::Legends.Perk.Anticipation);
 			this.m.Skills.add(this.new("scripts/skills/actives/legend_magic_missile_skill"));
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendComposure);
+			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
 			b.Initiative += 50;
 			b.RangedSkill += 75;
 			b.Stamina += 70;
-			this.m.Skills.add(this.new("scripts/skills/traits/fearless_trait"));
 		}
 	}
 

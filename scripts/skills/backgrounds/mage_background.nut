@@ -28,17 +28,17 @@ this.mage_background <- this.inherit("scripts/skills/backgrounds/character_backg
 		this.m.HiringCost = 250;
 		this.m.DailyCost = 15;
 		this.m.Excluded = [
-			"trait.impatient",
-			"trait.iron_jaw",
-			"trait.clubfooted",
-			"trait.dumb",
-			"trait.insecure",
-			"trait.loyal",
-			"trait.hesitant",
-			"trait.craven",
-			"trait.fainthearted",
-			"trait.brute",
-			"trait.bloodthirsty"
+			::Legends.Traits.getID(::Legends.Trait.Impatient),
+			::Legends.Traits.getID(::Legends.Trait.IronJaw),
+			::Legends.Traits.getID(::Legends.Trait.Clubfooted),
+			::Legends.Traits.getID(::Legends.Trait.Dumb),
+			::Legends.Traits.getID(::Legends.Trait.Insecure),
+			::Legends.Traits.getID(::Legends.Trait.Loyal),
+			::Legends.Traits.getID(::Legends.Trait.Hesistant),
+			::Legends.Traits.getID(::Legends.Trait.Craven),
+			::Legends.Traits.getID(::Legends.Trait.Fainthearthed),
+			::Legends.Traits.getID(::Legends.Trait.Brute),
+			::Legends.Traits.getID(::Legends.Trait.Bloodthirsty)
 		];
 		this.m.Titles = [
 			"the All-Powerful",

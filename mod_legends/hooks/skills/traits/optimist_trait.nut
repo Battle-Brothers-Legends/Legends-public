@@ -6,8 +6,8 @@
 		create();
 		this.m.Excluded.extend(
 		[
-			"trait.irrational",
-			"trait.legend_double_tongued"
+			::Legends.Traits.getID(::Legends.Trait.Irrational),
+			::Legends.Traits.getID(::Legends.Trait.LegendDoubleTongued)
 		]);
 	}
 });

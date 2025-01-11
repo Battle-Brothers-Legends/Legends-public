@@ -3,7 +3,7 @@ this.legend_heavy_trait <- this.inherit("scripts/skills/traits/character_trait",
 	function create()
 	{
 		this.character_trait.create();
-		this.m.ID = "trait.legend_heavy";
+		this.m.ID = ::Legends.Traits.getID(::Legends.Trait.LegendHeavy);
 		this.m.Name = "Lumbering";
 		this.m.Icon = "ui/traits/heavy_trait.png";
 		this.m.Description = "Being exceptionally purposeful, this character\'s strikes hurt plenty, but they\'re also slower.";
@@ -17,11 +17,11 @@ this.legend_heavy_trait <- this.inherit("scripts/skills/traits/character_trait",
 			"the Bull"
 		];
 		this.m.Excluded = [
-			"trait.tiny",
-			"trait.quick",
-			"trait.legend_frail",
-			"trait.fragile",
-			"trait.legend_light"
+			::Legends.Traits.getID(::Legends.Trait.Tiny),
+			::Legends.Traits.getID(::Legends.Trait.Quick),
+			::Legends.Traits.getID(::Legends.Trait.LegendFrail),
+			::Legends.Traits.getID(::Legends.Trait.Fragile),
+			::Legends.Traits.getID(::Legends.Trait.LegendLight)
 		];
 	}
 

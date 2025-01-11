@@ -167,14 +167,14 @@ this.legend_eat_rations_skill <- this.inherit("scripts/skills/actives/base/legen
 		}
 
 		//Ate while sick - we be fat now
-		if (!_user.getSkills().hasSkill("trait.fat"))
+		if (!_user.getSkills().hasTrait(::Legends.Trait.Fat))
 		{
 			if (!_user.isHiddenToPlayer())
 			{
 				this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(_user) + " eats food and becomes fat");
 			}
 
-			_user.getSkills().add(this.new("scripts/skills/traits/fat_trait"));
+			::Legends.Traits.grant(_user, ::Legends.Trait.Fat);
 			rationsEffect.addAmount(rationsEffect.getAmount() + this.m.Amount);
 			rationsEffect.resetTurns();
 

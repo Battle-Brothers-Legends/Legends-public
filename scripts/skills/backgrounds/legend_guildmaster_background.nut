@@ -12,23 +12,23 @@ this.legend_guildmaster_background <- this.inherit("scripts/skills/backgrounds/c
 		this.m.HiringCost = 185;
 		this.m.DailyCost = 27;
 		this.m.Excluded = [
-			"trait.superstitious",
-			"trait.weasel",
-			"trait.fear_beasts",
-			"trait.bleeder",
-			"trait.dumb",
-			"trait.night_blind",
-			"trait.clubfooted",
-			"trait.brute",
-			"trait.short_sighted",
-			"trait.fat",
-			"trait.gluttonous",
-			"trait.fainthearted",
-			"trait.craven",
-			"trait.hesitant",
-			"trait.dastard",
-			"trait.legend_slack",
-			"trait.legend_seductive"
+			::Legends.Traits.getID(::Legends.Trait.Superstitious),
+			::Legends.Traits.getID(::Legends.Trait.Weasel),
+			::Legends.Traits.getID(::Legends.Trait.FearBeasts),
+			::Legends.Traits.getID(::Legends.Trait.Bleeder),
+			::Legends.Traits.getID(::Legends.Trait.Dumb),
+			::Legends.Traits.getID(::Legends.Trait.NightBlind),
+			::Legends.Traits.getID(::Legends.Trait.Clubfooted),
+			::Legends.Traits.getID(::Legends.Trait.Brute),
+			::Legends.Traits.getID(::Legends.Trait.ShortSighted),
+			::Legends.Traits.getID(::Legends.Trait.Fat),
+			::Legends.Traits.getID(::Legends.Trait.Gluttonous),
+			::Legends.Traits.getID(::Legends.Trait.Fainthearthed),
+			::Legends.Traits.getID(::Legends.Trait.Craven),
+			::Legends.Traits.getID(::Legends.Trait.Hesistant),
+			::Legends.Traits.getID(::Legends.Trait.Dastard),
+			::Legends.Traits.getID(::Legends.Trait.LegendSlack),
+			::Legends.Traits.getID(::Legends.Trait.LegendSeductive)
 		];
 		this.m.Titles = [
 			"the Beasthunter",

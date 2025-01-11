@@ -6,11 +6,11 @@
 		create();
 		this.m.Excluded.extend(
 		[
-			"trait.legend_light",
-			"trait.legend_aggressive",
-			"trait.legend_ambitious",
-			"trait.legend_unpredictable",
-			"trait.legend_natural"
+			::Legends.Traits.getID(::Legends.Trait.LegendLight),
+			::Legends.Traits.getID(::Legends.Trait.LegendAggressive),
+			::Legends.Traits.getID(::Legends.Trait.LegendAmbitious),
+			::Legends.Traits.getID(::Legends.Trait.LegendUnpredictable),
+			::Legends.Traits.getID(::Legends.Trait.LegendNatural)
 		]);
 	}
 });

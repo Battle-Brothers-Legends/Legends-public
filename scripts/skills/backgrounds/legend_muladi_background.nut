@@ -12,18 +12,18 @@ this.legend_muladi_background <- this.inherit("scripts/skills/backgrounds/charac
 		this.m.HiringCost = 100;
 		this.m.DailyCost = 16;
 		this.m.Excluded = [
-			"trait.hate_undead",
-			"trait.night_blind",
-			"trait.clubfooted",
-			"trait.short_sighted",
-			"trait.loyal",
-			"trait.fat",
-			"trait.fearless",
-			"trait.brave",
-			"trait.bright",
-			"trait.legend_seductive",
-			"trait.fear_beasts",
-			"trait.hate_beasts"
+			::Legends.Traits.getID(::Legends.Trait.HateUndead),
+			::Legends.Traits.getID(::Legends.Trait.NightBlind),
+			::Legends.Traits.getID(::Legends.Trait.Clubfooted),
+			::Legends.Traits.getID(::Legends.Trait.ShortSighted),
+			::Legends.Traits.getID(::Legends.Trait.Loyal),
+			::Legends.Traits.getID(::Legends.Trait.Fat),
+			::Legends.Traits.getID(::Legends.Trait.Fearless),
+			::Legends.Traits.getID(::Legends.Trait.Brave),
+			::Legends.Traits.getID(::Legends.Trait.Bright),
+			::Legends.Traits.getID(::Legends.Trait.LegendSeductive),
+			::Legends.Traits.getID(::Legends.Trait.FearBeasts),
+			::Legends.Traits.getID(::Legends.Trait.HateBeasts)
 		];
 		this.m.Faces = this.Const.Faces.AllWhiteMale;
 		this.m.Hairs = this.Const.Hair.UntidyMale;

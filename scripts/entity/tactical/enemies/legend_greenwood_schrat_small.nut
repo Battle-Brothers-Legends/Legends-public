@@ -124,7 +124,7 @@ this.legend_greenwood_schrat_small <- this.inherit("scripts/entity/tactical/acto
 		{
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendLacerate);
 			::Legends.Perks.grant(this, ::Legends.Perk.FastAdaption);
-			this.m.Skills.add(this.new("scripts/skills/traits/fearless_trait"));
+			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
 		}
 		if (!this.Tactical.State.isScenarioMode())
 		{

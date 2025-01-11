@@ -12,20 +12,20 @@ this.legend_battle_sister_background <- this.inherit("scripts/skills/backgrounds
 		this.m.HiringCost = 160; //currently cannot recruit battle sisters - will update in inq. origin update - Luft
 		this.m.DailyCost = 18;
 		this.m.Excluded = [
-			"trait.weasel",
-			"trait.clubfooted",
-			"trait.fear_undead",
-			"trait.insecure",
-			"trait.cocky",
-			"trait.fat",
-			"trait.tiny",
-			"trait.fragile",
-			"trait.fainthearted",
-			"trait.legend_hate_nobles",
-			"trait.dastard",
-			"trait.hesitant",
-			"trait.legend_light",
-			"trait.craven"
+			::Legends.Traits.getID(::Legends.Trait.Weasel),
+			::Legends.Traits.getID(::Legends.Trait.Clubfooted),
+			::Legends.Traits.getID(::Legends.Trait.FearUndead),
+			::Legends.Traits.getID(::Legends.Trait.Insecure),
+			::Legends.Traits.getID(::Legends.Trait.Cocky),
+			::Legends.Traits.getID(::Legends.Trait.Fat),
+			::Legends.Traits.getID(::Legends.Trait.Tiny),
+			::Legends.Traits.getID(::Legends.Trait.Fragile),
+			::Legends.Traits.getID(::Legends.Trait.Fainthearthed),
+			::Legends.Traits.getID(::Legends.Trait.LegendHateNobles),
+			::Legends.Traits.getID(::Legends.Trait.Dastard),
+			::Legends.Traits.getID(::Legends.Trait.Hesistant),
+			::Legends.Traits.getID(::Legends.Trait.LegendLight),
+			::Legends.Traits.getID(::Legends.Trait.Craven)
 		];
 		this.m.ExcludedTalents = [
 			this.Const.Attributes.Initiative

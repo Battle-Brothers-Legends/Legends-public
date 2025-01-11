@@ -63,7 +63,7 @@
 		{
 			this.m.Skills.add(this.new("scripts/skills/racial/legend_bog_unhold_racial"));
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendBattleheart);
-			this.m.Skills.add(this.new("scripts/skills/traits/fearless_trait"));
+			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
 			this.m.Hitpoints = 2 * b.Hitpoints;
 		}
 

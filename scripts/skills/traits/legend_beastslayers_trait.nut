@@ -3,7 +3,7 @@ this.legend_beastslayers_trait <- this.inherit("scripts/skills/traits/character_
 	function create()
 	{
 		this.character_trait.create();
-		this.m.ID = "trait.legend_beastslayers";
+		this.m.ID = ::Legends.Traits.getID(::Legends.Trait.LegendBeastslayers);
 		this.m.Name = "Natural Order";
 		this.m.Icon = "ui/traits/legend_natural_order_trait.png";
 		this.m.Description = "Nature is not for the faint of heart — those that dwell on the fringes of society not only thrive in the danger, but know the natural order of things will eat them alive. Quite literally.";

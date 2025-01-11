@@ -331,27 +331,27 @@ this.raiders_scenario <- this.inherit("scripts/scenarios/world/starting_scenario
 
 				if (r == 0)
 				{
-					bro.getSkills().add(this.new("scripts/skills/traits/bloodthirsty_trait"));
+					::Legends.Traits.grant(bro, ::Legends.Trait.Bloodthirsty);
 				}
 
 				if (r == 1)
 				{
-					bro.getSkills().add(this.new("scripts/skills/traits/deathwish_trait"));
+					::Legends.Traits.grant(bro, ::Legends.Trait.Deathwish);
 				}
 
 				if (r == 2)
 				{
-					bro.getSkills().add(this.new("scripts/skills/traits/drunkard_trait"));
+					::Legends.Traits.grant(bro, ::Legends.Trait.Drunkard);
 				}
 
 				if (r == 3)
 				{
-					bro.getSkills().add(this.new("scripts/skills/traits/cocky_trait"));
+					::Legends.Traits.grant(bro, ::Legends.Trait.Cocky);
 				}
 
 				if (r == 4)
 				{
-					bro.getSkills().add(this.new("scripts/skills/traits/brute_trait"));
+					::Legends.Traits.grant(bro, ::Legends.Trait.Brute);
 				}
 			}
 	}

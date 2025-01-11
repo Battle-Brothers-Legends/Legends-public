@@ -3,7 +3,8 @@ this.training_building <- this.inherit("scripts/entity/world/camp/camp_building"
 		Results = [],
 		NumBros = 0,
 		UnTrained = 0,
-		BaseCraft = 0.15 // was 1.0, changed tp 0.4 6/11/21 - Luft - dropped to 0.15 by poss 7/3/2023
+		BaseCraft = 0.15, // was 1.0, changed tp 0.4 6/11/21 - Luft - dropped to 0.15 by poss 7/3/2023
+		TrainingTraits = []
 	},
 	function create()
 	{
@@ -48,6 +49,25 @@ this.training_building <- this.inherit("scripts/entity/world/camp/camp_building"
 				Volume = 1.0,
 				Pitch = 1.0
 			}
+		];
+
+		this.m.TrainingTraits = [
+			::Legends.Trait.EagleEyes,
+			::Legends.Trait.Tough,
+			::Legends.Trait.Strong,
+			::Legends.Trait.Quick,
+			::Legends.Trait.Fearless,
+			::Legends.Trait.Determined,
+			::Legends.Trait.Deathwish,
+			::Legends.Trait.Brave,
+			::Legends.Trait.Dexterous,
+			::Legends.Trait.SureFooting,
+			::Legends.Trait.IronLungs,
+			::Legends.Trait.Athletic,
+			::Legends.Trait.IronJaw,
+			::Legends.Trait.Swift,
+			::Legends.Trait.Teamplayer,
+			::Legends.Trait.LegendSteadyHands
 		];
 	}
 
@@ -269,7 +289,7 @@ this.training_building <- this.inherit("scripts/entity/world/camp/camp_building"
 
 	function getTrained( bro )
 	{
-		local inTraining = bro.getSkills().getSkillByID("trait.legend_intensive_training_trait");
+		local inTraining = ::Legends.Traits.get(bro, ::Legends.Trait.LegendIntensiveTraining);
 		local XPbonus = this.Math.floor(this.m.Camp.getCampTimeHours() * (this.getUpgraded() ? 10 : 5) * (inTraining == null ? 1 : (1 + inTraining.getBonusXP())));
 		local originalXP = bro.m.XP;
 		bro.addXP(XPbonus);
@@ -360,12 +380,12 @@ this.training_building <- this.inherit("scripts/entity/world/camp/camp_building"
 
 	function getBonus( bro )
 	{
-		if (!bro.getSkills().hasSkill("trait.legend_intensive_training_trait"))
+		if (!bro.getSkills().hasTrait(::Legends.Trait.LegendIntensiveTraining))
 		{
 			return;
 		}
 
-		local inTraining = bro.getSkills().getSkillByID("trait.legend_intensive_training_trait");
+		local inTraining = ::Legends.Traits.get(bro, ::Legends.Trait.LegendIntensiveTraining);
 
 		if (inTraining.isMaxReached())
 		{
@@ -642,85 +662,19 @@ this.training_building <- this.inherit("scripts/entity/world/camp/camp_building"
 
 	function addRandomTrainingTrait( _bro )
 	{
-		local trainTraits = [
-			[
-				"trait.eagle_eyes",
-				"scripts/skills/traits/eagle_eyes_trait"
-			],
-			[
-				"trait.tough",
-				"scripts/skills/traits/tough_trait"
-			],
-			[
-				"trait.strong",
-				"scripts/skills/traits/strong_trait"
-			],
-			[
-				"trait.quick",
-				"scripts/skills/traits/quick_trait"
-			],
-			[
-				"trait.fearless",
-				"scripts/skills/traits/fearless_trait"
-			],
-			[
-				"trait.determined",
-				"scripts/skills/traits/determined_trait"
-			],
-			[
-				"trait.deathwish",
-				"scripts/skills/traits/deathwish_trait"
-			],
-			[
-				"trait.brave",
-				"scripts/skills/traits/brave_trait"
-			],
-			[
-				"trait.dexterous",
-				"scripts/skills/traits/dexterous_trait"
-			],
-			[
-				"trait.sure_footing",
-				"scripts/skills/traits/sure_footing_trait"
-			],
-			[
-				"trait.iron_lungs",
-				"scripts/skills/traits/iron_lungs_trait"
-			],
-			[
-				"trait.athletic",
-				"scripts/skills/traits/athletic_trait"
-			],
-			[
-				"trait.iron_jaw",
-				"scripts/skills/traits/iron_jaw_trait"
-			],
-			[
-				"trait.swift",
-				"scripts/skills/traits/swift_trait"
-			],
-			[
-				"trait.teamplayer",
-				"scripts/skills/traits/teamplayer_trait"
-			],
-			[
-				"trait.legend_steady_hands",
-				"scripts/skills/traits/legend_steady_hands_trait"
-			]
-		];
 		local broCurTraits = _bro.getSkills().query(this.Const.SkillType.Trait);
-		local newTraitName;
+		local newTraitID;
 		local newTrait;
 
 		while (true)
 		{
-			newTraitName = trainTraits[this.Math.rand(0, trainTraits.len() - 1)];
-			newTrait = this.new(newTraitName[1]);
+			newTraitID = this.m.TrainingTraits[::Math.rand(0, this.m.TrainingTraits.len() - 1)];
+			newTrait = this.new(::Legends.Traits.TraitDefObjects[newTraitID]); // ugh, ugly hack
 			local skipTrait = false;
 
-			foreach( bTrait in broCurTraits )
+			foreach(bTrait in broCurTraits)
 			{
-				if (bTrait.getID() == newTraitName[0] || newTrait.isExcluded(bTrait.getID()))
+				if (bTrait.getID() == newTrait.getID() || newTrait.isExcluded(bTrait.getID()))
 				{
 					skipTrait = true;
 					break;

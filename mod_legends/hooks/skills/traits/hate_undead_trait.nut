@@ -1,10 +1,10 @@
 ::mods_hookExactClass("skills/traits/hate_undead_trait", function(o)
-{	
+{
 	local create = o.create;
 	o.create = function ()
 	{
 		create();
-		this.m.Excluded.push("trait.legend_peaceful");
+		this.m.Excluded.push(::Legends.Traits.getID(::Legends.Trait.LegendPeaceful));
 	}
 
 	local getTooltip = o.getTooltip;
@@ -23,7 +23,7 @@
 			icon = "ui/icons/ranged_skill.png",
 			text = "[color=" + this.Const.UI.Color.PositiveValue + "]+5%[/color] Ranged Skill when in battle with undead"
 		}]);
-		
+
 		return ret;
 	}
 

@@ -12,10 +12,10 @@ this.daytaler_background <- this.inherit("scripts/skills/backgrounds/character_b
 		this.m.HiringCost = 60;
 		this.m.DailyCost = 6;
 		this.m.Excluded = [
-			"trait.fear_undead",
-			"trait.hate_beasts",
-			"trait.hate_undead",
-			"trait.hate_greenskins"
+			::Legends.Traits.getID(::Legends.Trait.FearUndead),
+			::Legends.Traits.getID(::Legends.Trait.HateBeasts),
+			::Legends.Traits.getID(::Legends.Trait.HateUndead),
+			::Legends.Traits.getID(::Legends.Trait.HateGreenskins)
 		];
 		this.m.Faces = this.Const.Faces.AllWhiteMale;
 		this.m.Hairs = this.Const.Hair.UntidyMale;

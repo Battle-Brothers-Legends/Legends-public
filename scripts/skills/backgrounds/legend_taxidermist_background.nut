@@ -12,14 +12,14 @@ this.legend_taxidermist_background <- this.inherit("scripts/skills/backgrounds/c
 		this.m.HiringCost = 250;
 		this.m.DailyCost = 10;
 		this.m.Excluded = [
-			"trait.hate_beasts",
-			"trait.fear_beasts",
-			"trait.athletic",
-			"trait.clumsy",
-			"trait.spartan",
-			"trait.tough",
-			"trait.cocky",
-			"trait.dumb"
+			::Legends.Traits.getID(::Legends.Trait.HateBeasts),
+			::Legends.Traits.getID(::Legends.Trait.FearBeasts),
+			::Legends.Traits.getID(::Legends.Trait.Athletic),
+			::Legends.Traits.getID(::Legends.Trait.Clumsy),
+			::Legends.Traits.getID(::Legends.Trait.Spartan),
+			::Legends.Traits.getID(::Legends.Trait.Tough),
+			::Legends.Traits.getID(::Legends.Trait.Cocky),
+			::Legends.Traits.getID(::Legends.Trait.Dumb)
 
 		];
 		this.m.Titles = [

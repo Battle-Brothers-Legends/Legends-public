@@ -6,10 +6,10 @@
 		create();
 		this.m.Description = "Some past event or particularly convincing story in this character\'s life has left them scared of what the walking dead are capable of, making this character less reliable when facing the undead on the battlefield.";
 		this.m.Excluded.extend([
-			"trait.legend_aggressive",
-			"trait.legend_pragmatic",
-			"trait.legend_ambitious",
-			"trait.legend_natural"
+			::Legends.Traits.getID(::Legends.Trait.LegendAggressive),
+			::Legends.Traits.getID(::Legends.Trait.LegendPragmatic),
+			::Legends.Traits.getID(::Legends.Trait.LegendAmbitious),
+			::Legends.Traits.getID(::Legends.Trait.LegendNatural)
 		]);
 	}
 

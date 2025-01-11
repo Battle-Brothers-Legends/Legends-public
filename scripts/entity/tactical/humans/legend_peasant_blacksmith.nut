@@ -37,7 +37,7 @@ this.legend_peasant_blacksmith <- this.inherit("scripts/entity/tactical/human", 
 		{
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendSmackdown);
 			::Legends.Perks.grant(this, ::Legends.Perk.Nimble);
-			this.m.Skills.add(this.new("scripts/skills/traits/fearless_trait"));
+			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
 		}
 	}
 

@@ -118,62 +118,62 @@ this.legend_apothecary_mushrooms_effect <- this.inherit("scripts/skills/skill", 
 			chance = chance - 10;
 		}
 
-		if (bro.getSkills().hasSkill("trait.strong"))
+		if (bro.getSkills().hasTrait(::Legends.Trait.Strong))
 		{
 			chance = chance - 10;
 		}
 
-		if (bro.getSkills().hasSkill("trait.tough"))
+		if (bro.getSkills().hasTrait(::Legends.Trait.Tough))
 		{
 			chance = chance - 10;
 		}
 
-		if (bro.getSkills().hasSkill("trait.athletic"))
+		if (bro.getSkills().hasTrait(::Legends.Trait.Athletic))
 		{
 			chance = chance - 10;
 		}
 
-		if (bro.getSkills().hasSkill("trait.survivor"))
+		if (bro.getSkills().hasTrait(::Legends.Trait.Survivor))
 		{
 			chance = chance - 10;
 		}
 
-		if (bro.getSkills().hasSkill("trait.fragile"))
+		if (bro.getSkills().hasTrait(::Legends.Trait.Fragile))
 		{
 			chance = chance + 10;
 		}
 
-		if (bro.getSkills().hasSkill("trait.gluttunous"))
+		if (bro.getSkills().hasTrait(::Legends.Trait.Gluttonous))
 		{
 			chance = chance + 10;
 		}
 
-		if (bro.getSkills().hasSkill("trait.old"))
+		if (bro.getSkills().hasTrait(::Legends.Trait.Old))
 		{
 			chance = chance + 10;
 		}
 
-		if (bro.getSkills().hasSkill("trait.spartan"))
+		if (bro.getSkills().hasTrait(::Legends.Trait.Spartan))
 		{
 			chance = chance + 10;
 		}
 
-		if (bro.getSkills().hasSkill("trait.tiny"))
+		if (bro.getSkills().hasTrait(::Legends.Trait.Tiny))
 		{
 			chance = chance + 10;
 		}
 
-		if (bro.getSkills().hasSkill("trait.huge"))
+		if (bro.getSkills().hasTrait(::Legends.Trait.Huge))
 		{
 			chance = chance - 10;
 		}
 
-		if (bro.getSkills().hasSkill("trait.ailing"))
+		if (bro.getSkills().hasTrait(::Legends.Trait.Ailing))
 		{
 			chance = chance + 10;
 		}
 
-		if (bro.getSkills().hasSkill("trait.lucky"))
+		if (bro.getSkills().hasTrait(::Legends.Trait.Lucky))
 		{
 			chance = chance - 10;
 		}

@@ -32,16 +32,16 @@ this.legend_peasant_farmhand <- this.inherit("scripts/entity/tactical/human", {
 		::Legends.Perks.grant(this, ::Legends.Perk.ReachAdvantage);
 		::Legends.Perks.grant(this, ::Legends.Perk.SpecPolearm);
 		this.getSprite("socket").setBrush("bust_base_militia");
-			if(::Legends.isLegendaryDifficulty())
-			{
+		if(::Legends.isLegendaryDifficulty())
+		{
 			this.m.Hitpoints = b.Hitpoints * 1.5;
 			::Legends.Perks.grant(this, ::Legends.Perk.CoupDeGrace);
 			::Legends.Perks.grant(this, ::Legends.Perk.Stalwart);
 			::Legends.Perks.grant(this, ::Legends.Perk.Steadfast);
 			::Legends.Perks.grant(this, ::Legends.Perk.Relentless);
 			::Legends.Perks.grant(this, ::Legends.Perk.Footwork);
-			this.m.Skills.add(this.new("scripts/skills/traits/fearless_trait"));
-			}
+			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
+		}
 	}
 
 	function assignRandomEquipment()

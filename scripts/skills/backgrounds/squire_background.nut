@@ -12,26 +12,26 @@ this.squire_background <- this.inherit("scripts/skills/backgrounds/character_bac
 		this.m.HiringCost = 320;
 		this.m.DailyCost = 26;
 		this.m.Excluded = [
-			"trait.weasel",
-			"trait.fear_undead",
-			"trait.fear_beasts",
-			"trait.fear_greenskins",
-			"trait.legend_fear_nobles",
-			"trait.clubfooted",
-			"trait.irrational",
-			"trait.disloyal",
-			"trait.fat",
-			"trait.fainthearted",
-			"trait.craven",
-			"trait.dastard",
-			"trait.fragile",
-			"trait.insecure",
-			"trait.asthmatic",
-			"trait.clumsy",
-			"trait.pessimist",
-			"trait.greedy",
-			"trait.bleeder",
-			"trait.legend_slack"
+			::Legends.Traits.getID(::Legends.Trait.Weasel),
+			::Legends.Traits.getID(::Legends.Trait.FearUndead),
+			::Legends.Traits.getID(::Legends.Trait.FearBeasts),
+			::Legends.Traits.getID(::Legends.Trait.FearGreenskins),
+			::Legends.Traits.getID(::Legends.Trait.LegendFearNobles),
+			::Legends.Traits.getID(::Legends.Trait.Clubfooted),
+			::Legends.Traits.getID(::Legends.Trait.Irrational),
+			::Legends.Traits.getID(::Legends.Trait.Disloyal),
+			::Legends.Traits.getID(::Legends.Trait.Fat),
+			::Legends.Traits.getID(::Legends.Trait.Fainthearthed),
+			::Legends.Traits.getID(::Legends.Trait.Craven),
+			::Legends.Traits.getID(::Legends.Trait.Dastard),
+			::Legends.Traits.getID(::Legends.Trait.Fragile),
+			::Legends.Traits.getID(::Legends.Trait.Insecure),
+			::Legends.Traits.getID(::Legends.Trait.Asthmatic),
+			::Legends.Traits.getID(::Legends.Trait.Clumsy),
+			::Legends.Traits.getID(::Legends.Trait.Pessimist),
+			::Legends.Traits.getID(::Legends.Trait.Greedy),
+			::Legends.Traits.getID(::Legends.Trait.Bleeder),
+			::Legends.Traits.getID(::Legends.Trait.LegendSlack)
 		];
 		this.m.Faces = this.Const.Faces.AllWhiteMale;
 		this.m.Hairs = this.Const.Hair.YoungMale;

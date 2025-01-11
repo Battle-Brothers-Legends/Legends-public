@@ -33,15 +33,15 @@ this.legend_peasant_monk <- this.inherit("scripts/entity/tactical/human", {
 		::Legends.Perks.grant(this, ::Legends.Perk.RallyTheTroops);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendMasteryStaves);
 		this.getSprite("socket").setBrush("bust_base_militia");
-			if(::Legends.isLegendaryDifficulty())
-			{
+		if(::Legends.isLegendaryDifficulty())
+		{
 			this.m.Hitpoints = b.Hitpoints * 1.5;
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendInspire);
 			::Legends.Perks.grant(this, ::Legends.Perk.HoldOut);
 			::Legends.Perks.grant(this, ::Legends.Perk.FortifiedMind);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendOnslaught);
-			this.m.Skills.add(this.new("scripts/skills/traits/fearless_trait"));
-			}
+			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
+		}
 	}
 
 	function assignRandomEquipment()

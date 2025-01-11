@@ -5,6 +5,6 @@
 	{
 		create();
 		this.m.Description = "This character can be as dangerous to themself as to his opponent.";
-		this.m.Excluded.push("trait.legend_aggressive");
+		this.m.Excluded.push(::Legends.Traits.getID(::Legends.Trait.LegendAggressive));
 	}
 });

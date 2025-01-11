@@ -32,16 +32,16 @@ this.legend_peasant_miner <- this.inherit("scripts/entity/tactical/human", {
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendSmackdown);
 		::Legends.Perks.grant(this, ::Legends.Perk.SpecHammer);
 		this.getSprite("socket").setBrush("bust_base_militia");
-			if(::Legends.isLegendaryDifficulty())
-			{
+		if(::Legends.isLegendaryDifficulty())
+		{
 			this.m.Hitpoints = b.Hitpoints * 1.5;
 			::Legends.Perks.grant(this, ::Legends.Perk.BattleFlow);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendOnslaught);
 			::Legends.Perks.grant(this, ::Legends.Perk.Stalwart);
 			::Legends.Perks.grant(this, ::Legends.Perk.Indomitable);
 			::Legends.Perks.grant(this, ::Legends.Perk.Recover);
-			this.m.Skills.add(this.new("scripts/skills/traits/fearless_trait"));
-			}
+			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
+		}
 	}
 
 	function assignRandomEquipment()

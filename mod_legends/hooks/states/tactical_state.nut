@@ -284,7 +284,7 @@
 					zombieSalvage += 5;
 					break;
 				case "background.butcher":
-					if (bro.getSkills().hasSkill("trait.vazl_cannibalistic"))
+					if (bro.getSkills().hasTrait(::Legends.Trait.LegendCannibalistic))
 					{
 						CannibalisticButchersInRoster += 1;
 					}

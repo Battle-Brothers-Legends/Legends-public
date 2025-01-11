@@ -10,7 +10,7 @@ this.legends_skeleton_high <- this.inherit("scripts/entity/tactical/legend_skele
 		::Legends.Perks.grant(this, ::Legends.Perk.Fearsome);
 		::Legends.Perks.grant(this, ::Legends.Perk.ShieldExpert);
 		::Legends.Perks.grant(this, ::Legends.Perk.ReachAdvantage);
-		this.m.Skills.add(this.new("scripts/skills/traits/legend_fleshless_trait"));
+		::Legends.Traits.grant(this, ::Legends.Trait.LegendFleshless);
 		if(::Legends.isLegendaryDifficulty())
 		{
 			::Legends.Perks.grant(this, ::Legends.Perk.BattleForged);

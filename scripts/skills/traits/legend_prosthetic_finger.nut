@@ -3,7 +3,7 @@ this.legend_prosthetic_finger <- this.inherit("scripts/skills/traits/character_t
 	function create()
 	{
 		this.character_trait.create();
-		this.m.ID = "trait.legend_prosthetic_finger";
+		this.m.ID = ::Legends.Traits.getID(::Legends.Trait.LegendProstheticFinger);
 		this.m.Name = "Prosthetic Finger";
 		this.m.Icon = "ui/traits/legend_prosthetic_finger.png";
 		this.m.Description = "A wooden finger with a joint for the user to force it into whatever position they need. Perfect for pointing fingers at people, but not too much else.";

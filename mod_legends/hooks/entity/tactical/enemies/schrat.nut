@@ -16,7 +16,7 @@
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendLacerate);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecialistShieldSkill);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecialistShieldPush);
-			this.m.Skills.add(this.new("scripts/skills/traits/fearless_trait"));
+			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
 		}
 	}
 

@@ -13,9 +13,9 @@ this.legend_ironmonger_background <- this.inherit("scripts/skills/backgrounds/ch
 		this.m.HiringCost = 100;
 		this.m.DailyCost = 11;
 		this.m.Excluded = [
-			"trait.clumsy",
-			"trait.asthmatic",
-			"trait.fragile"
+			::Legends.Traits.getID(::Legends.Trait.Clumsy),
+			::Legends.Traits.getID(::Legends.Trait.Asthmatic),
+			::Legends.Traits.getID(::Legends.Trait.Fragile)
 
 		];
 		this.m.Titles = [
