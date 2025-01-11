@@ -52,7 +52,7 @@ this.lindwurm_slayer_background <- this.inherit("scripts/skills/backgrounds/char
 		this.m.Modifiers.Hunting = this.Const.LegendMod.ResourceModifiers.Hunting[3];
 		this.m.Modifiers.Scout = this.Const.LegendMod.ResourceModifiers.Scout[1];
 		this.m.Modifiers.Training = this.Const.LegendMod.ResourceModifiers.Training[1];
-		
+
 		this.m.Modifiers.Terrain = [
 				0.0, // ?
 				0.0, //ocean
@@ -120,22 +120,6 @@ this.lindwurm_slayer_background <- this.inherit("scripts/skills/backgrounds/char
 		this.m.BeardChance = 1;
 		this.m.Bodies = this.Const.Bodies.AllFemale;
 		this.addBackgroundType(this.Const.BackgroundType.Female);
-	}
-
-	function getTooltip()
-	{
-		return [
-			{
-				id = 1,
-				type = "title",
-				text = this.getName()
-			},
-			{
-				id = 2,
-				type = "description",
-				text = this.getDescription()
-			}
-		];
 	}
 
 	function onBuildDescription()
