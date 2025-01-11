@@ -777,5 +777,10 @@ traitDefs.push({
 	Script = "scripts/skills/traits/sato_brothers_in_chains_trait",
 	Const = "LegendBrothersInChains"
 });
+traitDefs.push({
+	ID = "trait.legend_peaceful",
+	Script = "scripts/skills/traits/legend_peaceful_trait",
+	Const = "LegendPeaceful"
+});
 
 ::Legends.Traits.addTraitDefObjects(traitDefs);

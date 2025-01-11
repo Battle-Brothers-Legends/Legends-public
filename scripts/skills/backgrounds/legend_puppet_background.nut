@@ -69,6 +69,7 @@ this.legend_puppet_background <- this.inherit("scripts/skills/backgrounds/charac
 			::Legends.Traits.getID(::Legends.Trait.LegendDoubleTongued),
 			::Legends.Traits.getID(::Legends.Trait.LegendGiftOfPeople),
 			::Legends.Traits.getID(::Legends.Trait.LegendSeductive)
+			::Legends.Traits.getID(::Legends.Trait.LegendNatural)
 		];
 
 		/*this.m.ExcludedTalents = [ //talentless
