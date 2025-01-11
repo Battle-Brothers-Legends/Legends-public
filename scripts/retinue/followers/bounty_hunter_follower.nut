@@ -27,12 +27,10 @@ this.bounty_hunter_follower <- this.inherit("scripts/retinue/follower", {
 		]);
 	}
 
-
-
 	function onUpdate()
 	{
 		if ("ChampionChanceAdditional" in this.World.Assets.m)
-			this.World.Assets.m.ChampionChanceAdditional = 3;
+			this.World.Assets.m.ChampionChanceAdditional = this.World.Assets.getOrigin().getID() == "scenario.legends_party" ? 8 : 3;
 	}
 
 	function onChampionKilled( _champion )

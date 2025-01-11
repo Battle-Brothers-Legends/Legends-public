@@ -20,7 +20,7 @@
 			}
 			if (s.ID == "E") {
 				s.Text = "[img]gfx/ui/events/event_33.png[/img] You tell the mercenaries to get back to marching. The thief uses a thin arm to wipe their mouth and stands up, wobbling on weak legs to take a few steps after you and asks if maybe they could join the company. %SPEECH_ON%I\'ll give my life for you, if I must, just anything to not have to steal anymore.%SPEECH_OFF%";
-				s.Options[0].Text = "We need warriors, not underfed thieves.";
+				s.Options[1].Text = "We need warriors, not underfed thieves.";
 				s.start <- function ( _event ) {
 					local roster = this.World.getTemporaryRoster();
 					_event.m.Dude = roster.create("scripts/entity/tactical/player");

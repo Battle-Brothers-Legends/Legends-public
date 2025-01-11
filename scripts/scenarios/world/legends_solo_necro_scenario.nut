@@ -266,7 +266,7 @@ this.legends_solo_necro_scenario <- this.inherit("scripts/scenarios/world/starti
 			bro.getSprite("socket").setBrush("bust_base_undead");
 			bro.getBaseProperties().Hitpoints += 12;
 		}
-		else
+		else if (!bro.isStabled())
 		{
 			bro.worsenMood(2.0, "Feels very sick all of a sudden...");
 			::Legends.Traits.grant(bro, ::Legends.Trait.LegendWitheringAura);
@@ -285,10 +285,10 @@ this.legends_solo_necro_scenario <- this.inherit("scripts/scenarios/world/starti
 		foreach( i, bro in bros )
 		{
 			if (bro.getBackground().isBackgroundType(this.Const.BackgroundType.Crusader)) //delete crusader/pious recruits
-			{
 				garbage.push(bro);
-			}
 		}
+		foreach (g in garbage)
+			_roster.remove(g);
 	}
 
 	function onGenerateBro(bro)

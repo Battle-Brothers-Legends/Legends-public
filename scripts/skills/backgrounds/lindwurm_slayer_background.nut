@@ -140,7 +140,7 @@ this.lindwurm_slayer_background <- this.inherit("scripts/skills/backgrounds/char
 
 	function onBuildDescription()
 	{
-		return "{%name% is apparently something of a celebrity and could be mistaken for house nobility, except for the glistening lindwurm scales adorning %their% armor and the particular talent for slaying lindwurms. Claiming to be the child of Dirk the Dragonslayer, the monster hunter who ostensibly slew the last living dragon. %they% has long sought to join a mercenary company with the mettle to go up against the most dangerous foes, clearly not content with inherited fame. %name% wants to kill a dragon %themself% even if the dragons are extinct and something in %their% eyes assures you this is no idle boast, this slayer clearly means business.}";
+		return "{%name% is apparently something of a celebrity and could be mistaken for house nobility, except for the glistening lindwurm scales adorning %their% armor and the particular talent for slaying lindwurms. Claiming to be the child of Dirk the Dragonslayer, the monster hunter who ostensibly slew the last living dragon. %they% has long sought to join a mercenary company with the mettle to go up against the most dangerous foes, clearly not content with inherited fame. %name% wants to kill a dragon %themselves% even if the dragons are extinct and something in %their% eyes assures you this is no idle boast, this slayer clearly means business.}";
 	}
 
 	function onChangeAttributes()

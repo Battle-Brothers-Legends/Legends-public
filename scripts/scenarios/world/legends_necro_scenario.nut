@@ -212,7 +212,7 @@ this.legends_necro_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 		{
 			bro.getSprite("socket").setBrush("bust_base_undead");
 		}
-		else
+		else if (!bro.isStabled())
 		{
 			::Legends.Traits.grant(bro, ::Legends.Trait.LegendDeathlySpectre);
 			bro.worsenMood(2.0, "Something doesn't feel right here...");
@@ -229,10 +229,10 @@ this.legends_necro_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 		foreach( i, bro in bros )
 		{
 			if (bro.getBackground().isBackgroundType(this.Const.BackgroundType.Crusader)) //delete crusader/pious recruits
-			{
 				garbage.push(bro);
-			}
 		}
+		foreach (g in garbage)
+			_roster.remove(g);
 	}
 
 	function onGenerateBro(bro)
