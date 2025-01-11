@@ -1230,71 +1230,26 @@
 		this.getContainer().getActor().m.CurrentProperties = clone b;
 		this.getContainer().getActor().setHitpoints(b.Hitpoints);
 
-		local weighted = []
-		if (a.Hitpoints[1] == a.Hitpoints[0])
-		{
-			weighted.push(50)
+		local calc = function(_a, _b, _field) {
+			local a = _a[_field];
+			local b = _b[_field];
+			if (a[1] == a[0])
+				return 50;
+			local weight = ::Math.floor(::Math.abs(b - a[0]) * 100.0 / ::Math.abs(a[1] - a[0]));
+			if (weight == 0)
+				return 50;
+			return weight;
 		}
-		else
-		{
-			weighted.push(this.Math.floor((b.Hitpoints - a.Hitpoints[0]) * 100.0 / (a.Hitpoints[1] - a.Hitpoints[0])))
-		}
-		if (a.Bravery[1] == a.Bravery[0])
-		{
-			weighted.push(50)
-		}
-		else
-		{
-			weighted.push(this.Math.floor((b.Bravery - a.Bravery[0]) * 100.0 / (a.Bravery[1] - a.Bravery[0])))
-		}
-		if (a.Stamina[1] == a.Stamina[0])
-		{
-			weighted.push(50)
-		}
-		else
-		{
-			weighted.push(this.Math.floor((b.Stamina - a.Stamina[0]) * 100.0 / (a.Stamina[1] - a.Stamina[0])))
-		}
-		if (a.MeleeSkill[1] == a.MeleeSkill[0])
-		{
-			weighted.push(50)
-		}
-		else
-		{
-			weighted.push(this.Math.floor((b.MeleeSkill - a.MeleeSkill[0]) * 100.0 / (a.MeleeSkill[1] - a.MeleeSkill[0])))
-		}
-		if (a.RangedSkill[1] == a.RangedSkill[0])
-		{
-			weighted.push(50)
-		}
-		else
-		{
-			weighted.push(this.Math.floor((b.RangedSkill - a.RangedSkill[0]) * 100.0 / (a.RangedSkill[1] - a.RangedSkill[0])))
-		}
-		if (a.MeleeDefense[1] == a.MeleeDefense[0])
-		{
-			weighted.push(50)
-		}
-		else
-		{
-			weighted.push(this.Math.floor((b.MeleeDefense - a.MeleeDefense[0]) * 100.0 / (a.MeleeDefense[1] - a.MeleeDefense[0])))
-		}
-		if (a.RangedDefense[1] == a.RangedDefense[0])
-		{
-			weighted.push(50)
-		}
-		else
-		{
-			weighted.push(this.Math.floor((b.RangedDefense - a.RangedDefense[0]) * 100.0 / (a.RangedDefense[1] - a.RangedDefense[0])))
-		}
-		if (a.Initiative[1] == a.Initiative[0])
-		{
-			weighted.push(50)
-		}
-		else
-		{
-			weighted.push(this.Math.floor((b.Initiative - a.Initiative[0]) * 100.0 / (a.Initiative[1] - a.Initiative[0])))
-		}
+		local weighted = [
+			calc(a, b, "Hitpoints"),
+			calc(a, b, "Bravery"),
+			calc(a, b, "Stamina"),
+			calc(a, b, "MeleeSkill"),
+			calc(a, b, "RangedSkill"),
+			calc(a, b, "MeleeDefense"),
+			calc(a, b, "RangedDefense"),
+			calc(a, b, "Initiative")
+		];
 		return weighted;
 	}
 
