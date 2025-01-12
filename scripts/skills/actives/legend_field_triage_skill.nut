@@ -72,7 +72,7 @@ this.legend_field_triage_skill <- this.inherit("scripts/skills/skill", {
 
 	function onVerifyTarget( _originTile, _targetTile )
 	{
-		
+
 		if (!this.skill.onVerifyTarget(_originTile, _targetTile))
 		{
 			return false;

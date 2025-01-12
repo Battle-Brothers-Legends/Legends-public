@@ -14,22 +14,26 @@
 
 	o.onAdded = function ()
 	{
-		local items = this.getContainer().getActor().getItems();
+		local actor = this.getContainer().getActor();
+		if (actor == null)
+			return;
+		local items = actor.getItems();
 
 		if (items.getItemAtSlot(this.Const.ItemSlot.Mainhand) && items.getItemAtSlot(this.Const.ItemSlot.Mainhand).getBlockedSlotType() == this.Const.ItemSlot.Offhand)
 		{
 			local item = items.getItemAtSlot(this.Const.ItemSlot.Mainhand);
-			//item.unequip();
-			item.drop();
+			items.unequip(item);
+			if (!actor.isPlacedOnMap() || ("State" in this.Tactical) && this.Tactical.State.isBattleEnded())
+				item.drop();
 		}
 
 		if (items.getItemAtSlot(this.Const.ItemSlot.Offhand))
 		{
 			local item = items.getItemAtSlot(this.Const.ItemSlot.Offhand);
-			//item.unequip();
-			item.drop();
+			items.unequip(item);
+			if (!actor.isPlacedOnMap() || ("State" in this.Tactical) && this.Tactical.State.isBattleEnded())
+				item.drop();
 		}
-
 		items.getData()[this.Const.ItemSlot.Offhand][0] = -1;
 	}
 
