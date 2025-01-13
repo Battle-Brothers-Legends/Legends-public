@@ -7,15 +7,15 @@ if (!("Traits" in ::Legends))
 		::logError( "_target == null " + _onError);
 		throw "_target == null";
 	}
-	if (::isKindOf(_target, "skill"))
+	if (::MSU.isKindOf(_target, "skill"))
 		return _target.getContainer();
-	if (::isKindOf(_target, "skill_container"))
+	if (::MSU.isKindOf(_target, "skill_container"))
 		return _target;
-	if (::isKindOf(_target, "actor"))
+	if (::MSU.isKindOf(_target, "actor"))
 		return _target.getSkills();
-	if (::isKindOf(_target, "character_background"))
+	if (::MSU.isKindOf(_target, "character_background"))
 		return _target.getContainer();
-	if (::isKindOf(_target, "item"))
+	if (::MSU.isKindOf(_target, "item"))
 		return ::Legends.Perks.getContainer(_target.getContainer().getActor())
 	::logError( "Unsupported _target class " + _onError);
 	throw "Unsupported _target class";
