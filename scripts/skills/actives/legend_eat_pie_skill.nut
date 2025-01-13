@@ -6,7 +6,7 @@ this.legend_eat_pie_skill <- this.inherit("scripts/skills/actives/base/legend_ea
 		this.legend_eat_skill.create();
 		this.m.ID = "actives.legend_eat_pie";
 		this.m.Name = "Eat or Give Pie";
-		this.m.Description = "Give to an adjacent ally or eat yourself a pie that slowly heals Can not be used while engaged in melee, and anyone receiving the item needs to have a free bag slot.";
+		this.m.Description = "Give to an adjacent ally or eat yourself a pie that slowly recovers hitpoints. Can not be used while engaged in melee, and anyone receiving the item needs to have a free bag slot.";
 		this.m.Icon = "skills/pie_square.png";
 		this.m.IconDisabled = "skills/pie_square_bw.png";
 	}
@@ -32,8 +32,8 @@ this.legend_eat_pie_skill <- this.inherit("scripts/skills/actives/base/legend_ea
 			{
 				id = 11,
 				type = "text",
-				icon = "ui/icons/hitpoints.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+1[/color] Health per turn for 10 turns"
+				icon = "ui/icons/health.png",
+				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+1[/color] Hitpoints per turn for 10 turns"
 			},
 			{
 				id = 12,

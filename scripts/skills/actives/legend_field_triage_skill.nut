@@ -51,7 +51,7 @@ this.legend_field_triage_skill <- this.inherit("scripts/skills/skill", {
 			id = 8,
 			type = "text",
 			icon = "ui/icons/health.png",
-			text = "You can heal up to [color=" + this.Const.UI.Color.PositiveValue +"]" + this.Math.floor(hp) +  "[/color] hitpoints."
+			text = "You can heal up to [color=" + this.Const.UI.Color.PositiveValue +"]" + this.Math.floor(hp) +  "[/color] Hitpoints."
 		});
 		return ret;
 	}
