@@ -15,7 +15,7 @@ this.legend_bear_claws_skill <- this.inherit("scripts/skills/skill", {
 	{
 		this.m.ID = "actives.legend_bear_claws";
 		this.m.Name = "Bear Claws";
-		this.m.Description = "Very long and sharp claws that can tear flesh across multiple opponents and leave them bleeding";
+		this.m.Description = "Tear into flesh across multiple opponents and leave them bleading with very long, sharp claws.";
 		this.m.KilledString = "Ripped to shreds";
 		this.m.Icon = "skills/active_21.png";
 		this.m.IconDisabled = "skills/active_21_bw.png";
