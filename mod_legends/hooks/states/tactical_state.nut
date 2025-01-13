@@ -291,7 +291,7 @@
 					break;
 			}
 
-			if (bro.getSkills().hasPerk(::Legends.Perk.LegendReclamationhasSkill))
+			if (bro.getSkills().hasPerk(::Legends.Perk.LegendReclamation))
 			{
 				local skill = ::Legends.Perks.get(bro, ::Legends.Perk.LegendReclamation);
 				zombieSalvage += skill.m.LootChance;
