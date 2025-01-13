@@ -4,7 +4,7 @@ this.legend_holyflame_skill <- this.inherit("scripts/skills/skill", {
 	{
 		this.m.ID = "actives.legend_holyflame";
 		this.m.Name = "Holy Flame";
-		this.m.Description = "Bless an area, the holy shall be sanctified when entering, the damned shall be consecrated.";
+		this.m.Description = "Bless an area. The holy shall be sanctified when entering, the damned shall be consecrated.";
 		this.m.Icon = "skills/holybluefire_square.png";
 		this.m.IconDisabled = "skills/holyfire_square_bw.png";
 		this.m.Overlay = "holybluefire_square";

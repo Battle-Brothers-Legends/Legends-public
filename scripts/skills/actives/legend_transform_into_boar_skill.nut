@@ -6,7 +6,7 @@ this.legend_transform_into_boar_skill <- this.inherit("scripts/skills/skill", {
 	{
 		this.m.ID = "actives.legend_transform_into_boar";
 		this.m.Name = "Transform into Boar";
-		this.m.Description = "Enables the character to turn into a boar, requires free hands. Temporary Icon sorry";
+		this.m.Description = "Enables the character to turn into a boar. Requires free hands. (Icon is temporary)";
 		this.m.Icon = "skills/blooddrop_square.png";
 		this.m.IconDisabled = "skills/blooddrop_square_bw.png";
 		this.m.Overlay = "active_12";

@@ -12,7 +12,7 @@ this.legend_unarmed_lunge_skill <- this.inherit("scripts/skills/skill", {
 	{
 		this.m.ID = "actives.legend_unarmed_lunge";
 		this.m.Name = "Jump Attack";
-		this.m.Description = "A jump forward and attack combined into a single move";
+		this.m.Description = "A jump forward and attack combined into a single move.";
 		this.m.KilledString = "Hit";
 		this.m.Icon = "skills/unarmed_lunge_square.png";
 		this.m.IconDisabled = "skills/unarmed_lunge_square_bw.png";

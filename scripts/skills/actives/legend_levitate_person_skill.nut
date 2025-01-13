@@ -4,7 +4,7 @@ this.legend_levitate_person_skill <- this.inherit("scripts/skills/skill", {
 	{
 		this.m.ID = "actives.legend_levitate_person";
 		this.m.Name = "Levitate Person";
-		this.m.Description = "Levitate someone off the ground, granting them the ability to move freely across all terrain";
+		this.m.Description = "Levitate someone off the ground, granting them the ability to move freely across all terrain.";
 		this.m.KilledString = "Levitated";
 		this.m.Icon = "skills/levitate_square.png";
 		this.m.IconDisabled = "skills/levitate_square_bw.png";

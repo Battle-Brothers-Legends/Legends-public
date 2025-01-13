@@ -6,7 +6,7 @@ this.legend_evasion_skill <- this.inherit("scripts/skills/skill", {
 	{
 		this.m.ID = "actives.legend_evasion";
 		this.m.Name = "Evasion";
-		this.m.Description = "Prepares the character safely through any Zone of Control next turn without incurring any free attacks.";
+		this.m.Description = "Prepares the character to move safely through any Zone of Control next turn without incurring any free attacks.";
 		this.m.Icon = "skills/evasion.png";
 		this.m.IconDisabled = "skills/evasion_bw.png";
 		this.m.Overlay = "evasion";

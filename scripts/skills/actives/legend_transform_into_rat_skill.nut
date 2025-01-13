@@ -6,7 +6,7 @@ this.legend_transform_into_rat_skill <- this.inherit("scripts/skills/skill", {
 	{
 		this.m.ID = "actives.legend_transform_into_rat";
 		this.m.Name = "Transform into Rat";
-		this.m.Description = "Enables the character to turn into a rat, requires free hands";
+		this.m.Description = "Enables the character to turn into a rat. Requires free hands.";
 		this.m.Icon = "skills/rat_transform.png";
 		this.m.IconDisabled = "skills/rat_transform_bw.png";
 		this.m.Overlay = "active_12";

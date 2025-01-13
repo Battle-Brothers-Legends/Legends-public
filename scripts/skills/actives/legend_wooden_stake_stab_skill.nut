@@ -4,7 +4,7 @@ this.legend_wooden_stake_stab_skill <- this.inherit("scripts/skills/skill", {
 	{
 		this.m.ID = "actives.legend_wooden_stake_stab";
 		this.m.Name = "Stab with Wooden Stake";
-		this.m.Description = "A quick and fast stab with the wooden shaft. Deals +100 damage to vampires";
+		this.m.Description = "A quick and fast stab with the wooden shaft. Deals +100 damage to vampires.";
 		this.m.KilledString = "Staked";
 		this.m.Icon = "skills/wooden_stake_square.png";
 		this.m.IconDisabled = "skills/wooden_stake_square_bw.png";

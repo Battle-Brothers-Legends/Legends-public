@@ -4,7 +4,7 @@ this.legend_sprint_skill <- this.inherit("scripts/skills/skill", {
 	{
 		this.m.ID = "actives.legend_sprint";
 		this.m.Name = "Sprint";
-		this.m.Description = "For the remainder of this turn, the Action Point cost for movement is reduced by 1 for each tile, but the Fatigue cost is doubled";
+		this.m.Description = "For the remainder of this turn, the Action Point cost for movement is reduced by 1 for each tile, but the Fatigue cost is doubled.";
 		this.m.Icon = "ui/perks/perk_sprint.png";
 		this.m.IconDisabled = "ui/perks/perk_sprint_sw.png";
 		this.m.Overlay = "perk_37_active";

@@ -4,7 +4,7 @@ this.legend_leap_skill <- this.inherit("scripts/skills/skill", {
 	{
 		this.m.ID = "actives.legend_leap";
 		this.m.Name = "Leap";
-		this.m.Description = "Learning to jump extended distances allows escape from usually impossible situations. Fatigue cost is 15 plus the weight of your armor. Range can be increased with the Backflip perk, and by taking Staff Mastery and wielding staff.";
+		this.m.Description = "Learning to jump extended distances allows escape from usually impossible situations. Fatigue cost is 15 plus the weight of your armor. Range can be increased with the Backflip perk, and by taking Staff Mastery and wielding a staff.";
 		this.m.Icon = "skills/leap_square.png";
 		this.m.IconDisabled = "skills/leap_square_bw.png";
 		this.m.Overlay = "horse_pirouette";

@@ -4,7 +4,7 @@ this.legend_wither_skill <- this.inherit("scripts/skills/skill", {
 	{
 		this.m.ID = "actives.legend_wither";
 		this.m.Name = "Wither";
-		this.m.Description = "Wither a target for three turns, reducing their damage, fatigue and initiative by [color=" + this.Const.UI.Color.NegativeValue + "]-30%[/color]. The effect reduces by 10% each turn";
+		this.m.Description = "Wither a target for three turns, reducing their damage, fatigue and initiative by [color=" + this.Const.UI.Color.NegativeValue + "]-30%[/color]. The effect reduces by 10% each turn.";
 		this.m.Icon = "skills/wither56_skill.png";
 		this.m.IconDisabled = "skills/wither56_skill_bw.png";
 		this.m.Overlay = "wither";
