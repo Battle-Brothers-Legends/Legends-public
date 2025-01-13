@@ -1464,6 +1464,15 @@ perkDefObjects.push({
 	Const = "LegendOffBookDeal"
 });
 perkDefObjects.push({
+	ID = "perk.legend_sword_master",
+	Script = "scripts/skills/perks/perk_legend_sword_master",
+	Name = ::Const.Strings.PerkName.LegendSwordMaster,
+	Tooltip = ::Const.Strings.PerkDescription.LegendSwordMaster,
+	Icon = "ui/perks/sunderingstrikes_circle.png",
+	IconDisabled = "ui/perks/sunderingstrikes_circle_bw.png",
+	Const = "LegendSwordMaster"
+});
+perkDefObjects.push({
 	ID = "perk.legend_specialist_butcher_damage",
 	Script = "scripts/skills/perks/perk_legend_specialist_butcher_damage",
 	Name = ::Const.Strings.PerkName.LegendSpecialistButcherDamage,

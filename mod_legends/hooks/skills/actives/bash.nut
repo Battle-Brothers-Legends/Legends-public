@@ -3,6 +3,7 @@
 	o.m.IsLuteBash <- false;
 	o.m.IsDrumBash <- false;
 	o.m.IsStaffBash <- false;
+	o.m.IsSwordBash <- false;
 
 	o.setItem <- function (_item) {
 		if (this.m.IsDrumBash)
@@ -29,7 +30,27 @@
 			this.m.IconDisabled = "skills/staff_bash_bw.png";
 			this.m.MaxRange = 2;
 		}
+		else if (this.m.IsSwordBash)
+		{
+			this.m.Name = "Mordhau"
+			this.m.Icon = "skills/active_mordhau.png";
+			this.m.IconDisabled = "skills/active_mordhau_sw.png";
+			this.m.ActionPointCost = 5;
+			this.m.FatigueCost = 15;
+		}
 		this.skill.setItem(_item);
+	}
+
+	o.isHidden <- function ()
+	{
+		if (!this.m.IsSwordBash)
+			return false;
+		local actor = this.getContainer().getActor();
+		local doubleGrip = this.getContainer().getSkillByID("special.double_grip");
+		if (actor == null || !actor.getSkills().hasPerk(::Legends.Perk.LegendSwordMaster) && !doubleGrip.canDoubleGrip())
+			return true;
+
+		return false;
 	}
 
 	local getTooltip = o.getTooltip;
@@ -47,10 +68,25 @@
 			});
 			return ret;
 		}
-		else
+		local ret = getTooltip();
+		if (this.m.IsSwordBash && this.getContainer().hasPerk(::Legends.Perk.QuickHands))
 		{
-			return getTooltip();
+			ret.push({
+				id = 6,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = "Costs [color=" + this.Const.UI.Color.NegativeValue + "]1[/color] less AP"
+			});
+			ret.push({
+				id = 6,
+				type = "text",
+				icon = "ui/icons/fatigue.png",
+				text = "Costs [color=" + this.Const.UI.Color.NegativeValue + "]2[/color] less Fatigue (before other bonuses)"
+			});
+			return ret;
 		}
+		
+		return ret;
 	}
 
 	local onAfterUpdate = o.onAfterUpdate;
@@ -64,6 +100,15 @@
 		{
 			this.m.FatigueCostMult = _properties.IsSpecializedInStaves ? this.Const.Combat.WeaponSpecFatigueMult : 1.0;
 		}
+		else if (this.m.IsSwordBash)
+		{
+			if (this.getContainer().hasPerk(::Legends.Perk.QuickHands))
+			{
+				this.m.ActionPointCost -= 1;
+				this.m.FatigueCost -= 2;
+			}
+			this.m.FatigueCostMult = _properties.IsSpecializedInSwords ? this.Const.Combat.WeaponSpecFatigueMult : 1.0;
+		}
 		else
 		{
 			onAfterUpdate( _properties );
@@ -76,6 +121,12 @@
 		if (_skill == this && this.m.IsDrumBash)
 		{
 			_properties.FatigueDealtPerHitMult += 1.0;
+		}
+		else if (_skill == this && this.m.IsSwordBash)
+		{
+			_properties.ArmorDamageMult += 0.25;
+			_properties.DirectDamageMult += 0.15;
+			_properties.FatigueDealtPerHitMult += 2.0;
 		}
 		else
 		{

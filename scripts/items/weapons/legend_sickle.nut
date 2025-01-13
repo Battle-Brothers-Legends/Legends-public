@@ -3,7 +3,7 @@ this.legend_sickle <- this.inherit("scripts/items/weapons/weapon", {
 	function create()
 	{
 		this.weapon.create();
-		this.m.ID = "weapon.sickle";
+		this.m.ID = "weapon.legend_sickle";
 		this.m.Name = "Sickle";
 		this.m.Description = "A tool for gathering plants, can also gather ears";
 		this.m.IconLarge = "weapons/melee/legend_sickle_01.png";

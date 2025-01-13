@@ -35,6 +35,9 @@ this.legend_longsword <- this.inherit("scripts/items/weapons/weapon", {
 		this.addSkill(skillToAdd);
 		this.addSkill(this.new("scripts/skills/actives/overhead_strike"));
 		this.addSkill(this.new("scripts/skills/actives/riposte"));
+		local skillToAdd = this.new("scripts/skills/actives/cudgel_skill");
+		skillToAdd.m.IsSwordBash = true;
+		this.addSkill(skillToAdd);
 	}
 });
 

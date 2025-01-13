@@ -42,7 +42,10 @@ this.legend_crusader_sword <- this.inherit("scripts/items/weapons/weapon", {
 		skillToAdd = this.new("scripts/skills/actives/slash");
 		skillToAdd.m.isGreatSlash = true;
 		this.addSkill(skillToAdd);
-		this.addSkill(this.new("scripts/skills/actives/swing"));		
+		this.addSkill(this.new("scripts/skills/actives/swing"));
+		local skillToAdd = this.new("scripts/skills/actives/cudgel_skill");
+		skillToAdd.m.IsSwordBash = true;
+		this.addSkill(skillToAdd);
 		this.addSkill(this.new("scripts/skills/actives/riposte"));
 	}
 

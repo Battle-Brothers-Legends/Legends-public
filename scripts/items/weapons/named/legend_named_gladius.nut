@@ -50,6 +50,9 @@ this.legend_named_gladius <- this.inherit("scripts/items/weapons/named/named_wea
 		this.named_weapon.onEquip();
 		this.addSkill(this.new("scripts/skills/actives/slash"));
 		this.addSkill(this.new("scripts/skills/actives/riposte"));
+		local skillToAdd = this.new("scripts/skills/actives/bash");
+		skillToAdd.m.IsSwordBash = true;
+		this.addSkill(skillToAdd);
 	}
 
 	function onUpdateProperties( _properties )

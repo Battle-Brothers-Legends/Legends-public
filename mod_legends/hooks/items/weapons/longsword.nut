@@ -12,4 +12,13 @@
 		this.m.ConditionMax = 64.0;
 		this.m.ChanceToHitHead = 10;
 	}
+
+	local onEquip = o.onEquip;
+	o.onEquip = function ()
+	{
+		local s = this.new("scripts/skills/actives/cudgel_skill");
+		s.m.IsSwordBash = true;
+		this.addSkill(s);
+		onEquip();
+	}
 });
