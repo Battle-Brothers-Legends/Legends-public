@@ -35,7 +35,7 @@ this.legend_noble_fencer <- this.inherit("scripts/entity/tactical/human", {
 		this.getSprite("socket").setBrush("bust_base_military");
 		::Legends.Perks.grant(this, ::Legends.Perk.Nimble);
 		::Legends.Perks.grant(this, ::Legends.Perk.Dodge);
-		::Legends.Perks.grant(this, ::Legends.Perk.Backstabber);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendStrengthInNumbers);
 		::Legends.Perks.grant(this, ::Legends.Perk.Footwork);
 		::Legends.Perks.grant(this, ::Legends.Perk.FastAdaption);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendBackToBasics);

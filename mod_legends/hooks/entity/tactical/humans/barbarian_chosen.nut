@@ -10,7 +10,7 @@
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendOnslaught);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendAlert);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendBalance);
-			::Legends.Perks.grant(this, ::Legends.Perk.Backstabber);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendStrengthInNumbers);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecFists);
 			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
 		}

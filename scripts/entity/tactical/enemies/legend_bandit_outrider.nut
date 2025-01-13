@@ -119,7 +119,7 @@ this.legend_bandit_outrider <- this.inherit("scripts/entity/tactical/human", {
 		{
 			::Legends.Perks.grant(this, ::Legends.Perk.Relentless);
 			::Legends.Perks.grant(this, ::Legends.Perk.Dodge);
-			::Legends.Perks.grant(this, ::Legends.Perk.Backstabber);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendStrengthInNumbers);
 			::Legends.Perks.grant(this, ::Legends.Perk.Underdog);
 			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
 		}

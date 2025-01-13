@@ -119,7 +119,7 @@ this.legend_alp_nightmare_direwolf <- this.inherit("scripts/entity/tactical/enem
 		if (::Legends.isLegendaryDifficulty())
 		{
 			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
-			::Legends.Perks.grant(this, ::Legends.Perk.Backstabber);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendStrengthInNumbers);
 			::Legends.Perks.grant(this, ::Legends.Perk.KillingFrenzy);
 			::Legends.Perks.grant(this, ::Legends.Perk.Nimble);
 		}

@@ -38,7 +38,7 @@ this.legend_peasant_squire <- this.inherit("scripts/entity/tactical/human", {
 
 		if(::Legends.isLegendaryDifficulty())
 		{
-			::Legends.Perks.grant(this, ::Legends.Perk.Backstabber);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendStrengthInNumbers);
 			::Legends.Perks.grant(this, ::Legends.Perk.Nimble);
 			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
 		}

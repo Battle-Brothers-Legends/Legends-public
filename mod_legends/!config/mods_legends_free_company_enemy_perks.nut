@@ -43,7 +43,7 @@ if (!("EnemyPerks" in ::Const))
 ::Const.EnemyPerks.FreeCompanySpearman <- [
 	[4, [::Legends.Perk.LegendSpecialistMilitiaSkill, ::Legends.Perk.LegendSpecialistMilitiaDamage], 4],
 	[2, ::Legends.Perk.Underdog, 3],
-	[2, ::Legends.Perk.Backstabber, 2],
+	[2, ::Legends.Perk.LegendStrengthInNumbers, 2],
 	[2, ::Legends.Perk.ShieldExpert, 2],
 	[1, ::Legends.Perk.CripplingStrikes, 1],
 	[1, ::Legends.Perk.FortifiedMind, 1],
@@ -62,7 +62,7 @@ if (!("EnemyPerks" in ::Const))
 	[2, ::Legends.Perk.Adrenaline, 2],
 	[2, ::Legends.Perk.CripplingStrikes, 2],
 	[4, ::Legends.Perk.LegendHairSplitter, 2],
-	[1, ::Legends.Perk.Backstabber, 1],
+	[1, ::Legends.Perk.LegendStrengthInNumbers, 1],
 	[1, ::Legends.Perk.QuickHands, 1],
 	[1, ::Legends.Perk.HoldOut, 0],
 	[1, ::Legends.Perk.SteelBrow, 0]
@@ -84,7 +84,7 @@ if (!("EnemyPerks" in ::Const))
 ::Const.EnemyPerks.FreeCompanyPikeman <- [
 	[2, ::Legends.Perk.CoupDeGrace, 3],
 	[3, ::Legends.Perk.LegendMuscularity, 3],
-	[2, ::Legends.Perk.Backstabber, 2],
+	[2, ::Legends.Perk.LegendStrengthInNumbers, 2],
 	[1, ::Legends.Perk.Footwork, 2],
 	[1, ::Legends.Perk.Overwhelm, 2],
 	[1, ::Legends.Perk.Anticipation, 1],
@@ -97,7 +97,7 @@ if (!("EnemyPerks" in ::Const))
 ::Const.EnemyPerks.FreeCompanyBillman <- [
 	[3, ::Legends.Perk.CoupDeGrace, 3],
 	[2, ::Legends.Perk.LegendMuscularity, 3],
-	[2, ::Legends.Perk.Backstabber, 2],
+	[2, ::Legends.Perk.LegendStrengthInNumbers, 2],
 	[1, ::Legends.Perk.Footwork, 2],
 	[1, ::Legends.Perk.Overwhelm, 2],
 	[1, ::Legends.Perk.Anticipation, 1],
@@ -114,7 +114,7 @@ if (!("EnemyPerks" in ::Const))
 	[2, ::Legends.Perk.LegendComposure, 2],
 	[3, ::Legends.Perk.LegendDoubleStrike, 2],
 	[3, ::Legends.Perk.LegendSmackdown, 2],
-	[1, ::Legends.Perk.Backstabber, 1],
+	[1, ::Legends.Perk.LegendStrengthInNumbers, 1],
 	[1, ::Legends.Perk.Colossus, 1],
 	[1, ::Legends.Perk.QuickHands, 1],
 	[1, ::Legends.Perk.CoupDeGrace, 0],
@@ -128,7 +128,7 @@ if (!("EnemyPerks" in ::Const))
 	[1, [::Legends.Perk.Footwork, ::Legends.Perk.LegendTumble], 2],
 	[2, ::Legends.Perk.ReachAdvantage, 2],
 	[3, ::Legends.Perk.LegendSmackdown, 2],
-	[1, ::Legends.Perk.Backstabber, 1],
+	[1, ::Legends.Perk.LegendStrengthInNumbers, 1],
 	[2, ::Legends.Perk.Colossus, 1],
 	[1, ::Legends.Perk.FastAdaption, 1],
 	[1, ::Legends.Perk.RallyTheTroops, 0],

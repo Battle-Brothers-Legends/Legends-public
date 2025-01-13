@@ -287,7 +287,7 @@ this.legend_redback_spider <- this.inherit("scripts/entity/tactical/actor", {
 		::Legends.Perks.grant(this, ::Legends.Perk.Rotation);
 		::Legends.Perks.grant(this, ::Legends.Perk.Recover);
 		::Legends.Perks.grant(this, ::Legends.Perk.Pathfinder);
-		::Legends.Perks.grant(this, ::Legends.Perk.Backstabber);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendStrengthInNumbers);
 		::Legends.Perks.grant(this, ::Legends.Perk.Nimble);
 		::Legends.Perks.grant(this, ::Legends.Perk.FastAdaption);
 		::Legends.Perks.grant(this, ::Legends.Perk.KillingFrenzy);

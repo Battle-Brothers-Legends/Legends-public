@@ -9,11 +9,11 @@
 		if (::Legends.isLegendaryDifficulty())
 		{
 			this.m.Hitpoints = b.Hitpoints * 1.5;
-			::Legends.Perks.grant(this, ::Legends.Perk.Backstabber);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendStrengthInNumbers);
 			::Legends.Perks.grant(this, ::Legends.Perk.Colossus);
 		}
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendPoisonImmunity);
-		::Legends.Perks.grant(this, ::Legends.Perk.Backstabber);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendStrengthInNumbers);
 	}
 
 	o.assignRandomEquipment = function()

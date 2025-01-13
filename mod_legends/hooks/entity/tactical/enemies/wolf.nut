@@ -7,7 +7,7 @@
 		if(::Legends.isLegendaryDifficulty())
 		{
 			::Legends.Perks.grant(this, ::Legends.Perk.Berserk);
-			::Legends.Perks.grant(this, ::Legends.Perk.Backstabber);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendStrengthInNumbers);
 			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
 		}
 	}

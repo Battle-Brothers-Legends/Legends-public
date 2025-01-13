@@ -124,7 +124,7 @@ this.legend_kobold_wolfrider <- this.inherit("scripts/entity/tactical/legend_kob
 		wolf_bite.m.ActionPointCost = 0;
 		this.m.Skills.add(wolf_bite);
 		this.m.Skills.add(this.new("scripts/skills/racial/goblin_ambusher_racial"));
-		::Legends.Perks.grant(this, ::Legends.Perk.Backstabber);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendStrengthInNumbers);
 		::Legends.Perks.grant(this, ::Legends.Perk.Pathfinder);
 
 		if(::Legends.isLegendaryDifficulty())

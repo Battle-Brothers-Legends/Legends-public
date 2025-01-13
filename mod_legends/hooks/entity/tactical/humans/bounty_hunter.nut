@@ -20,7 +20,7 @@
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendPushTheAdvantage);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendMasteryNets);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendOnslaught);
-			::Legends.Perks.grant(this, ::Legends.Perk.Backstabber);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendStrengthInNumbers);
 			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
 		}
 	}

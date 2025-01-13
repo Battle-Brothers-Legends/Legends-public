@@ -36,7 +36,7 @@ this.legend_noble_halberdier <- this.inherit("scripts/entity/tactical/human", {
 		::Legends.Perks.grant(this, ::Legends.Perk.BattleForged);
 		::Legends.Perks.grant(this, ::Legends.Perk.Brawny);
 		::Legends.Perks.grant(this, ::Legends.Perk.ReachAdvantage);
-		::Legends.Perks.grant(this, ::Legends.Perk.Backstabber);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendStrengthInNumbers);
 		::Legends.Perks.grant(this, ::Legends.Perk.Footwork);
 		::Legends.Perks.grant(this, ::Legends.Perk.SpecPolearm);
 		::Legends.Perks.grant(this, ::Legends.Perk.FastAdaption);

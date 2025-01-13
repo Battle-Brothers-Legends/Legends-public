@@ -82,7 +82,7 @@ this.legend_alp_nightmare_human <- this.inherit("scripts/entity/tactical/enemies
 			::Legends.Perks.grant(this, ::Legends.Perk.SteelBrow);
 			::Legends.Perks.grant(this, ::Legends.Perk.Relentless);
 			::Legends.Perks.grant(this, ::Legends.Perk.Dodge);
-			::Legends.Perks.grant(this, ::Legends.Perk.Backstabber);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendStrengthInNumbers);
 			::Legends.Perks.grant(this, ::Legends.Perk.Underdog);
 		}
 
@@ -131,7 +131,7 @@ this.legend_alp_nightmare_human <- this.inherit("scripts/entity/tactical/enemies
 					::Legends.Perks.grant(this, ::Legends.Perk.ReachAdvantage);
 
 					if (::Legends.isLegendaryDifficulty())
-						::Legends.Perks.grant(this, ::Legends.Perk.Backstabber);
+						::Legends.Perks.grant(this, ::Legends.Perk.LegendStrengthInNumbers);
 				}
 				else if (r == 3)
 				{
@@ -147,7 +147,7 @@ this.legend_alp_nightmare_human <- this.inherit("scripts/entity/tactical/enemies
 					::Legends.Perks.grant(this, ::Legends.Perk.KillingFrenzy);
 
 					if (::Legends.isLegendaryDifficulty())
-						::Legends.Perks.grant(this, ::Legends.Perk.Backstabber);
+						::Legends.Perks.grant(this, ::Legends.Perk.LegendStrengthInNumbers);
 				}
 				else if (r == 5)
 				{

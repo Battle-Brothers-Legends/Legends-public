@@ -261,7 +261,7 @@ this.legend_white_direwolf <- this.inherit("scripts/entity/tactical/actor", {
 		::Legends.Perks.grant(this, ::Legends.Perk.Nimble);
 		::Legends.Perks.grant(this, ::Legends.Perk.InspiringPresence);
 		::Legends.Perks.grant(this, ::Legends.Perk.FastAdaption);
-		::Legends.Perks.grant(this, ::Legends.Perk.Backstabber);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendStrengthInNumbers);
 		::Legends.Perks.grant(this, ::Legends.Perk.Fearsome);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendBattleheart);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendTrueBeliever);

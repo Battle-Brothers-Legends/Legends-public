@@ -132,11 +132,11 @@
 		this.m.Skills.add(this.new("scripts/skills/actives/zombie_bite"));
 		::Legends.Perks.grant(this, ::Legends.Perk.BattleForged);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendPoisonImmunity);
-		::Legends.Perks.grant(this, ::Legends.Perk.Backstabber);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendStrengthInNumbers);
 
 		if(::Legends.isLegendaryDifficulty())
 		{
-			::Legends.Perks.grant(this, ::Legends.Perk.Backstabber);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendStrengthInNumbers);
 			::Legends.Perks.grant(this, ::Legends.Perk.Colossus);
 		}
 	}

@@ -257,7 +257,7 @@ this.legend_basilisk_sentry <- this.inherit("scripts/entity/tactical/actor", {
 		::Legends.Perks.grant(this, ::Legends.Perk.Pathfinder);
 		::Legends.Perks.grant(this, ::Legends.Perk.SteelBrow);
 		::Legends.Perks.grant(this, ::Legends.Perk.ReachAdvantage);
-		::Legends.Perks.grant(this, ::Legends.Perk.Backstabber);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendStrengthInNumbers);
 		::Legends.Perks.grant(this, ::Legends.Perk.Footwork);
 		::Legends.Perks.grant(this, ::Legends.Perk.CoupDeGrace);
 		b.Threat += 5; //remove

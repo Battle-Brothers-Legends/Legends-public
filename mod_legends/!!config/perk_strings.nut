@@ -145,6 +145,7 @@
 ::Const.Strings.PerkName.LegendUnburdened <- "Unburdened";
 ::Const.Strings.PerkName.LegendHelpful <- "Helpful";
 ::Const.Strings.PerkName.LegendLionheart <- "Lionheart";
+::Const.Strings.PerkName.LegendStrengthInNumbers <- "Strength in Numbers";
 
 //MASTERIES - skills that have a unified effect on their weapon class
 ::Const.Strings.PerkName.LegendSpecPoison <- "Poison Mastery";
@@ -696,6 +697,7 @@
 ::Const.Strings.PerkDescription.LegendUnburdened <- "Unencumbered by armor, you are spry and fleet footed.\n\n[color=#4f1800][u]Passive:[/u][/color]\n• [color=#993b00]Blend in[/color] will now recover an evasion stack every 2 turns.\n\n• Increases Action Points by [color=" + this.Const.UI.Color.PositiveValue + "]1[/color] if this character has more than [color=" + this.Const.UI.Color.PositiveValue + "]30[/color] bonus from [color=#993b00]Small Target[/color] and an Evasion stack from [color=#993b00]Blend in[/color].\n\n• You can expend an Evasion stack to use [color=#400080]Footwork[/color], [color=#400080]Evasion[/color] or [color=#400080]Leap[/color] for free.\n\n• Picking this perk will also add [color=#400080]Footwork[/color] to your perk tree.";
 ::Const.Strings.PerkDescription.LegendHelpful <- "Enhance your logistical support in battle.\n\n[color=#4f1800][u]Active:[/u][/color]\n• Unlocks the [color=#400080]Pass Item[/color] skill which allows you to give the first item in your bag to any adjacent ally.\n\n• Does not work when receiving items.\n\n• Costs [color=" + this.Const.UI.Color.NegativeValue + "]0[/color] AP and [color=" + this.Const.UI.Color.NegativeValue + "]5[/color] Fatigue. ";
 ::Const.Strings.PerkDescription.LegendLionheart <- "A lion\'s heart beats with unyielding strength, facing every challenge with with fearless resolve!\n\n[color=#4f1800][u]Passive:[/u][/color]\n• Being surrounded by enemies no longer affects your morale and increases your resolve by [color=" + this.Const.UI.Color.PositiveValue + "]10%[/color].";
+::Const.Strings.PerkDescription.LegendStrengthInNumbers <- "Surround, distract and strike true.\n\n[color=#4f1800][u]Passive:[/u][/color]\n• The bonus to hitchance in melee is doubled to [color=" + this.Const.UI.Color.PositiveValue + "]+10%[/color] for each ally surrounding and distracting your target.";
 // todo, these are missing - chopeks
 ::Const.Strings.PerkName.LegendMagicMissileFocus <- "";
 ::Const.Strings.PerkDescription.LegendMagicMissileFocus <- "";

@@ -11,7 +11,7 @@
 			this.m.Hitpoints = b.Hitpoints * 1.5;
 		}
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendPoisonImmunity);
-		::Legends.Perks.grant(this, ::Legends.Perk.Backstabber);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendStrengthInNumbers);
 		if(::Legends.isLegendaryDifficulty())
 		{
 			::Legends.Perks.grant(this, ::Legends.Perk.NineLives);

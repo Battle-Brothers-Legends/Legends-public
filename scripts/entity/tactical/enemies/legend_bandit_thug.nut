@@ -54,7 +54,7 @@ this.legend_bandit_thug <- this.inherit("scripts/entity/tactical/legend_randomiz
 		// 	{
 		// 	::Legends.Perks.grant(this, ::Legends.Perk.Relentless);
 		// 	::Legends.Perks.grant(this, ::Legends.Perk.Dodge);
-		// 	::Legends.Perks.grant(this, ::Legends.Perk.Backstabber);
+		// 	::Legends.Perks.grant(this, ::Legends.Perk.LegendStrengthInNumbers);
 		// 	::Legends.Perks.grant(this, ::Legends.Perk.Underdog);
 		// 	this.m.Skills.add(this.new("scripts/skills/traits/fearless_trait"));
 

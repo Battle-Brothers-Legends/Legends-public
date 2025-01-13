@@ -45,7 +45,7 @@ if (!("Perks" in ::Const))
 			::Legends.Perk.LegendFeint
 		],
 		[
-			::Legends.Perk.Backstabber,
+			::Legends.Perk.LegendStrengthInNumbers,
 			::Legends.Perk.CoupDeGrace
 		],
 		[],

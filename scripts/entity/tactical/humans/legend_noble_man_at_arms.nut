@@ -53,7 +53,7 @@ this.legend_noble_man_at_arms <- this.inherit("scripts/entity/tactical/human", {
 		if(::Legends.isLegendaryDifficulty())
 		{
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendFullForce);
-			::Legends.Perks.grant(this, ::Legends.Perk.Backstabber);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendStrengthInNumbers);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendBruiser);
 			::Legends.Perks.grant(this, ::Legends.Perk.CoupDeGrace);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendDeflect);

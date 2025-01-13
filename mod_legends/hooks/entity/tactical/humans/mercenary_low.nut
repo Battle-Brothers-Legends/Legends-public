@@ -7,7 +7,7 @@
 		local b = this.m.BaseProperties;
 		::Legends.Perks.remove(this, ::Legends.Perk.BattleForged);
 		::Legends.Perks.grant(this, ::Legends.Perk.Nimble);
-		::Legends.Perks.grant(this, ::Legends.Perk.Backstabber);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendStrengthInNumbers);
 		::Legends.Perks.grant(this, ::Legends.Perk.Overwhelm);
 		::Legends.Perks.grant(this, ::Legends.Perk.Rotation);
 		::Legends.Perks.grant(this, ::Legends.Perk.Recover);
