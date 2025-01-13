@@ -335,7 +335,7 @@ if (!("Perks" in ::Const))
 		[::Legends.Perk.LegendSpecCultHood],
 		[::Legends.Perk.LegendSpecialistNinetailsDamage],
 		[],
-		[::Legends.Perk.LegendPrepareGraze],
+		[],
 		[::Legends.Perk.LegendSpecCultArmor],
 		[::Legends.Perk.LegendLacerate]
 	]
