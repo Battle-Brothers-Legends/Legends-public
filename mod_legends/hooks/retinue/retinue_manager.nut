@@ -139,7 +139,7 @@
 		foreach (id in this.m.OwnedFollowerIDs)
 		{
 			// this should fix the problem with crafting recipes being saved here for whatever dumb reason
-			if (id in ::Legends.Retinue.IDs) {
+			if (::Legends.Retinue.IDs.find(id) != null) {
 				_out.writeBool(true);
 				_out.writeString(id);
 			}
@@ -173,7 +173,7 @@
 		if (::Legends.Mod.Serialization.isSavedVersionAtLeast("19.0.13", _in.getMetaData())) {
 			while(_in.readBool()) {
 				local id = _in.readString();
-				if (id in ::Legends.Retinue.IDs) {
+				if (::Legends.Retinue.IDs.find(id) != null) {
 					this.m.OwnedFollowerIDs.push(id);
 					this.getFollower(id).setOwned();
 				}
