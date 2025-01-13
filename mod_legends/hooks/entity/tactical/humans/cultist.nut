@@ -70,7 +70,7 @@
 		}
 
 		this.m.Items.equip(this.Const.World.Common.pickArmor([
-			[3, "cultist_leather_armor"],
+			[3, "cultist_leather_robe"],
 			[3, "tattered_sackcloth"],
 			[2, "barbarians/animal_hide_armor"],
 			[1, "barbarians/hide_and_bone_armor"]

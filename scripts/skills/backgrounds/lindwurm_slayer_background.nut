@@ -10,6 +10,7 @@ this.lindwurm_slayer_background <- this.inherit("scripts/skills/backgrounds/char
 		this.m.GoodEnding = "%name% left the %companyname% and started a lucrative career as a \'dragon specialist\' advisor to the nobility. As far as you can tell %they% does very little actual work, instead spending %their% days attending lavish banquets, entertaining hosts and their guests with war-stories whilst quaffing their wine.";
 		this.m.BadEnding = "Disillusioned with the %companyname%, %name% left to pursue a solo dragon hunting career in order to finally live-up to the legacy of %their% famous father. %They% was last seen taking odd beast hunting contracts, but news of his exploits has no spread far and you fear the worst.";
 		this.m.DailyCost = 31;
+		this.m.HiringCost = 0;
 		this.m.Excluded = [
 			::Legends.Traits.getID(::Legends.Trait.Ailing),
 			::Legends.Traits.getID(::Legends.Trait.Asthmatic),
@@ -122,25 +123,9 @@ this.lindwurm_slayer_background <- this.inherit("scripts/skills/backgrounds/char
 		this.addBackgroundType(this.Const.BackgroundType.Female);
 	}
 
-	function getTooltip()
-	{
-		return [
-			{
-				id = 1,
-				type = "title",
-				text = this.getName()
-			},
-			{
-				id = 2,
-				type = "description",
-				text = this.getDescription()
-			}
-		];
-	}
-
 	function onBuildDescription()
 	{
-		return "{%name% is apparently something of a celebrity and could be mistaken for house nobility, except for the glistening lindwurm scales adorning %their% armor and the particular talent for slaying lindwurms. Claiming to be the child of Dirk the Dragonslayer, the monster hunter who ostensibly slew the last living dragon. %they% has long sought to join a mercenary company with the mettle to go up against the most dangerous foes, clearly not content with inherited fame. %name% wants to kill a dragon %themselves% even if the dragons are extinct and something in %their% eyes assures you this is no idle boast, this slayer clearly means business.}";
+		return "{%name% is a supposedly famous monster hunter with a particular talent for slaying lindwurms. They says he is the son of Dirk the Dragonslayer, the monster hunter who ostensibly slew the last living dragon.}";
 	}
 
 	function onChangeAttributes()

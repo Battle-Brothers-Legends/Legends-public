@@ -270,19 +270,19 @@ this.training_building <- this.inherit("scripts/entity/world/camp/camp_building"
 
 		if (bro.getSkills().hasSkillOfType(this.Const.SkillType.TemporaryInjury) || bro.getSkills().hasSkillOfType(this.Const.SkillType.SemiInjury))
 		{
-		local injury = bro.addInjury(this.Const.Injury.Permanent);
-		this.m.Results.push({
-			Icon = injury.getIcon(),
-			Text = bro.getName() + " suffers " + injury.getNameOnly() + " while training."
-		});
+			local injury = bro.addInjury(this.Const.Injury.Permanent);
+			this.m.Results.push({
+				Icon = injury.getIcon(),
+				Text = bro.getName() + " suffers " + injury.getNameOnly() + " while training."
+			});
 		}
 		else
 		{
-		local injury = bro.addInjury(this.Const.Injury.CampTraining);
-		this.m.Results.push({
-			Icon = injury.getIcon(),
-			Text = bro.getName() + " suffers " + injury.getNameOnly() + " while training."
-		});
+			local injury = bro.addInjury(this.Const.Injury.CampTraining);
+			this.m.Results.push({
+				Icon = injury.getIcon(),
+				Text = bro.getName() + " suffers " + injury.getNameOnly() + " while training."
+			});
 		}
 
 	}
@@ -515,7 +515,7 @@ this.training_building <- this.inherit("scripts/entity/world/camp/camp_building"
 				continue;
 			}
 
-			if (this.getInjury(bro))
+			if (bro.getSkills().hasSkillOfType(this.Const.SkillType.TemporaryInjury) || bro.getSkills().hasSkillOfType(this.Const.SkillType.SemiInjury))
 			{
 				this.getBreak(bro);
 				continue;

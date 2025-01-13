@@ -6,6 +6,9 @@ this.regent_in_absentia_background <- this.inherit("scripts/skills/backgrounds/c
 		this.m.ID = "background.regent_in_absentia";
 		this.m.Name = "Regent in Absentia";
 		this.m.Icon = "ui/backgrounds/background_06.png";
+		this.m.BackgroundDescription = "%name% is a Regent in Absentia, choosing to spend their time with a mercenary company as opposed to in court.";
+		this.m.GoodEnding = "A noble at heart, the disowned noble%person% %name% returned to %them% family. Word has it %they% kicked in the doors and demanded a royal seat. An usurper challenged %them% in combat and, well, %name% learned a lot in %them% days with the %companyname% and %they% now sits on a very, very comfortable throne.";
+		this.m.BadEnding = "A %person% of nobility at heart, %name% the disowned noble%person% returned to %them% family home. Word has it an usurper arrested %them% at the gates. %Them% head currently rests on a pike with crows for a crown.";
 		this.m.HiringCost = 135;
 		this.m.DailyCost = 30;
 		this.m.Excluded = [
@@ -65,40 +68,13 @@ this.regent_in_absentia_background <- this.inherit("scripts/skills/backgrounds/c
 		this.m.Beards = null;
 		this.m.BeardChance = 0;
 		this.m.Bodies = this.Const.Bodies.FemaleMuscular;
-		this.m.Name = "Regent in Absentia";
 		this.addBackgroundType(this.Const.BackgroundType.Female);
 		this.m.Icon = "ui/backgrounds/background_06.png";
-		this.m.BackgroundDescription = "%name% is a Regent in Absentia, choosing to spend their time with a mercenary company as opposed to in court.";
-		this.m.GoodEnding = "A noble at heart, the disowned noblewoman %name% returned to her family. Word has it she kicked in the doors and demanded a royal seat. An usurper challenged her in combat and, well, %name% learned a lot in his days with the %companyname% and she now sits on a very, very comfortable throne.";
-		this.m.BadEnding = "A woman of nobility at heart, %name% the disowned noblewoman returned to her family home. Word has it an usurper arrested her at the gates. Her head currently rests on a pike with crows for a crown.";
-	}
-
-	function getTooltip()
-	{
-		return [
-			{
-				id = 1,
-				type = "title",
-				text = this.getName()
-			},
-			{
-				id = 2,
-				type = "description",
-				text = this.getDescription()
-			}
-		];
 	}
 
 	function onBuildDescription()
 	{
-		if (this.isBackgroundType(this.Const.BackgroundType.Female))
-		{
-			return "{%name% is no longer disowned by her royal family, yet her allegiance is now with the %companyname%. Despite not returning home to her lineage, you know that deep down she is emboldened by the fact that she is back in her natural bloodline.}";
-		}
-		else
-		{
-			return "{%name% is no longer disowned by his royal family, yet his allegiance is now with the %companyname%. Despite not returning home to his lineage, you know that deep down he is emboldened by the fact that he is back in his natural bloodline.}";
-		}
+		return "{%name% is no longer disowned by %their% royal family, yet %their% allegiance is now with the %companyname%. Despite not returning home to %their% lineage, you know that deep down %they% is emboldened by the fact that %they% is back in %their% natural bloodline.}";
 	}
 
 	function onChangeAttributes()
@@ -189,6 +165,4 @@ this.regent_in_absentia_background <- this.inherit("scripts/skills/backgrounds/c
 			[2, ""]
 		]))
 	}
-
 });
-
