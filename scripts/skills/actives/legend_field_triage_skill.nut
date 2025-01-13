@@ -7,7 +7,7 @@ this.legend_field_triage_skill <- this.inherit("scripts/skills/skill", {
 	{
 		this.m.ID = "actives.legend_field_triage";
 		this.m.Name = "Field Triage";
-		this.m.Description = "Heal a unit, costs 1 medicine for every 2 health. Heals up to 20 health per use";
+		this.m.Description = "Heal a unit at a rate of 1 medicine for every 2 hitpoints. Heals up to 20 hitpoints per use.";
 		this.m.Icon = "skills/triage_square.png";
 		this.m.IconDisabled = "skills/triage_square_bw.png";
 		this.m.Overlay = "active_41";
