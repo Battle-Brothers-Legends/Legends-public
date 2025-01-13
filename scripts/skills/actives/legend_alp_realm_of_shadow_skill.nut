@@ -59,7 +59,7 @@ this.legend_alp_realm_of_shadow_skill <- this.inherit("scripts/skills/skill", {
 		local func = this.onApplyShadowMistEffect;
 		local p = {
 			Type = "shadows",
-			Tooltip = "A pitch black mist resides here, you can feel a bone chilling air emminates from within.",
+			Tooltip = "A pitch black mist lingers here, eminating a bone chilling air from within",
 			IsPositive = true,
 			IsAppliedAtRoundStart = false,
 			IsAppliedAtTurnEnd = true,
