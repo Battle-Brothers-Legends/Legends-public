@@ -51,7 +51,7 @@
 			});
 		}
 
-		if (actor.getSkills().getSize() >= 2)
+		if ("getSize" in actor && actor.getSize() >= 2)
 		{
 			tooltip.push({
 				id = 5,
