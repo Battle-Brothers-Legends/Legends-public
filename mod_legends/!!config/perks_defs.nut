@@ -1194,15 +1194,6 @@ perkDefObjects.push({
 	Const = "LegendPoisonImmunity"
 });
 perkDefObjects.push({
-	ID = "perk.perk_legend_strength_in_numbers",
-	Script = "scripts/skills/perks/perk_legend_strength_in_numbers",
-	Name = ::Const.Strings.PerkName.LegendStrengthInNumbers,
-	Tooltip = ::Const.Strings.PerkDescription.LegendStrengthInNumbers,
-	Icon = "ui/perks/strength_in_numbers.png",
-	IconDisabled = "ui/perks/strength_in_numbers_bw.png",
-	Const = "LegendStrengthInNumbers"
-});
-perkDefObjects.push({
 	ID = "perk.legend_summon_cat",
 	Script = "scripts/skills/perks/perk_legend_summon_cat",
 	Name = ::Const.Strings.PerkName.LegendSummonCat,
@@ -3708,6 +3699,15 @@ perkDefObjects.push({
 	Icon = "ui/perks/passive_03.png",
 	IconDisabled = "ui/perks/passive_03_sw.png",
 	Const = "BatteringRam"
+});
+perkDefObjects.push({
+	ID = "perk.legend_strength_in_numbers",
+	Script = "scripts/skills/perks/perk_legend_strength_in_numbers",
+	Name = ::Const.Strings.PerkName.LegendStrengthInNumbers,
+	Tooltip = ::Const.Strings.PerkDescription.LegendStrengthInNumbers,
+	Icon = "ui/perks/strength_in_numbers.png",
+	IconDisabled = "ui/perks/strength_in_numbers_bw.png",
+	Const = "LegendStrengthInNumbers"
 });
 
 ::Const.Perks.addPerkDefObjects(perkDefObjects);
