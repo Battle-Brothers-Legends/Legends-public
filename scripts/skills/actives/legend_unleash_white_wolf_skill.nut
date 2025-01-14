@@ -119,7 +119,7 @@ this.legend_unleash_white_wolf_skill <- this.inherit("scripts/skills/actives/leg
 
 	function isUsable()
 	{
-		if (this.m.Item.isUnleashed() || !this.unleash_animal.isUsable())
+		if (this.m.Item.isUnleashed() || !this.legend_unleash_animal_skill.isUsable())
 		{
 			return false;
 		}
@@ -130,7 +130,7 @@ this.legend_unleash_white_wolf_skill <- this.inherit("scripts/skills/actives/leg
 	function onVerifyTarget( _originTile, _targetTile )
 	{
 		local actor = this.getContainer().getActor();
-		return this.unleash_animal.onVerifyTarget(_originTile, _targetTile) && _targetTile.IsEmpty;
+		return this.legend_unleash_animal_skill.onVerifyTarget(_originTile, _targetTile) && _targetTile.IsEmpty;
 	}
 
 	function onUpdate( _properties )
