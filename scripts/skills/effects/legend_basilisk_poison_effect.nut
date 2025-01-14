@@ -83,9 +83,9 @@ this.legend_basilisk_poison_effect <- this.inherit("scripts/skills/skill", {
 	function onUpdate( _properties )
 	{
 		_properties.Bravery -= 20 * this.m.TurnsLeft;
-		_properties.StaminaMult *= 0.80 * this.m.TurnsLeft;
+		_properties.StaminaMult *= 1.0 - 0.20 * this.m.TurnsLeft;
 		_properties.FatigueRecoveryRate -= 3 * this.m.TurnsLeft;
-		_properties.InitiativeMult *= 0.80 * this.m.TurnsLeft; 
+		_properties.InitiativeMult *= 1.0 - 0.20 * this.m.TurnsLeft; 
 	}
 
 	function onTurnEnd()
