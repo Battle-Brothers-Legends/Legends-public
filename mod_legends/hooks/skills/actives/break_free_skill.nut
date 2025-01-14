@@ -31,6 +31,7 @@
 		];
 
 		local actor = this.getContainer().getActor();
+		local isBigGhoul = "getSize" in actor && actor.getSize() >= 2;
 		if (actor.getCurrentProperties().IsSpecializedInNets)
 		{
 			tooltip.push({
@@ -51,13 +52,13 @@
 			});
 		}
 
-		if ("getSize" in actor && actor.getSize() >= 2)
+		if (isBigGhoul)
 		{
 			tooltip.push({
 				id = 5,
 				type = "hint",
 				icon = "ui/icons/special.png",
-				text = "The size of this character makes this significantly",
+				text = "The size of this character makes this significantly easier",
 			});
 		}
 
@@ -69,7 +70,8 @@
 		local actor = this.getContainer().getActor();
 		local skill = this.m.SkillBonus == null ? actor.getCurrentProperties().getMeleeSkill() : this.m.SkillBonus;
 		local toHit = this.Math.min(100, skill - 10 + this.m.ChanceBonus + (actor.getSkills().hasSkill("effects.goblin_shaman_potion") ? 100 : 0));
-		if (actor.getCurrentProperties().IsSpecializedInNets || this.m.IsByNetSpecialist || actor.getSkills().hasPerk(::Legends.Perk.LegendEscapeArtist) || ("getSize" in actor && actor.getSize() >= 2))
+		local isBigGhoul = "getSize" in actor && actor.getSize() >= 2
+		if (actor.getCurrentProperties().IsSpecializedInNets || this.m.IsByNetSpecialist || actor.getSkills().hasPerk(::Legends.Perk.LegendEscapeArtist) || isBigGhoul)
 		{
 			toHit = this.Math.max(99, toHit);
 		}
