@@ -1200,7 +1200,7 @@ perkDefObjects.push({
 	Tooltip = ::Const.Strings.PerkDescription.LegendStrengthInNumbers,
 	Icon = "ui/perks/strength_in_numbers.png",
 	IconDisabled = "ui/perks/strength_in_numbers_bw.png",
-	Const = "Strength in Numbers"
+	Const = "LegendStrengthInNumbers"
 });
 perkDefObjects.push({
 	ID = "perk.legend_summon_cat",
