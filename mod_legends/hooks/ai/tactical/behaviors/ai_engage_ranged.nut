@@ -4,6 +4,8 @@
 		"actives.legend_magic_missile",
 		"actives.legend_catapult_boulder",
 		"actives.legend_sling_heavy_stone",
-		"actives.legend_shoot_dart"
+		"actives.legend_shoot_dart",
+		"actives.legend_shoot_stone",
+		"actives.legend_shoot_precise_stone"
 	]);
 });
