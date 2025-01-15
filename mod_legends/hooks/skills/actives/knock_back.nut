@@ -39,7 +39,7 @@
 			});
 		}
 
-		if (this.hasSkill("trait.oath_of_fortification"))
+		if (this.getContainer().hasSkill("trait.oath_of_fortification"))
 		{
 			ret.push({
 				id = 7,
