@@ -19,7 +19,7 @@
 
 	o.getTooltip = function ()
 	{
-		local ret = this.getDefaultTooltip();
+		local ret = this.getContainer().hasPerk(::Legends.Perk.ShieldBash) ? this.getDefaultTooltip() : this.getDefaultUtilityTooltip();
 		if (this.getContainer().getActor().getCurrentProperties().IsSpecializedInShields)
 		{
 			ret.push({
@@ -79,11 +79,13 @@
 		if (user.getSkills().hasTrait(::Legends.Trait.OathOfFortification) && _targetTile.IsOccupiedByActor && !_targetEntity.isNonCombatant())
 		{
 			if (!this.getContainer().hasTrait(::Legends.Trait.Teamplayer) || !_targetEntity.isAlliedWith(getContainer().getActor()))
+			{
 				_targetEntity.getSkills().add(this.new("scripts/skills/effects/staggered_effect"));
 
-			if (!user.isHiddenToPlayer() && _targetTile.IsVisibleForPlayer)
-			{
-				this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(user) + " has staggered " + this.Const.UI.getColorizedEntityName(_targetEntity) + " for one turn");
+				if (!user.isHiddenToPlayer() && _targetTile.IsVisibleForPlayer)
+				{
+					this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(user) + " has staggered " + this.Const.UI.getColorizedEntityName(_targetEntity) + " for one turn");
+				}
 			}
 		}
 
@@ -144,6 +146,10 @@
 
 	o.onUse = function ( _user, _targetTile )
 	{
+		if (this.m.SoundOnUse.len() != 0)
+			this.Sound.play(this.m.SoundOnUse[this.Math.rand(0, this.m.SoundOnUse.len() - 1)], this.Const.Sound.Volume.Skill, _user.getPos());
+
+		return this.attackEntity(_user, _targetTile.getEntity());
 	}
 
 	o.onAfterUpdate <- function ( _properties )
