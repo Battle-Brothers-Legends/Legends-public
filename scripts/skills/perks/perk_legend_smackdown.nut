@@ -90,19 +90,13 @@ this.perk_legend_smackdown <- this.inherit("scripts/skills/skill", {
 	function onTargetHit( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor )
 	{
 		this.m.TilesUsed = [];
+		if (_skill.isRanged())
+			return;
+
 		if (!_targetEntity.isAlive() || _targetEntity.isDying())
 			return;
 
-		if (_targetEntity.getCurrentProperties().IsImmuneToKnockBackAndGrab)
-			return;
-
 		if (_targetEntity.isNonCombatant())
-			return;
-
-		if (_targetEntity.getCurrentProperties().IsRooted)
-			return;
-
-		if (_skill.isRanged())
 			return;
 
 		local user = _skill.getContainer().getActor();
@@ -110,15 +104,18 @@ this.perk_legend_smackdown <- this.inherit("scripts/skills/skill", {
 		if (!user.getSkills().hasSkill("effects.legend_knockback_prepared"))
 			return;
 
-		local knockToTile = this.findTileToKnockBackTo(user.getTile(), _targetEntity.getTile());
-
-		if (knockToTile == null)
-			return;
-
 		local skills = _targetEntity.getSkills();
 		skills.removeByID("effects.shieldwall");
 		skills.removeByID("effects.spearwall");
 		skills.removeByID("effects.riposte");
+
+		if (_targetEntity.getCurrentProperties().IsRooted || _targetEntity.getCurrentProperties().IsImmuneToKnockBackAndGrab)
+			return;
+
+		local knockToTile = this.findTileToKnockBackTo(user.getTile(), _targetEntity.getTile());
+
+		if (knockToTile == null)
+			return;
 
 		this.m.TilesUsed.push(knockToTile.ID);
 
