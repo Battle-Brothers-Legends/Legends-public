@@ -50,7 +50,7 @@
 		if (this.m.SoundOnHit.len() != 0)
 			this.Sound.play(this.m.SoundOnHit[this.Math.rand(0, this.m.SoundOnHit.len() - 1)], this.Const.Sound.Volume.Skill, _user.getPos());
 
-		if (!this.getContainer().hasTrait(::Legends.Trait.Teamplayer) || !_targetEntity.isAlliedWith(getContainer().getActor()))
+		if (!this.getContainer().hasTrait(::Legends.Trait.Teamplayer) || !target.isAlliedWith(getContainer().getActor()))
 			target.getSkills().add(this.new("scripts/skills/effects/staggered_effect"));
 
 		if (!_user.isHiddenToPlayer() && _targetTile.IsVisibleForPlayer)
