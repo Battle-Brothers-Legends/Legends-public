@@ -1,5 +1,5 @@
 this.legend_break_stance_effect <- this.inherit("scripts/skills/skill", {
-	m = {,
+	m = {},
 	function create()
 	{
 		this.m.ID = "effects.legend_break_stance";
