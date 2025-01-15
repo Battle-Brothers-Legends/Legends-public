@@ -68,18 +68,20 @@
 		}
 
 		if (!this.getContainer().hasTrait(::Legends.Trait.Teamplayer) || !target.isAlliedWith(getContainer().getActor()))
+		{
 			target.getSkills().add(this.new("scripts/skills/effects/staggered_effect"));
 
-		if (!_user.isHiddenToPlayer() && _targetTile.IsVisibleForPlayer)
-		{
-			this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(_user) + " has staggered " + this.Const.UI.getColorizedEntityName(target) + " for one turn");
-		}
+			if (!_user.isHiddenToPlayer() && _targetTile.IsVisibleForPlayer)
+			{
+				this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(_user) + " has staggered " + this.Const.UI.getColorizedEntityName(target) + " for one turn");
+			}
 
-		local overwhelm = this.getContainer().getSkillByID("perk.overwhelm");
+			local overwhelm = this.getContainer().getSkillByID("perk.overwhelm");
 
-		if (overwhelm != null)
-		{
-			overwhelm.onTargetHit(this, target, this.Const.BodyPart.Body, 0, 0);
+			if (overwhelm != null)
+			{
+				overwhelm.onTargetHit(this, target, this.Const.BodyPart.Body, 0, 0);
+			}
 		}
 
 		target.setCurrentMovementType(this.Const.Tactical.MovementType.Involuntary);
