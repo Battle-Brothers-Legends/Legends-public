@@ -59,7 +59,7 @@
 
 			local overwhelm = ::Legends.Perks.get(this, ::Legends.Perk.Overwhelm);
 
-			if (overwhelm != null && !this.getContainer().hasTrait(::Legends.Trait.Teamplayer))
+			if (overwhelm != null)
 				overwhelm.onTargetHit(this, target, this.Const.BodyPart.Body, 0, 0);
 		}
 
