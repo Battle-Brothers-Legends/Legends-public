@@ -132,10 +132,8 @@ this.legend_kick_skill <- this.inherit("scripts/skills/skill", {
 		this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(_user) + " inflicted 10 fatigue on " + this.Const.UI.getColorizedEntityName(target) + " with a kick");
 
 		// Remove enemy stances
-		skills.removeByID("effects.shieldwall");
-		skills.removeByID("effects.spearwall");
-		skills.removeByID("effects.riposte");
-		skills.removeByID("effects.legend_return_favor");
+		if (!target.getSkills().hasSkill("effects.legend_break_stance"))
+			target.getSkills().add(this.new("scripts/skills/effects/legend_break_stance_effect"));
 
 		if (this.m.SoundOnHit.len() != 0)
 		{

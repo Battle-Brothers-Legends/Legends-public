@@ -104,10 +104,8 @@ this.perk_legend_smackdown <- this.inherit("scripts/skills/skill", {
 		if (!user.getSkills().hasSkill("effects.legend_knockback_prepared"))
 			return;
 
-		local skills = _targetEntity.getSkills();
-		skills.removeByID("effects.shieldwall");
-		skills.removeByID("effects.spearwall");
-		skills.removeByID("effects.riposte");
+		if (!_targetEntity.getSkills().hasSkill("effects.legend_break_stance"))
+			_targetEntity.getSkills().add(this.new("scripts/skills/effects/legend_break_stance_effect"));
 
 		if (_targetEntity.getCurrentProperties().IsRooted || _targetEntity.getCurrentProperties().IsImmuneToKnockBackAndGrab)
 			return;

@@ -1,28 +1,30 @@
-::mods_hookExactClass("skills/actives/tail_slam_big_skill", function(o)
+::mods_hookExactClass("skills/actives/unstoppable_charge_skill", function(o)
 {
 	o.applyEffectToTarget = function ( _user, _target, _targetTile )
 	{
-		local applyEffect = this.Math.rand(1, 3);
-
-		if (applyEffect == 1)
+		if (_target.isNonCombatant())
 		{
-			if (_target.isNonCombatant() || _target.getCurrentProperties().IsImmuneToStun || _target.getCurrentProperties().IsImmuneToDaze)
-			{
-				return;
-			}
+			return;
+		}
 
-			_target.getSkills().add(this.new("scripts/skills/effects/dazed_effect"));
+		local applyEffect = this.Math.rand(1, 2);
+
+		if (applyEffect == 1 && !_target.getCurrentProperties().IsImmuneToStun)
+		{
+			_target.getSkills().add(this.new("scripts/skills/effects/stunned_effect"));
 
 			if (!_user.isHiddenToPlayer() && _targetTile.IsVisibleForPlayer)
 			{
-				this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(_user) + " has dazed " + this.Const.UI.getColorizedEntityName(_target) + " for two turns");
+				this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(_user) + " has stunned " + this.Const.UI.getColorizedEntityName(_target) + " for one turn");
 			}
 		}
-		else if (applyEffect == 2)
+		else if (applyEffect == 2 && !_target.getCurrentProperties().IsImmuneToKnockBackAndGrab && !_target.getCurrentProperties().IsRooted)
 		{
-			if (_target.isNonCombatant() || _target.getCurrentProperties().IsImmuneToKnockBackAndGrab || _target.getCurrentProperties().IsRooted)
+			_target.getSkills().add(this.new("scripts/skills/effects/staggered_effect"));
+
+			if (!_user.isHiddenToPlayer() && _targetTile.IsVisibleForPlayer)
 			{
-				return;
+				this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(_user) + " has staggered " + this.Const.UI.getColorizedEntityName(_target) + " for one turn");
 			}
 
 			local knockToTile = this.findTileToKnockBackTo(_user.getTile(), _targetTile);
@@ -67,16 +69,11 @@
 		}
 		else
 		{
-			if (_target.isNonCombatant() || _target.getCurrentProperties().IsImmuneToStun || _target.getCurrentProperties().IsStunned)
-			{
-				return;
-			}
-
-			_target.getSkills().add(this.new("scripts/skills/effects/stunned_effect"));
+			_target.getSkills().add(this.new("scripts/skills/effects/staggered_effect"));
 
 			if (!_user.isHiddenToPlayer() && _targetTile.IsVisibleForPlayer)
 			{
-				this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(_user) + " has stunned " + this.Const.UI.getColorizedEntityName(_target) + " for one turn");
+				this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(_user) + " has staggered " + this.Const.UI.getColorizedEntityName(_target) + " for one turn");
 			}
 		}
 	}

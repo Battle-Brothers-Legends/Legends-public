@@ -57,8 +57,7 @@ this.legend_knockback_prepared_effect <- this.inherit("scripts/skills/skill", {
 		if (!_targetEntity.isAlive() || _targetEntity.isDying())
 			return;
 
-		if (!_targetEntity.getCurrentProperties().IsStunned) // baffled when not stunned, makes sense?
-			_targetEntity.getSkills().add(this.new("scripts/skills/effects/legend_baffled_effect"));
+		_targetEntity.getSkills().add(this.new("scripts/skills/effects/legend_baffled_effect"));
 	}
 
 	function onTargetMissed( _skill, _targetEntity )

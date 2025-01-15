@@ -123,10 +123,8 @@
 				this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(user) + " has knocked back " + this.Const.UI.getColorizedEntityName(_targetEntity));
 			}
 
-			local skills = _targetEntity.getSkills();
-			skills.removeByID("effects.shieldwall");
-			skills.removeByID("effects.spearwall");
-			skills.removeByID("effects.riposte");
+			if (!_targetEntity.getSkills().hasSkill("effects.legend_break_stance"))
+				_targetEntity.getSkills().add(this.new("scripts/skills/effects/legend_break_stance_effect"));
 			local damage = this.Math.max(0, this.Math.abs(knockToTile.Level - targetTile.Level) - 1) * this.Const.Combat.FallingDamage;
 
 			if (damage == 0)

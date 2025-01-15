@@ -39,10 +39,8 @@
 				this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(_user) + " has knocked back " + this.Const.UI.getColorizedEntityName(_target));
 			}
 
-			local skills = _target.getSkills();
-			skills.removeByID("effects.shieldwall");
-			skills.removeByID("effects.spearwall");
-			skills.removeByID("effects.riposte");
+			if (!_target.getSkills().hasSkill("effects.legend_break_stance"))
+				_target.getSkills().add(this.new("scripts/skills/effects/legend_break_stance_effect"));
 			_target.setCurrentMovementType(this.Const.Tactical.MovementType.Involuntary);
 			local damage = this.Math.max(0, this.Math.abs(knockToTile.Level - _targetTile.Level) - 1) * this.Const.Combat.FallingDamage;
 

@@ -1,4 +1,4 @@
-::mods_hookExactClass("skills/actives/tail_slam_big_skill", function(o)
+::mods_hookExactClass("skills/actives/shatter_skill", function(o)
 {
 	o.applyEffectToTarget = function ( _user, _target, _targetTile )
 	{
@@ -6,21 +6,11 @@
 
 		if (applyEffect == 1)
 		{
-			if (_target.isNonCombatant() || _target.getCurrentProperties().IsImmuneToStun || _target.getCurrentProperties().IsImmuneToDaze)
-			{
-				return;
-			}
-
-			_target.getSkills().add(this.new("scripts/skills/effects/dazed_effect"));
-
-			if (!_user.isHiddenToPlayer() && _targetTile.IsVisibleForPlayer)
-			{
-				this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(_user) + " has dazed " + this.Const.UI.getColorizedEntityName(_target) + " for two turns");
-			}
+			return;
 		}
 		else if (applyEffect == 2)
 		{
-			if (_target.isNonCombatant() || _target.getCurrentProperties().IsImmuneToKnockBackAndGrab || _target.getCurrentProperties().IsRooted)
+			if (_target.getCurrentProperties().IsImmuneToKnockBackAndGrab || _target.getCurrentProperties().IsRooted)
 			{
 				return;
 			}
@@ -67,16 +57,16 @@
 		}
 		else
 		{
-			if (_target.isNonCombatant() || _target.getCurrentProperties().IsImmuneToStun || _target.getCurrentProperties().IsStunned)
+			if (_target.isNonCombatant())
 			{
 				return;
 			}
 
-			_target.getSkills().add(this.new("scripts/skills/effects/stunned_effect"));
+			_target.getSkills().add(this.new("scripts/skills/effects/staggered_effect"));
 
 			if (!_user.isHiddenToPlayer() && _targetTile.IsVisibleForPlayer)
 			{
-				this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(_user) + " has stunned " + this.Const.UI.getColorizedEntityName(_target) + " for one turn");
+				this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(_user) + " has staggered " + this.Const.UI.getColorizedEntityName(_target) + " for one turn");
 			}
 		}
 	}
