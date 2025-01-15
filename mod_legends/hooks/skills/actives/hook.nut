@@ -112,7 +112,7 @@
 	o.getHitchance <- function ( _targetEntity )
 	{
 		if (this.getContainer().hasTrait(::Legends.Trait.Teamplayer) && _targetEntity.isAlliedWith(getContainer().getActor()))
-			return 0;
+			return 100;
 
 		return this.skill.getHitchance(_targetEntity);
 	}
