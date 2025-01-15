@@ -31,50 +31,35 @@
 		local target = _targetTile.getEntity();
 
 		if (this.Math.rand(1, 100) > this.getHitchance(target))
-		{
 			return false;
-		}
 
 		local pullToTile = this.getPulledToTile(_user.getTile(), _targetTile);
 
 		if (pullToTile == null)
-		{
 			return false;
-		}
 
 		if (target.getCurrentProperties().IsImmuneToKnockBackAndGrab)
-		{
 			return false;
-		}
 
 		if (!_user.isHiddenToPlayer() && pullToTile.IsVisibleForPlayer)
-		{
 			this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(_user) + " hooks in " + this.Const.UI.getColorizedEntityName(target));
-		}
 
-		local skills = target.getSkills();
-		skills.removeByID("effects.shieldwall");
-		skills.removeByID("effects.spearwall");
-		skills.removeByID("effects.riposte");
+		if (!target.getSkills().hasSkill("effects.legend_break_stance"))
+			target.getSkills().add(this.new("scripts/skills/effects/legend_break_stance_effect"));
 
 		if (this.m.SoundOnHit.len() != 0)
-		{
 			this.Sound.play(this.m.SoundOnHit[this.Math.rand(0, this.m.SoundOnHit.len() - 1)], this.Const.Sound.Volume.Skill, _user.getPos());
-		}
 
-		target.getSkills().add(this.new("scripts/skills/effects/staggered_effect"));
+		if (!this.getContainer().hasTrait(::Legends.Trait.Teamplayer) || !_targetEntity.isAlliedWith(getContainer().getActor()))
+			target.getSkills().add(this.new("scripts/skills/effects/staggered_effect"));
 
 		if (!_user.isHiddenToPlayer() && _targetTile.IsVisibleForPlayer)
-		{
 			this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(_user) + " has staggered " + this.Const.UI.getColorizedEntityName(target) + " for one turn");
-		}
 
 		local overwhelm = ::Legends.Perks.get(this, ::Legends.Perk.Overwhelm);
 
-		if (overwhelm != null)
-		{
+		if (overwhelm != null && !this.getContainer().hasTrait(::Legends.Trait.Teamplayer))
 			overwhelm.onTargetHit(this, target, this.Const.BodyPart.Body, 0, 0);
-		}
 
 		target.setCurrentMovementType(this.Const.Tactical.MovementType.Involuntary);
 		local damage = this.Math.max(0, this.Math.abs(pullToTile.Level - _targetTile.Level) - 1) * this.Const.Combat.FallingDamage;
@@ -127,7 +112,7 @@
 	o.getHitchance <- function ( _targetEntity )
 	{
 		if (this.getContainer().hasTrait(::Legends.Trait.Teamplayer) && _targetEntity.isAlliedWith(getContainer().getActor()))
-			return 100;
+			return 0;
 
 		return this.skill.getHitchance(_targetEntity);
 	}
