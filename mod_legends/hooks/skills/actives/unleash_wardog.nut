@@ -51,15 +51,14 @@
 			return;
 		}
 
-		this.getContainer().add(this.new("scripts/skills/actives/legend_attack_target_skill"));
-
-		local skill = this.getContainer().getSkillByID("actives.legend_attack_target");
+		local skill = ::new("scripts/skills/actives/legend_attack_target_skill");
 		skill.addPet(_entity.getID());
+		this.getContainer().add(skill);
 
-		this.getContainer().add(this.new("scripts/skills/actives/legend_protect_target_skill"));
-
-		skill = this.getContainer().getSkillByID("actives.legend_protect_target");
+		skill = ::new("scripts/skills/actives/legend_protect_target_skill");
 		skill.addPet(_entity.getID());
+		this.getContainer().add(skill);
+
 		local ai = _entity.getAIAgent();
 		ai.m.Properties.TargetPriorityHitchanceMult = 2.0;
 		ai.m.Properties.EngageAgainstSpearwallMult = 0.5;
