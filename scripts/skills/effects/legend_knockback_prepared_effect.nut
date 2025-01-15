@@ -35,37 +35,38 @@ this.legend_knockback_prepared_effect <- this.inherit("scripts/skills/skill", {
 		];
 	}
 
-	function resetTime()
-	{
+	function onAdded() {
 		if (this.getContainer().getActor().isPlacedOnMap())
 			this.spawnIcon("status_effect_54", this.getContainer().getActor().getTile());
+		this.onRefresh();
+	}
 
+	function onRefresh() {
 		this.m.AttacksLeft = 1;
 	}
 
 	function onTargetHit( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor )
 	{
+		if (!_skill.m.IsAttack || _skill.isRanged())
+			return;
+
 		--this.m.AttacksLeft;
 		if (this.m.AttacksLeft <= 0)
 			this.removeSelf();
 
-		if (_skill != this)
-			return;
-
 		if (!_targetEntity.isAlive() || _targetEntity.isDying())
 			return;
 
-		local skill = _targetEntity.getSkills().getSkillByID("effects.legend_baffled");
-		if (skill)
-			skill.onRefresh();
-		else
+		if (!_targetEntity.getCurrentProperties().IsStunned) // baffled when not stunned, makes sense?
 			_targetEntity.getSkills().add(this.new("scripts/skills/effects/legend_baffled_effect"));
 	}
 
 	function onTargetMissed( _skill, _targetEntity )
 	{
-		--this.m.AttacksLeft;
+		if (!_skill.m.IsAttack || _skill.isRanged())
+			return;
 
+		--this.m.AttacksLeft;
 		if (this.m.AttacksLeft <= 0)
 			this.removeSelf();
 	}

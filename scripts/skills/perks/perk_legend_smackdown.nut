@@ -29,7 +29,8 @@ this.perk_legend_smackdown <- this.inherit("scripts/skills/skill", {
 			this.m.Container.add(this.new("scripts/skills/actives/legend_prepare_knockback_skill"));
 		}
 	}
-		function onRemoved()
+
+	function onRemoved()
 	{
 		this.m.Container.removeByID("actives.legend_prepare_knockdown");
 	}
@@ -90,51 +91,40 @@ this.perk_legend_smackdown <- this.inherit("scripts/skills/skill", {
 	{
 		this.m.TilesUsed = [];
 		if (!_targetEntity.isAlive() || _targetEntity.isDying())
-		{
-			return false;
-		}
+			return;
 
 		if (_targetEntity.getCurrentProperties().IsImmuneToKnockBackAndGrab)
-		{
-			return false;
-		}
+			return;
+
+		if (_targetEntity.isNonCombatant())
+			return;
+
+		if (_targetEntity.getCurrentProperties().IsRooted)
+			return;
+
+		if (_skill.isRanged())
+			return;
 
 		local user = _skill.getContainer().getActor();
 
 		if (!user.getSkills().hasSkill("effects.legend_knockback_prepared"))
-		{
-			return false;
-		}
-
-		if (_targetEntity.isNonCombatant() || _targetEntity.getCurrentProperties().IsImmuneToKnockBackAndGrab)
-		{
-			return false;
-		}
-
-
+			return;
 
 		local knockToTile = this.findTileToKnockBackTo(user.getTile(), _targetEntity.getTile());
 
 		if (knockToTile == null)
-		{
-			return false;
-		}
-
-		this.m.TilesUsed.push(knockToTile.ID);
-
-		if (!user.isHiddenToPlayer() && (_targetEntity.getTile().IsVisibleForPlayer || knockToTile.IsVisibleForPlayer))
-		{
-			this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(user) + " has knocked back " + this.Const.UI.getColorizedEntityName(_targetEntity));
-		}
+			return;
 
 		local skills = _targetEntity.getSkills();
 		skills.removeByID("effects.shieldwall");
 		skills.removeByID("effects.spearwall");
 		skills.removeByID("effects.riposte");
 
-		if (skills.hasSkill("effects.legend_baffled"))
+		this.m.TilesUsed.push(knockToTile.ID);
+
+		if (!user.isHiddenToPlayer() && (_targetEntity.getTile().IsVisibleForPlayer || knockToTile.IsVisibleForPlayer))
 		{
-			skills.add(this.new("scripts/skills/effects/legend_baffled_effect"));
+			this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(user) + " has knocked back " + this.Const.UI.getColorizedEntityName(_targetEntity));
 		}
 
 		_targetEntity.setCurrentMovementType(this.Const.Tactical.MovementType.Involuntary);

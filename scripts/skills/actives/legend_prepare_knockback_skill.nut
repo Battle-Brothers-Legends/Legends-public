@@ -95,7 +95,7 @@ this.legend_prepare_knockback_skill <- this.inherit("scripts/skills/skill", {
 	}
 
 	function isHidden()
-	{	
+	{
 		local canUse = this.getContainer().getSkillByID("effects.legend_knockback_prepared");
 		local item = this.getContainer().getActor().getItems().getItemAtSlot(this.Const.ItemSlot.Mainhand);
 		local hasMelee = item == null || item.isItemType(this.Const.Items.ItemType.MeleeWeapon);
@@ -104,12 +104,7 @@ this.legend_prepare_knockback_skill <- this.inherit("scripts/skills/skill", {
 
 	function onUse( _user, _targetTile )
 	{
-		local buff = _user.getSkills().getSkillByID("effects.legend_knockback_prepared");
-
-		if (buff != null)
-			buff.resetTime();
-		else
-			this.m.Container.add(this.new("scripts/skills/effects/legend_knockback_prepared_effect"));
+		this.getContainer().add(this.new("scripts/skills/effects/legend_knockback_prepared_effect"));
 
 		if (this.m.Item != null && !this.m.Item.isNull())
 			this.m.Item.removeSelf();
@@ -120,11 +115,11 @@ this.legend_prepare_knockback_skill <- this.inherit("scripts/skills/skill", {
 	function onAfterUpdate( _properties )
 	{
 		local actor = this.getContainer().getActor();
-		local item = actor.getItems().getItemAtSlot(this.Const.ItemSlot.Mainhand)
-		
+		local item = actor.getItems().getItemAtSlot(this.Const.ItemSlot.Mainhand);
+
 		if (item == null)
 			return;
-		
+
 		if (item.isItemType(this.Const.Items.ItemType.TwoHanded))
 			this.m.ActionPointCost = 1;
 		else if (item.isItemType(this.Const.Items.ItemType.OneHanded))
