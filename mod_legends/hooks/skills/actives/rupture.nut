@@ -33,6 +33,13 @@
 				text = "Has [color=" + this.Const.UI.Color.NegativeValue + "]-15%[/color] chance to hit targets directly adjacent because the weapon is too unwieldy"
 			});
 		}
+		local dmg = this.getContainer().getActor().getCurrentProperties().IsSpecializedInPolearms ? 10 : 5;
+		ret.push({
+			id = 8,
+			type = "text",
+			icon = "ui/icons/special.png",
+			text = "Inflicts additional stacking [color=" + this.Const.UI.Color.DamageValue + "]" + dmg + "[/color] bleeding damage per turn, for 2 turns"
+		});
 
 		return tooltip;
 	}
