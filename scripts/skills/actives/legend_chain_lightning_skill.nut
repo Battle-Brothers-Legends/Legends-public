@@ -178,8 +178,8 @@ this.legend_chain_lightning_skill <- this.inherit("scripts/skills/skill", {
 
 	function onTargetHit( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor )
 	{
-		if (_skill == this && getContainer().getActor().isAlive() && !getContainer().getActor().isDying())
-			summonChainLighting(getContainer().getActor(), _targetEntity.getTile());
+		if (_skill == this && _targetEntity.isAlive() && !_targetEntity.isDying())
+			this.summonChainLighting(this.getContainer().getActor(), _targetEntity.getTile());
 	}
 
 	function onShieldHit( _info )
@@ -192,7 +192,8 @@ this.legend_chain_lightning_skill <- this.inherit("scripts/skills/skill", {
 
 	function summonChainLighting( _user, _targetTile )
 	{
-		local target, selectedTargets = [], currentTargetTile = _targetTile;
+		local target, selectedTargets = [];
+		local currentTargetTile = _targetTile;
 		local myTile = _user.getTile();
 		selectedTargets.push(currentTargetTile.ID);
 
@@ -251,37 +252,30 @@ this.legend_chain_lightning_skill <- this.inherit("scripts/skills/skill", {
 	function searchTiles( _tile, _originTile )
 	{
 		local ret = [];
-
-		for( local i = 0; i < 6; ++i )
+		for( local i = 0; i < 6; i++ )
 		{
 			if (!_tile.hasNextTile(i))
 				continue;
-
 			local tile = _tile.getNextTile(i);
-
 			if (!_originTile.isSameTileAs(tile))
 				ret.push(tile);
 		}
-
 		return ret;
 	}
 
 	function searchTargets( _user , _tiles , _excluded )
 	{
 		local ret = [];
-
 		foreach( tile in _tiles )
 		{
-			if (_excluded.find(tile.ID) != null ||
-				!tile.IsOccupiedByActor ||
-				!tile.getEntity().isAttackable() ||
-				tile.getEntity().isAlliedWith(_user)
-			)
+			if (_excluded.find(tile.ID) != null)
 				continue;
-
+			if (!tile.IsOccupiedByActor)
+				continue;
+			if (!tile.getEntity().isAttackable() || tile.getEntity().isAlliedWith(_user))
+				continue;
 			ret.push(tile);
 		}
-
 		return ret;
 	}
 

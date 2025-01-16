@@ -754,4 +754,5 @@
   <sprite id="holybluefire_square" ic="2E343FFF" img="skills\holybluefire_square.png" />
   <sprite id="placeholder_circle" ic="2E343FFF" img="skills\placeholder_circle.png" />
   <sprite id="placeholder_circle" ic="2E343FFF" img="skills\mini\mini_placeholder_circle.png" />
+  <sprite id="lightning_square" ic="2E343FFF" img="skills\lightning_square.png" />
 </brush>
