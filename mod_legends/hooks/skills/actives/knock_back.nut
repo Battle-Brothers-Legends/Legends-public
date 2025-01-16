@@ -149,7 +149,11 @@
 		if (this.m.SoundOnUse.len() != 0)
 			this.Sound.play(this.m.SoundOnUse[this.Math.rand(0, this.m.SoundOnUse.len() - 1)], this.Const.Sound.Volume.Skill, _user.getPos());
 
-		return this.attackEntity(_user, _targetTile.getEntity());
+		if (this.getContainer().hasTrait(::Legends.Trait.Teamplayer) && _targetTile.getEntity().isAlliedWith(getContainer().getActor()))
+			return true;
+		ret = this.attackEntity(_user, _targetTile.getEntity())
+		this.m.IsAttack = true;
+		return ret;
 	}
 
 	o.onAfterUpdate <- function ( _properties )
