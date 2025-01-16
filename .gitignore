@@ -44,6 +44,8 @@ unpacked/legend_helmets/4
 
 unpacked/legend_helmets/4/metadata.xml
 
+buildscript/python/**/__pycache__/
+
 .vscode
 .vscode/
 
