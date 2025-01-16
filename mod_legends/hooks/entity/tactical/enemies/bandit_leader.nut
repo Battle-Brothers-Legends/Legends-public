@@ -237,4 +237,32 @@
 		::Legends.Perks.grant(this, ::Legends.Perk.Underdog);
 		return true;
 	}
+
+	o.onDeath <- function(_killer, _skill, _tile,  _fatalityType)
+	{
+		this.human.onDeath(_killer, _skill, _tile, _fatalityType);
+
+		if (_killer == null || _killer.getFaction() == this.Const.Faction.Player || _killer.getFaction() == this.Const.Faction.PlayerAnimals)
+		{
+			if (this.Math.rand(1, 100) <= 1)
+			{
+				local loot = this.new("scripts/items/misc/legend_masterwork_fabric");
+				loot.drop(_tile);
+			}
+
+			if (this.Math.rand(1, 1000) <= 7) //0.7%
+			{
+				local loot = this.new("scripts/items/misc/legend_masterwork_metal");
+				loot.drop(_tile);
+			}
+
+			if (this.Math.rand(1, 1000) <= 5) //0.5%
+			{
+				local loot = this.new("scripts/items/misc/legend_masterwork_tools");
+				loot.drop(_tile);
+			}
+		}
+	}
+
+
 });

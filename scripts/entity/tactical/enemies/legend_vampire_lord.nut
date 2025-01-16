@@ -83,6 +83,20 @@ this.legend_vampire_lord <- this.inherit("scripts/entity/tactical/actor", {
 					loot.drop(_tile);
 				}
 			}
+
+			if (this.Math.rand(1, 100) <= 8)
+			{
+				local loot = this.new("scripts/items/misc/legend_masterwork_metal");
+				loot.drop(_tile);
+			}
+
+			if (this.Math.rand(1, 100) <= 7)
+			{
+				local loot = this.new("scripts/items/misc/legend_masterwork_tools");
+				loot.drop(_tile);
+			}
+
+
 		}
 
 		this.actor.onDeath(_killer, _skill, _tile, _fatalityType);
