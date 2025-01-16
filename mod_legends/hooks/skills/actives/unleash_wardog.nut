@@ -51,18 +51,13 @@
 			return;
 		}
 
-		if (!this.getContainer().hasSkill("actives.legend_attack_target"))
-		{
-			this.getContainer().add(this.new("scripts/skills/actives/legend_attack_target"));
-		}
-
-		local skill = this.getContainer().getSkillByID("actives.legend_attack_target");
+		local skill = ::new("scripts/skills/actives/legend_attack_target_skill");
 		skill.addPet(_entity.getID());
+		this.getContainer().add(skill);
 
-		if (!this.getContainer().hasSkill("actives.legend_protect_target"))
-		{
-			this.getContainer().add(this.new("scripts/skills/actives/legend_protect_target"));
-		}
+		skill = ::new("scripts/skills/actives/legend_protect_target_skill");
+		skill.addPet(_entity.getID());
+		this.getContainer().add(skill);
 
 		skill = this.getContainer().getSkillByID("actives.legend_protect_target");
 		skill.addPet(_entity.getID());
