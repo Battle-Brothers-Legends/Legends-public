@@ -29,7 +29,7 @@
 	{
 		if (_item == null) return false;
 
-		_item.m.AddToBagActor = this.getActor();
+		_item.m.AddToBagActor = getActor();
 		local result = addToBag(_item, _slot);
 		_item.m.AddToBagActor = null;
 		return result;

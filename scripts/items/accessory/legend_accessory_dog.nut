@@ -25,21 +25,29 @@ this.legend_accessory_dog <- this.inherit("scripts/items/accessory/accessory", {
 
 	function isAllowedInBag()
 	{
-		if (this.getContainer() == null)
-			return true;
-		if (::MSU.isNull(this.m.AddToBagActor))
+		//Wierd work around - since player stash queries this in order to enabled drag/drop onto
+		//paperdoll - but there is no actor or container yet so we have to allow
+		//all wardogs to be allowed in bag , and then when the addToBag check calls
+		//this function again, we can check actor and set it to false if not perk
+		//is present
+		if (::MSU.isNull(m.AddToBagActor) && ::MSU.isNull(getContainer()))
 			return true;
 
-		return this.m.AddToBagActor.getSkills().hasSkill("perk.legend_packleader");
+		return !::MSU.isNull(m.AddToBagActor) && m.AddToBagActor.getSkills().hasSkill("perk.legend_packleader");
 	}
 
 	function isChangeableInBattle()
 	{
-		if (this.getContainer() == null)
+		//Wierd work around - since player stash queries this in order to enabled drag/drop onto
+		//paperdoll - but there is no actor or container yet so we have to allow
+		//all wardogs to be allowed in bag , and then when the addToBag check calls
+		//this function again, we can check actor and set it to false if not perk
+		//is present
+
+		if (::MSU.isNull(m.IsChangeableInBattleActor) && ::MSU.isNull(getContainer()))
 			return true;
-		if (::MSU.isNull(this.m.AddToBagActor))
-			return true;
-		return this.m.IsChangeableInBattleActor.getSkills().hasSkill("perk.legend_packleader");
+
+		return !::MSU.isNull(m.IsChangeableInBattleActor) && m.IsChangeableInBattleActor.getSkills().hasSkill("perk.legend_packleader");
 	}
 
 	function isUnleashed()
