@@ -2,7 +2,7 @@ this.perk_legend_darkflight <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		::Const.Perks.setup(this.m, ::Const.Perks.PerkDefs.LegendDarkflight);
+		::Const.Perks.setup(this.m, ::Legends.Perk.LegendDarkflight);
 		this.m.Type = this.Const.SkillType.Perk;
 		this.m.Order = this.Const.SkillOrder.Perk;
 		this.m.IsActive = false;

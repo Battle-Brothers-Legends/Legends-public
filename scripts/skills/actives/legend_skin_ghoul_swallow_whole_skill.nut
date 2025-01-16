@@ -75,9 +75,8 @@ this.legend_skin_ghoul_swallow_whole_skill <- this.inherit("scripts/skills/skill
 		}
 
 		local skills = target.getSkills();
-		skills.removeByID("effects.shieldwall");
-		skills.removeByID("effects.spearwall");
-		skills.removeByID("effects.riposte");
+		if (!skills.hasSkill("effects.legend_break_stance"))
+			skills.add(this.new("scripts/skills/effects/legend_break_stance_effect"));
 		skills.removeByID("effects.legend_vala_chant_disharmony_effect");
 		skills.removeByID("effects.legend_vala_chant_fury_effect");
 		skills.removeByID("effects.legend_vala_chant_senses_effect");

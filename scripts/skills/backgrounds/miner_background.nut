@@ -12,18 +12,18 @@ this.miner_background <- this.inherit("scripts/skills/backgrounds/character_back
 		this.m.HiringCost = 75;
 		this.m.DailyCost = 10;
 		this.m.Excluded = [
-			"trait.huge",
-			"trait.hate_undead",
-			"trait.night_blind",
-			"trait.swift",
-			"trait.iron_lungs",
-			"trait.bright",
-			"trait.fat",
-			"trait.clumsy",
-			"trait.fragile",
-			"trait.strong",
-			"trait.craven",
-			"trait.dastard"
+			::Legends.Traits.getID(::Legends.Trait.Huge),
+			::Legends.Traits.getID(::Legends.Trait.HateUndead),
+			::Legends.Traits.getID(::Legends.Trait.NightBlind),
+			::Legends.Traits.getID(::Legends.Trait.Swift),
+			::Legends.Traits.getID(::Legends.Trait.IronLungs),
+			::Legends.Traits.getID(::Legends.Trait.Bright),
+			::Legends.Traits.getID(::Legends.Trait.Fat),
+			::Legends.Traits.getID(::Legends.Trait.Clumsy),
+			::Legends.Traits.getID(::Legends.Trait.Fragile),
+			::Legends.Traits.getID(::Legends.Trait.Strong),
+			::Legends.Traits.getID(::Legends.Trait.Craven),
+			::Legends.Traits.getID(::Legends.Trait.Dastard)
 		];
 		this.m.Titles = [
 			"the Miner",

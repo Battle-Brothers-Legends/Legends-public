@@ -172,7 +172,7 @@ this.legend_white_direwolf <- this.inherit("scripts/entity/tactical/actor", {
 
 				for( local i = 0; i < n; i = ++i )
 				{
-	
+
 					local loot = this.new("scripts/items/misc/legend_white_wolf_pelt_item");
 					loot.drop(_tile);
 					local loot = this.new("scripts/items/loot/sabertooth_item");
@@ -185,12 +185,12 @@ this.legend_white_direwolf <- this.inherit("scripts/entity/tactical/actor", {
 					{
 					local loot = this.new("scripts/items/loot/sabertooth_item");
 					loot.drop(_tile);
-					}	
+					}
 					if (this.Math.rand(1, 100) <= 33)
 					{
 					local loot = this.new("scripts/items/loot/valuable_furs_item");
 					loot.drop(_tile);
-					}						
+					}
 					if (this.Math.rand(1, 100) <= 33)
 					{
 					local loot = this.new("scripts/items/supplies/strange_meat_item");
@@ -250,34 +250,34 @@ this.legend_white_direwolf <- this.inherit("scripts/entity/tactical/actor", {
 		this.setSpriteOffset("status_rooted", this.createVec(0, 0));
 		this.m.Skills.add(this.new("scripts/skills/actives/legend_white_wolf_bite_skill"));
 		this.m.Skills.add(this.new("scripts/skills/actives/werewolf_bite"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_rotation"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_footwork"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_recover"));
+		::Legends.Perks.grant(this, ::Legends.Perk.Rotation);
+		::Legends.Perks.grant(this, ::Legends.Perk.Footwork);
+		::Legends.Perks.grant(this, ::Legends.Perk.Recover);
 		this.m.Skills.add(this.new("scripts/skills/actives/legend_white_wolf_howl_skill"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_coup_de_grace"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_berserk"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_pathfinder"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_overwhelm"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_nimble"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_inspiring_presence"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_fast_adaption"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_backstabber"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_fearsome"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_battleheart"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_true_believer"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_terrifying_visage"));
+		::Legends.Perks.grant(this, ::Legends.Perk.CoupDeGrace);
+		::Legends.Perks.grant(this, ::Legends.Perk.Berserk);
+		::Legends.Perks.grant(this, ::Legends.Perk.Pathfinder);
+		::Legends.Perks.grant(this, ::Legends.Perk.Overwhelm);
+		::Legends.Perks.grant(this, ::Legends.Perk.Nimble);
+		::Legends.Perks.grant(this, ::Legends.Perk.InspiringPresence);
+		::Legends.Perks.grant(this, ::Legends.Perk.FastAdaption);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendStrengthInNumbers);
+		::Legends.Perks.grant(this, ::Legends.Perk.Fearsome);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendBattleheart);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendTrueBeliever);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendTerrifyingVisage);
 		this.m.Skills.add(this.new("scripts/skills/racial/legend_werewolf_racial"));
 
-		 if ("Assets" in this.World && this.World.Assets != null && this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Legendary)
-			{
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_battle_forged"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_battle_flow"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_last_stand"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_second_wind"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_crippling_strikes"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_killing_frenzy"));
-			this.m.Skills.add(this.new("scripts/skills/traits/fearless_trait"));
-			}
+		if (::Legends.isLegendaryDifficulty())
+		{
+			::Legends.Perks.grant(this, ::Legends.Perk.BattleForged);
+			::Legends.Perks.grant(this, ::Legends.Perk.BattleFlow);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendLastStand);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendSecondWind);
+			::Legends.Perks.grant(this, ::Legends.Perk.CripplingStrikes);
+			::Legends.Perks.grant(this, ::Legends.Perk.KillingFrenzy);
+			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
+		}
 		if (!this.Tactical.State.isScenarioMode())
 		{
 			local dateToSkip = 0;

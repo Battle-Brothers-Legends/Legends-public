@@ -4,6 +4,6 @@
 	o.create = function ()
 	{
 		create();
-		this.m.Excluded.push("trait.legend_heavy");
+		this.m.Excluded.push(::Legends.Traits.getID(::Legends.Trait.LegendHeavy));
 	}
 });

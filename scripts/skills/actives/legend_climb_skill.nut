@@ -4,7 +4,7 @@ this.legend_climb_skill <- this.inherit("scripts/skills/skill", {
 	{
 		this.m.ID = "actives.legend_climb";
 		this.m.Name = "Climb";
-		this.m.Description = "Allows you to move up or down levels, does not trigger attacks of opportunity. Can not be used on flat ground";
+		this.m.Description = "Allows you to move up or down levels. Does not trigger attacks of opportunity. Can not be used on flat ground.";
 		this.m.Icon = "skills/climb_square.png";
 		this.m.IconDisabled = "skills/climb_square_bw.png";
 		this.m.Overlay = "climb_square";
@@ -93,11 +93,11 @@ this.legend_climb_skill <- this.inherit("scripts/skills/skill", {
 			return false;
 		}
 	}
-	
+
 	function onAfterUpdate( _properties )
 	{
-		if (this.getContainer().getActor().getSkills().hasSkill("perk.legend_backflip"))
-		{	
+		if (this.getContainer().getActor().getSkills().hasPerk(::Legends.Perk.LegendBackflip))
+		{
 			this.m.MaxRange = 2;
 		}
 

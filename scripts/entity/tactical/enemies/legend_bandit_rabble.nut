@@ -61,7 +61,7 @@ this.legend_bandit_rabble <- this.inherit("scripts/entity/tactical/legend_random
 		this.getSprite("shield_icon").setBrightness(0.9);
 
 		if (this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Easy)
-			this.m.Skills.add(this.new("scripts/skills/traits/craven_trait"));
+			::Legends.Traits.grant(this, ::Legends.Trait.Craven);
 	}
 
 	function onAppearanceChanged( _appearance, _setDirty = true )

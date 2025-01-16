@@ -5,11 +5,11 @@
 	{
 		onInit();
 		local b = this.m.BaseProperties;
-		if("Assets" in this.World && this.World.Assets != null && this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Legendary)
+		if(::Legends.isLegendaryDifficulty())
 		{
 			this.m.Hitpoints = b.Hitpoints * 1.5;
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_nimble"));
-			this.m.Skills.add(this.new("scripts/skills/traits/fearless_trait"));
+			::Legends.Perks.grant(this, ::Legends.Perk.Nimble);
+			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
 		}
 	}
 

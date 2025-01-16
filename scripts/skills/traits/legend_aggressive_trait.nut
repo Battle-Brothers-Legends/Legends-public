@@ -3,7 +3,7 @@ this.legend_aggressive_trait <- this.inherit("scripts/skills/traits/character_tr
 	function create()
 	{
 		this.character_trait.create();
-		this.m.ID = "trait.legend_aggressive";
+		this.m.ID = ::Legends.Traits.getID(::Legends.Trait.LegendAggressive);
 		this.m.Name = "Aggressive";
 		this.m.Icon = "ui/traits/aggressive_trait.png";
 		this.m.Description = "This character is pretty aggressive, even to their own detriment.";
@@ -13,20 +13,20 @@ this.legend_aggressive_trait <- this.inherit("scripts/skills/traits/character_tr
 			"the Crazy"
 		];
 		this.m.Excluded = [
-			"trait.clumsy",
-			"trait.pessimist",
-			"trait.weasel",
-			"trait.insecure",
-			"trait.craven",
-			"trait.hesitant",
-			"trait.dastard",
-			"trait.fainthearted",
-			"trait.fear_beasts",
-			"trait.fear_undead",
-			"trait.fear_greenskins",
-			"trait.legend_fear_nobles",
-			"trait.legend_slack",
-			"trait.legend_pragmatic"
+			::Legends.Traits.getID(::Legends.Trait.Clumsy),
+			::Legends.Traits.getID(::Legends.Trait.Pessimist),
+			::Legends.Traits.getID(::Legends.Trait.Weasel),
+			::Legends.Traits.getID(::Legends.Trait.Insecure),
+			::Legends.Traits.getID(::Legends.Trait.Craven),
+			::Legends.Traits.getID(::Legends.Trait.Hesistant),
+			::Legends.Traits.getID(::Legends.Trait.Dastard),
+			::Legends.Traits.getID(::Legends.Trait.Fainthearthed),
+			::Legends.Traits.getID(::Legends.Trait.FearBeasts),
+			::Legends.Traits.getID(::Legends.Trait.FearUndead),
+			::Legends.Traits.getID(::Legends.Trait.FearGreenskins),
+			::Legends.Traits.getID(::Legends.Trait.LegendFearNobles),
+			::Legends.Traits.getID(::Legends.Trait.LegendSlack),
+			::Legends.Traits.getID(::Legends.Trait.LegendPragmatic)
 		];
 	}
 

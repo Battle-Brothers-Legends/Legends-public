@@ -25,7 +25,7 @@
 			if (bro.getLevel() < 4)
 				continue;
 
-			if (bro.getSkills().hasSkill("trait.ailing"))
+			if (bro.getSkills().hasTrait(::Legends.Trait.Ailing))
 				candidates_ailing.push(bro);
 			else if (bro.getBackground().getID() == "background.monk" || bro.getBackground().getID() == "background.beast_slayer" || bro.getBackground().getID() == "background.legend_herbalist" || bro.getBackground().getID() == "background.legend_witch" || bro.getBackground().getID() == "background.legend_witch_commander" )
 				candidates_healer.push(bro);

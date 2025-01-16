@@ -14,7 +14,7 @@
 
 	o.onUse = function ( _actor, _item = null )
 	{
-		if (!_actor.getSkills().hasSkillOfType(this.Const.SkillType.Injury) && !_actor.getSkills().hasSkill("trait.old"))
+		if (!_actor.getSkills().hasSkillOfType(this.Const.SkillType.Injury) && !_actor.getSkills().hasTrait(::Legends.Trait.Old))
 		{
 			return false;
 		}
@@ -33,8 +33,8 @@
 
 		this.Sound.play("sounds/combat/drink_03.wav", this.Const.Sound.Volume.Inventory);
 		_actor.getSkills().removeByType(this.Const.SkillType.Injury);
-		_actor.getSkills().removeByID("trait.old");
-		_actor.getSkills().removeByID("trait.addict");
+		::Legends.Traits.remove(_actor, ::Legends.Trait.Old);
+		::Legends.Traits.remove(_actor, ::Legends.Trait.Addict);
 		_actor.getSkills().removeByID("effects.hangover");
 		_actor.getSkills().removeByID("effects.exhausted");
 		_actor.setHitpoints(_actor.getHitpointsMax());
@@ -54,14 +54,14 @@
 		_actor.getSprite("permanent_injury_burned").resetBrush();
 
 		// Inventor 'injuries'
-		_actor.getSkills().removeByID("trait.legend_prosthetic_ear");
-		_actor.getSkills().removeByID("trait.legend_prosthetic_eye");
-		_actor.getSkills().removeByID("trait.legend_prosthetic_finger");
-		_actor.getSkills().removeByID("trait.legend_prosthetic_foot");
-		_actor.getSkills().removeByID("trait.legend_prosthetic_forearm");
-		_actor.getSkills().removeByID("trait.legend_prosthetic_leg");
-		_actor.getSkills().removeByID("trait.legend_prosthetic_hand");
-		_actor.getSkills().removeByID("trait.legend_prosthetic_nose");
+		::Legends.Traits.remove(_actor, ::Legends.Trait.LegendProstheticEar);
+		::Legends.Traits.remove(_actor, ::Legends.Trait.LegendProstheticEye);
+		::Legends.Traits.remove(_actor, ::Legends.Trait.LegendProstheticFinger);
+		::Legends.Traits.remove(_actor, ::Legends.Trait.LegendProstheticFoot);
+		::Legends.Traits.remove(_actor, ::Legends.Trait.LegendProstheticForearm);
+		::Legends.Traits.remove(_actor, ::Legends.Trait.LegendProstheticLeg);
+		::Legends.Traits.remove(_actor, ::Legends.Trait.LegendProstheticHand);
+		::Legends.Traits.remove(_actor, ::Legends.Trait.LegendProstheticNose);
 
 		// Re-add donkey
 		if (isDonkey) //if we were a donkey up top and had more perm injuries, then we re-add donkey injury here

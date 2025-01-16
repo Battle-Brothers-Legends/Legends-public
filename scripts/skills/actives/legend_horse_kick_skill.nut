@@ -11,7 +11,7 @@ this.legend_horse_kick_skill <- this.inherit("scripts/skills/skill", {
 	{
 		this.m.ID = "actives.legend_horse_kick";
 		this.m.Name = "Horse Kick";
-		this.m.Description = "The main attack of a horse, more for defense than attack. Maximum damage is the average of your hitpoints and initiative minus 90";
+		this.m.Description = "The main attack of a horse, more for defense than attack. Maximum damage is the average of your hitpoints and initiative minus 90.";
 		this.m.KilledString = "Kicked to death";
 		this.m.Icon = "skills/horse_kick.png";
 		this.m.IconDisabled = "skills/horse_kick_bw.png";
@@ -71,7 +71,7 @@ this.legend_horse_kick_skill <- this.inherit("scripts/skills/skill", {
 		local damage_Armor_max = this.Math.floor(damageMax * p.DamageArmorMult * p.DamageTotalMult);
 		local damage_direct_max = this.Math.floor(damageMax * this.m.DirectDamageMult);
 
-		if (this.getContainer().getActor().getSkills().hasSkill("perk.legend_muscularity"))
+		if (this.getContainer().getActor().getSkills().hasPerk(::Legends.Perk.LegendMuscularity))
 		{
 			local muscularity = this.Math.floor(bodyHealth * 0.1);
 			damage_regular_max = damage_regular_max + muscularity;
@@ -175,7 +175,7 @@ this.legend_horse_kick_skill <- this.inherit("scripts/skills/skill", {
 				damageMax = damageMax + avgMax;
 			}
 
-			if (this.getContainer().getActor().getSkills().hasSkill("perk.legend_muscularity"))
+			if (this.getContainer().getActor().getSkills().hasPerk(::Legends.Perk.LegendMuscularity))
 			{
 				local muscularity = this.Math.floor(bodyHealth * 0.1);
 				damageMax = damageMax + muscularity;

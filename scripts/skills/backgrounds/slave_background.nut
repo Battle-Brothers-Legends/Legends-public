@@ -27,24 +27,24 @@ this.slave_background <- this.inherit("scripts/skills/backgrounds/character_back
 			"the Bound"
 		];
 		this.m.Excluded = [
-			"trait.survivor",
-			"trait.iron_jaw",
-			"trait.gluttonous",
-			"trait.lucky",
-			"trait.loyal",
-			"trait.cocky",
-			"trait.fat",
-			"trait.fearless",
-			"trait.brave",
-			"trait.drunkard",
-			"trait.determined",
-			"trait.greedy",
-			"trait.hate_beasts",
-			"trait.hate_undead",
-			"trait.hate_greenskins",
-			"trait.legend_aggressive",
-			"trait.legend_ambitious",
-			"trait.legend_slack"
+			::Legends.Traits.getID(::Legends.Trait.Survivor),
+			::Legends.Traits.getID(::Legends.Trait.IronJaw),
+			::Legends.Traits.getID(::Legends.Trait.Gluttonous),
+			::Legends.Traits.getID(::Legends.Trait.Lucky),
+			::Legends.Traits.getID(::Legends.Trait.Loyal),
+			::Legends.Traits.getID(::Legends.Trait.Cocky),
+			::Legends.Traits.getID(::Legends.Trait.Fat),
+			::Legends.Traits.getID(::Legends.Trait.Fearless),
+			::Legends.Traits.getID(::Legends.Trait.Brave),
+			::Legends.Traits.getID(::Legends.Trait.Drunkard),
+			::Legends.Traits.getID(::Legends.Trait.Determined),
+			::Legends.Traits.getID(::Legends.Trait.Greedy),
+			::Legends.Traits.getID(::Legends.Trait.HateBeasts),
+			::Legends.Traits.getID(::Legends.Trait.HateUndead),
+			::Legends.Traits.getID(::Legends.Trait.HateGreenskins),
+			::Legends.Traits.getID(::Legends.Trait.LegendAggressive),
+			::Legends.Traits.getID(::Legends.Trait.LegendAmbitious),
+			::Legends.Traits.getID(::Legends.Trait.LegendSlack)
 		];
 		this.m.ExcludedTalents = [
 			this.Const.Attributes.Hitpoints,

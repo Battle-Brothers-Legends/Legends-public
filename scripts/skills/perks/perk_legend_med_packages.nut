@@ -4,7 +4,7 @@ this.perk_legend_med_packages <- this.inherit("scripts/skills/skill", {
 	},
 	function create()
 	{
-		::Const.Perks.setup(this.m, ::Const.Perks.PerkDefs.LegendMedPackages);
+		::Const.Perks.setup(this.m, ::Legends.Perk.LegendMedPackages);
 		this.m.Type = this.Const.SkillType.Perk;
 		this.m.Order = this.Const.SkillOrder.Perk;
 		this.m.IsActive = false;

@@ -364,7 +364,7 @@
 
 .camp-screen > .l-main-dialog-container .footer .l-camp-button
 {
-	top: 0.5rem;;
+	top: 0.5rem;
 	left: 18.0rem;
 	bottom: 0;
 	width: 17.5rem;
@@ -375,8 +375,8 @@
 
 .camp-screen > .l-main-dialog-container .footer .l-leave-button
 {
-	top: 0.5rem;;
-	right: 18.0rem;;
+	top: 0.5rem;
+	right: 18.0rem;
 	bottom: 0;
 	width: 17.5rem;
 	position: absolute;

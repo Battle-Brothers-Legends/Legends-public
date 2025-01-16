@@ -12,19 +12,22 @@ this.legend_qiyan_background <- this.inherit("scripts/skills/backgrounds/charact
 		this.m.HiringCost = 500;
 		this.m.DailyCost = 10;
 		this.m.Excluded = [
-			"trait.tough",
-			"trait.strong",
-			"trait.clumsy",
-			"trait.fat",
-			"trait.ailing",
-			"trait.asthmatic",
-			"trait.spartan",
-			"trait.athletic",
-			"trait.legend_heavy",
-			"trait.legend_aggressive",
-			"trait.huge",
-			"trait.legend_slack",
-			"trait.craven"
+			::Legends.Traits.getID(::Legends.Trait.Tough),
+			::Legends.Traits.getID(::Legends.Trait.Strong),
+			::Legends.Traits.getID(::Legends.Trait.Clumsy),
+			::Legends.Traits.getID(::Legends.Trait.Fat),
+			::Legends.Traits.getID(::Legends.Trait.Ailing),
+			::Legends.Traits.getID(::Legends.Trait.Asthmatic),
+			::Legends.Traits.getID(::Legends.Trait.Spartan),
+			::Legends.Traits.getID(::Legends.Trait.Athletic),
+			::Legends.Traits.getID(::Legends.Trait.LegendHeavy),
+			::Legends.Traits.getID(::Legends.Trait.LegendAggressive),
+			::Legends.Traits.getID(::Legends.Trait.Huge),
+			::Legends.Traits.getID(::Legends.Trait.LegendSlack),
+			::Legends.Traits.getID(::Legends.Trait.Craven)
+		];
+		this.m.Titles = [
+			"the Qiyan"
 		];
 		this.m.ExcludedTalents = [
 			this.Const.Attributes.Hitpoints,
@@ -115,8 +118,6 @@ this.legend_qiyan_background <- this.inherit("scripts/skills/backgrounds/charact
 	function onAdded()
 	{
 		this.character_background.onAdded();
-		local actor = this.getContainer().getActor();
-		actor.setTitle("the Qiyan");
 	}
 
 	function onAddEquipment()

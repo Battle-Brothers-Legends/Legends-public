@@ -42,8 +42,7 @@ this.legend_trader_recruitment <- this.inherit("scripts/events/event", {
 				_event.m.Trader.setStartValuesEx([
 					"legend_trader_background"
 				]);
-				local trait = this.new("scripts/skills/traits/greedy_trait");
-				_event.m.Trader.getSkills().add(trait);
+				::Legends.Traits.grant(_event.m.Trader, ::Legends.Trait.Greedy);
 				this.Characters.push(_event.m.Trader.getImagePath());
 			}
 

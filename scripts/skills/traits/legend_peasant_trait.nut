@@ -3,7 +3,7 @@ this.legend_peasant_trait <- this.inherit("scripts/skills/traits/character_trait
 	function create()
 	{
 		this.character_trait.create();
-		this.m.ID = "trait.legend_peasant";
+		this.m.ID = ::Legends.Traits.getID(::Legends.Trait.LegendPeasant);
 		this.m.Name = "Peasant";
 		this.m.Icon = "ui/traits/trait_icon_00.png";
 		this.m.Description = "This trait is used to alter daily reputation decline for noble factions.";
@@ -34,9 +34,9 @@ this.legend_peasant_trait <- this.inherit("scripts/skills/traits/character_trait
 
 	function onAdded() //removes fear of nobles (militia origin only!).
 	{
-		if (this.m.Container.hasSkill("trait.legend_fear_nobles"))
+		if (this.m.Container.hasTrait(::Legends.Trait.LegendFearNobles))
 		{
-			this.m.Container.removeByID("trait.legend_fear_nobles");
+			::Legends.Traits.remove(this, ::Legends.Trait.LegendFearNobles);
 		}		
 	}
 

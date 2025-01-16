@@ -31,18 +31,18 @@ this.legend_mummy_heavy <- this.inherit("scripts/entity/tactical/legend_mummy", 
 		this.m.CurrentProperties = clone b;
 		this.m.ActionPointCosts = this.Const.DefaultMovementAPCost;
 		this.m.FatigueCosts = this.Const.DefaultMovementFatigueCost;
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_reach_advantage"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_coup_de_grace"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_crippling_strikes"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_fast_adaption"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_bloodbath"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_carnage"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_poison_immunity"));
-		if("Assets" in this.World && this.World.Assets != null && this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Legendary)
+		::Legends.Perks.grant(this, ::Legends.Perk.ReachAdvantage);
+		::Legends.Perks.grant(this, ::Legends.Perk.CoupDeGrace);
+		::Legends.Perks.grant(this, ::Legends.Perk.CripplingStrikes);
+		::Legends.Perks.grant(this, ::Legends.Perk.FastAdaption);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendBloodbath);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendCarnage);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendPoisonImmunity);
+		if(::Legends.isLegendaryDifficulty())
 		{
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_battle_forged"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_crippling_strikes"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_coup_de_grace"));
+			::Legends.Perks.grant(this, ::Legends.Perk.BattleForged);
+			::Legends.Perks.grant(this, ::Legends.Perk.CripplingStrikes);
+			::Legends.Perks.grant(this, ::Legends.Perk.CoupDeGrace);
 		}
 
 	}
@@ -115,9 +115,9 @@ this.legend_mummy_heavy <- this.inherit("scripts/entity/tactical/legend_mummy", 
 
 		local weaponAdd = this.Const.World.Common.pickItem(weapons, "scripts/items/weapons/named/");
 		this.m.Items.equip(weaponAdd);
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_forceful_swing"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_smackdown"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_underdog"));
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendForcefulSwing);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendSmackdown);
+		::Legends.Perks.grant(this, ::Legends.Perk.Underdog);
 
 	}
 

@@ -6,7 +6,7 @@ this.legend_hex_skill <- this.inherit("scripts/skills/skill", {
 	{
 		this.m.ID = "actives.legend_hex";
 		this.m.Name = "Hex";
-		this.m.Description = "You tie your soul to your enemy, your pain becomes their pain";
+		this.m.Description = "Tie your soul to your enemy, forcing them to feel the same pain you do.";
 		this.m.Icon = "skills/hex_square.png";
 		this.m.IconDisabled = "skills/hex_square_bw.png";
 		this.m.Overlay = "active_119";

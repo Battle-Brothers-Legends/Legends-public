@@ -5,7 +5,7 @@ this.perk_legend_distant_visions <- this.inherit("scripts/skills/skill", {
 	},
 	function create()
 	{
-		::Const.Perks.setup(this.m, ::Const.Perks.PerkDefs.LegendDistantVisions);
+		::Const.Perks.setup(this.m, ::Legends.Perk.LegendDistantVisions);
 		this.m.Type = this.Const.SkillType.Perk;
 		this.m.Order = this.Const.SkillOrder.Perk;
 		this.m.IsActive = false;

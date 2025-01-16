@@ -11,14 +11,14 @@ this.fisherman_southern_background <- this.inherit("scripts/skills/backgrounds/f
 		this.m.BeardChance = 90;
 		this.m.Ethnicity = 1;
 		this.m.Excluded = [
-			"trait.superstitious",
-			"trait.weasel",
-			"trait.fear_undead",
-			"trait.hate_undead",
-			"trait.paranoid",
-			"trait.night_blind",
-			"trait.tiny",
-			"trait.fat"
+			::Legends.Traits.getID(::Legends.Trait.Superstitious),
+			::Legends.Traits.getID(::Legends.Trait.Weasel),
+			::Legends.Traits.getID(::Legends.Trait.FearUndead),
+			::Legends.Traits.getID(::Legends.Trait.HateUndead),
+			::Legends.Traits.getID(::Legends.Trait.Paranoid),
+			::Legends.Traits.getID(::Legends.Trait.NightBlind),
+			::Legends.Traits.getID(::Legends.Trait.Tiny),
+			::Legends.Traits.getID(::Legends.Trait.Fat)
 		];
 		this.m.Names = this.Const.Strings.SouthernNames;
 		this.m.LastNames = this.Const.Strings.SouthernNamesLast;

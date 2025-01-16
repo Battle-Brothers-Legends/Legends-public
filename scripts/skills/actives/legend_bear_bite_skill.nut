@@ -70,7 +70,7 @@ function getTooltip()
 		local damage_Armor_max = this.Math.floor(damageMax * p.DamageArmorMult * p.DamageTotalMult);
 		local damage_direct_max = this.Math.floor(damageMax * this.m.DirectDamageMult);
 
-		if (this.getContainer().getActor().getSkills().hasSkill("perk.legend_muscularity"))
+		if (this.getContainer().getActor().getSkills().hasPerk(::Legends.Perk.LegendMuscularity))
 		{
 			local muscularity = this.Math.floor(bodyHealth * 0.1);
 			 damage_regular_max += muscularity;
@@ -121,7 +121,7 @@ function getTooltip()
 			});
 		}
 
-		
+
 		ret.push({
 			id = 6,
 			type = "text",
@@ -170,10 +170,10 @@ function onAnySkillUsed( _skill, _targetEntity, _properties )
 			damageMax = 50 + maxFalloff;
 			}
 
-			
 
 
-			if (this.getContainer().getActor().getSkills().hasSkill("perk.legend_muscularity"))
+
+			if (this.getContainer().getActor().getSkills().hasPerk(::Legends.Perk.LegendMuscularity))
 			{
 				local muscularity = this.Math.floor(bodyHealth * 0.1);
 				damageMax += muscularity;
@@ -203,8 +203,8 @@ function onAnySkillUsed( _skill, _targetEntity, _properties )
 			actor.setHitpoints(this.Math.min(actor.getHitpoints() + heal, maxHP));
 		}
 		return res
-		
-		
+
+
 	}
 
 });

@@ -4,17 +4,17 @@
 	o.onInit = function ()
 	{
 		onInit();
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_rotation"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_recover"));
-		if("Assets" in this.World && this.World.Assets != null && this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Legendary)
+		::Legends.Perks.grant(this, ::Legends.Perk.Rotation);
+		::Legends.Perks.grant(this, ::Legends.Perk.Recover);
+		if(::Legends.isLegendaryDifficulty())
 		{
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_lone_wolf"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_back_to_basics"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_feint"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_ballistics"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_close_combat_archer"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_crippling_strikes"));
-			this.m.Skills.add(this.new("scripts/skills/traits/fearless_trait"));
+			::Legends.Perks.grant(this, ::Legends.Perk.LoneWolf);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendBackToBasics);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendFeint);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendBallistics);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendCloseCombatArcher);
+			::Legends.Perks.grant(this, ::Legends.Perk.CripplingStrikes);
+			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
 		}
 	}
 

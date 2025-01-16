@@ -6,7 +6,7 @@ this.legend_stealth_skill <- this.inherit("scripts/skills/skill", {
 	{
 		this.m.ID = "actives.legend_stealth";
 		this.m.Name = "Stealth";
-		this.m.Description = "Fade into the environment";
+		this.m.Description = "Fade into the environment.";
 		this.m.Icon = "skills/stealth_square.png";
 		this.m.IconDisabled = "skills/stealth_square_bw.png";
 		this.m.Overlay = "active_15";

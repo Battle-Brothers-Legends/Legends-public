@@ -163,18 +163,18 @@
 	o.onInit = function ()
 	{
 		onInit();
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_stalwart"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_poison_immunity"));
-		 if ("Assets" in this.World && this.World.Assets != null && this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Legendary)
+		::Legends.Perks.grant(this, ::Legends.Perk.Stalwart);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendPoisonImmunity);
+		 if (::Legends.isLegendaryDifficulty())
 		{
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_levitation"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_push_the_advantage"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_anticipation"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_dodge"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_overwhelm"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_return_favor"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_fortified_mind"));
-			this.m.Skills.add(this.new("scripts/skills/traits/fearless_trait"));
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendLevitate);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendPushTheAdvantage);
+			::Legends.Perks.grant(this, ::Legends.Perk.Anticipation);
+			::Legends.Perks.grant(this, ::Legends.Perk.Dodge);
+			::Legends.Perks.grant(this, ::Legends.Perk.Overwhelm);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendReturnFavor);
+			::Legends.Perks.grant(this, ::Legends.Perk.FortifiedMind);
+			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
 		}
 	}
 });

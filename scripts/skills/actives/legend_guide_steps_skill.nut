@@ -4,7 +4,7 @@ this.legend_guide_steps_skill <- this.inherit("scripts/skills/skill", {
 	{
 		this.m.ID = "actives.legend_guide_steps";
 		this.m.Name = "Guide steps";
-		this.m.Description = "Point out dips and obstacles in the landscape, increasing movement for your troops";
+		this.m.Description = "Point out dips and obstacles in the landscape, increasing movement for your troops.";
 		this.m.Icon = "skills/guided_steps_square.png";
 		this.m.IconDisabled = "skills/guided_steps_square_bw.png";
 		this.m.Overlay = "guided_steps_square";

@@ -4,7 +4,7 @@ this.legends_assassin_scenario <- this.inherit("scripts/scenarios/world/starting
 	{
 		this.m.ID = "scenario.legends_assassin";
 		this.m.Name = "Assassin";
-		this.m.Description = "[p=c][img]gfx/ui/events/event_51.png[/img][/p][p] An assassin down on their luck with limitied supplies. \n\n[color=#bcad8c]Dirty Deeds:[/color] You will grant the Backstabber perk to anyone who joins you. \n[color=#bcad8c]Underworld:[/color] You have a small chance of finding other Assassins for hire. Outlaws are 50% cheaper to hire and maintain, all other backgrounds are the same cost.\n[color=#bcad8c]Avatar:[/color] Begin alone. If you die, it is game over.[/p]"; 
+		this.m.Description = "[p=c][img]gfx/ui/events/event_51.png[/img][/p][p] An assassin down on their luck with limitied supplies. \n\n[color=#bcad8c]Dirty Deeds:[/color] You will grant the Backstabber perk to anyone who joins you. \n[color=#bcad8c]Underworld:[/color] You have a small chance of finding other Assassins for hire. Outlaws are 50% cheaper to hire and maintain, all other backgrounds are the same cost.\n[color=#bcad8c]Avatar:[/color] Begin alone. If you die, it is game over.[/p]";
 		this.m.Difficulty = 2;
 		this.m.Order = 20;
 		this.m.IsFixedLook = true;
@@ -20,8 +20,8 @@ this.legends_assassin_scenario <- this.inherit("scripts/scenarios/world/starting
 		bro.setStartValuesEx([
 			"legend_assassin_commander_background"
 		]);
-		bro.getSkills().add(this.new("scripts/skills/traits/player_character_trait"));
-		this.addScenarioPerk(bro.getBackground(), this.Const.Perks.PerkDefs.Backstabber); 
+		::Legends.Traits.grant(bro, ::Legends.Trait.Player);
+		this.addScenarioPerk(bro.getBackground(), this.Const.Perks.PerkDefs.Backstabber);
 		this.addScenarioPerk(bro.getBackground(), this.Const.Perks.PerkDefs.LoneWolf);
 		bro.m.PerkPointsSpent += 2;
 		bro.setPlaceInFormation(4);
@@ -164,7 +164,7 @@ this.legends_assassin_scenario <- this.inherit("scripts/scenarios/world/starting
 
 	function onBuildPerkTree( _background )
 	{
-		this.addScenarioPerk(_background, this.Const.Perks.PerkDefs.Backstabber);		
+		this.addScenarioPerk(_background, this.Const.Perks.PerkDefs.Backstabber);
 	}
 
 });

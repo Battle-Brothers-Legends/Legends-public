@@ -50,15 +50,14 @@ if (!("HelmObjs" in ::Const.LegendMod))
 		Hoods = [
 			[1, "hood/legend_helmet_chain_hood"] //80, -5
 		],
-		Helms = [
-			[1, "top/legend_helmet_hood_cloth_round", 1], //10
-			[1, "top/legend_helmet_hood_cloth_wide", 1], //10
-			[1, "top/legend_helmet_hood_cloth_wide", 2], //10
-			[1, "top/legend_helmet_cloth_long_hood", 3] //10
-		],
+		Helms = [],
 		Tops = [
 		],
 		Vanity= [
+			[1, "vanity/legend_helmet_hood_cloth_round", 1], //10
+			[1, "vanity/legend_helmet_hood_cloth_wide", 1], //10
+			[1, "vanity/legend_helmet_hood_cloth_wide", 2], //10
+			[1, "vanity/legend_helmet_hood_cloth_long", 3] //10
 		]
 	}]
 },

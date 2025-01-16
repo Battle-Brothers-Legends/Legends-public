@@ -3,7 +3,7 @@ this.legend_nomad_trait <- this.inherit("scripts/skills/traits/character_trait",
 	function create()
 	{
 		this.character_trait.create();
-		this.m.ID = "trait.legend_nomad";
+		this.m.ID = ::Legends.Traits.getID(::Legends.Trait.LegendNomad);
 		this.m.Name = "Nomad";
 		this.m.Icon = "ui/traits/trait_icon_00.png";
 		this.m.Description = "This trait is used to alter daily reputation decline for city state factions and increase nomad relatiosn per head. Stop using breditor you cheating fuck.";

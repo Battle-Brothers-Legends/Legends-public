@@ -191,7 +191,7 @@
 				candidates_monk.push(bro);
 			else if (bro.getBackground().getID() == "background.messenger" || bro.getBackground().getID() == "background.vagabond" || bro.getBackground().getID() == "background.refugee" || bro.getBackground().getID() == "background.legend_ranger_commander")
 				candidates_traveller.push(bro);
-			else if (bro.getSkills().hasSkill("trait.legend_double_tongued"))
+			else if (bro.getSkills().hasTrait(::Legends.Trait.LegendDoubleTongued))
 				candidates_doubter.push(bro);
 		}
 

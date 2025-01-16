@@ -104,6 +104,6 @@
 	o.onInit = function ()
 	{
 		onInit();
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_tumble"));
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendTumble);
 	}
 });

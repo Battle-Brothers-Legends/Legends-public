@@ -3,7 +3,7 @@ this.legend_steady_hands_trait <- this.inherit("scripts/skills/traits/character_
 	function create()
 	{
 		this.character_trait.create();
-		this.m.ID = "trait.legend_steady_hands";
+		this.m.ID = ::Legends.Traits.getID(::Legends.Trait.LegendSteadyHands);
 		this.m.Name = "Steady Hands";
 		this.m.Icon = "ui/traits/legend_steady_hands.png";
 		this.m.Description = "Having particularly steady hands, this character can shoot straighter than most";
@@ -16,8 +16,8 @@ this.legend_steady_hands_trait <- this.inherit("scripts/skills/traits/character_
 			"the Hawk"
 		];
 		this.m.Excluded = [
-			"trait.clumsy",
-			"trait.impatient"
+			::Legends.Traits.getID(::Legends.Trait.Clumsy),
+			::Legends.Traits.getID(::Legends.Trait.Impatient)
 		];
 	}
 

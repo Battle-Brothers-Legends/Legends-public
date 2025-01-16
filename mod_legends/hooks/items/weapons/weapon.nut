@@ -7,9 +7,9 @@
 		{
 			return this.m.ShieldDamage;
 		}
-		local skill = this.getContainer().getActor().getSkills().getSkillByID("perk.legend_smashing_shields");
+		local perk = ::Legends.Perks.get(this, ::Legends.Perk.LegendSmashingShields);
 
-		return skill == null ? this.m.ShieldDamage : this.Math.round(this.m.ShieldDamage * skill.getModifier());
+		return perk == null ? this.m.ShieldDamage : this.Math.round(this.m.ShieldDamage * perk.getModifier());
 	}
 
 	local getTooltip = o.getTooltip;

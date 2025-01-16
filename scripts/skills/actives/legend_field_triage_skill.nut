@@ -7,7 +7,7 @@ this.legend_field_triage_skill <- this.inherit("scripts/skills/skill", {
 	{
 		this.m.ID = "actives.legend_field_triage";
 		this.m.Name = "Field Triage";
-		this.m.Description = "Heal a unit, costs 1 medicine for every 2 health. Heals up to 20 health per use";
+		this.m.Description = "Heal a unit at a rate of 1 medicine for every 2 hitpoints. Heals up to 20 hitpoints per use.";
 		this.m.Icon = "skills/triage_square.png";
 		this.m.IconDisabled = "skills/triage_square_bw.png";
 		this.m.Overlay = "active_41";
@@ -51,7 +51,7 @@ this.legend_field_triage_skill <- this.inherit("scripts/skills/skill", {
 			id = 8,
 			type = "text",
 			icon = "ui/icons/health.png",
-			text = "You can heal up to [color=" + this.Const.UI.Color.PositiveValue +"]" + this.Math.floor(hp) +  "[/color] hitpoints."
+			text = "You can heal up to [color=" + this.Const.UI.Color.PositiveValue +"]" + this.Math.floor(hp) +  "[/color] Hitpoints."
 		});
 		return ret;
 	}
@@ -72,7 +72,7 @@ this.legend_field_triage_skill <- this.inherit("scripts/skills/skill", {
 
 	function onVerifyTarget( _originTile, _targetTile )
 	{
-		
+
 		if (!this.skill.onVerifyTarget(_originTile, _targetTile))
 		{
 			return false;

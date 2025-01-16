@@ -176,7 +176,7 @@ this.hunter_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 		desc += "\n\n"
 		desc += "Expert Hunter backgrounds: " + ::Const.LegendMod.Language.arrayToText(::Const.HuntingLoot.ExpertHunterBackgrounds.map(function(bg){return ::Const.HuntingLoot.RequiredBackgrounds[bg]}),"and",false) + "\n\n";
 		desc += "Cooking backgrounds: Miller / Baker, Butcher / Fishmonger, Servant, Cannibal"
-		
+
 		return desc;
 	}
 
@@ -312,8 +312,8 @@ this.hunter_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 			{
 				if ( ret.find(bg) == null )
 				{
-					ret.push(bg);	
-				}	
+					ret.push(bg);
+				}
 			}
 		}
 		return ret;
@@ -347,7 +347,7 @@ this.hunter_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 			{
 				continue;
 			}
-			if (c.getBackground().getID() in ::Const.HuntingLoot.CookBackgrounds || c.getSkills().hasSkill("perk.legend_meal_preperation"))
+			if (c.getBackground().getID() in ::Const.HuntingLoot.CookBackgrounds || c.getSkills().hasPerk(::Legends.Perk.LegendMealPreperation))
 			{
 				ret[c.getNameOnly()] <- c.getBackground().getNameOnly();
 			}
@@ -365,7 +365,7 @@ this.hunter_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 			{
 				continue;
 			}
-			if (c.getBackground().getID() in ::Const.HuntingLoot.CookBackgrounds || c.getSkills().hasSkill("perk.legend_alcohol_brewing"))
+			if (c.getBackground().getID() in ::Const.HuntingLoot.CookBackgrounds || c.getSkills().hasPerk(::Legends.Perk.LegendAlcoholBrewing))
 			{
 				ret[c.getNameOnly()] <- c.getBackground().getNameOnly();
 			}
@@ -426,7 +426,7 @@ this.hunter_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 				if (bro.getBackground().getID()=="background.miller" || bro.getBackground().getID()=="background.butcher" || bro.getBackground().getID()=="background.servant" || bro.getBackground().getID()=="background.cannibal")
 				{
 					cookLevel += ::Math.floor(bro.getLevel() * 0.1);
-					if (_updateVerboseResults) 
+					if (_updateVerboseResults)
 					{
 						this.m.VerboseResults.Cook.Assigned.push(bro.getNameOnly());
 						added = true;
@@ -434,7 +434,7 @@ this.hunter_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 				}
 			}
 
-			if (bro.getSkills().hasSkill("perk.legend_meal_preperation"))
+			if (bro.getSkills().hasPerk(::Legends.Perk.LegendMealPreperation))
 			{
 				cookLevel += bro.getLevel();
 				if (_updateVerboseResults && !added)
@@ -467,7 +467,7 @@ this.hunter_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 				if (bro.getBackground().getID()=="background.miller" || bro.getBackground().getID()=="background.butcher" || bro.getBackground().getID()=="background.servant" || bro.getBackground().getID()=="background.cannibal")
 				{
 					brewerLevel += ::Math.floor(bro.getLevel() * 0.1);
-					if (_updateVerboseResults) 
+					if (_updateVerboseResults)
 					{
 						this.m.VerboseResults.Brew.Assigned.push(bro.getNameOnly());
 						added = true;
@@ -475,7 +475,7 @@ this.hunter_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 				}
 			}
 
-			if (bro.getSkills().hasSkill("perk.legend_alcohol_brewing"))
+			if (bro.getSkills().hasPerk(::Legends.Perk.LegendAlcoholBrewing))
 			{
 				brewerLevel += bro.getLevel();
 				if (_updateVerboseResults && !added)
@@ -645,14 +645,14 @@ this.hunter_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 			{
 				local failed = false;
 				local requirements = [];
-				
+
 				// Show required Hunt Tier if the currently assigned characters are insufficient
 				if (!::Const.HuntingLoot.hasSufficientHuntLevelForTier(target,huntLevel))
 				{
 					failed = true;
 					requirements.push("<span style=\"color:" + ::Const.UI.Color.NegativeValue + "; padding-left: 2rem;\">Requires Hunt Tier " + target.Tier + "</span>");
 				}
-				
+
 				// Show required backgrounds if none of the currently assigned characters qualify
 				if ("Backgrounds" in target && !::Const.HuntingLoot.hasQualifiedBackground(target.Backgrounds,bgs))
 				{
@@ -690,13 +690,13 @@ this.hunter_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 			foreach (name, bg in expertHunters)
 			{
 				ret.push("- " + name + " (" + bg + ")");
-			}	
+			}
 		}
 		else
 		{
 			ret.push("<span style=\"color:" + ::Const.UI.Color.NegativeValue + ";\"><u>No Expert Hunters</u></span>");
 		}
-		
+
 
 		// Cooks
 		if (cooks.len() > 0)
@@ -709,7 +709,7 @@ this.hunter_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 		}
 		else
 		{
-			ret.push("<span style=\"color:" + ::Const.UI.Color.NegativeValue + ";\"><u>No Cooks</u></span>");	
+			ret.push("<span style=\"color:" + ::Const.UI.Color.NegativeValue + ";\"><u>No Cooks</u></span>");
 		}
 
 		// Brewers
@@ -719,11 +719,11 @@ this.hunter_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 			foreach (name, bg in brewers)
 			{
 				ret.push("- " + name + " (" + bg + ")");
-			}			
+			}
 		}
 		else
 		{
-			ret.push("<span style=\"color:" + ::Const.UI.Color.NegativeValue + ";\"><u>No Brewers</u></span>");	
+			ret.push("<span style=\"color:" + ::Const.UI.Color.NegativeValue + ";\"><u>No Brewers</u></span>");
 		}
 
 		ret.push("<u>Hunting points contributions per hour</u>");
@@ -785,10 +785,10 @@ this.hunter_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 		// Make sure we have Stash space to proceed
 		local emptySlots = ::Stash.getNumberOfEmptySlots();
 		if (emptySlots == 0) return this.getUpdateText();
-		
+
 		local item = null;
 		local lootGenerator = this.m.LootGenerator;
-		
+
 		// Generate Brewer loot
 		item = lootGenerator.rollBrew();
 		if(item)
@@ -832,7 +832,7 @@ this.hunter_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 			if (::World.State.m.EscortedEntity != null)
 			{
 				local biome = ::World.State.getPlayer().getTile().Type;
-				this.m.LootGenerator = ::Const.HuntingLoot.getGenerator(biome, this.getUpgraded(), this.m.HuntLevel, this.m.CookLevel, this.m.BrewLevel, this.m.AssignedBackgrounds, this.m.Mode);	
+				this.m.LootGenerator = ::Const.HuntingLoot.getGenerator(biome, this.getUpgraded(), this.m.HuntLevel, this.m.CookLevel, this.m.BrewLevel, this.m.AssignedBackgrounds, this.m.Mode);
 			}
 			if(--emptySlots==0) return this.getUpdateText();
 

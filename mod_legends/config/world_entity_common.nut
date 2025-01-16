@@ -772,7 +772,7 @@ if (!("World" in ::Const))
 			if (unit.Variant > 0)
 			{
 				local upperBound = ("DieRoll" in unit) ? unit.DieRoll : 100;
-				if (!this.Const.DLC.Wildmen || this.Math.rand(1, upperBound) > unit.Variant + mb + (this.World.getTime().Days > 100 ? 0 : -1))
+				if (this.Math.rand(1, upperBound) > unit.Variant + mb + (this.World.getTime().Days > 100 ? 0 : -1))
 				{
 					unit.Variant = 0;
 				}
@@ -1651,58 +1651,48 @@ if (!("LegendMod" in ::Const))
 ::Const.World.Common.pickPerks <- function (_perks, _power)
 {
 	if (_perks.len() == 0)
-	{
 		return [];
-	}
 	if (_power == 0)
-	{
 		return [];
-	}
 
 	local candidates = [];
 	local totalWeight = 0;
 	foreach (t in _perks)
 	{
 		if (t[0] == 0)
-		{
 			continue;
-		}
+
 		if (t[2] > _power)
-		{
 			continue; //no need to add stuff that's a cost higher than our power selector
-		}
+
 		candidates.push(t);
 		totalWeight += t[0];
 	}
 
 	local ret = [];
 	while (_power > 0) {
-
-		if (candidates.len() == 0) { return ret; }
+		if (candidates.len() == 0)
+			return ret;
 
 		local r = this.Math.rand(0, totalWeight);
 		foreach (i, t in candidates)
 		{
-			r = r - t[0];
+			r -= t[0];
 			if (r > 0)
-			{
 				continue;
-			}
+
 			local skill = null;
-			if (typeof t[1] == "string")
+			if (typeof t[1] == "number")
 			{
-				skill = this.new("scripts/skills/perks/" + t[1]);
-				ret.push(skill);
+				ret.push(t[1]);
 			}
 			else if (typeof t[1] == "array")
 			{
-				foreach(s in t[1])
-				{
-					skill = this.new("scripts/skills/perks/" + s);
-					ret.push(skill);
-				}
+				ret.extend(t[1]);
 			}
-			else { logWarning("Attempted to select perks from something that isn't a string or an array") }
+			else {
+				::logWarning("Attempted to select perks from something that isn't a number or an array")
+			}
 
 			totalWeight -= t[0];
 			_power -= t[2];
@@ -1712,7 +1702,8 @@ if (!("LegendMod" in ::Const))
 		local garbage = [];
 		foreach (i, t in candidates)
 		{
-			if (t[2] > _power) { garbage.push(i) } //checking like this means if we only have 2 power costs left and have 1 it won't put us negative
+			if (t[2] > _power)
+				garbage.push(i)  //checking like this means if we only have 2 power costs left and have 1 it won't put us negative
 		}
 		garbage.reverse();
 		foreach (i in garbage)

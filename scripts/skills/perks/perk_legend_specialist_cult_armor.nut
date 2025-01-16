@@ -2,7 +2,7 @@ this.perk_legend_specialist_cult_armor <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		::Const.Perks.setup(this.m, ::Const.Perks.PerkDefs.LegendSpecCultArmor);
+		::Const.Perks.setup(this.m, ::Legends.Perk.LegendSpecCultArmor);
 		this.m.Description = "This character is gaining increased Maximum Damage because of adjacent opponents.";
 		this.m.Type = this.Const.SkillType.Perk | this.Const.SkillType.StatusEffect;
 		this.m.Order = this.Const.SkillOrder.Perk;

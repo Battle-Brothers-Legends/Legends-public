@@ -66,7 +66,7 @@ this.legend_cestus_item <- this.inherit("scripts/items/accessory/accessory", {
 				id = 15,
 				type = "text",
 				icon = "ui/icons/armor_damage.png",
-				text = "Deal [color=" + this.Const.UI.Color.PositiveValue + "]+20%[/color] more armor damage on unarmed attacks."
+				text = "Deal [color=" + this.Const.UI.Color.PositiveValue + "]+10%[/color] more armor damage on unarmed attacks."
 			},
 			{
 				id = 15,

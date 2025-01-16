@@ -3,15 +3,15 @@ this.legend_gift_of_people_trait <- this.inherit("scripts/skills/traits/characte
 	function create()
 	{
 		this.character_trait.create();
-		this.m.ID = "trait.legend_gift_of_people";
+		this.m.ID = ::Legends.Traits.getID(::Legends.Trait.LegendGiftOfPeople);
 		this.m.Name = "Charming";
 		this.m.Icon = "ui/traits/trait_gift_of_people.png";
 		this.m.Description = "Some say you can get almost anywhere with a trustworthy demenor and a warm smile.";
 		this.m.Excluded = [
-			"trait.pessimist",
-			"trait.insecure",
-			"trait.dastard",
-			"trait.legend_double_tongued",
+			::Legends.Traits.getID(::Legends.Trait.Pessimist),
+			::Legends.Traits.getID(::Legends.Trait.Insecure),
+			::Legends.Traits.getID(::Legends.Trait.Dastard),
+			::Legends.Traits.getID(::Legends.Trait.LegendDoubleTongued),
 		];
 	}
 

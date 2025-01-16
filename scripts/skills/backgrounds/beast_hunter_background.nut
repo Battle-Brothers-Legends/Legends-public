@@ -12,24 +12,24 @@ this.beast_hunter_background <- this.inherit("scripts/skills/backgrounds/charact
 		this.m.HiringCost = 150;
 		this.m.DailyCost = 15;
 		this.m.Excluded = [
-			"trait.superstitious",
-			"trait.weasel",
-			"trait.fear_beasts",
-			"trait.ailing",
-			"trait.bleeder",
-			"trait.dumb",
-			"trait.fragile",
-			"trait.night_blind",
-			"trait.clubfooted",
-			"trait.brute",
-			"trait.short_sighted",
-			"trait.fat",
-			"trait.clumsy",
-			"trait.gluttonous",
-			"trait.asthmatic",
-			"trait.craven",
-			"trait.dastard",
-			"trait.legend_seductive"
+			::Legends.Traits.getID(::Legends.Trait.Superstitious),
+			::Legends.Traits.getID(::Legends.Trait.Weasel),
+			::Legends.Traits.getID(::Legends.Trait.FearBeasts),
+			::Legends.Traits.getID(::Legends.Trait.Ailing),
+			::Legends.Traits.getID(::Legends.Trait.Bleeder),
+			::Legends.Traits.getID(::Legends.Trait.Dumb),
+			::Legends.Traits.getID(::Legends.Trait.Fragile),
+			::Legends.Traits.getID(::Legends.Trait.NightBlind),
+			::Legends.Traits.getID(::Legends.Trait.Clubfooted),
+			::Legends.Traits.getID(::Legends.Trait.Brute),
+			::Legends.Traits.getID(::Legends.Trait.ShortSighted),
+			::Legends.Traits.getID(::Legends.Trait.Fat),
+			::Legends.Traits.getID(::Legends.Trait.Clumsy),
+			::Legends.Traits.getID(::Legends.Trait.Gluttonous),
+			::Legends.Traits.getID(::Legends.Trait.Asthmatic),
+			::Legends.Traits.getID(::Legends.Trait.Craven),
+			::Legends.Traits.getID(::Legends.Trait.Dastard),
+			::Legends.Traits.getID(::Legends.Trait.LegendSeductive)
 		];
 		this.m.Titles = [
 			"the Beasthunter",

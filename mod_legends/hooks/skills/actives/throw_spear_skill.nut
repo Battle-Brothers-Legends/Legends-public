@@ -86,7 +86,7 @@
 	{
 
 		local isUsable = !this.Tactical.isActive() || this.skill.isUsable() && this.getAmmo() > 0;
-		if (this.getContainer().hasPerk(::Const.Perks.PerkDefs.LegendCloseCombatArcher))
+		if (this.getContainer().hasPerk(::Legends.Perk.LegendCloseCombatArcher))
 			return isUsable;
 
 		return isUsable && !this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions());
@@ -96,7 +96,7 @@
 	o.onAfterUpdate = function ( _properties )
 	{
 		onAfterUpdate(_properties);
-		if (this.getContainer().hasPerk(::Const.Perks.PerkDefs.LegendCloseCombatArcher))
+		if (this.getContainer().hasPerk(::Legends.Perk.LegendCloseCombatArcher))
 		{
 			this.m.MinRange = 1;
 			this.m.MaxRange = 3;
@@ -170,7 +170,7 @@
 			if (!_tag.User.isHiddenToPlayer() && _tag.TargetTile.IsVisibleForPlayer)
 			{
 				local logMessage = this.Const.UI.getColorizedEntityName(_tag.User) + " has destroyed " + this.Const.UI.getColorizedEntityName(_tag.TargetTile.getEntity()) + "\'s shield"
-				if (this.getContainer().hasSkill("perk.legend_smashing_shields"))
+				if (this.getContainer().hasPerk(::Legends.Perk.LegendSmashingShields))
 				{
 					this.Tactical.EventLog.log(logMessage + " and recovered 4 Action Points");
 				}

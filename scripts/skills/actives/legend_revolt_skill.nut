@@ -4,7 +4,7 @@ this.legend_revolt_skill <- this.inherit("scripts/skills/skill", {
 	{
 		this.m.ID = "actives.legend_revolt";
 		this.m.Name = "Revolt";
-		this.m.Description = "Concoct a mixture of smells so fetid and noxious, you force your target to retreat just so they can breathe. Targets hit will receive fatigue and may take damage if they are pushed down several levels of height. Shieldwall, Spearwall and Riposte will be canceled for a target that is successfully knocked back. A rooted target can not be knocked back. Uses Ranged Skill";
+		this.m.Description = "Concoct a mixture of smells so fetid and noxious, you force your target to retreat just so they can breathe. Targets hit will receive fatigue and may take damage if they are pushed down several levels of height. Shieldwall, Spearwall and Riposte will be canceled for a target that is successfully knocked back. A rooted target can not be knocked back. Uses Ranged Skill.";
 		this.m.Icon = "skills/revolt_square.png";
 		this.m.IconDisabled = "skills/revolt_square_bw.png";
 		this.m.Overlay = "revolt_square";
@@ -176,10 +176,8 @@ this.legend_revolt_skill <- this.inherit("scripts/skills/skill", {
 			this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(_user) + " has knocked back " + this.Const.UI.getColorizedEntityName(target));
 		}
 
-		local skills = target.getSkills();
-		skills.removeByID("effects.shieldwall");
-		skills.removeByID("effects.spearwall");
-		skills.removeByID("effects.riposte");
+		if (!target.getSkills().hasSkill("effects.legend_break_stance"))
+			target.getSkills().add(this.new("scripts/skills/effects/legend_break_stance_effect"));
 
 		if (this.m.SoundOnHit.len() != 0)
 		{

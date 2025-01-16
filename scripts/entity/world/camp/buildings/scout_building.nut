@@ -127,7 +127,7 @@ this.scout_building <- this.inherit("scripts/entity/world/camp/camp_building", {
 				continue;
 			local mod = this.m.BaseCraft + this.m.BaseCraft * bro.getBackground().getModifiers().Scout;
 
-			if (bro.getSkills().hasPerk(::Const.Perks.PerkDefs.LegendLookout))
+			if (bro.getSkills().hasPerk(::Legends.Perk.LegendLookout))
 				mod = mod * 1.1;
 
 			++ret.Assigned

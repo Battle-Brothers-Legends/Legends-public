@@ -12,23 +12,23 @@ this.shepherd_background <- this.inherit("scripts/skills/backgrounds/character_b
 		this.m.HiringCost = 80;
 		this.m.DailyCost = 8;
 		this.m.Excluded = [
-			"trait.hate_undead",
-			"trait.impatient",
-			"trait.iron_jaw",
-			"trait.athletic",
-			"trait.deathwish",
-			"trait.sure_footing",
-			"trait.disloyal",
-			"trait.greedy",
-			"trait.drunkard",
-			"trait.fearless",
-			"trait.brave",
-			"trait.iron_lungs",
-			"trait.strong",
-			"trait.tough",
-			"trait.cocky",
-			"trait.brute",
-			"trait.bloodthirsty"
+			::Legends.Traits.getID(::Legends.Trait.HateUndead),
+			::Legends.Traits.getID(::Legends.Trait.Impatient),
+			::Legends.Traits.getID(::Legends.Trait.IronJaw),
+			::Legends.Traits.getID(::Legends.Trait.Athletic),
+			::Legends.Traits.getID(::Legends.Trait.Deathwish),
+			::Legends.Traits.getID(::Legends.Trait.SureFooting),
+			::Legends.Traits.getID(::Legends.Trait.Disloyal),
+			::Legends.Traits.getID(::Legends.Trait.Greedy),
+			::Legends.Traits.getID(::Legends.Trait.Drunkard),
+			::Legends.Traits.getID(::Legends.Trait.Fearless),
+			::Legends.Traits.getID(::Legends.Trait.Brave),
+			::Legends.Traits.getID(::Legends.Trait.IronLungs),
+			::Legends.Traits.getID(::Legends.Trait.Strong),
+			::Legends.Traits.getID(::Legends.Trait.Tough),
+			::Legends.Traits.getID(::Legends.Trait.Cocky),
+			::Legends.Traits.getID(::Legends.Trait.Brute),
+			::Legends.Traits.getID(::Legends.Trait.Bloodthirsty)
 		];
 		this.m.Titles = [
 			"the Shepherd",

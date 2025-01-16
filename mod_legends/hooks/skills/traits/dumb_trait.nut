@@ -7,8 +7,8 @@
 		this.m.Description = "Umm, what? This character isn\'t the brightest, and new concepts take a while to really stick with them.";
 		this.m.Excluded.extend(
 		[
-			"trait.legend_unpredictable",
-			"trait.legend_natural"
+			::Legends.Traits.getID(::Legends.Trait.LegendUnpredictable),
+			::Legends.Traits.getID(::Legends.Trait.LegendNatural)
 		]);
 	}
 });

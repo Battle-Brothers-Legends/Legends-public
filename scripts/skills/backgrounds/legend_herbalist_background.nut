@@ -8,25 +8,25 @@ this.legend_herbalist_background <- this.inherit("scripts/skills/backgrounds/cha
 		this.m.Icon = "ui/backgrounds/herbalist.png";
 		this.m.BackgroundDescription = "Herbalists and Apothecaries are skilled with a sickle, harvesting herbs for use in medicine";
 		this.m.GoodEnding = "%name% the herbalist left to start an Apothecary in the wetlands, business is good and remedies abound. Last you heard %name% had discovered a cure for bunions and people traveled from far and wide to try the soup";
-		this.m.BadEnding = "%name% went off to become a herbalist again, but the cures didn't work and they soon got a reputation as a quack. Looking for more potent cures, %name% poisoned themself and never recovered.";
+		this.m.BadEnding = "%name% went off to become a herbalist again, but the cures didn't work and they soon got a reputation as a quack. Looking for more potent cures, %name% poisoned %themselves% and never recovered.";
 		this.m.HiringCost = 120;
 		this.m.DailyCost = 18;
 		this.m.Excluded = [
-			"trait.weasel",
-			"trait.hate_beasts",
-			"trait.fear_beasts",
-			"trait.swift",
-			"trait.impatient",
-			"trait.clubfooted",
-			"trait.brute",
-			"trait.gluttonous",
-			"trait.disloyal",
-			"trait.cocky",
-			"trait.dumb",
-			"trait.iron_lungs",
-			"trait.craven",
-			"trait.greedy",
-			"trait.bloodthirsty"
+			::Legends.Traits.getID(::Legends.Trait.Weasel),
+			::Legends.Traits.getID(::Legends.Trait.HateBeasts),
+			::Legends.Traits.getID(::Legends.Trait.FearBeasts),
+			::Legends.Traits.getID(::Legends.Trait.Swift),
+			::Legends.Traits.getID(::Legends.Trait.Impatient),
+			::Legends.Traits.getID(::Legends.Trait.Clubfooted),
+			::Legends.Traits.getID(::Legends.Trait.Brute),
+			::Legends.Traits.getID(::Legends.Trait.Gluttonous),
+			::Legends.Traits.getID(::Legends.Trait.Disloyal),
+			::Legends.Traits.getID(::Legends.Trait.Cocky),
+			::Legends.Traits.getID(::Legends.Trait.Dumb),
+			::Legends.Traits.getID(::Legends.Trait.IronLungs),
+			::Legends.Traits.getID(::Legends.Trait.Craven),
+			::Legends.Traits.getID(::Legends.Trait.Greedy),
+			::Legends.Traits.getID(::Legends.Trait.Bloodthirsty)
 		];
 		this.m.Titles = [
 			"the Gentle",

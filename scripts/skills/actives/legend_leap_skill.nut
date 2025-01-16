@@ -4,7 +4,7 @@ this.legend_leap_skill <- this.inherit("scripts/skills/skill", {
 	{
 		this.m.ID = "actives.legend_leap";
 		this.m.Name = "Leap";
-		this.m.Description = "Learning to jump extended distances allows escape from usually impossible situations. Fatigue cost is 15 plus the weight of your armor. Range can be increased with the Backflip perk, and by taking Staff Mastery and wielding staff.";
+		this.m.Description = "Learning to jump extended distances allows escape from usually impossible situations. Fatigue cost is 15 plus the weight of your armor. Range can be increased with the Backflip perk, and by taking Staff Mastery and wielding a staff.";
 		this.m.Icon = "skills/leap_square.png";
 		this.m.IconDisabled = "skills/leap_square_bw.png";
 		this.m.Overlay = "horse_pirouette";
@@ -37,7 +37,7 @@ this.legend_leap_skill <- this.inherit("scripts/skills/skill", {
 		if (item != null)
 		{
 			if (item.isWeaponType(this.Const.Items.WeaponType.Staff) && actor.getCurrentProperties().IsSpecializedInStaves)
-			{	
+			{
 				ret.push({
 					id = 6,
 					type = "text",
@@ -59,7 +59,7 @@ this.legend_leap_skill <- this.inherit("scripts/skills/skill", {
 
 		return ret;
 	}
-	
+
 	function getModifier()
 	{
 		local fat = 0;
@@ -75,12 +75,12 @@ this.legend_leap_skill <- this.inherit("scripts/skills/skill", {
 		{
 			fat = fat + head.getStaminaModifier();
 		}
-		
+
 		fat = fat * -1;
-		
+
 		return fat;
-	}	
-	
+	}
+
 	function onAfterUpdate( _properties )
 	{
 		local actor = this.getContainer().getActor();
@@ -94,16 +94,16 @@ this.legend_leap_skill <- this.inherit("scripts/skills/skill", {
 			bonus += 1;
 			}
 		}
-		
-		if (this.getContainer().getActor().getSkills().hasSkill("perk.legend_backflip"))		
+
+		if (this.getContainer().getActor().getSkills().hasPerk(::Legends.Perk.LegendBackflip))
 		{
 			bonus += 1;
 		}
-		
+
 		this.m.MaxRange = 2 + bonus;
-		
+
 		this.m.FatigueCost = 15 + fat;
-		
+
 	}
 
 	function isUsable()

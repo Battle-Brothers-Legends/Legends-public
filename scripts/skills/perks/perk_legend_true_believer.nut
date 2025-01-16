@@ -2,7 +2,7 @@ this.perk_legend_true_believer <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		::Const.Perks.setup(this.m, ::Const.Perks.PerkDefs.LegendTrueBeliever);
+		::Const.Perks.setup(this.m, ::Legends.Perk.LegendTrueBeliever);
 		this.m.Type = this.Const.SkillType.Perk;
 		this.m.Order = this.Const.SkillOrder.Perk;
 		this.m.IsActive = false;
@@ -53,21 +53,21 @@ this.perk_legend_true_believer <- this.inherit("scripts/skills/skill", {
 
 	function onAdded()
 	{
-		if (this.m.Container.hasSkill("trait.superstitious"))
+		if (this.m.Container.hasTrait(::Legends.Trait.Superstitious))
 		{
-			this.m.Container.removeByID("trait.superstitious");
+			::Legends.Traits.remove(this, ::Legends.Trait.Superstitious);
 		}
-		if (this.m.Container.hasSkill("trait.dastard"))
+		if (this.m.Container.hasTrait(::Legends.Trait.Dastard))
 		{
-			this.m.Container.removeByID("trait.dastard");
+			::Legends.Traits.remove(this, ::Legends.Trait.Dastard);
 		}
-		if (this.m.Container.hasSkill("trait.insecure"))
+		if (this.m.Container.hasTrait(::Legends.Trait.Insecure))
 		{
-			this.m.Container.removeByID("trait.insecure");
+			::Legends.Traits.remove(this, ::Legends.Trait.Insecure);
 		}
-		if (this.m.Container.hasSkill("trait.craven"))
+		if (this.m.Container.hasTrait(::Legends.Trait.Craven))
 		{
-			this.m.Container.removeByID("trait.craven");
+			::Legends.Traits.remove(this, ::Legends.Trait.Craven);
 		}
 	}
 });

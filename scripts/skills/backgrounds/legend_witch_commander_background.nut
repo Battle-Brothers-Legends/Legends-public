@@ -33,15 +33,15 @@ this.legend_witch_commander_background <- this.inherit("scripts/skills/backgroun
 		this.m.HiringCost = 250;
 		this.m.DailyCost = 0;
 		this.m.Excluded = [
-			"trait.athletic",
-			"trait.bloodthirsty",
-			"trait.brute",
-			"trait.dexterous",
-			"trait.huge",
-			"trait.tough",
-			"trait.disloyal",
-			"trait.loyal",
-			"trait.dumb"
+			::Legends.Traits.getID(::Legends.Trait.Athletic),
+			::Legends.Traits.getID(::Legends.Trait.Bloodthirsty),
+			::Legends.Traits.getID(::Legends.Trait.Brute),
+			::Legends.Traits.getID(::Legends.Trait.Dexterous),
+			::Legends.Traits.getID(::Legends.Trait.Huge),
+			::Legends.Traits.getID(::Legends.Trait.Tough),
+			::Legends.Traits.getID(::Legends.Trait.Disloyal),
+			::Legends.Traits.getID(::Legends.Trait.Loyal),
+			::Legends.Traits.getID(::Legends.Trait.Dumb)
 		];
 		this.m.Titles = [
 			"the Enthralling",
@@ -214,19 +214,7 @@ this.legend_witch_commander_background <- this.inherit("scripts/skills/backgroun
 	function onAdded()
 	{
 		this.character_background.onAdded();
-		this.m.Container.add(this.new("scripts/skills/traits/bright_trait"));
-		//this.m.Container.add(this.new("scripts/skills/perks/perk_legend_daze"));
-		//this.m.Container.add(this.new("scripts/skills/perks/perk_legend_roster_1"));
-		//this.m.Container.add(this.new("scripts/skills/perks/perk_legend_teacher"));
-		//this.m.Container.add(this.new("scripts/skills/perks/perk_student"));
-
-		// todo delete it - chopeks
-		//if (this.LegendsMod.Configs().LegendMagicEnabled())
-		//{
-		//
-		//	this.m.Container.add(this.new("scripts/skills/perks/perk_legend_magic_missile"));
-		//}
-
+		::Legends.Traits.grant(this, ::Legends.Trait.Bright);
 	}
 
 	function onAddEquipment()

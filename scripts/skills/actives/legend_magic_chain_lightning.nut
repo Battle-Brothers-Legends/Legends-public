@@ -67,7 +67,7 @@ this.legend_magic_chain_lightning_skill <- this.inherit("scripts/skills/actives/
 	}
 
 	function applyPerks() {
-		if (this.m.Container.hasSkill("perk.legend_mastery_chain_lightning"))
+		if (this.m.Container.hasPerk(::Legends.Perk.LegendMasteryChainLightning))
 		{
 			this.m.AdditionalAccuracy = 10;
 			this.m.MaxRange= 5;
@@ -161,7 +161,7 @@ this.legend_magic_chain_lightning_skill <- this.inherit("scripts/skills/actives/
 
 		local isInitialTarget = (_depth == 0);
 		local properties = _user.getCurrentProperties();
-		
+
 		if (isInitialTarget)
 		{
 			this.m.IsShowingProjectile = true;

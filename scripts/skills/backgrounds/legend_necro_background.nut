@@ -14,20 +14,20 @@ this.legend_necro_background <- this.inherit("scripts/skills/backgrounds/charact
 		this.m.HiringCost = 20000;
 		this.m.DailyCost = 50;
 		this.m.Excluded = [
-			"trait.brave",
-			"trait.athletic",
-			"trait.brute",
-			"trait.dexterous",
-			"trait.eagleyes",
-			"trait.fearless",
-			"trait.huge",
-			"trait.loyal",
-			"trait.quick",
-			"trait.swift",
-			"trait.sure_footing",
-			"trait.tough",
-			"trait.disloyal",
-			"trait.loyal"
+			::Legends.Traits.getID(::Legends.Trait.Brave),
+			::Legends.Traits.getID(::Legends.Trait.Athletic),
+			::Legends.Traits.getID(::Legends.Trait.Brute),
+			::Legends.Traits.getID(::Legends.Trait.Dexterous),
+			::Legends.Traits.getID(::Legends.Trait.EagleEyes),
+			::Legends.Traits.getID(::Legends.Trait.Fearless),
+			::Legends.Traits.getID(::Legends.Trait.Huge),
+			::Legends.Traits.getID(::Legends.Trait.Loyal),
+			::Legends.Traits.getID(::Legends.Trait.Quick),
+			::Legends.Traits.getID(::Legends.Trait.Swift),
+			::Legends.Traits.getID(::Legends.Trait.SureFooting),
+			::Legends.Traits.getID(::Legends.Trait.Tough),
+			::Legends.Traits.getID(::Legends.Trait.Disloyal),
+			::Legends.Traits.getID(::Legends.Trait.Loyal)
 		];
 		this.m.Titles = [
 			"the Sickening",

@@ -12,18 +12,18 @@ this.gravedigger_background <- this.inherit("scripts/skills/backgrounds/characte
 		this.m.HiringCost = 50;
 		this.m.DailyCost = 5;
 		this.m.Excluded = [
-			"trait.weasel",
-			"trait.teamplayer",
-			"trait.fear_undead",
-			"trait.night_blind",
-			"trait.swift",
-			"trait.cocky",
-			"trait.craven",
-			"trait.fainthearted",
-			"trait.dexterous",
-			"trait.quick",
-			"trait.iron_lungs",
-			"trait.optimist"
+			::Legends.Traits.getID(::Legends.Trait.Weasel),
+			::Legends.Traits.getID(::Legends.Trait.Teamplayer),
+			::Legends.Traits.getID(::Legends.Trait.FearUndead),
+			::Legends.Traits.getID(::Legends.Trait.NightBlind),
+			::Legends.Traits.getID(::Legends.Trait.Swift),
+			::Legends.Traits.getID(::Legends.Trait.Cocky),
+			::Legends.Traits.getID(::Legends.Trait.Craven),
+			::Legends.Traits.getID(::Legends.Trait.Fainthearthed),
+			::Legends.Traits.getID(::Legends.Trait.Dexterous),
+			::Legends.Traits.getID(::Legends.Trait.Quick),
+			::Legends.Traits.getID(::Legends.Trait.IronLungs),
+			::Legends.Traits.getID(::Legends.Trait.Optimist)
 		];
 		this.m.Faces = this.Const.Faces.AllWhiteMale;
 		this.m.Hairs = this.Const.Hair.CommonMale;

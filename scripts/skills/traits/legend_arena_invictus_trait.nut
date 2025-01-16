@@ -7,7 +7,7 @@ this.legend_arena_invictus_trait <- this.inherit("scripts/skills/traits/characte
 	function create()
 	{
 		this.character_trait.create();
-		this.m.ID = "trait.legend_arena_invictus";
+		this.m.ID = ::Legends.Traits.getID(::Legends.Trait.LegendArenaInvictus);
 		this.m.Name = "Invictus";
 		this.m.Icon = "ui/traits/trait_invictus.png";
 		this.m.Description = "With a single fist raised, %fullname% stops the crowd cheering. With both raised, they shout %their% name from the stands. Gladiators rather wrestle a Lindwurm than fight %them% in the arena.";
@@ -62,7 +62,7 @@ this.legend_arena_invictus_trait <- this.inherit("scripts/skills/traits/characte
 			}
 		];
 
-		if (this.getContainer().getActor().getSkills().hasSkill("perk.fearsome"))
+		if (this.getContainer().getActor().getSkills().hasPerk(::Legends.Perk.Fearsome))
 		{
 			ret.push({
 				id = 12,
@@ -86,7 +86,7 @@ this.legend_arena_invictus_trait <- this.inherit("scripts/skills/traits/characte
 
 	function onTargetHit( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor )
 	{
-		if (this.getContainer().getActor().getSkills().hasSkill("perk.fearsome")) return;
+		if (this.getContainer().getActor().getSkills().hasPerk(::Legends.Perk.Fearsome)) return;
 
 		if (_targetEntity == null || !_targetEntity.isAlive()) return;
 
@@ -120,7 +120,7 @@ this.legend_arena_invictus_trait <- this.inherit("scripts/skills/traits/characte
 		_properties.DamageTotalMult *= 1.05;
 		_properties.SurviveWithInjuryChanceMult *= 2.27;
 	}
-	
+
 	function onAfterUpdate( _properties )
 	{
 		local won = this.getContainer().getActor().getFlags().getAsInt("ArenaFightsWon");

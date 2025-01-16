@@ -23,11 +23,9 @@ this.legend_catapult_blueprint <- this.inherit("scripts/crafting/blueprint", {
 		];
 		this.init(ingredients);
 		local skills = [
-			{
-				Scripts = ["scripts/skills/perks/perk_legend_summon_catapult"]
-			}
-		]
-		this.initSkills(skills);		
+			::Legends.Perks.blueprint(::Legends.Perk.LegendSummonCatapult)
+		];
+		this.initSkills(skills);
 	}
 
 	function onCraft( _stash )
@@ -38,7 +36,7 @@ this.legend_catapult_blueprint <- this.inherit("scripts/crafting/blueprint", {
 	function isValid()
 	{
 		return false;
-	}	
+	}
 
 });
 

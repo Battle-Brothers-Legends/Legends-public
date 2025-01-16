@@ -2,7 +2,7 @@ this.perk_legend_specialist_scythe_skill <- this.inherit("scripts/skills/skill",
 	m = {},
 	function create()
 	{
-		::Const.Perks.setup(this.m, ::Const.Perks.PerkDefs.LegendSpecialistScytheSkill);
+		::Const.Perks.setup(this.m, ::Legends.Perk.LegendSpecialistScytheSkill);
 		this.m.Type = this.Const.SkillType.Perk;
 		this.m.Order = this.Const.SkillOrder.Perk;
 		this.m.IsActive = false;

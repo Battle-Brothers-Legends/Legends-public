@@ -2,7 +2,7 @@ this.perk_legend_specialist_ninetails_skill <- this.inherit("scripts/skills/skil
 	m = {},
 	function create()
 	{
-		::Const.Perks.setup(this.m, ::Const.Perks.PerkDefs.LegendSpecialistNinetailsSkill);
+		::Const.Perks.setup(this.m, ::Legends.Perk.LegendSpecialistNinetailsSkill);
 		this.m.Type = this.Const.SkillType.Perk;
 		this.m.Order = this.Const.SkillOrder.Perk;
 		this.m.IsActive = false;

@@ -1,4 +1,4 @@
-::mods_hookExactClass("entity/tactical/humans/noble_sergeant", function(o) 
+::mods_hookExactClass("entity/tactical/humans/noble_sergeant", function(o)
 {
 	local onInit = o.onInit;
 	o.onInit = function ()
@@ -34,19 +34,19 @@
 			}
 		}
 
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_rotation"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_recover"));
+		::Legends.Perks.grant(this, ::Legends.Perk.Rotation);
+		::Legends.Perks.grant(this, ::Legends.Perk.Recover);
 
-		if (("Assets" in this.World) && this.World.Assets != null && this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Legendary)
+		if (::Legends.isLegendaryDifficulty())
 		{
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_last_stand"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_battle_forged"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_composure"));
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendLastStand);
+			::Legends.Perks.grant(this, ::Legends.Perk.BattleForged);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendComposure);
 			this.m.Skills.add(this.new("scripts/skills/actives/rally_the_troops"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_feint"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_back_to_basics"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_full_force"));
-			this.m.Skills.add(this.new("scripts/skills/traits/fearless_trait"));
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendFeint);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendBackToBasics);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendFullForce);
+			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
 		}
 	}
 

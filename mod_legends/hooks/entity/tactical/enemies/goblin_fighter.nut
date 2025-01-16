@@ -9,12 +9,12 @@
 		{
 			b.MeleeSkill += 10;
 		}
-		if ("Assets" in this.World && this.World.Assets != null && this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Legendary)
+		if (::Legends.isLegendaryDifficulty())
 		{
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_duelist"));
+			::Legends.Perks.grant(this, ::Legends.Perk.Duelist);
 			this.m.Skills.add(this.new("scripts/skills/effects/dodge_effect"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_relentless"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_crippling_strikes"));
+			::Legends.Perks.grant(this, ::Legends.Perk.Relentless);
+			::Legends.Perks.grant(this, ::Legends.Perk.CripplingStrikes);
 			b.RangedSkill += 10;
 		}
 	}
@@ -45,7 +45,7 @@
 			this.m.Items.addToBag(this.new("scripts/items/weapons/greenskins/goblin_spiked_balls"));
 		}
 
-		if("Assets" in this.World && this.World.Assets != null && this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Legendary)
+		if(::Legends.isLegendaryDifficulty())
 		{
 			this.m.Items.addToBag(this.new("scripts/items/weapons/greenskins/goblin_spiked_balls"));
 			this.m.Items.addToBag(this.new("scripts/items/weapons/greenskins/goblin_spiked_balls"));

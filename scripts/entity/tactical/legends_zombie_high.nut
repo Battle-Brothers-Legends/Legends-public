@@ -4,19 +4,19 @@ this.legends_zombie_high <- this.inherit("scripts/entity/tactical/legend_zombie"
 	{
 		this.m.SpawnType = this.Const.Tactical.Actor.LegendZombieHeavy;
 		this.legend_zombie.onInit();
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_fearsome"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_reach_advantage"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_battle_forged"));
+		::Legends.Perks.grant(this, ::Legends.Perk.Fearsome);
+		::Legends.Perks.grant(this, ::Legends.Perk.ReachAdvantage);
+		::Legends.Perks.grant(this, ::Legends.Perk.BattleForged);
 		this.m.Skills.add(this.new("scripts/skills/actives/zombie_bite"));
 		// this.m.Skills.add(this.new("scripts/skills/traits/legend_rotten_flesh_trait"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_poison_immunity"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_fearsome"));
-		if("Assets" in this.World && this.World.Assets != null && this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Legendary)
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendPoisonImmunity);
+		::Legends.Perks.grant(this, ::Legends.Perk.Fearsome);
+		if(::Legends.isLegendaryDifficulty())
 		{
-		this.m.BaseProperties.Hitpoints *= 1.5;
+			this.m.BaseProperties.Hitpoints *= 1.5;
 			this.m.Hitpoints *= 1.5;
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_nine_lives"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_last_stand"));
+			::Legends.Perks.grant(this, ::Legends.Perk.NineLives);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendLastStand);
 		}
 		this.m.Skills.update();
 	}

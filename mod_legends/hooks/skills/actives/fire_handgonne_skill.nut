@@ -2,7 +2,7 @@
 {
 	o.m.AdditionalAccuracy = 10;
 	o.m.AdditionalHitChance = -10;
-	
+
 	o.getTooltip = function ()
 	{
 		local tooltip = this.getRangedTooltip(this.getDefaultTooltip());
@@ -54,9 +54,9 @@
 			});
 		}
 
-		if (this.getContainer().hasSkill("perk.legend_piercing_shot"))
+		if (this.getContainer().hasPerk(::Legends.Perk.LegendPiercingShot))
 		{
-			local s = this.getContainer().getSkillByID("perk.legend_piercing_shot");
+			local s = ::Legends.Perks.get(this, ::Legends.Perk.LegendPiercingShot);
 			tooltip.push({
 				id = 6,
 				type = "text",

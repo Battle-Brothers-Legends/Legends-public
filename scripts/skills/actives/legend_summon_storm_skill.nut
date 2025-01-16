@@ -14,7 +14,7 @@ this.legend_summon_storm_skill <- this.inherit("scripts/skills/skill", {
 	{
 		this.m.ID = "actives.legend_summon_storm";
 		this.m.Name = "Summon Storm";
-		this.m.Description = "Summons rain to the battlefield, anyone caught in the rain will have their vision reduced by 1 and their ranged skill and ranged defense reduces by 10%. If cast when you are already wet, it will be like drinking a lionheart potion.";
+		this.m.Description = "Summons rain to the battlefield. Anyone caught in the rain will have their vision reduced by 1 and their ranged skill and ranged defense reduces by 10%. If cast when you are already wet, it will be like drinking a lionheart potion.";
 		this.m.Icon = "skills/rain_square.png";
 		this.m.IconDisabled = "skills/rain_square_bw.png";
 		this.m.Overlay = "active_12";

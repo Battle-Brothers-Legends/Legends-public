@@ -3,7 +3,7 @@ this.legend_arena_veteran_trait <- this.inherit("scripts/skills/traits/character
 	function create()
 	{
 		this.character_trait.create();
-		this.m.ID = "trait.legend_arena_veteran";
+		this.m.ID = ::Legends.Traits.getID(::Legends.Trait.LegendArenaVeteran);
 		this.m.Name = "Arena Veteran";
 		this.m.Icon = "ui/traits/trait_icon_75.png";
 		this.m.Description = "A veteran of the arena with many a scar, this character knows how to make the crowd cheer for a bloody spectacle. The worse the odds of winning, the better the entertainment!";

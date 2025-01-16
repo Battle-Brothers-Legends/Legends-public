@@ -11,23 +11,23 @@ this.peddler_southern_background <- this.inherit("scripts/skills/backgrounds/ped
 		this.m.BeardChance = 90;
 		this.m.Ethnicity = 1;
 		this.m.Excluded = [
-			"trait.superstitious",
-			"trait.huge",
-			"trait.fear_undead",
-			"trait.hate_undead",
-			"trait.hate_beasts",
-			"trait.iron_jaw",
-			"trait.clubfooted",
-			"trait.brute",
-			"trait.athletic",
-			"trait.iron_lungs",
-			"trait.strong",
-			"trait.tough",
-			"trait.cocky",
-			"trait.dexterous",
-			"trait.dumb",
-			"trait.deathwish",
-			"trait.bloodthirsty"
+			::Legends.Traits.getID(::Legends.Trait.Superstitious),
+			::Legends.Traits.getID(::Legends.Trait.Huge),
+			::Legends.Traits.getID(::Legends.Trait.FearUndead),
+			::Legends.Traits.getID(::Legends.Trait.HateUndead),
+			::Legends.Traits.getID(::Legends.Trait.HateBeasts),
+			::Legends.Traits.getID(::Legends.Trait.IronJaw),
+			::Legends.Traits.getID(::Legends.Trait.Clubfooted),
+			::Legends.Traits.getID(::Legends.Trait.Brute),
+			::Legends.Traits.getID(::Legends.Trait.Athletic),
+			::Legends.Traits.getID(::Legends.Trait.IronLungs),
+			::Legends.Traits.getID(::Legends.Trait.Strong),
+			::Legends.Traits.getID(::Legends.Trait.Tough),
+			::Legends.Traits.getID(::Legends.Trait.Cocky),
+			::Legends.Traits.getID(::Legends.Trait.Dexterous),
+			::Legends.Traits.getID(::Legends.Trait.Dumb),
+			::Legends.Traits.getID(::Legends.Trait.Deathwish),
+			::Legends.Traits.getID(::Legends.Trait.Bloodthirsty)
 		];
 		this.m.Names = this.Const.Strings.SouthernNames;
 		this.m.LastNames = this.Const.Strings.SouthernNamesLast;

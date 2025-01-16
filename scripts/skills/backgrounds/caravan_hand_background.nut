@@ -12,13 +12,13 @@ this.caravan_hand_background <- this.inherit("scripts/skills/backgrounds/charact
 		this.m.HiringCost = 75;
 		this.m.DailyCost = 8;
 		this.m.Excluded = [
-			"trait.tiny",
-			"trait.clubfooted",
-			"trait.gluttonous",
-			"trait.bright",
-			"trait.asthmatic",
-			"trait.fat",
-			"trait.legend_unpredictable"
+			::Legends.Traits.getID(::Legends.Trait.Tiny),
+			::Legends.Traits.getID(::Legends.Trait.Clubfooted),
+			::Legends.Traits.getID(::Legends.Trait.Gluttonous),
+			::Legends.Traits.getID(::Legends.Trait.Bright),
+			::Legends.Traits.getID(::Legends.Trait.Asthmatic),
+			::Legends.Traits.getID(::Legends.Trait.Fat),
+			::Legends.Traits.getID(::Legends.Trait.LegendUnpredictable)
 		];
 		this.m.Faces = this.Const.Faces.AllWhiteMale;
 		this.m.Hairs = this.Const.Hair.UntidyMale;

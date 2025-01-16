@@ -49,15 +49,14 @@ this.legend_fear_nobles_event <- this.inherit("scripts/events/event", {
 			function start( _event )
 			{
 				this.Characters.push(_event.m.Casualty.getImagePath());
-				local trait = this.new("scripts/skills/traits/legend_fear_nobles_trait");
-				_event.m.Casualty.getSkills().add(trait);
-				this.List.push({
-					id = 10,
-					icon = trait.getIcon(),
-					text = _event.m.Casualty.getName() + " now fears the nobility."
+				::Legends.Traits.grant(_event.m.Casualty, ::Legends.Trait.LegendFearNobles, function(_trait) {
+					this.List.push({
+						id = 10,
+						icon = _trait.getIcon(),
+						text = _event.m.Casualty.getName() + " now fears the nobility."
+					});
 				});
 			}
-
 		});
 	}
 

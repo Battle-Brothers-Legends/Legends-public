@@ -23,7 +23,7 @@ this.legends_seer_scenario <- this.inherit("scripts/scenarios/world/starting_sce
 		bro.setStartValuesEx([
 			"legend_witch_commander_background"
 		]);
-		bro.getSkills().add(this.new("scripts/skills/traits/player_character_trait"));
+		::Legends.Traits.grant(bro, ::Legends.Trait.Player);
 		this.addScenarioPerk(bro.getBackground(), this.Const.Perks.PerkDefs.LegendDaze);
 		this.addScenarioPerk(bro.getBackground(), this.Const.Perks.PerkDefs.Student);
 		this.addScenarioPerk(bro.getBackground(), this.Const.Perks.PerkDefs.LegendMagicMissile);
@@ -135,12 +135,12 @@ this.legends_seer_scenario <- this.inherit("scripts/scenarios/world/starting_sce
 			bro.worsenMood(1.0, "Wishes you would stop using big words");
 		}
 
-		if (bro.getSkills().hasSkill("trait.bright"))
+		if (bro.getSkills().hasTrait(::Legends.Trait.Bright))
 		{
 			bro.improveMood(0.5, "Keen to learn from a master");
 		}
 
-		if (bro.getSkills().hasSkill("trait.dumb"))
+		if (bro.getSkills().hasTrait(::Legends.Trait.Dumb))
 		{
 			bro.worsenMood(0.5, "Thinks you are a boring nerd");
 		}
@@ -151,13 +151,13 @@ this.legends_seer_scenario <- this.inherit("scripts/scenarios/world/starting_sce
 
 	function onGenerateBro(bro)
 	{
-		if (bro.getBackground().isBackgroundType(this.Const.BackgroundType.Educated) || bro.getSkills().hasSkill("trait.bright"))
+		if (bro.getBackground().isBackgroundType(this.Const.BackgroundType.Educated) || bro.getSkills().hasTrait(::Legends.Trait.Bright))
 		{
 			bro.m.HiringCost = this.Math.floor(bro.m.HiringCost * 0.9) //1.0 = default
 			bro.getBaseProperties().DailyWageMult *= 0.9; //1.0 = default
 			bro.getSkills().update();
 		}
-		else if (!bro.getBackground().isBackgroundType(this.Const.BackgroundType.Educated) || bro.getSkills().hasSkill("trait.dumb"))
+		else if (!bro.getBackground().isBackgroundType(this.Const.BackgroundType.Educated) || bro.getSkills().hasTrait(::Legends.Trait.Dumb))
 		{
 			bro.m.HiringCost = this.Math.floor(bro.m.HiringCost * 1.1) //1.0 = default
 			bro.getBaseProperties().DailyWageMult *= 1.1; //1.0 = default

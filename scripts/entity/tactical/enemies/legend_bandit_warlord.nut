@@ -56,33 +56,33 @@ this.legend_bandit_warlord <- this.inherit("scripts/entity/tactical/human", {
 		dirt.Alpha = this.Math.rand(150, 255);
 		this.setArmorSaturation(0.6);
 		this.getSprite("shield_icon").setBrightness(0.6);
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_captain"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_shield_expert"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_brawny"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_nine_lives"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_coup_de_grace"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_smackdown"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_overwhelm"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_quick_hands"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_rotation"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_recover"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_battle_forged"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_inspiring_presence"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_rally_the_troops"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_full_force"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_lone_wolf")); // Am I unfair? No - it is the players who are wrong.
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_composure"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_underdog"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_true_believer"));
+		::Legends.Perks.grant(this, ::Legends.Perk.Captain);
+		::Legends.Perks.grant(this, ::Legends.Perk.ShieldExpert);
+		::Legends.Perks.grant(this, ::Legends.Perk.Brawny);
+		::Legends.Perks.grant(this, ::Legends.Perk.NineLives);
+		::Legends.Perks.grant(this, ::Legends.Perk.CoupDeGrace);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendSmackdown);
+		::Legends.Perks.grant(this, ::Legends.Perk.Overwhelm);
+		::Legends.Perks.grant(this, ::Legends.Perk.QuickHands);
+		::Legends.Perks.grant(this, ::Legends.Perk.Rotation);
+		::Legends.Perks.grant(this, ::Legends.Perk.Recover);
+		::Legends.Perks.grant(this, ::Legends.Perk.BattleForged);
+		::Legends.Perks.grant(this, ::Legends.Perk.InspiringPresence);
+		::Legends.Perks.grant(this, ::Legends.Perk.RallyTheTroops);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendFullForce);
+		::Legends.Perks.grant(this, ::Legends.Perk.LoneWolf); // Am I unfair? No - it is the players who are wrong.
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendComposure);
+		::Legends.Perks.grant(this, ::Legends.Perk.Underdog);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendTrueBeliever);
 
-		if (("Assets" in this.World) && this.World.Assets != null && this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Legendary)
+		if (::Legends.isLegendaryDifficulty())
 		{
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_lithe"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_relentless"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_dodge"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_backstabber"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_battleheart"));
-			this.m.Skills.add(this.new("scripts/skills/traits/fearless_trait"));
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendLithe);
+			::Legends.Perks.grant(this, ::Legends.Perk.Relentless);
+			::Legends.Perks.grant(this, ::Legends.Perk.Dodge);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendStrengthInNumbers);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendBattleheart);
+			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
 		}
 
 		if (!this.Tactical.State.isScenarioMode())

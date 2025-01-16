@@ -1,8 +1,8 @@
 this.legend_vala_in_trance <- this.inherit("scripts/skills/skill", {
 	m = {
-		trances = [
-			"perk.legend_vala_trance_perspective",
-			"perk.legend_vala_trance_malevolent"
+		Trances = [
+			::Legends.Perk.LegendValaTrancePerspective,
+			::Legends.Perk.LegendValaTranceMalevolent,
 		]
 	},
 	function create()
@@ -46,14 +46,12 @@ this.legend_vala_in_trance <- this.inherit("scripts/skills/skill", {
 
 	function onRemoved()
 	{
-		local skill;
-		foreach (trance in this.m.trances)
+		foreach (trance in this.m.Trances)
 		{
-			skill = this.getContainer().getSkillByID(trance);
-			if (skill != null)
-			{
-				skill.resetTrance();
-			}
+			local skill = ::Legends.Perks.get(this, trance);
+			if (skill == null)
+				continue;
+			skill.resetTrance();
 		}
 
 		if (this.Tactical.isActive())

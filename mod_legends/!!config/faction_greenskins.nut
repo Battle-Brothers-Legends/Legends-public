@@ -1,5 +1,5 @@
 ::Const.Tactical.Actor.LegendOrcElite <- {
-	XP = 800,
+	XP = 600,
 	ActionPoints = 8,
 	Hitpoints = 350,
 	Bravery = 90,

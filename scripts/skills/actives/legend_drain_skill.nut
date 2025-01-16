@@ -4,7 +4,7 @@ this.legend_drain_skill <- this.inherit("scripts/skills/skill", {
 	{
 		this.m.ID = "actives.legend_drain";
 		this.m.Name = "Drain Life";
-		this.m.Description = "Pull the essence from your foe, and draw it into yourself ";
+		this.m.Description = "Pull the essence from your foe, and draw it into yourself.";
 		this.m.KilledString = "Drained";
 		this.m.Icon = "skills/blooddrop_square.png";
 		this.m.IconDisabled = "skills/blooddrop_square_bw.png";

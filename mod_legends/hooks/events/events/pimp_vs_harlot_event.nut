@@ -49,7 +49,7 @@
 							"pimp_background"
 						]);
 						_event.m.Dude.getSkills().add(this.new("scripts/skills/racial/skeleton_racial"));
-						_event.m.Dude.getSkills().add(this.new("scripts/skills/traits/legend_fleshless_trait"));
+						::Legends.Traits.grant(_event.m.Dude, ::Legends.Trait.LegendFleshless);
 					}
 					else
 					{
@@ -102,7 +102,7 @@
 				candidate_minstrel.push(bro);
 			else if (bro.getBackground().getID() == "background.monk")
 				candidate_monk.push(bro);
-			else if (bro.getSkills().hasSkill("perk.legend_scholar"))
+			else if (bro.getSkills().hasPerk(::Legends.Perk.LegendScholar))
 				candidate_monk.push(bro);
 			else if (bro.getBackground().getID() == "background.tailor")
 				candidate_tailor.push(bro);

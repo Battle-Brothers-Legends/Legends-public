@@ -24,13 +24,13 @@
 				s.start <- function( _event ) {
 					this.Characters.push(_event.m.Bastard.getImagePath());
 
-					if (!_event.m.Bastard.getSkills().hasSkill("trait.loyal") && !_event.m.Bastard.getSkills().hasSkill("trait.disloyal")) {
-						local loyal = this.new("scripts/skills/traits/loyal_trait");
-						_event.m.Bastard.getSkills().add(loyal);
-						this.List.push({
-							id = 10,
-							icon = loyal.getIcon(),
-							text = _event.m.Bastard.getName() + " is now loyal"
+					if (!_event.m.Bastard.getSkills().hasTrait(::Legends.Trait.Loyal) && !_event.m.Bastard.getSkills().hasTrait(::Legends.Trait.Disloyal)) {
+						::Legends.Traits.grant(_event.m.Bastard, ::Legends.Trait.Loyal, function(_trait) {
+							this.List.push({
+								id = 10,
+								icon = _trait.getIcon(),
+								text = _event.m.Bastard.getName() + " is now loyal"
+							});
 						});
 					}
 					this.World.Assets.addMoralReputation(2);
@@ -90,7 +90,7 @@
 				candidates.push(bro);
 			else if (bro.getBackground().getID() == "background.assassin" || bro.getBackground().getID() == "background.legend_assassin_commander")
 				cantidates_assassins.push(bro);
-			else if (!bro.getSkills().hasSkill("trait.player"))
+			else if (!bro.getSkills().hasTrait(::Legends.Trait.Player))
 				candidates_other.push(bro);
 		}
 

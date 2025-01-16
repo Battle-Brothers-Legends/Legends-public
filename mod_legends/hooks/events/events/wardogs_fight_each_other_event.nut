@@ -6,7 +6,7 @@
 		local candidates_wardog = [];
 
 		foreach( bro in brothers ) {
-			if (bro.getSkills().hasSkill("trait.player"))
+			if (bro.getSkills().hasTrait(::Legends.Trait.Player))
 				continue;
 
 			if (bro.getBackground().getID() == "background.houndmaster" || bro.getBackground().getID() == "background.legend_muladi" )

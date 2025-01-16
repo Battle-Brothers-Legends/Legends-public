@@ -30,41 +30,41 @@ this.legend_peasant_armed_infected <- this.inherit("scripts/entity/tactical/huma
 		this.getSprite("socket").setBrush("bust_base_militia");
 
 		this.m.Skills.add(this.new("scripts/skills/injury_permanent/legend_vermesthropy_injury"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_true_form"));
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendTrueForm);
+
 
 		// if (this.Math.rand(1, 100) <= 80)
 		// {
-		// 	this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_control_instincts"));
+		// 	::Legends.Perks.grant(this, ::Legends.Perk.LegendControlInstincts);
 		// }
 		// if (this.Math.rand(1, 100) <= 60)
 		// {
-		// 	this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_surpress_urges"));
+		// 	::Legends.Perks.grant(this, ::Legends.Perk.LegendSurpressUrges);
 		// }
 		// if (this.Math.rand(1, 100) <= 40)
 		// {
-		// 	this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_master_anger"));
+		// 	::Legends.Perks.grant(this, ::Legends.Perk.LegendMasterAnger);
 		// }
 
 		if (this.Math.rand(1, 100) <= 20)
 		{
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_fortified_mind"));
+			::Legends.Perks.grant(this, ::Legends.Perk.FortifiedMind);
 		}
 
 		if (this.Math.rand(1, 100) <= 10)
 		{
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_fortified_mind"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_rally_the_troops"));
+			::Legends.Perks.grant(this, ::Legends.Perk.FortifiedMind);
+			::Legends.Perks.grant(this, ::Legends.Perk.RallyTheTroops);
 		}
 
-		this.m.Skills.add(this.new("scripts/skills/traits/weasel_trait"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_back_to_basics"));
-		if("Assets" in this.World && this.World.Assets != null && this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Legendary)
+		::Legends.Traits.grant(this, ::Legends.Trait.Weasel);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendBackToBasics);
+		if(::Legends.isLegendaryDifficulty())
 		{
 			this.m.Hitpoints = b.Hitpoints * 1.5;
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_nimble"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_backstabber"));
-
-			this.m.Skills.add(this.new("scripts/skills/traits/fearless_trait"));
+			::Legends.Perks.grant(this, ::Legends.Perk.Nimble);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendStrengthInNumbers);
+			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
 		}
 	}
 

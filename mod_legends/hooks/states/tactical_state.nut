@@ -78,7 +78,7 @@
 						this.World.getPlayerRoster().remove(bro);
 					}
 
-					else if (bro.getSkills().hasSkill("perk.legend_pacifist") && bro.isPlacedOnMap())
+					else if (bro.getSkills().hasPerk(::Legends.Perk.LegendPacifist) && bro.isPlacedOnMap())
 					{
 							bro.getLifetimeStats().BattlesWithoutMe = 0;
 							bro.worsenMood(this.Const.MoodChange.BattleWithoutMe, "Forced into battle against their wishes");
@@ -284,31 +284,31 @@
 					zombieSalvage += 5;
 					break;
 				case "background.butcher":
-					if (bro.getSkills().hasSkill("trait.vazl_cannibalistic"))
+					if (bro.getSkills().hasTrait(::Legends.Trait.LegendCannibalistic))
 					{
 						CannibalisticButchersInRoster += 1;
 					}
 					break;
 			}
 
-			if (bro.getSkills().hasSkill("perk.legends_reclamation"))
+			if (bro.getSkills().hasPerk(::Legends.Perk.LegendReclamation))
 			{
-				local skill = bro.getSkills().getSkillByID("perk.legends_reclamation");
+				local skill = ::Legends.Perks.get(bro, ::Legends.Perk.LegendReclamation);
 				zombieSalvage += skill.m.LootChance;
 			}
 
-			if (bro.getSkills().hasSkill("perk.legend_resurrectionist"))
+			if (bro.getSkills().hasPerk(::Legends.Perk.LegendResurrectionist))
 			{
-				local skill = bro.getSkills().getSkillByID("perk.legend_resurrectionist");
+				local skill = ::Legends.Perks.get(bro, ::Legends.Perk.LegendResurrectionist);
 				zombieSalvage += skill.m.LootChance;
 			}
 
-			if (bro.getSkills().hasSkill("perk.legend_spawn_zombie_low") || bro.getSkills().hasSkill("perk.legend_spawn_zombie_med") || bro.getSkills().hasSkill("perk.legend_spawn_zombie_high"))
+			if (bro.getSkills().hasPerk(::Legends.Perk.LegendSpawnZombieLow) || bro.getSkills().hasPerk(::Legends.Perk.LegendSpawnZombieMed) || bro.getSkills().hasPerk(::Legends.Perk.LegendSpawnZombieHigh))
 			{
 				zombieLoot = true;
 			}
 
-			if (bro.getSkills().hasSkill("perk.legend_spawn_skeleton_low") || bro.getSkills().hasSkill("perk.legend_spawn_skeleton_med") || bro.getSkills().hasSkill("perk.legend_spawn_skeleton_high"))
+			if (bro.getSkills().hasPerk(::Legends.Perk.LegendSpawnSkeletonLow) || bro.getSkills().hasPerk(::Legends.Perk.LegendSpawnSkeletonMed) || bro.getSkills().hasPerk(::Legends.Perk.LegendSpawnSkeletonHigh))
 			{
 				skeletonLoot = true;
 			}

@@ -27,21 +27,21 @@ this.legend_peasant_miner <- this.inherit("scripts/entity/tactical/human", {
 		local dirt = this.getSprite("dirt");
 		dirt.Visible = true;
 		dirt.Alpha = this.Math.rand(0, 255);
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_specialist_pickaxe_skill"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_specialist_pickaxe_damage"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_smackdown"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_mastery_hammer"));
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecialistPickaxeSkill);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecialistPickaxeDamage);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendSmackdown);
+		::Legends.Perks.grant(this, ::Legends.Perk.SpecHammer);
 		this.getSprite("socket").setBrush("bust_base_militia");
-			if("Assets" in this.World && this.World.Assets != null && this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Legendary)
-			{
+		if(::Legends.isLegendaryDifficulty())
+		{
 			this.m.Hitpoints = b.Hitpoints * 1.5;
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_battle_flow"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_onslaught"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_stalwart"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_indomitable"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_recover"));
-			this.m.Skills.add(this.new("scripts/skills/traits/fearless_trait"));
-			}
+			::Legends.Perks.grant(this, ::Legends.Perk.BattleFlow);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendOnslaught);
+			::Legends.Perks.grant(this, ::Legends.Perk.Stalwart);
+			::Legends.Perks.grant(this, ::Legends.Perk.Indomitable);
+			::Legends.Perks.grant(this, ::Legends.Perk.Recover);
+			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
+		}
 	}
 
 	function assignRandomEquipment()

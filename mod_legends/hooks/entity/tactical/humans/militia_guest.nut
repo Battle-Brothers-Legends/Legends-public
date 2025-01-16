@@ -1,19 +1,19 @@
-::mods_hookExactClass("entity/tactical/humans/militia_guest", function(o) 
+::mods_hookExactClass("entity/tactical/humans/militia_guest", function(o)
 {
 	local onInit = o.onInit;
 	o.onInit = function ()
 	{
 		onInit();
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_recover"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_specialist_militia_skill"));
-		if("Assets" in this.World && this.World.Assets != null && this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Legendary)
+		::Legends.Perks.grant(this, ::Legends.Perk.Recover);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecialistMilitiaSkill);
+		if(::Legends.isLegendaryDifficulty())
 		{
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_mastery_spear"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_shield_expert"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_specialist_militia_damage"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_specialist_spearwall"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_specialist_spearthrust"));
-			this.m.Skills.add(this.new("scripts/skills/traits/fearless_trait"));
+			::Legends.Perks.grant(this, ::Legends.Perk.SpecSpear);
+			::Legends.Perks.grant(this, ::Legends.Perk.ShieldExpert);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecialistMilitiaDamage);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecSpearWall);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecSpearThrust);
+			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
 		}
 	}
 

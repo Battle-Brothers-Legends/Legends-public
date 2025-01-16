@@ -1,19 +1,19 @@
-::mods_hookExactClass("entity/tactical/humans/standard_bearer", function(o) 
+::mods_hookExactClass("entity/tactical/humans/standard_bearer", function(o)
 {
 	local onInit = o.onInit;
 	o.onInit = function ()
 	{
 		onInit();
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_rotation"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_recover"));
+		::Legends.Perks.grant(this, ::Legends.Perk.Rotation);
+		::Legends.Perks.grant(this, ::Legends.Perk.Recover);
 
-		if (("Assets" in this.World) && this.World.Assets != null && this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Legendary)
+		if (::Legends.isLegendaryDifficulty())
 		{
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_battle_forged"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_fortified_mind"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_push_forward"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_hold_the_line"));
-			this.m.Skills.add(this.new("scripts/skills/traits/fearless_trait"));
+			::Legends.Perks.grant(this, ::Legends.Perk.BattleForged);
+			::Legends.Perks.grant(this, ::Legends.Perk.FortifiedMind);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendForwardPush);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendHoldTheLine);
+			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
 		}
 	}
 

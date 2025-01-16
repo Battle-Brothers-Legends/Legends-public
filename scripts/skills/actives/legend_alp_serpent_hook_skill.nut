@@ -54,10 +54,8 @@ this.legend_alp_serpent_hook_skill <- this.inherit("scripts/skills/actives/serpe
 			});
 		}
 
-		local skills = _targetTile.getEntity().getSkills();
-		skills.removeByID("effects.shieldwall");
-		skills.removeByID("effects.spearwall");
-		skills.removeByID("effects.riposte");
+		if (!target.getSkills().hasSkill("effects.legend_break_stance"))
+			target.getSkills().add(this.new("scripts/skills/effects/legend_break_stance_effect"));
 		target.setCurrentMovementType(this.Const.Tactical.MovementType.Involuntary);
 		local damage = this.Math.max(0, this.Math.abs(pullToTile.Level - _targetTile.Level) - 1) * this.Const.Combat.FallingDamage;
 

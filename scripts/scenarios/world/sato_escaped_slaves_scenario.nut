@@ -42,20 +42,19 @@ this.sato_escaped_slaves_scenario <- this.inherit("scripts/scenarios/world/start
 		bros[0].addLightInjury();
 		bros[0].getSprite("miniboss").setBrush("bust_miniboss_indebted");
 		this.setRetireText(bros[0]);
-		local skills = bros[0].getSkills();
-		skills.removeByID("trait.dastard");
-		skills.removeByID("trait.craven");
-		skills.removeByID("trait.fainthearted");
-		skills.removeByID("trait.insecure");
-		skills.removeByID("trait.fragile");
+		::Legends.Traits.remove(bros[0], ::Legends.Trait.Dastard);
+		::Legends.Traits.remove(bros[0], ::Legends.Trait.Craven);
+		::Legends.Traits.remove(bros[0], ::Legends.Trait.Fainthearthed);
+		::Legends.Traits.remove(bros[0], ::Legends.Trait.Insecure);
+		::Legends.Traits.remove(bros[0], ::Legends.Trait.Fragile);
 
 		if (bros[0].getBaseProperties().Bravery <= 30)
 		{
 			bros[0].getBaseProperties().Bravery += 5;
 		}
 
-		bros[0].getSkills().add(this.new("scripts/skills/traits/sato_brothers_in_chains_trait"));
-		bros[0].getSkills().add(this.new("scripts/skills/traits/arena_fighter_trait"));
+		::Legends.Traits.grant(bros[0], ::Legends.Trait.LegendBrothersInChains);
+		::Legends.Traits.grant(bros[0], ::Legends.Trait.ArenaFighter);
 		bros[0].getFlags().set("ArenaFightsWon", 5);
 		bros[0].getFlags().set("ArenaFights", 5);
 		bros[0].m.Talents = [];
@@ -88,10 +87,10 @@ this.sato_escaped_slaves_scenario <- this.inherit("scripts/scenarios/world/start
 		bros[1].setPlaceInFormation(2);
 		bros[1].getSprite("miniboss").setBrush("bust_miniboss_indebted");
 		this.setRetireText(bros[1]);
-		skills.removeByID("trait.fragile");
-		bros[1].getSkills().removeByID("trait.tiny");
-		bros[1].getSkills().add(this.new("scripts/skills/traits/huge_trait"));
-		bros[1].getSkills().add(this.new("scripts/skills/traits/sato_brothers_in_chains_trait"));
+		::Legends.Traits.remove(bros[1], ::Legends.Trait.Fragile);
+		::Legends.Traits.remove(bros[1], ::Legends.Trait.Tiny);
+		::Legends.Traits.grant(bros[1], ::Legends.Trait.Huge);
+		::Legends.Traits.grant(bros[1], ::Legends.Trait.LegendBrothersInChains);
 		local talents = bros[1].getTalents();
 		local hasRangedSkill = talents[this.Const.Attributes.RangedSkill] != 0;
 		local hasMeleeDefense = talents[this.Const.Attributes.MeleeDefense] != 0;
@@ -149,7 +148,7 @@ this.sato_escaped_slaves_scenario <- this.inherit("scripts/scenarios/world/start
 		bros[2].addLightInjury();
 		bros[2].getSprite("miniboss").setBrush("bust_miniboss_indebted");
 		this.setRetireText(bros[2]);
-		bros[2].getSkills().add(this.new("scripts/skills/traits/sato_brothers_in_chains_trait"));
+		::Legends.Traits.grant(bros[2], ::Legends.Trait.LegendBrothersInChains);
 		bros[2].m.Talents = [];
 		local talents = bros[2].getTalents();
 		talents.resize(this.Const.Attributes.COUNT, 0);
@@ -177,8 +176,8 @@ this.sato_escaped_slaves_scenario <- this.inherit("scripts/scenarios/world/start
 		bros[3].addInjury(this.Const.Injury.Brawl);
 		bros[3].getSprite("miniboss").setBrush("bust_miniboss_indebted");
 		this.setRetireText(bros[3]);
-		bros[3].getSkills().add(this.new("scripts/skills/traits/survivor_trait"));
-		bros[3].getSkills().add(this.new("scripts/skills/traits/sato_brothers_in_chains_trait"));
+		::Legends.Traits.grant(bros[3], ::Legends.Trait.Survivor);
+		::Legends.Traits.grant(bros[3], ::Legends.Trait.LegendBrothersInChains);
 		bros[3].worsenMood(1.5, "Feels he deserves better in life");
 		bros[3].improveMood(2.5, "Escaped a life of slavery");
 		local items = bros[3].getItems();
@@ -239,10 +238,10 @@ this.sato_escaped_slaves_scenario <- this.inherit("scripts/scenarios/world/start
 		}
 
 		bros[4].improveMood(2.5, "Escaped a life of slavery");
-		bros[4].getSkills().add(this.new("scripts/skills/traits/sato_brothers_in_chains_trait"));
+		::Legends.Traits.grant(bros[4], ::Legends.Trait.LegendBrothersInChains);
 		local items = bros[4].getItems();
 		this.addRandomEquipment(items, true);
-		
+
 		this.World.Assets.getStash().add(this.new("scripts/items/supplies/rice_item"));
 		this.World.Assets.getStash().add(this.new("scripts/items/supplies/rice_item"));
 		this.World.Assets.m.Money = this.Math.max(this.World.Assets.m.Money - 600, 150);
@@ -476,7 +475,7 @@ this.sato_escaped_slaves_scenario <- this.inherit("scripts/scenarios/world/start
 	{
 		if (bro.getBackground().getID() == "background.slave")
 		{
-			bro.getSkills().add(this.new("scripts/skills/traits/sato_brothers_in_chains_trait"));
+			::Legends.Traits.grant(bro, ::Legends.Trait.LegendBrothersInChains);
 			bro.getSprite("miniboss").setBrush("bust_miniboss_indebted");
 			bro.improveMood(1.5, "Joined a mercenary company of freed slaves");
 			this.setRetireText(bro);

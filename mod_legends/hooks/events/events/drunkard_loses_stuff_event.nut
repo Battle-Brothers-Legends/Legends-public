@@ -34,7 +34,7 @@
 						text = _event.m.Drunkard.getName() + " receives an injury"
 					}
 					];
-					_event.m.Drunkard.getSkills().removeByID("trait.drunkard");
+					::Legends.Traits.remove(_event.m.Drunkard, ::Legends.Trait.Drunkard);
 					this.List.push({
 						id = 10,
 						icon = "ui/traits/trait_icon_29.png",
@@ -119,7 +119,7 @@
 				}
 			}],
 			function start( _event ) {
-				_event.m.Drunkard.getSkills().removeByID("trait.drunkard");
+				::Legends.Traits.remove(_event.m.Drunkard, ::Legends.Trait.Drunkard);
 				this.List.push({
 					id = 10,
 					icon = "ui/traits/trait_icon_29.png",
@@ -179,7 +179,7 @@
 		local candidates = [];
 
 		foreach( bro in brothers )
-			if (bro.getSkills().hasSkill("trait.drunkard") && bro.getBackground().getID() != "background.legend_commander_noble")
+			if (bro.getSkills().hasTrait(::Legends.Trait.Drunkard) && bro.getBackground().getID() != "background.legend_commander_noble")
 				candidates.push(bro);
 
 		if (candidates.len() == 0)

@@ -88,8 +88,8 @@ this.manhunters_scenario <- this.inherit("scripts/scenarios/world/starting_scena
 		bros[2].setTitle("the Learned");
 		bros[2].getBackground().m.RawDescription = "{You found %name% being lawed by city guards. It looked like they were gonna play a game of \'catch the scimitar\' with his wrists until you intervened, opining that he owed the Gilder far before he owed any man. You hoped to offload him to high-paying Viziers, but none would take him as he was too \'learned\' and seemed the exact sort of threat to spur an uprising. Unusual to a man of his standing, he does harbor a fair bit of respect for you.}";
 		bros[2].setPlaceInFormation(2);
-		bros[2].getSkills().removeByID("trait.dumb");
-		bros[2].getSkills().add(this.new("scripts/skills/traits/bright_trait"));
+		::Legends.Traits.remove(bros[2], ::Legends.Trait.Dumb);
+		::Legends.Traits.grant(bros[2], ::Legends.Trait.Bright);
 		bros[2].getSprite("miniboss").setBrush("bust_miniboss_indebted");
 		local items = bros[2].getItems();
 		items.unequip(items.getItemAtSlot(this.Const.ItemSlot.Mainhand));
@@ -211,7 +211,7 @@ this.manhunters_scenario <- this.inherit("scripts/scenarios/world/starting_scena
 	function onGenerateBro(bro)
 	{
 		if (bro.getBackground().getID() == "slave_background")
-		{				
+		{
 			bro.m.HiringCost = this.Math.floor(bro.m.HiringCost * 0.5) //1.0 = default
 			bro.getBaseProperties().DailyWageMult *= 1.0; //1.0 = default (costs nothing)
 			bro.getSkills().update();
@@ -254,7 +254,7 @@ this.manhunters_scenario <- this.inherit("scripts/scenarios/world/starting_scena
 
 	function onUnlockPerk( _bro, _perkID )
 	{
-		if (_bro.getLevel() == 7 && _bro.getBackground().getID() == "background.slave" && _perkID == "perk.student")
+		if (_bro.getLevel() == 7 && _bro.getBackground().getID() == "background.slave" && _perkID == ::Legends.Perks.getID(::Legends.Perk.Student))
 		{
 			_bro.setPerkPoints(_bro.getPerkPoints() + 1);
 		}
@@ -262,7 +262,7 @@ this.manhunters_scenario <- this.inherit("scripts/scenarios/world/starting_scena
 
 	function onUpdateLevel( _bro )
 	{
-		if (_bro.getLevel() == 7 && _bro.getBackground().getID() == "background.slave" && _bro.getSkills().hasSkill("perk.student"))
+		if (_bro.getLevel() == 7 && _bro.getBackground().getID() == "background.slave" && _bro.getSkills().hasPerk(::Legends.Perk.Student))
 		{
 			_bro.setPerkPoints(_bro.getPerkPoints() + 1);
 		}

@@ -111,17 +111,17 @@ this.legend_bandit_outrider <- this.inherit("scripts/entity/tactical/human", {
 		wolf_bite.setRestrained(true);
 		wolf_bite.m.ActionPointCost = 0;
 		this.m.Skills.add(wolf_bite);
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_horse_movement"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_horse_charge"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_horse_pirouette"));
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendHorseMovement);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendHorseCharge);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendHorsePirouette);
 
-		if (("Assets" in this.World) && this.World.Assets != null && this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Legendary)
+		if (::Legends.isLegendaryDifficulty())
 		{
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_relentless"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_dodge"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_backstabber"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_underdog"));
-			this.m.Skills.add(this.new("scripts/skills/traits/fearless_trait"));
+			::Legends.Perks.grant(this, ::Legends.Perk.Relentless);
+			::Legends.Perks.grant(this, ::Legends.Perk.Dodge);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendStrengthInNumbers);
+			::Legends.Perks.grant(this, ::Legends.Perk.Underdog);
+			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
 		}
 	}
 

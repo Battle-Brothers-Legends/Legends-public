@@ -6,7 +6,7 @@ this.legend_kick_skill <- this.inherit("scripts/skills/skill", {
 	{
 		this.m.ID = "actives.legend_kick";
 		this.m.Name = "Kick";
-		this.m.Description = "Kick a target to break their balance. Targets hit will receive fatigue, get staggered, and a chance of daze. Shieldwall, Spearwall, Return Favor, and Riposte will be canceled for a target that is successfully hit.";
+		this.m.Description = "Kick a target to break their balance. The blow will inflict additional fatigue, stagger the target, and has a chance to inflict daze as well. Shieldwall, Spearwall, Return Favor, and Riposte will be canceled for a target that is successfully hit.";
 		this.m.Icon = "skills/kick_square.png";
 		this.m.IconDisabled = "skills/kick_square_bw.png";
 		this.m.Overlay = "active_kick";
@@ -58,7 +58,7 @@ this.legend_kick_skill <- this.inherit("scripts/skills/skill", {
 
 		if (p.IsSpecializedInFists)
 		{
-			
+
 			ret.push({
 				id = 6,
 				type = "text",
@@ -114,7 +114,7 @@ this.legend_kick_skill <- this.inherit("scripts/skills/skill", {
 	function onUse( _user, _targetTile )
 	{
 		local target = _targetTile.getEntity();
-		local hasFistMastery = _user.getSkills().hasSkill("perk.legend_mastery_fist");
+		local hasFistMastery = _user.getSkills().hasPerk(::Legends.Perk.LegendSpecFists);
 		local skills = target.getSkills();
 
 		if (this.m.SoundOnUse.len() != 0)
@@ -132,10 +132,8 @@ this.legend_kick_skill <- this.inherit("scripts/skills/skill", {
 		this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(_user) + " inflicted 10 fatigue on " + this.Const.UI.getColorizedEntityName(target) + " with a kick");
 
 		// Remove enemy stances
-		skills.removeByID("effects.shieldwall");
-		skills.removeByID("effects.spearwall");
-		skills.removeByID("effects.riposte");
-		skills.removeByID("effects.legend_return_favor");
+		if (!target.getSkills().hasSkill("effects.legend_break_stance"))
+			target.getSkills().add(this.new("scripts/skills/effects/legend_break_stance_effect"));
 
 		if (this.m.SoundOnHit.len() != 0)
 		{

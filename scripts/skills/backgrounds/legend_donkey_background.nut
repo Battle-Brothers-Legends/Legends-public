@@ -12,19 +12,19 @@ this.legend_donkey_background <- this.inherit("scripts/skills/backgrounds/charac
 		this.m.HiringCost = 5000;
 		this.m.DailyCost = 0;
 		this.m.Excluded = [
-			"trait.tiny",
-			"trait.addict",
-			"trait.drunkard",
-			"trait.greedy",
-			"trait.clubfooted",
-			"trait.bright",
-			"trait.asthmatic",
-			"trait.legend_ambitious",
-			"trait.legend_seductive",
-			"trait.legend_gift_of_people",
-			"trait.legend_double_tongued",
-			"trait.legend_deathly_spectre",
-			"trait.legend_sureshot"
+			::Legends.Traits.getID(::Legends.Trait.Tiny),
+			::Legends.Traits.getID(::Legends.Trait.Addict),
+			::Legends.Traits.getID(::Legends.Trait.Drunkard),
+			::Legends.Traits.getID(::Legends.Trait.Greedy),
+			::Legends.Traits.getID(::Legends.Trait.Clubfooted),
+			::Legends.Traits.getID(::Legends.Trait.Bright),
+			::Legends.Traits.getID(::Legends.Trait.Asthmatic),
+			::Legends.Traits.getID(::Legends.Trait.LegendAmbitious),
+			::Legends.Traits.getID(::Legends.Trait.LegendSeductive),
+			::Legends.Traits.getID(::Legends.Trait.LegendGiftOfPeople),
+			::Legends.Traits.getID(::Legends.Trait.LegendDoubleTongued),
+			::Legends.Traits.getID(::Legends.Trait.LegendDeathlySpectre),
+			::Legends.Traits.getID(::Legends.Trait.LegendSureshot)
 		];
 		this.m.Faces = this.Const.Faces.Donkey;
 		this.m.Hairs = this.Const.Hair.None;
@@ -197,7 +197,7 @@ this.legend_donkey_background <- this.inherit("scripts/skills/backgrounds/charac
 		this.character_background.onAdded();
 		this.m.Container.add(this.new("scripts/skills/injury_permanent/legend_donkey_injury"));
 		this.m.Container.add(this.new("scripts/skills/actives/legend_donkey_kick_skill"));
-		this.m.Container.add(this.new("scripts/skills/traits/legend_appetite_donkey"));
+		::Legends.Traits.grant(this, ::Legends.Trait.LegendDonkeyAppetite);
 	}
 
 

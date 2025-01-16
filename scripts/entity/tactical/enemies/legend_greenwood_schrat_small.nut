@@ -110,21 +110,21 @@ this.legend_greenwood_schrat_small <- this.inherit("scripts/entity/tactical/acto
 		this.setSpriteOffset("status_rooted", this.createVec(0, 0));
 		this.setSpriteOffset("status_stunned", this.createVec(-10, -10));
 		this.setSpriteOffset("arrow", this.createVec(-10, -10));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_pathfinder"));
+		::Legends.Perks.grant(this, ::Legends.Perk.Pathfinder);
 		this.m.Skills.add(this.new("scripts/skills/racial/schrat_racial"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_crippling_strikes"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_steel_brow"));
+		::Legends.Perks.grant(this, ::Legends.Perk.CripplingStrikes);
+		::Legends.Perks.grant(this, ::Legends.Perk.SteelBrow);
 		this.m.Skills.add(this.new("scripts/skills/actives/uproot_small_skill"));
 		this.m.Skills.add(this.new("scripts/skills/actives/uproot_small_zoc_skill"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_stalwart"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_composure"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_poison_immunity"));
+		::Legends.Perks.grant(this, ::Legends.Perk.Stalwart);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendComposure);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendPoisonImmunity);
 
-		if("Assets" in this.World && this.World.Assets != null && this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Legendary)
+		if(::Legends.isLegendaryDifficulty())
 		{
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_lacerate"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_fast_adaption"));
-			this.m.Skills.add(this.new("scripts/skills/traits/fearless_trait"));
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendLacerate);
+			::Legends.Perks.grant(this, ::Legends.Perk.FastAdaption);
+			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
 		}
 		if (!this.Tactical.State.isScenarioMode())
 		{

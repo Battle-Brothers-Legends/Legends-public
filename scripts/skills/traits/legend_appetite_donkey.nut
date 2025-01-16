@@ -3,7 +3,7 @@ this.legend_appetite_donkey <- this.inherit("scripts/skills/traits/character_tra
 	function create()
 	{
 		this.character_trait.create();
-		this.m.ID = "trait.legend_appetite_donkey";
+		this.m.ID = ::Legends.Traits.getID(::Legends.Trait.LegendDonkeyAppetite);
 		this.m.Name = "Appetite of a donkey";
 		this.m.Icon = "ui/traits/legend_appetite_donkey.png";
 		this.m.Description = "This character has a huge appetite and will eat anything. Better bring extra provisions when traveling with this character and expect them to leave fast if you ever run out of provisions entirely.";
@@ -13,10 +13,10 @@ this.legend_appetite_donkey <- this.inherit("scripts/skills/traits/character_tra
 			"the Jackass"
 		];
 		this.m.Excluded = [
-			"trait.athletic",
-			"trait.iron_lungs",
-			"trait.spartan",
-			"trait.fragile"
+			::Legends.Traits.getID(::Legends.Trait.Athletic),
+			::Legends.Traits.getID(::Legends.Trait.IronLungs),
+			::Legends.Traits.getID(::Legends.Trait.Spartan),
+			::Legends.Traits.getID(::Legends.Trait.Fragile)
 		];
 	}
 

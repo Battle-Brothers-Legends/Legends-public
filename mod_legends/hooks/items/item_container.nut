@@ -28,11 +28,7 @@
 	o.addToBag = function ( _item, _slot = -1 )
 	{
 		if (_item == null) return false;
-
-		_item.m.AddToBagActor = getActor();
-		local result = addToBag(_item, _slot);
-		_item.m.AddToBagActor = null;
-		return result;
+		return addToBag(_item, _slot);
 	}
 
 	o.drop <- function( item )

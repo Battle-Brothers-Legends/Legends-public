@@ -4,7 +4,7 @@ this.legend_flogging_skill <- this.inherit("scripts/skills/skill", {
 	{
 		this.m.ID = "actives.legend_flogging";
 		this.m.Name = "Flogging";
-		this.m.Description = "Whip the flesh of someone nearby to inflict a slow bleed ";
+		this.m.Description = "Whip the flesh of someone nearby to inflict a slow bleed.";
 		this.m.KilledString = "Flogged";
 		this.m.Icon = "skills/bleed_square.png";
 		this.m.IconDisabled = "skills/bleed_square_bw.png";

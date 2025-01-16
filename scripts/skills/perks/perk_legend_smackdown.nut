@@ -4,7 +4,7 @@ this.perk_legend_smackdown <- this.inherit("scripts/skills/skill", {
 	},
 	function create()
 	{
-		::Const.Perks.setup(this.m, ::Const.Perks.PerkDefs.LegendSmackdown);
+		::Const.Perks.setup(this.m, ::Legends.Perk.LegendSmackdown);
 		this.m.Type = this.Const.SkillType.Perk;
 		this.m.Order = this.Const.SkillOrder.Perk;
 		this.m.IsActive = false;
@@ -29,7 +29,8 @@ this.perk_legend_smackdown <- this.inherit("scripts/skills/skill", {
 			this.m.Container.add(this.new("scripts/skills/actives/legend_prepare_knockback_skill"));
 		}
 	}
-		function onRemoved()
+
+	function onRemoved()
 	{
 		this.m.Container.removeByID("actives.legend_prepare_knockdown");
 	}
@@ -89,52 +90,36 @@ this.perk_legend_smackdown <- this.inherit("scripts/skills/skill", {
 	function onTargetHit( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor )
 	{
 		this.m.TilesUsed = [];
-		if (!_targetEntity.isAlive() || _targetEntity.isDying())
-		{
-			return false;
-		}
+		if (_skill.isRanged())
+			return;
 
-		if (_targetEntity.getCurrentProperties().IsImmuneToKnockBackAndGrab)
-		{
-			return false;
-		}
+		if (!_targetEntity.isAlive() || _targetEntity.isDying())
+			return;
+
+		if (_targetEntity.isNonCombatant())
+			return;
 
 		local user = _skill.getContainer().getActor();
 
 		if (!user.getSkills().hasSkill("effects.legend_knockback_prepared"))
-		{
-			return false;
-		}
+			return;
 
-		if (_targetEntity.isNonCombatant() || _targetEntity.getCurrentProperties().IsImmuneToKnockBackAndGrab)
-		{
-			return false;
-		}
+		if (!_targetEntity.getSkills().hasSkill("effects.legend_break_stance"))
+			_targetEntity.getSkills().add(this.new("scripts/skills/effects/legend_break_stance_effect"));
 
-
+		if (_targetEntity.getCurrentProperties().IsRooted || _targetEntity.getCurrentProperties().IsImmuneToKnockBackAndGrab)
+			return;
 
 		local knockToTile = this.findTileToKnockBackTo(user.getTile(), _targetEntity.getTile());
 
 		if (knockToTile == null)
-		{
-			return false;
-		}
+			return;
 
 		this.m.TilesUsed.push(knockToTile.ID);
 
 		if (!user.isHiddenToPlayer() && (_targetEntity.getTile().IsVisibleForPlayer || knockToTile.IsVisibleForPlayer))
 		{
 			this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(user) + " has knocked back " + this.Const.UI.getColorizedEntityName(_targetEntity));
-		}
-
-		local skills = _targetEntity.getSkills();
-		skills.removeByID("effects.shieldwall");
-		skills.removeByID("effects.spearwall");
-		skills.removeByID("effects.riposte");
-
-		if (skills.hasSkill("effects.legend_baffled"))
-		{
-			skills.add(this.new("scripts/skills/effects/legend_baffled_effect"));
 		}
 
 		_targetEntity.setCurrentMovementType(this.Const.Tactical.MovementType.Involuntary);

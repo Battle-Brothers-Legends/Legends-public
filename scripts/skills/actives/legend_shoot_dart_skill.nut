@@ -7,7 +7,7 @@ this.legend_shoot_dart_skill <- this.inherit("scripts/skills/skill", {
 	{
 		this.m.ID = "actives.legend_shoot_dart";
 		this.m.Name = "Shoot Dart";
-		this.m.Description = "A quick puff of air to propel a dart. A hit to the head will put the target to sleep, a hit to the body has a 50% chance to daze the target";
+		this.m.Description = "A quick puff of air to propel a dart. A hit to the head will put the target to sleep, a hit to the body has a 50% chance to daze the target.";
 		this.m.KilledString = "Darted";
 		this.m.Icon = "skills/blowgun_square.png";
 		this.m.IconDisabled = "skills/blowgun_square_sw.png";

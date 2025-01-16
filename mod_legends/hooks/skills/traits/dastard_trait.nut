@@ -1,17 +1,17 @@
 ::mods_hookExactClass("skills/traits/dastard_trait", function(o)
-{	
+{
 	local create = o.create;
 	o.create = function ()
 	{
 		create();
 		this.m.Description = "This character will turn tail on the first possible occasion. Better have an eye on them!";
 		this.m.Excluded.extend([
-			"trait.legend_hate_nobles",
-			"trait.legend_aggressive",
-			"trait.legend_pragmatic",
-			"trait.legend_ambitions",
-			"trait.legend_natural",
-			"trait.legend_gift_of_people"
+			::Legends.Traits.getID(::Legends.Trait.LegendHateNobles),
+			::Legends.Traits.getID(::Legends.Trait.LegendAggressive),
+			::Legends.Traits.getID(::Legends.Trait.LegendPragmatic),
+			::Legends.Traits.getID(::Legends.Trait.LegendAmbitious),
+			::Legends.Traits.getID(::Legends.Trait.LegendNatural),
+			::Legends.Traits.getID(::Legends.Trait.LegendGiftOfPeople)
 		]);
 	}
 });

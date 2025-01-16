@@ -4,11 +4,11 @@
 	o.onInit = function ()
 	{
 		onInit();
-		if("Assets" in this.World && this.World.Assets != null && this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Legendary)
+		if(::Legends.isLegendaryDifficulty())
 		{
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_fast_adaption"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_overwhelm"));
-			this.m.Skills.add(this.new("scripts/skills/traits/fearless_trait"));
+			::Legends.Perks.grant(this, ::Legends.Perk.FastAdaption);
+			::Legends.Perks.grant(this, ::Legends.Perk.Overwhelm);
+			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
 		}
 	}
 

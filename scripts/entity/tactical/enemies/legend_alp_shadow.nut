@@ -56,10 +56,10 @@ this.legend_alp_shadow <- this.inherit("scripts/entity/tactical/actor", {
 		this.m.Skills.add(this.new("scripts/skills/racial/ghost_racial"));
 		this.m.Skills.add(this.new("scripts/skills/racial/alp_racial"));
 		// basic perks
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_fearsome"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_stalwart"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_composure"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_poison_immunity"));
+		::Legends.Perks.grant(this, ::Legends.Perk.Fearsome);
+		::Legends.Perks.grant(this, ::Legends.Perk.Stalwart);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendComposure);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendPoisonImmunity);
 	}
 
 	// must be called after the onInit of the child class
@@ -90,12 +90,12 @@ this.legend_alp_shadow <- this.inherit("scripts/entity/tactical/actor", {
 		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= 150)
 			b.MeleeDefense += 5;
 
-		if ("Assets" in this.World && this.World.Assets != null && this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Legendary)
+		if (::Legends.isLegendaryDifficulty())
 		{
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_footwork"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_rotation"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_anticipation"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_dodge"));
+			::Legends.Perks.grant(this, ::Legends.Perk.Footwork);
+			::Legends.Perks.grant(this, ::Legends.Perk.Rotation);
+			::Legends.Perks.grant(this, ::Legends.Perk.Anticipation);
+			::Legends.Perks.grant(this, ::Legends.Perk.Dodge);
 		}
 
 		this.getSkills().update();

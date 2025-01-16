@@ -135,11 +135,16 @@
 			}
 		}
 
-		_out.writeU8(this.m.OwnedFollowerIDs.len());
+
 		foreach (id in this.m.OwnedFollowerIDs)
 		{
-			_out.writeString(id);
+			// this should fix the problem with crafting recipes being saved here for whatever dumb reason
+			if (::Legends.Retinue.IDs.find(id) != null) {
+				_out.writeBool(true);
+				_out.writeString(id);
+			}
 		}
+		_out.writeBool(false);
 
 		_out.writeU8(this.m.InventoryUpgrades);
 	}
@@ -165,20 +170,15 @@
 				}
 			}
 		}
-
-		if (_in.getMetaData().getVersion() <= 68)
-		{
-			foreach (slot in this.m.Slots)
-			{
-				if (slot != null)
-				{
-					this.m.OwnedFollowerIDs.push(slot.getID());
-					slot.setOwned();
+		if (::Legends.Mod.Serialization.isSavedVersionAtLeast("19.0.13", _in.getMetaData())) {
+			while(_in.readBool()) {
+				local id = _in.readString();
+				if (::Legends.Retinue.IDs.find(id) != null) {
+					this.m.OwnedFollowerIDs.push(id);
+					this.getFollower(id).setOwned();
 				}
 			}
-		}
-		else
-		{
+		} else {
 			local ownedFollowerCount = _in.readU8();
 			for (local i = 0; i < ownedFollowerCount; ++i)
 			{
@@ -187,6 +187,7 @@
 				this.getFollower(id).setOwned();
 			}
 		}
+
 
 		this.m.InventoryUpgrades = _in.readU8();
 		this.World.Assets.resetToDefaults();

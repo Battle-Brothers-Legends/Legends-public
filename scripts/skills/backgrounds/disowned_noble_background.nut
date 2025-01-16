@@ -12,12 +12,12 @@ this.disowned_noble_background <- this.inherit("scripts/skills/backgrounds/chara
 		this.m.HiringCost = 135;
 		this.m.DailyCost = 17;
 		this.m.Excluded = [
-			"trait.teamplayer",
-			"trait.clumsy",
-			"trait.fragile",
-			"trait.spartan",
-			"trait.clubfooted",
-			"trait.legend_hate_nobles"
+			::Legends.Traits.getID(::Legends.Trait.Teamplayer),
+			::Legends.Traits.getID(::Legends.Trait.Clumsy),
+			::Legends.Traits.getID(::Legends.Trait.Fragile),
+			::Legends.Traits.getID(::Legends.Trait.Spartan),
+			::Legends.Traits.getID(::Legends.Trait.Clubfooted),
+			::Legends.Traits.getID(::Legends.Trait.LegendHateNobles)
 		];
 		this.m.Titles = [
 			"the Disowned",

@@ -12,20 +12,20 @@
 	o.onInit = function ()
 	{
 		onInit();
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_dodge"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_footwork"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_recover"));
+		::Legends.Perks.grant(this, ::Legends.Perk.Dodge);
+		::Legends.Perks.grant(this, ::Legends.Perk.Footwork);
+		::Legends.Perks.grant(this, ::Legends.Perk.Recover);
 
-		if (("Assets" in this.World) && this.World.Assets != null && this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Legendary)
+		if (::Legends.isLegendaryDifficulty())
 		{
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_full_force"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_feint"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_pathfinder"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_head_hunter"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_return_favor"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_battle_forged"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_composure"));
-			this.m.Skills.add(this.new("scripts/skills/traits/fearless_trait"));
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendFullForce);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendFeint);
+			::Legends.Perks.grant(this, ::Legends.Perk.Pathfinder);
+			::Legends.Perks.grant(this, ::Legends.Perk.HeadHunter);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendReturnFavor);
+			::Legends.Perks.grant(this, ::Legends.Perk.BattleForged);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendComposure);
+			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
 		}
 	}
 
@@ -122,7 +122,7 @@
 		}
 
 		this.m.BaseProperties.DamageDirectMult *= 1.25;
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_relentless"));
+		::Legends.Perks.grant(this, ::Legends.Perk.Relentless);
 		return true;
 	}
 

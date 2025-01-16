@@ -17,7 +17,7 @@
 							"cultist_background"
 						]);
 						_event.m.Dude.getSkills().add(this.new("scripts/skills/racial/skeleton_racial"));
-						_event.m.Dude.getSkills().add(this.new("scripts/skills/traits/legend_fleshless_trait"));
+						::Legends.Traits.grant(_event.m.Dude, ::Legends.Trait.LegendFleshless);
 					}
 					if (this.World.Assets.getOrigin().getID() == "scenario.cultists")
 					{
@@ -80,7 +80,7 @@
 		local candidates_other = [];
 
 		foreach( bro in brothers ) {
-			if (bro.getSkills().hasSkill("trait.player"))
+			if (bro.getSkills().hasTrait(::Legends.Trait.Player))
 				continue;
 			if (bro.getBackground().isBackgroundType(this.Const.BackgroundType.ConvertedCultist))
 				candidates_cultist.push(bro);

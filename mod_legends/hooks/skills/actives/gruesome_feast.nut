@@ -1,5 +1,10 @@
 ::mods_hookExactClass("skills/actives/gruesome_feast", function(o)
 {
+	o.isUsable <- function ()
+	{	
+		return this.skill.isUsable() && !this.getContainer().getActor().getCurrentProperties().IsRooted;
+	}
+
 	o.onFeasted = function ( _effect )
 	{
 		local actor = _effect.getContainer().getActor();

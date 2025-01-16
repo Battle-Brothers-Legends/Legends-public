@@ -61,33 +61,33 @@
 				break;
 			}
 
-			if (bro.getSkills().hasSkill("perk.legend_pacifist"))
+			if (bro.getSkills().hasPerk(::Legends.Perk.LegendPacifist))
 			{
 				continue;
 			}
 
-			if (bro.getSkills().hasSkill("perk.legend_spawn_zombie_high"))
+			if (bro.getSkills().hasPerk(::Legends.Perk.LegendSpawnZombieHigh))
 			{
 				zombieSummonLevel = 7;
 			}
-			else if (bro.getSkills().hasSkill("perk.legend_spawn_zombie_med"))
+			else if (bro.getSkills().hasPerk(::Legends.Perk.LegendSpawnZombieMed))
 			{
 				zombieSummonLevel = 5;
 			}
-			else if (bro.getSkills().hasSkill("perk.legend_spawn_zombie_low"))
+			else if (bro.getSkills().hasPerk(::Legends.Perk.LegendSpawnZombieLow))
 			{
 				zombieSummonLevel = 2;
 			}
 
-			if (bro.getSkills().hasSkill("perk.legend_spawn_skeleton_high"))
+			if (bro.getSkills().hasPerk(::Legends.Perk.LegendSpawnSkeletonHigh))
 			{
 				skeletonSummonLevel = 7;
 			}
-			else if (bro.getSkills().hasSkill("perk.legend_spawn_skeleton_med"))
+			else if (bro.getSkills().hasPerk(::Legends.Perk.LegendSpawnSkeletonMed))
 			{
 				skeletonSummonLevel = 5;
 			}
-			else if (bro.getSkills().hasSkill("perk.legend_spawn_skeleton_low"))
+			else if (bro.getSkills().hasPerk(::Legends.Perk.LegendSpawnSkeletonLow))
 			{
 				skeletonSummonLevel = 2;
 			}
@@ -155,7 +155,7 @@
 		}
 
 		//  Scaling based on money and stash - was controversial
-		//	if (this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Legendary)
+		//	if (::Legends.isLegendaryDifficulty())
 		//	{
 		//		local items = this.World.Assets.getStash().getItems();
 		//
@@ -373,7 +373,7 @@
 
 		foreach( bro in this.World.getPlayerRoster().getAll() )
 		{
-			if (!bro.getSkills().hasSkill("perk.legend_quartermaster"))
+			if (!bro.getSkills().hasPerk(::Legends.Perk.LegendQuartermaster))
 			{
 				continue;
 			}
@@ -392,7 +392,7 @@
 
 		foreach( bro in this.World.getPlayerRoster().getAll() )
 		{
-			if (bro.getSkills().hasSkill("perk.legend_barter_paymaster"))
+			if (bro.getSkills().hasPerk(::Legends.Perk.LegendPaymaster))
 			{
 				this.m.WageMultiplier = bro.getBarterModifier();
 				return;
@@ -412,7 +412,7 @@
 		foreach (bro in this.World.getPlayerRoster().getAll())
 		{
 			barterMult += bro.getBarterModifier();
-			if (bro.getSkills().hasSkill("perk.legend_barter_greed"))
+			if (bro.getSkills().hasPerk(::Legends.Perk.LegendBarterGreed))
 			{
 				greed += 1;
 			}

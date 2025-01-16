@@ -13,13 +13,13 @@ this.militia_background <- this.inherit("scripts/skills/backgrounds/character_ba
 		this.m.HiringCost = 85;
 		this.m.DailyCost = 14;
 		this.m.Excluded = [
-			"trait.hate_undead",
-			"trait.clubfooted",
-			"trait.fat",
-			"trait.insecure",
-			"trait.dastard",
-			"trait.craven",
-			"trait.asthmatic"
+			::Legends.Traits.getID(::Legends.Trait.HateUndead),
+			::Legends.Traits.getID(::Legends.Trait.Clubfooted),
+			::Legends.Traits.getID(::Legends.Trait.Fat),
+			::Legends.Traits.getID(::Legends.Trait.Insecure),
+			::Legends.Traits.getID(::Legends.Trait.Dastard),
+			::Legends.Traits.getID(::Legends.Trait.Craven),
+			::Legends.Traits.getID(::Legends.Trait.Asthmatic)
 		];
 		this.m.Faces = this.Const.Faces.AllWhiteMale;
 		this.m.Hairs = this.Const.Hair.CommonMale;

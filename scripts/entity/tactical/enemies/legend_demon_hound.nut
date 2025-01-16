@@ -39,6 +39,10 @@ this.legend_demon_hound <- this.inherit("scripts/entity/tactical/actor", {
 			"sounds/enemies/hollen_charge_04.wav",
 			"sounds/enemies/hollen_charge_05.wav"
 		];
+		this.m.SoundOnTeleport = [
+			"sounds/enemies/ghost_death_01.wav",
+			"sounds/enemies/ghost_death_02.wav"
+		];
 		this.m.SoundPitch = this.Math.rand(90, 110) * 0.01;
 		this.getFlags().add("undead");
 		this.getFlags().add("skeleton");
@@ -50,20 +54,20 @@ this.legend_demon_hound <- this.inherit("scripts/entity/tactical/actor", {
 	{
 		this.actor.onDamageReceived(_attacker, _skill, _hitInfo);
 
-		if (this.isDying())
-		{
+		if (!this.actor.isAlive() || this.actor.isDying())
 			return;
-		}
 
+		if (_damageHitpoints >= this.actor.getHitpoints())
+			return;
 
-		// This actually doesn't really work I didn't realize when making this: If it body shots first before headshot it'll just teleport anyways, leaving here as a ujst in case eventually
+		this.Sound.play(this.m.SoundOnTeleport[this.Math.rand(0, this.m.SoundOnTeleport.len() - 1)], this.Const.Sound.Volume.Skill);
+		this.Time.scheduleEvent(this.TimeUnit.Virtual, 30, this.teleport.bindenv(this), null);
+	}
 
-		// local BodyOrHeadShot = _hitInfo.BodyPart;
-		// local SkillID = _skill.getID();
-		// //Don't teleport if it was a headshot from split man attack, because we have to wait for body shot to teleport, otherwise it doesn't matter.
-		// if (SkillID == "actives.split_man" && BodyOrHeadShot == this.Const.BodyPart.Head) {
-		// 	return;
-		// }
+	function teleport( _tag )
+	{
+		if (this.actor.getCurrentProperties().IsRooted || this.actor.getCurrentProperties().IsStunned)
+			return;
 
 		local result = {
 			TargetTile = this.getTile(),
@@ -589,13 +593,13 @@ this.legend_demon_hound <- this.inherit("scripts/entity/tactical/actor", {
 		this.setSpriteOffset("status_rooted", this.createVec(-5, -5));
 		this.m.Skills.add(this.new("scripts/skills/racial/skeleton_racial"));
 		this.m.Skills.add(this.new("scripts/skills/actives/legend_demon_hound_bite_skill"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_pathfinder"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_anticipation"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_fearsome"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_poison_immunity"));
-		 if ("Assets" in this.World && this.World.Assets != null && this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Legendary)
+		::Legends.Perks.grant(this, ::Legends.Perk.Pathfinder);
+		::Legends.Perks.grant(this, ::Legends.Perk.Anticipation);
+		::Legends.Perks.grant(this, ::Legends.Perk.Fearsome);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendPoisonImmunity);
+		 if (::Legends.isLegendaryDifficulty())
 		 {
-		 	this.m.Skills.add(this.new("scripts/skills/perks/perk_nimble"));
+		 	::Legends.Perks.grant(this, ::Legends.Perk.Nimble);
 		 }
 
 	}

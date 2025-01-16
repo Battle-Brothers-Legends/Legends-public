@@ -5,15 +5,15 @@ this.legends_zombie_low_xbow <- this.inherit("scripts/entity/tactical/legend_zom
 	{
 		this.m.SpawnType = this.Const.Tactical.Actor.LegendZombieLightXbow;
 		this.legend_zombie.onInit();
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_battle_forged"));
+		::Legends.Perks.grant(this, ::Legends.Perk.BattleForged);
 		this.m.Skills.add(this.new("scripts/skills/actives/zombie_bite"));
 		this.m.Skills.add(this.new("scripts/skills/injury_permanent/legend_rotten_flesh"));
-		if("Assets" in this.World && this.World.Assets != null && this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Legendary)
+		if(::Legends.isLegendaryDifficulty())
 		{
-		this.m.BaseProperties.Hitpoints *= 1.5;
+			this.m.BaseProperties.Hitpoints *= 1.5;
 			this.m.Hitpoints *= 1.5;
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_nine_lives"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_last_stand"));
+			::Legends.Perks.grant(this, ::Legends.Perk.NineLives);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendLastStand);
 		}
 		this.m.Skills.update();
 	}

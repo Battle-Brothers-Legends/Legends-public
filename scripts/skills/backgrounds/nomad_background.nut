@@ -12,23 +12,23 @@ this.nomad_background <- this.inherit("scripts/skills/backgrounds/character_back
 		this.m.HiringCost = 200;
 		this.m.DailyCost = 28;
 		this.m.Excluded = [
-			"trait.superstitious",
-			"trait.weasel",
-			"trait.hate_undead",
-			"trait.night_blind",
-			"trait.ailing",
-			"trait.asthmatic",
-			"trait.clubfooted",
-			"trait.hesitant",
-			"trait.loyal",
-			"trait.tiny",
-			"trait.fragile",
-			"trait.clumsy",
-			"trait.fainthearted",
-			"trait.craven",
-			"trait.bleeder",
-			"trait.dastard",
-			"trait.insecure"
+			::Legends.Traits.getID(::Legends.Trait.Superstitious),
+			::Legends.Traits.getID(::Legends.Trait.Weasel),
+			::Legends.Traits.getID(::Legends.Trait.HateUndead),
+			::Legends.Traits.getID(::Legends.Trait.NightBlind),
+			::Legends.Traits.getID(::Legends.Trait.Ailing),
+			::Legends.Traits.getID(::Legends.Trait.Asthmatic),
+			::Legends.Traits.getID(::Legends.Trait.Clubfooted),
+			::Legends.Traits.getID(::Legends.Trait.Hesistant),
+			::Legends.Traits.getID(::Legends.Trait.Loyal),
+			::Legends.Traits.getID(::Legends.Trait.Tiny),
+			::Legends.Traits.getID(::Legends.Trait.Fragile),
+			::Legends.Traits.getID(::Legends.Trait.Clumsy),
+			::Legends.Traits.getID(::Legends.Trait.Fainthearthed),
+			::Legends.Traits.getID(::Legends.Trait.Craven),
+			::Legends.Traits.getID(::Legends.Trait.Bleeder),
+			::Legends.Traits.getID(::Legends.Trait.Dastard),
+			::Legends.Traits.getID(::Legends.Trait.Insecure)
 		];
 		this.m.Titles = [
 			"the Desert Raider",
@@ -143,7 +143,7 @@ this.nomad_background <- this.inherit("scripts/skills/backgrounds/character_back
 
 	function onBuildDescription()
 	{
-		return "{Like many southerners, %name% is someone who grew up in the desert, roaming the dunes and waylaying caravans and lost travelers alike. | Born into one of the South\'s many desert tribes, %name% learned the ways of the sands before they learned anything else. | Nomads pepper the southern deserts and it is in one of these roaming bands that %name% was born. | True nomads are a rare find in the cities of the south and %name% is no different. | You rarely see a nomad outside their element in the dunes of the southern sands, but %name% stands, darkly tanned and gritting %themself% again.} {However, nomadic politics are a mite complicated. Some event, which the nomad-turned-sellsword refuses to explain, ushered %them% into the cities looking for work. | A rule of %their% tribe is that every third son must travel out to see the world and, if they so wish, return. So, here %name% stands. | Accused of sexual impropriety with a woman not formally gifted to %them%, %name% was faced with execution or exile from the tribe. Their breathing and standing before you hints at which of the two they chose. | Having murdered one of their fellow tribesman over a gambling debt, the nomad was exiled from %their% tribe. | But a disastrous ambush, which they were responsible for planning, saw %them% voted out of their particular tribe. | But the nomad wished to see more of the world, to see %themself% as more than what %they% could muster within the confines of their tribe, and so they left and ventured to the cities for adventurous work.} {The nomad stands before you every bit of their upbringing: darkly toned, eyes black, hands sanded down. If they\'s not a warrior already, they presumably could be trained into one with time. | As a man of the unbearable sands of the south, it\'s no surprise that the nomad is physically ready to take on the tasks of sellswording. Whether the skills are there is another matter entirely. | Men who venture the desert wastes are a hardy lot and %name% is no different. | Nomads such as %name% earn most of their combat experience ambushing caravans. It could be of use in a mercenary band, though frontline work is a fair bit different than waylaying poor merchants. | %name% is every bit of the South as you expect: worn down by the sands, yet standing with the constitution of a man ready to take on the day and all those to come. | %name% is unlikely to be a trained and skilled fighter quite yet, but as a man of the southern wastes there is little doubt that they has the heart and spirit of a warrior.}";
+		return "{Like many southerners, %name% is someone who grew up in the desert, roaming the dunes and waylaying caravans and lost travelers alike. | Born into one of the South\'s many desert tribes, %name% learned the ways of the sands before they learned anything else. | Nomads pepper the southern deserts and it is in one of these roaming bands that %name% was born. | True nomads are a rare find in the cities of the south and %name% is no different. | You rarely see a nomad outside their element in the dunes of the southern sands, but %name% stands, darkly tanned and gritting %themselves% again.} {However, nomadic politics are a mite complicated. Some event, which the nomad-turned-sellsword refuses to explain, ushered %them% into the cities looking for work. | A rule of %their% tribe is that every third son must travel out to see the world and, if they so wish, return. So, here %name% stands. | Accused of sexual impropriety with a woman not formally gifted to %them%, %name% was faced with execution or exile from the tribe. Their breathing and standing before you hints at which of the two they chose. | Having murdered one of their fellow tribesman over a gambling debt, the nomad was exiled from %their% tribe. | But a disastrous ambush, which they were responsible for planning, saw %them% voted out of their particular tribe. | But the nomad wished to see more of the world, to see %themselves% as more than what %they% could muster within the confines of their tribe, and so they left and ventured to the cities for adventurous work.} {The nomad stands before you every bit of their upbringing: darkly toned, eyes black, hands sanded down. If they\'s not a warrior already, they presumably could be trained into one with time. | As a man of the unbearable sands of the south, it\'s no surprise that the nomad is physically ready to take on the tasks of sellswording. Whether the skills are there is another matter entirely. | Men who venture the desert wastes are a hardy lot and %name% is no different. | Nomads such as %name% earn most of their combat experience ambushing caravans. It could be of use in a mercenary band, though frontline work is a fair bit different than waylaying poor merchants. | %name% is every bit of the South as you expect: worn down by the sands, yet standing with the constitution of a man ready to take on the day and all those to come. | %name% is unlikely to be a trained and skilled fighter quite yet, but as a man of the southern wastes there is little doubt that they has the heart and spirit of a warrior.}";
 	}
 
 	function updateAppearance()
@@ -200,7 +200,7 @@ this.nomad_background <- this.inherit("scripts/skills/backgrounds/character_back
 	function onAdded()
 	{
 		this.character_background.onAdded();
-		this.m.Container.add(this.new("scripts/skills/perks/perk_legend_throw_sand"));
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendThrowSand);
 	}
 
 	function onAddEquipment()

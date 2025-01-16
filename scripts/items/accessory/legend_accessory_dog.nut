@@ -25,29 +25,16 @@ this.legend_accessory_dog <- this.inherit("scripts/items/accessory/accessory", {
 
 	function isAllowedInBag()
 	{
-		//Wierd work around - since player stash queries this in order to enabled drag/drop onto
-		//paperdoll - but there is no actor or container yet so we have to allow
-		//all wardogs to be allowed in bag , and then when the addToBag check calls
-		//this function again, we can check actor and set it to false if not perk
-		//is present
-		if (::MSU.isNull(m.AddToBagActor) && ::MSU.isNull(getContainer()))
+		if (this.getContainer() == null)
 			return true;
-
-		return !::MSU.isNull(m.AddToBagActor) && m.AddToBagActor.getSkills().hasSkill("perk.legend_packleader");
+		return this.getContainer().getActor().getSkills().hasPerk(::Legends.Perk.LegendPackleader);
 	}
 
 	function isChangeableInBattle()
 	{
-		//Wierd work around - since player stash queries this in order to enabled drag/drop onto
-		//paperdoll - but there is no actor or container yet so we have to allow
-		//all wardogs to be allowed in bag , and then when the addToBag check calls
-		//this function again, we can check actor and set it to false if not perk
-		//is present
-
-		if (::MSU.isNull(m.IsChangeableInBattleActor) && ::MSU.isNull(getContainer()))
+		if (this.getContainer() == null)
 			return true;
-
-		return !::MSU.isNull(m.IsChangeableInBattleActor) && m.IsChangeableInBattleActor.getSkills().hasSkill("perk.legend_packleader");
+		return this.getContainer().getActor().getSkills().hasPerk(::Legends.Perk.LegendPackleader);
 	}
 
 	function isUnleashed()
@@ -128,11 +115,11 @@ this.legend_accessory_dog <- this.inherit("scripts/items/accessory/accessory", {
 			entity.setName(this.getName());
 			entity.setVariant(this.getVariant());
 
-			if (this.getContainer().getActor().getSkills().hasSkill("perk.legend_dogwhisperer"))
+			if (this.getContainer().getActor().getSkills().hasPerk(::Legends.Perk.LegendDogWhisperer))
 			{
-				entity.getSkills().add(this.new("scripts/skills/perks/perk_fortified_mind"));
-				entity.getSkills().add(this.new("scripts/skills/perks/perk_colossus"));
-				entity.getSkills().add(this.new("scripts/skills/perks/perk_underdog"));
+				::Legends.Perks.grant(entity, ::Legends.Perk.FortifiedMind);
+				::Legends.Perks.grant(entity, ::Legends.Perk.Colossus);
+				::Legends.Perks.grant(entity, ::Legends.Perk.Underdog);
 			}
 
 			this.setEntity(entity);

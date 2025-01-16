@@ -284,7 +284,7 @@ class Defs:
  "title" :  "Flat Top Helm",
  "desc" :  "A flat full-metal helmet with noseguard."
  },
-{"name" : "flat_top_helm_polished"                     , "layer" : "helm", "min" : 1, "max" : 6, "value" : 550, "con" : 100, "stam" : -5, "vis" : -1, "hair" : "true", "beard" : "false",
+{"name" : "flat_top_helm_polished"                     , "layer" : "helm", "min" : 1, "max" : 6, "value" : 750, "con" : 100, "stam" : -5, "vis" : -1, "hair" : "true", "beard" : "false",
  "title" :  "Hardened Flat Top Helm",
  "desc" :  "An outstandingly well made and maintained flat full-metal helmet with noseguard."
  },
@@ -296,15 +296,15 @@ class Defs:
  "title" :  "Barbute",
  "desc" :  "A superb barbute helmet of foreign origin, this helmet has been blackened and polished to a dark shine. "
  },
-{"name" : "horsetail"                     , "layer" : "helm", "min" : 1, "max" : 6, "value" : 200, "con" : 60, "stam" : -3, "vis" : -1, "hair" : "true", "beard" : "false",
+{"name" : "horsetail"                     , "layer" : "helm", "min" : 1, "max" : 6, "value" : 350, "con" : 60, "stam" : -3, "vis" : -1, "hair" : "true", "beard" : "false",
  "title" :  "Steppe Helm",
  "desc" :  "A nasal helmet witch an attached mail neck guard fashioned in the way of the steppe folks."
  },
-{"name" : "basinet"                     , "layer" : "helm", "min" : 1, "max" : 7, "value" : 1250, "con" : 80, "stam" : -5, "vis" : -1, "hair" : "true", "beard" : "false",
+{"name" : "basinet"                     , "layer" : "helm", "min" : 1, "max" : 7, "value" : 400, "con" : 80, "stam" : -5, "vis" : -1, "hair" : "true", "beard" : "false",
  "title" :  "Bascinet",
  "desc" :  "A well made metal bascinet."
  },
-{"name" : "bascinet_named"                     , "layer" : "helm", "min" : 1, "max" : 1, "value" : 2500, "con" : 90, "stam" : -4, "vis" : -1, "hair" : "true", "beard" : "false", "named" : True, "rmaxViz" : 0, "rminViz" : 1, "rmaxStam" : 2, "rminStam" : 4, "rminCond" : 90, "rmaxCond" : 115, "names" : Names,
+{"name" : "bascinet_named"                     , "layer" : "helm", "min" : 1, "max" : 1, "value" : 1700, "con" : 90, "stam" : -4, "vis" : -1, "hair" : "true", "beard" : "false", "named" : True, "rmaxViz" : 0, "rminViz" : 1, "rmaxStam" : 2, "rminStam" : 4, "rminCond" : 90, "rmaxCond" : 115, "names" : Names,
  "title" :  "Bascinet",
  "desc" :  "A heavy and durable bascinet. This one has a pointed head and is blackened."
  },
@@ -526,26 +526,6 @@ class Defs:
  },
 
 
-{"name" : "hood_cloth_round"                     , "layer" : "top", "min" : 1, "max" : 1, "value" : 5, "con" : 5, "stam" : 0, "vis" : 0, "hair" : "true", "beard" : "false",
- "title" :  "Round Hood Cloth",
- "desc" :  "A simple hood to protect against weather and scratches."
- },
-{"name" : "hood_cloth_wide"                     , "layer" : "top", "min" : 1, "max" : 2,  "value" : 5, "con" : 5, "stam" : 0, "vis" : 0, "hair" : "true", "beard" : "false",
- "title" :  "Wide Hood Cloth",
- "desc" :  "A simple hood to protect against weather and scratches."
- },
-{"name" : "hood_cloth_square"                     , "layer" : "top", "min" : 1, "max" : 1, "value" : 5, "con" : 5, "stam" : 0, "vis" : 0, "hair" : "true", "beard" : "false",
- "title" :  "Square Hood Cloth",
- "desc" :  "A simple hood to protect against weather and scratches."
- },
-{"name" : "cloth_long_hood"                     , "layer" : "top", "min" : 1, "max" : 4, "value" : 30, "con" : 10, "stam" : 0, "vis" : 0, "hair" : "true", "beard" : "false",
- "title" :  "Cloth Long Hood",
- "desc" :  "A simple hood to protect against weather and scratches."
- },
-{"name" : "cloth_long_hood"                     , "layer" : "top", "min" : 1, "max" : 4, "value" : 30, "con" : 10, "stam" : 0, "vis" : 0, "hair" : "true", "beard" : "false",
- "title" :  "Cloth Long Hood",
- "desc" :  "A simple hood to protect against weather and scratches."
- },
 {"name" : "mask_beak"                     , "layer" : "top", "min" : 1, "max" : 1, "value" : 50, "con" : 20, "stam" : -1, "vis" : -1, "hair" : "true", "beard" : "false",
  "title" :  "Physicians Mask",
  "desc" :  "a distinctive, bird-like mask. The beak acts as a ventilator, containing sweet-smelling herbs to ward away sickness and disease"
@@ -795,7 +775,22 @@ class Defs:
  },
 
 
-
+{"name" : "hood_cloth_round"                     , "layer" : "vanity", "min" : 1, "max" : 1, "value" : 5, "con" : 5, "stam" : 0, "vis" : 0, "hair" : "true", "beard" : "false",
+ "title" :  "Round Hood Cloth",
+ "desc" :  "A simple hood to protect against weather and scratches."
+ },
+{"name" : "hood_cloth_wide"                     , "layer" : "vanity", "min" : 1, "max" : 2,  "value" : 5, "con" : 5, "stam" : 0, "vis" : 0, "hair" : "true", "beard" : "false",
+ "title" :  "Wide Hood Cloth",
+ "desc" :  "A simple hood to protect against weather and scratches."
+ },
+{"name" : "hood_cloth_square"                     , "layer" : "vanity", "min" : 1, "max" : 1, "value" : 5, "con" : 5, "stam" : 0, "vis" : 0, "hair" : "true", "beard" : "false",
+ "title" :  "Square Hood Cloth",
+ "desc" :  "A simple hood to protect against weather and scratches."
+ },
+{"name" : "hood_cloth_long"                     , "layer" : "vanity", "min" : 1, "max" : 4, "value" : 30, "con" : 10, "stam" : 0, "vis" : 0, "hair" : "true", "beard" : "false",
+ "title" :  "Cloth Long Hood",
+ "desc" :  "A simple hood to protect against weather and scratches."
+ },
 {"name" : "noble_southern_crown"                     , "layer" : "vanity", "min" : 1, "max" : 1, "value" : 100, "con" : 5, "stam" : 0, "vis" : 0, "hair" : "true", "beard" : "false",
  "title" :  "Vizier Peak",
  "desc" :  "The crown of a southern vizier."

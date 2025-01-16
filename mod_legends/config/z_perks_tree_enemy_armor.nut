@@ -49,11 +49,11 @@ if (!("Perks" in ::Const))
 		[],
 		[],
 		[
-            ::Const.Perks.PerkDefs.BattleForged
+            ::Legends.Perk.BattleForged
         ],
 		[
-            ::Const.Perks.PerkDefs.LegendMuscularity,
-            ::Const.Perks.PerkDefs.LegendFullForce
+            ::Legends.Perk.LegendMuscularity,
+            ::Legends.Perk.LegendFullForce
         ]
 	]
 };

@@ -4,15 +4,15 @@
 	o.onInit = function ()
 	{
 		onInit();
-		if ("Assets" in this.World && this.World.Assets != null && this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Legendary)
+		if (::Legends.isLegendaryDifficulty())
 		{
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_overwhelm"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_onslaught"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_alert"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_balance"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_backstabber"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_mastery_fist"));
-			this.m.Skills.add(this.new("scripts/skills/traits/fearless_trait"));
+			::Legends.Perks.grant(this, ::Legends.Perk.Overwhelm);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendOnslaught);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendAlert);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendBalance);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendStrengthInNumbers);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecFists);
+			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
 		}
 	}
 
@@ -94,7 +94,7 @@
 			this.m.Items.equip(this.Const.World.Common.pickHelmet(weightName));
 		}
 
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_fearsome"));
+		::Legends.Perks.grant(this, ::Legends.Perk.Fearsome);
 		return true;
 	}
 
@@ -123,5 +123,4 @@
 			}
 		}
 	}
-
 });

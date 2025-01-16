@@ -12,22 +12,22 @@ this.legend_noble_commander_background <- this.inherit("scripts/skills/backgroun
 		this.m.HiringCost = 25000;
 		this.m.DailyCost = 25;
 		this.m.Excluded = [
-			"trait.weasel",
-			"trait.fear_beasts",
-			"trait.clubfooted",
-			"trait.irrational",
-			"trait.hesitant",
-			"trait.drunkard",
-			"trait.fainthearted",
-			"trait.craven",
-			"trait.dastard",
-			"trait.fragile",
-			"trait.insecure",
-			"trait.asthmatic",
-			"trait.spartan",
-			"trait.disloyal",
-			"trait.loyal",
-			"trait.legend_double_tongued"
+			::Legends.Traits.getID(::Legends.Trait.Weasel),
+			::Legends.Traits.getID(::Legends.Trait.FearBeasts),
+			::Legends.Traits.getID(::Legends.Trait.Clubfooted),
+			::Legends.Traits.getID(::Legends.Trait.Irrational),
+			::Legends.Traits.getID(::Legends.Trait.Hesistant),
+			::Legends.Traits.getID(::Legends.Trait.Drunkard),
+			::Legends.Traits.getID(::Legends.Trait.Fainthearthed),
+			::Legends.Traits.getID(::Legends.Trait.Craven),
+			::Legends.Traits.getID(::Legends.Trait.Dastard),
+			::Legends.Traits.getID(::Legends.Trait.Fragile),
+			::Legends.Traits.getID(::Legends.Trait.Insecure),
+			::Legends.Traits.getID(::Legends.Trait.Asthmatic),
+			::Legends.Traits.getID(::Legends.Trait.Spartan),
+			::Legends.Traits.getID(::Legends.Trait.Disloyal),
+			::Legends.Traits.getID(::Legends.Trait.Loyal),
+			::Legends.Traits.getID(::Legends.Trait.LegendDoubleTongued)
 		];
 		this.m.Faces = this.Const.Faces.AllWhiteMale;
 		this.m.Hairs = this.Const.Hair.TidyMale;

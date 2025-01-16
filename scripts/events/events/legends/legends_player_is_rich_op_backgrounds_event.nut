@@ -151,12 +151,12 @@ this.legends_player_is_rich_op_backgrounds_event <- this.inherit("scripts/events
 
 				foreach( bro in brothers )
 				{
-					if (bro.getSkills().hasSkill("trait.player"))
+					if (bro.getSkills().hasTrait(::Legends.Trait.Player))
 					{
 						continue;
 					}
 
-					if (bro.getSkills().hasSkill("trait.greedy"))
+					if (bro.getSkills().hasTrait(::Legends.Trait.Greedy))
 					{
 						bro.worsenMood(2.0, "Was denied a pay raise");
 
@@ -169,16 +169,16 @@ this.legends_player_is_rich_op_backgrounds_event <- this.inherit("scripts/events
 							});
 						}
 					}
-					else if (!bro.getBackground().isExcluded("trait.greedy"))
+					else if (!bro.getBackground().isExcluded(::Legends.Traits.getID(::Legends.Trait.Greedy)))
 					{
 						if (this.Math.rand(1, 100) <= 20)
 						{
-							local trait = this.new("scripts/skills/traits/greedy_trait");
-							bro.getSkills().add(trait);
-							this.List.push({
-								id = 10,
-								icon = trait.getIcon(),
-								text = bro.getName() + " gets greedy"
+							::Legends.Traits.grant(bro, ::Legends.Trait.Greedy, function (_trait) {
+								this.List.push({
+									id = 10,
+									icon = _trait.getIcon(),
+									text = bro.getName() + " gets greedy"
+								});
 							});
 						}
 						else
@@ -269,7 +269,7 @@ this.legends_player_is_rich_op_backgrounds_event <- this.inherit("scripts/events
 
 		foreach( bro in brothers )
 		{
-			if (bro.getSkills().hasSkill("trait.player") && bro.getBackground().getID() != "background.legend_trader_commander")
+			if (bro.getSkills().hasTrait(::Legends.Trait.Player) && bro.getBackground().getID() != "background.legend_trader_commander")
 			{
 				continue;
 			}

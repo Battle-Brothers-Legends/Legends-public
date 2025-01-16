@@ -2,7 +2,7 @@ this.perk_legend_bloodbath <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		::Const.Perks.setup(this.m, ::Const.Perks.PerkDefs.LegendBloodbath);
+		::Const.Perks.setup(this.m, ::Legends.Perk.LegendBloodbath);
 		this.m.Type = this.Const.SkillType.Perk | this.Const.SkillType.StatusEffect;
 		this.m.Order = this.Const.SkillOrder.Perk;
 		this.m.IsActive = false;
@@ -38,7 +38,7 @@ this.perk_legend_bloodbath <- this.inherit("scripts/skills/skill", {
 				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+" + fatigueRegen + "%[/color] Fatigue Recovery per turn"
 			}]);
 		}
-		
+
 		return tooltip;
 	}
 

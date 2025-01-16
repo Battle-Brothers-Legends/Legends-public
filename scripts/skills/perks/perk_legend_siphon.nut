@@ -2,7 +2,7 @@ this.perk_legend_siphon <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		::Const.Perks.setup(this.m, ::Const.Perks.PerkDefs.LegendSiphon);
+		::Const.Perks.setup(this.m, ::Legends.Perk.LegendSiphon);
 		this.m.Overlay = "active_42";
 		this.m.Type = this.Const.SkillType.Perk;
 		this.m.Order = this.Const.SkillOrder.Perk;

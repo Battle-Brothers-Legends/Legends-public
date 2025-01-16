@@ -57,22 +57,22 @@
 		local b = this.m.BaseProperties;
 		this.m.Skills.add(this.new("scripts/skills/actives/legend_wither_skill"));
 
-		if("Assets" in this.World && this.World.Assets != null && this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Legendary)
+		if(::Legends.isLegendaryDifficulty())
 		{
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_inspiring_presence"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_anticipation"));
+			::Legends.Perks.grant(this, ::Legends.Perk.InspiringPresence);
+			::Legends.Perks.grant(this, ::Legends.Perk.Anticipation);
 			this.m.Skills.add(this.new("scripts/skills/actives/legend_magic_missile_skill"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_composure"));
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendComposure);
+			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
 			b.Initiative += 50;
 			b.RangedSkill += 75;
 			b.Stamina += 70;
-			this.m.Skills.add(this.new("scripts/skills/traits/fearless_trait"));
 		}
 	}
 
 	o.assignRandomEquipment = function ()
 	{
-		 if("Assets" in this.World && this.World.Assets != null && this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Legendary)
+		 if(::Legends.isLegendaryDifficulty())
 		 {
 		 this.m.Items.equip(this.new("scripts/items/weapons/legend_staff_gnarled"));
 		 }

@@ -63,7 +63,7 @@ this.legend_redback_spider_poison_effect <- this.inherit("scripts/skills/skill",
 	function getDescription()
 	{
 		local timeDamage = (this.m.Damage * this.m.TurnsLeft);
-		if("Assets" in this.World && this.World.Assets != null && this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Legendary)
+		if(::Legends.isLegendaryDifficulty())
 		{
 			timeDamage *= 2;
 		}
@@ -74,7 +74,7 @@ this.legend_redback_spider_poison_effect <- this.inherit("scripts/skills/skill",
 	{
 		this.m.TurnsLeft = this.Math.max(1, 10 + this.getContainer().getActor().getCurrentProperties().NegativeStatusEffectDuration);
 
-		if (this.getContainer().hasSkill("trait.ailing"))
+		if (this.getContainer().hasTrait(::Legends.Trait.Ailing))
 		{
 			++this.m.TurnsLeft;
 		}
@@ -95,8 +95,8 @@ this.legend_redback_spider_poison_effect <- this.inherit("scripts/skills/skill",
 			local timeDamage = (this.m.Damage * this.m.TurnsLeft);
 			local hitInfo = clone this.Const.Tactical.HitInfo;
 			hitInfo.DamageRegular = timeDamage;
-		
-		if ("Assets" in this.World && this.World.Assets != null && this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Legendary)
+
+		if (::Legends.isLegendaryDifficulty())
 			{
 			local timeDamage = (this.m.Damage * this.m.TurnsLeft);
 			hitInfo.DamageRegular = 2 * timeDamage;
@@ -115,7 +115,7 @@ this.legend_redback_spider_poison_effect <- this.inherit("scripts/skills/skill",
 	{
 		this.m.TurnsLeft = this.Math.max(1, 10 + this.getContainer().getActor().getCurrentProperties().NegativeStatusEffectDuration);
 
-		if (this.getContainer().hasSkill("trait.ailing"))
+		if (this.getContainer().hasTrait(::Legends.Trait.Ailing))
 		{
 			++this.m.TurnsLeft;
 		}

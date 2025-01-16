@@ -365,10 +365,11 @@ this.legend_hunting_basilisks_contract <- this.inherit("scripts/contracts/contra
 					"hunter_background"
 				]);
 
-				if (!this.Contract.m.Dude.getSkills().hasSkill("trait.fear_beasts") && !this.Contract.m.Dude.getSkills().hasSkill("trait.hate_beasts"))
+				if (!this.Contract.m.Dude.getSkills().hasTrait(::Legends.Trait.FearBeasts) && !this.Contract.m.Dude.getSkills().hasTrait(::Legends.Trait.HateBeasts))
 				{
-					this.Contract.m.Dude.getSkills().removeByID("trait.fearless");
-					this.Contract.m.Dude.getSkills().add(this.new("scripts/skills/traits/fear_beasts_trait"));
+					::Legends.Traits.remove(this.Contract.m.Dude, ::Legends.Trait.Fearless);
+
+					::Legends.Traits.grant(this.Contract.m.Dude, ::Legends.Trait.FearBeasts);
 				}
 
 				this.Contract.m.Dude.getBackground().m.RawDescription = "You found %name% cornered by basilisks in the woods where the hunter quickly became the hunted and climbed a tree to survive. While they jest about the situation with everyone else, you can\'t help but notice a simmering anger whenever they see a coup of chickens.";

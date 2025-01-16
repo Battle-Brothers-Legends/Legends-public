@@ -37,7 +37,7 @@ this.paladins_scenario <- this.inherit("scripts/scenarios/world/starting_scenari
 		bros[0].m.PerkPoints = 2;
 		bros[0].m.LevelUps = 2;
 		bros[0].m.Level = 3;
-		bros[0].getSkills().add(this.new("scripts/skills/traits/old_trait"));
+		::Legends.Traits.grant(bros[0], ::Legends.Trait.Old);
 		bros[0].m.Talents = [];
 		local talents = bros[0].getTalents();
 		talents.resize(this.Const.Attributes.COUNT, 0);
@@ -62,8 +62,8 @@ this.paladins_scenario <- this.inherit("scripts/scenarios/world/starting_scenari
 		armor.setUpgrade(plate);
 		armor.setUpgrade(attach);
 		items.equip(armor);
-		
-		
+
+
 		items.equip(this.new("scripts/items/accessory/oathtaker_skull_01_item"));
 		local banner = this.new("scripts/items/tools/player_banner");
 		banner.setVariant(this.World.Assets.getBannerID());
@@ -73,7 +73,7 @@ this.paladins_scenario <- this.inherit("scripts/scenarios/world/starting_scenari
 		]);
 		bros[1].getBackground().m.RawDescription = "{%name%, like many of the Oathtakers\' more spry members, strives to be like Young Anselm. A youthful, capable man who has yet to let the world\'s horrors and grind wear him down. In moments of honesty, he reminds you of yourself. In moments of reflection, you realize that he will likely one day resemble you as you are now. But until then, to the youth of the world, for the Oaths are certainly not wasted upon them! | When Anselm set out on his quest, it was %name% whom joined him first. Despite the Young Anselm\'s untimely death, %name% still sought to see the young man\'s vision through. He is an ardent believer in the Oaths and can be frequently found idolizing and commemorating Young Anselm\'s skull.}";
 		bros[1].setPlaceInFormation(5);
-		bros[1].setVeteranPerks(2);		
+		bros[1].setVeteranPerks(2);
 		bros[1].m.PerkPoints = 0;
 		bros[1].m.LevelUps = 0;
 		bros[1].m.Level = 1;
@@ -88,7 +88,7 @@ this.paladins_scenario <- this.inherit("scripts/scenarios/world/starting_scenari
 		items.unequip(items.getItemAtSlot(this.Const.ItemSlot.Head));
 		items.unequip(items.getItemAtSlot(this.Const.ItemSlot.Mainhand));
 		items.unequip(items.getItemAtSlot(this.Const.ItemSlot.Offhand));
-		
+
 		local hood = this.new("scripts/items/legend_helmets/hood/legend_helmet_padded_cap");
 		local helm = this.new("scripts/items/legend_helmets/helm/legend_helmet_flat_top_helm");
 		local top = this.new("scripts/items/legend_helmets/top/legend_helmet_faceplate_flat");
@@ -108,8 +108,8 @@ this.paladins_scenario <- this.inherit("scripts/scenarios/world/starting_scenari
 		armor.setUpgrade(cloak);
 		armor.setUpgrade(attach);
 		items.equip(armor);
-		
-		
+
+
 		items.equip(this.new("scripts/items/weapons/arming_sword"));
 		local shield = this.new("scripts/items/shields/heater_shield");
 		shield.onPaintInCompanyColors();
@@ -200,53 +200,53 @@ this.paladins_scenario <- this.inherit("scripts/scenarios/world/starting_scenari
 			switch(this.World.Ambitions.getActiveAmbition().getID())
 			{
 			case "ambition.oath_of_humility":
-				_bro.getSkills().add(this.new("scripts/skills/traits/oath_of_humility_trait"));
+				::Legends.Traits.grant(_bro, ::Legends.Trait.OathOfHumility);
 				break;
 
 			case "ambition.oath_of_valor":
-				_bro.getSkills().add(this.new("scripts/skills/traits/oath_of_valor_trait"));
+				::Legends.Traits.grant(_bro, ::Legends.Trait.OathOfValor);
 				break;
 
 			case "ambition.oath_of_endurance":
-				_bro.getSkills().add(this.new("scripts/skills/traits/oath_of_endurance_trait"));
+				::Legends.Traits.grant(_bro, ::Legends.Trait.OathOfEndurance);
 				break;
 
 			case "ambition.oath_of_vengeance":
-				_bro.getSkills().add(this.new("scripts/skills/traits/oath_of_vengeance_trait"));
+				::Legends.Traits.grant(_bro, ::Legends.Trait.OathOfVengeance);
 				break;
 
 			case "ambition.oath_of_righteousness":
-				_bro.getSkills().add(this.new("scripts/skills/traits/oath_of_righteousness_trait"));
+				::Legends.Traits.grant(_bro, ::Legends.Trait.OathOfRighteousness);
 				break;
 
 			case "ambition.oath_of_dominion":
-				_bro.getSkills().add(this.new("scripts/skills/traits/oath_of_dominion_trait"));
+				::Legends.Traits.grant(_bro, ::Legends.Trait.OathOfDominion);
 				break;
 
 			case "ambition.oath_of_wrath":
-				_bro.getSkills().add(this.new("scripts/skills/traits/oath_of_wrath_trait"));
+				::Legends.Traits.grant(_bro, ::Legends.Trait.OathOfWrath);
 				break;
 
 			case "ambition.oath_of_honor":
-				_bro.getSkills().add(this.new("scripts/skills/traits/oath_of_honor_trait"));
+				::Legends.Traits.grant(_bro, ::Legends.Trait.OathOfHonor);
 				_bro.getSkills().add(this.new("scripts/skills/special/oath_of_honor_warning"));
 				break;
 
 			case "ambition.oath_of_camaraderie":
-				_bro.getSkills().add(this.new("scripts/skills/traits/oath_of_camaraderie_trait"));
+				::Legends.Traits.grant(_bro, ::Legends.Trait.OathOfCamaderie);
 				break;
 
 			case "ambition.oath_of_sacrifice":
-				_bro.getSkills().add(this.new("scripts/skills/traits/oath_of_sacrifice_trait"));
+				::Legends.Traits.grant(_bro, ::Legends.Trait.OathOfSacrifice);
 				break;
 
 			case "ambition.oath_of_fortification":
-				_bro.getSkills().add(this.new("scripts/skills/traits/oath_of_fortification_trait"));
+				::Legends.Traits.grant(_bro, ::Legends.Trait.OathOfFortification);
 				_bro.getSkills().add(this.new("scripts/skills/special/oath_of_fortification_warning"));
 				break;
 
 			case "ambition.oath_of_distinction":
-				_bro.getSkills().add(this.new("scripts/skills/traits/oath_of_distinction_trait"));
+				::Legends.Traits.grant(_bro, ::Legends.Trait.OathOfDistinction);
 				_bro.getFlags().set("OathtakersDistinctionLevelUps", 0);
 				break;
 			}

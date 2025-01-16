@@ -75,9 +75,9 @@
 				case bro.getBackground().getID() == "background.legend_commander_berserker":
 				case bro.getBackground().getID() == "background.legend_berserker":
 				case bro.getBackground().getID() == "background.legend_donkey":
-				case bro.getSkills().hasSkill("trait.bright"):
+				case bro.getSkills().hasTrait(::Legends.Trait.Bright):
 					continue;
-				case bro.getSkills().hasSkill("trait.dumb"):
+				case bro.getSkills().hasTrait(::Legends.Trait.Dumb):
 				case bro.getSkills().hasSkill("injury.brain_damage"):
 					uneducated_candidates.push(bro);
 					continue;

@@ -41,7 +41,7 @@ this.legend_vala_chant <- this.inherit("scripts/skills/skill", {
 		if (::MSU.isNull(this.m.Vala))
 			return false;
 
-		return this.m.Vala.getSkills().hasSkill("perk.legend_vala_chanting_mastery");
+		return this.m.Vala.getSkills().hasPerk(::Legends.Perk.LegendValaChantMastery);
 	}
 
 	function doValaChecks()

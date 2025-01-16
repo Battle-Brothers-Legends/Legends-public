@@ -12,22 +12,22 @@ this.witchhunter_background <- this.inherit("scripts/skills/backgrounds/characte
 		this.m.HiringCost = 100;
 		this.m.DailyCost = 13;
 		this.m.Excluded = [
-			"trait.weasel",
-			"trait.teamplayer",
-			"trait.fear_undead",
-			"trait.fear_beasts",
-			"trait.fear_greenskins",
-			"trait.legend_fear_nobles",
-			"trait.hate_beasts",
-			"trait.clubfooted",
-			"trait.short_sighted",
-			"trait.insecure",
-			"trait.hesitant",
-			"trait.craven",
-			"trait.fainthearted",
-			"trait.dumb",
-			"trait.superstitious",
-			"trait.drunkard"
+			::Legends.Traits.getID(::Legends.Trait.Weasel),
+			::Legends.Traits.getID(::Legends.Trait.Teamplayer),
+			::Legends.Traits.getID(::Legends.Trait.FearUndead),
+			::Legends.Traits.getID(::Legends.Trait.FearBeasts),
+			::Legends.Traits.getID(::Legends.Trait.FearGreenskins),
+			::Legends.Traits.getID(::Legends.Trait.LegendFearNobles),
+			::Legends.Traits.getID(::Legends.Trait.HateBeasts),
+			::Legends.Traits.getID(::Legends.Trait.Clubfooted),
+			::Legends.Traits.getID(::Legends.Trait.ShortSighted),
+			::Legends.Traits.getID(::Legends.Trait.Insecure),
+			::Legends.Traits.getID(::Legends.Trait.Hesistant),
+			::Legends.Traits.getID(::Legends.Trait.Craven),
+			::Legends.Traits.getID(::Legends.Trait.Fainthearthed),
+			::Legends.Traits.getID(::Legends.Trait.Dumb),
+			::Legends.Traits.getID(::Legends.Trait.Superstitious),
+			::Legends.Traits.getID(::Legends.Trait.Drunkard)
 		];
 		this.m.Faces = this.Const.Faces.AllWhiteMale;
 		this.m.Hairs = this.Const.Hair.CommonMale;

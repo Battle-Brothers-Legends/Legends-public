@@ -81,7 +81,7 @@ this.legend_magic_missile_skill <- this.inherit("scripts/skills/legend_magic_ski
 
 	function isUsable()
 	{
-		if (!this.getContainer().getActor().isArmedWithMagicStaff()) 
+		if (!this.getContainer().getActor().isArmedWithMagicStaff())
 		{
 			return false
 		}
@@ -94,12 +94,12 @@ this.legend_magic_missile_skill <- this.inherit("scripts/skills/legend_magic_ski
 		this.m.MaxRange = this.m.Range - 1 + (_properties.IsSpecializedInStaves ? 1 : 0);
 		this.m.FatigueCostMult = _properties.IsSpecializedInStaves ? this.Const.Combat.WeaponSpecFatigueMult : 1.0;
 		this.m.ActionPointCost = _properties.IsSpecializedInStaves ? 5 : 6;
-		
-		if (this.m.Container.hasSkill("perk.legend_mastery_magic_missile_focus"))
+
+		if (this.m.Container.hasPerk(::Legends.Perk.LegendMagicMissileFocus))
 		{
-			this.m.ActionPointCost -= 1;	
+			this.m.ActionPointCost -= 1;
 		}
-		if (this.m.Container.hasSkill("perk.legend_mastery_magic_missile_mastery"))
+		if (this.m.Container.hasPerk(::Legends.Perk.LegendMagicMissileMastery))
 		{
 			this.m.ActionPointCost -= 1;
 			this.m.FatigueCost -= 6;

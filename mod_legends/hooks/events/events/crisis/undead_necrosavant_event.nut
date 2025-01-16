@@ -50,7 +50,7 @@
 				_event.m.Warlock.getFlags().add("skeleton");
 				_event.m.Warlock.setStartValuesEx(["legend_necro_background"]);
 				_event.m.Warlock.getSkills().add(this.new("scripts/skills/racial/skeleton_racial"));
-				_event.m.Warlock.getSkills().add(this.new("scripts/skills/traits/legend_fleshless_trait"));
+				::Legends.Traits.grant(_event.m.Warlock, ::Legends.Trait.LegendFleshless);
 				this.Characters.push(_event.m.Warlock.getImagePath());
 			}
 		});

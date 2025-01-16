@@ -12,7 +12,7 @@ this.legend_choke_skill <- this.inherit("scripts/skills/skill", {
 	{
 		this.m.ID = "actives.legend_choke";
 		this.m.Name = "Choke";
-		this.m.Description = "A well-placed attack at the opponent\'s neck. Ignores all armor but is harder to hit with. Hit chance is based on target's fatigue. Damage is based on the difference in fatigue. Deals 50% damage vs grappled or choked enemies. Hit chance is increased against grappled, stunned, netted, dazed, parried or sleeping enemies";
+		this.m.Description = "A well-placed attack at an opponent\'s neck. Ignores all armor but is harder to hit with. Hit chance is based on target's fatigue. Damage is based on the difference in fatigue. Deals 50% damage against grappled or choked enemies. Hit chance is increased against grappled, stunned, netted, dazed, parried or sleeping enemies.";
 		this.m.KilledString = "Choked";
 		this.m.Icon = "skills/choke_square.png";
 		this.m.IconDisabled = "skills/choke_square_bw.png";
@@ -59,7 +59,7 @@ this.legend_choke_skill <- this.inherit("scripts/skills/skill", {
 		local damage_min = 10; // Manual workaround because we're doing the math manually. Based on decapitate code
 		local damage_max = 15;
 		local has_unarmed_background = false;
-		if (this.getContainer().getActor().getSkills().hasSkill("perk.legend_muscularity"))
+		if (this.getContainer().getActor().getSkills().hasPerk(::Legends.Perk.LegendMuscularity))
 			{
 				local muscularity = this.Math.floor(actor.getHitpoints() * 0.1);
 				damage_min = damage_min + muscularity;
@@ -286,11 +286,27 @@ this.legend_choke_skill <- this.inherit("scripts/skills/skill", {
 		_properties.HitChance[this.Const.BodyPart.Head] += 90.0; // copied what was used in lash for flails.
 
 		local items = actor.getItems().getAllItems();
+		local hasCestus = false;
+		local hasWraps = false;
+		local hasGauntlets = false;
 		foreach (item in items)
 		{
-			if (item.getID() == "accessory.legend_cestus" || item.getID() == "accessory.legend_hand_wraps")
-				_properties.DamageTotalMult *= 1.1;
-				return;
+			if (item.getID() == "accessory.legend_hand_wraps")
+				hasWraps = true;
+			if (item.getID() == "accessory.legend_cestus")
+				hasCestus = true;
+		}
+
+		if (_skill != this)
+			return;
+
+		else if (hasCestus)
+		{
+			_properties.DamageTotalMult *= 1.1;
+		}
+		else if (hasWraps)
+		{
+			_properties.DamageTotalMult *= 1.05;
 		}
 	}
 

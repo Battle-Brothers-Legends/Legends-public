@@ -100,11 +100,11 @@ this.legend_beer_buzz_effect <- this.inherit("scripts/skills/skill", {
 	function onRemoved()
 	{
 		local actor = this.getContainer().getActor();
-		if (this.Math.rand(1, 100) <= 10 && !actor.getSkills().hasSkill("trait.drunkard"))
+		if (this.Math.rand(1, 100) <= 10 && !actor.getSkills().hasTrait(::Legends.Trait.Drunkard))
 		{
 			this.getContainer().add(this.new("scripts/skills/effects_world/hangover_effect"));
 		}
-		else if (this.Math.rand(1, 100) <= 5 && actor.getSkills().hasSkill("trait.drunkard"))
+		else if (this.Math.rand(1, 100) <= 5 && actor.getSkills().hasTrait(::Legends.Trait.Drunkard))
 		{
 			this.getContainer().add(this.new("scripts/skills/effects_world/hangover_effect"));
 		}

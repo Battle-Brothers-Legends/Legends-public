@@ -8,8 +8,8 @@ this.legend_diurnal_trait <- this.inherit("scripts/skills/traits/character_trait
 		this.m.Icon = "skills/diurnal_circle.png";
 		this.m.Description = "This character is particularly sensitive to light levels, gaining an additional vision in the day and losing an additional vision at night";
 		this.m.Excluded = [
-			"trait.night_owl",
-			"trait.night_blind"
+			::Legends.Traits.getID(::Legends.Trait.NightOwl),
+			::Legends.Traits.getID(::Legends.Trait.NightBlind)
 		];
 	}
 

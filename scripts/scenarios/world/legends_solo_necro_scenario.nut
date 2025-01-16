@@ -23,7 +23,7 @@ this.legends_solo_necro_scenario <- this.inherit("scripts/scenarios/world/starti
 		{
 			local bro;
 			bro = roster.create("scripts/entity/tactical/player");
-			bro.getSkills().add(this.new("scripts/skills/traits/legend_necromancer_trait")); //IMPORTANT - dictates relationship loss/gain
+			::Legends.Traits.grant(bro, ::Legends.Trait.LegendNecromancer);  //IMPORTANT - dictates relationship loss/gain
 			bro.m.HireTime = this.Time.getVirtualTimeF();
 
 			while (names.find(bro.getNameOnly()) != null)
@@ -44,9 +44,9 @@ this.legends_solo_necro_scenario <- this.inherit("scripts/scenarios/world/starti
 		bros[0].getSprite("miniboss").setBrush("bust_miniboss_undead");
 		bros[0].getSprite("socket").setBrush("bust_base_undead");
 		bros[0].getFlags().set("IsPlayerCharacter", true); //player character
-		bros[0].getSkills().add(this.new("scripts/skills/traits/player_character_trait"));
-		bros[0].getSkills().add(this.new("scripts/skills/perks/perk_legend_possession"));
-		bros[0].getSkills().add(this.new("scripts/skills/perks/perk_legend_spawn_zombie_low"));
+		::Legends.Traits.grant(bros[0], ::Legends.Trait.Player);
+		::Legends.Perks.grant(bros[0], ::Legends.Perk.LegendPossession);
+		::Legends.Perks.grant(bros[0], ::Legends.Perk.LegendSpawnZombieLow);
 
 		bros[1].setStartValuesEx([ //ur a wizard, Harold
 			"legend_puppet_background"
@@ -108,8 +108,8 @@ this.legends_solo_necro_scenario <- this.inherit("scripts/scenarios/world/starti
 		bros[3].m.PerkPoints = 2;
 		bros[3].m.LevelUps = 2;
 		bros[3].m.Level = 3;
-		bros[3].getSkills().add(this.new("scripts/skills/traits/legend_deathly_spectre_trait"));
-		bros[3].getSkills().add(this.new("scripts/skills/traits/legend_withering_aura_trait"));
+		::Legends.Traits.grant(bros[3], ::Legends.Trait.LegendDeathlySpectre);
+		::Legends.Traits.grant(bros[3], ::Legends.Trait.LegendWitheringAura);
 		bros[3].getBackground().m.RawDescription = "A loyal servant and helper, you tasked %name% with keeping and distributing the \'wages\' for the actors. Until recently this was an easy task.";
 
 		bros[4].setStartValuesEx([
@@ -118,17 +118,17 @@ this.legends_solo_necro_scenario <- this.inherit("scripts/scenarios/world/starti
 		bros[4].setPlaceInFormation(11);
 		bros[4].setVeteranPerks(2);
 		bros[4].getSprite("socket").setBrush("bust_base_undead");
-		bros[4].getSkills().add(this.new("scripts/skills/traits/legend_withering_aura_trait"));
-		bros[4].getSkills().add(this.new("scripts/skills/traits/legend_deathly_spectre_trait"));
- 		
+		::Legends.Traits.grant(bros[4], ::Legends.Trait.LegendWitheringAura);
+		::Legends.Traits.grant(bros[4], ::Legends.Trait.LegendDeathlySpectre);
+
 		bros[5].setStartValuesEx([
 			"cultist_background"
 		]);
 		bros[5].setPlaceInFormation(13);
 		bros[5].setVeteranPerks(2);
 		bros[5].getSprite("socket").setBrush("bust_base_undead");
-		bros[5].getSkills().add(this.new("scripts/skills/traits/legend_withering_aura_trait"));
-		bros[5].getSkills().add(this.new("scripts/skills/traits/legend_deathly_spectre_trait"));
+		::Legends.Traits.grant(bros[5], ::Legends.Trait.LegendWitheringAura);
+		::Legends.Traits.grant(bros[5], ::Legends.Trait.LegendDeathlySpectre);
 
 		//Starting stash
 		// this.World.Assets.m.Money = this.World.Assets.m.Money / 1;
@@ -258,18 +258,18 @@ this.legends_solo_necro_scenario <- this.inherit("scripts/scenarios/world/starti
 		{
 			bro.improveMood(1.5, "I feel strange...but better!");
 			bro.getSprite("socket").setBrush("bust_base_undead");
-			bro.getSkills().add(this.new("scripts/skills/traits/legend_deathly_spectre_trait"));
-			bro.getSkills().add(this.new("scripts/skills/traits/legend_withering_aura_trait"));
+			::Legends.Traits.grant(bro, ::Legends.Trait.LegendDeathlySpectre);
+			::Legends.Traits.grant(bro, ::Legends.Trait.LegendWitheringAura);
 		}
 		else if (bro.getBackground().getID() == "background.legend_puppet")
 		{
 			bro.getSprite("socket").setBrush("bust_base_undead");
 			bro.getBaseProperties().Hitpoints += 12;
 		}
-		else
+		else if (!bro.isStabled())
 		{
 			bro.worsenMood(2.0, "Feels very sick all of a sudden...");
-			bro.getSkills().add(this.new("scripts/skills/traits/legend_withering_aura_trait"));
+			::Legends.Traits.grant(bro, ::Legends.Trait.LegendWitheringAura);
 		}
 	}
 
@@ -285,10 +285,10 @@ this.legends_solo_necro_scenario <- this.inherit("scripts/scenarios/world/starti
 		foreach( i, bro in bros )
 		{
 			if (bro.getBackground().isBackgroundType(this.Const.BackgroundType.Crusader)) //delete crusader/pious recruits
-			{
 				garbage.push(bro);
-			}
 		}
+		foreach (g in garbage)
+			_roster.remove(g);
 	}
 
 	function onGenerateBro(bro)

@@ -7,7 +7,7 @@ this.legends_inquisition_scenario <- this.inherit("scripts/scenarios/world/start
 		this.m.Description = "[p=c][img]gfx/ui/events/event_40.png[/img][/p]There is a great evil in the world, the undead walk the earth and cultists hide in every town. The holy must purge the filth.\n\n[color=#bcad8c]Endless Dead:[/color] Begins with the Undead Crisis already underway, and it can repeat \n\n[color=#bcad8c]Righteous Cause:[/color] Can\'t recruit outlaw backgrounds but more holy backgrounds available to hire\n[color=#bcad8c]Penitence:[/color] Anyone you hire gains the Mind over Body perk.\n";
 		this.m.Difficulty = 2;
 		this.m.Order = 280;
-		this.m.IsFixedLook = true;	
+		this.m.IsFixedLook = true;
 		this.m.StartingRosterTier = this.Const.Roster.getTierForSize(6);
 		this.m.StartingBusinessReputation = 1100;
 	}
@@ -31,7 +31,7 @@ this.legends_inquisition_scenario <- this.inherit("scripts/scenarios/world/start
 		bros[0].setPlaceInFormation(4);
 		bros[0].getBaseProperties().Hitpoints += 10;
 		bros[0].getBaseProperties().MeleeSkill += 10;
-		bros[0].getSkills().add(this.new("scripts/skills/traits/legend_inquisition_disciple_trait"));
+		::Legends.Traits.grant(bros[0], ::Legends.Trait.LegendInquisitionDisciple);
 		this.addScenarioPerk(bros[0].getBackground(), this.Const.Perks.PerkDefs.LegendMindOverBody);
 		local items = bros[0].getItems();
 		items.unequip(items.getItemAtSlot(this.Const.ItemSlot.Head));
@@ -62,7 +62,7 @@ this.legends_inquisition_scenario <- this.inherit("scripts/scenarios/world/start
 		bros[1].m.PerkPoints = 1;
 		bros[1].m.LevelUps = 1;
 		bros[1].m.Level = 2;
-		bros[1].getSkills().add(this.new("scripts/skills/traits/legend_undead_killer_trait"));
+		::Legends.Traits.grant(bros[1], ::Legends.Trait.LegendUndeadKiller);
 		this.addScenarioPerk(bros[1].getBackground(), this.Const.Perks.PerkDefs.LegendMindOverBody);
 
 		bros[2].setStartValuesEx([
@@ -80,12 +80,10 @@ this.legends_inquisition_scenario <- this.inherit("scripts/scenarios/world/start
 		bros[2].getBaseProperties().Initiative -= 5;
 		bros[2].getBackground().m.RawDescription = "{%name% is a huge figure, who spent many years in a temple healing and carrying the sick, learning the power of both strength and compassion. It was clear the ills of the world must be sought out and healed at their source. While healing a witch hunter, %name% was convinced to join the hunt to heal the world. }";
 		bros[2].setPlaceInFormation(5);
-		local heavy = this.new("scripts/skills/traits/legend_heavy_trait");
-		foreach(skill in heavy.m.Excluded)
-		{
-			bros[2].getSkills().removeByID(skill);
-		}
-		bros[2].getSkills().add(heavy);
+		::Legends.Traits.grant(bros[2], ::Legends.Trait.LegendHeavy, function (_trait) {
+			foreach(skill in _trait.m.Excluded)
+				bros[2].getSkills().removeByID(skill);
+		});
 		this.addScenarioPerk(bros[2].getBackground(), this.Const.Perks.PerkDefs.LegendMindOverBody);
 		local items = bros[2].getItems();
 		items.unequip(items.getItemAtSlot(this.Const.ItemSlot.Body));
@@ -161,8 +159,8 @@ this.legends_inquisition_scenario <- this.inherit("scripts/scenarios/world/start
 		this.World.Assets.getStash().add(this.new("scripts/items/weapons/legend_wooden_stake"));
 		this.World.Assets.getStash().add(this.new("scripts/items/weapons/legend_hand_crossbow"));
 		this.World.Assets.getStash().add(this.new("scripts/items/ammo/quiver_of_bolts"));
-		
-		//unleash the dogs of war 
+
+		//unleash the dogs of war
 		this.World.FactionManager.setGreaterEvilType(this.Const.World.GreaterEvilType.Undead);
 		this.World.FactionManager.setGreaterEvilPhase(this.Const.World.GreaterEvilPhase.Live);
 		this.World.FactionManager.addGreaterEvilStrength(this.Const.Factions.GreaterEvilStartStrength); // This constant is equal to 125, previously set to 500. Not sure if there was a particular reason for 500 so will need to double check.

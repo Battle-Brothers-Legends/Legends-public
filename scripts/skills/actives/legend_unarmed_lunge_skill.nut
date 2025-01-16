@@ -12,7 +12,7 @@ this.legend_unarmed_lunge_skill <- this.inherit("scripts/skills/skill", {
 	{
 		this.m.ID = "actives.legend_unarmed_lunge";
 		this.m.Name = "Jump Attack";
-		this.m.Description = "A jump forward and attack combined into a single move";
+		this.m.Description = "A jump forward and attack combined into a single move.";
 		this.m.KilledString = "Hit";
 		this.m.Icon = "skills/unarmed_lunge_square.png";
 		this.m.IconDisabled = "skills/unarmed_lunge_square_bw.png";
@@ -111,7 +111,7 @@ this.legend_unarmed_lunge_skill <- this.inherit("scripts/skills/skill", {
 			});
 		}
 
-		if (this.getContainer().hasSkill("perk.legend_tumble"))
+		if (this.getContainer().hasPerk(::Legends.Perk.LegendTumble))
 		{
 			ret.push({
 				id = 6,
@@ -315,7 +315,7 @@ this.legend_unarmed_lunge_skill <- this.inherit("scripts/skills/skill", {
 
 		if (this.m.Backgrounds.find(this.getContainer().getActor().getBackground()) != null)
 		{
-			_properties.DamageTotalMult *= 1.25;	
+			_properties.DamageTotalMult *= 1.25;
 		}
 	}
 

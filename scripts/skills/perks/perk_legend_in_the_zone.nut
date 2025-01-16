@@ -5,7 +5,7 @@ this.perk_legend_in_the_zone <- this.inherit("scripts/skills/skill", {
 	},
 	function create()
 	{
-		::Const.Perks.setup(this.m, ::Const.Perks.PerkDefs.LegendInTheZone);
+		::Const.Perks.setup(this.m, ::Legends.Perk.LegendInTheZone);
 		this.m.Description = "%name% utilizes %their% armor\'s blend of protection and mobility to deal increased damage and gain increased accuracy when foes miss attacks against %them%.";
 		this.m.Type = this.Const.SkillType.Perk | this.Const.SkillType.StatusEffect;
 		this.m.Order = this.Const.SkillOrder.Perk;

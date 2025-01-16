@@ -3,7 +3,7 @@ this.legend_prosthetic_ear <- this.inherit("scripts/skills/traits/character_trai
 	function create()
 	{
 		this.character_trait.create();
-		this.m.ID = "trait.legend_prosthetic_ear";
+		this.m.ID = ::Legends.Traits.getID(::Legends.Trait.LegendProstheticEar);
 		this.m.Name = "Prosthetic Ear";
 		this.m.Icon = "ui/traits/legend_prosthetic_ear.png";
 		this.m.Description = "A wax ear stitched into one\'s head. Hardly a proper replacement, but some sense of balance is returned and very faint noises can be heard.";

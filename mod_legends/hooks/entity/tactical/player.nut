@@ -32,7 +32,7 @@
 	o.getDailyFood = function ()
 	{
 		local food = this.Math.maxf(0.0, this.m.CurrentProperties.DailyFood);
-		if (this.isInReserves() && !this.m.Skills.hasSkill("perk.legend_peaceful"))
+		if (this.isInReserves() && !this.m.Skills.hasPerk(::Legends.Perk.LegendPeaceful))
 		{
 			food *= 2;
 		}
@@ -504,8 +504,8 @@
 
 		onHired();
 
-		if (!isStabled() && getSkills().hasSkill("trait.legend_intensive_training_trait") && getLevel() > 1 ) {
-			local inTraining = getSkills().getSkillByID("trait.legend_intensive_training_trait");
+		if (!isStabled() && getSkills().hasTrait(::Legends.Trait.LegendIntensiveTraining) && getLevel() > 1 ) {
+			local inTraining = ::Legends.Traits.get(this, ::Legends.Trait.LegendIntensiveTraining);
 			local addSkills = ::Math.rand(0, getLevel()+2);
 			addSkills = ::Math.min(addSkills, inTraining.getMaxSkillsCanBeAdded() - 1);
 			inTraining.addRandomSkills(this, addSkills);
@@ -523,7 +523,7 @@
 	local isReallyKilled = o.isReallyKilled;
 	o.isReallyKilled = function ( _fatalityType )
 	{
-		if (getBackground() == null)
+		if (this.getBackground() == null)
 			return true;
 
 		local shouldNotGet = [], original = [];
@@ -540,10 +540,10 @@
 		    ::Const.Injury.Permanent.remove(i);
 		}
 
-		if (!getSkills().hasSkill("injury.legend_burned_injury")) {
+		if (!this.getSkills().hasSkill("injury.legend_burned_injury")) {
 			foreach (burn in ::Const.Injury.Burning)
 			{
-				if (getSkills().hasSkill(burn.ID)) {
+				if (this.getSkills().hasSkill(burn.ID)) {
 					::Const.Injury.Permanent.push({
 						ID = "injury.legend_burned_injury",
 						Script = "injury_permanent/legend_burned_injury",
@@ -558,24 +558,35 @@
 		// return this array back to normal
 		::Const.Injury.Permanent = original;
 
-		if (getCurrentProperties().SurvivesAsUndead // i'm back as undead baby
-			&& !isStabled() // isn't donkey
-			&& !getFlags().has("undead") // isn't undead already
+		if (this.getCurrentProperties().SurvivesAsUndead // i'm back as undead baby
+			&& !this.isStabled() // isn't donkey
+			&& !this.getFlags().has("undead") // isn't undead already
 			&& !::Tactical.State.isScenarioMode() // not real run
 			&& !::Tactical.State.isAutoRetreat() // left behind
-			&& !isGuest() // not player
+			&& !this.isGuest() // not player
 		) {
-			getFlags().add("undead");
-			getFlags().add("zombie_minion");
-			getFlags().add("PlayerZombie");
-			improveMood(1.0, "Reborned to live again");
-			setMoraleState(::Const.MoraleState.Ignore);
-			getSkills().add(::new("scripts/skills/traits/legend_rotten_flesh_trait"));
-			addScenarioPerk(getBackground(), ::Const.Perks.PerkDefs.LegendZombieBite);
-			addScenarioPerk(getBackground(), ::Const.Perks.PerkDefs.NineLives);
+			this.getFlags().add("undead");
+			this.getFlags().add("zombie_minion");
+			this.getFlags().add("PlayerZombie");
+			this.improveMood(1.0, "Reborned to live again");
+			this.setMoraleState(::Const.MoraleState.Ignore);
+
+			::Legends.Traits.grant(this, ::Legends.Trait.LegendRottenFlesh);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendZombieBite, function (perk) {
+				perk.IsRefundable = false;
+			});
+
+			local has9L = this.getSkills().hasPerk(::Legends.Perk.NineLives);
+			::Legends.Perks.grant(this, ::Legends.Perk.NineLives, function (perk) {
+				if (has9L && perk.IsRefundable) {
+					this.m.PerkPoints += 1;
+					this.m.PerkPointsSpent -= 1;
+				}
+				perk.IsRefundable = false;
+			});
 
 			if (result) {
-				m.IsDying = false;
+				this.m.IsDying = false;
 				::updateAchievement("ScarsForLife", 1, 1);
 				::Tactical.getSurvivorRoster().add(this);
 			}
@@ -627,7 +638,7 @@
 
 		foreach( bro in roster )
 		{
-			if (bro.isInReserves() && bro.getSkills().hasSkill("perk.legend_pacifist"))
+			if (bro.isInReserves() && bro.getSkills().hasPerk(::Legends.Perk.LegendPacifist))
 			{
 				bro.addXP(this.Math.max(1, this.Math.floor(XPgroup / brothers.len())));
 			}
@@ -636,7 +647,7 @@
 
 	o.checkMorale = function ( _change, _difficulty, _type = this.Const.MoraleCheckType.Default, _showIconBeforeMoraleIcon = "", _noNewLine = false )
 	{
-		if (_change > 0 && this.m.MoraleState == this.Const.MoraleState.Steady && this.m.Skills.hasSkill("trait.insecure"))
+		if (_change > 0 && this.m.MoraleState == this.Const.MoraleState.Steady && this.m.Skills.hasTrait(::Legends.Trait.Insecure))
 		{
 			return false;
 		}
@@ -651,36 +662,28 @@
 			return false;
 		}
 
-		if (_change < 0 && this.m.MoraleState == this.Const.MoraleState.Breaking && this.m.Skills.hasSkill("trait.oath_of_valor"))
+		if (_change < 0 && this.m.MoraleState == this.Const.MoraleState.Breaking && this.m.Skills.hasTrait(::Legends.Trait.OathOfValor))
 		{
 			return false;
 		}
 
-		if (_change > 0 && this.m.Skills.hasSkill("trait.optimist"))
+		if (_change > 0 && this.m.Skills.hasTrait(::Legends.Trait.Optimist))
 		{
 			_difficulty = _difficulty + 5;
 		}
-		else if (_change < 0 && this.m.Skills.hasSkill("trait.pessimist"))
+		else if (_change < 0 && this.m.Skills.hasTrait(::Legends.Trait.Pessimist))
 		{
 			_difficulty = _difficulty - 5;
 		}
-		else if (this.m.Skills.hasSkill("trait.legend_haunted_01"))
-		{
-			_difficulty = _difficulty + (this.Math.rand(0, 1) == 0 ? 6 : -6);
-		}
-		else if (this.m.Skills.hasSkill("trait.irrational"))
+		else if (this.m.Skills.hasTrait(::Legends.Trait.Irrational))
 		{
 			_difficulty = _difficulty + (this.Math.rand(0, 1) == 0 ? 10 : -10);
 		}
-		else if (this.m.Skills.hasSkill("trait.mad"))
+		else if (this.m.Skills.hasTrait(::Legends.Trait.Mad))
 		{
 			_difficulty = _difficulty + (this.Math.rand(0, 1) == 0 ? 15 : -15);
 		}
-		if (_change < 0 && _type == this.Const.MoraleCheckType.MentalAttack && this.m.Skills.hasSkill("trait.legend_haunted_02"))
-		{
-			_difficulty = _difficulty - 6;
-		}
-		if (_change < 0 && _type == this.Const.MoraleCheckType.MentalAttack && this.m.Skills.hasSkill("trait.superstitious"))
+		if (_change < 0 && _type == this.Const.MoraleCheckType.MentalAttack && this.m.Skills.hasTrait(::Legends.Trait.Superstitious))
 		{
 			_difficulty = _difficulty - 10;
 		}
@@ -788,7 +791,7 @@
 		p.onUnlocked();
 		this.m.Skills.update();
 
-		if (this.m.Level >= 12 && _id == "perk.student")
+		if (this.m.Level >= 12 && _id == ::Legends.Perks.getID(::Legends.Perk.Student))
 		{
 			++this.m.PerkPoints;
 		}
@@ -813,7 +816,7 @@
 				++this.m.PerkPoints;
 			}
 
-			if (this.m.Level == 12 && this.m.Skills.hasSkill("perk.student"))
+			if (this.m.Level == 12 && this.m.Skills.hasPerk(::Legends.Perk.Student))
 			{
 				++this.m.PerkPoints;
 			}
@@ -828,7 +831,7 @@
 				this.updateAchievement("OldAndWise", 1, 1);
 			}
 
-			if (this.m.Level == 12 && this.m.Skills.hasSkill("trait.player"))
+			if (this.m.Level == 12 && this.m.Skills.hasTrait(::Legends.Trait.Player))
 			{
 				this.updateAchievement("TooStubbornToDie", 1, 1);
 			}
@@ -1221,12 +1224,8 @@
 		}
 
 		background.buildDescription();
-		local inTraining = this.new("scripts/skills/traits/legend_intensive_training_trait");
 
-		if (!this.getSkills().hasSkill("trait.legend_intensive_training_trait"))
-		{
-			this.m.Skills.add(inTraining);
-		}
+		::Legends.Traits.grant(this, ::Legends.Trait.LegendIntensiveTraining);
 
 		if (_addTraits)
 		{
@@ -1563,15 +1562,13 @@
 			broStash = broStash + item.getStashModifier();
 		}
 
-		local skills =
-		[
-			"perk.legend_skillful_stacking",
-			"perk.legend_efficient_packing"
+		local skills = [
+			::Legends.Perk.LegendSkillfulStacking,
+			::Legends.Perk.LegendEfficientPacking
 		];
-
 		foreach( s in skills )
 		{
-			local skill = this.getSkills().getSkillByID(s);
+			local skill = ::Legends.Perks.get(this, s);
 			if (skill != null)
 			{
 				broStash += skill.getModifier();
@@ -1585,14 +1582,13 @@
 	{
 		local mod = this.getBackground().getModifiers().Ammo;
 		local skills = [
-			"perk.legend_ammo_bundles",
-			"perk.legend_ammo_binding"
+			::Legends.Perk.LegendAmmoBundles,
+			::Legends.Perk.LegendAmmoBinding
 		];
 
 		foreach( s in skills )
 		{
-			local skill = this.getSkills().getSkillByID(s);
-
+			local skill = ::Legends.Perks.get(this, s);
 			if (skill != null)
 			{
 				mod = mod + skill.getModifier();
@@ -1606,14 +1602,13 @@
 	{
 		local mod = this.getBackground().getModifiers().ArmorParts;
 		local skills = [
-			"perk.legend_tools_spares",
-			"perk.legend_tools_drawers"
+			::Legends.Perk.LegendToolsSpares,
+			::Legends.Perk.LegendToolsDrawers
 		];
 
 		foreach( s in skills )
 		{
-			local skill = this.getSkills().getSkillByID(s);
-
+			local skill = ::Legends.Perks.get(this, s);
 			if (skill != null)
 			{
 				mod += skill.getModifier();
@@ -1627,14 +1622,13 @@
 	{
 		local mod = this.getBackground().getModifiers().Meds;
 		local skills = [
-			"perk.legend_med_packages",
-			"perk.legend_med_ingredients"
+			::Legends.Perk.LegendMedPackages,
+			::Legends.Perk.LegendMedIngredients
 		];
 
 		foreach( s in skills )
 		{
-			local skill = this.getSkills().getSkillByID(s);
-
+			local skill = ::Legends.Perks.get(this, s);
 			if (skill != null)
 			{
 				mod = mod + skill.getModifier();
@@ -1653,22 +1647,23 @@
 		}
 		local mod = this.getBackground().getModifiers().Barter;
 		local skills = [
-			"perk.legend_barter_trustworthy",
-			"perk.legend_barter_convincing",
-			"perk.legend_off_book_deal",
-			"trait.legend_seductive"
+			::Legends.Perk.LegendBarterTrustworthy,
+			::Legends.Perk.LegendBarterConvincing,
+			::Legends.Perk.LegendOffBookDeal
 		];
 
 		foreach( s in skills )
 		{
-			local skill = this.getSkills().getSkillByID(s);
-
+			local skill = ::Legends.Perks.get(this, s);
 			if (skill != null)
 			{
 				mod += skill.getModifier();
 			}
 		}
-
+		local skill = ::Legends.Traits.get(this, ::Legends.Trait.LegendSeductive);
+		if (skill != null) {
+			mod += skill.getModifier();
+		}
 		return mod;
 	}
 

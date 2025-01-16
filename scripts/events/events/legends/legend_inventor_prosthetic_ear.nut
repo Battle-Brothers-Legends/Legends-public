@@ -69,12 +69,12 @@ this.legend_inventor_prosthetic_ear <- this.inherit("scripts/events/event", {
 					text = "You spend [color=" + this.Const.UI.Color.NegativeEventValue + "]5[/color] Tools and Supplies"
 				});
 
-				local pros_foot_trait = this.new("scripts/skills/traits/legend_prosthetic_ear");
-				_event.m.Nofoot.getSkills().add(pros_foot_trait);
-				this.List.push({
+				local trait = ::Legends.Traits.grant(_event.m.Nofoot, ::Legends.Trait.LegendProstheticEar, function (_trait) {
+					this.List.push({
 						id = 10,
-						icon = pros_foot_trait.getIcon(),
-						text = _event.m.Nofoot.m.Name + " receives a " + pros_foot_trait.m.Name
+						icon = _trait.getIcon(),
+						text = _event.m.Nofoot.m.Name + " receives a " + _trait.m.Name
+					});
 				});
 
 				local maimed_foot_bye = this.new("scripts/skills/injury_permanent/missing_ear_injury");
@@ -85,8 +85,8 @@ this.legend_inventor_prosthetic_ear <- this.inherit("scripts/events/event", {
 						text = _event.m.Nofoot.m.Name + " no longer has a " + maimed_foot_bye.m.Name
 				});
 
-				_event.m.Inventor.improveMood(2.0, "Created a " + pros_foot_trait.m.Name + " for " + _event.m.Nofoot.m.Name);
-				_event.m.Nofoot.improveMood(2.0, "Received a " + pros_foot_trait.m.Name + " from " + _event.m.Inventor.m.Name);
+				_event.m.Inventor.improveMood(2.0, "Created a " + trait.m.Name + " for " + _event.m.Nofoot.m.Name);
+				_event.m.Nofoot.improveMood(2.0, "Received a " + trait.m.Name + " from " + _event.m.Inventor.m.Name);
 			}
 		});
 		this.m.Screens.push({
@@ -130,7 +130,7 @@ this.legend_inventor_prosthetic_ear <- this.inherit("scripts/events/event", {
 
 		foreach (bro in brothers)
 		{
-			if (bro.getSkills().hasSkill("perk.legend_inventor_anatomy"))
+			if (bro.getSkills().hasPerk(::Legends.Perk.LegendInventorAnatomy))
 			{
 				inventor_candidates.push(bro);
 			}
@@ -147,7 +147,7 @@ this.legend_inventor_prosthetic_ear <- this.inherit("scripts/events/event", {
 
 		foreach (bro in brothers)
 		{
-			if (bro.getSkills().hasSkill("injury.missing_ear") && !bro.getSkills().hasSkill("trait.legend_prosthetic_ear"))
+			if (bro.getSkills().hasSkill("injury.missing_ear") && !bro.getSkills().hasTrait(::Legends.Trait.LegendProstheticEar))
 			{
 				nofoot_candidates.push(bro);
 			}

@@ -10,7 +10,7 @@
 		this.m.Properties.OverallDefensivenessMult = 1.25;
 		this.m.Properties.EngageTargetMultipleOpponentsMult = 1.0;
 		this.m.Properties.EngageTargetAlreadyBeingEngagedMult = 1.5;
-		if("Assets" in this.World && this.World.Assets != null && this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Legendary)
+		if(::Legends.isLegendaryDifficulty())
 		{
 			this.m.Properties.BehaviorMult[this.Const.AI.Behavior.ID.EngageMelee] = 0.5;
 			this.m.Properties.BehaviorMult[this.Const.AI.Behavior.ID.Defend] = 2.0;

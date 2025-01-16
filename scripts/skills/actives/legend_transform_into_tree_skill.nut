@@ -6,7 +6,7 @@ this.legend_transform_into_tree_skill <- this.inherit("scripts/skills/skill", {
 	{
 		this.m.ID = "actives.legend_transform_into_tree";
 		this.m.Name = "Transform into Schrat";
-		this.m.Description = "Enables the character to turn into a schrat, requires free hands";
+		this.m.Description = "Enables the character to turn into a schrat. Requires free hands.";
 		this.m.Icon = "skills/tree_square.png";
 		this.m.IconDisabled = "skills/tree_square_bw.png";
 		this.m.Overlay = "active_12";

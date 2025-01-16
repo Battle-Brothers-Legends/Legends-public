@@ -25,7 +25,7 @@
 		];
 
 		local actor = this.getContainer().getActor();
-		if (actor.getSkills().hasSkill("perk.legend_assassinate"))
+		if (actor.getSkills().hasPerk(::Legends.Perk.LegendAssassinate))
 		{
 			ret.extend([
 				{
@@ -255,7 +255,7 @@
 	o.onUpdate <- function ( _properties )
 	{
 		local actor = this.getContainer().getActor();
-        if (actor.getSkills().hasSkill("perk.legend_assassinate"))
+        if (actor.getSkills().hasPerk(::Legends.Perk.LegendAssassinate))
         {
             _properties.DamageRegularMin *= 1.2;
             _properties.DamageRegularMax *= 1.2;

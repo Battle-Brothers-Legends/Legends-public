@@ -17,8 +17,6 @@
 	o.m.LastTransactionPrice <- null;
 	o.m.IsQueryingSellPrice <- 0;
 	o.m.IsQueryingBuyPrice <- 0;
-	o.m.AddToBagActor <- null;
-	o.m.IsChangeableInBattleActor <- null;
 
 	local setSold = o.setSold;
 	o.setSold = function (_f) {

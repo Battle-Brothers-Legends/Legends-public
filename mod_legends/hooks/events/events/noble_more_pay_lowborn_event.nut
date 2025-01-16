@@ -18,7 +18,7 @@
 		local lowestNoble;
 
 		foreach( bro in brothers ) {
-			if (bro.getSkills().hasSkill("trait.player") || (bro.getFlags().get("IsPlayerCharacter")))
+			if (bro.getSkills().hasTrait(::Legends.Trait.Player) || (bro.getFlags().get("IsPlayerCharacter")))
 				continue;
 
 			if (bro.getDailyCost() < lowestPay && bro.getBackground().isBackgroundType(this.Const.BackgroundType.Noble)) {
@@ -41,6 +41,6 @@
 
 		this.m.Noble = lowestNoble;
 		this.m.Lowborn = lowborn_candidates[this.Math.rand(0, lowborn_candidates.len() - 1)];
-		this.m.Score = 7 + (lowestNoble.getSkills().hasSkill("trait.greedy") ? 9 : 0);
+		this.m.Score = 7 + (lowestNoble.getSkills().hasTrait(::Legends.Trait.Greedy) ? 9 : 0);
 	}
 })

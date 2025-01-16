@@ -2,7 +2,7 @@ this.perk_legend_slaughterer <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		::Const.Perks.setup(this.m, ::Const.Perks.PerkDefs.LegendSlaughterer);
+		::Const.Perks.setup(this.m, ::Legends.Perk.LegendSlaughterer);
 		this.m.Type = this.Const.SkillType.Perk;
 		this.m.Order = this.Const.SkillOrder.Perk;
 		this.m.IsActive = false;
@@ -19,7 +19,7 @@ this.perk_legend_slaughterer <- this.inherit("scripts/skills/skill", {
 
 	function onTargetKilled( _targetEntity, _skill )
 	{
-		if (!this.getContainer().hasSkill("trait.bloodthirsty"))
+		if (!this.getContainer().hasTrait(::Legends.Trait.Bloodthirsty))
 			return;
 
 		local killer = this.getContainer().getActor();

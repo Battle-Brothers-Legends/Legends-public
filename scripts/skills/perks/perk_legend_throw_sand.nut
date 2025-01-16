@@ -2,7 +2,7 @@ this.perk_legend_throw_sand <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		::Const.Perks.setup(this.m, ::Const.Perks.PerkDefs.LegendThrowSand);
+		::Const.Perks.setup(this.m, ::Legends.Perk.LegendThrowSand);
 		this.m.Type = this.Const.SkillType.Perk;
 		this.m.Order = this.Const.SkillOrder.Perk;
 		this.m.IsActive = false;

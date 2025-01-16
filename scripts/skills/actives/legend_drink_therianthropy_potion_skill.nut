@@ -5,7 +5,7 @@ this.legend_drink_therianthropy_potion_skill <- this.inherit("scripts/skills/act
 		this.legend_drink_potion_skill.create();
 		this.m.ID = "actives.legend_drink_therianthropy_potion";
 		this.m.Name = "Drink or Give Therianthropic Potion";
-		this.m.Description = "Give to an adjacent ally or drink yourself a horrible concoction of poison taken from the bodies of beasts to destroys your own humanity. Can not be used while engaged in melee, and anyone receiving the item needs to have a free bag slot.";
+		this.m.Description = "Give to an adjacent ally or drink yourself a horrible concoction of poison taken from the bodies of beasts to destroy your own humanity. Can not be used while engaged in melee, and anyone receiving the item needs to have a free bag slot.";
 		this.m.Icon = "skills/active_143.png";
 		this.m.IconDisabled = "skills/active_143_sw.png";
 		this.m.Overlay = "active_143";

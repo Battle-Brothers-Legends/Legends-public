@@ -50,7 +50,7 @@
 				break;
 		}
 
-		if (_skill != null && "Assets" in this.World && this.World.Assets != null && this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Legendary)
+		if (_skill != null && ::Legends.isLegendaryDifficulty())
 		{
 			_properties.DamageReceivedRegularMult *= 0.75;
 		}

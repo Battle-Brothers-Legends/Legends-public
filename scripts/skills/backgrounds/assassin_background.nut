@@ -14,42 +14,42 @@ this.assassin_background <- this.inherit("scripts/skills/backgrounds/character_b
 		this.m.HiringCost = 2000;
 		this.m.DailyCost = 25;
 		this.m.Excluded = [
-			"trait.weasel",
-			"trait.teamplayer",
-			"trait.fear_beasts",
-			"trait.legend_fear_nobles",
-			"trait.hate_undead",
-			"trait.paranoid",
-			"trait.night_blind",
-			"trait.ailing",
-			"trait.clubfooted",
-			"trait.dumb",
-			"trait.loyal",
-			"trait.clumsy",
-			"trait.fat",
-			"trait.tiny",
-			"trait.gluttonous",
-			"trait.pessimist",
-			"trait.optimist",
-			"trait.short_sighted",
-			"trait.dexterous",
-			"trait.insecure",
-			"trait.hesitant",
-			"trait.asthmatic",
-			"trait.greedy",
-			"trait.fragile",
-			"trait.fainthearted",
-			"trait.craven",
-			"trait.bleeder",
-			"trait.bright",
-			"trait.cocky",
-			"trait.dastard",
-			"trait.drunkard",
-			"trait.disloyal",
-			"trait.loyal",
-			"trait.dumb",
-			"trait.legend_pragmatic",
-			"trait.legend_predictable"
+			::Legends.Traits.getID(::Legends.Trait.Weasel),
+			::Legends.Traits.getID(::Legends.Trait.Teamplayer),
+			::Legends.Traits.getID(::Legends.Trait.FearBeasts),
+			::Legends.Traits.getID(::Legends.Trait.LegendFearNobles),
+			::Legends.Traits.getID(::Legends.Trait.HateUndead),
+			::Legends.Traits.getID(::Legends.Trait.Paranoid),
+			::Legends.Traits.getID(::Legends.Trait.NightBlind),
+			::Legends.Traits.getID(::Legends.Trait.Ailing),
+			::Legends.Traits.getID(::Legends.Trait.Clubfooted),
+			::Legends.Traits.getID(::Legends.Trait.Dumb),
+			::Legends.Traits.getID(::Legends.Trait.Loyal),
+			::Legends.Traits.getID(::Legends.Trait.Clumsy),
+			::Legends.Traits.getID(::Legends.Trait.Fat),
+			::Legends.Traits.getID(::Legends.Trait.Tiny),
+			::Legends.Traits.getID(::Legends.Trait.Gluttonous),
+			::Legends.Traits.getID(::Legends.Trait.Pessimist),
+			::Legends.Traits.getID(::Legends.Trait.Optimist),
+			::Legends.Traits.getID(::Legends.Trait.ShortSighted),
+			::Legends.Traits.getID(::Legends.Trait.Dexterous),
+			::Legends.Traits.getID(::Legends.Trait.Insecure),
+			::Legends.Traits.getID(::Legends.Trait.Hesistant),
+			::Legends.Traits.getID(::Legends.Trait.Asthmatic),
+			::Legends.Traits.getID(::Legends.Trait.Greedy),
+			::Legends.Traits.getID(::Legends.Trait.Fragile),
+			::Legends.Traits.getID(::Legends.Trait.Fainthearthed),
+			::Legends.Traits.getID(::Legends.Trait.Craven),
+			::Legends.Traits.getID(::Legends.Trait.Bleeder),
+			::Legends.Traits.getID(::Legends.Trait.Bright),
+			::Legends.Traits.getID(::Legends.Trait.Cocky),
+			::Legends.Traits.getID(::Legends.Trait.Dastard),
+			::Legends.Traits.getID(::Legends.Trait.Drunkard),
+			::Legends.Traits.getID(::Legends.Trait.Disloyal),
+			::Legends.Traits.getID(::Legends.Trait.Loyal),
+			::Legends.Traits.getID(::Legends.Trait.Dumb),
+			::Legends.Traits.getID(::Legends.Trait.LegendPragmatic),
+			::Legends.Traits.getID(::Legends.Trait.LegendPredictable)
 		];
 		this.m.ExcludedTalents = [
 			this.Const.Attributes.Hitpoints,
@@ -138,7 +138,7 @@ this.assassin_background <- this.inherit("scripts/skills/backgrounds/character_b
 	{
 		return "{%name% likes %their% hoods and loose robes, as %they% walks you can make out a barely audible jingle under %their% coat. | %name% occasionally ducks into alleyways, bushes and dark doorways to exchange items with another figure in a flurry of hands as a predator would stash a fresh kill.} {Although shockingly average, %they% is much quieter than the other recruits you have had the displeasure of meeting. | %name% naturally gravitates to dark corners as rats would to grain and insists that %they% is very famous in certain circles, however %they% quickly changes the subject when you ask %them% for details.} {%They% is often lost in the maddening throng of the towns and hamlets dotted around the countryside - never have you met such an average looking mercenary who also doesn’t hesitate to slit the throat of the nearest man if it would so benefit %them%, even if %they% does grumble when travelling during daylight.}";
 	}
-	
+
 	function onChangeAttributes()
 	{
 		local c = {
@@ -208,8 +208,7 @@ this.assassin_background <- this.inherit("scripts/skills/backgrounds/character_b
 	function onAdded()
 	{
 		this.character_background.onAdded();
-		local actor = this.getContainer().getActor();
-		this.m.Container.add(this.new("scripts/skills/traits/quick_trait"));
+		::Legends.Traits.grant(this, ::Legends.Trait.Quick);
 	}
 
 	function onAddEquipment()

@@ -201,7 +201,8 @@ this.legend_chain_lightning_skill <- this.inherit("scripts/skills/skill", {
 		if (m.SoundOnLightning.len() != 0)
 			::Sound.play(::MSU.Array.rand(m.SoundOnLightning), ::Const.Sound.Volume.Skill * 2.0, _user.getPos());
 
-		local potentialTiles, potentialTargets;
+		local potentialTiles;
+		local potentialTargets;
 
 		for (local i = 0; i < m.ChainingTimes; ++i)
 		{

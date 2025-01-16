@@ -52,15 +52,15 @@ this.sato_manhunter_veteran <- this.inherit("scripts/entity/tactical/human", {
 		b.IsSpecializedInDaggers = true;
 		b.IsSpecializedInThrowing = true;
 
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_crippling_strikes"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_anticipation"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_quick_hands"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_brawny"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_relentless"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_overwhelm"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_battle_forged"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_fearsome"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_rotation"));
+		::Legends.Perks.grant(this, ::Legends.Perk.CripplingStrikes);
+		::Legends.Perks.grant(this, ::Legends.Perk.Anticipation);
+		::Legends.Perks.grant(this, ::Legends.Perk.QuickHands);
+		::Legends.Perks.grant(this, ::Legends.Perk.Brawny);
+		::Legends.Perks.grant(this, ::Legends.Perk.Relentless);
+		::Legends.Perks.grant(this, ::Legends.Perk.Overwhelm);
+		::Legends.Perks.grant(this, ::Legends.Perk.BattleForged);
+		::Legends.Perks.grant(this, ::Legends.Perk.Fearsome);
+		::Legends.Perks.grant(this, ::Legends.Perk.Rotation);
 	}
 
 	function onOtherActorDeath( _killer, _victim, _skill )
@@ -176,7 +176,7 @@ this.sato_manhunter_veteran <- this.inherit("scripts/entity/tactical/human", {
 				]);
 				helmets.push([1, "theamson_barbute_helmet"])
 			}
-			
+
 
 			this.m.Items.equip(this.Const.World.Common.pickHelmet(helmets));
 		}
@@ -223,8 +223,8 @@ this.sato_manhunter_veteran <- this.inherit("scripts/entity/tactical/human", {
 			));
 		}
 
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_underdog"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_duelist"));
+		::Legends.Perks.grant(this, ::Legends.Perk.Underdog);
+		::Legends.Perks.grant(this, ::Legends.Perk.Duelist);
 		return true;
 	}
 });

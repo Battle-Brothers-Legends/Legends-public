@@ -10,7 +10,7 @@
 		{
 			for( local i = 0; i < brothers.len(); i = ++i )
 			{
-				if (brothers[i].getSkills().hasSkill("trait.player"))
+				if (brothers[i].getSkills().hasTrait(::Legends.Trait.Player))
 				{
 					brothers.remove(i);
 					break;
@@ -20,7 +20,7 @@
 
 		foreach( bro in brothers )
 		{
-			if (bro.getSkills().hasSkill("trait.superstitious"))
+			if (bro.getSkills().hasTrait(::Legends.Trait.Superstitious))
 			{
 				fearful.push(bro);
 			}

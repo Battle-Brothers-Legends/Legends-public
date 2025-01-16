@@ -14,7 +14,7 @@
 		local damage_armor_max = this.Math.floor(p.DamageRegularMax * p.DamageArmorMult * p.DamageTotalMult * (this.m.IsRanged ? p.RangedDamageMult : p.MeleeDamageMult) * p.DamageTooltipMaxMult);
 
 
-		if (this.m.Container.getActor().getSkills().hasSkill("trait.oath_of_honor") && (this.m.IsWeaponSkill && this.m.IsRanged || this.m.IsOffensiveToolSkill))
+		if (this.m.Container.getActor().getSkills().hasTrait(::Legends.Trait.OathOfHonor) && (this.m.IsWeaponSkill && this.m.IsRanged || this.m.IsOffensiveToolSkill))
 		{
 			ret.push({
 				id = startID + 4,

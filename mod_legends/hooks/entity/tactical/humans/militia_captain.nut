@@ -1,22 +1,22 @@
-::mods_hookExactClass("entity/tactical/humans/militia_captain", function(o) 
+::mods_hookExactClass("entity/tactical/humans/militia_captain", function(o)
 {
 	local onInit = o.onInit;
 	o.onInit = function ()
 	{
 		onInit();
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_recover"));
-		if("Assets" in this.World && this.World.Assets != null && this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Legendary)
+		::Legends.Perks.grant(this, ::Legends.Perk.Recover);
+		if(::Legends.isLegendaryDifficulty())
 		{
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_composure"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_battle_forged"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_rotation"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_specialist_shield_skill"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_specialist_shield_push"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_smashing_shields"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_back_to_basics"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_shield_bash"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_full_force"));
-			this.m.Skills.add(this.new("scripts/skills/traits/fearless_trait"));
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendComposure);
+			::Legends.Perks.grant(this, ::Legends.Perk.BattleForged);
+			::Legends.Perks.grant(this, ::Legends.Perk.Rotation);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecialistShieldSkill);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecialistShieldPush);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendSmashingShields);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendBackToBasics);
+			::Legends.Perks.grant(this, ::Legends.Perk.ShieldBash);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendFullForce);
+			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
 		}
 	}
 

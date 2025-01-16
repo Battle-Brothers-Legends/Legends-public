@@ -94,11 +94,11 @@ this.legend_quick_step_skill <- this.inherit("scripts/skills/skill", {
 			return false;
 		}
 	}
-	
+
 	function onAfterUpdate( _properties )
 	{
-		// if (this.getContainer().getActor().getSkills().hasSkill("perk.legend_backflip"))
-		// {	
+		// if (this.getContainer().getActor().getSkills().hasPerk(::Legends.Perk.LegendBackflip))
+		// {
 		// 	this.m.MaxRange = 2;
 		// }
 

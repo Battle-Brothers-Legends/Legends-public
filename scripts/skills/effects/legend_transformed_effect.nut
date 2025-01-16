@@ -34,7 +34,7 @@ this.legend_transformed_effect <- this.inherit("scripts/skills/skill", {
 		local actor = this.getContainer().getActor();
 		local ret = this.getDefaultTooltip();
 
-		if (actor.getSkills().hasSkill("perk.legend_surpress_urges"))
+		if (actor.getSkills().hasPerk(::Legends.Perk.LegendSurpressUrges))
 		{
 			ret.push({
 				id = 11,
@@ -84,12 +84,12 @@ this.legend_transformed_effect <- this.inherit("scripts/skills/skill", {
 			return false;
 		}
 
-		if (actor.getSkills().hasSkill("perk.legend_control_instincts"))
+		if (actor.getSkills().hasPerk(::Legends.Perk.LegendControlInstincts))
 		{
 			return false;
 		}
 
-		if (actor.getSkills().hasSkill("perk.legend_surpress_urges"))
+		if (actor.getSkills().hasPerk(::Legends.Perk.LegendSurpressUrges))
 		{
 			actor.setFaction(this.Const.Faction.PlayerAnimals);
 			this.logDebug(this.getName() + " AI set to " + this.m.Agent2);
@@ -130,7 +130,7 @@ this.legend_transformed_effect <- this.inherit("scripts/skills/skill", {
 			this.m.Items.push(item);
 		}
 
-		if (!this.m.Container.hasSkill("perk.legend_surpress_urges"))
+		if (!this.m.Container.hasPerk(::Legends.Perk.LegendSurpressUrges))
 		{
 			foreach (i in items.getAllItemsAtSlot(this.Const.ItemSlot.Bag))
 			{
@@ -139,7 +139,7 @@ this.legend_transformed_effect <- this.inherit("scripts/skills/skill", {
 			}
 		}
 
-		if (!this.m.Container.hasSkill("perk.legend_control_instincts"))
+		if (!this.m.Container.hasPerk(::Legends.Perk.LegendControlInstincts))
 		{
 			item = items.getItemAtSlot(this.Const.ItemSlot.Mainhand)
 			if (item != null)
@@ -149,7 +149,7 @@ this.legend_transformed_effect <- this.inherit("scripts/skills/skill", {
 			}
 		}
 
-		if (this.m.Container.hasSkill("perk.legend_master_anger"))
+		if (this.m.Container.hasPerk(::Legends.Perk.LegendMasterAnger))
 		{
 			item = items.getItemAtSlot(this.Const.ItemSlot.Offhand)
 			if (item != null)
@@ -209,7 +209,7 @@ this.legend_transformed_effect <- this.inherit("scripts/skills/skill", {
 
 		this.m.TurnsLeft = 3;
 
-		if (this.getContainer().getActor().getSkills().hasSkill("perk.legend_true_form"))
+		if (this.getContainer().getActor().getSkills().hasPerk(::Legends.Perk.LegendTrueForm))
 		{
 			this.m.TurnsLeft = 6;
 		}

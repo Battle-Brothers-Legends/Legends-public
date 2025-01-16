@@ -63,10 +63,10 @@
 				talents.resize(this.Const.Attributes.COUNT, 0);
 				talents[this.Const.Attributes.MeleeSkill] = 3;
 				talents[this.Const.Attributes.Bravery] = 3;
-				_event.m.Dude.getSkills().add(this.new("scripts/skills/perks/perk_coup_de_grace"));
-				_event.m.Dude.getSkills().add(this.new("scripts/skills/perks/perk_legend_favoured_enemy_southerner"));
-				_event.m.Dude.getSkills().add(this.new("scripts/skills/traits/legend_natural_trait"));
-				_event.m.Dude.getSkills().add(this.new("scripts/skills/traits/legend_pragmatic_trait"));
+				::Legends.Perks.grant(_event.m.Dude, ::Legends.Perk.CoupDeGrace);
+				::Legends.Perks.grant(_event.m.Dude, ::Legends.Perk.LegendFavouredEnemySoutherner);
+				::Legends.Traits.grant(_event.m.Dude, ::Legends.Trait.LegendNatural);
+				::Legends.Traits.grant(_event.m.Dude, ::Legends.Trait.LegendPragmatic);
 				_event.m.Dude.worsenMood(1.0, "Got taken captive by manhunters");
 				_event.m.Dude.improveMood(2.0, "Got saved from a life in slavery");
 				this.Characters.push(_event.m.Dude.getImagePath());

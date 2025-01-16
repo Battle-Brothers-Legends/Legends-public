@@ -2,7 +2,7 @@ this.perk_legend_daze <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		::Const.Perks.setup(this.m, ::Const.Perks.PerkDefs.LegendDaze);
+		::Const.Perks.setup(this.m, ::Legends.Perk.LegendDaze);
 		this.m.Type = this.Const.SkillType.Perk;
 		this.m.Order = this.Const.SkillOrder.Perk;
 		this.m.IsActive = false;

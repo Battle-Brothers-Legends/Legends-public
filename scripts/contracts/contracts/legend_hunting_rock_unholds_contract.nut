@@ -4,7 +4,7 @@ this.legend_hunting_rock_unholds_contract <- this.inherit("scripts/contracts/con
 		Dude = null,
 		IsPlayerAttacking = true,
 		MinStrength = 10, // player needs to earn 10% of bonus (not including base 5% bonus) for this contract to be valid
-		Perk = "perk.legend_favoured_enemy_unhold",
+		Perk = ::Legends.Perk.LegendFavouredEnemyUnhold,
 		ValidTypes = this.Const.LegendMod.FavoriteUnhold
 	},
 	function setEnemyType( _t )
@@ -140,7 +140,7 @@ this.legend_hunting_rock_unholds_contract <- this.inherit("scripts/contracts/con
 
 					foreach( bro in bros )
 					{
-						if (bro.getBackground().getID() == "background.beast_slayer" || bro.getBackground().getID() == "background.wildman" || bro.getBackground().getID() == "background.barbarian" || bro.getSkills().hasSkill("trait.dumb"))
+						if (bro.getBackground().getID() == "background.beast_slayer" || bro.getBackground().getID() == "background.wildman" || bro.getBackground().getID() == "background.barbarian" || bro.getSkills().hasTrait(::Legends.Trait.Dumb))
 						{
 							candidates.push(bro);
 						}
@@ -592,7 +592,7 @@ this.legend_hunting_rock_unholds_contract <- this.inherit("scripts/contracts/con
 	{
 		foreach( bro in this.World.getPlayerRoster().getAll() )
 		{
-			if (!bro.getSkills().hasSkill(this.m.Perk))
+			if (!bro.getSkills().hasPerk(this.m.Perk))
 			{
 				continue;
 			}

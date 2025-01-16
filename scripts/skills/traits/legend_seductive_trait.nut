@@ -5,13 +5,13 @@ this.legend_seductive_trait <- this.inherit("scripts/skills/traits/character_tra
 	function create()
 	{
 		this.character_trait.create();
-		this.m.ID = "trait.legend_seductive";
+		this.m.ID = ::Legends.Traits.getID(::Legends.Trait.LegendSeductive);
 		this.m.Name = "Seductive";
 		this.m.Icon = "ui/traits/trait_seductive.png";
 		this.m.Description = "Although many things can be taken at the point of a sword, some things will always be more potent than cold steel; the flash of an eyelash, the locking of a gaze...";
 		this.m.Excluded = [
-			"trait.paranoid",
-			"trait.cocky",
+			::Legends.Traits.getID(::Legends.Trait.Paranoid),
+			::Legends.Traits.getID(::Legends.Trait.Cocky),
 		];
 	}
 

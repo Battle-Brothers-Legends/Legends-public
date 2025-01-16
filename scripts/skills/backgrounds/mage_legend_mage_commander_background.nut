@@ -12,16 +12,16 @@ this.mage_legend_mage_commander_background <- this.inherit("scripts/skills/backg
 		this.m.HiringCost = 250;
 		this.m.DailyCost = 0;
 		this.m.Excluded = [
-			"trait.athletic",
-			"trait.bloodthirsty",
-			"trait.brute",
-			"trait.dexterous",
-			"trait.huge",
-			"trait.tough",
-			"trait.disloyal",
-			"trait.greedy",
-			"trait.loyal",
-			"trait.dumb"
+			::Legends.Traits.getID(::Legends.Trait.Athletic),
+			::Legends.Traits.getID(::Legends.Trait.Bloodthirsty),
+			::Legends.Traits.getID(::Legends.Trait.Brute),
+			::Legends.Traits.getID(::Legends.Trait.Dexterous),
+			::Legends.Traits.getID(::Legends.Trait.Huge),
+			::Legends.Traits.getID(::Legends.Trait.Tough),
+			::Legends.Traits.getID(::Legends.Trait.Disloyal),
+			::Legends.Traits.getID(::Legends.Trait.Greedy),
+			::Legends.Traits.getID(::Legends.Trait.Loyal),
+			::Legends.Traits.getID(::Legends.Trait.Dumb)
 		];
 		this.m.Titles = [
 			"the Mage",
@@ -201,7 +201,7 @@ this.mage_legend_mage_commander_background <- this.inherit("scripts/skills/backg
 	function onAdded()
 	{
 		this.character_background.onAdded();
-		this.m.Container.add(this.new("scripts/skills/traits/bright_trait"));
+		::Legends.Traits.grant(this, ::Legends.Trait.Bright);
 	}
 
 	function onAddEquipment()

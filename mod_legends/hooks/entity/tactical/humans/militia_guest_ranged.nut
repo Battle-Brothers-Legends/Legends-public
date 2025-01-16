@@ -1,19 +1,19 @@
-::mods_hookExactClass("entity/tactical/humans/militia_guest_ranged", function(o) 
+::mods_hookExactClass("entity/tactical/humans/militia_guest_ranged", function(o)
 {
 	local onInit = o.onInit;
 	o.onInit = function ()
 	{
 		onInit();
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_bullseye"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_recover"));
-		if("Assets" in this.World && this.World.Assets != null && this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Legendary)
+		::Legends.Perks.grant(this, ::Legends.Perk.Bullseye);
+		::Legends.Perks.grant(this, ::Legends.Perk.Recover);
+		if(::Legends.isLegendaryDifficulty())
 		{
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_specialist_shortbow_skill"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_specialist_shortbow_damage"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_crippling_strikes"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_lone_wolf"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_pathfinder"));
-			this.m.Skills.add(this.new("scripts/skills/traits/fearless_trait"));
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecialistShortbowSkill);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecialistShortbowDamage);
+			::Legends.Perks.grant(this, ::Legends.Perk.CripplingStrikes);
+			::Legends.Perks.grant(this, ::Legends.Perk.LoneWolf);
+			::Legends.Perks.grant(this, ::Legends.Perk.Pathfinder);
+			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
 		}
 	}
 

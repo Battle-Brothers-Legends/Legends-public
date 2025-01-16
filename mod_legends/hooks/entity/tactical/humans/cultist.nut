@@ -1,4 +1,4 @@
-::mods_hookExactClass("entity/tactical/humans/cultist", function(o) 
+::mods_hookExactClass("entity/tactical/humans/cultist", function(o)
 {
 	local onInit = o.onInit;
 	o.onInit = function ()
@@ -8,19 +8,19 @@
 		b.IsSpecializedInFlails = true;
 		b.IsSpecializedInCleavers = true;
 		this.getSprite("socket").setBrush("bust_base_orcs");
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_dodge"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_mastery_flail"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_lacerate"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_head_hunter"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_bloodbath"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_specialist_ninetails_skill"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_specialist_ninetails_damage"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_specialist_cult_hood"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_specialist_cult_armor"));
-		if("Assets" in this.World && this.World.Assets != null && this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Legendary)
+		::Legends.Perks.grant(this, ::Legends.Perk.Dodge);
+		::Legends.Perks.grant(this, ::Legends.Perk.SpecFlail);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendLacerate);
+		::Legends.Perks.grant(this, ::Legends.Perk.HeadHunter);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendBloodbath);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecialistNinetailsSkill);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecialistNinetailsDamage);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecCultHood);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecCultArmor);
+		if(::Legends.isLegendaryDifficulty())
 		{
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_battle_flow"));
-			this.m.Skills.add(this.new("scripts/skills/traits/fearless_trait"));
+			::Legends.Perks.grant(this, ::Legends.Perk.BattleFlow);
+			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
 		}
 	}
 
@@ -70,7 +70,7 @@
 		}
 
 		this.m.Items.equip(this.Const.World.Common.pickArmor([
-			[3, "cultist_leather_armor"],
+			[3, "cultist_leather_robe"],
 			[3, "tattered_sackcloth"],
 			[2, "barbarians/animal_hide_armor"],
 			[1, "barbarians/hide_and_bone_armor"]

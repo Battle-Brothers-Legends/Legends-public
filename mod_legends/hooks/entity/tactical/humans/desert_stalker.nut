@@ -4,8 +4,8 @@
 	o.onInit = function ()
 	{
 		onInit();
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_footwork"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_recover"));
+		::Legends.Perks.grant(this, ::Legends.Perk.Footwork);
+		::Legends.Perks.grant(this, ::Legends.Perk.Recover);
 	}
 
 	o.assignRandomEquipment = function ()
@@ -66,6 +66,6 @@
 			]));
 		}
 
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_relentless"));
+		::Legends.Perks.grant(this, ::Legends.Perk.Relentless);
 	}
 });

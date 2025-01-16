@@ -3,7 +3,7 @@ this.perk_legend_favoured_enemy_spider <- this.inherit("scripts/skills/legend_fa
 	function create()
 	{
 		this.legend_favoured_enemy_skill.create();
-		::Const.Perks.setup(this.m, ::Const.Perks.PerkDefs.LegendFavouredEnemySpider);
+		::Const.Perks.setup(this.m, ::Legends.Perk.LegendFavouredEnemySpider);
 		this.m.ValidTypes = this.Const.LegendMod.FavoriteSpider;
 	}
 

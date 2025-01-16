@@ -6,7 +6,7 @@ this.legend_eat_rations_skill <- this.inherit("scripts/skills/actives/base/legen
 		this.legend_eat_skill.create();
 		this.m.ID = "actives.legend_eat_rations";
 		this.m.Name = "Eat or Give Food";
-		this.m.Description = "Give to an adjacent ally or eat food that slowly heals. Can not be used while engaged in melee, and anyone receiving the item needs to have a free bag slot.";
+		this.m.Description = "Give to an adjacent ally or eat food that slowly recovers hitpoints. Can not be used while engaged in melee, and anyone receiving the item needs to have a free bag slot.";
 		this.m.Icon = "skills/rations_square.png";
 		this.m.IconDisabled = "skills/rations_square_bw.png";
 	}
@@ -52,7 +52,7 @@ this.legend_eat_rations_skill <- this.inherit("scripts/skills/actives/base/legen
 				id = 11,
 				type = "text",
 				icon = "ui/icons/health.png",
-				text = "On self, will restore [color=" + this.Const.UI.Color.PositiveValue + "]+" + rate + "[/color] Health per turn for ten turns"
+				text = "On self, will restore [color=" + this.Const.UI.Color.PositiveValue + "]+" + rate + "[/color] Hitpoints per turn for ten turns"
 			},
 			{
 				id = 11,
@@ -167,14 +167,14 @@ this.legend_eat_rations_skill <- this.inherit("scripts/skills/actives/base/legen
 		}
 
 		//Ate while sick - we be fat now
-		if (!_user.getSkills().hasSkill("trait.fat"))
+		if (!_user.getSkills().hasTrait(::Legends.Trait.Fat))
 		{
 			if (!_user.isHiddenToPlayer())
 			{
 				this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(_user) + " eats food and becomes fat");
 			}
 
-			_user.getSkills().add(this.new("scripts/skills/traits/fat_trait"));
+			::Legends.Traits.grant(_user, ::Legends.Trait.Fat);
 			rationsEffect.addAmount(rationsEffect.getAmount() + this.m.Amount);
 			rationsEffect.resetTurns();
 

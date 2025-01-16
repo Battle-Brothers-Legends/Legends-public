@@ -5,12 +5,12 @@
 	{
 		onInit();
 		local b = this.m.BaseProperties;
-		if ("Assets" in this.World && this.World.Assets != null && this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Legendary)
+		if (::Legends.isLegendaryDifficulty())
 		{
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_killing_frenzy"));
 			this.m.ActionPoints = b.ActionPoints + 2;
-			this.m.Skills.add(this.new("scripts/skills/traits/fearless_trait"));
-			this.m.Skills.add(this.new("scripts/skills/traits/iron_jaw_trait"));
+			::Legends.Perks.grant(this, ::Legends.Perk.KillingFrenzy);
+			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
+			::Legends.Traits.grant(this, ::Legends.Trait.IronJaw);
 		};
 	}
 });

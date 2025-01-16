@@ -58,11 +58,11 @@ this.starting_scenario <- {
 		local brothers = this.World.getPlayerRoster().getAll();
 		foreach (bro in brothers)
 		{
-			if (bro.getSkills().hasPerk(::Const.Perks.PerkDefs.LegendScholar))
+			if (bro.getSkills().hasPerk(::Legends.Perk.LegendScholar))
 			{
 				chanceIsLucky += 10;
 			}
-			if (bro.getSkills().hasPerk(::Const.Perks.PerkDefs.LegendFavouredEnemyCaravan))
+			if (bro.getSkills().hasPerk(::Legends.Perk.LegendFavouredEnemyCaravan))
 			{
 				chanceIsLucky += 5;
 			}
@@ -82,7 +82,7 @@ this.starting_scenario <- {
 
 		case 3:
 			return "difficulty_hard";
-		
+
 		case 4:
 			return "difficulty_legend";
 		}
@@ -121,7 +121,7 @@ this.starting_scenario <- {
 	function onInit()
 	{
 		this.m.StaticRelationsToFaction.resize(this.Const.FactionType.len());
-		
+
 		if (this.World.State.getPlayer() != null)
 			this.World.State.getPlayer().calculateModifiers();
 	}
@@ -239,7 +239,7 @@ this.starting_scenario <- {
 			_background.getContainer().add(this.new(this.Const.Perks.PerkDefObjects[_perk].Script));
 			isRefundable = false;
 		}
-		
+
 		_background.addPerk(_perk, _row, isRefundable);
 		if (!isRefundable) _background.getPerk(_perk).IsRefundable = false;
 	}

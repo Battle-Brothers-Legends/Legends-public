@@ -6,8 +6,8 @@
 		create();
 		this.m.Description = "This character is exceptionally muscled and capable of impressive feats of strength";
 		this.m.Excluded.extend([
-			"trait.legend_light",
-			"trait.legend_frail"
+			::Legends.Traits.getID(::Legends.Trait.LegendLight),
+			::Legends.Traits.getID(::Legends.Trait.LegendFrail)
 		]);
 	}
 });

@@ -40,7 +40,7 @@
 						if (bro.getID() == _event.m.HedgeKnight1.getID() || bro.getID() == _event.m.HedgeKnight2.getID())
 							continue;
 
-						if (bro.getSkills().hasSkill("trait.greedy"))
+						if (bro.getSkills().hasTrait(::Legends.Trait.Greedy))
 							bro.worsenMood(2.0, "Angry about you bribing mercenaries to stop their fight");
 						else if (this.Math.rand(1, 100) <= 50)
 							bro.worsenMood(1.0, "Concerned about you bribing mercenaries to stop their fight");

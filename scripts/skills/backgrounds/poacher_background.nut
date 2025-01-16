@@ -12,16 +12,16 @@ this.poacher_background <- this.inherit("scripts/skills/backgrounds/character_ba
 		this.m.HiringCost = 100;
 		this.m.DailyCost = 10;
 		this.m.Excluded = [
-			"trait.hate_undead",
-			"trait.night_blind",
-			"trait.clubfooted",
-			"trait.short_sighted",
-			"trait.loyal",
-			"trait.fat",
-			"trait.fearless",
-			"trait.brave",
-			"trait.bright",
-			"trait.legend_seductive"
+			::Legends.Traits.getID(::Legends.Trait.HateUndead),
+			::Legends.Traits.getID(::Legends.Trait.NightBlind),
+			::Legends.Traits.getID(::Legends.Trait.Clubfooted),
+			::Legends.Traits.getID(::Legends.Trait.ShortSighted),
+			::Legends.Traits.getID(::Legends.Trait.Loyal),
+			::Legends.Traits.getID(::Legends.Trait.Fat),
+			::Legends.Traits.getID(::Legends.Trait.Fearless),
+			::Legends.Traits.getID(::Legends.Trait.Brave),
+			::Legends.Traits.getID(::Legends.Trait.Bright),
+			::Legends.Traits.getID(::Legends.Trait.LegendSeductive)
 		];
 		this.m.Faces = this.Const.Faces.AllWhiteMale;
 		this.m.Hairs = this.Const.Hair.UntidyMale;

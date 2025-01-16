@@ -6,7 +6,7 @@ this.legend_drink_beer_skill <- this.inherit("scripts/skills/actives/base/legend
 		this.legend_drink_alcohol_skill.create();
 		this.m.ID = "actives.legend_drink_beer";
 		this.m.Name = "Drink or Give Beer";
-		this.m.Description = "Give to an adjacent ally or drink beer to get buzzed, will get you drunk if already buzzed, and sick if you're already drunk. Can not be used while engaged in melee, and anyone receiving the item needs to have a free bag slot.";
+		this.m.Description = "Give to an adjacent ally or drink beer to get buzzed, or drunk if already buzzed, or sick if already drunk. Can not be used while engaged in melee, and anyone receiving the item needs to have a free bag slot.";
 		this.m.Icon = "skills/beer_square.png";
 		this.m.IconDisabled = "skills/beer_square_bw.png";
 		this.m.Overlay = "active_144";

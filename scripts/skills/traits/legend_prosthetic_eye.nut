@@ -3,7 +3,7 @@ this.legend_prosthetic_eye <- this.inherit("scripts/skills/traits/character_trai
 	function create()
 	{
 		this.character_trait.create();
-		this.m.ID = "trait.legend_prosthetic_eye";
+		this.m.ID = ::Legends.Traits.getID(::Legends.Trait.LegendProstheticEye);
 		this.m.Name = "Prosthetic Eye";
 		this.m.Icon = "ui/traits/legend_prosthetic_eye.png";
 		this.m.Description = "My, what pretty eyes! This one seems a bit off, however, and the owner has to constantly shift their pupil back into position to look straight.";

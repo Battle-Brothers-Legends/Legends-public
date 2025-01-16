@@ -2,7 +2,7 @@ this.perk_legend_barter_paymaster <- this.inherit("scripts/skills/skill", {
 
 	function create()
 	{
-		::Const.Perks.setup(this.m, ::Const.Perks.PerkDefs.LegendPaymaster);
+		::Const.Perks.setup(this.m, ::Legends.Perk.LegendPaymaster);
 		this.m.Type = this.Const.SkillType.Perk;
 		this.m.Order = this.Const.SkillOrder.Perk;
 		this.m.IsActive = false;

@@ -12,15 +12,15 @@ this.houndmaster_background <- this.inherit("scripts/skills/backgrounds/characte
 		this.m.HiringCost = 85;
 		this.m.DailyCost = 11;
 		this.m.Excluded = [
-			"trait.weasel",
-			"trait.fear_beasts",
-			"trait.hate_beasts",
-			"trait.hate_undead",
-			"trait.bleeder",
-			"trait.bright",
-			"trait.asthmatic",
-			"trait.fainthearted",
-			"trait.tiny"
+			::Legends.Traits.getID(::Legends.Trait.Weasel),
+			::Legends.Traits.getID(::Legends.Trait.FearBeasts),
+			::Legends.Traits.getID(::Legends.Trait.HateBeasts),
+			::Legends.Traits.getID(::Legends.Trait.HateUndead),
+			::Legends.Traits.getID(::Legends.Trait.Bleeder),
+			::Legends.Traits.getID(::Legends.Trait.Bright),
+			::Legends.Traits.getID(::Legends.Trait.Asthmatic),
+			::Legends.Traits.getID(::Legends.Trait.Fainthearthed),
+			::Legends.Traits.getID(::Legends.Trait.Tiny)
 		];
 		this.m.Titles = [
 			"the Houndmaster",

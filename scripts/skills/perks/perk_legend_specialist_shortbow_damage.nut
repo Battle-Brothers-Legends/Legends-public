@@ -2,7 +2,7 @@ this.perk_legend_specialist_shortbow_damage <- this.inherit("scripts/skills/skil
 	m = {},
 	function create()
 	{
-		::Const.Perks.setup(this.m, ::Const.Perks.PerkDefs.LegendSpecialistShortbowDamage);
+		::Const.Perks.setup(this.m, ::Legends.Perk.LegendSpecialistShortbowDamage);
 		this.m.Type = this.Const.SkillType.Perk;
 		this.m.Order = this.Const.SkillOrder.Perk;
 		this.m.IsActive = false;

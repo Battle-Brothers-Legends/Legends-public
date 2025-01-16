@@ -4,7 +4,7 @@ this.legend_redback_puncture_skill <- this.inherit("scripts/skills/skill", {
 	{
 		this.m.ID = "actives.legend_redback_puncture";
 		this.m.Name = "Redback Poison Puncture";
-		this.m.Description = "A well-placed attack at the opponent armor\'s weakspots with redback poison. Ignores all armor and injects the target with poison but is harder to hit with and can not land critical hits for additional damage, nor inflict additional damage with double grip. Poison does not work on undead and you must deal enough damage for the poison to enter the system";
+		this.m.Description = "A well-placed attack at the opponent armor\'s weakspots with redback poison. Ignores all armor and injects the target with poison but is harder to hit with and can not land critical hits for additional damage, nor inflict additional damage with double grip. Poison does not work on undead and you must deal enough damage for the poison to enter the system.";
 		this.m.KilledString = "Punctured";
 		this.m.Icon = "skills/active_27.png";
 		this.m.IconDisabled = "skills/active_27_sw.png";
@@ -96,7 +96,7 @@ this.legend_redback_puncture_skill <- this.inherit("scripts/skills/skill", {
 	function canDoubleGrip()
 	{
 		local missinghand = this.m.Container.getSkillByID("injury.missing_hand");
-		local newhand = this.m.Container.getSkillByID("trait.legend_prosthetic_hand");
+		local newhand = ::Legends.Traits.get(this, ::Legends.Trait.LegendProstheticHand);
 		local main = this.getContainer().getActor().getItems().getItemAtSlot(this.Const.ItemSlot.Mainhand);
 		local off = this.getContainer().getActor().getItems().getItemAtSlot(this.Const.ItemSlot.Offhand);
 		return (missinghand == null || newhand != null) && main != null && off == null && main.isDoubleGrippable();

@@ -12,23 +12,23 @@ this.brawler_background <- this.inherit("scripts/skills/backgrounds/character_ba
 		this.m.HiringCost = 84;
 		this.m.DailyCost = 13;
 		this.m.Excluded = [
-			"trait.weasel",
-			"trait.fear_undead",
-			"trait.hate_undead",
-			"trait.ailing",
-			"trait.clubfooted",
-			"trait.irrational",
-			"trait.asthmatic",
-			"trait.clumsy",
-			"trait.fat",
-			"trait.craven",
-			"trait.insecure",
-			"trait.dastard",
-			"trait.fainthearted",
-			"trait.bright",
-			"trait.bleeder",
-			"trait.fragile",
-			"trait.tiny"
+			::Legends.Traits.getID(::Legends.Trait.Weasel),
+			::Legends.Traits.getID(::Legends.Trait.FearUndead),
+			::Legends.Traits.getID(::Legends.Trait.HateUndead),
+			::Legends.Traits.getID(::Legends.Trait.Ailing),
+			::Legends.Traits.getID(::Legends.Trait.Clubfooted),
+			::Legends.Traits.getID(::Legends.Trait.Irrational),
+			::Legends.Traits.getID(::Legends.Trait.Asthmatic),
+			::Legends.Traits.getID(::Legends.Trait.Clumsy),
+			::Legends.Traits.getID(::Legends.Trait.Fat),
+			::Legends.Traits.getID(::Legends.Trait.Craven),
+			::Legends.Traits.getID(::Legends.Trait.Insecure),
+			::Legends.Traits.getID(::Legends.Trait.Dastard),
+			::Legends.Traits.getID(::Legends.Trait.Fainthearthed),
+			::Legends.Traits.getID(::Legends.Trait.Bright),
+			::Legends.Traits.getID(::Legends.Trait.Bleeder),
+			::Legends.Traits.getID(::Legends.Trait.Fragile),
+			::Legends.Traits.getID(::Legends.Trait.Tiny)
 		];
 		this.m.ExcludedTalents = [
 			this.Const.Attributes.RangedSkill

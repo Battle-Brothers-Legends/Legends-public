@@ -26,10 +26,10 @@ this.mage_legends_mage_scenario <- this.inherit("scripts/scenarios/world/startin
 		bro.setStartValuesEx([
 			"mage_legend_mage_commander_background"
 		]);
-		bro.getSkills().add(this.new("scripts/skills/traits/player_character_trait"));
+		::Legends.Traits.grant(bro, ::Legends.Trait.Player);
 		this.addScenarioPerk(bro.getBackground(), this.Const.Perks.PerkDefs.Student);
 		this.addScenarioPerk(bro.getBackground(), this.Const.Perks.PerkDefs.LegendMindOverBody);
-		this.addScenarioPerk(bro.getBackground(), this.Const.Perks.PerkDefs.LegendMagicMissile);		
+		this.addScenarioPerk(bro.getBackground(), this.Const.Perks.PerkDefs.LegendMagicMissile);
 		bro.setPlaceInFormation(4);
 		bro.setVeteranPerks(2);
 		bro.getFlags().set("IsPlayerCharacter", true);
@@ -137,22 +137,22 @@ this.mage_legends_mage_scenario <- this.inherit("scripts/scenarios/world/startin
 			bro.worsenMood(1.0, "Scared of your magic");
 		}
 
-		if (bro.getSkills().hasSkill("trait.bright"))
+		if (bro.getSkills().hasTrait(::Legends.Trait.Bright))
 		{
 			bro.improveMood(0.5, "Keen to learn from a master");
 		}
 
-		if (bro.getSkills().hasSkill("trait.dumb"))
+		if (bro.getSkills().hasTrait(::Legends.Trait.Dumb))
 		{
 			bro.worsenMood(0.5, "Thinks you are a boring nerd");
 		}
 
-		if (bro.getSkills().hasSkill("trait.legend_pragmatic"))
+		if (bro.getSkills().hasTrait(::Legends.Trait.LegendPragmatic))
 		{
 			bro.improveMood(0.5, "Thinks magic is pretty useful");
 		}
 
-		if (bro.getSkills().hasSkill("trait.superstitious"))
+		if (bro.getSkills().hasTrait(::Legends.Trait.Superstitious))
 		{
 			bro.worsenMood(0.5, "Thinks your magic will bring them ruin");
 		}
@@ -163,12 +163,12 @@ this.mage_legends_mage_scenario <- this.inherit("scripts/scenarios/world/startin
 
 	function onGenerateBro(bro)
 	{
-			if (bro.getBackground().isBackgroundType(this.Const.BackgroundType.Educated) || bro.getSkills().hasSkill("trait.bright") || bro.getSkills().hasSkill("trait.legend_pragmatic"))
+			if (bro.getBackground().isBackgroundType(this.Const.BackgroundType.Educated) || bro.getSkills().hasTrait(::Legends.Trait.Bright) || bro.getSkills().hasTrait(::Legends.Trait.LegendPragmatic))
 			{
 				bro.m.HiringCost = this.Math.floor(bro.m.HiringCost * 0.8);
 				bro.getBaseProperties().DailyWage = this.Math.floor(bro.getBaseProperties().DailyWage * 0.8);
 			}
-			else if (!bro.getBackground().isBackgroundType(this.Const.BackgroundType.Educated) || bro.getSkills().hasSkill("trait.dumb") || bro.getSkills().hasSkill("trait.superstitious"))
+			else if (!bro.getBackground().isBackgroundType(this.Const.BackgroundType.Educated) || bro.getSkills().hasTrait(::Legends.Trait.Dumb) || bro.getSkills().hasTrait(::Legends.Trait.Superstitious))
 			{
 				bro.m.HiringCost = this.Math.floor(bro.m.HiringCost * 1.3);
 				bro.getBaseProperties().DailyWage = this.Math.floor(bro.getBaseProperties().DailyWage * 1.3);

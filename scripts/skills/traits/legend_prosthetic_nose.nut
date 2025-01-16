@@ -3,7 +3,7 @@ this.legend_prosthetic_nose <- this.inherit("scripts/skills/traits/character_tra
 	function create()
 	{
 		this.character_trait.create();
-		this.m.ID = "trait.legend_prosthetic_nose";
+		this.m.ID = ::Legends.Traits.getID(::Legends.Trait.LegendProstheticNose);
 		this.m.Name = "Prosthetic Nose";
 		this.m.Icon = "ui/traits/legend_prosthetic_nose.png";
 		this.m.Description = "A roughly made fake nose that does more to ensure the wearer can actually breath than actually make them look nice. Try not to lie.";

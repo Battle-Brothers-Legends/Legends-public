@@ -169,12 +169,9 @@ this.healer_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 
 	function getCost(_injury)
 	{
-		local name = _injury.getName(); // for bug tracking, there's some problem apparently with some injures
 		local cost = _injury.getCost();
 		if (this.getUpgraded())
-		{
 			cost = this.Math.floor(cost * 0.75);
-		}
 		return cost;
 	}
 

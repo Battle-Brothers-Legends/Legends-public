@@ -105,10 +105,8 @@ this.legend_boar_charge_skill <- this.inherit("scripts/skills/skill", {
 			this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(_user) + " pushes through " + this.Const.UI.getColorizedEntityName(target));
 		}
 
-		local skills = target.getSkills();
-		skills.removeByID("effects.shieldwall");
-		skills.removeByID("effects.spearwall");
-		skills.removeByID("effects.riposte");
+		if (!target.getSkills().hasSkill("effects.legend_break_stance"))
+			target.getSkills().add(this.new("scripts/skills/effects/legend_break_stance_effect"));
 
 		if (this.m.SoundOnHit.len() != 0)
 		{
@@ -203,7 +201,7 @@ this.legend_boar_charge_skill <- this.inherit("scripts/skills/skill", {
 
 
 
-			if (this.getContainer().getActor().getSkills().hasSkill("perk.legend_muscularity"))
+			if (this.getContainer().getActor().getSkills().hasPerk(::Legends.Perk.LegendMuscularity))
 			{
 				local muscularity = this.Math.floor(bodyHealth * 0.1);
 				damageMax += muscularity;

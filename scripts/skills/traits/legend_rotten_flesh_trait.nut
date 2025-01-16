@@ -5,7 +5,7 @@ this.legend_rotten_flesh_trait <- this.inherit("scripts/skills/traits/character_
 	function create()
 	{
 		this.character_trait.create();
-		this.m.ID = "trait.legend_rotten_flesh";
+		this.m.ID = ::Legends.Traits.getID(::Legends.Trait.LegendRottenFlesh);
 		this.m.Name = "Rotting Flesh";
 		this.m.Description = "With flesh is pale and gaunt, this one rots away as merely a souless animal.";
 		this.m.Icon = "ui/traits/rotting_flesh_trait.png";

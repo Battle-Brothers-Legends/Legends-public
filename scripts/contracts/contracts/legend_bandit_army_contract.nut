@@ -11,7 +11,7 @@ this.legend_bandit_army_contract <- this.inherit("scripts/contracts/contract", {
 		OriginalReward = 0,
 		MinStrength = 10, // player needs to earn 10% of bonus (not including base 5% bonus) for this contract to be valid
 		BribeMoney = 1000,
-		Perk = "perk.legend_favoured_enemy_bandit",
+		Perk = ::Legends.Perk.LegendFavouredEnemyBandit,
 		ValidTypes = this.Const.LegendMod.FavoriteBandit
 	},
 	function getBanner()
@@ -313,7 +313,7 @@ this.legend_bandit_army_contract <- this.inherit("scripts/contracts/contract", {
 
 					foreach( bro in bros )
 					{
-						if (bro.getBackground().getID() == "background.thief" || bro.getBackground().getID() == "background.sellsword" || bro.getBackground().getID() == "background.legend_trader_commander" || bro.getBackground().getID() == "background.legend_assassin_commander" || bro.getBackground().getID() == "background.legend_assassin" || bro.getSkills().hasSkill("perk.legend_bribe"))
+						if (bro.getBackground().getID() == "background.thief" || bro.getBackground().getID() == "background.sellsword" || bro.getBackground().getID() == "background.legend_trader_commander" || bro.getBackground().getID() == "background.legend_assassin_commander" || bro.getBackground().getID() == "background.legend_assassin" || bro.getSkills().hasPerk(::Legends.Perk.LegendBribe))
 						{
 							candidates.push(bro);
 						}
@@ -826,7 +826,7 @@ this.legend_bandit_army_contract <- this.inherit("scripts/contracts/contract", {
 
 		foreach( bro in this.World.getPlayerRoster().getAll() )
 		{
-			if (!bro.getSkills().hasSkill(this.m.Perk))
+			if (!bro.getSkills().hasPerk(this.m.Perk))
 			{
 				continue;
 			}

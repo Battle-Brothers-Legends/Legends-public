@@ -1,41 +1,30 @@
 this.legend_unleash_animal_skill <- this.inherit("scripts/skills/skill", {
 	m = {},
 
-	function addAnimalSkills(entity)
+	function addAnimalSkills (_entity)
 	{
-
-		if (this.getContainer().getActor().getSkills().hasSkill("perk.legend_dogwhisperer"))
+		if (this.getContainer().getActor().getSkills().hasPerk(::Legends.Perk.LegendDogWhisperer))
 		{
-			entity.getSkills().add(this.new("scripts/skills/perks/perk_fortified_mind"));
-			entity.getSkills().add(this.new("scripts/skills/perks/perk_colossus"));
-			entity.getSkills().add(this.new("scripts/skills/perks/perk_underdog"));
+			::Legends.Perks.grant(_entity, ::Legends.Perk.FortifiedMind);
+			::Legends.Perks.grant(_entity, ::Legends.Perk.Colossus);
+			::Legends.Perks.grant(_entity, ::Legends.Perk.Underdog);
 		}
 
-		if (!this.getContainer().hasSkill("perk.legend_doghandling"))
-		{
+		if (!this.getContainer().hasPerk(::Legends.Perk.LegendDogHandling))
 			return;
-		}
 
+		local skill = ::new("scripts/skills/actives/legend_attack_target_skill");
+		skill.addPet(_entity.getID());
+		this.getContainer().add(skill);
 
-		if (!this.getContainer().hasSkill("actives.legend_attack_target"))
-		{
-			this.getContainer().add(this.new("scripts/skills/actives/legend_attack_target_skill"));
-		}
-		local skill = this.getContainer().getSkillByID("actives.legend_attack_target");
-		skill.addPet(entity.getID());
+		skill = ::new("scripts/skills/actives/legend_protect_target_skill");
+		skill.addPet(_entity.getID());
+		this.getContainer().add(skill);
 
-		if (!this.getContainer().hasSkill("actives.legend_protect_target"))
-		{
-			this.getContainer().add(this.new("scripts/skills/actives/legend_protect_target_skill"));
-		}
-		skill = this.getContainer().getSkillByID("actives.legend_protect_target");
-		skill.addPet(entity.getID());
-
-		local ai = entity.getAIAgent();
+		local ai = _entity.getAIAgent();
 		ai.m.Properties.TargetPriorityHitchanceMult = 2.0;
 		ai.m.Properties.EngageAgainstSpearwallMult = 0.5;
 		ai.m.Properties.EngageAgainstSpearwallWithShieldwallMult = 0.25;
-
 	}
 
 });

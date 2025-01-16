@@ -9,7 +9,7 @@
 					local brothers = this.World.getPlayerRoster().getAll();
 
 					foreach( bro in brothers ) {
-						if (bro.getID() == _event.m.Historian.getID() || bro.getBackground().getID() == "background.historian"  || bro.getBackground().getID() == "background.legend_inventor" || bro.getBackground().getID() == "background.legend_witch" || bro.getBackground().getID() == "background.legend_witch_commander"|| bro.getSkills().hasSkill("trait.bright"))
+						if (bro.getID() == _event.m.Historian.getID() || bro.getBackground().getID() == "background.historian"  || bro.getBackground().getID() == "background.legend_inventor" || bro.getBackground().getID() == "background.legend_witch" || bro.getBackground().getID() == "background.legend_witch_commander"|| bro.getSkills().hasTrait(::Legends.Trait.Bright))
 							continue;
 
 						if (this.Math.rand(1, 100) <= 33) {
@@ -84,7 +84,7 @@
 									icon = this.Const.MoodStateIcon[bro.getMoodState()],
 									text = bro.getName() + this.Const.MoodStateEvent[bro.getMoodState()]
 								});
-						} else if (bro.getSkills().hasSkill("trait.superstitious") || bro.getSkills().hasSkill("trait.mad")) {
+						} else if (bro.getSkills().hasTrait(::Legends.Trait.Superstitious) || bro.getSkills().hasTrait(::Legends.Trait.Mad)) {
 							bro.worsenMood(1.0, "Terrified at the prospect of a dying sun");
 
 							if (bro.getMoodState() < this.Const.MoodState.Neutral)
@@ -119,7 +119,7 @@
 		local candidate_other = [];
 
 		foreach( bro in brothers ) {
-			if (bro.getBackground().getID() == "background.historian" || bro.getBackground().getID() == "background.legend_inventor" || bro.getBackground().getID() == "background.legend_seer"  || bro.getBackground().getID() == "background.legend_seer_commander" || bro.getSkills().hasSkill("perk.legend_scholar"))
+			if (bro.getBackground().getID() == "background.historian" || bro.getBackground().getID() == "background.legend_inventor" || bro.getBackground().getID() == "background.legend_seer"  || bro.getBackground().getID() == "background.legend_seer_commander" || bro.getSkills().hasPerk(::Legends.Perk.LegendScholar))
 				candidate_historian.push(bro);
 			else if (bro.getBackground().getID() == "background.monk")
 				candidate_monk.push(bro);

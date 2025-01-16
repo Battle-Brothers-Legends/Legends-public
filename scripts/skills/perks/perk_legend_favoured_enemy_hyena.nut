@@ -3,7 +3,7 @@ this.perk_legend_favoured_enemy_hyena <- this.inherit("scripts/skills/legend_fav
 	function create()
 	{
 		this.legend_favoured_enemy_skill.create();
-		::Const.Perks.setup(this.m, ::Const.Perks.PerkDefs.LegendFavouredEnemyHyena);
+		::Const.Perks.setup(this.m, ::Legends.Perk.LegendFavouredEnemyHyena);
 		this.m.ValidTypes = this.Const.LegendMod.FavoriteHyenas;
 	}
 

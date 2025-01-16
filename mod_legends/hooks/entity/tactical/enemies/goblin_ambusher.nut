@@ -4,11 +4,11 @@
 	o.onInit = function ()
 	{
 		onInit();
-		if ("Assets" in this.World && this.World.Assets != null && this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Legendary)
+		if (::Legends.isLegendaryDifficulty())
 		{
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_ballistics"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_pathfinder"));
-			this.m.Skills.add(this.new("scripts/skills/perks/perk_crippling_strikes"));
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendBallistics);
+			::Legends.Perks.grant(this, ::Legends.Perk.Pathfinder);
+			::Legends.Perks.grant(this, ::Legends.Perk.CripplingStrikes);
 		}
 	}
 
@@ -51,7 +51,7 @@
 		{
 			this.m.Items.addToBag(this.new("scripts/items/accessory/poison_item"));
 		}
-		if("Assets" in this.World && this.World.Assets != null && this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Legendary)
+		if(::Legends.isLegendaryDifficulty())
 		{
 			this.m.Items.addToBag(this.new("scripts/items/accessory/poison_item"));
 		}

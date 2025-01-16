@@ -124,7 +124,7 @@
 			});
 		}
 
-		if (this.m.Container.getActor().getSkills().hasSkill("trait.oath_of_honor") && (this.m.IsWeaponSkill && this.m.IsRanged || this.m.IsOffensiveToolSkill))
+		if (this.m.Container.getActor().getSkills().hasTrait(::Legends.Trait.OathOfHonor) && (this.m.IsWeaponSkill && this.m.IsRanged || this.m.IsOffensiveToolSkill))
 		{
 			ret.push({
 				id = 9,
@@ -330,7 +330,7 @@
 
 		if (this.m.IsAttack)
 		{
-			local fast_adaption = this.m.Container.getSkillByID("perk.fast_adaption");
+			local fast_adaption = ::Legends.Perks.get(this.getContainer(), ::Legends.Perk.FastAdaption);
 
 			if (fast_adaption != null && fast_adaption.isBonusActive())
 			{
@@ -340,7 +340,7 @@
 				});
 			}
 
-			local oath = this.m.Container.getSkillByID("trait.oath_of_wrath");
+			local oath = ::Legends.Traits.get(this, ::Legends.Trait.OathOfWrath);
 
 			if (oath != null)
 			{
@@ -651,7 +651,7 @@
 		};
 		modifier["Fast Adaption"] <- function ( row, description )
 		{
-			local fast_adaption = thisSkill.m.Container.getSkillByID("perk.fast_adaption");
+			local fast_adaption = ::Legends.Perks.get(this, ::Legends.Perk.FastAdaption);
 			local bonus = 10 * fast_adaption.m.Stacks;
 			row.text = green(bonus + "%") + " " + description;
 		};

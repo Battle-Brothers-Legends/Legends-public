@@ -4,7 +4,7 @@ this.legend_donkey_kick_skill <- this.inherit("scripts/skills/skill", {
 	{
 		this.m.ID = "actives.legend_donkey_kick";
 		this.m.Name = "Donkey Kick";
-		this.m.Description = "The main attack of a donkey, more for defense than attack. Maximum damage is the average of your hitpoints and initiative minus 90";
+		this.m.Description = "The main attack of a donkey, more for defense than attack. Maximum damage is the average of your hitpoints and initiative minus 90.";
 		this.m.KilledString = "Kicked to death";
 		this.m.Icon = "skills/horse_kick.png";
 		this.m.IconDisabled = "skills/horse_kick_bw.png";
@@ -63,7 +63,7 @@ function getTooltip()
 		local damage_Armor_min = this.Math.floor(damageMin * p.DamageArmorMult * p.DamageTotalMult);
 		local damage_Armor_max = this.Math.floor(damageMax * p.DamageArmorMult * p.DamageTotalMult);
 		local damage_direct_max = this.Math.floor(damageMax * this.m.DirectDamageMult);
-		if (this.getContainer().getActor().getSkills().hasSkill("perk.legend_muscularity"))
+		if (this.getContainer().getActor().getSkills().hasPerk(::Legends.Perk.LegendMuscularity))
 		{
 			local muscularity = this.Math.floor(bodyHealth * 0.1);
 			 damage_regular_max += muscularity;
@@ -167,7 +167,7 @@ function onAnySkillUsed( _skill, _targetEntity, _properties )
 				damageMax += avgMax;
 				}
 
-			if (this.getContainer().getActor().getSkills().hasSkill("perk.legend_muscularity"))
+			if (this.getContainer().getActor().getSkills().hasPerk(::Legends.Perk.LegendMuscularity))
 			{
 				local muscularity = this.Math.floor(bodyHealth * 0.1);
 				damageMax += muscularity;

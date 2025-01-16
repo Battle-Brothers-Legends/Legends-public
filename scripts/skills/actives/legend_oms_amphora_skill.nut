@@ -7,7 +7,7 @@ this.legend_oms_amphora_skill <- ::inherit("scripts/skills/skill", {
 		this.m.Description = "Drink from the Amphora. You can\'t be sure what this might do...";
 		this.m.Icon = "skills/amphora_active.png";
 		this.m.IconDisabled = "skills/amphora_active_bw.png";
-		this.m.Overlay = "amphora_active.png"; 
+		this.m.Overlay = "amphora_active.png";
 		this.m.SoundOnUse = [
 			"sounds/combat/drink_01.wav",
 			"sounds/combat/drink_02.wav",
@@ -23,14 +23,14 @@ this.legend_oms_amphora_skill <- ::inherit("scripts/skills/skill", {
 		this.m.IsUsingHitchance = false;
 		this.m.IsIgnoredAsAOO = true;
 		this.m.ActionPointCost = 3;
-		this.m.FatigueCost = 5; 
-		this.m.MinRange = 0; 
-		this.m.MaxRange = 1; 
+		this.m.FatigueCost = 5;
+		this.m.MinRange = 0;
+		this.m.MaxRange = 1;
 	}
 
 	function getTooltip()
 	{
-		result = [
+		local result = [
 		{
 			id = 1,
 			type = "title",
@@ -108,8 +108,8 @@ this.legend_oms_amphora_skill <- ::inherit("scripts/skills/skill", {
 		}
 
 		local effects = ::MSU.Class.WeightedContainer([
-			[0.5, "scripts/skills/effects/antidote_effect"], 
-			[0.5, "scripts/skills/effects/bleeding_effect"], 
+			[0.5, "scripts/skills/effects/antidote_effect"],
+			[0.5, "scripts/skills/effects/bleeding_effect"],
 			[0.5, "scripts/skills/effects/legend_beer_buzz_effect"],
 			[0.5, "scripts/skills/effects/legend_mead_warmth_effect"],
 			[0.5, "scripts/skills/effects/legend_wine_tipsy_effect"],
@@ -123,7 +123,7 @@ this.legend_oms_amphora_skill <- ::inherit("scripts/skills/skill", {
 			[0.3, "scripts/skills/effects/goblin_poison_effect"],
 
 			[0.2, "scripts/skills/effects/spider_poison_effect"],
-			[0.2, "scripts/skills/effects/iron_will_effect"], 
+			[0.2, "scripts/skills/effects/iron_will_effect"],
 			[0.2, "scripts/skills/effects/legend_redback_spider_poison_effect"],
 
 			[0.1, "scripts/skills/effects/legend_greenwood_sap_effect"]

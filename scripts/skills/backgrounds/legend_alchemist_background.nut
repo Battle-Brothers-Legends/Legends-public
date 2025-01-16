@@ -12,15 +12,15 @@ this.legend_alchemist_background <- this.inherit("scripts/skills/backgrounds/cha
 		this.m.HiringCost = 1250;
 		this.m.DailyCost = 20;
 		this.m.Excluded = [
-			"trait.legend_heavy",
-			"trait.martial",
-			"trait.strong",
-			"trait.bloodthirsty",
-			"trait.athletic",
-			"trait.spartan",
-			"trait.strong",
-			"trait.hesitant",
-			"trait.dumb"
+			::Legends.Traits.getID(::Legends.Trait.LegendHeavy),
+			::Legends.Traits.getID(::Legends.Trait.LegendFirm),
+			::Legends.Traits.getID(::Legends.Trait.Strong),
+			::Legends.Traits.getID(::Legends.Trait.Bloodthirsty),
+			::Legends.Traits.getID(::Legends.Trait.Athletic),
+			::Legends.Traits.getID(::Legends.Trait.Spartan),
+			::Legends.Traits.getID(::Legends.Trait.Strong),
+			::Legends.Traits.getID(::Legends.Trait.Hesistant),
+			::Legends.Traits.getID(::Legends.Trait.Dumb)
 		];
 		this.m.ExcludedTalents = [
 			this.Const.Attributes.MeleeSkill,
@@ -55,7 +55,7 @@ this.legend_alchemist_background <- this.inherit("scripts/skills/backgrounds/cha
 			],
 			Enemy = [],
 			Class = [
-				this.Const.Perks.SickleClassTree, 
+				this.Const.Perks.SickleClassTree,
 				this.Const.Perks.BarterClassTree]
 			Magic = []
 		}
