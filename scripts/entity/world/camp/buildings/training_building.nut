@@ -89,12 +89,18 @@ this.training_building <- this.inherit("scripts/entity/world/camp/camp_building"
 
 		foreach( bro in mod.Modifiers )
 		{
-			++id;
+			id = ++id;
+			local tooltip_text = "[color=" + this.Const.UI.Color.PositiveValue + "]" + bro[0] * 100.0 + "%[/color] " + bro[1] + " (" + bro[2] + ")"
+
+			if (bro[3])
+			{
+				tooltip_text = "[color=" + this.Const.UI.Color.PositiveValue + "]" + bro[0] * 100.0 + "%[/color] " + bro[1] + " (" + bro[2] + ") [color=" + this.Const.UI.Color.NegativeValue + "] Training fulfilled [/color] "
+			}
 			ret.push({
 				id = id,
 				type = "hint",
 				icon = "ui/icons/special.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]" + bro[0] * 100.0 + "%[/color] " + bro[1] + " (" + bro[2] + ")"
+				text = tooltip_text
 			});
 		}
 
