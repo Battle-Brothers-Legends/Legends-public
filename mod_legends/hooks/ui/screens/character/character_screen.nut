@@ -624,16 +624,6 @@
 		return null;
 	}
 
-	local helper_isActionAllowed = o.helper_isActionAllowed;
-	o.helper_isActionAllowed = function ( _entity, _items, _putIntoBags )
-	{
-		local isRight = typeof _items == "array" && _items[0] != null;
-		if (isRight) _items[0].m.IsChangeableInBattleActor = _entity;
-		local result = helper_isActionAllowed(_entity, _items, _putIntoBags);
-		if (isRight) _items[0].m.IsChangeableInBattleActor = null;
-		return result;
-	}
-
 	o.onFormationChanged <- function ( _data )
 	{
 		local index = _data[0];
