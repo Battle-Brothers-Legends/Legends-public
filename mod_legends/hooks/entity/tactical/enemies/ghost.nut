@@ -1,4 +1,4 @@
-::mods_hookExactClass("entity/tactical/enemies/ghost", function(o) 
+::mods_hookExactClass("entity/tactical/enemies/ghost", function(o)
 {
 	local onInit = o.onInit;
 	o.onInit = function ()
@@ -18,23 +18,5 @@
 			this.m.Skills.add(this.new("scripts/skills/perks/perk_dodge"));
 			this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_levitation"));
 		}
-	}
-
-	o.makeMiniboss <- function ()
-	{
-		if (!this.actor.makeMiniboss())
-		{
-			return false;
-		}
-
-		this.getSprite("miniboss").setBrush("bust_miniboss");
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_underdog"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_nine_lives"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_fast_adaption"));
-		this.m.ActionPoints = 12;
-		this.m.BaseProperties.ActionPoints = 12;
-		this.m.Skills.update();
-
-		return true;
 	}
 });
