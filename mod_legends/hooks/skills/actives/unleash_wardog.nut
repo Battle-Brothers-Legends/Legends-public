@@ -47,9 +47,7 @@
 		}
 
 		if (!this.getContainer().hasPerk(::Legends.Perk.LegendDogHandling))
-		{
 			return;
-		}
 
 		local skill = ::new("scripts/skills/actives/legend_attack_target_skill");
 		skill.addPet(_entity.getID());

@@ -29,7 +29,7 @@
 
 ::Const.Items.LegendNamedCloakLayers <- [
 	"legend_armor/named/legend_armor_cloak_rich",
-	"legend_armor/named/legend_armor_cloak_emperors"
+	// "legend_armor/named/legend_armor_cloak_emperors"
 ];
 
 ::Const.Items.LegendNamedSouthernArmorLayers <- [

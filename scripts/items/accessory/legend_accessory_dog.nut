@@ -38,7 +38,7 @@ this.legend_accessory_dog <- this.inherit("scripts/items/accessory/accessory", {
 			return true;
 		if (::MSU.isNull(this.m.AddToBagActor))
 			return true;
-		return this.m.AddToBagActor.getSkills().hasPerk(::Legends.Perk.LegendPackleader);
+		return this.m.IsChangeableInBattleActor.getSkills().hasPerk(::Legends.Perk.LegendPackleader);
 	}
 
 	function isUnleashed()
