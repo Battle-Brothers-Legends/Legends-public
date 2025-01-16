@@ -526,26 +526,6 @@ class Defs:
  },
 
 
-{"name" : "hood_cloth_round"                     , "layer" : "top", "min" : 1, "max" : 1, "value" : 5, "con" : 5, "stam" : 0, "vis" : 0, "hair" : "true", "beard" : "false",
- "title" :  "Round Hood Cloth",
- "desc" :  "A simple hood to protect against weather and scratches."
- },
-{"name" : "hood_cloth_wide"                     , "layer" : "top", "min" : 1, "max" : 2,  "value" : 5, "con" : 5, "stam" : 0, "vis" : 0, "hair" : "true", "beard" : "false",
- "title" :  "Wide Hood Cloth",
- "desc" :  "A simple hood to protect against weather and scratches."
- },
-{"name" : "hood_cloth_square"                     , "layer" : "top", "min" : 1, "max" : 1, "value" : 5, "con" : 5, "stam" : 0, "vis" : 0, "hair" : "true", "beard" : "false",
- "title" :  "Square Hood Cloth",
- "desc" :  "A simple hood to protect against weather and scratches."
- },
-{"name" : "cloth_long_hood"                     , "layer" : "top", "min" : 1, "max" : 4, "value" : 30, "con" : 10, "stam" : 0, "vis" : 0, "hair" : "true", "beard" : "false",
- "title" :  "Cloth Long Hood",
- "desc" :  "A simple hood to protect against weather and scratches."
- },
-{"name" : "cloth_long_hood"                     , "layer" : "top", "min" : 1, "max" : 4, "value" : 30, "con" : 10, "stam" : 0, "vis" : 0, "hair" : "true", "beard" : "false",
- "title" :  "Cloth Long Hood",
- "desc" :  "A simple hood to protect against weather and scratches."
- },
 {"name" : "mask_beak"                     , "layer" : "top", "min" : 1, "max" : 1, "value" : 50, "con" : 20, "stam" : -1, "vis" : -1, "hair" : "true", "beard" : "false",
  "title" :  "Physicians Mask",
  "desc" :  "a distinctive, bird-like mask. The beak acts as a ventilator, containing sweet-smelling herbs to ward away sickness and disease"
@@ -795,7 +775,22 @@ class Defs:
  },
 
 
-
+{"name" : "hood_cloth_round"                     , "layer" : "vanity", "min" : 1, "max" : 1, "value" : 5, "con" : 5, "stam" : 0, "vis" : 0, "hair" : "true", "beard" : "false",
+ "title" :  "Round Hood Cloth",
+ "desc" :  "A simple hood to protect against weather and scratches."
+ },
+{"name" : "hood_cloth_wide"                     , "layer" : "vanity", "min" : 1, "max" : 2,  "value" : 5, "con" : 5, "stam" : 0, "vis" : 0, "hair" : "true", "beard" : "false",
+ "title" :  "Wide Hood Cloth",
+ "desc" :  "A simple hood to protect against weather and scratches."
+ },
+{"name" : "hood_cloth_square"                     , "layer" : "vanity", "min" : 1, "max" : 1, "value" : 5, "con" : 5, "stam" : 0, "vis" : 0, "hair" : "true", "beard" : "false",
+ "title" :  "Square Hood Cloth",
+ "desc" :  "A simple hood to protect against weather and scratches."
+ },
+{"name" : "hood_cloth_long"                     , "layer" : "vanity", "min" : 1, "max" : 4, "value" : 30, "con" : 10, "stam" : 0, "vis" : 0, "hair" : "true", "beard" : "false",
+ "title" :  "Cloth Long Hood",
+ "desc" :  "A simple hood to protect against weather and scratches."
+ },
 {"name" : "noble_southern_crown"                     , "layer" : "vanity", "min" : 1, "max" : 1, "value" : 100, "con" : 5, "stam" : 0, "vis" : 0, "hair" : "true", "beard" : "false",
  "title" :  "Vizier Peak",
  "desc" :  "The crown of a southern vizier."

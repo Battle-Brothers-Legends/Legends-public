@@ -742,10 +742,10 @@ this.legends_debug_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 			"helm/legend_helmet_barb_metal_cap",
 
 
-			"top/legend_helmet_hood_cloth_round",
-			"top/legend_helmet_hood_cloth_wide",
-			"top/legend_helmet_hood_cloth_square",
-			"top/legend_helmet_cloth_long_hood",
+			"vanity/legend_helmet_hood_cloth_round",
+			"vanity/legend_helmet_hood_cloth_wide",
+			"vanity/legend_helmet_hood_cloth_square",
+			"vanity/legend_helmet_hood_cloth_long",
 			"top/legend_helmet_orc_horn_mask",
 			"top/legend_helmet_orc_metal_mask",
 			"top/legend_helmet_goblin_leaves",
