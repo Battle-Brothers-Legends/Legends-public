@@ -10,7 +10,8 @@ this.legend_chain_lightning_skill <- this.inherit("scripts/skills/skill", {
 			"sounds/combat/electricity_02.wav",
 			"sounds/combat/electricity_03.wav",
 			"sounds/combat/electricity_04.wav"
-		]
+		],
+		TargetTile = null
 	},
 	function create()
 	{
@@ -142,6 +143,7 @@ this.legend_chain_lightning_skill <- this.inherit("scripts/skills/skill", {
 
 	function onUse( _user, _targetTile )
 	{
+		this.m.TargetTile = _targetTile;
 		if (!_user.isHiddenToPlayer() || _targetTile.IsVisibleForPlayer)
 		{
 			getContainer().setBusy(true);
@@ -178,8 +180,13 @@ this.legend_chain_lightning_skill <- this.inherit("scripts/skills/skill", {
 
 	function onTargetHit( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor )
 	{
-		if (_skill == this && _targetEntity.isAlive() && !_targetEntity.isDying())
-			this.summonChainLighting(this.getContainer().getActor(), _targetEntity.getTile());
+		this.summonChainLighting(this.getContainer().getActor(), this.m.TargetTile);
+		this.m.TargetTile = null;
+	}
+
+	function onTargetMissed( _skill, _targetEntity )
+	{
+		this.m.TargetTile = null;
 	}
 
 	function onShieldHit( _info )
@@ -271,6 +278,8 @@ this.legend_chain_lightning_skill <- this.inherit("scripts/skills/skill", {
 			if (_excluded.find(tile.ID) != null)
 				continue;
 			if (!tile.IsOccupiedByActor)
+				continue;
+			if (!tile.getEntity().isAlive() && tile.getEntity().isDying())
 				continue;
 			if (!tile.getEntity().isAttackable() || tile.getEntity().isAlliedWith(_user))
 				continue;
