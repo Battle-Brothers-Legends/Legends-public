@@ -21,7 +21,9 @@ this.legend_vala_background <- this.inherit("scripts/skills/backgrounds/characte
 			::Legends.Traits.getID(::Legends.Trait.Fainthearthed),
 			::Legends.Traits.getID(::Legends.Trait.Insecure),
 			::Legends.Traits.getID(::Legends.Trait.Disloyal),
-			::Legends.Traits.getID(::Legends.Trait.Loyal)
+			::Legends.Traits.getID(::Legends.Trait.EagleEyes),
+			::Legends.Traits.getID(::Legends.Trait.LegendSureshot),
+			::Legends.Traits.getID(::Legends.Trait.LegendSteadyHands)
 		];
 		this.m.Titles = [
 			"the Vala"
@@ -162,12 +164,6 @@ this.legend_vala_background <- this.inherit("scripts/skills/backgrounds/characte
 			[1, "legend_vala_cloak"],
 			[1, "legend_vala_dress"]
 		]));
-	}
-
-	function onAdded()
-	{
-		this.character_background.onAdded();
-		::Legends.Traits.grant(this, ::Legends.Trait.Loyal);
 	}
 
 	function onUpdate( _properties )
