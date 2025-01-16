@@ -302,12 +302,18 @@ if (!("Perks" in ::Const))
 		]
 	},
 	Tree = [
-		[::Legends.Perk.Backstabber],
-		[::Legends.Perk.LegendTrueBeliever],
+		[],
+		[
+			::Legends.Perk.LegendTrueBeliever
+		],
 		[],
 		[],
-		[::Legends.Perk.LegendEvasion],
-		[],
+		[
+			::Legends.Perk.LegendEvasion
+		],
+		[
+			::Legends.Perk.Backstabber
+		],
 		[]
 	]
 };
