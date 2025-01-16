@@ -4,7 +4,7 @@ this.legend_relax_skill <- this.inherit("scripts/skills/skill", {
 	{
 		this.m.ID = "actives.legend_relax";
 		this.m.Name = "Relax";
-		this.m.Description = "You imbue an ally with calm and focus, reducing their fatigue";
+		this.m.Description = "You imbue an ally with calm and focus, reducing their fatigue.";
 		this.m.Icon = "skills/relax_square.png";
 		this.m.IconDisabled = "skills/relax_square_bw.png";
 		this.m.Overlay = "relax_square";

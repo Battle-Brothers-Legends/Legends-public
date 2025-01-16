@@ -8,7 +8,7 @@ this.legend_piercing_bolt_skill <- ::inherit("scripts/skills/actives/shoot_bolt"
 		this.shoot_bolt.create();
 		m.ID = "actives.legend_piercing_bolt";
 		m.Name = "Piercing Bolt";
-		m.Description = "A shot with so much force that it passes straight through one enemy to the enemy behind them";
+		m.Description = "A shot with so much force that it passes straight through the target to whoever is behind them.";
 		m.KilledString = "Pierced";
 		m.Icon = "skills/PiercingBoltSkill.png";
 		m.IconDisabled = "skills/PiercingBoltSkill_bw.png";

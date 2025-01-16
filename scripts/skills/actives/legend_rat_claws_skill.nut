@@ -4,7 +4,7 @@ this.legend_rat_claws_skill <- this.inherit("scripts/skills/skill", {
 	{
 		this.m.ID = "actives.legend_rat_claws";
 		this.m.Name = "Rat Claws";
-		this.m.Description = "Short sharp claws that can tear flesh.";
+		this.m.Description = "Tear into flesh with short, sharp claws.";
 		this.m.Icon = "skills/active_21.png";
 		this.m.IconDisabled = "skills/active_21_bw.png";
 		this.m.Overlay = "active_21";

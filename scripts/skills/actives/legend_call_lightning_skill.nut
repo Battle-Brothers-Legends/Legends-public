@@ -4,7 +4,7 @@ this.legend_call_lightning_skill <- this.inherit("scripts/skills/skill", {
 	{
 		this.m.ID = "actives.legend_call_lightning";
 		this.m.Name = "Call Lightning";
-		this.m.Description = "Call down bolts of lightning randomly within four tiles";
+		this.m.Description = "Call down bolts of lightning randomly within four tiles.";
 		this.m.Icon = "skills/storm_square.png";
 		this.m.IconDisabled = "skills/storm_square_bw.png";
 		this.m.Overlay = "coordinated_volleys_square";

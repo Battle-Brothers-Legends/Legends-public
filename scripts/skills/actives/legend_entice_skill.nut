@@ -4,7 +4,7 @@ this.legend_entice_skill <- this.inherit("scripts/skills/skill", {
 	{
 		this.m.ID = "actives.legend_entice";
 		this.m.Name = "Entice";
-		this.m.Description = "With a trick of the light, captivate your target in such a way that they can\'t help but approach you. ";
+		this.m.Description = "With a trick of the light, captivate your target in such a way that they can\'t help but approach you.";
 		this.m.Icon = "skills/entice.png";
 		this.m.IconDisabled = "skills/entice_bw.png";
 		this.m.Overlay = "entice";

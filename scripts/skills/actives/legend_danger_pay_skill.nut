@@ -9,7 +9,7 @@ this.legend_danger_pay_skill <- this.inherit("scripts/skills/skill", {
 	{
 		this.m.ID = "actives.legend_danger_pay";
 		this.m.Name = "Danger Pay";
-		this.m.Description = "Pay a unit " + this.m.Multiplier + "x their daily wage to set their morale to Confident and granting them the buff 'Motivated' for three turns.";
+		this.m.Description = "Pay a unit " + this.m.Multiplier + "x their daily wage to set their morale to Confident and grant them the buff 'Motivated' for three turns.";
 		this.m.Icon = "skills/coins_square.png";
 		this.m.IconDisabled = "skills/coins_square_bw.png";
 		this.m.Overlay = "active_41";

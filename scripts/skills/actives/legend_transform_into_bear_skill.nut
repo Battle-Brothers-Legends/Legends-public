@@ -6,7 +6,7 @@ this.legend_transform_into_bear_skill <- this.inherit("scripts/skills/skill", {
 	{
 		this.m.ID = "actives.legend_transform_into_bear";
 		this.m.Name = "Transform into Bear";
-		this.m.Description = "Enables the character to turn into a bear, requires free hands";
+		this.m.Description = "Enables the character to turn into a bear. Requires free hands.";
 		this.m.Icon = "skills/bear2_square.png";
 		this.m.IconDisabled = "skills/bear2_square_bw.png";
 		this.m.Overlay = "active_12";

@@ -52,7 +52,7 @@ this.legend_unleash_cat_skill <- this.inherit("scripts/skills/skill", {
 	{
 		this.m.ID = "actives.legend_unleash_cat";
 		this.m.Name = "Summon Cat";
-		this.m.Description = "Summon your cat, hopefully it wont just run away. Needs a free tile adjacent.";
+		this.m.Description = "Summon your cat. Hopefully it won\'t just run away. Needs a free tile adjacent.";
 		this.m.Icon = "skills/cat_square.png";
 		this.m.IconDisabled = "skills/cat_square_bw.png";
 		this.m.Overlay = "cat_square";

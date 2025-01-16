@@ -51,7 +51,7 @@ this.legend_unleash_hound_skill <- this.inherit("scripts/skills/actives/legend_u
 	{
 		this.m.ID = "actives.legend_unleash_hound";
 		this.m.Name = "Summon Hound";
-		this.m.Description = "Summon a faithful hound. Needs a free tile adjacent. Can only summon one per combat";
+		this.m.Description = "Summon a faithful hound. Needs a free tile adjacent. Can only summon one per combat.";
 		this.m.Icon = "skills/active_165.png";
 		this.m.IconDisabled = "skills/active_165_sw.png";
 		this.m.Overlay = "active_165";

@@ -6,7 +6,7 @@ this.legend_eat_porridge_skill <- this.inherit("scripts/skills/actives/base/lege
 		this.legend_eat_skill.create();
 		this.m.ID = "actives.legend_eat_porridge";
 		this.m.Name = "Eat or Give Porridge";
-		this.m.Description = "Give to an adjacent ally or eat yourself a porridge that slowly heals Can not be used while engaged in melee, and anyone receiving the item needs to have a free bag slot.";
+		this.m.Description = "Give to an adjacent ally or eat yourself a porridge that slowly recovers hitpoints. Can not be used while engaged in melee, and anyone receiving the item needs to have a free bag slot.";
 		this.m.Icon = "skills/porridge_square.png";
 		this.m.IconDisabled = "skills/porridge_square_bw.png";
 	}
@@ -32,8 +32,8 @@ this.legend_eat_porridge_skill <- this.inherit("scripts/skills/actives/base/lege
 			{
 				id = 11,
 				type = "text",
-				icon = "ui/icons/initiative.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+10[/color] Health per turn for 15 turns"
+				icon = "ui/icons/health.png",
+				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+10[/color] Hitpoints per turn for 15 turns"
 			}
 		];
 

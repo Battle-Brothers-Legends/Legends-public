@@ -4,7 +4,7 @@ this.legend_root_skill <- this.inherit("scripts/skills/skill", {
 	{
 		this.m.ID = "actives.legend_root";
 		this.m.Name = "Root";
-		this.m.Description = "Unleash roots from the ground to ensnare your foes. Fatigue and AP costs reduced while raining and with staff mastery. ";
+		this.m.Description = "Unleash roots from the ground to ensnare your foes. Fatigue and AP costs reduced while raining and with staff mastery.";
 		this.m.Icon = "skills/roots_square.png";
 		this.m.IconDisabled = "skills/roots_square_bw.png";
 		this.m.Overlay = "active_70";

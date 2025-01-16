@@ -10,7 +10,7 @@ this.legend_magic_circle_of_protection_skill <- this.inherit("scripts/skills/act
 	{
 		this.m.ID="actives.legend_magic_circle_of_protection";
 		this.m.Name = "Magic Circle of Protection";
-		this.m.Description = "A magic circle that protects all allies within at casting. Leaving the circle breaks the protection.";
+		this.m.Description = "A magic circle that protects all allies within when cast. Leaving the circle breaks the protection.";
 		this.m.KilledString = "Magic Circled";
 		this.m.Icon = "skills/mage_legend_magic_circle_of_protection_square.png";
 		this.m.IconDisabled = "skills/mage_legend_magic_circle_of_protection_square_bw.png";
