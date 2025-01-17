@@ -346,7 +346,7 @@ class Defs:
  "desc" :  "A dense wool wrap to protect against blunt hits.",
  "adesc" : ""
 },
-{"name": "legend_knightly_robe",                 "layer": "cloth", "min": 1, "max": 8, "value" : 200, "con" : 60, "stam" : -2, "impactSound" : "leather", "invSound" : "cloth", "brush" : "legend_knightly_robe",
+{"name": "legend_knightly_robe",                 "layer": "cloth", "min": 1, "max": 8, "value" : 450, "con" : 60, "stam" : -2, "impactSound" : "leather", "invSound" : "cloth", "brush" : "legend_knightly_robe",
  "title" : "Knight\'s Robe",
  "desc" :  "A padded robe designed to go under armor and absorb blows",
  "adesc" : ""
