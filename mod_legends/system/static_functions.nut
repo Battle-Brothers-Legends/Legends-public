@@ -12,6 +12,11 @@
     return (_value > 0) ? "+" : "-";
 }
 
+::Legends.S.getSignWithEqual <- function(_value)
+{
+    return (::Legends.S.getSign == "") ? "=" : ::Legends.S.getSign;
+}
+
 ::Legends.S.getChangingWord <- function( _value )
 {
     if(_value >= 0) return "increase";

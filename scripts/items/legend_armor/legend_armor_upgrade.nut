@@ -214,35 +214,10 @@ this.legend_armor_upgrade <- this.inherit("scripts/items/item", {
 			type = "text",
 			text = this.getValueString()
 		});
-		result.push({
-			id = 4,
-			type = "progressbar",
-			icon = "ui/icons/armor_body.png",
-			value = this.getCondition(),
-			valueMax = this.getConditionMax(),
-			text = "" + this.getCondition() + " / " + this.getConditionMax() + "",
-			style = "armor-body-slim"
-		});
 
-		if (this.getStaminaModifier() != 0)
-		{
-			result.push({
-				id = 5,
-				type = "text",
-				icon = "ui/icons/fatigue.png",
-				text = "Weight: " + ::Legends.S.colorize("" + ::Legends.S.getSign(this.getStaminaModifier()) + this.Math.abs(this.getStaminaModifier()), this.getStaminaModifier())
-			});
-		}
+		local layer = this.getContainer().getActor().getItems().getItemAtSlot(this.Const.ItemSlot.Body).getUpgrade(this.m.Type);
+		this.applyCompareTooltip(result, layer);
 
-		if ( this.getStaminaModifier() < 0 && ::Legends.Mod.ModSettings.getSetting("ShowArmorPerFatigueValue").getValue() ) 
-		{
-			result.push({
-				id = 5,
-				type = "text",
-				icon = "ui/icons/fatigue.png",
-				text = format("(%.1f Armor per 1 Weight)", this.getConditionMax() / (1.0 * this.Math.abs(this.getStaminaModifier())))
-			});
-		}
 
 		// Other common stats found on Attachements:
 		this.applyEffectTooltips(result);
@@ -281,7 +256,7 @@ this.legend_armor_upgrade <- this.inherit("scripts/items/item", {
 
 
 		return result;
-	}
+	} 
 
 	function getArmorTooltip( _result )
 	{
@@ -533,6 +508,61 @@ this.legend_armor_upgrade <- this.inherit("scripts/items/item", {
 	function onArmorTooltip( _result )
 	{
 		this.applyEffectTooltips(_result);
+	}
+
+	function applyCompareTooltip ( _tooltipList, _compareLayer)
+	{
+		local compareMath;
+		local compareTextArmor = "";
+		local compareTextWeight = "";
+		local compareTextArmorPerWeight = "";
+
+		_tooltipList.push({
+			id = 4,
+			type = "progressbar",
+			icon = "ui/icons/armor_body.png",
+			value = this.getCondition(),
+			valueMax = this.getConditionMax(),
+			text = "" + this.getCondition() + " / " + this.getConditionMax() + "",
+			style = "armor-body-slim"
+		});
+
+		if (_compareLayer != null)
+		{
+			compareMath = this.Math.abs(this.getConditionMax()) - this.Math.abs(_compareLayer.getConditionMax());
+			compareTextArmor = "(" + ::Legends.S.colorize("" + ::Legends.S.getSignWithEqual(compareMath) + this.Math.abs(compareMath), compareMath) + ")";
+			compareMath = this.Math.abs(this.getStaminaModifier()) - this.Math.abs(_compareLayer.getStaminaModifier());
+			compareTextWeight = "(" + ::Legends.S.colorize("" + ::Legends.S.getSignWithEqual(compareMath) + this.Math.abs(compareMath), compareMath) + ")";
+			if (this.getStaminaModifier() < 0 && _compareLayer.getStaminaModifier() < 0)
+			{
+				compareMath = this.getConditionMax() / (1.0 * this.Math.abs(this.getStaminaModifier())) - _compareLayer.getConditionMax() / (1.0 * this.Math.abs(_compareLayer.getStaminaModifier()));
+				compareTextArmorPerWeight = "(" + ::Legends.S.colorize("" + ::Legends.S.getSignWithEqual(compareMath) + this.Math.abs(compareMath), compareMath) + ")";
+			}
+		}
+
+		_tooltipList.push({
+			id = 5,
+			type = "text",
+			icon = "ui/icons/armor_body.png",
+			text = "Maximum Armor: " + this.getConditionMax() + compareTextArmor
+		});
+
+		_tooltipList.push({
+			id = 5,
+			type = "text",
+			icon = "ui/icons/fatigue.png",
+			text = "Weight: " + ::Legends.S.colorize("" + ::Legends.S.getSign(this.getStaminaModifier()) + this.Math.abs(this.getStaminaModifier()), this.getStaminaModifier()) + compareTextWeight
+		});
+
+		if ( this.getStaminaModifier() < 0 && ::Legends.Mod.ModSettings.getSetting("ShowArmorPerFatigueValue").getValue() ) 
+		{
+			_tooltipList.push({
+				id = 5,
+				type = "text",
+				icon = "ui/icons/fatigue.png",
+				text = format("(%.1f%s Armor per 1 Weight)", this.getConditionMax() / (1.0 * this.Math.abs(this.getStaminaModifier())), compareTextArmorPerWeight)
+			});
+		}
 	}
 
 	function applyEffectTooltips( _tooltipList )
