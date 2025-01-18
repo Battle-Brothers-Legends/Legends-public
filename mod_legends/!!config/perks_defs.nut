@@ -2341,13 +2341,13 @@ perkDefObjects.push({
 	Const = "LegendDrumsOfWar"
 });
 perkDefObjects.push({
-	ID = "perk.legend_mastery_fist",
-	Script = "scripts/skills/perks/perk_legend_mastery_fist",
-	Name = ::Const.Strings.PerkName.LegendSpecFists,
-	Tooltip = ::Const.Strings.PerkDescription.LegendSpecFists,
+	ID = "perk.legend_mastery_unarmed",
+	Script = "scripts/skills/perks/perk_legend_mastery_unarmed",
+	Name = ::Const.Strings.PerkName.LegendSpecUnarmed,
+	Tooltip = ::Const.Strings.PerkDescription.LegendSpecUnarmed,
 	Icon = "ui/perks/unarmed_mastery_circle.png",
 	IconDisabled = "ui/perks/unarmed_mastery_circle_bw.png",
-	Const = "LegendSpecFists"
+	Const = "LegendSpecUnarmed"
 });
 perkDefObjects.push({
 	ID = "perk.legend_kick",

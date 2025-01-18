@@ -140,7 +140,7 @@ this.legend_druid_commander_background <- this.inherit("scripts/skills/backgroun
 				this.Const.Perks.PerkDefs.LegendSpecBandage,
 				this.Const.Perks.PerkDefs.LegendSpecPoison,
 				this.Const.Perks.PerkDefs.LegendSummonWolf,
-				this.Const.Perks.PerkDefs.LegendSpecFists,
+				this.Const.Perks.PerkDefs.LegendSpecUnarmed,
 				this.Const.Perks.PerkDefs.SpecSword,
 				this.Const.Perks.PerkDefs.SpecThrowing,
 				this.Const.Perks.PerkDefs.LegendMasteryStaves,

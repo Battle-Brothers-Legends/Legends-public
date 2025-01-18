@@ -2,7 +2,7 @@ this.perk_legend_mastery_fist <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		::Const.Perks.setup(this.m, ::Legends.Perk.LegendSpecFists);
+		::Const.Perks.setup(this.m, ::Legends.Perk.LegendSpecUnarmed);
 		this.m.Type = this.Const.SkillType.Perk;
 		this.m.Order = this.Const.SkillOrder.Perk;
 		this.m.IsActive = false;

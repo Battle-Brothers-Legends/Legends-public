@@ -11,7 +11,7 @@
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendBalance);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendOnslaught);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendStrengthInNumbers);
-			::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecFists);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecUnarmed);
 			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
 		}
 	}

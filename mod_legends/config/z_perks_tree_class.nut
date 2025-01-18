@@ -84,7 +84,7 @@ if (!("Perks" in ::Const))
 		[::Legends.Perk.LegendAmbidextrous],
 		[::Legends.Perk.LegendChoke],
 		[::Legends.Perk.LegendGrapple],
-		[::Legends.Perk.LegendSpecFists],
+		[::Legends.Perk.LegendSpecUnarmed],
 		[],
 		[::Legends.Perk.LegendUnarmedTraining],
 		[]

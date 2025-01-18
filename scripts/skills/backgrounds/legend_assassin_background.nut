@@ -112,7 +112,7 @@ this.legend_assassin_background <- this.inherit("scripts/skills/backgrounds/char
 				this.Const.Perks.PerkDefs.SpecBow,
 				this.Const.Perks.PerkDefs.SpecThrowing,
 				this.Const.Perks.PerkDefs.SpecCrossbow,
-				this.Const.Perks.PerkDefs.LegendSpecFists,
+				this.Const.Perks.PerkDefs.LegendSpecUnarmed,
 				this.Const.Perks.PerkDefs.LegendSpecPoison
 			],
 			[
