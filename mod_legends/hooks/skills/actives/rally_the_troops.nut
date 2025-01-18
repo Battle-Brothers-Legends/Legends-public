@@ -61,7 +61,7 @@
 	{
 		local myTile = _user.getTile();
 		local bravery = this.getBonus();
-		local actors = this.Tactical.Entities.getInstancesOfFaction(_user.getFaction());
+		local actors = this.Tactical.Entities.getAllInstancesAsArray(); //Take all actors instead of ones belonging to the user's faction
 		
 		foreach( a in actors )
 		{
