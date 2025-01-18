@@ -25,22 +25,27 @@
 					}
 
 					properties.Loot = [
-					this.Const.World.Common.pickHelmet([[1, "legendary/mask_of_davkul"]])
+						this.Const.World.Common.pickHelmet([[1, "legendary/mask_of_davkul"]])
 					];
 					this.World.State.startScriptedCombat(properties, false, false, true);
 					return 0;
 				}
 			}
 			if (s.ID == "Cultist") {
-				local start = s.start;
 				s.start <- function (_event) {
-					this.World.Assets.addMoralReputation(1);
+					::World.Assets.addMoralReputation(1);
 					this.List.push({
 						id = 10,
 						icon = "ui/icons/asset_moral_reputation.png",
 						text = "The company\'s moral reputation increases slightly"
 					});
-					start(_event);
+					local item = ::new("scripts/items/legend_helmets/helm/legend_helmet_skin_helm");
+					::World.Assets.getStash().add(item);
+					this.List.push({
+						id = 10,
+						icon = "ui/items/" + item.getIcon(),
+						text = "You gain " + item.getName()
+					});
 				}
 			}
 			if (s.ID == "Attack1") {
