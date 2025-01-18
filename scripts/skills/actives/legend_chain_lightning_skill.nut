@@ -180,7 +180,9 @@ this.legend_chain_lightning_skill <- this.inherit("scripts/skills/skill", {
 
 	function onTargetHit( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor )
 	{
-		this.summonChainLighting(this.getContainer().getActor(), this.m.TargetTile);
+		if (_skill == this) {
+			this.summonChainLighting(this.getContainer().getActor(), this.m.TargetTile);
+		}
 		this.m.TargetTile = null;
 	}
 
