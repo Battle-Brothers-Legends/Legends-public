@@ -5,7 +5,7 @@ this.legend_transformed_bear_effect <- this.inherit("scripts/skills/effects/lege
 		this.legend_transformed_effect.create()
 		this.m.ID = "effect.legend_transformed_bear";
 		this.m.Name = "Bear Form";
-		this.m.Description = "This character is currently a bear";
+		this.m.Description = "This character is currently a bear.";//Mondays amirite
 		this.m.Icon = "ui/perks/bear_circle.png";
 		this.m.IconMini = "status_effect_08_mini";
 		this.m.Agent1 = "legend_bear_agent";

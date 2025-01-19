@@ -16,12 +16,10 @@ this.legend_steps_guided <- this.inherit("scripts/skills/skill", {
 
 	function onUpdate( _properties )
 	{
-	local actor = this.getContainer().getActor();
-	actor.m.ActionPointCosts = this.Const.PathfinderMovementAPCost;
-	actor.m.FatigueCosts = clone this.Const.PathfinderMovementFatigueCost;
-	actor.m.LevelActionPointCost = 0;
+		local actor = this.getContainer().getActor();
+		actor.m.ActionPointCosts = this.Const.PathfinderMovementAPCost;
+		actor.m.FatigueCosts = clone this.Const.PathfinderMovementFatigueCost;
+		actor.m.LevelActionPointCost = 0;
 	}
-
-
 
 });
