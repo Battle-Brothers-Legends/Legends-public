@@ -22,7 +22,7 @@ this.legend_transformed_rat_effect <- this.inherit("scripts/skills/effects/legen
 				id = 10,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+3[/color] action points"
+				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+3[/color] Action Points"
 			},
 			{
 				id = 10,

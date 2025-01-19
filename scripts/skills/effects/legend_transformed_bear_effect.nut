@@ -24,7 +24,7 @@ this.legend_transformed_bear_effect <- this.inherit("scripts/skills/effects/lege
 				id = 11,
 				type = "text",
 				icon = "ui/icons/health.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+50%[/color] hitpoints"
+				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+50%[/color] Hitpoints"
 			}
 		]);
 

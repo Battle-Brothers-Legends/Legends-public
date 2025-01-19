@@ -36,7 +36,7 @@ this.legend_vala_chant_senses_effect <- this.inherit("scripts/skills/effects/leg
 				id = 10,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+" + this.Math.round(bonus) + "[/color] Melee and Ranged defense."
+				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+" + this.Math.round(bonus) + "[/color] Melee and Ranged Defense."
 			}
 		];
 	}

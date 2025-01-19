@@ -28,7 +28,7 @@ this.legend_transformed_terrain_effect <- this.inherit("scripts/skills/skill", {
 					id = 11,
 					type = "text",
 					icon = "ui/icons/health.png",
-					text = "[color=" + this.Const.UI.Color.PositiveValue + "]+100%[/color] hitpoints"
+					text = "[color=" + this.Const.UI.Color.PositiveValue + "]+100%[/color] Hitpoints"
 				}
 			]);
 		}

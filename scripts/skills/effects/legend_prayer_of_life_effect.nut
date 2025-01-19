@@ -42,7 +42,7 @@ this.legend_prayer_of_life_effect <- this.inherit("scripts/skills/skill", {
 				id = 10,
 				type = "text",
 				icon = "ui/icons/health.png",
-				text = "Healing [color=" + this.Const.UI.Color.PositiveValue + "]+" + bonus + "[/color] hitpoints"
+				text = "Was healed for [color=" + this.Const.UI.Color.PositiveValue + "]+" + bonus + "[/color] Hitpoints"
 			}
 		];
 	}
