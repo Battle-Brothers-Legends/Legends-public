@@ -4,7 +4,7 @@ this.legend_mark_target_skill <- this.inherit("scripts/skills/skill", {
 	{
 		this.m.ID = "actives.legend_mark_target";
 		this.m.Name = "Mark Target";
-		this.m.Description = "Analyse the weak points on an opponent and tell your comrades, reducing the targets ranged defense by 20 for 3 turns";
+		this.m.Description = "Analyse the weak points on an opponent and tell your comrades, reducing the target's Defense by 10 and increasing Damage Taken from all sources by 1% of their total Hitpoints for 2 turns.";
 		this.m.KilledString = "Marked";
 		this.m.Icon = "skills/MarkTargetSkill.png";
 		this.m.IconDisabled = "skills/MarkTargetSkill_bw.png";
@@ -41,13 +41,26 @@ this.legend_mark_target_skill <- this.inherit("scripts/skills/skill", {
 	function getTooltip()
 	{
 		local ret = this.getDefaultUtilityTooltip()
-		ret.push(
+		ret.extend([
 			{
-				id = 7,
+				id = 10,
 				type = "text",
-				icon = "ui/icons/special.png",
-				text = "Leave your opponent marked, reducing their ranged defense by 20"
-			})
+				icon = "ui/icons/melee_defense.png",
+				text = "[color=" + this.Const.UI.Color.NegativeValue + "]-10[/color] Melee Defense"
+			},
+			{
+				id = 10,
+				type = "text",
+				icon = "ui/icons/ranged_defense.png",
+				text = "[color=" + this.Const.UI.Color.NegativeValue + "]-10[/color] Ranged Defense"
+			},
+			{
+				id = 10,
+				type = "text",
+				icon = "ui/icons/warning.png",
+				text = "Up to [color=" + this.Const.UI.Color.PositiveValue + "]20%[/color] Damage Received from all sources, scaling on Hitpoints"
+			}
+		])
 		return ret;
 	}
 

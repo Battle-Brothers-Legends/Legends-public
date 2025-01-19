@@ -1,11 +1,12 @@
 this.legend_marked_target <- this.inherit("scripts/skills/skill", {
 	m = {
-		TurnsLeft = 3
+		TurnsLeft = 2
 	},
 	function create()
 	{
 		this.m.ID = "effects.legend_marked_target";
 		this.m.Name = "Marked target";
+		this.m.Description = "This character is a marked target, leaving them vulnerable and exposed."
 		this.m.Icon = "skills/MarkTargetSkill.png";
 		this.m.IconMini = "mini_mark_target";
 		this.m.Type = this.Const.SkillType.StatusEffect;
@@ -13,17 +14,50 @@ this.legend_marked_target <- this.inherit("scripts/skills/skill", {
 		this.m.IsRemovedAfterBattle = true;
 	}
 
-	function getDescription()
+	function getTooltip()
 	{
-		return "This character has is a marked target and has [color=" + this.Const.UI.Color.NegativeValue + "]-10[/color] Ranged Defense and [color=" + this.Const.UI.Color.NegativeValue + "]-10[/color] Melee Defense for [color=" + this.Const.UI.Color.NegativeValue + "]" + this.m.TurnsLeft + "[/color] more turn(s).";
+		return [
+			{
+				id = 1,
+				type = "title",
+				text = this.getName()
+			},
+			{
+				id = 2,
+				type = "description",
+				text = this.getDescription()
+			},
+			{
+				id = 10,
+				type = "text",
+				icon = "ui/icons/melee_defense.png",
+				text = "[color=" + this.Const.UI.Color.NegativeValue + "]-10[/color] Melee Defense"
+			},
+			{
+				id = 10,
+				type = "text",
+				icon = "ui/icons/ranged_defense.png",
+				text = "[color=" + this.Const.UI.Color.NegativeValue + "]-10[/color] Ranged Defense"
+			},
+			{
+				id = 10,
+				type = "text",
+				icon = "ui/icons/warning.png",
+				text = "[color=" + this.Const.UI.Color.PositiveValue + "]" + getBonus() + "%[/color] Damage Received from all sources"
+			}
+		];
+	}
+
+	function getBonus()
+	{
+		return 1.0 + this.Math.min(0.2 , this.getContainer().getHitpointsMax());
 	}
 
 	function onUpdate( _properties )
 	{
 		_properties.RangedDefense -= 10;
 		_properties.MeleeDefense -= 10;
-		local bonus = 1.0 + this.Math.min(0.2 , _properties.Hitpoints * 0.01);
-		_properties.DamageReceivedTotalMult *= bonus;
+		_properties.DamageReceivedTotalMult *= getBonus() * 0.01;
 	}
 
 
