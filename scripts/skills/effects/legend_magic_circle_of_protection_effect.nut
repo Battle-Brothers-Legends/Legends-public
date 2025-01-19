@@ -27,20 +27,20 @@ this.legend_magic_circle_of_protection_effect <- this.inherit("scripts/skills/sk
 
 	function getToolTip()
 	{
-			local ret = [
-				{
-					id = 1,
-					type = "title",
-					text = this.getName()
-				},
-				{
-					id = 6,
-					type = "text",
-					icon = "ui/icons/special.png",
-					text = "Gain [color=" + this.Const.UI.Color.PositiveValue + "]+" + this.m.Circle.getDefBonus() + "[/color] Melee and Ranged defense and [color=" + this.Const.UI.Color.PositiveValue + "]+" + this.m.Circle.getResolveBonus() + "[/color] resolve."
-				}
-			];
-			return ret;
+		local ret = [
+			{
+				id = 1,
+				type = "title",
+				text = this.getName()
+			},
+			{
+				id = 6,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = "Gain [color=" + this.Const.UI.Color.PositiveValue + "]+" + this.m.Circle.getDefBonus() + "[/color] Melee and Ranged defense and [color=" + this.Const.UI.Color.PositiveValue + "]+" + this.m.Circle.getResolveBonus() + "[/color] resolve."
+			}
+		];
+		return ret;
 	}
 	
 	function onMovementCompleted( _tile )
