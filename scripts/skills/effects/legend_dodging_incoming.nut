@@ -3,8 +3,8 @@ this.legend_dodging_incoming <- this.inherit("scripts/skills/effects/legend_comm
 	function create()
 	{
 		this.m.ID = "effects.legend_dodging_incoming";
-		this.m.Name = "Dodging incoming projectiles";
-		this.m.Description = "This mercenary has recived clear instructions to seek cover, and is coordinating accordingly.";
+		this.m.Name = "Dodging Incoming Projectiles";
+		this.m.Description = "This mercenary has received clear instructions to seek cover, and is coordinating accordingly.";
 		this.m.Icon = "ui/perks/incoming_circle.png";
 		this.m.IconMini = "mini_incoming_circle";
 		this.m.Type = this.Const.SkillType.StatusEffect;

@@ -38,7 +38,7 @@ this.legend_consecrated_effect <- this.inherit("scripts/skills/skill", {
 	{
 		this.m.ID = "effects.legend_consecrated_effect";
 		this.m.Name = "Consecrated";
-		this.m.Description = "This character is being consecrated by holy flames";
+		this.m.Description = "This character is being consecrated by holy flames.";
 		this.m.Icon = "ui/perks/holyfire_circle.png";
 		this.m.IconMini = "mini_fire_circle";
 		this.m.Overlay = "fire_circle";

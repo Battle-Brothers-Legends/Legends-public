@@ -5,7 +5,7 @@ this.legend_graze_prepared_effect<- this.inherit("scripts/skills/skill", {
 	function create()
 	{
 		this.m.ID = "effects.legend_graze_prepared";
-		this.m.Name = "Prepared to inflict a slow bleed";
+		this.m.Name = "Prepared to Inflict a Graze";
 		this.m.Icon = "skills/graze_circle.png";
 		this.m.IconMini = "mini_graze_circle";
 		this.m.Type = this.Const.SkillType.StatusEffect;
@@ -16,7 +16,7 @@ this.legend_graze_prepared_effect<- this.inherit("scripts/skills/skill", {
 
 	function getDescription()
 	{
-		return "This character is preparing an attack to inflict slow bleeding by grazing the flesh. The next hit will infict 2 bleed damage for the next five turns";
+		return "This character is preparing an attack to inflict slow bleeding by grazing the flesh. The next hit will infict [color=" + this.Const.UI.Color.NegativeValue + "]2[/color] bleed damage for the next five turns.";
 	}
 
 	function getTooltip()

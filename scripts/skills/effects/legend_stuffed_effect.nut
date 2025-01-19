@@ -16,7 +16,7 @@ this.legend_stuffed_effect <- this.inherit("scripts/skills/skill", {
 
 	function getDescription()
 	{
-		return "This character has eaten too much";
+		return "This character has eaten too much.";
 	}
 
 	function onCombatFinished()

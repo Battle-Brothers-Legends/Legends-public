@@ -17,7 +17,7 @@ this.legend_liquor_burn_effect <- this.inherit("scripts/skills/skill", {
 
 	function getDescription()
 	{
-		return "After consuming liquor, this character has [color=" + this.Const.UI.Color.PositiveValue + "]+12[/color] Resolve, Melee and Ranged Skill, [color=" + this.Const.UI.Color.NegativeValue + "]-12[/color] Defenses and [color=" + this.Const.UI.Color.NegativeValue + "]-24[/color] Initiative for [color=" + this.Const.UI.Color.NegativeValue + "]" + this.m.TurnsLeft + "[/color] turn(s).";
+		return "Having just consumed liquor, this character has [color=" + this.Const.UI.Color.PositiveValue + "]+12[/color] Resolve, Melee and Ranged Skill, [color=" + this.Const.UI.Color.NegativeValue + "]-12[/color] Defenses and [color=" + this.Const.UI.Color.NegativeValue + "]-24[/color] Initiative for [color=" + this.Const.UI.Color.NegativeValue + "]" + this.m.TurnsLeft + "[/color] turn(s).";
 	}
 
 	function getTooltip()

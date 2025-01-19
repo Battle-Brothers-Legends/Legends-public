@@ -14,7 +14,7 @@ this.legend_peaceful_reassured_effect <- this.inherit("scripts/skills/skill", {
 
 	function getDescription()
 	{
-		return "The presence of nearby peaceful people is increasing this characters resolve and experience gain";
+		return "The presence of nearby peaceful people is increasing this characters Resolve and experience gain.";
 	}
 
 	function getTooltip()

@@ -5,7 +5,7 @@ this.legend_bleed_prepared_effect <- this.inherit("scripts/skills/skill", {
 	function create()
 	{
 		this.m.ID = "effects.legend_bleed_prepared";
-		this.m.Name = "Prepared to inflict bleeding";
+		this.m.Name = "Prepared to Inflict Bleeding";
 		this.m.Icon = "skills/bleed_circle.png";
 		this.m.IconMini = "mini_bleed_circle";
 		this.m.Type = this.Const.SkillType.StatusEffect;

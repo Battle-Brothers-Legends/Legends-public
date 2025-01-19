@@ -5,7 +5,7 @@ this.legend_transformed_boar_effect <- this.inherit("scripts/skills/effects/lege
 		this.legend_transformed_effect.create();
 		this.m.ID = "effect.legend_transformed_bear";
 		this.m.Name = "Boar Form";
-		this.m.Description = "This character is currently a boar";
+		this.m.Description = "This character is currently a boar.";
 		this.m.Icon = "ui/perks/bear_circle.png";
 		this.m.IconMini = "status_effect_08_mini";
 		this.m.Agent1 = "legend_boar_agent";
@@ -24,7 +24,7 @@ this.legend_transformed_boar_effect <- this.inherit("scripts/skills/effects/lege
 					id = 10,
 					type = "text",
 					icon = "ui/icons/health.png",
-					text = "[color=" + this.Const.UI.Color.PositiveValue + "]+100%[/color] stamina recovery rate"
+					text = "[color=" + this.Const.UI.Color.PositiveValue + "]+100%[/color] Fatigue Recovery per turn"
 				}
 			]);
 		}

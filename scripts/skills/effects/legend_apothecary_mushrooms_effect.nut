@@ -21,7 +21,7 @@ this.legend_apothecary_mushrooms_effect <- this.inherit("scripts/skills/skill", 
 
 	function getDescription()
 	{
-		return "I can see infinity! This character is in a mushroom-induced trance and seems to barely be tied to reality, they move gracefully avoiding attacks and barely feel pain, but seem hesitant to hurt anything or anyone. The effect will slowly wear off over [color=" + this.Const.UI.Color.NegativeValue + "]" + this.m.TurnsLeft + "[/color] more turn(s).";
+		return "I can see infinity! This character is in a mushroom-induced trance and seems to barely be tied to reality. They move gracefully, avoiding attacks and barely feeling pain, but seem hesitant to hurt anything or anyone. The effect will slowly wear off over [color=" + this.Const.UI.Color.NegativeValue + "]" + this.m.TurnsLeft + "[/color] more turn(s).";
 	}
 
 	function getTooltip()

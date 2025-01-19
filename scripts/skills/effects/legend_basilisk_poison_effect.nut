@@ -17,7 +17,7 @@ this.legend_basilisk_poison_effect <- this.inherit("scripts/skills/skill", {
 
 	function getDescription()
 	{
-		return "This character has received a venomous bite. Their veins are black and bloated, tears swell in their eyes their breaths are shallow. This effect will slowly wear off over [color=" + this.Const.UI.Color.NegativeValue + "]" + this.m.TurnsLeft + "[/color] more turn(s).";
+		return "This character has received a venomous bite. Their veins are black and bloated, tears swell in their eyes, and their breathing is shallow. This effect will slowly wear off over [color=" + this.Const.UI.Color.NegativeValue + "]" + this.m.TurnsLeft + "[/color] more turn(s).";
 	}
 
 	function getTooltip()

@@ -6,7 +6,7 @@ this.legend_inspired_effect <- this.inherit("scripts/skills/skill", {
 	{
 		this.m.ID = "effects.legend_inspired";
 		this.m.Name = "Inspired";
-		this.m.Description = "I can do this for the company! This character has been inspired by just the right words, and is ready to go to his limits and beyond.";
+		this.m.Description = "I can do this for the company! This character has been inspired by hearing just the right words, and is ready to go to their limits and beyond.";
 		this.m.Icon = "ui/perks/perk_28.png";
 		this.m.IconMini = "perk_28_mini";
 		this.m.Overlay = "perk_28";

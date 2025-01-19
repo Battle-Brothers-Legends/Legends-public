@@ -6,7 +6,7 @@ this.legend_realm_of_nightmares_effect <- this.inherit("scripts/skills/skill", {
 	{
 		this.m.ID = "effects.legend_realm_of_nightmares";
 		this.m.Name = "Realm of Nightmares";
-		this.m.Description = "The boundary to the world of dreams is erased where this character stands, and nightmares may manifest here to eat away at his sanity. Nightmares always hit with a mental attack that ignores armor, but the more resolve you have, the less damage they can inflict.";
+		this.m.Description = "The boundary to the world of dreams is erased where this character stands, and nightmares may manifest here to eat away at their sanity. Nightmares always hit with a mental attack that ignores armor but inflicts less damage against targets with more Resolve.";
 		this.m.Icon = "skills/status_effect_102.png";
 		this.m.IconMini = "status_effect_102_mini";
 		this.m.Overlay = "status_effect_102";

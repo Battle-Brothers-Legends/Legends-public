@@ -9,7 +9,7 @@ this.legend_transformed_terrain_effect <- this.inherit("scripts/skills/skill", {
 	{
 		this.m.ID = "effect.legend_transformed_terrain";
 		this.m.Name = "Cunning Disguise";
-		this.m.Description = "This character is currently disguised as terrain";
+		this.m.Description = "This character is currently disguised as terrain.";
 		this.m.Icon = "ui/perks/bear_circle.png";
 		this.m.IconMini = "status_effect_08_mini";
 		this.m.Type = this.Const.SkillType.Terrain | this.Const.SkillType.StatusEffect;

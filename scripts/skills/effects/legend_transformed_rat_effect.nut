@@ -6,7 +6,7 @@ this.legend_transformed_rat_effect <- this.inherit("scripts/skills/effects/legen
 		this.legend_transformed_effect.create()
 		this.m.ID = "effect.legend_transformed_rat";
 		this.m.Name = "Rat Form";
-		this.m.Description = "This character is currently a rat";
+		this.m.Description = "This character is currently a rat.";
 		this.m.Icon = "ui/perks/rat_circle.png";
 		this.m.IconMini = "status_effect_08_mini";
 		local r = this.Math.rand(1, 5);

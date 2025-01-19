@@ -5,7 +5,7 @@ this.legend_summoned_catapult_effect <- this.inherit("scripts/skills/skill", {
 	function create()
 	{
 		this.m.ID = "effects.legend_summoned_catapult_effect";
-		this.m.Name = "Summoned a catapult";
+		this.m.Name = "Summoned a Catapult";
 		this.m.Icon = "ui/perks/catapult_circle.png";
 		this.m.IconMini = "mini_catapult_circle";
 		this.m.Overlay = "catapult_circle";
@@ -16,7 +16,7 @@ this.legend_summoned_catapult_effect <- this.inherit("scripts/skills/skill", {
 
 	function getDescription()
 	{
-		return "This character has constructed a catapult, and may not summon another this combat";
+		return "This character has constructed a catapult, and may not summon another this combat.";
 	}
 
 

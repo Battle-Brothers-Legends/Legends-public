@@ -14,7 +14,7 @@ this.legend_staffwall_effect <- this.inherit("scripts/skills/skill", {
 
 	function getDescription()
 	{
-		return "Having readied the spear, this character gains an automatic free attack on any opponent trying to enter into his Zone of Control.";
+		return "Having readied a spear, this character gains an automatic free attack on any opponent trying to enter into their Zone of Control.";
 	}
 
 	function onAdded()

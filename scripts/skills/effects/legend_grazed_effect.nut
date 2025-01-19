@@ -46,7 +46,7 @@ this.legend_grazed_effect <- this.inherit("scripts/skills/skill", {
 	function create()
 	{
 		this.m.ID = "effects.legend_grazed_effect";
-		this.m.Name = "Bleeding from grazes";
+		this.m.Name = "Bleeding from Grazes";
 		this.m.KilledString = "Bled to death";
 		this.m.Icon = "skills/graze_circle.png";
 		this.m.IconMini = "mini_graze_circle";
@@ -59,7 +59,7 @@ this.legend_grazed_effect <- this.inherit("scripts/skills/skill", {
 
 	function getDescription()
 	{
-		return "This character is bleeding slowly from multiple recent deep grazes [color=" + this.Const.UI.Color.NegativeValue + "]" + this.m.Damage + "[/color] hitpoints each turn for [color=" + this.Const.UI.Color.NegativeValue + "]" + this.m.TurnsLeft + "[/color] more turn(s).";
+		return "This character is bleeding slowly from multiple recent deep grazes and will lose [color=" + this.Const.UI.Color.NegativeValue + "]" + this.m.Damage + "[/color] hitpoints each turn for [color=" + this.Const.UI.Color.NegativeValue + "]" + this.m.TurnsLeft + "[/color] more turn(s).";
 	}
 
 	function applyDamage()

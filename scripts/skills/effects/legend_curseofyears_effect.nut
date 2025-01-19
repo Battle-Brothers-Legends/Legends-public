@@ -32,7 +32,7 @@ this.legend_curseofyears_effect <- this.inherit("scripts/skills/skill", {
 
 	function getDescription()
 	{
-		return "This character is consumed by unnatural nightmares and is unable to act. As the horror eats away his sanity, he\'ll take [color=" + this.Const.UI.Color.PositiveValue + "]" + this.getDamage() + "[/color] damage based on his resolve each turn. The character can be forcibly awoken from these nightmares by a nearby ally, but he won\'t wake up on his own.";
+		return "This character is consumed by unnatural nightmares and is unable to act. As horror eats away their sanity, they\'ll take [color=" + this.Const.UI.Color.PositiveValue + "]" + this.getDamage() + "[/color] damage based on their resolve each turn. The character can be forcibly awoken from these nightmares by a nearby ally, but won\'t wake up on their own.";
 	}
 
 	function getTooltip()

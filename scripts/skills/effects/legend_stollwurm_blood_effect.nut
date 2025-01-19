@@ -16,7 +16,7 @@ this.legend_stollwurm_blood_effect <- this.inherit("scripts/skills/skill", {
 
 	function getDescription()
 	{
-		return "This character has gathered all their physical strength and willpower to become indomitable";
+		return "This character has gathered all their physical strength and willpower to become indomitable.";
 	}
 
 	function getTooltip()

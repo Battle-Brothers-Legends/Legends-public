@@ -4,7 +4,7 @@ this.legend_perfect_focus_effect <- this.inherit("scripts/skills/skill", {
 	{
 		this.m.ID = "effects.legend_perfect_focus";
 		this.m.Name = "Perfect Focus";
-		this.m.Description = "This character has achieved perfect focus as if time itself were to stand still and can use all skills at half their normal Action Point cost this turn, but at 1.75 times the Fatigue cost.";
+		this.m.Description = "This character has achieved perfect focus, as if time itself has stood still. They can use all skills at half their normal Action Point cost this turn, but at 1.75 times the Fatigue cost.";
 		this.m.Icon = "ui/perks/perfectfocus_circle.png";
 		this.m.IconMini = "perk_37_mini";
 		this.m.Overlay = "perk_37";

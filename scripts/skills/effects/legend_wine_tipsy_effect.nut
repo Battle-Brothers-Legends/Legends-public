@@ -17,7 +17,7 @@ this.legend_wine_tipsy_effect <- this.inherit("scripts/skills/skill", {
 
 	function getDescription()
 	{
-		return "After imbibing wine, this character has [color=" + this.Const.UI.Color.PositiveValue + "]6[/color] Resolve, Melee and Ranged Skill, [color=" + this.Const.UI.Color.NegativeValue + "]-6[/color] Defenses and [color=" + this.Const.UI.Color.NegativeValue + "]-12[/color] Initiative for [color=" + this.Const.UI.Color.NegativeValue + "]" + this.m.TurnsLeft + "[/color] turn(s).";
+		return "Having recently imbibed wine, this character has [color=" + this.Const.UI.Color.PositiveValue + "]6[/color] Resolve, Melee and Ranged Skill, [color=" + this.Const.UI.Color.NegativeValue + "]-6[/color] Defenses and [color=" + this.Const.UI.Color.NegativeValue + "]-12[/color] Initiative for [color=" + this.Const.UI.Color.NegativeValue + "]" + this.m.TurnsLeft + "[/color] turn(s).";
 	}
 
 	function getTooltip()

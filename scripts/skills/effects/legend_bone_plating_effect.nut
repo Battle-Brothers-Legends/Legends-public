@@ -21,7 +21,7 @@ this.legend_bone_plating_effect <- this.inherit("scripts/skills/skill", {
 
 	function getDescription()
 	{
-		return "Completely absorbs the first hit which doesn\'t ignore armor";
+		return "Completely absorbs the first hit which doesn\'t ignore armor.";
 	}
 
 	function onBeforeDamageReceived(_attacker, _skill, _hitInfo, _properties)

@@ -1,12 +1,12 @@
 this.legend_parrying_effect <- this.inherit("scripts/skills/skill", {
 	m = {
-		IsFromItem = false // Workaround to be able to remove this effetct if it was manually added by equipping legend_parrying_dagger
+		IsFromItem = false // Workaround to be able to remove this effect if it was manually added by equipping legend_parrying_dagger
 	},
 	function create()
 	{
 		this.m.ID = "effects.legend_parrying";
 		this.m.Name = "Parrying Stance";
-		this.m.Description = "This character is prepared to immediately parry any failed melee attacks against them, leaving the aggressor in an exposed position."
+		this.m.Description = "This character is prepared to parry any failed melee attacks against them, exposing their attacker to counterattacks."
 		this.m.Icon = "skills/en_garde_circle.png";
 		this.m.IconMini = "mini_en_garde_circle";
 		this.m.Overlay = "en_garde_circle";
