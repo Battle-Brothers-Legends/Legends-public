@@ -28,6 +28,10 @@ if (!("LegendMod" in ::Const))
 	"sibling",
 	"Sib",
 	"sib",
+	"Child",
+	"child",
+	"Offspring",
+	"offspring"
 ];
 
 ::Const.LegendMod.PronounTable <- {
@@ -38,10 +42,12 @@ if (!("LegendMod" in ::Const))
 	themselves = ["themselves", "himself", "herself"],
 	person = ["person", "man", "woman"],
 	people = ["people", "men", "women"],
-	swordsman = ["swordsman", "swordsman", "swordwoman"],
+	swordsman = ["swordsman", "swordsman", "swordswoman"],
 	noble = ["noble", "nobleman", "noblewoman"],
 	sibling = ["sibling", "brother", "sister"],
 	sib = ["sib", "bro", "sis"],
+	child = ["child", "boy", "girl"],
+	offspring = ["child", "son", "daughter"]
 }
 
 // _gender = -1 for neuter, 0 for male, 1 for female
