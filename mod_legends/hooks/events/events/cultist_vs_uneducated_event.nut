@@ -82,6 +82,7 @@
 					uneducated_candidates.push(bro);
 					continue;
 				case bro.getBackground().isBackgroundType(this.Const.BackgroundType.Noble):
+				case bro.getBackground().isBackgroundType(this.Const.BackgroundType.Educated):
 					continue;
 			}
 			uneducated_candidates.push(bro);
