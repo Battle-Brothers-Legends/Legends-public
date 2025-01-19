@@ -1,5 +1,4 @@
-// left as is to credit sato properly
-this.sato_brothers_in_chains_effect <- this.inherit("scripts/skills/skill", {
+this.legend_brothers_in_chains_effect <- this.inherit("scripts/skills/skill", {
 	m = {
 		AttackBonus = 0,
 		DefenseBonus = 0,
@@ -10,7 +9,7 @@ this.sato_brothers_in_chains_effect <- this.inherit("scripts/skills/skill", {
 	},
 	function create()
 	{
-		this.m.ID = "effects.sato_brothers_in_chains";
+		this.m.ID = "effects.legend_brothers_in_chains";
 		this.m.Name = "Brothers in Chains";
 		this.m.Description = "Fighting with other escaped slaves drives this character to succeed.";
 		this.m.Icon = "ui/settlement_status/settlement_effect_40.png";

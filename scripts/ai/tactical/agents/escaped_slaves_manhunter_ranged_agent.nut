@@ -1,9 +1,9 @@
-this.sato_manhunter_ranged_agent <- this.inherit("scripts/ai/tactical/agent", {
+this.escaped_slaves_manhunter_ranged_agent <- this.inherit("scripts/ai/tactical/agent", {
 	m = {},
 	function create()
 	{
 		this.agent.create();
-		this.m.ID = "agent.sato_manhunter_ranged";
+		this.m.ID = "agent.escaped_slaves_manhunter_ranged";
 		this.m.Properties.BehaviorMult[this.Const.AI.Behavior.ID.Defend] = 1.0;
 		this.m.Properties.BehaviorMult[this.Const.AI.Behavior.ID.EngageMelee] = 0.0;
 		this.m.Properties.IsRangedUnit = true;

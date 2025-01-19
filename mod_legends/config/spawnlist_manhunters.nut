@@ -1,6 +1,6 @@
-::Const.World.Spawn.SatoManhunters <-
+::Const.World.Spawn.EscapedSlavesManhunters <-
 {
-	Name = "SatoManhunters",
+	Name = "EscapedSlavesManhunters",
 	IsDynamic = true,
 	MovementSpeedMult = 1.0,
 	VisibilityMult = 1.0,
@@ -14,12 +14,12 @@
 			Types = [
 				{
 					MaxR = 380,
-					Type = this.Const.World.Spawn.Troops.SatoManhunter,
+					Type = this.Const.World.Spawn.Troops.EscapedSlavesManhunter,
 					Cost = 15
 				},
 				{
 					MinR = 220,
-					Type = this.Const.World.Spawn.Troops.SatoManhunterVeteran,
+					Type = this.Const.World.Spawn.Troops.EscapedSlavesManhunterVeteran,
 					Cost = 20
 				}
 			]
@@ -29,12 +29,12 @@
 			Types = [
 				{
 					MaxR = 400,
-					Type = this.Const.World.Spawn.Troops.SatoManhunterRanged,
+					Type = this.Const.World.Spawn.Troops.EscapedSlavesManhunterRanged,
 					Cost = 20
 				},
 				{
 					MinR = 240,
-					Type = this.Const.World.Spawn.Troops.SatoManhunterVeteranRanged,
+					Type = this.Const.World.Spawn.Troops.EscapedSlavesManhunterVeteranRanged,
 					Cost = 28
 				}
 			]

@@ -225,8 +225,8 @@ if (!("LegendMod" in ::Const))
 	this.Const.EntityType.Officer,
 	this.Const.EntityType.Engineer,
 	this.Const.EntityType.Assassin,
-	this.Const.EntityType.SatoManhunter,
-	this.Const.EntityType.SatoManhunterVeteran
+	this.Const.EntityType.EscapedSlavesManhunter,
+	this.Const.EntityType.EscapedSlavesManhunterVeteran
 	// this.Const.EntityType.Gladiator,
 	// this.Const.EntityType.PeasantSouthern
 ];
@@ -605,12 +605,12 @@ if (!("LegendMod" in ::Const))
 	case this.Const.EntityType.PeasantSouthern :
 		return 25;
 
-	case this.Const.EntityType.SatoManhunter :
-	case this.Const.EntityType.SatoManhunterRanged : //only for escaped slaves origin. Makes sense they are higher %
+	case this.Const.EntityType.EscapedSlavesManhunter :
+	case this.Const.EntityType.EscapedSlavesManhunterRanged : //only for escaped slaves origin. Makes sense they are higher %
 		return 4;
 
-	case this.Const.EntityType.SatoManhunterVeteran :
-	case this.Const.EntityType.SatoManhunterVeteranRanged : //only for escaped slaves origin. Makes sense they are higher %
+	case this.Const.EntityType.EscapedSlavesManhunterVeteran :
+	case this.Const.EntityType.EscapedSlavesManhunterVeteranRanged : //only for escaped slaves origin. Makes sense they are higher %
 		return 2;
 
 	case this.Const.EntityType.SkeletonLich :
