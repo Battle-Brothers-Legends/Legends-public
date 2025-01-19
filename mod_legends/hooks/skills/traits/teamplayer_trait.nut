@@ -19,7 +19,7 @@
 			id = 10,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = format("[color=%s]%s[/color], [color=%s]%s[/color] and [color=%s]%s[/color] skills have [color=%s]%s[/color] chance to hit when targeting an allied character"
+			text = format("[color=%s]%s[/color], [color=%s]%s[/color] and [color=%s]%s[/color] skills have [color=%s]%s[/color] chance to hit when targeting an allied character and will not apply negative effects or damage when used on an ally"
 				, this.Const.UI.Color.NegativeValue, "Knock Back"
 				, this.Const.UI.Color.NegativeValue, "Repel"
 				, this.Const.UI.Color.NegativeValue, "Hook"
