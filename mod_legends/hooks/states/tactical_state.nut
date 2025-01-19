@@ -274,7 +274,7 @@
 
 			switch (bro.getBackground().getID())
 			{
-				case "background.vazl_cannibal":
+				case "background.legend_cannibal":
 					CannibalsInRoster += 1;
 					break;
 				case "background.gravedigger":
@@ -366,14 +366,14 @@
 				{
 					if (CannibalisticButchersInRoster >= 1)
 					{
-						local humanmeat = this.new("scripts/items/supplies/vazl_yummy_sausages");
+						local humanmeat = this.new("scripts/items/supplies/legend_yummy_sausages");
 						humanmeat.randomizeAmount();
 						humanmeat.randomizeBestBefore();
 						loot.push(humanmeat);
 					}
 					else if (CannibalisticButchersInRoster < 1 && CannibalsInRoster >= 1)
 					{
-						local humanmeat = this.new("scripts/items/supplies/vazl_human_parts");
+						local humanmeat = this.new("scripts/items/supplies/legend_human_parts");
 						humanmeat.randomizeAmount();
 						humanmeat.randomizeBestBefore();
 						loot.push(humanmeat);
