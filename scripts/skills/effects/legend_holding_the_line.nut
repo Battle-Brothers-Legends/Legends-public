@@ -4,7 +4,7 @@ this.legend_holding_the_line <- this.inherit("scripts/skills/effects/legend_comm
 	function create()
 	{
 		this.m.ID = "effects.legend_holding_the_line";
-		this.m.Name = "Holding the line";
+		this.m.Name = "Holding the Line";
 		this.m.Description = "You WILL hold! An inspirational leader has encouraged this character to hold their ground.";
 		this.m.Icon = "ui/perks/holdtheline_circle.png";
 		this.m.IconMini = "mini_holdtheline_circle";

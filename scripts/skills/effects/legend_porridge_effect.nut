@@ -66,7 +66,7 @@ this.legend_porridge_effect <- this.inherit("scripts/skills/skill", {
 				id = 11,
 				type = "text",
 				icon = "ui/icons/health.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+" + rate + "[/color] healing per turn for " + turns + " turns "
+				text = "Heals [color=" + this.Const.UI.Color.PositiveValue + "]+" + rate + "[/color] Hitpoints per turn for " + turns + " turns "
 			}
 		];
 		return ret;

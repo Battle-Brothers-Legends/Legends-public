@@ -63,7 +63,7 @@ this.legend_berserker_rage_effect <- this.inherit("scripts/skills/skill", {
 	}
 	function getDescription()
 	{
-		return "The smell of blood and death sends you into an uncontrollable rage. Once in a rage, you must continuously feed it to keep it going";
+		return "The smell of blood and death sends this character into an uncontrollable rage. Once in a rage, they must continuously feed it to keep it going.";
 	}
 
 	function addRage( _r )

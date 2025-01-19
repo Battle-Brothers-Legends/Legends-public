@@ -68,7 +68,7 @@ this.legend_pudding_effect <- this.inherit("scripts/skills/skill", {
 				id = 11,
 				type = "text",
 				icon = "ui/icons/health.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "] +" + healrate + "[/color] Healing per turn for " + turns + " turns"
+				text = "Heals [color=" + this.Const.UI.Color.PositiveValue + "] +" + healrate + "[/color] Hitpoints per turn for " + turns + " turns"
 			},
 			{
 				id = 11,

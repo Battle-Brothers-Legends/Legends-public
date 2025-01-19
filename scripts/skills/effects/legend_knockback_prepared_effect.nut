@@ -5,7 +5,7 @@ this.legend_knockback_prepared_effect <- this.inherit("scripts/skills/skill", {
 	function create()
 	{
 		this.m.ID = "effects.legend_knockback_prepared";
-		this.m.Name = "Prepared to inflict a knockback";
+		this.m.Name = "Prepared to Inflict Knockback.";
 		this.m.Icon = "ui/perks/smackdown_circle.png";
 		this.m.IconMini = "mini_smackdown_circle";
 		this.m.Type = this.Const.SkillType.StatusEffect;
@@ -16,7 +16,7 @@ this.legend_knockback_prepared_effect <- this.inherit("scripts/skills/skill", {
 
 	function getDescription()
 	{
-		return "This character is preparing an attack to inflict strong blow that pushes the target back and baffles them if it connects.";
+		return "This character is preparing an attack to inflict strong blow that will push the target back and baffle them if it connects.";
 	}
 
 	function getTooltip()

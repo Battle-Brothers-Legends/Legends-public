@@ -4,7 +4,7 @@ this.legend_levitating_effect <- this.inherit("scripts/skills/skill", {
 	{
 		this.m.ID = "effects.legend_levitating";
 		this.m.Name = "Levitating";
-		this.m.Description = "This character is hovering just above the ground, able to move freely across all terrain until the end of the turn";
+		this.m.Description = "This character is hovering just above the ground, able to move freely across all terrain until the end of the turn.";
 		this.m.Icon = "ui/perks/levitate.png";
 		this.m.IconMini = "perk_37_mini";
 		this.m.Overlay = "perk_37";

@@ -16,7 +16,7 @@ this.legend_choked_effect <- this.inherit("scripts/skills/skill", {
 	}
 	function getDescription()
 	{ // changed the  description slightly
-		return "This character was choked out and exhausted, they will catch their breath in [color=" + this.Const.UI.Color.NegativeValue + "]" + this.m.TurnsLeft + "[/color] turn(s).";
+		return "This character has recently been choked out and is exhausted. They will catch their breath in [color=" + this.Const.UI.Color.NegativeValue + "]" + this.m.TurnsLeft + "[/color] turn(s).";
 	}
 
 	function getTooltip()

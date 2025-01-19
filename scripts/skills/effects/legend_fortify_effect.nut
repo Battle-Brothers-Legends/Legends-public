@@ -4,7 +4,7 @@ this.legend_fortify_effect <- this.inherit("scripts/skills/skill", {
 	{
 		this.m.ID = "effects.legend_fortify";
 		this.m.Name = "Fortify";
-		this.m.Description = "This character is behind a protective towershield, and gains increased defense.";
+		this.m.Description = "This character is behind a protective towershield and gains increased defense.";
 		this.m.Icon = "skills/status_effect_03.png";
 		this.m.IconMini = "status_effect_03_mini";
 		this.m.Overlay = "status_effect_03";

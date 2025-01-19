@@ -8,7 +8,6 @@ this.legend_imbue_effect <- this.inherit("scripts/skills/skill", {
 	{
 		this.m.ID = "effects.legend_imbue_effect";
 		this.m.Name = "Imbued";
-		this.m.Description = "This character has been imbued with magical strength.";
 		this.m.Icon = "ui/perks/mage_legend_magic_imbue_circle.png";
 		this.m.IconMini = "perk_37_mini";
 		this.m.Overlay = "perk_37";
@@ -20,7 +19,7 @@ this.legend_imbue_effect <- this.inherit("scripts/skills/skill", {
 
 	function getDescription()
 	{
-		return "This character has been imbued with magical strength. Increase hit chance and damage by [color=" + this.Const.UI.Color.PositiveValue + "]" + this.m.ImbueAmount + "%[/color]. for [color=" + this.Const.UI.Color.NegativeValue + "]" + this.m.TurnsLeft + "[/color] more turn(s).";
+		return "This character has been imbued with magical strength. Hit chance and damage are increased by [color=" + this.Const.UI.Color.PositiveValue + "]" + this.m.ImbueAmount + "%[/color] for [color=" + this.Const.UI.Color.NegativeValue + "]" + this.m.TurnsLeft + "[/color] more turn(s).";
 	}
 
 	function setImbueAmount( _amount )

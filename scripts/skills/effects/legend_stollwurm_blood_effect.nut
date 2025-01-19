@@ -5,7 +5,7 @@ this.legend_stollwurm_blood_effect <- this.inherit("scripts/skills/skill", {
 	function create()
 	{
 		this.m.ID = "effects.legend_stollwurm_blood";
-		this.m.Name = "Stollwurm vigour";
+		this.m.Name = "Stollwurm Vigor";
 		this.m.Icon = "ui/perks/perk_30.png";
 		this.m.IconMini = "perk_30_mini";
 		this.m.Overlay = "perk_30";
@@ -16,7 +16,7 @@ this.legend_stollwurm_blood_effect <- this.inherit("scripts/skills/skill", {
 
 	function getDescription()
 	{
-		return "This character has gathered all their physical strength and willpower to become indomitable";
+		return "This character has gathered all their physical strength and willpower to become indomitable.";
 	}
 
 	function getTooltip()

@@ -17,7 +17,7 @@ this.legend_mead_warmth_effect <- this.inherit("scripts/skills/skill", {
 
 	function getDescription()
 	{
-		return "After consuming mead, this character has [color=" + this.Const.UI.Color.PositiveValue + "]+9[/color] Resolve, Melee and Ranged Skill, [color=" + this.Const.UI.Color.NegativeValue + "]-9[/color] Defenses and [color=" + this.Const.UI.Color.NegativeValue + "]-18[/color] Initiative for [color=" + this.Const.UI.Color.NegativeValue + "]" + this.m.TurnsLeft + "[/color] turn(s).";
+		return "Having just consumed mead, this character has [color=" + this.Const.UI.Color.PositiveValue + "]+9[/color] Resolve, Melee and Ranged Skill, [color=" + this.Const.UI.Color.NegativeValue + "]-9[/color] Defenses and [color=" + this.Const.UI.Color.NegativeValue + "]-18[/color] Initiative for [color=" + this.Const.UI.Color.NegativeValue + "]" + this.m.TurnsLeft + "[/color] turn(s).";
 	}
 
 	function getTooltip()

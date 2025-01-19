@@ -6,7 +6,7 @@ this.legend_greenwood_sap_effect <- this.inherit("scripts/skills/skill", {
 	{
 		this.m.ID = "effects.legend_greenwood_sap";
 		this.m.Name = "Heartwood Focus";
-		this.m.Description = "This character has achieved perfect focus as if time itself were to stand still and can use all skills at half their normal Action Point cost";
+		this.m.Description = "This character has achieved perfect focus, as if time itself has stood still. They can use all skills at half their normal Action Point cost.";
 		this.m.Icon = "ui/perks/perfectfocus_circle.png";
 		this.m.IconMini = "perk_37_mini";
 		this.m.Overlay = "perk_37";

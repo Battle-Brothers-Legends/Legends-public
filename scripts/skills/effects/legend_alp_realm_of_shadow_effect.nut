@@ -25,7 +25,7 @@ this.legend_alp_realm_of_shadow_effect <- ::inherit("scripts/skills/skill", {
 
 	function getDescription()
 	{
-		return "This character is consumed by the unnatural black mist and is showing signs of fear. As the horrors eat away at his sanity, he would soon be broken.";
+		return "This character is consumed by unnatural black mist and is experiencing supernatural terror. The horrors eat away at their sanity and they will soon be broken.";
 	}
 
 	function getTooltip()

@@ -11,7 +11,7 @@ this.legend_prepare_graze_skill <- this.inherit("scripts/skills/skill", {
 	{
 		this.m.ID = "actives.legend_prepare_graze";
 		this.m.Name = "Prepare to Graze";
-		this.m.Description = "Evaluate your enemy, preparing your next attack to leave them bleeding from multiple grazes";
+		this.m.Description = "Evaluate your enemy, preparing your next attack to leave them bleeding from multiple grazes.";
 		this.m.Icon = "skills/graze_square.png";
 		this.m.IconDisabled = "skills/graze_square_bw.png";
 		this.m.Overlay = "status_effect_01";

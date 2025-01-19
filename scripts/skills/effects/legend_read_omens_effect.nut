@@ -25,7 +25,7 @@ this.legend_read_omens_effect <- this.inherit("scripts/skills/skill", {
 
 	function getDescription()
 	{
-		return "This character has had its future foretold and has a [color=" + this.Const.UI.Color.PositiveValue + "]10%[/color] chance to have any attacker require two successful attack rolls in order to hit";
+		return "This character has had their future foretold and has a [color=" + this.Const.UI.Color.PositiveValue + "]10%[/color] chance to have any attacker require two successful attack rolls in order to hit.";
 	}
 
 	function onUpdate( _properties )

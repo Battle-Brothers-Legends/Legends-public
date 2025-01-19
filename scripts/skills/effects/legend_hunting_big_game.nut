@@ -7,7 +7,7 @@ this.legend_hunting_big_game <- this.inherit("scripts/skills/skill", {
 		this.m.Icon = "ui/perks/BigGameHunterPerk.png";
 		this.m.IconMini = "mini_big_game_hunter";
 		this.m.Type = this.Const.SkillType.StatusEffect;
-		this.m.Description = "When fighting beasts, gain an additional modifier that deals bonus damage based on the target\'s missing health. When not fighting beasts, gain [color=" + this.Const.UI.Color.PositiveValue + "]+10%[/color] ranged weapon damage but no additional modifier. Only works with ranged weapons.";
+		this.m.Description = "When fighting beasts, this character gains an additional modifier that deals bonus damage based on the target\'s missing health. When not fighting beasts, they gain [color=" + this.Const.UI.Color.PositiveValue + "]+10%[/color] ranged weapon damage but no additional modifier. Only works with ranged weapons.";
 		this.m.IsActive = false;
 		this.m.IsStacking = false;
 		// this.m.IsRemovedAfterBattle = false;

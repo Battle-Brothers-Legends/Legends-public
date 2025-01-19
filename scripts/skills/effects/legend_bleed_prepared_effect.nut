@@ -5,7 +5,7 @@ this.legend_bleed_prepared_effect <- this.inherit("scripts/skills/skill", {
 	function create()
 	{
 		this.m.ID = "effects.legend_bleed_prepared";
-		this.m.Name = "Prepared to inflict bleeding";
+		this.m.Name = "Prepared to Inflict Bleeding";
 		this.m.Icon = "skills/bleed_circle.png";
 		this.m.IconMini = "mini_bleed_circle";
 		this.m.Type = this.Const.SkillType.StatusEffect;
@@ -16,7 +16,7 @@ this.legend_bleed_prepared_effect <- this.inherit("scripts/skills/skill", {
 
 	function getDescription()
 	{
-		return "This character is preparing an attack to inflict heavy bleeding. The next hit will infict 5 bleed for the next two turns";
+		return "This character is preparing an attack to inflict heavy bleeding. The next hit doing at least [color=" + this.Const.UI.Color.NegativeValue + "]" + this.Const.Combat.MinDamageToApplyBleeding + "[/color] damage to hitpoints will cause the target to bleed for the next two turns.";
 	}
 
 	function getTooltip()
@@ -79,6 +79,7 @@ this.legend_bleed_prepared_effect <- this.inherit("scripts/skills/skill", {
 		{
 			effect.setActor(this.getContainer().getActor());
 		}
+		effect.setDamage(5);
 		_targetEntity.getSkills().add(effect);
 		--this.m.AttacksLeft;
 	}

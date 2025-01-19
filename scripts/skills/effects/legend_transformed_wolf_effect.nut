@@ -6,7 +6,7 @@ this.legend_transformed_wolf_effect <- this.inherit("scripts/skills/effects/lege
 		this.legend_transformed_effect.create()
 		this.m.ID = "effect.legend_transformed_wolf";
 		this.m.Name = "Wolf Form";
-		this.m.Description = "This character is currently a wolf";
+		this.m.Description = "This character is currently a wolf.";
 		this.m.Icon = "ui/perks/wolf_circle.png";
 		this.m.IconMini = "status_effect_08_mini";
 		this.m.Body = "were_wolf_body";
@@ -21,7 +21,7 @@ this.legend_transformed_wolf_effect <- this.inherit("scripts/skills/effects/lege
 				id = 10,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]-1[/color] AP per tile moved"
+				text = "[color=" + this.Const.UI.Color.PositiveValue + "]-1[/color] Action Point per tile moved"
 			}
 		]);
 

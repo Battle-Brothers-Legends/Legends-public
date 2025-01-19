@@ -4,7 +4,7 @@ this.legend_parried_effect <- this.inherit("scripts/skills/skill", {
 	{
 		this.m.ID = "effects.legend_parried";
 		this.m.Name = "Vulnerable";
-		this.m.Description = "This character has overextended, and is now vulnerable to a counterattack.";
+		this.m.Description = "This character has overextended and is now vulnerable to attack.";
 		this.m.Icon = "ui/perks/parried_circle.png";
 		this.m.IconMini = "mini_parried_circle";
 		this.m.Overlay = "parried_circle";

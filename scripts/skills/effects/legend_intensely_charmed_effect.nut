@@ -37,7 +37,7 @@ this.legend_intensely_charmed_effect <- this.inherit("scripts/skills/skill", {
 
 	function getDescription()
 	{
-		return "This character has been charmed. They no longer has any control over his actions and is a puppet that has no choice but to obey their master. Wears off in [color=" + this.Const.UI.Color.NegativeValue + "]" + this.m.TurnsLeft + "[/color] turn(s).\n\nThe higher a character\'s resolve, the higher the chance to resist being charmed.";
+		return "This character has been charmed. They no longer have any control over their actions and are a puppet with no choice but to obey their master. Wears off in [color=" + this.Const.UI.Color.NegativeValue + "]" + this.m.TurnsLeft + "[/color] turn(s).\n\nThe higher a character\'s resolve, the higher the chance to resist being charmed.";
 	}
 
 	function addTurns( _t )

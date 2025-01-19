@@ -6,7 +6,7 @@ this.legend_prayer_of_faith_effect <- this.inherit("scripts/skills/skill", {
 	{
 		this.m.ID = "effects.legend_prayer_of_faith";
 		this.m.Name = "Prayer of Faith";
-		this.m.Description = "This character is being protected by a holy chant";
+		this.m.Description = "This character is being protected by a holy chant.";
 		this.m.Icon = "ui/perks/prayer_purple.png";
 		this.m.Overlay = "prayer_purple";
 		this.m.Type = this.Const.SkillType.StatusEffect;
@@ -42,7 +42,7 @@ this.legend_prayer_of_faith_effect <- this.inherit("scripts/skills/skill", {
 				id = 10,
 				type = "text",
 				icon = "ui/icons/health.png",
-				text = "Melee and ranged defense increased by [color=" + this.Const.UI.Color.PositiveValue + "]+" + bonus + "[/color]"
+				text = "Melee and Ranged Defense increased by [color=" + this.Const.UI.Color.PositiveValue + "]+" + bonus + "[/color]"
 			}
 		];
 	}

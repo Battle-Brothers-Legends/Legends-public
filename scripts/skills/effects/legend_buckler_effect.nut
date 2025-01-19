@@ -1,10 +1,13 @@
 this.legend_buckler_effect <- this.inherit("scripts/skills/skill", {
-	m = {},
+	m = {
+		DefenseSingleEnemy = 12,
+		DefenseTwoEnemies = 6,
+		DefenseThreeEnemies = 4
+	},
 	function create()
 	{
 		this.m.ID = "effects.legend_buckler";
-		this.m.Name = "Buckler defense";
-		this.m.Description = "Bucklers work best against a single opponent, gain defense depending on how many enemies are within 1 tile. 12 melee when facing one enemy, 6 when facing 2, 4 when facing 3. Also gain half that as ranged defense";
+		this.m.Name = "Buckler Defense";
 		this.m.Icon = "ui/perks/perk_02.png";
 		//this.m.IconMini = "perk_02_mini";
 		this.m.Type = this.Const.SkillType.StatusEffect;
@@ -12,6 +15,11 @@ this.legend_buckler_effect <- this.inherit("scripts/skills/skill", {
 		this.m.IsActive = false;
 		this.m.IsSerialized = false;
 		this.m.IsStacking = false;
+	}
+
+	function getDescription()
+	{
+		return "Bucklers work best against a single opponent. Gain [color=" + this.Const.UI.Color.PositiveValue + "]+" + this.m.DefenseSingleEnemy + "[/color] Melee Defense when facing one enemy, [color=" + this.Const.UI.Color.PositiveValue + "]+" + this.m.DefenseTwoEnemies + "[/color] when facing two, or [color=" + this.Const.UI.Color.PositiveValue + "]+" + this.m.DefenseThreeEnemies + "[/color] when facing three, and half as much Ranged Defense.";
 	}
 
 	function isHidden()
@@ -92,28 +100,21 @@ this.legend_buckler_effect <- this.inherit("scripts/skills/skill", {
 			++nearbyEnemies;
 		}
 
-		if (nearbyEnemies > 3)
-		{
-			return 0;
-		}
-
 		if (nearbyEnemies == 3)
 		{
-			return 4;
+			return this.m.DefenseThreeEnemies;
 		}
 
 		if (nearbyEnemies == 2)
 		{
-			return 6;
+			return this.m.DefenseTwoEnemies;
 		}
 		if (nearbyEnemies == 1)
 		{
-			return 12;
+			return this.m.DefenseSingleEnemy;
 		}
-		else
-		{
-			return 0;
-		}
+
+		return 0;
 	}
 
 	function getTooltip()
