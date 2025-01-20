@@ -50,7 +50,7 @@ this.legend_marked_target <- this.inherit("scripts/skills/skill", {
 
 	function getBonus()
 	{
-		return 1.0 + this.Math.min(0.2 , this.getContainer().getHitpointsMax());
+		return 1.0 + this.Math.min(0.2 , this.getContainer().getActor().getHitpointsMax());
 	}
 
 	function onUpdate( _properties )
