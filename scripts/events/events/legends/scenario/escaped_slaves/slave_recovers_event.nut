@@ -1,4 +1,4 @@
-this.sato_slave_recovers_event <- this.inherit("scripts/events/event", {
+this.slave_recovers_event <- this.inherit("scripts/events/event", {
 	m = {
 		Recovered = null
 	},
@@ -11,7 +11,7 @@ this.sato_slave_recovers_event <- this.inherit("scripts/events/event", {
 		local EventText5 = "{%SPEECH_ON%You know I used to have a family, cap\'n? With a kid and everything. That life always seemed so far away, but close at the same time, you know? Like I couldn\'t get away from it, like there weren\'t no point to going on cause I\'d already done what folks ought to get done in life. I\'m sure they\'ve died or moved on, but I never could.%SPEECH_OFF%He pauses.%SPEECH_ON%I think I finally managed to, though. Something about being here, with the company, it\'s give me purpose again, made me feel like there\'s something still worth doing with my life.%SPEECH_OFF% | %SPEECH_ON%I still remember my first lashing. I\'d never known pain like that before. It never went away, really. I could always feel it, right there underneath the skin. It was... was like a manacle I couldn\'t see or touch or break, telling me I\'d been marked, that I\'d always be a slave.%SPEECH_OFF%Calloused hands rub at %recovered%\'s wrists.%SPEECH_ON%Lately, though, the feelin\'s started to fade. Hell, maybe I\'m just getting old, but I think something about being in the company has helped. I\'ve started believing it don\'t matter so much who I used to be, that I should just focus on what comes next.%SPEECH_OFF% | %SPEECH_ON%I still remember what it was like, before, you know... I remember feeling like I never had any choice. My life was laid out in front of me, and if I didn\'t like it, too bad. I suppose it was a slavery of a kind too, being bound to a life dictated by who\'s child you were or where you were born, and not anything you chose for yourself.%SPEECH_OFF%He spits.%SPEECH_ON%Well, I\'ve decided I\'ve had my fill of both. I used to think about returning to that life, but after my time in the company, I\'ve come to realize this is the closest to freedom I\'ve ever been.%SPEECH_OFF%}";
 		local EventText6 = "%recovered% turns to you.%SPEECH_ON%It feels good, cap\'n.%SPEECH_OFF%";
 
-		this.m.ID = "event.sato_slave_recovers";
+		this.m.ID = "event.slave_recovers";
 		this.m.Title = "During camp...";
 		this.m.Cooldown = 3.0 * this.World.getTime().SecondsPerDay;
 		this.m.Screens.push({
@@ -34,7 +34,7 @@ this.sato_slave_recovers_event <- this.inherit("scripts/events/event", {
 			{
 				local dude = _event.m.Recovered;
 				this.Characters.push(dude.getImagePath());
-				dude.getFlags().set("sato_recovered_slave", true);
+				dude.getFlags().set("escaped_slaves_recovered", true);
 				local rolls = [];
 				rolls.push(this.Math.rand(8,12));
 				rolls.push(this.Math.rand(4,8));
@@ -96,7 +96,7 @@ this.sato_slave_recovers_event <- this.inherit("scripts/events/event", {
 
 	function onUpdateScore()
 	{
-		if (this.World.Assets.getOrigin().getID() != "scenario.sato_escaped_slaves")
+		if (this.World.Assets.getOrigin().getID() != "scenario.legends_escaped_slaves")
 		{
 			return;
 		}
@@ -107,7 +107,7 @@ this.sato_slave_recovers_event <- this.inherit("scripts/events/event", {
 
 		foreach( bro in brothers )
 		{
-			if (bro.getLevel() >= 8 && bro.getBackground().getID() == "background.slave" && !bro.getFlags().has("sato_recovered_slave"))
+			if (bro.getLevel() >= 8 && bro.getBackground().getID() == "background.slave" && !bro.getFlags().has("escaped_slaves_recovered"))
 			{
 				recovered_candidates.push(bro);
 			}

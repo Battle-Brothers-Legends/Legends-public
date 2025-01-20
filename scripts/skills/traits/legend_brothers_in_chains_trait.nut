@@ -1,4 +1,4 @@
-this.sato_brothers_in_chains_trait <- this.inherit("scripts/skills/traits/character_trait", {
+this.legend_brothers_in_chains_trait <- this.inherit("scripts/skills/traits/character_trait", {
 	m = {},
 	function create()
 	{
@@ -28,13 +28,13 @@ this.sato_brothers_in_chains_trait <- this.inherit("scripts/skills/traits/charac
 
 	function onCombatStarted()
 	{
-		this.getContainer().add(this.new("scripts/skills/effects/sato_brothers_in_chains_effect"));
+		this.getContainer().add(this.new("scripts/skills/effects/legend_brothers_in_chains_effect"));
 		this.m.IsHidden = true;
 	}
 
 	function onCombatFinished()
 	{
-		this.getContainer().removeByID("effects.sato_brothers_in_chains_effect");
+		this.getContainer().removeByID("effects.legend_brothers_in_chains_effect");
 		this.m.IsHidden = false;
 	}
 

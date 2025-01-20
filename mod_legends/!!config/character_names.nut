@@ -484,7 +484,7 @@
 	"Abdamelek"
 ]
 
-::Const.Strings.SatoManhunterVeteranTitles <- [
+::Const.Strings.EscapedSlavesManhunterVeteranTitles <- [
 	"the Blight",
 	"the Iron Shackle",
 	"the Steel Shackle",

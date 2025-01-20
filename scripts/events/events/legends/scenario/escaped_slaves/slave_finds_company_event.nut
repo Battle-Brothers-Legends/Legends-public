@@ -1,10 +1,10 @@
-this.sato_slave_finds_company_event <- this.inherit("scripts/events/event", {
+this.slave_finds_company_event <- this.inherit("scripts/events/event", {
 	m = {
 		Dude = null
 	},
 	function create()
 	{
-		this.m.ID = "event.sato_slave_finds_company";
+		this.m.ID = "event.slave_finds_company";
 		this.m.Title = "Along the road...";
 		this.m.Cooldown = 15.0 * this.World.getTime().SecondsPerDay;
 		this.m.Screens.push({
@@ -59,7 +59,7 @@ this.sato_slave_finds_company_event <- this.inherit("scripts/events/event", {
 			return;
 		}
 
-		if (this.World.Assets.getOrigin().getID() != "scenario.sato_escaped_slaves")
+		if (this.World.Assets.getOrigin().getID() != "scenario.legends_escaped_slaves")
 		{
 			return;
 		}

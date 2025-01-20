@@ -773,8 +773,8 @@ traitDefs.push({
 	Const = "LegendNobleKiller"
 });
 traitDefs.push({
-	ID = "trait.sato_brothers_in_chains",
-	Script = "scripts/skills/traits/sato_brothers_in_chains_trait",
+	ID = "trait.brothers_in_chains",
+	Script = "scripts/skills/traits/brothers_in_chains_trait",
 	Const = "LegendBrothersInChains"
 });
 traitDefs.push({

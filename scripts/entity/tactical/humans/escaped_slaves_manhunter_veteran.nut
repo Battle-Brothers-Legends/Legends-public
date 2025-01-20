@@ -1,10 +1,10 @@
-this.sato_manhunter_veteran <- this.inherit("scripts/entity/tactical/human", {
+this.escaped_slaves_manhunter_veteran <- this.inherit("scripts/entity/tactical/human", {
 	m = {},
 	function create()
 	{
-		this.m.Type = this.Const.EntityType.SatoManhunterVeteranRanged;
+		this.m.Type = this.Const.EntityType.EscapedSlavesManhunterVeteranRanged;
 		this.m.BloodType = this.Const.BloodType.Red;
-		this.m.XP = this.Const.Tactical.Actor.SatoManhunterVeteran.XP;
+		this.m.XP = this.Const.Tactical.Actor.EscapedSlavesManhunterVeteran.XP;
 		this.human.create();
 		this.m.Bodies = this.Const.Bodies.SouthernMale;
 		this.m.Faces = this.Const.Faces.SouthernMale;
@@ -13,7 +13,7 @@ this.sato_manhunter_veteran <- this.inherit("scripts/entity/tactical/human", {
 		this.m.Beards = this.Const.Beards.SouthernUntidy;
 		this.m.BeardChance = 90;
 		this.m.Ethnicity = 1;
-		this.m.AIAgent = this.new("scripts/ai/tactical/agents/sato_manhunter_melee_agent");
+		this.m.AIAgent = this.new("scripts/ai/tactical/agents/escaped_slaves_manhunter_melee_agent");
 		this.m.AIAgent.setActor(this);
 	}
 
@@ -21,7 +21,7 @@ this.sato_manhunter_veteran <- this.inherit("scripts/entity/tactical/human", {
 	{
 		this.human.onInit();
 		local b = this.m.BaseProperties;
-		b.setValues(this.Const.Tactical.Actor.SatoManhunterVeteran);
+		b.setValues(this.Const.Tactical.Actor.EscapedSlavesManhunterVeteran);
 
 		this.m.ActionPoints = b.ActionPoints;
 		this.m.Hitpoints = b.Hitpoints;

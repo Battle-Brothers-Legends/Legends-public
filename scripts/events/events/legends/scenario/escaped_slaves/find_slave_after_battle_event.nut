@@ -1,11 +1,11 @@
-this.sato_find_slave_after_battle_event <- this.inherit("scripts/events/event", {
+this.find_slave_after_battle_event <- this.inherit("scripts/events/event", {
 	m = {
 		LastCombatID = 0,
 		Dude = null
 	},
 	function create()
 	{
-		this.m.ID = "event.sato_find_slave_after_battle";
+		this.m.ID = "event.find_slave_after_battle";
 		this.m.Title = "After the battle...";
 		this.m.IsSpecial = true;
 		local BanditBarbarian1 = "It is fairly uncommon to find prisoners in bandit camps, and rarer still for those prisoners to be barbarians from the north, yet here on such specimen stands before you. You doubt this one was captured with little effort, given the strangled guard lying by their feet. Freeing the barbarian, you wonder if there is a place in the %companyname%.";
@@ -559,7 +559,7 @@ this.sato_find_slave_after_battle_event <- this.inherit("scripts/events/event", 
 			return false;
 		}
 
-		if (this.World.Assets.getOrigin().getID() != "scenario.sato_escaped_slaves")
+		if (this.World.Assets.getOrigin().getID() != "scenario.legends_escaped_slaves")
 		{
 			return;
 		}

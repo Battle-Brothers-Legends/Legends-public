@@ -35,7 +35,7 @@
 			bro.getSkills().onDismiss();
 			this.World.Statistics.getFlags().increment("BrosDismissed");
 
-			if (bro.getSkills().hasSkillOfType(this.Const.SkillType.PermanentInjury) && (bro.getBackground().getID() != "background.slave" || this.World.Assets.getOrigin().getID() == "scenario.sato_escaped_slaves"))
+			if (bro.getSkills().hasSkillOfType(this.Const.SkillType.PermanentInjury) && (bro.getBackground().getID() != "background.slave" || this.World.Assets.getOrigin().getID() == "scenario.legends_escaped_slaves"))
 			{
 				this.World.Statistics.getFlags().increment("BrosWithPermanentInjuryDismissed");
 			}

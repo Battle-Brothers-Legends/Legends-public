@@ -407,24 +407,24 @@
 	Script = "scripts/entity/tactical/humans/legend_peasant_armed_infected"
 };
 
-::Const.World.Spawn.Troops.SatoManhunter <- {
-	ID = this.Const.EntityType.SatoManhunter,
+::Const.World.Spawn.Troops.EscapedSlavesManhunter <- {
+	ID = this.Const.EntityType.EscapedSlavesManhunter,
 	Variant = 0,
 	Strength = 20,
 	Cost = 15,
 	Row = 0,
-	Script = "scripts/entity/tactical/humans/sato_manhunter"
+	Script = "scripts/entity/tactical/humans/escaped_slaves_manhunter"
 };
 
-::Const.World.Spawn.Troops.SatoManhunterVeteran <- {
-	ID = this.Const.EntityType.SatoManhunterVeteran,
+::Const.World.Spawn.Troops.EscapedSlavesManhunterVeteran <- {
+	ID = this.Const.EntityType.EscapedSlavesManhunterVeteran,
 	Variant = 1,
 	Strength = 25,
 	Cost = 20,
 	Row = 0,
-	Script = "scripts/entity/tactical/humans/sato_manhunter_veteran"
+	Script = "scripts/entity/tactical/humans/escaped_slaves_manhunter_veteran"
 	NameList = this.Const.Strings.SouthernNames,
-	TitleList = this.Const.Strings.SatoManhunterVeteranTitles
+	TitleList = this.Const.Strings.EscapedSlavesManhunterVeteranTitles
 };
 
 ::Const.World.Spawn.Troops.KoboldFighter <- {
@@ -675,24 +675,24 @@
 	TitleList = null
 };
 
-::Const.World.Spawn.Troops.SatoManhunterRanged <- {
-	ID = this.Const.EntityType.SatoManhunterRanged,
+::Const.World.Spawn.Troops.EscapedSlavesManhunterRanged <- {
+	ID = this.Const.EntityType.EscapedSlavesManhunterRanged,
 	Variant = 0,
 	Strength = 20,
 	Cost = 20,
 	Row = 2,
-	Script = "scripts/entity/tactical/humans/sato_manhunter_ranged"
+	Script = "scripts/entity/tactical/humans/escaped_slaves_manhunter_ranged"
 };
 
-::Const.World.Spawn.Troops.SatoManhunterVeteranRanged <- {
-	ID = this.Const.EntityType.SatoManhunterVeteranRanged,
+::Const.World.Spawn.Troops.EscapedSlavesManhunterVeteranRanged <- {
+	ID = this.Const.EntityType.EscapedSlavesManhunterVeteranRanged,
 	Variant = 1,
 	Strength = 25,
 	Cost = 28,
 	Row = 2,
-	Script = "scripts/entity/tactical/humans/sato_manhunter_veteran_ranged",
+	Script = "scripts/entity/tactical/humans/escaped_slaves_manhunter_veteran_ranged",
 	NameList = this.Const.Strings.SouthernNames,
-	TitleList = this.Const.Strings.SatoManhunterVeteranTitles
+	TitleList = this.Const.Strings.EscapedSlavesManhunterVeteranTitles
 };
 
 ::Const.World.Spawn.Troops.LegendNobleGuard<- {
