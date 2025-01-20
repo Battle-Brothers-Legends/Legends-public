@@ -42,33 +42,4 @@
 		}
 	}
 
-	o.makeMiniboss <- function ()
-	{
-		if (!this.actor.makeMiniboss())
-		{
-			return false;
-		}
-
-		this.m.Skills.add(this.new("scripts/skills/racial/legend_greenwood_schrat_racial"));
-		this.m.Skills.add(this.new("scripts/skills/actives/legend_grow_greenwood_shield_skill"));
-		this.m.BaseProperties.setValues(this.Const.Tactical.Actor.LegendGreenwoodSchrat);
-
-		this.m.Items.unequip(this.m.Items.getItemAtSlot(this.Const.ItemSlot.Offhand));
-		this.m.Items.equip(this.new("scripts/items/shields/beasts/legend_greenwood_schrat_shield"));
-		local body = this.addSprite("body");
-		body.setBrush("bust_schrat_green_body_01");
-		body.varySaturation(0.2);
-		body.varyColor(0.05, 0.05, 0.05);
-		this.m.BloodColor = body.Color;
-		local head = this.addSprite("head");
-		head.setBrush("bust_schrat_green_head_0" + this.Math.rand(1, 2));
-		head.Color = body.Color;
-		head.Saturation = body.Saturation;
-		local injury = this.addSprite("injury");
-		injury.Visible = false;
-		injury.setBrush("bust_schrat_green_01_injured");
-
-
-		return true;
-	}
 });

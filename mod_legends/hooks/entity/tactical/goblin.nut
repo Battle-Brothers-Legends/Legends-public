@@ -93,11 +93,13 @@
 	o.onFactionChanged = function ()
 	{
 		this.actor.onFactionChanged();
-		local flip = this.isAlliedWithPlayer();
-		// 	flip = !flip
-		// Note from James: I removed the check for unlayered armor from this flip = !flip thing. I have no clue what it would do though.
-		this.getSprite("helmet").setHorizontalFlipping(flip);
-		this.getSprite("helmet_damage").setHorizontalFlipping(flip);
+		local flip = !this.isAlliedWithPlayer();
+		foreach (a in this.Const.CharacterSprites.Helmets)
+		{
+			if (!this.hasSprite(a))
+				continue;
+			this.getSprite(a).setHorizontalFlipping(flip);
+		}
 	}
 
 	local onInit = o.onInit;

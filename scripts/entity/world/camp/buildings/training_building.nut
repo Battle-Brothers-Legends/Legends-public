@@ -110,11 +110,17 @@ this.training_building <- this.inherit("scripts/entity/world/camp/camp_building"
 		foreach( bro in mod.Modifiers )
 		{
 			++id;
+			local tooltip_text = "[color=" + this.Const.UI.Color.PositiveValue + "]" + bro[0] * 100.0 + "%[/color] " + bro[1] + " (" + bro[2] + ")"
+
+			if (bro[3])
+			{
+				tooltip_text = "[color=" + this.Const.UI.Color.PositiveValue + "]" + bro[0] * 100.0 + "%[/color] " + bro[1] + " (" + bro[2] + ") [color=" + this.Const.UI.Color.NegativeValue + "] Training fulfilled[/color]"
+			}
 			ret.push({
 				id = id,
 				type = "hint",
 				icon = "ui/icons/special.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]" + bro[0] * 100.0 + "%[/color] " + bro[1] + " (" + bro[2] + ")"
+				text = tooltip_text
 			});
 		}
 
@@ -193,20 +199,29 @@ this.training_building <- this.inherit("scripts/entity/world/camp/camp_building"
 
 			if (bro.getSkills().hasPerk(::Legends.Perk.LegendBackToBasics))
 			{
-				mod += 0.1;
+				mod = mod + 0.1;
 			}
+
+			local max_reached = false
+
+			if (bro.getSkills().hasSkill("trait.legend_intensive_training_trait"))
+			{
+				max_reached = bro.getSkills().getSkillByID("trait.legend_intensive_training_trait").isMaxReached();
+			}
+
 
 			++ret.Assigned;
 			ret.Modifiers.push([
 				mod,
 				bro.getName(),
-				bro.getBackground().getNameOnly()
+				bro.getBackground().getNameOnly(),
+				max_reached
 			]);
 		}
 
 		ret.Modifiers.sort(this.sortModifiers);
 
-		for( local i = 0; i < ret.Modifiers.len(); i = ++i )
+		for( local i = 0; i < ret.Modifiers.len(); i = i )
 		{
 			ret.Modifiers[i][0] = ret.Modifiers[i][0] * this.Math.pow(i + 1, -0.5);
 
@@ -216,6 +231,7 @@ this.training_building <- this.inherit("scripts/entity/world/camp/camp_building"
 			}
 
 			ret.Craft += ret.Modifiers[i][0];
+			i = ++i;
 		}
 
 		return ret;

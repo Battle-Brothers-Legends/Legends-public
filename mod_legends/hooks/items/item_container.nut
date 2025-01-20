@@ -27,8 +27,7 @@
 	local addToBag = o.addToBag;
 	o.addToBag = function ( _item, _slot = -1 )
 	{
-		if (_item == null) return false;
-		return addToBag(_item, _slot);
+		return _item == null ? false : addToBag(_item, _slot);
 	}
 
 	o.drop <- function( item )

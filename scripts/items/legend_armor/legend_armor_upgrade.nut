@@ -15,7 +15,6 @@ this.legend_armor_upgrade <- this.inherit("scripts/items/item", {
 		InventorySound = this.Const.Sound.ArmorLeatherImpact,
 		IsDestroyedOnRemove = false,
 		Variants = [],
-		Visible = true,
 
 		// Basic stats on armor items
 		Condition = 1.0,
@@ -30,6 +29,7 @@ this.legend_armor_upgrade <- this.inherit("scripts/items/item", {
 		ResolveModifier = 0,		// Modifies Resolve of wearer
 		DamageReceivedArmorMult = 0.0,		// Multiplier to the damage received by the currently worn body armor
 		FatiguePenaltyMultiplier = 0.0		// The Fatigue cost of the currently equipped body armor is increased or reduced by this value as a fraction
+		Visible = true,
 	},
 	function create()
 	{
@@ -416,7 +416,6 @@ this.legend_armor_upgrade <- this.inherit("scripts/items/item", {
 	{
 		local frontSprite = "";
 		local backSprite = "";
-
 		if (this.isVisible() == false)
 		{
 			frontSprite = "";
@@ -440,40 +439,39 @@ this.legend_armor_upgrade <- this.inherit("scripts/items/item", {
 
 		switch(this.m.Type)
 		{
-		case this.Const.Items.ArmorUpgrades.Chain:
-			_app.ArmorLayerChain = backSprite;
-			_app.CorpseArmorLayerChain = this.m.SpriteCorpseBack != null ? this.m.SpriteCorpseBack : "";
-			break;
+			case this.Const.Items.ArmorUpgrades.Chain:
+				_app.ArmorLayerChain = backSprite;
+				_app.CorpseArmorLayerChain = this.m.SpriteCorpseBack != null ? this.m.SpriteCorpseBack : "";
+				break;
 
-		case this.Const.Items.ArmorUpgrades.Plate:
-			_app.ArmorLayerPlate = backSprite;
-			_app.CorpseArmorLayerPlate = this.m.SpriteCorpseBack != null ? this.m.SpriteCorpseBack : "";
-			break;
+			case this.Const.Items.ArmorUpgrades.Plate:
+				_app.ArmorLayerPlate = backSprite;
+				_app.CorpseArmorLayerPlate = this.m.SpriteCorpseBack != null ? this.m.SpriteCorpseBack : "";
+				break;
 
-		case this.Const.Items.ArmorUpgrades.Tabbard:
-			_app.ArmorLayerTabbard = backSprite;
-			_app.CorpseArmorLayerTabbard = this.m.SpriteCorpseBack != null ? this.m.SpriteCorpseBack : "";
-			break;
+			case this.Const.Items.ArmorUpgrades.Tabbard:
+				_app.ArmorLayerTabbard = backSprite;
+				_app.CorpseArmorLayerTabbard = this.m.SpriteCorpseBack != null ? this.m.SpriteCorpseBack : "";
+				break;
 
-		case this.Const.Items.ArmorUpgrades.Cloak:
-			_app.ArmorLayerCloakFront = frontSprite;
-			_app.ArmorLayerCloakBack = backSprite;
-			_app.CorpseArmorLayerCloakFront = this.m.SpriteCorpseFront != null ? this.m.SpriteCorpseFront : "";
-			_app.CorpseArmorLayerCloakBack = this.m.SpriteCorpseBack != null ? this.m.SpriteCorpseBack : "";
-			break;
+			case this.Const.Items.ArmorUpgrades.Cloak:
+				_app.ArmorLayerCloakFront = frontSprite;
+				_app.ArmorLayerCloakBack = backSprite;
+				_app.CorpseArmorLayerCloakFront = this.m.SpriteCorpseFront != null ? this.m.SpriteCorpseFront : "";
+				_app.CorpseArmorLayerCloakBack = this.m.SpriteCorpseBack != null ? this.m.SpriteCorpseBack : "";
+				break;
 
-		case this.Const.Items.ArmorUpgrades.Attachment:
-			_app.ArmorUpgradeFront = frontSprite;
-			_app.ArmorUpgradeBack = this.m.SpriteBack != null ? this.m.SpriteBack : "";
-			_app.CorpseArmorUpgradeFront = backSprite;
-			_app.CorpseArmorUpgradeBack = this.m.SpriteCorpseBack ? this.m.SpriteCorpseBack : "";
-			break;
+			case this.Const.Items.ArmorUpgrades.Attachment:
+				_app.ArmorUpgradeFront = frontSprite;
+				_app.ArmorUpgradeBack = backSprite;
+				_app.CorpseArmorUpgradeFront = this.m.SpriteCorpseFront != null ? this.m.SpriteCorpseFront : "";
+				_app.CorpseArmorUpgradeBack = this.m.SpriteCorpseBack ? this.m.SpriteCorpseBack : "";
+				break;
 		}
 	}
 
 	function onEquip()
 	{
-		this.setVisible(true);
 		this.item.onEquip();
 		this.setCurrentSlotType(this.m.SlotType);
 	}
@@ -481,7 +479,7 @@ this.legend_armor_upgrade <- this.inherit("scripts/items/item", {
 	function onUnequip()
 	{
 		this.item.onUnequip();
-        if (::Legends.Mod.ModSettings.getSetting("AutoRepairLayer").getValue() && this.getCondition() != this.getConditionMax()) this.setToBeRepaired(true, 0);
+		if (::Legends.Mod.ModSettings.getSetting("AutoRepairLayer").getValue() && this.getCondition() != this.getConditionMax()) this.setToBeRepaired(true, 0);
 		this.setCurrentSlotType(this.Const.ItemSlot.None);
 	}
 

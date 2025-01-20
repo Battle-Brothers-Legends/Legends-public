@@ -19,22 +19,4 @@
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendLevitate);
 		}
 	}
-
-	o.makeMiniboss <- function ()
-	{
-		if (!this.actor.makeMiniboss())
-		{
-			return false;
-		}
-
-		this.getSprite("miniboss").setBrush("bust_miniboss");
-		::Legends.Perks.grant(this, ::Legends.Perk.Underdog);
-		::Legends.Perks.grant(this, ::Legends.Perk.NineLives);
-		::Legends.Perks.grant(this, ::Legends.Perk.FastAdaption);
-		this.m.ActionPoints = 12;
-		this.m.BaseProperties.ActionPoints = 12;
-		this.m.Skills.update();
-
-		return true;
-	}
 });
