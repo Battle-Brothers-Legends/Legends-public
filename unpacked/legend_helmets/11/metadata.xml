@@ -1,16 +1,4 @@
 <brush name="gfx/legend_helmets_11.png" version="17">
-<sprite id="legendhelms_orc_bones_01_dead" offsetX="6" offsetY="10" f="64F0" ic="FF222933" width="131" height="125" img="..\entity\legend_helmets\layers\orc_bones_01_dead.png" left="-57" right="59" top="-53" bottom="55" />
-<sprite id="legendhelms_orc_great_horns_01" offsetY="35" f="64F0" ic="FF4E5053" width="184" height="222" img="..\entity\legend_helmets\layers\orc_great_horns_01.png" left="-67" right="68" top="-40" bottom="108" />
-<sprite id="legendhelms_orc_great_horns_01_damaged" offsetY="35" f="64F0" ic="FF4B4D51" width="184" height="222" img="..\entity\legend_helmets\layers\orc_great_horns_01_damaged.png" left="-67" right="68" top="-40" bottom="108" />
-<sprite id="legendhelms_orc_great_horns_01_dead" offsetX="6" offsetY="10" f="64F0" ic="FF222933" width="131" height="125" img="..\entity\legend_helmets\layers\orc_great_horns_01_dead.png" left="-57" right="59" top="-53" bottom="55" />
-<sprite id="legendhelms_plait_01" offsetY="35" f="64F0" ic="FF4E5053" width="184" height="222" img="..\entity\legend_helmets\layers\plait_01.png" left="-67" right="68" top="-40" bottom="108" />
-<sprite id="legendhelms_plait_02" offsetY="35" f="64F0" ic="FF4E5053" width="184" height="222" img="..\entity\legend_helmets\layers\plait_02.png" left="-67" right="68" top="-40" bottom="108" />
-<sprite id="legendhelms_plait_03" offsetY="35" f="64F0" ic="FF4E5053" width="184" height="222" img="..\entity\legend_helmets\layers\plait_03.png" left="-67" right="68" top="-40" bottom="108" />
-<sprite id="legendhelms_plait_04" offsetY="35" f="64F0" ic="FF4E5053" width="184" height="222" img="..\entity\legend_helmets\layers\plait_04.png" left="-67" right="68" top="-40" bottom="108" />
-<sprite id="legendhelms_plait_05" offsetY="35" f="64F0" ic="FF4E5053" width="184" height="222" img="..\entity\legend_helmets\layers\plait_05.png" left="-67" right="68" top="-40" bottom="108" />
-<sprite id="legendhelms_plait_06" offsetY="35" f="64F0" ic="FF4E5053" width="184" height="222" img="..\entity\legend_helmets\layers\plait_06.png" left="-67" right="68" top="-40" bottom="108" />
-<sprite id="legendhelms_plait_07" offsetY="35" f="64F0" ic="FF4E5053" width="184" height="222" img="..\entity\legend_helmets\layers\plait_07.png" left="-67" right="68" top="-40" bottom="108" />
-<sprite id="legendhelms_plait_08" offsetY="35" f="64F0" ic="FF4E5053" width="184" height="222" img="..\entity\legend_helmets\layers\plait_08.png" left="-67" right="68" top="-40" bottom="108" />
 <sprite id="legendhelms_plait_09" offsetY="35" f="64F0" ic="FF4E5053" width="184" height="222" img="..\entity\legend_helmets\layers\plait_09.png" left="-67" right="68" top="-40" bottom="108" />
 <sprite id="legendhelms_plait_10" offsetY="35" f="64F0" ic="FF4E5053" width="184" height="222" img="..\entity\legend_helmets\layers\plait_10.png" left="-67" right="68" top="-40" bottom="108" />
 <sprite id="legendhelms_plait_11" offsetY="35" f="64F0" ic="FF4E5053" width="184" height="222" img="..\entity\legend_helmets\layers\plait_11.png" left="-67" right="68" top="-40" bottom="108" />
@@ -150,4 +138,16 @@
 <sprite id="legendhelms_southern_turban_full_04" offsetY="35" f="64F0" ic="FF4E5053" width="184" height="222" img="..\entity\legend_helmets\layers\southern_turban_full_04.png" left="-67" right="68" top="-40" bottom="108" />
 <sprite id="legendhelms_southern_turban_full_01_damaged" offsetY="35" f="64F0" ic="FF4B4D51" width="184" height="222" img="..\entity\legend_helmets\layers\southern_turban_full_01_damaged.png" left="-67" right="68" top="-40" bottom="108" />
 <sprite id="legendhelms_southern_turban_full_02_damaged" offsetY="35" f="64F0" ic="FF4B4D51" width="184" height="222" img="..\entity\legend_helmets\layers\southern_turban_full_02_damaged.png" left="-67" right="68" top="-40" bottom="108" />
+<sprite id="legendhelms_southern_turban_full_03_damaged" offsetY="35" f="64F0" ic="FF4B4D51" width="184" height="222" img="..\entity\legend_helmets\layers\southern_turban_full_03_damaged.png" left="-67" right="68" top="-40" bottom="108" />
+<sprite id="legendhelms_southern_turban_full_04_damaged" offsetY="35" f="64F0" ic="FF4B4D51" width="184" height="222" img="..\entity\legend_helmets\layers\southern_turban_full_04_damaged.png" left="-67" right="68" top="-40" bottom="108" />
+<sprite id="legendhelms_southern_turban_full_01_dead" offsetX="6" offsetY="10" f="64F0" ic="FF222933" width="131" height="125" img="..\entity\legend_helmets\layers\southern_turban_full_01_dead.png" left="-57" right="59" top="-53" bottom="55" />
+<sprite id="legendhelms_southern_turban_full_02_dead" offsetX="6" offsetY="10" f="64F0" ic="FF222933" width="131" height="125" img="..\entity\legend_helmets\layers\southern_turban_full_02_dead.png" left="-57" right="59" top="-53" bottom="55" />
+<sprite id="legendhelms_southern_turban_full_03_dead" offsetX="6" offsetY="10" f="64F0" ic="FF222933" width="131" height="125" img="..\entity\legend_helmets\layers\southern_turban_full_03_dead.png" left="-57" right="59" top="-53" bottom="55" />
+<sprite id="legendhelms_southern_turban_full_04_dead" offsetX="6" offsetY="10" f="64F0" ic="FF222933" width="131" height="125" img="..\entity\legend_helmets\layers\southern_turban_full_04_dead.png" left="-57" right="59" top="-53" bottom="55" />
+<sprite id="legendhelms_southern_turban_light_01" offsetY="35" f="64F0" ic="FF4E5053" width="184" height="222" img="..\entity\legend_helmets\layers\southern_turban_light_01.png" left="-67" right="68" top="-40" bottom="108" />
+<sprite id="legendhelms_southern_turban_light_02" offsetY="35" f="64F0" ic="FF4E5053" width="184" height="222" img="..\entity\legend_helmets\layers\southern_turban_light_02.png" left="-67" right="68" top="-40" bottom="108" />
+<sprite id="legendhelms_southern_turban_light_03" offsetY="35" f="64F0" ic="FF4E5053" width="184" height="222" img="..\entity\legend_helmets\layers\southern_turban_light_03.png" left="-67" right="68" top="-40" bottom="108" />
+<sprite id="legendhelms_southern_turban_light_04" offsetY="35" f="64F0" ic="FF4E5053" width="184" height="222" img="..\entity\legend_helmets\layers\southern_turban_light_04.png" left="-67" right="68" top="-40" bottom="108" />
+<sprite id="legendhelms_southern_turban_light_05" offsetY="35" f="64F0" ic="FF4E5053" width="184" height="222" img="..\entity\legend_helmets\layers\southern_turban_light_05.png" left="-67" right="68" top="-40" bottom="108" />
+<sprite id="legendhelms_southern_turban_light_06" offsetY="35" f="64F0" ic="FF4E5053" width="184" height="222" img="..\entity\legend_helmets\layers\southern_turban_light_06.png" left="-67" right="68" top="-40" bottom="108" />
 </brush>

@@ -1,16 +1,4 @@
 <brush name="gfx/legend_helmets_10.png" version="17">
-<sprite id="legendhelms_headband_02" offsetY="35" f="64F0" ic="FF4E5053" width="184" height="222" img="..\entity\legend_helmets\layers\headband_02.png" left="-67" right="68" top="-40" bottom="108" />
-<sprite id="legendhelms_headband_03" offsetY="35" f="64F0" ic="FF4E5053" width="184" height="222" img="..\entity\legend_helmets\layers\headband_03.png" left="-67" right="68" top="-40" bottom="108" />
-<sprite id="legendhelms_headband_04" offsetY="35" f="64F0" ic="FF4E5053" width="184" height="222" img="..\entity\legend_helmets\layers\headband_04.png" left="-67" right="68" top="-40" bottom="108" />
-<sprite id="legendhelms_headband_05" offsetY="35" f="64F0" ic="FF4E5053" width="184" height="222" img="..\entity\legend_helmets\layers\headband_05.png" left="-67" right="68" top="-40" bottom="108" />
-<sprite id="legendhelms_headband_06" offsetY="35" f="64F0" ic="FF4E5053" width="184" height="222" img="..\entity\legend_helmets\layers\headband_06.png" left="-67" right="68" top="-40" bottom="108" />
-<sprite id="legendhelms_headband_07" offsetY="35" f="64F0" ic="FF4E5053" width="184" height="222" img="..\entity\legend_helmets\layers\headband_07.png" left="-67" right="68" top="-40" bottom="108" />
-<sprite id="legendhelms_headband_08" offsetY="35" f="64F0" ic="FF4E5053" width="184" height="222" img="..\entity\legend_helmets\layers\headband_08.png" left="-67" right="68" top="-40" bottom="108" />
-<sprite id="legendhelms_headband_09" offsetY="35" f="64F0" ic="FF4E5053" width="184" height="222" img="..\entity\legend_helmets\layers\headband_09.png" left="-67" right="68" top="-40" bottom="108" />
-<sprite id="legendhelms_headband_10" offsetY="35" f="64F0" ic="FF4E5053" width="184" height="222" img="..\entity\legend_helmets\layers\headband_10.png" left="-67" right="68" top="-40" bottom="108" />
-<sprite id="legendhelms_headband_11" offsetY="35" f="64F0" ic="FF4E5053" width="184" height="222" img="..\entity\legend_helmets\layers\headband_11.png" left="-67" right="68" top="-40" bottom="108" />
-<sprite id="legendhelms_headband_12" offsetY="35" f="64F0" ic="FF4E5053" width="184" height="222" img="..\entity\legend_helmets\layers\headband_12.png" left="-67" right="68" top="-40" bottom="108" />
-<sprite id="legendhelms_headband_13" offsetY="35" f="64F0" ic="FF4E5053" width="184" height="222" img="..\entity\legend_helmets\layers\headband_13.png" left="-67" right="68" top="-40" bottom="108" />
 <sprite id="legendhelms_headband_14" offsetY="35" f="64F0" ic="FF4E5053" width="184" height="222" img="..\entity\legend_helmets\layers\headband_14.png" left="-67" right="68" top="-40" bottom="108" />
 <sprite id="legendhelms_headband_15" offsetY="35" f="64F0" ic="FF4E5053" width="184" height="222" img="..\entity\legend_helmets\layers\headband_15.png" left="-67" right="68" top="-40" bottom="108" />
 <sprite id="legendhelms_headband_16" offsetY="35" f="64F0" ic="FF4E5053" width="184" height="222" img="..\entity\legend_helmets\layers\headband_16.png" left="-67" right="68" top="-40" bottom="108" />
@@ -150,4 +138,16 @@
 <sprite id="legendhelms_wreath_02_dead" offsetX="6" offsetY="10" f="64F0" ic="FF222933" width="131" height="125" img="..\entity\legend_helmets\layers\wreath_02_dead.png" left="-57" right="59" top="-53" bottom="55" />
 <sprite id="legendhelms_orc_bones_01" offsetY="35" f="64F0" ic="FF4E5053" width="184" height="222" img="..\entity\legend_helmets\layers\orc_bones_01.png" left="-67" right="68" top="-40" bottom="108" />
 <sprite id="legendhelms_orc_bones_01_damaged" offsetY="35" f="64F0" ic="FF4B4D51" width="184" height="222" img="..\entity\legend_helmets\layers\orc_bones_01_damaged.png" left="-67" right="68" top="-40" bottom="108" />
+<sprite id="legendhelms_orc_bones_01_dead" offsetX="6" offsetY="10" f="64F0" ic="FF222933" width="131" height="125" img="..\entity\legend_helmets\layers\orc_bones_01_dead.png" left="-57" right="59" top="-53" bottom="55" />
+<sprite id="legendhelms_orc_great_horns_01" offsetY="35" f="64F0" ic="FF4E5053" width="184" height="222" img="..\entity\legend_helmets\layers\orc_great_horns_01.png" left="-67" right="68" top="-40" bottom="108" />
+<sprite id="legendhelms_orc_great_horns_01_damaged" offsetY="35" f="64F0" ic="FF4B4D51" width="184" height="222" img="..\entity\legend_helmets\layers\orc_great_horns_01_damaged.png" left="-67" right="68" top="-40" bottom="108" />
+<sprite id="legendhelms_orc_great_horns_01_dead" offsetX="6" offsetY="10" f="64F0" ic="FF222933" width="131" height="125" img="..\entity\legend_helmets\layers\orc_great_horns_01_dead.png" left="-57" right="59" top="-53" bottom="55" />
+<sprite id="legendhelms_plait_01" offsetY="35" f="64F0" ic="FF4E5053" width="184" height="222" img="..\entity\legend_helmets\layers\plait_01.png" left="-67" right="68" top="-40" bottom="108" />
+<sprite id="legendhelms_plait_02" offsetY="35" f="64F0" ic="FF4E5053" width="184" height="222" img="..\entity\legend_helmets\layers\plait_02.png" left="-67" right="68" top="-40" bottom="108" />
+<sprite id="legendhelms_plait_03" offsetY="35" f="64F0" ic="FF4E5053" width="184" height="222" img="..\entity\legend_helmets\layers\plait_03.png" left="-67" right="68" top="-40" bottom="108" />
+<sprite id="legendhelms_plait_04" offsetY="35" f="64F0" ic="FF4E5053" width="184" height="222" img="..\entity\legend_helmets\layers\plait_04.png" left="-67" right="68" top="-40" bottom="108" />
+<sprite id="legendhelms_plait_05" offsetY="35" f="64F0" ic="FF4E5053" width="184" height="222" img="..\entity\legend_helmets\layers\plait_05.png" left="-67" right="68" top="-40" bottom="108" />
+<sprite id="legendhelms_plait_06" offsetY="35" f="64F0" ic="FF4E5053" width="184" height="222" img="..\entity\legend_helmets\layers\plait_06.png" left="-67" right="68" top="-40" bottom="108" />
+<sprite id="legendhelms_plait_07" offsetY="35" f="64F0" ic="FF4E5053" width="184" height="222" img="..\entity\legend_helmets\layers\plait_07.png" left="-67" right="68" top="-40" bottom="108" />
+<sprite id="legendhelms_plait_08" offsetY="35" f="64F0" ic="FF4E5053" width="184" height="222" img="..\entity\legend_helmets\layers\plait_08.png" left="-67" right="68" top="-40" bottom="108" />
 </brush>
