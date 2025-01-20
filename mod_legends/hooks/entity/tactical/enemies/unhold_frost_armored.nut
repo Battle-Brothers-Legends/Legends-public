@@ -12,7 +12,7 @@
 		}
 	}
 
-	o.onFactionChanged = function ()
+	o.onFactionChanged <- function ()
 	{
 		local flip = !this.isAlliedWithPlayer();
 		foreach (a in this.Const.CharacterSprites.Helmets)
