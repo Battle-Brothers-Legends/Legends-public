@@ -151,9 +151,7 @@
 
 		if (this.getContainer().hasTrait(::Legends.Trait.Teamplayer) && _targetTile.getEntity().isAlliedWith(getContainer().getActor()))
 			return true;
-		ret = this.attackEntity(_user, _targetTile.getEntity())
-		this.m.IsAttack = true;
-		return ret;
+		return this.attackEntity(_user, _targetTile.getEntity());
 	}
 
 	o.onAfterUpdate <- function ( _properties )
