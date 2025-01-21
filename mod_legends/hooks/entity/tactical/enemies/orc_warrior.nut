@@ -80,11 +80,7 @@
 			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
 		}
 
-		if (this.Const.DLC.Unhold)
-		{
-			this.m.Skills.add(this.new("scripts/skills/actives/wake_ally_skill"));
-		}
-
+		this.m.Skills.add(this.new("scripts/skills/actives/wake_ally_skill"));
 		this.m.Skills.add(this.new("scripts/skills/effects/captain_effect"));
 	}
 

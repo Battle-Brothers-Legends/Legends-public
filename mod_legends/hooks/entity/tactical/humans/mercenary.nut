@@ -43,24 +43,12 @@
 				"weapons/arming_sword",
 				"weapons/flail",
 				"weapons/military_pick",
-				"weapons/legend_ranged_flail"
+				"weapons/legend_ranged_flail",
+				"weapons/polehammer",
+				"weapons/three_headed_flail",
+				"weapons/bardiche",
+				"weapons/scimitar"
 			];
-
-			if (this.Const.DLC.Unhold)
-			{
-				weapons.extend([
-					"weapons/polehammer",
-					"weapons/three_headed_flail"
-				]);
-			}
-
-			if (this.Const.DLC.Wildmen)
-			{
-				weapons.extend([
-					"weapons/bardiche",
-					"weapons/scimitar"
-				]);
-			}
 
 			this.m.Items.equip(this.new("scripts/items/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
 		}
@@ -92,35 +80,19 @@
 
 		if (this.getIdealRange() == 1 && this.Math.rand(1, 100) <= 60)
 		{
-			if (this.Const.DLC.Unhold)
-			{
-				r = this.Math.rand(1, 3);
+			r = this.Math.rand(1, 3);
 
-				if (r == 1)
-				{
-					this.m.Items.addToBag(this.new("scripts/items/weapons/throwing_axe"));
-				}
-				else if (r == 2)
-				{
-					this.m.Items.addToBag(this.new("scripts/items/weapons/javelin"));
-				}
-				else if (r == 3)
-				{
-					this.m.Items.addToBag(this.new("scripts/items/weapons/throwing_spear"));
-				}
+			if (r == 1)
+			{
+				this.m.Items.addToBag(this.new("scripts/items/weapons/throwing_axe"));
 			}
-			else
+			else if (r == 2)
 			{
-				r = this.Math.rand(1, 2);
-
-				if (r == 1)
-				{
-					this.m.Items.addToBag(this.new("scripts/items/weapons/throwing_axe"));
-				}
-				else if (r == 2)
-				{
-					this.m.Items.addToBag(this.new("scripts/items/weapons/javelin"));
-				}
+				this.m.Items.addToBag(this.new("scripts/items/weapons/javelin"));
+			}
+			else if (r == 3)
+			{
+				this.m.Items.addToBag(this.new("scripts/items/weapons/throwing_spear"));
 			}
 		}
 

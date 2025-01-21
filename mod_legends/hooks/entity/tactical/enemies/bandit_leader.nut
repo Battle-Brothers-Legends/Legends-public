@@ -155,18 +155,12 @@
 			local armor = [
 				[1, "reinforced_mail_hauberk"],
 				[2, "heavy_lamellar_armor"],
-				[2, "bandit_armor_heavy"]
+				[2, "bandit_armor_heavy"],
+				[1, "footman_armor"],
+				[1, "leather_scale_armor"],
+				[1, "light_scale_armor"],
+				[1, "red_bandit_leader_armor"]
 			];
-
-			if (this.Const.DLC.Unhold)
-			{
-				armor.extend([
-					[1, "footman_armor"],
-					[1, "leather_scale_armor"],
-					[1, "light_scale_armor"],
-					[1, "red_bandit_leader_armor"]
-				]);
-			}
 
 			this.m.Items.equip(this.Const.World.Common.pickArmor(armor))
 		}

@@ -14,23 +14,11 @@
 			local weapons = [
 				"weapons/oriental/two_handed_scimitar",
 				"weapons/oriental/two_handed_scimitar",
-				"weapons/two_handed_hammer"
+				"weapons/two_handed_hammer",
+				"weapons/two_handed_flanged_mace",
+				"weapons/two_handed_flail",
+				"weapons/bardiche"
 			];
-
-			if (this.Const.DLC.Unhold)
-			{
-				weapons.extend([
-					"weapons/two_handed_flanged_mace",
-					"weapons/two_handed_flail"
-				]);
-			}
-
-			if (this.Const.DLC.Wildmen)
-			{
-				weapons.extend([
-					"weapons/bardiche"
-				]);
-			}
 
 			this.m.Items.equip(this.new("scripts/items/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
 		}
@@ -70,23 +58,11 @@
 		local weapons = [
 			"weapons/named/named_two_handed_hammer",
 			"weapons/named/named_two_handed_scimitar",
-			"weapons/named/named_two_handed_scimitar"
+			"weapons/named/named_two_handed_scimitar",
+			"weapons/named/named_two_handed_mace",
+			"weapons/named/named_two_handed_flail",
+			"weapons/named/named_bardiche"
 		];
-
-		if (this.Const.DLC.Unhold)
-		{
-			weapons.extend([
-				"weapons/named/named_two_handed_mace",
-				"weapons/named/named_two_handed_flail"
-			]);
-		}
-
-		if (this.Const.DLC.Wildmen)
-		{
-			weapons.extend([
-				"weapons/named/named_bardiche"
-			]);
-		}
 
 		local armor = clone this.Const.Items.NamedSouthernArmors;
 		local r = this.Math.rand(1, 2);

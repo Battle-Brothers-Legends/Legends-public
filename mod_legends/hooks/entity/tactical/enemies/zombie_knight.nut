@@ -39,12 +39,6 @@
 					"weapons/legend_longsword",
 					"weapons/greataxe",
 					"weapons/legend_reinforced_flail",
-				]);
-			}
-
-			if (this.Const.DLC.Unhold && this.m.Items.hasEmptySlot(this.Const.ItemSlot.Offhand))
-			{
-				weapons.extend([
 					"weapons/two_handed_flail"
 				]);
 			}

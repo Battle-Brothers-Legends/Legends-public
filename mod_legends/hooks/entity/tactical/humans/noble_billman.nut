@@ -43,15 +43,9 @@
 		local weapons = [
 			"weapons/billhook",
 			"weapons/pike",
-			"weapons/legend_military_voulge"
+			"weapons/legend_military_voulge",
+			"weapons/polehammer"
 		];
-
-		if (this.Const.DLC.Unhold)
-		{
-			weapons.extend([
-				"weapons/polehammer"
-			]);
-		}
 
 		this.m.Items.equip(this.new("scripts/items/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
 

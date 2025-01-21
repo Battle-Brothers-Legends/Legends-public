@@ -19,20 +19,17 @@
 			"tools/fire_bomb_item"
 		];
 
-		if (this.Const.DLC.Unhold)
-		{
-			treasure.extend(treasure);
-			treasure.extend(treasure);
-			treasure.extend(treasure);
-			treasure.push("legend_armor/armor_upgrades/legend_metal_plating_upgrade");
-			treasure.push("legend_armor/armor_upgrades/legend_metal_pauldrons_upgrade");
-			treasure.push("legend_armor/armor_upgrades/legend_mail_patch_upgrade");
-			treasure.push("legend_armor/armor_upgrades/legend_leather_shoulderguards_upgrade");
-			treasure.push("legend_armor/armor_upgrades/legend_leather_neckguard_upgrade");
-			treasure.push("legend_armor/armor_upgrades/legend_joint_cover_upgrade");
-			treasure.push("legend_armor/armor_upgrades/legend_heraldic_plates_upgrade");
-			treasure.push("legend_armor/armor_upgrades/legend_double_mail_upgrade");
-		}
+		treasure.extend(treasure);
+		treasure.extend(treasure);
+		treasure.extend(treasure);
+		treasure.push("legend_armor/armor_upgrades/legend_metal_plating_upgrade");
+		treasure.push("legend_armor/armor_upgrades/legend_metal_pauldrons_upgrade");
+		treasure.push("legend_armor/armor_upgrades/legend_mail_patch_upgrade");
+		treasure.push("legend_armor/armor_upgrades/legend_leather_shoulderguards_upgrade");
+		treasure.push("legend_armor/armor_upgrades/legend_leather_neckguard_upgrade");
+		treasure.push("legend_armor/armor_upgrades/legend_joint_cover_upgrade");
+		treasure.push("legend_armor/armor_upgrades/legend_heraldic_plates_upgrade");
+		treasure.push("legend_armor/armor_upgrades/legend_double_mail_upgrade");
 
 		this.dropFood(this.Math.rand(2, 4), [
 			"bread_item",

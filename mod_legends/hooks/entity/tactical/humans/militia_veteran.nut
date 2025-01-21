@@ -47,21 +47,9 @@
 				"weapons/legend_glaive",
 				"weapons/legend_infantry_axe",
 				"weapons/legend_military_goedendag",
+				"weapons/goedendag",
+				"weapons/warfork"
 			];
-
-			if (this.Const.DLC.Unhold)
-			{
-				weapons.extend([
-					"weapons/goedendag"
-				]);
-			}
-
-			if (this.Const.DLC.Wildmen)
-			{
-				weapons.extend([
-					"weapons/warfork"
-				]);
-			}
 
 			this.m.Items.equip(this.new("scripts/items/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
 		}

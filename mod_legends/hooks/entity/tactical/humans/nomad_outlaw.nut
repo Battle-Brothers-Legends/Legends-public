@@ -24,16 +24,9 @@
 			"weapons/oriental/two_handed_saif",
 			"weapons/two_handed_wooden_hammer",
 			"weapons/woodcutters_axe",
-			"weapons/battle_whip"
+			"weapons/battle_whip",
+			"weapons/three_headed_flail"
 		];
-
-		if (this.Const.DLC.Unhold)
-		{
-			if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days > 10)
-			{
-				weapons.push("weapons/three_headed_flail");
-			}
-		}
 
 		this.m.Items.equip(this.new("scripts/items/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
 

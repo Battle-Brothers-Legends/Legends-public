@@ -20,20 +20,17 @@
 			"loot/goblin_rank_insignia_item"
 		];
 
-		if (this.Const.DLC.Unhold)
-		{
-			treasure.extend(treasure);
-			treasure.extend(treasure);
-			treasure.extend(treasure);
-			treasure.push("legend_armor/armor_upgrades/legend_metal_plating_upgrade");
-			treasure.push("legend_armor/armor_upgrades/legend_metal_pauldrons_upgrade");
-			treasure.push("legend_armor/armor_upgrades/legend_mail_patch_upgrade");
-			treasure.push("legend_armor/armor_upgrades/legend_leather_shoulderguards_upgrade");
-			treasure.push("legend_armor/armor_upgrades/legend_leather_neckguard_upgrade");
-			treasure.push("legend_armor/armor_upgrades/legend_joint_cover_upgrade");
-			treasure.push("legend_armor/armor_upgrades/legend_heraldic_plates_upgrade");
-			treasure.push("legend_armor/armor_upgrades/legend_double_mail_upgrade");
-		}
+		treasure.extend(treasure);
+		treasure.extend(treasure);
+		treasure.extend(treasure);
+		treasure.push("legend_armor/armor_upgrades/legend_metal_plating_upgrade");
+		treasure.push("legend_armor/armor_upgrades/legend_metal_pauldrons_upgrade");
+		treasure.push("legend_armor/armor_upgrades/legend_mail_patch_upgrade");
+		treasure.push("legend_armor/armor_upgrades/legend_leather_shoulderguards_upgrade");
+		treasure.push("legend_armor/armor_upgrades/legend_leather_neckguard_upgrade");
+		treasure.push("legend_armor/armor_upgrades/legend_joint_cover_upgrade");
+		treasure.push("legend_armor/armor_upgrades/legend_heraldic_plates_upgrade");
+		treasure.push("legend_armor/armor_upgrades/legend_double_mail_upgrade");
 
 		this.dropFood(this.Math.rand(3, 5), [
 			"strange_meat_item",
@@ -42,12 +39,9 @@
 		], _lootTable);
 		this.dropTreasure(this.Math.rand(1, 2), treasure, _lootTable);
 
-		if (this.Const.DLC.Unhold && this.Math.rand(1, 100) <= 10)
-		{
-			local treasure = [];
-			treasure.push("misc/legend_paint_black_item");
-			treasure.push("misc/legend_paint_red_item");
-			this.dropTreasure(1, treasure, _lootTable);
-		}
+		local treasure = [];
+		treasure.push("misc/legend_paint_black_item");
+		treasure.push("misc/legend_paint_red_item");
+		this.dropTreasure(1, treasure, _lootTable);
 	}
 });

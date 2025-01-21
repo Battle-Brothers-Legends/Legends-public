@@ -43,22 +43,10 @@
 				"weapons/arming_sword",
 				"weapons/flail",
 				"weapons/dagger",
-				"weapons/legend_ranged_flail"
+				"weapons/legend_ranged_flail",
+				"weapons/spetum",
+				"weapons/battle_whip"
 			];
-
-			if (this.Const.DLC.Unhold)
-			{
-				weapons.extend([
-					"weapons/spetum"
-				]);
-			}
-
-			if (this.Const.DLC.Wildmen)
-			{
-				weapons.extend([
-					"weapons/battle_whip"
-				]);
-			}
 
 			this.m.Items.equip(this.new("scripts/items/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
 
