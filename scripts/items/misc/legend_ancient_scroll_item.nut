@@ -106,7 +106,7 @@ this.legend_ancient_scroll_item <- ::inherit("scripts/items/item", {
 			return addRandomPerk(_actor);
 
 		case 4:
-			return addRandomPerk(_actor);
+			return addRandomPerkTree(_actor);
 
 		default:
 			return "Nothing happens.";
