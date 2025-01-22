@@ -166,7 +166,7 @@ perkDefObjects.push({
 	Const = "DevastatingStrikes"
 });
 perkDefObjects.push({
-	ID = "perk.shield_bash",
+	ID = "perk.shield_bash_legend",
 	Script = "scripts/skills/perks/perk_shield_bash",
 	Name = ::Const.Strings.PerkName.ShieldBash,
 	Tooltip = ::Const.Strings.PerkDescription.ShieldBash,
