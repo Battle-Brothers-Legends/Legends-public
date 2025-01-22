@@ -1,3 +1,19 @@
+::Const.Tactical.Common.removeStances <- function( _actor, _removeValaTrance = false )
+{
+	_actor.getSkills().removeByID("effects.shieldwall");
+	_actor.getSkills().removeByID("effects.spearwall");
+	_actor.getSkills().removeByID("effects.riposte");
+	_actor.getSkills().removeByID("effects.legend_return_favor");
+
+	if (_removeValaTrance) {
+		_actor.getSkills().removeByID("effects.legend_vala_chant_disharmony_effect");
+		_actor.getSkills().removeByID("effects.legend_vala_chant_fury_effect");
+		_actor.getSkills().removeByID("effects.legend_vala_chant_senses_effect");
+		_actor.getSkills().removeByID("effects.legend_vala_currently_chanting");
+		_actor.getSkills().removeByID("effects.legend_vala_in_trance");
+	}
+};
+
 ::Const.Tactical.Common.getRandomPlayerNameFemale <- function()
 {
 	return this.Const.Strings.CharacterNamesFemale[this.Math.rand(0, this.Const.Strings.CharacterNamesFemale.len() - 1)];

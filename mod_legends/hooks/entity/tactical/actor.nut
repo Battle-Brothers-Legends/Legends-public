@@ -14,6 +14,15 @@
 		return -1;
 	}
 
+	local setCurrentMovementType = o.setCurrentMovementType;
+	o.setCurrentMovementType = function( _t ) // to trigger the removal of stances skill upon being moved out of will
+	{
+		if (_t == ::Const.Tactical.MovementType.Involuntary && !::Tactical.TurnSequenceBar.isActiveEntity(this))
+			::Const.Tactical.Common.removeStances(this);
+
+		setCurrentMovementType(_t);
+	}
+
 	/*
 	o.onRender <- function ()
 	{
