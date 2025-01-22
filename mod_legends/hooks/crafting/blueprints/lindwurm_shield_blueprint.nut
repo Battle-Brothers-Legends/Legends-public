@@ -5,7 +5,10 @@
 	{
 		create();
 		this.m.Type = this.Const.Items.ItemType.Shield;
-		this.m.PreviewCraftable = this.new("scripts/items/shields/named/named_lindwurm_shield");
+		local preview = ::new("scripts/items/shields/named/named_lindwurm_shield");
+		preview.setName("Lindwurm Shield");
+		preview.resetStats();
+		this.m.PreviewCraftable = preview;
 		local skills = [
 			{
 				Scripts = ["scripts/skills/perks/perk_legend_woodworking"]
@@ -16,6 +19,6 @@
 
 	o.onCraft = function ( _stash )
 	{
-		_stash.add(this.new("scripts/items/shields/named/named_lindwurm_shield"));
+		_stash.add(::new("scripts/items/shields/named/named_lindwurm_shield"));
 	}
 });

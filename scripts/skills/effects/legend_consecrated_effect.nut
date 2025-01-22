@@ -5,6 +5,18 @@ this.legend_consecrated_effect <- this.inherit("scripts/skills/skill", {
 		DamageMax = 20,
 		Actor = null
 	},
+	function create()
+	{
+		this.m.ID = "effects.legend_consecrated_effect";
+		this.m.Name = "Consecrated";
+		this.m.Description = "This character is being consecrated by holy flames";
+		this.m.Icon = "ui/perks/holyfire_circle.png";
+		this.m.IconMini = "mini_fire_circle";
+		this.m.Overlay = "fire_circle";
+		this.m.Type = this.Const.SkillType.StatusEffect;
+		this.m.IsActive = false;
+		this.m.IsRemovedAfterBattle = true;
+	}
 
 	function setActor( _a )
 	{
@@ -32,19 +44,6 @@ this.legend_consecrated_effect <- this.inherit("scripts/skills/skill", {
 		}
 
 		return this.getContainer().getActor();
-	}
-
-	function create()
-	{
-		this.m.ID = "effects.legend_consecrated_effect";
-		this.m.Name = "Consecrated";
-		this.m.Description = "This character is being consecrated by holy flames";
-		this.m.Icon = "ui/perks/holyfire_circle.png";
-		this.m.IconMini = "mini_fire_circle";
-		this.m.Overlay = "fire_circle";
-		this.m.Type = this.Const.SkillType.StatusEffect;
-		this.m.IsActive = false;
-		this.m.IsRemovedAfterBattle = true;
 	}
 
 	function getTooltip()
