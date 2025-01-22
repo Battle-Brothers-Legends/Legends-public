@@ -5,7 +5,7 @@ this.legend_prosthetic_forearm_item <- this.inherit("scripts/items/item", {
 		this.item.create();
 		this.m.ID = "misc.legend_prosthetic_forearm";
 		this.m.Name = "Prosthetic Forearm";
-		this.m.Description = "to do.";
+		this.m.Description = "According to the inventor, this contraption is almost like the real thing. If the real thing had no feeling and control in their forearm, of course. It can hold a weapon, even if the fingers need to be adjusted with the other hand. Mercenaries particularly enjoy setting their new hand to give the one finger salute.";
 		this.m.Icon = "consumables/prosthetic_forearm.png";
 		this.m.SlotType = this.Const.ItemSlot.None;
 		this.m.ItemType = this.Const.Items.ItemType.Usable;
