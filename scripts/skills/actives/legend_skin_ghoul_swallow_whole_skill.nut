@@ -74,19 +74,10 @@ this.legend_skin_ghoul_swallow_whole_skill <- this.inherit("scripts/skills/skill
 			this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(_user) + " devours " + this.Const.UI.getColorizedEntityName(target));
 		}
 
-		local skills = target.getSkills();
-		if (!skills.hasSkill("effects.legend_break_stance"))
-			skills.add(this.new("scripts/skills/effects/legend_break_stance_effect"));
-		skills.removeByID("effects.legend_vala_chant_disharmony_effect");
-		skills.removeByID("effects.legend_vala_chant_fury_effect");
-		skills.removeByID("effects.legend_vala_chant_senses_effect");
-		skills.removeByID("effects.legend_vala_currently_chanting");
-		skills.removeByID("effects.legend_vala_in_trance");
+		::Const.Tactical.Common.removeStances(target, true);
 
 		if (target.getMoraleState() != this.Const.MoraleState.Ignore)
-		{
 			target.setMoraleState(this.Const.MoraleState.Breaking);
-		}
 
 		this.m.SwallowedEntity = target;
 		this.m.SwallowedEntity.getFlags().set("Devoured", true);

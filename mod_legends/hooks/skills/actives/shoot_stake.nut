@@ -55,23 +55,6 @@
 		this.m.AdditionalAccuracy = 10 + this.m.Item.getAdditionalAccuracy();
 	}
 
-	o.findTileToKnockBackTo = function ( _userTile, _targetTile )
-	{
-		local dir = _userTile.getDirectionTo(_targetTile);
-
-		if (_targetTile.hasNextTile(dir))
-		{
-			local knockToTile = _targetTile.getNextTile(dir);
-
-			if (knockToTile.IsEmpty && knockToTile.Level - _userTile.Level <= 1)
-			{
-				return knockToTile;
-			}
-		}
-
-		return null;
-	}
-
 	o.onAnySkillUsed = function ( _skill, _targetEntity, _properties )
 	{
 		if (_skill != this)
@@ -96,66 +79,6 @@
 		if (_properties.IsSharpshooter)
 		{
 			_properties.DamageDirectMult += 0.05;
-		}
-	}
-
-	o.onTargetHit <- function ( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor )
-	{
-		if (_skill == this && _targetEntity.isAlive() && !_targetEntity.isDying())
-		{
-			local targetTile = _targetEntity.getTile();
-			local user = this.getContainer().getActor();
-
-			if (_targetEntity.getCurrentProperties().IsImmuneToKnockBackAndGrab || _targetEntity.getCurrentProperties().IsRooted)
-			{
-				return false;
-			}
-
-			local knockToTile = this.findTileToKnockBackTo(user.getTile(), targetTile);
-
-			if (knockToTile == null)
-			{
-				return;
-			}
-
-			if (!user.isHiddenToPlayer() && (targetTile.IsVisibleForPlayer || knockToTile.IsVisibleForPlayer))
-			{
-				this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(user) + " has knocked back " + this.Const.UI.getColorizedEntityName(_targetEntity));
-			}
-
-			if (!_targetEntity.getSkills().hasSkill("effects.legend_break_stance"))
-				_targetEntity.getSkills().add(this.new("scripts/skills/effects/legend_break_stance_effect"));
-			local damage = this.Math.max(0, this.Math.abs(knockToTile.Level - targetTile.Level) - 1) * this.Const.Combat.FallingDamage;
-
-			if (damage == 0)
-			{
-				this.Tactical.getNavigator().teleport(_targetEntity, knockToTile, null, null, true);
-			}
-			else
-			{
-				local p = this.getContainer().getActor().getCurrentProperties();
-				local tag = {
-					Attacker = user,
-					Skill = this,
-					HitInfo = clone this.Const.Tactical.HitInfo,
-					HitInfoBash = null
-				};
-				tag.HitInfo.DamageRegular = damage;
-				tag.HitInfo.DamageFatigue = this.Const.Combat.FatigueReceivedPerHit;
-				tag.HitInfo.DamageDirect = 1.0;
-				tag.HitInfo.BodyPart = this.Const.BodyPart.Body;
-				tag.HitInfo.BodyDamageMult = 1.0;
-				tag.HitInfo.FatalityChanceMult = 1.0;
-				this.Tactical.getNavigator().teleport(_targetEntity, knockToTile, this.onKnockedDown, tag, true);
-			}
-		}
-	}
-
-	o.onKnockedDown <- function ( _entity, _tag )
-	{
-		if (_tag.HitInfo.DamageRegular != 0)
-		{
-			_entity.onDamageReceived(_tag.Attacker, _tag.Skill, _tag.HitInfo);
 		}
 	}
 

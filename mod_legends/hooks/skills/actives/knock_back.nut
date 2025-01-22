@@ -2,7 +2,6 @@
 {
 	o.m.RegularDamage <- 10;
 	o.m.RegularDamageMax <- 25;
-	o.m.TilesUsed <- [];
 
 	local create = o.create;
 	o.create = function()
@@ -13,8 +12,17 @@
 
 	o.setDamage <- function (_extraShieldDamageMin, _extraShieldDamageMax)
 	{
-		this.m.RegularDamage += _extraShieldDamageMin;
-		this.m.RegularDamageMax += _extraShieldDamageMax;
+		if (this.m.IsBaseValuesSaved) {
+			setBaseValue("RegularDamage", getBaseValue("RegularDamage") + _extraShieldDamageMin);
+			setBaseValue("RegularDamageMax", getBaseValue("RegularDamageMax") + _extraShieldDamageMin);
+			this.m.RegularDamage = getBaseValue("RegularDamage");
+			this.m.RegularDamageMax = getBaseValue("RegularDamageMax");
+		}
+		else {
+			this.m.RegularDamage += _extraShieldDamageMin;
+			this.m.RegularDamageMax += _extraShieldDamageMax;
+			saveBaseValues();
+		}
 	}
 
 	o.getTooltip = function ()
@@ -59,106 +67,45 @@
 		return result;
 	}
 
-	o.onTargetHit <- function ( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor )
-	{
-		this.m.TilesUsed = [];
-		if (_skill != this)
-			return;
-
-		if (!_targetEntity.isAlive() || _targetEntity.isDying())
-			return;
-
-		if (_targetEntity.isNonCombatant())
-			return;
-
-		local user = _skill.getContainer().getActor();
-
-		if (!_targetEntity.getSkills().hasSkill("effects.legend_break_stance"))
-			_targetEntity.getSkills().add(this.new("scripts/skills/effects/legend_break_stance_effect"));
-
-		if (user.getSkills().hasTrait(::Legends.Trait.OathOfFortification) && _targetTile.IsOccupiedByActor && !_targetEntity.isNonCombatant())
-		{
-			if (!this.getContainer().hasTrait(::Legends.Trait.Teamplayer) || !_targetEntity.isAlliedWith(getContainer().getActor()))
-			{
-				_targetEntity.getSkills().add(this.new("scripts/skills/effects/staggered_effect"));
-
-				if (!user.isHiddenToPlayer() && _targetTile.IsVisibleForPlayer)
-				{
-					this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(user) + " has staggered " + this.Const.UI.getColorizedEntityName(_targetEntity) + " for one turn");
-				}
-			}
-		}
-
-		if (_targetEntity.getCurrentProperties().IsRooted || _targetEntity.getCurrentProperties().IsImmuneToKnockBackAndGrab)
-			return;
-
-		local knockToTile = this.findTileToKnockBackTo(user.getTile(), _targetEntity.getTile());
-
-		if (knockToTile == null)
-			return;
-
-		this.m.TilesUsed.push(knockToTile.ID);
-
-		if (!user.isHiddenToPlayer() && (_targetEntity.getTile().IsVisibleForPlayer || knockToTile.IsVisibleForPlayer))
-		{
-			this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(user) + " has knocked back " + this.Const.UI.getColorizedEntityName(_targetEntity));
-		}
-
-		_targetEntity.setCurrentMovementType(this.Const.Tactical.MovementType.Involuntary);
-		local damage = this.Math.max(0, this.Math.abs(knockToTile.Level - _targetEntity.getTile().Level) - 1) * this.Const.Combat.FallingDamage;
-		if (damage == 0)
-		{
-			this.Tactical.getNavigator().teleport(_targetEntity, knockToTile, null, null, true);
-		}
-		else
-		{
-			local p = user.getCurrentProperties();
-			local tag = {
-				Attacker = user,
-				Skill = _skill,
-				HitInfo = clone this.Const.Tactical.HitInfo
-			};
-			tag.HitInfo.DamageRegular = damage;
-			tag.HitInfo.DamageDirect = 1.0;
-			tag.HitInfo.BodyPart = this.Const.BodyPart.Body;
-			tag.HitInfo.BodyDamageMult = 1.0;
-			tag.HitInfo.FatalityChanceMult = 1.0;
-			this.Tactical.getNavigator().teleport(_targetEntity, knockToTile, this.onKnockedDown, tag, true);
-		}
-
-		this.m.TilesUsed = [];
-		return true;
-
-	}
-
-	o.onKnockedDown <- function ( _entity, _tag )
-	{
-		if (_tag.Skill.m.SoundOnHit.len() != 0)
-		{
-			this.Sound.play(_tag.Skill.m.SoundOnHit[this.Math.rand(0, _tag.Skill.m.SoundOnHit.len() - 1)], this.Const.Sound.Volume.Skill, _entity.getPos());
-		}
-
-		if (_tag.HitInfo.DamageRegular != 0)
-		{
-			_entity.onDamageReceived(_tag.Attacker, _tag.Skill, _tag.HitInfo);
-		}
-	}
-
+	local onUse = o.onUse;
 	o.onUse = function ( _user, _targetTile )
 	{
-		if (this.m.SoundOnUse.len() != 0)
-			this.Sound.play(this.m.SoundOnUse[this.Math.rand(0, this.m.SoundOnUse.len() - 1)], this.Const.Sound.Volume.Skill, _user.getPos());
+		local target = _targetTile.getEntity();
+		local shouldNotHarmAlly = getContainer().hasTrait(::Legends.Trait.Teamplayer) && target.isAlliedWith(_user);
 
-		if (this.getContainer().hasTrait(::Legends.Trait.Teamplayer) && _targetTile.getEntity().isAlliedWith(getContainer().getActor()))
-			return true;
-		return this.attackEntity(_user, _targetTile.getEntity());
+		if (!getContainer().hasPerk(::Legends.Perk.ShieldBash) || shouldNotHarmAlly) {
+			if (shouldNotHarmAlly)
+				target.getFlags().set("CanNotBeStaggered", true);
+
+			local ret = onUse(_user, _targetTile);
+
+			if (!::MSU.isNull(target))
+				target.getFlags().remove("CanNotBeStaggered");
+
+			return ret;
+		}
+
+		local success = attackEntity(_user, target);
+
+		if (!success || !_user.isAlive() || _user.isDying()) return false;
+
+		if (!target.isAlive() || target.isDying()) return success;
+
+		local current = [];
+		current.extend(m.SoundOnUse);
+		m.SoundOnUse = []; // put this to zero so sound on use doesn't get trigger twice
+		m.IsUsingHitchance = false;
+		onUse(_user, _targetTile); // let the onUse to handle the knock back
+		m.IsUsingHitchance = true;
+		m.SoundOnUse.extend(current);
+		return success; 
 	}
 
 	o.onAfterUpdate <- function ( _properties )
 	{
 		this.m.FatigueCostMult = _properties.IsSpecializedInShields ? this.Const.Combat.WeaponSpecFatigueMult : 1.0;
 
-		if (this.getContainer().getActor().getSkills().hasPerk(::Legends.Perk.ShieldBash))
+		if (this.getContainer().hasPerk(::Legends.Perk.ShieldBash))
 		{
 			this.m.FatigueCostMult = this.m.FatigueCostMult *= 0.75;
 			this.m.ActionPointCost = 3
@@ -167,18 +114,14 @@
 
 	o.onAnySkillUsed <- function ( _skill, _targetEntity, _properties )
 	{
-		if (_skill == this)
+		if (_skill == this && this.getContainer().hasPerk(::Legends.Perk.ShieldBash))
 		{
-			local actor = this.getContainer().getActor();
-			if (this.getContainer().hasPerk(::Legends.Perk.ShieldBash))
-			{
-				local shieldBonus = this.Math.min(10, this.Math.floor(actor.getOffhandItem().m.ConditionMax * 0.05));
-				_properties.DamageRegularMin = this.m.RegularDamage + shieldBonus;
-				_properties.DamageRegularMax = this.m.RegularDamageMax + shieldBonus;
-				_properties.DamageArmorMult = 0.5;
-				_properties.FatigueDealtPerHitMult += 1.0;
-
-			}
+			local item = this.getContainer().getActor().getOffhandItem();
+			local shieldBonus = this.Math.min(10, item == null ? 0 : this.Math.floor(item.m.ConditionMax * 0.05));
+			_properties.DamageRegularMin = this.m.RegularDamage + shieldBonus;
+			_properties.DamageRegularMax = this.m.RegularDamageMax + shieldBonus;
+			_properties.DamageArmorMult = 0.5;
+			_properties.FatigueDealtPerHitMult += 1.0;
 		}
 	}
 
@@ -197,6 +140,10 @@
 		if (this.getContainer().hasTrait(::Legends.Trait.Teamplayer) && _targetEntity.isAlliedWith(getContainer().getActor()))
 			return 100;
 
+		if (!isUsingHitchance())
+			return 100;
+
 		return this.skill.getHitchance(_targetEntity);
 	}
+
 });

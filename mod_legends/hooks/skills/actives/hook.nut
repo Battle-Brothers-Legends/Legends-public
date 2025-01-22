@@ -14,77 +14,28 @@
 		}
 	}
 
+	local onVerifyTarget = o.onVerifyTarget;
 	o.onVerifyTarget = function ( _originTile, _targetTile )
 	{
 		this.m.IsAttack = false; // work around to allow targeting on allies
-		local result = this.skill.onVerifyTarget(_originTile, _targetTile);
+		local result = onVerifyTarget(_originTile, _targetTile);
 		this.m.IsAttack = true;
-
-		if (!result || _targetTile.getEntity().getCurrentProperties().IsRooted)
-			return false;
-
-		return this.getPulledToTile(_originTile, _targetTile) != null;
+		return result;
 	}
 
 	o.onUse = function ( _user, _targetTile )
 	{
 		local target = _targetTile.getEntity();
 
-		if (this.Math.rand(1, 100) > this.getHitchance(target))
-			return false;
+		if (getContainer().hasTrait(::Legends.Trait.Teamplayer) && target.isAlliedWith(_user))
+			target.getFlags().set("CanNotBeStaggered", true);
 
-		local pullToTile = this.getPulledToTile(_user.getTile(), _targetTile);
+		local ret = onUse(_user, _targetTile);
 
-		if (pullToTile == null)
-			return false;
+		if (!::MSU.isNull(target))
+			target.getFlags().remove("CanNotBeStaggered");
 
-		if (target.getCurrentProperties().IsImmuneToKnockBackAndGrab)
-			return false;
-
-		if (!_user.isHiddenToPlayer() && pullToTile.IsVisibleForPlayer)
-			this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(_user) + " hooks in " + this.Const.UI.getColorizedEntityName(target));
-
-		if (!target.getSkills().hasSkill("effects.legend_break_stance"))
-			target.getSkills().add(this.new("scripts/skills/effects/legend_break_stance_effect"));
-
-		if (this.m.SoundOnHit.len() != 0)
-			this.Sound.play(this.m.SoundOnHit[this.Math.rand(0, this.m.SoundOnHit.len() - 1)], this.Const.Sound.Volume.Skill, _user.getPos());
-
-		if (!this.getContainer().hasTrait(::Legends.Trait.Teamplayer) || !target.isAlliedWith(getContainer().getActor()))
-		{
-			target.getSkills().add(this.new("scripts/skills/effects/staggered_effect"));
-
-			if (!_user.isHiddenToPlayer() && _targetTile.IsVisibleForPlayer)
-				this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(_user) + " has staggered " + this.Const.UI.getColorizedEntityName(target) + " for one turn");
-
-			local overwhelm = ::Legends.Perks.get(this, ::Legends.Perk.Overwhelm);
-
-			if (overwhelm != null)
-				overwhelm.onTargetHit(this, target, this.Const.BodyPart.Body, 0, 0);
-		}
-
-		target.setCurrentMovementType(this.Const.Tactical.MovementType.Involuntary);
-		local damage = this.Math.max(0, this.Math.abs(pullToTile.Level - _targetTile.Level) - 1) * this.Const.Combat.FallingDamage;
-		local tag = {
-			Attacker = _user,
-			Skill = this,
-			HitInfo = clone this.Const.Tactical.HitInfo
-		};
-
-		if (damage == 0)
-		{
-			this.Tactical.getNavigator().teleport(_targetTile.getEntity(), pullToTile, this.onHookingComplete, tag, true);
-		}
-		else
-		{
-			tag.HitInfo.DamageRegular = damage;
-			tag.HitInfo.DamageFatigue = this.Const.Combat.FatigueReceivedPerHit;
-			tag.HitInfo.DamageDirect = 1.0;
-			tag.HitInfo.BodyPart = this.Const.BodyPart.Body;
-			this.Tactical.getNavigator().teleport(target, pullToTile, this.onPulledDown, tag, true);
-		}
-
-		return true;
+		return ret;
 	}
 
 	local onAfterUpdate = o.onAfterUpdate;

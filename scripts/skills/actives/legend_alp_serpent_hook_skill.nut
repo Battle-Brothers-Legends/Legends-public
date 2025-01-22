@@ -54,8 +54,7 @@ this.legend_alp_serpent_hook_skill <- this.inherit("scripts/skills/actives/serpe
 			});
 		}
 
-		if (!target.getSkills().hasSkill("effects.legend_break_stance"))
-			target.getSkills().add(this.new("scripts/skills/effects/legend_break_stance_effect"));
+		::Const.Tactical.Common.removeStances(target);
 		target.setCurrentMovementType(this.Const.Tactical.MovementType.Involuntary);
 		local damage = this.Math.max(0, this.Math.abs(pullToTile.Level - _targetTile.Level) - 1) * this.Const.Combat.FallingDamage;
 

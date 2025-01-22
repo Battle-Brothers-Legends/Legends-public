@@ -143,8 +143,7 @@ this.legend_push_skill <- this.inherit("scripts/skills/skill", {
 			this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(_user) + " has knocked back " + this.Const.UI.getColorizedEntityName(target));
 		}
 
-		if (!target.getSkills().hasSkill("effects.legend_break_stance"))
-			target.getSkills().add(this.new("scripts/skills/effects/legend_break_stance_effect"));
+		::Const.Tactical.Common.removeStances(target);
 
 		if (this.m.SoundOnHit.len() != 0)
 		{
