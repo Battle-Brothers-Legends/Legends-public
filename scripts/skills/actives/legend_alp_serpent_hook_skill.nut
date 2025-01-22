@@ -54,7 +54,6 @@ this.legend_alp_serpent_hook_skill <- this.inherit("scripts/skills/actives/serpe
 			});
 		}
 
-		::Const.Tactical.Common.removeStances(target);
 		target.setCurrentMovementType(this.Const.Tactical.MovementType.Involuntary);
 		local damage = this.Math.max(0, this.Math.abs(pullToTile.Level - _targetTile.Level) - 1) * this.Const.Combat.FallingDamage;
 

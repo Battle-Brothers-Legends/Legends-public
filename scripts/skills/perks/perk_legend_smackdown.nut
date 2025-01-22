@@ -104,8 +104,6 @@ this.perk_legend_smackdown <- this.inherit("scripts/skills/skill", {
 		if (!user.getSkills().hasSkill("effects.legend_knockback_prepared"))
 			return;
 
-		::Const.Tactical.Common.removeStances(_targetEntity);
-
 		if (_targetEntity.getCurrentProperties().IsRooted || _targetEntity.getCurrentProperties().IsImmuneToKnockBackAndGrab)
 			return;
 

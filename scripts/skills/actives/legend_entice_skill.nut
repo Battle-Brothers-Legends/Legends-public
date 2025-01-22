@@ -159,8 +159,6 @@ this.legend_entice_skill <- this.inherit("scripts/skills/skill", {
 			this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(_user) + " hooks in " + this.Const.UI.getColorizedEntityName(target));
 		}
 
-		::Const.Tactical.Common.removeStances(target);
-
 		target.getSkills().add(this.new("scripts/skills/effects/staggered_effect"));
 
 		if (!_user.isHiddenToPlayer() && _targetTile.IsVisibleForPlayer)

@@ -176,8 +176,6 @@ this.legend_revolt_skill <- this.inherit("scripts/skills/skill", {
 			this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(_user) + " has knocked back " + this.Const.UI.getColorizedEntityName(target));
 		}
 
-		::Const.Tactical.Common.removeStances(target);
-
 		if (this.m.SoundOnHit.len() != 0)
 		{
 			this.Sound.play(this.m.SoundOnHit[this.Math.rand(0, this.m.SoundOnHit.len() - 1)], this.Const.Sound.Volume.Skill, _user.getPos());
