@@ -4,7 +4,9 @@
 	o.create = function ()
 	{
 		create();
-		this.m.PreviewCraftable = this.new("scripts/items/shields/special/legend_craftable_kraken_shield");
+		local preview = this.new("scripts/items/shields/special/legend_craftable_kraken_shield");
+		preview.resetStats();
+		this.m.PreviewCraftable = preview;
 		this.m.Cost = 1100;
 		this.m.Type = this.Const.Items.ItemType.Shield;
 	}

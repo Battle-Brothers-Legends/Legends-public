@@ -23,12 +23,15 @@ this.legend_armor_named_warlock_cloak <- this.inherit("scripts/items/legend_armo
 		this.m.ImpactSound = this.Const.Sound.ArmorLeatherImpact;
 		this.m.InventorySound = this.Const.Sound.ClothEquip;
 		this.m.Value = 5000;
-		this.m.Condition = 180;
-		this.m.ConditionMax = 180;
-		this.m.StaminaModifier = 8;
+		this.resetStats();
 		this.randomizeValues();
 	}
 
+	function resetStats() {
+		this.m.Condition = 180;
+		this.m.ConditionMax = 180;
+		this.m.StaminaModifier = -8;
+	}
 
 	function getTooltip()
 	{

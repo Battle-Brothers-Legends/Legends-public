@@ -6,8 +6,8 @@
 		create();
 		this.m.Type = this.Const.Items.ItemType.Shield;
 		local preview = ::new("scripts/items/shields/named/named_lindwurm_shield");
-		preview.setName("Lindwurm Shield");
 		preview.resetStats();
+		preview.setName("Lindwurm Shield");
 		this.m.PreviewCraftable = preview;
 		local skills = [
 			{

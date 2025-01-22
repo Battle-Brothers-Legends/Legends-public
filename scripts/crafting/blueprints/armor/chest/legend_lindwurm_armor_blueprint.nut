@@ -6,8 +6,8 @@ this.legend_lindwurm_armor_blueprint <- this.inherit("scripts/crafting/blueprint
 		this.m.ID = "blueprint.legend_lindwurm_armor";
 		this.m.Type = this.Const.Items.ItemType.Armor;
 		local preview = this.new("scripts/items/legend_armor/legendary/legend_lindwurm_armor");
-		preview.setName("Lindwurm Scales");
 		preview.resetStats();
+		preview.m.Name = "Lindwurm Scales";
 		this.m.PreviewCraftable = preview;
 		this.m.Cost = 3500;
 		local ingredients = [
