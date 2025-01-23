@@ -43,21 +43,21 @@ this.legend_marked_target <- this.inherit("scripts/skills/skill", {
 				id = 10,
 				type = "text",
 				icon = "ui/icons/warning.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]" + getBonus() + "%[/color] Damage Received from all sources"
+				text = "[color=" + this.Const.UI.Color.PositiveValue + "]" + getBonus() * 100 + "%[/color] Damage Received from all sources"
 			}
 		];
 	}
 
 	function getBonus()
 	{
-		return 1.0 + this.Math.min(0.2 , this.getContainer().getActor().getHitpointsMax());
+		return 1.0 + this.Math.min(0.2 , this.getContainer().getActor().getHitpointsMax() * 0.01);
 	}
 
 	function onUpdate( _properties )
 	{
 		_properties.RangedDefense -= 10;
 		_properties.MeleeDefense -= 10;
-		_properties.DamageReceivedTotalMult *= getBonus() * 0.01;
+		_properties.DamageReceivedTotalMult *= getBonus();
 	}
 
 
