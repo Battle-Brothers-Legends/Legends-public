@@ -75,8 +75,9 @@ this.legend_oms_ledger_item <- this.inherit("scripts/items/accessory/accessory",
 		}
 	}
 
-	function onUpdate( _properties )
+	function onUpdateProperties( _properties )
 	{
+		this.accessory.onUpdateProperties(_properties);
 		if (!this.getContainer().getActor().isPlacedOnMap())
 		{
 			return;
