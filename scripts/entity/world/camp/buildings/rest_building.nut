@@ -6,7 +6,7 @@ this.rest_building <- this.inherit("scripts/entity/world/camp/camp_building", {
 	{
 		this.camp_building.create();
 		this.m.ID = this.Const.World.CampBuildings.Rest;
-		this.m.Escorting = true;		
+		this.m.Escorting = true;
 		this.m.Slot = "rest";
 		this.m.Name = "Rest";
 		this.m.Description = "Company personnel who have not been assigned a task will rest and relax here. .";
@@ -40,7 +40,7 @@ this.rest_building <- this.inherit("scripts/entity/world/camp/camp_building", {
 
 	function getModifiers()
 	{
-		local ret = 
+		local ret =
 		{
 			Assigned = 0
 		}
@@ -77,18 +77,18 @@ this.rest_building <- this.inherit("scripts/entity/world/camp/camp_building", {
 			mood = 1.5;
 		}
 
-		foreach( b in roster )
+		foreach( bro in roster )
 		{
-			if (b.getCampAssignment() != this.m.ID)
+			if (bro.getCampAssignment() != this.m.ID)
 			{
 				continue
 			}
 
-			if (b.getLastCampTime() == 0 || this.Time.getVirtualTimeF() - b.getLastCampTime() > this.World.getTime().SecondsPerDay)
+			if (bro.getLastCampTime() == 0 || this.Time.getVirtualTimeF() - bro.getLastCampTime() > this.World.getTime().SecondsPerDay)
 			{
 				this.getRested(bro);
-				b.improveMood(mood, "Was able to rest in camp");
-				b.setLastCampTime(this.m.Camp.getStopTime());
+				bro.improveMood(mood, "Was able to rest in camp");
+				bro.setLastCampTime(this.m.Camp.getStopTime());
 			}
 		}
 	}
@@ -154,8 +154,8 @@ this.rest_building <- this.inherit("scripts/entity/world/camp/camp_building", {
 		}
 		this.m.Results.push({
 			id = 150,
-			Icon = this.Const.MoodStateIcon[b.getMoodState()],
-			Text = activities[this.Math.rand(0, activities.len() - 1)] + " " + this.Const.MoodStateEvent[b.getMoodState()]
+			Icon = this.Const.MoodStateIcon[bro.getMoodState()],
+			Text = activities[this.Math.rand(0, activities.len() - 1)] + " " + this.Const.MoodStateEvent[bro.getMoodState()]
 		})
 
 		// if (background.isBackgroundType(this.Const.BackgroundType.Combat))
@@ -166,7 +166,7 @@ this.rest_building <- this.inherit("scripts/entity/world/camp/camp_building", {
 		// 	])
 		// } i want to do have this randomly choose a weapon/armor but i'm too lazy rn
 	}
-	
+
 	function getResults()
 	{
 		return this.m.Results;
@@ -187,5 +187,5 @@ this.rest_building <- this.inherit("scripts/entity/world/camp/camp_building", {
 	{
 		this.camp_building.onDeserialize(_in);
 	}
-	
+
 });
