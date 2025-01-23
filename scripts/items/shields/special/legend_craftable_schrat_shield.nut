@@ -12,12 +12,16 @@ this.legend_craftable_schrat_shield <- this.inherit("scripts/items/shields/named
 		this.m.Variant = 8;
 		this.updateVariant();
 		this.m.Value = 1000;
+		this.resetStats();
+		this.randomizeValues();
+	}
+
+	function resetStats() {
 		this.m.MeleeDefense = 20;
 		this.m.RangedDefense = 17;
 		this.m.StaminaModifier = -12;
 		this.m.Condition = 40;
 		this.m.ConditionMax = 40;
-		this.randomizeValues();
 	}
 
 	function updateVariant()

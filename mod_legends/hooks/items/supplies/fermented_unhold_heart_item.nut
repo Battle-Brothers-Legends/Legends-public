@@ -3,7 +3,7 @@
 	o.create = function ()
 	{
 		create();
-		this.m.Description = "Provisions. Various kinds of grounded grain that will be cooked up with water or milk for a daily meal. It is satiating but tasteless. Can be eaten in battle to provide up to 1 healing and fatigue recovery over ten turns, based on the amount remaining. Will be gradually used as provisions if left in the company stash.";
+		this.m.Description = "Provisions. Once a delicacy for barbarian kings of the north who wished to embolden their virility, fermented unhold heart tastes distinctively awful.";
 		this.m.IsUndesirable = true;
 		this.m.Amount = 40.0;
 	}

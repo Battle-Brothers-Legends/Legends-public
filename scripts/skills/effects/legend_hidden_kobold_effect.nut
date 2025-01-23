@@ -113,6 +113,7 @@ this.legend_hidden_kobold_effect <- this.inherit("scripts/skills/skill", {
 		actor.getSprite("arms_icon").Visible = false;
 		actor.getSprite("shield_icon").Visible = false;
 		actor.getSprite("injury_body").Visible = false;
+		actor.getSprite("morale").Visible = false;
 		actor.setHidden(true);
 		actor.setDirty(true);
 	}
@@ -128,6 +129,7 @@ this.legend_hidden_kobold_effect <- this.inherit("scripts/skills/skill", {
 		actor.getSprite("arms_icon").Visible = true;
 		actor.getSprite("shield_icon").Visible = true;
 		actor.getSprite("injury_body").Visible = true;
+		actor.getSprite("morale").Visible = true;
 		actor.setDirty(true);
 		foreach (i in actor.getItems().getAllItems())
 			i.updateAppearance();

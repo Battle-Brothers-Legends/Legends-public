@@ -15,12 +15,16 @@ this.legend_craftable_kraken_shield <- this.inherit("scripts/items/shields/named
 		this.m.Variant = 9;
 		this.updateVariant();
 		this.m.Value = 1200;
+		this.resetStats();
+		this.randomizeValues();
+	}
+
+	function resetStats() {
 		this.m.MeleeDefense = 24;
 		this.m.RangedDefense = 24;
 		this.m.StaminaModifier = -15;
 		this.m.Condition = 50;
 		this.m.ConditionMax = 50;
-		this.randomizeValues();
 	}
 
 	function updateVariant()

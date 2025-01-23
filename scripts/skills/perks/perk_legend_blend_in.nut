@@ -141,20 +141,9 @@ this.perk_legend_blend_in <- this.inherit("scripts/skills/skill", {
 		{
 			local skill = this.getContainer().getSkillByID(id);
 
-			if (skill == null)
-				continue;
-
-			skill.m.ActionPointCost = 0;
+			if (skill != null)
+				skill.m.ActionPointCost = 0;
 		}
-	}
-
-	function onAnySkillUsed( _skill, _targetEntity, _properties )
-	{
-		if (this.m.MeekStacks == 0)
-			return;
-		if (_skill.getID() == "actives.legend_leap" || _skill.getID() == "actives.footwork" || _skill.getID() == "actives.legend_evasion" )
-			_skill.m.ActionPointCost = 0;
-			this.m.MeekStacks -= 1;
 	}
 
 	function onTurnEnd()
