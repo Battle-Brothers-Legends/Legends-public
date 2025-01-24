@@ -60,7 +60,7 @@ this.legend_alp_nightmare_manifestation_skill <- this.inherit("scripts/skills/sk
 
 	function onVerifyTarget( _originTile, _targetTile )
 	{
-		if (!_targetTile.getEntity().getSkills().hasSkill("effects.sleeping"))
+		if (!_targetTile.getEntity().getSkills().hasEffect(::Legends.Effect.Sleeping))
 			return false;
 
 		if (this.getAvailableTiles(_targetTile).len() <= 1)

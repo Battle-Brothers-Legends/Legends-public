@@ -21,7 +21,7 @@ this.perk_legend_second_wind <- this.inherit("scripts/skills/skill", {
 		}
 		local actor = this.getContainer().getActor();
 		local percHP = actor.getHitpointsPct();
-		if (!actor.getSkills().hasSkill("effects.legend_second_wind"))
+		if (!actor.getSkills().hasEffect(::Legends.Effect.LegendSecondWind))
 		{
 			if (percHP < 0.5)
 			{
@@ -29,31 +29,31 @@ this.perk_legend_second_wind <- this.inherit("scripts/skills/skill", {
 
 				actor.getSkills().add(this.new("scripts/skills/effects/legend_second_wind_effect"));
 				actor.getSkills().add(this.new("scripts/skills/effects/recovery_potion_effect"));
-				if (this.m.Container.hasSkill("effects.stunned"))
+				if (this.m.Container.hasEffect(::Legends.Effect.Stunned))
 				{
 				this.m.Container.removeByID("effects.stunned");
 				}
-				if (this.m.Container.hasSkill("effects.dazed"))
+				if (this.m.Container.hasEffect(::Legends.Effect.Dazed))
 				{
 				this.m.Container.removeByID("effects.dazed");
 				}
-				if (this.m.Container.hasSkill("effects.legend_dazed"))
+				if (this.m.Container.hasEffect(::Legends.Effect.LegendDazed))
 				{
 				this.m.Container.removeByID("effects.legend_dazed");
 				}
-				if (this.m.Container.hasSkill("effects.staggered"))
+				if (this.m.Container.hasEffect(::Legends.Effect.Staggered))
 				{
 				this.m.Container.removeByID("effects.staggered");
 				}
-				if (this.m.Container.hasSkill("effects.legend_baffled"))
+				if (this.m.Container.hasEffect(::Legends.Effect.LegendBaffled))
 				{
 				this.m.Container.removeByID("effects.legend_baffled");
 				}
-				if (this.m.Container.hasSkill("effects.charmed"))
+				if (this.m.Container.hasEffect(::Legends.Effect.Charmed))
 				{
 				this.m.Container.removeByID("effects.charmed");
 				}
-				if (this.m.Container.hasSkill("effects.sleeping"))
+				if (this.m.Container.hasEffect(::Legends.Effect.Sleeping))
 				{
 				this.m.Container.removeByID("effects.sleeping");
 				}

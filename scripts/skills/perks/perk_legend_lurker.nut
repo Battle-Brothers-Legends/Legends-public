@@ -25,7 +25,7 @@ this.perk_legend_lurker <- this.inherit("scripts/skills/skill", {
 
 		}
 
-		if (actor.getSkills().hasSkill("effect.smoke"))
+		if (actor.getSkills().hasEffect(::Legends.Effect.Smoke))
 		{
 			_properties.ActionPoints += 2
 		}
@@ -34,7 +34,7 @@ this.perk_legend_lurker <- this.inherit("scripts/skills/skill", {
 
 	function onAdded()
 	{
-		if (!this.m.Container.hasSkill("effects.legend_lurker"))
+		if (!this.m.Container.hasEffect(::Legends.Effect.LegendLurker))
 		{
 			this.m.Container.add(this.new("scripts/skills/effects/legend_lurker_effect"));
 		}

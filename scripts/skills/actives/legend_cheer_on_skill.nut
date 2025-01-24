@@ -83,7 +83,7 @@ this.legend_cheer_on_skill <- this.inherit("scripts/skills/skill", {
 			return false;
 		}
 
-		if (_targetTile.getEntity().getSkills().hasSkill("effects.legend_cheered_on"))
+		if (_targetTile.getEntity().getSkills().hasEffect(::Legends.Effect.LegendCheeredOn))
 		{
 			return false;
 		}

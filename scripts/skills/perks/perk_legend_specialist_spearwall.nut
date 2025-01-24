@@ -27,7 +27,7 @@ this.perk_legend_specialist_spearwall <- this.inherit("scripts/skills/skill", {
 
 	function onAnySkillUsed( _skill, _targetEntity, _properties )
 	{
-		if (this.getContainer().hasSkill("effects.spearwall") && (this.Tactical.TurnSequenceBar.getActiveEntity() == null || this.Tactical.TurnSequenceBar.getActiveEntity().getID() != this.getContainer().getActor().getID()))
+		if (this.getContainer().hasEffect(::Legends.Effect.Spearwall) && (this.Tactical.TurnSequenceBar.getActiveEntity() == null || this.Tactical.TurnSequenceBar.getActiveEntity().getID() != this.getContainer().getActor().getID()))
 		{
 			_properties.DamageTotalMult *= 1.25;
 		}

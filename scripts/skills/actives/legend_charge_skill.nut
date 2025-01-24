@@ -277,7 +277,7 @@ this.legend_charge_skill <- this.inherit("scripts/skills/skill", {
 				local shield = victim.getItems().getItemAtSlot(this.Const.ItemSlot.Offhand);
 				chance = chance - shield.getMeleeDefense();
 
-				if (victim.getSkills().hasSkill("effects.shieldwall"))
+				if (victim.getSkills().hasEffect(::Legends.Effect.Shieldwall))
 				{
 					chance = chance - shield.getMeleeDefense();
 				}

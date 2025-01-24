@@ -87,7 +87,7 @@ this.legend_curseofyears_skill <- this.inherit("scripts/skills/skill", {
 
 		foreach( o in opponents )
 		{
-			if (o.Actor.getSkills().hasSkill("effects.legend_curseofyears"))
+			if (o.Actor.getSkills().hasEffect(::Legends.Effect.LegendCurseofyears))
 			{
 				curseofyears = ++curseofyears;
 			}

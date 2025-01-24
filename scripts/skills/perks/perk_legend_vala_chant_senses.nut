@@ -40,7 +40,7 @@ this.perk_legend_vala_chant_senses <- this.inherit("scripts/skills/skill", {
 			return false;
 		}
 
-		if (actor.getSkills().hasSkill("effects.legend_vala_currently_chanting"))
+		if (actor.getSkills().hasEffect(::Legends.Effect.LegendValaCurrentlyChanting))
 		{
 			return false;
 		}
@@ -79,7 +79,7 @@ this.perk_legend_vala_chant_senses <- this.inherit("scripts/skills/skill", {
 			});
 		}
 
-		if (actor.getSkills().hasSkill("effects.legend_vala_currently_chanting"))
+		if (actor.getSkills().hasEffect(::Legends.Effect.LegendValaCurrentlyChanting))
 		{
 			ret.push({
 				id = 10,
@@ -97,7 +97,7 @@ this.perk_legend_vala_chant_senses <- this.inherit("scripts/skills/skill", {
 		local actor = this.getContainer().getActor();
 		local targets = this.Tactical.Entities.getAllInstances();
 
-		if (actor.getSkills().hasSkill("effects.legend_vala_currently_chanting"))
+		if (actor.getSkills().hasEffect(::Legends.Effect.LegendValaCurrentlyChanting))
 		{
 			actor.getSkills().removeByID("effects.legend_vala_currently_chanting");
 		}
@@ -106,7 +106,7 @@ this.perk_legend_vala_chant_senses <- this.inherit("scripts/skills/skill", {
 		{
 			foreach( t in tar )
 			{
-				if (t.getSkills().hasSkill("effects.legend_vala_chant_senses_effect"))
+				if (t.getSkills().hasEffect(::Legends.Effect.LegendValaChantSensesEffect))
 				{
 					t.getSkills().removeByID("effects.legend_vala_chant_senses_effect");
 				}
@@ -154,7 +154,7 @@ this.perk_legend_vala_chant_senses <- this.inherit("scripts/skills/skill", {
 		local actor = this.getContainer().getActor();
 		local targets = this.Tactical.Entities.getAllInstances();
 
-		if (actor.getSkills().hasSkill("effects.legend_vala_currently_chanting") && this.m.ChantIsActive)
+		if (actor.getSkills().hasEffect(::Legends.Effect.LegendValaCurrentlyChanting) && this.m.ChantIsActive)
 		{
 			this.Sound.play("sounds/combat/legend_vala_senses.wav");
 		}
@@ -163,7 +163,7 @@ this.perk_legend_vala_chant_senses <- this.inherit("scripts/skills/skill", {
 		{
 			foreach( t in tar )
 			{
-				if (t.getSkills().hasSkill("effects.legend_vala_chant_senses_effect"))
+				if (t.getSkills().hasEffect(::Legends.Effect.LegendValaChantSensesEffect))
 				{
 					if (actor.getTile().getDistanceTo(t.getTile()) <= 3 && actor.getID() != t.getID())
 					{
@@ -187,7 +187,7 @@ this.perk_legend_vala_chant_senses <- this.inherit("scripts/skills/skill", {
 			local actor = this.getContainer().getActor();
 			local targets = this.Tactical.Entities.getAllInstances();
 
-			if (!actor.getSkills().hasSkill("effects.legend_vala_currently_chanting"))
+			if (!actor.getSkills().hasEffect(::Legends.Effect.LegendValaCurrentlyChanting))
 			{
 				actor.getSkills().add(this.new("scripts/skills/effects/legend_vala_currently_chanting"));
 			}
@@ -196,7 +196,7 @@ this.perk_legend_vala_chant_senses <- this.inherit("scripts/skills/skill", {
 			{
 				foreach( t in tar )
 				{
-					if (t.isAlliedWith(actor) && !t.getSkills().hasSkill("effects.legend_vala_chant_senses_effect"))
+					if (t.isAlliedWith(actor) && !t.getSkills().hasEffect(::Legends.Effect.LegendValaChantSensesEffect))
 					{
 						local senses = this.new("scripts/skills/effects/legend_vala_chant_senses_effect");
 						senses.setVala(this.getContainer().getActor());

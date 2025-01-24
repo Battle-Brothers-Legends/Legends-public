@@ -14,7 +14,7 @@ this.perk_legend_feint <- this.inherit("scripts/skills/skill", {
 	{
 		local actor = this.getContainer().getActor();
 		actor.setFatigue(this.Math.max(0, actor.getFatigue() - this.Math.floor(_skill.getFatigueCost() * 0.2)));
-		if (!_targetEntity.getSkills().hasSkill("effects.legend_parried"))
+		if (!_targetEntity.getSkills().hasEffect(::Legends.Effect.LegendParried))
 		{
 			_targetEntity.getSkills().add(this.new("scripts/skills/effects/legend_parried_effect"));
 

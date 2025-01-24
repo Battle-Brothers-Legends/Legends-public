@@ -71,7 +71,7 @@ this.legend_possession_skill <- this.inherit("scripts/skills/skill", {
 			return false;
 		}
 
-		if (target.getSkills().hasSkill("effects.legend_possession"))
+		if (target.getSkills().hasEffect(::Legends.Effect.LegendPossession))
 		{
 			return false;
 		}

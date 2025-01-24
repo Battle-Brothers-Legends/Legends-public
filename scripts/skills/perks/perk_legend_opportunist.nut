@@ -48,7 +48,7 @@ this.perk_legend_opportunist <- this.inherit("scripts/skills/skill", {
 	function onUpdate(_properties)
 	{
 		//local actor = this.getContainer().getActor();
-		if (this.getContainer().hasSkill("effects.smoke"))
+		if (this.getContainer().hasEffect(::Legends.Effect.Smoke))
 		{
 			_properties.RangedSkillMult *= 1.5; //Offsets the -50% from smoke_effect.nut
 			_properties.MeleeSkillMult *= 1.10;

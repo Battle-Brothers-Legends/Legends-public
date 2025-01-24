@@ -51,7 +51,7 @@ effectsDefs.push({
 	ID = "effects.spider_poison",
 	Script = "scripts/skills/effects/spider_poison_effect",
 	Name = "Poisoned",
-	Const = "Poisoned"
+	Const = "SpiderPoison"
 });
 effectsDefs.push({
 	ID = "effects.holy_water",
@@ -99,7 +99,7 @@ effectsDefs.push({
 	ID = "effects.drums_of_war",
 	Script = "scripts/skills/effects/drums_of_war_effect",
 	Name = "Drums of War",
-	Const = "DrumsOfWat"
+	Const = "DrumsOfWar"
 });
 effectsDefs.push({
 	ID = "effects.killing_frenzy",
@@ -158,7 +158,7 @@ effectsDefs.push({
 effectsDefs.push({
 	ID = "effects.lorekeeper_potion",
 	Script = "scripts/skills/effects/lorekeeper_potion_effect",
-	Name = "Lorekeeper/'s Rib Bone",
+	Name = "Lorekeeper\'s Rib Bone",
 	Const = "LorekeeperPotion"
 });
 effectsDefs.push({
@@ -213,13 +213,13 @@ effectsDefs.push({
 	ID = "effects.kraken_ensnare",
 	Script = "scripts/skills/effects/kraken_ensnare_effect",
 	Name = "Entangled",
-	Const = "KrakenEnsare"
+	Const = "KrakenEnsnare"
 });
 effectsDefs.push({
 	ID = "effects.serpent_ensnare",
 	Script = "scripts/skills/effects/serpent_ensnare_effect",
 	Name = "Entangled",
-	Const = "SerpentEnsare"
+	Const = "SerpentEnsnare"
 });
 effectsDefs.push({
 	ID = "effects.goblin_shaman_potion",
@@ -255,7 +255,7 @@ effectsDefs.push({
 	ID = "effects.goblin_grunt_potion",
 	Script = "scripts/skills/effects/goblin_grunt_potion_effect",
 	Name = "Reactive Leg Muscles",
-	Const = "GoblinGruntPoison"
+	Const = "GoblinGruntPotion"
 });
 effectsDefs.push({
 	ID = "effects.gruesome_feast",
@@ -519,7 +519,7 @@ effectsDefs.push({
 	ID = "effects.orc_young_potion",
 	Script = "scripts/skills/effects/orc_young_potion_effect",
 	Name = "Kinetic Blows",
-	Const = "OrcYoundPotion"
+	Const = "OrcYoungPotion"
 });
 effectsDefs.push({
 	ID = "effects.overwhelmed",
@@ -629,4 +629,660 @@ effectsDefs.push({
 	Name = "Enhanced Learning",
 	Const = "KnowledgePotion"
 });
+effectsDefs.push({
+	ID = "effects.legend_beer_buzz_effect",
+	Script = "scripts/skills/effects/legend_beer_buzz_effect",
+	Name = "Buzzed",
+	Const = "LegendBeerBuzzEffect"
+});
+effectsDefs.push({
+	ID = "effects.legend_wine_tipsy_effect",
+	Script = "scripts/skills/effects/legend_wine_tipsy_effect",
+	Name = "Tipsy",
+	Const = "LegendWineTipsyEffect"
+});
+effectsDefs.push({
+	ID = "effects.legend_mead_warmth_effect",
+	Script = "scripts/skills/effects/legend_mead_warmth_effect",
+	Name = "Warmth",
+	Const = "LegendMeadWarmthEffect"
+});
+effectsDefs.push({
+	ID = "effects.legend_liquor_burn_effect",
+	Script = "scripts/skills/effects/legend_liquor_burn_effect",
+	Name = "Liquor Burn",
+	Const = "LegendLiquorBurnEffect"
+});
+effectsDefs.push({
+	ID = "effects.legend_return_favor",
+	Script = "scripts/skills/effects/legend_return_favor_effect",
+	Name = "Return Favor",
+	Const = "LegendReturnFavor"
+});
+effectsDefs.push({
+	ID = "effects.legend_vala_chant_disharmony_effect",
+	Script = "scripts/skills/effects/legend_vala_chant_disharmony_effect",
+	Name = "Disharmony",
+	Const = "LegendValaChantDisharmonyEffect"
+});
+effectsDefs.push({
+	ID = "effects.legend_vala_chant_fury_effect",
+	Script = "scripts/skills/effects/legend_vala_chant_fury_effect",
+	Name = "Fury",
+	Const = "LegendValaChantFuryEffect"
+});
+effectsDefs.push({
+	ID = "effects.legend_vala_chant_senses_effect",
+	Script = "scripts/skills/effects/legend_vala_chant_senses_effect",
+	Name = "Heightened Senses",
+	Const = "LegendValaChantSensesEffect"
+});
+effectsDefs.push({
+	ID = "effects.legend_vala_currently_chanting",
+	Script = "scripts/skills/effects/legend_vala_currently_chanting",
+	Name = "Currently Chanting",
+	Const = "LegendValaCurrentlyChanting"
+});
+effectsDefs.push({
+	ID = "effects.legend_vala_in_trance",
+	Script = "scripts/skills/effects/legend_vala_in_trance",
+	Name = "In Trance",
+	Const = "LegendValaInTrance"
+});
+effectsDefs.push({
+	ID = "effects.legend_consecrated_effect",
+	Script = "scripts/skills/effects/legend_consecrated_effect",
+	Name = "Consecrated",
+	Const = "LegendConsecratedEffect"
+});
+effectsDefs.push({
+	ID = "effects.legend_sanctified_effect",
+	Script = "scripts/skills/effects/legend_sanctified_effect",
+	Name = "Sanctified",
+	Const = "LegendSanctifiedEffect"
+});
+effectsDefs.push({
+	ID = "effects.legend_parried",
+	Script = "scripts/skills/effects/legend_parried",
+	Name = "Parried",
+	Const = "LegendParried"
+});
+effectsDefs.push({
+	ID = "effects.legend_grazed_effect",
+	Script = "scripts/skills/effects/legend_grazed_effect",
+	Name = "Bleeding from Grazes",
+	Const = "LegendGrazedEffect"
+});
+effectsDefs.push({
+	ID = "effects.legend_intensely_charmed",
+	Script = "scripts/skills/effects/legend_intensely_charmed_effect",
+	Name = "Infatuated",
+	Const = "LegendIntenselyCharmed"
+});
+effectsDefs.push({
+	ID = "effects.legend_baffled",
+	Script = "scripts/skills/effects/legend_baffled_effect",
+	Name = "Baffled",
+	Const = "LegendBaffled"
+});
+effectsDefs.push({
+	ID = "effects.legend_choked",
+	Script = "scripts/skills/effects/legend_choked_effect",
+	Name = "Choked",
+	Const = "LegendChoked"
+});
+effectsDefs.push({
+	ID = "effects.legend_tackled",
+	Script = "scripts/skills/effects/legend_tackled_effect",
+	Name = "Knocked Over",
+	Const = "LegendTackled"
+});
+effectsDefs.push({
+	ID = "effects.legend_redback_spider_poison",
+	Script = "scripts/skills/effects/legend_redback_spider_poison_effect",
+	Name = "Redback Poisoned",
+	Const = "LegendRedbackSpiderPoison"
+});
+effectsDefs.push({
+	ID = "effects.legend_perfect_focus",
+	Script = "scripts/skills/effects/legend_perfect_focus_effect",
+	Name = "Perfect Focus",
+	Const = "LegendPerfectFocus"
+});
+effectsDefs.push({
+	ID = "effects.legend_dazed",
+	Script = "scripts/skills/effects/legend_dazed_effect",
+	Name = "Stupefied",
+	Const = "LegendDazed"
+});
+effectsDefs.push({
+	ID = "effects.legend_grappled",
+	Script = "scripts/skills/effects/legend_grappled_effect",
+	Name = "Grappled",
+	Const = "LegendGrappled"
+});
+effectsDefs.push({
+	ID = "effects.legend_fortify",
+	Script = "scripts/skills/effects/legend_fortify_effect",
+	Name = "Fortify",
+	Const = "LegendFortify"
+});
+effectsDefs.push({
+	ID = "effects.legend_safeguarding",
+	Script = "scripts/skills/effects/legend_safeguarding_effect",
+	Name = "Safeguarding",
+	Const = "LegendSafeguarding"
+});
+effectsDefs.push({
+	ID = "effects.legend_threw_sand_effect",
+	Script = "scripts/skills/effects/legend_threw_sand_effect",
+	Name = "Threw Sand",
+	Const = "LegendThrewSandEffect"
+});
+effectsDefs.push({
+	ID = "effects.legend_RSW_poison_effect",
+	Script = "scripts/skills/rune_sigils/legend_RSW_poison_effect",
+	Name = "Poisoned",
+	Const = "LegendRswPoisonEffect"
+});
+effectsDefs.push({
+	ID = "effects.legend_wolfsbane",
+	Script = "scripts/skills/effects/legend_wolfsbane_effect",
+	Name = "Wolfsbane Scent",
+	Const = "LegendWolfsbane"
+});
+effectsDefs.push({
+	ID = "effects.legend_alp_realm_of_shadow",
+	Script = "scripts/skills/effects/legend_alp_realm_of_shadow_effect",
+	Name = "Engulfed By Darkness",
+	Const = "LegendAlpRealmOfShadow"
+});
+effectsDefs.push({
+	ID = "effects.legend_apothecary_mushrooms",
+	Script = "scripts/skills/effects/legend_apothecary_mushrooms_effect",
+	Name = "Purple Haze",
+	Const = "LegendApothecaryMushrooms"
+});
+effectsDefs.push({
+	ID = "effects.legend_basilisk_poison",
+	Script = "scripts/skills/effects/legend_basilisk_poison_effect",
+	Name = "Poisoned",
+	Const = "LegendBasiliskPoison"
+});
+effectsDefs.push({
+	ID = "effects.legend_cheered_on",
+	Script = "scripts/skills/effects/legend_cheered_on_effect",
+	Name = "Cheered On",
+	Const = "LegendCheeredOn"
+});
+effectsDefs.push({
+	ID = "effects.legend_coordinating_volleys",
+	Script = "scripts/skills/effects/legend_coordinating_volleys",
+	Name = "Coordinated Volleys",
+	Const = "LegendCoordinatingVolleys"
+});
+effectsDefs.push({
+	ID = "effects.legend_curseofyears",
+	Script = "scripts/skills/effects/legend_curseofyears_effect",
+	Name = "Decrepify",
+	Const = "LegendCurseofyears"
+});
+effectsDefs.push({
+	ID = "effects.legend_motivated_effect",
+	Script = "scripts/skills/effects/legend_motivated_effect",
+	Name = "Motivated",
+	Const = "LegendMotivatedEffect"
+});
+effectsDefs.push({
+	ID = "effects.legend_demon_hound_bite_effect",
+	Script = "scripts/skills/effects/legend_demon_hound_bite_effect",
+	Name = "H÷llenhund Curse",
+	Const = "LegendDemonHoundBiteEffect"
+});
+effectsDefs.push({
+	ID = "effects.legend_rations_effect",
+	Script = "scripts/skills/effects/legend_rations_effect",
+	Name = "Satiated",
+	Const = "LegendRationsEffect"
+});
+effectsDefs.push({
+	ID = "effects.legend_satiated_effect",
+	Script = "scripts/skills/effects/legend_satiated_effect",
+	Name = "Satiated",
+	Const = "LegendSatiatedEffect"
+});
+effectsDefs.push({
+	ID = "effects.legend_stuffed_effect",
+	Script = "scripts/skills/effects/legend_stuffed_effect",
+	Name = "Stuffed",
+	Const = "LegendStuffedEffect"
+});
+effectsDefs.push({
+	ID = "effects.legend_evasion",
+	Script = "scripts/skills/effects/legend_evasion_effect",
+	Name = "Evading",
+	Const = "LegendEvasion"
+});
+effectsDefs.push({
+	ID = "effects.legend_summoned_falcon_effect",
+	Script = "scripts/skills/effects/legend_summoned_falcon_effect",
+	Name = "Summoned a Falcon",
+	Const = "LegendSummonedFalconEffect"
+});
+effectsDefs.push({
+	ID = "effects.legend_steps_guided",
+	Script = "scripts/skills/effects/legend_steps_guided",
+	Name = "Steps Guided",
+	Const = "LegendStepsGuided"
+});
+effectsDefs.push({
+	ID = "effects.legend_holding_the_line",
+	Script = "scripts/skills/effects/legend_holding_the_line",
+	Name = "Holding the Line",
+	Const = "LegendHoldingTheLine"
+});
+effectsDefs.push({
+	ID = "effects.legend_dodging_incoming",
+	Script = "scripts/skills/effects/legend_dodging_incoming",
+	Name = "Dodging Incoming Projectiles",
+	Const = "LegendDodgingIncoming"
+});
+effectsDefs.push({
+	ID = "effects.legend_inspired",
+	Script = "scripts/skills/effects/legend_inspired_effect",
+	Name = "Inspired",
+	Const = "LegendInspired"
+});
+effectsDefs.push({
+	ID = "effects.legend_levitating",
+	Script = "scripts/skills/effects/legend_levitating_effect",
+	Name = "Levitating",
+	Const = "LegendLevitating"
+});
+effectsDefs.push({
+	ID = "effects.legend_possession",
+	Script = "scripts/skills/effects/legend_possession_effect",
+	Name = "Possessed",
+	Const = "LegendPossession"
+});
+effectsDefs.push({
+	ID = "effects.legend_prayer_of_life",
+	Script = "scripts/skills/effects/legend_prayer_of_life_effect",
+	Name = "Prayer of Hope",
+	Const = "LegendPrayerOfLife"
+});
+effectsDefs.push({
+	ID = "effects.legend_bleed_prepared",
+	Script = "scripts/skills/effects/legend_bleed_prepared_effect",
+	Name = "Prepared to Inflict Bleeding",
+	Const = "LegendBleedPrepared"
+});
+effectsDefs.push({
+	ID = "effects.legend_graze_prepared",
+	Script = "scripts/skills/effects/legend_graze_prepared_effect",
+	Name = "Prepared to Inflict a Graze",
+	Const = "LegendGrazePrepared"
+});
+effectsDefs.push({
+	ID = "effects.legend_knockback_prepared",
+	Script = "scripts/skills/effects/legend_knockback_prepared_effect",
+	Name = "Prepared to Inflict Knockback.",
+	Const = "LegendKnockbackPrepared"
+});
+effectsDefs.push({
+	ID = "effects.legend_guarded_effect",
+	Script = "scripts/skills/effects/legend_guarded_effect",
+	Name = "Guarded",
+	Const = "LegendGuardedEffect"
+});
+effectsDefs.push({
+	ID = "effects.legend_guard",
+	Script = "scripts/skills/effects/legend_guard_effect",
+	Name = "Guarding",
+	Const = "LegendGuard"
+});
+effectsDefs.push({
+	ID = "effects.legend_pushing_forward",
+	Script = "scripts/skills/effects/legend_pushing_forward",
+	Name = "Pushing Forward",
+	Const = "LegendPushingForward"
+});
+effectsDefs.push({
+	ID = "effects.legend_read_omens",
+	Script = "scripts/skills/effects/legend_read_omens_effect",
+	Name = "Omens Foretold",
+	Const = "LegendReadOmens"
+});
+effectsDefs.push({
+	ID = "effects.legend_safeguarded",
+	Script = "scripts/skills/effects/legend_safeguarded_effect",
+	Name = "Safeguarded",
+	Const = "LegendSafeguarded"
+});
+effectsDefs.push({
+	ID = "effects.legend_staffwall",
+	Script = "scripts/skills/effects/legend_staffwall_effect",
+	Name = "Spearwall",
+	Const = "LegendStaffwall"
+});
+effectsDefs.push({
+	ID = "effects.legend_summoned_bear_effect",
+	Script = "scripts/skills/effects/legend_summoned_bear_effect",
+	Name = "Summoned a Bear",
+	Const = "LegendSummonedBearEffect"
+});
+effectsDefs.push({
+	ID = "effects.legend_summoned_catapult_effect",
+	Script = "scripts/skills/effects/legend_summoned_catapult_effect",
+	Name = "Summoned a Catapult",
+	Const = "LegendSummonedCatapultEffect"
+});
+effectsDefs.push({
+	ID = "effects.legend_summoned_hound_effect",
+	Script = "scripts/skills/effects/legend_summoned_hound_effect",
+	Name = "Summoned a Hound",
+	Const = "LegendSummonedHoundEffect"
+});
+effectsDefs.push({
+	ID = "effects.legend_summoned_wolf_effect",
+	Script = "scripts/skills/effects/legend_summoned_wolf_effect",
+	Name = "Summoned a Wolf",
+	Const = "LegendSummonedWolfEffect"
+});
+effectsDefs.push({
+	ID = "effects.legend_berserker_rage",
+	Script = "scripts/skills/effects/legend_berserker_rage_effect",
+	Name = "Rage",
+	Const = "LegendBerserkerRage"
+});
+effectsDefs.push({
+	ID = "effects.legend_bone_plating",
+	Script = "scripts/skills/effects/legend_bone_plating_effect",
+	Name = "Bone Plating",
+	Const = "LegendBonePlating"
+});
+effectsDefs.push({
+	ID = "effects.legend_buckler",
+	Script = "scripts/skills/effects/legend_buckler_effect",
+	Name = "Buckler Defense",
+	Const = "LegendBuckler"
+});
+effectsDefs.push({
+	ID = "effects.legend_demon_hound_aura",
+	Script = "scripts/skills/effects/legend_demon_hound_aura_effect",
+	Name = "Sluggish",
+	Const = "LegendDemonHoundAura"
+});
+effectsDefs.push({
+	ID = "effects.legend_disintegrating",
+	Script = "scripts/skills/effects/legend_disintegrating_effect",
+	Name = "Disintegrating",
+	Const = "LegendDisintegrating"
+});
+effectsDefs.push({
+	ID = "effects.legend_drums_of_life",
+	Script = "scripts/skills/effects/legend_drums_of_life_effect",
+	Name = "Drums of Life",
+	Const = "LegendDrumsOfLife"
+});
+effectsDefs.push({
+	ID = "effects.legend_drums_of_war",
+	Script = "scripts/skills/effects/legend_drums_of_war_effect",
+	Name = "Drums of War",
+	Const = "LegendDrumsOfWar"
+});
+effectsDefs.push({
+	ID = "effects.legend_greenwood_sap",
+	Script = "scripts/skills/effects/legend_greenwood_sap_effect",
+	Name = "Heartwood Focus",
+	Const = "LegendGreenwoodSap"
+});
+effectsDefs.push({
+	ID = "effects.legend_hexe_ichor_potion",
+	Script = "scripts/skills/effects/legend_hexe_ichor_potion_effect",
+	Name = "Hexe Ichor Potion",
+	Const = "LegendHexeIchorPotion"
+});
+effectsDefs.push({
+	ID = "effects.legend_hunting_big_game",
+	Script = "scripts/skills/effects/legend_hunting_big_game",
+	Name = "Hunting Big Game",
+	Const = "LegendHuntingBigGame"
+});
+effectsDefs.push({
+	ID = "effects.legend_imbue_effect",
+	Script = "scripts/skills/effects/legend_imbue_effect",
+	Name = "Imbued",
+	Const = "LegendImbueEffect"
+});
+effectsDefs.push({
+	ID = "effects.leaderbanner_effect",
+	Script = "scripts/skills/effects/legend_leaderbanner_effect",
+	Name = "For the Captain!",
+	Const = "LeaderbannerEffect"
+});
+effectsDefs.push({
+	ID = "effects.legend_lurker",
+	Script = "scripts/skills/effects/legend_lurker_effect",
+	Name = "Lurking",
+	Const = "LegendLurker"
+});
+effectsDefs.push({
+	ID = "effects.legend_lw_relationship",
+	Script = "scripts/skills/effects/legend_lw_relationship_effect",
+	Name = "Band of Brothers",
+	Const = "LegendLwRelationship"
+});
+effectsDefs.push({
+	ID = "effects.legend_magic_circle_of_protection_effect",
+	Script = "scripts/skills/effects/legend_magic_circle_of_protection_effect",
+	Name = "Protected",
+	Const = "LegendMagicCircleOfProtectionEffect"
+});
+effectsDefs.push({
+	ID = "effects.legend_marked_target",
+	Script = "scripts/skills/effects/legend_marked_effect",
+	Name = "Marked",
+	Const = "LegendMarkedTarget"
+});
+effectsDefs.push({
+	ID = "effects.legend_mummy_curse",
+	Script = "scripts/skills/effects/legend_mummy_curse_effect",
+	Name = "Curse of the Mummy",
+	Const = "LegendMummyCurse"
+});
+effectsDefs.push({
+	ID = "effects.legend_named_axe",
+	Script = "scripts/skills/effects/legend_named_axe_effect",
+	Name = "Named Axe",
+	Const = "LegendNamedAxe"
+});
+effectsDefs.push({
+	ID = "effects.legend_named_estoc",
+	Script = "scripts/skills/effects/legend_named_estoc_effect",
+	Name = "Named Estoc",
+	Const = "LegendNamedEstoc"
+});
+effectsDefs.push({
+	ID = "effects.legend_named_fencing_sword",
+	Script = "scripts/skills/effects/legend_named_fencing_sword_effect",
+	Name = "Named Fencing Sword",
+	Const = "LegendNamedFencingSword"
+});
+effectsDefs.push({
+	ID = "effects.legend_parrying_dagger",
+	Script = "scripts/skills/effects/legend_parrying_dagger_effect",
+	Name = "Parrying Dagger Defense",
+	Const = "LegendParryingDagger"
+});
+effectsDefs.push({
+	ID = "effects.legend_parrying",
+	Script = "scripts/skills/effects/legend_parrying_effect",
+	Name = "Parrying Stance",
+	Const = "LegendParrying"
+});
+effectsDefs.push({
+	ID = "effects.legend_peaceful_reassured",
+	Script = "scripts/skills/effects/legend_peaceful_reassured_effect",
+	Name = "Reassured",
+	Const = "LegendPeacefulReassured"
+});
+effectsDefs.push({
+	ID = "effects.legend_pie_effect",
+	Script = "scripts/skills/effects/legend_pie_effect",
+	Name = "Satiated",
+	Const = "LegendPieEffect"
+});
+effectsDefs.push({
+	ID = "effects.legend_porridge_effect",
+	Script = "scripts/skills/effects/legend_porridge_effect",
+	Name = "Porridge",
+	Const = "LegendPorridgeEffect"
+});
+effectsDefs.push({
+	ID = "effects.legend_prayer_of_faith",
+	Script = "scripts/skills/effects/legend_prayer_of_faith_effect",
+	Name = "Prayer of Faith",
+	Const = "LegendPrayerOfFaith"
+});
+effectsDefs.push({
+	ID = "effects.legend_pudding_effect",
+	Script = "scripts/skills/effects/legend_pudding_effect",
+	Name = "Satiated",
+	Const = "LegendPuddingEffect"
+});
+effectsDefs.push({
+	ID = "effects.legend_rat_poison",
+	Script = "scripts/skills/effects/legend_rat_poison_effect",
+	Name = "Infected",
+	Const = "LegendRatPoison"
+});
+effectsDefs.push({
+	ID = "effects.legend_realm_of_nightmares",
+	Script = "scripts/skills/effects/legend_realm_of_nightmares_effect",
+	Name = "Realm of Nightmares",
+	Const = "LegendRealmOfNightmares"
+});
+effectsDefs.push({
+	ID = "effects.scroll",
+	Script = "scripts/skills/effects/legend_scroll_effect",
+	Name = "Scroll Effect",
+	Const = "Scroll"
+});
+effectsDefs.push({
+	ID = "effects.legend_second_wind",
+	Script = "scripts/skills/effects/legend_second_wind_effect",
+	Name = "Second Wind",
+	Const = "LegendSecondWind"
+});
+effectsDefs.push({
+	ID = "effects.legend_hidden",
+	Script = "scripts/skills/effects/legend_hidden_effect",
+	Name = "Hidden",
+	Const = "LegendHidden"
+});
+effectsDefs.push({
+	ID = "effects.legend_skin_ghoul_blood",
+	Script = "scripts/skills/effects/legend_skin_ghoul_blood_effect",
+	Name = "Skin Ghoul Blood",
+	Const = "LegendSkinGhoulBlood"
+});
+effectsDefs.push({
+	ID = "effects.legend_sprint",
+	Script = "scripts/skills/effects/legend_sprint_effect",
+	Name = "Sprinting",
+	Const = "LegendSprint"
+});
+effectsDefs.push({
+	ID = "effects.legend_stollwurm_blood",
+	Script = "scripts/skills/effects/legend_stollwurm_blood_effect",
+	Name = "Stollwurm Vigor",
+	Const = "LegendStollwurmBlood"
+});
+effectsDefs.push({
+	ID = "effects.legend_vala_spiritual_bond_effect",
+	Script = "scripts/skills/effects/legend_vala_spiritual_bond_effect",
+	Name = "Spiritual Bond",
+	Const = "LegendValaSpiritualBondEffect"
+});
+effectsDefs.push({
+	ID = "effects.legend_vala_threads_effect",
+	Script = "scripts/skills/effects/legend_vala_threads_effect",
+	Name = "Threads of Fate",
+	Const = "LegendValaThreadsEffect"
+});
+effectsDefs.push({
+	ID = "effects.legend_vala_trance_malevolent_effect",
+	Script = "scripts/skills/effects/legend_vala_trance_malevolent_effect",
+	Name = "Haunted",
+	Const = "LegendValaTranceMalevolentEffect"
+});
+effectsDefs.push({
+	ID = "effects.legend_vala_trance_perspective_effect",
+	Script = "scripts/skills/effects/legend_vala_trance_perspective_effect",
+	Name = "Observed",
+	Const = "LegendValaTrancePerspectiveEffect"
+});
+effectsDefs.push({
+	ID = "effects.legend_vengeance",
+	Script = "scripts/skills/effects/legend_vengeance_effect",
+	Name = "Vengeance!",
+	Const = "LegendVengeance"
+});
+effectsDefs.push({
+	ID = "effects.legend_violent_decomposition_effect",
+	Script = "scripts/skills/effects/legend_violent_decomposition_effect",
+	Name = "Violent Decomposition",
+	Const = "LegendViolentDecompositionEffect"
+});
+effectsDefs.push({
+	ID = "effects.legend_web_at_start",
+	Script = "scripts/skills/effects/legend_web_at_start_effect",
+	Name = "Start Combat Trapped in Web",
+	Const = "LegendWebAtStart"
+});
+effectsDefs.push({
+	ID = "effects.legend_zombie_poison",
+	Script = "scripts/skills/effects/legend_zombie_poison_effect",
+	Name = "Infected",
+	Const = "LegendZombiePoison"
+});
+effectsDefs.push({
+	ID = "effects.sato_brothers_in_chains",
+	Script = "scripts/skills/effects/sato_brothers_in_chains_effect",
+	Name = "Brothers in Chains",
+	Const = "SatoBrothersInChains"
+});
+effectsDefs.push({
+	ID = "effects.legend_headache",
+	Script = "scripts/skills/effects_world/legend_headache_effect",
+	Name = "Headache",
+	Const = "LegendHeadache"
+});
+effectsDefs.push({
+	ID = "effects.legend_irritable",
+	Script = "scripts/skills/effects_world/legend_irritable_effect",
+	Name = "Irritable",
+	Const = "LegendIrritable"
+});
+effectsDefs.push({
+	ID = "effects.legend_well_tended",
+	Script = "scripts/skills/effects_world/legend_well_tended_effect",
+	Name = "Well Tended",
+	Const = "LegendWellTended"
+});
+effectsDefs.push({
+	ID = "effects.legend_RSS_radiance_effect",
+	Script = "scripts/skills/rune_sigils/legend_RSS_radiance_effect",
+	Name = "Blinded",
+	Const = "LegendRssRadianceEffect"
+});
+effectsDefs.push({
+	ID = "effects.legend_RSW_bleeding_effect",
+	Script = "scripts/skills/rune_sigils/legend_RSW_bleeding_effect",
+	Name = "Bleeding",
+	Const = "LegendRswBleedingEffect"
+});
+
+
 ::Legends.Effects.addEffectDefObjects(effectsDefs);

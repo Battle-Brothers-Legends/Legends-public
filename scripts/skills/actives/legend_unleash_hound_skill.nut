@@ -135,7 +135,7 @@ this.legend_unleash_hound_skill <- this.inherit("scripts/skills/actives/legend_u
 	function isUsable()
 	{
 
-		if (this.getContainer().hasSkill("effects.legend_summoned_hound_effect"))
+		if (this.getContainer().hasEffect(::Legends.Effect.LegendSummonedHoundEffect))
 		{
 			return false;
 		}

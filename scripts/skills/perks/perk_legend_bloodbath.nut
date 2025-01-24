@@ -64,7 +64,7 @@ this.perk_legend_bloodbath <- this.inherit("scripts/skills/skill", {
 
 		foreach( a in actors )
 		{
-			if (a.getSkills().hasSkill("effects.bleeding") || a.getSkills().hasSkill("effects.legend_grazed_effect")  || a.getSkills().hasSkillOfType(this.Const.SkillType.TemporaryInjury))
+			if (a.getSkills().hasEffect(::Legends.Effect.Bleeding) || a.getSkills().hasEffect(::Legends.Effect.LegendGrazedEffect)  || a.getSkills().hasSkillOfType(this.Const.SkillType.TemporaryInjury))
 			{
 				bleeders += 1.0;
 

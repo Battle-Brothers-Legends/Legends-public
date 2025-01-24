@@ -63,7 +63,7 @@ this.legend_magic_imbue_skill <- this.inherit("scripts/skills/actives/legend_mag
 
 		local target = _targetTile.getEntity();
 
-		if (target.getSkills().hasSkill("effects.legend_effect_imbue"))
+		if (target.getSkills().hasEffect(::Legends.Effect.LegendImbueEffect))
 		{
 			return false;
 		}
@@ -80,7 +80,7 @@ this.legend_magic_imbue_skill <- this.inherit("scripts/skills/actives/legend_mag
 			return;
 		}
 
-		if (target.getSkills().hasSkill("effects.legend_effect_imbue"))
+		if (target.getSkills().hasEffect(::Legends.Effect.LegendImbueEffect))
 		{
 			return;
 		}

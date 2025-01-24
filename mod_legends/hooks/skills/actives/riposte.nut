@@ -2,7 +2,7 @@
 {
 	o.isUsable = function ()
 	{
-		return !this.m.IsSpent && this.skill.isUsable() && !this.getContainer().hasSkill("effects.riposte");
+		return !this.m.IsSpent && this.skill.isUsable() && !this.getContainer().hasEffect(::Legends.Effect.Riposte);
 	}
 
 	o.onAfterUpdate = function ( _properties )

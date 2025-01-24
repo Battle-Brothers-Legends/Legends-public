@@ -58,7 +58,7 @@ this.legend_falcon_skill <- this.inherit("scripts/skills/skill", {
 	function isUsable()
 	{
 
-		if (this.getContainer().hasSkill("effects.legend_summoned_falcon_effect"))
+		if (this.getContainer().hasEffect(::Legends.Effect.LegendSummonedFalconEffect))
 		{
 			return false;
 		}

@@ -47,7 +47,7 @@ this.legend_redback_spider_racial <- this.inherit("scripts/skills/skill", {
 		this.spawnIcon("status_effect_54", _targetEntity.getTile());
 		local poison = _targetEntity.getSkills().getSkillByID("effects.legend_redback_spider_poison");
 
-		if (!_targetEntity.getSkills().hasSkill("effects.stunned") && !_targetEntity.getCurrentProperties().IsImmuneToStun)
+		if (!_targetEntity.getSkills().hasEffect(::Legends.Effect.Stunned) && !_targetEntity.getCurrentProperties().IsImmuneToStun)
 		{
 			_targetEntity.getSkills().add(this.new("scripts/skills/effects/stunned_effect"));
 			this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(_targetEntity) + " is stunned");
@@ -71,7 +71,7 @@ this.legend_redback_spider_racial <- this.inherit("scripts/skills/skill", {
 
 	function onAnySkillUsed( _skill, _targetEntity, _properties )
 	{
-		if (_targetEntity.getSkills().hasSkill("effects.web"))
+		if (_targetEntity.getSkills().hasEffect(::Legends.Effect.Web))
 		{
 			_properties.DamageDirectMult *= 2.0;
 		}

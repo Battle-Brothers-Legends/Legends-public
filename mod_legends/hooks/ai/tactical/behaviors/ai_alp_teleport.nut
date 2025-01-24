@@ -69,7 +69,7 @@
 
 				local targetValue = this.queryTargetValue(_entity, t.Actor);
 
-				if (t.Actor.getCurrentProperties().IsStunned && t.Actor.getSkills().hasSkill("effects.sleeping"))
+				if (t.Actor.getCurrentProperties().IsStunned && t.Actor.getSkills().hasEffect(::Legends.Effect.Sleeping))
 				{
 					targetValue = targetValue * 1.5;
 				}

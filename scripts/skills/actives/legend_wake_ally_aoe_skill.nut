@@ -79,7 +79,7 @@ this.legend_wake_ally_aoe_skill <- this.inherit("scripts/skills/skill", {
 				{
 					local tile = myTile.getNextTile(i);
 
-					if (this.Math.abs(tile.Level - myTile.Level) <= 1 && tile.IsOccupiedByActor && actor.isAlliedWith(tile.getEntity()) && (tile.getEntity().getSkills().hasSkill("effects.sleeping") || tile.getEntity().getSkills().hasSkill("effects.nightmare")))
+					if (this.Math.abs(tile.Level - myTile.Level) <= 1 && tile.IsOccupiedByActor && actor.isAlliedWith(tile.getEntity()) && (tile.getEntity().getSkills().hasEffect(::Legends.Effect.Sleeping) || tile.getEntity().getSkills().hasEffect(::Legends.Effect.Nightmare)))
 					{
 						hasTarget = true;
 						break;
@@ -110,7 +110,7 @@ this.legend_wake_ally_aoe_skill <- this.inherit("scripts/skills/skill", {
 			return false;
 		}
 
-		if (target.getSkills().hasSkill("effects.sleeping") || target.getSkills().hasSkill("effects.nightmare"))
+		if (target.getSkills().hasEffect(::Legends.Effect.Sleeping) || target.getSkills().hasEffect(::Legends.Effect.Nightmare))
 		{
 			return true;
 		}

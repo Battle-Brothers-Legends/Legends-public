@@ -66,7 +66,7 @@ this.perk_legend_ambidextrous <- this.inherit("scripts/skills/skill", {
 			}
 		];
 
-		if ((main == null || this.getContainer().hasSkill("effects.disarmed")) && off == null && !items.hasBlockedSlot(this.Const.ItemSlot.Offhand))
+		if ((main == null || this.getContainer().hasEffect(::Legends.Effect.Disarmed)) && off == null && !items.hasBlockedSlot(this.Const.ItemSlot.Offhand))
 		{
 			ret.push({
 				id = 3,
@@ -122,7 +122,7 @@ this.perk_legend_ambidextrous <- this.inherit("scripts/skills/skill", {
 		local off = items.getItemAtSlot(this.Const.ItemSlot.Offhand);
 		local main = items.getItemAtSlot(this.Const.ItemSlot.Mainhand);
 
-		if ((main == null || this.getContainer().hasSkill("effects.disarmed")) && off == null && !items.hasBlockedSlot(this.Const.ItemSlot.Offhand))
+		if ((main == null || this.getContainer().hasEffect(::Legends.Effect.Disarmed)) && off == null && !items.hasBlockedSlot(this.Const.ItemSlot.Offhand))
 		{
 			_properties.MeleeDefense += 10;
 			_properties.MeleeSkill += 5;

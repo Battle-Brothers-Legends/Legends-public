@@ -55,7 +55,7 @@
 	{
 		local actor = this.getContainer().getActor();
 		local skill = actor.getCurrentProperties().getMeleeSkill();
-		local toHit = this.Math.min(100, skill - 10 + (actor.getSkills().hasSkill("effects.goblin_shaman_potion") ? 100 : 0));
+		local toHit = this.Math.min(100, skill - 10 + (actor.getSkills().hasEffect(::Legends.Effect.GoblinShamanPotion) ? 100 : 0));
 		if (actor.getCurrentProperties().IsSpecializedInNets)
 		{
 			toHit = this.Math.max(99, toHit);
@@ -84,35 +84,35 @@
 					{
 						local entity = tile.getEntity();
 
-						if (entity.getSkills().hasSkill("effects.net"))
+						if (entity.getSkills().hasEffect(::Legends.Effect.Net))
 						{
 							this.m.Icon = "skills/active_157.png";
 							this.m.IconDisabled = "skills/active_157_sw.png";
 							return false;
 						}
 
-						if (entity.getSkills().hasSkill("effects.web"))
+						if (entity.getSkills().hasEffect(::Legends.Effect.Web))
 						{
 							this.m.Icon = "skills/active_158.png";
 							this.m.IconDisabled = "skills/active_158_sw.png";
 							return false;
 						}
 
-						if (entity.getSkills().hasSkill("effects.rooted"))
+						if (entity.getSkills().hasEffect(::Legends.Effect.Rooted))
 						{
 							this.m.Icon = "skills/active_159.png";
 							this.m.IconDisabled = "skills/active_159_sw.png";
 							return false;
 						}
 
-						if (entity.getSkills().hasSkill("effects.kraken_ensnare"))
+						if (entity.getSkills().hasEffect(::Legends.Effect.KrakenEnsnare))
 						{
 							this.m.Icon = "skills/active_151.png";
 							this.m.IconDisabled = "skills/active_151_sw.png";
 							return false;
 						}
 
-						if (entity.getSkills().hasSkill("effects.serpent_ensnare"))
+						if (entity.getSkills().hasEffect(::Legends.Effect.SerpentEnsnare))
 						{
 							this.m.Icon = "skills/active_190.png";
 							this.m.IconDisabled = "skills/active_190_sw.png";

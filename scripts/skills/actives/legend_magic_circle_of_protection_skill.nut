@@ -116,9 +116,9 @@ this.legend_magic_circle_of_protection_skill <- this.inherit("scripts/skills/act
 		{
 			foreach( t in tar )
 			{
-				if (t.isAlliedWith(actor) && this.tileInCircleRange(t.getTile()) && !t.getSkills().hasSkill("effects.legend_effect_magic_circle_of_protection"))
+				if (t.isAlliedWith(actor) && this.tileInCircleRange(t.getTile()) && !t.getSkills().hasEffect(::Legends.Effect.LegendMagicCircleOfProtectionEffect))
 				{
-					local circleEffect = this.new("scripts/skills/effects/legend_effect_magic_circle_of_protection");
+					local circleEffect = this.new("scripts/skills/effects/legend_magic_circle_of_protection_effect");
 					circleEffect.setCircle(this);
 					t.getSkills().add(circleEffect);
 					this.spawnIcon("perk_37", t.getTile());
@@ -132,9 +132,9 @@ this.legend_magic_circle_of_protection_skill <- this.inherit("scripts/skills/act
 	{
 		foreach(actor in this.m.ProtectedActors)
 		{
-			if (actor.getSkills().hasSkill("effects.legend_effect_magic_circle_of_protection"))
+			if (actor.getSkills().hasEffect(::Legends.Effect.LegendMagicCircleOfProtectionEffect))
 			{
-				actor.getSkills().removeByID("effects.legend_effect_magic_circle_of_protection");
+				actor.getSkills().removeByID("effects.legend_magic_circle_of_protection_effect");
 			}
 		}
 		this.m.TurnsRemaining = 0;

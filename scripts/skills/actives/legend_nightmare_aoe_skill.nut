@@ -47,7 +47,7 @@ this.legend_nightmare_aoe_skill <- this.inherit("scripts/skills/skill", {
 
 		foreach( o in opponents )
 		{
-			if (o.Actor.getSkills().hasSkill("effects.nightmare"))
+			if (o.Actor.getSkills().hasEffect(::Legends.Effect.Nightmare))
 			{
 				nightmares = ++nightmares;
 			}

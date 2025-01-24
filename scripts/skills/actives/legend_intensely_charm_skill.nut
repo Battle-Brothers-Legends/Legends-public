@@ -80,12 +80,12 @@ this.legend_intensely_charm_skill <- this.inherit("scripts/skills/skill", {
 			return false;
 		}
 
-		if (_target.getSkills().hasSkill("effects.charmed"))
+		if (_target.getSkills().hasEffect(::Legends.Effect.Charmed))
 		{
 			return false;
 		}
 
-		if (_target.getSkills().hasSkill("effects.legend_intensely_charmed"))
+		if (_target.getSkills().hasEffect(::Legends.Effect.LegendIntenselyCharmed))
 		{
 			return false;
 		}

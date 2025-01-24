@@ -69,7 +69,7 @@ this.legend_inspire_skill <- this.inherit("scripts/skills/skill", {
 			return false;
 		}
 
-		if (_targetTile.getEntity().getSkills().hasSkill("effects.legend_inspired"))
+		if (_targetTile.getEntity().getSkills().hasEffect(::Legends.Effect.LegendInspired))
 		{
 			return false;
 		}

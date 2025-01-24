@@ -52,14 +52,14 @@ this.legend_sprint_skill <- this.inherit("scripts/skills/skill", {
 
 	function isUsable()
 	{
-		return this.skill.isUsable() && !this.getContainer().hasSkill("effects.sprint");
+		return this.skill.isUsable() && !this.getContainer().hasEffect(::Legends.Effect.LegendSprint);
 	}
 
 	function onUse( _user, _targetTile )
 	{
-		if (!this.getContainer().hasSkill("effects.sprint"))
+		if (!this.getContainer().hasEffect(::Legends.Effect.LegendSprint))
 		{
-			this.m.Container.add(this.new("scripts/skills/effects/sprint_effect"));
+			this.m.Container.add(this.new("scripts/skills/effects/legend_sprint_effect"));
 			return true;
 		}
 

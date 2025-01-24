@@ -57,7 +57,7 @@ this.legend_levitate_person_skill <- this.inherit("scripts/skills/skill", {
 		}
 
 		local target = _targetTile.getEntity();
-		if (target.getSkills().hasSkill("effects.legend_levitating"))
+		if (target.getSkills().hasEffect(::Legends.Effect.LegendLevitating))
 		{
 			return false;
 		}
@@ -74,7 +74,7 @@ this.legend_levitate_person_skill <- this.inherit("scripts/skills/skill", {
 			return;
 		}
 
-		if (target.getSkills().hasSkill("effects.legend_levitating"))
+		if (target.getSkills().hasEffect(::Legends.Effect.LegendLevitating))
 		{
 			return;
 		}

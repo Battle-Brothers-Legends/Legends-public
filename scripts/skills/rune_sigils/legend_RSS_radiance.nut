@@ -32,7 +32,7 @@ this.legend_RSS_radiance <- this.inherit("scripts/skills/skill", {
 		{
 			foreach (t in tar)
 			{
-				if (!t.isAlliedWith(actor) && t.getSkills().hasSkill("effects.legend_RSS_radiance_effect") && t.getTile().getDistanceTo(actor.getTile()) == 1 &&  this.Math.abs(t.getTile().Level - myTile.Level))
+				if (!t.isAlliedWith(actor) && t.getSkills().hasEffect(::Legends.Effect.LegendRssRadianceEffect) && t.getTile().getDistanceTo(actor.getTile()) == 1 &&  this.Math.abs(t.getTile().Level - myTile.Level))
 				{
 					local NewMalus = t.getSkills().getSkillByID("effects.legend_RSS_radiance_effect");
 					NewMalus.setMalus(this.getItem().getRuneBonus1(), this.getItem().getRuneBonus2());
@@ -61,7 +61,7 @@ this.legend_RSS_radiance <- this.inherit("scripts/skills/skill", {
 		{
 			foreach (t in tar)
 			{
-				if (!t.isAlliedWith(actor) && !t.getSkills().hasSkill("effects.legend_RSS_radiance_effect"))
+				if (!t.isAlliedWith(actor) && !t.getSkills().hasEffect(::Legends.Effect.LegendRssRadianceEffect))
 				{
 					local blinded = this.new("scripts/skills/rune_sigils/legend_RSS_radiance_effect");
 					blinded.setMalus(this.getItem().getRuneBonus1(), this.getItem().getRuneBonus2());

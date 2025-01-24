@@ -106,7 +106,7 @@ this.legend_hidden_skill <- this.inherit("scripts/skills/skill", {
 			return false;
 		}
 
-		if (this.getContainer().hasSkill("effect.legend_hidden"))
+		if (this.getContainer().hasEffect(::Legends.Effect.LegendHidden))
 		{
 			return false;
 		}

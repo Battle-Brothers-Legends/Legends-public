@@ -65,7 +65,7 @@ this.legend_unleash_catapult_skill <- this.inherit("scripts/skills/skill", {
 	function isUsable()
 	{
 
-		if (this.getContainer().hasSkill("effects.legend_summoned_catapult_effect"))
+		if (this.getContainer().hasEffect(::Legends.Effect.LegendSummonedCatapultEffect))
 		{
 			return false;
 		}

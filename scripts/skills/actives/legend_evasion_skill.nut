@@ -47,7 +47,7 @@ this.legend_evasion_skill <- this.inherit("scripts/skills/skill", {
 
 	function isUsable()
 	{
-		return this.skill.isUsable() && !this.getContainer().hasSkill("effects.legend_evasion");
+		return this.skill.isUsable() && !this.getContainer().hasEffect(::Legends.Effect.LegendEvasion);
 	}
 
 	function onVerifyTarget( _originTile, _targetTile )
@@ -57,7 +57,7 @@ this.legend_evasion_skill <- this.inherit("scripts/skills/skill", {
 
 	function onUse( _user, _targetTile )
 	{
-		if (!this.getContainer().hasSkill("effects.legend_evasion"))
+		if (!this.getContainer().hasEffect(::Legends.Effect.LegendEvasion))
 		{
 			this.m.Container.add(this.new("scripts/skills/effects/legend_evasion_effect"));
 			return true;

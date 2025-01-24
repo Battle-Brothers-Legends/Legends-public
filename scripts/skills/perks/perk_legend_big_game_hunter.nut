@@ -14,7 +14,7 @@ this.perk_legend_big_game_hunter <- this.inherit("scripts/skills/skill", {
 	{
 		local actor = this.getContainer().getActor();
 
-		if (actor.isArmedWithRangedWeapon() && !actor.getSkills().hasSkill("effect.legend_hunting_big_game"))
+		if (actor.isArmedWithRangedWeapon() && !actor.getSkills().hasEffect(::Legends.Effect.LegendHuntingBigGame))
 		{
 			actor.getSkills().add(this.new("scripts/skills/effects/legend_hunting_big_game"));
 		}

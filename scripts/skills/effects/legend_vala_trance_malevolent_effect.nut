@@ -114,7 +114,7 @@ this.legend_vala_trance_malevolent_effect <- this.inherit("scripts/skills/skill"
 			foreach (e in ever)
 			{
 				local distance = e.getTile().getDistanceTo(actor.getTile());
-				if (distance <= 2 && e.isAlliedWith(actor) && e.isAlive() && !e.isDying() && !e.getSkills().hasSkill("effects.legend_vala_trance_malevolent_effect"))
+				if (distance <= 2 && e.isAlliedWith(actor) && e.isAlive() && !e.isDying() && !e.getSkills().hasEffect(::Legends.Effect.LegendValaTranceMalevolentEffect))
 				{
 					local chance = this.m.Power - e.getBravery();
 

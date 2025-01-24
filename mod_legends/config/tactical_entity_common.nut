@@ -72,7 +72,7 @@
 
 	if ((_entity.getFlags().has("undead") && !_entity.getFlags().has("ghoul")) || _entity.getFlags().has("cultist"))
 	{
-		if (!_entity.getSkills().hasSkill("effects.legend_consecrated_effect"))
+		if (!_entity.getSkills().hasEffect(::Legends.Effect.LegendConsecratedEffect))
 		{
 			local effect = this.new("scripts/skills/effects/legend_consecrated_effect");
 			if (_killer != null && _killer.getFaction() == this.Const.Faction.Player)
@@ -85,7 +85,7 @@
 	}
 	else if (faction == this.Const.Faction.Player || faction == this.Const.Faction.Civilian || faction == this.Const.Faction.NobleHouse)
 	{
-		if (!_entity.getSkills().hasSkill("effects.legend_sanctified_effect"))
+		if (!_entity.getSkills().hasEffect(::Legends.Effect.LegendSanctifiedEffect))
 		{
 			_entity.getSkills().add(this.new("scripts/skills/effects/legend_sanctified_effect"));
 		}

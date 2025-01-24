@@ -21,7 +21,7 @@
 
 	o.isBonusEligible <- function ( _skill, _targetEntity )
 	{
-		if (_skill.isAttack() && _targetEntity.getSkills().hasSkillOfType(this.Const.SkillType.TemporaryInjury) || _targetEntity.getSkills().hasSkill("effects.debilitated") || _targetEntity.getSkills().hasSkill("effects.legend_tackled"))
+		if (_skill.isAttack() && _targetEntity.getSkills().hasSkillOfType(this.Const.SkillType.TemporaryInjury) || _targetEntity.getSkills().hasEffect(::Legends.Effect.Debilitated) || _targetEntity.getSkills().hasEffect(::Legends.Effect.LegendTackled))
 		{
 			return true;
 		}

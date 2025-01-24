@@ -597,7 +597,7 @@ this.training_building <- this.inherit("scripts/entity/world/camp/camp_building"
 	}
 	function getTrainedAfter11( bro )
 	{
-		if (bro.getSkills().hasSkill("effects.trained"))
+		if (bro.getSkills().hasEffect(::Legends.Effect.Trained))
 		{
 			return;
 		}

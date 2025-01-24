@@ -141,7 +141,7 @@ this.legend_unleash_wolf_skill <- this.inherit("scripts/skills/actives/legend_un
 
 	function isUsable()
 	{
-		if (this.getContainer().hasSkill("effects.legend_summoned_wolf_effect"))
+		if (this.getContainer().hasEffect(::Legends.Effect.LegendSummonedWolfEffect))
 		{
 			return false;
 		}

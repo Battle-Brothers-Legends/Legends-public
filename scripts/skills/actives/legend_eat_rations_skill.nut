@@ -99,7 +99,7 @@ this.legend_eat_rations_skill <- this.inherit("scripts/skills/actives/base/legen
 			return true;
 		}
 
-		if (!_user.getSkills().hasSkill("effects.legend_satiated_effect"))
+		if (!_user.getSkills().hasEffect(::Legends.Effect.LegendSatiatedEffect))
 		{
 			if (!_user.isHiddenToPlayer())
 			{
@@ -125,7 +125,7 @@ this.legend_eat_rations_skill <- this.inherit("scripts/skills/actives/base/legen
 
 		local rationsEffect = _user.getSkills().getSkillByID("effects.legend_rations_effect");
 
-		if (!_user.getSkills().hasSkill("effects.legend_stuffed_effect"))
+		if (!_user.getSkills().hasEffect(::Legends.Effect.LegendStuffedEffect))
 		{
 			if (!_user.isHiddenToPlayer())
 			{

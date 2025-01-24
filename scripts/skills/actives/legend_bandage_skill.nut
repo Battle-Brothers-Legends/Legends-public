@@ -94,7 +94,7 @@ this.legend_bandage_skill <- this.inherit("scripts/skills/skill", {
 			return false;
 		}
 
-		if (target.getSkills().hasSkill("effects.bleeding") || target.getSkills().hasSkill("effects.legend_grazed_effect"))
+		if (target.getSkills().hasEffect(::Legends.Effect.Bleeding) || target.getSkills().hasEffect(::Legends.Effect.LegendGrazedEffect))
 		{
 			return true;
 		}
@@ -129,12 +129,12 @@ this.legend_bandage_skill <- this.inherit("scripts/skills/skill", {
 		local target = _targetTile.getEntity();
 		this.spawnIcon("perk_55", _targetTile);
 
-		while (target.getSkills().hasSkill("effects.bleeding"))
+		while (target.getSkills().hasEffect(::Legends.Effect.Bleeding))
 		{
 			target.getSkills().removeByID("effects.bleeding");
 		}
 
-		while (target.getSkills().hasSkill("effects.legend_grazed_effect"))
+		while (target.getSkills().hasEffect(::Legends.Effect.LegendGrazedEffect))
 		{
 			target.getSkills().removeByID("effects.legend_grazed_effect");
 		}

@@ -59,7 +59,7 @@
 			return true;
 		}
 
-		return (main == null || this.getContainer().hasSkill("effects.disarmed")) && this.skill.isUsable();
+		return (main == null || this.getContainer().hasEffect(::Legends.Effect.Disarmed)) && this.skill.isUsable();
 	}
 
 	o.isHidden = function ()
@@ -72,7 +72,7 @@
 			return false;
 		}
 
-		return (main != null && !this.getContainer().hasSkill("effects.disarmed")) || this.skill.isHidden() || this.m.Container.getActor().isStabled();
+		return (main != null && !this.getContainer().hasEffect(::Legends.Effect.Disarmed)) || this.skill.isHidden() || this.m.Container.getActor().isStabled();
 	}
 
 	o.onAfterUpdate <- function ( _properties )
@@ -110,7 +110,7 @@
 		_properties.DamageRegularMax += 10;
 		_properties.DamageArmorMult = 0.5;
 
-		if (this.m.Container.hasSkill("effects.disarmed") || this.m.Container.hasPerk(::Legends.Perk.LegendAmbidextrous))
+		if (this.m.Container.hasEffect(::Legends.Effect.Disarmed) || this.m.Container.hasPerk(::Legends.Perk.LegendAmbidextrous))
 		{
 			local mhand = actor.getMainhandItem();
 

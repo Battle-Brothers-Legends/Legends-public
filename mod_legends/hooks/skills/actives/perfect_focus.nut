@@ -39,12 +39,12 @@
 
 	o.isUsable = function ()
 	{
-		return this.skill.isUsable() && !this.getContainer().hasSkill("effects.legend_perfect_focus");
+		return this.skill.isUsable() && !this.getContainer().hasEffect(::Legends.Effect.LegendPerfectFocus);
 	}
 
 	o.onUse = function ( _user, _targetTile )
 	{
-		if (!this.getContainer().hasSkill("effects.legend_perfect_focus"))
+		if (!this.getContainer().hasEffect(::Legends.Effect.LegendPerfectFocus))
 		{
 			this.m.Container.add(this.new("scripts/skills/effects/legend_perfect_focus_effect"));
 			return true;

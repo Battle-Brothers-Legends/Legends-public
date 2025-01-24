@@ -83,7 +83,7 @@ this.legend_ancient_scroll_item <- ::inherit("scripts/items/item", {
 		if (::Math.rand(0, 4) > 0)
 			return;
 
-		if (!_actor.getSkills().hasSkill("effect.legend_headache"))
+		if (!_actor.getSkills().hasEffect(::Legends.Effect.LegendHeadache))
 			_actor.getSkills().add(::new("scripts/skills/effects_world/legend_headache_effect"));
 		else
 			_actor.getSkills().add(::new("scripts/skills/effects_world/legend_irritable_effect")); //dont have to wry about this stacking because u can aat max study twice

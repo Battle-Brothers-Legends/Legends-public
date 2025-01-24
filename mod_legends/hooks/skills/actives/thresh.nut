@@ -63,7 +63,7 @@
 
 					if (_user.isAlive() && !_user.isDying())
 					{
-						if (this.m.IsChain && success && tile.IsOccupiedByActor && this.Math.rand(1, 100) <= this.m.StunChance && !tile.getEntity().getCurrentProperties().IsImmuneToBleeding && !tile.getEntity().getSkills().hasSkill("effects.dazed_effect"))
+						if (this.m.IsChain && success && tile.IsOccupiedByActor && this.Math.rand(1, 100) <= this.m.StunChance && !tile.getEntity().getCurrentProperties().IsImmuneToBleeding && !tile.getEntity().getSkills().hasEffect(::Legends.Effect.Dazed))
 						{
 							tile.getEntity().getSkills().add(this.new("scripts/skills/effects/dazed_effect"));
 
@@ -72,7 +72,7 @@
 								this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(_user) + " has grazed " + this.Const.UI.getColorizedEntityName(tile.getEntity()));
 							}
 						}
-						else if (success && tile.IsOccupiedByActor && this.Math.rand(1, 100) <= this.m.StunChance && !tile.getEntity().getCurrentProperties().IsImmuneToStun && !tile.getEntity().getSkills().hasSkill("effects.stunned"))
+						else if (success && tile.IsOccupiedByActor && this.Math.rand(1, 100) <= this.m.StunChance && !tile.getEntity().getCurrentProperties().IsImmuneToStun && !tile.getEntity().getSkills().hasEffect(::Legends.Effect.Stunned))
 						{
 							tile.getEntity().getSkills().add(this.new("scripts/skills/effects/stunned_effect"));
 

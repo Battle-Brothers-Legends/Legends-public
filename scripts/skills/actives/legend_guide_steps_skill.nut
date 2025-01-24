@@ -55,7 +55,7 @@ this.legend_guide_steps_skill <- this.inherit("scripts/skills/skill", {
 
 	function isUsable()
 	{
-		return this.skill.isUsable() && !this.getContainer().hasSkill("effects.legend_steps_guided");
+		return this.skill.isUsable() && !this.getContainer().hasEffect(::Legends.Effect.LegendStepsGuided);
 	}
 
 	function onUse( _user, _targetTile )
@@ -75,7 +75,7 @@ this.legend_guide_steps_skill <- this.inherit("scripts/skills/skill", {
 				continue;
 			}
 
-			if (a.getFaction() == _user.getFaction() && !a.getSkills().hasSkill("effects.legend_steps_guided"))
+			if (a.getFaction() == _user.getFaction() && !a.getSkills().hasEffect(::Legends.Effect.LegendStepsGuided))
 			{
 				a.getSkills().add(this.new("scripts/skills/effects/legend_steps_guided"));
 			}

@@ -4,7 +4,7 @@ this.legend_hidden_effect <- this.inherit("scripts/skills/skill", {
 	},
 	function create()
 	{
-		this.m.ID = "effect.legend_hidden";
+		this.m.ID = "effects.legend_hidden";
 		this.m.Name = "Hidden";
 		this.m.Description = "This character is hidden in terrain and can not be seen by opponents. Removed upon attacking opponents or directly adjacent to them.";
 		this.m.Icon = "skills/status_effect_08.png";

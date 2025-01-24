@@ -740,7 +740,7 @@
 			time = this.Time.getExactTime();
 		}
 
-		local hasShieldWall = _entity.getSkills().hasSkill("effects.shieldwall");
+		local hasShieldWall = _entity.getSkills().hasEffect(::Legends.Effect.Shieldwall);
 		local canUseShieldWall = !hasShieldWall && _entity.getSkills().hasSkill("actives.shieldwall");
 		local hasAdrenaline = _entity.getSkills().hasSkill("actives.adrenaline");
 		local bestTarget;

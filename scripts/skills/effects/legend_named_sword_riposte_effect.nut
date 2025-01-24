@@ -41,7 +41,7 @@ this.legend_named_sword_riposte_effect <- this.inherit("scripts/skills/skill", {
     function onTurnStart()
     {
         if ( ::Math.rand(0, 100) > this.m.Bonus ) { return; }
-        if ( this.getContainer().hasSkill("effects.riposte") ) { return; }
+        if ( this.getContainer().hasEffect(::Legends.Effect.Riposte) ) { return; }
 
         this.getContainer().add(this.new("scripts/skills/effects/riposte_effect"));
         

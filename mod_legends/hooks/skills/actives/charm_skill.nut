@@ -5,7 +5,7 @@
 	{
 		ret = isViableTarget( _user, _target );
 	
-		if (_target.getSkills().hasSkill("effects.legend_intensely_charmed"))
+		if (_target.getSkills().hasEffect(::Legends.Effect.LegendIntenselyCharmed))
 		{
 			return false;
 		}

@@ -67,7 +67,7 @@ this.legend_incoming_skill <- this.inherit("scripts/skills/skill", {
 
 	function isUsable()
 	{
-		return this.skill.isUsable() && !this.getContainer().hasSkill("effects.legend_dodging_incoming");
+		return this.skill.isUsable() && !this.getContainer().hasEffect(::Legends.Effect.LegendDodgingIncoming);
 	}
 
 	function onUse( _user, _targetTile )
@@ -87,7 +87,7 @@ this.legend_incoming_skill <- this.inherit("scripts/skills/skill", {
 				continue;
 			}
 
-			if (a.getFaction() == _user.getFaction() && !a.getSkills().hasSkill("effects.legend_dodging_incoming"))
+			if (a.getFaction() == _user.getFaction() && !a.getSkills().hasEffect(::Legends.Effect.LegendDodgingIncoming))
 			{
 
 			local effect = this.new("scripts/skills/effects/legend_dodging_incoming")

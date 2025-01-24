@@ -62,7 +62,7 @@ this.perk_legend_onslaught <- this.inherit("scripts/skills/skill", {
 			return false;
 		}
 
-		if (!_targetEntity.getSkills().hasSkill("effects.stunned"))
+		if (!_targetEntity.getSkills().hasEffect(::Legends.Effect.Stunned))
 		{
 			_targetEntity.getSkills().add(this.new("scripts/skills/effects/legend_baffled_effect"));
 

@@ -82,7 +82,7 @@ this.camp_commander_dialog_module <- this.inherit("scripts/ui/screens/ui_module"
 			}
 
 			local skills = [];
-			if (b.getSkills().hasSkill("effects.trained")) 
+			if (b.getSkills().hasEffect(::Legends.Effect.Trained)) 
 			{
 				local _skill = b.getSkills().getSkillByID("effects.trained")
 				skills.push({

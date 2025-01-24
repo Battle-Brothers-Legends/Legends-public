@@ -63,7 +63,7 @@ this.perk_legend_vala_warden <- this.inherit("scripts/skills/skill", {
 				text = "Hitpoints: " + WardenHitpoints + "\nMelee skill: " + WardenMeleeSkill + "\nMelee defense: " + WardenMeleeDefense + "\nRanged skill: " + WardenRangedSkill + "\nRanged defense: " + WardenRangedDefense + "\nInitiative: " + WardenInitiative
 			});
 
-			if (this.getContainer().getActor().getSkills().hasSkill("effects.legend_vala_spiritual_bond_effect"))
+			if (this.getContainer().getActor().getSkills().hasEffect(::Legends.Effect.LegendValaSpiritualBondEffect))
 			{
 				tooltip.push({
 					id = 8,
@@ -133,7 +133,7 @@ this.perk_legend_vala_warden <- this.inherit("scripts/skills/skill", {
 
 				if (this.getContainer().getActor().getSkills().hasPerk(::Legends.Perk.LegendValaSpiritualBond))
 				{
-					if (!this.getContainer().getActor().getSkills().hasSkill("effects.legend_vala_spiritual_bond_effect"))
+					if (!this.getContainer().getActor().getSkills().hasEffect(::Legends.Effect.LegendValaSpiritualBondEffect))
 					{
 						local bond = this.new("scripts/skills/effects/legend_vala_spiritual_bond_effect");
 						bond.setVala(this);

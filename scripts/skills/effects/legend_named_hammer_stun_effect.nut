@@ -59,7 +59,7 @@ this.legend_named_hammer_stun_effect <- this.inherit("scripts/skills/skill", {
 			return;
 		}
         
-		if (_targetEntity.getSkills().hasSkill("effects.stunned"))
+		if (_targetEntity.getSkills().hasEffect(::Legends.Effect.Stunned))
 		{
 			return;
 		}

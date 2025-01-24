@@ -61,7 +61,7 @@ this.legend_coordinated_volleys_skill <- this.inherit("scripts/skills/skill", {
 
 function isUsable()
 	{
-		return this.skill.isUsable() && !this.getContainer().hasSkill("effects.legend_coordinating_volleys");
+		return this.skill.isUsable() && !this.getContainer().hasEffect(::Legends.Effect.LegendCoordinatingVolleys);
 	}
 
 	function onUse( _user, _targetTile )
@@ -81,7 +81,7 @@ function isUsable()
 				continue;
 			}
 
-			if (a.getFaction() == _user.getFaction() && !a.getSkills().hasSkill("effects.legend_coordinating_volleys"))
+			if (a.getFaction() == _user.getFaction() && !a.getSkills().hasEffect(::Legends.Effect.LegendCoordinatingVolleys))
 			{
 				local effect = this.new("scripts/skills/effects/legend_coordinating_volleys")
 				effect.setCommander(this.getContainer().getActor());

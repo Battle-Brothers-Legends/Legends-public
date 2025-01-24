@@ -14,7 +14,7 @@ this.perk_legend_double_strike <- this.inherit("scripts/skills/skill", {
 	{
 		local actor = this.getContainer().getActor();
 
-		if (!_targetEntity.isAlliedWith(actor) && !actor.getSkills().hasSkill("effect.double_strike"))
+		if (!_targetEntity.isAlliedWith(actor) && !actor.getSkills().hasEffect(::Legends.Effect.DoubleStrike))
 		{
 			actor.getSkills().add(this.new("scripts/skills/effects/double_strike_effect"));
 		}

@@ -53,7 +53,7 @@
 			local actor = this.getContainer().getActor();
 			this.spawnIcon("status_effect_01", actor.getTile());
 			local hitInfo = clone this.Const.Tactical.HitInfo;
-			hitInfo.DamageRegular = this.m.Damage * (actor.getSkills().hasSkill("effects.hyena_potion") ? 0.5 : 1.0);
+			hitInfo.DamageRegular = this.m.Damage * (actor.getSkills().hasEffect(::Legends.Effect.HyenaPotion) ? 0.5 : 1.0);
 			hitInfo.DamageDirect = 1.0;
 			hitInfo.BodyPart = this.Const.BodyPart.Body;
 			hitInfo.BodyDamageMult = 1.0;

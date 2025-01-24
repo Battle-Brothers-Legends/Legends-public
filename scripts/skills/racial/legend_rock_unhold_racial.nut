@@ -39,7 +39,7 @@ this.legend_rock_unhold_racial <- this.inherit("scripts/skills/skill", {
 			return;
 		}
 
-		if (!actor.getSkills().hasSkill("effects.spider_poison") && !actor.getSkills().hasSkill("effects.legend_redback_spider_poison") && !actor.getSkills().hasSkill("effects.legend_RSW_poison_effect"))
+		if (!actor.getSkills().hasEffect(::Legends.Effect.SpiderPoison) && !actor.getSkills().hasEffect(::Legends.Effect.LegendRedbackSpiderPoison) && !actor.getSkills().hasEffect(::Legends.Effect.LegendRswPoisonEffect))
 		{
 			actor.setArmor(this.Const.BodyPart.Body, newBodyArmor);
 			actor.setArmor(this.Const.BodyPart.Head, newHeadArmor);

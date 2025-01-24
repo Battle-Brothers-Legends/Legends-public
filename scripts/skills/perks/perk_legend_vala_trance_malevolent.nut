@@ -59,7 +59,7 @@ this.perk_legend_vala_trance_malevolent <- this.inherit("scripts/skills/skill", 
 			return false;
 		}
 
-		if (actor.getSkills().hasSkill("effects.legend_vala_currently_chanting") || actor.getSkills().hasSkill("effects.legend_vala_in_trance"))
+		if (actor.getSkills().hasEffect(::Legends.Effect.LegendValaCurrentlyChanting) || actor.getSkills().hasEffect(::Legends.Effect.LegendValaInTrance))
 		{
 			return false;
 		}
@@ -101,7 +101,7 @@ this.perk_legend_vala_trance_malevolent <- this.inherit("scripts/skills/skill", 
 			});
 		}
 
-		if (actor.getSkills().hasSkill("effects.legend_vala_currently_chanting"))
+		if (actor.getSkills().hasEffect(::Legends.Effect.LegendValaCurrentlyChanting))
 		{
 			ret.push({
 				id = 10,
@@ -129,7 +129,7 @@ this.perk_legend_vala_trance_malevolent <- this.inherit("scripts/skills/skill", 
 		local actor = this.getContainer().getActor();
 		local targets = this.Tactical.Entities.getAllInstances();
 
-		if (actor.getSkills().hasSkill("effects.legend_vala_in_trance") && this.m.TranceIsActive)
+		if (actor.getSkills().hasEffect(::Legends.Effect.LegendValaInTrance) && this.m.TranceIsActive)
 		{
 			local TotalVictims = 0;
 
@@ -201,7 +201,7 @@ this.perk_legend_vala_trance_malevolent <- this.inherit("scripts/skills/skill", 
 				{
 					foreach( t in tar )
 					{
-						if (!t.getSkills().hasSkill("effects.legend_vala_trance_malevolent_effect") && t.getFlags().get("IsSpiritVictim"))
+						if (!t.getSkills().hasEffect(::Legends.Effect.LegendValaTranceMalevolentEffect) && t.getFlags().get("IsSpiritVictim"))
 						{
 							local effect = this.new("scripts/skills/effects/legend_vala_trance_malevolent_effect");
 							effect.setPower(this.getContainer().getActor().getBravery());
@@ -209,7 +209,7 @@ this.perk_legend_vala_trance_malevolent <- this.inherit("scripts/skills/skill", 
 							t.getFlags().set("IsSpiritVictim", false);
 						}
 
-						if (t.getSkills().hasSkill("effects.legend_vala_trance_malevolent_effect") && t.getFlags().get("IsSpiritVictim"))
+						if (t.getSkills().hasEffect(::Legends.Effect.LegendValaTranceMalevolentEffect) && t.getFlags().get("IsSpiritVictim"))
 						{
 							local effect = t.getSkills().getSkillByID("effects.legend_vala_trance_malevolent_effect");
 							effect.setPower(this.getContainer().getActor().getBravery());
@@ -251,7 +251,7 @@ this.perk_legend_vala_trance_malevolent <- this.inherit("scripts/skills/skill", 
 	{
 		local actor = this.getContainer().getActor();
 
-		if (actor.getSkills().hasSkill("effects.legend_vala_in_trance"))
+		if (actor.getSkills().hasEffect(::Legends.Effect.LegendValaInTrance))
 		{
 			actor.getSkills().removeByID("effects.legend_vala_in_trance");
 		}
@@ -283,7 +283,7 @@ this.perk_legend_vala_trance_malevolent <- this.inherit("scripts/skills/skill", 
 			return;
 		}
 
-		if (actor.getSkills().hasSkill("effects.legend_vala_in_trance"))
+		if (actor.getSkills().hasEffect(::Legends.Effect.LegendValaInTrance))
 		{
 			if (actor.getSkills().hasPerk(::Legends.Perk.LegendValaTranceMastery))
 			{
@@ -335,7 +335,7 @@ this.perk_legend_vala_trance_malevolent <- this.inherit("scripts/skills/skill", 
 		{
 			foreach( t in tar )
 			{
-				if (t.getSkills().hasSkill("effects.legend_vala_trance_malevolent_effect"))
+				if (t.getSkills().hasEffect(::Legends.Effect.LegendValaTranceMalevolentEffect))
 				{
 					t.getSkills().removeByID("effects.legend_vala_trance_malevolent_effect");
 				}
@@ -379,7 +379,7 @@ this.perk_legend_vala_trance_malevolent <- this.inherit("scripts/skills/skill", 
 		{
 			local actor = this.getContainer().getActor();
 
-			if (!actor.getSkills().hasSkill("effects.legend_vala_in_trance"))
+			if (!actor.getSkills().hasEffect(::Legends.Effect.LegendValaInTrance))
 			{
 				actor.getSkills().add(this.new("scripts/skills/effects/legend_vala_in_trance"));
 			}

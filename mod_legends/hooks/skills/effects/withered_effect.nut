@@ -55,7 +55,7 @@
 		_properties.StaminaMult *= 1.0 - this.m.TurnsLeft * 0.10;
 		_properties.FatigueRecoveryRate -= this.m.TurnsLeft * 5;
 
-		if (actor.hasSprite("status_stunned") && !this.getContainer().hasSkill("effects.stunned"))
+		if (actor.hasSprite("status_stunned") && !this.getContainer().hasEffect(::Legends.Effect.Stunned))
 		{
 			actor.getSprite("status_stunned").setBrush("bust_withered");
 			actor.getSprite("status_stunned").Visible = true;

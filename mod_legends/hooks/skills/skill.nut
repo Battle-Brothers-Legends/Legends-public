@@ -401,7 +401,7 @@
 
 		if (this.m.IsShieldwallRelevant)
 		{
-			if (_targetTile.IsOccupiedByActor && targetEntity.getSkills().hasSkill("effects.shieldwall"))
+			if (_targetTile.IsOccupiedByActor && targetEntity.getSkills().hasEffect(::Legends.Effect.Shieldwall))
 			{
 				ret.push({
 					icon = "ui/tooltips/negative.png",
@@ -410,7 +410,7 @@
 			}
 		}
 
-		if (_targetTile.IsOccupiedByActor && myTile.getDistanceTo(_targetTile) <= 1 && targetEntity.getSkills().hasSkill("effects.riposte"))
+		if (_targetTile.IsOccupiedByActor && myTile.getDistanceTo(_targetTile) <= 1 && targetEntity.getSkills().hasEffect(::Legends.Effect.Riposte))
 		{
 			ret.push({
 				icon = "ui/tooltips/negative.png",
@@ -956,7 +956,7 @@
 				local shieldBonus = (this.m.IsRanged ? shield.getRangedDefense() : shield.getMeleeDefense()) * (_targetEntity.getCurrentProperties().IsSpecializedInShields ? 1.25 : 1.0);
 				toHit = toHit + shieldBonus;
 
-				if (!this.m.IsShieldwallRelevant && _targetEntity.getSkills().hasSkill("effects.shieldwall"))
+				if (!this.m.IsShieldwallRelevant && _targetEntity.getSkills().hasEffect(::Legends.Effect.Shieldwall))
 				{
 					toHit = toHit + shieldBonus;
 				}
@@ -1241,7 +1241,7 @@
 				toHit = toHit + shieldBonus;
 			}
 
-			if (_targetEntity.getSkills().hasSkill("effects.shieldwall"))
+			if (_targetEntity.getSkills().hasEffect(::Legends.Effect.Shieldwall))
 			{
 				if (!this.m.IsShieldwallRelevant)
 				{

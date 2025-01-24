@@ -6,15 +6,15 @@
 		{
 			return false;
 		}
-		if (this.getContainer().hasSkill("effects.legend_fortify"))
+		if (this.getContainer().hasEffect(::Legends.Effect.LegendFortify))
 		{
 			return false;
 		}
-		if (this.getContainer().hasSkill("effects.legend_safeguarding"))
+		if (this.getContainer().hasEffect(::Legends.Effect.LegendSafeguarding))
 		{
 			return false;
 		}
-		if (this.getContainer().hasSkill("effects.shieldwall"))
+		if (this.getContainer().hasEffect(::Legends.Effect.Shieldwall))
 		{
 			return false;
 		}

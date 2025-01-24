@@ -95,7 +95,7 @@ this.legend_en_garde_skill <- this.inherit("scripts/skills/skill", {
 		{
 			local target = _targetTile.getEntity();
 
-			if ((_user.getCurrentProperties().IsSpecializedInDaggers || this.Math.rand(1, 100) <= this.m.StunChance) && !target.getCurrentProperties().IsImmuneToDisarm && !target.getSkills().hasSkill("effects.legend_parried"))
+			if ((_user.getCurrentProperties().IsSpecializedInDaggers || this.Math.rand(1, 100) <= this.m.StunChance) && !target.getCurrentProperties().IsImmuneToDisarm && !target.getSkills().hasEffect(::Legends.Effect.LegendParried))
 			{
 				target.getSkills().add(this.new("scripts/skills/effects/legend_parried_effect"));
 

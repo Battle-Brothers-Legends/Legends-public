@@ -64,7 +64,7 @@ this.legend_staff_riposte_skill <- this.inherit("scripts/skills/skill", {
 
 	function isUsable()
 	{
-		return !this.m.IsSpent && this.skill.isUsable() && !this.getContainer().hasSkill("effects.riposte");
+		return !this.m.IsSpent && this.skill.isUsable() && !this.getContainer().hasEffect(::Legends.Effect.Riposte);
 	}
 
 	function onAfterUpdate( _properties )

@@ -14,7 +14,7 @@ this.perk_legend_vengeance <- this.inherit("scripts/skills/skill", {
 	{
 		local actor = this.getContainer().getActor();
 
-		if (_attacker != null && !_attacker.isAlliedWith(actor) && !actor.getSkills().hasSkill("effect.legend_vengeance"))
+		if (_attacker != null && !_attacker.isAlliedWith(actor) && !actor.getSkills().hasEffect(::Legends.Effect.LegendVengeance))
 		{
 			actor.getSkills().add(this.new("scripts/skills/effects/legend_vengeance_effect"));
 		}

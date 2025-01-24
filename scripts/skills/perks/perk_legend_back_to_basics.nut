@@ -53,7 +53,7 @@ this.perk_legend_back_to_basics <- this.inherit("scripts/skills/skill", {
 		this.m.BasicsStacks += 1;
 
 		local a = this.getContainer().getActor();
-		if (!a.getSkills().hasSkill("effects.rallied"))
+		if (!a.getSkills().hasEffect(::Legends.Effect.Rallied))
 		{
 			local difficulty = this.Math.floor(a.getCurrentProperties().getBravery() * 0.5);
 			local morale = a.getMoraleState();

@@ -92,7 +92,7 @@
 			drunkChance = drunkChance * 0.5;
 			}
 
-			if (!b.getSkills().hasSkill("effects.drunk"))
+			if (!b.getSkills().hasEffect(::Legends.Effect.Drunk))
 			{
 				if (b.getSkills().hasTrait(::Legends.Trait.Drunkard))
 				{

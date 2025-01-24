@@ -101,7 +101,7 @@ this.perk_legend_smackdown <- this.inherit("scripts/skills/skill", {
 
 		local user = _skill.getContainer().getActor();
 
-		if (!user.getSkills().hasSkill("effects.legend_knockback_prepared"))
+		if (!user.getSkills().hasEffect(::Legends.Effect.LegendKnockbackPrepared))
 			return;
 
 		if (_targetEntity.getCurrentProperties().IsRooted || _targetEntity.getCurrentProperties().IsImmuneToKnockBackAndGrab)

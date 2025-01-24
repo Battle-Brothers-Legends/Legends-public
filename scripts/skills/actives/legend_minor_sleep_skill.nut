@@ -72,7 +72,7 @@ this.legend_minor_sleep_skill <- this.inherit("scripts/skills/skill", {
 
 		foreach( o in opponents )
 		{
-			if (o.Actor.getSkills().hasSkill("effects.sleep"))
+			if (o.Actor.getSkills().hasEffect(::Legends.Effect.Sleeping))
 			{
 				asleep = ++asleep;
 			}

@@ -64,7 +64,7 @@ this.legend_hex_skill <- this.inherit("scripts/skills/skill", {
 			return false;
 		}
 
-		if (target.getSkills().hasSkill("effects.hex_slave"))
+		if (target.getSkills().hasEffect(::Legends.Effect.HexSlave))
 		{
 			return false;
 		}

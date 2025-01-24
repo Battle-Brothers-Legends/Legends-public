@@ -12,7 +12,7 @@ this.perk_legend_berserker_rage <- this.inherit("scripts/skills/skill", {
 
 	function onAdded()
 	{
-		if (!this.m.Container.hasSkill("effects.legend_berserker_rage"))
+		if (!this.m.Container.hasEffect(::Legends.Effect.LegendBerserkerRage))
 		{
 			this.m.Container.add(this.new("scripts/skills/effects/legend_berserker_rage_effect"));
 		}

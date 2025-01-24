@@ -104,7 +104,7 @@ this.legend_quick_step_skill <- this.inherit("scripts/skills/skill", {
 
 		// this.m.FatigueCostMult = _properties.IsFleetfooted ? 0.5 : 1.0;
 
-		// if (this.getContainer().getActor().getSkills().hasSkill("effects.goblin_grunt_potion"))
+		// if (this.getContainer().getActor().getSkills().hasEffect(::Legends.Effect.GoblinGruntPotion))
 		// {
 		// 	this.m.ActionPointCost = 2;
 		// }

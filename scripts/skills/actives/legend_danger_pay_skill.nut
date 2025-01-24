@@ -72,7 +72,7 @@ this.legend_danger_pay_skill <- this.inherit("scripts/skills/skill", {
 		if (("getDailyCost" in target) == false) return false;	// certain human "brothers" may not have dailyCost function and would otherwise crash this function
 		if (this.getCrownCost(target) <= 0) return false;		// A Cost of 0 is not accepted to prevent abuse on PlayerCharacter or Indebted
 		if (this.World.Assets.getMoney() < this.getCrownCost(target)) return false;
-		if (target.getMoraleState() >= this.m.MaximumMoraleState && target.getSkills().hasSkill("effects.legend_motivated_effect")) return false;
+		if (target.getMoraleState() >= this.m.MaximumMoraleState && target.getSkills().hasEffect(::Legends.Effect.LegendMotivatedEffect)) return false;
 
 		return true;
 	}

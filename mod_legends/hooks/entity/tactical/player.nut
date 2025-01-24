@@ -657,7 +657,7 @@
 			return false;
 		}
 
-		if (_change < 0 && this.m.MoraleState == this.Const.MoraleState.Breaking && this.m.Skills.hasSkill("effects.ancient_priest_potion"))
+		if (_change < 0 && this.m.MoraleState == this.Const.MoraleState.Breaking && this.m.Skills.hasEffect(::Legends.Effect.AncientPriestPotion))
 		{
 			return false;
 		}

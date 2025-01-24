@@ -54,7 +54,7 @@ this.legend_hold_the_line <- this.inherit("scripts/skills/skill", {
 
 	function isUsable()
 	{
-		return this.skill.isUsable() && !this.getContainer().hasSkill("effects.legend_holding_the_line");
+		return this.skill.isUsable() && !this.getContainer().hasEffect(::Legends.Effect.LegendHoldingTheLine);
 	}
 
 	function onUse( _user, _targetTile )
@@ -74,7 +74,7 @@ this.legend_hold_the_line <- this.inherit("scripts/skills/skill", {
 				continue;
 			}
 
-			if (a.getFaction() == _user.getFaction() && !a.getSkills().hasSkill("effects.holding_the_line"))
+			if (a.getFaction() == _user.getFaction() && !a.getSkills().hasEffect(::Legends.Effect.LegendHoldingTheLine))
 			{
 				local effect = this.new("scripts/skills/effects/legend_holding_the_line")
 				effect.setCommander(this.getContainer().getActor());

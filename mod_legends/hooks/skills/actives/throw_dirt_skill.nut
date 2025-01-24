@@ -11,7 +11,7 @@
 
 	o.isUsable <- function ()
 	{
-		if (this.getContainer().hasSkill("effects.legend_threw_sand_effect"))
+		if (this.getContainer().hasEffect(::Legends.Effect.LegendThrewSandEffect))
 		{
 			return false;
 		}

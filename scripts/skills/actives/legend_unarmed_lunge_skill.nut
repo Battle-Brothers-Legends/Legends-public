@@ -128,13 +128,13 @@ this.legend_unarmed_lunge_skill <- this.inherit("scripts/skills/skill", {
 	function isUsable()
 	{
 		local mainhand = this.m.Container.getActor().getItems().getItemAtSlot(this.Const.ItemSlot.Mainhand);
-		return (mainhand == null || this.getContainer().hasSkill("effects.disarmed")) && this.skill.isUsable() && !this.getContainer().getActor().getCurrentProperties().IsRooted;
+		return (mainhand == null || this.getContainer().hasEffect(::Legends.Effect.Disarmed)) && this.skill.isUsable() && !this.getContainer().getActor().getCurrentProperties().IsRooted;
 	}
 
 	function isHidden()
 	{
 		local mainhand = this.m.Container.getActor().getItems().getItemAtSlot(this.Const.ItemSlot.Mainhand);
-		return mainhand != null && !this.getContainer().hasSkill("effects.disarmed") || this.skill.isHidden() || this.m.Container.getActor().isStabled() || this.getContainer().hasSkill("effect.legend_transformed_bear") || this.getContainer().hasSkill("effect.legend_transformed_wolf") || this.getContainer().hasSkill("effect.legend_transformed_tree");
+		return mainhand != null && !this.getContainer().hasEffect(::Legends.Effect.Disarmed) || this.skill.isHidden() || this.m.Container.getActor().isStabled() || this.getContainer().hasSkill("effect.legend_transformed_bear") || this.getContainer().hasSkill("effect.legend_transformed_wolf") || this.getContainer().hasSkill("effect.legend_transformed_tree");
 	}
 
 

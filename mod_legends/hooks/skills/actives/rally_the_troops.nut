@@ -39,7 +39,7 @@
 			}
 		];
 
-		if (this.getContainer().hasSkill("effects.rallied"))
+		if (this.getContainer().hasEffect(::Legends.Effect.Rallied))
 		{
 			tooltip.push({
 				id = 9,
@@ -86,7 +86,7 @@
 
 			// Next part was probably added for testing purposes
 			/*	this.logInfo("attempting to rally");
-				if (a.getSkills().hasSkill("effects.charmed") || a.getSkills().hasSkill("effects.legend_intensely_charmed") || a.getSkills().hasSkill("effects.sleeping"))
+				if (a.getSkills().hasEffect(::Legends.Effect.Charmed) || a.getSkills().hasEffect(::Legends.Effect.LegendIntenselyCharmed) || a.getSkills().hasEffect(::Legends.Effect.Sleeping))
 				{
 					local rand = this.Math.rand(1, 100);
 					if( bravery > rand )
@@ -121,7 +121,7 @@
 					a.checkMorale(1, difficulty - distance, this.Const.MoraleCheckType.Default, "status_effect_56");
 				} */
 
-			if (a.getSkills().hasSkill("effects.charmed") || a.getSkills().hasSkill("effects.legend_intensely_charmed") || a.getSkills().hasSkill("effects.sleeping"))
+			if (a.getSkills().hasEffect(::Legends.Effect.Charmed) || a.getSkills().hasEffect(::Legends.Effect.LegendIntenselyCharmed) || a.getSkills().hasEffect(::Legends.Effect.Sleeping))
 			{
 				local rand = this.Math.rand(1, 100);
 				if( bravery > rand )
@@ -137,7 +137,7 @@
 				continue;
 			}
 
-			if (a.getSkills().hasSkill("effects.rallied"))
+			if (a.getSkills().hasEffect(::Legends.Effect.Rallied))
 			{
 				continue;
 			}

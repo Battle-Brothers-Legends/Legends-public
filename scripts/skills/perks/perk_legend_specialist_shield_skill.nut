@@ -56,7 +56,7 @@ this.perk_legend_specialist_shield_skill <- this.inherit("scripts/skills/skill",
 	{
 		local actor = this.getContainer().getActor();
 		# Check for shield
-		if (this.m.TurnsLeft > 0 && !actor.getSkills().hasSkill("effects.shieldwall") && actor.getItems().getItemAtSlot(this.Const.ItemSlot.Offhand) != null && actor.getItems().getItemAtSlot(this.Const.ItemSlot.Offhand).isItemType(this.Const.Items.ItemType.Shield))
+		if (this.m.TurnsLeft > 0 && !actor.getSkills().hasEffect(::Legends.Effect.Shieldwall) && actor.getItems().getItemAtSlot(this.Const.ItemSlot.Offhand) != null && actor.getItems().getItemAtSlot(this.Const.ItemSlot.Offhand).isItemType(this.Const.Items.ItemType.Shield))
 		{
 			# Check if they have regular shield
 			if (actor.getSkills().hasSkill("actives.shieldwall"))

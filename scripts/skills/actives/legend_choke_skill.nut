@@ -153,14 +153,14 @@ this.legend_choke_skill <- this.inherit("scripts/skills/skill", {
 	{
 		local mainhand = this.m.Container.getActor().getItems().getItemAtSlot(this.Const.ItemSlot.Mainhand);
 		local offhand = this.m.Container.getActor().getItems().getItemAtSlot(this.Const.ItemSlot.Offhand);
-		return ((offhand == null && mainhand == null) || this.getContainer().hasSkill("effects.disarmed")) && this.skill.isUsable();
+		return ((offhand == null && mainhand == null) || this.getContainer().hasEffect(::Legends.Effect.Disarmed)) && this.skill.isUsable();
 	}
 
 	function isHidden()
 	{
 		local mainhand = this.m.Container.getActor().getItems().getItemAtSlot(this.Const.ItemSlot.Mainhand);
 		local offhand = this.m.Container.getActor().getItems().getItemAtSlot(this.Const.ItemSlot.Offhand);
-		return mainhand != null || offhand != null && !this.getContainer().hasSkill("effects.disarmed") || this.skill.isHidden() || this.m.Container.getActor().isStabled();
+		return mainhand != null || offhand != null && !this.getContainer().hasEffect(::Legends.Effect.Disarmed) || this.skill.isHidden() || this.m.Container.getActor().isStabled();
 	}
 
 	function onGetHitFactors( _skill, _targetTile, _tooltip )
@@ -189,32 +189,32 @@ this.legend_choke_skill <- this.inherit("scripts/skills/skill", {
 		}
 		local mod = 0;
 
-		if (_targetEntity.getSkills().hasSkill("effects.legend_dazed"))
+		if (_targetEntity.getSkills().hasEffect(::Legends.Effect.LegendDazed))
 		{
 			mod = mod + 10;
 		}
 
-		if (_targetEntity.getSkills().hasSkill("effects.legend_parried"))
+		if (_targetEntity.getSkills().hasEffect(::Legends.Effect.LegendParried))
 		{
 			mod = mod + 10;
 		}
 
-		if (_targetEntity.getSkills().hasSkill("effects.legend_grappled"))
+		if (_targetEntity.getSkills().hasEffect(::Legends.Effect.LegendGrappled))
 		{
 			mod = mod + 50;
 		}
 
-		if (_targetEntity.getSkills().hasSkill("effects.stunned"))
+		if (_targetEntity.getSkills().hasEffect(::Legends.Effect.Stunned))
 		{
 			mod = mod + 25;
 		}
 
-		if (_targetEntity.getSkills().hasSkill("effects.sleeping"))
+		if (_targetEntity.getSkills().hasEffect(::Legends.Effect.Sleeping))
 		{
 			mod = mod + 50;
 		}
 
-		if (_targetEntity.getSkills().hasSkill("effects.net"))
+		if (_targetEntity.getSkills().hasEffect(::Legends.Effect.Net))
 		{
 			mod = mod + 25;
 		}
@@ -279,7 +279,7 @@ this.legend_choke_skill <- this.inherit("scripts/skills/skill", {
 			_properties.DamageRegularMult += _targetEntity.getFatiguePct() - actor.getFatiguePct();
 		}
 
-		if (_targetEntity != null && _targetEntity.getSkills().hasSkill("effects.legend_grappled") || _targetEntity.getSkills().hasSkill("effects.legend_choked"))
+		if (_targetEntity != null && _targetEntity.getSkills().hasEffect(::Legends.Effect.LegendGrappled) || _targetEntity.getSkills().hasEffect(::Legends.Effect.LegendChoked))
 		{
 			_properties.DamageRegularMult *= 1.5
 		}

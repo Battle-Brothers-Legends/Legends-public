@@ -57,7 +57,7 @@ this.legend_magic_levitate_skill <- this.inherit("scripts/skills/actives/legend_
 
 		local target = _targetTile.getEntity();
 
-		if (target.getSkills().hasSkill("effects.legend_effect_levitate"))
+		if (target.getSkills().hasEffect(::Legends.Effect.LegendLevitating))
 		{
 			return false;
 		}
@@ -74,12 +74,12 @@ this.legend_magic_levitate_skill <- this.inherit("scripts/skills/actives/legend_
 			return;
 		}
 
-		if (target.getSkills().hasSkill("effects.legend_effect_levitate"))
+		if (target.getSkills().hasEffect(::Legends.Effect.LegendLevitating))
 		{
 			return;
 		}
 
-		target.getSkills().add(this.new("scripts/skills/effects/legend_effect_levitate"));
+		target.getSkills().add(this.new("scripts/skills/effects/legend_levitating_effect"));
 
 		if (!_user.isHiddenToPlayer() && _targetTile.IsVisibleForPlayer)
 		{

@@ -167,7 +167,7 @@
 				maxTime = this.Math.max(1, maxTime - 1);
 			}
 
-			if (this.getContainer().getActor().getSkills().hasSkill("effects.nachzehrer_potion"))
+			if (this.getContainer().getActor().getSkills().hasEffect(::Legends.Effect.NachzehrerPotion))
 			{
 				minTime = this.Math.max(1, minTime - 1);
 				maxTime = this.Math.max(1, maxTime - 1);

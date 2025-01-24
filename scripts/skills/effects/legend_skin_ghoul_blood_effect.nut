@@ -58,7 +58,7 @@ this.legend_skin_ghoul_blood_effect <- this.inherit("scripts/skills/skill", {
 		{
 			return;
 		}
-		if (!actor.getSkills().hasSkill("effects.spider_poison_effect"))
+		if (!actor.getSkills().hasEffect(::Legends.Effect.SpiderPoison))
 		{
 			actor.setHitpoints(actor.getHitpoints() + healthAdded);
 			actor.setDirty(true);

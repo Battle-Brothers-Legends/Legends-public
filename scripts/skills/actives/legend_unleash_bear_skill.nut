@@ -119,7 +119,7 @@ this.legend_unleash_bear_skill <- this.inherit("scripts/skills/skill", {
 
 	function isUsable()
 	{
-		if (this.getContainer().hasSkill("effects.legend_summoned_bear_effect"))
+		if (this.getContainer().hasEffect(::Legends.Effect.LegendSummonedBearEffect))
 		{
 			return false;
 		}

@@ -119,7 +119,7 @@ this.legend_throw_knife_skill <- this.inherit("scripts/skills/skill", {
 		_properties.DamageRegularMax += 25;
 		_properties.DamageArmorMult = 0.1;
 
-		if (this.m.Container.hasSkill("effects.disarmed"))
+		if (this.m.Container.hasEffect(::Legends.Effect.Disarmed))
 		{
 			local mhand = actor.getMainhandItem();
 			if (mhand != null)

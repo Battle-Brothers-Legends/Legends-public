@@ -89,27 +89,27 @@ this.legend_puncture_parry_dagger_skill <- this.inherit("scripts/skills/skill", 
 			return 0;
 		}
 		local mod = 0;
-		if (_targetEntity.getSkills().hasSkill("effects.legend_dazed"))
+		if (_targetEntity.getSkills().hasEffect(::Legends.Effect.LegendDazed))
 		{
 		mod += 10;
 		}
-		if (_targetEntity.getSkills().hasSkill("effects.legend_parried"))
+		if (_targetEntity.getSkills().hasEffect(::Legends.Effect.LegendParried))
 		{
 		mod += 10;
 		}
-		if (_targetEntity.getSkills().hasSkill("effects.legend_grappled"))
+		if (_targetEntity.getSkills().hasEffect(::Legends.Effect.LegendGrappled))
 		{
 		mod += 50;
 		}
-		if (_targetEntity.getSkills().hasSkill("effects.stunned"))
+		if (_targetEntity.getSkills().hasEffect(::Legends.Effect.Stunned))
 		{
 		mod += 25;
 		}
-		if (_targetEntity.getSkills().hasSkill("effects.sleeping"))
+		if (_targetEntity.getSkills().hasEffect(::Legends.Effect.Sleeping))
 		{
 		mod += 50;
 		}
-		if (_targetEntity.getSkills().hasSkill("effects.net"))
+		if (_targetEntity.getSkills().hasEffect(::Legends.Effect.Net))
 		{
 		mod += 25;
 		}

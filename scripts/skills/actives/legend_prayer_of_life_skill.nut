@@ -75,7 +75,7 @@ this.legend_prayer_of_life_skill <- this.inherit("scripts/skills/skill", {
 
 			if (a.getFaction() == _user.getFaction())
 			{
-				if (!a.getFlags().has("cultist") && !a.getSkills().hasSkill("effects.legend_prayer_of_life"))
+				if (!a.getFlags().has("cultist") && !a.getSkills().hasEffect(::Legends.Effect.LegendPrayerOfLife))
 				{
 					local effect = this.new("scripts/skills/effects/legend_prayer_of_life_effect");
 					effect.m.Resolve = this.getContainer().getActor().getBravery();
@@ -85,7 +85,7 @@ this.legend_prayer_of_life_skill <- this.inherit("scripts/skills/skill", {
 
 			if (a.getFlags().has("undead") && !a.getFlags().has("ghoul"))
 			{
-				if (!a.getSkills().hasSkill("effects.disintegrating"))
+				if (!a.getSkills().hasEffect(::Legends.Effect.LegendDisintegrating))
 				{
 					a.getSkills().add(this.new("scripts/skills/effects/legend_disintegrating_effect"));
 				}

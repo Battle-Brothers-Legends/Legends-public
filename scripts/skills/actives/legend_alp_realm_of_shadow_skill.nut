@@ -109,7 +109,7 @@ this.legend_alp_realm_of_shadow_skill <- this.inherit("scripts/skills/skill", {
 		if (!_entity.getFlags().has("alp") && _entity.getMoraleState == this.Const.MoraleState.Ignore)
 			return;
 
-		if (_entity.getSkills().hasSkill("effects.legend_alp_realm_of_shadow"))
+		if (_entity.getSkills().hasEffect(::Legends.Effect.LegendAlpRealmOfShadow))
 			return;
 
 		this.Sound.play(::MSU.Array.rand([
