@@ -1,7 +1,7 @@
 ::mods_hookExactClass("skills/perks/perk_fast_adaption", function(o) {
 
 	local onTargetHit = o.onTargetHit;
-	o.onTargetHit( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor )
+	o.onTargetHit = function ( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor )
 	{
 		if (_targetEntity != null && this.isKindOf(_targetEntity, "actor"))
 		{
