@@ -98,7 +98,7 @@ this.legend_staffwall_skill <- this.inherit("scripts/skills/skill", {
 
 	function onRemoved()
 	{
-		this.m.Container.removeByID("effects.legend_staffwall");
+		::Legends.Effects.remove(this, ::Legends.Effect.LegendStaffwall);
 	}
 
 });

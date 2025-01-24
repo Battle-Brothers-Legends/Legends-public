@@ -121,7 +121,7 @@ this.legend_fortify_skill <- this.inherit("scripts/skills/skill", {
 
 	function onRemoved()
 	{
-		this.m.Container.removeByID("effects.legend_fortify");
+		::Legends.Effects.remove(this, ::Legends.Effect.LegendFortify);
 	}
 	
 });

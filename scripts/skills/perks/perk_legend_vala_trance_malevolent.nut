@@ -147,7 +147,7 @@ this.perk_legend_vala_trance_malevolent <- this.inherit("scripts/skills/skill", 
 
 			if (TotalVictims == 0)
 			{
-				actor.getSkills().removeByID("effects.legend_vala_in_trance");
+				::Legends.Effects.remove(actor, ::Legends.Effect.LegendValaInTrance);
 				this.logInfo("MALEVOLENT SPIRITS :: onTurnStart victim is dead or dying");
 				return;
 			}
@@ -219,7 +219,7 @@ this.perk_legend_vala_trance_malevolent <- this.inherit("scripts/skills/skill", 
 				}
 
 				this.Sound.play("sounds/combat/legend_vala_malevolent.wav");
-				actor.getSkills().removeByID("effects.legend_vala_in_trance");
+				::Legends.Effects.remove(actor, ::Legends.Effect.LegendValaInTrance);
 			}
 			else if (this.isAffordableBasedOnFatigue())
 			{
@@ -231,7 +231,7 @@ this.perk_legend_vala_trance_malevolent <- this.inherit("scripts/skills/skill", 
 			}
 			else
 			{
-				actor.getSkills().removeByID("effects.legend_vala_in_trance");
+				::Legends.Effects.remove(actor, ::Legends.Effect.LegendValaInTrance);
 
 				foreach( tar in targets )
 				{
@@ -253,7 +253,7 @@ this.perk_legend_vala_trance_malevolent <- this.inherit("scripts/skills/skill", 
 
 		if (actor.getSkills().hasEffect(::Legends.Effect.LegendValaInTrance))
 		{
-			actor.getSkills().removeByID("effects.legend_vala_in_trance");
+			::Legends.Effects.remove(actor, ::Legends.Effect.LegendValaInTrance);
 		}
 
 		this.resetTrance();
@@ -289,7 +289,7 @@ this.perk_legend_vala_trance_malevolent <- this.inherit("scripts/skills/skill", 
 			{
 				if (this.Math.rand(1, 100) <= 50)
 				{
-					actor.getSkills().removeByID("effects.legend_vala_in_trance");
+					::Legends.Effects.remove(actor, ::Legends.Effect.LegendValaInTrance);
 
 					foreach( tar in targets )
 					{
@@ -305,7 +305,7 @@ this.perk_legend_vala_trance_malevolent <- this.inherit("scripts/skills/skill", 
 			}
 			else
 			{
-				actor.getSkills().removeByID("effects.legend_vala_in_trance");
+				::Legends.Effects.remove(actor, ::Legends.Effect.LegendValaInTrance);
 
 				foreach( tar in targets )
 				{
@@ -337,7 +337,7 @@ this.perk_legend_vala_trance_malevolent <- this.inherit("scripts/skills/skill", 
 			{
 				if (t.getSkills().hasEffect(::Legends.Effect.LegendValaTranceMalevolentEffect))
 				{
-					t.getSkills().removeByID("effects.legend_vala_trance_malevolent_effect");
+					::Legends.Effects.remove(t, ::Legends.Effect.LegendValaTranceMalevolentEffect);
 				}
 
 				if (t.getFlags().get("IsSpiritVictim"))

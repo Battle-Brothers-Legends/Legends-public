@@ -1,16 +1,16 @@
 ::Const.Tactical.Common.removeStances <- function( _actor, _removeValaTrance = false )
 {
-	_actor.getSkills().removeByID("effects.shieldwall");
-	_actor.getSkills().removeByID("effects.spearwall");
-	_actor.getSkills().removeByID("effects.riposte");
-	_actor.getSkills().removeByID("effects.legend_return_favor");
+	::Legends.Effects.remove(_actor, ::Legends.Effect.Shieldwall);
+	::Legends.Effects.remove(_actor, ::Legends.Effect.Spearwall);
+	::Legends.Effects.remove(_actor, ::Legends.Effect.Riposte);
+	::Legends.Effects.remove(_actor, ::Legends.Effect.LegendReturnFavor);
 
 	if (_removeValaTrance) {
-		_actor.getSkills().removeByID("effects.legend_vala_chant_disharmony_effect");
-		_actor.getSkills().removeByID("effects.legend_vala_chant_fury_effect");
-		_actor.getSkills().removeByID("effects.legend_vala_chant_senses_effect");
-		_actor.getSkills().removeByID("effects.legend_vala_currently_chanting");
-		_actor.getSkills().removeByID("effects.legend_vala_in_trance");
+		::Legends.Effects.remove(_actor, ::Legends.Effect.LegendValaChantDisharmonyEffect);
+		::Legends.Effects.remove(_actor, ::Legends.Effect.LegendValaChantFuryEffect);
+		::Legends.Effects.remove(_actor, ::Legends.Effect.LegendValaChantSensesEffect);
+		::Legends.Effects.remove(_actor, ::Legends.Effect.LegendValaCurrentlyChanting);
+		::Legends.Effects.remove(_actor, ::Legends.Effect.LegendValaInTrance);
 	}
 };
 

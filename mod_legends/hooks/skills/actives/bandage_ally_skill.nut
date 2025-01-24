@@ -121,12 +121,12 @@
 
 		while (target.getSkills().hasEffect(::Legends.Effect.Bleeding))
 		{
-			target.getSkills().removeByID("effects.bleeding");
+			::Legends.Effects.remove(target, ::Legends.Effect.Bleeding);
 		}
 
 		while (target.getSkills().hasEffect(::Legends.Effect.LegendGrazedEffect))
 		{
-			target.getSkills().removeByID("effects.legend_grazed_effect");
+			::Legends.Effects.remove(target, ::Legends.Effect.LegendGrazedEffect);
 		}
 
 		local skill;

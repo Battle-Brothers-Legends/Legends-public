@@ -197,7 +197,7 @@ this.perk_legend_vala_trance_perspective <- this.inherit("scripts/skills/skill",
 
 				this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(actor) + " returns to this realm.");
 //				this.Sound.play("sounds/combat/legend_vala_perspective.wav");
-				actor.getSkills().removeByID("effects.legend_vala_in_trance");
+				::Legends.Effects.remove(actor, ::Legends.Effect.LegendValaInTrance);
 			}
 			else  // TRANCE FAILURE
 			{
@@ -211,7 +211,7 @@ this.perk_legend_vala_trance_perspective <- this.inherit("scripts/skills/skill",
 				}
 				else  //  CANCEL TRANCE BECAUSE OF FATIGUE
 				{
-					actor.getSkills().removeByID("effects.legend_vala_in_trance");
+					::Legends.Effects.remove(actor, ::Legends.Effect.LegendValaInTrance);
 				}
 			}
 		}
@@ -224,7 +224,7 @@ this.perk_legend_vala_trance_perspective <- this.inherit("scripts/skills/skill",
 
 		if (actor.getSkills().hasEffect(::Legends.Effect.LegendValaInTrance))
 		{
-			actor.getSkills().removeByID("effects.legend_vala_in_trance");
+			::Legends.Effects.remove(actor, ::Legends.Effect.LegendValaInTrance);
 		}
 
 		this.resetTrance();
@@ -261,12 +261,12 @@ this.perk_legend_vala_trance_perspective <- this.inherit("scripts/skills/skill",
 			{
 				if (this.Math.rand(1, 100) <= 50)  //  MASTERY GRANTS A 50% CHANCE TO AVOID DROPPING OUT OF TRANCE
 				{
-					actor.getSkills().removeByID("effects.legend_vala_in_trance");
+					::Legends.Effects.remove(actor, ::Legends.Effect.LegendValaInTrance);
 				}
 			}
 			else
 			{
-				actor.getSkills().removeByID("effects.legend_vala_in_trance");
+				::Legends.Effects.remove(actor, ::Legends.Effect.LegendValaInTrance);
 			}
 		}
 	}
@@ -287,7 +287,7 @@ this.perk_legend_vala_trance_perspective <- this.inherit("scripts/skills/skill",
 			{
 				if (t.getSkills().hasEffect(::Legends.Effect.LegendValaTrancePerspectiveEffect))
 				{
-					t.getSkills().removeByID("effects.legend_vala_trance_perspective_effect");
+					::Legends.Effects.remove(t, ::Legends.Effect.LegendValaTrancePerspectiveEffect);
 				}
 			}
 		}

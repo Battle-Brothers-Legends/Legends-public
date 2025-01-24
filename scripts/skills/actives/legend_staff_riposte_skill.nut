@@ -102,7 +102,7 @@ this.legend_staff_riposte_skill <- this.inherit("scripts/skills/skill", {
 
 	function onRemoved()
 	{
-		this.m.Container.removeByID("effects.riposte");
+		::Legends.Effects.remove(this, ::Legends.Effect.Riposte);
 	}
 
 });

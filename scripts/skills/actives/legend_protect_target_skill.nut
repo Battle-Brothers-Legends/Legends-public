@@ -149,7 +149,7 @@ this.legend_protect_target_skill <- this.inherit("scripts/skills/skill", {
 			local e = this.Tactical.getEntityByID(this.m.LastTarget);
 			if (e != null)
 			{
-				e.getSkills().removeByID("effects.legend_guarded_effect");
+				::Legends.Effects.remove(e, ::Legends.Effect.LegendGuardedEffect);
 			}
 		}
 		this.m.LastTarget = null;

@@ -124,7 +124,7 @@ this.legend_nightmare_aoe_skill <- this.inherit("scripts/skills/skill", {
 		{
 			target.checkMorale(-1, -25, this.Const.MoraleCheckType.MentalAttack);
 			stacks = ++stacks;
-			target.getSkills().removeByID("effects.sleeping");
+			::Legends.Effects.remove(target, ::Legends.Effect.Sleeping);
 			target.getSkills().add(this.new("scripts/skills/effects/nightmare_effect"));
 
 			if (!_user.isHiddenToPlayer() && !target.isHiddenToPlayer())

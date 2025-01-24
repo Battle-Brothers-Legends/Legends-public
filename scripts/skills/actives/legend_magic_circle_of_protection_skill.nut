@@ -134,7 +134,7 @@ this.legend_magic_circle_of_protection_skill <- this.inherit("scripts/skills/act
 		{
 			if (actor.getSkills().hasEffect(::Legends.Effect.LegendMagicCircleOfProtectionEffect))
 			{
-				actor.getSkills().removeByID("effects.legend_magic_circle_of_protection_effect");
+				::Legends.Effects.remove(actor, ::Legends.Effect.LegendMagicCircleOfProtectionEffect);
 			}
 		}
 		this.m.TurnsRemaining = 0;

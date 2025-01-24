@@ -4,7 +4,7 @@
 	o.onInit = function ()
 	{
 		onInit();
-		this.m.Skills.removeByID("effects.dodge");
+		::Legends.Effects.remove(this, ::Legends.Effect.Dodge);
 		::Legends.Perks.grant(this, ::Legends.Perk.Dodge);
 		::Legends.Perks.grant(this, ::Legends.Perk.Rotation);
 		::Legends.Perks.grant(this, ::Legends.Perk.Footwork);

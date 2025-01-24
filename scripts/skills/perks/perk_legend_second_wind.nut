@@ -31,31 +31,31 @@ this.perk_legend_second_wind <- this.inherit("scripts/skills/skill", {
 				actor.getSkills().add(this.new("scripts/skills/effects/recovery_potion_effect"));
 				if (this.m.Container.hasEffect(::Legends.Effect.Stunned))
 				{
-				this.m.Container.removeByID("effects.stunned");
+				::Legends.Effects.remove(this, ::Legends.Effect.Stunned);
 				}
 				if (this.m.Container.hasEffect(::Legends.Effect.Dazed))
 				{
-				this.m.Container.removeByID("effects.dazed");
+				::Legends.Effects.remove(this, ::Legends.Effect.Dazed);
 				}
 				if (this.m.Container.hasEffect(::Legends.Effect.LegendDazed))
 				{
-				this.m.Container.removeByID("effects.legend_dazed");
+				::Legends.Effects.remove(this, ::Legends.Effect.LegendDazed);
 				}
 				if (this.m.Container.hasEffect(::Legends.Effect.Staggered))
 				{
-				this.m.Container.removeByID("effects.staggered");
+				::Legends.Effects.remove(this, ::Legends.Effect.Staggered);
 				}
 				if (this.m.Container.hasEffect(::Legends.Effect.LegendBaffled))
 				{
-				this.m.Container.removeByID("effects.legend_baffled");
+				::Legends.Effects.remove(this, ::Legends.Effect.LegendBaffled);
 				}
 				if (this.m.Container.hasEffect(::Legends.Effect.Charmed))
 				{
-				this.m.Container.removeByID("effects.charmed");
+				::Legends.Effects.remove(this, ::Legends.Effect.Charmed);
 				}
 				if (this.m.Container.hasEffect(::Legends.Effect.Sleeping))
 				{
-				this.m.Container.removeByID("effects.sleeping");
+				::Legends.Effects.remove(this, ::Legends.Effect.Sleeping);
 				}
 			}
 		}

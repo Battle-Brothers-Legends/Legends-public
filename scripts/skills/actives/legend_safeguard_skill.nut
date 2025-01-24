@@ -117,7 +117,7 @@ this.legend_safeguard_skill <- this.inherit("scripts/skills/skill", {
 
 	function onRemoved()
 	{
-		this.m.Container.removeByID("effects.legend_safeguarding");
+		::Legends.Effects.remove(this, ::Legends.Effect.LegendSafeguarding);
 	}
 });
 

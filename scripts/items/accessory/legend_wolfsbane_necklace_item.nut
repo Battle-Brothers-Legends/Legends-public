@@ -79,7 +79,7 @@ this.legend_wolfsbane_necklace_item <- this.inherit("scripts/items/accessory/acc
 		this.accessory.onUnequip();
 		if (this.getContainer().getActor() != null)
 		{
-			this.getContainer().getActor().getSkills().removeByID("effects.legend_wolfsbane");
+			::Legends.Effects.remove(this, ::Legends.Effect.LegendWolfsbane);
 		}
 
 	}

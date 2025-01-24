@@ -167,11 +167,11 @@
 			}
 
 			_user.setDirty(true);
-			this.getContainer().removeByID("effects.net");
-			this.getContainer().removeByID("effects.rooted");
-			this.getContainer().removeByID("effects.web");
-			this.getContainer().removeByID("effects.kraken_ensnare");
-			this.getContainer().removeByID("effects.serpent_ensnare");
+			::Legends.Effects.remove(this, ::Legends.Effect.Net);
+			::Legends.Effects.remove(this, ::Legends.Effect.Rooted);
+			::Legends.Effects.remove(this, ::Legends.Effect.Web);
+			::Legends.Effects.remove(this, ::Legends.Effect.KrakenEnsnare);
+			::Legends.Effects.remove(this, ::Legends.Effect.SerpentEnsnare);
 			this.removeSelf();
 			return true;
 		}

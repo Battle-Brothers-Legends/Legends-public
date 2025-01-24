@@ -139,8 +139,8 @@ this.legend_wake_ally_aoe_skill <- this.inherit("scripts/skills/skill", {
 				{
 					local target = tile.getEntity();
 					this.spawnIcon("status_effect_83", tile);
-					target.getSkills().removeByID("effects.sleeping");
-					target.getSkills().removeByID("effects.nightmare");
+					::Legends.Effects.remove(target, ::Legends.Effect.Sleeping);
+					::Legends.Effects.remove(target, ::Legends.Effect.Nightmare);
 					target.setDirty(true);
 
 					if (this.isKindOf(target, "human"))

@@ -4,7 +4,7 @@
 	o.onInit = function ()
 	{
 		onInit();
-		this.m.Skills.removeByID("effects.dodge");
+		::Legends.Effects.remove(this, ::Legends.Effect.Dodge);
 		if(::Legends.isLegendaryDifficulty())
 		{
 			::Legends.Perks.grant(this, ::Legends.Perk.Overwhelm);

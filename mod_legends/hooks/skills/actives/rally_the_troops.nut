@@ -92,9 +92,9 @@
 					if( bravery > rand )
 						{
 						this.logInfo("Removing charms");
-						a.getSkills().removeByID("effects.charmed");
-						a.getSkills().removeByID("effects.sleeping");
-						a.getSkills().removeByID("effects.legend_intensely_charmed");
+						::Legends.Effects.remove(a, ::Legends.Effect.Charmed);
+						::Legends.Effects.remove(a, ::Legends.Effect.Sleeping);
+						::Legends.Effects.remove(a, ::Legends.Effect.LegendIntenselyCharmed);
 						}
 				}
 			
@@ -126,9 +126,9 @@
 				local rand = this.Math.rand(1, 100);
 				if( bravery > rand )
 				{						
-					a.getSkills().removeByID("effects.charmed");
-					a.getSkills().removeByID("effects.sleeping");
-					a.getSkills().removeByID("effects.legend_intensely_charmed");
+					::Legends.Effects.remove(a, ::Legends.Effect.Charmed);
+					::Legends.Effects.remove(a, ::Legends.Effect.Sleeping);
+					::Legends.Effects.remove(a, ::Legends.Effect.LegendIntenselyCharmed);
 				}
 			}
 

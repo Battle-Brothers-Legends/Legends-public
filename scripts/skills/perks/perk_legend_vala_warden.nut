@@ -227,6 +227,6 @@ this.perk_legend_vala_warden <- this.inherit("scripts/skills/skill", {
 	function onCombatFinished()
 	{
 		this.m.WardenEntity = null;
-		//this.getContainer().removeByID("effects.legend_vala_spiritual_bond_effect");
+		//::Legends.Effects.remove(this, ::Legends.Effect.LegendValaSpiritualBondEffect);
 	}
 });

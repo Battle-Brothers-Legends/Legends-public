@@ -148,7 +148,7 @@ this.legend_hidden_skill <- this.inherit("scripts/skills/skill", {
 
 	function onRemoved()
 	{
-		this.m.Container.removeByID("effect.legend_hidden");
+		::Legends.Effects.remove(this, ::Legends.Effect.LegendHidden);
 	}
 
 });

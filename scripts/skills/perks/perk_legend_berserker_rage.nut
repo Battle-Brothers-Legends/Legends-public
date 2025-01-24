@@ -20,7 +20,7 @@ this.perk_legend_berserker_rage <- this.inherit("scripts/skills/skill", {
 
 	function onRemoved()
 	{
-		this.m.Container.removeByID("effects.legend_berserker_rage");
+		::Legends.Effects.remove(this, ::Legends.Effect.LegendBerserkerRage);
 	}
 
 });

@@ -30,7 +30,7 @@ this.legend_read_omens_trance_skill <- this.inherit("scripts/skills/actives/lege
 			local omens = skills.getSkillByID("effects.legend_read_omens");
 			if (omens != null && omens.getActor() != null && omens.getActor == act)
 			{
-				bro.getSkills().removeByID("effects.legend_read_omens");	
+				::Legends.Effects.remove(bro, ::Legends.Effect.LegendReadOmens);	
 			}
 		}
 	}

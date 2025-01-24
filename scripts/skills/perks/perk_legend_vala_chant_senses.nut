@@ -99,7 +99,7 @@ this.perk_legend_vala_chant_senses <- this.inherit("scripts/skills/skill", {
 
 		if (actor.getSkills().hasEffect(::Legends.Effect.LegendValaCurrentlyChanting))
 		{
-			actor.getSkills().removeByID("effects.legend_vala_currently_chanting");
+			::Legends.Effects.remove(actor, ::Legends.Effect.LegendValaCurrentlyChanting);
 		}
 
 		foreach( tar in targets )
@@ -108,7 +108,7 @@ this.perk_legend_vala_chant_senses <- this.inherit("scripts/skills/skill", {
 			{
 				if (t.getSkills().hasEffect(::Legends.Effect.LegendValaChantSensesEffect))
 				{
-					t.getSkills().removeByID("effects.legend_vala_chant_senses_effect");
+					::Legends.Effects.remove(t, ::Legends.Effect.LegendValaChantSensesEffect);
 				}
 			}
 		}

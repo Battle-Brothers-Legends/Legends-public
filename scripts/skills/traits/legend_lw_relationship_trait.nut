@@ -54,7 +54,7 @@ this.legend_lw_relationship_trait <- this.inherit("scripts/skills/traits/charact
 
 	function onRemoved()
 	{
-		this.m.Container.removeByID("effects.legend_lw_relationship");
+		::Legends.Effects.remove(this, ::Legends.Effect.LegendLwRelationship);
 	}
 
 });

@@ -35,8 +35,8 @@
 		_actor.getSkills().removeByType(this.Const.SkillType.Injury);
 		::Legends.Traits.remove(_actor, ::Legends.Trait.Old);
 		::Legends.Traits.remove(_actor, ::Legends.Trait.Addict);
-		_actor.getSkills().removeByID("effects.hangover");
-		_actor.getSkills().removeByID("effects.exhausted");
+		::Legends.Effects.remove(_actor, ::Legends.Effect.Hangover);
+		::Legends.Effects.remove(_actor, ::Legends.Effect.Exhausted);
 		_actor.setHitpoints(_actor.getHitpointsMax());
 		_actor.getFlags().set("PotionsUsed", 0);
 		_actor.getFlags().set("IsRejuvinated", true);

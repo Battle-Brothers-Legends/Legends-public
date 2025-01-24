@@ -132,7 +132,7 @@ this.legend_attack_target_skill <- this.inherit("scripts/skills/skill", {
 			local e = this.Tactical.getEntityByID(this.m.LastTarget);
 			if (e != null)
 			{
-				e.getSkills().removeByID("effects.marked_target");
+				::Legends.Effects.remove(e, ::Legends.Effect.LegendMarkedTarget);
 			}
 		}
 		this.m.LastTarget = null;

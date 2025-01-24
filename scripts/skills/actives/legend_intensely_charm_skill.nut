@@ -168,7 +168,7 @@ this.legend_intensely_charm_skill <- this.inherit("scripts/skills/skill", {
 
 			if (e != null)
 			{
-				e.getSkills().removeByID("effects.legend_intensely_charmed");
+				::Legends.Effects.remove(e, ::Legends.Effect.LegendIntenselyCharmed);
 			}
 		}
 

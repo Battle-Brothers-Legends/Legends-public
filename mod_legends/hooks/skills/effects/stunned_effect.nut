@@ -38,14 +38,14 @@
 		}
 		else if (!this.m.Container.getActor().getCurrentProperties().IsImmuneToStun)
 		{
-			this.m.Container.removeByID("effects.shieldwall");
-			this.m.Container.removeByID("effects.spearwall");
-			this.m.Container.removeByID("effects.riposte");
-			this.m.Container.removeByID("effects.return_favor");
-			this.m.Container.removeByID("effects.possessed_undead");
+			::Legends.Effects.remove(this, ::Legends.Effect.Shieldwall);
+			::Legends.Effects.remove(this, ::Legends.Effect.Spearwall);
+			::Legends.Effects.remove(this, ::Legends.Effect.Riposte);
+			::Legends.Effects.remove(this, ::Legends.Effect.LegendReturnFavor);
+			::Legends.Effects.remove(this, ::Legends.Effect.PossessedUndead);
 
-			this.m.Container.removeByID("effects.legend_vala_currently_chanting");
-			this.m.Container.removeByID("effects.legend_vala_in_trance");
+			::Legends.Effects.remove(this, ::Legends.Effect.LegendValaCurrentlyChanting);
+			::Legends.Effects.remove(this, ::Legends.Effect.LegendValaInTrance);
 		}
 		else
 		{

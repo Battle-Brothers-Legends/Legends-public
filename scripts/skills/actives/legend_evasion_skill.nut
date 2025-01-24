@@ -73,7 +73,7 @@ this.legend_evasion_skill <- this.inherit("scripts/skills/skill", {
 
 	function onRemoved()
 	{
-		this.m.Container.removeByID("effects.legend_evasion");
+		::Legends.Effects.remove(this, ::Legends.Effect.LegendEvasion);
 	}
 
 });

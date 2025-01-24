@@ -34,7 +34,7 @@ this.sato_brothers_in_chains_trait <- this.inherit("scripts/skills/traits/charac
 
 	function onCombatFinished()
 	{
-		this.getContainer().removeByID("effects.sato_brothers_in_chains_effect");
+		::Legends.Effects.remove(this, ::Legends.Effect.SatoBrothersInChains);
 		this.m.IsHidden = false;
 	}
 

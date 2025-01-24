@@ -19,10 +19,8 @@ this.perk_legend_lurker <- this.inherit("scripts/skills/skill", {
 
 		if (actor.getSkills().hasSkill("terrain.hidden"))
 		{
-
-				_properties.RangedSkill *= 1.25;
-				_properties.FatigueRecoveryRate += 10;
-
+			_properties.RangedSkill *= 1.25;
+			_properties.FatigueRecoveryRate += 10;
 		}
 
 		if (actor.getSkills().hasEffect(::Legends.Effect.Smoke))
@@ -42,14 +40,14 @@ this.perk_legend_lurker <- this.inherit("scripts/skills/skill", {
 
 	function onRemoved()
 	{
-		this.m.Container.removeByID("effects.lurker");
+		::Legends.Effects.remove(this, ::Legends.Effect.LegendLurker);
 	}
 
 	function onAfterUpdate( _properties )
     {
-       	if(this.getContainer().getActor().getSkills().hasSkill("hidden_effect"))
+       	if(this.getContainer().hasEffect(::Legends.Effect.LegendHidden))
        	{
-			if(this.getContainer().getActor().getSkills().hasSkill("hidden_effect").isActive())
+			if(this.getContainer().get(::Legends.Effect.LegendHidden).isActive())
 			{
 				_properties.FatigueRecoveryRate += 10;
 			}
