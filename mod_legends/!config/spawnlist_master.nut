@@ -751,7 +751,7 @@
 };
 
 ::Const.World.Spawn.Troops.LegendBasiliskDroneLow <- {
-	ID = this.Const.EntityType.LegendBasiliskDroneLow,
+	ID = this.Const.EntityType.LegendBasiliskDrone,
 	Variant = 0,
 	Strength = 20,
 	Cost = 20,

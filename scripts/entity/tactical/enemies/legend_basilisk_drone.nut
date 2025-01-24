@@ -1,5 +1,12 @@
 this.legend_basilisk_drone <- this.inherit("scripts/entity/tactical/actor", {
-	m = {},
+	m = {
+		NormalAIChance = 40,
+	},
+	function isLow()
+	{
+		return getFlags().has("low");
+	}
+
 	function create()
 	{
 		this.m.Type = this.Const.EntityType.LegendBasiliskDrone;
@@ -61,17 +68,17 @@ this.legend_basilisk_drone <- this.inherit("scripts/entity/tactical/actor", {
 
 		this.m.SoundPitch = this.Math.rand(0.9, 1.1);
 		this.m.SoundVolumeOverall = 1.25;
+		setupAIAgent();
+	}
 
-		if (this.Math.rand(1, 100) <= 40)
-		{
+	function setupAIAgent()
+	{
+		if (::Math.rand(1, 100) <= m.NormalAIChance)
 			this.m.AIAgent = this.new("scripts/ai/tactical/agents/legend_basilisk_drone_agent"); //normal
-		}
 		else
-		{
 			this.m.AIAgent = this.new("scripts/ai/tactical/agents/legend_basilisk_drone_aggressive_agent"); //aggressive
-		}
+	
 		this.m.AIAgent.setActor(this);
-
 	}
 
 	function playSound( _type, _volume, _pitch = 1.0 )
@@ -266,6 +273,10 @@ this.legend_basilisk_drone <- this.inherit("scripts/entity/tactical/actor", {
 		::Legends.Perks.grant(this, ::Legends.Perk.Berserk);
 		::Legends.Perks.grant(this, ::Legends.Perk.SteelBrow);
 		b.Threat += 5;
+
+		if (!isLow()) {
+			
+		}
 
 		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= 35)
 		{
