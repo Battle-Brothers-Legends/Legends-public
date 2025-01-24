@@ -7,7 +7,7 @@ this.legend_man_mangler <- this.inherit("scripts/items/weapons/weapon", {
 		this.weapon.create();
 		this.m.ID = "weapon.legend_man_mangler";
 		this.m.Name = "Man Mangler";
-		this.m.Description = "A massive, crudely sharpened shard of metal that makes up for its stunted length through sheer weight. So heavy no average human can use it effectively. Attacks cost +5 fatigue per use";
+		this.m.Description = "A massive, crudely sharpened shard of metal that makes up for its stunted length through sheer weight. So heavy no average human can use it effectively.";
 		this.m.IconLarge = "weapons/melee/legend_man_mangler_01.png";
 		this.m.Icon = "weapons/melee/legend_man_mangler_01_70x70.png";
 		this.m.WeaponType = this.Const.Items.WeaponType.Sword;
@@ -32,18 +32,6 @@ this.legend_man_mangler <- this.inherit("scripts/items/weapons/weapon", {
 		this.m.FatigueOnSkillUse = 5;
 	}
 
-	// function getTooltip()
-	// {
-	// 	local ret = this.weapon.getTooltip();
-	// 	ret.push({
-	// 		id = 18,
-	// 		type = "text",
-	// 		icon = "ui/icons/fatigue.png",
-	// 		text = "Builds up additional [color=" + this.Const.UI.Color.NegativeValue + "]5[/color] Fatigue with every skill use"
-	// 	});
-	// 	return ret;
-	// }
-
 	function onEquip()
 	{
 		this.weapon.onEquip();
@@ -57,7 +45,7 @@ this.legend_man_mangler <- this.inherit("scripts/items/weapons/weapon", {
 		this.addSkill(slash);
 
 		local splitShield = this.new("scripts/skills/actives/split_shield");
-		splitShield.setFatigueCost(splitShield.getFatigueCostRaw() + 10); // 10 because 2h weapons should get +5 on split shield (see 2h mace), and then +5 because of being orc weapon.
+		splitShield.setFatigueCost(splitShield.getFatigueCostRaw() + 5); // it's just 5 cause FatigueOnSkillUse is applied separately
 		this.addSkill(splitShield);
 	}
 
