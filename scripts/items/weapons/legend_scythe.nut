@@ -31,11 +31,8 @@ this.legend_scythe <- this.inherit("scripts/items/weapons/weapon", {
 	function onEquip()
 	{
 		this.weapon.onEquip();
-		::Legends.Actives.grant(this, ::Legends.Active.Cleave, function (_skill) {
-			_skill.m.FatigueCost = 15;
-		}.bindenv(this));
+		::Legends.Actives.grant(this, ::Legends.Active.LegendScytheCleave);
 		::Legends.Actives.grant(this, ::Legends.Active.Reap);
-		//::Legends.Actives.grant(this, ::Legends.Active.LegendHarvestBush);
 	}
 
 });

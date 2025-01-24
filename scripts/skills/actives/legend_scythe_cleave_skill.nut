@@ -1,4 +1,4 @@
-this.legend_voulge_cleave_skill <- this.inherit("scripts/skills/skill", {
+this.legend_scythe_cleave_skill <- this.inherit("scripts/skills/skill", {
 	m = {
 		SoundsA = [
 			"sounds/combat/cleave_hit_hitpoints_01.wav",
@@ -13,12 +13,14 @@ this.legend_voulge_cleave_skill <- this.inherit("scripts/skills/skill", {
 	},
 	function create()
 	{
-		::Legends.Actives.onCreate(this, ::Legends.Active.LegendVoulgeCleave);
-		this.m.Description = "A brute force cleaving attack that can inflict bleeding wounds if there is no armor absorbing the blow and if the target is able to bleed at all.";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendScytheCleave);
+		this.m.ID = "actives.legend_scythe_cleave";
+		this.m.Name = "Cleave";
+		this.m.Description = "A sweeping cleave that can be used from behind the frontline and can inflict bleeding wounds if there is no armor absorbing the blow and if the target is able to bleed at all.";
 		this.m.KilledString = "Cleaved";
-		this.m.Icon = "skills/active_19.png";
-		this.m.IconDisabled = "skills/active_19_sw.png";
-		this.m.Overlay = "active_19";
+		this.m.Icon = "skills/active_61.png";
+		this.m.IconDisabled = "skills/active_61_sw.png";
+		this.m.Overlay = "active_61";
 		this.m.SoundOnUse = [
 			"sounds/combat/cleave_01.wav",
 			"sounds/combat/cleave_02.wav",
@@ -72,7 +74,8 @@ this.legend_voulge_cleave_skill <- this.inherit("scripts/skills/skill", {
 
 	function onAfterUpdate( _properties )
 	{
-		this.m.FatigueCostMult = _properties.IsSpecializedInCleavers ? this.Const.Combat.WeaponSpecFatigueMult : 1.0;
+		this.m.FatigueCostMult = _properties.IsSpecializedInPolearms ? this.Const.Combat.WeaponSpecFatigueMult : 1.0;
+		this.m.ActionPointCost = _properties.IsSpecializedInPolearms ? 5 : 6;
 	}
 
 	function onUse( _user, _targetTile )

@@ -6,8 +6,8 @@ this.legend_halberd <- this.inherit("scripts/items/weapons/weapon", {
 		this.m.ID = "weapon.legend_halberd";
 		this.m.Name = "Halberd";
 		this.m.Description = "A pike-like weapon with a spike for stabbing over some distance and an axe blade for delivering devastating strikes.";
-		this.m.IconLarge = "weapons/melee/legend_halberd_01.png";
-		this.m.Icon = "weapons/melee/legend_halberd_01_70x70.png";
+		this.m.Variant = this.Math.rand(1, 2);
+		this.updateVariant();
 		this.m.WeaponType = this.Const.Items.WeaponType.Polearm;
 		this.m.SlotType = this.Const.ItemSlot.Mainhand;
 		this.m.BlockedSlotType = this.Const.ItemSlot.Offhand;
@@ -15,7 +15,6 @@ this.legend_halberd <- this.inherit("scripts/items/weapons/weapon", {
 		this.m.AddGenericSkill = true;
 		this.m.ShowQuiver = false;
 		this.m.ShowArmamentIcon = true;
-		this.m.ArmamentIcon = "icon_legend_halberd_01";
 		this.m.Value = 2900;
 		this.m.ShieldDamage = 0;
 		this.m.Condition = 85.0;
@@ -29,6 +28,13 @@ this.legend_halberd <- this.inherit("scripts/items/weapons/weapon", {
 		this.m.ArmorDamageMult = 1.5;
 		this.m.DirectDamageMult = 0.3;
 		this.m.ChanceToHitHead = 5;
+	}
+
+	function updateVariant()
+	{
+		this.m.IconLarge = "weapons/melee/legend_halberd_0" + this.m.Variant + ".png";
+		this.m.Icon = "weapons/melee/legend_halberd_0" + this.m.Variant + "_70x70.png";
+		this.m.ArmamentIcon = "icon_legend_halberd_0" + this.m.Variant;
 	}
 
 	function onEquip()
