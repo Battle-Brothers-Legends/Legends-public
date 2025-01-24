@@ -121,5 +121,5 @@
 ::Const.Perks.PerkDefObjects[::Legends.Perk.Fearsome].Tooltip = ::Const.Strings.PerkDescription.Fearsome;
 ::Const.Strings.PerkDescription.HeadHunter = "Go for the head!\n\n[color=#4f1800][u]Passive:[/u][/color]\n• Hitting the head of a target will give you a guaranteed hit to the head with your next attack.\n\n• Connecting your hit resets the effect.";
 ::Const.Perks.PerkDefObjects[::Legends.Perk.HeadHunter].Tooltip = ::Const.Strings.PerkDescription.HeadHunter;
-::Const.Strings.PerkDescription.FastAdaption = "Adapt to your opponent's moves!\n\n[color=#4f1800][u]Passive:[/u][/color]\n• Gain an additional stacking [color=" + this.Const.UI.Color.PositiveValue + "]+10%[/color] chance to hit with each attack that misses an opponent.\n\n• Bonus is reset upon landing a hit.";
+::Const.Strings.PerkDescription.FastAdaption = "Adapt to your opponent's moves!\n\n[color=#4f1800][u]Passive:[/u][/color]\n• Gain an additional stacking [color=" + this.Const.UI.Color.PositiveValue + "]+10%[/color] chance to hit with each attack that misses an opponent.\n\n• Upon landing a hit, the character will also recover 1 Action Point for every stack up to a maximum of 3 and the bonus will be reset. The refund cannot exceed the maximum Action Points.";
 ::Const.Perks.PerkDefObjects[::Legends.Perk.FastAdaption].Tooltip = ::Const.Strings.PerkDescription.FastAdaption;
