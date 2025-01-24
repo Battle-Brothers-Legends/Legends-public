@@ -16,7 +16,7 @@ if (!("Traits" in ::Legends))
 	if (::MSU.isKindOf(_target, "character_background"))
 		return _target.getContainer();
 	if (::MSU.isKindOf(_target, "item"))
-		return ::Legends.Perks.getContainer(_target.getContainer().getActor())
+		return ::Legends.Traits.getContainer(_target.getContainer().getActor())
 	::logError( "Unsupported _target class " + _onError);
 	throw "Unsupported _target class";
 }
@@ -30,20 +30,18 @@ if (!("Traits" in ::Legends))
  */
 ::Legends.Traits.grant <- function (_target, _def, _applyFn = null) {
 	local container = ::Legends.Traits.getContainer(_target, "on grant");
-	local traitDef = ::Legends.Traits.TraitDefObjects[_def];
+	local effectDef = ::Legends.Traits.TraitDefObjects[_def];
 
-	if (container.hasSkill(traitDef.ID)) {
-		local trait = container.getSkillByID(traitDef.ID);
-		if (_applyFn != null)
-			_applyFn(trait);
-		return trait;
+	local skill = null;
+	if (container.hasSkill(effectDef.ID)) {
+		skill = container.getSkillByID(effectDef.ID);
 	} else {
-		local trait = ::new(traitDef.Script);
-		if (_applyFn != null)
-			_applyFn(trait);
-		container.add(trait);
-		return trait;
+		skill = ::new(effectDef.Script);
 	}
+	if (_applyFn != null)
+		_applyFn(skill);
+	container.add(skill);
+	return skill;
 }
 
 ::Legends.Traits.getID <- function (_def) {

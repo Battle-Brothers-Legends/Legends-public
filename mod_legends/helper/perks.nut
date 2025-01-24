@@ -36,20 +36,18 @@ if (!("Perks" in ::Legends))
  */
 ::Legends.Perks.grant <- function (_target, _def, _applyFn = null) {
 	local container = ::Legends.Perks.getContainer(_target, "on grant");
-	local perkDef = ::Const.Perks.PerkDefObjects[_def];
+	local effectDef = ::Const.Perks.PerkDefObjects[_def];
 
-	if (container.hasPerk(_def)) {
-		local perk = container.getSkillByID(perkDef.ID);
-		if (_applyFn != null)
-			_applyFn(perk);
-		return perk;
+	local skill = null;
+	if (container.hasSkill(effectDef.ID)) {
+		skill = container.getSkillByID(effectDef.ID);
 	} else {
-		local perk = ::new(perkDef.Script);
-		if (_applyFn != null)
-			_applyFn(perk);
-		container.add(perk);
-		return perk;
+		skill = ::new(effectDef.Script);
 	}
+	if (_applyFn != null)
+		_applyFn(skill);
+	container.add(skill);
+	return skill;
 }
 
 ::Legends.Perks.getID <- function (_def) {
