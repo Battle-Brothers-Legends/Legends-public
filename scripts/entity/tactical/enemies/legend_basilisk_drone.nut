@@ -266,28 +266,28 @@ this.legend_basilisk_drone <- this.inherit("scripts/entity/tactical/actor", {
 		this.setSpriteOffset("arrow", this.createVec(0, 10));
 
 		this.m.Skills.add(this.new("scripts/skills/actives/legend_basilisk_peck_skill"));
-		::Legends.Perks.grant(this, ::Legends.Perk.LegendSecondWind);
 		::Legends.Perks.grant(this, ::Legends.Perk.Overwhelm);
 		::Legends.Perks.grant(this, ::Legends.Perk.CripplingStrikes);
 		::Legends.Perks.grant(this, ::Legends.Perk.Pathfinder);
 		::Legends.Perks.grant(this, ::Legends.Perk.Berserk);
-		::Legends.Perks.grant(this, ::Legends.Perk.SteelBrow);
+		
 		b.Threat += 5;
 
 		if (!isLow()) {
-			
-		}
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendSecondWind);
+			::Legends.Perks.grant(this, ::Legends.Perk.SteelBrow);
+		
+			if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= 35)
+			{
+				b.MeleeDefense += 5;
+				b.RangedDefense += 5;
+				::Legends.Perks.grant(this, ::Legends.Perk.HeadHunter);
+			}
 
-		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= 35)
-		{
-			b.MeleeDefense += 5;
-			b.RangedDefense += 5;
-			::Legends.Perks.grant(this, ::Legends.Perk.HeadHunter);
-		}
-
-		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= 50)
-		{
-			::Legends.Perks.grant(this, ::Legends.Perk.LegendEscapeArtist);
+			if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= 50)
+			{
+				::Legends.Perks.grant(this, ::Legends.Perk.LegendEscapeArtist);
+			}
 		}
 
 		if(::Legends.isLegendaryDifficulty())
