@@ -3,8 +3,7 @@ this.legend_headache_effect <- this.inherit("scripts/skills/injury/injury", {
 	function create()
 	{
 		this.injury.create();
-		this.m.ID = "effects.legend_headache";
-		this.m.Name = "Headache";
+		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendHeadache);
 		this.m.Description = "Not so loud! This character suffers a serious headache.";
 		this.m.Icon = "skills/status_effect_62.png";
 		this.m.Type = this.m.Type | this.Const.SkillType.StatusEffect | this.Const.SkillType.SemiInjury;

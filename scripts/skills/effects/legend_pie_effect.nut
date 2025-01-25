@@ -6,7 +6,7 @@ this.legend_pie_effect <- this.inherit("scripts/skills/skill", {
 
 	function setAmount( _a )
 	{
-	this.m.Amount = _a;
+		this.m.Amount = _a;
 	}
 
 	function addAmount ( _a)
@@ -32,8 +32,7 @@ this.legend_pie_effect <- this.inherit("scripts/skills/skill", {
 
 	function create()
 	{
-		this.m.ID = "effects.legend_pie_effect";
-		this.m.Name = "Satiated";
+		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendPieEffect);
 		this.m.Icon = "skills/status_effect_61.png";
 		this.m.IconMini = "status_effect_61_mini";
 		this.m.Overlay = "status_effect_61";

@@ -5,8 +5,7 @@ this.legend_porridge_effect <- this.inherit("scripts/skills/skill", {
 	},
 	function create()
 	{
-		this.m.ID = "effects.legend_porridge_effect";
-		this.m.Name = "Porridge";
+		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendPorridgeEffect);
 		this.m.Icon = "skills/status_effect_61.png";
 		this.m.IconMini = "status_effect_61_mini";
 		this.m.Overlay = "status_effect_61";
@@ -18,7 +17,7 @@ this.legend_porridge_effect <- this.inherit("scripts/skills/skill", {
 
 	function setAmount( _a )
 	{
-	this.m.Amount = _a;
+		this.m.Amount = _a;
 	}
 
 	function addAmount ( _a)

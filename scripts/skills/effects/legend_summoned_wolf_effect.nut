@@ -4,8 +4,7 @@ this.legend_summoned_wolf_effect <- this.inherit("scripts/skills/skill", {
 
 	function create()
 	{
-		this.m.ID = "effects.legend_summoned_wolf_effect";
-		this.m.Name = "Summoned a Wolf";
+		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendSummonedWolfEffect);
 		this.m.Icon = "ui/perks/wolf_circle.png";
 		this.m.IconMini = "mini_wolf_circle";
 		this.m.Overlay = "wolf_circle";

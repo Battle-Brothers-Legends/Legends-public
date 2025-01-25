@@ -2,8 +2,7 @@ this.legend_lw_relationship_effect <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "effects.legend_lw_relationship";
-		this.m.Name = "Band of Brothers";
+		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendLwRelationship);
 		this.m.Description = "Trust is a rare weapon on the battlefield. Fighting with trust in those around them allows this character to focus and fight better.";
 		this.m.Icon = "ui/traits/trait_icon_58.png"; //change
 		this.m.IconMini = "status_effect_78_mini"; //change

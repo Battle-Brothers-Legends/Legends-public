@@ -2,8 +2,7 @@ this.legend_steps_guided <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "effects.legend_steps_guided";
-		this.m.Name = "Steps Guided";
+		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendStepsGuided);
 		this.m.Description = "A talented ranger has granted this character the skills of a pathfinder.";
 		this.m.Icon = "ui/perks/guided_steps_circle.png";
 		this.m.IconMini = "mini_guided_steps_circle";
@@ -11,7 +10,7 @@ this.legend_steps_guided <- this.inherit("scripts/skills/skill", {
 		this.m.IsActive = false;
 		this.m.IsRemovedAfterBattle = true;
 	}
-	
+
 
 
 	function onUpdate( _properties )

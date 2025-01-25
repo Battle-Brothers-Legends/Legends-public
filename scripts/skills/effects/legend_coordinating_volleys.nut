@@ -2,8 +2,7 @@ this.legend_coordinating_volleys <- this.inherit("scripts/skills/effects/legend_
 	m = {},
 	function create()
 	{
-		this.m.ID = "effects.legend_coordinating_volleys";
-		this.m.Name = "Coordinated Volleys";
+		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendCoordinatingVolleys);
 		this.m.Description = "Fire on my mark! An inspirational leader is guiding this character\'s shots.";
 		this.m.Icon = "ui/perks/coordinated_volleys_circle.png";
 		this.m.IconMini = "mini_coordinated_volleys_circle";

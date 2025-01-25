@@ -7,8 +7,7 @@ this.legend_vala_in_trance <- this.inherit("scripts/skills/skill", {
 	},
 	function create()
 	{
-		this.m.ID = "effects.legend_vala_in_trance";
-		this.m.Name = "In Trance";
+		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendValaInTrance);
 		this.m.Icon = "skills/status_effect_53.png";
 		this.m.IconMini = "status_effect_53_mini";
 		this.m.Overlay = "status_effect_53";

@@ -4,8 +4,7 @@ this.legend_motivated_effect <- this.inherit("scripts/skills/skill", {
 	},
 	function create()
 	{
-		this.m.ID = "effects.legend_motivated_effect";
-		this.m.Name = "Motivated";
+		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendMotivatedEffect);
 		this.m.Description = "...and half pay if any of them touch me!";
 		this.m.Icon = "skills/coins_square.png";
 		this.m.IconMini = "mini_gold56.png"; //new

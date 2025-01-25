@@ -3,11 +3,10 @@ this.legend_magic_circle_of_protection_effect <- this.inherit("scripts/skills/sk
 	m = {
 		Circle = null
 	},
-	
+
 	function create()
 	{
-		this.m.ID = "effects.legend_magic_circle_of_protection_effect";
-		this.m.Name = "Protected";
+		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendMagicCircleOfProtectionEffect);
 		this.m.Description = "This character is within an ally's Magic Circle of Protection.";
 		this.m.Icon = "ui/perks/mage_legend_magic_circle_of_protection_circle.png";
 		this.m.IconMini = "perk_37_mini";
@@ -42,7 +41,7 @@ this.legend_magic_circle_of_protection_effect <- this.inherit("scripts/skills/sk
 		];
 		return ret;
 	}
-	
+
 	function onMovementCompleted( _tile )
 	{
 		if (!this.isInRange())

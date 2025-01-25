@@ -4,8 +4,7 @@ this.legend_choked_effect <- this.inherit("scripts/skills/skill", {
 	},
 	function create()
 	{
-		this.m.ID = "effects.legend_choked";
-		this.m.Name = "Choked";
+		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendChoked);
 		this.m.Icon = "ui/perks/choke_circle.png";
 		this.m.IconMini = "mini_choke";
 		this.m.Overlay = "choke_circle";

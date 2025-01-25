@@ -4,7 +4,7 @@ this.legend_vala_chant_disharmony_effect <- this.inherit("scripts/skills/effects
 	{
 		this.legend_vala_chant.create();
 		this.m.Range = 1;
-		this.m.ID = "effects.legend_vala_chant_disharmony_effect";
+		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendValaChantDisharmonyEffect);
 	}
 
 	function getTooltip()

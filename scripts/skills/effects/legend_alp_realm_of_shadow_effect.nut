@@ -2,8 +2,7 @@ this.legend_alp_realm_of_shadow_effect <- ::inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "effects.legend_alp_realm_of_shadow";
-		this.m.Name = "Engulfed By Darkness";
+		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendAlpRealmOfShadow);
 		this.m.Icon = "skills/status_effect_81.png";
 		this.m.IconMini = "status_effect_81_mini";
 		this.m.Overlay = "status_effect_81";
@@ -135,7 +134,7 @@ this.legend_alp_realm_of_shadow_effect <- ::inherit("scripts/skills/skill", {
 	}
 
 	function onBeforeDamageReceived( _attacker, _skill, _hitInfo, _properties )
-	{	
+	{
 		if (_attacker == null)
 			return;
 

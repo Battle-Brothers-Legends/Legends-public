@@ -4,8 +4,7 @@ this.legend_summoned_catapult_effect <- this.inherit("scripts/skills/skill", {
 
 	function create()
 	{
-		this.m.ID = "effects.legend_summoned_catapult_effect";
-		this.m.Name = "Summoned a Catapult";
+		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendSummonedCatapultEffect);
 		this.m.Icon = "ui/perks/catapult_circle.png";
 		this.m.IconMini = "mini_catapult_circle";
 		this.m.Overlay = "catapult_circle";

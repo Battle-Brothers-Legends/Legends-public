@@ -3,8 +3,7 @@ this.legend_irritable_effect <- this.inherit("scripts/skills/injury/injury", {
 	function create()
 	{
 		this.injury.create();
-		this.m.ID = "effects.legend_irritable";
-		this.m.Name = "Irritable";
+		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendIrritable);
 		this.m.Description = "Repeated attempts to study have made this character more than irritable.";
 		this.m.Icon = "skills/status_effect_62.png";
 		this.m.Type = this.m.Type | this.Const.SkillType.StatusEffect | this.Const.SkillType.SemiInjury;

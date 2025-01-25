@@ -2,8 +2,7 @@ this.legend_peaceful_reassured_effect <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "effects.legend_peaceful_reassured";
-		this.m.Name = "Reassured";
+		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendPeacefulReassured);
 		this.m.Icon = "skills/peaceful_reassured.png";
 		this.m.Type = this.Const.SkillType.StatusEffect;
 		this.m.Order = this.Const.SkillOrder.Perk;

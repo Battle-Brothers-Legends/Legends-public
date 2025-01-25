@@ -5,8 +5,7 @@ this.legend_sanctified_effect <- this.inherit("scripts/skills/skill", {
 
 	function create()
 	{
-		this.m.ID = "effects.legend_sanctified_effect";
-		this.m.Name = "Sanctified";
+		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendSanctifiedEffect);
 		this.m.Description = "This character is being cleansed by holy light.";
 		this.m.Icon = "ui/perks/holybluefire_circle.png";
 		this.m.IconMini = "mini_bluefire_circle";
@@ -103,7 +102,7 @@ this.legend_sanctified_effect <- this.inherit("scripts/skills/skill", {
 				_properties.IsAffectedByInjuries = false;
 				_properties.IsAffectedByFreshInjuries = false;
 				_properties.IsImmuneToBleeding = true;
-				_properties.IsImmuneToPoison = true;	
+				_properties.IsImmuneToPoison = true;
 			}
 		}
 	}

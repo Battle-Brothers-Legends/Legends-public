@@ -6,8 +6,7 @@ this.legend_imbue_effect <- this.inherit("scripts/skills/skill", {
 	},
 	function create()
 	{
-		this.m.ID = "effects.legend_imbue_effect";
-		this.m.Name = "Imbued";
+		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendImbueEffect);
 		this.m.Icon = "ui/perks/mage_legend_magic_imbue_circle.png";
 		this.m.IconMini = "perk_37_mini";
 		this.m.Overlay = "perk_37";

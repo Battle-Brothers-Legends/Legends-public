@@ -9,8 +9,7 @@ this.legend_curseofyears_effect <- this.inherit("scripts/skills/skill", {
 
 	function create()
 	{
-		this.m.ID = "effects.legend_curseofyears";
-		this.m.Name = "Decrepify";
+		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendCurseofyears);
 		this.m.KilledString = "Died over time";
 		this.m.Icon = "skills/status_effect_81.png";
 		this.m.IconMini = "status_effect_81_mini";

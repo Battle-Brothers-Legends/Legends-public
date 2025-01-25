@@ -4,8 +4,7 @@ this.legend_demon_hound_aura_effect <- this.inherit("scripts/skills/skill", {
 	},
 	function create()
 	{
-		this.m.ID = "effects.legend_demon_hound_aura";
-		this.m.Name = "Sluggish";
+		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendDemonHoundAura);
 		this.m.Description = "The Höllenhund's presence has sapped the strength from this character\'s limbs, slowing them down.";
 		this.m.Icon = "ui/orientation/hollenhound_orientation.png";
 		this.m.Type = this.Const.SkillType.StatusEffect;

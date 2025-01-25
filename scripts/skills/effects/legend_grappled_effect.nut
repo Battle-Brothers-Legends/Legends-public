@@ -4,8 +4,7 @@ this.legend_grappled_effect <- this.inherit("scripts/skills/skill", {
 	},
 	function create()
 	{
-		this.m.ID = "effects.legend_grappled";
-		this.m.Name = "Grappled";
+		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendGrappled);
 		this.m.Icon = "ui/perks/grapple_circle.png";
 		this.m.IconMini = "mini_grapple";
 		this.m.Overlay = "grapple_circle";

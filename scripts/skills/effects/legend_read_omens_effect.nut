@@ -12,8 +12,7 @@ this.legend_read_omens_effect <- this.inherit("scripts/skills/skill", {
 	}
 	function create()
 	{
-		this.m.ID = "effects.legend_read_omens";
-		this.m.Name = "Omens Foretold";
+		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendReadOmens);
 		this.m.Icon = "ui/perks/omens_circle.png";
 		this.m.IconMini = "mini_omens_circle";
 		this.m.Overlay = "omens_circle";
@@ -29,7 +28,7 @@ this.legend_read_omens_effect <- this.inherit("scripts/skills/skill", {
 	}
 
 	function onUpdate( _properties )
-	{		
+	{
 		_properties.RerollDefenseChance += 15;
 	}
 });

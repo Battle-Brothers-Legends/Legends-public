@@ -12,8 +12,7 @@ this.legend_vala_warden_damage <- this.inherit("scripts/skills/skill", {
 	}
 	function create()
 	{
-		this.m.ID = "special.legend_vala_warden_damage";
-		this.m.Name = "Warden Damage Scaling";
+		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendValaWardenDamage);
 		this.m.Description = "Warden Damage Scaling";
 		this.m.Icon = "";
 		this.m.Type = this.Const.SkillType.Special | this.Const.SkillType.StatusEffect;

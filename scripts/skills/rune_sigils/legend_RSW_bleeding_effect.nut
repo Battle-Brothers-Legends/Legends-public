@@ -22,8 +22,7 @@ this.legend_RSW_bleeding_effect <- this.inherit("scripts/skills/skill", {
 
 	function create()
 	{
-		this.m.ID = "effects.legend_RSW_bleeding_effect";
-		this.m.Name = "Bleeding";
+		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendRswBleedingEffect);
 		this.m.KilledString = "Bled to death";
 		this.m.Icon = "skills/status_effect_01.png";
 		this.m.IconMini = "status_effect_01_mini";

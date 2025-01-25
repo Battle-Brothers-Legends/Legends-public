@@ -2,8 +2,7 @@ this.legend_guarded_effect <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "effects.legend_guarded_effect";
-		this.m.Name = "Guarded";
+		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendGuardedEffect);
 		this.m.Description = "This character is being protected and is less likely to be attacked over other potential targets.";
 		this.m.Icon = "ui/perks/perk_38.png";
 		this.m.IconMini = "perk_38_mini";

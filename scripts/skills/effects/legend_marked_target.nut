@@ -4,8 +4,7 @@ this.legend_marked_target <- this.inherit("scripts/skills/skill", {
 	},
 	function create()
 	{
-		this.m.ID = "effects.legend_marked_target";
-		this.m.Name = "Marked target";
+		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendMarkedTarget);
 		this.m.Description = "This character is a marked target, leaving them vulnerable and exposed."
 		this.m.Icon = "skills/MarkTargetSkill.png";
 		this.m.IconMini = "mini_mark_target";

@@ -4,8 +4,7 @@ this.legend_skin_ghoul_blood_effect <- this.inherit("scripts/skills/skill", {
 	},
 	function create()
 	{
-		this.m.ID = "effects.legend_skin_ghoul_blood";
-		this.m.Name = "Skin Ghoul Blood";
+		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendSkinGhoulBlood);
 		this.m.Icon = "skills/status_effect_93.png";
 		this.m.IconMini = "status_effect_93_mini";
 		this.m.Overlay = "status_effect_93";

@@ -76,3 +76,9 @@ if (!("Effects" in ::Legends))
 ::Legends.Effects.new <- function(_def) {
 	return ::new(::Legends.Effects.EffectDefObjects[_def].Script);
 }
+
+::Legends.Effects.onCreate <- function(_target, _def) {
+	local defs = ::Legends.Effects.EffectDefObjects[_def];
+	_target.m.ID = defs.ID;
+	_target.m.Name = defs.Name;
+}

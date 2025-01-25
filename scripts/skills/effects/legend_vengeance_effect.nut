@@ -2,8 +2,7 @@ this.legend_vengeance_effect <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "effects.legend_vengeance";
-		this.m.Name = "Vengeance!";
+		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendVengeance);
 		this.m.Icon = "ui/perks/vengeance_circle.png";
 		this.m.IconMini = "mini_vengeance";
 		this.m.Type = this.Const.SkillType.StatusEffect;
@@ -41,7 +40,7 @@ this.legend_vengeance_effect <- this.inherit("scripts/skills/skill", {
 			this.removeSelf();
 		}
 	}
-	
+
 	function onTargetMissed( _skill, _targetEntity )
 	{
 		this.removeSelf();

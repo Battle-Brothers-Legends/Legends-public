@@ -6,8 +6,7 @@ this.legend_guard_effect <- this.inherit("scripts/skills/skill", {
 
 	function create()
 	{
-		this.m.ID = "effects.legend_guard";
-		this.m.Name = "Guarding";
+		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendGuard);
 		// This should probably describe the numeric effect(s), no?
 		this.m.Description = "This character is focused on protecting another.";
 		this.m.Icon = "skills/status_effect_103.png";

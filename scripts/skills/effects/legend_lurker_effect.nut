@@ -2,8 +2,7 @@ this.legend_lurker_effect <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "effects.legend_lurker";
-		this.m.Name = "Lurking";
+		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendLurker);
 		this.m.Description = this.Const.Strings.PerkDescription.LegendLurker;
 		this.m.Icon = "ui/perks/lurker.png";
 		this.m.IconMini = "perk_61_mini"; //needs a mini at some point

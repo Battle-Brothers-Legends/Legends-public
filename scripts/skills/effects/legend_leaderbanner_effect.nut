@@ -4,8 +4,7 @@ this.legend_leaderbanner_effect <- this.inherit("scripts/skills/skill", {
 	},
 	function create()
 	{
-		this.m.ID = "effects.leaderbanner_effect";
-		this.m.Name = "For the Captain!";
+		::Legends.Effects.onCreate(this, ::Legends.Effect.LeaderbannerEffect);
 		this.m.Description = "With the company\'s captain nearby, this character feels compelled to push onward no matter the danger.";
 		this.m.Icon = "ui/perks/perk_28.png";
 		this.m.IconMini = "perk_28_mini";
@@ -67,7 +66,7 @@ this.legend_leaderbanner_effect <- this.inherit("scripts/skills/skill", {
 			{
 				continue;
 			}
-	
+
 			if (ally.getBravery() > bestBravery)
 			{
 				bestBravery = ally.getBravery();

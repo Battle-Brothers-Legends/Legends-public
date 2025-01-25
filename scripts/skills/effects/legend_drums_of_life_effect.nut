@@ -2,8 +2,7 @@ this.legend_drums_of_life_effect <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "effects.legend_drums_of_life";
-		this.m.Name = "Drums of Life";
+		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendDrumsOfLife);
 		this.m.Description = "";
 		this.m.Icon = "ui/perks/drums_of_life.png";
 		this.m.Overlay = "drums_of_life_circle";

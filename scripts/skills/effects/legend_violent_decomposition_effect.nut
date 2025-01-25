@@ -31,8 +31,7 @@ this.legend_violent_decomposition_effect <- this.inherit("scripts/skills/skill",
 
 	function create()
 	{
-		this.m.ID = "effects.legend_violent_decomposition_effect";
-		this.m.Name = "Violent Decomposition";
+		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendViolentDecompositionEffect);
 		this.m.Icon = "skills/status_effect_78.png";
 		this.m.IconMini = "status_effect_78_mini";
 		this.m.Type = this.Const.SkillType.StatusEffect;
@@ -101,9 +100,9 @@ this.legend_violent_decomposition_effect <- this.inherit("scripts/skills/skill",
 		{
 			mult *= data.TotalDamageMult;
 		}
-		
+
 		//this.spawnIcon("status_effect_78", actor.getTile());
-		
+
 		this.spawnEffectOnTile(ownTile);
 		for( local i = 5; i >= 0; i = --i )
 		{

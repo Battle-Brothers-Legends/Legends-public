@@ -2,8 +2,7 @@ this.legend_parried_effect <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "effects.legend_parried";
-		this.m.Name = "Vulnerable";
+		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendParried);
 		this.m.Description = "This character has overextended and is now vulnerable to attack.";
 		this.m.Icon = "ui/perks/parried_circle.png";
 		this.m.IconMini = "mini_parried_circle";
@@ -13,7 +12,7 @@ this.legend_parried_effect <- this.inherit("scripts/skills/skill", {
 		this.m.IsActive = false;
 		this.m.IsRemovedAfterBattle = true;
 	}
-	
+
 	function getTooltip()
 	{
 		return [

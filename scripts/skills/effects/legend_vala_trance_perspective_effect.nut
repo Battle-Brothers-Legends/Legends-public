@@ -18,8 +18,7 @@ this.legend_vala_trance_perspective_effect <- this.inherit("scripts/skills/skill
 
 	function create()
 	{
-		this.m.ID = "effects.legend_vala_trance_perspective_effect";
-		this.m.Name = "Observed";
+		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendValaTrancePerspectiveEffect);
 		this.m.Icon = "skills/status_effect_52.png";
 		this.m.IconMini = "status_effect_52_mini";
 		this.m.Overlay = "status_effect_52";

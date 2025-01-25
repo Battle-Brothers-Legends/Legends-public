@@ -5,8 +5,7 @@ this.legend_evasion_effect <- this.inherit("scripts/skills/skill", {
 	},
 	function create()
 	{
-		this.m.ID = "effects.legend_evasion";
-		this.m.Name = "Evading";
+		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendEvasion);
 		this.m.Description = "This character ignores all Zones of Control.";
 		this.m.Icon = "skills/evasion.png";
 		this.m.Overlay = "evasion";

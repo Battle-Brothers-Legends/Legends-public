@@ -4,8 +4,7 @@ this.legend_rat_poison_effect <- this.inherit("scripts/skills/skill", {
 	},
 	function create()
 	{
-		this.m.ID = "effects.legend_rat_poison";
-		this.m.Name = "Infected";
+		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendRatPoison);
 		this.m.Icon = "skills/status_effect_54.png";
 		this.m.IconMini = "status_effect_54_mini";
 		this.m.Type = this.Const.SkillType.StatusEffect;

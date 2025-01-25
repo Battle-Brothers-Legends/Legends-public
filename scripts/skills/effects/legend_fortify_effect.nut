@@ -2,8 +2,7 @@ this.legend_fortify_effect <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "effects.legend_fortify";
-		this.m.Name = "Fortify";
+		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendFortify);
 		this.m.Description = "This character is behind a protective towershield and gains increased defense.";
 		this.m.Icon = "skills/status_effect_03.png";
 		this.m.IconMini = "status_effect_03_mini";
@@ -32,7 +31,7 @@ this.legend_fortify_effect <- this.inherit("scripts/skills/skill", {
 			{
 				id = 2,
 				type = "description",
-				text = this.getDescription() 
+				text = this.getDescription()
 			},
 			{
 				id = 10,

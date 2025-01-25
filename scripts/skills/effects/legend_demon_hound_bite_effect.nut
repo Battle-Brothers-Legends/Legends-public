@@ -4,8 +4,7 @@ this.legend_demon_hound_bite_effect <- this.inherit("scripts/skills/skill", {
 	},
 	function create()
 	{
-		this.m.ID = "effects.legend_demon_hound_bite_effect";
-		this.m.Name = "Höllenhund Curse";
+		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendDemonHoundBiteEffect);
 		this.m.Description = "This character has been bitten and cursed by a Höllenhund. Fatigue recovery is reduced.";
 		this.m.Icon = "skills/demon_hound_bite.png";
 		this.m.IconMini = "demon_hound_bite_effect";

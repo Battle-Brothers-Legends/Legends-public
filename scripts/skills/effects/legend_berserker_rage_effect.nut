@@ -5,8 +5,7 @@ this.legend_berserker_rage_effect <- this.inherit("scripts/skills/skill", {
 	},
 	function create()
 	{
-		this.m.ID = "effects.legend_berserker_rage";
-		this.m.Name = "Rage";
+		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendBerserkerRage);
 		this.m.Icon = "ui/perks/berserker_rage_circle.png";
 		this.m.IconMini = "status_effect_34_mini";
 		this.m.Overlay = "status_effect_34";

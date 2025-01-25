@@ -2,8 +2,7 @@ this.legend_staffwall_effect <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "effects.legend_staffwall";
-		this.m.Name = "Spearwall";
+		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendStaffwall);
 		this.m.Icon = "skills/status_effect_04.png";
 		this.m.IconMini = "status_effect_04_mini";
 		this.m.Overlay = "status_effect_04";

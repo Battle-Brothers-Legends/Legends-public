@@ -2,8 +2,7 @@ this.legend_vala_currently_chanting <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "effects.legend_vala_currently_chanting";
-		this.m.Name = "Currently Chanting";
+		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendValaCurrentlyChanting);
 		this.m.Icon = "ui/perks/perk_28.png";
 		this.m.IconMini = "perk_28_mini";
 		this.m.Overlay = "perk_28";

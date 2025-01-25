@@ -2,8 +2,7 @@ this.legend_dodging_incoming <- this.inherit("scripts/skills/effects/legend_comm
 	m = {},
 	function create()
 	{
-		this.m.ID = "effects.legend_dodging_incoming";
-		this.m.Name = "Dodging Incoming Projectiles";
+		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendDodgingIncoming);
 		this.m.Description = "This mercenary has received clear instructions to seek cover, and is coordinating accordingly.";
 		this.m.Icon = "ui/perks/incoming_circle.png";
 		this.m.IconMini = "mini_incoming_circle";
@@ -11,7 +10,7 @@ this.legend_dodging_incoming <- this.inherit("scripts/skills/effects/legend_comm
 		this.m.IsActive = false;
 		this.m.IsRemovedAfterBattle = true;
 	}
-	
+
 	function onUpdate( _properties )
 	{
 		_properties.RangedSkill += 5;

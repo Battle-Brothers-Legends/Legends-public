@@ -4,8 +4,7 @@ this.legend_mead_warmth_effect <- this.inherit("scripts/skills/skill", {
 	},
 	function create()
 	{
-		this.m.ID = "effects.legend_mead_warmth_effect";
-		this.m.Name = "Warmth";
+		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendMeadWarmthEffect);
 		this.m.Icon = "skills/status_effect_92.png";
 		this.m.IconMini = "status_effect_92_mini";
 		this.m.Overlay = "status_effect_92";

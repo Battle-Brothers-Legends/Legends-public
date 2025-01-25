@@ -5,8 +5,7 @@ this.legend_baffled_effect <- this.inherit("scripts/skills/skill", {
 	},
 	function create()
 	{
-		this.m.ID = "effects.legend_baffled";
-		this.m.Name = "Baffled";
+		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendBaffled);
 		this.m.Icon = "skills/baffled.png";
 		this.m.IconMini = "mini_baffled_circle";
 		this.m.Overlay = "baffled_circle";

@@ -4,8 +4,7 @@ this.legend_prayer_of_life_effect <- this.inherit("scripts/skills/skill", {
 	},
 	function create()
 	{
-		this.m.ID = "effects.legend_prayer_of_life";
-		this.m.Name = "Prayer of Hope";
+		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendPrayerOfLife);
 		this.m.Description = "This character has had their vitality restored by a holy chant.";
 		this.m.Icon = "ui/perks/prayer_green.png";
 		this.m.Overlay = "prayer_green";

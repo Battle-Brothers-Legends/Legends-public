@@ -5,8 +5,7 @@ this.legend_basilisk_poison_effect <- this.inherit("scripts/skills/skill", {
 
 	function create()
 	{
-		this.m.ID = "effects.legend_basilisk_poison";
-		this.m.Name = "Poisoned";
+		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendBasiliskPoison);
 		this.m.Icon = "skills/status_effect_54.png";
 		this.m.IconMini = "status_effect_54_mini";
 		this.m.Type = this.Const.SkillType.StatusEffect;
@@ -85,7 +84,7 @@ this.legend_basilisk_poison_effect <- this.inherit("scripts/skills/skill", {
 		_properties.Bravery -= 20 * this.m.TurnsLeft;
 		_properties.StaminaMult *= 1.0 - 0.20 * this.m.TurnsLeft;
 		_properties.FatigueRecoveryRate -= 3 * this.m.TurnsLeft;
-		_properties.InitiativeMult *= 1.0 - 0.20 * this.m.TurnsLeft; 
+		_properties.InitiativeMult *= 1.0 - 0.20 * this.m.TurnsLeft;
 	}
 
 	function onTurnEnd()

@@ -4,8 +4,7 @@ this.legend_apothecary_mushrooms_effect <- this.inherit("scripts/skills/skill", 
 	},
 	function create()
 	{
-		this.m.ID = "effects.legend_apothecary_mushrooms";
-		this.m.Name = "Purple Haze";
+		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendApothecaryMushrooms);
 		this.m.Icon = "skills/status_effect_67.png";
 		this.m.IconMini = "status_effect_67_mini";
 		this.m.SoundOnUse = [

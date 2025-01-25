@@ -4,8 +4,7 @@ this.legend_vala_threads_effect <- this.inherit("scripts/skills/skill", {
 	},
 	function create()
 	{
-		this.m.ID = "effects.legend_vala_threads_effect";
-		this.m.Name = "Threads of Fate";
+		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendValaThreadsEffect);
 		this.m.Icon = "skills/status_effect_78.png";
 		this.m.IconMini = "status_effect_78_mini";
 		this.m.Overlay = "status_effect_78";

@@ -12,8 +12,7 @@ this.legend_RSW_poison_effect <- this.inherit("scripts/skills/skill", {
 	}
 	function create()
 	{
-		this.m.ID = "effects.legend_RSW_poison_effect";
-		this.m.Name = "Poisoned";
+		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendRswPoisonEffect);
 		this.m.Icon = "skills/status_effect_54.png";
 		this.m.IconMini = "status_effect_54_mini";
 		this.m.Overlay = "status_effect_54";

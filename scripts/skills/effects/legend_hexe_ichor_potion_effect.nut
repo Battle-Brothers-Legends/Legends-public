@@ -4,8 +4,7 @@ this.legend_hexe_ichor_potion_effect <- this.inherit("scripts/skills/skill", {
 	},
 	function create()
 	{
-		this.m.ID = "effects.legend_hexe_ichor_potion";
-		this.m.Name = "Hexe Ichor Potion";
+		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendHexeIchorPotion);
 		this.m.Icon = "skills/ichor_potion_circle.png";
 		this.m.IconMini = "status_effect_89_mini";
 		this.m.Overlay = "status_effect_89";

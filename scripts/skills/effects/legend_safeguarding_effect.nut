@@ -2,8 +2,7 @@ this.legend_safeguarding_effect <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "effects.legend_safeguarding";
-		this.m.Name = "Safeguarding";
+		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendSafeguarding);
 		this.m.Description = "This character is neglecting their own defense to safeguard another.";
 		this.m.Icon = "ui/perks/safegaurd_circle.png";
 		this.m.IconMini = "mini_safegaurd_circle";
@@ -11,7 +10,7 @@ this.legend_safeguarding_effect <- this.inherit("scripts/skills/skill", {
 		this.m.IsActive = false;
 		this.m.IsRemovedAfterBattle = true;
 	}
-	
+
 	function getTooltip()
 	{
 		return [

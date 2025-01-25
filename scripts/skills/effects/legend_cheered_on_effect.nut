@@ -4,8 +4,7 @@ this.legend_cheered_on_effect <- this.inherit("scripts/skills/skill", {
 	},
 	function create()
 	{
-		this.m.ID = "effects.legend_cheered_on";
-		this.m.Name = "Cheered On";
+		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendCheeredOn);
 		this.m.Description = "This character has been encouraged by hearing just the right words, and is ready to give it their all.";
 		this.m.Icon = "ui/perks/cheered_on_circle.png";
 		this.m.IconMini = "perk_28_mini";

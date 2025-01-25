@@ -2,8 +2,7 @@ this.legend_hunting_big_game <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "effects.legend_hunting_big_game";
-		this.m.Name = "Hunting Big Game";
+		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendHuntingBigGame);
 		this.m.Icon = "ui/perks/BigGameHunterPerk.png";
 		this.m.IconMini = "mini_big_game_hunter";
 		this.m.Type = this.Const.SkillType.StatusEffect;
@@ -43,10 +42,10 @@ this.legend_hunting_big_game <- this.inherit("scripts/skills/skill", {
 		if (fightingBeasts)
 		{
 			_properties.DamageRegularMult += 1.0 - _targetEntity.getHitpoints() / (_targetEntity.getHitpointsMax() * 1.0);
-		} 
+		}
 		else //if no beasts present, just give +10% ranged damage
 		{
-			_properties.RangedDamageMult *= 1.10;		
+			_properties.RangedDamageMult *= 1.10;
 		}
 	}
 

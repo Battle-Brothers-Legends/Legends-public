@@ -19,8 +19,7 @@ this.legend_intensely_charmed_effect <- this.inherit("scripts/skills/skill", {
 
 	function create()
 	{
-		this.m.ID = "effects.legend_intensely_charmed";
-		this.m.Name = "Infatuated";
+		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendIntenselyCharmed);
 		this.m.Icon = "skills/status_effect_85.png";
 		this.m.IconMini = "status_effect_85_mini";
 		this.m.Overlay = "status_effect_85";

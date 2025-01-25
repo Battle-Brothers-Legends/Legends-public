@@ -2,8 +2,7 @@ this.legend_veteran_levels_effect <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "effects.legend_veteran_levels";
-		this.m.Name = "";
+		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendVeteranLevels);
 		this.m.Description = "";
 		this.m.Icon = "";
 		this.m.Type = this.Const.SkillType.StatusEffect;

@@ -32,8 +32,7 @@ this.legend_rations_effect <- this.inherit("scripts/skills/skill", {
 
 	function create()
 	{
-		this.m.ID = "effects.legend_rations_effect";
-		this.m.Name = "Satiated";
+		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendRationsEffect);
 		this.m.Icon = "skills/status_effect_61.png";
 		this.m.IconMini = "status_effect_61_mini";
 		this.m.Overlay = "status_effect_61";

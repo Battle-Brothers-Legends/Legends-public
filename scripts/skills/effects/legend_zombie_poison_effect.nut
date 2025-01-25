@@ -4,8 +4,7 @@ this.legend_zombie_poison_effect <- this.inherit("scripts/skills/skill", {
 	},
 	function create()
 	{
-		this.m.ID = "effects.legend_zombie_poison";
-		this.m.Name = "Infected";
+		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendZombiePoison);
 		this.m.Icon = "skills/status_effect_54.png";
 		this.m.IconMini = "status_effect_54_mini";
 		this.m.Type = this.Const.SkillType.StatusEffect;
@@ -78,7 +77,7 @@ this.legend_zombie_poison_effect <- this.inherit("scripts/skills/skill", {
 
 	function onUpdate( _properties )
 	{
-		local nsed = this.getContainer().getActor().getCurrentProperties().NegativeStatusEffectDuration; //if uhave resilient t starts scaling from like 5 and scales to 10 but that seems weird, this makes it scale from like 1 to 5	
+		local nsed = this.getContainer().getActor().getCurrentProperties().NegativeStatusEffectDuration; //if uhave resilient t starts scaling from like 5 and scales to 10 but that seems weird, this makes it scale from like 1 to 5
 		local AP = this.Math.max(1, 1 * (10 - (this.m.TurnsLeft - nsed)));
 		local Init = this.Math.max(1, 10 * (10 -(this.m.TurnsLeft - nsed)));
 		local Vis = this.Math.max(1, 1 * (10 - (this.m.TurnsLeft - nsed)));

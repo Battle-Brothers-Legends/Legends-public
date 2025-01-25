@@ -4,8 +4,7 @@ this.legend_prayer_of_faith_effect <- this.inherit("scripts/skills/skill", {
 	},
 	function create()
 	{
-		this.m.ID = "effects.legend_prayer_of_faith";
-		this.m.Name = "Prayer of Faith";
+		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendPrayerOfFaith);
 		this.m.Description = "This character is being protected by a holy chant.";
 		this.m.Icon = "ui/perks/prayer_purple.png";
 		this.m.Overlay = "prayer_purple";

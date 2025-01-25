@@ -3,7 +3,7 @@ this.legend_vala_chant_senses_effect <- this.inherit("scripts/skills/effects/leg
 	function create()
 	{
 		this.legend_vala_chant.create();
-		this.m.ID = "effects.legend_vala_chant_senses_effect";
+		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendValaChantSensesEffect);
 		this.m.Range = 3;
 	}
 

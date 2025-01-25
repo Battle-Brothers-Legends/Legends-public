@@ -2,8 +2,7 @@ this.legend_pushing_forward <- this.inherit("scripts/skills/effects/legend_comma
 	m = {},
 	function create()
 	{
-		this.m.ID = "effects.legend_pushing_forward";
-		this.m.Name = "Pushing Forward";
+		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendPushingForward);
 		this.m.Description = "This mercenary has received clear instructions to push forward, and is coordinating accordingly.";
 		this.m.Icon = "skills/spears_square.png";
 		this.m.IconMini = "mini_spears_circle";

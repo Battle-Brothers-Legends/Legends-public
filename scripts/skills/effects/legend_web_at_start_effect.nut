@@ -2,8 +2,7 @@ this.legend_web_at_start_effect <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "effects.legend_web_at_start";
-		this.m.Name = "Start Combat Trapped in Web";
+		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendWebAtStart);
 		this.m.Description = "This effect is meant to be used under the hood so that entities can start combat webbed.";
 		this.m.Icon = "skills/status_effect_80.png";
 		this.m.IconMini = "status_effect_80_mini";

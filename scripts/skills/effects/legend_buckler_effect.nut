@@ -6,8 +6,7 @@ this.legend_buckler_effect <- this.inherit("scripts/skills/skill", {
 	},
 	function create()
 	{
-		this.m.ID = "effects.legend_buckler";
-		this.m.Name = "Buckler Defense";
+		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendBuckler);
 		this.m.Icon = "ui/perks/perk_02.png";
 		//this.m.IconMini = "perk_02_mini";
 		this.m.Type = this.Const.SkillType.StatusEffect;

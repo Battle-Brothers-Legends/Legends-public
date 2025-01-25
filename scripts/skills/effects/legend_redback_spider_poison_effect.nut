@@ -22,8 +22,7 @@ this.legend_redback_spider_poison_effect <- this.inherit("scripts/skills/skill",
 
 	function create()
 	{
-		this.m.ID = "effects.legend_redback_spider_poison";
-		this.m.Name = "Redback Poisoned";
+		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendRedbackSpiderPoison);
 		this.m.KilledString = "Died from redback poison";
 		this.m.Icon = "skills/status_effect_54.png";
 		this.m.IconMini = "status_effect_54_mini";

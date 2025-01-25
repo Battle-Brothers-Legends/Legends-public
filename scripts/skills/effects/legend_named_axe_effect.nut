@@ -4,8 +4,7 @@ this.legend_named_axe_effect <- this.inherit("scripts/skills/skill", {
 	},
 	function create()
 	{
-		this.m.ID = "effects.legend_named_axe";
-		this.m.Name = "Named Axe";
+		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendNamedAxe);
 		this.m.Description = "";
 		this.m.Icon = "skills/placeholder_circle.png";
 		this.m.IconMini = "mini_placeholder_circle";

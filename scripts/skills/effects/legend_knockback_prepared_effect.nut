@@ -4,8 +4,7 @@ this.legend_knockback_prepared_effect <- this.inherit("scripts/skills/skill", {
 	},
 	function create()
 	{
-		this.m.ID = "effects.legend_knockback_prepared";
-		this.m.Name = "Prepared to Inflict Knockback.";
+		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendKnockbackPrepared);
 		this.m.Icon = "ui/perks/smackdown_circle.png";
 		this.m.IconMini = "mini_smackdown_circle";
 		this.m.Type = this.Const.SkillType.StatusEffect;

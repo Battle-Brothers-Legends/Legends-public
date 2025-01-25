@@ -2,8 +2,7 @@ this.legend_return_favor_effect <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "effects.legend_return_favor";
-		this.m.Name = "Return Favor";
+		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendReturnFavor);
 		this.m.Description = "This character has assumed a defensive stance seeking to incapacitate anyone attacking.";
 		this.m.Icon = "ui/perks/perk_31.png";
 		this.m.IconMini = "perk_31_mini";

@@ -10,8 +10,7 @@ this.sato_brothers_in_chains_effect <- this.inherit("scripts/skills/skill", {
 	},
 	function create()
 	{
-		this.m.ID = "effects.sato_brothers_in_chains";
-		this.m.Name = "Brothers in Chains";
+		::Legends.Effects.onCreate(this, ::Legends.Effect.SatoBrothersInChains);
 		this.m.Description = "Fighting with other escaped slaves drives this character to succeed.";
 		this.m.Icon = "ui/settlement_status/settlement_effect_40.png";
 		this.m.Type = this.Const.SkillType.StatusEffect;

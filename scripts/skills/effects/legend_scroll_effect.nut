@@ -4,8 +4,7 @@ this.legend_scroll_effect <- this.inherit("scripts/skills/skill", {
 	},
 	function create()
 	{
-		this.m.ID = "effects.scroll";
-		this.m.Name = "Scroll Effect";
+		::Legends.Effects.onCreate(this, ::Legends.Effect.Scroll);
 		this.m.Description = "Scroll Effect";
 		this.m.Icon = "ui/rune_sigils/legend_rune_sigil.png"; //don't actually need an icon for this
 		this.m.Type = this.Const.SkillType.Special;

@@ -12,8 +12,7 @@ this.legend_RSS_radiance_effect <- this.inherit("scripts/skills/skill", {
 
 	function create()
 	{
-		this.m.ID = "effects.legend_RSS_radiance_effect";
-		this.m.Name = "";
+		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendRssRadianceEffect);
 		this.m.Icon = "";
 		this.m.IconMini = "";
 		this.m.Overlay = "";
@@ -189,7 +188,7 @@ this.legend_RSS_radiance_effect <- this.inherit("scripts/skills/skill", {
 			_properties.MeleeDefenseMult *= (1.0 - ((this.m.MalusTwo * 1.0) / 100.0));
 		}
 
-		this.updateEffect();		
+		this.updateEffect();
 	}
 
 

@@ -22,8 +22,7 @@ this.legend_disintegrating_effect <- this.inherit("scripts/skills/skill", {
 
 	function create()
 	{
-		this.m.ID = "effects.legend_disintegrating";
-		this.m.Name = "Disintegrating";
+		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendDisintegrating);
 		this.m.KilledString = "Disintegrated";
 		this.m.Icon = "skills/status_effect_01.png";
 		this.m.IconMini = "status_effect_01_mini";

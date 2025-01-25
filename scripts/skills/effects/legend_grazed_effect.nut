@@ -45,8 +45,7 @@ this.legend_grazed_effect <- this.inherit("scripts/skills/skill", {
 
 	function create()
 	{
-		this.m.ID = "effects.legend_grazed_effect";
-		this.m.Name = "Bleeding from Grazes";
+		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendGrazedEffect);
 		this.m.KilledString = "Bled to death";
 		this.m.Icon = "skills/graze_circle.png";
 		this.m.IconMini = "mini_graze_circle";

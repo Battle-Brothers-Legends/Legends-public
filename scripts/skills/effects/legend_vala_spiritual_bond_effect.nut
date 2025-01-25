@@ -10,8 +10,7 @@ this.legend_vala_spiritual_bond_effect <- this.inherit("scripts/skills/skill", {
 
 	function create()
 	{
-		this.m.ID = "effects.legend_vala_spiritual_bond_effect";
-		this.m.Name = "Spiritual Bond";
+		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendValaSpiritualBondEffect);
 		this.m.Description = "";
 		this.m.Icon = "skills/status_effect_87.png";
 		this.m.IconMini = "status_effect_87_mini";
@@ -49,7 +48,7 @@ this.legend_vala_spiritual_bond_effect <- this.inherit("scripts/skills/skill", {
 		local reduction = ::Math.maxf(0.5, 1.0 - (0.1 + this.m.ResolveAtCheck));
 		_properties.DamageReceivedRegularMult *= reduction;
 	}
-	
+
 	function onDamageReceived( _attacker, _damageHitpoints, _damageArmor )
 	{
 		if (::MSU.isNull(this.m.Vala) || ::MSU.isNull(this.m.Vala.m.WardenEntity))
