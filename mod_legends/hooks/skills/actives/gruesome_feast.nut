@@ -50,10 +50,8 @@
 		}
 
 		this.spawnBloodbath(_targetTile);
-		local effect = ::Legends.Effects.get(_user, ::Legends.Effect.GruesomeFeast);
-
-		if (effect == null)
-			_user.getSkills().add("scripts/skills/effects/gruesome_feast_effect");
+		
+		::Legends.Effects.grant(_user, ::Legends.Effect.GruesomeFeast);
 
 		if (!_user.isHiddenToPlayer())
 			this.Time.scheduleEvent(this.TimeUnit.Virtual, 500, this.onFeasted, effect);
