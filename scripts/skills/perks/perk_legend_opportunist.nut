@@ -15,33 +15,44 @@ this.perk_legend_opportunist <- this.inherit("scripts/skills/skill", {
 	{
 		// must from a skill
 		if (_skill != null)
+			return;
 
 		// the target must still alive
-		if (!_targetEntity.isAlive() || _targetEntity.isDying() || _targetEntity.isAlliedWith(this.getContainer().getActor())) return;
+		if (!_targetEntity.isAlive() || _targetEntity.isDying() || _targetEntity.isAlliedWith(this.getContainer().getActor()))
+			return;
 
 		// don't have resistance
-		if (_targetEntity.getCurrentProperties().IsImmuneToDaze) return;
+		if (_targetEntity.getCurrentProperties().IsImmuneToDaze)
+			return;
 
+		local hasEffectOrInjury = false;
 		foreach (id in [
-			// status effects
-			"effects.legend_grazed_effect",
-			"effects.bleeding",
-			"effects.goblin_poison",
-			"effects.spider_poison",
-			"effects.legend_redback_spider_poison",
-			"effects.legend_zombie_poison",
-			"effects.legend_rat_poison",
-
-			// injuries
+			::Legends.Effect.LegendGrazedEffect,
+			::Legends.Effect.Bleeding,
+			::Legends.Effect.GoblinPoison,
+			::Legends.Effect.SpiderPoison,
+			::Legends.Effect.LegendRedbackSpiderPoison,
+			::Legends.Effect.LegendZombiePoison,
+			::Legends.Effect.LegendRatPoison,
+		]) {
+			if (!_targetEntity.getSkills().hasEffect(id))
+				continue;
+			hasEffectOrInjury = true;
+			break;
+		}
+		foreach (id in [
 			"injury.cut_artery",
 			"injury.cut_throat",
 			"injury.grazed_neck",
 		])
 		{
-			if (!_targetEntity.getSkills().hasSkill(id)) continue;
-
-			::Legends.Effects.grant(_targetEntity, ::Legends.Effect.Dazed);
+			if (!_targetEntity.getSkills().hasSkill(id))
+				continue;
+			hasEffectOrInjury = true;
 			break;
+		}
+		if (hasEffectOrInjury) {
+			::Legends.Effects.grant(_targetEntity, ::Legends.Effect.Dazed);
 		}
 	}
 
