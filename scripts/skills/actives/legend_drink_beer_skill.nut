@@ -10,7 +10,7 @@ this.legend_drink_beer_skill <- this.inherit("scripts/skills/actives/base/legend
 		this.m.Icon = "skills/beer_square.png";
 		this.m.IconDisabled = "skills/beer_square_bw.png";
 		this.m.Overlay = "active_144";
-		this.m.Effect = "legend_beer_buzz_effect";
+		this.m.Effect = ::Legends.Effect.LegendBeerBuzzEffect;
 	}
 
 	function tacticalLogDrink(_user) {

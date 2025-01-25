@@ -10,7 +10,7 @@ this.legend_drink_mead_skill <- this.inherit("scripts/skills/actives/base/legend
 		this.m.Icon = "skills/mead_square.png";
 		this.m.IconDisabled = "skills/mead_square_bw.png";
 		this.m.Overlay = "active_144";
-		this.m.Effect = "legend_mead_warmth_effect";
+		this.m.Effect = ::Legends.Effect.LegendMeadWarmthEffect;
 	}
 
 	function tacticalLogDrink(_user) {

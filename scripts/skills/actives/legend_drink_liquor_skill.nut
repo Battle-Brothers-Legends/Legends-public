@@ -10,7 +10,7 @@ this.legend_drink_liquor_skill <- this.inherit("scripts/skills/actives/base/lege
 		this.m.Icon = "skills/mead_square.png";
 		this.m.IconDisabled = "skills/mead_square_bw.png";
 		this.m.Overlay = "active_144";
-		this.m.Effect = "legend_liquor_burn_effect"
+		this.m.Effect = ::Legends.Effect.LegendLiquorBurnEffect;
 	}
 
 	function tacticalLogDrink(_user) {

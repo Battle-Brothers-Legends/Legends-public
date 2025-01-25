@@ -10,7 +10,7 @@ this.legend_drink_wine_skill <- this.inherit("scripts/skills/actives/base/legend
 		this.m.Icon = "skills/wine_square.png";
 		this.m.IconDisabled = "skills/wine_square_bw.png";
 		this.m.Overlay = "active_144";
-		this.m.Effect = "legend_wine_tipsy_effect";
+		this.m.Effect = ::Legends.Effect.LegendWineTipsyEffect;
 	}
 
 	function tacticalLogDrink(_user) {

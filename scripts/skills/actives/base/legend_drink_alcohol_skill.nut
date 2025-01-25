@@ -107,7 +107,7 @@ this.legend_drink_alcohol_skill <- this.inherit("scripts/skills/skill", {
 			else if (::Legends.Food.isTipsy(user))
 				::Legends.Effects.grant(user, ::Legends.Effect.Drunk);
 			else if (this.m.Effect != null)
-				user.getSkills().add(this.new("scripts/skills/effects/" + this.m.Effect));
+				::Legends.Effects.grant(user, this.m.Effect);
 
 			if (!user.isHiddenToPlayer())
 				this.Tactical.EventLog.log(this.tacticalLogDrink(user));
