@@ -179,27 +179,41 @@
 	local onMovementFinish = o.onMovementFinish;
 	o.onMovementFinish = function (_tile)
 	{
-//		local actors = [this];
-//		for (local i = 0; i != 6; i++) {
-//			if (_tile.hasNextTile(i)) {
-//				local tile = _tile.getNextTile(i);
-//				if (!tile.IsOccupiedByActor)
-//					continue;
-//				actors.push(tile.getEntity());
-//			}
-//		}
-//		local pointers = [];
-//		foreach (i, a in actors) {
-//			pointers.push(a.checkMorale);
-//			a.checkMorale = function (_change, _difficulty) {
-//				if (a.m.CurrentProperties.IsAffectedByMovementMorale) {
-//					pointers[i](_change, _difficulty);
-//				}
-//			}
-//		}
+		// Lionheart perk start
+		local otherActors = [];
+		for (local i = 0; i != 6; i++) {
+			if (_tile.hasNextTile(i)) {
+				local tile = _tile.getNextTile(i);
+				if (!tile.IsOccupiedByActor)
+					continue;
+				otherActors.push(tile.getEntity());
+			}
+		}
+		local isAliedPtrs = []
+		foreach(i, actor in otherActors) {
+			isAliedPtrs.push(actor.isAlliedWith);
+			actor.isAlliedWith = function(_other) {
+				// check if checkMorale should happen when enemies are affected by it
+				return isAliedPtrs[i](_other) && this.m.CurrentProperties.IsAffectedByMovementMorale;
+			}.bindenv(actor);
+		}
+		// original does check with 40 and -1000 difficulty in this function, lionheart check just first one, so
+		local fnPtr = this.checkMorale;
+		this.checkMorale = function (_change, _difficulty, _type = this.Const.MoraleCheckType.Default, _showIconBeforeMoraleIcon = "", _noNewLine = false) {
+			if ( _difficulty > 0) { // check if it's the 40.0 one we want to change
+				if (this.m.CurrentProperties.IsAffectedByMovementMorale && _difficulty > 0)
+					fnPtr(_change, _difficulty, _type, _showIconBeforeMoraleIcon, _noNewLine)
+			} else { // if it's -1000 one, use at is was
+				fnPtr(_change, _difficulty, _type, _showIconBeforeMoraleIcon, _noNewLine)
+			}
+		}.bindenv(this);
+		// Lionheart perk stop
+
 		onMovementFinish(_tile);
-//		foreach (i, a in actors)
-//			a.checkMorale = pointers[i];
+		// restore state
+		foreach (i, actor in otherActors)
+			actor.isAlliedWith = isAliedPtrs[i];
+		this.checkMorale = fnPtr;
 
 		this.m.Skills.MovementCompleted(_tile);
 	}
