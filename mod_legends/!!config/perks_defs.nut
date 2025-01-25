@@ -3682,4 +3682,3 @@ perkDefObjects.push({
 });
 
 ::Const.Perks.addPerkDefObjects(perkDefObjects);
-::Const.Perks.updatePerkGroupTooltips();

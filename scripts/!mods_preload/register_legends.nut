@@ -25,4 +25,5 @@ else
 
     // loading mod files
     ::include("mod_legends/load.nut");
+    ::Const.Perks.updatePerkGroupTooltips(); // this adds the "From the x Perk Group" tooltip
 });
