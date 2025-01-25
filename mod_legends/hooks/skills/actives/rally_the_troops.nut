@@ -75,9 +75,9 @@
 				continue;
 			}
 
-			local effect = a.getSkills().getSkillByID("effects.charmed");
+			local effect = ::Legends.Effects.get(a, ::Legends.Effect.Charmed);
 			local notCharmedBro = effect != null && effect.m.OriginalFaction != _user.getFaction();
-			effect = a.getSkills().getSkillByID("effects.legend_intensely_charmed");
+			effect = ::Legends.Effects.get(a, ::Legends.Effect.LegendIntenselyCharmed);
 			local notIntenselyCharmedBro = effect != null && effect.m.OriginalFaction != _user.getFaction();
 			if (a.getFaction() != _user.getFaction() && notCharmedBro && notIntenselyCharmedBro) //Charmed bros belong to a different faction, additional conditions make sure they are not excluded
 			{

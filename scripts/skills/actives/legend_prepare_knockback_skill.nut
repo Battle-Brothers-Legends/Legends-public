@@ -56,7 +56,7 @@ this.legend_prepare_knockback_skill <- this.inherit("scripts/skills/skill", {
 			}
 		];
 
-		local canUse = this.getContainer().getSkillByID("effects.legend_knockback_prepared");
+		local canUse = ::Legends.Effects.get(this, ::Legends.Effect.LegendKnockbackPrepared);
 
 		if (canUse != null)
 		{
@@ -96,7 +96,7 @@ this.legend_prepare_knockback_skill <- this.inherit("scripts/skills/skill", {
 
 	function isHidden()
 	{
-		local canUse = this.getContainer().getSkillByID("effects.legend_knockback_prepared");
+		local canUse = ::Legends.Effects.get(this, ::Legends.Effect.LegendKnockbackPrepared);
 		local item = this.getContainer().getActor().getItems().getItemAtSlot(this.Const.ItemSlot.Mainhand);
 		local hasMelee = item == null || item.isItemType(this.Const.Items.ItemType.MeleeWeapon);
 		return !((!this.Tactical.isActive() || canUse == null) && hasMelee);

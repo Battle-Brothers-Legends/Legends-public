@@ -20,7 +20,7 @@ this.legend_kobold_racial <- this.inherit("scripts/skills/skill", {
 	function onTurnEnd()
 	{
 		local actor = this.getContainer().getActor();
-		local slippery = actor.getSkills().getSkillByID("effects.legend_hidden_kobold");
+		local slippery = ::Legends.Effects.get(actor, ::Legends.Effect.LegendHiddenKobold);
 
 		if (slippery == null)
 		{

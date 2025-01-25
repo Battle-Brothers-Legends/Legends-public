@@ -2,7 +2,7 @@ this.legend_basilisk_sentry_inject_skill <- this.inherit("scripts/skills/skill",
 	m = {
 		DamageArmorMult = 0.75,
 	},
-	
+
 	function create()
 	{
 		this.m.ID = "actives.legend_basilisk_sentry_inject";
@@ -70,7 +70,7 @@ this.legend_basilisk_sentry_inject_skill <- this.inherit("scripts/skills/skill",
 			_properties.DamageRegularMin += 50;
 			_properties.DamageRegularMax += 70;
 			_properties.DamageArmorMult *= this.m.DamageArmorMult; //see top
-			
+
 			if (_targetEntity != null && this.getContainer().getActor().getTile().getDistanceTo(_targetEntity.getTile()) == 1) //if attacking adjacent enemy, apply this hitchance malus (polearm base logic)
 			{
 				_properties.MeleeSkill += -15;
@@ -112,7 +112,7 @@ this.legend_basilisk_sentry_inject_skill <- this.inherit("scripts/skills/skill",
 		}
 
 		this.spawnIcon("status_effect_54", _targetEntity.getTile());
-		local poison = _targetEntity.getSkills().getSkillByID("effects.legend_basilisk_poison");
+		local poison = ::Legends.Effects.get(_targetEntity, ::Legends.Effect.LegendBasiliskPoison);
 
 		if (poison == null)
 		{

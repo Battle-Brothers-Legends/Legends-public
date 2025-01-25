@@ -52,8 +52,8 @@ this.legend_vala_warden_wail_skill <- this.inherit("scripts/skills/skill", {
 	{
 		if (_skill == this)
 		{
-			local scaling = this.getContainer().getActor().getSkills().getSkillByID("special.legend_vala_warden_damage");
-			local fury = this.getContainer().getActor().getSkills().getSkillByID("effects.legend_vala_chant_fury_effect");
+			local scaling = ::Legends.Effects.get(this, ::Legends.Effect.LegendValaWardenDamage);
+			local fury = ::Legends.Effects.get(this, ::Legends.Effect.LegendValaChantFuryEffect);
 			local bonus1 = 0;
 			local bonus2 = 0;
 

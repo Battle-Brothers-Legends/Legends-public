@@ -11,7 +11,7 @@
 				return;
 			}
 
-			::Legends.Effects.grant(target, ::Legends.Effect.Dazed);
+			::Legends.Effects.grant(_target, ::Legends.Effect.Dazed);
 
 			if (!_user.isHiddenToPlayer() && _targetTile.IsVisibleForPlayer)
 			{
@@ -29,7 +29,7 @@
 				return;
 			}
 
-			::Legends.Effects.grant(target, ::Legends.Effect.Stunned);
+			::Legends.Effects.grant(_target, ::Legends.Effect.Stunned);
 
 			if (!_user.isHiddenToPlayer() && _targetTile.IsVisibleForPlayer)
 			{

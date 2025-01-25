@@ -10,7 +10,7 @@
 	{
 		if (this.m.Possessor != null && !this.m.Possessor.isNull() && this.m.Possessor.isAlive())
 		{
-			local skill = this.m.Possessor.getSkills().getSkillByID("effects.possessing_undead");
+			local skill = ::Legends.Effects.get(this.m.Possessor, ::Legends.Effect.PossessingUndead);
 
 			if (skill != null)
 			{

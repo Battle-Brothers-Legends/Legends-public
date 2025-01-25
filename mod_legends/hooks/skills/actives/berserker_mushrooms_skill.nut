@@ -6,7 +6,7 @@
 
 		if (_user.getID() == user.getID())
 		{
-			local shrooms = user.getSkills().getSkillByID("effects.berserker_mushrooms");
+			local shrooms = ::Legends.Effects.get(user, ::Legends.Effect.BerserkerMushrooms);
 
 			if (shrooms != null)
 			{

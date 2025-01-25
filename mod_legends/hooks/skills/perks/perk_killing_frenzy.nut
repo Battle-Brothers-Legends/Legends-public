@@ -3,7 +3,7 @@
 	{
 		if (!_targetEntity.isAlliedWith(this.getContainer().getActor()))
 		{
-			local effect = this.getContainer().getActor().getSkills().getSkillByID("effects.killing_frenzy");
+			local effect = ::Legends.Effects.get(this, ::Legends.Effect.KillingFrenzy);
 
 			if (effect != null)
 			{

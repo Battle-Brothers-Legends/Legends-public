@@ -87,7 +87,7 @@ this.legend_poison_weapon_skill <- this.inherit("scripts/skills/skill", {
 
 	function onUse( _user, _targetTile )
 	{
-		local poison = _user.getSkills().getSkillByID("effects.poison_coat");
+		local poison = ::Legends.Effects.get(_user, ::Legends.Effect.PoisonCoat);
 
 		if (poison != null)
 		{

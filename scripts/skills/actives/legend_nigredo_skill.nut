@@ -73,11 +73,11 @@ this.legend_nigredo_skill <- this.inherit("scripts/skills/skill", {
 			return;
 		}
 
-		local poison = _target.getSkills().getSkillByID("effects.acid");
+		local poison = ::Legends.Effects.get(_target, ::Legends.Effect.Acid);
 
 		if (poison == null)
 		{
-			::Legends.Effects.grant(target, ::Legends.Effect.Acid);
+			::Legends.Effects.grant(_target, ::Legends.Effect.Acid);
 		}
 		else
 		{

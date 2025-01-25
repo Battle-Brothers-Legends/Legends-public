@@ -69,7 +69,7 @@ this.legend_falcon_skill <- this.inherit("scripts/skills/skill", {
 
 	function onUse( _user, _targetTile )
 	{
-		::Legends.Effects.grant(user, ::Legends.Effect.LegendSummonedFalconEffect);
+		::Legends.Effects.grant(_user, ::Legends.Effect.LegendSummonedFalconEffect);
 		this.Tactical.queryTilesInRange(_user.getTile(), 1, 12, false, [], this.onQueryTile, _user.getFaction());
 		return true;
 	}

@@ -26,8 +26,7 @@ this.legend_read_omens_trance_skill <- this.inherit("scripts/skills/actives/lege
 		local act = this.getContainer().getActor();
 		foreach( bro in this.World.getPlayerRoster().getAll() )
 		{
-			local skills = bro.getSkills();
-			local omens = skills.getSkillByID("effects.legend_read_omens");
+			local omens = ::Legends.Effects.get(bro, ::Legends.Effect.LegendReadOmens);
 			if (omens != null && omens.getActor() != null && omens.getActor == act)
 			{
 				::Legends.Effects.remove(bro, ::Legends.Effect.LegendReadOmens);

@@ -140,7 +140,7 @@ this.legend_unleash_bear_skill <- this.inherit("scripts/skills/skill", {
 
 	function onUse( _user, _targetTile )
 	{
-		::Legends.Effects.grant(user, ::Legends.Effect.LegendSummonedBearEffect);
+		::Legends.Effects.grant(_user, ::Legends.Effect.LegendSummonedBearEffect);
 		local entity = this.Tactical.spawnEntity(this.m.Script, _targetTile.Coords.X, _targetTile.Coords.Y);
 		entity.setFaction(this.Const.Faction.PlayerAnimals);
 		entity.setName(this.m.EntityName);

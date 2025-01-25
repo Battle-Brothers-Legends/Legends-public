@@ -45,7 +45,7 @@ this.legend_redback_spider_racial <- this.inherit("scripts/skills/skill", {
 		}
 
 		this.spawnIcon("status_effect_54", _targetEntity.getTile());
-		local poison = _targetEntity.getSkills().getSkillByID("effects.legend_redback_spider_poison");
+		local poison = ::Legends.Effects.get(_targetEntity, ::Legends.Effect.LegendRedbackSpiderPoison);
 
 		if (!_targetEntity.getSkills().hasEffect(::Legends.Effect.Stunned) && !_targetEntity.getCurrentProperties().IsImmuneToStun)
 		{

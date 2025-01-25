@@ -163,7 +163,7 @@ this.legend_protect_target_skill <- this.inherit("scripts/skills/skill", {
 				continue;
 			}
 
-			local skill = pet.getSkills().getSkillByID("effects.legend_guard")
+			local skill = ::Legends.Effects.get(pet, ::Legends.Effect.LegendGuard)
 
 			if (_t == null)
 			{

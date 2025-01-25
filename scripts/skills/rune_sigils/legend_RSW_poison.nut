@@ -53,8 +53,8 @@ this.legend_RSW_poison <- this.inherit("scripts/skills/skill", {
 			this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(_targetEntity) + " is poisoned.");
 		}
 
-		local runePoison = _targetEntity.getSkills().getSkillByID("effects.legend_RSW_poison_effect");
-		local gobboPoison = _targetEntity.getSkills().getSkillByID("effects.goblin_poison");
+		local runePoison = ::Legends.Effects.get(_targetEntity, ::Legends.Effect.LegendRswPoisonEffect);
+		local gobboPoison = ::Legends.Effects.get(_targetEntity, ::Legends.Effect.GoblinPoison);
 
 		if (runePoison == null && gobboPoison == null)
 		{

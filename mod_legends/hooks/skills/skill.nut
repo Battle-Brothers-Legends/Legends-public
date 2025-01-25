@@ -671,7 +671,7 @@
 		};
 		modifier.Shieldwall <- function ( row, description )
 		{
-			local shieldwallEffect = targetEntity.getSkills().getSkillByID("effects.shieldwall");
+			local shieldwallEffect = ::Legends.Effects.get(targetEntity, ::Legends.Effect.Shieldwall);
 			local adjacencyBonus = shieldwallEffect.getBonus();
 			row.text = red(getShieldBonus() + adjacencyBonus + "%") + " " + description;
 		};

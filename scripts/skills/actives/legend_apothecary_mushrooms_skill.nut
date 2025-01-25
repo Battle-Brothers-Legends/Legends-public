@@ -75,7 +75,7 @@ this.legend_apothecary_mushrooms_skill <- this.inherit("scripts/skills/actives/b
 
 		if (_user.getID() == user.getID())
 		{
-			local shrooms = user.getSkills().getSkillByID("effects.legend_apothecary_mushrooms");
+			local shrooms = ::Legends.Effects.get(user, ::Legends.Effect.LegendApothecaryMushrooms);
 
 			if (shrooms != null)
 			{

@@ -56,7 +56,7 @@ this.legend_rations_effect <- this.inherit("scripts/skills/skill", {
 		local actor = this.getContainer().getActor();
 		if (actor != null)
 		{
-			local stuffed = actor.getSkills().getSkillByID("effects.legend_stuffed_effect");
+			local stuffed = ::Legends.Effects.get(actor, ::Legends.Effect.LegendStuffedEffect);
 			if (stuffed != null)
 			{
 				title = "Stuffed";

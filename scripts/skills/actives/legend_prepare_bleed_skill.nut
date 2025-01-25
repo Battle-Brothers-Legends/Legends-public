@@ -67,14 +67,14 @@ this.legend_prepare_bleed_skill <- this.inherit("scripts/skills/skill", {
 
 	function isUsable()
 	{
-		local poison = this.getContainer().getSkillByID("effects.legend_bleed_prepared");
+		local poison = ::Legends.Effects.get(this, ::Legends.Effect.LegendBleedPrepared);
 
 		return !this.Tactical.isActive() || this.skill.isUsable() && !this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions()) && poison == null;
 	}
 
 	function onUse( _user, _targetTile )
 	{
-		local poison = _user.getSkills().getSkillByID("effects.legend_bleed_prepared");
+		local poison = ::Legends.Effects.get(_user, ::Legends.Effect.LegendBleedPrepared);
 
 		if (poison != null)
 		{

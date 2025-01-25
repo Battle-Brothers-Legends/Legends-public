@@ -69,7 +69,7 @@ this.legend_demon_hound_bite_skill <- this.inherit("scripts/skills/skill", {
 			this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(_targetEntity) + " spirit is being drained");
 		}
 
-		local poison = _targetEntity.getSkills().getSkillByID("effects.legend_demon_hound_bite_effect");
+		local poison = ::Legends.Effects.get(_targetEntity, ::Legends.Effect.LegendDemonHoundBiteEffect);
 
 		if (poison == null)
 		{

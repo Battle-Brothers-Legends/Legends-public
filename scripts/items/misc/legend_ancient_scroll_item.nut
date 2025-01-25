@@ -122,7 +122,7 @@ this.legend_ancient_scroll_item <- ::inherit("scripts/items/item", {
 
 	function gainTrainingEffect( _actor )
 	{
-		local trained = _actor.getSkills().getSkillByID("effects.trained");
+		local trained = ::Legends.Effects.get(_actor, ::Legends.Effect.Trained);
 
 		if (trained != null)
 		{

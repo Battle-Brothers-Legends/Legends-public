@@ -17,7 +17,7 @@ this.legend_eat_rations_skill <- this.inherit("scripts/skills/actives/base/legen
 		local rations = null;
 		if (this.Tactical.isActive())
 		{
-			rations = this.getContainer().getActor().getSkills().getSkillByID("effects.legend_rations_effect");
+			rations = ::Legends.Effects.get(this, ::Legends.Effect.LegendRationsEffect);
 			if (rations != null)
 			{
 				amount += rations.getAmount() - (10 - rations.getTurnsLeft());
@@ -121,7 +121,7 @@ this.legend_eat_rations_skill <- this.inherit("scripts/skills/actives/base/legen
 
 		//We are satiated at this point
 
-		local rationsEffect = _user.getSkills().getSkillByID("effects.legend_rations_effect");
+		local rationsEffect = ::Legends.Effects.get(_user, ::Legends.Effect.LegendRationsEffect);
 
 		if (!_user.getSkills().hasEffect(::Legends.Effect.LegendStuffedEffect))
 		{
@@ -130,7 +130,7 @@ this.legend_eat_rations_skill <- this.inherit("scripts/skills/actives/base/legen
 				this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(_user) + " eats food and becomes stuffed");
 			}
 
-			::Legends.Effects.grant(user, ::Legends.Effect.LegendStuffedEffect);
+			::Legends.Effects.grant(_user, ::Legends.Effect.LegendStuffedEffect);
 
 			rationsEffect.addAmount(rationsEffect.getAmount() + this.m.Amount);
 			rationsEffect.resetTurns();

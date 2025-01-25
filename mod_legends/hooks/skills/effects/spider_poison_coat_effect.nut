@@ -44,7 +44,7 @@
 			this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(_targetEntity) + " is poisoned");
 		}
 
-		::Legends.Effects.grant(target, ::Legends.Effect.SpiderPoison, function(_effect) {
+		::Legends.Effects.grant(_targetEntity, ::Legends.Effect.SpiderPoison, function(_effect) {
 			local actor = this.getContainer().getActor();
 			if (actor.getFaction() == this.Const.Faction.Player )
 				_effect.setActor(actor);

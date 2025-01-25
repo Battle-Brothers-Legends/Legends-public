@@ -84,7 +84,7 @@ this.camp_commander_dialog_module <- this.inherit("scripts/ui/screens/ui_module"
 			local skills = [];
 			if (b.getSkills().hasEffect(::Legends.Effect.Trained)) 
 			{
-				local _skill = b.getSkills().getSkillByID("effects.trained")
+				local _skill = ::Legends.Effects.get(b, ::Legends.Effect.Trained)
 				skills.push({
 					id = _skill.getID(),
 					icon = "skills/status_effect_75.png"

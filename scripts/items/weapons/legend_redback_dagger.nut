@@ -106,7 +106,7 @@ this.legend_redback_dagger <- this.inherit("scripts/items/weapons/weapon", {
 		}
 
 		this.spawnIcon("status_effect_54", _target.getTile());
-		local poison = _target.getSkills().getSkillByID("effects.legend_redback_spider_poison");
+		local poison = ::Legends.Effects.get(_target, ::Legends.Effect.LegendRedbackSpiderPoison);
 		local actor = this.getContainer().getActor();
 
 		if (poison == null)

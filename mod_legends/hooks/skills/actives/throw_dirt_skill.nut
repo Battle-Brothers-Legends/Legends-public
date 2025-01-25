@@ -22,7 +22,7 @@
 	local onUse = o.onUse;
 	o.onUse = function ( _user, _targetTile )
 	{
-		::Legends.Effects.grant(user, ::Legends.Effect.LegendThrewSandEffect);
+		::Legends.Effects.grant(_user, ::Legends.Effect.LegendThrewSandEffect);
 		onUse( _user, _targetTile );
 	}
 });

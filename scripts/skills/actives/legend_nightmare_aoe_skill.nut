@@ -73,7 +73,7 @@ this.legend_nightmare_aoe_skill <- this.inherit("scripts/skills/skill", {
 			return false;
 		}
 
-		local sleeping = _targetTile.getEntity().getSkills().getSkillByID("effects.sleeping");
+		local sleeping = ::Legends.Effects.get(_targetTile.getEntity(), ::Legends.Effect.Sleeping);
 
 		if (sleeping == null || sleeping.getTurnApplied() == this.Time.getRound())
 		{
