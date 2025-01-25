@@ -80,7 +80,7 @@ this.legend_inspire_skill <- this.inherit("scripts/skills/skill", {
 	function onUse( _user, _targetTile )
 	{
 		local target = _targetTile.getEntity();
-		target.getSkills().add(this.new("scripts/skills/effects/legend_inspired_effect"));
+		::Legends.Effects.grant(target, ::Legends.Effect.LegendInspired);
 		return true;
 	}
 

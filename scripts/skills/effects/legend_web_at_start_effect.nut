@@ -33,7 +33,7 @@ this.legend_web_at_start_effect <- this.inherit("scripts/skills/skill", {
 	function onCombatStarted()
 	{
 		local actor = this.getContainer().getActor();
-		actor.getSkills().add(this.new("scripts/skills/effects/web_effect"));
+		::Legends.Effects.grant(actor, ::Legends.Effect.Web);
 		local breakFree = this.new("scripts/skills/actives/break_free_skill");
 		breakFree.setDecal("web_destroyed");
 		breakFree.m.Icon = "skills/active_113.png";

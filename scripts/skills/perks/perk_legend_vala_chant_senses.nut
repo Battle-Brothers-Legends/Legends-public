@@ -189,7 +189,7 @@ this.perk_legend_vala_chant_senses <- this.inherit("scripts/skills/skill", {
 
 			if (!actor.getSkills().hasEffect(::Legends.Effect.LegendValaCurrentlyChanting))
 			{
-				actor.getSkills().add(this.new("scripts/skills/effects/legend_vala_currently_chanting"));
+				::Legends.Effects.grant(actor, ::Legends.Effect.LegendValaCurrentlyChanting);
 			}
 
 			foreach( tar in targets )
@@ -198,9 +198,9 @@ this.perk_legend_vala_chant_senses <- this.inherit("scripts/skills/skill", {
 				{
 					if (t.isAlliedWith(actor) && !t.getSkills().hasEffect(::Legends.Effect.LegendValaChantSensesEffect))
 					{
-						local senses = this.new("scripts/skills/effects/legend_vala_chant_senses_effect");
-						senses.setVala(this.getContainer().getActor());
-						t.getSkills().add(senses);
+						::Legends.Effects.grant(t, ::Legends.Effect.LegendValaChantSensesEffect, function(_effect) {
+							_effect.setVala(this.getContainer().getActor());
+						}.bindenv(this));
 
 						if (actor.getTile().getDistanceTo(t.getTile()) <= 3 && actor.getID() != t.getID())
 						{

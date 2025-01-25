@@ -43,12 +43,12 @@ this.legend_mummy_shield <- this.inherit("scripts/items/shields/shield", {
 		local bash = this.new("scripts/skills/actives/legend_buckler_bash_skill");
 		m.PrimaryOffhandAttack = ::MSU.asWeakTableRef(bash);
 		this.addSkill(bash);
-		
-		local effect = this.new("scripts/skills/effects/legend_buckler_effect");
-		effect.m.Order = this.Const.SkillOrder.UtilityTargeted + 1;
-		effect.setItem(this);
-		this.m.SkillPtrs.push(effect);
-		this.getContainer().getActor().getSkills().add(effect);
+
+		::Legends.Effects.grant(this, ::Legends.Effect.LegendBuckler, function(_effect) {
+			_effect.m.Order = this.Const.SkillOrder.UtilityTargeted + 1;
+			_effect.setItem(this);
+			this.m.SkillPtrs.push(_effect);
+		}.bindenv(this));
 	}
 
 	function onUnequip ()

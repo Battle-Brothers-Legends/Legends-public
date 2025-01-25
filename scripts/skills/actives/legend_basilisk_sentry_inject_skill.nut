@@ -116,7 +116,7 @@ this.legend_basilisk_sentry_inject_skill <- this.inherit("scripts/skills/skill",
 
 		if (poison == null)
 		{
-			_targetEntity.getSkills().add(this.new("scripts/skills/effects/legend_basilisk_poison_effect"));
+			::Legends.Effects.grant(_targetEntity, ::Legends.Effect.LegendBasiliskPoison);
 		}
 		else
 		{

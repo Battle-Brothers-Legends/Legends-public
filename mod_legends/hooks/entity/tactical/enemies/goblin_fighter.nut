@@ -12,7 +12,7 @@
 		if (::Legends.isLegendaryDifficulty())
 		{
 			::Legends.Perks.grant(this, ::Legends.Perk.Duelist);
-			this.m.Skills.add(this.new("scripts/skills/effects/dodge_effect"));
+			::Legends.Effects.grant(this, ::Legends.Effect.Dodge);
 			::Legends.Perks.grant(this, ::Legends.Perk.Relentless);
 			::Legends.Perks.grant(this, ::Legends.Perk.CripplingStrikes);
 			b.RangedSkill += 10;

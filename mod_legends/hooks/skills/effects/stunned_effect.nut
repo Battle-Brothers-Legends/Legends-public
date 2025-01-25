@@ -20,7 +20,7 @@
 				this.Tactical.EventLog.logEx(this.Const.UI.getColorizedEntityName(this.getContainer().getActor()) + " resists the Stun with " + skill.getName() + " and is Dazed instead.");
 			}
 			this.removeSelf();
-			this.getContainer().add(this.new("scripts/skills/effects/dazed_effect"));
+			::Legends.Effects.grant(this, ::Legends.Effect.Dazed);
 			return;
 		}
 		// End of Legends Steel Brow logic

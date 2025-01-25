@@ -86,7 +86,7 @@ this.legend_ninetails_disarm_skill <- this.inherit("scripts/skills/skill", {
 
 			if (!target.getCurrentProperties().IsStunned && !target.getCurrentProperties().IsImmuneToDisarm)
 			{
-				target.getSkills().add(this.new("scripts/skills/effects/disarmed_effect"));
+				::Legends.Effects.grant(target, ::Legends.Effect.Disarmed);
 
 				if (!_user.isHiddenToPlayer() && _targetTile.IsVisibleForPlayer)
 				{

@@ -101,7 +101,7 @@ this.legend_wine_tipsy_effect <- this.inherit("scripts/skills/skill", {
 	{
 		if (this.Math.rand(1, 100) <= 20)
 		{
-			this.getContainer().add(this.new("scripts/skills/effects_world/hangover_effect"));
+			::Legends.Effects.grant(this, ::Legends.Effect.Hangover);
 		}
 	}
 

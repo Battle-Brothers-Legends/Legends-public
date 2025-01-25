@@ -93,7 +93,7 @@ this.legend_possession_skill <- this.inherit("scripts/skills/skill", {
 			}
 		}
 
-		target.getSkills().add(::new("scripts/skills/effects/legend_possession_effect"));
+		::Legends.Effects.grant(target, ::Legends.Effect.LegendPossession);
 		::Legends.Traits.grant(target, ::Legends.Trait.Loyal); //removes charm and makes immune to charm.
 		target.setActionPoints(target.getCurrentProperties().ActionPoints);
 		// local possessing = this.new("scripts/skills/effects/possessing_undead_effect");

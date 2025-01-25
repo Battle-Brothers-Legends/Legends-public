@@ -109,7 +109,7 @@ this.legend_fortify_skill <- this.inherit("scripts/skills/skill", {
 
 	function onUse( _user, _targetTile )
 	{
-		this.m.Container.add(this.new("scripts/skills/effects/legend_fortify_effect"));
+		::Legends.Effects.grant(this, ::Legends.Effect.LegendFortify);
 
 		if (!_user.isHiddenToPlayer())
 		{

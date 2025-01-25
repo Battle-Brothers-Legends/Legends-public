@@ -151,7 +151,7 @@ this.legend_redback_puncture_skill <- this.inherit("scripts/skills/skill", {
 
 		this.spawnIcon("status_effect_54", _targetEntity.getTile());
 		local poison = _targetEntity.getSkills().getSkillByID("effects.legend_redback_spider_poison");
-		local effect = this.new("scripts/skills/effects/legend_redback_spider_poison_effect");
+		local effect = ::Legends.Effects.new(::Legends.Effect.LegendRedbackSpiderPoison);
 		local actor = this.getContainer().getActor();
 		if (actor.getFaction() == this.Const.Faction.Player )
 		{

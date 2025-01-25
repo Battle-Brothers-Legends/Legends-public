@@ -46,7 +46,7 @@
 	{
 		if (!this.getContainer().hasEffect(::Legends.Effect.LegendPerfectFocus))
 		{
-			this.m.Container.add(this.new("scripts/skills/effects/legend_perfect_focus_effect"));
+			::Legends.Effects.grant(this, ::Legends.Effect.LegendPerfectFocus);
 			return true;
 		}
 

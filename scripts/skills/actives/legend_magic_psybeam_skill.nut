@@ -68,7 +68,7 @@ this.legend_magic_psybeam_skill <- this.inherit("scripts/skills/actives/legend_m
 		local chance = ourSkill - theirSkill;
 		chance = chance > 95 ? 95 : chance;
 		chance = chance < 5 ? 5 : chance;
-		
+
 		this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(_user) + " uses psybeam on " + this.Const.UI.getColorizedEntityName(targetEntity) + " (Chance: " + chance + ", Rolled: " + r +")");
 
 		if (r <= chance)
@@ -79,9 +79,9 @@ this.legend_magic_psybeam_skill <- this.inherit("scripts/skills/actives/legend_m
 			{
 				if (!targetEntity.getCurrentProperties().IsImmuneToStun)
 				{
-					local newStunned = this.new("scripts/skills/effects/stunned_effect");
-					newStunned.addTurns(1);
-					target.getSkills().add(newStunned);
+					::Legends.Effects.grant(target, ::Legends.Effect.Stunned, function(_effect) {
+						_effect.addTurns(1);
+					}.bindenv(this));
 
 					if (!_user.isHiddenToPlayer() && _targetTile.IsVisibleForPlayer)
 					{
@@ -91,12 +91,12 @@ this.legend_magic_psybeam_skill <- this.inherit("scripts/skills/actives/legend_m
 			}
 			else
 			{
-					targetEntity.getSkills().add(this.new("scripts/skills/effects/legend_dazed_effect"));
+				::Legends.Effects.grant(targetEntity, ::Legends.Effect.LegendDazed);
 
-					if (!_user.isHiddenToPlayer() && _targetTile.IsVisibleForPlayer)
-					{
-						this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(_user) + " psybeamed " + this.Const.UI.getColorizedEntityName(targetEntity) + " leaving them dazed");
-					}
+				if (!_user.isHiddenToPlayer() && _targetTile.IsVisibleForPlayer)
+				{
+					this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(_user) + " psybeamed " + this.Const.UI.getColorizedEntityName(targetEntity) + " leaving them dazed");
+				}
 			}
 		}
 	}

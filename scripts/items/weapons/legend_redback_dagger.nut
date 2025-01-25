@@ -111,18 +111,16 @@ this.legend_redback_dagger <- this.inherit("scripts/items/weapons/weapon", {
 
 		if (poison == null)
 		{
-			local effect = this.new("scripts/skills/effects/legend_redback_spider_poison_effect");
-
-			if (actor.getFaction() == this.Const.Faction.Player )
-				effect.setActor(actor);
-
-			_target.getSkills().add(effect);
+			::Legends.Effects.grant(_target, ::Legends.Effect.LegendRedbackSpiderPoison, function(_effect) {
+				if (actor.getFaction() == this.Const.Faction.Player )
+					_effect.setActor(actor);
+			}.bindenv(this));
 		}
 		else
 		{
 			if (actor.getFaction() == this.Const.Faction.Player )
 				poison.setActor(actor);
-			
+
 			poison.resetTime();
 		}
 	}

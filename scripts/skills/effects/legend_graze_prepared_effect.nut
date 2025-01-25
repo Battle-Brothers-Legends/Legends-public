@@ -69,7 +69,7 @@ this.legend_graze_prepared_effect<- this.inherit("scripts/skills/skill", {
 			this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(_targetEntity) + " is bleeding from grazes");
 		}
 
-		_targetEntity.getSkills().add(this.new("scripts/skills/effects/legend_grazed_effect"));
+		::Legends.Effects.grant(_targetEntity, ::Legends.Effect.LegendGrazedEffect);
 	}
 
 	function onTargetMissed( _skill, _targetEntity )

@@ -79,7 +79,7 @@ this.legend_magic_levitate_skill <- this.inherit("scripts/skills/actives/legend_
 			return;
 		}
 
-		target.getSkills().add(this.new("scripts/skills/effects/legend_levitating_effect"));
+		::Legends.Effects.grant(target, ::Legends.Effect.LegendLevitating);
 
 		if (!_user.isHiddenToPlayer() && _targetTile.IsVisibleForPlayer)
 		{

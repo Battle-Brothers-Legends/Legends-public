@@ -118,9 +118,9 @@ this.legend_magic_circle_of_protection_skill <- this.inherit("scripts/skills/act
 			{
 				if (t.isAlliedWith(actor) && this.tileInCircleRange(t.getTile()) && !t.getSkills().hasEffect(::Legends.Effect.LegendMagicCircleOfProtectionEffect))
 				{
-					local circleEffect = this.new("scripts/skills/effects/legend_magic_circle_of_protection_effect");
-					circleEffect.setCircle(this);
-					t.getSkills().add(circleEffect);
+					::Legends.Effects.grant(t, ::Legends.Effect.LegendMagicCircleOfProtectionEffect, function(_effect) {
+						_effect.setCircle(this);
+					}.bindenv(this));
 					this.spawnIcon("perk_37", t.getTile());
 				}
 			}

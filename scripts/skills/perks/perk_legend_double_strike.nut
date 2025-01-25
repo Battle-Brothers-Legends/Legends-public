@@ -16,7 +16,7 @@ this.perk_legend_double_strike <- this.inherit("scripts/skills/skill", {
 
 		if (!_targetEntity.isAlliedWith(actor) && !actor.getSkills().hasEffect(::Legends.Effect.DoubleStrike))
 		{
-			actor.getSkills().add(this.new("scripts/skills/effects/double_strike_effect"));
+			::Legends.Effects.grant(actor, ::Legends.Effect.DoubleStrike);
 		}
 	}
 

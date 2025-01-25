@@ -22,8 +22,7 @@
 						"legend_surgeon_background"
 					]);
 
-					local effect = this.new("scripts/skills/effects_world/exhausted_effect");
-					_event.m.Dude.getSkills().add(effect);
+					::Legends.Effects.grant(_event.m.Dude, ::Legends.Effect.Exhausted);
 
 					_event.m.Dude.setHitpointsPct(0.33);
 					_event.m.Dude.improveMood(3.0, "Was rescued from the desert");

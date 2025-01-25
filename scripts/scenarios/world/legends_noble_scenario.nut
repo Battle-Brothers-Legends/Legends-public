@@ -38,7 +38,7 @@ this.legends_noble_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 		bros[0].setVeteranPerks(2);
 		::Legends.Traits.grant(bros[0], ::Legends.Trait.Drunkard);
 		::Legends.Traits.grant(bros[0], ::Legends.Trait.LegendNobleKiller);
-		bros[0].getSkills().add(this.new("scripts/skills/effects_world/drunk_effect"));
+		::Legends.Effects.grant(bros[0], ::Legends.Effect.Drunk);
 		this.addScenarioPerk(bros[0].getBackground(), this.Const.Perks.PerkDefs.Rotation);
 		this.addScenarioPerk(bros[0].getBackground(), this.Const.Perks.PerkDefs.RallyTheTroops);
 

@@ -162,7 +162,7 @@ this.legend_magic_sleep_skill <- this.inherit("scripts/skills/actives/legend_mag
 				continue;
 			}
 
-			target.getSkills().add(this.new("scripts/skills/effects/sleeping_effect"));
+			::Legends.Effects.grant(target, ::Legends.Effect.Sleeping);
 
 			if (!_user.isHiddenToPlayer() && !target.isHiddenToPlayer())
 			{

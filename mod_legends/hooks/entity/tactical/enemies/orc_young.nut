@@ -80,7 +80,7 @@
 		}
 
 		this.m.Skills.add(this.new("scripts/skills/actives/wake_ally_skill"));
-		this.m.Skills.add(this.new("scripts/skills/effects/captain_effect"));
+		::Legends.Effects.grant(this, ::Legends.Effect.Captain);
 	}
 
 	o.assignRandomEquipment = function ()

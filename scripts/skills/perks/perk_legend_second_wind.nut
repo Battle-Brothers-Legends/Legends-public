@@ -27,8 +27,8 @@ this.perk_legend_second_wind <- this.inherit("scripts/skills/skill", {
 			{
 				actor.setFatigue(actor.getFatigue() - 0.5 * actor.getFatigue() );
 
-				actor.getSkills().add(this.new("scripts/skills/effects/legend_second_wind_effect"));
-				actor.getSkills().add(this.new("scripts/skills/effects/recovery_potion_effect"));
+				::Legends.Effects.grant(actor, ::Legends.Effect.LegendSecondWind);
+				::Legends.Effects.grant(actor, ::Legends.Effect.RecoveryPotion);
 				if (this.m.Container.hasEffect(::Legends.Effect.Stunned))
 				{
 				::Legends.Effects.remove(this, ::Legends.Effect.Stunned);

@@ -89,17 +89,15 @@ this.legend_push_forward_skill <- this.inherit("scripts/skills/skill", {
 
 			if (a.getFaction() == _user.getFaction() && !a.getSkills().hasEffect(::Legends.Effect.LegendPushingForward))
 			{
-
-				local effect = this.new("scripts/skills/effects/legend_pushing_forward")
-				effect.setCommander(this.getContainer().getActor());
-				a.getSkills().add(effect);
-
+				::Legends.Effects.grant(a, ::Legends.Effect.LegendPushingForward, function(_effect) {
+					_effect.setCommander(this.getContainer().getActor());
+				}.bindenv(this));
 			}
 		}
 
-		local effect = this.new("scripts/skills/effects/legend_pushing_forward")
-		effect.setCommander(this.getContainer().getActor());
-		this.getContainer().add(effect);
+		::Legends.Effects.grant(this, ::Legends.Effect.LegendPushingForward, function(_effect) {
+			_effect.setCommander(this.getContainer().getActor());
+		}.bindenv(this));
 		return true;
 	}
 

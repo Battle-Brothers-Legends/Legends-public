@@ -14,7 +14,7 @@
 			}
 			else
 			{
-				user.getSkills().add(this.new("scripts/skills/effects/berserker_mushrooms_effect"));
+				::Legends.Effects.grant(user, ::Legends.Effect.BerserkerMushrooms);
 			}
 
 			if (!_user.isHiddenToPlayer())

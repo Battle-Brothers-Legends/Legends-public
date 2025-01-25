@@ -59,7 +59,7 @@ this.legend_horrify_old_skill <- this.inherit("scripts/skills/skill", {
 
 		if (target.isAlive())
 		{
-			target.getSkills().add(this.new("scripts/skills/effects/horrified_effect"));
+			::Legends.Effects.grant(target, ::Legends.Effect.Horrified);
 
 			if (!_user.isHiddenToPlayer() && _targetTile.IsVisibleForPlayer)
 			{

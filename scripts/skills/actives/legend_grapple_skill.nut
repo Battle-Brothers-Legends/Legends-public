@@ -117,14 +117,14 @@ this.legend_grapple_skill <- this.inherit("scripts/skills/skill", {
 		if (_targetTile.IsOccupiedByActor)
 		{
 			// Now always grapples
-			target.getSkills().add(this.new("scripts/skills/effects/legend_grappled_effect"));
+			::Legends.Effects.grant(target, ::Legends.Effect.LegendGrappled);
 			if (!_user.isHiddenToPlayer() && _targetTile.IsVisibleForPlayer)
 			{
 				this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(_user) + " has grappled " + this.Const.UI.getColorizedEntityName(target) + " for two turns");
 			}
 			if ((this.Math.rand(1, 100) > this.m.DisarmChance || _user.getCurrentProperties().IsSpecializedInFists) && !target.getCurrentProperties().IsImmuneToDisarm)
 			{
-				target.getSkills().add(this.new("scripts/skills/effects/disarmed_effect"));
+				::Legends.Effects.grant(target, ::Legends.Effect.Disarmed);
 			}
 		}
 

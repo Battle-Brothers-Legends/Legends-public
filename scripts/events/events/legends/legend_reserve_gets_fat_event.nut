@@ -32,7 +32,7 @@ this.legend_reserve_gets_fat_event <- this.inherit("scripts/events/event", {
 						icon = _trait.getIcon(),
 						text = _event.m.FatGuy.getName() + " is now gluttonous"
 					}];
-				});
+				}.bindenv(this));
 			}
 
 		});

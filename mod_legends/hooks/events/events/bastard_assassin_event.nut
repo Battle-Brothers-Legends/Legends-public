@@ -31,7 +31,7 @@
 								icon = _trait.getIcon(),
 								text = _event.m.Bastard.getName() + " is now loyal"
 							});
-						});
+						}.bindenv(this));
 					}
 					this.World.Assets.addMoralReputation(2);
 					_event.m.Bastard.improveMood(2.0, "You risked your life for him");

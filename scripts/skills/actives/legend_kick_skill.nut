@@ -144,11 +144,11 @@ this.legend_kick_skill <- this.inherit("scripts/skills/skill", {
 			this.m.DazeChance = 50;
 		}
 
-		target.getSkills().add(this.new("scripts/skills/effects/staggered_effect")); // Always stagger, sometimes daze
+		::Legends.Effects.grant(target, ::Legends.Effect.Staggered); // Always stagger, sometimes daze
 		this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(_user) + " has staggered " + this.Const.UI.getColorizedEntityName(target) + " for one turn");
 		if (this.Math.rand(1, 100) <= this.m.DazeChance && !target.getCurrentProperties().IsImmuneToDaze)
 		{
-			target.getSkills().add(this.new("scripts/skills/effects/dazed_effect"));
+			::Legends.Effects.grant(target, ::Legends.Effect.Dazed);
 			this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(_user) + " struck a blow that leaves " + this.Const.UI.getColorizedEntityName(target) + " dazed");
 		}
 		return true;

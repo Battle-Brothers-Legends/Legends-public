@@ -68,7 +68,7 @@ this.legend_eat_pudding_skill <- this.inherit("scripts/skills/actives/base/legen
 
 		if (_user.getID() == user.getID())
 		{
-			user.getSkills().add(this.new("scripts/skills/effects/legend_pudding_effect"));
+			::Legends.Effects.grant(user, ::Legends.Effect.LegendPuddingEffect);
 
 			if (!user.isHiddenToPlayer())
 			{

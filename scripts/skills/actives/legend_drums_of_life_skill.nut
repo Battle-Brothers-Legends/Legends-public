@@ -84,11 +84,11 @@ this.legend_drums_of_life_skill <- this.inherit("scripts/skills/skill", {
 
 			if (a.getFaction() == _user.getFaction())
 			{
-				a.getSkills().add(this.new("scripts/skills/effects/legend_drums_of_life_effect"));
+				::Legends.Effects.grant(a, ::Legends.Effect.LegendDrumsOfLife);
 			}
 		}
 
-		this.getContainer().add(this.new("scripts/skills/effects/legend_drums_of_life_effect"));
+		::Legends.Effects.grant(this, ::Legends.Effect.LegendDrumsOfLife);
 		return true;
 	}
 

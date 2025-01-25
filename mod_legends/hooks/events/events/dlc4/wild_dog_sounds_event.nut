@@ -47,13 +47,13 @@
 
 						if (this.Math.rand(1, 100) <= 25) {
 							bro.worsenMood(0.5, "Didn\'t get a good night\'s sleep");
-							local effect = this.new("scripts/skills/effects_world/exhausted_effect");
-							bro.getSkills().add(effect);
-							this.List.push({
-								id = 10,
-								icon = effect.getIcon(),
-								text = bro.getName() + " is exhausted"
-							});
+							::Legends.Effects.grant(bro, ::Legends.Effect.Exhausted, function(_effect) {
+								this.List.push({
+									id = 10,
+									icon = _effect.getIcon(),
+									text = bro.getName() + " is exhausted"
+								});
+							}.bindenv(this));
 						}
 					}
 				}

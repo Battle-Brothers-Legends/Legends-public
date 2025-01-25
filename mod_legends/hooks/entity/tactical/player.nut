@@ -492,9 +492,9 @@
 	o.onInit = function ()
 	{
 		onInit();
-		this.m.Skills.add(this.new("scripts/skills/effects/legend_realm_of_nightmares_effect"));
+		::Legends.Effects.grant(this, ::Legends.Effect.LegendRealmOfNightmares);
 		this.m.Skills.add(this.new("scripts/skills/special/legend_horserider_skill"));
-		this.m.Skills.add(this.new("scripts/skills/effects/legend_veteran_levels_effect"));
+		::Legends.Effects.grant(this, ::Legends.Effect.LegendVeteranLevels);
 	}
 
 	local onHired = o.onHired;
@@ -574,7 +574,7 @@
 			::Legends.Traits.grant(this, ::Legends.Trait.LegendRottenFlesh);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendZombieBite, function (perk) {
 				perk.IsRefundable = false;
-			});
+			}.bindenv(this));
 
 			local has9L = this.getSkills().hasPerk(::Legends.Perk.NineLives);
 			::Legends.Perks.grant(this, ::Legends.Perk.NineLives, function (perk) {
@@ -583,7 +583,7 @@
 					this.m.PerkPointsSpent -= 1;
 				}
 				perk.IsRefundable = false;
-			});
+			}.bindenv(this));
 
 			if (result) {
 				this.m.IsDying = false;

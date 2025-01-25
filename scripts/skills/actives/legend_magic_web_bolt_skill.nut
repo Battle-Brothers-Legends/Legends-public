@@ -98,7 +98,7 @@ this.legend_magic_web_bolt_skill <- this.inherit("scripts/skills/actives/legend_
 						this.Sound.play(this.m.SoundOnHit[this.Math.rand(0, this.m.SoundOnHit.len() - 1)], this.Const.Sound.Volume.Skill, targetEntity.getPos());
 					}
 
-					targetEntity.getSkills().add(this.new("scripts/skills/effects/web_effect"));
+					::Legends.Effects.grant(targetEntity, ::Legends.Effect.Web);
 					local breakFree = this.new("scripts/skills/actives/break_free_skill");
 					breakFree.setDecal("web_destroyed");
 					breakFree.m.Icon = "skills/active_113.png";

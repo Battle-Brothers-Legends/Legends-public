@@ -9,7 +9,7 @@
 		if(::Legends.isLegendaryDifficulty())
 		{
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendLevitate);
-			this.m.Skills.add(this.new("scripts/skills/effects/dodge_effect"));
+			::Legends.Effects.grant(this, ::Legends.Effect.Dodge);
 			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
 		}
 	}

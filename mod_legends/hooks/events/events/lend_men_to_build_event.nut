@@ -34,13 +34,13 @@
 
 						if (id == "background.daytaler" || id == "background.mason" || id == "background.lumberjack" || id == "background.miller" || id == "background.farmhand" || id == "background.gravedigger") {
 							if (this.Math.rand(1, 100) <= 33) {
-								local effect = this.new("scripts/skills/effects_world/exhausted_effect");
-								bro.getSkills().add(effect);
-								this.List.push({
-									id = 10,
-									icon = effect.getIcon(),
-									text = bro.getName() + " is exhausted"
-								});
+								::Legends.Effects.grant(bro, ::Legends.Effect.Exhausted, function(_effect) {
+									this.List.push({
+										id = 10,
+										icon = _effect.getIcon(),
+										text = bro.getName() + " is exhausted"
+									});
+								}.bindenv(this));
 							}
 
 							if (this.Math.rand(1, 100) <= 50) {
@@ -76,13 +76,13 @@
 
 						if (id == "background.daytaler" || id == "background.mason" || id == "background.lumberjack" || id == "background.miller" || id == "background.farmhand" || id == "background.gravedigger") {
 							if (this.Math.rand(1, 100) <= 33) {
-								local effect = this.new("scripts/skills/effects_world/exhausted_effect");
-								bro.getSkills().add(effect);
-								this.List.push({
-									id = 10,
-									icon = effect.getIcon(),
-									text = bro.getName() + " is exhausted"
-								});
+								::Legends.Effects.grant(bro, ::Legends.Effect.Exhausted, function(_effect) {
+									this.List.push({
+										id = 10,
+										icon = _effect.getIcon(),
+										text = bro.getName() + " is exhausted"
+									});
+								}.bindenv(this));
 							}
 
 							if (this.Math.rand(1, 100) <= 33) {

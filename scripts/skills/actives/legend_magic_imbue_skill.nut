@@ -84,9 +84,9 @@ this.legend_magic_imbue_skill <- this.inherit("scripts/skills/actives/legend_mag
 		{
 			return;
 		}
-		local newImbue = this.new("scripts/skills/effects/legend_effect_imbue");
-		newImbue.setImbueAmount(this.getImbueAmount());
-		target.getSkills().add(newImbue);
+		::Legends.Effects.grant(target, ::Legends.Effect.LegendImbueEffect, function(_effect) {
+			_effect.setImbueAmount(this.getImbueAmount());
+		}.bindenv(this));
 
 		if (!_user.isHiddenToPlayer() && _targetTile.IsVisibleForPlayer)
 		{

@@ -79,7 +79,7 @@ this.legend_magic_stun_skill <- this.inherit("scripts/skills/skill", {
 
 		if (target.isAlive())
 		{
-			target.getSkills().add(this.new("scripts/skills/effects/stunned_effect"));
+			::Legends.Effects.grant(target, ::Legends.Effect.Stunned);
 
 			if (!_user.isHiddenToPlayer() && _targetTile.IsVisibleForPlayer)
 			{

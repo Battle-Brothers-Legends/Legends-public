@@ -74,12 +74,10 @@
 	{
 		if (!_entity.getSkills().hasEffect(::Legends.Effect.LegendConsecratedEffect))
 		{
-			local effect = this.new("scripts/skills/effects/legend_consecrated_effect");
-			if (_killer != null && _killer.getFaction() == this.Const.Faction.Player)
-			{
-				effect.setActor(_killer);
-			}
-			_entity.getSkills().add(this.new("scripts/skills/effects/legend_consecrated_effect"));
+			::Legends.Effects.grant(_entity, ::Legends.Effect.LegendConsecratedEffect, function(_effect) {
+				if (_killer != null && _killer.getFaction() == this.Const.Faction.Player)
+					_effect.setActor(_killer);
+			}.bindenv(this));
 		}
 		return;
 	}
@@ -87,7 +85,7 @@
 	{
 		if (!_entity.getSkills().hasEffect(::Legends.Effect.LegendSanctifiedEffect))
 		{
-			_entity.getSkills().add(this.new("scripts/skills/effects/legend_sanctified_effect"));
+			::Legends.Effects.grant(_entity, ::Legends.Effect.LegendSanctifiedEffect);
 		}
 	}
 };

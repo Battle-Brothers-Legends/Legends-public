@@ -86,7 +86,7 @@ this.legend_tackle_skill <- this.inherit("scripts/skills/skill", {
 		if (_targetTile.IsOccupiedByActor)
 		{
 			local target = _targetTile.getEntity();
-			target.getSkills().add(this.new("scripts/skills/effects/legend_tackled_effect"))
+			::Legends.Effects.grant(target, ::Legends.Effect.LegendTackled)
 			this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(_user) + " has tackled " + this.Const.UI.getColorizedEntityName(target) + " to the ground for two turns");
 		}
 

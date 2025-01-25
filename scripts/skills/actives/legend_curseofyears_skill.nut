@@ -137,7 +137,7 @@ this.legend_curseofyears_skill <- this.inherit("scripts/skills/skill", {
 			this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(target) + " Died over time");
 		}
 
-		target.getSkills().add(this.new("scripts/skills/effects/legend_curseofyears_effect"));
+		::Legends.Effects.grant(target, ::Legends.Effect.LegendCurseofyears);
 		if ("addStacks" in _user)
 		{
 			_user.addStacks(5);

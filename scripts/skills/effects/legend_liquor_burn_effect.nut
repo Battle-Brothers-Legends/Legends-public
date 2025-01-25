@@ -103,11 +103,11 @@ this.legend_liquor_burn_effect <- this.inherit("scripts/skills/skill", {
 		local actor = this.getContainer().getActor();
 		if (this.Math.rand(1, 100) <= 30 && !actor.getSkills().hasTrait(::Legends.Trait.Drunkard))
 		{
-			this.getContainer().add(this.new("scripts/skills/effects_world/hangover_effect"));
+			::Legends.Effects.grant(this, ::Legends.Effect.Hangover);
 		}
 		else if (this.Math.rand(1, 100) <= 15 && actor.getSkills().hasTrait(::Legends.Trait.Drunkard))
 		{
-			this.getContainer().add(this.new("scripts/skills/effects_world/hangover_effect"));
+			::Legends.Effects.grant(this, ::Legends.Effect.Hangover);
 		}
 	}
 

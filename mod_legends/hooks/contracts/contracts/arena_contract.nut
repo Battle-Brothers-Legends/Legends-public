@@ -166,7 +166,7 @@
 										icon = skill.getIcon(),
 										text = bro.getName() + " is now " + this.Const.Strings.getArticle(skill.getName()) + skill.getName()
 									});
-								});
+								}.bindenv(this));
 							} else if (bro.getFlags().getAsInt("ArenaFightsWon") == 5 && bro.getSkills().hasTrait(::Legends.Trait.PitFighter)) {
 								::Legends.Traits.remove(bro, ::Legends.Trait.PitFighter);
 								::Legends.Traits.grant(bro, ::Legends.Trait.ArenaFighter, function(skill) {
@@ -175,7 +175,7 @@
 										icon = skill.getIcon(),
 										text = bro.getName() + " is now " + this.Const.Strings.getArticle(skill.getName()) + skill.getName()
 									});
-								});
+								}.bindenv(this));
 							} else if (bro.getFlags().getAsInt("ArenaFightsWon") >= 12 && bro.getSkills().hasTrait(::Legends.Trait.ArenaFighter)) {
 								::Legends.Traits.remove(bro, ::Legends.Trait.ArenaFighter);
 								::Legends.Traits.grant(bro, ::Legends.Trait.LegendArenaVeteran, function(skill) {
@@ -184,7 +184,7 @@
 										icon = skill.getIcon(),
 										text = bro.getName() + " is now " + this.Const.Strings.getArticle(skill.getName()) + skill.getName()
 									});
-								});
+								}.bindenv(this));
 							} else if (bro.getFlags().getAsInt("ArenaFightsWon") >= 25 && bro.getSkills().hasTrait(::Legends.Trait.LegendArenaVeteran)) {
 								::Legends.Traits.remove(bro, ::Legends.Trait.LegendArenaVeteran);
 								::Legends.Traits.grant(bro, ::Legends.Trait.LegendArenaChampion, function(skill) {
@@ -193,7 +193,7 @@
 										icon = skill.getIcon(),
 										text = bro.getName() + " is now " + this.Const.Strings.getArticle(skill.getName()) + skill.getName()
 									});
-								});
+								}.bindenv(this));
 							} else if (bro.getFlags().getAsInt("ArenaFightsWon") >= 50 && bro.getSkills().hasTrait(::Legends.Trait.LegendArenaChampion)) {
 								::Legends.Traits.remove(bro, ::Legends.Trait.LegendArenaChampion);
 								::Legends.Traits.grant(bro, ::Legends.Trait.LegendArenaInvictus, function(skill) {
@@ -202,7 +202,7 @@
 										icon = skill.getIcon(),
 										text = bro.getName() + " is now " + this.Const.Strings.getArticle(skill.getName()) + skill.getName()
 									});
-								});
+								}.bindenv(this));
 							}
 							n++;
 						}

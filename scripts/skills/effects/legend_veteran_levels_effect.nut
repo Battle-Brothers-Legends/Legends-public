@@ -5,9 +5,9 @@ this.legend_veteran_levels_effect <- this.inherit("scripts/skills/skill", {
 		this.m.ID = "effects.legend_veteran_levels";
 		this.m.Name = "";
 		this.m.Description = "";
-		this.m.Icon = "";				
+		this.m.Icon = "";
 		this.m.Type = this.Const.SkillType.StatusEffect;
-		this.m.IsActive = false;		
+		this.m.IsActive = false;
 		this.m.IsHidden = true;
 	}
 

@@ -86,7 +86,7 @@ this.legend_staffwall_skill <- this.inherit("scripts/skills/skill", {
 
 	function onUse( _user, _targetTile )
 	{
-		this.m.Container.add(this.new("scripts/skills/effects/legend_staffwall_effect"));
+		::Legends.Effects.grant(this, ::Legends.Effect.LegendStaffwall);
 
 		if (!_user.isHiddenToPlayer())
 		{

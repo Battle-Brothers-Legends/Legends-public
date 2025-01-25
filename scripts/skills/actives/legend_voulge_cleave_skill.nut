@@ -103,13 +103,11 @@ this.legend_voulge_cleave_skill <- this.inherit("scripts/skills/skill", {
 			}
 			else if (!target.getCurrentProperties().IsImmuneToBleeding && hp - target.getHitpoints() >= this.Const.Combat.MinDamageToApplyBleeding)
 			{
-				local effect = this.new("scripts/skills/effects/bleeding_effect");
+				::Legends.Effects.grant(target, ::Legends.Effect.Bleeding, function(_effect) {
 					if (_user.getFaction() == this.Const.Faction.Player )
-					{
-					effect.setActor(this.getContainer().getActor());
-					}
-				effect.setDamage(this.getContainer().getActor().getCurrentProperties().IsSpecializedInCleavers ? 10 : 5);
-				target.getSkills().add(effect);
+						_effect.setActor(this.getContainer().getActor());
+					_effect.setDamage(this.getContainer().getActor().getCurrentProperties().IsSpecializedInCleavers ? 10 : 5);
+				}.bindenv(this));
 				this.Sound.play(this.m.SoundsA[this.Math.rand(0, this.m.SoundsA.len() - 1)], this.Const.Sound.Volume.Skill, _user.getPos());
 			}
 			else

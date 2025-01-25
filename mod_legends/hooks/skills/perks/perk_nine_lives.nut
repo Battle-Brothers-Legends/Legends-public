@@ -32,7 +32,7 @@
 
 			this.onProc();
 
-			this.getContainer().add(this.new("scripts/skills/effects/nine_lives_effect"));
+			::Legends.Effects.grant(this, ::Legends.Effect.NineLives);
 		}
 
 		this.m.IsSpent = _f;

@@ -176,8 +176,7 @@ this.legend_protect_target_skill <- this.inherit("scripts/skills/skill", {
 
 			if (skill == null)
 			{
-				skill = this.new("scripts/skills/effects/legend_guard_effect")
-				pet.getSkills().add(skill);
+				::Legends.Effects.grant(pet, ::Legends.Effect.LegendGuard);
 			}
 
 			skill.setTarget(_t);
@@ -189,7 +188,7 @@ this.legend_protect_target_skill <- this.inherit("scripts/skills/skill", {
 		{
 			return;
 		}
-		_t.getSkills().add(this.new("scripts/skills/effects/legend_guarded_effect"));
+		::Legends.Effects.grant(_t, ::Legends.Effect.LegendGuardedEffect);
 		this.m.LastTarget = _t.getID();
 	}
 

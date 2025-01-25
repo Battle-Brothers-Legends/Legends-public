@@ -77,9 +77,9 @@ this.legend_prayer_of_life_skill <- this.inherit("scripts/skills/skill", {
 			{
 				if (!a.getFlags().has("cultist") && !a.getSkills().hasEffect(::Legends.Effect.LegendPrayerOfLife))
 				{
-					local effect = this.new("scripts/skills/effects/legend_prayer_of_life_effect");
-					effect.m.Resolve = this.getContainer().getActor().getBravery();
-					a.getSkills().add(effect);
+					::Legends.Effects.grant(a, ::Legends.Effect.LegendPrayerOfLife, function(_effect) {
+						_effect.m.Resolve = this.getContainer().getActor().getBravery();
+					}.bindenv(this));
 				}
 			}
 
@@ -87,7 +87,7 @@ this.legend_prayer_of_life_skill <- this.inherit("scripts/skills/skill", {
 			{
 				if (!a.getSkills().hasEffect(::Legends.Effect.LegendDisintegrating))
 				{
-					a.getSkills().add(this.new("scripts/skills/effects/legend_disintegrating_effect"));
+					::Legends.Effects.grant(a, ::Legends.Effect.LegendDisintegrating);
 				}
 			}
 		}

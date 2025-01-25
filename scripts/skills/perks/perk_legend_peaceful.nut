@@ -28,8 +28,7 @@ this.perk_legend_peaceful <- this.inherit("scripts/skills/skill", {
 		{
 			if (a.getFaction() == this.getContainer().getActor().getFaction() && !a.getSkills().hasEffect(::Legends.Effect.LegendPeacefulReassured))
 			{
-				local effect = this.new("scripts/skills/effects/legend_peaceful_reassured_effect");
-				a.getSkills().add(effect);
+				::Legends.Effects.grant(a, ::Legends.Effect.LegendPeacefulReassured);
 			}
 		}
 	}

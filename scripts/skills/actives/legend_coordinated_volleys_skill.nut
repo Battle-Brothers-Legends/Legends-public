@@ -55,11 +55,11 @@ this.legend_coordinated_volleys_skill <- this.inherit("scripts/skills/skill", {
 				type = "text",
 				icon = "ui/icons/damage_dealt.png",
 				text =  "[color=" + this.Const.UI.Color.PositiveValue + "]5%[/color] damage bonus to all allies within [color=" + this.Const.UI.Color.PositiveValue + "]4[/color] tiles for one turn"
-			}		
+			}
 		];
 	}
 
-function isUsable()
+	function isUsable()
 	{
 		return this.skill.isUsable() && !this.getContainer().hasEffect(::Legends.Effect.LegendCoordinatingVolleys);
 	}
@@ -83,15 +83,14 @@ function isUsable()
 
 			if (a.getFaction() == _user.getFaction() && !a.getSkills().hasEffect(::Legends.Effect.LegendCoordinatingVolleys))
 			{
-				local effect = this.new("scripts/skills/effects/legend_coordinating_volleys")
-				effect.setCommander(this.getContainer().getActor());
-				a.getSkills().add(effect);
+				::Legends.Effects.grant(a, ::Legends.Effect.LegendCoordinatingVolleys, function(_effect) {
+					_effect.setCommander(this.getContainer().getActor());
+				}.bindenv(this));
 			}
 		}
-
-		local effect = this.new("scripts/skills/effects/legend_coordinating_volleys")
-		effect.setCommander(this.getContainer().getActor());
-		this.getContainer().add(effect);
+		::Legends.Effects.grant(this, ::Legends.Effect.LegendCoordinatingVolleys, function(_effect) {
+			_effect.setCommander(this.getContainer().getActor());
+		}.bindenv(this));
 		return true;
 	}
 

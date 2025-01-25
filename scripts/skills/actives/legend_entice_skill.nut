@@ -159,7 +159,7 @@ this.legend_entice_skill <- this.inherit("scripts/skills/skill", {
 			this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(_user) + " hooks in " + this.Const.UI.getColorizedEntityName(target));
 		}
 
-		target.getSkills().add(this.new("scripts/skills/effects/staggered_effect"));
+		::Legends.Effects.grant(target, ::Legends.Effect.Staggered);
 
 		if (!_user.isHiddenToPlayer() && _targetTile.IsVisibleForPlayer)
 		{

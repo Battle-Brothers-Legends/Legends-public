@@ -162,11 +162,11 @@
 
 			if (morale != a.getMoraleState())
 			{
-				a.getSkills().add(this.new("scripts/skills/effects/rallied_effect"));
+				::Legends.Effects.grant(a, ::Legends.Effect.Rallied);
 			}
 		}
 
-		this.getContainer().add(this.new("scripts/skills/effects/rallied_effect"));
+		::Legends.Effects.grant(this, ::Legends.Effect.Rallied);
 		return true;
 	}
 });

@@ -31,15 +31,16 @@
 				this.Sound.play(this.m.SoundOnHit[this.Math.rand(0, this.m.SoundOnHit.len() - 1)], this.Const.Sound.Volume.Skill * 1.2, _user.getPos());
 			}
 		}
+		::Legends.Effects.grant(target, ::Legends.Effect.PossessedUndead, function(_effect) {
+			_effect.setPossessor(_user);
+			_effect.setPlayerControlled(_user.isPlayerControlled());
+		}.bindenv(this));
 
-		local possessed = this.new("scripts/skills/effects/possessed_undead_effect");
-		possessed.setPossessor(_user);
-		possessed.setPlayerControlled(_user.isPlayerControlled()); // from me combining both skills
-		target.getSkills().add(possessed);
 		target.setActionPoints(target.getCurrentProperties().ActionPoints);
-		local possessing = this.new("scripts/skills/effects/possessing_undead_effect");
-		possessing.setPossessed(target);
-		_user.getSkills().add(possessing);
+
+		::Legends.Effects.grant(_user, ::Legends.Effect.PossessingUndead, function(_effect) {
+			_effect.setPossessed(target);
+		}.bindenv(this));
 		return true;
 	}
 });

@@ -41,29 +41,23 @@ this.perk_legend_prepared <- this.inherit("scripts/skills/skill", {
    function onTargetHit( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor )
 	{
 		if (_targetEntity == null || !_targetEntity.isAlive() || _targetEntity.getCurrentProperties().IsImmuneToPoison == true)
-		{
 			return;
-		}
 
 		local actor = this.getContainer().getActor();
 		local item = actor.getMainhandItem();
 
-		if (item == null) return;
+		if (item == null)
+			return;
 
-		local effect = new("scripts/skills/effects/spider_poison_effect");
-		if (actor.getFaction() == this.Const.Faction.Player )
-		{
-			effect.setActor(actor);
-		}
 		if (item.isWeaponType(this.Const.Items.WeaponType.Dagger) && _damageInflictedHitpoints > 0)
 		{
 			if(this.Math.rand(1, 100) < this.m.PoisonChance)
 			{
-				_targetEntity.getSkills().add(effect);
+				::Legends.Effects.grant(_targetEntity, ::Legends.Effect.SpiderPoison, function(_effect) {
+					_effect.setActor(actor);
+				}.bindenv(this));
 			}
 		}
-
 	}
-
 });
 

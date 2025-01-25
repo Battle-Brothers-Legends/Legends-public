@@ -77,11 +77,11 @@ this.legend_guide_steps_skill <- this.inherit("scripts/skills/skill", {
 
 			if (a.getFaction() == _user.getFaction() && !a.getSkills().hasEffect(::Legends.Effect.LegendStepsGuided))
 			{
-				a.getSkills().add(this.new("scripts/skills/effects/legend_steps_guided"));
+				::Legends.Effects.grant(a, ::Legends.Effect.LegendStepsGuided);
 			}
 		}
 
-		this.getContainer().add(this.new("scripts/skills/effects/legend_steps_guided"));
+		::Legends.Effects.grant(this, ::Legends.Effect.LegendStepsGuided);
 		return true;
 	}
 

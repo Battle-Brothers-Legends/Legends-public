@@ -105,7 +105,7 @@ this.legend_drink_alcohol_skill <- this.inherit("scripts/skills/skill", {
 			else if (user.getSkills().hasEffect(::Legends.Effect.Drunk))
 				user.getSkills().add(this.new("scripts/skills/injury/sickness_injury"));
 			else if (::Legends.Food.isTipsy(user))
-				user.getSkills().add(this.new("scripts/skills/effects_world/drunk_effect"));
+				::Legends.Effects.grant(user, ::Legends.Effect.Drunk);
 			else if (this.m.Effect != null)
 				user.getSkills().add(this.new("scripts/skills/effects/" + this.m.Effect));
 

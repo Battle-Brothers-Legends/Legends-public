@@ -151,7 +151,7 @@ this.legend_boar_gore_skill <- this.inherit("scripts/skills/skill", {
 
 		if (success && _targetTile.IsOccupiedByActor && !target.isNonCombatant())
 		{
-			target.getSkills().add(this.new("scripts/skills/effects/staggered_effect"));
+			::Legends.Effects.grant(target, ::Legends.Effect.Staggered);
 
 			if (!_user.isHiddenToPlayer() && _targetTile.IsVisibleForPlayer)
 			{

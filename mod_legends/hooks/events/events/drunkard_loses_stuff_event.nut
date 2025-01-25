@@ -125,7 +125,7 @@
 					icon = "ui/traits/trait_icon_29.png",
 					text = _event.m.Drunkard.getName() + " is no longer a drunkard"
 				});
-				_event.m.Drunkard.getSkills().add(this.new("scripts/skills/effects_world/hangover_effect"));
+				::Legends.Effects.grant(_event.m.Drunkard, ::Legends.Effect.Hangover);
 				this.List.push({
 					id = 10,
 					icon = "skills/status_effect_62.png",
@@ -153,7 +153,7 @@
 				}
 			}],
 			function start( _event ) {
-				_event.m.Drunkard.getSkills().add(this.new("scripts/skills/effects_world/hangover_effect"));
+				::Legends.Effects.grant(_event.m.Drunkard, ::Legends.Effect.Hangover);
 				this.List.push({
 					id = 10,
 					icon = "skills/status_effect_62.png",

@@ -26,6 +26,14 @@ if (!("Effects" in ::Legends))
  * with optional lambda to modify effect on the fly.
  * Can be used to modify existing effects too.
  *
+ * Example here:
+ *
+ * ::Legends.Effects.grant(this, ::Legends.Effect.LegendBaffled, function (_effect) {
+ *		_effect.m.Field = false;
+ *	}.bindenv(this));
+ *
+ * bindenv is optional, if not used `this` inside function points to ::Legends.Effects table
+ *
  * Returns newly added effect
  */
 ::Legends.Effects.grant <- function (_target, _def, _applyFn = null) {
@@ -57,8 +65,7 @@ if (!("Effects" in ::Legends))
 }
 
 ::Legends.Effects.has <- function (_target, _def) {
-	local container = ::Legends.Effects.getContainer(_target, "on has");
-	return container.hasSkill(::Legends.Effects.getID(_def));
+	return ::Legends.Effects.getContainer(_target, "on has").hasSkill(::Legends.Effects.getID(_def));
 }
 
 ::Legends.Effects.remove <- function (_target, _def) {
@@ -66,3 +73,6 @@ if (!("Effects" in ::Legends))
 	container.removeByID(::Legends.Effects.getID(_def));
 }
 
+::Legends.Effects.new <- function(_def) {
+	return ::new(::Legends.Effects.EffectDefObjects[_def].Script);
+}

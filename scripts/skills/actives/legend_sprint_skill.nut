@@ -59,7 +59,7 @@ this.legend_sprint_skill <- this.inherit("scripts/skills/skill", {
 	{
 		if (!this.getContainer().hasEffect(::Legends.Effect.LegendSprint))
 		{
-			this.m.Container.add(this.new("scripts/skills/effects/legend_sprint_effect"));
+			::Legends.Effects.grant(this, ::Legends.Effect.LegendSprint);
 			return true;
 		}
 

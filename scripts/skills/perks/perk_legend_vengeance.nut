@@ -16,7 +16,7 @@ this.perk_legend_vengeance <- this.inherit("scripts/skills/skill", {
 
 		if (_attacker != null && !_attacker.isAlliedWith(actor) && !actor.getSkills().hasEffect(::Legends.Effect.LegendVengeance))
 		{
-			actor.getSkills().add(this.new("scripts/skills/effects/legend_vengeance_effect"));
+			::Legends.Effects.grant(actor, ::Legends.Effect.LegendVengeance);
 		}
 	}
 

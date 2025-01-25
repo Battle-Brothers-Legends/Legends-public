@@ -59,7 +59,7 @@ this.legend_evasion_skill <- this.inherit("scripts/skills/skill", {
 	{
 		if (!this.getContainer().hasEffect(::Legends.Effect.LegendEvasion))
 		{
-			this.m.Container.add(this.new("scripts/skills/effects/legend_evasion_effect"));
+			::Legends.Effects.grant(this, ::Legends.Effect.LegendEvasion);
 			return true;
 		}
 

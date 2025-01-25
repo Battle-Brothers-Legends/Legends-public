@@ -11,7 +11,7 @@
 			}
 			else
 			{
-				this.getContainer().add(this.new("scripts/skills/effects/killing_frenzy_effect"));
+				::Legends.Effects.grant(this, ::Legends.Effect.KillingFrenzy);
 			}
 		}
 	}

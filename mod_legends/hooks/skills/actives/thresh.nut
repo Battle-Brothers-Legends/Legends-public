@@ -65,7 +65,7 @@
 					{
 						if (this.m.IsChain && success && tile.IsOccupiedByActor && this.Math.rand(1, 100) <= this.m.StunChance && !tile.getEntity().getCurrentProperties().IsImmuneToBleeding && !tile.getEntity().getSkills().hasEffect(::Legends.Effect.Dazed))
 						{
-							tile.getEntity().getSkills().add(this.new("scripts/skills/effects/dazed_effect"));
+							::Legends.Effects.grant(tile.getEntity(), ::Legends.Effect.Dazed);
 
 							if (!_user.isHiddenToPlayer() && tile.IsVisibleForPlayer)
 							{
@@ -74,7 +74,7 @@
 						}
 						else if (success && tile.IsOccupiedByActor && this.Math.rand(1, 100) <= this.m.StunChance && !tile.getEntity().getCurrentProperties().IsImmuneToStun && !tile.getEntity().getSkills().hasEffect(::Legends.Effect.Stunned))
 						{
-							tile.getEntity().getSkills().add(this.new("scripts/skills/effects/stunned_effect"));
+							::Legends.Effects.grant(tile.getEntity(), ::Legends.Effect.Stunned);
 
 							if (!_user.isHiddenToPlayer() && tile.IsVisibleForPlayer)
 							{

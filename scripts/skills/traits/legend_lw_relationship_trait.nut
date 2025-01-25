@@ -48,7 +48,7 @@ this.legend_lw_relationship_trait <- this.inherit("scripts/skills/traits/charact
 	{
 		if (!this.m.Container.hasEffect(::Legends.Effect.LegendLwRelationship))
 		{
-			this.m.Container.add(this.new("scripts/skills/effects/legend_lw_relationship_effect"));
+			::Legends.Effects.grant(this, ::Legends.Effect.LegendLwRelationship);
 		}
 	}
 

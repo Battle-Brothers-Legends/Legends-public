@@ -178,7 +178,7 @@ this.legend_sling_heavy_stone_skill <- this.inherit("scripts/skills/skill", {
 	{
 		if (_skill == this && _targetEntity.isAlive() && !_targetEntity.isDying())
 		{
-			_targetEntity.getSkills().add(this.new("scripts/skills/effects/staggered_effect"));
+			::Legends.Effects.grant(_targetEntity, ::Legends.Effect.Staggered);
 		}
 
 		if (_skill == this && _targetEntity.isAlive() && !_targetEntity.isDying() && !_targetEntity.getCurrentProperties().IsImmuneToStun)
@@ -188,7 +188,7 @@ this.legend_sling_heavy_stone_skill <- this.inherit("scripts/skills/skill", {
 
 			if (_bodyPart == this.Const.BodyPart.Head)
 			{
-				_targetEntity.getSkills().add(this.new("scripts/skills/effects/dazed_effect"));
+				::Legends.Effects.grant(_targetEntity, ::Legends.Effect.Dazed);
 
 				if (!user.isHiddenToPlayer() && targetTile.IsVisibleForPlayer)
 				{

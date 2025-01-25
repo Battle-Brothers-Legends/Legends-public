@@ -71,13 +71,11 @@
 			}
 			else if (!target.getCurrentProperties().IsImmuneToBleeding && hp - target.getHitpoints() >= this.Const.Combat.MinDamageToApplyBleeding )
 			{
-				local effect = this.new("scripts/skills/effects/bleeding_effect");
+				::Legends.Effects.grant(target, ::Legends.Effect.Bleeding, function(_effect) {
 					if (_user.getFaction() == this.Const.Faction.Player )
-					{
-						effect.setActor(this.getContainer().getActor());
-					}
-				effect.setDamage(this.getContainer().getActor().getCurrentProperties().IsSpecializedInPolearms ? 10 : 5);
-				target.getSkills().add(effect);
+						_effect.setActor(this.getContainer().getActor());
+					_effect.setDamage(this.getContainer().getActor().getCurrentProperties().IsSpecializedInPolearms ? 10 : 5);
+				}.bindenv(this));
 				this.Sound.play(this.m.BleedingSounds[this.Math.rand(0, this.m.BleedingSounds.len() - 1)], this.Const.Sound.Volume.Skill, _user.getPos());
 			}
 			else

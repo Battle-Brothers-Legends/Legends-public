@@ -50,7 +50,7 @@
 			this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(_user) + " throws a net and hits " + this.Const.UI.getColorizedEntityName(targetEntity));
 			_user.getItems().unequip(_user.getItems().getItemAtSlot(this.Const.ItemSlot.Offhand));
 			local isSpecialized = _user.getCurrentProperties().IsSpecializedInNetCasting;
-			local netted = this.new("scripts/skills/effects/net_effect");
+			local netted = ::Legends.Effects.new(::Legends.Effect.Net);
 			local breakFree = this.new("scripts/skills/actives/break_free_skill");
 			breakFree.m.Icon = "skills/active_74.png";
 			breakFree.m.IconDisabled = "skills/active_74_sw.png";
@@ -72,7 +72,7 @@
 				else
 				{
 					local r = this.Math.rand(1, 2);
-				
+
 					if (r == 1)
 					{
 						this.World.Assets.getStash().add(this.new("scripts/items/tools/legend_broken_throwing_net"));
@@ -87,7 +87,7 @@
 			{
 				breakFree.setDecal("net_destroyed");
 				breakFree.setChanceBonus(0);
-				
+
 				if (isSpecialized)
 				{
 					netted.m.DropNet = true;

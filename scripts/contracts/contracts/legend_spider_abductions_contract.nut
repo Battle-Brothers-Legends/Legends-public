@@ -155,7 +155,7 @@ this.legend_spider_abductions_contract <- this.inherit("scripts/contracts/contra
 						{
 							if (::Math.rand(1,6) == 1)
 							{
-								unit.getSkills().add(this.new("scripts/skills/effects/legend_web_at_start_effect"));
+								::Legends.Effects.grant(unit, ::Legends.Effect.LegendWebAtStart);
 							}
 						}
 
@@ -170,7 +170,7 @@ this.legend_spider_abductions_contract <- this.inherit("scripts/contracts/contra
 							villager.setName("Abducted Villager");
 							villager.setFaction(1);
 							villager.setPlaceInFormation(19 + i);
-							villager.getSkills().add(this.new("scripts/skills/effects/legend_web_at_start_effect"));
+							::Legends.Effects.grant(villager, ::Legends.Effect.LegendWebAtStart);
 							villager.getFlags().add("IsSpiderAbductee", true);
 							entities.push(villager);
 						}

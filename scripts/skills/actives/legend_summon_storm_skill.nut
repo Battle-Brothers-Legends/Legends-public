@@ -74,7 +74,7 @@ this.legend_summon_storm_skill <- this.inherit("scripts/skills/skill", {
 			}
 			if (!this.m.Container.hasEffect(::Legends.Effect.LionheartPotion))
 			{
-				this.m.Container.add(this.new("scripts/skills/effects/lionheart_potion_effect"));
+				::Legends.Effects.grant(this, ::Legends.Effect.LionheartPotion);
 			}
 
 			weather.setAmbientLightingColor(this.createColor(this.Const.Tactical.AmbientLightingColor.Storm));

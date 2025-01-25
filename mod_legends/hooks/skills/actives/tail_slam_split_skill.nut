@@ -11,7 +11,7 @@
 				return;
 			}
 
-			_target.getSkills().add(this.new("scripts/skills/effects/dazed_effect"));
+			::Legends.Effects.grant(target, ::Legends.Effect.Dazed);
 
 			if (!_user.isHiddenToPlayer() && _targetTile.IsVisibleForPlayer)
 			{
@@ -29,7 +29,7 @@
 				return;
 			}
 
-			_target.getSkills().add(this.new("scripts/skills/effects/stunned_effect"));
+			::Legends.Effects.grant(target, ::Legends.Effect.Stunned);
 
 			if (!_user.isHiddenToPlayer() && _targetTile.IsVisibleForPlayer)
 			{

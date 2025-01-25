@@ -189,7 +189,7 @@ this.legend_basilisk_sentry_fowleye_skill <- this.inherit("scripts/skills/skill"
 
 			if (!target.checkMorale(0, -5, this.Const.MoraleCheckType.MentalAttack))
 			{
-				target.getSkills().add(this.new("scripts/skills/effects/horrified_effect"));
+				::Legends.Effects.grant(target, ::Legends.Effect.Horrified);
 
 				if (!_user.isHiddenToPlayer() && !target.isHiddenToPlayer())
 				{

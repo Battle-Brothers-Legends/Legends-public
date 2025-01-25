@@ -57,7 +57,7 @@ this.legend_knockback_prepared_effect <- this.inherit("scripts/skills/skill", {
 		if (!_targetEntity.isAlive() || _targetEntity.isDying())
 			return;
 
-		_targetEntity.getSkills().add(this.new("scripts/skills/effects/legend_baffled_effect"));
+		::Legends.Effects.grant(_targetEntity, ::Legends.Effect.LegendBaffled);
 	}
 
 	function onTargetMissed( _skill, _targetEntity )

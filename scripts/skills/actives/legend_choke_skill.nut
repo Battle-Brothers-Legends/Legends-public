@@ -242,7 +242,7 @@ this.legend_choke_skill <- this.inherit("scripts/skills/skill", {
 		if (success && _targetTile.IsOccupiedByActor)
 		{
 			local target = _targetTile.getEntity();
-			target.getSkills().add(this.new("scripts/skills/effects/legend_choked_effect"));
+			::Legends.Effects.grant(target, ::Legends.Effect.LegendChoked);
 			this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(_user) + " choked " + this.Const.UI.getColorizedEntityName(target) + " ");
 		}
 		return success;

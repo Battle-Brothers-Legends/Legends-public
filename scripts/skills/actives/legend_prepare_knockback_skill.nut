@@ -104,7 +104,7 @@ this.legend_prepare_knockback_skill <- this.inherit("scripts/skills/skill", {
 
 	function onUse( _user, _targetTile )
 	{
-		this.getContainer().add(this.new("scripts/skills/effects/legend_knockback_prepared_effect"));
+		::Legends.Effects.grant(this, ::Legends.Effect.LegendKnockbackPrepared);
 
 		if (this.m.Item != null && !this.m.Item.isNull())
 			this.m.Item.removeSelf();

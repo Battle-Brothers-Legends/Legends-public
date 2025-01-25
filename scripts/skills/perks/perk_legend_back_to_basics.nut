@@ -65,7 +65,7 @@ this.perk_legend_back_to_basics <- this.inherit("scripts/skills/skill", {
 
 			if (morale != a.getMoraleState())
 			{
-				a.getSkills().add(this.new("scripts/skills/effects/rallied_effect"));
+				::Legends.Effects.grant(a, ::Legends.Effect.Rallied);
 			}
 		}
 	}

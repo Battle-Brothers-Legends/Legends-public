@@ -24,7 +24,7 @@ this.legend_kobold_racial <- this.inherit("scripts/skills/skill", {
 
 		if (slippery == null)
 		{
-			actor.getSkills().add(this.new("scripts/skills/effects/legend_hidden_kobold_effect"));
+			::Legends.Effects.grant(actor, ::Legends.Effect.LegendHiddenKobold);
 		}
 		else
 		{

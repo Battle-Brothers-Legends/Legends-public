@@ -44,14 +44,11 @@
 			this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(_targetEntity) + " is poisoned");
 		}
 
-		local effect = this.new("scripts/skills/effects/spider_poison_effect");
-		local actor = this.getContainer().getActor();
-		if (actor.getFaction() == this.Const.Faction.Player )
-		{
-			effect.setActor(actor);
-		}
-
-		effect.setDamage(10);
-		_targetEntity.getSkills().add(effect);
+		::Legends.Effects.grant(target, ::Legends.Effect.SpiderPoison, function(_effect) {
+			local actor = this.getContainer().getActor();
+			if (actor.getFaction() == this.Const.Faction.Player )
+				_effect.setActor(actor);
+			_effect.setDamage(10);
+		}.bindenv(this));
 	}
 });

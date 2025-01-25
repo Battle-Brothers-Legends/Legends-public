@@ -64,7 +64,7 @@ this.legend_stealth_skill <- this.inherit("scripts/skills/skill", {
 	{
 		if (!this.m.IsSpent)
 		{
-			this.m.Container.add(this.new("scripts/skills/effects/stealth_effect"));
+			::Legends.Effects.grant(this, ::Legends.Effect.Stealth);
 			this.m.IsSpent = true;
 			return true;
 		}

@@ -131,7 +131,7 @@ this.legend_shoot_dart_skill <- this.inherit("scripts/skills/skill", {
 			if (_bodyPart == this.Const.BodyPart.Head)
 			{
 			
-				_targetEntity.getSkills().add(this.new("scripts/skills/effects/sleeping_effect"));
+				::Legends.Effects.grant(_targetEntity, ::Legends.Effect.Sleeping);
 
 				if (!user.isHiddenToPlayer() && targetTile.IsVisibleForPlayer)
 				{
@@ -140,7 +140,7 @@ this.legend_shoot_dart_skill <- this.inherit("scripts/skills/skill", {
 			}
 			if (_bodyPart == this.Const.BodyPart.Body && r == 1)
 			{
-				_targetEntity.getSkills().add(this.new("scripts/skills/effects/dazed_effect"));
+				::Legends.Effects.grant(_targetEntity, ::Legends.Effect.Dazed);
 
 				if (!user.isHiddenToPlayer() && targetTile.IsVisibleForPlayer)
 				{

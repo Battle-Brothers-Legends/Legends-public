@@ -179,7 +179,7 @@ this.legends_player_is_rich_op_backgrounds_event <- this.inherit("scripts/events
 									icon = _trait.getIcon(),
 									text = bro.getName() + " gets greedy"
 								});
-							});
+							}.bindenv(this));
 						}
 						else
 						{

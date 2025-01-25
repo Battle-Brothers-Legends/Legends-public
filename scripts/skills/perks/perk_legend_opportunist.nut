@@ -40,7 +40,7 @@ this.perk_legend_opportunist <- this.inherit("scripts/skills/skill", {
 		{
 			if (!_targetEntity.getSkills().hasSkill(id)) continue;
 
-			_targetEntity.getSkills().add(this.new("scripts/skills/effects/dazed_effect"));
+			::Legends.Effects.grant(_targetEntity, ::Legends.Effect.Dazed);
 			break;
 		}
 	}

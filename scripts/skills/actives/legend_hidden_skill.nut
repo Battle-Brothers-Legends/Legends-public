@@ -120,12 +120,10 @@ this.legend_hidden_skill <- this.inherit("scripts/skills/skill", {
 
 	function onUse( _user, _targetTile )
 	{
-
 		_user.setHidden(true);
-		local effect = this.new("scripts/skills/effects/legend_hidden_effect");
-		effect.m.TurnsLeft = (this.m.Container.hasPerk(::Legends.Perk.LegendUntouchable)) ? this.m.DurationUntouchable : this.m.Duration;
-		this.m.Container.add(effect);
-
+		::Legends.Effects.grant(this, ::Legends.Effect.LegendHidden, function(_effect) {
+			_effect.m.TurnsLeft = (this.m.Container.hasPerk(::Legends.Perk.LegendUntouchable)) ? this.m.DurationUntouchable : this.m.Duration;
+		}.bindenv(this));
 
 		if (_user.getTile().IsVisibleForPlayer)
 		{

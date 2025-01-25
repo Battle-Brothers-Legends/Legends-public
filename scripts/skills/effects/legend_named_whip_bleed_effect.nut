@@ -41,7 +41,7 @@ this.legend_named_whip_bleed_effect <- this.inherit("scripts/skills/skill", {
 	function onTargetHit( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor )
 	{
 		if ( _skill.m.IsWeaponSkill == false ) { return; }
-		
+
 		local actor = this.getContainer().getActor();
 
 		if (!actor.isAlive() || actor.isDying())
@@ -56,14 +56,13 @@ this.legend_named_whip_bleed_effect <- this.inherit("scripts/skills/skill", {
 
 		if (!_targetEntity.getCurrentProperties().IsImmuneToBleeding)
 		{
-            if ( ::Math.rand(0, 100) > this.m.Bonus ) { return; }
-			local effect = this.new("scripts/skills/effects/bleeding_effect");
-            if (_skill.getContainer().getActor().getFaction() == this.Const.Faction.Player )
-            {
-                effect.setActor(this.getContainer().getActor());
-            }
-            effect.setDamage(this.getContainer().getActor().getCurrentProperties().IsSpecializedInCleavers ? 10 : 5);
-            _targetEntity.getSkills().add(effect);
+            if ( ::Math.rand(0, 100) > this.m.Bonus )
+				return;
+			::Legends.Effects.grant(_targetEntity, ::Legends.Effect.Bleeding, function(_effect) {
+				if (_skill.getContainer().getActor().getFaction() == this.Const.Faction.Player )
+					_effect.setActor(this.getContainer().getActor());
+				_effect.setDamage(this.getContainer().getActor().getCurrentProperties().IsSpecializedInCleavers ? 10 : 5);
+			}.bindenv(this));
 		}
 	}
 

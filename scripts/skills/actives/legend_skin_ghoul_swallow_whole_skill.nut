@@ -87,9 +87,10 @@ this.legend_skin_ghoul_swallow_whole_skill <- this.inherit("scripts/skills/skill
 		_user.getSprite("injury").setBrush("bust_ghoul_04_injured");
 		_user.getSprite("head").setBrush("bust_ghoulskin_04_head_0" + _user.m.Head);
 		_user.m.Sound[this.Const.Sound.ActorEvent.Death] = _user.m.Sound[this.Const.Sound.ActorEvent.Other2];
-		local effect = this.new("scripts/skills/effects/swallowed_whole_effect");
-		effect.setName(target.getName());
-		_user.getSkills().add(effect);
+
+		::Legends.Effects.grant(_user, ::Legends.Effect.SwallowedWhole, function(_effect) {
+			_effect.setName(target.getName());
+		}.bindenv(this));
 
 		if (this.m.SoundOnHit.len() != 0)
 		{

@@ -75,7 +75,7 @@ this.legend_inventor_prosthetic_finger <- this.inherit("scripts/events/event", {
 						icon = _trait.getIcon(),
 						text = _event.m.Nofoot.m.Name + " receives a " + _trait.m.Name
 					});
-				});
+				}.bindenv(this));
 
 				local maimed_foot_bye = this.new("scripts/skills/injury_permanent/missing_finger_injury");
 				_event.m.Nofoot.getSkills().removeByID("injury.missing_finger");

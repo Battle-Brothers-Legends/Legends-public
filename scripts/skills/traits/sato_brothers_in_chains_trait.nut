@@ -28,7 +28,7 @@ this.sato_brothers_in_chains_trait <- this.inherit("scripts/skills/traits/charac
 
 	function onCombatStarted()
 	{
-		this.getContainer().add(this.new("scripts/skills/effects/sato_brothers_in_chains_effect"));
+		::Legends.Effects.grant(this, ::Legends.Effect.SatoBrothersInChains);
 		this.m.IsHidden = true;
 	}
 

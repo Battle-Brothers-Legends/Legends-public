@@ -56,7 +56,7 @@ this.legend_eat_porridge_skill <- this.inherit("scripts/skills/actives/base/lege
 
 		if (_user.getID() == user.getID())
 		{
-			user.getSkills().add(this.new("scripts/skills/effects/legend_porridge_effect"));
+			::Legends.Effects.grant(user, ::Legends.Effect.LegendPorridgeEffect);
 
 			if (!user.isHiddenToPlayer())
 			{

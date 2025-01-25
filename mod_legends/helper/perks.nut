@@ -28,9 +28,11 @@ if (!("Perks" in ::Legends))
  *
  * Example here:
  *
- * ::Legends.Perks.grant(this, ::Legends.Perk.NineLives, @(_perk) {
+ * ::Legends.Perks.grant(this, ::Legends.Perk.NineLives, function (_perk) {
  *		_perk.IsRefundable = false;
- *	});
+ *	}.bindenv(this));
+ *
+ * bindenv is optional, if not used `this` inside function points to ::Legends.Perks table
  *
  * Returns newly added perk
  */
@@ -59,6 +61,10 @@ if (!("Perks" in ::Legends))
 	if (container.hasPerk(_def))
 		return container.getSkillByID(::Legends.Perks.getID(_def));
 	return null;
+}
+
+::Legends.Perks.has <- function (_target, _def) {
+	return ::Legends.Perks.getContainer(_target, "on get").hasSkill(::Legends.Perks.getID(_def));
 }
 
 ::Legends.Perks.remove <- function (_target, _def) {

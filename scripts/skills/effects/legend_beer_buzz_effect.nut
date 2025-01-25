@@ -102,11 +102,11 @@ this.legend_beer_buzz_effect <- this.inherit("scripts/skills/skill", {
 		local actor = this.getContainer().getActor();
 		if (this.Math.rand(1, 100) <= 10 && !actor.getSkills().hasTrait(::Legends.Trait.Drunkard))
 		{
-			this.getContainer().add(this.new("scripts/skills/effects_world/hangover_effect"));
+			::Legends.Effects.grant(this, ::Legends.Effect.Hangover);
 		}
 		else if (this.Math.rand(1, 100) <= 5 && actor.getSkills().hasTrait(::Legends.Trait.Drunkard))
 		{
-			this.getContainer().add(this.new("scripts/skills/effects_world/hangover_effect"));
+			::Legends.Effects.grant(this, ::Legends.Effect.Hangover);
 		}
 	}
 

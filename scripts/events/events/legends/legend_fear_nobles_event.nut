@@ -55,7 +55,7 @@ this.legend_fear_nobles_event <- this.inherit("scripts/events/event", {
 						icon = _trait.getIcon(),
 						text = _event.m.Casualty.getName() + " now fears the nobility."
 					});
-				});
+				}.bindenv(this));
 			}
 		});
 	}

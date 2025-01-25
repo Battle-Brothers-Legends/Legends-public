@@ -34,7 +34,7 @@ this.perk_legend_lurker <- this.inherit("scripts/skills/skill", {
 	{
 		if (!this.m.Container.hasEffect(::Legends.Effect.LegendLurker))
 		{
-			this.m.Container.add(this.new("scripts/skills/effects/legend_lurker_effect"));
+			::Legends.Effects.grant(this, ::Legends.Effect.LegendLurker);
 		}
 	}
 

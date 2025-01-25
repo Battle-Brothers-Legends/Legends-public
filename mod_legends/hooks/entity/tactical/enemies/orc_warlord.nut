@@ -193,7 +193,7 @@
 		::Legends.Perks.grant(this, ::Legends.Perk.Stalwart);
 		::Legends.Perks.grant(this, ::Legends.Perk.ShieldBash);
 		::Legends.Perks.grant(this, ::Legends.Perk.Fearsome);
-		this.m.Skills.add(this.new("scripts/skills/effects/captain_effect"));
+		::Legends.Effects.grant(this, ::Legends.Effect.Captain);
 		if(::Legends.isLegendaryDifficulty())
 		{
 			::Legends.Perks.grant(this, ::Legends.Perk.BattleForged);

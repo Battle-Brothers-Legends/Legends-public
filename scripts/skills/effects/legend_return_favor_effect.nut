@@ -52,11 +52,10 @@ this.legend_return_favor_effect <- this.inherit("scripts/skills/skill", {
 
 			if (d <= 1 || item != null && item.isItemType(this.Const.Items.ItemType.Weapon) && d <= item.getRangeMax())
 			{
-				local stunned_effect = this.new("scripts/skills/effects/stunned_effect");
-				local staggered_effect = this.new("scripts/skills/effects/staggered_effect");
-				stunned_effect.addTurns(1);
-				_attacker.getSkills().add(stunned_effect);
-				_attacker.getSkills().add(staggered_effect);
+				::Legends.Effects.grant(_attacker, ::Legends.Effect.Stunned, function(_effect) {
+					_effect.addTurns(1);
+				}.bindenv(this));
+				::Legends.Effects.grant(_attacker, ::Legends.Effect.Staggered);
 				if (!user.isHiddenToPlayer() && !_attacker.isHiddenToPlayer())
 				{
 					this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(user) + " has stunned and staggered " + this.Const.UI.getColorizedEntityName(_attacker) + " for one turn");

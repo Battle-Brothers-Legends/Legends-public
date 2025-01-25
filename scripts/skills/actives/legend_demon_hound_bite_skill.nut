@@ -73,7 +73,7 @@ this.legend_demon_hound_bite_skill <- this.inherit("scripts/skills/skill", {
 
 		if (poison == null)
 		{
-			_targetEntity.getSkills().add(this.new("scripts/skills/effects/legend_demon_hound_bite_effect"));
+			::Legends.Effects.grant(_targetEntity, ::Legends.Effect.LegendDemonHoundBiteEffect);
 		}
 		else
 		{

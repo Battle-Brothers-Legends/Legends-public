@@ -40,7 +40,7 @@
 	{
 		if (!this.m.IsSpent)
 		{
-			this.m.Container.add(this.new("scripts/skills/effects/legend_return_favor_effect"));
+			::Legends.Effects.grant(this, ::Legends.Effect.LegendReturnFavor);
 			this.m.IsSpent = true;
 			return true;
 		}

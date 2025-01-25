@@ -16,7 +16,7 @@ this.perk_legend_feint <- this.inherit("scripts/skills/skill", {
 		actor.setFatigue(this.Math.max(0, actor.getFatigue() - this.Math.floor(_skill.getFatigueCost() * 0.2)));
 		if (!_targetEntity.getSkills().hasEffect(::Legends.Effect.LegendParried))
 		{
-			_targetEntity.getSkills().add(this.new("scripts/skills/effects/legend_parried_effect"));
+			::Legends.Effects.grant(_targetEntity, ::Legends.Effect.LegendParried);
 
 			if (!actor.isHiddenToPlayer() && !_targetEntity.isHiddenToPlayer() && _targetEntity.getTile().IsVisibleForPlayer)
 			{

@@ -57,10 +57,9 @@ this.legend_rat_bite_skill <- this.inherit("scripts/skills/skill", {
 		if (success)
 		{
 			if (!target.getCurrentProperties().IsImmuneToPoison)
-				{
-					local effect = this.new("scripts/skills/effects/legend_rat_poison_effect");
-					target.getSkills().add(effect);
-				}
+			{
+				::Legends.Effects.grant(target, ::Legends.Effect.LegendRatPoison);
+			}
 
 		return success;
 		}

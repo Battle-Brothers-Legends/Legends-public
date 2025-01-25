@@ -74,13 +74,11 @@ this.legend_bleed_prepared_effect <- this.inherit("scripts/skills/skill", {
 
 			this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(_targetEntity) + " is bleeding");
 		}
-		local effect = this.new("scripts/skills/effects/bleeding_effect");
-		if (this.getContainer().getActor().getFaction() == this.Const.Faction.Player )
-		{
-			effect.setActor(this.getContainer().getActor());
-		}
-		effect.setDamage(5);
-		_targetEntity.getSkills().add(effect);
+		::Legends.Effects.grant(_targetEntity, ::Legends.Effect.Bleeding, function(_effect) {
+			if (this.getContainer().getActor().getFaction() == this.Const.Faction.Player )
+				_effect.setActor(this.getContainer().getActor());
+			_effect.setDamage(5);
+		}.bindenv(this));
 		--this.m.AttacksLeft;
 	}
 

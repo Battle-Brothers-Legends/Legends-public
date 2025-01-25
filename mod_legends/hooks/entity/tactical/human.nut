@@ -192,7 +192,7 @@
 		// return to normal
 		self.addSprite = original_addSprite;
 		// add this as aura effect
-		this.m.Skills.add(this.new("scripts/skills/effects/legend_demon_hound_aura_effect"));
+		::Legends.Effects.grant(this, ::Legends.Effect.LegendDemonHoundAura);
 	}
 
 	o.setArmorAlpha <- function (level)

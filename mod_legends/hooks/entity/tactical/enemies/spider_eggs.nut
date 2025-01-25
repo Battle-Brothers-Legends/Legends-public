@@ -122,7 +122,7 @@
 			{
 				if (a.getType() == this.Const.EntityType.Hexe)
 				{
-					spawn.getSkills().add(this.new("scripts/skills/effects/fake_charmed_effect"));
+					::Legends.Effects.grant(spawn, ::Legends.Effect.FakeCharmed);
 					break;
 				}
 			}

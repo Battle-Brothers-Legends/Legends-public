@@ -4,7 +4,7 @@
 	o.isViableTarget = function  ( _user, _target )
 	{
 		ret = isViableTarget( _user, _target );
-	
+
 		if (_target.getSkills().hasEffect(::Legends.Effect.LegendIntenselyCharmed))
 		{
 			return false;
@@ -66,10 +66,11 @@
 			}
 
 			this.m.Slaves.push(target.getID());
-			local charmed = this.new("scripts/skills/effects/charmed_effect");
-			charmed.setMasterFaction(_user.getFaction() == this.Const.Faction.Player ? this.Const.Faction.PlayerAnimals : _user.getFaction());
-			charmed.setMaster(self);
-			target.getSkills().add(charmed);
+
+			::Legends.Effects.grant(target, ::Legends.Effect.Charmed, function(_effect) {
+				_effect.setMasterFaction(_user.getFaction() == this.Const.Faction.Player ? this.Const.Faction.PlayerAnimals : _user.getFaction());
+				_effect.setMaster(self);
+			}.bindenv(this));
 
 			if (!_user.isHiddenToPlayer() && !target.isHiddenToPlayer())
 			{

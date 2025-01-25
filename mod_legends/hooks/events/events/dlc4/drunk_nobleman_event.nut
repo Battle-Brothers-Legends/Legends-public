@@ -95,7 +95,7 @@
 				_event.m.Dude = roster.create("scripts/entity/tactical/player");
 				_event.m.Dude.setStartValuesEx(["legend_noble_commander_background"]);
 				::Legends.Traits.grant(_event.m.Dude, ::Legends.Trait.Addict);
-				_event.m.Dude.getSkills().add(this.new("scripts/skills/effects_world/drunk_effect"));
+				::Legends.Effects.grant(_event.m.Dude, ::Legends.Effect.Drunk);
 				this.Characters.push(_event.m.Dude.getImagePath());
 			}
 		});

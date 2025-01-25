@@ -56,7 +56,7 @@ this.legends_nomad_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 
 		bros[2].setPlaceInFormation(4);
 		bros[2].setVeteranPerks(2);
-		bros[2].getSkills().add(this.new("scripts/skills/effects_world/exhausted_effect"));
+		::Legends.Effects.grant(bros[2], ::Legends.Effect.Exhausted);
 		bros[2].setStartValuesEx([ ///elite for story purposes. Always ranged. No benefit from nomad trait.
 			"legend_conscript_ranged_background"
 		]);

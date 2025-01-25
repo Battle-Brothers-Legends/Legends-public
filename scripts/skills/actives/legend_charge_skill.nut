@@ -296,7 +296,7 @@ this.legend_charge_skill <- this.inherit("scripts/skills/skill", {
 
 			if (!victim.getCurrentProperties().IsImmuneToStun && this.Math.rand(1, 100) <= chance)
 			{
-				victim.getSkills().add(this.new("scripts/skills/effects/stunned_effect"));
+				::Legends.Effects.grant(victim, ::Legends.Effect.Stunned);
 
 				if (_tag.OldTile.IsVisibleForPlayer || myTile.IsVisibleForPlayer)
 				{

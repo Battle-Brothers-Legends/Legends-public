@@ -95,7 +95,7 @@ this.legend_poison_weapon_skill <- this.inherit("scripts/skills/skill", {
 		}
 		else
 		{
-			this.m.Container.add(this.new("scripts/skills/effects/poison_coat_effect"));
+			::Legends.Effects.grant(this, ::Legends.Effect.PoisonCoat);
 		}
 
 		if (this.m.Item != null && !this.m.Item.isNull())

@@ -84,9 +84,9 @@ this.legend_ancient_scroll_item <- ::inherit("scripts/items/item", {
 			return;
 
 		if (!_actor.getSkills().hasEffect(::Legends.Effect.LegendHeadache))
-			_actor.getSkills().add(::new("scripts/skills/effects_world/legend_headache_effect"));
+			::Legends.Effects.grant(_actor, ::Legends.Effect.LegendHeadache);
 		else
-			_actor.getSkills().add(::new("scripts/skills/effects_world/legend_irritable_effect")); //dont have to wry about this stacking because u can aat max study twice
+			::Legends.Effects.grant(_actor, ::Legends.Effect.LegendIrritable); //dont have to wry about this stacking because u can aat max study twice
 	}
 
 	function applyScrollEffect( _result = null, _actor = null )
@@ -139,7 +139,7 @@ this.legend_ancient_scroll_item <- ::inherit("scripts/items/item", {
 		}
 		else
 		{
-			trained = ::new("scripts/skills/effects_world/new_trained_effect");
+			trained = ::Legends.Effects.new(::Legends.Effect.Trained);
 			trained.m.Description = "Trained effect (: +50% exp for 3 battles"; //todo flavor text
 			trained.m.Duration = 3;
 			trained.m.XPGainMult = 1.5;

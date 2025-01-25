@@ -187,9 +187,9 @@ this.perk_legend_vala_trance_perspective <- this.inherit("scripts/skills/skill",
 						{
 							if (this.Math.rand(1, 100) <= expertise)  // APPLICATION SUCCESS
 							{
-								local effect = this.new("scripts/skills/effects/legend_vala_trance_perspective_effect");
-								effect.setVala(this);
-								t.getSkills().add(effect);
+								::Legends.Effects.grant(t, ::Legends.Effect.LegendValaTrancePerspectiveEffect, function(_effect) {
+									_effect.setVala(this);
+								}.bindenv(this));
 							}
 						}
 					}
@@ -302,7 +302,7 @@ this.perk_legend_vala_trance_perspective <- this.inherit("scripts/skills/skill",
 
 			if (!actor.getSkills().hasEffect(::Legends.Effect.LegendValaInTrance))
 			{
-				actor.getSkills().add(this.new("scripts/skills/effects/legend_vala_in_trance"));
+				::Legends.Effects.grant(actor, ::Legends.Effect.LegendValaInTrance);
 			}
 
 			this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(actor) + " trembles and hums as they drift into a trance.");

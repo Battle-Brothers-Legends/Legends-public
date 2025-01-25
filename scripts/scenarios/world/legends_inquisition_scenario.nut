@@ -83,7 +83,7 @@ this.legends_inquisition_scenario <- this.inherit("scripts/scenarios/world/start
 		::Legends.Traits.grant(bros[2], ::Legends.Trait.LegendHeavy, function (_trait) {
 			foreach(skill in _trait.m.Excluded)
 				bros[2].getSkills().removeByID(skill);
-		});
+		}.bindenv(this));
 		this.addScenarioPerk(bros[2].getBackground(), this.Const.Perks.PerkDefs.LegendMindOverBody);
 		local items = bros[2].getItems();
 		items.unequip(items.getItemAtSlot(this.Const.ItemSlot.Body));

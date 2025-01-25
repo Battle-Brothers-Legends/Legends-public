@@ -67,7 +67,7 @@ this.legend_double_tongued_trait <- this.inherit("scripts/skills/traits/characte
 				}
 				if (ally.getSkills().hasTrait(::Legends.Trait.LegendDoubleTongued) || ally.getSkills().hasTrait(::Legends.Trait.Deathwish) || ally.getSkills().hasTrait(::Legends.Trait.Superstitious) || ally.getSkills().hasTrait(::Legends.Trait.Paranoid) || ally.getSkills().hasTrait(::Legends.Trait.Pessimist) || ally.getSkills().hasSkill("injury.traumatized"))
 				{
-					ally.getSkills().add(this.new("scripts/skills/effects/legend_cheered_on_effect"));
+					::Legends.Effects.grant(ally, ::Legends.Effect.LegendCheeredOn);
 					
 					continue;
 				}		

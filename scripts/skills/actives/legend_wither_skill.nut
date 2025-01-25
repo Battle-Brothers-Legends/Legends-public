@@ -48,7 +48,7 @@ this.legend_wither_skill <- this.inherit("scripts/skills/skill", {
 			return;
 		}
 		this.spawnAttackEffect(_targetTile, this.Const.Tactical.AttackEffectBash);
-		target.getSkills().add(this.new("scripts/skills/effects/withered_effect"));
+		::Legends.Effects.grant(target, ::Legends.Effect.Withered);
 		if (!_user.isHiddenToPlayer() && _targetTile.IsVisibleForPlayer)
 		{
 			this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(_user) + " has left " + this.Const.UI.getColorizedEntityName(target) + " withered");

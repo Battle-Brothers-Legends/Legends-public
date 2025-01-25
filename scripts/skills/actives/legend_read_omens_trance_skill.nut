@@ -30,7 +30,7 @@ this.legend_read_omens_trance_skill <- this.inherit("scripts/skills/actives/lege
 			local omens = skills.getSkillByID("effects.legend_read_omens");
 			if (omens != null && omens.getActor() != null && omens.getActor == act)
 			{
-				::Legends.Effects.remove(bro, ::Legends.Effect.LegendReadOmens);	
+				::Legends.Effects.remove(bro, ::Legends.Effect.LegendReadOmens);
 			}
 		}
 	}
@@ -42,9 +42,9 @@ this.legend_read_omens_trance_skill <- this.inherit("scripts/skills/actives/lege
 		local act = this.getContainer().getActor();
 		foreach( bro in this.World.getPlayerRoster().getAll() )
 		{
-			local effect = this.new("scripts/skills/effects/legend_read_omens_effect");
-			effect.setActor(act);
-			bro.getSkills().add(effect);
+			::Legends.Effects.grant(bro, ::Legends.Effect.LegendReadOmens, function(_effect) {
+				_effect.setActor(act);
+			}.bindenv(this));
 		}
 	}
 

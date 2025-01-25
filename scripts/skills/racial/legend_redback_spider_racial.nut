@@ -49,13 +49,13 @@ this.legend_redback_spider_racial <- this.inherit("scripts/skills/skill", {
 
 		if (!_targetEntity.getSkills().hasEffect(::Legends.Effect.Stunned) && !_targetEntity.getCurrentProperties().IsImmuneToStun)
 		{
-			_targetEntity.getSkills().add(this.new("scripts/skills/effects/stunned_effect"));
+			::Legends.Effects.grant(_targetEntity, ::Legends.Effect.Stunned);
 			this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(_targetEntity) + " is stunned");
 		}
 
 		if (poison == null)
 		{
-			_targetEntity.getSkills().add(this.new("scripts/skills/effects/legend_redback_spider_poison_effect"));
+			::Legends.Effects.grant(_targetEntity, ::Legends.Effect.LegendRedbackSpiderPoison);
 		}
 		else
 		{

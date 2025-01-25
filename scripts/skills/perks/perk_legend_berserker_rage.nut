@@ -14,7 +14,7 @@ this.perk_legend_berserker_rage <- this.inherit("scripts/skills/skill", {
 	{
 		if (!this.m.Container.hasEffect(::Legends.Effect.LegendBerserkerRage))
 		{
-			this.m.Container.add(this.new("scripts/skills/effects/legend_berserker_rage_effect"));
+			::Legends.Effects.grant(this, ::Legends.Effect.LegendBerserkerRage);
 		}
 	}
 

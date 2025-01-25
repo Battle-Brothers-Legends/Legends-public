@@ -26,12 +26,10 @@
 		{
 			if (!target.getCurrentProperties().IsImmuneToPoison && ::Legends.isLegendaryDifficulty() && hp - target.getHitpoints() >= this.Const.Combat.PoisonEffectMinDamage)
 			{
-				local effect = this.new("scripts/skills/effects/legend_zombie_poison_effect");
-				target.getSkills().add(effect);
+				::Legends.Effects.grant(target, ::Legends.Effect.LegendZombiePoison);
 			}
-
-			return success;
 		}
+		return success;
 	}
 
 	o.onAnySkillUsed <- function ( _skill, _targetEntity, _properties )

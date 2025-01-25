@@ -83,7 +83,7 @@ this.legend_apothecary_mushrooms_skill <- this.inherit("scripts/skills/actives/b
 			}
 			else
 			{
-				user.getSkills().add(this.new("scripts/skills/effects/legend_apothecary_mushrooms_effect"));
+				::Legends.Effects.grant(user, ::Legends.Effect.LegendApothecaryMushrooms);
 			}
 
 			if (!_user.isHiddenToPlayer())

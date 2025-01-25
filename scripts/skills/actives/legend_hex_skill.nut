@@ -116,8 +116,8 @@ this.legend_hex_skill <- this.inherit("scripts/skills/skill", {
 			while (color.R + color.G + color.B <= 150);
 
 			this.Tactical.spawnSpriteEffect("effect_pentagram_02", color, _targetTile, !target.getSprite("status_hex").isFlippedHorizontally() ? 10 : -5, 88, 3.0, 1.0, 0, 400, 300);
-			local slave = this.new("scripts/skills/effects/hex_slave_effect");
-			local master = this.new("scripts/skills/effects/hex_master_effect");
+			local slave = ::Legends.Effects.new(::Legends.Effect.HexSlave);
+			local master = ::Legends.Effects.new(::Legends.Effect.HexMaster);
 			slave.setMaster(master);
 			slave.setColor(color);
 			target.getSkills().add(slave);

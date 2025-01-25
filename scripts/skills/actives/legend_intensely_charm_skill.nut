@@ -146,16 +146,16 @@ this.legend_intensely_charm_skill <- this.inherit("scripts/skills/skill", {
 			}
 
 			this.m.Slaves.push(target.getID());
-			local charmed = this.new("scripts/skills/effects/legend_intensely_charmed_effect");
-			charmed.setMasterFaction(_user.getFaction() == this.Const.Faction.Player ? this.Const.Faction.PlayerAnimals : _user.getFaction());
-			charmed.setMaster(self);
-			target.getSkills().add(charmed);
+
+			::Legends.Effects.grant(target, ::Legends.Effect.LegendIntenselyCharmed, function(_effect) {
+				_effect.setMasterFaction(_user.getFaction() == this.Const.Faction.Player ? this.Const.Faction.PlayerAnimals : _user.getFaction());
+				_effect.setMaster(self);
+			}.bindenv(this));
 
 			if (!_user.isHiddenToPlayer() && !target.isHiddenToPlayer())
 			{
 				this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(target) + " is intensely charmed");
 			}
-
 			_user.setCharming(true);
 		}.bindenv(this), this);
 	}

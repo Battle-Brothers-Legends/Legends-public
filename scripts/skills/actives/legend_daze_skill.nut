@@ -87,7 +87,7 @@ this.legend_daze_skill <- this.inherit("scripts/skills/skill", {
 
 				if (targetEntity.isAlive())
 				{
-					targetEntity.getSkills().add(this.new("scripts/skills/effects/legend_dazed_effect"));
+					::Legends.Effects.grant(targetEntity, ::Legends.Effect.LegendDazed);
 
 					if (!_user.isHiddenToPlayer() && _targetTile.IsVisibleForPlayer)
 					{

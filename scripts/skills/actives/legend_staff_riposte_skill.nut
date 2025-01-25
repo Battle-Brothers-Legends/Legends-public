@@ -81,7 +81,7 @@ this.legend_staff_riposte_skill <- this.inherit("scripts/skills/skill", {
 	{
 		if (!this.m.IsSpent)
 		{
-			this.m.Container.add(this.new("scripts/skills/effects/riposte_effect"));
+			::Legends.Effects.grant(this, ::Legends.Effect.Riposte);
 			this.m.IsSpent = true;
 
 			if (!_user.isHiddenToPlayer())

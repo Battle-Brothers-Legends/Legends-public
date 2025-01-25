@@ -88,16 +88,16 @@ this.legend_violent_decomposition_skill <- this.inherit("scripts/skills/skill", 
 	{
 		local target = _targetTile.getEntity();
 		local properties = this.getContainer().buildPropertiesForUse(this, null);
-		local effect = this.new("scripts/skills/effects/legend_violent_decomposition_effect");
-		effect.setDamage({
-			MaxDamage = this.m.MaxDamage,
-			MinDamage = this.m.MinDamage,
-			DirectDamageMult = this.m.DirectDamageMult,
-			ArmorDamageMult = this.m.ArmorDamageMult,
-			TotalDamageMult = properties.DamageTotalMult, // you can remove this line if you don't want total damage multiplier to be applied in damage calculation
-		});
-		effect.setActorID(_user.getID());
-		target.getSkills().add(effect);
+		::Legends.Effects.grant(target, ::Legends.Effect.LegendViolentDecompositionEffect, function(_effect) {
+			_effect.setDamage({
+				MaxDamage = this.m.MaxDamage,
+				MinDamage = this.m.MinDamage,
+				DirectDamageMult = this.m.DirectDamageMult,
+				ArmorDamageMult = this.m.ArmorDamageMult,
+				TotalDamageMult = properties.DamageTotalMult, // you can remove this line if you don't want total damage multiplier to be applied in damage calculation
+			});
+			_effect.setActorID(_user.getID());
+		}.bindenv(this));
 		this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(_user) + " sets " + this.Const.UI.getColorizedEntityName(target) + "to violently explode next turn");
 	}
 

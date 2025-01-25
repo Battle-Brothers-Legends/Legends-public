@@ -71,7 +71,7 @@ this.legend_wolfsbane_necklace_item <- this.inherit("scripts/items/accessory/acc
 	function onEquip()
 	{
 		this.accessory.onEquip();
-		this.addSkill(this.new("scripts/skills/effects/legend_wolfsbane_effect"));
+		this.addSkill(::Legends.Effects.new(::Legends.Effect.LegendWolfsbane));
 	}
 
 	function onUnequip()

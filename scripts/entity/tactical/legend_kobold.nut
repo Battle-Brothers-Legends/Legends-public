@@ -220,7 +220,7 @@ this.legend_kobold <- this.inherit("scripts/entity/tactical/actor", {
 		local body_blood = this.addSprite("body_blood");
 		body_blood.Visible = false;
 		this.m.Skills.add(this.new("scripts/skills/racial/legend_kobold_racial"));
-		this.m.Skills.add(this.new("scripts/skills/effects/captain_effect"));
+		::Legends.Effects.grant(this, ::Legends.Effect.Captain);
 		this.m.Skills.add(this.new("scripts/skills/special/double_grip"));
 		this.m.Skills.add(this.new("scripts/skills/actives/hand_to_hand"));
 		::Legends.Perks.grant(this, ::Legends.Perk.Pathfinder);

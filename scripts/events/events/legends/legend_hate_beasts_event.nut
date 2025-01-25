@@ -42,7 +42,7 @@ this.legend_hate_beasts_event <- this.inherit("scripts/events/event", {
 						icon = _trait.getIcon(),
 						text = _event.m.Casualty.getName() + " now hates beasts"
 					});
-				});
+				}.bindenv(this));
 			}
 		});
 	}

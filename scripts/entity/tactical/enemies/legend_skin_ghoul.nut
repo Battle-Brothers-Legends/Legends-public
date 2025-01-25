@@ -274,7 +274,7 @@ this.legend_skin_ghoul <- this.inherit("scripts/entity/tactical/actor", {
 		::Legends.Perks.grant(this, ::Legends.Perk.Pathfinder);
 		this.m.Skills.add(this.new("scripts/skills/actives/legend_skin_ghoul_claws"));
 		this.m.Skills.add(this.new("scripts/skills/actives/gruesome_feast"));
-		this.m.Skills.add(this.new("scripts/skills/effects/gruesome_feast_effect"));
+		::Legends.Effects.grant(this, ::Legends.Effect.GruesomeFeast);
 		this.m.Skills.add(this.new("scripts/skills/actives/legend_skin_ghoul_swallow_whole_skill"));
 		::Legends.Perks.grant(this, ::Legends.Perk.Footwork);
 		::Legends.Perks.grant(this, ::Legends.Perk.Nimble);

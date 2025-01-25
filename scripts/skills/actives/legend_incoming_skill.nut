@@ -89,17 +89,14 @@ this.legend_incoming_skill <- this.inherit("scripts/skills/skill", {
 
 			if (a.getFaction() == _user.getFaction() && !a.getSkills().hasEffect(::Legends.Effect.LegendDodgingIncoming))
 			{
-
-			local effect = this.new("scripts/skills/effects/legend_dodging_incoming")
-				effect.setCommander(this.getContainer().getActor());
-				a.getSkills().add(effect);
-
+				::Legends.Effects.grant(a, ::Legends.Effect.LegendDodgingIncoming, function(_effect) {
+					_effect.setCommander(this.getContainer().getActor());
+				}.bindenv(this));
 			}
 		}
-
-		local effect = this.new("scripts/skills/effects/legend_dodging_incoming")
-		effect.setCommander(this.getContainer().getActor());
-		this.getContainer().add(effect);
+		::Legends.Effects.grant(this, ::Legends.Effect.LegendDodgingIncoming, function(_effect) {
+			_effect.setCommander(this.getContainer().getActor());
+		}.bindenv(this));
 		return true;
 	}
 

@@ -140,19 +140,19 @@
 								Icon = _trait.getIcon(),
 								Text = b.getName() + " is now a drunkard."
 							});
-						});
+						}.bindenv(this));
 					}
 				}
 			}
 
 			if (this.Math.rand(1, 100) <= drunkChance)
 			{
-				local drunk = this.new("scripts/skills/effects_world/drunk_effect");
-				b.getSkills().add(drunk);
-				result.Result.push({
-					Icon = drunk.getIcon(),
-					Text = b.getName() + " is now drunk."
-				});
+				::Legends.Effects.grant(b, ::Legends.Effect.Drunk, function(_effect) {
+					result.Result.push({
+						Icon = _effect.getIcon(),
+						Text = b.getName() + " is now drunk."
+					});
+				}.bindenv(this));
 			}
 
 			if ((b.getLastDrinkTime() == 0 || this.Time.getVirtualTimeF() - b.getLastDrinkTime() > this.World.getTime().SecondsPerDay) && this.Math.rand(1, 100) <= 35)

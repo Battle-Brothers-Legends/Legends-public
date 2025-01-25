@@ -106,17 +106,15 @@ this.legend_eat_rations_skill <- this.inherit("scripts/skills/actives/base/legen
 				this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(_user) + " eats food and becomes satiated");
 			}
 
-			local skill = this.new("scripts/skills/effects/legend_rations_effect");
-			skill.setAmount(this.m.Amount);
-			_user.getSkills().add(skill);
-			local skill = this.new("scripts/skills/effects/legend_satiated_effect");
-			_user.getSkills().add(skill);
+			::Legends.Effects.grant(_user, ::Legends.Effect.LegendSatiatedEffect);
+			::Legends.Effects.grant(_user, ::Legends.Effect.LegendRationsEffect, function(_effect) {
+				_effect.setAmount(this.m.Amount);
+			}.bindenv(this));
 
 			if (this.m.Item != null && !this.m.Item.isNull())
 			{
 				this.m.Item.removeSelf();
 			}
-
 			//this.Const.Tactical.Common.checkDrugEffect(_user);
 			return true;
 		}
@@ -132,7 +130,7 @@ this.legend_eat_rations_skill <- this.inherit("scripts/skills/actives/base/legen
 				this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(_user) + " eats food and becomes stuffed");
 			}
 
-			_user.getSkills().add(this.new("scripts/skills/effects/legend_stuffed_effect"));
+			::Legends.Effects.grant(user, ::Legends.Effect.LegendStuffedEffect);
 
 			rationsEffect.addAmount(rationsEffect.getAmount() + this.m.Amount);
 			rationsEffect.resetTurns();

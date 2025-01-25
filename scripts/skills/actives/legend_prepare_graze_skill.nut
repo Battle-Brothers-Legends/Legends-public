@@ -82,7 +82,7 @@ this.legend_prepare_graze_skill <- this.inherit("scripts/skills/skill", {
 		}
 		else
 		{
-			this.m.Container.add(this.new("scripts/skills/effects/legend_graze_prepared_effect"));
+			::Legends.Effects.grant(this, ::Legends.Effect.LegendGrazePrepared);
 		}
 
 		if (this.m.Item != null && !this.m.Item.isNull())

@@ -76,17 +76,14 @@ this.legend_hold_the_line <- this.inherit("scripts/skills/skill", {
 
 			if (a.getFaction() == _user.getFaction() && !a.getSkills().hasEffect(::Legends.Effect.LegendHoldingTheLine))
 			{
-				local effect = this.new("scripts/skills/effects/legend_holding_the_line")
-				effect.setCommander(this.getContainer().getActor());
-				a.getSkills().add(effect);
-
+				::Legends.Effects.grant(a, ::Legends.Effect.LegendHoldingTheLine, function(_effect) {
+					_effect.setCommander(this.getContainer().getActor());
+				}.bindenv(this));
 			}
 		}
-
-		local effect = this.new("scripts/skills/effects/legend_holding_the_line")
-		effect.setCommander(this.getContainer().getActor());
-		this.getContainer().add(effect);
-
+		::Legends.Effects.grant(this, ::Legends.Effect.LegendHoldingTheLine, function(_effect) {
+			_effect.setCommander(this.getContainer().getActor());
+		}.bindenv(this));
 		return true;
 	}
 

@@ -210,7 +210,7 @@ this.legend_use_catapult_skill <- this.inherit("scripts/skills/skill", {
 
 			if (_bodyPart == this.Const.BodyPart.Head)
 			{
-				_targetEntity.getSkills().add(this.new("scripts/skills/effects/dazed_effect"));
+				::Legends.Effects.grant(_targetEntity, ::Legends.Effect.Dazed);
 
 				if (!user.isHiddenToPlayer() && targetTile.IsVisibleForPlayer)
 				{

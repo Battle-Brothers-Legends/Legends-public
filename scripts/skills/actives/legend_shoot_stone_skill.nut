@@ -168,7 +168,7 @@ this.legend_shoot_stone_skill <- this.inherit("scripts/skills/skill", {
 
 			if (_bodyPart == this.Const.BodyPart.Head)
 			{
-				_targetEntity.getSkills().add(this.new("scripts/skills/effects/legend_baffled_effect"));
+				::Legends.Effects.grant(_targetEntity, ::Legends.Effect.LegendBaffled);
 
 				if (!user.isHiddenToPlayer() && targetTile.IsVisibleForPlayer)
 				{

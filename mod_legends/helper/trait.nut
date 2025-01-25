@@ -26,6 +26,14 @@ if (!("Traits" in ::Legends))
  * with optional lambda to modify trait on the fly.
  * Can be used to modify existing traits too.
  *
+ * Example here:
+ *
+ * ::Legends.Traits.grant(this, ::Legends.Trait.EagleEyes, function (_trait) {
+ *		_trait.m.Field = false;
+ *	}.bindenv(this));
+ *
+ * bindenv is optional, if not used `this` inside function points to ::Legends.Traits table
+ *
  * Returns newly added trait
  */
 ::Legends.Traits.grant <- function (_target, _def, _applyFn = null) {
@@ -57,8 +65,7 @@ if (!("Traits" in ::Legends))
 }
 
 ::Legends.Traits.has <- function (_target, _def) {
-	local container = ::Legends.Traits.getContainer(_target, "on has");
-	return container.hasSkill(::Legends.Traits.getID(_def));
+	return ::Legends.Traits.getContainer(_target, "on has").hasSkill(::Legends.Traits.getID(_def));
 }
 
 ::Legends.Traits.remove <- function (_target, _def) {

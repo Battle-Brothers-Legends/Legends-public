@@ -71,7 +71,7 @@ this.legend_mark_target_skill <- this.inherit("scripts/skills/skill", {
 
 		if (target.isAlive())
 		{
-			target.getSkills().add(this.new("scripts/skills/effects/legend_marked_target"));
+			::Legends.Effects.grant(target, ::Legends.Effect.LegendMarkedTarget);
 
 			if (!_user.isHiddenToPlayer() && _targetTile.IsVisibleForPlayer)
 			{

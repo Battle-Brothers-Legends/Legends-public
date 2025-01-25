@@ -37,12 +37,12 @@ this.legend_citrinitas_trance_skill <- this.inherit("scripts/skills/actives/lege
 
 			if (a.getFaction() == _user.getFaction())
 			{
-				// a.getSkills().add(this.new("scripts/skills/effects/legend_drums_of_life_effect"));
-				a.getSkills().add(this.new("scripts/skills/effects/legend_drums_of_war_effect"));
+				// ::Legends.Effects.grant(a, ::Legends.Effect.LegendDrumsOfLife);
+				::Legends.Effects.grant(a, ::Legends.Effect.LegendDrumsOfWar);
 			}
 		}
-		// this.getContainer().add(this.new("scripts/skills/effects/legend_drums_of_life_effect"));
-		this.getContainer().add(this.new("scripts/skills/effects/legend_drums_of_war_effect"));
+		// ::Legends.Effects.grant(this, ::Legends.Effect.LegendDrumsOfLife);
+		::Legends.Effects.grant(this, ::Legends.Effect.LegendDrumsOfWar);
 	}
 
 	function doTranceEndTurn()

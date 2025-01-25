@@ -57,7 +57,7 @@ this.legend_hexe_leader_agent <- this.inherit("scripts/ai/tactical/agent", {
 			{
 				if (a.getType() != this.Const.EntityType.Hexe && a.getType() != this.Const.EntityType.LegendHexeLeader && !a.isNonCombatant() && !a.getSkills().hasEffect(::Legends.Effect.FakeCharmed) && !a.getSkills().hasEffect(::Legends.Effect.Charmed))
 				{
-					a.getSkills().add(this.new("scripts/skills/effects/fake_charmed_effect"));
+					::Legends.Effects.grant(a, ::Legends.Effect.FakeCharmed);
 				}
 			}
 		}

@@ -75,7 +75,7 @@ this.legend_inventor_prosthetic_hand <- this.inherit("scripts/events/event", {
 						icon = _trait.getIcon(),
 						text = _event.m.Nohand.m.Name + " receives a " + _trait.m.Name
 					});
-				});
+				}.bindenv(this));
 
 				local pros_hand_works = _event.m.Nohand.getItems();
 				pros_hand_works.getData()[this.Const.ItemSlot.Offhand][0] = null;

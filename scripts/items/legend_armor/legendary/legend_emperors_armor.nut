@@ -53,7 +53,7 @@ this.legend_emperors_armor <- this.inherit("scripts/items/legend_armor/legend_ar
 					continue;
 
 				if (!a.getCurrentProperties().IsImmuneToDaze)
-					a.getSkills().add(this.new("scripts/skills/effects/dazed_effect"));
+					::Legends.Effects.grant(a, ::Legends.Effect.Dazed);
 			}
 		}
 	}

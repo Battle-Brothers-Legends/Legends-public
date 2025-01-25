@@ -33,7 +33,7 @@ this.legend_cannibal_corrupts_butcher <- this.inherit("scripts/events/event", {
 						icon = _trait.getIcon(),
 						text = _event.m.Butcher.m.Name + " now enjoys forbidden meat"
 					});
-				});
+				}.bindenv(this));
 				_event.m.Cannibal.improveMood(2.0, "Spread the joys of cannibalism");
 				_event.m.Butcher.improveMood(2.0, "Started appreciating forbidden meat");
 			}

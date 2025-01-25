@@ -80,14 +80,14 @@ this.legend_safeguard_skill <- this.inherit("scripts/skills/skill", {
 		}
 
 		local target = _targetTile.getEntity();
-		target.getSkills().add(this.new("scripts/skills/effects/legend_safeguarded_effect"));
+		::Legends.Effects.grant(target, ::Legends.Effect.LegendSafeguarded);
 
 		if (!_user.isHiddenToPlayer() && _targetTile.IsVisibleForPlayer)
 		{
 			this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(_user) + " is safeguarding " + this.Const.UI.getColorizedEntityName(target) + " for one turn");
 		}
 
-		this.getContainer().add(this.new("scripts/skills/effects/legend_safeguarding_effect"));
+		::Legends.Effects.grant(this, ::Legends.Effect.LegendSafeguarding);
 	}
 
 	function onVerifyTarget( _originTile, _targetTile )

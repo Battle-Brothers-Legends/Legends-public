@@ -85,7 +85,7 @@ this.legend_buckler_bash_skill <- this.inherit("scripts/skills/skill", {
 
 		if (success && target.isAlive())
 		{
-			target.getSkills().add(this.new("scripts/skills/effects/legend_baffled_effect"));
+			::Legends.Effects.grant(target, ::Legends.Effect.LegendBaffled);
 
 			if (!_user.isHiddenToPlayer() && _targetTile.IsVisibleForPlayer)
 			{

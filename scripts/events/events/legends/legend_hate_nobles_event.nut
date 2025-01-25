@@ -42,7 +42,7 @@ this.legend_hate_nobles_event <- this.inherit("scripts/events/event", {
 						icon = _trait.getIcon(),
 						text = _event.m.Casualty.getName() + " now hates the nobility."
 					});
-				});
+				}.bindenv(this));
 			}
 
 		});

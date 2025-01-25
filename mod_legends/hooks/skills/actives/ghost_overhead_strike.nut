@@ -13,7 +13,7 @@
 
 		if (success && _targetTile.IsOccupiedByActor && this.Math.rand(1, 100) <= this.m.StunChance && !target.getCurrentProperties().IsImmuneToStun && !target.getSkills().hasEffect(::Legends.Effect.Stunned))
 		{
-			target.getSkills().add(this.new("scripts/skills/effects/stunned_effect"));
+			::Legends.Effects.grant(target, ::Legends.Effect.Stunned);
 
 			if (!_user.isHiddenToPlayer() && _targetTile.IsVisibleForPlayer)
 			{

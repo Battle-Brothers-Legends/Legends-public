@@ -23,7 +23,7 @@ this.perk_legend_shields_up <- this.inherit("scripts/skills/skill", {
 			{
 				if (!ally.getSkills().hasEffect(::Legends.Effect.Shieldwall))
 				{
-					ally.getSkills().add(this.new("scripts/skills/effects/shieldwall_effect"));
+					::Legends.Effects.grant(ally, ::Legends.Effect.Shieldwall);
 					this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(ally) + " uses Shieldwall due to the Shields Up perk");
 				}
 

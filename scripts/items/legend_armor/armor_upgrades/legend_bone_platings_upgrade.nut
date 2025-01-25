@@ -44,7 +44,7 @@ this.legend_bone_platings_upgrade <- this.inherit("scripts/items/legend_armor/le
 
 	function onCombatStarted()
 	{
-		this.addSkill(this.new("scripts/skills/effects/legend_bone_plating_effect"));
+		this.addSkill(::Legends.Effects.new(::Legends.Effect.LegendBonePlating));
 	}
 });
 

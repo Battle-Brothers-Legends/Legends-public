@@ -92,9 +92,9 @@ this.legend_magic_daze_skill <- this.inherit("scripts/skills/actives/legend_magi
 
 			if (targetEntity.isAlive())
 			{
-				local newDaze = this.new("scripts/skills/effects/legend_dazed_effect");
-				targetEntity.getSkills().add(newDaze);
-				newDaze.m.TurnsLeft = this.Math.max(1, 1 + newDaze.getContainer().getActor().getCurrentProperties().NegativeStatusEffectDuration);
+				::Legends.Effects.grant(targetEntity, ::Legends.Effect.LegendDazed, function(_effect) {
+					_effect.m.TurnsLeft = this.Math.max(1, 1 + newDaze.getContainer().getActor().getCurrentProperties().NegativeStatusEffectDuration);
+				}.bindenv(this));
 
 				if (!_user.isHiddenToPlayer() && _targetTile.IsVisibleForPlayer)
 				{

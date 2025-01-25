@@ -62,7 +62,7 @@ this.legend_eat_pie_skill <- this.inherit("scripts/skills/actives/base/legend_ea
 
 		if (_user.getID() == user.getID())
 		{
-			user.getSkills().add(this.new("scripts/skills/effects/legend_pie_effect"));
+			::Legends.Effects.grant(user, ::Legends.Effect.LegendPieEffect);
 
 			if (!user.isHiddenToPlayer())
 			{

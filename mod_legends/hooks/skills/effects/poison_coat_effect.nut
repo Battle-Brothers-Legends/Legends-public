@@ -39,7 +39,7 @@
 
 		if (runePoison == null && gobboPoison == null)
 		{
-			_targetEntity.getSkills().add(this.new("scripts/skills/effects/goblin_poison_effect"));
+			::Legends.Effects.grant(_targetEntity, ::Legends.Effect.GoblinPoison);
 		}
 		else if (runePoison != null && gobboPoison == null)
 		{

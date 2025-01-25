@@ -103,7 +103,7 @@ this.legend_inventor_prosthetic_eye <- this.inherit("scripts/events/event", {
 						icon = _trait.getIcon(),
 						text = _event.m.Noeye.m.Name + " receives a " + _trait.m.Name
 					});
-				});
+				}.bindenv(this));
 
 				local missing_eye_bye = this.new("scripts/skills/injury_permanent/missing_eye_injury");
 				_event.m.Noeye.getSkills().removeByID("injury.missing_eye");

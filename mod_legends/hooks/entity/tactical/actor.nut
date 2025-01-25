@@ -234,7 +234,7 @@
 
 		if (getCurrentProperties().IsParrying && !getCurrentProperties().IsStunned && validAttackerToParry && validSkillToParry && !_attacker.getCurrentProperties().IsImmuneToDisarm && !_attacker.getSkills().hasEffect(::Legends.Effect.LegendParried)) {
 			if (isHiddenToPlayer()) {
-				_attacker.getSkills().add(::new("scripts/skills/effects/legend_parried_effect"));
+				::Legends.Effects.grant(_attacker, ::Legends.Effect.LegendParried);
 				this.onBeforeRiposte(_attacker, _skill);
 			}
 			else {
@@ -267,7 +267,7 @@
 		local sound = this.Const.Sound.getParrySoundByWeaponType(_info.Skill);
 		// this.Sound.play("sounds/combat/legend_parried_01.wav", this.Const.Sound.Volume.Skill, _info.Actor.getPos())
 		this.Sound.play(sound, this.Const.Sound.Volume.Skill, _info.Actor.getPos());
-		_info.Attacker.getSkills().add(this.new("scripts/skills/effects/legend_parried_effect"));
+		::Legends.Effects.grant(_info.Attacker, ::Legends.Effect.LegendParried);
 		this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(_info.Attacker) + " is Vulnerable");
 		// Attempt to perform a Riposte after the Parry (with a delay so that it only begins after the Parry animation is finished)
 		this.onBeforeRiposte(_info.Attacker,_info.Skill,1.5);
@@ -383,14 +383,14 @@
 			this.m.PerkPointsSpent += 1;
 			::Legends.Perks.grant(this, ::Legends.Perk.Gifted, function (_perk) {
 				_perk.m.IsApplied = true;
-			});
+			}.bindenv(this));
 		}
 
 		if (hasAdaptive)
 		{
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendAdaptive, function (_perk) {
 				_perk.m.IsNew = true;
-			});
+			}.bindenv(this));
 			if (this.getLevel() >= 15)
 				this.m.PerkPointsSpent += 1;
 		}

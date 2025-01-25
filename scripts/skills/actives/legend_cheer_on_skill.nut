@@ -94,7 +94,7 @@ this.legend_cheer_on_skill <- this.inherit("scripts/skills/skill", {
 	function onUse( _user, _targetTile )
 	{
 		local target = _targetTile.getEntity();
-		target.getSkills().add(this.new("scripts/skills/effects/legend_cheered_on_effect"));
+		::Legends.Effects.grant(target, ::Legends.Effect.LegendCheeredOn);
 		return true;
 	}
 

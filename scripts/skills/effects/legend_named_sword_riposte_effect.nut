@@ -43,7 +43,7 @@ this.legend_named_sword_riposte_effect <- this.inherit("scripts/skills/skill", {
         if ( ::Math.rand(0, 100) > this.m.Bonus ) { return; }
         if ( this.getContainer().hasEffect(::Legends.Effect.Riposte) ) { return; }
 
-        this.getContainer().add(this.new("scripts/skills/effects/riposte_effect"));
+        ::Legends.Effects.grant(this, ::Legends.Effect.Riposte);
         
         if (!this.getContainer().getActor().isHiddenToPlayer())
         {
@@ -69,7 +69,7 @@ this.legend_named_sword_riposte_effect <- this.inherit("scripts/skills/skill", {
 
         if ( ::Math.rand(0, 100) > this.m.Bonus ) { return; }
 
-        _targetEntity.getSkills().add(this.new("scripts/skills/effects/legend_parried_effect"));
+        ::Legends.Effects.grant(_targetEntity, ::Legends.Effect.LegendParried);
 	}
 
 });

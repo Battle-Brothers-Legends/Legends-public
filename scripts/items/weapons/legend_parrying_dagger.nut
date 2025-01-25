@@ -137,21 +137,20 @@ this.legend_parrying_dagger <- this.inherit("scripts/items/shields/shield", {
 
 		this.addSkill(this.new("scripts/skills/actives/legend_en_garde_skill"));
 
-		local parryDaggerEffect = this.new("scripts/skills/effects/legend_parrying_dagger_effect");
-		parryDaggerEffect.m.Order = this.Const.SkillOrder.UtilityTargeted;
-		parryDaggerEffect.setItem(this);
-		this.m.SkillPtrs.push(parryDaggerEffect);
-		this.getContainer().getActor().getSkills().add(parryDaggerEffect);
-
+		::Legends.Effects.grant(this, ::Legends.Effect.LegendParryingDagger, function(_effect) {
+			_effect.m.Order = this.Const.SkillOrder.UtilityTargeted;
+			_effect.setItem(this);
+			this.m.SkillPtrs.push(_effect);
+		}.bindenv(this));
 		// Manually add the effect so that it will be ordered after perks in the skill container instead of before background
 		// Even though this effect is being granted by equipping this weapon, we are adding it this way because of possible future plans to make legend_parrying_effect available not just by equipping this weapon.
 		// Hence, making ordering it with the other effects/perks instead of the row above background (for item-granted effects) is for consistency
-		local parrying = this.new("scripts/skills/effects/legend_parrying_effect");
-		parrying.m.IsFromItem = true;
-		parrying.m.Order = this.Const.SkillOrder.UtilityTargeted + 2;
-		parrying.setItem(this);
-		this.m.SkillPtrs.push(parrying);
-		this.getContainer().getActor().getSkills().add(parrying);
+		::Legends.Effects.grant(this, ::Legends.Effect.LegendParrying, function(_effect) {
+			_effect.m.IsFromItem = true;
+			_effect.m.Order = this.Const.SkillOrder.UtilityTargeted + 2;
+			_effect.setItem(this);
+			this.m.SkillPtrs.push(_effect);
+		}.bindenv(this));
 	}
 
 	function onUnequip()
@@ -194,7 +193,7 @@ this.legend_parrying_dagger <- this.inherit("scripts/items/shields/shield", {
 				mainhandSkill.m.IsHidden = false;
 				continue;
 			}
-			
+
 			offhandSkill.m.IsHidden = shouldHidden;
 			mainhandSkill.m.IsHidden = !shouldHidden;
 		}

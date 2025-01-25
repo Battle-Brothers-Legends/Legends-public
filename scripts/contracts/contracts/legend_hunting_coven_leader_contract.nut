@@ -459,13 +459,13 @@ this.legend_hunting_coven_leader_contract <- this.inherit("scripts/contracts/con
 			function start()
 			{
 				this.Characters.push(this.Contract.m.Dude.getImagePath());
-				local effect = this.new("scripts/skills/effects_world/afraid_effect");
-				this.Contract.m.Dude.getSkills().add(effect);
-				this.List.push({
-					id = 10,
-					icon = effect.getIcon(),
-					text = this.Contract.m.Dude.getName() + " is afraid"
-				});
+				::Legends.Effects.grant(this.Contract.m.Dude, ::Legends.Effect.Afraid, function(_effect) {
+					this.List.push({
+						id = 10,
+						icon = _effect.getIcon(),
+						text = this.Contract.m.Dude.getName() + " is afraid"
+					});
+				}.bindenv(this));
 				this.Contract.m.Dude.worsenMood(1.5, "Was cursed by a witch");
 
 				if (this.Contract.m.Dude.getMoodState() <= this.Const.MoodState.Neutral)

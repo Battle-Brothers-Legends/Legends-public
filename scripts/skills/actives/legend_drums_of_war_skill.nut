@@ -85,13 +85,13 @@ function getTooltip()
 
 			if (a.getFaction() == _user.getFaction())
 			{
-				a.getSkills().add(this.new("scripts/skills/effects/legend_drums_of_war_effect"));
+				::Legends.Effects.grant(a, ::Legends.Effect.LegendDrumsOfWar);
 				//a.setFatigue(this.Math.max(0, a.getFatigue() - 5)); - Redundant?
 				this.spawnIcon(this.m.Overlay, a.getTile());
 			}
 		}
 
-		this.getContainer().add(this.new("scripts/skills/effects/legend_drums_of_war_effect"));
+		::Legends.Effects.grant(this, ::Legends.Effect.LegendDrumsOfWar);
 		return true;
 	}
 

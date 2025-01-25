@@ -121,7 +121,7 @@ this.legend_alp_realm_of_shadow_skill <- this.inherit("scripts/skills/skill", {
 			"sounds/enemies/dlc2/alp_nightmare_06.wav"
 		]), this.Const.Sound.Volume.Actor, _entity.getPos());
 		
-		_entity.getSkills().add(this.new("scripts/skills/effects/legend_alp_realm_of_shadow_effect"));
+		::Legends.Effects.grant(_entity, ::Legends.Effect.LegendAlpRealmOfShadow);
 	}
 
 });

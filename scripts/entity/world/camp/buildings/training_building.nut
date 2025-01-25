@@ -589,8 +589,7 @@ this.training_building <- this.inherit("scripts/entity/world/camp/camp_building"
 
 			if (this.Math.rand(1, 100) < r)
 			{
-				local effect = this.new("scripts/skills/effects_world/exhausted_effect");
-				bro.getSkills().add(effect);
+				::Legends.Effects.grant(bro, ::Legends.Effect.Exhausted);
 			}
 
 		}
@@ -601,11 +600,11 @@ this.training_building <- this.inherit("scripts/entity/world/camp/camp_building"
 		{
 			return;
 		}
-		local effect = this.new("scripts/skills/effects_world/new_trained_effect");
-		effect.m.Duration = 1;
-		effect.m.XPGainMult = 1.1;
-		effect.m.Icon = "skills/status_effect_75.png";
-		bro.getSkills().add(effect);
+		local effect = ::Legends.Effects.grant(bro, ::Legends.Effect.Trained, function(_effect) {
+			_effect.m.Duration = 1;
+			_effect.m.XPGainMult = 1.1;
+			_effect.m.Icon = "skills/status_effect_75.png";
+		}.bindenv(this));
 		local mod = this.getModifiers();
 		local adjectives = [
 			bro.getName() + " learned how to get most of the next battle",

@@ -703,7 +703,7 @@ effectsDefs.push({
 });
 effectsDefs.push({
 	ID = "effects.legend_parried",
-	Script = "scripts/skills/effects/legend_parried",
+	Script = "scripts/skills/effects/legend_parried_effect",
 	Name = "Parried",
 	Const = "LegendParried"
 });
@@ -1224,6 +1224,12 @@ effectsDefs.push({
 	Const = "LegendValaTrancePerspectiveEffect"
 });
 effectsDefs.push({
+	ID = "special.legend_vala_warden_damage",
+	Script = "scripts/skills/effects/legend_vala_warden_damage",
+	Name = "Warden Damage Scaling",
+	Const = "LegendValaWardenDamage"
+});
+effectsDefs.push({
 	ID = "effects.legend_vengeance",
 	Script = "scripts/skills/effects/legend_vengeance_effect",
 	Name = "Vengeance!",
@@ -1283,6 +1289,17 @@ effectsDefs.push({
 	Name = "Bleeding",
 	Const = "LegendRswBleedingEffect"
 });
-
+effectsDefs.push({
+	ID = "effects.legend_veteran_levels",
+	Script = "scripts/skills/effects/legend_veteran_levels_effect",
+	Name = "",
+	Const = "LegendVeteranLevels"
+});
+effectsDefs.push({
+	ID = "effects.legend_hidden_kobold",
+	Script = "scripts/skills/effects/legend_hidden_kobold_effect",
+	Name = "Hidden",
+	Const = "LegendHiddenKobold"
+});
 
 ::Legends.Effects.addEffectDefObjects(effectsDefs);

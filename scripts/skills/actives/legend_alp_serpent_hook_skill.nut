@@ -75,7 +75,7 @@ this.legend_alp_serpent_hook_skill <- this.inherit("scripts/skills/actives/serpe
 			this.Tactical.getNavigator().teleport(_targetTile.getEntity(), pullToTile, this.onPulledDown, tag, true);
 		}
 
-		target.getSkills().add(this.new("scripts/skills/effects/staggered_effect"));
+		::Legends.Effects.grant(target, ::Legends.Effect.Staggered);
 
 		if (!_user.isHiddenToPlayer() && _targetTile.IsVisibleForPlayer)
 		{

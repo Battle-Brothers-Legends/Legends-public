@@ -80,7 +80,7 @@ this.legend_danger_pay_skill <- this.inherit("scripts/skills/skill", {
 	function onUse( _user, _targetTile )
 	{
 		local target = _targetTile.getEntity();
-		target.getSkills().add(this.new("scripts/skills/effects/legend_motivated_effect"));
+		::Legends.Effects.grant(target, ::Legends.Effect.LegendMotivatedEffect);
 		target.setMoraleState(this.m.MaximumMoraleState);
 		local crownCost = this.getCrownCost(target);
 		this.World.Assets.addMoney(crownCost * -1);

@@ -22,7 +22,7 @@
 	local onUse = o.onUse;
 	o.onUse = function ( _user, _targetTile )
 	{
-		_user.getSkills().add(this.new("scripts/skills/effects/legend_threw_sand_effect"));
+		::Legends.Effects.grant(user, ::Legends.Effect.LegendThrewSandEffect);
 		onUse( _user, _targetTile );
 	}
 });

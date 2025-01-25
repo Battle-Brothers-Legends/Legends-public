@@ -88,7 +88,7 @@ this.legend_root_skill <- this.inherit("scripts/skills/skill", {
 
 		foreach( target in targets )
 		{
-			target.getSkills().add(this.new("scripts/skills/effects/rooted_effect"));
+			::Legends.Effects.grant(target, ::Legends.Effect.Rooted);
 			local breakFree = this.new("scripts/skills/actives/break_free_skill");
 			breakFree.setDecal("roots_destroyed");
 			breakFree.m.Icon = "skills/active_75.png";
