@@ -13,8 +13,8 @@ this.perk_legend_opportunist <- this.inherit("scripts/skills/skill", {
 
 	function onTargetHit( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor )
 	{
-		// must from a skill
-		if (_skill != null)
+		// must be from a skill
+		if (_skill == null)
 			return;
 
 		// the target must still alive
