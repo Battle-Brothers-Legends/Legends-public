@@ -36,24 +36,25 @@
 		if (!_skill.isAttack()) return false;
 
 		local effects = [
-			"effects.dazed",
-			"effects.distracted",
-			"effects.legend_baffled",
-			"effects.legend_parried",
-			"effects.legend_grappled",
-			"effects.net",
-			"effects.rooted",
-			"effects.shellshocked",
-			"effects.sleeping",
-			"effects.staggered",
-			"effects.stunned",
-			"effects.web",
-			"effects.withered"
+			::Legends.Effect.Dazed,
+			::Legends.Effect.Distracted,
+			::Legends.Effect.LegendBaffled,
+			::Legends.Effect.LegendParried,
+			::Legends.Effect.LegendGrappled,
+			::Legends.Effect.Net,
+			::Legends.Effect.Rooted,
+			::Legends.Effect.Shellshocked,
+			::Legends.Effect.Sleeping,
+			::Legends.Effect.Staggered,
+			::Legends.Effect.Stunned,
+			::Legends.Effect.Web,
+			::Legends.Effect.Withered,
 		]
-		
+
 		foreach(e in effects)
 		{
-			if (_targetEntity.getSkills().hasSkill(e)) return true;
+			if (_targetEntity.getSkills().hasEffect(e))
+				return true;
 		}
 
 		return false;

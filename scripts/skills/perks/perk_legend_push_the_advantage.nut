@@ -1,20 +1,19 @@
 this.perk_legend_push_the_advantage <- this.inherit("scripts/skills/skill", {
 	m = {
 		EffectsToGiveBonus = [
-			"effects.sleeping",
-			"effects.stunned",
-			"effects.dazed",
-			"effects.legend_dazed",
-			"effects.net",
-			"effects.legend_grappled",
-			"effects.staggered",
-			"effects.web",
-			"effects.legend_baffled",
-			"effects.rooted",
-			"effects.distracted",
-			"effects.debilitated",
-			"effects.insect_swarm",
-			"effects.debilitated"
+			::Legends.Effect.Sleeping,
+			::Legends.Effect.Stunned,
+			::Legends.Effect.Dazed,
+			::Legends.Effect.LegendDazed,
+			::Legends.Effect.Net,
+			::Legends.Effect.LegendGrappled,
+			::Legends.Effect.Staggered,
+			::Legends.Effect.Web,
+			::Legends.Effect.LegendBaffled,
+			::Legends.Effect.Rooted,
+			::Legends.Effect.Distracted,
+			::Legends.Effect.Debilitated,
+			::Legends.Effect.InsectSwarm,
 		]
 	},
 	function create()
@@ -32,24 +31,18 @@ this.perk_legend_push_the_advantage <- this.inherit("scripts/skills/skill", {
 	function isBonusEligible( _targetEntity )
 	{
 		local targetSkills = _targetEntity.getSkills();
-
 		foreach ( effect in this.m.EffectsToGiveBonus )
 		{
-			if ( targetSkills.hasSkill(effect) )
-			{
+			if ( targetSkills.hasEffect(effect) )
 				return true;
-			}
 		}
-
 		return false;
 	}
 
 	function onAnySkillUsed( _skill, _targetEntity, _properties )
 	{
 		if (_targetEntity == null)
-		{
 			return;
-		}
 
 		if ( !_targetEntity.isAlliedWith(this.getContainer().getActor()) )
 		{

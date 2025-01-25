@@ -1,16 +1,16 @@
 ::mods_hookExactClass("skills/actives/deathblow_skill", function(o)
 {
-	o.m.ApplicableSkills <-
-	[
-		"effects.dazed",
-		"effects.debilitated",
-		"effects.distracted",
-		"effects.grappled",
-		"effects.legend_baffled",
-		"effects.legend_choked",
-		"effects.legend_tackled",
-		"effects.shellshocked",
-		"effects.staggered",
+	o.m.ApplicableSkills <- [
+		::Legends.Effect.Dazed,
+		::Legends.Effect.LegendDazed,
+		::Legends.Effect.Debilitated,
+		::Legends.Effect.Distracted,
+		::Legends.Effect.LegendGrappled,
+		::Legends.Effect.LegendBaffled,
+		::Legends.Effect.LegendChoked,
+		::Legends.Effect.LegendTackled,
+		::Legends.Effect.Shellshocked,
+		::Legends.Effect.Staggered,
 	];
 
 	o.getTooltip = function ()
@@ -40,7 +40,7 @@
 
 			foreach ( skill in this.m.ApplicableSkills)
 			{
-				if (targetStatus.hasSkill(skill))
+				if (targetStatus.hasEffect(skill))
 				{
 					_properties.DamageTotalMult *= 1.33;
 					_properties.DamageDirectAdd += 0.2;
