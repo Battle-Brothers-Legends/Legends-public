@@ -29,7 +29,7 @@ if (!("Perks" in ::Legends))
  * Example here:
  *
  * ::Legends.Perks.grant(this, ::Legends.Perk.NineLives, function (_perk) {
- *		_perk.IsRefundable = false;
+ *		_perk.m.Property = false;
  *	}.bindenv(this));
  *
  * bindenv is optional, if not used `this` inside function points to ::Legends.Perks table
