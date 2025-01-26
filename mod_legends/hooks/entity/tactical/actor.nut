@@ -202,9 +202,9 @@
 		this.checkMorale = function (_change, _difficulty, _type = this.Const.MoraleCheckType.Default, _showIconBeforeMoraleIcon = "", _noNewLine = false) {
 			if ( _difficulty > 0) { // check if it's the 40.0 one we want to change
 				if (this.m.CurrentProperties.IsAffectedByMovementMorale && _difficulty > 0)
-					fnPtr(_change, _difficulty, _type, _showIconBeforeMoraleIcon, _noNewLine)
+					return fnPtr(_change, _difficulty, _type, _showIconBeforeMoraleIcon, _noNewLine)
 			} else { // if it's -1000 one, use at is was
-				fnPtr(_change, _difficulty, _type, _showIconBeforeMoraleIcon, _noNewLine)
+				return fnPtr(_change, _difficulty, _type, _showIconBeforeMoraleIcon, _noNewLine)
 			}
 		}.bindenv(this);
 		// Lionheart perk stop
