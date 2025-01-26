@@ -352,14 +352,16 @@
 	<sprite id="icon_legend_battle_glaive_01" offsetY="35" f1="20" f2="-45" ic="FF4E5159" width="130" height="142" img="icons\icon_legend_battle_glaive_01.png" left="-10" right="50" top="-67" bottom="13" />
 	<sprite id="icon_legend_battle_glaive_01_bloodied" offsetY="35" f1="20" f2="-45" ic="FF454856" width="130" height="142" img="icons\icon_legend_battle_glaive_01_bloodied.png" left="-10" right="50" top="-67" bottom="13" />
 
-	<sprite id="icon_legend_glaive_01" offsetY="35" f1="20" f2="-45" ic="FF4E5159" width="130" height="142" img="icons\icon_legend_glaive_01.png" left="-10" right="50" top="-67" bottom="13" />
-	<sprite id="icon_legend_battle_glaive_01_bloodied" offsetY="35" f1="20" f2="-45" ic="FF454856" width="130" height="142" img="icons\icon_legend_glaive_01_bloodied.png" left="-10" right="50" top="-67" bottom="13" />
+	<sprite id="icon_legend_battle_glaive_02" offsetY="35" f1="20" f2="-45" ic="FF4E5159" width="130" height="142" img="icons\icon_legend_battle_glaive_02.png" left="-10" right="50" top="-67" bottom="13" />
+	<sprite id="icon_legend_battle_glaive_02_bloodied" offsetY="35" f1="20" f2="-45" ic="FF454856" width="130" height="142" img="icons\icon_legend_battle_glaive_02.png" left="-10" right="50" top="-67" bottom="13" />
 
 	<sprite id="icon_legend_militia_glaive_01" offsetY="35" f1="20" f2="-45" ic="FF4D535A" width="130" height="142" img="icons\icon_legend_militia_glaive_01.png" left="-6" right="50" top="-60" bottom="14" />
 	<sprite id="icon_legend_militia_glaive_01_bloodied" offsetY="35" f1="20" f2="-45" ic="FF4D535A" width="130" height="142" img="icons\icon_legend_militia_glaive_01_bloodied.png" left="-6" right="50" top="-60" bottom="14" />
 
 	<sprite id="icon_legend_named_glaive_01" offsetY="35" f1="20" f2="-45" ic="FF586572" width="130" height="142" img="icons\icon_legend_named_glaive_01.png" left="-7" right="55" top="-61" bottom="21" />
 	<sprite id="icon_legend_named_glaive_01_bloodied" offsetY="35" f1="20" f2="-45" ic="FF56616F" width="130" height="142" img="icons\icon_legend_named_glaive_01_bloodied.png" left="-7" right="55" top="-61" bottom="21" />
+	<sprite id="icon_legend_named_glaive_02" offsetY="35" ic="FF3B404A" width="96" height="146" img="icons\icon_legend_named_glaive_02.png" left="-60" right="14" top="-58" bottom="54" />
+	<sprite id="icon_legend_named_glaive_02_bloodied" offsetY="35" ic="FF3B404A" width="96" height="146" img="icons\icon_legend_named_glaive_02_bloodied.png" left="-60" right="14" top="-58" bottom="54" />
 
 	<sprite id="icon_drum" offsetY="35" ic="FF3F5874" width="130" height="142" img="icons\icon_drum.png" left="-15" right="65" top="-69" bottom="17" />
 	<sprite id="icon_drum_bloodied" offsetY="35" ic="FF3F5874" width="130" height="142" img="icons\icon_drum_bloodied.png" left="-15" right="65" top="-69" bottom="17" />
@@ -381,19 +383,14 @@
 
 	<sprite id="icon_legend_military_goedendag_02" offsetY="35" ic="FF3B404A" width="150" height="160" img="icons\icon_legend_military_goedendag_02.png" left="-68" right="20" top="-56" bottom="48" />
 	<sprite id="icon_legend_military_goedendag_02_bloodied" offsetY="35" ic="FF303547" width="150" height="160" img="icons\icon_legend_military_goedendag_02_bloodied.png" left="-68" right="20" top="-56" bottom="48" />
-	<sprite id="icon_legend_voulge_01" offsetY="35" ic="FF474B52" width="130" height="142" img="icons\icon_legend_voulge_01.png" left="-64" right="14" top="-64" bottom="58" />
-	<sprite id="icon_legend_voulge_01_bloodied" offsetY="35" ic="FF3B3E4C" width="130" height="142" img="icons\icon_legend_voulge_01_bloodied.png" left="-64" right="14" top="-64" bottom="58" />
-	<sprite id="icon_legend_voulge_01_named_01" offsetY="35" ic="FF484B50" width="130" height="142" img="icons\icon_legend_voulge_01_named_01.png" left="-65" right="15" top="-70" bottom="60" />
-	<sprite id="icon_legend_voulge_01_named_01_bloodied" offsetY="35" ic="FF3E424C" width="130" height="142" img="icons\icon_legend_voulge_01_named_01_bloodied.png" left="-65" right="15" top="-70" bottom="60" />
 	<sprite id="icon_legend_military_goedendag_named_01" offsetY="35" ic="FF323941" width="130" height="142" img="icons\icon_legend_military_goedendag_01_named_01.png" left="-64" right="18" top="-55" bottom="41" />
 	<sprite id="icon_legend_military_goedendag_named_01_bloodied" offsetY="35" ic="FF2C3140" width="130" height="142" img="icons\icon_legend_military_goedendag_01_named_01_bloodied.png" left="-64" right="18" top="-55" bottom="41" />
 	<sprite id="icon_legend_halberd_named_01" offsetY="35" ic="FF3F4756" width="130" height="142" img="icons\icon_legend_halberd_named_01.png" left="-56" right="14" top="-57" bottom="53" />
 	<sprite id="icon_legend_halberd_named_01_bloodied" offsetY="35" ic="FF394153" width="130" height="142" img="icons\icon_legend_halberd_named_01_bloodied.png" left="-56" right="14" top="-57" bottom="53" />
 	<sprite id="icon_legend_halberd_01" offsetY="35" ic="FF424952" width="150" height="160" img="icons\icon_legend_halberd_01.png" left="-59" right="11" top="-61" bottom="53" />
 	<sprite id="icon_legend_halberd_01_bloodied" offsetY="35" ic="FF3C424F" width="150" height="160" img="icons\icon_legend_halberd_01_bloodied.png" left="-59" right="11" top="-61" bottom="53" />
-	<sprite id="icon_legend_voulge_02" offsetY="35" ic="FF424952" width="150" height="160" img="icons\icon_legend_voulge_02.png" left="-59" right="11" top="-61" bottom="53" />
-	<sprite id="icon_legend_voulge_02_bloodied" offsetY="35" ic="FF3C424F" width="150" height="160" img="icons\icon_legend_voulge_02_bloodied.png" left="-59" right="11" top="-61" bottom="53" />
-
+	<sprite id="icon_legend_halberd_02" offsetY="35" ic="FF474B52" width="130" height="142" img="icons\icon_legend_halberd_02.png" left="-64" right="14" top="-64" bottom="58" />
+	<sprite id="icon_legend_halberd_02_bloodied" offsetY="35" ic="FF3B3E4C" width="130" height="142" img="icons\icon_legend_halberd_02_bloodied.png" left="-64" right="14" top="-64" bottom="58" />
 	<sprite id="icon_flail_two_handed_02_named_03" offsetY="35" ic="FF3A3E4A" width="130" height="142" img="icons\icon_flail_two_handed_02_named_03.png" left="-65" right="17" top="-50" bottom="64" />
 	<sprite id="icon_flail_two_handed_02_named_03_bloodied" offsetY="35" ic="FF353949" width="130" height="142" img="icons\icon_flail_two_handed_02_named_03_bloodied.png" left="-65" right="17" top="-50" bottom="64" />
 
@@ -499,8 +496,6 @@
 	<sprite id="icon_legend_gladius_named_01" offsetY="35" f1="20" f2="-45" ic="FF4D535A" width="130" height="142" img="icons\icon_legend_gladius_named_01.png" left="-6" right="50" top="-60" bottom="14" />
 	<sprite id="icon_legend_gladius_named_01_bloodied" offsetY="35" f1="20" f2="-45" ic="FF4D535A" width="130" height="142" img="icons\icon_legend_gladius_named_01_bloodied.png" left="-6" right="50" top="-60" bottom="14" />
 
-	<sprite id="icon_legend_voulge_01_named_02" offsetY="35" ic="FF3B404A" width="96" height="146" img="icons\icon_legend_voulge_01_named_02.png" left="-60" right="14" top="-58" bottom="54" />
-	<sprite id="icon_legend_voulge_01_named_02_bloodied" offsetY="35" ic="FF3B404A" width="96" height="146" img="icons\icon_legend_voulge_01_named_02_bloodied.png" left="-60" right="14" top="-58" bottom="54" />
 	<sprite id="icon_legend_kopesh_01" offsetY="35" ic="FF364455" width="130" height="142" img="icons\icon_legend_kopesh_01.png" left="-50" right="14" top="-52" bottom="26" />
 	<sprite id="icon_legend_kopesh_01_bloodied" offsetY="35" ic="FF303D52" width="130" height="142" img="icons\icon_legend_kopesh_01_bloodied.png" left="-50" right="14" top="-52" bottom="26" />
 	<sprite id="icon_legend_kopis_01" offsetY="35" ic="FF5D6676" width="130" height="142" img="icons\icon_legend_kopis_01.png" left="-9" right="55" top="-59" bottom="31" />
@@ -519,9 +514,12 @@
 
 	<sprite id="icon_warscythe_named_03" offsetY="35" ic="FF3B404A" width="86" height="224" img="icons\icon_warscythe_named_03.png" left="-60" right="6" top="-64" bottom="104" />
 	<sprite id="icon_warscythe_named_03_bloodied" offsetY="35" ic="FF3B404A" width="86" height="224" img="icons\icon_warscythe_named_03_bloodied.png" left="-60" right="6" top="-64" bottom="104" />
-
+	<sprite id="icon_bardiche_02" offsetY="35" ic="FF424952" width="150" height="160" img="icons\icon_bardiche_02.png" left="-59" right="11" top="-61" bottom="53" />
+	<sprite id="icon_bardiche_02_bloodied" offsetY="35" ic="FF3C424F" width="150" height="160" img="icons\icon_bardiche_02_bloodied.png" left="-59" right="11" top="-61" bottom="53" />
 	<sprite id="icon_bardiche_01_named_03" offsetY="35" ic="FF3B404A" width="93" height="166" img="icons\icon_bardiche_01_named_03.png" left="-60" right="10" top="-60" bottom="65" />
 	<sprite id="icon_bardiche_01_named_03_bloodied" offsetY="35" ic="FF3B404A" width="93" height="166" img="icons\icon_bardiche_01_named_03_bloodied.png" left="-60" right="10" top="-60" bottom="65" />
+	<sprite id="icon_bardiche_01_named_04" offsetY="35" ic="FF484B50" width="130" height="142" img="icons\icon_bardiche_01_named_04.png" left="-65" right="15" top="-70" bottom="60" />
+	<sprite id="icon_bardiche_01_named_04_bloodied" offsetY="35" ic="FF3E424C" width="130" height="142" img="icons\icon_bardiche_01_named_04_bloodied.png" left="-65" right="15" top="-70" bottom="60" />
 
 	<sprite id="icon_named_warhammer_04" offsetY="35" ic="FF3B404A" width="49" height="109" img="icons\icon_named_warhammer_04.png" left="0" right="47" top="-70" bottom="12" />
 	<sprite id="icon_named_warhammer_04_bloodied" offsetY="35" ic="FF3B404A" width="49" height="109" img="icons\icon_named_warhammer_04_bloodied.png" left="0" right="47" top="-70" bottom="12" />
