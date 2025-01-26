@@ -1,5 +1,5 @@
 ::mods_hookExactClass("skills/effects/staggered_effect", function(o) {
-	
+
 	local create = o.create
 	o.create = function()
 	{
@@ -18,7 +18,7 @@
 		}
 
 		this.m.Overlay = "status_effect_65";
-		this.spawnIcon(this.m.Overlay, _c.getActor().getTile());
+		this.spawnIcon(this.m.Overlay, actor.getTile());
 		onAdded();
 	}
 
