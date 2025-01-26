@@ -178,6 +178,25 @@
 		return false;
 	}
 
+	local isTurnDone = o.isTurnDone;
+	o.isTurnDone = function()
+	{
+		if (!this.Tactical.getNavigator().isTravelling(this) && isPlayerControlled() && !m.CurrentProperties.IsStunned && !this.Settings.getGameplaySettings().DontAutoEndTurns)
+		{
+			local usableSkill = false;
+			foreach (skill in this.m.Skills.queryActives())
+			{
+				if (skill != null && skill.isUsable() && skill.isAffordable())
+				{
+					usableSkill = true;
+					break;
+				}
+			}
+			return this.m.IsTurnDone || this.m.IsSkippingTurn || this.m.ActionPoints < this.Const.Movement.AutoEndTurnBelowAP && !this.m.Skills.isBusy() && !usableSkill;
+		}
+		return isTurnDone();
+	}
+
 	local onMovementFinish = o.onMovementFinish;
 	o.onMovementFinish = function (_tile)
 	{
