@@ -13,8 +13,8 @@ this.legend_named_cleaver_effect <- this.inherit("scripts/skills/skill", {
 		this.m.Order = this.Const.SkillOrder.Item;
 		this.m.IsActive = false;
 		this.m.IsStacking = false;
-        this.m.IsWeaponSkill = true;
-        this.m.IsHidden = true;
+		this.m.IsWeaponSkill = true;
+		this.m.IsHidden = true;
 	}
 
 	function getTooltip()
@@ -33,15 +33,13 @@ this.legend_named_cleaver_effect <- this.inherit("scripts/skills/skill", {
 		];
 	}
 
-    function setBonus( _bonus )
-    {
-        this.m.Bonus = _bonus;
-    }
-
-    function onBeforeTargetHit( _skill, _targetEntity, _hitInfo )
+	function onUpdate( _properties )
 	{
-        if ( _skill.m.IsWeaponSkill == false ) { return; }
-		_hitInfo.FatalityChanceMult *= 1 + (this.m.Bonus * 0.01);
+		_properties.FatalityChanceMult *= 1 + (this.m.Bonus * 0.01);
 	}
 
+	function setBonus( _bonus )
+	{
+		this.m.Bonus = _bonus;
+	}
 });
