@@ -27,7 +27,7 @@ this.camp_painter_dialog_module <- this.inherit("scripts/ui/screens/ui_module", 
 			local bodyarmorbase = b.getItems().getItemAtSlot(this.Const.ItemSlot.Body);
 			local bodyarmor = null;
 			local bodyarmorfinal = {};
-			if (bodyarmorbase != null)
+			if (bodyarmorbase != null && ::MSU.isKindOf(bodyarmorbase, "legend_armor"))
 			{
 				bodyarmor = {
 					Cloth = bodyarmorbase,
@@ -65,13 +65,9 @@ this.camp_painter_dialog_module <- this.inherit("scripts/ui/screens/ui_module", 
 				};
 			}
 			local helmetbase = b.getItems().getItemAtSlot(this.Const.ItemSlot.Head);
-			if (helmetbase != null && helmetbase.getID() == "armor.head.fangshire")
-			{
-				helmetbase = null
-			}
 			local helmet = null;
 			local helmetfinal = {};
-			if (helmetbase != null)
+			if (helmetbase != null && ::MSU.isKindOf(helmetbase, "legend_helmet"))
 			{
 				helmet = {
 					Hood = helmetbase,
