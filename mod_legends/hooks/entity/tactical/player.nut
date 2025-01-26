@@ -579,7 +579,7 @@
 
 			local has9L = this.getSkills().hasPerk(::Legends.Perk.NineLives);
 			::Legends.Perks.grant(this, ::Legends.Perk.NineLives, function (perk) {
-				if (has9L && perk.IsRefundable) {
+				if (has9L && perk.getID() in this.getBackground().m.PerkTreeMap && this.getBackground().m.PerkTreeMap[perk.getID()].IsRefundable) {
 					this.m.PerkPoints += 1;
 					this.m.PerkPointsSpent -= 1;
 				}
