@@ -1,5 +1,7 @@
 ::mods_hookExactClass("skills/actives/quick_shot", function(o)
 {
+	o.m.AdditionalHitChance = -4;
+
 	local create = o.create;
 	o.create = function ()
 	{
@@ -43,5 +45,15 @@
 		}
 
 		return tooltip;
+	}
+
+	local onAnySkillUsed = o.onAnySkillUsed;
+	o.onAnySkillUsed = function ( _skill, _targetEntity, _properties )
+	{
+		// change it to use these values properly over vanilla code
+		if (_skill == this) {
+			_properties.HitChanceAdditionalWithEachTile -= -4;
+		}
+		onAnySkillUsed(_skill, _targetEntity, _properties);
 	}
 });

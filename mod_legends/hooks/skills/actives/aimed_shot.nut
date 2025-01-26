@@ -1,5 +1,8 @@
 ::mods_hookExactClass("skills/actives/aimed_shot", function(o)
 {
+	o.m.AdditionalAccuracy = 10;
+	o.m.AdditionalHitChance = -2;
+
 	o.getTooltip = function ()
 	{
 		local tooltip = this.getRangedTooltip(this.getDefaultTooltip());
@@ -36,5 +39,16 @@
 		}
 
 		return tooltip;
+	}
+
+	local onAnySkillUsed = o.onAnySkillUsed;
+	o.onAnySkillUsed = function ( _skill, _targetEntity, _properties )
+	{
+		// change it to use these values properly over vanilla code
+		if (_skill == this) {
+			_properties.RangedSkill -= 10;
+			_properties.HitChanceAdditionalWithEachTile -= -2;
+		}
+		onAnySkillUsed(_skill, _targetEntity, _properties);
 	}
 });
