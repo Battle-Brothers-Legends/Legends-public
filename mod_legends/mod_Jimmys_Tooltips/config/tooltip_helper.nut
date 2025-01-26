@@ -471,7 +471,7 @@
 			local startID = 500;
 			foreach (skill in skills){
 				local skillID = skill.getID(); // todo it shows it in log, remove when problem with tooltips is gone - chopeks
-				if (skill.getContainer() == null || skill.getContainer().getActor() == null)
+				if (skill.getContainer() == null || !("getActor" in skill.getContainer()) || skill.getContainer().getActor() == null)
 					continue;
 				if(skill.isUsable()){
 					pushSectionName(skill, skill.getName(), startID, "" + skill.getIcon());
