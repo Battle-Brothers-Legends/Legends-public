@@ -9,7 +9,7 @@ this.legend_prosthetic_leg_blueprint <- this.inherit("scripts/crafting/blueprint
 		this.m.Cost = 50;
 		local ingredients = [
 			{
-				Script = "scripts/items/trade/legend_wax_item",
+				Script = "scripts/items/trade/quality_wood_item",
 				Num = 2
 			},
 			{
