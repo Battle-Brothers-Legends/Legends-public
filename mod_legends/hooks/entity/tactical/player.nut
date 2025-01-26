@@ -573,7 +573,8 @@
 
 			::Legends.Traits.grant(this, ::Legends.Trait.LegendRottenFlesh);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendZombieBite, function (perk) {
-				perk.IsRefundable = false;
+				if (!this.getBackground().addPerk(::Legends.Perk.LegendZombieBite, 0, false))
+					this.getBackground().m.PerkTreeMap[perk.getID()].IsRefundable = false;
 			}.bindenv(this));
 
 			local has9L = this.getSkills().hasPerk(::Legends.Perk.NineLives);
@@ -582,7 +583,9 @@
 					this.m.PerkPoints += 1;
 					this.m.PerkPointsSpent -= 1;
 				}
-				perk.IsRefundable = false;
+
+				if (!this.getBackground().addPerk(::Legends.Perk.NineLives, 0, false))
+					this.getBackground().m.PerkTreeMap[perk.getID()].IsRefundable = false;
 			}.bindenv(this));
 
 			if (result) {
