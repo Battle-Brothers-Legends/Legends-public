@@ -35,7 +35,7 @@ this.perk_legend_perfect_fit <- this.inherit("scripts/skills/skill", {
 		}
 		else
 		{
-			armorFatPenMult = this.Math.maxf(0, 1 - 0.01 * this.Math.pow(armorFatPen - maxFat/2.0, 2.44));
+			armorFatPenMult = this.Math.maxf(0, 1 - 0.01 * this.Math.pow(armorFatPen - maxFat / 2.0, 2.44));
 		}
 
 		return this.m.BonusMax * armorFatPenMult;
