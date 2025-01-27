@@ -40,15 +40,15 @@ this.legend_named_lute <- this.inherit("scripts/items/weapons/named/named_weapon
 	function onEquip()
 	{
 		this.named_weapon.onEquip();
-		local s = this.new("scripts/skills/actives/bash");
-		s.m.IsLuteBash = true;
-		this.addSkill(s);
-		s = this.new("scripts/skills/actives/knock_out");
-		s.m.IsFromLute = true;
-		s.m.Icon = "skills/active_88.png";
-		s.m.IconDisabled = "skills/active_88_sw.png";
-		s.m.Overlay = "active_88";
-		this.addSkill(s);
+		::Legends.Actives.grant(this, ::Legends.Active.Bash, function (_skill) {
+			_skill.m.IsLuteBash = true;
+		}.bindenv(this));
+		::Legends.Actives.grant(this, ::Legends.Active.KnockOut, function (_skill) {
+			_skill.m.IsFromLute = true;
+			_skill.m.Icon = "skills/active_88.png";
+			_skill.m.IconDisabled = "skills/active_88_sw.png";
+			_skill.m.Overlay = "active_88";
+		}.bindenv(this));
 	}
 
 });

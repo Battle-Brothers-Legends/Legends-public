@@ -28,9 +28,9 @@
 	o.onEquip = function ()
 	{
 		onEquip();
-		local s = this.new("scripts/skills/actives/bash");
-		s.m.IsDrumBash = true;
-		this.addSkill(s);
+		::Legends.Actives.grant(this, ::Legends.Active.Bash, function (_skill) {
+			_skill.m.IsDrumBash = true;
+		}.bindenv(this));
 		::Legends.Actives.grant(this, ::Legends.Active.KnockOut);
 	}
 

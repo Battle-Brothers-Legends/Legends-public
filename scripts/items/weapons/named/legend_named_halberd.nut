@@ -43,12 +43,12 @@ this.legend_named_halberd <- this.inherit("scripts/items/weapons/named/named_wea
 	{
 		this.named_weapon.onEquip();
 		::Legends.Actives.grant(this, ::Legends.Active.LegendHalberdSmite);
-		local impale = this.new("scripts/skills/actives/impale");
-		impale.m.Icon = "skills/legend_halberd_impale.png";
-		impale.m.IconDisabled = "skills/legend_halberd_impale_bw.png";
-		impale.m.Overlay = "legend_halberd_impale";
-		impale.m.IsIgnoredAsAOO = true;
-		this.addSkill(impale);
+		::Legends.Actives.grant(this, ::Legends.Active.Impale, function (_skill) {
+			_skill.m.Icon = "skills/legend_halberd_impale.png";
+			_skill.m.IconDisabled = "skills/legend_halberd_impale_bw.png";
+			_skill.m.Overlay = "legend_halberd_impale";
+			_skill.m.IsIgnoredAsAOO = true;
+		}.bindenv(this));
 	}
 
 });

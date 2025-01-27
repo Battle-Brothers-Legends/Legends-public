@@ -33,8 +33,7 @@ this.legend_sling <- this.inherit("scripts/items/weapons/weapon", {
 	function onEquip()
 	{
 		this.weapon.onEquip();
-		local quick_shot = this.new("scripts/skills/actives/sling_stone_skill");
-		this.addSkill(quick_shot);
+		::Legends.Actives.grant(this, ::Legends.Active.SlingStone);
 	}
 
 });

@@ -35,11 +35,8 @@ this.legend_named_orc_flail_2h <- this.inherit("scripts/items/weapons/named/name
 	function onEquip()
 	{
 		this.named_weapon.onEquip();
-		local skill;
-		skill = this.new("scripts/skills/actives/pound");
-		this.addSkill(skill);
-		skill = this.new("scripts/skills/actives/thresh");
-		this.addSkill(skill);
+		::Legends.Actives.grant(this, ::Legends.Active.Pound);
+		::Legends.Actives.grant(this, ::Legends.Active.Thresh);
 	}
 });
 

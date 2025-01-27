@@ -44,14 +44,13 @@ this.legend_meat_hacker <- this.inherit("scripts/items/weapons/weapon", {
 	function onEquip()
 	{
 		this.weapon.onEquip();
-		local skill;
-		skill = this.new("scripts/skills/actives/split_man");
-		skill.m.DirectDamageMult = this.m.DirectDamageMult; //Sets Split Man's Direct Damage Mult to Meat Hacker's Direct Damage Mult
-		this.addSkill(skill);
-		skill = this.new("scripts/skills/actives/split_shield");
-		skill.setApplyAxeMastery(true);
-		skill.setFatigueCost(skill.getFatigueCostRaw() + 5);
-		this.addSkill(skill);
+		::Legends.Actives.grant(this, ::Legends.Active.SplitMan, function (_skill) {
+			_skill.m.DirectDamageMult = this.m.DirectDamageMult; //Sets Split Man's Direct Damage Mult to Meat Hacker's Direct Damage Mult
+		}.bindenv(this));
+		::Legends.Actives.grant(this, ::Legends.Active.SplitShield, function (_skill) {
+			_skill.setApplyAxeMastery(true);
+			_skill.setFatigueCost(_skill.getFatigueCostRaw() + 5);
+		}.bindenv(this));
 	}
 
 	function onUpdateProperties( _properties )

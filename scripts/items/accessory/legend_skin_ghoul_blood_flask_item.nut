@@ -36,9 +36,9 @@ this.legend_skin_ghoul_blood_flask_item <- this.inherit("scripts/items/accessory
 	function onEquip()
 	{
 		this.accessory.onEquip();
-		local skill = this.new("scripts/skills/actives/legend_drink_skin_ghoul_blood_skill");
-		skill.setItem(this);
-		this.addSkill(skill);
+		::Legends.Actives.grant(this, ::Legends.Active.LegendDrinkSkinGhoulBlood, function (_skill) {
+			_skill.setItem(this);
+		}.bindenv(this));
 	}
 
 	function onPutIntoBag()

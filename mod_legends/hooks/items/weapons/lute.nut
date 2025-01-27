@@ -14,9 +14,9 @@
 	local onEquip = o.onEquip;
 	o.onEquip = function ()
 	{
-		local s = this.new("scripts/skills/actives/bash");
-		s.m.IsLuteBash = true;
-		this.addSkill(s);
+		::Legends.Actives.grant(this, ::Legends.Active.Bash, function (_skill) {
+			_skill.m.IsLuteBash = true;
+		}.bindenv(this));
 		onEquip();
 	}
 });

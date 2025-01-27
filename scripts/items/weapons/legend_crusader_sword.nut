@@ -36,13 +36,13 @@ this.legend_crusader_sword <- this.inherit("scripts/items/weapons/weapon", {
 	function onEquip()
 	{
 		this.weapon.onEquip();
-		local skillToAdd = this.new("scripts/skills/actives/overhead_strike");
-		skillToAdd.setStunChance(this.m.StunChance);
-		this.addSkill(skillToAdd);
-		skillToAdd = this.new("scripts/skills/actives/slash");
-		skillToAdd.m.isGreatSlash = true;
-		this.addSkill(skillToAdd);
-		::Legends.Actives.grant(this, ::Legends.Active.Swing);		
+		::Legends.Actives.grant(this, ::Legends.Active.OverheadStrike, function (_skill) {
+			_skill.setStunChance(this.m.StunChance);
+		}.bindenv(this));
+		::Legends.Actives.grant(this, ::Legends.Active.Slash, function (_skill) {
+			_skill.m.isGreatSlash = true;
+		}.bindenv(this));
+		::Legends.Actives.grant(this, ::Legends.Active.Swing);
 		::Legends.Actives.grant(this, ::Legends.Active.Riposte);
 	}
 

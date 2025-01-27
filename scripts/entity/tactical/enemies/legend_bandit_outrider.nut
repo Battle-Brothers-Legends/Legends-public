@@ -107,10 +107,10 @@ this.legend_bandit_outrider <- this.inherit("scripts/entity/tactical/human", {
 		this.getSprite("arms_icon").Rotation = 13.0;
 
 		//change to horse kick later
-		local wolf_bite = this.new("scripts/skills/actives/legend_horse_kick_skill");
-		wolf_bite.setRestrained(true);
-		wolf_bite.m.ActionPointCost = 0;
-		this.m.Skills.add(wolf_bite);
+		::Legends.Actives.grant(this, ::Legends.Active.LegendHorseKick, function (_skill) {
+			_skill.setRestrained(true);
+			_skill.m.ActionPointCost = 0;
+		}.bindenv(this));
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendHorseMovement);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendHorseCharge);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendHorsePirouette);

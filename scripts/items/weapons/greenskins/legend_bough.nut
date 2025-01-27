@@ -45,14 +45,11 @@ this.legend_bough <- this.inherit("scripts/items/weapons/weapon", {
 	function onEquip()
 	{
 		this.weapon.onEquip();
-		local skill;
-		skill = this.new("scripts/skills/actives/cudgel_skill");
-		this.addSkill(skill);
-		skill = this.new("scripts/skills/actives/strike_down_skill");
-		this.addSkill(skill);
-		skill = this.new("scripts/skills/actives/split_shield");
-		skill.setFatigueCost(skill.getFatigueCostRaw() + 10); // 10 because 2h weapons should get +5 on split shield (see 2h mace), and then +5 because of being orc weapon.
-		this.addSkill(skill);
+		::Legends.Actives.grant(this, ::Legends.Active.Cudgel);
+		::Legends.Actives.grant(this, ::Legends.Active.StrikeDown);
+		::Legends.Actives.grant(this, ::Legends.Active.SplitShield, function (_skill) {
+			_skill.setFatigueCost(_skill.getFatigueCostRaw() + 10); // 10 because 2h weapons should get +5 on split shield (see 2h mace), and then +5 because of being orc weapon.
+		}.bindenv(this));
 	}
 
 	function onUpdateProperties( _properties )

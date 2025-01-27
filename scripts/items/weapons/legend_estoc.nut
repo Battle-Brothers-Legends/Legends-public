@@ -38,12 +38,12 @@ this.legend_estoc <- this.inherit("scripts/items/weapons/weapon", {
 	function onEquip()
 	{
 		this.weapon.onEquip();
-		local skillToAdd = this.new("scripts/skills/actives/slash");
-		skillToAdd.m.isGreatSlash = true;
-		this.addSkill(skillToAdd);
-		skillToAdd = this.new("scripts/skills/actives/lunge_skill");
-		skillToAdd.m.isGreatLunge = true;
-		this.addSkill(skillToAdd);
+		::Legends.Actives.grant(this, ::Legends.Active.Slash, function (_skill) {
+			_skill.m.isGreatSlash = true;
+		}.bindenv(this));
+		::Legends.Actives.grant(this, ::Legends.Active.Lunge, function (_skill) {
+			_skill.m.isGreatLunge = true;
+		}.bindenv(this));
 	}
 
 	function onUpdateProperties( _properties )

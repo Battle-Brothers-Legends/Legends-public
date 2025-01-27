@@ -34,12 +34,12 @@ this.legend_staff <- this.inherit("scripts/items/weapons/weapon", {
 	function onEquip()
 	{
 		this.weapon.onEquip();
-		local s = this.new("scripts/skills/actives/bash");
-		s.m.IsStaffBash = true;
-		this.addSkill(s);
-		s = this.new("scripts/skills/actives/knock_out")
-		s.m.IsStaffKnockOut = true;
-		this.addSkill(s);
+		::Legends.Actives.grant(this, ::Legends.Active.Bash, function (_skill) {
+			s.m.IsStaffBash = true;
+		}.bindenv(this));
+		::Legends.Actives.grant(this, ::Legends.Active.KnockOut, function (_skill) {
+			s.m.IsStaffKnockOut = true;
+		}.bindenv(this))
 	}
 
 });

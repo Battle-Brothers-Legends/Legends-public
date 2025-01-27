@@ -55,9 +55,9 @@ this.legend_pie_item <- this.inherit("scripts/items/supplies/food_item", {
 	function onEquip()
 	{
 		this.food_item.onEquip();
-		local skill = this.new("scripts/skills/actives/legend_eat_pie_skill");
-		skill.setItem(this);
-		this.addSkill(skill);
+		::Legends.Actives.grant(this, ::Legends.Active.LegendEatPie, function (_skill) {
+			_skill.setItem(this);
+		}.bindenv(this));
 	}
 
 });

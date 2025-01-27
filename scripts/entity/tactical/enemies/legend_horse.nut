@@ -169,8 +169,7 @@ this.legend_horse <- this.inherit("scripts/entity/tactical/actor", {
 		this.addDefaultStatusSprites();
 		this.getSprite("status_rooted").Scale = 0.54;
 		this.setSpriteOffset("status_rooted", this.createVec(0, 0));
-		local horse_kick = this.new("scripts/skills/actives/legend_horse_kick_skill");
-		this.m.Skills.add(horse_kick);
+		::Legends.Actives.grant(this, ::Legends.Active.LegendHorseKick);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendHorseMovement);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendHorseCharge);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendHorsePirouette);

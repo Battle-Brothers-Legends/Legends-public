@@ -43,11 +43,8 @@ this.legend_bone_carver <- this.inherit("scripts/items/weapons/weapon", {
 	function onEquip()
 	{
 		this.weapon.onEquip();
-		local skill;
-		skill = this.new("scripts/skills/actives/cleave");
-		this.addSkill(skill);
-		skill = this.new("scripts/skills/actives/decapitate");
-		this.addSkill(skill);
+		::Legends.Actives.grant(this, ::Legends.Active.Cleave);
+		::Legends.Actives.grant(this, ::Legends.Active.Decapitate);
 	}
 
 });

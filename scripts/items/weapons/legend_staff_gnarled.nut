@@ -34,16 +34,16 @@ this.legend_staff_gnarled <- this.inherit("scripts/items/weapons/weapon", {
 	function onEquip()
 	{
 		this.weapon.onEquip();
-		local s = this.new("scripts/skills/actives/bash");
-		s.m.Icon = "skills/staff_bash_gnarled.png";
-		s.m.IconDisabled = "skills/staff_bash_gnarled_bw.png";
-		s.m.IsStaffBash = true;
-		this.addSkill(s);
-		local t = this.new("scripts/skills/actives/knock_out");
-		t.m.Icon = "skills/staff_knock_out_gnarled.png";
-		t.m.IconDisabled = "skills/staff_knock_out_gnarled_bw.png";
-		t.m.IsStaffKnockOut = true;
-		this.addSkill(t);
+		::Legends.Actives.grant(this, ::Legends.Active.Bash, function (_skill) {
+			_skill.m.Icon = "skills/staff_bash_gnarled.png";
+			_skill.m.IconDisabled = "skills/staff_bash_gnarled_bw.png";
+			_skill.m.IsStaffBash = true;
+		}.bindenv(this));
+		::Legends.Actives.grant(this, ::Legends.Active.KnockOut, function (_skill) {
+			_skill.m.Icon = "skills/staff_knock_out_gnarled.png";
+			_skill.m.IconDisabled = "skills/staff_knock_out_gnarled_bw.png";
+			_skill.m.IsStaffKnockOut = true;
+		}.bindenv(this));
 		::Legends.Actives.grant(this, ::Legends.Active.LegendHex);
 	}
 

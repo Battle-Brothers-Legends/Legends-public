@@ -40,15 +40,15 @@ this.legend_warhound_item <- this.inherit("scripts/items/accessory/legend_access
 	function onEquip()
 	{
 		this.legend_accessory_dog.onEquip();
-		local unleash = this.new("scripts/skills/actives/unleash_wardog");
-		unleash.setItem(this);
-		unleash.m.Name = "Unleash Warhound";
-		unleash.m.Description = "Unleash your warhound and send him charging into the enemy. Needs a free tile adjacent.";
-		unleash.m.Icon = "skills/active_165.png";
-		unleash.m.IconDisabled = "skills/active_165_sw.png";
-		unleash.m.Overlay = "active_165";
-		this.m.Skill = this.WeakTableRef(unleash);
-		this.addSkill(unleash);
+		::Legends.Actives.grant(this, ::Legends.Active.UnleashWardog, function (_skill) {
+			_skill.setItem(this);
+			_skill.m.Name = "Unleash Warhound";
+			_skill.m.Description = "Unleash your warhound and send him charging into the enemy. Needs a free tile adjacent.";
+			_skill.m.Icon = "skills/active_165.png";
+			_skill.m.IconDisabled = "skills/active_165_sw.png";
+			_skill.m.Overlay = "active_165";
+			this.m.Skill = this.WeakTableRef(_skill);
+		}.bindenv(this));
 	}
 
 	function setEntity( _e )

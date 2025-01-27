@@ -97,10 +97,10 @@ this.legend_cat_item <- this.inherit("scripts/items/accessory/accessory", {
 	function onEquip()
 	{
 		this.accessory.onEquip();
-		local unleash = this.new("scripts/skills/actives/legend_unleash_cat_skill");
-		unleash.setItem(this);
-		this.m.Skill = this.WeakTableRef(unleash);
-		this.addSkill(unleash);
+		::Legends.Actives.grant(this, ::Legends.Active.LegendUnleashCat, function (_skill) {
+			_skill.setItem(this);
+			this.m.Skill = this.WeakTableRef(_skill);
+		}.bindenv(this));
 	}
 
 	function onCombatFinished()

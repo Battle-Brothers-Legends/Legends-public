@@ -59,26 +59,24 @@ this.legend_named_military_goedendag <- this.inherit("scripts/items/weapons/name
 	function onEquip()
 	{
 		this.named_weapon.onEquip();
-		local thrust = this.new("scripts/skills/actives/thrust");
-		thrust.m.Icon = "skills/active_128.png";
-		thrust.m.IconDisabled = "skills/active_128_sw.png";
-		thrust.m.Overlay = "active_128";
-		thrust.setFatigueCost(15);
-		thrust.m.ActionPointCost = 6;
-		this.addSkill(thrust);
-		local skill;
-		skill = this.new("scripts/skills/actives/cudgel_skill");
-		skill.m.Icon = "skills/active_131.png";
-		skill.m.IconDisabled = "skills/active_131_sw.png";
-		skill.m.Overlay = "active_131";
-		this.addSkill(skill);
-		local skill;
-		skill = this.new("scripts/skills/actives/strike_down_skill");
-		skill.m.Icon = "skills/active_132.png";
-		skill.m.IconDisabled = "skills/active_132_sw.png";
-		skill.m.Overlay = "active_132";
-		skill.setFatigueCost(skill.getFatigueCostRaw() + 5);
-		this.addSkill(skill);
+		::Legends.Actives.grant(this, ::Legends.Active.Thrust, function (_skill) {
+			_skill.m.Icon = "skills/active_128.png";
+			_skill.m.IconDisabled = "skills/active_128_sw.png";
+			_skill.m.Overlay = "active_128";
+			_skill.setFatigueCost(15);
+			_skill.m.ActionPointCost = 6;
+		}.bindenv(this));
+		::Legends.Actives.grant(this, ::Legends.Active.Cudgel, function (_skill) {
+			_skill.m.Icon = "skills/active_131.png";
+			_skill.m.IconDisabled = "skills/active_131_sw.png";
+			_skill.m.Overlay = "active_131";
+		}.bindenv(this));
+		::Legends.Actives.grant(this, ::Legends.Active.StrikeDown, function (_skill) {
+			_skill.m.Icon = "skills/active_132.png";
+			_skill.m.IconDisabled = "skills/active_132_sw.png";
+			_skill.m.Overlay = "active_132";
+			_skill.setFatigueCost(_skill.getFatigueCostRaw() + 5);
+		}.bindenv(this));
 	}
 
 });

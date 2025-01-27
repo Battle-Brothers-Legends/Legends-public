@@ -34,16 +34,16 @@ this.legend_wooden_pitchfork <- this.inherit("scripts/items/weapons/weapon", {
 	function onEquip()
 	{
 		this.weapon.onEquip();
-		local impale = this.new("scripts/skills/actives/impale");
-		impale.m.Icon = "skills/active_57.png";
-		impale.m.IconDisabled = "skills/active_57_sw.png";
-		impale.m.Overlay = "active_57";
-		this.addSkill(impale);
-		local repel = this.new("scripts/skills/actives/repel");
-		repel.m.Icon = "skills/active_58.png";
-		repel.m.IconDisabled = "skills/active_58_sw.png";
-		repel.m.Overlay = "active_58";
-		this.addSkill(repel);
+		::Legends.Actives.grant(this, ::Legends.Active.Impale, function (_skill) {
+			_skill.m.Icon = "skills/active_57.png";
+			_skill.m.IconDisabled = "skills/active_57_sw.png";
+			_skill.m.Overlay = "active_57";
+		}.bindenv(this));
+		::Legends.Actives.grant(this, ::Legends.Active.Repel, function (_skill) {
+			_skill.m.Icon = "skills/active_58.png";
+			_skill.m.IconDisabled = "skills/active_58_sw.png";
+			_skill.m.Overlay = "active_58";
+		}.bindenv(this));
 	}
 
 });
