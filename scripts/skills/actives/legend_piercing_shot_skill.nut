@@ -6,25 +6,25 @@ this.legend_piercing_shot_skill <- ::inherit("scripts/skills/actives/aimed_shot"
 	function create()
 	{
 		this.aimed_shot.create();
-		m.ID = "actives.legend_piercing_shot";
-		m.Name = "Piercing Shot";
-		m.Description = "A shot with so much force that it passes straight through the target to whoever is behind them.";
-		m.KilledString = "Pierced";
-		m.Icon = "skills/PiercingBoltSkill.png";
-		m.IconDisabled = "skills/PiercingBoltSkill_bw.png";
-		m.Overlay = "piercing_bolt";
-		m.SoundOnHit = [
+		this.m.ID = "actives.legend_piercing_shot";
+		this.m.Name = "Piercing Shot";
+		this.m.Description = "A shot with so much force that it passes straight through the target to whoever is behind them.";
+		this.m.KilledString = "Pierced";
+		this.m.Icon = "skills/PiercingBoltSkill.png";
+		this.m.IconDisabled = "skills/PiercingBoltSkill_bw.png";
+		this.m.Overlay = "piercing_bolt";
+		this.m.SoundOnHit = [
 			"sounds/combat/split_hit_01.wav",
 			"sounds/combat/split_hit_02.wav",
 			"sounds/combat/split_hit_03.wav"
 		];
-		m.IsAOE = true;
-		m.DirectDamageMult = 0.3;
-		m.ActionPointCost = 5;
-		m.ChanceDecapitate = 5;
-		m.ChanceDisembowel = 25;
-		m.AdditionalAccuracy = 0;
-		m.AdditionalHitChance = -4;
+		this.m.IsAOE = true;
+		this.m.DirectDamageMult = 0.3;
+		this.m.ActionPointCost = 5;
+		this.m.ChanceDecapitate = 5;
+		this.m.ChanceDisembowel = 25;
+		this.m.AdditionalAccuracy = 0;
+		this.m.AdditionalHitChance = -4;
 	}
 
 	function getTooltip()

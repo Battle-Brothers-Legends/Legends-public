@@ -2,7 +2,7 @@ this.legend_werewolf_howl_skill <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "actives.werewolf_howl";
+		this.m.ID = "actives.legend_werewolf_howl";
 		this.m.Name = "Howl";
 		this.m.Description = "";
 		this.m.Icon = "skills/active_22.png";

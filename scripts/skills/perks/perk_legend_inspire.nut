@@ -12,7 +12,7 @@ this.perk_legend_inspire <- this.inherit("scripts/skills/skill", {
 
 	function onAdded()
 	{
-		if (!this.m.Container.hasSkill("actives.inspire"))
+		if (!this.m.Container.hasSkill("actives.legend_inspire"))
 		{
 			this.m.Container.add(this.new("scripts/skills/actives/legend_inspire_skill"));
 		}

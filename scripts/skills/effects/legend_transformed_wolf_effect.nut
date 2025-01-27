@@ -50,7 +50,7 @@ this.legend_transformed_wolf_effect <- this.inherit("scripts/skills/effects/lege
 	function removeSkills()
 	{
 		local actor = this.getContainer().getActor();
-		actor.getSkills().removeByID("actives.werewolf_claws");
+		actor.getSkills().removeByID("actives.legend_werewolf_claws");
 		actor.getSkills().removeByID("actives.werewolf_bite");
 		if (!actor.getSkills().hasPerk(::Legends.Perk.Footwork))
 		{

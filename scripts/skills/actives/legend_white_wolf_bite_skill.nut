@@ -2,7 +2,7 @@ this.legend_white_wolf_bite_skill <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "actives.legend_whit_wolf_bite";
+		this.m.ID = "actives.legend_white_wolf_bite";
 		this.m.Name = "White Direwolf Bite";
 		this.m.Description = "";
 		this.m.KilledString = "Ripped to shreds";

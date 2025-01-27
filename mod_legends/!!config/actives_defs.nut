@@ -1080,6 +1080,12 @@ activesDefs.push({
 	Name = "Skin Ghoul Claws",
 });
 activesDefs.push({
+	ID = "actives.legend_white_wolf_bite",
+	Script = "scripts/skills/actives/legend_white_wolf_bite_skill",
+	Const = "LegendWhiteWolfBite",
+	Name = "White Direwolf Bite",
+});
+activesDefs.push({
 	ID = "actives.legend_redback_spider_bite",
 	Script = "scripts/skills/actives/legend_redback_spider_bite_skill",
 	Const = "LegendRedbackSpiderBite",
@@ -1156,6 +1162,12 @@ activesDefs.push({
 	Script = "scripts/skills/actives/legend_en_garde_skill",
 	Const = "LegendEnGarde",
 	Name = "En Garde",
+});
+activesDefs.push({
+	ID = "actives.legend_nightmare_touch",
+	Script = "scripts/skills/actives/legend_nightmare_touch_skill",
+	Const = "LegendNightmareTouch",
+	Name = "Terror",
 });
 activesDefs.push({
 	ID = "actives.legend_basilisk_peck",
@@ -1374,6 +1386,12 @@ activesDefs.push({
 	Name = "Shadow Mist",
 });
 activesDefs.push({
+	ID = "actives.legend_werewolf_howl",
+	Script = "scripts/skills/actives/legend_werewolf_howl_skill",
+	Const = "LegendWerewolfHowl",
+	Name = "Howl",
+});
+activesDefs.push({
 	ID = "actives.legend_white_wolf_howl",
 	Script = "scripts/skills/actives/legend_white_wolf_howl_skill",
 	Const = "LegendWhiteWolfHowl",
@@ -1444,6 +1462,12 @@ activesDefs.push({
 	Script = "scripts/skills/actives/legend_cascade_skill",
 	Const = "LegendCascade",
 	Name = "Cascade Strike",
+});
+activesDefs.push({
+	ID = "actives.legend_chain_lightning",
+	Script = "scripts/skills/actives/legend_chain_lightning_skill",
+	Const = "LegendChainLightning",
+	Name = "Chain Lightning",
 });
 activesDefs.push({
 	ID = "actives.legend_charge",
@@ -1812,7 +1836,7 @@ activesDefs.push({
 	Name = "Healing Mist",
 });
 activesDefs.push({
-	ID = "actives.legend_magic_Imbue",
+	ID = "actives.legend_magic_imbue",
 	Script = "scripts/skills/actives/legend_magic_imbue_skill",
 	Const = "LegendMagicImbue",
 	Name = "Imbue",
@@ -1878,12 +1902,6 @@ activesDefs.push({
 	Name = "Nightmare",
 });
 activesDefs.push({
-	ID = "actives.legend_nightmare_touch",
-	Script = "scripts/skills/actives/legend_nightmare_touch_skill",
-	Const = "LegendNightmareTouch",
-	Name = "Terror",
-});
-activesDefs.push({
 	ID = "actives.legend_nightmare_touch_zoc",
 	Script = "scripts/skills/actives/legend_nightmare_touch_zoc_skill",
 	Const = "LegendNightmareTouchZoc",
@@ -1912,6 +1930,18 @@ activesDefs.push({
 	Script = "scripts/skills/actives/legend_pass_skill",
 	Const = "LegendPass",
 	Name = "Pass Item",
+});
+activesDefs.push({
+	ID = "actives.legend_piercing_bolt",
+	Script = "scripts/skills/actives/legend_piercing_bolt_skill",
+	Const = "LegendPiercingBolt",
+	Name = "Piercing Bolt",
+});
+activesDefs.push({
+	ID = "actives.legend_piercing_shot",
+	Script = "scripts/skills/actives/legend_piercing_shot_skill",
+	Const = "LegendPiercingShot",
+	Name = "Piercing Shot",
 });
 activesDefs.push({
 	ID = "actives.legend_poison_weapon",
@@ -2254,18 +2284,6 @@ activesDefs.push({
 	Script = "scripts/skills/actives/legend_werewolf_claws_skill",
 	Const = "LegendWerewolfClaws",
 	Name = "Direwolf Claws",
-});
-activesDefs.push({
-	ID = "actives.werewolf_howl",
-	Script = "scripts/skills/actives/legend_werewolf_howl_skill",
-	Const = "WerewolfHowl",
-	Name = "Howl",
-});
-activesDefs.push({
-	ID = "actives.legend_whit_wolf_bite",
-	Script = "scripts/skills/actives/legend_white_wolf_bite_skill",
-	Const = "LegendWhitWolfBite",
-	Name = "White Direwolf Bite",
 });
 activesDefs.push({
 	ID = "actives.legend_wither",
