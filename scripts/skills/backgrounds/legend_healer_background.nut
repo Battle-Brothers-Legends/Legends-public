@@ -92,8 +92,8 @@ this.legend_healer_background <- this.inherit("scripts/skills/backgrounds/charac
 	{
 		this.character_background.onAdded();
 
-		this.m.Container.add(this.new("scripts/skills/actives/bandage_ally_skill"));
-		this.m.Container.add(this.new("scripts/skills/actives/drink_antidote_skill"));
+		::Legends.Actives.grant(this, ::Legends.Active.BandageAlly);
+		::Legends.Actives.grant(this, ::Legends.Active.DrinkAntidote);
 	}
 
 		function onChangeAttributes()

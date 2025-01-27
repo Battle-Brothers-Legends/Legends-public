@@ -5,12 +5,12 @@
 		{
 			if (this.getContainer().getActor().isPlayerControlled())
 			{
-				this.m.Container.add(this.new("scripts/skills/actives/rotation"));
+				::Legends.Actives.grant(this, ::Legends.Active.Rotation);
 			}
 
 			else
 			{
-				this.m.Container.add(this.new("scripts/skills/actives/legend_ai_rotation_skill"));
+				::Legends.Actives.grant(this, ::Legends.Active.LegendAiRotation);
 			}
 		}
 	}

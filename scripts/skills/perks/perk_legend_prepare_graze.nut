@@ -14,7 +14,7 @@ this.perk_legend_prepare_graze <- this.inherit("scripts/skills/skill", {
 	{
 		if (!this.m.Container.hasActive(::Legends.Active.LegendPrepareGraze))
 		{
-			this.m.Container.add(this.new("scripts/skills/actives/legend_prepare_graze_skill"));
+			::Legends.Actives.grant(this, ::Legends.Active.LegendPrepareGraze);
 		}
 	}
 		function onRemoved()

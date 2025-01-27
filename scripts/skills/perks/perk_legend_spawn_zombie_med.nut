@@ -25,8 +25,8 @@ this.perk_legend_spawn_zombie_med <- this.inherit("scripts/skills/skill", {
 	{
 		if (!this.m.Container.hasActive(::Legends.Active.LegendSpawnZombieMed))
 		{
-			this.m.Container.add(this.new("scripts/skills/actives/legend_spawn_zombie_med_skill"));
-			//this.m.Container.add(this.new("scripts/skills/actives/legend_spawn_zombie_med_xbow_skill"));
+			::Legends.Actives.grant(this, ::Legends.Active.LegendSpawnZombieMed);
+			//::Legends.Actives.grant(this, ::Legends.Active.LegendSpawnZombieMedXbow);
 		}
 	}
 

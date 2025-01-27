@@ -262,10 +262,10 @@ this.legend_rock_unhold <- this.inherit("scripts/entity/tactical/actor", {
 		::Legends.Perks.grant(this, ::Legends.Perk.HoldOut);
 		this.m.Skills.add(this.new("scripts/skills/racial/unhold_racial"));
 		this.m.Skills.add(this.new("scripts/skills/racial/legend_rock_unhold_racial"));
-		this.m.Skills.add(this.new("scripts/skills/actives/sweep_skill"));
-		this.m.Skills.add(this.new("scripts/skills/actives/sweep_zoc_skill"));
-		this.m.Skills.add(this.new("scripts/skills/actives/fling_back_skill"));
-		this.m.Skills.add(this.new("scripts/skills/actives/unstoppable_charge_skill"));
+		::Legends.Actives.grant(this, ::Legends.Active.Sweep);
+		::Legends.Actives.grant(this, ::Legends.Active.SweepZoc);
+		::Legends.Actives.grant(this, ::Legends.Active.FlingBack);
+		::Legends.Actives.grant(this, ::Legends.Active.UnstoppableCharge);
 		if(::Legends.isLegendaryDifficulty())
 		{
 			this.m.Hitpoints = 2 * b.Hitpoints;

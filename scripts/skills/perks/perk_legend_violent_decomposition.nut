@@ -16,7 +16,7 @@ this.perk_legend_violent_decomposition <- this.inherit("scripts/skills/skill", {
 	{
 		if (!this.m.Container.hasActive(::Legends.Active.LegendViolentDecomposition))
 		{
-			this.m.Container.add(this.new("scripts/skills/actives/legend_violent_decomposition_skill"));
+			::Legends.Actives.grant(this, ::Legends.Active.LegendViolentDecomposition);
 		}
 	}
 

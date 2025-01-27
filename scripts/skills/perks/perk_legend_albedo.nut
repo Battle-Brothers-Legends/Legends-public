@@ -14,7 +14,7 @@ this.perk_legend_albedo <- this.inherit("scripts/skills/skill", {
 	{
 		if (!this.m.Container.hasActive(::Legends.Active.LegendAlbedo))
 		{
-			this.m.Container.add(this.new("scripts/skills/actives/legend_albedo_skill"));
+			::Legends.Actives.grant(this, ::Legends.Active.LegendAlbedo);
 		}
 	}
 	function onRemoved()

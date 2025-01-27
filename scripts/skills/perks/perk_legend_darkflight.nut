@@ -14,7 +14,7 @@ this.perk_legend_darkflight <- this.inherit("scripts/skills/skill", {
 	{
 		if (!this.m.Container.hasActive(::Legends.Active.LegendDarkflight))
 		{
-			this.m.Container.add(this.new("scripts/skills/actives/legend_darkflight_skill"));
+			::Legends.Actives.grant(this, ::Legends.Active.LegendDarkflight);
 		}
 	}
 

@@ -15,7 +15,7 @@ this.perk_legend_magic_circle_of_protection <- this.inherit("scripts/skills/skil
 	{
 		if (!this.m.Container.hasActive(::Legends.Active.LegendMagicCircleOfProtection))
 		{
-			this.m.Container.add(this.new("scripts/skills/actives/legend_magic_circle_of_protection_skill"));
+			::Legends.Actives.grant(this, ::Legends.Active.LegendMagicCircleOfProtection);
 		}
 	}
 

@@ -33,20 +33,9 @@ this.legend_transformed_boar_effect <- this.inherit("scripts/skills/effects/lege
 
 	function setSkills()
 	{
-		local actor = this.getContainer().getActor();
-
-		if (!actor.getSkills().hasActive(::Legends.Active.LegendBoarGore))
-		{
-			actor.getSkills().add(this.new("scripts/skills/actives/legend_boar_gore_skill"));
-		}
-		if (!actor.getSkills().hasActive(::Legends.Active.LegendBoarCharge))
-		{
-			actor.getSkills().add(this.new("scripts/skills/actives/legend_boar_charge_skill"));
-		}
-		if (!actor.getSkills().hasActive(::Legends.Active.Footwork))
-		{
-			actor.getSkills().add(this.new("scripts/skills/actives/footwork"));
-		}
+		::Legends.Actives.grant(this, ::Legends.Active.LegendBoarGore);
+		::Legends.Actives.grant(this, ::Legends.Active.LegendBoarCharge);
+		::Legends.Actives.grant(this, ::Legends.Active.Footwork);
 	}
 
 	function removeSkills()

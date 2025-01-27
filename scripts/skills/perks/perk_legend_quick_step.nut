@@ -14,7 +14,7 @@ this.perk_legend_quick_step <- this.inherit("scripts/skills/skill", {
 	{
 		if (!this.m.Container.hasActive(::Legends.Active.LegendQuickStep))
 		{
-			this.m.Container.add(this.new("scripts/skills/actives/legend_quick_step_skill"));
+			::Legends.Actives.grant(this, ::Legends.Active.LegendQuickStep);
 		}
 	}
 

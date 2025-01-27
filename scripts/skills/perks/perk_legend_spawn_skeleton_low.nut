@@ -25,8 +25,8 @@ this.perk_legend_spawn_skeleton_low <- this.inherit("scripts/skills/skill", {
 	{
 		if (!this.m.Container.hasActive(::Legends.Active.LegendSpawnSkeletonLow))
 		{
-			this.m.Container.add(this.new("scripts/skills/actives/legend_spawn_skeleton_low_skill"));
-			this.m.Container.add(this.new("scripts/skills/actives/legend_spawn_skeleton_low_archer_skill"));
+			::Legends.Actives.grant(this, ::Legends.Active.LegendSpawnSkeletonLow);
+			::Legends.Actives.grant(this, ::Legends.Active.LegendSpawnSkeletonLowArcher);
 		}
 	}
 

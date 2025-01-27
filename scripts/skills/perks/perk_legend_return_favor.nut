@@ -14,7 +14,7 @@ this.perk_legend_return_favor <- this.inherit("scripts/skills/skill", {
 	{
 		if (!this.m.Container.hasActive(::Legends.Active.ReturnFavor))
 		{
-			this.m.Container.add(this.new("scripts/skills/actives/return_favor"));
+			::Legends.Actives.grant(this, ::Legends.Active.ReturnFavor);
 		}
 	}
 

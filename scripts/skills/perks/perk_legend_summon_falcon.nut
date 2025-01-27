@@ -15,7 +15,7 @@ this.perk_legend_summon_falcon <- this.inherit("scripts/skills/skill", {
 	{
 		if (!this.m.Container.hasActive(::Legends.Active.LegendFalcon))
 		{
-			this.m.Container.add(this.new("scripts/skills/actives/legend_falcon_skill"));
+			::Legends.Actives.grant(this, ::Legends.Active.LegendFalcon);
 		}
 	}
 

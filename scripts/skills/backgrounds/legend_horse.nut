@@ -206,7 +206,7 @@ this.legend_horse <- this.inherit("scripts/skills/backgrounds/character_backgrou
 	function onAdded()
 	{
 		this.character_background.onAdded();
-		this.m.Container.add(this.new("scripts/skills/actives/legend_horse_kick_skill"));
+		::Legends.Actives.grant(this, ::Legends.Active.LegendHorseKick);
 		::Legends.Traits.grant(this, ::Legends.Trait.LegendHorse);
 	}
 

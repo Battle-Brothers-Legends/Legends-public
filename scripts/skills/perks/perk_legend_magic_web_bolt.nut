@@ -14,7 +14,7 @@ this.perk_legend_magic_web_bolt <- this.inherit("scripts/skills/skill", {
 	{
 		if (!this.m.Container.hasActive(::Legends.Active.LegendMagicWebBolt))
 		{
-			this.m.Container.add(this.new("scripts/skills/actives/legend_magic_web_bolt_skill"));
+			::Legends.Actives.grant(this, ::Legends.Active.LegendMagicWebBolt);
 		}
 	}
 

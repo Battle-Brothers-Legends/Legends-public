@@ -14,7 +14,7 @@ this.perk_legend_grapple <- this.inherit("scripts/skills/skill", {
 	{
 		if (!this.m.Container.hasActive(::Legends.Active.LegendGrapple))
 		{
-			this.m.Container.add(this.new("scripts/skills/actives/legend_grapple_skill"));
+			::Legends.Actives.grant(this, ::Legends.Active.LegendGrapple);
 		}
 	}
 

@@ -332,7 +332,7 @@ this.legend_stollwurm <- this.inherit("scripts/entity/tactical/actor", {
 		this.setSpriteOffset("status_rooted", this.createVec(0, 15));
 		this.setSpriteOffset("status_stunned", this.createVec(-5, 30));
 		this.setSpriteOffset("arrow", this.createVec(-5, 30));
-		this.m.Skills.add(this.new("scripts/skills/actives/gorge_skill"));
+		::Legends.Actives.grant(this, ::Legends.Active.Gorge);
 		::Legends.Perks.grant(this, ::Legends.Perk.Pathfinder);
 		::Legends.Perks.grant(this, ::Legends.Perk.HoldOut);
 		this.m.Skills.add(this.new("scripts/skills/racial/lindwurm_racial"));
@@ -343,7 +343,7 @@ this.legend_stollwurm <- this.inherit("scripts/entity/tactical/actor", {
 		::Legends.Perks.grant(this, ::Legends.Perk.BattleFlow);
 		::Legends.Perks.grant(this, ::Legends.Perk.Stalwart);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendComposure);
-		this.m.Skills.add(this.new("scripts/skills/actives/legend_stollwurm_move_skill"));
+		::Legends.Actives.grant(this, ::Legends.Active.LegendStollwurmMove);
 
 		if (::Legends.isLegendaryDifficulty())
 		{

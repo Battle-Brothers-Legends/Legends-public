@@ -148,8 +148,8 @@ this.legend_war_catapult <- this.inherit("scripts/entity/tactical/actor", {
 			b.RangedDefense += 5;
 		}
 
-		this.m.Skills.add(this.new("scripts/skills/actives/legend_catapult_boulder_skill"));
-		this.m.Skills.add(this.new("scripts/skills/actives/legend_use_catapult_skill"));
+		::Legends.Actives.grant(this, ::Legends.Active.LegendCatapultBoulder);
+		::Legends.Actives.grant(this, ::Legends.Active.LegendUseCatapult);
 
 		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= 20)
 		{

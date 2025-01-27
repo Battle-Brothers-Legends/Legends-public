@@ -547,14 +547,14 @@ this.legend_stollwurm_tail <- this.inherit("scripts/entity/tactical/actor", {
 		this.setSpriteOffset("status_rooted", this.createVec(0, 0));
 		this.m.Racial = this.new("scripts/skills/racial/lindwurm_racial");
 		this.m.Skills.add(this.m.Racial);
-		this.m.Skills.add(this.new("scripts/skills/actives/tail_slam_skill"));
-		this.m.Skills.add(this.new("scripts/skills/actives/tail_slam_big_skill"));
-		this.m.Skills.add(this.new("scripts/skills/actives/tail_slam_split_skill"));
+		::Legends.Actives.grant(this, ::Legends.Active.TailSlam);
+		::Legends.Actives.grant(this, ::Legends.Active.TailSlamBig);
+		::Legends.Actives.grant(this, ::Legends.Active.TailSlamSplit);
 		::Legends.Perks.grant(this, ::Legends.Perk.HoldOut);
 		::Legends.Perks.grant(this, ::Legends.Perk.ReachAdvantage);
 		::Legends.Perks.grant(this, ::Legends.Perk.Fearsome);
 		::Legends.Perks.grant(this, ::Legends.Perk.BattleFlow);
-		this.m.Skills.add(this.new("scripts/skills/actives/legend_stollwurm_move_tail_skill"));
+		::Legends.Actives.grant(this, ::Legends.Active.LegendStollwurmMoveTail);
 		::Legends.Perks.grant(this, ::Legends.Perk.Stalwart);
 		if(::Legends.isLegendaryDifficulty())
 		{

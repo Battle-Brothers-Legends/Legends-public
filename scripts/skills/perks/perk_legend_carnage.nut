@@ -30,11 +30,11 @@ this.perk_legend_carnage <- this.inherit("scripts/skills/skill", {
 		}
 		if (!this.getContainer().hasActive(::Legends.Active.LegendPrepareBleed))
 		{
-			this.getContainer().add(this.new("scripts/skills/actives/legend_prepare_bleed_skill"));
+			::Legends.Actives.grant(this, ::Legends.Active.LegendPrepareBleed);
 		}
 		if (!this.getContainer().hasActive(::Legends.Active.LegendPrepareGraze))
 		{
-			this.getContainer().add(this.new("scripts/skills/actives/legend_prepare_graze_skill"));
+			::Legends.Actives.grant(this, ::Legends.Active.LegendPrepareGraze);
 		}
 	}
 

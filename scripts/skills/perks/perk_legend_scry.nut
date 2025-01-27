@@ -14,7 +14,7 @@ this.perk_legend_scry <- this.inherit("scripts/skills/skill", {
 	{
 		if (!this.m.Container.hasActive(::Legends.Active.LegendScry))
 		{
-			this.m.Container.add(this.new("scripts/skills/actives/legend_scry_skill"));
+			::Legends.Actives.grant(this, ::Legends.Active.LegendScry);
 		}
 	}
 

@@ -12,7 +12,7 @@ this.perk_legend_unarmed_lunge <- this.inherit("scripts/skills/skill", {
 
 	function onAdded()
 	{
-		this.getContainer().add(this.new("scripts/skills/actives/legend_unarmed_lunge_skill"));
+		::Legends.Actives.grant(this, ::Legends.Active.LegendUnarmedLunge);
 	}
 
 	function onRemoved()

@@ -14,7 +14,7 @@ this.perk_legend_deathtouch <- this.inherit("scripts/skills/skill", {
 	{
 		if (!this.m.Container.hasActive(::Legends.Active.LegendDeathtouch))
 		{
-			this.m.Container.add(this.new("scripts/skills/actives/legend_deathtouch_skill"));
+			::Legends.Actives.grant(this, ::Legends.Active.LegendDeathtouch);
 		}
 	}
 		function onRemoved()

@@ -14,7 +14,7 @@ this.perk_legend_perfect_focus <- this.inherit("scripts/skills/skill", {
 	{
 		if (!this.m.Container.hasActive(::Legends.Active.PerfectFocus))
 		{
-			this.m.Container.add(this.new("scripts/skills/actives/perfect_focus"));
+			::Legends.Actives.grant(this, ::Legends.Active.PerfectFocus);
 		}
 	}
 		function onRemoved()

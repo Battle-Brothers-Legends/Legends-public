@@ -14,11 +14,11 @@ this.perk_legend_push_forward <- this.inherit("scripts/skills/skill", {
 	{
 		if (!this.m.Container.hasActive(::Legends.Active.LegendPushForward))
 		{
-			this.m.Container.add(this.new("scripts/skills/actives/legend_push_forward_skill"));
+			::Legends.Actives.grant(this, ::Legends.Active.LegendPushForward);
 		}
 		if (!this.m.Container.hasActive(::Legends.Active.LegendCoordinatedVolleys))
 		{
-			this.m.Container.add(this.new("scripts/skills/actives/legend_coordinated_volleys_skill"));
+			::Legends.Actives.grant(this, ::Legends.Active.LegendCoordinatedVolleys);
 		}
 	}
 		function onRemoved()

@@ -14,7 +14,7 @@ this.perk_legend_bearform <- this.inherit("scripts/skills/skill", {
 	{
 		if (!this.m.Container.hasActive(::Legends.Active.LegendTransformIntoBear))
 		{
-			this.m.Container.add(this.new("scripts/skills/actives/legend_transform_into_bear_skill"));
+			::Legends.Actives.grant(this, ::Legends.Active.LegendTransformIntoBear);
 		}
 	}
 

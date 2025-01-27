@@ -52,7 +52,7 @@
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendStrengthInNumbers);
 			::Legends.Perks.grant(this, ::Legends.Perk.Underdog);
 			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
-			this.m.Skills.add(this.new("scripts/skills/actives/rally_the_troops"));
+			::Legends.Actives.grant(this, ::Legends.Active.RallyTheTroops);
 		}
 	}
 

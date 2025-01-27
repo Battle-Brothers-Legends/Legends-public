@@ -14,7 +14,7 @@ this.perk_legend_mastery_poison <- this.inherit("scripts/skills/skill", {
 	{
 		if (!this.m.Container.hasActive(::Legends.Active.LegendPoisonWeapon))
 		{
-			this.m.Container.add(this.new("scripts/skills/actives/legend_poison_weapon_skill"));
+			::Legends.Actives.grant(this, ::Legends.Active.LegendPoisonWeapon);
 		}
 	}
 

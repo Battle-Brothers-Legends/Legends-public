@@ -32,19 +32,9 @@ this.legend_transformed_wolf_effect <- this.inherit("scripts/skills/effects/lege
 	function setSkills()
 	{
 		local actor = this.getContainer().getActor();
-
-		if (!actor.getSkills().hasActive(::Legends.Active.LegendWerewolfClaws))
-		{
-			actor.getSkills().add(this.new("scripts/skills/actives/legend_werewolf_claws_skill"));
-		}
-		if (!actor.getSkills().hasActive(::Legends.Active.WerewolfBite))
-		{
-			actor.getSkills().add(this.new("scripts/skills/actives/legend_werewolf_bite_skill"));
-		}
-		if (!actor.getSkills().hasActive(::Legends.Active.Footwork))
-		{
-			actor.getSkills().add(this.new("scripts/skills/actives/footwork"));
-		}
+		actor.getSkills().add(this.new("scripts/skills/actives/legend_werewolf_bite_skill"));
+		::Legends.Actives.grant(this, ::Legends.Active.LegendWerewolfClaws);
+		::Legends.Actives.grant(this, ::Legends.Active.Footwork);
 	}
 
 	function removeSkills()

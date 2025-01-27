@@ -14,7 +14,7 @@ this.perk_legend_relax <- this.inherit("scripts/skills/skill", {
 	{
 		if (!this.m.Container.hasActive(::Legends.Active.LegendRelax))
 		{
-			this.m.Container.add(this.new("scripts/skills/actives/legend_relax_skill"));
+			::Legends.Actives.grant(this, ::Legends.Active.LegendRelax);
 		}
 	}
 

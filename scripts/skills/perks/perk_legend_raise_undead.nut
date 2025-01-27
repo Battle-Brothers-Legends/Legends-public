@@ -14,7 +14,7 @@ this.perk_legend_raise_undead <- this.inherit("scripts/skills/skill", {
 	{
 		if (!this.m.Container.hasActive(::Legends.Active.LegendRaiseUndead))
 		{
-			this.m.Container.add(this.new("scripts/skills/actives/legend_raise_undead_skill"));
+			::Legends.Actives.grant(this, ::Legends.Active.LegendRaiseUndead);
 		}
 	}
 

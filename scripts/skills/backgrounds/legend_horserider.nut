@@ -219,7 +219,7 @@ this.legend_horserider <- this.inherit("scripts/skills/backgrounds/character_bac
 	function onAdded()
 	{
 		this.character_background.onAdded();
-		this.m.Container.add(this.new("scripts/skills/actives/legend_horse_kick_skill"));
+		::Legends.Actives.grant(this, ::Legends.Active.LegendHorseKick);
 		//this.m.Container.add(this.new("scripts/skills/traits/legend_horse_trait")); //commenting this lets our player horserider use items lol
 	}
 

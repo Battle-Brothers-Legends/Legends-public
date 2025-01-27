@@ -14,7 +14,7 @@ this.perk_legend_entice <- this.inherit("scripts/skills/skill", {
 	{
 		if (!this.m.Container.hasActive(::Legends.Active.LegendEntice))
 		{
-			this.m.Container.add(this.new("scripts/skills/actives/legend_entice_skill"));
+			::Legends.Actives.grant(this, ::Legends.Active.LegendEntice);
 		}
 	}
 	function onRemoved()

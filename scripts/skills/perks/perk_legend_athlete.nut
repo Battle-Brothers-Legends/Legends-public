@@ -14,7 +14,7 @@ this.perk_legend_athlete <- this.inherit("scripts/skills/skill", {
 	{
 		if (!this.m.Container.hasActive(::Legends.Active.LegendClimb))
 		{
-			this.m.Container.add(this.new("scripts/skills/actives/legend_climb_skill"));
+			::Legends.Actives.grant(this, ::Legends.Active.LegendClimb);
 		}
 		if (!this.m.Container.hasActive(::Legends.Active.LegendSprint))
 		{

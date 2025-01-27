@@ -7,7 +7,7 @@ this.legends_zombie_high <- this.inherit("scripts/entity/tactical/legend_zombie"
 		::Legends.Perks.grant(this, ::Legends.Perk.Fearsome);
 		::Legends.Perks.grant(this, ::Legends.Perk.ReachAdvantage);
 		::Legends.Perks.grant(this, ::Legends.Perk.BattleForged);
-		this.m.Skills.add(this.new("scripts/skills/actives/zombie_bite"));
+		::Legends.Actives.grant(this, ::Legends.Active.ZombieBite);
 		// this.m.Skills.add(this.new("scripts/skills/traits/legend_rotten_flesh_trait"));
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendPoisonImmunity);
 		::Legends.Perks.grant(this, ::Legends.Perk.Fearsome);

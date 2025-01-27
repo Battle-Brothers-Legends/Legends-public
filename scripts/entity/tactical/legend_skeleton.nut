@@ -124,7 +124,7 @@ this.legend_skeleton <- this.inherit("scripts/entity/tactical/skeleton", {
 		this.getSprite("status_rooted").Scale = 0.55;
 		this.m.Skills.add(this.new("scripts/skills/racial/skeleton_racial"));
 		this.m.Skills.add(this.new("scripts/skills/special/double_grip"));
-		this.m.Skills.add(this.new("scripts/skills/actives/hand_to_hand"));
+		::Legends.Actives.grant(this, ::Legends.Active.HandToHand);
 		::Legends.Perks.grant(this, ::Legends.Perk.Pathfinder);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendPoisonImmunity);
 	}

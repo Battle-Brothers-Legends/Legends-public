@@ -59,7 +59,7 @@
 		local v2 = 0;
 		foreach (a in this.Const.CharacterSprites.Helmets)
 		{
-			this.addSprite(a)
+			this.addSprite(a);
 			this.setSpriteOffset(a, this.createVec(v2, v));
 		}
 		local body_blood = this.addSprite("body_blood");
@@ -69,7 +69,7 @@
 		this.getSprite("status_rooted").Scale = 0.55;
 		this.m.Skills.add(this.new("scripts/skills/special/double_grip"));
 		this.m.Skills.add(this.new("scripts/skills/actives/hand_to_hand_orc"));
-		this.m.Skills.add(this.new("scripts/skills/actives/charge"));
+		::Legends.Actives.grant(this, ::Legends.Active.Charge);
 
 		if(::Legends.isLegendaryDifficulty())
 		{
@@ -79,7 +79,7 @@
 			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
 		}
 
-		this.m.Skills.add(this.new("scripts/skills/actives/wake_ally_skill"));
+		::Legends.Actives.grant(this, ::Legends.Active.WakeAlly);
 		::Legends.Effects.grant(this, ::Legends.Effect.Captain);
 	}
 

@@ -14,7 +14,7 @@ this.perk_legend_firefield <- this.inherit("scripts/skills/skill", {
 	{
 		if (!this.m.Container.hasActive(::Legends.Active.LegendFirefield))
 		{
-			this.m.Container.add(this.new("scripts/skills/actives/legend_firefield_skill"));
+			::Legends.Actives.grant(this, ::Legends.Active.LegendFirefield);
 		}
 	}
 

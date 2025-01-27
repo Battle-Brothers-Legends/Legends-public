@@ -14,7 +14,7 @@ this.perk_legend_hidden <- this.inherit("scripts/skills/skill", {
 	{
 		if (!this.m.Container.hasActive(::Legends.Active.LegendHidden))
 		{
-			this.m.Container.add(this.new("scripts/skills/actives/legend_hidden_skill"));
+			::Legends.Actives.grant(this, ::Legends.Active.LegendHidden);
 		}
 	}
 

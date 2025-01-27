@@ -14,7 +14,7 @@ this.perk_legend_field_repairs <- this.inherit("scripts/skills/skill", {
 	{
 		if (!this.m.Container.hasActive(::Legends.Active.LegendFieldRepairs))
 		{
-			this.m.Container.add(this.new("scripts/skills/actives/legend_field_repairs_skill"));
+			::Legends.Actives.grant(this, ::Legends.Active.LegendFieldRepairs);
 		}
 	}
 		function onRemoved()

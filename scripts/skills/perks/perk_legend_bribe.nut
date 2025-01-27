@@ -14,7 +14,7 @@ this.perk_legend_bribe_skill <- this.inherit("scripts/skills/skill", {
 	{
 		if (!this.m.Container.hasActive(::Legends.Active.LegendBribe))
 		{
-			this.m.Container.add(this.new("scripts/skills/actives/legend_bribe_skill"));
+			::Legends.Actives.grant(this, ::Legends.Active.LegendBribe);
 		}
 	}
 		function onRemoved()

@@ -15,7 +15,7 @@ this.perk_legend_magic_healing_wind <- this.inherit("scripts/skills/skill", {
 	{
 		if (!this.m.Container.hasActive(::Legends.Active.LegendMagicHealingWind))
 		{
-			this.m.Container.add(this.new("scripts/skills/actives/legend_magic_healing_wind_skill"));
+			::Legends.Actives.grant(this, ::Legends.Active.LegendMagicHealingWind);
 		}
 	}
 

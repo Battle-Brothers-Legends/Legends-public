@@ -24,8 +24,8 @@ this.perk_legend_spawn_skeleton_med <- this.inherit("scripts/skills/skill", {
 	{
 		if (!this.m.Container.hasActive(::Legends.Active.LegendSpawnSkeletonMed))
 		{
-			this.m.Container.add(this.new("scripts/skills/actives/legend_spawn_skeleton_med_skill"));
-			this.m.Container.add(this.new("scripts/skills/actives/legend_spawn_skeleton_med_archer_skill"));
+			::Legends.Actives.grant(this, ::Legends.Active.LegendSpawnSkeletonMed);
+			::Legends.Actives.grant(this, ::Legends.Active.LegendSpawnSkeletonMedArcher);
 		}
 	}
 

@@ -14,7 +14,7 @@ this.perk_legend_choke <- this.inherit("scripts/skills/skill", {
 	{
 		if (!this.m.Container.hasActive(::Legends.Active.LegendChoke))
 		{
-			this.m.Container.add(this.new("scripts/skills/actives/legend_choke_skill"));
+			::Legends.Actives.grant(this, ::Legends.Active.LegendChoke);
 		}
 	}
 

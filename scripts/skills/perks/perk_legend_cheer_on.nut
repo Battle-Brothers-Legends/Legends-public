@@ -14,7 +14,7 @@ this.perk_legend_cheer_on <- this.inherit("scripts/skills/skill", {
 	{
 		if (!this.m.Container.hasActive(::Legends.Active.LegendCheerOn))
 		{
-			this.m.Container.add(this.new("scripts/skills/actives/legend_cheer_on_skill"));
+			::Legends.Actives.grant(this, ::Legends.Active.LegendCheerOn);
 		}
 	}
 

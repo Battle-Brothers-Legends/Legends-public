@@ -44,7 +44,7 @@ this.perk_legend_unarmed_training <- this.inherit("scripts/skills/skill", {
 	{
 		if (!this.getContainer().hasActive(::Legends.Active.LegendTackle) && this.getContainer().getActor().isPlayerControlled())
 		{
-			this.getContainer().add(this.new("scripts/skills/actives/legend_tackle_skill"));
+			::Legends.Actives.grant(this, ::Legends.Active.LegendTackle);
 		}
 	}
 

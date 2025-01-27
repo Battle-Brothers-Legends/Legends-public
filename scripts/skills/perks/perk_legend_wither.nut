@@ -14,7 +14,7 @@ this.perk_legend_wither <- this.inherit("scripts/skills/skill", {
 	{
 		if (!this.m.Container.hasActive(::Legends.Active.LegendWither))
 		{
-			this.m.Container.add(this.new("scripts/skills/actives/legend_wither_skill"));
+			::Legends.Actives.grant(this, ::Legends.Active.LegendWither);
 		}
 	}
 		function onRemoved()

@@ -14,7 +14,7 @@ this.perk_legend_roots <- this.inherit("scripts/skills/skill", {
 	{
 		if (!this.m.Container.hasActive(::Legends.Active.LegendRoot))
 		{
-			this.m.Container.add(this.new("scripts/skills/actives/legend_root_skill"));
+			::Legends.Actives.grant(this, ::Legends.Active.LegendRoot);
 		}
 	}
 		function onRemoved()

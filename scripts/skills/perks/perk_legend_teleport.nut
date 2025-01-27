@@ -14,7 +14,7 @@ this.perk_legend_teleport <- this.inherit("scripts/skills/skill", {
 	{
 		if (!this.m.Container.hasActive(::Legends.Active.LegendTeleport))
 		{
-			this.m.Container.add(this.new("scripts/skills/actives/legend_teleport_skill"));
+			::Legends.Actives.grant(this, ::Legends.Active.LegendTeleport);
 		}
 	}
 		function onRemoved()

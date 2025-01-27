@@ -14,7 +14,7 @@ this.perk_legend_drums_of_life <- this.inherit("scripts/skills/skill", {
 	{
 		if (!this.m.Container.hasActive(::Legends.Active.LegendDrumsOfLife))
 		{
-			this.m.Container.add(this.new("scripts/skills/actives/legend_drums_of_life_skill"));
+			::Legends.Actives.grant(this, ::Legends.Active.LegendDrumsOfLife);
 		}
 	}
 

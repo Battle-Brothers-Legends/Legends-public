@@ -14,7 +14,7 @@ this.perk_legend_magic_sleep <- this.inherit("scripts/skills/skill", {
 	{
 		if (!this.m.Container.hasActive(::Legends.Active.LegendMagicSleep))
 		{
-			this.m.Container.add(this.new("scripts/skills/actives/legend_magic_sleep_skill"));
+			::Legends.Actives.grant(this, ::Legends.Active.LegendMagicSleep);
 		}
 	}
 

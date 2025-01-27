@@ -15,7 +15,7 @@ this.perk_legend_summon_hound <- this.inherit("scripts/skills/skill", {
 	{
 		if (!this.m.Container.hasActive(::Legends.Active.LegendUnleashHound))
 		{
-			this.m.Container.add(this.new("scripts/skills/actives/legend_unleash_hound_skill"));
+			::Legends.Actives.grant(this, ::Legends.Active.LegendUnleashHound);
 		}
 	}
 

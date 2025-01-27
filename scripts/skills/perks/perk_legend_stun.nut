@@ -14,7 +14,7 @@ this.perk_legend_stun <- this.inherit("scripts/skills/skill", {
 	{
 		if (!this.m.Container.hasActive(::Legends.Active.LegendStun))
 		{
-			this.m.Container.add(this.new("scripts/skills/actives/legend_magic_stun_skill"));
+			::Legends.Actives.grant(this, ::Legends.Active.LegendStun);
 		}
 	}
 		function onRemoved()

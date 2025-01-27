@@ -14,7 +14,7 @@ this.perk_legend_insects <- this.inherit("scripts/skills/skill", {
 	{
 		if (!this.m.Container.hasActive(::Legends.Active.Insects))
 		{
-			this.m.Container.add(this.new("scripts/skills/actives/insects_skill"));
+			::Legends.Actives.grant(this, ::Legends.Active.Insects);
 		}
 	}
 		function onRemoved()

@@ -14,7 +14,7 @@ this.perk_legend_leap <- this.inherit("scripts/skills/skill", {
 	{
 		if (!this.m.Container.hasActive(::Legends.Active.LegendLeap))
 		{
-			this.m.Container.add(this.new("scripts/skills/actives/legend_leap_skill"));
+			::Legends.Actives.grant(this, ::Legends.Active.LegendLeap);
 		}
 	}
 	function onRemoved()

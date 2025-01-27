@@ -14,7 +14,7 @@ this.perk_legend_sleep <- this.inherit("scripts/skills/skill", {
 	{
 		if (!this.m.Container.hasActive(::Legends.Active.LegendSleep))
 		{
-			this.m.Container.add(this.new("scripts/skills/actives/legend_sleep_skill"));
+			::Legends.Actives.grant(this, ::Legends.Active.LegendSleep);
 		}
 	}
 		function onRemoved()

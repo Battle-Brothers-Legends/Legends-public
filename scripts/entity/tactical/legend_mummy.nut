@@ -505,7 +505,7 @@ this.legend_mummy <- this.inherit("scripts/entity/tactical/actor", {
 		this.getSprite("status_rooted").Scale = 0.55;
 		this.m.Skills.add(this.new("scripts/skills/racial/legend_mummy_racial"));
 		this.m.Skills.add(this.new("scripts/skills/special/double_grip"));
-		this.m.Skills.add(this.new("scripts/skills/actives/hand_to_hand"));
+		::Legends.Actives.grant(this, ::Legends.Active.HandToHand);
 		::Legends.Perks.grant(this, ::Legends.Perk.Rotation);
 		::Legends.Perks.grant(this, ::Legends.Perk.BattleForged);
 		::Legends.Perks.grant(this, ::Legends.Perk.SteelBrow);

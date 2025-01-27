@@ -3,7 +3,7 @@
 	{
 		if (!this.getContainer().hasActive(::Legends.Active.LegendMarkTarget) && this.getContainer().getActor().isPlayerControlled())
 		{
-			this.getContainer().add(this.new("scripts/skills/actives/legend_mark_target_skill"));
+			::Legends.Actives.grant(this, ::Legends.Active.LegendMarkTarget);
 		}
 	}
 

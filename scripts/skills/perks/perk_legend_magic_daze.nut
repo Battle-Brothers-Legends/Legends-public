@@ -15,7 +15,7 @@ this.perk_legend_magic_daze <- this.inherit("scripts/skills/skill", {
 	{
 		if (!this.m.Container.hasActive(::Legends.Active.LegendMagicDaze))
 		{
-			this.m.Container.add(this.new("scripts/skills/actives/legend_magic_daze_skill"));
+			::Legends.Actives.grant(this, ::Legends.Active.LegendMagicDaze);
 		}
 	}
 

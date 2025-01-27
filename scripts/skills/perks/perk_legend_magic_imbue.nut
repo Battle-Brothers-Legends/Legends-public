@@ -15,7 +15,7 @@ this.perk_mage_legend_magic_imbue <- this.inherit("scripts/skills/skill", {
 	{
 		if (!this.m.Container.hasActive(::Legends.Active.LegendMagicImbue))
 		{
-			this.m.Container.add(this.new("scripts/skills/actives/legend_magic_imbue_skill"));
+			::Legends.Actives.grant(this, ::Legends.Active.LegendMagicImbue);
 		}
 	}
 

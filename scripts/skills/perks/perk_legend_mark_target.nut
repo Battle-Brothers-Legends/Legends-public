@@ -14,7 +14,7 @@ this.perk_legend_mark_target <- this.inherit("scripts/skills/skill", {
 	{
 		if (!this.m.Container.hasActive(::Legends.Active.LegendMarkTarget))
 		{
-			this.m.Container.add(this.new("scripts/skills/actives/legend_mark_target_skill"));
+			::Legends.Actives.grant(this, ::Legends.Active.LegendMarkTarget);
 		}
 	}
 		function onRemoved()

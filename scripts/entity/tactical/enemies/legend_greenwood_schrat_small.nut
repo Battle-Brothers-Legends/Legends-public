@@ -114,8 +114,8 @@ this.legend_greenwood_schrat_small <- this.inherit("scripts/entity/tactical/acto
 		this.m.Skills.add(this.new("scripts/skills/racial/schrat_racial"));
 		::Legends.Perks.grant(this, ::Legends.Perk.CripplingStrikes);
 		::Legends.Perks.grant(this, ::Legends.Perk.SteelBrow);
-		this.m.Skills.add(this.new("scripts/skills/actives/uproot_small_skill"));
-		this.m.Skills.add(this.new("scripts/skills/actives/uproot_small_zoc_skill"));
+		::Legends.Actives.grant(this, ::Legends.Active.UprootSmall);
+		::Legends.Actives.grant(this, ::Legends.Active.UprootSmallZoc);
 		::Legends.Perks.grant(this, ::Legends.Perk.Stalwart);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendComposure);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendPoisonImmunity);

@@ -14,7 +14,7 @@ this.perk_legend_hold_the_line <- this.inherit("scripts/skills/skill", {
 	{
 		if (!this.m.Container.hasActive(::Legends.Active.LegendHoldTheLine))
 		{
-			this.m.Container.add(this.new("scripts/skills/actives/legend_hold_the_line"));
+			::Legends.Actives.grant(this, ::Legends.Active.LegendHoldTheLine);
 		}
 	}
 

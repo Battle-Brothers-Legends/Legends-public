@@ -42,7 +42,7 @@
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendLastStand);
 			::Legends.Perks.grant(this, ::Legends.Perk.BattleForged);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendComposure);
-			this.m.Skills.add(this.new("scripts/skills/actives/rally_the_troops"));
+			::Legends.Actives.grant(this, ::Legends.Active.RallyTheTroops);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendFeint);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendBackToBasics);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendFullForce);

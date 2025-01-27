@@ -19,7 +19,7 @@ this.perk_legend_mastery_fist <- this.inherit("scripts/skills/skill", {
 	{
 		if (!this.getContainer().hasActive(::Legends.Active.LegendKick) && this.getContainer().getActor().isPlayerControlled())
 		{
-			this.getContainer().add(this.new("scripts/skills/actives/legend_kick_skill"));
+			::Legends.Actives.grant(this, ::Legends.Active.LegendKick);
 		}
 	}
 

@@ -15,7 +15,7 @@ this.perk_legend_magic_hailstone <- this.inherit("scripts/skills/skill", {
 	{
 		if (!this.m.Container.hasActive(::Legends.Active.LegendMagicHailstone))
 		{
-			this.m.Container.add(this.new("scripts/skills/actives/legend_magic_hailstone_skill"));
+			::Legends.Actives.grant(this, ::Legends.Active.LegendMagicHailstone);
 		}
 	}
 

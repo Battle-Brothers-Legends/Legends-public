@@ -14,7 +14,7 @@ this.perk_legend_wolfform <- this.inherit("scripts/skills/skill", {
 	{
 		if (!this.m.Container.hasActive(::Legends.Active.LegendTransformIntoWolf))
 		{
-			this.m.Container.add(this.new("scripts/skills/actives/legend_transform_into_wolf_skill"));
+			::Legends.Actives.grant(this, ::Legends.Active.LegendTransformIntoWolf);
 		}
 	}
 

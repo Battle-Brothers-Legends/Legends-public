@@ -14,7 +14,7 @@ this.perk_legend_field_treats <- this.inherit("scripts/skills/skill", {
 	{
 		if (!this.m.Container.hasActive(::Legends.Active.LegendFieldTreats))
 		{
-			this.m.Container.add(this.new("scripts/skills/actives/legend_field_treats_skill"));
+			::Legends.Actives.grant(this, ::Legends.Active.LegendFieldTreats);
 		}
 	}
 		function onRemoved()

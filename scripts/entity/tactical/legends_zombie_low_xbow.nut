@@ -6,7 +6,7 @@ this.legends_zombie_low_xbow <- this.inherit("scripts/entity/tactical/legend_zom
 		this.m.SpawnType = this.Const.Tactical.Actor.LegendZombieLightXbow;
 		this.legend_zombie.onInit();
 		::Legends.Perks.grant(this, ::Legends.Perk.BattleForged);
-		this.m.Skills.add(this.new("scripts/skills/actives/zombie_bite"));
+		::Legends.Actives.grant(this, ::Legends.Active.ZombieBite);
 		this.m.Skills.add(this.new("scripts/skills/injury_permanent/legend_rotten_flesh"));
 		if(::Legends.isLegendaryDifficulty())
 		{

@@ -15,7 +15,7 @@ this.perk_legend_summon_cat <- this.inherit("scripts/skills/skill", {
 	{
 		if (!this.m.Container.hasActive(::Legends.Active.LegendUnleashCat))
 		{
-			this.m.Container.add(this.new("scripts/skills/actives/legend_unleash_cat_skill"));
+			::Legends.Actives.grant(this, ::Legends.Active.LegendUnleashCat);
 		}
 	}
 

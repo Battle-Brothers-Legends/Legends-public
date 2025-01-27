@@ -223,13 +223,13 @@ this.legend_white_warwolf <- this.inherit("scripts/entity/tactical/actor", {
 		this.addDefaultStatusSprites();
 		this.getSprite("status_rooted").Scale = 0.58;
 		this.setSpriteOffset("status_rooted", this.createVec(-6, -29));
-		this.m.Skills.add(this.new("scripts/skills/actives/wolf_bite"));
+		::Legends.Actives.grant(this, ::Legends.Active.WolfBite);
 		::Legends.Perks.grant(this, ::Legends.Perk.Pathfinder);
 		::Legends.Perks.grant(this, ::Legends.Perk.SteelBrow);
 		::Legends.Perks.grant(this, ::Legends.Perk.Rotation);
 		::Legends.Perks.grant(this, ::Legends.Perk.Footwork);
 		::Legends.Perks.grant(this, ::Legends.Perk.Recover);
-		this.m.Skills.add(this.new("scripts/skills/actives/legend_white_wolf_howl_skill"));
+		::Legends.Actives.grant(this, ::Legends.Active.LegendWhiteWolfHowl);
 		::Legends.Perks.grant(this, ::Legends.Perk.CoupDeGrace);
 		::Legends.Perks.grant(this, ::Legends.Perk.Berserk);
 		::Legends.Perks.grant(this, ::Legends.Perk.Nimble);

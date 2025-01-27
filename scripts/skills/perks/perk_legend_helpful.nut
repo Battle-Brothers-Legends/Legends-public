@@ -14,7 +14,7 @@ this.perk_legend_helpful <- this.inherit("scripts/skills/skill", {
 	{
 		if (!this.m.Container.hasActive(::Legends.Active.LegendPass))
 		{
-			this.m.Container.add(this.new("scripts/skills/actives/legend_pass_skill"));
+			::Legends.Actives.grant(this, ::Legends.Active.LegendPass);
 		}
 	}
 

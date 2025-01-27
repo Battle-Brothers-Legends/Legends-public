@@ -14,7 +14,7 @@ this.perk_legend_dogmaster <- this.inherit("scripts/skills/skill", {
 	{
 		if (!this.m.Container.hasActive(::Legends.Active.LegendDogMaster))
 		{
-			this.m.Container.add(this.new("scripts/skills/actives/legend_dog_master_skill"));
+			::Legends.Actives.grant(this, ::Legends.Active.LegendDogMaster);
 		}
 	}
 

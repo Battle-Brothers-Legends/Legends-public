@@ -14,7 +14,7 @@ this.perk_legend_coordinated_volleys <- this.inherit("scripts/skills/skill", {
 	{
 		if (!this.m.Container.hasActive(::Legends.Active.LegendCoordinatedVolleys))
 		{
-			this.m.Container.add(this.new("scripts/skills/actives/legend_coordinated_volleys_skill"));
+			::Legends.Actives.grant(this, ::Legends.Active.LegendCoordinatedVolleys);
 		}
 	}
 		function onRemoved()

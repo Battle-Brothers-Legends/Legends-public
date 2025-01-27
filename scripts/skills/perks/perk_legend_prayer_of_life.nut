@@ -14,7 +14,7 @@ this.perk_legend_prayer_of_life <- this.inherit("scripts/skills/skill", {
 	{
 		if (!this.m.Container.hasActive(::Legends.Active.LegendPrayerOfLife))
 		{
-			this.m.Container.add(this.new("scripts/skills/actives/legend_prayer_of_life_skill"));
+			::Legends.Actives.grant(this, ::Legends.Active.LegendPrayerOfLife);
 		}
 	}
 

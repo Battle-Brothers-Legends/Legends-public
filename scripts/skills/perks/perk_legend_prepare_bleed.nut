@@ -14,7 +14,7 @@ this.perk_legend_prepare_bleed <- this.inherit("scripts/skills/skill", {
 	{
 		if (!this.m.Container.hasActive(::Legends.Active.LegendPrepareBleed))
 		{
-			this.m.Container.add(this.new("scripts/skills/actives/legend_prepare_bleed_skill"));
+			::Legends.Actives.grant(this, ::Legends.Active.LegendPrepareBleed);
 		}
 	}
 		function onRemoved()

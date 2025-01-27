@@ -14,7 +14,7 @@ this.perk_legend_evasion <- this.inherit("scripts/skills/skill", {
 	{
 		if (!this.m.Container.hasActive(::Legends.Active.LegendEvasion))
 		{
-			this.m.Container.add(this.new("scripts/skills/actives/legend_evasion_skill"));
+			::Legends.Actives.grant(this, ::Legends.Active.LegendEvasion);
 		}
 	}
 

@@ -14,7 +14,7 @@ this.perk_legend_nigredo <- this.inherit("scripts/skills/skill", {
 	{
 		if (!this.m.Container.hasActive(::Legends.Active.LegendNigredo))
 		{
-			this.m.Container.add(this.new("scripts/skills/actives/legend_nigredo_skill"));
+			::Legends.Actives.grant(this, ::Legends.Active.LegendNigredo);
 		}
 	}
 		function onRemoved()

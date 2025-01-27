@@ -14,7 +14,7 @@ this.perk_legend_debilitate <- this.inherit("scripts/skills/skill", {
 	{
 		if (!this.m.Container.hasActive(::Legends.Active.Debilitate))
 		{
-			this.m.Container.add(this.new("scripts/skills/actives/debilitate"));
+			::Legends.Actives.grant(this, ::Legends.Active.Debilitate);
 		}
 	}
 

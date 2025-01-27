@@ -39,7 +39,7 @@ this.legend_mummy_queen <- this.inherit("scripts/entity/tactical/legend_mummy", 
 		this.m.Skills.add(this.new("scripts/skills/special/double_grip"));
 		this.m.Skills.add(this.new("scripts/skills/racial/vampire_racial"));
 		this.m.Skills.add(this.new("scripts/skills/racial/alp_racial"));
-		this.m.Skills.add(this.new("scripts/skills/actives/darkflight"));
+		::Legends.Actives.grant(this, ::Legends.Active.Darkflight);
 		::Legends.Perks.grant(this, ::Legends.Perk.Anticipation);
 		::Legends.Perks.grant(this, ::Legends.Perk.HeadHunter);
 		::Legends.Perks.grant(this, ::Legends.Perk.NineLives);
