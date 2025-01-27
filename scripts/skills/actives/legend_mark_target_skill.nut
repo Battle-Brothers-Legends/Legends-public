@@ -4,7 +4,7 @@ this.legend_mark_target_skill <- this.inherit("scripts/skills/skill", {
 	{
 		this.m.ID = "actives.legend_mark_target";
 		this.m.Name = "Mark Target";
-		this.m.Description = "Analyse the weak points on an opponent and tell your comrades, reducing the targets ranged defense by 20 for 3 turns";
+		this.m.Description = "Analyse the weak points on an opponent and tell your comrades, reducing the targets melee and ranged defense by 10 for 3 turns";
 		this.m.KilledString = "Marked";
 		this.m.Icon = "skills/MarkTargetSkill.png";
 		this.m.IconDisabled = "skills/MarkTargetSkill_bw.png";
@@ -46,7 +46,7 @@ this.legend_mark_target_skill <- this.inherit("scripts/skills/skill", {
 				id = 7,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "Leave your opponent marked, reducing their ranged defense by 20"
+				text = "Leave your opponent marked, reducing their melee and ranged defense by 10"
 			})
 		return ret;
 	}
