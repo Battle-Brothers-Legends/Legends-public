@@ -2,8 +2,7 @@ this.legend_RSW_unbreaking <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "special.legend_RSW_unbreaking";
-		this.m.Name = "Rune Sigil: Unbreaking";
+		::Legends.Effects.onCreate(this, ::Legends.Effects.LegendRswUnbreaking);
 		this.m.Description = "Rune Sigil: Unbreaking";
 		this.m.Icon = "ui/rune_sigils/legend_rune_sigil.png";
 		this.m.Type = this.Const.SkillType.Special | this.Const.SkillType.StatusEffect;

@@ -2,8 +2,7 @@ this.legend_RSS_radiance <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "special.legend_RSS_radiance";
-		this.m.Name = "Rune Sigil: Radiance";
+		::Legends.Effects.onCreate(this, ::Legends.Effects.LegendRssRadiance);
 		this.m.Description = "Rune Sigil: Radiance";
 		this.m.Icon = "ui/rune_sigils/legend_rune_sigil.png";
 		this.m.Type = this.Const.SkillType.Special | this.Const.SkillType.StatusEffect;
@@ -63,9 +62,9 @@ this.legend_RSS_radiance <- this.inherit("scripts/skills/skill", {
 			{
 				if (!t.isAlliedWith(actor) && !t.getSkills().hasEffect(::Legends.Effect.LegendRssRadianceEffect))
 				{
-					local blinded = this.new("scripts/skills/rune_sigils/legend_RSS_radiance_effect");
-					blinded.setMalus(this.getItem().getRuneBonus1(), this.getItem().getRuneBonus2());
-					t.getSkills().add(blinded);
+					::Legends.Effects.grant(t, ::Legends.Effect.LegendRssRadianceEffect, function(_effect) {
+						_effect.setMalus(this.getItem().getRuneBonus1(), this.getItem().getRuneBonus2());
+					}.bindenv(this));
 				}
 			}
 		}

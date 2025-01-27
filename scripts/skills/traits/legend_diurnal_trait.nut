@@ -43,11 +43,11 @@ this.legend_diurnal_trait <- this.inherit("scripts/skills/traits/character_trait
 
 	function onUpdate( _properties )
 	{
-		if (!this.getContainer().hasSkill("special.night"))
+		if (!this.getContainer().hasEffect(::Legends.Effects.Night))
 		{
 			_properties.Vision += 1;
 		}
-		if (this.getContainer().hasSkill("special.night"))
+		if (this.getContainer().hasEffect(::Legends.Effects.Night))
 		{
 			_properties.Vision -= 1;
 		}

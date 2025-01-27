@@ -2,8 +2,7 @@ this.legend_RSW_feeding <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "special.legend_RSW_feeding";
-		this.m.Name = "Rune Sigil: Feeding";
+		::Legends.Effects.onCreate(this, ::Legends.Effects.LegendRswFeeding);
 		this.m.Description = "Rune Sigil: Feeding";
 		this.m.Icon = "ui/rune_sigils/legend_rune_sigil.png";
 		this.m.Type = this.Const.SkillType.Special | this.Const.SkillType.StatusEffect;

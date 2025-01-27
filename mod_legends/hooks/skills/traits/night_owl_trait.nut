@@ -43,7 +43,7 @@
 
 	o.onUpdate = function ( _properties )
 	{
-		if (this.getContainer().hasSkill("special.night") && _properties.IsAffectedByNight)
+		if (this.getContainer().hasEffect(::Legends.Effects.Night) && _properties.IsAffectedByNight)
 		{
 			_properties.Vision += 1;
 			_properties.RangedSkillMult *= 1.15;

@@ -229,7 +229,7 @@ this.paladins_scenario <- this.inherit("scripts/scenarios/world/starting_scenari
 
 			case "ambition.oath_of_honor":
 				::Legends.Traits.grant(_bro, ::Legends.Trait.OathOfHonor);
-				_bro.getSkills().add(this.new("scripts/skills/special/oath_of_honor_warning"));
+				::Legends.Effects.grant(_bro, ::Legends.Effect.OathOfHonorWarning);
 				break;
 
 			case "ambition.oath_of_camaraderie":
@@ -242,7 +242,7 @@ this.paladins_scenario <- this.inherit("scripts/scenarios/world/starting_scenari
 
 			case "ambition.oath_of_fortification":
 				::Legends.Traits.grant(_bro, ::Legends.Trait.OathOfFortification);
-				_bro.getSkills().add(this.new("scripts/skills/special/oath_of_fortification_warning"));
+				::Legends.Effects.grant(_bro, ::Legends.Effect.OathOfFortificationWarning);
 				break;
 
 			case "ambition.oath_of_distinction":

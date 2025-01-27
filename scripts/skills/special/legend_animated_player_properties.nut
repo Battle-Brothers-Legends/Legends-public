@@ -2,8 +2,7 @@ this.legend_animated_player_properties <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "special.legend_animated_player_properties";
-		this.m.Name = "";
+		::Legends.Effects.onCreate(this, ::Legends.Effects.LegendAnimatedPlayerProperties);
 		this.m.Icon = "";
 		this.m.IsActive = false;
 		this.m.IsStacking = false;

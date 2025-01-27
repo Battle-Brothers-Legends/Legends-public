@@ -255,7 +255,7 @@ this.legend_orc_elite <- this.inherit("scripts/entity/tactical/actor", {
 
 		foreach (a in this.Const.CharacterSprites.Helmets)
 		{
-			this.addSprite(a)
+			this.addSprite(a);
 		}
 
 		local body_blood = this.addSprite("body_blood");
@@ -264,7 +264,7 @@ this.legend_orc_elite <- this.inherit("scripts/entity/tactical/actor", {
 		this.addDefaultStatusSprites();
 		this.getSprite("status_rooted").Scale = 0.6;
 		this.setSpriteOffset("status_rooted", this.createVec(0, 5));
-		this.m.Skills.add(this.new("scripts/skills/special/double_grip"));
+		::Legends.Effects.grant(this, ::Legends.Effect.DoubleGrip);
 		::Legends.Actives.grant(this, ::Legends.Active.HandToHand);
 		::Legends.Actives.grant(this, ::Legends.Active.LineBreaker);
 		::Legends.Perks.grant(this, ::Legends.Perk.BatteringRam);

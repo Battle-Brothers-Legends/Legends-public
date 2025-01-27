@@ -30,7 +30,7 @@
 
 		if (!this.World.getTime().IsDaytime)
 		{
-			entity.getSkills().add(this.new("scripts/skills/special/night_effect"));
+			::Legends.Effects.grant(entity, ::Lengeds.Effect.Night);
 		}
 
 		this.m.IsHidden = true;

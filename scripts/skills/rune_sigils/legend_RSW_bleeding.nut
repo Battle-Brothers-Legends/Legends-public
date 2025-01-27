@@ -2,8 +2,7 @@ this.legend_RSW_bleeding <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "special.legend_RSW_bleeding";
-		this.m.Name = "Rune Sigil: Bleeding";
+		::Legends.Effects.onCreate(this, ::Legends.Effects.LegendRswBleeding);
 		this.m.Description = "Rune Sigil: Bleeding";
 		this.m.Icon = "ui/rune_sigils/legend_rune_sigil.png";
 		this.m.Type = this.Const.SkillType.Special | this.Const.SkillType.StatusEffect;
@@ -34,10 +33,10 @@ this.legend_RSW_bleeding <- this.inherit("scripts/skills/skill", {
 
 		if (!_targetEntity.getCurrentProperties().IsImmuneToBleeding)
 		{
-			local effect = this.new("scripts/skills/rune_sigils/legend_RSW_bleeding_effect");
-			effect.setActor(this.getContainer().getActor());
-			effect.setStats(this.getItem().getRuneBonus1(), this.getItem().getRuneBonus2());
-			_targetEntity.getSkills().add(effect);
+			::Legends.Effects.grant(_targetEntity, ::Legends.Effect.LegendRswBleedingEffect, function (_effect) {
+				_effect.setActor(this.getContainer().getActor());
+				_effect.setStats(this.getItem().getRuneBonus1(), this.getItem().getRuneBonus2());
+			});
 
 			if (!_targetEntity.isHiddenToPlayer())
 			{

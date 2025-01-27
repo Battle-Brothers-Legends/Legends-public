@@ -1302,4 +1302,162 @@ effectsDefs.push({
 	Const = "LegendHiddenKobold"
 });
 
+// special effects
+effectsDefs.push({
+	ID = "special.night",
+	Script = "scripts/skills/special/night_effect",
+	Const = "Night",
+	Name = "Nighttime",
+});
+effectsDefs.push({
+	ID = "special.oath_of_fortification_warning",
+	Script = "scripts/skills/special/oath_of_fortification_warning",
+	Const = "OathOfFortificationWarning",
+	Name = "Fortifying!",
+});
+effectsDefs.push({
+	ID = "special.oath_of_honor_warning",
+	Script = "scripts/skills/special/oath_of_honor_warning",
+	Const = "OathOfHonorWarning",
+	Name = "Honorable Combat!",
+});
+effectsDefs.push({
+	ID = "special.double_grip",
+	Script = "scripts/skills/special/double_grip",
+	Const = "DoubleGrip",
+	Name = "Double Grip",
+});
+effectsDefs.push({
+	ID = "special.mood_check",
+	Script = "scripts/skills/special/mood_check",
+	Const = "MoodCheck",
+	Name = "Mood Check",
+});
+effectsDefs.push({
+	ID = "special.morale.check",
+	Script = "scripts/skills/special/morale_check",
+	Const = "Check",
+	Name = "Morale Check",
+});
+effectsDefs.push({
+	ID = "special.no_ammo_warning",
+	Script = "scripts/skills/special/no_ammo_warning",
+	Const = "NoAmmoWarning",
+	Name = "No Ammunition!",
+});
+effectsDefs.push({
+	ID = "special.weapon_breaking_warning",
+	Script = "scripts/skills/special/weapon_breaking_warning",
+	Const = "WeaponBreakingWarning",
+	Name = "Weapon in poor condition!",
+});
+effectsDefs.push({
+	ID = "special.legend_rain",
+	Script = "scripts/skills/special/legend_rain_effect",
+	Const = "LegendRain",
+	Name = "Raining",
+});
+effectsDefs.push({
+	ID = "special.legend_RSA_endurance",
+	Script = "scripts/skills/rune_sigils/legend_RSA_endurance",
+	Const = "LegendRsaEndurance",
+	Name = "Rune Sigil: Endurance",
+});
+effectsDefs.push({
+	ID = "special.legend_RSA_resilience",
+	Script = "scripts/skills/rune_sigils/legend_RSA_resilience",
+	Const = "LegendRsaResilience",
+	Name = "Rune Sigil: Resilience",
+});
+effectsDefs.push({
+	ID = "special.legend_RSA_safety",
+	Script = "scripts/skills/rune_sigils/legend_RSA_safety",
+	Const = "LegendRsaSafety",
+	Name = "Rune Sigil: Safety",
+});
+effectsDefs.push({
+	ID = "special.legend_RSH_bravery",
+	Script = "scripts/skills/rune_sigils/legend_RSH_bravery",
+	Const = "LegendRshBravery",
+	Name = "Rune Sigil: Bravery",
+});
+effectsDefs.push({
+	ID = "special.legend_RSH_clarity",
+	Script = "scripts/skills/rune_sigils/legend_RSH_clarity",
+	Const = "LegendRshClarity",
+	Name = "Rune Sigil: Clarity",
+});
+effectsDefs.push({
+	ID = "special.legend_RSH_luck",
+	Script = "scripts/skills/rune_sigils/legend_RSH_luck",
+	Const = "LegendRshLuck",
+	Name = "Rune Sigil: Luck",
+});
+effectsDefs.push({
+	ID = "special.legend_RSS_defense",
+	Script = "scripts/skills/rune_sigils/legend_RSS_defense",
+	Const = "LegendRssDefense",
+	Name = "Rune Sigil: Defense",
+});
+effectsDefs.push({
+	ID = "special.legend_RSS_radiance",
+	Script = "scripts/skills/rune_sigils/legend_RSS_radiance",
+	Const = "LegendRssRadiance",
+	Name = "Rune Sigil: Radiance",
+});
+effectsDefs.push({
+	ID = "special.legend_RSW_accuracy",
+	Script = "scripts/skills/rune_sigils/legend_RSW_accuracy",
+	Const = "LegendRswAccuracy",
+	Name = "Rune Sigil: Accuracy",
+});
+effectsDefs.push({
+	ID = "special.legend_RSW_bleeding",
+	Script = "scripts/skills/rune_sigils/legend_RSW_bleeding",
+	Const = "LegendRswBleeding",
+	Name = "Rune Sigil: Bleeding",
+});
+effectsDefs.push({
+	ID = "special.legend_RSW_feeding",
+	Script = "scripts/skills/rune_sigils/legend_RSW_feeding",
+	Const = "LegendRswFeeding",
+	Name = "Rune Sigil: Feeding",
+});
+effectsDefs.push({
+	ID = "special.legend_RSW_poison",
+	Script = "scripts/skills/rune_sigils/legend_RSW_poison",
+	Const = "LegendRswPoison",
+	Name = "Rune Sigil: Poison",
+});
+effectsDefs.push({
+	ID = "special.legend_RSW_power",
+	Script = "scripts/skills/rune_sigils/legend_RSW_power",
+	Const = "LegendRswPower",
+	Name = "Rune Sigil: Power",
+});
+effectsDefs.push({
+	ID = "special.legend_RSW_unbreaking",
+	Script = "scripts/skills/rune_sigils/legend_RSW_unbreaking",
+	Const = "LegendRswUnbreaking",
+	Name = "Rune Sigil: Unbreaking",
+});
+effectsDefs.push({
+	ID = "special.legend_relationship_check",
+	Script = "scripts/skills/special/legend_relationship_check",
+	Const = "LegendRelationshipCheck",
+	Name = "Relationship Check",
+});
+effectsDefs.push({
+	ID = "special.legend_animated_player_properties",
+	Script = "scripts/skills/special/legend_animated_player_properties",
+	Const = "LegendAnimatedPlayerProperties",
+	Name = "",
+});
+effectsDefs.push({
+	ID = "special.legend_horserider_skill",
+	Script = "scripts/skills/special/legend_horserider_skill",
+	Const = "LegendHorseriderSkill",
+	Name = "",
+});
+
 ::Legends.Effects.addEffectDefObjects(effectsDefs);

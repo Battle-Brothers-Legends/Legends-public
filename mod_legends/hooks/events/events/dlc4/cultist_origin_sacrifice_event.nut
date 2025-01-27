@@ -29,7 +29,7 @@
 					}
 
 					foreach( bro in brothers ) {
-						if (bro.getSkills().hasSkill("special.legend_animated_player_properties"))
+						if (bro.getSkills().hasEffect(::Legends.Effects.LegendAnimatedPlayerProperties))
 							continue;
 
 						if (bro.getBackground().isBackgroundType(this.Const.BackgroundType.ConvertedCultist | this.Const.BackgroundType.Cultist) || bro.getBackground().getID() == "background.legend_commander_necro" || bro.getBackground().getID() == "background.legend_necro" || bro.getBackground().getID() == "background.legend_vala" || bro.getBackground().getID() == "background.legend_vala_commander" || bro.getBackground().getID() == "background.legend_witch" || bro.getBackground().getID() == "background.legend_witch_commander" || bro.getBackground().getID() == "background.legend_cannibal" || bro.getBackground().getID() == "background.legend_donkey")  {

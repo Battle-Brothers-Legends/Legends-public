@@ -128,7 +128,7 @@
 		this.getSprite("status_rooted").Scale = 0.55;
 
 		this.setHitpoints(this.getHitpointsMax() * this.Math.rand(45, 100) * 0.01);
-		this.m.Skills.add(this.new("scripts/skills/special/double_grip"));
+		::Legends.Effects.grant(this, ::Legends.Effect.DoubleGrip);
 		::Legends.Actives.grant(this, ::Legends.Active.ZombieBite);
 		::Legends.Perks.grant(this, ::Legends.Perk.BattleForged);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendPoisonImmunity);

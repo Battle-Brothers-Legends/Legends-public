@@ -78,7 +78,7 @@
 		local v2 = 0;
 		foreach (a in this.Const.CharacterSprites.Helmets)
 		{
-			this.addSprite(a)
+			this.addSprite(a);
 			this.setSpriteOffset(a, this.createVec(v2, v));
 		}
 		this.addSprite("accessory");
@@ -111,7 +111,7 @@
 			beard_top.Alpha = 0;
 		}
 
-		this.m.Skills.add(this.new("scripts/skills/special/double_grip"));
+		::Legends.Effects.grant(this, ::Legends.Effect.DoubleGrip);
 		this.m.Skills.add(this.new("scripts/skills/racial/vampire_racial"));
 		::Legends.Actives.grant(this, ::Legends.Active.Darkflight);
 		::Legends.Perks.grant(this, ::Legends.Perk.Anticipation);

@@ -105,7 +105,7 @@ this.legend_RSS_radiance_effect <- this.inherit("scripts/skills/skill", {
 		{
 			foreach (t in tar)
 			{
-				if (!t.isAlliedWith(actor) && t.getSkills().hasSkill("special.legend_RSS_radiance") && t.getTile().getDistanceTo(actor.getTile()) == 1)
+				if (!t.isAlliedWith(actor) && t.getSkills().hasEffect(::Legends.Effect.LegendRssRadiance) && t.getTile().getDistanceTo(actor.getTile()) == 1)
 				{
 					BlindAdjacent = true;
 					break;
@@ -143,9 +143,9 @@ this.legend_RSS_radiance_effect <- this.inherit("scripts/skills/skill", {
 		{
 			foreach (t in tar)
 			{
-				if (!t.isAlliedWith(actor) && t.getSkills().hasSkill("special.legend_RSS_radiance") && t.getTile().getDistanceTo(actor.getTile()) == 1)
+				if (!t.isAlliedWith(actor) && t.getSkills().hasEffect(::Legends.Effect.LegendRssRadiance) && t.getTile().getDistanceTo(actor.getTile()) == 1)
 				{
-					local BlinderValues = t.getSkills().getSkillByID("special.legend_RSS_radiance");
+					local BlinderValues = ::Legends.Effect.get(t, ::Legends.Effect.LegendRssRadiance);
 					this.m.MalusOne = BlinderValues.getItem().getRuneBonus1();
 					this.m.MalusTwo = BlinderValues.getItem().getRuneBonus2();
 					this.spawnIcon("status_effect_52", actor.getTile());
@@ -173,7 +173,7 @@ this.legend_RSS_radiance_effect <- this.inherit("scripts/skills/skill", {
 		{
 			foreach (t in tar)
 			{
-				if (!t.isAlliedWith(actor) && t.getSkills().hasSkill("special.legend_RSS_radiance") && t.getTile().getDistanceTo(actor.getTile()) == 1)
+				if (!t.isAlliedWith(actor) && t.getSkills().hasEffect(::Legends.Effect.LegendRssRadiance) && t.getTile().getDistanceTo(actor.getTile()) == 1)
 				{
 					BlindAdjacent = true;
 					break;

@@ -504,12 +504,12 @@
 
 			if (!this.World.getTime().IsDaytime && e.getBaseProperties().IsAffectedByNight)
 			{
-				e.getSkills().add(this.new("scripts/skills/special/night_effect"));
+				::Legends.Effects.grant(e, ::Lengeds.Effect.Night);
 			}
 
 			if (this.Tactical.getWeather().IsRaining && e.getBaseProperties().IsAffectedByRain)
 			{
-				e.getSkills().add(this.new("scripts/skills/special/legend_rain_effect"));
+				::Legends.Effects.grant(e, ::Lengeds.Effect.LegendRain);
 			}
 
 

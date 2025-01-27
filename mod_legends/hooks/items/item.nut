@@ -214,59 +214,59 @@
 		switch (this.m.RuneVariant)
 		{
 			case 1:
-				this.addSkill(this.new("scripts/skills/rune_sigils/legend_RSW_power"));
+				this.addSkill(::Legends.Effects.new(::Legends.Effect.LegendRswPower));
 				break;
 
 			case 2:
-				this.addSkill(this.new("scripts/skills/rune_sigils/legend_RSW_accuracy"));
+				this.addSkill(::Legends.Effects.new(::Legends.Effect.LegendRswAccuracy));
 				break;
 
 			case 3:
-				this.addSkill(this.new("scripts/skills/rune_sigils/legend_RSW_feeding"));
+				this.addSkill(::Legends.Effects.new(::Legends.Effect.LegendRswFeeding));
 				break;
 
 			case 4:
-				this.addSkill(this.new("scripts/skills/rune_sigils/legend_RSW_poison"));
+				this.addSkill(::Legends.Effects.new(::Legends.Effect.LegendRswPoison));
 				break;
 
 			case 5:
-				this.addSkill(this.new("scripts/skills/rune_sigils/legend_RSW_bleeding"));
+				this.addSkill(::Legends.Effects.new(::Legends.Effect.LegendRswBleeding));
 				break;
 
 			case 6:
-				this.addSkill(this.new("scripts/skills/rune_sigils/legend_RSW_unbreaking"));
+				this.addSkill(::Legends.Effects.new(::Legends.Effect.LegendRswUnbreaking));
 				break;
 
 			case 11:
-				this.addSkill(this.new("scripts/skills/rune_sigils/legend_RSH_clarity"));
+				this.addSkill(::Legends.Effects.new(::Legends.Effect.LegendRshClarity));
 				break;
 
 			case 12:
-				this.addSkill(this.new("scripts/skills/rune_sigils/legend_RSH_bravery"));
+				this.addSkill(::Legends.Effects.new(::Legends.Effect.LegendRshBravery));
 				break;
 
 			case 13:
-				this.addSkill(this.new("scripts/skills/rune_sigils/legend_RSH_luck"));
+				this.addSkill(::Legends.Effects.new(::Legends.Effect.LegendRshLuck));
 				break;
 
 			case 21:
-				this.addSkill(this.new("scripts/skills/rune_sigils/legend_RSA_endurance"));
+				this.addSkill(::Legends.Effects.new(::Legends.Effect.LegendRsaEndurance));
 				break;
 
 			case 22:
-				this.addSkill(this.new("scripts/skills/rune_sigils/legend_RSA_safety"));
+				this.addSkill(::Legends.Effects.new(::Legends.Effect.LegendRsaSafety));
 				break;
 
 			case 23:
-				this.addSkill(this.new("scripts/skills/rune_sigils/legend_RSA_resilience"));
+				this.addSkill(::Legends.Effects.new(::Legends.Effect.LegendRsaResilience));
 				break;
 
 			case 31:
-				this.addSkill(this.new("scripts/skills/rune_sigils/legend_RSS_defense"));
+				this.addSkill(::Legends.Effects.new(::Legends.Effect.LegendRssDefense));
 				break;
 
 			case 32:
-				this.addSkill(this.new("scripts/skills/rune_sigils/legend_RSS_radiance"));
+				this.addSkill(::Legends.Effects.new(::Legends.Effect.LegendRssRadiance));
 				break;
 
 			default:

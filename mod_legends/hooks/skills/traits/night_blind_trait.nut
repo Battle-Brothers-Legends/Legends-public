@@ -1,5 +1,5 @@
 ::mods_hookExactClass("skills/traits/night_blind_trait", function(o)
-{	
+{
 	local create = o.create;
 	o.create = function ()
 	{
@@ -9,7 +9,7 @@
 
 	o.onUpdate = function ( _properties )
 	{
-		if (this.getContainer().hasSkill("special.night") && _properties.IsAffectedByNight == true)
+		if (this.getContainer().hasEffect(::Legends.Effects.Night) && _properties.IsAffectedByNight == true)
 		{
 			_properties.Vision -= 1;
 		}

@@ -493,7 +493,7 @@
 	{
 		onInit();
 		::Legends.Effects.grant(this, ::Legends.Effect.LegendRealmOfNightmares);
-		this.m.Skills.add(this.new("scripts/skills/special/legend_horserider_skill"));
+		::Legends.Effects.grant(this, ::Legends.Effect.LegendHorseriderSkill);
 		::Legends.Effects.grant(this, ::Legends.Effect.LegendVeteranLevels);
 	}
 

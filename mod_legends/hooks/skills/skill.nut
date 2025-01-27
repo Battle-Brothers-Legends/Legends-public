@@ -502,7 +502,7 @@
 			});
 		}
 
-		if (this.m.IsRanged && user.getCurrentProperties().IsAffectedByNight && user.getSkills().hasSkill("special.night"))
+		if (this.m.IsRanged && user.getCurrentProperties().IsAffectedByNight && user.getSkills().hasEffect(::Legends.Effects.Night))
 		{
 			ret.push({
 				icon = "ui/tooltips/negative.png",
@@ -710,7 +710,7 @@
 
 		modifier.Nighttime <- function ( row, description )
 		{
-			local night = user.getSkills().getSkillByID("special.night");
+			local night = ::Legends.Effects.get(user, ::Legends.Effects.Night);
 			local attributeIcon = "ranged_skill";
 
 			if (!(night && "getTooltip" in night))

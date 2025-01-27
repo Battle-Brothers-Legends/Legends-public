@@ -87,7 +87,7 @@
 		body_rage.Alpha = 220;
 		this.addDefaultStatusSprites();
 		this.getSprite("status_rooted").Scale = 0.6;
-		this.m.Skills.add(this.new("scripts/skills/special/double_grip"));
+		::Legends.Effects.grant(this, ::Legends.Effect.DoubleGrip);
 		this.m.Skills.add(this.new("scripts/skills/actives/hand_to_hand_orc"));
 		::Legends.Actives.grant(this, ::Legends.Active.Charge);
 		::Legends.Effects.grant(this, ::Legends.Effect.BerserkerRage);

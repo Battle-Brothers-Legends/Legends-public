@@ -159,7 +159,7 @@ this.legend_unleash_cat_skill <- this.inherit("scripts/skills/skill", {
 		//Cats are nocturnal right!
 		if (!this.World.getTime().IsDaytime)
 		{
-			entity.getSkills().add(this.new("scripts/skills/special/night_effect"));
+			::Legends.Effects.grant(entity, ::Lengeds.Effect.Night);
 		}
 
 		return true;

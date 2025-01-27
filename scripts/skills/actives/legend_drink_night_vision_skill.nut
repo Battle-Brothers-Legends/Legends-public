@@ -52,7 +52,7 @@ this.legend_drink_night_vision_skill <- this.inherit("scripts/skills/actives/bas
 
 	function onUse( _user, _targetTile ) {
 		local user = _targetTile.getEntity();
-		user.getSkills().removeByID("special.night");
+		::Legends.Effects.remove(user, ::Legends.Effects.Night);
 		return this.legend_drink_potion_skill.onUse(_user, _targetTile);
 	}
 

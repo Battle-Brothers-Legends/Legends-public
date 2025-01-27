@@ -169,7 +169,7 @@ this.legend_unleash_hound_skill <- this.inherit("scripts/skills/actives/legend_u
 
 		if (!this.World.getTime().IsDaytime)
 		{
-			entity.getSkills().add(this.new("scripts/skills/special/night_effect"));
+			::Legends.Effects.grant(entity, ::Lengeds.Effect.Night);
 		}
 
 		return true;

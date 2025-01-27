@@ -2,8 +2,7 @@ this.legend_RSH_bravery <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "special.legend_RSH_bravery";
-		this.m.Name = "Rune Sigil: Bravery";
+		::Legends.Effects.onCreate(this, ::Legends.Effects.LegendRshBravery);
 		this.m.Description = "Rune Sigil: Bravery";
 		this.m.Icon = "ui/rune_sigils/legend_rune_sigil.png";
 		this.m.Type = this.Const.SkillType.Special | this.Const.SkillType.StatusEffect;

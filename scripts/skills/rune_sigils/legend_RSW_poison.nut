@@ -2,8 +2,7 @@ this.legend_RSW_poison <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "special.legend_RSW_poison";
-		this.m.Name = "Rune Sigil: Poison";
+		::Legends.Effects.onCreate(this, ::Legends.Effects.LegendRswPoison);
 		this.m.Description = "Rune Sigil: Poison";
 		this.m.Icon = "ui/rune_sigils/legend_rune_sigil.png";
 		this.m.Type = this.Const.SkillType.Special | this.Const.SkillType.StatusEffect;
@@ -58,9 +57,9 @@ this.legend_RSW_poison <- this.inherit("scripts/skills/skill", {
 
 		if (runePoison == null && gobboPoison == null)
 		{
-			local effect = this.new("scripts/skills/rune_sigils/legend_RSW_poison_effect");
-			effect.setStats(this.getItem().getRuneBonus1(), this.getItem().getRuneBonus2());
-			_targetEntity.getSkills().add(effect);
+			::Legends.Effects.grant(_targetEntity, ::Legends.Effect.LegendRswPoisonEffect, function (_effect) {
+				_effect.setStats(this.getItem().getRuneBonus1(), this.getItem().getRuneBonus2());
+			});
 		}
 		else if (runePoison != null && gobboPoison == null)
 		{

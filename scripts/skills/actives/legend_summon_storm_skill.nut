@@ -64,7 +64,7 @@ this.legend_summon_storm_skill <- this.inherit("scripts/skills/skill", {
 		local weather = this.Tactical.getWeather();
 		local rain = weather.createRainSettings();
 
-		if (this.m.Container.hasSkill("special.legend_rain"))
+		if (this.getContainer().hasEffect(::Legends.Effects.LegendRain))
 		{
 
 			if (this.m.SoundOnLightning.len() != 0)
@@ -109,7 +109,7 @@ this.legend_summon_storm_skill <- this.inherit("scripts/skills/skill", {
 				{
 					if (e.getBaseProperties().IsAffectedByRain)
 					{
-						e.getSkills().add(this.new("scripts/skills/special/legend_rain_effect"));
+						::Legends.Effects.grant(e, ::Legends.Effect.LegendRain);
 					}
 				}
 			}

@@ -70,10 +70,10 @@ this.legend_nightvision_skill <- this.inherit("scripts/skills/skill", {
 				continue
 			}
 
-			if (a.getSkills().hasSkill("special.night"))
+			if (a.getSkills().hasEffect(::Legends.Effects.Night))
 		 	{
 				this.spawnIcon("status_effect_98", a.getTile());
-				a.getSkills().removeByID("special.night");
+				::Legends.Effects.remove(a, ::Legends.Effects.Night);
 		 	}
 
 		}
