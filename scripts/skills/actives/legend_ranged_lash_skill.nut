@@ -2,8 +2,7 @@ this.legend_ranged_lash_skill <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "actives.legend_ranged_lash";
-		this.m.Name = "Lash";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendRangedLash);
 		this.m.Description = "Aim for an opponent\'s head. Somewhat unpredictable in damage, but able to strike over or around shield cover with a bit of luck.";
 		this.m.Icon = "skills/active_91.png";
 		this.m.IconDisabled = "skills/active_91_sw.png";

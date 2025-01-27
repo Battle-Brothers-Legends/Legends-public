@@ -2,8 +2,7 @@ this.legend_harvest_rock_skill <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "actives.legend_harvest_rock";
-		this.m.Name = "Crush Rock";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendHarvestRock);
 		this.m.Description = "Crush any rock with a chance of harvesting it.";
 		this.m.KilledString = "Chopped up";
 		this.m.Icon = "skills/active_35.png";

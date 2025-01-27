@@ -18,8 +18,7 @@ this.legend_minor_sleep_skill <- this.inherit("scripts/skills/skill", {
 
 	function create()
 	{
-		this.m.ID = "actives.legend_minor_sleep";
-		this.m.Name = "Minor Sleep";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendMinorSleep);
 		this.m.Description = "";
 		this.m.Icon = "skills/sleep_square.png";
 		this.m.IconDisabled = "skills/sleep_square_bw.png";

@@ -2,8 +2,7 @@ this.legend_ninetails_disarm_skill <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "actives.legend_ninetails_disarm";
-		this.m.Name = "Disarm";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendNinetailsDisarm);
 		this.m.Description = "Use the cat o ninetails to temporarily disarm an opponent on a hit. A disarmed opponent can not use any weapon skills, but may still use other skills and move freely. Unarmed targets can not be disarmed.";
 		this.m.Icon = "skills/ninetails_disarm_square.png";
 		this.m.IconDisabled = "skills/ninetails_disarm_square_bw.png";

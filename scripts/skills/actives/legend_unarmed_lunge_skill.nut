@@ -10,8 +10,7 @@ this.legend_unarmed_lunge_skill <- this.inherit("scripts/skills/skill", {
 	},
 	function create()
 	{
-		this.m.ID = "actives.legend_unarmed_lunge";
-		this.m.Name = "Jump Attack";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendUnarmedLunge);
 		this.m.Description = "A jump forward and attack combined into a single move.";
 		this.m.KilledString = "Hit";
 		this.m.Icon = "skills/unarmed_lunge_square.png";

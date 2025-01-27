@@ -24,8 +24,7 @@ this.legend_intensely_charm_skill <- this.inherit("scripts/skills/skill", {
 
 	function create()
 	{
-		this.m.ID = "actives.legend_intensely_charm";
-		this.m.Name = "Infatuate";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendIntenselyCharm);
 		this.m.Description = "";
 		this.m.Icon = "skills/active_120.png";
 		this.m.IconDisabled = "skills/active_120.png";

@@ -5,8 +5,7 @@ this.legend_use_catapult_skill <- this.inherit("scripts/skills/skill", {
 	},
 	function create()
 	{
-		this.m.ID = "actives.legend_use_catapult";
-		this.m.Name = "Catapult Boulder";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendUseCatapult);
 		this.m.Description = "Hurl a boulder towards a target with your catapult. Hard to aim and very unwieldy, but boulders are everywhere so you never run out of ammunition. Can not be used while engaged in melee.";
 		this.m.KilledString = "Crushed";
 		this.m.Icon = "skills/active_12.png";
@@ -109,7 +108,7 @@ this.legend_use_catapult_skill <- this.inherit("scripts/skills/skill", {
 				{
 					continue;
 				}
-				
+
 				local tile = myTile.getNextTile(i);
 
 				if (this.Math.abs(tile.Level - myTile.Level) <= 1 && tile.IsOccupiedByActor && actor.isAlliedWith(tile.getEntity()) && tile.getEntity().getType() == this.Const.EntityType.LegendCatapult)
@@ -117,7 +116,7 @@ this.legend_use_catapult_skill <- this.inherit("scripts/skills/skill", {
 					hasTarget = true;
 					break;
 				}
-				
+
 			}
 
 			if (hasTarget)

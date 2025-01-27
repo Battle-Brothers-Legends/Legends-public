@@ -2,8 +2,7 @@ this.legend_white_wolf_howl_skill <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "actives.legend_white_wolf_howl";
-		this.m.Name = "White Wolf Howl";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendWhiteWolfHowl);
 		this.m.Description = "";
 		this.m.Icon = "skills/active_22.png";
 		this.m.IconDisabled = "skills/active_22_sw.png";

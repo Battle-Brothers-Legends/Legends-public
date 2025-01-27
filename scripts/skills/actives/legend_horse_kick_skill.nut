@@ -9,8 +9,7 @@ this.legend_horse_kick_skill <- this.inherit("scripts/skills/skill", {
 	}
 	function create()
 	{
-		this.m.ID = "actives.legend_horse_kick";
-		this.m.Name = "Horse Kick";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendHorseKick);
 		this.m.Description = "The main attack of a horse, more for defense than attack. Maximum damage is the average of your hitpoints and initiative minus 90.";
 		this.m.KilledString = "Kicked to death";
 		this.m.Icon = "skills/horse_kick.png";

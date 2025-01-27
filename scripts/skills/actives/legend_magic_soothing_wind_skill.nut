@@ -4,8 +4,7 @@ this.legend_magic_soothing_wind_skill <- this.inherit("scripts/skills/actives/le
 	},
 	function create()
 	{
-		this.m.ID = "actives.legend_magic_soothing_wind";
-		this.m.Name = "Soothing Wind";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendMagicSoothingWind);
 		this.m.Description = "Restore the fatigue of all allies within 4 tiles. Must be holding a magic staff to use.";
 		this.m.Icon = "skills/soothing_wind_01.png";
 		this.m.IconDisabled = "skills/soothing_wind_01_bw.png";

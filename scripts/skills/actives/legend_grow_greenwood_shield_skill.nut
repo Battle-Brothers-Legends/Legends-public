@@ -4,8 +4,7 @@ this.legend_grow_greenwood_shield_skill <- this.inherit("scripts/skills/skill", 
 	},
 	function create()
 	{
-		this.m.ID = "actives.legend_grow_greenwood_shield";
-		this.m.Name = "Grow Greenwood Shield";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendGrowGreenwoodShield);
 		this.m.Description = "";
 		this.m.Icon = "skills/active_121.png";
 		this.m.IconDisabled = "skills/active_121.png";

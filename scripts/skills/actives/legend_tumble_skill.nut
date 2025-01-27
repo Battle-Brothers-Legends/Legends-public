@@ -2,8 +2,7 @@ this.legend_tumble_skill <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "actives.legend_tumble";
-		this.m.Name = "Tumble";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendTumble);
 		this.m.Description = "Use your superior agility to move two tiles, allowing you to leave a Zone of Control without triggering free attacks.";
 		this.m.Icon = "ui/perks/perk_25_active.png";
 		this.m.IconDisabled = "ui/perks/perk_25_active_sw.png";

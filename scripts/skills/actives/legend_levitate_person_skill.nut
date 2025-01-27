@@ -2,8 +2,7 @@ this.legend_levitate_person_skill <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "actives.legend_levitate_person";
-		this.m.Name = "Levitate Person";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendLevitatePerson);
 		this.m.Description = "Levitate someone off the ground, granting them the ability to move freely across all terrain.";
 		this.m.KilledString = "Levitated";
 		this.m.Icon = "skills/levitate_square.png";
@@ -48,7 +47,7 @@ this.legend_levitate_person_skill <- this.inherit("scripts/skills/skill", {
 		})
 		return ret;
 	}
-	
+
 	function onVerifyTarget( _originTile, _targetTile )
 	{
 		if (!this.skill.onVerifyTarget(_originTile, _targetTile))
@@ -78,7 +77,7 @@ this.legend_levitate_person_skill <- this.inherit("scripts/skills/skill", {
 		{
 			return;
 		}
-		
+
 
 		::Legends.Effects.grant(target, ::Legends.Effect.LegendLevitating);
 

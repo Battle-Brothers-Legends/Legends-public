@@ -2,8 +2,7 @@ this.legend_wooden_stake_stab_skill <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "actives.legend_wooden_stake_stab";
-		this.m.Name = "Stab with Wooden Stake";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendWoodenStakeStab);
 		this.m.Description = "A quick and fast stab with the wooden shaft. Deals +100 damage to vampires.";
 		this.m.KilledString = "Staked";
 		this.m.Icon = "skills/wooden_stake_square.png";

@@ -2,8 +2,7 @@ this.legend_guide_steps_skill <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "actives.legend_guide_steps";
-		this.m.Name = "Guide steps";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendGuideSteps);
 		this.m.Description = "Point out dips and obstacles in the landscape, increasing movement for your troops.";
 		this.m.Icon = "skills/guided_steps_square.png";
 		this.m.IconDisabled = "skills/guided_steps_square_bw.png";
@@ -49,7 +48,7 @@ this.legend_guide_steps_skill <- this.inherit("scripts/skills/skill", {
 				type = "text",
 				icon = "ui/icons/special.png",
 				text =  "Grants pathfinder to all allies within [color=" + this.Const.UI.Color.PositiveValue + "]40[/color] tiles"
-			}			
+			}
 		];
 	}
 

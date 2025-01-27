@@ -16,8 +16,7 @@ this.legend_magic_chain_lightning_skill <- this.inherit("scripts/skills/actives/
 	function create() {
 		this.legend_magic_attack.create();
 
-		this.m.ID = "actives.legend_magic_chain_lightning";
-		this.m.Name = "Chain Lightning";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendMagicChainLightning);
 		this.m.Description = "Fire a bolt of lightning at an enemy that can arc to two adjacent enemies.";
 		this.m.KilledString = "Zapped";
 		this.m.Icon = "skills/lightning_square.png";

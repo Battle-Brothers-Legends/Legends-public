@@ -13,8 +13,7 @@ this.legend_voulge_cleave_skill <- this.inherit("scripts/skills/skill", {
 	},
 	function create()
 	{
-		this.m.ID = "actives.legend_voulge_cleave";
-		this.m.Name = "Cleave";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendVoulgeCleave);
 		this.m.Description = "A brute force cleaving attack that can inflict bleeding wounds if there is no armor absorbing the blow and if the target is able to bleed at all.";
 		this.m.KilledString = "Cleaved";
 		this.m.Icon = "skills/active_19.png";

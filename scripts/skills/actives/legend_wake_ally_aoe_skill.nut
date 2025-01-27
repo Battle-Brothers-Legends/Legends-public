@@ -2,8 +2,7 @@ this.legend_wake_ally_aoe_skill <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "actives.wake_ally_aoe";
-		this.m.Name = "Wake Allies";
+		::Legends.Actives.onCreate(this, ::Legends.Active.WakeAllyAoe);
 		this.m.Description = "Forcibly wake all adjacent allies from unnatural sleep.";
 		this.m.Icon = "skills/active_118.png";
 		this.m.IconDisabled = "skills/active_118_sw.png";

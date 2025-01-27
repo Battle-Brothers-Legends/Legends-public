@@ -2,8 +2,7 @@ this.legend_tackle_skill <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "actives.legend_tackle";
-		this.m.Name = "Tackle";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendTackle);
 		this.m.Description = "Tackle an enemy to the ground. On a hit, decrease their melee defence by 50%, their initiative by 70%, and increases the damage they take by 25%. The more fatigued your target, the more likely the tackle is to succeed.";
 		this.m.Icon = "skills/tackle_square.png";
 		this.m.IconDisabled = "skills/tackle_square_bw.png";

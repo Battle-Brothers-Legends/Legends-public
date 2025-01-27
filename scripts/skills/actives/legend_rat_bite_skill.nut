@@ -2,8 +2,7 @@ this.legend_rat_bite_skill <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "actives.legend_rat_bite";
-		this.m.Name = "Rat Bite";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendRatBite);
 		this.m.Description = "A vicious bite with a 15% increased chance to hit the head and 100% chance to infect.";
 		this.m.KilledString = "Gnawed";
 		this.m.Icon = "skills/rat_bite.png";

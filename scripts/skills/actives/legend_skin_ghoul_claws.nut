@@ -13,8 +13,7 @@ this.legend_skin_ghoul_claws <- this.inherit("scripts/skills/skill", {
 	},
 	function create()
 	{
-		this.m.ID = "actives.legend_skin_ghoul_claws";
-		this.m.Name = "Skin Ghoul Claws";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendSkinGhoulClaws);
 		this.m.Description = "Tear into flesh across multiple opponents and leave them bleading with very long, sharp claws.";
 		this.m.KilledString = "Ripped to shreds";
 		this.m.Icon = "skills/active_21.png";

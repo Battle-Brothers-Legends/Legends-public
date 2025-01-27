@@ -2,8 +2,7 @@ this.legend_vala_warden_wail_skill <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "actives.legend_vala_warden_wail";
-		this.m.Name = "Wail";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendValaWardenWail);
 		this.m.Description = "";
 		this.m.KilledString = "Frightened to death";
 		this.m.Icon = "skills/active_41.png";

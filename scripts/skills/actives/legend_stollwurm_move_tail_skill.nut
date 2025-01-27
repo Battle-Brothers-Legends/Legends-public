@@ -2,8 +2,7 @@ this.legend_stollwurm_move_tail_skill <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "actives.legend_stollwurm_move_tail";
-		this.m.Name = "Burrow Tail";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendStollwurmMoveTail);
 		this.m.Description = "";
 		this.m.Icon = "skills/active_109.png";
 		this.m.IconDisabled = "skills/active_109.png";

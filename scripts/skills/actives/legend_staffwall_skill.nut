@@ -4,8 +4,7 @@ this.legend_staffwall_skill <- this.inherit("scripts/skills/skill", {
 	},
 	function create()
 	{
-		this.m.ID = "actives.legend_staffwall";
-		this.m.Name = "Spearwall";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendStaffwall);
 		this.m.Icon = "skills/active_23.png";
 		this.m.IconDisabled = "skills/active_23_sw.png";
 		this.m.Overlay = "active_23";

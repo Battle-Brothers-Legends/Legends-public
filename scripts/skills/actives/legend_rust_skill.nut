@@ -6,8 +6,7 @@ this.legend_rust_skill <- this.inherit("scripts/skills/legend_magic_skill", {
 		this.m.AdditionalAccuracy = 10;
 		this.m.DamageInitiativeMin = 15;
 		this.m.DamageInitiativeMax = 45;
-		this.m.ID = "actives.legend_rust";
-		this.m.Name = "Rust";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendRust);
 		this.m.Description = "Tarnish leather and metal with rapid age, thereby undermining the solidity of the armor worn by your target. Damaged done is based off current initiative.\nHitchcance is determined by Ranged Skill.";
 		this.m.Icon = "skills/rust56.png";
 		this.m.IconDisabled = "skills/rust56_bw.png";

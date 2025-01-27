@@ -2,8 +2,7 @@ this.legend_puncture_parry_dagger_skill <- this.inherit("scripts/skills/skill", 
 	m = {},
 	function create()
 	{
-		this.m.ID = "actives.legend_puncture_parry_dagger";
-		this.m.Name = "Offhand Puncture";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendPunctureParryDagger);
 		this.m.Description = "A well-placed attack at the opponent armor\'s weakspots. Ignores all armor but is harder to hit with and can not land critical hits for additional damage, nor inflict additional damage with double grip.";
 		this.m.KilledString = "Stabbed";
 		this.m.Icon = "skills/active_27.png";

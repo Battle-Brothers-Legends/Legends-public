@@ -36,8 +36,7 @@ this.legend_unleash_bear_skill <- this.inherit("scripts/skills/skill", {
 
 	function create()
 	{
-		this.m.ID = "actives.legend_unleash_bear";
-		this.m.Name = "Summon Bear";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendUnleashBear);
 		this.m.Description = "Summon a faithful bear. Needs a free tile adjacent. Only one per battle.";
 		this.m.Icon = "skills/bear_square.png";
 		this.m.IconDisabled = "skills/bear_square_bw.png";

@@ -2,8 +2,7 @@ this.legend_incoming_skill <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "actives.legend_incoming";
-		this.m.Name = "Incoming!";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendIncoming);
 		this.m.Description = "This mercenary has received clear instructions to keep their head down, and is coordinating accordingly.";
 		this.m.Icon = "skills/incoming_square.png";
 		this.m.IconDisabled = "skills/incoming_square_bw.png";

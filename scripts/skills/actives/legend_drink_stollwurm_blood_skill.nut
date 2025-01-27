@@ -3,8 +3,7 @@ this.legend_drink_stollwurm_blood_skill <- this.inherit("scripts/skills/actives/
 
 	function create() {
 		this.legend_drink_potion_skill.create();
-		this.m.ID = "actives.legend_drink_stollwurm_blood";
-		this.m.Name = "Drink or Give Stollwurm Blood";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendDrinkStollwurmBlood);
 		this.m.Description = "Give to an adjacent ally or drink yourself a flask of stollwurm blood that promises to render someone indomitable for three turns. Can not be used while engaged in melee, and anyone receiving the item needs to have a free bag slot.";
 		this.m.Icon = "skills/stollwurm_blood_potion_square.png";
 		this.m.IconDisabled = "skills/blood_potion_square_bw.png";

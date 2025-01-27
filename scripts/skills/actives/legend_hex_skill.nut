@@ -4,8 +4,7 @@ this.legend_hex_skill <- this.inherit("scripts/skills/skill", {
 	},
 	function create()
 	{
-		this.m.ID = "actives.legend_hex";
-		this.m.Name = "Hex";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendHex);
 		this.m.Description = "Tie your soul to your enemy, forcing them to feel the same pain you do.";
 		this.m.Icon = "skills/hex_square.png";
 		this.m.IconDisabled = "skills/hex_square_bw.png";

@@ -5,8 +5,7 @@ this.legend_shoot_precise_stone_skill <- this.inherit("scripts/skills/skill", {
 	},
 	function create()
 	{
-		this.m.ID = "actives.legend_shoot_precise_stone";
-		this.m.Name = "Precise Shot";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendShootPreciseStone);
 		this.m.Description = "Make an effort to aim for the head with a singluar, precise shot. Can\'t be used while engaged in melee.";
 		this.m.KilledString = "Stoned";
 		this.m.Icon = "skills/stone_aim_square.png";
@@ -70,7 +69,7 @@ this.legend_shoot_precise_stone_skill <- this.inherit("scripts/skills/skill", {
 	{
 		local ret = this.getRangedTooltip(this.getDefaultTooltip());
 		local fatPerHit = (this.getContainer().getActor().getCurrentProperties().FatigueDealtPerHitMult + 1) * this.Const.Combat.FatigueReceivedPerHit;
-		
+
 		ret.extend([
 			{
 				id = 6,

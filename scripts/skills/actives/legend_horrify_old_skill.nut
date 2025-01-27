@@ -2,8 +2,7 @@ this.legend_horrify_old_skill <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "actives.legend_horrify";
-		this.m.Name = "Horrify";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendHorrify);
 		this.m.Description = "Blare out a piercing, unworldly sound that is more than likely to distress anyone unfortunate enough to hear it.";
 		this.m.KilledString = "Horrified";
 		this.m.Icon = "skills/active_133.png";

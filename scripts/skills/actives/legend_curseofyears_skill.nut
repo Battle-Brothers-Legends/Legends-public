@@ -4,8 +4,7 @@ this.legend_curseofyears_skill <- this.inherit("scripts/skills/skill", {
 	},
 	function create()
 	{
-		this.m.ID = "actives.legend_curseofyears";
-		this.m.Name = "Decrepify";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendCurseofyears);
 		this.m.Description = "This curse gives the victim a glimpse of their own mortality, briefly aging them. Imagining itself with an infirm body of advanced age, the afflicted believes it is no longer capable of youthful exertions.";
 		this.m.Icon = "skills/active_117.png";
 		this.m.IconDisabled = "skills/active_117_sw.png";

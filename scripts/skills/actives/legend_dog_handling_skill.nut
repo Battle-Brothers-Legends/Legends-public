@@ -4,8 +4,7 @@ this.legend_dog_handling_skill <- this.inherit("scripts/skills/skill", {
 	},
 	function create()
 	{
-		this.m.ID = "actives.legend_dog_handling";
-		this.m.Name = "Dog Handling";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendDogHandling);
 		this.m.Description = "Use food to convince an enemy dog to flee the battle.";
 		this.m.Icon = "skills/skill_dog_handling.png";
 		this.m.IconDisabled = "skills/skill_dog_handling_bw.png";

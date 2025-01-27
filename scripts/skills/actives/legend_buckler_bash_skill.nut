@@ -2,8 +2,7 @@ this.legend_buckler_bash_skill <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "actives.legend_buckler_bash";
-		this.m.Name = "Buckler Bash";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendBucklerBash);
 		this.m.Description = "A quick punch forward with a solid buckler. Anyone hit with a blow like this will be dazed and gasping for air, unable to put full force behind their blows for two turns.";
 		this.m.KilledString = "Bashed to death";
 		this.m.Icon = "skills/buckler_bash_square.png";

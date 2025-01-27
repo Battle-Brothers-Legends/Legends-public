@@ -4,8 +4,7 @@ this.legend_quick_step_skill <- this.inherit("scripts/skills/skill", {
 	},
 	function create()
 	{
-		this.m.ID = "actives.legend_quick_step";
-		this.m.Name = "Quick Step";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendQuickStep);
 		this.m.Description = "Exert yourself to move one tile at an unusually quick speed. Can only be used once per turn while outside of zone of control.";
 		this.m.Icon = "skills/unarmed_lunge_square.png";
 		this.m.IconDisabled = "skills/unarmed_lunge_square_bw.png";

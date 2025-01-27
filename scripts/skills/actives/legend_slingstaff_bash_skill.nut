@@ -2,8 +2,7 @@ this.legend_slingstaff_bash_skill <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "actives.legend_slingstaff_bash";
-		this.m.Name = "Slingstaff Bash";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendSlingstaffBash);
 		this.m.Description = "A brute force attack with the end of your slingstaff.";
 		this.m.KilledString = "Clubbed to death";
 		this.m.Icon = "skills/staff_bash.png";

@@ -9,8 +9,7 @@ this.legend_throw_knife_skill <- this.inherit("scripts/skills/skill", {
 	},
 	function create()
 	{
-		this.m.ID = "actives.legend_throw_knife";
-		this.m.Name = "Throw Knife";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendThrowKnife);
 		this.m.Description = "Throw a knife at an enemy. Costs " + this.m.AmmoPerUse + " ammo per use and has a [color=" + this.Const.UI.Color.PositiveValue + "]+15%[/color] chance to hit the head as well as a high chance to Daze your target.\nCannot be used while engaged in melee.";
 		this.m.Icon = "skills/active_87.png"; //To do
 		this.m.IconDisabled = "skills/active_87_sw.png"; //to do

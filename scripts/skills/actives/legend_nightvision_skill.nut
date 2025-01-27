@@ -2,8 +2,7 @@ this.legend_nightvision_skill <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "actives.legend_nightvision";
-		this.m.Name = "Nightvision";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendNightvision);
 		this.m.Description = "Use your superior vision to pick out enemies in the dark and point them out to your mercenaries.";
 		this.m.Icon = "skills/nightvision_square.png";
 		this.m.IconDisabled = "skills/nightvision_square_bw.png";
@@ -76,7 +75,7 @@ this.legend_nightvision_skill <- this.inherit("scripts/skills/skill", {
 				this.spawnIcon("status_effect_98", a.getTile());
 				a.getSkills().removeByID("special.night");
 		 	}
-			
+
 		}
 
 		return true;

@@ -2,8 +2,7 @@ this.legend_mark_target_skill <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "actives.legend_mark_target";
-		this.m.Name = "Mark Target";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendMarkTarget);
 		this.m.Description = "Analyse the weak points on an opponent and tell your comrades, reducing the target's Defense by 10 and increasing Damage Taken from all sources by 1% of their total Hitpoints for 2 turns.";
 		this.m.KilledString = "Marked";
 		this.m.Icon = "skills/MarkTargetSkill.png";

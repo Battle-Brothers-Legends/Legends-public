@@ -5,8 +5,7 @@ this.legend_basilisk_sentry_inject_skill <- this.inherit("scripts/skills/skill",
 
 	function create()
 	{
-		this.m.ID = "actives.legend_basilisk_sentry_inject";
-		this.m.Name = "Inject"; //check
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendBasiliskSentryInject);
 		this.m.Description = "no touch poison birb";
 		this.m.KilledString = "Pecked to death"; //check
 		this.m.Icon = "skills/sentry_inject.png";

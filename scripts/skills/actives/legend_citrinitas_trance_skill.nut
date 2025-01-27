@@ -3,8 +3,7 @@ this.legend_citrinitas_trance_skill <- this.inherit("scripts/skills/actives/lege
 	function create()
 	{
 		this.legend_trance_abstract_skill.create();
-		this.m.ID = "actives.legend_citrinitas_trance";
-		this.m.Name = "Citrinitas (Trance)";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendCitrinitasTrance);
 		this.m.Icon = "skills/omen_active.png"; //todo: change icons, better description, sound on use
 		this.m.IconDisabled = "skills/omen_active_sw.png";
 		this.m.Overlay = "omen_active";

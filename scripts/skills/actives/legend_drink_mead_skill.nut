@@ -4,8 +4,7 @@ this.legend_drink_mead_skill <- this.inherit("scripts/skills/actives/base/legend
 	function create()
 	{
 		this.legend_drink_alcohol_skill.create();
-		this.m.ID = "actives.legend_drink_mead";
-		this.m.Name = "Drink or Give Mead";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendDrinkMead);
 		this.m.Description = "Give to an adjacent ally or drink mead to get warmed, or drunk if already warmed, or sick if already drunk. Can not be used while engaged in melee, and anyone receiving the item needs to have a free bag slot.";
 		this.m.Icon = "skills/mead_square.png";
 		this.m.IconDisabled = "skills/mead_square_bw.png";

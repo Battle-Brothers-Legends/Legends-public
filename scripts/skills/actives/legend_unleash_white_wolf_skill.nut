@@ -39,8 +39,7 @@ this.legend_unleash_white_wolf_skill <- this.inherit("scripts/skills/actives/leg
 
 	function create()
 	{
-		this.m.ID = "actives.legend_unleash_white_wolf";
-		this.m.Name = "Unleash White Wolf";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendUnleashWhiteWolf);
 		this.m.Description = "Unleash your white wolf and send him charging into the enemy. Needs a free tile adjacent.";
 		this.m.Icon = "skills/unleash_white_wolf.png";
 		this.m.IconDisabled = "skills/unleash_white_wolf_bw.png";

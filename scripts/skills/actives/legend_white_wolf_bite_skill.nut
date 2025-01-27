@@ -2,8 +2,7 @@ this.legend_white_wolf_bite_skill <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "actives.legend_white_wolf_bite";
-		this.m.Name = "White Direwolf Bite";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendWhiteWolfBite);
 		this.m.Description = "";
 		this.m.KilledString = "Ripped to shreds";
 		this.m.Icon = "skills/active_71.png";

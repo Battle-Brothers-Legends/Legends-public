@@ -10,8 +10,7 @@ this.legend_choke_skill <- this.inherit("scripts/skills/skill", {
 	},
 	function create()
 	{
-		this.m.ID = "actives.legend_choke";
-		this.m.Name = "Choke";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendChoke);
 		this.m.Description = "A well-placed attack at an opponent\'s neck. Ignores all armor but is harder to hit with. Hit chance is based on target's fatigue. Damage is based on the difference in fatigue. Deals 50% damage against grappled or choked enemies. Hit chance is increased against grappled, stunned, netted, dazed, parried or sleeping enemies.";
 		this.m.KilledString = "Choked";
 		this.m.Icon = "skills/choke_square.png";

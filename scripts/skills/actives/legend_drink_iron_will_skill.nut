@@ -3,8 +3,7 @@ this.legend_drink_iron_will_skill <- this.inherit("scripts/skills/actives/base/l
 
 	function create() {
 		this.legend_drink_potion_skill.create();
-		this.m.ID = "actives.legend_drink_iron_will";
-		this.m.Name = "Drink or Give Iron Will Potion";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendDrinkIronWill);
 		this.m.Description = "Give to an adjacent ally or drink yourself fermented bodily juices, euphemistically called an iron will potion, to numb the pain and soldier through any injuries you might have suffered. Can not be used while engaged in melee, and anyone receiving the item needs to have a free bag slot.";
 		this.m.Icon = "skills/active_143.png";
 		this.m.IconDisabled = "skills/active_143_sw.png";

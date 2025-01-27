@@ -2,8 +2,7 @@ this.legend_push_forward_skill <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "actives.legend_push_forward";
-		this.m.Name = "Push Forward";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendPushForward);
 		this.m.Description = "Advance as one, increasing melee effectiveness of allies nearby.";
 		this.m.Icon = "skills/spears_square.png";
 		this.m.IconDisabled = "skills/spears_square_bw.png";

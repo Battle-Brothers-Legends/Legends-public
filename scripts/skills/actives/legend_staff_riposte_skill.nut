@@ -4,8 +4,7 @@ this.legend_staff_riposte_skill <- this.inherit("scripts/skills/skill", {
 	},
 	function create()
 	{
-		this.m.ID = "actives.legend_staff_riposte";
-		this.m.Name = "Riposte";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendStaffRiposte);
 		this.m.Description = "Prepare to immediately counter-attack any opponent that attempts to attack in melee and misses.";
 		this.m.Icon = "skills/active_33.png";
 		this.m.IconDisabled = "skills/active_33_sw.png";

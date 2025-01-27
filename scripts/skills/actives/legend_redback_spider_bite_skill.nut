@@ -2,8 +2,7 @@ this.legend_redback_spider_bite_skill <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "actives.legend_redback_spider_bite";
-		this.m.Name = "Redback Webknecht Bite";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendRedbackSpiderBite);
 		this.m.Description = "";
 		this.m.KilledString = "Ripped to shreds";
 		this.m.Icon = "skills/active_115.png";

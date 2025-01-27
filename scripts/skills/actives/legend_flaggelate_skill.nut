@@ -14,8 +14,7 @@ this.legend_flaggelate_skill <- this.inherit("scripts/skills/skill", {
 	},
 	function create()
 	{
-		this.m.ID = "actives.legend_flaggelate";
-		this.m.Name = "Flaggelate";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendFlaggelate);
 		this.m.Description = "Lash out to apply three stacks of bleeding damage at once. Quite ineffective against armor.";
 		this.m.KilledString = "Flaggelated to death";
 		this.m.Icon = "skills/flaggelate_square.png";

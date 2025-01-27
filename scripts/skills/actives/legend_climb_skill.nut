@@ -2,8 +2,7 @@ this.legend_climb_skill <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "actives.legend_climb";
-		this.m.Name = "Climb";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendClimb);
 		this.m.Description = "Allows you to move up or down levels. Does not trigger attacks of opportunity. Can not be used on flat ground.";
 		this.m.Icon = "skills/climb_square.png";
 		this.m.IconDisabled = "skills/climb_square_bw.png";

@@ -2,8 +2,7 @@ this.legend_magic_stun_skill <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "actives.legend_stun";
-		this.m.Name = "Stun";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendStun);
 		this.m.Description = "Unleash a brilliant flash of white light aimed directly at the eyes of your target in an attempt to blind and incapacitate.";
 		this.m.KilledString = "Stunned";
 		this.m.Icon = "skills/stun56.png";

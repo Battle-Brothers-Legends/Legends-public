@@ -9,8 +9,7 @@ this.legend_en_garde_skill <- this.inherit("scripts/skills/skill", {
 
 	function create()
 	{
-		this.m.ID = "actives.legend_en_garde";
-		this.m.Name = "En Garde";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendEnGarde);
 		this.m.Description = "Block your enemy\'s weapons in a way that leaves them open to counter attack. Applies the Vulnerable effect to an enemy, lowering their melee and ranged defenses by 10.";
 		this.m.Icon = "skills/en_garde_square.png";
 		this.m.IconDisabled = "skills/en_garde_square_bw.png";
@@ -108,6 +107,6 @@ this.legend_en_garde_skill <- this.inherit("scripts/skills/skill", {
 
 		return success;
 	}
-	
+
 });
 

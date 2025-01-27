@@ -2,8 +2,7 @@ this.legend_halberd_smite_skill <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "actives.legend_halberd_smite";
-		this.m.Name = "Smite";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendHalberdSmite);
 		this.m.Description = "A slow overhead strike performed with full force to smash a target to bits.";
 		this.m.KilledString = "Chopped";
 		this.m.Icon = "skills/legend_halberd_smite.png";
@@ -101,7 +100,7 @@ this.legend_halberd_smite_skill <- this.inherit("scripts/skills/skill", {
 	function onUse( _user, _targetTile )
 	{
 		this.spawnAttackEffect(_targetTile, this.Const.Tactical.AttackEffectBash);
-		return this.attackEntity(_user, _targetTile.getEntity());		
+		return this.attackEntity(_user, _targetTile.getEntity());
 	}
 
 	function onAnySkillUsed( _skill, _targetEntity, _properties )
@@ -121,7 +120,7 @@ this.legend_halberd_smite_skill <- this.inherit("scripts/skills/skill", {
 			this.m.HitChanceBonus = 0;
 		}
 	}
-	
+
 
 });
 

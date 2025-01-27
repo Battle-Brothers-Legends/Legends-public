@@ -6,8 +6,7 @@ this.legend_piercing_shot_skill <- ::inherit("scripts/skills/actives/aimed_shot"
 	function create()
 	{
 		this.aimed_shot.create();
-		this.m.ID = "actives.legend_piercing_shot";
-		this.m.Name = "Piercing Shot";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendPiercingShot);
 		this.m.Description = "A shot with so much force that it passes straight through the target to whoever is behind them.";
 		this.m.KilledString = "Pierced";
 		this.m.Icon = "skills/PiercingBoltSkill.png";

@@ -4,8 +4,7 @@ this.legend_magic_web_bolt_skill <- this.inherit("scripts/skills/actives/legend_
 
 	function create()
 	{
-		this.m.ID="actives.legend_magic_web_bolt";
-		this.m.Name = "Web Bolt";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendMagicWebBolt);
 		this.m.Description = "Send a web of silk out to ensnare an opponent, rooting them in place halving their damage, defenses and initiative";
 		this.m.Icon = "skills/web_bolt_01.png";
 		this.m.IconDisabled = "skills/web_bolt_01_bw.png";
@@ -84,7 +83,7 @@ this.legend_magic_web_bolt_skill <- this.inherit("scripts/skills/actives/legend_
 		local chance = ourSkill - theirSkill;
 		chance = chance > 95 ? 95 : chance;
 		chance = chance < 5 ? 5 : chance;
-		
+
 		this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(_user) + " uses Web Bolt on " + this.Const.UI.getColorizedEntityName(targetEntity) + " (Chance: " + chance + ", Rolled: " + r +")");
 
 		if (r <= chance)

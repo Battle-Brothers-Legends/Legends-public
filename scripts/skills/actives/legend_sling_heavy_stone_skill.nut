@@ -5,8 +5,7 @@ this.legend_sling_heavy_stone_skill <- this.inherit("scripts/skills/skill", {
 	},
 	function create()
 	{
-		this.m.ID = "actives.legend_sling_heavy_stone";
-		this.m.Name = "Sling Heavy Stone";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendSlingHeavyStone);
 		this.m.Description = "Hurl a stone towards a target with your sling. Hard to aim and very unwieldy, but stones are everywhere so you never run out of ammunition. Can not be used while engaged in melee.";
 		this.m.KilledString = "Stoned";
 		this.m.Icon = "skills/active_12.png";

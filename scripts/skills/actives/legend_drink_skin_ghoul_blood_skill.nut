@@ -3,8 +3,7 @@ this.legend_drink_skin_ghoul_blood_skill <- this.inherit("scripts/skills/actives
 
 	function create() {
 		this.legend_drink_potion_skill.create();
-		this.m.ID = "actives.legend_drink_skin_ghoul_blood";
-		this.m.Name = "Drink or Give Skin Ghoul Blood";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendDrinkSkinGhoulBlood);
 		this.m.Description = "Give to an adjacent ally or drink yourself a flask of skin ghoul blood that promises to knit wounds and heal damaged flesh. Can not be used while engaged in melee, and anyone receiving the item needs to have a free bag slot.";
 		this.m.Icon = "skills/blooddrop_square.png";
 		this.m.IconDisabled = "skills/blooddrop_square_bw.png";

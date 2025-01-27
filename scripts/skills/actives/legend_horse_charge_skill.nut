@@ -2,8 +2,7 @@ this.legend_horse_charge_skill <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "actives.legend_horse_charge";
-		this.m.Name = "Horse Charge";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendHorseCharge);
 		this.m.Description = "Push your mount forward with speed, ending in an impact that stuns an enemy.";
 		this.m.Icon = "skills/horse_charge.png";
 		this.m.IconDisabled = "skills/horse_charge_bw.png";

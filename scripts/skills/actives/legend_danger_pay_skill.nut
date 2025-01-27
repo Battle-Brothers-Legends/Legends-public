@@ -7,8 +7,7 @@ this.legend_danger_pay_skill <- this.inherit("scripts/skills/skill", {
 	},
 	function create()
 	{
-		this.m.ID = "actives.legend_danger_pay";
-		this.m.Name = "Danger Pay";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendDangerPay);
 		this.m.Description = "Pay a unit " + this.m.Multiplier + "x their daily wage to set their morale to Confident and grant them the buff 'Motivated' for three turns.";
 		this.m.Icon = "skills/coins_square.png";
 		this.m.IconDisabled = "skills/coins_square_bw.png";
@@ -67,7 +66,7 @@ this.legend_danger_pay_skill <- this.inherit("scripts/skills/skill", {
 
 		local target = _targetTile.getEntity();
 
-		if (this.getContainer().getActor().getFaction() != target.getFaction()) return false;	
+		if (this.getContainer().getActor().getFaction() != target.getFaction()) return false;
 		if (!target.getFlags().has("human")) return false;
 		if (("getDailyCost" in target) == false) return false;	// certain human "brothers" may not have dailyCost function and would otherwise crash this function
 		if (this.getCrownCost(target) <= 0) return false;		// A Cost of 0 is not accepted to prevent abuse on PlayerCharacter or Indebted

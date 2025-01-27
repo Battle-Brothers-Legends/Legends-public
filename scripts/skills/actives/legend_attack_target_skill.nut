@@ -6,8 +6,7 @@ this.legend_attack_target_skill <- this.inherit("scripts/skills/skill", {
 
 	function create()
 	{
-		this.m.ID = "actives.legend_attack_target";
-		this.m.Name = "Chopper sick balls!";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendAttackTarget);
 		this.m.Description = "Orders your pet to prioritize attacking a specific target.";
 		this.m.Icon = "skills/houndattack.png";
 		this.m.IconDisabled = "skills/houndattack_bw.png";

@@ -2,8 +2,7 @@ this.legend_bear_bite_skill <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "actives.legend_bear_bite";
-		this.m.Name = "Bear Bite";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendBearBite);
 		this.m.Description = "Tear into an opponent with your teeth";
 		this.m.KilledString = "Ripped to shreds";
 		this.m.Icon = "skills/active_71.png";

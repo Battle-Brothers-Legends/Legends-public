@@ -4,8 +4,7 @@ this.legend_magic_healing_wind_skill <- this.inherit("scripts/skills/actives/leg
 	},
 	function create()
 	{
-		this.m.ID = "actives.legend_magic_healing_wind";
-		this.m.Name = "Healing Mist";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendMagicHealingWind);
 		this.m.Description = "Restore the health of all allies within 4 tiles. Must be holding a magic staff to use.";
 		this.m.Icon = "skills/magic_mist_01.png";
 		this.m.IconDisabled = "skills/magic_mist_01_bw.png";

@@ -4,8 +4,7 @@ this.legend_eat_pudding_skill <- this.inherit("scripts/skills/actives/base/legen
 	function create()
 	{
 		this.legend_eat_skill.create();
-		this.m.ID = "actives.legend_eat_pudding";
-		this.m.Name = "Eat or Give Pudding";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendEatPudding);
 		this.m.Description = "Give to an adjacent ally or eat yourself a pudding that slowly recovers hitpoints. Can not be used while engaged in melee, and anyone receiving the item needs to have a free bag slot.";
 		this.m.Icon = "skills/pudding_square.png";
 		this.m.IconDisabled = "skills/pudding_square_bw.png";

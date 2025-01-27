@@ -9,8 +9,7 @@ this.legend_magic_missile_skill <- this.inherit("scripts/skills/legend_magic_ski
 		this.m.AdditionalAccuracy = 20;
 		this.m.DamageInitiativeMin = 15;
 		this.m.DamageInitiativeMax = 35;
-		this.m.ID = "actives.legend_magic_missile";
-		this.m.Name = "Missile";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendMagicMissile);
 		this.m.Description = "A burst of force, leaping forward into a foe.";
 		this.m.KilledString = "Shot";
 		this.m.Icon = "skills/missile_square.png";
