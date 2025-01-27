@@ -33,7 +33,7 @@ this.perk_legend_specialist_shovel_skill <- this.inherit("scripts/skills/skill",
 
 		if (item != null && (item.getID() == "weapon.legend_shovel" || item.getID() == "weapon.legend_named_shovel") && !actor.getSkills().hasActive(::Legends.Active.KnockOut))
 		{
-			item.addSkill(::Legends.Actives.grant(this, ::Legends.Active.KnockOut, function (_skill) {}.bindenv(this)));
+			::Legends.Actives.grant(item, ::Legends.Active.KnockOut);
 		}
 	}
 

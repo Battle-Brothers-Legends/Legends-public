@@ -62,7 +62,7 @@
 									this.List.push({
 										id = 10,
 										icon = _skill.getIcon(),
-										text = bro.getName() + " has received " + this.Const.Strings.getArticle(skill.getName()) + skill.getName()
+										text = bro.getName() + " has received " + this.Const.Strings.getArticle(_skill.getName()) + _skill.getName()
 									});
 								}.bindenv(this));
 
