@@ -237,6 +237,49 @@
 		}
 	}
 
+	o.returnBrokenNetToOwner <- function()
+	{
+		local bros = {};
+
+		if (::Tactical.Entities.m.NetTiles.len() > 0) {
+			foreach (bro in ::World.getPlayerRoster().getAll())
+			{
+				bros[bro.getID()] <- bro;
+			}
+		}
+
+		foreach (id, tile in ::Tactical.Entities.m.NetTiles)
+		{
+			if (!tile.IsContainingItems) continue;
+			
+			for (local i = tile.Items.len() - 1; i >= 0; --i)
+			{
+				local item = tile.Items[i];
+
+				if (!item.isItemType(::Const.Items.ItemType.Net) || item.m.OwnerID == null)
+					continue;
+
+				if (!(item.m.OwnerID in bros))
+					continue;
+
+				local success = false;
+
+				if (bros[item.m.OwnerID].getItems().equip(item))
+					success = true;
+
+				if (!success)
+					success = bros[item.m.OwnerID].getItems().addToBag(item);
+
+				if (success)
+					tile.Items.remove(i).m.OwnerID = null;
+			}
+
+			tile.IsContainingItems = tile.Items.len() > 0;
+		}
+
+		::Tactical.Entities.m.NetTiles = {};
+	}
+
 	o.gatherLoot = function()
 	{
 		local playerKills = 0;
@@ -248,15 +291,14 @@
 
 		if (!this.isScenarioMode())
 		{
+			this.returnBrokenNetToOwner();
 			this.World.Statistics.getFlags().set("LastCombatKills", playerKills);
 		}
 
 		local isArena = !this.isScenarioMode() && this.m.StrategicProperties != null && this.m.StrategicProperties.IsArenaMode;
 
 		if (!isArena && !this.isScenarioMode() && this.m.StrategicProperties != null && this.m.StrategicProperties.IsLootingProhibited)
-		{
 			return;
-		}
 
 		local EntireCompanyRoster = this.World.getPlayerRoster().getAll();
 		local CannibalsInRoster = 0;

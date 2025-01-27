@@ -92,6 +92,27 @@
 		this.refillAmmo();
 	}
 
+	local refillAmmo = o.refillAmmo;
+	o.refillAmmo = function()
+	{
+		if (m.Ammo == 0)
+			return;
+
+		local repairNet = false;
+		foreach( bro in ::World.getPlayerRoster().getAll() )
+		{
+			if (bro.getFlags().get("LegendsCanRepairNet")) {
+				repairNet = true;
+				break;
+			}
+		}
+
+		if (repairNet) ::World.Statistics.getFlags().set("LegendsCanRepairNet");
+		else ::World.Statistics.getFlags().remove("LegendsCanRepairNet");
+
+		refillAmmo();
+	}
+
 	o.setArmorParts = function( _f )
 	{
 		this.m.ArmorParts = this.Math.min(this.Math.max(0, _f), this.getMaxArmorParts());
