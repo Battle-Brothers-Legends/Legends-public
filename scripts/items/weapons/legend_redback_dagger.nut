@@ -68,7 +68,7 @@ this.legend_redback_dagger <- this.inherit("scripts/items/weapons/weapon", {
 
 	function onAnySkillUsed( _skill, _targetEntity, _properties )
 	{
-		if (_skill != null && _skill.getID() == "actives.puncture" && _targetEntity != null && _targetEntity.getCurrentProperties().IsRooted)
+		if (_skill != null && _skill.getID() == ::Legends.Actives.getID(::Legends.Active.Puncture) && _targetEntity != null && _targetEntity.getCurrentProperties().IsRooted)
 		{
 			_properties.DamageRegularMult *= 1.33;
 		}

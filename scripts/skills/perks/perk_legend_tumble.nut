@@ -1,12 +1,12 @@
 this.perk_legend_tumble <- this.inherit("scripts/skills/skill", {
 	m = {
 		Skills = [
-			"actives.lunge",
-			"actives.footwork",
-			"actives.rotation",
-			"actives.legend_tumble",
-			"actives.legend_leap",
-			"actives.legend_horse_pirouette"
+			::Legends.Actives.getID(::Legends.Active.Lunge),
+			::Legends.Actives.getID(::Legends.Active.Footwork),
+			::Legends.Actives.getID(::Legends.Active.Rotation),
+			::Legends.Actives.getID(::Legends.Active.LegendTumble),
+			::Legends.Actives.getID(::Legends.Active.LegendLeap),
+			::Legends.Actives.getID(::Legends.Active.LegendHorsePirouette)
 		]
 	},
 	function create()
@@ -28,7 +28,7 @@ this.perk_legend_tumble <- this.inherit("scripts/skills/skill", {
 			{
 				skill.m.FatigueCostMult *= 0.5;
 
-				if (skill.getID() == "actives.legend_leap")
+				if (skill.getID() == ::Legends.Actives.getID(::Legends.Active.LegendLeap))
 				{
 					skill.m.ActionPointCost /= 2;
 				}

@@ -48,7 +48,7 @@
 
 		local myTile = _entity.getTile();
 		local zoc = _entity.getTile().getZoneOfOccupationCountOtherThan(_entity.getAlliedFactions());
-		local isOffensive = this.m.Skill.getID() == "actives.barbarian_fury";
+		local isOffensive = this.m.Skill.getID() == ::Legends.Actives.getID(::Legends.Active.BarbarianFury);
 		local hitpointRatio = (_entity.getHitpoints() + _entity.getArmor(this.Const.BodyPart.Body) + _entity.getArmor(this.Const.BodyPart.Head)) / (_entity.getHitpointsMax() + _entity.getArmorMax(this.Const.BodyPart.Body) + _entity.getArmorMax(this.Const.BodyPart.Head));
 		local isEntityWounded = false;
 

@@ -3,7 +3,7 @@ this.legend_ai_alp_realm_of_shadow <- this.inherit("scripts/ai/tactical/behavior
 		TargetTile = null,
 		TargetScore = 0,
 		PossibleSkills = [
-			"actives.legend_alp_realm_of_shadow"
+			::Legends.Actives.getID(::Legends.Active.LegendAlpRealmOfShadow)
 		],
 		Skill = null
 	},

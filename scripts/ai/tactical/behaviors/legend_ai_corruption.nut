@@ -3,7 +3,7 @@ this.legend_ai_corruption <- this.inherit("scripts/ai/tactical/behavior", {
 		TargetTile = null,
 		TargetScore = 0,
 		PossibleSkills = [
-			"actives.legend_shadows"
+			::Legends.Actives.getID(::Legends.Active.LegendShadows)
 		],
 		Skill = null
 	},

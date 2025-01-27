@@ -1,8 +1,8 @@
 this.perk_legend_specialist_spearwall <- this.inherit("scripts/skills/skill", {
 	m = {
 		Skills = [
-			"actives.legend_staffwall",
-			"actives.spearwall"
+			::Legends.Actives.getID(::Legends.Active.LegendStaffwall),
+			::Legends.Actives.getID(::Legends.Active.Spearwall)
 		]
 	},
 	function create()

@@ -3,9 +3,9 @@ this.perk_legend_blend_in <- this.inherit("scripts/skills/skill", {
 		MeekStacks = 1,
 		MeekCounter = 0,
 		AffectedSkills = [ // put these in this array so submodder has an easier time to mod affected skills by this perk
-			"actives.legend_evasion",
-			"actives.legend_leap",
-			"actives.footwork",
+			::Legends.Actives.getID(::Legends.Active.LegendEvasion),
+			::Legends.Actives.getID(::Legends.Active.LegendLeap),
+			::Legends.Actives.getID(::Legends.Active.Footwork),
 		]
 	},
 	function create()

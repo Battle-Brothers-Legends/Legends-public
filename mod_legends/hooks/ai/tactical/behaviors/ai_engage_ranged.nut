@@ -1,11 +1,11 @@
 ::mods_hookExactClass("ai/tactical/behaviors/ai_engage_ranged", function(o) 
 {
 	o.m.PossibleSkills.extend([
-		"actives.legend_magic_missile",
-		"actives.legend_catapult_boulder",
-		"actives.legend_sling_heavy_stone",
-		"actives.legend_shoot_dart",
-		"actives.legend_shoot_stone",
-		"actives.legend_shoot_precise_stone"
+		::Legends.Actives.getID(::Legends.Active.LegendMagicMissile),
+		::Legends.Actives.getID(::Legends.Active.LegendCatapultBoulder),
+		::Legends.Actives.getID(::Legends.Active.LegendSlingHeavyStone),
+		::Legends.Actives.getID(::Legends.Active.LegendShootDart),
+		::Legends.Actives.getID(::Legends.Active.LegendShootStone),
+		::Legends.Actives.getID(::Legends.Active.LegendShootPreciseStone)
 	]);
 });

@@ -1,6 +1,6 @@
 ::mods_hookExactClass("ai/tactical/behaviors/ai_charm", function(o) 
 {
-	o.m.PossibleSkills.push("actives.legend_intensely_charm");
+	o.m.PossibleSkills.push(::Legends.Actives.getID(::Legends.Active.LegendIntenselyCharm));
 
 	o.onEvaluate = function( _entity )
 	{

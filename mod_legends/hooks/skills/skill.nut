@@ -452,7 +452,16 @@
 					text = "Resistance against ranged weapons"
 				});
 			}
-			else if (this.m.ID == "actives.puncture" || this.m.ID == "actives.thrust" || this.m.ID == "actives.stab" || this.m.ID == "actives.deathblow" || this.m.ID == "actives.impale" || this.m.ID == "actives.rupture" || this.m.ID == "actives.prong" || this.m.ID == "actives.lunge")
+			else if (
+				this.getID() == ::Legends.Actives.getID(::Legends.Active.Puncture) ||
+				this.getID() == ::Legends.Actives.getID(::Legends.Active.Thrust) ||
+				this.getID() == ::Legends.Actives.getID(::Legends.Active.Stab) ||
+				this.getID() == ::Legends.Actives.getID(::Legends.Active.Deathblow) ||
+				this.getID() == ::Legends.Actives.getID(::Legends.Active.Impale) ||
+				this.getID() == ::Legends.Actives.getID(::Legends.Active.Rupture) ||
+				this.getID() == ::Legends.Actives.getID(::Legends.Active.Prong) ||
+				this.getID() == ::Legends.Actives.getID(::Legends.Active.Lunge)
+			)
 			{
 				ret.push({
 					icon = "ui/tooltips/negative.png",
@@ -461,7 +470,7 @@
 			}
 		}
 
-		if (_targetTile.IsOccupiedByActor && targetEntity.getCurrentProperties().IsImmuneToStun && (this.m.ID == "actives.knock_out" || this.m.ID == "actives.knock_over" || this.m.ID == "actives.strike_down"))
+		if (_targetTile.IsOccupiedByActor && targetEntity.getCurrentProperties().IsImmuneToStun && (this.getID() == ::Legends.Actives.getID(::Legends.Active.KnockOut) || this.getID() == ::Legends.Actives.getID(::Legends.Active.KnockOver) || this.getID() == ::Legends.Actives.getID(::Legends.Active.StrikeDown)))
 		{
 			ret.push({
 				icon = "ui/tooltips/negative.png",
@@ -469,7 +478,7 @@
 			});
 		}
 
-		if (_targetTile.IsOccupiedByActor && targetEntity.getCurrentProperties().IsImmuneToRoot && this.m.ID == "actives.throw_net")
+		if (_targetTile.IsOccupiedByActor && targetEntity.getCurrentProperties().IsImmuneToRoot && this.getID() == ::Legends.Actives.getID(::Legends.Active.ThrowNet))
 		{
 			ret.push({
 				icon = "ui/tooltips/negative.png",
@@ -477,7 +486,7 @@
 			});
 		}
 
-		if (_targetTile.IsOccupiedByActor && (targetEntity.getCurrentProperties().IsImmuneToDisarm || targetEntity.getItems().getItemAtSlot(this.Const.ItemSlot.Mainhand) == null) && this.m.ID == "actives.disarm")
+		if (_targetTile.IsOccupiedByActor && (targetEntity.getCurrentProperties().IsImmuneToDisarm || targetEntity.getItems().getItemAtSlot(this.Const.ItemSlot.Mainhand) == null) && this.getID() == ::Legends.Actives.getID(::Legends.Active.Disarm))
 		{
 			ret.push({
 				icon = "ui/tooltips/negative.png",
@@ -485,7 +494,7 @@
 			});
 		}
 
-		if (_targetTile.IsOccupiedByActor && targetEntity.getCurrentProperties().IsImmuneToKnockBackAndGrab && (this.m.ID == "actives.knock_back" || this.m.ID == "actives.hook" || this.m.ID == "actives.repel"))
+		if (_targetTile.IsOccupiedByActor && targetEntity.getCurrentProperties().IsImmuneToKnockBackAndGrab && (this.getID() == ::Legends.Actives.getID(::Legends.Active.KnockBack) || this.getID() == ::Legends.Actives.getID(::Legends.Active.Hook) || this.getID() == ::Legends.Actives.getID(::Legends.Active.Repel)))
 		{
 			ret.push({
 				icon = "ui/tooltips/negative.png",
@@ -874,7 +883,7 @@
 		};
 		local addLungeDamageRow = function ()
 		{
-			if (!thisSkill.m.IsAttack || thisSkill.m.ID != "actives.lunge" || !_targetTile.IsOccupiedByActor)
+			if (!thisSkill.m.IsAttack || thisSkill.getID() != ::Legends.Actives.getID(::Legends.Active.Lunge) || !_targetTile.IsOccupiedByActor)
 			{
 				return;
 			}

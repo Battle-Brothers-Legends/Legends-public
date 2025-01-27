@@ -194,7 +194,7 @@ this.legend_chain_lightning_skill <- this.inherit("scripts/skills/skill", {
 	{
 		skill.onShieldHit(_info);
 
-		if (_info.Skill.getID() == "actives.legend_chain_lightning")
+		if (_info.Skill.getID() == ::Legends.Actives.getID(::Legends.Active.LegendChainLightning))
 			_info.Skill.summonChainLighting(_info.User, _info.TargetEntity.getTile());
 	}
 

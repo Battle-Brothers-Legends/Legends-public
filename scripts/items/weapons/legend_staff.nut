@@ -35,10 +35,10 @@ this.legend_staff <- this.inherit("scripts/items/weapons/weapon", {
 	{
 		this.weapon.onEquip();
 		::Legends.Actives.grant(this, ::Legends.Active.Bash, function (_skill) {
-			s.m.IsStaffBash = true;
+			_skill.m.IsStaffBash = true;
 		}.bindenv(this));
 		::Legends.Actives.grant(this, ::Legends.Active.KnockOut, function (_skill) {
-			s.m.IsStaffKnockOut = true;
+			_skill.m.IsStaffKnockOut = true;
 		}.bindenv(this))
 	}
 

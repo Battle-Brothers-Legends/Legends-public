@@ -1,9 +1,9 @@
 ::mods_hookExactClass("ai/tactical/behaviors/ai_attack_knock_out", function ( o )
 {
 	o.m.PossibleSkills.extend([
-		"actives.legend_grapple",
-		"actives.legend_buckler_bash",
-		"actives.legend_ninetails_disarm"
+		::Legends.Actives.getID(::Legends.Active.LegendGrapple),
+		::Legends.Actives.getID(::Legends.Active.LegendBucklerBash),
+		::Legends.Actives.getID(::Legends.Active.LegendNinetailsDisarm)
 	]);
 
 	local getBestTarget = o.getBestTarget;

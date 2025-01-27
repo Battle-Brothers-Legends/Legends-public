@@ -13,23 +13,16 @@ this.perk_legend_master_anger <- this.inherit("scripts/skills/skill", {
 	function onTurnStart()
 	{
 		local validSkills = [
-			["injury.legend_aperthropy", "actives.legend_transform_into_boar", "actives/legend_transform_into_boar"],
-			["injury.legend_arborthropy", "actives.legend_transform_into_tree", "actives/legend_transform_into_tree"],
-			["injury.legend_lycanthropy", "actives.legend_transform_into_wolf", "actives/legend_transform_into_wolf"],
-			["injury.legend_ursathropy", "actives.legend_transform_into_bear", "actives/legend_transform_into_bear"],
-			["injury.legend_vermesthropy", "actives.legend_transform_into_rat", "actives/legend_transform_into_rat"]
+			["injury.legend_aperthropy", ::Legends.Active.LegendTransformIntoBoar],
+			["injury.legend_arborthropy", ::Legends.Active.LegendTransformIntoTree],
+			["injury.legend_lycanthropy", ::Legends.Active.LegendTransformIntoWolf],
+			["injury.legend_ursathropy", ::Legends.Active.LegendTransformIntoBear],
+			["injury.legend_vermesthropy", ::Legends.Active.LegendTransformIntoRat]
 		];
 
-		local actor = this.getContainer().getActor();
-
-		foreach (s in validSkills)
-		{
-			if (actor.getSkills().hasSkill(s[0]) && !actor.getSkills().hasSkill(s[1]))
-			{
-				actor.getSkills().add(this.new("scripts/skills/" + s[2]));
-			}
+		foreach (s in validSkills) {
+			if (this.getContainer().hasSkill(s[0]) && !this.getContainer().hasActive(s[1]))
+				::Legends.Actives.grant(this, s[1]);
 		}
 	}
-
-
 });

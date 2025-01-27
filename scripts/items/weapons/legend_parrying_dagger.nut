@@ -130,7 +130,7 @@ this.legend_parrying_dagger <- this.inherit("scripts/items/shields/shield", {
 		}.bindenv(this));
 		::Legends.Actives.grant(this, ::Legends.Active.Puncture, function (_skill) {
 			this.m.OffHandWeaponSkills[_skill.m.ID] <- ::MSU.asWeakTableRef(_skill);
-			_skill.m.Order = ""Const.SkillOrder.UtilityTargeted - 2;
+			_skill.m.Order = ::Const.SkillOrder.UtilityTargeted - 2;
 			_skill.m.ID = _skill.m.ID + "_offhand";
 		}.bindenv(this));
 		::Legends.Actives.grant(this, ::Legends.Active.LegendEnGarde);

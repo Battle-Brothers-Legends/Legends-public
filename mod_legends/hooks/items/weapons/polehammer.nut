@@ -10,7 +10,7 @@
 	{
 		this.weapon.addSkill(_skill);
 
-		if (_skill.getID() != "actives.batter")
+		if (_skill.getID() != ::Legends.Actives.getID(::Legends.Active.Batter))
 			return;
 
 		local skill = ::new("scripts/skills/actives/impale");

@@ -2,7 +2,7 @@
 {
 	o.onBeforeDamageReceived = function ( _attacker, _skill, _hitInfo, _properties )
 	{
-		if (_skill != null && _skill.getID() == "actives.throw_golem")
+		if (_skill != null && _skill.getID() == ::Legends.Actives.getID(::Legends.Active.ThrowGolem))
 		{
 			_properties.DamageReceivedTotalMult = 0.0;
 			return;

@@ -22,7 +22,7 @@ this.perk_legend_specialist_sling_damage <- this.inherit("scripts/skills/skill",
 
 	function onAnySkillUsed( _skill, _targetEntity, _properties )
 	{
-		if (_skill.getID() == "actives.legend_slingstaff_bash")
+		if (_skill.getID() == ::Legends.Actives.getID(::Legends.Active.LegendSlingstaffBash))
 		{
 			_properties.DamageRegularMin -= 4;
 			_properties.DamageRegularMax -= 12;

@@ -17,7 +17,7 @@ this.perk_legend_mastery_nets <- this.inherit("scripts/skills/skill", {
 
 	function onAfterUpdate( _properties )
 	{
-		local skills = this.getContainer().getSkillsByFunction(@(_skill) _skill.getID() == "actives.break_free" || _skill.getID() == "actives.break_ally_free");
+		local skills = this.getContainer().getSkillsByFunction(@(_skill) _skill.getID() == ::Legends.Actives.getID(::Legends.Active.BreakFree) || _skill.getID() == ::Legends.Actives.getID(::Legends.Active.BreakAllyFree));
 		foreach (s in skills)
 		{
 			s.m.ActionPointCost -= 1;
