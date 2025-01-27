@@ -16,6 +16,7 @@ this.legend_skullsmasher <- this.inherit("scripts/items/weapons/weapon", {
 		this.m.AddGenericSkill = true;
 		this.m.ShowQuiver = false;
 		this.m.ShowArmamentIcon = true;
+		this.m.IsDoubleGrippable = true;
 		this.m.ArmamentIcon = "icon_legend_skullsmasher_01";
 		this.m.Value = 1200;
 		this.m.ShieldDamage = 32;
