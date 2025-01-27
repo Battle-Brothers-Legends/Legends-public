@@ -219,7 +219,7 @@ this.legend_kobold <- this.inherit("scripts/entity/tactical/actor", {
 		injury.setBrush("bust_goblin_01_head_injured");
 		local body_blood = this.addSprite("body_blood");
 		body_blood.Visible = false;
-		this.m.Skills.add(this.new("scripts/skills/racial/legend_kobold_racial"));
+		::Legends.Traits.grant(this, ::Legends.Trait.RacialLegendKobold);
 		::Legends.Effects.grant(this, ::Legends.Effect.Captain);
 		::Legends.Effects.grant(this, ::Legends.Effect.DoubleGrip);
 		::Legends.Actives.grant(this, ::Legends.Active.HandToHand);

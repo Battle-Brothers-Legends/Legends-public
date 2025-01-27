@@ -124,7 +124,7 @@ this.legend_kobold_wolfrider <- this.inherit("scripts/entity/tactical/legend_kob
 			_skill.m.ActionPointCost = 0;
 		});
 
-		this.m.Skills.add(this.new("scripts/skills/racial/goblin_ambusher_racial"));
+		::Legends.Traits.grant(this, ::Legends.Trait.RacialGoblinAmbusher);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendStrengthInNumbers);
 		::Legends.Perks.grant(this, ::Legends.Perk.Pathfinder);
 

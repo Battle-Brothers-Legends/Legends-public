@@ -31,7 +31,7 @@ this.legends_risen_legion_scenario <- this.inherit("scripts/scenarios/world/star
 			bro.getFlags().add("undead");
 			bro.getFlags().add("skeleton");
 			// bro.getSkills().add(this.new("scripts/skills/traits/legend_deathly_spectre_trait"));
-			bro.getSkills().add(this.new("scripts/skills/racial/skeleton_racial"));
+			::Legends.Traits.grant(bro, ::Legends.Trait.RacialSkeleton);
 			::Legends.Traits.grant(bro, ::Legends.Trait.LegendFleshless);
 			local items = bro.getItems();
 			items.unequip(items.getItemAtSlot(this.Const.ItemSlot.Mainhand));
@@ -477,10 +477,9 @@ this.legends_risen_legion_scenario <- this.inherit("scripts/scenarios/world/star
 	function onHiredByScenario( bro )
 	{
 		// bro.getSkills().add(this.new("scripts/skills/traits/legend_deathly_spectre_trait"));
-
-		if (!bro.getSkills().hasSkill("racial.skeleton") && bro.getFlags().has("skeleton"))
+		if (!bro.getSkills().hasTrait(::Legends.Trait.RacialSkeleton) && bro.getFlags().has("skeleton"))
 		{
-			bro.getSkills().add(this.new("scripts/skills/racial/skeleton_racial"));
+			::Legends.Traits.grant(bro, ::Legends.Trait.RacialSkeleton);
 			::Legends.Traits.grant(bro, ::Legends.Trait.LegendFleshless);
 		}
 

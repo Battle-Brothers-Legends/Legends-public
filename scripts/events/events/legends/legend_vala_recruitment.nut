@@ -53,7 +53,7 @@ this.legend_vala_recruitment <- this.inherit("scripts/events/event", {
 
 				if (this.World.Assets.getOrigin().getID() == "scenario.legend_risen_legion")
 				{
-					_event.m.Vala.getSkills().add(this.new("scripts/skills/racial/skeleton_racial"));
+					::Legends.Traits.grant(_event.m.Vala, ::Legends.Trait.RacialSkeleton);
 					::Legends.Traits.grant(_event.m.Vala, ::Legends.Trait.LegendFleshless);
 				}
 				else

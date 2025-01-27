@@ -46,7 +46,7 @@ this.legend_civilwar_noble_event <- this.inherit("scripts/events/event", {
 						_event.m.Dude.setStartValuesEx([
 							"legend_noble_commander_background"
 					]);
-						_event.m.Dude.getSkills().add(this.new("scripts/skills/racial/skeleton_racial"));
+						::Legends.Traits.grant(_event.m.Dude, ::Legends.Trait.RacialSkeleton);
 						::Legends.Traits.grant(_event.m.Dude, ::Legends.Trait.LegendFleshless);
 					}
 				else

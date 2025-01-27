@@ -36,11 +36,7 @@ this.legend_transformed_rat_effect <- this.inherit("scripts/skills/effects/legen
 
 	function setSkills()
 	{
-		local actor = this.getContainer().getActor();
-		if (!actor.getSkills().hasSkill("racial.spider"))
-		{
-			actor.getSkills().add(this.new("scripts/skills/racial/spider_racial"));
-		}
+		::Legends.Traits.grant(this, ::Legends.Trait.RacialSpider);
 		::Legends.Actives.grant(this, ::Legends.Active.LegendRatClaws);
 		::Legends.Actives.grant(this, ::Legends.Active.LegendRatBite);
 		::Legends.Actives.grant(this, ::Legends.Active.Footwork);
@@ -48,8 +44,7 @@ this.legend_transformed_rat_effect <- this.inherit("scripts/skills/effects/legen
 
 	function removeSkills()
 	{
-		local actor = this.getContainer().getActor();
-		actor.getSkills().removeByID("racial.spider");
+		::Legends.Traits.remove(this, ::Legends.Trait.RacialSpider);
 		::Legends.Actives.remove(this, ::Legends.Active.LegendRatClaws);
 		::Legends.Actives.remove(this, ::Legends.Active.LegendRatBite);
 		if (!actor.getSkills().hasPerk(::Legends.Perk.Footwork))

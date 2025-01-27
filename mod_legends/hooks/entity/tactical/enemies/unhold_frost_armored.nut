@@ -29,7 +29,8 @@
 
 		if (this.Time.getRound() >= 2 && !this.m.HasTurned && !this.m.HasBeenWhipped && !this.Tactical.State.isAutoRetreat())
 		{
-			this.m.Skills.getSkillByID("racial.unhold").spawnIcon("status_effect_107", this.getTile());
+
+			::Legends.Traits.get(this, ::Legends.Trait.RacialUnhold).spawnIcon("status_effect_107", this.getTile());
 
 			if (this.Math.rand(1, 100) <= 50)
 			{

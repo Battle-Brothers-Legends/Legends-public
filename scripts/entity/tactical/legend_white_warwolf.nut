@@ -234,7 +234,7 @@ this.legend_white_warwolf <- this.inherit("scripts/entity/tactical/actor", {
 		::Legends.Perks.grant(this, ::Legends.Perk.Berserk);
 		::Legends.Perks.grant(this, ::Legends.Perk.Nimble);
 		::Legends.Perks.grant(this, ::Legends.Perk.Overwhelm);
-		this.m.Skills.add(this.new("scripts/skills/racial/legend_werewolf_racial"));
+		::Legends.Traits.grant(this, ::Legends.Trait.RacialLegendWerewolf);
 	}
 
 });

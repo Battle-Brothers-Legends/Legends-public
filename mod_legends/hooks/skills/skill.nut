@@ -739,36 +739,28 @@
 				return null;
 			}
 
-			local racialSkills = [
-				"racial.skeleton",
-				"racial.golem",
-				"racial.serpent",
-				"racial.alp",
-				"racial.schrat"
-			];
 			local racialSkill;
+			local racialSkills = [
+				::Legends.Trait.RacialSkeleton,
+				::Legends.Trait.RacialGolem,
+				::Legends.Trait.RacialSerpent,
+				::Legends.Trait.RacialAlp,
+				::Legends.Trait.RacialSchrat
+			];
 
-			for( local i = 0; i < racialSkills.len(); i++ )
-			{
-				racialSkill = targetEntity.getSkills().getSkillByID(racialSkills[i]);
-
+			foreach (r in racialSkills) {
+				racialSkill = ::Legends.Traits.get(targetEntity, racialSkills[i]);
 				if (racialSkill)
-				{
 					break;
-				}
 			}
 
 			if (!racialSkill)
-			{
 				return null;
-			}
 
 			local propertiesBefore = targetEntity.getCurrentProperties();
 
 			if (!("DamageReceivedRegularMult" in propertiesBefore))
-			{
 				return null;
-			}
 
 			local hitInfo = clone this.Const.Tactical.HitInfo;
 			local propertiesAfter = propertiesBefore.getClone();
@@ -783,9 +775,7 @@
 			local damageResistance = getDamageResistance();
 
 			if (damageResistance == null)
-			{
 				return;
-			}
 
 			row.text = description + "\n(" + red("-" + damageResistance + "%") + " Total HP damage using " + thisSkill.getName() + ")";
 		};
@@ -795,9 +785,7 @@
 			local damageResistance = getDamageResistance();
 
 			if (damageResistance == null)
-			{
 				return;
-			}
 
 			row.text = description + "\n(" + red("-" + damageResistance + "%") + " Total HP damage using " + thisSkill.getName() + ")";
 		};
@@ -822,9 +810,7 @@
 			local props = user.getCurrentProperties();
 
 			if (!(_property in props))
-			{
 				return null;
-			}
 
 			local propsWithSkill = props.getClone();
 			thisSkill.onAnySkillUsed(thisSkill, _targetEntity, propsWithSkill);
@@ -861,9 +847,7 @@
 				local damageResistance = getDamageResistance();
 
 				if (!damageResistance)
-				{
 					return;
-				}
 
 				local icon = damageResistance > 0 ? "ui/tooltips/negative.png" : "ui/tooltips/positive.png";
 				local desc = damageResistance > 0 ? "Resistance against" : "Susceptible to";
@@ -884,16 +868,12 @@
 		local addLungeDamageRow = function ()
 		{
 			if (!thisSkill.m.IsAttack || thisSkill.getID() != ::Legends.Actives.getID(::Legends.Active.Lunge) || !_targetTile.IsOccupiedByActor)
-			{
 				return;
-			}
 
 			local diff = getDifferenceInProperty("DamageTotalMult", null);
 
 			if (!diff)
-			{
 				return;
-			}
 
 			local icon = diff > 0 ? "ui/tooltips/positive.png" : "ui/tooltips/negative.png";
 			local desc = diff > 0 ? "High initiative" : "Low initiative";
@@ -919,17 +899,13 @@
 	o.getHitchance = function( _targetEntity )
 	{
 		if (!_targetEntity.isAttackable() && !_targetEntity.isRock() && !_targetEntity.isTree() && !_targetEntity.isBush() && !_targetEntity.isSupplies())
-		{
 			return 0;
-		}
 
 		local user = this.m.Container.getActor();
 		local properties = this.factoringOffhand(this.m.Container.buildPropertiesForUse(this, _targetEntity));
 
 		if (!this.isUsingHitchance())
-		{
 			return 100;
-		}
 
 		local allowDiversion = this.m.IsRanged && this.m.MaxRangeBonus > 1;
 		local defenderProperties = _targetEntity.getSkills().buildPropertiesForDefense(user, this);

@@ -54,15 +54,15 @@
 		::Legends.Perks.grant(this, ::Legends.Perk.BatteringRam);
 		::Legends.Perks.grant(this, ::Legends.Perk.Stalwart);
 		::Legends.Perks.grant(this, ::Legends.Perk.HoldOut);
-		this.m.Skills.add(this.new("scripts/skills/racial/unhold_racial"));
+		::Legends.Traits.grant(this, ::Legends.Trait.RacialUnhold);
 		::Legends.Actives.grant(this, ::Legends.Active.Sweep);
 		::Legends.Actives.grant(this, ::Legends.Active.SweepZoc);
 		::Legends.Actives.grant(this, ::Legends.Active.FlingBack);
 		::Legends.Actives.grant(this, ::Legends.Active.UnstoppableCharge);
 		if(::Legends.isLegendaryDifficulty())
 		{
-			this.m.Skills.add(this.new("scripts/skills/racial/legend_bog_unhold_racial"));
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendBattleheart);
+			::Legends.Traits.grant(this, ::Legends.Trait.RacialLegendBogUnhold);
 			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
 			this.m.Hitpoints = 2 * b.Hitpoints;
 		}

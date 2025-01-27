@@ -80,7 +80,7 @@ this.legend_alp_nightmare_serpent <- this.inherit("scripts/entity/tactical/enemi
 		this.setSpriteOffset("status_rooted", this.createVec(-10, 20));
 		this.setSpriteOffset("status_stunned", this.createVec(-35, 20));
 		this.setSpriteOffset("arrow", this.createVec(0, 20));
-		this.m.Skills.add(this.new("scripts/skills/racial/serpent_racial"));
+		::Legends.Traits.grant(this, ::Legends.Trait.RacialSerpent);
 		::Legends.Perks.grant(this, ::Legends.Perk.Pathfinder);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendStrengthInNumbers);
 		::Legends.Perks.grant(this, ::Legends.Perk.Relentless);

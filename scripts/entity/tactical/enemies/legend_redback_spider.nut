@@ -294,7 +294,7 @@ this.legend_redback_spider <- this.inherit("scripts/entity/tactical/actor", {
 		::Legends.Perks.grant(this, ::Legends.Perk.Underdog);
 		::Legends.Perks.grant(this, ::Legends.Perk.Overwhelm);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendPoisonImmunity);
-		this.m.Skills.add(this.new("scripts/skills/racial/legend_redback_spider_racial"));
+		::Legends.Traits.grant(this, ::Legends.Trait.RacialLegendRedbackSpider);
 		if(::Legends.isLegendaryDifficulty())
 		{
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendLevitate);

@@ -16,7 +16,7 @@
 						_event.m.Dude.setStartValuesEx([
 							"cultist_background"
 						]);
-						_event.m.Dude.getSkills().add(this.new("scripts/skills/racial/skeleton_racial"));
+						::Legends.Traits.grant(_event.m.Dude, ::Legends.Trait.RacialSkeleton);
 						::Legends.Traits.grant(_event.m.Dude, ::Legends.Trait.LegendFleshless);
 					}
 					if (this.World.Assets.getOrigin().getID() == "scenario.cultists")

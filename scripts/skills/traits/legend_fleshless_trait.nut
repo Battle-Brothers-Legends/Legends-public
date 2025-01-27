@@ -65,7 +65,7 @@ this.legend_fleshless_trait <- this.inherit("scripts/skills/traits/character_tra
 	function onAdded()
 	{
 		local actor = this.getContainer().getActor().get();
-		
+
 		if (::MSU.isKindOf(actor, "player"))
 		{
 			actor.improveMood = function ( _change, _text = "" )
@@ -75,16 +75,16 @@ this.legend_fleshless_trait <- this.inherit("scripts/skills/traits/character_tra
 			{
 			};
 		}
-		
+
 		if (this.m.IsNew)
 		{
 			this.onApplyAppearance();
 			actor.m.Flags.add("skeleton");
 			actor.m.Flags.add("undead");
-			actor.m.Skills.add(this.new("scripts/skills/racial/skeleton_racial"));
+			::Legends.Traits.grant(this, ::Legends.Trait.RacialSkeleton);
 			this.m.IsNew = false;
 		}
-		
+
 		actor.m.MoraleState = this.Const.MoraleState.Ignore;
 		actor.m.ExcludedInjuries = [
 			"injury.cut_artery",
@@ -104,7 +104,7 @@ this.legend_fleshless_trait <- this.inherit("scripts/skills/traits/character_tra
 			"injury.pierced_lung",
 			"injury.pierced_side"
 		];
-		
+
 		actor.onFactionChanged();
 		actor.onUpdateInjuryLayer();
 	}
@@ -132,24 +132,24 @@ this.legend_fleshless_trait <- this.inherit("scripts/skills/traits/character_tra
 	function onApplyAppearance()
 	{
 		local actor = this.getContainer().getActor().get();
-		
+
 		if (::MSU.isKindOf(actor, "player"))
 		{
 			if (actor.getFlags().has("human"))
 				actor.getSprite("injury_body").setBrush("bust_skeleton_body_injured");
-			
+
 			local hairColor = this.Const.HairColors.Zombie[this.Math.rand(0, this.Const.HairColors.Zombie.len() - 1)];
 			local body = actor.getSprite("body");
 			body.setBrush("bust_skeleton_body_0" + this.Math.rand(1, 2));
 			body.Saturation = 0.8;
-			
+
 			actor.getSprite("injury_body").setBrush("bust_skeleton_body_injured");
-			
+
 			local head = actor.getSprite("head");
 			head.setBrush("bust_skeleton_head");
 			head.Color = body.Color;
 			head.Saturation = body.Saturation;
-			
+
 			local beard = actor.getSprite("beard");
 			if (beard == !null)
 			{
@@ -161,11 +161,11 @@ this.legend_fleshless_trait <- this.inherit("scripts/skills/traits/character_tra
 					beard_top.Color = beard.Color;
 				}
 			}
-			
+
 			local face = actor.getSprite("scar_head");
 			if (face == !null)
 				face.setBrush("bust_skeleton_face_0" + this.Math.rand(1, 6));
-			
+
 			local hair = actor.getSprite("hair");
 			if (hair == !null)
 			{
@@ -173,7 +173,7 @@ this.legend_fleshless_trait <- this.inherit("scripts/skills/traits/character_tra
 				hair.setBrush("hair_" + hairColor + "_" + this.Const.Hair.ZombieOnly[this.Math.rand(0, this.Const.Hair.ZombieOnly.len() - 1)]);
 				actor.setSpriteOffset("hair", this.createVec(0, -3));
 			}
-			
+
 			local injury = actor.getSprite("injury");
 			if (injury == !null)
 				injury.setBrush("bust_skeleton_head_injured");

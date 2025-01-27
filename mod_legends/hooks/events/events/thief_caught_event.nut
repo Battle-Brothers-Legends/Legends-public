@@ -29,7 +29,7 @@
 						_event.m.Dude.getFlags().add("undead");
 						_event.m.Dude.getFlags().add("skeleton");
 						_event.m.Dude.setStartValuesEx(this.Const.CharacterThiefBackgrounds);
-						_event.m.Dude.getSkills().add(this.new("scripts/skills/racial/skeleton_racial"));
+						::Legends.Traits.grant(_event.m.Dude, ::Legends.Trait.RacialSkeleton);
 						::Legends.Traits.grant(_event.m.Dude, ::Legends.Trait.LegendFleshless);
 					} else {
 						_event.m.Dude.setStartValuesEx(this.Const.CharacterThiefBackgrounds);

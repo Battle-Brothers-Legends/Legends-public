@@ -545,8 +545,7 @@ this.legend_stollwurm_tail <- this.inherit("scripts/entity/tactical/actor", {
 		this.addDefaultStatusSprites();
 		this.getSprite("status_rooted").Scale = 0.54;
 		this.setSpriteOffset("status_rooted", this.createVec(0, 0));
-		this.m.Racial = this.new("scripts/skills/racial/lindwurm_racial");
-		this.m.Skills.add(this.m.Racial);
+		this.m.Racial = ::Legends.Traits.grant(this, ::Legends.Trait.RacialLindwurm);
 		::Legends.Actives.grant(this, ::Legends.Active.TailSlam);
 		::Legends.Actives.grant(this, ::Legends.Active.TailSlamBig);
 		::Legends.Actives.grant(this, ::Legends.Active.TailSlamSplit);

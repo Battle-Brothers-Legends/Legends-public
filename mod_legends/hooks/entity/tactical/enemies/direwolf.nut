@@ -7,8 +7,8 @@
 		if (::Legends.isLegendaryDifficulty())
 		{
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendStrengthInNumbers);
-			this.m.Skills.add(this.new("scripts/skills/racial/legend_werewolf_racial"));
 			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
+			::Legends.Traits.grant(this, ::Legends.Trait.RacialLegendWerewolf);
 		}
 	}
 });

@@ -38,7 +38,7 @@ this.legend_kobold_fighter <- this.inherit("scripts/entity/tactical/legend_kobol
 			}
 		}
 
-		this.m.Skills.add(this.new("scripts/skills/racial/goblin_ambusher_racial"));
+		::Legends.Traits.grant(this, ::Legends.Trait.RacialGoblinAmbusher);
 		::Legends.Perks.grant(this, ::Legends.Perk.Pathfinder);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendBackflip);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendHairSplitter);

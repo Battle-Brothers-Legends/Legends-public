@@ -266,7 +266,7 @@ this.legend_white_direwolf <- this.inherit("scripts/entity/tactical/actor", {
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendBattleheart);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendTrueBeliever);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendTerrifyingVisage);
-		this.m.Skills.add(this.new("scripts/skills/racial/legend_werewolf_racial"));
+		::Legends.Traits.grant(this, ::Legends.Trait.RacialLegendWerewolf);
 
 		if (::Legends.isLegendaryDifficulty())
 		{

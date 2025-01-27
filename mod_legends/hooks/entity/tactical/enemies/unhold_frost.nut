@@ -54,7 +54,7 @@
 		::Legends.Perks.grant(this, ::Legends.Perk.BatteringRam);
 		::Legends.Perks.grant(this, ::Legends.Perk.Stalwart);
 		::Legends.Perks.grant(this, ::Legends.Perk.HoldOut);
-		this.m.Skills.add(this.new("scripts/skills/racial/unhold_racial"));
+		::Legends.Traits.grant(this, ::Legends.Trait.RacialUnhold);
 		::Legends.Actives.grant(this, ::Legends.Active.Sweep);
 		::Legends.Actives.grant(this, ::Legends.Active.SweepZoc);
 		::Legends.Actives.grant(this, ::Legends.Active.FlingBack);

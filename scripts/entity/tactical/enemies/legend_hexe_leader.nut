@@ -290,7 +290,7 @@ this.legend_hexe_leader <- this.inherit("scripts/entity/tactical/actor", {
 
 		if(::Legends.isLegendaryDifficulty())
 		{
-			this.m.Skills.add(this.new("scripts/skills/racial/schrat_racial"));
+			::Legends.Traits.grant(this, ::Legends.Trait.RacialSchrat);
 			::Legends.Perks.grant(this, ::Legends.Perk.InspiringPresence);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendLevitate);
 			::Legends.Perks.grant(this, ::Legends.Perk.HoldOut);

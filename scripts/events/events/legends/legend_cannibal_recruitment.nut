@@ -48,7 +48,7 @@ this.legend_cannibal_recruitment <- this.inherit("scripts/events/event", {
 					_event.m.Cannibal.setStartValuesEx([
 						"legend_cannibal_background"
 					]);
-					_event.m.Cannibal.getSkills().add(this.new("scripts/skills/racial/skeleton_racial"));
+					::Legends.Traits.grant(_event.m.Cannibal, ::Legends.Trait.RacialSkeleton);
 					::Legends.Traits.grant(_event.m.Cannibal, ::Legends.Trait.LegendFleshless);
 				}
 				else

@@ -284,7 +284,7 @@ this.legend_vampire_lord <- this.inherit("scripts/entity/tactical/actor", {
 		this.addDefaultStatusSprites();
 		this.getSprite("status_rooted").Scale = 0.55;
 		::Legends.Effects.grant(this, ::Legends.Effect.DoubleGrip);
-		this.m.Skills.add(this.new("scripts/skills/racial/vampire_racial"));
+		::Legends.Traits.grant(this, ::Legends.Trait.RacialVampire);
 		::Legends.Actives.grant(this, ::Legends.Active.Darkflight);
 		::Legends.Perks.grant(this, ::Legends.Perk.Anticipation);
 		::Legends.Perks.grant(this, ::Legends.Perk.CripplingStrikes);

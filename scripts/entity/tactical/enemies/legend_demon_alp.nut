@@ -261,7 +261,7 @@ this.legend_demon_alp <- this.inherit("scripts/entity/tactical/actor", {
 		::Legends.Actives.grant(this, ::Legends.Active.LegendAlpRealmOfShadow);
 		::Legends.Actives.grant(this, ::Legends.Active.LegendAlpSummonNightmare);
 		::Legends.Actives.grant(this, ::Legends.Active.LegendAlpNightmareManifestation);
-		this.m.Skills.add(this.new("scripts/skills/racial/alp_racial"));
+		::Legends.Traits.grant(this, ::Legends.Trait.RacialAlp);
 		::Legends.Perks.grant(this, ::Legends.Perk.Underdog);
 		::Legends.Perks.grant(this, ::Legends.Perk.Footwork);
 		::Legends.Perks.grant(this, ::Legends.Perk.Anticipation);

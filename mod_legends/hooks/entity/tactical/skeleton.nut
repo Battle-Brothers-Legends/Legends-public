@@ -379,7 +379,7 @@
 		body_dirt.Visible = this.Math.rand(1, 100) <= 33;
 		this.addDefaultStatusSprites();
 		this.getSprite("status_rooted").Scale = 0.55;
-		this.m.Skills.add(this.new("scripts/skills/racial/skeleton_racial"));
+		::Legends.Traits.grant(this, ::Legends.Trait.RacialSkeleton);
 		::Legends.Effects.grant(this, ::Legends.Effect.DoubleGrip);
 		::Legends.Actives.grant(this, ::Legends.Active.HandToHand);
 		::Legends.Perks.grant(this, ::Legends.Perk.Rotation);

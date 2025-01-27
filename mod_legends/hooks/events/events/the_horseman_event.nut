@@ -14,7 +14,7 @@
 						_event.m.Dude.setStartValuesEx([
 							"vagabond_background"
 						]);
-						_event.m.Dude.getSkills().add(this.new("scripts/skills/racial/skeleton_racial"));
+						::Legends.Traits.grant(_event.m.Dude, ::Legends.Trait.RacialSkeleton);
 						::Legends.Traits.grant(_event.m.Dude, ::Legends.Trait.LegendFleshless);
 					} else {
 						_event.m.Dude.setStartValuesEx([
