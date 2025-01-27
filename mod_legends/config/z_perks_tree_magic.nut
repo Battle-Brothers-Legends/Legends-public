@@ -99,7 +99,7 @@ if (!("Perks" in ::Const))
 		"hunting"
 	],
 	Tree = [
-		[::Legends.Perk.LegendMarkTarget],
+		[],
 		[],
 		[],
 		[::Legends.Perk.LegendSpecPoison],
