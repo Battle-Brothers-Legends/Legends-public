@@ -91,6 +91,10 @@
 		return ret;
 	}
 
+	o.hasActive <- function (_const) {
+		return ::Legends.Actives.has(this, _const);
+	}
+
 	o.hasPerk <- function (_const) {
 		return ::Legends.Perks.has(this, _const);
 	}
