@@ -145,8 +145,8 @@
 					}
 				}
 
-				local hasKnockBack = _entity.getSkills().hasSkill("actives.knock_back");
-				local hasFootwork = _entity.getSkills().hasSkill("actives.footwork");
+				local hasKnockBack = _entity.getSkills().hasActive(::Legends.Active.KnockBack);
+				local hasFootwork = _entity.getSkills().hasActive(::Legends.Active.Footwork);
 				score = score * this.Math.maxf(0.0, 1.0 - accumulatedAOO * 0.01 * (1.0 / this.getProperties().EngageWhenAlreadyEngagedMult) * (hasKnockBack ? 2.0 : 1.0) * (hasFootwork ? 2.0 : 1.0));
 			}
 
@@ -741,8 +741,8 @@
 		}
 
 		local hasShieldWall = _entity.getSkills().hasEffect(::Legends.Effect.Shieldwall);
-		local canUseShieldWall = !hasShieldWall && _entity.getSkills().hasSkill("actives.shieldwall");
-		local hasAdrenaline = _entity.getSkills().hasSkill("actives.adrenaline");
+		local canUseShieldWall = !hasShieldWall && _entity.getSkills().hasActive(::Legends.Active.Shieldwall);
+		local hasAdrenaline = _entity.getSkills().hasActive(::Legends.Active.Adrenaline);
 		local bestTarget;
 		local bestIntermediateTile;
 		local bestTargetDistance = 0;

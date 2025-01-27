@@ -12,7 +12,7 @@ this.perk_legend_summon_storm <- this.inherit("scripts/skills/skill", {
 
 	function onAdded()
 	{
-		if (!this.m.Container.hasSkill("actives.legend_summon_storm"))
+		if (!this.m.Container.hasActive(::Legends.Active.LegendSummonStorm))
 		{
 			this.m.Container.add(this.new("scripts/skills/actives/legend_summon_storm_skill"));
 		}
@@ -20,7 +20,7 @@ this.perk_legend_summon_storm <- this.inherit("scripts/skills/skill", {
 
 	function onRemoved()
 	{
-		this.m.Container.removeByID("actives.legend_summon_storm");
+		::Legends.Actives.remove(this, ::Legends.Active.LegendSummonStorm);
 	}
 
 });

@@ -31,7 +31,7 @@ this.perk_legend_specialist_shovel_skill <- this.inherit("scripts/skills/skill",
 		local actor = this.getContainer().getActor();
 		local item = actor.getMainhandItem();
 
-		if (item != null && (item.getID() == "weapon.legend_shovel" || item.getID() == "weapon.legend_named_shovel") && !actor.getSkills().hasSkill("actives.knock_out"))
+		if (item != null && (item.getID() == "weapon.legend_shovel" || item.getID() == "weapon.legend_named_shovel") && !actor.getSkills().hasActive(::Legends.Active.KnockOut))
 		{
 			item.addSkill(this.new("scripts/skills/actives/knock_out"));
 		}
@@ -39,7 +39,7 @@ this.perk_legend_specialist_shovel_skill <- this.inherit("scripts/skills/skill",
 
 	function onRemoved()
 	{
-		this.getContainer().getActor().getSkills().removeByID("actives.knock_out");
+		::Legends.Actives.remove(this, ::Legends.Active.KnockOut);
 	}
 
 });

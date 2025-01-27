@@ -137,7 +137,7 @@ this.legend_piercing_bolt_skill <- ::inherit("scripts/skills/actives/shoot_bolt"
 
 	function onRemoved()
 	{
-		this.getContainer().removeByID("actives.reload_bolt");
+		::Legends.Actives.remove(this, ::Legends.Active.ReloadBolt);
 	}
 
 	function getAffectedTiles( _targetTile, _direction = null )

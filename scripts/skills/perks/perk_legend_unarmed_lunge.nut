@@ -17,7 +17,7 @@ this.perk_legend_unarmed_lunge <- this.inherit("scripts/skills/skill", {
 
 	function onRemoved()
 	{
-		this.getContainer().removeByID("actives.legend_unarmed_lunge");
+		::Legends.Actives.remove(this, ::Legends.Active.LegendUnarmedLunge);
 	}
 
 });

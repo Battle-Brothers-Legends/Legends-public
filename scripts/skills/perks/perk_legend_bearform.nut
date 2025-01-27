@@ -12,7 +12,7 @@ this.perk_legend_bearform <- this.inherit("scripts/skills/skill", {
 
 	function onAdded()
 	{
-		if (!this.m.Container.hasSkill("actives.legend_transform_into_bear"))
+		if (!this.m.Container.hasActive(::Legends.Active.LegendTransformIntoBear))
 		{
 			this.m.Container.add(this.new("scripts/skills/actives/legend_transform_into_bear_skill"));
 		}
@@ -20,7 +20,7 @@ this.perk_legend_bearform <- this.inherit("scripts/skills/skill", {
 
 	function onRemoved()
 	{
-		this.m.Container.removeByID("actives.legend_transform_into_bear");
+		::Legends.Actives.remove(this, ::Legends.Active.LegendTransformIntoBear);
 	}
 
 });

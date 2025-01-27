@@ -12,7 +12,7 @@ this.perk_legend_horse_pirouette <- this.inherit("scripts/skills/skill", {
 
 	function onAdded()
 	{
-		if (!this.m.Container.hasSkill("actives.legend_horse_pirouette"))
+		if (!this.m.Container.hasActive(::Legends.Active.LegendHorsePirouette))
 		{
 			this.m.Container.add(this.new("scripts/skills/actives/legend_horse_pirouette"));
 		}
@@ -20,7 +20,7 @@ this.perk_legend_horse_pirouette <- this.inherit("scripts/skills/skill", {
 
 	function onRemoved()
 	{
-		this.m.Container.removeByID("actives.legend_horse_pirouette");
+		::Legends.Actives.remove(this, ::Legends.Active.LegendHorsePirouette);
 	}
 
 });

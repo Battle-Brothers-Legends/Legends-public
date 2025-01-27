@@ -19,7 +19,7 @@
 			return;
 		}
 
-		local skill = this.getSkills().getSkillByID("actives.swallow_whole");
+		local skill = ::Legends.Actives.get(this, ::Legends.Active.SwallowWhole);
 
 		if (skill.getSwallowedEntity() == null)
 		{

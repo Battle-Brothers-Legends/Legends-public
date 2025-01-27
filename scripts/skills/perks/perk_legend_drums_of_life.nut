@@ -12,7 +12,7 @@ this.perk_legend_drums_of_life <- this.inherit("scripts/skills/skill", {
 
 	function onAdded()
 	{
-		if (!this.m.Container.hasSkill("actives.legend_drums_of_life"))
+		if (!this.m.Container.hasActive(::Legends.Active.LegendDrumsOfLife))
 		{
 			this.m.Container.add(this.new("scripts/skills/actives/legend_drums_of_life_skill"));
 		}
@@ -20,7 +20,7 @@ this.perk_legend_drums_of_life <- this.inherit("scripts/skills/skill", {
 
 	function onRemoved()
 	{
-		this.m.Container.removeByID("actives.legend_drums_of_life");
+		::Legends.Actives.remove(this, ::Legends.Active.LegendDrumsOfLife);
 	}
 
 });

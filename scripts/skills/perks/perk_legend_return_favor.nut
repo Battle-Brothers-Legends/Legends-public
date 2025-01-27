@@ -12,7 +12,7 @@ this.perk_legend_return_favor <- this.inherit("scripts/skills/skill", {
 
 	function onAdded()
 	{
-		if (!this.m.Container.hasSkill("actives.return_favor"))
+		if (!this.m.Container.hasActive(::Legends.Active.ReturnFavor))
 		{
 			this.m.Container.add(this.new("scripts/skills/actives/return_favor"));
 		}
@@ -20,7 +20,7 @@ this.perk_legend_return_favor <- this.inherit("scripts/skills/skill", {
 
 	function onRemoved()
 	{
-		this.m.Container.removeByID("actives.return_favor");
+		::Legends.Actives.remove(this, ::Legends.Active.ReturnFavor);
 	}
 
 });

@@ -42,7 +42,7 @@ this.perk_legend_unarmed_training <- this.inherit("scripts/skills/skill", {
 
 	function onAdded()
 	{
-		if (!this.getContainer().hasSkill("actives.legend_tackle") && this.getContainer().getActor().isPlayerControlled())
+		if (!this.getContainer().hasActive(::Legends.Active.LegendTackle) && this.getContainer().getActor().isPlayerControlled())
 		{
 			this.getContainer().add(this.new("scripts/skills/actives/legend_tackle_skill"));
 		}
@@ -50,7 +50,7 @@ this.perk_legend_unarmed_training <- this.inherit("scripts/skills/skill", {
 
 	function onRemoved()
 	{
-		this.getContainer().removeByID("actives.legend_tackle");
+		::Legends.Actives.remove(this, ::Legends.Active.LegendTackle);
 	}
 
 });

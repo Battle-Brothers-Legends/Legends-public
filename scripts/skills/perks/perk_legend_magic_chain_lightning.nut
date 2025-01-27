@@ -13,7 +13,7 @@ this.perk_legend_magic_chain_lightning <- this.inherit("scripts/skills/skill", {
 
 	function onAdded()
 	{
-		if (!this.m.Container.hasSkill("actives.legend_magic_chain_lightning"))
+		if (!this.m.Container.hasActive(::Legends.Active.LegendMagicChainLightning))
 		{
 			this.m.Container.add(this.new("scripts/skills/actives/legend_magic_chain_lightning_skill"));
 		}
@@ -21,7 +21,7 @@ this.perk_legend_magic_chain_lightning <- this.inherit("scripts/skills/skill", {
 
 	function onRemoved()
 	{
-		this.m.Container.removeByID("actives.legend_magic_chain_lightning");
+		::Legends.Actives.remove(this, ::Legends.Active.LegendMagicChainLightning);
 	}
 
 });

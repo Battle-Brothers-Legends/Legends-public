@@ -12,7 +12,7 @@ this.perk_legend_raise_undead <- this.inherit("scripts/skills/skill", {
 
 	function onAdded()
 	{
-		if (!this.m.Container.hasSkill("actives.legend_raise_undead"))
+		if (!this.m.Container.hasActive(::Legends.Active.LegendRaiseUndead))
 		{
 			this.m.Container.add(this.new("scripts/skills/actives/legend_raise_undead_skill"));
 		}
@@ -20,7 +20,7 @@ this.perk_legend_raise_undead <- this.inherit("scripts/skills/skill", {
 
 	function onRemoved()
 	{
-		this.m.Container.removeByID("actives.legend_raise_undead");
+		::Legends.Actives.remove(this, ::Legends.Active.LegendRaiseUndead);
 	}
 
 });

@@ -12,14 +12,14 @@ this.perk_legend_field_treats <- this.inherit("scripts/skills/skill", {
 
 	function onAdded()
 	{
-		if (!this.m.Container.hasSkill("actives.legend_field_treats"))
+		if (!this.m.Container.hasActive(::Legends.Active.LegendFieldTreats))
 		{
 			this.m.Container.add(this.new("scripts/skills/actives/legend_field_treats_skill"));
 		}
 	}
 		function onRemoved()
 	{
-		this.m.Container.removeByID("actives.legend_field_treats");
+		::Legends.Actives.remove(this, ::Legends.Active.LegendFieldTreats);
 	}
 
 });

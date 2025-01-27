@@ -13,7 +13,7 @@ this.perk_legend_magic_circle_of_protection <- this.inherit("scripts/skills/skil
 
 	function onAdded()
 	{
-		if (!this.m.Container.hasSkill("actives.legend_magic_circle_of_protection"))
+		if (!this.m.Container.hasActive(::Legends.Active.LegendMagicCircleOfProtection))
 		{
 			this.m.Container.add(this.new("scripts/skills/actives/legend_magic_circle_of_protection_skill"));
 		}
@@ -21,7 +21,7 @@ this.perk_legend_magic_circle_of_protection <- this.inherit("scripts/skills/skil
 
 	function onRemoved()
 	{
-		this.m.Container.removeByID("actives.legend_magic_circle_of_protection");
+		::Legends.Actives.remove(this, ::Legends.Active.LegendMagicCircleOfProtection);
 	}
 
 });

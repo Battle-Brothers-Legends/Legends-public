@@ -12,19 +12,19 @@ this.perk_legend_push_forward <- this.inherit("scripts/skills/skill", {
 
 	function onAdded()
 	{
-		if (!this.m.Container.hasSkill("actives.legend_push_forward"))
+		if (!this.m.Container.hasActive(::Legends.Active.LegendPushForward))
 		{
 			this.m.Container.add(this.new("scripts/skills/actives/legend_push_forward_skill"));
 		}
-		if (!this.m.Container.hasSkill("actives.legend_coordinated_volleys"))
+		if (!this.m.Container.hasActive(::Legends.Active.LegendCoordinatedVolleys))
 		{
 			this.m.Container.add(this.new("scripts/skills/actives/legend_coordinated_volleys_skill"));
 		}
 	}
 		function onRemoved()
 	{
-		this.m.Container.removeByID("actives.legend_push_forward");
-		this.m.Container.removeByID("actives.legend_coordinated_volleys");
+		::Legends.Actives.remove(this, ::Legends.Active.LegendPushForward);
+		::Legends.Actives.remove(this, ::Legends.Active.LegendCoordinatedVolleys);
 	}
 
 });

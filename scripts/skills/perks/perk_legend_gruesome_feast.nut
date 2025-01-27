@@ -12,7 +12,7 @@ this.perk_legend_gruesome_feast <- this.inherit("scripts/skills/skill", {
 
 	function onAdded()
 	{
-		if (!this.m.Container.hasSkill("actives.legend_gruesome_feast"))
+		if (!this.m.Container.hasActive(::Legends.Active.LegendGruesomeFeast))
 		{
 			this.m.Container.add(this.new("scripts/skills/actives/legend_gruesome_feast_skill"));
 		}
@@ -22,7 +22,7 @@ this.perk_legend_gruesome_feast <- this.inherit("scripts/skills/skill", {
 	{
 		if (!this.m.Container.hasPerk(::Legends.Perk.LegendGruesomeFeast))
 		{
-			this.m.Container.removeByID("actives.legend_gruesome_feast");
+			::Legends.Actives.remove(this, ::Legends.Active.LegendGruesomeFeast);
 		}
 	}
 

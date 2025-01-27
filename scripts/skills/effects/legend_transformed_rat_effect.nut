@@ -37,11 +37,11 @@ this.legend_transformed_rat_effect <- this.inherit("scripts/skills/effects/legen
 	function setSkills()
 	{
 		local actor = this.getContainer().getActor();
-		if (!actor.getSkills().hasSkill("actives.legend_rat_claws"))
+		if (!actor.getSkills().hasActive(::Legends.Active.LegendRatClaws))
 		{
 			actor.getSkills().add(this.new("scripts/skills/actives/legend_rat_claws_skill"));
 		}
-		if (!actor.getSkills().hasSkill("actives.legend_rat_bite"))
+		if (!actor.getSkills().hasActive(::Legends.Active.LegendRatBite))
 		{
 			actor.getSkills().add(this.new("scripts/skills/actives/legend_rat_bite_skill"));
 		}
@@ -49,7 +49,7 @@ this.legend_transformed_rat_effect <- this.inherit("scripts/skills/effects/legen
 		{
 			actor.getSkills().add(this.new("scripts/skills/racial/spider_racial"));
 		}
-		if (!actor.getSkills().hasSkill("actives.footwork"))
+		if (!actor.getSkills().hasActive(::Legends.Active.Footwork))
 		{
 			actor.getSkills().add(this.new("scripts/skills/actives/footwork"));
 		}
@@ -58,12 +58,12 @@ this.legend_transformed_rat_effect <- this.inherit("scripts/skills/effects/legen
 	function removeSkills()
 	{
 		local actor = this.getContainer().getActor();
-		actor.getSkills().removeByID("actives.legend_rat_claws");
-		actor.getSkills().removeByID("actives.legend_rat_bite");
+		::Legends.Actives.remove(this, ::Legends.Active.LegendRatClaws);
+		::Legends.Actives.remove(this, ::Legends.Active.LegendRatBite);
 		actor.getSkills().removeByID("racial.spider");
 		if (!actor.getSkills().hasPerk(::Legends.Perk.Footwork))
 		{
-			actor.getSkills().removeByID("actives.footwork");
+			::Legends.Actives.remove(this, ::Legends.Active.Footwork);
 		}
 	}
 

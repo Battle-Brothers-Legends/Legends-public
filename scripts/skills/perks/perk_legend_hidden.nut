@@ -12,7 +12,7 @@ this.perk_legend_hidden <- this.inherit("scripts/skills/skill", {
 
 	function onAdded()
 	{
-		if (!this.m.Container.hasSkill("actives.legend_hidden"))
+		if (!this.m.Container.hasActive(::Legends.Active.LegendHidden))
 		{
 			this.m.Container.add(this.new("scripts/skills/actives/legend_hidden_skill"));
 		}
@@ -20,7 +20,7 @@ this.perk_legend_hidden <- this.inherit("scripts/skills/skill", {
 
 	function onRemoved()
 	{
-		this.m.Container.removeByID("actives.legend_hidden");
+		::Legends.Actives.remove(this, ::Legends.Active.LegendHidden);
 	}
 
 });

@@ -12,14 +12,14 @@ this.perk_legend_deathtouch <- this.inherit("scripts/skills/skill", {
 
 	function onAdded()
 	{
-		if (!this.m.Container.hasSkill("actives.legend_deathtouch"))
+		if (!this.m.Container.hasActive(::Legends.Active.LegendDeathtouch))
 		{
 			this.m.Container.add(this.new("scripts/skills/actives/legend_deathtouch_skill"));
 		}
 	}
 		function onRemoved()
 	{
-		this.m.Container.removeByID("actives.legend_deathtouch");
+		::Legends.Actives.remove(this, ::Legends.Active.LegendDeathtouch);
 	}
 
 });

@@ -12,7 +12,7 @@ this.perk_legend_nightvision <- this.inherit("scripts/skills/skill", {
 
 	function onAdded()
 	{
-		if (!this.m.Container.hasSkill("actives.legend_nightvision"))
+		if (!this.m.Container.hasActive(::Legends.Active.LegendNightvision))
 		{
 			this.m.Container.add(this.new("scripts/skills/actives/legend_nightvision_skill"));
 		}
@@ -20,7 +20,7 @@ this.perk_legend_nightvision <- this.inherit("scripts/skills/skill", {
 
 	function onRemoved()
 	{
-		this.m.Container.removeByID("actives.legend_nightvision");
+		::Legends.Actives.remove(this, ::Legends.Active.LegendNightvision);
 	}
 
 });

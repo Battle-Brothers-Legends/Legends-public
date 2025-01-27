@@ -12,7 +12,7 @@ this.perk_legend_firefield <- this.inherit("scripts/skills/skill", {
 
 	function onAdded()
 	{
-		if (!this.m.Container.hasSkill("actives.legend_firefield"))
+		if (!this.m.Container.hasActive(::Legends.Active.LegendFirefield))
 		{
 			this.m.Container.add(this.new("scripts/skills/actives/legend_firefield_skill"));
 		}
@@ -20,7 +20,7 @@ this.perk_legend_firefield <- this.inherit("scripts/skills/skill", {
 
 	function onRemoved()
 	{
-		this.m.Container.removeByID("actives.legend_firefield");
+		::Legends.Actives.remove(this, ::Legends.Active.LegendFirefield);
 	}
 
 });

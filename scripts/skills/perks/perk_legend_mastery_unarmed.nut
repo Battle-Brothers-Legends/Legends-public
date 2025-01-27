@@ -17,7 +17,7 @@ this.perk_legend_mastery_fist <- this.inherit("scripts/skills/skill", {
 
 	function onAdded()
 	{
-		if (!this.getContainer().hasSkill("actives.legend_kick") && this.getContainer().getActor().isPlayerControlled())
+		if (!this.getContainer().hasActive(::Legends.Active.LegendKick) && this.getContainer().getActor().isPlayerControlled())
 		{
 			this.getContainer().add(this.new("scripts/skills/actives/legend_kick_skill"));
 		}
@@ -25,7 +25,7 @@ this.perk_legend_mastery_fist <- this.inherit("scripts/skills/skill", {
 
 	function onRemoved()
 	{
-		this.getContainer().removeByID("actives.legend_kick");
+		::Legends.Actives.remove(this, ::Legends.Active.LegendKick);
 	}
 
 });

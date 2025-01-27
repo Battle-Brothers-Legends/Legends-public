@@ -169,9 +169,9 @@ this.legend_attack_target_skill <- this.inherit("scripts/skills/skill", {
 
 	function onUse( _user, _targetTile )
 	{
-		if (_user.getSkills().hasSkill("actives.legend_protect_target"))
+		if (_user.getSkills().hasActive(::Legends.Active.LegendProtectTarget))
 		{
-			local skill = _user.getSkills().getSkillByID("actives.legend_protect_target")
+			local skill = ::Legends.Actives.get(_user, ::Legends.Active.LegendProtectTarget)
 			skill.setTarget(null);
 		}
 

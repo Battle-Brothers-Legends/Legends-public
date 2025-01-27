@@ -12,7 +12,7 @@ this.perk_legend_magic_missile <- this.inherit("scripts/skills/skill", {
 
 	function onAdded()
 	{
-		if (!this.m.Container.hasSkill("actives.legend_magic_missile"))
+		if (!this.m.Container.hasActive(::Legends.Active.LegendMagicMissile))
 		{
 			this.m.Container.add(this.new("scripts/skills/actives/legend_magic_missile_skill"));
 		}
@@ -20,7 +20,7 @@ this.perk_legend_magic_missile <- this.inherit("scripts/skills/skill", {
 
 	function onRemoved()
 	{
-		this.m.Container.removeByID("actives.legend_magic_missile");
+		::Legends.Actives.remove(this, ::Legends.Active.LegendMagicMissile);
 	}
 
 	function onUpdate( _properties )

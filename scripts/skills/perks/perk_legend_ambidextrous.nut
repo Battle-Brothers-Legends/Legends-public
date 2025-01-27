@@ -132,7 +132,7 @@ this.perk_legend_ambidextrous <- this.inherit("scripts/skills/skill", {
 
 	function onAdded()
 	{
-		m.HandToHand = ::MSU.asWeakTableRef(getContainer().getSkillByID("actives.hand_to_hand"));
+		m.HandToHand = ::MSU.asWeakTableRef(::Legends.Actives.get(this, ::Legends.Active.HandToHand));
 
 		local off = getContainer().getActor().getOffhandItem();
 

@@ -12,14 +12,14 @@ this.perk_legend_wither <- this.inherit("scripts/skills/skill", {
 
 	function onAdded()
 	{
-		if (!this.m.Container.hasSkill("actives.legend_wither"))
+		if (!this.m.Container.hasActive(::Legends.Active.LegendWither))
 		{
 			this.m.Container.add(this.new("scripts/skills/actives/legend_wither_skill"));
 		}
 	}
 		function onRemoved()
 	{
-		this.m.Container.removeByID("actives.legend_wither");
+		::Legends.Actives.remove(this, ::Legends.Active.LegendWither);
 	}
 
 });

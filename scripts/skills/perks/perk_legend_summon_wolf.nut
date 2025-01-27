@@ -13,7 +13,7 @@ this.perk_legend_summon_wolf <- this.inherit("scripts/skills/skill", {
 
 	function onAdded()
 	{
-		if (!this.m.Container.hasSkill("actives.legend_unleash_wolf"))
+		if (!this.m.Container.hasActive(::Legends.Active.LegendUnleashWolf))
 		{
 			this.m.Container.add(this.new("scripts/skills/actives/legend_unleash_wolf_skill"));
 		}
@@ -21,7 +21,7 @@ this.perk_legend_summon_wolf <- this.inherit("scripts/skills/skill", {
 
 	function onRemoved()
 	{
-		this.m.Container.removeByID("actives.legend_unleash_wolf");
+		::Legends.Actives.remove(this, ::Legends.Active.LegendUnleashWolf);
 	}
 
 

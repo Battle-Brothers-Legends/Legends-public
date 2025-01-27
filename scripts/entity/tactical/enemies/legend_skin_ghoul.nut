@@ -213,7 +213,7 @@ this.legend_skin_ghoul <- this.inherit("scripts/entity/tactical/actor", {
 			return;
 		}
 
-		local skill = this.getSkills().getSkillByID("actives.legend_skin_ghoul_swallow_whole");
+		local skill = ::Legends.Actives.get(this, ::Legends.Active.LegendSkinGhoulSwallowWhole);
 		if (skill == null)
 		{
 			return;

@@ -12,7 +12,7 @@ this.perk_legend_call_lightning <- this.inherit("scripts/skills/skill", {
 
 	function onAdded()
 	{
-		if (!this.m.Container.hasSkill("actives.legend_call_lightning"))
+		if (!this.m.Container.hasActive(::Legends.Active.LegendCallLightning))
 		{
 			this.m.Container.add(this.new("scripts/skills/actives/legend_call_lightning_skill"));
 		}
@@ -20,7 +20,7 @@ this.perk_legend_call_lightning <- this.inherit("scripts/skills/skill", {
 
 	function onRemoved()
 	{
-		this.m.Container.removeByID("actives.legend_call_lightning");
+		::Legends.Actives.remove(this, ::Legends.Active.LegendCallLightning);
 	}
 
 });

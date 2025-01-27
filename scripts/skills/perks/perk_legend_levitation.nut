@@ -12,7 +12,7 @@ this.perk_legend_levitation <- this.inherit("scripts/skills/skill", {
 
 	function onAdded()
 	{
-		if (!this.m.Container.hasSkill("actives.legend_levitate_person"))
+		if (!this.m.Container.hasActive(::Legends.Active.LegendLevitatePerson))
 		{
 			this.m.Container.add(this.new("scripts/skills/actives/legend_levitate_person_skill"));
 		}
@@ -20,9 +20,9 @@ this.perk_legend_levitation <- this.inherit("scripts/skills/skill", {
 
 	function onRemoved()
 	{
-		if (this.m.Container.hasSkill("actives.legend_levitate_person"))
+		if (this.m.Container.hasActive(::Legends.Active.LegendLevitatePerson))
 		{
-			this.m.Container.removeByID("actives.legend_levitate_person");
+			::Legends.Actives.remove(this, ::Legends.Active.LegendLevitatePerson);
 		}
 	}
 

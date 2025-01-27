@@ -57,7 +57,7 @@ this.legend_demonalp_agent <- this.inherit("scripts/ai/tactical/agent", {
 	function onUpdate()
 	{
 		local b = m.Behaviors[0], myTile = getActor().getTile(), currentDanger = 0.0;
-		local skill = getActor().getSkills().getSkillByID("actives.nightmare"), someoneIsReallyNearMe = false;
+		local skill = ::Legends.Actives.get(getActor(), ::Legends.Active.Nightmare), someoneIsReallyNearMe = false;
 
 		foreach( t in queryPotentialDanger() )
 		{
@@ -110,7 +110,7 @@ this.legend_demonalp_agent <- this.inherit("scripts/ai/tactical/agent", {
 
 	function isAbleToUseSleep()
 	{
-		local myTile = getActor().getTile(), skill = getActor().getSkills().getSkillByID("actives.sleep");
+		local myTile = getActor().getTile(), skill = ::Legends.Actives.get(getActor(), ::Legends.Active.Sleep);
 		local targets = getBehavior(::Const.AI.Behavior.ID.Sleep).queryTargetsInMeleeRange(skill.getMinRange(), skill.getMaxRange());
 
 		foreach( t in targets )

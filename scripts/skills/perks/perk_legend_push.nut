@@ -12,14 +12,14 @@ this.perk_legend_push <- this.inherit("scripts/skills/skill", {
 
 	function onAdded()
 	{
-		if (!this.m.Container.hasSkill("actives.legend_revolt"))
+		if (!this.m.Container.hasActive(::Legends.Active.LegendRevolt))
 		{
 			this.m.Container.add(this.new("scripts/skills/actives/legend_revolt_skill"));
 		}
 	}
 		function onRemoved()
 	{
-		this.m.Container.removeByID("actives.legend_revolt");
+		::Legends.Actives.remove(this, ::Legends.Active.LegendRevolt);
 	}
 
 });

@@ -12,7 +12,7 @@ this.perk_legend_magic_web_bolt <- this.inherit("scripts/skills/skill", {
 
 	function onAdded()
 	{
-		if (!this.m.Container.hasSkill("actives.legend_magic_web_bolt"))
+		if (!this.m.Container.hasActive(::Legends.Active.LegendMagicWebBolt))
 		{
 			this.m.Container.add(this.new("scripts/skills/actives/legend_magic_web_bolt_skill"));
 		}
@@ -20,7 +20,7 @@ this.perk_legend_magic_web_bolt <- this.inherit("scripts/skills/skill", {
 
 	function onRemoved()
 	{
-		this.m.Container.removeByID("actives.legend_magic_web_bolt");
+		::Legends.Actives.remove(this, ::Legends.Active.LegendMagicWebBolt);
 	}
 
 });

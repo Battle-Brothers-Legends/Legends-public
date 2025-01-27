@@ -12,7 +12,7 @@ this.perk_legend_kick <- this.inherit("scripts/skills/skill", {
 
 	function onAdded()
 	{
-		if (!this.m.Container.hasSkill("actives.legend_kick"))
+		if (!this.m.Container.hasActive(::Legends.Active.LegendKick))
 		{
 			this.m.Container.add(this.new("scripts/skills/actives/legend_kick_skill"));
 		}
@@ -20,7 +20,7 @@ this.perk_legend_kick <- this.inherit("scripts/skills/skill", {
 
 	function onRemoved()
 	{
-		this.m.Container.removeByID("actives.legend_kick");
+		::Legends.Actives.remove(this, ::Legends.Active.LegendKick);
 	}
 
 

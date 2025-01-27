@@ -22,7 +22,7 @@ this.perk_legend_spawn_zombie_low <- this.inherit("scripts/skills/skill", {
 
 	function onAdded()
 	{
-		if (!this.m.Container.hasSkill("actives.legend_spawn_zombie_low"))
+		if (!this.m.Container.hasActive(::Legends.Active.LegendSpawnZombieLow))
 		{
 			this.m.Container.add(this.new("scripts/skills/actives/legend_spawn_zombie_low_skill"));
 			//this.m.Container.add(this.new("scripts/skills/actives/legend_spawn_zombie_low_xbow_skill"));
@@ -31,8 +31,8 @@ this.perk_legend_spawn_zombie_low <- this.inherit("scripts/skills/skill", {
 
 	function onRemoved()
 	{
-		this.m.Container.removeByID("actives.legend_spawn_zombie_low");
-		//this.m.Container.removeByID("actives.legend_spawn_zombie_low_xbow");
+		::Legends.Actives.remove(this, ::Legends.Active.LegendSpawnZombieLow);
+		//::Legends.Actives.remove(this, ::Legends.Active.LegendSpawnZombieLowXbow);
 	}
 
 	function onUpdate( _properties )
