@@ -12,14 +12,14 @@ this.perk_legend_nigredo <- this.inherit("scripts/skills/skill", {
 
 	function onAdded()
 	{
-		if (!this.m.Container.hasSkill("actives.legend_nigredo"))
+		if (!this.m.Container.hasActive(::Legends.Active.LegendNigredo))
 		{
-			this.m.Container.add(this.new("scripts/skills/actives/legend_nigredo_skill"));
+			::Legends.Actives.grant(this, ::Legends.Active.LegendNigredo);
 		}
 	}
 		function onRemoved()
 	{
-		this.m.Container.removeByID("actives.legend_nigredo");
+		::Legends.Actives.remove(this, ::Legends.Active.LegendNigredo);
 	}
 
 });

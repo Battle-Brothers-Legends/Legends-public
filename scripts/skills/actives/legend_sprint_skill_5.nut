@@ -2,8 +2,7 @@ this.legend_sprint_skill_5 <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "actives.legend_sprint";
-		this.m.Name = "Sprint";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendSprint);
 		this.m.Description = "Quickly sprint over a short distance in a straight line. Can not be used on difficult terrain, across different height levels or through enemy Zones of Control.";
 		this.m.Icon = "ui/perks/perk_sprint.png";
 		this.m.IconDisabled = "ui/perks/perk_sprint_sw.png";

@@ -2,8 +2,7 @@ this.legend_ranged_flail_skill <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "actives.legend_ranged_flail";
-		this.m.Name = "Flail";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendRangedFlail);
 		this.m.Description = "Flailing at an opponent. Somewhat unpredictable in damage, but able to strike over or around shield cover.";
 		this.m.KilledString = "Smashed";
 		this.m.Icon = "skills/active_39.png";

@@ -2,8 +2,7 @@ this.legend_sprint_skill_3 <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "actives.legend_sprint";
-		this.m.Name = "Sprint";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendSprint);
 		this.m.Description = "Quickly sprint over a short distance in a straight line.";
 		this.m.Icon = "skills/active_52.png";
 		this.m.IconDisabled = "skills/active_52_sw.png";

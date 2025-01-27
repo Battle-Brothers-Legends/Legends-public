@@ -13,15 +13,15 @@ this.perk_legend_summon_hound <- this.inherit("scripts/skills/skill", {
 
 	function onAdded()
 	{
-		if (!this.m.Container.hasSkill("actives.legend_unleash_hound"))
+		if (!this.m.Container.hasActive(::Legends.Active.LegendUnleashHound))
 		{
-			this.m.Container.add(this.new("scripts/skills/actives/legend_unleash_hound_skill"));
+			::Legends.Actives.grant(this, ::Legends.Active.LegendUnleashHound);
 		}
 	}
 
 	function onRemoved()
 	{
-		this.m.Container.removeByID("actives.legend_unleash_hound");
+		::Legends.Actives.remove(this, ::Legends.Active.LegendUnleashHound);
 	}
 
 

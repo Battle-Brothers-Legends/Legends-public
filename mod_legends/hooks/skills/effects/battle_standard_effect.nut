@@ -29,7 +29,7 @@
 				continue;
 			}
 
-			local citrin = ally.getSkills().getSkillByID("actives.legend_citrinitas_trance");
+			local citrin = ::Legends.Actives.get(ally, ::Legends.Active.LegendCitrinitasTrance);
 			if (citrin != null)
 			{
 				if (citrin.m.IsInTrance)

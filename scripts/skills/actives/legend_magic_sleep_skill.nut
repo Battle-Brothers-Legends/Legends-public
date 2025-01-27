@@ -4,8 +4,7 @@ this.legend_magic_sleep_skill <- this.inherit("scripts/skills/actives/legend_mag
 
 	function create()
 	{
-		this.m.ID = "actives.legend_magic_sleep";
-		this.m.Name = "Sleep";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendMagicSleep);
 		this.m.Description = "Use soothing vapours to lull an enemy to sleep. The chance of success is determined by the resolves of the user and target.";
 		this.m.KilledString = "Slept";
 		this.m.Icon = "skills/active_116.png";

@@ -40,8 +40,8 @@ this.legend_named_heavy_southern_mace <- this.inherit("scripts/items/weapons/nam
 	function onEquip()
 	{
 		this.named_weapon.onEquip();
-		this.addSkill(this.new("scripts/skills/actives/bash"));
-		this.addSkill(this.new("scripts/skills/actives/knock_out"));
+		::Legends.Actives.grant(this, ::Legends.Active.Bash);
+		::Legends.Actives.grant(this, ::Legends.Active.KnockOut);
 	}
 
 });

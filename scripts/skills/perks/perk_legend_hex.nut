@@ -12,15 +12,15 @@ this.perk_legend_hex <- this.inherit("scripts/skills/skill", {
 
 	function onAdded()
 	{
-		if (!this.m.Container.hasSkill("actives.legend_hex"))
+		if (!this.m.Container.hasActive(::Legends.Active.LegendHex))
 		{
-			this.m.Container.add(this.new("scripts/skills/actives/legend_hex_skill"));
+			::Legends.Actives.grant(this, ::Legends.Active.LegendHex);
 		}
 	}
 
 	function onRemoved()
 	{
-		this.m.Container.removeByID("actives.legend_hex");
+		::Legends.Actives.remove(this, ::Legends.Active.LegendHex);
 	}
 
 });

@@ -51,8 +51,7 @@ this.legend_unleash_wolf_skill <- this.inherit("scripts/skills/actives/legend_un
 
 	function create()
 	{
-		this.m.ID = "actives.legend_unleash_wolf";
-		this.m.Name = "Summon Wolf";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendUnleashWolf);
 		this.m.Description = "Summon a faithful wolf. Needs a free tile adjacent. Only one per battle.";
 		this.m.Icon = "skills/wolf2_square.png";
 		this.m.IconDisabled = "skills/wolf2_square_bw.png";

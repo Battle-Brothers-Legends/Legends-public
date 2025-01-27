@@ -2,8 +2,7 @@ this.legend_miasma_skill <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "actives.legend_miasma";
-		this.m.Name = "Miasma";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendMiasma);
 		this.m.Description = "Release a cloud of noxious gasses that affect living beings.";
 		this.m.Icon = "skills/miasma_square.png";
 		this.m.IconDisabled = "skills/miasma_square_bw.png";

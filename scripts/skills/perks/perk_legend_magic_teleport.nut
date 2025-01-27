@@ -12,15 +12,15 @@ this.perk_legend_magic_teleport <- this.inherit("scripts/skills/skill", {
 
 	function onAdded()
 	{
-		if (!this.m.Container.hasSkill("actives.legend_magic_teleport"))
+		if (!this.m.Container.hasActive(::Legends.Active.LegendMagicTeleport))
 		{
-			this.m.Container.add(this.new("scripts/skills/actives/legend_magic_teleport_skill"));
+			::Legends.Actives.grant(this, ::Legends.Active.LegendMagicTeleport);
 		}
 	}
 
 	function onRemoved()
 	{
-		this.m.Container.removeByID("actives.legend_magic_teleport");
+		::Legends.Actives.remove(this, ::Legends.Active.LegendMagicTeleport);
 	}
 
 });

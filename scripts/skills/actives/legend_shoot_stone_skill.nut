@@ -5,8 +5,7 @@ this.legend_shoot_stone_skill <- this.inherit("scripts/skills/skill", {
 	},
 	function create()
 	{
-		this.m.ID = "actives.legend_shoot_stone";
-		this.m.Name = "Loose Stone";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendShootStone);
 		this.m.Description = "Pull back and loose a stone at a target. Can\'t be used while engaged in melee.";
 		this.m.KilledString = "Stoned";
 		this.m.Icon = "skills/stone_square.png";
@@ -70,7 +69,7 @@ this.legend_shoot_stone_skill <- this.inherit("scripts/skills/skill", {
 	{
 		local ret = this.getRangedTooltip(this.getDefaultTooltip());
 		local fatPerHit = (this.getContainer().getActor().getCurrentProperties().FatigueDealtPerHitMult + 1) * this.Const.Combat.FatigueReceivedPerHit;
-		
+
 		ret.extend([
 			{
 				id = 6,

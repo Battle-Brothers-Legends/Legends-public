@@ -7,8 +7,7 @@ this.legend_magic_hailstone_skill <- this.inherit("scripts/skills/actives/legend
 	function create() {
 		this.legend_magic_attack.create();
 
-		this.m.ID = "actives.legend_magic_hailstone";
-		this.m.Name = "Hailstone";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendMagicHailstone);
 		this.m.Description = "Conjure a heavy ball of ice to crush your enemies.";
 		this.m.KilledString = "Crushed under ice";
 		this.m.Icon = "skills/mage_legend_magic_hailstone_square.png";

@@ -44,15 +44,12 @@ this.legend_limb_lopper <- this.inherit("scripts/items/weapons/weapon", {
 	function onEquip()
 	{
 		this.weapon.onEquip();
-		local skill;
-		skill = this.new("scripts/skills/actives/cleave");
-		this.addSkill(skill);
-		skill = this.new("scripts/skills/actives/decapitate");
-		this.addSkill(skill);
-		skill = this.new("scripts/skills/actives/split_shield");
-		skill.setApplyAxeMastery(true);
-		skill.setFatigueCost(this.Math.round(skill.getFatigueCostRaw() + 10)); // 10 because 2h weapons should get +5 on split shield (see 2h mace), and then +5 because of being orc weapon.
-		this.addSkill(skill);
+		::Legends.Actives.grant(this, ::Legends.Active.Cleave);
+		::Legends.Actives.grant(this, ::Legends.Active.Decapitate);
+		::Legends.Actives.grant(this, ::Legends.Active.SplitShield, function (_skill) {
+			_skill.setApplyAxeMastery(true);
+			_skill.setFatigueCost(::Math.round(_skill.getFatigueCostRaw() + 10)); // 10 because 2h weapons should get +5 on split shield (see 2h mace), and then +5 because of being orc weapon.
+		}.bindenv(this));
 	}
 
 });

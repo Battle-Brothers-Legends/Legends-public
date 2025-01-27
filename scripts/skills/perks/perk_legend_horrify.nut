@@ -12,9 +12,9 @@ this.perk_legend_horrify <- this.inherit("scripts/skills/skill", {
 
 	function onAdded()
 	{
-		if (!this.m.Container.hasSkill("actives.legend_horrific_scream"))
+		if (!this.m.Container.hasActive(::Legends.Active.LegendHorrificScream))
 		{
-			this.m.Container.add(this.new("scripts/skills/actives/legend_horrific_scream"));
+			::Legends.Actives.grant(this, ::Legends.Active.LegendHorrificScream);
 		}
 	}
 
@@ -22,7 +22,7 @@ this.perk_legend_horrify <- this.inherit("scripts/skills/skill", {
 	{
 		if (!this.m.Container.hasPerk(::Legends.Perk.LegendHorrify))
 		{
-			this.m.Container.removeByID("actives.legend_horrific_scream");
+			::Legends.Actives.remove(this, ::Legends.Active.LegendHorrificScream);
 		}
 	}
 

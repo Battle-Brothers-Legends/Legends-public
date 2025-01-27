@@ -12,15 +12,15 @@ this.perk_legend_relax <- this.inherit("scripts/skills/skill", {
 
 	function onAdded()
 	{
-		if (!this.m.Container.hasSkill("actives.legend_relax"))
+		if (!this.m.Container.hasActive(::Legends.Active.LegendRelax))
 		{
-			this.m.Container.add(this.new("scripts/skills/actives/legend_relax_skill"));
+			::Legends.Actives.grant(this, ::Legends.Active.LegendRelax);
 		}
 	}
 
 	function onRemoved()
 	{
-		this.m.Container.removeByID("actives.legend_relax");
+		::Legends.Actives.remove(this, ::Legends.Active.LegendRelax);
 	}
 
 });

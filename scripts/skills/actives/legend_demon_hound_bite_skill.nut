@@ -2,8 +2,7 @@ this.legend_demon_hound_bite_skill <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "actives.legend_demon_hound_bite";
-		this.m.Name = "Höllenhund Bite";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendDemonHoundBite);
 		this.m.Description = "";
 		this.m.KilledString = "Drained of life";
 		this.m.Icon = "skills/demon_hound_bite.png";

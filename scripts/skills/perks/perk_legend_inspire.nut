@@ -12,15 +12,15 @@ this.perk_legend_inspire <- this.inherit("scripts/skills/skill", {
 
 	function onAdded()
 	{
-		if (!this.m.Container.hasSkill("actives.inspire"))
+		if (!this.m.Container.hasActive(::Legends.Active.LegendInspire))
 		{
-			this.m.Container.add(this.new("scripts/skills/actives/legend_inspire_skill"));
+			::Legends.Actives.grant(this, ::Legends.Active.LegendInspire);
 		}
 	}
 
 	function onRemoved()
 	{
-		this.m.Container.removeByID("actives.legend_inspire");
+		::Legends.Actives.remove(this, ::Legends.Active.LegendInspire);
 	}
 
 

@@ -43,23 +43,14 @@ this.legend_transformed_bear_effect <- this.inherit("scripts/skills/effects/lege
 
 	function setSkills()
 	{
-		local actor = this.getContainer().getActor();
-
-		if (!actor.getSkills().hasSkill("actives.legend_bear_claws"))
-		{
-			actor.getSkills().add(this.new("scripts/skills/actives/legend_bear_claws_skill"));
-		}
-		if (!actor.getSkills().hasSkill("actives.legend_bear_bite"))
-		{
-			actor.getSkills().add(this.new("scripts/skills/actives/legend_bear_bite_skill"));
-		}
+		::Legends.Actives.grant(this, ::Legends.Active.LegendBearClaws);
+		::Legends.Actives.grant(this, ::Legends.Active.LegendBearBite);
 	}
 
 	function removeSkills()
 	{
-		local actor = this.getContainer().getActor();
-		actor.getSkills().removeByID("actives.legend_bear_claws");
-		actor.getSkills().removeByID("actives.legend_bear_bite");
+		::Legends.Actives.remove(this, ::Legends.Active.LegendBearClaws);
+		::Legends.Actives.remove(this, ::Legends.Active.LegendBearBite);
 	}
 
 

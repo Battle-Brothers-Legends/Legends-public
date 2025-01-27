@@ -251,8 +251,8 @@ this.legend_basilisk_sentry <- this.inherit("scripts/entity/tactical/actor", {
 		this.setSpriteOffset("status_stunned", this.createVec(0, 10));
 		this.setSpriteOffset("arrow", this.createVec(0, 10));
 
-		this.m.Skills.add(this.new("scripts/skills/actives/legend_basilisk_sentry_inject_skill"));
-		this.m.Skills.add(this.new("scripts/skills/actives/legend_basilisk_sentry_fowleye_skill"));
+		::Legends.Actives.grant(this, ::Legends.Active.LegendBasiliskSentryInject);
+		::Legends.Actives.grant(this, ::Legends.Active.LegendBasiliskSentryFowleye);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendEscapeArtist);
 		::Legends.Perks.grant(this, ::Legends.Perk.Pathfinder);
 		::Legends.Perks.grant(this, ::Legends.Perk.SteelBrow);

@@ -59,13 +59,13 @@ this.perk_legend_specialist_shield_skill <- this.inherit("scripts/skills/skill",
 		if (this.m.TurnsLeft > 0 && !actor.getSkills().hasEffect(::Legends.Effect.Shieldwall) && actor.getItems().getItemAtSlot(this.Const.ItemSlot.Offhand) != null && actor.getItems().getItemAtSlot(this.Const.ItemSlot.Offhand).isItemType(this.Const.Items.ItemType.Shield))
 		{
 			# Check if they have regular shield
-			if (actor.getSkills().hasSkill("actives.shieldwall"))
+			if (actor.getSkills().hasActive(::Legends.Active.Shieldwall))
 			{
 				::Legends.Effects.grant(actor, ::Legends.Effect.Shieldwall);
 				this.m.TurnsLeft--;
 			}
 			# Check if they have tower shield
-			else if (actor.getSkills().hasSkill("actives.legend_fortify"))
+			else if (actor.getSkills().hasActive(::Legends.Active.LegendFortify))
 			{
 				::Legends.Effects.grant(actor, ::Legends.Effect.LegendFortify);
 				this.m.TurnsLeft--;

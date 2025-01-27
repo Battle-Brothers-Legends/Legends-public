@@ -220,9 +220,9 @@ this.legend_greenwood_schrat <- this.inherit("scripts/entity/tactical/actor", {
 		::Legends.Perks.grant(this, ::Legends.Perk.CripplingStrikes);
 		::Legends.Perks.grant(this, ::Legends.Perk.SteelBrow);
 		::Legends.Perks.grant(this, ::Legends.Perk.HoldOut);
-		this.m.Skills.add(this.new("scripts/skills/actives/legend_grow_greenwood_shield_skill"));
-		this.m.Skills.add(this.new("scripts/skills/actives/uproot_skill"));
-		this.m.Skills.add(this.new("scripts/skills/actives/uproot_zoc_skill"));
+		::Legends.Actives.grant(this, ::Legends.Active.LegendGrowGreenwoodShield);
+		::Legends.Actives.grant(this, ::Legends.Active.Uproot);
+		::Legends.Actives.grant(this, ::Legends.Active.UprootZoc);
 		::Legends.Perks.grant(this, ::Legends.Perk.Stalwart);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendComposure);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendPoisonImmunity);

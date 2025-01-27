@@ -55,13 +55,13 @@
 	{
 		onInit();
 		local b = this.m.BaseProperties;
-		this.m.Skills.add(this.new("scripts/skills/actives/legend_wither_skill"));
+		::Legends.Actives.grant(this, ::Legends.Active.LegendWither);
 
 		if(::Legends.isLegendaryDifficulty())
 		{
 			::Legends.Perks.grant(this, ::Legends.Perk.InspiringPresence);
 			::Legends.Perks.grant(this, ::Legends.Perk.Anticipation);
-			this.m.Skills.add(this.new("scripts/skills/actives/legend_magic_missile_skill"));
+			::Legends.Actives.grant(this, ::Legends.Active.LegendMagicMissile);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendComposure);
 			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
 			b.Initiative += 50;

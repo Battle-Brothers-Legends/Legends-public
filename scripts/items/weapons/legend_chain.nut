@@ -36,15 +36,15 @@ this.legend_chain <- this.inherit("scripts/items/weapons/weapon", {
 	function onEquip()
 	{
 		this.weapon.onEquip();
-		local skillToAdd = this.new("scripts/skills/actives/flail_skill")
-		skillToAdd.m.IsChain = true;
-		this.addSkill(skillToAdd);
-		skillToAdd = this.new("scripts/skills/actives/thresh")
-		skillToAdd.m.IsChain = true;
-		this.addSkill(skillToAdd);
-		skillToAdd = this.new("scripts/skills/actives/hook")
-		skillToAdd.m.IsChain = true;
-		this.addSkill(skillToAdd);
+		::Legends.Actives.grant(this, ::Legends.Active.Flail, function (_skill) {
+			_skill.m.IsChain = true;
+		}.bindenv(this));
+		::Legends.Actives.grant(this, ::Legends.Active.Thresh, function (_skill) {
+			_skill.m.IsChain = true;
+		}.bindenv(this));
+		::Legends.Actives.grant(this, ::Legends.Active.Hook, function (_skill) {
+			_skill.m.IsChain = true;
+		}.bindenv(this));
 	}
 
 	function onUpdateProperties( _properties )

@@ -2,8 +2,7 @@ this.legend_possession_skill <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "actives.legend_possession";
-		this.m.Name = "Possess Undead";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendPossession);
 		this.m.Description = "";
 		this.m.Icon = "skills/possession.png";
 		this.m.IconDisabled = "skills/possession_bw.png";

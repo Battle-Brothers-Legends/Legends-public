@@ -238,10 +238,10 @@ this.legend_bear <- this.inherit("scripts/entity/tactical/actor", {
 		::Legends.Perks.grant(this, ::Legends.Perk.Stalwart);
 		::Legends.Perks.grant(this, ::Legends.Perk.HoldOut);
 		::Legends.Perks.grant(this, ::Legends.Perk.Berserk);
-		this.m.Skills.add(this.new("scripts/skills/actives/legend_grapple_skill"));
-		this.m.Skills.add(this.new("scripts/skills/actives/legend_bear_bite_skill"));
-		this.m.Skills.add(this.new("scripts/skills/actives/legend_bear_claws_skill"));
-		this.m.Skills.add(this.new("scripts/skills/actives/unstoppable_charge_skill"));
+		::Legends.Actives.grant(this, ::Legends.Active.LegendGrapple);
+		::Legends.Actives.grant(this, ::Legends.Active.LegendBearBite);
+		::Legends.Actives.grant(this, ::Legends.Active.LegendBearClaws);
+		::Legends.Actives.grant(this, ::Legends.Active.UnstoppableCharge);
 		if(::Legends.isLegendaryDifficulty())
 		{
 			this.m.Hitpoints = 2 * b.Hitpoints;

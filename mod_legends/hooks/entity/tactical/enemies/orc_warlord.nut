@@ -185,8 +185,8 @@
 		this.setSpriteOffset("arrow", this.createVec(-5, 30));
 		this.m.Skills.add(this.new("scripts/skills/special/double_grip"));
 		this.m.Skills.add(this.new("scripts/skills/actives/hand_to_hand_orc"));
-		this.m.Skills.add(this.new("scripts/skills/actives/warcry"));
-		this.m.Skills.add(this.new("scripts/skills/actives/line_breaker"));
+		::Legends.Actives.grant(this, ::Legends.Active.Warcry);
+		::Legends.Actives.grant(this, ::Legends.Active.LineBreaker);
 		::Legends.Perks.grant(this, ::Legends.Perk.Captain);
 		::Legends.Perks.grant(this, ::Legends.Perk.BatteringRam);
 		::Legends.Perks.grant(this, ::Legends.Perk.HoldOut);

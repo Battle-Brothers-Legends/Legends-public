@@ -36,8 +36,8 @@ this.legend_ranged_flail <- this.inherit("scripts/items/weapons/weapon", {
 	function onEquip()
 	{
 		this.weapon.onEquip();
-		this.addSkill(this.new("scripts/skills/actives/legend_ranged_flail_skill"));
-		this.addSkill(this.new("scripts/skills/actives/legend_ranged_lash_skill"));
+		::Legends.Actives.grant(this, ::Legends.Active.LegendRangedFlail);
+		::Legends.Actives.grant(this, ::Legends.Active.LegendRangedLash);
 	}
 
 	function onUpdateProperties( _properties )

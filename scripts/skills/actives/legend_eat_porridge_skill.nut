@@ -4,8 +4,7 @@ this.legend_eat_porridge_skill <- this.inherit("scripts/skills/actives/base/lege
 	function create()
 	{
 		this.legend_eat_skill.create();
-		this.m.ID = "actives.legend_eat_porridge";
-		this.m.Name = "Eat or Give Porridge";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendEatPorridge);
 		this.m.Description = "Give to an adjacent ally or eat yourself a porridge that slowly recovers hitpoints. Can not be used while engaged in melee, and anyone receiving the item needs to have a free bag slot.";
 		this.m.Icon = "skills/porridge_square.png";
 		this.m.IconDisabled = "skills/porridge_square_bw.png";

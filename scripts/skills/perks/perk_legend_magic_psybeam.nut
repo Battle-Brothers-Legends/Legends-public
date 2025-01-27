@@ -12,15 +12,15 @@ this.perk_legend_magic_psybeam <- this.inherit("scripts/skills/skill", {
 
 	function onAdded()
 	{
-		if (!this.m.Container.hasSkill("actives.legend_magic_psybeam"))
+		if (!this.m.Container.hasActive(::Legends.Active.LegendMagicPsybeam))
 		{
-			this.m.Container.add(this.new("scripts/skills/actives/legend_magic_psybeam_skill"));
+			::Legends.Actives.grant(this, ::Legends.Active.LegendMagicPsybeam);
 		}
 	}
 
 	function onRemoved()
 	{
-		this.m.Container.removeByID("activeslegend_magic_psybeam");
+		::Legends.Actives.remove(this, ::Legends.Active.LegendMagicPsybeam);
 	}
 
 });

@@ -7,8 +7,7 @@ this.legend_magic_burning_hands <- this.inherit("scripts/skills/actives/legend_m
 	function create() {
 		this.legend_magic_attack.create();
 
-		this.m.ID = "actives.legend_magic_burning_hands";
-		this.m.Name = "Burning Hands";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendMagicBurningHands);
 		this.m.Description = "Unleash a cone of blistering heat from your palms.";
 		this.m.KilledString = "Burned";
 		this.m.Icon = "skills/burning_hands_01.png";

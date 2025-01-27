@@ -2,8 +2,7 @@ this.legend_hold_the_line <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "actives.legend_hold_the_line";
-		this.m.Name = "Hold the line";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendHoldTheLine);
 		this.m.Description = "Instruct your mercenaries to hold their ground! Grants the following bonuses to self and allies of your faction within 4 tiles.";
 		this.m.Icon = "skills/holdtheline_square.png";
 		this.m.IconDisabled = "skills/holdtheline_square_bw.png";

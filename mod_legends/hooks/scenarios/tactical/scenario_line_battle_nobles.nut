@@ -36,7 +36,7 @@
 		items.equip(this.Const.World.Common.pickHelmet([[1, "kettle_hat"]]));
 		items.equip(this.new("scripts/items/armor/padded_leather"));
 		items.equip(this.new("scripts/items/weapons/billhook"));
-		entity.getSkills().add(this.new("scripts/skills/actives/rally_the_troops"));
+		::Legends.Actives.grant(entity, ::Legends.Active.RallyTheTroops);
 		entity = this.spawnEntity("scripts/entity/tactical/player", 7, 7, 13, 13);
 		this.World.getPlayerRoster().add(entity);
 		entity.setName(this.getRandomPlayerName());
@@ -46,7 +46,7 @@
 		items.equip(this.new("scripts/items/weapons/billhook"));
 		items.equip(this.Const.World.Common.pickHelmet([[1, "hood"]]));
 		items.addToBag(this.new("scripts/items/weapons/dagger"));
-		entity.getSkills().add(this.new("scripts/skills/actives/rally_the_troops"));
+		::Legends.Actives.grant(entity, ::Legends.Active.RallyTheTroops);
 		entity = this.spawnEntity("scripts/entity/tactical/player", 6, 6, 14, 14);
 		this.World.getPlayerRoster().add(entity);
 		entity.setName(this.getRandomPlayerName());
@@ -56,7 +56,7 @@
 		items.equip(this.new("scripts/items/weapons/hunting_bow"));
 		items.equip(this.new("scripts/items/ammo/quiver_of_arrows"));
 		items.addToBag(this.new("scripts/items/weapons/dagger"));
-		entity.getSkills().add(this.new("scripts/skills/actives/rally_the_troops"));
+		::Legends.Actives.grant(entity, ::Legends.Active.RallyTheTroops);
 		entity = this.spawnEntity("scripts/entity/tactical/player", 6, 6, 15, 15);
 		this.World.getPlayerRoster().add(entity);
 		entity.setName(this.getRandomPlayerName());
@@ -67,7 +67,7 @@
 		items.equip(this.new("scripts/items/weapons/crossbow"));
 		items.equip(this.new("scripts/items/ammo/quiver_of_bolts"));
 		items.addToBag(this.new("scripts/items/weapons/dagger"));
-		entity.getSkills().add(this.new("scripts/skills/actives/rally_the_troops"));
+		::Legends.Actives.grant(entity, ::Legends.Active.RallyTheTroops);
 		entity = this.spawnEntity("scripts/entity/tactical/player", 8, 8, 11, 11);
 		this.World.getPlayerRoster().add(entity);
 		entity.setName(this.getRandomPlayerName());
@@ -76,7 +76,7 @@
 		items.equip(this.Const.World.Common.pickHelmet([[1, "named/sallet_green_helmet"]]));
 		items.equip(this.new("scripts/items/armor/lamellar_harness"));
 		items.equip(this.new("scripts/items/weapons/greatsword"));
-		entity.getSkills().add(this.new("scripts/skills/actives/rally_the_troops"));
+		::Legends.Actives.grant(entity, ::Legends.Active.RallyTheTroops);
 		entity = this.spawnEntity("scripts/entity/tactical/player", 8, 8, 13, 13);
 		this.World.getPlayerRoster().add(entity);
 		entity.setName(this.getRandomPlayerName());
@@ -85,7 +85,7 @@
 		items.equip(this.new("scripts/items/armor/named/blue_studded_mail_armor"));
 		items.equip(this.new("scripts/items/weapons/hand_axe"));
 		items.equip(this.new("scripts/items/shields/wooden_shield"));
-		entity.getSkills().add(this.new("scripts/skills/actives/rally_the_troops"));
+		::Legends.Actives.grant(entity, ::Legends.Active.RallyTheTroops);
 		entity = this.spawnEntity("scripts/entity/tactical/player", 8, 8, 14, 14);
 		this.World.getPlayerRoster().add(entity);
 		entity.setName(this.getRandomPlayerName());
@@ -95,7 +95,7 @@
 		items.equip(this.new("scripts/items/armor/named/black_leather_armor"));
 		items.equip(this.new("scripts/items/weapons/boar_spear"));
 		items.equip(this.new("scripts/items/shields/wooden_shield"));
-		entity.getSkills().add(this.new("scripts/skills/actives/rally_the_troops"));
+		::Legends.Actives.grant(entity, ::Legends.Active.RallyTheTroops);
 		entity = this.spawnEntity("scripts/entity/tactical/player", 8, 8, 16, 16);
 		this.World.getPlayerRoster().add(entity);
 		entity.setName(this.getRandomPlayerName());
@@ -105,7 +105,7 @@
 		items.equip(this.new("scripts/items/armor/padded_surcoat"));
 		items.equip(this.new("scripts/items/weapons/winged_mace"));
 		items.equip(this.new("scripts/items/shields/wooden_shield"));
-		entity.getSkills().add(this.new("scripts/skills/actives/rally_the_troops"));
+		::Legends.Actives.grant(entity, ::Legends.Active.RallyTheTroops);
 		entity = this.spawnEntity("scripts/entity/tactical/player", 8, 8, 17, 17);
 		this.World.getPlayerRoster().add(entity);
 		entity.setName(this.getRandomPlayerName());
@@ -114,7 +114,7 @@
 		items.equip(this.Const.World.Common.pickHelmet([[1, "mail_coif"]]));
 		items.equip(this.new("scripts/items/armor/coat_of_plates"));
 		items.equip(this.new("scripts/items/weapons/greatsword"));
-		entity.getSkills().add(this.new("scripts/skills/actives/rally_the_troops"));
+		::Legends.Actives.grant(entity, ::Legends.Active.RallyTheTroops);
 		entity = this.spawnEntity("scripts/entity/tactical/humans/standard_bearer", 12, 12, 16, 16);
 		entity.setFaction(this.Const.Faction.Goblins);
 		entity.assignRandomEquipment();

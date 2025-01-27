@@ -30,9 +30,9 @@ this.legend_hexen_ichor_potion_item <- this.inherit("scripts/items/accessory/acc
 	function onEquip()
 	{
 		this.accessory.onEquip();
-		local skill = this.new("scripts/skills/actives/legend_drink_hexe_ichor_potion_skill");
-		skill.setItem(this);
-		this.addSkill(skill);
+		::Legends.Actives.grant(this, ::Legends.Active.LegendDrinkHexeIchorPotion, function (_skill) {
+			_skill.setItem(this);
+		}.bindenv(this));
 	}
 
 	function onPutIntoBag()

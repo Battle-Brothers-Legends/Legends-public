@@ -5,8 +5,7 @@ this.legend_field_triage_skill <- this.inherit("scripts/skills/skill", {
 	},
 	function create()
 	{
-		this.m.ID = "actives.legend_field_triage";
-		this.m.Name = "Field Triage";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendFieldTriage);
 		this.m.Description = "Heal a unit at a rate of 1 medicine for every 2 hitpoints. Heals up to 20 hitpoints per use.";
 		this.m.Icon = "skills/triage_square.png";
 		this.m.IconDisabled = "skills/triage_square_bw.png";

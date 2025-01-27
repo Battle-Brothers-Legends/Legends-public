@@ -85,7 +85,7 @@ this.legend_alp_nightmare_serpent <- this.inherit("scripts/entity/tactical/enemi
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendStrengthInNumbers);
 		::Legends.Perks.grant(this, ::Legends.Perk.Relentless);
 		this.m.Skills.add(this.new("scripts/skills/actives/legend_alp_serpent_hook_skill"));
-		this.m.Skills.add(this.new("scripts/skills/actives/serpent_bite_skill"));
+		::Legends.Actives.grant(this, ::Legends.Active.SerpentBite);
 
 		if (::Legends.isLegendaryDifficulty())
 		{

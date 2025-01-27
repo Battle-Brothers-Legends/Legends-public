@@ -12,9 +12,9 @@ this.perk_legend_read_omens_trance <- this.inherit("scripts/skills/skill", {
 
 	function onAdded()
 	{
-		if (!this.m.Container.hasSkill("actives.legend_read_omens_trance"))
+		if (!this.m.Container.hasActive(::Legends.Active.LegendReadOmensTrance))
 		{
-			this.m.Container.add(this.new("scripts/skills/actives/legend_read_omens_trance_skill"));
+			::Legends.Actives.grant(this, ::Legends.Active.LegendReadOmensTrance);
 		}
 	}
 

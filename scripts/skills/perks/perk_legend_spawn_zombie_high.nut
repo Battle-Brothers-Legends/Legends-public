@@ -22,18 +22,18 @@ this.perk_legend_spawn_zombie_high <- this.inherit("scripts/skills/skill", {
 
 	function onAdded()
 	{
-		if (!this.m.Container.hasSkill("actives.legend_spawn_zombie_high"))
+		if (!this.m.Container.hasActive(::Legends.Active.LegendSpawnZombieHigh))
 		{
-			this.m.Container.add(this.new("scripts/skills/actives/legend_spawn_zombie_high_skill"));
-			//this.m.Container.add(this.new("scripts/skills/actives/legend_spawn_zombie_high_xbow_skill"));
+			::Legends.Actives.grant(this, ::Legends.Active.LegendSpawnZombieHigh);
+			//::Legends.Actives.grant(this, ::Legends.Active.LegendSpawnZombieHighXbow);
 
 		}
 	}
 
 	function onRemoved()
 	{
-		this.m.Container.removeByID("actives.legend_spawn_zombie_high");
-		//this.m.Container.removeByID("actives.legend_spawn_zombie_high_xbow");
+		::Legends.Actives.remove(this, ::Legends.Active.LegendSpawnZombieHigh);
+		//::Legends.Actives.remove(this, ::Legends.Active.LegendSpawnZombieHighXbow);
 	}
 
 });

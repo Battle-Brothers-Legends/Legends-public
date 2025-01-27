@@ -4,8 +4,7 @@ this.legend_magic_psybeam_skill <- this.inherit("scripts/skills/actives/legend_m
 
 	function create()
 	{
-		this.m.ID= "actives.legend_magic_psybeam";
-		this.m.Name = "Psybeam";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendMagicPsybeam);
 		this.m.Description = "Launch a mental attack in the form of a ray at an enemy. Does no damage.";
 		this.m.KilledString = "Stunned";
 		this.m.Icon = "skills/psybeam_square_01.png";

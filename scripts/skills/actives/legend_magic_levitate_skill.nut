@@ -3,8 +3,7 @@ this.legend_magic_levitate_skill <- this.inherit("scripts/skills/actives/legend_
 	m = {},
 	function create()
 	{
-		this.m.ID = "actives.legend_magic_levitate";
-		this.m.Name = "Levitate Person";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendMagicLevitate);
 		this.m.Description = "Levitate someone off the ground, granting them the ability to move freely across all terrain for one turn.";
 		this.m.KilledString = "Levitated";
 		this.m.Icon = "skills/levitate_square.png";

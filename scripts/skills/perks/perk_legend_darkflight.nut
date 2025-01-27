@@ -12,15 +12,15 @@ this.perk_legend_darkflight <- this.inherit("scripts/skills/skill", {
 
 	function onAdded()
 	{
-		if (!this.m.Container.hasSkill("actives.legend_darkflight"))
+		if (!this.m.Container.hasActive(::Legends.Active.LegendDarkflight))
 		{
-			this.m.Container.add(this.new("scripts/skills/actives/legend_darkflight_skill"));
+			::Legends.Actives.grant(this, ::Legends.Active.LegendDarkflight);
 		}
 	}
 
 	function onRemoved()
 	{
-		this.m.Container.removeByID("actives.legend_darkflight");
+		::Legends.Actives.remove(this, ::Legends.Active.LegendDarkflight);
 	}
 
 	function onUpdate( _properties )

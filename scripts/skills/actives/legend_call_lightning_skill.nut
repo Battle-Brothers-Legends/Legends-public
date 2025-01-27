@@ -2,8 +2,7 @@ this.legend_call_lightning_skill <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "actives.legend_call_lightning";
-		this.m.Name = "Call Lightning";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendCallLightning);
 		this.m.Description = "Call down bolts of lightning randomly within four tiles.";
 		this.m.Icon = "skills/storm_square.png";
 		this.m.IconDisabled = "skills/storm_square_bw.png";
@@ -63,7 +62,7 @@ this.legend_call_lightning_skill <- this.inherit("scripts/skills/skill", {
 				type = "text",
 				icon = "ui/icons/special.png",
 				text =  "[color=" + this.Const.UI.Color.PositiveValue + "]10%[/color] chance to call lightning on each unit within [color=" + this.Const.UI.Color.PositiveValue + "]4[/color] tiles"
-			}			
+			}
 		];
 	}
 

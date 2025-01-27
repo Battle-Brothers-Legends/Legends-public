@@ -12,9 +12,9 @@ this.perk_legend_scry_trance <- this.inherit("scripts/skills/skill", {
 
 	function onAdded()
 	{
-		if (!this.m.Container.hasSkill("actives.legend_scry_trance"))
+		if (!this.m.Container.hasActive(::Legends.Active.LegendScryTrance))
 		{
-			this.m.Container.add(this.new("scripts/skills/actives/legend_scry_trance_skill"));
+			::Legends.Actives.grant(this, ::Legends.Active.LegendScryTrance);
 		}
 	}
 

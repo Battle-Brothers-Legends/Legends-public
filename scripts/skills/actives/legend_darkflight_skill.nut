@@ -2,8 +2,7 @@ this.legend_darkflight_skill <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "actives.legend_darkflight";
-		this.m.Name = "Darkflight";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendDarkflight);
 		this.m.Description = "Disapparate from your current location and reappear on the other side of the battlefield.";
 		this.m.Icon = "skills/darkflight.png";
 		this.m.IconDisabled = "skills/darkflight_bw.png";

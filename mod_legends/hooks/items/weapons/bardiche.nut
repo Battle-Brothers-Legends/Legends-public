@@ -10,8 +10,8 @@
 	o.onEquip = function ()
 	{
 		onEquip();
-		local skill = this.new("scripts/skills/actives/swing");
-		skill.setApplyAxeMastery(true);
-		this.addSkill(skill);
+		::Legends.Actives.grant(this, ::Legends.Active.Swing, function (_skill) {
+			_skill.setApplyAxeMastery(true);
+		}.bindenv(this));
 	}
 });

@@ -30,8 +30,8 @@ this.legend_khopesh <- this.inherit("scripts/items/weapons/weapon", {
 	function onEquip()
 	{
 		this.weapon.onEquip();
-		this.addSkill(this.new("scripts/skills/actives/cleave"));
-		this.addSkill(this.new("scripts/skills/actives/decapitate"));
+		::Legends.Actives.grant(this, ::Legends.Active.Cleave);
+		::Legends.Actives.grant(this, ::Legends.Active.Decapitate);
 	}
 
 	function onUpdateProperties( _properties )

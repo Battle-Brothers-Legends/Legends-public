@@ -46,7 +46,7 @@ this.legend_blowgun <- this.inherit("scripts/items/weapons/weapon", {
 	function onEquip()
 	{
 		this.weapon.onEquip();
-		this.addSkill(this.new("scripts/skills/actives/legend_shoot_dart_skill"));
+		::Legends.Actives.grant(this, ::Legends.Active.LegendShootDart);
 
 	}
 

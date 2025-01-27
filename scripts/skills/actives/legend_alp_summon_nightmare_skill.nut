@@ -4,8 +4,7 @@ this.legend_alp_summon_nightmare_skill <- this.inherit("scripts/skills/skill", {
 	},
 	function create()
 	{
-		this.m.ID = "actives.legend_alp_summon_nightmare";
-		this.m.Name = "Conjure Nightmare";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendAlpSummonNightmare);
 		this.m.Description = "";
 		this.m.Icon = "skills/active_160.png";
 		this.m.IconDisabled = "skills/active_160.png";

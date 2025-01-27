@@ -2,8 +2,7 @@ this.legend_nightmare_aoe_skill <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "actives.legend_nightmare_aoe";
-		this.m.Name = "Nightmare";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendNightmareAoe);
 		this.m.Description = "";
 		this.m.Icon = "skills/active_117.png";
 		this.m.IconDisabled = "skills/active_117_sw.png";

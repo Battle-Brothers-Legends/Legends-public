@@ -67,12 +67,12 @@ this.legend_hand_crossbow <- this.inherit("scripts/items/weapons/weapon", {
 	{
 		this.weapon.onEquip();
 
-		this.addSkill(this.new("scripts/skills/actives/shoot_bolt"));
-		this.addSkill(this.new("scripts/skills/actives/legend_piercing_bolt_skill"));
+		::Legends.Actives.grant(this, ::Legends.Active.ShootBolt);
+		::Legends.Actives.grant(this, ::Legends.Active.LegendPiercingBolt);
 
 		if (!this.m.IsLoaded)
 		{
-			this.addSkill(this.new("scripts/skills/actives/reload_bolt"));
+			::Legends.Actives.grant(this, ::Legends.Active.ReloadBolt);
 		}
 	}
 

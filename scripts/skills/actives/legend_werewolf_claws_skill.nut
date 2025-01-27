@@ -2,8 +2,7 @@ this.legend_werewolf_claws_skill <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "actives.legend_werewolf_claws";
-		this.m.Name = "Direwolf Claws";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendWerewolfClaws);
 		this.m.Description = "Tear into flesh with long, sharp claws.";
 		this.m.Icon = "skills/active_21.png";
 		this.m.IconDisabled = "skills/active_21_bw.png";

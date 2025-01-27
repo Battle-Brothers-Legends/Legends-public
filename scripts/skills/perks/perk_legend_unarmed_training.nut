@@ -14,7 +14,7 @@ this.perk_legend_unarmed_training <- this.inherit("scripts/skills/skill", {
 	{
 		local actor = this.getContainer().getActor();
 
-		if (_skill.getID() == "actives.hand_to_hand")
+		if (_skill.getID() == ::Legends.Actives.getID(::Legends.Active.HandToHand))
 		{
 			if (_properties.IsSpecializedInFists)
 				_properties.DamageArmorMult *= 1.2;
@@ -33,7 +33,7 @@ this.perk_legend_unarmed_training <- this.inherit("scripts/skills/skill", {
 			_properties.DamageRegularMax += this.Math.floor(damage);
 		}
 
-		if (_skill.getID() == "actives.legend_choke")
+		if (_skill.getID() == ::Legends.Actives.getID(::Legends.Active.LegendChoke))
 		{
 			_properties.DamageTotalMult *= 1.5;
 			_properties.MeleeSkill += 10;
@@ -42,15 +42,15 @@ this.perk_legend_unarmed_training <- this.inherit("scripts/skills/skill", {
 
 	function onAdded()
 	{
-		if (!this.getContainer().hasSkill("actives.legend_tackle") && this.getContainer().getActor().isPlayerControlled())
+		if (!this.getContainer().hasActive(::Legends.Active.LegendTackle) && this.getContainer().getActor().isPlayerControlled())
 		{
-			this.getContainer().add(this.new("scripts/skills/actives/legend_tackle_skill"));
+			::Legends.Actives.grant(this, ::Legends.Active.LegendTackle);
 		}
 	}
 
 	function onRemoved()
 	{
-		this.getContainer().removeByID("actives.legend_tackle");
+		::Legends.Actives.remove(this, ::Legends.Active.LegendTackle);
 	}
 
 });

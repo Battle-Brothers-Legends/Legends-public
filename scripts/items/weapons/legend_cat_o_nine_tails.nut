@@ -32,12 +32,9 @@ this.legend_cat_o_nine_tails <- this.inherit("scripts/items/weapons/weapon", {
 	function onEquip()
 	{
 		this.weapon.onEquip();
-		local skill1 = this.new("scripts/skills/actives/legend_flaggelate_skill");
-		this.addSkill(skill1);
-		local skill2 = this.new("scripts/skills/actives/legend_ninetails_disarm_skill");
-		this.addSkill(skill2);
-		local skill3 = this.new("scripts/skills/actives/legend_flogging_skill");
-		this.addSkill(skill3);
+		::Legends.Actives.grant(this, ::Legends.Active.LegendFlaggelate);
+		::Legends.Actives.grant(this, ::Legends.Active.LegendNinetailsDisarm);
+		::Legends.Actives.grant(this, ::Legends.Active.LegendFlogging);
 	}
 
 });

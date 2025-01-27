@@ -2,7 +2,7 @@ this.legend_vala_warden_ai_ranged_attack <- this.inherit("scripts/ai/tactical/be
 	m = {
 		TargetTile = null,
 		PossibleSkills = [
-			"actives.legend_vala_warden_wail"
+			::Legends.Actives.getID(::Legends.Active.LegendValaWardenWail)
 		],
 		SelectedSkill = null
 	},

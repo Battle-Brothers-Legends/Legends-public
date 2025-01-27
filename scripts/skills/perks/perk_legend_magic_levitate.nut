@@ -13,15 +13,15 @@ this.perk_legend_magic_levitate <- this.inherit("scripts/skills/skill", {
 
 	function onAdded()
 	{
-		if (!this.m.Container.hasSkill("actives.legend_magic_levitate"))
+		if (!this.m.Container.hasActive(::Legends.Active.LegendMagicLevitate))
 		{
-			this.m.Container.add(this.new("scripts/skills/actives/legend_magic_levitate_skill"));
+			::Legends.Actives.grant(this, ::Legends.Active.LegendMagicLevitate);
 		}
 	}
 
 	function onRemoved()
 	{
-		this.m.Container.removeByID("actives.legend_magic_levitate");
+		::Legends.Actives.remove(this, ::Legends.Active.LegendMagicLevitate);
 	}
 
 });

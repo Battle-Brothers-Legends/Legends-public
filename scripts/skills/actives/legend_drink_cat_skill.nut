@@ -3,8 +3,7 @@ this.legend_drink_cat_skill <- this.inherit("scripts/skills/actives/base/legend_
 
 	function create() {
 		this.legend_drink_potion_skill.create();
-		this.m.ID = "actives.legend_drink_cat";
-		this.m.Name = "Drink or Give Cat Potion";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendDrinkCat);
 		this.m.Description = "Give to an adjacent ally or drink yourself a potion that heightens your senses and sharpens your reflexes, promising to make you as quick to act as a cat. Can not be used while engaged in melee, and anyone receiving the item needs to have a free bag slot.";
 		this.m.Icon = "skills/active_144.png";
 		this.m.IconDisabled = "skills/active_144_sw.png";

@@ -32,8 +32,8 @@
 	o.onEquip <- function ()
 	{
 		this.food_item.onEquip();
-		local skill = this.new("scripts/skills/actives/legend_drink_beer_skill");
-		skill.setItem(this);
-		this.addSkill(skill);
+		::Legends.Actives.grant(this, ::Legends.Active.LegendDrinkBeer, function (_skill) {
+			_skill.setItem(this);
+		}.bindenv(this));
 	}
 });

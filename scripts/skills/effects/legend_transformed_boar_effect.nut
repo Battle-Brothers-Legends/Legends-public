@@ -33,30 +33,18 @@ this.legend_transformed_boar_effect <- this.inherit("scripts/skills/effects/lege
 
 	function setSkills()
 	{
-		local actor = this.getContainer().getActor();
-
-		if (!actor.getSkills().hasSkill("actives.legend_boar_gore"))
-		{
-			actor.getSkills().add(this.new("scripts/skills/actives/legend_boar_gore_skill"));
-		}
-		if (!actor.getSkills().hasSkill("actives.legend_boar_charge"))
-		{
-			actor.getSkills().add(this.new("scripts/skills/actives/legend_boar_charge_skill"));
-		}
-		if (!actor.getSkills().hasSkill("actives.footwork"))
-		{
-			actor.getSkills().add(this.new("scripts/skills/actives/footwork"));
-		}
+		::Legends.Actives.grant(this, ::Legends.Active.LegendBoarGore);
+		::Legends.Actives.grant(this, ::Legends.Active.LegendBoarCharge);
+		::Legends.Actives.grant(this, ::Legends.Active.Footwork);
 	}
 
 	function removeSkills()
 	{
-		local actor = this.getContainer().getActor();
-		actor.getSkills().removeByID("actives.legend_boar_gore");
-		actor.getSkills().removeByID("actives.legend_boar_charge");
-		if (!actor.getSkills().hasPerk(::Legends.Perk.Footwork))
+		::Legends.Actives.remove(this, ::Legends.Active.LegendBoarGore);
+		::Legends.Actives.remove(this, ::Legends.Active.LegendBoarCharge);
+		if (!this.getContainer().hasPerk(::Legends.Perk.Footwork))
 		{
-			actor.getSkills().removeByID("actives.footwork");
+			::Legends.Actives.remove(this, ::Legends.Active.Footwork);
 		}
 	}
 

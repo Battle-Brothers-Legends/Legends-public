@@ -9,8 +9,7 @@ this.legend_staff_lunge_skill <- this.inherit("scripts/skills/skill", {
 	},
 	function create()
 	{
-		this.m.ID = "actives.legend_staff_lunge";
-		this.m.Name = "Lunge";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendStaffLunge);
 		this.m.Description = "A swift lunge towards a target 2 tiles away, followed by a precise thrusting attack to catch them unprepared. The faster you are, the more damage you do.";
 		this.m.KilledString = "Sliced up";
 		this.m.Icon = "skills/active_135.png";

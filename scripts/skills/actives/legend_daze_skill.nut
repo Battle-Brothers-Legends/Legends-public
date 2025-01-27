@@ -2,8 +2,7 @@ this.legend_daze_skill <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "actives.legend_daze";
-		this.m.Name = "Daze";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendDaze);
 		this.m.Description = "Assault the senses of your target with a flurry of colorful sparks, whirs, and pops. Such an astonishing display is sure to leave anyone too bewildered to fight effectively. Does no damage.";
 		this.m.KilledString = "Dazed";
 		this.m.Icon = "skills/daze_square.png";

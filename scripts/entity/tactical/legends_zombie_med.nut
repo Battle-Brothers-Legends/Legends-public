@@ -7,7 +7,7 @@ this.legends_zombie_med <- this.inherit("scripts/entity/tactical/legend_zombie",
 		this.legend_zombie.onInit();
 		::Legends.Perks.grant(this, ::Legends.Perk.BattleForged);
 		::Legends.Perks.grant(this, ::Legends.Perk.Rotation);
-		this.m.Skills.add(this.new("scripts/skills/actives/zombie_bite"));
+		::Legends.Actives.grant(this, ::Legends.Active.ZombieBite);
 		// this.m.Skills.add(this.new("scripts/skills/traits/legend_rotten_flesh_trait"));
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendPoisonImmunity);
 		if(::Legends.isLegendaryDifficulty())

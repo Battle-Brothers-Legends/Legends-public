@@ -12,15 +12,15 @@ this.perk_legend_helpful <- this.inherit("scripts/skills/skill", {
 
 	function onAdded()
 	{
-		if (!this.m.Container.hasSkill("actives.legend_pass"))
+		if (!this.m.Container.hasActive(::Legends.Active.LegendPass))
 		{
-			this.m.Container.add(this.new("scripts/skills/actives/legend_pass_skill"));
+			::Legends.Actives.grant(this, ::Legends.Active.LegendPass);
 		}
 	}
 
 	function onRemoved()
 	{
-		this.m.Container.removeByID("actives.legend_pass");
+		::Legends.Actives.remove(this, ::Legends.Active.LegendPass);
 	}
 
 });

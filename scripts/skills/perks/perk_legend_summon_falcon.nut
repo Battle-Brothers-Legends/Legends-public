@@ -13,15 +13,15 @@ this.perk_legend_summon_falcon <- this.inherit("scripts/skills/skill", {
 
 	function onAdded()
 	{
-		if (!this.m.Container.hasSkill("actives.legend_falcon"))
+		if (!this.m.Container.hasActive(::Legends.Active.LegendFalcon))
 		{
-			this.m.Container.add(this.new("scripts/skills/actives/legend_falcon_skill"));
+			::Legends.Actives.grant(this, ::Legends.Active.LegendFalcon);
 		}
 	}
 
 	function onRemoved()
 	{
-		this.m.Container.removeByID("actives.legend_falcon");
+		::Legends.Actives.remove(this, ::Legends.Active.LegendFalcon);
 	}
 
 

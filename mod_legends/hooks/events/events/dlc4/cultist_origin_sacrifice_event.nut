@@ -58,13 +58,14 @@
 								hasProphet = true;
 								this.updateAchievement("VoiceOfDavkul", 1, 1);
 								::Legends.Traits.remove(skills, ::Legends.Trait.CultistChosen);
-								skill = this.new("scripts/skills/actives/voice_of_davkul_skill");
-								skills.add(skill);
-								this.List.push({
-									id = 10,
-									icon = skill.getIcon(),
-									text = bro.getName() + " has received " + this.Const.Strings.getArticle(skill.getName()) + skill.getName()
-								});
+								skill = ::Legends.Actives.grant(this, ::Legends.Active.VoiceOfDavkul, function (_skill) {
+									this.List.push({
+										id = 10,
+										icon = _skill.getIcon(),
+										text = bro.getName() + " has received " + this.Const.Strings.getArticle(_skill.getName()) + _skill.getName()
+									});
+								}.bindenv(this));
+
 								::Legends.Traits.grant(skills, ::Legends.Trait.CultistProphet);
 							} else if (skills.hasTrait(::Legends.Trait.CultistDisciple)) {
 								::Legends.Traits.remove(skills, ::Legends.Trait.CultistDisciple);

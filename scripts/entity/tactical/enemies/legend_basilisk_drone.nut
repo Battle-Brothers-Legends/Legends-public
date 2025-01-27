@@ -265,7 +265,7 @@ this.legend_basilisk_drone <- this.inherit("scripts/entity/tactical/actor", {
 		this.setSpriteOffset("status_stunned", this.createVec(0, 10));
 		this.setSpriteOffset("arrow", this.createVec(0, 10));
 
-		this.m.Skills.add(this.new("scripts/skills/actives/legend_basilisk_peck_skill"));
+		::Legends.Actives.grant(this, ::Legends.Active.LegendBasiliskPeck);
 		::Legends.Perks.grant(this, ::Legends.Perk.Overwhelm);
 		::Legends.Perks.grant(this, ::Legends.Perk.CripplingStrikes);
 		::Legends.Perks.grant(this, ::Legends.Perk.Pathfinder);

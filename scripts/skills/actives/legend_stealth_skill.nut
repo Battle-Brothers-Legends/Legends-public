@@ -4,8 +4,7 @@ this.legend_stealth_skill <- this.inherit("scripts/skills/skill", {
 	},
 	function create()
 	{
-		this.m.ID = "actives.legend_stealth";
-		this.m.Name = "Stealth";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendStealth);
 		this.m.Description = "Fade into the environment.";
 		this.m.Icon = "skills/stealth_square.png";
 		this.m.IconDisabled = "skills/stealth_square_bw.png";

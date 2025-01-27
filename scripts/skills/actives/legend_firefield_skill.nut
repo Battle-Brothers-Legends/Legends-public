@@ -4,8 +4,7 @@ this.legend_firefield_skill <- this.inherit("scripts/skills/skill", {
 	},
 	function create()
 	{
-		this.m.ID = "actives.legend_firefield";
-		this.m.Name = "Fire Pot";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendFirefield);
 		this.m.Description = "Throw a pot releasing a field of fire that burns all beings.";
 		this.m.Icon = "skills/fire_square.png";
 		this.m.IconDisabled = "skills/fire_square_bw.png";
@@ -78,7 +77,7 @@ this.legend_firefield_skill <- this.inherit("scripts/skills/skill", {
 
 	function isUsable()
 	{
-		if (!this.getContainer().getActor().isArmedWithMagicStaff()) 
+		if (!this.getContainer().getActor().isArmedWithMagicStaff())
 			return false
 
 		return !this.Tactical.isActive() || this.skill.isUsable() && !this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions());
@@ -139,7 +138,7 @@ this.legend_firefield_skill <- this.inherit("scripts/skills/skill", {
 				continue;
 
 			local entity = tile.getEntity();
-			
+
 			for (local i = 0; i < 2; ++i)
 			{
 				if (entity.isAlive() && !entity.isDying())

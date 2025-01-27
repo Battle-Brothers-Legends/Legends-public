@@ -189,8 +189,8 @@ this.legend_banshee <- this.inherit("scripts/entity/tactical/actor", {
 		this.addDefaultStatusSprites();
 		this.getSprite("status_rooted").Scale = 0.55;
 		this.setSpriteOffset("status_rooted", this.createVec(-5, -5));
-		this.m.Skills.add(this.new("scripts/skills/actives/ghastly_touch"));
-		this.m.Skills.add(this.new("scripts/skills/actives/legend_banshee_scream"));
+		::Legends.Actives.grant(this, ::Legends.Active.GhastlyTouch);
+		::Legends.Actives.grant(this, ::Legends.Active.LegendBansheeScream);
 		::Legends.Perks.grant(this, ::Legends.Perk.Anticipation);
 		::Legends.Perks.grant(this, ::Legends.Perk.NineLives);
 		::Legends.Perks.grant(this, ::Legends.Perk.Stalwart);
@@ -201,8 +201,8 @@ this.legend_banshee <- this.inherit("scripts/entity/tactical/actor", {
 			::Legends.Perks.grant(this, ::Legends.Perk.Fearsome);
 			::Legends.Perks.grant(this, ::Legends.Perk.Dodge);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendLevitate);
-			this.m.Skills.add(this.new("scripts/skills/actives/legend_nightmare_touch_skill"));
-			this.m.Skills.add(this.new("scripts/skills/actives/legend_nightmare_touch_zoc_skill"));
+			::Legends.Actives.grant(this, ::Legends.Active.LegendNightmareTouch);
+			::Legends.Actives.grant(this, ::Legends.Active.LegendNightmareTouchZoc);
 			::Legends.Perks.grant(this, ::Legends.Perk.Footwork);
 		}
 

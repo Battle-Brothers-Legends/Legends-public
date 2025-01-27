@@ -12,15 +12,15 @@ this.perk_legend_zombie_bite <- this.inherit("scripts/skills/skill", {
 
 	function onAdded()
 	{
-		if (!this.m.Container.hasSkill("actives.zombie_bite"))
+		if (!this.m.Container.hasActive(::Legends.Active.ZombieBite))
 		{
-			this.m.Container.add(this.new("scripts/skills/actives/zombie_bite"));
+			::Legends.Actives.grant(this, ::Legends.Active.ZombieBite);
 		}
 	}
 
 	function onRemoved()
 	{
-		this.m.Container.removeByID("actives.zombie_bite");
+		::Legends.Actives.remove(this, ::Legends.Active.ZombieBite);
 	}
 
 

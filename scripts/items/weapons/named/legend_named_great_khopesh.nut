@@ -25,7 +25,7 @@ this.legend_named_great_khopesh <- this.inherit("scripts/items/weapons/named/nam
 		this.m.RegularDamage = 75;
 		this.m.RegularDamageMax = 95;
 		this.m.ArmorDamageMult = 1.2;
-		this.m.DirectDamageMult = 0.25;		
+		this.m.DirectDamageMult = 0.25;
 		this.m.FatigueOnSkillUse = 5;
 		this.randomizeValues();
 	}
@@ -40,11 +40,11 @@ this.legend_named_great_khopesh <- this.inherit("scripts/items/weapons/named/nam
 	function onEquip()
 	{
 		this.named_weapon.onEquip();
-		local cleave = this.new("scripts/skills/actives/cleave");
-		cleave.m.FatigueCost = 15;
-		this.addSkill(cleave);
-		this.addSkill(this.new("scripts/skills/actives/decapitate"));
-		this.addSkill(this.new("scripts/skills/actives/swing"));
+		::Legends.Actives.grant(this, ::Legends.Active.Cleave, function (_skill) {
+			_skill.m.FatigueCost = 15;
+		}.bindenv(this));
+		::Legends.Actives.grant(this, ::Legends.Active.Decapitate);
+		::Legends.Actives.grant(this, ::Legends.Active.Swing);
 	}
 
 });

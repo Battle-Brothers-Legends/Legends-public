@@ -2,8 +2,7 @@ this.legend_inspire_skill <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "actives.legend_inspire";
-		this.m.Name = "Inspire";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendInspire);
 		this.m.Description = "You can do it! Inspire an ally to go to their limit and beyond, granting them additional Action Points. Targets can only be inspired once per turn.";
 		this.m.Icon = "skills/inspire.png";
 		this.m.IconDisabled = "skills/inspire_bw.png";

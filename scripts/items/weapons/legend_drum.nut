@@ -34,11 +34,10 @@ this.legend_drum <- this.inherit("scripts/items/weapons/weapon", {
 	function onEquip()
 	{
 		this.weapon.onEquip();
-		local s = this.new("scripts/skills/actives/bash");
-		s.m.IsDrumBash = true;
-		this.addSkill(s);
-		local s = this.new("scripts/skills/actives/knock_out");
-		this.addSkill(s);
+		::Legends.Actives.grant(this, ::Legends.Active.Bash, function (_skill) {
+			_skill.m.IsDrumBash = true;
+		}.bindenv(this));
+		::Legends.Actives.grant(this, ::Legends.Active.KnockOut);
 	}
 
 	function onUpdateProperties( _properties )

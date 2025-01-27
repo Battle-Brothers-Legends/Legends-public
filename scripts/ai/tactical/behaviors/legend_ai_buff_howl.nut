@@ -1,8 +1,8 @@
 this.legend_ai_buff_howl <- this.inherit("scripts/ai/tactical/behavior", {
 	m = {
 		PossibleSkills = [
-			"actives.legend_werewolf_howl",
-			"actives.legend_white_wolf_howl"
+			::Legends.Actives.getID(::Legends.Active.LegendWerewolfHowl),
+			::Legends.Actives.getID(::Legends.Active.LegendWhiteWolfHowl)
 		],
 		Skill = null
 	},

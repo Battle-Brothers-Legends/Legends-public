@@ -12,9 +12,9 @@ this.perk_legend_citrinitas <- this.inherit("scripts/skills/skill", {
 
 	function onAdded()
 	{
-		if (!this.m.Container.hasSkill("actives.legend_citrinitas_trance"))
+		if (!this.m.Container.hasActive(::Legends.Active.LegendCitrinitasTrance))
 		{
-			this.m.Container.add(this.new("scripts/skills/actives/legend_citrinitas_trance_skill"));
+			::Legends.Actives.grant(this, ::Legends.Active.LegendCitrinitasTrance);
 		}
 	}
 

@@ -138,7 +138,7 @@ this.legend_zombie <- this.inherit("scripts/entity/tactical/enemies/zombie", {
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendPoisonImmunity);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendStrengthInNumbers);
 		this.m.Skills.add(this.new("scripts/skills/special/double_grip"));
-		this.m.Skills.add(this.new("scripts/skills/actives/zombie_bite"));
+		::Legends.Actives.grant(this, ::Legends.Active.ZombieBite);
 	}
 
 	function isGuest()

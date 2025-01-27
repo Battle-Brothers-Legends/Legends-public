@@ -2,8 +2,7 @@ this.legend_fortify_skill <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "actives.legend_fortify";
-		this.m.Name = "Fortify";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendFortify);
 		this.m.Description = "The shield is raised to a fortified stance until next turn.";
 		this.m.Icon = "skills/fortify_square.png";
 		this.m.IconDisabled = "skills/fortify_square_bw.png";
@@ -123,6 +122,6 @@ this.legend_fortify_skill <- this.inherit("scripts/skills/skill", {
 	{
 		::Legends.Effects.remove(this, ::Legends.Effect.LegendFortify);
 	}
-	
+
 });
 

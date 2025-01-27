@@ -30,8 +30,8 @@ this.legend_sickle <- this.inherit("scripts/items/weapons/weapon", {
 	function onEquip()
 	{
 		this.weapon.onEquip();
-		this.addSkill(this.new("scripts/skills/actives/slash"));
-		//this.addSkill(this.new("scripts/skills/actives/legend_harvest_bush_skill"));
+		::Legends.Actives.grant(this, ::Legends.Active.Slash);
+		//::Legends.Actives.grant(this, ::Legends.Active.LegendHarvestBush);
 	}
 
 	function onUpdateProperties( _properties )

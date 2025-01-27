@@ -50,13 +50,12 @@ this.legend_named_butchers_cleaver <- this.inherit("scripts/items/weapons/named/
 	function onEquip()
 	{
 		this.named_weapon.onEquip();
-		local cleave = this.new("scripts/skills/actives/cleave");
-		cleave.m.Icon = "skills/active_68.png";
-		cleave.m.IconDisabled = "skills/active_68_sw.png";
-		cleave.m.Overlay = "active_68";
-		this.addSkill(cleave);
-		local decapitate = this.new("scripts/skills/actives/decapitate");
-		this.addSkill(decapitate);
+		::Legends.Actives.grant(this, ::Legends.Active.Cleave, function (_skill) {
+			_skill.m.Icon = "skills/active_68.png";
+			_skill.m.IconDisabled = "skills/active_68_sw.png";
+			_skill.m.Overlay = "active_68";
+		}.bindenv(this));
+		::Legends.Actives.grant(this, ::Legends.Active.Decapitate);
 	}
 
 });

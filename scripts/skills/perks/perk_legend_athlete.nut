@@ -12,11 +12,11 @@ this.perk_legend_athlete <- this.inherit("scripts/skills/skill", {
 
 	function onAdded()
 	{
-		if (!this.m.Container.hasSkill("actives.legend_climb"))
+		if (!this.m.Container.hasActive(::Legends.Active.LegendClimb))
 		{
-			this.m.Container.add(this.new("scripts/skills/actives/legend_climb_skill"));
+			::Legends.Actives.grant(this, ::Legends.Active.LegendClimb);
 		}
-		if (!this.m.Container.hasSkill("actives.legend_sprint"))
+		if (!this.m.Container.hasActive(::Legends.Active.LegendSprint))
 		{
 			this.m.Container.add(this.new("scripts/skills/actives/legend_sprint_skill_5"));
 		}
@@ -24,7 +24,7 @@ this.perk_legend_athlete <- this.inherit("scripts/skills/skill", {
 
 	function onRemoved()
 	{
-		this.m.Container.removeByID("actives.legend_climb");
+		::Legends.Actives.remove(this, ::Legends.Active.LegendClimb);
 	}
 
 });

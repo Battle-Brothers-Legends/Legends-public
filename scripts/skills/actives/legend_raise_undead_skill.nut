@@ -2,8 +2,7 @@ this.legend_raise_undead_skill <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "actives.legend_raise_undead";
-		this.m.Name = "Conduct Seance";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendRaiseUndead);
 		this.m.Description = "";
 		this.m.Icon = "skills/raisedead2.png";
 		this.m.IconDisabled = "skills/raisedead2_bw.png";
@@ -59,11 +58,11 @@ this.legend_raise_undead_skill <- this.inherit("scripts/skills/skill", {
 			return false;
 		}
 
-		if (!this.MSU.Tile.canResurrectOnTile(_targetTile)) 
+		if (!this.MSU.Tile.canResurrectOnTile(_targetTile))
 		{
 			return false;
 		}
-		
+
 		if (!_targetTile.IsEmpty)
 		{
 			return false;

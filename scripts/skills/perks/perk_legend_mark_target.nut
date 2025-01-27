@@ -12,14 +12,14 @@ this.perk_legend_mark_target <- this.inherit("scripts/skills/skill", {
 
 	function onAdded()
 	{
-		if (!this.m.Container.hasSkill("actives.legend_mark_target"))
+		if (!this.m.Container.hasActive(::Legends.Active.LegendMarkTarget))
 		{
-			this.m.Container.add(this.new("scripts/skills/actives/legend_mark_target_skill"));
+			::Legends.Actives.grant(this, ::Legends.Active.LegendMarkTarget);
 		}
 	}
 		function onRemoved()
 	{
-		this.m.Container.removeByID("actives.legend_mark_target");
+		::Legends.Actives.remove(this, ::Legends.Active.LegendMarkTarget);
 	}
 
 });

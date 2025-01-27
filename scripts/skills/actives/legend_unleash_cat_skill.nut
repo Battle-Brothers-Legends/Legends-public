@@ -1,6 +1,6 @@
 this.legend_unleash_cat_skill <- this.inherit("scripts/skills/skill", {
 	m = {
-		Entity = null,			
+		Entity = null,
 		EntityName = "Cleo",
 		Script = "scripts/entity/tactical/legend_cat",
 		Sounds0 = [
@@ -50,8 +50,7 @@ this.legend_unleash_cat_skill <- this.inherit("scripts/skills/skill", {
 
 	function create()
 	{
-		this.m.ID = "actives.legend_unleash_cat";
-		this.m.Name = "Summon Cat";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendUnleashCat);
 		this.m.Description = "Summon your cat. Hopefully it won\'t just run away. Needs a free tile adjacent.";
 		this.m.Icon = "skills/cat_square.png";
 		this.m.IconDisabled = "skills/cat_square_bw.png";

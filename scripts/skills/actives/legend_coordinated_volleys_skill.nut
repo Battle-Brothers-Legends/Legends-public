@@ -2,8 +2,7 @@ this.legend_coordinated_volleys_skill <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "actives.legend_coordinated_volleys";
-		this.m.Name = "Coordinated Volleys";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendCoordinatedVolleys);
 		this.m.Description = "Time and call the shots for archers, increasing their chance to hit.";
 		this.m.Icon = "skills/coordinated_volleys_square.png";
 		this.m.IconDisabled = "skills/coordinated_volleys_square_bw.png";

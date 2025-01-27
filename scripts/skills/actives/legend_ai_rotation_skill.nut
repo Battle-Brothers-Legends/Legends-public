@@ -2,8 +2,7 @@ this.legend_ai_rotation_skill <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "actives.legend_ai_rotation"; //for ai only
-		this.m.Name = "Rotation";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendAiRotation); //for ai only
 		this.m.Description = "For ai use only, if you can see this something has gone wrong.";
 		this.m.Icon = "ui/perks/perk_11_active.png";
 		this.m.IconDisabled = "ui/perks/perk_11_active_sw.png";

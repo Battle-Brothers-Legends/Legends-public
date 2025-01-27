@@ -2,8 +2,7 @@ this.legend_gruesome_feast_skill <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "actives.legend_gruesome_feast";
-		this.m.Name = "Gruesome Feast";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendGruesomeFeast);
 		this.m.Description = "Feast on a corpse to regain health and cure injuries. Will daze and disgust any ally within four tiles.";
 		this.m.Icon = "skills/gruesome_square.png";
 		this.m.IconDisabled = "skills/gruesome_square_bw.png";
@@ -54,7 +53,7 @@ this.legend_gruesome_feast_skill <- this.inherit("scripts/skills/skill", {
 	}
 
 	function onVerifyTarget( _originTile, _targetTile )
-	{	
+	{
 		if (_targetTile.IsEmpty)
 		{
 			return false;
@@ -149,7 +148,7 @@ this.legend_gruesome_feast_skill <- this.inherit("scripts/skills/skill", {
 		foreach( s in skills )
 		{
 			s.removeSelf();
-		}		
+		}
 
 		local actors = this.Tactical.Entities.getInstancesOfFaction(_user.getFaction());
 		foreach( a in actors )
@@ -167,12 +166,12 @@ this.legend_gruesome_feast_skill <- this.inherit("scripts/skills/skill", {
 			if (a.getFaction() != _user.getFaction())
 			{
 				continue;
-			}	
+			}
 
 			::Legends.Effects.grant(a, ::Legends.Effect.LegendDazed);
 			a.worsenMood(2.0, "Witnessed someone eat a corpse");
 		}
-		
+
 		_user.onUpdateInjuryLayer();
 		return true;
 	}

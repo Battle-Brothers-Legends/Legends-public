@@ -2,8 +2,7 @@ this.legend_alp_realm_of_shadow_skill <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "actives.legend_alp_realm_of_shadow";
-		this.m.Name = "Shadow Mist";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendAlpRealmOfShadow);
 		this.m.Description = "";
 		this.m.Icon = "skills/nightvision_square.png";
 		this.m.IconDisabled = "skills/nightvision_square.png";
@@ -81,7 +80,7 @@ this.legend_alp_realm_of_shadow_skill <- this.inherit("scripts/skills/skill", {
 				tile.Properties.Effect.Timeout = this.Time.getRound() + 3;
 				continue;
 			}
-			
+
 			if (tile.Properties.Effect != null)
 				this.Tactical.Entities.removeTileEffect(tile);
 
@@ -120,7 +119,7 @@ this.legend_alp_realm_of_shadow_skill <- this.inherit("scripts/skills/skill", {
 			"sounds/enemies/dlc2/alp_nightmare_05.wav",
 			"sounds/enemies/dlc2/alp_nightmare_06.wav"
 		]), this.Const.Sound.Volume.Actor, _entity.getPos());
-		
+
 		::Legends.Effects.grant(_entity, ::Legends.Effect.LegendAlpRealmOfShadow);
 	}
 

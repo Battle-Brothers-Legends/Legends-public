@@ -3,8 +3,7 @@ this.legend_pass_skill <- this.inherit("scripts/skills/skill", {
 
 	function create()
 	{
-		this.m.ID = "actives.legend_pass";
-		this.m.Name = "Pass Item";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendPass);
 		this.m.Description = "Give the first item in your bag to an adjacent ally. Can not be used while engaged in melee, and anyone receiving the item needs to have a free bag slot.";
 		this.m.Icon = "skills/pass.png";
 		this.m.IconDisabled = "skills/pass_bw.png";
@@ -69,7 +68,7 @@ this.legend_pass_skill <- this.inherit("scripts/skills/skill", {
 	function getCursorForTile( _tile )
 	{
 		return this.Const.UI.Cursor.Give;
-	
+
 	}
 
 	function isUsable()
@@ -79,7 +78,7 @@ this.legend_pass_skill <- this.inherit("scripts/skills/skill", {
 			return false;
 		}
 		local item = this.getContainer().getActor().getItems().getItemAtBagSlot(0);
-		
+
 		if (item = null)
 		{
 			return false;
@@ -90,28 +89,28 @@ this.legend_pass_skill <- this.inherit("scripts/skills/skill", {
 
 	function onVerifyTarget( _originTile, _targetTile )
 	{
-	
+
 		if (!this.skill.onVerifyTarget(_originTile, _targetTile))
 		{
 			return false;
 		}
-		
 
-		
+
+
 		local target = _targetTile.getEntity();
-		local user = _originTile.getEntity();	
+		local user = _originTile.getEntity();
 		local item = user.getItems().getItemAtBagSlot(0);
-		
+
 		if (item = null)
 		{
 			return false;
 		}
-	
+
 		if (!this.m.Container.getActor().isAlliedWith(target))
 		{
 			return false;
-		}	
-		
+		}
+
 		if (target.getID() != user.getID())
 		{
 			if (!target.getItems().hasEmptySlot(this.Const.ItemSlot.Bag))
@@ -125,10 +124,10 @@ this.legend_pass_skill <- this.inherit("scripts/skills/skill", {
 
 	function onUse( _user, _targetTile )
 	{
-		local target = _targetTile.getEntity();			
+		local target = _targetTile.getEntity();
 		local item = this.getContainer().getActor().getItems().getItemAtBagSlot(0);
 		local itemName = item.getName();
-		
+
 		this.spawnIcon("status_helpful", _targetTile);
 
 		if (!_user.isHiddenToPlayer())
@@ -137,7 +136,7 @@ this.legend_pass_skill <- this.inherit("scripts/skills/skill", {
 		}
 
 		this.Sound.play("sounds/cloth_01.wav", this.Const.Sound.Volume.Inventory);
-		
+
 		_user.getItems().removeFromBag(item);
 		target.getItems().addToBag(item);
 

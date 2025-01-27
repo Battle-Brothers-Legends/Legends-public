@@ -87,7 +87,7 @@ this.perk_legend_ambidextrous <- this.inherit("scripts/skills/skill", {
 
 	function onAnySkillExecuted( _skill, _targetTile, _targetEntity, _forFree )
 	{
-		if (!_skill.m.IsAttack || (_skill.getID() == "actives.hand_to_hand" && this.getContainer().getActor().getItems().getItemAtSlot(::Const.ItemSlot.Mainhand) != null))
+		if (!_skill.m.IsAttack || (_skill.getID() == ::Legends.Actives.getID(::Legends.Active.HandToHand) && this.getContainer().getActor().getItems().getItemAtSlot(::Const.ItemSlot.Mainhand) != null))
 		{
 			// Don't execute a follow up attack if the first skill is not an attack, or if you are using hand to hand while the mainhand is holding a weapon
 			return;
@@ -132,7 +132,7 @@ this.perk_legend_ambidextrous <- this.inherit("scripts/skills/skill", {
 
 	function onAdded()
 	{
-		m.HandToHand = ::MSU.asWeakTableRef(getContainer().getSkillByID("actives.hand_to_hand"));
+		m.HandToHand = ::MSU.asWeakTableRef(::Legends.Actives.get(this, ::Legends.Active.HandToHand));
 
 		local off = getContainer().getActor().getOffhandItem();
 

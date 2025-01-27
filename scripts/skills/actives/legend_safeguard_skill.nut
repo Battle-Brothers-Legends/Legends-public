@@ -3,8 +3,7 @@ this.legend_safeguard_skill <- this.inherit("scripts/skills/skill", {
 
 	function create()
 	{
-		this.m.ID = "actives.legend_safeguard";
-		this.m.Name = "Safeguard";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendSafeguard);
 		this.m.Description = "Use your shield to protect an ally, leaving yourself exposed.";
 		this.m.Icon = "skills/fortify_square.png";
 		this.m.IconDisabled = "skills/fortify_square_bw.png";

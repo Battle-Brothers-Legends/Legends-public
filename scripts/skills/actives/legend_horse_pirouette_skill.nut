@@ -2,8 +2,7 @@ this.legend_horse_pirouette_skill <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "actives.legend_horse_pirouette";
-		this.m.Name = "Pirouette";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendHorsePirouette);
 		this.m.Description = "Learning to turn quickly allows the rapid changes in direction required to leave a Zone of Control without triggering free attacks.";
 		this.m.Icon = "skills/horse_pirouette.png";
 		this.m.IconDisabled = "skills/horse_pirouette_bw.png";

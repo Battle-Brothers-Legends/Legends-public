@@ -29,8 +29,8 @@ this.legend_wooden_stake <- this.inherit("scripts/items/weapons/weapon", {
 	function onEquip()
 	{
 		this.weapon.onEquip();
-		this.addSkill(this.new("scripts/skills/actives/legend_wooden_stake_stab_skill"));
-		this.addSkill(this.new("scripts/skills/actives/puncture"));
+		::Legends.Actives.grant(this, ::Legends.Active.LegendWoodenStakeStab);
+		::Legends.Actives.grant(this, ::Legends.Active.Puncture);
 	}
 
 	function onUpdateProperties( _properties )

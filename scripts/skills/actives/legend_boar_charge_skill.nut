@@ -2,8 +2,7 @@ this.legend_boar_charge_skill <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "actives.legend_boar_charge";
-		this.m.Name = "Boar Charge";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendBoarCharge);
 		this.m.Description = "";
 		this.m.Icon = "skills/boar_charge.png";
 		this.m.IconDisabled = "skills/boar_charge_bw.png";

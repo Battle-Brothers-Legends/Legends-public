@@ -281,8 +281,8 @@ this.legend_redback_spider <- this.inherit("scripts/entity/tactical/actor", {
 		this.setSpriteOffset("status_stunned", this.createVec(0, -20));
 		this.setSpriteOffset("arrow", this.createVec(0, -20));
 		this.setSize(this.Math.rand(70, 90) * 0.01);
-		this.m.Skills.add(this.new("scripts/skills/actives/legend_redback_spider_bite_skill"));
-		this.m.Skills.add(this.new("scripts/skills/actives/web_skill"));
+		::Legends.Actives.grant(this, ::Legends.Active.LegendRedbackSpiderBite);
+		::Legends.Actives.grant(this, ::Legends.Active.Web);
 		::Legends.Perks.grant(this, ::Legends.Perk.Footwork);
 		::Legends.Perks.grant(this, ::Legends.Perk.Rotation);
 		::Legends.Perks.grant(this, ::Legends.Perk.Recover);

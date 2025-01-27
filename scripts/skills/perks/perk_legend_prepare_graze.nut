@@ -12,14 +12,14 @@ this.perk_legend_prepare_graze <- this.inherit("scripts/skills/skill", {
 
 	function onAdded()
 	{
-		if (!this.m.Container.hasSkill("actives.legend_prepare_graze"))
+		if (!this.m.Container.hasActive(::Legends.Active.LegendPrepareGraze))
 		{
-			this.m.Container.add(this.new("scripts/skills/actives/legend_prepare_graze_skill"));
+			::Legends.Actives.grant(this, ::Legends.Active.LegendPrepareGraze);
 		}
 	}
 		function onRemoved()
 	{
-		this.m.Container.removeByID("actives.legend_prepare_graze");
+		::Legends.Actives.remove(this, ::Legends.Active.LegendPrepareGraze);
 	}
 
 });

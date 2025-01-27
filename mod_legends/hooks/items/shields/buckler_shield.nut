@@ -13,10 +13,9 @@
 	o.onEquip = function ()
 	{
 		onEquip();
-		local bash = this.new("scripts/skills/actives/legend_buckler_bash_skill");
-		this.m.PrimaryOffhandAttack = ::MSU.asWeakTableRef(bash);
-		this.addSkill(bash);
-
+		::Legends.Actives.grant(this, ::Legends.Active.LegendBucklerBash, function (_skill) {
+			this.m.PrimaryOffhandAttack = ::MSU.asWeakTableRef(_skill);
+		}.bindenv(this));
 		::Legends.Effects.grant(this, ::Legends.Effect.LegendBuckler, function(_effect) {
 			_effect.m.Order = this.Const.SkillOrder.UtilityTargeted + 1;
 			_effect.setItem(this);

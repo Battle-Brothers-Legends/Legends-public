@@ -248,12 +248,12 @@ this.legend_white_direwolf <- this.inherit("scripts/entity/tactical/actor", {
 		this.addDefaultStatusSprites();
 		this.getSprite("status_rooted").Scale = 0.54;
 		this.setSpriteOffset("status_rooted", this.createVec(0, 0));
-		this.m.Skills.add(this.new("scripts/skills/actives/legend_white_wolf_bite_skill"));
-		this.m.Skills.add(this.new("scripts/skills/actives/werewolf_bite"));
+		::Legends.Actives.grant(this, ::Legends.Active.LegendWhiteWolfBite);
+		::Legends.Actives.grant(this, ::Legends.Active.WerewolfBite);
 		::Legends.Perks.grant(this, ::Legends.Perk.Rotation);
 		::Legends.Perks.grant(this, ::Legends.Perk.Footwork);
 		::Legends.Perks.grant(this, ::Legends.Perk.Recover);
-		this.m.Skills.add(this.new("scripts/skills/actives/legend_white_wolf_howl_skill"));
+		::Legends.Actives.grant(this, ::Legends.Active.LegendWhiteWolfHowl);
 		::Legends.Perks.grant(this, ::Legends.Perk.CoupDeGrace);
 		::Legends.Perks.grant(this, ::Legends.Perk.Berserk);
 		::Legends.Perks.grant(this, ::Legends.Perk.Pathfinder);

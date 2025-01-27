@@ -4,8 +4,7 @@ this.legend_transform_into_boar_skill <- this.inherit("scripts/skills/skill", {
 	},
 	function create()
 	{
-		this.m.ID = "actives.legend_transform_into_boar";
-		this.m.Name = "Transform into Boar";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendTransformIntoBoar);
 		this.m.Description = "Enables the character to turn into a boar. Requires free hands. (Icon is temporary)";
 		this.m.Icon = "skills/blooddrop_square.png";
 		this.m.IconDisabled = "skills/blooddrop_square_bw.png";

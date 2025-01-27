@@ -5,8 +5,7 @@ this.legend_grapple_skill <- this.inherit("scripts/skills/skill", {
 
 	function create()
 	{
-		this.m.ID = "actives.legend_grapple";
-		this.m.Name = "Grapple";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendGrapple);
 		this.m.Description = "Grab, hold, and restrain a target, reducing their melee defense by 12 and initiative by 30% for 2 turns. A particularly lucky or skilled maneuver may disarm the opponent. One hand must be free to use.";
 		this.m.Icon = "skills/grapple_square.png";
 		this.m.IconDisabled = "skills/grapple_square_bw.png";

@@ -129,7 +129,7 @@
 
 		this.setHitpoints(this.getHitpointsMax() * this.Math.rand(45, 100) * 0.01);
 		this.m.Skills.add(this.new("scripts/skills/special/double_grip"));
-		this.m.Skills.add(this.new("scripts/skills/actives/zombie_bite"));
+		::Legends.Actives.grant(this, ::Legends.Active.ZombieBite);
 		::Legends.Perks.grant(this, ::Legends.Perk.BattleForged);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendPoisonImmunity);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendStrengthInNumbers);

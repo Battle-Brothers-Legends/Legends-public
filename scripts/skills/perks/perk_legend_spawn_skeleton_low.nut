@@ -23,17 +23,17 @@ this.perk_legend_spawn_skeleton_low <- this.inherit("scripts/skills/skill", {
 
 	function onAdded()
 	{
-		if (!this.m.Container.hasSkill("actives.legend_spawn_skeleton_low"))
+		if (!this.m.Container.hasActive(::Legends.Active.LegendSpawnSkeletonLow))
 		{
-			this.m.Container.add(this.new("scripts/skills/actives/legend_spawn_skeleton_low_skill"));
-			this.m.Container.add(this.new("scripts/skills/actives/legend_spawn_skeleton_low_archer_skill"));
+			::Legends.Actives.grant(this, ::Legends.Active.LegendSpawnSkeletonLow);
+			::Legends.Actives.grant(this, ::Legends.Active.LegendSpawnSkeletonLowArcher);
 		}
 	}
 
 	function onRemoved()
 	{
-		this.m.Container.removeByID("actives.legend_spawn_skeleton_low");
-		this.m.Container.removeByID("actives.legend_spawn_skeleton_low_archer");
+		::Legends.Actives.remove(this, ::Legends.Active.LegendSpawnSkeletonLow);
+		::Legends.Actives.remove(this, ::Legends.Active.LegendSpawnSkeletonLowArcher);
 	}
 
 });

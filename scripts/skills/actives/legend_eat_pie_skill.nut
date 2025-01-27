@@ -4,8 +4,7 @@ this.legend_eat_pie_skill <- this.inherit("scripts/skills/actives/base/legend_ea
 	function create()
 	{
 		this.legend_eat_skill.create();
-		this.m.ID = "actives.legend_eat_pie";
-		this.m.Name = "Eat or Give Pie";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendEatPie);
 		this.m.Description = "Give to an adjacent ally or eat yourself a pie that slowly recovers hitpoints. Can not be used while engaged in melee, and anyone receiving the item needs to have a free bag slot.";
 		this.m.Icon = "skills/pie_square.png";
 		this.m.IconDisabled = "skills/pie_square_bw.png";

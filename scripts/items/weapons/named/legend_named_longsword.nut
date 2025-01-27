@@ -36,14 +36,14 @@ this.legend_named_longsword <- this.inherit("scripts/items/weapons/named/named_w
 	function onEquip()
 	{
 		this.named_weapon.onEquip();
-		local skillToAdd = this.new("scripts/skills/actives/overhead_strike");
-		skillToAdd.setStunChance(this.m.StunChance);
-		this.addSkill(skillToAdd);
-		this.addSkill(this.new("scripts/skills/actives/split"));
-		this.addSkill(this.new("scripts/skills/actives/swing"));
-		local skillToAdd = this.new("scripts/skills/actives/split_shield");
-		skillToAdd.setFatigueCost(skillToAdd.getFatigueCostRaw() + 5);
-		this.addSkill(skillToAdd);
+		::Legends.Actives.grant(this, ::Legends.Active.OverheadStrike, function (_skill) {
+			_skill.setStunChance(this.m.StunChance);
+		}.bindenv(this));
+		::Legends.Actives.grant(this, ::Legends.Active.Split);
+		::Legends.Actives.grant(this, ::Legends.Active.Swing);
+		::Legends.Actives.grant(this, ::Legends.Active.SplitShield, function (_skill) {
+			_skill.setFatigueCost(_skill.getFatigueCostRaw() + 5);
+		}.bindenv(this));
 	}
 
 });

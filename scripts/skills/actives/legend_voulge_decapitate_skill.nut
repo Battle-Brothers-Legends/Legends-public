@@ -14,8 +14,7 @@ this.legend_voulge_decapitate_skill <- this.inherit("scripts/skills/skill", {
 
 	function create()
 	{
-		this.m.ID = "actives.legend_voulge_decapitate";
-		this.m.Name = "Decapitate";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendVoulgeDecapitate);
 		this.m.Description = "A devastating blow aimed to decapitate the target on the spot. Does more damage to hitpoints, the more the target is already injured. Killing the target will always decapitate it, if at all possible.";
 		this.m.Icon = "skills/active_34.png";
 		this.m.IconDisabled = "skills/active_34_sw.png";

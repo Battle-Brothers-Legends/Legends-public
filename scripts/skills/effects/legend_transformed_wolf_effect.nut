@@ -32,29 +32,18 @@ this.legend_transformed_wolf_effect <- this.inherit("scripts/skills/effects/lege
 	function setSkills()
 	{
 		local actor = this.getContainer().getActor();
-
-		if (!actor.getSkills().hasSkill("actives.legend_werewolf_claws"))
-		{
-			actor.getSkills().add(this.new("scripts/skills/actives/legend_werewolf_claws_skill"));
-		}
-		if (!actor.getSkills().hasSkill("actives.werewolf_bite"))
-		{
-			actor.getSkills().add(this.new("scripts/skills/actives/legend_werewolf_bite_skill"));
-		}
-		if (!actor.getSkills().hasSkill("actives.footwork"))
-		{
-			actor.getSkills().add(this.new("scripts/skills/actives/footwork"));
-		}
+		actor.getSkills().add(this.new("scripts/skills/actives/legend_werewolf_bite_skill"));
+		::Legends.Actives.grant(this, ::Legends.Active.LegendWerewolfClaws);
+		::Legends.Actives.grant(this, ::Legends.Active.Footwork);
 	}
 
 	function removeSkills()
 	{
-		local actor = this.getContainer().getActor();
-		actor.getSkills().removeByID("actives.werewolf_claws");
-		actor.getSkills().removeByID("actives.werewolf_bite");
-		if (!actor.getSkills().hasPerk(::Legends.Perk.Footwork))
+		::Legends.Actives.remove(this, ::Legends.Active.LegendWerewolfClaws);
+		::Legends.Actives.remove(this, ::Legends.Active.WerewolfBite);
+		if (!this.getContainer().hasPerk(::Legends.Perk.Footwork))
 		{
-			actor.getSkills().removeByID("actives.footwork");
+			::Legends.Actives.remove(this, ::Legends.Active.Footwork);
 		}
 	}
 

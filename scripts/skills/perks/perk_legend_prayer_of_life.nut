@@ -12,15 +12,15 @@ this.perk_legend_prayer_of_life <- this.inherit("scripts/skills/skill", {
 
 	function onAdded()
 	{
-		if (!this.m.Container.hasSkill("actives.legend_prayer_of_life"))
+		if (!this.m.Container.hasActive(::Legends.Active.LegendPrayerOfLife))
 		{
-			this.m.Container.add(this.new("scripts/skills/actives/legend_prayer_of_life_skill"));
+			::Legends.Actives.grant(this, ::Legends.Active.LegendPrayerOfLife);
 		}
 	}
 
 	function onRemoved()
 	{
-		this.m.Container.removeByID("actives.legend_prayer_of_life");
+		::Legends.Actives.remove(this, ::Legends.Active.LegendPrayerOfLife);
 	}
 
 });

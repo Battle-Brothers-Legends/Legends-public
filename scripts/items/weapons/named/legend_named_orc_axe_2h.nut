@@ -34,12 +34,12 @@ this.legend_named_orc_axe_2h <- this.inherit("scripts/items/weapons/named/named_
 	function onEquip()
 	{
 		this.named_weapon.onEquip();
-		this.addSkill(this.new("scripts/skills/actives/split_man"));
-		this.addSkill(this.new("scripts/skills/actives/round_swing"));
-		local skill = this.new("scripts/skills/actives/split_shield");
-		skill.setApplyAxeMastery(true);
-		skill.setFatigueCost(skill.getFatigueCostRaw() + 5);
-		this.addSkill(skill);
+		::Legends.Actives.grant(this, ::Legends.Active.SplitMan);
+		::Legends.Actives.grant(this, ::Legends.Active.RoundSwing);
+		::Legends.Actives.grant(this, ::Legends.Active.SplitShield, function (_skill) {
+			_skill.setApplyAxeMastery(true);
+			_skill.setFatigueCost(_skill.getFatigueCostRaw() + 5);
+		}.bindenv(this));
 	}
 
 });

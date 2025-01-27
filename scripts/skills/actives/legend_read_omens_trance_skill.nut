@@ -6,8 +6,7 @@ this.legend_read_omens_trance_skill <- this.inherit("scripts/skills/actives/lege
 	function create()
 	{
 		this.legend_trance_abstract_skill.create();
-		this.m.ID = "actives.legend_read_omens_trance";
-		this.m.Name = "Read Omens (Trance)";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendReadOmensTrance);
 		this.m.Icon = "skills/omen_active.png";
 		this.m.IconDisabled = "skills/omen_active_sw.png";
 		this.m.Overlay = "omen_active";

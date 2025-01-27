@@ -12,15 +12,15 @@ this.perk_legend_horse_charge <- this.inherit("scripts/skills/skill", {
 
 	function onAdded()
 	{
-		if (!this.m.Container.hasSkill("actives.legend_horse_charge"))
+		if (!this.m.Container.hasActive(::Legends.Active.LegendHorseCharge))
 		{
-			this.m.Container.add(this.new("scripts/skills/actives/legend_horse_charge_skill"));
+			::Legends.Actives.grant(this, ::Legends.Active.LegendHorseCharge);
 		}
 	}
 
 	function onRemoved()
 	{
-		this.m.Container.removeByID("actives.legend_horse_charge");
+		::Legends.Actives.remove(this, ::Legends.Active.LegendHorseCharge);
 	}
 
 	function onUpdated( _properties )

@@ -12,15 +12,15 @@ this.perk_legend_mastery_poison <- this.inherit("scripts/skills/skill", {
 
 	function onAdded()
 	{
-		if (!this.m.Container.hasSkill("actives.legend_poison_weapon"))
+		if (!this.m.Container.hasActive(::Legends.Active.LegendPoisonWeapon))
 		{
-			this.m.Container.add(this.new("scripts/skills/actives/legend_poison_weapon_skill"));
+			::Legends.Actives.grant(this, ::Legends.Active.LegendPoisonWeapon);
 		}
 	}
 
 	function onRemoved()
 	{
-		this.m.Container.removeByID("actives.legend_poison_weapon");
+		::Legends.Actives.remove(this, ::Legends.Active.LegendPoisonWeapon);
 	}
 
 	function onUpdate( _properties )

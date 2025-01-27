@@ -2,8 +2,7 @@ this.legend_demon_shadows_skill <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "actives.legend_demon_shadows";
-		this.m.Name = "Realm of Burning Nightmares";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendDemonShadows);
 		this.m.Description = "";
 		this.m.Icon = "skills/active_160.png";
 		this.m.IconDisabled = "skills/active_160.png";

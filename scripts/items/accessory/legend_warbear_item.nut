@@ -88,10 +88,10 @@ this.legend_warbear_item <- this.inherit("scripts/items/accessory/accessory", {
 	function onEquip()
 	{
 		this.accessory.onEquip();
-		local unleash = this.new("scripts/skills/actives/legend_unleash_warbear_skill");
-		unleash.setItem(this);
-		this.m.Skill = this.WeakTableRef(unleash);
-		this.addSkill(unleash);
+		::Legends.Actives.grant(this, ::Legends.Active.LegendUnleashWarbear, function (_skill) {
+			_skill.setItem(this);
+			this.m.Skill = this.WeakTableRef(_skill);
+		}.bindenv(this));
 	}
 
 	function onCombatFinished()

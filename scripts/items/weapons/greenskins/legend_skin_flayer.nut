@@ -42,11 +42,11 @@ this.legend_skin_flayer <- this.inherit("scripts/items/weapons/weapon", {
 	function onEquip()
 	{
 		this.weapon.onEquip();
-		local slash = this.new("scripts/skills/actives/slash");
-		slash.m.Icon = "skills/active_78.png";
-		slash.m.IconDisabled = "skills/active_78_sw.png";
-		slash.m.Overlay = "active_78";
-		this.addSkill(slash);
+		::Legends.Actives.grant(this, ::Legends.Active.Slash, function (_skill) {
+			_skill.m.Icon = "skills/active_78.png";
+			_skill.m.IconDisabled = "skills/active_78_sw.png";
+			_skill.m.Overlay = "active_78";
+		}.bindenv(this));
 	}
 
 });

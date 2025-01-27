@@ -113,7 +113,7 @@
 
 		this.m.Skills.add(this.new("scripts/skills/special/double_grip"));
 		this.m.Skills.add(this.new("scripts/skills/racial/vampire_racial"));
-		this.m.Skills.add(this.new("scripts/skills/actives/darkflight"));
+		::Legends.Actives.grant(this, ::Legends.Active.Darkflight);
 		::Legends.Perks.grant(this, ::Legends.Perk.Anticipation);
 		::Legends.Perks.grant(this, ::Legends.Perk.CripplingStrikes);
 		::Legends.Perks.grant(this, ::Legends.Perk.HeadHunter);

@@ -12,14 +12,14 @@ this.perk_legend_stun <- this.inherit("scripts/skills/skill", {
 
 	function onAdded()
 	{
-		if (!this.m.Container.hasSkill("actives.legend_stun"))
+		if (!this.m.Container.hasActive(::Legends.Active.LegendStun))
 		{
-			this.m.Container.add(this.new("scripts/skills/actives/legend_magic_stun_skill"));
+			::Legends.Actives.grant(this, ::Legends.Active.LegendStun);
 		}
 	}
 		function onRemoved()
 	{
-		this.m.Container.removeByID("actives.legend_stun");
+		::Legends.Actives.remove(this, ::Legends.Active.LegendStun);
 	}
 
 });

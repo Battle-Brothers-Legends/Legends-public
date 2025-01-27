@@ -30,7 +30,7 @@ this.legend_peasant_butcher <- this.inherit("scripts/entity/tactical/human", {
 		this.getSprite("socket").setBrush("bust_base_militia");
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendBloodbath);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecialistButcherSkill);
-		this.m.Skills.add(this.new("scripts/skills/actives/legend_prepare_bleed_skill"));
+		::Legends.Actives.grant(this, ::Legends.Active.LegendPrepareBleed);
 
 		if(::Legends.isLegendaryDifficulty())
 		{

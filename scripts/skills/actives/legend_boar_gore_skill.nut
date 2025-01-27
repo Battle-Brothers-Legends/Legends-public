@@ -2,8 +2,7 @@ this.legend_boar_gore_skill <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "actives.legend_boar_gore";
-		this.m.Name = "Boar Gore";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendBoarGore);
 		this.m.Description = "A deep tusk gore performed with full force to smash a target to bits. Anyone hit will be staggered and lose initiative.";
 		this.m.KilledString = "Gored";
 		this.m.Icon = "skills/boar_gore.png";

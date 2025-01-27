@@ -2,8 +2,7 @@ this.legend_albedo_skill <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "actives.legend_albedo";
-		this.m.Name = "Albedo";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendAlbedo);
 		this.m.Description = "Repair up to 25 armor.";
 		this.m.Icon = "skills/repair_square.png";
 		this.m.IconDisabled = "skills/repair_square_bw.png";

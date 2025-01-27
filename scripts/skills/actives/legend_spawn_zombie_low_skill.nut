@@ -3,8 +3,7 @@ this.legend_spawn_zombie_low_skill <- this.inherit("scripts/skills/actives/legen
 	function create()
 	{
 		this.legend_spawn_skill.create();
-		this.m.ID = "actives.legend_spawn_zombie_low";
-		this.m.Name = "Summon Light Zombie";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendSpawnZombieLow);
 		this.m.Description = "Summon a fallen peasant and send it charging into the enemy. Needs a free tile adjacent.";
 		this.m.Icon = "skills/mold_carrion.png";
 		this.m.IconDisabled = "skills/mold_carrion_bw.png";

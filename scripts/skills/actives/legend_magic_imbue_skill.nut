@@ -2,8 +2,7 @@ this.legend_magic_imbue_skill <- this.inherit("scripts/skills/actives/legend_mag
 	m = {},
 	function create()
 	{
-		this.m.ID = "actives.legend_magic_Imbue";
-		this.m.Name = "Imbue";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendMagicImbue);
 		this.m.Description = "Imbue someone with magical power, increasing accuracy and damage for 3 turns.";
 		this.m.KilledString = "Imbued";
 		this.m.Icon = "skills/magic_imbue_01.png";

@@ -3,8 +3,7 @@ this.legend_spawn_skeleton_high_skill <- this.inherit("scripts/skills/actives/le
 	function create()
 	{
 		this.legend_spawn_skill.create();
-		this.m.ID = "actives.legend_spawn_skeleton_high";
-		this.m.Name = "Summon Heavy Skeleton";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendSpawnSkeletonHigh);
 		this.m.Description = "Unleash your skeleton and send him charging into the enemy. Needs a free tile adjacent.";
 		this.m.Icon = "skills/rebuild_skeleton.png";
 		this.m.IconDisabled = "skills/rebuild_skeleton_bw.png";

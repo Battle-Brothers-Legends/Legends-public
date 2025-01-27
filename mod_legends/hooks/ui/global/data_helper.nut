@@ -180,8 +180,8 @@
 		_target.moraleLabel <- this.Const.MoraleStateName[_entity.getMoraleState()];
 
 		local dm = 1.0;
-		dm *= (_entity.isArmedWithMeleeWeapon() || _entity.getSkills().hasSkill("actives.hand_to_hand")) ? properties.MeleeDamageMult : 1.0;
-		dm *= (_entity.isArmedWithMeleeWeapon() || _entity.getSkills().hasSkill("actives.hand_to_hand")) ? properties.RangedDamageMult : 1.0;
+		dm *= (_entity.isArmedWithMeleeWeapon() || _entity.getSkills().hasActive(::Legends.Active.HandToHand)) ? properties.MeleeDamageMult : 1.0;
+		dm *= (_entity.isArmedWithMeleeWeapon() || _entity.getSkills().hasActive(::Legends.Active.HandToHand)) ? properties.RangedDamageMult : 1.0;
 
 		local damageMin = properties.getRegularDamageAverage() * dm;
 		local damageMax = this.Const.CharacterMaxValue.RegularDamage;

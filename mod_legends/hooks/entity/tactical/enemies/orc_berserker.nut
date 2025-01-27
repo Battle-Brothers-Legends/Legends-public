@@ -89,7 +89,7 @@
 		this.getSprite("status_rooted").Scale = 0.6;
 		this.m.Skills.add(this.new("scripts/skills/special/double_grip"));
 		this.m.Skills.add(this.new("scripts/skills/actives/hand_to_hand_orc"));
-		this.m.Skills.add(this.new("scripts/skills/actives/charge"));
+		::Legends.Actives.grant(this, ::Legends.Active.Charge);
 		::Legends.Effects.grant(this, ::Legends.Effect.BerserkerRage);
 		::Legends.Perks.grant(this, ::Legends.Perk.BatteringRam);
 		::Legends.Perks.grant(this, ::Legends.Perk.Berserk);

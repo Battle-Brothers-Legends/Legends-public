@@ -5,8 +5,7 @@ this.legend_shoot_dart_skill <- this.inherit("scripts/skills/skill", {
 	},
 	function create()
 	{
-		this.m.ID = "actives.legend_shoot_dart";
-		this.m.Name = "Shoot Dart";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendShootDart);
 		this.m.Description = "A quick puff of air to propel a dart. A hit to the head will put the target to sleep, a hit to the body has a 50% chance to daze the target.";
 		this.m.KilledString = "Darted";
 		this.m.Icon = "skills/blowgun_square.png";
@@ -130,7 +129,7 @@ this.legend_shoot_dart_skill <- this.inherit("scripts/skills/skill", {
 			r = this.Math.rand(1, 2);
 			if (_bodyPart == this.Const.BodyPart.Head)
 			{
-			
+
 				::Legends.Effects.grant(_targetEntity, ::Legends.Effect.Sleeping);
 
 				if (!user.isHiddenToPlayer() && targetTile.IsVisibleForPlayer)

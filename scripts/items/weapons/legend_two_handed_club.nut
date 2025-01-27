@@ -34,20 +34,19 @@ this.legend_two_handed_club <- this.inherit("scripts/items/weapons/weapon", {
 	function onEquip()
 	{
 		this.weapon.onEquip();
-		local skill;
-		skill = this.new("scripts/skills/actives/cudgel_skill");
-		skill.m.Icon = "skills/active_131.png";
-		skill.m.IconDisabled = "skills/active_131_sw.png";
-		skill.m.Overlay = "active_131";
-		this.addSkill(skill);
-		skill = this.new("scripts/skills/actives/strike_down_skill");
-		skill.m.Icon = "skills/active_132.png";
-		skill.m.IconDisabled = "skills/active_132_sw.png";
-		skill.m.Overlay = "active_132";
-		this.addSkill(skill);
-		skill = this.new("scripts/skills/actives/split_shield");
-		skill.setFatigueCost(skill.getFatigueCostRaw() + 5);
-		this.addSkill(skill);
+		::Legends.Actives.grant(this, ::Legends.Active.Cudgel, function (_skill) {
+			_skill.m.Icon = "skills/active_131.png";
+			_skill.m.IconDisabled = "skills/active_131_sw.png";
+			_skill.m.Overlay = "active_131";
+		}.bindenv(this));
+		::Legends.Actives.grant(this, ::Legends.Active.StrikeDown, function (_skill) {
+			_skill.m.Icon = "skills/active_132.png";
+			_skill.m.IconDisabled = "skills/active_132_sw.png";
+			_skill.m.Overlay = "active_132";
+		}.bindenv(this));
+		::Legends.Actives.grant(this, ::Legends.Active.SplitShield, function (_skill) {
+			_skill.setFatigueCost(_skill.getFatigueCostRaw() + 5);
+		}.bindenv(this));
 	}
 
 });

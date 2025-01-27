@@ -12,15 +12,15 @@ this.perk_legend_prayer_of_faith <- this.inherit("scripts/skills/skill", {
 
 	function onAdded()
 	{
-		if (!this.m.Container.hasSkill("actives.legend_prayer_of_faith"))
+		if (!this.m.Container.hasActive(::Legends.Active.LegendPrayerOfFaith))
 		{
-			this.m.Container.add(this.new("scripts/skills/actives/legend_prayer_of_faith_skill"));
+			::Legends.Actives.grant(this, ::Legends.Active.LegendPrayerOfFaith);
 		}
 	}
 
 	function onRemoved()
 	{
-		this.m.Container.removeByID("actives.legend_prayer_of_faith");
+		::Legends.Actives.remove(this, ::Legends.Active.LegendPrayerOfFaith);
 	}
 
 });

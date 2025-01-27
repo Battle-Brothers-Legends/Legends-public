@@ -34,9 +34,8 @@ this.legend_named_northern_sling <- this.inherit("scripts/items/weapons/named/na
 	function onEquip()
 	{
 		this.named_weapon.onEquip();
-		local aimed_shot = this.new("scripts/skills/actives/legend_sling_heavy_stone_skill");
-		this.addSkill(aimed_shot);
-		this.addSkill(this.new("scripts/skills/actives/legend_slingstaff_bash_skill"));
+		::Legends.Actives.grant(this, ::Legends.Active.LegendSlingHeavyStone);
+		::Legends.Actives.grant(this, ::Legends.Active.LegendSlingstaffBash);
 	}
 
 });

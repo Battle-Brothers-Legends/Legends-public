@@ -3,8 +3,7 @@ this.legend_drink_night_vision_skill <- this.inherit("scripts/skills/actives/bas
 
 	function create() {
 		this.legend_drink_potion_skill.create();
-		this.m.ID = "actives.legend_drink_night_vision";
-		this.m.Name = "Drink or Give Night Owl Elixir";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendDrinkNightVision);
 		this.m.Description = "Give to an adjacent ally or drink yourself an alchemical marvel to brighten up the night like if it were the mid of day. Can not be used while engaged in melee, and anyone receiving the item needs to have a free bag slot.";
 		this.m.Icon = "skills/active_142.png";
 		this.m.IconDisabled = "skills/active_142_sw.png";

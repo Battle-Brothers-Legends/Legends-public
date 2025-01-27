@@ -73,10 +73,10 @@ this.legend_white_wolf_item <- this.inherit("scripts/items/accessory/legend_acce
 	function onEquip()
 	{
 		this.accessory.onEquip();
-		local unleash = this.new("scripts/skills/actives/legend_unleash_white_wolf_skill");
-		unleash.setItem(this);
-		this.m.Skill = this.WeakTableRef(unleash);
-		this.addSkill(unleash);
+		::Legends.Actives.grant(this, ::Legends.Active.LegendUnleashWhiteWolf, function (_skill) {
+			_skill.setItem(this);
+			this.m.Skill = this.WeakTableRef(_skill);
+		}.bindenv(this));
 	}
 
 });

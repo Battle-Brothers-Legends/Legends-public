@@ -2,8 +2,7 @@ this.legend_donkey_kick_skill <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "actives.legend_donkey_kick";
-		this.m.Name = "Donkey Kick";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendDonkeyKick);
 		this.m.Description = "The main attack of a donkey, more for defense than attack. Maximum damage is the average of your hitpoints and initiative minus 90.";
 		this.m.KilledString = "Kicked to death";
 		this.m.Icon = "skills/horse_kick.png";

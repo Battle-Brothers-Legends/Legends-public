@@ -2,8 +2,7 @@ this.legend_sleep_skill <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "actives.legend_sleep";
-		this.m.Name = "Sleep";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendSleep);
 		this.m.Description = "";
 		this.m.Icon = "skills/active_116.png";
 		this.m.IconDisabled = "skills/active_116.png";

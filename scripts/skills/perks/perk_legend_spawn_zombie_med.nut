@@ -23,17 +23,17 @@ this.perk_legend_spawn_zombie_med <- this.inherit("scripts/skills/skill", {
 
 	function onAdded()
 	{
-		if (!this.m.Container.hasSkill("actives.legend_spawn_zombie_med"))
+		if (!this.m.Container.hasActive(::Legends.Active.LegendSpawnZombieMed))
 		{
-			this.m.Container.add(this.new("scripts/skills/actives/legend_spawn_zombie_med_skill"));
-			//this.m.Container.add(this.new("scripts/skills/actives/legend_spawn_zombie_med_xbow_skill"));
+			::Legends.Actives.grant(this, ::Legends.Active.LegendSpawnZombieMed);
+			//::Legends.Actives.grant(this, ::Legends.Active.LegendSpawnZombieMedXbow);
 		}
 	}
 
 	function onRemoved()
 	{
-		this.m.Container.removeByID("actives.legend_spawn_zombie_med");
-		//this.m.Container.removeByID("actives.legend_spawn_zombie_med_xbow");
+		::Legends.Actives.remove(this, ::Legends.Active.LegendSpawnZombieMed);
+		//::Legends.Actives.remove(this, ::Legends.Active.LegendSpawnZombieMedXbow);
 	}
 
 });

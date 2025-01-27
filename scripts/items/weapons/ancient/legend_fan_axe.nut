@@ -35,12 +35,12 @@ this.legend_fan_axe <- this.inherit("scripts/items/weapons/weapon", {
 	function onEquip()
 	{
 		this.weapon.onEquip();
-		local strike_skill = this.new("scripts/skills/actives/strike_skill");
-		strike_skill.setApplyAxeMastery(true);
-		this.addSkill(strike_skill);
-		this.addSkill(this.new("scripts/skills/actives/round_swing"));
-		this.addSkill(this.new("scripts/skills/actives/split_man"));
-		//this.addSkill(this.new("scripts/skills/actives/legend_harvest_tree_skill"));
+		::Legends.Actives.grant(this, ::Legends.Active.Strike, function (_skill) {
+			_skill.setApplyAxeMastery(true);
+		}.bindenv(this));
+		::Legends.Actives.grant(this, ::Legends.Active.RoundSwing);
+		::Legends.Actives.grant(this, ::Legends.Active.SplitMan);
+		//::Legends.Actives.grant(this, ::Legends.Active.LegendHarvestTree);
 	}
 
 });

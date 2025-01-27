@@ -12,15 +12,15 @@ this.perk_legend_grapple <- this.inherit("scripts/skills/skill", {
 
 	function onAdded()
 	{
-		if (!this.m.Container.hasSkill("actives.legend_grapple"))
+		if (!this.m.Container.hasActive(::Legends.Active.LegendGrapple))
 		{
-			this.m.Container.add(this.new("scripts/skills/actives/legend_grapple_skill"));
+			::Legends.Actives.grant(this, ::Legends.Active.LegendGrapple);
 		}
 	}
 
 	function onRemoved()
 	{
-		this.m.Container.removeByID("actives.legend_grapple");
+		::Legends.Actives.remove(this, ::Legends.Active.LegendGrapple);
 	}
 
 

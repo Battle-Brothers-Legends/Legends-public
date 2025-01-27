@@ -4,8 +4,7 @@ this.legend_transform_into_wolf_skill <- this.inherit("scripts/skills/skill", {
 	},
 	function create()
 	{
-		this.m.ID = "actives.legend_transform_into_wolf";
-		this.m.Name = "Transform into Wolf";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendTransformIntoWolf);
 		this.m.Description = "Enables the character to turn into a wolf. Requires free hands.";
 		this.m.Icon = "skills/wolf2_square.png";
 		this.m.IconDisabled = "skills/wolf2_square_bw.png";

@@ -13,15 +13,15 @@ this.perk_legend_magic_daze <- this.inherit("scripts/skills/skill", {
 
 	function onAdded()
 	{
-		if (!this.m.Container.hasSkill("actives.legend_magic_daze"))
+		if (!this.m.Container.hasActive(::Legends.Active.LegendMagicDaze))
 		{
-			this.m.Container.add(this.new("scripts/skills/actives/legend_magic_daze_skill"));
+			::Legends.Actives.grant(this, ::Legends.Active.LegendMagicDaze);
 		}
 	}
 
 	function onRemoved()
 	{
-		this.m.Container.removeByID("actives.legend_magic_daze");
+		::Legends.Actives.remove(this, ::Legends.Active.LegendMagicDaze);
 	}
 
 });

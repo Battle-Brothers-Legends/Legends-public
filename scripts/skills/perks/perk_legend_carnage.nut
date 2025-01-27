@@ -28,20 +28,20 @@ this.perk_legend_carnage <- this.inherit("scripts/skills/skill", {
 		{
 			return;
 		}
-		if (!this.getContainer().hasSkill("actives.legend_prepare_bleed"))
+		if (!this.getContainer().hasActive(::Legends.Active.LegendPrepareBleed))
 		{
-			this.getContainer().add(this.new("scripts/skills/actives/legend_prepare_bleed_skill"));
+			::Legends.Actives.grant(this, ::Legends.Active.LegendPrepareBleed);
 		}
-		if (!this.getContainer().hasSkill("actives.legend_prepare_graze"))
+		if (!this.getContainer().hasActive(::Legends.Active.LegendPrepareGraze))
 		{
-			this.getContainer().add(this.new("scripts/skills/actives/legend_prepare_graze_skill"));
+			::Legends.Actives.grant(this, ::Legends.Active.LegendPrepareGraze);
 		}
 	}
 
 	function onRemoved()
 	{
-		this.getContainer().removeByID("actives.legend_prepare_bleed");
-		this.getContainer().removeByID("actives.legend_prepare_graze");
+		::Legends.Actives.remove(this, ::Legends.Active.LegendPrepareBleed);
+		::Legends.Actives.remove(this, ::Legends.Active.LegendPrepareGraze);
 	}
 
 });

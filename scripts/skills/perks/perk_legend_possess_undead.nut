@@ -12,15 +12,15 @@ this.perk_legend_possess_undead <- this.inherit("scripts/skills/skill", {
 
 	function onAdded()
 	{
-		if (!this.m.Container.hasSkill("actives.possess_undead"))
+		if (!this.m.Container.hasActive(::Legends.Active.PossessUndead))
 		{
-			this.m.Container.add(this.new("scripts/skills/actives/possess_undead_skill"));
+			::Legends.Actives.grant(this, ::Legends.Active.PossessUndead);
 		}
 	}
 
 	function onRemoved()
 	{
-		this.m.Container.removeByID("actives.possess_undead");
+		::Legends.Actives.remove(this, ::Legends.Active.PossessUndead);
 	}
 
 });

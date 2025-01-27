@@ -24,15 +24,15 @@ this.perk_legend_smackdown <- this.inherit("scripts/skills/skill", {
 
 	function onAdded()
 	{
-		if (!this.m.Container.hasSkill("actives.legend_prepare_knockdown"))
+		if (!this.m.Container.hasActive(::Legends.Active.LegendPrepareKnockdown))
 		{
-			this.m.Container.add(this.new("scripts/skills/actives/legend_prepare_knockback_skill"));
+			::Legends.Actives.grant(this, ::Legends.Active.LegendPrepareKnockdown);
 		}
 	}
 
 	function onRemoved()
 	{
-		this.m.Container.removeByID("actives.legend_prepare_knockdown");
+		::Legends.Actives.remove(this, ::Legends.Active.LegendPrepareKnockdown);
 	}
 
 	function findTileToKnockBackTo( _userTile, _targetTile )

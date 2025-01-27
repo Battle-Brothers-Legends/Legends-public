@@ -12,14 +12,14 @@ this.perk_legend_mastery_bandage <- this.inherit("scripts/skills/skill", {
 
 	function onAdded()
 	{
-		if (!this.m.Container.hasSkill("actives.legend_bandage"))
+		if (!this.m.Container.hasActive(::Legends.Active.LegendBandage))
 		{
-			this.m.Container.add(this.new("scripts/skills/actives/legend_bandage_skill"));
+			::Legends.Actives.grant(this, ::Legends.Active.LegendBandage);
 		}
 	}
 		function onRemoved()
 	{
-		this.m.Container.removeByID("actives.legend_bandage");
+		::Legends.Actives.remove(this, ::Legends.Active.LegendBandage);
 	}
 
 });

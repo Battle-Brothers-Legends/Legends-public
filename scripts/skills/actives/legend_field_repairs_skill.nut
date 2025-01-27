@@ -5,8 +5,7 @@ this.legend_field_repairs_skill <- this.inherit("scripts/skills/skill", {
 	},
 	function create()
 	{
-		this.m.ID = "actives.legend_field_repairs";
-		this.m.Name = "Field Repairs";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendFieldRepairs);
 		this.m.Description = "Repair armor, costs 1 Armor Part for every " + this.m.RepairPerTool + " missing armor, up to " + this.m.MaxTools * this.m.RepairPerTool + " missing armor.";
 		this.m.Icon = "skills/repair_square.png";
 		this.m.IconDisabled = "skills/repair_square_bw.png";

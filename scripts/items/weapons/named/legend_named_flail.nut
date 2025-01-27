@@ -55,18 +55,18 @@ this.legend_named_flail <- this.inherit("scripts/items/weapons/named/named_weapo
 	function onEquip()
 	{
 		this.named_weapon.onEquip();
-		this.addSkill(this.new("scripts/skills/actives/legend_ranged_flail_skill"));
-		this.addSkill(this.new("scripts/skills/actives/legend_ranged_lash_skill"));
-		// local flail = this.new("scripts/skills/actives/legend_ranged_flail_skill");
-		// flail.m.Icon = "skills/active_65.png";
-		// flail.m.IconDisabled = "skills/active_65_sw.png";
-		// flail.m.Overlay = "active_65";
-		// this.addSkill(flail);
-		// local lash = this.new("scripts/skills/actives/legend_ranged_lash_skill");
-		// lash.m.Icon = "skills/active_92.png";
-		// lash.m.IconDisabled = "skills/active_92_sw.png";
-		// lash.m.Overlay = "active_92";
-		// this.addSkill(lash);
+		::Legends.Actives.grant(this, ::Legends.Active.LegendRangedFlail);
+		::Legends.Actives.grant(this, ::Legends.Active.LegendRangedLash);
+//		::Legends.Actives.grant(this, ::Legends.Active.LegendRangedFlail, function (_skill) {
+//			_skill.m.Icon = "skills/active_65.png";
+//			_skill.m.IconDisabled = "skills/active_65_sw.png";
+//			_skill.m.Overlay = "active_65";
+//		}.bindenv(this));
+//		::Legends.Actives.grant(this, ::Legends.Active.LegendRangedLash, function (_skill) {
+//			_skill.m.Icon = "skills/active_92.png";
+//			_skill.m.IconDisabled = "skills/active_92_sw.png";
+//			_skill.m.Overlay = "active_92";
+//		}.bindenv(this));
 	}
 
 });

@@ -9,8 +9,7 @@ this.legend_prepare_knockback_skill <- this.inherit("scripts/skills/skill", {
 
 	function create()
 	{
-		this.m.ID = "actives.legend_prepare_knockdown";
-		this.m.Name = "Wind Up";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendPrepareKnockdown);
 		this.m.Description = "Evaluate your enemy, preparing your next attack to push them back.";
 		this.m.Icon = "skills/active_10.png";
 		this.m.IconDisabled = "skills/active_10_sw.png";

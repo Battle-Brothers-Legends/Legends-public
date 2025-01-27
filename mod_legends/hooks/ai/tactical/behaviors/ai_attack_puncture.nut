@@ -1,8 +1,8 @@
 ::mods_hookExactClass("ai/tactical/behaviors/ai_attack_puncture", function(o) 
 {
 	o.m.PossibleSkills.extend([
-		"actives.legend_puncture_parry_dagger",
-		"actives.legend_choke"
+		::Legends.Actives.getID(::Legends.Active.LegendPunctureParryDagger),
+		::Legends.Actives.getID(::Legends.Active.LegendChoke)
 	]);
 
 	o.onExecute = function ( _entity )

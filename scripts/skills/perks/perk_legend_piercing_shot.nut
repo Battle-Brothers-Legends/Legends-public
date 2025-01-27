@@ -14,7 +14,7 @@ this.perk_legend_piercing_shot <- this.inherit("scripts/skills/skill", {
 
 	function onAfterUpdate( _properties )
 	{
-		local s = this.getContainer().getSkillByID("actives.fire_handgonne");
+		local s = ::Legends.Actives.get(this, ::Legends.Active.FireHandgonne);
 		if (s != null)
 		{
 			s.m.MaxRange += this.m.BonusRange;

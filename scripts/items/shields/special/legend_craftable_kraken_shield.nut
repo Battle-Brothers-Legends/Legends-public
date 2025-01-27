@@ -39,10 +39,10 @@ this.legend_craftable_kraken_shield <- this.inherit("scripts/items/shields/named
 	function onEquip()
 	{
 		this.shield.onEquip();
-		this.addSkill(this.new("scripts/skills/actives/shieldwall"));
-		local shieldBash = this.new("scripts/skills/actives/knock_back");
-		shieldBash.setDamage(this.m.RegularDamage, this.m.RegularDamageMax)
-		this.addSkill(this.new("scripts/skills/actives/knock_back"));
+		::Legends.Actives.grant(this, ::Legends.Active.Shieldwall);
+		::Legends.Actives.grant(this, ::Legends.Active.KnockBack, function (_skill) {
+			_skill.setDamage(this.m.RegularDamage, this.m.RegularDamageMax);
+		}.bindenv(this));
 	}
 
 	function randomizeValues()

@@ -9,8 +9,7 @@ this.legend_skin_ghoul_swallow_whole_skill <- this.inherit("scripts/skills/skill
 
 	function create()
 	{
-		this.m.ID = "actives.legend_skin_ghoul_swallow_whole";
-		this.m.Name = "Swallow Whole";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendSkinGhoulSwallowWhole);
 		this.m.Description = "";
 		this.m.Icon = "skills/active_103.png";
 		this.m.IconDisabled = "skills/active_103.png";

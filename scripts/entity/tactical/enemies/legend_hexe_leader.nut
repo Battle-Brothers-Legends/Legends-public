@@ -278,14 +278,14 @@ this.legend_hexe_leader <- this.inherit("scripts/entity/tactical/actor", {
 		this.addDefaultStatusSprites();
 		this.getSprite("status_rooted").Scale = 0.55;
 
-		this.m.Skills.add(this.new("scripts/skills/actives/legend_intensely_charm_skill"));
+		::Legends.Actives.grant(this, ::Legends.Active.LegendIntenselyCharm);
 		::Legends.Perks.grant(this, ::Legends.Perk.Anticipation);
-		this.m.Skills.add(this.new("scripts/skills/actives/hex_skill"));
-		this.m.Skills.add(this.new("scripts/skills/actives/legend_wither_skill"));
-		this.m.Skills.add(this.new("scripts/skills/actives/sleep_skill"));
-		this.m.Skills.add(this.new("scripts/skills/actives/legend_magic_missile_skill"));
-		this.m.Skills.add(this.new("scripts/skills/actives/legend_teleport_skill"));
-		this.m.Skills.add(this.new("scripts/skills/actives/fake_drink_night_vision_skill"));
+		::Legends.Actives.grant(this, ::Legends.Active.Hex);
+		::Legends.Actives.grant(this, ::Legends.Active.LegendWither);
+		::Legends.Actives.grant(this, ::Legends.Active.Sleep);
+		::Legends.Actives.grant(this, ::Legends.Active.LegendMagicMissile);
+		::Legends.Actives.grant(this, ::Legends.Active.LegendTeleport);
+		::Legends.Actives.grant(this, ::Legends.Active.FakeDrinkNightVision);
 
 
 		if(::Legends.isLegendaryDifficulty())

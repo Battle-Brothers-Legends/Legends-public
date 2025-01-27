@@ -12,14 +12,14 @@ this.perk_legend_field_triage <- this.inherit("scripts/skills/skill", {
 
 	function onAdded()
 	{
-		if (!this.m.Container.hasSkill("actives.legend_field_triage"))
+		if (!this.m.Container.hasActive(::Legends.Active.LegendFieldTriage))
 		{
-			this.m.Container.add(this.new("scripts/skills/actives/legend_field_triage_skill"));
+			::Legends.Actives.grant(this, ::Legends.Active.LegendFieldTriage);
 		}
 	}
 		function onRemoved()
 	{
-		this.m.Container.removeByID("actives.legend_field_triage");
+		::Legends.Actives.remove(this, ::Legends.Active.LegendFieldTriage);
 	}
 
 });

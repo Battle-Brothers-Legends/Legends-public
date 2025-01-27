@@ -2,8 +2,7 @@ this.legend_nigredo_skill <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "actives.legend_nigredo";
-		this.m.Name = "Nigredo";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendNigredo);
 		this.m.Description = "its just acid flask with a funny name"; //todo desc icons sounds(?)
 		this.m.Icon = "skills/active_106.png";
 		this.m.IconDisabled = "skills/active_106_sw.png";

@@ -154,8 +154,8 @@ this.legends_player_horserider <- this.inherit("scripts/entity/tactical/player",
 		this.m.ActionPointCosts = this.Const.HorseMovementAPCost;
 		this.m.FatigueCosts = clone this.Const.HorseMovementFatigueCost;
 
-		this.getSkills().add(this.new("scripts/skills/actives/legend_horse_kick_skill"));
-		this.getSkills().add(this.new("scripts/skills/actives/legend_horse_charge_skill"));
+		this.getSkills().add(::Legends.Actives.grant(this, ::Legends.Active.LegendHorseKick, function (_skill) {}.bindenv(this)));
+		this.getSkills().add(::Legends.Actives.grant(this, ::Legends.Active.LegendHorseCharge, function (_skill) {}.bindenv(this)));
 
 		// this dumb, what's the purpose of it?
 		if (this.getHorse().getSkills().hasPerk(::Legends.Perk.LegendHorseMovement) && !this.getHorse().getSkills().hasPerk(::Legends.Perk.LegendHorsePassage))

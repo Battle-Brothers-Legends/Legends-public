@@ -66,7 +66,7 @@ this.legend_helmet_redback_helm <- this.inherit("scripts/items/legend_helmets/le
 	function onEquip()
 	{
 		this.legend_helmet_upgrade.onEquip();
-		this.addSkill(this.new("scripts/skills/actives/web_skill"));
+		::Legends.Actives.grant(this, ::Legends.Active.Web);
 	}
 
 	function updateVariant()

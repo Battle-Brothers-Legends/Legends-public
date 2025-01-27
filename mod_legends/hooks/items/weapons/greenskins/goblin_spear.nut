@@ -13,11 +13,11 @@
 	o.onEquip = function ()
 	{
 		this.weapon.onEquip();
-		local skillToAdd = this.new("scripts/skills/actives/slash");
-		skillToAdd.m.isGlaiveSlash = true;
-		this.addSkill(skillToAdd);
-		local skill = this.new("scripts/skills/actives/spearwall");
-		skill.m.BaseAttackName = "Glaive Slash";
-		this.addSkill(skill);
+		::Legends.Actives.grant(this, ::Legends.Active.Slash, function (_skill) {
+			_skill.m.isGlaiveSlash = true;
+		}.bindenv(this));
+		::Legends.Actives.grant(this, ::Legends.Active.Spearwall, function (_skill) {
+			_skill.m.BaseAttackName = "Glaive Slash";
+		}.bindenv(this));
 	}
 });

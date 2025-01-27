@@ -1,12 +1,10 @@
 ::mods_hookExactClass("skills/perks/perk_mastery_throwing", function(o) {
-	o.m.EligibleSkills <-
-	[
-		"actives.throw_axe",
-		"actives.throw_balls",
-		"actives.throw_javelin",
-		"actives.throw_spear",
-		"actives.legend_throw_knife",
-
+	o.m.EligibleSkills <- [
+		::Legends.Active.ThrowAxe,
+		::Legends.Active.ThrowBalls,
+		::Legends.Active.ThrowJavelin,
+		::Legends.Active.ThrowSpear,
+		::Legends.Active.LegendThrowKnife
 	];
 
 	o.onAnySkillUsed = function ( _skill, _targetEntity, _properties )
@@ -21,7 +19,7 @@
 			local d = this.getContainer().getActor().getTile().getDistanceTo(_targetEntity.getTile());
 			foreach (skill in this.m.EligibleSkills)
 			{
-				if (_skill.getID() == skill)
+				if (_skill.getID() == ::Legends.Actives.getID(skill))
 				{
 					if (d <= 2)
 					{

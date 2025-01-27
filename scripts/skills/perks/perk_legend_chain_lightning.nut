@@ -12,14 +12,14 @@ this.perk_legend_chain_lightning <- this.inherit("scripts/skills/skill", {
 
 	function onAdded()
 	{
-		if (!this.m.Container.hasSkill("actives.legend_chain_lightning"))
+		if (!this.m.Container.hasActive(::Legends.Active.LegendChainLightning))
 		{
-			this.m.Container.add(this.new("scripts/skills/actives/legend_chain_lightning_skill"));
+			::Legends.Actives.grant(this, ::Legends.Active.LegendChainLightning);
 		}
 	}
 		function onRemoved()
 	{
-		this.m.Container.removeByID("actives.legend_chain_lightning");
+		::Legends.Actives.remove(this, ::Legends.Active.LegendChainLightning);
 	}
 
 });

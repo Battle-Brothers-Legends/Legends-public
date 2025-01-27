@@ -2,8 +2,7 @@ this.legend_horrific_scream <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "actives.legend_horrific_scream";
-		this.m.Name = "Horrific Scream";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendHorrificScream);
 		this.m.Description = "Blare out a piercing, unworldly sound that is more than likely to distress anyone unfortunate enough to hear it within 4 tiles. Uses ranged skill.";
 		this.m.Icon = "skills/horrify56.png";
 		this.m.IconDisabled = "skills/horrify56_bw.png";

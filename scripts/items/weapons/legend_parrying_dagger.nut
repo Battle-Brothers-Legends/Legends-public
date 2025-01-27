@@ -122,21 +122,18 @@ this.legend_parrying_dagger <- this.inherit("scripts/items/shields/shield", {
 		m.OffHandWeaponSkills.clear(); // reset, it isn't bad for being too careful
 
 		this.shield.onEquip();
-		local stab = this.new("scripts/skills/actives/stab");
-		m.OffHandWeaponSkills[stab.m.ID] <- ::MSU.asWeakTableRef(stab);
-		m.PrimaryOffhandAttack = m.OffHandWeaponSkills[stab.m.ID];
-		stab.m.Order = this.Const.SkillOrder.UtilityTargeted - 3;
-		stab.m.ID = stab.m.ID + "_offhand";
-		this.addSkill(stab);
-
-		local puncture = this.new("scripts/skills/actives/puncture");
-		m.OffHandWeaponSkills[puncture.m.ID] <- ::MSU.asWeakTableRef(puncture);
-		puncture.m.Order = this.Const.SkillOrder.UtilityTargeted - 2;
-		puncture.m.ID = puncture.m.ID + "_offhand";
-		this.addSkill(puncture);
-
-		this.addSkill(this.new("scripts/skills/actives/legend_en_garde_skill"));
-
+		::Legends.Actives.grant(this, ::Legends.Active.Stab, function (_skill) {
+			this.m.OffHandWeaponSkills[_skill.m.ID] <- ::MSU.asWeakTableRef(_skill);
+			this.m.PrimaryOffhandAttack = this.m.OffHandWeaponSkills[_skill.m.ID];
+			_skill.m.Order = ::Const.SkillOrder.UtilityTargeted - 3;
+			_skill.m.ID = _skill.m.ID + "_offhand";
+		}.bindenv(this));
+		::Legends.Actives.grant(this, ::Legends.Active.Puncture, function (_skill) {
+			this.m.OffHandWeaponSkills[_skill.m.ID] <- ::MSU.asWeakTableRef(_skill);
+			_skill.m.Order = ::Const.SkillOrder.UtilityTargeted - 2;
+			_skill.m.ID = _skill.m.ID + "_offhand";
+		}.bindenv(this));
+		::Legends.Actives.grant(this, ::Legends.Active.LegendEnGarde);
 		::Legends.Effects.grant(this, ::Legends.Effect.LegendParryingDagger, function(_effect) {
 			_effect.m.Order = this.Const.SkillOrder.UtilityTargeted;
 			_effect.setItem(this);

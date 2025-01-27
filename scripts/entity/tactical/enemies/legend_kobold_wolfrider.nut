@@ -119,10 +119,11 @@ this.legend_kobold_wolfrider <- this.inherit("scripts/entity/tactical/legend_kob
 		this.addDefaultStatusSprites();
 		this.setSpriteOffset("arms_icon", this.createVec(15, 15));
 		this.getSprite("arms_icon").Rotation = 13.0;
-		local wolf_bite = this.new("scripts/skills/actives/wolf_bite");
-		wolf_bite.setRestrained(true);
-		wolf_bite.m.ActionPointCost = 0;
-		this.m.Skills.add(wolf_bite);
+		::Legends.Actives.grant(this, ::Legends.Active.WolfBite, function (_skill) {
+			_skill.setRestrained(true);
+			_skill.m.ActionPointCost = 0;
+		});
+
 		this.m.Skills.add(this.new("scripts/skills/racial/goblin_ambusher_racial"));
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendStrengthInNumbers);
 		::Legends.Perks.grant(this, ::Legends.Perk.Pathfinder);

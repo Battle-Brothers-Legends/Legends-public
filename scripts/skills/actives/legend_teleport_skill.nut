@@ -2,8 +2,7 @@ this.legend_teleport_skill <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "actives.legend_teleport";
-		this.m.Name = "Teleport";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendTeleport);
 		this.m.Description = "Phase around the battlefield and teleport to a target hex.";
 		this.m.Icon = "skills/teleport_skill.png";
 		this.m.IconDisabled = "skills/teleport_skill_bw.png";

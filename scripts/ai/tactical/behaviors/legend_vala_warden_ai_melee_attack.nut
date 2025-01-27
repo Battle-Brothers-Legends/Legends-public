@@ -2,7 +2,7 @@ this.legend_vala_warden_ai_melee_attack <- this.inherit("scripts/ai/tactical/beh
 	m = {
 		TargetTile = null,
 		PossibleSkills = [
-			"actives.legend_vala_warden_pale_touch"
+			::Legends.Actives.getID(::Legends.Active.LegendValaWardenPaleTouch)
 		],
 		Skill = null,
 		Hitchance = 0

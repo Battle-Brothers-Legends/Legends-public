@@ -34,7 +34,7 @@ this.legend_named_nomad_sling <- this.inherit("scripts/items/weapons/named/named
 	function onEquip()
 	{
 		this.named_weapon.onEquip();
-		this.addSkill(this.new("scripts/skills/actives/sling_stone_skill"));
+		::Legends.Actives.grant(this, ::Legends.Active.SlingStone);
 	}
 
 });

@@ -2,8 +2,7 @@ this.legend_field_treats_skill <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "actives.legend_field_treats";
-		this.m.Name = "Field Treats";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendFieldTreats);
 		this.m.Description = "Restore confidence through liberal application of alcohol and food, taking someone from wavering to steady for 20 food.";
 		this.m.Icon = "skills/drink_sqaure.png";
 		this.m.IconDisabled = "skills/drink_sqaure_bw.png";

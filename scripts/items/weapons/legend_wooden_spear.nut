@@ -30,8 +30,8 @@ this.legend_wooden_spear <- this.inherit("scripts/items/weapons/weapon", {
 	function onEquip()
 	{
 		this.weapon.onEquip();
-		this.addSkill(this.new("scripts/skills/actives/thrust"));
-		this.addSkill(this.new("scripts/skills/actives/spearwall"));
+		::Legends.Actives.grant(this, ::Legends.Active.Thrust);
+		::Legends.Actives.grant(this, ::Legends.Active.Spearwall);
 	}
 
 	function onUpdateProperties( _properties )

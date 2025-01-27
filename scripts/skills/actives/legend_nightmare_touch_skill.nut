@@ -2,8 +2,7 @@ this.legend_nightmare_touch_skill <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "actives.legend_nightmare_touch";
-		this.m.Name = "Terror";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendNightmareTouch);
 		this.m.Description = "";
 		this.m.KilledString = "Died of terror";
 		this.m.Icon = "skills/active_117.png";

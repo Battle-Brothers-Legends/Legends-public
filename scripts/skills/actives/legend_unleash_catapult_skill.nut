@@ -11,8 +11,7 @@ this.legend_unleash_catapult_skill <- this.inherit("scripts/skills/skill", {
 
 	function create()
 	{
-		this.m.ID = "actives.legend_unleash_catapult";
-		this.m.Name = "Summon Catapult";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendUnleashCatapult);
 		this.m.Description = "Summon a catapult. Needs a free tile adjacent.";
 		this.m.Icon = "skills/catapult_square.png";
 		this.m.IconDisabled = "skills/catapult_square_bw.png";

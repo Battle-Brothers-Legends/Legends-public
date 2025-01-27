@@ -6,23 +6,22 @@ this.legend_piercing_bolt_skill <- ::inherit("scripts/skills/actives/shoot_bolt"
 	function create()
 	{
 		this.shoot_bolt.create();
-		m.ID = "actives.legend_piercing_bolt";
-		m.Name = "Piercing Bolt";
-		m.Description = "A shot with so much force that it passes straight through the target to whoever is behind them.";
-		m.KilledString = "Pierced";
-		m.Icon = "skills/PiercingBoltSkill.png";
-		m.IconDisabled = "skills/PiercingBoltSkill_bw.png";
-		m.Overlay = "piercing_bolt";
-		m.SoundOnHit = [
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendPiercingBolt);
+		this.m.Description = "A shot with so much force that it passes straight through the target to whoever is behind them.";
+		this.m.KilledString = "Pierced";
+		this.m.Icon = "skills/PiercingBoltSkill.png";
+		this.m.IconDisabled = "skills/PiercingBoltSkill_bw.png";
+		this.m.Overlay = "piercing_bolt";
+		this.m.SoundOnHit = [
 			"sounds/combat/split_hit_01.wav",
 			"sounds/combat/split_hit_02.wav",
 			"sounds/combat/split_hit_03.wav"
 		];
-		m.IsAOE = true;
-		m.ActionPointCost = 4;
-		m.FatigueCost = 10;
-		m.ChanceDecapitate = 10;
-		m.ChanceDisembowel = 50;
+		this.m.IsAOE = true;
+		this.m.ActionPointCost = 4;
+		this.m.FatigueCost = 10;
+		this.m.ChanceDecapitate = 10;
+		this.m.ChanceDisembowel = 50;
 	}
 
 	function getTooltip()
@@ -59,7 +58,7 @@ this.legend_piercing_bolt_skill <- ::inherit("scripts/skills/actives/shoot_bolt"
 
 	function onUse( _user, _targetTile )
 	{
-		m.OriginalDirection = _user.getTile().getDirectionTo(_targetTile);
+		this.m.OriginalDirection = _user.getTile().getDirectionTo(_targetTile);
 		return shoot_bolt.onUse(_user, _targetTile);
 	}
 
@@ -138,13 +137,13 @@ this.legend_piercing_bolt_skill <- ::inherit("scripts/skills/actives/shoot_bolt"
 
 	function onRemoved()
 	{
-		this.getContainer().removeByID("actives.reload_bolt");
+		::Legends.Actives.remove(this, ::Legends.Active.ReloadBolt);
 	}
 
 	function getAffectedTiles( _targetTile, _direction = null )
 	{
 		if (_direction == null)
-			_direction = getContainer().getActor().getTile().getDirectionTo(_targetTile);
+			_direction = this.getContainer().getActor().getTile().getDirectionTo(_targetTile);
 
 		if (!_targetTile.hasNextTile(_direction))
 			return null;

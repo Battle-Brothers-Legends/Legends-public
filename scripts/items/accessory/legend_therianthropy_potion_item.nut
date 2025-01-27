@@ -30,9 +30,9 @@ this.legend_therianthropy_potion_item <- this.inherit("scripts/items/accessory/a
 	function onEquip()
 	{
 		this.accessory.onEquip();
-		local skill = this.new("scripts/skills/actives/legend_drink_therianthropy_potion_skill");
-		skill.setItem(this);
-		this.addSkill(skill);
+		::Legends.Actives.grant(this, ::Legends.Active.LegendDrinkTherianthropyPotion, function (_skill) {
+			_skill.setItem(this);
+		}.bindenv(this));
 	}
 
 	function onPutIntoBag()

@@ -56,7 +56,7 @@ this.legend_redback_helmet <- this.inherit("scripts/items/helmets/named/named_he
 	function onEquip()
 	{
 		this.named_helmet.onEquip();
-		this.addSkill(this.new("scripts/skills/actives/web_skill"));
+		::Legends.Actives.grant(this, ::Legends.Active.Web);
 	}
 
 });

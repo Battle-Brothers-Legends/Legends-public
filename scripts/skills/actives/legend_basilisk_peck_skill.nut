@@ -4,8 +4,7 @@ this.legend_basilisk_peck_skill <- this.inherit("scripts/skills/skill", {
 	},
 	function create()
 	{
-		this.m.ID = "actives.legend_basilisk_peck";
-		this.m.Name = "Peck";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendBasiliskPeck);
 		this.m.Description = "no touch birb";
 		this.m.KilledString = "Pecked to death";
 		this.m.Icon = "skills/basilisk_peck.png";

@@ -2,8 +2,7 @@ this.legend_charge_skill <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "actives.legend_charge";
-		this.m.Name = "Charge";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendCharge);
 		this.m.Description = "Leap into your enemies, stunning them on contact.";
 		this.m.Icon = "skills/active_52.png";
 		this.m.IconDisabled = "skills/active_52_sw.png";

@@ -42,7 +42,7 @@ this.manhunters_scenario <- this.inherit("scripts/scenarios/world/starting_scena
 		items.unequip(items.getItemAtSlot(this.Const.ItemSlot.Mainhand));
 		items.unequip(items.getItemAtSlot(this.Const.ItemSlot.Head));
 		items.equip(this.new("scripts/items/weapons/oriental/light_southern_mace"));
-		bros[0].getSkills().add(this.new("scripts/skills/actives/whip_slave_skill"));
+		::Legends.Actives.grant(bros[0], ::Legends.Active.WhipSlave);
 		bros[0].m.Talents = [];
 		talents = bros[0].getTalents();
 		talents.resize(this.Const.Attributes.COUNT, 0);
@@ -74,7 +74,7 @@ this.manhunters_scenario <- this.inherit("scripts/scenarios/world/starting_scena
 			[1, "oriental/southern_head_wrap"]
 		]));
 		items.equip(this.new("scripts/items/weapons/battle_whip"));
-		bros[1].getSkills().add(this.new("scripts/skills/actives/whip_slave_skill"));
+		::Legends.Actives.grant(bros[1], ::Legends.Active.WhipSlave);
 		bros[1].worsenMood(0.0, "Annoyed by your recent reprimand not to mistreat your captives");
 		bros[1].m.Talents = [];
 		talents = bros[1].getTalents();
@@ -236,7 +236,7 @@ this.manhunters_scenario <- this.inherit("scripts/scenarios/world/starting_scena
 	{
 		if (_bro.getBackground().getID() != "background.slave")
 		{
-			_bro.getSkills().add(this.new("scripts/skills/actives/whip_slave_skill"));
+			::Legends.Actives.grant(_bro, ::Legends.Active.WhipSlave);
 		}
 		else
 		{

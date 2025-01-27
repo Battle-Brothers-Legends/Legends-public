@@ -34,8 +34,8 @@ this.legend_slingshot <- this.inherit("scripts/items/weapons/weapon", {
 	function onEquip()
 	{
 		this.weapon.onEquip();
-		this.addSkill(this.new("scripts/skills/actives/legend_shoot_stone_skill"));
-		this.addSkill(this.new("scripts/skills/actives/legend_shoot_precise_stone_skill"));
+		::Legends.Actives.grant(this, ::Legends.Active.LegendShootStone);
+		::Legends.Actives.grant(this, ::Legends.Active.LegendShootPreciseStone);
 	}
 
 });

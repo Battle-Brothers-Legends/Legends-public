@@ -50,7 +50,7 @@
 		this.helmet.onEquip();
 		if (!this.getContainer().getActor().getSkills().hasPerk(::Legends.Perk.Taunt))
 		{
-			this.addSkill(this.new("scripts/skills/actives/taunt"));
+			::Legends.Actives.grant(this, ::Legends.Active.Taunt);
 		}
 	}
 
@@ -58,7 +58,7 @@
 		this.helmet.onUnequip();
 		if (this.getContainer().getActor().getSkills().hasPerk(::Legends.Perk.Taunt))
 		{
-			this.addSkill(this.new("scripts/skills/actives/taunt"));
+			::Legends.Actives.grant(this, ::Legends.Active.Taunt);
 		}
 	}
 });

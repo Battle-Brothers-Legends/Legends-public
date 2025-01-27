@@ -2,8 +2,7 @@ this.legend_enthrall_skill <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "actives.legend_enthrall";
-		this.m.Name = "Enthrall";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendEnthrall);
 		this.m.Icon = "skills/enthrall.png";
 		this.m.IconDisabled = "skills/enthrall_bw.png";
 		this.m.Overlay = "enthrall";

@@ -1,23 +1,23 @@
 ::mods_hookExactClass("skills/perks/perk_rotation", function(o) {
 	o.onAdded = function()
 	{
-		if (!this.m.Container.hasSkill("actives.rotation"))
+		if (!this.m.Container.hasActive(::Legends.Active.Rotation))
 		{
 			if (this.getContainer().getActor().isPlayerControlled())
 			{
-				this.m.Container.add(this.new("scripts/skills/actives/rotation"));
+				::Legends.Actives.grant(this, ::Legends.Active.Rotation);
 			}
 
 			else
 			{
-				this.m.Container.add(this.new("scripts/skills/actives/legend_ai_rotation_skill"));
+				::Legends.Actives.grant(this, ::Legends.Active.LegendAiRotation);
 			}
 		}
 	}
 
 	o.onRemoved = function()
 	{
-		this.m.Container.removeByID("actives.rotation");
-		this.m.Container.removeByID("actives.legend_ai_rotation");
+		::Legends.Actives.remove(this, ::Legends.Active.Rotation);
+		::Legends.Actives.remove(this, ::Legends.Active.LegendAiRotation);
 	}
 });

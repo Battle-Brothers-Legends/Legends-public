@@ -6,8 +6,7 @@ this.legend_protect_target_skill <- this.inherit("scripts/skills/skill", {
 
 	function create()
 	{
-		this.m.ID = "actives.legend_protect_target";
-		this.m.Name = "Defend! Good boy!";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendProtectTarget);
 		this.m.Description = "Order your pets to protect a target.";
 		this.m.Icon = "skills/houndeffend.png";
 		this.m.IconDisabled = "skills/houndeffend_bw.png";
@@ -194,9 +193,9 @@ this.legend_protect_target_skill <- this.inherit("scripts/skills/skill", {
 
 	function onUse( _user, _targetTile )
 	{
-		if (_user.getSkills().hasSkill("actives.legend_attack_target"))
+		if (_user.getSkills().hasActive(::Legends.Active.LegendAttackTarget))
 		{
-			local skill = _user.getSkills().getSkillByID("actives.legend_attack_target")
+			local skill = ::Legends.Actives.get(_user, ::Legends.Active.LegendAttackTarget)
 			skill.setTarget(null);
 		}
 

@@ -3,8 +3,7 @@ this.legend_drink_lionheart_skill <- this.inherit("scripts/skills/actives/base/l
 
 	function create() {
 		this.legend_drink_potion_skill.create();
-		this.m.ID = "actives.legend_drink_lionheart";
-		this.m.Name = "Drink or Give Lionheart Potion";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendDrinkLionheart);
 		this.m.Description = "Give to an adjacent ally or drink yourself a potion that inhibits fear and promotes courage, up to and including the gross overestimation of one\'s own abilities. Can not be used while engaged in melee, and anyone receiving the item needs to have a free bag slot.";
 		this.m.Icon = "skills/active_141.png";
 		this.m.IconDisabled = "skills/active_141_sw.png";

@@ -12,7 +12,7 @@ this.perk_legend_sprint <- this.inherit("scripts/skills/skill", {
 
 	function onAdded()
 	{
-		if (!this.m.Container.hasSkill("actives.legend_sprint"))
+		if (!this.m.Container.hasActive(::Legends.Active.LegendSprint))
 		{
 			this.m.Container.add(this.new("scripts/skills/actives/legend_sprint_skill_5"));
 		}

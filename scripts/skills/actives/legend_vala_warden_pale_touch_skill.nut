@@ -2,8 +2,7 @@ this.legend_vala_warden_pale_touch_skill <- this.inherit("scripts/skills/skill",
 	m = {},
 	function create()
 	{
-		this.m.ID = "actives.legend_vala_warden_pale_touch";
-		this.m.Name = "Pale Touch";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendValaWardenPaleTouch);
 		this.m.Description = "";
 		this.m.KilledString = "Frightened to death";
 		this.m.Icon = "skills/active_42.png";

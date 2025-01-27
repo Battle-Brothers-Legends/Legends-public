@@ -4,8 +4,7 @@ this.legend_basilisk_sentry_fowleye_skill <- this.inherit("scripts/skills/skill"
 // - Fowleye: AoE stun based on resolve, has targeting like a warscythe
 	function create()
 	{
-		this.m.ID = "actives.legend_basilisk_sentry_fowleye";
-		this.m.Name = "Fowl Eye"; //check
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendBasiliskSentryFowleye);
 		this.m.Description = "no look at birb";
 		this.m.Icon = "skills/sentry_fowleye.png";
 		this.m.IconDisabled = "sentry_fowleye.png";

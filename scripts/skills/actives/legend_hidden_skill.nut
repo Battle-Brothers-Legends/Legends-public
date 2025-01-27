@@ -5,8 +5,7 @@ this.legend_hidden_skill <- this.inherit("scripts/skills/skill", {
 	},
 	function create()
 	{
-		this.m.ID = "actives.legend_hidden";
-		this.m.Name = "Hide";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendHidden);
 		this.m.Icon = "skills/hide_square.png";
 		this.m.IconDisabled = "skills/hide_square_bw.png";
 		this.m.Overlay = "active_23";

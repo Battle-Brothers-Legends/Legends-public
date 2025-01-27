@@ -110,7 +110,7 @@ this.legend_alp_nightmare_direwolf <- this.inherit("scripts/entity/tactical/enem
 		this.addDefaultStatusSprites();
 		this.getSprite("status_rooted").Scale = 0.54;
 		this.setSpriteOffset("status_rooted", this.createVec(0, 0));
-		this.m.Skills.add(this.new("scripts/skills/actives/werewolf_bite"));
+		::Legends.Actives.grant(this, ::Legends.Active.WerewolfBite);
 		::Legends.Perks.grant(this, ::Legends.Perk.CoupDeGrace);
 		::Legends.Perks.grant(this, ::Legends.Perk.Berserk);
 		::Legends.Perks.grant(this, ::Legends.Perk.Overwhelm);

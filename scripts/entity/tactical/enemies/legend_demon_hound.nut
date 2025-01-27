@@ -592,7 +592,7 @@ this.legend_demon_hound <- this.inherit("scripts/entity/tactical/actor", {
 		this.getSprite("status_rooted").Scale = 0.55;
 		this.setSpriteOffset("status_rooted", this.createVec(-5, -5));
 		this.m.Skills.add(this.new("scripts/skills/racial/skeleton_racial"));
-		this.m.Skills.add(this.new("scripts/skills/actives/legend_demon_hound_bite_skill"));
+		::Legends.Actives.grant(this, ::Legends.Active.LegendDemonHoundBite);
 		::Legends.Perks.grant(this, ::Legends.Perk.Pathfinder);
 		::Legends.Perks.grant(this, ::Legends.Perk.Anticipation);
 		::Legends.Perks.grant(this, ::Legends.Perk.Fearsome);

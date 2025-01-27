@@ -33,19 +33,19 @@ this.legend_demonalp_agent <- this.inherit("scripts/ai/tactical/agent", {
 		this.addBehavior(this.new("scripts/ai/tactical/behaviors/legend_ai_alp_realm_of_shadow"));
 
 		local behavior = this.new("scripts/ai/tactical/behaviors/ai_always_use");
-		behavior.m.PossibleSkills.push("actives.legend_alp_summon_nightmare");
+		behavior.m.PossibleSkills.push(::Legends.Actives.getID(::Legends.Active.LegendAlpSummonNightmare));
 		this.addBehavior(behavior);
 
 		behavior = this.new("scripts/ai/tactical/behaviors/ai_attack_default");
-		behavior.m.PossibleSkills.push("actives.legend_alp_nightmare_manifestation");
+		behavior.m.PossibleSkills.push(::Legends.Actives.getID(::Legends.Active.LegendAlpNightmareManifestation));
 		this.addBehavior(behavior);
 
 		behavior = this.new("scripts/ai/tactical/behaviors/ai_engage_ranged");
 		behavior.m.PossibleSkills.reverse();
 		behavior.m.PossibleSkills.resize(behavior.m.PossibleSkills.len() - 6); // remove the unneeded ones
 		behavior.m.PossibleSkills.extend([
-			"actives.legend_alp_realm_of_shadow",
-			"actives.legend_alp_nightmare_manifestation"
+			::Legends.Actives.getID(::Legends.Active.LegendAlpRealmOfShadow),
+			::Legends.Actives.getID(::Legends.Active.LegendAlpNightmareManifestation)
 		]);
 		this.addBehavior(behavior);
 
@@ -57,7 +57,7 @@ this.legend_demonalp_agent <- this.inherit("scripts/ai/tactical/agent", {
 	function onUpdate()
 	{
 		local b = m.Behaviors[0], myTile = getActor().getTile(), currentDanger = 0.0;
-		local skill = getActor().getSkills().getSkillByID("actives.nightmare"), someoneIsReallyNearMe = false;
+		local skill = ::Legends.Actives.get(getActor(), ::Legends.Active.Nightmare), someoneIsReallyNearMe = false;
 
 		foreach( t in queryPotentialDanger() )
 		{
@@ -110,7 +110,7 @@ this.legend_demonalp_agent <- this.inherit("scripts/ai/tactical/agent", {
 
 	function isAbleToUseSleep()
 	{
-		local myTile = getActor().getTile(), skill = getActor().getSkills().getSkillByID("actives.sleep");
+		local myTile = getActor().getTile(), skill = ::Legends.Actives.get(getActor(), ::Legends.Active.Sleep);
 		local targets = getBehavior(::Const.AI.Behavior.ID.Sleep).queryTargetsInMeleeRange(skill.getMinRange(), skill.getMaxRange());
 
 		foreach( t in targets )

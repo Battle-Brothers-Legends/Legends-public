@@ -2,8 +2,7 @@ this.legend_staff_thrust_skill <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "actives.legend_staff_thrust";
-		this.m.Name = "Thrust";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendStaffThrust);
 		this.m.Description = "A well placed thrust attack that is hard to avoid or block.";
 		this.m.KilledString = "Impaled";
 		this.m.Icon = "skills/active_04.png";

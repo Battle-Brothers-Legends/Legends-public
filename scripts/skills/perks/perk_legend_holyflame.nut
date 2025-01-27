@@ -13,15 +13,15 @@ this.perk_legend_holyflame <- this.inherit("scripts/skills/skill", {
 
 	function onAdded()
 	{
-		if (!this.m.Container.hasSkill("actives.legend_holyflame"))
+		if (!this.m.Container.hasActive(::Legends.Active.LegendHolyflame))
 		{
-			this.m.Container.add(this.new("scripts/skills/actives/legend_holyflame_skill"));
+			::Legends.Actives.grant(this, ::Legends.Active.LegendHolyflame);
 		}
 	}
 
 	function onRemoved()
 	{
-		this.m.Container.removeByID("actives.legend_holyflame");
+		::Legends.Actives.remove(this, ::Legends.Active.LegendHolyflame);
 	}
 
 });

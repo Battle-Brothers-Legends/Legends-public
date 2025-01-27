@@ -12,15 +12,15 @@ this.perk_legend_quick_step <- this.inherit("scripts/skills/skill", {
 
 	function onAdded()
 	{
-		if (!this.m.Container.hasSkill("actives.legend_quick_step"))
+		if (!this.m.Container.hasActive(::Legends.Active.LegendQuickStep))
 		{
-			this.m.Container.add(this.new("scripts/skills/actives/legend_quick_step_skill"));
+			::Legends.Actives.grant(this, ::Legends.Active.LegendQuickStep);
 		}
 	}
 
 	function onRemoved()
 	{
-		this.m.Container.removeByID("actives.legend_quick_step");
+		::Legends.Actives.remove(this, ::Legends.Active.LegendQuickStep);
 	}
 
 });

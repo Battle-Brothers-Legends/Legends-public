@@ -222,7 +222,7 @@ this.legend_kobold <- this.inherit("scripts/entity/tactical/actor", {
 		this.m.Skills.add(this.new("scripts/skills/racial/legend_kobold_racial"));
 		::Legends.Effects.grant(this, ::Legends.Effect.Captain);
 		this.m.Skills.add(this.new("scripts/skills/special/double_grip"));
-		this.m.Skills.add(this.new("scripts/skills/actives/hand_to_hand"));
+		::Legends.Actives.grant(this, ::Legends.Active.HandToHand);
 		::Legends.Perks.grant(this, ::Legends.Perk.Pathfinder);
 		::Legends.Perks.grant(this, ::Legends.Perk.QuickHands);
 		::Legends.Perks.grant(this, ::Legends.Perk.Bullseye);
@@ -230,7 +230,7 @@ this.legend_kobold <- this.inherit("scripts/entity/tactical/actor", {
 		::Legends.Perks.grant(this, ::Legends.Perk.Footwork);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendBoondockBlade);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendTumble);
-		this.m.Skills.add(this.new("scripts/skills/actives/wake_ally_skill"));
+		::Legends.Actives.grant(this, ::Legends.Active.WakeAlly);
 	}
 
 	function onAfterInit()

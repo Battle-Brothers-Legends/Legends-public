@@ -32,9 +32,9 @@ this.legend_hammer <- this.inherit("scripts/items/weapons/weapon", {
 	function onEquip()
 	{
 		this.weapon.onEquip();
-		this.addSkill(this.new("scripts/skills/actives/hammer"));
-		this.addSkill(this.new("scripts/skills/actives/crush_armor"));
-		//this.addSkill(this.new("scripts/skills/actives/legend_harvest_rock_skill"));
+		::Legends.Actives.grant(this, ::Legends.Active.Hammer);
+		::Legends.Actives.grant(this, ::Legends.Active.CrushArmor);
+		//::Legends.Actives.grant(this, ::Legends.Active.LegendHarvestRock);
 	}
 
 	function onUpdateProperties( _properties )

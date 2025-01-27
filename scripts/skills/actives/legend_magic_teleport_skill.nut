@@ -2,8 +2,7 @@ this.legend_magic_teleport_skill <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "actives.legend_magic_teleport";
-		this.m.Name = "Teleport";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendMagicTeleport);
 		this.m.Description = "Teleport a short distance away.";
 		this.m.Icon = "skills/teleport_skill.png";
 		this.m.IconDisabled = "skills/teleport_skill_bw.png";

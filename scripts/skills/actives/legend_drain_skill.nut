@@ -2,8 +2,7 @@ this.legend_drain_skill <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "actives.legend_drain";
-		this.m.Name = "Drain Life";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendDrain);
 		this.m.Description = "Pull the essence from your foe, and draw it into yourself.";
 		this.m.KilledString = "Drained";
 		this.m.Icon = "skills/blooddrop_square.png";
@@ -64,7 +63,7 @@ this.legend_drain_skill <- this.inherit("scripts/skills/skill", {
 
 	function onUpdate( _properties )
 	{
-		
+
 		local CurrentInit = this.getContainer().getActor().getInitiative();
 		_properties.DamageRegularMin += this.Math.floor(CurrentInit - 100);
 		_properties.DamageRegularMax += this.Math.floor(CurrentInit - 90);

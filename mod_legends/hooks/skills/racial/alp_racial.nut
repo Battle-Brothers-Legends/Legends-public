@@ -26,7 +26,7 @@
 							}
 							else if (weapon.isWeaponType(this.Const.Items.WeaponType.Throwing))
 							{
-								if (_skill.getID() == "actives.throw_spear")
+								if (_skill.getID() == ::Legends.Actives.getID(::Legends.Active.ThrowSpear))
 								{
 									_properties.DamageReceivedRegularMult *= 0.5;
 								}
@@ -59,7 +59,7 @@
 			case this.Const.Damage.DamageType.Cutting:
 				if (_skill != null)
 				{
-					if (_skill.getID() == "actives.wardog_bite" || _skill.getID() == "actives.wolf_bite" || _skill.getID() == "actives.warhound_bite")
+					if (_skill.getID() == ::Legends.Actives.getID(::Legends.Active.WardogBite) || _skill.getID() == ::Legends.Actives.getID(::Legends.Active.WolfBite) || _skill.getID() == ::Legends.Actives.getID(::Legends.Active.WarhoundBite))
 					{
 						_properties.DamageReceivedRegularMult *= 0.33;
 					}

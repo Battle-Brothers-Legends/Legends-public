@@ -3,8 +3,7 @@ this.legend_spawn_skeleton_low_archer_skill <- this.inherit("scripts/skills/acti
 	function create()
 	{
 		this.legend_spawn_skill.create();
-		this.m.ID = "actives.legend_spawn_skeleton_low_archer";
-		this.m.Name = "Summon Light Archer Skeleton";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendSpawnSkeletonLowArcher);
 		this.m.Description = "Unleash your skeleton and send him charging into the enemy. Needs a free tile adjacent.";
 		this.m.Icon = "skills/skeleton_archer_01_square.png";
 		this.m.IconDisabled = "skills/skeleton_archer_01_square_bw.png";

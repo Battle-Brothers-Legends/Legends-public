@@ -4,8 +4,7 @@ this.legend_transform_into_tree_skill <- this.inherit("scripts/skills/skill", {
 	},
 	function create()
 	{
-		this.m.ID = "actives.legend_transform_into_tree";
-		this.m.Name = "Transform into Schrat";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendTransformIntoTree);
 		this.m.Description = "Enables the character to turn into a schrat. Requires free hands.";
 		this.m.Icon = "skills/tree_square.png";
 		this.m.IconDisabled = "skills/tree_square_bw.png";

@@ -138,7 +138,7 @@ this.legend_alp_realm_of_shadow_effect <- ::inherit("scripts/skills/skill", {
 		if (_attacker == null)
 			return;
 
-		if (_skill == null || _skill.getID != "actives.nightmare")
+		if (_skill == null || _skill.getID() != ::Legends.Actives.getID(::Legends.Active.Nightmare))
 			return;
 
 		_properties.DamageReceivedTotalMult *= 1.33;

@@ -51,14 +51,14 @@ this.legend_named_shovel <- this.inherit("scripts/items/weapons/named/named_weap
 	function onEquip()
 	{
 		this.named_weapon.onEquip();
-		local b = this.new("scripts/skills/actives/bash");
-		b.m.Icon = "skills/shovel_bash.png";
-		b.m.IconDisabled = "skills/shovel_bash_bw.png";
-		this.addSkill(b);
+		::Legends.Actives.grant(this, ::Legends.Active.Bash, function (_skill) {
+			_skill.m.Icon = "skills/shovel_bash.png";
+			_skill.m.IconDisabled = "skills/shovel_bash_bw.png";
+		}.bindenv(this));
 
-		if (this.getContainer().getActor().getSkills().hasPerk(::Legends.Perk.LegendSpecialistShovelSkill))
+		if (this.getContainer().hasPerk(::Legends.Perk.LegendSpecialistShovelSkill))
 		{
-			this.addSkill(this.new("scripts/skills/actives/knock_out"));
+			::Legends.Actives.grant(this, ::Legends.Active.KnockOut);
 		}
 	}
 
