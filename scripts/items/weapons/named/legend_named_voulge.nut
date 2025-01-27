@@ -40,8 +40,8 @@ this.legend_named_voulge <- this.inherit("scripts/items/weapons/named/named_weap
 	function onEquip()
 	{
 		this.named_weapon.onEquip();
-		this.addSkill(this.new("scripts/skills/actives/legend_voulge_cleave_skill"));
-		this.addSkill(this.new("scripts/skills/actives/legend_voulge_decapitate_skill"));
+		::Legends.Actives.grant(this, ::Legends.Active.LegendVoulgeCleave);
+		::Legends.Actives.grant(this, ::Legends.Active.LegendVoulgeDecapitate);
 	}
 
 });

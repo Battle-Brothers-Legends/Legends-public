@@ -31,9 +31,9 @@ this.legend_swordstaff <- this.inherit("scripts/items/weapons/weapon", {
 	function onEquip()
 	{
 		this.weapon.onEquip();
-		this.addSkill(this.new("scripts/skills/actives/thrust"));
-		this.addSkill(this.new("scripts/skills/actives/spearwall"));
-		this.addSkill(this.new("scripts/skills/actives/lunge_skill"));
+		::Legends.Actives.grant(this, ::Legends.Active.Thrust);
+		::Legends.Actives.grant(this, ::Legends.Active.Spearwall);
+		::Legends.Actives.grant(this, ::Legends.Active.Lunge);
 	}
 
 });

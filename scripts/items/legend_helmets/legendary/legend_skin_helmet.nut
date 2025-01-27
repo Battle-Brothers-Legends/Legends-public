@@ -44,7 +44,7 @@ this.legend_skin_helmet <- this.inherit("scripts/items/helmets/named/named_helme
 	function onEquip()
 	{
 		this.named_helmet.onEquip();
-		this.addSkill(this.new("scripts/skills/actives/legend_gruesome_feast_skill"));
+		::Legends.Actives.grant(this, ::Legends.Active.LegendGruesomeFeast);
 	}
 	
 });

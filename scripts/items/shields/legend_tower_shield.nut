@@ -75,8 +75,8 @@ this.legend_tower_shield <- this.inherit("scripts/items/shields/shield", {
 	function onEquip()
 	{
 		this.shield.onEquip();
-		this.addSkill(this.new("scripts/skills/actives/legend_fortify_skill"));
-		this.addSkill(this.new("scripts/skills/actives/legend_safeguard_skill"));
+		::Legends.Actives.grant(this, ::Legends.Active.LegendFortify);
+		::Legends.Actives.grant(this, ::Legends.Active.LegendSafeguard);
 	}
 
 	function onPaintSpecificColor( _color )

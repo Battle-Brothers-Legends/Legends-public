@@ -38,8 +38,8 @@ this.legend_voulge <- this.inherit("scripts/items/weapons/weapon", {
 	function onEquip()
 	{
 		this.weapon.onEquip();
-		this.addSkill(this.new("scripts/skills/actives/legend_voulge_cleave_skill"));
-		this.addSkill(this.new("scripts/skills/actives/legend_voulge_decapitate_skill"));
+		::Legends.Actives.grant(this, ::Legends.Active.LegendVoulgeCleave);
+		::Legends.Actives.grant(this, ::Legends.Active.LegendVoulgeDecapitate);
 	}
 
 	function onUpdateProperties( _properties )

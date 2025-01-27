@@ -42,8 +42,8 @@ this.legend_crusader_sword <- this.inherit("scripts/items/weapons/weapon", {
 		skillToAdd = this.new("scripts/skills/actives/slash");
 		skillToAdd.m.isGreatSlash = true;
 		this.addSkill(skillToAdd);
-		this.addSkill(this.new("scripts/skills/actives/swing"));		
-		this.addSkill(this.new("scripts/skills/actives/riposte"));
+		::Legends.Actives.grant(this, ::Legends.Active.Swing);		
+		::Legends.Actives.grant(this, ::Legends.Active.Riposte);
 	}
 
 });

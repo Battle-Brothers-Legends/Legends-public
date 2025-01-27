@@ -57,8 +57,8 @@ this.legend_redback_dagger <- this.inherit("scripts/items/weapons/weapon", {
 	function onEquip()
 	{
 		this.weapon.onEquip();
-		this.addSkill(this.new("scripts/skills/actives/stab"));
-		this.addSkill(this.new("scripts/skills/actives/puncture"));
+		::Legends.Actives.grant(this, ::Legends.Active.Stab);
+		::Legends.Actives.grant(this, ::Legends.Active.Puncture);
 	}
 
 	function onUpdateProperties( _properties )

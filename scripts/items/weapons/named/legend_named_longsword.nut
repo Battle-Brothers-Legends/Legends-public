@@ -39,8 +39,8 @@ this.legend_named_longsword <- this.inherit("scripts/items/weapons/named/named_w
 		local skillToAdd = this.new("scripts/skills/actives/overhead_strike");
 		skillToAdd.setStunChance(this.m.StunChance);
 		this.addSkill(skillToAdd);
-		this.addSkill(this.new("scripts/skills/actives/split"));
-		this.addSkill(this.new("scripts/skills/actives/swing"));
+		::Legends.Actives.grant(this, ::Legends.Active.Split);
+		::Legends.Actives.grant(this, ::Legends.Active.Swing);
 		local skillToAdd = this.new("scripts/skills/actives/split_shield");
 		skillToAdd.setFatigueCost(skillToAdd.getFatigueCostRaw() + 5);
 		this.addSkill(skillToAdd);

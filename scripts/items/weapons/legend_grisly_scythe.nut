@@ -35,7 +35,7 @@ this.legend_grisly_scythe <- this.inherit("scripts/items/weapons/weapon", {
 		local cleave = this.new("scripts/skills/actives/cleave");
 		cleave.m.FatigueCost = 15;
 		this.addSkill(cleave);
-		this.addSkill(this.new("scripts/skills/actives/reap_skill"));
+		::Legends.Actives.grant(this, ::Legends.Active.Reap);
 		// todo delete it - chopeks
 //		if (this.LegendsMod.Configs().LegendMagicEnabled())
 //		{
@@ -47,7 +47,7 @@ this.legend_grisly_scythe <- this.inherit("scripts/items/weapons/weapon", {
 //			local Skills = actor.getSkills();
 //			if (Skills.hasSkill("background.legend_commander_necro") || Skills.hasSkill("background.legend_necromancer") || Skills.hasSkill("background.legend_warlock"))
 //			{
-//				this.addSkill(this.new("scripts/skills/actives/legend_curseofyears_skill"));
+//				::Legends.Actives.grant(this, ::Legends.Active.LegendCurseofyears);
 //			}
 //		}
 	}

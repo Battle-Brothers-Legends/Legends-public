@@ -41,14 +41,20 @@ if (!("Actives" in ::Legends))
 	local skillDef = ::Legends.Actives.ActiveDefObjects[_def];
 
 	local skill = null;
-	if (container.hasSkill(skillDef.ID)) {
+	local hasSkill = container.hasSkill(skillDef.ID);
+	if (hasSkill) {
 		skill = container.getSkillByID(skillDef.ID);
 	} else {
 		skill = ::new(skillDef.Script);
 	}
 	if (_applyFn != null)
 		_applyFn(skill);
-	container.add(skill);
+	// actives by default should be tied to items if _target is an item
+	if (::MSU.isKindOf(_target, "item")) {
+		if (!hasSkill)
+			_target.addSkill(skill);
+	} else
+		container.add(skill);
 	return skill;
 }
 

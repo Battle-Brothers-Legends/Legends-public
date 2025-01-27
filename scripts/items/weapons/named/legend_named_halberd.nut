@@ -42,7 +42,7 @@ this.legend_named_halberd <- this.inherit("scripts/items/weapons/named/named_wea
 	function onEquip()
 	{
 		this.named_weapon.onEquip();
-		this.addSkill(this.new("scripts/skills/actives/legend_halberd_smite_skill"));
+		::Legends.Actives.grant(this, ::Legends.Active.LegendHalberdSmite);
 		local impale = this.new("scripts/skills/actives/impale");
 		impale.m.Icon = "skills/legend_halberd_impale.png";
 		impale.m.IconDisabled = "skills/legend_halberd_impale_bw.png";

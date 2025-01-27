@@ -85,7 +85,7 @@ this.legend_helmet_jester_hat <- this.inherit("scripts/items/legend_helmets/lege
 		this.legend_helmet_upgrade.onEquip();
 		if (!this.getContainer().getActor().getSkills().hasPerk(::Legends.Perk.Taunt))
 		{
-			this.addSkill(this.new("scripts/skills/actives/taunt"));
+			::Legends.Actives.grant(this, ::Legends.Active.Taunt);
 		}
 	}
 });

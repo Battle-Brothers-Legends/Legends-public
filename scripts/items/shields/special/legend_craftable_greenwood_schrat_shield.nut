@@ -48,8 +48,8 @@ this.legend_craftable_greenwood_schrat_shield <- this.inherit("scripts/items/shi
 	function onEquip()
 	{
 		this.shield.onEquip();
-		this.addSkill(this.new("scripts/skills/actives/shieldwall"));
-		this.addSkill(this.new("scripts/skills/actives/knock_back"));
+		::Legends.Actives.grant(this, ::Legends.Active.Shieldwall);
+		::Legends.Actives.grant(this, ::Legends.Active.KnockBack);
 	}
 
 	function onCombatFinished()

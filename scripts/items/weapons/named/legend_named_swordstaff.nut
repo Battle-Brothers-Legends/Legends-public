@@ -32,10 +32,10 @@ this.legend_named_swordstaff <- this.inherit("scripts/items/weapons/named/named_
 	function onEquip()
 	{
 		this.named_weapon.onEquip();
-		this.addSkill(this.new("scripts/skills/actives/thrust"));
-		this.addSkill(this.new("scripts/skills/actives/spearwall"));
-		this.addSkill(this.new("scripts/skills/actives/riposte"));
-		this.addSkill(this.new("scripts/skills/actives/lunge_skill"));
+		::Legends.Actives.grant(this, ::Legends.Active.Thrust);
+		::Legends.Actives.grant(this, ::Legends.Active.Spearwall);
+		::Legends.Actives.grant(this, ::Legends.Active.Riposte);
+		::Legends.Actives.grant(this, ::Legends.Active.Lunge);
 	}
 });
 

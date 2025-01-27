@@ -44,7 +44,7 @@ this.legend_staff_gnarled <- this.inherit("scripts/items/weapons/weapon", {
 		t.m.IconDisabled = "skills/staff_knock_out_gnarled_bw.png";
 		t.m.IsStaffKnockOut = true;
 		this.addSkill(t);
-		this.addSkill(this.new("scripts/skills/actives/legend_hex_skill"));
+		::Legends.Actives.grant(this, ::Legends.Active.LegendHex);
 	}
 
 });

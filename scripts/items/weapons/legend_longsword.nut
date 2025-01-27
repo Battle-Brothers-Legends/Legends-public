@@ -33,8 +33,8 @@ this.legend_longsword <- this.inherit("scripts/items/weapons/weapon", {
 		local skillToAdd = this.new("scripts/skills/actives/slash");
 		skillToAdd.m.isGreatSlash = true;
 		this.addSkill(skillToAdd);
-		this.addSkill(this.new("scripts/skills/actives/overhead_strike"));
-		this.addSkill(this.new("scripts/skills/actives/riposte"));
+		::Legends.Actives.grant(this, ::Legends.Active.OverheadStrike);
+		::Legends.Actives.grant(this, ::Legends.Active.Riposte);
 	}
 });
 

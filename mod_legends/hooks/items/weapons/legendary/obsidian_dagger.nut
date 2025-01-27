@@ -14,6 +14,6 @@
 	o.onEquip = function ()
 	{
 		onEquip();
-		this.addSkill(this.new("scripts/skills/actives/deathblow_skill"));
+		::Legends.Actives.grant(this, ::Legends.Active.Deathblow);
 	}
 });

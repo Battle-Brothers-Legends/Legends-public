@@ -55,8 +55,8 @@ this.legend_named_flail <- this.inherit("scripts/items/weapons/named/named_weapo
 	function onEquip()
 	{
 		this.named_weapon.onEquip();
-		this.addSkill(this.new("scripts/skills/actives/legend_ranged_flail_skill"));
-		this.addSkill(this.new("scripts/skills/actives/legend_ranged_lash_skill"));
+		::Legends.Actives.grant(this, ::Legends.Active.LegendRangedFlail);
+		::Legends.Actives.grant(this, ::Legends.Active.LegendRangedLash);
 		// local flail = this.new("scripts/skills/actives/legend_ranged_flail_skill");
 		// flail.m.Icon = "skills/active_65.png";
 		// flail.m.IconDisabled = "skills/active_65_sw.png";

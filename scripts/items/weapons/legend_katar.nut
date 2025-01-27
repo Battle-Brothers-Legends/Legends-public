@@ -33,7 +33,7 @@ this.legend_katar <- this.inherit("scripts/items/weapons/weapon", {
 		s.m.IconDisabled = "skills/active_198_sw.png";
 		s.m.Overlay = "active_198";
 		this.addSkill(s);
-		this.addSkill(this.new("scripts/skills/actives/deathblow_skill"));
+		::Legends.Actives.grant(this, ::Legends.Active.Deathblow);
 	}
 
 });

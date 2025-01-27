@@ -35,7 +35,7 @@ this.legend_great_khopesh <- this.inherit("scripts/items/weapons/weapon", {
 		local cleave = this.new("scripts/skills/actives/cleave");
 		cleave.m.FatigueCost = 15;
 		this.addSkill(cleave);
-		this.addSkill(this.new("scripts/skills/actives/decapitate"));
-		this.addSkill(this.new("scripts/skills/actives/swing"));
+		::Legends.Actives.grant(this, ::Legends.Active.Decapitate);
+		::Legends.Actives.grant(this, ::Legends.Active.Swing);
 	}
 });

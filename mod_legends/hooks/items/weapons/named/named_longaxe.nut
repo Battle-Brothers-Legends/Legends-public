@@ -11,6 +11,6 @@
 	o.onEquip = function ()
 	{
 		onEquip();
-		//this.addSkill(this.new("scripts/skills/actives/legend_harvest_tree_skill"));
+		//::Legends.Actives.grant(this, ::Legends.Active.LegendHarvestTree);
 	}
 });

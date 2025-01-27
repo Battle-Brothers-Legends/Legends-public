@@ -31,9 +31,9 @@ this.legend_named_warhammer <- this.inherit("scripts/items/weapons/named/named_w
 	function onEquip()
 	{
 		this.named_weapon.onEquip();
-		this.addSkill(this.new("scripts/skills/actives/hammer"));
-		this.addSkill(this.new("scripts/skills/actives/crush_armor"));
-		//this.addSkill(this.new("scripts/skills/actives/legend_harvest_rock_skill"));
+		::Legends.Actives.grant(this, ::Legends.Active.Hammer);
+		::Legends.Actives.grant(this, ::Legends.Active.CrushArmor);
+		//::Legends.Actives.grant(this, ::Legends.Active.LegendHarvestRock);
 	}
 
 });

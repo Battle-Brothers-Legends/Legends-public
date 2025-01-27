@@ -58,7 +58,7 @@ this.legend_named_shovel <- this.inherit("scripts/items/weapons/named/named_weap
 
 		if (this.getContainer().getActor().getSkills().hasPerk(::Legends.Perk.LegendSpecialistShovelSkill))
 		{
-			this.addSkill(this.new("scripts/skills/actives/knock_out"));
+			::Legends.Actives.grant(this, ::Legends.Active.KnockOut);
 		}
 	}
 

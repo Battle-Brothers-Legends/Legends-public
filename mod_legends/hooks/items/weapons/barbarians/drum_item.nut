@@ -31,7 +31,7 @@
 		local s = this.new("scripts/skills/actives/bash");
 		s.m.IsDrumBash = true;
 		this.addSkill(s);
-		this.addSkill(this.new("scripts/skills/actives/knock_out"));
+		::Legends.Actives.grant(this, ::Legends.Active.KnockOut);
 	}
 
 	o.onUpdateProperties <- function ( _properties )

@@ -33,8 +33,8 @@ this.legend_northern_sling <- this.inherit("scripts/items/weapons/weapon", {
 	function onEquip()
 	{
 		this.weapon.onEquip();
-		this.addSkill(this.new("scripts/skills/actives/legend_sling_heavy_stone_skill"));
-		this.addSkill(this.new("scripts/skills/actives/legend_slingstaff_bash_skill"));
+		::Legends.Actives.grant(this, ::Legends.Active.LegendSlingHeavyStone);
+		::Legends.Actives.grant(this, ::Legends.Active.LegendSlingstaffBash);
 	}
 
 });

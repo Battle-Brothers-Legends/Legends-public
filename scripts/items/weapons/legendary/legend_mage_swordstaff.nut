@@ -31,14 +31,14 @@ this.legend_mage_swordstaff <- this.inherit("scripts/items/weapons/weapon", {
 	function onEquip()
 	{
 		this.weapon.onEquip();
-		this.addSkill(this.new("scripts/skills/actives/thrust"));
-		this.addSkill(this.new("scripts/skills/actives/spearwall"));
-		this.addSkill(this.new("scripts/skills/actives/riposte"));
-		this.addSkill(this.new("scripts/skills/actives/lunge_skill"));
-		this.addSkill(this.new("scripts/skills/actives/reap_skill"));
-		this.addSkill(this.new("scripts/skills/actives/swing"));
-		this.addSkill(this.new("scripts/skills/actives/split"));
-		this.addSkill(this.new("scripts/skills/actives/overhead_strike"));
+		::Legends.Actives.grant(this, ::Legends.Active.Thrust);
+		::Legends.Actives.grant(this, ::Legends.Active.Spearwall);
+		::Legends.Actives.grant(this, ::Legends.Active.Riposte);
+		::Legends.Actives.grant(this, ::Legends.Active.Lunge);
+		::Legends.Actives.grant(this, ::Legends.Active.Reap);
+		::Legends.Actives.grant(this, ::Legends.Active.Swing);
+		::Legends.Actives.grant(this, ::Legends.Active.Split);
+		::Legends.Actives.grant(this, ::Legends.Active.OverheadStrike);
 	}
 
 });

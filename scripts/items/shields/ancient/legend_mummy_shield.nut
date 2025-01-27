@@ -39,7 +39,7 @@ this.legend_mummy_shield <- this.inherit("scripts/items/shields/shield", {
 	function onEquip()
 	{
 		this.shield.onEquip();
-		this.addSkill(this.new("scripts/skills/actives/knock_back"));
+		::Legends.Actives.grant(this, ::Legends.Active.KnockBack);
 		local bash = this.new("scripts/skills/actives/legend_buckler_bash_skill");
 		m.PrimaryOffhandAttack = ::MSU.asWeakTableRef(bash);
 		this.addSkill(bash);

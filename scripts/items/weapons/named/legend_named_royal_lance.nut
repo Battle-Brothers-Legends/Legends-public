@@ -65,10 +65,10 @@ this.legend_named_royal_lance <- this.inherit("scripts/items/weapons/named/named
 	function onEquip()
 	{
 		this.named_weapon.onEquip();
-		this.addSkill(this.new("scripts/skills/actives/thrust"));
-		this.addSkill(this.new("scripts/skills/actives/riposte"));
-		this.addSkill(this.new("scripts/skills/actives/lunge_skill"));
-		this.addSkill(this.new("scripts/skills/actives/spearwall"));
+		::Legends.Actives.grant(this, ::Legends.Active.Thrust);
+		::Legends.Actives.grant(this, ::Legends.Active.Riposte);
+		::Legends.Actives.grant(this, ::Legends.Active.Lunge);
+		::Legends.Actives.grant(this, ::Legends.Active.Spearwall);
 	}
 
 });

@@ -29,8 +29,8 @@ this.legend_gladius <- this.inherit("scripts/items/weapons/weapon", {
 	function onEquip()
 	{
 		this.weapon.onEquip();
-		this.addSkill(this.new("scripts/skills/actives/slash"));
-		this.addSkill(this.new("scripts/skills/actives/riposte"));
+		::Legends.Actives.grant(this, ::Legends.Active.Slash);
+		::Legends.Actives.grant(this, ::Legends.Active.Riposte);
 	}
 
 	function onUpdateProperties( _properties )

@@ -173,7 +173,7 @@ this.legend_named_parrying_dagger <- this.inherit("scripts/items/shields/named/n
 		puncture.m.ID = puncture.m.ID + "_offhand";
 		this.addSkill(puncture);
 
-		this.addSkill(this.new("scripts/skills/actives/legend_en_garde_skill"));
+		::Legends.Actives.grant(this, ::Legends.Active.LegendEnGarde);
 
 		::Legends.Effects.grant(this, ::Legends.Effect.LegendParryingDagger, function(_effect) {
 			_effect.m.Order = this.Const.SkillOrder.UtilityTargeted + 1;
