@@ -63,7 +63,7 @@ this.legend_root_skill <- this.inherit("scripts/skills/skill", {
 		this.m.FatigueCostMult = _properties.IsSpecializedInStaves ? this.Const.Combat.WeaponSpecFatigueMult : 1.0;
 		this.m.ActionPointCost = _properties.IsSpecializedInStaves ? 5 : 6;
 
-		if (this.getContainer().hasEffect(::Legends.Effects.LegendRain))
+		if (this.getContainer().hasEffect(::Legends.Effect.LegendRain))
 		{
 		this.m.FatigueCost -= 10;
 		this.m.ActionPointCost -= 1;

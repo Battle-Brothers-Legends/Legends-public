@@ -2,7 +2,7 @@ this.legend_RSA_resilience <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		::Legends.Effects.onCreate(this, ::Legends.Effects.LegendRsaResilience);
+		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendRsaResilience);
 		this.m.Description = "Rune Sigil: Resilience";
 		this.m.Icon = "ui/rune_sigils/legend_rune_sigil.png";
 		this.m.Type = this.Const.SkillType.Special | this.Const.SkillType.StatusEffect;

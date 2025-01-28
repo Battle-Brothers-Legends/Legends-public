@@ -2,7 +2,7 @@ this.legend_RSW_bleeding <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		::Legends.Effects.onCreate(this, ::Legends.Effects.LegendRswBleeding);
+		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendRswBleeding);
 		this.m.Description = "Rune Sigil: Bleeding";
 		this.m.Icon = "ui/rune_sigils/legend_rune_sigil.png";
 		this.m.Type = this.Const.SkillType.Special | this.Const.SkillType.StatusEffect;

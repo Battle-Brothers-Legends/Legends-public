@@ -7,7 +7,7 @@ this.legend_relationship_check <- this.inherit("scripts/skills/skill", {
 	},
 	function create()
 	{
-		::Legends.Effects.onCreate(this, ::Legends.Effects.LegendRelationshipCheck);
+		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendRelationshipCheck);
 		this.m.Icon = "skills/status_effect_01.png";
 		this.m.IconMini = "";
 		this.m.Type = this.Const.SkillType.Special | this.Const.SkillType.Trait;

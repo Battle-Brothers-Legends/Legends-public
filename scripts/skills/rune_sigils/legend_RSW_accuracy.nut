@@ -2,7 +2,7 @@ this.legend_RSW_accuracy <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		::Legends.Effects.onCreate(this, ::Legends.Effects.LegendRssAccuracy);
+		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendRssAccuracy);
 		this.m.Description = "Rune Sigil: Accuracy";
 		this.m.Icon = "ui/rune_sigils/legend_rune_sigil.png";
 		this.m.Type = this.Const.SkillType.Special | this.Const.SkillType.StatusEffect;

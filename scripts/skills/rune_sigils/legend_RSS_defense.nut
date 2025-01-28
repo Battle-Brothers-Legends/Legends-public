@@ -2,7 +2,7 @@ this.legend_RSS_defense <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		::Legends.Effects.onCreate(this, ::Legends.Effects.LegendRssDefense);
+		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendRssDefense);
 		this.m.Description = "Rune Sigil: Defense";
 		this.m.Icon = "ui/rune_sigils/legend_rune_sigil.png";
 		this.m.Type = this.Const.SkillType.Special | this.Const.SkillType.StatusEffect;

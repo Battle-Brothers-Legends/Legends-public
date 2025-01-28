@@ -64,7 +64,7 @@ this.legend_summon_storm_skill <- this.inherit("scripts/skills/skill", {
 		local weather = this.Tactical.getWeather();
 		local rain = weather.createRainSettings();
 
-		if (this.getContainer().hasEffect(::Legends.Effects.LegendRain))
+		if (this.getContainer().hasEffect(::Legends.Effect.LegendRain))
 		{
 
 			if (this.m.SoundOnLightning.len() != 0)

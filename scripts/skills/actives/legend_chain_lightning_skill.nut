@@ -133,7 +133,7 @@ this.legend_chain_lightning_skill <- this.inherit("scripts/skills/skill", {
 		this.m.FatigueCostMult = _properties.IsSpecializedInStaves ? ::Const.Combat.WeaponSpecFatigueMult : 1.0;
 		this.m.ActionPointCost = _properties.IsSpecializedInStaves ? 5 : 6;
 
-//		if (this.getContainer().hasEffect(::Legends.Effects.LegendRain))
+//		if (this.getContainer().hasEffect(::Legends.Effect.LegendRain))
 //		{
 //			this.m.FatigueCost -= 20;
 //			this.m.ActionPointCost -= 1;

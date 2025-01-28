@@ -50,7 +50,7 @@ this.legend_fear_dark_trait <- this.inherit("scripts/skills/traits/character_tra
 
 	function onUpdate( _properties )
 	{
-		if (this.getContainer().hasEffect(::Legends.Effects.Night) && _properties.IsAffectedByNight == true)
+		if (this.getContainer().hasEffect(::Legends.Effect.Night) && _properties.IsAffectedByNight == true)
 		{
 			_properties.Bravery -= 10;
 			_properties.MoraleCheckBravery[::Const.MoraleCheckType.MentalAttack] -= 20;

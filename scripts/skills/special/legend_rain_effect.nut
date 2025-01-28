@@ -2,7 +2,7 @@ this.legend_rain_effect <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		::Legends.Effects.onCreate(this, ::Legends.Effects.LegendRain);
+		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendRain);
 		this.m.Description = "The rain obscures vision and makes everything slippery";
 		this.m.Icon = "skills/rain_circle.png";
 		this.m.IconMini = "status_effect_35_mini";

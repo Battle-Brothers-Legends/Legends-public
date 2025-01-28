@@ -23,7 +23,7 @@ this.perk_legend_night_raider <- this.inherit("scripts/skills/skill", {
 	// function isHidden()
 	// {
 	// 	//return !this.m.IsBattleStart || this.World.getTime().IsDaytime;
-	// 	if (this.getContainer().hasEffect(::Legends.Effects.Night) && _properties.IsAffectedByNight == true)
+	// 	if (this.getContainer().hasEffect(::Legends.Effect.Night) && _properties.IsAffectedByNight == true)
 	// }
 
 	function onUpdate( _properties )
@@ -51,7 +51,7 @@ this.perk_legend_night_raider <- this.inherit("scripts/skills/skill", {
 	// function onUpdate(_properties)
 	// {
 	// 	local actor = this.getContainer().getActor();
-	// 	if (actor.getSkills().hasEffect(::Legends.Effects.Night))
+	// 	if (actor.getSkills().hasEffect(::Legends.Effect.Night))
 	// 	{
 	// 		_properties.Threat += 10;
 	// 		_properties.Vision += 1;

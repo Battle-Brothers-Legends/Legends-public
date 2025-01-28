@@ -77,13 +77,13 @@ return [
 
 	function onUpdate( _properties )
 	{
-		if (this.getContainer().hasEffect(::Legends.Effects.Night) && _properties.IsAffectedByNight == true)
+		if (this.getContainer().hasEffect(::Legends.Effect.Night) && _properties.IsAffectedByNight == true)
 		{
 			_properties.Vision += 1;
 			_properties.RangedSkillMult *= 1.3;
 			_properties.RangedDefenseMult *= 1.3;
 		}
-		if (!this.getContainer().hasEffect(::Legends.Effects.Night) && _properties.IsAffectedByNight == true)
+		if (!this.getContainer().hasEffect(::Legends.Effect.Night) && _properties.IsAffectedByNight == true)
 		{
 			_properties.Vision -= 1;
 			_properties.RangedSkillMult *= 0.7;
