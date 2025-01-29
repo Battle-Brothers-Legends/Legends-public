@@ -21,6 +21,7 @@
 	"Do the job. Survive. Get paid.",
 
 	//General - non specific helpful advice
+	"You can hide Armor and Helmet layers by shift-clicking on the relevant layer."
 	"Shields can be destroyed using axes and some two-handed weapons.",
 	"Different types of shields can be better suited against melee or ranged attacks.",
 	"Bucklers and parry daggers are exceptional against small groups or single targets.",
@@ -31,7 +32,7 @@
 	"Characters can see farther, the higher they are positioned.",
 	"Surrounding an opponent from multiple sides makes it easier to score a hit.",
 	"Consider putting injured characters in reserve until their wounds have healed.",
-	"Consider building up a reserve roster and rotating your mercenaries, so you can more easily deal with losses down the road.",
+	"Consider building up a reserve roster, so you can have a dedicated cook, paymaster or crafter.",
 	"A missed ranged attack can hit nearby characters, especially if they are in the direct line of fire.",
 	"Economic difficulty impacts recruit frequency. A more difficult economy will yield fewer recruits.",
 	"Ranged weapons work best when firing into groups of enemies - they are bound to hit someone.",
@@ -246,29 +247,28 @@ local tips = [
 	"Mortars of the city states can only fire if an engineer is next to them to operate them.",
 	"With the \'Manhunters\' origin you can make prisoners after every battle against humans and force them to fight for you.",
 	"With the \'Gladiators\' origin you start with three powerful characters, but losing all three will end your campaign.",
-	"Hire non-combat followers for your retinue to customize your campaign to your playstyle.",
-	"Losing named shields to orcs? Hire a blacksmith for your retinue and repair any item, even if its durability reaches zero.",
+	"Losing named shields to orcs? Buy Blacksmith Tools in your Retinue screen and repair any item, even if its durability reaches zero.",
 	"Training your new recruits takes too long? Hire a drill sergeant to have them gain experience faster.",
 	"Facing too few enemy champions? Hire a bounty hunter to find more and even earn a bounty for every one you kill.",
 	"Paying too much in wages? Hire a paymaster to reduce the wages you have to pay.",
 	"Wondering who went there? Hire a Lookout and get more information on any footprints on the world map.",
 	"Always out of ammo and tools? Hire a scavenger to reclaim ammo you spent and gather tools from armor you destroyed.",
 	"Inventory full? Buy carts and wagons for your company in the Retinue screen.",
-	"You unlock slots for your retinue of non-combat followers by gaining Renown.",
+	"You unlock slots for tools in your Retinue screen by gaining Renown.",
 	"Ferocious hyenas roam the southern deserts, with strong jaws that can crush even metal armor and inflict bleeding wounds.",
-	"Try out different retinue followers to find those that complement your playstyle and chosen company origin."
+	"Try out different retinue tools to find those that complement your playstyle and chosen company origin."
 ];
 ::Const.TipOfTheDay.extend(tips);
 
 // paladins dlc tips
-local tips = [
+tips = [
 	"With the \'Anatomists\' origin, defeating new enemies grants potions that mutate your men and grant them special abilities.",
 	"With the \'Oathtakers\' origin, instead of ambitions you\'ll pick oaths that grant special boons and burdens."
 ];
 ::Const.TipOfTheDay.extend(tips);
 
 // unhold dlc tips
-local tips = [
+tips = [
 	"The frozen wasteland of the north is home to a giant beast not seen anywhere else.",
 	"A Lindwurm is a wingless bipedal dragon resembling a large snake.",
 	"There are different regional variants of the Unhold.",
@@ -300,7 +300,7 @@ local tips = [
 ::Const.TipOfTheDay.extend(tips);
 
 // dlc wildmen
-local tips = [
+tips = [
 	"The north is inhabited by fierce barbarian tribes.",
 	"Barbarians often overwhelm their opponents at the start of battle, but quickly become fatigued.",
 	"Northern warhounds are sturdier than southern wardogs, but not as quick and agile.",
