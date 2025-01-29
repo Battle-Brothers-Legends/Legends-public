@@ -40,25 +40,26 @@
 		]);
 	}
 
-	o.getRumorPrice = function ()
+	local getRumorPrice = o.getRumorPrice;
+	o.getRumorPrice = function()
 	{
-		local bonus = 1;
-		if (this.World.Assets.getOrigin().getID() == "scenario.legends_troupe")
-		{
-		bonus *= 0.5;
-		}
+		local price = getRumorPrice();
 
-		return this.Math.round(20 * this.m.Settlement.getBuyPriceMult() * bonus);
+		if (::World.Assets.getOrigin().getID() == "scenario.legends_troupe")
+			price = ::Math.round(price * 0.5);
+
+		return price;
 	}
 
-	o.getDrinkPrice = function ()
+	local getDrinkPrice = o.getDrinkPrice;
+	o.getDrinkPrice = function()
 	{
-		local bonus = 1;
-		if (this.World.Assets.getOrigin().getID() == "scenario.legends_troupe")
-		{
-		bonus = 0.5;
-		}
-		return this.Math.round(this.World.getPlayerRoster().getSize() * 5 * this.m.Settlement.getBuyPriceMult() * bonus);
+		local price = getDrinkPrice();
+
+		if (::World.Assets.getOrigin().getID() == "scenario.legends_troupe")
+			price = ::Math.round(price * 0.5);
+
+		return price;
 	}
 
 	o.getDrinkResult = function ()
