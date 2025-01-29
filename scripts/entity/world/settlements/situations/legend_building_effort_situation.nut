@@ -9,6 +9,9 @@ this.legend_building_effort_situation <- this.inherit("scripts/entity/world/sett
 		this.m.Name = "Building Effort";
 		this.m.Description = "This settlement is expanding with a new location, building materials are in high demand and low supply.";
 		this.m.Icon = "ui/settlement_status/building_effort_effect.png";
+		this.m.Rumors = [
+			"Been seein\' lots of materials coming through \'ere to the %direction%...",
+		];
 		this.m.IsStacking = false;
 		this.m.ValidDays = 5;
 	}

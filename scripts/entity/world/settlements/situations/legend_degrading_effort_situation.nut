@@ -7,6 +7,9 @@ this.legend_degrading_effort_situation <- this.inherit("scripts/entity/world/set
 		this.m.Name = "Town ";
 		this.m.Description = "This settlement can no longer sustain its current size and is undergoing efforts to still remain productive during these difficult times.";
 		this.m.Icon = "ui/settlement_status/degrading_effort_effect.png";
+		this.m.Rumors = [
+			"\'Lots of people comin\' out from %direction% lately..."
+		];
 		this.m.IsStacking = false;
 		this.m.ValidDays = 3;
 	}
