@@ -76,9 +76,9 @@
 			}
 
 			local effect = ::Legends.Effects.get(a, ::Legends.Effect.Charmed);
-			local notCharmedBro = effect != null && effect.m.OriginalFaction != _user.getFaction();
+			local notCharmedBro = effect != null && ::MSU.isIn("OriginalFaction", effect.m) && effect.m.OriginalFaction != _user.getFaction();
 			effect = ::Legends.Effects.get(a, ::Legends.Effect.LegendIntenselyCharmed);
-			local notIntenselyCharmedBro = effect != null && effect.m.OriginalFaction != _user.getFaction();
+			local notIntenselyCharmedBro = effect != null && ::MSU.isIn("OriginalFaction", effect.m) && effect.m.OriginalFaction != _user.getFaction();
 			if (a.getFaction() != _user.getFaction() && notCharmedBro && notIntenselyCharmedBro) //Charmed bros belong to a different faction, additional conditions make sure they are not excluded
 			{
 				continue;
