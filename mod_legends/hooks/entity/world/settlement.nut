@@ -501,7 +501,7 @@
 
 		foreach( building in this.m.Buildings )
 		{
-			if (building == null || building.isHidden())
+			if (building == null || building.isHidden() || ::World.getTime().IsDaytime && building.isClosedAtDay())
 			{
 				result.Slots.push(null);
 			}
