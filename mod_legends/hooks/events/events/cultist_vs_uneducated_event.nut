@@ -86,7 +86,6 @@
 				case bro.getSkills().hasSkill("trait.bright"):
 				case bro.getBackground().isBackgroundType(this.Const.BackgroundType.Noble):
 				case bro.getBackground().isBackgroundType(this.Const.BackgroundType.Educated):	
-					continue;
 				case !bro.getBackground().isBackgroundType(this.Const.BackgroundType.Lowborn):
 					continue;
 			}
