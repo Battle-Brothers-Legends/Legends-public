@@ -25,16 +25,20 @@ this.legend_accessory_dog <- this.inherit("scripts/items/accessory/accessory", {
 
 	function isAllowedInBag()
 	{
-		if (this.getContainer() == null)
+		try {
+			return this.getContainer().getActor().getSkills().hasSkill("perk.legend_packleader");
+		} catch (e) {
 			return true;
-		return this.getContainer().getActor().getSkills().hasSkill("perk.legend_packleader");
+		}
 	}
 
 	function isChangeableInBattle()
 	{
-		if (this.getContainer() == null)
+		try {
+			return this.getContainer().getActor().getSkills().hasSkill("perk.legend_packleader");
+		} catch (e) {
 			return true;
-		return this.getContainer().getActor().getSkills().hasSkill("perk.legend_packleader");
+		}
 	}
 
 	function isUnleashed()
