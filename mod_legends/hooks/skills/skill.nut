@@ -139,7 +139,7 @@
 				id = 10,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]" + this.m.ChanceSmash * p.FlatOnKillOtherActorModifier + "%[/color] chance to smash the target on hits to the head that are killing blows"
+				text = "[color=" + this.Const.UI.Color.PositiveValue + "]" + this.m.ChanceSmash * p.FatalityChanceMult + "%[/color] chance to smash the target on hits to the head that are killing blows"
 			});
 		}
 		if (this.m.ChanceDecapitate > 0)
@@ -148,7 +148,7 @@
 				id = 10,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]" + this.m.ChanceDecapitate * p.FlatOnKillOtherActorModifier + "%[/color] chance to decapitate the target on hits to the head that are killing blows"
+				text = "[color=" + this.Const.UI.Color.PositiveValue + "]" + this.m.ChanceDecapitate * p.FatalityChanceMult + "%[/color] chance to decapitate the target on hits to the head that are killing blows"
 			});
 		}
 		if (this.m.ChanceDisembowel > 0)
@@ -157,7 +157,7 @@
 				id = 10,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]" + this.m.ChanceDisembowel * p.FlatOnKillOtherActorModifier + "%[/color] chance to disembowel the target on hits to the body that are killing blows"
+				text = "[color=" + this.Const.UI.Color.PositiveValue + "]" + this.m.ChanceDisembowel * p.FatalityChanceMult + "%[/color] chance to disembowel the target on hits to the body that are killing blows"
 			});
 		}
 
