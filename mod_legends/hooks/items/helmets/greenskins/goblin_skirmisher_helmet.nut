@@ -2,11 +2,11 @@
 	local create = o.create;
 	o.create = function () {
 		create();
-		local variants = [1,2,3,4,5,10,11,12,13,14]
-		this.m.Variant = variants[this.Math.rand(0, variants.len()-1)]
+		local variants = [1,2,3,4,5,10,11,12,13,14];
+		this.m.Variant = variants[this.Math.rand(0, variants.len()-1)];
 		if (this.m.Variant == 5) {
-			local subV = [5,6,7,8,9]
-			this.m.Variant = subV[this.Math.rand(0, subV.len()-1)]
+			local subV = [5,6,7,8,9];
+			this.m.Variant = subV[this.Math.rand(0, subV.len()-1)];
 		}
 	}
 
