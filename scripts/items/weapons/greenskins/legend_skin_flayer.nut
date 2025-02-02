@@ -42,11 +42,14 @@ this.legend_skin_flayer <- this.inherit("scripts/items/weapons/weapon", {
 	function onEquip()
 	{
 		this.weapon.onEquip();
-		local slash = this.new("scripts/skills/actives/slash");
-		slash.m.Icon = "skills/active_78.png";
-		slash.m.IconDisabled = "skills/active_78_sw.png";
-		slash.m.Overlay = "active_78";
+		local skill = this.new("scripts/skills/actives/slash");
+		skill.m.Icon = "skills/active_78.png";
+		skill.m.IconDisabled = "skills/active_78_sw.png";
+		skill.m.Overlay = "active_78";
 		this.addSkill(slash);
+		skill = this.new("scripts/skills/actives/decapitate");
+		skill.setApplySwordMastery(true);
+		this.addSkill(skill);
 	}
 
 });
