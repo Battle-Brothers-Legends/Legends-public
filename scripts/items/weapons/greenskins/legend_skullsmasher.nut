@@ -5,7 +5,7 @@ this.legend_skullsmasher <- this.inherit("scripts/items/weapons/weapon", {
 		this.weapon.create();
 		this.m.ID = "weapon.legend_skullsmasher";
 		this.m.Name = "Skull Smasher";
-		this.m.Description = "A massive crude hammer with a head fashioned from a chunk of solid iron. Too heavy to be used effectively by the average human.";
+		this.m.Description = "A massive crude hammer with a head fashioned from a chunk of solid iron. Not well suited for human hands.";
 		this.m.IconLarge = "weapons/melee/legend_skullsmasher_01.png";
 		this.m.Icon = "weapons/melee/legend_skullsmasher_01_70x70.png";
 		this.m.WeaponType = this.Const.Items.WeaponType.Hammer;
@@ -34,10 +34,7 @@ this.legend_skullsmasher <- this.inherit("scripts/items/weapons/weapon", {
 	function onEquip()
 	{
 		this.weapon.onEquip();
-		local skillToAdd = this.new("scripts/skills/actives/hammer");
-		this.addSkill(skillToAdd);
-
-		skillToAdd = this.new("scripts/skills/actives/crush_armor");
-		this.addSkill(skillToAdd);
+		this.addSkill(this.new("scripts/skills/actives/hammer"));
+		this.addSkill(this.new("scripts/skills/actives/crush_armor"));
 	}
 });
