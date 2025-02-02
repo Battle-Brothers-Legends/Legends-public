@@ -1,5 +1,12 @@
 ::mods_hookExactClass("skills/actives/split_shield", function(o)
 {
+	o.m.IsOrcWeapon <- false;
+
+	o.setApplyOrcWeapon <- function ( _f )
+	{
+		this.m.IsOrcWeapon = _f;
+	}
+
 	o.onUse = function ( _user, _targetTile )
 	{
 		local target = _targetTile.getEntity();
@@ -71,6 +78,14 @@
 		}
 
 		return true;
+	}
+
+	local onAfterUpdate = o.onAfterUpdate;
+	o.onAfterUpdate = function ( _properties )
+	{
+		onAfterUpdate( _properties );
+		if (this.m.IsOrcWeapon)
+			this.m.ActionPointCost = 5;
 	}
 
 });
