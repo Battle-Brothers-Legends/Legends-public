@@ -30,6 +30,18 @@ this.legend_meat_hacker <- this.inherit("scripts/items/weapons/weapon", {
 		this.m.FatigueOnSkillUse = 5;
 	}
 
+	function getTooltip()
+	{
+		local result = this.weapon.getTooltip();
+		result.push({
+			id = 6,
+			type = "text",
+			icon = "ui/icons/special.png",
+			text = "Can use [color=" + ::Const.UI.Color.Active + "]Split Man[/color] when [color=" + ::Const.UI.Color.Status + "]Double Gripped[/color] and [color=" + ::Const.UI.Color.Active + "]Chop[/color] if not"
+		});
+		return result;
+	}
+
 	function onEquip()
 	{
 		this.weapon.onEquip();
