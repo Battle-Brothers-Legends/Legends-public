@@ -67,13 +67,11 @@ this.perk_legend_close_combat_archer <- this.inherit("scripts/skills/skill", {
 		if (!_skill.isRanged())
 			return;
 
-		local bonus = this.getBonus(_properties) / 100;
+		local bonus = this.getBonus(_properties) * 0.01;
 
 		if (this.getContainer().getActor().getTile().getDistanceTo(_targetEntity.getTile()) > 4)
 			return;
 
 		_properties.DamageTotalMult *= 1.0 + bonus;
 	}
-
 });
-
