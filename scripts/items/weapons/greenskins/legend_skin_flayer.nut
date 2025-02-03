@@ -34,7 +34,7 @@ this.legend_skin_flayer <- this.inherit("scripts/items/weapons/weapon", {
 		skill.m.Icon = "skills/active_78.png";
 		skill.m.IconDisabled = "skills/active_78_sw.png";
 		skill.m.Overlay = "active_78";
-		this.addSkill(slash);
+		this.addSkill(skill);
 		skill = this.new("scripts/skills/actives/decapitate");
 		skill.setApplySwordMastery(true);
 		this.addSkill(skill);
