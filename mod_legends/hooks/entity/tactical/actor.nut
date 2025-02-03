@@ -17,8 +17,10 @@
 	local setCurrentMovementType = o.setCurrentMovementType;
 	o.setCurrentMovementType = function( _t ) // to trigger the removal of stances skill upon being moved out of will
 	{
-		if (_t == ::Const.Tactical.MovementType.Involuntary && !::Tactical.TurnSequenceBar.isActiveEntity(this))
+		if (_t == ::Const.Tactical.MovementType.Involuntary && !::Tactical.TurnSequenceBar.isActiveEntity(this)) {
+			getFlags().remove("CanNotBeStaggered"); // a hack to prevent teamplayer user from staggering ally
 			::Const.Tactical.Common.removeStances(this);
+		}
 
 		setCurrentMovementType(_t);
 	}

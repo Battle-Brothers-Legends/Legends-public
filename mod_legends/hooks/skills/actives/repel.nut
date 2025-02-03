@@ -18,7 +18,7 @@
 
 		local ret = onUse(_user, _targetTile);
 
-		if (!::MSU.isNull(target))
+		if (!ret)
 			target.getFlags().remove("CanNotBeStaggered");
 
 		return ret;
