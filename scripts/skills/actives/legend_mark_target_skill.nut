@@ -40,14 +40,14 @@ this.legend_mark_target_skill <- this.inherit("scripts/skills/skill", {
 
 	function getTooltip()
 	{
-		local ret = this.getDefaultUtilityTooltip()
+		local ret = this.getDefaultUtilityTooltip();
 		ret.push(
 			{
 				id = 7,
 				type = "text",
 				icon = "ui/icons/special.png",
 				text = "Leave your opponent marked, reducing their melee and ranged defense by 10"
-			})
+			});
 		return ret;
 	}
 

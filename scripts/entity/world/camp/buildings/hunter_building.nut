@@ -30,7 +30,7 @@ this.hunter_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 		this.m.Name = "Camp Kitchen";
 		this.m.Description = "A kitchen tent with supplies for hunting, preparing and cooking food";
 		this.m.BannerImage = "ui/buttons/banner_hunt.png";
-		this.m.CanEnter = false
+		this.m.CanEnter = false;
 		this.m.Sounds = [
 			{
 				File = "ambience/camp/camp_hunter_01.wav",
@@ -601,8 +601,8 @@ this.hunter_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 
 		ret.push("Hunting points per hour: " + mod.Craft);
 		ret.push("Hunt Tier: " + ::Const.HuntingLoot.getHuntLevelTier(huntLevel));
-		ret.push("Current mode: <span style=\"color:" + ::Const.UI.Color.getHighlightLightBackgroundValue() + ";\">" + ::Const.HuntingLoot.HunterCampModeNameMap[this.m.Mode] + "</span>")
-		ret.push("Current biome: <span style=\"color:" + ::Const.UI.Color.getHighlightLightBackgroundValue() + ";\">" + ::Const.World.TerrainLocation[::World.State.getPlayer().getTile().Type]) + "</span>";
+		ret.push("Current mode: <span style=\"color:" + ::Const.UI.Color.getHighlightLightBackgroundValue() + ";\">" + ::Const.HuntingLoot.HunterCampModeNameMap[this.m.Mode] + "</span>");
+		ret.push("Current biome: <span style=\"color:" + ::Const.UI.Color.getHighlightLightBackgroundValue() + ";\">" + ::Const.World.TerrainLocation[::World.State.getPlayer().getTile().Type] + "</span>") ;
 
 		local targets = ::Const.HuntingLoot.getBiomeTargetDefs(::World.State.getPlayer().getTile().Type);
 

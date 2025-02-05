@@ -71,7 +71,7 @@ this.legend_inventor_background <- this.inherit("scripts/skills/backgrounds/char
 
 	function getTooltip()
 	{
-		local ret = this.character_background.getTooltip()
+		local ret = this.character_background.getTooltip();
 		ret.push(
 			{
 				id = 13,
@@ -79,8 +79,8 @@ this.legend_inventor_background <- this.inherit("scripts/skills/backgrounds/char
 				icon = "ui/icons/xp_received.png",
 				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+20%[/color] Experience Gain"
 			}
-		)
-		return ret
+		);
+		return ret;
 	}
 
 	function onBuildDescription()

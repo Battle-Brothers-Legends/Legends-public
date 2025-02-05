@@ -4,19 +4,19 @@ this.rest_building <- this.inherit("scripts/entity/world/camp/camp_building", {
 	{
 		this.camp_building.create();
 		this.m.ID = this.Const.World.CampBuildings.Rest;
-		this.m.Escorting = true;		
+		this.m.Escorting = true;
 		this.m.Slot = "rest";
 		this.m.Name = "Rest";
 		this.m.Description = "Company personnel who have not been assigned a task will rest and relax here. .";
-		this.m.BannerImage = "ui/buttons/banner_rest.png"
-		this.m.CanEnter = false
+		this.m.BannerImage = "ui/buttons/banner_rest.png";
+		this.m.CanEnter = false;
 	}
 
 	function getDescription()
 	{
 		local desc = "";
-		desc += "Kicking ass is tough work. Grab a log, kick the shoes off and relax by the camp fire. "
-		desc += "Resting can improve the mood of even the grumpiest mercenary."
+		desc += "Kicking ass is tough work. Grab a log, kick the shoes off and relax by the camp fire. ";
+		desc += "Resting can improve the mood of even the grumpiest mercenary.";
 		return desc;
 	}
 
@@ -38,8 +38,7 @@ this.rest_building <- this.inherit("scripts/entity/world/camp/camp_building", {
 
 	function getModifiers()
 	{
-		local ret = 
-		{
+		local ret = {
 			Assigned = 0
 		}
 		local roster = this.World.getPlayerRoster().getAll();
@@ -47,9 +46,9 @@ this.rest_building <- this.inherit("scripts/entity/world/camp/camp_building", {
 		{
 			if (bro.getCampAssignment() != this.m.ID)
 			{
-				continue
+				continue;
 			}
-			++ret.Assigned
+			++ret.Assigned;
 		}
 		return ret;
 	}
@@ -79,7 +78,7 @@ this.rest_building <- this.inherit("scripts/entity/world/camp/camp_building", {
 		{
 			if (b.getCampAssignment() != this.m.ID)
 			{
-				continue
+				continue;
 			}
 
 			if (b.getLastCampTime() == 0 || this.Time.getVirtualTimeF() - b.getLastCampTime() > this.World.getTime().SecondsPerDay)
@@ -89,7 +88,7 @@ this.rest_building <- this.inherit("scripts/entity/world/camp/camp_building", {
 			}
 		}
 	}
-	
+
 	function getResults()
 	{
 		local res = [];
@@ -99,12 +98,12 @@ this.rest_building <- this.inherit("scripts/entity/world/camp/camp_building", {
 		{
 			if (b.getLastCampTime() == this.m.Camp.getStopTime())
 			{
-				++moodCount
+				++moodCount;
 				res.push({
 					id = moodCount,
 					icon =  this.Const.MoodStateIcon[b.getMoodState()],
 					text = b.getName() + this.Const.MoodStateEvent[b.getMoodState()]
-				})
+				});
 			}
 		}
 		return res;
@@ -125,5 +124,5 @@ this.rest_building <- this.inherit("scripts/entity/world/camp/camp_building", {
 	{
 		this.camp_building.onDeserialize(_in);
 	}
-	
+
 });

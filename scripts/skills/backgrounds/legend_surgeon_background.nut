@@ -72,12 +72,12 @@ this.legend_surgeon_background <- this.inherit("scripts/skills/backgrounds/chara
 		this.m.Level = this.Math.rand(2, 4);
 
 		this.m.BackgroundType = this.Const.BackgroundType.OffendedByViolence | this.Const.BackgroundType.Educated;
-		
+
 		this.m.Modifiers.Meds = this.Const.LegendMod.ResourceModifiers.Meds[3];
 		this.m.Modifiers.Healing = this.Const.LegendMod.ResourceModifiers.Healing[3];
 		this.m.Modifiers.Injury = this.Const.LegendMod.ResourceModifiers.Injury[3];
 		this.m.Modifiers.MedConsumption = this.Const.LegendMod.ResourceModifiers.MedConsumption[2];
-		
+
 		this.m.PerkTreeDynamic = {
 			Weapon = [
 				this.Const.Perks.CleaverTree,
@@ -124,7 +124,7 @@ this.legend_surgeon_background <- this.inherit("scripts/skills/backgrounds/chara
 			this.m.HairColors = this.Const.HairColors.African;
 			this.m.Bodies = this.Const.Bodies.AfricanFemale;
 		}
-		
+
 		this.m.Beards = null;
 		this.m.BeardChance = 0;
 		this.addBackgroundType(this.Const.BackgroundType.Female);
@@ -132,7 +132,7 @@ this.legend_surgeon_background <- this.inherit("scripts/skills/backgrounds/chara
 
 	function getTooltip()
 	{
-		local ret = this.character_background.getTooltip()
+		local ret = this.character_background.getTooltip();
 		ret.push(
 			{
 				id = 13,
@@ -140,13 +140,13 @@ this.legend_surgeon_background <- this.inherit("scripts/skills/backgrounds/chara
 				icon = "ui/icons/xp_received.png",
 				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+10%[/color] Experience Gain"
 			}
-		)
-		return ret
+		);
+		return ret;
 	}
 
 	function onBuildDescription()
 	{
-		if (this.isBackgroundType(this.Const.BackgroundType.Female)) 
+		if (this.isBackgroundType(this.Const.BackgroundType.Female))
 		{ //Female
 			return "{Some women are born to be feared. %name% is not one of them. | Relatively normal in stature, %name% garners little attention from passers by. | Years of study and \'practical\' research has left %them% with a good understanding on how to make or unmake a man.} {The surgeon spent many a day tending to the Vizier\'s men, until the camp as overrun by northern armies. | Never intending to be a crownling, %name% finds themselves with little choice after wandering in the desert looking for help. | While %they% have never been in a serious fight in %their% life, %name% knows their way around cutting tools and isn\'t afraid of a little gore. | When ordered to kill the wounded who could not walk, %name% refused and found themselves thrown out of the camp. | After being captured by and tending to wounded nomads, %name% found some hospitality and provisions before they left %them% on the road.} {The war has made the worst come out from both sides, with her stuck in the middle.}";
 		}
@@ -212,13 +212,13 @@ this.legend_surgeon_background <- this.inherit("scripts/skills/backgrounds/chara
 		else if (r == 2)
 		{
 			items.equip(this.new("scripts/items/weapons/butchers_cleaver"));
-		}	
+		}
 
 		items.equip(this.Const.World.Common.pickArmor([
 			[1, "oriental/vizier_gear"],
 			[2, "oriental/cloth_sash"],
 			[3, "butcher_apron"]
-		]))
+		]));
 
 		items.equip(this.Const.World.Common.pickHelmet([
 			[2, ""],

@@ -70,11 +70,11 @@ this.legend_helmet <- this.inherit("scripts/items/helmets/helmet", {
 		{
 			if (u != null && u.isNamed())
 			{
-				return true
+				return true;
 			}
 		}
 
-		return false
+		return false;
 	}
 
 	function isBought()
@@ -94,7 +94,7 @@ this.legend_helmet <- this.inherit("scripts/items/helmets/helmet", {
 	{
 		if (this.isArmorNamed())
 		{
-			return "layers/named_icon_glow.png"
+			return "layers/named_icon_glow.png";
 		}
 		return this.m.Icon;
 	}
@@ -493,7 +493,7 @@ this.legend_helmet <- this.inherit("scripts/items/helmets/helmet", {
 		oldIndex =  this.World.Assets.getStash().getItemByInstanceID(_upgrade.getInstanceID());
 		}
 
-		if (oldIndex != null) oldIndex = oldIndex.index
+		if (oldIndex != null) oldIndex = oldIndex.index;
 		local oldItem;
 		if (this.m.Upgrades[slot] != null)
 		{
@@ -543,7 +543,7 @@ this.legend_helmet <- this.inherit("scripts/items/helmets/helmet", {
 	{
 		local NAME = this.getName();
 
-		local uname = this.getUpgradesNamed()
+		local uname = this.getUpgradesNamed();
 
 		if (uname != "") {
 			NAME = uname + " " + this.getName();
@@ -681,7 +681,7 @@ this.legend_helmet <- this.inherit("scripts/items/helmets/helmet", {
 				type = "text",
 				icon = "ui/icons/blank.png",
 				text = " "
-			})
+			});
 			result.push({
 				id = 10,
 				type = "text",
@@ -827,7 +827,7 @@ this.legend_helmet <- this.inherit("scripts/items/helmets/helmet", {
 		 }
 		 else
 		 {
-			app.Helmet = this.m.Sprite
+			app.Helmet = this.m.Sprite;
 		 }
 
 		app.HelmetColor = this.m.SpriteColor;
@@ -970,7 +970,7 @@ this.legend_helmet <- this.inherit("scripts/items/helmets/helmet", {
 		{
 			if ((this.m.ItemType & _t) != 0)
 			{
-				return true
+				return true;
 			}
 
 			foreach (i, upgrade in this.m.Upgrades)
@@ -980,7 +980,7 @@ this.legend_helmet <- this.inherit("scripts/items/helmets/helmet", {
 					if (this.m.Upgrades[i].isItemType(_t)) return true;
 				}
 			}
-			return false
+			return false;
 		}
 
 		return (this.m.ItemType & _t) != 0;

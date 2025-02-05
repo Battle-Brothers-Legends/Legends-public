@@ -71,7 +71,7 @@ this.legend_vala_background <- this.inherit("scripts/skills/backgrounds/characte
 
 	function getTooltip()
 	{
-		local ret = this.character_background.getTooltip()
+		local ret = this.character_background.getTooltip();
 		ret.extend([
 		{
 			id = 13,

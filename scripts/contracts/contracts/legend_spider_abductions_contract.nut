@@ -547,7 +547,7 @@ this.legend_spider_abductions_contract <- this.inherit("scripts/contracts/contra
 			{
 				if (::MSU.isNull(this.Contract.m.Destination))
 				{
-					this.Text += "\n\n{%employer% lets out a sigh.%SPEECH_ON%Fine, I shall pay half of the agreed payment for at least having destroyed the nest.%SPEECH_OFF%}"
+					this.Text += "\n\n{%employer% lets out a sigh.%SPEECH_ON%Fine, I shall pay half of the agreed payment for at least having destroyed the nest.%SPEECH_OFF%}";
 					this.Contract.m.PaymentModifier = 0.5;
 				}
 				else
@@ -560,7 +560,7 @@ this.legend_spider_abductions_contract <- this.inherit("scripts/contracts/contra
 					id = 10,
 					icon = "ui/icons/relations.png",
 					text = format("You rescued %s out of %s Abducted Townsfolk", ::Const.UI.getColorized(0, ::Const.UI.Color.NegativeEventValue), ::Const.UI.getColorized(this.Flags.get("NumAbductees"), ::Const.UI.Color.PositiveEventValue))
-				})
+				});
 
 				this.List.push({
 					id = 10,

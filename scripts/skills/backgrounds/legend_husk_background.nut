@@ -37,7 +37,7 @@ this.legend_husk_background <- this.inherit("scripts/skills/backgrounds/characte
 			"trait.fainthearted"
 		];
 		this.m.ExcludedTalents = [
-			this.Const.Attributes.RangedSkill
+			this.Const.Attributes.RangedSkill,
 			this.Const.Attributes.Bravery
 		];
 		this.m.Titles = [
@@ -53,7 +53,7 @@ this.legend_husk_background <- this.inherit("scripts/skills/backgrounds/characte
 			"the Fanatic",
 			"the Zealot"
 		];
-		this.m.IsGuaranteed = ["mad_trait"]
+		this.m.IsGuaranteed = ["mad_trait"];
 		this.m.Faces = this.Const.Faces.AllWhiteMale;
 		this.m.Hairs = this.Const.Hair.UntidyMale;
 		this.m.HairColors = this.Const.HairColors.All;
@@ -73,12 +73,12 @@ this.legend_husk_background <- this.inherit("scripts/skills/backgrounds/characte
 			Weapon = [
 				this.Const.Perks.CleaverTree,
 				this.Const.Perks.FlailTree,
-				this.Const.Perks.MaceTree,			
+				this.Const.Perks.MaceTree,
 				this.Const.Perks.AxeTree
 			],
 			Defense = [
 				this.Const.Perks.MediumArmorTree,
-				this.Const.Perks.HeavyArmorTree			
+				this.Const.Perks.HeavyArmorTree
 			],
 			Traits = [
 				this.Const.Perks.MartyrTree,
@@ -122,7 +122,7 @@ this.legend_husk_background <- this.inherit("scripts/skills/backgrounds/characte
 
 	function getTooltip()
 	{
-		local ret = this.character_background.getTooltip()
+		local ret = this.character_background.getTooltip();
 		ret.push(
 			{
 				id = 12,
@@ -130,7 +130,7 @@ this.legend_husk_background <- this.inherit("scripts/skills/backgrounds/characte
 				icon = "ui/icons/special.png",
 				text = "Will never be sacrificed to Davkul"
 			}
-		)
+		);
 		return ret
 	}
 

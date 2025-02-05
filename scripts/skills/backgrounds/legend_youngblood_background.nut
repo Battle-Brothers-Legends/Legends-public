@@ -71,7 +71,7 @@ this.legend_youngblood_background <- this.inherit("scripts/skills/backgrounds/ch
 				0.0, //ocean
 				0.0, //desert
 				0.0 //oasis
-			];		
+			];
 
 		this.m.PerkTreeDynamic = {
 			Weapon = [
@@ -81,7 +81,7 @@ this.legend_youngblood_background <- this.inherit("scripts/skills/backgrounds/ch
 				this.Const.Perks.DaggerTree
 			],
 			Defense = [
-				this.Const.Perks.ClothArmorTree
+				this.Const.Perks.ClothArmorTree,
 				this.Const.Perks.LightArmorTree
 			],
 			Traits = [
@@ -122,7 +122,7 @@ this.legend_youngblood_background <- this.inherit("scripts/skills/backgrounds/ch
 
 	function getTooltip()
 	{
-		local ret = this.character_background.getTooltip()
+		local ret = this.character_background.getTooltip();
 		ret.push(
 			{
 				id = 14,
@@ -130,7 +130,7 @@ this.legend_youngblood_background <- this.inherit("scripts/skills/backgrounds/ch
 				icon = "ui/icons/bravery.png",
 				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+10[/color] Resolve at morale checks against fear, panic or mind control effects and can craft wooden stakes for use against vampires"
 			}
-		)
+		);
 		ret.push(
 			{
 				id = 14,
@@ -138,8 +138,8 @@ this.legend_youngblood_background <- this.inherit("scripts/skills/backgrounds/ch
 				icon = "ui/icons/xp_received.png",
 				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+5%[/color] Experience Gain"
 			}
-		)
-		return ret
+		);
+		return ret;
 	}
 
 	function onBuildDescription()
@@ -215,7 +215,7 @@ this.legend_youngblood_background <- this.inherit("scripts/skills/backgrounds/ch
 			[1, "leather_tunic"],
 			[1, "padded_surcoat"],
 			[1, "gambeson"]
-		]))
+		]));
 
 		items.equip(this.Const.World.Common.pickHelmet([
 			[1, "full_aketon_cap"],

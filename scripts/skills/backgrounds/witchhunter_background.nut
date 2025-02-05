@@ -95,7 +95,7 @@ this.witchhunter_background <- this.inherit("scripts/skills/backgrounds/characte
 
 	function getTooltip()
 	{
-		local ret = this.character_background.getTooltip()
+		local ret = this.character_background.getTooltip();
 		ret.push(
 			{
 				id = 14,
@@ -103,8 +103,8 @@ this.witchhunter_background <- this.inherit("scripts/skills/backgrounds/characte
 				icon = "ui/icons/bravery.png",
 				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+20[/color] Resolve at morale checks against fear, panic or mind control effects. Also knows how to craft wooden stakes for use against vampires."
 			}
-		)
-		return ret
+		);
+		return ret;
 	}
 
 	function onBuildDescription()
@@ -234,7 +234,7 @@ this.witchhunter_background <- this.inherit("scripts/skills/backgrounds/characte
 
 		items.equip(this.Const.World.Common.pickArmor([
 			[1, "ragged_surcoat"]
-		]))
+		]));
 
 		items.equip(this.Const.World.Common.pickHelmet([
 			[1, "witchhunter_hat"]

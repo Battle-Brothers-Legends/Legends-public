@@ -106,8 +106,7 @@ this.slave_background <- this.inherit("scripts/skills/backgrounds/character_back
 
 	function getTooltip()
 	{
-		local ret = this.character_background.getTooltip()
-
+		local ret = this.character_background.getTooltip();
 		ret.push({
 			id = 19,
 			type = "text",
@@ -140,7 +139,7 @@ this.slave_background <- this.inherit("scripts/skills/backgrounds/character_back
 
 	function setGender(_gender = -1)
 	{
-		_gender = ::Legends.Mod.ModSettings.getSetting("GenderEquality").getValue() == "Disabled" ? 0 : ::Math.rand(0, 19)
+		_gender = ::Legends.Mod.ModSettings.getSetting("GenderEquality").getValue() == "Disabled" ? 0 : ::Math.rand(0, 19);
 
 		if (_gender != 1) return;
 
@@ -219,7 +218,7 @@ this.slave_background <- this.inherit("scripts/skills/backgrounds/character_back
 			[2, "leather_wraps"],
 			[1, "indebted_armor_rags"],
 			[2, ""]
-		]))
+		]));
 	}
 
 	function onUpdate( _properties )

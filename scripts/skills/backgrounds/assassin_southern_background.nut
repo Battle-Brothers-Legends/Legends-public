@@ -130,7 +130,7 @@ this.assassin_southern_background <- this.inherit("scripts/skills/backgrounds/ch
 
 	function getTooltip()
 	{
-		local ret = this.character_background.getTooltip()
+		local ret = this.character_background.getTooltip();
 		ret.push(
 			{
 				id = 11,
@@ -138,8 +138,8 @@ this.assassin_southern_background <- this.inherit("scripts/skills/backgrounds/ch
 				icon = "ui/icons/chance_to_hit_head.png",
 				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+10%[/color] Chance To Hit Head"
 			}
-		)
-		return ret
+		);
+		return ret;
 	}
 
 	function onBuildDescription()
@@ -223,7 +223,7 @@ this.assassin_southern_background <- this.inherit("scripts/skills/backgrounds/ch
 		items.equip(this.Const.World.Common.pickArmor([
 			[1, "oriental/thick_nomad_robe"],
 			[1, "oriental/assassin_robe"]
-		]))
+		]));
 
 		items.equip(this.Const.World.Common.pickHelmet([
 			[1, "oriental/assassin_head_wrap"]
