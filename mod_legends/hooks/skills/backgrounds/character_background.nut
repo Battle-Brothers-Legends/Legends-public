@@ -197,7 +197,7 @@
 		}
 
 		text = text + ", ";
-		for (local i; i < _p.len(); i = ++i)
+		for (i; i < _p.len(); i++)
 		{
 			text = text + _p[i].Descriptions[this.Math.rand(0, _p[i].Descriptions.len() - 1)];
 			if (i <  _p.len() - 2)
