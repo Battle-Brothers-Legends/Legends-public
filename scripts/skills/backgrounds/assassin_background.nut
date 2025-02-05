@@ -122,7 +122,7 @@ this.assassin_background <- this.inherit("scripts/skills/backgrounds/character_b
 
 	function getTooltip()
 	{
-		local ret = this.character_background.getTooltip()
+		local ret = this.character_background.getTooltip();
 		ret.push(
 			{
 				id = 11,
@@ -130,15 +130,15 @@ this.assassin_background <- this.inherit("scripts/skills/backgrounds/character_b
 				icon = "ui/icons/chance_to_hit_head.png",
 				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+10%[/color] Chance To Hit Head"
 			}
-		)
-		return ret
+		);
+		return ret;
 	}
 
 	function onBuildDescription()
 	{
 		return "{%name% likes %their% hoods and loose robes, as %they% walks you can make out a barely audible jingle under %their% coat. | %name% occasionally ducks into alleyways, bushes and dark doorways to exchange items with another figure in a flurry of hands as a predator would stash a fresh kill.} {Although shockingly average, %they% is much quieter than the other recruits you have had the displeasure of meeting. | %name% naturally gravitates to dark corners as rats would to grain and insists that %they% is very famous in certain circles, however %they% quickly changes the subject when you ask %them% for details.} {%They% is often lost in the maddening throng of the towns and hamlets dotted around the countryside - never have you met such an average looking mercenary who also doesn’t hesitate to slit the throat of the nearest man if it would so benefit %them%, even if %they% does grumble when travelling during daylight.}";
 	}
-	
+
 	function onChangeAttributes()
 	{
 		local c = {

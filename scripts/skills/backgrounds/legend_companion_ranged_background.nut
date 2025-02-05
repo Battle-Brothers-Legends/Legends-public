@@ -35,13 +35,13 @@ this.legend_companion_ranged_background <- this.inherit("scripts/skills/backgrou
 		this.m.Ethnicity = this.Math.rand(0, 2);
 		if (this.m.Ethnicity == 0)
 		{
-			this.m.Bodies = this.Const.Bodies.Muscular;			
+			this.m.Bodies = this.Const.Bodies.Muscular;
 			this.m.Faces = this.Const.Faces.AllWhiteMale;
 			this.m.Hairs = this.Const.Hair.CommonMale;
 			this.m.HairColors = this.Const.HairColors.All;
 			this.m.Beards = this.Const.Beards.All;
 			this.m.BeardChance = 60;
-		}	
+		}
 		else if (this.m.Ethnicity == 1)
 		{
 			this.m.Bodies = this.Const.Bodies.Gladiator;
@@ -75,7 +75,7 @@ this.legend_companion_ranged_background <- this.inherit("scripts/skills/backgrou
 		this.m.Modifiers.Training = this.Const.LegendMod.ResourceModifiers.Training[1];
 		this.m.Modifiers.Fletching = this.Const.LegendMod.ResourceModifiers.Fletching[1];
 		this.m.Modifiers.Hunting = this.Const.LegendMod.ResourceModifiers.Hunting[1];
-		
+
 
 		this.m.PerkTreeDynamic = {
 			Weapon = [
@@ -122,7 +122,7 @@ this.legend_companion_ranged_background <- this.inherit("scripts/skills/backgrou
 			this.m.Hairs = this.Const.Hair.AllFemale;
 			this.m.HairColors = this.Const.HairColors.All;
 			this.m.Bodies = this.Const.Bodies.AllFemale;
-		}	
+		}
 		else if (this.m.Ethnicity == 1)
 		{
 			this.m.Faces = this.Const.Faces.SouthernFemale;
@@ -245,11 +245,11 @@ this.legend_companion_ranged_background <- this.inherit("scripts/skills/backgrou
 		else if (r == 2)
 		{
 			items.equip(this.new("scripts/items/weapons/javelin"));
-			items.addToBag(this.new("scripts/items/weapons/shortsword"));		
+			items.addToBag(this.new("scripts/items/weapons/shortsword"));
 		}
 		else if (r == 3)
 		{
-			items.equip(this.new("scripts/items/weapons/throwing_axe"));	
+			items.equip(this.new("scripts/items/weapons/throwing_axe"));
 			items.equip(this.new("scripts/items/shields/heater_shield"));
 			items.addToBag(this.new("scripts/items/weapons/militia_spear"));
 		}
@@ -315,7 +315,7 @@ this.legend_companion_ranged_background <- this.inherit("scripts/skills/backgrou
 			[1, "mercenary_leader_outfit_uncommon_00"],
 			[1, "mercenary_leader_outfit_00"],
 			[1, "mercenary_billman_outfit_00"]
-		]
+		];
 
 		foreach (item in this.Const.World.Common.pickOutfit(outfits))
 		{

@@ -160,7 +160,7 @@ this.caravan_hand_background <- this.inherit("scripts/skills/backgrounds/charact
 		local item = this.Const.World.Common.pickHelmet([
 				[1, "headscarf"],
 				[1, "open_leather_cap"]
-		])
+		]);
 		items.equip(item);
 	}
 

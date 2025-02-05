@@ -146,7 +146,7 @@
 			}],
 
 
-		]
+		];
 
 		items = this.filterNewLocation(items);
 		local item = this.Const.World.Common.pickItem(items);

@@ -17,10 +17,10 @@ this.legend_cooking_spices_02_blueprint <- this.inherit("scripts/crafting/legend
 			{
 				Scripts = ["scripts/skills/perks/perk_legend_camp_cook"]
 			}
-		]
-		this.initSkills(skills);			
+		];
+		this.initSkills(skills);
 	}
-	
+
 	function onCraft( _stash )
 	{
 		_stash.add(this.new("scripts/items/trade/legend_cooking_spices_trade_item"));

@@ -6,7 +6,7 @@ if (!("Food" in ::Legends))
 	"effects.legend_wine_tipsy_effect",
 	"effects.legend_mead_warmth_effect",
 	"effects.legend_liquor_burn_effect",
-]
+];
 
 ::Legends.Food.isTipsy <- function (_actor) {
 	local container = _actor.getSkills();

@@ -41,7 +41,7 @@ this.legend_craftable_kraken_shield <- this.inherit("scripts/items/shields/named
 		this.shield.onEquip();
 		this.addSkill(this.new("scripts/skills/actives/shieldwall"));
 		local shieldBash = this.new("scripts/skills/actives/knock_back");
-		shieldBash.setDamage(this.m.RegularDamage, this.m.RegularDamageMax)
+		shieldBash.setDamage(this.m.RegularDamage, this.m.RegularDamageMax);
 		this.addSkill(this.new("scripts/skills/actives/knock_back"));
 	}
 

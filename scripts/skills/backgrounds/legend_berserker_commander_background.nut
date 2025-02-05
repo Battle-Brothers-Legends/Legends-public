@@ -197,7 +197,7 @@ this.legend_berserker_commander_background <- this.inherit("scripts/skills/backg
 
 	function getTooltip()
 	{
-		local ret = this.character_background.getTooltip()
+		local ret = this.character_background.getTooltip();
 		ret.push(
 			{
 				id = 12,
@@ -205,8 +205,8 @@ this.legend_berserker_commander_background <- this.inherit("scripts/skills/backg
 				icon = "ui/icons/regular_damage.png",
 				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+25%[/color] Damage when unarmed"
 			}
-		)
-		return ret
+		);
+		return ret;
 	}
 
 	function onBuildDescription()
@@ -309,7 +309,7 @@ this.legend_berserker_commander_background <- this.inherit("scripts/skills/backg
 		talents[this.Const.Attributes.Hitpoints] = 3;
 		this.getContainer().getActor().fillTalentValues(2, true);
 		local items = this.getContainer().getActor().getItems();
-		local stash = this.World.Assets.getStash()
+		local stash = this.World.Assets.getStash();
 		stash.removeByID("supplies.ground_grains");
 		stash.removeByID("supplies.ground_grains");
 		stash.add(this.new("scripts/items/accessory/berserker_mushrooms_item"));

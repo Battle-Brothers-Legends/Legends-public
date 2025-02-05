@@ -22,8 +22,8 @@ this.legend_bandage_blueprint <- this.inherit("scripts/crafting/blueprint", {
 			{
 				Scripts = ["scripts/skills/perks/perk_legend_med_ingredients"]
 			}
-		]
-		this.initSkills(skills);	
+		];
+		this.initSkills(skills);
 	}
 
 	function onCraft( _stash )

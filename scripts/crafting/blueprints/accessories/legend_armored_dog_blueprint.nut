@@ -23,8 +23,8 @@ this.legend_armored_dog_blueprint <- this.inherit("scripts/crafting/blueprint", 
 			{
 				Scripts = ["scripts/skills/perks/perk_legend_dogbreeder"]
 			}
-		]
-		this.initSkills(skills);			
+		];
+		this.initSkills(skills);
 	}
 
 	function onCraft( _stash )

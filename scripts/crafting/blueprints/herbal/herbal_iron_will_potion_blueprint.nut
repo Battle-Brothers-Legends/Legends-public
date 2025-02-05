@@ -4,7 +4,7 @@ this.herbal_iron_will_potion_blueprint <- this.inherit("scripts/crafting/bluepri
 	{
 		this.blueprint.create();
 		this.m.ID = "blueprint.herbal_iron_will_potion";
-		this.m.Type = this.Const.Items.ItemType.Usable
+		this.m.Type = this.Const.Items.ItemType.Usable;
 		this.m.PreviewCraftable = this.new("scripts/items/accessory/iron_will_potion_item");
 		this.m.Cost = 30;
 		local ingredients = [
@@ -26,7 +26,7 @@ this.herbal_iron_will_potion_blueprint <- this.inherit("scripts/crafting/bluepri
 			{
 				Scripts = ["scripts/skills/perks/perk_legend_potion_brewer"]
 			}
-		]
+		];
 		this.initSkills(skills);
 	}
 

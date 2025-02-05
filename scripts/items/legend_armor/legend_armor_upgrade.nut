@@ -28,7 +28,7 @@ this.legend_armor_upgrade <- this.inherit("scripts/items/item", {
 		ThreatModifier = 0,		// Modifies Threat of wearer (The inverse of this is subtracted from Resolve of adjacent enemies)
 		ResolveModifier = 0,		// Modifies Resolve of wearer
 		DamageReceivedArmorMult = 0.0,		// Multiplier to the damage received by the currently worn body armor
-		FatiguePenaltyMultiplier = 0.0		// The Fatigue cost of the currently equipped body armor is increased or reduced by this value as a fraction
+		FatiguePenaltyMultiplier = 0.0,		// The Fatigue cost of the currently equipped body armor is increased or reduced by this value as a fraction
 		Visible = true,
 	},
 	function create()
@@ -156,10 +156,10 @@ this.legend_armor_upgrade <- this.inherit("scripts/items/item", {
 
 		if (this.isNamed())
 		{
-			L.push("layers/named_icon_glow.png")
+			L.push("layers/named_icon_glow.png");
 		}
 
-		L.push(this.m.Icon)
+		L.push(this.m.Icon);
 
 		switch (this.m.Type)
 		{
@@ -234,7 +234,7 @@ this.legend_armor_upgrade <- this.inherit("scripts/items/item", {
 			});
 		}
 
-		if ( this.getStaminaModifier() < 0 && ::Legends.Mod.ModSettings.getSetting("ShowArmorPerFatigueValue").getValue() ) 
+		if ( this.getStaminaModifier() < 0 && ::Legends.Mod.ModSettings.getSetting("ShowArmorPerFatigueValue").getValue() )
 		{
 			result.push({
 				id = 5,
@@ -290,14 +290,14 @@ this.legend_armor_upgrade <- this.inherit("scripts/items/item", {
 			type = "text",
 			icon = "ui/icons/blank.png",
 			text = " "
-		})
+		});
 		_result.push({
 			id = 10,
 			type = "text",
 			icon = "ui/icons/armor_body.png",	// ui/icons/armor_body.png
 			text = "[u]" + this.getName() + "[/u]"
 		});
-		if ( ::Legends.Mod.ModSettings.getSetting("ShowExpandedArmorLayerTooltip").getValue() ) 
+		if ( ::Legends.Mod.ModSettings.getSetting("ShowExpandedArmorLayerTooltip").getValue() )
 		{
 			_result.push({
 				id = 10,
@@ -327,7 +327,7 @@ this.legend_armor_upgrade <- this.inherit("scripts/items/item", {
 	{
 		if (_a + this.m.Condition <= this.m.ConditionMax)
 		{
-			this.m.Condition += _a
+			this.m.Condition += _a;
 			return 0
 		}
 
@@ -339,10 +339,10 @@ this.legend_armor_upgrade <- this.inherit("scripts/items/item", {
 	{
 		if (this.m.Condition - _a >= 0)
 		{
-			this.m.Condition -= _a
+			this.m.Condition -= _a;
 			return 0
 		}
-		local delta = _a - this.m.Condition
+		local delta = _a - this.m.Condition;
 		this.m.Condition = 0;
 		return delta;
 	}
@@ -409,7 +409,7 @@ this.legend_armor_upgrade <- this.inherit("scripts/items/item", {
 
 	function isVisible()
 	{
-		return this.m.Visible
+		return this.m.Visible;
 	}
 
 	function updateAppearance( _app )

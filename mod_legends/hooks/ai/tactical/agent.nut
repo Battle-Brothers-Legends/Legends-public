@@ -20,7 +20,7 @@
 		this.getStrategy().compileKnownOpponents();
 		local knownOpponents = this.getKnownOpponents();
 
-		local entityRet = []
+		local entityRet = [];
 
 		if (knownOpponents.len() == 0)
 		{

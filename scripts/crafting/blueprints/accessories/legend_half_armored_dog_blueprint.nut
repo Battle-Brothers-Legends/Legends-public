@@ -26,8 +26,8 @@ this.legend_half_armored_dog_blueprint <- this.inherit("scripts/crafting/bluepri
 			{
 				Scripts = ["scripts/skills/perks/perk_legend_dogbreeder"]
 			}
-		]
-		this.initSkills(skills);			
+		];
+		this.initSkills(skills);
 	}
 
 	function onCraft( _stash )

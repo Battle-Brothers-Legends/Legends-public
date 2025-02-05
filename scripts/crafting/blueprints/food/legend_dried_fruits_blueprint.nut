@@ -20,8 +20,8 @@ this.legend_dried_fruits_blueprint <- this.inherit("scripts/crafting/legend_food
 			{
 				Scripts = ["scripts/skills/perks/perk_legend_camp_cook"]
 			}
-		]
-		this.initSkills(skills);		
+		];
+		this.initSkills(skills);
 
 	}
 

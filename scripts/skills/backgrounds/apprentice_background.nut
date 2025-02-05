@@ -87,7 +87,7 @@ this.apprentice_background <- this.inherit("scripts/skills/backgrounds/character
 
 	function getTooltip()
 	{
-		local ret = this.character_background.getTooltip()
+		local ret = this.character_background.getTooltip();
 		ret.push(
 			{
 				id = 13,
@@ -95,8 +95,8 @@ this.apprentice_background <- this.inherit("scripts/skills/backgrounds/character
 				icon = "ui/icons/xp_received.png",
 				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+10%[/color] Experience Gain"
 			}
-		)
-		return ret
+		);
+		return ret;
 	}
 
 	function onBuildDescription()

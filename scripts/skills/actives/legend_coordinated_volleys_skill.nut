@@ -55,7 +55,7 @@ this.legend_coordinated_volleys_skill <- this.inherit("scripts/skills/skill", {
 				type = "text",
 				icon = "ui/icons/damage_dealt.png",
 				text =  "[color=" + this.Const.UI.Color.PositiveValue + "]5%[/color] damage bonus to all allies within [color=" + this.Const.UI.Color.PositiveValue + "]4[/color] tiles for one turn"
-			}		
+			}
 		];
 	}
 
@@ -83,13 +83,13 @@ function isUsable()
 
 			if (a.getFaction() == _user.getFaction() && !a.getSkills().hasSkill("effects.legend_coordinating_volleys"))
 			{
-				local effect = this.new("scripts/skills/effects/legend_coordinating_volleys")
+				local effect = this.new("scripts/skills/effects/legend_coordinating_volleys");
 				effect.setCommander(this.getContainer().getActor());
 				a.getSkills().add(effect);
 			}
 		}
 
-		local effect = this.new("scripts/skills/effects/legend_coordinating_volleys")
+		local effect = this.new("scripts/skills/effects/legend_coordinating_volleys");
 		effect.setCommander(this.getContainer().getActor());
 		this.getContainer().add(effect);
 		return true;

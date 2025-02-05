@@ -136,7 +136,7 @@ this.legend_berserker_background <- this.inherit("scripts/skills/backgrounds/cha
 
 	function getTooltip()
 	{
-		local ret = this.character_background.getTooltip()
+		local ret = this.character_background.getTooltip();
 		ret.push(
 			{
 				id = 12,
@@ -144,8 +144,8 @@ this.legend_berserker_background <- this.inherit("scripts/skills/backgrounds/cha
 				icon = "ui/icons/regular_damage.png",
 				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+25%[/color] Damage when unarmed"
 			}
-		)
-		return ret
+		);
+		return ret;
 	}
 
 	function onBuildDescription()
@@ -246,7 +246,7 @@ this.legend_berserker_background <- this.inherit("scripts/skills/backgrounds/cha
 		 this.getContainer().getActor().fillTalentValues(2, true);
 
 		local items = this.getContainer().getActor().getItems();
-		local stash = this.World.Assets.getStash()
+		local stash = this.World.Assets.getStash();
 		stash.removeByID("supplies.ground_grains");
 		stash.removeByID("supplies.ground_grains");
 		stash.add(this.new("scripts/items/supplies/roots_and_berries_item"));
@@ -256,7 +256,7 @@ this.legend_berserker_background <- this.inherit("scripts/skills/backgrounds/cha
 		]));
 		local item = this.Const.World.Common.pickHelmet([
 			[1, "barbarians/leather_helmet"]
-		])
+		]);
 		local r = this.Math.rand(0, 4);
 
 		if (r == 0)

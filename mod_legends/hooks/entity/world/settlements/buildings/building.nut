@@ -52,9 +52,9 @@
 
 				// for my stupid dog renamings
 				if ((script.find("wardog_item") || script.find("warhound_item")) && !script.find("legend"))
-				{	
+				{
 					isDog = true;
-					local splitted = split(script, "/")
+					local splitted = split(script, "/");
 					script = "accessory/legend_" + splitted[splitted.len() - 1];
 				}
 

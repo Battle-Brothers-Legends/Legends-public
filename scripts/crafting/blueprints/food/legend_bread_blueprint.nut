@@ -16,10 +16,10 @@ this.legend_bread_blueprint <- this.inherit("scripts/crafting/legend_food_bluepr
 			{
 				Scripts = ["scripts/skills/perks/perk_legend_camp_cook"]
 			}
-		]
-		this.initSkills(skills);			
+		];
+		this.initSkills(skills);
 	}
-	
+
 	function onCraft( _stash )
 	{
 		_stash.add(this.new("scripts/items/supplies/bread_item"));

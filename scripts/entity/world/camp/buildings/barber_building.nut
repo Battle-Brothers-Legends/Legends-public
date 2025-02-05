@@ -6,7 +6,7 @@ this.barber_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 		this.m.ID = this.Const.World.CampBuildings.Barber;
 		this.m.Slot = "barber";
 		this.m.Name = "Barber";
-		this.m.Description = "or Plastic surgeon.."
+		this.m.Description = "or Plastic surgeon..";
 		this.m.InCommanderTent = false;
 		this.m.Sounds = [
 			{

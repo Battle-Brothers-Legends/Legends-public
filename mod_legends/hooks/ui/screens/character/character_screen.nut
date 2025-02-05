@@ -653,11 +653,11 @@
 	o.removeAllUpgradesFromItem <- function (_item, _entity = null){
 		if (_item != null)
 		{
-			local toRemove = []
+			local toRemove = [];
 			foreach (idx, value in _item.getUpgrades())
 			{
-				if (value != 1) continue
-				toRemove.push(idx)
+				if (value != 1) continue;
+				toRemove.push(idx);
 			}
 			if (this.Stash.getNumberOfEmptySlots() < toRemove.len()){
 				return {
@@ -668,8 +668,8 @@
 			foreach(idx in toRemove)
 			{
 				local upgrade = _item.getUpgrade(idx);
-				if (upgrade.isDestroyedOnRemove()) continue
-				this.Stash.add(_item.removeUpgrade(idx))
+				if (upgrade.isDestroyedOnRemove()) continue;
+				this.Stash.add(_item.removeUpgrade(idx));
 			}
 		}
 		return this.UIDataHelper.convertStashAndEntityToUIData(_entity, null, false, this.m.InventoryFilter);

@@ -392,7 +392,7 @@
 	*/
 	o.prepareBroVariables <- function ( _maxNumBros, _vars)
 	{
-		local currentBro = 1
+		local currentBro = 1;
 
 		foreach (bro in this.World.getPlayerRoster().getAll())
 		{

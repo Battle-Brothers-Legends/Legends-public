@@ -44,10 +44,10 @@
 		local roster = this.World.getPlayerRoster().getAll();
 		foreach( bro in roster) {
 			if (bro.getBackground().getID() == "background.legend_ranger")
-				return
+				return;
 
 			if (bro.getBackground().getID() == "background.legend_commander_ranger")
-				return
+				return;
 		}
 		this.m.Score = 10;
 	}

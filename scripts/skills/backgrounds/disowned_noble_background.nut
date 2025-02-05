@@ -225,7 +225,7 @@ this.disowned_noble_background <- this.inherit("scripts/skills/backgrounds/chara
 				[1, "basic_mail_shirt"],
 				[1, "mail_shirt"],
 				[1, "mail_hauberk"]
-			]))
+			]));
 
 			items.equip(this.Const.World.Common.pickHelmet([
 				[1, "nasal_helmet"],

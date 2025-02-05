@@ -20,7 +20,7 @@
 	{
 		local ammo = this.Const.LegendMod.MaxResources[this.m.EconomicDifficulty].Ammo;
 		//this.Const.Difficulty.MaxResources[this.m.EconomicDifficulty].Ammo + this.m.AmmoMaxAdditional
-		ammo += this.m.AmmoMaxAdditional
+		ammo += this.m.AmmoMaxAdditional;
 		ammo += this.World.State.getPlayer().getAmmoModifier();
 		return ammo;
 	}

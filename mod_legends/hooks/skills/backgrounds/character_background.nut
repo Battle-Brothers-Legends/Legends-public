@@ -226,14 +226,14 @@
 	// Deprecated. New approach uses getBackgroundDescriptionTooltip
 	o.getBackgroundDescription = function ( _desc )
 	{
-		local text = ""
+		local text = "";
 		if (_desc)
 		{
 			text = text + this.m.BackgroundDescription + "\n";
 			text = text + "\n" + this.getPerkBackgroundDescription(this.m.PerkTreeDynamic) + "\n";
 		}
 
-		local mtext = ""
+		local mtext = "";
 		foreach (k, v in this.m.Modifiers)
 		{
 			if (k == "Terrain")
@@ -267,7 +267,7 @@
 		}
 
 		local terrains = this.m.Modifiers.Terrain;
-		local val = 0.0
+		local val = 0.0;
 		local ttext = "";
 		val = terrains[2] * 100.0;
 		if (val > 0) {
@@ -327,7 +327,7 @@
 
 	o.getBackgroundDescriptionTooltip <- function ( _desc )
 	{
-		local tooltip = []
+		local tooltip = [];
 
 		if (_desc)
 		{
@@ -366,7 +366,7 @@
 				name = "Medical Supplies",
 				icon = "ui/icons/asset_medicine_icon.png"
 			}
-		]
+		];
 
 		local capacityTitle = true;
 		foreach (c in capacities)
@@ -467,7 +467,7 @@
 				name = "Bartering",
 				icon = "ui/icons/banner_rest_icon.png"
 			}
-		]
+		];
 
 		local skillsTitle = true;
 		foreach (s in skills)
@@ -1255,7 +1255,7 @@
 
 	o.rebuildPerkTree <- function ( _tree )
 	{
-		this.m.CustomPerkTree = _tree
+		this.m.CustomPerkTree = _tree;
 		this.m.CustomPerkTree = this.Const.Perks.MergeDynamicPerkTree(_tree, this.m.PerkTreeDynamic);
 		local pT = this.Const.Perks.BuildCustomPerkTree(this.m.CustomPerkTree);
 		this.m.PerkTree = pT.Tree;
@@ -1320,7 +1320,7 @@
 				local mins = this.getPerkTreeDynamicMins();
 
 				local result  = this.Const.Perks.GetDynamicPerkTree(mins, this.m.PerkTreeDynamic);
-				this.m.CustomPerkTree = result.Tree
+				this.m.CustomPerkTree = result.Tree;
 				a = result.Attributes;
 		}
 

@@ -118,7 +118,7 @@ this.belly_dancer_background <- this.inherit("scripts/skills/backgrounds/charact
 		items.equip(this.Const.World.Common.pickArmor([
 			[3, "oriental/cloth_sash"],
 			[1, ""]
-		]))
+		]));
 
 		items.equip(this.Const.World.Common.pickHelmet([
 			[1, ""],

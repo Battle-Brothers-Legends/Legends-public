@@ -143,7 +143,7 @@ this.legend_assassin_background <- this.inherit("scripts/skills/backgrounds/char
 				this.Const.Perks.PerkDefs.Nimble,
 				this.Const.Perks.PerkDefs.LegendFreedomOfMovement,
 				this.Const.Perks.PerkDefs.LegendAssassinate,
-				this.Const.Perks.PerkDefs.LegendFavouredEnemySwordmaster
+				this.Const.Perks.PerkDefs.LegendFavouredEnemySwordmaster,
 				this.Const.Perks.PerkDefs.LegendUnarmedTraining
 			]
 		];

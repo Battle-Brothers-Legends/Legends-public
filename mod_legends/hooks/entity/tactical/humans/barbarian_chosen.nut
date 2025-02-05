@@ -47,7 +47,7 @@
 			local armor = [
 				[1, "barbarians/thick_plated_barbarian_armor"],
 				[1, "barbarians/reinforced_heavy_iron_armor"],
-			]
+			];
 
 			local helmet = [
 				[1, "barbarians/heavy_horned_plate_helmet"],
@@ -60,11 +60,11 @@
 				[1, "barbarian_chosen_outfit_00"],
 				[1, "barbarian_chosen_outfit_01"],
 				[1, "barbarian_chosen_outfit_02"]
-			]
+			];
 
 			foreach( item in this.Const.World.Common.pickOutfit(outfits, armor, helmet) )
 			{
-				this.m.Items.equip(item)
+				this.m.Items.equip(item);
 			}
 			return;
 		}

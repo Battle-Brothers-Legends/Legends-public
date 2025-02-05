@@ -125,10 +125,10 @@ this.legend_helmet_upgrade <- this.inherit("scripts/items/item", {
 
 		if (this.isNamed())
 		{
-			L.push("layers/named_icon_glow.png")
+			L.push("layers/named_icon_glow.png");
 		}
 
-		L.push(this.m.Icon)
+		L.push(this.m.Icon);
 
 		switch (this.m.Type)
 		{
@@ -228,7 +228,7 @@ this.legend_helmet_upgrade <- this.inherit("scripts/items/item", {
 			});
 		}
 
-		if ( this.getStaminaModifier() < 0 && ::Legends.Mod.ModSettings.getSetting("ShowArmorPerFatigueValue").getValue() ) 
+		if ( this.getStaminaModifier() < 0 && ::Legends.Mod.ModSettings.getSetting("ShowArmorPerFatigueValue").getValue() )
 		{
 			result.push({
 				id = 5,
@@ -258,7 +258,7 @@ this.legend_helmet_upgrade <- this.inherit("scripts/items/item", {
 			type = "text",
 			icon = "ui/icons/blank.png",
 			text = " "
-		})
+		});
 		_result.push({
 			id = 10,
 			type = "text",
@@ -266,9 +266,9 @@ this.legend_helmet_upgrade <- this.inherit("scripts/items/item", {
 			text = "[u]" + this.getName() + "[/u]"
 		});
 
-		if ( ::Legends.Mod.ModSettings.getSetting("ShowExpandedArmorLayerTooltip").getValue() ) 
+		if ( ::Legends.Mod.ModSettings.getSetting("ShowExpandedArmorLayerTooltip").getValue() )
 		{
-			if ( _isExtraVanity ) 
+			if ( _isExtraVanity )
 			{
 				_result.push({
 					id = 10,
@@ -283,7 +283,7 @@ this.legend_helmet_upgrade <- this.inherit("scripts/items/item", {
 					icon = "ui/icons/armor_head.png",
 					text = "Armor: " + this.getConditionMax()
 				});
-				if ( this.getStaminaModifier() != 0 ) 
+				if ( this.getStaminaModifier() != 0 )
 				{
 					_result.push({
 						id = 10,
@@ -316,8 +316,8 @@ this.legend_helmet_upgrade <- this.inherit("scripts/items/item", {
 	{
 		if (_a + this.m.Condition <= this.m.ConditionMax)
 		{
-			this.m.Condition += _a
-			return 0
+			this.m.Condition += _a;
+			return 0;
 		}
 
 		this.m.Condition = this.m.ConditionMax;
@@ -328,8 +328,8 @@ this.legend_helmet_upgrade <- this.inherit("scripts/items/item", {
 	{
 		if (this.m.Condition - _a >= 0)
 		{
-			this.m.Condition -= _a
-			return 0
+			this.m.Condition -= _a;
+			return 0;
 		}
 		local delta = _a - this.m.Condition
 		this.m.Condition = 0;
@@ -349,12 +349,12 @@ this.legend_helmet_upgrade <- this.inherit("scripts/items/item", {
 		}
 		else
 		{
-			this.removeArmor(this.m.Condition - _a)
+			this.removeArmor(this.m.Condition - _a);
 		}
 
 		if (this.m.Armor == null)
 		{
-			return
+			return;
 		}
 
 		if (this.m.Armor.getContainer() != null && this.m.Armor.isEquipped())
@@ -388,12 +388,12 @@ this.legend_helmet_upgrade <- this.inherit("scripts/items/item", {
 			this.updateAppearance(app);
 			this.getContainer().updateAppearance();
 		}
-		return _bool
+		return _bool;
 	}
 
 	function isVisible()
 	{
-		return this.m.Visible
+		return this.m.Visible;
 	}
 
 	function updateAppearance( _app )

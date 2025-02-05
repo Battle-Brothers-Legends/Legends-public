@@ -36,14 +36,14 @@ this.legend_flogging_skill <- this.inherit("scripts/skills/skill", {
 
 	function getTooltip()
 	{
-		local ret = this.getDefaultUtilityTooltip()
+		local ret = this.getDefaultUtilityTooltip();
 		ret.push(
 		{
 			id = 7,
 			type = "text",
 			icon = "ui/icons/special.png",
 			text = "Flog up to three targets, inflicting a bleed of 2 damage per turn over 5 turns"
-		})
+		});
 		return ret;
 	}
 

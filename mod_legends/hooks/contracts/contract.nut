@@ -336,8 +336,8 @@
 		local gender2 = brothers[brother2].getGender();
 
 		if (brothers.len() < 2) {
-			brother1 = "unknown"
-			brother2 = "unknown"
+			brother1 = "unknown";
+			brother2 = "unknown";
 		} else {
 			brother1 = brothers[brother1].getName();
 			brother2 = brothers[brother2].getName();

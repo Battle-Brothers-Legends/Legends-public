@@ -172,7 +172,7 @@ this.legend_horse <- this.inherit("scripts/entity/tactical/actor", {
 		local horse_kick = this.new("scripts/skills/actives/legend_horse_kick_skill");
 		this.m.Skills.add(horse_kick);
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_horse_movement"));
-		this.m.Skills.add(this.new("scripts/skills/perks/perk_horse_charge"))
+		this.m.Skills.add(this.new("scripts/skills/perks/perk_horse_charge"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_horse_pirouette"));
 
 		if ("Assets" in this.World && this.World.Assets != null && this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Legendary)

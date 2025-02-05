@@ -48,7 +48,7 @@ this.camp_healer_dialog_module <- this.inherit("scripts/ui/screens/ui_module", {
 		return {
 			Meds = this.World.Assets.getMedicine(),
 			MedsMax  = this.World.Assets.getMaxMedicine(),
-			MedsRequired = this.getTent().getRequiredMeds(),			
+			MedsRequired = this.getTent().getRequiredMeds(),
 			Time = this.getTent().getRequiredTime(),
 			Brothers = this.getTent().getAssignedBros()
 		};
@@ -56,7 +56,7 @@ this.camp_healer_dialog_module <- this.inherit("scripts/ui/screens/ui_module", {
 
 	function loadQueueList()
 	{
-		local result = this.queryQueue()
+		local result = this.queryQueue();
 		this.m.JSHandle.asyncCall("loadFromData", result);
 	}
 
@@ -69,14 +69,14 @@ this.camp_healer_dialog_module <- this.inherit("scripts/ui/screens/ui_module", {
 	function onRemove ( _idx)
 	{
 		local res = this.getTent().onRemove( _idx );
-		local result = this.queryLoad()
+		local result = this.queryLoad();
 		this.m.JSHandle.asyncCall("loadFromData", result);
 	}
 
 	function onAdd( _data )
 	{
 		local res = this.getTent().onAdd( _data[0], _data[1] );
-		local result = this.queryLoad()
+		local result = this.queryLoad();
 		this.m.JSHandle.asyncCall("loadFromData", result);
 	}
 
@@ -88,6 +88,6 @@ this.camp_healer_dialog_module <- this.inherit("scripts/ui/screens/ui_module", {
 	function onBrothersButtonPressed()
 	{
 		this.m.Parent.onCommanderButtonPressed();
-	}	
+	}
 
 });

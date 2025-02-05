@@ -35,13 +35,13 @@ this.legend_companion_melee_background <- this.inherit("scripts/skills/backgroun
 		this.m.Ethnicity = this.Math.rand(0, 2);
 		if (this.m.Ethnicity == 0)
 		{
-			this.m.Bodies = this.Const.Bodies.Muscular;			
+			this.m.Bodies = this.Const.Bodies.Muscular;
 			this.m.Faces = this.Const.Faces.AllWhiteMale;
 			this.m.Hairs = this.Const.Hair.CommonMale;
 			this.m.HairColors = this.Const.HairColors.All;
 			this.m.Beards = this.Const.Beards.All;
 			this.m.BeardChance = 60;
-		}	
+		}
 		else if (this.m.Ethnicity == 1)
 		{
 			this.m.Bodies = this.Const.Bodies.Gladiator;
@@ -75,9 +75,9 @@ this.legend_companion_melee_background <- this.inherit("scripts/skills/backgroun
 		this.m.Modifiers.Training = this.Const.LegendMod.ResourceModifiers.Training[1];
 		this.m.Modifiers.Fletching = this.Const.LegendMod.ResourceModifiers.Fletching[1];
 		this.m.Modifiers.Hunting = this.Const.LegendMod.ResourceModifiers.Hunting[1];
-		
 
-		this.m.PerkTreeDynamic = { 
+
+		this.m.PerkTreeDynamic = {
 			Weapon = [
 				this.Const.Perks.GreatSwordTree,
 				this.Const.Perks.PolearmTree,
@@ -105,7 +105,7 @@ this.legend_companion_melee_background <- this.inherit("scripts/skills/backgroun
 			Class = [],
 			Magic = []
 		}
-	} 
+	}
 
 	//Default Male
 	function setGender(_gender = -1)
@@ -120,7 +120,7 @@ this.legend_companion_melee_background <- this.inherit("scripts/skills/backgroun
 			this.m.Hairs = this.Const.Hair.AllFemale;
 			this.m.HairColors = this.Const.HairColors.All;
 			this.m.Bodies = this.Const.Bodies.AllFemale;
-		}	
+		}
 		else if (this.m.Ethnicity == 1)
 		{
 			this.m.Faces = this.Const.Faces.SouthernFemale;
@@ -315,7 +315,7 @@ this.legend_companion_melee_background <- this.inherit("scripts/skills/backgroun
 			[1, "brown_hedgeknight_outfit_00"],
 			[1, "red_bandit_leader_outfit_00"],
 			[1, "mercenary_billman_outfit_00"]
-		]
+		];
 
 		foreach (item in this.Const.World.Common.pickOutfit(outfits))
 		{

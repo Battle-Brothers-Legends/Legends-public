@@ -192,7 +192,7 @@ this.legend_beggar_commander_background <- this.inherit("scripts/skills/backgrou
 		local item = this.Const.World.Common.pickHelmet([
 			[3, ""],
 			[1, "hood", 38]
-		])
+		]);
 		items.equip(item);
 
 	}

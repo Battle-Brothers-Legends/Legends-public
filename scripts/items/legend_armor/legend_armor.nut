@@ -257,8 +257,8 @@ this.legend_armor <- this.inherit("scripts/items/armor/armor", {
 	{
 		if (_a + this.m.Condition <= this.m.ConditionMax)
 		{
-			this.m.Condition += _a
-			return
+			this.m.Condition += _a;
+			return;
 		}
 
 		this.m.Condition = this.m.ConditionMax;
@@ -277,7 +277,7 @@ this.legend_armor <- this.inherit("scripts/items/armor/armor", {
 
 	function removeArmor( _a)
 	{
-		local delta = _a
+		local delta = _a;
 		for (local i = this.Const.Items.ArmorUpgrades.COUNT - 1; i >= 0; i = --i)
 		{
 			if (this.m.Upgrades[i] != null)
@@ -307,7 +307,7 @@ this.legend_armor <- this.inherit("scripts/items/armor/armor", {
 
 	function setCondition( _a )
 	{
-		local oldValue = this.getArmor()
+		local oldValue = this.getArmor();
 		//Adding armor
 		if (oldValue <= _a)
 		{
@@ -400,7 +400,7 @@ this.legend_armor <- this.inherit("scripts/items/armor/armor", {
 				ids.push(u.getID());
 			}
 		}
-		return ids
+		return ids;
 	}
 
 	function getUpgradesNamed() {
@@ -409,7 +409,7 @@ this.legend_armor <- this.inherit("scripts/items/armor/armor", {
 		{
 			if (u != null && u.isNamed())
 			{
-				return u.getName()
+				return u.getName();
 			}
 		}
 
@@ -422,16 +422,16 @@ this.legend_armor <- this.inherit("scripts/items/armor/armor", {
 		if (_upgrade != null && this.m.Blocked[_upgrade.getType()]) return false;
 
 		local oldIndex;
-		
-		
+
+
 		if ("Assets" in this.World && this.World.Assets.getStash())
 		{
 
 			oldIndex = this.World.Assets.getStash().getItemByInstanceID(_upgrade.getInstanceID())
-			
+
 		}
-		
-		if (oldIndex != null) oldIndex = oldIndex.index
+
+		if (oldIndex != null) oldIndex = oldIndex.index;
 
 		local oldItem;
 		if (this.m.Upgrades[_upgrade.getType()] != null)
@@ -455,7 +455,7 @@ this.legend_armor <- this.inherit("scripts/items/armor/armor", {
 		}
 		if (oldItem != null && !oldItem.isDestroyedOnRemove())
 		{
-			result.item = oldItem
+			result.item = oldItem;
 		}
 
 		this.updateAppearance();
@@ -483,7 +483,7 @@ this.legend_armor <- this.inherit("scripts/items/armor/armor", {
 	{
 		local NAME = this.getName();
 
-		local uname = this.getUpgradesNamed()
+		local uname = this.getUpgradesNamed();
 
 		if (uname != "") {
 			NAME = uname + " " + this.getName();
@@ -603,14 +603,14 @@ this.legend_armor <- this.inherit("scripts/items/armor/armor", {
 		}
 
 		local upgradeNum = this.m.Upgrades.filter(@(idx, val) val != null).len();
-		if ( upgradeNum > 0 && ::Legends.Mod.ModSettings.getSetting("ShowExpandedArmorLayerTooltip").getValue() ) 
+		if ( upgradeNum > 0 && ::Legends.Mod.ModSettings.getSetting("ShowExpandedArmorLayerTooltip").getValue() )
 		{
 			result.push({	// An empty line is put in to improve formatting
 				id = 10,
 				type = "text",
 				icon = "ui/icons/blank.png",
 				text = " "
-			})
+			});
 			result.push({
 				id = 10,
 				type = "text",
@@ -623,7 +623,7 @@ this.legend_armor <- this.inherit("scripts/items/armor/armor", {
 				icon = "ui/icons/armor_body.png",
 				text = "Armor: " + this.m.ConditionMax
 			});
-			if ( this.m.StaminaModifier != 0 ) 
+			if ( this.m.StaminaModifier != 0 )
 			{
 				result.push({
 					id = 10,

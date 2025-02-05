@@ -9,12 +9,12 @@ this.camp_enchanter_dialog_module <- this.inherit("scripts/ui/screens/ui_module"
 		this.m.ID = "CampEnchanterDialogModule";
 		this.ui_module.create();
 	}
-	
+
 	function getTent()
 	{
 		return this.World.Camp.getBuildingByID(this.Const.World.CampBuildings.Enchanter);
 	}
-	
+
 	function onShow()
 	{
 		this.getTent().onInit();
@@ -52,7 +52,7 @@ this.camp_enchanter_dialog_module <- this.inherit("scripts/ui/screens/ui_module"
 
 	function loadCraftList()
 	{
-		local result = this.queryQueue()
+		local result = this.queryQueue();
 		this.m.JSHandle.asyncCall("loadFromData", result);
 	}
 

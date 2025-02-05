@@ -82,7 +82,7 @@ this.legend_guildmaster_background <- this.inherit("scripts/skills/backgrounds/c
 			],
 			Defense = [
 				this.Const.Perks.MediumArmorTree,
-				this.Const.Perks.LightArmorTree				
+				this.Const.Perks.LightArmorTree
 			],
 			Traits = [
 				this.Const.Perks.ViciousTree,
@@ -127,7 +127,7 @@ this.legend_guildmaster_background <- this.inherit("scripts/skills/backgrounds/c
 
 	function getTooltip()
 	{
-		local ret = this.character_background.getTooltip()
+		local ret = this.character_background.getTooltip();
 		ret.push(
 			{
 				id = 13,
@@ -135,8 +135,8 @@ this.legend_guildmaster_background <- this.inherit("scripts/skills/backgrounds/c
 				icon = "ui/icons/special.png",
 				text = "Provides [color=" + this.Const.UI.Color.PositiveValue + "]+10%[/color] enchanting speed when assigned to the enchanter\'s tent."
 			}
-		)
-		return ret
+		);
+		return ret;
 	}
 
 	function onBuildDescription()
@@ -254,7 +254,7 @@ this.legend_guildmaster_background <- this.inherit("scripts/skills/backgrounds/c
 			[1, "feathered_hat"],
 			[1, "dark_cowl"],
 			[1, ""]
-		]))
+		]));
 	}
 });
 

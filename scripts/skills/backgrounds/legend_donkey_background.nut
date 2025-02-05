@@ -38,7 +38,7 @@ this.legend_donkey_background <- this.inherit("scripts/skills/backgrounds/charac
 		this.m.Modifiers.Meds = this.Const.LegendMod.ResourceModifiers.Meds[4];
 		this.m.Modifiers.Stash = this.Const.LegendMod.ResourceModifiers.Stash[5];
 		this.m.ExcludedTalents = [
-			this.Const.Attributes.RangedSkill
+			this.Const.Attributes.RangedSkill,
 			this.Const.Attributes.RangedDefense,
 			this.Const.Attributes.MeleeDefense
 		];
@@ -105,15 +105,15 @@ this.legend_donkey_background <- this.inherit("scripts/skills/backgrounds/charac
 				this.Const.Perks.PerkDefs.Nimble,
 				this.Const.Perks.PerkDefs.LegendRebound,
 				this.Const.Perks.PerkDefs.LegendPacifist,
-				this.Const.Perks.PerkDefs.LegendSkillfulStacking
-				this.Const.Perks.PerkDefs.LegendMuscularity
+				this.Const.Perks.PerkDefs.LegendSkillfulStacking,
+				this.Const.Perks.PerkDefs.LegendMuscularity,
 			],
 			[
 				this.Const.Perks.PerkDefs.Fearsome,
 				// this.Const.Perks.PerkDefs.Stalwart,
 				this.Const.Perks.PerkDefs.LegendAmmoBundles,
 				this.Const.Perks.PerkDefs.LegendMedIngredients,
-				this.Const.Perks.PerkDefs.LegendToolsSpares
+				this.Const.Perks.PerkDefs.LegendToolsSpares,
 			],
 			[],
 			[],
@@ -134,7 +134,7 @@ this.legend_donkey_background <- this.inherit("scripts/skills/backgrounds/charac
 
 	function getTooltip()
 	{
-		local ret = this.character_background.getTooltip()
+		local ret = this.character_background.getTooltip();
 		ret.push(
 			{
 				id = 13,
@@ -142,8 +142,8 @@ this.legend_donkey_background <- this.inherit("scripts/skills/backgrounds/charac
 				icon = "ui/icons/special.png",
 				text = "Donkeys provide [color=" + this.Const.UI.Color.PositiveValue + "]+" + this.m.Modifiers.Stash + "[/color] stash space, [color=" + this.Const.UI.Color.PositiveValue + "]+" + this.m.Modifiers.Ammo + "[/color] maximum ammunition storage, [color=" + this.Const.UI.Color.PositiveValue + "]+" + this.m.Modifiers.Meds + "[/color] maximum medicine capacity,  [color=" + this.Const.UI.Color.PositiveValue + "]+" + this.m.Modifiers.ArmorParts + "[/color] maximum armor parts. These can be increased with perks (may take a moment for the increases to register). "
 			}
-		)
-		return ret
+		);
+		return ret;
 	}
 
 	function onBuildDescription()

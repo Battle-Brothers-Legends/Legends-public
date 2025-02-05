@@ -18,8 +18,8 @@ this.legend_huge_quiver_of_bolts_blueprint <- this.inherit("scripts/crafting/blu
 			{
 				Scripts = ["scripts/skills/backgrounds/bowyer_background"]
 			}
-		]
-		this.initSkills(skills);	
+		];
+		this.initSkills(skills);
 	}
 
 	function onCraft( _stash )

@@ -26,7 +26,7 @@ this.legend_bounty_hunter_background <- this.inherit("scripts/skills/backgrounds
 			"trait.craven",
 			"trait.insecure",
 			"trait.legend_frail",
-			"trait.legend_seductive"
+			"trait.legend_seductive",
 			"trait.fainthearted",
 			"trait.optimist",
 			"trait.short_sighted",
@@ -84,7 +84,7 @@ this.legend_bounty_hunter_background <- this.inherit("scripts/skills/backgrounds
 			0.05, //desert
 			0.05 //oasis
 		];
-		this.m.PerkTreeDynamic = { 
+		this.m.PerkTreeDynamic = {
 			Weapon = [
 				this.Const.Perks.MaceTree,
 				this.Const.Perks.DaggerTree,
@@ -133,7 +133,7 @@ this.legend_bounty_hunter_background <- this.inherit("scripts/skills/backgrounds
 
 	function getTooltip()
 	{
-		local ret = this.character_background.getTooltip()
+		local ret = this.character_background.getTooltip();
 		ret.push(
 			{
 				id = 11,
@@ -141,8 +141,8 @@ this.legend_bounty_hunter_background <- this.inherit("scripts/skills/backgrounds
 				icon = "ui/icons/chance_to_hit_head.png",
 				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+10%[/color] Chance To Hit Head"
 			}
-		)
-		return ret
+		);
+		return ret;
 	}
 
 	function onBuildDescription() //—
@@ -236,7 +236,7 @@ this.legend_bounty_hunter_background <- this.inherit("scripts/skills/backgrounds
 			[1, "oriental/assassin_robe"],
 			[1, "oriental/cloth_sash"],
 			[1, "blade_dancer_armor_00"]
-		]))
+		]));
 
 		local helm = this.Const.World.Common.pickHelmet([
 			[1, "oriental/assassin_face_mask"],
@@ -249,7 +249,7 @@ this.legend_bounty_hunter_background <- this.inherit("scripts/skills/backgrounds
 	function onUpdate( _properties )
 	{
 		this.character_background.onUpdate(_properties);
-		_properties.HitChance[this.Const.BodyPart.Head] += 10; 
+		_properties.HitChance[this.Const.BodyPart.Head] += 10;
 	}
 });
 

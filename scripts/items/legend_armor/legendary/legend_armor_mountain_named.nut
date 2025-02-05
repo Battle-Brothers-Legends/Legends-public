@@ -27,8 +27,8 @@ this.legend_armor_mountain_named <- this.inherit("scripts/items/legend_armor/leg
 		this.m.Value = 10000;
 		this.m.ItemType = this.m.ItemType | this.Const.Items.ItemType.Legendary;
 		this.blockUpgrades();
-		this.m.Blocked[ this.Const.Items.ArmorUpgrades.Attachment] = false
-		this.m.Blocked[ this.Const.Items.ArmorUpgrades.Rune] = false
+		this.m.Blocked[ this.Const.Items.ArmorUpgrades.Attachment] = false;
+		this.m.Blocked[ this.Const.Items.ArmorUpgrades.Rune] = false;
 		this.resetStats();
 		this.randomizeValues();
 	}

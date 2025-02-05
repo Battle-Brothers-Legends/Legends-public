@@ -231,7 +231,7 @@ this.legend_helmet <- this.inherit("scripts/items/helmets/helmet", {
 		_argsArray.insert(0, null);
 
 		// We need this so that when legend_helmet_upgrade performs getArmorTooltip, it can check whether the current upgrade is the Extra Vanity Layer
-		if ( _addIsExtraVanityArgForGetArmorTooltip ) 
+		if ( _addIsExtraVanityArgForGetArmorTooltip )
 		{
 			_argsArray.insert(2, null);
 		}
@@ -242,7 +242,7 @@ this.legend_helmet <- this.inherit("scripts/items/helmets/helmet", {
 			{
 				_argsArray[0] = upgrade;
 				// We need this so that when legend_helmet_upgrade performs getArmorTooltip, it can check whether the current upgrade is the Extra Vanity Layer
-				if ( _addIsExtraVanityArgForGetArmorTooltip ) 
+				if ( _addIsExtraVanityArgForGetArmorTooltip )
 				{
 					_argsArray[2] = i == this.Const.Items.HelmetUpgrades.ExtraVanity;
 				}
@@ -285,7 +285,7 @@ this.legend_helmet <- this.inherit("scripts/items/helmets/helmet", {
 
 	function onCombatStarted()
 	{
-		this.doOnFunction("onCombatStarted")
+		this.doOnFunction("onCombatStarted");
 	}
 
 	function onCombatFinished()
@@ -314,8 +314,8 @@ this.legend_helmet <- this.inherit("scripts/items/helmets/helmet", {
 	{
 		if (_a + this.m.Condition <= this.m.ConditionMax)
 		{
-			this.m.Condition += _a
-			return
+			this.m.Condition += _a;
+			return;
 		}
 
 		this.m.Condition = this.m.ConditionMax;
@@ -334,7 +334,7 @@ this.legend_helmet <- this.inherit("scripts/items/helmets/helmet", {
 
 	function removeArmor(_a)
 	{
-		local delta = _a
+		local delta = _a;
 		for (local i = this.Const.Items.HelmetUpgrades.COUNT - 1; i >= 0; i = --i)
 		{
 			if (this.m.Upgrades[i] != null && i != this.Const.Items.HelmetUpgrades.ExtraVanity)
@@ -364,7 +364,7 @@ this.legend_helmet <- this.inherit("scripts/items/helmets/helmet", {
 
 	function setCondition( _a )
 	{
-		local oldValue = this.getArmor()
+		local oldValue = this.getArmor();
 
 		//Adding armor
 		if (_a >= oldValue)
@@ -373,7 +373,7 @@ this.legend_helmet <- this.inherit("scripts/items/helmets/helmet", {
 		}
 		else
 		{
-			this.removeArmor(oldValue - _a)
+			this.removeArmor(oldValue - _a);
 		}
 
 		this.updateAppearance();
@@ -488,11 +488,11 @@ this.legend_helmet <- this.inherit("scripts/items/helmets/helmet", {
 		}
 		local oldIndex;
 
-		if ("Assets" in this.World && this.World.Assets.getStash())   
+		if ("Assets" in this.World && this.World.Assets.getStash())
 		{
 		oldIndex =  this.World.Assets.getStash().getItemByInstanceID(_upgrade.getInstanceID());
 		}
-		
+
 		if (oldIndex != null) oldIndex = oldIndex.index
 		local oldItem;
 		if (this.m.Upgrades[slot] != null)
@@ -512,7 +512,7 @@ this.legend_helmet <- this.inherit("scripts/items/helmets/helmet", {
 		local result = {
 			item = null,
 			index = oldIndex
-		}
+		};
 		if (oldItem != null && !oldItem.isDestroyedOnRemove())
 		{
 			result.item = oldItem
@@ -674,7 +674,7 @@ this.legend_helmet <- this.inherit("scripts/items/helmets/helmet", {
 		}
 
 		local upgradeNum = this.m.Upgrades.filter(@(idx, val) val != null).len();
-		if ( upgradeNum > 0 && ::Legends.Mod.ModSettings.getSetting("ShowExpandedArmorLayerTooltip").getValue() ) 
+		if ( upgradeNum > 0 && ::Legends.Mod.ModSettings.getSetting("ShowExpandedArmorLayerTooltip").getValue() )
 		{
 			result.push({	// An empty line is put in to improve formatting
 				id = 10,
@@ -694,7 +694,7 @@ this.legend_helmet <- this.inherit("scripts/items/helmets/helmet", {
 				icon = "ui/icons/armor_head.png",
 				text = "Armor: " + this.m.ConditionMax
 			});
-			if ( this.m.StaminaModifier != 0 ) 
+			if ( this.m.StaminaModifier != 0 )
 			{
 				result.push({
 					id = 10,
@@ -703,7 +703,7 @@ this.legend_helmet <- this.inherit("scripts/items/helmets/helmet", {
 					text = "Weight: " + ::Legends.S.colorize("" + ::Legends.S.getSign(this.m.StaminaModifier) + this.Math.abs(this.m.StaminaModifier), this.m.StaminaModifier)
 				});
 			}
-			if (this.m.Vision != 0) 
+			if (this.m.Vision != 0)
 			{
 				result.push({
 					id = 10,
@@ -712,7 +712,7 @@ this.legend_helmet <- this.inherit("scripts/items/helmets/helmet", {
 					text = "Vision " + ::Legends.S.colorize("" + ::Legends.S.getSign(this.m.Vision) + this.Math.abs(this.m.Vision), this.m.Vision)
 				});
 			}
-		}	
+		}
 
 		this.doOnFunction("getArmorTooltip", [result], true, true);
 
@@ -791,10 +791,10 @@ this.legend_helmet <- this.inherit("scripts/items/helmets/helmet", {
 	{
 		local variant = this.m.Variant > 9 ? this.m.Variant : "0" + this.m.Variant;
 		this.m.Sprite = "";
-		this.m.SpriteDamaged = ""//"bust_helmet_" + variant + "_damaged";
-		this.m.SpriteCorpse = ""//"bust_helmet_" + variant + "_dead";
+		this.m.SpriteDamaged = "";//"bust_helmet_" + variant + "_damaged";
+		this.m.SpriteCorpse = "";//"bust_helmet_" + variant + "_dead";
 		this.m.IconLarge = "";
-		this.m.Icon = ""//"helmets/inventory_helmet_" + variant + ".png";
+		this.m.Icon = "";//"helmets/inventory_helmet_" + variant + ".png";
 	}
 
 	function updateAppearance()

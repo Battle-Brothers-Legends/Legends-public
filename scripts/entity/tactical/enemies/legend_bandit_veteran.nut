@@ -413,7 +413,7 @@ this.legend_bandit_veteran <- this.inherit("scripts/entity/tactical/human", {
 			[2, "heavy_lamellar_armor"],
 			[2, "bandit_armor_heavy"],
 			[3, "bandit_armor_ultraheavy"]
-		])
+		]);
 		this.m.Items.equip(item);
 
 		if (this.Math.rand(1, 100) <= 85)
@@ -430,7 +430,7 @@ this.legend_bandit_veteran <- this.inherit("scripts/entity/tactical/human", {
 				[1, "nasal_helmet_with_rusty_mail"],
 				[1, "rusty_mail_coif"],
 				[1, "headscarf"]
-			])
+			]);
 			if (item != null)
 			{
 				this.m.Items.equip(item);

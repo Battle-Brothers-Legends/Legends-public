@@ -1,6 +1,6 @@
 ::mods_hookExactClass("ai/tactical/behaviors/ai_attack_splitshield", function(o)
 {
-	local onEvaluate = o.onEvaluate
+	local onEvaluate = o.onEvaluate;
 
 	//atm this isn't perfect, if they happen to choose the guy w/ the dagger over another guy as the "best target" thus settin targetTile, it won't select the second best dude, just sets splitshield to not go
 	o.onEvaluate = function ( _entity )

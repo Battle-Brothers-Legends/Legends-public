@@ -109,6 +109,6 @@ local onSerialize = ::Const.CharacterProperties.onSerialize;
 local onDeserialize = ::Const.CharacterProperties.onDeserialize;
 ::Const.CharacterProperties.onDeserialize = function (_in)
 {
-	onDeserialize( _in )
+	onDeserialize( _in );
 	this.DailyWageMult = _in.readF32();
 };

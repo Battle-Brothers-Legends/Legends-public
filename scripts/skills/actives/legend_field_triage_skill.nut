@@ -60,13 +60,13 @@ this.legend_field_triage_skill <- this.inherit("scripts/skills/skill", {
 	{
 		if (!this.skill.isUsable())
 		{
-			return false
+			return false;
 		}
 		if (this.World.Assets.getMedicine() < 1)
 		{
-			return false
+			return false;
 		}
-		return true
+		return true;
 	}
 
 
@@ -106,7 +106,7 @@ this.legend_field_triage_skill <- this.inherit("scripts/skills/skill", {
 		{
 		maxHeal = meds * 2;
 		}
-		local neededHeal = target.getHitpointsMax() - target.getHitpoints()
+		local neededHeal = target.getHitpointsMax() - target.getHitpoints();
 
 		local finalHeal = maxHeal;
 		if (neededHeal < maxHeal)
@@ -116,7 +116,7 @@ this.legend_field_triage_skill <- this.inherit("scripts/skills/skill", {
 
 		local finalMeds = finalHeal / 2;
 
-		local cost = this.Math.min(meds, finalMeds)
+		local cost = this.Math.min(meds, finalMeds);
 		this.World.Assets.addMedicine(cost * -1);
 		target.setHitpoints(this.Math.min(target.getHitpointsMax(), target.getHitpoints() + finalHeal));
 		return true;

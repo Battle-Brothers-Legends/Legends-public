@@ -55,7 +55,7 @@ this.legend_cannibal_background <- this.inherit("scripts/skills/backgrounds/char
 
 	function getTooltip()
 	{
-		local ret = this.character_background.getTooltip()
+		local ret = this.character_background.getTooltip();
 		ret.push(
 			{
 				id = 13,
@@ -63,8 +63,8 @@ this.legend_cannibal_background <- this.inherit("scripts/skills/backgrounds/char
 				icon = "ui/icons/special.png",
 				text = "Cannibals provide Strange Meat after a fight, likes hanging out with butchers, may try to eat others. Increased results when assigned to hunting in camp."
 			}
-		)
-		return ret
+		);
+		return ret;
 	}
 
 	function onBuildDescription()

@@ -14,8 +14,8 @@ this.crafting_building <- this.inherit("scripts/entity/world/camp/camp_building"
 		this.m.BaseCraft = 10.0;
 		this.m.Slot = "craft";
 		this.m.Name = "Craft";
-		this.m.Description = "Craft items"
-		this.m.BannerImage = "ui/buttons/banner_craft.png"
+		this.m.Description = "Craft items";
+		this.m.BannerImage = "ui/buttons/banner_craft.png";
 		this.m.Sounds = [
 			{
 				File = "ambience/camp/camp_taxidermist_01.wav",
@@ -96,19 +96,19 @@ this.crafting_building <- this.inherit("scripts/entity/world/camp/camp_building"
 	{
 		if (this.getUpgraded())
 		{
-			return this.m.Name + " *Upgraded*"
+			return this.m.Name + " *Upgraded*";
 		}
-		return this.m.Name +  " *Not Upgraded*"
+		return this.m.Name +  " *Not Upgraded*";
 	}
 
 	function getDescription()
 	{
 		local desc = "";
-		desc += "Come here to craft potions, trophies and other useful items. Recipes added to the crafting queue will be worked on by anyone "
-		desc += "assigned to this tent. Crafting only occurs while encamped. Progress is saved, so items do not have to be crafted in "
-		desc += "a single session. The more people assigned to the tent, the quicker items will be crafted."
-		desc += "\n\n"
-		desc += "The crafting tent can be upgraded by purchasing a crafting cart from a settlement merchant. An upgraded tent has a 15% increase in crafting speed."
+		desc += "Come here to craft potions, trophies and other useful items. Recipes added to the crafting queue will be worked on by anyone ";
+		desc += "assigned to this tent. Crafting only occurs while encamped. Progress is saved, so items do not have to be crafted in ";
+		desc += "a single session. The more people assigned to the tent, the quicker items will be crafted.";
+		desc += "\n\n";
+		desc += "The crafting tent can be upgraded by purchasing a crafting cart from a settlement merchant. An upgraded tent has a 15% increase in crafting speed.";
 		return desc;
 	}
 
@@ -144,7 +144,7 @@ this.crafting_building <- this.inherit("scripts/entity/world/camp/camp_building"
 				type = "hint",
 				icon = "ui/icons/special.png",
 				text = "[color=" + this.Const.UI.Color.PositiveValue + "]" + bro[0] + "[/color] units/hour " + bro[1] + " (" + bro[2] + ")"
-			})
+			});
 			++id;
 		}
 		return ret;
@@ -162,7 +162,7 @@ this.crafting_building <- this.inherit("scripts/entity/world/camp/camp_building"
 			return false;
 		}
 
-		return !this.World.Flags.get("HasLegendCampCrafting")
+		return !this.World.Flags.get("HasLegendCampCrafting");
 	}
 
 	function getUpgraded()
@@ -202,20 +202,20 @@ this.crafting_building <- this.inherit("scripts/entity/world/camp/camp_building"
 		{
 			if (this.m.Queue[i] == null)
 			{
-				continue
+				continue;
 			}
 			if (this.m.Queue[i].Blueprint == null)
 			{
-				continue
+				continue;
 			}
-			q.push(this.m.Queue[i])
+			q.push(this.m.Queue[i]);
 		}
-		this.m.Queue = q
+		this.m.Queue = q;
 	}
 
 	function getResults()
 	{
-		local res = []
+		local res = [];
 		local id = 20;
 		foreach (b in this.m.ItemsCrafted)
 		{
@@ -223,7 +223,7 @@ this.crafting_building <- this.inherit("scripts/entity/world/camp/camp_building"
 		 		id = id,
 		 		icon = "ui/items/" + b.getIcon(),
 		 		text = "Crafting completed: " + b.getName()
-			})
+			});
 			++id;
 		}
 		return res;
@@ -241,7 +241,7 @@ this.crafting_building <- this.inherit("scripts/entity/world/camp/camp_building"
 			return "No one assigned to craft";
 		}
 
-		local craftableQueue = this.getCraftableQueue()
+		local craftableQueue = this.getCraftableQueue();
 
 		local numToCraft = craftableQueue.len() + this.m.ItemsCrafted.len();
 		local crafted = this.m.ItemsCrafted.len();
@@ -258,14 +258,14 @@ this.crafting_building <- this.inherit("scripts/entity/world/camp/camp_building"
 		local itemsMap = this.World.Assets.getStash().getNumItemsMap(true);
 
 		local craftable = [];
-		for (local i = 0; i < this.m.Queue.len(); ++i) 
+		for (local i = 0; i < this.m.Queue.len(); ++i)
 		{
 			local r = this.m.Queue[i];
 			if(r == null) continue;
-			
+
 			local currentCosts = {};
 			local canCraft = true;
-			
+
 			foreach(c in r.Blueprint.m.PreviewComponents)
 			{
 				if (c.Instance.getID() in itemsMap && c.Num <= itemsMap[c.Instance.getID()] )
@@ -276,14 +276,14 @@ this.crafting_building <- this.inherit("scripts/entity/world/camp/camp_building"
 				{
 					canCraft = false;
 					break;
-				}				
+				}
 			}
 
 			if (!canCraft) continue;
-			
+
 			foreach (id, num in currentCosts) itemsMap[id] -= num;
 
-			craftable.push(i)
+			craftable.push(i);
 			if (r.Forever) i--;
 		}
 		return craftable;
@@ -293,7 +293,7 @@ this.crafting_building <- this.inherit("scripts/entity/world/camp/camp_building"
 	{
 		local modifiers = this.getModifiers();
 
-		for (local i = 0; i < this.m.Queue.len(); ++i) 
+		for (local i = 0; i < this.m.Queue.len(); ++i)
 		{
 			local r = this.m.Queue[i];
 			if (r == null)
@@ -323,14 +323,14 @@ this.crafting_building <- this.inherit("scripts/entity/world/camp/camp_building"
 			if (r.Points >= r.Blueprint.getCostForCraft())
 			{
 				r.Blueprint.craft();
-				this.m.ItemsCrafted.push(r.Blueprint)
+				this.m.ItemsCrafted.push(r.Blueprint);
 				if (r.Forever)
 				{
 					r.Points = 0;
 					i -= 1;
 				}
-				else this.m.Queue[i] = null
-				
+				else this.m.Queue[i] = null;
+
 				this.World.Statistics.getFlags().increment("ItemsCrafted");
 			}
 
@@ -352,10 +352,10 @@ this.crafting_building <- this.inherit("scripts/entity/world/camp/camp_building"
 		{
 			if (b == null)
 			{
-				continue
+				continue;
 			}
 			local r = b.Blueprint.getUIData();
-			r.Percentage <- (b.Points / (b.Blueprint.getCostForCraft() * 1.0)) * 100
+			r.Percentage <- (b.Points / (b.Blueprint.getCostForCraft() * 1.0)) * 100;
 			r.Forever <- b.Forever;
 			ret.push(r);
 		}
@@ -393,7 +393,7 @@ this.crafting_building <- this.inherit("scripts/entity/world/camp/camp_building"
 		local modifiers = this.getModifiers();
 		if (modifiers.Craft <= 0)
 		{
-			return 0
+			return 0;
 		}
 		return this.Math.ceil(points / modifiers.Craft);
 	}
@@ -437,11 +437,11 @@ this.crafting_building <- this.inherit("scripts/entity/world/camp/camp_building"
 		{
 			if (i == _idx)
 			{
-				continue
+				continue;
 			}
-			q.push(this.m.Queue[i])
+			q.push(this.m.Queue[i]);
 		}
-		this.m.Queue = q
+		this.m.Queue = q;
 	}
 
 	function onSwap ( _source, _target)

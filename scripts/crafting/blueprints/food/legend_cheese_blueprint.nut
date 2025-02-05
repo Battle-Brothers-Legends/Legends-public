@@ -20,10 +20,10 @@ this.legend_cheese_blueprint <- this.inherit("scripts/crafting/legend_food_bluep
 			{
 				Scripts = ["scripts/skills/perks/perk_legend_camp_cook"]
 			}
-		]
-		this.initSkills(skills);			
+		];
+		this.initSkills(skills);
 	}
-	
+
 	function onCraft( _stash )
 	{
 		_stash.add(this.new("scripts/items/supplies/goat_cheese_item"));

@@ -18,7 +18,7 @@ this.large_quiver_of_broad_bolts_blueprint <- this.inherit("scripts/crafting/blu
 			{
 				Scripts = ["scripts/skills/backgrounds/bowyer_background"]
 			}
-		]
+		];
 		this.initSkills(skills);
 	}
 

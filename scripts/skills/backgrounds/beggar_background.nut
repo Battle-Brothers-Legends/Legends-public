@@ -85,7 +85,7 @@ this.beggar_background <- this.inherit("scripts/skills/backgrounds/character_bac
 
 		this.m.Name = "Widow";
 		this.m.Icon = "ui/backgrounds/background_widow.png";
-		this.m.BackgroundDescription = "Widows who can\'t find another husband have few choices, mercenary work is a last resort of the hopeless.";	
+		this.m.BackgroundDescription = "Widows who can\'t find another husband have few choices, mercenary work is a last resort of the hopeless.";
 		this.m.Faces = this.Const.Faces.OldFemale;
 		this.m.Hairs = this.Const.Hair.AllFemale;
 		this.m.HairColors = this.Const.HairColors.Old;
@@ -100,7 +100,7 @@ this.beggar_background <- this.inherit("scripts/skills/backgrounds/character_bac
 
 	function getTooltip()
 	{
-		local ret = this.character_background.getTooltip()
+		local ret = this.character_background.getTooltip();
 		ret.push(
 			{
 				id = 13,
@@ -108,8 +108,8 @@ this.beggar_background <- this.inherit("scripts/skills/backgrounds/character_bac
 				icon = "ui/icons/xp_received.png",
 				text = "[color=" + this.Const.UI.Color.PositiveValue + "]50% less likely[/color] to be targeted by an enemy."
 			}
-		)
-		return ret
+		);
+		return ret;
 	}
 
 	function onBuildDescription()
@@ -194,7 +194,7 @@ this.beggar_background <- this.inherit("scripts/skills/backgrounds/character_bac
 		local item = this.Const.World.Common.pickHelmet([
 			[3, ""],
 			[1, "hood", 28]
-		])
+		]);
 		items.equip(item);
 	}
 

@@ -76,14 +76,14 @@ this.legend_hold_the_line <- this.inherit("scripts/skills/skill", {
 
 			if (a.getFaction() == _user.getFaction() && !a.getSkills().hasSkill("effects.holding_the_line"))
 			{
-				local effect = this.new("scripts/skills/effects/legend_holding_the_line")
+				local effect = this.new("scripts/skills/effects/legend_holding_the_line");
 				effect.setCommander(this.getContainer().getActor());
 				a.getSkills().add(effect);
 
 			}
 		}
 
-		local effect = this.new("scripts/skills/effects/legend_holding_the_line")
+		local effect = this.new("scripts/skills/effects/legend_holding_the_line");
 		effect.setCommander(this.getContainer().getActor());
 		this.getContainer().add(effect);
 

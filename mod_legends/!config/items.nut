@@ -60,19 +60,19 @@
 ];
 
 
-::Const.Items.LegendNamedArmorLayers <- []
-::Const.Items.LegendNamedArmorLayers.extend(this.Const.Items.LegendNamedClothLayers)
-::Const.Items.LegendNamedArmorLayers.extend(this.Const.Items.LegendNamedChainLayers)
-::Const.Items.LegendNamedArmorLayers.extend(this.Const.Items.LegendNamedPlateLayers)
-::Const.Items.LegendNamedArmorLayers.extend(this.Const.Items.LegendNamedTabardLayers)
-::Const.Items.LegendNamedArmorLayers.extend(this.Const.Items.LegendNamedCloakLayers)
+::Const.Items.LegendNamedArmorLayers <- [];
+::Const.Items.LegendNamedArmorLayers.extend(this.Const.Items.LegendNamedClothLayers);
+::Const.Items.LegendNamedArmorLayers.extend(this.Const.Items.LegendNamedChainLayers);
+::Const.Items.LegendNamedArmorLayers.extend(this.Const.Items.LegendNamedPlateLayers);
+::Const.Items.LegendNamedArmorLayers.extend(this.Const.Items.LegendNamedTabardLayers);
+::Const.Items.LegendNamedArmorLayers.extend(this.Const.Items.LegendNamedCloakLayers);
 
 
-::Const.Items.LegendNamedHelmetLayers <- []
-::Const.Items.LegendNamedHelmetLayers.extend(this.Const.Items.LegendNamedHoodLayers)
-::Const.Items.LegendNamedHelmetLayers.extend(this.Const.Items.LegendNamedHelmLayers)
-::Const.Items.LegendNamedHelmetLayers.extend(this.Const.Items.LegendNamedTopLayers)
-::Const.Items.LegendNamedHelmetLayers.extend(this.Const.Items.LegendNamedVanityLayers)
+::Const.Items.LegendNamedHelmetLayers <- [];
+::Const.Items.LegendNamedHelmetLayers.extend(this.Const.Items.LegendNamedHoodLayers);
+::Const.Items.LegendNamedHelmetLayers.extend(this.Const.Items.LegendNamedHelmLayers);
+::Const.Items.LegendNamedHelmetLayers.extend(this.Const.Items.LegendNamedTopLayers);
+::Const.Items.LegendNamedHelmetLayers.extend(this.Const.Items.LegendNamedVanityLayers);
 
 // removing helms before extending
 local garbage = [];

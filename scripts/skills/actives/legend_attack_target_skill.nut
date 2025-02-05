@@ -172,7 +172,7 @@ this.legend_attack_target_skill <- this.inherit("scripts/skills/skill", {
 	{
 		if (_user.getSkills().hasSkill("actives.legend_protect_target"))
 		{
-			local skill = _user.getSkills().getSkillByID("actives.legend_protect_target")
+			local skill = _user.getSkills().getSkillByID("actives.legend_protect_target");
 			skill.setTarget(null);
 		}
 

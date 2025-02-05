@@ -6,7 +6,7 @@ this.legend_armor_named_warlock_cloak <- this.inherit("scripts/items/legend_armo
 		this.m.Type = this.Const.Items.ArmorUpgrades.Cloak;
 		this.m.ID = "legend_armor.body.legend_named_warlock_cloak";
 		this.m.Description = "A cloak made from the skin of dead men and dark magic.";
-		this.m.Name = ""
+		this.m.Name = "";
 		this.m.NameList = [
 			"Dead Man\'s Skin",
 			"Necromancer\'s Robe",

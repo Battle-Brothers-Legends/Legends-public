@@ -55,7 +55,7 @@ this.camp_repair_dialog_module <- this.inherit("scripts/ui/screens/ui_module", {
 
 	function loadStashList()
 	{
-		local result = this.queryLoad()
+		local result = this.queryLoad();
 		this.m.JSHandle.asyncCall("loadFromData", result);
 	}
 
@@ -128,7 +128,7 @@ this.camp_repair_dialog_module <- this.inherit("scripts/ui/screens/ui_module", {
 		local sourceItemOwner = _data[1];
 		local targetItemIdx = _data[2];
 		local targetItemOwner = _data[3];
-		this.getTent().swapItems(sourceItemOwner, sourceItemIdx, targetItemOwner, targetItemIdx)
+		this.getTent().swapItems(sourceItemOwner, sourceItemIdx, targetItemOwner, targetItemIdx);
 		return this.queryLoad();
 	}
 

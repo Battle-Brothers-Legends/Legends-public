@@ -78,8 +78,8 @@ this.legend_firefield_skill <- this.inherit("scripts/skills/skill", {
 
 	function isUsable()
 	{
-		if (!this.getContainer().getActor().isArmedWithMagicStaff()) 
-			return false
+		if (!this.getContainer().getActor().isArmedWithMagicStaff())
+			return false;
 
 		return !this.Tactical.isActive() || this.skill.isUsable() && !this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions());
 	}
@@ -139,7 +139,7 @@ this.legend_firefield_skill <- this.inherit("scripts/skills/skill", {
 				continue;
 
 			local entity = tile.getEntity();
-			
+
 			for (local i = 0; i < 2; ++i)
 			{
 				if (entity.isAlive() && !entity.isDying())

@@ -159,7 +159,7 @@ this.legend_ancient_scroll_item <- ::inherit("scripts/items/item", {
 			r = ::Math.rand(0, pT.len()-1);
 			r2 = ::Math.rand(0, pT[r].len()-1);
 		}
-		while (_actor.getSkills().hasSkill(pT[r][r2].ID))
+		while (_actor.getSkills().hasSkill(pT[r][r2].ID));
 
 		local perkDef = pT[r][r2];
 		_actor.getSkills().add(::new(perkDef.Script));
@@ -187,7 +187,7 @@ this.legend_ancient_scroll_item <- ::inherit("scripts/items/item", {
 		if (potential.len() == 0)
 			return format("[color=%s]No possible new perk group can be added to this character.[/color].", ::Const.UI.Color.NegativeValue);
 
-		local tree = ::MSU.Array.rand(potential)
+		local tree = ::MSU.Array.rand(potential);
 		_actor.getBackground().addPerkGroup(tree.Tree);
 		return format("The [color=%s]%s[/color] perk group has been added to this character.", ::Const.UI.Color.NegativeValue, tree.Name);
 	}

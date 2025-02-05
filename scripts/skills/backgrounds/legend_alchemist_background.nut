@@ -55,7 +55,7 @@ this.legend_alchemist_background <- this.inherit("scripts/skills/backgrounds/cha
 			],
 			Enemy = [],
 			Class = [
-				this.Const.Perks.SickleClassTree, 
+				this.Const.Perks.SickleClassTree,
 				this.Const.Perks.BarterClassTree]
 			Magic = []
 		}
@@ -117,7 +117,7 @@ this.legend_alchemist_background <- this.inherit("scripts/skills/backgrounds/cha
 		local items = this.getContainer().getActor().getItems();
 		items.equip(this.Const.World.Common.pickArmor([
 			[3, "oriental/vizier_gear"]
-		]))
+		]));
 
 		items.equip(this.Const.World.Common.pickHelmet([
 			[2, ""],

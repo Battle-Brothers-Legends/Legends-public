@@ -14,8 +14,8 @@ this.fletcher_building <- this.inherit("scripts/entity/world/camp/camp_building"
 		this.m.BaseCraft = 1.0;
 		this.m.Slot = "fletch";
 		this.m.Name = "Fletcher";
-		this.m.Description = "Make some ammo"
-		this.m.BannerImage = "ui/buttons/banner_fletch.png"
+		this.m.Description = "Make some ammo";
+		this.m.BannerImage = "ui/buttons/banner_fletch.png";
 		this.m.CanEnter = false;
 		this.m.Sounds = [
 			{
@@ -51,20 +51,20 @@ this.fletcher_building <- this.inherit("scripts/entity/world/camp/camp_building"
 	{
 		if (this.getUpgraded())
 		{
-			return this.m.Name + " *Upgraded*"
+			return this.m.Name + " *Upgraded*";
 		}
-		return this.m.Name +  " *Not Upgraded*"
+		return this.m.Name +  " *Not Upgraded*";
 	}
 
 	function getDescription()
 	{
 		local desc = "";
-		desc += "Arrows, bolts, little rocks (and Big Rocks!). The ammunition of war. "
-		desc += "Keep the company stocks full between battles by assigning some members of the company to the task of making ammo. "
-		desc += "Ammunition fabrication only occurs while encamped. The more people assigned, the more ammo crafted. "
-		desc += "\n\n"
-		desc += "The Fletching tent can be upgraded by purchasing a crafting cart from a settlement merchant. An upgraded tent has a 15% increase in production speed. "
-		desc += "Additionally, there's a chance that ammunition of the disposable throwing kind will be crafted."
+		desc += "Arrows, bolts, little rocks (and Big Rocks!). The ammunition of war. ";
+		desc += "Keep the company stocks full between battles by assigning some members of the company to the task of making ammo. ";
+		desc += "Ammunition fabrication only occurs while encamped. The more people assigned, the more ammo crafted. ";
+		desc += "\n\n";
+		desc += "The Fletching tent can be upgraded by purchasing a crafting cart from a settlement merchant. An upgraded tent has a 15% increase in production speed. ";
+		desc += "Additionally, there's a chance that ammunition of the disposable throwing kind will be crafted.";
 		return desc;
 	}
 
@@ -87,7 +87,7 @@ this.fletcher_building <- this.inherit("scripts/entity/world/camp/camp_building"
 				type = "hint",
 				icon = "ui/icons/special.png",
 				text = "[color=" + this.Const.UI.Color.PositiveValue + "]" + bro[0] / 2.0 + "[/color] units/hour " + bro[1] + " (" + bro[2] + ")"
-			})
+			});
 			++id;
 		}
 		return ret;
@@ -101,7 +101,7 @@ this.fletcher_building <- this.inherit("scripts/entity/world/camp/camp_building"
 			return false;
 		}
 
-		return !this.World.Flags.get("HasLegendCampFletching")
+		return !this.World.Flags.get("HasLegendCampFletching");
 	}
 
 	function getUpgraded()
@@ -136,7 +136,7 @@ this.fletcher_building <- this.inherit("scripts/entity/world/camp/camp_building"
 
 	function getResults()
 	{
-		local res = []
+		local res = [];
 		local id = 50;
 		if (this.m.AmmoAdded > 0)
 		{
@@ -144,7 +144,7 @@ this.fletcher_building <- this.inherit("scripts/entity/world/camp/camp_building"
 		 		id = id,
 		 		icon = "ui/buttons/asset_ammo_up.png",
 		 		text = "You created " + this.Math.floor(this.m.AmmoAdded) + " units of ammo"
-			})
+			});
 			++id;
 		}
 		foreach (b in this.m.Items)
@@ -153,7 +153,7 @@ this.fletcher_building <- this.inherit("scripts/entity/world/camp/camp_building"
 		 		id = id,
 		 		icon = "ui/items/" + b.getIcon(),
 		 		text = "You gained " + b.getName()
-			})
+			});
 			++id;
 		}
 		return res;
@@ -186,10 +186,10 @@ this.fletcher_building <- this.inherit("scripts/entity/world/camp/camp_building"
 	{
 		if (this.m.NumBros == 0)
 		{
-			return
+			return;
 		}
 
-		local item = null
+		local item = null;
 		if (this.m.AmmoAdded > 0)
 		{
 			this.World.Assets.addAmmo(this.Math.floor(this.m.AmmoAdded));
@@ -197,12 +197,12 @@ this.fletcher_building <- this.inherit("scripts/entity/world/camp/camp_building"
 
 		if (!this.getUpgraded())
 		{
-			return
+			return;
 		}
 
 		if (this.Stash.getNumberOfEmptySlots() == 0)
 		{
-			return
+			return;
 		}
 
 		local secondary = [

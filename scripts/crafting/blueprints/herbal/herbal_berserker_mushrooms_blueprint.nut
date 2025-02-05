@@ -4,7 +4,7 @@ this.herbal_berserker_mushrooms_blueprint <- this.inherit("scripts/crafting/blue
 	{
 		this.blueprint.create();
 		this.m.ID = "blueprint.herbal_berserker_mushrooms";
-		this.m.Type = this.Const.Items.ItemType.Usable
+		this.m.Type = this.Const.Items.ItemType.Usable;
 		this.m.PreviewCraftable = this.new("scripts/items/accessory/berserker_mushrooms_item");
 		this.m.Cost = 30;
 		local ingredients = [
@@ -18,7 +18,7 @@ this.herbal_berserker_mushrooms_blueprint <- this.inherit("scripts/crafting/blue
 			{
 				Scripts = ["scripts/skills/perks/perk_legend_herbcraft"]
 			}
-		]
+		];
 		this.initSkills(skills);
 	}
 

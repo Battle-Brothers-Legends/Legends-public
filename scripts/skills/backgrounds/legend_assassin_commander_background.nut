@@ -169,7 +169,7 @@ this.legend_assassin_commander_background <- this.inherit("scripts/skills/backgr
 
 	function getTooltip()
 	{
-		local ret = this.character_background.getTooltip()
+		local ret = this.character_background.getTooltip();
 		ret.push(
 			{
 				id = 11,
@@ -177,8 +177,8 @@ this.legend_assassin_commander_background <- this.inherit("scripts/skills/backgr
 				icon = "ui/icons/chance_to_hit_head.png",
 				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+15%[/color] Chance To Hit Head"
 			}
-		)
-		return ret
+		);
+		return ret;
 	}
 
 	function onBuildDescription()

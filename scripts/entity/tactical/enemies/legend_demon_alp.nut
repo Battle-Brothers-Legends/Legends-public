@@ -83,7 +83,7 @@ this.legend_demon_alp <- this.inherit("scripts/entity/tactical/actor", {
 	function loadResources()
 	{
 		this.actor.loadResources();
-		
+
 		foreach( r in [
 			"sounds/enemies/dlc2/alp_nightmare_01.wav",
 			"sounds/enemies/dlc2/alp_nightmare_02.wav",
@@ -202,7 +202,7 @@ this.legend_demon_alp <- this.inherit("scripts/entity/tactical/actor", {
 
 			if (a.getFlags().get("living_nightmare") != id)
 				continue;
-			
+
 			a.killSilently();
 		}
 	}
@@ -246,7 +246,7 @@ this.legend_demon_alp <- this.inherit("scripts/entity/tactical/actor", {
 		body.setBrush("bust_demonalp_body_01");
 		body.varySaturation(0.2);
 		local head = this.addSprite("head");
-		head.setBrush("demon_alp_head")
+		head.setBrush("demon_alp_head");
 		//head.setBrush("bust_demonalp_head_0" + this.Math.rand(1, 3));
 		head.Saturation = body.Saturation;
 		local injury = this.addSprite("injury");
