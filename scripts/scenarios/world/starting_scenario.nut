@@ -82,7 +82,7 @@ this.starting_scenario <- {
 
 		case 3:
 			return "difficulty_hard";
-		
+
 		case 4:
 			return "difficulty_legend";
 		}
@@ -121,7 +121,7 @@ this.starting_scenario <- {
 	function onInit()
 	{
 		this.m.StaticRelationsToFaction.resize(this.Const.FactionType.len());
-		
+
 		if (this.World.State.getPlayer() != null)
 			this.World.State.getPlayer().calculateModifiers();
 	}
@@ -239,7 +239,7 @@ this.starting_scenario <- {
 			_background.getContainer().add(this.new(this.Const.Perks.PerkDefObjects[_perk].Script));
 			isRefundable = false;
 		}
-		
+
 		_background.addPerk(_perk, _row, isRefundable);
 		if (!isRefundable) _background.getPerk(_perk).IsRefundable = false;
 	}
@@ -253,7 +253,7 @@ this.starting_scenario <- {
 		local multiplier = _roster.getAll().len() < 8 ? 2 : 1; // Short little change to make these spawns less common in tiny villages
 
 		if (::Math.rand(0, _chance * multiplier) == 0) {
-			local bro = _roster.create("scripts/entity/tactical/player")
+			local bro = _roster.create("scripts/entity/tactical/player");
 			bro.setStartValuesEx([_background]);
 			//this.World.Assets.getOrigin().onGenerateBro(bro); will be called at the end of `updateRoster` in `settlement` anyway
 		}

@@ -18,7 +18,7 @@ this.legend_quiver_of_piercing_bolts_blueprint <- this.inherit("scripts/crafting
 			{
 				Scripts = ["scripts/skills/backgrounds/bowyer_background"]
 			}
-		]
+		];
 		this.initSkills(skills);
 	}
 

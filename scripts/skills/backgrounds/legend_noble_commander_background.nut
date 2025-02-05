@@ -74,7 +74,7 @@ this.legend_noble_commander_background <- this.inherit("scripts/skills/backgroun
 				this.Const.Perks.DaggerTree,
 				this.Const.Perks.PolearmTree,
 				this.Const.Perks.SwordTree,
-				this.Const.Perks.MaceTree
+				this.Const.Perks.MaceTree,
 				this.Const.Perks.CrossbowTree
 			],
 			Defense = [
@@ -210,7 +210,7 @@ this.legend_noble_commander_background <- this.inherit("scripts/skills/backgroun
 			[1, "legend_noble_floppy_hat"],
 			[1, "legend_noble_hood"]
 		]));
-		local stash = this.World.Assets.getStash()
+		local stash = this.World.Assets.getStash();
 		stash.removeByID("supplies.ground_grains");
 		stash.removeByID("supplies.ground_grains");
 		stash.add(this.new("scripts/items/supplies/wine_item"));

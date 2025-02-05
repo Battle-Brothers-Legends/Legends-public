@@ -12,7 +12,7 @@ this.legend_prosthetic_eye_blueprint <- this.inherit("scripts/crafting/blueprint
 				Script = "scripts/items/trade/quality_wood_item",
 				Num = 1
 			}
-		]
+		];
 		this.init(ingredients);
 		local skills = [
 			{

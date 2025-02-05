@@ -85,11 +85,11 @@ this.legend_magic_circle_of_protection_skill <- this.inherit("scripts/skills/act
 		}
 		if (index == 0)
 		{
-			this.m.ProtectedActors = this.m.ProtectedActors.slice(1)
+			this.m.ProtectedActors = this.m.ProtectedActors.slice(1);
 			return;
 		}
 		local front = this.m.ProtectedActors.slice(0, index);
-		local back = this.m.ProtectedActors.slice(index+1)
+		local back = this.m.ProtectedActors.slice(index+1);
 		this.m.ProtectedActors = front.extend(back);
 	}
 

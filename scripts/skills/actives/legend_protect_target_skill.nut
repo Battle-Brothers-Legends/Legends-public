@@ -163,7 +163,7 @@ this.legend_protect_target_skill <- this.inherit("scripts/skills/skill", {
 				continue;
 			}
 
-			local skill = pet.getSkills().getSkillByID("effects.legend_guard")
+			local skill = pet.getSkills().getSkillByID("effects.legend_guard");
 
 			if (_t == null)
 			{
@@ -176,7 +176,7 @@ this.legend_protect_target_skill <- this.inherit("scripts/skills/skill", {
 
 			if (skill == null)
 			{
-				skill = this.new("scripts/skills/effects/legend_guard_effect")
+				skill = this.new("scripts/skills/effects/legend_guard_effect");
 				pet.getSkills().add(skill);
 			}
 
@@ -197,7 +197,7 @@ this.legend_protect_target_skill <- this.inherit("scripts/skills/skill", {
 	{
 		if (_user.getSkills().hasSkill("actives.legend_attack_target"))
 		{
-			local skill = _user.getSkills().getSkillByID("actives.legend_attack_target")
+			local skill = _user.getSkills().getSkillByID("actives.legend_attack_target");
 			skill.setTarget(null);
 		}
 

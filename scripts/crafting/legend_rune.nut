@@ -25,7 +25,7 @@ this.legend_rune <- this.inherit("scripts/crafting/blueprint", {
 			{
 				Scripts = ["scripts/skills/backgrounds/legend_vala_background"]
 			}
-		]
+		];
 		this.initSkills(skills);
 	}
 
@@ -136,11 +136,11 @@ this.legend_rune <- this.inherit("scripts/crafting/blueprint", {
 
 				case 12:
 				rune = this.new("scripts/items/legend_helmets/runes/legend_rune_bravery");
-				break
+				break;
 
 				case 13:
 				rune = this.new("scripts/items/legend_helmets/runes/legend_rune_luck");
-				break
+				break;
 
 				case 21:
 				rune = this.new("scripts/items/legend_armor/runes/legend_rune_endurance");
@@ -151,7 +151,7 @@ this.legend_rune <- this.inherit("scripts/crafting/blueprint", {
 				break
 
 				// case 23: //Removed 22/1/23 as part of the steel brow rework. May rework this rune in a similar manner later where its not blanket immunity
-				// rune = this.new("scripts/items/legend_armor/runes/legend_rune_resilience"); 
+				// rune = this.new("scripts/items/legend_armor/runes/legend_rune_resilience");
 				// break
 			}
 			rune.setRuneVariant(this.m.Rune);

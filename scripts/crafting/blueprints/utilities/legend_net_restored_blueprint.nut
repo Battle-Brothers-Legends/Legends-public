@@ -18,8 +18,8 @@ this.legend_net_restored_blueprint <- this.inherit("scripts/crafting/blueprint",
 			{
 				Scripts = ["scripts/skills/perks/perk_legend_net_repair"]
 			}
-		]
-		this.initSkills(skills);			
+		];
+		this.initSkills(skills);
 
 	}
 

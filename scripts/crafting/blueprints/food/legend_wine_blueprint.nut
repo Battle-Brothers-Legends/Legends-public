@@ -16,8 +16,8 @@ this.legend_wine_blueprint <- this.inherit("scripts/crafting/legend_food_bluepri
 			{
 				Scripts = ["scripts/skills/perks/perk_legend_alcohol_brewing"]
 			}
-		]
-		this.initSkills(skills);		
+		];
+		this.initSkills(skills);
 
 	}
 

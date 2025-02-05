@@ -234,12 +234,12 @@ this.legends_noble_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 		foreach( bro in brothers )
 		{
 			local items = bro.getItems();
-			local armor = items.getItemAtSlot(this.Const.ItemSlot.Body)
+			local armor = items.getItemAtSlot(this.Const.ItemSlot.Body);
 			local tabards = [
 					[0, ""],
 					[1, "tabard/legend_noble_tabard"]
 				];
-				local tabard = this.Const.World.Common.pickLegendArmor(tabards)
+				local tabard = this.Const.World.Common.pickLegendArmor(tabards);
 				if (tabard != null && armor != null)
 				{
 					tabard.setVariant(banner);

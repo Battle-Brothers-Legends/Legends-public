@@ -90,14 +90,14 @@ this.legend_incoming_skill <- this.inherit("scripts/skills/skill", {
 			if (a.getFaction() == _user.getFaction() && !a.getSkills().hasSkill("effects.legend_dodging_incoming"))
 			{
 
-			local effect = this.new("scripts/skills/effects/legend_dodging_incoming")
+			local effect = this.new("scripts/skills/effects/legend_dodging_incoming");
 				effect.setCommander(this.getContainer().getActor());
 				a.getSkills().add(effect);
 
 			}
 		}
 
-		local effect = this.new("scripts/skills/effects/legend_dodging_incoming")
+		local effect = this.new("scripts/skills/effects/legend_dodging_incoming");
 		effect.setCommander(this.getContainer().getActor());
 		this.getContainer().add(effect);
 		return true;

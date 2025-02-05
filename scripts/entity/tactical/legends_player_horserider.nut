@@ -79,7 +79,7 @@ this.legends_player_horserider <- this.inherit("scripts/entity/tactical/player",
 		{
 			totalBravery += riderBravery * 0.25;
 		}
-		this.logInfo("totalBravery is " + totalBravery)
+		this.logInfo("totalBravery is " + totalBravery);
 		b.Bravery = totalBravery;
 
 //determine fatigue

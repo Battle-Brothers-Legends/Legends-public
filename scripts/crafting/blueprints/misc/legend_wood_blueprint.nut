@@ -18,7 +18,7 @@ this.legend_wood_blueprint <- this.inherit("scripts/crafting/blueprint", {
 			{
 				Scripts = ["scripts/skills/perks/perk_legend_woodworking"]
 			}
-		]
+		];
 		this.initSkills(skills);
 	}
 

@@ -20,8 +20,8 @@ this.legend_yummy_sausages_blueprint <- this.inherit("scripts/crafting/legend_fo
 			{
 				Scripts = ["scripts/skills/perks/perk_legend_camp_cook"]
 			}
-		]
-		this.initSkills(skills);		
+		];
+		this.initSkills(skills);
 	}
 
 	function onCraft( _stash )

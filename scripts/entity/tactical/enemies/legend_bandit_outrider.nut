@@ -329,7 +329,7 @@ this.legend_bandit_outrider <- this.inherit("scripts/entity/tactical/human", {
 		local item = this.Const.World.Common.pickArmor([
 			[3, "gambeson"],
 			[1, "padded_surcoat"]
-		])
+		]);
 		this.m.Items.equip(item);
 
 		if (this.Math.rand(1, 100) <= 75)
@@ -341,7 +341,7 @@ this.legend_bandit_outrider <- this.inherit("scripts/entity/tactical/human", {
 				[1, "mouth_piece"],
 				[1, "full_leather_cap"],
 				[1, "aketon_cap"]
-			])
+			]);
 			if (item != null)
 			{
 				this.m.Items.equip(item);

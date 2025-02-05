@@ -265,7 +265,7 @@ local VanillaTree = [
 		{
 			_exclude.push(tt.ID);
 		}
-		local t = this.Const.Perks.TraitsTrees.getRandom(_exclude)
+		local t = this.Const.Perks.TraitsTrees.getRandom(_exclude);
 		//this.logInfo("Adding Traits perk tree " + t.ID);
 		_localMap.Traits.push(t);
 	}
@@ -284,7 +284,7 @@ local VanillaTree = [
 		{
 			_exclude.push(tt.ID);
 		}
-		local t = this.Const.Perks.EnemyTrees.getRandom(_exclude)
+		local t = this.Const.Perks.EnemyTrees.getRandom(_exclude);
 		//this.logInfo("Adding Enemy perk tree " + t.ID);
 		_localMap.Enemy.push(t);
 	}
@@ -303,7 +303,7 @@ local VanillaTree = [
 		{
 			_exclude.push(tt.ID);
 		}
-		local t = this.Const.Perks.ClassTrees.getRandom(_exclude)
+		local t = this.Const.Perks.ClassTrees.getRandom(_exclude);
 		//this.logInfo("Adding Class perk tree " + t.ID);
 		_localMap.Class.push(t);
 	}
@@ -333,18 +333,18 @@ local VanillaTree = [
 			foreach (i, row in mT.Tree)
 			{
 				if (!(i in _totals)) {
-					_totals[i] <- 0
-					_overflows[i] <- []
+					_totals[i] <- 0;
+					_overflows[i] <- [];
 				}
 
 				foreach(j, p in row)
 				{
 					if (_totals[i] >= 13)
 					{
-						_overflows[i].push(p)
-						continue
+						_overflows[i].push(p);
+						continue;
 					}
-					_totals[i]++
+					_totals[i] += 1;
 					tree[i].push(p);
 				}
 			}
@@ -367,7 +367,7 @@ local VanillaTree = [
 			}
 			if (foundIndexToSlot == false)
 			{
-				nextIndex = index
+				nextIndex = index;
 				foundIndexToSlot = true;
 				while(nextIndex > 0 && _totals[nextIndex] >= 13) { //if nextIndex is ever somehow -1 that means everything past the row it tried was overflow and everything before it, so we just drop the perk then
 					nextIndex--;
@@ -379,8 +379,8 @@ local VanillaTree = [
 			if (foundIndexToSlot) //if we somehow haven't found an index to slot a perk it just gets junked because the entire tree is max perk, guarantees an overflow. can change this
 			{
 				// this.logWarning("Originally had a perk on index: " + index + ", put it on index: " + nextIndex);
-				tree[nextIndex].push(L[i])
-				_totals[nextIndex]++
+				tree[nextIndex].push(L[i]);
+				_totals[nextIndex] += 1;
 			}
 		}
 	}

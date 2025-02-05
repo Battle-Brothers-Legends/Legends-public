@@ -199,7 +199,7 @@ this.legend_trader_commander_background <- this.inherit("scripts/skills/backgrou
 		items.equip(this.Const.World.Common.pickHelmet([
 			[1, "feathered_hat"]
 		]));
-		local stash = this.World.Assets.getStash()
+		local stash = this.World.Assets.getStash();
 		stash.removeByID("supplies.ground_grains");
 		stash.removeByID("supplies.ground_grains");
 		stash.add(this.new("scripts/items/trade/cloth_rolls_item"));

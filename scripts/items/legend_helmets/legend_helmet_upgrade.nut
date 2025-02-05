@@ -331,7 +331,7 @@ this.legend_helmet_upgrade <- this.inherit("scripts/items/item", {
 			this.m.Condition -= _a;
 			return 0;
 		}
-		local delta = _a - this.m.Condition
+		local delta = _a - this.m.Condition;
 		this.m.Condition = 0;
 		return delta;
 	}

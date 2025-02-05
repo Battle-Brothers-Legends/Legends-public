@@ -22,7 +22,7 @@ this.legend_small_medicine_blueprint <- this.inherit("scripts/crafting/blueprint
 			{
 				Scripts = ["scripts/skills/perks/perk_legend_med_ingredients"]
 			}
-		]
+		];
 		this.initSkills(skills);
 	}
 
