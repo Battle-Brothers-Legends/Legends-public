@@ -55,7 +55,7 @@
 		local v2 = -6;
 		foreach (a in this.Const.CharacterSprites.Helmets)
 		{
-			this.addSprite(a)
+			this.addSprite(a);
 			this.setSpriteOffset(a, this.createVec(v2, v));
 		}
 

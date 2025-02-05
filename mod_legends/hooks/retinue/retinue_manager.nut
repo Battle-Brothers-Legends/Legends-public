@@ -86,7 +86,7 @@
 
 	o.getFollowersToRemove <- function ()
 	{
-		local ret = []
+		local ret = [];
 		foreach (slot in this.m.Slots)
 		{
 			if (slot != null && !slot.isEnabled())

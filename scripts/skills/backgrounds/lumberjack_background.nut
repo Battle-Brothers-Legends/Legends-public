@@ -161,7 +161,7 @@ this.lumberjack_background <- this.inherit("scripts/skills/backgrounds/character
 			[2, "padded_surcoat"],
 			[1, "leather_tunic"],
 			[1, "linen_tunic", 6]
-		]))
+		]));
 
 		items.equip(this.Const.World.Common.pickHelmet([
 			[1, ""],

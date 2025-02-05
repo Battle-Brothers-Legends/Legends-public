@@ -45,7 +45,7 @@
 			tooltip.push(ret);
 		}
 	};
-	local isPerk = @( _, _skill ) _skill.isType(this.Const.SkillType.Perk)
+	local isPerk = @( _, _skill ) _skill.isType(this.Const.SkillType.Perk);
 	local isInjury = @( _, _skill ) _skill.isType(this.Const.SkillType.TemporaryInjury);
 	local isTextRow = @( _, row ) ("type" in row) && row.type == "text";
 

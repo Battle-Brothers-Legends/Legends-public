@@ -6,7 +6,7 @@ this.legend_parrying_effect <- this.inherit("scripts/skills/skill", {
 	{
 		this.m.ID = "effects.legend_parrying";
 		this.m.Name = "Parrying Stance";
-		this.m.Description = "This character is prepared to immediately parry any failed melee attacks against them, leaving the aggressor in an exposed position."
+		this.m.Description = "This character is prepared to immediately parry any failed melee attacks against them, leaving the aggressor in an exposed position.";
 		this.m.Icon = "skills/en_garde_circle.png";
 		this.m.IconMini = "mini_en_garde_circle";
 		this.m.Overlay = "en_garde_circle";

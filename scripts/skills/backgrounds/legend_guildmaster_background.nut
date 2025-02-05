@@ -247,7 +247,7 @@ this.legend_guildmaster_background <- this.inherit("scripts/skills/backgrounds/c
 			[1, "leather_tunic"],
 			[1, "padded_leather"],
 			[1, "werewolf_hide_armor"]
-		]))
+		]));
 
 		items.equip(this.Const.World.Common.pickHelmet([
 			[1, "hood"],

@@ -3,7 +3,7 @@ this.legend_named_voulge <- this.inherit("scripts/items/weapons/named/named_weap
 	function create()
 	{
 		this.named_weapon.create();
-		this.m.Variants = [1,2]
+		this.m.Variants = [1,2];
 		this.m.Variant = this.m.Variants[this.Math.rand(0, this.m.Variants.len() -1)];
 		this.updateVariant();
 		this.m.ID = "weapon.legend_named_voulge";

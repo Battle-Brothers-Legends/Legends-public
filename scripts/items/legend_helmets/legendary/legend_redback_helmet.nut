@@ -5,7 +5,7 @@ this.legend_redback_helmet <- this.inherit("scripts/items/helmets/named/named_he
 		this.named_helmet.create();
 		this.m.ID = "armor.head.legend_redback_helmet";
 		this.m.Description = "A sturdy yet light helmet made from the carapace of a redback spider. Grants poison immunity and the ability to make webs";
-		this.m.Name = ""
+		this.m.Name = "";
 		this.m.NameList = [
 			"Redback carapace",
 			"Helm of the spider",

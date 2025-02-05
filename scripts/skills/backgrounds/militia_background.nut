@@ -36,7 +36,7 @@ this.militia_background <- this.inherit("scripts/skills/backgrounds/character_ba
 			Weapon = [
 				this.Const.Perks.SpearTree,
 				this.Const.Perks.SlingTree,
-				this.Const.Perks.ShieldTree,				
+				this.Const.Perks.ShieldTree,
 				this.Const.Perks.ThrowingTree
 			],
 			Defense = [
@@ -163,7 +163,7 @@ this.militia_background <- this.inherit("scripts/skills/backgrounds/character_ba
 			[1, "padded_surcoat"],
 			[1, "gambeson"],
 			[1, "linen_tunic"]
-		]))
+		]));
 
 		items.equip(this.Const.World.Common.pickHelmet([
 			[1, ""],

@@ -241,7 +241,7 @@ this.legends_mountains_fort <- this.inherit("scripts/entity/world/settlements/le
 			"cripple_background",
 			"hedge_knight_background",
 			"hedge_knight_background"
-		]]
+		]];
 
 		this.m.StablesLists = [[
 			"legend_donkey_background",
@@ -322,7 +322,7 @@ this.legends_mountains_fort <- this.inherit("scripts/entity/world/settlements/le
 				Clear = true,
 				Force = true
 			}]
-		]
+		];
 
 		switch (this.m.Size)
 		{

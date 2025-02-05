@@ -12,7 +12,7 @@ this.perk_legend_specialist_cult_hood <- this.inherit("scripts/skills/skill", {
 
 	function getCultistPieces(){
 		local item = this.getContainer().getActor().getItems().getItemAtSlot(this.Const.ItemSlot.Head);
-		local cultItems = []
+		local cultItems = [];
 		if (item != null)
 		{
 			if(item.isItemType(this.Const.Items.ItemType.Cultist)) {

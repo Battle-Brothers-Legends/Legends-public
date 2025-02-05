@@ -6,7 +6,7 @@ this.legend_vala_chant_fury_effect <- this.inherit("scripts/skills/effects/legen
 	{
 		this.legend_vala_chant.create();
 		this.m.ID = "effects.legend_vala_chant_fury_effect";
-		this.m.Description = "This character has been invigorated by the Vala\'s Chant of Fury!"
+		this.m.Description = "This character has been invigorated by the Vala\'s Chant of Fury!";
 		this.m.Range = 3;
 	}
 	function getWardenDamage()

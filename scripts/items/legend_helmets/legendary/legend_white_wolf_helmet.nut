@@ -5,7 +5,7 @@ this.legend_white_wolf_helmet <- this.inherit("scripts/items/helmets/named/named
 		this.named_helmet.create();
 		this.m.ID = "armor.head.legend_white_wolf";
 		this.m.Description = "A sturdy metal helmet with attached mail, adorned with the trophy of a white wolf head. Makes opponents flee.";
-		this.m.Name = ""
+		this.m.Name = "";
 		this.m.NameList = [
 			"Crown of the king of beasts",
 			"Helmet of the White Wolf",
@@ -27,7 +27,7 @@ this.legend_white_wolf_helmet <- this.inherit("scripts/items/helmets/named/named
 		this.m.StaminaModifier = -12;
 		this.randomizeValues();
 	}
-	
+
 	function getTooltip()
 	{
 		local result = this.named_helmet.getTooltip();

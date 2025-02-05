@@ -61,19 +61,19 @@ this.tactical_tournament <- this.inherit("scripts/mapgen/tactical_template", {
 			this.MapGen.get("tactical.tile.tundra3"),
 			this.MapGen.get("tactical.tile.tundra4"),
 			this.MapGen.get("tactical.tile.tundra5")
-		]
+		];
 
 		local Tile1 = tiles[this.Math.rand(0, tiles.len() - 1)];
 		local Tile2 = tiles[this.Math.rand(0, tiles.len() - 1)];
 		local Tile3 = tiles[this.Math.rand(0, tiles.len() - 1)];
 		local Tile4 = tiles[this.Math.rand(0, tiles.len() - 1)];
-		
+
 
 		this.logWarning("Grand Tournament Tile 1: " + Tile1.getName());
 		this.logWarning("Grand Tournament Tile 2: " + Tile2.getName());
 		this.logWarning("Grand Tournament Tile 3: " + Tile3.getName());
 		this.logWarning("Grand Tournament Tile 4: " + Tile4.getName());
-		
+
 		this.addRoads(_rect, _properties);
 		local templates = [	];
 		local candidate_patches = [
@@ -111,8 +111,8 @@ this.tactical_tournament <- this.inherit("scripts/mapgen/tactical_template", {
 		this.MapGen.get("tactical.patch.tundra_brushes"),
 		this.MapGen.get("tactical.patch.tundra_grass"),
 		this.MapGen.get("tactical.patch.tundra_stony"),
-		]
-		
+		];
+
 		local selected1 = candidate_patches[this.Math.rand(0, candidate_patches.len() - 1)];
 		local selected2 = candidate_patches[this.Math.rand(0, candidate_patches.len() - 1)];
 		local selected3 = candidate_patches[this.Math.rand(0, candidate_patches.len() - 1)];

@@ -21,7 +21,7 @@
 	"Do the job. Survive. Get paid.",
 
 	//General - non specific helpful advice
-	"You can hide Armor and Helmet layers by shift-clicking on the relevant layer."
+	"You can hide Armor and Helmet layers by shift-clicking on the relevant layer.",
 	"Shields can be destroyed using axes and some two-handed weapons.",
 	"Different types of shields can be better suited against melee or ranged attacks.",
 	"Bucklers and parry daggers are exceptional against small groups or single targets.",

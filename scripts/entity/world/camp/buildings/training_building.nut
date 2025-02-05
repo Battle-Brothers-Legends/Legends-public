@@ -90,7 +90,7 @@ this.training_building <- this.inherit("scripts/entity/world/camp/camp_building"
 		foreach( bro in mod.Modifiers )
 		{
 			++id;
-			local tooltip_text = "[color=" + this.Const.UI.Color.PositiveValue + "]" + bro[0] * 100.0 + "%[/color] " + bro[1] + " (" + bro[2] + ")"
+			local tooltip_text = "[color=" + this.Const.UI.Color.PositiveValue + "]" + bro[0] * 100.0 + "%[/color] " + bro[1] + " (" + bro[2] + ")";
 
 			if (bro[3])
 			{
@@ -182,7 +182,7 @@ this.training_building <- this.inherit("scripts/entity/world/camp/camp_building"
 				mod = mod + 0.1;
 			}
 
-			local max_reached = false
+			local max_reached = false;
 
 			if (bro.getSkills().hasSkill("trait.legend_intensive_training_trait"))
 			{
@@ -263,8 +263,8 @@ this.training_building <- this.inherit("scripts/entity/world/camp/camp_building"
 
 	function getInjury( bro )
 	{
-	
-		if (bro.getSkills().hasSkillOfType(this.Const.SkillType.TemporaryInjury) || bro.getSkills().hasSkillOfType(this.Const.SkillType.SemiInjury)) 
+
+		if (bro.getSkills().hasSkillOfType(this.Const.SkillType.TemporaryInjury) || bro.getSkills().hasSkillOfType(this.Const.SkillType.SemiInjury))
 		{
 			local injury = bro.addInjury(this.Const.Injury.Permanent);
 			this.m.Results.push({
@@ -566,13 +566,13 @@ this.training_building <- this.inherit("scripts/entity/world/camp/camp_building"
 			}
 
 			local r = this.Math.min(injuryMin, 4 * this.Math.pow(this.m.Camp.getCampTimeHours(), 0.5) - bro.getLevel());
-	
+
 			if (this.Math.rand(1, 100) < r)
 			{
 				local effect = this.new("scripts/skills/effects_world/exhausted_effect");
 				bro.getSkills().add(effect);
 			}
-		
+
 		}
 	}
 	function getTrainedAfter11( bro )

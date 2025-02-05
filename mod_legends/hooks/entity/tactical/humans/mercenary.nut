@@ -140,7 +140,7 @@
 			[1, "footman_armor"],
 			[1, "light_scale_armor"],
 			[1, "leather_scale_armor"]
-		]
+		];
 
 		local helm = [
 			[1, ""],
@@ -176,7 +176,7 @@
 			[1, "northern_mercenary_outfit_01"],
 			[1, "northern_mercenary_outfit_02"],
 			[1, "traze_northern_mercenary_outfit_00"],
-		]
+		];
 
 		foreach( item in this.Const.World.Common.pickOutfit(outfits, armor, helm) )
 		{

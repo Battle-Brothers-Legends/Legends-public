@@ -4,7 +4,7 @@
 	o.create = function ()
 	{
 		create();
-		this.m.Variants = [1,2]
+		this.m.Variants = [1,2];
 		this.m.ItemType = this.m.ItemType | this.Const.Items.ItemType.TwoHanded;
 	}
 

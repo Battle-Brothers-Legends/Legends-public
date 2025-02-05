@@ -119,7 +119,7 @@ this.pimp_background <- this.inherit("scripts/skills/backgrounds/character_backg
 		local items = this.getContainer().getActor().getItems();
 		items.equip(this.Const.World.Common.pickArmor([
 			[1, "noble_tunic"]
-		]))
+		]));
 		items.equip(this.Const.World.Common.pickHelmet([
 			[1, "feathered_hat"]
 		]));

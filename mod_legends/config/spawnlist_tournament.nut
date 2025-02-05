@@ -672,7 +672,7 @@ if (!("Spawn" in ::Const.World))
 							Type = this.Const.World.Spawn.Troops.BarbarianUnhold,
 							Cost = 50,
 							function Weight(scale) {
-								local c = 100 - (scale * 100)
+								local c = 100 - (scale * 100);
 								return this.Math.max(20, c);
 							}
 						},
@@ -680,7 +680,7 @@ if (!("Spawn" in ::Const.World))
 							Type = this.Const.World.Spawn.Troops.BarbarianUnholdFrost,
 							Cost = 70,
 							function Weight(scale) {
-								local c = 100 - ((1.0 - scale) * 100)
+								local c = 100 - ((1.0 - scale) * 100);
 								return this.Math.min(80, c);
 							}
 						}
@@ -846,7 +846,7 @@ if (!("Spawn" in ::Const.World))
 							MinR = 200,
 							Cost = 6,
 							function Weight(scale) {
-								local c = 100 - (scale * 100)
+								local c = 100 - (scale * 100);
 								return this.Math.max(0, c);
 							}
 						},
@@ -855,7 +855,7 @@ if (!("Spawn" in ::Const.World))
 							MinR = 400,
 							Cost = 24,
 							function Weight(scale) {
-								local c = 100 - ((1.0 - scale) * 100)
+								local c = 100 - ((1.0 - scale) * 100);
 								return this.Math.min(100, c);
 							}
 						}

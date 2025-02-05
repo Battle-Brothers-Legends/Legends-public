@@ -172,7 +172,7 @@ this.legend_white_direwolf <- this.inherit("scripts/entity/tactical/actor", {
 
 				for( local i = 0; i < n; i = ++i )
 				{
-	
+
 					local loot = this.new("scripts/items/misc/legend_white_wolf_pelt_item");
 					loot.drop(_tile);
 					local loot = this.new("scripts/items/loot/sabertooth_item");
@@ -185,12 +185,12 @@ this.legend_white_direwolf <- this.inherit("scripts/entity/tactical/actor", {
 					{
 					local loot = this.new("scripts/items/loot/sabertooth_item");
 					loot.drop(_tile);
-					}	
+					}
 					if (this.Math.rand(1, 100) <= 33)
 					{
 					local loot = this.new("scripts/items/loot/valuable_furs_item");
 					loot.drop(_tile);
-					}						
+					}
 					if (this.Math.rand(1, 100) <= 33)
 					{
 					local loot = this.new("scripts/items/supplies/strange_meat_item");
@@ -287,13 +287,13 @@ this.legend_white_direwolf <- this.inherit("scripts/entity/tactical/actor", {
 					dateToSkip = 250;
 					break;
 				case this.Const.Difficulty.Normal:
-					dateToSkip = 200
+					dateToSkip = 200;
 					break;
 				case this.Const.Difficulty.Hard:
-					dateToSkip = 150
+					dateToSkip = 150;
 					break;
 				case this.Const.Difficulty.Legendary:
-					dateToSkip = 100
+					dateToSkip = 100;
 					break;
 			}
 

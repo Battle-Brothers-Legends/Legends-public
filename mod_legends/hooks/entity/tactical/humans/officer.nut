@@ -50,7 +50,7 @@
 				[1, "oriental/turban_helmet"],
 				[1, "oriental/heavy_lamellar_helmet"],
 				[1, "oriental/southern_helmet_with_coif"]
-			]
+			];
 			this.m.Items.equip(this.Const.World.Common.pickHelmet(helmet));
 		}
 	}

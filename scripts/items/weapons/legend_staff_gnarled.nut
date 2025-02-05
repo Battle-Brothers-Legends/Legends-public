@@ -8,7 +8,7 @@ this.legend_staff_gnarled <- this.inherit("scripts/items/weapons/weapon", {
 		this.m.Description = "A twisted staff made from withered roots";
 		this.m.IconLarge = "weapons/melee/legend_staff_04.png";
 		this.m.Icon = "weapons/melee/legend_staff_04_70x70.png";
-		this.m.WeaponType = this.Const.Items.WeaponType.Staff | this.Const.Items.WeaponType.MagicStaff
+		this.m.WeaponType = this.Const.Items.WeaponType.Staff | this.Const.Items.WeaponType.MagicStaff;
 		this.m.SlotType = this.Const.ItemSlot.Mainhand;
 		this.m.BlockedSlotType = this.Const.ItemSlot.Offhand;
 		this.m.ItemType = this.Const.Items.ItemType.Weapon | this.Const.Items.ItemType.MeleeWeapon | this.Const.Items.ItemType.TwoHanded | this.Const.Items.ItemType.Defensive;

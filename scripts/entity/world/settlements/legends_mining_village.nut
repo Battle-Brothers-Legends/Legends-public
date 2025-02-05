@@ -103,7 +103,7 @@ this.legends_mining_village <- this.inherit("scripts/entity/world/settlements/le
 			"Schneefels",
 			"Weissenschacht",
 			"Ellengrube"
-		]]
+		]];
 		this.m.DraftLists = [[
 			"apprentice_background",
 			"beggar_background",
@@ -277,7 +277,7 @@ this.legends_mining_village <- this.inherit("scripts/entity/world/settlements/le
 				Clear = true,
 				Force = true
 			}]
-		]
+		];
 
 		switch (this.m.Size)
 		{

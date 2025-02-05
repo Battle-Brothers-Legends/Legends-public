@@ -49,8 +49,8 @@
 			"effects.stunned",
 			"effects.web",
 			"effects.withered"
-		]
-		
+		];
+
 		foreach(e in effects)
 		{
 			if (_targetEntity.getSkills().hasSkill(e)) return true;

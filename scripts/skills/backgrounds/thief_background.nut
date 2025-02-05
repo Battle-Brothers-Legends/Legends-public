@@ -177,7 +177,7 @@ this.thief_background <- this.inherit("scripts/skills/backgrounds/character_back
 			[1, "sackcloth"],
 			[1, "leather_tunic"],
 			[1, "linen_tunic"]
-		]))
+		]));
 
 		items.equip(this.Const.World.Common.pickHelmet([
 			[1, "hood"],

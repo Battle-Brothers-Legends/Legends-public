@@ -63,7 +63,7 @@ this.legend_named_warlock_skull <- this.inherit("scripts/items/legend_helmets/le
 
 	function onUpdateProperties( _properties )
 	{
-		this.legend_named_helmet_upgrade.onUpdateProperties( _properties )
+		this.legend_named_helmet_upgrade.onUpdateProperties( _properties );
 		_properties.IsAffectedByLosingHitpoints = false;
 	}
 

@@ -279,7 +279,7 @@ this.legends_forest_fort <- this.inherit("scripts/entity/world/settlements/legen
 				Clear = true,
 				Force = true
 			}]
-		]
+		];
 
 		switch (this.m.Size)
 		{

@@ -15,7 +15,7 @@ this.legend_white_wolf_item <- this.inherit("scripts/items/accessory/legend_acce
 			"sounds/enemies/wolf_idle_07.wav",
 			"sounds/enemies/wolf_idle_08.wav",
 			"sounds/enemies/wolf_idle_09.wav"
-		]
+		];
 		this.m.Variant = this.Math.rand(1, 4);
 		this.updateVariant();
 		this.m.ID = "accessory.legend_white_warwolf";

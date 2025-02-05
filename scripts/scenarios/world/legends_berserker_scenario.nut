@@ -195,22 +195,22 @@ this.legends_berserker_scenario <- this.inherit("scripts/scenarios/world/startin
 	function onUpdateHiringRoster( _roster )
 	{
 		// this.addBroToRoster(_roster, "wildwoman_background", 8)
-		this.addBroToRoster(_roster, "wildman_background", 10)
-		this.addBroToRoster(_roster, "barbarian_background", 7)
-		this.addBroToRoster(_roster, "legend_berserker_background", 9)
+		this.addBroToRoster(_roster, "wildman_background", 10);
+		this.addBroToRoster(_roster, "barbarian_background", 7);
+		this.addBroToRoster(_roster, "legend_berserker_background", 9);
 	}
 
 	function onGenerateBro(bro)
 	{
 		if (!bro.getBackground().isBackgroundType(this.Const.BackgroundType.Lowborn) && !bro.getBackground().isBackgroundType(this.Const.BackgroundType.Outlaw) && !bro.getBackground().isBackgroundType(this.Const.BackgroundType.Combat)) // Added this check for backgrounds like retired soldier
 			{
-				bro.m.HiringCost = this.Math.floor(bro.m.HiringCost * 1.25) //1.0 = default
+				bro.m.HiringCost = this.Math.floor(bro.m.HiringCost * 1.25); //1.0 = default
 				bro.getBaseProperties().DailyWageMult *= 1.25; //1.0 = default
 				bro.getSkills().update();
 			}
 		else if (bro.getBackground().isBackgroundType(this.Const.BackgroundType.Combat) || bro.getBackground().isBackgroundType(this.Const.BackgroundType.Outlaw))
 		{
-			bro.m.HiringCost = this.Math.floor(bro.m.HiringCost * 0.9) //1.0 = default
+			bro.m.HiringCost = this.Math.floor(bro.m.HiringCost * 0.9); //1.0 = default
 			bro.getBaseProperties().DailyWageMult *= 0.9; //1.0 = default
 			bro.getSkills().update();
 		}

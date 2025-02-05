@@ -68,8 +68,8 @@
 	{
 		if (_skill == this)
 		{
-			_properties.DamageTooltipMinMult *= 1.5
-			_properties.DamageTooltipMaxMult *= 1.5
+			_properties.DamageTooltipMinMult *= 1.5;
+			_properties.DamageTooltipMaxMult *= 1.5;
 		}
 	}
 

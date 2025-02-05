@@ -136,7 +136,7 @@ if (!("Perks" in ::Const))
 ::Const.Perks.setup <- function (_m, _perkDef) {
 	local def = ::Const.Perks.PerkDefObjects[_perkDef];
 	_m.ID = def.ID;
-	_m.Name = ::Const.Strings.PerkName[def.Const]
+	_m.Name = ::Const.Strings.PerkName[def.Const];
 	_m.Description = ::Const.Strings.PerkDescription[def.Const];
 	_m.Icon = def.Icon;
 	_m.IconDisabled = def.IconDisabled;

@@ -5,7 +5,7 @@ this.legend_skin_armor <- this.inherit("scripts/items/legend_armor/legend_named_
 		this.legend_named_armor.create();
 		this.m.ID = "legend_armor.body.legend_skin_armor";
 		this.m.Description = "This disgusting design is made by nailing metal pieces to layers of flesh taken from skin ghouls. It smells awful, is quite heavy, and feels as if it is healing itself on to your body.";
-		this.m.Name = "Skin Ghoul Armor"
+		this.m.Name = "Skin Ghoul Armor";
 		this.m.NameList = [
 			"Skin suit",
 			"Naked armor",

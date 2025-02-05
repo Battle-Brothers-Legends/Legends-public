@@ -27,7 +27,7 @@ this.legend_spawn_item <- this.inherit("scripts/items/item", {
 
 	function getTooltip()
 	{
-		local desc = this.getDescription() + " Requires [color=" + this.Const.UI.Color.NegativeValue + "]" + this.getMedicinePerDay() + "[/color] units of medicine per day to maintain."
+		local desc = this.getDescription() + " Requires [color=" + this.Const.UI.Color.NegativeValue + "]" + this.getMedicinePerDay() + "[/color] units of medicine per day to maintain.";
 		local result = [
 			{
 				id = 1,

@@ -40,7 +40,7 @@ this.trader_scenario <- this.inherit("scripts/scenarios/world/starting_scenario"
 		]);
 		bros[0].setPlaceInFormation(4);
 		bros[0].setVeteranPerks(2);
-		bros[0].getSkills().add(this.new("scripts/skills/traits/player_character_trait"));	
+		bros[0].getSkills().add(this.new("scripts/skills/traits/player_character_trait"));
 		bros[0].getFlags().set("IsPlayerCharacter", true);
 		bros[0].getSprite("socket").setBrush("bust_base_caravan");
 		bros[0].getSprite("miniboss").setBrush("bust_miniboss_trader");
@@ -204,7 +204,7 @@ this.trader_scenario <- this.inherit("scripts/scenarios/world/starting_scenario"
 	{
 		if (bro.getBackground().isBackgroundType(this.Const.BackgroundType.Combat))
 			{
-				bro.m.HiringCost = this.Math.floor(bro.m.HiringCost * 1.25)
+				bro.m.HiringCost = this.Math.floor(bro.m.HiringCost * 1.25);
 				bro.getBaseProperties().DailyWageMult *= 1.25;
 				bro.getSkills().update();
 				local r;
@@ -243,7 +243,7 @@ this.trader_scenario <- this.inherit("scripts/scenarios/world/starting_scenario"
 
 			if (bro.getBackground().getID() == "background.peddler" || bro.getBackground().getID() == "background.legend_donkey")
 			{
-				bro.m.HiringCost = this.Math.floor(bro.m.HiringCost * 0.75)
+				bro.m.HiringCost = this.Math.floor(bro.m.HiringCost * 0.75);
 				bro.getBaseProperties().DailyWageMult *= 1.25;
 				bro.getSkills().update();
 			}

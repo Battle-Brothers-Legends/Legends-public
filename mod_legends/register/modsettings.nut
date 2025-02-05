@@ -47,7 +47,7 @@ tooltip.addTitle("TooltipCharacter", "Tooltips - Character");
 tooltip.addElement(::MSU.Class.BooleanSetting("ShowCharacterBackgroundType", true, "Show Character Background Types", "Show a character's Background Types in Tooltips.\n\nUseful when playing Origins with additional gameplay mechanics based on Background Types"));
 tooltip.addDivider("TooltipDivider3");
 tooltip.addTitle("TooltipWorldMap", "Tooltips - World Map");
-tooltip.addElement(::MSU.Class.BooleanSetting("ExactEngageNumbers", false, "Exact engagement numbers", "Display exact engagement numbers."));	
+tooltip.addElement(::MSU.Class.BooleanSetting("ExactEngageNumbers", false, "Exact engagement numbers", "Display exact engagement numbers."));
 tooltip.addDivider("TooltipDivider4");
 tooltip.addTitle("TooltipUI", "UI");
 
@@ -73,7 +73,7 @@ local logging = ::Legends.Mod.ModSettings.addPage("Logging");
 foreach(f in ::Const.LegendMod.Debug.FlagDefs)
 {
 	local b = logging.addElement(::MSU.Class.BooleanSetting(f.ID, f.Value, f.Name, f.Description)); // Set the default MSU Debug logging flags based on configuration in ::Const.LegendMod.Debug.FlagDefs
-	b.Data.FlagID <- f.ID
+	b.Data.FlagID <- f.ID;
 	b.addBeforeChangeCallback(function(_value)
 		{
 			::Legends.Mod.Debug.setFlag(this.Data.FlagID, _value);

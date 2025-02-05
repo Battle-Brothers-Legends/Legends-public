@@ -208,7 +208,7 @@ this.poacher_background <- this.inherit("scripts/skills/backgrounds/character_ba
 			[1, "leather_tunic"],
 			[1, "leather_wraps"],
 			[1, "ragged_surcoat"]
-		]))
+		]));
 
 		items.equip(this.Const.World.Common.pickHelmet([
 			[1, "hood"]

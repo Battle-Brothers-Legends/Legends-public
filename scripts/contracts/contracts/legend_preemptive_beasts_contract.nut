@@ -921,7 +921,7 @@ this.legend_preemptive_beasts_contract <- this.inherit("scripts/contracts/contra
 			{
 				if (this.Flags.get("PeddlerPayLater"))
 				{
-					this.Text = "[img]gfx/ui/events/event_10.png[/img]{The poachers excitedly recount to each other the adventure they\'d had, happily handing over a bag of crowns to you before parting ways.}"
+					this.Text = "[img]gfx/ui/events/event_10.png[/img]{The poachers excitedly recount to each other the adventure they\'d had, happily handing over a bag of crowns to you before parting ways.}";
 					this.World.Assets.addMoney(this.Flags.get("Cut"));
 					this.List.push({
 						id = 10,
@@ -990,7 +990,7 @@ this.legend_preemptive_beasts_contract <- this.inherit("scripts/contracts/contra
 
 				if (this.Flags.get("PeddlerPayLater"))
 				{
-					this.Text = "[img]gfx/ui/events/event_10.png[/img]{" + format("The remaining %s %s over their share of the payment promised for the \"once-in-a-lifetime\" experience. For some, the experience did live up to its name.",::Const.LegendMod.Language.pluralize(poachers.len(),"poacher", "poachers"),::Const.LegendMod.Language.pluralize(poachers.len(),"hands", "hand")) + "}"
+					this.Text = "[img]gfx/ui/events/event_10.png[/img]{" + format("The remaining %s %s over their share of the payment promised for the \"once-in-a-lifetime\" experience. For some, the experience did live up to its name.",::Const.LegendMod.Language.pluralize(poachers.len(),"poacher", "poachers"),::Const.LegendMod.Language.pluralize(poachers.len(),"hands", "hand")) + "}";
 					this.World.Assets.addMoney(::Math.ceil(this.Flags.get("Cut") * 1.0 * poachers.len() / this.Flags.get("NumPoachers")));
 					this.List.push({
 						id = 10,

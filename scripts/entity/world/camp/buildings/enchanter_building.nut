@@ -385,7 +385,7 @@ this.enchanter_building <- this.inherit("scripts/entity/world/camp/camp_building
 			if (r.Points >= r.Blueprint.getCost())
 			{
 				r.Blueprint.enchant(this.getUpgraded());
-				this.m.ItemsCrafted.push(r.Blueprint)
+				this.m.ItemsCrafted.push(r.Blueprint);
 				this.m.Queue[i] = null;
 			}
 

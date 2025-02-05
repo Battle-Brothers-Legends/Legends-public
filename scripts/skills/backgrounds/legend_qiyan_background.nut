@@ -126,7 +126,7 @@ this.legend_qiyan_background <- this.inherit("scripts/skills/backgrounds/charact
 		local armor = this.Const.World.Common.pickArmor([
 			[1, "oriental/cloth_sash"]
 		]);
-		items.equip(armor)
+		items.equip(armor);
 		items.equip(this.Const.World.Common.pickHelmet([
 			[1, ""],
 			[1, "legend_headband_coin"],

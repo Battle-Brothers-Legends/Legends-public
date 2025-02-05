@@ -165,7 +165,7 @@
 						this.World.Assets.addMoralReputation(1);
 						return "G";
 					}
-				}]
+				}];
 				s.start <- function ( _event ) {
 					if (_event.m.Berserker != null)
 						this.Characters.push(_event.m.Berserker.getImagePath());

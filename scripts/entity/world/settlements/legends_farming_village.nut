@@ -244,9 +244,9 @@ this.legends_farming_village <- this.inherit("scripts/entity/world/settlements/l
 			case 1:
 			 	return 1;
 			case 2:
-				return 2
+				return 2;
 			case 3:
-				return 4
+				return 4;
 			default:
 				return 1;
 		}
@@ -259,9 +259,9 @@ this.legends_farming_village <- this.inherit("scripts/entity/world/settlements/l
 			case 1:
 			 	return 2;
 			case 2:
-				return 3
+				return 3;
 			case 3:
-				return 6
+				return 6;
 			default:
 				return 1;
 		}
@@ -274,9 +274,9 @@ this.legends_farming_village <- this.inherit("scripts/entity/world/settlements/l
 			case 1:
 			 	return 3;
 			case 2:
-				return 4
+				return 4;
 			case 3:
-				return 7
+				return 7;
 			default:
 				return 1;
 		}
@@ -343,7 +343,7 @@ this.legends_farming_village <- this.inherit("scripts/entity/world/settlements/l
 				Force = true
 			}]
 
-		]
+		];
 
 		switch (this.m.Size)
 		{

@@ -4,7 +4,7 @@
 	o.create = function ()
 	{
 		create();
-		this.m.Variants = [1,2,3]
+		this.m.Variants = [1,2,3];
 		this.m.Categories = "Throwing Weapon, Spear, One-Handed";
 		this.m.ItemType = this.m.ItemType | this.Const.Items.ItemType.OneHanded;
 	}

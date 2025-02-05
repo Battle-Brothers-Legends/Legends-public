@@ -133,7 +133,7 @@ this.vagabond_background <- this.inherit("scripts/skills/backgrounds/character_b
 			[1, "sackcloth"],
 			[1, "leather_wraps"],
 			[1, "leather_tunic"]
-		]))
+		]));
 
 		items.equip(this.Const.World.Common.pickHelmet([
 			[1, ""],

@@ -1393,7 +1393,7 @@
 			id = ++id;
 
 			local brothersLimit = 12;
-			local i = 0
+			local i = 0;
 			foreach( bro in data.Brothers )
 			{
 				ret.push({
@@ -4467,7 +4467,7 @@
 					type = "description",
 					text = "Sets this item to be crafted repeatedly as long as there are enough ingredients."
 				}
-			]
+			];
 			return ret;
 
 		case "healer.Supplies":

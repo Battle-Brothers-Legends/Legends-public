@@ -482,7 +482,7 @@
 	"Smento",
 	"Mohar",
 	"Abdamelek"
-]
+];
 
 ::Const.Strings.SatoManhunterVeteranTitles <- [
 	"the Blight",
@@ -500,7 +500,7 @@
 	"the Brute",
 	"the Silver Manacle",
 	"the Dog"
-]
+];
 
 ::Const.Strings.PeasantButcherNames <- [
 	"Frederick",
@@ -520,7 +520,8 @@
 	"Patrick",
 	"Cady",
 	"Chapman"
-]
+];
+
 ::Const.Strings.PeasantButcherTitles <- [
 	"The Psycho",
 	"The Thirteenth",
@@ -539,6 +540,6 @@
 	"The Prowler",
 	"The Pint-Sized Slasher",
 	"The Hash-Slinging Slasher"
-]
+];
 
-::Const.Strings.BanditRabbleNames <- [ "Poss" ]
+::Const.Strings.BanditRabbleNames <- [ "Poss" ];

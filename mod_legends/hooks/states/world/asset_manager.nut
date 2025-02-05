@@ -287,10 +287,10 @@
 		create();
 		for( local i = 0; i < this.Const.LegendMod.Formations.Count; i = ++i )
 		{
-			local name = "NULL"
+			local name = "NULL";
 			if (i == 0)
 			{
-				name = "Formation 1"
+				name = "Formation 1";
 			}
 			this.m.FormationNames.push(name);
 		}
@@ -690,11 +690,10 @@
 		}
 
 		// Adds Taro's Turn it in Mod
-		local excluded_contracts =
-		[
+		local excluded_contracts = [
 			"contract.patrol",
 			"contract.escort_envoy"
-		]
+		];
 		local activeContract = this.World.Contracts.getActiveContract();
 		if (activeContract && this.World.FactionManager.getFaction(activeContract.getFaction()).m.Type == this.Const.FactionType.NobleHouse && excluded_contracts.find(activeContract.m.Type) == null &&
 		(activeContract.getActiveState().ID == "Return" || (activeContract.m.Type == "contract.big_game_hunt" && activeContract.getActiveState().Flags.get("HeadsCollected") != 0)))

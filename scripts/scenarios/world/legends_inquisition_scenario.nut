@@ -7,7 +7,7 @@ this.legends_inquisition_scenario <- this.inherit("scripts/scenarios/world/start
 		this.m.Description = "[p=c][img]gfx/ui/events/event_40.png[/img][/p]There is a great evil in the world, the undead walk the earth and cultists hide in every town. The holy must purge the filth.\n\n[color=#bcad8c]Endless Dead:[/color] Begins with the Undead Crisis already underway, and it can repeat \n\n[color=#bcad8c]Righteous Cause:[/color] Can\'t recruit outlaw backgrounds but more holy backgrounds available to hire\n[color=#bcad8c]Penitence:[/color] Anyone you hire gains the Mind over Body perk.\n";
 		this.m.Difficulty = 2;
 		this.m.Order = 280;
-		this.m.IsFixedLook = true;	
+		this.m.IsFixedLook = true;
 		this.m.StartingRosterTier = this.Const.Roster.getTierForSize(6);
 		this.m.StartingBusinessReputation = 1100;
 	}
@@ -105,7 +105,7 @@ this.legends_inquisition_scenario <- this.inherit("scripts/scenarios/world/start
 				[1, "chain/legend_armor_mail_shirt"],
 				[1, "chain/legend_armor_mail_shirt_simple"],
 				[1, "chain/legend_armor_short_mail"]
-			]
+			];
 			local chain = this.Const.World.Common.pickLegendArmor(chains)
 			if (chain != null)
 			{
@@ -115,7 +115,7 @@ this.legends_inquisition_scenario <- this.inherit("scripts/scenarios/world/start
 			local plates = [
 				[1, "plate/legend_armor_leather_jacket"],
 				[1, "plate/legend_armor_leather_jacket_simple"]
-			]
+			];
 			local plate = this.Const.World.Common.pickLegendArmor(plates)
 			if (plate != null)
 			{
@@ -124,12 +124,12 @@ this.legends_inquisition_scenario <- this.inherit("scripts/scenarios/world/start
 			local tabards = [
 						[0, ""],
 						[1, "tabard/legend_common_tabard"]
-					]
+					];
 			local tabard = this.Const.World.Common.pickLegendArmor(tabards)
 			if (tabard != null && armor != null)
 			{
-				tabard.setVariant(113)
-				armor.setUpgrade(tabard)
+				tabard.setVariant(113);
+				armor.setUpgrade(tabard);
 			}
 			items.equip(armor);
 		}
@@ -141,12 +141,12 @@ this.legends_inquisition_scenario <- this.inherit("scripts/scenarios/world/start
 			local tabards = [
 					[0, ""],
 					[1, "tabard/legend_noble_tabard"]
-				]
+				];
 				local tabard = this.Const.World.Common.pickLegendArmor(tabards)
 				if (tabard != null && armor != null)
 				{
-					tabard.setVariant(102)
-					armor.setUpgrade(tabard)
+					tabard.setVariant(102);
+					armor.setUpgrade(tabard);
 				}
 		}
 
@@ -156,13 +156,13 @@ this.legends_inquisition_scenario <- this.inherit("scripts/scenarios/world/start
 		//this.World.Assets.getStash().add(this.new("scripts/items/accessory/legend_wolfsbane_necklace_item"));
 		this.World.Assets.getStash().add(this.new("scripts/items/tools/holy_water_item"));
 		this.World.Assets.getStash().add(this.new("scripts/items/weapons/legend_wooden_stake"));
-		this.World.Assets.getStash().add(this.new("scripts/items/weapons/legend_wooden_stake"))
+		this.World.Assets.getStash().add(this.new("scripts/items/weapons/legend_wooden_stake"));
 		this.World.Assets.getStash().add(this.new("scripts/items/weapons/legend_wooden_stake"));
 		this.World.Assets.getStash().add(this.new("scripts/items/weapons/legend_wooden_stake"));
 		this.World.Assets.getStash().add(this.new("scripts/items/weapons/legend_hand_crossbow"));
 		this.World.Assets.getStash().add(this.new("scripts/items/ammo/quiver_of_bolts"));
-		
-		//unleash the dogs of war 
+
+		//unleash the dogs of war
 		this.World.FactionManager.setGreaterEvilType(this.Const.World.GreaterEvilType.Undead);
 		this.World.FactionManager.setGreaterEvilPhase(this.Const.World.GreaterEvilPhase.Live);
 		this.World.FactionManager.addGreaterEvilStrength(this.Const.Factions.GreaterEvilStartStrength); // This constant is equal to 125, previously set to 500. Not sure if there was a particular reason for 500 so will need to double check.
@@ -276,13 +276,13 @@ this.legends_inquisition_scenario <- this.inherit("scripts/scenarios/world/start
 	{
 		if (bro.getBackground().isBackgroundType(this.Const.BackgroundType.Crusader))
 		{
-			bro.m.HiringCost = this.Math.floor(bro.m.HiringCost * 0.75) //1.0 = default
+			bro.m.HiringCost = this.Math.floor(bro.m.HiringCost * 0.75); //1.0 = default
 			bro.getBaseProperties().DailyWageMult *= 0.75; //1.0 = default
 			bro.getSkills().update();
 		}
 		else
 		{
-			bro.m.HiringCost = this.Math.floor(bro.m.HiringCost * 1.25) //1.0 = default
+			bro.m.HiringCost = this.Math.floor(bro.m.HiringCost * 1.25); //1.0 = default
 			bro.getBaseProperties().DailyWageMult *= 1.25; //1.0 = default
 			bro.getSkills().update();
 		}

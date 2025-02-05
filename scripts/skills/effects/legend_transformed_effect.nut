@@ -94,7 +94,7 @@ this.legend_transformed_effect <- this.inherit("scripts/skills/skill", {
 			actor.setFaction(this.Const.Faction.PlayerAnimals);
 			this.logDebug(this.getName() + " AI set to " + this.m.Agent2);
 			local agent = this.new("scripts/ai/tactical/agents/" + this.m.Agent2);
-			actor.setAIAgent(agent)
+			actor.setAIAgent(agent);
 			this.m.AgentID = agent.getID();
 		}
 		else
@@ -141,7 +141,7 @@ this.legend_transformed_effect <- this.inherit("scripts/skills/skill", {
 
 		if (!this.m.Container.hasSkill("perk.legend_control_instincts"))
 		{
-			item = items.getItemAtSlot(this.Const.ItemSlot.Mainhand)
+			item = items.getItemAtSlot(this.Const.ItemSlot.Mainhand);
 			if (item != null)
 			{
 				items.unequip(item);
@@ -151,7 +151,7 @@ this.legend_transformed_effect <- this.inherit("scripts/skills/skill", {
 
 		if (this.m.Container.hasSkill("perk.legend_master_anger"))
 		{
-			item = items.getItemAtSlot(this.Const.ItemSlot.Offhand)
+			item = items.getItemAtSlot(this.Const.ItemSlot.Offhand);
 			if (item != null)
 			{
 				items.unequip(item);

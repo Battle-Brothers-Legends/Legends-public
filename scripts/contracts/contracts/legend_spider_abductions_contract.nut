@@ -196,12 +196,12 @@ this.legend_spider_abductions_contract <- this.inherit("scripts/contracts/contra
 						::Tactical.Entities.spawnEntitiesAtCenter(eggs);
 
 						// Spawn additional ring of eggs / decorations between center and circle of enemies
-						local limit = ::Math.rand(20,30)
+						local limit = ::Math.rand(20,30);
 						local wc = ::MSU.Class.WeightedContainer([
 							[3,"Egg"],
 							[5,"CrushedEgg"],
 							[2,"BrokenWeb"],
-						])
+						]);
 						for( local i=0; i < limit; i++ )
 						{
 							local x = 0, y = 0;
@@ -511,7 +511,7 @@ this.legend_spider_abductions_contract <- this.inherit("scripts/contracts/contra
 					id = 10,
 					icon = "ui/icons/relations.png",
 					text = format("You rescued %s out of %s Abducted Townsfolk", ::Const.UI.getColorized(survivorCount, survivorCount == 0 ? ::Const.UI.Color.NegativeEventValue : ::Const.UI.Color.PositiveEventValue), ::Const.UI.getColorized(this.Flags.get("NumAbductees"), ::Const.UI.Color.PositiveEventValue))
-				})
+				});
 				// TODO: scale reward based on the number of survivors who made it back?
 				if (survivorCount == this.Flags.get("NumAbductees"))
 				{
@@ -606,7 +606,7 @@ this.legend_spider_abductions_contract <- this.inherit("scripts/contracts/contra
 			this.m.Home.getSprite("selection").Visible = false;
 
 			// Instead of calling getGuestRoster().clear(), only remove guest townsfolk for future compatibility with possible other guests
-			local survivors = []
+			local survivors = [];
 			foreach ( g in ::World.getGuestRoster().getAll())
 			{
 				if ( g.getFlags().get("IsSpiderAbductee") )

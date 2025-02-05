@@ -314,7 +314,7 @@ this.legends_steppe_village <- this.inherit("scripts/entity/world/settlements/le
 				Force = true
 			}]
 
-		]
+		];
 
 		switch (this.m.Size)
 		{

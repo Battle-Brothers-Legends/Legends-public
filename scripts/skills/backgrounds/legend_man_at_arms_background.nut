@@ -152,7 +152,7 @@ this.legend_man_at_arms_background <- this.inherit("scripts/skills/backgrounds/c
 			[3, "leather_lamellar"],
 			[3, "basic_mail_shirt"],
 			[4, "gambeson"]
-		]))
+		]));
 
 		items.equip(this.Const.World.Common.pickHelmet([
 			[4, ""],

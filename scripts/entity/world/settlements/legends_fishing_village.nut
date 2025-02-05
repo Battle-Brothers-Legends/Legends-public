@@ -347,7 +347,7 @@ this.legends_fishing_village <- this.inherit("scripts/entity/world/settlements/l
 				Clear = true,
 				Force = true
 			}]
-		]
+		];
 
 		switch (this.m.Size)
 		{

@@ -312,9 +312,9 @@ this.legends_coast_fort <- this.inherit("scripts/entity/world/settlements/legend
 			case 1:
 			 	return 2;
 			case 2:
-				return 3
+				return 3;
 			case 3:
-				return 5
+				return 5;
 			default:
 				return 1;
 		}
@@ -326,9 +326,9 @@ this.legends_coast_fort <- this.inherit("scripts/entity/world/settlements/legend
 			case 1:
 			 	return 4;
 			case 2:
-				return 5
+				return 5;
 			case 3:
-				return 7
+				return 7;
 			default:
 				return 1;
 		}
@@ -378,7 +378,7 @@ this.legends_coast_fort <- this.inherit("scripts/entity/world/settlements/legend
 				Clear = true,
 				Force = true
 			}]
-		]
+		];
 
 		switch (this.m.Size)
 		{

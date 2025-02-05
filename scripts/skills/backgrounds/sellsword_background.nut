@@ -245,7 +245,7 @@ this.sellsword_background <- this.inherit("scripts/skills/backgrounds/character_
 			[1, "worn_mail_shirt"],
 			[1, "leather_lamellar"],
 			[1, "mail_shirt"]
-		]))
+		]));
 
 		items.equip(this.Const.World.Common.pickHelmet([
 			[1, ""],

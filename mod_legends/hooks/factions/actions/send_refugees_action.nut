@@ -31,7 +31,7 @@
 				[1, "supplies/preserved_mead_item"],
 				[1, "supplies/smoked_ham_item"],
 				[1, "supplies/wine_item"]
-			]
+			];
 			for (local j = this.Math.rand(1,2); j != 0; j--)
 				party.addToInventory(this.Const.World.Common.pickItem(items));
 		}

@@ -79,7 +79,7 @@ local VanillaTree = [
 
 ::Const.Perks.BuildPerkTreeFromTemplate <- function (_custom)
 {
-	local tree = []
+	local tree = [];
 	local treeMap = {}
 
 	for( local row = 0; row < VanillaTree.len(); row = ++row )
@@ -236,7 +236,7 @@ local VanillaTree = [
 		{
 			_exclude.push(tt.ID);
 		}
-		local t = this.Const.Perks.WeaponTrees.getRandom(_exclude)
+		local t = this.Const.Perks.WeaponTrees.getRandom(_exclude);
 		//this.logInfo("Adding weapon perk tree " + t.ID);
 		_localMap.Weapon.push(t);
 
@@ -251,7 +251,7 @@ local VanillaTree = [
 		{
 			_exclude.push(tt.ID);
 		}
-		local t = this.Const.Perks.DefenseTrees.getRandom(_exclude)
+		local t = this.Const.Perks.DefenseTrees.getRandom(_exclude);
 		//this.logInfo("Adding Defense perk tree " + t.ID);
 		_localMap.Defense.push(t);
 	}

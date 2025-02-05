@@ -246,7 +246,7 @@ this.legends_snow_fort <- this.inherit("scripts/entity/world/settlements/legends
 			this.Const.World.TerrainType.LeaveForest
 		];
 		local items = [
-		]
+		];
 
 		switch (this.m.Size)
 		{

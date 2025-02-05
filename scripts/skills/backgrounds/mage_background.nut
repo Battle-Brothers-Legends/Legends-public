@@ -105,7 +105,7 @@ this.mage_background <- this.inherit("scripts/skills/backgrounds/character_backg
 		local items = this.getContainer().getActor().getItems();
 		items.equip(this.Const.World.Common.pickArmor([
 			[1, "wizard_robe"]
-		]))
+		]));
 
 		items.equip(this.Const.World.Common.pickHelmet([
 			[1, "wizard_hat"]

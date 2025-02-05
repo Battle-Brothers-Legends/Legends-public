@@ -106,7 +106,7 @@ this.legends_swamp_fort <- this.inherit("scripts/entity/world/settlements/legend
 			"Rohrburg",
 			"Marschburg",
 			"Schilfburg"
-		]]
+		]];
 		this.m.DraftLists = [[
 			"cultist_background",
 			"houndmaster_background",
@@ -315,7 +315,7 @@ this.legends_swamp_fort <- this.inherit("scripts/entity/world/settlements/legend
 				Clear = true,
 				Force = true
 			}]
-		]
+		];
 
 		switch (this.m.Size)
 		{

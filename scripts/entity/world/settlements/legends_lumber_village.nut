@@ -337,9 +337,7 @@ this.legends_lumber_village <- this.inherit("scripts/entity/world/settlements/le
 				Clear = true,
 				Force = true
 			}],
-
-
-		]
+		];
 
 		switch (this.m.Size)
 		{

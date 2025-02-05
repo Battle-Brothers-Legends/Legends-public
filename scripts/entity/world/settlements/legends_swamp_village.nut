@@ -215,7 +215,7 @@ this.legends_swamp_village <- this.inherit("scripts/entity/world/settlements/leg
 			"legend_inventor_background"
 		]];
 
-		this.m.StablesLists = [[],[],[]]
+		this.m.StablesLists = [[],[],[]];
 
 		if (this.Const.DLC.Unhold)
 		{
@@ -314,7 +314,7 @@ this.legends_swamp_village <- this.inherit("scripts/entity/world/settlements/leg
 				Clear = true,
 				Force = true
 			}]
-		]
+		];
 
 		switch (this.m.Size)
 		{

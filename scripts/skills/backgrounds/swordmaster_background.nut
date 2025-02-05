@@ -186,7 +186,7 @@ this.swordmaster_background <- this.inherit("scripts/skills/backgrounds/characte
 			[1, "leather_tunic"],
 			[1, "linen_tunic"],
 			[1, "padded_surcoat"]
-		]))
+		]));
 		items.equip(this.Const.World.Common.pickHelmet([
 			[67, ""],
 			[33, "greatsword_hat"]

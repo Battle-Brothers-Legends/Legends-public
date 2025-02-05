@@ -59,7 +59,7 @@
 		local v2 = 0;
 		foreach (a in this.Const.CharacterSprites.Helmets)
 		{
-			this.addSprite(a)
+			this.addSprite(a);
 			this.setSpriteOffset(a, this.createVec(v2, v));
 		}
 		local body_blood = this.addSprite("body_blood");

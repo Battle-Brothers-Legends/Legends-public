@@ -163,7 +163,7 @@ this.legend_peasant_armed_infected <- this.inherit("scripts/entity/tactical/huma
 				[1, "headscarf"],
 				[1, "straw_hat"],
 				[1, "feathered_hat"]
-			]
+			];
 			this.m.Items.equip(this.Const.World.Common.pickHelmet(helmet))
 		}
 	}

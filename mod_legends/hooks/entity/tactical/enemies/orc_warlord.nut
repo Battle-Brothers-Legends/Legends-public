@@ -212,13 +212,13 @@
 					dateToSkip = 200;
 					break;
 				case this.Const.Difficulty.Normal:
-					dateToSkip = 150
+					dateToSkip = 150;
 					break;
 				case this.Const.Difficulty.Hard:
-					dateToSkip = 100
+					dateToSkip = 100;
 					break;
 				case this.Const.Difficulty.Legendary:
-					dateToSkip = 50
+					dateToSkip = 50;
 					break;
 			}
 

@@ -147,7 +147,7 @@ this.miner_background <- this.inherit("scripts/skills/backgrounds/character_back
 
 		items.equip(this.Const.World.Common.pickArmor([
 			[1, "sackcloth"]
-		]))
+		]));
 
 		items.equip(this.Const.World.Common.pickHelmet([
 			[1, ""],
