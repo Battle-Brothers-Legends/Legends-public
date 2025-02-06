@@ -7,7 +7,7 @@ this.perk_legend_small_target <- this.inherit("scripts/skills/skill", {
 	function create()
 	{
 		::Const.Perks.setup(this.m, ::Legends.Perk.LegendSmallTarget);
-		this.m.Description = "Use your physique to minimize your hit profile."
+		this.m.Description = "Use your physique to minimize your hit profile.";
 		this.m.Type = this.Const.SkillType.Perk | this.Const.SkillType.StatusEffect;
 		this.m.Order = this.Const.SkillOrder.Perk;
 		this.m.IsActive = false;

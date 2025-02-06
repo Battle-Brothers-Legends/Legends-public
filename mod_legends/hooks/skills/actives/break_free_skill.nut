@@ -70,7 +70,7 @@
 		local actor = this.getContainer().getActor();
 		local skill = this.m.SkillBonus == null ? actor.getCurrentProperties().getMeleeSkill() : this.m.SkillBonus;
 		local toHit = this.Math.min(100, skill - 10 + this.m.ChanceBonus + (actor.getSkills().hasEffect(::Legends.Effect.GoblinShamanPotion) ? 100 : 0));
-		local isBigGhoul = "getSize" in actor && actor.getSize() >= 2
+		local isBigGhoul = "getSize" in actor && actor.getSize() >= 2;
 		if (actor.getCurrentProperties().IsSpecializedInNets || this.m.IsByNetSpecialist || actor.getSkills().hasPerk(::Legends.Perk.LegendEscapeArtist) || isBigGhoul)
 		{
 			toHit = this.Math.max(99, toHit);

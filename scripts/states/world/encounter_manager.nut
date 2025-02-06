@@ -56,7 +56,7 @@ this.encounter_manager <- {
     function processInput(_buttonID) {
         if (this.m.ActiveEvent != null) {
             if (this.m.ActiveEvent.processInput(_buttonID)) {
-                this.World.State.getEventScreen().show(this.m.ActiveEvent)
+                this.World.State.getEventScreen().show(this.m.ActiveEvent);
                 return false;
             } else {
                 this.m.ActiveEvent.clear();
@@ -67,7 +67,7 @@ this.encounter_manager <- {
         }
         if (this.m.ActiveCampEvent != null) {
             if (this.m.ActiveCampEvent.processInput(_buttonID)) {
-                this.World.State.getEventScreen().show(this.m.ActiveCampEvent)
+                this.World.State.getEventScreen().show(this.m.ActiveCampEvent);
                 return false;
             } else {
                 this.m.ActiveCampEvent.clear();

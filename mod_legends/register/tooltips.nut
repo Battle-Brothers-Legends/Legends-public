@@ -3,8 +3,8 @@
 // Setup custom tooltips to bind to UI elements
 ::Legends.getEncounterUIData <- function(_data) {
 	local encounterType = _data.encounterType;
-	local title = "Error"
-	local encounter = this.World.Encounters.getEncounter(_data.encounterType)
+	local title = "Error";
+	local encounter = this.World.Encounters.getEncounter(_data.encounterType);
 	if (encounter != null)
 		title = encounter.getName();
 	return [{

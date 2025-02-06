@@ -1,6 +1,6 @@
 ::mods_hookExactClass("skills/effects/staggered_effect", function(o) {
 
-	local create = o.create
+	local create = o.create;
 	o.create = function()
 	{
 		create();

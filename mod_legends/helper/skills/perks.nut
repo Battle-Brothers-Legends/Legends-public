@@ -16,7 +16,7 @@ if (!("Perks" in ::Legends))
 	if (::MSU.isKindOf(_target, "character_background"))
 		return _target.getContainer();
 	if (::MSU.isKindOf(_target, "item"))
-		return ::Legends.Perks.getContainer(_target.getContainer().getActor())
+		return ::Legends.Perks.getContainer(_target.getContainer().getActor());
 	::logError( "Unsupported _target class " + _onError);
 	throw "Unsupported _target class";
 }

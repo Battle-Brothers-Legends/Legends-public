@@ -24,7 +24,7 @@
 		}
 		else if (this.m.IsStaffBash)
 		{
-			this.m.Name = "Staff Bash"
+			this.m.Name = "Staff Bash";
 			this.m.Icon = "skills/staff_bash.png";
 			this.m.IconDisabled = "skills/staff_bash_bw.png";
 			this.m.MaxRange = 2;

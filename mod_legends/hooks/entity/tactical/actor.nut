@@ -191,7 +191,7 @@
 				otherActors.push(tile.getEntity());
 			}
 		}
-		local isAliedPtrs = []
+		local isAliedPtrs = [];
 		foreach(i, actor in otherActors) {
 			isAliedPtrs.push(actor.isAlliedWith);
 			actor.isAlliedWith = function(_other) {
