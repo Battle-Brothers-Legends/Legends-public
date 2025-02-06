@@ -6,17 +6,15 @@
 	VisibilityMult = 1.0,
 	VisionMult = 1.0,
 	Body = "figure_bandit_01",
-	MaxR = 1,
+	MinR = 145,
+	MaxR = 600,
 	Fixed = [
 		{
 			Type = this.Const.World.Spawn.Troops.BanditWarlord,
 			Weight = 100, //100 Weight guarentees this will be added
 			Cost = 1, //dictates cost taken from minR
 			Roll = true
-		}
-	],
-	MaxR = 12,
-	Fixed = [
+		},
 		{
 			Type = this.Const.World.Spawn.Troops.BanditLeader, //no. 1
 			Weight = 100,
@@ -48,8 +46,6 @@
 			//Roll = true
 		}
 	],
-	MinR = 145,
-	MaxR = 600,
 	Troops =
 	[
 		{
