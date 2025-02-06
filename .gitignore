@@ -53,6 +53,8 @@ unstaged_build_*.sh
 
 *.sublime-workspace
 *.sublime-project
+*.idea/
+*.iml
 
 .bbbuilder/
 brushes/
