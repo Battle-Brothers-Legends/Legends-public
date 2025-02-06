@@ -30,9 +30,14 @@ this.legends_assassin_scenario <- this.inherit("scripts/scenarios/world/starting
  		bro.getSprite("socket").setBrush("bust_base_assassin"); //custom base
 		bro.getSprite("miniboss").setBrush("bust_miniboss_assassin"); //custom bust for avatar only
 
-		this.World.Assets.getStash().add(this.new("scripts/items/loot/signet_ring_item"));
-		this.World.Assets.getStash().add(this.new("scripts/items/loot/jade_broche_item"));
-		this.World.Assets.getStash().add(this.new("scripts/items/accessory/cat_potion_item"));
+		local stash = this.World.Assets.getStash();
+		stash.removeByID("supplies.ground_grains");
+		stash.removeByID("supplies.ground_grains");
+		stash.add(this.new("scripts/items/supplies/rice_item"));
+		stash.add(this.new("scripts/items/supplies/dried_lamb_item"));
+		stash.add(this.new("scripts/items/loot/signet_ring_item"));
+		stash.add(this.new("scripts/items/loot/jade_broche_item"));
+		stash.add(this.new("scripts/items/accessory/cat_potion_item"));
 		this.World.Assets.m.Money = this.World.Assets.m.Money * 0.5;
 		this.World.Assets.m.Medicine = this.World.Assets.m.Medicine * 0.5;
 		this.World.Assets.m.Ammo = this.World.Assets.m.Ammo * 0.5;

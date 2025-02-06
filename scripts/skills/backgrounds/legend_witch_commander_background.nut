@@ -244,10 +244,5 @@ this.legend_witch_commander_background <- this.inherit("scripts/skills/backgroun
 			[1, "legend_seer_hat"]
 		]));
 		items.equip(this.new("scripts/items/weapons/legend_mystic_staff"));
-		local stash = this.World.Assets.getStash();
-		stash.removeByID("supplies.ground_grains");
-		stash.removeByID("supplies.ground_grains");
-		stash.add(this.new("scripts/items/supplies/black_marsh_stew_item"));
-		stash.add(this.new("scripts/items/supplies/medicine_item"));
 	}
 });

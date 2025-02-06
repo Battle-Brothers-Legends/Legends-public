@@ -158,10 +158,5 @@ this.legend_premonitionist_background <- this.inherit("scripts/skills/background
 			[1, "legend_seer_hat"],
 			[1, "magician_hat"]
 		]));
-
-		local stash = this.World.Assets.getStash()
-		// stash.removeByID("supplies.ground_grains");
-		// stash.removeByID("supplies.ground_grains");
-		// stash.add(this.new("scripts/items/supplies/black_marsh_stew_item"));
 	}
 });

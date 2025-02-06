@@ -149,13 +149,5 @@ this.legend_healer_background <- this.inherit("scripts/skills/backgrounds/charac
 		items.equip(this.Const.World.Common.pickHelmet([
 			[1, "noble_headgear"]
 		]));
-		local stash = this.World.Assets.getStash();
-		stash.removeByID("supplies.ground_grains");
-		stash.removeByID("supplies.ground_grains");
-		stash.add(this.new("scripts/items/supplies/medicine_item"));
-		stash.add(this.new("scripts/items/supplies/medicine_item"));
-		stash.add(this.new("scripts/items/supplies/dried_fruits_item"));
-		stash.add(this.new("scripts/items/tools/holy_water_item"));
-
 	}
 });

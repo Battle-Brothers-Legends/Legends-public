@@ -226,7 +226,5 @@ this.mage_legend_mage_commander_background <- this.inherit("scripts/skills/backg
 			]
 		]));
 		items.equip(this.new("scripts/items/weapons/legend_mystic_staff"));
-		local stash = this.World.Assets.getStash();
-		stash.add(this.new("scripts/items/supplies/medicine_item"));
 	}
 });

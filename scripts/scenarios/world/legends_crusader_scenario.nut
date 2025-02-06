@@ -36,10 +36,12 @@ this.legends_crusader_scenario <- this.inherit("scripts/scenarios/world/starting
 		this.World.Assets.addBusinessReputation(this.m.StartingBusinessReputation);
 		this.World.Assets.m.Ammo = 0;
 
-		// this.World.Assets.getStash().add(this.new("scripts/items/legend_armor/legend_gambeson"));
-		// this.World.Assets.getStash().add(this.new("scripts/items/legend_armor/chain/legend_armor_hauberk"));
-		// this.World.Assets.getStash().add(this.new("scripts/items/legend_armor/plate/legend_armor_plates"));
-		// this.World.Assets.getStash().add(this.new("scripts/items/legend_armor/tabard/legend_armor_tabard_10"));
+		local stash = this.World.Assets.getStash();
+		stash.removeByID("supplies.ground_grains");
+		stash.removeByID("supplies.ground_grains");
+		stash.add(this.new("scripts/items/supplies/armor_parts_item"));
+		stash.add(this.new("scripts/items/supplies/medicine_item"));
+		stash.add(this.new("scripts/items/supplies/cured_venison_item"));
 	}
 
 	function onSpawnPlayer() //spawn location
