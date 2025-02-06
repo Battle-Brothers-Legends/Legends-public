@@ -13,22 +13,6 @@ this.cripple_southern_background <- this.inherit("scripts/skills/backgrounds/cri
 		this.m.Names = this.Const.Strings.SouthernNames;
 	}
 
-	//Default Male
-	function setGender(_gender = -1)
-	{
-		if (_gender == -1) _gender = ::Legends.Mod.ModSettings.getSetting("GenderEquality").getValue() == "Disabled" ? 0 : ::Math.rand(0, 1);
-
-		if (_gender != 1) return;
-		this.m.Faces = this.Const.Faces.SouthernFemale;
-		this.m.Hairs = this.Const.Hair.SouthernFemale;
-		this.m.HairColors = this.Const.HairColors.Young;
-		this.m.Beards = null;
-		this.m.BeardChance = 0;
-		this.m.Bodies = this.Const.Bodies.SouthernFemaleSkinny;
-		this.addBackgroundType(this.Const.BackgroundType.Female);
-
-	}
-
 	function onBuildDescription()
 	{
 		if(this.isBackgroundType(this.Const.BackgroundType.Female))

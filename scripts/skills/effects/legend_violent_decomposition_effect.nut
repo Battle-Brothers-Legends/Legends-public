@@ -81,6 +81,13 @@ this.legend_violent_decomposition_effect <- this.inherit("scripts/skills/skill",
 				"sounds/enemies/dlc6/skull_bang_04.wav"
 			];
 		}
+
+		this.m.TurnsLeft = 1;
+
+		if (this.m.SoundOnUse.len() != 0)
+		{
+			this.Sound.play(this.m.SoundOnUse[this.Math.rand(0, this.m.SoundOnUse.len() - 1)], this.Const.Sound.Volume.RacialEffect * 1.25, this.getContainer().getActor().getPos());
+		}
 	}
 
 	function applyDamage()
@@ -101,9 +108,9 @@ this.legend_violent_decomposition_effect <- this.inherit("scripts/skills/skill",
 		{
 			mult *= data.TotalDamageMult;
 		}
-		
+
 		//this.spawnIcon("status_effect_78", actor.getTile());
-		
+
 		this.spawnEffectOnTile(ownTile);
 		for( local i = 5; i >= 0; i = --i )
 		{
@@ -127,16 +134,6 @@ this.legend_violent_decomposition_effect <- this.inherit("scripts/skills/skill",
 		}
 
 		actor.kill(null, null, this.Const.FatalityType.Suicide, false);
-	}
-
-	function onAdded()
-	{
-		this.m.TurnsLeft = 1;
-
-		if (this.m.SoundOnUse.len() != 0)
-		{
-			this.Sound.play(this.m.SoundOnUse[this.Math.rand(0, this.m.SoundOnUse.len() - 1)], this.Const.Sound.Volume.RacialEffect * 1.25, this.getContainer().getActor().getPos());
-		}
 	}
 
 	function onUpdate( _properties )

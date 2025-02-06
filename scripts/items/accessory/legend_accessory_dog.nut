@@ -139,11 +139,6 @@ this.legend_accessory_dog <- this.inherit("scripts/items/accessory/accessory", {
 		}
 	}
 
-	function onCombatFinished()
-	{
-		this.setEntity(null);
-	}
-
 	function onEquip()
 	{
 		this.accessory.onEquip();

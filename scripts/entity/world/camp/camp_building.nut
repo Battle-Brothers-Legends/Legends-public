@@ -314,11 +314,6 @@ this.camp_building <- {
 		return this.m.ID;
 	}
 
-	function getName()
-	{
-		return this.m.Name;
-	}
-
 	function getTitle()
 	{
 		return this.m.Name;

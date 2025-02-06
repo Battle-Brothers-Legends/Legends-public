@@ -18,6 +18,9 @@ this.sato_escaped_slaves_scenario <- this.inherit("scripts/scenarios/world/start
 	function onInit()
 	{
 		this.starting_scenario.onInit();
+		this.World.Assets.m.RelationDecayGoodMult += 0.15;
+		this.World.Assets.m.RelationDecayBadMult -= 0.15;
+		this.World.Events.addSpecialEvent("event.sato_find_slave_after_battle");
 	}
 
 	function onSpawnAssets()
@@ -242,7 +245,7 @@ this.sato_escaped_slaves_scenario <- this.inherit("scripts/scenarios/world/start
 		bros[4].getSkills().add(this.new("scripts/skills/traits/sato_brothers_in_chains_trait"));
 		local items = bros[4].getItems();
 		this.addRandomEquipment(items, true);
-		
+
 		this.World.Assets.getStash().add(this.new("scripts/items/supplies/rice_item"));
 		this.World.Assets.getStash().add(this.new("scripts/items/supplies/rice_item"));
 		this.World.Assets.m.Money = this.Math.max(this.World.Assets.m.Money - 600, 150);
@@ -493,13 +496,6 @@ this.sato_escaped_slaves_scenario <- this.inherit("scripts/scenarios/world/start
 				}
 			}
 		}
-	}
-
-	function onInit()
-	{
-		this.World.Assets.m.RelationDecayGoodMult += 0.15;
-		this.World.Assets.m.RelationDecayBadMult -= 0.15;
-		this.World.Events.addSpecialEvent("event.sato_find_slave_after_battle");
 	}
 
 });

@@ -47,11 +47,6 @@ this.starting_scenario <- {
 		return this.m.Order;
 	}
 
-	function isFixedLook()
-	{
-		return this.m.IsFixedLook;
-	}
-
 	function isDroppedAsLoot( _item )
 	{
 		local chanceIsLucky = 0;
@@ -88,11 +83,6 @@ this.starting_scenario <- {
 		}
 
 		return "difficulty_unknown";
-	}
-
-	function getOrder()
-	{
-		return this.m.Order;
 	}
 
 	function getStaticRelations()
