@@ -1,4 +1,4 @@
-this.perk_legend_bribe_skill <- this.inherit("scripts/skills/skill", {
+this.perk_legend_bribe <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{

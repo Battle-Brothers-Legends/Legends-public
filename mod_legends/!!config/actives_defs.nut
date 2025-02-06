@@ -1807,7 +1807,7 @@ activesDefs.push({
 });
 activesDefs.push({
 	ID = "actives.legend_magic_chain_lightning",
-	Script = "scripts/skills/actives/legend_magic_chain_lightning",
+	Script = "scripts/skills/actives/legend_magic_chain_lightning_skill",
 	Const = "LegendMagicChainLightning",
 	Name = "Chain Lightning",
 });

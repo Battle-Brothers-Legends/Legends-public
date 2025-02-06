@@ -1,4 +1,4 @@
-this.perk_legend_mastery_fist <- this.inherit("scripts/skills/skill", {
+this.perk_legend_mastery_unarmed <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{

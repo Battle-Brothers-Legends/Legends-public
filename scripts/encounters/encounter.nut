@@ -65,10 +65,6 @@ this.encounter <- {
     {
     }
 
-    function getActiveScreen() {
-        return this.m.ActiveScreen;
-    }
-
     function getScreen( _id )
     {
         if (typeof _id == "table" || typeof _id == "instance")

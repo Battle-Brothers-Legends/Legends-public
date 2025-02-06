@@ -1,5 +1,5 @@
 // TODO strings.nut
-this.perk_legend_magic_missile_mastery <- this.inherit("scripts/skills/skill", {
+this.perk_legend_mastery_magic_missile_mastery <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{

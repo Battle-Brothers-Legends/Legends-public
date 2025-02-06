@@ -1,5 +1,4 @@
-// TODO Edit strings, icon
-this.perk_mage_legend_magic_imbue <- this.inherit("scripts/skills/skill", {
+this.perk_legend_magic_imbue <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
