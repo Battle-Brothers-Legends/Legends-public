@@ -1059,8 +1059,8 @@ this.$name <- this.inherit("scripts/items/legend_armor/legend_armor", {
 		this.m.Sprite = "$brush" + "_" + variant;
 		this.m.SpriteDamaged = "$brush" + "_" + variant + "_damaged";
 		this.m.SpriteCorpse = "$brush" + "_" + variant + "_dead";
-		this.m.IconLarge ="$overlayLarge" + "_" + variant + ".png"
-		this.m.Icon = "$overlay" + "_" + variant + ".png"
+		this.m.IconLarge ="$overlayLarge" + "_" + variant + ".png";
+		this.m.Icon = "$overlay" + "_" + variant + ".png";
 	}
 });
 '''
@@ -1223,8 +1223,8 @@ this.$name <- this.inherit("scripts/items/legend_armor/legend_cloth_named", {
 		this.m.Sprite = "$brush" + "_" + variant;
 		this.m.SpriteDamaged = "$brush" + "_" + variant + "_damaged";
 		this.m.SpriteCorpse = "$brush" + "_" + variant + "_dead";
-		this.m.IconLarge ="$overlayLarge" + "_" + variant + ".png"
-		this.m.Icon = "$overlay" + "_" + variant + ".png"
+		this.m.IconLarge ="$overlayLarge" + "_" + variant + ".png";
+		this.m.Icon = "$overlay" + "_" + variant + ".png";
 	}
 
 	function randomizeValues()
