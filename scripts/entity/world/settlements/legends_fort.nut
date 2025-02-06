@@ -46,7 +46,7 @@ this.legends_fort <- this.inherit("scripts/entity/world/settlement", {
 
 	function getLighting()
 	{
-		local prefix = ""
+		local prefix = "";
 		if (::Legends.Mod.ModSettings.getSetting("WorldEconomy").getValue())
 		{
 			prefix ="legend_";
@@ -57,7 +57,7 @@ this.legends_fort <- this.inherit("scripts/entity/world/settlement", {
 
 	function getSpriteName()
 	{
-		local prefix = ""
+		local prefix = "";
 		if (::Legends.Mod.ModSettings.getSetting("WorldEconomy").getValue())
 		{
 			prefix ="legend_";

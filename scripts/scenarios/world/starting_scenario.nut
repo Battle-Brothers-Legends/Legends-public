@@ -47,11 +47,6 @@ this.starting_scenario <- {
 		return this.m.Order;
 	}
 
-	function isFixedLook()
-	{
-		return this.m.IsFixedLook;
-	}
-
 	function isDroppedAsLoot( _item )
 	{
 		local chanceIsLucky = 0;
@@ -88,11 +83,6 @@ this.starting_scenario <- {
 		}
 
 		return "difficulty_unknown";
-	}
-
-	function getOrder()
-	{
-		return this.m.Order;
 	}
 
 	function getStaticRelations()
@@ -253,7 +243,7 @@ this.starting_scenario <- {
 		local multiplier = _roster.getAll().len() < 8 ? 2 : 1; // Short little change to make these spawns less common in tiny villages
 
 		if (::Math.rand(0, _chance * multiplier) == 0) {
-			local bro = _roster.create("scripts/entity/tactical/player")
+			local bro = _roster.create("scripts/entity/tactical/player");
 			bro.setStartValuesEx([_background]);
 			//this.World.Assets.getOrigin().onGenerateBro(bro); will be called at the end of `updateRoster` in `settlement` anyway
 		}

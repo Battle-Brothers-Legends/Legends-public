@@ -119,7 +119,7 @@ this.legend_albedo_skill <- this.inherit("scripts/skills/skill", {
 			{
 				body.setArmor(this.Math.minf(maxBodyArmor, currentBodyArmor + missingBodyArmor))
 			}
-			local cost = (missingHeadArmor + missingBodyArmor) * -1.0
+			local cost = (missingHeadArmor + missingBodyArmor) * -1.0;
 			return;
 		}
 

@@ -5,7 +5,7 @@ this.therianthropic_potion_blueprint <- this.inherit("scripts/crafting/blueprint
 	{
 		this.blueprint.create();
 		this.m.ID = "blueprint.therianthropic_potion";
-		this.m.Type = this.Const.Items.ItemType.Usable
+		this.m.Type = this.Const.Items.ItemType.Usable;
 		this.m.PreviewCraftable = this.new("scripts/items/accessory/legend_therianthropy_potion_item");
 		this.m.Cost = 30;
 		local ingredients = [

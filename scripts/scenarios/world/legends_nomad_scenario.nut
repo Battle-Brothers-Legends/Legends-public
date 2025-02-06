@@ -223,12 +223,12 @@ this.legends_nomad_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 	{
 		if (bro.getBackground().getID() == "background.nomad" || bro.getBackground().getID() == "background.muladi" || bro.getBackground().getID() == "background.legend_bladedancer")
 		{
-			bro.m.HiringCost = this.Math.floor(bro.m.HiringCost * 0.75) //1.0 = default
+			bro.m.HiringCost = this.Math.floor(bro.m.HiringCost * 0.75); //1.0 = default
 			bro.getBaseProperties().DailyWageMult *= 0.75; //1.0 = default
 		}
 		else
 		{
-			bro.m.HiringCost = this.Math.floor(bro.m.HiringCost * 1.00)
+			bro.m.HiringCost = this.Math.floor(bro.m.HiringCost * 1.00);
 			bro.getBaseProperties().DailyWageMult *= 1.00;
 			bro.getSkills().update();
 		}

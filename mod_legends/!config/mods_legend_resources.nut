@@ -31,7 +31,7 @@
 		ArmorParts = 25,
 		Stash = 10
 	}
-]
+];
 
 ::Const.LegendMod.StartResources <- [
 	{
@@ -58,7 +58,7 @@
 		Medicine = 0,
 		ArmorParts = 0
 	}
-]
+];
 
 ::Const.LegendMod.ResourceModifiers <- {
 	Ammo = [13, 21, 34, 55, 89],

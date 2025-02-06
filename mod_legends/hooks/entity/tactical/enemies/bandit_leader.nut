@@ -125,7 +125,7 @@
 				[1, "reinforced_mail_hauberk"],
 				[1, "leather_scale_armor"],
 				[1, "light_scale_armor"]
-			]
+			];
 
 			local helmet = [
 				[1, "closed_mail_coif"],
@@ -137,11 +137,11 @@
 				[1, "flat_top_with_mail"],
 				[1, "padded_nasal_helmet"],
 				[1, "bascinet_with_mail"]
-			]
+			];
 
 			local outfits = [
 				[1, "red_bandit_leader_outfit_00"]
-			]
+			];
 
 			foreach( item in this.Const.World.Common.pickOutfit(outfits, armor, helmet) )
 			{

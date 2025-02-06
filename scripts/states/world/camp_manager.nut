@@ -123,7 +123,7 @@ this.camp_manager <- {
 
 	function getResults()
 	{
-		local biomeText = this.m.StartedWhileEscorting ? "while escorting" : ::Const.World.TerrainLocation[::World.State.getPlayer().getTile().Type]
+		local biomeText = this.m.StartedWhileEscorting ? "while escorting" : ::Const.World.TerrainLocation[::World.State.getPlayer().getTile().Type];
 		local L = [
 			{
 				id = 9000,

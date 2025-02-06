@@ -3,7 +3,7 @@ this.legend_transformed_rat_effect <- this.inherit("scripts/skills/effects/legen
 	},
 	function create()
 	{
-		this.legend_transformed_effect.create()
+		this.legend_transformed_effect.create();
 		this.m.ID = "effect.legend_transformed_rat";
 		this.m.Name = "Rat Form";
 		this.m.Description = "This character is currently a rat.";

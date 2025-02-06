@@ -39,7 +39,7 @@ this.legend_named_warlock_hood <- this.inherit("scripts/items/legend_helmets/leg
 
 	function onUpdateProperties( _properties )
 	{
-		this.legend_named_helmet_upgrade.onUpdateProperties( _properties )
+		this.legend_named_helmet_upgrade.onUpdateProperties( _properties );
 		_properties.Hitpoints += 10;
 	}
 

@@ -28,7 +28,7 @@ this.legend_spider_abductions_action <- this.inherit("scripts/factions/faction_a
 		}
 
 		// Check if there are enough forest tiles around the settlement
-		local types = [::Const.World.TerrainType.Forest, ::Const.World.TerrainType.LeaveForest, ::Const.World.TerrainType.AutumnForest]
+		local types = [::Const.World.TerrainType.Forest, ::Const.World.TerrainType.LeaveForest, ::Const.World.TerrainType.AutumnForest];
 		if (!(_faction.getSettlements()[0].getSurroundingTileTypeProportion(types, 10) >= 0.1 && _faction.getSettlements()[0].getSurroundingTileTypeCount(types, 10, 6) > 10))
 		{
 			return;

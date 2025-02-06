@@ -15,7 +15,7 @@
 		this.initSkills(skills);
 	}
 
-	function onCraft( _stash )
+	o.onCraft <- function ( _stash )
 	{
 		_stash.add(this.new("scripts/items/shields/special/legend_craftable_schrat_shield"));
 	}

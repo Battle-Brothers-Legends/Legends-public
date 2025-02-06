@@ -295,7 +295,7 @@ this.legends_solo_necro_scenario <- this.inherit("scripts/scenarios/world/starti
 	{
 		if (bro.getBackground().getID() == "background.graverobber" || bro.getBackground().getID() == "background.gravedigger" || bro.getBackground().getID() == "background.cultist")
 		{
-			bro.m.HiringCost = this.Math.floor(bro.m.HiringCost * 1.00) //1.0 = default
+			bro.m.HiringCost = this.Math.floor(bro.m.HiringCost * 1.00); //1.0 = default
 			bro.getBaseProperties().DailyWageMult *= 1.00; //1.0 = default
 			bro.getSkills().update();
 		}
@@ -305,7 +305,7 @@ this.legends_solo_necro_scenario <- this.inherit("scripts/scenarios/world/starti
 		}
 		else
 		{
-			bro.m.HiringCost = this.Math.floor(bro.m.HiringCost * 1.2) //1.0 = default
+			bro.m.HiringCost = this.Math.floor(bro.m.HiringCost * 1.2); //1.0 = default
 			bro.getBaseProperties().DailyWageMult *= 1.2; //1.0 = default
 			bro.getSkills().update();
 		}

@@ -24,7 +24,7 @@ this.legend_rune <- this.inherit("scripts/crafting/blueprint", {
 			{
 				Scripts = ["scripts/skills/backgrounds/legend_vala_background"]
 			}
-		]
+		];
 		this.initSkills(skills);
 	}
 
@@ -135,11 +135,11 @@ this.legend_rune <- this.inherit("scripts/crafting/blueprint", {
 
 				case 12:
 				rune = this.new("scripts/items/legend_helmets/runes/legend_rune_bravery");
-				break
+				break;
 
 				case 13:
 				rune = this.new("scripts/items/legend_helmets/runes/legend_rune_luck");
-				break
+				break;
 
 				case 21:
 				rune = this.new("scripts/items/legend_armor/runes/legend_rune_endurance");

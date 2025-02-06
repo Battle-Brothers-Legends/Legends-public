@@ -82,10 +82,10 @@ this.thief_southern_background <- this.inherit("scripts/skills/backgrounds/thief
 			[1, "sackcloth"],
 			[1, "oriental/cloth_sash"],
 			[1, "oriental/nomad_robe"]
-		]))
+		]));
 		items.equip(this.Const.World.Common.pickHelmet([
 			[1, "oriental/nomad_head_wrap"]
-		]))
+		]));
 		items.equip(this.new("scripts/items/helmets/oriental/nomad_head_wrap"));
 	}
 });

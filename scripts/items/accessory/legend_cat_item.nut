@@ -108,12 +108,6 @@ this.legend_cat_item <- this.inherit("scripts/items/accessory/accessory", {
 		this.setEntity(null);
 	}
 
-
-	function onCombatFinished()
-	{
-		this.setEntity(null);
-	}
-
 	function onSerialize( _out )
 	{
 		this.accessory.onSerialize(_out);

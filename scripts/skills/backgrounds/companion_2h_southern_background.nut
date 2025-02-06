@@ -70,7 +70,7 @@ this.companion_2h_southern_background <- this.inherit("scripts/skills/background
 			[1, "oriental/leather_head_wrap"],
 			[1, "oriental/leather_head_wrap"],
 			[1, "oriental/southern_head_wrap", this.Math.rand(0, 1) == 1 ? 12 : 8]
-		]) 
+		]);
 		items.equip(helm);
 	}
 });

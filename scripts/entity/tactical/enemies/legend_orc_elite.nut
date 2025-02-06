@@ -203,8 +203,8 @@ this.legend_orc_elite <- this.inherit("scripts/entity/tactical/actor", {
 	function onFactionChanged()
 	{
 		this.actor.onFactionChanged();
-		local flip = this.isAlliedWithPlayer()
-		flip = !flip
+		local flip = this.isAlliedWithPlayer();
+		flip = !flip;
 
 		foreach (a in this.Const.CharacterSprites.Helmets)
 		{
@@ -294,13 +294,13 @@ this.legend_orc_elite <- this.inherit("scripts/entity/tactical/actor", {
 					dateToSkip = 250;
 					break;
 				case this.Const.Difficulty.Normal:
-					dateToSkip = 200
+					dateToSkip = 200;
 					break;
 				case this.Const.Difficulty.Hard:
-					dateToSkip = 150
+					dateToSkip = 150;
 					break;
 				case this.Const.Difficulty.Legendary:
-					dateToSkip = 100
+					dateToSkip = 100;
 					break;
 			}
 
@@ -382,7 +382,7 @@ this.legend_orc_elite <- this.inherit("scripts/entity/tactical/actor", {
 			this.m.Items.equip(item);
 			local item = this.Const.World.Common.pickHelmet([
 				[1, "greenskins/orc_elite_heavy_helmet"]
-			])
+			]);
 			if (item != null)
 			{
 				this.m.Items.equip(item);

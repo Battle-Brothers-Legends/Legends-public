@@ -34,7 +34,7 @@
 			});
 		}
 		local dmg = this.getContainer().getActor().getCurrentProperties().IsSpecializedInPolearms ? 10 : 5;
-		ret.push({
+		tooltip.push({
 			id = 8,
 			type = "text",
 			icon = "ui/icons/special.png",

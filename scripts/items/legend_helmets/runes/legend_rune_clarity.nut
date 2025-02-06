@@ -47,7 +47,7 @@ this.legend_rune_clarity <- this.inherit("scripts/items/legend_helmets/legend_he
 	function onUpdateProperties( _properties )
 	{
 		this.legend_helmet_upgrade.onUpdateProperties(_properties);
-		_properties.Vision += this.m.RuneBonus1
+		_properties.Vision += this.m.RuneBonus1;
 		_properties.XPGainMult *=  (1.0 + ((this.m.RuneBonus2 * 1.0) / 100.0));
 
 	}

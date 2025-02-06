@@ -153,13 +153,13 @@ this.legends_seer_scenario <- this.inherit("scripts/scenarios/world/starting_sce
 	{
 		if (bro.getBackground().isBackgroundType(this.Const.BackgroundType.Educated) || bro.getSkills().hasTrait(::Legends.Trait.Bright))
 		{
-			bro.m.HiringCost = this.Math.floor(bro.m.HiringCost * 0.9) //1.0 = default
+			bro.m.HiringCost = this.Math.floor(bro.m.HiringCost * 0.9); //1.0 = default
 			bro.getBaseProperties().DailyWageMult *= 0.9; //1.0 = default
 			bro.getSkills().update();
 		}
 		else if (!bro.getBackground().isBackgroundType(this.Const.BackgroundType.Educated) || bro.getSkills().hasTrait(::Legends.Trait.Dumb))
 		{
-			bro.m.HiringCost = this.Math.floor(bro.m.HiringCost * 1.1) //1.0 = default
+			bro.m.HiringCost = this.Math.floor(bro.m.HiringCost * 1.1); //1.0 = default
 			bro.getBaseProperties().DailyWageMult *= 1.1; //1.0 = default
 			bro.getSkills().update();
 		}

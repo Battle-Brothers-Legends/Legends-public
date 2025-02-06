@@ -164,7 +164,7 @@ this.retired_soldier_background <- this.inherit("scripts/skills/backgrounds/char
 			[1, "padded_leather"],
 			[1, "basic_mail_shirt"],
 			[1, "worn_mail_shirt"]
-		]))
+		]));
 
 		items.equip(this.Const.World.Common.pickHelmet([
 			[2, ""],

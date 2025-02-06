@@ -8,7 +8,7 @@ this.painter_building <- this.inherit("scripts/entity/world/camp/camp_building",
 		this.m.Name = "Painting Tent";
 		this.m.Description = "Here you can repaint your armor.";
 		this.m.InCommanderTent = false;
-		this.m.TerrainLabel = "00"
+		this.m.TerrainLabel = "00";
 		this.m.Sounds = [
 			{
 				File = "ambience/camp/camp_scrap_01.wav",

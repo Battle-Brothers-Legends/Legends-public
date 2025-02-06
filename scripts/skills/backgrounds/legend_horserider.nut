@@ -20,7 +20,7 @@ this.legend_horserider <- this.inherit("scripts/skills/backgrounds/character_bac
 		this.m.Faces = this.Const.Faces.AllWhiteMale;
 		this.m.Hairs = this.Const.Hair.None;
 		this.m.HairColors = this.Const.HairColors.None;
-		this.m.Beards = null
+		this.m.Beards = null;
 
 		this.m.BackgroundType = this.Const.BackgroundType.Untalented | this.Const.BackgroundType.Stabled;
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Dreaded;
@@ -91,7 +91,7 @@ this.legend_horserider <- this.inherit("scripts/skills/backgrounds/character_bac
 			[
 				this.Const.Perks.PerkDefs.Fearsome,
 				this.Const.Perks.PerkDefs.Stalwart,
-				this.Const.Perks.PerkDefs.LegendSkillfulStacking
+				this.Const.Perks.PerkDefs.LegendSkillfulStacking,
 				this.Const.Perks.PerkDefs.LegendAmmoBundles,
 				this.Const.Perks.PerkDefs.LegendMedIngredients,
 				this.Const.Perks.PerkDefs.LegendToolsSpares
@@ -174,14 +174,14 @@ this.legend_horserider <- this.inherit("scripts/skills/backgrounds/character_bac
 			"helmet",
 			"helmet_damage",
 			"body_blood"
-		]
+		];
 		foreach(s in Sprites)
 		{
 			if (!rider.hasSprite(s))
 			{
 				continue
 			}
-			local brush = rider.getSprite(s).getBrush()
+			local brush = rider.getSprite(s).getBrush();
 			if (brush == null)
 			{
 				continue
@@ -199,7 +199,7 @@ this.legend_horserider <- this.inherit("scripts/skills/backgrounds/character_bac
 			actor.setSpriteOffset(s, offset);
 		}
 
-		offset = this.createVec(10,0)
+		offset = this.createVec(10,0);
 		local variant = this.Math.rand(0, 7);
 		local horse = actor.addSprite("horse_body");
 		horse.setBrush(actor.getHorse().getSprite("body").getBrush().Name);
@@ -208,7 +208,7 @@ this.legend_horserider <- this.inherit("scripts/skills/backgrounds/character_bac
 		local horse_head = actor.addSprite("horse_head");
 		horse.setBrush(actor.getHorse().getSprite("head").getBrush().Name);
 		local horse_injury = actor.addSprite("injury_horse_body");
-		horse.setBrush(actor.getHorse().getSprite("head").getBrush().Name)
+		horse.setBrush(actor.getHorse().getSprite("head").getBrush().Name);
 		local offset = this.createVec(10, 0);
 		actor.setSpriteOffset("horse_body", offset);
 		actor.setSpriteOffset("horse_head", offset);

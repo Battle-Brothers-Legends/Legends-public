@@ -4,12 +4,12 @@ this.legend_prosthetic_hand_blueprint <- this.inherit("scripts/crafting/blueprin
 	{
 		this.blueprint.create();
 		this.m.ID = "blueprint.legend_prosthetic_hand";
-		this.m.Type = this.Const.Items.ItemType.Usable
+		this.m.Type = this.Const.Items.ItemType.Usable;
 		this.m.PreviewCraftable = this.new("scripts/items/misc/legend_prosthetic_hand_item");
 		this.m.Cost = 50;
 		local ingredients = [
 			{
-				Script = "scripts/items/trade/legend_wax_item",
+				Script = "scripts/items/trade/quality_wood_item",
 				Num = 1
 			},
 			{

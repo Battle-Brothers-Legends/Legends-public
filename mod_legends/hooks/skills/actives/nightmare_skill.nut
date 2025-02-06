@@ -10,7 +10,7 @@
 	o.getDamage = function ( _actor )
 	{
 		if (_actor == null)
-			return
+			return;
 		return this.Math.max(5, 25 - this.Math.floor(_actor.getCurrentProperties().getBravery() * 0.25));
 	}
 });

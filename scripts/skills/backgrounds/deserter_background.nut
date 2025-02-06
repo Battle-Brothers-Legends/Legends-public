@@ -59,7 +59,7 @@ this.deserter_background <- this.inherit("scripts/skills/backgrounds/character_b
 				this.Const.Perks.ShieldTree,
 				this.Const.Perks.CrossbowTree
 			],
-			Defense = [	
+			Defense = [
 				this.Const.Perks.HeavyArmorTree,
 			],
 			Traits = [
@@ -97,7 +97,7 @@ this.deserter_background <- this.inherit("scripts/skills/backgrounds/character_b
 
 	function getTooltip()
 	{
-		local ret = this.character_background.getTooltip()
+		local ret = this.character_background.getTooltip();
 		ret.push(
 			{
 				id = 16,
@@ -105,8 +105,8 @@ this.deserter_background <- this.inherit("scripts/skills/backgrounds/character_b
 				icon = "ui/icons/special.png",
 				text = "Is always content with being in reserve"
 			}
-		)
-		return ret
+		);
+		return ret;
 	}
 
 	function onBuildDescription()

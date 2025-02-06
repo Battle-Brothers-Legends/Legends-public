@@ -8,10 +8,10 @@
 		foreach (s in this.m.Screens) {
 			if (s.ID == "A") {
 				local getResult = s.Options[0].getResult;
-				s.Options[0].getResult <- function () {
+				s.Options[0].getResult <- function (_event) {
 					if (this.World.Assets.getOrigin().getID() == "scenario.legend_risen_legion")
 						return "E";
-					return getResult()
+					return getResult(_event)
 				}
 			}
 		}

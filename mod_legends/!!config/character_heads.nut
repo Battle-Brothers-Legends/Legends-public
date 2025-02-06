@@ -203,7 +203,7 @@
 	"bust_head_southern_06",
 	"bust_head_southern_07",
 	"bust_head_southern_08"
-]
+];
 
 ::Const.Faces.SouthernFemale <- [
 	"bust_head_southern_female_01",
@@ -219,7 +219,7 @@
 	"bust_head_southern_female_11",
 	"bust_head_southern_female_12",
 	"bust_head_southern_female_13"
-]
+];
 
 ::Const.Faces.Donkey <- [
 	"bust_head_donkey_01"
@@ -277,7 +277,7 @@
 	"bust_head_southern_female_07",
 	"bust_head_southern_female_08",
 	"bust_head_southern_female_09"
-]
+];
 
 ::Const.Faces.NecromancerMale <- [
 	"bust_head_necro_01",

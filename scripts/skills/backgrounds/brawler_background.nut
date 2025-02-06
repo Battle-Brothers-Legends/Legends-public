@@ -69,7 +69,7 @@ this.brawler_background <- this.inherit("scripts/skills/backgrounds/character_ba
 
 	function getTooltip()
 	{
-		local ret = this.character_background.getTooltip()
+		local ret = this.character_background.getTooltip();
 		ret.push(
 			{
 				id = 12,
@@ -77,8 +77,8 @@ this.brawler_background <- this.inherit("scripts/skills/backgrounds/character_ba
 				icon = "ui/icons/regular_damage.png",
 				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+25%[/color] Damage when unarmed"
 			}
-		)
-		return ret
+		);
+		return ret;
 	}
 
 	function onBuildDescription()

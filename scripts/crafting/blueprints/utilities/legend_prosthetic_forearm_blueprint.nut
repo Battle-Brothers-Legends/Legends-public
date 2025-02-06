@@ -4,7 +4,7 @@ this.legend_prosthetic_forearm_blueprint <- this.inherit("scripts/crafting/bluep
 	{
 		this.blueprint.create();
 		this.m.ID = "blueprint.legend_prosthetic_forearm";
-		this.m.Type = this.Const.Items.ItemType.Usable
+		this.m.Type = this.Const.Items.ItemType.Usable;
 		this.m.PreviewCraftable = this.new("scripts/items/misc/legend_prosthetic_forearm_item");
 		this.m.Cost = 50;
 		local ingredients = [

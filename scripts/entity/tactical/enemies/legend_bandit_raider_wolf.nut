@@ -105,7 +105,7 @@ this.legend_bandit_raider_wolf <- this.inherit("scripts/entity/tactical/enemies/
 			[20, "patched_mail_shirt"],
 			[20, "leather_lamellar"],
 			[20, "basic_mail_shirt"]
-		])
+		]);
 		item.setUpgrade(this.new("scripts/items/legend_armor/armor_upgrades/legend_direwolf_pelt_upgrade"));
 		this.m.Items.equip(item);
 
@@ -117,7 +117,7 @@ this.legend_bandit_raider_wolf <- this.inherit("scripts/entity/tactical/enemies/
 				[1, "rusty_mail_coif"],
 				[1, "headscarf"],
 				[1, "nasal_helmet_with_rusty_mail"]
-			])
+			]);
 			if (item != null)
 			{
 				this.m.Items.equip(item);

@@ -12,13 +12,13 @@ this.legend_vermesthropy_injury <- this.inherit("scripts/skills/injury_permanent
 
 	function getTooltip()
 	{
-		local ret = this.legend_infected_injury.getTooltip()
+		local ret = this.legend_infected_injury.getTooltip();
 		ret.push({
 			id = 16,
 			type = "text",
 			icon = "ui/icons/special.png",
 			text = "When transformed you will lose control of them, they will drop all their items and turn into a rat, with a poisonous Bite and Claws. They will gain 2 action points, and they will gain 25 melee defense while retreating, but their resolve will halve."
-		})
+		});
 		return ret;
 	}
 

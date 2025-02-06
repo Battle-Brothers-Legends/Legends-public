@@ -17,7 +17,7 @@
 			if (ally.getMoraleState() != this.Const.MoraleState.Ignore && ally.getMoraleState() != this.Const.MoraleState.Confident)
 			{
 				local resolve_ally = ally.getCurrentProperties().getBravery();
-				local waverchance = (200 - resolve) * 0.01
+				local waverchance = (200 - resolve) * 0.01;
 				local r = this.Math.rand(1, resolve);
 				if (r <= waverchance)
 				{
@@ -28,7 +28,7 @@
 				{
 					ally.setMoraleState(this.Const.MoraleState.Confident);
 					this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(ally) + " is confident due to an inspiring speech");
-				}				
+				}
 				else
 				{
 				this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(ally) + " was not paying attention to a speech");
@@ -37,7 +37,7 @@
 			}
 		}
 	}
-	
+
 	o.onUpdate <- function( _properties )
 	{
 		local actor = this.getContainer().getActor();

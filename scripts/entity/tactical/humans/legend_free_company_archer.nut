@@ -62,8 +62,6 @@ this.legend_free_company_archer <- this.inherit("scripts/entity/tactical/legend_
 		this.m.Items.equip(this.new("scripts/items/ammo/quiver_of_arrows"));
 		this.m.Items.addToBag(this.new("scripts/items/weapons/knife"));
 
-		this.m.Items.equip
-
 		this.legend_free_company_abstract.assignRandomEquipment();
 	}
 

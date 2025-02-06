@@ -212,13 +212,13 @@ this.manhunters_scenario <- this.inherit("scripts/scenarios/world/starting_scena
 	{
 		if (bro.getBackground().getID() == "slave_background")
 		{
-			bro.m.HiringCost = this.Math.floor(bro.m.HiringCost * 0.5) //1.0 = default
+			bro.m.HiringCost = this.Math.floor(bro.m.HiringCost * 0.5); //1.0 = default
 			bro.getBaseProperties().DailyWageMult *= 1.0; //1.0 = default (costs nothing)
 			bro.getSkills().update();
 		}
 		else
 		{
-			bro.m.HiringCost = this.Math.floor(bro.m.HiringCost * 1.0)
+			bro.m.HiringCost = this.Math.floor(bro.m.HiringCost * 1.0);
 			bro.getBaseProperties().DailyWageMult *= 1.0;
 			bro.getSkills().update();
 		}

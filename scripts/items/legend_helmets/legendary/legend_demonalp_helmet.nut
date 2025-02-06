@@ -5,7 +5,7 @@ this.legend_demonalp_helmet <- this.inherit("scripts/items/helmets/named/named_h
 		this.named_helmet.create();
 		this.m.ID = "armor.head.legend_demonalp_helmet";
 		this.m.Description = "A helmet made from the face of a demon, grants the ability to horrify";
-		this.m.Name = ""
+		this.m.Name = "";
 		this.m.NameList = [
 			"Nightmare visage",
 			"Helm of the demon",
@@ -46,6 +46,6 @@ this.legend_demonalp_helmet <- this.inherit("scripts/items/helmets/named/named_h
 		this.named_helmet.onEquip();
 		::Legends.Actives.grant(this, ::Legends.Active.LegendHorrificScream);
 	}
-	
+
 });
 

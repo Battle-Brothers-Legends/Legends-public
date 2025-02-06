@@ -41,7 +41,7 @@
 		Description = "Logs related to World Economy activity",
 		Value = true
 	}
-]
+];
 
 // Apply the configuration defined in ::Const.LegendMod.Debug.FlagDefs
 foreach (f in ::Const.LegendMod.Debug.FlagDefs)
@@ -49,7 +49,7 @@ foreach (f in ::Const.LegendMod.Debug.FlagDefs)
 	::Legends.Mod.Debug.setFlag(f.ID,f.Value);
 }
 
-/* 
+/*
 NOTE: Saved MSU Settings appear to deserialize towards the end of the game's deserialization process.
 This results in the following quirky behavior:
 - Given faction.nut prints logs tagged with "contractCategories" in addContract()
@@ -57,10 +57,10 @@ This results in the following quirky behavior:
 - Given an in-progress game was saved with MSU Setting the debug flag for "contractCategories" to false
 - Given this script sets Value = true for ID = "contractCategories" in ::Const.LegendMod.Debug.FlagDefs
 - When we first load Battle Brothers and load the in-progress save:
-- Then addContract() will print the logs (meaning the flag "contractCategories"=true at this point) even though the save had the flag set to false 
+- Then addContract() will print the logs (meaning the flag "contractCategories"=true at this point) even though the save had the flag set to false
 - Then, at a later stage of deserialization, MSU Settings will deserialize
 - Then, after MSU Settings have been deserialized, the flag "contractCategories"=false, and no more logging for addContract() will occur
-- Then, if we load the same save again, addContract() will not print logs, because now flag "contractCategories"=false 
+- Then, if we load the same save again, addContract() will not print logs, because now flag "contractCategories"=false
   (because of the MSU Settings deserialization the first time we loaded the save)
 
 This means that no matter what the player has configured for the debug flags in MSU Settings,
@@ -85,7 +85,7 @@ To see how the value configured in this script might be contrasted against the v
 */
 
 ::Const.LegendMod.Debug.Utils <- {
-	
+
 	function settlementSummaryStr( _settlement, _showAttached = false, _showHouses = false )
 	{
 		local fort = _settlement.isMilitary() ? "[Fort] " : "";
@@ -95,7 +95,7 @@ To see how the value configured in this script might be contrasted against the v
 		local extra = "";
 		if (_showAttached)
 		{
-			attached = "Attached:  " + _settlement.getActiveAttachedLocations().len() + "/" + _settlement.getAttachedLocations().len() + "/" + _settlement.getAttachedLocationsMax() + " ";	
+			attached = "Attached:  " + _settlement.getActiveAttachedLocations().len() + "/" + _settlement.getAttachedLocations().len() + "/" + _settlement.getAttachedLocationsMax() + " ";
 		}
 		if (_showHouses)
 		{
@@ -105,7 +105,7 @@ To see how the value configured in this script might be contrasted against the v
 		{
 			extra = " | " + attached + houses;
 		}
-		
+
 		return fort + cityState + "{" + _settlement.getName() + "} (Tier " + _settlement.getSize() + " " + _settlement.ClassName + extra + ")";
 	},
 

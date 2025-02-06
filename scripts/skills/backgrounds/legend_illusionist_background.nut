@@ -160,7 +160,7 @@ this.legend_illusionist_background <- this.inherit("scripts/skills/backgrounds/c
 		items.equip(this.Const.World.Common.pickHelmet([
 			[1, "legend_seer_hat"]
 		]));
-		local stash = this.World.Assets.getStash()
+		local stash = this.World.Assets.getStash();
 		stash.removeByID("supplies.ground_grains");
 		stash.removeByID("supplies.ground_grains");
 		// stash.add(this.new("scripts/items/supplies/black_marsh_stew_item"));

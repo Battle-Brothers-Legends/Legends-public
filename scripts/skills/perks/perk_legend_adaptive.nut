@@ -36,7 +36,7 @@ this.perk_legend_adaptive <- this.inherit("scripts/skills/skill", {
 		else
 		{
 			descText = "Activating this Perk will randomly grant one of the following Perk Groups:\n";
-			possibleTreesText = "[color=#0b0084]"
+			possibleTreesText = "[color=#0b0084]";
 			for (local i = 0; i < possibleTrees.len() - 2; i++)
 			{
 				 possibleTreesText += possibleTrees[i].Name + ", ";
@@ -147,7 +147,7 @@ this.perk_legend_adaptive <- this.inherit("scripts/skills/skill", {
 			return actor.getBackground().hasPerkGroup(_newTree) ? null : _newTree;
 
 		// Otherwise, remove every Tree that this character already has from the array
-		local ret = []
+		local ret = [];
 
 		foreach(tree in _newTree)
 		{
@@ -315,7 +315,7 @@ this.perk_legend_adaptive <- this.inherit("scripts/skills/skill", {
 
 	function getArmorPerkTree()
 	{
-		local armor_weight = 0
+		local armor_weight = 0;
 		local newTree;
 		local actor = this.getContainer().getActor();
 		if (actor.getItems().getItemAtSlot(this.Const.ItemSlot.Head) != null)

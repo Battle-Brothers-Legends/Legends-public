@@ -7,7 +7,7 @@ this.legend_bladedancer_background <- this.inherit("scripts/skills/backgrounds/c
 		this.m.Name = "Bladedancer";
 		this.m.Icon = "ui/backgrounds/background_bladedancer.png";
 		this.m.BackgroundDescription = "A skilled nomadic fighter of the south who prefers speed and reach over raw power.";
-		this.m.GoodEnding = "%name% found themselves in the possession of more crowns they their family had accumulated across six generations. Despite this, the bladedancer returned to the desert and used their wealth to train the next generation of bladedancers as their tutor did before them.";		
+		this.m.GoodEnding = "%name% found themselves in the possession of more crowns they their family had accumulated across six generations. Despite this, the bladedancer returned to the desert and used their wealth to train the next generation of bladedancers as their tutor did before them.";
 		this.m.BadEnding = "The pride and glory went to the head of %name% after you left. Last you heard they broke from the company and travelled alone challenging champions in crownling companies to single combat. You never heard from them ever again.";
 		this.m.HiringCost = 850;
 		this.m.DailyCost = 45;
@@ -109,7 +109,7 @@ this.legend_bladedancer_background <- this.inherit("scripts/skills/backgrounds/c
 			this.m.HairColors = this.Const.HairColors.African;
 			this.m.Bodies = this.Const.Bodies.AfricanFemaleMuscular;
 		}
-		
+
 		this.m.Beards = null;
 		this.m.BeardChance = 0;
 		this.addBackgroundType(this.Const.BackgroundType.Female);
@@ -196,7 +196,7 @@ this.legend_bladedancer_background <- this.inherit("scripts/skills/backgrounds/c
 		items.equip(this.Const.World.Common.pickArmor([
 			[1, "oriental/assassin_robe"],
 			[1, "blade_dancer_armor_00"]
-		]))
+		]));
 		items.equip(this.Const.World.Common.pickHelmet([
 			[1, "oriental/blade_dancer_head_wrap"],
 			[1, "blade_dancer_helmet_00"]

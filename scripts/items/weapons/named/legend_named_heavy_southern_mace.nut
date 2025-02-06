@@ -5,7 +5,7 @@ this.legend_named_heavy_southern_mace <- this.inherit("scripts/items/weapons/nam
 	function create()
 	{
 		this.named_weapon.create();
-		this.m.Variants = [1,2]
+		this.m.Variants = [1,2];
 		this.m.Variant = this.m.Variants[this.Math.rand(0, this.m.Variants.len() -1)];
 		this.updateVariant();
 		this.m.ID = "weapon.legend_named_heavy_southern_mace";

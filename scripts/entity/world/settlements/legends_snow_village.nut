@@ -334,7 +334,7 @@ this.legends_snow_village <- this.inherit("scripts/entity/world/settlements/lege
 				Force = true
 			}]
 
-		]
+		];
 
 		switch (this.m.Size)
 		{

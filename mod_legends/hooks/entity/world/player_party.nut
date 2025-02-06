@@ -39,7 +39,7 @@
 			return;
 		}
 
-		local broScale = 1.0
+		local broScale = 1.0;
 		if (this.World.Assets.getOrigin().getID() == "scenario.militia")
 		{
 			broScale = 0.66;
@@ -50,8 +50,8 @@
 			broScale = 1.66;
 		}
 
-		local zombieSummonLevel = 0
-		local skeletonSummonLevel = 0
+		local zombieSummonLevel = 0;
+		local skeletonSummonLevel = 0;
 
 		local count = 0;
 		foreach( i, bro in roster )
@@ -177,8 +177,8 @@
 		//When playing a warlock build, we need to account for the summons he can add
 		local stash = this.World.Assets.getStash().getItems();
 
-		local zCount = 0
-		local sCount = 0
+		local zCount = 0;
+		local sCount = 0;
 		foreach (item in stash)
 		{
 			if (item == null)
@@ -475,7 +475,7 @@
 	{
 		if (this.World.State.m.AppropriateTimeToRecalc == 1)	////Leonion's fix
 		{
-			local s = this.Const.LegendMod.MaxResources[this.World.Assets.getEconomicDifficulty()].Stash
+			local s = this.Const.LegendMod.MaxResources[this.World.Assets.getEconomicDifficulty()].Stash;
 			s += this.World.Assets.getOrigin().getStashModifier();
 			s += this.World.Retinue.getInventoryUpgrades() * 27;
 

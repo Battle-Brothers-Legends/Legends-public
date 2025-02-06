@@ -1,7 +1,7 @@
 ::mods_hookExactClass("items/weapons/named/named_battle_whip", function(o) {
 
 	o.m.PossibleEffects <- ["scripts/skills/effects/legend_named_whip_bleed_effect", "scripts/skills/effects/legend_named_whip_feint_effect"];
-	o.m.EffectBounds <- [ [30, 50], [20, 35] ]
+	o.m.EffectBounds <- [ [30, 50], [20, 35] ];
 
 	local create = o.create;
 	o.create = function ()

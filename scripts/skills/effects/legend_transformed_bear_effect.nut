@@ -2,7 +2,7 @@ this.legend_transformed_bear_effect <- this.inherit("scripts/skills/effects/lege
 	m = {},
 	function create()
 	{
-		this.legend_transformed_effect.create()
+		this.legend_transformed_effect.create();
 		this.m.ID = "effect.legend_transformed_bear";
 		this.m.Name = "Bear Form";
 		this.m.Description = "This character is currently a bear.";//Mondays amirite

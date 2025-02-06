@@ -153,7 +153,7 @@
 						}
 
 					}
-				]
+				];
 				s.start <- function ()
 				{
 					local xpGained = this.Math.round(this.Contract.m.Payment.getOnCompletion() * 0.10 * this.Const.Combat.GlobalXPMult);

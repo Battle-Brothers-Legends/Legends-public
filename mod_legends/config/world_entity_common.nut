@@ -180,7 +180,7 @@ if (!("World" in ::Const))
 		data.investment = _investment;
 		data.profit = _profit;
 		data.itemHashes = _items.map(function(item){ return item.ClassNameHash });
-		data.coordinates = _coordinates // an array of length 2 for X, Y hexagonal coordiantes; when type is: Initiated->origin settlement, Completed->destination settlement, Destroyed->location of death
+		data.coordinates = _coordinates; // an array of length 2 for X, Y hexagonal coordiantes; when type is: Initiated->origin settlement, Completed->destination settlement, Destroyed->location of death
 		return data;
 	}
 
@@ -692,7 +692,7 @@ if (!("World" in ::Const))
 
 ::Const.World.Common.addUnitsToCombat = function( _into, _partyList, _resources, _faction, _minibossify = 0 )
 {
-	local p
+	local p;
 
 	if (typeof(_partyList) == "table")
 	{
@@ -799,20 +799,20 @@ if (!("World" in ::Const))
 	local candidates = [];
 	local T = [];
 	local totalWeight = 0;
-	local dateToSkip = 0
+	local dateToSkip = 0;
 	switch (this.World.Assets.getCombatDifficulty())
 	{
 		case this.Const.Difficulty.Easy:
 			dateToSkip = 120;
 			break;
 		case this.Const.Difficulty.Normal:
-			dateToSkip = 90
+			dateToSkip = 90;
 			break;
 		case this.Const.Difficulty.Hard:
-			dateToSkip = 60
+			dateToSkip = 60;
 			break;
 		case this.Const.Difficulty.Legendary:
-			dateToSkip = 30
+			dateToSkip = 30;
 			break;
 	}
 	dateToSkip = 90;
@@ -849,7 +849,7 @@ if (!("World" in ::Const))
 			}
 		}
 
-		local w = 0
+		local w = 0;
 		if (typeof(t.Weight) == "function")
 		{
 			w = t.Weight(_scale)
@@ -861,8 +861,8 @@ if (!("World" in ::Const))
 
 		if (w == 0)
 		{
-			T.push(t)
-			continue
+			T.push(t);
+			continue;
 		}
 		totalWeight += w;
 		candidates.push(t);
@@ -914,7 +914,7 @@ if (!("World" in ::Const))
 				}
 				else
 				{
-					local chance = 1.0 / (1.0 + this.Math.pow(_map[key].Num, 0.5)) * 100
+					local chance = 1.0 / (1.0 + this.Math.pow(_map[key].Num, 0.5)) * 100;
 					if (this.Math.rand(1, 100) > chance)
 					{
 						continue;
@@ -975,13 +975,13 @@ if (!("World" in ::Const))
 				{
 					weight = troop.MaxGuardsWeight;
 				}
-				local r = this.Math.rand(0, 100)
+				local r = this.Math.rand(0, 100);
 				if (weight < r && i >= minCount)
 				{
 					continue;
 				}
 
-				_credits = this.Const.World.Common.dynamicSelectTroop(troop.Guards, _resources, _scale, _map, _credits)
+				_credits = this.Const.World.Common.dynamicSelectTroop(troop.Guards, _resources, _scale, _map, _credits);
 
 				if (_credits < 0)
 				{
@@ -1003,7 +1003,7 @@ if (!("World" in ::Const))
 		local points = troop.SortedTypes[0].Cost;
 		if (troop.SortedTypes.len() > 1)
 		{
-			local meanScaled = troop.MinMean + _scale * (troop.MaxMean - troop.MinMean)
+			local meanScaled = troop.MinMean + _scale * (troop.MaxMean - troop.MinMean);
 			points = this.Math.max(points, this.Const.LegendMod.BoxMuller.BoxMuller(meanScaled, troop.Deviation));
 			//this.logInfo(cat + " Mean " + meanScaled + " : Deviation " + troops.Deviation + " : Points " + points)
 		}
@@ -1061,7 +1061,7 @@ if (!("World" in ::Const))
 				}
 				else
 				{
-					local chance = 1.0 / (1.0 + this.Math.pow(_map[key].Num, 0.5)) * 100
+					local chance = 1.0 / (1.0 + this.Math.pow(_map[key].Num, 0.5)) * 100;
 					if (this.Math.rand(1, 100) > chance)
 					{
 						continue;
@@ -1077,7 +1077,7 @@ if (!("World" in ::Const))
 				}
 				else
 				{
-					local chance = 1.0 / (1.0 + this.Math.pow(_map[key].Num, 0.5)) * 100
+					local chance = 1.0 / (1.0 + this.Math.pow(_map[key].Num, 0.5)) * 100;
 					if (this.Math.rand(1, 100) > chance)
 					{
 						continue;
@@ -1088,7 +1088,7 @@ if (!("World" in ::Const))
 
 
 			_credits -= troop.SortedTypes[i].Types[index].Cost;
-			_map[key].Num += 1
+			_map[key].Num += 1;
 
 			if ("Guards" in troop.SortedTypes[i].Types[index])
 			{
@@ -1130,7 +1130,7 @@ if (!("World" in ::Const))
 		}
 	}
 
-	local T = []
+	local T = [];
 	foreach ( k, v in troopMap)
 	{
 		T.push(v);
@@ -1154,27 +1154,27 @@ if (!("World" in ::Const))
 
 ::Const.World.Common.pickLegendArmor <- function (_list)
 {
-	return this.Const.World.Common.pickItem(_list, "scripts/items/legend_armor/")
+	return this.Const.World.Common.pickItem(_list, "scripts/items/legend_armor/");
 }
 
 ::Const.World.Common.pickLegendHelmet <- function (_list)
 {
-	return this.Const.World.Common.pickItem(_list, "scripts/items/legend_helmets/")
+	return this.Const.World.Common.pickItem(_list, "scripts/items/legend_helmets/");
 }
 
 ::Const.World.Common.pickItem <- function (_list, _script = "")
 {
-	local candidates = []
-	local totalWeight = 0
-	local w = 0
+	local candidates = [];
+	local totalWeight = 0;
+	local w = 0;
 	foreach (t in _list)
 	{
 		if (t[0] == 0)
 		{
 			continue;
 		}
-		candidates.push(t)
-		totalWeight += t[0]
+		candidates.push(t);
+		totalWeight += t[0];
 	}
 
 	local r = this.Math.rand(0, totalWeight);
@@ -1197,7 +1197,7 @@ if (!("World" in ::Const))
 		}
 		local ret = this.new(_script + t[1]);
 		if (t.len() == 3)
-			ret.setVariant(t[2])
+			ret.setVariant(t[2]);
 		return ret;
 	}
 	return null;
@@ -1255,7 +1255,7 @@ if (!("World" in ::Const))
 		return helmet;
 	}
 
-	local set = layersObj.Sets[this.Math.rand(0, layersObj.Sets.len() -1)]
+	local set = layersObj.Sets[this.Math.rand(0, layersObj.Sets.len() -1)];
 	local helmet = this.Const.World.Common.pickLegendHelmet(set.Hoods);
 	if (helmet != null)
 	{
@@ -1356,7 +1356,7 @@ if (!("World" in ::Const))
 		return item;
 	}
 
-	local set = layersObj.Sets[this.Math.rand(0, layersObj.Sets.len() -1)]
+	local set = layersObj.Sets[this.Math.rand(0, layersObj.Sets.len() -1)];
 	local armor = this.Const.World.Common.pickLegendArmor(set.Cloth);
 	if (armor == null)
 	{
@@ -1480,29 +1480,29 @@ if (!("World" in ::Const))
 	}
 	else if (_armorArr != null && _helmetArr != null && _armorArr.len() > 0 && _helmetArr.len() > 0)
 	{
-		local armorCount = 0
-		local helmCount = 0
-		local outfitCount = 0
+		local armorCount = 0;
+		local helmCount = 0;
+		local outfitCount = 0;
 
 		foreach (t in _armorArr)
 		{
 			if (t[0] > 0)
 			{
-				armorCount += 1
+				armorCount += 1;
 			}
 		}
 		foreach (t in _helmetArr)
 		{
 			if (t[0] > 0)
 			{
-				helmCount += 1
+				helmCount += 1;
 			}
 		}
 		foreach (t in _outfitArr)
 		{
 			if (t[0] > 0)
 			{
-				outfitCount += 1
+				outfitCount += 1;
 			}
 		}
 
@@ -1608,14 +1608,14 @@ if (!("LegendMod" in ::Const))
 		}
 
 		s = this.Math.pow(-2.0 * log(s) / s, 0.5);
-		this.NextValue = v2 * s
+		this.NextValue = v2 * s;
 		this.UseLast = true;
 		return v1 * s;
 	}
 
 	function BoxMuller( _mean, _deviation )
 	{
-		local g = this.generate()
+		local g = this.generate();
 		return _mean + g * _deviation;
 	}
 

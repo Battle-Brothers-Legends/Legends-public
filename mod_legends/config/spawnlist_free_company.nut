@@ -114,7 +114,6 @@
 	VisibilityMult = 1.0,
 	VisionMult = 1.0,
 	Body = "figure_bandit_03",
-	MinR = 120,
 	MaxR = 225,
 	MinR = 97,
 	Fixed = [

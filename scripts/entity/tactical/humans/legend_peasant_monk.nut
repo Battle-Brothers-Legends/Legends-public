@@ -64,17 +64,17 @@ this.legend_peasant_monk <- this.inherit("scripts/entity/tactical/human", {
 			[1, "apron"],
 			[1, "tattered_sackcloth"],
 			[6, "linen_tunic"]
-		]
+		];
 
 		local helmet = [
 			[1, "straw_hat"],
 			[2, "hood"],
 			[1, "headscarf"]
-		]
+		];
 
 		local outfits = [
 			[1, "brown_monk_outfit_00"]
-		]
+		];
 
 		foreach( item in this.Const.World.Common.pickOutfit(outfits, armor, helmet) )
 		{

@@ -6,7 +6,7 @@ this.legend_named_helmet_upgrade <- this.inherit("scripts/items/legend_helmets/l
 	},
 	function create()
 	{
-		this.legend_helmet_upgrade.create()
+		this.legend_helmet_upgrade.create();
 		this.m.ItemType = this.m.ItemType | this.Const.Items.ItemType.Named;
 	}
 

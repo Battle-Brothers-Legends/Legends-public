@@ -46,7 +46,7 @@
 				"weapons/legend_militia_glaive",
 				"weapons/legend_glaive",
 				"weapons/legend_infantry_axe",
-				"weapons/legend_military_goedendag",
+//				"weapons/legend_military_goedendag",
 				"weapons/goedendag",
 				"weapons/warfork"
 			];

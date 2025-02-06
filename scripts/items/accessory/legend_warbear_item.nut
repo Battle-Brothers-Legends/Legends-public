@@ -112,11 +112,6 @@ this.legend_warbear_item <- this.inherit("scripts/items/accessory/accessory", {
 		}
 	}
 
-	function onCombatFinished()
-	{
-		this.setEntity(null);
-	}
-
 	function onSerialize( _out )
 	{
 		this.accessory.onSerialize(_out);

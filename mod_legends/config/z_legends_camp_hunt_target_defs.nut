@@ -51,7 +51,7 @@
 	"background.ratcatcher",
 	"background.wildman",
 	// "background.wildwoman",
-]
+];
 
 // Cook Backgrounds. No BackgroundType defined at this time
 ::Const.HuntingLoot.CookBackgrounds <- [
@@ -59,7 +59,7 @@
 	"background.butcher",
 	"background.servant",
 	"background.cannibal",
-]
+];
 
 // Define the various targets that can be hunted / looted
 // Design document: https://docs.google.com/spreadsheets/d/1UHcwQFuL0dFtThlDFAXlAt7Lj4dNgWHKjO1palEq1to/edit?usp=sharing
@@ -533,7 +533,7 @@ foreach(t in ::Const.HuntingLoot.TargetDefs)
 		{
 			if (!(b in ::Const.HuntingLoot.AllRequiredBackgrounds.All))
 			{
-				::Const.HuntingLoot.AllRequiredBackgrounds.All.push(b);	
+				::Const.HuntingLoot.AllRequiredBackgrounds.All.push(b);
 			}
 			if (t.Type == "Forage" && !(b in ::Const.HuntingLoot.AllRequiredBackgrounds.Forage))
 			{
@@ -541,7 +541,7 @@ foreach(t in ::Const.HuntingLoot.TargetDefs)
 			}
 			else if (t.Type == "Hunt" && !(b in ::Const.HuntingLoot.AllRequiredBackgrounds.Hunt))
 			{
-				::Const.HuntingLoot.AllRequiredBackgrounds.Hunt.push(b);	
+				::Const.HuntingLoot.AllRequiredBackgrounds.Hunt.push(b);
 			}
 		}
 	}

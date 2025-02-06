@@ -11,13 +11,13 @@ this.legend_arborthropy_injury <- this.inherit("scripts/skills/injury_permanent/
 
 	function getTooltip()
 	{
-		local ret = this.legend_infected_injury.getTooltip()
+		local ret = this.legend_infected_injury.getTooltip();
 		ret.push({
 			id = 16,
 			type = "text",
 			icon = "ui/icons/special.png",
 			text = "Will randomly transform into a schrat"
-		})
+		});
 		return ret;
 	}
 

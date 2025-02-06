@@ -68,7 +68,7 @@ foreach(k, v in this.Const.World.Spawn)
 			costMap[tt.Cost].append(tt)
 		}
 
-		_t.SortedTypes <- []
+		_t.SortedTypes <- [];
 
 		foreach (k,v in costMap) {
 			_t.SortedTypes.append({
@@ -82,7 +82,7 @@ foreach(k, v in this.Const.World.Spawn)
 			continue;
 		}
 
-		_t.SortedTypes.sort(this.onCostCompare)
+		_t.SortedTypes.sort(this.onCostCompare);
 
 		//v.Troops[i].SortedTypes.sort(this.onCostCompare)
 
@@ -94,15 +94,15 @@ foreach(k, v in this.Const.World.Spawn)
 		{
 			mean += o.Cost;
 		}
-		mean = (mean * 1.0) / ( v.Troops[i].SortedTypes.len() * 1.0)
+		mean = (mean * 1.0) / ( v.Troops[i].SortedTypes.len() * 1.0);
 
 		foreach (o in v.Troops[i].SortedTypes)
 		{
 			local d = o.Cost - mean;
 			variance += (d * d);
 		}
-		variance = (variance * 1.0) / ( v.Troops[i].SortedTypes.len() * 1.0)
-		deviation = this.Math.pow(variance, 0.5)
+		variance = (variance * 1.0) / ( v.Troops[i].SortedTypes.len() * 1.0);
+		deviation = this.Math.pow(variance, 0.5);
 
 
 		v.Troops[i].Mean <- mean;

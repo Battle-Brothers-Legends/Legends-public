@@ -10,15 +10,15 @@ this.rest_building <- this.inherit("scripts/entity/world/camp/camp_building", {
 		this.m.Slot = "rest";
 		this.m.Name = "Rest";
 		this.m.Description = "Company personnel who have not been assigned a task will rest and relax here. .";
-		this.m.BannerImage = "ui/buttons/banner_rest.png"
-		this.m.CanEnter = false
+		this.m.BannerImage = "ui/buttons/banner_rest.png";
+		this.m.CanEnter = false;
 	}
 
 	function getDescription()
 	{
 		local desc = "";
-		desc += "Kicking ass is tough work. Grab a log, kick the shoes off and relax by the camp fire. "
-		desc += "Resting can improve the mood of even the grumpiest mercenary."
+		desc += "Kicking ass is tough work. Grab a log, kick the shoes off and relax by the camp fire. ";
+		desc += "Resting can improve the mood of even the grumpiest mercenary.";
 		return desc;
 	}
 
@@ -40,8 +40,7 @@ this.rest_building <- this.inherit("scripts/entity/world/camp/camp_building", {
 
 	function getModifiers()
 	{
-		local ret =
-		{
+		local ret = {
 			Assigned = 0
 		}
 		local roster = this.World.getPlayerRoster().getAll();
@@ -49,9 +48,9 @@ this.rest_building <- this.inherit("scripts/entity/world/camp/camp_building", {
 		{
 			if (bro.getCampAssignment() != this.m.ID)
 			{
-				continue
+				continue;
 			}
-			++ret.Assigned
+			++ret.Assigned;
 		}
 		return ret;
 	}
@@ -81,7 +80,7 @@ this.rest_building <- this.inherit("scripts/entity/world/camp/camp_building", {
 		{
 			if (bro.getCampAssignment() != this.m.ID)
 			{
-				continue
+				continue;
 			}
 
 			if (bro.getLastCampTime() == 0 || this.Time.getVirtualTimeF() - bro.getLastCampTime() > this.World.getTime().SecondsPerDay)
@@ -113,25 +112,25 @@ this.rest_building <- this.inherit("scripts/entity/world/camp/camp_building", {
 		];
 
 		if (background.getID() == "background.monk")
-			activities.push(bro.getName() + " enthusiastically lectured the camp on the importance of living a holy life")
+			activities.push(bro.getName() + " enthusiastically lectured the camp on the importance of living a holy life");
 
 		if (background.getID() == "background.flagellant")
-			activities.push(bro.getName() + " spends their time in front of an idol of the Old Gods, slowly offering a flesh sacrifice")
+			activities.push(bro.getName() + " spends their time in front of an idol of the Old Gods, slowly offering a flesh sacrifice");
 
 		if (background.getID() == "background.cultist" || background.getID() == "background.converted_cultist")
-			activities.push(bro.getName() + " enthusiastically spends their free time raving to the camp about the glories of Davkul")
+			activities.push(bro.getName() + " enthusiastically spends their free time raving to the camp about the glories of Davkul");
 
 		if (background.getID() == "background.gladiator")
-			activities.push(bro.getName() + " decides the best use of free time is to flex freshly oiled muscles")
+			activities.push(bro.getName() + " decides the best use of free time is to flex freshly oiled muscles");
 
 		if (background.getID() == "background.ratcatcher")
-			activities.push(bro.getName() + " plays with a captured rat")
+			activities.push(bro.getName() + " plays with a captured rat");
 
 		if (background.getID() == "background.nomad" || background.getID() == "background.legend_conscript")
-			activities.push(bro.getName() + " spends their time filling their pockets with sand")
+			activities.push(bro.getName() + " spends their time filling their pockets with sand");
 
 		if (background.isBackgroundType(this.Const.BackgroundType.Performing))
-			activities.push(bro.getName() + " sings and dances, to the entertainment of the entire camp")
+			activities.push(bro.getName() + " sings and dances, to the entertainment of the entire camp");
 
 		if (bro.getSkills().hasSkillOfType(this.Const.SkillType.TemporaryInjury) || bro.getSkills().hasSkillOfType(this.Const.SkillType.SemiInjury))
 		{
@@ -156,7 +155,7 @@ this.rest_building <- this.inherit("scripts/entity/world/camp/camp_building", {
 			id = 150,
 			Icon = this.Const.MoodStateIcon[bro.getMoodState()],
 			Text = activities[this.Math.rand(0, activities.len() - 1)] + " " + this.Const.MoodStateEvent[bro.getMoodState()]
-		})
+		});
 
 		// if (background.isBackgroundType(this.Const.BackgroundType.Combat))
 		// {

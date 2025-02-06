@@ -83,7 +83,7 @@ this.houndmaster_background <- this.inherit("scripts/skills/backgrounds/characte
 
 	function getTooltip()
 	{
-		local ret = this.character_background.getTooltip()
+		local ret = this.character_background.getTooltip();
 		ret.push(
 			{
 				id = 14,
@@ -91,8 +91,8 @@ this.houndmaster_background <- this.inherit("scripts/skills/backgrounds/characte
 				icon = "ui/icons/bravery.png",
 				text = "Wardogs unleashed by this character will start at confident morale."
 			}
-		)
-		return ret
+		);
+		return ret;
 	}
 
 	function onBuildDescription()

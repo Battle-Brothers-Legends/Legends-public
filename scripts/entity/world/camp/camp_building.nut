@@ -314,11 +314,6 @@ this.camp_building <- {
 		return this.m.ID;
 	}
 
-	function getName()
-	{
-		return this.m.Name;
-	}
-
 	function getTitle()
 	{
 		return this.m.Name;
@@ -338,7 +333,7 @@ this.camp_building <- {
 				text = this.getDescription()
 			}
 		];
-		local mod = this.getModifierToolip()
+		local mod = this.getModifierToolip();
 		foreach (i in mod)
 		{
 			res.push(i);
@@ -483,7 +478,7 @@ this.camp_building <- {
 			// If the character is skilled, they will contribute the BaseCraft value + the bonuses from their modifiers. The bonuses are further multiplied by the tent's ModMod value
 			// A higher ModMod value means that skilled characters will have a more significant impact on the output
 			local mod = this.m.BaseCraft + this.m.BaseCraft * bro.getBackground().getModifiers()[this.m.ModName] * this.m.ModMod;
-			++ret.Assigned
+			++ret.Assigned;
 			ret.Modifiers.push([mod, bro.getNameOnly(), bro.getBackground().getNameOnly()]);
 		}
 
@@ -528,12 +523,12 @@ this.camp_building <- {
 		{
 			if (!this.onBroEnter(b))
 			{
-				continue
+				continue;
 			}
 			local bro = this.UIDataHelper.convertEntityToUIData(b, null);
 			local tent = this.World.Camp.getBuildingByID( b.getCampAssignment() );
-			bro.bannerImage <- tent.getBanner()
-			bro.IsSelected <- b.getCampAssignment() == this.m.ID
+			bro.bannerImage <- tent.getBanner();
+			bro.IsSelected <- b.getCampAssignment() == this.m.ID;
 			local modifier = 0;
 			if (this.m.ModName != "")
 			{
@@ -549,7 +544,7 @@ this.camp_building <- {
 
 	function onPopupButtonClicked( _data )
 	{
-		
+
 	}
 
 	function queryConfigureSettings()

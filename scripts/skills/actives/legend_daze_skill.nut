@@ -39,7 +39,7 @@ this.legend_daze_skill <- this.inherit("scripts/skills/skill", {
 
 	function getTooltip()
 	{
-		local ret = this.getDefaultUtilityTooltip()
+		local ret = this.getDefaultUtilityTooltip();
 		ret.push(
 			{
 				id = 7,
@@ -47,7 +47,7 @@ this.legend_daze_skill <- this.inherit("scripts/skills/skill", {
 				icon = "ui/icons/special.png",
 				text = "Leave your opponent bewildered, halving their damage, fatigue and initiative"
 			}
-		)
+		);
 		ret.push(
 			{
 				id = 7,
@@ -55,7 +55,7 @@ this.legend_daze_skill <- this.inherit("scripts/skills/skill", {
 				icon = "ui/icons/special.png",
 				text = "Uses Ranged skill to hit. Hit chance doubled if you also have the Taunt perk."
 			}
-		)
+		);
 
 		return ret;
 	}

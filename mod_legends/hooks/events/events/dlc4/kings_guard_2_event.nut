@@ -67,4 +67,14 @@
 			}
 		}
 	}
+
+	local onUpdateScore = o.onUpdateScore;
+	o.onUpdateScore = function ()
+	{
+		onUpdateScore();
+		if (this.m.Dude == null)
+			return;
+
+		this.m.Score = this.Math.floor(this.m.Dude.getDaysWithCompany / 3);
+	}
 })

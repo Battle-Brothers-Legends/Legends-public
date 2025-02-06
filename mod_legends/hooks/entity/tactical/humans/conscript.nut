@@ -55,7 +55,7 @@
 		else if (banner == 13)
 			variant = 10;
 		else
-			variant = 8
+			variant = 8;
 		this.m.Items.equip(this.Const.World.Common.pickArmor([
 			[2, "oriental/linothorax", variant],
 			[1, "oriental/southern_mail_shirt"]

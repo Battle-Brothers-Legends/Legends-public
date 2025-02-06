@@ -67,9 +67,9 @@ this.legend_magister_background <- this.inherit("scripts/skills/backgrounds/char
 		this.m.PerkTreeDynamic = {
 			Weapon = [
 				this.Const.Perks.CleaverTree,
-				this.Const.Perks.FlailTree,	
-				this.Const.Perks.SlingTree,	
-				this.Const.Perks.SwordTree,						
+				this.Const.Perks.FlailTree,
+				this.Const.Perks.SlingTree,
+				this.Const.Perks.SwordTree,
 				this.Const.Perks.StaffTree
 			],
 			Defense = [
@@ -117,7 +117,7 @@ this.legend_magister_background <- this.inherit("scripts/skills/backgrounds/char
 
 	function getTooltip()
 	{
-		local ret = this.character_background.getTooltip()
+		local ret = this.character_background.getTooltip();
 		ret.push(
 			{
 				id = 12,
@@ -125,7 +125,7 @@ this.legend_magister_background <- this.inherit("scripts/skills/backgrounds/char
 				icon = "ui/icons/special.png",
 				text = "Will never be sacrificed to Davkul"
 			}
-		)
+		);
 		return ret
 	}
 

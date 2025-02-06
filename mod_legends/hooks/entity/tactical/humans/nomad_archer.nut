@@ -39,18 +39,18 @@
 			// [1, "citrene_nomad_cutthroat_armor_00"],
 			// [1, "citrene_nomad_cutthroat_armor_01"],
 			[3, "nomad_archer_armor_00"]
-		]
+		];
 
 		local helmet = [
 			[2, "oriental/nomad_head_wrap"],
 			[3, "oriental/nomad_head_wrap"],
 			[1, "citrene_nomad_ranged_helmet_00"],
 			[3, "oriental/nomad_leather_cap"]
-		]
+		];
 
 		local outfits = [
 			[1, "dark_southern_outfit_00"]
-		]
+		];
 
 		foreach( item in this.Const.World.Common.pickOutfit(outfits, armor, helmet) )
 		{

@@ -399,7 +399,7 @@
 			local num = Math.ceil(::Legends.Mod.ModSettings.getSetting("Settlements").getValue() * list.Ratio);
 			//Add at least one of each
 
-			local additionalSpace = 0
+			local additionalSpace = 0;
 			if ("AdditionalSpace" in list)
 			{
 				additionalSpace = list.AdditionalSpace;

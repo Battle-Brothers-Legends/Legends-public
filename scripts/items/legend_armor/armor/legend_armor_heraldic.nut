@@ -69,28 +69,28 @@ this.legend_armor_heraldic <- this.inherit("scripts/items/legend_armor/cloth/leg
 				break;
 			case 2:
 				gambesons = [15,33,53];
-				break
+				break;
 			case 3:
 				gambesons = [1,2,8,13,34,35,36,37,38,39,59,60,61,62,62,64];
-				break
+				break;
 			case 4:
 				gambesons = [6,16,17,41];
-				break
+				break;
 			case 5:
 				gambesons = [5,9,23,24,25,26,27,28];
-				break
+				break;
 			case 6:
 				gambesons = [7,8,29,30,31,32,33];
-				break
+				break;
 			case 7:
 				gambesons = [11];
-				break
+				break;
 			case 8:
 				gambesons = [1,34,59];
-				break
+				break;
 			case 9:
 				gambesons = [6,10,12];
-				break
+				break;
 			case 10:
 				gambesons = [4,5,10];
 				break
@@ -114,7 +114,7 @@ this.legend_armor_heraldic <- this.inherit("scripts/items/legend_armor/cloth/leg
 			[0, "chain/legend_armor_reinforced_worn_mail"],
 			[0, "chain/legend_armor_reinforced_worn_mail_shirt"],
 			[0, "chain/legend_armor_short_mail"]
-		]
+		];
 
 		local chain = this.Const.World.Common.pickLegendArmor(chains);
 		if (chain != null)
@@ -153,7 +153,7 @@ this.legend_armor_heraldic <- this.inherit("scripts/items/legend_armor/cloth/leg
 			[0, "plate/legend_armor_scale_coat"],
 			[0, "plate/legend_armor_scale_coat_rotten"],
 			[0, "plate/legend_armor_scale_shirt"]
-		]
+		];
 		local plate = this.Const.World.Common.pickLegendArmor(plates);
 		if (plate != null)
 		{

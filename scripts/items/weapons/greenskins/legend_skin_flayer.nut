@@ -27,18 +27,6 @@ this.legend_skin_flayer <- this.inherit("scripts/items/weapons/weapon", {
 		this.m.FatigueOnSkillUse = 5;
 	}
 
-// function getTooltip()
-// 	{
-// 		local ret = this.weapon.getTooltip();
-// 		ret.push({
-// 			id = 18,
-// 			type = "text",
-// 			icon = "ui/icons/fatigue.png",
-// 			text = "Builds up additional [color=" + this.Const.UI.Color.NegativeValue + "]5[/color] Fatigue with every skill use"
-// 		});
-// 		return ret;
-// 	}
-
 	function onEquip()
 	{
 		this.weapon.onEquip();
@@ -46,6 +34,9 @@ this.legend_skin_flayer <- this.inherit("scripts/items/weapons/weapon", {
 			_skill.m.Icon = "skills/active_78.png";
 			_skill.m.IconDisabled = "skills/active_78_sw.png";
 			_skill.m.Overlay = "active_78";
+		}.bindenv(this));
+		::Legends.Actives.grant(this, ::Legends.Active.Decapitate, function (_skill) {
+			_skill.setApplySwordMastery(true);
 		}.bindenv(this));
 	}
 

@@ -580,7 +580,7 @@
 				P = 1.0,
 				S = "accessory/legend_spiked_gauntlets_item"
 			}
-		]
+		];
 
 		foreach( i in this.Const.Items.LegendNamedArmorLayers )
 		{

@@ -659,7 +659,7 @@ if (!("LegendMod" in ::Const))
 	{
 		local mKills = 0;
 		local favKey = "Enemy" + t;
-		mKills = _actor.getLifetimeStats().Tags.get(favKey)
+		mKills = _actor.getLifetimeStats().Tags.get(favKey);
 		if (mKills && mKills > 0)
 		{
 			kills += mKills;
@@ -719,7 +719,7 @@ if (!("LegendMod" in ::Const))
 
 ::Const.LegendMod.GetFavEnemyBossChance <- function (_id)
 {
-	local perks = this.Const.LegendMod.FavEnemyPerkMap.getPerks(_id)
+	local perks = this.Const.LegendMod.FavEnemyPerkMap.getPerks(_id);
 	if( perks.len() == 0)
 	{
 		return 0;
@@ -736,10 +736,10 @@ if (!("LegendMod" in ::Const))
 				continue
 			}
 
-			local P = bro.getSkills().getSkillByID(perk)
+			local P = bro.getSkills().getSkillByID(perk);
 
 			local stats = this.Const.LegendMod.GetFavoriteEnemyStats(bro, P.m.ValidTypes);
-			bonus += this.Math.floor((stats.Kills * 1.0) / 10.0)
+			bonus += this.Math.floor((stats.Kills * 1.0) / 10.0);
 			break;
 		}
 	}

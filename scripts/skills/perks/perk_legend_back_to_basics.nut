@@ -5,7 +5,7 @@ this.perk_legend_back_to_basics <- this.inherit("scripts/skills/skill", {
 	function create()
 	{
 		::Const.Perks.setup(this.m, ::Legends.Perk.LegendBackToBasics);
-		this.m.Description = "Years of practice lead this character to fall back to %their% instincts and basic training under extreme stress."
+		this.m.Description = "Years of practice lead this character to fall back to %their% instincts and basic training under extreme stress.";
 		this.m.Type = this.Const.SkillType.Perk | this.Const.SkillType.StatusEffect;
 		this.m.Order = this.Const.SkillOrder.Last;
 	}

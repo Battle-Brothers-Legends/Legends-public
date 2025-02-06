@@ -4,7 +4,7 @@ this.legend_stollwurm_helmet <- this.inherit("scripts/items/helmets/named/named_
 	{
 		this.named_helmet.create();
 		this.m.ID = "armor.head.legend_stollwurm_helmet";
-		this.m.Name = ""
+		this.m.Name = "";
 		this.m.Description = "A helmet made from the head of a stollwurm, grants immunity from being knocked or grabbed, immunity from morale penalties from being surrounded, and ensures you take no fatigue damage from being hit.";
 		this.m.NameList = [
 			"Wurms visage",

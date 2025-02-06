@@ -315,7 +315,7 @@ this.legend_companion_ranged_background <- this.inherit("scripts/skills/backgrou
 			[1, "mercenary_leader_outfit_uncommon_00"],
 			[1, "mercenary_leader_outfit_00"],
 			[1, "mercenary_billman_outfit_00"]
-		]
+		];
 
 		foreach (item in this.Const.World.Common.pickOutfit(outfits))
 		{

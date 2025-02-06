@@ -3,7 +3,7 @@ this.legend_transformed_wolf_effect <- this.inherit("scripts/skills/effects/lege
 	},
 	function create()
 	{
-		this.legend_transformed_effect.create()
+		this.legend_transformed_effect.create();
 		this.m.ID = "effect.legend_transformed_wolf";
 		this.m.Name = "Wolf Form";
 		this.m.Description = "This character is currently a wolf.";

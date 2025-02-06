@@ -228,22 +228,22 @@ this.legends_noble_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 		local brothers = this.World.getPlayerRoster().getAll();
 
 		//1, 3 are shield brothers
-		brothers[1].getItems().getItemAtSlot(this.Const.ItemSlot.Offhand).setFaction(banner)
-		brothers[3].getItems().getItemAtSlot(this.Const.ItemSlot.Offhand).setFaction(banner)
+		brothers[1].getItems().getItemAtSlot(this.Const.ItemSlot.Offhand).setFaction(banner);
+		brothers[3].getItems().getItemAtSlot(this.Const.ItemSlot.Offhand).setFaction(banner);
 
 		foreach( bro in brothers )
 		{
 			local items = bro.getItems();
-			local armor = items.getItemAtSlot(this.Const.ItemSlot.Body)
+			local armor = items.getItemAtSlot(this.Const.ItemSlot.Body);
 			local tabards = [
 					[0, ""],
 					[1, "tabard/legend_noble_tabard"]
-				]
-				local tabard = this.Const.World.Common.pickLegendArmor(tabards)
+				];
+				local tabard = this.Const.World.Common.pickLegendArmor(tabards);
 				if (tabard != null && armor != null)
 				{
-					tabard.setVariant(banner)
-					armor.setUpgrade(tabard)
+					tabard.setVariant(banner);
+					armor.setUpgrade(tabard);
 				}
 		}
 
@@ -328,13 +328,13 @@ this.legends_noble_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 	{
 			if (bro.getBackground().isBackgroundType(this.Const.BackgroundType.Noble))
 			{
-				bro.m.HiringCost = this.Math.floor(bro.m.HiringCost * 0.75) //1.0 = default
+				bro.m.HiringCost = this.Math.floor(bro.m.HiringCost * 0.75); //1.0 = default
 				bro.getBaseProperties().DailyWageMult *= 0.75; //1.0 = default
 				bro.getSkills().update();
 			}
 			else if (bro.getBackground().isBackgroundType(this.Const.BackgroundType.Lowborn))
 			{
-				bro.m.HiringCost = this.Math.floor(bro.m.HiringCost * 1.5) //1.0 = default
+				bro.m.HiringCost = this.Math.floor(bro.m.HiringCost * 1.5); //1.0 = default
 				bro.getBaseProperties().DailyWageMult *= 1.5; //1.0 = default
 				bro.getSkills().update();
 			}

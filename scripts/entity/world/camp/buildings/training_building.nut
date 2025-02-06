@@ -110,7 +110,7 @@ this.training_building <- this.inherit("scripts/entity/world/camp/camp_building"
 		foreach( bro in mod.Modifiers )
 		{
 			++id;
-			local tooltip_text = "[color=" + this.Const.UI.Color.PositiveValue + "]" + bro[0] * 100.0 + "%[/color] " + bro[1] + " (" + bro[2] + ")"
+			local tooltip_text = "[color=" + this.Const.UI.Color.PositiveValue + "]" + bro[0] * 100.0 + "%[/color] " + bro[1] + " (" + bro[2] + ")";
 
 			if (bro[3])
 			{
@@ -202,7 +202,7 @@ this.training_building <- this.inherit("scripts/entity/world/camp/camp_building"
 				mod = mod + 0.1;
 			}
 
-			local max_reached = false
+			local max_reached = false;
 
 			if (bro.getSkills().hasSkill("trait.legend_intensive_training_trait"))
 			{

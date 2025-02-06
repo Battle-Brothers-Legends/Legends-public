@@ -23,7 +23,7 @@ this.legend_hexen_leader_cloak_blueprint <- this.inherit("scripts/crafting/bluep
 			{
 				Scripts = ["scripts/skills/backgrounds/tailor_background"]
 			}
-		]
+		];
 		this.initSkills(skills);
 	}
 

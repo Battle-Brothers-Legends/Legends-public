@@ -39,7 +39,7 @@ this.legend_mark_target_skill <- this.inherit("scripts/skills/skill", {
 
 	function getTooltip()
 	{
-		local ret = this.getDefaultUtilityTooltip()
+		local ret = this.getDefaultUtilityTooltip();
 		ret.extend([
 			{
 				id = 10,
@@ -59,7 +59,7 @@ this.legend_mark_target_skill <- this.inherit("scripts/skills/skill", {
 				icon = "ui/icons/warning.png",
 				text = "Up to [color=" + this.Const.UI.Color.PositiveValue + "]20%[/color] Damage Received from all sources, scaling on Hitpoints"
 			}
-		])
+		]);
 		return ret;
 	}
 

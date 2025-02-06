@@ -101,13 +101,6 @@ this.perk_legend_blend_in <- this.inherit("scripts/skills/skill", {
 		return tooltip;
 	}
 
-	function onUpdate( _properties )
-	{
-		_properties.TargetAttractionMult *= 0.50;
-		_properties.MeleeDefense += 3;
-		_properties.RangedDefense += 5;
-	}
-
 	function onBeingAttacked( _attacker, _skill, _properties )
 	{
 		if (this.m.MeekStacks > 0)

@@ -7,7 +7,7 @@
 	o.create = function ()
 	{
 		create();
-		this.m.Variants = [1, 2]
+		this.m.Variants = [1, 2];
 		this.m.Description = "An very rare weapon built from valuable and strong materials. Despite its ceremonial look it makes for a terrifying tool of destruction.";
 	}
 

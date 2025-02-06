@@ -52,7 +52,7 @@
 				[1, "coat_of_plates"],
 				[1, "coat_of_scales"],
 				[1, "heavy_lamellar_armor"]
-			]
+			];
 
 			local helmet = [
 				[30, "full_helm"],
@@ -76,11 +76,11 @@
 				[2, "legend_enclave_vanilla_kettle_sallet_01"],
 				[2, "legend_enclave_vanilla_kettle_sallet_02"],
 				//[2, "legend_enclave_vanilla_kettle_sallet_03"]
-			]
+			];
 
 			local outfits = [
 				[1, "brown_hedgeknight_outfit_00"]
-			]
+			];
 
 			foreach( item in this.Const.World.Common.pickOutfit(outfits, armor, helmet) )
 			{

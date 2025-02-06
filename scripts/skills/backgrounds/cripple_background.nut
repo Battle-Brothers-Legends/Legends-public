@@ -98,7 +98,7 @@ this.cripple_background <- this.inherit("scripts/skills/backgrounds/character_ba
 
 	function getTooltip()
 	{
-		local ret = this.character_background.getTooltip()
+		local ret = this.character_background.getTooltip();
 		ret.push(
 			{
 				id = 16,
@@ -106,8 +106,8 @@ this.cripple_background <- this.inherit("scripts/skills/backgrounds/character_ba
 				icon = "ui/icons/special.png",
 				text = "Is always content with being in reserve"
 			}
-		)
-		return ret
+		);
+		return ret;
 	}
 
 	function onBuildDescription()
@@ -186,7 +186,7 @@ this.cripple_background <- this.inherit("scripts/skills/backgrounds/character_ba
 		items.equip(this.Const.World.Common.pickArmor([
 			[1, "tattered_sackcloth"],
 			[1, "leather_wraps"]
-		]))
+		]));
 
 		local helm = this.Const.World.Common.pickHelmet([
 			[1, "hood", 38],

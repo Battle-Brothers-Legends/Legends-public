@@ -63,7 +63,7 @@ this.crusader_background <- this.inherit("scripts/skills/backgrounds/character_b
 		this.m.PerkTreeDynamic = {
 			Weapon = [
 				this.Const.Perks.ShieldTree,
-				this.Const.Perks.TwoHandedTree,			
+				this.Const.Perks.TwoHandedTree,
 				this.Const.Perks.FlailTree,
 				this.Const.Perks.HammerTree,
 				this.Const.Perks.MaceTree,
@@ -182,7 +182,7 @@ this.crusader_background <- this.inherit("scripts/skills/backgrounds/character_b
 		items.equip(this.new("scripts/items/weapons/greatsword"));
 		items.equip(this.Const.World.Common.pickArmor([
 			[1, "mail_hauberk"]
-		]))
+		]));
 		items.equip(this.Const.World.Common.pickHelmet([
 			[1, "full_helm"]
 		]));

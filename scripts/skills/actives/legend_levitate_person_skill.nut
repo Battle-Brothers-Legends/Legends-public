@@ -37,14 +37,14 @@ this.legend_levitate_person_skill <- this.inherit("scripts/skills/skill", {
 
 	function getTooltip()
 	{
-		local ret = this.getDefaultUtilityTooltip()
+		local ret = this.getDefaultUtilityTooltip();
 		ret.push(
 		{
 			id = 7,
 			type = "text",
 			icon = "ui/icons/special.png",
 			text = "Levitate someone off the ground, granting them the ability to move across all terrain freely"
-		})
+		});
 		return ret;
 	}
 

@@ -264,9 +264,9 @@ this.legends_farm_fort <- this.inherit("scripts/entity/world/settlements/legends
 			case 1:
 			 	return 2;
 			case 2:
-				return 3
+				return 3;
 			case 3:
-				return 5
+				return 5;
 			default:
 				return 1;
 		}
@@ -279,9 +279,9 @@ this.legends_farm_fort <- this.inherit("scripts/entity/world/settlements/legends
 			case 1:
 			 	return 3;
 			case 2:
-				return 4
+				return 4;
 			case 3:
-				return 5
+				return 5;
 			default:
 				return 1;
 		}
@@ -328,7 +328,7 @@ this.legends_farm_fort <- this.inherit("scripts/entity/world/settlements/legends
 				Clear = true,
 				Force = true
 			}]
-		]
+		];
 
 		switch (this.m.Size)
 		{

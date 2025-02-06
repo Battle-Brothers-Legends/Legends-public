@@ -137,13 +137,13 @@ this.legends_assassin_scenario <- this.inherit("scripts/scenarios/world/starting
 	{
 		if (!bro.getBackground().isBackgroundType(this.Const.BackgroundType.Outlaw)) // if bro is NOT an outlaw then....
 		{
-			bro.m.HiringCost = this.Math.floor(bro.m.HiringCost * 1.0) //1.0 = default
+			bro.m.HiringCost = this.Math.floor(bro.m.HiringCost * 1.0); //1.0 = default
 			bro.getBaseProperties().DailyWageMult *= 1.0; //1.0 = default
 			bro.getSkills().update();
 		}
 		else
 		{
-			bro.m.HiringCost = this.Math.floor(bro.m.HiringCost * 0.5) //1.0 = default
+			bro.m.HiringCost = this.Math.floor(bro.m.HiringCost * 0.5); //1.0 = default
 			bro.getBaseProperties().DailyWageMult *= 0.5; //1.0 = default
 			bro.getSkills().update();
 		}

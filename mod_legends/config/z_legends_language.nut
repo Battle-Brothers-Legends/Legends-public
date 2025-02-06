@@ -75,7 +75,7 @@ if (!("LegendMod" in ::Const))
 	["they'll", ["they'll", "he'll", "she'll"]], // technically not needed, but included for consistency
 	["are they", ["are they", "is he", "is she"]],
 	["were they", ["were they", "was he", "was she"]],
-]
+];
 
 ::Const.LegendMod.extendVarsWithPronouns <- function( _vars, _gender, _characterIdentitySuffix = "" )
 {
@@ -123,29 +123,29 @@ if (!("LegendMod" in ::Const))
 	// ret += ::Const.UI.getColorized(_arr[0],"#5d8ede");
 	if(_highlight)
 	{
-		ret += ::Const.UI.getColorized(_arr[0],_highlight);	
+		ret += ::Const.UI.getColorized(_arr[0],_highlight);
 	}
 	else
 	{
 		ret += _arr[0];
 	}
-	
+
 
 	if (_arr.len() == 1) return ret;
 
 	for (local i = 1; i < _arr.len(); i++ )
 	{
 		local separator = (i == (_arr.len() - 1)) ? " " + _finalSeparator + " " : ", ";
-		
+
 		if(_highlight)
 		{
-			ret += separator + ::Const.UI.getColorized(_arr[i],_highlight);	
+			ret += separator + ::Const.UI.getColorized(_arr[i],_highlight);
 		}
 		else
 		{
 			ret += separator + _arr[i];
 		}
-		
+
 	}
 
 	return ret;

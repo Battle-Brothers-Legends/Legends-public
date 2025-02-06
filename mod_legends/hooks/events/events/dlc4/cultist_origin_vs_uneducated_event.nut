@@ -62,13 +62,11 @@
 			{
 				case bro.getFlags().get("IsSpecial"):
 				case bro.getFlags().get("IsPlayerCharacter"):
-					continue;
 				case bro.getBackground().getID() == "background.slave":
 				case bro.getBackground().getID() == "background.legend_puppet":
 				case bro.getBackground().getID() == "background.legend_commander_berserker":
 				case bro.getBackground().getID() == "background.legend_berserker":
 				case bro.getBackground().getID() == "background.legend_donkey":
-				case bro.getSkills().hasTrait(::Legends.Trait.Bright):
 					continue;
 				case bro.getBackground().isBackgroundType(this.Const.BackgroundType.ConvertedCultist):
 				case bro.getBackground().isBackgroundType(this.Const.BackgroundType.Cultist):
@@ -78,13 +76,14 @@
 					}
 				case bro.getSkills().hasTrait(::Legends.Trait.Dumb):
 				case bro.getSkills().hasSkill("injury.brain_damage"):
-					{
-						uneducated_candidates.push(bro);
-						continue;
-					}
-
+				{
+					uneducated_candidates.push(bro);
+					continue;
+				}
+				case bro.getSkills().hasTrait(::Legends.Trait.Bright):
 				case bro.getBackground().isBackgroundType(this.Const.BackgroundType.Noble):
 				case bro.getBackground().isBackgroundType(this.Const.BackgroundType.Educated):
+				case !bro.getBackground().isBackgroundType(this.Const.BackgroundType.Lowborn):
 					continue;
 			}
 			uneducated_candidates.push(bro);

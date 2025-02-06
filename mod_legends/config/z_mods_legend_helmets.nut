@@ -1853,9 +1853,9 @@ if (!("HelmObjs" in ::Const.LegendMod))
 			[1, "hood/legend_helmet_chain_hood_full"]
 		],
 		Helms = [
-			[1, "helm/legend_helmet_nordic_helm_low"], 
-			[1, "helm/legend_helmet_nordic_helm"], 
-			[1, "helm/legend_helmet_nordic_helm_high"] 
+			[1, "helm/legend_helmet_nordic_helm_low"],
+			[1, "helm/legend_helmet_nordic_helm"],
+			[1, "helm/legend_helmet_nordic_helm_high"]
 		],
 		Tops = [
 			[0, "top/legend_helmet_facemask"]
@@ -2081,8 +2081,8 @@ if (!("HelmObjs" in ::Const.LegendMod))
 		Script = "",
 		Sets = [{
 			Hoods = [
-				[1, "hood/legend_helmet_cloth_scarf"], 
-				[1, "hood/legend_helmet_southern_cap"], 
+				[1, "hood/legend_helmet_cloth_scarf"],
+				[1, "hood/legend_helmet_southern_cap"],
 				[1, "hood/legend_helmet_southern_cap_dark"]
 			],
 			Helms = [
@@ -2090,9 +2090,9 @@ if (!("HelmObjs" in ::Const.LegendMod))
 			Tops = [
 			],
 			Vanity = [
-				[1, "vanity/legend_helmet_headband"], 
-				[4, "vanity/legend_helmet_southern_headband"], 
-				[10, "vanity/legend_helmet_southern_patterned_headband"] 
+				[1, "vanity/legend_helmet_headband"],
+				[4, "vanity/legend_helmet_southern_headband"],
+				[10, "vanity/legend_helmet_southern_patterned_headband"]
 			]
 		}]
 	},
@@ -2102,7 +2102,7 @@ if (!("HelmObjs" in ::Const.LegendMod))
 		Sets = [{
 			Hoods = [
 				[1, "hood/legend_helmet_southern_open_chain_hood"],
-				[1, "hood/legend_helmet_southern_cap"], 
+				[1, "hood/legend_helmet_southern_cap"],
 				[1, "hood/legend_helmet_southern_cap_dark"]
 			],
 			Helms = [
@@ -2110,9 +2110,9 @@ if (!("HelmObjs" in ::Const.LegendMod))
 			Tops = [
 			],
 			Vanity = [
-				[1, "vanity/legend_helmet_headband"], 
-				[4, "vanity/legend_helmet_southern_headband"], 
-				[10, "vanity/legend_helmet_southern_patterned_headband"] 
+				[1, "vanity/legend_helmet_headband"],
+				[4, "vanity/legend_helmet_southern_headband"],
+				[10, "vanity/legend_helmet_southern_patterned_headband"]
 			]
 		}]
 	},
@@ -2121,14 +2121,14 @@ if (!("HelmObjs" in ::Const.LegendMod))
 		Script = "",
 		Sets = [{
 			Hoods = [
-				[1, "hood/legend_helmet_southern_open_chain_hood"] 
+				[1, "hood/legend_helmet_southern_open_chain_hood"],
 			],
 			Helms = [
 			],
 			Tops = [
 			],
 			Vanity = [
-				[1, "vanity/legend_helmet_southern_helm_tailed"], 
+				[1, "vanity/legend_helmet_southern_helm_tailed"],
 			]
 		}]
 	},
@@ -2177,8 +2177,8 @@ if (!("HelmObjs" in ::Const.LegendMod))
 		Script = "",
 		Sets = [{
 			Hoods = [
-				[1, "hood/legend_helmet_southern_open_chain_hood"], 
-				[2, "hood/legend_helmet_chain_hood"], 
+				[1, "hood/legend_helmet_southern_open_chain_hood"],
+				[2, "hood/legend_helmet_chain_hood"],
 				[1, "hood/legend_helmet_southern_niqaab"],
 			],
 			Helms = [
@@ -2234,7 +2234,6 @@ if (!("HelmObjs" in ::Const.LegendMod))
 			],
 			Vanity = [
 				[1, "vanity/legend_helmet_chaperon"],
-			
 			]
 		}]
 	},
@@ -2308,7 +2307,7 @@ if (!("HelmObjs" in ::Const.LegendMod))
 				[1, "helm/legend_helmet_kettle_helm_high"],
 			],
 			Tops = [
-			
+
 			],
 			Vanity = [
 			]
@@ -2361,7 +2360,7 @@ if (!("HelmObjs" in ::Const.LegendMod))
 			 [1, "helm/legend_helmet_swan_helm"] //140, -7, -2
 		],
 		Tops = [
-			
+
 			[3, ""],
 			[5, "top/legend_helmet_faceplate_winged"],
 			[3, "top/legend_helmet_faceplate_long"],
@@ -2444,7 +2443,7 @@ if (!("HelmObjs" in ::Const.LegendMod))
 		}]
 	},
 	{
-		ID = "lonewolf_hammershield_helmet", 
+		ID = "lonewolf_hammershield_helmet",
 		Script = "",
 		Sets = [{
 			Hoods = [
@@ -2491,10 +2490,10 @@ if (!("HelmObjs" in ::Const.LegendMod))
 			],
 			Tops = [],
 			Vanity = [
-				[1, "vanity/legend_helmet_hood_cloth_round"], 
-				[1, "vanity/legend_helmet_hood_cloth_wide"], 
-				[1, "vanity/legend_helmet_hood_cloth_square"], 
-				[1, "vanity/legend_helmet_hood_cloth_long"], 
+				[1, "vanity/legend_helmet_hood_cloth_round"],
+				[1, "vanity/legend_helmet_hood_cloth_wide"],
+				[1, "vanity/legend_helmet_hood_cloth_square"],
+				[1, "vanity/legend_helmet_hood_cloth_long"],
 			]
 		}]
 	},
@@ -2510,10 +2509,10 @@ if (!("HelmObjs" in ::Const.LegendMod))
 			],
 			Tops = [],
 			Vanity = [
-				[1, "vanity/legend_helmet_hood_cloth_round"], 
-				[1, "vanity/legend_helmet_hood_cloth_wide"], 
-				[1, "vanity/legend_helmet_hood_cloth_square"], 
-				[1, "vanity/legend_helmet_hood_cloth_long"], 
+				[1, "vanity/legend_helmet_hood_cloth_round"],
+				[1, "vanity/legend_helmet_hood_cloth_wide"],
+				[1, "vanity/legend_helmet_hood_cloth_square"],
+				[1, "vanity/legend_helmet_hood_cloth_long"],
 			]
 		}]
 	},
@@ -2753,7 +2752,7 @@ if (!("HelmObjs" in ::Const.LegendMod))
 			],
 			Vanity = [
 				[1, "vanity/legend_helmet_plait"] //12 to match the 8 if wanted
-			], 
+			],
 		}]
 	},
 	{
@@ -2792,7 +2791,7 @@ if (!("HelmObjs" in ::Const.LegendMod))
 			],
 		}]
 	},
-])
+]);
 
 ::Const.LegendMod.Helmets <- {};
 

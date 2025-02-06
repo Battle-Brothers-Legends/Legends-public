@@ -149,7 +149,7 @@ this.messenger_background <- this.inherit("scripts/skills/backgrounds/character_
 		items.equip(this.Const.World.Common.pickArmor([
 			[1, "leather_tunic"],
 			[1, "linen_tunic"]
-		]))
+		]));
 
 		items.equip(this.Const.World.Common.pickHelmet([
 			[1, ""],

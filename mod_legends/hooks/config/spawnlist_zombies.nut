@@ -399,7 +399,7 @@ if (!("Spawn" in ::Const.World))
 					MaxR = 200,
 					Cost = 6,
 					function Weight(scale) {
-						local c = 100 - (scale * 100)
+						local c = 100 - (scale * 100);
 						return this.Math.max(0, c);
 					}
 				},
@@ -408,7 +408,7 @@ if (!("Spawn" in ::Const.World))
 					MinR = 200,
 					Cost = 12,
 					function Weight(scale) {
-						local c = 100 - (scale * 100)
+						local c = 100 - (scale * 100);
 						return this.Math.max(0, c);
 					}
 				},
@@ -417,7 +417,7 @@ if (!("Spawn" in ::Const.World))
 					MinR = 400,
 					Cost = 25,
 					function Weight(scale) {
-						local c = 100 - ((1.0 - scale) * 100)
+						local c = 100 - ((1.0 - scale) * 100);
 						return this.Math.min(100, c);
 					}
 				}
@@ -469,7 +469,7 @@ if (!("Spawn" in ::Const.World))
 							Type = this.Const.World.Spawn.Troops.ZombieYeomanBodyguard,
 							Cost = 12,
 							function Weight(scale) {
-								local c = 100 - (scale * 100)
+								local c = 100 - (scale * 100);
 								return this.Math.max(0, c);
 							}
 						},
@@ -477,7 +477,7 @@ if (!("Spawn" in ::Const.World))
 							Type = this.Const.World.Spawn.Troops.ZombieKnightBodyguard,
 							Cost = 25,
 							function Weight(scale) {
-								local c = 100 - ((1.0 - scale) * 100)
+								local c = 100 - ((1.0 - scale) * 100);
 								return this.Math.min(100, c);
 							}
 						}
@@ -542,7 +542,7 @@ if (!("Spawn" in ::Const.World))
 					MinR = 200,
 					Cost = 6,
 					function Weight(scale) {
-						local c = 100 - (scale * 100)
+						local c = 100 - (scale * 100);
 						return this.Math.max(0, c);
 					}
 				},
@@ -551,7 +551,7 @@ if (!("Spawn" in ::Const.World))
 					MinR = 400,
 					Cost = 24,
 					function Weight(scale) {
-						local c = 100 - ((1.0 - scale) * 100)
+						local c = 100 - ((1.0 - scale) * 100);
 						return this.Math.min(100, c);
 					}
 				}
@@ -612,7 +612,7 @@ if (!("Spawn" in ::Const.World))
 							Type = this.Const.World.Spawn.Troops.ZombieNomadBodyguard,
 							Cost = 6,
 							function Weight(scale) {
-								local c = 100 - (scale * 100)
+								local c = 100 - (scale * 100);
 								return this.Math.max(0, c);
 							}
 						},
@@ -620,7 +620,7 @@ if (!("Spawn" in ::Const.World))
 							Type = this.Const.World.Spawn.Troops.ZombieKnightBodyguard,
 							Cost = 24,
 							function Weight(scale) {
-								local c = 100 - ((1.0 - scale) * 100)
+								local c = 100 - ((1.0 - scale) * 100);
 								return this.Math.min(100, c);
 							}
 						}

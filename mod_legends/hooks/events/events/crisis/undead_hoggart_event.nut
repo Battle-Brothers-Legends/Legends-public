@@ -28,7 +28,7 @@
 					});
 				}
 			}
-			if (s.ID == "C") {
+			if (s.ID == "J") {
 				local startJ = s.start;
 				s.start <- function (_event) {
 					startJ(_event);

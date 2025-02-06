@@ -1,12 +1,12 @@
 ::mods_hookExactClass("items/weapons/named/named_axe", function(o) {
 	o.m.PossibleEffects <- ["scripts/skills/effects/legend_named_axe_effect"];
-	o.m.EffectBounds <- [ [10, 25] ]
+	o.m.EffectBounds <- [ [10, 25] ];
 
 	local create = o.create;
 	o.create = function ()
 	{
 		create();
-		this.m.Variants = [1,2,3,4,5,6]
+		this.m.Variants = [1,2,3,4,5,6];
 		this.m.Variant = this.m.Variants[this.Math.rand(0, this.m.Variants.len() -1)];
 		this.updateVariant();
 	}

@@ -6,7 +6,7 @@ this.legend_named_armor_upgrade <- this.inherit("scripts/items/legend_armor/lege
 	},
 	function create()
 	{
-		this.legend_armor_upgrade.create()
+		this.legend_armor_upgrade.create();
 		this.m.ItemType = this.m.ItemType | this.Const.Items.ItemType.Named;
 	}
 

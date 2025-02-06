@@ -185,8 +185,8 @@ this.legend_orc_behemoth <- this.inherit("scripts/entity/tactical/actor", {
 	function onFactionChanged()
 	{
 		this.actor.onFactionChanged();
-		local flip = this.isAlliedWithPlayer()
-		flip = !flip
+		local flip = this.isAlliedWithPlayer();
+		flip = !flip;
 		foreach (a in this.Const.CharacterSprites.Helmets)
 		{
 			if (!this.hasSprite(a))
@@ -329,7 +329,7 @@ this.legend_orc_behemoth <- this.inherit("scripts/entity/tactical/actor", {
 
 			local item = this.Const.World.Common.pickHelmet([
 				[1, "greenskins/legend_orc_behemoth_helmet"]
-			])
+			]);
 			if (item != null)
 			{
 				this.m.Items.equip(item);

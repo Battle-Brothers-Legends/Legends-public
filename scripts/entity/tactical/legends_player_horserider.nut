@@ -61,34 +61,34 @@ this.legends_player_horserider <- this.inherit("scripts/entity/tactical/player",
 
 //determine hitpoints
 		local horseHP = this.getHorse().getHitpoints();
-			this.logInfo("horseHP is " + horseHP)
+			this.logInfo("horseHP is " + horseHP);
 		local riderHP = this.getRider().getHitpoints();
-			this.logInfo("riderHP is " + riderHP)
+			this.logInfo("riderHP is " + riderHP);
 		local totalHP = this.Math.floor((horseHP + riderHP) / 2);
 		b.Hitpoints = totalHP;
-			this.logInfo("totalHP is " + b.Hitpoints)
+			this.logInfo("totalHP is " + b.Hitpoints);
 
 //determine resolve
 		local horseBravery = this.getHorse().getBaseProperties().Bravery;
-			this.logInfo("horseBravery is " + horseBravery)
+			this.logInfo("horseBravery is " + horseBravery);
 		local riderBravery = this.getRider().getBaseProperties().Bravery;
-			this.logInfo("riderBravery is " + riderBravery)
+			this.logInfo("riderBravery is " + riderBravery);
 		local totalBravery = (horseBravery + riderBravery) / 2;
 
 		if (this.getHorse().getSkills().hasPerk(::Legends.Perk.LegendHorseLiberty))
 		{
 			totalBravery += riderBravery * 0.25;
 		}
-		this.logInfo("totalBravery is " + totalBravery)
+		this.logInfo("totalBravery is " + totalBravery);
 		b.Bravery = totalBravery;
 
 //determine fatigue
 		local horseFatigue = this.getHorse().getBaseProperties().Stamina;
-			this.logInfo("horseFatigue is " + horseFatigue)
+			this.logInfo("horseFatigue is " + horseFatigue);
 		local riderFatigue = this.getRider().getBaseProperties().Stamina;
-			this.logInfo("riderFatiguee is " + riderFatigue)
+			this.logInfo("riderFatiguee is " + riderFatigue);
 		local totalFatigue = (horseFatigue + riderFatigue) / 2;
-			this.logInfo("totalFatiguee is " + totalFatigue)
+			this.logInfo("totalFatiguee is " + totalFatigue);
 		b.Stamina = totalFatigue;
 
 
@@ -189,7 +189,7 @@ this.legends_player_horserider <- this.inherit("scripts/entity/tactical/player",
 
 		this.m.horseArmor = this.getHorse().getItems().getItemAtSlot(this.Const.ItemSlot.Body);
 		if (this.m.horseArmor != null)
-			this.m.Items.equip(this.m.horseArmor)
+			this.m.Items.equip(this.m.horseArmor);
 
 		background.buildDescription();
 		local c = this.m.CurrentProperties;
@@ -214,7 +214,7 @@ this.legends_player_horserider <- this.inherit("scripts/entity/tactical/player",
 			this.World.getPlayerRoster().remove(this.getHorse());
 			return;
 		}
-		local pBody = this.getRider().getSprite("body")
+		local pBody = this.getRider().getSprite("body");
 
 		if (this.m.LastBodyPartHit == this.Const.BodyPart.Body)
 		{
@@ -306,8 +306,8 @@ this.legends_player_horserider <- this.inherit("scripts/entity/tactical/player",
 
 		local hpMissing = this.getHitpointsPct();
 
-		this.getRider().setHitpoints( (riderHP * hpMissing > 0) ? (riderHP * hpMissing) : riderHP )
-		this.getHorse().setHitpoints( (horseHP * hpMissing > 0) ? (horseHP * hpMissing) : horseHP )
+		this.getRider().setHitpoints( (riderHP * hpMissing > 0) ? (riderHP * hpMissing) : riderHP );
+		this.getHorse().setHitpoints( (horseHP * hpMissing > 0) ? (horseHP * hpMissing) : horseHP );
 
 
 		this.World.getPlayerRoster().remove(this);

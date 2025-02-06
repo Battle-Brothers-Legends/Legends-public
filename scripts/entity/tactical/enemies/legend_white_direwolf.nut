@@ -287,13 +287,13 @@ this.legend_white_direwolf <- this.inherit("scripts/entity/tactical/actor", {
 					dateToSkip = 250;
 					break;
 				case this.Const.Difficulty.Normal:
-					dateToSkip = 200
+					dateToSkip = 200;
 					break;
 				case this.Const.Difficulty.Hard:
-					dateToSkip = 150
+					dateToSkip = 150;
 					break;
 				case this.Const.Difficulty.Legendary:
-					dateToSkip = 100
+					dateToSkip = 100;
 					break;
 			}
 

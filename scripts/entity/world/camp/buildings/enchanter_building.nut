@@ -13,8 +13,8 @@ this.enchanter_building <- this.inherit("scripts/entity/world/camp/camp_building
 		this.m.ID = this.Const.World.CampBuildings.Enchanter;
 		this.m.Slot = "enchant";
 		this.m.Name = "Enchanter";
-		this.m.Description = "Oooo.. Pretty glowing things..."
-		this.m.BannerImage = "ui/buttons/banner_enchant.png"
+		this.m.Description = "Oooo.. Pretty glowing things...";
+		this.m.BannerImage = "ui/buttons/banner_enchant.png";
 		this.m.Sounds = [
 			{
 				File = "ambience/camp/camp_vala_chanting_01.wav",
@@ -88,7 +88,7 @@ this.enchanter_building <- this.inherit("scripts/entity/world/camp/camp_building
 			}
 		];
 		this.m.SoundsAtNight = [
-				{
+			{
 				File = "ambience/camp/camp_vala_chanting_01.wav",
 				Volume = 1.0,
 				Pitch = 1.0
@@ -165,20 +165,20 @@ this.enchanter_building <- this.inherit("scripts/entity/world/camp/camp_building
 	{
 		if (this.getUpgraded())
 		{
-			return this.m.Name + " *Upgraded*"
+			return this.m.Name + " *Upgraded*";
 		}
-		return this.m.Name +  " *Not Upgraded*"
+		return this.m.Name +  " *Not Upgraded*";
 	}
 
 	function getDescription()
 	{
 		local desc = "";
-		desc += "Tha Vala emporium of mystical (and maybe even magical) mischief. While encamped, the Vala can retreat into her books and experiments. "
-		desc += "Rune requests can be queued up for the Vala to try her hand at. What comes of them, you'll just have to wait and see what she inscribes. "
-		desc += "Only the Vala can be assigned to the Enchanting tent. Vala's ability to inscribe runes is determined by learning the correct inscriptions via her perks."
-		desc += "\n\n"
-		desc += "The Enchanting tent can be upgraded by purchasing a crafting cart from a settlement merchant. An upgraded tent has a 15% increase in enchanting speed. "
-		desc += "Additionally, the upgraded tools and equipment from the cart allows the Vala to produce potentially more powerful Runes."
+		desc += "Tha Vala emporium of mystical (and maybe even magical) mischief. While encamped, the Vala can retreat into her books and experiments. ";
+		desc += "Rune requests can be queued up for the Vala to try her hand at. What comes of them, you'll just have to wait and see what she inscribes. ";
+		desc += "Only the Vala can be assigned to the Enchanting tent. Vala's ability to inscribe runes is determined by learning the correct inscriptions via her perks.";
+		desc += "\n\n";
+		desc += "The Enchanting tent can be upgraded by purchasing a crafting cart from a settlement merchant. An upgraded tent has a 15% increase in enchanting speed. ";
+		desc += "Additionally, the upgraded tools and equipment from the cart allows the Vala to produce potentially more powerful Runes.";
 		return desc;
 	}
 
@@ -214,7 +214,7 @@ this.enchanter_building <- this.inherit("scripts/entity/world/camp/camp_building
 				type = "hint",
 				icon = "ui/icons/special.png",
 				text = "[color=" + this.Const.UI.Color.PositiveValue + "]" + bro[0] + "[/color] units/hour " + bro[1] + " (" + bro[2] + ")"
-			})
+			});
 			++id;
 		}
 		return ret;
@@ -226,7 +226,7 @@ this.enchanter_building <- this.inherit("scripts/entity/world/camp/camp_building
 		this.m.ItemsCrafted = [];
 		this.m.CurrentProgress = 0;
 		this.m.CurrentCraft = null;
-		local mod = this.getModifiers()
+		local mod = this.getModifiers();
 		this.m.NumBros = mod.Assigned;
 	}
 
@@ -237,7 +237,7 @@ this.enchanter_building <- this.inherit("scripts/entity/world/camp/camp_building
 		{
 			if (bro.getBackground().getModifiers().Enchanting > 0)
 			{
-				return false
+				return false;
 			}
 		}
 		return true;
@@ -250,15 +250,15 @@ this.enchanter_building <- this.inherit("scripts/entity/world/camp/camp_building
 		{
 			if (this.m.Queue[i] == null)
 			{
-				continue
+				continue;
 			}
 			if (this.m.Queue[i].Blueprint == null)
 			{
-				continue
+				continue;
 			}
-			q.push(this.m.Queue[i])
+			q.push(this.m.Queue[i]);
 		}
-		this.m.Queue = q
+		this.m.Queue = q;
 	}
 
 	function getModifiers()
@@ -274,7 +274,7 @@ this.enchanter_building <- this.inherit("scripts/entity/world/camp/camp_building
 		{
 			if (bro.getCampAssignment() != this.m.ID)
 			{
-				continue
+				continue;
 			}
 
 			local rm = this.m.BaseCraft * bro.getBackground().getModifiers().Enchanting;
@@ -282,8 +282,8 @@ this.enchanter_building <- this.inherit("scripts/entity/world/camp/camp_building
 			{
 				rm *= 1.3;
 			}
-			ret.Craft += rm
-			++ret.Assigned
+			ret.Craft += rm;
+			++ret.Assigned;
 			ret.Modifiers.push([rm, bro.getName(), bro.getBackground().getNameOnly()]);
 		}
 
@@ -297,7 +297,7 @@ this.enchanter_building <- this.inherit("scripts/entity/world/camp/camp_building
 
 	function getResults()
 	{
-		local res = []
+		local res = [];
 		local id = 20;
 		foreach (b in this.m.ItemsCrafted)
 		{
@@ -305,7 +305,7 @@ this.enchanter_building <- this.inherit("scripts/entity/world/camp/camp_building
 		 		id = id,
 		 		icon = "ui/items/" + b.getIcon(),
 		 		text = "Enchanting completed: " + b.getName()
-			})
+			});
 			++id;
 		}
 		return res;
@@ -385,7 +385,7 @@ this.enchanter_building <- this.inherit("scripts/entity/world/camp/camp_building
 			if (r.Points >= r.Blueprint.getCost())
 			{
 				r.Blueprint.enchant(this.getUpgraded());
-				this.m.ItemsCrafted.push(r.Blueprint)
+				this.m.ItemsCrafted.push(r.Blueprint);
 				this.m.Queue[i] = null;
 			}
 
@@ -407,10 +407,10 @@ this.enchanter_building <- this.inherit("scripts/entity/world/camp/camp_building
 		{
 			if (b == null)
 			{
-				continue
+				continue;
 			}
 			local r = b.Blueprint.getUIData();
-			r.Percentage <- (b.Points / (b.Blueprint.getCost() * 1.0)) * 100
+			r.Percentage <- (b.Points / (b.Blueprint.getCost() * 1.0)) * 100;
 			ret.push(r);
 		}
 		return ret;
@@ -487,11 +487,11 @@ this.enchanter_building <- this.inherit("scripts/entity/world/camp/camp_building
 		{
 			if (i == _idx)
 			{
-				continue
+				continue;
 			}
 			q.push(this.m.Queue[i])
 		}
-		this.m.Queue = q
+		this.m.Queue = q;
 	}
 
 	function onSwap ( _source, _target)

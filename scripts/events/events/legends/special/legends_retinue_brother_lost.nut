@@ -59,7 +59,7 @@ this.legends_retinue_brother_lost <- this.inherit("scripts/events/event", {
 			this.World.Assets.getName()
 		]);
 
-		local followers = ""
+		local followers = "";
 		foreach (follower in lostFollowers)
 		{
 			followers += " - ";

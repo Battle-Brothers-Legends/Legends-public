@@ -18,7 +18,7 @@ this.legend_quiver_of_broad_arrows_blueprint <- this.inherit("scripts/crafting/b
 			{
 				Scripts = ["scripts/skills/backgrounds/bowyer_background"]
 			}
-		]
+		];
 		this.initSkills(skills);
 	}
 

@@ -19,7 +19,7 @@ this.repair_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 		this.m.Escorting = true;
 		this.m.Slot = "repair";
 		this.m.Name = "Repair Tent";
-		this.m.Description = "Manage the repair of company items"
+		this.m.Description = "Manage the repair of company items";
 		this.m.BannerImage = "ui/buttons/banner_repair.png";
 		this.m.Sounds = [
 			{
@@ -93,13 +93,13 @@ this.repair_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 	function getDescription()
 	{
 		local desc = "";
-		desc += "This tent repairs damaged items in your stash and equipped fighers. Equipment is repaired one item at time in the order they were queued."
-		desc += "At the end of a battle, any damaged equipped gear is added to the front of the repair queue."
-		desc += "\n\n"
-		desc += "Items will repair very slowly when not camped. Camping increases the speed even with no one assigned. Default repair speed is based on game combat difficulty."
-		desc += "The more people assigned to the repair tent, the quicker the repairs. Mercenaries with repair skills increase the speed even further and may save you tools."
-		desc += "\n\n"
-		desc += "Buying an upgraded tent from a settlement will increase repair speed by 33% and reduce tool use by -33%."
+		desc += "This tent repairs damaged items in your stash and equipped fighers. Equipment is repaired one item at time in the order they were queued.";
+		desc += "At the end of a battle, any damaged equipped gear is added to the front of the repair queue.";
+		desc += "\n\n";
+		desc += "Items will repair very slowly when not camped. Camping increases the speed even with no one assigned. Default repair speed is based on game combat difficulty.";
+		desc += "The more people assigned to the repair tent, the quicker the repairs. Mercenaries with repair skills increase the speed even further and may save you tools.";
+		desc += "\n\n";
+		desc += "Buying an upgraded tent from a settlement will increase repair speed by 33% and reduce tool use by -33%.";
 		return desc;
 	}
 
@@ -135,7 +135,7 @@ this.repair_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 				type = "hint",
 				icon = "ui/icons/special.png",
 				text = "[color=" + this.Const.UI.Color.PositiveValue + "]" + bro[0] + "[/color] units/hour " + bro[1] + " (" + bro[2] + ")"
-			})
+			});
 			++id;
 		}
 		return ret;
@@ -182,7 +182,7 @@ this.repair_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 
 	function onInit()
 	{
-		local items = this.getListOfItemsNeedingRepair()
+		local items = this.getListOfItemsNeedingRepair();
 		this.m.Stash = items.Stash;
 		this.m.Repairs = items.Items;
 		local capacity =  this.m.Repairs.len() + this.m.Stash.len();
@@ -370,7 +370,7 @@ this.repair_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 				continue;
 			}
 
-			local needed = r.Item.getRepairMax() - r.Item.getRepair()
+			local needed = r.Item.getRepairMax() - r.Item.getRepair();
 			if (modifiers.Craft < needed)
 			{
 				needed = modifiers.Craft;
@@ -389,7 +389,7 @@ this.repair_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 
 			if (r.Item.getRepair() >= r.Item.getRepairMax())
 			{
-				this.m.ItemsRepaired += 1
+				this.m.ItemsRepaired += 1;
 				this.swapItems("camp-screen-repair-dialog-module.shop", i, "camp-screen-repair-dialog-module.stash", null);
 			}
 
@@ -427,7 +427,7 @@ this.repair_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 	{
 		local items = [];
 		local stash = [];
-		local roster = this.World.getPlayerRoster().getAll()
+		local roster = this.World.getPlayerRoster().getAll();
 		foreach (bro in roster)
 		{
 			local bitems = bro.getItems().getAllItems();
@@ -488,7 +488,7 @@ this.repair_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 
 	function assignEquipped()
 	{
-		local roster = this.World.getPlayerRoster().getAll()
+		local roster = this.World.getPlayerRoster().getAll();
 		foreach( bro in roster)
 		{
 			local bitems = bro.getItems().getAllItems();
@@ -521,7 +521,7 @@ this.repair_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 			_filter = this.Const.Items.ItemFilter.All;
 		}
 
-		local index = 0
+		local index = 0;
 		foreach (i, s in this.m.Stash)
 		{
 			if (s == null)
@@ -555,7 +555,7 @@ this.repair_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 			{
 				this.m.Repairs[index] = s;
 			}
-			s.Item.playInventorySound(this.Const.Items.InventoryEventType.PlacedInBag)
+			s.Item.playInventorySound(this.Const.Items.InventoryEventType.PlacedInBag);
 			this.m.Stash[i] = null;
 		}
 	}
@@ -587,7 +587,7 @@ this.repair_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 			{
 				this.m.Stash[index] = s;
 			}
-			s.Item.playInventorySound(this.Const.Items.InventoryEventType.PlacedInBag)
+			s.Item.playInventorySound(this.Const.Items.InventoryEventType.PlacedInBag);
 			this.m.Repairs[i] = null;
 		}
 	}
@@ -607,11 +607,11 @@ this.repair_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 
 		local sourceList = null;
 		local targetList = null;
-		local isRepair = false
+		local isRepair = false;
 		switch(sourceItemOwner)
 		{
 		case "camp-screen-repair-dialog-module.stash":
-			sourceList = this.m.Stash
+			sourceList = this.m.Stash;
 			if (sourceItemOwner == targetItemOwner)
 			{
 				targetList = this.m.Stash;
@@ -624,7 +624,7 @@ this.repair_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 			break;
 
 		case "camp-screen-repair-dialog-module.shop":
-			sourceList = this.m.Repairs
+			sourceList = this.m.Repairs;
 			if (sourceItemOwner == targetItemOwner)
 			{
 				targetList = this.m.Repairs;
@@ -655,8 +655,8 @@ this.repair_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 			}
 			sourceList[sourceItemIdx] = targetList[targetItemIdx];
 			targetList[targetItemIdx] = sourceItem;
-			sourceItem.Item.playInventorySound(this.Const.Items.InventoryEventType.PlacedInBag)
-			local index = 0
+			sourceItem.Item.playInventorySound(this.Const.Items.InventoryEventType.PlacedInBag);
+			local index = 0;
 			if (isRepair)
 			{
 				index = targetItemIdx
@@ -674,8 +674,8 @@ this.repair_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 			}
 			targetList[i] = sourceItem;
 			sourceList[sourceItemIdx] = null;
-			sourceItem.Item.playInventorySound(this.Const.Items.InventoryEventType.PlacedInBag)
-			local index = 0
+			sourceItem.Item.playInventorySound(this.Const.Items.InventoryEventType.PlacedInBag);
+			local index = 0;
 			if (isRepair)
 			{
 				index = i
@@ -687,8 +687,8 @@ this.repair_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 		//No null spot, push to the end
 		targetList.push(sourceItem);
 		sourceList[sourceItemIdx] = null;
-		sourceItem.Item.playInventorySound(this.Const.Items.InventoryEventType.PlacedInBag)
-		local index = 0
+		sourceItem.Item.playInventorySound(this.Const.Items.InventoryEventType.PlacedInBag);
+		local index = 0;
 		if (isRepair)
 		{
 			index = targetList.len() - 1

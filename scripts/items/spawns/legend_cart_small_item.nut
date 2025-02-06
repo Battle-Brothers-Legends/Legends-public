@@ -10,7 +10,7 @@ this.legend_cart_small_item <- this.inherit("scripts/items/spawns/legend_spawn_i
 	function create()
 	{
 		this.legend_spawn_item.create();
-		this.m.Variant = 1
+		this.m.Variant = 1;
 		this.updateVariant();
 		this.m.ID = "spawns.cart_01";
 		this.m.Name = "Small cart";

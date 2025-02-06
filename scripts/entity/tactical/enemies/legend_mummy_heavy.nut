@@ -110,8 +110,7 @@ this.legend_mummy_heavy <- this.inherit("scripts/entity/tactical/legend_mummy", 
 			[1, "legend_named_great_khopesh"],
 			[1, "named_warscythe"],
 			[1, "named_bladed_pike"]
-
-		]
+		];
 
 		local weaponAdd = this.Const.World.Common.pickItem(weapons, "scripts/items/weapons/named/");
 		this.m.Items.equip(weaponAdd);

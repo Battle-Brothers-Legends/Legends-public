@@ -49,7 +49,7 @@
 			::Legends.Effect.Stunned,
 			::Legends.Effect.Web,
 			::Legends.Effect.Withered,
-		]
+		];
 
 		foreach(e in effects)
 		{

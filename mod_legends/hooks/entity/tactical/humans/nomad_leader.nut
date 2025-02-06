@@ -53,7 +53,7 @@
 			local armor = [
 				[1, "oriental/plated_nomad_mail"],
 				[1, "oriental/southern_long_mail_with_padding"],
-			]
+			];
 
 			local helmet = [
 				[4, "oriental/southern_helmet_with_coif"],
@@ -63,7 +63,7 @@
 			local outfits = [
 				[1, "southern_knight_outfit_00"],
 				[1, "white_nomad_leader_outfit_00"]
-			]
+			];
 
 			foreach( item in this.Const.World.Common.pickOutfit(outfits, armor, helmet) )
 			{

@@ -9,7 +9,7 @@ this.legend_pilgrim_background <- this.inherit("scripts/skills/backgrounds/chara
 		this.m.BackgroundDescription = "Dirty and tired, these disciples of the old gods look for clarity and power in %their% teachings.";
 		this.m.GoodEnding = "%name% began %their% journey with you as a victim or circamstance, at oods with the rest of the world in %their% newfound predicament. Although they were not paid much %name% continued to spread your teachings to all who would listen. Seasons from then %they% would join the same holy order after it\'s monastary was burned down, setting out with like minded companions as a crusader.";
 		this.m.BadEnding = "With your retirement from the company, %name% set out to spread the word of your teachings. Many did not take kindly to %their% words and often found %themselves% driven out of towns and into the wilderness. After one such instance %name% took shelter in an abandoned crypt, which quickly turned out to not be abandoned at all...";
-		this.m.HiringCost = 0
+		this.m.HiringCost = 0;
 		this.m.DailyCost = 5;
 		this.m.Titles = [
 			"the Fanatic",
@@ -41,7 +41,7 @@ this.legend_pilgrim_background <- this.inherit("scripts/skills/backgrounds/chara
 			::Legends.Traits.getID(::Legends.Trait.LegendHateNobles),
 			::Legends.Traits.getID(::Legends.Trait.LegendSlack)
 		];
-		this.m.IsGuaranteed = ["hate_undead_trait"]
+		this.m.IsGuaranteed = ["hate_undead_trait"];
 		this.m.Faces = this.Const.Faces.AllWhiteMale;
 		this.m.Hairs = this.Const.Hair.UntidyMale;
 		this.m.HairColors = this.Const.HairColors.All;
@@ -83,7 +83,7 @@ this.legend_pilgrim_background <- this.inherit("scripts/skills/backgrounds/chara
 				this.Const.Perks.ShieldTree,
 				this.Const.Perks.SlingTree
 			],
-			Defense = [		
+			Defense = [
 				this.Const.Perks.LightArmorTree,
 				this.Const.Perks.HeavyArmorTree
 			],
@@ -106,7 +106,7 @@ this.legend_pilgrim_background <- this.inherit("scripts/skills/backgrounds/chara
 
 	function getTooltip() //nobody loves pilgrims
 	{
-		local ret = this.character_background.getTooltip()
+		local ret = this.character_background.getTooltip();
 
 		if (("State" in this.World) && this.World.State != null && this.World.Assets.getOrigin().getID() == "scenario.legends_crusader")
 		{
@@ -137,7 +137,7 @@ this.legend_pilgrim_background <- this.inherit("scripts/skills/backgrounds/chara
 
 	function setGender(_gender = -1)
 	{
-		_gender = ::Legends.Mod.ModSettings.getSetting("GenderEquality").getValue() == "Disabled" ? 0 : ::Math.rand(0, 19)
+		_gender = ::Legends.Mod.ModSettings.getSetting("GenderEquality").getValue() == "Disabled" ? 0 : ::Math.rand(0, 19);
 
 		if (_gender != 1) return;
 
@@ -221,7 +221,7 @@ this.legend_pilgrim_background <- this.inherit("scripts/skills/backgrounds/chara
 			[1, "padded_surcoat"],
 			[1, "gambeson"],
 			[1, "linen_tunic"]
-		]))
+		]));
 
 		items.equip(this.Const.World.Common.pickHelmet([
 			[1, "aketon_cap"],

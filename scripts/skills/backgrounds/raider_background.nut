@@ -216,7 +216,7 @@ this.raider_background <- this.inherit("scripts/skills/backgrounds/character_bac
 			[1, "padded_leather"],
 			[1, "leather_lamellar"],
 			[1, "worn_mail_shirt"]
-		]))
+		]));
 
 		items.equip(this.Const.World.Common.pickHelmet([
 			[1, ""],

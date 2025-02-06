@@ -23,7 +23,7 @@ this.legend_horse <- this.inherit("scripts/skills/backgrounds/character_backgrou
 			::Legends.Traits.getID(::Legends.Trait.LegendGiftOfPeople),
 			::Legends.Traits.getID(::Legends.Trait.LegendDoubleTongued)
 		];
-		this.m.Variant = this.Math.rand(1, 7)
+		this.m.Variant = this.Math.rand(1, 7);
 		this.m.Faces = this.Const.Faces.Horse;
 		this.m.Hairs = this.Const.Hair.None;
 		this.m.HairColors = this.Const.HairColors.None;
@@ -96,7 +96,7 @@ this.legend_horse <- this.inherit("scripts/skills/backgrounds/character_backgrou
 				this.Const.Perks.PerkDefs.LoneWolf,
 				this.Const.Perks.PerkDefs.Underdog,
 				this.Const.Perks.PerkDefs.Footwork,
-				this.Const.Perks.PerkDefs.LegendHorseLegControl
+				this.Const.Perks.PerkDefs.LegendHorseLegControl,
 				this.Const.Perks.PerkDefs.LegendHorseLeadChange,
 				this.Const.Perks.PerkDefs.LegendHorseParthianShot
 			],
@@ -111,7 +111,7 @@ this.legend_horse <- this.inherit("scripts/skills/backgrounds/character_backgrou
 			],
 			[
 				this.Const.Perks.PerkDefs.Stalwart,
-				this.Const.Perks.PerkDefs.LegendSkillfulStacking
+				this.Const.Perks.PerkDefs.LegendSkillfulStacking,
 				this.Const.Perks.PerkDefs.LegendAmmoBundles,
 				this.Const.Perks.PerkDefs.LegendMedIngredients,
 				this.Const.Perks.PerkDefs.LegendToolsSpares,
@@ -133,7 +133,7 @@ this.legend_horse <- this.inherit("scripts/skills/backgrounds/character_backgrou
 		if (this.m.Faces != null)
 		{
 			local sprite = actor.getSprite("head");
-			sprite.setBrush(this.m.Faces[this.m.Variant])
+			sprite.setBrush(this.m.Faces[this.m.Variant]);
 			sprite.Color = this.createColor("#fbffff");
 			sprite.varyColor(0.05, 0.05, 0.05);
 			sprite.varySaturation(0.1);
@@ -227,9 +227,9 @@ this.legend_horse <- this.inherit("scripts/skills/backgrounds/character_backgrou
 
 	function onDeserialize( _in )
 	{
-		this.character_background.onDeserialize(_in)
-		this.m.Variant = _in.readU8()
-		this.updateVariant()
+		this.character_background.onDeserialize(_in);
+		this.m.Variant = _in.readU8();
+		this.updateVariant();
 
 	}
 });

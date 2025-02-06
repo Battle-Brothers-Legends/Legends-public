@@ -1,7 +1,7 @@
 if (!("EnemyPerks" in ::Const))
 	::Const.EnemyPerks <- {};
 
-::Const.EnemyPerks.Default <- []
+::Const.EnemyPerks.Default <- [];
 
 ::Const.EnemyPerks.FreeCompanyArcher <- [
 	[3, [::Legends.Perk.LegendSpecialistShortbowSkill, ::Legends.Perk.LegendSpecialistShortbowDamage], 4],
@@ -12,7 +12,7 @@ if (!("EnemyPerks" in ::Const))
 	[1, ::Legends.Perk.Pathfinder, 1],
 	[1, ::Legends.Perk.Relentless, 1],
 	[1, ::Legends.Perk.QuickHands, 0]
-]
+];
 
 ::Const.EnemyPerks.FreeCompanyCrossbow <- [
 	[2, ::Legends.Perk.LegendBallistics, 3],
@@ -23,7 +23,7 @@ if (!("EnemyPerks" in ::Const))
 	[1, ::Legends.Perk.Pathfinder, 1],
 	[1, ::Legends.Perk.Relentless, 1],
 	[1, ::Legends.Perk.QuickHands, 0]
-]
+];
 
 ::Const.EnemyPerks.FreeCompanyLongbow <- [
 	[3, ::Legends.Perk.Berserk, 4],
@@ -38,7 +38,7 @@ if (!("EnemyPerks" in ::Const))
 	[1, ::Legends.Perk.Pathfinder, 1],
 	[1, ::Legends.Perk.Relentless, 1],
 	[1, ::Legends.Perk.QuickHands, 0]
-]
+];
 
 ::Const.EnemyPerks.FreeCompanySpearman <- [
 	[4, [::Legends.Perk.LegendSpecialistMilitiaSkill, ::Legends.Perk.LegendSpecialistMilitiaDamage], 4],
@@ -50,7 +50,7 @@ if (!("EnemyPerks" in ::Const))
 	[1, ::Legends.Perk.HoldOut, 1],
 	[1, ::Legends.Perk.SteelBrow, 1],
 	[1, ::Legends.Perk.Recover, 0]
-]
+];
 
 ::Const.EnemyPerks.FreeCompanySlayer <- [
 	[2, [::Legends.Perk.LegendAlert, ::Legends.Perk.Relentless, ::Legends.Perk.Overwhelm], 5],
@@ -66,7 +66,7 @@ if (!("EnemyPerks" in ::Const))
 	[1, ::Legends.Perk.QuickHands, 1],
 	[1, ::Legends.Perk.HoldOut, 0],
 	[1, ::Legends.Perk.SteelBrow, 0]
-]
+];
 
 ::Const.EnemyPerks.FreeCompanyFootman <- [
 	[2, [::Legends.Perk.CripplingStrikes, ::Legends.Perk.CoupDeGrace], 4],
@@ -79,7 +79,7 @@ if (!("EnemyPerks" in ::Const))
 	[1, ::Legends.Perk.HoldOut, 1],
 	[1, ::Legends.Perk.SteelBrow, 1],
 	[1, ::Legends.Perk.Brawny, 0]
-]
+];
 
 ::Const.EnemyPerks.FreeCompanyPikeman <- [
 	[2, ::Legends.Perk.CoupDeGrace, 3],
@@ -92,7 +92,7 @@ if (!("EnemyPerks" in ::Const))
 	[1, ::Legends.Perk.HoldOut, 1],
 	[1, ::Legends.Perk.Relentless, 1],
 	[1, ::Legends.Perk.SteelBrow, 0],
-]
+];
 
 ::Const.EnemyPerks.FreeCompanyBillman <- [
 	[3, ::Legends.Perk.CoupDeGrace, 3],
@@ -106,7 +106,7 @@ if (!("EnemyPerks" in ::Const))
 	[1, ::Legends.Perk.SteelBrow, 1],
 	[1, ::Legends.Perk.Colossus, 1],
 	[1, ::Legends.Perk.HoldOut, 0]
-]
+];
 
 ::Const.EnemyPerks.FreeCompanyInfantry <- [
 	[3, ::Legends.Perk.BattleForged, 3],
@@ -120,7 +120,7 @@ if (!("EnemyPerks" in ::Const))
 	[1, ::Legends.Perk.CoupDeGrace, 0],
 	[1, ::Legends.Perk.HoldOut, 0],
 	[1, ::Legends.Perk.SteelBrow, 0]
-]
+];
 
 ::Const.EnemyPerks.FreeCompanyLeader <- [
 	[4, ::Legends.Perk.Berserk, 3],
@@ -134,4 +134,4 @@ if (!("EnemyPerks" in ::Const))
 	[1, ::Legends.Perk.RallyTheTroops, 0],
 	[1, ::Legends.Perk.QuickHands, 0],
 	[1, ::Legends.Perk.BattleForged, 0]
-]
+];

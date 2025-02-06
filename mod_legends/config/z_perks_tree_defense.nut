@@ -133,7 +133,7 @@ if (!("Perks" in ::Const))
 			L.push(i);
 		}
 
-		local r = this.Math.rand(0, L.len() - 1)
+		local r = this.Math.rand(0, L.len() - 1);
 		return this.Tree[L[r]];
 	}
 

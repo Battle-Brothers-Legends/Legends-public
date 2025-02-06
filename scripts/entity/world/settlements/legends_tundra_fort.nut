@@ -263,7 +263,7 @@ this.legends_tundra_fort <- this.inherit("scripts/entity/world/settlements/legen
 				Force = true
 			}],
 
-		]
+		];
 
 		switch (this.m.Size)
 		{

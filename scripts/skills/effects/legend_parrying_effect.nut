@@ -5,7 +5,7 @@ this.legend_parrying_effect <- this.inherit("scripts/skills/skill", {
 	function create()
 	{
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendParrying);
-		this.m.Description = "This character is prepared to parry any failed melee attacks against them, exposing their attacker to counterattacks."
+		this.m.Description = "This character is prepared to parry any failed melee attacks against them, exposing their attacker to counterattacks.";
 		this.m.Icon = "skills/en_garde_circle.png";
 		this.m.IconMini = "mini_en_garde_circle";
 		this.m.Overlay = "en_garde_circle";

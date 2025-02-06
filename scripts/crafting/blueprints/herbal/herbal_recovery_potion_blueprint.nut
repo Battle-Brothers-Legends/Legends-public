@@ -4,7 +4,7 @@ this.herbal_recovery_potion_blueprint <- this.inherit("scripts/crafting/blueprin
 	{
 		this.blueprint.create();
 		this.m.ID = "blueprint.herbal_recovery_potion";
-		this.m.Type = this.Const.Items.ItemType.Usable
+		this.m.Type = this.Const.Items.ItemType.Usable;
 		this.m.PreviewCraftable = this.new("scripts/items/accessory/recovery_potion_item");
 		this.m.Cost = 30;
 		local ingredients = [

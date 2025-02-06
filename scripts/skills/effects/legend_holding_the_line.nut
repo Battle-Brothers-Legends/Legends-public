@@ -1,6 +1,5 @@
 this.legend_holding_the_line <- this.inherit("scripts/skills/effects/legend_commander_abstract_effect", {
-	m = {
-	},
+	m = {},
 	function create()
 	{
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendHoldingTheLine);
@@ -17,19 +16,19 @@ this.legend_holding_the_line <- this.inherit("scripts/skills/effects/legend_comm
 		local tooltip = this.skill.getTooltip();
 		tooltip.extend([
 			{
-				id = 6,
+				id = 11,
 				type = "text",
 				icon = "ui/icons/melee_defense.png",
 				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+10[/color] Melee Defense"
 			},
 			{
-				id = 6,
+				id = 11,
 				type = "text",
 				icon = "ui/icons/regular_damage.png",
 				text = "Receive only [color=" + this.Const.UI.Color.PositiveValue + "]90%[/color] of any damage"
 			},
 			{
-				id = 6,
+				id = 11,
 				type = "text",
 				icon = "ui/icons/locked_small.png",
 				text = "Immune to being knocked back or grabbed"

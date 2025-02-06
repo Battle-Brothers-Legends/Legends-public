@@ -169,7 +169,7 @@ this.peddler_background <- this.inherit("scripts/skills/backgrounds/character_ba
 
 		items.equip(this.Const.World.Common.pickArmor([
 			[1, "linen_tunic"]
-		]))
+		]));
 
 		items.equip(this.Const.World.Common.pickHelmet([
 			[2, ""],

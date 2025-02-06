@@ -70,11 +70,11 @@ this.legend_helmet <- this.inherit("scripts/items/helmets/helmet", {
 		{
 			if (u != null && u.isNamed())
 			{
-				return true
+				return true;
 			}
 		}
 
-		return false
+		return false;
 	}
 
 	function isBought()
@@ -94,7 +94,7 @@ this.legend_helmet <- this.inherit("scripts/items/helmets/helmet", {
 	{
 		if (this.isArmorNamed())
 		{
-			return "layers/named_icon_glow.png"
+			return "layers/named_icon_glow.png";
 		}
 		return this.m.Icon;
 	}
@@ -285,7 +285,7 @@ this.legend_helmet <- this.inherit("scripts/items/helmets/helmet", {
 
 	function onCombatStarted()
 	{
-		this.doOnFunction("onCombatStarted")
+		this.doOnFunction("onCombatStarted");
 	}
 
 	function onCombatFinished()
@@ -314,8 +314,8 @@ this.legend_helmet <- this.inherit("scripts/items/helmets/helmet", {
 	{
 		if (_a + this.m.Condition <= this.m.ConditionMax)
 		{
-			this.m.Condition += _a
-			return
+			this.m.Condition += _a;
+			return;
 		}
 
 		this.m.Condition = this.m.ConditionMax;
@@ -334,7 +334,7 @@ this.legend_helmet <- this.inherit("scripts/items/helmets/helmet", {
 
 	function removeArmor(_a)
 	{
-		local delta = _a
+		local delta = _a;
 		for (local i = this.Const.Items.HelmetUpgrades.COUNT - 1; i >= 0; i = --i)
 		{
 			if (this.m.Upgrades[i] != null && i != this.Const.Items.HelmetUpgrades.ExtraVanity)
@@ -364,7 +364,7 @@ this.legend_helmet <- this.inherit("scripts/items/helmets/helmet", {
 
 	function setCondition( _a )
 	{
-		local oldValue = this.getArmor()
+		local oldValue = this.getArmor();
 
 		//Adding armor
 		if (_a >= oldValue)
@@ -373,7 +373,7 @@ this.legend_helmet <- this.inherit("scripts/items/helmets/helmet", {
 		}
 		else
 		{
-			this.removeArmor(oldValue - _a)
+			this.removeArmor(oldValue - _a);
 		}
 
 		this.updateAppearance();
@@ -493,7 +493,7 @@ this.legend_helmet <- this.inherit("scripts/items/helmets/helmet", {
 		oldIndex =  this.World.Assets.getStash().getItemByInstanceID(_upgrade.getInstanceID());
 		}
 
-		if (oldIndex != null) oldIndex = oldIndex.index
+		if (oldIndex != null) oldIndex = oldIndex.index;
 		local oldItem;
 		if (this.m.Upgrades[slot] != null)
 		{
@@ -512,7 +512,7 @@ this.legend_helmet <- this.inherit("scripts/items/helmets/helmet", {
 		local result = {
 			item = null,
 			index = oldIndex
-		}
+		};
 		if (oldItem != null && !oldItem.isDestroyedOnRemove())
 		{
 			result.item = oldItem
@@ -543,7 +543,7 @@ this.legend_helmet <- this.inherit("scripts/items/helmets/helmet", {
 	{
 		local NAME = this.getName();
 
-		local uname = this.getUpgradesNamed()
+		local uname = this.getUpgradesNamed();
 
 		if (uname != "") {
 			NAME = uname + " " + this.getName();
@@ -681,7 +681,7 @@ this.legend_helmet <- this.inherit("scripts/items/helmets/helmet", {
 				type = "text",
 				icon = "ui/icons/blank.png",
 				text = " "
-			})
+			});
 			result.push({
 				id = 10,
 				type = "text",
@@ -791,10 +791,10 @@ this.legend_helmet <- this.inherit("scripts/items/helmets/helmet", {
 	{
 		local variant = this.m.Variant > 9 ? this.m.Variant : "0" + this.m.Variant;
 		this.m.Sprite = "";
-		this.m.SpriteDamaged = ""//"bust_helmet_" + variant + "_damaged";
-		this.m.SpriteCorpse = ""//"bust_helmet_" + variant + "_dead";
+		this.m.SpriteDamaged = "";//"bust_helmet_" + variant + "_damaged";
+		this.m.SpriteCorpse = "";//"bust_helmet_" + variant + "_dead";
 		this.m.IconLarge = "";
-		this.m.Icon = ""//"helmets/inventory_helmet_" + variant + ".png";
+		this.m.Icon = "";//"helmets/inventory_helmet_" + variant + ".png";
 	}
 
 	function updateAppearance()
@@ -827,7 +827,7 @@ this.legend_helmet <- this.inherit("scripts/items/helmets/helmet", {
 		 }
 		 else
 		 {
-			app.Helmet = this.m.Sprite
+			app.Helmet = this.m.Sprite;
 		 }
 
 		app.HelmetColor = this.m.SpriteColor;
@@ -970,7 +970,7 @@ this.legend_helmet <- this.inherit("scripts/items/helmets/helmet", {
 		{
 			if ((this.m.ItemType & _t) != 0)
 			{
-				return true
+				return true;
 			}
 
 			foreach (i, upgrade in this.m.Upgrades)
@@ -980,7 +980,7 @@ this.legend_helmet <- this.inherit("scripts/items/helmets/helmet", {
 					if (this.m.Upgrades[i].isItemType(_t)) return true;
 				}
 			}
-			return false
+			return false;
 		}
 
 		return (this.m.ItemType & _t) != 0;

@@ -110,14 +110,6 @@ this.legend_muladi_background <- this.inherit("scripts/skills/backgrounds/charac
 		actor.setTitle("the Muladí");
 	}
 
-
-
-	function onBuildDescription()
-	{
-		//gender neutral description
-		return "{}";
-	}
-
 	function onChangeAttributes()
 	{
 		local c = {

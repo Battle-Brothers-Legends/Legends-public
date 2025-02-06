@@ -7,7 +7,7 @@ this.legend_free_company_faction <- this.inherit("scripts/factions/faction", {
 		this.m.Base = "world_base_09";
 		this.m.TacticalBase = "bust_base_military";
 		this.m.CombatMusic = this.Const.Music.NobleTracks;
-		this.m.PlayerRelation = 0.0
+		this.m.PlayerRelation = 0.0;
 		this.m.IsHidden = true;
 		this.m.IsRelationDecaying = false;
 	}

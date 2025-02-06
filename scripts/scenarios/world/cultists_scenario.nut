@@ -229,7 +229,7 @@ this.cultists_scenario <- this.inherit("scripts/scenarios/world/starting_scenari
 		//Can't really recruit converted cultists but its here anyway for posterity
 		if (bro.getBackground().getID() == "background.cultist" || bro.getBackground().getID() == "background.converted_cultist" || bro.getBackground().getID() == "background.legend_lurker" || bro.getBackground().getID() == "background.legend_darksoul" || bro.getBackground().getID() == "background.legend_magister")
 		{
-			bro.m.HiringCost = this.Math.floor(bro.m.HiringCost * 0.75) //1.0 = default
+			bro.m.HiringCost = this.Math.floor(bro.m.HiringCost * 0.75); //1.0 = default
 			bro.getBaseProperties().DailyWageMult *= 0.75; //1.0 = default
 			bro.getBaseProperties().MeleeSkill += 10;
 			::Legends.Traits.remove(bro, ::Legends.Trait.Superstitious); //If cultist, this ID will be removed as True believer is not removing them on hire
@@ -240,7 +240,7 @@ this.cultists_scenario <- this.inherit("scripts/scenarios/world/starting_scenari
 		}
 		else
 		{
-			bro.m.HiringCost = this.Math.floor(bro.m.HiringCost * 1.25)
+			bro.m.HiringCost = this.Math.floor(bro.m.HiringCost * 1.25);
 			bro.getBaseProperties().DailyWageMult *= 1.25;
 			bro.getSkills().update();
 		}

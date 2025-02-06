@@ -171,7 +171,7 @@ this.bowyer_background <- this.inherit("scripts/skills/backgrounds/character_bac
 		local item = this.Const.World.Common.pickHelmet([
 				[1, "feathered_hat"],
 				[2, ""]
-		])
+		]);
 		items.equip(item);
 	}
 });

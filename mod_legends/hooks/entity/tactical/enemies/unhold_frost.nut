@@ -71,5 +71,6 @@
 
 	o.onFactionChanged = function()
 	{
+		this.unhold.onFactionChanged();
 	}
 });

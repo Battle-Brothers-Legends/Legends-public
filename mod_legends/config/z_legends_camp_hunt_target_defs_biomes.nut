@@ -1,6 +1,6 @@
 // Example Setup; Also serves as default for any biome we haven't covered
 ::Const.HuntingLoot.BiomesDefault <- [
-	// Targets	
+	// Targets
 	[
 		[5, ::Const.HuntingLoot.TargetDefs.Fruits],
 		[3, ::Const.HuntingLoot.TargetDefs.Deer],
@@ -11,7 +11,7 @@
 		[1, "scripts/items/supplies/beer_item"],
 		[1, "scripts/items/supplies/wine_item"],
 	]
-]
+];
 
 
 ::Const.HuntingLoot.Biomes <- array(::Const.World.TerrainType.COUNT, null);
@@ -122,7 +122,7 @@
 		[1, "scripts/items/supplies/beer_item"],
 		[1, "scripts/items/supplies/wine_item"],
 	]
-]
+];
 
 ::Const.HuntingLoot.Biomes[::Const.World.TerrainType.LeaveForest] = [
 	// Targets

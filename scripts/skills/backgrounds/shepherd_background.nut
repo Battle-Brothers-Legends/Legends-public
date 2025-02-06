@@ -133,7 +133,7 @@ this.shepherd_background <- this.inherit("scripts/skills/backgrounds/character_b
 			[1, "sackcloth"],
 			[1, "leather_tunic"],
 			[1, "linen_tunic", this.Math.rand(6, 7)]
-		]))
+		]));
 
 		r = this.Math.rand(0, 4);
 

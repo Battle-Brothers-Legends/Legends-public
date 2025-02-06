@@ -281,7 +281,7 @@ this.legend_hunting_mummies_contract <- this.inherit("scripts/contracts/contract
 		local disallowedTerrain = [];
 		for( local i = 0; i < this.Const.World.TerrainType.COUNT; i = ++i ) {
 			if (i == this.Const.World.TerrainType.Desert)
-				continue
+				continue;
 			disallowedTerrain.push(i);
 		}
 

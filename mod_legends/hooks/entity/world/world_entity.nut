@@ -223,7 +223,7 @@
 				local hasOutfits = _in.readBool();
 				if (hasOutfits)
 				{
-					local outfits = []
+					local outfits = [];
 					local outfitLength = _in.readU8();
 					for (local i = 0; i < outfitLength; i++)
 					{

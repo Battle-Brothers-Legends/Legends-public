@@ -112,7 +112,7 @@ this.legend_transformed_terrain_effect <- this.inherit("scripts/skills/skill", {
 		actor.setAmorAlpha(10);
 
 		actor.getSprite("body").setBrush("brush_01");
-		actor.setBrushAlpha(10)
+		actor.setBrushAlpha(10);
 		actor.getSprite("hair").Visible = false;
 		actor.getSprite("beard").Visible = false;
 	}

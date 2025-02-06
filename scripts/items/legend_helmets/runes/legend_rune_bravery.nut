@@ -48,9 +48,9 @@ this.legend_rune_bravery <- this.inherit("scripts/items/legend_helmets/legend_he
 	{
 		this.legend_helmet_upgrade.onUpdateProperties(_properties);
 		_properties.Bravery *= (1.0 + ((this.m.RuneBonus1 * 1.0) / 100.0));
-		_properties.MoraleCheckBravery[0] += this.m.RuneBonus2
-		_properties.MoraleCheckBravery[1] += this.m.RuneBonus2
-		_properties.MoraleCheckBravery[2] += this.m.RuneBonus2
+		_properties.MoraleCheckBravery[0] += this.m.RuneBonus2;
+		_properties.MoraleCheckBravery[1] += this.m.RuneBonus2;
+		_properties.MoraleCheckBravery[2] += this.m.RuneBonus2;
 	}
 
 });

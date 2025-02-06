@@ -72,7 +72,7 @@ this.juggler_background <- this.inherit("scripts/skills/backgrounds/character_ba
 
 	function getTooltip()
 	{
-		local ret = this.character_background.getTooltip()
+		local ret = this.character_background.getTooltip();
 		ret.push(
 			{
 				id = 15,
@@ -80,8 +80,8 @@ this.juggler_background <- this.inherit("scripts/skills/backgrounds/character_ba
 				icon = "ui/icons/chance_to_hit_head.png",
 				text = "Higher Chance To Hit Head"
 			}
-		)
-		return ret
+		);
+		return ret;
 	}
 
 	function onBuildDescription()

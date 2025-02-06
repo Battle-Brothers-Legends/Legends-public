@@ -18,7 +18,7 @@ this.healer_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 		this.m.Slot = "heal";
 		this.m.Name = "Healing";
 		this.m.Description = "Place brothers in reserves in order to heal from wounds.";
-		this.m.BannerImage = "ui/buttons/banner_heal.png"
+		this.m.BannerImage = "ui/buttons/banner_heal.png";
 		this.m.Sounds = [
 			{
 				File = "ambience/camp/healer_01.wav",
@@ -64,7 +64,7 @@ this.healer_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 				Volume = 1.0,
 				Pitch = 1.0
 			},
-		]
+		];
 	}
 
 	function getRate()
@@ -82,19 +82,19 @@ this.healer_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 	{
 		if (this.getUpgraded())
 		{
-			return this.m.Name + " *Upgraded*"
+			return this.m.Name + " *Upgraded*";
 		}
-		return this.m.Name +  " *Not Upgraded*"
+		return this.m.Name +  " *Not Upgraded*";
 	}
 
 	function getDescription()
 	{
 		local desc = "";
-		desc += "Injuries are a prerequisite for any self respecting battle brother. The quicker temporary injuries are patched up, the quicker a battle brother can get some more! "
-		desc += "Assigning brothers to this tent allows them to treat any wounds in the company roster and also help restore health points of any injured brother by +10%. "
-		desc += "Treating an injury requires a cost of medicine and time (vs coin in a temple). The more people assigned to the tent, the quicker injuries will be treated and healthpoints restored. "
-		desc += "\n\n"
-		desc += "The healing tent can be upgraded by purchasing a crafting cart from a settlement merchant. An upgraded tent provides a 66% increase in hitpoint recovery speed, 33% increase in wound treatment speed and a 25% decrease in medicine cost for each injury."
+		desc += "Injuries are a prerequisite for any self respecting battle brother. The quicker temporary injuries are patched up, the quicker a battle brother can get some more! ";
+		desc += "Assigning brothers to this tent allows them to treat any wounds in the company roster and also help restore health points of any injured brother by +10%. ";
+		desc += "Treating an injury requires a cost of medicine and time (vs coin in a temple). The more people assigned to the tent, the quicker injuries will be treated and healthpoints restored. ";
+		desc += "\n\n";
+		desc += "The healing tent can be upgraded by purchasing a crafting cart from a settlement merchant. An upgraded tent provides a 66% increase in hitpoint recovery speed, 33% increase in wound treatment speed and a 25% decrease in medicine cost for each injury.";
 		return desc;
 	}
 
@@ -136,7 +136,7 @@ this.healer_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 				type = "hint",
 				icon = "ui/icons/special.png",
 				text = "[color=" + this.Const.UI.Color.PositiveValue + "]" + bro[0] * 100.0 + "%[/color] " + bro[1] + " (" + bro[2] + ")"
-			})
+			});
 		}
 		return ret;
 	}
@@ -181,7 +181,7 @@ this.healer_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 		this.m.InjuriesTreated = 0;
 		this.m.InjuriesHealed = [];
 		local roster = this.World.getPlayerRoster().getAll();
-		this.m.PointsNeeded = 0
+		this.m.PointsNeeded = 0;
 		foreach( bro in roster )
 		{
 			bro.setCampHealing(0);
@@ -223,14 +223,14 @@ this.healer_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 				if (this.m.Queue[i] == null || this.m.Queue[i].Injury == null || this.m.Queue[i].Injury.getQueue() == 0) //Darxo's possible fix for injuries that heal automatically before they are tended in the tent
 				// if (this.m.Queue[i] == null || this.m.Queue[i].Injury.getQueue() == 0)
 				{
-					continue
+					continue;
 				}
 
-				q.push(this.m.Queue[i])
+				q.push(this.m.Queue[i]);
 			}
 		}
 
-		this.m.Queue = q
+		this.m.Queue = q;
 	}
 
 	function onSortQueue( _a, _b )
@@ -271,7 +271,7 @@ this.healer_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 					id = id++,
 					icon = "" + b.getIcon(),
 					text = b.getName()
-				})
+				});
 			}
 		}
 
@@ -284,7 +284,7 @@ this.healer_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 					id = id++,
 					icon = "ui/icons/health.png",
 					text = b.getName() + " healed [color=" + this.Const.UI.Color.PositiveEventValue + "]" + this.Math.floor(b.getCampHealing()) + "[/color] points."
-				})
+				});
 			}
 		}
 		return res;
@@ -320,7 +320,7 @@ this.healer_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 
 		if (this.World.Assets.getMedicine() <= 0)
 		{
-			return "No injuries being treated (Out of medicine!)"
+			return "No injuries being treated (Out of medicine!)";
 		}
 
 		local injPercent = this.Math.floor(this.m.Queue[this.m.InjuriesHealed.len()].Injury.getTreatedPercentage() * 10000) / 100.0;
@@ -394,7 +394,7 @@ this.healer_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 		local text = this.getUpdateText();
 		if (text != "")
 		{
-			text += "</br>"
+			text += "</br>";
 		}
 
 		foreach (bro in this.World.getPlayerRoster().getAll())
@@ -425,7 +425,7 @@ this.healer_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 		{
 			if (obj == null)
 			{
-				continue
+				continue;
 			}
 
 			local b = obj.Injury;
@@ -521,7 +521,7 @@ this.healer_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 		local modifiers = this.getModifiers();
 		if (modifiers.Craft <= 0)
 		{
-			return 0
+			return 0;
 		}
 		return this.Math.ceil(points / modifiers.Craft);
 	}
@@ -569,7 +569,7 @@ this.healer_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 		this.m.Queue[_source] = this.m.Queue[_target];
 		this.m.Queue[_target] = item;
 		local sound = this.m.InjurySounds[this.Math.rand(0, this.m.InjurySounds.len() - 1)];
-		this.Sound.play(sound.File, sound.Volume)
+		this.Sound.play(sound.File, sound.Volume);
 	}
 
 	function onBroLeave( _bro )

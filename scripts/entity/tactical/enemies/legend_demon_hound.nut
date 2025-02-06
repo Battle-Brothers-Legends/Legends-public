@@ -80,7 +80,7 @@ this.legend_demon_hound <- this.inherit("scripts/entity/tactical/actor", {
 			return;
 		};
 
-		local targetTile = result.Destinations[this.Math.rand(0, result.Destinations.len() - 1)]
+		local targetTile = result.Destinations[this.Math.rand(0, result.Destinations.len() - 1)];
 		local tag = {
 			User = this,
 			TargetTile = targetTile,
@@ -555,8 +555,8 @@ this.legend_demon_hound <- this.inherit("scripts/entity/tactical/actor", {
 		this.m.ActionPointCosts = this.Const.SameMovementAPCost;
 		this.m.FatigueCosts = this.Const.DefaultMovementFatigueCost;
 
-		local _body = this.Math.rand(1,3)
-		local _spirit = this.Math.rand(1,3)
+		local _body = this.Math.rand(1,3);
+		local _spirit = this.Math.rand(1,3);
 		this.m.Items.getAppearance().Body = "bust_demon_hound_0" + _body;
 		this.addSprite("socket").setBrush("bust_base_undead");
 		//this.addSprite("fog").setBrush("bust_ghost_fog_02");
@@ -568,7 +568,7 @@ this.legend_demon_hound <- this.inherit("scripts/entity/tactical/actor", {
 		// body.varySaturation(0.25);
 		// body.varyColor(0.2, 0.2, 0.2);
 
-		this.addSprite("injury")
+		this.addSprite("injury");
 		local injury = this.addSprite("injury_body");
 		injury.Visible = false;
 		injury.setBrush("bust_demon_hound_injury");

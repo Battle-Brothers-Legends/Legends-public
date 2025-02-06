@@ -5,7 +5,7 @@ this.legend_marked_target <- this.inherit("scripts/skills/skill", {
 	function create()
 	{
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendMarkedTarget);
-		this.m.Description = "This character is a marked target, leaving them vulnerable and exposed."
+		this.m.Description = "This character has been marked by a skilled opponent, melee and ranged attacks are more likely to hit";
 		this.m.Icon = "skills/MarkTargetSkill.png";
 		this.m.IconMini = "mini_mark_target";
 		this.m.Type = this.Const.SkillType.StatusEffect;

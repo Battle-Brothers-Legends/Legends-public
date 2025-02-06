@@ -122,7 +122,7 @@ this.assassin_background <- this.inherit("scripts/skills/backgrounds/character_b
 
 	function getTooltip()
 	{
-		local ret = this.character_background.getTooltip()
+		local ret = this.character_background.getTooltip();
 		ret.push(
 			{
 				id = 11,
@@ -130,8 +130,8 @@ this.assassin_background <- this.inherit("scripts/skills/backgrounds/character_b
 				icon = "ui/icons/chance_to_hit_head.png",
 				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+10%[/color] Chance To Hit Head"
 			}
-		)
-		return ret
+		);
+		return ret;
 	}
 
 	function onBuildDescription()

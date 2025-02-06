@@ -1,6 +1,6 @@
 ::mods_hookExactClass("items/weapons/named/named_orc_axe", function(o) {
 	o.m.PossibleEffects <- ["scripts/skills/effects/legend_named_axe_effect"];
-	o.m.EffectBounds <- [ [15, 35] ]
+	o.m.EffectBounds <- [ [15, 35] ];
 
 	local create = o.create;
 	o.create = function ()

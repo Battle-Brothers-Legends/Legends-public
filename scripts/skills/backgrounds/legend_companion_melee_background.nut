@@ -315,7 +315,7 @@ this.legend_companion_melee_background <- this.inherit("scripts/skills/backgroun
 			[1, "brown_hedgeknight_outfit_00"],
 			[1, "red_bandit_leader_outfit_00"],
 			[1, "mercenary_billman_outfit_00"]
-		]
+		];
 
 		foreach (item in this.Const.World.Common.pickOutfit(outfits))
 		{

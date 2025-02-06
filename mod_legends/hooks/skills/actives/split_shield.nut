@@ -1,5 +1,12 @@
 ::mods_hookExactClass("skills/actives/split_shield", function(o)
 {
+	o.m.IsOrcWeapon <- false;
+
+	o.setApplyOrcWeapon <- function ( _f )
+	{
+		this.m.IsOrcWeapon = _f;
+	}
+
 	o.onUse = function ( _user, _targetTile )
 	{
 		local target = _targetTile.getEntity();
@@ -30,7 +37,7 @@
 			{
 				if (!_user.isHiddenToPlayer() && _targetTile.IsVisibleForPlayer)
 				{
-					local logMessage = this.Const.UI.getColorizedEntityName(_user) + " has destroyed " + this.Const.UI.getColorizedEntityName(_targetTile.getEntity()) + "\'s shield"
+					local logMessage = this.Const.UI.getColorizedEntityName(_user) + " has destroyed " + this.Const.UI.getColorizedEntityName(_targetTile.getEntity()) + "\'s shield";
 					if (this.getContainer().hasPerk(::Legends.Perk.LegendSmashingShields))
 					{
 						_user.setActionPoints(this.Math.min(_user.getActionPointsMax(), _user.getActionPoints() + 4));
@@ -71,6 +78,14 @@
 		}
 
 		return true;
+	}
+
+	local onAfterUpdate = o.onAfterUpdate;
+	o.onAfterUpdate = function ( _properties )
+	{
+		onAfterUpdate( _properties );
+		if (this.m.IsOrcWeapon)
+			this.m.ActionPointCost = 5;
 	}
 
 });

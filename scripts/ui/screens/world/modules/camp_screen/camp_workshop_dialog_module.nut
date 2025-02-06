@@ -1,4 +1,3 @@
-
 this.camp_workshop_dialog_module <- this.inherit("scripts/ui/screens/ui_module", {
 	m = {
 		Title = "Workshop",
@@ -37,7 +36,7 @@ this.camp_workshop_dialog_module <- this.inherit("scripts/ui/screens/ui_module",
 			Stash = [],
 			Repairs = [],
 			Capacity = tent.getCapacity()
-		};
+		}
 		this.UIDataHelper.convertRepairItemsToUIData(tent.getRepairs(), result.Repairs, this.Const.UI.ItemOwner.Shop);
 		this.UIDataHelper.convertRepairItemsToUIData(tent.getStash(), result.Stash, this.Const.UI.ItemOwner.Stash, this.m.InventoryFilter);
 		return result;
@@ -52,12 +51,12 @@ this.camp_workshop_dialog_module <- this.inherit("scripts/ui/screens/ui_module",
 			SuppliesRequired = tent.getRequiredSupplies(),
 			Time = tent.getRequiredTime(),
 			Brothers = tent.getAssignedBros()
-		};
+		}
 	}
 
 	function loadStashList()
 	{
-		local result = this.queryLoad()
+		local result = this.queryLoad();
 		this.m.JSHandle.asyncCall("loadFromData", result);
 	}
 
@@ -72,7 +71,7 @@ this.camp_workshop_dialog_module <- this.inherit("scripts/ui/screens/ui_module",
 			this.World.Assets.getStash().sort();
 		}
 
-		local tent = this.World.Camp.getBuildingByID(this.Const.World.CampBuildings.Workshop)
+		local tent = this.World.Camp.getBuildingByID(this.Const.World.CampBuildings.Workshop);
 		tent.onInit();
 		this.loadStashList();
 	}
@@ -103,7 +102,7 @@ this.camp_workshop_dialog_module <- this.inherit("scripts/ui/screens/ui_module",
 			this.loadStashList();
 		}
 	}
-	
+
 	function onAssignAll()
 	{
 		this.getTent().assignAll(this.m.InventoryFilter);
@@ -122,7 +121,7 @@ this.camp_workshop_dialog_module <- this.inherit("scripts/ui/screens/ui_module",
 		local sourceItemOwner = _data[1];
 		local targetItemIdx = _data[2];
 		local targetItemOwner = _data[3];
-		this.getTent().swapItems(sourceItemOwner, sourceItemIdx, targetItemOwner, targetItemIdx)
+		this.getTent().swapItems(sourceItemOwner, sourceItemIdx, targetItemOwner, targetItemIdx);
 		return this.queryLoad();
 	}
 

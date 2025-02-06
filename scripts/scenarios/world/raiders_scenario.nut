@@ -79,7 +79,7 @@ this.raiders_scenario <- this.inherit("scripts/scenarios/world/starting_scenario
 		local armor = this.new("scripts/items/legend_armor/cloth/legend_sackcloth");
 		local plate = this.new("scripts/items/legend_armor/plate/legend_scrap_metal_armor");
 		armor.setUpgrade(plate);
-		items.equip(armor)
+		items.equip(armor);
 
 		items.equip(this.Const.World.Common.pickHelmet([
 			[
@@ -315,14 +315,14 @@ this.raiders_scenario <- this.inherit("scripts/scenarios/world/starting_scenario
 	{
 			if (!bro.getBackground().isBackgroundType(this.Const.BackgroundType.Outlaw))
 			{
-				bro.m.HiringCost = this.Math.floor(bro.m.HiringCost * 1.5)
+				bro.m.HiringCost = this.Math.floor(bro.m.HiringCost * 1.5);
 				bro.getBaseProperties().DailyWageMult *= 1.5;
 				bro.getSkills().update();
 				bro.worsenMood(0.5, "Is uncomfortable with joining raiders");
 			}
 			else
 			{
-				bro.m.HiringCost = this.Math.floor(bro.m.HiringCost * 0.9)
+				bro.m.HiringCost = this.Math.floor(bro.m.HiringCost * 0.9);
 				bro.getBaseProperties().DailyWageMult *= 0.9;
 				bro.getSkills().update();
 				bro.improveMood(1.5, "Is excited at becoming a raider");

@@ -44,7 +44,7 @@ this.tactical_legend_tournament <- this.inherit("scripts/mapgen/tactical_templat
 			"tactical.patch.tundra_grass",
 			"tactical.patch.desert",
 			"tactical.patch.autumn_grass"
-		]
+		];
 		local StandardPatch = this.MapGen.get(patch[this.Math.rand(0, patch.len() -1)]);
 
 		patch = [
@@ -58,7 +58,7 @@ this.tactical_legend_tournament <- this.inherit("scripts/mapgen/tactical_templat
 			"tactical.patch.snow_less",
 			"tactical.patch.forest_mushrooms",
 			"tactical.patch.stone_circle"
-		]
+		];
 		local DryPatch = this.MapGen.get(patch[this.Math.rand(0, patch.len() -1)]);
 
 		patch = [
@@ -73,7 +73,7 @@ this.tactical_legend_tournament <- this.inherit("scripts/mapgen/tactical_templat
 			"tactical.patch.tundra_brushes",
 			"tactical.patch.snow",
 			"tactical.patch.forest_fern_sea"
-		]
+		];
 		local WetPatch = this.MapGen.get(patch[this.Math.rand(0, patch.len() -1)]);
 
 		patch = [
@@ -86,7 +86,7 @@ this.tactical_legend_tournament <- this.inherit("scripts/mapgen/tactical_templat
 			"tactical.patch.hill",
 			"tactical.patch.ritual_site",
 			"tactical.patch.forest_snow",
-		]
+		];
 		local HillPatch = this.MapGen.get(patch[this.Math.rand(0, patch.len() -1)]);
 
 		templates.push(StandardPatch);

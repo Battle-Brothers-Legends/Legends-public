@@ -12,13 +12,13 @@ this.legend_aperthropy_injury <- this.inherit("scripts/skills/injury_permanent/l
 
 	function getTooltip()
 	{
-		local ret = this.legend_infected_injury.getTooltip()
+		local ret = this.legend_infected_injury.getTooltip();
 		ret.push({
 			id = 16,
 			type = "text",
 			icon = "ui/icons/special.png",
 			text = "When transformed you will lose control of them, they will drop all their items and turn into a boar, with the ability to Charge and Gore. Their Stamina will triple, Health with double and Resolve will increase by 25%."
-		})
+		});
 		return ret;
 	}
 

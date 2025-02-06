@@ -1,7 +1,7 @@
 this.camp_commander_dialog_module <- this.inherit("scripts/ui/screens/ui_module", {
 	m = {
 		Title = "Commanders Tent",
-		Description = "Select a tent, then click a brother to assign him to the tent. Bros sorted from best to worse"
+		Description = "Select a tent, then click a brother to assign him to the tent. Bros sorted from best to worse",
 		PopupDialogVisible = false,
 		CurrentTent = null,
 	},
@@ -14,7 +14,7 @@ this.camp_commander_dialog_module <- this.inherit("scripts/ui/screens/ui_module"
 	function isAnimating()
 	{
 		if (this.m.Animating == null) return false;
-		
+
 		return this.m.Animating == true || this.m.PopupDialogVisible == true;
 	}
 
@@ -82,9 +82,9 @@ this.camp_commander_dialog_module <- this.inherit("scripts/ui/screens/ui_module"
 			}
 
 			local skills = [];
-			if (b.getSkills().hasEffect(::Legends.Effect.Trained)) 
+			if (b.getSkills().hasEffect(::Legends.Effect.Trained))
 			{
-				local _skill = ::Legends.Effects.get(b, ::Legends.Effect.Trained)
+				local _skill = ::Legends.Effects.get(b, ::Legends.Effect.Trained);
 				skills.push({
 					id = _skill.getID(),
 					icon = "skills/status_effect_75.png"
@@ -107,7 +107,7 @@ this.camp_commander_dialog_module <- this.inherit("scripts/ui/screens/ui_module"
 			roster.push(e);
 		}
 
-		return roster
+		return roster;
 	}
 
 	function onQueryBrothersList()
@@ -147,7 +147,7 @@ this.camp_commander_dialog_module <- this.inherit("scripts/ui/screens/ui_module"
 				bannerImage = b.getBanner(),
 				resourceImage = b.getResourceImage(),
 				resourceCount = b.getResourceCount()
-			})
+			});
 		}
 
 		return result;
@@ -178,13 +178,13 @@ this.camp_commander_dialog_module <- this.inherit("scripts/ui/screens/ui_module"
 		local tent = this.World.Camp.getBuildingByID(campID);
 		if (!tent.onBroEnter(bro))
 		{
-			return 
+			return;
 		}
 		tent = this.World.Camp.getBuildingByID(bro.getCampAssignment());
 		tent.onBroLeave(bro);
 		bro.setLastCampAssignment(bro.getCampAssignment());
 		bro.setCampAssignment(campID);
-		this.Sound.play("sounds/movement/movement_snow_00.wav", 1.0)
+		this.Sound.play("sounds/movement/movement_snow_00.wav", 1.0);
 		return this.queryLoad();
 	}
 
@@ -202,8 +202,8 @@ this.camp_commander_dialog_module <- this.inherit("scripts/ui/screens/ui_module"
 			bro.setLastCampAssignment(bro.getCampAssignment());
 			bro.setCampAssignment(_campID);
 		}
-		
-		this.Sound.play("sounds/movement/movement_snow_00.wav", 1.0)
+
+		this.Sound.play("sounds/movement/movement_snow_00.wav", 1.0);
 		return this.queryLoad();
 	}
 
@@ -211,14 +211,14 @@ this.camp_commander_dialog_module <- this.inherit("scripts/ui/screens/ui_module"
 	{
 		local index = _data[0];
 		local presetName = _data[1];
-		::Legends.Mod.Debug.printLog(format("Saving camping preset %i name: %s", index + 1, presetName));	
+		::Legends.Mod.Debug.printLog(format("Saving camping preset %i name: %s", index + 1, presetName));
 		::World.Camp.setPresetName(index, presetName);
 		this.Sound.play("sounds/scribble.wav", 1.0);
 	}
 
 	function onDeletePresetName( _index )
 	{
-		::Legends.Mod.Debug.printLog(format("Deleting camping preset %i name", _index + 1));	
+		::Legends.Mod.Debug.printLog(format("Deleting camping preset %i name", _index + 1));
 		::World.Camp.setPresetName(_index, false);
 		this.Sound.play("sounds/movement/movement_stone_01.wav", 0.5);
 	}
@@ -234,7 +234,7 @@ this.camp_commander_dialog_module <- this.inherit("scripts/ui/screens/ui_module"
 	{
 		::Legends.Mod.Debug.printLog("Loading camping assignments preset: " + _presetNumber);
 		::World.Camp.loadAssignmentPreset( _presetNumber );
-		this.Sound.play("sounds/movement/movement_snow_00.wav", 1.0)
+		this.Sound.play("sounds/movement/movement_snow_00.wav", 1.0);
 
 		return this.queryLoad();
 	}
@@ -245,7 +245,7 @@ this.camp_commander_dialog_module <- this.inherit("scripts/ui/screens/ui_module"
 		if (::Legends.Mod.ModSettings.getSetting("ClickPresetToSwitch").getValue())
 		{
 			::World.Camp.loadAssignmentPreset( _presetNumber );
-			this.Sound.play("sounds/movement/movement_snow_00.wav", 1.0)
+			this.Sound.play("sounds/movement/movement_snow_00.wav", 1.0);
 			return this.queryLoad();
 		}
 		this.Sound.play("sounds/move_pot_clay_01.wav", 2.0);
@@ -265,7 +265,7 @@ this.camp_commander_dialog_module <- this.inherit("scripts/ui/screens/ui_module"
 	function onPopupButtonClicked( _data )
 	{
 		if (this.m.CurrentTent == null) return;
-		
+
 		this.m.CurrentTent.onPopupButtonClicked(_data);
 	}
 

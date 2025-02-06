@@ -23,7 +23,7 @@ this.legends_debug_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 
 		for( local i = 0; i < partysize; i = ++i )
 		{
-			local broLevel = broLevelMax
+			local broLevel = broLevelMax;
 			local broPerks = broLevel - 1;
 			local bro;
 			bro = roster.create("scripts/entity/tactical/player");
@@ -37,7 +37,7 @@ this.legends_debug_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 		 local horsesize = 0;
 		 for( local i = 0; i < horsesize; i = ++i )
 		 {
-		 	local broLevel = broLevelMax
+		 	local broLevel = broLevelMax;
 		 	local broPerks = broLevel - 1;
 		 	local bro;
 		 	bro = roster.create("scripts/entity/tactical/player");
@@ -94,7 +94,7 @@ this.legends_debug_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 			"ammo/legend_large_broad_head_arrows",
 			"ammo/legend_large_armor_piercing_bolts",
 			"ammo/legend_large_armor_piercing_arrows"
-		]
+		];
 
 		foreach (si in stashitems)
 		{
@@ -584,7 +584,7 @@ this.legends_debug_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 			"woodcutters_axe",
 			"wooden_flail",
 			"wooden_stick"
-		]
+		];
 
 		foreach(w in weapons)
 		{
@@ -881,7 +881,7 @@ this.legends_debug_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 			"vanity/legend_helmet_mummy_crown_king",
 
 			"helmets/legend_faction_helmet"
-		]
+		];
 
 		foreach(h in helmets)
 		{
@@ -915,7 +915,7 @@ this.legends_debug_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 		"helmets/legend_unhold_helmet_light",
 		"helmets/legend_orc_berserker_helmet",
 		"helmets/legend_ancient_wig"
-		]
+		];
 
 		foreach(h in asloots)
 		{

@@ -162,7 +162,7 @@ this.legend_protect_target_skill <- this.inherit("scripts/skills/skill", {
 				continue;
 			}
 
-			local skill = ::Legends.Effects.get(pet, ::Legends.Effect.LegendGuard)
+			local skill = ::Legends.Effects.get(pet, ::Legends.Effect.LegendGuard);
 
 			if (_t == null)
 			{
@@ -195,7 +195,7 @@ this.legend_protect_target_skill <- this.inherit("scripts/skills/skill", {
 	{
 		if (_user.getSkills().hasActive(::Legends.Active.LegendAttackTarget))
 		{
-			local skill = ::Legends.Actives.get(_user, ::Legends.Active.LegendAttackTarget)
+			local skill = ::Legends.Actives.get(_user, ::Legends.Active.LegendAttackTarget);
 			skill.setTarget(null);
 		}
 

@@ -85,7 +85,7 @@ this.legend_tackle_skill <- this.inherit("scripts/skills/skill", {
 		if (_targetTile.IsOccupiedByActor)
 		{
 			local target = _targetTile.getEntity();
-			::Legends.Effects.grant(target, ::Legends.Effect.LegendTackled)
+			::Legends.Effects.grant(target, ::Legends.Effect.LegendTackled);
 			this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(_user) + " has tackled " + this.Const.UI.getColorizedEntityName(target) + " to the ground for two turns");
 		}
 
@@ -104,7 +104,7 @@ this.legend_tackle_skill <- this.inherit("scripts/skills/skill", {
 			return;
 		}
 		local bonus = this.Math.floor(_targetEntity.getFatiguePct() * 30); // This means that you'll get a +30% boost against an enemy with max fatigue
-		_properties.MeleeSkill += bonus
+		_properties.MeleeSkill += bonus;
 		_properties.DamageTotalMult = 0;
 		if (_properties.IsSpecializedInFists) //Not sure if this is the best way to do it, but this is how it was done in kick
 		{

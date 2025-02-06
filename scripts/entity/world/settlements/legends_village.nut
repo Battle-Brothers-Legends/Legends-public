@@ -46,7 +46,7 @@ this.legends_village <- this.inherit("scripts/entity/world/settlement", {
 
 	function getLighting()
 	{
-		local prefix = ""
+		local prefix = "";
 		if (::Legends.Mod.ModSettings.getSetting("WorldEconomy").getValue())
 		{
 			prefix ="legend_";
@@ -57,7 +57,7 @@ this.legends_village <- this.inherit("scripts/entity/world/settlement", {
 
 	function getSpriteName()
 	{
-		local prefix = ""
+		local prefix = "";
 		if (::Legends.Mod.ModSettings.getSetting("WorldEconomy").getValue())
 		{
 			prefix ="legend_";
@@ -76,7 +76,7 @@ this.legends_village <- this.inherit("scripts/entity/world/settlement", {
 	//UISprite
 	function getImagePath()
 	{
-		local s = "ui/settlement_sprites/townhall_0" + this.m.Size + ".png"
+		local s = "ui/settlement_sprites/townhall_0" + this.m.Size + ".png";
 		return s;
 	}
 
@@ -87,9 +87,9 @@ this.legends_village <- this.inherit("scripts/entity/world/settlement", {
 			case 1:
 			 	return 1;
 			case 2:
-				return 2
+				return 2;
 			case 3:
-				return 4
+				return 4;
 			default:
 				return 1;
 		}
@@ -102,9 +102,9 @@ this.legends_village <- this.inherit("scripts/entity/world/settlement", {
 			case 1:
 			 	return 2;
 			case 2:
-				return 3
+				return 3;
 			case 3:
-				return 6
+				return 6;
 			default:
 				return 1;
 		}
@@ -117,9 +117,9 @@ this.legends_village <- this.inherit("scripts/entity/world/settlement", {
 			case 1:
 			 	return 1;
 			case 2:
-				return 2
+				return 2;
 			case 3:
-				return 3
+				return 3;
 			default:
 				return 1;
 		}
@@ -132,9 +132,9 @@ this.legends_village <- this.inherit("scripts/entity/world/settlement", {
 			case 1:
 			 	return 3;
 			case 2:
-				return 4
+				return 4;
 			case 3:
-				return 7
+				return 7;
 			default:
 				return 1;
 		}

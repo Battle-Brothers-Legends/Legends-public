@@ -95,7 +95,7 @@ this.legends_inquisition_scenario <- this.inherit("scripts/scenarios/world/start
 		local cloths = [
 			[1, "cloth/legend_robes_nun"]
 		];
-		local armor = this.Const.World.Common.pickLegendArmor(cloths)
+		local armor = this.Const.World.Common.pickLegendArmor(cloths);
 
 		if (armor != null)
 		{
@@ -103,8 +103,8 @@ this.legends_inquisition_scenario <- this.inherit("scripts/scenarios/world/start
 				[1, "chain/legend_armor_mail_shirt"],
 				[1, "chain/legend_armor_mail_shirt_simple"],
 				[1, "chain/legend_armor_short_mail"]
-			]
-			local chain = this.Const.World.Common.pickLegendArmor(chains)
+			];
+			local chain = this.Const.World.Common.pickLegendArmor(chains);
 			if (chain != null)
 			{
 				armor.setUpgrade(chain)
@@ -113,8 +113,8 @@ this.legends_inquisition_scenario <- this.inherit("scripts/scenarios/world/start
 			local plates = [
 				[1, "plate/legend_armor_leather_jacket"],
 				[1, "plate/legend_armor_leather_jacket_simple"]
-			]
-			local plate = this.Const.World.Common.pickLegendArmor(plates)
+			];
+			local plate = this.Const.World.Common.pickLegendArmor(plates);
 			if (plate != null)
 			{
 				armor.setUpgrade(plate)
@@ -122,12 +122,12 @@ this.legends_inquisition_scenario <- this.inherit("scripts/scenarios/world/start
 			local tabards = [
 						[0, ""],
 						[1, "tabard/legend_common_tabard"]
-					]
-			local tabard = this.Const.World.Common.pickLegendArmor(tabards)
+					];
+			local tabard = this.Const.World.Common.pickLegendArmor(tabards);
 			if (tabard != null && armor != null)
 			{
-				tabard.setVariant(113)
-				armor.setUpgrade(tabard)
+				tabard.setVariant(113);
+				armor.setUpgrade(tabard);
 			}
 			items.equip(armor);
 		}
@@ -135,16 +135,16 @@ this.legends_inquisition_scenario <- this.inherit("scripts/scenarios/world/start
 		foreach( bro in bros )
 		{
 			local items = bro.getItems();
-			local armor = items.getItemAtSlot(this.Const.ItemSlot.Body)
+			local armor = items.getItemAtSlot(this.Const.ItemSlot.Body);
 			local tabards = [
 					[0, ""],
 					[1, "tabard/legend_noble_tabard"]
-				]
-				local tabard = this.Const.World.Common.pickLegendArmor(tabards)
+				];
+				local tabard = this.Const.World.Common.pickLegendArmor(tabards);
 				if (tabard != null && armor != null)
 				{
-					tabard.setVariant(102)
-					armor.setUpgrade(tabard)
+					tabard.setVariant(102);
+					armor.setUpgrade(tabard);
 				}
 		}
 
@@ -154,7 +154,7 @@ this.legends_inquisition_scenario <- this.inherit("scripts/scenarios/world/start
 		//this.World.Assets.getStash().add(this.new("scripts/items/accessory/legend_wolfsbane_necklace_item"));
 		this.World.Assets.getStash().add(this.new("scripts/items/tools/holy_water_item"));
 		this.World.Assets.getStash().add(this.new("scripts/items/weapons/legend_wooden_stake"));
-		this.World.Assets.getStash().add(this.new("scripts/items/weapons/legend_wooden_stake"))
+		this.World.Assets.getStash().add(this.new("scripts/items/weapons/legend_wooden_stake"));
 		this.World.Assets.getStash().add(this.new("scripts/items/weapons/legend_wooden_stake"));
 		this.World.Assets.getStash().add(this.new("scripts/items/weapons/legend_wooden_stake"));
 		this.World.Assets.getStash().add(this.new("scripts/items/weapons/legend_hand_crossbow"));
@@ -274,13 +274,13 @@ this.legends_inquisition_scenario <- this.inherit("scripts/scenarios/world/start
 	{
 		if (bro.getBackground().isBackgroundType(this.Const.BackgroundType.Crusader))
 		{
-			bro.m.HiringCost = this.Math.floor(bro.m.HiringCost * 0.75) //1.0 = default
+			bro.m.HiringCost = this.Math.floor(bro.m.HiringCost * 0.75); //1.0 = default
 			bro.getBaseProperties().DailyWageMult *= 0.75; //1.0 = default
 			bro.getSkills().update();
 		}
 		else
 		{
-			bro.m.HiringCost = this.Math.floor(bro.m.HiringCost * 1.25) //1.0 = default
+			bro.m.HiringCost = this.Math.floor(bro.m.HiringCost * 1.25); //1.0 = default
 			bro.getBaseProperties().DailyWageMult *= 1.25; //1.0 = default
 			bro.getSkills().update();
 		}

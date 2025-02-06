@@ -386,7 +386,7 @@
 							if (origin != null)
 							{
 								local v = this.Contract.m.Caravan.getResources() + this.Contract.m.Caravan.getResources() * 0.10;
-								origin.setResources(origin.getResources() + v)
+								origin.setResources(origin.getResources() + v);
 							}
 						}
 
@@ -438,7 +438,7 @@
 						if (origin != null)
 						{
 							local v = this.Contract.m.Caravan.getResources() + this.Contract.m.Caravan.getResources() * 0.10;
-							origin.setResources(origin.getResources() + v)
+							origin.setResources(origin.getResources() + v);
 						}
 
 						return 0;
@@ -479,7 +479,7 @@
 		{
 			if (this.m.Home.getProduce().len() != 0)
 			{
-				local produce = 3
+				local produce = 3;
 				local L = this.m.Home.getProduce();
 
 				for( local j = 0; j < produce; j = ++j )

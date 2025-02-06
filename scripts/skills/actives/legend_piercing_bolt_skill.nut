@@ -118,9 +118,9 @@ this.legend_piercing_bolt_skill <- ::inherit("scripts/skills/actives/shoot_bolt"
 
 	function onTargetSelected( _targetTile )
 	{
-		local forwardTile = getAffectedTiles(_targetTile);
-		::Tactical.getHighlighter().addOverlayIcon(::Const.Tactical.Settings.AreaOfEffectIcon, _targetTile, _targetTile.Pos.X, _targetTile.Pos.Y);
+		this.skill.onTargetSelected(_targetTile);
 
+		local forwardTile = getAffectedTiles(_targetTile);
 		if (forwardTile == null)
 			return;
 

@@ -64,7 +64,7 @@ this.legend_bandit_poacher <- this.inherit("scripts/entity/tactical/legend_rando
 
 	function assignRandomEquipment()
 	{
-		this.legend_randomized_unit_abstract.assignRandomEquipment()
+		this.legend_randomized_unit_abstract.assignRandomEquipment();
 		this.m.Items.addToBag(this.new("scripts/items/weapons/knife"));
 	}
 	// function assignRandomEquipment()

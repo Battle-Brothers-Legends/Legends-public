@@ -18,6 +18,9 @@ this.sato_escaped_slaves_scenario <- this.inherit("scripts/scenarios/world/start
 	function onInit()
 	{
 		this.starting_scenario.onInit();
+		this.World.Assets.m.RelationDecayGoodMult += 0.15;
+		this.World.Assets.m.RelationDecayBadMult -= 0.15;
+		this.World.Events.addSpecialEvent("event.sato_find_slave_after_battle");
 	}
 
 	function onSpawnAssets()
@@ -492,13 +495,6 @@ this.sato_escaped_slaves_scenario <- this.inherit("scripts/scenarios/world/start
 				}
 			}
 		}
-	}
-
-	function onInit()
-	{
-		this.World.Assets.m.RelationDecayGoodMult += 0.15;
-		this.World.Assets.m.RelationDecayBadMult -= 0.15;
-		this.World.Events.addSpecialEvent("event.sato_find_slave_after_battle");
 	}
 
 });
