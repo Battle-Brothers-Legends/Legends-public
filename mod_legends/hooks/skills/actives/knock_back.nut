@@ -59,10 +59,11 @@
 		return ret;
 	}
 
+	local onVerifyTarget = o.onVerifyTarget;
 	o.onVerifyTarget = function ( _originTile, _targetTile )
 	{
 		this.m.IsAttack = false; // work around to allow targeting on allies
-		local result = this.skill.onVerifyTarget(_originTile, _targetTile);
+		local result = onVerifyTarget(_originTile, _targetTile);
 		this.m.IsAttack = true;
 		return result;
 	}
