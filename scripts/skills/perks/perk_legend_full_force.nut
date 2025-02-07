@@ -40,6 +40,7 @@ this.perk_legend_full_force <- this.inherit("scripts/skills/skill", {
 
 			local bonus = this.Math.abs(fat / 10);
 			_properties.MeleeDefense += this.Math.floor(bonus);
+			_properties.Bravery += this.Math.floor(bonus);
 	}
 
 });
