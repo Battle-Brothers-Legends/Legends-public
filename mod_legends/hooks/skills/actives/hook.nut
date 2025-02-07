@@ -23,6 +23,7 @@
 		return result;
 	}
 
+	local onUse = o.onUse;
 	o.onUse = function ( _user, _targetTile )
 	{
 		local target = _targetTile.getEntity();
