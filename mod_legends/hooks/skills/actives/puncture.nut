@@ -1,6 +1,6 @@
 ::mods_hookExactClass("skills/actives/puncture", function(o)
 {
-		o.getTooltip = function ()
+	o.getTooltip = function ()
 	{
 		local tooltip = this.getDefaultTooltip();
 		local penalty = this.getContainer().getActor().getCurrentProperties().IsSpecializedInDaggers ? 50 : 65;
