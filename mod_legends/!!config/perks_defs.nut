@@ -1162,7 +1162,8 @@ perkDefObjects.push({
 	Tooltip = this.Const.Strings.PerkDescription.LegendMuscularity,
 	Icon = "ui/perks/muscularity_circle.png",
 	IconDisabled = "ui/perks/muscularity_circle_bw.png",
-	Const = "LegendMuscularity"
+	Const = "LegendMuscularity",
+	HasUnactivatedPerkTooltipHints = true
 });
 perkDefObjects.push({
 	ID = "perk.legend_battleheart",
@@ -2525,7 +2526,8 @@ perkDefObjects.push({
 	Tooltip = this.Const.Strings.PerkDescription.LegendMindOverBody,
 	Icon = "ui/perks/relax_circle.png",
 	IconDisabled = "ui/perks/relax_circle_bw.png",
-	Const = "LegendMindOverBody"
+	Const = "LegendMindOverBody",
+	HasUnactivatedPerkTooltipHints = true
 });
 perkDefObjects.push({
 	ID = "perk.legend_escape_artist",
