@@ -22,7 +22,7 @@ this.perk_legend_muscularity <- this.inherit("scripts/skills/skill", {
 		{
 			local actor = this.getContainer().getActor();
 			local damageBonus = this.Math.maxf(actor.getHitpoints(), actor.getHitpointsMax() / 2.0) * 0.001; // either half of the max hitpoints or hitpoints so there's a lower bound
-
+			damageBonus += this.Math.maxf(actor.getFatigueMax() - actor.getFatigue(), (actor.getFatigueMax() - actor.getFatigue()) / 2.0) * 0.0015;
 			_properties.DamageTotalMult *= 1 + this.Math.minf(0.5, damageBonus);
 		}
 	}
