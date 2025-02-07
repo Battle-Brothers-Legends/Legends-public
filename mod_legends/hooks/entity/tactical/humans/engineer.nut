@@ -4,6 +4,8 @@
 	o.onInit = function ()
 	{
 		onInit();
+		local b = this.m.BaseProperties;
+		b.TargetAttractionMult = 2.0;
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_rotation"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_recover"));
 	}
