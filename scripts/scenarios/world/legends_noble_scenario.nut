@@ -157,7 +157,9 @@ this.legends_noble_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 
 		// End arbalester create
 
-		stash = this.World.Assets.getStash();
+		local stash = this.World.Assets.getStash();
+		stash.removeByID("supplies.ground_grains");
+		stash.removeByID("supplies.ground_grains");
 		stash.add(this.new("scripts/items/supplies/cured_rations_item"));
 		stash.add(this.new("scripts/items/supplies/wine_item"));
 		stash.add(this.new("scripts/items/loot/signet_ring_item"));
