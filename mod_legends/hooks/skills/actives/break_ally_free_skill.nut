@@ -102,7 +102,7 @@
 				this.Sound.play(breakFree.m.SoundOnUse[this.Math.rand(0, breakFree.m.SoundOnUse.len() - 1)], this.Const.Sound.Volume.Skill * breakFree.m.SoundVolume, _user.getPos());
 			}
 
-			breakFree.onUseByAlly(ally, _targetTile);
+			breakFree.onUseByAlly(this.getContainer().getActor(), _targetTile);
 		}
 
 		return true;
