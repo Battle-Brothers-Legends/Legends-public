@@ -2256,7 +2256,8 @@ perkDefObjects.push({
 	Tooltip = this.Const.Strings.PerkDescription.LegendPerfectFit,
 	Icon = "ui/perks/perfect_fit.png",
 	IconDisabled = "ui/perks/perfect_fit_bw.png",
-	Const = "LegendPerfectFit"
+	Const = "LegendPerfectFit",
+	HasUnactivatedPerkTooltipHints = true
 });
 perkDefObjects.push({
 	ID = "perk.legend_lithe",
