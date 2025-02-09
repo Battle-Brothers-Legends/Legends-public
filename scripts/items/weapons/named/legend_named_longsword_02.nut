@@ -41,7 +41,7 @@ this.legend_named_longsword_02 <- this.inherit("scripts/items/weapons/named/name
 	{
 		this.named_weapon.onEquip();
 		::Legends.Actives.grant(this, ::Legends.Active.Slash, function (_skill) {
-			_skill.m.isGreatSlash = true;
+			_skill.m.IsGreatSlash = true;
 		}.bindenv(this));
 		::Legends.Actives.grant(this, ::Legends.Active.OverheadStrike);
 		::Legends.Actives.grant(this, ::Legends.Active.Riposte);

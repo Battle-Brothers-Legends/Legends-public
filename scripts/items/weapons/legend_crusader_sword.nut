@@ -40,7 +40,7 @@ this.legend_crusader_sword <- this.inherit("scripts/items/weapons/weapon", {
 			_skill.setStunChance(this.m.StunChance);
 		}.bindenv(this));
 		::Legends.Actives.grant(this, ::Legends.Active.Slash, function (_skill) {
-			_skill.m.isGreatSlash = true;
+			_skill.m.IsGreatSlash = true;
 		}.bindenv(this));
 		::Legends.Actives.grant(this, ::Legends.Active.Swing);
 		::Legends.Actives.grant(this, ::Legends.Active.Riposte);

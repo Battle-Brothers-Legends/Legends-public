@@ -39,7 +39,7 @@ this.legend_estoc <- this.inherit("scripts/items/weapons/weapon", {
 	{
 		this.weapon.onEquip();
 		::Legends.Actives.grant(this, ::Legends.Active.Slash, function (_skill) {
-			_skill.m.isGreatSlash = true;
+			_skill.m.IsGreatSlash = true;
 		}.bindenv(this));
 		::Legends.Actives.grant(this, ::Legends.Active.Lunge, function (_skill) {
 			_skill.m.isGreatLunge = true;

@@ -2,7 +2,7 @@
 	o.addSkill <- function( _skill )
 	{
 		if (_skill.getID() == ::Legends.Actives.getID(::Legends.Active.Slash))
-			_skill.m.isGreatSlash = true;
+			_skill.m.IsGreatSlash = true;
 
 		this.weapon.addSkill(_skill);
 	}
