@@ -179,7 +179,7 @@ this.perk_legend_smackdown <- this.inherit("scripts/skills/skill", {
 
 	function onUpdate( _properties )
 	{
-		_properties.DamageArmorMult += 0.30;
+		_properties.DamageArmorMult *= 1.30;
 	}
 
 
