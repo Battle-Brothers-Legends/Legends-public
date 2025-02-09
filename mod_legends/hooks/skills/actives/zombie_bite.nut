@@ -106,4 +106,10 @@
 	o.onUpdate = function ( _properties )
 	{
 	}
+
+	o.onAfterUpdate <- function ( _properties )
+	{
+		if (this.getContainer().getActor().getItems().getItemAtSlot(this.Const.ItemSlot.Mainhand) == null)
+			this.isIgnoredAsAOO = false;
+	}
 });
