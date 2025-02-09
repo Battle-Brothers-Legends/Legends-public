@@ -106,15 +106,10 @@ this.slave_background <- this.inherit("scripts/skills/backgrounds/character_back
 
 	function getTooltip()
 	{
-<<<<<<< HEAD
-		local ret = this.character_background.getTooltip();
-		ret.push({
-=======
 		local ret = this.character_background.getTooltip()
 
 		ret.extend([
 		{
->>>>>>> 739746a39 (Redo slave background)
 			id = 19,
 			type = "text",
 			icon = "ui/icons/special.png",
