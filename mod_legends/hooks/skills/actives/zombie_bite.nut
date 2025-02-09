@@ -110,11 +110,11 @@
 	{
 		if (this.getContainer().getActor().getItems().getItemAtSlot(this.Const.ItemSlot.Mainhand) != null)
 		{
-			this.m.isIgnoredAsAOO = true;
+			this.m.IsIgnoredAsAOO = true;
 		}
 		else
 		{
-			this.m.isIgnoredAsAOO = true;
+			this.m.IsIgnoredAsAOO = false;
 		}
 	}
 });
