@@ -92,7 +92,8 @@
 			{
 				this.m.IsIgnoredAsAOO = true;
 			}
-			else {
+			else
+			{
 				this.m.IsIgnoredAsAOO = false;
 			}
 		}

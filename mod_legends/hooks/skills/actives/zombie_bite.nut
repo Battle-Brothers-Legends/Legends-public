@@ -8,7 +8,6 @@
 		this.m.Description = "A vicious bite with a 15% increased chance to hit the head. Infects on legendary difficulty. Will revive humanoid enemies as allied Wiedergangers if dealt as a killing blow.";
 		this.m.IconDisabled = "skills/active_24_bw.png";
 		this.m.Order = this.Const.SkillOrder.OffensiveTargeted + 2;
-		this.m.IsIgnoredAsAOO = true;
 	}
 
 	o.getTooltip <- function ()
@@ -109,7 +108,13 @@
 
 	o.onAfterUpdate <- function ( _properties )
 	{
-		if (this.getContainer().getActor().getItems().getItemAtSlot(this.Const.ItemSlot.Mainhand) == null)
-			this.isIgnoredAsAOO = false;
+		if (this.getContainer().getActor().getItems().getItemAtSlot(this.Const.ItemSlot.Mainhand) != null)
+		{
+			this.m.isIgnoredAsAOO = true;
+		}
+		else
+		{
+			this.m.isIgnoredAsAOO = true;
+		}
 	}
 });
