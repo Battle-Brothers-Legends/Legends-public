@@ -17,6 +17,10 @@
 	<sprite id="icon_legend_sling_02_bloodied" offsetY="35" ic="FF3B4153" width="104" height="142" img="icons\icon_legend_sling_02_bloodied.png" left="0" right="48" top="-56" bottom="8" />
 	<sprite id="icon_legend_slingstaff_01" offsetY="35" f1="20" f2="-45" ic="FF4E5159" width="130" height="142" img="icons\icon_legend_slingstaff_01.png" left="-9" right="49" top="-62" bottom="12" />
 	<sprite id="icon_legend_slingstaff_01_bloodied" offsetY="35" f1="20" f2="-45" ic="FF2F3A4F" width="130" height="142" img="icons\icon_legend_slingstaff_01_bloodied.png" left="-10" right="50" top="-67" bottom="13" />
+	<sprite id="icon_legend_named_slingstaff_01" offsetY="35" ic="FF2F405A" width="130" height="142" img="icons\icon_legend_named_slingstaff_01.png" left="-50" right="12" top="-48" bottom="26" />
+	<sprite id="icon_legend_named_slingstaff_01_bloodied" offsetY="35" ic="FF2F405A" width="130" height="142" img="icons\icon_legend_named_slingstaff_01.png" left="-50" right="12" top="-48" bottom="26" />
+	<sprite id="icon_legend_named_slingstaff_02" offsetY="35" ic="FF2F405A" width="130" height="142" img="icons\icon_legend_named_slingstaff_02.png" left="-50" right="12" top="-48" bottom="26" />
+	<sprite id="icon_legend_named_slingstaff_02_bloodied" offsetY="35" ic="FF2F405A" width="130" height="142" img="icons\icon_legend_named_slingstaff_02.png" left="-50" right="12" top="-48" bottom="26" />
 	<sprite id="icon_legend_chain_01" offsetY="35" f1="20" f2="-45" ic="FF4E5159" width="130" height="142" img="icons\icon_legend_chain_01.png" left="-9" right="49" top="-62" bottom="12" />
 	<sprite id="icon_legend_chain_01_bloodied" offsetY="35" f1="20" f2="-45" ic="FF2F3A4F" width="130" height="142" img="icons\icon_legend_chain_01_bloodied.png" left="-10" right="50" top="-67" bottom="13" />
 	<sprite id="icon_legend_wooden_spear_01" offsetY="35" f1="20" f2="-45" ic="FF4E5159" width="130" height="142" img="icons\icon_legend_wooden_spear_01.png" left="-9" right="49" top="-62" bottom="12" />
