@@ -38,22 +38,11 @@ this.legend_named_glaive <- this.inherit("scripts/items/weapons/named/named_weap
 
 	function onEquip()
 	{
-<<<<<<< HEAD
 		this.named_weapon.onEquip();
-		::Legends.Actives.grant(this, ::Legends.Active.Slash, function (_skill) {
-			_skill.m.isGlaiveSlash = true;
+		::Legends.Actives.grant(this, ::Legends.Active.Strike, function (_skill) {
+			_skill.m.IsGlaiveStrike = true;
 		}.bindenv(this));
-		::Legends.Actives.grant(this, ::Legends.Active.Spearwall, function (_skill) {
-			_skill.m.BaseAttackName = "Glaive Slash";
-		}.bindenv(this));
-=======
-		this.weapon.onEquip();
-		local skill = this.new("scripts/skills/actives/strike_skill");
-		skill.m.IsGlaiveStrike = true;
-		this.addSkill(skill);
-		skill = this.new("scripts/skills/actives/legend_skewer_skill");
-		this.addSkill(skill);
->>>>>>> a4e5d74dc (Rework glaives)
+		::Legends.Actives.grant(this, ::Legends.Active.LegendSkewer);
 	}
 });
 
