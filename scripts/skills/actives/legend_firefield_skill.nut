@@ -5,8 +5,8 @@ this.legend_firefield_skill <- this.inherit("scripts/skills/skill", {
 	function create()
 	{
 		this.m.ID = "actives.legend_firefield";
-		this.m.Name = "Fire Pot";
-		this.m.Description = "Throw a pot releasing a field of fire that burns all beings";
+		this.m.Name = "Firefield";
+		this.m.Description = "Unleash a fiery infernot at the target location that burns all beings, damaging them twice.";
 		this.m.Icon = "skills/fire_square.png";
 		this.m.IconDisabled = "skills/fire_square_bw.png";
 		this.m.Overlay = "fire_circle";
@@ -65,9 +65,19 @@ this.legend_firefield_skill <- this.inherit("scripts/skills/skill", {
 		return ret;
 	}
 
-	function isViableTarget( _user, _target )
+	function onVerifyTarget( _originTile, _targetTile )
 	{
-		return !_target.isAlliedWith(_user) && _target.getTile().Properties.Effect == null;
+		if (!this.skill.onVerifyTarget(_originTile, _targetTile))
+		{
+			return false;
+		}
+
+		if (_originTile.Level + 1 < _targetTile.Level)
+		{
+			return false;
+		}
+
+		return true;
 	}
 
 	function onAfterUpdate( _properties )
