@@ -13,6 +13,11 @@
 		this.m.Type = this.Const.SkillType.Perk | this.Const.SkillType.StatusEffect;
 	}
 
+	o.getDescription <- function ()
+	{
+		return "Become one with your weapon and go for the weak spots!";
+	}
+
 	o.isHidden <- function ()
 	{
 		return ::Tactical.isActive();
@@ -20,38 +25,24 @@
 
 	o.getTooltip <- function ()
 	{
-		local main = getContainer().getActor().getMainhandItem();
-		local off = getContainer().getActor().getOffhandItem();
 		local tooltip = this.skill.getTooltip();
-
-		if (!isValid(main, off))
+		local bonus = this.getBonus() * 100;
+		if (bonus == 0)
+		{
 			tooltip.push({
 				id = 6,
 				type = "text",
 				icon = "ui/tooltips/warning.png",
 				text = "[color=" + this.Const.UI.Color.NegativeValue + "]You do not have the right equipment to receive Duelist's effect[/color]"
 			});
-		else if (isFullEffect(main, off))
-			tooltip.push({
-				id = 6,
-				type = "text",
-				icon = "ui/icons/direct_damage.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+25%[/color] of any damage ignores armor"
-			});
-		else if (isPartialEffect(main, off))
-			tooltip.push({
-				id = 6,
-				type = "text",
-				icon = "ui/icons/direct_damage.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+13%[/color] of any damage ignores armor"
-			});
-		else
-			tooltip.push({
-				id = 6,
-				type = "text",
-				icon = "ui/tooltips/warning.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]You do not have the right equipment to receive Duelist's effect[/color]"
-			});
+			return tooltip;
+		}
+		tooltip.push({
+			id = 6,
+			type = "text",
+			icon = "ui/icons/direct_damage.png",
+			text = "[color=" + this.Const.UI.Color.PositiveValue + "]"+ bonus "%[/color] of any damage ignores armor"
+		});
 
 		return tooltip;
 	}
@@ -83,17 +74,23 @@
 		return false;
 	}
 
-	o.onUpdate = function ( _properties )
+	// you can just hook this or isValid/isFullEffect/isPartialEffect and the tooltip will auto calculate without needing to replace anything
+	o.getBonus <- function()
 	{
 		local main = getContainer().getActor().getMainhandItem();
 		local off = getContainer().getActor().getOffhandItem();
-
 		if (!isValid(main, off))
-			return;
+			return 0;
 
+		local bonus = 0;
 		if (isFullEffect(main, off))
-			_properties.DamageDirectAdd += 0.25;
+			bonus += 0.25;
 		else if (isPartialEffect(main, off))
-			_properties.DamageDirectAdd += 0.13;
+			bonus += 0.13;
+	}
+
+	o.onUpdate = function ( _properties )
+	{
+		_properties.DamageDirectAdd += this.getBonus();
 	}
 });
