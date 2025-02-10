@@ -4,10 +4,9 @@ this.legend_skewer_skill <- this.inherit("scripts/skills/skill", {
 	},
 	function create()
 	{
-		this.m.ID = "actives.legend_skewer";
-		this.m.Name = "Skewer";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendSkewer);
 		this.m.Description = "A full forced thrust attack meant to pierce two targets in a straight line.";
-		this.m.KilledString = "Skewer";
+		this.m.KilledString = "Skewered";
 		this.m.Icon = "skills/active_55.png";
 		this.m.IconDisabled = "skills/active_55_sw.png";
 		this.m.Overlay = "active_55";

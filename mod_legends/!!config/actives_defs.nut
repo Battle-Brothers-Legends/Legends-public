@@ -1062,10 +1062,10 @@ activesDefs.push({
 	Name = "Smite",
 });
 activesDefs.push({
-	ID = "actives.legend_voulge_decapitate",
-	Script = "scripts/skills/actives/legend_voulge_decapitate_skill",
-	Const = "LegendVoulgeDecapitate",
-	Name = "Decapitate",
+	ID = "actives.legend_skewer",
+	Script = "scripts/skills/actives/legend_skewer_skill",
+	Const = "LegendSkewer",
+	Name = "Skewer",
 });
 activesDefs.push({
 	ID = "actives.legend_cat_bite",
@@ -1104,9 +1104,9 @@ activesDefs.push({
 	Name = "Flail",
 });
 activesDefs.push({
-	ID = "actives.legend_voulge_cleave",
-	Script = "scripts/skills/actives/legend_voulge_cleave_skill",
-	Const = "LegendVoulgeCleave",
+	ID = "actives.legend_scythe_cleave",
+	Script = "scripts/skills/actives/legend_scythe_cleave_skill",
+	Const = "LegendScytheCleave",
 	Name = "Cleave",
 });
 activesDefs.push({

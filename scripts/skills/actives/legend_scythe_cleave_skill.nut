@@ -14,8 +14,6 @@ this.legend_scythe_cleave_skill <- this.inherit("scripts/skills/skill", {
 	function create()
 	{
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendScytheCleave);
-		this.m.ID = "actives.legend_scythe_cleave";
-		this.m.Name = "Cleave";
 		this.m.Description = "A sweeping cleave that can be used from behind the frontline and can inflict bleeding wounds if there is no armor absorbing the blow and if the target is able to bleed at all.";
 		this.m.KilledString = "Cleaved";
 		this.m.Icon = "skills/active_61.png";
