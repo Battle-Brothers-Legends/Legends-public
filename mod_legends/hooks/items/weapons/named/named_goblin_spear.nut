@@ -4,27 +4,30 @@
 	{
 		create();
 		this.m.Description = "A masterfully crafted goblin glaive. Accurate, fast and deadly in the hands of any skilled fighter.";
-		this.m.Value = 2500;
+		this.m.WeaponType = this.Const.Items.WeaponType.Polearm;
+		this.m.SlotType = this.Const.ItemSlot.Mainhand;
+		this.m.BlockedSlotType = this.Const.ItemSlot.Offhand;
+		this.m.ItemType = this.Const.Items.ItemType.Named | this.Const.Items.ItemType.Weapon | this.Const.Items.ItemType.MeleeWeapon | this.Const.Items.ItemType.TwoHanded;
+		this.m.IsAoE = true;
+		this.m.Value = 3000;
 	}
 
 	o.randomizeValues <- function ()
 	{
-		this.m.StaminaModifier = -5;
-		this.m.RegularDamage = 30;
-		this.m.RegularDamageMax = 40;
+		this.m.StaminaModifier = -10;
+		this.m.RegularDamage = 35;
+		this.m.RegularDamageMax = 65;
 
 		named_weapon.randomizeValues();
 	}
 
 	o.onEquip = function ()
 	{
-		this.weapon.onEquip();
+		this.named_weapon.onEquip();
 		::Legends.Actives.grant(this, ::Legends.Active.Slash, function (_skill) {
-			_skill.m.isGlaiveSlash = true;
+			_skill.m.IsStaffSlash = true;
 		}.bindenv(this));
-		::Legends.Actives.grant(this, ::Legends.Active.Spearwall, function (_skill) {
-			_skill.m.BaseAttackName = "Glaive Slash";
-		}.bindenv(this));
+		::Legends.Actives.grant(this, ::Legends.Active.LegendSkewer);
 	}
 
 });

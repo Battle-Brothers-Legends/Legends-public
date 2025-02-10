@@ -16,13 +16,13 @@ this.legend_battle_glaive <- this.inherit("scripts/items/weapons/weapon", {
 		this.m.AddGenericSkill = true;
 		this.m.ShowQuiver = false;
 		this.m.ShowArmamentIcon = true;
-		this.m.Value = 3200;
+		this.m.Value = 950;
 		this.m.StaminaModifier = -14;
 		this.m.RangeMin = 1;
 		this.m.RangeMax = 2;
 		this.m.RangeIdeal = 2;
-		this.m.RegularDamage = 40;
-		this.m.RegularDamageMax = 70;
+		this.m.RegularDamage = 60;
+		this.m.RegularDamageMax = 75;
 		this.m.ArmorDamageMult = 0.9;
 		this.m.DirectDamageMult = 0.3;
 	}

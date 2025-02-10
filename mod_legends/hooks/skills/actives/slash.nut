@@ -1,17 +1,25 @@
 ::mods_hookExactClass("skills/actives/slash", function(o)
 {
 	o.m.IsGreatSlash <- false;
+	o.m.IsStaffSlash <- false;
 
 	local setItem = o.setItem;
 	o.setItem <- function (_item)
 	{
 		setItem(_item);
-		if (this.m.isGreatSlash)
+		if (this.m.IsGreatSlash)
 		{
 			this.m.Name = "Great Slash";
 			this.m.Description = "A hefty swift slashing attack dealing average damage.";
 			this.m.DirectDamageMult = 0.25;
 			this.m.FatigueCost = 13;
+		}
+		else if (this.m.IsStaffSlash)
+		{
+			this.m.Description = "A swift slashing attack dealing average damage that can cover the distance of 2 tiles and can be used from behind the frontline, outside the range of most melee weapons.";
+			this.m.FatigueCost = 13;
+			this.m.MaxRange = 2;
+			this.m.ActionPointCost = 5;
 		}
 	}
 
@@ -29,6 +37,15 @@
 		);
 
 		return tooltip;
+	}
+
+	local onAfterUpdate = o.onAfterUpdate;
+	o.onAfterUpdate = function( _properties )
+	{
+		if (!this.m.IsStaffSlash)
+			return onAfterUpdate(_properties)
+
+		this.m.ActionPointCost = _properties.IsSpecializedInPolearms ? 4 : 5;
 	}
 
 	o.onAnySkillUsed = function ( _skill, _targetEntity, _properties )

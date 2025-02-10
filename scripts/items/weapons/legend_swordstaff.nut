@@ -5,7 +5,7 @@ this.legend_swordstaff <- this.inherit("scripts/items/weapons/weapon", {
 		this.weapon.create();
 		this.m.ID = "weapon.legend_swordstaff";
 		this.m.Name = "Swordstaff";
-		this.m.Description = "A cross between a spear and a sword, making for a good dueling weapon. Used for both keeping the enemy at bay, and the closing the gap.";
+		this.m.Description = "A cross between a spear and a sword, making for a good dueling weapon. Used for attacking at range and closing the gap.";
 		this.m.IconLarge = "weapons/melee/legend_swordstaff_01.png";
 		this.m.Icon = "weapons/melee/legend_swordstaff_01_70x70.png";
 		this.m.WeaponType = this.Const.Items.WeaponType.Sword | this.Const.Items.WeaponType.Spear | this.Const.Items.WeaponType.Staff;
@@ -31,9 +31,11 @@ this.legend_swordstaff <- this.inherit("scripts/items/weapons/weapon", {
 	function onEquip()
 	{
 		this.weapon.onEquip();
-		::Legends.Actives.grant(this, ::Legends.Active.Thrust);
-		::Legends.Actives.grant(this, ::Legends.Active.Spearwall);
-		::Legends.Actives.grant(this, ::Legends.Active.Lunge);
+		::Legends.Actives.grant(this, ::Legends.Active.Slash, function (_skill) {
+			_skill.m.IsStaffSlash = true;
+		}.bindenv(this));
+		::Legends.Actives.grant(this, ::Legends.Active.Swing);
+		::Legends.Actives.grant(this, ::Legends.Active.LegendSkewer);
 	}
 
 });

@@ -4,20 +4,23 @@
 	{
 		create();
 		this.m.Description = "A long shaft with a sharp metal blade at the top.";
-		this.m.Value = 500;
-		this.m.StaminaModifier = -6;
-		this.m.RegularDamage = 30;
-		this.m.RegularDamageMax = 40;
+		this.m.WeaponType = this.Const.Items.WeaponType.Polearm;
+		this.m.SlotType = this.Const.ItemSlot.Mainhand;
+		this.m.BlockedSlotType = this.Const.ItemSlot.Offhand;
+		this.m.ItemType = this.Const.Items.ItemType.Weapon | this.Const.Items.ItemType.MeleeWeapon | this.Const.Items.ItemType.TwoHanded;
+		this.m.IsAoE = true;
+		this.m.Value = 700;
+		this.m.StaminaModifier = -10;
+		this.m.RegularDamage = 35;
+		this.m.RegularDamageMax = 60;
 	}
 
 	o.onEquip = function ()
 	{
 		this.weapon.onEquip();
 		::Legends.Actives.grant(this, ::Legends.Active.Slash, function (_skill) {
-			_skill.m.isGlaiveSlash = true;
+			_skill.m.IsStaffSlash = true;
 		}.bindenv(this));
-		::Legends.Actives.grant(this, ::Legends.Active.Spearwall, function (_skill) {
-			_skill.m.BaseAttackName = "Glaive Slash";
-		}.bindenv(this));
+		::Legends.Actives.grant(this, ::Legends.Active.LegendSkewer);
 	}
 });
