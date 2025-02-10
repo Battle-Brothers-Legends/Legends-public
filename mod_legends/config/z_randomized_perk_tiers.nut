@@ -139,8 +139,7 @@
         [1, ["boar_spear", 100]],
         [2, ["falchion", 100]],
         [2, ["shortsword", 100]],
-        [1, ["arming_sword", 100]],
-        [2, ["legend_glaive", 100]]
+        [1, ["arming_sword", 100]]
     ],
     GuaranteedPerks = [
         "perks/perk_recover",
@@ -340,8 +339,7 @@
         [5, ["arming_sword", 70], ["perks/perk_legend_bloodbath"]],
         [5, ["flail", 70], ["perks/perk_head_hunter"]],
         [5, ["scramasax", 70], ["perks/perk_killing_frenzy"]],
-        [5, ["military_pick", 70], ["perks/perk_legend_smackdown"]],
-        [5, ["legend_glaive", 70], ["perks/perk_killing_frenzy"]]
+        [5, ["military_pick", 70], ["perks/perk_legend_smackdown"]]
     ],
     Shields = [
         [3, ""],
@@ -487,7 +485,7 @@
     WeaponsAndTrees = [
         [1, ["polehammer", 100]],
         [2, ["legend_halberd",  100]],
-        [2, ["legend_military_voulge", 100]],
+        [2, ["legend_battle_glaive", 100]],
         [2, ["longaxe", 100]]
     ],
     DefensePerkList = [

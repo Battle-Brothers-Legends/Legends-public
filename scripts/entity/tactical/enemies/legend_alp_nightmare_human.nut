@@ -231,7 +231,7 @@ this.legend_alp_nightmare_human <- this.inherit("scripts/entity/tactical/enemies
 		}
 		else
 		{
-			r = this.Math.rand(2, 11);
+			r = this.Math.rand(2, 10);
 
 			if (r == 2)
 			{
@@ -304,14 +304,6 @@ this.legend_alp_nightmare_human <- this.inherit("scripts/entity/tactical/enemies
 
 				if (::Legends.isLegendaryDifficulty())
 					::Legends.Perks.grant(this, ::Legends.Perk.LegendSmackdown);
-			}
-			else if (r == 11)
-			{
-				this.m.Items.equip(this.new("scripts/items/weapons/legend_glaive"));
-				::Legends.Perks.grant(this, ::Legends.Perk.KillingFrenzy);
-
-				if (::Legends.isLegendaryDifficulty())
-					::Legends.Perks.grant(this, ::Legends.Perk.Fearsome);
 			}
 
 			if (this.Math.rand(1, 100) <= 75)

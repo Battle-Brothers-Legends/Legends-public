@@ -22,7 +22,7 @@
 
 	o.assignRandomEquipment = function ()
 	{
-		local r = this.Math.rand(1, 8);
+		local r = this.Math.rand(1, 7);
 
 		if (r == 1)
 		{
@@ -53,10 +53,6 @@
 			else if (r == 7)
 			{
 				this.m.Items.equip(this.new("scripts/items/weapons/shortsword"));
-			}
-			else if (r == 8)
-			{
-				this.m.Items.equip(this.new("scripts/items/weapons/legend_glaive"));
 			}
 
 			if (this.Math.rand(1, 100) <= 75)

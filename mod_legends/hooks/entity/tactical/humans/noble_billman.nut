@@ -43,7 +43,7 @@
 		local weapons = [
 			"weapons/billhook",
 			"weapons/pike",
-			"weapons/legend_military_voulge",
+			"weapons/legend_battle_glaive",
 			"weapons/polehammer"
 		];
 

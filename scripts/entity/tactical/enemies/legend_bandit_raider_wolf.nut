@@ -13,11 +13,11 @@ this.legend_bandit_raider_wolf <- this.inherit("scripts/entity/tactical/enemies/
 
 	function assignRandomEquipment()
 	{
-		local r = this.Math.rand(0, 9);
+		local r = this.Math.rand(0, 8);
 
 		if (r <= 1)
 		{
-			r = this.Math.rand(0, 3);
+			r = this.Math.rand(0, 4);
 
 			if (r == 0)
 			{
@@ -34,6 +34,10 @@ this.legend_bandit_raider_wolf <- this.inherit("scripts/entity/tactical/enemies/
 			else if (r == 3)
 			{
 				this.m.Items.equip(this.new("scripts/items/weapons/warbrand"));
+			}
+			else if (r == 4)
+			{
+				this.m.Items.equip(this.new("scripts/items/weapons/legend_militia_glaive"));
 			}
 		}
 		else
@@ -65,10 +69,6 @@ this.legend_bandit_raider_wolf <- this.inherit("scripts/entity/tactical/enemies/
 			else if (r == 8)
 			{
 				this.m.Items.equip(this.new("scripts/items/weapons/flail"));
-			}
-			else if (r == 9)
-			{
-				this.m.Items.equip(this.new("scripts/items/weapons/legend_glaive"));
 			}
 
 			if (this.Math.rand(1, 100) <= 75)

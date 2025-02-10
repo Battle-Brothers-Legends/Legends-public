@@ -109,155 +109,137 @@ this.legend_bandit_veteran <- this.inherit("scripts/entity/tactical/human", {
 
 		if (this.Math.rand(1, 100) <= 20)
 		{
-			if (this.Const.DLC.Unhold)
+			r = this.Math.rand(0, 11);
+
+			if (r == 0)
 			{
-				r = this.Math.rand(0, 10);
+				this.m.Items.equip(this.new("scripts/items/weapons/legend_infantry_axe"));
+				::Legends.Perks.grant(this, ::Legends.Perk.LegendSmashingShields);
 
-				if (r == 0)
+				if (::Legends.isLegendaryDifficulty())
 				{
-					this.m.Items.equip(this.new("scripts/items/weapons/legend_infantry_axe"));
-					::Legends.Perks.grant(this, ::Legends.Perk.LegendSmashingShields);
-
-					if (::Legends.isLegendaryDifficulty())
-					{
-						::Legends.Perks.grant(this, ::Legends.Perk.KillingFrenzy);
-					}
-				}
-				else if (r == 1)
-				{
-					this.m.Items.equip(this.new("scripts/items/weapons/hooked_blade"));
-					::Legends.Perks.grant(this, ::Legends.Perk.CripplingStrikes);
-
-					if (::Legends.isLegendaryDifficulty())
-					{
-						::Legends.Perks.grant(this, ::Legends.Perk.Fearsome);
-					}
-				}
-				else if (r == 2)
-				{
-					this.m.Items.equip(this.new("scripts/items/weapons/pike"));
-					::Legends.Perks.grant(this, ::Legends.Perk.ReachAdvantage);
-
-					if (::Legends.isLegendaryDifficulty())
-					{
-						::Legends.Perks.grant(this, ::Legends.Perk.LegendStrengthInNumbers);
-					}
-				}
-				else if (r == 3)
-				{
-					this.m.Items.equip(this.new("scripts/items/weapons/warbrand"));
-					::Legends.Perks.grant(this, ::Legends.Perk.LegendBloodyHarvest);
-
-					if (::Legends.isLegendaryDifficulty())
-					{
-						::Legends.Perks.grant(this, ::Legends.Perk.LegendForcefulSwing);
-					}
-				}
-				else if (r == 4)
-				{
-					this.m.Items.equip(this.new("scripts/items/weapons/longaxe"));
 					::Legends.Perks.grant(this, ::Legends.Perk.KillingFrenzy);
-
-					if (::Legends.isLegendaryDifficulty())
-					{
-						::Legends.Perks.grant(this, ::Legends.Perk.LegendStrengthInNumbers);
-					}
-				}
-				else if (r == 5)
-				{
-					this.m.Items.equip(this.new("scripts/items/weapons/two_handed_wooden_hammer"));
-					::Legends.Perks.grant(this, ::Legends.Perk.LegendSmackdown);
-
-					if (::Legends.isLegendaryDifficulty())
-					{
-						::Legends.Perks.grant(this, ::Legends.Perk.LegendSmackdown);
-					}
-				}
-				else if (r == 6)
-				{
-					local weapons = [
-						"weapons/two_handed_wooden_flail",
-						"weapons/legend_reinforced_flail",
-					];
-
-					this.m.Items.equip(this.new("scripts/items/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
-					::Legends.Perks.grant(this, ::Legends.Perk.HeadHunter);
-
-					if (::Legends.isLegendaryDifficulty())
-					{
-						::Legends.Perks.grant(this, ::Legends.Perk.BattleFlow);
-					}
-				}
-				else if (r == 7)
-				{
-					this.m.Items.equip(this.new("scripts/items/weapons/two_handed_mace"));
-					::Legends.Perks.grant(this, ::Legends.Perk.Colossus);
-
-					if (::Legends.isLegendaryDifficulty())
-					{
-						::Legends.Perks.grant(this, ::Legends.Perk.LegendOnslaught);
-					}
-				}
-				else if (r == 8)
-				{
-					this.m.Items.equip(this.new("scripts/items/weapons/longsword"));
-					::Legends.Perks.grant(this, ::Legends.Perk.LegendVengeance);
-
-					if (::Legends.isLegendaryDifficulty())
-					{
-						::Legends.Perks.grant(this, ::Legends.Perk.LegendFeint);
-					}
-				}
-				else if (r == 9)
-				{
-					this.m.Items.equip(this.new("scripts/items/weapons/legend_longsword"));
-					::Legends.Perks.grant(this, ::Legends.Perk.LegendForcefulSwing);
-
-					if (::Legends.isLegendaryDifficulty())
-					{
-						::Legends.Perks.grant(this, ::Legends.Perk.LegendBloodyHarvest);
-					}
-				}
-				else if (r == 10)
-				{
-					this.m.Items.equip(this.new("scripts/items/weapons/legend_two_handed_club"));
-					::Legends.Perks.grant(this, ::Legends.Perk.Colossus);
-
-					if (::Legends.isLegendaryDifficulty())
-					{
-						::Legends.Perks.grant(this, ::Legends.Perk.LegendOnslaught);
-					}
 				}
 			}
-			else
+			else if (r == 1)
 			{
-				r = this.Math.rand(0, 4);
+				this.m.Items.equip(this.new("scripts/items/weapons/hooked_blade"));
+				::Legends.Perks.grant(this, ::Legends.Perk.CripplingStrikes);
 
-				if (r == 0)
+				if (::Legends.isLegendaryDifficulty())
 				{
-					this.m.Items.equip(this.new("scripts/items/weapons/legend_infantry_axe"));
+					::Legends.Perks.grant(this, ::Legends.Perk.Fearsome);
 				}
-				else if (r == 1)
+			}
+			else if (r == 2)
+			{
+				this.m.Items.equip(this.new("scripts/items/weapons/pike"));
+				::Legends.Perks.grant(this, ::Legends.Perk.ReachAdvantage);
+
+				if (::Legends.isLegendaryDifficulty())
 				{
-					this.m.Items.equip(this.new("scripts/items/weapons/hooked_blade"));
+					::Legends.Perks.grant(this, ::Legends.Perk.LegendStrengthInNumbers);
 				}
-				else if (r == 2)
+			}
+			else if (r == 3)
+			{
+				this.m.Items.equip(this.new("scripts/items/weapons/warbrand"));
+				::Legends.Perks.grant(this, ::Legends.Perk.LegendBloodyHarvest);
+
+				if (::Legends.isLegendaryDifficulty())
 				{
-					this.m.Items.equip(this.new("scripts/items/weapons/pike"));
+					::Legends.Perks.grant(this, ::Legends.Perk.LegendForcefulSwing);
 				}
-				else if (r == 3)
+			}
+			else if (r == 4)
+			{
+				this.m.Items.equip(this.new("scripts/items/weapons/longaxe"));
+				::Legends.Perks.grant(this, ::Legends.Perk.KillingFrenzy);
+
+				if (::Legends.isLegendaryDifficulty())
 				{
-					this.m.Items.equip(this.new("scripts/items/weapons/warbrand"));
+					::Legends.Perks.grant(this, ::Legends.Perk.LegendStrengthInNumbers);
 				}
-				else if (r == 4)
+			}
+			else if (r == 5)
+			{
+				this.m.Items.equip(this.new("scripts/items/weapons/two_handed_wooden_hammer"));
+				::Legends.Perks.grant(this, ::Legends.Perk.LegendSmackdown);
+
+				if (::Legends.isLegendaryDifficulty())
 				{
-					this.m.Items.equip(this.new("scripts/items/weapons/longaxe"));
+					::Legends.Perks.grant(this, ::Legends.Perk.LegendSmackdown);
+				}
+			}
+			else if (r == 6)
+			{
+				local weapons = [
+					"weapons/two_handed_wooden_flail",
+					"weapons/legend_reinforced_flail",
+				];
+
+				this.m.Items.equip(this.new("scripts/items/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
+				::Legends.Perks.grant(this, ::Legends.Perk.HeadHunter);
+
+				if (::Legends.isLegendaryDifficulty())
+				{
+					::Legends.Perks.grant(this, ::Legends.Perk.BattleFlow);
+				}
+			}
+			else if (r == 7)
+			{
+				this.m.Items.equip(this.new("scripts/items/weapons/two_handed_mace"));
+				::Legends.Perks.grant(this, ::Legends.Perk.Colossus);
+
+				if (::Legends.isLegendaryDifficulty())
+				{
+					::Legends.Perks.grant(this, ::Legends.Perk.LegendOnslaught);
+				}
+			}
+			else if (r == 8)
+			{
+				this.m.Items.equip(this.new("scripts/items/weapons/longsword"));
+				::Legends.Perks.grant(this, ::Legends.Perk.LegendVengeance);
+
+				if (::Legends.isLegendaryDifficulty())
+				{
+					::Legends.Perks.grant(this, ::Legends.Perk.LegendFeint);
+				}
+			}
+			else if (r == 9)
+			{
+				this.m.Items.equip(this.new("scripts/items/weapons/legend_longsword"));
+				::Legends.Perks.grant(this, ::Legends.Perk.LegendForcefulSwing);
+
+				if (::Legends.isLegendaryDifficulty())
+				{
+					::Legends.Perks.grant(this, ::Legends.Perk.LegendBloodyHarvest);
+				}
+			}
+			else if (r == 10)
+			{
+				this.m.Items.equip(this.new("scripts/items/weapons/legend_two_handed_club"));
+				::Legends.Perks.grant(this, ::Legends.Perk.Colossus);
+
+				if (::Legends.isLegendaryDifficulty())
+				{
+					::Legends.Perks.grant(this, ::Legends.Perk.LegendOnslaught);
+				}
+			}
+			else if (r == 11)
+			{
+				this.m.Items.equip(this.new("scripts/items/weapons/legend_battle_glaive"));
+				::Legends.Perks.grant(this, ::Legends.Perk.KillingFrenzy);
+
+				if (::Legends.isLegendaryDifficulty())
+				{
+					::Legends.Perks.grant(this, ::Legends.Perk.Fearsome);
 				}
 			}
 		}
 		else
 		{
-			r = this.Math.rand(2, 11);
+			r = this.Math.rand(2, 10);
 
 			if (r == 2)
 			{
@@ -349,16 +331,6 @@ this.legend_bandit_veteran <- this.inherit("scripts/entity/tactical/human", {
 					::Legends.Perks.grant(this, ::Legends.Perk.LegendSmackdown);
 				}
 			}
-			else if (r == 11)
-			{
-				this.m.Items.equip(this.new("scripts/items/weapons/legend_glaive"));
-				::Legends.Perks.grant(this, ::Legends.Perk.KillingFrenzy);
-
-				if (::Legends.isLegendaryDifficulty())
-				{
-					::Legends.Perks.grant(this, ::Legends.Perk.Fearsome);
-				}
-			}
 
 			if (this.Math.rand(1, 100) <= 75)
 			{
@@ -375,35 +347,19 @@ this.legend_bandit_veteran <- this.inherit("scripts/entity/tactical/human", {
 
 		if (this.getIdealRange() == 1 && this.Math.rand(1, 100) <= 35)
 		{
-			if (this.Const.DLC.Unhold)
-			{
-				r = this.Math.rand(1, 3);
+			r = this.Math.rand(1, 3);
 
-				if (r == 1)
-				{
-					this.m.Items.addToBag(this.new("scripts/items/weapons/throwing_axe"));
-				}
-				else if (r == 2)
-				{
-					this.m.Items.addToBag(this.new("scripts/items/weapons/javelin"));
-				}
-				else if (r == 3)
-				{
-					this.m.Items.addToBag(this.new("scripts/items/weapons/throwing_spear"));
-				}
+			if (r == 1)
+			{
+				this.m.Items.addToBag(this.new("scripts/items/weapons/throwing_axe"));
 			}
-			else
+			else if (r == 2)
 			{
-				r = this.Math.rand(1, 2);
-
-				if (r == 1)
-				{
-					this.m.Items.addToBag(this.new("scripts/items/weapons/throwing_axe"));
-				}
-				else if (r == 2)
-				{
-					this.m.Items.addToBag(this.new("scripts/items/weapons/javelin"));
-				}
+				this.m.Items.addToBag(this.new("scripts/items/weapons/javelin"));
+			}
+			else if (r == 3)
+			{
+				this.m.Items.addToBag(this.new("scripts/items/weapons/throwing_spear"));
 			}
 		}
 

@@ -11,8 +11,9 @@ this.legend_named_glaive <- this.inherit("scripts/items/weapons/named/named_weap
 		this.m.Description = "A masterfully crafted glaive that feels surprisingly light, yet sturdy.";
 		this.m.WeaponType = this.Const.Items.WeaponType.Polearm;
 		this.m.SlotType = this.Const.ItemSlot.Mainhand;
-		this.m.ItemType = this.Const.Items.ItemType.Named | this.Const.Items.ItemType.Weapon | this.Const.Items.ItemType.MeleeWeapon | this.Const.Items.ItemType.OneHanded | this.Const.Items.ItemType.Defensive;
-		this.m.IsDoubleGrippable = true;
+		this.m.BlockedSlotType = this.Const.ItemSlot.Offhand;
+		this.m.ItemType = this.Const.Items.ItemType.Named this.Const.Items.ItemType.Weapon | this.Const.Items.ItemType.MeleeWeapon | this.Const.Items.ItemType.TwoHanded;
+		this.m.IsAoE = true;
 		this.m.AddGenericSkill = true;
 		this.m.ShowQuiver = false;
 		this.m.ShowArmamentIcon = true;
@@ -37,6 +38,7 @@ this.legend_named_glaive <- this.inherit("scripts/items/weapons/named/named_weap
 
 	function onEquip()
 	{
+<<<<<<< HEAD
 		this.named_weapon.onEquip();
 		::Legends.Actives.grant(this, ::Legends.Active.Slash, function (_skill) {
 			_skill.m.isGlaiveSlash = true;
@@ -44,6 +46,14 @@ this.legend_named_glaive <- this.inherit("scripts/items/weapons/named/named_weap
 		::Legends.Actives.grant(this, ::Legends.Active.Spearwall, function (_skill) {
 			_skill.m.BaseAttackName = "Glaive Slash";
 		}.bindenv(this));
+=======
+		this.weapon.onEquip();
+		local skill = this.new("scripts/skills/actives/strike_skill");
+		skill.m.IsGlaiveStrike = true;
+		this.addSkill(skill);
+		skill = this.new("scripts/skills/actives/legend_skewer_skill");
+		this.addSkill(skill);
+>>>>>>> a4e5d74dc (Rework glaives)
 	}
 });
 

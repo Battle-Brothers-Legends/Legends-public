@@ -60,15 +60,7 @@ this.legend_free_company_billman <- this.inherit("scripts/entity/tactical/legend
 		}
 		else if (r <= 73)
 		{
-			this.m.Items.equip(this.new("scripts/items/weapons/legend_voulge"));
-		}
-		else if (r <= 98)
-		{
 			this.m.Items.equip(this.new("scripts/items/weapons/legend_halberd"));
-		}
-		else if (r <= 99)
-		{
-			this.m.Items.equip(this.new("scripts/items/weapons/legend_military_voulge"));
 		}
 		else if (r <= 99)
 		{

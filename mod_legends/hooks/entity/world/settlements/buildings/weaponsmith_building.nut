@@ -179,12 +179,7 @@
 				S = "weapons/two_handed_hammer"
 			},
 			{
-				R = 50,
-				P = 1.0,
-				S = "weapons/legend_glaive"
-			},
-			{
-				R = 80,
+				R = 70,
 				P = 1.0,
 				S = "weapons/legend_battle_glaive"
 			},
@@ -201,22 +196,12 @@
 			{
 				R = 80,
 				P = 1.0,
-				S = "weapons/legend_military_voulge"
-			},
-			{
-				R = 80,
-				P = 1.0,
 				S = "weapons/legend_ranged_flail"
 			},
 			{
 				R = 70,
 				P = 1.0,
 				S = "weapons/legend_ranged_wooden_flail"
-			},
-			{
-				R = 70,
-				P = 1.0,
-				S = "weapons/legend_voulge"
 			}
 		];
 

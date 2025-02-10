@@ -71,7 +71,6 @@
 				"weapons/noble_sword",
 				"weapons/fighting_axe",
 				"weapons/warhammer",
-				"weapons/legend_glaive",
 				"weapons/fighting_spear",
 				"weapons/winged_mace",
 				"weapons/arming_sword",
@@ -86,7 +85,8 @@
 					"weapons/legend_swordstaff",
 					"weapons/legend_longsword",
 					"weapons/warbrand",
-					"weapons/legend_estoc"
+					"weapons/legend_estoc",
+					"weapons/legend_battle_glaive",
 				]);
 			}
 

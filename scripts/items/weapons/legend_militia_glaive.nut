@@ -8,10 +8,11 @@ this.legend_militia_glaive <- this.inherit("scripts/items/weapons/weapon", {
 		this.m.Description = "A simple glaive improvised from a scramasax.";
 		this.m.IconLarge = "weapons/melee/legend_militia_glaive_01.png";
 		this.m.Icon = "weapons/melee/legend_militia_glaive_01_70x70.png";
-		this.m.WeaponType = this.Const.Items.WeaponType.Spear;
+		this.m.WeaponType = this.Const.Items.WeaponType.Cleaver | this.Const.Items.WeaponType.Polearm;
 		this.m.SlotType = this.Const.ItemSlot.Mainhand;
-		this.m.ItemType = this.Const.Items.ItemType.Weapon | this.Const.Items.ItemType.MeleeWeapon | this.Const.Items.ItemType.OneHanded | this.Const.Items.ItemType.Defensive;
-		this.m.IsDoubleGrippable = true;
+		this.m.BlockedSlotType = this.Const.ItemSlot.Offhand;
+		this.m.ItemType = this.Const.Items.ItemType.Weapon | this.Const.Items.ItemType.MeleeWeapon | this.Const.Items.ItemType.TwoHanded;
+		this.m.IsAoE = true;
 		this.m.AddGenericSkill = true;
 		this.m.ShowQuiver = false;
 		this.m.ShowArmamentIcon = true;
@@ -19,9 +20,9 @@ this.legend_militia_glaive <- this.inherit("scripts/items/weapons/weapon", {
 		this.m.Value = 350;
 		this.m.Condition = 48.0;
 		this.m.ConditionMax = 48.0;
-		this.m.StaminaModifier = -8;
-		this.m.RegularDamage = 30;
-		this.m.RegularDamageMax = 40;
+		this.m.StaminaModifier = -12;
+		this.m.RegularDamage = 45;
+		this.m.RegularDamageMax = 55;
 		this.m.ArmorDamageMult = 0.9;
 		this.m.DirectDamageMult = 0.25;
 	}
@@ -29,12 +30,8 @@ this.legend_militia_glaive <- this.inherit("scripts/items/weapons/weapon", {
 	function onEquip()
 	{
 		this.weapon.onEquip();
-		::Legends.Actives.grant(this, ::Legends.Active.Slash, function (_skill) {
-			_skill.m.isGlaiveSlash = true;
-		}.bindenv(this));
-		::Legends.Actives.grant(this, ::Legends.Active.Spearwall, function (_skill) {
-			_skill.m.BaseAttackName = "Glaive Slash";
-		}.bindenv(this));
+		::Legends.Actives.grant(this, ::Legends.Active.LegendScytheCleave);
+		::Legends.Actives.grant(this, ::Legends.Active.Reap);
 	}
 
 	function onUpdateProperties( _properties )

@@ -43,33 +43,29 @@
 		}
 		else
 		{
-			r = this.Math.rand(1, 7);
+			r = this.Math.rand(1, 6);
 
-			if (r == 2)
+			if (r == 1)
 			{
 				this.m.Items.equip(this.new("scripts/items/weapons/hand_axe"));
 			}
-			else if (r == 3)
+			else if (r == 2)
 			{
 				this.m.Items.equip(this.new("scripts/items/weapons/boar_spear"));
 			}
-			else if (r == 1)
-			{
-				this.m.Items.equip(this.new("scripts/items/weapons/legend_glaive"));
-			}
-			else if (r == 4)
+			else if (r == 3)
 			{
 				this.m.Items.equip(this.new("scripts/items/weapons/morning_star"));
 			}
-			else if (r == 5)
+			else if (r == 4)
 			{
 				this.m.Items.equip(this.new("scripts/items/weapons/falchion"));
 			}
-			else if (r == 6)
+			else if (r == 5)
 			{
 				this.m.Items.equip(this.new("scripts/items/weapons/arming_sword"));
 			}
-			else if (r == 7)
+			else if (r == 6)
 			{
 				this.m.Items.equip(this.new("scripts/items/weapons/flail"));
 			}

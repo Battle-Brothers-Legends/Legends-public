@@ -76,8 +76,8 @@ this.legend_noble_halberdier <- this.inherit("scripts/entity/tactical/human", {
 
 		local weapons = [
 			"weapons/legend_halberd",
-			"weapons/legend_voulge",
-			"weapons/legend_military_voulge",
+			"weapons/legend_military_halberd",
+			"weapons/legend_battle_glaive"
 		];
 
 		this.m.Items.equip(this.new("scripts/items/" + weapons[this.Math.rand(0, weapons.len() - 1)]));

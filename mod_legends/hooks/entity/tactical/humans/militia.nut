@@ -34,13 +34,9 @@
 			}
 			else if (r == 3)
 			{
-				this.m.Items.equip(this.new("scripts/items/weapons/legend_glaive"));
-			}
-			else if (r == 4)
-			{
 				this.m.Items.equip(this.new("scripts/items/weapons/ancient/ancient_spear"));
 			}
-			else if (r == 5)
+			else if (r == 4)
 			{
 				this.m.Items.equip(this.new("scripts/items/weapons/legend_saw"));
 			}

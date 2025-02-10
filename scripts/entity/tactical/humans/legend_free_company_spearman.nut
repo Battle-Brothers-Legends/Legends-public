@@ -50,16 +50,12 @@ this.legend_free_company_spearman <- this.inherit("scripts/entity/tactical/legen
 
 	function assignRandomEquipment()
 	{
-		local r = this.Math.rand(1, 3);
-		if (r == 1)
-		{
-			this.m.Items.equip(this.new("scripts/items/weapons/legend_glaive"));
-		}
-		else if (r == 2)
+		local r = this.Math.rand(1, 2);
+		else if (r == 1)
 		{
 			this.m.Items.equip(this.new("scripts/items/weapons/militia_spear"));
 		}
-		else if (r == 3)
+		else if (r == 2)
 		{
 			this.m.Items.equip(this.new("scripts/items/weapons/boar_spear"));
 		}

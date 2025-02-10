@@ -36,26 +36,21 @@ this.legends_zombie_low <- this.inherit("scripts/entity/tactical/legend_zombie",
 		}
 		else if (r == 3)
 		{
-			this.m.Items.equip(this.new("scripts/items/weapons/legend_glaive"));
+			this.m.Items.equip(this.new("scripts/items/weapons/ancient/ancient_spear"));
 		}
 		else if (r == 4)
 		{
-			this.m.Items.equip(this.new("scripts/items/weapons/ancient/ancient_spear"));
+			this.m.Items.equip(this.new("scripts/items/weapons/legend_wooden_spear"));
 		}
 		else if (r == 5)
 		{
-			this.m.Items.equip(this.new("scripts/items/weapons/legend_wooden_spear"));
-		}
-		else if (r == 6)
-		{
 			this.m.Items.equip(this.new("scripts/items/weapons/legend_sickle"));
 		}
-		else if (r == 7)
+		else if (r == 6)
 		{
 			this.m.Items.equip(this.new("scripts/items/weapons/legend_hammer"));
 		}
 
-			///---
 		local r = this.Math.rand(1, 2);
 
 		if (r == 1)

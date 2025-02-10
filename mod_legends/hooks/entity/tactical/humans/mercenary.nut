@@ -37,7 +37,7 @@
 				"weapons/legend_longsword",
 				"weapons/hand_axe",
 				"weapons/fighting_spear",
-				"weapons/legend_glaive",
+				"weapons/legend_battle_glaive",
 				"weapons/morning_star",
 				"weapons/falchion",
 				"weapons/arming_sword",

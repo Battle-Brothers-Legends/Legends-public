@@ -125,7 +125,6 @@ foreach (i in garbage)
 	"weapons/named/legend_named_glaive",
 	"weapons/named/legend_named_swordstaff",
 	"weapons/named/legend_named_halberd",
-	"weapons/named/legend_named_voulge",
 	"weapons/named/legend_named_blacksmith_hammer",
 	"weapons/named/legend_named_sickle",
 	"weapons/named/legend_named_shovel",

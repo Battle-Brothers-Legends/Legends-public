@@ -154,7 +154,6 @@ this.legend_bandit_warlord <- this.inherit("scripts/entity/tactical/human", {
 				"weapons/fighting_axe",
 				"weapons/warhammer",
 				"weapons/boar_spear",
-				"weapons/legend_glaive",
 				"weapons/winged_mace",
 				"weapons/arming_sword",
 				"weapons/military_cleaver"
@@ -168,7 +167,9 @@ this.legend_bandit_warlord <- this.inherit("scripts/entity/tactical/human", {
 					"weapons/legend_swordstaff",
 					"weapons/legend_longsword",
 					"weapons/warbrand",
-					"weapons/legend_estoc"
+					"weapons/legend_estoc",
+					"weapons/legend_battle_glaive"
+
 				]);
 			}
 

@@ -19,7 +19,7 @@
 
 	o.assignRandomEquipment = function ()
 	{
-		local r = this.Math.rand(1, 5);
+		local r = this.Math.rand(1, 4);
 
 		if (r == 1)
 		{
@@ -31,13 +31,9 @@
 		}
 		else if (r == 3)
 		{
-			this.m.Items.equip(this.new("scripts/items/weapons/legend_glaive"));
-		}
-		else if (r == 4)
-		{
 			this.m.Items.equip(this.new("scripts/items/weapons/ancient/ancient_spear"));
 		}
-		else if (r == 5)
+		else if (r == 4)
 		{
 			this.m.Items.equip(this.new("scripts/items/weapons/legend_wooden_spear"));
 		}
