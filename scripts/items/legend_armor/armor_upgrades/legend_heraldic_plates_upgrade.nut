@@ -9,10 +9,7 @@ this.legend_heraldic_plates_upgrade <- this.inherit("scripts/items/legend_armor/
 		this.m.Description = "Large protective plates to be fixed at the shoulders of an armor.";
 		this.m.ArmorDescription = "Large protective plates have been fixed at the shoulders of this armor.";
 		this.m.Variants = [1, 2];
-		this.m.Variant = 1;
-		this.m.SpriteBack = "upgrade_heraldic_plates";
-		this.m.SpriteDamagedBack = "upgrade_heraldic_plates_damaged";
-		this.m.SpriteCorpseBack = "upgrade_heraldic_plates_dead";
+		this.m.Variant = this.m.Variants[this.Math.rand(0, this.m.Variants.len() - 1)];
 		this.m.Value = 1800;
 		this.m.Condition = 60;
 		this.m.ConditionMax = 60;
@@ -31,6 +28,5 @@ this.legend_heraldic_plates_upgrade <- this.inherit("scripts/items/legend_armor/
 		this.m.SpriteDamagedBack = "upgrade_heraldic_plates_" + variant + "_damaged";
 		this.m.SpriteCorpseBack = "upgrade_heraldic_plates_" + variant + "_dead";
 	}
-
 });
 

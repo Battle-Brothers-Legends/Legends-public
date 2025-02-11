@@ -3,16 +3,16 @@ this.legend_free_company_spearman <- this.inherit("scripts/entity/tactical/legen
 		Outfits = [
 			[1, "mercenary_spearman_outfit_00"]
 			// [1, "mercenary_spearman_outfit_01"]
-		]
+		],
 		PerkList = this.Const.EnemyPerks.FreeCompanySpearman,
 		PerkPower = 6
 	},
 	function create()
 	{
+		this.human.create();
 		this.m.Type = this.Const.EntityType.FreeCompanySpearman;
 		this.m.BloodType = this.Const.BloodType.Red;
 		this.m.XP = this.Const.Tactical.Actor.FreeCompanySpearman.XP;
-		this.human.create();
 		this.m.Faces = this.Const.Faces.AllMale;
 		this.m.Hairs = this.Const.Hair.AllMale;
 		this.m.HairColors = this.Const.HairColors.All;
@@ -51,7 +51,7 @@ this.legend_free_company_spearman <- this.inherit("scripts/entity/tactical/legen
 	function assignRandomEquipment()
 	{
 		local r = this.Math.rand(1, 2);
-		else if (r == 1)
+		if (r == 1)
 		{
 			this.m.Items.equip(this.new("scripts/items/weapons/militia_spear"));
 		}
@@ -65,7 +65,6 @@ this.legend_free_company_spearman <- this.inherit("scripts/entity/tactical/legen
 		if (r <= 30)
 		{
 			this.m.Items.equip(this.new("scripts/items/shields/kite_shield"));
-
 		}
 		else if (r <= 60)
 		{
@@ -83,7 +82,6 @@ this.legend_free_company_spearman <- this.inherit("scripts/entity/tactical/legen
 		if (this.getIdealRange() == 1 && this.Math.rand(1, 100) <= 50)
 		{
 			r = this.Math.rand(1, 2);
-
 			if (r == 1)
 			{
 				this.m.Items.addToBag(this.new("scripts/items/weapons/throwing_axe"));

@@ -1,4 +1,10 @@
 <brush name="gfx/legend_helmets_6.png" version="17">
+<sprite id="legendhelms_southern_helmet_nasal_08_damaged" offsetY="35" f="64F0" ic="FF4B4D51" width="184" height="222" img="..\entity\legend_helmets\layers\southern_helmet_nasal_08_damaged.png" left="-67" right="68" top="-40" bottom="108" />
+<sprite id="legendhelms_southern_helmet_nasal_01_dead" offsetX="6" offsetY="10" f="64F0" ic="FF222933" width="131" height="125" img="..\entity\legend_helmets\layers\southern_helmet_nasal_01_dead.png" left="-57" right="59" top="-53" bottom="55" />
+<sprite id="legendhelms_southern_helmet_nasal_02_dead" offsetX="6" offsetY="10" f="64F0" ic="FF222933" width="131" height="125" img="..\entity\legend_helmets\layers\southern_helmet_nasal_02_dead.png" left="-57" right="59" top="-53" bottom="55" />
+<sprite id="legendhelms_southern_helmet_nasal_03_dead" offsetX="6" offsetY="10" f="64F0" ic="FF222933" width="131" height="125" img="..\entity\legend_helmets\layers\southern_helmet_nasal_03_dead.png" left="-57" right="59" top="-53" bottom="55" />
+<sprite id="legendhelms_southern_helmet_nasal_04_dead" offsetX="6" offsetY="10" f="64F0" ic="FF222933" width="131" height="125" img="..\entity\legend_helmets\layers\southern_helmet_nasal_04_dead.png" left="-57" right="59" top="-53" bottom="55" />
+<sprite id="legendhelms_southern_helmet_nasal_05_dead" offsetX="6" offsetY="10" f="64F0" ic="FF222933" width="131" height="125" img="..\entity\legend_helmets\layers\southern_helmet_nasal_05_dead.png" left="-57" right="59" top="-53" bottom="55" />
 <sprite id="legendhelms_southern_helmet_nasal_06_dead" offsetX="6" offsetY="10" f="64F0" ic="FF222933" width="131" height="125" img="..\entity\legend_helmets\layers\southern_helmet_nasal_06_dead.png" left="-57" right="59" top="-53" bottom="55" />
 <sprite id="legendhelms_southern_helmet_nasal_07_dead" offsetX="6" offsetY="10" f="64F0" ic="FF222933" width="131" height="125" img="..\entity\legend_helmets\layers\southern_helmet_nasal_07_dead.png" left="-57" right="59" top="-53" bottom="55" />
 <sprite id="legendhelms_southern_helmet_nasal_08_dead" offsetX="6" offsetY="10" f="64F0" ic="FF222933" width="131" height="125" img="..\entity\legend_helmets\layers\southern_helmet_nasal_08_dead.png" left="-57" right="59" top="-53" bottom="55" />
@@ -144,10 +150,4 @@
 <sprite id="legendhelms_headband_side_01_damaged" offsetY="35" f="64F0" ic="FF4B4D51" width="184" height="222" img="..\entity\legend_helmets\layers\headband_side_01_damaged.png" left="-67" right="68" top="-40" bottom="108" />
 <sprite id="legendhelms_headband_side_01_dead" offsetX="6" offsetY="10" f="64F0" ic="FF222933" width="131" height="125" img="..\entity\legend_helmets\layers\headband_side_01_dead.png" left="-57" right="59" top="-53" bottom="55" />
 <sprite id="legendhelms_headband_nose_01" offsetY="35" f="64F0" ic="FF4E5053" width="184" height="222" img="..\entity\legend_helmets\layers\headband_nose_01.png" left="-67" right="68" top="-40" bottom="108" />
-<sprite id="legendhelms_headband_nose_01_damaged" offsetY="35" f="64F0" ic="FF4B4D51" width="184" height="222" img="..\entity\legend_helmets\layers\headband_nose_01_damaged.png" left="-67" right="68" top="-40" bottom="108" />
-<sprite id="legendhelms_headband_nose_01_dead" offsetX="6" offsetY="10" f="64F0" ic="FF222933" width="131" height="125" img="..\entity\legend_helmets\layers\headband_nose_01_dead.png" left="-57" right="59" top="-53" bottom="55" />
-<sprite id="legendhelms_eyemask_01" offsetY="35" f="64F0" ic="FF4E5053" width="184" height="222" img="..\entity\legend_helmets\layers\eyemask_01.png" left="-67" right="68" top="-40" bottom="108" />
-<sprite id="legendhelms_eyemask_02" offsetY="35" f="64F0" ic="FF4E5053" width="184" height="222" img="..\entity\legend_helmets\layers\eyemask_02.png" left="-67" right="68" top="-40" bottom="108" />
-<sprite id="legendhelms_eyemask_01_damaged" offsetY="35" f="64F0" ic="FF4B4D51" width="184" height="222" img="..\entity\legend_helmets\layers\eyemask_01_damaged.png" left="-67" right="68" top="-40" bottom="108" />
-<sprite id="legendhelms_eyemask_02_damaged" offsetY="35" f="64F0" ic="FF4B4D51" width="184" height="222" img="..\entity\legend_helmets\layers\eyemask_02_damaged.png" left="-67" right="68" top="-40" bottom="108" />
 </brush>

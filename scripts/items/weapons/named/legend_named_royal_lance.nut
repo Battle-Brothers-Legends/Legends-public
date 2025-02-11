@@ -36,7 +36,7 @@ this.legend_named_royal_lance <- this.inherit("scripts/items/weapons/named/named
 	{
 		this.m.IconLarge = "weapons/melee/legend_royal_lance_0" + this.m.Variant + ".png";
 		this.m.Icon = "weapons/melee/legend_royal_lance_0" + this.m.Variant + "_70x70.png";
-		this.m.ArmamentIcon = "icon_legend_royal_lance_0" + this.m.Variant;s
+		this.m.ArmamentIcon = "icon_legend_royal_lance_0" + this.m.Variant;
 	}
 
 	function createRandomName()

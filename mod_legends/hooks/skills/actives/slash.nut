@@ -3,10 +3,9 @@
 	o.m.IsGreatSlash <- false;
 	o.m.IsStaffSlash <- false;
 
-	local setItem = o.setItem;
 	o.setItem <- function (_item)
 	{
-		setItem(_item);
+		this.skill.setItem(_item);
 		if (this.m.IsGreatSlash)
 		{
 			this.m.Name = "Great Slash";
@@ -43,7 +42,7 @@
 	o.onAfterUpdate = function( _properties )
 	{
 		if (!this.m.IsStaffSlash)
-			return onAfterUpdate(_properties)
+			return onAfterUpdate(_properties);
 
 		this.m.ActionPointCost = _properties.IsSpecializedInPolearms ? 4 : 5;
 	}

@@ -4,12 +4,12 @@
 		"sounds/combat/cleave_hit_hitpoints_01.wav",
 		"sounds/combat/cleave_hit_hitpoints_02.wav",
 		"sounds/combat/cleave_hit_hitpoints_03.wav"
-	],
+	];
 	o.m.SoundsB <- [
 		"sounds/combat/chop_hit_01.wav",
 		"sounds/combat/chop_hit_02.wav",
 		"sounds/combat/chop_hit_03.wav"
-	]
+	];
 
 	local getTooltip = o.getTooltip;
 	o.getTooltip = function ()
@@ -108,7 +108,7 @@
 		return ret;
 	}
 
-	o.applyBleed( _user, _targetTile )
+	o.applyBleed <- function( _user, _targetTile )
 	{
 		local target = _targetTile.getEntity();
 		local hp = target.getHitpoints();
