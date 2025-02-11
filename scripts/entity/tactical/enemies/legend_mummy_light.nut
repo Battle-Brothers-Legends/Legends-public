@@ -66,7 +66,7 @@ this.legend_mummy_light <- this.inherit("scripts/entity/tactical/legend_mummy", 
 			}
 			else if (r == 3)
 			{
-				this.m.Items.equip(this.new("scripts/items/weapons/ancient/legend_khopesh"));
+				this.m.Items.equip(this.new("scripts/items/weapons/ancient/legend_brass_khopesh"));
 			}
 
 			if (this.Math.rand(1, 100) <= 66)
@@ -88,7 +88,7 @@ this.legend_mummy_light <- this.inherit("scripts/entity/tactical/legend_mummy", 
 				this.m.Items.equip(this.new("scripts/items/" + w));
 			}
 
-			this.m.Items.addToBag(this.new("scripts/items/weapons/ancient/legend_khopesh"));
+			this.m.Items.addToBag(this.new("scripts/items/weapons/ancient/legend_brass_khopesh"));
 		}
 
 		local armor = [

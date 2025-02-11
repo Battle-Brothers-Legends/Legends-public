@@ -352,7 +352,7 @@ this.legends_debug_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 			"ancient/rhomphaia",
 			"ancient/warscythe",
 			"ancient/legend_kopis",
-			"ancient/legend_khopesh",
+			"ancient/legend_brass_khopesh",
 			"arming_sword",
 			"barbarians/antler_cleaver",
 			"barbarians/axehammer",

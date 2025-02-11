@@ -40,7 +40,7 @@ this.legend_man_mangler <- this.inherit("scripts/items/weapons/weapon", {
 			_skill.setStunChance(this.m.StunChance);
 		}.bindenv(this));
 		::Legends.Actives.grant(this, ::Legends.Active.Slash, function (_skill) {
-			_skill.m.isGreatSlash = true;
+			_skill.m.IsGreatSlash = true;
 			_skill.m.DirectDamageMult = this.m.DirectDamageMult;
 		}.bindenv(this));
 		::Legends.Actives.grant(this, ::Legends.Active.SplitShield, function (_skill) {

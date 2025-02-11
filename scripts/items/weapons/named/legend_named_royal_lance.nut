@@ -24,8 +24,8 @@ this.legend_named_royal_lance <- this.inherit("scripts/items/weapons/named/named
 		this.m.Condition = 65.0;
 		this.m.ConditionMax = 65.0;
 		this.m.StaminaModifier = -10;
-		this.m.RegularDamage = 55;
-		this.m.RegularDamageMax = 70;
+		this.m.RegularDamage = 65;
+		this.m.RegularDamageMax = 85;
 		this.m.ArmorDamageMult = 1.0;
 		this.m.DirectDamageMult = 0.35;
 		this.m.ChanceToHitHead = 5;

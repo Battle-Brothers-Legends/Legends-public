@@ -1,9 +1,10 @@
-this.legend_khopesh <- this.inherit("scripts/items/weapons/weapon", {
+this.legend_brass_khopesh <- this.inherit("scripts/items/weapons/weapon", {
+	// mummy khopesh
 	m = {},
 	function create()
 	{
 		this.weapon.create();
-		this.m.ID = "weapon.legend_khopesh";
+		this.m.ID = "weapon.legend_brass_khopesh";
 		this.m.Name = "Brass Khopesh";
 		this.m.Description = "An ancient curved sword on a long handle with strange ornamentations. Its shape makes it particularly effective against armor.";
 		this.m.IconLarge = "weapons/melee/legend_kopesh_01.png";

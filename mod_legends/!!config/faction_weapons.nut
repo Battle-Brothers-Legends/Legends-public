@@ -150,7 +150,7 @@
 	"weapon.khopesh",	
 	"weapon.legend_kopis",
 	"weapon.legend_gladius",
-	"weapon.legend_khopesh"
+	"weapon.legend_brass_khopesh"
 ];
 
 //Ancient dead melee weapons - 2h
