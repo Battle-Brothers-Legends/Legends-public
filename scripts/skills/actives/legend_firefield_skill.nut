@@ -27,6 +27,7 @@ this.legend_firefield_skill <- this.inherit("scripts/skills/skill", {
 		this.m.Type = this.Const.SkillType.Active;
 		this.m.Order = this.Const.SkillOrder.OffensiveTargeted +10;
 		this.m.Delay = 0;
+		this.m.IsTargetingActor = false;
 		this.m.IsSerialized = false;
 		this.m.IsActive = true;
 		this.m.IsTargeted = true;
@@ -78,6 +79,29 @@ this.legend_firefield_skill <- this.inherit("scripts/skills/skill", {
 		}
 
 		return true;
+	}
+
+	function onTargetSelected( _targetTile )
+	{
+		local affectedTiles = [];
+		affectedTiles.push(_targetTile);
+
+		for( local i = 0; i != 6; i = ++i )
+		{
+			if (!_targetTile.hasNextTile(i))
+			{
+			}
+			else
+			{
+				local tile = _targetTile.getNextTile(i);
+				affectedTiles.push(tile);
+			}
+		}
+
+		foreach( t in affectedTiles )
+		{
+			this.Tactical.getHighlighter().addOverlayIcon(this.Const.Tactical.Settings.AreaOfEffectIcon, t, t.Pos.X, t.Pos.Y);
+		}
 	}
 
 	function onAfterUpdate( _properties )
