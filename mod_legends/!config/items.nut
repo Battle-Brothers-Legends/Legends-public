@@ -43,6 +43,7 @@
 ::Const.Items.LegendNamedHelmLayers <- [
 	"legend_helmets/helm/legend_helmet_italo_norman_helm_named",
 	"legend_helmets/helm/legend_helmet_barbute_named",
+	"legend_helmets/helm/legend_helmet_barbute_two_piece_named",
 	"legend_helmets/helm/legend_helmet_bascinet_named",
 	"legend_helmets/helm/legend_helmet_kettle_helm_named",
 	"legend_helmets/helm/legend_helmet_wallace_sallet_named",

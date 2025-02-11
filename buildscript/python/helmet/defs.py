@@ -292,9 +292,13 @@ class Defs:
  "title" :  "Barbute",
  "desc" :  "A sturdy yet light barbute helmet, a design uncommon in these lands, made from especially light and durable steel."
  },
-{"name" : "barbute_named"                     , "layer" : "helm", "min" : 1, "max" : 3, "value" : 2750, "con" : 85, "stam" : -4, "vis" : -2, "hair" : "true", "beard" : "true", "named" : True, "rmaxViz" : 1, "rminViz" : 2, "rmaxStam" : 2, "rminStam" : 4, "rminCond" : 85, "rmaxCond" : 105, "names" : Names,
+{"name" : "barbute_named"                     , "layer" : "helm", "min" : 1, "max" : 1, "value" : 2750, "con" : 85, "stam" : -4, "vis" : -2, "hair" : "true", "beard" : "true", "named" : True, "rmaxViz" : 1, "rminViz" : 2, "rmaxStam" : 2, "rminStam" : 4, "rminCond" : 85, "rmaxCond" : 105, "names" : Names,
  "title" :  "Barbute",
- "desc" :  "A superb barbute helmet of foreign origin, this helmet has been blackened and polished to a dark shine. "
+ "desc" :  "A superb barbute helmet of foreign origin, this piece has been blackened and polished to a dark shine."
+ },
+{"name" : "barbute_two_piece_named"                     , "layer" : "helm", "min" : 1, "max" : 2, "value" : 2850, "con" : 90, "stam" : -4, "vis" : -2, "hair" : "true", "beard" : "true", "named" : True, "rmaxViz" : 1, "rminViz" : 2, "rmaxStam" : 2, "rminStam" : 4, "rminCond" : 85, "rmaxCond" : 105, "names" : Names,
+ "title" :  "Barbute",
+ "desc" :  "A superb two piece barbute helmet, not well represented in this part of the world."
  },
 {"name" : "horsetail"                     , "layer" : "helm", "min" : 1, "max" : 6, "value" : 350, "con" : 60, "stam" : -3, "vis" : -1, "hair" : "true", "beard" : "false",
  "title" :  "Steppe Helm",
