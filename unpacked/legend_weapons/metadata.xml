@@ -416,6 +416,8 @@
 
 	<sprite id="icon_named_two_handed_axe_06" offsetY="35" ic="FF365471" width="130" height="142" img="icons\icon_named_two_handed_axe_06.png" left="-63" right="3" top="-56" bottom="66" />
 	<sprite id="icon_named_two_handed_axe_06_bloodied" offsetY="35" ic="FF34506D" width="130" height="142" img="icons\icon_named_two_handed_axe_06_bloodied.png" left="-63" right="3" top="-56" bottom="66" />
+	<sprite id="icon_named_two_handed_axe_07" offsetY="35" ic="FF365471" width="130" height="142" img="icons\icon_named_two_handed_axe_07.png" left="-63" right="3" top="-56" bottom="66" />
+	<sprite id="icon_named_two_handed_axe_07_bloodied" offsetY="35" ic="FF34506D" width="130" height="142" img="icons\icon_named_two_handed_axe_07_bloodied.png" left="-63" right="3" top="-56" bottom="66" />
 	<sprite id="icon_named_axe_07" offsetY="35" ic="FF2D5879" width="130" height="142" img="icons\icon_named_axe_07.png" left="-8" right="60" top="-59" bottom="23" />
 	<sprite id="icon_named_axe_07_bloodied" offsetY="35" ic="FF294F71" width="130" height="142" img="icons\icon_named_axe_07_bloodied.png" left="-8" right="60" top="-59" bottom="23" />
 
@@ -471,6 +473,8 @@
 
 	<sprite id="icon_legend_footman_axe_03" offsetY="35" ic="FF4E5860" width="104" height="142" img="icons\icon_legend_footman_axe_03.png" left="-52" right="12" top="-64" bottom="54" />
 	<sprite id="icon_legend_footman_axe_03_bloodied" offsetY="35" ic="FF3D4758" width="130" height="142" img="icons\icon_legend_footman_axe_03_bloodied.png" left="-52" right="12" top="-64" bottom="52" />
+	<sprite id="icon_legend_footman_axe_04" offsetY="35" ic="FF4E5860" width="104" height="142" img="icons\icon_legend_footman_axe_04.png" left="-52" right="12" top="-64" bottom="54" />
+	<sprite id="icon_legend_footman_axe_04_bloodied" offsetY="35" ic="FF3D4758" width="130" height="142" img="icons\icon_legend_footman_axe_04_bloodied.png" left="-52" right="12" top="-64" bottom="52" />
 
 	<sprite id="icon_legend_parrying_dagger_02" offsetY="35" f1="20" f2="-45" ic="FF4D535A" width="130" height="142" img="icons\icon_legend_parrying_dagger_02.png" left="-6" right="50" top="-60" bottom="14" />
 	<sprite id="icon_legend_parrying_dagger_02_damaged" offsetY="35" f1="20" f2="-45" ic="FF4D535A" width="130" height="142" img="icons\icon_legend_parrying_dagger_02_damaged.png" left="-6" right="50" top="-60" bottom="14" />
@@ -481,6 +485,10 @@
 
 	<sprite id="icon_named_greatsword_04" offsetY="35" ic="FF58595C" width="130" height="142" img="icons\icon_named_greatsword_04.png" left="-62" right="32" top="-64" bottom="50" />
 	<sprite id="icon_named_greatsword_04_bloodied" offsetY="35" ic="FF4E4F5A" width="130" height="142" img="icons\icon_named_greatsword_04_bloodied.png" left="-62" right="32" top="-64" bottom="50" />
+	<sprite id="icon_named_greatsword_05" offsetY="35" ic="FF58595C" width="130" height="142" img="icons\icon_named_greatsword_05.png" left="-62" right="32" top="-64" bottom="50" />
+	<sprite id="icon_named_greatsword_05_bloodied" offsetY="35" ic="FF4E4F5A" width="130" height="142" img="icons\icon_named_greatsword_05_bloodied.png" left="-62" right="32" top="-64" bottom="50" />
+	<sprite id="icon_named_greatsword_06" offsetY="35" ic="FF58595C" width="130" height="142" img="icons\icon_named_greatsword_06.png" left="-62" right="32" top="-64" bottom="50" />
+	<sprite id="icon_named_greatsword_06_bloodied" offsetY="35" ic="FF4E4F5A" width="130" height="142" img="icons\icon_named_greatsword_06_bloodied.png" left="-62" right="32" top="-64" bottom="50" />
 
 	<sprite id="icon_legend_blowgun_01" offsetY="35" ic="FF4E5860" width="130" height="142" img="icons\icon_legend_blowgun_01.png" left="-14" right="38" top="-76" bottom="0" />
 
