@@ -197,7 +197,6 @@
 	"Witch\'s Doom",
 	"Hag\'s End",
 	"Curse Lifter",
-	"Jinx Helm",
 	"Decorated",
 	"Ribboned",
 	"Splinted",
@@ -210,7 +209,6 @@
 	"Engraved",
 	"Bladed",
 	"Horned",
-	"Protector",
 	"Steel Countenance",
 	"Lizard",
 	"Dragon\'s Dome",
@@ -231,7 +229,6 @@
 	"Bufo Bufo",
 	"Treefrog",
 	"Spadefoot",
-	"Stechhelm",
 	"Newt",
 	"Triturust",
 	"Ranid",
@@ -244,9 +241,6 @@
 	"Vizier\'s Pride",
 	"Sun Veil",
 	"Gilder\'s Pride",
-	"Gilder\'s Visage",
-	"The Masque",
-	"Harlequin\'s Visage",
 	"The Silent Shroud",
 	"Reaper\'s Mirth",
 	"The Dawning Hope",
@@ -268,9 +262,6 @@
 	"Sanctified",
 	"Witch Hammer",
 	"Lumbering",
-	"Proctor\'s Gaze",
-	"All Seeing",
-	"Watchful",
 	"The Rising",
 	"Trinity",
 	"Diabolica",
@@ -344,6 +335,8 @@
 
 ::Const.Strings.LegendHelmetLayers <- ::Const.Strings.LegendArmorLayers;
 ::Const.Strings.LegendHelmetLayers.extend([
+	"Stechhelm",
+	"Jinx Helm",
 	"Hunter\'s Mask",
 	"Nomad\'s Crown",
 	"Clan Helmet",
@@ -356,4 +349,10 @@
 	"Pillager Gaze",
 	"Dead Man\'s Head",
 	"Seance\'s Skull",
+	"Gilder\'s Visage",
+	"The Masque",
+	"Harlequin\'s Visage",
+	"Proctor\'s Gaze",
+	"All Seeing",
+	"Watchful"
 ]);
