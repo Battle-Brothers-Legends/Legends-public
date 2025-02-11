@@ -408,7 +408,8 @@ if (!("HelmObjs" in ::Const.LegendMod))
 			[1, "hood/legend_helmet_southern_chain_hood"] //90, -6, 0
 		],
 		Helms = [
-			 [1, "helm/legend_helmet_kettle_helm_named"] //140, -7, -2
+			 [1, "helm/legend_helmet_kettle_helm_named"], //140, -7, -2
+			 [1, "helm/legend_helmet_fluted_kettle_helm_named"]
 		],
 		Tops = [
 		],

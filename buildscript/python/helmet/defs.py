@@ -343,7 +343,11 @@ class Defs:
 {"name" : "kettle_helm_named"                     , "layer" : "helm", "min" : 1, "max" : 1, "value" : 3500, "con" : 130, "stam" : -9, "vis" : -2, "hair" : "true", "beard" : "false", "named" : True, "rmaxViz" : 1, "rminViz" : 2, "rmaxStam" : 7, "rminStam" : 9, "rminCond" : 130, "rmaxCond" : 155, "names" : Names,
  "title" :  "Kettle Helm",
  "desc" :  "An exceptional and sturdy kettle helm. Blackened and polished, it has a gilded point."
- },
+ },,
+{"name" : "fluted_kettle_helm_named"                     , "layer" : "helm", "min" : 1, "max" : 1, "value" : 3500, "con" : 130, "stam" : -9, "vis" : -2, "hair" : "true", "beard" : "false", "named" : True, "rmaxViz" : 1, "rminViz" : 2, "rmaxStam" : 7, "rminStam" : 9, "rminCond" : 130, "rmaxCond" : 155, "names" : Names,
+ "title" :  "Kettle Helm",
+ "desc" :  "An exceptional and sturdy kettle helm. Masterfully crafted, it has flutes which converge at the top point."
+ }
 {"name" : "enclave_kettle"                     , "layer" : "helm", "min" : 1, "max" : 1, "value" : 1250, "con" : 145, "stam" : -10, "vis" : -2, "hair" : "true", "beard" : "false",
  "title" :  "Kettle Sallet",
  "desc" :  "A full-metal sallet with a broad rim."
