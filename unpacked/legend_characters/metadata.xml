@@ -569,6 +569,24 @@
 	<sprite id="bust_body_516_dead_arrows" offsetX="6" offsetY="10" f="64FB" ic="FF42494D" width="131" height="124" img="entity\bodies\bust_body_516_dead_arrows.png" left="-30" right="26" top="-8" bottom="52" />
 	<sprite id="bust_body_516_dead_javelin" offsetX="6" offsetY="10" f="64FB" ic="FF1B233C" width="131" height="124" img="entity\bodies\bust_body_516_dead_javelin.png" left="3" right="29" top="12" bottom="62" />
 
+	<sprite id="bust_body_517" offsetY="35" ic="FF333741" width="104" height="142" img="entity\bodies\bust_body_517.png" left="-46" right="44" top="-53" bottom="13" />
+	<sprite id="bust_body_517_damaged" offsetY="35" ic="FF2E343E" width="104" height="142" img="entity\bodies\bust_body_517_damaged.png" top="-53" bottom="13" />
+	<sprite id="bust_body_517_dead" offsetX="6" offsetY="10" f="64FE" ic="FF2B2F37" width="131" height="125" img="entity\bodies\bust_body_517_dead.png" top="-52" bottom="56" />
+	<sprite id="bust_body_517_dead_arrows" offsetX="6" offsetY="10" f="64FB" ic="FF42494D" width="131" height="124" img="entity\bodies\bust_body_517_dead_arrows.png" left="-30" right="26" top="-8" bottom="52" />
+	<sprite id="bust_body_517_dead_javelin" offsetX="6" offsetY="10" f="64FB" ic="FF1B233C" width="131" height="124" img="entity\bodies\bust_body_517_dead_javelin.png" left="3" right="29" top="12" bottom="62" />
+
+	<sprite id="bust_body_518" offsetY="35" ic="FF333741" width="104" height="142" img="entity\bodies\bust_body_518.png" left="-46" right="44" top="-53" bottom="13" />
+	<sprite id="bust_body_518_damaged" offsetY="35" ic="FF2E343E" width="104" height="142" img="entity\bodies\bust_body_518_damaged.png" top="-53" bottom="13" />
+	<sprite id="bust_body_518_dead" offsetX="6" offsetY="10" f="64FE" ic="FF2B2F37" width="131" height="125" img="entity\bodies\bust_body_518_dead.png" top="-52" bottom="56" />
+	<sprite id="bust_body_518_dead_arrows" offsetX="6" offsetY="10" f="64FB" ic="FF42494D" width="131" height="124" img="entity\bodies\bust_body_518_dead_arrows.png" left="-30" right="26" top="-8" bottom="52" />
+	<sprite id="bust_body_518_dead_javelin" offsetX="6" offsetY="10" f="64FB" ic="FF1B233C" width="131" height="124" img="entity\bodies\bust_body_518_dead_javelin.png" left="3" right="29" top="12" bottom="62" />
+
+	<sprite id="bust_body_519" offsetY="35" ic="FF333741" width="104" height="142" img="entity\bodies\bust_body_519.png" left="-46" right="44" top="-53" bottom="13" />
+	<sprite id="bust_body_519_damaged" offsetY="35" ic="FF2E343E" width="104" height="142" img="entity\bodies\bust_body_519_damaged.png" top="-53" bottom="13" />
+	<sprite id="bust_body_519_dead" offsetX="6" offsetY="10" f="64FE" ic="FF2B2F37" width="131" height="125" img="entity\bodies\bust_body_519_dead.png" top="-52" bottom="56" />
+	<sprite id="bust_body_519_dead_arrows" offsetX="6" offsetY="10" f="64FB" ic="FF42494D" width="131" height="124" img="entity\bodies\bust_body_519_dead_arrows.png" left="-30" right="26" top="-8" bottom="52" />
+	<sprite id="bust_body_519_dead_javelin" offsetX="6" offsetY="10" f="64FB" ic="FF1B233C" width="131" height="124" img="entity\bodies\bust_body_519_dead_javelin.png" left="3" right="29" top="12" bottom="62" />
+
 	<sprite id="bust_helmet_511" offsetY="35" ic="FF262E36" width="104" height="142" img="entity\helmets\bust_helmet_511.png" left="-30" right="34" top="-29" bottom="59" />
 	<sprite id="bust_helmet_511_damaged" offsetY="35" ic="FF262D35" width="104" height="142" img="entity\helmets\bust_helmet_511_damaged.png" left="-32" right="34" top="-29" bottom="59" />
 	<sprite id="bust_helmet_511_dead" offsetX="6" offsetY="10" f="64F0" f1="-15" f2="-15" ic="FF262D35" width="191" height="159" img="entity\helmets\bust_helmet_511_dead.png" left="-57" right="39" top="-69" bottom="7" />
@@ -586,9 +604,13 @@
 	<sprite id="upgrade_white_wolf_front_damaged" offsetY="35" ic="FF2A313D" width="140" height="248" img="entity\armor_upgrades\upgrade_white_wolf_front_damaged.png" left="-70" right="0" top="-56" bottom="18" />
 	<sprite id="upgrade_white_wolf_front_dead" offsetX="6" offsetY="10" f="64EF" ic="FF2A313E" width="191" height="185" img="entity\armor_upgrades\upgrade_white_wolf_front_dead.png" left="-14" right="60" top="-76" bottom="2" />
 
-	<sprite id="upgrade_stollwurm_back_dead" offsetX="6" offsetY="10" f="64FD" ic="FF25424E" width="191" height="185" img="entity\armor_upgrades\upgrade_stollwurm_back_dead.png" left="-52" right="36" top="-52" bottom="8" />
-	<sprite id="upgrade_stollwurm_back" offsetY="35" ic="FF274752" width="140" height="248" img="entity\armor_upgrades\upgrade_stollwurm_back.png" left="-42" right="50" top="-51" bottom="13" />
-	<sprite id="upgrade_stollwurm_back_damaged" offsetY="35" ic="FF25424E" width="140" height="248" img="entity\armor_upgrades\upgrade_stollwurm_back_damaged.png" left="-42" right="50" top="-51" bottom="13" />
+	<sprite id="upgrade_stollwurm_back_01_dead" offsetX="6" offsetY="10" f="64FD" ic="FF25424E" width="191" height="185" img="entity\armor_upgrades\upgrade_stollwurm_back_01_dead.png" left="-52" right="36" top="-52" bottom="8" />
+	<sprite id="upgrade_stollwurm_back_01" offsetY="35" ic="FF274752" width="140" height="248" img="entity\armor_upgrades\upgrade_stollwurm_back_01.png" left="-42" right="50" top="-51" bottom="13" />
+	<sprite id="upgrade_stollwurm_back_01_damaged" offsetY="35" ic="FF25424E" width="140" height="248" img="entity\armor_upgrades\upgrade_stollwurm_back_01_damaged.png" left="-42" right="50" top="-51" bottom="13" />
+
+	<sprite id="upgrade_stollwurm_back_02_dead" offsetX="6" offsetY="10" f="64FD" ic="FF25424E" width="191" height="185" img="entity\armor_upgrades\upgrade_stollwurm_back_02_dead.png" left="-52" right="36" top="-52" bottom="8" />
+	<sprite id="upgrade_stollwurm_back_02" offsetY="35" ic="FF274752" width="140" height="248" img="entity\armor_upgrades\upgrade_stollwurm_back_02.png" left="-42" right="50" top="-51" bottom="13" />
+	<sprite id="upgrade_stollwurm_back_02_damaged" offsetY="35" ic="FF25424E" width="140" height="248" img="entity\armor_upgrades\upgrade_stollwurm_back_02_damaged.png" left="-42" right="50" top="-51" bottom="13" />
 
 	<sprite id="bust_cat_01_body_01" offsetY="25" ic="FF242B3A" width="104" height="142" img="entity\misc\bust_cat_01_body_01.png" left="-31" right="29" top="-38" bottom="12" />
 	<sprite id="bust_cat_01_injured" offsetY="25" ic="FF111134" width="104" height="142" img="entity\misc\bust_cat_01_injured.png" left="-22" right="30" top="-31" bottom="27" />
@@ -1271,7 +1293,7 @@
 	<sprite id="bust_miniboss_trader" offsetY="35" ic="FF4F647A" width="140" height="248" img="entity\misc\bust_miniboss_trader.png" left="-48" right="50" top="-67" bottom="-25" />
 	<sprite id="bust_miniboss_undead" offsetY="35" ic="FF4F647A" width="140" height="248" img="entity\misc\bust_miniboss_undead.png" left="-48" right="50" top="-67" bottom="-25" />
 	<sprite id="bust_miniboss_assassin" offsetY="35" ic="FF4F647A" width="140" height="248" img="entity\misc\bust_miniboss_assassin.png" left="-48" right="50" top="-67" bottom="-25" />
-	
+
 	<sprite id="upgrade_chain_and_mail" offsetY="35" ic="FF242D3B" width="104" height="142" img="entity\armor_upgrades\upgrade_chain_and_mail.png" left="-44" right="50" top="-53" bottom="13" />
 	<sprite id="upgrade_chain_and_mail_damaged" offsetY="35" ic="FF242D3F" width="104" height="142" img="entity\armor_upgrades\upgrade_chain_and_mail_damaged.png" left="-44" right="50" top="-53" bottom="13" />
 	<sprite id="upgrade_chain_and_mail_dead" offsetX="6" offsetY="10" f="64FD" ic="FF242D43" width="131" height="125" img="entity\armor_upgrades\upgrade_chain_and_mail_dead.png" left="-57" right="59" top="-53" bottom="55" />
@@ -1302,11 +1324,16 @@
 	<sprite id="upgrade_pauldrons_stag_dead" offsetX="6" offsetY="10" f="64FD" ic="FF242D43" width="131" height="125" img="entity\armor_upgrades\pauldrons_stag_01_dead.png" left="-57" right="59" top="-53" bottom="55" />\n'
 	<sprite id="upgrade_pauldrons_swan" offsetY="35" ic="FF242D3B" width="104" height="142" img="entity\armor_upgrades\pauldrons_swan_01.png" left="-44" right="50" top="-53" bottom="13" />\n'
 	<sprite id="upgrade_pauldrons_swan_damaged" offsetY="35" ic="FF242D3F" width="104" height="142" img="entity\armor_upgrades\pauldrons_swan_01_damaged.png" left="-44" right="50" top="-53" bottom="13" />\n'
-	<sprite id="upgrade_pauldrons_swan_dead" offsetX="6" offsetY="10" f="64FD" ic="FF242D43" width="131" height="125" img="entity\armor_upgrades\pauldrons_swan_01_dead.png" left="-57" right="59" top="-53" bottom="55" />\n'			
+	<sprite id="upgrade_pauldrons_swan_dead" offsetX="6" offsetY="10" f="64FD" ic="FF242D43" width="131" height="125" img="entity\armor_upgrades\pauldrons_swan_01_dead.png" left="-57" right="59" top="-53" bottom="55" />\n'
 	<sprite id="upgrade_pauldrons_stag_dead" offsetX="6" offsetY="10" f="64FD" ic="FF242D43" width="131" height="125" img="entity\armor_upgrades\pauldrons_stag_01_dead.png" left="-57" right="59" top="-53" bottom="55" />\n'
-	<sprite id="upgrade_heraldic_plates" offsetY="35" ic="FF242D3B" width="104" height="142" img="entity\armor_upgrades\upgrade_heraldic_plates.png" left="-44" right="50" top="-53" bottom="13" />\n'
-	<sprite id="upgrade_heraldic_plates_damaged" offsetY="35" ic="FF242D3F" width="104" height="142" img="entity\armor_upgrades\upgrade_heraldic_plates_damaged.png" left="-44" right="50" top="-53" bottom="13" />\n'
-	<sprite id="upgrade_heraldic_plates_dead" offsetX="6" offsetY="10" f="64FD" ic="FF242D43" width="131" height="125" img="entity\armor_upgrades\upgrade_heraldic_plates_dead.png" left="-57" right="59" top="-53" bottom="55" />\n'			
+
+	<sprite id="upgrade_heraldic_plates_01" offsetY="35" ic="FF242D3B" width="104" height="142" img="entity\armor_upgrades\upgrade_heraldic_plates_01.png" left="-44" right="50" top="-53" bottom="13" />\n'
+	<sprite id="upgrade_heraldic_plates_01_damaged" offsetY="35" ic="FF242D3F" width="104" height="142" img="entity\armor_upgrades\upgrade_heraldic_plates_01_damaged.png" left="-44" right="50" top="-53" bottom="13" />\n'
+	<sprite id="upgrade_heraldic_plates_01_dead" offsetX="6" offsetY="10" f="64FD" ic="FF242D43" width="131" height="125" img="entity\armor_upgrades\upgrade_heraldic_plates_01_dead.png" left="-57" right="59" top="-53" bottom="55" />\n'
+
+	<sprite id="upgrade_heraldic_plates_02" offsetY="35" ic="FF242D3B" width="104" height="142" img="entity\armor_upgrades\upgrade_heraldic_plates_02.png" left="-44" right="50" top="-53" bottom="13" />\n'
+	<sprite id="upgrade_heraldic_plates_02_damaged" offsetY="35" ic="FF242D3F" width="104" height="142" img="entity\armor_upgrades\upgrade_heraldic_plates_02_damaged.png" left="-44" right="50" top="-53" bottom="13" />\n'
+	<sprite id="upgrade_heraldic_plates_02_dead" offsetX="6" offsetY="10" f="64FD" ic="FF242D43" width="131" height="125" img="entity\armor_upgrades\upgrade_heraldic_plates_02_dead.png" left="-57" right="59" top="-53" bottom="55" />\n'
 
 
 </brush>
