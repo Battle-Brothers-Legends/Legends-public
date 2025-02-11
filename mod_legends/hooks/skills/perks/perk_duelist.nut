@@ -41,7 +41,7 @@
 			id = 6,
 			type = "text",
 			icon = "ui/icons/direct_damage.png",
-			text = "[color=" + this.Const.UI.Color.PositiveValue + "]"+ bonus "%[/color] of any damage ignores armor"
+			text = "[color=" + this.Const.UI.Color.PositiveValue + "]"+ bonus + "%[/color] of any damage ignores armor"
 		});
 
 		return tooltip;
