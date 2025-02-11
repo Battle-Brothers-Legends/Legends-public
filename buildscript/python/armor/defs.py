@@ -8,7 +8,7 @@ class Defs:
         {"name": "cloak_spider", "layer": "cloak"},
         {"name" :"named_emperors_cloak", "min" : 1, "max" : 1, "layer" : "cloak"},
         {"name" :"named_emperors_armor", "min" : 1, "max" : 1, "layer" : "plate"},
-        {"name": "cloak_rich", "min" : 1, "max" : 5, "layer": "cloak"},
+        {"name": "cloak_rich", "min" : 1, "max" : 6, "layer": "cloak"},
         {"name": "tabard_named", "min" : 1, "max" : 26, "layer": "tabard"}
     ]
 
@@ -23,12 +23,12 @@ class Defs:
  "desc" :  "A cloth wrap, heavy and offering small protection",
  "adesc" :""
 },
-{"name": "legend_apron_butcher",                          "layer": "cloth", "min": 7, "max": 10, "value" : 50, "con" : 30, "stam" : -3, "impactSound" : "leather", "invSound" : "leather", "brush" : "legend_apron",
+{"name": "legend_apron_butcher",                          "layer": "cloth", "min": 8, "max": 11, "value" : 50, "con" : 30, "stam" : -3, "impactSound" : "leather", "invSound" : "leather", "brush" : "legend_apron",
  "title" :  "Butcher\'s Apron",
  "desc" :  "A rugged apron worn by butchers to protect against accidental cuts.",
  "adesc" :""
 },
-{"name": "legend_apron",                                  "layer": "cloth", "min": 1, "max": 6, "value" : 60, "con" : 35, "stam" : -4, "impactSound" : "leather", "invSound" : "leather",
+{"name": "legend_apron",                                  "layer": "cloth", "min": 1, "max": 7, "value" : 60, "con" : 35, "stam" : -4, "impactSound" : "leather", "invSound" : "leather",
  "title" :  "Blacksmith Apron",
  "desc" :  "A leather apron usually worn by a blacksmith",
  "adesc" :""
@@ -58,12 +58,12 @@ class Defs:
 #     "desc" :  "A sturdy and heavy padded tunic that offers decent protection.", \
 #     "adesc" :""
 # },
-{"name": "legend_gambeson_wolf",                          "layer": "cloth", "min": 1, "max": 1, "value" : 300, "con" : 70, "stam" : -9, "impactSound" : "leather", "invSound" : "cloth",
+{"name": "legend_gambeson_wolf",                          "layer": "cloth", "min": 1, "max": 2, "value" : 300, "con" : 70, "stam" : -9, "impactSound" : "leather", "invSound" : "cloth",
  "title" :  "Wolf Gambeson",
  "desc" :  "A sturdy and heavy padded tunic that offers decent protection.",
  "adesc" :""
 },
-{"name": "legend_gambeson_named",                         "layer": "cloth", "min": 1, "max": 12, "value" : 1500, "con" : 70, "stam" : -7, "impactSound" : "leather", "invSound" : "cloth",
+{"name": "legend_gambeson_named",                         "layer": "cloth", "min": 1, "max": 13, "value" : 1500, "con" : 70, "stam" : -7, "impactSound" : "leather", "invSound" : "cloth",
  "title" :  "",
  "desc" :  "A master crafted heavy padded tunic that offers excellent protection.",
  "adesc" :"",
@@ -84,12 +84,12 @@ class Defs:
  "desc" :  "A simple dress of rough fabric and common dye",
  "adesc" :""
 },
-{"name": "legend_robes",                                  "layer": "cloth", "min": 0, "max": 0, "value" : 25, "con" : 25, "stam" : -2, "impactSound" : "leather", "invSound" : "cloth", "variants" : [1,2,11,12,13,14,15,16,17,18],
+{"name": "legend_robes",                                  "layer": "cloth", "min": 0, "max": 0, "value" : 25, "con" : 25, "stam" : -2, "impactSound" : "leather", "invSound" : "cloth", "variants" : [1,2,11,12,13,14,15,16,17,18,19],
  "title" :  "Monk\'s Robe",
  "desc" :  "A rugged, large robe made of simple cloth usually worn by monks and similar individuals who don\'t care for fashion.",
  "adesc" :""
 },
-{"name": "legend_robes_magic",                            "layer": "cloth", "min": 1, "max": 6, "value" : 100, "con" : 5, "stam" : 0, "impactSound" : "leather", "invSound" : "cloth", "brush" : "magic_robe",
+{"name": "legend_robes_magic",                            "layer": "cloth", "min": 1, "max": 7, "value" : 100, "con" : 5, "stam" : 0, "impactSound" : "leather", "invSound" : "cloth", "brush" : "magic_robe",
  "title" :  "Magician\'s Robe",
  "desc" :  "A soft shiny robe worn by practictioners of the arcane arts",
  "adesc" :""
@@ -139,12 +139,12 @@ class Defs:
  "desc" :  "A heavy cloth tunic, bulky but offering some protection.",
  "adesc" :""
 },
-{"name": "legend_tunic",                                  "layer": "cloth", "min": 1, "max": 12, "value" : 25, "con" : 20, "stam" : -1, "impactSound" : "leather", "invSound" : "cloth",
+{"name": "legend_tunic",                                  "layer": "cloth", "min": 1, "max": 13, "value" : 25, "con" : 20, "stam" : -1, "impactSound" : "leather", "invSound" : "cloth",
  "title" :  "Linen Tunic",
  "desc" :  "A simple cloth tunic. Fashionable but offering little in protection.",
  "adesc" :""
 },
-{"name": "legend_tunic_wrap",                                  "layer": "cloth", "min": 1, "max": 11, "value" : 25, "con" : 20, "stam" : -1, "impactSound" : "leather", "invSound" : "cloth",
+{"name": "legend_tunic_wrap",                                  "layer": "cloth", "min": 1, "max": 12, "value" : 25, "con" : 20, "stam" : -1, "impactSound" : "leather", "invSound" : "cloth",
  "title" :  "Linen Tunic Wrap",
  "desc" :  "A simple cloth tunic. Fashionable but offering little in protection.",
  "adesc" :""
@@ -159,7 +159,7 @@ class Defs:
  "desc" :  "A simple cloth tunic. Fashionable but offering little in protection.",
  "adesc" :""
 },
-{"name": "legend_dark_tunic",                             "layer": "cloth", "min": 1, "max": 2, "value" : 50, "con" : 35, "stam" : -4, "impactSound" : "leather", "invSound" : "cloth",
+{"name": "legend_dark_tunic",                             "layer": "cloth", "min": 1, "max": 3, "value" : 50, "con" : 35, "stam" : -4, "impactSound" : "leather", "invSound" : "cloth",
  "title" :  "Dark Tunic",
  "desc" :  "A heavy cloth tunic. bulky but offering some protection.",
  "adesc" :""
@@ -181,12 +181,12 @@ class Defs:
  "desc" :  "A dense wool wrap to protect against blunt hits.",
  "adesc" : ""
 },
-{"name": "legend_knightly_robe",                 "layer": "cloth", "min": 1, "max": 8, "value" : 450, "con" : 60, "stam" : -2, "impactSound" : "leather", "invSound" : "cloth", "brush" : "legend_knightly_robe",
+{"name": "legend_knightly_robe",                 "layer": "cloth", "min": 1, "max": 9, "value" : 450, "con" : 60, "stam" : -2, "impactSound" : "leather", "invSound" : "cloth", "brush" : "legend_knightly_robe",
  "title" : "Knight\'s Robe",
  "desc" :  "A padded robe designed to go under armor and absorb blows",
  "adesc" : ""
 },
-{"name": "legend_southern_gambeson",           "layer": "cloth", "min": 1, "max": 7, "value" : 250, "con" : 65, "stam" : -8, "impactSound" : "leather", "invSound" : "cloth", "brush" : "southern_gambeson",
+{"name": "legend_southern_gambeson",           "layer": "cloth", "min": 1, "max": 8, "value" : 250, "con" : 65, "stam" : -8, "impactSound" : "leather", "invSound" : "cloth", "brush" : "southern_gambeson",
  "title" :  "Southern Gambeson",
  "desc" :  "A sturdy and heavy padded tunic of southern origin that offers decent protection.",
  "adesc" : ""
@@ -201,7 +201,7 @@ class Defs:
  "desc" :  "A light and well made checkered tunic southern origin.",
  "adesc" : ""
 },
-{"name": "legend_southern_noble_surcoat",           "layer": "cloth", "min": 1, "max": 9, "value" : 350, "con" : 55, "stam" : -6, "impactSound" : "leather", "invSound" : "cloth", "brush" : "southern_noble_cloth",
+{"name": "legend_southern_noble_surcoat",           "layer": "cloth", "min": 1, "max": 10, "value" : 350, "con" : 55, "stam" : -6, "impactSound" : "leather", "invSound" : "cloth", "brush" : "southern_noble_cloth",
  "title" :  "Southern Noble Surcoat",
  "desc" :  "A studded and heavy padded coat that offers decent protection.",
  "adesc" : ""
@@ -323,7 +323,7 @@ class Defs:
  "desc" :  "A nomad cloth robe worn as an outer protection against both the heat and against cuts and bruises.",
  "adesc" : "Includes a cloth robe"
 },
-{"name": "legend_southern_padded_chest",                       "layer": "chain", "min": 1, "max": 1, "value" : 325, "con" : 45, "stam" : -4, "impactSound" : "leather", "invSound" : "cloth", "brush" : "southern_padded_chest",
+{"name": "legend_southern_padded_chest",                       "layer": "chain", "min": 1, "max": 13, "value" : 325, "con" : 45, "stam" : -4, "impactSound" : "leather", "invSound" : "cloth", "brush" : "southern_padded_chest",
  "title" :  "Padded Vest",
  "desc" :  "A thick cloth vest padded with dense wool to protect against blunt hits.",
  "adesc" : "Includes a thick cloth vest."
@@ -348,13 +348,13 @@ class Defs:
  "desc" :  "A boiled and hardened brigandine studded with steel rivets and reinforced with steel padded shoulders for added protection.",
  "adesc" : "Includes hardened brigandine armor."
 },
-{"name": "legend_armor_leather_brigandine_named",         "layer": "plate", "min": 1, "max": 10, "value" : 2500, "con" : 75, "stam" : -6, "impactSound" : "leather", "invSound" : "leather",
+{"name": "legend_armor_leather_brigandine_named",         "layer": "plate", "min": 1, "max": 11, "value" : 2500, "con" : 75, "stam" : -6, "impactSound" : "leather", "invSound" : "leather",
  "title" :  "",
  "desc" :  "A rare thick leather brigandine studded with steel rivets for added protection. A piece of true craftsmanship!",
  "adesc" : "Includes rare leather brigandine armor.",
  "named" : True, "rminStam" : 5, "rmaxStam": 7, "rminCond" : 80, "rmaxCond" : 100,  "names" : ["Harness", "Ward", "Defense", "Barrier", "Studded Vest", "Lifesaver", "Skin", "Peel", "Guard", "Tarnished Harness", "Duty", "Honor"]
 },
-{"name": "legend_armor_leather_jacket",                   "layer": "plate", "min": 1, "max": 9, "value" : 75, "con" : 25, "stam" : -3, "impactSound" : "leather", "invSound" : "leather",
+{"name": "legend_armor_leather_jacket",                   "layer": "plate", "min": 1, "max": 10, "value" : 75, "con" : 25, "stam" : -3, "impactSound" : "leather", "invSound" : "leather",
  "title" :  "Leather Jacket",
  "desc" :  "A leather jacket for minimal protection.",
  "adesc" : "Includes a leather jacket for added protection."
@@ -386,7 +386,7 @@ class Defs:
  "desc" :  "Numerous overlapping leather plates provide decent protection for most of the upper body.",
  "adesc" : "Includes armor of overlapping leather plates."
 },
-{"name": "legend_armor_cult_armor",               "itemType" : "this.Const.Items.ItemType.Cultist", "layer": "plate", "min": 1, "max": 1, "value" : 250, "con" : 55, "stam" : -7, "impactSound" : "leather", "invSound" : "leather",
+{"name": "legend_armor_cult_armor",               "itemType" : "this.Const.Items.ItemType.Cultist", "layer": "plate", "min": 1, "max": 2, "value" : 250, "con" : 55, "stam" : -7, "impactSound" : "leather", "invSound" : "leather",
  "title" :  "Cultist Leather Armor",
  "desc" :  "Numerous overlapping leather plates provide decent protection for most of the upper body.",
  "adesc" : "Includes an occult armor of overlapping leather plates."
@@ -417,7 +417,7 @@ class Defs:
  "desc" :  "Numerous overlapping metal reinforced leather plates that provides excellent protection for most of the upper body but is very heavy.",
  "adesc" : "Includes armor of overlapping reinforced metal leather plates."
 },
-{"name": "legend_armor_leather_noble",                    "layer": "plate", "min": 1, "max": 6, "value" : 1500, "con" : 65, "stam" : -6, "impactSound" : "leather", "invSound" : "leather",
+{"name": "legend_armor_leather_noble",                    "layer": "plate", "min": 1, "max": 7, "value" : 1500, "con" : 65, "stam" : -6, "impactSound" : "leather", "invSound" : "leather",
  "title" :  "Noble Leather Armor",
  "desc" :  "A truly masterfully crafted set of leather armor. Very light and flexible to reduce encumberance while still offering good protection.",
  "adesc" : "Includes masterfully crafted leather armor."
@@ -566,7 +566,7 @@ class Defs:
  "desc" :  "A heavy armor made of thick, overlapping metal scales covering most of the body.",
  "adesc" : "Includes heavy armor made of thick, overlapping metal scales."
 },
-{"name": "legend_noble_scale",                    "layer": "plate", "min": 1, "max": 6, "value" : 2000, "con" : 80, "stam" : -10, "impactSound" : "leather", "invSound" : "leather",
+{"name": "legend_noble_scale",                    "layer": "plate", "min": 1, "max": 7, "value" : 2000, "con" : 80, "stam" : -10, "impactSound" : "leather", "invSound" : "leather",
  "title" :  "Noble Scale",
  "desc" :  "A very well crafted scale mail armor",
  "adesc" : "Includes scaled armor."
@@ -661,7 +661,7 @@ class Defs:
  "desc" :  "A long and heavy chest of metal plates",
  "adesc" : "overlapped with metal plates."
 },
-{"name": "legend_southern_padded",                     "layer": "plate", "min": 1, "max": 12, "value" : 400, "con" : 65, "stam" : -7, "impactSound" : "plate", "invSound" : "leather", "brush" : "southern_padded",
+{"name": "legend_southern_padded",                     "layer": "plate", "min": 1, "max": 13, "value" : 400, "con" : 65, "stam" : -7, "impactSound" : "plate", "invSound" : "leather", "brush" : "southern_padded",
  "title" :  "Southern padded shirt",
  "desc" :  "A padded shirt fashioned from slightly thinner and lighter leather than that used in the north",
  "adesc" : "Covered in a padded shirt"
@@ -671,7 +671,7 @@ class Defs:
  "desc" :  "Leather arm guards worn by southern assassins",
  "adesc" : "has leathered arm guards"
 },
-{"name": "legend_southern_strips",                   "layer": "plate", "min": 1, "max": 4, "value" : 275, "con" : 40, "stam" : -4, "impactSound" : "plate", "invSound" : "leather", "brush" : "southern_strips",
+{"name": "legend_southern_strips",                   "layer": "plate", "min": 1, "max": 5, "value" : 275, "con" : 40, "stam" : -4, "impactSound" : "plate", "invSound" : "leather", "brush" : "southern_strips",
  "title" :  "Linothorax",
  "desc" :  "A breastplate made of several layers of linen.",
  "adesc" : "Has a breastplate made of several layers of linen."
@@ -681,7 +681,7 @@ class Defs:
  "desc" :  "A jacket of patched leather of southern origin",
  "adesc" : "Has a jacket of southern leather"
 },
-{"name": "legend_southern_leather_plates",           "layer": "plate", "min": 1, "max": 10, "value" : 200, "con" : 50, "stam" : -5, "impactSound" : "plate", "invSound" : "leather", "brush" : "southern_leather_plates",
+{"name": "legend_southern_leather_plates",           "layer": "plate", "min": 1, "max": 11, "value" : 200, "con" : 50, "stam" : -5, "impactSound" : "plate", "invSound" : "leather", "brush" : "southern_leather_plates",
  "title" :  "Stitched Nomad Armor",
  "desc" :  "A leather nomad armor stitched together from various hides and scraps",
  "adesc" : "Plates of leather hide and scraps"
@@ -699,12 +699,12 @@ class Defs:
 
 
 
-{"name": "legend_shoulder_cloth",           "layer": "cloak", "min": 1, "max": 11, "value" : 50, "con" : 5, "stam" : 0, "bravery" : 0, "impactSound" : "leather", "invSound" : "cloth", "brush" : "shoulder_cloth",
+{"name": "legend_shoulder_cloth",           "layer": "cloak", "min": 1, "max": 12, "value" : 50, "con" : 5, "stam" : 0, "bravery" : 0, "impactSound" : "leather", "invSound" : "cloth", "brush" : "shoulder_cloth",
  "title" :  "Shoulder Cloth",
  "desc" :  "A Piece of cloth drapped over the shoulder",
  "adesc" : "Includes a shoulder cloth"
 },
-{"name": "legend_noble_shawl",           "layer": "cloak", "min": 1, "max": 1, "value" : 250, "con" : 10, "stam" : 0, "bravery" : 1, "impactSound" : "leather", "invSound" : "cloth", "brush" : "noble_shawl",
+{"name": "legend_noble_shawl",           "layer": "cloak", "min": 1, "max": 2, "value" : 250, "con" : 10, "stam" : 0, "bravery" : 1, "impactSound" : "leather", "invSound" : "cloth", "brush" : "noble_shawl",
  "title" :  "Noble Shawl",
  "desc" :  "A shawl made of exquisite material that wraps around the shoulders",
  "adesc" : "Includes a fine noble shawl"
@@ -714,7 +714,7 @@ class Defs:
  "desc" :  "A cloak of dark wool that wraps around the shoulders.",
  "adesc" : "Includes a dark wooly cloak"
 },
-{"name": "fur_cloak",           "layer": "cloak", "min": 1, "max": 4, "value" : 120, "con" : 35, "stam" : -6, "bravery" : 0, "impactSound" : "leather", "invSound" : "cloth", "brush" : "fur_cloak",
+{"name": "fur_cloak",           "layer": "cloak", "min": 1, "max": 5, "value" : 120, "con" : 35, "stam" : -6, "bravery" : 0, "impactSound" : "leather", "invSound" : "cloth", "brush" : "fur_cloak",
  "title" :  "Fur Cloak",
  "desc" :  "A cloak made of rough chain and the fur of a beast",
  "adesc" : "Includes a fur cloak"
@@ -749,7 +749,7 @@ class Defs:
  "desc" :  "A hood and belts adorned with a holy relic",
  "adesc" : "Has a hood and belts adorned with a holy relic"
 },
-{"name": "legend_armor_cloak_heavy",           "layer": "cloak", "min": 0, "max": 0, "value" : 500, "con" : 30, "stam" : -4, "bravery" : 2, "impactSound" : "leather", "invSound" : "cloth", "brush" : "cloak", "variants" : [3,8,15,16,17,18,19,20,24,26,27,28,29,30,31,35],
+{"name": "legend_armor_cloak_heavy",           "layer": "cloak", "min": 0, "max": 0, "value" : 500, "con" : 30, "stam" : -4, "bravery" : 2, "impactSound" : "leather", "invSound" : "cloth", "brush" : "cloak", "variants" : [3,8,15,16,17,18,19,20,24,26,27,28,29,30,31,35,37],
  "title" :  "Heavy Cloak",
  "desc" :  "A rustic cloak made of thick layered strong warm wool, provides protection from some blows but is quite hefty. ",
  "adesc" : "Has a heavy thick cloak"
@@ -774,12 +774,12 @@ class Defs:
  "desc" :  "A refined cloak for the distinguished cloak appreciator",
  "adesc" : "Has a flowing light cloak"
 },
-{"name": "legend_sash",           "layer": "cloak", "min": 1, "max": 1, "value" : 150, "con" : 3, "stam" : 0, "bravery" : 1, "impactSound" : "leather", "invSound" : "cloth", "brush" : "sash",
+{"name": "legend_sash",           "layer": "cloak", "min": 1, "max": 2, "value" : 150, "con" : 3, "stam" : 0, "bravery" : 1, "impactSound" : "leather", "invSound" : "cloth", "brush" : "sash",
  "title" :  "Sash",
  "desc" :  "Has a flowing cloth sash.",
  "adesc" : "Has a flowing cloth sash."
 },
-{"name": "legend_southern_scarf",           "layer": "cloak", "min": 1, "max": 17, "value" : 100, "con" : 5, "stam" : 0, "bravery" : 0, "impactSound" : "leather", "invSound" : "cloth", "brush" : "southern_scarf",
+{"name": "legend_southern_scarf",           "layer": "cloak", "min": 1, "max": 18, "value" : 100, "con" : 5, "stam" : 0, "bravery" : 0, "impactSound" : "leather", "invSound" : "cloth", "brush" : "southern_scarf",
  "title" :  "Southern Scarf",
  "desc" :  "A scarf that wraps around the shoulders.",
  "adesc" : "Includes a dark wooly cloak"
@@ -789,12 +789,12 @@ class Defs:
  "desc" :  "An adorned scarf of dark wool that wraps around the shoulders.",
  "adesc" : "Includes a dark wooly cloak"
 },
-{"name": "legend_animal_pelt",           "layer": "cloak", "min": 1, "max": 8, "value" : 250, "con" : 15, "stam" : -2, "bravery" : 2, "impactSound" : "leather", "invSound" : "cloth", "brush" : "animal_pelt",
+{"name": "legend_animal_pelt",           "layer": "cloak", "min": 1, "max": 9, "value" : 250, "con" : 15, "stam" : -2, "bravery" : 2, "impactSound" : "leather", "invSound" : "cloth", "brush" : "animal_pelt",
  "title" :  "Animal Pelt",
  "desc" :  "A cloak of dark wool that wraps around the shoulders.",
  "adesc" : "Includes a dark wooly cloak"
 },
-{"name": "legend_southern_scarf_wrap",           "layer": "cloak", "min": 1, "max": 17, "value" : 150, "con" : 15, "stam" : -1, "bravery" : 0, "impactSound" : "leather", "invSound" : "cloth", "brush" : "southern_scarf_wrap",
+{"name": "legend_southern_scarf_wrap",           "layer": "cloak", "min": 1, "max": 18, "value" : 150, "con" : 15, "stam" : -1, "bravery" : 0, "impactSound" : "leather", "invSound" : "cloth", "brush" : "southern_scarf_wrap",
  "title" :  "Southern Scarf Wrap",
  "desc" :  "A cloak of dark wool that wraps around the shoulders.",
  "adesc" : "Includes a dark wooly cloak"
@@ -804,7 +804,7 @@ class Defs:
  "desc" :  "Straps, bags, hood and relic of a knightly order. Offers physical and spiritual protection.",
  "adesc" : "Straps, bags, hood and relic of a knightly order. Offers physical and spiritual protection."
 },
-{"name": "legend_common_tabard",           "layer": "tabard", "min": 101, "max": 113, "value" : 200, "con" : 5, "stam" : 0, "bravery" : 2, "impactSound" : "leather", "invSound" : "cloth", "brush" : "legend_tabard",
+{"name": "legend_common_tabard",           "layer": "tabard", "min": 101, "max": 114, "value" : 200, "con" : 5, "stam" : 0, "bravery" : 2, "impactSound" : "leather", "invSound" : "cloth", "brush" : "legend_tabard",
  "title" :  "Tabard",
  "desc" :  "A flowing cloth covering for armor, to show your allegiance. Offers minimal protection and small boost to morale.",
  "adesc" : "Has a flowing cloth tabard"
@@ -819,12 +819,12 @@ class Defs:
 #     "desc" :  "A tattered cloth covering for armor.", \
 #     "adesc" : "Has a tattered tabard"
 # },
-{"name": "legend_southern_wrap_right",           "layer": "tabard", "min": 1, "max": 12, "value" : 50, "con" : 2, "stam" : 0, "bravery" : 0, "impactSound" : "leather", "invSound" : "cloth", "brush" : "southern_wrap_right",
+{"name": "legend_southern_wrap_right",           "layer": "tabard", "min": 1, "max": 13, "value" : 50, "con" : 2, "stam" : 0, "bravery" : 0, "impactSound" : "leather", "invSound" : "cloth", "brush" : "southern_wrap_right",
  "title" :  "Right Sided Wrap",
  "desc" :  "A southern wrapped cloth wrapped around the right shoulder",
  "adesc" : "Has a right sided southern wrap"
 },
-{"name": "legend_southern_wrap_left",           "layer": "tabard", "min": 1, "max": 14, "value" : 50, "con" : 2, "stam" : 0, "bravery" : 0, "impactSound" : "leather", "invSound" : "cloth", "brush" : "southern_wrap_left",
+{"name": "legend_southern_wrap_left",           "layer": "tabard", "min": 1, "max": 15, "value" : 50, "con" : 2, "stam" : 0, "bravery" : 0, "impactSound" : "leather", "invSound" : "cloth", "brush" : "southern_wrap_left",
  "title" :  "Left Sided Wrap",
  "desc" :  "A southern wrapped cloth draped over the left shoulder",
  "adesc" : "Has a left sided southern wrap"
@@ -839,12 +839,12 @@ class Defs:
  "desc" :  "A leather studded vest worn by southern city state nobles",
  "adesc" : "Has a southern noble vest"
 },
-{"name": "legend_southern_wrap",           "layer": "tabard", "min": 1, "max": 8, "value" : 100, "con" : 5, "stam" : 0, "bravery" : 0, "impactSound" : "leather", "invSound" : "cloth", "brush" : "southern_wrap",
+{"name": "legend_southern_wrap",           "layer": "tabard", "min": 1, "max": 9, "value" : 100, "con" : 5, "stam" : 0, "bravery" : 0, "impactSound" : "leather", "invSound" : "cloth", "brush" : "southern_wrap",
  "title" :  "Southern Cloth Wrap",
  "desc" :  "A cloth wrap worn by southerners",
  "adesc" : "Has a southern cloth wrap"
 },
-{"name": "legend_southern_shoulder_cloth",           "layer": "tabard", "min": 1, "max": 8, "value" : 100, "con" : 5, "stam" : 0, "bravery" : 0, "impactSound" : "leather", "invSound" : "cloth", "brush" : "southern_shoulder_cloth",
+{"name": "legend_southern_shoulder_cloth",           "layer": "tabard", "min": 1, "max": 9, "value" : 100, "con" : 5, "stam" : 0, "bravery" : 0, "impactSound" : "leather", "invSound" : "cloth", "brush" : "southern_shoulder_cloth",
  "title" :  "Southern Shoulder Cloth",
  "desc" :  "A cloth wrap worn by southerners",
  "adesc" : "Has a southern shoulder cloth"
@@ -854,7 +854,7 @@ class Defs:
  "desc" :  "A heavy duty overcloak worn by southerners",
  "adesc" : "Has a southern overcloak"
 },
-{"name": "legend_southern_tabard",           "layer": "tabard", "min": 1, "max": 16, "value" : 200, "con" : 5, "stam" : 0, "bravery" : 2, "impactSound" : "leather", "invSound" : "cloth", "brush" : "southern_tabard",
+{"name": "legend_southern_tabard",           "layer": "tabard", "min": 1, "max": 17, "value" : 200, "con" : 5, "stam" : 0, "bravery" : 2, "impactSound" : "leather", "invSound" : "cloth", "brush" : "southern_tabard",
  "title" :  "Southern Tabard",
  "desc" :  "A flowing cloth covering for armor, to show your allegiance. Offers minimal protection and small boost to morale.",
  "adesc" : "Has a flowing cloth tabard"

@@ -8,6 +8,7 @@ this.legend_armor_vala_cloak <- this.inherit("scripts/items/legend_armor/legend_
 		this.m.Description = "A rugged cloak for a vala\'s journeys through the lands.";
 		this.m.IsDroppedAsLoot = true;
 		this.m.ShowOnCharacter = true;
+		this.m.Variants = [506, 517];
 		this.m.Variant = 506;
 		this.updateVariant();
 		this.m.ImpactSound = this.Const.Sound.ArmorLeatherImpact;

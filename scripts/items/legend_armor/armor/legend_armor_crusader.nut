@@ -8,6 +8,7 @@ this.legend_armor_crusader <- this.inherit("scripts/items/legend_armor/legend_ar
 		this.m.Description = "A mail shirt with shoulder guards providing excellent protection against most weapons.";
 		this.m.IsDroppedAsLoot = true;
 		this.m.ShowOnCharacter = true;
+		this.m.Variants = [509, 519];
 		this.m.Variant = 509;
 		this.updateVariant();
 		this.m.ImpactSound = this.Const.Sound.ArmorChainmailImpact;

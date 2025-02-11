@@ -8,6 +8,7 @@ this.legend_armor_ranger <- this.inherit("scripts/items/legend_armor/legend_armo
 		this.m.Description = "A sturdy and heavy padded tunic made from rare materials that offers good protection while being light to wear.";
 		this.m.IsDroppedAsLoot = true;
 		this.m.ShowOnCharacter = true;
+		this.m.Variants = [512, 518];
 		this.m.Variant = 512;
 		this.updateVariant();
 		this.m.ImpactSound = this.Const.Sound.ArmorLeatherImpact;
