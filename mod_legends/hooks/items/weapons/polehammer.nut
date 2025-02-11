@@ -6,19 +6,15 @@
 		this.m.Value = 1600;
 	}
 
-	o.addSkill <- function( _skill )
+	local onEquip = o.onEquip;
+	o.onEquip = function ()
 	{
-		this.weapon.addSkill(_skill);
-
-		if (_skill.getID() != ::Legends.Actives.getID(::Legends.Active.Batter))
-			return;
-
-		local skill = ::new("scripts/skills/actives/impale");
-		skill.m.Icon = "skills/legend_halberd_impale.png";
-		skill.m.IconDisabled = "skills/legend_halberd_impale_bw.png";
-		skill.m.Overlay = "legend_halberd_impale";
-		skill.m.IsIgnoredAsAOO = true;
-		weapon.addSkill(skill);
+		onEquip()
+		::Legends.Actives.grant(this, ::Legends.Active.Impale, function (_skill) {
+			_skill.m.Icon = "skills/legend_halberd_impale.png";
+			_skill.m.IconDisabled = "skills/legend_halberd_impale_bw.png";
+			_skill.m.Overlay = "legend_halberd_impale";
+			_skill.m.IsIgnoredAsAOO = true;
+		}.bindenv(this));
 	}
-
 });
