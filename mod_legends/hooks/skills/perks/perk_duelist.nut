@@ -82,11 +82,12 @@
 		if (!isValid(main, off))
 			return 0;
 
-		local bonus = 0;
+		local bonus = 0.0;
 		if (isFullEffect(main, off))
 			bonus += 0.25;
 		else if (isPartialEffect(main, off))
 			bonus += 0.13;
+		return bonus;
 	}
 
 	o.onUpdate = function ( _properties )
