@@ -6,7 +6,7 @@ this.legend_firefield_skill <- this.inherit("scripts/skills/skill", {
 	{
 		this.m.ID = "actives.legend_firefield";
 		this.m.Name = "Firefield";
-		this.m.Description = "Unleash a fiery infernot at the target location that burns all beings, damaging them twice.";
+		this.m.Description = "Unleash a raging inferno at the target location that burns all beings, damaging them twice.";
 		this.m.Icon = "skills/fire_square.png";
 		this.m.IconDisabled = "skills/fire_square_bw.png";
 		this.m.Overlay = "fire_circle";
