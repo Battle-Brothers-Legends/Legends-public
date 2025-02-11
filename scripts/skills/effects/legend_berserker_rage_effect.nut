@@ -86,7 +86,7 @@ this.legend_berserker_rage_effect <- this.inherit("scripts/skills/skill", {
 
 	function onUpdate( _properties )
 	{
-		if this.m.RageStacks >= 40;
+		if (this.m.RageStacks >= 40)
 			this.m.RageStacks = 40;
 		this.m.IsHidden = this.m.RageStacks == 0;
 		_properties.Bravery += 1 * this.m.RageStacks;
