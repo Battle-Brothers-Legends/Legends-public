@@ -1,4 +1,4 @@
-Names = "::Const.Strings.LegendArmorLayers"
+Names = "::Const.Strings.LegendHelmetLayers"
 
 
 class Defs:
@@ -292,7 +292,7 @@ class Defs:
  "title" :  "Barbute",
  "desc" :  "A sturdy yet light barbute helmet, a design uncommon in these lands, made from especially light and durable steel."
  },
-{"name" : "barbute_named"                     , "layer" : "helm", "min" : 1, "max" : 1, "value" : 2750, "con" : 85, "stam" : -4, "vis" : -2, "hair" : "true", "beard" : "true", "named" : True, "rmaxViz" : 1, "rminViz" : 2, "rmaxStam" : 2, "rminStam" : 4, "rminCond" : 85, "rmaxCond" : 105, "names" : Names,
+{"name" : "barbute_named"                     , "layer" : "helm", "min" : 1, "max" : 3, "value" : 2750, "con" : 85, "stam" : -4, "vis" : -2, "hair" : "true", "beard" : "true", "named" : True, "rmaxViz" : 1, "rminViz" : 2, "rmaxStam" : 2, "rminStam" : 4, "rminCond" : 85, "rmaxCond" : 105, "names" : Names,
  "title" :  "Barbute",
  "desc" :  "A superb barbute helmet of foreign origin, this helmet has been blackened and polished to a dark shine. "
  },
@@ -791,6 +791,10 @@ class Defs:
  "title" :  "Cloth Long Hood",
  "desc" :  "A simple hood to protect against weather and scratches."
  },
+{"name" : "executioner_hood"                     , "itemType" : "this.Const.Items.ItemType.Cultist", "layer" : "top", "min" : 1, "max" : 1, "value" : 100, "con" : 10, "stam" : -1, "vis" : 0, "hair" : "true", "beard" : "false",
+ "title" :  "Executioner Hood",
+ "desc" :  "A red hood to hide the identity of the executioner."
+ },
 {"name" : "noble_southern_crown"                     , "layer" : "vanity", "min" : 1, "max" : 1, "value" : 100, "con" : 5, "stam" : 0, "vis" : 0, "hair" : "true", "beard" : "false",
  "title" :  "Vizier Peak",
  "desc" :  "The crown of a southern vizier."
@@ -815,10 +819,6 @@ class Defs:
  "title" :  "Feathered Turban",
  "desc" :  "A feathered blade dancer turban."
  },
-# {"name" : "southern_turban_open"                     , "layer" : "vanity", "min" : 1, "max" : 1, "value" : 60, "con" : 10, "stam" : 0, "vis" : 0, "hair" : "true", "beard" : "false",  \
-#  "title" :  "Open Turban", \
-#  "desc" :  "A turban with open face." \
-# },
 {"name" : "sack"                     , "itemType" : "this.Const.Items.ItemType.Cultist", "layer" : "vanity", "min" : 1, "max" : 12, "value" : 5, "con" : 2, "stam" : 0, "vis" : -1, "hair" : "true", "beard" : "true",
  "title" :  "Sack",
  "desc" :  "A rough hewn hession sack with two holes in it."
@@ -973,7 +973,11 @@ class Defs:
  },
 {"name" : "southern_turban_open"                     , "layer" : "vanity", "min" : 1, "max" : 1, "value" : 20, "con" : 5, "stam" : 0, "vis" : 0, "hair" : "false", "beard" : "false",
  "title" :  "Open Turban",
- "desc" :  "A turban with open face."
+ "desc" :  "A turban with an open face."
+ },
+{"name" : "southern_turban_patterned"                     , "layer" : "vanity", "min" : 1, "max" : 8, "value" : 30, "con" : 5, "stam" : 0, "vis" : 0, "hair" : "false", "beard" : "false",
+ "title" :  "Patterned Turban",
+ "desc" :  "A beautiful patterned turban with an open face."
  },
 {"name" : "southern_turban_full"                     , "layer" : "vanity", "min" : 1, "max" : 4, "value" : 20, "con" : 5, "stam" : 0, "vis" : 0, "hair" : "false", "beard" : "false",
  "title" :  "Full Turban",
