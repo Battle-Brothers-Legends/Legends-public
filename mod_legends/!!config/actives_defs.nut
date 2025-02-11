@@ -1134,10 +1134,10 @@ activesDefs.push({
 	Name = "Bear Claws",
 });
 activesDefs.push({
-	ID = "actives.legend_flaggelate",
-	Script = "scripts/skills/actives/legend_flaggelate_skill",
-	Const = "LegendFlaggelate",
-	Name = "Flaggelate",
+	ID = "actives.legend_flagellate",
+	Script = "scripts/skills/actives/legend_flagellate_skill",
+	Const = "LegendFlagellate",
+	Name = "Flagellate",
 });
 activesDefs.push({
 	ID = "actives.legend_boar_gore",

@@ -32,7 +32,7 @@ this.legend_cat_o_nine_tails <- this.inherit("scripts/items/weapons/weapon", {
 	function onEquip()
 	{
 		this.weapon.onEquip();
-		::Legends.Actives.grant(this, ::Legends.Active.LegendFlaggelate);
+		::Legends.Actives.grant(this, ::Legends.Active.LegendFlagellate);
 		::Legends.Actives.grant(this, ::Legends.Active.LegendNinetailsDisarm);
 		::Legends.Actives.grant(this, ::Legends.Active.LegendFlogging);
 	}

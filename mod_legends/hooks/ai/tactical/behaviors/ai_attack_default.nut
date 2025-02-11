@@ -12,7 +12,7 @@
 		::Legends.Actives.getID(::Legends.Active.LegendDonkeyKick),
 		::Legends.Actives.getID(::Legends.Active.LegendBearBite),
 		::Legends.Actives.getID(::Legends.Active.LegendBearClaws),
-		::Legends.Actives.getID(::Legends.Active.LegendFlaggelate),
+		::Legends.Actives.getID(::Legends.Active.LegendFlagellate),
 		::Legends.Actives.getID(::Legends.Active.LegendBoarGore),
 		::Legends.Actives.getID(::Legends.Active.LegendRatClaws),
 		::Legends.Actives.getID(::Legends.Active.LegendRatBite),
