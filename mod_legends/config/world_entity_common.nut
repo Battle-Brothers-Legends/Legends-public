@@ -1103,46 +1103,58 @@ if (!("World" in ::Const))
 	return _credits
 }
 
+::Const.World.Common.DynamicTroops <- {
+	// Array with 'fixed' templates
+	Templates = ["Fixed"],
+	// Defines how much party has to spend on units
+	getCredits = function(_template, _resources) {
+		local credits = _resources;
+		if ("MinR" in _template)
+			credits = this.Math.max(_template.MinR, credits);
+		return credits;
+	},
+	// Defines scaling of party composition
+	getScale = function (_template, _resources) {
+		return "MaxR" in _template ? (_resources * 1.0) / (_template.MaxR * 1.0) : 1.0;
+	},
+	// Defines how excess credits should be spent after fixed units are added
+	selectDynamicTroops = function(_template, _resources, _scale, _troopMap, _credits) {
+		local credits = _credits;
+		if ("Troops" in _template && _template.Troops.len() > 0)
+		{
+			local tries = 200;
+			while (credits > 0 && tries > 0)
+			{
+				credits = this.Const.World.Common.dynamicSelectTroop(_template.Troops, _resources, scale, troopMap, credits);
+				tries--;
+			}
+		}
+		return credits;
+	}
+}
+
 ::Const.World.Common.buildDynamicTroopList <- function( _template, _resources)
 {
 //	::logInfo("*DynamicTroopList : template = " + _template.Name + " : resources = " + _resources)
-	local credits = _resources;
-	if ("MinR" in _template)
-	{
-		credits = this.Math.max(_template.MinR, credits);
-	}
-	local scale = "MaxR" in _template ? (_resources * 1.0) / (_template.MaxR * 1.0) : 1.0;
+	local credits = ::Const.World.Common.DynamicTroops.getCredits(_template, _resources);
+	local scale = ::Const.World.Common.DynamicTroops.getScale(_template, _resources);
 	local troopMap = {};
 	local prevPoints = 0;
 
-	if ("Fixed" in _template)
-	{
-		credits = this.Const.World.Common.dynamicSelectTroop(_template.Fixed, _resources, scale, troopMap, credits);
-	}
-
-	if ("Troops" in _template && _template.Troops.len() > 0)
-	{
-		local tries = 200;
-		while (credits > 0 && tries > 0)
-		{
-			credits = this.Const.World.Common.dynamicSelectTroop(_template.Troops, _resources, scale, troopMap, credits);
-			tries--;
+	foreach(name in ::Const.World.Common.DynamicTroops.Templates) {
+		if (name in _template) {
+			credits = ::Const.World.Common.dynamicSelectTroop(_template[name], _resources, scale, troopMap, credits);
 		}
 	}
 
+	credits = ::Const.World.Common.DynamicTroops.selectDynamicTroops(_template, _resources, scale, troopMap, credits);
+
 	local T = [];
-	foreach ( k, v in troopMap)
-	{
+	foreach (k, v in troopMap)
 		T.push(v);
-	}
 
-
-	//TESTING
-//	 foreach (t in T)
-//	 {
+//	 foreach (t in T) //TESTING
 //	 	::logInfo(t.Type.Script + " : " + t.Num);
-//	 }
-
 	return {
 		MovementSpeedMult = _template.MovementSpeedMult,
 		VisibilityMult = _template.VisibilityMult,
