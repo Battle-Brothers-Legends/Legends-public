@@ -91,7 +91,7 @@ this.legend_ai_rotation_skill <- this.inherit("scripts/skills/skill", {
 		if (!target.isAlive() && ::MSU.isNull(target))
 			return false;
 
-		if (target.getFaction() != _entity.getFaction() && !this.getContainer().hasPerk(::Const.Perks.PerkDefs.LegendTwirl))
+		if (target.getFaction() != getContainer().getActor().getFaction() && !this.getContainer().hasPerk(::Const.Perks.PerkDefs.LegendTwirl))
 			return false;
 
 		return this.skill.onVerifyTarget(_originTile, _targetTile) && !target.getCurrentProperties().IsStunned && !target.getCurrentProperties().IsRooted && target.getCurrentProperties().IsMovable && !target.getCurrentProperties().IsImmuneToRotation;
