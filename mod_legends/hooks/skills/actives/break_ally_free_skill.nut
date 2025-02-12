@@ -93,7 +93,7 @@
 			this.spawnIcon("status_effect_114", _targetTile);
 		}
 
-		local breakFree = target.getSkills().getSkillByID("actives.break_free");
+		local breakFree = ::Legends.Actives.get(target, ::Legends.Active.BreakFree);
 
 		if (breakFree != null)
 		{
