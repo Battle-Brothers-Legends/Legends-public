@@ -197,21 +197,5 @@ this.legend_trader_background <- this.inherit("scripts/skills/backgrounds/charac
 		items.equip(this.Const.World.Common.pickHelmet([
 			[1, "feathered_hat"]
 		]));
-		// local stash = this.World.Assets.getStash()
-		// stash.removeByID("supplies.ground_grains");
-		// stash.removeByID("supplies.ground_grains");
-		// stash.add(this.new("scripts/items/trade/cloth_rolls_item"));
-		// stash.add(this.new("scripts/items/misc/snake_oil_item"));
-		// stash.add(this.new("scripts/items/supplies/dried_fruits_item"));
-		// stash.add(this.new("scripts/items/tents/legend_tent_craft"));
-		// stash.add(this.new("scripts/items/tents/legend_tent_enchant"));
-		// stash.add(this.new("scripts/items/tents/legend_tent_fletcher"));
-		// stash.add(this.new("scripts/items/tents/legend_tent_gather"));
-		// stash.add(this.new("scripts/items/tents/legend_tent_heal"));
-		// stash.add(this.new("scripts/items/tents/legend_tent_hunter"));
-		// stash.add(this.new("scripts/items/tents/legend_tent_repair"));
-		// stash.add(this.new("scripts/items/tents/legend_tent_scout"));
-		// stash.add(this.new("scripts/items/tents/legend_tent_scrap"));
-		// stash.add(this.new("scripts/items/tents/legend_tent_train"));
 	}
 });

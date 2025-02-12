@@ -85,28 +85,16 @@
 		this.getSprite("miniboss").setBrush("bust_miniboss");
 		local weapons = [
 			"weapons/named/named_sword",
-			"weapons/named/legend_named_estoc"
+			"weapons/named/legend_named_estoc",
+			"weapons/named/named_sword",
+			"weapons/named/named_shamshir"
 		];
-
-		if (this.Const.DLC.Wildmen || this.Const.DLC.Desert)
-		{
-			weapons.extend([
-				"weapons/named/named_sword",
-				"weapons/named/named_shamshir"
-			]);
-		}
 
 		local armor = [
 			"armor/named/black_leather_armor",
-			"armor/named/blue_studded_mail_armor"
+			"armor/named/blue_studded_mail_armor",
+			"armor/named/named_noble_mail_armor"
 		];
-
-		if (this.Const.DLC.Wildmen)
-		{
-			armor.extend([
-				"armor/named/named_noble_mail_armor"
-			]);
-		}
 
 		if (this.Math.rand(1, 100) <= 70)
 		{

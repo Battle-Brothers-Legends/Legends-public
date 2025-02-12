@@ -5,7 +5,7 @@ this.legend_firefield_skill <- this.inherit("scripts/skills/skill", {
 	function create()
 	{
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendFirefield);
-		this.m.Description = "Throw a pot releasing a field of fire that burns all beings.";
+		this.m.Description = "Unleash a raging inferno at the target location that burns all beings, damaging them twice.";
 		this.m.Icon = "skills/fire_square.png";
 		this.m.IconDisabled = "skills/fire_square_bw.png";
 		this.m.Overlay = "fire_circle";
@@ -26,6 +26,7 @@ this.legend_firefield_skill <- this.inherit("scripts/skills/skill", {
 		this.m.Type = this.Const.SkillType.Active;
 		this.m.Order = this.Const.SkillOrder.OffensiveTargeted +10;
 		this.m.Delay = 0;
+		this.m.IsTargetingActor = false;
 		this.m.IsSerialized = false;
 		this.m.IsActive = true;
 		this.m.IsTargeted = true;
@@ -64,9 +65,42 @@ this.legend_firefield_skill <- this.inherit("scripts/skills/skill", {
 		return ret;
 	}
 
-	function isViableTarget( _user, _target )
+	function onVerifyTarget( _originTile, _targetTile )
 	{
-		return !_target.isAlliedWith(_user) && _target.getTile().Properties.Effect == null;
+		if (!this.skill.onVerifyTarget(_originTile, _targetTile))
+		{
+			return false;
+		}
+
+		if (_originTile.Level + 1 < _targetTile.Level)
+		{
+			return false;
+		}
+
+		return true;
+	}
+
+	function onTargetSelected( _targetTile )
+	{
+		local affectedTiles = [];
+		affectedTiles.push(_targetTile);
+
+		for( local i = 0; i != 6; i = ++i )
+		{
+			if (!_targetTile.hasNextTile(i))
+			{
+			}
+			else
+			{
+				local tile = _targetTile.getNextTile(i);
+				affectedTiles.push(tile);
+			}
+		}
+
+		foreach( t in affectedTiles )
+		{
+			this.Tactical.getHighlighter().addOverlayIcon(this.Const.Tactical.Settings.AreaOfEffectIcon, t, t.Pos.X, t.Pos.Y);
+		}
 	}
 
 	function onAfterUpdate( _properties )

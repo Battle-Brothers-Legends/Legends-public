@@ -61,6 +61,12 @@
 ::Const.ProjectileType.Dart <- 13;
 ::Const.ProjectileType.COUNT = 14;
 
+::Const.ProjectileDecals.extend([
+	[],
+	[],
+	[]
+]);
+
 ::Const.ProjectileSprite.extend([
 	"projectile_missile",
 	"projectile_blood",

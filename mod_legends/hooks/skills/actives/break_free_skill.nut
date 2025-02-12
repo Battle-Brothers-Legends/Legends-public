@@ -193,6 +193,7 @@
 
 	o.onUseByAlly <- function ( _ally, _targetTile )
 	{
+		this.setSkillBonus(_ally.getCurrentProperties().getMeleeSkill());
 		if (_ally.getCurrentProperties().IsSpecializedInNets)
 		{
 			this.m.IsByNetSpecialist = true;

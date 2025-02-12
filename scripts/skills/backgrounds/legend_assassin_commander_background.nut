@@ -267,12 +267,6 @@ this.legend_assassin_commander_background <- this.inherit("scripts/skills/backgr
 		talents[this.Const.Attributes.RangedSkill] = 1;
 		talents[this.Const.Attributes.Initiative] = 3;
 		this.getContainer().getActor().fillTalentValues(2, true);
-		local items = this.getContainer().getActor().getItems();
-		local stash = this.World.Assets.getStash();
-		stash.removeByID("supplies.ground_grains");
-		stash.removeByID("supplies.ground_grains");
-		stash.add(this.new("scripts/items/supplies/rice_item"));
-		stash.add(this.new("scripts/items/supplies/dried_lamb_item"));
 
 		local items = this.getContainer().getActor().getItems();
 		items.equip(this.new("scripts/items/weapons/dagger"));

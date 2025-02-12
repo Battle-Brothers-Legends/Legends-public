@@ -87,6 +87,42 @@ this.perk_legend_perfect_fit <- this.inherit("scripts/skills/skill", {
 		return tooltip;
 	}
 
+	function getUnactivatedPerkTooltipHints()
+	{
+		local bonus = this.getBonus();
+		local tooltip = [];
+
+		if (bonus > this.m.BonusMin)
+		{
+			tooltip.extend([
+				{
+					id = 6,
+					type = "text",
+					icon = "ui/icons/initiative.png",
+					text = "[color=" + this.Const.UI.Color.PositiveValue + "]+" + this.getInitiativeBonus(bonus) + "%[/color] Initiative"
+				},
+				{
+					id = 6,
+					type = "text",
+					icon = "ui/icons/fatigue.png",
+					text = "Fatigue cost of skills reduced by [color=" + this.Const.UI.Color.PositiveValue + "]" + this.getFatCostReductionBonus(bonus) + "%[/color]"
+				}
+			]);
+		}
+
+		if (this.getContainer().getActor().getBodyItem() == null)
+		{
+			tooltip.push({
+				id = 6,
+				type = "text",
+				icon = "ui/tooltips/warning.png",
+				text = "This character is not wearing any body armor and hence receives no bonus from this perk"
+			});
+		}
+
+		return tooltip;
+	}
+
 	function onUpdate( _properties )
 	{
 		local bonus = this.getBonus();

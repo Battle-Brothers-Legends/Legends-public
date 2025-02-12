@@ -55,58 +55,12 @@ this.legend_choke_skill <- this.inherit("scripts/skills/skill", {
 	function getTooltip()
 	{
 		local actor = this.getContainer().getActor();
-		local damage_min = 10; // Manual workaround because we're doing the math manually. Based on decapitate code
-		local damage_max = 15;
-		local has_unarmed_background = false;
-		if (this.getContainer().getActor().getSkills().hasPerk(::Legends.Perk.LegendMuscularity))
-			{
-				local muscularity = this.Math.floor(actor.getHitpoints() * 0.1);
-				damage_min = damage_min + muscularity;
-				damage_max = damage_max + muscularity;
-			}
-		damage_min = this.Math.floor(damage_min*actor.getCurrentProperties().DamageTotalMult*actor.getCurrentProperties().MeleeDamageMult*actor.getCurrentProperties().DamageRegularMult);
-		damage_max = this.Math.floor(damage_max*actor.getCurrentProperties().DamageTotalMult*2*actor.getCurrentProperties().MeleeDamageMult*actor.getCurrentProperties().DamageRegularMult);
-		foreach( bg in this.m.Backgrounds ) // actually slightly wrong due to rounding errors. In practice underestimates damage by like 1-2 of max
-		{
-			if (actor.getSkills().hasSkill(bg)) // Hopefully there is a better way
-			{
-				damage_min = this.Math.floor(damage_min*1.25);
-				damage_max = this.Math.floor(damage_max*1.25);
-				has_unarmed_background = true;
-				break;
-			}
-		}
-
-		local ret = [
-			{
-				id = 1,
-				type = "title",
-				text = this.getName()
-			},
-			{
-				id = 2,
-				type = "description",
-				text = this.getDescription()
-			},
-			{
-				id = 3,
-				type = "text",
-				text = this.getCostString()
-			}
-		];
-		ret.push({
-			id = 4,
-			type = "text",
-			icon = "ui/icons/regular_damage.png",
-			text = "Inflicts [color=" + this.Const.UI.Color.DamageValue + "]" + damage_min + "[/color] - [color=" + this.Const.UI.Color.DamageValue + "]" + damage_max + "[/color] damage depending on the difference in fatigue between you and the target"
-		});
-
-
+		local tooltip = this.getDefaultTooltip();
 		foreach( bg in this.m.Backgrounds )
 		{
 			if (actor.getSkills().hasSkill(bg))
 			{
-				ret.push({
+				tooltip.push({
 				id = 5,
 				type = "text",
 				icon = "ui/icons/regular_damage.png",
@@ -118,7 +72,7 @@ this.legend_choke_skill <- this.inherit("scripts/skills/skill", {
 
 		if (this.m.Container.getActor().getCurrentProperties().IsSpecializedInFists)
 		{
-			ret.push({
+			tooltip.push({
 				id = 6,
 				type = "text",
 				icon = "ui/icons/regular_damage.png",
@@ -127,25 +81,25 @@ this.legend_choke_skill <- this.inherit("scripts/skills/skill", {
 
 		}
 
-		ret.push({
+		tooltip.push({
 				id = 7,
 				type = "text",
 				icon = "ui/icons/special.png",
 				text = "Has a [color=" + this.Const.UI.Color.PositiveValue + "]100%[/color] chance to hit the head"
 			});
-		ret.push({
+		tooltip.push({
 				id = 8,
 				type = "text",
 				icon = "ui/icons/special.png",
 				text = "Completely ignores armor"
 			});
-		ret.push({
+		tooltip.push({
 				id = 9,
 				type = "text",
 				icon = "ui/icons/special.png",
 				text = "Adds the choked effect which reduces enemy fatigue recovery by [color=" + this.Const.UI.Color.NegativeValue + "]15[/color]"
 			});
-		return ret;
+		return tooltip;
 	}
 
 	function isUsable()
@@ -278,7 +232,7 @@ this.legend_choke_skill <- this.inherit("scripts/skills/skill", {
 			_properties.DamageRegularMult += _targetEntity.getFatiguePct() - actor.getFatiguePct();
 		}
 
-		if (_targetEntity != null && _targetEntity.getSkills().hasEffect(::Legends.Effect.LegendGrappled) || _targetEntity.getSkills().hasEffect(::Legends.Effect.LegendChoked))
+		if (_targetEntity != null && (_targetEntity.getSkills().hasEffect(::Legends.Effect.LegendGrappled) || _targetEntity.getSkills().hasEffect(::Legends.Effect.LegendChoked)))
 		{
 			_properties.DamageRegularMult *= 1.5
 		}

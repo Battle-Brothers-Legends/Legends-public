@@ -279,12 +279,6 @@ this.legend_crusader_commander_background <- this.inherit("scripts/skills/backgr
 		talents[this.Const.Attributes.MeleeSkill] = 3;
 		this.getContainer().getActor().fillTalentValues(2, true);
 		local items = this.getContainer().getActor().getItems();
-		local stash = this.World.Assets.getStash();
-		stash.removeByID("supplies.ground_grains");
-		stash.removeByID("supplies.ground_grains");
-		stash.add(this.new("scripts/items/supplies/armor_parts_item"));
-		stash.add(this.new("scripts/items/supplies/medicine_item"));
-		stash.add(this.new("scripts/items/supplies/cured_venison_item"));
 		items.equip(this.new("scripts/items/weapons/legend_longsword"));
 
 		items.equip(this.Const.World.Common.pickArmor([

@@ -309,12 +309,6 @@ this.legend_berserker_commander_background <- this.inherit("scripts/skills/backg
 		talents[this.Const.Attributes.Hitpoints] = 3;
 		this.getContainer().getActor().fillTalentValues(2, true);
 		local items = this.getContainer().getActor().getItems();
-		local stash = this.World.Assets.getStash();
-		stash.removeByID("supplies.ground_grains");
-		stash.removeByID("supplies.ground_grains");
-		stash.add(this.new("scripts/items/accessory/berserker_mushrooms_item"));
-		stash.add(this.new("scripts/items/accessory/berserker_mushrooms_item"));
-		stash.add(this.new("scripts/items/supplies/roots_and_berries_item"));
 		items.equip(this.Const.World.Common.pickArmor([
 			[1, "werewolf_hide_armor"]
 		]));

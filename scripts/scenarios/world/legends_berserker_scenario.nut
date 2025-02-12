@@ -32,6 +32,12 @@ this.legends_berserker_scenario <- this.inherit("scripts/scenarios/world/startin
 		this.addScenarioPerk(bros[0].getBackground(), this.Const.Perks.PerkDefs.Berserk);
 		bros[0].getFlags().set("IsPlayerCharacter", true);
 		bros[0].setVeteranPerks(2);
+		local stash = this.World.Assets.getStash();
+		stash.removeByID("supplies.ground_grains");
+		stash.removeByID("supplies.ground_grains");
+		stash.add(this.new("scripts/items/accessory/berserker_mushrooms_item"));
+		stash.add(this.new("scripts/items/accessory/berserker_mushrooms_item"));
+		stash.add(this.new("scripts/items/supplies/roots_and_berries_item"));
 		this.World.Assets.m.Money = this.World.Assets.m.Money;
 		this.World.Assets.m.Ammo = this.World.Assets.m.Ammo;
 	}

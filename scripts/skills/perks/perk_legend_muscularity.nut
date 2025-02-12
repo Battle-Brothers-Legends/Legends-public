@@ -20,10 +20,27 @@ this.perk_legend_muscularity <- this.inherit("scripts/skills/skill", {
 		local isValidRanged = item != null && item.isItemType(this.Const.Items.ItemType.Weapon) && (item.isWeaponType(this.Const.Items.WeaponType.Throwing) || item.isWeaponType(this.Const.Items.WeaponType.Bow));
 		if (!_skill.isRanged() || (isValidRanged && item.isItemType(this.Const.Items.ItemType.Weapon)))
 		{
-			local actor = this.getContainer().getActor();
-			local damageBonus = this.Math.maxf(actor.getHitpoints(), actor.getHitpointsMax() / 2.0) * 0.001; // either half of the max hitpoints or hitpoints so there's a lower bound
-
-			_properties.DamageTotalMult *= 1 + this.Math.minf(0.5, damageBonus);
+			_properties.DamageTotalMult *= 1 + this.getBonus();
 		}
+	}
+
+	function getBonus()
+	{
+		local actor = this.getContainer().getActor();
+		local damageBonus = this.Math.maxf(actor.getHitpoints(), actor.getHitpointsMax() / 2.0) * 0.001; // either half of the max hitpoints or hitpoints so there's a lower bound
+		damageBonus += this.Math.maxf(actor.getFatigueMax() - actor.getFatigue(), (actor.getFatigueMax() - actor.getFatigue()) / 2.0) * 0.0015;
+		return this.Math.minf(0.5, damageBonus);
+	}
+
+	function getUnactivatedPerkTooltipHints()
+	{
+		return [
+			{
+				id = 3,
+				type = "hint",
+				icon = "ui/icons/damage_dealt.png",
+				text = "[color=" + this.Const.UI.Color.PositiveValue + "]" + this.Math.round(this.getBonus() * 100) + "%[/color] Damage based on current Hitpoints and Fatigue"
+			}
+		];
 	}
 });

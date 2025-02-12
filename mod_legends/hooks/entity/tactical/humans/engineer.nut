@@ -4,6 +4,8 @@
 	o.onInit = function ()
 	{
 		onInit();
+		local b = this.m.BaseProperties;
+		b.TargetAttractionMult = 2.0;
 		::Legends.Perks.grant(this, ::Legends.Perk.Rotation);
 		::Legends.Perks.grant(this, ::Legends.Perk.Recover);
 	}

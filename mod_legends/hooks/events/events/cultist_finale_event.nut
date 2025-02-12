@@ -121,11 +121,11 @@
 				if ((bestCultist == null || bro.getLevel() > bestCultist.getLevel()) && bro.getBackground().getID() == "background.cultist")
 					bestCultist = bro;
 			}
-			else if (bro.getLevel() >= 11 && !bro.getSkills().hasTrait(::Legends.Trait.Player) && !bro.getSkills().hasTrait(::Legends.Trait.Player) && !bro.getFlags().get("IsPlayerCharacter"))
+			else if (bro.getLevel() >= 12 && !bro.getSkills().hasTrait(::Legends.Trait.Player) && !bro.getSkills().hasTrait(::Legends.Trait.Player) && !bro.getFlags().get("IsPlayerCharacter"))
 				sacrifice_candidates.push(bro);
 		}
 
-		if (cultist_candidates.len() <= 5 || bestCultist == null || bestCultist.getLevel() < 11 || sacrifice_candidates.len() == 0)
+		if (cultist_candidates.len() <= 5 || bestCultist == null || bestCultist.getLevel() < 12 || sacrifice_candidates.len() == 0)
 			return;
 
 		this.m.Cultist = bestCultist;
