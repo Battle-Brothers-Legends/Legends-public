@@ -1,4 +1,3 @@
-
 this.legend_helmet_jester_hat <- this.inherit("scripts/items/legend_helmets/legend_helmet_upgrade", {
 	m = {},
 	function create()
@@ -10,10 +9,8 @@ this.legend_helmet_jester_hat <- this.inherit("scripts/items/legend_helmets/lege
 		this.m.Description = "The quintessential hat of performing folk in noble court. Wearing it makes you feel like a fool, but the jingling bells make you an irritating target for all.";
 		this.m.ArmorDescription = this.m.Description;
 		this.m.Variants = [];
-		for(local i = 1; i < 65; i++)
-		{
+		for(local i = 1; i <= 66; i++)
 			this.m.Variants.push(i);
-		}
 		this.m.Variant = this.m.Variants[this.Math.rand(0, this.m.Variants.len() - 1)];
 		this.updateVariant();
 		this.m.ImpactSound = this.Const.Sound.ArmorChainmailImpact;

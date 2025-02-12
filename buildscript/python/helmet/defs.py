@@ -3,10 +3,10 @@ Names = "::Const.Strings.LegendHelmetLayers"
 
 class Defs:
     brush_only_layers = [
-        {"name": "hunter_cap", "min" : 1, "max" : 1, "layer": "vanity"},
+        {"name": "hunter_cap", "min" : 1, "max" : 2, "layer": "vanity"},
         {"name": "pimp_hat", "min" : 1, "max" : 1, "layer": "vanity"},
-        {"name": "jester_hat", "min" : 1, "max" : 64, "layer": "vanity"},
-        {"name": "witchhunter_helm", "min" : 1, "max" : 7, "layer" : "vanity"},
+        {"name": "jester_hat", "min" : 1, "max" : 66, "layer": "vanity"},
+        {"name": "witchhunter_helm", "min" : 1, "max" : 8, "layer" : "vanity"},
         {"name": "white_wolf_helm", "min" : 1, "max" : 1, "layer": "vanity"},
         {"name": "lindwurm_helm", "min" : 1, "max" : 1, "layer": "vanity"},
         {"name": "redback_helm", "min" : 1, "max" : 1, "layer": "vanity"},
@@ -16,7 +16,7 @@ class Defs:
     ]
 
     layers = [
-{"name" : "goblin_scarf"                     , "layer" : "hood", "min" : 1, "max" : 4, "base" : True, "value" : 5, "con" : 5, "stam" : 0, "vis" : 0, "hair" : "true", "beard" : "false",
+{"name" : "goblin_scarf"                     , "layer" : "hood", "min" : 1, "max" : 5, "base" : True, "value" : 5, "con" : 5, "stam" : 0, "vis" : 0, "hair" : "true", "beard" : "false",
  "title" :  "Goblin Scarf",
  "desc" :  "Goblin Scarf."
  },
@@ -32,15 +32,15 @@ class Defs:
  "title" :  "Rotten Aventail",
  "desc" :  "A rotten mail aventail that extends from below the eyeline to cover the neck."
  },
-{"name" : "cloth_scarf"                     , "layer" : "hood", "min" : 1, "max" : 5, "base" : True, "value" : 10, "con" : 15, "stam" : 0, "vis" : 0, "hair" : "false", "beard" : "true",
+{"name" : "cloth_scarf"                     , "layer" : "hood", "min" : 1, "max" : 6, "base" : True, "value" : 10, "con" : 15, "stam" : 0, "vis" : 0, "hair" : "false", "beard" : "true",
  "title" :  "Cloth Scarf",
  "desc" :  "Cloth Scarf."
  },
-{"name" : "cloth_bandana"                     , "layer" : "hood", "min" : 1, "max" : 5, "base" : True, "value" : 20, "con" : 15, "stam" : 0, "vis" : 0, "hair" : "true", "beard" : "false",
+{"name" : "cloth_bandana"                     , "layer" : "hood", "min" : 1, "max" : 6, "base" : True, "value" : 20, "con" : 15, "stam" : 0, "vis" : 0, "hair" : "true", "beard" : "false",
  "title" :  "Headscarf",
  "desc" :  "A thick piece of cloth wrapped around the head."
  },
-{"name" : "patched_hood"                     , "layer" : "hood", "min" : 1, "max" : 1, "base" : True, "value" : 45, "con" : 25, "stam" : -1, "vis" : 0, "hair" : "true", "beard" : "false",
+{"name" : "patched_hood"                     , "layer" : "hood", "min" : 1, "max" : 2, "base" : True, "value" : 45, "con" : 25, "stam" : -1, "vis" : 0, "hair" : "true", "beard" : "false",
  "title" :  "Patched Hood",
  "desc" :  "Patched Hood."
  },
@@ -50,15 +50,15 @@ class Defs:
  },
 
 
-{"name" : "leather_cap"                     , "layer" : "hood", "min" : 1, "max" : 1, "base" : True, "value" : 75, "con" : 35, "stam" : -1, "vis" : 0, "hair" : "true", "beard" : "false",
+{"name" : "leather_cap"                     , "layer" : "hood", "min" : 1, "max" : 2, "base" : True, "value" : 75, "con" : 35, "stam" : -1, "vis" : 0, "hair" : "true", "beard" : "false",
  "title" :  "Leather Cap",
  "desc" :  "A sturdy leather cap that is not covering the ears and neck."
  },
-{"name" : "padded_cap"                     , "layer" : "hood", "min" : 1, "max" : 1, "base" : True, "value" : 90, "con" : 40, "stam" : -1, "vis" : 0, "hair" : "true", "beard" : "false",
+{"name" : "padded_cap"                     , "layer" : "hood", "min" : 1, "max" : 2, "base" : True, "value" : 90, "con" : 40, "stam" : -1, "vis" : 0, "hair" : "true", "beard" : "false",
  "title" :  "Aketon Cap",
  "desc" :  "A padded cloth cap."
  },
-{"name" : "leather_hood"                     , "itemType" : "this.Const.Items.ItemType.Cultist", "layer" : "hood", "min" : 1, "max" : 5, "base" : True, "value" : 110, "con" : 45, "stam" : -2, "vis" : 0, "hair" : "true", "beard" : "false",
+{"name" : "leather_hood"                     , "itemType" : "this.Const.Items.ItemType.Cultist", "layer" : "hood", "min" : 1, "max" : 6, "base" : True, "value" : 110, "con" : 45, "stam" : -2, "vis" : 0, "hair" : "true", "beard" : "false",
  "title" :  "Leather Hood",
  "desc" :  "A closed leather cap that protects the head and neck. Padded for extra protection."
  },
@@ -70,7 +70,7 @@ class Defs:
  "title" :  "Full Aketon Cap",
  "desc" :  "A large padded cloth cap also covering the neck."
  },
-{"name" : "southern_cap"                     , "layer" : "hood", "min" : 1, "max" : 8, "base" : True, "value" : 30, "con" : 20, "stam" : 0, "vis" : 0, "hair" : "true", "beard" : "false",
+{"name" : "southern_cap"                     , "layer" : "hood", "min" : 1, "max" : 9, "base" : True, "value" : 30, "con" : 20, "stam" : 0, "vis" : 0, "hair" : "true", "beard" : "false",
  "title" :  "Southern Cap",
  "desc" :  "A simple cap of rough fibres."
  },
@@ -78,7 +78,7 @@ class Defs:
  "title" :  "Southern Cap",
  "desc" :  "A simple cap of rough fibres."
  },
-{"name" : "southern_turban_light_hood"       , "layer" : "hood", "min" : 1, "max" : 6, "base" : True, "value" : 90, "con" : 40, "stam" : -1, "vis" : 0, "hair" : "true", "beard" : "false",
+{"name" : "southern_turban_light_hood"       , "layer" : "hood", "min" : 1, "max" : 7, "base" : True, "value" : 90, "con" : 40, "stam" : -1, "vis" : 0, "hair" : "true", "beard" : "false",
  "title" :  "Southern light hood",
  "desc" :  "A southern hood made of light materials."
  },
@@ -110,7 +110,7 @@ class Defs:
  "title" :  "Mail Coif",
  "desc" :  "A sturdy chain hood."
  },
-{"name" : "chain_hood_full"                     , "layer" : "hood", "min" : 1, "max" : 6, "base" : True, "value" : 400, "con" : 80, "stam" : -4, "vis" : 0, "hair" : "true", "beard" : "true",
+{"name" : "chain_hood_full"                     , "layer" : "hood", "min" : 1, "max" : 7, "base" : True, "value" : 400, "con" : 80, "stam" : -4, "vis" : 0, "hair" : "true", "beard" : "true",
  "title" :  "Full Mail Coif",
  "desc" :  "A mail coif that also protects the neck."
  },
@@ -138,7 +138,7 @@ class Defs:
  "title" :  "Southern Hood",
  "desc" :  "A southern hood made of cloth that wraps around the head."
  },
-{"name" : "cloth_cap"                     , "layer" : "hood", "min" : 1, "max" : 1, "base" : True, "value" : 10, "con" : 5, "stam" : 0, "vis" : 0, "hair" : "true", "beard" : "false",
+{"name" : "cloth_cap"                     , "layer" : "hood", "min" : 1, "max" : 2, "base" : True, "value" : 10, "con" : 5, "stam" : 0, "vis" : 0, "hair" : "true", "beard" : "false",
  "title" :  "Cloth Cap",
  "desc" :  "A piece of cloth covering the top of the head."
  },
@@ -252,11 +252,11 @@ class Defs:
  "title" :  "Heavy Spiked Helm",
  "desc" :  "This helmet must have belonged to a distinct warrior of the barbarians. Its size and design appear alien to all southern folks."
  },
-{"name" : "southern_leather_helm"                     , "layer" : "helm", "min" : 1, "max" : 5, "value" : 60, "con" : 15, "stam" : -1, "vis" : 0, "hair" : "true", "beard" : "false",
+{"name" : "southern_leather_helm"                     , "layer" : "helm", "min" : 1, "max" : 6, "value" : 60, "con" : 15, "stam" : -1, "vis" : 0, "hair" : "true", "beard" : "false",
  "title" :  "Leather helm",
  "desc" :  "A traditional southern leather helm."
  },
-{"name" : "southern_studded_leather_helm"                     , "layer" : "helm", "min" : 1, "max" : 4, "value" : 125, "con" : 25, "stam" : -1, "vis" : 0, "hair" : "true", "beard" : "false",
+{"name" : "southern_studded_leather_helm"                     , "layer" : "helm", "min" : 1, "max" : 5, "value" : 125, "con" : 25, "stam" : -1, "vis" : 0, "hair" : "true", "beard" : "false",
  "title" :  "Nomad Leather Cap",
  "desc" :  "A light nomad leather cap."
  },
@@ -272,7 +272,7 @@ class Defs:
  "title" :  "Viking Helm",
  "desc" :  "A nordic helmet guarding face and neck with additional metal plates."
  },
-{"name" : "norman_helm"                     , "layer" : "helm", "min" : 1, "max" : 5, "value" : 150, "con" : 50, "stam" : -3, "vis" : -1, "hair" : "true", "beard" : "false",
+{"name" : "norman_helm"                     , "layer" : "helm", "min" : 1, "max" : 6, "value" : 150, "con" : 50, "stam" : -3, "vis" : -1, "hair" : "true", "beard" : "false",
  "title" :  "Nasal Helmet",
  "desc" :  "A metal helmet with added noseguard."
  },
@@ -642,7 +642,7 @@ class Defs:
  "title" :  "Curved Faceplate",
  "desc" :  "Curved Faceplate."
  },
-{"name" : "southern_faceplate"                     , "layer" : "top", "min" : 1, "max" : 1, "value" : 500, "con" : 40, "stam" : -2, "vis" : -1, "hair" : "false", "beard" : "false",
+{"name" : "southern_faceplate"                     , "layer" : "top", "min" : 1, "max" : 2, "value" : 500, "con" : 40, "stam" : -2, "vis" : -1, "hair" : "false", "beard" : "false",
  "title" :  "Southern Faceplate",
  "desc" :  "The faceplate of a southern assasin"
  },
@@ -783,15 +783,15 @@ class Defs:
  },
 
 
-{"name" : "hood_cloth_round"                     , "layer" : "vanity", "min" : 1, "max" : 1, "value" : 5, "con" : 5, "stam" : 0, "vis" : 0, "hair" : "true", "beard" : "false",
+{"name" : "hood_cloth_round"                     , "layer" : "vanity", "min" : 1, "max" : 2, "value" : 5, "con" : 5, "stam" : 0, "vis" : 0, "hair" : "true", "beard" : "false",
  "title" :  "Round Hood Cloth",
  "desc" :  "A simple hood to protect against weather and scratches."
  },
-{"name" : "hood_cloth_wide"                     , "layer" : "vanity", "min" : 1, "max" : 2,  "value" : 5, "con" : 5, "stam" : 0, "vis" : 0, "hair" : "true", "beard" : "false",
+{"name" : "hood_cloth_wide"                     , "layer" : "vanity", "min" : 1, "max" : 3,  "value" : 5, "con" : 5, "stam" : 0, "vis" : 0, "hair" : "true", "beard" : "false",
  "title" :  "Wide Hood Cloth",
  "desc" :  "A simple hood to protect against weather and scratches."
  },
-{"name" : "hood_cloth_square"                     , "layer" : "vanity", "min" : 1, "max" : 1, "value" : 5, "con" : 5, "stam" : 0, "vis" : 0, "hair" : "true", "beard" : "false",
+{"name" : "hood_cloth_square"                     , "layer" : "vanity", "min" : 1, "max" : 2, "value" : 5, "con" : 5, "stam" : 0, "vis" : 0, "hair" : "true", "beard" : "false",
  "title" :  "Square Hood Cloth",
  "desc" :  "A simple hood to protect against weather and scratches."
  },
@@ -807,7 +807,7 @@ class Defs:
  "title" :  "Vizier Peak",
  "desc" :  "The crown of a southern vizier."
  },
-{"name" : "noble_southern_hat"                     , "layer" : "vanity", "min" : 1, "max" : 7, "value" : 50, "con" : 5, "stam" : 0, "vis" : 0, "hair" : "true", "beard" : "false",
+{"name" : "noble_southern_hat"                     , "layer" : "vanity", "min" : 1, "max" : 8, "value" : 50, "con" : 5, "stam" : 0, "vis" : 0, "hair" : "true", "beard" : "false",
  "title" :  "Vizier Hat",
  "desc" :  "The hat of a southern vizier."
  },
@@ -819,7 +819,7 @@ class Defs:
  "title" :  "Southern Tailed Helmet",
  "desc" :  "A helmet tail from the southern lands."
  },
-{"name" : "southern_silk_headscarf"                     , "layer" : "vanity", "min" : 1, "max" : 13, "value" : 20, "con" : 5, "stam" : 0, "vis" : 0, "hair" : "true", "beard" : "false",
+{"name" : "southern_silk_headscarf"                     , "layer" : "vanity", "min" : 1, "max" : 14, "value" : 20, "con" : 5, "stam" : 0, "vis" : 0, "hair" : "true", "beard" : "false",
  "title" :  "Southern Headscarf",
  "desc" :  "A headscarf made of exotic materials."
  },
@@ -827,7 +827,7 @@ class Defs:
  "title" :  "Feathered Turban",
  "desc" :  "A feathered blade dancer turban."
  },
-{"name" : "sack"                     , "itemType" : "this.Const.Items.ItemType.Cultist", "layer" : "vanity", "min" : 1, "max" : 12, "value" : 5, "con" : 2, "stam" : 0, "vis" : -1, "hair" : "true", "beard" : "true",
+{"name" : "sack"                     , "itemType" : "this.Const.Items.ItemType.Cultist", "layer" : "vanity", "min" : 1, "max" : 13, "value" : 5, "con" : 2, "stam" : 0, "vis" : -1, "hair" : "true", "beard" : "true",
  "title" :  "Sack",
  "desc" :  "A rough hewn hession sack with two holes in it."
  },
@@ -839,7 +839,7 @@ class Defs:
  "title" :  "Bear Headpiece",
  "desc" :  "The dried and prepped head of a large bear. Offers some protection, but is mostly donned for the looks."
  },
-{"name" : "beret"                     , "layer" : "vanity", "min" : 1, "max" : 1, "value" : 20, "con" : 5, "stam" : 0, "vis" : 0, "hair" : "true", "beard" : "false",
+{"name" : "beret"                     , "layer" : "vanity", "min" : 1, "max" : 2, "value" : 20, "con" : 5, "stam" : 0, "vis" : 0, "hair" : "true", "beard" : "false",
  "title" :  "Beret",
  "desc" :  "A beret typically worn by nobles."
  },
@@ -855,7 +855,7 @@ class Defs:
  "title" :  "Faction Helmet Ornament",
  "desc" :  "Ornament top of a noble house."
  },
-{"name" : "faction_decayed_helmet"                     , "layer" : "vanity", "min" : 1, "max" : 2, "value" : 100, "con" : 10, "stam" : 0, "vis" : 0, "hair" : "true", "beard" : "false",
+{"name" : "faction_decayed_helmet"                     , "layer" : "vanity", "min" : 1, "max" : 3, "value" : 100, "con" : 10, "stam" : 0, "vis" : 0, "hair" : "true", "beard" : "false",
  "title" :  "Decayed Faction Helmet Ornament",
  "desc" :  "Decayed ornament top of a noble house."
  },
@@ -875,7 +875,7 @@ class Defs:
  "title" :  "Goat Horns",
  "desc" :  "The tall horns of a barbarian beastmaster."
  },
-{"name" : "headband"                     , "layer" : "vanity", "min" : 1, "max" : 16, "value" : 20, "con" : 10, "stam" : 0, "vis" : 0, "hair" : "false", "beard" : "false",
+{"name" : "headband"                     , "layer" : "vanity", "min" : 1, "max" : 17, "value" : 20, "con" : 10, "stam" : 0, "vis" : 0, "hair" : "false", "beard" : "false",
  "title" :  "Headband",
  "desc" :  "A simple leather headband from a northern tribe."
  },
@@ -903,11 +903,11 @@ class Defs:
  "title" :  "Noble Buckle",
  "desc" :  "A decorative buckle used on noble hats."
  },
-{"name" : "noble_feather"                     , "layer" : "vanity", "min" : 1, "max" : 4, "value" : 10, "con" : 2, "stam" : 0, "vis" : 0, "hair" : "false", "beard" : "false",
+{"name" : "noble_feather"                     , "layer" : "vanity", "min" : 1, "max" : 5, "value" : 10, "con" : 2, "stam" : 0, "vis" : 0, "hair" : "false", "beard" : "false",
  "title" :  "Noble Feather",
  "desc" :  "A decorative feature found on the hats of nobles."
  },
-{"name" : "noble_floppy_hat"                     , "layer" : "vanity", "min" : 1, "max" : 1, "value" : 50, "con" : 8, "stam" : 0, "vis" : 0, "hair" : "true", "beard" : "false",
+{"name" : "noble_floppy_hat"                     , "layer" : "vanity", "min" : 1, "max" : 2, "value" : 50, "con" : 8, "stam" : 0, "vis" : 0, "hair" : "true", "beard" : "false",
  "title" :  "Floppy Noble Hat",
  "desc" :  "A fashionable hat for aristocrats."
  },
@@ -963,7 +963,7 @@ class Defs:
  "title" :  "Ram Horns",
  "desc" :  "The horns of a wild beast, used as a sign of competency in northern tribes."
  },
-{"name" : "side_feather"                     , "layer" : "vanity", "min" : 1, "max" : 5, "value" : 20, "con" : 5, "stam" : 0, "vis" : 0, "hair" : "false", "beard" : "false",
+{"name" : "side_feather"                     , "layer" : "vanity", "min" : 1, "max" : 6, "value" : 20, "con" : 5, "stam" : 0, "vis" : 0, "hair" : "false", "beard" : "false",
  "title" :  "Side Feather",
  "desc" :  "A decorative feather used on hats."
  },
@@ -971,11 +971,11 @@ class Defs:
  "title" :  "Southern Headband",
  "desc" :  "A beautiful headband from southern lands where dyes are plentiful."
  },
-{"name" : "southern_patterned_headband"                     , "layer" : "vanity", "min" : 1, "max" : 6, "value" : 20, "con" : 5, "stam" : 0, "vis" : 0, "hair" : "false", "beard" : "false",
+{"name" : "southern_patterned_headband"                     , "layer" : "vanity", "min" : 1, "max" : 7, "value" : 20, "con" : 5, "stam" : 0, "vis" : 0, "hair" : "false", "beard" : "false",
  "title" :  "Patterned Headband",
  "desc" :  "A gorgeous patterned headband from southern merchants."
  },
-{"name" : "southern_patterned_headwrap"                     , "layer" : "vanity", "min" : 1, "max" : 10, "value" : 20, "con" : 5, "stam" : 0, "vis" : 0, "hair" : "false", "beard" : "false",
+{"name" : "southern_patterned_headwrap"                     , "layer" : "vanity", "min" : 1, "max" : 11, "value" : 20, "con" : 5, "stam" : 0, "vis" : 0, "hair" : "false", "beard" : "false",
  "title" :  "Patterned Headwrap",
  "desc" :  "A beautiful patterned headwrap from the south."
  },
@@ -987,11 +987,11 @@ class Defs:
  "title" :  "Patterned Turban",
  "desc" :  "A beautiful patterned turban with an open face."
  },
-{"name" : "southern_turban_full"                     , "layer" : "vanity", "min" : 1, "max" : 4, "value" : 20, "con" : 5, "stam" : 0, "vis" : 0, "hair" : "false", "beard" : "false",
+{"name" : "southern_turban_full"                     , "layer" : "vanity", "min" : 1, "max" : 6, "value" : 20, "con" : 5, "stam" : 0, "vis" : 0, "hair" : "false", "beard" : "false",
  "title" :  "Full Turban",
  "desc" :  "A full turban."
  },
-{"name" : "southern_turban_light"                     , "layer" : "vanity", "min" : 1, "max" : 6, "value" : 20, "con" : 5, "stam" : 0, "vis" : 0, "hair" : "false", "beard" : "false",
+{"name" : "southern_turban_light"                     , "layer" : "vanity", "min" : 1, "max" : 7, "value" : 20, "con" : 5, "stam" : 0, "vis" : 0, "hair" : "false", "beard" : "false",
  "title" :  "Light Turban",
  "desc" :  "A turban made of light materials, perfect for desert heat."
  },
@@ -1015,7 +1015,7 @@ class Defs:
 #  "title" :  "Witchhunter Helm", \
 #  "desc" :  "A tough leather hat that provides decent protection against scratches." \
 # },
-{"name" : "wizard_cowl"                     , "layer" : "vanity", "min" : 1, "max" : 20, "value" : 20, "con" : 5, "stam" : 0, "vis" : 0, "hair" : "true", "beard" : "false",
+{"name" : "wizard_cowl"                     , "layer" : "vanity", "min" : 1, "max" : 21, "value" : 20, "con" : 5, "stam" : 0, "vis" : 0, "hair" : "true", "beard" : "false",
  "title" :  "Wizard Cowl",
  "desc" :  "A pointy hat with a broad rim."
  },
@@ -1035,7 +1035,7 @@ class Defs:
 #  "title" :  "White Wolf Helm", \
 #  "desc" :  "The trophy of a white wolf head." \
 # },
-{"name" : "royal_hood"                     , "layer" : "vanity", "min" : 1, "max" : 1, "value" : 100, "con" : 10, "stam" : 0, "vis" : 0, "hair" : "true", "beard" : "false",
+{"name" : "royal_hood"                     , "layer" : "vanity", "min" : 1, "max" : 2, "value" : 100, "con" : 10, "stam" : 0, "vis" : 0, "hair" : "true", "beard" : "false",
  "title" :  "Royal Hood",
  "desc" :  "The ornate hood of distant royalty, made from the finest materials."
  },
@@ -1051,7 +1051,7 @@ class Defs:
  "title" :  "Ancient Southern Headband",
  "desc" :  "A serpent headband from a long dead civlisation."
  },
-{"name" : "southern_cloth_headress"                     , "layer" : "vanity", "min" : 1, "max" : 1, "value" : 20, "con" : 5, "stam" : 0, "vis" : 0, "hair" : "true", "beard" : "false",
+{"name" : "southern_cloth_headress"                     , "layer" : "vanity", "min" : 1, "max" : 7, "value" : 20, "con" : 5, "stam" : 0, "vis" : 0, "hair" : "true", "beard" : "false",
  "title" :  "Southern Cloth Headress",
  "desc" :  "A southern headress made of soft fabrics."
  },
@@ -1101,7 +1101,7 @@ class Defs:
 #  "title" :  "Demon Alp Helm", \
 #  "desc" :  "A trophy made from the face of a demon" \
 # },
-{"name" : "warlock_hood"                     ,"itemType" : "this.Const.Items.ItemType.Cultist", "layer" : "vanity", "min" : 1, "max" : 4, "value" : 100, "con" : 10, "stam" : 0, "vis" : 0, "hair" : "true", "beard" : "false",
+{"name" : "warlock_hood"                     ,"itemType" : "this.Const.Items.ItemType.Cultist", "layer" : "vanity", "min" : 1, "max" : 5, "value" : 100, "con" : 10, "stam" : 0, "vis" : 0, "hair" : "true", "beard" : "false",
  "title" :  "Warlock Hood",
  "desc" :  "Warlock Hood."
  },
