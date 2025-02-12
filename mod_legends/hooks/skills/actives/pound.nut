@@ -2,7 +2,7 @@
 {
 	o.getTooltip = function()
 	{
-		ret = this.getDefaultTooltip();
+		local ret = this.getDefaultTooltip();
 		if (this.getContainer().getActor().getCurrentProperties().IsSpecializedInFlails)
 		{
 			ret.push({
