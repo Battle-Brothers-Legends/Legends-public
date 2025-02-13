@@ -12,29 +12,30 @@
 		this.getContainer().getActor().getItems().getData()[this.Const.ItemSlot.Offhand][0] = null;
 	}
 
+	local onAdded = o.onAdded;
 	o.onAdded = function ()
 	{
-		local actor = this.getContainer().getActor();
-		if (actor == null)
+		if (!m.IsNew) {
+			getContainer().getActor().getItems().getData()[::Const.ItemSlot.Offhand][0] = -1;
 			return;
-		local items = actor.getItems();
-
-		if (items.getItemAtSlot(this.Const.ItemSlot.Mainhand) && items.getItemAtSlot(this.Const.ItemSlot.Mainhand).getBlockedSlotType() == this.Const.ItemSlot.Offhand)
-		{
-			local item = items.getItemAtSlot(this.Const.ItemSlot.Mainhand);
-			items.unequip(item);
-			if (!actor.isPlacedOnMap() || ("State" in this.Tactical) && this.Tactical.State.isBattleEnded())
-				item.drop();
 		}
 
-		if (items.getItemAtSlot(this.Const.ItemSlot.Offhand))
-		{
-			local item = items.getItemAtSlot(this.Const.ItemSlot.Offhand);
-			items.unequip(item);
-			if (!actor.isPlacedOnMap() || ("State" in this.Tactical) && this.Tactical.State.isBattleEnded())
-				item.drop();
+		if (!::Tactical.isActive() && getContainer().getActor().getItems().hasEmptySlot(::Const.ItemSlot.Bag)) {
+			local main = getContainer().getActor().getMainhandItem();
+			local off = getContainer().getActor().getOffhandItem();
+
+			if (main && main.getBlockedSlotType() == ::Const.ItemSlot.Offhand) {
+				getContainer().getActor().getItems().unequip(main);
+				getContainer().getActor().getItems().addToBag(main);
+			}
+			else if (off) {
+				getContainer().getActor().getItems().unequip(off);
+				getContainer().getActor().getItems().addToBag(off);
+			}
 		}
-		items.getData()[this.Const.ItemSlot.Offhand][0] = -1;
+
+		onAdded();
+		m.IsNew = false;
 	}
 
 });
