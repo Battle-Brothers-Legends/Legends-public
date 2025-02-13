@@ -12,14 +12,10 @@ function onCostCompare( _t1, _t2 )
 foreach(k, v in this.Const.World.Spawn)
 {
 	if (k == "Troops" || k == "Unit" || k == "TroopsMap")
-	{
 		continue;
-	}
 
-	if (typeof(v) != "table")
-	{
+	if (typeof(v) != "table" || !v.rawin("Name") || !v.rawin("Troops"))
 		continue;
-	}
 
 	//this.logInfo("Calculating costs for " + k)
 	foreach (i, _t in v.Troops)
