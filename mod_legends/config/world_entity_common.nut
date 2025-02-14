@@ -1125,7 +1125,7 @@ if (!("World" in ::Const))
 			local tries = 200;
 			while (credits > 0 && tries > 0)
 			{
-				credits = this.Const.World.Common.dynamicSelectTroop(_template.Troops, _resources, scale, troopMap, credits);
+				credits = this.Const.World.Common.dynamicSelectTroop(_template.Troops, _resources, _scale, _troopMap, credits);
 				tries--;
 			}
 		}
