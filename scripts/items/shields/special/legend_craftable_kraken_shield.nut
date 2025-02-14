@@ -15,8 +15,8 @@ this.legend_craftable_kraken_shield <- this.inherit("scripts/items/shields/named
 		this.m.Variant = 9;
 		this.updateVariant();
 		this.m.Value = 1200;
-		this.resetStats();
 		this.randomizeValues();
+		this.resetStats();
 	}
 
 	function resetStats() {

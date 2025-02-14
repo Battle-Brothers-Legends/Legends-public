@@ -1,8 +1,8 @@
 ::mods_hookExactClass("items/shields/named/named_lindwurm_shield", function(o) {
 	o.randomizeValues <- function ()
 	{
-		this.resetStats();
 		this.named_shield.randomizeValues();
+		this.resetStats();
 	}
 
 	o.resetStats <- function ()

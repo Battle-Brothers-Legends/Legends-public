@@ -20,8 +20,8 @@ this.legend_lindwurm_armor <- this.inherit("scripts/items/legend_armor/legend_na
 		this.m.ImpactSound = this.Const.Sound.ArmorHalfplateImpact;
 		this.m.InventorySound = this.Const.Sound.ArmorHalfplateImpact;
 		this.m.Value = 7500;
-		this.resetStats();
 		this.randomizeValues();
+		this.resetStats();
 	}
 
 	function resetStats()

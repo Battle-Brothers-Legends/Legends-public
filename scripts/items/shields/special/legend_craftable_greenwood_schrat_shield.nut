@@ -12,8 +12,8 @@ this.legend_craftable_greenwood_schrat_shield <- this.inherit("scripts/items/shi
 		this.m.Variant = 8;
 		this.updateVariant();
 		this.m.Value = 7000;
-		this.resetStats();
 		this.randomizeValues();
+		this.resetStats();
 	}
 
 	function resetStats() {
