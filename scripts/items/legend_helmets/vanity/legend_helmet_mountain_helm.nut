@@ -12,8 +12,8 @@ this.legend_helmet_mountain_helm <- this.inherit("scripts/items/legend_helmets/l
 		// this.m.Name = this.m.NameList[this.Math.rand(0, this.m.NameList.len())];
 		this.m.Description = "A helmet crafted from the skin and skull of a mighty rock unhold, the beast may be dead, but it continues to mend itself even after death";
 		this.m.ArmorDescription = this.m.Description;
-		this.m.Variants = [1];
-		this.m.Variant = this.m.Variants[this.Math.rand(0, this.m.Variants.len() - 1)];
+		this.m.Variants = [1, 2];
+		this.m.Variant = 1;
 		this.updateVariant();
 		this.m.ImpactSound = this.Const.Sound.ArmorChainmailImpact;
 		this.m.InventorySound = this.Const.Sound.ArmorChainmailImpact;

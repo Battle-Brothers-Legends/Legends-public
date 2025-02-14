@@ -71,6 +71,7 @@ declare -a BRUSHES=(
 "legend_helmets/13"
 "legend_helmets/14"
 "legend_helmets/15"
+"legend_helmets/16"
 "legend_armor/0"
 "legend_armor/1"
 "legend_armor/2"
