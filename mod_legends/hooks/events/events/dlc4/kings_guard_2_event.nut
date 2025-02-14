@@ -75,6 +75,6 @@
 		if (this.m.Dude == null)
 			return;
 
-		this.m.Score = this.Math.floor(this.m.Dude.getDaysWithCompany / 3);
+		this.m.Score = this.Math.floor(this.m.Dude.getDaysWithCompany() / 3);
 	}
 })
