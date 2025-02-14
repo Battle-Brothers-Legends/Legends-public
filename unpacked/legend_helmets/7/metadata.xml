@@ -1,4 +1,7 @@
 <brush name="gfx/legend_helmets_7.png" version="17">
+<sprite id="legendhelms_undertakers_scarf_01_damaged" offsetY="35" f="64F0" ic="FF4B4D51" width="184" height="222" img="..\entity\legend_helmets\layers\undertakers_scarf_01_damaged.png" left="-67" right="68" top="-40" bottom="108" />
+<sprite id="legendhelms_undertakers_scarf_01_dead" offsetX="6" offsetY="10" f="64F0" ic="FF222933" width="131" height="125" img="..\entity\legend_helmets\layers\undertakers_scarf_01_dead.png" left="-57" right="59" top="-53" bottom="55" />
+<sprite id="legendhelms_goblin_leaf_helm_01" offsetY="35" f="64F0" ic="FF4E5053" width="184" height="222" img="..\entity\legend_helmets\layers\goblin_leaf_helm_01.png" left="-67" right="68" top="-40" bottom="108" />
 <sprite id="legendhelms_goblin_leaf_helm_01_damaged" offsetY="35" f="64F0" ic="FF4B4D51" width="184" height="222" img="..\entity\legend_helmets\layers\goblin_leaf_helm_01_damaged.png" left="-67" right="68" top="-40" bottom="108" />
 <sprite id="legendhelms_goblin_leaf_helm_01_dead" offsetX="6" offsetY="10" f="64F0" ic="FF222933" width="131" height="125" img="..\entity\legend_helmets\layers\goblin_leaf_helm_01_dead.png" left="-57" right="59" top="-53" bottom="55" />
 <sprite id="legendhelms_goblin_gillie_01" offsetY="35" f="64F0" ic="FF4E5053" width="184" height="222" img="..\entity\legend_helmets\layers\goblin_gillie_01.png" left="-67" right="68" top="-40" bottom="108" />
@@ -147,7 +150,4 @@
 <sprite id="legendhelms_facemask_03_dead" offsetX="6" offsetY="10" f="64F0" ic="FF222933" width="131" height="125" img="..\entity\legend_helmets\layers\facemask_03_dead.png" left="-57" right="59" top="-53" bottom="55" />
 <sprite id="legendhelms_facemask_04_dead" offsetX="6" offsetY="10" f="64F0" ic="FF222933" width="131" height="125" img="..\entity\legend_helmets\layers\facemask_04_dead.png" left="-57" right="59" top="-53" bottom="55" />
 <sprite id="legendhelms_facemask_05_dead" offsetX="6" offsetY="10" f="64F0" ic="FF222933" width="131" height="125" img="..\entity\legend_helmets\layers\facemask_05_dead.png" left="-57" right="59" top="-53" bottom="55" />
-<sprite id="legendhelms_facemask_06_dead" offsetX="6" offsetY="10" f="64F0" ic="FF222933" width="131" height="125" img="..\entity\legend_helmets\layers\facemask_06_dead.png" left="-57" right="59" top="-53" bottom="55" />
-<sprite id="legendhelms_faceplate_pointed_01" offsetY="35" f="64F0" ic="FF4E5053" width="184" height="222" img="..\entity\legend_helmets\layers\faceplate_pointed_01.png" left="-67" right="68" top="-40" bottom="108" />
-<sprite id="legendhelms_faceplate_pointed_01_damaged" offsetY="35" f="64F0" ic="FF4B4D51" width="184" height="222" img="..\entity\legend_helmets\layers\faceplate_pointed_01_damaged.png" left="-67" right="68" top="-40" bottom="108" />
 </brush>

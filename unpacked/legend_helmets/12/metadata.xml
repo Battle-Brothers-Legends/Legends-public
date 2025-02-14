@@ -1,4 +1,7 @@
 <brush name="gfx/legend_helmets_12.png" version="17">
+<sprite id="legendhelms_ram_horns_01" offsetY="35" f="64F0" ic="FF4E5053" width="184" height="222" img="..\entity\legend_helmets\layers\ram_horns_01.png" left="-67" right="68" top="-40" bottom="108" />
+<sprite id="legendhelms_ram_horns_01_damaged" offsetY="35" f="64F0" ic="FF4B4D51" width="184" height="222" img="..\entity\legend_helmets\layers\ram_horns_01_damaged.png" left="-67" right="68" top="-40" bottom="108" />
+<sprite id="legendhelms_ram_horns_01_dead" offsetX="6" offsetY="10" f="64F0" ic="FF222933" width="131" height="125" img="..\entity\legend_helmets\layers\ram_horns_01_dead.png" left="-57" right="59" top="-53" bottom="55" />
 <sprite id="legendhelms_side_feather_01" offsetY="35" f="64F0" ic="FF4E5053" width="184" height="222" img="..\entity\legend_helmets\layers\side_feather_01.png" left="-67" right="68" top="-40" bottom="108" />
 <sprite id="legendhelms_side_feather_02" offsetY="35" f="64F0" ic="FF4E5053" width="184" height="222" img="..\entity\legend_helmets\layers\side_feather_02.png" left="-67" right="68" top="-40" bottom="108" />
 <sprite id="legendhelms_side_feather_03" offsetY="35" f="64F0" ic="FF4E5053" width="184" height="222" img="..\entity\legend_helmets\layers\side_feather_03.png" left="-67" right="68" top="-40" bottom="108" />
@@ -147,7 +150,4 @@
 <sprite id="legendhelms_southern_top_tail_01_damaged" offsetY="35" f="64F0" ic="FF4B4D51" width="184" height="222" img="..\entity\legend_helmets\layers\southern_top_tail_01_damaged.png" left="-67" right="68" top="-40" bottom="108" />
 <sprite id="legendhelms_southern_top_tail_01_dead" offsetX="6" offsetY="10" f="64F0" ic="FF222933" width="131" height="125" img="..\entity\legend_helmets\layers\southern_top_tail_01_dead.png" left="-57" right="59" top="-53" bottom="55" />
 <sprite id="legendhelms_straw_hat_01" offsetY="35" f="64F0" ic="FF4E5053" width="184" height="222" img="..\entity\legend_helmets\layers\straw_hat_01.png" left="-67" right="68" top="-40" bottom="108" />
-<sprite id="legendhelms_straw_hat_01_damaged" offsetY="35" f="64F0" ic="FF4B4D51" width="184" height="222" img="..\entity\legend_helmets\layers\straw_hat_01_damaged.png" left="-67" right="68" top="-40" bottom="108" />
-<sprite id="legendhelms_straw_hat_01_dead" offsetX="6" offsetY="10" f="64F0" ic="FF222933" width="131" height="125" img="..\entity\legend_helmets\layers\straw_hat_01_dead.png" left="-57" right="59" top="-53" bottom="55" />
-<sprite id="legendhelms_top_feather_01" offsetY="35" f="64F0" ic="FF4E5053" width="184" height="222" img="..\entity\legend_helmets\layers\top_feather_01.png" left="-67" right="68" top="-40" bottom="108" />
 </brush>

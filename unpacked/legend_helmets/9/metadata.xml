@@ -1,4 +1,7 @@
 <brush name="gfx/legend_helmets_9.png" version="17">
+<sprite id="legendhelms_noble_southern_hat_05_damaged" offsetY="35" f="64F0" ic="FF4B4D51" width="184" height="222" img="..\entity\legend_helmets\layers\noble_southern_hat_05_damaged.png" left="-67" right="68" top="-40" bottom="108" />
+<sprite id="legendhelms_noble_southern_hat_06_damaged" offsetY="35" f="64F0" ic="FF4B4D51" width="184" height="222" img="..\entity\legend_helmets\layers\noble_southern_hat_06_damaged.png" left="-67" right="68" top="-40" bottom="108" />
+<sprite id="legendhelms_noble_southern_hat_07_damaged" offsetY="35" f="64F0" ic="FF4B4D51" width="184" height="222" img="..\entity\legend_helmets\layers\noble_southern_hat_07_damaged.png" left="-67" right="68" top="-40" bottom="108" />
 <sprite id="legendhelms_noble_southern_hat_08_damaged" offsetY="35" f="64F0" ic="FF4B4D51" width="184" height="222" img="..\entity\legend_helmets\layers\noble_southern_hat_08_damaged.png" left="-67" right="68" top="-40" bottom="108" />
 <sprite id="legendhelms_noble_southern_hat_01_dead" offsetX="6" offsetY="10" f="64F0" ic="FF222933" width="131" height="125" img="..\entity\legend_helmets\layers\noble_southern_hat_01_dead.png" left="-57" right="59" top="-53" bottom="55" />
 <sprite id="legendhelms_noble_southern_hat_02_dead" offsetX="6" offsetY="10" f="64F0" ic="FF222933" width="131" height="125" img="..\entity\legend_helmets\layers\noble_southern_hat_02_dead.png" left="-57" right="59" top="-53" bottom="55" />
@@ -147,7 +150,4 @@
 <sprite id="legendhelms_faction_helmet_01_damaged" offsetY="35" f="64F0" ic="FF4B4D51" width="184" height="222" img="..\entity\legend_helmets\layers\faction_helmet_01_damaged.png" left="-67" right="68" top="-40" bottom="108" />
 <sprite id="legendhelms_faction_helmet_02_damaged" offsetY="35" f="64F0" ic="FF4B4D51" width="184" height="222" img="..\entity\legend_helmets\layers\faction_helmet_02_damaged.png" left="-67" right="68" top="-40" bottom="108" />
 <sprite id="legendhelms_faction_helmet_03_damaged" offsetY="35" f="64F0" ic="FF4B4D51" width="184" height="222" img="..\entity\legend_helmets\layers\faction_helmet_03_damaged.png" left="-67" right="68" top="-40" bottom="108" />
-<sprite id="legendhelms_faction_helmet_04_damaged" offsetY="35" f="64F0" ic="FF4B4D51" width="184" height="222" img="..\entity\legend_helmets\layers\faction_helmet_04_damaged.png" left="-67" right="68" top="-40" bottom="108" />
-<sprite id="legendhelms_faction_helmet_05_damaged" offsetY="35" f="64F0" ic="FF4B4D51" width="184" height="222" img="..\entity\legend_helmets\layers\faction_helmet_05_damaged.png" left="-67" right="68" top="-40" bottom="108" />
-<sprite id="legendhelms_faction_helmet_06_damaged" offsetY="35" f="64F0" ic="FF4B4D51" width="184" height="222" img="..\entity\legend_helmets\layers\faction_helmet_06_damaged.png" left="-67" right="68" top="-40" bottom="108" />
 </brush>

@@ -1,4 +1,7 @@
 <brush name="gfx/legend_helmets_15.png" version="17">
+<sprite id="legendhelms_jester_hat_43" offsetY="35" f="64F0" ic="FF4E5053" width="184" height="222" img="..\entity\legend_helmets\layers\jester_hat_43.png" left="-67" right="68" top="-40" bottom="108" />
+<sprite id="legendhelms_jester_hat_44" offsetY="35" f="64F0" ic="FF4E5053" width="184" height="222" img="..\entity\legend_helmets\layers\jester_hat_44.png" left="-67" right="68" top="-40" bottom="108" />
+<sprite id="legendhelms_jester_hat_45" offsetY="35" f="64F0" ic="FF4E5053" width="184" height="222" img="..\entity\legend_helmets\layers\jester_hat_45.png" left="-67" right="68" top="-40" bottom="108" />
 <sprite id="legendhelms_jester_hat_46" offsetY="35" f="64F0" ic="FF4E5053" width="184" height="222" img="..\entity\legend_helmets\layers\jester_hat_46.png" left="-67" right="68" top="-40" bottom="108" />
 <sprite id="legendhelms_jester_hat_47" offsetY="35" f="64F0" ic="FF4E5053" width="184" height="222" img="..\entity\legend_helmets\layers\jester_hat_47.png" left="-67" right="68" top="-40" bottom="108" />
 <sprite id="legendhelms_jester_hat_48" offsetY="35" f="64F0" ic="FF4E5053" width="184" height="222" img="..\entity\legend_helmets\layers\jester_hat_48.png" left="-67" right="68" top="-40" bottom="108" />
@@ -147,7 +150,4 @@
 <sprite id="legendhelms_jester_hat_59_dead" offsetX="6" offsetY="10" f="64F0" ic="FF222933" width="131" height="125" img="..\entity\legend_helmets\layers\jester_hat_59_dead.png" left="-57" right="59" top="-53" bottom="55" />
 <sprite id="legendhelms_jester_hat_60_dead" offsetX="6" offsetY="10" f="64F0" ic="FF222933" width="131" height="125" img="..\entity\legend_helmets\layers\jester_hat_60_dead.png" left="-57" right="59" top="-53" bottom="55" />
 <sprite id="legendhelms_jester_hat_61_dead" offsetX="6" offsetY="10" f="64F0" ic="FF222933" width="131" height="125" img="..\entity\legend_helmets\layers\jester_hat_61_dead.png" left="-57" right="59" top="-53" bottom="55" />
-<sprite id="legendhelms_jester_hat_62_dead" offsetX="6" offsetY="10" f="64F0" ic="FF222933" width="131" height="125" img="..\entity\legend_helmets\layers\jester_hat_62_dead.png" left="-57" right="59" top="-53" bottom="55" />
-<sprite id="legendhelms_jester_hat_63_dead" offsetX="6" offsetY="10" f="64F0" ic="FF222933" width="131" height="125" img="..\entity\legend_helmets\layers\jester_hat_63_dead.png" left="-57" right="59" top="-53" bottom="55" />
-<sprite id="legendhelms_jester_hat_64_dead" offsetX="6" offsetY="10" f="64F0" ic="FF222933" width="131" height="125" img="..\entity\legend_helmets\layers\jester_hat_64_dead.png" left="-57" right="59" top="-53" bottom="55" />
 </brush>

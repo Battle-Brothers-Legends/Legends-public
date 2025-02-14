@@ -1,4 +1,7 @@
 <brush name="gfx/legend_helmets_11.png" version="17">
+<sprite id="legendhelms_noble_feather_05_dead" offsetX="6" offsetY="10" f="64F0" ic="FF222933" width="131" height="125" img="..\entity\legend_helmets\layers\noble_feather_05_dead.png" left="-57" right="59" top="-53" bottom="55" />
+<sprite id="legendhelms_noble_floppy_hat_01" offsetY="35" f="64F0" ic="FF4E5053" width="184" height="222" img="..\entity\legend_helmets\layers\noble_floppy_hat_01.png" left="-67" right="68" top="-40" bottom="108" />
+<sprite id="legendhelms_noble_floppy_hat_02" offsetY="35" f="64F0" ic="FF4E5053" width="184" height="222" img="..\entity\legend_helmets\layers\noble_floppy_hat_02.png" left="-67" right="68" top="-40" bottom="108" />
 <sprite id="legendhelms_noble_floppy_hat_01_damaged" offsetY="35" f="64F0" ic="FF4B4D51" width="184" height="222" img="..\entity\legend_helmets\layers\noble_floppy_hat_01_damaged.png" left="-67" right="68" top="-40" bottom="108" />
 <sprite id="legendhelms_noble_floppy_hat_02_damaged" offsetY="35" f="64F0" ic="FF4B4D51" width="184" height="222" img="..\entity\legend_helmets\layers\noble_floppy_hat_02_damaged.png" left="-67" right="68" top="-40" bottom="108" />
 <sprite id="legendhelms_noble_floppy_hat_01_dead" offsetX="6" offsetY="10" f="64F0" ic="FF222933" width="131" height="125" img="..\entity\legend_helmets\layers\noble_floppy_hat_01_dead.png" left="-57" right="59" top="-53" bottom="55" />
@@ -147,7 +150,4 @@
 <sprite id="legendhelms_ponytail_02_dead" offsetX="6" offsetY="10" f="64F0" ic="FF222933" width="131" height="125" img="..\entity\legend_helmets\layers\ponytail_02_dead.png" left="-57" right="59" top="-53" bottom="55" />
 <sprite id="legendhelms_ponytail_03_dead" offsetX="6" offsetY="10" f="64F0" ic="FF222933" width="131" height="125" img="..\entity\legend_helmets\layers\ponytail_03_dead.png" left="-57" right="59" top="-53" bottom="55" />
 <sprite id="legendhelms_ponytail_04_dead" offsetX="6" offsetY="10" f="64F0" ic="FF222933" width="131" height="125" img="..\entity\legend_helmets\layers\ponytail_04_dead.png" left="-57" right="59" top="-53" bottom="55" />
-<sprite id="legendhelms_ram_horns_01" offsetY="35" f="64F0" ic="FF4E5053" width="184" height="222" img="..\entity\legend_helmets\layers\ram_horns_01.png" left="-67" right="68" top="-40" bottom="108" />
-<sprite id="legendhelms_ram_horns_01_damaged" offsetY="35" f="64F0" ic="FF4B4D51" width="184" height="222" img="..\entity\legend_helmets\layers\ram_horns_01_damaged.png" left="-67" right="68" top="-40" bottom="108" />
-<sprite id="legendhelms_ram_horns_01_dead" offsetX="6" offsetY="10" f="64F0" ic="FF222933" width="131" height="125" img="..\entity\legend_helmets\layers\ram_horns_01_dead.png" left="-57" right="59" top="-53" bottom="55" />
 </brush>
