@@ -11,6 +11,7 @@ class Defs:
         {"name": "cloak_rich", "min" : 1, "max" : 6, "layer": "cloak"},
         {"name": "tabard_named", "min" : 1, "max" : 26, "layer": "tabard"},
         {"name": "mountain_armor", "min" : 1, "max" : 2, "layer": "plate"},
+        {"name": "skin_armor", "min" : 1, "max" : 2, "layer": "plate"},
     ]
 
     layers = [

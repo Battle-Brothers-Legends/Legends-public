@@ -557,12 +557,6 @@
 	<sprite id="bust_body_514_dead_arrows" offsetX="6" offsetY="10" f="64FB" ic="FF495054" width="131" height="114" img="entity\bodies\bust_body_514_dead_arrows.png" left="-13" right="25" top="-16" bottom="44" />
 	<sprite id="bust_body_514_dead_javelin" offsetX="6" offsetY="10" f="64FB" ic="FF12182B" width="131" height="134" img="entity\bodies\bust_body_514_dead_javelin.png" left="-26" right="6" top="-27" bottom="67" />
 
-	<sprite id="bust_body_515" offsetY="35" ic="FF1C3E3F" width="140" height="248" img="entity\bodies\bust_body_515.png" left="-45" right="43" top="-51" bottom="11" />
-	<sprite id="bust_body_515_damaged" offsetY="35" ic="FF1B3C3E" width="140" height="248" img="entity\bodies\bust_body_515_damaged.png" left="-45" right="43" top="-51" bottom="11" />
-	<sprite id="bust_body_515_dead" offsetX="6" offsetY="10" f="64FE" ic="FF1B3438" width="191" height="185" img="entity\bodies\bust_body_515_dead.png" left="-62" right="66" top="-65" bottom="57" />
-	<sprite id="bust_body_515_dead_arrows" offsetX="6" offsetY="10" f="64FB" ic="FF464C51" width="191" height="185" img="entity\bodies\bust_body_515_dead_arrows.png" />
-	<sprite id="bust_body_515_dead_javelin" offsetX="6" offsetY="10" f="64FB" ic="FF141C29" width="191" height="185" img="entity\bodies\bust_body_515_dead_javelin.png" left="-31" right="13" top="-19" bottom="65" />
-
 	<sprite id="bust_body_517" offsetY="35" ic="FF333741" width="104" height="142" img="entity\bodies\bust_body_517.png" left="-46" right="44" top="-53" bottom="13" />
 	<sprite id="bust_body_517_damaged" offsetY="35" ic="FF2E343E" width="104" height="142" img="entity\bodies\bust_body_517_damaged.png" top="-53" bottom="13" />
 	<sprite id="bust_body_517_dead" offsetX="6" offsetY="10" f="64FE" ic="FF2B2F37" width="131" height="125" img="entity\bodies\bust_body_517_dead.png" top="-52" bottom="56" />

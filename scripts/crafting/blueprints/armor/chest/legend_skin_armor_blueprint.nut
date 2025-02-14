@@ -38,14 +38,7 @@ this.legend_skin_armor_blueprint <- this.inherit("scripts/crafting/blueprint", {
 
 	function onCraft( _stash )
 	{
-		local item;
-
-		local item = this.Const.World.Common.pickArmor([
-			[1, "legendary/legend_skin_armor"]
-		]);
-
-		// item.m.Name = "";
-		_stash.add(item);
+		_stash.add(::new("scripts/items/legend_armor/legendary/legend_skin_armor"));
 	}
 
 });

@@ -24,7 +24,7 @@ if (!("ArmorObjs" in ::Const.LegendMod))
 			[1, "chain/legend_armor_rusty_mail_shirt"],
 		],
 		Plate = [
-			[1, "plate/davkul"], 
+			[1, "plate/davkul"],
 		],
 		Cloak = [
 		],
@@ -84,16 +84,16 @@ if (!("ArmorObjs" in ::Const.LegendMod))
 },
 {
 	ID = "legendary/legend_mountain_armor", // this.m.ConditionMax
-	Script = "scripts/items/legend_armor/legendary/legend_armor_mountain_named",
+	Script = "",
 	Sets = [{
 		Cloth = [
-
+			[1, "cloth/legend_gambeson_wolf"]
 		],
 		Chain = [
 
 		],
 		Plate = [
-
+			[1, "legendary/legend_armor_mountain_named"]
 		],
 		Cloak = [
 		],
@@ -105,16 +105,18 @@ if (!("ArmorObjs" in ::Const.LegendMod))
 },
 {
 	ID = "legendary/legend_skin_armor", // 160
-	Script = "scripts/items/legend_armor/legendary/legend_skin_armor",
+	Script = "",
 	Sets = [{
 		Cloth = [
-
+			[5, "cloth/legend_tunic", 4],
+			[1, "cloth/legend_gambeson", 1],
+			[1, "cloth/legend_padded_surcoat", 40],
 		],
 		Chain = [
 
 		],
 		Plate = [
-
+			[1, "legendary/legend_skin_armor"]
 		],
 		Cloak = [
 		],
