@@ -6,6 +6,8 @@
 		"actives.legend_sling_heavy_stone",
 		"actives.legend_shoot_dart",
 		"actives.legend_shoot_stone",
-		"actives.legend_shoot_precise_stone"
+		"actives.legend_shoot_precise_stone",
+		"actives.legend_piercing_shot",
+		"actives.legend_piercing_bolt"
 	]);
 });
