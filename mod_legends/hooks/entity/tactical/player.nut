@@ -808,7 +808,7 @@
 			++this.m.PerkPoints;
 		}
 
-		if (this.m.Level >= 15 && _id == ::Legends.Perks.getID(::Legends.Perk.LegendAdaptive))
+		if (this.m.Level >= 15 && _id == ::Const.Perks.PerkDefObjects[::Const.Perks.PerkDefs.LegendAdaptive].ID)
 		{
 			++this.m.PerkPoints;
 		}
