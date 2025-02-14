@@ -1,19 +1,15 @@
 ::mods_hookExactClass("entity/tactical/enemies/unhold", function(o) 
 {
+	local onFactionChanged = o.onFactionChanged;
 	o.onFactionChanged = function ()
 	{
-		this.actor.onFactionChanged();
+		onFactionChanged();
 		local flip = this.isAlliedWithPlayer();
-		this.getSprite("body").setHorizontalFlipping(flip);
-		this.getSprite("injury").setHorizontalFlipping(flip);
-		this.getSprite("armor").setHorizontalFlipping(flip);
-		this.getSprite("head").setHorizontalFlipping(flip);
 		foreach (a in this.Const.CharacterSprites.Helmets)
 		{
 			if (!this.hasSprite(a))
-			{
 				continue;
-			}
+			
 			this.getSprite(a).setHorizontalFlipping(flip);
 		}
 	}
