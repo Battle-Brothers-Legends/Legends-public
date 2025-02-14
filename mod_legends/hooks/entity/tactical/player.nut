@@ -568,13 +568,13 @@
 			this.getFlags().add("undead");
 			this.getFlags().add("zombie_minion");
 			this.getFlags().add("PlayerZombie");
-			this.improveMood(1.0, "Reborned to live again");
+			this.improveMood(1.0, "Reborn to live again");
 			this.setMoraleState(::Const.MoraleState.Ignore);
 			this.getSkills().add(::new("scripts/skills/traits/legend_rotten_flesh_trait"));
 
 			local perk = ::new("scripts/skills/perks/perk_legend_zombie_bite");
-			perk.IsRefundable = false;
-			this.getSkills().add(perk);
+			if (!this.getBackground().addPerk(::Legends.Perk.LegendZombieBite, 0, false))
+				::Const.Perks.PerkDefObjects[::Const.Perks.PerkDefs.LegendAdaptive].IsRefundable = false;
 
 			if (this.getSkills().hasPerk(::Const.Perks.PerkDefs.NineLives)) {
 				local perk = this.getSkills().getSkillByID("perk.nine_lives");
