@@ -23,9 +23,9 @@ this.legend_jewelry <- this.inherit("scripts/items/helmets/helmet", {
 	function updateVariant()
 	{
 		local variant = this.m.Variant > 9 ? this.m.Variant : "0" + this.m.Variant;
-		this.m.Sprite = "legend_jewelry" + "_" + variant;
-		this.m.SpriteDamaged = "legend_jewelry" + "_" + variant + "_damaged";
-		this.m.SpriteCorpse = "legend_jewelry" + "_" + variant + "_dead";
+		this.m.Sprite = "legendhelms_legend_jewelry" + "_" + variant;
+		this.m.SpriteDamaged = "legendhelms_legend_jewelry" + "_" + variant + "_damaged";
+		this.m.SpriteCorpse = "legendhelms_legend_jewelry" + "_" + variant + "_dead";
 		this.m.Icon = "legend_helmets/legend_jewelry" + "_" + variant + ".png";
 		this.m.IconLarge = this.m.Icon;
 	}

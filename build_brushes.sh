@@ -54,7 +54,6 @@ declare -a BRUSHES=(
 "ui"
 "orientation"
 "legend_objects"
-"legend_helmets"
 "legend_helmets/0"
 "legend_helmets/1"
 "legend_helmets/2"

@@ -39,9 +39,9 @@
 
 	o.updateVariant <- function () {
 		local variant = this.m.Variant > 9 ? this.m.Variant : "0" + this.m.Variant;
-		this.m.Sprite = "jester_hat_" + variant;
-		this.m.SpriteDamaged = "jester_hat_" + variant + "_damaged";
-		this.m.SpriteCorpse = "jester_hat_" + variant + "_dead";
+		this.m.Sprite = "legendhelms_jester_hat_" + variant;
+		this.m.SpriteDamaged = "legendhelms_jester_hat_" + variant + "_damaged";
+		this.m.SpriteCorpse = "legendhelms_jester_hat_" + variant + "_dead";
 		this.m.IconLarge = "";
 		this.m.Icon = "helmets/inventory_jester_hat_" + variant + ".png";
 	}

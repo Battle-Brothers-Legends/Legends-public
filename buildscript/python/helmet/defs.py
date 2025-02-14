@@ -12,7 +12,8 @@ class Defs:
         {"name": "redback_helm", "min" : 1, "max" : 1, "layer": "vanity"},
         {"name": "nach_helm", "min" : 1, "max" : 1, "layer": "vanity"},
         {"name": "mountain_helm", "min" : 1, "max" : 2, "layer": "vanity"},
-        {"name": "demon_alp_helm", "min" : 1, "max" : 1, "layer": "vanity"}
+        {"name": "demon_alp_helm", "min" : 1, "max" : 1, "layer": "vanity"},
+        {"name": "legend_jewelry", "min" : 1, "max" : 1, "layer": "vanity"}
     ]
 
     layers = [

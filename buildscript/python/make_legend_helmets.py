@@ -1,6 +1,6 @@
 from string import Template
 from shutil import copyfile
-from helmet import Templates, Static, Defs
+from helmet import Templates, Defs
 import os, argparse, json
 
 def checkForIcon(path, iconpath, variants):
@@ -40,13 +40,6 @@ def makeSheet(path, num):
 
 
 def makeBrushes(path):
-    filepath = os.path.join(path, "unpacked", "legend_helmets", "metadata.xml")
-    F = open(filepath, "w")
-    F.write('<brush name="gfx/legend_helmets.png" version="17">\n')
-    F.write(Static.metadata)
-    F.write('</brush>\n')
-    F.close()
-
     fileCount = 0
     imageCount = 0
     F = makeSheet(path, fileCount)
