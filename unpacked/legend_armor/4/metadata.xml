@@ -173,4 +173,10 @@
 <sprite id="bust_tabard_named_24_dead" offsetX="6" offsetY="10" f="64FE" ic="FF2438DA" width="131" height="125" img="..\entity\legend_armor\bust_tabard_named_24_dead.png" left="-57" right="59" top="-53" bottom="55" />
 <sprite id="bust_tabard_named_25_dead" offsetX="6" offsetY="10" f="64FE" ic="FF2438DB" width="131" height="125" img="..\entity\legend_armor\bust_tabard_named_25_dead.png" left="-57" right="59" top="-53" bottom="55" />
 <sprite id="bust_tabard_named_26_dead" offsetX="6" offsetY="10" f="64FE" ic="FF2438DC" width="131" height="125" img="..\entity\legend_armor\bust_tabard_named_26_dead.png" left="-57" right="59" top="-53" bottom="55" />
+<sprite id="bust_mountain_armor_01" offsetY="35" f="64FE" ic="FF2438DD" width="104" height="142" img="..\entity\legend_armor\bust_mountain_armor_01.png" left="-44" right="50" top="-53" bottom="13" />
+<sprite id="bust_mountain_armor_02" offsetY="35" f="64FE" ic="FF2438DE" width="104" height="142" img="..\entity\legend_armor\bust_mountain_armor_02.png" left="-44" right="50" top="-53" bottom="13" />
+<sprite id="bust_mountain_armor_01_damaged" offsetY="35" f="64FE" ic="FF2438DF" width="104" height="142" img="..\entity\legend_armor\bust_mountain_armor_01_damaged.png" left="-44" right="50" top="-53" bottom="13" />
+<sprite id="bust_mountain_armor_02_damaged" offsetY="35" f="64FE" ic="FF2438E0" width="104" height="142" img="..\entity\legend_armor\bust_mountain_armor_02_damaged.png" left="-44" right="50" top="-53" bottom="13" />
+<sprite id="bust_mountain_armor_01_dead" offsetX="6" offsetY="10" f="64FE" ic="FF2438E1" width="131" height="125" img="..\entity\legend_armor\bust_mountain_armor_01_dead.png" left="-57" right="59" top="-53" bottom="55" />
+<sprite id="bust_mountain_armor_02_dead" offsetX="6" offsetY="10" f="64FE" ic="FF2438E2" width="131" height="125" img="..\entity\legend_armor\bust_mountain_armor_02_dead.png" left="-57" right="59" top="-53" bottom="55" />
 </brush>

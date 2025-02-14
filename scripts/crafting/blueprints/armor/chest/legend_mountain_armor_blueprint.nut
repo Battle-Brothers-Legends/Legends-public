@@ -39,7 +39,9 @@ this.legend_mountain_armor_blueprint <- this.inherit("scripts/crafting/blueprint
 
 	function onCraft( _stash )
 	{
-		_stash.add(this.new("scripts/items/legend_armor/legendary/legend_armor_mountain_named"));
+		local item = this.new("scripts/items/legend_armor/legendary/legend_armor_mountain_named");
+		item.resetStats();
+		_stash.add(item);
 	}
 
 });

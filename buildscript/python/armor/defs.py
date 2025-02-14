@@ -9,7 +9,8 @@ class Defs:
         {"name" :"named_emperors_cloak", "min" : 1, "max" : 1, "layer" : "cloak"},
         {"name" :"named_emperors_armor", "min" : 1, "max" : 1, "layer" : "plate"},
         {"name": "cloak_rich", "min" : 1, "max" : 6, "layer": "cloak"},
-        {"name": "tabard_named", "min" : 1, "max" : 26, "layer": "tabard"}
+        {"name": "tabard_named", "min" : 1, "max" : 26, "layer": "tabard"},
+        {"name": "mountain_armor", "min" : 1, "max" : 2, "layer": "plate"},
     ]
 
     layers = [
@@ -694,7 +695,7 @@ class Defs:
 {"name": "legend_southern_scale",                  "layer": "plate", "min": 1, "max": 1, "value" : 1500, "con" : 155, "stam" : -26, "impactSound" : "chain", "invSound" : "chain", "brush" : "southern_scale",
  "title" :  "Heavy Southern Lamellar",
  "desc" :  "A heavy lamellar plated harness",
- "adesc" : "Has heavy lamellar plated harness"
+ "adesc" : "Has a heavy lamellar plated harness"
 },
 
 

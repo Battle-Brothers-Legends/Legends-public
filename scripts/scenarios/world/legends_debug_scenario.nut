@@ -296,7 +296,7 @@ this.legends_debug_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 			"armor/legend_armor_warlock_cloak",
 			"armor/legend_armor_werewolf_mail",
 
-			"legendary/legend_armor_mountain",
+			"legendary/legend_armor_mountain_named",
 			"legendary/legend_armor_of_davkul",
 			"legendary/legend_skin_armor",
 			"legendary/legend_emperors_armor",
