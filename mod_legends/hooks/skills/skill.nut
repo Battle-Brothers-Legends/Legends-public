@@ -749,7 +749,7 @@
 			];
 
 			foreach (r in racialSkills) {
-				racialSkill = ::Legends.Traits.get(targetEntity, racialSkills[i]);
+				racialSkill = ::Legends.Traits.get(targetEntity, r);
 				if (racialSkill)
 					break;
 			}
