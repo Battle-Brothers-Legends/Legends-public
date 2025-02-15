@@ -39,7 +39,10 @@ if (!("Perk" in ::Legends))
 	::Const.Perks.PerkDefObjects.extend(_perkDefObjects);
 	foreach (i, perkDefObject in _perkDefObjects)
 	{
-		::Legends.Perk[perkDefObject.Const] <- size + i;
+		if (perkDefObject.Const in ::Legends.Perk)
+			::Legends.Perk[perkDefObject.Const] = size + i;
+		else
+			::Legends.Perk[perkDefObject.Const] <- size + i;
 		::Const.Perks.PerkDefs[perkDefObject.Const] <- size + i;
 		::Const.Perks.LookupMap[perkDefObject.ID] <- perkDefObject;
 	}
@@ -147,6 +150,7 @@ if (!("Perk" in ::Legends))
 local perkDefObjects = [];
 
 // Vanilla defined perks
+::Legends.Perk.Relentless <- null;
 perkDefObjects.push({
 	ID = "perk.relentless",
 	Script = "scripts/skills/perks/perk_relentless",
@@ -156,6 +160,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/perk_26_sw.png",
 	Const = "Relentless"
 });
+
+::Legends.Perk.DevastatingStrikes <- null;
 perkDefObjects.push({
 	ID = "perk.devastating_strikes",
 	Script = "scripts/skills/perks/perk_devastating_strikes",
@@ -165,6 +171,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/devastating_strikes_bw.png",
 	Const = "DevastatingStrikes"
 });
+
+::Legends.Perk.ShieldBash <- null;
 perkDefObjects.push({
 	ID = "perk.shield_bash_legend",
 	Script = "scripts/skills/perks/perk_shield_bash",
@@ -174,6 +182,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/perk_22_sw.png",
 	Const = "ShieldBash"
 });
+
+::Legends.Perk.FastAdaption <- null;
 perkDefObjects.push({
 	ID = "perk.fast_adaption",
 	Script = "scripts/skills/perks/perk_fast_adaption",
@@ -183,6 +193,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/perk_33_sw.png",
 	Const = "FastAdaption"
 });
+
+::Legends.Perk.CripplingStrikes <- null;
 perkDefObjects.push({
 	ID = "perk.crippling_strikes",
 	Script = "scripts/skills/perks/perk_crippling_strikes",
@@ -192,6 +204,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/perk_57_sw.png",
 	Const = "CripplingStrikes"
 });
+
+::Legends.Perk.Colossus <- null;
 perkDefObjects.push({
 	ID = "perk.colossus",
 	Script = "scripts/skills/perks/perk_colossus",
@@ -201,6 +215,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/perk_06_sw.png",
 	Const = "Colossus"
 });
+
+::Legends.Perk.NineLives <- null;
 perkDefObjects.push({
 	ID = "perk.nine_lives",
 	Script = "scripts/skills/perks/perk_nine_lives",
@@ -210,6 +226,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/perk_07_sw.png",
 	Const = "NineLives"
 });
+
+::Legends.Perk.BagsAndBelts <- null;
 perkDefObjects.push({
 	ID = "perk.bags_and_belts",
 	Script = "scripts/skills/perks/perk_bags_and_belts",
@@ -219,6 +237,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/perk_20_sw.png",
 	Const = "BagsAndBelts"
 });
+
+::Legends.Perk.Pathfinder <- null;
 perkDefObjects.push({
 	ID = "perk.pathfinder",
 	Script = "scripts/skills/perks/perk_pathfinder",
@@ -228,6 +248,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/perk_23_sw.png",
 	Const = "Pathfinder"
 });
+
+::Legends.Perk.Adrenaline <- null;
 perkDefObjects.push({
 	ID = "perk.adrenaline",
 	Script = "scripts/skills/perks/perk_adrenalin",
@@ -237,6 +259,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/perk_37_sw.png",
 	Const = "Adrenaline"
 });
+
+::Legends.Perk.Recover <- null;
 perkDefObjects.push({
 	ID = "perk.recover",
 	Script = "scripts/skills/perks/perk_recover",
@@ -246,6 +270,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/perk_54_sw.png",
 	Const = "Recover"
 });
+
+::Legends.Perk.Student <- null;
 perkDefObjects.push({
 	ID = "perk.student",
 	Script = "scripts/skills/perks/perk_student",
@@ -255,6 +281,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/perk_21_sw.png",
 	Const = "Student"
 });
+
+::Legends.Perk.CoupDeGrace <- null;
 perkDefObjects.push({
 	ID = "perk.coup_de_grace",
 	Script = "scripts/skills/perks/perk_coup_de_grace",
@@ -264,6 +292,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/perk_16_sw.png",
 	Const = "CoupDeGrace"
 });
+
+::Legends.Perk.Bullseye <- null;
 perkDefObjects.push({
 	ID = "perk.bullseye",
 	Script = "scripts/skills/perks/perk_bullseye",
@@ -273,6 +303,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/perk_17_sw.png",
 	Const = "Bullseye"
 });
+
+::Legends.Perk.Dodge <- null;
 perkDefObjects.push({
 	ID = "perk.dodge",
 	Script = "scripts/skills/perks/perk_dodge",
@@ -282,6 +314,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/perk_01_sw.png",
 	Const = "Dodge"
 });
+
+::Legends.Perk.FortifiedMind <- null;
 perkDefObjects.push({
 	ID = "perk.fortified_mind",
 	Script = "scripts/skills/perks/perk_fortified_mind",
@@ -291,6 +325,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/perk_08_sw.png",
 	Const = "FortifiedMind"
 });
+
+::Legends.Perk.HoldOut <- null;
 perkDefObjects.push({
 	ID = "perk.hold_out",
 	Script = "scripts/skills/perks/perk_hold_out",
@@ -300,6 +336,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/perk_04_sw.png",
 	Const = "HoldOut"
 });
+
+::Legends.Perk.SteelBrow <- null;
 perkDefObjects.push({
 	ID = "perk.steel_brow",
 	Script = "scripts/skills/perks/perk_steel_brow",
@@ -309,6 +347,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/perk_09_sw.png",
 	Const = "SteelBrow"
 });
+
+::Legends.Perk.QuickHands <- null;
 perkDefObjects.push({
 	ID = "perk.quick_hands",
 	Script = "scripts/skills/perks/perk_quick_hands",
@@ -318,6 +358,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/perk_39_sw.png",
 	Const = "QuickHands"
 });
+
+::Legends.Perk.Gifted <- null;
 perkDefObjects.push({
 	ID = "perk.gifted",
 	Script = "scripts/skills/perks/perk_gifted",
@@ -327,6 +369,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/perk_56_sw.png",
 	Const = "Gifted"
 });
+
+::Legends.Perk.Backstabber <- null;
 perkDefObjects.push({
 	ID = "perk.backstabber",
 	Script = "scripts/skills/perks/perk_backstabber",
@@ -336,6 +380,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/perk_59_sw.png",
 	Const = "Backstabber"
 });
+
+::Legends.Perk.Anticipation <- null;
 perkDefObjects.push({
 	ID = "perk.anticipation",
 	Script = "scripts/skills/perks/perk_anticipation",
@@ -345,6 +391,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/perk_10_sw.png",
 	Const = "Anticipation"
 });
+
+::Legends.Perk.ShieldExpert <- null;
 perkDefObjects.push({
 	ID = "perk.shield_expert",
 	Script = "scripts/skills/perks/perk_shield_expert",
@@ -354,6 +402,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/perk_05_sw.png",
 	Const = "ShieldExpert"
 });
+
+::Legends.Perk.Brawny <- null;
 perkDefObjects.push({
 	ID = "perk.brawny",
 	Script = "scripts/skills/perks/perk_brawny",
@@ -363,6 +413,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/perk_40_sw.png",
 	Const = "Brawny"
 });
+
+::Legends.Perk.Rotation <- null;
 perkDefObjects.push({
 	ID = "perk.rotation",
 	Script = "scripts/skills/perks/perk_rotation",
@@ -372,6 +424,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/perk_11_sw.png",
 	Const = "Rotation"
 });
+
+::Legends.Perk.RallyTheTroops <- null;
 perkDefObjects.push({
 	ID = "perk.rally_the_troops",
 	Script = "scripts/skills/perks/perk_rally_the_troops",
@@ -381,6 +435,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/perk_42_sw.png",
 	Const = "RallyTheTroops"
 });
+
+::Legends.Perk.Taunt <- null;
 perkDefObjects.push({
 	ID = "perk.taunt",
 	Script = "scripts/skills/perks/perk_taunt",
@@ -390,6 +446,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/perk_38_sw.png",
 	Const = "Taunt"
 });
+
+::Legends.Perk.SpecMace <- null;
 perkDefObjects.push({
 	ID = "perk.mastery.mace",
 	Script = "scripts/skills/perks/perk_mastery_mace",
@@ -399,6 +457,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/perk_43_sw.png",
 	Const = "SpecMace"
 });
+
+::Legends.Perk.SpecFlail <- null;
 perkDefObjects.push({
 	ID = "perk.mastery.flail",
 	Script = "scripts/skills/perks/perk_mastery_flail",
@@ -408,6 +468,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/perk_47_sw.png",
 	Const = "SpecFlail"
 });
+
+::Legends.Perk.SpecHammer <- null;
 perkDefObjects.push({
 	ID = "perk.mastery.hammer",
 	Script = "scripts/skills/perks/perk_mastery_hammer",
@@ -417,6 +479,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/perk_53_sw.png",
 	Const = "SpecHammer"
 });
+
+::Legends.Perk.SpecAxe <- null;
 perkDefObjects.push({
 	ID = "perk.mastery.axe",
 	Script = "scripts/skills/perks/perk_mastery_axe",
@@ -426,6 +490,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/perk_44_sw.png",
 	Const = "SpecAxe"
 });
+
+::Legends.Perk.SpecCleaver <- null;
 perkDefObjects.push({
 	ID = "perk.mastery.cleaver",
 	Script = "scripts/skills/perks/perk_mastery_cleaver",
@@ -435,6 +501,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/perk_52_sw.png",
 	Const = "SpecCleaver"
 });
+
+::Legends.Perk.SpecSword <- null;
 perkDefObjects.push({
 	ID = "perk.mastery.sword",
 	Script = "scripts/skills/perks/perk_mastery_sword",
@@ -444,6 +512,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/perk_46_sw.png",
 	Const = "SpecSword"
 });
+
+::Legends.Perk.SpecDagger <- null;
 perkDefObjects.push({
 	ID = "perk.mastery.dagger",
 	Script = "scripts/skills/perks/perk_mastery_dagger",
@@ -453,6 +523,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/perk_51_sw.png",
 	Const = "SpecDagger"
 });
+
+::Legends.Perk.SpecPolearm <- null;
 perkDefObjects.push({
 	ID = "perk.mastery.polearm",
 	Script = "scripts/skills/perks/perk_mastery_polearm",
@@ -462,6 +534,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/perk_58_sw.png",
 	Const = "SpecPolearm"
 });
+
+::Legends.Perk.SpecSpear <- null;
 perkDefObjects.push({
 	ID = "perk.mastery.spear",
 	Script = "scripts/skills/perks/perk_mastery_spear",
@@ -471,6 +545,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/perk_45_sw.png",
 	Const = "SpecSpear"
 });
+
+::Legends.Perk.SpecCrossbow <- null;
 perkDefObjects.push({
 	ID = "perk.mastery.crossbow",
 	Script = "scripts/skills/perks/perk_mastery_crossbow",
@@ -480,6 +556,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/perk_48_sw.png",
 	Const = "SpecCrossbow"
 });
+
+::Legends.Perk.SpecBow <- null;
 perkDefObjects.push({
 	ID = "perk.mastery.bow",
 	Script = "scripts/skills/perks/perk_mastery_bow",
@@ -489,6 +567,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/perk_49_sw.png",
 	Const = "SpecBow"
 });
+
+::Legends.Perk.SpecThrowing <- null;
 perkDefObjects.push({
 	ID = "perk.mastery.throwing",
 	Script = "scripts/skills/perks/perk_mastery_throwing",
@@ -498,6 +578,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/perk_50_sw.png",
 	Const = "SpecThrowing"
 });
+
+::Legends.Perk.ReachAdvantage <- null;
 perkDefObjects.push({
 	ID = "perk.reach_advantage",
 	Script = "scripts/skills/perks/perk_reach_advantage",
@@ -507,6 +589,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/perk_19_sw.png",
 	Const = "ReachAdvantage"
 });
+
+::Legends.Perk.Overwhelm <- null;
 perkDefObjects.push({
 	ID = "perk.overwhelm",
 	Script = "scripts/skills/perks/perk_overwhelm",
@@ -516,6 +600,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/perk_62_sw.png",
 	Const = "Overwhelm"
 });
+
+::Legends.Perk.LoneWolf <- null;
 perkDefObjects.push({
 	ID = "perk.lone_wolf",
 	Script = "scripts/skills/perks/perk_lone_wolf",
@@ -525,6 +611,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/perk_61_sw.png",
 	Const = "LoneWolf"
 });
+
+::Legends.Perk.Underdog <- null;
 perkDefObjects.push({
 	ID = "perk.underdog",
 	Script = "scripts/skills/perks/perk_underdog",
@@ -534,6 +622,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/perk_60_sw.png",
 	Const = "Underdog"
 });
+
+::Legends.Perk.Footwork <- null;
 perkDefObjects.push({
 	ID = "perk.footwork",
 	Script = "scripts/skills/perks/perk_footwork",
@@ -543,6 +633,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/perk_25_sw.png",
 	Const = "Footwork"
 });
+
+::Legends.Perk.Berserk <- null;
 perkDefObjects.push({
 	ID = "perk.berserk",
 	Script = "scripts/skills/perks/perk_berserk",
@@ -552,6 +644,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/perk_35_sw.png",
 	Const = "Berserk"
 });
+
+::Legends.Perk.HeadHunter <- null;
 perkDefObjects.push({
 	ID = "perk.head_hunter",
 	Script = "scripts/skills/perks/perk_head_hunter",
@@ -561,6 +655,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/perk_15_sw.png",
 	Const = "HeadHunter"
 });
+
+::Legends.Perk.Nimble <- null;
 perkDefObjects.push({
 	ID = "perk.nimble",
 	Script = "scripts/skills/perks/perk_nimble",
@@ -570,6 +666,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/perk_29_sw.png",
 	Const = "Nimble"
 });
+
+::Legends.Perk.BattleForged <- null;
 perkDefObjects.push({
 	ID = "perk.battle_forged",
 	Script = "scripts/skills/perks/perk_battle_forged",
@@ -579,6 +677,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/perk_03_sw.png",
 	Const = "BattleForged"
 });
+
+::Legends.Perk.Fearsome <- null;
 perkDefObjects.push({
 	ID = "perk.fearsome",
 	Script = "scripts/skills/perks/perk_fearsome",
@@ -588,6 +688,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/perk_27_sw.png",
 	Const = "Fearsome"
 });
+
+::Legends.Perk.Duelist <- null;
 perkDefObjects.push({
 	ID = "perk.duelist",
 	Script = "scripts/skills/perks/perk_duelist",
@@ -597,6 +699,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/perk_41_sw.png",
 	Const = "Duelist"
 });
+
+::Legends.Perk.KillingFrenzy <- null;
 perkDefObjects.push({
 	ID = "perk.killing_frenzy",
 	Script = "scripts/skills/perks/perk_killing_frenzy",
@@ -606,6 +710,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/perk_36_sw.png",
 	Const = "KillingFrenzy"
 });
+
+::Legends.Perk.Indomitable <- null;
 perkDefObjects.push({
 	ID = "perk.indomitable",
 	Script = "scripts/skills/perks/perk_indomitable",
@@ -615,6 +721,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/perk_30_sw.png",
 	Const = "Indomitable"
 });
+
+::Legends.Perk.Steadfast <- null;
 perkDefObjects.push({
 	ID = "perk.steadfast",
 	Script = "scripts/skills/perks/perk_steadfast",
@@ -624,6 +732,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/steadfast_circle_bw.png",
 	Const = "Steadfast"
 });
+
+::Legends.Perk.SunderingStrikes <- null;
 perkDefObjects.push({
 	ID = "perk.sundering_strikes",
 	Script = "scripts/skills/perks/perk_sundering_strikes",
@@ -633,6 +743,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/sunderingstrikes_circle_bw.png",
 	Const = "SunderingStrikes"
 });
+
+::Legends.Perk.Stalwart <- null;
 perkDefObjects.push({
 	ID = "perk.stalwart",
 	Script = "scripts/skills/perks/perk_stalwart",
@@ -642,6 +754,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/stalwart_bw.png",
 	Const = "Stalwart"
 });
+
+::Legends.Perk.BattleFlow <- null;
 perkDefObjects.push({
 	ID = "perk.battle_flow",
 	Script = "scripts/skills/perks/perk_battle_flow",
@@ -651,6 +765,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/battle_flow56_circle_bw.png",
 	Const = "BattleFlow"
 });
+
+::Legends.Perk.InspiringPresence <- null;
 perkDefObjects.push({
 	ID = "perk.inspiring_presence",
 	Script = "scripts/skills/perks/perk_inspiring_presence",
@@ -661,7 +777,7 @@ perkDefObjects.push({
 	Const = "InspiringPresence"
 });
 
-// Legend defined perks
+::Legends.Perk.LegendBallistics <- null;
 perkDefObjects.push({
 	ID = "perk.legend_ballistics",
 	Script = "scripts/skills/perks/perk_legend_ballistics",
@@ -671,6 +787,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/ballistics56_circle_bw.png",
 	Const = "LegendBallistics"
 });
+
+::Legends.Perk.LegendDebilitate <- null;
 perkDefObjects.push({
 	ID = "perk.legend_debilitate",
 	Script = "scripts/skills/perks/perk_legend_debilitate",
@@ -680,6 +798,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/debilitate_circle_56_bw.png",
 	Const = "LegendDebilitate"
 });
+
+::Legends.Perk.LegendReturnFavor <- null;
 perkDefObjects.push({
 	ID = "perk.legend_return_favor",
 	Script = "scripts/skills/perks/perk_legend_return_favor",
@@ -689,6 +809,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/return_favor_circle_bw.png",
 	Const = "LegendReturnFavor"
 });
+
+::Legends.Perk.LegendDaze <- null;
 perkDefObjects.push({
 	ID = "perk.legend_daze",
 	Script = "scripts/skills/perks/perk_legend_daze",
@@ -698,6 +820,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/daze56_circle_bw.png",
 	Const = "LegendDaze"
 });
+
+::Legends.Perk.LegendRoster1 <- null;
 perkDefObjects.push({
 	ID = "perk.legend_roster_1",
 	Script = "scripts/skills/perks/perk_legend_roster_1",
@@ -707,6 +831,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/recruit1_bw.png",
 	Const = "LegendRoster1"
 });
+
+::Legends.Perk.LegendRoster2 <- null;
 perkDefObjects.push({
 	ID = "perk.legend_roster_2",
 	Script = "scripts/skills/perks/perk_legend_roster_2",
@@ -716,6 +842,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/recruit2_bw.png",
 	Const = "LegendRoster2"
 });
+
+::Legends.Perk.LegendRoster3 <- null;
 perkDefObjects.push({
 	ID = "perk.legend_roster_3",
 	Script = "scripts/skills/perks/perk_legend_roster_3",
@@ -725,6 +853,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/recruit3_bw.png",
 	Const = "LegendRoster3"
 });
+
+::Legends.Perk.LegendRoster4 <- null;
 perkDefObjects.push({
 	ID = "perk.legend_roster_4",
 	Script = "scripts/skills/perks/perk_legend_roster_4",
@@ -734,6 +864,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/recruit4_bw.png",
 	Const = "LegendRoster4"
 });
+
+::Legends.Perk.LegendRoster5 <- null;
 perkDefObjects.push({
 	ID = "perk.legend_roster_5",
 	Script = "scripts/skills/perks/perk_legend_roster_5",
@@ -743,6 +875,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/recruit5_bw.png",
 	Const = "LegendRoster5"
 });
+
+::Legends.Perk.LegendRoster6 <- null;
 perkDefObjects.push({
 	ID = "perk.legend_roster_6",
 	Script = "scripts/skills/perks/perk_legend_roster_6",
@@ -752,6 +886,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/recruit6_bw.png",
 	Const = "LegendRoster6"
 });
+
+::Legends.Perk.LegendRoster7 <- null;
 perkDefObjects.push({
 	ID = "perk.legend_roster_7",
 	Script = "scripts/skills/perks/perk_legend_roster_7",
@@ -761,6 +897,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/recruit7_bw.png",
 	Const = "LegendRoster7"
 });
+
+::Legends.Perk.LegendStunned <- null;
 perkDefObjects.push({
 	ID = "perk.legend_stun",
 	Script = "scripts/skills/perks/perk_legend_stun",
@@ -770,6 +908,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/stun56_circle_bw.png",
 	Const = "LegendStunned"
 });
+
+::Legends.Perk.LegendHorrify <- null;
 perkDefObjects.push({
 	ID = "perk.legend_horrify",
 	Script = "scripts/skills/perks/perk_legend_horrify",
@@ -779,6 +919,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/horrify56_circle_bw.png",
 	Const = "LegendHorrify"
 });
+
+::Legends.Perk.LegendEntice <- null;
 perkDefObjects.push({
 	ID = "perk.legend_entice",
 	Script = "scripts/skills/perks/perk_legend_entice",
@@ -788,6 +930,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/entice_circle_56_bw.png",
 	Const = "LegendEntice"
 });
+
+::Legends.Perk.LegendPush <- null;
 perkDefObjects.push({
 	ID = "perk.legend_push",
 	Script = "scripts/skills/perks/perk_legend_push",
@@ -797,6 +941,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/revolt56_circle_bw.png",
 	Const = "LegendPush"
 });
+
+::Legends.Perk.LegendPerfectFocus <- null;
 perkDefObjects.push({
 	ID = "perk.legend_perfect_focus",
 	Script = "scripts/skills/perks/perk_legend_perfect_focus",
@@ -806,6 +952,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/perfectfocus_circle_bw.png",
 	Const = "LegendPerfectFocus"
 });
+
+::Legends.Perk.LegendFirefield <- null;
 perkDefObjects.push({
 	ID = "perk.legend_firefield",
 	Script = "scripts/skills/perks/perk_legend_firefield",
@@ -815,6 +963,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/fire_circle_bw.png",
 	Const = "LegendFirefield"
 });
+
+::Legends.Perk.LegendSleep <- null;
 perkDefObjects.push({
 	ID = "perk.legend_sleep",
 	Script = "scripts/skills/perks/perk_legend_sleep",
@@ -824,6 +974,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/sleep_56_bw.png",
 	Const = "LegendSleep"
 });
+
+::Legends.Perk.LegendFullForce <- null;
 perkDefObjects.push({
 	ID = "perk.legend_full_force",
 	Script = "scripts/skills/perks/perk_legend_full_force",
@@ -833,6 +985,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/fullforce_circle_bw.png",
 	Const = "LegendFullForce"
 });
+
+::Legends.Perk.LegendLookout <- null;
 perkDefObjects.push({
 	ID = "perk.legend_lookout",
 	Script = "scripts/skills/perks/perk_legend_lookout",
@@ -842,6 +996,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/lookout_circle_bw.png",
 	Const = "LegendLookout"
 });
+
+::Legends.Perk.LegendSprint <- null;
 perkDefObjects.push({
 	ID = "perk.legend_sprint",
 	Script = "scripts/skills/perks/perk_legend_sprint",
@@ -851,6 +1007,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/perk_sprint_sw.png",
 	Const = "LegendSprint"
 });
+
+::Legends.Perk.LegendQuickStep <- null;
 perkDefObjects.push({
 	ID = "perk.legend_quick_step",
 	Script = "scripts/skills/perks/perk_legend_quick_step",
@@ -860,6 +1018,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/unarmed_lunge_bw.png",
 	Const = "LegendQuickStep"
 });
+
+::Legends.Perk.LegendAthlete <- null;
 perkDefObjects.push({
 	ID = "perk.legend_athlete",
 	Script = "scripts/skills/perks/perk_legend_athlete",
@@ -869,6 +1029,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/climb_circle_bw.png",
 	Const = "LegendAthlete"
 });
+
+::Legends.Perk.LegendDoubleStrike <- null;
 perkDefObjects.push({
 	ID = "perk.legend_double_strike",
 	Script = "scripts/skills/perks/perk_legend_double_strike",
@@ -878,6 +1040,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/doublestrike_circle_bw.png",
 	Const = "LegendDoubleStrike"
 });
+
+::Legends.Perk.LegendSpecPoison <- null;
 perkDefObjects.push({
 	ID = "perk.legend_mastery_poison",
 	Script = "scripts/skills/perks/perk_legend_mastery_poison",
@@ -887,6 +1051,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/mastery_poison_bw.png",
 	Const = "LegendSpecPoison"
 });
+
+::Legends.Perk.LegendCloseCombatArcher <- null;
 perkDefObjects.push({
 	ID = "perk.legend_close_combat_archer",
 	Script = "scripts/skills/perks/perk_legend_close_combat_archer",
@@ -896,6 +1062,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/closecombat56_bw.png",
 	Const = "LegendCloseCombatArcher"
 });
+
+::Legends.Perk.LegendCascade <- null;
 perkDefObjects.push({
 	ID = "perk.legend_cascade",
 	Script = "scripts/skills/perks/perk_legend_cascade",
@@ -905,6 +1073,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/triplestrike56_bw.png",
 	Const = "LegendCascade"
 });
+
+::Legends.Perk.LegendEvasion <- null;
 perkDefObjects.push({
 	ID = "perk.legend_evasion",
 	Script = "scripts/skills/perks/perk_legend_evasion",
@@ -914,6 +1084,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/evasion_circle_bw.png",
 	Const = "LegendEvasion"
 });
+
+::Legends.Perk.LegendRust <- null;
 perkDefObjects.push({
 	ID = "perk.legend_rust",
 	Script = "scripts/skills/perks/perk_legend_rust",
@@ -923,6 +1095,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/rust56_circle_bw.png",
 	Const = "LegendRust"
 });
+
+::Legends.Perk.LegendDeathtouch <- null;
 perkDefObjects.push({
 	ID = "perk.legend_deathtouch",
 	Script = "scripts/skills/perks/perk_legend_deathtouch",
@@ -932,6 +1106,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/deathtouch_circle_bw.png",
 	Const = "LegendDeathtouch"
 });
+
+::Legends.Perk.LegendPossessUndead <- null;
 perkDefObjects.push({
 	ID = "perk.legend_possess_undead",
 	Script = "scripts/skills/perks/perk_legend_possess_undead",
@@ -941,6 +1117,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/possess56_bw.png",
 	Const = "LegendPossessUndead"
 });
+
+::Legends.Perk.LegendMiasma <- null;
 perkDefObjects.push({
 	ID = "perk.legend_miasma",
 	Script = "scripts/skills/perks/perk_legend_miasma",
@@ -950,6 +1128,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/miasma_circle_bw.png",
 	Const = "LegendMiasma"
 });
+
+::Legends.Perk.LegendHex <- null;
 perkDefObjects.push({
 	ID = "perk.legend_hex",
 	Script = "scripts/skills/perks/perk_legend_hex",
@@ -959,6 +1139,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/hex_circle_bw.png",
 	Const = "LegendHex"
 });
+
+::Legends.Perk.LegendDarkflight <- null;
 perkDefObjects.push({
 	ID = "perk.legend_darkflight",
 	Script = "scripts/skills/perks/perk_legend_darkflight",
@@ -968,6 +1150,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/darkflight_circle_bw.png",
 	Const = "LegendDarkflight"
 });
+
+::Legends.Perk.LegendSpecBandage <- null;
 perkDefObjects.push({
 	ID = "perk.legend_mastery_bandage",
 	Script = "scripts/skills/perks/perk_legend_mastery_bandage",
@@ -977,6 +1161,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/bandage_circle_bw.png",
 	Const = "LegendSpecBandage"
 });
+
+::Legends.Perk.LegendHoldTheLine <- null;
 perkDefObjects.push({
 	ID = "perk.legend_hold_the_line",
 	Script = "scripts/skills/perks/perk_legend_hold_the_line",
@@ -986,6 +1172,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/holdtheline_circle_bw.png",
 	Const = "LegendHoldTheLine"
 });
+
+::Legends.Perk.LegendInspire <- null;
 perkDefObjects.push({
 	ID = "perk.legend_inspire",
 	Script = "scripts/skills/perks/perk_legend_inspire",
@@ -995,6 +1183,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/inspire_circle_bw.png",
 	Const = "LegendInspire"
 });
+
+::Legends.Perk.LegendBloodyHarvest <- null;
 perkDefObjects.push({
 	ID = "perk.legend_bloody_harvest",
 	Script = "scripts/skills/perks/perk_legend_bloody_harvest",
@@ -1004,6 +1194,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/bloody_harvest_bw.png",
 	Const = "LegendBloodyHarvest"
 });
+
+::Legends.Perk.LegendSlaughterer <- null;
 perkDefObjects.push({
 	ID = "perk.legend_slaughterer",
 	Script = "scripts/skills/perks/perk_legend_slaughterer",
@@ -1013,6 +1205,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/slaughterer_circle_bw.png",
 	Const = "LegendSlaughterer"
 });
+
+::Legends.Perk.LegendVengeance <- null;
 perkDefObjects.push({
 	ID = "perk.legend_vengeance",
 	Script = "scripts/skills/perks/perk_legend_vengeance",
@@ -1022,6 +1216,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/vengeance_circle_bw.png",
 	Const = "LegendVengeance"
 });
+
+::Legends.Perk.LegendIronside <- null;
 perkDefObjects.push({
 	ID = "perk.legend_ironside",
 	Script = "scripts/skills/perks/perk_legend_ironside",
@@ -1031,6 +1227,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/perk_101_sw.png",
 	Const = "LegendIronside"
 });
+
+::Legends.Perk.LegendLastStand <- null;
 perkDefObjects.push({
 	ID = "perk.legend_last_stand",
 	Script = "scripts/skills/perks/perk_legend_last_stand",
@@ -1040,6 +1238,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/laststand_circle_bw.png",
 	Const = "LegendLastStand"
 });
+
+::Legends.Perk.LegendRaiseUndead <- null;
 perkDefObjects.push({
 	ID = "perk.legend_raise_undead",
 	Script = "scripts/skills/perks/perk_legend_raise_undead",
@@ -1049,6 +1249,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/raisedead2_circle_bw.png",
 	Const = "LegendRaiseUndead"
 });
+
+::Legends.Perk.LegendWither <- null;
 perkDefObjects.push({
 	ID = "perk.legend_wither",
 	Script = "scripts/skills/perks/perk_legend_wither",
@@ -1058,6 +1260,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/wither56_bw.png",
 	Const = "LegendWither"
 });
+
+::Legends.Perk.LegendRebound <- null;
 perkDefObjects.push({
 	ID = "perk.legend_rebound",
 	Script = "scripts/skills/perks/perk_legend_rebound",
@@ -1067,6 +1271,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/rebound_circle_bw.png",
 	Const = "LegendRebound"
 });
+
+::Legends.Perk.LegendCoordinatedVolleys <- null;
 perkDefObjects.push({
 	ID = "perk.legend_coordinated_volleys",
 	Script = "scripts/skills/perks/perk_legend_coordinated_volleys",
@@ -1076,6 +1282,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/coordinated_volleys_circle_bw.png",
 	Const = "LegendCoordinatedVolleys"
 });
+
+::Legends.Perk.LegendForwardPush <- null;
 perkDefObjects.push({
 	ID = "perk.legend_push_forward",
 	Script = "scripts/skills/perks/perk_legend_push_forward",
@@ -1085,6 +1293,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/spears_circle_bw.png",
 	Const = "LegendForwardPush"
 });
+
+::Legends.Perk.LegendInsects <- null;
 perkDefObjects.push({
 	ID = "perk.legend_insects",
 	Script = "scripts/skills/perks/perk_legend_insects",
@@ -1094,6 +1304,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/insects_circle_bw.png",
 	Const = "LegendInsects"
 });
+
+::Legends.Perk.LegendChainLightning <- null;
 perkDefObjects.push({
 	ID = "perk.legend_chain_lightning",
 	Script = "scripts/skills/perks/perk_legend_chain_lightning",
@@ -1103,6 +1315,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/lightning_circle_bw.png",
 	Const = "LegendChainLightning"
 });
+
+::Legends.Perk.LegendComposure <- null;
 perkDefObjects.push({
 	ID = "perk.legend_composure",
 	Script = "scripts/skills/perks/perk_legend_composure",
@@ -1112,6 +1326,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/composed_circle_bw.png",
 	Const = "LegendComposure"
 });
+
+::Legends.Perk.LegendNightvision <- null;
 perkDefObjects.push({
 	ID = "perk.legend_nightvision",
 	Script = "scripts/skills/perks/perk_legend_nightvision",
@@ -1121,6 +1337,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/nightvision_circle_bw.png",
 	Const = "LegendNightvision"
 });
+
+::Legends.Perk.LegendMasteryStaves <- null;
 perkDefObjects.push({
 	ID = "perk.legend_mastery_staves",
 	Script = "scripts/skills/perks/perk_legend_mastery_staves",
@@ -1130,6 +1348,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/staffmastery_bw.png",
 	Const = "LegendMasteryStaves"
 });
+
+::Legends.Perk.LegendRelax <- null;
 perkDefObjects.push({
 	ID = "perk.legend_relax",
 	Script = "scripts/skills/perks/perk_legend_relax",
@@ -1139,6 +1359,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/relax_circle_bw.png",
 	Const = "LegendRelax"
 });
+
+::Legends.Perk.LegendGruesomeFeast <- null;
 perkDefObjects.push({
 	ID = "perk.legend_gruesome_feast",
 	Script = "scripts/skills/perks/perk_legend_gruesome_feast",
@@ -1148,6 +1370,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/gruesome_circle_bw.png",
 	Const = "LegendGruesomeFeast"
 });
+
+::Legends.Perk.LegendUberNimble <- null;
 perkDefObjects.push({
 	ID = "perk.legend_ubernimble",
 	Script = "scripts/skills/perks/perk_legend_ubernimble",
@@ -1157,6 +1381,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/ubernimble_circle_bw.png",
 	Const = "LegendUberNimble"
 });
+
+::Legends.Perk.LegendMuscularity <- null;
 perkDefObjects.push({
 	ID = "perk.legend_muscularity",
 	Script = "scripts/skills/perks/perk_legend_muscularity",
@@ -1167,6 +1393,8 @@ perkDefObjects.push({
 	Const = "LegendMuscularity",
 	HasUnactivatedPerkTooltipHints = true
 });
+
+::Legends.Perk.LegendBattleheart <- null;
 perkDefObjects.push({
 	ID = "perk.legend_battleheart",
 	Script = "scripts/skills/perks/perk_legend_battleheart",
@@ -1176,6 +1404,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/battleheart_circle_bw.png",
 	Const = "LegendBattleheart"
 });
+
+::Legends.Perk.LegendTrueBeliever <- null;
 perkDefObjects.push({
 	ID = "perk.legend_true_believer",
 	Script = "scripts/skills/perks/perk_legend_true_believer",
@@ -1185,6 +1415,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/true_believer_circle_bw.png",
 	Const = "LegendTrueBeliever"
 });
+
+::Legends.Perk.LegendPoisonImmunity <- null;
 perkDefObjects.push({
 	ID = "perk.legend_poison_immunity",
 	Script = "scripts/skills/perks/perk_legend_poison_immunity",
@@ -1194,6 +1426,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/poison_immunity_bw.png",
 	Const = "LegendPoisonImmunity"
 });
+
+::Legends.Perk.LegendSummonCat <- null;
 perkDefObjects.push({
 	ID = "perk.legend_summon_cat",
 	Script = "scripts/skills/perks/perk_legend_summon_cat",
@@ -1203,6 +1437,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/cat_circle_bw.png",
 	Const = "LegendSummonCat"
 });
+
+::Legends.Perk.LegendSpawnZombieLow <- null;
 perkDefObjects.push({
 	ID = "perk.legend_spawn_zombie_low",
 	Script = "scripts/skills/perks/perk_legend_spawn_zombie_low",
@@ -1212,6 +1448,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/mold_carrion_circle_bw.png",
 	Const = "LegendSpawnZombieLow"
 });
+
+::Legends.Perk.LegendSpawnZombieMed <- null;
 perkDefObjects.push({
 	ID = "perk.legend_spawn_zombie_med",
 	Script = "scripts/skills/perks/perk_legend_spawn_zombie_med",
@@ -1221,6 +1459,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/fashion_body_circle_bw.png",
 	Const = "LegendSpawnZombieMed"
 });
+
+::Legends.Perk.LegendSpawnZombieHigh <- null;
 perkDefObjects.push({
 	ID = "perk.legend_spawn_zombie_high",
 	Script = "scripts/skills/perks/perk_legend_spawn_zombie_high",
@@ -1230,6 +1470,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/remake_man_circle_bw.png",
 	Const = "LegendSpawnZombieHigh"
 });
+
+::Legends.Perk.LegendSpawnSkeletonLow <- null;
 perkDefObjects.push({
 	ID = "perk.legend_spawn_skeleton_low",
 	Script = "scripts/skills/perks/perk_legend_spawn_skeleton_low",
@@ -1239,6 +1481,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/arrange_bones_circle_bw.png",
 	Const = "LegendSpawnSkeletonLow"
 });
+
+::Legends.Perk.LegendSpawnSkeletonMed <- null;
 perkDefObjects.push({
 	ID = "perk.legend_spawn_skeleton_med",
 	Script = "scripts/skills/perks/perk_legend_spawn_skeleton_med",
@@ -1248,6 +1492,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/align_joints_circle_bw.png",
 	Const = "LegendSpawnSkeletonMed"
 });
+
+::Legends.Perk.LegendSpawnSkeletonHigh <- null;
 perkDefObjects.push({
 	ID = "perk.legend_spawn_skeleton_high",
 	Script = "scripts/skills/perks/perk_legend_spawn_skeleton_high",
@@ -1257,6 +1503,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/rebuild_skeleton_circle_bw.png",
 	Const = "LegendSpawnSkeletonHigh"
 });
+
+::Legends.Perk.LegendExtendendAura <- null;
 perkDefObjects.push({
 	ID = "perk.legend_extended_aura",
 	Script = "scripts/skills/perks/perk_legend_extended_aura",
@@ -1266,6 +1514,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/extended_aura_circle_bw.png",
 	Const = "LegendExtendendAura"
 });
+
+::Legends.Perk.LegendChanneledPower <- null;
 perkDefObjects.push({
 	ID = "perk.legend_channeled_power",
 	Script = "scripts/skills/perks/perk_legend_channeled_power",
@@ -1275,6 +1525,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/channeled_power_circle_bw.png",
 	Const = "LegendChanneledPower"
 });
+
+::Legends.Perk.LegendReclamation <- null;
 perkDefObjects.push({
 	ID = "perk.legend_reclamation",
 	Script = "scripts/skills/perks/perk_legend_reclamation",
@@ -1284,6 +1536,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/reclamation_circle_bw.png",
 	Const = "LegendReclamation"
 });
+
+::Legends.Perk.LegendConservation <- null;
 perkDefObjects.push({
 	ID = "perk.legend_conservation",
 	Script = "scripts/skills/perks/perk_legend_conservation",
@@ -1293,6 +1547,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/conservation_circle_bw.png",
 	Const = "LegendConservation"
 });
+
+::Legends.Perk.LegendEnthrall <- null;
 perkDefObjects.push({
 	ID = "perk.legend_enthrall",
 	Script = "scripts/skills/perks/perk_legend_enthrall",
@@ -1302,6 +1558,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/enthrall_circle_bw.png",
 	Const = "LegendEnthrall"
 });
+
+::Legends.Perk.LegendViolentDecomposition <- null;
 perkDefObjects.push({
 	ID = "perk.legend_violent_decomposition",
 	Script = "scripts/skills/perks/perk_legend_violent_decomposition",
@@ -1311,6 +1569,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/violent_decomposition_circle_bw.png",
 	Const = "LegendViolentDecomposition"
 });
+
+::Legends.Perk.LegendPossession <- null;
 perkDefObjects.push({
 	ID = "perk.legend_possession",
 	Script = "scripts/skills/perks/perk_legend_possession",
@@ -1320,6 +1580,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/possession_circle_56_bw.png",
 	Const = "LegendPossession"
 });
+
+::Legends.Perk.LegendSiphon <- null;
 perkDefObjects.push({
 	ID = "perk.legend_siphon",
 	Script = "scripts/skills/perks/perk_legend_siphon",
@@ -1329,6 +1591,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/siphon_circle_bw.png",
 	Const = "LegendSiphon"
 });
+
+::Legends.Perk.LegendGuideSteps <- null;
 perkDefObjects.push({
 	ID = "perk.legend_guide_steps",
 	Script = "scripts/skills/perks/perk_legend_guide_steps",
@@ -1338,6 +1602,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/guided_steps_circle_bw.png",
 	Const = "LegendGuideSteps"
 });
+
+::Legends.Perk.LegendBerserkerRage <- null;
 perkDefObjects.push({
 	ID = "perk.legend_berserker_rage",
 	Script = "scripts/skills/perks/perk_legend_berserker_rage",
@@ -1347,6 +1613,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/berserker_rage_circle_bw.png",
 	Const = "LegendBerserkerRage"
 });
+
+::Legends.Perk.LegendBecomeBerserker <- null;
 perkDefObjects.push({
 	ID = "perk.legend_become_berserker",
 	Script = "scripts/skills/perks/perk_legend_become_berserker",
@@ -1356,6 +1624,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/berserker_rage_circle_bw.png",
 	Const = "LegendBecomeBerserker"
 });
+
+::Legends.Perk.LegendSkillfulStacking <- null;
 perkDefObjects.push({
 	ID = "perk.legend_skillful_stacking",
 	Script = "scripts/skills/perks/perk_legend_skillful_stacking",
@@ -1365,6 +1635,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/MaxStashT2_bw.png",
 	Const = "LegendSkillfulStacking"
 });
+
+::Legends.Perk.LegendEfficientPacking <- null;
 perkDefObjects.push({
 	ID = "perk.legend_efficient_packing",
 	Script = "scripts/skills/perks/perk_legend_efficient_packing",
@@ -1374,6 +1646,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/MaxStashT1_bw.png",
 	Const = "LegendEfficientPacking"
 });
+
+::Legends.Perk.LegendAmmoBinding <- null;
 perkDefObjects.push({
 	ID = "perk.legend_ammo_binding",
 	Script = "scripts/skills/perks/perk_legend_ammo_binding",
@@ -1383,6 +1657,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/MaxAmmoT1_bw.png",
 	Const = "LegendAmmoBinding"
 });
+
+::Legends.Perk.LegendAmmoBundles <- null;
 perkDefObjects.push({
 	ID = "perk.legend_ammo_bundles",
 	Script = "scripts/skills/perks/perk_legend_ammo_bundles",
@@ -1392,6 +1668,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/MaxAmmoT2_bw.png",
 	Const = "LegendAmmoBundles"
 });
+
+::Legends.Perk.LegendMedPackages <- null;
 perkDefObjects.push({
 	ID = "perk.legend_med_packages",
 	Script = "scripts/skills/perks/perk_legend_med_packages",
@@ -1401,6 +1679,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/MaxMedsT1_bw.png",
 	Const = "LegendMedPackages"
 });
+
+::Legends.Perk.LegendMedIngredients <- null;
 perkDefObjects.push({
 	ID = "perk.legend_med_ingredients",
 	Script = "scripts/skills/perks/perk_legend_med_ingredients",
@@ -1410,6 +1690,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/MaxMedsT2_bw.png",
 	Const = "LegendMedIngredients"
 });
+
+::Legends.Perk.LegendToolsDrawers <- null;
 perkDefObjects.push({
 	ID = "perk.legend_tools_drawers",
 	Script = "scripts/skills/perks/perk_legend_tools_drawers",
@@ -1419,6 +1701,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/MaxToolsT1_bw.png",
 	Const = "LegendToolsDrawers"
 });
+
+::Legends.Perk.LegendToolsSpares <- null;
 perkDefObjects.push({
 	ID = "perk.legend_tools_spares",
 	Script = "scripts/skills/perks/perk_legend_tools_spares",
@@ -1428,6 +1712,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/MaxToolsT2_bw.png",
 	Const = "LegendToolsSpares"
 });
+
+::Legends.Perk.LegendBarterConvincing <- null;
 perkDefObjects.push({
 	ID = "perk.legend_barter_convincing",
 	Script = "scripts/skills/perks/perk_legend_barter_convincing",
@@ -1437,6 +1723,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/BarterT1_bw.png",
 	Const = "LegendBarterConvincing"
 });
+
+::Legends.Perk.LegendBarterTrustworthy <- null;
 perkDefObjects.push({
 	ID = "perk.legend_barter_trustworthy",
 	Script = "scripts/skills/perks/perk_legend_barter_trustworthy",
@@ -1446,6 +1734,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/BarterT2_bw.png",
 	Const = "LegendBarterTrustworthy"
 });
+
+::Legends.Perk.LegendBribe <- null;
 perkDefObjects.push({
 	ID = "perk.legend_bribe",
 	Script = "scripts/skills/perks/perk_legend_bribe",
@@ -1455,6 +1745,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/coins_circle_bw.png",
 	Const = "LegendBribe"
 });
+
+::Legends.Perk.LegendOffBookDeal <- null;
 perkDefObjects.push({
 	ID = "perk.legend_off_book_deal",
 	Script = "scripts/skills/perks/perk_legend_off_book_deal",
@@ -1464,6 +1756,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/coins_circle_bw.png",
 	Const = "LegendOffBookDeal"
 });
+
+::Legends.Perk.LegendSpecialistButcherDamage <- null;
 perkDefObjects.push({
 	ID = "perk.legend_specialist_butcher_damage",
 	Script = "scripts/skills/perks/perk_legend_specialist_butcher_damage",
@@ -1473,6 +1767,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/cleaver_bw.png",
 	Const = "LegendSpecialistButcherDamage"
 });
+
+::Legends.Perk.LegendSpecialistButcherSkill <- null;
 perkDefObjects.push({
 	ID = "perk.legend_specialist_butcher_skill",
 	Script = "scripts/skills/perks/perk_legend_specialist_butcher_skill",
@@ -1482,6 +1778,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/cleaver_bw.png",
 	Const = "LegendSpecialistButcherSkill"
 });
+
+::Legends.Perk.LegendSpecialistHammerDamage <- null;
 perkDefObjects.push({
 	ID = "perk.legend_specialist_hammer_damage",
 	Script = "scripts/skills/perks/perk_legend_specialist_hammer_damage",
@@ -1491,6 +1789,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/hammer_bw.png",
 	Const = "LegendSpecialistHammerDamage"
 });
+
+::Legends.Perk.LegendSpecialistHammerSkill <- null;
 perkDefObjects.push({
 	ID = "perk.legend_specialist_hammer_skill",
 	Script = "scripts/skills/perks/perk_legend_specialist_hammer_skill",
@@ -1500,6 +1800,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/hammer_bw.png",
 	Const = "LegendSpecialistHammerSkill"
 });
+
+::Legends.Perk.LegendSpecialistKnifeDamage <- null;
 perkDefObjects.push({
 	ID = "perk.legend_specialist_knife_damage",
 	Script = "scripts/skills/perks/perk_legend_specialist_knife_damage",
@@ -1509,6 +1811,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/knife_bw.png",
 	Const = "LegendSpecialistKnifeDamage"
 });
+
+::Legends.Perk.LegendSpecialistKnifeSkill <- null;
 perkDefObjects.push({
 	ID = "perk.legend_specialist_knife_skill",
 	Script = "scripts/skills/perks/perk_legend_specialist_knife_skill",
@@ -1518,6 +1822,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/knife_bw.png",
 	Const = "LegendSpecialistKnifeSkill"
 });
+
+::Legends.Perk.LegendSpecialistLuteDamage <- null;
 perkDefObjects.push({
 	ID = "perk.legend_specialist_lute_damage",
 	Script = "scripts/skills/perks/perk_legend_specialist_lute_damage",
@@ -1527,6 +1833,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/lute_bw.png",
 	Const = "LegendSpecialistLuteDamage"
 });
+
+::Legends.Perk.LegendSpecialistLuteSkill <- null;
 perkDefObjects.push({
 	ID = "perk.legend_specialist_lute_skill",
 	Script = "scripts/skills/perks/perk_legend_specialist_lute_skill",
@@ -1536,6 +1844,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/lute_bw.png",
 	Const = "LegendSpecialistLuteSkill"
 });
+
+::Legends.Perk.LegendSpecialistMilitiaDamage <- null;
 perkDefObjects.push({
 	ID = "perk.legend_specialist_militia_damage",
 	Script = "scripts/skills/perks/perk_legend_specialist_militia_damage",
@@ -1545,6 +1855,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/spear_bw.png",
 	Const = "LegendSpecialistMilitiaDamage"
 });
+
+::Legends.Perk.LegendSpecialistMilitiaSkill <- null;
 perkDefObjects.push({
 	ID = "perk.legend_specialist_militia_skill",
 	Script = "scripts/skills/perks/perk_legend_specialist_militia_skill",
@@ -1554,6 +1866,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/spear_bw.png",
 	Const = "LegendSpecialistMilitiaSkill"
 });
+
+::Legends.Perk.LegendSpecialistPickaxeDamage <- null;
 perkDefObjects.push({
 	ID = "perk.legend_specialist_pickaxe_damage",
 	Script = "scripts/skills/perks/perk_legend_specialist_pickaxe_damage",
@@ -1563,6 +1877,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/pickaxe_bw.png",
 	Const = "LegendSpecialistPickaxeDamage"
 });
+
+::Legends.Perk.LegendSpecialistPickaxeSkill <- null;
 perkDefObjects.push({
 	ID = "perk.legend_specialist_pickaxe_skill",
 	Script = "scripts/skills/perks/perk_legend_specialist_pickaxe_skill",
@@ -1572,6 +1888,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/pickaxe_bw.png",
 	Const = "LegendSpecialistPickaxeSkill"
 });
+
+::Legends.Perk.LegendSpecialistPitchforkDamage <- null;
 perkDefObjects.push({
 	ID = "perk.legend_specialist_pitchfork_damage",
 	Script = "scripts/skills/perks/perk_legend_specialist_pitchfork_damage",
@@ -1581,6 +1899,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/pitchfork_bw.png",
 	Const = "LegendSpecialistPitchforkDamage"
 });
+
+::Legends.Perk.LegendSpecialistPitchforkSkill <- null;
 perkDefObjects.push({
 	ID = "perk.legend_specialist_pitchfork_skill",
 	Script = "scripts/skills/perks/perk_legend_specialist_pitchfork_skill",
@@ -1590,6 +1910,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/pitchfork_bw.png",
 	Const = "LegendSpecialistPitchforkSkill"
 });
+
+::Legends.Perk.LegendSpecialistShortbowDamage <- null;
 perkDefObjects.push({
 	ID = "perk.legend_specialist_shortbow_damage",
 	Script = "scripts/skills/perks/perk_legend_specialist_shortbow_damage",
@@ -1599,6 +1921,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/shortbow_bw.png",
 	Const = "LegendSpecialistShortbowDamage"
 });
+
+::Legends.Perk.LegendSpecialistShortbowSkill <- null;
 perkDefObjects.push({
 	ID = "perk.legend_specialist_shortbow_skill",
 	Script = "scripts/skills/perks/perk_legend_specialist_shortbow_skill",
@@ -1608,6 +1932,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/shortbow_bw.png",
 	Const = "LegendSpecialistShortbowSkill"
 });
+
+::Legends.Perk.LegendSpecialistShovelDamage <- null;
 perkDefObjects.push({
 	ID = "perk.legend_specialist_shovel_damage",
 	Script = "scripts/skills/perks/perk_legend_specialist_shovel_damage",
@@ -1617,6 +1943,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/shovel_bw.png",
 	Const = "LegendSpecialistShovelDamage"
 });
+
+::Legends.Perk.LegendSpecialistShovelSkill <- null;
 perkDefObjects.push({
 	ID = "perk.legend_specialist_shovel_skill",
 	Script = "scripts/skills/perks/perk_legend_specialist_shovel_skill",
@@ -1626,6 +1954,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/shovel_bw.png",
 	Const = "LegendSpecialistShovelSkill"
 });
+
+::Legends.Perk.LegendSpecialistWoodaxeDamage <- null;
 perkDefObjects.push({
 	ID = "perk.legend_specialist_woodaxe_damage",
 	Script = "scripts/skills/perks/perk_legend_specialist_woodaxe_damage",
@@ -1635,6 +1965,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/woodaxe_bw.png",
 	Const = "LegendSpecialistWoodaxeDamage"
 });
+
+::Legends.Perk.LegendSpecialistWoodaxeSkill <- null;
 perkDefObjects.push({
 	ID = "perk.legend_specialist_woodaxe_skill",
 	Script = "scripts/skills/perks/perk_legend_specialist_woodaxe_skill",
@@ -1644,6 +1976,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/woodaxe_bw.png",
 	Const = "LegendSpecialistWoodaxeSkill"
 });
+
+::Legends.Perk.LegendSpecialistSickleDamage <- null;
 perkDefObjects.push({
 	ID = "perk.legend_specialist_sickle_damage",
 	Script = "scripts/skills/perks/perk_legend_specialist_sickle_damage",
@@ -1653,6 +1987,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/sickle_bw.png",
 	Const = "LegendSpecialistSickleDamage"
 });
+
+::Legends.Perk.LegendSpecialistSickleSkill <- null;
 perkDefObjects.push({
 	ID = "perk.legend_specialist_sickle_skill",
 	Script = "scripts/skills/perks/perk_legend_specialist_sickle_skill",
@@ -1662,6 +1998,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/sickle_bw.png",
 	Const = "LegendSpecialistSickleSkill"
 });
+
+::Legends.Perk.LegendSpecialistSlingDamage <- null;
 perkDefObjects.push({
 	ID = "perk.legend_specialist_sling_damage",
 	Script = "scripts/skills/perks/perk_legend_specialist_sling_damage",
@@ -1671,6 +2009,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/sling_bw.png",
 	Const = "LegendSpecialistSlingDamage"
 });
+
+::Legends.Perk.LegendSpecialistSlingSkill <- null;
 perkDefObjects.push({
 	ID = "perk.legend_specialist_sling_skill",
 	Script = "scripts/skills/perks/perk_legend_specialist_sling_skill",
@@ -1680,6 +2020,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/sling_bw.png",
 	Const = "LegendSpecialistSlingSkill"
 });
+
+::Legends.Perk.LegendBigGameHunter <- null;
 perkDefObjects.push({
 	ID = "perk.legend_big_game_hunter",
 	Script = "scripts/skills/perks/perk_legend_big_game_hunter",
@@ -1689,6 +2031,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/BigGameHunterPerk_bw.png",
 	Const = "LegendBigGameHunter"
 });
+
+::Legends.Perk.LegendSecondWind <- null;
 perkDefObjects.push({
 	ID = "perk.legend_second_wind",
 	Script = "scripts/skills/perks/perk_legend_second_wind",
@@ -1698,6 +2042,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/SecondWindPerk_bw.png",
 	Const = "LegendSecondWind"
 });
+
+::Legends.Perk.LegendMarkTarget <- null;
 perkDefObjects.push({
 	ID = "perk.legend_mark_target",
 	Script = "scripts/skills/perks/perk_legend_mark_target",
@@ -1707,6 +2053,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/MarkTargetPerk_bw.png",
 	Const = "LegendMarkTarget"
 });
+
+::Legends.Perk.LegendFieldTriage <- null;
 perkDefObjects.push({
 	ID = "perk.legend_field_triage",
 	Script = "scripts/skills/perks/perk_legend_field_triage",
@@ -1716,6 +2064,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/MaxMedsT2_bw.png",
 	Const = "LegendFieldTriage"
 });
+
+::Legends.Perk.LegendFieldRepairs <- null;
 perkDefObjects.push({
 	ID = "perk.legend_field_repairs",
 	Script = "scripts/skills/perks/perk_legend_field_repairs",
@@ -1725,6 +2075,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/MaxToolsT2_bw.png",
 	Const = "LegendFieldRepairs"
 });
+
+::Legends.Perk.LegendDangerPay <- null;
 perkDefObjects.push({
 	ID = "perk.legend_danger_pay",
 	Script = "scripts/skills/perks/perk_legend_danger_pay",
@@ -1734,6 +2086,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/coins_circle_bw.png",
 	Const = "LegendDangerPay"
 });
+
+::Legends.Perk.LegendValaWarden <- null;
 perkDefObjects.push({
 	ID = "perk.legend_vala_warden",
 	Script = "scripts/skills/perks/perk_legend_vala_warden",
@@ -1743,6 +2097,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/legend_vala_warden_sw.png",
 	Const = "LegendValaWarden"
 });
+
+::Legends.Perk.LegendValaThreads <- null;
 perkDefObjects.push({
 	ID = "perk.legend_vala_threads",
 	Script = "scripts/skills/perks/perk_legend_vala_threads",
@@ -1752,6 +2108,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/legend_vala_threads_sw.png",
 	Const = "LegendValaThreads"
 });
+
+::Legends.Perk.LegendValaPremonition <- null;
 perkDefObjects.push({
 	ID = "perk.legend_vala_premonition",
 	Script = "scripts/skills/perks/perk_legend_vala_premonition",
@@ -1761,6 +2119,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/legend_vala_premonition_sw.png",
 	Const = "LegendValaPremonition"
 });
+
+::Legends.Perk.LegendValaChantMastery <- null;
 perkDefObjects.push({
 	ID = "perk.legend_vala_chanting_mastery",
 	Script = "scripts/skills/perks/perk_legend_vala_chanting_mastery",
@@ -1770,6 +2130,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/legend_vala_chanting_mastery_sw.png",
 	Const = "LegendValaChantMastery"
 });
+
+::Legends.Perk.LegendValaTranceMastery <- null;
 perkDefObjects.push({
 	ID = "perk.legend_vala_trance_mastery",
 	Script = "scripts/skills/perks/perk_legend_vala_trance_mastery",
@@ -1779,6 +2141,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/legend_vala_trance_mastery_sw.png",
 	Const = "LegendValaTranceMastery"
 });
+
+::Legends.Perk.LegendValaChantDisharmony <- null;
 perkDefObjects.push({
 	ID = "perk.legend_vala_chant_disharmony",
 	Script = "scripts/skills/perks/perk_legend_vala_chant_disharmony",
@@ -1788,6 +2152,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/legend_vala_chant_disharmony_sw.png",
 	Const = "LegendValaChantDisharmony"
 });
+
+::Legends.Perk.LegendValaSpiritualBond <- null;
 perkDefObjects.push({
 	ID = "perk.legend_vala_spiritual_bond",
 	Script = "scripts/skills/perks/perk_legend_vala_spiritual_bond",
@@ -1797,6 +2163,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/legend_vala_spiritual_bond_sw.png",
 	Const = "LegendValaSpiritualBond"
 });
+
+::Legends.Perk.LegendValaTrancePerspective <- null;
 perkDefObjects.push({
 	ID = "perk.legend_vala_trance_perspective",
 	Script = "scripts/skills/perks/perk_legend_vala_trance_perspective",
@@ -1806,6 +2174,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/legend_vala_trance_perspective_sw.png",
 	Const = "LegendValaTrancePerspective"
 });
+
+::Legends.Perk.LegendValaTranceMalevolent <- null;
 perkDefObjects.push({
 	ID = "perk.legend_vala_trance_malevolent",
 	Script = "scripts/skills/perks/perk_legend_vala_trance_malevolent",
@@ -1815,6 +2185,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/legend_vala_trance_malevolent_sw.png",
 	Const = "LegendValaTranceMalevolent"
 });
+
+::Legends.Perk.LegendPreparedForAnything <- null;
 perkDefObjects.push({
 	ID = "perk.legend_prepared_for_anything",
 	Script = "scripts/skills/perks/perk_legend_prepared_for_anything",
@@ -1824,6 +2196,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/perk_20_sw.png",
 	Const = "LegendPreparedForAnything"
 });
+
+::Legends.Perk.LegendBrinkOfDeath <- null;
 perkDefObjects.push({
 	ID = "perk.legend_brink_of_death",
 	Script = "scripts/skills/perks/perk_legend_brink_of_death",
@@ -1833,6 +2207,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/perk_bod_sw.png",
 	Const = "LegendBrinkOfDeath"
 });
+
+::Legends.Perk.LegendStrictSermons <- null;
 perkDefObjects.push({
 	ID = "perk.legend_strict_sermons",
 	Script = "scripts/skills/perks/perk_legend_strict_sermons",
@@ -1842,6 +2218,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/perk_08_sw.png",
 	Const = "LegendStrictSermons"
 });
+
+::Legends.Perk.LegendInfectiousRage <- null;
 perkDefObjects.push({
 	ID = "perk.legend_infectious_rage",
 	Script = "scripts/skills/perks/perk_legend_infectious_rage",
@@ -1851,6 +2229,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/perk_35_sw.png",
 	Const = "LegendInfectiousRage"
 });
+
+::Legends.Perk.LegendTeacher <- null;
 perkDefObjects.push({
 	ID = "perk.legend_teacher",
 	Script = "scripts/skills/perks/perk_legend_teacher",
@@ -1860,6 +2240,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/perk_21_sw.png",
 	Const = "LegendTeacher"
 });
+
+::Legends.Perk.LegendResurrectionist <- null;
 perkDefObjects.push({
 	ID = "perk.legend_resurrectionist",
 	Script = "scripts/skills/perks/perk_legend_resurrectionist",
@@ -1869,6 +2251,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/reclamation_circle_bw.png",
 	Const = "LegendResurrectionist"
 });
+
+::Legends.Perk.LegendScry <- null;
 perkDefObjects.push({
 	ID = "perk.legend_scry",
 	Script = "scripts/skills/perks/perk_legend_scry",
@@ -1878,6 +2262,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/scry_perk_bw.png",
 	Const = "LegendScry"
 });
+
+::Legends.Perk.LegendPiercingShot <- null;
 perkDefObjects.push({
 	ID = "perk.legend_piercing_shot",
 	Script = "scripts/skills/perks/perk_legend_piercing_shot",
@@ -1887,6 +2273,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/PiercingBoltPerk_bw.png",
 	Const = "LegendPiercingShot"
 });
+
+::Legends.Perk.LegendLevitate <- null;
 perkDefObjects.push({
 	ID = "perk.legend_levitation",
 	Script = "scripts/skills/perks/perk_legend_levitation",
@@ -1896,6 +2284,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/levitate_bw.png",
 	Const = "LegendLevitate"
 });
+
+::Legends.Perk.LegendTeleport <- null;
 perkDefObjects.push({
 	ID = "perk.legend_teleport",
 	Script = "scripts/skills/perks/perk_legend_teleport",
@@ -1905,6 +2295,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/teleport_perk_bw.png",
 	Const = "LegendTeleport"
 });
+
+::Legends.Perk.LegendSpecialistShieldSkill <- null;
 perkDefObjects.push({
 	ID = "perk.legend_specialist_shield_skill",
 	Script = "scripts/skills/perks/perk_legend_specialist_shield_skill",
@@ -1914,6 +2306,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/perk_05_sw.png",
 	Const = "LegendSpecialistShieldSkill"
 });
+
+::Legends.Perk.LegendSpecialistShieldPush <- null;
 perkDefObjects.push({
 	ID = "perk.legend_specialist_shield_push",
 	Script = "scripts/skills/perks/perk_legend_specialist_shield_push",
@@ -1923,6 +2317,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/perk_22_sw.png",
 	Const = "LegendSpecialistShieldPush"
 });
+
+::Legends.Perk.LegendMasteryNets <- null;
 perkDefObjects.push({
 	ID = "perk.legend_mastery_nets",
 	Script = "scripts/skills/perks/perk_legend_mastery_nets",
@@ -1932,6 +2328,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/net_perk_bw.png",
 	Const = "LegendMasteryNets"
 });
+
+::Legends.Perk.LegendValaChantFury <- null;
 perkDefObjects.push({
 	ID = "perk.legend_vala_chant_fury",
 	Script = "scripts/skills/perks/perk_legend_vala_chant_fury",
@@ -1941,6 +2339,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/legend_vala_chant_fury_sw.png",
 	Const = "LegendValaChantFury"
 });
+
+::Legends.Perk.LegendValaChantSenses <- null;
 perkDefObjects.push({
 	ID = "perk.legend_vala_chant_senses",
 	Script = "scripts/skills/perks/perk_legend_vala_chant_senses",
@@ -1950,6 +2350,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/legend_vala_chant_senses_sw.png",
 	Const = "LegendValaChantSenses"
 });
+
+::Legends.Perk.LegendSpecialistScytheSkill <- null;
 perkDefObjects.push({
 	ID = "perk.legend_specialist_scythe_skill",
 	Script = "scripts/skills/perks/perk_legend_specialist_scythe_skill",
@@ -1959,6 +2361,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/scythe_bw.png",
 	Const = "LegendSpecialistScytheSkill"
 });
+
+::Legends.Perk.LegendSpecialistScytheDamage <- null;
 perkDefObjects.push({
 	ID = "perk.legend_specialist_scythe_damage",
 	Script = "scripts/skills/perks/perk_legend_specialist_scythe_damage",
@@ -1968,6 +2372,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/scythe_bw.png",
 	Const = "LegendSpecialistScytheDamage"
 });
+
+::Legends.Perk.LegendInventorAnatomy <- null;
 perkDefObjects.push({
 	ID = "perk.legend_inventor_anatomy",
 	Script = "scripts/skills/perks/perk_legend_inventor_anatomy",
@@ -1977,6 +2383,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/legend_inventor_anatomy_sw.png",
 	Const = "LegendInventorAnatomy"
 });
+
+::Legends.Perk.LegendMasterySlings <- null;
 perkDefObjects.push({
 	ID = "perk.legend_mastery_slings",
 	Script = "scripts/skills/perks/perk_legend_mastery_slings",
@@ -1986,6 +2394,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/sling_bw.png",
 	Const = "LegendMasterySlings"
 });
+
+::Legends.Perk.LegendSpecialistNinetailsDamage <- null;
 perkDefObjects.push({
 	ID = "perk.legend_specialist_ninetails_damage",
 	Script = "scripts/skills/perks/perk_legend_specialist_ninetails_damage",
@@ -1995,6 +2405,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/ninetails_bw.png",
 	Const = "LegendSpecialistNinetailsDamage"
 });
+
+::Legends.Perk.LegendSpecialistNinetailsSkill <- null;
 perkDefObjects.push({
 	ID = "perk.legend_specialist_ninetails_skill",
 	Script = "scripts/skills/perks/perk_legend_specialist_ninetails_skill",
@@ -2004,6 +2416,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/ninetails_bw.png",
 	Const = "LegendSpecialistNinetailsSkill"
 });
+
+::Legends.Perk.LegendFavouredEnemyGhoul <- null;
 perkDefObjects.push({
 	ID = "perk.legend_favoured_enemy_ghoul",
 	Script = "scripts/skills/perks/perk_legend_favoured_enemy_ghoul",
@@ -2014,6 +2428,8 @@ perkDefObjects.push({
 	Const = "LegendFavouredEnemyGhoul",
 	HasUnactivatedPerkTooltipHints = true // Inform general_queryUIPerkTooltipData() in tooltip_events.nut that the Perk has additional hints from getUnactivatedPerkTooltipHints()
 });
+
+::Legends.Perk.LegendFavouredEnemyHexen <- null;
 perkDefObjects.push({
 	ID = "perk.legend_favoured_enemy_hexen",
 	Script = "scripts/skills/perks/perk_legend_favoured_enemy_hexen",
@@ -2024,6 +2440,8 @@ perkDefObjects.push({
 	Const = "LegendFavouredEnemyHexen",
 	HasUnactivatedPerkTooltipHints = true // Inform general_queryUIPerkTooltipData() in tooltip_events.nut that the Perk has additional hints from getUnactivatedPerkTooltipHints()
 });
+
+::Legends.Perk.LegendFavouredEnemyAlps <- null;
 perkDefObjects.push({
 	ID = "perk.legend_favoured_enemy_alps",
 	Script = "scripts/skills/perks/perk_legend_favoured_enemy_alps",
@@ -2034,6 +2452,8 @@ perkDefObjects.push({
 	Const = "LegendFavouredEnemyAlps",
 	HasUnactivatedPerkTooltipHints = true // Inform general_queryUIPerkTooltipData() in tooltip_events.nut that the Perk has additional hints from getUnactivatedPerkTooltipHints()
 });
+
+::Legends.Perk.LegendFavouredEnemyUnhold <- null;
 perkDefObjects.push({
 	ID = "perk.legend_favoured_enemy_unhold",
 	Script = "scripts/skills/perks/perk_legend_favoured_enemy_unhold",
@@ -2044,6 +2464,8 @@ perkDefObjects.push({
 	Const = "LegendFavouredEnemyUnhold",
 	HasUnactivatedPerkTooltipHints = true // Inform general_queryUIPerkTooltipData() in tooltip_events.nut that the Perk has additional hints from getUnactivatedPerkTooltipHints()
 });
+
+::Legends.Perk.LegendFavouredEnemyLindwurm <- null;
 perkDefObjects.push({
 	ID = "perk.legend_favoured_enemy_lindwurm",
 	Script = "scripts/skills/perks/perk_legend_favoured_enemy_lindwurm",
@@ -2054,6 +2476,8 @@ perkDefObjects.push({
 	Const = "LegendFavouredEnemyLindwurm",
 	HasUnactivatedPerkTooltipHints = true // Inform general_queryUIPerkTooltipData() in tooltip_events.nut that the Perk has additional hints from getUnactivatedPerkTooltipHints()
 });
+
+::Legends.Perk.LegendFavouredEnemyDirewolf <- null;
 perkDefObjects.push({
 	ID = "perk.legend_favoured_enemy_direwolf",
 	Script = "scripts/skills/perks/perk_legend_favoured_enemy_direwolf",
@@ -2064,6 +2488,8 @@ perkDefObjects.push({
 	Const = "LegendFavouredEnemyDirewolf",
 	HasUnactivatedPerkTooltipHints = true // Inform general_queryUIPerkTooltipData() in tooltip_events.nut that the Perk has additional hints from getUnactivatedPerkTooltipHints()
 });
+
+::Legends.Perk.LegendFavouredEnemySpider <- null;
 perkDefObjects.push({
 	ID = "perk.legend_favoured_enemy_spider",
 	Script = "scripts/skills/perks/perk_legend_favoured_enemy_spider",
@@ -2074,6 +2500,8 @@ perkDefObjects.push({
 	Const = "LegendFavouredEnemySpider",
 	HasUnactivatedPerkTooltipHints = true // Inform general_queryUIPerkTooltipData() in tooltip_events.nut that the Perk has additional hints from getUnactivatedPerkTooltipHints()
 });
+
+::Legends.Perk.LegendFavouredEnemySchrat <- null;
 perkDefObjects.push({
 	ID = "perk.legend_favoured_enemy_schrat",
 	Script = "scripts/skills/perks/perk_legend_favoured_enemy_schrat",
@@ -2084,6 +2512,8 @@ perkDefObjects.push({
 	Const = "LegendFavouredEnemySchrat",
 	HasUnactivatedPerkTooltipHints = true // Inform general_queryUIPerkTooltipData() in tooltip_events.nut that the Perk has additional hints from getUnactivatedPerkTooltipHints()
 });
+
+::Legends.Perk.LegendFavouredEnemyOrk <- null;
 perkDefObjects.push({
 	ID = "perk.legend_favoured_enemy_ork",
 	Script = "scripts/skills/perks/perk_legend_favoured_enemy_ork",
@@ -2094,6 +2524,8 @@ perkDefObjects.push({
 	Const = "LegendFavouredEnemyOrk",
 	HasUnactivatedPerkTooltipHints = true // Inform general_queryUIPerkTooltipData() in tooltip_events.nut that the Perk has additional hints from getUnactivatedPerkTooltipHints()
 });
+
+::Legends.Perk.LegendFavouredEnemyGoblin <- null;
 perkDefObjects.push({
 	ID = "perk.legend_favoured_enemy_goblin",
 	Script = "scripts/skills/perks/perk_legend_favoured_enemy_goblin",
@@ -2104,6 +2536,8 @@ perkDefObjects.push({
 	Const = "LegendFavouredEnemyGoblin",
 	HasUnactivatedPerkTooltipHints = true // Inform general_queryUIPerkTooltipData() in tooltip_events.nut that the Perk has additional hints from getUnactivatedPerkTooltipHints()
 });
+
+::Legends.Perk.LegendFavouredEnemyVampire <- null;
 perkDefObjects.push({
 	ID = "perk.legend_favoured_enemy_vampire",
 	Script = "scripts/skills/perks/perk_legend_favoured_enemy_vampire",
@@ -2114,6 +2548,8 @@ perkDefObjects.push({
 	Const = "LegendFavouredEnemyVampire",
 	HasUnactivatedPerkTooltipHints = true // Inform general_queryUIPerkTooltipData() in tooltip_events.nut that the Perk has additional hints from getUnactivatedPerkTooltipHints()
 });
+
+::Legends.Perk.LegendFavouredEnemySkeleton <- null;
 perkDefObjects.push({
 	ID = "perk.legend_favoured_enemy_skeleton",
 	Script = "scripts/skills/perks/perk_legend_favoured_enemy_skeleton",
@@ -2124,6 +2560,8 @@ perkDefObjects.push({
 	Const = "LegendFavouredEnemySkeleton",
 	HasUnactivatedPerkTooltipHints = true // Inform general_queryUIPerkTooltipData() in tooltip_events.nut that the Perk has additional hints from getUnactivatedPerkTooltipHints()
 });
+
+::Legends.Perk.LegendFavouredEnemyZombie <- null;
 perkDefObjects.push({
 	ID = "perk.legend_favoured_enemy_zombie",
 	Script = "scripts/skills/perks/perk_legend_favoured_enemy_zombie",
@@ -2134,6 +2572,8 @@ perkDefObjects.push({
 	Const = "LegendFavouredEnemyZombie",
 	HasUnactivatedPerkTooltipHints = true // Inform general_queryUIPerkTooltipData() in tooltip_events.nut that the Perk has additional hints from getUnactivatedPerkTooltipHints()
 });
+
+::Legends.Perk.LegendFavouredEnemyNoble <- null;
 perkDefObjects.push({
 	ID = "perk.legend_favoured_enemy_noble",
 	Script = "scripts/skills/perks/perk_legend_favoured_enemy_noble",
@@ -2144,6 +2584,8 @@ perkDefObjects.push({
 	Const = "LegendFavouredEnemyNoble",
 	HasUnactivatedPerkTooltipHints = true // Inform general_queryUIPerkTooltipData() in tooltip_events.nut that the Perk has additional hints from getUnactivatedPerkTooltipHints()
 });
+
+::Legends.Perk.LegendFavouredEnemyBarbarian <- null;
 perkDefObjects.push({
 	ID = "perk.legend_favoured_enemy_barbarian",
 	Script = "scripts/skills/perks/perk_legend_favoured_enemy_barbarian",
@@ -2154,6 +2596,8 @@ perkDefObjects.push({
 	Const = "LegendFavouredEnemyBarbarian",
 	HasUnactivatedPerkTooltipHints = true // Inform general_queryUIPerkTooltipData() in tooltip_events.nut that the Perk has additional hints from getUnactivatedPerkTooltipHints()
 });
+
+::Legends.Perk.LegendFavouredEnemyBandit <- null;
 perkDefObjects.push({
 	ID = "perk.legend_favoured_enemy_bandit",
 	Script = "scripts/skills/perks/perk_legend_favoured_enemy_bandit",
@@ -2164,6 +2608,8 @@ perkDefObjects.push({
 	Const = "LegendFavouredEnemyBandit",
 	HasUnactivatedPerkTooltipHints = true // Inform general_queryUIPerkTooltipData() in tooltip_events.nut that the Perk has additional hints from getUnactivatedPerkTooltipHints()
 });
+
+::Legends.Perk.LegendFavouredEnemyArcher <- null;
 perkDefObjects.push({
 	ID = "perk.legend_favoured_enemy_master_archer",
 	Script = "scripts/skills/perks/perk_legend_favoured_enemy_master_archer",
@@ -2174,6 +2620,8 @@ perkDefObjects.push({
 	Const = "LegendFavouredEnemyArcher",
 	HasUnactivatedPerkTooltipHints = true // Inform general_queryUIPerkTooltipData() in tooltip_events.nut that the Perk has additional hints from getUnactivatedPerkTooltipHints()
 });
+
+::Legends.Perk.LegendFavouredEnemySwordmaster <- null;
 perkDefObjects.push({
 	ID = "perk.legend_favoured_enemy_swordmaster",
 	Script = "scripts/skills/perks/perk_legend_favoured_enemy_swordmaster",
@@ -2184,6 +2632,8 @@ perkDefObjects.push({
 	Const = "LegendFavouredEnemySwordmaster",
 	HasUnactivatedPerkTooltipHints = true // Inform general_queryUIPerkTooltipData() in tooltip_events.nut that the Perk has additional hints from getUnactivatedPerkTooltipHints()
 });
+
+::Legends.Perk.LegendFavouredEnemyMercenary <- null;
 perkDefObjects.push({
 	ID = "perk.legend_favoured_enemy_mercenary",
 	Script = "scripts/skills/perks/perk_legend_favoured_enemy_mercenary",
@@ -2194,6 +2644,8 @@ perkDefObjects.push({
 	Const = "LegendFavouredEnemyMercenary",
 	HasUnactivatedPerkTooltipHints = true // Inform general_queryUIPerkTooltipData() in tooltip_events.nut that the Perk has additional hints from getUnactivatedPerkTooltipHints()
 });
+
+::Legends.Perk.LegendFavouredEnemyCaravan <- null;
 perkDefObjects.push({
 	ID = "perk.legend_favoured_enemy_caravan",
 	Script = "scripts/skills/perks/perk_legend_favoured_enemy_caravan",
@@ -2204,6 +2656,8 @@ perkDefObjects.push({
 	Const = "LegendFavouredEnemyCaravan",
 	HasUnactivatedPerkTooltipHints = true // Inform general_queryUIPerkTooltipData() in tooltip_events.nut that the Perk has additional hints from getUnactivatedPerkTooltipHints()
 });
+
+::Legends.Perk.LegendFavouredEnemySoutherner <- null;
 perkDefObjects.push({
 	ID = "perk.legend_favoured_enemy_southerner",
 	Script = "scripts/skills/perks/perk_legend_favoured_enemy_southerner",
@@ -2214,6 +2668,8 @@ perkDefObjects.push({
 	Const = "LegendFavouredEnemySoutherner",
 	HasUnactivatedPerkTooltipHints = true // Inform general_queryUIPerkTooltipData() in tooltip_events.nut that the Perk has additional hints from getUnactivatedPerkTooltipHints()
 });
+
+::Legends.Perk.LegendFavouredEnemyNomad <- null;
 perkDefObjects.push({
 	ID = "perk.legend_favoured_enemy_nomad",
 	Script = "scripts/skills/perks/perk_legend_favoured_enemy_nomad",
@@ -2224,6 +2680,8 @@ perkDefObjects.push({
 	Const = "LegendFavouredEnemyNomad",
 	HasUnactivatedPerkTooltipHints = true // Inform general_queryUIPerkTooltipData() in tooltip_events.nut that the Perk has additional hints from getUnactivatedPerkTooltipHints()
 });
+
+::Legends.Perk.LegendForcefulSwing <- null;
 perkDefObjects.push({
 	ID = "perk.legend_forceful_swing",
 	Script = "scripts/skills/perks/perk_legend_forceful_swing",
@@ -2233,6 +2691,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/forceful_swings_bw.png",
 	Const = "LegendForcefulSwing"
 });
+
+::Legends.Perk.LegendBalance <- null;
 perkDefObjects.push({
 	ID = "perk.legend_balance",
 	Script = "scripts/skills/perks/perk_legend_balance",
@@ -2242,6 +2702,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/balance_bw.png",
 	Const = "LegendBalance"
 });
+
+::Legends.Perk.LegendPerfectFit <- null;
 perkDefObjects.push({
 	ID = "perk.legend_perfect_fit",
 	Script = "scripts/skills/perks/perk_legend_perfect_fit",
@@ -2252,6 +2714,8 @@ perkDefObjects.push({
 	Const = "LegendPerfectFit",
 	HasUnactivatedPerkTooltipHints = true
 });
+
+::Legends.Perk.LegendLithe <- null;
 perkDefObjects.push({
 	ID = "perk.legend_lithe",
 	Script = "scripts/skills/perks/perk_legend_lithe",
@@ -2261,6 +2725,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/lithe_bw.png",
 	Const = "LegendLithe"
 });
+
+::Legends.Perk.LegendInTheZone <- null;
 perkDefObjects.push({
 	ID = "perk.legend_in_the_zone",
 	Script = "scripts/skills/perks/perk_legend_in_the_zone",
@@ -2270,6 +2736,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/in_the_zone_bw.png",
 	Const = "LegendInTheZone"
 });
+
+::Legends.Perk.LegendHidden <- null;
 perkDefObjects.push({
 	ID = "perk.legend_hidden",
 	Script = "scripts/skills/perks/perk_legend_hidden",
@@ -2279,6 +2747,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/hidden_bw.png",
 	Const = "LegendHidden"
 });
+
+::Legends.Perk.LegendSpecSpearWall <- null;
 perkDefObjects.push({
 	ID = "perk.legend_specialist_spearwall",
 	Script = "scripts/skills/perks/perk_legend_specialist_spearwall",
@@ -2288,6 +2758,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/spearwall_mastery_bw.png",
 	Const = "LegendSpecSpearWall"
 });
+
+::Legends.Perk.LegendSpecSpearThrust <- null;
 perkDefObjects.push({
 	ID = "perk.legend_specialist_spearthrust",
 	Script = "scripts/skills/perks/perk_legend_specialist_spearthrust",
@@ -2297,6 +2769,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/spearthrust_mastery_bw.png",
 	Const = "LegendSpecSpearThrust"
 });
+
+::Legends.Perk.LegendAssuredConquest <- null;
 perkDefObjects.push({
 	ID = "perk.legend_assured_conquest",
 	Script = "scripts/skills/perks/perk_legend_assured_conquest",
@@ -2306,6 +2780,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/assured_conquest_circle_bw.png",
 	Const = "LegendAssuredConquest"
 });
+
+::Legends.Perk.LegendBlendIn <- null;
 perkDefObjects.push({
 	ID = "perk.legend_blend_in",
 	Script = "scripts/skills/perks/perk_legend_blend_in",
@@ -2315,6 +2791,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/blend_in_circle_bw.png",
 	Const = "LegendBlendIn"
 });
+
+::Legends.Perk.LegendSpecStaffStun <- null;
 perkDefObjects.push({
 	ID = "perk.legend_mastery_staff_stun",
 	Script = "scripts/skills/perks/perk_legend_mastery_staff_stun",
@@ -2324,6 +2802,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/staff_circle_bw.png",
 	Const = "LegendSpecStaffStun"
 });
+
+::Legends.Perk.LegendSpecStaffSkill <- null;
 perkDefObjects.push({
 	ID = "perk.legend_specialist_staff_skill",
 	Script = "scripts/skills/perks/perk_legend_specialist_staff_skill",
@@ -2333,6 +2813,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/staff_skill_circle_bw.png",
 	Const = "LegendSpecStaffSkill"
 });
+
+::Legends.Perk.LegendDrumsOfWar <- null;
 perkDefObjects.push({
 	ID = "perk.legend_drums_of_war",
 	Script = "scripts/skills/perks/perk_legend_drums_of_war",
@@ -2342,6 +2824,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/drums_circle_bw.png",
 	Const = "LegendDrumsOfWar"
 });
+
+::Legends.Perk.LegendSpecUnarmed <- null;
 perkDefObjects.push({
 	ID = "perk.legend_mastery_unarmed",
 	Script = "scripts/skills/perks/perk_legend_mastery_unarmed",
@@ -2351,6 +2835,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/unarmed_mastery_circle_bw.png",
 	Const = "LegendSpecUnarmed"
 });
+
+::Legends.Perk.LegendKick <- null;
 perkDefObjects.push({
 	ID = "perk.legend_kick",
 	Script = "scripts/skills/perks/perk_legend_kick",
@@ -2360,6 +2846,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/kick_circle_bw.png",
 	Const = "LegendKick"
 });
+
+::Legends.Perk.LegendGrapple <- null;
 perkDefObjects.push({
 	ID = "perk.legend_grapple",
 	Script = "scripts/skills/perks/perk_legend_grapple",
@@ -2369,6 +2857,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/grapple_circle_bw.png",
 	Const = "LegendGrapple"
 });
+
+::Legends.Perk.LegendAmbidextrous <- null;
 perkDefObjects.push({
 	ID = "perk.legend_ambidextrous",
 	Script = "scripts/skills/perks/perk_legend_ambidextrous",
@@ -2378,6 +2868,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/ambidexterity_circle_bw.png",
 	Const = "LegendAmbidextrous"
 });
+
+::Legends.Perk.LegendTackle <- null;
 perkDefObjects.push({
 	ID = "perk.legend_tackle",
 	Script = "scripts/skills/perks/perk_legend_tackle",
@@ -2387,6 +2879,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/tackle_circle_bw.png",
 	Const = "LegendTackle"
 });
+
+::Legends.Perk.LegendFieldTreats <- null;
 perkDefObjects.push({
 	ID = "perk.legend_field_treats",
 	Script = "scripts/skills/perks/perk_legend_field_treats",
@@ -2396,6 +2890,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/drink_circle_bw.png",
 	Const = "LegendFieldTreats"
 });
+
+::Legends.Perk.LegendSmashingShields <- null;
 perkDefObjects.push({
 	ID = "perk.legend_smashing_shields",
 	Script = "scripts/skills/perks/perk_legend_smashing_shields",
@@ -2405,6 +2901,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/smashing_shields_circle_bw.png",
 	Const = "LegendSmashingShields"
 });
+
+::Legends.Perk.LegendSmackdown <- null;
 perkDefObjects.push({
 	ID = "perk.legend_smackdown",
 	Script = "scripts/skills/perks/perk_legend_smackdown",
@@ -2414,6 +2912,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/smackdown_circle_bw.png",
 	Const = "LegendSmackdown"
 });
+
+::Legends.Perk.LegendFeint <- null;
 perkDefObjects.push({
 	ID = "perk.legend_feint",
 	Script = "scripts/skills/perks/perk_legend_feint",
@@ -2423,6 +2923,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/feint_circle_bw.png",
 	Const = "LegendFeint"
 });
+
+::Legends.Perk.LegendClarity <- null;
 perkDefObjects.push({
 	ID = "perk.legend_clarity",
 	Script = "scripts/skills/perks/perk_legend_clarity",
@@ -2432,6 +2934,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/clarity_circle_bw.png",
 	Const = "LegendClarity"
 });
+
+::Legends.Perk.LegendAlert <- null;
 perkDefObjects.push({
 	ID = "perk.legend_alert",
 	Script = "scripts/skills/perks/perk_legend_alert",
@@ -2441,6 +2945,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/alert_circle_bw.png",
 	Const = "LegendAlert"
 });
+
+::Legends.Perk.LegendBloodbath <- null;
 perkDefObjects.push({
 	ID = "perk.legend_bloodbath",
 	Script = "scripts/skills/perks/perk_legend_bloodbath",
@@ -2450,6 +2956,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/bloodbath_circle_bw.png",
 	Const = "LegendBloodbath"
 });
+
+::Legends.Perk.LegendTerrifyingVisage <- null;
 perkDefObjects.push({
 	ID = "perk.legend_terrifying_visage",
 	Script = "scripts/skills/perks/perk_legend_terrifying_visage",
@@ -2459,6 +2967,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/perk_21_sw.png",
 	Const = "LegendTerrifyingVisage"
 });
+
+::Legends.Perk.LegendFreedomOfMovement <- null;
 perkDefObjects.push({
 	ID = "perk.legend_freedom_of_movement",
 	Script = "scripts/skills/perks/perk_legend_freedom_of_movement",
@@ -2468,6 +2978,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/freedom_of_movement_circle_bw.png",
 	Const = "LegendFreedomOfMovement"
 });
+
+::Legends.Perk.LegendOnslaught <- null;
 perkDefObjects.push({
 	ID = "perk.legend_onslaught",
 	Script = "scripts/skills/perks/perk_legend_onslaught",
@@ -2477,6 +2989,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/perk_26_sw.png",
 	Const = "LegendOnslaught"
 });
+
+::Legends.Perk.LegendBackToBasics <- null;
 perkDefObjects.push({
 	ID = "perk.legend_back_to_basics",
 	Script = "scripts/skills/perks/perk_legend_back_to_basics",
@@ -2486,6 +3000,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/back_to_basics_circle_bw.png",
 	Const = "LegendBackToBasics"
 });
+
+::Legends.Perk.LegendPushTheAdvantage <- null;
 perkDefObjects.push({
 	ID = "perk.legend_push_the_advantage",
 	Script = "scripts/skills/perks/perk_legend_push_the_advantage",
@@ -2495,6 +3011,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/perk_32_sw.png",
 	Const = "LegendPushTheAdvantage"
 });
+
+::Legends.Perk.LegendTrophyHunter <- null;
 perkDefObjects.push({
 	ID = "perk.legend_trophy_hunter",
 	Script = "scripts/skills/perks/perk_legend_trophy_hunter",
@@ -2504,6 +3022,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/slaughterer_circle_bw.png",
 	Const = "LegendTrophyHunter"
 });
+
+::Legends.Perk.LegendBruiser <- null;
 perkDefObjects.push({
 	ID = "perk.legend_bruiser",
 	Script = "scripts/skills/perks/perk_legend_bruiser",
@@ -2513,6 +3033,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/perk_40_sw.png",
 	Const = "LegendBruiser"
 });
+
+::Legends.Perk.LegendMindOverBody <- null;
 perkDefObjects.push({
 	ID = "perk.legend_mind_over_body",
 	Script = "scripts/skills/perks/perk_legend_mind_over_body",
@@ -2523,6 +3045,8 @@ perkDefObjects.push({
 	Const = "LegendMindOverBody",
 	HasUnactivatedPerkTooltipHints = true
 });
+
+::Legends.Perk.LegendEscapeArtist <- null;
 perkDefObjects.push({
 	ID = "perk.legend_escape_artist",
 	Script = "scripts/skills/perks/perk_legend_escape_artist",
@@ -2532,6 +3056,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/net_escape_bw.png",
 	Const = "LegendEscapeArtist"
 });
+
+::Legends.Perk.LegendGatherer <- null;
 perkDefObjects.push({
 	ID = "perk.legend_gatherer",
 	Script = "scripts/skills/perks/perk_legend_gatherer",
@@ -2541,6 +3067,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/herbs_circle_bw.png",
 	Const = "LegendGatherer"
 });
+
+::Legends.Perk.LegendPotionBrewer <- null;
 perkDefObjects.push({
 	ID = "perk.legend_potion_brewer",
 	Script = "scripts/skills/perks/perk_legend_potion_brewer",
@@ -2550,6 +3078,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/potion_circle_bw.png",
 	Const = "LegendPotionBrewer"
 });
+
+::Legends.Perk.LegendSpecCultHood <- null;
 perkDefObjects.push({
 	ID = "perk.legend_specialist_cult_hood",
 	Script = "scripts/skills/perks/perk_legend_specialist_cult_hood",
@@ -2559,6 +3089,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/dedication_circle_bw.png",
 	Const = "LegendSpecCultHood"
 });
+
+::Legends.Perk.LegendSpecCultArmor <- null;
 perkDefObjects.push({
 	ID = "perk.legend_specialist_cult_armor",
 	Script = "scripts/skills/perks/perk_legend_specialist_cult_armor",
@@ -2568,6 +3100,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/penance_circle_bw.png",
 	Const = "LegendSpecCultArmor"
 });
+
+::Legends.Perk.LegendPrepareBleed <- null;
 perkDefObjects.push({
 	ID = "perk.legend_prepare_bleed",
 	Script = "scripts/skills/perks/perk_legend_prepare_bleed",
@@ -2577,6 +3111,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/bleed_circle_bw.png",
 	Const = "LegendPrepareBleed"
 });
+
+::Legends.Perk.LegendPrepareGraze <- null;
 perkDefObjects.push({
 	ID = "perk.legend_prepare_graze",
 	Script = "scripts/skills/perks/perk_legend_prepare_graze",
@@ -2586,6 +3122,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/graze_circle_bw.png",
 	Const = "LegendPrepareGraze"
 });
+
+::Legends.Perk.LegendCarnage <- null;
 perkDefObjects.push({
 	ID = "perk.legend_carnage",
 	Script = "scripts/skills/perks/perk_legend_carnage",
@@ -2595,6 +3133,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/slaughter_circle_bw.png",
 	Const = "LegendCarnage"
 });
+
+::Legends.Perk.LegendUntouchable <- null;
 perkDefObjects.push({
 	ID = "perk.legend_untouchable",
 	Script = "scripts/skills/perks/perk_legend_untouchable",
@@ -2604,6 +3144,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/untouchable_circle_bw.png",
 	Const = "LegendUntouchable"
 });
+
+::Legends.Perk.LegendKnifeplay <- null;
 perkDefObjects.push({
 	ID = "perk.legend_knifeplay",
 	Script = "scripts/skills/perks/perk_legend_knifeplay",
@@ -2613,6 +3155,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/knifeplay_bw.png",
 	Const = "LegendKnifeplay"
 });
+
+::Legends.Perk.LegendOpportunist <- null;
 perkDefObjects.push({
 	ID = "perk.legend_opportunist",
 	Script = "scripts/skills/perks/perk_legend_opportunist",
@@ -2622,6 +3166,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/opportunist_bw.png",
 	Const = "LegendOpportunist"
 });
+
+::Legends.Perk.LegendPrepared <- null;
 perkDefObjects.push({
 	ID = "perk.legend_prepared",
 	Script = "scripts/skills/perks/perk_legend_prepared",
@@ -2631,6 +3177,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/prepared_bw.png",
 	Const = "LegendPrepared"
 });
+
+::Legends.Perk.LegendLurker <- null;
 perkDefObjects.push({
 	ID = "perk.legend_lurker",
 	Script = "scripts/skills/perks/perk_legend_lurker",
@@ -2640,6 +3188,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/lurker_bw.png",
 	Const = "LegendLurker"
 });
+
+::Legends.Perk.LegendNightRaider <- null;
 perkDefObjects.push({
 	ID = "perk.legend_night_raider",
 	Script = "scripts/skills/perks/perk_legend_night_raider",
@@ -2649,6 +3199,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/night_raider_bw.png",
 	Const = "LegendNightRaider"
 });
+
+::Legends.Perk.LegendAdaptive <- null;
 perkDefObjects.push({
 	ID = "perk.legend_adaptive",
 	Script = "scripts/skills/perks/perk_legend_adaptive",
@@ -2659,6 +3211,8 @@ perkDefObjects.push({
 	Const = "LegendAdaptive",
 	HasUnactivatedPerkTooltipHints = true // Inform general_queryUIPerkTooltipData() in tooltip_events.nut that the Perk has additional hints from getUnactivatedPerkTooltipHints()
 });
+
+::Legends.Perk.LegendRecuperation <- null;
 perkDefObjects.push({
 	ID = "perk.legend_recuperation",
 	Script = "scripts/skills/perks/perk_legend_recuperation",
@@ -2668,6 +3222,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/recuperation_circle_bw.png",
 	Const = "LegendRecuperation"
 });
+
+::Legends.Perk.LegendClimb <- null;
 perkDefObjects.push({
 	ID = "perk.legend_climb",
 	Script = "scripts/skills/perks/perk_legend_climb",
@@ -2677,6 +3233,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/climb_circle_bw.png",
 	Const = "LegendClimb"
 });
+
+::Legends.Perk.LegendSmallTarget <- null;
 perkDefObjects.push({
 	ID = "perk.legend_small_target",
 	Script = "scripts/skills/perks/perk_legend_small_target",
@@ -2686,6 +3244,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/small_target_bw.png",
 	Const = "LegendSmallTarget"
 });
+
+::Legends.Perk.LegendFashionable <- null;
 perkDefObjects.push({
 	ID = "perk.legend_fashionable",
 	Script = "scripts/skills/perks/perk_legend_fashionable",
@@ -2695,6 +3255,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/fashionable_bw.png",
 	Const = "LegendFashionable"
 });
+
+::Legends.Perk.LegendUnburdened <- null;
 perkDefObjects.push({
 	ID = "perk.legend_unburdened",
 	Script = "scripts/skills/perks/perk_legend_unburdened",
@@ -2704,6 +3266,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/meek_bw.png",
 	Const = "LegendUnburdened"
 });
+
+::Legends.Perk.LegendHelpful <- null;
 perkDefObjects.push({
 	ID = "perk.legend_helpful",
 	Script = "scripts/skills/perks/perk_legend_helpful",
@@ -2713,6 +3277,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/helpful_bw.png",
 	Const = "LegendHelpful"
 });
+
+::Legends.Perk.LegendAssassinate <- null;
 perkDefObjects.push({
 	ID = "perk.legend_assassinate",
 	Script = "scripts/skills/perks/perk_legend_assassinate",
@@ -2722,6 +3288,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/assassinate_circle_bw.png",
 	Const = "LegendAssassinate"
 });
+
+::Legends.Perk.LegendMealPreperation <- null;
 perkDefObjects.push({
 	ID = "perk.legend_meal_preperation",
 	Script = "scripts/skills/perks/perk_legend_meal_preperation",
@@ -2731,6 +3299,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/meal_prep_circle_bw.png",
 	Const = "LegendMealPreperation"
 });
+
+::Legends.Perk.LegendAlcoholBrewing <- null;
 perkDefObjects.push({
 	ID = "perk.legend_alcohol_brewing",
 	Script = "scripts/skills/perks/perk_legend_alcohol_brewing",
@@ -2740,6 +3310,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/alcohol_circle_bw.png",
 	Const = "LegendAlcoholBrewing"
 });
+
+::Legends.Perk.LegendHorseCharge <- null;
 perkDefObjects.push({
 	ID = "perk.legend_horse_charge",
 	Script = "scripts/skills/perks/perk_legend_horse_charge",
@@ -2749,6 +3321,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/charge_perk_bw.png",
 	Const = "LegendHorseCharge"
 });
+
+::Legends.Perk.LegendHorsePirouette <- null;
 perkDefObjects.push({
 	ID = "perk.legend_horse_pirouette",
 	Script = "scripts/skills/perks/perk_legend_horse_pirouette",
@@ -2758,6 +3332,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/pirouette_perk_bw.png",
 	Const = "LegendHorsePirouette"
 });
+
+::Legends.Perk.LegendHorseBitting <- null;
 perkDefObjects.push({
 	ID = "perk.legend_horse_bitting",
 	Script = "scripts/skills/perks/perk_legend_horse_bitting",
@@ -2767,6 +3343,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/bitting_perk_bw.png",
 	Const = "LegendHorseBitting"
 });
+
+::Legends.Perk.LegendHorseDesensitization <- null;
 perkDefObjects.push({
 	ID = "perk.legend_horse_desensitization",
 	Script = "scripts/skills/perks/perk_legend_horse_desensitization",
@@ -2776,6 +3354,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/desensitization_perk_bw.png",
 	Const = "LegendHorseDesensitization"
 });
+
+::Legends.Perk.LegendHorseHippology <- null;
 perkDefObjects.push({
 	ID = "perk.legend_horse_hippology",
 	Script = "scripts/skills/perks/perk_legend_horse_hippology",
@@ -2785,6 +3365,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/hippology_perk_bw.png",
 	Const = "LegendHorseHippology"
 });
+
+::Legends.Perk.LegendHorseImpulsion <- null;
 perkDefObjects.push({
 	ID = "perk.legend_horse_impulsion",
 	Script = "scripts/skills/perks/perk_legend_horse_impulsion",
@@ -2794,6 +3376,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/impulse_perk_bw.png",
 	Const = "LegendHorseImpulsion"
 });
+
+::Legends.Perk.LegendHorseLeadChange <- null;
 perkDefObjects.push({
 	ID = "perk.legend_horse_lead_change",
 	Script = "scripts/skills/perks/perk_legend_horse_lead_change",
@@ -2803,6 +3387,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/perk_23_sw.png",
 	Const = "LegendHorseLeadChange"
 });
+
+::Legends.Perk.LegendHorseLegControl <- null;
 perkDefObjects.push({
 	ID = "perk.legend_horse_leg_control",
 	Script = "scripts/skills/perks/perk_legend_horse_leg_control",
@@ -2812,6 +3398,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/legcontrol_perk_bw.png",
 	Const = "LegendHorseLegControl"
 });
+
+::Legends.Perk.LegendHorseLiberty <- null;
 perkDefObjects.push({
 	ID = "perk.legend_horse_liberty",
 	Script = "scripts/skills/perks/perk_legend_horse_liberty",
@@ -2821,6 +3409,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/liberty_perk_bw.png",
 	Const = "LegendHorseLiberty"
 });
+
+::Legends.Perk.LegendHorseLongeing <- null;
 perkDefObjects.push({
 	ID = "perk.legend_horse_longeing",
 	Script = "scripts/skills/perks/perk_legend_horse_longeing",
@@ -2830,6 +3420,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/longeing_perk_bw.png",
 	Const = "LegendHorseLongeing"
 });
+
+::Legends.Perk.LegendHorseParthianShot <- null;
 perkDefObjects.push({
 	ID = "perk.legend_horse_parthian_shot",
 	Script = "scripts/skills/perks/perk_legend_horse_parthian_shot",
@@ -2839,6 +3431,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/partian_shot_perk_bw.png",
 	Const = "LegendHorseParthianShot"
 });
+
+::Legends.Perk.LegendHorsePiaffe <- null;
 perkDefObjects.push({
 	ID = "perk.legend_horse_piaffe",
 	Script = "scripts/skills/perks/perk_legend_horse_piaffe",
@@ -2848,6 +3442,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/Piaffe_perk_bw.png",
 	Const = "LegendHorsePiaffe"
 });
+
+::Legends.Perk.LegendHorseTempiChange <- null;
 perkDefObjects.push({
 	ID = "perk.legend_horse_tempi_change",
 	Script = "scripts/skills/perks/perk_legend_horse_tempi_change",
@@ -2857,6 +3453,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/perk_23_sw.png",
 	Const = "LegendHorseTempiChange"
 });
+
+::Legends.Perk.LegendHorseCollection <- null;
 perkDefObjects.push({
 	ID = "perk.legend_horse_collection",
 	Script = "scripts/skills/perks/perk_legend_horse_collection",
@@ -2866,6 +3464,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/collection_perk_bw.png",
 	Const = "LegendHorseCollection"
 });
+
+::Legends.Perk.LegendHorseFlyingChange <- null;
 perkDefObjects.push({
 	ID = "perk.legend_horse_flying_change",
 	Script = "scripts/skills/perks/perk_legend_horse_flying_change",
@@ -2875,6 +3475,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/perk_23_sw.png",
 	Const = "LegendHorseFlyingChange"
 });
+
+::Legends.Perk.LegendHorsePassage <- null;
 perkDefObjects.push({
 	ID = "perk.legend_horse_passage",
 	Script = "scripts/skills/perks/perk_legend_horse_passage",
@@ -2884,6 +3486,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/passage_perk_bw.png",
 	Const = "LegendHorsePassage"
 });
+
+::Legends.Perk.LegendDrumsOfLife <- null;
 perkDefObjects.push({
 	ID = "perk.legend_drums_of_life",
 	Script = "scripts/skills/perks/perk_legend_drums_of_life",
@@ -2893,6 +3497,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/drums_of_life_bw.png",
 	Const = "LegendDrumsOfLife"
 });
+
+::Legends.Perk.LegendLacerate <- null;
 perkDefObjects.push({
 	ID = "perk.legend_lacerate",
 	Script = "scripts/skills/perks/perk_legend_lacerate",
@@ -2902,6 +3508,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/bleed_circle_bw.png",
 	Const = "LegendLacerate"
 });
+
+::Legends.Perk.LegendPeaceful <- null;
 perkDefObjects.push({
 	ID = "perk.legend_peaceful",
 	Script = "scripts/skills/perks/perk_legend_peaceful",
@@ -2911,6 +3519,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/peaceful_circle_bw.png",
 	Const = "LegendPeaceful"
 });
+
+::Legends.Perk.LegendSummonHound <- null;
 perkDefObjects.push({
 	ID = "perk.legend_summon_hound",
 	Script = "scripts/skills/perks/perk_legend_summon_hound",
@@ -2920,6 +3530,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/dog_circle_bw.png",
 	Const = "LegendSummonHound"
 });
+
+::Legends.Perk.LegendSummonWolf <- null;
 perkDefObjects.push({
 	ID = "perk.legend_summon_wolf",
 	Script = "scripts/skills/perks/perk_legend_summon_wolf",
@@ -2929,6 +3541,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/wolf_circle_bw.png",
 	Const = "LegendSummonWolf"
 });
+
+::Legends.Perk.LegendSummonFalcon <- null;
 perkDefObjects.push({
 	ID = "perk.legend_summon_falcon",
 	Script = "scripts/skills/perks/perk_legend_summon_falcon",
@@ -2938,6 +3552,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/falcon_circle_bw.png",
 	Const = "LegendSummonFalcon"
 });
+
+::Legends.Perk.LegendSummonBear <- null;
 perkDefObjects.push({
 	ID = "perk.legend_summon_bear",
 	Script = "scripts/skills/perks/perk_legend_summon_bear",
@@ -2947,6 +3563,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/bear_circle_bw.png",
 	Const = "LegendSummonBear"
 });
+
+::Legends.Perk.LegendSummonCatapult <- null;
 perkDefObjects.push({
 	ID = "perk.legend_summon_catapult",
 	Script = "scripts/skills/perks/perk_legend_summon_catapult",
@@ -2956,6 +3574,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/catapult_circle_bw.png",
 	Const = "LegendSummonCatapult"
 });
+
+::Legends.Perk.LegendNetRepair <- null;
 perkDefObjects.push({
 	ID = "perk.legend_net_repair",
 	Script = "scripts/skills/perks/perk_legend_net_repair",
@@ -2965,6 +3585,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/net_repair_bw.png",
 	Const = "LegendNetRepair"
 });
+
+::Legends.Perk.LegendNetCasting <- null;
 perkDefObjects.push({
 	ID = "perk.legend_net_casting",
 	Script = "scripts/skills/perks/perk_legend_net_casting",
@@ -2974,6 +3596,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/net_casting_bw.png",
 	Const = "LegendNetCasting"
 });
+
+::Legends.Perk.LegendPacifist <- null;
 perkDefObjects.push({
 	ID = "perk.legend_pacifist",
 	Script = "scripts/skills/perks/perk_legend_pacifist",
@@ -2983,6 +3607,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/pacifist_circle_bw.png",
 	Const = "LegendPacifist"
 });
+
+::Legends.Perk.LegendHorseMovement <- null;
 perkDefObjects.push({
 	ID = "perk.legend_horse_movement",
 	Script = "scripts/skills/perks/perk_legend_horse_movement",
@@ -2992,6 +3618,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/charge_perk_bw.png",
 	Const = "LegendHorseMovement"
 });
+
+::Legends.Perk.LegendCampCook <- null;
 perkDefObjects.push({
 	ID = "perk.legend_camp_cook",
 	Script = "scripts/skills/perks/perk_legend_camp_cook",
@@ -3001,6 +3629,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/cooking_circle_bw.png",
 	Const = "LegendCampCook"
 });
+
+::Legends.Perk.LegendPackleader <- null;
 perkDefObjects.push({
 	ID = "perk.legend_packleader",
 	Script = "scripts/skills/perks/perk_legend_packleader",
@@ -3010,6 +3640,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/perk_dog_bw.png",
 	Const = "LegendPackleader"
 });
+
+::Legends.Perk.LegendDogWhisperer <- null;
 perkDefObjects.push({
 	ID = "perk.legend_dogwhisperer",
 	Script = "scripts/skills/perks/perk_legend_dogwhisperer",
@@ -3019,6 +3651,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/perk_hound_bw.png",
 	Const = "LegendDogWhisperer"
 });
+
+::Legends.Perk.LegendDogBreeder <- null;
 perkDefObjects.push({
 	ID = "perk.legend_dogbreeder",
 	Script = "scripts/skills/perks/perk_legend_dogbreeder",
@@ -3028,6 +3662,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/perk_dogs_bw.png",
 	Const = "LegendDogBreeder"
 });
+
+::Legends.Perk.LegendDogHandling <- null;
 perkDefObjects.push({
 	ID = "perk.legend_doghandling",
 	Script = "scripts/skills/perks/perk_legend_doghandling",
@@ -3037,6 +3673,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/dog_handling_bw.png",
 	Const = "LegendDogHandling"
 });
+
+::Legends.Perk.LegendDogMaster <- null;
 perkDefObjects.push({
 	ID = "perk.legend_dogmaster",
 	Script = "scripts/skills/perks/perk_legend_dogmaster",
@@ -3046,6 +3684,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/dog_handling_bw.png",
 	Const = "LegendDogMaster"
 });
+
+::Legends.Perk.LegendHeightenedReflexes <- null;
 perkDefObjects.push({
 	ID = "perk.legend_heightened_reflexes",
 	Script = "scripts/skills/perks/perk_legend_heightened_reflexes",
@@ -3055,6 +3695,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/heightened_reflexes_bw.png",
 	Const = "LegendHeightenedReflexes"
 });
+
+::Legends.Perk.LegendWindReader <- null;
 perkDefObjects.push({
 	ID = "perk.legend_wind_reader",
 	Script = "scripts/skills/perks/perk_legend_wind_reader",
@@ -3064,6 +3706,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/wind_reader_bw.png",
 	Const = "LegendWindReader"
 });
+
+::Legends.Perk.LegendChoke <- null;
 perkDefObjects.push({
 	ID = "perk.legend_choke",
 	Script = "scripts/skills/perks/perk_legend_choke",
@@ -3073,6 +3717,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/choke_circle_bw.png",
 	Const = "LegendChoke"
 });
+
+::Legends.Perk.LegendPaymaster <- null;
 perkDefObjects.push({
 	ID = "perk.legend_barter_paymaster",
 	Script = "scripts/skills/perks/perk_legend_barter_paymaster",
@@ -3082,6 +3728,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/paymaster_bw.png",
 	Const = "LegendPaymaster"
 });
+
+::Legends.Perk.LegendQuartermaster <- null;
 perkDefObjects.push({
 	ID = "perk.legend_quartermaster",
 	Script = "scripts/skills/perks/perk_legend_quartermaster",
@@ -3091,6 +3739,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/food56_bw.png",
 	Const = "LegendQuartermaster"
 });
+
+::Legends.Perk.LegendBarterGreed <- null;
 perkDefObjects.push({
 	ID = "perk.legend_barter_greed",
 	Script = "scripts/skills/perks/perk_legend_barter_greed",
@@ -3100,6 +3750,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/gold56_bw.png",
 	Const = "LegendBarterGreed"
 });
+
+::Legends.Perk.LegendPrayerOfLife <- null;
 perkDefObjects.push({
 	ID = "perk.legend_prayer_of_life",
 	Script = "scripts/skills/perks/perk_legend_prayer_of_life",
@@ -3109,6 +3761,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/prayer_green_bw.png",
 	Const = "LegendPrayerOfLife"
 });
+
+::Legends.Perk.LegendPrayerOfFaith <- null;
 perkDefObjects.push({
 	ID = "perk.legend_prayer_of_faith",
 	Script = "scripts/skills/perks/perk_legend_prayer_of_faith",
@@ -3118,6 +3772,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/prayer_purple_bw.png",
 	Const = "LegendPrayerOfFaith"
 });
+
+::Legends.Perk.LegendHolyFlame <- null;
 perkDefObjects.push({
 	ID = "perk.legend_holyflame",
 	Script = "scripts/skills/perks/perk_legend_holyflame",
@@ -3127,6 +3783,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/holyfire_circle_bw.png",
 	Const = "LegendHolyFlame"
 });
+
+::Legends.Perk.LegendShieldsUp <- null;
 perkDefObjects.push({
 	ID = "perk.legend_shields_up",
 	Script = "scripts/skills/perks/perk_legend_shields_up",
@@ -3136,6 +3794,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/shields_up_bw.png",
 	Const = "LegendShieldsUp"
 });
+
+::Legends.Perk.LegendIncoming <- null;
 perkDefObjects.push({
 	ID = "perk.legend_incoming",
 	Script = "scripts/skills/perks/perk_legend_incoming",
@@ -3145,6 +3805,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/incoming_circle_bw.png",
 	Const = "LegendIncoming"
 });
+
+::Legends.Perk.LegendZombieBite <- null;
 perkDefObjects.push({
 	ID = "perk.perk_legend_zombie_bite",
 	Script = "scripts/skills/perks/perk_legend_zombie_bite",
@@ -3154,6 +3816,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/mold_carrion_circle_bw.png",
 	Const = "LegendZombieBite"
 });
+
+::Legends.Perk.LegendCheerOn <- null;
 perkDefObjects.push({
 	ID = "perk.legend_cheer_on",
 	Script = "scripts/skills/perks/perk_legend_cheer_on",
@@ -3163,6 +3827,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/cheered_on_circle_bw.png",
 	Const = "LegendCheerOn"
 });
+
+::Legends.Perk.LegendLeap <- null;
 perkDefObjects.push({
 	ID = "perk.legend_leap",
 	Script = "scripts/skills/perks/perk_legend_leap",
@@ -3172,6 +3838,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/leap_circle_bw.png",
 	Const = "LegendLeap"
 });
+
+::Legends.Perk.LegendTumble <- null;
 perkDefObjects.push({
 	ID = "perk.legend_tumble",
 	Script = "scripts/skills/perks/perk_legend_tumble",
@@ -3181,6 +3849,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/tumble_circle_bw.png",
 	Const = "LegendTumble"
 });
+
+::Legends.Perk.LegendHairSplitter <- null;
 perkDefObjects.push({
 	ID = "perk.legend_hair_splitter",
 	Script = "scripts/skills/perks/perk_legend_hair_splitter",
@@ -3190,6 +3860,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/hairsplit_circle_bw.png",
 	Const = "LegendHairSplitter"
 });
+
+::Legends.Perk.LegendBearform <- null;
 perkDefObjects.push({
 	ID = "perk.legend_bearform",
 	Script = "scripts/skills/perks/perk_legend_bearform",
@@ -3199,6 +3871,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/bear2_circle_bw.png",
 	Const = "LegendBearform"
 });
+
+::Legends.Perk.LegendRoots <- null;
 perkDefObjects.push({
 	ID = "perk.legend_roots",
 	Script = "scripts/skills/perks/perk_legend_roots",
@@ -3208,6 +3882,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/roots_circle_bw.png",
 	Const = "LegendRoots"
 });
+
+::Legends.Perk.LegendWolfform <- null;
 perkDefObjects.push({
 	ID = "perk.legend_wolfform",
 	Script = "scripts/skills/perks/perk_legend_wolfform",
@@ -3217,6 +3893,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/wolf2_circle_bw.png",
 	Const = "LegendWolfform"
 });
+
+::Legends.Perk.LegendTrueForm <- null;
 perkDefObjects.push({
 	ID = "perk.legend_true_form",
 	Script = "scripts/skills/perks/perk_legend_true_form",
@@ -3226,6 +3904,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/true_form_circle_bw.png",
 	Const = "LegendTrueForm"
 });
+
+::Legends.Perk.LegendSummonStorm <- null;
 perkDefObjects.push({
 	ID = "perk.legend_summon_storm",
 	Script = "scripts/skills/perks/perk_legend_summon_storm",
@@ -3235,6 +3915,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/rain_circle_bw.png",
 	Const = "LegendSummonStorm"
 });
+
+::Legends.Perk.LegendCallLightning <- null;
 perkDefObjects.push({
 	ID = "perk.legend_call_lightning",
 	Script = "scripts/skills/perks/perk_legend_call_lightning",
@@ -3244,6 +3926,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/storm_circle_bw.png",
 	Const = "LegendCallLightning"
 });
+
+::Legends.Perk.LegendScryTrance <- null;
 perkDefObjects.push({
 	ID = "perk.legend_scry_trance",
 	Script = "scripts/skills/perks/perk_legend_scry_trance",
@@ -3253,6 +3937,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/scry_trance_circle_bw.png",
 	Const = "LegendScryTrance"
 });
+
+::Legends.Perk.LegendReadOmensTrance <- null;
 perkDefObjects.push({
 	ID = "perk.legend_read_omens_trance",
 	Script = "scripts/skills/perks/perk_legend_read_omens_trance",
@@ -3262,6 +3948,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/omens_circle_bw.png",
 	Const = "LegendReadOmensTrance"
 });
+
+::Legends.Perk.LegendDistantVisions <- null;
 perkDefObjects.push({
 	ID = "perk.legend_distant_visions",
 	Script = "scripts/skills/perks/perk_legend_distant_visions",
@@ -3271,6 +3959,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/vision_circle_bw.png",
 	Const = "LegendDistantVisions"
 });
+
+::Legends.Perk.LegendScrollIngredients <- null;
 perkDefObjects.push({
 	ID = "perk.legend_scroll_ingredients",
 	Script = "scripts/skills/perks/perk_legend_scroll_ingredients",
@@ -3280,6 +3970,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/scroll_circle_bw.png",
 	Const = "LegendScrollIngredients"
 });
+
+::Legends.Perk.LegendScholar <- null;
 perkDefObjects.push({
 	ID = "perk.legend_scholar",
 	Script = "scripts/skills/perks/perk_legend_scholar",
@@ -3289,6 +3981,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/scholar_circle_bw.png",
 	Const = "LegendScholar"
 });
+
+::Legends.Perk.LegendCitrinitas <- null;
 perkDefObjects.push({
 	ID = "perk.legend_citrinitas",
 	Script = "scripts/skills/perks/perk_legend_citrinitas",
@@ -3298,6 +3992,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/perk_34_sw.png",
 	Const = "LegendCitrinitas"
 });
+
+::Legends.Perk.LegendAlbedo <- null;
 perkDefObjects.push({
 	ID = "perk.legend_albedo",
 	Script = "scripts/skills/perks/perk_legend_albedo",
@@ -3307,6 +4003,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/MaxToolsT1_bw.png",
 	Const = "LegendAlbedo"
 });
+
+::Legends.Perk.LegendNigredo <- null;
 perkDefObjects.push({
 	ID = "perk.legend_nigredo",
 	Script = "scripts/skills/perks/perk_legend_nigredo",
@@ -3316,6 +4014,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/MaxToolsT1_bw.png",
 	Const = "LegendNigredo"
 });
+
+::Legends.Perk.LegendHerbcraft <- null;
 perkDefObjects.push({
 	ID = "perk.legend_herbcraft",
 	Script = "scripts/skills/perks/perk_legend_herbcraft",
@@ -3325,6 +4025,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/herbcraft_bw.png",
 	Const = "LegendHerbcraft"
 });
+
+::Legends.Perk.LegendWoodworking <- null;
 perkDefObjects.push({
 	ID = "perk.legend_woodworking",
 	Script = "scripts/skills/perks/perk_legend_woodworking",
@@ -3334,6 +4036,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/woodworking_bw.png",
 	Const = "LegendWoodworking"
 });
+
+::Legends.Perk.LegendSurpressUrges <- null;
 perkDefObjects.push({
 	ID = "perk.legend_surpress_urges",
 	Script = "scripts/skills/perks/perk_legend_surpress_urges",
@@ -3343,6 +4047,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/surpress_urges_bw.png",
 	Const = "LegendSurpressUrges"
 });
+
+::Legends.Perk.LegendControlInstincts <- null;
 perkDefObjects.push({
 	ID = "perk.legend_control_instincts",
 	Script = "scripts/skills/perks/perk_legend_control_instincts",
@@ -3352,6 +4058,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/control_instincts_bw.png",
 	Const = "LegendControlInstincts"
 });
+
+::Legends.Perk.LegendMasterAnger <- null;
 perkDefObjects.push({
 	ID = "perk.legend_master_anger",
 	Script = "scripts/skills/perks/perk_legend_master_anger",
@@ -3361,6 +4069,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/master_anger_bw.png",
 	Const = "LegendMasterAnger"
 });
+
+::Legends.Perk.LegendMagicBurningHands <- null;
 perkDefObjects.push({
 	ID = "perk.legend_magic_burning_hands",
 	Script = "scripts/skills/perks/perk_legend_magic_burning_hands",
@@ -3370,6 +4080,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/legend_magic_burning_hands_circle_bw.png",
 	Const = "LegendMagicBurningHands"
 });
+
+::Legends.Perk.LegendMagicChainLightning <- null;
 perkDefObjects.push({
 	ID = "perk.legend_magic_chain_lightning",
 	Script = "scripts/skills/perks/perk_legend_magic_magic_chain_lightning",
@@ -3379,6 +4091,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/lightning_circle_bw.png",
 	Const = "LegendMagicChainLightning"
 });
+
+::Legends.Perk.LegendMagicCircleOfProtection <- null;
 perkDefObjects.push({
 	ID = "perk.legend_magic_circle_of_protection",
 	Script = "scripts/skills/perks/perk_legend_magic_legend_magic_circle_of_protection",
@@ -3388,6 +4102,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/legend_magic_circle_of_protection_circle_bw.png",
 	Const = "LegendMagicCircleOfProtection"
 });
+
+::Legends.Perk.LegendMagicDaze <- null;
 perkDefObjects.push({
 	ID = "perk.legend_magic_daze",
 	Script = "scripts/skills/perks/perk_legend_magic_magic_daze",
@@ -3397,6 +4113,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/daze56_circle_bw.png",
 	Const = "LegendMagicDaze"
 });
+
+::Legends.Perk.LegendMagicHailstone <- null;
 perkDefObjects.push({
 	ID = "perk.legend_magic_magic_hailstone",
 	Script = "scripts/skills/perks/perk_legend_magic_hailstone",
@@ -3406,6 +4124,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/legend_magic_hailstone_circle_bw.png",
 	Const = "LegendMagicHailstone"
 });
+
+::Legends.Perk.LegendMagicHealingWind <- null;
 perkDefObjects.push({
 	ID = "perk.legend_magic_healing_wind",
 	Script = "scripts/skills/perks/perk_legend_magic_magic_healing_wind",
@@ -3415,6 +4135,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/magic_mist_circle_01_bw.png",
 	Const = "LegendMagicHealingWind"
 });
+
+::Legends.Perk.LegendMagicImbue <- null;
 perkDefObjects.push({
 	ID = "perk.legend_magic_imbue",
 	Script = "scripts/skills/perks/perk_legend_magic__imbue",
@@ -3424,6 +4146,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/magic_imbue_circle_01_bw.png",
 	Const = "LegendMagicImbue"
 });
+
+::Legends.Perk.LegendMagicLevitate <- null;
 perkDefObjects.push({
 	ID = "perk.legend_magic_levitate",
 	Script = "scripts/skills/perks/perk_legend_magic_levitate",
@@ -3433,6 +4157,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/levitate_bw.png",
 	Const = "LegendMagicLevitate"
 });
+
+::Legends.Perk.LegendMagicBurningHands <- null;
 perkDefObjects.push({
 	ID = "perk.legend_magic_burning_hands",
 	Script = "scripts/skills/perks/perk_legend_magic_burning_hands",
@@ -3442,6 +4168,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/burning_hands_circle_01_bw.png",
 	Const = "LegendMagicBurningHands"
 });
+
+::Legends.Perk.LegendChainLightning <- null;
 perkDefObjects.push({
 	ID = "perk.legend_chain_lightning",
 	Script = "scripts/skills/perks/perk_legend_chain_lightning",
@@ -3451,6 +4179,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/storm_circle_bw.png",
 	Const = "LegendChainLightning"
 });
+
+::Legends.Perk.LegendMagicCircleOfProtection <- null;
 perkDefObjects.push({
 	ID = "perk.legend_magic_circle_of_protection",
 	Script = "scripts/skills/perks/perk_legend_magic_circle_of_protection",
@@ -3460,6 +4190,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/legend_magic_circle_of_protection_circle_bw.png",
 	Const = "LegendMagicCircleOfProtection"
 });
+
+::Legends.Perk.LegendMagicDaze <- null;
 perkDefObjects.push({
 	ID = "perk.legend_magic_daze",
 	Script = "scripts/skills/perks/perk_legend_magic_daze",
@@ -3469,6 +4201,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/daze56_circle_bw.png",
 	Const = "LegendMagicDaze"
 });
+
+::Legends.Perk.LegendMagicHailstone <- null;
 perkDefObjects.push({
 	ID = "perk.legend_magic_hailstone",
 	Script = "scripts/skills/perks/perk_legend_magic_hailstone",
@@ -3478,6 +4212,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/legend_magic_hailstone_circle_bw.png",
 	Const = "LegendMagicHailstone"
 });
+
+::Legends.Perk.LegendMagicHealingWind <- null;
 perkDefObjects.push({
 	ID = "perk.legend_magic_healing_wind",
 	Script = "scripts/skills/perks/perk_legend_magic_healing_wind",
@@ -3487,6 +4223,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/magic_mist_circle_01_bw.png",
 	Const = "LegendMagicHealingWind"
 });
+
+::Legends.Perk.LegendMagicImbue <- null;
 perkDefObjects.push({
 	ID = "perk.legend_magic_imbue",
 	Script = "scripts/skills/perks/perk_legend_magic_imbue",
@@ -3496,6 +4234,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/magic_imbue_circle_01_bw.png",
 	Const = "LegendMagicImbue"
 });
+
+::Legends.Perk.LegendMagicLevitate <- null;
 perkDefObjects.push({
 	ID = "perk.legend_magic_levitate",
 	Script = "scripts/skills/perks/perk_legend_magic_levitate",
@@ -3505,6 +4245,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/levitate_bw.png",
 	Const = "LegendMagicLevitate"
 });
+
+::Legends.Perk.LegendMagicMissile <- null;
 perkDefObjects.push({
 	ID = "perk.legend_magic_missile",
 	Script = "scripts/skills/perks/perk_legend_magic_missile",
@@ -3514,6 +4256,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/magic_missile_01_bw.png",
 	Const = "LegendMagicMissile"
 });
+
+::Legends.Perk.LegendMagicPsybeam <- null;
 perkDefObjects.push({
 	ID = "perk.legend_magic_psybeam",
 	Script = "scripts/skills/perks/perk_legend_magic_psybeam",
@@ -3523,6 +4267,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/psybeam_circle_01_bw.png",
 	Const = "LegendMagicPsybeam"
 });
+
+::Legends.Perk.LegendMagicSleep <- null;
 perkDefObjects.push({
 	ID = "perk.legend_magic_sleep",
 	Script = "scripts/skills/perks/perk_legend_magic_sleep",
@@ -3532,6 +4278,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/sleep_56_bw.png",
 	Const = "LegendMagicSleep"
 });
+
+::Legends.Perk.LegendMagicSoothingWind <- null;
 perkDefObjects.push({
 	ID = "perk.legend_magic_soothing_wind",
 	Script = "scripts/skills/perks/perk_legend_magic_soothing_wind",
@@ -3541,6 +4289,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/soothing_wind_circle_01_bw.png",
 	Const = "LegendMagicSoothingWind"
 });
+
+::Legends.Perk.LegendMagicTeleport <- null;
 perkDefObjects.push({
 	ID = "perk.legend_magic_teleport",
 	Script = "scripts/skills/perks/perk_legend_magic_teleport",
@@ -3550,6 +4300,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/teleport_perk_bw.png",
 	Const = "LegendMagicTeleport"
 });
+
+::Legends.Perk.LegendMagicWebBolt <- null;
 perkDefObjects.push({
 	ID = "perk.legend_magic_web_bolt",
 	Script = "scripts/skills/perks/perk_legend_magic_web_bolt",
@@ -3559,6 +4311,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/web_bolt_circle_01_bw.png",
 	Const = "LegendMagicWebBolt"
 });
+
+::Legends.Perk.LegendMasteryBurningHands <- null;
 perkDefObjects.push({
 	ID = "perk.legend_mastery_burning_hands",
 	Script = "scripts/skills/perks/perk_legend_mastery_burning_hands",
@@ -3568,6 +4322,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/burning_hands_circle_02_bw.png",
 	Const = "LegendMasteryBurningHands"
 });
+
+::Legends.Perk.LegendMasteryChainLightning <- null;
 perkDefObjects.push({
 	ID = "perk.legend_mastery_chain_lightning",
 	Script = "scripts/skills/perks/perk_legend_mastery_chain_lightning",
@@ -3577,6 +4333,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/lightning_cirlce_02_bw.png",
 	Const = "LegendMasteryChainLightning"
 });
+
+::Legends.Perk.LegendMasteryHailstone <- null;
 perkDefObjects.push({
 	ID = "perk.legend_mastery_hailstone",
 	Script = "scripts/skills/perks/perk_legend_mastery_hailstone",
@@ -3586,6 +4344,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/legend_magic_hailstone_circle_bw.png",
 	Const = "LegendMasteryHailstone"
 });
+
+::Legends.Perk.LegendMagicMissileFocus <- null;
 perkDefObjects.push({
 	ID = "perk.legend_magic_missile_focus",
 	Script = "scripts/skills/perks/perk_legend_magic_missile_focus",
@@ -3595,6 +4355,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/missile_circle_bw.png",
 	Const = "LegendMagicMissileFocus"
 });
+
+::Legends.Perk.LegendMagicMissileMastery <- null;
 perkDefObjects.push({
 	ID = "perk.legend_magic_missile_mastery",
 	Script = "scripts/skills/perks/perk_legend_magic_missile_mastery",
@@ -3604,6 +4366,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/missile_circle_bw.png",
 	Const = "LegendMagicMissileMastery"
 });
+
+::Legends.Perk.LegendUnarmedTraining <- null;
 perkDefObjects.push({
 	ID = "perk.legend_unarmed_training",
 	Script = "scripts/skills/perks/perk_legend_unarmed_training",
@@ -3613,6 +4377,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/unarmed_training_bw.png",
 	Const = "LegendUnarmedTraining"
 });
+
+::Legends.Perk.LegendUnarmedLunge <- null;
 perkDefObjects.push({
 	ID = "perk.legend_unarmed_lunge",
 	Script = "scripts/skills/perks/perk_legend_unarmed_lunge",
@@ -3622,6 +4388,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/unarmed_lunge_bw.png",
 	Const = "LegendUnarmedLunge"
 });
+
+::Legends.Perk.LegendBoondockBlade <- null;
 perkDefObjects.push({
 	ID = "perk.legend_boondock_blade",
 	Script = "scripts/skills/perks/perk_legend_boondock_blade",
@@ -3631,6 +4399,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/boondock_01_bw.png",
 	Const = "LegendBoondockBlade"
 });
+
+::Legends.Perk.LegendThrowSand <- null;
 perkDefObjects.push({
 	ID = "perk.legend_throw_sand",
 	Script = "scripts/skills/perks/perk_legend_throw_sand",
@@ -3640,6 +4410,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/throw_sand_01_bw.png",
 	Const = "LegendThrowSand"
 });
+
+::Legends.Perk.LegendBackflip <- null;
 perkDefObjects.push({
 	ID = "perk.legend_backflip",
 	Script = "scripts/skills/perks/perk_legend_backflip",
@@ -3649,6 +4421,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/backflip_circle_bw.png",
 	Const = "LegendBackflip"
 });
+
+::Legends.Perk.LegendTwirl <- null;
 perkDefObjects.push({
 	ID = "perk.legend_twirl",
 	Script = "scripts/skills/perks/perk_legend_twirl",
@@ -3658,6 +4432,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/twirl_circle_bw.png",
 	Const = "LegendTwirl"
 });
+
+::Legends.Perk.LegendDeflect <- null;
 perkDefObjects.push({
 	ID = "perk.legend_deflect",
 	Script = "scripts/skills/perks/perk_legend_deflect",
@@ -3667,6 +4443,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/perk_02_sw.png",
 	Const = "LegendDeflect"
 });
+
+::Legends.Perk.LegendTasteThePain <- null;
 perkDefObjects.push({
 	ID = "perk.legend_taste_the_pain",
 	Script = "scripts/skills/perks/perk_legend_taste_the_pain",
@@ -3676,6 +4454,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/twirl_circle_bw.png",
 	Const = "LegendTasteThePain"
 });
+
+::Legends.Perk.LegendLionheart <- null;
 perkDefObjects.push({
 	ID = "perk.legend_lionheart",
 	Script = "scripts/skills/perks/perk_legend_lionheart",
@@ -3685,6 +4465,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/lionheart_bw.png",
 	Const = "LegendLionheart"
 });
+
+::Legends.Perk.Captain <- null;
 perkDefObjects.push({
 	ID = "perk.captain",
 	Script = "scripts/skills/perks/perk_captain",
@@ -3694,6 +4476,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/perk_26_sw.png",
 	Const = "Captain"
 });
+
+::Legends.Perk.BatteringRam <- null;
 perkDefObjects.push({
 	ID = "perk.battering_ram",
 	Script = "scripts/skills/perks/perk_battering_ram",
@@ -3703,6 +4487,8 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/passive_03_sw.png",
 	Const = "BatteringRam"
 });
+
+::Legends.Perk.LegendStrengthInNumbers <- null;
 perkDefObjects.push({
 	ID = "perk.legend_strength_in_numbers",
 	Script = "scripts/skills/perks/perk_legend_strength_in_numbers",
@@ -3712,5 +4498,6 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/strength_in_numbers_bw.png",
 	Const = "LegendStrengthInNumbers"
 });
+
 
 ::Const.Perks.addPerkDefObjects(perkDefObjects);
