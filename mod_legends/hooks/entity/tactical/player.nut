@@ -574,7 +574,7 @@
 
 			local perk = ::new("scripts/skills/perks/perk_legend_zombie_bite");
 			if (!this.getBackground().addPerk(::Legends.Perk.LegendZombieBite, 0, false))
-				::Const.Perks.PerkDefObjects[::Const.Perks.PerkDefs.LegendAdaptive].IsRefundable = false;
+				::Const.Perks.PerkDefObjects[::Const.Perks.PerkDefs.LegendZombieBite].IsRefundable = false;
 
 			if (this.getSkills().hasPerk(::Const.Perks.PerkDefs.NineLives)) {
 				local perk = this.getSkills().getSkillByID("perk.nine_lives");
