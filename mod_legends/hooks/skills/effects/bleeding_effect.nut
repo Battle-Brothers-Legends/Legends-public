@@ -1,20 +1,9 @@
 ::mods_hookExactClass("skills/effects/bleeding_effect", function(o) {
 	o.m.Actor <- null;
 
-	local create = o.create;
-	o.create = function()
+	o.getDamage = function ()
 	{
-		create();
-		this.m.Overlay = "status_effect_01";
-	}
-	o.getDamage <- function ()
-	{
-		return this.m.Damage;
-	}
-
-	o.setDamage <- function ( _d )
-	{
-		this.m.Damage = _d;
+		return this.m.Damage * (actor.getSkills().hasEffect(::Legends.Effect.HyenaPotion) ? 0.5 : 1.0);
 	}
 
 	o.setActor <- function ( _a )
@@ -53,7 +42,7 @@
 			local actor = this.getContainer().getActor();
 			this.spawnIcon("status_effect_01", actor.getTile());
 			local hitInfo = clone this.Const.Tactical.HitInfo;
-			hitInfo.DamageRegular = this.m.Damage * (actor.getSkills().hasEffect(::Legends.Effect.HyenaPotion) ? 0.5 : 1.0);
+			hitInfo.DamageRegular = this.getDamage();
 			hitInfo.DamageDirect = 1.0;
 			hitInfo.BodyPart = this.Const.BodyPart.Body;
 			hitInfo.BodyDamageMult = 1.0;
