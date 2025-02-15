@@ -217,10 +217,6 @@
 		{
 			this.m.Stash.add(this.new(item));
 		}
-		this.m.Stash.add(this.new("scripts/items/accessory/legend_pack_small"));
-		// this.m.Stash.add(this.new("scripts/items/trade/cloth_rolls_item"))
-		// this.m.Stash.add(this.new("scripts/items/misc/spider_silk_item"))
-
 
 		this.updateFood();
 		this.m.LastRosterSize = this.World.getPlayerRoster().getSize();
