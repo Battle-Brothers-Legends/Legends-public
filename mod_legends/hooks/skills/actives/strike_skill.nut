@@ -13,4 +13,4 @@
 			this.m.ChanceDecapitate = 0;
 		}
 	}
-}
+});
