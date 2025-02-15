@@ -1,5 +1,35 @@
 this.legend_safeguarded_effect <- this.inherit("scripts/skills/skill", {
-	m = {},
+	m = {
+		Protector = null,
+		IsActivated = false
+	},
+
+	function activate()
+	{
+		this.m.IsActivated = true;
+	}
+
+	function setWard( _p )
+	{
+		if (_p == null)
+		{
+			this.m.Protector = null;
+		}
+		else if (typeof _p == "instance")
+		{
+			this.m.Protector = _p;
+		}
+		else
+		{
+			this.m.Protector = this.WeakTableRef(_p);
+		}
+	}
+
+	function isAlive()
+	{
+		return this.getContainer() != null && !this.getContainer().isNull() && this.getContainer().getActor() != null && this.getContainer().getActor().isAlive() && this.getContainer().getActor().getHitpoints() > 0;
+	}
+
 	function create()
 	{
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendSafeguarded);
@@ -13,7 +43,8 @@ this.legend_safeguarded_effect <- this.inherit("scripts/skills/skill", {
 
 	function getTooltip()
 	{
-		return [
+		local tooltip = 
+		[
 			{
 				id = 1,
 				type = "title",
@@ -23,31 +54,79 @@ this.legend_safeguarded_effect <- this.inherit("scripts/skills/skill", {
 				id = 2,
 				type = "description",
 				text = this.getDescription()
-			},
-			{
+			}
+		];
+		if (this.m.Protector)
+		{
+			tooltip.push({
 				id = 10,
 				type = "text",
 				icon = "ui/icons/melee_defense.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+15[/color] Melee Defense"
-			},
+				text = "All damage done to this character will be transfered to " + this.m.Protector.getName()
+			});
+		}
+	}
+
+	function onDamageReceived( _attacker, _damageHitpoints, _damageArmor )
+	{
+		if (this.m.Protector == null || this.m.Protector.isNull() || !this.m.Protector.isAlive())
+		{
+			this.removeSelf();
+			return;
+		}
+
+		if (_damageHitpoints > 0)
+		{
+			local actor = this.getContainer().getActor();
+			if (!_attacker.isHiddenToPlayer() && actor.getTile().IsVisibleForPlayer)
 			{
-				id = 11,
-				type = "text",
-				icon = "ui/icons/ranged_defense.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+15[/color] Ranged Defense"
+				this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(_attacker) + " attacks " + this.Const.UI.getColorizedEntityName(actor) + "but " + this.Const.UI.getColorizedEntityName(this.m.Protector) + "takes the hit instead");
 			}
-		];
+			this.m.Protector.applyDamage(_damageHitpoints, _attacker);
+		}
+
+		if (this.m.Protector == null || this.m.Protector.isNull() || !this.m.Protector.isAlive())
+		{
+			this.removeSelf();
+		}
 	}
 
 	function onUpdate( _properties )
 	{
-		_properties.MeleeDefense += 15;
-		_properties.RangedDefense += 15;
+		if (this.m.IsActivated && (this.m.Protector == null || this.m.Protector.isNull() || !this.m.Protector.isAlive()))
+		{
+			this.removeSelf();
+		}
+	}
+
+	function onRemoved()
+	{
+		if (this.m.Protector != null && !this.m.Protector.isNull() && !this.m.Protector.getContainer().isNull())
+		{
+			local protector = this.m.Protector;
+			this.m.Protector = null;
+			protector.setWard(null);
+			protector.removeSelf();
+			protector.getContainer().update();
+		}
+	}
+
+	function onDeath( _fatalityType )
+	{
+		this.onRemoved();
+	}
+
+	function resetTime()
+	{
+		this.m.TurnsLeft = 1;
 	}
 
 	function onTurnStart()
 	{
-		this.removeSelf();
+		if (--this.m.TurnsLeft <= 0)
+		{
+			this.removeSelf();
+		}
 	}
 
 });

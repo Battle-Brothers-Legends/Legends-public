@@ -39,13 +39,13 @@ this.legend_safeguard_skill <- this.inherit("scripts/skills/skill", {
 			id = 6,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "Applies Safeguard to someone, increasing their defenses by [color=" + this.Const.UI.Color.PositiveValue + "]+15[/color]"
+			text = "Applies Safeguard to someone, and will take the next hit instead of them"
 		});
 		ret.push({
 			id = 7,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "Reduces your own defenses by [color=" + this.Const.UI.Color.NegativeValue + "]-15[/color]"
+			text = "Reduces your own defenses by [color=" + this.Const.UI.Color.NegativeValue + "]-10[/color]"
 		});
 		return ret;
 	}
@@ -79,14 +79,19 @@ this.legend_safeguard_skill <- this.inherit("scripts/skills/skill", {
 		}
 
 		local target = _targetTile.getEntity();
-		::Legends.Effects.grant(target, ::Legends.Effect.LegendSafeguarded);
+		::Legends.Effects.grant(target, ::Legends.Effect.LegendSafeguarded, function(_effect) {
+			_effect.setProtector(this.getContainer().getActor());
+			_effect.activate();
+		}.bindenv(this));
 
 		if (!_user.isHiddenToPlayer() && _targetTile.IsVisibleForPlayer)
 		{
 			this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(_user) + " is safeguarding " + this.Const.UI.getColorizedEntityName(target) + " for one turn");
 		}
-
-		::Legends.Effects.grant(this, ::Legends.Effect.LegendSafeguarding);
+		::Legends.Effects.grant(this, ::Legends.Effect.LegendSafeguarding, function(_effect) {
+			_effect.setWard(target);
+			_effect.activate();
+		}.bindenv(this));
 	}
 
 	function onVerifyTarget( _originTile, _targetTile )
@@ -111,7 +116,7 @@ this.legend_safeguard_skill <- this.inherit("scripts/skills/skill", {
 
 	function onAfterUpdate( _properties )
 	{
-		this.m.FatigueCostMult = _properties.IsSpecializedInShields || _properties.IsProficientWithShieldSkills ? this.Const.Combat.WeaponSpecFatigueMult : 1.0;
+		this.m.FatigueCostMult = (_properties.IsSpecializedInShields || _properties.IsProficientWithShieldSkills) ? this.Const.Combat.WeaponSpecFatigueMult : 1.0;
 	}
 
 	function onRemoved()
