@@ -9,7 +9,7 @@
 	local onEquip = o.onEquip;
 	o.onEquip = function ()
 	{
-		onEquip()
+		onEquip();
 		::Legends.Actives.grant(this, ::Legends.Active.Impale, function (_skill) {
 			_skill.m.Icon = "skills/legend_halberd_impale.png";
 			_skill.m.IconDisabled = "skills/legend_halberd_impale_bw.png";

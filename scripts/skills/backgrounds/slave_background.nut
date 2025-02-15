@@ -106,7 +106,7 @@ this.slave_background <- this.inherit("scripts/skills/backgrounds/character_back
 
 	function getTooltip()
 	{
-		local ret = this.character_background.getTooltip()
+		local ret = this.character_background.getTooltip();
 
 		ret.extend([
 		{

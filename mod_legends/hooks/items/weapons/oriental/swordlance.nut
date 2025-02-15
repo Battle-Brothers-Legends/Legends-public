@@ -9,8 +9,8 @@
 
 	o.addSkill <- function( _skill )
 	{
-		if (_skill.getID() == "actives.strike")
-		local skill = this.new("scripts/skills/actives/legend_scythe_cleave_skill")
+		if (_skill.getID() == "actives.strike");
+		local skill = this.new("scripts/skills/actives/legend_scythe_cleave_skill");
 		skill.m.Icon = "skills/active_200.png";
 		skill.m.IconDisabled = "skills/active_200_sw.png";
 		skill.m.Overlay = "active_200";
