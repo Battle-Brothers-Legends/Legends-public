@@ -9,6 +9,10 @@ this.legend_demon_hound <- this.inherit("scripts/entity/tactical/actor", {
 		DistortTargetC = null,
 		DistortTargetPrevC = this.createVec(0, 0),
 		DistortAnimationStartTimeC = 0
+		SoundOnTeleport = [
+			"sounds/enemies/ghost_death_01.wav",
+			"sounds/enemies/ghost_death_02.wav"
+		]
 	},
 
 	function create()
@@ -38,10 +42,6 @@ this.legend_demon_hound <- this.inherit("scripts/entity/tactical/actor", {
 			"sounds/enemies/hollen_charge_03.wav",
 			"sounds/enemies/hollen_charge_04.wav",
 			"sounds/enemies/hollen_charge_05.wav"
-		];
-		this.m.SoundOnTeleport = [
-			"sounds/enemies/ghost_death_01.wav",
-			"sounds/enemies/ghost_death_02.wav"
 		];
 		this.m.SoundPitch = this.Math.rand(90, 110) * 0.01;
 		this.getFlags().add("undead");
