@@ -8,6 +8,7 @@ class Defs:
         {"name": "cloak_spider", "layer": "cloak"},
         {"name" :"named_emperors_cloak", "min" : 1, "max" : 1, "layer" : "cloak"},
         {"name" :"named_emperors_armor", "min" : 1, "max" : 2, "layer" : "plate"},
+        {"name" :"wurm_hauberk", "min" : 1, "max" : 1, "layer" : "chain"},
         {"name": "cloak_rich", "min" : 1, "max" : 6, "layer": "cloak"},
         {"name": "tabard_named", "min" : 1, "max" : 26, "layer": "tabard"},
         {"name": "mountain_armor", "min" : 1, "max" : 2, "layer": "plate"},
