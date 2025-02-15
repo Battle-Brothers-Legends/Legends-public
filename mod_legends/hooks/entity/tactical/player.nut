@@ -573,7 +573,7 @@
 			this.getSkills().add(::new("scripts/skills/traits/legend_rotten_flesh_trait"));
 
 			local perk = ::new("scripts/skills/perks/perk_legend_zombie_bite");
-			if (!this.getBackground().addPerk(::Legends.Perk.LegendZombieBite, 0, false))
+			if (!this.getBackground().addPerk(::Const.Perks.PerkDefs.LegendZombieBite, 0, false))
 				::Const.Perks.PerkDefObjects[::Const.Perks.PerkDefs.LegendZombieBite].IsRefundable = false;
 
 			if (this.getSkills().hasPerk(::Const.Perks.PerkDefs.NineLives)) {
