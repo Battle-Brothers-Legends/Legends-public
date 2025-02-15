@@ -1,7 +1,9 @@
 from string import Template
-from shutil import copyfile
 from helmet import Templates, Defs
-import os, argparse, json
+from PIL import Image
+from crop import CropTool
+import os, argparse
+
 
 def checkForIcon(path, iconpath, variants):
     dirpath = os.path.join(path, "gfx", "ui", "items", "legend_helmets")
@@ -40,6 +42,7 @@ def makeSheet(path, num):
 
 
 def makeBrushes(path):
+    helmetDir = os.path.join(path, "unpacked", "legend_helmets", "entity")
     fileCount = 0
     imageCount = 0
     F = makeSheet(path, fileCount)
@@ -65,20 +68,42 @@ def makeBrushes(path):
 
         for t in R:
             for name in names:
+                name_path, damaged_path, dead_path, _dir = Templates.get_sprites(name)
+                c_name_path, c_damaged_path, c_dead_path, c_dir = Templates.get_cropped_sprites(name)
+
+                CropTool.crop(os.path.abspath(os.path.join(helmetDir, name_path)),
+                              os.path.abspath(os.path.join(helmetDir, c_name_path)))
+                CropTool.crop(os.path.abspath(os.path.join(helmetDir, damaged_path)),
+                              os.path.abspath(os.path.join(helmetDir, c_damaged_path)))
+                CropTool.crop(os.path.abspath(os.path.join(helmetDir, dead_path)),
+                              os.path.abspath(os.path.join(helmetDir, c_dead_path)))
+                cardinals = Templates.Cardinals
+
                 opts = dict(
                     name="legendhelms_" + name,
-                    damaged= "legendhelms_" + name + "_damaged",
-                    dead= "legendhelms_" + name + "_dead",
-                    name_path=os.path.join("..", "entity", "legend_helmets", "layers", name + ".png"),
-                    damaged_path=os.path.join("..", "entity", "legend_helmets", "layers", name + "_damaged.png"),
-                    dead_path=os.path.join("..", "entity", "legend_helmets", "layers", name + "_dead.png")
+                    damaged="legendhelms_" + name + "_damaged",
+                    dead="legendhelms_" + name + "_dead",
+                    name_path=c_name_path,
+                    damaged_path=c_damaged_path,
+                    dead_path=c_dead_path,
+                    name_cardinals=Templates.calculate_cardinals(
+                        cardinals[0], CropTool.getBounds(os.path.abspath(os.path.join(helmetDir, name_path)))
+                    ),
+                    damaged_cardinals=Templates.calculate_cardinals(
+                        cardinals[1], CropTool.getBounds(os.path.abspath(os.path.join(helmetDir, damaged_path)))
+                    ),
+                    dead_cardinals=Templates.calculate_cardinals(
+                        cardinals[2], CropTool.getBounds(os.path.abspath(os.path.join(helmetDir, dead_path)))
+                    )
                 )
+                #                 print(calculateCropArea(os.path.abspath(os.path.join(helmetDir, name + ".png"))))
+
                 s = Template(t)
                 text = s.substitute(opts)
                 text.replace("/", "\\")
                 F.write(text)
                 imageCount += 1
-                if (imageCount > 150):
+                if (imageCount > 1600):
                     F.write('</brush>\n')
                     F.close()
                     imageCount = 0
@@ -101,24 +126,43 @@ def makeBrushes(path):
 
         for t in R:
             for name in names:
+                name_path, damaged_path, dead_path, _dir = Templates.get_sprites(name)
+                c_name_path, c_damaged_path, c_dead_path, c_dir = Templates.get_cropped_sprites(name)
+
+                CropTool.crop(os.path.abspath(os.path.join(helmetDir, name_path)),
+                              os.path.abspath(os.path.join(helmetDir, c_name_path)))
+                CropTool.crop(os.path.abspath(os.path.join(helmetDir, damaged_path)),
+                              os.path.abspath(os.path.join(helmetDir, c_damaged_path)))
+                CropTool.crop(os.path.abspath(os.path.join(helmetDir, dead_path)),
+                              os.path.abspath(os.path.join(helmetDir, c_dead_path)))
+                cardinals = Templates.Cardinals
+
                 opts = dict(
                     name="legendhelms_" + name,
-                    name_path=os.path.join("..", "entity", "legend_helmets", "layers", name + ".png"),
-                    damaged_path=os.path.join("..", "entity", "legend_helmets", "layers", name + "_damaged.png"),
-                    dead_path=os.path.join("..", "entity", "legend_helmets", "layers", name + "_dead.png")
+                    name_path=c_name_path,
+                    damaged_path=c_damaged_path,
+                    dead_path=c_dead_path,
+                    name_cardinals=Templates.calculate_cardinals(
+                        cardinals[0], CropTool.getBounds(os.path.abspath(os.path.join(helmetDir, name_path)))
+                    ),
+                    damaged_cardinals=Templates.calculate_cardinals(
+                        cardinals[1], CropTool.getBounds(os.path.abspath(os.path.join(helmetDir, damaged_path)))
+                    ),
+                    dead_cardinals=Templates.calculate_cardinals(
+                        cardinals[2], CropTool.getBounds(os.path.abspath(os.path.join(helmetDir, dead_path)))
+                    )
                 )
                 s = Template(t)
                 text = s.substitute(opts)
                 text.replace("/", "\\")
                 F.write(text)
                 imageCount += 1
-                if (imageCount > 150):
+                if (imageCount > 1600):
                     F.write('</brush>\n')
                     F.close()
                     imageCount = 0
                     fileCount += 1
                     F = makeSheet(path, fileCount)
-
 
     F.write('</brush>\n')
     F.close()
@@ -160,7 +204,7 @@ def main():
         F = open(filepath, "w")
         variants = []
         for x in range(d["max"]):
-            variants.append(x+1)
+            variants.append(x + 1)
 
         title = d["title"]
         desc = d["desc"]
@@ -176,27 +220,27 @@ def main():
             name=fname,
             title=title,
             desc=desc,
-            condition = d["con"],
-            value = d["value"],
-            stamina = d["stam"],
-            vision = d["vis"],
+            condition=d["con"],
+            value=d["value"],
+            stamina=d["stam"],
+            vision=d["vis"],
             id="armor.head." + fname,
-            variants = variants,
-            layer = layer,
-            type= d["layer"].capitalize(),
-            brush = "legendhelms_" + d["name"],
-            icon = "inventory_" + d["name"],
-            lower = lower,
-            hair = d["hair"],
-            beard = d["beard"],
-            names = d["names"] if "names" in d else [],
-            rminViz = d["rminViz"] if "rminViz" in d else 0,
-            rmaxViz = d["rmaxViz"] if "rmaxViz" in d else 0,
-            rminStam = d["rminStam"] if "rminStam" in d else 0,
-            rmaxStam = d["rmaxStam"] if "rmaxStam" in d else 0,
-            rminCond = d["rminCond"] if "rminCond" in d else 0,
-            rmaxCond = d["rmaxCond"] if "rmaxCond" in d else 0,
-            itemType = itemType,
+            variants=variants,
+            layer=layer,
+            type=d["layer"].capitalize(),
+            brush="legendhelms_" + d["name"],
+            icon="inventory_" + d["name"],
+            lower=lower,
+            hair=d["hair"],
+            beard=d["beard"],
+            names=d["names"] if "names" in d else [],
+            rminViz=d["rminViz"] if "rminViz" in d else 0,
+            rmaxViz=d["rmaxViz"] if "rmaxViz" in d else 0,
+            rminStam=d["rminStam"] if "rminStam" in d else 0,
+            rmaxStam=d["rmaxStam"] if "rmaxStam" in d else 0,
+            rminCond=d["rminCond"] if "rminCond" in d else 0,
+            rmaxCond=d["rmaxCond"] if "rmaxCond" in d else 0,
+            itemType=itemType,
         )
         s = Template(temp)
         text = s.substitute(opts)
@@ -210,7 +254,6 @@ def main():
 
 
 main()
-
 
 '''
 
