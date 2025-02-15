@@ -9,8 +9,9 @@
 
 ![dir_structure.webp](dir_structure.webp)
 
-7. Copy `build_compile_poss.sh` and name it something like `build_compile_yourname.sh`
-8. Inside the `build_compile_yourname.sh` replace the destination variable with your own
+7. Install python dependencies `pip install Pillow`
+8. Copy `build_compile_poss.sh` and name it something like `build_compile_yourname.sh`
+9. Inside the `build_compile_yourname.sh` replace the destination variable with your own
 
 ## How to build Legends ##
 
