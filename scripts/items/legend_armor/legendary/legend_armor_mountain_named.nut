@@ -59,7 +59,7 @@ this.legend_armor_mountain_named <- this.inherit("scripts/items/legend_armor/leg
 	function onCombatFinished()
 	{
 		this.m.Condition = this.m.ConditionMax;
-		this.updateAppearance();
+		this.getContainer().getActor().setDirty(true);
 	}
 
 	function onTurnStart()
