@@ -64,6 +64,7 @@ declare -a BRUSHES=(
 "legend_armor/4"
 )
 
+rm -rf brushes
 mkdir -p brushes
 
 for i in "${BRUSHES[@]}"
