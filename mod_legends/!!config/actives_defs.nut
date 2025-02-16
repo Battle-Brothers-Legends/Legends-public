@@ -3062,4 +3062,20 @@ activesDefs.push({
 	Name = "Stab with Wooden Stake",
 });
 
+::Legends.Active.LegendAllyReloadBolt <- null;
+activesDefs.push({
+	ID = "actives.legend_reload_ally_bolt_skill",
+	Script = "scripts/skills/actives/legend_reload_ally_bolt_skill",
+	Const = "LegendReloadAllyBolt",
+	Name = "Reload",
+});
+
+::Legends.Active.LegendAllyReloadHandgonne <- null;
+activesDefs.push({
+	ID = "actives.legend_reload_ally_handgonne",
+	Script = "scripts/skills/actives/legend_reload_ally_handgonne_skill",
+	Const = "LegendReloadAllyHandgonne",
+	Name = "Reload",
+});
+
 ::Legends.Actives.addActiveDefObjects(activesDefs);
