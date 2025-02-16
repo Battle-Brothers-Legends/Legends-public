@@ -196,7 +196,14 @@ this.legend_reload_ally_skill <- this.inherit("scripts/skills/skill", {
 				this.Sound.play(reload.m.SoundOnUse[this.Math.rand(0, reload.m.SoundOnUse.len() - 1)], this.Const.Sound.Volume.Skill * reload.m.SoundVolume, _user.getPos());
 			}
 
-			reload.onUseByAlly(target, _targetTile);
+			if (this.m.isUsingOwnAmmo)
+			{
+				reload.onUseByAlly(target, _targetTile);
+			}
+			else
+			{
+				reload.onUse(target, _targetTile);
+			}
 		}
 
 		return true;

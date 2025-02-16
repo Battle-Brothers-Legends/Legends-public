@@ -4,7 +4,8 @@ this.legend_reload_ally_handgonne_skill <- this.inherit("scripts/skills/actives/
 	},
 	function create()
 	{
-		::Legends.Actives.onCreate(this, ::Legends.Active.LegendAllyReloadBolt);
+		this.legend_reload_ally_skill.create();
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendReloadAllyHandgonne);
 		this.m.Description = "Make yourself helpful and reload an ally\'s handgonne. You\'ll need to use your own ammunition.";
 		this.m.Icon = "skills/active_204.png";
 		this.m.IconDisabled = "skills/active_204_sw.png";

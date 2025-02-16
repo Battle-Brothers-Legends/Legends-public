@@ -5,7 +5,8 @@ this.legend_reload_ally_bolt_skill <- this.inherit("scripts/skills/actives/legen
 	},
 	function create()
 	{
-		::Legends.Actives.onCreate(this, ::Legends.Active.LegendAllyReloadBolt);
+		this.legend_reload_ally_skill.create();
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendReloadAllyBolt);
 		this.m.Description = "Make yourself helpful and reload an ally\'s crossbow. You\'ll need to use your own ammunition.";
 		this.m.Icon = "skills/active_16.png";
 		this.m.IconDisabled = "skills/active_16_sw.png";
