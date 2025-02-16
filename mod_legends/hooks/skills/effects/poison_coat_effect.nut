@@ -1,5 +1,15 @@
 ::mods_hookExactClass("skills/effects/poison_coat_effect", function(o) {
 	
+	o.resetTime = function()
+	{
+		if (this.getContainer().getActor().isPlacedOnMap())
+		{
+			this.spawnIcon("status_effect_54", this.getContainer().getActor().getTile());
+		}
+
+		this.m.AttacksLeft = 4;
+	}
+
 	o.onTargetHit = function ( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor )
 	{
 		--this.m.AttacksLeft;
