@@ -405,10 +405,18 @@
 	<sprite id="icon_legend_flail_ranged_01_bloodied" offsetY="35" ic="FF343B4F" width="124" height="142" img="icons\icon_legend_flail_ranged_01_bloodied.png" left="-62" right="22" />
 	<sprite id="icon_legend_flail_ranged_02" offsetY="35" ic="FF424B55" width="74" height="108" img="icons\icon_legend_flail_ranged_02.png" left="-62" right="22" />
 	<sprite id="icon_legend_flail_ranged_02_bloodied" offsetY="35" ic="FF343B4F" width="74" height="108" img="icons\icon_legend_flail_ranged_02_bloodied.png" left="-62" right="22" />
-	<sprite id="icon_named_orc_weapon_01" offsetY="35" ic="FF32353E" width="144" height="142" img="icons\icon_named_orc_weapon_01.png" left="-65" right="19" top="-53" bottom="49" />
-	<sprite id="icon_named_orc_weapon_01_bloodied" offsetY="35" ic="FF292C3B" width="144" height="142" img="icons\icon_named_orc_weapon_01_bloodied.png" left="-65" right="19" top="-53" bottom="49" />
-	<sprite id="icon_named_orc_weapon_05" offsetY="35" ic="FF2E3236" width="140" height="142" img="icons\icon_named_orc_weapon_05.png" left="-32" right="70" top="-69" bottom="9" />
-	<sprite id="icon_named_orc_weapon_05_bloodied" offsetY="35" ic="FF2B2F37" width="140" height="142" img="icons\icon_named_orc_weapon_05_bloodied.png" left="-32" right="70" top="-69" bottom="9" />
+	<sprite id="icon_named_two_handed_orc_axe_01" offsetY="35" ic="FF32353E" width="144" height="142" img="icons\icon_named_two_handed_orc_axe_01.png" left="-65" right="19" top="-53" bottom="49" />
+	<sprite id="icon_named_two_handed_orc_axe_01_bloodied" offsetY="35" ic="FF292C3B" width="144" height="142" img="icons\icon_named_two_handed_orc_axe_01_bloodied.png" left="-65" right="19" top="-53" bottom="49" />
+	<sprite id="icon_named_two_handed_orc_axe_02" offsetY="35" ic="FF32353E" width="144" height="142" img="icons\icon_named_two_handed_orc_axe_02.png" left="-65" right="19" top="-53" bottom="49" />
+	<sprite id="icon_named_two_handed_orc_axe_02_bloodied" offsetY="35" ic="FF292C3B" width="144" height="142" img="icons\icon_named_two_handed_orc_axe_02_bloodied.png" left="-65" right="19" top="-53" bottom="49" />
+	<sprite id="icon_named_two_handed_orc_axe_03" offsetY="35" ic="FF32353E" width="144" height="142" img="icons\icon_named_two_handed_orc_axe_03.png" left="-65" right="19" top="-53" bottom="49" />
+	<sprite id="icon_named_two_handed_orc_axe_03_bloodied" offsetY="35" ic="FF292C3B" width="144" height="142" img="icons\icon_named_two_handed_orc_axe_03_bloodied.png" left="-65" right="19" top="-53" bottom="49" />
+	<sprite id="icon_named_two_handed_orc_flail_01" offsetY="35" ic="FF2E3236" width="140" height="142" img="icons\icon_named_two_handed_orc_flail_01.png" left="-32" right="70" top="-69" bottom="9" />
+	<sprite id="icon_named_two_handed_orc_flail_01_bloodied" offsetY="35" ic="FF2B2F37" width="140" height="142" img="icons\icon_named_two_handed_orc_flail_01_bloodied.png" left="-32" right="70" top="-69" bottom="9" />
+	<sprite id="icon_named_two_handed_orc_flail_02" offsetY="35" ic="FF2E3236" width="140" height="142" img="icons\icon_named_two_handed_orc_flail_02.png" left="-32" right="70" top="-69" bottom="9" />
+	<sprite id="icon_named_two_handed_orc_flail_02_bloodied" offsetY="35" ic="FF2B2F37" width="140" height="142" img="icons\icon_named_two_handed_orc_flail_02_bloodied.png" left="-32" right="70" top="-69" bottom="9" />
+	<sprite id="icon_named_two_handed_orc_flail_03" offsetY="35" ic="FF2E3236" width="140" height="142" img="icons\icon_named_two_handed_orc_flail_03.png" left="-32" right="70" top="-69" bottom="9" />
+	<sprite id="icon_named_two_handed_orc_flail_03_bloodied" offsetY="35" ic="FF2B2F37" width="140" height="142" img="icons\icon_named_two_handed_orc_flail_03_bloodied.png" left="-32" right="70" top="-69" bottom="9" />
 
 	<sprite id="icon_wooden_stake_01" offsetY="35" ic="FF6B6B74" width="75" height="75" img="icons\icon_wooden_stake_01.png" left="-6" right="30" top="-55" bottom="-15" />
 	<sprite id="icon_wooden_stake_01_bloodied" offsetY="35" ic="FF6B6B74" width="75" height="75" img="icons\icon_wooden_stake_01_bloodied.png" left="-6" right="30" top="-55" bottom="-15" />
