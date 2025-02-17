@@ -635,15 +635,15 @@ class Defs:
  "title" :  "Tarnished Helm Adornment",
  "desc" :  "Ancient rotten relics of adornment from the helmet of a long dead questing knight"
  },
-{"name" : "faceplate_flat"                     , "layer" : "top", "min" : 1, "max" : 6, "value" : 300, "con" : 35, "stam" : -2, "vis" : -1, "hair" : "false", "beard" : "false",
+{"name" : "faceplate_flat"                     , "layer" : "top", "min" : 1, "max" : 6, "value" : 300, "con" : 35, "stam" : -2, "vis" : -1, "hair" : "false", "beard" : "true",
  "title" :  "Flat Faceplate",
  "desc" :  "Flat Faceplate."
  },
-{"name" : "faceplate_curved"                     , "layer" : "top", "min" : 1, "max" : 1, "value" : 300, "con" : 35, "stam" : -2, "vis" : -1, "hair" : "false", "beard" : "false",
+{"name" : "faceplate_curved"                     , "layer" : "top", "min" : 1, "max" : 1, "value" : 300, "con" : 35, "stam" : -2, "vis" : -1, "hair" : "false", "beard" : "true",
  "title" :  "Curved Faceplate",
  "desc" :  "Curved Faceplate."
  },
-{"name" : "southern_faceplate"                     , "layer" : "top", "min" : 1, "max" : 2, "value" : 500, "con" : 40, "stam" : -2, "vis" : -1, "hair" : "false", "beard" : "false",
+{"name" : "southern_faceplate"                     , "layer" : "top", "min" : 1, "max" : 2, "value" : 500, "con" : 40, "stam" : -2, "vis" : -1, "hair" : "false", "beard" : "true",
  "title" :  "Southern Faceplate",
  "desc" :  "The faceplate of a southern assasin"
  },
@@ -667,15 +667,15 @@ class Defs:
  "title" :  "Snub Nose Faceplate",
  "desc" :  "A round nosed faceplate."
  },
-{"name" : "faceplate_snub_slit"                     , "layer" : "top", "min" : 1, "max" : 1, "value" : 500, "con" : 45, "stam" : -2, "vis" : -1, "hair" : "false", "beard" : "false",
+{"name" : "faceplate_snub_slit"                     , "layer" : "top", "min" : 1, "max" : 1, "value" : 500, "con" : 45, "stam" : -2, "vis" : -1, "hair" : "false", "beard" : "true",
  "title" :  "Slitted Snub Faceplate",
  "desc" :  "Slitted Snub Faceplate."
  },
-{"name" : "faceplate_sharp"                     , "layer" : "top", "min" : 1, "max" : 1, "value" : 300, "con" : 35, "stam" : -2, "vis" : -1, "hair" : "false", "beard" : "false",
+{"name" : "faceplate_sharp"                     , "layer" : "top", "min" : 1, "max" : 1, "value" : 300, "con" : 35, "stam" : -2, "vis" : -1, "hair" : "false", "beard" : "true",
  "title" :  "Sharp Faceplate",
  "desc" :  "Sharp Faceplate."
  },
-{"name" : "enclave_great_jaw"                     , "layer" : "top", "min" : 1, "max" : 1, "value" : 350, "con" : 50, "stam" : -5, "vis" : 0, "hair" : "false", "beard" : "false",
+{"name" : "enclave_great_jaw"                     , "layer" : "top", "min" : 1, "max" : 1, "value" : 350, "con" : 50, "stam" : -5, "vis" : 0, "hair" : "false", "beard" : "true",
  "title" :  "Rough Metal Bevor",
  "desc" :  "A rough metal bevor."
  },
