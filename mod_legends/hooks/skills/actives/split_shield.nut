@@ -21,13 +21,9 @@
 			{
 				damage = damage + this.Math.max(1, damage / 2);
 			}
-			if (shield.getID() == "weapon.legend_parrying_dagger")
+			if (shield.getID() == "weapon.legend_parrying_dagger" || shield.getID() == "shield.legend_named_parrying_dagger")
 			{
-				damage = damage * 0.20;
-			}
-			else if (shield.getID() == "shield.legend_named_parrying_dagger")
-			{
-				damage = damage * 0.20;
+				damage *= 0.20;
 			}
 
 			local conditionBefore = shield.getCondition();
@@ -35,6 +31,7 @@
 
 			if (shield != null && shield.getCondition() == 0)
 			{
+				targetEntity.onDamageReceived(this.getContainer().getActor(), this, hitInfo);
 				if (!_user.isHiddenToPlayer() && _targetTile.IsVisibleForPlayer)
 				{
 					local logMessage = this.Const.UI.getColorizedEntityName(_user) + " has destroyed " + this.Const.UI.getColorizedEntityName(_targetTile.getEntity()) + "\'s shield";
@@ -42,6 +39,21 @@
 					{
 						_user.setActionPoints(this.Math.min(_user.getActionPointsMax(), _user.getActionPoints() + 4));
 						this.Tactical.EventLog.log(logMessage + " and recovered 4 Action Points");
+						local overflowDamage = damage - conditionBefore;
+						if (overflowDamage > 0)
+						{
+							local p = this.getContainer().buildPropertiesForUse(this, targetEntity);
+							local hitInfo = clone this.Const.Tactical.HitInfo;
+							local damageRegular = overflowDamage * p.DamageRegularMult * 0.5;
+							local damageArmor = overflowDamage * p.DamageArmorMult * 0.5;
+							local damageDirect = this.Math.minf(1.0, p.DamageDirectMult * (this.m.DirectDamageMult + p.DamageDirectAdd + p.DamageDirectMeleeAdd));
+							hitInfo.DamageRegular = damageRegular;
+							hitInfo.DamageArmor = damageArmor;
+							hitInfo.DamageDirect = damageDirect;
+							hitInfo.BodyPart = this.Const.BodyPart.Body;
+							hitInfo.BodyDamageMult = 1.0;
+							targetEntity.onDamageReceived(this.getContainer().getActor(), this, hitInfo);
+						}
 					}
 					else
 					{
