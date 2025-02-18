@@ -121,81 +121,40 @@ this.monk_background <- this.inherit("scripts/skills/backgrounds/character_backg
 
 	function onChangeAttributes()
 	{
-		if (this.isBackgroundType(this.Const.BackgroundType.Female))
-		{
-			return {
-				Hitpoints = [
-					-10,
-					5
-				],
-				Bravery = [
-					11,
-					11
-				],
-				Stamina = [
-					0,
-					5
-				],
-				MeleeSkill = [
-					-5,
-					-5
-				],
-				RangedSkill = [
-					0,
-					0
-				],
-				MeleeDefense = [
-					0,
-					0
-				],
-				RangedDefense = [
-					0,
-					0
-				],
-				Initiative = [
-					0,
-					0
-				]
-			};
-		}
-		else
-		{
-			return {
-				Hitpoints = [
-					0,
-					0
-				],
-				Bravery = [
-					11,
-					11
-				],
-				Stamina = [
-					-10,
-					0
-				],
-				MeleeSkill = [
-					-5,
-					-5
-				],
-				RangedSkill = [
-					0,
-					0
-				],
-				MeleeDefense = [
-					0,
-					0
-				],
-				RangedDefense = [
-					0,
-					0
-				],
-				Initiative = [
-					0,
-					0
-				]
-			};
-		}
-		return c;
+		return {
+			Hitpoints = [
+				0,
+				0
+			],
+			Bravery = [
+				11,
+				11
+			],
+			Stamina = [
+				-10,
+				0
+			],
+			MeleeSkill = [
+				-5,
+				-5
+			],
+			RangedSkill = [
+				0,
+				0
+			],
+			MeleeDefense = [
+				0,
+				0
+			],
+			RangedDefense = [
+				0,
+				0
+			],
+			Initiative = [
+				0,
+				0
+			]
+		};
 	}
 
 	function onAddEquipment()
