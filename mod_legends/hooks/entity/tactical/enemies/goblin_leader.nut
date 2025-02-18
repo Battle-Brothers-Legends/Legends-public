@@ -29,4 +29,20 @@
 		]);
 		this.m.Items.equip(item);
 	}
+
+	o.makeMiniboss <- function ()
+	{
+		if (!this.actor.makeMiniboss())
+		{
+			return false;
+		}
+
+		this.getSprite("miniboss").setBrush("bust_miniboss");
+		this.m.Items.equip(this.new("scripts/items/weapons/named/legend_named_goblin_crossbow"));
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendPrepared);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendBallistics);
+		::Legends.Perks.grant(this, ::Legends.Perk.Executioner);
+		::Legends.Perks.grant(this, ::Legends.Perk.CripplingStrikes);
+		return true;
+	}
 });

@@ -550,4 +550,5 @@
 	<sprite id="icon_legend_hand_crossbow_01_bloodied" offsetY="35" ic="FF3B4153" width="104" height="142" img="icons\icon_legend_hand_crossbow_01_bloodied.png" left="0" right="48" top="-56" bottom="8" />
 
 	<sprite id="icon_wildmen_10_bloodied" offsetY="35" ic="FF2A3F54" width="130" height="142" img="icons\icon_wildmen_10_bloodied.png" left="-23" right="65" top="-69" bottom="-9" />
+	<sprite id="icon_goblin_crossbow_named_01" offsetY="35" ic="FF2C3137" width="140" height="142" img="icons\icon_goblin_crossbow_named_01.png" left="-25" right="64" top="-66" bottom="6" />
 </brush>
