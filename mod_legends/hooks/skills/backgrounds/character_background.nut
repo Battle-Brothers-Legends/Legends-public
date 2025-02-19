@@ -79,7 +79,7 @@
 		Magic = 1,
 		MagicChance = 0.001
 	};
-	o.m.PerkTreeDynamic <- { //ALL recruits get these perks as base
+	o.m.PerkTreeDynamicBase <- { // this is a base perk tree so even if you don't add custom or dynamic perk tree it will default to this and build an average bro
 		Weapon = [
 			this.Const.Perks.SwordTree,
 			this.Const.Perks.SpearTree,
@@ -97,6 +97,7 @@
 		Class = [],
 		Magic = []
 	};
+	o.m.PerkTreeDynamic <- null;
 	o.m.CustomPerkTree <- null;
 	o.m.PerkTreeMap <- null;
 	o.m.PerkTree <- null;
@@ -1317,16 +1318,22 @@
 
 		if (this.m.CustomPerkTree == null)
 		{
-				local mins = this.getPerkTreeDynamicMins();
+			local tree = this.m.PerkTreeDynamic == null ? this.m.PerkTreeDynamicBase : this.m.PerkTreeDynamic;
+			local mins = this.getPerkTreeDynamicMins();
 
-				local result  = this.Const.Perks.GetDynamicPerkTree(mins, this.m.PerkTreeDynamic);
-				this.m.CustomPerkTree = result.Tree;
-				a = result.Attributes;
+			local result  = this.Const.Perks.GetDynamicPerkTree(mins, tree);
+			this.m.CustomPerkTree = result.Tree;
+			a = result.Attributes;
 		}
 
 		local pT = this.Const.Perks.BuildCustomPerkTree(this.m.CustomPerkTree);
 		this.m.PerkTree = pT.Tree;
 		this.m.PerkTreeMap = pT.Map;
+
+		if (this.m.PerkTreeDynamic != null)
+		{
+			this.rebuildPerkTree(this.m.CustomPerkTree)
+		}
 
 		//When deserializing, the scenario isn't set yet, so it will be null - in this case, the sceario should
 		//already have added its perks so we should be ok. This will fail though loading an old save
