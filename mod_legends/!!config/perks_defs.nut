@@ -898,15 +898,15 @@ perkDefObjects.push({
 	Const = "LegendRoster7"
 });
 
-::Legends.Perk.LegendStunned <- null;
+::Legends.Perk.LegendStun <- null;
 perkDefObjects.push({
 	ID = "perk.legend_stun",
 	Script = "scripts/skills/perks/perk_legend_stun",
-	Name = ::Const.Strings.PerkName.LegendStunned,
-	Tooltip = ::Const.Strings.PerkDescription.LegendStunned,
+	Name = ::Const.Strings.PerkName.LegendStun,
+	Tooltip = ::Const.Strings.PerkDescription.LegendStun,
 	Icon = "ui/perks/stun56_circle.png",
 	IconDisabled = "ui/perks/stun56_circle_bw.png",
-	Const = "LegendStunned"
+	Const = "LegendStun"
 });
 
 ::Legends.Perk.LegendHorrify <- null;

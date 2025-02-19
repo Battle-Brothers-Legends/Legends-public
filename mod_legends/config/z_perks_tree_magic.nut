@@ -229,7 +229,9 @@ if (!("Perks" in ::Const))
 	],
 	Tree = [
 		[::Legends.Perk.LegendBackToBasics],
-		// [::Legends.Perk.LegendComposure],
+		[
+			// ::Legends.Perk.LegendComposure
+		],
 		[::Legends.Perk.InspiringPresence],
 		[::Legends.Perk.LegendShieldsUp],
 		[::Legends.Perk.LegendHoldTheLine],
@@ -246,12 +248,12 @@ if (!("Perks" in ::Const))
 	],
 	Tree = [
 		[::Legends.Perk.LegendPush],
-		[::Legends.Perk.LegendDaze],
+		[::Legends.Perk.LegendMagicDaze],
 		[::Legends.Perk.LegendEntice],
 		[::Legends.Perk.LegendHorrify],
 		[::Legends.Perk.LegendTerrifyingVisage],
 		[],
-		[::Legends.Perk.LegendStunned]
+		[::Legends.Perk.LegendStun]
 	]
 };
 
@@ -371,6 +373,36 @@ if (!("Perks" in ::Const))
 		[
 		::Legends.Perk.LegendMagicMissileMastery,
 		::Legends.Perk.LegendFirefield
+		]
+	]
+};
+
+::Const.Perks.SeerMagicTree <- {
+	ID = "SeerMagicTree",
+	Name = "Seer",
+	Descriptions = [
+		"seer"
+	],
+	Tree = [
+		[
+			::Legends.Perk.LegendMagicMissile
+		],
+		[],
+		[],
+		[
+			::Legends.Perk.LegendMagicMissileFocus
+		],
+		[
+			::Legends.Perk.LegendChainLightning
+		],
+		[
+			::Legends.Perk.LegendLevitate,
+			::Legends.Perk.LegendScry
+		],
+		[
+			::Legends.Perk.LegendMagicMissileMastery,
+			::Legends.Perk.LegendFirefield,
+			::Legends.Perk.LegendMagicSleep
 		]
 	]
 };
