@@ -14,6 +14,8 @@
 ::mods_registerJS("legends/hooks/screens/tactical/modules/tactical_combat_result_screen/tactical_combat_result_screen_datasource.js");
 ::mods_registerJS("legends/hooks/screens/tactical/modules/tactical_combat_result_screen/tactical_combat_result_screen_loot_panel.js");
 ::mods_registerJS("legends/hooks/screens/tactical/modules/tactical_screen_topbar/topbar_options_module.js");
+::mods_registerJS("legends/hooks/screens/tactical/modules/tactical_screen_topbar/topbar_event_log_module.js");
+::mods_registerCSS("legends/hooks/screens/tactical/modules/tactical_screen_topbar/topbar_event_log_module.css");
 ::mods_registerJS("legends/hooks/screens/tactical/tactical_combat_result_screen.js");
 ::mods_registerCSS("legends/hooks/screens/tactical/tactical_combat_result_screen.css");
 
