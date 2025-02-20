@@ -2059,10 +2059,10 @@
 					notValid.push(e);
 			}
 			foreach (e in notValid) {
-				::logInfo("encounter became non valid " + e.getType());
+//				::logInfo("encounter became non valid " + e.getType());
 				::MSU.Array.removeByValue(this.m.SettlementEncounters, e);
 			}
-			::logInfo("cooldown still on, skipping the creation");
+//			::logInfo("cooldown still on, skipping the creation");
 			return;
 		}
 
