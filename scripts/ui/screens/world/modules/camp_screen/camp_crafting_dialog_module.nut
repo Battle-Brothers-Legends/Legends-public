@@ -2,7 +2,8 @@ this.camp_crafting_dialog_module <- this.inherit("scripts/ui/screens/ui_module",
 	m = {
 		Title = "Crafting",
 		Description = "While encamped, craft all manner of useful items.",
-		InventoryFilter = this.Const.Items.ItemFilter.All
+		InventoryFilter = this.Const.Items.ItemFilter.All,
+		CurrentPage = 0,
 	},
 	function create()
 	{
@@ -17,20 +18,9 @@ this.camp_crafting_dialog_module <- this.inherit("scripts/ui/screens/ui_module",
 
 	function onShow()
 	{
+		this.m.CurrentPage = 0;
 		this.getTent().onInit();
 		return this.queryLoad();
-	}
-
-	function queryLoad()
-	{
-		local result = {
-			Title = this.m.Title,
-			SubTitle = this.m.Description,
-			Assets = this.assetsInformation(),
-			Blueprints = this.World.Crafting.getQualifiedBlueprintsForUI(this.m.InventoryFilter),
-			Queue = this.getTent().getQueue()
-		};
-		return result;
 	}
 
 	function queryQueue()
@@ -97,10 +87,30 @@ this.camp_crafting_dialog_module <- this.inherit("scripts/ui/screens/ui_module",
 		this.m.Parent.onCommanderButtonPressed();
 	}
 
+	function queryLoad()
+	{
+		local bps = ::World.Crafting.getQualifiedBlueprintsForUI(this.m.InventoryFilter);
+		local indexStart = this.m.CurrentPage * 4;
+		local result = {
+			Title = this.m.Title,
+			SubTitle = this.m.Description,
+			Assets = this.assetsInformation(),
+			Blueprints = bps.slice(indexStart, ::Math.min(indexStart + 4, bps.len())),
+			Queue = this.getTent().getQueue(),
+			CurrentPage = this.m.CurrentPage,
+			Pages = ::Math.floor((bps.len() + 3) / 4)
+		};
+		return result;
+	}
+
 	function loadBlueprints()
 	{
+		local bps = ::World.Crafting.getQualifiedBlueprintsForUI(this.m.InventoryFilter);
+		local indexStart = this.m.CurrentPage * 4;
 		local result = {
-			Blueprints = this.World.Crafting.getQualifiedBlueprintsForUI(this.m.InventoryFilter)
+			Blueprints = bps.slice(indexStart, ::Math.min(indexStart + 4, bps.len())),
+			CurrentPage = this.m.CurrentPage,
+			Pages = ::Math.floor((bps.len() + 3) / 4)
 		};
 		this.m.JSHandle.asyncCall("loadFromData", result);
 	}
@@ -110,6 +120,7 @@ this.camp_crafting_dialog_module <- this.inherit("scripts/ui/screens/ui_module",
 		if (this.m.InventoryFilter != this.Const.Items.ItemFilter.All)
 		{
 			this.m.InventoryFilter = this.Const.Items.ItemFilter.All;
+			this.m.CurrentPage = 0;
 			this.loadBlueprints();
 		}
 	}
@@ -119,6 +130,7 @@ this.camp_crafting_dialog_module <- this.inherit("scripts/ui/screens/ui_module",
 		if (this.m.InventoryFilter != this.Const.Items.ItemFilter.Weapons)
 		{
 			this.m.InventoryFilter = this.Const.Items.ItemFilter.Weapons;
+			this.m.CurrentPage = 0;
 			this.loadBlueprints();
 		}
 	}
@@ -128,6 +140,7 @@ this.camp_crafting_dialog_module <- this.inherit("scripts/ui/screens/ui_module",
 		if (this.m.InventoryFilter != this.Const.Items.ItemFilter.Armor)
 		{
 			this.m.InventoryFilter = this.Const.Items.ItemFilter.Armor;
+			this.m.CurrentPage = 0;
 			this.loadBlueprints();
 		}
 	}
@@ -137,6 +150,7 @@ this.camp_crafting_dialog_module <- this.inherit("scripts/ui/screens/ui_module",
 		if (this.m.InventoryFilter != this.Const.Items.ItemFilter.Misc)
 		{
 			this.m.InventoryFilter = this.Const.Items.ItemFilter.Misc;
+			this.m.CurrentPage = 0;
 			this.loadBlueprints();
 		}
 	}
@@ -146,8 +160,14 @@ this.camp_crafting_dialog_module <- this.inherit("scripts/ui/screens/ui_module",
 		if (this.m.InventoryFilter != this.Const.Items.ItemFilter.Usable)
 		{
 			this.m.InventoryFilter = this.Const.Items.ItemFilter.Usable;
+			this.m.CurrentPage = 0;
 			this.loadBlueprints();
 		}
+	}
+
+	function onPageChange(_result) {
+		this.m.CurrentPage = _result.ID;
+		this.loadBlueprints();
 	}
 
 });

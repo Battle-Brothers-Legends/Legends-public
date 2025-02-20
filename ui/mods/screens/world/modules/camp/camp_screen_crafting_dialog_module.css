@@ -103,7 +103,7 @@
 .camp-screen > .l-crafting-dialog-container .content .l-list-container
 {
 	width: 100%;
-	height: 90%;
+	height: calc(90% - 4rem);
 }
 
 /* disable font shadow */
@@ -201,7 +201,7 @@
 
 .camp-screen > .l-crafting-dialog-container .content .l-row .row.is-top
 {
-	top: 1.0rem;   
+	top: 1.0rem;
 	height: 3.8rem;
 
 	width: 92%;
@@ -830,7 +830,7 @@
 	position: absolute;
 
 	line-height: 2.6rem;
-}	
+}
 
 .camp-screen .filter-panel .l-button.is-all-filter
 {
@@ -916,4 +916,30 @@
 	line-height: 2.8rem;
 
 	pointer-events: none;
+}
+
+.camp-screen .page-bar-row
+{
+	width: 100%;
+	height: 4.0rem;
+	bottom: 4rem;
+}
+
+.camp-screen .page-bar-row > .l-search-result-page-bar
+{
+	background-color: "#ff0000";
+	width: 100%;
+	height: 4.0rem;
+	right: 1.0rem;
+	position: absolute;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.camp-screen .page-bar-row > .l-search-result-page-bar .l-flex-button-39-39
+{
+	width: 3.9rem;
+	height: 3.9rem;
+	flex: 0 0 auto;
 }
