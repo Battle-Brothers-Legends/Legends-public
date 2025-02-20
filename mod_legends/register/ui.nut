@@ -7,6 +7,8 @@
 // world
 ::mods_registerJS("legends/hooks/screens/world/modules/world_screen_topbar/world_screen_topbar_daytime_module.js");
 ::mods_registerJS("legends/hooks/screens/world/modules/world_town_screen/world_town_screen_shop_dialog_module.js");
+::mods_registerJS("legends/hooks/screens/world/world_event_screen.js");
+::mods_registerCSS("legends/hooks/screens/world/world_event_screen.css");
 ::mods_registerJS("legends/hooks/screens/world/world_screen.js");
 ::mods_registerCSS("legends/hooks/screens/world/world_screen.css");
 

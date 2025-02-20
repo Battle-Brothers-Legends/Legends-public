@@ -1,0 +1,13 @@
+.world-event-content .divider-top
+{
+	border-top: 1px rgba(215, 177, 116, 0.5) solid !important;
+	margin-top: 1.0rem;
+	padding-top: 0.5rem;
+}
+
+.world-event-content .divider-bottom
+{
+	border-bottom: 1px rgba(215, 177, 116, 0.5) solid !important;
+	bottom: 1.0rem;
+	padding-bottom: 0.5rem;
+}
