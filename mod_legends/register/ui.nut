@@ -6,6 +6,7 @@
 
 // world
 ::mods_registerJS("legends/hooks/screens/world/modules/world_screen_topbar/world_screen_topbar_daytime_module.js");
+::mods_registerJS("legends/hooks/screens/world/modules/world_town_screen/world_town_screen_shop_dialog_module.js");
 
 // tactical
 ::mods_registerJS("legends/hooks/screens/tactical/modules/tactical_combat_result_screen/tactical_combat_result_screen_datasource.js");
