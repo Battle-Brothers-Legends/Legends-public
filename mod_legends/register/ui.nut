@@ -4,6 +4,9 @@
 ::mods_registerCSS("legends/hooks/character_screen.css");
 ::mods_registerJS("legends/hooks/screens/loading/loading_screen.js");
 
+// world
+::mods_registerJS("legends/hooks/screens/world/modules/world_screen_topbar/world_screen_topbar_daytime_module.js");
+
 // tactical
 ::mods_registerJS("legends/hooks/screens/tactical/modules/tactical_combat_result_screen/tactical_combat_result_screen_datasource.js");
 ::mods_registerJS("legends/hooks/screens/tactical/modules/tactical_combat_result_screen/tactical_combat_result_screen_loot_panel.js");
