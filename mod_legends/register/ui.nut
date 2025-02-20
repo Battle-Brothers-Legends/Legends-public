@@ -2,7 +2,10 @@
 ::mods_registerJS("legends/hooks/!container.js");
 ::mods_registerJS("legends/hooks/character_screen.js");
 ::mods_registerCSS("legends/hooks/character_screen.css");
-::mods_registerJS("legends/hooks/tactical_combat_result.js");
+
+// tactical
+::mods_registerJS("legends/hooks/screens/tactical/modules/tactical_combat_result_screen/tactical_combat_result_screen_datasource.js");
+::mods_registerJS("legends/hooks/screens/tactical/modules/tactical_combat_result_screen/tactical_combat_result_screen_loot_panel.js");
 
 // formations
 ::mods_registerJS("screens/character/modules/character_screen_right_panel/character_screen_formations_module.js");
