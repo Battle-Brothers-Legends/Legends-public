@@ -585,7 +585,7 @@
 				perk.IsRefundable = false;
 			} else {
 				local perk = ::new("scripts/skills/perks/perk_nine_lives");
-				perk.IsRefundable = false;
+				::Const.Perks.PerkDefObjects[::Const.Perks.PerkDefs.NineLives].IsRefundable = false;
 				this.getSkills().add(perk);
 			}
 
