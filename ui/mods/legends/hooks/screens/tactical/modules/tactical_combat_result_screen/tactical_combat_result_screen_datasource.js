@@ -14,12 +14,7 @@ $('head').append($('<style>').html([
 	'}'
 ].join('\n')));
 
-mod_legends.Hooks.TacticalCombatResultScreenDatasource_init = TacticalCombatResultScreenDatasource.prototype.init;
-TacticalCombatResultScreenDatasource.prototype.init = function ()
-{
-	this.mStashData = null;
-	mod_legends.Hooks.TacticalCombatResultScreenDatasource_init.call(this);
-};
+TacticalCombatResultScreenDatasource.prototype.mStashData = null;
 
 mod_legends.Hooks.TacticalCombatResultScreenDatasource_loadStashList = TacticalCombatResultScreenDatasource.prototype.loadStashList;
 TacticalCombatResultScreenDatasource.prototype.loadStashList = function (_data, _withoutNotify)
