@@ -1,0 +1,30 @@
+.tactical-combat-result-screen .ui-control.popup-dialog.stash-resize-popup
+{
+	width: 44.9rem;
+	height: 25.0rem;
+
+	background-image: url("coui://gfx/ui/skin/popup_background_449x250.png");
+	background-size: 44.9rem 25.0rem;
+	background-repeat: no-repeat;
+}
+
+.tactical-combat-result-screen .ui-control.popup-dialog .resize-header
+{
+	top: 0.5rem;
+	left: 0;
+	right: 0;
+	height: 6.0rem;
+	position: absolute;
+	margin: auto;
+}
+
+.tactical-combat-result-screen .ui-control.popup-dialog .resize-header .header-text
+{
+	text-align : center;
+	line-height: 2.0rem;
+}
+
+.tactical-combat-result-screen .ui-control.popup-dialog > .footer .l-button-bar
+{
+	top: 10.0rem;
+}
