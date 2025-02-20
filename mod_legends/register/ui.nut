@@ -6,7 +6,8 @@
 
 // tactical
 ::mods_registerJS("legends/hooks/screens/tactical/modules/tactical_combat_result_screen/tactical_combat_result_screen_datasource.js");
-::mods_registerJS("legends/hooks/screens/tactical/modules/tactical_combat_result_screen/tactical_combat_result_screen_loot_panel.js");
+::mods_registerJS("legends/hooks/screens/tactical/modules/tactical_combat_result_screen/tactical_combat_result_screen_datasource.js");
+::mods_registerJS("legends/hooks/screens/tactical/modules/tactical_screen_topbar/topbar_options_module.js");
 
 
 // formations
