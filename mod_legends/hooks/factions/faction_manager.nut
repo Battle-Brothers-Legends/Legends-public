@@ -26,12 +26,9 @@
 
 			foreach( f in this.m.Factions )
 			{
-				if (f != null)
-				{
-					if ( !(StaticRelations[f.getType()]) ) 		//init to false automatically so should
-					{											//normalize relations unless we set in scenario init
-						f.normalizeRelation();
-					}
+				if (f != null && !(StaticRelations[f.getType()])) //init to false automatically so should
+				{ //normalize relations unless we set in scenario init									
+					f.normalizeRelation();
 				}
 			}
 		}
@@ -49,47 +46,10 @@
 		this.updateGreaterEvil();
 	}
 
+	local runSimulation = o.runSimulation;
 	o.runSimulation = function ()
 	{
-		this.logInfo("Running simulation for " + this.Const.Factions.CyclesOnNewCampaign + " cycles...");
-		this.LoadingScreen.updateProgress("Simulating World ... 0%");
-
-		local barbarians = this.Const.DLC.Wildmen ? this.getFactionOfType(this.Const.FactionType.Barbarians) : null;
-		local bandits = this.getFactionOfType(this.Const.FactionType.Bandits);
-		local nomads = this.Const.DLC.Desert ? this.getFactionOfType(this.Const.FactionType.OrientalBandits) : null;
-		local orcs = this.getFactionOfType(this.Const.FactionType.Orcs);
-		local goblins = this.getFactionOfType(this.Const.FactionType.Goblins);
-		local undead = this.getFactionOfType(this.Const.FactionType.Undead);
-		local zombies = this.getFactionOfType(this.Const.FactionType.Zombies);
-		local beasts = this.getFactionOfType(this.Const.FactionType.Beasts);
-		local freecompanies = this.getFactionOfType(this.Const.FactionType.FreeCompany);
-
-		for( local i = 0; i < this.Const.Factions.CyclesOnNewCampaign; i = ++i )
-		{
-			if (barbarians != null)
-			{
-				barbarians.update(true, true);
-			}
-
-			if (nomads != null)
-			{
-				nomads.update(true, true);
-			}
-
-			bandits.update(true, true);
-			goblins.update(true, true);
-			orcs.update(true, true);
-			undead.update(true, true);
-			zombies.update(true, true);
-			beasts.update(true, true);
-			freecompanies.update(true, true);
-			if (i % 20 == 0)
-			{
-				local progress = (i * 1.0) / (this.Const.Factions.CyclesOnNewCampaign * 1.0);
-				this.LoadingScreen.updateProgress("Simulating World ... " + progress  * 100 + "%");
-			}
-			this.__ping();
-		}
+		runSimulation();
 
 		foreach(settlement in this.World.EntityManager.getSettlements() )
 		{
