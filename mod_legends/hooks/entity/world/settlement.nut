@@ -691,8 +691,8 @@
 
 		if (marketplace != null) {
 			foreach( p in this.m.ImportedGoodsInventory.getItems() )
-				marketplace.getStash().add(p)
-			
+				marketplace.getStash().add(p);
+
 			this.m.ImportedGoodsInventory.clear();
 		}
 
@@ -1125,27 +1125,198 @@
 		}
 	}
 
-	local onSerialize = o.onSerialize;
 	o.onSerialize = function ( _out )
 	{
-		onSerialize(_out);
+		this.location.onSerialize(_out);
 		_out.writeU8(this.m.Size);
 		_out.writeBool(this.m.IsUpgrading);
+		_out.writeBool(this.m.IsActive);
+		_out.writeBool(this.m.IsCoastal);
+		_out.writeF32(this.m.LastPreload);
+		_out.writeF32(this.m.LastShopUpdate);
+		_out.writeF32(this.m.LastRosterUpdate);
 		_out.writeF32(this.m.LastStablesUpdate);
+		_out.writeI32(this.m.ShopSeed);
+		_out.writeI32(this.m.RosterSeed);
 		_out.writeI32(this.m.StablesSeed);
+
+		if (this.m.DeepOceanTile != null)
+		{
+			_out.writeI16(this.m.DeepOceanTile.Coords.X);
+			_out.writeI16(this.m.DeepOceanTile.Coords.Y);
+		}
+		else
+		{
+			_out.writeI16(-1);
+			_out.writeI16(-1);
+		}
+
+		_out.writeU8(this.m.Buildings.len());
+
+		foreach( building in this.m.Buildings )
+		{
+			if (building == null)
+			{
+				_out.writeI32(0);
+			}
+			else
+			{
+				_out.writeI32(building.ClassNameHash);
+				building.onSerialize(_out);
+			}
+		}
+
+		_out.writeU8(this.m.Situations.len());
+
+		foreach( s in this.m.Situations )
+		{
+			_out.writeI32(s.ClassNameHash);
+			s.onSerialize(_out);
+		}
+
+		_out.writeU8(this.m.ProduceImported.len());
+
+		foreach( p in this.m.ProduceImported )
+		{
+			_out.writeString(p);
+		}
+
+		_out.writeU8(this.m.ConnectedTo.len());
+
+		foreach( id in this.m.ConnectedTo )
+		{
+			_out.writeU32(id);
+		}
+
+		_out.writeU8(this.m.ConnectedToByRoads.len());
+
+		foreach( id in this.m.ConnectedToByRoads )
+		{
+			_out.writeU32(id);
+		}
+
+		_out.writeU8(this.m.HousesTiles.len());
+
+		for( local i = 0; i != this.m.HousesTiles.len(); ++i )
+		{
+			_out.writeI16(this.m.HousesTiles[i].X);
+			_out.writeI16(this.m.HousesTiles[i].Y);
+			_out.writeU8(this.m.HousesTiles[i].V);
+		}
+
 		this.m.ImportedGoodsInventory.onSerialize(_out);
 		::MSU.Utils.serialize(this.m.CaravanReceivedHistory, _out);
 		::MSU.Utils.serialize(this.m.CaravanSentHistory, _out);
 	}
 
-	local onDeserialize = o.onDeserialize;
 	o.onDeserialize = function ( _in )
 	{
-		onDeserialize(_in);
+		this.location.onDeserialize(_in);
 		this.m.Size = _in.readU8();
 		this.m.IsUpgrading = _in.readBool();
-		this.m.LastStablesUpdate = _in.readF32();
-		this.m.StablesSeed = _in.readI32();
+		this.m.IsActive = _in.readBool();
+		this.m.IsCoastal = _in.readBool();
+
+		if (_in.getMetaData().getVersion() >= 52)
+		{
+			this.m.LastPreload = _in.readF32();
+		}
+
+		this.m.LastShopUpdate = _in.readF32();
+		this.m.LastRosterUpdate = _in.readF32();
+
+		if (_in.getMetaData().getVersion() >= 58)
+		{
+			this.m.LastStablesUpdate = _in.readF32();
+		}
+
+		this.m.ShopSeed = _in.readI32();
+		this.m.RosterSeed = _in.readI32();
+
+		if (_in.getMetaData().getVersion() >= 58)
+		{
+			this.m.StablesSeed = _in.readI32();
+		}
+
+		local x = _in.readI16();
+		local y = _in.readI16();
+
+		if (!(x == -1 && y == -1))
+		{
+			this.m.DeepOceanTile = this.World.getTile(x, y);
+		}
+
+		this.m.Buildings = [];
+		this.m.Buildings.resize(9, null);
+		local numBuildings = _in.readU8();
+
+		for( local i = 0; i < numBuildings; ++i )
+		{
+			local id = _in.readI32();
+
+			if (id != 0)
+			{
+				this.m.Buildings[i] = this.new(this.IO.scriptFilenameByHash(id));
+				this.m.Buildings[i].setSettlement(this);
+				this.m.Buildings[i].onDeserialize(_in);
+			}
+		}
+
+		if (this.m.IsCoastal && this.m.Buildings[3] != null && this.m.Buildings[3].getID() == "building.port")
+		{
+			this.m.UIBackgroundLeft = "ui/settlements/water_01";
+		}
+
+		local numSituations = _in.readU8();
+		this.m.Situations.resize(numSituations);
+
+		for( local i = 0; i < numSituations; ++i )
+		{
+			this.m.Situations[i] = this.new(this.IO.scriptFilenameByHash(_in.readI32()));
+			this.m.Situations[i].onDeserialize(_in);
+		}
+
+		this.m.Modifiers.reset();
+
+		foreach( s in this.m.Situations )
+		{
+			s.onUpdate(this.m.Modifiers);
+		}
+
+		local numProduce = _in.readU8();
+
+		for( local i = 0; i != numProduce; ++i )
+		{
+			this.m.ProduceImported.push(_in.readString());
+		}
+
+		local numConnectedTo = _in.readU8();
+
+		for( local i = 0; i != numConnectedTo; ++i )
+		{
+			this.m.ConnectedTo.push(_in.readU32());
+		}
+
+		local numConnectedToByRoads = _in.readU8();
+
+		for( local i = 0; i != numConnectedToByRoads; ++i )
+		{
+			this.m.ConnectedToByRoads.push(_in.readU32());
+		}
+
+		local numHouses = _in.readU8();
+
+		for( local i = 0; i != numHouses; ++i )
+		{
+			local x = _in.readI16();
+			local y = _in.readI16();
+			local v = _in.readU8();
+			this.m.HousesTiles.push({
+				X = x,
+				Y = y,
+				V = v
+			});
+		}
 
 		this.m.ImportedGoodsInventory.onDeserialize(_in);
 		if (::Legends.Mod.Serialization.isSavedVersionAtLeast("18.2.0-pre-02", _in.getMetaData()))
