@@ -51,7 +51,13 @@ var WorldTownScreenTaxidermistDialogModule = function(_parent)
 	this.mFilterArmorButton = null;
 	this.mFilterMiscButton = null;
 	this.mFilterUsableButton = null;
-
+	// pagination
+	this.mSearch = {
+		ResultButtons : [],
+		ResultPageList : null,
+	};
+	this.mItemPerPage = 4;
+	this.mMaxVisiblePage = 9;
 };
 
 
@@ -178,6 +184,11 @@ WorldTownScreenTaxidermistDialogModule.prototype.createDIV = function (_parentDi
 
 	this.mNoCraftablesLabel = $('<div class="is-no-craftables-hint text-font-medium font-bottom-shadow font-color-description display-none">Nothing can be crafted from your combination of trophies.</div>');
 	listContainerLayout.append(this.mNoCraftablesLabel);
+
+	var pagesContainerLayout = $('<div class="page-bar-row"/>');
+	this.mSearch.ResultPageList = $('<div class="l-search-result-page-bar"/>');
+	pagesContainerLayout.append(this.mSearch.ResultPageList);
+	column.append(pagesContainerLayout);
 
 	// right column
 	column = $('<div class="column is-right"/>');
@@ -341,6 +352,10 @@ WorldTownScreenTaxidermistDialogModule.prototype.destroyDIV = function ()
 	this.mFilterPanel.remove();
 	this.mFilterPanel = null;
 
+	this.mSearch.ResultPageList.empty();
+	this.mSearch.ResultPageList.remove();
+	this.mSearch.ResultPageList = null;
+
 	this.mListScrollContainer.empty();
 	this.mListScrollContainer = null;
 	this.mListContainer.destroyList();
@@ -389,7 +404,7 @@ WorldTownScreenTaxidermistDialogModule.prototype.addListEntry = function (_data)
 	}, null, 'opacity-none');
 	image.bindTooltip({ contentType: 'ui-item', itemId: _data.ID, itemOwner: 'craft' });
 
-	if(_data.isAmountShown) 
+	if(_data.isAmountShown)
 	{
 		var amountLayer =$('<div class="amount-layer display-block"/>');
 		column.append(amountLayer);
@@ -399,7 +414,7 @@ WorldTownScreenTaxidermistDialogModule.prototype.addListEntry = function (_data)
 		amountLayer.removeClass('display-none').addClass('display-block');
 		amountLabel.css({'color' : "#ffffff"});
 	}
-	
+
 	// right column
 	column = $('<div class="column is-right"/>');
 	entry.append(column);
@@ -519,7 +534,7 @@ WorldTownScreenTaxidermistDialogModule.prototype.updateDetailsPanel = function(_
 			{
 				icon = $('<img src="' + Path.ITEMS + data.Ingredients[i].ImagePath + '"/>');
 				icon.bindTooltip({ contentType: 'ui-item', itemId: data.Ingredients[i].InstanceID, entityId: data.ID, itemOwner: 'blueprint' });
-				
+
 				var amountLayer =$('<div class="amount-layer display-block"/>');
 				iconContainer.append(amountLayer);
 				var amountLabel = $('<div class="label text-font-very-small font-shadow-outline font-size-15"/>');
@@ -799,6 +814,8 @@ WorldTownScreenTaxidermistDialogModule.prototype.loadFromData = function (_data)
 		{
 			this.addListEntry(_data.Blueprints[i]);
 		}
+
+		this.createResultPageButton(_data.CurrentPage, _data.Pages);
 	}
 	else
 	{
@@ -808,6 +825,45 @@ WorldTownScreenTaxidermistDialogModule.prototype.loadFromData = function (_data)
 	this.selectListEntry(this.mListContainer.findListEntryByIndex(0), true);
 };
 
+
+WorldTownScreenTaxidermistDialogModule.prototype.createResultPageButton = function(_currentPage, _pages)
+{
+	var self = this;
+	this.mSearch.ResultPageList.empty();
+	this.mSearch.ResultButtons = [];
+
+	var previousButtonLayout = $('<div class="l-flex-button-39-39"/>');
+	this.mSearch.ResultPageList.append(previousButtonLayout);
+	var previousButton = previousButtonLayout.createImageButton(Path.GFX + 'ui/buttons/arrow_left.png', function(_button) {
+		self.notifyBackendPageChanged({ID: Math.max(0, _currentPage - 1)})
+	}, '', 10);
+	previousButton.enableButton(_currentPage != 0);
+
+	var startPage = 0;
+	if (_currentPage >= _pages - Math.floor(this.mMaxVisiblePage / 2)) {
+		startPage = Math.max(0, _pages - this.mMaxVisiblePage);
+	} else {
+		startPage = Math.max(0, _currentPage - Math.floor(this.mMaxVisiblePage / 2));
+	}
+
+	for (var i = startPage; i < startPage + this.mMaxVisiblePage && i < _pages; i++) {
+		var buttonLayout = $('<div class="l-flex-button-39-39"/>');
+		this.mSearch.ResultPageList.append(buttonLayout);
+		var button = buttonLayout.createTextButton('' + (i + 1) + '', function(_button) {
+			self.notifyBackendPageChanged({ID: _button.data('page')})
+		}, '', 10);
+		button.data('page', i);
+		button.enableButton(i != _currentPage);
+		this.mSearch.ResultButtons.push(button);
+	}
+
+	var nextButtonLayout = $('<div class="l-flex-button-39-39"/>');
+	this.mSearch.ResultPageList.append(nextButtonLayout);
+	var nextButton = nextButtonLayout.createImageButton(Path.GFX + 'ui/buttons/arrow_right.png', function(_button) {
+		self.notifyBackendPageChanged({ID: Math.min(_pages, _currentPage + 1)})
+	}, '', 10);
+	nextButton.enableButton(_currentPage != _pages - 1);
+}
 
 WorldTownScreenTaxidermistDialogModule.prototype.notifyBackendModuleShown = function ()
 {
@@ -861,4 +917,8 @@ WorldTownScreenTaxidermistDialogModule.prototype.notifyBackendFilterMiscButtonCl
 
 WorldTownScreenTaxidermistDialogModule.prototype.notifyBackendFilterUsableButtonClicked = function () {
 	SQ.call(this.mSQHandle, 'onFilterUsable');
+};
+
+WorldTownScreenTaxidermistDialogModule.prototype.notifyBackendPageChanged = function (_pageID) {
+	SQ.call(this.mSQHandle, 'onPageChange', _pageID, null);
 };

@@ -1,14 +1,24 @@
 ::mods_hookExactClass("ui/screens/world/modules/world_town_screen/town_taxidermist_dialog_module", function(o) {
 
 	o.m.InventoryFilter <- this.Const.Items.ItemFilter.All;
+	o.m.CurrentPage <- 0;
 
-	local queryBlueprints = o.queryBlueprints; 
+	o.onModuleShown <- function ()
+	{
+		this.m.CurrentPage = 0;
+		this.ui_module.onModuleShown();
+	}
+
+	local queryBlueprints = o.queryBlueprints;
 	o.queryBlueprints = function()
 	{
 		local result = queryBlueprints();
 		result.SubTitle = "A taxidermist can create useful items from all kinds of beast trophies that you bring";
-		result.Blueprints = this.World.Crafting.getQualifiedBlueprintsForUI(this.m.InventoryFilter);
-		
+		local bps = ::World.Crafting.getQualifiedBlueprintsForUI(this.m.InventoryFilter);
+		local indexStart = this.m.CurrentPage * 4;
+		result.Blueprints = bps.slice(indexStart, ::Math.min(indexStart + 4, bps.len()));
+		result.CurrentPage <- this.m.CurrentPage;
+		result.Pages <- ::Math.floor((bps.len() + 3) / 4);
 		return result;
 	}
 
@@ -23,6 +33,7 @@
 		if (this.m.InventoryFilter != this.Const.Items.ItemFilter.All)
 		{
 			this.m.InventoryFilter = this.Const.Items.ItemFilter.All;
+			this.m.CurrentPage = 0;
 			this.loadBlueprints();
 		}
 	}
@@ -32,6 +43,7 @@
 		if (this.m.InventoryFilter != this.Const.Items.ItemFilter.Weapons)
 		{
 			this.m.InventoryFilter = this.Const.Items.ItemFilter.Weapons;
+			this.m.CurrentPage = 0;
 			this.loadBlueprints();
 		}
 	}
@@ -41,6 +53,7 @@
 		if (this.m.InventoryFilter != this.Const.Items.ItemFilter.Armor)
 		{
 			this.m.InventoryFilter = this.Const.Items.ItemFilter.Armor;
+			this.m.CurrentPage = 0;
 			this.loadBlueprints();
 		}
 	}
@@ -50,6 +63,7 @@
 		if (this.m.InventoryFilter != this.Const.Items.ItemFilter.Misc)
 		{
 			this.m.InventoryFilter = this.Const.Items.ItemFilter.Misc;
+			this.m.CurrentPage = 0;
 			this.loadBlueprints();
 		}
 	}
@@ -59,8 +73,14 @@
 		if (this.m.InventoryFilter != this.Const.Items.ItemFilter.Usable)
 		{
 			this.m.InventoryFilter = this.Const.Items.ItemFilter.Usable;
+			this.m.CurrentPage = 0;
 			this.loadBlueprints();
 		}
+	}
+
+	o.onPageChange <- function (_result) {
+		this.m.CurrentPage = _result.ID;
+		this.loadBlueprints();
 	}
 
 	o.FixVariantImage <- function ( _result )
