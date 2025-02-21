@@ -169,6 +169,7 @@
 	height: 10.7rem;
 	position: relative;
 	margin-bottom: -0.1rem;
+	margin-left: 1.0rem;
 
 	overflow: hidden;
 }
@@ -925,7 +926,7 @@
 	background-color: "#ff0000";
 	width: 100%;
 	height: 4.0rem;
-	right: 1.0rem;
+	right: 0.5rem;
 	position: absolute;
 	display: flex;
 	justify-content: center;
