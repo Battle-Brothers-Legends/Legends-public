@@ -461,85 +461,12 @@
 		}
 	}
 
-	o.onSerialize = function ( _out )
-	{
-		local numFactions = 0;
-
-		foreach( f in this.m.Factions )
-		{
-			if (f == null)
-			{
-				continue;
-			}
-
-			numFactions = ++numFactions;
-		}
-
-		_out.writeU8(numFactions);
-
-		foreach( f in this.m.Factions )
-		{
-			if (f == null)
-			{
-				continue;
-			}
-
-			_out.writeI32(f.ClassNameHash);
-		}
-
-		foreach( f in this.m.Factions )
-		{
-			if (f == null)
-			{
-				continue;
-			}
-
-			f.onSerialize(_out);
-		}
-
-		_out.writeU32(this.m.LastRelationUpdateDay);
-		_out.writeU8(this.m.GreaterEvil.Type);
-		_out.writeU8(this.m.GreaterEvil.LastType);
-		_out.writeU32(this.m.GreaterEvil.TypesUsed);
-		_out.writeU8(this.m.GreaterEvil.Phase);
-		_out.writeF32(this.m.GreaterEvil.NextPhaseTime);
-		_out.writeF32(this.m.GreaterEvil.Strength);
-		_out.writeF32(this.m.GreaterEvil.LastUpdate);
-	}
-
+	local onDeserialize = o.onDeserialize;
 	o.onDeserialize = function ( _in )
 	{
-		this.clear();
-		local numFactions = _in.readU8();
-
-		for( local i = 0; i != numFactions; i = ++i )
-		{
-			local f = this.new(this.IO.scriptFilenameByHash(_in.readI32()));
-			this.m.Factions.push(f);
-		}
-
-		foreach( f in this.m.Factions )
-		{
-			if (f == null)
-			{
-				continue;
-			}
-
-			f.onDeserialize(_in);
-		}
-
-		// Setup the dummy faction's mimic behaviour after all possible factions have been deserialized
-		local dummy = this.getDummyFaction();
+		onDeserialize(_in);
+		local dummy = getDummyFaction();
 		if (dummy != null)
-			dummy.setMimicValues(dummy.getMimicID());
-
-		this.m.LastRelationUpdateDay = _in.readU32();
-		this.m.GreaterEvil.Type = _in.readU8();
-		this.m.GreaterEvil.LastType = _in.readU8();
-		this.m.GreaterEvil.TypesUsed = _in.readU32();
-		this.m.GreaterEvil.Phase = _in.readU8();
-		this.m.GreaterEvil.NextPhaseTime = _in.readF32();
-		this.m.GreaterEvil.Strength = _in.readF32();
-		this.m.GreaterEvil.LastUpdate = _in.readF32();
+			dummy.setMimicValues(dummy.getMimicID()); // Setup the dummy faction's mimic behaviour after all possible factions have been deserialized
 	}
 });
