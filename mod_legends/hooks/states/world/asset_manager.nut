@@ -66,6 +66,7 @@
 	{
 		return this.m.FounderNames;
 	}
+
 	o.getFormationIndex <- function ()
 	{
 		return this.m.FormationIndex;
@@ -122,86 +123,30 @@
 		this.m.Medicine = this.Math.min(this.Math.max(0, this.m.Medicine + _f), this.getMaxMedicine());
 	}
 
+	local addBusinessReputation = o.addBusinessReputation;
 	o.addBusinessReputation = function ( _f )
 	{
 		if (_f < 0) {
-			if (this.m.BusinessReputation < 250)
-			{
-				_f = 0;
-			}
-			if (this.m.BusinessReputation >= 250 && this.m.BusinessReputation < 500)
-			{
-				_f *= 0.5;
-			}
+			if (this.m.BusinessReputation < 250) _f = 0;
+			else if (this.m.BusinessReputation >= 250 && this.m.BusinessReputation < 500) _f = ::Math.round(0.5 * _f);
 		}
-		this.m.BusinessReputation += this.Math.ceil(_f * this.m.BusinessReputationRate);
+		addBusinessReputation(_f);
 		this.m.BusinessReputationMax = this.Math.max(this.m.BusinessReputation, this.m.BusinessReputationMax);
-
-		if (this.m.BusinessReputation >= 1000)
-		{
-			this.updateAchievement("MakingAName", 1, 1);
-		}
-
-		if (this.m.BusinessReputation >= 3000)
-		{
-			this.updateAchievement("ManOfRenown", 1, 1);
-		}
-
-		if (this.m.BusinessReputation >= 8000)
-		{
-			this.updateAchievement("StuffOfLegends", 1, 1);
-		}
 	}
 
 	// overwriting due to certain options
+	local setCampaignSettings = o.setCampaignSettings;
 	o.setCampaignSettings = function ( _settings )
 	{
-		this.m.CampaignID = this.Math.max(0, this.Math.rand());
-		this.m.Name = this.removeFromBeginningOfText("The ", this.removeFromBeginningOfText("the ", _settings.Name));
-		this.m.Banner = _settings.Banner;
-		this.m.BannerID = _settings.Banner.slice(_settings.Banner.find("_") + 1).tointeger();
-		this.m.CombatDifficulty = _settings.Difficulty;
-		this.m.EconomicDifficulty = _settings.EconomicDifficulty;
-		this.m.IsIronman = _settings.Ironman;
-		this.m.IsPermanentDestruction = _settings.PermanentDestruction;
-		this.m.Origin = _settings.StartingScenario;
-		this.m.BusinessReputation = 0;
-		this.m.SeedString = _settings.Seed;
-		this.World.FactionManager.getGreaterEvil().Type = _settings.GreaterEvil;
+		if (!("IsExplorationMode" in _settings))
+			_settings.IsExplorationMode <- false;
+
+		setCampaignSettings(_settings);
 		this.m.Stash.resize( this.Const.LegendMod.MaxResources[_settings.EconomicDifficulty].Stash);
 		this.m.Money = this.Const.LegendMod.StartResources[_settings.BudgetDifficulty].Money;
 		this.m.Ammo = this.Const.LegendMod.StartResources[_settings.BudgetDifficulty].Ammo;
 		this.m.ArmorParts = this.Const.LegendMod.StartResources[_settings.BudgetDifficulty].ArmorParts;
 		this.m.Medicine = this.Const.LegendMod.StartResources[_settings.BudgetDifficulty].Medicine;
-
-
-		this.m.Stash.clear();
-		this.m.Origin.onSpawnAssets();
-		local bros = this.World.getPlayerRoster().getAll();
-
-		foreach( bro in bros )
-		{
-			// local val = this.World.State.addNewID(bro);
-			// bro.m.CompanyID = val;
-			bro.getBackground().buildDescription(true);
-			bro.m.XP = this.Const.LevelXP[bro.m.Level - 1];
-			bro.m.Attributes = [];
-			bro.fillAttributeLevelUpValues(this.Const.XP.MaxLevelWithPerkpoints - 1);
-			bro.getSkills().update();
-		}
-
-		this.updateFormation();
-
-		foreach( item in this.Const.World.Assets.NewCampaignEquipment )
-		{
-			this.m.Stash.add(this.new(item));
-		}
-		this.m.Stash.add(this.new("scripts/items/accessory/legend_pack_small"));
-		// this.m.Stash.add(this.new("scripts/items/trade/cloth_rolls_item"))
-		// this.m.Stash.add(this.new("scripts/items/misc/spider_silk_item"))
-
-
-		this.updateFood();
 		this.m.LastRosterSize = this.World.getPlayerRoster().getSize();
 	}
 
@@ -287,12 +232,7 @@
 		create();
 		for( local i = 0; i < this.Const.LegendMod.Formations.Count; i = ++i )
 		{
-			local name = "NULL";
-			if (i == 0)
-			{
-				name = "Formation 1";
-			}
-			this.m.FormationNames.push(name);
+			this.m.FormationNames.push(i == 0 ? "Formation 1" : "NULL");
 		}
 	}
 
@@ -729,13 +669,13 @@
 
 	o.getFormation = function ()
 	{
-		local ret = [];
-		ret.resize(27, null);
+		local maxSlot = 27, ret = [];
+		ret.resize(maxSlot, null);
 		local roster = this.World.getPlayerRoster().getAll();
 
 		foreach( b in roster )
 		{
-			if (b.getPlaceInFormation() == 255)
+			if (b.getPlaceInFormation() >= maxSlot)
 			{
 				this.logError("Bro has invalid place in formation! :: " + b.m.Name);
 				continue;
@@ -749,15 +689,11 @@
 
 	o.changeFormation <- function ( _index )
 	{
-
 		if (_index == this.m.FormationIndex)
-		{
 			return;
-		}
 
-		if (_index == null) {
+		if (_index == null)
 			_index = 0;
-		}
 
 		local lastIndex = this.m.FormationIndex;
 		this.m.FormationIndex = _index;
@@ -780,9 +716,9 @@
 		{
 			stash.add(item);
 		}
+
 		stash.setResizable(false);
 		//stash.sort()
-
 
 		//Check if the next Formation has been set, if not, use the previous formation
 		if (this.getFormationName() == "NULL")
@@ -846,11 +782,8 @@
 
 	o.setFormationName <- function (_index, _name)
 	{
-		if (_name == "")
-		{
-			return;
-		}
-		this.m.FormationNames[_index] = _name;
+		if (_name != "")
+			this.m.FormationNames[_index] = _name;
 	}
 
 	o.changeFormationName <- function ( _name )
