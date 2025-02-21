@@ -223,9 +223,14 @@ this.legends_inquisition_scenario <- this.inherit("scripts/scenarios/world/start
 			this.Music.setTrackList([
 				"music/noble_02.ogg"
 			], this.Const.Music.CrossFadeTime);
-			this.World.Events.fire("event.legend_inquisition_scenario_intro");
-		}, null);
+			::World.Events.fire("event.legend_inquisition_scenario_intro");
 
+			// setup undead crisis
+			::World.FactionManager.m.GreaterEvil.Type = ::Const.World.GreaterEvilType.Undead;
+			::World.FactionManager.m.GreaterEvil.Phase = ::Const.World.GreaterEvilPhase.Live;
+			::World.FactionManager.m.GreaterEvil.Strength = ::Const.Factions.GreaterEvilStartStrength;
+			::World.Statistics.addNews("crisis_undead_start", ::World.Statistics.createNews());
+		}, null);
 	}
 
 	function onInit()
