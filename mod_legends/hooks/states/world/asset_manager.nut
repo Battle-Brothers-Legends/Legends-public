@@ -1172,87 +1172,12 @@
 	local onDeserialize = o.onDeserialize;
 	o.onDeserialize = function ( _in )
 	{
-		local isOldSave = ::Legends.Mod.Serialization.isSavedVersionAtLeast("19.0.22", _in.getMetaData());
-
-		if (isOldSave) {
-			this.m.Stash.resize(_in.readU16());
-			this.m.Stash.onDeserialize(_in);
-
-			if (this.m.OverflowItems.len() != 0)
-			{
-				foreach( item in this.m.OverflowItems )
-				{
-					this.m.Stash.add(item);
-				}
-
-				this.m.OverflowItems = [];
-			}
-
-			this.m.CampaignID = _in.readI32();
-			this.m.Name = _in.readString();
-			this.m.Banner = _in.readString();
-			this.m.BannerID = _in.readU8();
-			this.m.Look = _in.readU8();
-			this.m.EconomicDifficulty = _in.readU8();
-			this.m.CombatDifficulty = _in.readU8();
-			this.m.IsIronman = _in.readBool();
-			this.m.IsPermanentDestruction = !_in.readBool();
-
-			if (_in.getMetaData().getVersion() >= 46)
-			{
-				this.m.Origin = _in.readString();
-				this.m.Origin = this.Const.ScenarioManager.getScenario(this.m.Origin);
-			}
-
-			if (this.m.Origin == null)
-			{
-				this.m.Origin = this.Const.ScenarioManager.getScenario("scenario.tutorial");
-			}
-
-			if (_in.getMetaData().getVersion() >= 41)
-			{
-				this.m.SeedString = _in.readString();
-			}
-			else
-			{
-				_in.readI32();
-				this.m.SeedString = "Unknown";
-			}
-
-			if (_in.getMetaData().getVersion() < 64 && this.m.Origin != null && this.m.Origin.getID() == "scenario.manhunters")
-			{
-				this.m.Stash.add(this.new("scripts/items/misc/manhunters_ledger_item"));
-			}
-
-			this.m.Money = _in.readF32();
-			this.m.Ammo = this.Math.max(0, _in.readF32());
-			this.m.ArmorParts = this.Math.max(0, _in.readF32());
-			this.m.Medicine = this.Math.max(0, _in.readF32());
-			this.m.BusinessReputation = _in.readU32();
-			this.m.MoralReputation = _in.readF32();
-			this.m.Score = _in.readF32();
-			this.m.LastDayPaid = _in.readU16();
-			this.m.LastHourUpdated = _in.readU8();
-			this.m.LastFoodConsumed = _in.readF32();
-			this.m.IsCamping = _in.readBool();
-			this.updateAverageMoodState();
-			this.updateFood();
-			this.updateFormation();
-			this.m.Origin.onInit();
-		}
-		else {
-			onDeserialize(_in);
-		}
-
+		onDeserialize(_in);
 		this.m.FormationIndex = _in.readU8();
-		for( local i = 0; i < this.Const.LegendMod.Formations.Count; i = ++i )
+		for (local i = 0; i < this.Const.LegendMod.Formations.Count; i++)
 		{
 			this.setFormationName(i, _in.readString())
 		}
-
-		if (isOldSave)
-			local maxBros = _in.readU8(); //Deprecated, but kept for backwards save compatibility. It is now dynamically calculated
-
 		this.m.LastDayResourcesUpdated = _in.readU16();
 	}
 
