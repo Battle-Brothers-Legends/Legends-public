@@ -396,7 +396,7 @@ this.legends_tundra_village <- this.inherit("scripts/entity/world/settlements/le
 		return this.buildAttachedLocation(1, item.Script, item.Terrain, item.NearTerrain, item.Distance, item.Road, item.Clear, item.Force)
 	}
 
-	function onBuildOne( _settings )
+	function onBuildOne( )
 	{
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/crowd_building"), 5);
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/marketplace_building"), 2);
@@ -470,7 +470,7 @@ this.legends_tundra_village <- this.inherit("scripts/entity/world/settlements/le
 		], [], 2);
 	}
 
-	function onBuildTwo( _settings )
+	function onBuildTwo( )
 	{
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/crowd_building"), 5);
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/marketplace_building"), 2);
@@ -621,7 +621,7 @@ this.legends_tundra_village <- this.inherit("scripts/entity/world/settlements/le
 		], [], 3, true);
 	}
 
-	function onBuildThree( _settings )
+	function onBuildThree( )
 	{
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/crowd_building"), 5);
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/marketplace_building"), 2);

@@ -156,16 +156,16 @@ this.legends_village <- this.inherit("scripts/entity/world/settlement", {
 		return this.m.StablesLists[this.m.Size - 1];
 	}
 
-	function onBuild( _settings )
+	function onBuild( )
 	{
 		switch (this.m.Size)
 		{
 			case 1:
-				return this.onBuildOne(_settings);
+				return this.onBuildOne();
 			case 2:
-				return this.onBuildTwo(_settings);
+				return this.onBuildTwo();
 			case 3:
-				return this.onBuildThree(_settings);
+				return this.onBuildThree();
 		}
 	}
 
