@@ -26,12 +26,9 @@
 
 			foreach( f in this.m.Factions )
 			{
-				if (f != null)
-				{
-					if ( !(StaticRelations[f.getType()]) ) 		//init to false automatically so should
-					{											//normalize relations unless we set in scenario init
-						f.normalizeRelation();
-					}
+				if (f != null && !(StaticRelations[f.getType()])) //init to false automatically so should
+				{ //normalize relations unless we set in scenario init
+					f.normalizeRelation();
 				}
 			}
 		}
@@ -49,47 +46,10 @@
 		this.updateGreaterEvil();
 	}
 
+	local runSimulation = o.runSimulation;
 	o.runSimulation = function ()
 	{
-		this.logInfo("Running simulation for " + this.Const.Factions.CyclesOnNewCampaign + " cycles...");
-		this.LoadingScreen.updateProgress("Simulating World ... 0%");
-
-		local barbarians = this.Const.DLC.Wildmen ? this.getFactionOfType(this.Const.FactionType.Barbarians) : null;
-		local bandits = this.getFactionOfType(this.Const.FactionType.Bandits);
-		local nomads = this.Const.DLC.Desert ? this.getFactionOfType(this.Const.FactionType.OrientalBandits) : null;
-		local orcs = this.getFactionOfType(this.Const.FactionType.Orcs);
-		local goblins = this.getFactionOfType(this.Const.FactionType.Goblins);
-		local undead = this.getFactionOfType(this.Const.FactionType.Undead);
-		local zombies = this.getFactionOfType(this.Const.FactionType.Zombies);
-		local beasts = this.getFactionOfType(this.Const.FactionType.Beasts);
-		local freecompanies = this.getFactionOfType(this.Const.FactionType.FreeCompany);
-
-		for( local i = 0; i < this.Const.Factions.CyclesOnNewCampaign; i = ++i )
-		{
-			if (barbarians != null)
-			{
-				barbarians.update(true, true);
-			}
-
-			if (nomads != null)
-			{
-				nomads.update(true, true);
-			}
-
-			bandits.update(true, true);
-			goblins.update(true, true);
-			orcs.update(true, true);
-			undead.update(true, true);
-			zombies.update(true, true);
-			beasts.update(true, true);
-			freecompanies.update(true, true);
-			if (i % 20 == 0)
-			{
-				local progress = (i * 1.0) / (this.Const.Factions.CyclesOnNewCampaign * 1.0);
-				this.LoadingScreen.updateProgress("Simulating World ... " + progress  * 100 + "%");
-			}
-			this.__ping();
-		}
+		runSimulation();
 
 		foreach(settlement in this.World.EntityManager.getSettlements() )
 		{
@@ -108,9 +68,12 @@
 	local createAlliances = o.createAlliances;
 	o.createAlliances = function()
 	{
-		if (m.IsCreatingFactions) {
+		if (this.m.IsCreatingFactions) {
 			createFreeCompany();
 			createDummyFaction();
+			local dummy = getDummyFaction();
+			// Setup the dummy faction's mimic behaviour after all possible factions have been deserialized
+			dummy.setMimicValues(dummy.getMimicID());
 		}
 
 		createAlliances();
@@ -498,179 +461,6 @@
 		}
 	}
 
-	o.updateGreaterEvil = function ()
-	{
-		local GE = this.m.GreaterEvil;
-
-
-		if (GE.Type == this.Const.World.GreaterEvilType.None)
-		{
-			return;
-		}
-
-		if (GE.NextPhaseTime == 0.0)
-		{
-			GE.NextPhaseTime = this.Time.getVirtualTimeF() + this.Math.rand(50, 60) * this.World.getTime().SecondsPerDay;
-
-			if (this.World.Assets.isIronman())
-			{
-				GE.NextPhaseTime += 5.0 * this.World.getTime().SecondsPerDay;
-			}
-
-			if (this.World.Assets.getCombatDifficulty() == 0)
-			{
-				GE.NextPhaseTime += 5.0 * this.World.getTime().SecondsPerDay;
-			}
-			if (this.World.Assets.getOrigin().getID() == "scenario.legends_inquisition")
-			{
-				GE.NextPhaseTime = 1; // Just a small non-zero number so that this code doesn't repeat and so that it starts doing the code below which only runs when this number is less than the current time.
-			}
-
-		}
-		else if (GE.NextPhaseTime <= this.Time.getVirtualTimeF())
-		{
-			if (GE.Phase == this.Const.World.GreaterEvilPhase.NotSet && (this.World.State.getPlayer().getStrength() >= 160 || this.World.Assets.getOrigin().getID() == "scenario.legends_inquisition"))
-			{
-				this.logInfo("STARTING GREATER EVIL - WARNING PHASE!");
-				GE.Phase = this.Const.World.GreaterEvilPhase.Warning;
-				GE.NextPhaseTime = this.Time.getVirtualTimeF() + 20 * this.World.getTime().SecondsPerDay;
-
-				if (GE.Type == 0)
-				{
-					local possibilities = [];
-
-					if ((GE.TypesUsed & this.Const.World.GreaterEvilTypeBit.CivilWar) == 0 && this.isNoblesFeuding())
-					{
-						possibilities.push(this.Const.World.GreaterEvilType.CivilWar);
-					}
-
-					if ((GE.TypesUsed & this.Const.World.GreaterEvilTypeBit.Greenskins) == 0)
-					{
-						possibilities.push(this.Const.World.GreaterEvilType.Greenskins);
-					}
-
-					if ((GE.TypesUsed & this.Const.World.GreaterEvilTypeBit.Undead) == 0)
-					{
-						possibilities.push(this.Const.World.GreaterEvilType.Undead);
-					}
-
-					if ((GE.TypesUsed & this.Const.World.GreaterEvilTypeBit.HolyWar) == 0 && this.Const.DLC.Desert && this.isCityStateExisting() && this.isNoblesFeuding())
-					{
-						possibilities.push(this.Const.World.GreaterEvilType.HolyWar);
-					}
-
-					if (possibilities.len() != 0)
-					{
-						GE.Type = possibilities[this.Math.rand(0, possibilities.len() - 1)];
-					}
-					else
-					{
-						if (GE.LastType != this.Const.World.GreaterEvilType.CivilWar && this.isNoblesFeuding())
-						{
-							possibilities.push(this.Const.World.GreaterEvilType.CivilWar);
-						}
-
-						if (GE.LastType != this.Const.World.GreaterEvilType.Greenskins)
-						{
-							possibilities.push(this.Const.World.GreaterEvilType.Greenskins);
-						}
-
-						if (GE.LastType != this.Const.World.GreaterEvilType.Undead || this.World.Assets.getOrigin().getID() == "scenario.legends_inquisition")
-						{
-							possibilities.push(this.Const.World.GreaterEvilType.Undead);
-						}
-
-						if (GE.LastType != this.Const.World.GreaterEvilType.HolyWar && this.Const.DLC.Desert && this.isCityStateExisting() && this.isNoblesFeuding())
-						{
-							possibilities.push(this.Const.World.GreaterEvilType.HolyWar);
-						}
-
-						GE.Type = possibilities[this.Math.rand(0, possibilities.len() - 1)];
-					}
-				}
-			}
-			else if (GE.Phase == this.Const.World.GreaterEvilPhase.Warning && (this.World.State.getPlayer().getStrength() >= 180  || this.World.Assets.getOrigin().getID() == "scenario.legends_inquisition"))
-			{
-				this.logInfo("STARTING GREATER EVIL - LIVE PHASE!");
-				GE.Phase = this.Const.World.GreaterEvilPhase.Live;
-				GE.Strength = this.Const.Factions.GreaterEvilStartStrength;
-				this.World.Statistics.clearNews();
-
-				if (GE.Type == this.Const.World.GreaterEvilType.CivilWar)
-				{
-					this.World.Statistics.addNews("crisis_civilwar_start", this.World.Statistics.createNews());
-					GE.Strength -= 10.0;
-					this.breakNobleHouseAlliances();
-				}
-				else if (GE.Type == this.Const.World.GreaterEvilType.Greenskins)
-				{
-					this.World.Statistics.addNews("crisis_greenskins_start", this.World.Statistics.createNews());
-					this.getFactionOfType(this.Const.FactionType.Orcs).addAlly(this.getFactionOfType(this.Const.FactionType.Goblins).getID());
-					this.getFactionOfType(this.Const.FactionType.Goblins).addAlly(this.getFactionOfType(this.Const.FactionType.Orcs).getID());
-				}
-				else if (GE.Type == this.Const.World.GreaterEvilType.Undead)
-				{
-					this.World.Statistics.addNews("crisis_undead_start", this.World.Statistics.createNews());
-				}
-				else if (GE.Type == this.Const.World.GreaterEvilType.HolyWar)
-				{
-					this.World.Statistics.addNews("crisis_holywar_start", this.World.Statistics.createNews());
-					GE.Strength -= 10.0;
-					this.breakNorthSouthAlliances();
-				}
-			}
-			else if (GE.Phase == this.Const.World.GreaterEvilPhase.Live)
-			{
-				if (GE.Type == 0)
-				{
-					GE.Phase = 0;
-					return;
-				}
-
-				if (GE.LastUpdate != this.World.getTime().Days)
-				{
-					GE.Strength += this.Const.Factions.GreaterEvilDailyStrength;
-					GE.LastUpdate = this.World.getTime().Days;
-				}
-
-				if ((GE.Strength <= 0 || GE.Type == this.Const.World.GreaterEvilType.CivilWar && !this.isNoblesFeuding()) && this.World.Contracts.getActiveContract() == null)
-				{
-					this.World.Statistics.clearNews();
-
-					if (GE.Type == this.Const.World.GreaterEvilType.CivilWar)
-					{
-						GE.TypesUsed = GE.TypesUsed | this.Const.World.GreaterEvilTypeBit.CivilWar;
-						this.World.Statistics.addNews("crisis_civilwar_end", this.World.Statistics.createNews());
-					}
-					else if (GE.Type == this.Const.World.GreaterEvilType.Greenskins)
-					{
-						GE.TypesUsed = GE.TypesUsed | this.Const.World.GreaterEvilTypeBit.Greenskins;
-						this.World.Statistics.addNews("crisis_greenskins_end", this.World.Statistics.createNews());
-						this.getFactionOfType(this.Const.FactionType.Orcs).removeAlly(this.getFactionOfType(this.Const.FactionType.Goblins).getID());
-						this.getFactionOfType(this.Const.FactionType.Goblins).removeAlly(this.getFactionOfType(this.Const.FactionType.Orcs).getID());
-					}
-					else if (GE.Type == this.Const.World.GreaterEvilType.Undead)
-					{
-						GE.TypesUsed = GE.TypesUsed | this.Const.World.GreaterEvilTypeBit.Undead;
-						this.World.Statistics.addNews("crisis_undead_end", this.World.Statistics.createNews());
-					}
-					else if (GE.Type == this.Const.World.GreaterEvilType.HolyWar)
-					{
-						GE.TypesUsed = GE.TypesUsed | this.Const.World.GreaterEvilTypeBit.HolyWar;
-						this.World.Statistics.addNews("crisis_holywar_end", this.World.Statistics.createNews());
-					}
-
-					this.World.Combat.abortAll();
-					GE.LastType = GE.Type;
-					GE.Type = this.Const.World.GreaterEvilType.Random;
-					GE.Phase = this.Const.World.GreaterEvilPhase.NotSet;
-					GE.NextPhaseTime = this.Time.getVirtualTimeF() + this.Math.rand(25, 35) * this.World.getTime().SecondsPerDay;
-					this.World.Statistics.getFlags().increment("GreaterEvilsDefeated");
-				}
-			}
-		}
-	}
-
 	o.onSerialize = function ( _out )
 	{
 		local numFactions = 0;
@@ -738,11 +528,10 @@
 			f.onDeserialize(_in);
 		}
 
-		this.createDummyFaction();
-
 		// Setup the dummy faction's mimic behaviour after all possible factions have been deserialized
 		local dummy = this.getDummyFaction();
-		dummy.setMimicValues(dummy.getMimicID());
+		if (dummy != null)
+			dummy.setMimicValues(dummy.getMimicID());
 
 		this.m.LastRelationUpdateDay = _in.readU32();
 		this.m.GreaterEvil.Type = _in.readU8();

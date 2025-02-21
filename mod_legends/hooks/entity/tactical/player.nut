@@ -568,7 +568,7 @@
 			this.getFlags().add("undead");
 			this.getFlags().add("zombie_minion");
 			this.getFlags().add("PlayerZombie");
-			this.improveMood(1.0, "Reborned to live again");
+			this.improveMood(1.0, "Reborn to live again");
 			this.setMoraleState(::Const.MoraleState.Ignore);
 
 			::Legends.Traits.grant(this, ::Legends.Trait.LegendRottenFlesh);

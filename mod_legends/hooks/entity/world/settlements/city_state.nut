@@ -153,12 +153,6 @@
 		return this.buildAttachedLocation(1, item.Script, item.Terrain, item.NearTerrain, item.Distance, item.Road, item.Clear, item.Force)
 	}
 
-	local onBuild = o.onBuild;
-	o.onBuild = function ( _settings = null)
-	{
-		onBuild();
-	}
-
 	o.onSerialize <- function ( _out )
 	{
 		this.settlement.onSerialize(_out);

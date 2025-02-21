@@ -469,7 +469,7 @@ this.legends_farm_fort <- this.inherit("scripts/entity/world/settlements/legends
 	}
 
 
-	function onBuildOne (_settings )
+	function onBuildOne ( )
 	{
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/crowd_building"), 5);
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/marketplace_building"), 2);
@@ -557,7 +557,7 @@ this.legends_farm_fort <- this.inherit("scripts/entity/world/settlements/legends
 		], 4, true);
 	}
 
-	function onBuildTwo (_settings )
+	function onBuildTwo ( )
 	{
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/crowd_building"), 5);
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/marketplace_building"), 2);
@@ -661,7 +661,7 @@ this.legends_farm_fort <- this.inherit("scripts/entity/world/settlements/legends
 		], [], 2);
 	}
 
-	function onBuildThree( _settings )
+	function onBuildThree( )
 	{
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/crowd_building"), 5);
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/marketplace_building"), 2);

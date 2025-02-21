@@ -51,9 +51,4 @@
 		];
 	}
 
-	local onBuild = o.onBuild;
-	o.onBuild = function ( _settings = null)
-	{	
-		onBuild(_settings);
-	}
 });
