@@ -108,9 +108,12 @@
 	local createAlliances = o.createAlliances;
 	o.createAlliances = function()
 	{
-		if (m.IsCreatingFactions) {
+		if (this.m.IsCreatingFactions) {
 			createFreeCompany();
 			createDummyFaction();
+			local dummy = getDummyFaction();
+			// Setup the dummy faction's mimic behaviour after all possible factions have been deserialized
+			dummy.setMimicValues(dummy.getMimicID());
 		}
 
 		createAlliances();
@@ -738,11 +741,10 @@
 			f.onDeserialize(_in);
 		}
 
-		this.createDummyFaction();
-
 		// Setup the dummy faction's mimic behaviour after all possible factions have been deserialized
 		local dummy = this.getDummyFaction();
-		dummy.setMimicValues(dummy.getMimicID());
+		if (dummy != null)
+			dummy.setMimicValues(dummy.getMimicID());
 
 		this.m.LastRelationUpdateDay = _in.readU32();
 		this.m.GreaterEvil.Type = _in.readU8();
