@@ -3,7 +3,7 @@ this.legend_ai_rotation_skill <- this.inherit("scripts/skills/skill", {
 	function create()
 	{
 		this.m.ID = "actives.legend_ai_rotation"; //for ai only
-		this.m.Name = "Rotation";
+		this.m.Name = "AI Rotation";
 		this.m.Description = "For ai use only, if you can see this something has gone wrong.";
 		this.m.Icon = "ui/perks/perk_11_active.png";
 		this.m.IconDisabled = "ui/perks/perk_11_active_sw.png";
@@ -91,7 +91,13 @@ this.legend_ai_rotation_skill <- this.inherit("scripts/skills/skill", {
 		if (!target.isAlive() && ::MSU.isNull(target))
 			return false;
 
-		if (target.getFaction() != getContainer().getActor().getFaction() && !this.getContainer().hasPerk(::Const.Perks.PerkDefs.LegendTwirl))
+		if (::Legends.Mod.ModSettings.getSetting("DisableAiRotation").getValue())
+			return false;
+
+		if (target.getFaction() == this.Const.Faction.Player && !this.getContainer().hasPerk(::Const.Perks.PerkDefs.LegendTwirl))
+			return false;
+
+		if (target.getFaction() != this.getContainer().getActor().getFaction() && !this.getContainer().hasPerk(::Const.Perks.PerkDefs.LegendTwirl))
 			return false;
 
 		return this.skill.onVerifyTarget(_originTile, _targetTile) && !target.getCurrentProperties().IsStunned && !target.getCurrentProperties().IsRooted && target.getCurrentProperties().IsMovable && !target.getCurrentProperties().IsImmuneToRotation;
