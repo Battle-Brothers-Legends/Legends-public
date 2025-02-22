@@ -514,7 +514,7 @@
 		if (_force) this.m.AttachedLocationsMax = currentNum + _num;
 		else this.m.AttachedLocationsMax = getAttachedLocationsMax();
 
-		buildAttachedLocation(_num, _script, _terrain, _nearbyTerrain, _additionalDistance, _mustBeNearRoad, _clearTile, _force);
+		buildAttachedLocation(_num, _script, _terrain, _nearbyTerrain, _additionalDistance, _mustBeNearRoad, _clearTile);
 
 		if (_force) this.m.AttachedLocationsMax = getAttachedLocationsMax();
 
