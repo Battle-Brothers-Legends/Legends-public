@@ -1015,7 +1015,7 @@
 		this.m.CaravanReceivedHistory[0].push(_data);
 	}
 
-	o.updateCaravanSentHistor <- function ( _data )
+	o.updateCaravanSentHistory <- function ( _data )
 	{
 		this.m.CaravanSentHistory[0].push( _data );
 	}
