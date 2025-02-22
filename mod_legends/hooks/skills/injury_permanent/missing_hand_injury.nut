@@ -1,4 +1,4 @@
-::mods_hookExactClass("skills/injury_permanent/missing_hand_injury", function(o)
+this.mods_hookExactClass("skills/injury_permanent/missing_hand_injury", function(o)
 {
 	local create = o.create;
 	o.create = function()
@@ -12,30 +12,49 @@
 		this.getContainer().getActor().getItems().getData()[this.Const.ItemSlot.Offhand][0] = null;
 	}
 
-	local onAdded = o.onAdded;
 	o.onAdded = function ()
 	{
-		if (!m.IsNew) {
-			getContainer().getActor().getItems().getData()[::Const.ItemSlot.Offhand][0] = -1;
+		local items = this.getContainer().getActor().getItems();
+		
+		if (!this.m.IsNew)
+		{
+			items.getData()[this.Const.ItemSlot.Offhand][0] = -1;
 			return;
 		}
+		local actor = this.getContainer().getActor();
+		local main = actor.getMainhandItem();
+		local off = actor.getOffhandItem();
+		local item;
+		if (main && main.getBlockedSlotType() == this.Const.ItemSlot.Offhand)
+			item = main;
+		else if (off)
+			item = off;
 
-		if (!::Tactical.isActive() && getContainer().getActor().getItems().hasEmptySlot(::Const.ItemSlot.Bag)) {
-			local main = getContainer().getActor().getMainhandItem();
-			local off = getContainer().getActor().getOffhandItem();
-
-			if (main && main.getBlockedSlotType() == ::Const.ItemSlot.Offhand) {
-				getContainer().getActor().getItems().unequip(main);
-				getContainer().getActor().getItems().addToBag(main);
+		if (item && (!actor.isPlacedOnMap() || ("State" in this.Tactical) && this.Tactical.State.isBattleEnded()))
+		{
+			items.unequip(item);
+			if (items.hasEmptySlot(this.Const.ItemSlot.Bag))
+			{
+				items.addToBag(item);
 			}
-			else if (off) {
-				getContainer().getActor().getItems().unequip(off);
-				getContainer().getActor().getItems().addToBag(off);
+			else if (this.World.Assets.getStash().hasEmptySlot())
+			{	
+				this.World.Assets.getStash().add(item);
+			}
+			else
+			{
+				this.World.Assets.getStash().makeEmptySlots(1);
+				this.World.Assets.getStash().add(item);
 			}
 		}
+		else if (item)
+		{
+			items.unequip(item);
+			item.drop();
+		}
 
-		onAdded();
-		m.IsNew = false;
+		items.getData()[this.Const.ItemSlot.Offhand][0] = -1;
+		this.m.IsNew = false;
 	}
 
 });
