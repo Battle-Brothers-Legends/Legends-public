@@ -122,30 +122,36 @@ this.legend_shoot_dart_skill <- this.inherit("scripts/skills/skill", {
 
 	function onTargetHit( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor )
 	{
-		if (_skill == this && _targetEntity.isAlive() && !_targetEntity.isDying())
+		if (_skill != this)
+			return;
+
+		if (!_targetEntity.isAlive() || _targetEntity.isDying())
+			return;
+
+		if (_targetEntity.getCurrentProperties().IsImmuneToPoison || _damageInflictedHitpoints < 1 || _targetEntity.getHitpoints() <= 0)
+			return;
+
+		local targetTile = _targetEntity.getTile();
+		local user = this.getContainer().getActor();
+		local r;
+		r = this.Math.rand(1, 2);
+		if (_bodyPart == this.Const.BodyPart.Head)
 		{
-			local targetTile = _targetEntity.getTile();
-			local user = this.getContainer().getActor();
-			local r;
-			r = this.Math.rand(1, 2);
-			if (_bodyPart == this.Const.BodyPart.Head)
-			{
-			
-				_targetEntity.getSkills().add(this.new("scripts/skills/effects/sleeping_effect"));
+		
+			_targetEntity.getSkills().add(this.new("scripts/skills/effects/sleeping_effect"));
 
-				if (!user.isHiddenToPlayer() && targetTile.IsVisibleForPlayer)
-				{
-					this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(user) + " struck a hit to the head that leaves " + this.Const.UI.getColorizedEntityName(_targetEntity) + " sleeping");
-				}
+			if (!user.isHiddenToPlayer() && targetTile.IsVisibleForPlayer)
+			{
+				this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(user) + " struck a hit to the head that leaves " + this.Const.UI.getColorizedEntityName(_targetEntity) + " sleeping");
 			}
-			if (_bodyPart == this.Const.BodyPart.Body && r == 1)
-			{
-				_targetEntity.getSkills().add(this.new("scripts/skills/effects/dazed_effect"));
+		}
+		if (_bodyPart == this.Const.BodyPart.Body)
+		{
+			_targetEntity.getSkills().add(this.new("scripts/skills/effects/dazed_effect"));
 
-				if (!user.isHiddenToPlayer() && targetTile.IsVisibleForPlayer)
-				{
-					this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(user) + " struck a hit to the body that leaves " + this.Const.UI.getColorizedEntityName(_targetEntity) + " dazed");
-				}
+			if (!user.isHiddenToPlayer() && targetTile.IsVisibleForPlayer)
+			{
+				this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(user) + " struck a hit to the body that leaves " + this.Const.UI.getColorizedEntityName(_targetEntity) + " dazed");
 			}
 		}
 	}
