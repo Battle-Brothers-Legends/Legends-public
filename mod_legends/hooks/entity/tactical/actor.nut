@@ -91,8 +91,8 @@
 	local onRender = o.onRender;
 	o.onRender = function()
 	{
-		if (m.IsLoweringWeapon) {
-			local mainhand = getMainhandItem();
+		if (this.m.IsLoweringWeapon) {
+			local mainhand = this.getMainhandItem();
 			if (mainhand != null && ::Const.Items.LegendItemWithSpearwall.find(mainhand.getID()) != null) {
 				local p = (this.Time.getVirtualTimeF() - this.m.RenderAnimationStartTime) / this.Const.Items.Default.LowerWeaponDuration;
 				this.getSprite("arms_icon").Rotation = this.Math.minf(1.0, p) * -70.0;
@@ -112,7 +112,7 @@
 				onRender();
 			}
 		}
-		else if (m.IsRaisingWeapon) {
+		else if (this.m.IsRaisingWeapon) {
 			if (this.getSpriteOffset("arms_icon").X != 0 || this.getSpriteOffset("arms_icon").Y != 0) {
 				local p = (this.Time.getVirtualTimeF() - this.m.RenderAnimationStartTime) / this.Const.Items.Default.RaiseWeaponDuration;
 				this.getSprite("arms_icon").Rotation = (1.0 - this.Math.minf(1.0, p)) * -70.0;
