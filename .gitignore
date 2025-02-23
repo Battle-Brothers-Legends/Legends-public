@@ -22,7 +22,7 @@ scripts/crafting/blueprints/paint_white_green_yellow_blueprint.nut
 
 gfx/*.png
 !gfx/skills*
-!gfx/ui**
+!gfx/ui/**
 *.cnut
 *.DS_Store
 temp.nut
