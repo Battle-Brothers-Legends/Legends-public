@@ -1152,7 +1152,7 @@
 	local onDeserialize = o.onDeserialize;
 	o.onDeserialize = function ( _in )
 	{
-		local isOldSave = ::Legends.Mod.Serialization.isSavedVersionAtLeast("19.0.22", _in.getMetaData())
+		local isOldSave = !::Legends.Mod.Serialization.isSavedVersionAtLeast("19.0.23", _in.getMetaData());
 
 		if (isOldSave) {
 			this.m.Stash.resize(_in.readU16());
@@ -1232,8 +1232,8 @@
 
 		if (isOldSave)
 			local maxBros = _in.readU8(); //Deprecated, but kept for backwards save compatibility. It is now dynamically calculated
-		
+
 		this.m.LastDayResourcesUpdated = _in.readU16();
 	}
-	
+
 });
