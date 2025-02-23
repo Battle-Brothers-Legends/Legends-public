@@ -14,7 +14,7 @@ this.legends_player_is_rich_op_backgrounds_event <- this.inherit("scripts/events
 		this.m.Cooldown = 100.0 * this.World.getTime().SecondsPerDay;
 		this.m.Screens.push({
 			ID = "A",
-			Text = "[img]gfx/ui/events/event_06.png[/img] Over time, you\'ve come to acquire a great deal of money. While you keep the war chest under lock and key, you can\'t help but notice a few brothers have gotten a bit greedier over the time they\'ve spent in the company. Recently, you have heard rumors of the men demanding higher pay. Finally, the breaking point has been reached when an arguement between %bro1% and %bro2% nearly came to blows. \"Who contributed the most to the hoard of coin %companyname% possess?\" The belligerents looked like they were ready to kill each other to resolve this dispute.",
+			Text = "[img]gfx/ui/events/event_06.png[/img] Over time, you\'ve come to acquire a great deal of money. While you keep the war chest under lock and key, you can\'t help but notice a few brothers have gotten a bit greedier over the time they\'ve spent in the company. Recently, you have heard rumors of the men demanding higher pay. Finally, the breaking point has been reached when an arguement between %bro1% and %bro2% nearly came to blows. %SPEECH_ON%Who contributed the most to the hoard of coin %companyname% possess?%SPEECH_OFF%The belligerents looked like they were ready to kill each other to resolve this dispute.",
 			Image = "",
 			List = [],
 			Characters = [],
