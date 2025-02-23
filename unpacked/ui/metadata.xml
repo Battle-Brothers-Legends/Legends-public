@@ -134,6 +134,31 @@
   <sprite id="perk_38_mini" offsetY="35" ic="FF2B3249" img="skills\mini\perk_38_mini.png" />
   <sprite id="perk_31_mini" offsetY="35" ic="FF374B50" img="skills\mini\perk_31_mini.png" />
   <sprite id="perk_42" ic="FF303B45" img="skills\perk_42.png" />
+  <sprite id="drums_of_war_mini" offsetY="35" ic="FF374B50" img="skills/mini/drums_of_war_mini.png" />
+  <sprite id="perk_barrage_mini" offsetY="35" ic="FF374B50" img="skills/mini/perk_barrage_mini.png" />
+  <sprite id="perk_sling_mastery_mini" offsetY="35" ic="FF374B50" img="skills/mini/perk_sling_mastery_mini.png" />
+  <sprite id="perk_spec_2hsword_mini" offsetY="35" ic="FF374B50" img="skills/mini/perk_spec_2hsword_mini.png" />
+  <sprite id="perk_spec_bard_mini" offsetY="35" ic="FF374B50" img="skills/mini/perk_spec_bard_mini.png" />
+  <sprite id="perk_spec_bitchfork_mini" offsetY="35" ic="FF374B50" img="skills/mini/perk_spec_bitchfork_mini.png" />
+  <sprite id="perk_spec_butcher_mini" offsetY="35" ic="FF374B50" img="skills/mini/perk_spec_butcher_mini.png" />
+  <sprite id="perk_spec_cultist_mini" offsetY="35" ic="FF374B50" img="skills/mini/perk_spec_cultist_mini.png" />
+  <sprite id="perk_spec_dagger_mini" offsetY="35" ic="FF374B50" img="skills/mini/perk_spec_dagger_mini.png" />
+  <sprite id="perk_spec_firearm_mini" offsetY="35" ic="FF374B50" img="skills/mini/perk_spec_firearm_mini.png" />
+  <sprite id="perk_spec_instrument_staff_mini" offsetY="35" ic="FF374B50" img="skills/mini/perk_spec_instrument_staff_mini.png" />
+  <sprite id="perk_spec_mace_mini" offsetY="35" ic="FF374B50" img="skills/mini/perk_spec_mace_mini.png" />
+  <sprite id="perk_spec_militia_mini" offsetY="35" ic="FF374B50" img="skills/mini/perk_spec_militia_mini.png" />
+  <sprite id="perk_spec_pickaxe_mini" offsetY="35" ic="FF374B50" img="skills/mini/perk_spec_pickaxe_mini.png" />
+  <sprite id="perk_spec_scythe_mini" offsetY="35" ic="FF374B50" img="skills/mini/perk_spec_scythe_mini.png" />
+  <sprite id="perk_spec_shortbow_mini" offsetY="35" ic="FF374B50" img="skills/mini/perk_spec_shortbow_mini.png" />
+  <sprite id="perk_spec_shovel_mini" offsetY="35" ic="FF374B50" img="skills/mini/perk_spec_shovel_mini.png" />
+  <sprite id="perk_spec_sickle_mini" offsetY="35" ic="FF374B50" img="skills/mini/perk_spec_sickle_mini.png" />
+  <sprite id="perk_spec_sling_mini" offsetY="35" ic="FF374B50" img="skills/mini/perk_spec_sling_mini.png" />
+  <sprite id="perk_spec_smith_mini" offsetY="35" ic="FF374B50" img="skills/mini/perk_spec_smith_mini.png" />
+  <sprite id="perk_spec_staff_mini" offsetY="35" ic="FF374B50" img="skills/mini/perk_spec_staff_mini.png" />
+  <sprite id="perk_spec_woodsman_mini" offsetY="35" ic="FF374B50" img="skills/mini/perk_spec_woodsman_mini.png" />
+  <sprite id="perk_spec_xbow_mini" offsetY="35" ic="FF374B50" img="skills/mini/perk_spec_xbow_mini.png" />
+  <sprite id="shovel_01_mini" offsetY="35" ic="FF374B50" img="skills/mini/shovel_01_mini.png" />
+  <sprite id="slinger_spins_mini" offsetY="35" ic="FF374B50" img="skills/mini/slinger_spins_mini.png" />
   <sprite id="status_effect_36" ic="FF333A44" img="skills\status_effect_36.png" />
   <sprite id="status_effect_02_a" ic="FF464765" img="skills\status_effect_02_a.png" />
   <sprite id="status_effect_02_c" ic="FF28274E" img="skills\status_effect_02_c.png" />

@@ -257,6 +257,7 @@
 	"legend_conscript_background",
 	"legend_conscript_ranged_background",
 	"gladiator_background",
+	"legend_gladiator_prizefighter_background",
 	"legend_muladi_background",
 	"daytaler_southern_background",
 	"legend_qiyan_background",
