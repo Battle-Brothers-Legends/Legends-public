@@ -126,4 +126,12 @@
 			}
 		}
 	}
+
+	local onUpdateScore = o.onUpdateScore;
+	o.onUpdateScore = function ()
+	{
+		if (this.Stash.getNumberOfEmptySlots() < 4)
+			return;
+		onUpdateScore();
+	}
 })

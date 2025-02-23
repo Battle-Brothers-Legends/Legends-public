@@ -27,7 +27,6 @@ this.legend_leather_robe_blueprint <- this.inherit("scripts/crafting/blueprint",
 	function onCraft( _stash )
 	{
 		local item = this.new("scripts/items/legend_armor/plate/legend_armor_cult_armor");
-		item.setVariant(this.m.PreviewCraftable.m.Variant);
 		_stash.add(item);
 		item = this.new("scripts/items/legend_armor/plate/legend_armor_cult_armor");
 		_stash.add(item);

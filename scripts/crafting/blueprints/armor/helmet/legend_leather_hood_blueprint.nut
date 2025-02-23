@@ -22,8 +22,7 @@ this.legend_leather_hood_blueprint <- this.inherit("scripts/crafting/blueprint",
 
 	function onCraft( _stash )
 	{
-		local item = this.new("scripts/items/legend_helmets/vanity/legend_helmet_cult_hood");
-		item.setVariant(this.m.PreviewCraftable.m.Variant);
+		local item = this.new("scripts/items/legend_helmets/top/legend_helmet_cult_hood");
 		_stash.add(item);
 		item = this.new("scripts/items/legend_helmets/top/legend_helmet_cult_hood");
 		_stash.add(item);

@@ -90,6 +90,12 @@ this.legend_ai_rotation_skill <- this.inherit("scripts/skills/skill", {
 		if (!target.isAlive() && ::MSU.isNull(target))
 			return false;
 
+		if (::Legends.Mod.ModSettings.getSetting("DisableAiRotation").getValue())
+			return false;
+
+		if (target.getFaction() == this.Const.Faction.Player && !this.getContainer().hasPerk(::Legends.Perk.LegendTwirl))
+			return false;
+
 		if (target.getFaction() != this.getContainer().getActor().getFaction() && !this.getContainer().hasPerk(::Legends.Perk.LegendTwirl))
 			return false;
 
