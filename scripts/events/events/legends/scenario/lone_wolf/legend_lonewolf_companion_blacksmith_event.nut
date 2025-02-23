@@ -24,7 +24,7 @@ this.legend_lonewolf_companion_blacksmith_event <- this.inherit("scripts/events/
 
 				},
 				{
-					Text = "Ignore the homes, focus on forming a pointed formation to drive a wedge through to the blacksmith.",
+					Text = "Ignore the homes, form a pointed formation to drive a wedge through to the blacksmith.",
 					function getResult( _event )
 					{
 						return "C";
