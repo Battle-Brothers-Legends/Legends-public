@@ -425,7 +425,7 @@ class Defs:
  "desc" :  "A truly masterfully crafted set of leather armor. Very light and flexible to reduce encumberance while still offering good protection.",
  "adesc" : "Includes masterfully crafted leather armor."
 },
-{"name": "legend_armor_leather_padded",                   "layer": "plate", "min": 1, "max": 1, "value" : 175, "con" : 40, "stam" : -5, "impactSound" : "leather", "invSound" : "leather",
+{"name": "legend_armor_leather_padded",                   "layer": "plate", "min": 1, "max": 2, "value" : 175, "con" : 40, "stam" : -5, "impactSound" : "leather", "invSound" : "leather",
  "title" :  "Padded Leather Armor",
  "desc" :  "Padded leather reinforced with fittings for added protection.",
  "adesc" : "Includes padded leather armor."
