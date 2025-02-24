@@ -572,21 +572,21 @@
 			this.setMoraleState(::Const.MoraleState.Ignore);
 			this.getSkills().add(::new("scripts/skills/traits/legend_rotten_flesh_trait"));
 
-			local perk = ::new("scripts/skills/perks/perk_legend_zombie_bite");
+			local perkDef = ::Const.Perks.PerkDefObjects[::Const.Perks.PerkDefs.LegendZombieBite];
 			if (!this.getBackground().addPerk(::Const.Perks.PerkDefs.LegendZombieBite, 0, false))
-				::Const.Perks.PerkDefObjects[::Const.Perks.PerkDefs.LegendZombieBite].IsRefundable = false;
+				this.getBackground().m.PerkTreeMap[perkDef.ID].IsRefundable = false;
 
-			if (this.getSkills().hasPerk(::Const.Perks.PerkDefs.NineLives)) {
-				local perk = this.getSkills().getSkillByID("perk.nine_lives");
-				if (perk.IsRefundable) {
+			getSkills().add(::new(perkDef.Script));
+
+			perkDef = ::Const.Perks.PerkDefObjects[::Const.Perks.PerkDefs.LegendZombieBite];
+			if (!this.getBackground().addPerk(::Const.Perks.PerkDefs.NineLives, 0, false)) {
+				if (this.getBackground().m.PerkTreeMap[perkDef.ID].IsRefundable) {
 					this.m.PerkPoints += 1;
 					this.m.PerkPointsSpent -= 1;
 				}
-				perk.IsRefundable = false;
+				this.getBackground().m.PerkTreeMap[perkDef.ID].IsRefundable = false;
 			} else {
-				local perk = ::new("scripts/skills/perks/perk_nine_lives");
-				::Const.Perks.PerkDefObjects[::Const.Perks.PerkDefs.NineLives].IsRefundable = false;
-				this.getSkills().add(perk);
+				this.getSkills().add(::new(perkDef.Script));
 			}
 
 			if (result) {
