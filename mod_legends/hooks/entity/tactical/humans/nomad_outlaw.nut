@@ -5,6 +5,7 @@
 	{
 		onInit();
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_rotation"));
+		this.m.Skills.removeByID("actives.rotation");
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_recover"));
 		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= 40)
 		{

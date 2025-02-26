@@ -10,6 +10,7 @@
 			this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_composure"));
 			this.m.Skills.add(this.new("scripts/skills/perks/perk_battle_forged"));
 			this.m.Skills.add(this.new("scripts/skills/perks/perk_rotation"));
+		this.m.Skills.removeByID("actives.rotation");
 			this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_specialist_shield_skill"));
 			this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_specialist_shield_push"));
 			this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_smashing_shields"));

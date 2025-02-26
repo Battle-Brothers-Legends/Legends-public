@@ -15,6 +15,7 @@
 			this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_specialist_spearwall"));
 			this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_specialist_spearthrust"));
 			this.m.Skills.add(this.new("scripts/skills/perks/perk_rotation"));
+		this.m.Skills.removeByID("actives.rotation");
 			this.m.Skills.add(this.new("scripts/skills/perks/perk_reach_advantage"));
 			this.m.Skills.add(this.new("scripts/skills/perks/perk_coup_de_grace"));
 			this.m.Skills.add(this.new("scripts/skills/perks/perk_legend_specialist_shield_skill"));

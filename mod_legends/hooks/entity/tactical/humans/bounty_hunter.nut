@@ -7,6 +7,7 @@
 		this.m.Skills.removeByID("effects.dodge");
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_dodge"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_rotation"));
+		this.m.Skills.removeByID("actives.rotation");
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_footwork"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_recover"));
 

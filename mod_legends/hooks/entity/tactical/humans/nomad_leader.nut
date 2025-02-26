@@ -6,6 +6,7 @@
 		onInit();
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_dodge"));
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_rotation"));
+		this.m.Skills.removeByID("actives.rotation");
 		this.m.Skills.add(this.new("scripts/skills/perks/perk_recover"));
 	}
 
