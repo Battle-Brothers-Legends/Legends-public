@@ -462,7 +462,7 @@ class Defs:
  "adesc" : "Includes a restored thick breastplate of ancient origin."
 },
 {"name": "legend_armor_plate_ancient_gladiator",          "layer": "plate", "min": 1, "max": 1, "value" : 100, "con" : 35, "stam" : -6, "impactSound" : "plate", "invSound" : "leather",
- "title" :  "Restored Ancient Breastplate",
+ "title" :  "Ancient Gladiator Harness",
  "desc" :  "A tarnished gladiator outfit of ancient origin.",
  "adesc" : "Includes a tarnished gladiator outfit of ancient origin."
 },
