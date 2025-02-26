@@ -18,8 +18,8 @@ this.legend_hold_the_line <- this.inherit("scripts/skills/skill", {
 		this.m.IsStacking = false;
 		this.m.IsAttack = false;
 		this.m.IsIgnoredAsAOO = true;
-		this.m.ActionPointCost = 9;
-		this.m.FatigueCost = 30;
+		this.m.ActionPointCost = 5;
+		this.m.FatigueCost = 20;
 		this.m.MinRange = 0;
 		this.m.MaxRange = 0;
 	}
@@ -37,14 +37,14 @@ this.legend_hold_the_line <- this.inherit("scripts/skills/skill", {
 			{
 				id = 6,
 				type = "text",
-				icon = "ui/icons/regular_damage.png",
-				text = "Receive only [color=" + this.Const.UI.Color.PositiveValue + "]90%[/color] of any damage"
+				icon = "ui/icons/ranged_defense.png",
+				text = "Gain [color=" + this.Const.UI.Color.PositiveValue + "]+10[/color] Ranged Defense"
 			},
 			{
 				id = 6,
 				type = "text",
-				icon = "ui/icons/locked_small.png",
-				text = "Gain immunity to being knocked back or grabbed"
+				icon = "ui/icons/regular_damage.png",
+				text = "Receive only [color=" + this.Const.UI.Color.PositiveValue + "]90%[/color] of any damage"
 			}
 		]);
 

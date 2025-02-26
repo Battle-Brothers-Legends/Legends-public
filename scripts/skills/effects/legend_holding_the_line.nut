@@ -24,14 +24,14 @@ this.legend_holding_the_line <- this.inherit("scripts/skills/effects/legend_comm
 			{
 				id = 11,
 				type = "text",
-				icon = "ui/icons/regular_damage.png",
-				text = "Receive only [color=" + this.Const.UI.Color.PositiveValue + "]90%[/color] of any damage"
+				icon = "ui/icons/ranged_defense.png",
+				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+10[/color] Ranged Defense"
 			},
 			{
 				id = 11,
 				type = "text",
-				icon = "ui/icons/locked_small.png",
-				text = "Immune to being knocked back or grabbed"
+				icon = "ui/icons/regular_damage.png",
+				text = "Receive only [color=" + this.Const.UI.Color.PositiveValue + "]90%[/color] of any damage"
 			}
 		]);
 
@@ -41,7 +41,7 @@ this.legend_holding_the_line <- this.inherit("scripts/skills/effects/legend_comm
 	function onUpdate( _properties )
 	{
 		_properties.MeleeDefense += 10;
+		_properties.RangedDefense += 10;
 		_properties.DamageReceivedTotalMult *= 0.9;
-		_properties.IsImmuneToKnockBackAndGrab = true;
 	}
 });
