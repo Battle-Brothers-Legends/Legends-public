@@ -17,6 +17,9 @@
 		::Legends.Actives.grant(this, ::Legends.Active.Bash, function (_skill) {
 			_skill.m.IsLuteBash = true;
 		}.bindenv(this));
+
 		onEquip();
+		::Legends.Actives.grant(this, ::Legends.Active.LegendDrumsOfWar);
+		::Legends.Actives.grant(this, ::Legends.Active.LegendDrumsOfLife);
 	}
 });

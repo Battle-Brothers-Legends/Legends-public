@@ -10,7 +10,8 @@ this.alchemist_follower <- this.inherit("scripts/retinue/follower", {
 		this.m.Cost = 1250;
 		this.m.Effects = [
 			"Has a 25% chance of not consuming any crafting component used by you",
-			"Unlocks \'Snake Oil\' recipe to earn money by crafting from various low tier components"
+			"Unlocks \'Snake Oil\' recipe to earn money by crafting from various low tier components",
+			"Allows you to refill bombs and flasks with ammunition"
 		];
 
 		this.addRequirement("Crafted 10 items", function() {

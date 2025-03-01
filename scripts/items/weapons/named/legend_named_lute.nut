@@ -49,6 +49,8 @@ this.legend_named_lute <- this.inherit("scripts/items/weapons/named/named_weapon
 			_skill.m.IconDisabled = "skills/active_88_sw.png";
 			_skill.m.Overlay = "active_88";
 		}.bindenv(this));
+		::Legends.Actives.grant(this, ::Legends.Active.LegendDrumsOfWar);
+		::Legends.Actives.grant(this, ::Legends.Active.LegendDrumsOfLife);
 	}
 
 });

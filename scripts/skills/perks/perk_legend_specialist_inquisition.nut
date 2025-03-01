@@ -2,11 +2,8 @@ this.perk_legend_specialist_inquisition <- this.inherit("scripts/skills/skill", 
 	m = {},
 	function create()
 	{
-		this.m.ID = "perk.legend_specialist_inquisition";
-		this.m.Name = this.Const.Strings.PerkName.LegendSpecialistInquisition;
-		this.m.Description = this.Const.Strings.PerkDescription.LegendSpecialistInquisition;
-		this.m.Icon = "ui/perks/perk_spec_xbow.png";
-		// this.m.IconMini = "perk_spec_xbow_mini.png";
+		::Const.Perks.setup(this.m, ::Legends.Perk.LegendSpecialistInquisition);
+		this.m.IconMini = "perk_spec_xbow_mini.png";
 		this.m.Type = this.Const.SkillType.Perk | this.Const.SkillType.StatusEffect;
 		this.m.Order = this.Const.SkillOrder.Perk;
 		this.m.IsActive = false;

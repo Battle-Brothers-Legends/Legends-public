@@ -1,19 +1,19 @@
-this.perk_legend_specialist_bodyguard <- this.inherit("scripts/skills/skill", {
+this.perk_legend_specialist_prisoner <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		::Const.Perks.setup(this.m, ::Legends.Perk.LegendSpecialistBodyguard);
+		::Const.Perks.setup(this.m, ::Legends.Perk.LegendSpecialistPrisoner);
 		this.m.Type = this.Const.SkillType.Perk | this.Const.SkillType.StatusEffect;
 		this.m.Order = this.Const.SkillOrder.Perk;
-		this.m.IconMini = "perk_spec_2hsword_mini.png";
+		this.m.IconMini = "perk_spec_dagger_mini.png";
 		this.m.IsActive = false;
 		this.m.IsStacking = false;
 		this.m.IsHidden = false;
 	}
 
-	function getDescription ()
+	function getDescription()
 	{
-		return this.getDefaultSpecialistSkillDescription("Two Handed Swords");
+		return this.getDefaultSpecialistSkillDescription("Daggers");
 	}
 
 	function specialistWeaponTooltip (_specialistWeapon = false)
@@ -24,30 +24,23 @@ this.perk_legend_specialist_bodyguard <- this.inherit("scripts/skills/skill", {
 
 		local item = actor.getMainhandItem();
 		local tooltip = this.skill.getTooltip();
-		
-		tooltip.extend([
-		{
+
+		tooltip.push({
 			id = 6,
 			type = "text",
 			icon = "ui/icons/melee_skill.png",
 			text = "[color=" + this.Const.UI.Color.PositiveValue + "]+" + actor.calculateSpecialistBonus(12, _specialistWeapon) + "[/color] Melee Skill"
-		},
-		{
-			id = 7,
+		});
+		tooltip.push({
+			id = 6,
 			type = "text",
-			icon = "ui/icons/armor_damage.png",
-			text = "[color=" + this.Const.UI.Color.DamageValue + "]" + actor.calculateSpecialistBonus(10, _specialistWeapon) + "%[/color] Armor Damage"
-		},
-		{
-			id = 8,
-			type = "text",
-			icon = "ui/icons/damage_dealt.png",
-			text = "[color=" + this.Const.UI.Color.DamageValue + "]" + actor.calculateSpecialistBonus(10, _specialistWeapon) + "%[/color] Armor Penetration"
-		}]);
-		if (actor.getCurrentProperties().IsSpecializedInSwords)
+			icon = "ui/icons/special.png",
+			text = "You acquire the Deathblow ability when wielding any dagger" 
+		});
+		if (actor.getCurrentProperties().IsSpecializedInDaggers)
 		{
 			tooltip.push({
-				id = 9,
+				id = 7,
 				type = "text",
 				icon = "ui/icons/damage_dealt.png",
 				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+" + actor.calculateSpecialistBonus(6, _specialistWeapon) + "-" + actor.calculateSpecialistBonus(16, _specialistWeapon) + "[/color] Damage"
@@ -65,17 +58,12 @@ this.perk_legend_specialist_bodyguard <- this.inherit("scripts/skills/skill", {
 		switch (true) 
 		{
 			case item == null:
-			case !item.isItemType(this.Const.Items.ItemType.TwoHanded):
-			case !item.isWeaponType(this.Const.Items.WeaponType.Sword):
-				return getNoSpecialistWeaponTooltip();
-			case item.getID() == "weapon.legend_longsword":
-			case item.getID() == "weapon.legend_named_longsword":
-			case item.getID() == "weapon.longsword":
-			case item.getID() == "weapon.named_longsword":
+			case !item.isWeaponType(this.Const.Items.WeaponType.Dagger):
+				return this.getNoSpecialistWeaponTooltip();
+			case item.getID() == "weapon.knife" || item.getID() == "weapon.legend_shiv":
 				specialistWeapon = true;
 		}
-
-		return specialistWeaponTooltip(specialistWeapon);
+		return this.specialistWeaponTooltip(specialistWeapon);
 	}
 
 	function onUpdate( _properties )
@@ -87,24 +75,30 @@ this.perk_legend_specialist_bodyguard <- this.inherit("scripts/skills/skill", {
 		switch (true) 
 		{
 			case item == null:
-			case !item.isItemType(this.Const.Items.ItemType.TwoHanded):
-			case !item.isWeaponType(this.Const.Items.WeaponType.Sword):
 				return;
-			case item.getID() == "weapon.legend_longsword":
-			case item.getID() == "weapon.legend_named_longsword":
-			case item.getID() == "weapon.longsword":
-			case item.getID() == "weapon.named_longsword":
+			case !item.isWeaponType(this.Const.Items.WeaponType.Dagger):
+				return;
+			case item.getID() == "weapon.knife" || item.getID() == "weapon.legend_shiv":
 				specialistWeapon = true;
 		}
 
 		_properties.MeleeSkill += actor.calculateSpecialistBonus(12, specialistWeapon);
-		_properties.DamageDirectMult += 0.01 * actor.calculateSpecialistBonus(10, specialistWeapon);
-		_properties.DamageArmorMult += 0.01 * actor.calculateSpecialistBonus(10, specialistWeapon);
 
-		if (actor.getCurrentProperties().IsSpecializedInSwords)
+		if (!actor.getFlags().has("knifeSpecialist"))
+		{
+			actor.getFlags().add("knifeSpecialist");
+		}
+
+		if (actor.getCurrentProperties().IsSpecializedInDaggers)
 		{
 			_properties.DamageRegularMin += actor.calculateSpecialistBonus(6, specialistWeapon);
 			_properties.DamageRegularMax += actor.calculateSpecialistBonus(16, specialistWeapon);
 		}
 	}
+
+	function onRemoved()
+	{
+		this.getContainer().getActor().getFlags().remove("knifeSpecialist");
+	}
+
 });

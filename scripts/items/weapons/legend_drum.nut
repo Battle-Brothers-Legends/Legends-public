@@ -38,6 +38,8 @@ this.legend_drum <- this.inherit("scripts/items/weapons/weapon", {
 			_skill.m.IsDrumBash = true;
 		}.bindenv(this));
 		::Legends.Actives.grant(this, ::Legends.Active.KnockOut);
+		::Legends.Actives.grant(this, ::Legends.Active.LegendDrumsOfWar);
+		::Legends.Actives.grant(this, ::Legends.Active.LegendDrumsOfLife);
 	}
 
 	function onUpdateProperties( _properties )

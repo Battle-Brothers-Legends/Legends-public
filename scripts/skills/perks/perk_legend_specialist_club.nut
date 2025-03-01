@@ -2,13 +2,10 @@ this.perk_legend_specialist_club <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "perk.legend_specialist_club";
-		this.m.Name = this.Const.Strings.PerkName.LegendSpecialistClub;
-		this.m.Description = this.Const.Strings.PerkDescription.LegendSpecialistClub;
-		this.m.Icon = "ui/perks/perk_spec_mace.png";
-		// this.m.IconMini = "perk_spec_mace_mini.png";
+		::Const.Perks.setup(this.m, ::Legends.Perk.LegendSpecialistClub);
 		this.m.Type = this.Const.SkillType.Perk | this.Const.SkillType.StatusEffect;
 		this.m.Order = this.Const.SkillOrder.Perk;
+		this.m.IconMini = "perk_spec_mace_mini.png";
 		this.m.IsActive = false;
 		this.m.IsStacking = false;
 		this.m.IsHidden = false;

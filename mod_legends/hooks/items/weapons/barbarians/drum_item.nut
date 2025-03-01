@@ -32,6 +32,8 @@
 			_skill.m.IsDrumBash = true;
 		}.bindenv(this));
 		::Legends.Actives.grant(this, ::Legends.Active.KnockOut);
+		::Legends.Actives.grant(this, ::Legends.Active.LegendDrumsOfWar);
+		::Legends.Actives.grant(this, ::Legends.Active.LegendDrumsOfLife);
 	}
 
 	o.onUpdateProperties <- function ( _properties )
