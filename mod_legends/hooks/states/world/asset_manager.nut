@@ -143,10 +143,21 @@
 
 		setCampaignSettings(_settings);
 		this.m.Stash.resize( this.Const.LegendMod.MaxResources[_settings.EconomicDifficulty].Stash);
-		this.m.Money = this.Const.LegendMod.StartResources[_settings.BudgetDifficulty].Money;
-		this.m.Ammo = this.Const.LegendMod.StartResources[_settings.BudgetDifficulty].Ammo;
-		this.m.ArmorParts = this.Const.LegendMod.StartResources[_settings.BudgetDifficulty].ArmorParts;
-		this.m.Medicine = this.Const.LegendMod.StartResources[_settings.BudgetDifficulty].Medicine;
+
+		/* probably don't need this as legendary economic makes all starting resources to be 0 afterall
+		if (_settings.BudgetDifficulty == this.Const.Difficulty.Legendary &&
+			this.m.Money == 0 &&
+			this.m.Ammo == 0 &&
+			this.m.ArmorParts == 0 &&
+			this.m.Medicine == 0
+		) {
+			this.m.Money = this.Const.LegendMod.StartResources[_settings.BudgetDifficulty].Money;
+			this.m.Ammo = this.Const.LegendMod.StartResources[_settings.BudgetDifficulty].Ammo;
+			this.m.ArmorParts = this.Const.LegendMod.StartResources[_settings.BudgetDifficulty].ArmorParts;
+			this.m.Medicine = this.Const.LegendMod.StartResources[_settings.BudgetDifficulty].Medicine;
+		}
+		*/
+		
 		this.m.LastRosterSize = this.World.getPlayerRoster().getSize();
 	}
 
