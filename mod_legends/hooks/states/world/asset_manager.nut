@@ -138,11 +138,13 @@
 	local setCampaignSettings = o.setCampaignSettings;
 	o.setCampaignSettings = function ( _settings )
 	{
+		getStash().setResizable(true); // to make sure all starting item to be added without issue
+
 		if (!("IsExplorationMode" in _settings))
 			_settings.IsExplorationMode <- false;
 
 		setCampaignSettings(_settings);
-		this.m.Stash.resize( this.Const.LegendMod.MaxResources[_settings.EconomicDifficulty].Stash);
+		calculateStartingStashSize();
 
 		/* probably don't need this as legendary economic makes all starting resources to be 0 afterall
 		if (_settings.BudgetDifficulty == this.Const.Difficulty.Legendary &&
@@ -157,8 +159,16 @@
 			this.m.Medicine = this.Const.LegendMod.StartResources[_settings.BudgetDifficulty].Medicine;
 		}
 		*/
-		
 		this.m.LastRosterSize = this.World.getPlayerRoster().getSize();
+	}
+
+	o.calculateStartingStashSize <- function( _settings )
+	{
+		local size = ::Const.LegendMod.MaxResources[_settings.EconomicDifficulty].Stash + ::World.Assets.getOrigin().getStashModifier();
+		getStash().setResizable(false); // turn off the infinite stash size
+		getStash().sort();
+		getStash().resize(size);
+		::World.Flags.set("LegendStartingStash", size);
 	}
 
 	o.getHealingRequired = function ()
@@ -1163,77 +1173,7 @@
 	local onDeserialize = o.onDeserialize;
 	o.onDeserialize = function ( _in )
 	{
-		local isOldSave = !::Legends.Mod.Serialization.isSavedVersionAtLeast("19.0.23", _in.getMetaData());
-
-		if (isOldSave) {
-			this.m.Stash.resize(_in.readU16());
-			this.m.Stash.onDeserialize(_in);
-
-			if (this.m.OverflowItems.len() != 0)
-			{
-				foreach( item in this.m.OverflowItems )
-				{
-					this.m.Stash.add(item);
-				}
-
-				this.m.OverflowItems = [];
-			}
-
-			this.m.CampaignID = _in.readI32();
-			this.m.Name = _in.readString();
-			this.m.Banner = _in.readString();
-			this.m.BannerID = _in.readU8();
-			this.m.Look = _in.readU8();
-			this.m.EconomicDifficulty = _in.readU8();
-			this.m.CombatDifficulty = _in.readU8();
-			this.m.IsIronman = _in.readBool();
-			this.m.IsPermanentDestruction = !_in.readBool();
-
-			if (_in.getMetaData().getVersion() >= 46)
-			{
-				this.m.Origin = _in.readString();
-				this.m.Origin = this.Const.ScenarioManager.getScenario(this.m.Origin);
-			}
-
-			if (this.m.Origin == null)
-			{
-				this.m.Origin = this.Const.ScenarioManager.getScenario("scenario.tutorial");
-			}
-
-			if (_in.getMetaData().getVersion() >= 41)
-			{
-				this.m.SeedString = _in.readString();
-			}
-			else
-			{
-				_in.readI32();
-				this.m.SeedString = "Unknown";
-			}
-
-			if (_in.getMetaData().getVersion() < 64 && this.m.Origin != null && this.m.Origin.getID() == "scenario.manhunters")
-			{
-				this.m.Stash.add(this.new("scripts/items/misc/manhunters_ledger_item"));
-			}
-
-			this.m.Money = _in.readF32();
-			this.m.Ammo = this.Math.max(0, _in.readF32());
-			this.m.ArmorParts = this.Math.max(0, _in.readF32());
-			this.m.Medicine = this.Math.max(0, _in.readF32());
-			this.m.BusinessReputation = _in.readU32();
-			this.m.MoralReputation = _in.readF32();
-			this.m.Score = _in.readF32();
-			this.m.LastDayPaid = _in.readU16();
-			this.m.LastHourUpdated = _in.readU8();
-			this.m.LastFoodConsumed = _in.readF32();
-			this.m.IsCamping = _in.readBool();
-			this.updateAverageMoodState();
-			this.updateFood();
-			this.updateFormation();
-			this.m.Origin.onInit();
-		}
-		else {
-			onDeserialize(_in);
-		}
+		onDeserialize(_in);
 
 		this.m.FormationIndex = _in.readU8();
 		for( local i = 0; i < this.Const.LegendMod.Formations.Count; i = ++i )
@@ -1241,10 +1181,19 @@
 			this.setFormationName(i, _in.readString())
 		}
 
-		if (isOldSave)
-			local maxBros = _in.readU8(); //Deprecated, but kept for backwards save compatibility. It is now dynamically calculated
-
 		this.m.LastDayResourcesUpdated = _in.readU16();
+
+		if (!::Legends.Mod.Serialization.isSavedVersionAtLeast("19.0.25", _in.getMetaData())) {
+			local current = getStash().getCapacity();
+			local s = 0;
+
+			foreach( bro in ::World.getPlayerRoster().getAll())
+			{
+				s += bro.getStashModifier();
+			}
+
+			::World.Flags.set("LegendStartingStash", ::Math.max(0, current - s)); // switch to the new way to calculate stash modifier
+		}
 	}
 
 });

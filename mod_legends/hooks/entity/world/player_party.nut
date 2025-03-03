@@ -363,20 +363,15 @@
 		}
 	}
 
-
 	o.calculateFoodModifier <- function ()
 	{
-		if (this.World.State.m.AppropriateTimeToRecalc == 0)
-		{
+		if (this.World.State.m.AppropriateTimeToRecalc != 1)
 			return;
-		}
 
 		foreach( bro in this.World.getPlayerRoster().getAll() )
 		{
 			if (!bro.getSkills().hasSkill("perk.legend_quartermaster"))
-			{
 				continue;
-			}
 
 			this.m.FoodMultiplier = 1;
 			break;
@@ -385,15 +380,12 @@
 
 	o.calculateWageModifier <- function ()
 	{
-		if (this.World.State.m.AppropriateTimeToRecalc == 0)
-		{
+		if (this.World.State.m.AppropriateTimeToRecalc != 1)
 			return;
-		}
 
 		foreach( bro in this.World.getPlayerRoster().getAll() )
 		{
-			if (bro.getSkills().hasSkill("perk.legend_barter_paymaster"))
-			{
+			if (bro.getSkills().hasSkill("perk.legend_barter_paymaster")) {
 				this.m.WageMultiplier = bro.getBarterModifier();
 				return;
 			}
@@ -402,10 +394,8 @@
 
 	o.calculateBarterMult <- function ()
 	{
-		if (this.World.State.m.AppropriateTimeToRecalc == 0)
-		{
+		if (this.World.State.m.AppropriateTimeToRecalc != 1)
 			return;
-		}
 
 		local barterMult = 0.0;
 		local greed = 1;
@@ -413,25 +403,19 @@
 		{
 			barterMult += bro.getBarterModifier();
 			if (bro.getSkills().hasSkill("perk.legend_barter_greed"))
-			{
 				greed += 1;
-			}
 		}
 
 		if (this.World.Assets.getOrigin().getID() == "scenario.trader")
-		{
 			barterMult = barterMult * 1.1;
-		}
 
 		this.m.BarterMultiplier = barterMult / greed;
 	}
 
 	o.calculateAmmoModifier <- function ()
 	{
-		if (this.World.State.m.AppropriateTimeToRecalc == 0)
-		{
+		if (this.World.State.m.AppropriateTimeToRecalc != 1)
 			return;
-		}
 
 		local s = 0;
 		foreach( bro in this.World.getPlayerRoster().getAll() )
@@ -443,10 +427,8 @@
 
 	o.calculateArmorPartsModifier <- function ()
 	{
-		if (this.World.State.m.AppropriateTimeToRecalc == 0)
-		{
+		if (this.World.State.m.AppropriateTimeToRecalc != 1)
 			return;
-		}
 
 		local s = 0;
 		foreach( bro in this.World.getPlayerRoster().getAll() )
@@ -458,10 +440,8 @@
 
 	o.calculateMedsModifier <- function ()
 	{
-		if (this.World.State.m.AppropriateTimeToRecalc == 0)
-		{
+		if (this.World.State.m.AppropriateTimeToRecalc != 1)
 			return;
-		}
 
 		local s = 0;
 		foreach( bro in this.World.getPlayerRoster().getAll() )
@@ -473,21 +453,17 @@
 
 	o.calculateStashModifier <- function (resize = true)
 	{
-		if (this.World.State.m.AppropriateTimeToRecalc == 1)	////Leonion's fix
+		if (::World.State.m.AppropriateTimeToRecalc == 1)	////Leonion's fix
 		{
-			local s = this.Const.LegendMod.MaxResources[this.World.Assets.getEconomicDifficulty()].Stash;
-			s += this.World.Assets.getOrigin().getStashModifier();
-			s += this.World.Retinue.getInventoryUpgrades() * 27;
-
-			foreach( bro in this.World.getPlayerRoster().getAll())
+			local s = ::World.Flags.getAsInt("LegendStartingStash");
+			
+			foreach( bro in ::World.getPlayerRoster().getAll())
 			{
 				s += bro.getStashModifier();
 			}
 
-			if (resize && s != this.Stash.getCapacity())
-			{
-				this.Stash.resize(s);
-			}
+			if (resize && s != ::Stash.getCapacity())
+				::Stash.resize(s);
 
 			return s;
 		}

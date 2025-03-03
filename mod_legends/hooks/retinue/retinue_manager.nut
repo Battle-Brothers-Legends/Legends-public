@@ -62,14 +62,13 @@
 		}
 	}
 
-	o.upgradeInventory = function ()
+	local upgradeInventory = o.upgradeInventory;
+	o.upgradeInventory = function()
 	{
-		++this.m.InventoryUpgrades;
-		if (this.World.State.getPlayer() != null)
-		{
-			this.World.State.getPlayer().calculateModifiers();
-		}
-		//this.World.Assets.getStash().resize(this.World.Assets.getStash().getCapacity() + 27);
+		local before = ::World.Assets.getStash().getCapacity();
+		upgradeInventory();
+		local diff = ::World.Assets.getStash().getCapacity() - before;
+		::World.Flags.increment("LegendStartingStash", diff);
 	}
 
 	o.hasFollowersToRemove <- function ()
