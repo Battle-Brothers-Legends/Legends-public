@@ -3,7 +3,7 @@
 	local isViableTarget = o.isViableTarget;
 	o.isViableTarget = function  ( _user, _target )
 	{
-		ret = isViableTarget( _user, _target );
+		local ret = isViableTarget( _user, _target );
 
 		if (_target.getSkills().hasEffect(::Legends.Effect.LegendIntenselyCharmed))
 		{

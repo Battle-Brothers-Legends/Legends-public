@@ -4,6 +4,7 @@
 
 	o.m.IsForPerkTooltip <- false; // Indicate whether the Perk is a dummy that is being used only to generate unactivated perk tooltip hints
 	o.m.Sound <- [];
+	o.m.isSpecialistSkill <- false;
 
 	o.getDescription = function()
 	{
@@ -159,6 +160,11 @@
 				icon = "ui/icons/special.png",
 				text = "[color=" + this.Const.UI.Color.PositiveValue + "]" + this.Math.min(100, this.m.ChanceDisembowel * p.FatalityChanceMult) + "%[/color] chance to disembowel the target on hits to the body that are killing blows"
 			});
+		}
+
+		if (this.m.Item != null && !this.m.Item.isNull() && this.m.isSpecialistSkill)
+		{
+			ret.extend(this.specialistWeaponTooltip(this.m.Item, this.m.IsRanged))
 		}
 
 		return ret;

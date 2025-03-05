@@ -14,6 +14,8 @@
 	o.onEquip = function ()
 	{
 		onEquip();
-		::Legends.Actives.grant(this, ::Legends.Active.Deathblow);
+		::Legends.Actives.grant(this, ::Legends.Active.Deathblow, function (_skill) {
+			_skill.m.DeathblowBonus = true;
+		}.bindenv(this));
 	}
 });

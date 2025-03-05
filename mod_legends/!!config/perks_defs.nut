@@ -38,7 +38,7 @@ if (!("Perk" in ::Legends))
 	local size = ::Const.Perks.PerkDefObjects.len();
 	::Const.Perks.PerkDefObjects.extend(_perkDefObjects);
 	foreach (i, perkDefObject in _perkDefObjects)
-perkDefObjects.push({
+	{
 		if (perkDefObject.Const in ::Legends.Perk)
 			::Legends.Perk[perkDefObject.Const] = size + i;
 		else

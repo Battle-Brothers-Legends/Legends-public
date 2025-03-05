@@ -1,95 +1,56 @@
 this.perk_legend_specialist_farmhand <- this.inherit("scripts/skills/skill", {
-	m = {},
+	m = {
+		SpecialistItemTypes = [
+			this.Const.Items.ItemType.Pitchfork
+		],
+		ApplicableWeaponTypes = [
+			this.Const.Items.WeaponType.Polearm
+		],
+		BonusMelee = 12,
+		BonusDamage = 10
+	},
 	function create()
 	{
+		this.legend_specialist_abstract.create();
 		::Const.Perks.setup(this.m, ::Legends.Perk.LegendSpecialistFarmhand);
-		this.m.Type = this.Const.SkillType.Perk | this.Const.SkillType.StatusEffect;
-		this.m.Order = this.Const.SkillOrder.Perk;
 		this.m.IconMini = "perk_spec_bitchfork_mini.png";
-		this.m.IsActive = false;
-		this.m.IsStacking = false;
-		this.m.IsHidden = false;
 	}
 
-	function getDescription()
+	function specialistWeaponTooltip (_item, _isRanged)
 	{
-		return this.getDefaultSpecialistSkillDescription("Polearms and Farming Tools");
-	}
-
-	function specialistWeaponTooltip (_specialistWeapon = false)
-	{
-		local actor = this.getContainer().getActor();
-		if (actor.calculateSpecialistBonus(12, _specialistWeapon) == 0)
-			return this.getNoSpecialistWeaponTooltip();
-
-		local item = actor.getMainhandItem();
-		local tooltip = this.skill.getTooltip();
+		local properties = this.getContainer().getActor().getCurrentProperties();
+		local tooltip = [];
 		
-		tooltip.extend([
-		{
-			id = 6,
+		tooltip.push({
+			id = 7,
 			type = "text",
-			icon = "ui/icons/melee_skill.png",
-			text = "[color=" + this.Const.UI.Color.PositiveValue + "]+" + actor.calculateSpecialistBonus(12, _specialistWeapon) + "[/color] Melee Skill"
-		},
-		{
+			icon = "ui/icons/hitchance.png",
+			text = "[color=" + this.Const.UI.Color.PositiveValue + "]+" + this.calculateSpecialistBonus(this.m.BonusMelee, _item) + "[/color] chance to hit"
+		});
+
+		tooltip.push({
 			id = 6,
 			type = "text",
 			icon = "ui/icons/armor_damage.png",
-			text = "[color=" + this.Const.UI.Color.PositiveValue + "]" + actor.calculateSpecialistBonus(25, _specialistWeapon) + "%[/color] Bonus Armor Damage"
-		}]);
-		if (actor.getCurrentProperties().IsSpecializedInPolearms)
+			text = "[color=" + this.Const.UI.Color.PositiveValue + "]" + this.calculateSpecialistBonus(25, _specialistWeapon) + "%[/color] Bonus Armor Damage"
+		});
+
+		if (::Legends.S.isCharacterWeaponSpecialized(properties, _item))
 		{
 			tooltip.push({
 				id = 7,
 				type = "text",
 				icon = "ui/icons/damage_dealt.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+" + actor.calculateSpecialistBonus(9, _specialistWeapon) + "-" + actor.calculateSpecialistBonus(24, _specialistWeapon) + "[/color] Damage"
+				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+" + this.calculateSpecialistBonus(this.m.BonusDamage, _item) + "%[/color] Damage"
 			});
 		}
 		return tooltip;
 	}
 
-	function getTooltip()
+	function onAnySkillUsed( _skill, _targetEntity, _properties )
 	{
-		local tooltip = this.skill.getTooltip();
-		local actor = this.getContainer().getActor();
-		local item = actor.getMainhandItem();
-		local specialistWeapon = false;
-		switch (true) 
-		{
-			case item == null:
-			case !(item.isWeaponType(this.Const.Items.WeaponType.Polearm) || item.isItemType(this.Const.Items.ItemType.Pitchfork)):
-				return this.getNoSpecialistWeaponTooltip();
-			case item.isItemType(this.Const.Items.ItemType.Pitchfork):
-				specialistWeapon = true;
-		}
-
-		return this.specialistWeaponTooltip(specialistWeapon);
-	}
-
-	function onUpdate( _properties )
-	{
-		local actor = this.getContainer().getActor();
-		local item = actor.getMainhandItem();
-		local specialistWeapon = false;
-
-		switch (true) 
-		{
-			case item == null:
-			case !(item.isWeaponType(this.Const.Items.WeaponType.Polearm) || item.isItemType(this.Const.Items.ItemType.Pitchfork)):
-				return;
-			case item.isItemType(this.Const.Items.ItemType.Pitchfork):
-				specialistWeapon = true;
-		}
-
-		_properties.MeleeSkill += actor.calculateSpecialistBonus(12, specialistWeapon);
-		_properties.DamageArmorMult += actor.calculateSpecialistBonus(0.25, specialistWeapon);
-
-		if (actor.getCurrentProperties().IsSpecializedInPolearms)
-		{
-			_properties.DamageRegularMin += actor.calculateSpecialistBonus(9, specialistWeapon);
-			_properties.DamageRegularMax += actor.calculateSpecialistBonus(24, specialistWeapon);
-		}
+		this.legend_specialist_abstract.onAnySkillUsed(_skill, _targetEntity, _properties)
+		if (onAnySkillUsedSpecialistChecks(_skill))
+			_properties.DamageArmorMult += this.calculateSpecialistBonus(0.25, specialistWeapon);
 	}
 });

@@ -1,67 +1,42 @@
 this.perk_legend_specialist_reaper <- this.inherit("scripts/skills/skill", {
-	m = {},
+	m = {
+		SpecialistWeaponIds = [
+			"weapon.legend_grisly_scythe",
+			"weapon.legend_scythe",
+			"weapon.warscythe",
+			"weapon.named_warscythe"
+		],
+		BonusMelee = 15,
+		BonusDamage = 15
+	},
 	function create()
 	{
+		this.legend_specialist_abstract.create();
 		::Const.Perks.setup(this.m, ::Legends.Perk.LegendSpecialistReaper);
-		this.m.Type = this.Const.SkillType.Perk | this.Const.SkillType.StatusEffect;
-		this.m.Order = this.Const.SkillOrder.Perk;
 		this.m.IconMini = "perk_spec_scythe_mini.png";
-		this.m.IsActive = false;
-		this.m.IsStacking = false;
-		this.m.IsHidden = false;
 	}
 
-	function getDescription()
+	function specialistWeaponTooltip (_item, _isRanged)
 	{
-		return this.getDefaultSpecialistSkillDescription("Scythe or Warscythe");
-	}
-
-	function getTooltip()
-	{
-		local tooltip = this.skill.getTooltip();
-		local actor = this.getContainer().getActor();
-		local item = actor.getMainhandItem();
-		local specialistWeapon = false;
-		if (item == null || !(item.getID() == "weapon.legend_grisly_scythe" || item.getID() == "weapon.legend_scythe" || item.getID() == "weapon.warscythe" || item.getID() == "weapon.named_warscythe"))
-			return this.getNoSpecialistWeaponTooltip();
-
+		local properties = this.getContainer().getActor().getCurrentProperties();
+		local tooltip = [];
+		
 		tooltip.push({
-			id = 6,
+			id = 7,
 			type = "text",
-			icon = "ui/icons/melee_skill.png",
-			text = "[color=" + this.Const.UI.Color.PositiveValue + "]+15[/color] Melee Skill"
+			icon = "ui/icons/hitchance.png",
+			text = "[color=" + this.Const.UI.Color.PositiveValue + "]+" + this.calculateSpecialistBonus(this.m.BonusMelee, _item) + "[/color] chance to hit"
 		});
-		if (actor.getCurrentProperties().IsSpecializedInPolearms || actor.getCurrentProperties().IsSpecializedInCleavers)
+
+		if (::Legends.S.isCharacterWeaponSpecialized(properties, _item))
 		{
 			tooltip.push({
 				id = 7,
 				type = "text",
 				icon = "ui/icons/damage_dealt.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+10-15[/color] Damage"
+				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+" + this.calculateSpecialistBonus(this.m.BonusDamage, _item) + "%[/color] Damage"
 			});
 		}
-
 		return tooltip;
 	}
-
-	function onUpdate( _properties )
-	{
-		local actor = this.getContainer().getActor();
-		local item = actor.getMainhandItem();
-		local specialistWeapon = false;
-
-		if (item == null || !(item.getID() == "weapon.legend_grisly_scythe" || item.getID() == "weapon.legend_scythe" || item.getID() == "weapon.warscythe" || item.getID() == "weapon.named_warscythe"))
-		{
-			return;
-		}
-
-		_properties.MeleeSkill += 15;
-
-		if (actor.getCurrentProperties().IsSpecializedInPolearms || actor.getCurrentProperties().IsSpecializedInCleavers)
-		{
-			_properties.DamageRegularMin += 10;
-			_properties.DamageRegularMax += 15;
-		}
-	}
-
 });

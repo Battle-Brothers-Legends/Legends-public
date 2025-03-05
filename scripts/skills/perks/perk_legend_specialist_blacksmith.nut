@@ -1,34 +1,35 @@
-this.perk_legend_specialist_blacksmith <- this.inherit("scripts/skills/skill", {
-	m = {},
+this.perk_legend_specialist_blacksmith <- this.inherit("scripts/skills/legend_specialist_abstract", {
+	m = {
+		SpecialistWeaponIds = [
+			"weapon.legend_hammer",
+			"weapon.legend_named_blacksmith_hammer"
+		],
+		ApplicableItemTypes = [
+			this.Const.Items.ItemType.OneHanded
+		],
+		ApplicableWeaponTypes = [
+			this.Const.Items.WeaponType.Hammer
+		],
+		BonusMelee = 12,
+		BonusDamage = 10
+	},
 	function create()
 	{
+		this.legend_specialist_abstract.create();
 		::Const.Perks.setup(this.m, ::Legends.Perk.LegendSpecialistBlacksmith);
-		this.m.Type = this.Const.SkillType.Perk | this.Const.SkillType.StatusEffect;
-		this.m.Order = this.Const.SkillOrder.Perk;
-		this.m.IsActive = false;
-		this.m.IsStacking = false;
-		this.m.IsHidden = false;
+		this.m.IconMini = "perk_spec_blacksmith_mini.png";
 	}
 
-	function getDescription ()
+	function specialistWeaponTooltip (_item, _isRanged)
 	{
-		return this.getDefaultSpecialistSkillDescription("One Handed Hammers");
-	}
-
-	function specialistWeaponTooltip (_specialistWeapon = false)
-	{
-		local actor = this.getContainer().getActor();
-		if (actor.calculateSpecialistBonus(12, _specialistWeapon) == 0)
-			return this.getNoSpecialistWeaponTooltip();
-
-		local item = actor.getMainhandItem();
-		local tooltip = this.skill.getTooltip();
+		local properties = this.getContainer().getActor().getCurrentProperties();
+		local tooltip = [];
 		
 		tooltip.push({
 			id = 6,
 			type = "text",
-			icon = "ui/icons/melee_skill.png",
-			text = "[color=" + this.Const.UI.Color.PositiveValue + "]+" + actor.calculateSpecialistBonus(12, _specialistWeapon) + "[/color] Melee Skill"
+			icon = "ui/icons/hitchance.png",
+			text = "[color=" + this.Const.UI.Color.PositiveValue + "]+" + this.calculateSpecialistBonus(this.m.BonusMelee, _item) + "[/color] chance to hit"
 		});
 		tooltip.push({
 			id = 6,
@@ -36,67 +37,16 @@ this.perk_legend_specialist_blacksmith <- this.inherit("scripts/skills/skill", {
 			icon = "ui/icons/special.png",
 			text = "Receive [color=" + this.Const.UI.Color.PositiveValue + "]+1%[/color] of your current armor and helmet condition as damage to hitpoints, regardless of armor" 
 		});
-		if (actor.getCurrentProperties().IsSpecializedInSwords)
+		if (::Legends.S.isCharacterWeaponSpecialized(properties, _item))
 		{
 			tooltip.push({
 				id = 7,
 				type = "text",
 				icon = "ui/icons/damage_dealt.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+" + actor.calculateSpecialistBonus(6, _specialistWeapon) + "-" + actor.calculateSpecialistBonus(16, _specialistWeapon) + "[/color] Damage"
+				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+" + this.calculateSpecialistBonus(this.m.BonusDamage, _item) + "%[/color] Damage"
 			});
 		}
 
 		return tooltip;
 	}
-
-	function getTooltip()
-	{
-		local tooltip = this.skill.getTooltip();
-		local actor = this.getContainer().getActor();
-		local item = actor.getMainhandItem();
-		local specialistWeapon = false;
-		switch (true) 
-		{
-			case item == null:
-			case !item.isItemType(this.Const.Items.ItemType.OneHanded):
-			case !item.isWeaponType(this.Const.Items.WeaponType.Hammer):
-				return getNoSpecialistWeaponTooltip();
-			case item.getID() == "weapon.legend_hammer":
-			case item.getID() == "weapon.legend_named_blacksmith_hammer":
-				specialistWeapon = true;
-		}
-
-		return specialistWeaponTooltip(specialistWeapon);
-	}
-
-	function onUpdate( _properties )
-	{
-		local actor = this.getContainer().getActor();
-		local item = actor.getMainhandItem();
-		local specialistWeapon = false;
-
-		switch (true) 
-		{
-			case item == null:
-			case !item.isItemType(this.Const.Items.ItemType.OneHanded):
-			case !item.isWeaponType(this.Const.Items.WeaponType.Hammer):
-				return;
-			case item.getID() == "weapon.legend_hammer":
-			case item.getID() == "weapon.legend_named_blacksmith_hammer":
-				specialistWeapon = true;
-		}
-
-		_properties.MeleeSkill += actor.calculateSpecialistBonus(12, specialistWeapon);
-		if (actor.getCurrentProperties().IsSpecializedInHammers && !actor.getFlags().has("blacksmithSpecialist"))
-		{
-			actor.getFlags().add("blacksmithSpecialist");
-		}
-
-		if (actor.getCurrentProperties().IsSpecializedInHammers)
-		{
-			_properties.DamageRegularMin += actor.calculateSpecialistBonus(6, specialistWeapon);
-			_properties.DamageRegularMax += actor.calculateSpecialistBonus(16, specialistWeapon);
-		}
-	}
-
 });

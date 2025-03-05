@@ -9,7 +9,19 @@ this.perk_legend_specialist_butcher <- this.inherit("scripts/skills/skill", {
 			"sounds/combat/chop_hit_01.wav",
 			"sounds/combat/chop_hit_02.wav",
 			"sounds/combat/chop_hit_03.wav"
-		];
+		],
+		SpecialistWeaponIds = [
+			"weapon.butchers_cleaver",
+			"weapon.legend_named_butchers_cleaver"
+		],
+		ExcludedWeaponTypes = [
+			this.Const.Items.WeaponType.Whip
+		],
+		ApplicableWeaponTypes = [
+			this.Const.Items.WeaponType.Cleaver
+		],
+		BonusMelee = 12,
+		BonusDamage = 10
 	}
 	function create()
 	{
@@ -22,89 +34,33 @@ this.perk_legend_specialist_butcher <- this.inherit("scripts/skills/skill", {
 		this.m.IsHidden = false;
 	}
 
-function getDescription()
+	function specialistWeaponTooltip (_item, _isRanged)
 	{
-		return this.getDefaultSpecialistSkillDescription("Cleavers (but not Whips)");
-	}
-
-	function specialistWeaponTooltip(_specialistWeapon = false)
-	{
-		local actor = this.getContainer().getActor();
-		if (actor.calculateSpecialistBonus(12, _specialistWeapon) == 0)
-			return this.getNoSpecialistWeaponTooltip();
-
-		local item = actor.getMainhandItem();
-		local tooltip = this.skill.getTooltip();
+		local properties = this.getContainer().getActor().getCurrentProperties();
+		local tooltip = [];
 		
-		tooltip.push({
-			id = 6,
+		tooltip.extend([{
+			id = 7,
 			type = "text",
-			icon = "ui/icons/melee_skill.png",
-			text = "[color=" + this.Const.UI.Color.PositiveValue + "]+" + actor.calculateSpecialistBonus(12, _specialistWeapon) + "[/color] Melee Skill"
-		});
-		tooltip.push({
+			icon = "ui/icons/hitchance.png",
+			text = "[color=" + this.Const.UI.Color.PositiveValue + "]+" + this.calculateSpecialistBonus(this.m.BonusMelee, _item) + "[/color] chance to hit"
+		},
+		{
 			id = 6,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "Applies [color=" + this.Const.UI.Color.PositiveValue + "]2[/color] Bleeding Damage to every attack" 
-		});
-		if (actor.getCurrentProperties().IsSpecializedInCleavers)
+			text = "Inflicts additional stacking [color=" + this.Const.UI.Color.PositiveValue + "]2[/color] graze bleeding damage per turn, for 5 turns" 
+		}]);
+		if (::Legends.S.isCharacterWeaponSpecialized(properties, _item))
 		{
 			tooltip.push({
 				id = 7,
 				type = "text",
 				icon = "ui/icons/damage_dealt.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+" + actor.calculateSpecialistBonus(6, _specialistWeapon) + "-" + actor.calculateSpecialistBonus(16, _specialistWeapon) + "[/color] Damage"
+				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+" + this.calculateSpecialistBonus(this.m.BonusDamage, _item) + "%[/color] Damage"
 			});
 		}
 		return tooltip;
-	}
-	
-
-	function getTooltip()
-	{
-		local tooltip = this.skill.getTooltip();
-		local actor = this.getContainer().getActor();
-		local item = actor.getMainhandItem();
-		local specialistWeapon = false;
-		switch (true) 
-		{
-			case item == null:
-			case item.isWeaponType(this.Const.Items.WeaponType.Whip):
-			case !item.isWeaponType(this.Const.Items.WeaponType.Cleaver):
-				return getNoSpecialistWeaponTooltip();
-			case item.getID() == "weapon.butchers_cleaver" || item.getID() == "weapon.legend_named_butchers_cleaver":
-				specialistWeapon = true;
-		}
-
-		return specialistWeaponTooltip(specialistWeapon);
-	}
-
-	function onUpdate( _properties )
-	{
-		local actor = this.getContainer().getActor();
-		local item = actor.getMainhandItem();
-		local specialistWeapon = false;
-
-		switch (true)
-		{
-			case item == null:
-				return;
-			case item.isWeaponType(this.Const.Items.WeaponType.Whip):
-				return;
-			case !item.isWeaponType(this.Const.Items.WeaponType.Cleaver):
-				return;
-			case item.getID() == "weapon.butchers_cleaver" || item.getID() == "weapon.legend_named_butchers_cleaver":
-				specialistWeapon = true;
-		}
-
-		_properties.MeleeSkill += actor.calculateSpecialistBonus(12, specialistWeapon);
-
-		if (actor.getCurrentProperties().IsSpecializedInCleavers)
-		{
-			_properties.DamageRegularMin += actor.calculateSpecialistBonus(6, specialistWeapon);
-			_properties.DamageRegularMax += actor.calculateSpecialistBonus(16, specialistWeapon);
-		}
 	}
 
 	function onTargetHit ( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor )

@@ -1,110 +1,75 @@
 this.perk_legend_specialist_bodyguard <- this.inherit("scripts/skills/skill", {
-	m = {},
+	m = {
+		SpecialistWeaponIds = [
+			"weapon.legend_longsword",
+			"weapon.legend_named_longsword",
+			"weapon.longsword",
+		],
+		ApplicableItemTypes = [
+			this.Const.Items.ItemType.TwoHanded
+		],
+		ApplicableWeaponTypes = [
+			this.Const.Items.WeaponType.Sword
+		],
+		BonusMelee = 12,
+		BonusDamage = 10
+	},
 	function create()
 	{
+		this.legend_specialist_abstract.create();
 		::Const.Perks.setup(this.m, ::Legends.Perk.LegendSpecialistBodyguard);
-		this.m.Type = this.Const.SkillType.Perk | this.Const.SkillType.StatusEffect;
-		this.m.Order = this.Const.SkillOrder.Perk;
 		this.m.IconMini = "perk_spec_2hsword_mini.png";
-		this.m.IsActive = false;
-		this.m.IsStacking = false;
-		this.m.IsHidden = false;
 	}
 
-	function getDescription ()
+	function specialistWeaponTooltip (_item, _isRanged)
 	{
-		return this.getDefaultSpecialistSkillDescription("Two Handed Swords");
-	}
-
-	function specialistWeaponTooltip (_specialistWeapon = false)
-	{
-		local actor = this.getContainer().getActor();
-		if (actor.calculateSpecialistBonus(12, _specialistWeapon) == 0)
-			return this.getNoSpecialistWeaponTooltip();
-
-		local item = actor.getMainhandItem();
-		local tooltip = this.skill.getTooltip();
+		local properties = this.getContainer().getActor().getCurrentProperties();
+		local tooltip = [];
 		
-		tooltip.extend([
-		{
-			id = 6,
-			type = "text",
-			icon = "ui/icons/melee_skill.png",
-			text = "[color=" + this.Const.UI.Color.PositiveValue + "]+" + actor.calculateSpecialistBonus(12, _specialistWeapon) + "[/color] Melee Skill"
-		},
-		{
+		tooltip.extend([{
 			id = 7,
 			type = "text",
-			icon = "ui/icons/armor_damage.png",
-			text = "[color=" + this.Const.UI.Color.DamageValue + "]" + actor.calculateSpecialistBonus(10, _specialistWeapon) + "%[/color] Armor Damage"
+			icon = "ui/icons/hitchance.png",
+			text = "[color=" + this.Const.UI.Color.PositiveValue + "]+" + this.calculateSpecialistBonus(this.m.BonusMelee, _item) + "[/color] chance to hit"
 		},
 		{
 			id = 8,
 			type = "text",
-			icon = "ui/icons/damage_dealt.png",
-			text = "[color=" + this.Const.UI.Color.DamageValue + "]" + actor.calculateSpecialistBonus(10, _specialistWeapon) + "%[/color] Armor Penetration"
+			icon = "ui/icons/special.png",
+			text = "[color=" + this.Const.UI.Color.PositiveValue + "]+" + this.calculateSpecialistBonus(20, _item) + "%[/color] Riposte Damage"
+		},
+		{
+			id = 9,
+			type = "text",
+			icon = "ui/icons/special.png",
+			text = "[color=" + this.Const.UI.Color.PositiveValue + "]+" + this.calculateSpecialistBonus(10, _item) + "%[/color] Area of Effect attacks"
 		}]);
-		if (actor.getCurrentProperties().IsSpecializedInSwords)
+		if (::Legends.S.isCharacterWeaponSpecialized(properties, _item))
 		{
 			tooltip.push({
-				id = 9,
+				id = 7,
 				type = "text",
 				icon = "ui/icons/damage_dealt.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+" + actor.calculateSpecialistBonus(6, _specialistWeapon) + "-" + actor.calculateSpecialistBonus(16, _specialistWeapon) + "[/color] Damage"
+				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+" + this.calculateSpecialistBonus(this.m.BonusDamage, _item) + "%[/color] Damage"
 			});
 		}
 		return tooltip;
 	}
 
-	function getTooltip()
+	function onAnySkillUsed( _skill, _targetEntity, _properties )
 	{
-		local tooltip = this.skill.getTooltip();
-		local actor = this.getContainer().getActor();
-		local item = actor.getMainhandItem();
-		local specialistWeapon = false;
-		switch (true) 
+		this.legend_specialist_abstract.onAnySkillUsed(_skill, _targetEntity, _properties)
+		if (onAnySkillUsedSpecialistChecks(_skill))
 		{
-			case item == null:
-			case !item.isItemType(this.Const.Items.ItemType.TwoHanded):
-			case !item.isWeaponType(this.Const.Items.WeaponType.Sword):
-				return getNoSpecialistWeaponTooltip();
-			case item.getID() == "weapon.legend_longsword":
-			case item.getID() == "weapon.legend_named_longsword":
-			case item.getID() == "weapon.longsword":
-			case item.getID() == "weapon.named_longsword":
-				specialistWeapon = true;
-		}
+			if (_properties.IsRiposting)
+			{
+				_properties.DamageTotalMult *= 1.0 + 0.01 * this.calculateSpecialistBonus(20, _item);
+			}
 
-		return specialistWeaponTooltip(specialistWeapon);
-	}
-
-	function onUpdate( _properties )
-	{
-		local actor = this.getContainer().getActor();
-		local item = actor.getMainhandItem();
-		local specialistWeapon = false;
-
-		switch (true) 
-		{
-			case item == null:
-			case !item.isItemType(this.Const.Items.ItemType.TwoHanded):
-			case !item.isWeaponType(this.Const.Items.WeaponType.Sword):
-				return;
-			case item.getID() == "weapon.legend_longsword":
-			case item.getID() == "weapon.legend_named_longsword":
-			case item.getID() == "weapon.longsword":
-			case item.getID() == "weapon.named_longsword":
-				specialistWeapon = true;
-		}
-
-		_properties.MeleeSkill += actor.calculateSpecialistBonus(12, specialistWeapon);
-		_properties.DamageDirectMult += 0.01 * actor.calculateSpecialistBonus(10, specialistWeapon);
-		_properties.DamageArmorMult += 0.01 * actor.calculateSpecialistBonus(10, specialistWeapon);
-
-		if (actor.getCurrentProperties().IsSpecializedInSwords)
-		{
-			_properties.DamageRegularMin += actor.calculateSpecialistBonus(6, specialistWeapon);
-			_properties.DamageRegularMax += actor.calculateSpecialistBonus(16, specialistWeapon);
+			if (_skill.isAOE() && _skill.isAttack() && !_skill.isRanged())
+			{
+				_properties.DamageTotalMult *= 1 + 0.01 * this.calculateSpecialistBonus(10, _item);
+			}
 		}
 	}
 });

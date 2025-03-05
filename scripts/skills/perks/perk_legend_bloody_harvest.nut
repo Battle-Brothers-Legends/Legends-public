@@ -12,7 +12,7 @@ this.perk_legend_bloody_harvest <- this.inherit("scripts/skills/skill", {
 
 	function onAnySkillUsed( _skill, _targetEntity, _properties )
 	{
-		if (_skill.isAOE() && _skill.isAttack())
+		if (_skill.isAOE() && _skill.isAttack() && !_skill.isRanged())
 		{
 			_properties.DamageTotalMult *= 1.1;
 			_properties.MeleeSkill += 10;

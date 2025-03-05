@@ -1,104 +1,43 @@
 this.perk_legend_specialist_prisoner <- this.inherit("scripts/skills/skill", {
-	m = {},
+	m = {
+		SpecialistWeaponIds = [
+			"weapon.knife",
+			"weapon.legend_shiv"
+		],
+		ApplicableWeaponTypes = [
+			this.Const.Items.WeaponType.Dagger
+		],
+		BonusMelee = 12,
+		BonusDamage = 10
+	},
 	function create()
 	{
+		this.legend_specialist_abstract.create();
 		::Const.Perks.setup(this.m, ::Legends.Perk.LegendSpecialistPrisoner);
-		this.m.Type = this.Const.SkillType.Perk | this.Const.SkillType.StatusEffect;
-		this.m.Order = this.Const.SkillOrder.Perk;
 		this.m.IconMini = "perk_spec_dagger_mini.png";
-		this.m.IsActive = false;
-		this.m.IsStacking = false;
-		this.m.IsHidden = false;
 	}
 
-	function getDescription()
+	function specialistWeaponTooltip (_item, _isRanged)
 	{
-		return this.getDefaultSpecialistSkillDescription("Daggers");
-	}
-
-	function specialistWeaponTooltip (_specialistWeapon = false)
-	{
-		local actor = this.getContainer().getActor();
-		if (actor.calculateSpecialistBonus(12, _specialistWeapon) == 0)
-			return this.getNoSpecialistWeaponTooltip();
-
-		local item = actor.getMainhandItem();
-		local tooltip = this.skill.getTooltip();
-
+		local properties = this.getContainer().getActor().getCurrentProperties();
+		local tooltip = [];
+		
 		tooltip.push({
-			id = 6,
+			id = 7,
 			type = "text",
-			icon = "ui/icons/melee_skill.png",
-			text = "[color=" + this.Const.UI.Color.PositiveValue + "]+" + actor.calculateSpecialistBonus(12, _specialistWeapon) + "[/color] Melee Skill"
+			icon = "ui/icons/hitchance.png",
+			text = "[color=" + this.Const.UI.Color.PositiveValue + "]+" + this.calculateSpecialistBonus(this.m.BonusMelee, _item) + "[/color] chance to hit"
 		});
-		tooltip.push({
-			id = 6,
-			type = "text",
-			icon = "ui/icons/special.png",
-			text = "You acquire the Deathblow ability when wielding any dagger" 
-		});
-		if (actor.getCurrentProperties().IsSpecializedInDaggers)
+
+		if (::Legends.S.isCharacterWeaponSpecialized(properties, _item))
 		{
 			tooltip.push({
 				id = 7,
 				type = "text",
 				icon = "ui/icons/damage_dealt.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+" + actor.calculateSpecialistBonus(6, _specialistWeapon) + "-" + actor.calculateSpecialistBonus(16, _specialistWeapon) + "[/color] Damage"
+				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+" + this.calculateSpecialistBonus(this.m.BonusDamage, _item) + "%[/color] Damage"
 			});
 		}
 		return tooltip;
 	}
-
-	function getTooltip()
-	{
-		local tooltip = this.skill.getTooltip();
-		local actor = this.getContainer().getActor();
-		local item = actor.getMainhandItem();
-		local specialistWeapon = false;
-		switch (true) 
-		{
-			case item == null:
-			case !item.isWeaponType(this.Const.Items.WeaponType.Dagger):
-				return this.getNoSpecialistWeaponTooltip();
-			case item.getID() == "weapon.knife" || item.getID() == "weapon.legend_shiv":
-				specialistWeapon = true;
-		}
-		return this.specialistWeaponTooltip(specialistWeapon);
-	}
-
-	function onUpdate( _properties )
-	{
-		local actor = this.getContainer().getActor();
-		local item = actor.getMainhandItem();
-		local specialistWeapon = false;
-
-		switch (true) 
-		{
-			case item == null:
-				return;
-			case !item.isWeaponType(this.Const.Items.WeaponType.Dagger):
-				return;
-			case item.getID() == "weapon.knife" || item.getID() == "weapon.legend_shiv":
-				specialistWeapon = true;
-		}
-
-		_properties.MeleeSkill += actor.calculateSpecialistBonus(12, specialistWeapon);
-
-		if (!actor.getFlags().has("knifeSpecialist"))
-		{
-			actor.getFlags().add("knifeSpecialist");
-		}
-
-		if (actor.getCurrentProperties().IsSpecializedInDaggers)
-		{
-			_properties.DamageRegularMin += actor.calculateSpecialistBonus(6, specialistWeapon);
-			_properties.DamageRegularMax += actor.calculateSpecialistBonus(16, specialistWeapon);
-		}
-	}
-
-	function onRemoved()
-	{
-		this.getContainer().getActor().getFlags().remove("knifeSpecialist");
-	}
-
 });

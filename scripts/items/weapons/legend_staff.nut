@@ -39,7 +39,8 @@ this.legend_staff <- this.inherit("scripts/items/weapons/weapon", {
 		}.bindenv(this));
 		::Legends.Actives.grant(this, ::Legends.Active.KnockOut, function (_skill) {
 			_skill.m.IsStaffKnockOut = true;
-		}.bindenv(this))
+		}.bindenv(this));
+		::Legends.Actives.grant(this, ::Legends.Active.LegendStaffRiposte);
 	}
 
 });

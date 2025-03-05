@@ -31,6 +31,7 @@ this.legend_shiv <- this.inherit("scripts/items/weapons/weapon", {
 		this.weapon.onEquip();
 		::Legends.Actives.grant(this, ::Legends.Active.Stab);
 		::Legends.Actives.grant(this, ::Legends.Active.Puncture);
+		::Legends.Actives.grant(this, ::Legends.Active.Deathblow);
 	}
 
 	function onUpdateProperties( _properties )
