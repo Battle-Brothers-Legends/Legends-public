@@ -111,9 +111,6 @@ this.starting_scenario <- {
 	function onInit()
 	{
 		this.m.StaticRelationsToFaction.resize(this.Const.FactionType.len());
-
-		if (this.World.State.getPlayer() != null)
-			this.World.State.getPlayer().calculateModifiers();
 	}
 
 	function onUpdateHiringRoster( _roster )

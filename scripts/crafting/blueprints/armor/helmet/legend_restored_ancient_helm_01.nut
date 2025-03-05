@@ -1,9 +1,9 @@
-this.legend_restored_ancient_helm <- this.inherit("scripts/crafting/blueprint", {
+this.legend_restored_ancient_helm_01 <- this.inherit("scripts/crafting/blueprint", {
 	m = {},
 	function create()
 	{
 		this.blueprint.create();
-		this.m.ID = "blueprint.legend_restored_ancient_helm";
+		this.m.ID = "blueprint.legend_restored_ancient_helm_01";
 		this.m.Type = this.Const.Items.ItemType.Helmet;
 		this.m.PreviewCraftable = this.new("scripts/items/legend_helmets/helm/legend_helmet_legend_ancient_legionaire_restored");
 		this.m.Cost = 500;

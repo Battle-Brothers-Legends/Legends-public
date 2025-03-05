@@ -102,6 +102,10 @@
 
 		m.AppropriateTimeToRecalc = 0;
 		loadCampaign(_campaignFileName);
+	}
+
+	o.onCalculatePlayerPartyModifiers <- function()
+	{
 		m.AppropriateTimeToRecalc = 1;
 		getPlayer().calculateModifiers(); //Leonion's fix
 	}
@@ -114,8 +118,7 @@
 		startNewCampaign();
 		::World.setFogOfWar(!::Legends.Mod.ModSettings.getSetting("DebugMap").getValue()); //
 		::World.Crafting.resetAllBlueprints(); //
-		m.AppropriateTimeToRecalc = 1;
-		getPlayer().calculateModifiers(); //Leonion's fix
+		onCalculatePlayerPartyModifiers();
 		::Legends.IsStartingNewCampaign = false;
 	}
 
@@ -1558,5 +1561,6 @@
 
 		::World.Camp.clear();
 		::World.Camp.onDeserialize(_in);
+		onCalculatePlayerPartyModifiers();
 	}
 });

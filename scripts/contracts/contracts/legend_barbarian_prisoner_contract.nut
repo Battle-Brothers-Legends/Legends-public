@@ -392,7 +392,7 @@ this.legend_barbarian_prisoner_contract <- this.inherit("scripts/contracts/contr
 						local money = this.Contract.m.Payment.getOnCompletion();
 						this.World.Assets.addBusinessReputation(this.Const.World.Assets.ReputationOnContractSuccess);
 						this.World.Assets.addMoney(money);
-						local xp = money * 0.5;
+						local xp = money * 0.50;
 						local playerRoster = this.World.getPlayerRoster().getAll();
 
 						foreach( bro in playerRoster )
@@ -431,7 +431,7 @@ this.legend_barbarian_prisoner_contract <- this.inherit("scripts/contracts/contr
 			List = [],
 			Options = [
 				{
-					Text = "No. Execution is only solution to the crimes of this savage! (Increase Morals)",
+					Text = "No. Execution is only solution to the crimes of this savage! (Increase Moral Reputation)",
 					function getResult()
 					{
 						this.World.Assets.addMoralReputation(5);
@@ -440,7 +440,7 @@ this.legend_barbarian_prisoner_contract <- this.inherit("scripts/contracts/contr
 
 				},
 				{
-					Text = "Good idea. Let\'s speak with the prisoner. (Decrease Morals)",
+					Text = "Good idea. Let\'s speak with the prisoner. (Decrease Moral Reputation)",
 					function getResult()
 					{
 						this.World.Assets.addMoralReputation(-3);
@@ -459,7 +459,7 @@ this.legend_barbarian_prisoner_contract <- this.inherit("scripts/contracts/contr
 			List = [],
 			Options = [
 				{
-					Text = "Back to the cage! (Increase Morals)",
+					Text = "Back to the cage! (Increase Moral Reputation)",
 					function getResult()
 					{
 						this.World.Assets.addMoralReputation(2);
@@ -468,7 +468,7 @@ this.legend_barbarian_prisoner_contract <- this.inherit("scripts/contracts/contr
 
 				},
 				{
-					Text = "Very well, you have a deal. (Decrease Morals)",
+					Text = "Very well, you have a deal. (Decrease Moral Reputation)",
 					function getResult()
 					{
 						this.World.Assets.addBusinessReputation(this.Const.World.Assets.ReputationOnContractFail);
@@ -585,26 +585,12 @@ this.legend_barbarian_prisoner_contract <- this.inherit("scripts/contracts/contr
 
 				if (this.Flags.get("BerkFree"))
 				{
-					local r = this.Math.rand(1, 100);
-
-					if (r <= 30)
-					{
-						this.Contract.m.Dude.setStartValuesEx([
-							"legend_berserker_background"
-						]);
-						this.Contract.m.Dude.setTitle("the Beast");
-						this.Contract.m.Dude.getBackground().m.RawDescription = "%name% was \'saved\' by you from execution. You decided that this killing machine is a worthy acquisition, ignoring the fact it is also the most wanted criminal in the north.";
-						this.Contract.m.Dude.getBackground().buildDescription(true);
-					}
-					else
-					{
-						this.Contract.m.Dude.setStartValuesEx([
-							"barbarian_background"
-						]);
-						this.Contract.m.Dude.setTitle("the Barbarian");
-						this.Contract.m.Dude.getBackground().m.RawDescription = "%name% was \'saved\' by you from a death sentence. Recruiting this savage barbarian has put you in bad terms with the nobles of the north.";
-						this.Contract.m.Dude.getBackground().buildDescription(true);
-					}
+					this.Contract.m.Dude.setStartValuesEx([
+						"legend_berserker_background"
+					]);
+					this.Contract.m.Dude.setTitle("the Beast");
+					this.Contract.m.Dude.getBackground().m.RawDescription = "%name% was \'saved\' by you from execution. You decided that this killing machine is a worthy acquisition, ignoring the fact it is also the most wanted criminal in the north.";
+					this.Contract.m.Dude.getBackground().buildDescription(true);
 				}
 				else
 				{

@@ -159,16 +159,37 @@
 	local setCampaignSettings = o.setCampaignSettings;
 	o.setCampaignSettings = function ( _settings )
 	{
+		getStash().setResizable(true); // to make sure all starting item to be added without issue
+
 		if (!("IsExplorationMode" in _settings))
 			_settings.IsExplorationMode <- false;
 
 		setCampaignSettings(_settings);
-		this.m.Stash.resize( this.Const.LegendMod.MaxResources[_settings.EconomicDifficulty].Stash);
-		this.m.Money = this.Const.LegendMod.StartResources[_settings.BudgetDifficulty].Money;
-		this.m.Ammo = this.Const.LegendMod.StartResources[_settings.BudgetDifficulty].Ammo;
-		this.m.ArmorParts = this.Const.LegendMod.StartResources[_settings.BudgetDifficulty].ArmorParts;
-		this.m.Medicine = this.Const.LegendMod.StartResources[_settings.BudgetDifficulty].Medicine;
+		calculateStartingStashSize();
+
+		/* probably don't need this as legendary economic makes all starting resources to be 0 afterall
+		if (_settings.BudgetDifficulty == this.Const.Difficulty.Legendary &&
+			this.m.Money == 0 &&
+			this.m.Ammo == 0 &&
+			this.m.ArmorParts == 0 &&
+			this.m.Medicine == 0
+		) {
+			this.m.Money = this.Const.LegendMod.StartResources[_settings.BudgetDifficulty].Money;
+			this.m.Ammo = this.Const.LegendMod.StartResources[_settings.BudgetDifficulty].Ammo;
+			this.m.ArmorParts = this.Const.LegendMod.StartResources[_settings.BudgetDifficulty].ArmorParts;
+			this.m.Medicine = this.Const.LegendMod.StartResources[_settings.BudgetDifficulty].Medicine;
+		}
+		*/
 		this.m.LastRosterSize = this.World.getPlayerRoster().getSize();
+	}
+
+	o.calculateStartingStashSize <- function( _settings )
+	{
+		local size = ::Const.LegendMod.MaxResources[_settings.EconomicDifficulty].Stash + ::World.Assets.getOrigin().getStashModifier();
+		getStash().setResizable(false); // turn off the infinite stash size
+		getStash().sort();
+		getStash().resize(size);
+		::World.Flags.set("LegendStartingStash", size);
 	}
 
 	o.getHealingRequired = function ()
@@ -1179,6 +1200,16 @@
 			this.setFormationName(i, _in.readString())
 		}
 		this.m.LastDayResourcesUpdated = _in.readU16();
+
+		local current = getStash().getCapacity();
+		local s = 0;
+
+		foreach( bro in ::World.getPlayerRoster().getAll())
+		{
+			s += bro.getStashModifier();
+		}
+
+		::World.Flags.set("LegendStartingStash", ::Math.max(0, current - s)); // switch to the new way to calculate stash modifier
 	}
 
 });
