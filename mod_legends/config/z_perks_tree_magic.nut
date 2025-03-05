@@ -481,7 +481,7 @@ if (!("Perks" in ::Const))
 		::Const.Perks.IllusionistMagicTree,
 		::Const.Perks.ConjurationMagicTree,
 		::Const.Perks.TransmutationMagicTree,
-		::Const.Perks.EvocationMagicTree,
+		// ::Const.Perks.EvocationMagicTree,
 		// ::Const.Perks.AssassinMagicTree,
 		// ::Const.Perks.PremonitionMagicTree,
 		// ::Const.Perks.AlchemyMagicTree,
