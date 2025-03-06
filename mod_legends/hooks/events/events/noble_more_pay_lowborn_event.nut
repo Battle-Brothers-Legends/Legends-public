@@ -1,5 +1,5 @@
 ::mods_hookExactClass("events/events/noble_more_pay_lowborn_event", function(o) {
-	o.onUpdateScore <- function () {
+	o.onUpdateScore = function () {
 		if (this.World.Assets.getMoney() < 500)
 			return;
 
