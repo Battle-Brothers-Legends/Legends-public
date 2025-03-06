@@ -144,7 +144,7 @@
 			_settings.IsExplorationMode <- false;
 
 		setCampaignSettings(_settings);
-		calculateStartingStashSize();
+		calculateStartingStashSize(_settings);
 
 		/* probably don't need this as legendary economic makes all starting resources to be 0 afterall
 		if (_settings.BudgetDifficulty == this.Const.Difficulty.Legendary &&
