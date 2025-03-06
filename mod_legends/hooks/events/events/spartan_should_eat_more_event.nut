@@ -21,8 +21,8 @@
 		}
 	}
 
-	local onPrepareVariables = onPrepareVariables;
-	o.onPrepareVariables <- function ( _vars )
+	local onPrepareVariables = o.onPrepareVariables;
+	o.onPrepareVariables = function ( _vars )
 	{
 		onPrepareVariables(_vars);
 		::Const.LegendMod.extendVarsWithPronouns(_vars, this.m.Dude.getGender(), "spartan");
