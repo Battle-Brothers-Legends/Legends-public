@@ -92,7 +92,7 @@
 		}
 	}
 
-	o.onUpdateScore <- function ()
+	o.onUpdateScore = function ()
 	{
 		if (this.World.getTime().IsDaytime)
 			return;

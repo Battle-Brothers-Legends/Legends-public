@@ -68,7 +68,7 @@
 		}
 	}
 
-	o.onUpdateScore <- function () {
+	o.onUpdateScore = function () {
 		if (this.World.getPlayerRoster().getSize() >= this.World.Assets.getBrothersMax())
 			return;
 
