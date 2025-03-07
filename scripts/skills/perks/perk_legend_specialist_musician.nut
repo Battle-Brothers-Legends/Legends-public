@@ -1,19 +1,46 @@
 this.perk_legend_specialist_musician <- this.inherit("scripts/skills/skill", {
-	m = {},
+	m = {
+		SpecialistWeaponTypes = [
+			this.Const.Items.WeaponType.Musical
+		],
+		BonusMelee = 10,
+	},
 	function create()
 	{
+		this.legend_specialist_abstract.create();
 		::Const.Perks.setup(this.m, ::Legends.Perk.LegendSpecialistMusician);
-		this.m.Type = this.Const.SkillType.Perk | this.Const.SkillType.StatusEffect;
-		this.m.Order = this.Const.SkillOrder.Perk;
 		this.m.IconMini = "perk_spec_bard_mini.png";
-		this.m.IsActive = false;
-		this.m.IsStacking = false;
-		this.m.IsHidden = false;
 	}
 
-	function getDescription()
+	function specialistWeaponTooltip (_item, _isRanged)
 	{
-		return "Taverns have taught you that instruments can be used to make spin tunes, bash heads and block a thrown rotten tomato.";
+		local properties = this.getContainer().getActor().getCurrentProperties();
+		local tooltip = [];
+		
+		tooltip.push({
+			id = 7,
+			type = "text",
+			icon = "ui/icons/hitchance.png",
+			text = "[color=" + this.Const.UI.Color.PositiveValue + "]+" + this.calculateSpecialistBonus(this.m.BonusMelee, _item) + "[/color] chance to hit"
+		});
+
+		tooltip.push({
+			id = 6,
+			type = "text",
+			icon = "ui/icons/direct_damage.png",
+			text = "[color=" + this.Const.UI.Color.PositiveValue + "]" + this.calculateSpecialistBonus(25, _item) + "%[/color] of any damage ignores armor"
+		});
+
+		if (::Legends.S.isCharacterWeaponSpecialized(properties, _item))
+		{
+			tooltip.push({
+				id = 7,
+				type = "text",
+				icon = "ui/icons/damage_dealt.png",
+				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+" + this.calculateSpecialistBonus(this.m.BonusDamage, _item) + "%[/color] Damage"
+			});
+		}
+		return tooltip;
 	}
 
 	function getTooltip()
@@ -65,20 +92,12 @@ this.perk_legend_specialist_musician <- this.inherit("scripts/skills/skill", {
 		return tooltip;
 	}
 
-	function onUpdate( _properties )
+	function onAnySkillUsed( _skill, _targetEntity, _properties )
 	{
-		local actor = this.getContainer().getActor();
-		local item = actor.getMainhandItem();
-
-		if (item == null || !item.isWeaponType(this.Const.Items.WeaponType.Musical)) return;
-
-		_properties.MeleeSkill += 10;
-		_properties.MeleeDefense += 10;
-
-		if (actor.getCurrentProperties().IsSpecializedInStaves || actor.getCurrentProperties().IsSpecializedInMaces)
+		this.legend_specialist_abstract.onAnySkillUsed(_skill, _targetEntity, _properties)
+		if (onAnySkillUsedSpecialistChecks(_skill) && )
 		{
-			_properties.DamageRegularMin += 10;
-			_properties.DamageRegularMax += 10;
+			_properties.DamageDirectAdd += 0.01 * this.calculateSpecialistBonus(25, specialistWeapon);
 		}
 	}
 });

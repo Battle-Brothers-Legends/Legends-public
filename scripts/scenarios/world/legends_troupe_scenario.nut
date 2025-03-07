@@ -44,7 +44,7 @@ this.legends_troupe_scenario <- this.inherit("scripts/scenarios/world/starting_s
 		bros[1].getBackground().m.RawDescription = "{%name% worked providing entertainment at inns around the country, but the bar fights and road bandits make it no life for a solo artist. Joining with others was for safety as much as the show.}";
 		bros[1].setPlaceInFormation(12);
 		::Legends.Perks.grant(bros[1], ::Legends.Perk.LegendLeap);
-		::Legends.Perks.grant(bros[1], ::Legends.Perk.LegendDrumsOfLife);
+		::Legends.Perks.grant(bros[1], ::Legends.Perk.LegendSpecialistMusician);
 
 		bros[1].m.PerkPointsSpent += 1;
 		local items = bros[1].getItems();
@@ -60,7 +60,7 @@ this.legends_troupe_scenario <- this.inherit("scripts/scenarios/world/starting_s
 		bros[2].m.LevelUps = 3;
 		bros[2].m.Level = 4;
 		::Legends.Perks.grant(bros[2], ::Legends.Perk.LegendLeap);
-		::Legends.Perks.grant(bros[2], ::Legends.Perk.LegendDrumsOfWar);
+		::Legends.Perks.grant(bros[2], ::Legends.Perk.LegendSpecialistMusician);
 		bros[2].m.PerkPointsSpent += 1;
 		local items = bros[2].getItems();
 		items.unequip(items.getItemAtSlot(this.Const.ItemSlot.Head));

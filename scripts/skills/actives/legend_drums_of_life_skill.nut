@@ -3,7 +3,7 @@ this.legend_drums_of_life_skill <- this.inherit("scripts/skills/skill", {
 	function create()
 	{
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendDrumsOfLife);
-		this.m.Description = "Push allies on with your music, restoring the health of all allies within 8 tiles by 4 hp. Must be holding a musical instrument to use.";
+		this.m.Description = "Heal allies on with your music, restoring the health of all allies within 8 tiles. Must be holding a musical instrument to use.";
 		this.m.Icon = "skills/drums_of_life_square.png";
 		this.m.IconDisabled = "skills/drums_of_life_square_bw.png";
 		this.m.Overlay = "drums_of_life_square";
@@ -44,19 +44,62 @@ this.legend_drums_of_life_skill <- this.inherit("scripts/skills/skill", {
 				id = 3,
 				type = "text",
 				text = this.getCostString()
+			},
+			{
+				id = 7,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = "Restores [color=" + this.Const.UI.Color.PositiveValue + "]" + this.getBonus() + "[/color] hitpoints to all allied units within 8 tiles"
 			}
 		];
+		
+		if (this.Tactical.isActive() && this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions()))
+		{
+			ret.push({
+				id = 5,
+				type = "text",
+				icon = "ui/tooltips/warning.png",
+				text = "[color=" + this.Const.UI.Color.NegativeValue + "]Can not be used because this character is engaged in melee[/color]"
+			});
+		}
+		
 		return ret;
+	}
+
+	function onAfterUpdate( _properties )
+	{
+		this.m.FatigueCostMult = 1.0;
+		if (this.getSkills().hasPerk(::Legends.Perk.LegendMinnesanger))
+		{
+			this.m.FatigueCostMult = this.Const.Combat.WeaponSpecFatigueMult;
+			this.m.ActionPointCost -= 1;
+		}
+	}
+
+	function getBonus()
+	{
+		local effect = 1;
+		if (this.getSkills().hasPerk(::Legends.Perk.LegendSpecialistMusician))
+			effect += 3;
+		if (this.getSkills().hasPerk(::Legends.Perk.LegendMinnesanger))
+			effect += 3;
+		return effect;
 	}
 
 	function isUsable()
 	{
-		local mainhand = this.m.Container.getActor().getMainhandItem();
+		local mainhand = this.getContainer().getActor().getMainhandItem();
 		if (mainhand == null || !this.skill.isUsable())
 		{
 			return false;
 		}
-		return mainhand.isWeaponType(this.Const.Items.WeaponType.Musical);
+		if (!this.Tactical.isActive())
+		{
+			return false;
+		}
+
+		local tile = this.getContainer().getActor().getTile();
+		return mainhand.isWeaponType(this.Const.Items.WeaponType.Musical) && !tile.hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions());
 	}
 
 	function onUse( _user, _targetTile )
@@ -71,11 +114,6 @@ this.legend_drums_of_life_skill <- this.inherit("scripts/skills/skill", {
 				continue;
 			}
 
-			// if (a.getFatigue() == 0)
-			// {
-			// 	continue;
-			// }
-
 			if (myTile.getDistanceTo(a.getTile()) > 8)
 			{
 				continue;
@@ -83,11 +121,15 @@ this.legend_drums_of_life_skill <- this.inherit("scripts/skills/skill", {
 
 			if (a.getFaction() == _user.getFaction())
 			{
-				::Legends.Effects.grant(a, ::Legends.Effect.LegendDrumsOfLife);
+				::Legends.Effects.grant(a, ::Legends.Effect.LegendDrumsOfLife, function(_effect) {
+					_effect.setEffect(this.getBonus());
+				}.bindenv(this));
 			}
 		}
 
-		::Legends.Effects.grant(this, ::Legends.Effect.LegendDrumsOfLife);
+		::Legends.Effects.grant(a, ::Legends.Effect.LegendDrumsOfLife, function(_effect) {
+			_effect.setEffect(this.getBonus());
+		}.bindenv(this));
 		return true;
 	}
 
