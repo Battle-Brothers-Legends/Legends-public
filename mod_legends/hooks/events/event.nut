@@ -271,8 +271,8 @@
 			]
 		];
 
-		::Const.LegendMod.extendVarsWithPronouns(_vars, bro1.getGender(), "randombrother");
-		::Const.LegendMod.extendVarsWithPronouns(_vars, bro2.getGender(), "randombrother2");
+		::Const.LegendMod.extendVarsWithPronouns(vars, bro1.getGender(), "randombrother");
+		::Const.LegendMod.extendVarsWithPronouns(vars, bro2.getGender(), "randombrother2");
 		this.onPrepareVariables(vars);
 		return this.buildTextFromTemplate(_text, vars);
 	}
