@@ -35,6 +35,11 @@ this.legend_northern_sling <- this.inherit("scripts/items/weapons/weapon", {
 		this.weapon.onEquip();
 		::Legends.Actives.grant(this, ::Legends.Active.LegendSlingHeavyStone);
 		::Legends.Actives.grant(this, ::Legends.Active.LegendSlingstaffBash);
+		::Legends.Actives.grant(this, ::Legends.Active.LegendLaunchAcidFlask);
+		::Legends.Actives.grant(this, ::Legends.Active.LegendLaunchDazeBomb);
+		::Legends.Actives.grant(this, ::Legends.Active.LegendLaunchFireBomb);
+		::Legends.Actives.grant(this, ::Legends.Active.LegendLaunchHolyWater);
+		::Legends.Actives.grant(this, ::Legends.Active.LegendLaunchSmokeBomb);
 	}
 
 });

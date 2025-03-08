@@ -1,13 +1,12 @@
-this.legend_slinger_spins_effect <- this.inherit("scripts/skills/skill", {
+this.legend_prepare_bullet_effect <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "effects.legend_slinger_spins";
-		this.m.Name = "Prepare Bullet";
+		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendPrepareBullet);
 		this.m.Description = "This character is preparing a shot with a sling, increasing velocity and damage.";
 		this.m.Icon = "ui/effects/slinger_spins.png";
-		// this.m.IconMini = "slinger_spins_mini.png";
-		// this.m.Overlay = "slinger_spins";
+		this.m.IconMini = "slinger_spins_mini.png";
+		this.m.Overlay = "slinger_spins_mini";
 		this.m.Type = this.Const.SkillType.StatusEffect;
 		this.m.IsActive = false;
 		this.m.IsHidden = false;
@@ -59,9 +58,15 @@ this.legend_slinger_spins_effect <- this.inherit("scripts/skills/skill", {
 	function onUpdate( _properties )
 	{
 		local weapon = this.getContainer().getActor().getMainhandItem();
-		if (!(weapon.getID() == "weapon.legend_sling" && weapon.getID() == "weapon.named_sling"))
+		if (weapon.getID() != "weapon.legend_sling" || weapon.getID() != "weapon.named_sling")
 			this.removeSelf();
-			return;
+	}
+
+	function onAfterUpdate( _properties )
+	{
+		local skill = this.getContainer().getSkillByID("active.sling_stone");
+		if (skill != null)
+			skill.m.ActionPointCost -= 1;
 	}
 
 	function onTargetHit( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor )

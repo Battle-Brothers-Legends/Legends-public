@@ -4,8 +4,7 @@ this.legend_martial_march_effect <- this.inherit("scripts/skills/skill", {
 	},
 	function create()
 	{
-		this.m.ID = "effects.legend_martial_march";
-		this.m.Name = "Martial March";
+		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendMartialMarch);
 		this.m.Description = "I can do this for the company! This character has been inspired by hearing just the right words, and is ready to go to their limits and beyond.";
 		this.m.Icon = "ui/effects/drums_of_war.png";
 		this.m.IconMini = "drums_of_war_circle.png";

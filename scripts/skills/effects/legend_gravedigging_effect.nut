@@ -4,8 +4,7 @@ this.legend_gravedigging_effect <- this.inherit("scripts/skills/skill", {
 		},
 	function create()
 	{
-		this.m.ID = "effects.legend_gravedigging";
-		this.m.Name = "Gravedigging";
+		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendBaffled);
 		this.m.Icon = "ui/effects/shovel_01.png";
 		// this.m.IconMini = "shovel_01_mini.png";
 		this.m.Overlay = "shovel_01";
