@@ -4,7 +4,7 @@
 		create();
 		foreach (s in this.m.Screens) {
 			if (s.ID == "A") {
-				s.Text = "[img]gfx/ui/events/event_35.png[/img]While marching, a stranger crosses paths with the %companyname%. %They% wears light armor while looking aloof and distant at first - as if staring off at something you can\'t see. %SPEECH_ON%Evening, sellswords.%SPEECH_OFF%The warrior waves. There\'s an uncanny air to this character, as though you can barely see %them% while %they% is standing right in front of you. %They% nods and continues speaking.%SPEECH_ON%You seem the greenskin skinnin\' sort, and that\'s the sort of company I\'d be most agreeable to joining.%SPEECH_OFF%%randombrother% exchanges a glance with you and shrugs. %They1% whispers %their1% indifference.%SPEECH_ON%If %they% becomes a problem, we can handle %them%.%SPEECH_OFF%The warrior shakes %their% head.%SPEECH_ON%Oh, I\'ll be no problem. I just want to kill orcs and goblins. What more do you need to know? Shall we get on with killing some greenskins, then?%SPEECH_OFF%";
+				s.Text = "[img]gfx/ui/events/event_35.png[/img]While marching, a stranger crosses paths with the %companyname%. %They_slayer% wears light armor while looking aloof and distant at first - as if staring off at something you can\'t see. %SPEECH_ON%Evening, sellswords.%SPEECH_OFF%The warrior waves. There\'s an uncanny air to this character, as though you can barely see %them_slayer% while %they_slayer% is standing right in front of you. %They_slayer% nods and continues speaking.%SPEECH_ON%You seem the greenskin skinnin\' sort, and that\'s the sort of company I\'d be most agreeable to joining.%SPEECH_OFF%%randombrother% exchanges a glance with you and shrugs. %They_randombrother% whispers %Their_randombrother% indifference.%SPEECH_ON%If %they_slayer% becomes a problem, we can handle %them_slayer%.%SPEECH_OFF%The warrior shakes %their_slayer% head.%SPEECH_ON%Oh, I\'ll be no problem. I just want to kill orcs and goblins. What more do you need to know? Shall we get on with killing some greenskins, then?%SPEECH_OFF%";
 				s.start <- function (_event) {
 					local roster = this.World.getTemporaryRoster();
 					_event.m.Dude = roster.create("scripts/entity/tactical/player");
@@ -53,6 +53,6 @@
 	}
 
 	o.onPrepareVariables = function (_vars) {
-		this.Const.LegendMod.extendVarsWithPronouns(_vars, this.m.Dude.getGender());
+		this.Const.LegendMod.extendVarsWithPronouns(_vars, this.m.Dude.getGender(), "slayer");
 	}
 })
