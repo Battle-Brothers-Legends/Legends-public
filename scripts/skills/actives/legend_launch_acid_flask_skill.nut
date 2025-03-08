@@ -1,11 +1,11 @@
-this.legend_launch_daze_bomb_skill <- this.inherit("scripts/skills/actives/throw_daze_bomb_skill", {
+this.legend_launch_acid_flask_skill <- this.inherit("scripts/skills/actives/throw_acid_flask", {
 	m = {
 		Item = null
 	},
 	function create()
 	{
-		::Legends.Actives.onCreate(this, ::Legends.Active.LegendLaunchDazeBomb);
-		this.m.Description = "Launch a pot, with your slingstaff, filled with mysterious powders that react violently on impact to create a bright flash and loud bang, and will daze anyone close by - friend and foe alike";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendLaunchAcidFlask);
+		this.m.Description = "Launch a flask of acid, with your slingstaff, towards a target, where it will shatter and spray its contents. The acid will slowly corrode away any armor of those hit - friend and foe alike.";
 		this.m.SoundOnUse = [
 			"sounds/combat/dlc4/sling_use_01.wav",
 			"sounds/combat/dlc4/sling_use_02.wav",
@@ -30,13 +30,19 @@ this.legend_launch_daze_bomb_skill <- this.inherit("scripts/skills/actives/throw
 			id = 6,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "Give up to [color=" + this.Const.UI.Color.DamageValue + "]7[/color] targets the Dazed status effect for 2 turns"
+			text = "Reduces the target\'s armor by [color=" + this.Const.UI.Color.DamageValue + "]20%[/color] each turn for 3 turns."
+		});
+		ret.push({
+			id = 6,
+			type = "text",
+			icon = "ui/icons/special.png",
+			text = "Has a [color=" + this.Const.UI.Color.DamageValue + "]33%[/color] chance to hit bystanders at the same or lower height level as well."
 		});
 
 		local ammo = 0;
 		foreach (item in this.getContainer().getActor().getItems().getAllItemsAtSlot(this.Const.ItemSlot.Bag))
 		{
-			if (item.getID() == "weapon.daze_bomb")
+			if (item.getID() == "weapon.acid_flask")
 			{
 				if (item.getAmmo() != 0)
 				{
@@ -74,7 +80,7 @@ this.legend_launch_daze_bomb_skill <- this.inherit("scripts/skills/actives/throw
 
 	function isHidden()
 	{
-		if (!this.getContainer().hasSkill("perk.legend_slinger_spins"))
+		if (!::Legends.Perks.get(this, ::Legends.Perk.LegendSlingerSpins))
 			return true;
 		if (this.m.Item != null && !this.m.Item.isNull())
 			if (this.m.Item.getAmmo() != 0)
@@ -82,7 +88,7 @@ this.legend_launch_daze_bomb_skill <- this.inherit("scripts/skills/actives/throw
 
 		foreach (item in this.getContainer().getActor().getItems().getAllItemsAtSlot(this.Const.ItemSlot.Bag))
 		{
-			if (item.getID() == "weapon.daze_bomb")
+			if (item.getID() == "weapon.acid_flask")
 			{
 				if (item.getAmmo() != 0)
 				{

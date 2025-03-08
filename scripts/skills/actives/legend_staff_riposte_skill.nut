@@ -48,7 +48,7 @@ this.legend_staff_riposte_skill <- this.inherit("scripts/skills/skill", {
 			}
 		];
 
-		if (!this.getContainer().getActor().getCurrentProperties().IsSpecializedInSpears)
+		if (!this.getContainer().getActor().getCurrentProperties().IsSpecializedInStaves)
 		{
 			ret.push({
 				id = 4,
@@ -68,7 +68,7 @@ this.legend_staff_riposte_skill <- this.inherit("scripts/skills/skill", {
 
 	function onAfterUpdate( _properties )
 	{
-		this.m.FatigueCostMult = _properties.IsSpecializedInSpears ? this.Const.Combat.WeaponSpecFatigueMult : 1.0;
+		this.m.FatigueCostMult = _properties.IsSpecializedInStaves ? this.Const.Combat.WeaponSpecFatigueMult : 1.0;
 	}
 
 	function onVerifyTarget( _originTile, _targetTile )

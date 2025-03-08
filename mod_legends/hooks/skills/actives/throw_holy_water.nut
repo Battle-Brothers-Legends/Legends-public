@@ -1,4 +1,4 @@
-::mods_hookExactClass("skills/actives/throw_fire_bomb_skill", function(o)
+::mods_hookExactClass("skills/actives/throw_holy_water", function(o) 
 {
 	o.m.Item <- null;
 	o.setItem <- function( _i )
@@ -6,7 +6,6 @@
 		this.m.Item = this.WeakTableRef(_i);
 	}
 
-	local getTooltip = o.getTooltip;
 	o.getTooltip = function()
 	{
 		local ret = getTooltip();
@@ -57,21 +56,22 @@
 
 	o.onUse = function( _user, _targetTile )
 	{
+		local targetEntity = _targetTile.getEntity();
+
 		if (this.m.IsShowingProjectile && this.m.ProjectileType != 0)
 		{
-			local flip = !this.m.IsProjectileRotated && _targetTile.Pos.X > _user.getPos().X;
+			local flip = !this.m.IsProjectileRotated && targetEntity.getPos().X > _user.getPos().X;
 
-			if (_user.getTile().getDistanceTo(_targetTile) >= this.Const.Combat.SpawnProjectileMinDist)
+			if (_user.getTile().getDistanceTo(targetEntity.getTile()) >= this.Const.Combat.SpawnProjectileMinDist)
 			{
-				this.Tactical.spawnProjectileEffect(this.Const.ProjectileSprite[this.m.ProjectileType], _user.getTile(), _targetTile, 1.0, this.m.ProjectileTimeScale, this.m.IsProjectileRotated, flip);
+				this.Tactical.spawnProjectileEffect(this.Const.ProjectileSprite[this.m.ProjectileType], _user.getTile(), targetEntity.getTile(), 1.0, this.m.ProjectileTimeScale, this.m.IsProjectileRotated, flip);
 			}
 		}
 
 		this.consumeAmmo();
-		
-		this.Time.scheduleEvent(this.TimeUnit.Real, 250, this.onApply.bindenv(this), {
+
+		this.Time.scheduleEvent(this.TimeUnit.Real, 200, this.onApplyEffect.bindenv(this), {
 			Skill = this,
-			User = _user,
 			TargetTile = _targetTile
 		});
 	}

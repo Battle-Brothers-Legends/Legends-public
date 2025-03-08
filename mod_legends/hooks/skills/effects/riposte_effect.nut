@@ -5,15 +5,19 @@
 		return "This character is prepared to immediately counter-attack on any failed attempt to attack them in melee.";
 	}
 
+	local onAnySkillUsed = o.onAnySkillUsed;
 	o.onAnySkillUsed = function ( _skill, _targetEntity, _properties )
 	{
-		local properties = this.getContainer().getActor().getCurrentProperties();
-		if (this.Tactical.TurnSequenceBar.getActiveEntity() == null || this.Tactical.TurnSequenceBar.getActiveEntity().getID() != this.getContainer().getActor().getID())
+		if (this.getContainer().getActor().getMainhandItem().isWeaponType(this.Const.Items.WeaponType.Staff))
 		{
-			if (!properties.IsSpecializedInSwords)
+			if (!this.getContainer().getActor().getCurrentProperties().IsSpecializedInStaves)
 			{
 				_properties.MeleeSkill -= 10;
 			}
+		}
+		else
+		{
+			onAnySkillUsed( _skill, _targetEntity, _properties );
 		}
 	}
 });

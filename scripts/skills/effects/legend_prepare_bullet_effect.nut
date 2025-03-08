@@ -38,8 +38,7 @@ this.legend_prepare_bullet_effect <- this.inherit("scripts/skills/skill", {
 				text = "Switching your weapon will remove this effect"
 			}
 		];
-		local sourcePerk = this.getContainer().getSkillByID("perk.legend_specialist_sling_skill");
-		if (this.getContainer().getSkillByID("perk.legend_ballistics"))
+		if (::Legends.Perks.get(this, ::Legends.Perk.LegendBallistics))
 			ret.push(
 			{
 				id = 12,
@@ -52,7 +51,7 @@ this.legend_prepare_bullet_effect <- this.inherit("scripts/skills/skill", {
 
 	function getBonus()
 	{
-		return this.getContainer().getActor().getCurrentProperties().RangedSkill * 0.2;
+		return this.getContainer().getActor().getCurrentProperties().Initiative * 0.1;
 	}
 
 	function onUpdate( _properties )
@@ -93,8 +92,8 @@ this.legend_prepare_bullet_effect <- this.inherit("scripts/skills/skill", {
 	{
 		if (_skill.isGarbage() || !_skill.getID() == "actives.sling_stone")
 			return;
-		_properties.DamageRegularMin *= 1.0 + this.getBonus();
-		_properties.DamageRegularMax *= 1.0 + this.getBonus();
-		_properties.DirectDamageAdd += this.getBonus();
+		_properties.DamageTotalMult *= 1.0 + this.getBonus();
+		if (::Legends.Perks.get(this, ::Legends.Perk.LegendBallistics))
+			_properties.DirectDamageAdd += this.getBonus();
 	}
 });

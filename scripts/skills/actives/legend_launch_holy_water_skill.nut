@@ -1,74 +1,55 @@
-this.legend_launch_acid_flask <- this.inherit("scripts/skills/skill", {
+this.legend_launch_holy_water_skill <- this.inherit("scripts/skills/actives/throw_holy_water", {
 	m = {
 		Item = null
 		},
 	function create()
 	{
-		this.m.ID = "actives.legend_launch_acid_flask";
-		this.m.Name = "Launch Acid Flask";
-		this.m.Description = "Launch a flask of acid, with your slingstaff, towards a target, where it will shatter and spray its contents. The acid will slowly corrode away any armor of those hit - friend and foe alike.";
-		this.m.Icon = "skills/active_106.png";
-		this.m.IconDisabled = "skills/active_106_sw.png";
-		this.m.Overlay = "active_106";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendHolyWater);
+		this.m.Description = "Launch a flask of blessed water, with your slingstaff, towards a target, where it will shatter and spray its contents. The blessed water will burn the undead, but will not affect other targets.";
 		this.m.SoundOnUse = [
 			"sounds/combat/dlc4/sling_use_01.wav",
 			"sounds/combat/dlc4/sling_use_02.wav",
 			"sounds/combat/dlc4/sling_use_03.wav",
 			"sounds/combat/dlc4/sling_use_04.wav"
 		];
-		this.m.SoundOnHit = [
-			"sounds/combat/acid_flask_impact_01.wav",
-			"sounds/combat/acid_flask_impact_02.wav",
-			"sounds/combat/acid_flask_impact_03.wav",
-			"sounds/combat/acid_flask_impact_04.wav"
-		];
-		this.m.SoundOnHitDelay = 0;
-		this.m.Type = this.Const.SkillType.Active;
-		this.m.Order = this.Const.SkillOrder.UtilityTargeted;
 		this.m.Delay = 750;
-		this.m.IsSerialized = false;
-		this.m.IsActive = true;
-		this.m.IsTargeted = true;
-		this.m.IsTargetingActor = false;
-		this.m.IsStacking = false;
-		this.m.IsAttack = false;
-		this.m.IsRanged = false;
-		this.m.IsWeaponSkill = false;
-		this.m.IsIgnoredAsAOO = true;
-		this.m.IsShowingProjectile = true;
-		this.m.IsUsingHitchance = false;
-		this.m.IsDoingForwardMove = false;
+		this.m.IsRanged = true;
+		this.m.IsWeaponSkill = true;
 		this.m.ActionPointCost = 7;
 		this.m.FatigueCost = 30;
 		this.m.MinRange = 4;
 		this.m.MaxRange = 8;
 		this.m.MaxLevelDifference = 7;
-		this.m.ProjectileType = this.Const.ProjectileType.Flask;
-		this.m.ProjectileTimeScale = 1.5;
-		this.m.IsProjectileRotated = false;
 		this.m.IsHidden = true;
 	}
 
 	function getTooltip()
 	{
 		local ret = this.getDefaultUtilityTooltip();
-		ret.push({
+		ret.extend([
+		{
 			id = 6,
 			type = "text",
-			icon = "ui/icons/special.png",
-			text = "Reduces the target\'s armor by [color=" + this.Const.UI.Color.DamageValue + "]20%[/color] each turn for 3 turns."
-		});
-		ret.push({
+			icon = "ui/icons/regular_damage.png",
+			text = "Inflicts [color=" + this.Const.UI.Color.DamageValue + "]20[/color] damage to hitpoints for [color=" + this.Const.UI.Color.DamageValue + "]3[/color] turns, all of which ignores armor"
+		},
+		{
 			id = 6,
 			type = "text",
 			icon = "ui/icons/special.png",
 			text = "Has a [color=" + this.Const.UI.Color.DamageValue + "]33%[/color] chance to hit bystanders at the same or lower height level as well."
-		});
+		},
+		{
+			id = 6,
+			type = "text",
+			icon = "ui/icons/special.png",
+			text = "Only affects undead targets"
+		}]);
 
 		local ammo = 0;
 		foreach (item in this.getContainer().getActor().getItems().getAllItemsAtSlot(this.Const.ItemSlot.Bag))
 		{
-			if (item.getID() == "weapon.acid_flask")
+			if (item.getID() == "weapon.holy_water")
 			{
 				if (item.getAmmo() != 0)
 				{
@@ -114,7 +95,7 @@ this.legend_launch_acid_flask <- this.inherit("scripts/skills/skill", {
 
 		foreach (item in this.getContainer().getActor().getItems().getAllItemsAtSlot(this.Const.ItemSlot.Bag))
 		{
-			if (item.getID() == "weapon.acid_flask")
+			if (item.getID() == "weapon.holy_water")
 			{
 				if (item.getAmmo() != 0)
 				{
@@ -155,30 +136,23 @@ this.legend_launch_acid_flask <- this.inherit("scripts/skills/skill", {
 		}
 	}
 
-	function applyAcid( _target )
+	function applyEffect( _target )
 	{
-		if (_target.getFlags().has("lindwurm"))
+		if (!_target.getFlags().has("undead"))
 		{
 			return;
 		}
 
-		if ((_target.getFlags().has("body_immune_to_acid") || _target.getArmor(this.Const.BodyPart.Body) <= 0) && (_target.getFlags().has("head_immune_to_acid") || _target.getArmor(this.Const.BodyPart.Head) <= 0))
-		{
-			return;
-		}
-
-		local poison = _target.getSkills().getSkillByID("effects.acid");
+		local poison = _target.getSkills().getSkillByID("effects.holy_water");
 
 		if (poison == null)
 		{
-			_target.getSkills().add(this.new("scripts/skills/effects/acid_effect"));
+			_target.getSkills().add(this.new("scripts/skills/effects/holy_water_effect"));
 		}
 		else
 		{
 			poison.resetTime();
 		}
-
-		this.spawnIcon("status_effect_78", _target.getTile());
 	}
 
 	function onVerifyTarget( _originTile, _targetTile )
@@ -196,34 +170,29 @@ this.legend_launch_acid_flask <- this.inherit("scripts/skills/skill", {
 		return true;
 	}
 
-	function onAfterUpdate( _properties )
-	{
-		this.m.MaxRange = this.m.MaxRange + (_properties.IsSpecializedInSlings ? 1 : 0);
-		this.m.FatigueCostMult = _properties.IsSpecializedInSlings ? this.Const.Combat.WeaponSpecFatigueMult : 1.0;
-	}
-
 	function onUse( _user, _targetTile )
 	{
+		local targetEntity = _targetTile.getEntity();
+
 		if (this.m.IsShowingProjectile && this.m.ProjectileType != 0)
 		{
-			local flip = !this.m.IsProjectileRotated && _targetTile.Pos.X > _user.getPos().X;
+			local flip = !this.m.IsProjectileRotated && targetEntity.getPos().X > _user.getPos().X;
 
-			if (_user.getTile().getDistanceTo(_targetTile) >= this.Const.Combat.SpawnProjectileMinDist)
+			if (_user.getTile().getDistanceTo(targetEntity.getTile()) >= this.Const.Combat.SpawnProjectileMinDist)
 			{
-				this.Tactical.spawnProjectileEffect(this.Const.ProjectileSprite[this.m.ProjectileType], _user.getTile(), _targetTile, 1.0, this.m.ProjectileTimeScale, this.m.IsProjectileRotated, flip);
+				this.Tactical.spawnProjectileEffect(this.Const.ProjectileSprite[this.m.ProjectileType], _user.getTile(), targetEntity.getTile(), 1.0, this.m.ProjectileTimeScale, this.m.IsProjectileRotated, flip);
 			}
 		}
 
 		this.consumeAmmo();
-		
-		this.Time.scheduleEvent(this.TimeUnit.Real, 250, this.onApplyAcid.bindenv(this), {
+
+		this.Time.scheduleEvent(this.TimeUnit.Real, 200, this.onApplyEffect.bindenv(this), {
 			Skill = this,
-			User = _user,
 			TargetTile = _targetTile
 		});
 	}
 
-	function onApplyAcid( _data )
+	function onApplyEffect( _data )
 	{
 		local targetEntity = _data.TargetTile.getEntity();
 
@@ -232,7 +201,7 @@ this.legend_launch_acid_flask <- this.inherit("scripts/skills/skill", {
 			this.Sound.play(_data.Skill.m.SoundOnHit[this.Math.rand(0, _data.Skill.m.SoundOnHit.len() - 1)], this.Const.Sound.Volume.Skill, targetEntity.getPos());
 		}
 
-		_data.Skill.applyAcid(targetEntity);
+		_data.Skill.applyEffect(targetEntity);
 
 		for( local i = 0; i < 6; i = ++i )
 		{
@@ -251,19 +220,20 @@ this.legend_launch_acid_flask <- this.inherit("scripts/skills/skill", {
 				}
 				else if (!nextTile.IsOccupiedByActor)
 				{
-					for( local i = 0; i < this.Const.Tactical.AcidParticles.len(); i = ++i )
-					{
-						this.Tactical.spawnParticleEffect(true, this.Const.Tactical.AcidParticles[i].Brushes, nextTile, this.Const.Tactical.AcidParticles[i].Delay, this.Const.Tactical.AcidParticles[i].Quantity, this.Const.Tactical.AcidParticles[i].LifeTimeQuantity, this.Const.Tactical.AcidParticles[i].SpawnRate, this.Const.Tactical.AcidParticles[i].Stages);
-					}
 				}
 				else
 				{
 					local entity = nextTile.getEntity();
-					_data.Skill.applyAcid(entity);
+					_data.Skill.applyEffect(entity);
 				}
 			}
 		}
 	}
 
+	function onAfterUpdate( _properties )
+	{
+		this.m.MaxRange = this.m.MaxRange + (_properties.IsSpecializedInSlings ? 1 : 0);
+		this.m.FatigueCostMult = _properties.IsSpecializedInSlings ? this.Const.Combat.WeaponSpecFatigueMult : 1.0;
+	}
 });
 

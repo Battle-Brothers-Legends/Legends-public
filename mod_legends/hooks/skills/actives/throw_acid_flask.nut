@@ -1,4 +1,4 @@
-::mods_hookExactClass("skills/actives/throw_fire_bomb_skill", function(o)
+::mods_hookExactClass("skills/actives/throw_acid_flask", function(o) 
 {
 	o.m.Item <- null;
 	o.setItem <- function( _i )
@@ -6,7 +6,6 @@
 		this.m.Item = this.WeakTableRef(_i);
 	}
 
-	local getTooltip = o.getTooltip;
 	o.getTooltip = function()
 	{
 		local ret = getTooltip();
@@ -69,7 +68,7 @@
 
 		this.consumeAmmo();
 		
-		this.Time.scheduleEvent(this.TimeUnit.Real, 250, this.onApply.bindenv(this), {
+		this.Time.scheduleEvent(this.TimeUnit.Real, 250, this.onApplyAcid.bindenv(this), {
 			Skill = this,
 			User = _user,
 			TargetTile = _targetTile

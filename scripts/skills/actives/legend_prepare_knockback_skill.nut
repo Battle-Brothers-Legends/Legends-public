@@ -80,13 +80,22 @@ this.legend_prepare_knockback_skill <- this.inherit("scripts/skills/skill", {
 				text = "The next attack will push the enemy back and baffle them if it connects, otherwise the effect is wasted."
 			});
 		}
+		else if (item.isItemType(this.Const.Items.ItemType.MeleeWeapon) && item.getID() == "weapon.legend_sling")
+		{
+			ret.push({
+				id = 7,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = "The next attack will push the enemy back and baffle them if it connects, otherwise the effect is wasted."
+			});
+		}
 		else
 		{
 			ret.push({
 				id = 7,
 				type = "text",
 				icon = "ui/icons/warning.png",
-				text = "Requires a melee weapon or an unarmed attack"
+				text = "Requires a melee weapon, an unarmed attack or a one handed sling"
 			});
 		}
 
@@ -103,7 +112,14 @@ this.legend_prepare_knockback_skill <- this.inherit("scripts/skills/skill", {
 
 	function onUse( _user, _targetTile )
 	{
-		::Legends.Effects.grant(this, ::Legends.Effect.LegendKnockbackPrepared);
+		if (this.m.Item != null && !this.m.Item.isNull() && this.m.Item.getID() = "weapon.legend_sling")
+		{	
+			::Legends.Effects.grant(this, ::Legends.Effect.LegendPrepareBullet);
+		}
+		else
+		{
+			::Legends.Effects.grant(this, ::Legends.Effect.LegendKnockbackPrepared);
+		}
 
 		if (this.m.Item != null && !this.m.Item.isNull())
 			this.m.Item.removeSelf();

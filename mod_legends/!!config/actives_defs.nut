@@ -3062,4 +3062,44 @@ activesDefs.push({
 	Name = "Stab with Wooden Stake",
 });
 
+::Legends.Active.LegendLaunchAcidFlask <- null;
+activesDefs.push({
+	ID = "actives.legend_launch_acid_flask",
+	Script = "scripts/skills/actives/legend_launch_acid_flask_skill",
+	Const = "LegendLaunchAcidFlask",
+	Name = "Launch Acid Flask",
+});
+
+::Legends.Active.LegendLaunchDazeBomb <- null;
+activesDefs.push({
+	ID = "actives.legend_launch_daze_bomb",
+	Script = "scripts/skills/actives/legend_launch_daze_bomb_skill",
+	Const = "LegendLaunchDazeBomb",
+	Name = "Launch Daze Bomb",
+});
+
+::Legends.Active.LegendLaunchFireBomb <- null;
+activesDefs.push({
+	ID = "actives.legend_launch_fire_bomb",
+	Script = "scripts/skills/actives/legend_launch_fire_bomb_skill",
+	Const = "LegendLaunchFireBomb",
+	Name = "Launch Fire Bomb",
+});
+
+::Legends.Active.LegendLaunchHolyWater <- null;
+activesDefs.push({
+	ID = "actives.legend_launch_holy_water",
+	Script = "scripts/skills/actives/legend_launch_holy_water_skill",
+	Const = "LegendLaunchHolyWater",
+	Name = "Launch Blessed Water",
+});
+
+::Legends.Active.LegendLaunchSmokeBomb <- null;
+activesDefs.push({
+	ID = "actives.legend_launch_smoke_bomb",
+	Script = "scripts/skills/actives/legend_launch_smoke_bomb_skill",
+	Const = "LegendLaunchSmokeBomb",
+	Name = "Launch Smoke Bomb",
+});
+
 ::Legends.Actives.addActiveDefObjects(activesDefs);

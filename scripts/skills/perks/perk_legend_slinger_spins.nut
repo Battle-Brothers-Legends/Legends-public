@@ -18,7 +18,7 @@ this.perk_legend_slinger_spins <- this.inherit("scripts/skills/skill", {
 		local actor = this.getContainer().getActor();
 		local item = actor.getMainhandItem();
 		if (item != null && (item.getID() == "weapon.named_sling" || item.getID() == "weapon.legend_sling"))
-			actor.getSkills().add(this.new("scripts/skills/effects/legend_slinger_spins_effect"));
+			::Legends.Effects.get(_user, ::Legends.Effect.LegendPrepareBullet);
 	}
 
 	// only makes sense on wait turn

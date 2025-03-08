@@ -1,4 +1,4 @@
-::mods_hookExactClass("skills/actives/throw_fire_bomb_skill", function(o)
+::mods_hookExactClass("skills/actives/throw_smoke_bomb_skill", function(o) 
 {
 	o.m.Item <- null;
 	o.setItem <- function( _i )
@@ -6,7 +6,6 @@
 		this.m.Item = this.WeakTableRef(_i);
 	}
 
-	local getTooltip = o.getTooltip;
 	o.getTooltip = function()
 	{
 		local ret = getTooltip();
@@ -66,7 +65,7 @@
 				this.Tactical.spawnProjectileEffect(this.Const.ProjectileSprite[this.m.ProjectileType], _user.getTile(), _targetTile, 1.0, this.m.ProjectileTimeScale, this.m.IsProjectileRotated, flip);
 			}
 		}
-
+		
 		this.consumeAmmo();
 		
 		this.Time.scheduleEvent(this.TimeUnit.Real, 250, this.onApply.bindenv(this), {
