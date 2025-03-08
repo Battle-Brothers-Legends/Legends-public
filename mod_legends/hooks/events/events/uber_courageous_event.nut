@@ -13,6 +13,6 @@
 	o.onPrepareVariables = function ( _vars )
 	{
 		onPrepareVariables(_vars);
-		::Const.LegendMod.extendVarsWithPronouns(_vars, this.m.Dude.getGender(), "juggernaut");
+		::Const.LegendMod.extendVarsWithPronouns(_vars, this.m.Juggernaut.getGender(), "juggernaut");
 	}
 });
