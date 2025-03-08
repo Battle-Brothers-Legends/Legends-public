@@ -6,7 +6,8 @@ this.legend_swordmaster_fav_enemy_event <- this.inherit("scripts/events/event", 
 		Champion = null,
 		Flags = null,
 		Perk = "perk.legend_favoured_enemy_swordmaster",
-		ValidTypes = this.Const.LegendMod.FavoriteSwordmaster
+		ValidTypes = this.Const.LegendMod.FavoriteSwordmaster,
+		WasInReserves = []
 	},
 	function create()
 	{
@@ -158,7 +159,11 @@ this.legend_swordmaster_fav_enemy_event <- this.inherit("scripts/events/event", 
 						});
 
 						if (_event.m.Champion.isInReserves())
+						{
+							this.m.WasInReserves.push(_event.m.Champion);
 							_event.m.Champion.setInReserves(false);
+
+						}
 
 						properties.Players.push(_event.m.Champion);
 						properties.IsUsingSetPlayers = true;
@@ -264,7 +269,10 @@ this.legend_swordmaster_fav_enemy_event <- this.inherit("scripts/events/event", 
 						}
 
 						if (_event.m.Champion.isInReserves())
+						{
+							this.m.WasInReserves.push(_event.m.Champion);
 							_event.m.Champion.setInReserves(false);
+						}
 
 						properties.Players.push(_event.m.Champion);
 						properties.IsUsingSetPlayers = true;
@@ -561,6 +569,10 @@ this.legend_swordmaster_fav_enemy_event <- this.inherit("scripts/events/event", 
 		this.m.MinStrength = null;
 		this.m.Perk = null;
 		this.m.ValidTypes = null;
+		foreach (bro in this.m.WasInReserves)
+		{
+			bro.setInReserves(true);
+		}
 	}
 
 });
