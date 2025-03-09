@@ -1,8 +1,10 @@
 ::mods_hookExactClass("skills/actives/throw_spear_skill", function(o)
 {
+	o.m.AdditionalAccuracy <- 20;
+	o.m.AdditionalHitChance <- -10;
 	o.getTooltip = function ()
 	{
-		local tooltip = this.getDefaultTooltip();
+		local tooltip = this.getRangedTooltip(this.getDefaultTooltip());
 
 		local ammo = this.getAmmo();
 
@@ -12,7 +14,7 @@
 				id = 8,
 				type = "text",
 				icon = "ui/icons/ammo.png",
-				text = "Has [color=" + this.Const.UI.Color.PositiveValue + "]" + ammo + "[/color] throwing spear left"
+				text = "Has [color=" + this.Const.UI.Color.PositiveValue + "]" + ammo + "[/color] throwing spears left"
 			});
 		}
 		else
@@ -32,20 +34,6 @@
 			icon = "ui/icons/shield_damage.png",
 			text = "Inflicts [color=" + this.Const.UI.Color.DamageValue + "]" + damage + "[/color] damage to shields"
 		});
-		tooltip.extend([
-			{
-				id = 6,
-				type = "text",
-				icon = "ui/icons/vision.png",
-				text = "Has a range of [color=" + this.Const.UI.Color.PositiveValue + "]" + this.getMaxRange() + "[/color] tiles on even ground, more if throwing downhill"
-			},
-			{
-				id = 7,
-				type = "text",
-				icon = "ui/icons/hitchance.png",
-				text = "Has [color=" + this.Const.UI.Color.PositiveValue + "]+20%[/color] chance to hit, and [color=" + this.Const.UI.Color.NegativeValue + "]-10%[/color] per tile of distance"
-			}
-		]);
 
 		if (this.Tactical.isActive() && this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions()))
 		{
@@ -95,12 +83,13 @@
 	local onAfterUpdate = o.onAfterUpdate;
 	o.onAfterUpdate = function ( _properties )
 	{
-		onAfterUpdate(_properties);
 		if (this.getContainer().hasPerk(::Const.Perks.PerkDefs.LegendCloseCombatArcher))
 		{
 			this.m.MinRange = 1;
 			this.m.MaxRange = 3;
 		}
+		this.m.FatigueCostMult = _properties.IsSpecializedInThrowing ? this.Const.Combat.WeaponSpecFatigueMult : 1.0;
+		this.m.AdditionalAccuracy = 20 + this.m.Item.getAdditionalAccuracy();
 	}
 
 	o.onUse = function ( _user, _targetTile )
@@ -132,13 +121,12 @@
 	{
 		if (_skill == this)
 		{
-			_properties.RangedSkill += 20;
-			_properties.HitChanceAdditionalWithEachTile -= 10;
-
-			if (_properties.IsSpecializedInSpearThrust )
+			_properties.RangedSkill += this.m.AdditionalAccuracy;
+			if (_properties.IsSpecializedInSpearThrust)
 			{
-			_properties.HitChanceAdditionalWithEachTile += 10;
+				this.m.AdditionalHitChance += 10;
 			}
+			_properties.HitChanceAdditionalWithEachTile += this.m.AdditionalHitChance;
 
 			if (_targetEntity != null)
 			{
