@@ -573,6 +573,8 @@ this.legend_swordmaster_fav_enemy_event <- this.inherit("scripts/events/event", 
 		{
 			bro.setInReserves(true);
 		}
+
+		this.m.WasInReserves.clear();
 	}
 
 });

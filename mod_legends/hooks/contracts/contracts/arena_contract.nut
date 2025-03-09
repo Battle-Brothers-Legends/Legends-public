@@ -339,6 +339,8 @@
 		{
 			bro.setInReserves(true);
 		}
+
+		this.m.WasInReserves.clear();
 		onClear();
 	}
 
