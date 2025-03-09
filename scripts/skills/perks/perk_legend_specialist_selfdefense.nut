@@ -28,7 +28,7 @@ this.perk_legend_specialist_selfdefense <- this.inherit("scripts/skills/legend_s
 	{
 		local properties = this.getContainer().getActor().getCurrentProperties();
 		local tooltip = [];
-		
+
 		tooltip.push({
 			id = 7,
 			type = "text",
@@ -56,7 +56,7 @@ this.perk_legend_specialist_selfdefense <- this.inherit("scripts/skills/legend_s
 
 	function onAnySkillUsed( _skill, _targetEntity, _properties )
 	{
-		this.legend_specialist_abstract.onAnySkillUsed(_skill, _targetEntity, _properties)
+		this.legend_specialist_abstract.onAnySkillUsed(_skill, _targetEntity, _properties);
 		if (onAnySkillUsedSpecialistChecks(_skill))
 		{
 			_properties.MeleeDefense += this.calculateSpecialistBonus(16, _skill.getItem());

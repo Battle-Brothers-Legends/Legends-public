@@ -16,7 +16,7 @@ this.perk_legend_specialist_musician <- this.inherit("scripts/skills/legend_spec
 	{
 		local properties = this.getContainer().getActor().getCurrentProperties();
 		local tooltip = [];
-		
+
 		tooltip.push({
 			id = 7,
 			type = "text",
@@ -77,7 +77,7 @@ this.perk_legend_specialist_musician <- this.inherit("scripts/skills/legend_spec
 			id = 6,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "Increases the effect of Drums of War and Drums of Life by [color=" + this.Const.UI.Color.PositiveValue + "]2[/color]" 
+			text = "Increases the effect of Drums of War and Drums of Life by [color=" + this.Const.UI.Color.PositiveValue + "]2[/color]"
 		}]);
 		if (actor.getCurrentProperties().IsSpecializedInStaves || actor.getCurrentProperties().IsSpecializedInMaces)
 		{
@@ -94,7 +94,7 @@ this.perk_legend_specialist_musician <- this.inherit("scripts/skills/legend_spec
 
 	function onAnySkillUsed( _skill, _targetEntity, _properties )
 	{
-		this.legend_specialist_abstract.onAnySkillUsed(_skill, _targetEntity, _properties)
+		this.legend_specialist_abstract.onAnySkillUsed(_skill, _targetEntity, _properties);
 		if (onAnySkillUsedSpecialistChecks(_skill))
 		{
 			_properties.MeleeDefense += this.calculateSpecialistBonus(10, _skill.getItem());

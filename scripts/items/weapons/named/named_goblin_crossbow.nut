@@ -41,7 +41,7 @@ this.named_goblin_crossbow <- this.inherit("scripts/items/weapons/named/named_we
 		this.m.DirectDamageMult = 0.5;
 		this.randomizeValues();
 	}
-  
+
   function updateVariant()
 	{
 		this.m.IconLarge = "weapons/ranged/goblin_crossbow_named_0" + this.m.Variant + ".png";

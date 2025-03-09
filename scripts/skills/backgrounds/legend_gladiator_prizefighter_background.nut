@@ -11,7 +11,7 @@ this.legend_gladiator_prizefighter_background <- this.inherit("scripts/skills/ba
 			Weapon = [
 				this.Const.Perks.SwordTree,
 				this.Const.Perks.MaceTree,
-				this.Const.Perks.DaggerTree
+				this.Const.Perks.DaggerTree,
 				this.Const.Perks.ThrowingTree
 			],
 			Defense = [

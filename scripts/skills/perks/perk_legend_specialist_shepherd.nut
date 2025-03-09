@@ -21,7 +21,7 @@ this.perk_legend_specialist_shepherd <- this.inherit("scripts/skills/legend_spec
 	{
 		local properties = this.getContainer().getActor().getCurrentProperties();
 		local tooltip = [];
-		
+
 		tooltip.extend([{
 			id = 7,
 			type = "text",
@@ -48,7 +48,7 @@ this.perk_legend_specialist_shepherd <- this.inherit("scripts/skills/legend_spec
 
 	function onAnySkillUsed( _skill, _targetEntity, _properties )
 	{
-		this.legend_specialist_abstract.onAnySkillUsed(_skill, _targetEntity, _properties)
+		this.legend_specialist_abstract.onAnySkillUsed(_skill, _targetEntity, _properties);
 		if (onAnySkillUsedSpecialistChecks(_skill))
 			_properties.DamageArmorMult += 0.01 * this.calculateSpecialistBonus(25, _skill.getItem());
 	}

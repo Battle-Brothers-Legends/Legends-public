@@ -105,9 +105,9 @@ this.legend_specialist_abstract <- this.inherit("scripts/skills/skill", {
 		{
 			return _stat;
 		}
-		
+
 		if (::Legends.Mod.ModSettings.getSetting("SpecialistSkillsSetting").getValue() == "Week in company (SSU Style)")
-		{		
+		{
 			local daysCompany = this.Math.floor(actor.getDaysWithCompany() / 7);
 			return this.Math.floor(0.01 * this.Math.min(5 * daysCompany + 25, 100) * _stat);
 		}
@@ -175,7 +175,7 @@ this.legend_specialist_abstract <- this.inherit("scripts/skills/skill", {
 		if (!onAnySkillUsedSpecialistChecks(_skill))
 			return;
 
-		local validTarget = __targetEntity != null && this.validTarget(_targetEntity.getType())
+		local validTarget = __targetEntity != null && this.validTarget(_targetEntity.getType());
 		local actor = this.getContainer().getActor();
 		local hitBonus = 0;
 		if (this.m.BonusMelee != null && !_skill.isRanged())

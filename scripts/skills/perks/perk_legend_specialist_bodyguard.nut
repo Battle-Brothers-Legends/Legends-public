@@ -25,7 +25,7 @@ this.perk_legend_specialist_bodyguard <- this.inherit("scripts/skills/legend_spe
 	{
 		local properties = this.getContainer().getActor().getCurrentProperties();
 		local tooltip = [];
-		
+
 		tooltip.extend([{
 			id = 7,
 			type = "text",
@@ -58,7 +58,7 @@ this.perk_legend_specialist_bodyguard <- this.inherit("scripts/skills/legend_spe
 
 	function onAnySkillUsed( _skill, _targetEntity, _properties )
 	{
-		this.legend_specialist_abstract.onAnySkillUsed(_skill, _targetEntity, _properties)
+		this.legend_specialist_abstract.onAnySkillUsed(_skill, _targetEntity, _properties);
 		if (onAnySkillUsedSpecialistChecks(_skill))
 		{
 			if (_properties.IsRiposting)

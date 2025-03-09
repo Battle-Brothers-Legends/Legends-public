@@ -25,7 +25,7 @@ this.perk_legend_specialist_herbalist <- this.inherit("scripts/skills/legend_spe
 	{
 		local properties = this.getContainer().getActor().getCurrentProperties();
 		local tooltip = [];
-		
+
 		tooltip.push({
 			id = 7,
 			type = "text",
@@ -54,7 +54,7 @@ this.perk_legend_specialist_herbalist <- this.inherit("scripts/skills/legend_spe
 
 	function onAnySkillUsed( _skill, _targetEntity, _properties )
 	{
-		this.legend_specialist_abstract.onAnySkillUsed(_skill, _targetEntity, _properties)
+		this.legend_specialist_abstract.onAnySkillUsed(_skill, _targetEntity, _properties);
 		if (onAnySkillUsedSpecialistChecks(_skill))
 			_properties.DamageDirectMult += 0.01 * this.calculateSpecialistBonus(25, _skill.getItem());
 	}

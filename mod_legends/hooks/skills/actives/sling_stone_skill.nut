@@ -100,10 +100,10 @@
 					case targetStatus.hasSkill("effects.dazed"):
 						effectCounter += 1;
 					case targetStatus.hasSkill("effects.legend_baffled"):
-						effectCounter += 1;	
+						effectCounter += 1;
 					case targetStatus.hasSkill("effects.debilitated"):
 						effectCounter += 1;
-					case targetStatus.hasSkill("effects.staggered"):			
+					case targetStatus.hasSkill("effects.staggered"):
 						effectCounter += 1;
 				}
 				if (effectCounter >= 3 && !_targetEntity.getCurrentProperties().IsImmuneToStun)
@@ -120,16 +120,16 @@
 					{
 						case rand <= 25:
 							effect = this.new("scripts/skills/effects/dazed_effect");
-							effectName = "dazed"
+							effectName = "dazed";
 						case rand <= 50:
 							effect = this.new("scripts/skills/effects/staggered_effect");
-							effectName = "staggered"
+							effectName = "staggered";
 						case rand <= 75:
 							effect = this.new("scripts/skills/effects/debilitated_effect");
-							effectName = "debilitated"
+							effectName = "debilitated";
 						case rand <= 100:
 							effect = this.new("scripts/skills/effects/legend_baffled_effect");
-							effectName = "baffled"
+							effectName = "baffled";
 					}
 				}
 			}
