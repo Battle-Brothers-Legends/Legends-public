@@ -3,7 +3,7 @@
 
 	o.getDamage = function ()
 	{
-		return this.m.Damage * (actor.getSkills().hasEffect(::Legends.Effect.HyenaPotion) ? 0.5 : 1.0);
+		return this.m.Damage * (this.getContainer().getActor().getSkills().hasEffect(::Legends.Effect.HyenaPotion) ? 0.5 : 1.0);
 	}
 
 	o.setActor <- function ( _a )
