@@ -71,11 +71,6 @@ this.named_goblin_crossbow <- this.inherit("scripts/items/weapons/named/named_we
 		return result;
 	}
 
-	function onCombatFinished()
-	{
-		this.setLoaded(true);
-	}
-
 	function onEquip()
 	{
 		this.named_weapon.onEquip();
