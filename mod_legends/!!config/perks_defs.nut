@@ -1806,7 +1806,7 @@ perkDefObjects.push({
 	ID = "perk.legend_specialist_musician",
 	Script = "scripts/skills/perks/perk_legend_specialist_musician",
 	Name = ::Const.Strings.PerkName.LegendSpecialistMusician,
-	Tooltip = ::Const.Strings.PerkDescription.LegendSpecialistMusicianLegendSpecialistMusician,
+	Tooltip = ::Const.Strings.PerkDescription.LegendSpecialistMusician,
 	Icon = "ui/perks/perk_spec_bard.png",
 	IconDisabled = "ui/perks/perk_spec_bard_bw.png",
 	Const = "LegendSpecialistMusician"
@@ -1889,15 +1889,15 @@ perkDefObjects.push({
 	Const = "LegendSpecialistWoodsman"
 });
 
-::Legends.Perk.LegendSpecSelfdefense <- null;
+::Legends.Perk.LegendSpecialistSelfdefense <- null;
 perkDefObjects.push({
 	ID = "perk.legend_specialist_selfdefense",
 	Script = "scripts/skills/perks/perk_legend_specialist_selfdefense",
-	Name = ::Const.Strings.PerkName.LegendSpecSelfdefense,
-	Tooltip = ::Const.Strings.PerkDescription.LegendSpecSelfdefense,
+	Name = ::Const.Strings.PerkName.LegendSpecialistSelfdefense,
+	Tooltip = ::Const.Strings.PerkDescription.LegendSpecialistSelfdefense,
 	Icon = "ui/perks/perk_spec_staff.png",
 	IconDisabled = "ui/perks/perk_spec_staff_bw.png",
-	Const = "LegendSpecSelfdefense"
+	Const = "LegendSpecialistSelfdefense"
 });
 
 ::Legends.Perk.LegendSpecialistHerbalist <- null;

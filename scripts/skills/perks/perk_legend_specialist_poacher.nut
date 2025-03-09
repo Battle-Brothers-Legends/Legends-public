@@ -5,7 +5,7 @@ this.perk_legend_specialist_poacher <- this.inherit("scripts/skills/skill", {
 			"weapon.short_bow"
 		],
 		ApplicableWeaponTypes = [
-			this.Const.Items.ItemType.Bow
+			this.Const.Items.WeaponType.Bow
 		],
 		ValidEntities = [
 			this.Const.EntityType.Wolf,

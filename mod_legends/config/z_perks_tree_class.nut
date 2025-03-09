@@ -344,7 +344,7 @@ if (!("Perks" in ::Const))
 	Tree = [
 		[],
 		[],
-		[::Const.Perks.PerkDefs.LegendSpecialistSelfDefense],
+		[::Legends.Perk.LegendSpecialistSelfdefense],
 		[],
 		[],
 		[],
@@ -359,7 +359,7 @@ if (!("Perks" in ::Const))
 		"firearms"
 	],
 	Tree = [
-		[::Const.Perks.PerkDefs.LegendSpecialistInventor],
+		[::Legends.Perk.LegendSpecialistInventor],
 		[],
 		[],
 		[],
@@ -393,7 +393,7 @@ if (!("Perks" in ::Const))
 		"swords"
 	],
 	Tree = [
-		[::Const.Perks.PerkDefs.LegendSpecialistBodyguard],
+		[::Legends.Perk.LegendSpecialistBodyguard],
 		[],
 		[],
 		[],
@@ -410,7 +410,7 @@ if (!("Perks" in ::Const))
 		"crossbows"
 	],
 	Tree = [
-		[::Const.Perks.PerkDefs.LegendSpecialistInquisition],
+		[::Legends.Perk.LegendSpecialistInquisition],
 		[],
 		[],
 		[],
@@ -427,7 +427,7 @@ if (!("Perks" in ::Const))
 		"clubs"
 	],
 	Tree = [
-		[::Const.Perks.PerkDefs.LegendSpecialistClub],
+		[::Legends.Perk.LegendSpecialistClub],
 		[],
 		[],
 		[],
@@ -513,7 +513,7 @@ if (!("Perks" in ::Const))
 		::Const.Perks.ScytheClassTree,
 		::Const.Perks.ClubClassTree,
 		::Const.Perks.InquisitionClassTree,
-		::Const.Perks.BodyguardClassTree,
+		::Const.Perks.LongswordClassTree,
 		::Const.Perks.InventorClassTree,
 		::Const.Perks.StaffClassTree,
 		::Const.Perks.SlingClassTree

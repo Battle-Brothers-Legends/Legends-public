@@ -15,7 +15,7 @@ this.perk_legend_specialist_selfdefense <- this.inherit("scripts/skills/skill", 
 	function create()
 	{
 		this.legend_specialist_abstract.create();
-		::Const.Perks.setup(this.m, ::Legends.Perk.LegendSpecSelfdefense);
+		::Const.Perks.setup(this.m, ::Legends.Perk.LegendSpecialistSelfdefense);
 		this.m.IconMini = "perk_spec_staff_mini.png";
 	}
 

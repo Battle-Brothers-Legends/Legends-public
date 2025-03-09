@@ -112,7 +112,7 @@ this.legend_prepare_knockback_skill <- this.inherit("scripts/skills/skill", {
 
 	function onUse( _user, _targetTile )
 	{
-		if (this.m.Item != null && !this.m.Item.isNull() && this.m.Item.getID() = "weapon.legend_sling")
+		if (this.m.Item != null && !this.m.Item.isNull() && this.m.Item.getID() == "weapon.legend_sling")
 		{	
 			::Legends.Effects.grant(this, ::Legends.Effect.LegendPrepareBullet);
 		}

@@ -709,11 +709,11 @@ if (!("Perks" in ::Const))
 	},
 	Tree = [
 		[],
-		[::Const.Perks.PerkDefs.LegendSlingerSpins],
+		[::Legends.Perk.LegendSlingerSpins],
 		[],
 		[::Legends.Perk.LegendMasterySlings],
 		[],
-		[::Const.Perks.PerkDefs.LegendBarrage],
+		[::Legends.Perk.LegendBarrage],
 		[]
 	]
 };
@@ -764,7 +764,7 @@ if (!("Perks" in ::Const))
 		[],
 		[::Legends.Perk.LegendMasteryStaves],
 		[::Legends.Perk.LegendSpecStaffStun],
-		[::Const.Perks.PerkDefs.LegendStaffBlock],
+		[::Legends.Perk.LegendStaffBlock],
 		[::Legends.Perk.LegendPushTheAdvantage]
 	]
 };
@@ -817,58 +817,6 @@ if (!("Perks" in ::Const))
 		[::Legends.Perk.LegendSpecialistShieldSkill],
 		[],
 		[]
-	]
-};
-
-
-::Const.Perks.StaffTree <- {
-	ID = "Staff",
-	Name = "Staff"
-	Descriptions = [
-		"staves"
-	],
-	Attributes = {
-		Hitpoints = [
-			0,
-			0
-		],
-		Bravery = [
-			0,
-			0
-		],
-		Stamina = [
-			0,
-			0
-		],
-		MeleeSkill = [
-			0,
-			0
-		],
-		RangedSkill = [
-			0,
-			0
-		],
-		MeleeDefense = [
-			0,
-			0
-		],
-		RangedDefense = [
-			0,
-			0
-		],
-		Initiative = [
-			0,
-			0
-		]
-	},
-	Tree = [
-		[],
-		[],
-		[::Legends.Perk.LegendSpecStaffSkill],
-		[::Legends.Perk.LegendMasteryStaves],
-		[::Legends.Perk.LegendSpecStaffStun],
-		[],
-		[::Legends.Perk.LegendPushTheAdvantage]
 	]
 };
 

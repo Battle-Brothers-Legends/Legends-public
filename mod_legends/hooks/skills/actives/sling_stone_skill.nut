@@ -1,7 +1,7 @@
 ::mods_hookExactClass("skills/actives/sling_stone_skill", function(o)
 {
-	q.m.AdditionalAccuracy = -10;
-	q.m.AdditionalHitChance = -6;
+	o.m.AdditionalAccuracy = -10;
+	o.m.AdditionalHitChance = -6;
 
 	local create = o.create;
 	o.create = function ()

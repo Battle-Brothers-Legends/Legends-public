@@ -11,7 +11,7 @@
 		::Legends.Effect.LegendChoked,
 		::Legends.Effect.LegendTackled,
 		::Legends.Effect.Shellshocked,
-		::Legends.Effects.Sleeping,
+		::Legends.Effect.Sleeping,
 		::Legends.Effect.Staggered
 	];
 	o.m.ApplicableItems <- [
@@ -54,7 +54,7 @@
 		return tooltip;
 	}
 
-	q.isHidden <- function()
+	o.isHidden <- function()
 	{
 		local actor = this.getContainer().getActor();
 		local item = actor.getMainhandItem().getID();
