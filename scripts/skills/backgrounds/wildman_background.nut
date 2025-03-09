@@ -110,7 +110,7 @@ this.wildman_background <- this.inherit("scripts/skills/backgrounds/character_ba
 			],
 			Class = [
 				this.Const.Perks.FistsClassTree,
-				this.Const.Perks.SpecialistClubTree
+				this.Const.Perks.ClubClassTree
 			],
 			Magic = []
 		}
