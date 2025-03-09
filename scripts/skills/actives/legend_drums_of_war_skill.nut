@@ -52,7 +52,7 @@ this.legend_drums_of_war_skill <- this.inherit("scripts/skills/skill", {
 				text = "Restores [color=" + this.Const.UI.Color.PositiveValue + "]" + this.getBonus() + "[/color] fatigue to all allied units within 8 tiles"
 			}
 		];
-		
+
 		if (this.Tactical.isActive() && this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions()))
 		{
 			ret.push({
@@ -62,14 +62,14 @@ this.legend_drums_of_war_skill <- this.inherit("scripts/skills/skill", {
 				text = "[color=" + this.Const.UI.Color.NegativeValue + "]Can not be used because this character is engaged in melee[/color]"
 			});
 		}
-		
+
 		return ret;
 	}
 
 	function onAfterUpdate( _properties )
 	{
 		this.m.FatigueCostMult = 1.0;
-		if (this.getSkills().hasPerk(::Legends.Perk.LegendMinnesanger))
+		if (this.getContainer().hasPerk(::Legends.Perk.LegendMinnesanger))
 		{
 			this.m.FatigueCostMult = this.Const.Combat.WeaponSpecFatigueMult;
 			this.m.ActionPointCost -= 1;
@@ -79,9 +79,9 @@ this.legend_drums_of_war_skill <- this.inherit("scripts/skills/skill", {
 	function getBonus()
 	{
 		local effect = 1;
-		if (this.getSkills().hasPerk(::Legends.Perk.LegendSpecialistMusician))
+		if (this.getContainer().hasPerk(::Legends.Perk.LegendSpecialistMusician))
 			effect += 2;
-		if (this.getSkills().hasPerk(::Legends.Perk.LegendMinnesanger))
+		if (this.getContainer().hasPerk(::Legends.Perk.LegendMinnesanger))
 			effect += 2;
 		return effect;
 	}
