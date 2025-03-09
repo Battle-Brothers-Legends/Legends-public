@@ -4,7 +4,7 @@
 	o.onInit = function ()
 	{
 		onInit();
-		::Legends.Perks.grant(this, ::Legends.Perk.LegendDrumsOfWar);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendMinnesanger);
 
 		if(::Legends.isLegendaryDifficulty())
 		{

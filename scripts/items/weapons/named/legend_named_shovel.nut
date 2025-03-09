@@ -56,7 +56,7 @@ this.legend_named_shovel <- this.inherit("scripts/items/weapons/named/named_weap
 			_skill.m.IconDisabled = "skills/shovel_bash_bw.png";
 		}.bindenv(this));
 
-		if (this.getContainer().hasPerk(::Legends.Perk.LegendSpecialistShovelSkill))
+		if (this.getContainer().hasPerk(::Legends.Perk.LegendSpecialistGravedigger))
 		{
 			::Legends.Actives.grant(this, ::Legends.Active.KnockOut);
 		}

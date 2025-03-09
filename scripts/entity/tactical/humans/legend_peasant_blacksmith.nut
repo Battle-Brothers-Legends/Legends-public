@@ -27,8 +27,7 @@ this.legend_peasant_blacksmith <- this.inherit("scripts/entity/tactical/human", 
 		local dirt = this.getSprite("dirt");
 		dirt.Visible = true;
 		dirt.Alpha = this.Math.rand(0, 255);
-		::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecialistHammerSkill);
-		::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecialistHammerDamage);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecialistBlacksmith);
 		::Legends.Perks.grant(this, ::Legends.Perk.SpecHammer);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendSmackdown);
 		this.getSprite("socket").setBrush("bust_base_militia");

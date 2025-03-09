@@ -4,7 +4,7 @@ if (!("EnemyPerks" in ::Const))
 ::Const.EnemyPerks.Default <- [];
 
 ::Const.EnemyPerks.FreeCompanyArcher <- [
-	[3, [::Legends.Perk.LegendSpecialistShortbowSkill, ::Legends.Perk.LegendSpecialistShortbowDamage], 4],
+	[3, [::Legends.Perk.LegendSpecialistPoacher], 4],
 	[1, ::Legends.Perk.Rotation, 2],
 	[1, ::Legends.Perk.Anticipation, 2],
 	[1, ::Legends.Perk.Bullseye, 1],
@@ -41,7 +41,7 @@ if (!("EnemyPerks" in ::Const))
 ];
 
 ::Const.EnemyPerks.FreeCompanySpearman <- [
-	[4, [::Legends.Perk.LegendSpecialistMilitiaSkill, ::Legends.Perk.LegendSpecialistMilitiaDamage], 4],
+	[4, [::Legends.Perk.LegendSpecialistMilitia], 4],
 	[2, ::Legends.Perk.Underdog, 3],
 	[2, ::Legends.Perk.LegendStrengthInNumbers, 2],
 	[2, ::Legends.Perk.ShieldExpert, 2],

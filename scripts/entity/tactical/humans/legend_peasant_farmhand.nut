@@ -27,8 +27,7 @@ this.legend_peasant_farmhand <- this.inherit("scripts/entity/tactical/human", {
 		local dirt = this.getSprite("dirt");
 		dirt.Visible = true;
 		dirt.Alpha = this.Math.rand(0, 255);
-		::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecialistPitchforkSkill);
-		::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecialistPitchforkDamage);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecialistFarmhand);
 		::Legends.Perks.grant(this, ::Legends.Perk.ReachAdvantage);
 		::Legends.Perks.grant(this, ::Legends.Perk.SpecPolearm);
 		this.getSprite("socket").setBrush("bust_base_militia");

@@ -303,7 +303,7 @@ if (!("Perks" in ::Const))
 		[::Legends.Perk.LegendPrayerOfLife],
 		[],
 		[::Legends.Perk.LegendSummonStorm],
-		[::Legends.Perk.LegendDrumsOfLife],
+		[::Legends.Perk.LegendMeistersanger],
 		[::Legends.Perk.LegendInsects]
 	]
 };

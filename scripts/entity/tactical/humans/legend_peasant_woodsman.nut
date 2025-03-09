@@ -27,8 +27,7 @@ this.legend_peasant_woodsman <- this.inherit("scripts/entity/tactical/human", {
 		local dirt = this.getSprite("dirt");
 		dirt.Visible = true;
 		dirt.Alpha = this.Math.rand(0, 255);
-		::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecialistWoodaxeSkill);
-		::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecialistWoodaxeDamage);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecialistWoodsman);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendSmashingShields);
 		::Legends.Perks.grant(this, ::Legends.Perk.SpecAxe);
 		this.getSprite("socket").setBrush("bust_base_militia");

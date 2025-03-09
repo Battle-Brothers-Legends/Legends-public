@@ -5,14 +5,13 @@
 	{
 		onInit();
 		::Legends.Perks.grant(this, ::Legends.Perk.Recover);
-		::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecialistMilitiaSkill);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecialistMilitia);
 
 		::Legends.Perks.grant(this, ::Legends.Perk.ShieldBash);
 		if(::Legends.isLegendaryDifficulty())
 		{
 			::Legends.Perks.grant(this, ::Legends.Perk.SpecSpear);
 			::Legends.Perks.grant(this, ::Legends.Perk.ShieldExpert);
-			::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecialistMilitiaDamage);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecSpearWall);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecSpearThrust);
 			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);

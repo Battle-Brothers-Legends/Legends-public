@@ -388,12 +388,12 @@ this.gatherer_building <- this.inherit("scripts/entity/world/camp/camp_building"
 				map.Brewer += bro.getLevel();
 			}
 
-			if (bro.getSkills().hasPerk(::Legends.Perk.LegendSpecialistWoodaxeDamage))
+			if (bro.getSkills().hasPerk(::Legends.Perk.LegendSpecialistWoodsman))
 			{
 				map.Woodsman += bro.getLevel();
 			}
 
-			if (bro.getSkills().hasPerk(::Legends.Perk.LegendSpecialistPickaxeDamage))
+			if (bro.getSkills().hasPerk(::Legends.Perk.LegendSpecialistMiner))
 			{
 				map.Miner += bro.getLevel();
 			}

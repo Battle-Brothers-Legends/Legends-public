@@ -2759,15 +2759,15 @@ perkDefObjects.push({
 	Const = "LegendSpecStaffStun"
 });
 
-::Legends.Perk.LegendDrumsOfWar <- null;
+::Legends.Perk.LegendMinnesanger <- null;
 perkDefObjects.push({
-	ID = "perk.legend_drums_of_war",
-	Script = "scripts/skills/perks/perk_legend_drums_of_war",
-	Name = ::Const.Strings.PerkName.LegendDrumsOfWar,
-	Tooltip = ::Const.Strings.PerkDescription.LegendDrumsOfWar,
-	Icon = "ui/perks/drums_circle.png",
-	IconDisabled = "ui/perks/drums_circle_bw.png",
-	Const = "LegendDrumsOfWar"
+	ID = "perk.legend_minnesanger",
+	Script = "scripts/skills/perks/perk_legend_minnesanger",
+	Name = ::Const.Strings.PerkName.LegendMinnesanger,
+	Tooltip = ::Const.Strings.PerkDescription.LegendMinnesanger,
+	Icon = "ui/perks/minnesanger.png",
+	IconDisabled = "ui/perks/minnesanger_bw.png",
+	Const = "LegendMinnesanger"
 });
 
 ::Legends.Perk.LegendSpecUnarmed <- null;
@@ -3432,15 +3432,15 @@ perkDefObjects.push({
 	Const = "LegendHorsePassage"
 });
 
-::Legends.Perk.LegendDrumsOfLife <- null;
+::Legends.Perk.LegendMeistersanger <- null;
 perkDefObjects.push({
-	ID = "perk.legend_drums_of_life",
-	Script = "scripts/skills/perks/perk_legend_drums_of_life",
-	Name = ::Const.Strings.PerkName.LegendDrumsOfLife,
-	Tooltip = ::Const.Strings.PerkDescription.LegendDrumsOfLife,
-	Icon = "ui/perks/drums_of_life.png",
-	IconDisabled = "ui/perks/drums_of_life_bw.png",
-	Const = "LegendDrumsOfLife"
+	ID = "perk.legend_meistersanger",
+	Script = "scripts/skills/perks/perk_legend_meistersanger",
+	Name = ::Const.Strings.PerkName.LegendMeistersanger,
+	Tooltip = ::Const.Strings.PerkDescription.LegendMeistersanger,
+	Icon = "ui/perks/minnesanger.png",
+	IconDisabled = "ui/perks/minnesanger_bw.png",
+	Const = "LegendMeistersanger"
 });
 
 ::Legends.Perk.LegendLacerate <- null;

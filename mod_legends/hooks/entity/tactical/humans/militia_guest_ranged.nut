@@ -8,8 +8,7 @@
 		::Legends.Perks.grant(this, ::Legends.Perk.Recover);
 		if(::Legends.isLegendaryDifficulty())
 		{
-			::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecialistShortbowSkill);
-			::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecialistShortbowDamage);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecialistPoacher);
 			::Legends.Perks.grant(this, ::Legends.Perk.CripplingStrikes);
 			::Legends.Perks.grant(this, ::Legends.Perk.LoneWolf);
 			::Legends.Perks.grant(this, ::Legends.Perk.Pathfinder);

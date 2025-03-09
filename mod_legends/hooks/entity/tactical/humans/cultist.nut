@@ -13,8 +13,7 @@
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendLacerate);
 		::Legends.Perks.grant(this, ::Legends.Perk.HeadHunter);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendBloodbath);
-		::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecialistNinetailsSkill);
-		::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecialistNinetailsDamage);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecialistCultist);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecCultHood);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecCultArmor);
 		if(::Legends.isLegendaryDifficulty())

@@ -31,11 +31,10 @@ this.legend_peasant_minstrel <- this.inherit("scripts/entity/tactical/human", {
 		local dirt = this.getSprite("dirt");
 		dirt.Visible = true;
 		dirt.Alpha = this.Math.rand(0, 255);
-		::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecialistLuteSkill);
-		::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecialistLuteDamage);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecialistMusician);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendEntice);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendDaze);
-		::Legends.Perks.grant(this, ::Legends.Perk.LegendDrumsOfWar);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendMinnesanger);
 
 		this.getSprite("socket").setBrush("bust_base_militia");
 		if(::Legends.isLegendaryDifficulty())
@@ -45,7 +44,7 @@ this.legend_peasant_minstrel <- this.inherit("scripts/entity/tactical/human", {
 			::Legends.Perks.grant(this, ::Legends.Perk.Anticipation);
 			::Legends.Perks.grant(this, ::Legends.Perk.Dodge);
 			::Legends.Perks.grant(this, ::Legends.Perk.Relentless);
-			::Legends.Perks.grant(this, ::Legends.Perk.LegendDrumsOfLife);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendMeistersanger);
 			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
 		}
 	}

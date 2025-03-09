@@ -29,7 +29,7 @@ this.legend_peasant_butcher <- this.inherit("scripts/entity/tactical/human", {
 		dirt.Alpha = this.Math.rand(0, 255);
 		this.getSprite("socket").setBrush("bust_base_militia");
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendBloodbath);
-		::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecialistButcherSkill);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecialistButcher);
 		::Legends.Actives.grant(this, ::Legends.Active.LegendPrepareBleed);
 
 		if(::Legends.isLegendaryDifficulty())
@@ -37,7 +37,6 @@ this.legend_peasant_butcher <- this.inherit("scripts/entity/tactical/human", {
 			this.m.Hitpoints = b.Hitpoints * 1.5;
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendLacerate);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendCarnage);
-			::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecialistButcherDamage);
 			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
 		}
 
