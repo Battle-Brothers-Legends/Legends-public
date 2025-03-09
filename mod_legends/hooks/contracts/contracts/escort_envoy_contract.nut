@@ -1,7 +1,5 @@
 ::mods_hookExactClass("contracts/contracts/escort_envoy_contract", function(o) 
 {
-	o.m.Envoy <- null;
-
 	local create = o.create;
 	o.create = function()
 	{
@@ -24,33 +22,6 @@
 		createStates();
 		foreach (s in this.m.States)
 		{
-			if (s.ID == "Offer")
-			{
-				s.end <- function ()
-				{
-					this.World.Assets.addMoney(this.Contract.m.Payment.getInAdvance());
-					local r = this.Math.rand(1, 100);
-
-					if (r <= 10)
-					{
-						if (this.Contract.getDifficultyMult() >= 1.0)
-						{
-							this.Flags.set("IsShadyDeal", true);
-						}
-					}
-					if (this.Contract.m.Envoy != null)
-					{
-						local envoy = this.World.getGuestRoster().create("scripts/entity/tactical/humans/envoy");
-						envoy.setName(this.Flags.get("EnvoyName"));
-						envoy.setTitle(this.Flags.get("EnvoyTitle"));
-						envoy.setFaction(1);
-						this.Contract.m.Envoy = ::WeakTableRef(envoy);
-						this.Flags.set("EnvoyID", envoy.getID());
-					}
-					this.Contract.setScreen("Overview");
-					this.World.Contracts.setActiveContract(this.Contract);
-				}
-			}
 			if (s.ID == "Task")
 			{
 				s.Title = "A Diplomatic Mission";
