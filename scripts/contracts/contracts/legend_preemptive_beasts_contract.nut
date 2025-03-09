@@ -160,6 +160,21 @@ this.legend_preemptive_beasts_contract <- this.inherit("scripts/contracts/contra
 				}
 			}
 
+			function onActorKilled( _actor, _killer, _combatID )
+			{
+				if (this.Flags.has("NumPoachers"))
+				{
+					// check if the guests are still alive
+					for( local i = 0; i < this.Flags.get("NumPoachers"); i++ )
+					{
+						if (_actor.getID() == this.Flags.get("Poacher" + i))
+						{
+							this.World.getGuestRoster().remove(_actor);
+						}
+					}
+				}
+			}
+
 		});
 		this.m.States.push({
 			ID = "Return",
@@ -223,6 +238,21 @@ this.legend_preemptive_beasts_contract <- this.inherit("scripts/contracts/contra
 					}
 
 					this.World.Contracts.showActiveContract();
+				}
+			}
+
+			function onActorKilled( _actor, _killer, _combatID )
+			{
+				if (this.Flags.has("NumPoachers"))
+				{
+					// check if the guests are still alive
+					for( local i = 0; i < this.Flags.get("NumPoachers"); i++ )
+					{
+						if (_actor.getID() == this.Flags.get("Poacher" + i))
+						{
+							this.World.getGuestRoster().remove(_actor);
+						}
+					}
 				}
 			}
 
