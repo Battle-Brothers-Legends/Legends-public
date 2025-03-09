@@ -82,7 +82,7 @@ this.legend_specialist_abstract <- this.inherit("scripts/skills/skill", {
 	{
 		foreach (id in this.m.SpecialistWeaponIds)
 		{
-			if (item.getID() == id)
+			if (_item.getID() == id)
 			{
 				return true;
 			}
@@ -90,7 +90,7 @@ this.legend_specialist_abstract <- this.inherit("scripts/skills/skill", {
 
 		foreach (type in this.m.SpecialistItemTypes)
 		{
-			if (item.isItemType(type))
+			if (_item.isItemType(type))
 			{
 				return true;
 			}
@@ -98,7 +98,7 @@ this.legend_specialist_abstract <- this.inherit("scripts/skills/skill", {
 
 		foreach (type in this.m.SpecialistWeaponTypes)
 		{
-			if (item.isWeaponType(type))
+			if (_item.isWeaponType(type))
 			{
 				return true;
 			}
@@ -167,7 +167,7 @@ this.legend_specialist_abstract <- this.inherit("scripts/skills/skill", {
 
 		local item = _skill.getItem();
 
-		if (item != null)
+		if (item == null)
 			return false;
 
 		if (!item.isItemType(this.Const.Items.ItemType.Weapon))
@@ -184,25 +184,25 @@ this.legend_specialist_abstract <- this.inherit("scripts/skills/skill", {
 		if (!onAnySkillUsedSpecialistChecks(_skill))
 			return;
 
-		local validTarget = __targetEntity != null && this.validTarget(_targetEntity.getType());
-		local actor = this.getContainer().getActor();
+		local validTarget = _targetEntity != null && this.validTarget(_targetEntity.getType());
 		local hitBonus = 0;
+		local item = _skill.getItem();
 		if (this.m.BonusMelee != null && !_skill.isRanged())
 		{
-			hitBonus = actor.calculateSpecialistBonus(this.m.BonusMelee, _item) * (validTarget ? 2 : 1);
+			hitBonus = this.calculateSpecialistBonus(this.m.BonusMelee, item) * (validTarget ? 2 : 1);
 			_properties.MeleeSkill += hitBonus;
 			_skill.m.HitChanceBonus += hitBonus;
 		}
 		else if (this.m.BonusRanged != null && _skill.isRanged())
 		{
-			hitBonus = actor.calculateSpecialistBonus(this.m.BonusRanged, _item) * (validTarget ? 2 : 1);
+			hitBonus = this.calculateSpecialistBonus(this.m.BonusRanged, item) * (validTarget ? 2 : 1);
 			_properties.RangedSkill += hitBonus;
 			_skill.m.HitChanceBonus += hitBonus;
 		}
 
 		if (::Legends.S.isCharacterWeaponSpecialized(_properties, item))
 		{
-			_properties.DamageTotalMult *= 1.0 + 0.01 * actor.calculateSpecialistBonus(this.m.BonusDamage, _item) * (validTarget ? 2 : 1);
+			_properties.DamageTotalMult *= 1.0 + 0.01 * this.calculateSpecialistBonus(this.m.BonusDamage, item) * (validTarget ? 2 : 1);
 		}
 	}
 });

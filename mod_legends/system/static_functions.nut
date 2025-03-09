@@ -22,27 +22,27 @@
 {
 	switch (true)
 	{
-		case _weapon.isWeaponType(this.Const.WeaponType.Axe):
+		case _weapon.isWeaponType(::Const.Items.WeaponType.Axe):
 			return _properties.IsSpecializedInAxes;
-		case _weapon.isWeaponType(this.Const.WeaponType.Bow):
+		case _weapon.isWeaponType(::Const.Items.WeaponType.Bow):
 			return _properties.IsSpecializedInBows;
-		case _weapon.isWeaponType(this.Const.WeaponType.Crossbow):
+		case _weapon.isWeaponType(::Const.Items.WeaponType.Crossbow):
 			return _properties.IsSpecializedInCrossbows;
-		case _weapon.isWeaponType(this.Const.WeaponType.Dagger):
+		case _weapon.isWeaponType(::Const.Items.WeaponType.Dagger):
 			return _properties.IsSpecializedInDaggers;
-		case _weapon.isWeaponType(this.Const.WeaponType.Flail):
+		case _weapon.isWeaponType(::Const.Items.WeaponType.Flail):
 			return _properties.IsSpecializedInFlails;
-		case _weapon.isWeaponType(this.Const.WeaponType.Hammer):
+		case _weapon.isWeaponType(::Const.Items.WeaponType.Hammer):
 			return _properties.IsSpecializedInHammers;
-		case _weapon.isWeaponType(this.Const.WeaponType.Mace):
+		case _weapon.isWeaponType(::Const.Items.WeaponType.Mace):
 			return _properties.IsSpecializedInMaces;
-		case _weapon.isWeaponType(this.Const.WeaponType.Sling):
+		case _weapon.isWeaponType(::Const.Items.WeaponType.Sling):
 			return _properties.IsSpecializedInSlings;
-		case _weapon.isWeaponType(this.Const.WeaponType.Spear):
+		case _weapon.isWeaponType(::Const.Items.WeaponType.Spear):
 			return _properties.IsSpecializedInSpears;
-		case _weapon.isWeaponType(this.Const.WeaponType.Sword):
+		case _weapon.isWeaponType(::Const.Items.WeaponType.Sword):
 			return _properties.IsSpecializedInSwords;
-		case _weapon.isWeaponType(this.Const.WeaponType.Throwing):
+		case _weapon.isWeaponType(::Const.Items.WeaponType.Throwing):
 			return _properties.IsSpecializedInThrowing;
 		default:
 			return false;
