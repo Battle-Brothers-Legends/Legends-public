@@ -31,7 +31,7 @@
 	o.getTooltip = function ()
 	{
 		local tooltip = this.getDefaultTooltip();
-		if (this.m.DeathblowBonus && this.hasPerk(::Legends.Perk.LegendSpecialistPrisoner))
+		if (this.m.DeathblowBonus && this.getContainer().hasPerk(::Legends.Perk.LegendSpecialistPrisoner))
 		{
 			tooltip.push({
 				id = 8,
@@ -66,7 +66,7 @@
 				deathblowDagger = true;
 			}
 		}
-		if (deathblowDagger || this.hasPerk(::Legends.Perk.LegendSpecialistPrisoner))
+		if (deathblowDagger || this.getContainer().hasPerk(::Legends.Perk.LegendSpecialistPrisoner))
 			return false;
 
 		return this.skill.isHidden();
@@ -76,6 +76,7 @@
 	{
 		if (_skill == this && _targetEntity != null)
 		{
+			local targetStatus = _targetEntity.getSkills();
 			local bonus = false;
 
 			if (_targetEntity.getCurrentProperties().IsRooted || _targetEntity.getCurrentProperties().IsStunned)
@@ -89,7 +90,7 @@
 				}
 			}
 
-			if (bonus && this.m.DeathblowBonus && this.hasPerk(::Legends.Perk.LegendSpecialistPrisoner))
+			if (bonus && this.m.DeathblowBonus && this.getContainer().hasPerk(::Legends.Perk.LegendSpecialistPrisoner))
 			{
 				_properties.DamageTotalMult *= 1.5;
 				_properties.DamageDirectAdd += 0.3;
