@@ -250,88 +250,8 @@
 				brother1
 			],
 			[
-				"they1",
-				this.Const.LegendMod.getPronoun(bro1.getGender(), "they")
-			],
-			[
-				"them1",
-				this.Const.LegendMod.getPronoun(bro1.getGender(), "them")
-			],
-			[
-				"their1",
-				this.Const.LegendMod.getPronoun(bro1.getGender(), "their")
-			],
-			[
-				"theirs1",
-				this.Const.LegendMod.getPronoun(bro1.getGender(), "theirs")
-			],
-			[
-				"themselves1",
-				this.Const.LegendMod.getPronoun(bro1.getGender(), "themselves")
-			],
-			[
-				"They1",
-				this.Const.LegendMod.getPronoun(bro1.getGender(), "They")
-			],
-			[
-				"Them1",
-				this.Const.LegendMod.getPronoun(bro1.getGender(), "Them")
-			],
-			[
-				"Their1",
-				this.Const.LegendMod.getPronoun(bro1.getGender(), "Their")
-			],
-			[
-				"Theirs1",
-				this.Const.LegendMod.getPronoun(bro1.getGender(), "Theirs")
-			],
-			[
-				"Themselves1",
-				this.Const.LegendMod.getPronoun(bro1.getGender(), "Themselves")
-			],
-			[
 				"randombrother2",
 				brother2
-			],
-			[
-				"they2",
-				this.Const.LegendMod.getPronoun(bro2.getGender(), "they")
-			],
-			[
-				"them2",
-				this.Const.LegendMod.getPronoun(bro2.getGender(), "them")
-			],
-			[
-				"their2",
-				this.Const.LegendMod.getPronoun(bro2.getGender(), "their")
-			],
-			[
-				"theirs2",
-				this.Const.LegendMod.getPronoun(bro2.getGender(), "theirs")
-			],
-			[
-				"themselves2",
-				this.Const.LegendMod.getPronoun(bro2.getGender(), "themselves")
-			],
-			[
-				"They2",
-				this.Const.LegendMod.getPronoun(bro2.getGender(), "They")
-			],
-			[
-				"Them2",
-				this.Const.LegendMod.getPronoun(bro2.getGender(), "Them")
-			],
-			[
-				"Their2",
-				this.Const.LegendMod.getPronoun(bro2.getGender(), "Their")
-			],
-			[
-				"Theirs2",
-				this.Const.LegendMod.getPronoun(bro2.getGender(), "Theirs")
-			],
-			[
-				"Themselves2",
-				this.Const.LegendMod.getPronoun(bro2.getGender(), "Themselves")
 			],
 			[
 				"randomtown",
@@ -350,6 +270,9 @@
 				this.m.TownImage
 			]
 		];
+
+		::Const.LegendMod.extendVarsWithPronouns(vars, bro1.getGender(), "randombrother");
+		::Const.LegendMod.extendVarsWithPronouns(vars, bro2.getGender(), "randombrother2");
 		this.onPrepareVariables(vars);
 		return this.buildTextFromTemplate(_text, vars);
 	}

@@ -14,7 +14,7 @@ this.legends_retinue_brother_lost <- this.inherit("scripts/events/event", {
 			Characters = [],
 			Options = [
 				{
-					Text = "{Not everything goes as planned. | Oh well. | The men will understand. | This won\'t stop the %companyname%. | The important thing is that we\'re moving forward.}",
+					Text = "{Not everything goes as planned. | Oh well. | The mercs will understand. | This won\'t stop the %companyname%. | The important thing is that we\'re moving forward.}",
 					function getResult( _event )
 					{
 						this.World.Retinue.removeDisabledFollowers();

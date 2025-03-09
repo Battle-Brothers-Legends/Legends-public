@@ -10,13 +10,13 @@ this.legend_cannibal_corrupts_butcher <- this.inherit("scripts/events/event", {
 		this.m.Cooldown = 30 * this.World.getTime().SecondsPerDay;
 		this.m.Screens.push({
 			ID = "A",
-			Text = "[img]gfx/ui/events/legend_cannibal_corrupts_butcher.png[/img]%cannibal% corrupts %butcher%.",
+			Text = "[img]gfx/ui/events/legend_cannibal_corrupts_butcher.png[/img]%As it turns out, the difference between a butcher of animals and a butcher of men aren\'t so different. Since %cannibal% and %butcher% have been acquainted, the two have quickly become fast friends. Perhaps too friendly even... \n You\'re interrupted in your ruminating by %butcher% themself %SPEECH_ON% Dinner\'s ready Captain. Got a new recipe.%SPEECH_OFF%, handing you a bowl, the butcher strides off towards %cannibal%. You feel a sudden lack of appetite.",
 			Image = "",
 			List = [],
 			Characters = [],
 			Options = [
 				{
-					Text = "Okay.",
+					Text = "Just in case.",
 					function getResult( _event )
 					{
 						return 0;

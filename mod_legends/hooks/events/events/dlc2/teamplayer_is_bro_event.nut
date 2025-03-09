@@ -4,7 +4,7 @@
 		create();
 		foreach (s in this.m.Screens) {
 			if (s.ID == "A") {
-				s.Text = "[img]gfx/ui/events/event_65.png[/img]{%teamplayer%, always the sort to take one for the company, seems to have singlehandedly helped the resolve of each mercenary. As one sellsword explains it.%SPEECH_ON%I dunno how to explain it.%SPEECH_OFF%As another more articulate mercenary says.%SPEECH_ON%It\'s like %they%\'s more than just a sword for hire, you know? %They%\'s someone we can depend on. Like a %sibling%. But not a whole %sibling%, obviously. More like a half%sibling%. A %sib%, if you will.%SPEECH_OFF%}";
+				s.Text = "[img]gfx/ui/events/event_65.png[/img]{%teamplayer%, always the sort to take one for the company, seems to have singlehandedly helped the resolve of each mercenary. As one sellsword explains it.%SPEECH_ON%I dunno how to explain it.%SPEECH_OFF%As another more articulate mercenary says.%SPEECH_ON%It\'s like %they_teamplayer%\'s more than just a sword for hire, you know? %They_teamplayer%\'s someone we can depend on. Like a %sibling_teamplayer%. But not a whole %sibling_teamplayer%, obviously. More like a half%sibling_teamplayer%. A %sib_teamplayer%, if you will.%SPEECH_OFF%}";
 			}
 		}
 	}
@@ -15,6 +15,6 @@
 			"teamplayer",
 			this.m.Teamplayer.getName()
 		]);
-		::Const.LegendMod.extendVarsWithPronouns(_vars, this.m.Teamplayer.getGender())
+		::Const.LegendMod.extendVarsWithPronouns(_vars, this.m.Teamplayer.getGender(), "teamplayer")
 	}
 });

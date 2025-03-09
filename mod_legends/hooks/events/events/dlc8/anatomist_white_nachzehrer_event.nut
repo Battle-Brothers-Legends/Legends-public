@@ -1,4 +1,4 @@
-::mods_hookExactClass("events/events/anatomist_white_nachzehrer_event", function(o) {
+::mods_hookExactClass("events/events/dlc8/anatomist_white_nachzehrer_event", function(o) {
 	local create = o.create;
 	o.create = function() {
 		create();
@@ -9,10 +9,10 @@
 		}
 	}
 
-	local onPrepareVariables = onPrepareVariables;
-	o.onPrepareVariables <- function ( _vars )
+	local onPrepareVariables = o.onPrepareVariables;
+	o.onPrepareVariables = function ( _vars )
 	{
 		onPrepareVariables(_vars);
-		::Const.LegendMod.extendVarsWithPronouns(_vars, this.m.Dude.getGender(), "anatomist");
+		::Const.LegendMod.extendVarsWithPronouns(_vars, this.m.Anatomist.getGender(), "anatomist");
 	}
 });

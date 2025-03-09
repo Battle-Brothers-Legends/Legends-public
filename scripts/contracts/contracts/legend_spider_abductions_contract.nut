@@ -162,7 +162,7 @@ this.legend_spider_abductions_contract <- this.inherit("scripts/contracts/contra
 						local entities = [];
 						local eggs = [];
 						local abductees = ::Math.rand(3,6);
-						this.Flags.set("NumAbductees",abductees);
+						this.Flags.set("NumAbductees", abductees);
 
 						for (local i=0; i < abductees; i++)
 						{
@@ -260,6 +260,14 @@ this.legend_spider_abductions_contract <- this.inherit("scripts/contracts/contra
 					::World.Contracts.showActiveContract();
 				}
 
+				function onActorKilled( _actor, _killer, _combatID )
+				{
+					if (_actor.getFlags().has("IsSpiderAbductee") && _actor.getFlags().get("IsSpiderAbductee"))
+					{
+						this.World.getGuestRoster().remove(_actor);
+					}
+				}
+
 			}
 
 			function onEggPlaced( _entity, _tag)
@@ -337,6 +345,13 @@ this.legend_spider_abductions_contract <- this.inherit("scripts/contracts/contra
 				}
 			}
 
+			function onActorKilled( _actor, _killer, _combatID )
+			{
+				if (_actor.getFlags().has("IsSpiderAbductee") && _actor.getFlags().get("IsSpiderAbductee"))
+				{
+					this.World.getGuestRoster().remove(_actor);
+				}
+			}
 		});
 	}
 

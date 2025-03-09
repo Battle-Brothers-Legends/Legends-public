@@ -100,12 +100,12 @@
 		}
 	}
 
-	local onPrepareVariables = onPrepareVariables;
-	o.onPrepareVariables <- function ( _vars )
+	local onPrepareVariables = o.onPrepareVariables;
+	o.onPrepareVariables = function ( _vars )
 	{
 		onPrepareVariables(_vars);
-		::Const.LegendMod.extendVarsWithPronouns(_vars, this.m.Dude.getGender(), "anatomist");
-		::Const.LegendMod.extendVarsWithPronouns(_vars, this.m.Dude.getGender(), "thief");
-		::Const.LegendMod.extendVarsWithPronouns(_vars, this.m.Dude.getGender(), "wildman");
+		::Const.LegendMod.extendVarsWithPronouns(_vars, this.m.Anatomist.getGender(), "anatomist");
+		::Const.LegendMod.extendVarsWithPronouns(_vars, this.m.Thief.getGender(), "thief");
+		::Const.LegendMod.extendVarsWithPronouns(_vars, this.m.Wildman.getGender(), "wildman");
 	}
 })

@@ -1,5 +1,6 @@
 ::mods_hookExactClass("contracts/contracts/arena_contract", function(o)
 {
+	o.m.WasInReserves <- [];
 	local create = o.create;
 	o.create = function()
 	{
@@ -289,6 +290,7 @@
 			{
 				if (bro.isInReserves())
 				{
+					this.m.WasInReserves.push(bro);
 					bro.setInReserves(false);
 				}
 				ret.push(bro);
@@ -328,6 +330,18 @@
 				""
 			])
 		}
+	}
+
+	local onClear = o.onClear;
+	o.onClear = function ()
+	{
+		foreach (bro in this.m.WasInReserves)
+		{
+			bro.setInReserves(true);
+		}
+
+		this.m.WasInReserves.clear();
+		onClear();
 	}
 
 	local onPrepareVariables = o.onPrepareVariables;
