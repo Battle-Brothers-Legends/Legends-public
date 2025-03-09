@@ -6,6 +6,7 @@ this.legend_specialist_abstract <- this.inherit("scripts/skills/skill", {
 		ApplicableWeaponTypes = [],
 		SpecialistWeaponIds = [],
 		SpecialistItemTypes = [],
+		SpecialistWeaponTypes = [],
 		ExcludedItemTypes = [],
 		ExcludedWeaponTypes = [],
 		ValidEntities = [],
@@ -89,7 +90,15 @@ this.legend_specialist_abstract <- this.inherit("scripts/skills/skill", {
 
 		foreach (type in this.m.SpecialistItemTypes)
 		{
-			if (item.getID() == id)
+			if (item.isItemType(type))
+			{
+				return true;
+			}
+		}
+
+		foreach (type in this.m.SpecialistWeaponTypes)
+		{
+			if (item.isWeaponType(type))
 			{
 				return true;
 			}
