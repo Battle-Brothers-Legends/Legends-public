@@ -67,7 +67,7 @@ this.shepherd_background <- this.inherit("scripts/skills/backgrounds/character_b
 				this.Const.Perks.AgileTree
 			],
 			Enemy = [this.Const.Perks.DirewolfTree],
-			Class = [],
+			Class = [this.Const.Perks.SlingClassTree],
 			Magic = []
 		}
 	}

@@ -63,12 +63,12 @@ this.perk_legend_specialist_bodyguard <- this.inherit("scripts/skills/skill", {
 		{
 			if (_properties.IsRiposting)
 			{
-				_properties.DamageTotalMult *= 1.0 + 0.01 * this.calculateSpecialistBonus(20, _item);
+				_properties.DamageTotalMult *= 1.0 + 0.01 * this.calculateSpecialistBonus(20, _skill.getItem());
 			}
 
 			if (_skill.isAOE() && _skill.isAttack() && !_skill.isRanged())
 			{
-				_properties.DamageTotalMult *= 1 + 0.01 * this.calculateSpecialistBonus(10, _item);
+				_properties.DamageTotalMult *= 1 + 0.01 * this.calculateSpecialistBonus(10, _skill.getItem());
 			}
 		}
 	}

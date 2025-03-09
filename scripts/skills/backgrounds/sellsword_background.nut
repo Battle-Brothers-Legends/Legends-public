@@ -69,7 +69,9 @@ this.sellsword_background <- this.inherit("scripts/skills/backgrounds/character_
 				this.Const.Perks.BarbarianTree,
 				this.Const.Perks.NoblesTree
 			],
-			Class = [],
+			Class = [
+				this.Const.Perks.LongswordClassTree
+			],
 			Magic = []
 		}
 	}

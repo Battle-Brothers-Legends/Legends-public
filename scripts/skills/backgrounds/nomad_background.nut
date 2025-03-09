@@ -110,7 +110,7 @@ this.nomad_background <- this.inherit("scripts/skills/backgrounds/character_back
 				this.Const.Perks.DirewolfTree,
 				this.Const.Perks.ArcherTree
 			],
-			Class = [],
+			Class = [this.Const.Perks.SlingClassTree],
 			Magic = []
 		}
 	}

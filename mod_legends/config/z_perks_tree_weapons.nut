@@ -708,12 +708,12 @@ if (!("Perks" in ::Const))
 		]
 	},
 	Tree = [
-		[::Legends.Perk.LegendSpecialistSlingSkill],
 		[],
+		[::Const.Perks.PerkDefs.LegendSlingerSpins],
 		[],
 		[::Legends.Perk.LegendMasterySlings],
-		[::Legends.Perk.LegendSpecialistSlingDamage],
 		[],
+		[::Const.Perks.PerkDefs.LegendBarrage],
 		[]
 	]
 };
@@ -761,10 +761,10 @@ if (!("Perks" in ::Const))
 	Tree = [
 		[],
 		[],
-		[::Legends.Perk.LegendSpecStaffSkill],
+		[],
 		[::Legends.Perk.LegendMasteryStaves],
 		[::Legends.Perk.LegendSpecStaffStun],
-		[],
+		[::Const.Perks.PerkDefs.LegendStaffBlock],
 		[::Legends.Perk.LegendPushTheAdvantage]
 	]
 };

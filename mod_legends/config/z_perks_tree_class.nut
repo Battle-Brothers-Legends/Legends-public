@@ -286,7 +286,7 @@ if (!("Perks" in ::Const))
 
 ::Const.Perks.WoodaxeClassTree <- {
 	ID = "WoodaxeClassTree",
-	Name = "Lumberjack",
+	Name = "Woodsman",
 	Descriptions = [
 		"axes"
 	],
@@ -303,7 +303,7 @@ if (!("Perks" in ::Const))
 
 ::Const.Perks.SickleClassTree <- {
 	ID = "SickleClassTree",
-	Name = "Sickle",
+	Name = "Herbalist",
 	Descriptions = [
 		"sickles"
 	],
@@ -315,6 +315,57 @@ if (!("Perks" in ::Const))
 		[::Legends.Perk.LegendGatherer],
 		[::Legends.Perk.LegendHerbcraft],
 		[::Legends.Perk.LegendPotionBrewer]
+	]
+};
+
+::Const.Perks.SlingClassTree <- {
+	ID = "SlingClassTree",
+	Name = "Sling",
+	Descriptions = [
+		"slings"
+	],
+	Tree = [
+		[::Legends.Perk.LegendSpecialistShepherd],
+		[],
+		[],
+		[],
+		[],
+		[],
+		[]
+	]
+};
+
+::Const.Perks.StaffClassTree <- {
+	ID = "SpecialistStaffTree",
+	Name = "Staff Defense",
+	Descriptions = [
+		"staves"
+	],
+	Tree = [
+		[],
+		[],
+		[::Const.Perks.PerkDefs.LegendSpecialistSelfDefense],
+		[],
+		[],
+		[],
+		[]
+	]
+};
+
+::Const.Perks.InventorClassTree <- {
+	ID = "SpecialistInventorTree",
+	Name = "Inventor",
+	Descriptions = [
+		"firearms"
+	],
+	Tree = [
+		[::Const.Perks.PerkDefs.LegendSpecialistInventor],
+		[],
+		[],
+		[],
+		[],
+		[],
+		[]
 	]
 };
 
@@ -334,6 +385,57 @@ if (!("Perks" in ::Const))
 		[::Legends.Perk.LegendLacerate]
 	]
 }
+
+::Const.Perks.LongswordClassTree <- {
+	ID = "SpecialistLongswordTree",
+	Name = "Swordsman",
+	Descriptions = [
+		"swords"
+	],
+	Tree = [
+		[::Const.Perks.PerkDefs.LegendSpecialistBodyguard],
+		[],
+		[],
+		[],
+		[],
+		[],
+		[]
+	]
+};
+
+::Const.Perks.InquisitionClassTree <- {
+	ID = "SpecialistInquisitionTree",
+	Name = "Inquisition",
+	Descriptions = [
+		"crossbows"
+	],
+	Tree = [
+		[::Const.Perks.PerkDefs.LegendSpecialistInquisition],
+		[],
+		[],
+		[],
+		[],
+		[],
+		[]
+	]
+};
+
+::Const.Perks.ClubClassTree <- {
+	ID = "SpecialistBrowbeaterTree",
+	Name = "Browbeater",
+	Descriptions = [
+		"clubs"
+	],
+	Tree = [
+		[::Const.Perks.PerkDefs.LegendSpecialistClub],
+		[],
+		[],
+		[],
+		[],
+		[],
+		[]
+	]
+};
 
 ::Const.Perks.JugglerClassTree <- {
 	ID = "JugglerClassTree",
@@ -409,6 +511,12 @@ if (!("Perks" in ::Const))
 		::Const.Perks.JugglerClassTree,
 		::Const.Perks.HoundmasterClassTree,
 		::Const.Perks.ScytheClassTree,
+		::Const.Perks.ClubClassTree,
+		::Const.Perks.InquisitionClassTree,
+		::Const.Perks.BodyguardClassTree,
+		::Const.Perks.InventorClassTree,
+		::Const.Perks.StaffClassTree,
+		::Const.Perks.SlingClassTree
 	],
 	function getRandom(_exclude)
 	{

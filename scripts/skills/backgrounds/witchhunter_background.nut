@@ -87,7 +87,8 @@ this.witchhunter_background <- this.inherit("scripts/skills/backgrounds/characte
 				this.Const.Perks.AlpTree
 			],
 			Class = [
-				this.Const.Perks.FaithClassTree
+				this.Const.Perks.FaithClassTree,
+				this.Const.Perks.InquisitionClassTree
 			],
 			Magic = []
 		}

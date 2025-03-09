@@ -50,6 +50,6 @@ this.perk_legend_specialist_shepherd <- this.inherit("scripts/skills/skill", {
 	{
 		this.legend_specialist_abstract.onAnySkillUsed(_skill, _targetEntity, _properties)
 		if (onAnySkillUsedSpecialistChecks(_skill))
-			_properties.DamageArmorMult += 0.01 * this.calculateSpecialistBonus(25, specialistWeapon);
+			_properties.DamageArmorMult += 0.01 * this.calculateSpecialistBonus(25, _skill.getItem());
 	}
 });

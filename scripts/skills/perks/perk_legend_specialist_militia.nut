@@ -51,4 +51,13 @@ this.perk_legend_specialist_militia <- this.inherit("scripts/skills/skill", {
 		}
 		return tooltip;
 	}
+
+	function onAnySkillUsed( _skill, _targetEntity, _properties )
+	{
+		this.legend_specialist_abstract.onAnySkillUsed(_skill, _targetEntity, _properties)
+		if (onAnySkillUsedSpecialistChecks(_skill) && )
+		{
+			_properties.MeleeDefense += this.calculateSpecialistBonus(6, _skill.getItem());
+		}
+	}
 });

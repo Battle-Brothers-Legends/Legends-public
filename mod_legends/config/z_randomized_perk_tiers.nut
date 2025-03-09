@@ -707,65 +707,76 @@
 ::Const.GetWeaponClassTree <- function ( _item ) {
 
     switch(true) {
-			//Shovel
-				case _item.getID() == "weapon.legend_shovel" || _item.getID() == "weapon.legend_named_shovel":
-					return this.Const.Perks.ShovelClassTree;
+    //Shovel
+        case _item.getID() == "weapon.legend_shovel" || _item.getID() == "weapon.legend_named_shovel":
+            return this.Const.Perks.ShovelClassTree;
 
-			//Sickle
-				case _item.getID() == "weapon.sickle" || _item.getID() == "weapon.goblin_notched_blade" || _item.getID() == "weapon.legend_named_sickle":
-					return this.Const.Perks.SickleClassTree;
+    //Sickle
+        case _item.getID() == "weapon.sickle" || _item.getID() == "weapon.goblin_notched_blade" || _item.getID() == "weapon.legend_named_sickle":
+            return this.Const.Perks.SickleClassTree;
 
-			//Wood Axe
-				case _item.getID() == "weapon.woodcutters_axe" || _item.getID() == "weapon.legend_saw":
-					return this.Const.Perks.WoodaxeClassTree;
+    //Wood Axe
+        case _item.getID() == "weapon.woodcutters_axe" || _item.getID() == "weapon.legend_saw":
+            return this.Const.Perks.WoodaxeClassTree;
 
-			//Blacksmith
-				case _item.getID() == "weapon.legend_hammer" || _item.getID() == "weapon.legend_named_blacksmith_hammer":
-					return this.Const.Perks.HammerClassTree;
+    //Blacksmith
+        case _item.getID() == "weapon.legend_hammer" || _item.getID() == "weapon.legend_named_blacksmith_hammer":
+            return this.Const.Perks.HammerClassTree;
 
-			//Pickaxe
-				case _item.getID() == "weapon.pickaxe":
-					return this.Const.Perks.PickaxeClassTree;
+    //Pickaxe
+        case _item.getID() == "weapon.pickaxe" || _item.getID() == "weapon.heavy_mining_pick":
+            return this.Const.Perks.PickaxeClassTree;
 
-			//Butcher
-				case _item.getID() == "weapon.butchers_cleaver" || _item.getID() == "weapon.legend_named_butchers_cleaver":
-					return this.Const.Perks.ButcherClassTree;
+    //Butcher
+        case _item.getID() == "weapon.butchers_cleaver" || _item.getID() == "weapon.legend_named_butchers_cleaver":
+            return this.Const.Perks.ButcherClassTree;
 
-			//Ninetails
-				case _item.getID() == "weapon.legend_cat_o_nine_tails":
-					return this.Const.Perks.NinetailsClassTree;
+    //Ninetails
+        case _item.getID() == "weapon.legend_cat_o_nine_tails":
+            return this.Const.Perks.NinetailsClassTree;
 
-			//Knife
-				case _item.getID() == "weapon.knife" || _item.getID() == "weapon.legend_shiv":
-					return this.Const.Perks.KnifeClassTree;
+    //Knife
+        case _item.getID() == "weapon.knife" || _item.getID() == "weapon.legend_shiv":
+            return this.Const.Perks.KnifeClassTree;
 
-			//Scythe
-				case _item.getID() == "weapon.legend_grisly_scythe" || _item.getID() == "weapon.legend_scythe" || _item.getID() == "weapon.warscythe" || _item.getID() == "weapon.named_warscythe":
-					return this.Const.Perks.ScytheClassTree;
+    //Inventor
+        case _item.isWeaponType(this.Const.Items.WeaponType.Firearm):
+            return this.Const.Perks.InventorClassTree;
 
-			//Pitchfork
-				case _item.isItemType(this.Const.Items.ItemType.Pitchfork):
-					return this.Const.Perks.PitchforkClassTree;
+    //Bodyguard
+        case _item.getID() == "weapon.legend_longsword" || _item.getID() == "weapon.longsword":
+            return this.Const.Perks.BodyguardClassTree;
 
-			//Musical
-				case _item.isWeaponType(this.Const.Items.WeaponType.Musical):
-					return this.Const.Perks.BardClassTree;
+    //Slings
+        case _item.getID() == "weapon.legend_sling":
+            return this.Const.Perks.SlingClassTree;
 
-			//Shortbow
-				case _item.isItemType(this.Const.Items.ItemType.Shortbow):
-					return this.Const.Perks.ShortbowClassTree;
+    //Staves
+        case _item.getID() == "weapon.legend_staff":
+            return this.Const.Perks.StaffClassTree;
 
-			//Net
-				case _item.isItemType(this.Const.Items.ItemType.Net):
-					return this.Const.Perks.BeastClassTree;
+    //Inquisition
+        case _item.getID() == "weapon.legend_wooden_stake":
+            return this.Const.Perks.InquisitionClassTree;
 
-			//Militia
-				case _item.getID() == "weapon.militia_spear" || _item.getID() == "weapon.legend_wooden_spear" || _item.getID() == "weapon.ancient_spear":
-					return this.Const.Perks.MilitiaClassTree;
-		}
+    //Club
+        case _item.getID() == "weapon.wooden_stick":
+            return this.Const.Perks.ClubClassTree;
 
-		return null;
+    //Pitchfork
+        case _item.isItemType(this.Const.Items.ItemType.Pitchfork):
+            return this.Const.Perks.PitchforkClassTree;
 
+    //Shortbow
+        case _item.isItemType(this.Const.Items.ItemType.Shortbow):
+            return this.Const.Perks.ShortbowClassTree;
+
+    //Militia
+        case _item.getID() == "weapon.militia_spear" || _item.getID() == "weapon.legend_wooden_spear" || _item.getID() == "weapon.ancient_spear":
+            return this.Const.Perks.MilitiaClassTree;
+    }
+
+    return null;
 }
 
 // Greatswords are special in that they're the only 2-Handed weapon that also isn't it's own weapon type (I guess like contrary to Staves, but Staves have no 1-Handed equivalent)

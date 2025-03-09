@@ -56,6 +56,6 @@ this.perk_legend_specialist_poacher <- this.inherit("scripts/skills/skill", {
 	{
 		this.legend_specialist_abstract.onAnySkillUsed(_skill, _targetEntity, _properties)
 		if (onAnySkillUsedSpecialistChecks(_skill))
-			_properties.DamageDirectAdd += 0.01 * this.calculateSpecialistBonus(25, specialistWeapon);
+			_properties.DamageDirectAdd += 0.01 * this.calculateSpecialistBonus(25, _skill.getItem());
 	}
 });

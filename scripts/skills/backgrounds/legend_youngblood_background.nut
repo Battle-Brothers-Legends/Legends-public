@@ -98,7 +98,8 @@ this.legend_youngblood_background <- this.inherit("scripts/skills/backgrounds/ch
 			],
 			Class = [
 				this.Const.Perks.FaithClassTree,
-				this.Const.Perks.ChefClassTree
+				this.Const.Perks.ChefClassTree,
+				this.Const.Perks.InquisitionClassTree
 			],
 			Magic = []
 		}
