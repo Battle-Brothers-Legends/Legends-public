@@ -38,13 +38,13 @@
 							this.Flags.set("IsShadyDeal", true);
 						}
 					}
-					if (this.m.Envoy != null)
+					if (this.Contract.m.Envoy != null)
 					{
 						local envoy = this.World.getGuestRoster().create("scripts/entity/tactical/humans/envoy");
 						envoy.setName(this.Flags.get("EnvoyName"));
 						envoy.setTitle(this.Flags.get("EnvoyTitle"));
 						envoy.setFaction(1);
-						this.m.Envoy = envoy;
+						this.Contract.m.Envoy = ::WeakTableRef(envoy);
 						this.Flags.set("EnvoyID", envoy.getID());
 					}
 					this.Contract.setScreen("Overview");
