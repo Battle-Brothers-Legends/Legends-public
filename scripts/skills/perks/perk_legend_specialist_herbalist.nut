@@ -1,4 +1,4 @@
-this.perk_legend_specialist_herbalist <- this.inherit("scripts/skills/skill", {
+this.perk_legend_specialist_herbalist <- this.inherit("scripts/skills/legend_specialist_abstract", {
 	m = {
 		SpecialistWeaponIds = [
 			"weapon.sickle",

@@ -1,4 +1,4 @@
-this.perk_legend_specialist_butcher <- this.inherit("scripts/skills/skill", {
+this.perk_legend_specialist_butcher <- this.inherit("scripts/skills/legend_specialist_abstract", {
 	m = {
 		SoundsA = [
 			"sounds/combat/cleave_hit_hitpoints_01.wav",

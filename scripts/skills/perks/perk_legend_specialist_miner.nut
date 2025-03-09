@@ -1,4 +1,4 @@
-this.perk_legend_specialist_miner <- this.inherit("scripts/skills/skill", {
+this.perk_legend_specialist_miner <- this.inherit("scripts/skills/legend_specialist_abstract", {
 	m = {
 		SpecialistWeaponIds = [
 			"weapon.pickaxe",
