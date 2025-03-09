@@ -1,7 +1,7 @@
 ::mods_hookExactClass("skills/actives/sling_stone_skill", function(o)
 {
-	o.m.AdditionalAccuracy = -10;
-	o.m.AdditionalHitChance = -6;
+	q.m.AdditionalAccuracy = -10;
+	q.m.AdditionalHitChance = -6;
 
 	local create = o.create;
 	o.create = function ()
@@ -13,8 +13,7 @@
 
 	o.getTooltip = function ()
 	{
-		local tooltip = this.getRangedTooltip(this.getDefaultTooltip());
-		local fatPerHit = (this.getContainer().getActor().getCurrentProperties().FatigueDealtPerHitMult + 2) * this.Const.Combat.FatigueReceivedPerHit;
+		local ret = this.getRangedTooltip(this.getDefaultTooltip());
 
 		if (!this.getContainer().getActor().getSkills().hasSkill("perk.legend_barrage"))
 		{
@@ -47,17 +46,9 @@
 				text = "Ignores the bonus to Defense granted by shields"
 			}]);
 		}
-
-		tooltip.push({
-			id = 6,
-			type = "text",
-			icon = "ui/icons/special.png",
-			text = "Inflicts [color=" + this.Const.UI.Color.DamageValue + "]" + fatPerHit + "[/color] extra fatigue"
-		});
-
 		if (this.Tactical.isActive() && this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions()))
 		{
-			tooltip.push({
+			ret.push({
 				id = 9,
 				type = "text",
 				icon = "ui/tooltips/warning.png",
@@ -65,7 +56,7 @@
 			});
 		}
 
-		return tooltip;
+		return ret;
 	}
 
 	o.onAfterUpdate = function ( _properties )
@@ -95,15 +86,59 @@
 		{
 			local targetTile = _targetEntity.getTile();
 			local user = this.getContainer().getActor();
+			local isApplied = _bodyPart == this.Const.BodyPart.Head ? true : this.Math.rand(1, 100) <= 33;
+			local effect = !_targetEntity.getCurrentProperties().IsImmuneToDaze ? this.new("scripts/skills/effects/dazed_effect") : this.new("scripts/skills/effects/staggered_effect");
+			local effectName = !_targetEntity.getCurrentProperties().IsImmuneToDaze ? "dazed" : "staggered";
 
-			if (_bodyPart == this.Const.BodyPart.Head && !_targetEntity.getCurrentProperties().IsImmuneToDaze)
+			if (user.getSkills().hasSkill("perk.legend_barrage") && isApplied)
 			{
-				::Legends.Effects.grant(_targetEntity, ::Legends.Effect.Dazed);
+				local targetStatus = _targetEntity.getSkills();
+				local effectCounter = 0;
 
-				if (!user.isHiddenToPlayer() && targetTile.IsVisibleForPlayer)
+				switch (true)
 				{
-					this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(user) + " struck a hit that leaves " + this.Const.UI.getColorizedEntityName(_targetEntity) + " dazed");
+					case targetStatus.hasSkill("effects.dazed"):
+						effectCounter += 1;
+					case targetStatus.hasSkill("effects.legend_baffled"):
+						effectCounter += 1;	
+					case targetStatus.hasSkill("effects.debilitated"):
+						effectCounter += 1;
+					case targetStatus.hasSkill("effects.staggered"):			
+						effectCounter += 1;
 				}
+				if (effectCounter >= 3 && !_targetEntity.getCurrentProperties().IsImmuneToStun)
+				{
+					_targetEntity.getSkills().add(this.new("scripts/skills/effects/stunned_effect"));
+					if (!user.isHiddenToPlayer() && targetTile.IsVisibleForPlayer)
+						this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(user) + " struck a hit that leaves the already reeling " + this.Const.UI.getColorizedEntityName(_targetEntity) + " stunned");
+					return;
+				}
+				else
+				{
+					local rand = this.Math.rand(1, 100);
+					switch (true)
+					{
+						case rand <= 25:
+							effect = this.new("scripts/skills/effects/dazed_effect");
+							effectName = "dazed"
+						case rand <= 50:
+							effect = this.new("scripts/skills/effects/staggered_effect");
+							effectName = "staggered"
+						case rand <= 75:
+							effect = this.new("scripts/skills/effects/debilitated_effect");
+							effectName = "debilitated"
+						case rand <= 100:
+							effect = this.new("scripts/skills/effects/legend_baffled_effect");
+							effectName = "baffled"
+					}
+				}
+			}
+
+			_targetEntity.getSkills().add(effect);
+
+			if (!user.isHiddenToPlayer() && targetTile.IsVisibleForPlayer)
+			{
+				this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(user) + " struck a hit that leaves " + this.Const.UI.getColorizedEntityName(_targetEntity) + " " + effectName);
 			}
 		}
 	}
