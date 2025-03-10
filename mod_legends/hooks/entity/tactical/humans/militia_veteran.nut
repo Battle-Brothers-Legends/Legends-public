@@ -17,7 +17,6 @@
 			::Legends.Perks.grant(this, ::Legends.Perk.ReachAdvantage);
 			::Legends.Perks.grant(this, ::Legends.Perk.CoupDeGrace);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecialistShieldSkill);
-			::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecialistShieldPush);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendSmashingShields);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendBackToBasics);
 			::Legends.Perks.grant(this, ::Legends.Perk.ShieldBash);

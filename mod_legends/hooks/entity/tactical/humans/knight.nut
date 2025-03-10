@@ -13,7 +13,6 @@
 			::Legends.Perks.grant(this, ::Legends.Perk.SteelBrow);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendFeint);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecialistShieldSkill);
-			::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecialistShieldPush);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendSmashingShields);
 			::Legends.Perks.grant(this, ::Legends.Perk.ShieldBash);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendFullForce);

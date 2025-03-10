@@ -46,7 +46,6 @@ this.legend_noble_man_at_arms <- this.inherit("scripts/entity/tactical/human", {
 		::Legends.Perks.grant(this, ::Legends.Perk.Stalwart);
 		::Legends.Perks.grant(this, ::Legends.Perk.BagsAndBelts);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecialistShieldSkill);
-		::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecialistShieldPush);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendSmashingShields);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendBackToBasics);
 		::Legends.Perks.grant(this, ::Legends.Perk.ShieldBash);
