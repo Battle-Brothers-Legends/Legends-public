@@ -48,7 +48,8 @@ this.brawler_background <- this.inherit("scripts/skills/backgrounds/character_ba
 			Weapon = [
 				this.Const.Perks.DaggerTree,
 				this.Const.Perks.MaceTree,
-				this.Const.Perks.ThrowingTree
+				this.Const.Perks.ThrowingTree,
+				this.Const.Perks.FistsTree
 			],
 			Defense = [
 				this.Const.Perks.LightArmorTree
@@ -60,9 +61,7 @@ this.brawler_background <- this.inherit("scripts/skills/backgrounds/character_ba
 				this.Const.Perks.IndestructibleTree
 			],
 			Enemy = [],
-			Class = [
-				this.Const.Perks.FistsClassTree
-			],
+			Class = [],
 			Magic = []
 		}
 	}

@@ -93,7 +93,8 @@ this.wildman_background <- this.inherit("scripts/skills/backgrounds/character_ba
 			Weapon = [
 				this.Const.Perks.MaceTree,
 				this.Const.Perks.AxeTree,
-				this.Const.Perks.ThrowingTree
+				this.Const.Perks.ThrowingTree,
+				this.Const.Perks.FistsTree
 			],
 			Defense = [
 				this.Const.Perks.LightArmorTree
@@ -109,7 +110,6 @@ this.wildman_background <- this.inherit("scripts/skills/backgrounds/character_ba
 				this.Const.Perks.GoblinTree
 			],
 			Class = [
-				this.Const.Perks.FistsClassTree,
 				this.Const.Perks.ClubClassTree
 			],
 			Magic = []

@@ -12,7 +12,8 @@ this.legend_gladiator_prizefighter_background <- this.inherit("scripts/skills/ba
 				this.Const.Perks.SwordTree,
 				this.Const.Perks.MaceTree,
 				this.Const.Perks.DaggerTree,
-				this.Const.Perks.ThrowingTree
+				this.Const.Perks.ThrowingTree,
+				this.Const.Perks.FistsTree
 			],
 			Defense = [
 				this.Const.Perks.LightArmorTree,
@@ -28,8 +29,7 @@ this.legend_gladiator_prizefighter_background <- this.inherit("scripts/skills/ba
 			],
 			Enemy = [],
 			Class = [
-				this.Const.Perks.BeastClassTree,
-				this.Const.Perks.FistsClassTree
+				this.Const.Perks.BeastClassTree
 			],
 			Magic = []
 		}

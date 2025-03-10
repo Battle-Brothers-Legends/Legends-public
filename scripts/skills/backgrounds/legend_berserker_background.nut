@@ -94,7 +94,8 @@ this.legend_berserker_background <- this.inherit("scripts/skills/backgrounds/cha
 			Weapon = [
 				this.Const.Perks.MaceTree,
 				this.Const.Perks.AxeTree,
-				this.Const.Perks.ThrowingTree
+				this.Const.Perks.ThrowingTree,
+				this.Const.Perks.FistsTree
 			],
 			Defense = [
 				this.Const.Perks.LightArmorTree
@@ -109,9 +110,7 @@ this.legend_berserker_background <- this.inherit("scripts/skills/backgrounds/cha
 				this.Const.Perks.OrcTree,
 				this.Const.Perks.GoblinTree
 			],
-			Class = [
-				this.Const.Perks.FistsClassTree
-			], //this.Const.Perks.FistsClassTree
+			Class = []
 			Magic = [
 				this.Const.Perks.BerserkerMagicTree
 			]

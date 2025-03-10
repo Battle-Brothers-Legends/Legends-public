@@ -86,7 +86,8 @@ this.slave_background <- this.inherit("scripts/skills/backgrounds/character_back
 				this.Const.Perks.CleaverTree,
 				this.Const.Perks.FlailTree,
 				this.Const.Perks.SpearTree,
-				this.Const.Perks.SlingTree
+				this.Const.Perks.SlingTree,
+				this.Const.Perks.FistsTree
 			],
 			Defense = [
 				this.Const.Perks.LightArmorTree,
@@ -99,7 +100,7 @@ this.slave_background <- this.inherit("scripts/skills/backgrounds/character_back
 				this.Const.Perks.IndestructibleTree
 			],
 			Enemy = [this.Const.Perks.SouthernersTree],
-			Class = [this.Const.Perks.FistsClassTree], //this.Const.Perks.FistsClassTree
+			Class = []
 			Magic = []
 		}
 	}

@@ -80,7 +80,7 @@ this.refugee_background <- this.inherit("scripts/skills/backgrounds/character_ba
 			Enemy = [],
 			Class = [
 				this.Const.Perks.StaffClassTree
-			], //this.Const.Perks.FistsClassTree
+			],
 			Magic = []
 		}
 	}

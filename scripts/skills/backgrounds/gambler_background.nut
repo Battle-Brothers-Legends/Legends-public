@@ -68,7 +68,7 @@ this.gambler_background <- this.inherit("scripts/skills/backgrounds/character_ba
 				this.Const.Perks.FastTree
 			],
 			Enemy = [],
-			Class = [], //this.Const.Perks.FistsClassTree
+			Class = []
 			Magic = []
 		}
 	}

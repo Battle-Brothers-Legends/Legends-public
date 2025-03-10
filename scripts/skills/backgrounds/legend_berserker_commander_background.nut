@@ -88,94 +88,69 @@ this.legend_berserker_commander_background <- this.inherit("scripts/skills/backg
 			0.0, //desert
 			0.0 //oasis
 		];
+		this.m.PerkTreeDynamic = {
+			Weapon = [
+				this.Const.Perks.MaceTree,
+				this.Const.Perks.FlailTree,
+				this.Const.Perks.HammerTree,
+				this.Const.Perks.AxeTree,
+				this.Const.Perks.CleaverTree,
+				this.Const.Perks.SwordTree,
+				this.Const.Perks.ThrowingTree,
+				this.Const.Perks.TwoHandedTree,
+				this.Const.Perks.FistsTree
+			],
+			Defense = [
+				this.Const.Perks.LightArmorTree,
+				this.Const.Perks.HeavyArmorTree
+			],
+			Traits = [
+				this.Const.Perks.SturdyTree,
+				this.Const.Perks.IndestructibleTree,
+				this.Const.Perks.ViciousTree
+				this.Const.Perks.LargeTree,
+				this.Const.Perks.MartyrTree,
+				this.Const.Perks.AgileTree,
+				this.Const.Perks.FitTree
+			],
+			Enemy = [
+				this.Const.Perks.OrcsTree,
+				this.Const.Perks.DirewolfTree
+			],
+			Class = [],
+			Magic = [
+				this.Const.Perks.BerserkerMagicTree
+			]
+		};
 		this.m.CustomPerkTree = [
 			[
-				this.Const.Perks.PerkDefs.CripplingStrikes,
-				this.Const.Perks.PerkDefs.Colossus,
-				this.Const.Perks.PerkDefs.Adrenaline,
-				this.Const.Perks.PerkDefs.NineLives,
-				this.Const.Perks.PerkDefs.Pathfinder,
 				this.Const.Perks.PerkDefs.Steadfast,
-				this.Const.Perks.PerkDefs.Recover,
 				this.Const.Perks.PerkDefs.BagsAndBelts,
-				this.Const.Perks.PerkDefs.LegendBloodyHarvest,
-				this.Const.Perks.PerkDefs.LegendBackToBasics,
 				this.Const.Perks.PerkDefs.LegendAlert
 			],
 			[
-				this.Const.Perks.PerkDefs.DevastatingStrikes,
 				this.Const.Perks.PerkDefs.CoupDeGrace,
-				this.Const.Perks.PerkDefs.LegendChoke,
-				this.Const.Perks.PerkDefs.LegendSmackdown,
-				this.Const.Perks.PerkDefs.Dodge,
-				this.Const.Perks.PerkDefs.HoldOut,
-				// this.Const.Perks.PerkDefs.LegendComposure,
-				this.Const.Perks.PerkDefs.SteelBrow,
-				this.Const.Perks.PerkDefs.QuickHands
 			],
 			[
-				this.Const.Perks.PerkDefs.LegendGrapple,
-				this.Const.Perks.PerkDefs.LegendFavouredEnemyGoblin,
-				this.Const.Perks.PerkDefs.LegendFavouredEnemyDirewolf,
 				this.Const.Perks.PerkDefs.Rotation,
-				this.Const.Perks.PerkDefs.Brawny,
 				this.Const.Perks.PerkDefs.Anticipation,
-				this.Const.Perks.PerkDefs.Taunt,
-				this.Const.Perks.PerkDefs.LegendFeint,
-				this.Const.Perks.PerkDefs.LegendDebilitate,
-				this.Const.Perks.PerkDefs.LegendOnslaught,
 				this.Const.Perks.PerkDefs.LegendTrueBeliever,
-				this.Const.Perks.PerkDefs.LegendAthlete,
-				this.Const.Perks.PerkDefs.LegendSecondWind,
 
 			],
+			[],
 			[
-				this.Const.Perks.PerkDefs.SpecMace,
-				this.Const.Perks.PerkDefs.SpecFlail,
-				this.Const.Perks.PerkDefs.SpecHammer,
-				this.Const.Perks.PerkDefs.SpecAxe,
-				this.Const.Perks.PerkDefs.SpecCleaver,
-				this.Const.Perks.PerkDefs.SpecSword,
-				this.Const.Perks.PerkDefs.LegendSpecUnarmed,
-				this.Const.Perks.PerkDefs.SpecThrowing
-			],
-			[
-				this.Const.Perks.PerkDefs.ReachAdvantage,
-				this.Const.Perks.PerkDefs.Overwhelm,
 				this.Const.Perks.PerkDefs.LegendDoubleStrike,
-				this.Const.Perks.PerkDefs.LoneWolf,
-				this.Const.Perks.PerkDefs.Footwork,
-				this.Const.Perks.PerkDefs.LegendSlaughterer,
-				this.Const.Perks.PerkDefs.LegendVengeance,
 				this.Const.Perks.PerkDefs.LegendBattleheart,
-				this.Const.Perks.PerkDefs.LegendAmbidextrous,
-				this.Const.Perks.PerkDefs.LegendFavouredEnemyOrk,
-				this.Const.Perks.PerkDefs.LegendFavouredEnemyGoblin,
-				this.Const.Perks.PerkDefs.LegendFavouredEnemyUnhold,
-
+				this.Const.Perks.PerkDefs.LegendTwirl,
+				this.Const.Perks.PerkDefs.LegendLionheart
 			],
 			[
-				this.Const.Perks.PerkDefs.Berserk,
 				this.Const.Perks.PerkDefs.LegendLacerate,
-				this.Const.Perks.PerkDefs.LegendMuscularity,
-				this.Const.Perks.PerkDefs.Nimble,
-				this.Const.Perks.PerkDefs.LegendRebound,
-				this.Const.Perks.PerkDefs.LegendLastStand,
-				this.Const.Perks.PerkDefs.LegendMuscularity,
 				this.Const.Perks.PerkDefs.LegendForwardPush
 			],
 			[
-				this.Const.Perks.PerkDefs.LegendBerserkerRage,
 				this.Const.Perks.PerkDefs.LegendBigGameHunter,
-				this.Const.Perks.PerkDefs.LegendUberNimble,
-				this.Const.Perks.PerkDefs.Fearsome,
-				this.Const.Perks.PerkDefs.Duelist,
 				this.Const.Perks.PerkDefs.LegendTumble,
-				this.Const.Perks.PerkDefs.KillingFrenzy,
-				this.Const.Perks.PerkDefs.BattleFlow,
-				this.Const.Perks.PerkDefs.LegendUnarmedTraining,
-				this.Const.Perks.PerkDefs.LegendBloodbath,
-				this.Const.Perks.PerkDefs.LegendFreedomOfMovement,
 			]
 		];
 	}

@@ -57,7 +57,8 @@ this.cripple_background <- this.inherit("scripts/skills/backgrounds/character_ba
 			Weapon = [
 				this.Const.Perks.DaggerTree,
 				this.Const.Perks.SlingTree,
-				this.Const.Perks.StaffTree
+				this.Const.Perks.StaffTree,
+				this.Const.Perks.FistsTree
 			],
 			Defense = [
 				this.Const.Perks.ClothArmorTree
@@ -71,9 +72,7 @@ this.cripple_background <- this.inherit("scripts/skills/backgrounds/character_ba
 			Enemy = [
 				this.Const.Perks.NoblesTree
 			],
-			Class = [
-				this.Const.Perks.FistsClassTree
-			],
+			Class = [],
 			Magic = []
 		}
 	}

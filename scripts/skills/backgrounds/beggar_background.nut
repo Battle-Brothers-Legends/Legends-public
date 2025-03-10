@@ -58,7 +58,8 @@ this.beggar_background <- this.inherit("scripts/skills/backgrounds/character_bac
 			Weapon = [
 				this.Const.Perks.DaggerTree,
 				this.Const.Perks.SlingTree,
-				this.Const.Perks.StaffTree
+				this.Const.Perks.StaffTree,
+				this.Const.Perks.FistsTree
 			],
 			Defense = [
 				this.Const.Perks.ClothArmorTree
@@ -70,9 +71,7 @@ this.beggar_background <- this.inherit("scripts/skills/backgrounds/character_bac
 				this.Const.Perks.CalmTree
 			],
 			Enemy = [],
-			Class = [
-				this.Const.Perks.FistsClassTree
-			],
+			Class = [],
 			Magic = []
 		}
 	}
