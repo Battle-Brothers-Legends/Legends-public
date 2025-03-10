@@ -19,9 +19,10 @@ this.legends_crusader_scenario <- this.inherit("scripts/scenarios/world/starting
 		local bro;
 		bro = roster.create("scripts/entity/tactical/player");
 		bro.setStartValuesEx([
-			"legend_crusader_commander_background"
+			"legend_crusader_background"
 		]); //skills on start
 		::Legends.Traits.grant(bro, ::Legends.Trait.Player);
+		::Legends.Traits.remove(bro, ::Legends.Trait.Loyal);
 		this.addScenarioPerk(bro.getBackground(), this.Const.Perks.PerkDefs.FortifiedMind);
 		this.addScenarioPerk(bro.getBackground(), this.Const.Perks.PerkDefs.LegendRebound);
 		this.addScenarioPerk(bro.getBackground(), this.Const.Perks.PerkDefs.LegendFavouredEnemyZombie);

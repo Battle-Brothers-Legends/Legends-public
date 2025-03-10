@@ -22,6 +22,7 @@
 						_event.m.Dude.setStartValuesEx([
 							"legend_crusader_background"
 						]);
+						_event.m.Dude.getBaseProperties().DailyWage = 45;
 						_event.m.Dude.getBackground().m.RawDescription = "With nowhere else to go, %name% resorted to seeking you out after the destruction of the monastery. With their home gone, the future from %them% and the order looks bleaker still.";
 						_event.m.Dude.getBackground().buildDescription(true);
 					}
@@ -42,13 +43,13 @@
 		if (this.World.getPlayerRoster().getSize() >= this.World.Assets.getBrothersMax())
 			return;
 
-		local roster = this.World.getPlayerRoster().getAll();
-		foreach( bro in roster) {
-			if (bro.getBackground().getID() == "background.legend_commander_crusader")
-				return;
-
-			if (bro.getBackground().getID() == "background.legend_crusader")
-				return;
+		if (this.World.Assets.getOrigin().getID() != "scenario.legends_crusader")
+		{
+			local roster = this.World.getPlayerRoster().getAll();
+			foreach( bro in roster) {
+				if (bro.getBackground().getID() == "background.legend_crusader")
+					return;
+			}
 		}
 		this.m.Score = 10;
 	}
