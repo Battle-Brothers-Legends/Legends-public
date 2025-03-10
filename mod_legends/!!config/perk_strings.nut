@@ -73,7 +73,7 @@
 ::Const.Strings.PerkName.LegendFieldTreats <- "Field Treats";
 ::Const.Strings.PerkName.LegendSmashingShields <- "Smashing Shields";
 ::Const.Strings.PerkName.LegendSmackdown <- "Smackdown";
-::Const.Strings.PerkName.LegendBoneBreaker <- "Smackdown";
+::Const.Strings.PerkName.LegendBoneBreaker <- "Bone Breaker";
 ::Const.Strings.PerkName.LegendClarity <- "Clarity";
 ::Const.Strings.PerkName.LegendAlert <- "Alert";
 ::Const.Strings.PerkName.LegendBloodbath <- "Bloodbath";

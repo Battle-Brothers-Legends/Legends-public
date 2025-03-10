@@ -4,7 +4,7 @@ this.legend_launch_smoke_bomb_skill <- this.inherit("scripts/skills/skill", {
 		},
 	function create()
 	{
-		::Legends.Actives.onCreate(this, ::Legends.Active.LegendSmokeBomb);
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendLaunchSmokeBomb);
 		this.m.Description = "Ignite and launch, using your slingstaff, a pot filled with substances that upon impact will quickly create a dense cloud.";
 		this.m.SoundOnUse = [
 			"sounds/combat/dlc4/sling_use_01.wav",
