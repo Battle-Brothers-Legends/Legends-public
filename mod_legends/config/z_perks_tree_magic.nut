@@ -208,7 +208,7 @@ if (!("Perks" in ::Const))
 		"berserking"
 	],
 	Tree = [
-		[::Legends.Perk.Colossus],
+		[::Legends.Perk.Colossus, ::Legends.Perk.Adrenaline],
 		[::Legends.Perk.DevastatingStrikes],
 		[::Legends.Perk.Brawny],
 		[],

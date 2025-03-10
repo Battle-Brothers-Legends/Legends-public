@@ -2858,6 +2858,17 @@ perkDefObjects.push({
 	Const = "LegendSmackdown"
 });
 
+::Legends.Perk.LegendBoneBreaker <- null;
+perkDefObjects.push({
+	ID = "perk.legend_bone_breaker",
+	Script = "scripts/skills/perks/perk_legend_bone_breaker",
+	Name = ::Const.Strings.PerkName.LegendBoneBreaker,
+	Tooltip = ::Const.Strings.PerkDescription.LegendBoneBreaker,
+	Icon = "ui/perks/bone_breaker.png",
+	IconDisabled = "ui/perks/bone_breaker_bw.png",
+	Const = "LegendBoneBreaker"
+});
+
 ::Legends.Perk.LegendFeint <- null;
 perkDefObjects.push({
 	ID = "perk.legend_feint",

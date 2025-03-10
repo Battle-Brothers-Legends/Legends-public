@@ -95,7 +95,7 @@ this.perk_legend_adaptive <- this.inherit("scripts/skills/skill", {
 		if (actor.getItems().getItemAtSlot(this.Const.ItemSlot.Mainhand) == null && actor.getItems().getItemAtSlot(this.Const.ItemSlot.Offhand) == null)
 		{
 			// Attempt to give Unarmed if no weapons are equipped
-			newTree = this.getOnlyNonExistingTrees(this.Const.Perks.FistsClassTree);
+			newTree = this.getOnlyNonExistingTrees(this.Const.Perks.FistsTree);
 			if (newTree != null && newTree.len() > 0)
 				return newTree;
 		}

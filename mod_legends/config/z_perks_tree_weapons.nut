@@ -153,7 +153,7 @@ if (!("Perks" in ::Const))
 		[::Legends.Perk.LegendSmackdown],
 		[::Legends.Perk.SpecHammer],
 		[],
-		[],
+		[::Legends.Perk.LegendBoneBreaker],
 		[]
 	]
 };
@@ -404,10 +404,10 @@ if (!("Perks" in ::Const))
 	},
 	Tree = [
 		[],
-		[::Legends.Perk.Backstabber],
+		[],
 		[],
 		[::Legends.Perk.SpecDagger],
-		[::Legends.Perk.LegendDoubleStrike],
+		[::Legends.Perk.LegendDoubleStrike, ::Legends.Perk.Backstabber],
 		[],
 		[]
 	]
@@ -820,8 +820,60 @@ if (!("Perks" in ::Const))
 	]
 };
 
+::Const.Perks.FistsTree <- {
+	ID = "FistsTree",
+	Name = "Unarmed",
+	Descriptions = [
+		"unarmed combat"
+	],
+	Attributes = {
+		Hitpoints = [
+			0,
+			0
+		],
+		Bravery = [
+			0,
+			0
+		],
+		Stamina = [
+			0,
+			0
+		],
+		MeleeSkill = [
+			0,
+			0
+		],
+		RangedSkill = [
+			0,
+			0
+		],
+		MeleeDefense = [
+			0,
+			0
+		],
+		RangedDefense = [
+			0,
+			0
+		],
+		Initiative = [
+			0,
+			0
+		]
+	},
+	Tree = [
+		[::Legends.Perk.LegendAmbidextrous],
+		[::Legends.Perk.LegendChoke],
+		[::Legends.Perk.LegendGrapple],
+		[::Legends.Perk.LegendSpecUnarmed],
+		[],
+		[::Legends.Perk.LegendUnarmedTraining],
+		[]
+	]
+};
+
 ::Const.Perks.WeaponTrees <- {
 	Tree = [
+		::Const.Perks.FistsTree,
 		::Const.Perks.MaceTree,
 		::Const.Perks.FlailTree,
 		::Const.Perks.HammerTree,
@@ -859,6 +911,7 @@ if (!("Perks" in ::Const))
 
 ::Const.Perks.MeleeWeaponTrees <- {
 	Tree = [
+		::Const.Perks.FistsTree,
 		::Const.Perks.MaceTree,
 		::Const.Perks.FlailTree,
 		::Const.Perks.HammerTree,

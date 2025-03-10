@@ -1,12 +1,11 @@
-this.perk_legend_thundering_strikes <- this.inherit("scripts/skills/skill", {
+this.perk_legend_bone_breaker <- this.inherit("scripts/skills/skill", {
 	m = {
-		OrigArmorDirectDamageMitigationMult = 1.0,
+		AppliedMultiplier = 1.0,
 		DidApply = false,
-		ArmorEffectivenessMult = 0.15,
 	},
 	function create()
 	{
-		::Const.Perks.setup(this.m, ::Legends.Perk.LegendThunderingStrikes);
+		::Const.Perks.setup(this.m, ::Legends.Perk.LegendBoneBreaker);
 		this.m.Type = this.Const.SkillType.Perk;
 		this.m.Order = this.Const.SkillOrder.Last;
 		this.m.IsActive = false;
@@ -16,6 +15,7 @@ this.perk_legend_thundering_strikes <- this.inherit("scripts/skills/skill", {
 
 	function onAnySkillUsed( _skill, _targetEntity, _properties )
 	{
+		local effect = _skill.getDamageType().contains(this.Const.Damage.DamageType.Blunt) ? 0.25 : 0.15;
 		this.m.AppliedMultiplier = _properties.DamageArmorMult * this.m.ArmorEffectivenessMult;
 	}
 
@@ -23,9 +23,7 @@ this.perk_legend_thundering_strikes <- this.inherit("scripts/skills/skill", {
 	{
 		if (_skill.isAttack() && !_skill.isRanged())
 		{
-			local effect = _hitInfo.DamageType == ::Const.Damage.DamageType.Blunt ? 0.25 : 0.15;
-			local properties = this.getContainer().getActor().getCurrentProperties();
-			::Const.Combat.ArmorDirectDamageMitigationMult *= 1.0 - (properties.DamageArmorMult * effect);
+			::Const.Combat.ArmorDirectDamageMitigationMult *= 1.0 - this.m.AppliedMultiplier;
 			this.m.DidApply = true;
 		}
 	}

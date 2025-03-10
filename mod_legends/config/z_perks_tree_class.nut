@@ -74,23 +74,6 @@ if (!("Perks" in ::Const))
 	]
 };
 
-::Const.Perks.FistsClassTree <- {
-	ID = "FistsClassTree",
-	Name = "Unarmed",
-	Descriptions = [
-		"unarmed combat"
-	],
-	Tree = [
-		[::Legends.Perk.LegendAmbidextrous],
-		[::Legends.Perk.LegendChoke],
-		[::Legends.Perk.LegendGrapple],
-		[::Legends.Perk.LegendSpecUnarmed],
-		[],
-		[::Legends.Perk.LegendUnarmedTraining],
-		[]
-	]
-};
-
 ::Const.Perks.ChefClassTree <- {
 	ID = "ChefClassTree",
 	Name = "Chef",
@@ -494,7 +477,6 @@ if (!("Perks" in ::Const))
 		::Const.Perks.BardClassTree,
 		::Const.Perks.HealerClassTree,
 		::Const.Perks.FaithClassTree,
-		::Const.Perks.FistsClassTree,
 		::Const.Perks.ChefClassTree,
 		::Const.Perks.RepairClassTree,
 		::Const.Perks.BarterClassTree,
