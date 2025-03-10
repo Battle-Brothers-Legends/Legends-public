@@ -64,92 +64,69 @@ this.legend_crusader_commander_background <- this.inherit("scripts/skills/backgr
 		this.m.Modifiers.Stash = this.Const.LegendMod.ResourceModifiers.Stash[3];
 		this.m.Modifiers.ToolConsumption = this.Const.LegendMod.ResourceModifiers.ToolConsumption[2];
 		this.m.Modifiers.Training = this.Const.LegendMod.ResourceModifiers.Training[2];
+		this.m.PerkTreeDynamic = {
+			Weapon = [
+				this.Const.Perks.MaceTree,
+				this.Const.Perks.FlailTree,
+				this.Const.Perks.HammerTree,
+				this.Const.Perks.AxeTree,
+				this.Const.Perks.SwordTree,
+				this.Const.Perks.TwoHandedTree,
+				this.Const.Perks.PolearmTree,
+				this.Const.Perks.CrossbowTree,
+				this.Const.Perks.ThrowingTree,
+				this.Const.Perks.ShieldTree
+			],
+			Defense = [
+				this.Const.Perks.LightArmorTree,
+				this.Const.Perks.HeavyArmorTree
+			],
+			Traits = [
+				this.Const.Perks.SturdyTree,
+				this.Const.Perks.IndestructibleTree,
+				this.Const.Perks.ViciousTree
+				this.Const.Perks.LargeTree,
+				this.Const.Perks.MartyrTree,
+				this.Const.Perks.FitTree,
+				this.Const.Perks.TrainedTree,
+				this.Const.Perks.InspirationalTree
+			],
+			Enemy = [
+				this.Const.Perks.HexenTree,
+				this.Const.Perks.UndeadTree,
+				this.Const.Perks.GhoulTree
+			],
+			Class = [
+				this.Const.Perks.RepairClassTree,
+				this.Const.Perks.FaithClassTree
+			],
+			Magic = []
+		};
 		this.m.CustomPerkTree = [
 			[
-				this.Const.Perks.PerkDefs.Colossus,
-				this.Const.Perks.PerkDefs.CripplingStrikes,
-				this.Const.Perks.PerkDefs.NineLives,
 				this.Const.Perks.PerkDefs.Student,
-				this.Const.Perks.PerkDefs.Recover,
 				this.Const.Perks.PerkDefs.Pathfinder,
 				this.Const.Perks.PerkDefs.BagsAndBelts,
 				// this.Const.Perks.PerkDefs.LegendComposure,
-				this.Const.Perks.PerkDefs.LegendBackToBasics,
 				this.Const.Perks.PerkDefs.Adrenaline
 			],
 			[
-				this.Const.Perks.PerkDefs.CoupDeGrace,
 				this.Const.Perks.PerkDefs.Dodge,
-				this.Const.Perks.PerkDefs.HoldOut,
 				this.Const.Perks.PerkDefs.RallyTheTroops,
-				this.Const.Perks.PerkDefs.FortifiedMind,
-				this.Const.Perks.PerkDefs.SteelBrow,
-				this.Const.Perks.PerkDefs.QuickHands,
-				this.Const.Perks.PerkDefs.ShieldBash,
 				this.Const.Perks.PerkDefs.LegendTrueBeliever,
-				this.Const.Perks.PerkDefs.LegendSmackdown,
-				this.Const.Perks.PerkDefs.Steadfast
 			],
-			[
-				this.Const.Perks.PerkDefs.Brawny,
-				this.Const.Perks.PerkDefs.Rotation,
-				this.Const.Perks.PerkDefs.Taunt,
-				this.Const.Perks.PerkDefs.LegendFeint,
-				this.Const.Perks.PerkDefs.LegendOnslaught,
-				this.Const.Perks.PerkDefs.LegendRebound,
-				this.Const.Perks.PerkDefs.LegendFavouredEnemyZombie,
-				this.Const.Perks.PerkDefs.LegendToolsDrawers,
-				this.Const.Perks.PerkDefs.LegendSpecialistShieldPush,
-				this.Const.Perks.PerkDefs.LegendSecondWind
-			],
-			[
-				this.Const.Perks.PerkDefs.SpecMace,
-				this.Const.Perks.PerkDefs.SpecFlail,
-				this.Const.Perks.PerkDefs.SpecHammer,
-				this.Const.Perks.PerkDefs.SpecSword,
-				this.Const.Perks.PerkDefs.SpecPolearm,
-				this.Const.Perks.PerkDefs.SpecAxe,
-				this.Const.Perks.PerkDefs.SpecThrowing,
-				this.Const.Perks.PerkDefs.SpecCrossbow,
-				this.Const.Perks.PerkDefs.ShieldExpert,
-
-			],
+			[],
+			[],
 			[
 				this.Const.Perks.PerkDefs.Footwork,
-				this.Const.Perks.PerkDefs.ReachAdvantage,
-				this.Const.Perks.PerkDefs.Overwhelm,
 				this.Const.Perks.PerkDefs.LegendBattleheart,
-				this.Const.Perks.PerkDefs.LegendFullForce,
-				this.Const.Perks.PerkDefs.LegendReturnFavor,
-				this.Const.Perks.PerkDefs.LoneWolf,
-				this.Const.Perks.PerkDefs.LegendFavouredEnemySkeleton,
-				this.Const.Perks.PerkDefs.LegendSpecialistShieldSkill,
-				this.Const.Perks.PerkDefs.LegendToolsSpares,
-				this.Const.Perks.PerkDefs.LegendPrayerOfFaith,
+				this.Const.Perks.PerkDefs.LegendLionheart
 			],
 			[
-				this.Const.Perks.PerkDefs.Berserk,
-				this.Const.Perks.PerkDefs.BattleForged,
-				this.Const.Perks.PerkDefs.KillingFrenzy,
-				this.Const.Perks.PerkDefs.LegendLastStand,
-				this.Const.Perks.PerkDefs.LegendBloodyHarvest,
-				this.Const.Perks.PerkDefs.LegendVengeance,
-				this.Const.Perks.PerkDefs.LegendAssuredConquest,
-				this.Const.Perks.PerkDefs.LegendFavouredEnemyGhoul,
-				this.Const.Perks.PerkDefs.LegendPrayerOfLife,
 				this.Const.Perks.PerkDefs.InspiringPresence,
 			],
 			[
 				this.Const.Perks.PerkDefs.Fearsome,
-				this.Const.Perks.PerkDefs.Duelist,
-				this.Const.Perks.PerkDefs.Indomitable,
-				// this.Const.Perks.PerkDefs.Stalwart,
-				this.Const.Perks.PerkDefs.BattleFlow,
-				//this.Const.Perks.PerkDefs.LegendStrictSermons,
-				this.Const.Perks.PerkDefs.LegendFavouredEnemyHexen,
-				this.Const.Perks.PerkDefs.LegendFavouredEnemyVampire,
-				this.Const.Perks.PerkDefs.LegendFieldRepairs,
-				this.Const.Perks.PerkDefs.LegendHolyFlame,
 				this.Const.Perks.PerkDefs.LegendPerfectFocus
 			],
 			[],
