@@ -23,7 +23,7 @@
 			::Legends.Perks.grant(this, ::Legends.Perk.ShieldBash);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendStrengthInNumbers);
 			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
-			this.m.Skills.removeByID("actives.rotation");
+			
 		}
 	}
 

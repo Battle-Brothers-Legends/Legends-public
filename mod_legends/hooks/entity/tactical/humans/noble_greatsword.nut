@@ -7,7 +7,6 @@
 		::Legends.Perks.grant(this, ::Legends.Perk.Rotation);
 		::Legends.Perks.grant(this, ::Legends.Perk.Recover);
 		::Legends.Perks.grant(this, ::Legends.Perk.SpecSword);
-		this.m.Skills.removeByID("actives.rotation");
 
 		if (::Legends.isLegendaryDifficulty())
 		{

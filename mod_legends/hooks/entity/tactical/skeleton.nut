@@ -387,6 +387,5 @@
 		::Legends.Perks.grant(this, ::Legends.Perk.SteelBrow);
 		::Legends.Perks.grant(this, ::Legends.Perk.ShieldExpert);
 		::Legends.Perks.grant(this, ::Legends.Perk.Fearsome);
-		this.m.Skills.removeByID("actives.rotation");
 	}
 });

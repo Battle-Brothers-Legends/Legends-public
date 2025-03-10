@@ -8,7 +8,6 @@
 		::Legends.Perks.grant(this, ::Legends.Perk.Relentless);
 		::Legends.Perks.grant(this, ::Legends.Perk.Rotation);
 		::Legends.Perks.grant(this, ::Legends.Perk.Recover);
-		this.m.Skills.removeByID("actives.rotation");
 	}
 
 	o.assignRandomEquipment = function ()

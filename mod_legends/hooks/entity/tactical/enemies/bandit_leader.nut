@@ -42,7 +42,6 @@
 		::Legends.Perks.grant(this, ::Legends.Perk.NineLives);
 		::Legends.Perks.grant(this, ::Legends.Perk.Rotation);
 		::Legends.Perks.grant(this, ::Legends.Perk.Recover);
-		this.m.Skills.removeByID("actives.rotation");
 
 		if (::Legends.isLegendaryDifficulty())
 		{

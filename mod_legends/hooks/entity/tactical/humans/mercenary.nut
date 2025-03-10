@@ -8,7 +8,6 @@
 		::Legends.Perks.grant(this, ::Legends.Perk.Recover);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendSmashingShields);
 		::Legends.Perks.grant(this, ::Legends.Perk.CripplingStrikes);
-		this.m.Skills.removeByID("actives.rotation");
 
 		if(::Legends.isLegendaryDifficulty())
 		{

@@ -17,7 +17,7 @@
 			::Legends.Perks.grant(this, ::Legends.Perk.Anticipation);
 			::Legends.Perks.grant(this, ::Legends.Perk.Dodge);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendLevitate);
-			this.m.Skills.removeByID("actives.rotation");
+			
 		}
 	}
 });
