@@ -68,6 +68,19 @@ this.legend_vala_background <- this.inherit("scripts/skills/backgrounds/characte
 				this.Const.Perks.ValaSpiritMagicTree
 			]
 		};
+		this.m.CustomPerkTree = [
+			[],
+			[],
+			[],
+			[],
+			[],
+			[],
+			[],
+			[],
+			[],
+			[],
+			[]
+		];
 	}
 
 	function getTooltip()
