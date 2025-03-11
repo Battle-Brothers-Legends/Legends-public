@@ -8,7 +8,7 @@ this.legend_intensive_training_trait <- this.inherit("scripts/skills/traits/char
 		RatkAdded = 0,
 		MdefAdded = 0,
 		RdefAdded = 0,
-		TraitGained = "",
+		TraitGained = -1,
 		BonusXP = 0.0,
 		MaxSkillsCanBeAdded = 15
 	},
@@ -87,11 +87,11 @@ this.legend_intensive_training_trait <- this.inherit("scripts/skills/traits/char
 		return this.m.BonusXP;
 	}
 
-	function finishedTraining( _traitGained )
+	function finishedTraining (_traitConst)
 	{
 		this.m.Description = "This character has completed basic training.\n Experience gained from all sources has been permanently increased by [color=" + this.Const.UI.Color.PositiveValue + "]+5%[/color].\n This character can still get perk and attribute points from training.";
 		this.m.Icon = "ui/traits/IntensiveTrainingCompleted.png";
-		this.m.TraitGained = _traitGained;
+		this.m.TraitGained = _traitConst;
 		this.m.BonusXP = 0.05;
 	}
 
@@ -150,7 +150,6 @@ this.legend_intensive_training_trait <- this.inherit("scripts/skills/traits/char
 
 	function successfullyTrained( _bro )
 	{
-
 	}
 
 	function getTooltip()
@@ -161,7 +160,7 @@ this.legend_intensive_training_trait <- this.inherit("scripts/skills/traits/char
 				type = "text",
 				icon = "",
 				text = ""
-				});
+			});
 //		this.logInfo(this.getContainer().getActor().getBackground().getNameOnly());
 
 		if ( this.getContainer().getActor().getBackground().getNameOnly()=="Donkey" )
@@ -180,14 +179,14 @@ this.legend_intensive_training_trait <- this.inherit("scripts/skills/traits/char
 				type = "text",
 				icon = "",
 				text = this.isMaxReached() ? "Training results:" : "Training results so far:"
-				});
+			});
 
 			tooltip.push({
 				id = 6,
 				type = "text",
 				icon = "ui/icons/special.png",
 				text = "[color=" + this.Const.UI.Color.PositiveValue + "]" + getStatsIncreased() + "[/color] total skill points"
-				});
+			});
 
 			if (this.m.HitpointsAdded > 0)
 			{
@@ -256,8 +255,8 @@ this.legend_intensive_training_trait <- this.inherit("scripts/skills/traits/char
 					icon = "ui/icons/melee_defense.png",
 					text = "[color=" + this.Const.UI.Color.PositiveValue + "]" + this.m.MdefAdded + "[/color] Melee Defense"
 				});
-			}	
-			
+			}
+
 			if (this.m.RdefAdded > 0)
 			{
 				tooltip.push({
@@ -268,22 +267,22 @@ this.legend_intensive_training_trait <- this.inherit("scripts/skills/traits/char
 				});
 			}
 
-				if ( this.isMaxReached() )
-				{
+			if (this.isMaxReached())
+			{
 				tooltip.push({
 					id = 6,
 					type = "text",
 					icon = "ui/icons/special.png",
 					text = "[color=" + this.Const.UI.Color.PositiveValue + "]" + 1 + "[/color] Perk point",
 					divider = "top"
-					});
+				});
 				tooltip.push({
 					id = 6,
 					type = "text",
 					icon = "ui/icons/special.png",
-					text = "[color=" + this.Const.UI.Color.PositiveValue + "]" + this.m.TraitGained + "[/color] trait"
-					});
-				}
+					text = "[color=" + this.Const.UI.Color.PositiveValue + "]" + ::Legends.Traits.get(this, this.m.TraitGained).getName() + "[/color] trait"
+				});
+			}
 		}
 		else
 		{
@@ -294,13 +293,13 @@ this.legend_intensive_training_trait <- this.inherit("scripts/skills/traits/char
 				text = "This character has not started training"
 			});
 		}
+
 		return tooltip;
 	}
 
 	function isHidden()
 	{
-		if (this.getStatsIncreased() == 0) return true;
-		return false;
+		return this.getStatsIncreased() == 0;
 	}
 
 	function onSerialize( _out )
@@ -315,7 +314,7 @@ this.legend_intensive_training_trait <- this.inherit("scripts/skills/traits/char
 		_out.writeU16(this.m.MdefAdded);
 		_out.writeU16(this.m.RdefAdded);
 		_out.writeF32(this.m.BonusXP);
-		_out.writeString(this.m.TraitGained);
+		_out.writeI32(this.m.TraitGained);
 	}
 
 	function onDeserialize( _in )
@@ -330,12 +329,12 @@ this.legend_intensive_training_trait <- this.inherit("scripts/skills/traits/char
 		this.m.MdefAdded = _in.readU16();
 		this.m.RdefAdded = _in.readU16();
 		this.m.BonusXP = _in.readF32();
-		this.m.TraitGained = _in.readString();
+		this.m.TraitGained = _in.readI32();
 
 		if(this.isMaxReached())
 		{
 			this.m.Name = "Training fulfilled";
-		this.m.Description = "This character has completed all their training and cannot learn more from training in camp.\n Experience gained from training has been permanently increased by [color=" + this.Const.UI.Color.PositiveValue + "]+5%[/color].\n This character won\'t get perk and attribute points from training in camp anymore.";
+			this.m.Description = "This character has completed all their training and cannot learn more from training in camp.\n Experience gained from training has been permanently increased by [color=" + this.Const.UI.Color.PositiveValue + "]+5%[/color].\n This character won\'t get perk and attribute points from training in camp anymore.";
 			this.m.Icon = "ui/traits/IntensiveTrainingCompletedFull.png";
 		}
 	}

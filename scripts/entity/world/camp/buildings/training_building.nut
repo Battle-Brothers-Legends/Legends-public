@@ -3,8 +3,7 @@ this.training_building <- this.inherit("scripts/entity/world/camp/camp_building"
 		Results = [],
 		NumBros = 0,
 		UnTrained = 0,
-		BaseCraft = 0.15, // was 1.0, changed tp 0.4 6/11/21 - Luft - dropped to 0.15 by poss 7/3/2023
-		TrainingTraits = []
+		BaseCraft = 0.15 // was 1.0, changed tp 0.4 6/11/21 - Luft - dropped to 0.15 by poss 7/3/2023
 	},
 	function create()
 	{
@@ -49,25 +48,6 @@ this.training_building <- this.inherit("scripts/entity/world/camp/camp_building"
 				Volume = 1.0,
 				Pitch = 1.0
 			}
-		];
-
-		this.m.TrainingTraits = [
-			::Legends.Trait.EagleEyes,
-			::Legends.Trait.Tough,
-			::Legends.Trait.Strong,
-			::Legends.Trait.Quick,
-			::Legends.Trait.Fearless,
-			::Legends.Trait.Determined,
-			::Legends.Trait.Deathwish,
-			::Legends.Trait.Brave,
-			::Legends.Trait.Dexterous,
-			::Legends.Trait.SureFooting,
-			::Legends.Trait.IronLungs,
-			::Legends.Trait.Athletic,
-			::Legends.Trait.IronJaw,
-			::Legends.Trait.Swift,
-			::Legends.Trait.Teamplayer,
-			::Legends.Trait.LegendSteadyHands
 		];
 	}
 
@@ -489,11 +469,12 @@ this.training_building <- this.inherit("scripts/entity/world/camp/camp_building"
 		{
 			bro.m.PerkPoints += 1;
 			icon = "ui/icons/level.png";
-			local traitName = this.addRandomTrainingTrait(bro);
-			inTraining.finishedTraining(traitName);
+			local traitConst = ::Legends.Training.addRandomTrainingTrait(bro);
+			inTraining.finishedTraining(traitConst);
+			local trait = ::Legends.Traits.get(bro, traitConst);
 			this.m.Results.push({
 				Icon = icon,
-				Text = bro.getName() + " completed the training course and gains [color=" + this.Const.UI.Color.PositiveEventValue + "]1[/color] " + text + ", Perk Point and " + traitName
+				Text = bro.getName() + " completed the training course and gains [color=" + this.Const.UI.Color.PositiveEventValue + "]1[/color] " + text + ", Perk Point and " + trait.getName()
 			});
 		}
 		else
@@ -688,43 +669,5 @@ this.training_building <- this.inherit("scripts/entity/world/camp/camp_building"
 	{
 		this.camp_building.onDeserialize(_in);
 	}
-
-	function addRandomTrainingTrait( _bro )
-	{
-		local broCurTraits = _bro.getSkills().query(this.Const.SkillType.Trait);
-		local newTraitID;
-		local newTrait;
-
-		while (true)
-		{
-			newTraitID = this.m.TrainingTraits[::Math.rand(0, this.m.TrainingTraits.len() - 1)];
-			newTrait = this.new(::Legends.Traits.TraitDefObjects[newTraitID]); // ugh, ugly hack
-			local skipTrait = false;
-
-			foreach(bTrait in broCurTraits)
-			{
-				if (bTrait.getID() == newTrait.getID() || newTrait.isExcluded(bTrait.getID()))
-				{
-					skipTrait = true;
-					break;
-				}
-			}
-
-			if (!skipTrait)
-			{
-				break;
-			}
-		}
-
-		_bro.m.Skills.add(newTrait);
-
-		if (newTrait.getContainer() != null)
-		{
-			newTrait.addTitle();
-		}
-
-		return newTrait.getName();
-	}
-
 });
 
