@@ -26,7 +26,7 @@ this.beggar_background <- this.inherit("scripts/skills/backgrounds/character_bac
 			::Legends.Traits.getID(::Legends.Trait.Greedy),
 			::Legends.Traits.getID(::Legends.Trait.Athletic),
 			::Legends.Traits.getID(::Legends.Trait.LegendAggressive),
-			::Legends.Traits.getID(::Legends.Trait.LegendNatural)
+			::Legends.Traits.getID(::Legends.Trait.LegendTalented)
 		];
 		this.m.ExcludedTalents = [
 			this.Const.Attributes.Bravery

@@ -17,9 +17,9 @@ this.legend_frail_trait <- this.inherit("scripts/skills/traits/character_trait",
 			::Legends.Traits.getID(::Legends.Trait.Tough),
 			::Legends.Traits.getID(::Legends.Trait.Strong),
 			::Legends.Traits.getID(::Legends.Trait.Brute),
-			::Legends.Traits.getID(::Legends.Trait.LegendNatural),
+			::Legends.Traits.getID(::Legends.Trait.LegendTalented),
 			::Legends.Traits.getID(::Legends.Trait.IronJaw),
-			::Legends.Traits.getID(::Legends.Trait.LegendNatural),
+			::Legends.Traits.getID(::Legends.Trait.LegendTalented),
 			::Legends.Traits.getID(::Legends.Trait.LegendFirm),
 			::Legends.Traits.getID(::Legends.Trait.LegendHeavy)
 		];

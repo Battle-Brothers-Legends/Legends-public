@@ -8,7 +8,7 @@
 		this.m.Excluded.extend(
 		[
 			::Legends.Traits.getID(::Legends.Trait.LegendUnpredictable),
-			::Legends.Traits.getID(::Legends.Trait.LegendNatural)
+			::Legends.Traits.getID(::Legends.Trait.LegendTalented)
 		]);
 	}
 });

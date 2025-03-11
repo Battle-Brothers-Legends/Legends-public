@@ -727,11 +727,11 @@ traitDefs.push({
 	Random = true
 });
 
-::Legends.Trait.LegendNatural <- null;
+::Legends.Trait.LegendTalented <- null;
 traitDefs.push({
 	ID = "trait.legend_natural",
-	Script = "scripts/skills/traits/legend_natural_trait",
-	Const = "LegendNatural",
+	Script = "scripts/skills/traits/legend_talented_trait",
+	Const = "LegendTalented",
 	Random = true
 });
 

@@ -20,7 +20,7 @@ this.legend_slack_trait <- this.inherit("scripts/skills/traits/character_trait",
 			::Legends.Traits.getID(::Legends.Trait.Impatient),
 			::Legends.Traits.getID(::Legends.Trait.LegendAmbitious),
 			::Legends.Traits.getID(::Legends.Trait.LegendAggressive),
-			::Legends.Traits.getID(::Legends.Trait.LegendNatural),
+			::Legends.Traits.getID(::Legends.Trait.LegendTalented),
 		];
 	}
 

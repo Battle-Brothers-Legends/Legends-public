@@ -26,7 +26,7 @@ this.legend_beggar_commander_op_background <- this.inherit("scripts/skills/backg
 			::Legends.Traits.getID(::Legends.Trait.Greedy),
 			::Legends.Traits.getID(::Legends.Trait.Athletic),
 			::Legends.Traits.getID(::Legends.Trait.LegendAggressive),
-			::Legends.Traits.getID(::Legends.Trait.LegendNatural),
+			::Legends.Traits.getID(::Legends.Trait.LegendTalented),
 			::Legends.Traits.getID(::Legends.Trait.Disloyal),
 			::Legends.Traits.getID(::Legends.Trait.Loyal)
 		];

@@ -1,9 +1,9 @@
-this.legend_natural_trait <- this.inherit("scripts/skills/traits/character_trait", {
+this.legend_talented_trait <- this.inherit("scripts/skills/traits/character_trait", {
 	m = {},
 	function create()
 	{
 		this.character_trait.create();
-		this.m.ID = ::Legends.Traits.getID(::Legends.Trait.LegendNatural);
+		this.m.ID = ::Legends.Traits.getID(::Legends.Trait.LegendTalented);
 		this.m.Name = "Talented";
 		this.m.Icon = "ui/traits/natural_trait.png";
 		this.m.Description = "Has natural skills, talents and abilities. Born to be successful.";

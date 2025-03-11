@@ -15,7 +15,7 @@ this.legend_fear_nobles_trait <- this.inherit("scripts/skills/traits/character_t
 			::Legends.Traits.getID(::Legends.Trait.Bloodthirsty),
 			::Legends.Traits.getID(::Legends.Trait.LegendAggressive),
 			::Legends.Traits.getID(::Legends.Trait.LegendAmbitious),
-			::Legends.Traits.getID(::Legends.Trait.LegendNatural),
+			::Legends.Traits.getID(::Legends.Trait.LegendTalented),
 			::Legends.Traits.getID(::Legends.Trait.LegendPragmatic),
 			::Legends.Traits.getID(::Legends.Trait.LegendHateNobles)
 		];

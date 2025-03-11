@@ -29,7 +29,7 @@ this.refugee_background <- this.inherit("scripts/skills/backgrounds/character_ba
 			::Legends.Traits.getID(::Legends.Trait.Greedy),
 			::Legends.Traits.getID(::Legends.Trait.Bloodthirsty),
 			::Legends.Traits.getID(::Legends.Trait.LegendAggressive),
-			::Legends.Traits.getID(::Legends.Trait.LegendNatural)
+			::Legends.Traits.getID(::Legends.Trait.LegendTalented)
 		];
 		this.m.Titles = [
 			"the Refugee",

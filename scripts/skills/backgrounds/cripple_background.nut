@@ -27,7 +27,7 @@ this.cripple_background <- this.inherit("scripts/skills/backgrounds/character_ba
 			::Legends.Traits.getID(::Legends.Trait.Swift),
 			::Legends.Traits.getID(::Legends.Trait.Dexterous),
 			::Legends.Traits.getID(::Legends.Trait.LegendAmbitious),
-			::Legends.Traits.getID(::Legends.Trait.LegendNatural)
+			::Legends.Traits.getID(::Legends.Trait.LegendTalented)
 		];
 		this.m.ExcludedTalents = [
 			this.Const.Attributes.Hitpoints,
