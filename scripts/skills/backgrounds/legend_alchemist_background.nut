@@ -13,7 +13,7 @@ this.legend_alchemist_background <- this.inherit("scripts/skills/backgrounds/cha
 		this.m.DailyCost = 20;
 		this.m.Excluded = [
 			::Legends.Traits.getID(::Legends.Trait.LegendHeavy),
-			::Legends.Traits.getID(::Legends.Trait.LegendFirm),
+			::Legends.Traits.getID(::Legends.Trait.LegendMartial),
 			::Legends.Traits.getID(::Legends.Trait.Strong),
 			::Legends.Traits.getID(::Legends.Trait.Bloodthirsty),
 			::Legends.Traits.getID(::Legends.Trait.Athletic),

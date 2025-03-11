@@ -21,7 +21,7 @@ this.legend_warlock_summoner_background <- this.inherit("scripts/skills/backgrou
 			::Legends.Traits.getID(::Legends.Trait.Craven),
 			::Legends.Traits.getID(::Legends.Trait.Tough),
 			::Legends.Traits.getID(::Legends.Trait.Huge),
-			::Legends.Traits.getID(::Legends.Trait.LegendFirm),
+			::Legends.Traits.getID(::Legends.Trait.LegendMartial),
 			::Legends.Traits.getID(::Legends.Trait.Strong),
 			::Legends.Traits.getID(::Legends.Trait.Spartan),
 			::Legends.Traits.getID(::Legends.Trait.Fat),

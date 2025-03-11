@@ -29,7 +29,7 @@ this.legend_trader_background <- this.inherit("scripts/skills/backgrounds/charac
 			::Legends.Traits.getID(::Legends.Trait.Dumb),
 			::Legends.Traits.getID(::Legends.Trait.Deathwish),
 			::Legends.Traits.getID(::Legends.Trait.Bloodthirsty),
-			::Legends.Traits.getID(::Legends.Trait.LegendFirm),
+			::Legends.Traits.getID(::Legends.Trait.LegendMartial),
 			::Legends.Traits.getID(::Legends.Trait.Disloyal),
 			::Legends.Traits.getID(::Legends.Trait.Loyal)
 		];

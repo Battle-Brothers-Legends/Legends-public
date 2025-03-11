@@ -27,7 +27,7 @@ this.anatomist_background <- this.inherit("scripts/skills/backgrounds/character_
 			::Legends.Traits.getID(::Legends.Trait.LegendHateNobles),
 			::Legends.Traits.getID(::Legends.Trait.FearUndead),
 			::Legends.Traits.getID(::Legends.Trait.HateUndead),
-			::Legends.Traits.getID(::Legends.Trait.LegendFirm),
+			::Legends.Traits.getID(::Legends.Trait.LegendMartial),
 			::Legends.Traits.getID(::Legends.Trait.Teamplayer),
 			::Legends.Traits.getID(::Legends.Trait.Impatient),
 			::Legends.Traits.getID(::Legends.Trait.Clumsy),

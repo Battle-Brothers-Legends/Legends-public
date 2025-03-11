@@ -31,7 +31,7 @@ this.legend_peddler_commander_background <- this.inherit("scripts/skills/backgro
 			::Legends.Traits.getID(::Legends.Trait.Deathwish),
 			::Legends.Traits.getID(::Legends.Trait.Bloodthirsty),
 			::Legends.Traits.getID(::Legends.Trait.LegendAggressive),
-			::Legends.Traits.getID(::Legends.Trait.LegendFirm)
+			::Legends.Traits.getID(::Legends.Trait.LegendMartial)
 		];
 		this.m.Ethnicity = this.Math.rand(0, 2);
 		if (this.m.Ethnicity == 0)

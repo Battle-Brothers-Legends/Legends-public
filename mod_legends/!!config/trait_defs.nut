@@ -775,11 +775,11 @@ traitDefs.push({
 	Random = true
 });
 
-::Legends.Trait.LegendFirm <- null;
+::Legends.Trait.LegendMartial <- null;
 traitDefs.push({
-	ID = "trait.legend_firm",
-	Script = "scripts/skills/traits/legend_firm_trait",
-	Const = "LegendFirm",
+	ID = "trait.legend_martial",
+	Script = "scripts/skills/traits/legend_martial_trait",
+	Const = "LegendMartial",
 	Random = true
 });
 

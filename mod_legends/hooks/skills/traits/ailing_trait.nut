@@ -14,7 +14,7 @@
 			::Legends.Traits.getID(::Legends.Trait.IronLungs),
 			::Legends.Traits.getID(::Legends.Trait.Lucky),
 			::Legends.Traits.getID(::Legends.Trait.Clubfooted),
-			::Legends.Traits.getID(::Legends.Trait.LegendFirm)
+			::Legends.Traits.getID(::Legends.Trait.LegendMartial)
 		];
 	}
 });

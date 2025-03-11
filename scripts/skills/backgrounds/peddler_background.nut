@@ -31,7 +31,7 @@ this.peddler_background <- this.inherit("scripts/skills/backgrounds/character_ba
 			::Legends.Traits.getID(::Legends.Trait.Bloodthirsty),
 			::Legends.Traits.getID(::Legends.Trait.LegendAggressive),
 			::Legends.Traits.getID(::Legends.Trait.LegendAmbitious),
-			::Legends.Traits.getID(::Legends.Trait.LegendFirm)
+			::Legends.Traits.getID(::Legends.Trait.LegendMartial)
 		];
 		this.m.Faces = this.Const.Faces.AllWhiteMale;
 		this.m.Hairs = this.Const.Hair.TidyMale;

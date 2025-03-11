@@ -20,7 +20,7 @@ this.legend_frail_trait <- this.inherit("scripts/skills/traits/character_trait",
 			::Legends.Traits.getID(::Legends.Trait.LegendTalented),
 			::Legends.Traits.getID(::Legends.Trait.IronJaw),
 			::Legends.Traits.getID(::Legends.Trait.LegendTalented),
-			::Legends.Traits.getID(::Legends.Trait.LegendFirm),
+			::Legends.Traits.getID(::Legends.Trait.LegendMartial),
 			::Legends.Traits.getID(::Legends.Trait.LegendHeavy)
 		];
 	}

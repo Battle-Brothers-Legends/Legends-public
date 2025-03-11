@@ -25,7 +25,7 @@ this.deserter_background <- this.inherit("scripts/skills/backgrounds/character_b
 			::Legends.Traits.getID(::Legends.Trait.Fragile),
 			::Legends.Traits.getID(::Legends.Trait.Optimist),
 			::Legends.Traits.getID(::Legends.Trait.Bloodthirsty),
-			::Legends.Traits.getID(::Legends.Trait.LegendFirm),
+			::Legends.Traits.getID(::Legends.Trait.LegendMartial),
 			::Legends.Traits.getID(::Legends.Trait.LegendAggressive)
 		];
 		this.m.ExcludedTalents = [

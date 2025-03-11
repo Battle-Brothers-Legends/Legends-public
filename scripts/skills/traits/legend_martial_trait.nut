@@ -1,9 +1,9 @@
-this.legend_firm_trait <- this.inherit("scripts/skills/traits/character_trait", {
+this.legend_martial_trait <- this.inherit("scripts/skills/traits/character_trait", {
 	m = {},
 	function create()
 	{
 		this.character_trait.create();
-		this.m.ID = ::Legends.Traits.getID(::Legends.Trait.LegendFirm);
+		this.m.ID = ::Legends.Traits.getID(::Legends.Trait.LegendMartial);
 		this.m.Name = "Martial";
 		this.m.Icon = "ui/traits/firm_trait.png";
 		this.m.Description = "Better not shake a hand with this one.";
