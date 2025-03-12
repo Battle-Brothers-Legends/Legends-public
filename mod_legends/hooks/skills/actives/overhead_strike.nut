@@ -14,16 +14,6 @@
 			});
 		}
 
-		if (this.getContainer().getActor().getCurrentProperties().IsSpecializedInSwords)
-		{
-			tooltip.push({
-				id = 6,
-				type = "text",
-				icon = "ui/icons/hitchance.png",
-				text = "Has [color=" + this.Const.UI.Color.PositiveValue  + "]+5%[/color] chance to hit due to sword specialisation"
-			});
-		}
-
 		return tooltip;
 	}
 

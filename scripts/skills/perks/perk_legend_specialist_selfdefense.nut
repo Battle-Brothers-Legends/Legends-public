@@ -24,35 +24,35 @@ this.perk_legend_specialist_selfdefense <- this.inherit("scripts/skills/legend_s
 		return this.getDefaultSpecialistSkillDescription("Staves and Musical Instruments");
 	}
 
-	function specialistWeaponTooltip (_item, _isRanged)
-	{
-		local properties = this.getContainer().getActor().getCurrentProperties();
-		local tooltip = [];
+	// function specialistWeaponTooltip (_item, _isRanged)
+	// {
+	// 	local properties = this.getContainer().getActor().getCurrentProperties();
+	// 	local tooltip = [];
 
-		tooltip.push({
-			id = 7,
-			type = "text",
-			icon = "ui/icons/hitchance.png",
-			text = "[color=" + this.Const.UI.Color.PositiveValue + "]+" + this.calculateSpecialistBonus(this.m.BonusMelee, _item) + "[/color] chance to hit"
-		});
-		tooltip.push({
-			id = 6,
-			type = "text",
-			icon = "ui/icons/melee_defense.png",
-			text = "[color=" + this.Const.UI.Color.PositiveValue + "]+" + this.calculateSpecialistBonus(16, _item) + "[/color] Defense"
-		});
+	// 	tooltip.push({
+	// 		id = 7,
+	// 		type = "text",
+	// 		icon = "ui/icons/hitchance.png",
+	// 		text = "[color=" + this.Const.UI.Color.PositiveValue + "]+" + this.calculateSpecialistBonus(this.m.BonusMelee, _item) + "[/color] chance to hit"
+	// 	});
+	// 	tooltip.push({
+	// 		id = 6,
+	// 		type = "text",
+	// 		icon = "ui/icons/melee_defense.png",
+	// 		text = "[color=" + this.Const.UI.Color.PositiveValue + "]+" + this.calculateSpecialistBonus(16, _item) + "[/color] Defense"
+	// 	});
 
-		if (::Legends.S.isCharacterWeaponSpecialized(properties, _item))
-		{
-			tooltip.push({
-				id = 7,
-				type = "text",
-				icon = "ui/icons/damage_dealt.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+" + this.calculateSpecialistBonus(this.m.BonusDamage, _item) + "%[/color] Damage"
-			});
-		}
-		return tooltip;
-	}
+	// 	if (::Legends.S.isCharacterWeaponSpecialized(properties, _item))
+	// 	{
+	// 		tooltip.push({
+	// 			id = 7,
+	// 			type = "text",
+	// 			icon = "ui/icons/damage_dealt.png",
+	// 			text = "[color=" + this.Const.UI.Color.PositiveValue + "]+" + this.calculateSpecialistBonus(this.m.BonusDamage, _item) + "%[/color] Damage"
+	// 		});
+	// 	}
+	// 	return tooltip;
+	// }
 
 	function onAnySkillUsed( _skill, _targetEntity, _properties )
 	{

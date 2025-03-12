@@ -24,18 +24,7 @@
 
 	o.getTooltip = function ()
 	{
-		local tooltip = this.getDefaultTooltip();
-
-		tooltip.push(
-			{
-				id = 6,
-				type = "text",
-				icon = "ui/icons/hitchance.png",
-				text = "Has [color=" + this.Const.UI.Color.PositiveValue + "]+" + this.m.HitChanceBonus	+ "%[/color] chance to hit"
-			}
-		);
-
-		return tooltip;
+		return this.getDefaultTooltip();
 	}
 
 	local onAfterUpdate = o.onAfterUpdate;
@@ -52,8 +41,6 @@
 		if (_skill == this)
 		{
 			_properties.MeleeSkill += 10;
-
-			_skill.resetField("HitChanceBonus");
 
 			if (this.getContainer().getActor().getCurrentProperties().IsSpecializedInSwords)
 			{

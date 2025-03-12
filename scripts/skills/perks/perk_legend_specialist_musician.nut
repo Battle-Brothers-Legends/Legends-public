@@ -12,36 +12,36 @@ this.perk_legend_specialist_musician <- this.inherit("scripts/skills/legend_spec
 		this.m.IconMini = "perk_spec_bard_mini.png";
 	}
 
-	function specialistWeaponTooltip (_item, _isRanged)
-	{
-		local properties = this.getContainer().getActor().getCurrentProperties();
-		local tooltip = [];
+	// function specialistWeaponTooltip (_item, _isRanged)
+	// {
+	// 	local properties = this.getContainer().getActor().getCurrentProperties();
+	// 	local tooltip = [];
 
-		tooltip.push({
-			id = 7,
-			type = "text",
-			icon = "ui/icons/hitchance.png",
-			text = "[color=" + this.Const.UI.Color.PositiveValue + "]+" + this.calculateSpecialistBonus(this.m.BonusMelee, _item) + "[/color] chance to hit"
-		});
+	// 	tooltip.push({
+	// 		id = 7,
+	// 		type = "text",
+	// 		icon = "ui/icons/hitchance.png",
+	// 		text = "[color=" + this.Const.UI.Color.PositiveValue + "]+" + this.calculateSpecialistBonus(this.m.BonusMelee, _item) + "[/color] chance to hit"
+	// 	});
 
-		tooltip.push({
-			id = 6,
-			type = "text",
-			icon = "ui/icons/direct_damage.png",
-			text = "[color=" + this.Const.UI.Color.PositiveValue + "]" + this.calculateSpecialistBonus(25, _item) + "%[/color] of any damage ignores armor"
-		});
+	// 	tooltip.push({
+	// 		id = 6,
+	// 		type = "text",
+	// 		icon = "ui/icons/direct_damage.png",
+	// 		text = "[color=" + this.Const.UI.Color.PositiveValue + "]" + this.calculateSpecialistBonus(25, _item) + "%[/color] of any damage ignores armor"
+	// 	});
 
-		if (::Legends.S.isCharacterWeaponSpecialized(properties, _item))
-		{
-			tooltip.push({
-				id = 7,
-				type = "text",
-				icon = "ui/icons/damage_dealt.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+" + this.calculateSpecialistBonus(this.m.BonusDamage, _item) + "%[/color] Damage"
-			});
-		}
-		return tooltip;
-	}
+	// 	if (::Legends.S.isCharacterWeaponSpecialized(properties, _item))
+	// 	{
+	// 		tooltip.push({
+	// 			id = 7,
+	// 			type = "text",
+	// 			icon = "ui/icons/damage_dealt.png",
+	// 			text = "[color=" + this.Const.UI.Color.PositiveValue + "]+" + this.calculateSpecialistBonus(this.m.BonusDamage, _item) + "%[/color] Damage"
+	// 		});
+	// 	}
+	// 	return tooltip;
+	// }
 
 	function getTooltip()
 	{

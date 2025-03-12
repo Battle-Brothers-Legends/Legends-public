@@ -14,28 +14,15 @@ this.perk_legend_specialist_inventor <- this.inherit("scripts/skills/legend_spec
 		this.m.IconMini = "perk_spec_firearm_mini.png";
 	}
 
-	function specialistWeaponTooltip (_item, _isRanged)
+	function onAfterUpdate(_properties)
 	{
-		local properties = this.getContainer().getActor().getCurrentProperties();
-		local tooltip = [];
-		
-		// both are the same chance so i didn't bother separating them
-		tooltip.push({
-			id = 7,
-			type = "text",
-			icon = "ui/icons/hitchance.png",
-			text = "[color=" + this.Const.UI.Color.PositiveValue + "]+" + this.calculateSpecialistBonus(this.m.BonusMelee, _item) + "[/color] chance to hit"
-		});
-
-		if (::Legends.S.isCharacterWeaponSpecialized(properties, _item))
+		local skills = this.getContainer().getAllSkillsOfType(this.Const.SkillType.Active);
+		foreach (skill in skills)
 		{
-			tooltip.push({
-				id = 7,
-				type = "text",
-				icon = "ui/icons/damage_dealt.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+" + this.calculateSpecialistBonus(this.m.BonusDamage, _item) + "%[/color] Damage"
-			});
+			if (this.m.Skills.find(::Legends.Actives.getID(::Legends.Active.ReloadHandgonne)))
+			{
+				skill.m.ActionPointCost -= 2;
+			}
 		}
-		return tooltip;
 	}
 });

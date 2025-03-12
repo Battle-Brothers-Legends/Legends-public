@@ -4,7 +4,7 @@
 
 	o.m.IsForPerkTooltip <- false; // Indicate whether the Perk is a dummy that is being used only to generate unactivated perk tooltip hints
 	o.m.Sound <- [];
-	o.m.isSpecialistSkill <- false;
+	o.m.AdditionalTooltip <- [];
 
 	o.getDescription = function()
 	{
@@ -125,6 +125,29 @@
 			});
 		}
 
+		local accuText = "";
+		if (this.m.HitChanceBonus != 0 && !this.m.IsRanged)
+		{
+			local color = this.m.HitChanceBonus > 0 ? ::Const.UI.Color.PositiveValue : ::Const.UI.Color.NegativeValue;
+			local sign = this.m.HitChanceBonus > 0 ? "+" : "";
+			accuText = "Has [color=" + color + "]" + sign + this.m.HitChanceBonus + "%[/color] chance to hit";
+		}
+
+		if (accuText.len() != 0)
+		{
+			ret.push({
+				id = 7,
+				type = "text",
+				icon = "ui/icons/hitchance.png",
+				text = accuText
+			});
+		}
+
+		if ("AdditionalTooltip" in o.m)
+		{
+			ret.extend(this.m.AdditionalTooltip);
+		}
+
 		if (this.m.Container.getActor().getSkills().hasTrait(::Legends.Trait.OathOfHonor) && (this.m.IsWeaponSkill && this.m.IsRanged || this.m.IsOffensiveToolSkill))
 		{
 			ret.push({
@@ -160,11 +183,6 @@
 				icon = "ui/icons/special.png",
 				text = "[color=" + this.Const.UI.Color.PositiveValue + "]" + this.Math.min(100, this.m.ChanceDisembowel * p.FatalityChanceMult) + "%[/color] chance to disembowel the target on hits to the body that are killing blows"
 			});
-		}
-
-		if (this.m.Item != null && !this.m.Item.isNull() && this.m.isSpecialistSkill)
-		{
-			ret.extend(this.specialistWeaponTooltip(this.m.Item, this.m.IsRanged))
 		}
 
 		return ret;

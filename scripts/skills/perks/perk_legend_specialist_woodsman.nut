@@ -21,27 +21,4 @@ this.perk_legend_specialist_woodsman <- this.inherit("scripts/skills/legend_spec
 		::Const.Perks.setup(this.m, ::Legends.Perk.LegendSpecialistWoodsman);
 		this.m.IconMini = "perk_spec_woodsman_mini.png";
 	}
-
-	function specialistWeaponTooltip (_item, _isRanged)
-	{
-		local properties = this.getContainer().getActor().getCurrentProperties();
-		local tooltip = [];
-		
-		tooltip.push({
-			id = 7,
-			type = "text",
-			icon = "ui/icons/hitchance.png",
-			text = "[color=" + this.Const.UI.Color.PositiveValue + "]+" + this.calculateSpecialistBonus(this.m.BonusMelee, _item) + "[/color] chance to hit"
-		});
-		if (::Legends.S.isCharacterWeaponSpecialized(properties, _item))
-		{
-			tooltip.push({
-				id = 7,
-				type = "text",
-				icon = "ui/icons/damage_dealt.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+" + this.calculateSpecialistBonus(this.m.BonusDamage, _item) + "%[/color] Damage"
-			});
-		}
-		return tooltip;
-	}
 });

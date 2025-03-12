@@ -36,31 +36,12 @@ this.perk_legend_specialist_butcher <- this.inherit("scripts/skills/legend_speci
 
 	function specialistWeaponTooltip (_item, _isRanged)
 	{
-		local properties = this.getContainer().getActor().getCurrentProperties();
-		local tooltip = [];
-		
-		tooltip.extend([{
-			id = 7,
-			type = "text",
-			icon = "ui/icons/hitchance.png",
-			text = "[color=" + this.Const.UI.Color.PositiveValue + "]+" + this.calculateSpecialistBonus(this.m.BonusMelee, _item) + "[/color] chance to hit"
-		},
-		{
+		return [{
 			id = 6,
 			type = "text",
 			icon = "ui/icons/special.png",
 			text = "Inflicts additional stacking [color=" + this.Const.UI.Color.PositiveValue + "]2[/color] graze bleeding damage per turn, for 5 turns" 
-		}]);
-		if (::Legends.S.isCharacterWeaponSpecialized(properties, _item))
-		{
-			tooltip.push({
-				id = 7,
-				type = "text",
-				icon = "ui/icons/damage_dealt.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+" + this.calculateSpecialistBonus(this.m.BonusDamage, _item) + "%[/color] Damage"
-			});
-		}
-		return tooltip;
+		}];
 	}
 
 	function onTargetHit ( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor )

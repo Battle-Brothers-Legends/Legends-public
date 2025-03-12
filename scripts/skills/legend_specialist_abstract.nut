@@ -20,15 +20,6 @@ this.legend_specialist_abstract <- this.inherit("scripts/skills/skill", {
 		this.m.IsActive = false;
 		this.m.IsStacking = false;
 		this.m.IsHidden = false;
-		this.m.IsSpecialistSkill = true;
-	}
-
-	// this func needs item for the checks, it's inside the default tooltip of skill.nut
-	function getSpecialistWeaponTooltip(_item, _isRanged)
-	{
-		if (!hasBonus(_item))
-			return [];
-		return specialistWeaponTooltip(_item, _isRanged);
 	}
 
 	function specialistWeaponTooltip(_item, _isRanged) // just declared
@@ -114,7 +105,7 @@ this.legend_specialist_abstract <- this.inherit("scripts/skills/skill", {
 			return _stat;
 		}
 
-		if (::Legends.Mod.ModSettings.getSetting("SpecialistSkillsSetting").getValue() == "Week in company (SSU Style)")
+		if (::Legends.Mod.ModSettings.getSetting("SpecialistSkillsSetting").getValue() == "Week in company")
 		{
 			local daysCompany = this.Math.floor(actor.getDaysWithCompany() / 7);
 			return this.Math.floor(0.01 * this.Math.min(5 * daysCompany + 25, 100) * _stat);
@@ -203,5 +194,6 @@ this.legend_specialist_abstract <- this.inherit("scripts/skills/skill", {
 		{
 			_properties.DamageTotalMult *= 1.0 + 0.01 * this.calculateSpecialistBonus(this.m.BonusDamage, item) * (validTarget ? 2 : 1);
 		}
+		_skill.m.AdditionalTooltip = this.specialistWeaponTooltip(item, _skill.isRanged()); // extends any custom bonuses (not hitchance or damage related) in default skill tooltip
 	}
 });

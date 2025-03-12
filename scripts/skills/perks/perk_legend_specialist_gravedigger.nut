@@ -25,30 +25,6 @@ this.perk_legend_specialist_gravedigger <- this.inherit("scripts/skills/legend_s
 		return this.getDefaultSpecialistSkillDescription("Two Handed Handed Maces");
 	}
 
-	function specialistWeaponTooltip (_item, _isRanged)
-	{
-		local properties = this.getContainer().getActor().getCurrentProperties();
-		local tooltip = [];
-		
-		tooltip.push({
-			id = 7,
-			type = "text",
-			icon = "ui/icons/melee_skill.png",
-			text = "[color=" + this.Const.UI.Color.PositiveValue + "]+" + this.calculateSpecialistBonus(this.m.BonusMelee, _item) + "[/color] Melee Skill"
-		});
-
-		if (::Legends.S.isCharacterWeaponSpecialized(properties, _item))
-		{
-			tooltip.push({
-				id = 7,
-				type = "text",
-				icon = "ui/icons/damage_dealt.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+" + this.calculateSpecialistBonus(this.m.BonusDamage, _item) + "%[/color] Damage"
-			});
-		}
-		return tooltip;
-	}
-
 	function onAdded()
 	{
 		if (!this.m.Container.hasEffect(::Legends.Effect.LegendGravedigging))
