@@ -3,7 +3,6 @@ this.perk_legend_specialist_musician <- this.inherit("scripts/skills/legend_spec
 		SpecialistWeaponTypes = [
 			this.Const.Items.WeaponType.Musical
 		],
-		BonusMelee = 10,
 	},
 	function create()
 	{
