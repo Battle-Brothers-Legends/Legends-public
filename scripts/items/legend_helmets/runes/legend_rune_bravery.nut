@@ -43,15 +43,5 @@ this.legend_rune_bravery <- this.inherit("scripts/items/legend_helmets/legend_he
 			text = "This item has the power of the rune sigil of Bravery:\n[color=" + this.Const.UI.Color.PositiveValue + "]+" + this.m.RuneBonus1 + "%[/color] Resolve.\n[color=" + this.Const.UI.Color.PositiveValue + "]+" + this.m.RuneBonus2 + "[/color] Resolve at all morale checks."
 		});
 	}
-
-	function onUpdateProperties( _properties )
-	{
-		this.legend_helmet_upgrade.onUpdateProperties(_properties);
-		_properties.Bravery *= (1.0 + ((this.m.RuneBonus1 * 1.0) / 100.0));
-		_properties.MoraleCheckBravery[0] += this.m.RuneBonus2;
-		_properties.MoraleCheckBravery[1] += this.m.RuneBonus2;
-		_properties.MoraleCheckBravery[2] += this.m.RuneBonus2;
-	}
-
 });
 

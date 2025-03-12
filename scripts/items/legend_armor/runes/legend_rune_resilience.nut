@@ -47,13 +47,5 @@ this.legend_rune_resilience <- this.inherit("scripts/items/legend_armor/legend_a
 	{
 		return _damage;
 	}
-
-	function onUpdateProperties( _properties )
-	{
-		this.legend_armor_upgrade.onUpdateProperties(_properties);
-		_properties.IsImmuneToStun = true;
-		_properties.IsImmuneToKnockBackAndGrab = true;
-	}
-
 });
 
