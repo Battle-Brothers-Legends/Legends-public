@@ -259,15 +259,14 @@ this.legend_spider_abductions_contract <- this.inherit("scripts/contracts/contra
 					this.Contract.setScreen("Nest1");
 					::World.Contracts.showActiveContract();
 				}
+			}
 
-				function onActorKilled( _actor, _killer, _combatID )
+			function onActorKilled( _actor, _killer, _combatID )
+			{
+				if (_actor.getFlags().has("IsSpiderAbductee") && _actor.getFlags().get("IsSpiderAbductee"))
 				{
-					if (_actor.getFlags().has("IsSpiderAbductee") && _actor.getFlags().get("IsSpiderAbductee"))
-					{
-						this.World.getGuestRoster().remove(_actor);
-					}
+					this.World.getGuestRoster().remove(_actor);
 				}
-
 			}
 
 			function onEggPlaced( _entity, _tag)
