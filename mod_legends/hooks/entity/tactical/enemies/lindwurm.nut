@@ -1,5 +1,10 @@
 ::mods_hookExactClass("entity/tactical/enemies/lindwurm", function(o)
 {
+	o.m.DroppableRunes <- [
+		::Legends.Rune.LegendRsaEndurance,
+		::Legends.Rune.LegendRsaSafety
+	];
+
 	local onDeath = o.onDeath;
 	o.onDeath = function ( _killer, _skill, _tile, _fatalityType )
 	{
@@ -13,22 +18,15 @@
 			{
 				if (this.Math.rand(1, 100) <= 1)
 				{
-					local rune;
-					local variant = this.Math.rand(21, 22);
-					switch (variant)
+					local selected = this.m.DroppableRunes[this.Math.rand(0, this.m.DroppableRunes.len() - 1)];
+					local def = ::Legends.Runes.get(selected);
+					if (def != null)
 					{
-						case 21:
-						rune = this.new("scripts/items/legend_armor/runes/legend_rune_endurance");
-						break;
-
-						case 22:
-						rune = this.new("scripts/items/legend_armor/runes/legend_rune_safety");
-						break
+						local rune = ::new(def.Script);
+						rune.setRuneVariant(selected);
+						rune.setRuneBonus(true);
+						rune.drop(_tile);
 					}
-					rune.setRuneVariant(variant);
-					rune.setRuneBonus(true);
-					rune.setRuneVariant(0);
-					rune.drop(_tile);
 				}
 			}
 		}

@@ -211,467 +211,68 @@
 
 	o.onEquipRuneSigil <- function ()
 	{
-		switch (this.m.RuneVariant)
-		{
-			case 1:
-				this.addSkill(::Legends.Effects.new(::Legends.Effect.LegendRswPower));
-				break;
-
-			case 2:
-				this.addSkill(::Legends.Effects.new(::Legends.Effect.LegendRswAccuracy));
-				break;
-
-			case 3:
-				this.addSkill(::Legends.Effects.new(::Legends.Effect.LegendRswFeeding));
-				break;
-
-			case 4:
-				this.addSkill(::Legends.Effects.new(::Legends.Effect.LegendRswPoison));
-				break;
-
-			case 5:
-				this.addSkill(::Legends.Effects.new(::Legends.Effect.LegendRswBleeding));
-				break;
-
-			case 6:
-				this.addSkill(::Legends.Effects.new(::Legends.Effect.LegendRswUnbreaking));
-				break;
-
-			case 11:
-				this.addSkill(::Legends.Effects.new(::Legends.Effect.LegendRshClarity));
-				break;
-
-			case 12:
-				this.addSkill(::Legends.Effects.new(::Legends.Effect.LegendRshBravery));
-				break;
-
-			case 13:
-				this.addSkill(::Legends.Effects.new(::Legends.Effect.LegendRshLuck));
-				break;
-
-			case 21:
-				this.addSkill(::Legends.Effects.new(::Legends.Effect.LegendRsaEndurance));
-				break;
-
-			case 22:
-				this.addSkill(::Legends.Effects.new(::Legends.Effect.LegendRsaSafety));
-				break;
-
-			case 23:
-				this.addSkill(::Legends.Effects.new(::Legends.Effect.LegendRsaResilience));
-				break;
-
-			case 31:
-				this.addSkill(::Legends.Effects.new(::Legends.Effect.LegendRssDefense));
-				break;
-
-			case 32:
-				this.addSkill(::Legends.Effects.new(::Legends.Effect.LegendRssRadiance));
-				break;
-
-			default:
-				break;
-		}
+		local def = ::Legends.Runes.get(this.m.RuneVariant);
+		if (def == null)
+			return;
+		this.addSkill(::Legends.Effects.new(def.Effect));
 	}
 
 	o.getRuneSigilTooltip <- function ()
 	{
-		switch (this.m.RuneVariant)
-		{
-			case 1:
-				return "This item has the power of the rune sigil of Power:\n[color=" + this.Const.UI.Color.PositiveValue + "]+" + this.m.RuneBonus1 + "%[/color] Damage inflicted.\n" + "[color=" + this.Const.UI.Color.PositiveValue + "]+" + this.m.RuneBonus2 + "[/color] Max damage.";
-				break;
+		local def = ::Legends.Runes.get(this.m.RuneVariant);
+		if (def == null)
+			return "This item is inscribed with a rune sigil, even though it shouldn't have been: please report this bug. Variant = " + this.m.RuneVariant;
+		return def.getTooltip(this);;
+	}
 
-			case 2:
-				return "This item has the power of the rune sigil of Accuracy:\n[color=" + this.Const.UI.Color.PositiveValue + "]+" + this.m.RuneBonus1 + "%[/color] Melee skill.\n" + "[color=" + this.Const.UI.Color.PositiveValue + "]+" + this.m.RuneBonus2 + "%[/color] Ranged skill.";
-				break;
+	o.setRuneBonus <- function ( _bonus = false) {
+		local def = ::Legends.Runes.get(this.m.RuneVariant);
+		if (def == null)
+			return;
+		def.setRuneBonus(this, _bonus);
+	}
 
-			case 3:
-				return "This item has the power of the rune sigil of Feeding:\n[color=" + this.Const.UI.Color.PositiveValue + "]" + this.m.RuneBonus1 + "%[/color] of inflicted health damage recovers fatigue.";
-				break;
-
-			case 4:
-				return "This item has the power of the rune sigil of Poison:\n[color=" + this.Const.UI.Color.PositiveValue + "]" + this.m.RuneBonus1 + "[/color] turn(s) of poison applied, with a strength of [color=" + this.Const.UI.Color.PositiveValue + "]" + this.m.RuneBonus2 + "[/color]. Lowers action points and initiative.";
-				break;
-
-			case 5:
-				return "This item has the power of the rune sigil of Bleeding:\n[color=" + this.Const.UI.Color.PositiveValue + "]" + this.m.RuneBonus1 + "[/color] bleed damage every turn for [color=" + this.Const.UI.Color.PositiveValue + "]" + this.m.RuneBonus2 + "[/color] turn(s).";
-				break;
-
-			case 6:
-				return "This item has the power of the rune sigil of Unbreaking:\n[color=" + this.Const.UI.Color.PositiveValue + "]" + this.m.RuneBonus1 + "[/color] to [color=" + this.Const.UI.Color.PositiveValue + "]" + this.m.RuneBonus2 + "[/color] durability restored on every kill.";
-				break;
-
-			case 11:
-				return "This item has the power of the rune sigil of Clarity:\n[color=" + this.Const.UI.Color.PositiveValue + "]+" + this.m.RuneBonus1 + "[/color] Vision.\n[color=" + this.Const.UI.Color.PositiveValue + "]+" + this.m.RuneBonus2 + "%[/color] Experience gain.";
-				break;
-
-			case 12:
-				return "This item has the power of the rune sigil of Bravery:\n[color=" + this.Const.UI.Color.PositiveValue + "]+" + this.m.RuneBonus1 + "%[/color] Resolve.\n[color=" + this.Const.UI.Color.PositiveValue + "]+" + this.m.RuneBonus2 + "[/color] Resolve at all morale checks.";
-				break;
-
-			case 13:
-				return "This item has the power of the rune sigil of Luck:\n[color=" + this.Const.UI.Color.PositiveValue + "]+" + this.m.RuneBonus1 + "%[/color] chance to have any attacker require two successful attack rolls in order to hit.";
-				break;
-
-			case 21:
-				return "This item has the power of the rune sigil of Endurance:\n[color=" + this.Const.UI.Color.PositiveValue + "]+" + this.m.RuneBonus1 + "[/color] Fatigue recovery per turn.\n[color=" + this.Const.UI.Color.PositiveValue + "]-" + this.m.RuneBonus2 + "%[/color] Fatigue cost and effects multiplier.";
-				break;
-
-			case 22:
-				return "This item has the power of the rune sigil of Safety:\n[color=" + this.Const.UI.Color.PositiveValue + "]+" + this.m.RuneBonus1 + "%[/color] Hitpoints.\n[color=" + this.Const.UI.Color.PositiveValue + "]-" + this.m.RuneBonus2 + "%[/color] Damage received.";
-				break;
-
-			case 23:
-				return "This item has the power of the rune sigil of Resilience:\n[color=" + this.Const.UI.Color.PositiveValue + "]Immune[/color] to stuns, knockbacks and grabs.";
-				break;
-
-			case 31:
-				return "This item has the power of the rune sigil of Defense:\n[color=" + this.Const.UI.Color.PositiveValue + "]+" + this.m.RuneBonus1 + "%[/color] Melee defense.\n" + "[color=" + this.Const.UI.Color.PositiveValue + "]+" + this.m.RuneBonus2 + "%[/color] Ranged defense.";
-				break;
-
-			case 32:
-				return "This item has the power of the rune sigil of Radiance:\n[color=" + this.Const.UI.Color.PositiveValue + "]-" + this.m.RuneBonus1 + "%[/color] to all adjacent enemies\' Melee skill.\n" + "[color=" + this.Const.UI.Color.PositiveValue + "]-" + this.m.RuneBonus2 + "%[/color] to all adjacent enemies\' Melee defense.";
-				break;
-
-			default:
-				return "This item is inscribed with a rune sigil, even though it shouldn't have been: please report this bug.";
-				break;
+	o.updateRuneSigilToken <- function() {
+		local def = ::Legends.Runes.get(this.m.RuneVariant);
+		if (def == null) {
+			this.m.Name = "Unknown Rune Sigil: Error";
+			this.m.Description = "An inscribed rock that cannot be attached to a character\'s equipment.";
+			this.m.Icon = "rune_sigils/legend_vala_rune_sigil_blank.png";
+			this.m.IconLarge = "rune_sigils/legend_vala_rune_sigil_blank.png";
+		} else {
+			this.m.Name = def.Name;
+			this.m.Description = def.Description;
+			this.m.Icon = def.Icon;
+			this.m.IconLarge = def.IconLarge;
 		}
 	}
 
-	o.setRuneBonus <- function ( _bonus = false)
-	{
-		local bonus = 0;
-		local bonus2 = 0;
-		switch (this.m.RuneVariant)
-		{
-			case 1:
-				if (_bonus)
-				{
-					bonus = this.Math.rand(3, 9);
-					bonus2 = this.Math.rand(3, 9);
-				}
-				else
-				{
-					bonus = this.Math.rand(3, 6);
-					bonus2 = this.Math.rand(3, 6);
-				}
-				break;
-
-			case 2:
-				if (_bonus)
-				{
-					bonus = this.Math.rand(3, 9);
-					bonus2 = this.Math.rand(3, 9);
-				}
-				else
-				{
-					bonus = this.Math.rand(3, 6);
-					bonus2 = this.Math.rand(3, 6);
-				}
-				break;
-
-			case 3:
-				if (_bonus)
-				{
-					bonus = this.Math.rand(2, 6);
-				}
-				else
-				{
-					bonus = this.Math.rand(2, 4);
-				}
-				break;
-
-			case 4:
-				if (_bonus)
-				{
-					bonus = this.Math.rand(1, 3);
-					bonus2 = this.Math.rand(3, 9);
-				}
-				else
-				{
-					bonus = this.Math.rand(1, 2);
-					bonus2 = this.Math.rand(3, 9);
-				}
-				break;
-
-			case 5:
-				if (_bonus)
-				{
-					bonus = this.Math.rand(3, 9);
-					bonus2 = this.Math.rand(1, 3);
-				}
-				else
-				{
-					bonus = this.Math.rand(3, 6);
-					bonus2 = this.Math.rand(1, 2);
-				}
-				break;
-
-			case 6:
-				if (_bonus)
-				{
-					bonus2 = this.Math.rand(3, 9);
-					bonus = this.Math.rand(1, 3);
-				}
-				else
-				{
-					bonus2 = this.Math.rand(3, 6);
-					bonus = this.Math.rand(1, 2);
-				}
-				break;
-
-			case 11:
-				if (_bonus)
-				{
-					bonus = this.Math.rand(0, 2);
-					bonus2 = this.Math.rand(3, 9);
-				}
-				else
-				{
-					bonus = this.Math.rand(0, 1);
-					bonus2 = this.Math.rand(3, 6);
-				}
-				break;
-
-			case 12:
-				if (_bonus)
-				{
-					bonus = this.Math.rand(3, 9);
-					bonus2 = this.Math.rand(1, 5);
-				}
-				else
-				{
-					bonus = this.Math.rand(3, 6);
-					bonus2 = this.Math.rand(1, 3);
-				}
-				break;
-
-			case 13:
-				if (_bonus)
-				{
-					bonus = this.Math.rand(3, 9);
-				}
-				else
-				{
-					bonus = this.Math.rand(3, 6);
-				}
-				break;
-
-			case 21:
-				if (_bonus)
-				{
-					bonus = this.Math.rand(0, 3);
-					bonus2 = this.Math.rand(3, 9);
-				}
-				else
-				{
-					bonus = this.Math.rand(0, 1);
-					bonus2 = this.Math.rand(3, 6);
-				}
-				break;
-
-			case 22:
-				if (_bonus)
-				{
-					bonus = this.Math.rand(3, 9);
-					bonus2 = this.Math.rand(3, 9);
-				}
-				else
-				{
-					bonus = this.Math.rand(3, 6);
-					bonus2 = this.Math.rand(3, 6);
-				}
-				break;
-
-			case 23:
-				break;
-
-			case 31:
-				if (_bonus)
-				{
-					bonus = this.Math.rand(3, 9);
-					bonus2 = this.Math.rand(3, 9);
-				}
-				else
-				{
-					bonus = this.Math.rand(3, 6);
-					bonus2 = this.Math.rand(3, 6);
-				}
-				break;
-
-			case 32:
-				if (_bonus)
-				{
-					bonus = this.Math.rand(3, 12);
-					bonus2 = this.Math.rand(3, 12);
-				}
-				else
-				{
-					bonus = this.Math.rand(3, 9);
-					bonus2 = this.Math.rand(3, 9);
-				}
-				break;
-
-			default:
-				break;
-		}
-		this.setRuneBonus1(bonus);
-		this.setRuneBonus2(bonus2);
-	}
-
-	o.updateRuneSigilToken <- function ()
-	{
-		switch (this.m.RuneVariant)
-		{
-			case 1:
-				this.m.Name = "Weapon Rune Sigil: Power";
-				this.m.Description = "An inscribed rock that can be attached to a character\'s weapon.";
-				this.m.Icon = "rune_sigils/rune_stone_1.png";
-				this.m.IconLarge = "rune_sigils/rune_stone_1.png";
-				break;
-
-			case 2:
-				this.m.Name = "Weapon Rune Sigil: Accuracy";
-				this.m.Description = "An inscribed rock that can be attached to a character\'s weapon.";
-				this.m.Icon = "rune_sigils/rune_stone_1.png";
-				this.m.IconLarge = "rune_sigils/rune_stone_1.png";
-				break;
-
-			case 3:
-				this.m.Name = "Weapon Rune Sigil: Feeding";
-				this.m.Description = "An inscribed rock that can be attached to a character\'s weapon.";
-				this.m.Icon = "rune_sigils/rune_stone_1.png";
-				this.m.IconLarge = "rune_sigils/rune_stone_1.png";
-				break;
-
-			case 4:
-				this.m.Name = "Weapon Rune Sigil: Poison";
-				this.m.Description = "An inscribed rock that can be attached to a character\'s weapon.";
-				this.m.Icon = "rune_sigils/rune_stone_1.png";
-				this.m.IconLarge = "rune_sigils/rune_stone_1.png";
-				break;
-
-			case 5:
-				this.m.Name = "Weapon Rune Sigil: Bleeding";
-				this.m.Description = "An inscribed rock that can be attached to a character\'s weapon.";
-				this.m.Icon = "rune_sigils/rune_stone_1.png";
-				this.m.IconLarge = "rune_sigils/rune_stone_1.png";
-				break;
-
-			case 6:
-				this.m.Name = "Weapon Rune Sigil: Unbreaking";
-				this.m.Description = "An inscribed rock that can be attached to a character\'s weapon.";
-				this.m.Icon = "rune_sigils/rune_stone_1.png";
-				this.m.IconLarge = "rune_sigils/rune_stone_1.png";
-				break;
-
-			case 11:
-				this.m.Name = "Helmet Rune Sigil: Clarity";
-				this.m.Description = "An inscribed rock that can be attached to a character\'s helmet.";
-				this.m.Icon = "rune_sigils/rune_stone_2.png";
-				this.m.IconLarge = "rune_sigils/rune_stone_2.png";
-				break;
-
-			case 12:
-				this.m.Name = "Helmet Rune Sigil: Bravery";
-				this.m.Description = "An inscribed rock that can be attached to a character\'s helmet.";
-				this.m.Icon = "rune_sigils/rune_stone_2.png";
-				this.m.IconLarge = "rune_sigils/rune_stone_2.png";
-				break;
-
-			case 13:
-				this.m.Name = "Helmet Rune Sigil: Luck";
-				this.m.Description = "An inscribed rock that can be attached to a character\'s helmet.";
-				this.m.Icon = "rune_sigils/rune_stone_2.png";
-				this.m.IconLarge = "rune_sigils/rune_stone_2.png";
-				break;
-
-			case 21:
-				this.m.Name = "Armor Rune Sigil: Endurance";
-				this.m.Description = "An inscribed rock that can be attached to a character\'s armor.";
-				this.m.Icon = "rune_sigils/rune_stone_3.png";
-				this.m.IconLarge = "rune_sigils/rune_stone_3.png";
-				break;
-
-			case 22:
-				this.m.Name = "Armor Rune Sigil: Safety";
-				this.m.Description = "An inscribed rock that can be attached to a character\'s armor.";
-				this.m.Icon = "rune_sigils/rune_stone_3.png";
-				this.m.IconLarge = "rune_sigils/rune_stone_3.png";
-				break;
-
-			case 23:
-				this.m.Name = "Armor Rune Sigil: Resilience";
-				this.m.Description = "An inscribed rock that can be attached to a character\'s armor.";
-				this.m.Icon = "rune_sigils/rune_stone_3.png";
-				this.m.IconLarge = "rune_sigils/rune_stone_3.png";
-				break;
-
-			case 31:
-				this.m.Name = "Shield Rune Sigil: Defense";
-				this.m.Description = "An inscribed rock that can be attached to a character\'s shield.";
-				this.m.Icon = "rune_sigils/rune_stone_4.png";
-				this.m.IconLarge = "rune_sigils/rune_stone_4.png";
-				break;
-
-			case 32:
-				this.m.Name = "Shield Rune Sigil: Radiance";
-				this.m.Description = "An inscribed rock that can be attached to a character\'s shield.";
-				this.m.Icon = "rune_sigils/rune_stone_4.png";
-				this.m.IconLarge = "rune_sigils/rune_stone_4.png";
-				break;
-
-			default:
-				this.m.Name = "Unknown Rune Sigil: Error";
-				this.m.Description = "An inscribed rock that cannot be attached to a character\'s equipment.";
-				this.m.Icon = "rune_sigils/legend_vala_rune_sigil_blank.png";
-				this.m.IconLarge = "rune_sigils/legend_vala_rune_sigil_blank.png";
-				break;
-		}
-	}
-
-	o.setRuneVariant <- function (_rune)
-	{
+	o.setRuneVariant <- function (_rune) {
 		this.m.RuneVariant = _rune;
 	}
 
-	o.getRuneVariant <- function ()
-	{
+	o.getRuneVariant <- function ()	{
 		return this.m.RuneVariant;
 	}
 
-	o.setRuneBonus1 <- function (_mult)
-	{
+	o.setRuneBonus1 <- function (_mult)	{
 		this.m.RuneBonus1 = _mult;
 	}
 
-	o.getRuneBonus1 <- function ()
-	{
+	o.getRuneBonus1 <- function () {
 		return this.m.RuneBonus1;
 	}
 
-	o.setRuneBonus2 <- function (_mult)
-	{
+	o.setRuneBonus2 <- function (_mult) {
 		this.m.RuneBonus2 = _mult;
 	}
 
-	o.getRuneBonus2 <- function ()
-	{
+	o.getRuneBonus2 <- function () {
 		return this.m.RuneBonus2;
 	}
 
-	o.isRuned <- function ()
-	{
-		if (this.m.RuneVariant > 0)
-		{
-			return true;
-		}
-		else
-		{
-			return false;
-		}
+	o.isRuned <- function () {
+		return this.m.RuneVariant > 0;
 	}
 
 	o.updateRuneSigil <- function ()

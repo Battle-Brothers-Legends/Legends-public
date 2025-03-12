@@ -1,6 +1,11 @@
 this.legend_hexe_leader <- this.inherit("scripts/entity/tactical/actor", {
 	m = {
-		IsCharming = false
+		IsCharming = false,
+		DroppableRunes = [
+			::Legends.Rune.LegendRshClarity,
+			::Legends.Rune.LegendRshBravery,
+			::Legends.Rune.LegendRshLuck
+		]
 	},
 	function create()
 	{
@@ -198,25 +203,15 @@ this.legend_hexe_leader <- this.inherit("scripts/entity/tactical/actor", {
 
 				if (this.Math.rand(1, 100) <= 20)
 				{
-					local rune;
-					local selected = this.Math.rand(11,13);
-					switch(selected)
+					local selected = this.m.DroppableRunes[this.Math.rand(0, this.m.DroppableRunes.len() - 1)];
+					local def = ::Legends.Runes.get(selected);
+					if (def != null)
 					{
-						case 11:
-							rune = this.new("scripts/items/legend_helmets/runes/legend_rune_clarity");
-							break;
-
-						case 12:
-							rune = this.new("scripts/items/legend_helmets/runes/legend_rune_bravery");
-							break;
-
-						case 13:
-							rune = this.new("scripts/items/legend_helmets/runes/legend_rune_luck");
-							break;
+						local rune = ::new(def.Script);
+						rune.setRuneVariant(selected);
+						rune.setRuneBonus(true);
+						rune.drop(_tile);
 					}
-					rune.setRuneVariant(selected);
-					rune.setRuneBonus(true);
-					rune.drop(_tile);
 				}
 			}
 		}

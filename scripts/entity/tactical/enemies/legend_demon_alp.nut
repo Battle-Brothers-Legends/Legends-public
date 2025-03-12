@@ -1,5 +1,14 @@
 this.legend_demon_alp <- this.inherit("scripts/entity/tactical/actor", {
-	m = {},
+	m = {
+		DroppableRunes = [
+			::Legends.Rune.LegendRswPower,
+			::Legends.Rune.LegendRswAccuracy,
+			::Legends.Rune.LegendRswFeeding,
+			::Legends.Rune.LegendRswPoison,
+			::Legends.Rune.LegendRswBleeding,
+			::Legends.Rune.LegendRswUnbreaking,
+		]
+	},
 	function create()
 	{
 		this.m.Type = this.Const.EntityType.LegendDemonAlp;
@@ -221,7 +230,7 @@ this.legend_demon_alp <- this.inherit("scripts/entity/tactical/actor", {
 		}
 
 		local token = this.new("scripts/items/rune_sigils/legend_vala_inscription_token");
-		token.setRuneVariant(::Math.rand(1, 6));
+		token.setRuneVariant(this.m.DroppableRunes[this.Math.rand(0, this.m.DroppableRunes.len() - 1)]);
 		token.setRuneBonus(true);
 		token.updateRuneSigilToken();
 		token.drop(_tile);

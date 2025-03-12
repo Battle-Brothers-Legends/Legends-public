@@ -14,7 +14,7 @@ this.legend_rune_clarity <- this.inherit("scripts/items/legend_helmets/legend_he
 		this.m.OverlayIconLarge = "layers/glow_runed_icon.png";
 		this.m.Sprite = "bust_legend_helmet_runed";
 		this.m.Value = 1200;
-		this.setRuneVariant(11);
+		this.setRuneVariant(::Legends.Rune.LegendRshClarity);
 		this.setRuneBonus(false); // false = unupgraded enchanter stats. true = upgraded enchanter stats
 	}
 

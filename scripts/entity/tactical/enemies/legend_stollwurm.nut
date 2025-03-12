@@ -1,7 +1,11 @@
 this.legend_stollwurm <- this.inherit("scripts/entity/tactical/actor", {
 	m = {
 		Tail = null,
-		Mode = 0
+		Mode = 0,
+		DroppableRunes = [
+			::Legends.Rune.LegendRsaEndurance,
+			::Legends.Rune.LegendRsaSafety
+		]
 	},
 	function getIdealRange()
 	{
@@ -196,24 +200,15 @@ this.legend_stollwurm <- this.inherit("scripts/entity/tactical/actor", {
 
 					if (this.Math.rand(1, 100) <= 50)
 					{
-						local rune;
-						local variant = this.Math.rand(21, 22);
-
-						switch(variant)
+						local selected = this.m.DroppableRunes[this.Math.rand(0, this.m.DroppableRunes.len() - 1)];
+						local def = ::Legends.Runes.get(selected);
+						if (def != null)
 						{
-						case 21:
-							rune = this.new("scripts/items/legend_armor/runes/legend_rune_endurance");
-							break;
-
-						case 22:
-							rune = this.new("scripts/items/legend_armor/runes/legend_rune_safety");
-							break;
+							local rune = ::new(def.Script);
+							rune.setRuneVariant(selected);
+							rune.setRuneBonus(true);
+							rune.drop(_tile);
 						}
-
-						rune.setRuneVariant(variant);
-						rune.setRuneBonus(true);
-						rune.setRuneVariant(0);
-						rune.drop(_tile);
 					}
 				}
 

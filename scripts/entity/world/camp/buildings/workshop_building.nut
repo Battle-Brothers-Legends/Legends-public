@@ -409,40 +409,12 @@ this.workshop_building <- this.inherit("scripts/entity/world/camp/camp_building"
 				this.m.ItemsDestroyed += 1;
 				local myItem = this.World.Assets.getStash().getItemByInstanceID(r.Item.getInstanceID()).item;
 
-				if (myItem.getRuneVariant() != 0)
+				if (myItem.getRuneVariant() > 0)
 				{
-
-					if (myItem.getRuneVariant() == 21 || myItem.getRuneVariant() == 22 || myItem.getRuneVariant() == 23 || myItem.getRuneVariant() == 11 || myItem.getRuneVariant() == 12 || myItem.getRuneVariant() == 13)
+					local def = ::Legends.Runes.get(myItem.getRuneVariant());
+					if (def.ItemType == ::Const.Items.ItemType.Armor || def.ItemType == ::Const.Items.ItemType.Helmet)
 					{
-						local rune;
-
-						switch(myItem.getRuneVariant())
-						{
-						case 11:
-							rune = this.new("scripts/items/legend_helmets/runes/legend_rune_clarity");
-							break;
-
-						case 12:
-							rune = this.new("scripts/items/legend_helmets/runes/legend_rune_bravery");
-							break;
-
-						case 13:
-							rune = this.new("scripts/items/legend_helmets/runes/legend_rune_luck");
-							break;
-
-						case 21:
-							rune = this.new("scripts/items/legend_armor/runes/legend_rune_endurance");
-							break;
-
-						case 22:
-							rune = this.new("scripts/items/legend_armor/runes/legend_rune_safety");
-							break;
-
-						case 23:
-							rune = this.new("scripts/items/legend_armor/runes/legend_rune_resilience");
-							break;
-						}
-
+						local rune = ::new(def.Script);
 						rune.setRuneVariant(myItem.getRuneVariant());
 						rune.setRuneBonus1(myItem.getRuneBonus1());
 						rune.setRuneBonus2(myItem.getRuneBonus2());

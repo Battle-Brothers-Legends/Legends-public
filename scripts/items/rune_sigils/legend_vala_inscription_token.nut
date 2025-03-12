@@ -1,7 +1,6 @@
 this.legend_vala_inscription_token <- this.inherit("scripts/items/item", {
 	m = {},
-	function create()
-	{
+	function create() {
 		this.m.ID = "token.legend_vala_inscription";
 		this.m.Name = "";
 		this.m.Description = "";
@@ -15,19 +14,18 @@ this.legend_vala_inscription_token <- this.inherit("scripts/items/item", {
 		this.m.Value = 100;
 	}
 
-	function getTooltip()
-	{
+	function getTooltip() {
 		local result = [
-			{
-				id = 1,
-				type = "title",
-				text = this.getName()
-			},
-			{
-				id = 2,
-				type = "description",
-				text = this.getDescription()
-			}
+		{
+			id = 1,
+			type = "title",
+			text = this.getName()
+		},
+		{
+			id = 2,
+			type = "description",
+			text = this.getDescription()
+		}
 		];
 		result.push({
 			id = 3,
@@ -35,17 +33,14 @@ this.legend_vala_inscription_token <- this.inherit("scripts/items/item", {
 			text = this.getValueString()
 		});
 
-		if (this.getIconLarge() != null)
-		{
+		if (this.getIconLarge() != null) {
 			result.push({
 				id = 4,
 				type = "image",
 				image = this.getIconLarge(),
 				isLarge = true
 			});
-		}
-		else
-		{
+		} else {
 			result.push({
 				id = 4,
 				type = "image",
@@ -69,51 +64,28 @@ this.legend_vala_inscription_token <- this.inherit("scripts/items/item", {
 	}
 
 
-	function onUse( _actor, _item = null )
-	{
+	function onUse(_actor, _item = null) {
 		local target = null;
-		if (this.m.RuneVariant >= 1 && this.m.RuneVariant <= 10)
-		{
+		local def = ::Legends.Runes.get(this.m.RuneVariant);
+		if (def.ItemType == ::Const.Items.ItemType.Weapon) {
 			target = _actor.getItems().getItemAtSlot(this.Const.ItemSlot.Mainhand);
-
 			if (target == null)
-			{
 				return false;
-			}
-		}
-		else if (this.m.RuneVariant >= 11 && this.m.RuneVariant <= 20)
-		{
+		} else if (def.ItemType == ::Const.Items.ItemType.Helmet) {
 			target = _actor.getItems().getItemAtSlot(this.Const.ItemSlot.Head);
-
 			if (target == null)
-			{
 				return false;
-			}
-		}
-		else if (this.m.RuneVariant >= 21 && this.m.RuneVariant <= 30)
-		{
+		} else if (def.ItemType == ::Const.Items.ItemType.Armor) {
 			target = _actor.getItems().getItemAtSlot(this.Const.ItemSlot.Body);
-
 			if (target == null)
-			{
 				return false;
-			}
-		}
-		else if (this.m.RuneVariant >= 31 && this.m.RuneVariant <= 40)
-		{
+		} else if (def.ItemType == ::Const.Items.ItemType.Shield) {
 			target = _actor.getItems().getItemAtSlot(this.Const.ItemSlot.Offhand);
-
 			if (target == null)
-			{
 				return false;
-			}
 			if (target.getID().find("shield") == null)
-			{
 				return false;
-			}
-		}
-		else
-		{
+		} else {
 			return false;
 		}
 
@@ -122,17 +94,15 @@ this.legend_vala_inscription_token <- this.inherit("scripts/items/item", {
 		target.setRuneVariant(this.m.RuneVariant);
 		target.setRuneBonus1(this.m.RuneBonus1);
 		target.setRuneBonus2(this.m.RuneBonus2);
-		if (!alreadyRuned)
-		{
+		if (!alreadyRuned) {
 			target.updateRuneSigil();
 		}
 		_actor.getItems().unequip(target);
 		_actor.getItems().equip(target);
-		return true;		
+		return true;
 	}
 
-	function onDeserialize( _in )
-	{
+	function onDeserialize(_in) {
 		this.item.onDeserialize(_in);
 		this.updateRuneSigilToken();
 	}

@@ -71,7 +71,7 @@ this.legends_debug_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 		banner.setVariant(2);
 		this.World.Assets.getStash().add(banner);
 		local rune =  this.new("scripts/items/rune_sigils/legend_vala_inscription_token");
-		rune.setRuneVariant(5);
+		rune.setRuneVariant(::Legends.Rune.LegendRswBleeding);
 		rune.updateRuneSigilToken();
 		this.World.Assets.getStash().add(rune);
 

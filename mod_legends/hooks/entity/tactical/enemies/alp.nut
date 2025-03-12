@@ -1,5 +1,11 @@
 ::mods_hookExactClass("entity/tactical/enemies/alp", function(o)
 {
+	o.m.DroppableRunes <- [
+		::Legends.Rune.LegendRswPower,
+		::Legends.Rune.LegendRswAccuracy,
+		::Legends.Rune.LegendRswFeeding
+	];
+
 	local create = o.create;
 	o.create = function ()
 	{
@@ -118,7 +124,7 @@
 					if (this.Math.rand(1, 100) <= 1)
 					{
 						local token = this.new("scripts/items/rune_sigils/legend_vala_inscription_token");
-						token.setRuneVariant(this.Math.rand(1, 3));
+						token.setRuneVariant(this.m.DroppableRunes[this.Math.rand(0, this.m.DroppableRunes.len() - 1)]);
 						token.setRuneBonus(true);
 						token.updateRuneSigilToken();
 						token.drop(_tile);
