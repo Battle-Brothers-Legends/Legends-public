@@ -1,6 +1,5 @@
 this.legend_specialist_abstract <- this.inherit("scripts/skills/skill", {
 	m = {
-		IsSpecialistSkill = true,
 		SkillTypeBonus = "" // "ranged", "melee", "both"
 		ApplicableItemTypes = [],
 		ApplicableWeaponTypes = [],
@@ -21,6 +20,7 @@ this.legend_specialist_abstract <- this.inherit("scripts/skills/skill", {
 		this.m.IsActive = false;
 		this.m.IsStacking = false;
 		this.m.IsHidden = false;
+		this.m.IsSpecialistSkill = true;
 	}
 
 	// this func needs item for the checks, it's inside the default tooltip of skill.nut
@@ -28,7 +28,6 @@ this.legend_specialist_abstract <- this.inherit("scripts/skills/skill", {
 	{
 		if (!hasBonus(_item))
 			return [];
-
 		return specialistWeaponTooltip(_item, _isRanged);
 	}
 
@@ -44,7 +43,7 @@ this.legend_specialist_abstract <- this.inherit("scripts/skills/skill", {
 			return true;
 		foreach (type in this.m.ApplicableItemTypes)
 		{
-			if (!item.isItemType(type))
+			if (!_item.isItemType(type))
 			{
 				return false;
 			}
@@ -52,7 +51,7 @@ this.legend_specialist_abstract <- this.inherit("scripts/skills/skill", {
 
 		foreach (type in this.m.ApplicableWeaponTypes)
 		{
-			if (!item.isWeaponType(type))
+			if (!_item.isWeaponType(type))
 			{
 				return false;
 			}
@@ -60,7 +59,7 @@ this.legend_specialist_abstract <- this.inherit("scripts/skills/skill", {
 
 		foreach (type in this.m.ExcludedItemTypes)
 		{
-			if (item.isItemType(type))
+			if (_item.isItemType(type))
 			{
 				return false;
 			}
@@ -68,7 +67,7 @@ this.legend_specialist_abstract <- this.inherit("scripts/skills/skill", {
 
 		foreach (type in this.m.ExcludedWeaponTypes)
 		{
-			if (item.isWeaponType(type))
+			if (_item.isWeaponType(type))
 			{
 				return false;
 			}
