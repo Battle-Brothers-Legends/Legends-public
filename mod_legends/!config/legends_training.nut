@@ -1,5 +1,9 @@
 // content is [<trait const>, <related talent>], talents make traits appear more often
 ::Legends.Training <- {
+	CostTrainingBase = 100,
+	CostTrainingScaled = 75,
+	CostRerollBase = 20000,
+	CostRerollScaled = 2500,
 	Traits = [
 		[::Legends.Trait.EagleEyes, ::Const.Attributes.RangedSkill],
 		[::Legends.Trait.Tough, ::Const.Attributes.Hitpoints],

@@ -10,7 +10,11 @@ this.legend_intensive_training_trait <- this.inherit("scripts/skills/traits/char
 		RdefAdded = 0,
 		TraitGained = -1,
 		BonusXP = 0.0,
-		MaxSkillsCanBeAdded = 15
+		MaxSkillsCanBeAdded = 15,
+		SettlementTrainingDelay = 0,
+		SettlementTrainedPoints = 0,
+		TraitRerollDelay = 0,
+		TraitRerollCount = 0,
 	},
 	function create()
 	{
@@ -141,6 +145,14 @@ this.legend_intensive_training_trait <- this.inherit("scripts/skills/traits/char
 	function isMaxReached()
 	{
 		return this.getStatsIncreased() >= this.m.MaxSkillsCanBeAdded;
+	}
+
+	function canTrainInTown () {
+		return this.m.SettlementTrainingDelay == 0 && !this.isMaxReached();
+	}
+
+	function canRerollTrait () {
+		return this.m.TraitRerollDelay == 0 && this.m.TraitGained != -1;
 	}
 
 	function getMaxSkillsCanBeAdded()
@@ -294,12 +306,64 @@ this.legend_intensive_training_trait <- this.inherit("scripts/skills/traits/char
 			});
 		}
 
+		if (this.m.SettlementTrainingDelay == 0) {
+			if (this.isMaxReached()) {
+				ret.push({
+					id = 6,
+					type = "text",
+					icon = "ui/icons/special.png",
+					text = "Cannot train in settlements anymore."
+				});
+			} else {
+				ret.push({
+					id = 6,
+					type = "text",
+					icon = "ui/icons/special.png",
+					text = "Can train in settelements."
+				});
+			}
+		} else {
+			ret.push({
+				id = 6,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = "Can train in settlements again after [color=" + this.Const.UI.Color.PositiveValue + "]" + this.m.SettlementTrainingDelay + "[/color] battles."
+			});
+		}
+
+		if (this.isMaxReached()) {
+			if (this.canRerollTrait()) {
+				ret.push({
+					id = 6,
+					type = "text",
+					icon = "ui/icons/special.png",
+					text = "Can change trained trait in settelements."
+				});
+			} else {
+				ret.push({
+					id = 6,
+					type = "text",
+					icon = "ui/icons/special.png",
+					text = "Can change trained trait in settelements again after [color=" + this.Const.UI.Color.PositiveValue + "]" + this.m.TraitRerollDelay + "[/color] battles."
+				});
+			}
+		}
+
 		return tooltip;
 	}
 
 	function isHidden()
 	{
 		return this.getStatsIncreased() == 0;
+	}
+
+	function onCombatFinished()
+	{
+		if (this.m.SettlementTrainingDelay > 0)
+			this.m.SettlementTrainingDelay -= 1;
+		if (this.m.TraitRerollDelay > 0)
+			this.m.TraitRerollDelay -= 1;
+		this.skill.onCombatFinished();
 	}
 
 	function onSerialize( _out )
@@ -315,6 +379,10 @@ this.legend_intensive_training_trait <- this.inherit("scripts/skills/traits/char
 		_out.writeU16(this.m.RdefAdded);
 		_out.writeF32(this.m.BonusXP);
 		_out.writeI32(this.m.TraitGained);
+		_out.writeU8(this.m.SettlementTrainingDelay);
+		_out.writeU8(this.m.SettlementTrainedPoints);
+		_out.writeU8(this.m.TraitRerollDelay);
+		_out.writeU16(this.m.TraitRerollCount);
 	}
 
 	function onDeserialize( _in )
@@ -330,6 +398,10 @@ this.legend_intensive_training_trait <- this.inherit("scripts/skills/traits/char
 		this.m.RdefAdded = _in.readU16();
 		this.m.BonusXP = _in.readF32();
 		this.m.TraitGained = _in.readI32();
+		this.m.SettlementTrainingDelay = _in.readU8();
+		this.m.SettlementTrainedPoints = _in.readU8();
+		this.m.TraitRerollDelay = _in.readU8();
+		this.m.TraitRerollCount = _in.readU16();
 
 		if(this.isMaxReached())
 		{

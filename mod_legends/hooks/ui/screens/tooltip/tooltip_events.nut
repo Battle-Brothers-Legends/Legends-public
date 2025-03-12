@@ -4107,6 +4107,46 @@
 				}
 			];
 
+		case "world-town-screen.training-dialog-module.Train100":
+			return [
+				{
+					id = 1,
+					type = "title",
+					text = "Thorough Training"
+				},
+				{
+					id = 2,
+					type = "description",
+					text = "Utilize settlement facilities to train faster. The bruises collected and lessons learned will result in [color=" + this.Const.UI.Color.PositiveValue + "]1[/color] point towards training progress. Requires participating in 2 battles to be ready for next training."
+				}
+			];
+		case "world-town-screen.training-dialog-module.Train101":
+			return [
+				{
+					id = 1,
+					type = "title",
+					text = "Intense Training"
+				},
+				{
+					id = 2,
+					type = "description",
+					text = "Fence with a Freifechter to train faster. The bruises collected and lessons learned will result in up to [color=" + this.Const.UI.Color.PositiveValue + "]3[/color] points towards training progress. Requires participating in 5 battles to be ready for next training."
+				}
+			];
+		case "world-town-screen.training-dialog-module.Train102":
+			return [
+				{
+					id = 1,
+					type = "title",
+					text = "Merciless Regimen"
+				},
+				{
+					id = 2,
+					type = "description",
+					text = "Spare with local swordmasters and use the knowledge of veterans to adjust and perfect your skills. Rerols trait gained during Training. Requires participating in 5 battles to be ready for next training. Cost increases with each reroll."
+				}
+			];
+
 		case "world-game-finish-screen.dialog-module.QuitButton":
 			return [
 				{
