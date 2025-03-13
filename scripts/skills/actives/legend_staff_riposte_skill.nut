@@ -22,6 +22,7 @@ this.legend_staff_riposte_skill <- this.inherit("scripts/skills/skill", {
 		this.m.IsStacking = false;
 		this.m.IsAttack = false;
 		this.m.IsWeaponSkill = true;
+		this.m.isHidden = true;
 		this.m.ActionPointCost = 4;
 		this.m.FatigueCost = 25;
 		this.m.MinRange = 0;
@@ -59,6 +60,13 @@ this.legend_staff_riposte_skill <- this.inherit("scripts/skills/skill", {
 		}
 
 		return ret;
+	}
+	
+	function isHidden())
+	{
+		if (this.getContainer().getActor().getSkills().hasSkill("perk.legend_staff_block"))
+			return false;
+		return this.skill.isHidden();
 	}
 
 	function isUsable()
