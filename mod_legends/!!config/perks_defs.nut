@@ -1793,7 +1793,7 @@ perkDefObjects.push({
 ::Legends.Perk.LegendSpecialistPrisoner <- null;
 perkDefObjects.push({
 	ID = "perk.legend_specialist_knife_prisoner",
-	Script = "scripts/skills/perks/perk_legend_specialist_knife_prisoner",
+	Script = "scripts/skills/perks/perk_legend_specialist_prisoner",
 	Name = ::Const.Strings.PerkName.LegendSpecialistPrisoner,
 	Tooltip = ::Const.Strings.PerkDescription.LegendSpecialistPrisoner,
 	Icon = "ui/perks/perk_spec_dagger.png",
