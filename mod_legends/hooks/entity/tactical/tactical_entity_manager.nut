@@ -504,12 +504,12 @@
 
 			if (!this.World.getTime().IsDaytime && e.getBaseProperties().IsAffectedByNight)
 			{
-				::Legends.Effects.grant(e, ::Lengeds.Effect.Night);
+				::Legends.Effects.grant(e, ::Legends.Effect.Night);
 			}
 
 			if (this.Tactical.getWeather().IsRaining && e.getBaseProperties().IsAffectedByRain)
 			{
-				::Legends.Effects.grant(e, ::Lengeds.Effect.LegendRain);
+				::Legends.Effects.grant(e, ::Legends.Effect.LegendRain);
 			}
 
 

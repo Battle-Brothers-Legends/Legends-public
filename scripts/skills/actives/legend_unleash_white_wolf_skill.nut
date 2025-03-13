@@ -154,7 +154,7 @@ this.legend_unleash_white_wolf_skill <- this.inherit("scripts/skills/actives/leg
 
 		if (!this.World.getTime().IsDaytime)
 		{
-			::Legends.Effects.grant(entity, ::Lengeds.Effect.Night);
+			::Legends.Effects.grant(entity, ::Legends.Effect.Night);
 		}
 
 		this.m.IsHidden = true;

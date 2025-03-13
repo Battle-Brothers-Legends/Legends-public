@@ -24,7 +24,7 @@ this.legends_seer_scenario <- this.inherit("scripts/scenarios/world/starting_sce
 			"legend_witch_commander_background"
 		]);
 		::Legends.Traits.grant(bro, ::Legends.Trait.Player);
-		this.addScenarioPerk(bro.getBackground(), this.Const.Perks.PerkDefs.LegendDaze);
+		this.addScenarioPerk(bro.getBackground(), this.Const.Perks.PerkDefs.LegendMagicDaze);
 		this.addScenarioPerk(bro.getBackground(), this.Const.Perks.PerkDefs.Student);
 		this.addScenarioPerk(bro.getBackground(), this.Const.Perks.PerkDefs.LegendMagicMissile);
 		bro.m.PerkPointsSpent += 3;

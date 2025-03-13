@@ -61,35 +61,35 @@ this.legend_beggar_commander_background <- this.inherit("scripts/skills/backgrou
 		this.m.Modifiers.Barter = this.Const.LegendMod.ResourceModifiers.Barter[3];
 		this.m.CustomPerkTree = [
 			[
-				this.Const.Perks.PerkDefs.Adrenaline,
-				this.Const.Perks.PerkDefs.NineLives,
-				this.Const.Perks.PerkDefs.Recover,
-				this.Const.Perks.PerkDefs.BagsAndBelts
+				::Legends.Perk.Adrenaline,
+				::Legends.Perk.NineLives,
+				::Legends.Perk.Recover,
+				::Legends.Perk.BagsAndBelts
 			],
 			[
-				this.Const.Perks.PerkDefs.Dodge,
-				this.Const.Perks.PerkDefs.HoldOut,
-				this.Const.Perks.PerkDefs.QuickHands
+				::Legends.Perk.Dodge,
+				::Legends.Perk.HoldOut,
+				::Legends.Perk.QuickHands
 			],
 			[
-				this.Const.Perks.PerkDefs.Anticipation,
-				this.Const.Perks.PerkDefs.Rotation,
-				this.Const.Perks.PerkDefs.Taunt
+				::Legends.Perk.Anticipation,
+				::Legends.Perk.Rotation,
+				::Legends.Perk.Taunt
 			],
 			[
-				this.Const.Perks.PerkDefs.SpecDagger,
-				this.Const.Perks.PerkDefs.SpecThrowing,
+				::Legends.Perk.SpecDagger,
+				::Legends.Perk.SpecThrowing,
 			],
 			[
-				this.Const.Perks.PerkDefs.LoneWolf,
-				this.Const.Perks.PerkDefs.Underdog,
-				this.Const.Perks.PerkDefs.Footwork,
+				::Legends.Perk.LoneWolf,
+				::Legends.Perk.Underdog,
+				::Legends.Perk.Footwork,
 			],
 			[
-				this.Const.Perks.PerkDefs.Nimble,
+				::Legends.Perk.Nimble,
 			],
 			[
-				this.Const.Perks.PerkDefs.Fearsome
+				::Legends.Perk.Fearsome
 			],
 			[],
 			[],

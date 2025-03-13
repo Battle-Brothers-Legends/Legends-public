@@ -102,30 +102,30 @@ this.legend_crusader_background <- this.inherit("scripts/skills/backgrounds/char
 		};
 		this.m.CustomPerkTree = [
 			[
-				this.Const.Perks.PerkDefs.Student,
-				this.Const.Perks.PerkDefs.Pathfinder,
-				this.Const.Perks.PerkDefs.BagsAndBelts,
-				// this.Const.Perks.PerkDefs.LegendComposure,
-				this.Const.Perks.PerkDefs.Adrenaline
+				::Legends.Perk.Student,
+				::Legends.Perk.Pathfinder,
+				::Legends.Perk.BagsAndBelts,
+				// ::Legends.Perk.LegendComposure,
+				::Legends.Perk.Adrenaline
 			],
 			[
-				this.Const.Perks.PerkDefs.Dodge,
-				this.Const.Perks.PerkDefs.RallyTheTroops,
-				this.Const.Perks.PerkDefs.LegendTrueBeliever,
+				::Legends.Perk.Dodge,
+				::Legends.Perk.RallyTheTroops,
+				::Legends.Perk.LegendTrueBeliever,
 			],
 			[],
 			[],
 			[
-				this.Const.Perks.PerkDefs.Footwork,
-				this.Const.Perks.PerkDefs.LegendBattleheart,
-				this.Const.Perks.PerkDefs.LegendLionheart
+				::Legends.Perk.Footwork,
+				::Legends.Perk.LegendBattleheart,
+				::Legends.Perk.LegendLionheart
 			],
 			[
-				this.Const.Perks.PerkDefs.InspiringPresence,
+				::Legends.Perk.InspiringPresence,
 			],
 			[
-				this.Const.Perks.PerkDefs.Fearsome,
-				this.Const.Perks.PerkDefs.LegendPerfectFocus
+				::Legends.Perk.Fearsome,
+				::Legends.Perk.LegendPerfectFocus
 			],
 			[],
 			[],

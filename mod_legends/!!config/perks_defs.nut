@@ -1793,7 +1793,7 @@ perkDefObjects.push({
 ::Legends.Perk.LegendSpecialistPrisoner <- null;
 perkDefObjects.push({
 	ID = "perk.legend_specialist_knife_prisoner",
-	Script = "scripts/skills/perks/perk_legend_specialist_knife_prisoner",
+	Script = "scripts/skills/perks/perk_legend_specialist_prisoner",
 	Name = ::Const.Strings.PerkName.LegendSpecialistPrisoner,
 	Tooltip = ::Const.Strings.PerkDescription.LegendSpecialistPrisoner,
 	Icon = "ui/perks/perk_spec_dagger.png",
@@ -1917,7 +1917,7 @@ perkDefObjects.push({
 	Script = "scripts/skills/perks/perk_legend_specialist_shepherd",
 	Name = ::Const.Strings.PerkName.LegendSpecialistShepherd,
 	Tooltip = ::Const.Strings.PerkDescription.LegendSpecialistShepherd,
-	Icon = "ui/perks/perk_spec_sling",
+	Icon = "ui/perks/perk_spec_sling.png",
 	IconDisabled = "ui/perks/perk_spec_sling_bw.png",
 	Const = "LegendSpecialistShepherd"
 });
@@ -4032,15 +4032,15 @@ perkDefObjects.push({
 	Script = "scripts/skills/perks/perk_legend_magic_burning_hands",
 	Name = ::Const.Strings.PerkName.LegendMagicBurningHands,
 	Tooltip = ::Const.Strings.PerkDescription.LegendMagicBurningHands,
-	Icon = "ui/perks/legend_magic_burning_hands_circle.png",
-	IconDisabled = "ui/perks/legend_magic_burning_hands_circle_bw.png",
+	Icon = "ui/perks/burning_hands_circle_01.png",
+	IconDisabled = "ui/perks/burning_hands_circle_01_bw.png",
 	Const = "LegendMagicBurningHands"
 });
 
 ::Legends.Perk.LegendMagicChainLightning <- null;
 perkDefObjects.push({
 	ID = "perk.legend_magic_chain_lightning",
-	Script = "scripts/skills/perks/perk_legend_magic_magic_chain_lightning",
+	Script = "scripts/skills/perks/perk_legend_magic_chain_lightning",
 	Name = ::Const.Strings.PerkName.LegendMagicChainLightning,
 	Tooltip = ::Const.Strings.PerkDescription.LegendMagicChainLightning,
 	Icon = "ui/perks/lightning_circle.png",
@@ -4051,18 +4051,18 @@ perkDefObjects.push({
 ::Legends.Perk.LegendMagicCircleOfProtection <- null;
 perkDefObjects.push({
 	ID = "perk.legend_magic_circle_of_protection",
-	Script = "scripts/skills/perks/perk_legend_magic_legend_magic_circle_of_protection",
+	Script = "scripts/skills/perks/perk_legend_magic_circle_of_protection",
 	Name = ::Const.Strings.PerkName.LegendMagicCircleOfProtection,
 	Tooltip = ::Const.Strings.PerkDescription.LegendMagicCircleOfProtection,
-	Icon = "ui/perks/legend_magic_circle_of_protection_circle.png",
-	IconDisabled = "ui/perks/legend_magic_circle_of_protection_circle_bw.png",
+	Icon = "ui/perks/mage_legend_magic_circle_of_protection_circle.png",
+	IconDisabled = "ui/perks/mage_legend_magic_circle_of_protection_circle_bw.png",
 	Const = "LegendMagicCircleOfProtection"
 });
 
 ::Legends.Perk.LegendMagicDaze <- null;
 perkDefObjects.push({
 	ID = "perk.legend_magic_daze",
-	Script = "scripts/skills/perks/perk_legend_magic_magic_daze",
+	Script = "scripts/skills/perks/perk_legend_magic_daze",
 	Name = ::Const.Strings.PerkName.LegendMagicDaze,
 	Tooltip = ::Const.Strings.PerkDescription.LegendMagicDaze,
 	Icon = "ui/perks/daze56_circle.png",
@@ -4076,15 +4076,15 @@ perkDefObjects.push({
 	Script = "scripts/skills/perks/perk_legend_magic_hailstone",
 	Name = ::Const.Strings.PerkName.LegendMagicHailstone,
 	Tooltip = ::Const.Strings.PerkDescription.LegendMagicHailstone,
-	Icon = "ui/perks/legend_magic_hailstone_circle.png",
-	IconDisabled = "ui/perks/legend_magic_hailstone_circle_bw.png",
+	Icon = "ui/perks/mage_legend_magic_hailstone_circle.png",
+	IconDisabled = "ui/perks/mage_legend_magic_hailstone_circle_bw.png",
 	Const = "LegendMagicHailstone"
 });
 
 ::Legends.Perk.LegendMagicHealingWind <- null;
 perkDefObjects.push({
 	ID = "perk.legend_magic_healing_wind",
-	Script = "scripts/skills/perks/perk_legend_magic_magic_healing_wind",
+	Script = "scripts/skills/perks/perk_legend_magic_healing_wind",
 	Name = ::Const.Strings.PerkName.LegendMagicHealingWind,
 	Tooltip = ::Const.Strings.PerkDescription.LegendMagicHealingWind,
 	Icon = "ui/perks/magic_mist_circle_01.png",
@@ -4095,7 +4095,7 @@ perkDefObjects.push({
 ::Legends.Perk.LegendMagicImbue <- null;
 perkDefObjects.push({
 	ID = "perk.legend_magic_imbue",
-	Script = "scripts/skills/perks/perk_legend_magic__imbue",
+	Script = "scripts/skills/perks/perk_legend_magic_imbue",
 	Name = ::Const.Strings.PerkName.LegendMagicImbue,
 	Tooltip = ::Const.Strings.PerkDescription.LegendMagicImbue,
 	Icon = "ui/perks/magic_imbue_circle_01.png",
@@ -4142,8 +4142,8 @@ perkDefObjects.push({
 	Script = "scripts/skills/perks/perk_legend_magic_circle_of_protection",
 	Name = ::Const.Strings.PerkName.LegendMagicCircleOfProtection,
 	Tooltip = ::Const.Strings.PerkDescription.LegendMagicCircleOfProtection,
-	Icon = "ui/perks/legend_magic_circle_of_protection_circle.png",
-	IconDisabled = "ui/perks/legend_magic_circle_of_protection_circle_bw.png",
+	Icon = "ui/perks/mage_legend_magic_circle_of_protection_circle.png",
+	IconDisabled = "ui/perks/mage_legend_magic_circle_of_protection_circle_bw.png",
 	Const = "LegendMagicCircleOfProtection"
 });
 
@@ -4164,8 +4164,8 @@ perkDefObjects.push({
 	Script = "scripts/skills/perks/perk_legend_magic_hailstone",
 	Name = ::Const.Strings.PerkName.LegendMagicHailstone,
 	Tooltip = ::Const.Strings.PerkDescription.LegendMagicHailstone,
-	Icon = "ui/perks/legend_magic_hailstone_circle.png",
-	IconDisabled = "ui/perks/legend_magic_hailstone_circle_bw.png",
+	Icon = "ui/perks/mage_legend_magic_hailstone_circle.png",
+	IconDisabled = "ui/perks/mage_legend_magic_hailstone_circle_bw.png",
 	Const = "LegendMagicHailstone"
 });
 
@@ -4296,15 +4296,15 @@ perkDefObjects.push({
 	Script = "scripts/skills/perks/perk_legend_mastery_hailstone",
 	Name = ::Const.Strings.PerkName.LegendMasteryHailstone,
 	Tooltip = ::Const.Strings.PerkDescription.LegendMasteryHailstone,
-	Icon = "ui/perks/legend_magic_hailstone_circle.png",
-	IconDisabled = "ui/perks/legend_magic_hailstone_circle_bw.png",
+	Icon = "ui/perks/mage_legend_magic_hailstone_circle.png",
+	IconDisabled = "ui/perks/mage_legend_magic_hailstone_circle_bw.png",
 	Const = "LegendMasteryHailstone"
 });
 
 ::Legends.Perk.LegendMagicMissileFocus <- null;
 perkDefObjects.push({
 	ID = "perk.legend_magic_missile_focus",
-	Script = "scripts/skills/perks/perk_legend_magic_missile_focus",
+	Script = "scripts/skills/perks/perk_legend_mastery_magic_missile_focus",
 	Name = ::Const.Strings.PerkName.LegendMagicMissileFocus,
 	Tooltip = ::Const.Strings.PerkDescription.LegendMagicMissileFocus,
 	Icon = "ui/perks/missile_circle.png",
@@ -4315,7 +4315,7 @@ perkDefObjects.push({
 ::Legends.Perk.LegendMagicMissileMastery <- null;
 perkDefObjects.push({
 	ID = "perk.legend_magic_missile_mastery",
-	Script = "scripts/skills/perks/perk_legend_magic_missile_mastery",
+	Script = "scripts/skills/perks/perk_legend_mastery_magic_missile_mastery",
 	Name = ::Const.Strings.PerkName.LegendMagicMissileMastery,
 	Tooltip = ::Const.Strings.PerkDescription.LegendMagicMissileMastery,
 	Icon = "ui/perks/missile_circle.png",
@@ -4454,6 +4454,5 @@ perkDefObjects.push({
 	IconDisabled = "ui/perks/strength_in_numbers_bw.png",
 	Const = "LegendStrengthInNumbers"
 });
-
 
 ::Const.Perks.addPerkDefObjects(perkDefObjects);
