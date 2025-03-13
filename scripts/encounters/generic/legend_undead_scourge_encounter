@@ -1,4 +1,4 @@
-this.maher_undead_scourge_encounter <- this.inherit("scripts/encounters/encounter", {
+this.legend_undead_scourge_encounter <- this.inherit("scripts/encounters/encounter", {
     m = {
 
     },
