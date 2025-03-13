@@ -1917,7 +1917,7 @@ perkDefObjects.push({
 	Script = "scripts/skills/perks/perk_legend_specialist_shepherd",
 	Name = ::Const.Strings.PerkName.LegendSpecialistShepherd,
 	Tooltip = ::Const.Strings.PerkDescription.LegendSpecialistShepherd,
-	Icon = "ui/perks/perk_spec_sling",
+	Icon = "ui/perks/perk_spec_sling.png",
 	IconDisabled = "ui/perks/perk_spec_sling_bw.png",
 	Const = "LegendSpecialistShepherd"
 });
