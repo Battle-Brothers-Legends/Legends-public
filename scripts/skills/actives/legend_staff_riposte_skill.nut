@@ -22,7 +22,7 @@ this.legend_staff_riposte_skill <- this.inherit("scripts/skills/skill", {
 		this.m.IsStacking = false;
 		this.m.IsAttack = false;
 		this.m.IsWeaponSkill = true;
-		this.m.isHidden = true;
+		this.m.IsHidden = true;
 		this.m.ActionPointCost = 4;
 		this.m.FatigueCost = 25;
 		this.m.MinRange = 0;
