@@ -85,7 +85,7 @@ this.legend_gladiator_prizefighter_background <- this.inherit("scripts/skills/ba
 
 		r = this.Math.rand(1, 5);
 		if (r <= 1)
-			items.equip(this.new("scripts/items/oriental/qatal_dagger"));
+			items.equip(this.new("scripts/items/weapons/oriental/qatal_dagger"));
 		r = this.Math.rand(1, 5);
 		if (r <= 1)
 			items.equip(this.new("scripts/items/tools/throwing_net"));
@@ -98,7 +98,7 @@ this.legend_gladiator_prizefighter_background <- this.inherit("scripts/skills/ba
 			[1, ""]
 		]));
 
-		this.getContainer().getActor().getItems().equip(this.new("scripts/items/accessory/legend_cestus"));
+		this.getContainer().getActor().getItems().equip(this.new("scripts/items/accessory/legend_cestus_item"));
 
 	}
 });
