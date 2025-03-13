@@ -38,7 +38,7 @@ this.legend_prepare_bullet_effect <- this.inherit("scripts/skills/skill", {
 				text = "Switching your weapon will remove this effect"
 			}
 		];
-		if (::Legends.Perks.get(this, ::Legends.Perk.LegendBallistics))
+		if (::Legends.Perks.has(this, ::Legends.Perk.LegendBallistics))
 			ret.push(
 			{
 				id = 12,
@@ -93,7 +93,7 @@ this.legend_prepare_bullet_effect <- this.inherit("scripts/skills/skill", {
 		if (_skill.isGarbage() || !_skill.getID() == "actives.sling_stone")
 			return;
 		_properties.DamageTotalMult *= 1.0 + this.getBonus();
-		if (::Legends.Perks.get(this, ::Legends.Perk.LegendBallistics))
+		if (::Legends.Perks.has(this, ::Legends.Perk.LegendBallistics))
 			_properties.DirectDamageAdd += this.getBonus();
 	}
 });

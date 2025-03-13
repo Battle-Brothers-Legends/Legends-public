@@ -82,7 +82,7 @@ this.legend_crusader_background <- this.inherit("scripts/skills/backgrounds/char
 			Traits = [
 				this.Const.Perks.SturdyTree,
 				this.Const.Perks.IndestructibleTree,
-				this.Const.Perks.ViciousTree
+				this.Const.Perks.ViciousTree,
 				this.Const.Perks.LargeTree,
 				this.Const.Perks.MartyrTree,
 				this.Const.Perks.FitTree,
