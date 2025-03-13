@@ -1943,24 +1943,24 @@ effectsDefs.push({
 
 ::Legends.Effect.LegendGravedigging <- null;
 effectsDefs.push({
-	ID = "special.legend_gravedigging",
-	Script = "scripts/skills/special/legend_gravedigging_effect",
+	ID = "effects.legend_gravedigging",
+	Script = "scripts/skills/effects/legend_gravedigging_effect",
 	Const = "LegendGravedigging",
 	Name = "Gravedigging",
 });
 
 ::Legends.Effect.LegendMartialMarch <- null;
 effectsDefs.push({
-	ID = "special.legend_martial_march",
-	Script = "scripts/skills/special/legend_martial_march_effect",
+	ID = "effects.legend_martial_march",
+	Script = "scripts/skills/effects/legend_martial_march_effect",
 	Const = "LegendMartialMarch",
 	Name = "Martial March",
 });
 
 ::Legends.Effect.LegendPrepareBullet <- null;
 effectsDefs.push({
-	ID = "special.legend_prepare_bullet",
-	Script = "scripts/skills/special/legend_prepare_bullet_effect",
+	ID = "effects.legend_prepare_bullet",
+	Script = "scripts/skills/effects/legend_prepare_bullet_effect",
 	Const = "LegendPrepareBullet",
 	Name = "Prepare Bullet",
 });
