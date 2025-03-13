@@ -54,7 +54,6 @@ this.legend_witch_commander_background <- this.inherit("scripts/skills/backgroun
 			Weapon = [
 				this.Const.Perks.StaffTree,
 				this.Const.Perks.ThrowingTree,
-				this.Const.Perks.StaffTree
 			],
 			Defense = [
 				this.Const.Perks.LightArmorTree,
@@ -80,7 +79,9 @@ this.legend_witch_commander_background <- this.inherit("scripts/skills/backgroun
 		};
 
 		this.m.CustomPerkTree = [
-			[],
+			[
+				this.Const.Perks.PerkDefs.LegendSummonCat
+			],
 			[
 				::Legends.Perk.Bullseye,
 			],
