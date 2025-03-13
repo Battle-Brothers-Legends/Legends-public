@@ -62,7 +62,7 @@ this.legend_staff_riposte_skill <- this.inherit("scripts/skills/skill", {
 		return ret;
 	}
 	
-	function isHidden())
+	function isHidden()
 	{
 		if (this.getContainer().getActor().getSkills().hasSkill("perk.legend_staff_block"))
 			return false;
