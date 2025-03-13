@@ -38,6 +38,7 @@
     ],
     GuaranteedPerks = [],
     LegendaryPerks = [],
+	LegendaryTraits = [],
     WeaponsAndTrees = [
         ["knife",  100, 75] // [Weapon Script, Chance to roll weapon-perks, chacne to roll weapon-class-perks]
     ],
@@ -75,9 +76,11 @@
         this.Const.Perks.TrainedTree
     ],
     LegendaryPerks = [
-        "perks/perk_nimble",
-        "traits/fearless_trait"
+		::Legends.Perk.Nimble
     ],
+	LegendaryTraits = [
+		::Legends.Trait.Fearless
+	],
     LevelRange = [1, 3]
     PerkPower = ::Const.PerkPurchasePower.VeryLow
 }
@@ -111,16 +114,18 @@
         [2, ""]
     ],
     GuaranteedPerks = [
-        "perks/perk_recover"
+		::Legends.Perk.Recover
     ],
     LegendaryPerks = [
-        "perks/perk_shield_bash",
-        "perks/perk_pathfinder",
-        "perks/perk_underdog",
-        "perks/perk_legend_alert",
-        "perks/perk_crippling_strikes",
-        "traits/fearless_trait"
+		::Legends.Perk.ShieldBash,
+		::Legends.Perk.Pathfinder,
+		::Legends.Perk.Underdog,
+		::Legends.Perk.LegendAlert,
+		::Legends.Perk.CripplingStrikes
     ],
+	LegendaryTraits = [
+		::Legends.Trait.Fearless
+	],
     LevelRange = [3, 5],
     PerkPower = ::Const.PerkPurchasePower.Low
 }
@@ -142,20 +147,22 @@
         [1, ["arming_sword", 100]]
     ],
     GuaranteedPerks = [
-        "perks/perk_recover",
-        "perks/perk_shield_expert"
+		::Legends.Perk.Recover,
+		::Legends.Perk.ShieldExpert
     ],
     LegendaryPerks = [
-        "perks/perk_legend_specialist_shield_skill",
-        "perks/perk_legend_specialist_shield_push",
-        "perks/perk_shield_bash",
-        "perks/perk_hold_out",
-        "perks/perk_underdog",
-        "perks/perk_rotation",
-        "perks/perk_legend_alert",
-        "perks/perk_crippling_strikes",
-        "traits/fearless_trait"
+		::Legends.Perk.LegendSpecialistShieldSkill,
+		::Legends.Perk.LegendSpecialistShieldPush,
+		::Legends.Perk.ShieldBash,
+		::Legends.Perk.HoldOut,
+		::Legends.Perk.Underdog,
+		::Legends.Perk.Rotation,
+		::Legends.Perk.LegendAlert,
+		::Legends.Perk.CripplingStrikes
     ],
+	LegendaryTraits = [
+		::Legends.Trait.Fearless
+	],
     Shields = [
         [1, "wooden_shield"]
     ],
@@ -176,29 +183,31 @@
         this.Const.Perks.ShadyTree
     ],
     WeaponsAndTrees = [
-        [1, ["legend_wooden_pitchfork", 35], ["perks/perk_coup_de_grace", "perks/perk_legend_specialist_farmhand"]],
-        [1, ["legend_wooden_spear", 35], ["perks/perk_legend_specialist_militia"]],
-        [1, ["legend_sickle", 35], ["perks/perk_legend_specialist_herbalist"]],
-        [1, ["legend_staff", 35], ["perks/perk_legend_specialist_selfdefense", "perks/perk_legend_mastery_staff_stun", "perks/perk_fortified_mind"]],
-        [1, ["legend_shovel", 35], ["perks/perk_legend_specialist_gravedigger"]],
-        [1, ["wooden_stick", 35], ["perks/perk_legend_onslaught", "perks/perk_overwhelm", "perks/perk_colossus", "perks/perk_recover", "perks/perk_legend_rebound"]],
-        [1, ["legend_hammer", 35], ["perks/perk_legend_specialist_blacksmith", "perks/perk_colossus"]],
-        [1, ["legend_shiv",  35], ["perks/perk_legend_specialist_prisoner", "perks/perk_duelist"]],
-        [1, ["lute", 35], ["perks/perk_legend_specialist_musician", "perks/perk_legend_mind_over_body", "perks/perk_recover"]],
-        [1, ["butchers_cleaver", 35], ["perks/perk_legend_bloodbath", "perks/perk_legend_specialist_butcher"]],
-        [1, ["legend_saw", 35], ["perks/perk_legend_smashing_shields", "perks/perk_legend_specialist_woodsman"]],
-        [1, ["legend_hoe", 35], ["perks/perk_legend_smackdown", "perks/perk_legend_specialist_farmhand"]],
-        [1, ["wooden_flail", 35], ["perks/perk_head_hunter", "perks/perk_battle_flow", "perks/perk_legend_specialist_farmhand"]]
+        [1, ["legend_wooden_pitchfork", 35], [::Legends.Perk.CoupDeGrace, ::Legends.Perk.LegendSpecialistFarmhand]],
+        [1, ["legend_wooden_spear", 35], [::Legends.Perk.LegendSpecialistMilitia]],
+        [1, ["legend_sickle", 35], [::Legends.Perk.LegendSpecialistHerbalist]],
+        [1, ["legend_staff", 35], [::Legends.Perk.LegendSpecialistSelfdefense, ::Legends.Perk.LegendSpecStaffStun, ::Legends.Perk.FortifiedMind]],
+        [1, ["legend_shovel", 35], [::Legends.Perk.LegendSpecialistGravedigger]],
+        [1, ["wooden_stick", 35], [::Legends.Perk.LegendOnslaught, ::Legends.Perk.Overwhelm, ::Legends.Perk.Colossus, ::Legends.Perk.Recover, ::Legends.Perk.LegendRebound]],
+        [1, ["legend_hammer", 35], [::Legends.Perk.LegendSpecialistBlacksmith, ::Legends.Perk.Colossus]],
+        [1, ["legend_shiv",  35], [::Legends.Perk.LegendSpecialistPrisoner, ::Legends.Perk.Duelist]],
+        [1, ["lute", 35], [::Legends.Perk.LegendSpecialistMusician, ::Legends.Perk.LegendMindOverBody, ::Legends.Perk.Recover]],
+        [1, ["butchers_cleaver", 35], [::Legends.Perk.LegendBloodbath, ::Legends.Perk.LegendSpecialistButcher]],
+        [1, ["legend_saw", 35], [::Legends.Perk.LegendSmashingShields, ::Legends.Perk.LegendSpecialistWoodsman]],
+        [1, ["legend_hoe", 35], [::Legends.Perk.LegendSmackdown, ::Legends.Perk.LegendSpecialistFarmhand]],
+        [1, ["wooden_flail", 35], [::Legends.Perk.HeadHunter, ::Legends.Perk.BattleFlow, ::Legends.Perk.LegendSpecialistFarmhand]]
     ],
     Shields = [
         [1, "buckler_shield"],
         [14, ""]
     ],
     LegendaryPerks = [
-        "perks/perk_dodge",
-        "perks/perk_backstabber",
-        "traits/fearless_trait"
+		::Legends.Perk.Dodge,
+		::Legends.Perk.Backstabber
     ],
+	LegendaryTraits = [
+		::Legends.Trait.Fearless
+	],
     LevelRange = [1, 3],
     PerkPower = ::Const.PerkPurchasePower.VeryLow
 }
@@ -219,11 +228,13 @@
         [2, ["legend_sling", 50]]
     ],
     LegendaryPerks = [
-        "perks/perk_dodge",
-        "perks/perk_backstabber",
-        "traits/fearless_trait",
-        "traits/determined_trait"
+		::Legends.Perk.Dodge,
+		::Legends.Perk.Backstabber
     ],
+	LegendaryTraits = [
+		::Legends.Trait.Fearless,
+		::Legends.Trait.Determined
+	],
     LevelRange = [1, 3],
     PerkPower = ::Const.PerkPurchasePower.VeryLow
 }
@@ -232,23 +243,23 @@
         [1, "bandit_thug_outfit_00"]
     ],
     WeaponsAndTrees = [
-        [1, ["woodcutters_axe", 70], ["perks/perk_legend_smashing_shields"]],
-        [1, ["goedendag", 70], ["perks/perk_legend_onslaught"]],
-        [1, ["pitchfork", 70], ["perks/perk_coup_de_grace"]],
-        [3, ["shortsword", 70], ["perks/perk_duelist"]],
-        [3, ["hatchet", 70], ["perks/perk_legend_smashing_shields"]],
-        [3, ["bludgeon", 70], ["perks/perk_legend_onslaught"]],
-        [3, ["militia_spear", 70], ["perks/perk_overwhelm"]],
-        [3, ["pickaxe", 70], ["perks/perk_legend_smackdown"]],
-        [3, ["reinforced_wooden_flail", 70], ["perks/perk_head_hunter"]],
-        [3, ["wooden_flail", 70], ["perks/perk_head_hunter"]],
-        [3, ["butchers_cleaver", 70], ["perks/perk_legend_bloodbath"]],
-        [3, ["dagger",  70], ["perks/perk_duelist"]],
-        [3, ["legend_scythe", 70], ["perks/perk_coup_de_grace"]],
-        [3, ["legend_tipstaff", 70], ["perks/perk_legend_return_favor"]],
-        [3, ["legend_militia_glaive", 70], ["perks/perk_killing_frenzy"]],
-        [3, ["legend_tipstaff", 70], ["perks/perk_killing_frenzy"]],
-        [3, ["legend_ranged_wooden_flail", 70], ["perks/perk_killing_frenzy"]]
+        [1, ["woodcutters_axe", 70], [::Legends.Perk.LegendSmashingShields]],
+        [1, ["goedendag", 70], [::Legends.Perk.LegendOnslaught]],
+        [1, ["pitchfork", 70], [::Legends.Perk.CoupDeGrace]],
+        [3, ["shortsword", 70], [::Legends.Perk.Duelist]],
+        [3, ["hatchet", 70], [::Legends.Perk.LegendSmashingShields]],
+        [3, ["bludgeon", 70], [::Legends.Perk.LegendOnslaught]],
+        [3, ["militia_spear", 70], [::Legends.Perk.Overwhelm]],
+        [3, ["pickaxe", 70], [::Legends.Perk.LegendSmackdown]],
+        [3, ["reinforced_wooden_flail", 70], [::Legends.Perk.HeadHunter]],
+        [3, ["wooden_flail", 70], [::Legends.Perk.HeadHunter]],
+        [3, ["butchers_cleaver", 70], [::Legends.Perk.LegendBloodbath]],
+        [3, ["dagger",  70], [::Legends.Perk.Duelist]],
+        [3, ["legend_scythe", 70], [::Legends.Perk.CoupDeGrace]],
+        [3, ["legend_tipstaff", 70], [::Legends.Perk.LegendReturnFavor]],
+        [3, ["legend_militia_glaive", 70], [::Legends.Perk.KillingFrenzy]],
+        [3, ["legend_tipstaff", 70], [::Legends.Perk.KillingFrenzy]],
+        [3, ["legend_ranged_wooden_flail", 70], [::Legends.Perk.KillingFrenzy]]
     ],
     Shields = [
         [1, "wooden_shield"],
@@ -268,12 +279,14 @@
         this.Const.Perks.ShadyTree
     ],
     LegendaryPerks = [
-        "perks/perk_relentless",
-        "perks/perk_dodge",
-        "perks/perk_backstabber",
-        "perks/perk_underdog",
-        "traits/fearless_trait"
+		::Legends.Perk.Relentless,
+		::Legends.Perk.Dodge,
+		::Legends.Perk.Backstabber,
+		::Legends.Perk.Underdog
     ],
+	LegendaryTraits = [
+		::Legends.Trait.Fearless
+	],
     LevelRange = [2, 4],
     PerkPower = ::Const.PerkPurchasePower.Low
 }
@@ -296,14 +309,16 @@
         this.Const.Perks.BowTree
     ],
     LegendaryPerks = [
-        "perks/perk_dodge",
-        "perks/perk_backstabber",
-        "traits/fearless_trait"
+		::Legends.Perk.Dodge,
+		::Legends.Perk.Backstabber
     ],
+	LegendaryTraits = [
+		::Legends.Trait.Fearless
+	],
     LevelRange = [2, 4],
     GuaranteedPerks = [
-        "perks/perk_rotation",
-        "perks/perk_recover"
+		::Legends.Perk.Rotation,
+		::Legends.Perk.Recover
     ],
     PerkPower = ::Const.PerkPurchasePower.Low
 }
@@ -318,28 +333,28 @@
         this.Const.Perks.LightArmorTree,
     ],
     WeaponsAndTrees = [ // Author's Note: These are a substantially higher chance to purchase 2handers than current raiders, because of this (eventually) these will get weighted
-        [1, ["legend_infantry_axe", 70], ["perks/perk_legend_smashing_shields"]],
-        [1, ["hooked_blade", 70], ["perks/perk_crippling_strikes"]],
-        [1, ["pike", 70], ["perks/perk_reach_advantage"]],
-        [1, ["warbrand", 70], ["perks/perk_legend_bloody_harvest"]],
-        [1, ["longaxe", 70], ["perks/perk_killing_frenzy"]],
-        [1, ["two_handed_wooden_hammer", 70], ["perks/perk_legend_smackdown"]],
-        [1, ["two_handed_wooden_flail", 70], ["perks/perk_head_hunter"]],
-        [1, ["legend_ranged_flail", 70], ["perks/perk_colossus"]],
-        [1, ["legend_reinforced_flail", 70], ["perks/perk_legend_vengeance"]],
-        [1, ["two_handed_mace", 70], ["perks/perk_legend_forceful_swing"]],
-        [1, ["longsword", 70], ["perks/perk_colossus"]],
-        [1, ["legend_longsword",  70], ["perks/perk_duelist"]],
-        [1, ["legend_two_handed_club", 70], ["perks/perk_legend_smashing_shields"]],
-        [5, ["shortsword", 70, 30], ["perks/perk_overwhelm"]],
-        [5, ["hand_axe", 70], ["perks/perk_legend_onslaught"]],
-        [5, ["boar_spear", 70], ["perks/perk_duelist"]],
-        [5, ["morning_star", 70], ["perks/perk_legend_feint"]],
-        [5, ["falchion", 70], ["perks/perk_legend_feint"]],
-        [5, ["arming_sword", 70], ["perks/perk_legend_bloodbath"]],
-        [5, ["flail", 70], ["perks/perk_head_hunter"]],
-        [5, ["scramasax", 70], ["perks/perk_killing_frenzy"]],
-        [5, ["military_pick", 70], ["perks/perk_legend_smackdown"]]
+        [1, ["legend_infantry_axe", 70], [::Legends.Perk.LegendSmashingShields]],
+        [1, ["hooked_blade", 70], [::Legends.Perk.CripplingStrikes]],
+        [1, ["pike", 70], [::Legends.Perk.ReachAdvantage]],
+        [1, ["warbrand", 70], [::Legends.Perk.LegendBloodyHarvest]],
+        [1, ["longaxe", 70], [::Legends.Perk.KillingFrenzy]],
+        [1, ["two_handed_wooden_hammer", 70], [::Legends.Perk.LegendSmackdown]],
+        [1, ["two_handed_wooden_flail", 70], [::Legends.Perk.HeadHunter]],
+        [1, ["legend_ranged_flail", 70], [::Legends.Perk.Colossus]],
+        [1, ["legend_reinforced_flail", 70], [::Legends.Perk.LegendVengeance]],
+        [1, ["two_handed_mace", 70], [::Legends.Perk.LegendForcefulSwing]],
+        [1, ["longsword", 70], [::Legends.Perk.Colossus]],
+        [1, ["legend_longsword",  70], [::Legends.Perk.Duelist]],
+        [1, ["legend_two_handed_club", 70], [::Legends.Perk.LegendSmashingShields]],
+        [5, ["shortsword", 70, 30], [::Legends.Perk.Overwhelm]],
+        [5, ["hand_axe", 70], [::Legends.Perk.LegendOnslaught]],
+        [5, ["boar_spear", 70], [::Legends.Perk.Duelist]],
+        [5, ["morning_star", 70], [::Legends.Perk.LegendFeint]],
+        [5, ["falchion", 70], [::Legends.Perk.LegendFeint]],
+        [5, ["arming_sword", 70], [::Legends.Perk.LegendBloodbath]],
+        [5, ["flail", 70], [::Legends.Perk.HeadHunter]],
+        [5, ["scramasax", 70], [::Legends.Perk.KillingFrenzy]],
+        [5, ["military_pick", 70], [::Legends.Perk.LegendSmackdown]]
     ],
     Shields = [
         [3, ""],
@@ -359,16 +374,18 @@
         this.Const.Perks.ShadyTree
     ],
     LegendaryPerks = [
-        "perks/perk_relentless",
-        "perks/perk_dodge",
-        "perks/perk_backstabber",
-        "perks/perk_underdog",
-        "traits/fearless_trait"
+		::Legends.Perk.Relentless,
+		::Legends.Perk.Dodge,
+		::Legends.Perk.Backstabber,
+		::Legends.Perk.Underdog
     ],
+	LegendaryTraits = [
+		::Legends.Trait.Fearless
+	],
     GuaranteedPerks = [
-        "perks/perk_bullseye",
-        "perks/perk_rotation",
-        "perks/perk_recover"
+		::Legends.Perk.Bullseye,
+		::Legends.Perk.Rotation,
+		::Legends.Perk.Recover
     ],
     LevelRange = [3, 4],
     PerkPower = ::Const.PerkPurchasePower.Low
@@ -423,14 +440,16 @@
         this.Const.Perks.MediumArmorTree
     ],
     GuaranteedPerks = [
-        "perks/perk_bags_and_belts"
+		::Legends.Perk.BagsAndBelts
     ],
     LegendaryPerks = [
-        "perks/perk_pathfinder",
-        "perks/perk_crippling_strikes",
-        "perks/perk_overwhelm",
-        "traits/fearless_trait"
+		::Legends.Perk.Pathfinder,
+		::Legends.Perk.CripplingStrikes,
+		::Legends.Perk.Overwhelm
     ],
+	LegendaryTraits = [
+		::Legends.Trait.Fearless
+	],
     LevelRange = [3, 4],
     PerkPower = ::Const.PerkPurchasePower.Low
 }
@@ -465,14 +484,16 @@
         [1, "faction_heater_shield"]
     ],
     GuaranteedPerks = [
-        "perks/perk_shield_expert",
-        "perks/perk_rotation"
+		::Legends.Perk.ShieldExpert,
+		::Legends.Perk.Rotation
     ],
     LegendaryPerks = [
-        "perks/perk_shield_bash",
-        "perks/perk_crippling_strikes",
-        "traits/fearless_trait"
+		::Legends.Perk.ShieldBash,
+		::Legends.Perk.CripplingStrikes
     ],
+	LegendaryTraits = [
+		::Legends.Trait.Fearless
+	],
     LevelRange = [6, 8], //At super high levels it stops mattering for what they can buy and just gives more exp
     PerkPower = ::Const.PerkPurchasePower.High + 1
 }
@@ -502,13 +523,15 @@
         this.Const.Perks.TrainedTree
     ],
     GuaranteedPerks = [ //Testing to see if they ever actually use indom, given no guaranteed perks right now these might vary wildly in power levels
-        "perks/perk_indomitable"
+		::Legends.Perk.Indomitable
     ],
     LegendaryPerks = [
-        "perks/perk_crippling_strikes",
-        "perks/perk_berserk",
-        "traits/fearless_trait"
+		::Legends.Perk.CripplingStrikes,
+		::Legends.Perk.Berserk
     ],
+	LegendaryTraits = [
+		::Legends.Trait.Fearless
+	],
     LevelRange = [6, 9],
     PerkPower = ::Const.PerkPurchasePower.High + 1
 }
@@ -535,16 +558,18 @@
         this.Const.Perks.TrainedTree
     ],
     GuaranteedPerks = [
-        "perks/perk_legend_ballistics",
-        "perks/perk_legend_lookout",
-        "perks/perk_rotation"
+		::Legends.Perk.LegendBallistics,
+		::Legends.Perk.LegendLookout,
+		::Legends.Perk.Rotation
     ],
     LegendaryPerks = [
-        "perks/perk_crippling_strikes",
-        "perks/perk_legend_clarity",
-        "perks/perk_legend_smackdown",
-        "traits/fearless_trait"
+		::Legends.Perk.CripplingStrikes,
+		::Legends.Perk.LegendClarity,
+		::Legends.Perk.LegendSmackdown
     ],
+	LegendaryTraits = [
+		::Legends.Trait.Fearless
+	],
     LevelRange = [6, 8],
     PerkPower = ::Const.PerkPurchasePower.High
 }
@@ -575,19 +600,21 @@
         [1, "legend_faction_tower_shield"]
     ],
     GuaranteedPerks = [
-        "perks/perk_shield_expert",
-        "perks/perk_battle_forged",
-        "perks/perk_rotation",
-        "perks/perk_steel_brow",
-        "perks/perk_legend_specialist_shield_skill",
-        "perks/perk_legend_specialist_shield_push",
-        "perks/perk_shield_bash"
+		::Legends.Perk.ShieldExpert,
+		::Legends.Perk.BattleForged,
+		::Legends.Perk.Rotation,
+		::Legends.Perk.SteelBrow,
+		::Legends.Perk.LegendSpecialistShieldSkill,
+		::Legends.Perk.LegendSpecialistShieldPush,
+		::Legends.Perk.ShieldBash
     ],
     LegendaryPerks = [
-        "perks/perk_legend_deflect",
-        "perks/perk_legend_bruiser",
-        "traits/fearless_trait"
+		::Legends.Perk.LegendDeflect,
+		::Legends.Perk.LegendBruiser
     ],
+	LegendaryTraits = [
+		::Legends.Trait.Fearless
+	],
     LevelRange = [7, 10],
     PerkPower = ::Const.PerkPurchasePower.High + 1
 }

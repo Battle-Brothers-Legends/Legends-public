@@ -20,6 +20,7 @@ this.legend_randomized_unit_abstract <- this.inherit("scripts/entity/tactical/hu
 		Shields = [],
 		GuaranteedPerks = [],
 		LegendaryPerks = [],
+		LegendaryTraits = [],
 		LevelRange = [1, 1],
 		EnemyLevel = 1,
 		PerkPower = this.Const.PerkPurchasePower.Low
@@ -134,19 +135,6 @@ this.legend_randomized_unit_abstract <- this.inherit("scripts/entity/tactical/hu
 		}
 	}
 
-	// Adds all of the possible perks to the unit in any given array
-	function addAll( _arr )
-	{
-		foreach (p in _arr)
-		{
-			local pAdd = this.new("scripts/skills/" + p);
-			if (!this.m.Skills.hasSkill(pAdd.getID()))
-			{
-				this.m.Skills.add(pAdd);
-			}
-		}
-	}
-
 	// _purchaseLimit, _table, _cap see ::pickPerkFromTree()
 	// _malus | decides if we attatch the RandomizedMalus assuming there is no attributes modifier
 	// 				this is currently only true for WeaponClassTrees, where there is a flat malus attatched to the units stats to offset the free stats from the perk
@@ -165,7 +153,6 @@ this.legend_randomized_unit_abstract <- this.inherit("scripts/entity/tactical/hu
 
 		local tabl = _table["Tree"];
 		this.pickPerkFromTree(_purchaseLimit, tabl, _cap);
-
 	}
 
 	// Adds all guaranteed perks
@@ -174,11 +161,16 @@ this.legend_randomized_unit_abstract <- this.inherit("scripts/entity/tactical/hu
 	// Selects random traits lists + runs the buying functions until we run out of power 	| these do have attributes
 	function assignPerks()
 	{
-		this.addAll(this.m.GuaranteedPerks);
+
+		foreach (perk in this.m.GuaranteedPerks)
+			::Legends.Perks.grant(this, perk);
 
 		if(::Legends.isLegendaryDifficulty())
 		{
-			this.addAll(this.m.LegendaryPerks);
+			foreach (perk in this.m.LegendaryPerks)
+				::Legends.Perks.grant(this, perk);
+			foreach (trait in this.m.LegendaryTraits)
+				::Legends.Traits.grant(this, trait);
 		}
 
 		local idx = this.Math.rand(0, this.m.DefensePerkList.len() - 1);
@@ -213,9 +205,9 @@ this.legend_randomized_unit_abstract <- this.inherit("scripts/entity/tactical/hu
 		local weapon = this.getMainhandItem();
 		local weaponID = this.getMainhandItem().getID();
 
-		if (selection.len() > 1 && ::Legends.isLegendaryDifficulty())
-		{
-			this.addAll(selection[1]);
+		if (selection.len() > 1 && ::Legends.isLegendaryDifficulty()) {
+			foreach (perk in selection[1])
+				::Legends.Perks.grant(this, perk);
 		}
 
 		local weaponPerkTree = this.Const.GetWeaponPerkTree(weapon);
