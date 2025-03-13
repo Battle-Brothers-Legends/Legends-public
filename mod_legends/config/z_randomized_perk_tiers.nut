@@ -13,14 +13,14 @@
     Outfits = [
         [1, "low_tier_unit_catchall_outfit_01"]
     ],
-    ClassPerkList = [], 
-    DefensePerkList = [  
+    ClassPerkList = [],
+    DefensePerkList = [
         this.Const.Perks.HeavyArmorTree,
         this.Const.Perks.MediumArmorTree,
         this.Const.Perks.LightArmorTree,
         // this.Const.Perks.ClothArmorTree
     ],
-    TraitsPerkList = [  
+    TraitsPerkList = [
         this.Const.Perks.AgileTree,
         this.Const.Perks.IndestructibleTree,
         this.Const.Perks.MartyrTree,
@@ -35,11 +35,11 @@
         this.Const.Perks.SturdyTree,
         this.Const.Perks.FitTree,
         this.Const.Perks.TrainedTree
-    ], 
-    GuaranteedPerks = [], 
-    LegendaryPerks = [], 
-    WeaponsAndTrees = [ 
-        ["knife",  100, 75] // [Weapon Script, Chance to roll weapon-perks, chacne to roll weapon-class-perks] 
+    ],
+    GuaranteedPerks = [],
+    LegendaryPerks = [],
+    WeaponsAndTrees = [
+        ["knife",  100, 75] // [Weapon Script, Chance to roll weapon-perks, chacne to roll weapon-class-perks]
     ],
     LevelRange = [3, 3],
     PerkPower = ::Const.PerkPurchasePower.Low
@@ -48,7 +48,7 @@
     Outfits = [
         [1, "peasant_outfit_00"]
     ],
-    WeaponsAndTrees = [ 
+    WeaponsAndTrees = [
         [2, ["knife",  100, 80]],
         [2, ["pitchfork", 100, 60]],
         [2, ["wooden_stick", 100, 65]],
@@ -64,7 +64,7 @@
         [1, ["butchers_cleaver", 100, 45]],
         [2, ["legend_wooden_spear", 100, 80]]
     ],
-    TraitsPerkList = [  
+    TraitsPerkList = [
         this.Const.Perks.AgileTree,
         this.Const.Perks.IndestructibleTree,
         this.Const.Perks.CalmTree,
@@ -73,7 +73,7 @@
         this.Const.Perks.SturdyTree,
         this.Const.Perks.FitTree,
         this.Const.Perks.TrainedTree
-    ], 
+    ],
     LegendaryPerks = [
         "perks/perk_nimble",
         "traits/fearless_trait"
@@ -96,7 +96,7 @@
         [2, ["shortsword", 100]],
         [2, ["legend_militia_glaive", 100]]
     ],
-    TraitsPerkList = [  
+    TraitsPerkList = [
         this.Const.Perks.AgileTree,
         this.Const.Perks.IndestructibleTree,
         this.Const.Perks.CalmTree,
@@ -105,7 +105,7 @@
         this.Const.Perks.SturdyTree,
         this.Const.Perks.FitTree,
         this.Const.Perks.TrainedTree
-    ], 
+    ],
     Shields = [
         [1, "buckler_shield"],
         [2, ""]
@@ -128,7 +128,7 @@
     Outfits = [
         [1, "caravan_guard_outfit_00"]
     ],
-     DefensePerkList = [  
+     DefensePerkList = [
         this.Const.Perks.HeavyArmorTree,
         this.Const.Perks.MediumArmorTree,
         this.Const.Perks.LightArmorTree,
@@ -166,7 +166,7 @@
     Outfits = [
         [1, "bandit_rabble_outfit_00"]
     ],
-    TraitsPerkList = [  
+    TraitsPerkList = [
         this.Const.Perks.AgileTree,
         this.Const.Perks.IndestructibleTree,
         this.Const.Perks.CalmTree,
@@ -174,21 +174,21 @@
         this.Const.Perks.LargeTree,
         this.Const.Perks.FitTree,
         this.Const.Perks.ShadyTree
-    ], 
+    ],
     WeaponsAndTrees = [
-        [1, ["legend_wooden_pitchfork", 35], ["perks/perk_coup_de_grace", "perks/perk_legend_specialist_pitchfork_skill", "perks/perk_legend_specialist_pitchfork_damage"]],
-        [1, ["legend_wooden_spear", 35], ["perks/perk_legend_specialist_militia_skill", "perks/perk_legend_specialist_militia_damage"]],
-        [1, ["legend_sickle", 35], ["perks/perk_legend_specialist_sickle_skill", "perks/perk_legend_specialist_sickle_damage"]],
-        [1, ["legend_staff", 35], ["perks/perk_legend_specialist_staff_skill", "perks/perk_legend_mastery_staff_stun", "perks/perk_fortified_mind"]],
-        [1, ["legend_shovel", 35], ["perks/perk_legend_specialist_shovel_skill", "perks/perk_legend_specialist_shovel_damage"]],
+        [1, ["legend_wooden_pitchfork", 35], ["perks/perk_coup_de_grace", "perks/perk_legend_specialist_farmhand"]],
+        [1, ["legend_wooden_spear", 35], ["perks/perk_legend_specialist_militia"]],
+        [1, ["legend_sickle", 35], ["perks/perk_legend_specialist_herbalist"]],
+        [1, ["legend_staff", 35], ["perks/perk_legend_specialist_selfdefense", "perks/perk_legend_mastery_staff_stun", "perks/perk_fortified_mind"]],
+        [1, ["legend_shovel", 35], ["perks/perk_legend_specialist_gravedigger"]],
         [1, ["wooden_stick", 35], ["perks/perk_legend_onslaught", "perks/perk_overwhelm", "perks/perk_colossus", "perks/perk_recover", "perks/perk_legend_rebound"]],
-        [1, ["legend_hammer", 35], ["perks/perk_legend_specialist_hammer_skill", "perks/perk_legend_specialist_hammer_damage", "perks/perk_colossus"]],
-        [1, ["legend_shiv",  35], ["perks/perk_legend_specialist_knife_skill", "perks/perk_legend_specialist_knife_damage", "perks/perk_duelist"]],
-        [1, ["lute", 35], ["perks/perk_legend_specialist_lute_damage", "perks/perk_legend_mind_over_body", "perks/perk_recover"]],
-        [1, ["butchers_cleaver", 35], ["perks/perk_legend_bloodbath", "perks/perk_legend_specialist_butcher_skill", "perks/perk_legend_specialist_butcher_damage"]],
-        [1, ["legend_saw", 35], ["perks/perk_legend_smashing_shields", "perks/perk_legend_specialist_woodaxe_skill", "perks/perk_legend_specialist_woodaxe_damage"]],
-        [1, ["legend_hoe", 35], ["perks/perk_legend_smackdown", "perks/perk_legend_specialist_pitchfork_skill", "perks/perk_legend_specialist_pitchfork_damage"]],
-        [1, ["wooden_flail", 35], ["perks/perk_head_hunter", "perks/perk_battle_flow", "perks/perk_legend_specialist_pitchfork_skill", "perks/perk_legend_specialist_pitchfork_damage"]]
+        [1, ["legend_hammer", 35], ["perks/perk_legend_specialist_blacksmith", "perks/perk_colossus"]],
+        [1, ["legend_shiv",  35], ["perks/perk_legend_specialist_prisoner", "perks/perk_duelist"]],
+        [1, ["lute", 35], ["perks/perk_legend_specialist_musician", "perks/perk_legend_mind_over_body", "perks/perk_recover"]],
+        [1, ["butchers_cleaver", 35], ["perks/perk_legend_bloodbath", "perks/perk_legend_specialist_butcher"]],
+        [1, ["legend_saw", 35], ["perks/perk_legend_smashing_shields", "perks/perk_legend_specialist_woodsman"]],
+        [1, ["legend_hoe", 35], ["perks/perk_legend_smackdown", "perks/perk_legend_specialist_farmhand"]],
+        [1, ["wooden_flail", 35], ["perks/perk_head_hunter", "perks/perk_battle_flow", "perks/perk_legend_specialist_farmhand"]]
     ],
     Shields = [
         [1, "buckler_shield"],
@@ -206,14 +206,14 @@
     Outfits = [
         [1, "bandit_rabble_poacher_outfit_00"]
     ],
-    TraitsPerkList = [  
+    TraitsPerkList = [
         this.Const.Perks.AgileTree,
         this.Const.Perks.CalmTree,
         this.Const.Perks.FastTree,
         this.Const.Perks.FitTree,
         this.Const.Perks.TrainedTree,
         this.Const.Perks.BowTree
-    ], 
+    ],
     WeaponsAndTrees = [
         [1, ["wonky_bow", 50]],
         [2, ["legend_sling", 50]]
@@ -255,7 +255,7 @@
         [1, "buckler_shield"],
         [6, ""]
     ],
-    TraitsPerkList = [  
+    TraitsPerkList = [
         this.Const.Perks.AgileTree,
         this.Const.Perks.IndestructibleTree,
         this.Const.Perks.ViciousTree,
@@ -266,7 +266,7 @@
         this.Const.Perks.FitTree,
         this.Const.Perks.TrainedTree,
         this.Const.Perks.ShadyTree
-    ], 
+    ],
     LegendaryPerks = [
         "perks/perk_relentless",
         "perks/perk_dodge",
@@ -286,7 +286,7 @@
         [1, ["short_bow", 65]],
         [3, ["legend_sling", 65]]
     ],
-    TraitsPerkList = [  
+    TraitsPerkList = [
         this.Const.Perks.AgileTree,
         this.Const.Perks.CalmTree,
         this.Const.Perks.FastTree,
@@ -294,7 +294,7 @@
         this.Const.Perks.FitTree,
         this.Const.Perks.TrainedTree,
         this.Const.Perks.BowTree
-    ], 
+    ],
     LegendaryPerks = [
         "perks/perk_dodge",
         "perks/perk_backstabber",
@@ -312,7 +312,7 @@
         [1, "dark_southern_outfit_00"],
         [19, "bandit_raider_outfit_00"]
     ],
-     DefensePerkList = [  
+     DefensePerkList = [
         this.Const.Perks.HeavyArmorTree,
         this.Const.Perks.MediumArmorTree,
         this.Const.Perks.LightArmorTree,
@@ -346,7 +346,7 @@
         [4, "wooden_shield"],
         [2, "kite_shield"]
     ]
-    TraitsPerkList = [  
+    TraitsPerkList = [
         this.Const.Perks.AgileTree,
         this.Const.Perks.IndestructibleTree,
         this.Const.Perks.MartyrTree,
@@ -357,7 +357,7 @@
         this.Const.Perks.FitTree,
         this.Const.Perks.TrainedTree,
         this.Const.Perks.ShadyTree
-    ], 
+    ],
     LegendaryPerks = [
         "perks/perk_relentless",
         "perks/perk_dodge",
@@ -372,7 +372,7 @@
     ],
     LevelRange = [3, 4],
     PerkPower = ::Const.PerkPurchasePower.Low
-} 
+}
 
 // Should look at how to normalize this for low-tier units?
 ::Const.RandomizedCharacterInfo["BanditRaiderLow"] <- {
@@ -395,7 +395,7 @@
         [1, ""],
         [2, "buckler_shield"],
         [1, "wooden_shield"]
-    ]    
+    ]
 }
 
 ::Const.RandomizedCharacterInfo[::Const.EntityType.LegendCaravanPolearm] <- {
@@ -451,7 +451,7 @@
         this.Const.Perks.HeavyArmorTree,
         this.Const.Perks.ForcefulTree
     ],
-    TraitsPerkList = [  
+    TraitsPerkList = [
         this.Const.Perks.SparringTree,
         this.Const.Perks.GiantTree,
         this.Const.Perks.IndestructibleTree,
@@ -459,7 +459,7 @@
         this.Const.Perks.SturdyTree,
         this.Const.Perks.FitTree,
         this.Const.Perks.TrainedTree
-    ], 
+    ],
     Shields = [
         [1, "faction_kite_shield"],
         [1, "faction_heater_shield"]
@@ -492,7 +492,7 @@
         this.Const.Perks.HeavyArmorTree,
         this.Const.Perks.ForcefulTree
     ],
-    TraitsPerkList = [  
+    TraitsPerkList = [
         this.Const.Perks.GiantTree,
         this.Const.Perks.AggressiveTree,
         this.Const.Perks.LargeTree,
@@ -500,9 +500,9 @@
         this.Const.Perks.FitTree,
         this.Const.Perks.FastTree,
         this.Const.Perks.TrainedTree
-    ], 
+    ],
     GuaranteedPerks = [ //Testing to see if they ever actually use indom, given no guaranteed perks right now these might vary wildly in power levels
-        "perks/perk_indomitable" 
+        "perks/perk_indomitable"
     ],
     LegendaryPerks = [
         "perks/perk_crippling_strikes",
@@ -526,14 +526,14 @@
     DefensePerkList = [
         this.Const.Perks.LightArmorTree
     ],
-    TraitsPerkList = [  
+    TraitsPerkList = [
         this.Const.Perks.FastTree,
         this.Const.Perks.FitTree,
         this.Const.Perks.BowTree,
         this.Const.Perks.CrossbowTree,
         this.Const.Perks.RangerTree,
         this.Const.Perks.TrainedTree
-    ], 
+    ],
     GuaranteedPerks = [
         "perks/perk_legend_ballistics",
         "perks/perk_legend_lookout",
@@ -563,14 +563,14 @@
         this.Const.Perks.HeavyArmorTree,
         this.Const.Perks.ForcefulTree
     ],
-    TraitsPerkList = [  
+    TraitsPerkList = [
         this.Const.Perks.SparringTree,
         this.Const.Perks.GiantTree,
         this.Const.Perks.IndestructibleTree,
         this.Const.Perks.LargeTree,
         this.Const.Perks.SturdyTree,
         this.Const.Perks.FitTree
-    ], 
+    ],
     Shields = [
         [1, "legend_faction_tower_shield"]
     ],
@@ -592,8 +592,8 @@
     PerkPower = ::Const.PerkPurchasePower.High + 1
 }
 
-// Units TODO: 
-/* 
+// Units TODO:
+/*
     Bandit Leader
     Bandit Marksman
     Bandit Veteran
@@ -601,7 +601,7 @@
     Master Archer
 
     Mercenary
-    
+
     Militia Captain
     Militia Ranged
     Militia Veteran
@@ -630,11 +630,11 @@
     Barbarian Thrall
 
 */
-     
-    
-     
-    
-    
+
+
+
+
+
 
 // Randomized Malus is applied when we select a weapon-class-tree, e.g. a Poacher rolls Slinger's Spins, it would then apply the malus to offset some of the bonus
 ::Const.RandomizedMalus <- {
@@ -686,7 +686,7 @@
 		candidates.push(weapon);
 		totalWeight += weapon[0];
 	}
-    
+
     local r = this.Math.rand(0, totalWeight);
     foreach (weapon in candidates)
 	{
@@ -703,7 +703,7 @@
     }
 }
 
-// Only lower tiered weapons should really get these class trees, might expand this later to just work with any tier of weapon anyways? It"ll look the same as the other function if we do 
+// Only lower tiered weapons should really get these class trees, might expand this later to just work with any tier of weapon anyways? It"ll look the same as the other function if we do
 ::Const.GetWeaponClassTree <- function ( _item ) {
 
     switch(true) {
@@ -783,9 +783,9 @@
 // Otherwise, we just return the actual weapon tree(s) applicable, sometimes a weapon is multiple so it returns both
 ::Const.GetWeaponPerkTree <- function ( _item ) {
 
-    //Greatsword				
+    //Greatsword
     if (_item.isWeaponType(this.Const.Items.WeaponType.Sword) && _item.isItemType(this.Const.Items.ItemType.TwoHanded))
-    {    
+    {
         return [this.Const.Perks.TwoHandedTree];
     }
 
