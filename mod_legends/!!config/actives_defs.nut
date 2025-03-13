@@ -1819,7 +1819,7 @@ activesDefs.push({
 	ID = "actives.legend_ai_rotation",
 	Script = "scripts/skills/actives/legend_ai_rotation_skill",
 	Const = "LegendAiRotation",
-	Name = "Rotation",
+	Name = "AI Rotation",
 });
 
 ::Legends.Active.LegendAlpSummonNightmare <- null;
