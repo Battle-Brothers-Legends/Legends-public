@@ -1945,7 +1945,7 @@ effectsDefs.push({
 effectsDefs.push({
 	ID = "special.legend_gravedigging",
 	Script = "scripts/skills/special/legend_gravedigging_effect",
-	Const = "LegendGravediggingEffect",
+	Const = "LegendGravedigging",
 	Name = "Gravedigging",
 });
 
