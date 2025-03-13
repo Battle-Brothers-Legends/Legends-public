@@ -102,7 +102,6 @@ this.legend_preserver_background <- this.inherit("scripts/skills/backgrounds/cha
 			::Legends.Perk.RallyTheTroops,
 			::Legends.Perk.InspiringPresence,
 			::Legends.Perk.LegendTrueBeliever,
-			::Legends.Perk.LegendSpecialistSickleDamage,
 			::Legends.Perk.LegendSpecialistSelfdefense,
 			::Legends.Perk.LegendBloodbath
 		],
