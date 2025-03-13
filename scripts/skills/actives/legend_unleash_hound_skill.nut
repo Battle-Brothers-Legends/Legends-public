@@ -159,6 +159,8 @@ this.legend_unleash_hound_skill <- this.inherit("scripts/skills/actives/legend_u
 		local entity = this.Tactical.spawnEntity(this.m.Script, _targetTile.Coords.X, _targetTile.Coords.Y);
 		entity.setFaction(this.Const.Faction.PlayerAnimals);
 		entity.setName(this.m.EntityName);
+		entity.setVariant(this.m.Item.getVariant());
+		this.m.Item.setEntity(entity);
 
 		if (this.getContainer().hasSkill("background.houndmaster"))
 		{
