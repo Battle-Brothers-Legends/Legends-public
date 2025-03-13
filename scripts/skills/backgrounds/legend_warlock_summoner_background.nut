@@ -73,64 +73,63 @@ this.legend_warlock_summoner_background <- this.inherit("scripts/skills/backgrou
 
 		this.m.CustomPerkTree = [
 			[
-				this.Const.Perks.PerkDefs.NineLives,
-				this.Const.Perks.PerkDefs.CripplingStrikes,
-				this.Const.Perks.PerkDefs.BagsAndBelts,
-				this.Const.Perks.PerkDefs.Student,
-				this.Const.Perks.PerkDefs.Recover,
-				this.Const.Perks.PerkDefs.LegendBalance,
-				this.Const.Perks.PerkDefs.LegendSpecialistScytheSkill,
-				this.Const.Perks.PerkDefs.LegendSpawnZombieLow
+				::Legends.Perk.NineLives,
+				::Legends.Perk.CripplingStrikes,
+				::Legends.Perk.BagsAndBelts,
+				::Legends.Perk.Student,
+				::Legends.Perk.Recover,
+				::Legends.Perk.LegendBalance,
+				::Legends.Perk.LegendSpecialistReaper,
+				::Legends.Perk.LegendSpawnZombieLow
 			],
 			[
-				this.Const.Perks.PerkDefs.CoupDeGrace,
-				this.Const.Perks.PerkDefs.FortifiedMind,
-				this.Const.Perks.PerkDefs.Gifted,
-				this.Const.Perks.PerkDefs.LegendPerfectFit,
-				this.Const.Perks.PerkDefs.LegendTrueBeliever,
-				this.Const.Perks.PerkDefs.LegendPrepareBleed,
-				this.Const.Perks.PerkDefs.LegendPrepareGraze
+				::Legends.Perk.CoupDeGrace,
+				::Legends.Perk.FortifiedMind,
+				::Legends.Perk.Gifted,
+				::Legends.Perk.LegendPerfectFit,
+				::Legends.Perk.LegendTrueBeliever,
+				::Legends.Perk.LegendPrepareBleed,
+				::Legends.Perk.LegendPrepareGraze
 			],
 			[
-				this.Const.Perks.PerkDefs.Backstabber,
-				this.Const.Perks.PerkDefs.LegendDebilitate,
-				this.Const.Perks.PerkDefs.LegendFavouredEnemyCaravan,
-				this.Const.Perks.PerkDefs.LegendLookout,
-				this.Const.Perks.PerkDefs.LegendSpecialistScytheDamage,
-				this.Const.Perks.PerkDefs.LegendSpecStaffSkill,
-				this.Const.Perks.PerkDefs.LegendBloodbath
+				::Legends.Perk.Backstabber,
+				::Legends.Perk.LegendDebilitate,
+				::Legends.Perk.LegendFavouredEnemyCaravan,
+				::Legends.Perk.LegendLookout,
+				::Legends.Perk.LegendSpecialistSelfdefense,
+				::Legends.Perk.LegendBloodbath
 			],
 			[
-				this.Const.Perks.PerkDefs.SpecDagger,
-				this.Const.Perks.PerkDefs.SpecMace,
-				this.Const.Perks.PerkDefs.SpecCleaver,
-				this.Const.Perks.PerkDefs.SpecPolearm,
-				this.Const.Perks.PerkDefs.LegendMasteryStaves,
-				this.Const.Perks.PerkDefs.LegendSpecPoison,
-				this.Const.Perks.PerkDefs.LegendLacerate,
-				this.Const.Perks.PerkDefs.LegendSpawnZombieMed
+				::Legends.Perk.SpecDagger,
+				::Legends.Perk.SpecMace,
+				::Legends.Perk.SpecCleaver,
+				::Legends.Perk.SpecPolearm,
+				::Legends.Perk.LegendMasteryStaves,
+				::Legends.Perk.LegendSpecPoison,
+				::Legends.Perk.LegendLacerate,
+				::Legends.Perk.LegendSpawnZombieMed
 			],
 			[
-				this.Const.Perks.PerkDefs.Underdog,
-				this.Const.Perks.PerkDefs.LegendLithe,
-				this.Const.Perks.PerkDefs.LegendSpecStaffStun,
-				this.Const.Perks.PerkDefs.LegendBlendIn,
-				this.Const.Perks.PerkDefs.LegendReclamation,
-				this.Const.Perks.PerkDefs.LegendCarnage
+				::Legends.Perk.Underdog,
+				::Legends.Perk.LegendLithe,
+				::Legends.Perk.LegendSpecStaffStun,
+				::Legends.Perk.LegendBlendIn,
+				::Legends.Perk.LegendReclamation,
+				::Legends.Perk.LegendCarnage
 			],
 			[
-				this.Const.Perks.PerkDefs.LegendClarity,
-				this.Const.Perks.PerkDefs.LegendFavouredEnemyAlps,
-				this.Const.Perks.PerkDefs.LegendFavouredEnemyGhoul,
-				this.Const.Perks.PerkDefs.Taunt
+				::Legends.Perk.LegendClarity,
+				::Legends.Perk.LegendFavouredEnemyAlps,
+				::Legends.Perk.LegendFavouredEnemyGhoul,
+				::Legends.Perk.Taunt
 			],
 			[
-				this.Const.Perks.PerkDefs.Fearsome,
-				this.Const.Perks.PerkDefs.LegendPerfectFocus,
-				this.Const.Perks.PerkDefs.LegendPush,
-				this.Const.Perks.PerkDefs.LegendSpawnZombieHigh,
-				this.Const.Perks.PerkDefs.LegendExtendendAura,
-				this.Const.Perks.PerkDefs.LegendInTheZone
+				::Legends.Perk.Fearsome,
+				::Legends.Perk.LegendPerfectFocus,
+				::Legends.Perk.LegendPush,
+				::Legends.Perk.LegendSpawnZombieHigh,
+				::Legends.Perk.LegendExtendendAura,
+				::Legends.Perk.LegendInTheZone
 			],
 			[],
 			[],

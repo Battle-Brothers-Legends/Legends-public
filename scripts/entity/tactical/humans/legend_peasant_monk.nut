@@ -27,7 +27,7 @@ this.legend_peasant_monk <- this.inherit("scripts/entity/tactical/human", {
 		local dirt = this.getSprite("dirt");
 		dirt.Visible = true;
 		dirt.Alpha = this.Math.rand(0, 255);
-		::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecStaffSkill);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecialistSelfdefense);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecStaffStun);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendPushTheAdvantage);
 		::Legends.Perks.grant(this, ::Legends.Perk.RallyTheTroops);

@@ -52,49 +52,49 @@ this.legend_horserider <- this.inherit("scripts/skills/backgrounds/character_bac
 		];
 		this.m.CustomPerkTree = [
 			[
-				this.Const.Perks.PerkDefs.Colossus,
-				this.Const.Perks.PerkDefs.NineLives,
-				this.Const.Perks.PerkDefs.Pathfinder,
-				this.Const.Perks.PerkDefs.Steadfast,
-				this.Const.Perks.PerkDefs.Recover
+				::Legends.Perk.Colossus,
+				::Legends.Perk.NineLives,
+				::Legends.Perk.Pathfinder,
+				::Legends.Perk.Steadfast,
+				::Legends.Perk.Recover
 			],
 			[
-				this.Const.Perks.PerkDefs.Dodge,
-				this.Const.Perks.PerkDefs.HoldOut,
-				this.Const.Perks.PerkDefs.LegendComposure,
-				this.Const.Perks.PerkDefs.SteelBrow
+				::Legends.Perk.Dodge,
+				::Legends.Perk.HoldOut,
+				::Legends.Perk.LegendComposure,
+				::Legends.Perk.SteelBrow
 			],
 			[
-				this.Const.Perks.PerkDefs.Anticipation,
-				this.Const.Perks.PerkDefs.Rotation,
-				this.Const.Perks.PerkDefs.Taunt,
-				this.Const.Perks.PerkDefs.LegendSprint
+				::Legends.Perk.Anticipation,
+				::Legends.Perk.Rotation,
+				::Legends.Perk.Taunt,
+				::Legends.Perk.LegendSprint
 			],
 			[
-				this.Const.Perks.PerkDefs.LegendEfficientPacking,
-				this.Const.Perks.PerkDefs.LegendAmmoBinding,
-				this.Const.Perks.PerkDefs.LegendMedPackages,
-				this.Const.Perks.PerkDefs.LegendToolsDrawers
+				::Legends.Perk.LegendEfficientPacking,
+				::Legends.Perk.LegendAmmoBinding,
+				::Legends.Perk.LegendMedPackages,
+				::Legends.Perk.LegendToolsDrawers
 
 			],
 			[
-				this.Const.Perks.PerkDefs.LoneWolf,
-				this.Const.Perks.PerkDefs.Footwork,
-				this.Const.Perks.PerkDefs.LegendBattleheart
+				::Legends.Perk.LoneWolf,
+				::Legends.Perk.Footwork,
+				::Legends.Perk.LegendBattleheart
 			],
 			[
-				this.Const.Perks.PerkDefs.Nimble,
-				this.Const.Perks.PerkDefs.LegendLastStand,
-				this.Const.Perks.PerkDefs.LegendRebound,
-				this.Const.Perks.PerkDefs.LegendMuscularity
+				::Legends.Perk.Nimble,
+				::Legends.Perk.LegendLastStand,
+				::Legends.Perk.LegendRebound,
+				::Legends.Perk.LegendMuscularity
 			],
 			[
-				this.Const.Perks.PerkDefs.Fearsome,
-				this.Const.Perks.PerkDefs.Stalwart,
-				this.Const.Perks.PerkDefs.LegendSkillfulStacking,
-				this.Const.Perks.PerkDefs.LegendAmmoBundles,
-				this.Const.Perks.PerkDefs.LegendMedIngredients,
-				this.Const.Perks.PerkDefs.LegendToolsSpares
+				::Legends.Perk.Fearsome,
+				::Legends.Perk.Stalwart,
+				::Legends.Perk.LegendSkillfulStacking,
+				::Legends.Perk.LegendAmmoBundles,
+				::Legends.Perk.LegendMedIngredients,
+				::Legends.Perk.LegendToolsSpares
 			],
 			[],
 			[],

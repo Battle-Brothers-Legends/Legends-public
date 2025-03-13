@@ -82,16 +82,16 @@ this.legend_witch_commander_background <- this.inherit("scripts/skills/backgroun
 		this.m.CustomPerkTree = [
 			[],
 			[
-				this.Const.Perks.PerkDefs.Bullseye,
+				::Legends.Perk.Bullseye,
 			],
 			[],
 			[],
 			[],
 			[
-				this.Const.Perks.PerkDefs.LegendBallistics,
+				::Legends.Perk.LegendBallistics,
 			],
 			[
-				this.Const.Perks.PerkDefs.BattleFlow,
+				::Legends.Perk.BattleFlow,
 			],
 			[],
 			[],

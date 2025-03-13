@@ -29,8 +29,7 @@ this.legend_noble_slinger <- this.inherit("scripts/entity/tactical/human", {
 		::Legends.Perks.grant(this, ::Legends.Perk.Bullseye);
 		::Legends.Perks.grant(this, ::Legends.Perk.Brawny);
 		::Legends.Perks.grant(this, ::Legends.Perk.Anticipation);
-		::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecialistSlingSkill);
-		//::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecialistSlingDamage);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecialistShepherd);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendMasterySlings);
 		::Legends.Perks.grant(this, ::Legends.Perk.Rotation);
 		::Legends.Perks.grant(this, ::Legends.Perk.Recover);

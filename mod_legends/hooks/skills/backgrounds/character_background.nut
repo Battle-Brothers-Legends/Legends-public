@@ -826,7 +826,7 @@
 		{
 			id = _perk;
 			local basePerkDefObject = this.Const.Perks.findById(_perk);
-			perkDef = this.Const.Perks.PerkDefs[basePerkDefObject.Const];
+			perkDef = ::Legends.Perk[basePerkDefObject.Const];
 		}
 		else
 		{
@@ -1724,13 +1724,13 @@
 	{
 		this.addBackgroundType(this.Const.BackgroundType.ConvertedCultist);
 		local cultistGroup = [
-						[this.Const.Perks.PerkDefs.LegendSpecialistNinetailsSkill],
-						[this.Const.Perks.PerkDefs.LegendSpecCultHood],
-						[this.Const.Perks.PerkDefs.LegendSpecialistNinetailsDamage],
+						[::Legends.Perk.LegendSpecialistCultist],
+						[::Legends.Perk.LegendSpecCultHood],
 						[],
-						[this.Const.Perks.PerkDefs.LegendPrepareGraze],
-						[this.Const.Perks.PerkDefs.LegendSpecCultArmor],
-						[this.Const.Perks.PerkDefs.LegendLacerate]
+						[],
+						[::Legends.Perk.LegendPrepareGraze],
+						[::Legends.Perk.LegendSpecCultArmor],
+						[::Legends.Perk.LegendLacerate]
 					];
 
 		this.addPerkGroup(cultistGroup);
@@ -1771,7 +1771,7 @@
 			{
 				if (!perk.IsRefundable)
 				{
-					nonRefundablePerks.push(this.Const.Perks.PerkDefs[perk.Const]);
+					nonRefundablePerks.push(::Legends.Perk[perk.Const]);
 				}
 			}
 		}

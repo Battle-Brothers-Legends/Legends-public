@@ -124,33 +124,33 @@ this.legend_berserker_commander_background <- this.inherit("scripts/skills/backg
 		};
 		this.m.CustomPerkTree = [
 			[
-				this.Const.Perks.PerkDefs.Steadfast,
-				this.Const.Perks.PerkDefs.BagsAndBelts,
-				this.Const.Perks.PerkDefs.LegendAlert
+				::Legends.Perk.Steadfast,
+				::Legends.Perk.BagsAndBelts,
+				::Legends.Perk.LegendAlert
 			],
 			[
-				this.Const.Perks.PerkDefs.CoupDeGrace,
+				::Legends.Perk.CoupDeGrace,
 			],
 			[
-				this.Const.Perks.PerkDefs.Rotation,
-				this.Const.Perks.PerkDefs.Anticipation,
-				this.Const.Perks.PerkDefs.LegendTrueBeliever,
+				::Legends.Perk.Rotation,
+				::Legends.Perk.Anticipation,
+				::Legends.Perk.LegendTrueBeliever,
 
 			],
 			[],
 			[
-				this.Const.Perks.PerkDefs.LegendDoubleStrike,
-				this.Const.Perks.PerkDefs.LegendBattleheart,
-				this.Const.Perks.PerkDefs.LegendTwirl,
-				this.Const.Perks.PerkDefs.LegendLionheart
+				::Legends.Perk.LegendDoubleStrike,
+				::Legends.Perk.LegendBattleheart,
+				::Legends.Perk.LegendTwirl,
+				::Legends.Perk.LegendLionheart
 			],
 			[
-				this.Const.Perks.PerkDefs.LegendLacerate,
-				this.Const.Perks.PerkDefs.LegendForwardPush
+				::Legends.Perk.LegendLacerate,
+				::Legends.Perk.LegendForwardPush
 			],
 			[
-				this.Const.Perks.PerkDefs.LegendBigGameHunter,
-				this.Const.Perks.PerkDefs.LegendTumble,
+				::Legends.Perk.LegendBigGameHunter,
+				::Legends.Perk.LegendTumble,
 			]
 		];
 	}
