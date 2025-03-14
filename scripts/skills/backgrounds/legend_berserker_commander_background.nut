@@ -107,7 +107,7 @@ this.legend_berserker_commander_background <- this.inherit("scripts/skills/backg
 			Traits = [
 				this.Const.Perks.SturdyTree,
 				this.Const.Perks.IndestructibleTree,
-				this.Const.Perks.ViciousTree
+				this.Const.Perks.ViciousTree,
 				this.Const.Perks.LargeTree,
 				this.Const.Perks.MartyrTree,
 				this.Const.Perks.AgileTree,

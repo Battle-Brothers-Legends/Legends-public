@@ -1814,14 +1814,6 @@ activesDefs.push({
 	Name = "Throw Knife",
 });
 
-::Legends.Active.LegendAiRotation <- null;
-activesDefs.push({
-	ID = "actives.legend_ai_rotation",
-	Script = "scripts/skills/actives/legend_ai_rotation_skill",
-	Const = "LegendAiRotation",
-	Name = "AI Rotation",
-});
-
 ::Legends.Active.LegendAlpSummonNightmare <- null;
 activesDefs.push({
 	ID = "actives.legend_alp_summon_nightmare",
