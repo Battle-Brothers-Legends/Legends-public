@@ -108,7 +108,7 @@
 			}
 		}
 
-		if (repairNet) ::World.Statistics.getFlags().set("LegendsCanRepairNet");
+		if (repairNet)::World.Statistics.getFlags().set("LegendsCanRepairNet",  true);
 		else ::World.Statistics.getFlags().remove("LegendsCanRepairNet");
 
 		refillAmmo();
