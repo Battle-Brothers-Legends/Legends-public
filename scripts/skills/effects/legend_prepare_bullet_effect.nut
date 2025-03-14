@@ -51,7 +51,7 @@ this.legend_prepare_bullet_effect <- this.inherit("scripts/skills/skill", {
 
 	function getBonus()
 	{
-		return this.getContainer().getActor().getCurrentProperties().Initiative * 0.1;
+		return this.getContainer().getActor().getCurrentProperties().Initiative * 0.001;
 	}
 
 	function onUpdate( _properties )
