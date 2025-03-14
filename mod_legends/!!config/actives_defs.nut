@@ -3094,4 +3094,12 @@ activesDefs.push({
 	Name = "Launch Smoke Bomb",
 });
 
+::Legends.Active.LegendMartialMarch <- null;
+activesDefs.push({
+	ID = "actives.legend_martial_march",
+	Script = "scripts/skills/actives/legend_martial_march_skill",
+	Const = "LegendMartialMarch",
+	Name = "Martial March",
+});
+
 ::Legends.Actives.addActiveDefObjects(activesDefs);
