@@ -74,7 +74,7 @@ this.legend_launch_daze_bomb_skill <- this.inherit("scripts/skills/actives/throw
 
 	function isHidden()
 	{
-		if (!this.getContainer().hasSkill("perk.legend_slinger_spins"))
+		if (!this.getContainer().hasPerk(::Legends.Perk.LegendSlingerSpins))
 			return true;
 		if (this.m.Item != null && !this.m.Item.isNull())
 			if (this.m.Item.getAmmo() != 0)

@@ -184,9 +184,9 @@ this.training_building <- this.inherit("scripts/entity/world/camp/camp_building"
 
 			local max_reached = false;
 
-			if (bro.getSkills().hasSkill("trait.legend_intensive_training_trait"))
+			if (bro.getSkills().hasTrait(::Legends.Trait.LegendIntensiveTraining))
 			{
-				max_reached = bro.getSkills().getSkillByID("trait.legend_intensive_training_trait").isMaxReached();
+				max_reached = ::Legends.Traits.get(::Legends.Trait.LegendIntensiveTraining).isMaxReached();
 			}
 
 
