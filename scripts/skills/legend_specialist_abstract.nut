@@ -190,7 +190,7 @@ this.legend_specialist_abstract <- this.inherit("scripts/skills/skill", {
 			_skill.m.HitChanceBonus += hitBonus;
 		}
 
-		if (::Legends.S.isCharacterWeaponSpecialized(_properties, item))
+		if (::Legends.S.isCharacterWeaponSpecialized(_properties, item) && this.m.BonusDamage != null)
 		{
 			_properties.DamageTotalMult *= 1.0 + 0.01 * this.calculateSpecialistBonus(this.m.BonusDamage, item) * (validTarget ? 2 : 1);
 		}
