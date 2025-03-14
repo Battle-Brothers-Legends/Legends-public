@@ -127,7 +127,7 @@ this.legend_drums_of_war_skill <- this.inherit("scripts/skills/skill", {
 			}
 		}
 
-		::Legends.Effects.grant(this, ::Legends.Effect.LegendDrumsOfWar, function(_effect) {
+		::Legends.Effects.grant(_user, ::Legends.Effect.LegendDrumsOfWar, function(_effect) {
 			_effect.setEffect(this.getBonus());
 		}.bindenv(this));
 		return true;

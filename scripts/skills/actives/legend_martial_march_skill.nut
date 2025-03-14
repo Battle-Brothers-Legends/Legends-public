@@ -82,7 +82,7 @@ this.legend_martial_march_skill <- this.inherit("scripts/skills/skill", {
 	function onAfterUpdate( _properties )
 	{
 		this.m.FatigueCostMult = 1.0;
-		if (this.getSkills().hasPerk(::Legends.Perk.LegendMinnesanger))
+		if (this.getContainer().hasPerk(::Legends.Perk.LegendMinnesanger))
 		{
 			this.m.FatigueCostMult = this.Const.Combat.WeaponSpecFatigueMult;
 			this.m.ActionPointCost -= 1;
@@ -112,7 +112,7 @@ this.legend_martial_march_skill <- this.inherit("scripts/skills/skill", {
 			}
 		}
 
-		::Legends.Effects.grant(a, ::Legends.Effect.LegendMartialMarch);
+		::Legends.Effects.grant(_user, ::Legends.Effect.LegendMartialMarch);
 		return true;
 	}
 
