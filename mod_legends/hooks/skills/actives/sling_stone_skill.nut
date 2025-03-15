@@ -66,7 +66,7 @@
 		this.m.FatigueCostMult = _properties.IsSpecializedInSlings ? this.Const.Combat.WeaponSpecFatigueMult : 1.0;
 		if (this.getContainer().hasPerk(::Legends.Perk.LegendSlingerSpins))
 			this.m.IsShieldRelevant = false;
-		if (this.getContainer().hasSkill("effects.legend_slinger_spins"))
+		if (this.getContainer().hasEffect(::Legends.Effect.LegendPrepareBullet))
 			this.m.MaxRange += 1;
 	}
 
