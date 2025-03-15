@@ -31,7 +31,7 @@
 
 			if (shield != null && shield.getCondition() == 0)
 			{
-				targetEntity.onDamageReceived(this.getContainer().getActor(), this, hitInfo);
+				target.onDamageReceived(this.getContainer().getActor(), this, hitInfo);
 				if (!_user.isHiddenToPlayer() && _targetTile.IsVisibleForPlayer)
 				{
 					local logMessage = this.Const.UI.getColorizedEntityName(_user) + " has destroyed " + this.Const.UI.getColorizedEntityName(_targetTile.getEntity()) + "\'s shield";
@@ -42,7 +42,7 @@
 						local overflowDamage = damage - conditionBefore;
 						if (overflowDamage > 0)
 						{
-							local p = this.getContainer().buildPropertiesForUse(this, targetEntity);
+							local p = this.getContainer().buildPropertiesForUse(this, target);
 							local hitInfo = clone this.Const.Tactical.HitInfo;
 							local damageRegular = overflowDamage * p.DamageRegularMult * 0.5;
 							local damageArmor = overflowDamage * p.DamageArmorMult * 0.5;
@@ -52,7 +52,7 @@
 							hitInfo.DamageDirect = damageDirect;
 							hitInfo.BodyPart = this.Const.BodyPart.Body;
 							hitInfo.BodyDamageMult = 1.0;
-							targetEntity.onDamageReceived(this.getContainer().getActor(), this, hitInfo);
+							target.onDamageReceived(this.getContainer().getActor(), this, hitInfo);
 						}
 					}
 					else
