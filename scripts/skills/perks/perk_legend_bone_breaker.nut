@@ -16,7 +16,7 @@ this.perk_legend_bone_breaker <- this.inherit("scripts/skills/skill", {
 	function onAnySkillUsed( _skill, _targetEntity, _properties )
 	{
 		local effect = _skill.getDamageType().contains(this.Const.Damage.DamageType.Blunt) ? 0.25 : 0.15;
-		this.m.AppliedMultiplier = _properties.DamageArmorMult * this.m.ArmorEffectivenessMult;
+		this.m.AppliedMultiplier = _properties.DamageArmorMult * effect;
 	}
 
 	function onBeforeTargetHit( _skill, _targetEntity, _hitInfo )
