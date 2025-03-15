@@ -1,5 +1,12 @@
 ::mods_hookExactClass("skills/effects/riposte_effect", function(o) {
 	
+	local create = o.create;
+	o.create = function()
+	{
+		create();
+		this.m.Name = "Riposting";
+	}
+
 	o.getDescription = function()
 	{
 		return "This character is prepared to immediately counter-attack on any failed attempt to attack them in melee.";
