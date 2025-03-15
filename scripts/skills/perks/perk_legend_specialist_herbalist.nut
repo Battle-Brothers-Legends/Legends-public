@@ -25,6 +25,6 @@ this.perk_legend_specialist_herbalist <- this.inherit("scripts/skills/legend_spe
 	{
 		this.legend_specialist_abstract.onAnySkillUsed(_skill, _targetEntity, _properties);
 		if (onAnySkillUsedSpecialistChecks(_skill))
-			_properties.DamageDirectMult += 0.01 * this.calculateSpecialistBonus(25, _skill.getItem());
+			_properties.DamageRegularMult *= 0.01 * this.calculateSpecialistBonus(30, _skill.getItem()) * (1.0 - _properties.ThresholdToInflictInjuryMult);
 	}
 });
