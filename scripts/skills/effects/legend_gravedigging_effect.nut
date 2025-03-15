@@ -5,7 +5,7 @@ this.legend_gravedigging_effect <- this.inherit("scripts/skills/skill", {
 	function create()
 	{
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendBaffled);
-		this.m.Icon = "ui/effects/shovel_01.png";
+		this.m.Icon = "ui/perks/shovel_01.png";
 		// this.m.IconMini = "shovel_01_mini.png";
 		this.m.Overlay = "shovel_01";
 		this.m.Description = "This character gets unnaturally excited about dead bodies and will receive bonuses to Initiative, Resolve and Damage for every 2 corpses on the battlefield. Effect will be capped to 5 stacks for Two Handed Maces, which aren't shovels.";
