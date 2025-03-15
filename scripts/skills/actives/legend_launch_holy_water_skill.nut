@@ -139,20 +139,11 @@ this.legend_launch_holy_water_skill <- this.inherit("scripts/skills/actives/thro
 	function applyEffect( _target )
 	{
 		if (!_target.getFlags().has("undead"))
-		{
 			return;
-		}
 
-		local poison = _target.getSkills().getSkillByID("effects.holy_water");
-
-		if (poison == null)
-		{
-			_target.getSkills().add(this.new("scripts/skills/effects/holy_water_effect"));
-		}
-		else
-		{
-			poison.resetTime();
-		}
+		::Legends.Effects.grant(::Legends.Effect.HolyWater, function(_effect) {
+			_effect.resetTime();
+		});
 	}
 
 	function onVerifyTarget( _originTile, _targetTile )
