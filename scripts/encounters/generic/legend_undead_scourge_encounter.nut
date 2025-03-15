@@ -1,7 +1,5 @@
 this.legend_undead_scourge_encounter <- this.inherit("scripts/encounters/encounter", {
-    m = {
-
-    },
+    m = {},
     function create() {
         this.createScreens();
         this.m.Type = "encounter.legend_undead_scourge_encounter";
