@@ -29,11 +29,5 @@ this.legend_drums_of_life_effect <- this.inherit("scripts/skills/skill", {
 			this.spawnIcon(this.m.Overlay, actor.getTile());
 		}
 	}
-
-	function onTurnEnd()
-	{
-		this.removeSelf();
-	}
-
 });
 

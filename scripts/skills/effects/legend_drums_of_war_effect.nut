@@ -26,11 +26,5 @@ this.legend_drums_of_war_effect <- this.inherit("scripts/skills/skill", {
 		actor.setFatigue(this.Math.max(0, actor.getFatigue() - this.m.Effect));
 		this.spawnIcon(this.m.Overlay, actor.getTile());
 	}
-
-	function onTurnEnd()
-	{
-		this.removeSelf();
-	}
-
 });
 

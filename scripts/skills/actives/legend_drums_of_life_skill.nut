@@ -1,5 +1,7 @@
 this.legend_drums_of_life_skill <- this.inherit("scripts/skills/skill", {
-	m = {},
+	m = {
+		AffectedActors = []
+	},
 	function create()
 	{
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendDrumsOfLife);
@@ -88,18 +90,22 @@ this.legend_drums_of_life_skill <- this.inherit("scripts/skills/skill", {
 
 	function isUsable()
 	{
+		if (!this.skill.isUsable())
+			return false;
+
 		local mainhand = this.getContainer().getActor().getMainhandItem();
-		if (mainhand == null || !this.skill.isUsable())
-		{
+		if (mainhand == null)
 			return false;
-		}
+
 		if (!this.Tactical.isActive())
-		{
 			return false;
-		}
 
 		local tile = this.getContainer().getActor().getTile();
-		return mainhand.isWeaponType(this.Const.Items.WeaponType.Musical) && !tile.hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions());
+
+		if (!tile.hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions()))
+			return false;
+
+		return mainhand.isWeaponType(this.Const.Items.WeaponType.Musical);
 	}
 
 	function onUse( _user, _targetTile )
@@ -110,27 +116,47 @@ this.legend_drums_of_life_skill <- this.inherit("scripts/skills/skill", {
 		foreach( a in actors )
 		{
 			if (a.getID() == _user.getID())
-			{
 				continue;
-			}
 
 			if (myTile.getDistanceTo(a.getTile()) > 8)
-			{
 				continue;
-			}
 
-			if (a.getFaction() == _user.getFaction())
-			{
-				::Legends.Effects.grant(a, ::Legends.Effect.LegendDrumsOfLife, function(_effect) {
-					_effect.setEffect(this.getBonus());
-				}.bindenv(this));
-			}
+			if (a.getFaction() != _user.getFaction())
+				continue;
+
+			if (a.getSkills().hasEffect(::Legends.Effect.LegendDrumsOfLife))
+				continue;
+
+			::Legends.Effects.grant(a, ::Legends.Effect.LegendDrumsOfLife, function(_effect) {
+				_effect.setEffect(this.getBonus());
+			}.bindenv(this));
+			this.m.AffectedActors.push(a.weakref());
 		}
 
 		::Legends.Effects.grant(_user, ::Legends.Effect.LegendDrumsOfLife, function(_effect) {
 			_effect.setEffect(this.getBonus());
 		}.bindenv(this));
 		return true;
+	}
+
+	function onTurnStart()
+	{
+		foreach(actor in this.m.AffectedActors)
+		{
+			if (actor == null)
+				continue;
+			if (actor.isNull())
+				continue;
+			if (!actor.isAlive())
+				continue;
+			::Legends.Effects.remove(actor.getContainer(), ::Legends.Effect.LegendDrumsOfLife);
+		}
+		this.m.AffectedActors = [];
+	}
+
+	function onCombatFinished()
+	{
+		this.m.AffectedActors = [];
 	}
 
 });
