@@ -148,6 +148,16 @@
 			ret.extend(this.m.AdditionalTooltip);
 		}
 
+		if (p.ThresholdToInflictInjuryMult != 1.0)
+		{
+			ret.push({
+				id = 10,
+				type = "text",
+				icon = "ui/icons/injury.png",
+				text = "Has a [color=" + this.Const.UI.Color.NegativeValue + "]" + this.Math.floor((1.0 - p.ThresholdToInflictInjuryMult) * 100) + "%[/color] lower threshold to inflict injuries"
+			});
+		}
+
 		if (this.m.Container.getActor().getSkills().hasTrait(::Legends.Trait.OathOfHonor) && (this.m.IsWeaponSkill && this.m.IsRanged || this.m.IsOffensiveToolSkill))
 		{
 			ret.push({

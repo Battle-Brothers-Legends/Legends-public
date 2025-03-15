@@ -33,10 +33,16 @@ this.legend_named_shamshir_effect <- this.inherit("scripts/skills/skill", {
 		];
 	}
 
-    function setBonus( _bonus )
-    {
-        this.m.Bonus = _bonus;
-    }
+	function setBonus( _bonus )
+	{
+		this.m.Bonus = _bonus;
+	}
+
+	function onAnySkillUsed( _skill, _targetEntity, _properties )
+	{
+		if (_skill.m.IsWeaponSkill)
+			_properties.ThresholdToInflictInjuryMult *= 1 - (this.m.Bonus * 0.01);
+	}
 
     function onBeforeTargetHit( _skill, _targetEntity, _hitInfo )
 	{
