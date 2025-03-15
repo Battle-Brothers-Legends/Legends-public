@@ -308,14 +308,14 @@ this.legend_intensive_training_trait <- this.inherit("scripts/skills/traits/char
 
 		if (this.m.SettlementTrainingDelay == 0) {
 			if (this.isMaxReached()) {
-				ret.push({
+				tooltip.push({
 					id = 6,
 					type = "text",
 					icon = "ui/icons/special.png",
 					text = "Cannot train in settlements anymore."
 				});
 			} else {
-				ret.push({
+				tooltip.push({
 					id = 6,
 					type = "text",
 					icon = "ui/icons/special.png",
@@ -323,7 +323,7 @@ this.legend_intensive_training_trait <- this.inherit("scripts/skills/traits/char
 				});
 			}
 		} else {
-			ret.push({
+			tooltip.push({
 				id = 6,
 				type = "text",
 				icon = "ui/icons/special.png",
@@ -333,14 +333,14 @@ this.legend_intensive_training_trait <- this.inherit("scripts/skills/traits/char
 
 		if (this.isMaxReached()) {
 			if (this.canRerollTrait()) {
-				ret.push({
+				tooltip.push({
 					id = 6,
 					type = "text",
 					icon = "ui/icons/special.png",
 					text = "Can change trained trait in settelements."
 				});
 			} else {
-				ret.push({
+				tooltip.push({
 					id = 6,
 					type = "text",
 					icon = "ui/icons/special.png",
