@@ -74,7 +74,7 @@ this.legend_named_royal_lance <- this.inherit("scripts/items/weapons/named/named
 		}.bindenv(this));
 		::Legends.Actives.grant(this, ::Legends.Active.Spearwall, function (_skill) {
 			_skill.m.BaseAttackName = "Prong";
-			_skill.setFatigueCost(spearwall.getFatigueCostRaw() + 5);
+			_skill.setFatigueCost(_skill.getFatigueCostRaw() + 5);
 			_skill.m.ActionPointCost = 6;
 		}.bindenv(this));
 	}
