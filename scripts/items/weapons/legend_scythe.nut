@@ -22,6 +22,9 @@ this.legend_scythe <- this.inherit("scripts/items/weapons/weapon", {
 		this.m.Condition = 30.0;
 		this.m.ConditionMax = 30.0;
 		this.m.StaminaModifier = -9;
+		this.m.RangeMin = 1;
+		this.m.RangeMax = 2;
+		this.m.RangeIdeal = 2;
 		this.m.RegularDamage = 15;
 		this.m.RegularDamageMax = 30;
 		this.m.ArmorDamageMult = 0.25;

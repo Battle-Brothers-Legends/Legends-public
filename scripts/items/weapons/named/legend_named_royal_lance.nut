@@ -72,7 +72,7 @@ this.legend_named_royal_lance <- this.inherit("scripts/items/weapons/named/named
 		::Legends.Actives.grant(this, ::Legends.Active.LegendSkewer, function (_skill) {
 			_skill.m.IsSpearSkewer = true;
 		}.bindenv(this));
-		::Legends.Actives.grant(this, ::Legends.Active.LegendSkewer, function (_skill) {
+		::Legends.Actives.grant(this, ::Legends.Active.Spearwall, function (_skill) {
 			_skill.m.BaseAttackName = "Prong";
 			_skill.setFatigueCost(spearwall.getFatigueCostRaw() + 5);
 			_skill.m.ActionPointCost = 6;
