@@ -13,7 +13,7 @@ this.perk_legend_specialist_cultist <- this.inherit("scripts/skills/legend_speci
 	{
 		this.legend_specialist_abstract.create();
 		::Const.Perks.setup(this.m, ::Legends.Perk.LegendSpecialistCultist);
-		this.m.IconMini = "perk_spec_cultist_mini.png";
+		this.m.IconMini = "perk_spec_cultist_mini";
 	}
 
 	function specialistWeaponTooltip (_item, _isRanged)

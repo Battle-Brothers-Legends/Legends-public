@@ -8,7 +8,7 @@ this.perk_legend_specialist_musician <- this.inherit("scripts/skills/legend_spec
 	{
 		this.legend_specialist_abstract.create();
 		::Const.Perks.setup(this.m, ::Legends.Perk.LegendSpecialistMusician);
-		this.m.IconMini = "perk_spec_bard_mini.png";
+		this.m.IconMini = "perk_spec_bard_mini";
 	}
 
 	// function specialistWeaponTooltip (_item, _isRanged)

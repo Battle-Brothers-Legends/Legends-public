@@ -27,7 +27,7 @@ this.perk_legend_specialist_butcher <- this.inherit("scripts/skills/legend_speci
 	{
 		::Const.Perks.setup(this.m, ::Legends.Perk.LegendSpecialistButcher);
 		this.m.Type = this.Const.SkillType.Perk | this.Const.SkillType.StatusEffect;
-		this.m.IconMini = "perk_spec_butcher_mini.png";
+		this.m.IconMini = "perk_spec_butcher_mini";
 		this.m.Order = this.Const.SkillOrder.Perk;
 		this.m.IsActive = false;
 		this.m.IsStacking = false;
@@ -40,7 +40,7 @@ this.perk_legend_specialist_butcher <- this.inherit("scripts/skills/legend_speci
 			id = 6,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "Inflicts additional stacking [color=" + this.Const.UI.Color.PositiveValue + "]2[/color] graze bleeding damage per turn, for 5 turns" 
+			text = "Inflicts additional stacking [color=" + this.Const.UI.Color.PositiveValue + "]2[/color] graze bleeding damage per turn, for 5 turns"
 		}];
 	}
 
@@ -51,7 +51,7 @@ this.perk_legend_specialist_butcher <- this.inherit("scripts/skills/legend_speci
 		{
 			return false;
 		}
-		
+
 		if (_targetEntity.getCurrentProperties().IsImmuneToBleeding)
 		{
 			return false;
@@ -73,8 +73,8 @@ this.perk_legend_specialist_butcher <- this.inherit("scripts/skills/legend_speci
 		{
 			this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(user) + " filleted " + this.Const.UI.getColorizedEntityName(_targetEntity) + " leaving them grazed");
 		}
-	
-		return true;	
+
+		return true;
 	}
 
 });

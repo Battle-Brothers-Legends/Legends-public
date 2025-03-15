@@ -14,7 +14,7 @@ this.perk_legend_specialist_shepherd <- this.inherit("scripts/skills/legend_spec
 	{
 		this.legend_specialist_abstract.create();
 		::Const.Perks.setup(this.m, ::Legends.Perk.LegendSpecialistShepherd);
-		this.m.IconMini = "perk_spec_sling_mini.png";
+		this.m.IconMini = "perk_spec_sling_mini";
 	}
 
 	// function specialistWeaponTooltip (_item, _isRanged)
