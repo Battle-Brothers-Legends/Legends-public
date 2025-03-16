@@ -1218,6 +1218,7 @@
 					this.Tactical.spawnProjectileEffect(this.Const.ProjectileSprite[this.m.ProjectileType], _user.getTile(), _targetEntity.getTile(), 1.0, this.m.ProjectileTimeScale, this.m.IsProjectileRotated, flip);
 				}
 			}
+			this.m.Container.onTargetMissed(this, _targetEntity);
 
 			return false;
 		}
