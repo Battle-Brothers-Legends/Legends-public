@@ -81,18 +81,12 @@ this.legend_broad_head_arrows <- this.inherit("scripts/items/ammo/ammo", {
 		return result;
 	}
 
-	function onUpdateProperties( _properties )
+	function onAnySkillUsed( _skill, _targetEntity, _properties )
 	{
-		this.ammo.onUpdateProperties(_properties);
-		local actor = this.getContainer().getActor();
-		local item = actor.getItems().getItemAtSlot(this.Const.ItemSlot.Mainhand);
-		if (item == null) return;
-
-		if (item.isWeaponType(this.Const.Items.WeaponType.Bow))
+		if (_skill.isAttack() && _skill.getItem() != null && _skill.getItem().isWeaponType(this.Const.Items.WeaponType.Bow))
 		{
 			_properties.DamageDirectMult *= 0.9;
 			_properties.RangedDamageMult *= 1.1;
 		}
 	}
 });
-

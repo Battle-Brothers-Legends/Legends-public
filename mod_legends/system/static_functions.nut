@@ -18,6 +18,16 @@
 	return "decrease";
 }
 
+::Legends.S.patternIsInText <- function ( pattern, text )
+{
+	if (!pattern || !text)
+	{
+		return false;
+	}
+
+	return this.regexp(pattern).search(text);
+};
+
 ::Legends.S.isCharacterWeaponSpecialized <- function( _properties, _weapon )
 {
 	switch (true)
