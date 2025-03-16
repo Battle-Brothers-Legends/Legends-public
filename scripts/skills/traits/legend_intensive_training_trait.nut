@@ -36,55 +36,67 @@ this.legend_intensive_training_trait <- this.inherit("scripts/skills/traits/char
 		if (this.m.TrainingSeed == null)
 			this.m.TrainingSeed = this.getContainer().getActor().getID() + ::toHash(this.getContainer().getActor().getName());
 
+		local attributes = [];
+		for (local i = 0; i < ::Const.Attributes.COUNT; i++)
+			attributes.push(i);
+
+		foreach(index, talent in _bro.getTalents()) {
+			for (local j = 0; j < talent; j++)
+				attributes.push(index);
+		}
+
+		::MSU.Log.printData(attributes);
+
 		for( local i = 0; i < _skillsNum; i++ )
 		{
 			this.m.TrainingSeed = ::Legends.LCG.get(this.m.TrainingSeed).nextState();
-			local attr = this.m.TrainingSeed % (::Const.Attributes.COUNT - 1);
+			local attr = attributes[this.m.TrainingSeed % attributes.len()];
 
 			switch(attr)
 			{
-			case 0:
-				_bro.getBaseProperties().Hitpoints += 1;
-				this.addHitpoint();
-				break;
+				case ::Const.Attributes.Hitpoints:
+					_bro.getBaseProperties().Hitpoints += 1;
+					this.addHitpoint();
+					break;
 
-			case 1:
-				_bro.getBaseProperties().Bravery += 1;
-				this.addBrave();
-				break;
+				case ::Const.Attributes.Bravery:
+					_bro.getBaseProperties().Bravery += 1;
+					this.addBrave();
+					break;
 
-			case 2:
-				_bro.getBaseProperties().Stamina += 1;
-				this.addStamina();
-				break;
+				case ::Const.Attributes.Fatigue:
+					_bro.getBaseProperties().Stamina += 1;
+					this.addStamina();
+					break;
 
-			case 3:
-				_bro.getBaseProperties().Initiative += 1;
-				this.addIni();
-				break;
+				case ::Const.Attributes.Initiative:
+					_bro.getBaseProperties().Initiative += 1;
+					this.addIni();
+					break;
 
-			case 4:
-				if ( _bro.getBaseProperties().MeleeSkill > _bro.getBaseProperties().RangedSkill )
-				{
-					_bro.getBaseProperties().MeleeSkill += 1;
-					this.addMatk();
-				}else
-				{
-					_bro.getBaseProperties().RangedSkill += 1;
-					this.addRatk();
-				}
-				break;
+				case ::Const.Attributes.RangedSkill:
+				case ::Const.Attributes.MeleeSkill:
+					if ( _bro.getBaseProperties().MeleeSkill > _bro.getBaseProperties().RangedSkill )
+					{
+						_bro.getBaseProperties().MeleeSkill += 1;
+						this.addMatk();
+					}
+					else
+					{
+						_bro.getBaseProperties().RangedSkill += 1;
+						this.addRatk();
+					}
+					break;
 
-			case 5:
-				_bro.getBaseProperties().MeleeDefense += 1;
-				this.addMdef();
-				break;
+				case ::Const.Attributes.MeleeDefense:
+					_bro.getBaseProperties().MeleeDefense += 1;
+					this.addMdef();
+					break;
 
-			default:
-				_bro.getBaseProperties().RangedDefense += 1;
-				this.addRdef();
-				break;
-
+				default:
+					_bro.getBaseProperties().RangedDefense += 1;
+					this.addRdef();
+					break;
 			}
 		}
 
