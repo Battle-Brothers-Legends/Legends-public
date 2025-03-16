@@ -11,6 +11,7 @@ this.legend_intensive_training_trait <- this.inherit("scripts/skills/traits/char
 		TraitGained = -1,
 		BonusXP = 0.0,
 		MaxSkillsCanBeAdded = 15,
+		TrainingSeed = null,
 		SettlementTrainingDelay = 0,
 		SettlementTrainedPoints = 0,
 		TraitRerollDelay = 0,
@@ -32,9 +33,13 @@ this.legend_intensive_training_trait <- this.inherit("scripts/skills/traits/char
 
 	function addRandomSkills( _bro, _skillsNum )
 	{
+		if (this.m.TrainingSeed == null)
+			this.m.TrainingSeed = this.getContainer().getActor().getID() + ::toHash(this.getContainer().getActor().getName());
+
 		for( local i = 0; i < _skillsNum; i++ )
 		{
-			local attr = this.Math.rand(0, this.Const.Attributes.COUNT-1);
+			this.m.TrainingSeed = ::Legends.LCG.get(this.m.TrainingSeed).nextState();
+			local attr = this.m.TrainingSeed % (::Const.Attributes.COUNT - 1);
 
 			switch(attr)
 			{
@@ -383,6 +388,9 @@ this.legend_intensive_training_trait <- this.inherit("scripts/skills/traits/char
 		_out.writeU8(this.m.SettlementTrainedPoints);
 		_out.writeU8(this.m.TraitRerollDelay);
 		_out.writeU16(this.m.TraitRerollCount);
+		if (this.m.TrainingSeed == null)
+			this.m.TrainingSeed = this.getContainer().getActor().getID() + ::toHash(this.getContainer().getActor().getName());
+		_out.writeU32(this.m.TrainingSeed);
 	}
 
 	function onDeserialize( _in )
@@ -402,6 +410,7 @@ this.legend_intensive_training_trait <- this.inherit("scripts/skills/traits/char
 		this.m.SettlementTrainedPoints = _in.readU8();
 		this.m.TraitRerollDelay = _in.readU8();
 		this.m.TraitRerollCount = _in.readU16();
+		this.m.TrainingSeed = _in.readU32();
 
 		if(this.isMaxReached())
 		{
