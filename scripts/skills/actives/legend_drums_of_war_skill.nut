@@ -102,10 +102,8 @@ this.legend_drums_of_war_skill <- this.inherit("scripts/skills/skill", {
 
 		local tile = this.getContainer().getActor().getTile();
 
-		if (!tile.hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions()))
-			return false;
-
-		return mainhand.isWeaponType(this.Const.Items.WeaponType.Musical);
+		return mainhand.isWeaponType(this.Const.Items.WeaponType.Musical) &&
+			!tile.hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions());
 	}
 
 	function onUse( _user, _targetTile )
