@@ -13,6 +13,7 @@ this.legend_martial_march_effect <- this.inherit("scripts/skills/skill", {
 		this.m.Order = this.Const.SkillOrder.VeryLast;
 		this.m.IsActive = false;
 		this.m.IsHidden = false;
+		this.m.IsRemovedAfterBattle = true;
 	}
 
 	function onAdded()
