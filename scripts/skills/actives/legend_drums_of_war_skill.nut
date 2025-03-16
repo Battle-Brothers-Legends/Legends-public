@@ -143,11 +143,11 @@ this.legend_drums_of_war_skill <- this.inherit("scripts/skills/skill", {
 		{
 			if (actor == null)
 				continue;
-			if (actor.isNull())
+			if ("isNull" in actor && actor.isNull())
 				continue;
 			if (!actor.isAlive())
 				continue;
-			::Legends.Effects.remove(actor.getContainer(), ::Legends.Effect.LegendDrumsOfWar);
+			::Legends.Effects.remove(actor.getSkills(), ::Legends.Effect.LegendDrumsOfWar);
 		}
 		this.m.AffectedActors = [];
 	}
