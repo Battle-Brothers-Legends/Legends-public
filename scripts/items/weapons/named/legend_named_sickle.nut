@@ -33,7 +33,7 @@ this.legend_named_sickle <- this.inherit("scripts/items/weapons/named/named_weap
 	{
 		this.named_weapon.onEquip();
 		::Legends.Actives.grant(this, ::Legends.Active.Slash);
-		::Legends.Actives.grant(this, ::Legends.Active.Hook);
+		::Legends.Actives.grant(this, ::Legends.Active.Gash);
 		//::Legends.Actives.grant(this, ::Legends.Active.LegendHarvestBush);
 	}
 

@@ -8,7 +8,7 @@ this.legend_named_swordstaff <- this.inherit("scripts/items/weapons/named/named_
 		this.m.Description = "This Swordstaff is especially well-crafted, and its blade would be worthy of even a noble";
 		this.m.IconLarge = "weapons/melee/legend_swordstaff_01_named_01.png";
 		this.m.Icon = "weapons/melee/legend_swordstaff_01_named_01_70x70.png";
-		this.m.WeaponType = this.Const.Items.WeaponType.Sword | this.Const.Items.WeaponType.Polearm;
+		this.m.WeaponType = this.Const.Items.WeaponType.Sword | this.Const.Items.WeaponType.Spear | this.Const.Items.WeaponType.Polearm;
 		this.m.SlotType = this.Const.ItemSlot.Mainhand;
 		this.m.BlockedSlotType = this.Const.ItemSlot.Offhand;
 		this.m.ItemType = this.Const.Items.ItemType.Named | this.Const.Items.ItemType.Weapon | this.Const.Items.ItemType.MeleeWeapon | this.Const.Items.ItemType.TwoHanded | this.Const.Items.ItemType.Defensive;
