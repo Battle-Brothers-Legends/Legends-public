@@ -88,51 +88,51 @@
 	}
 	*/
 
-	local onRender = o.onRender;
-	o.onRender = function()
-	{
-		if (this.m.IsLoweringWeapon) {
-			local mainhand = this.getMainhandItem();
-			if (mainhand != null && ::Const.Items.LegendItemWithSpearwall.find(mainhand.getID()) != null) {
-				local p = (this.Time.getVirtualTimeF() - this.m.RenderAnimationStartTime) / this.Const.Items.Default.LowerWeaponDuration;
-				this.getSprite("arms_icon").Rotation = this.Math.minf(1.0, p) * -70.0;
-				this.moveSpriteOffset("arms_icon", this.getSpriteOffset("arms_icon"), this.createVec(46 * this.Math.minf(1.0, p), -33 * this.Math.minf(1.0, p)), this.Const.Items.Default.LowerWeaponDuration, this.m.RenderAnimationStartTime);
+	// local onRender = o.onRender;
+	// o.onRender = function()
+	// {
+	// 	if (this.m.IsLoweringWeapon) {
+	// 		local mainhand = this.getMainhandItem();
+	// 		if (mainhand != null && ::Const.Items.LegendItemWithSpearwall.find(mainhand.getID()) != null) {
+	// 			local p = (this.Time.getVirtualTimeF() - this.m.RenderAnimationStartTime) / this.Const.Items.Default.LowerWeaponDuration;
+	// 			this.getSprite("arms_icon").Rotation = this.Math.minf(1.0, p) * -70.0;
+	// 			this.moveSpriteOffset("arms_icon", this.getSpriteOffset("arms_icon"), this.createVec(46 * this.Math.minf(1.0, p), -33 * this.Math.minf(1.0, p)), this.Const.Items.Default.LowerWeaponDuration, this.m.RenderAnimationStartTime);
 
-				if (p >= 1.0) {
-					this.m.IsLoweringWeapon = false;
+	// 			if (p >= 1.0) {
+	// 				this.m.IsLoweringWeapon = false;
 
-					if (!this.m.IsUsingCustomRendering)
-						this.setRenderCallbackEnabled(false);
-				}
-				else {
-					this.m.IsLoweringWeapon = true;
-				}
-			}
-			else{
-				onRender();
-			}
-		}
-		else if (this.m.IsRaisingWeapon) {
-			if (this.getSpriteOffset("arms_icon").X != 0 || this.getSpriteOffset("arms_icon").Y != 0) {
-				local p = (this.Time.getVirtualTimeF() - this.m.RenderAnimationStartTime) / this.Const.Items.Default.RaiseWeaponDuration;
-				this.getSprite("arms_icon").Rotation = (1.0 - this.Math.minf(1.0, p)) * -70.0;
-				this.moveSpriteOffset("arms_icon", this.getSpriteOffset("arms_icon"), this.createVec(46 * (1-this.Math.minf(1.0, p)), -33 * (1-this.Math.minf(1.0, p))), this.Const.Items.Default.LowerWeaponDuration, this.m.RenderAnimationStartTime);
+	// 				if (!this.m.IsUsingCustomRendering)
+	// 					this.setRenderCallbackEnabled(false);
+	// 			}
+	// 			else {
+	// 				this.m.IsLoweringWeapon = true;
+	// 			}
+	// 		}
+	// 		else{
+	// 			onRender();
+	// 		}
+	// 	}
+	// 	else if (this.m.IsRaisingWeapon) {
+	// 		if (this.getSpriteOffset("arms_icon").X != 0 || this.getSpriteOffset("arms_icon").Y != 0) {
+	// 			local p = (this.Time.getVirtualTimeF() - this.m.RenderAnimationStartTime) / this.Const.Items.Default.RaiseWeaponDuration;
+	// 			this.getSprite("arms_icon").Rotation = (1.0 - this.Math.minf(1.0, p)) * -70.0;
+	// 			this.moveSpriteOffset("arms_icon", this.getSpriteOffset("arms_icon"), this.createVec(46 * (1-this.Math.minf(1.0, p)), -33 * (1-this.Math.minf(1.0, p))), this.Const.Items.Default.LowerWeaponDuration, this.m.RenderAnimationStartTime);
 
-				if (p >= 1.0) {
-					this.m.IsRaisingWeapon = false;
+	// 			if (p >= 1.0) {
+	// 				this.m.IsRaisingWeapon = false;
 
-					if (!this.m.IsUsingCustomRendering)
-						this.setRenderCallbackEnabled(false);
-				}
-				else {
-					this.m.IsRaisingWeapon = true;
-				}
-			}
-			else {
-				onRender();
-			}
-		}
-	}
+	// 				if (!this.m.IsUsingCustomRendering)
+	// 					this.setRenderCallbackEnabled(false);
+	// 			}
+	// 			else {
+	// 				this.m.IsRaisingWeapon = true;
+	// 			}
+	// 		}
+	// 		else {
+	// 			onRender();
+	// 		}
+	// 	}
+	// }
 
 	local onOtherActorDeath = o.onOtherActorDeath;
 	o.onOtherActorDeath = function ( _killer, _victim, _skill )
