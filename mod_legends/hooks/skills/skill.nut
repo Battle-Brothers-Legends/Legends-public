@@ -582,7 +582,7 @@
 
 			return this.regexp(pattern).search(text);
 		};
-		local user = this.m.Container.getActor();
+		local self = this, user = this.m.Container.getActor();
 		local myTile = user.getTile();
 		local targetEntity = _targetTile.IsOccupiedByActor ? _targetTile.getEntity() : null;
 		local getBadTerrainFactor = function ( attributeIcon ) {
@@ -694,7 +694,7 @@
 		};
 		modifier["Fast Adaption"] <- function ( row, description )
 		{
-			local fast_adaption = ::Legends.Perks.get(this, ::Legends.Perk.FastAdaption);
+			local fast_adaption = ::Legends.Perks.get(self, ::Legends.Perk.FastAdaption);
 			local bonus = 10 * fast_adaption.m.Stacks;
 			row.text = green(bonus + "%") + " " + description;
 		};
