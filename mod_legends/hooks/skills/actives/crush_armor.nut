@@ -9,7 +9,7 @@
 
 	o.getTooltip = function()
 	{
-		local p = this.getContainer().getActor().getCurrentProperties();
+		local p = this.factoringOffhand(this.m.Container.buildPropertiesForUse(this, null));
 		local f = p.IsSpecializedInHammers ? 2.0 : 1.5;
 		local damage_armor_min = this.Math.floor(p.DamageRegularMin * p.DamageArmorMult * f * p.DamageTotalMult * p.MeleeDamageMult);
 		local damage_armor_max = this.Math.floor(p.DamageRegularMax * p.DamageArmorMult * f * p.DamageTotalMult * p.MeleeDamageMult);
@@ -25,12 +25,25 @@
 			});
 		}
 
-		tooltip.push({
-			id = 7,
-			type = "text",
-			icon = "ui/icons/special.png",
-			text = "Inflicts [color=" + this.Const.UI.Color.DamageValue + "]" + 10 + "[/color] damage to hitpoints that ignores armor"
-		});
+		if (p.DamageMinimum > 0)
+		{
+			tooltip.push({
+				id = 7,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = "Always inflicts at least [color=" + this.Const.UI.Color.DamageValue + "]" + p.DamageMinimum + "[/color] damage to hitpoints, regardless of armor"
+			});
+		}
 		return tooltip;
+	}
+
+	o.onAnySkillUsed = function ( _skill, _targetEntity, _properties )
+	{
+		if (_skill == this)
+		{
+			_properties.DamageArmorMult *= this.getContainer().getActor().getCurrentProperties().IsSpecializedInHammers ? 2.0 : 1.5;
+			_properties.DamageRegularMult *= 0.0;
+			_properties.DamageMinimum += 10;
+		}
 	}
 });

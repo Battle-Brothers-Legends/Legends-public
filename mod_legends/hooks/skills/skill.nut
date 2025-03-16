@@ -158,6 +158,16 @@
 			});
 		}
 
+		if (p.DamageMinimum > 0)
+		{
+			ret.push({
+				id = 7,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = "Always inflicts at least [color=" + this.Const.UI.Color.DamageValue + "]" + p.DamageMinimum + "[/color] damage to hitpoints, regardless of armor"
+			});
+		}
+
 		if (this.m.Container.getActor().getSkills().hasTrait(::Legends.Trait.OathOfHonor) && (this.m.IsWeaponSkill && this.m.IsRanged || this.m.IsOffensiveToolSkill))
 		{
 			ret.push({
