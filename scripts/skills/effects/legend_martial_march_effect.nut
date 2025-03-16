@@ -6,8 +6,8 @@ this.legend_martial_march_effect <- this.inherit("scripts/skills/skill", {
 	{
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendMartialMarch);
 		this.m.Description = "I can do this for the company! This character has been inspired by hearing just the right words, and is ready to go to their limits and beyond.";
-		this.m.Icon = "ui/effects/drums_of_war.png";
-		this.m.IconMini = "drums_of_war_circle.png";
+		this.m.Icon = "ui/perks/drums_of_war.png";
+		this.m.IconMini = "drums_of_war_circle";
 		this.m.Overlay = "drums_of_war";
 		this.m.Type = this.Const.SkillType.StatusEffect;
 		this.m.Order = this.Const.SkillOrder.VeryLast;
