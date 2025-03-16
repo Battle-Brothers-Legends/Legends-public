@@ -2351,28 +2351,6 @@ perkDefObjects.push({
 		Const = "LegendStaffBlock"
 });
 
-::Legends.Perk.LegendMinnesanger <- null;
-perkDefObjects.push({
-		ID = "perk.legend_minnesanger",
-		Script = "scripts/skills/perks/perk_legend_minnesanger",
-		Name = this.Const.Strings.PerkName.LegendMinnesanger,
-		Tooltip = this.Const.Strings.PerkDescription.LegendMinnesanger,
-		Icon = "ui/perks/drums_of_life.png",
-		IconDisabled = "ui/perks/drums_of_life_bw.png",
-		Const = "LegendMinnesanger"
-});
-
-::Legends.Perk.LegendMeistersanger <- null;
-perkDefObjects.push({
-		ID = "perk.legend_meistersanger",
-		Script = "scripts/skills/perks/perk_legend_meistersanger",
-		Name = this.Const.Strings.PerkName.LegendMeistersanger,
-		Tooltip = this.Const.Strings.PerkDescription.LegendMeistersanger,
-		Icon = "ui/perks/drums_of_war.png",
-		IconDisabled = "ui/perks/drums_of_war_bw.png",
-		Const = "LegendMeistersanger"
-});
-
 ::Legends.Perk.LegendFavouredEnemyGhoul <- null;
 perkDefObjects.push({
 	ID = "perk.legend_favoured_enemy_ghoul",
@@ -3449,8 +3427,8 @@ perkDefObjects.push({
 	Script = "scripts/skills/perks/perk_legend_meistersanger",
 	Name = ::Const.Strings.PerkName.LegendMeistersanger,
 	Tooltip = ::Const.Strings.PerkDescription.LegendMeistersanger,
-	Icon = "ui/perks/minnesanger.png",
-	IconDisabled = "ui/perks/minnesanger_bw.png",
+	Icon = "ui/perks/meistersanger.png",
+	IconDisabled = "ui/perks/meistersanger_bw.png",
 	Const = "LegendMeistersanger"
 });
 
