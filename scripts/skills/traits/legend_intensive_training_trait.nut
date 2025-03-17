@@ -29,13 +29,11 @@ this.legend_intensive_training_trait <- this.inherit("scripts/skills/traits/char
 		this.m.IsStacking = false;
 		this.m.IsHidden = false;
 		this.m.IsSerialized = true;
+		this.m.TrainingSeed = ::Math.rand(0, 65535) * ::Math.rand(0, 65535) + ::Math.rand(0, 65535);
 	}
 
 	function addRandomSkills( _bro, _skillsNum )
 	{
-		if (this.m.TrainingSeed == null)
-			this.m.TrainingSeed = this.getContainer().getActor().getID() + ::toHash(this.getContainer().getActor().getName());
-
 		local attributes = [];
 		for (local i = 0; i < ::Const.Attributes.COUNT; i++)
 			attributes.push(i);
@@ -400,8 +398,6 @@ this.legend_intensive_training_trait <- this.inherit("scripts/skills/traits/char
 		_out.writeU8(this.m.SettlementTrainedPoints);
 		_out.writeU8(this.m.TraitRerollDelay);
 		_out.writeU16(this.m.TraitRerollCount);
-		if (this.m.TrainingSeed == null)
-			this.m.TrainingSeed = this.getContainer().getActor().getID() + ::toHash(this.getContainer().getActor().getName());
 		_out.writeU32(this.m.TrainingSeed);
 	}
 
