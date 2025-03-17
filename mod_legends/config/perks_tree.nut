@@ -316,7 +316,6 @@ local VanillaTree = [
 
 		if (_localMap.Weapon.find(group[1]) == null)
 		{
-			::logInfo("excluding: " + group[0].ID + " because not found: " + group[1].ID);
 			toExclude.push(group[0].ID);
 		}
 	}
