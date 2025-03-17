@@ -57,9 +57,6 @@ this.legend_demon_hound <- this.inherit("scripts/entity/tactical/actor", {
 		if (!this.actor.isAlive() || this.actor.isDying())
 			return;
 
-		if (_damageHitpoints >= this.actor.getHitpoints())
-			return;
-
 		this.Sound.play(this.m.SoundOnTeleport[this.Math.rand(0, this.m.SoundOnTeleport.len() - 1)], this.Const.Sound.Volume.Skill);
 		this.Time.scheduleEvent(this.TimeUnit.Virtual, 30, this.teleport.bindenv(this), null);
 	}
