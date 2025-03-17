@@ -1,6 +1,6 @@
 ::mods_hookExactClass("skills/actives/thrust", function(o)
 {
-local getTooltip = o.getTooltip;
+	local getTooltip = o.getTooltip;
 	o.getTooltip = function ()
 	{
 		local tooltip = this.getDefaultTooltip();
