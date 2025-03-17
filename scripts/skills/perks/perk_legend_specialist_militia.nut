@@ -55,9 +55,12 @@ this.perk_legend_specialist_militia <- this.inherit("scripts/skills/legend_speci
 	function onAnySkillUsed( _skill, _targetEntity, _properties )
 	{
 		this.legend_specialist_abstract.onAnySkillUsed(_skill, _targetEntity, _properties);
+		local actor = this.getContainer().getActor();
+		if (!actor.isPlacedOnMap() || ("State" in this.Tactical) && this.Tactical.State.isBattleEnded())
+			return;
 		if (this.onAnySkillUsedSpecialistChecks(_skill))
 		{
-			if (this.Tactical.TurnSequenceBar.getActiveEntity() == null || this.Tactical.TurnSequenceBar.getActiveEntity().getID() != this.getContainer().getActor().getID())
+			if (this.Tactical.TurnSequenceBar.getActiveEntity() == null || this.Tactical.TurnSequenceBar.getActiveEntity().getID() != actor.getID())
 			{
 				_properties.DamageTotalMult *= 1.0 + 0.01 * this.calculateSpecialistBonus(15, _skill.getItem());
 			}
