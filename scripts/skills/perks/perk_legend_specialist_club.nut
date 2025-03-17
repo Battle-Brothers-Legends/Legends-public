@@ -23,7 +23,7 @@ this.perk_legend_specialist_club <- this.inherit("scripts/skills/legend_speciali
 	function onAnySkillUsed( _skill, _targetEntity, _properties )
 	{
 		this.legend_specialist_abstract.onAnySkillUsed(_skill, _targetEntity, _properties);
-		if (onAnySkillUsedSpecialistChecks(_skill))
+		if (this.onAnySkillUsedSpecialistChecks(_skill))
 			_properties.FatigueDealtPerHitMult += 1.0;
 	}
 });

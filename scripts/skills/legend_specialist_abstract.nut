@@ -175,7 +175,7 @@ this.legend_specialist_abstract <- this.inherit("scripts/skills/skill", {
 
 	function onAnySkillUsed( _skill, _targetEntity, _properties )
 	{
-		if (!onAnySkillUsedSpecialistChecks(_skill))
+		if (!this.onAnySkillUsedSpecialistChecks(_skill))
 			return;
 
 		local validTarget = _targetEntity != null && this.validTarget(_targetEntity.getType());
