@@ -7,7 +7,6 @@
 	o.create = function ()
 	{
 		create();
-		this.m.MinRange = 2;
 		this.m.IsShieldRelevant = true;
 	}
 
