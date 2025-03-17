@@ -77,8 +77,6 @@ this.legend_mummy_queen <- this.inherit("scripts/entity/tactical/legend_mummy", 
 	}
 	function assignRandomEquipment()
 	{
-
-
 		this.m.Items.equip(this.new("scripts/items/weapons/named/legend_named_royal_lance"));
 
 		local armor = [
