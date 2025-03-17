@@ -498,7 +498,8 @@ if (!("Perks" in ::Const))
 		::Const.Perks.LongswordClassTree,
 		::Const.Perks.InventorClassTree,
 		::Const.Perks.StaffClassTree,
-		::Const.Perks.SlingClassTree
+		::Const.Perks.SlingClassTree,
+		::Const.Perks.ShovelClassTree
 	],
 	function getRandom(_exclude)
 	{
