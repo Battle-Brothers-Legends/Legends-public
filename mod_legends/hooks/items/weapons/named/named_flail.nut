@@ -7,7 +7,8 @@
 	o.create = function ()
 	{
 		create();
-		this.m.Variants = [1, 2, 3]
+		this.m.Variants = [1, 2, 3];
+		this.m.ItemType = this.m.ItemType | this.Const.Items.ItemType.Cultist;
 	}
 
 	o.randomizeValues <- function ()
