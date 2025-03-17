@@ -59,7 +59,7 @@ this.perk_legend_specialist_militia <- this.inherit("scripts/skills/legend_speci
 		{
 			if (this.Tactical.TurnSequenceBar.getActiveEntity() == null || this.Tactical.TurnSequenceBar.getActiveEntity().getID() != this.getContainer().getActor().getID())
 			{
-				_properties.DamageTotalMult *= 1.0 + 0.01 * this.calculateSpecialistBonus(15, item);
+				_properties.DamageTotalMult *= 1.0 + 0.01 * this.calculateSpecialistBonus(15, _skill.getItem());
 			}
 		}
 	}
