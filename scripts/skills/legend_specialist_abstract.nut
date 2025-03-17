@@ -169,6 +169,10 @@ this.legend_specialist_abstract <- this.inherit("scripts/skills/skill", {
 		return true;
 	}
 
+	function onUpdate( _properties )
+	{
+	}
+
 	function onAnySkillUsed( _skill, _targetEntity, _properties )
 	{
 		if (!onAnySkillUsedSpecialistChecks(_skill))
