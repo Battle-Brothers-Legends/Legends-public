@@ -31,7 +31,7 @@ this.legend_mage_swordstaff <- this.inherit("scripts/items/weapons/weapon", {
 
 	function onEquip()
 	{
-		this.named_weapon.onEquip();
+		this.weapon.onEquip();
 		::Legends.Actives.grant(this, ::Legends.Active.Slash, function (_skill) {
 			_skill.m.IsStaffSlash = true;
 		}.bindenv(this));
