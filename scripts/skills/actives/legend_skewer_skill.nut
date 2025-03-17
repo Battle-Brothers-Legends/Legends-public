@@ -105,4 +105,15 @@ this.legend_skewer_skill <- this.inherit("scripts/skills/skill", {
 			}
 		}
 	}
+
+	function onAnySkillUsed ( _skill, _targetEntity, _properties )
+	{
+		if (_skill == this)
+		{
+			if (_properties.IsSpecializedInSpearThrust)
+			{
+				_properties.DamageTotalMult *= 1.15;
+			}
+		}
+	}
 });

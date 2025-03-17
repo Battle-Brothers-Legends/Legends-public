@@ -57,7 +57,10 @@ this.perk_legend_specialist_militia <- this.inherit("scripts/skills/legend_speci
 		this.legend_specialist_abstract.onAnySkillUsed(_skill, _targetEntity, _properties);
 		if (onAnySkillUsedSpecialistChecks(_skill))
 		{
-			_properties.MeleeDefense += this.calculateSpecialistBonus(6, _skill.getItem());
+			if (this.Tactical.TurnSequenceBar.getActiveEntity() == null || this.Tactical.TurnSequenceBar.getActiveEntity().getID() != this.getContainer().getActor().getID())
+			{
+				_properties.DamageTotalMult *= 1.0 + 0.01 * this.calculateSpecialistBonus(15, item);
+			}
 		}
 	}
 });
