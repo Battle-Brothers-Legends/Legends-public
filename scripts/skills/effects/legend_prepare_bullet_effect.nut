@@ -5,7 +5,7 @@ this.legend_prepare_bullet_effect <- this.inherit("scripts/skills/skill", {
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendPrepareBullet);
 		this.m.Description = "This character is preparing a shot with a sling, increasing velocity and damage.";
 		this.m.Icon = "ui/perks/perk_slinger_spins.png";
-		this.m.IconMini = "slinger_spins_mini.png";
+		this.m.IconMini = "slinger_spins_mini";
 		this.m.Overlay = "slinger_spins_mini";
 		this.m.Type = this.Const.SkillType.StatusEffect;
 		this.m.IsActive = false;
