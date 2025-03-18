@@ -3,7 +3,7 @@
 	local getTooltip = o.getTooltip;
 	o.getTooltip = function()
 	{
-		local tooptip = getTooltip();
+		local tooltip = getTooltip();
 		if (this.getContainer().hasPerk(::Legends.Perk.LegendSpecSpearWall))
 		{
 			tooltip.push({

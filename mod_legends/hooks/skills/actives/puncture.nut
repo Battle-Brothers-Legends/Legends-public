@@ -3,6 +3,7 @@
 	local create = o.create;
 	o.create = function()
 	{
+		create();
 		this.m.HitChanceBonus = -65;
 	}
 
