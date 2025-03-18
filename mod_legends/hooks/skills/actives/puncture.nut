@@ -1,22 +1,27 @@
 ::mods_hookExactClass("skills/actives/puncture", function(o)
 {
+	local create = o.create;
+	o.create = function()
+	{
+		this.m.HitChanceBonus = -65;
+	}
+
 	o.getTooltip = function ()
 	{
 		local tooltip = this.getDefaultTooltip();
-		local penalty = this.getContainer().getActor().getCurrentProperties().IsSpecializedInDaggers ? 50 : 65;
 		tooltip.extend([
 			{
 				id = 6,
 				type = "text",
 				icon = "ui/icons/hitchance.png",
-				text = "Has [color=" + this.Const.UI.Color.NegativeValue + "]-" + penalty + "%[/color] chance to hit"
+				text = "Up to [color=" + this.Const.UI.Color.PositiveValue + "]+50%[/color] scaling hit chance depending on the target\'s fatigue, with the maximum reached if they are exhausted. Additionally if your target is dazed or parried hitchance is increased by +10%, if they are stunned or netted you gain +25%, if they are grappled, sleeping, or fleeing you gain +50%."
 			},
 			{
 				id = 7,
 				type = "text",
 				icon = "ui/icons/hitchance.png",
-				text = "Hit chance is increased by up to +50% depending on target\'s fatigue, +0% if they are fresh and +50% if they are exhausted. Additionally if your target is dazed or parried hitchance is increased by +10%,  if they are stunned or netted you gain +25%, if they are grappled, sleeping, or fleeing you gain +50%."
-			},
+				text = "Additionally if your target is dazed or parried hitchance is increased by [color=" + this.Const.UI.Color.PositiveValue + "]+10%[/color], if they are stunned or netted you gain [color=" + this.Const.UI.Color.PositiveValue + "]+25%[/color], if they are grappled, sleeping, or fleeing you gain [color=" + this.Const.UI.Color.PositiveValue + "]+50%[/color]"
+			}
 			{
 				id = 8,
 				type = "text",
@@ -71,7 +76,7 @@
 		{
 			mod += 50;
 		}
-		local chance = (1.0 - _targetEntity.getFatiguePct()) * 50;
+		local chance = _targetEntity.getFatiguePct() * 50;
 		return mod - this.Math.round(chance);
 	}
 
@@ -79,7 +84,6 @@
 	{
 		if (_skill == this)
 		{
-			this.m.HitChanceBonus = -15;
 			this.m.HitChanceBonus += this.getHitChance(_targetEntity);
 			if (_properties.IsSpecializedInDaggers)
 			{

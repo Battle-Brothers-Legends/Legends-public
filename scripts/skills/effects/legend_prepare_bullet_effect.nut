@@ -14,7 +14,7 @@ this.legend_prepare_bullet_effect <- this.inherit("scripts/skills/skill", {
 
 	function getTooltip()
 	{
-		ret = [
+		local ret = [
 			{
 				id = 1,
 				type = "title",
@@ -39,6 +39,7 @@ this.legend_prepare_bullet_effect <- this.inherit("scripts/skills/skill", {
 			}
 		];
 		if (::Legends.Perks.has(this, ::Legends.Perk.LegendBallistics))
+		{
 			ret.push(
 			{
 				id = 12,
@@ -46,6 +47,7 @@ this.legend_prepare_bullet_effect <- this.inherit("scripts/skills/skill", {
 				icon = "ui/icons/direct_damage.png",
 				text = "[color=" + this.Const.UI.Color.PositiveValue + "]" + this.getBonus() + "%[/color] Armor Penetration"
 			});
+		}
 		return ret;
 	}
 
