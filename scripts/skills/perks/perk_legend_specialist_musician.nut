@@ -11,12 +11,10 @@ this.perk_legend_specialist_musician <- this.inherit("scripts/skills/legend_spec
 		this.m.IconMini = "perk_spec_bard_mini";
 	}
 
-	function onAnySkillUsed( _skill, _targetEntity, _properties )
+	function onUpdate( _properties )
 	{
-		this.legend_specialist_abstract.onAnySkillUsed(_skill, _targetEntity, _properties);
-		if (this.onAnySkillUsedSpecialistChecks(_skill))
-		{
-			_properties.MeleeDefense += this.calculateSpecialistBonus(10, _skill.getItem());
-		}
+		local item = this.getContainer().getActor().getMainhandItem();
+		if (item != null && item.isWeaponType(this.Const.Items.WeaponType.Musical))
+			_properties.MeleeDefense += 10;
 	}
 });
