@@ -5,7 +5,7 @@
 	{
 		local tooltip = this.getDefaultTooltip();
 
-		ret.push({
+		tooltip.push({
 			id = 7,
 			type = "text",
 			icon = "ui/icons/vision.png",
@@ -13,7 +13,7 @@
 		});
 		if (!this.getContainer().getActor().getCurrentProperties().IsSpecializedInSpears)
 		{
-			ret.push({
+			tooltip.push({
 				id = 6,
 				type = "text",
 				icon = "ui/icons/hitchance.png",
