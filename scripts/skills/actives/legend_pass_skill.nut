@@ -84,12 +84,14 @@ this.legend_pass_skill <- this.inherit("scripts/skills/skill",
 		{
 			return false;
 		}
-		local item = this.getContainer().getActor().getItems().getAllItemsAtSlot(this.Const.ItemSlot.Bag)[0];
+		local items = this.getContainer().getActor().getItems().getAllItemsAtSlot(::Const.ItemSlot.Bag);
 
-		if (item = null)
-		{
+		if (items.len() == 0)
 			return false;
-		}
+
+		if (items[0] == null)
+			return false;
+
 		local tile = this.getContainer().getActor().getTile();
 		return this.skill.isUsable() && !tile.hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions());
 	}
