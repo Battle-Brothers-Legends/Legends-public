@@ -237,7 +237,7 @@
 
 							this.List.push({
 								id = 12,
-								icon = "ui/items/armor_upgrades/upgrade_24.png",
+								icon = "ui/items/" + a.getUpgrade().getIcon(),
 								text = "You gain a " + a.getName()
 							});
 							break;
@@ -249,7 +249,7 @@
 							a.setUpgrade(this.new("scripts/items/legend_armor/armor_upgrades/legend_heavy_gladiator_upgrade"));
 							this.List.push({
 								id = 12,
-								icon = "ui/items/armor_upgrades/upgrade_25.png",
+								icon = "ui/items/" + a.getUpgrade().getIcon(),
 								text = "You gain a " + a.getName()
 							});
 							break;
