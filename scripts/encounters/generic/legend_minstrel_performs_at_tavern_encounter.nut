@@ -13,7 +13,7 @@ this.legend_minstrel_performs_at_tavern_encounter <- this.inherit("scripts/encou
 		{
             ID = "Task",
             Title = "Strolling around the city...",
-            Text = "Wandering around the town you spot your company gathered around a crackling fire. The familiar sounds of your mercenaries—laughing, drinking, and sharpening blades. %minstrel%, a quiet figure strumming his lute by the fire’s edge, he spots you and approaches.%SPEECH_ON%Tonight, I'd like to perform.%SPEECH_OFF%You look up, raising an eyebrow.%SPEECH_ON%Perform? For who?%SPEECH_OFF% %minstrel% looks at you. %SPEECH_ON%The tavern, the locals could use some cheering up. And the coin’s always good.%SPEECH_OFF%",
+            Text = "Wandering around the town you spot your company gathered around a crackling fire. The familiar sounds of your mercenaries—laughing, drinking, and sharpening blades. %minstrel%, a quiet figure strumming his lute by the fire\’s edge, he spots you and approaches. %SPEECH_ON%Tonight, I\'d like to perform.%SPEECH_OFF% You look up, raising an eyebrow. %SPEECH_ON%Perform? For who?%SPEECH_OFF% %minstrel% smiles at you. %SPEECH_ON%The tavern, the locals could use some cheering up. And the coin’s always good.%SPEECH_OFF%",
             Image = "",
             List = [],
 			Characters = [],
@@ -46,30 +46,30 @@ this.legend_minstrel_performs_at_tavern_encounter <- this.inherit("scripts/encou
             List = [],
             Options = [
             {
-                Text = "Leave the tavern",
+                Text = "Well done %minstrel%!",
                 function getResult(_event) {
                     return 0;
                 }
             }
             ],
             function start(_event) {
-				::World.Assets.addMoney(100);
+				::World.Assets.addMoney(250);
 				this.List.push({
 					id = 1,
 					icon = "ui/icons/money.png",
-					text = "You gain 100 crowns."
+					text = "You gain 250 crowns."
 				})
 			}
         },
 		{
 			ID = "Failed",
 			Title = "At the tavern",
-			Text = "%minstrel%’s lighthearted tune fills the tavern, but a drunken patron slurs. %SPEECH_ON%Is this a tavern or a bloody opera?%SPEECH_OFF%Laughter erupts from his table, and the insults start flying. The minstrel keeps playing, but the jeers escalate.\n Suddenly, one man stumbles up, shoving another. %SPEECH_ON%Shut it!%SPEECH_OFF% he bellows, and before you know it, a full-blown fistfight erupts. Chairs crash, mugs shatter, and the room is chaos. You draw your blade, ready to end it, while %minstrel% steps back, shaking head with a grin. %SPEECH_ON%Next time, I’ll sing quieter.%SPEECH_OFF% You and your men move in to break it up.",
+			Text = "%minstrel%’s lighthearted tune fills the tavern, but is quickly interrupted by a drunken patron. %SPEECH_ON%Is this a tavern or a bloody opera?%SPEECH_OFF% Laughter erupts from his table, and soon insults start flying. The minstrel keeps playing, but the jeers escalate.\n Suddenly, one man stumbles up, shoving another. %SPEECH_ON%Shut it!%SPEECH_OFF% he bellows, and before you know it, a full-blown fistfight erupts. Chairs crash, mugs shatter, and the room is chaos. You draw your blade, ready to end it, while %minstrel% steps back, shaking head with a grin. %SPEECH_ON%Next time, I\’ll sing quieter.%SPEECH_OFF% You and your men move in to break it up.",
 			Image = "",
 			List = [],
 			Options = [
 			{
-				Text = "Damn it!",
+				Text = "Tough crowd.",
 				function getResult(_event) {
 					return 0;
 				}
