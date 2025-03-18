@@ -24,7 +24,17 @@
 
 	o.getTooltip = function ()
 	{
-		return this.getDefaultTooltip();
+		local tooltip = this.getDefaultTooltip();
+		if (this.m.IsStaffSlash)
+		{
+			ret.push({
+				id = 7,
+				type = "text",
+				icon = "ui/icons/vision.png",
+				text = "Has a range of [color=" + this.Const.UI.Color.PositiveValue + "]2[/color] tiles"
+			});
+		}
+		return tooltip;
 	}
 
 	local onAfterUpdate = o.onAfterUpdate;
