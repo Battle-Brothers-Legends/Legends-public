@@ -40,8 +40,7 @@ this.legend_prepare_bullet_effect <- this.inherit("scripts/skills/skill", {
 		];
 		if (::Legends.Perks.has(this, ::Legends.Perk.LegendBallistics))
 		{
-			ret.push(
-			{
+			ret.push({
 				id = 12,
 				type = "text",
 				icon = "ui/icons/direct_damage.png",
@@ -65,7 +64,7 @@ this.legend_prepare_bullet_effect <- this.inherit("scripts/skills/skill", {
 
 	function onAfterUpdate( _properties )
 	{
-		local skill = this.getContainer().getSkillByID("active.sling_stone");
+		local skill = ::Legends.Actives.get(this, ::Legends.Active.SlingStone);
 		if (skill != null)
 			skill.m.ActionPointCost -= 1;
 	}
@@ -92,11 +91,12 @@ this.legend_prepare_bullet_effect <- this.inherit("scripts/skills/skill", {
 
 	function onAnySkillUsed( _skill, _targetEntity, _properties )
 	{
-		if (_skill.isGarbage() || !_skill.getID() == "actives.sling_stone")
+		if (_skill.isGarbage() || _skill.getID() != ::Legends.Actives.getID(::Legends.Active.SlingStone))
 			return;
-		_properties.DamageRegularMin += this.getBonus();
-		_properties.DamageRegularMax += this.getBonus();
+		local bonus = this.getBonus();
+		_properties.DamageRegularMin += bonus;
+		_properties.DamageRegularMax += bonus;
 		if (::Legends.Perks.has(this, ::Legends.Perk.LegendBallistics))
-			_properties.DirectDamageAdd += this.getBonus() * 0.01;
+			_properties.DirectDamageAdd += bonus * 0.01;
 	}
 });
