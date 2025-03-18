@@ -15,7 +15,7 @@
 				id = 6,
 				type = "text",
 				icon = "ui/icons/hitchance.png",
-				text = "Up to [color=" + this.Const.UI.Color.PositiveValue + "]+50%[/color] scaling hit chance depending on the target\'s fatigue, with the maximum reached if they are exhausted. Additionally if your target is dazed or parried hitchance is increased by +10%, if they are stunned or netted you gain +25%, if they are grappled, sleeping, or fleeing you gain +50%."
+				text = "Up to [color=" + this.Const.UI.Color.PositiveValue + "]+50%[/color] scaling hit chance depending on the target\'s fatigue, with the maximum reached if they are exhausted."
 			},
 			{
 				id = 7,
