@@ -3,7 +3,7 @@ this.legend_pass_skill <- this.inherit("scripts/skills/skill",
 	function create()
 	{
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendPass);
-		this.m.Description = "Give the first item in your bag to an adjacent ally. Can not be used while engaged in melee, and anyone receiving the item needs to have a free bag slot.";
+		this.m.Description = "Give the first item in your bag to an adjacent ally. Can not be used while engaged in melee, and anyone receiving the item needs to have a free main hand, off hand or bag slot.";
 		this.m.Icon = "skills/pass.png";
 		this.m.IconDisabled = "skills/pass_bw.png";
 		this.m.Overlay = "active_pass";
@@ -48,6 +48,12 @@ this.legend_pass_skill <- this.inherit("scripts/skills/skill",
 				type = "text",
 				icon = "ui/icons/special.png",
 				text = "Passes the first item in your bag to an ally"
+			},
+			{
+				id = 8,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = "If passing a main hand or off hand item, will try to place the item in the relevant slot instead of the ally\'s bag if said slot is free"
 			}
 		];
 
