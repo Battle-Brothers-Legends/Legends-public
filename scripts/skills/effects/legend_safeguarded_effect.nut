@@ -9,7 +9,7 @@ this.legend_safeguarded_effect <- this.inherit("scripts/skills/skill", {
 		this.m.IsActivated = true;
 	}
 
-	function setWard( _p )
+	function setProtector( _p )
 	{
 		if (_p == null)
 		{
