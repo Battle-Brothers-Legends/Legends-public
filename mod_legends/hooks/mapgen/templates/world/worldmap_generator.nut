@@ -435,64 +435,11 @@
 		return settlementTiles.len() >= 19
 	}
 
+	local guaranteeAllBuildingsInSettlements = o.guaranteeAllBuildingsInSettlements;
 	o.guaranteeAllBuildingsInSettlements = function ()
 	{
-
 		local settlements = this.World.EntityManager.getSettlements();
-
-		if (this.Const.World.Buildings.Fletchers < 2)
-		{
-			local candidates = [];
-
-			foreach( s in settlements )
-			{
-				if (s.getSize() >= 2 && s.hasFreeBuildingSlot() && !s.hasBuilding("building.fletcher"))
-				{
-					candidates.push(s);
-				}
-			}
-
-			for( local i = this.Const.World.Buildings.Fletchers; i <= 2; i = ++i )
-			{
-				local r = this.Math.rand(0, candidates.len() - 1);
-				local s = candidates[r];
-				candidates.remove(r);
-				s.addBuilding(this.new("scripts/entity/world/settlements/buildings/fletcher_building"));
-
-				if (candidates.len() == 0)
-				{
-					break;
-				}
-			}
-		}
-
-		if (this.Const.World.Buildings.Temples < 2)
-		{
-			local candidates = [];
-
-			foreach( s in settlements )
-			{
-				if (s.getSize() >= 2 && s.hasFreeBuildingSlot() && !s.hasBuilding("building.temple"))
-				{
-					candidates.push(s);
-				}
-			}
-
-			for( local i = this.Const.World.Buildings.Temples; i <= 2; i = ++i )
-			{
-				local r = this.Math.rand(0, candidates.len() - 1);
-				local s = candidates[r];
-				candidates.remove(r);
-				s.addBuilding(this.new("scripts/entity/world/settlements/buildings/temple_building"));
-
-				if (candidates.len() == 0)
-				{
-					break;
-				}
-			}
-		}
-
-		if (this.Const.World.Buildings.Blackmarket < 2)
+		if (::Const.World.Buildings.Blackmarket < 2)
 		{
 			local candidates = [];
 
@@ -504,73 +451,18 @@
 				}
 			}
 
-			for( local i = this.Const.World.Buildings.Blackmarket; i <= 2; i = ++i )
+			for( local i = ::Const.World.Buildings.Blackmarket; i <= 2; i = ++i )
 			{
+				if (candidates.len() == 0)
+					break;
 				local r = this.Math.rand(0, candidates.len() - 1);
 				local s = candidates[r];
 				candidates.remove(r);
 				s.addBuilding(this.new("scripts/entity/world/settlements/buildings/blackmarket_building"));
-
-				if (candidates.len() == 0)
-				{
-					break;
-				}
 			}
 		}
 
-		if (this.Const.World.Buildings.Kennels < 2)
-		{
-			local candidates = [];
-
-			foreach( s in settlements )
-			{
-				if (s.isMilitary() && s.hasFreeBuildingSlot() && !s.hasBuilding("building.kennel"))
-				{
-					candidates.push(s);
-				}
-			}
-
-			for( local i = this.Const.World.Buildings.Kennels; i <= 2; i = ++i )
-			{
-				local r = this.Math.rand(0, candidates.len() - 1);
-				local s = candidates[r];
-				candidates.remove(r);
-				s.addBuilding(this.new("scripts/entity/world/settlements/buildings/kennel_building"));
-
-				if (candidates.len() == 0)
-				{
-					break;
-				}
-			}
-		}
-
-		if (this.Const.DLC.Unhold && this.Const.World.Buildings.Taxidermists < 2)
-		{
-			local candidates = [];
-
-			foreach( s in settlements )
-			{
-				if (!s.isMilitary() && s.hasFreeBuildingSlot() && !s.hasBuilding("building.taxidermist"))
-				{
-					candidates.push(s);
-				}
-			}
-
-			for( local i = this.Const.World.Buildings.Taxidermists; i <= 2; i = ++i )
-			{
-				local r = this.Math.rand(0, candidates.len() - 1);
-				local s = candidates[r];
-				candidates.remove(r);
-				s.addBuilding(this.new("scripts/entity/world/settlements/buildings/taxidermist_building"));
-
-				if (candidates.len() == 0)
-				{
-					break;
-				}
-			}
-		}
-
-		if (this.Const.World.Buildings.Stables < 1)
+		if (::Const.World.Buildings.Stables < 1)
 		{
 			local candidates = [];
 
@@ -582,20 +474,17 @@
 				}
 			}
 
-			for( local i = this.Const.World.Buildings.Stables; i <= 2; i = ++i )
+			for( local i = ::Const.World.Buildings.Stables; i <= 2; i = ++i )
 			{
+				if (candidates.len() == 0)
+					break;
 				local r = this.Math.rand(0, candidates.len() - 1);
 				local s = candidates[r];
 				candidates.remove(r);
 				s.addBuilding(this.new("scripts/entity/world/settlements/buildings/stables_building"));
-
-				if (candidates.len() == 0)
-				{
-					break;
-				}
 			}
 		}
-
+		guaranteeAllBuildingsInSettlements();
 	}
 
 	local buildAdditionalRoads = o.buildAdditionalRoads;
