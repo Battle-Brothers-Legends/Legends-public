@@ -1,6 +1,6 @@
 ::mods_hookExactClass("skills/actives/ghoul_claws", function(o)
 {
-	o.getTooltip = function ()
+	o.getTooltip <- function ()
 	{
 		local p = this.getContainer().getActor().getCurrentProperties();
 		return [
