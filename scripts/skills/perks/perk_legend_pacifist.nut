@@ -1,6 +1,6 @@
 this.perk_legend_pacifist <- this.inherit("scripts/skills/skill", {
 	m = {
-		this.m.ForcedToFight = null;
+		ForcedToFight = null
 	},
 	function create()
 	{
