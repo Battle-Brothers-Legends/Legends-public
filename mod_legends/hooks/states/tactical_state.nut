@@ -80,8 +80,7 @@
 
 					else if (bro.getSkills().hasPerk(::Legends.Perk.LegendPacifist) && bro.isPlacedOnMap())
 					{
-							bro.getLifetimeStats().BattlesWithoutMe = 0;
-							bro.worsenMood(this.Const.MoodChange.BattleWithoutMe, "Forced into battle against their wishes");
+						bro.getLifetimeStats().BattlesWithoutMe = 0;
 					}
 
 					else if (this.m.StrategicProperties.IsUsingSetPlayers && bro.isPlacedOnMap())
