@@ -19,7 +19,7 @@ this.perk_legend_pacifist <- this.inherit("scripts/skills/skill", {
 		_properties.BraveryMult *= 1.1;
 	}
 
-	function onAnySkillUsed( _skill, _targetEntity, _properties )
+	function onAnySkillExecuted( _skill, _targetTile, _targetEntity, _forFree )
 	{
 		if (_skill.isAttack())
 			this.m.ForcedToFight = true;
