@@ -14,6 +14,9 @@ this.perk_legend_feint <- this.inherit("scripts/skills/skill", {
 	{
 		local actor = this.getContainer().getActor();
 		actor.setFatigue(this.Math.max(0, actor.getFatigue() - this.Math.floor(_skill.getFatigueCost() * 0.2)));
+		if (!_targetEntity.isAlive() || _targetEntity.isDying())
+			return;
+
 		if (!_targetEntity.getSkills().hasEffect(::Legends.Effect.LegendParried))
 		{
 			::Legends.Effects.grant(_targetEntity, ::Legends.Effect.LegendParried);
