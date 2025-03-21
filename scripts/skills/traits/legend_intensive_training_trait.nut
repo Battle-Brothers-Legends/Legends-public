@@ -11,6 +11,7 @@ this.legend_intensive_training_trait <- this.inherit("scripts/skills/traits/char
 		TraitGained = -1,
 		BonusXP = 0.0,
 		MaxSkillsCanBeAdded = 15,
+		TrainingSeed = null,
 		SettlementTrainingDelay = 0,
 		SettlementTrainedPoints = 0,
 		TraitRerollDelay = 0,
@@ -28,58 +29,72 @@ this.legend_intensive_training_trait <- this.inherit("scripts/skills/traits/char
 		this.m.IsStacking = false;
 		this.m.IsHidden = false;
 		this.m.IsSerialized = true;
+		this.m.TrainingSeed = ::Math.rand(0, 65535) * ::Math.rand(0, 65535) + ::Math.rand(0, 65535);
 	}
 
 	function addRandomSkills( _bro, _skillsNum )
 	{
+		local attributes = [];
+		for (local i = 0; i < ::Const.Attributes.COUNT; i++)
+			attributes.push(i);
+
+		foreach(index, talent in _bro.getTalents()) {
+			for (local j = 0; j < talent; j++)
+				attributes.push(index);
+		}
+
+		::MSU.Log.printData(attributes);
+
 		for( local i = 0; i < _skillsNum; i++ )
 		{
-			local attr = this.Math.rand(0, this.Const.Attributes.COUNT-1);
+			this.m.TrainingSeed = ::Legends.LCG.get(this.m.TrainingSeed).nextState();
+			local attr = attributes[this.m.TrainingSeed % attributes.len()];
 
 			switch(attr)
 			{
-			case 0:
-				_bro.getBaseProperties().Hitpoints += 1;
-				this.addHitpoint();
-				break;
+				case ::Const.Attributes.Hitpoints:
+					_bro.getBaseProperties().Hitpoints += 1;
+					this.addHitpoint();
+					break;
 
-			case 1:
-				_bro.getBaseProperties().Bravery += 1;
-				this.addBrave();
-				break;
+				case ::Const.Attributes.Bravery:
+					_bro.getBaseProperties().Bravery += 1;
+					this.addBrave();
+					break;
 
-			case 2:
-				_bro.getBaseProperties().Stamina += 1;
-				this.addStamina();
-				break;
+				case ::Const.Attributes.Fatigue:
+					_bro.getBaseProperties().Stamina += 1;
+					this.addStamina();
+					break;
 
-			case 3:
-				_bro.getBaseProperties().Initiative += 1;
-				this.addIni();
-				break;
+				case ::Const.Attributes.Initiative:
+					_bro.getBaseProperties().Initiative += 1;
+					this.addIni();
+					break;
 
-			case 4:
-				if ( _bro.getBaseProperties().MeleeSkill > _bro.getBaseProperties().RangedSkill )
-				{
-					_bro.getBaseProperties().MeleeSkill += 1;
-					this.addMatk();
-				}else
-				{
-					_bro.getBaseProperties().RangedSkill += 1;
-					this.addRatk();
-				}
-				break;
+				case ::Const.Attributes.RangedSkill:
+				case ::Const.Attributes.MeleeSkill:
+					if ( _bro.getBaseProperties().MeleeSkill > _bro.getBaseProperties().RangedSkill )
+					{
+						_bro.getBaseProperties().MeleeSkill += 1;
+						this.addMatk();
+					}
+					else
+					{
+						_bro.getBaseProperties().RangedSkill += 1;
+						this.addRatk();
+					}
+					break;
 
-			case 5:
-				_bro.getBaseProperties().MeleeDefense += 1;
-				this.addMdef();
-				break;
+				case ::Const.Attributes.MeleeDefense:
+					_bro.getBaseProperties().MeleeDefense += 1;
+					this.addMdef();
+					break;
 
-			default:
-				_bro.getBaseProperties().RangedDefense += 1;
-				this.addRdef();
-				break;
-
+				default:
+					_bro.getBaseProperties().RangedDefense += 1;
+					this.addRdef();
+					break;
 			}
 		}
 
@@ -383,6 +398,7 @@ this.legend_intensive_training_trait <- this.inherit("scripts/skills/traits/char
 		_out.writeU8(this.m.SettlementTrainedPoints);
 		_out.writeU8(this.m.TraitRerollDelay);
 		_out.writeU16(this.m.TraitRerollCount);
+		_out.writeU32(this.m.TrainingSeed);
 	}
 
 	function onDeserialize( _in )
@@ -402,6 +418,7 @@ this.legend_intensive_training_trait <- this.inherit("scripts/skills/traits/char
 		this.m.SettlementTrainedPoints = _in.readU8();
 		this.m.TraitRerollDelay = _in.readU8();
 		this.m.TraitRerollCount = _in.readU16();
+		this.m.TrainingSeed = _in.readU32();
 
 		if(this.isMaxReached())
 		{
