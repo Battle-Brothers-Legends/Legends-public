@@ -1,5 +1,8 @@
 ::Const.Serialization.Version <- 73;
 
+for(local i = ::Const.Strings.EntityNamePlural.len(); i < ::Const.Strings.EntityName.len(); i++)
+	::Const.Strings.EntityNamePlural.push(::Const.Strings.EntityName[i]);
+
 ::Const.Difficulty = {
 	Easy = 0,
 	Normal = 1,
