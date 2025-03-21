@@ -56,10 +56,12 @@
 	this.Const.BackgroundType[_typeKey] <- max << 1;
 }
 
-::Const.ProjectileType.Missile <- 11;
-::Const.ProjectileType.Blood <- 12;
-::Const.ProjectileType.Dart <- 13;
-::Const.ProjectileType.COUNT = 14;
+::Const.ProjectileType.Missile <- ::Const.ProjectileType.COUNT;
+::Const.ProjectileType.COUNT += 1;
+::Const.ProjectileType.Blood <- ::Const.ProjectileType.COUNT;
+::Const.ProjectileType.COUNT += 1;
+::Const.ProjectileType.Dart <- ::Const.ProjectileType.COUNT;
+::Const.ProjectileType.COUNT += 1;
 
 ::Const.ProjectileDecals.extend([
 	[],
