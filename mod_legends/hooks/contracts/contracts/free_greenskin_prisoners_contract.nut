@@ -62,7 +62,7 @@
 						if (this.Flags.get("IsEnemyParty"))
 						{
 							local tile = this.Contract.getTileToSpawnLocation(playerTile, 10, 15);
-							local party = this.World.FactionManager.getFaction(camp.getFaction()).spawnEntity(tile, "Greenskin Horde", false, this.Const.World.Spawn.GreenskinHorde, 120 * this.Contract.getDifficultyMult() * this.Contract.getScaledDifficultyMult());
+							local party = this.World.FactionManager.getFaction(camp.getFaction()).spawnEntity(tile, "Greenskin Horde", false, this.Const.World.Spawn.GreenskinHorde, 120 * this.Contract.getDifficultyMult() * this.Contract.getScaledDifficultyMult(), this.Contract.getMinibossModifier());
 							party.getSprite("banner").setBrush(camp.getBanner());
 							party.setDescription("A horde of greenskins marching to war.");
 							party.setFootprintType(this.Const.World.FootprintsType.Orcs);
