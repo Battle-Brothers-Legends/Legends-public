@@ -3102,4 +3102,12 @@ activesDefs.push({
 	Name = "Martial March",
 });
 
+::Legends.Active.LegendSecondWind <- null;
+activesDefs.push({
+	ID = "actives.legend_second_wind",
+	Script = "scripts/skills/actives/legend_second_wind_skill",
+	Const = "LegendSecondWind",
+	Name = "Second Wind",
+});
+
 ::Legends.Actives.addActiveDefObjects(activesDefs);
