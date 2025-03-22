@@ -9,10 +9,9 @@
 
 	o.getTooltip = function ()
 	{
-		local p = this.factoringOffhand(this.m.Container.buildPropertiesForUse(this, null));
-		local f = p.IsSpecializedInHammers ? 1.93 : 1.45;
-		local damage_armor_min = this.Math.floor(p.DamageRegularMin * p.DamageArmorMult * f * p.DamageTotalMult * p.MeleeDamageMult);
-		local damage_armor_max = this.Math.floor(p.DamageRegularMax * p.DamageArmorMult * f * p.DamageTotalMult * p.MeleeDamageMult);
+		local p = this.factoringOffhand(this.getContainer().buildPropertiesForUse(this, null));
+		local damage_armor_min = this.Math.floor(p.DamageRegularMin * p.DamageArmorMult * p.DamageTotalMult * p.MeleeDamageMult);
+		local damage_armor_max = this.Math.floor(p.DamageRegularMax * p.DamageArmorMult * p.DamageTotalMult * p.MeleeDamageMult);
 		local ret = this.getDefaultUtilityTooltip();
 
 		if (damage_armor_max > 0)
@@ -66,10 +65,6 @@
 			{
 				_properties.MeleeSkill += -15;
 				this.m.HitChanceBonus = -15;
-			}
-			else
-			{
-				this.m.HitChanceBonus = 0;
 			}
 		}
 	}
