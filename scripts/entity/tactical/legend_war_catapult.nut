@@ -33,38 +33,34 @@ this.legend_war_catapult <- this.inherit("scripts/entity/tactical/actor", {
 		this.actor.create();
 		this.m.AIAgent = this.new("scripts/ai/tactical/agents/military_ranged_agent");
 		this.m.AIAgent.setActor(this);
+
+		this.m.OnDeathLootTable.extend([
+			[33, "scripts/items/supplies/ammo_item"]
+		]);
+		local rolls = ::Legends.S.extraLootChance(1);
+		for(local i = 0; i < rolls; i++) {
+			this.m.OnDeathLootTable.extend([
+				[100, "scripts/items/trade/quality_wood_item"]
+			]);
+		}
 	}
 
 	function onDeath( _killer, _skill, _tile, _fatalityType )
 	{
 		if (_tile != null)
 		{
-		_tile.spawnObject("entity/tactical/objects/destroyed_greenskin_catapult");
-		local offset = this.createVec(0, -10);
+			_tile.spawnObject("entity/tactical/objects/destroyed_greenskin_catapult");
+			local offset = this.createVec(0, -10);
 
-		for( local i = 0; i < this.Const.Tactical.BurnParticles.len(); i = ++i )
-		{
-			this.Tactical.spawnParticleEffect(false, this.Const.Tactical.BurnParticles[i].Brushes, _tile, this.Const.Tactical.BurnParticles[i].Delay, this.Math.max(1, this.Const.Tactical.BurnParticles[i].Quantity), this.Math.max(1, this.Const.Tactical.BurnParticles[i].LifeTimeQuantity), this.Const.Tactical.BurnParticles[i].SpawnRate, this.Const.Tactical.BurnParticles[i].Stages, offset);
-		}
-		}
-
-		if (_killer == null || _killer.getFaction() == this.Const.Faction.Player || _killer.getFaction() == this.Const.Faction.PlayerAnimals)
-		{
-			local n = 1 + (!this.Tactical.State.isScenarioMode() && this.Math.rand(1, 100) <= this.World.Assets.getExtraLootChance() ? 1 : 0);
-
-			for( local i = 0; i < n; i = ++i )
+			for( local i = 0; i < this.Const.Tactical.BurnParticles.len(); i = ++i )
 			{
-				local loot = this.new("scripts/items/trade/quality_wood_item");
-
-				loot.drop(_tile);
-			}
-
-			if (this.Math.rand(1, 100) <= 33)
-			{
-				local loot = this.new("scripts/items/supplies/ammo_item");
-				loot.drop(_tile);
+				this.Tactical.spawnParticleEffect(false, this.Const.Tactical.BurnParticles[i].Brushes, _tile, this.Const.Tactical.BurnParticles[i].Delay, this.Math.max(1, this.Const.Tactical.BurnParticles[i].Quantity), this.Math.max(1, this.Const.Tactical.BurnParticles[i].LifeTimeQuantity), this.Const.Tactical.BurnParticles[i].SpawnRate, this.Const.Tactical.BurnParticles[i].Stages, offset);
 			}
 		}
+
+		local deathLoot = this.getItems().getDroppableLoot(_killer);
+		local tileLoot = this.getLootForTile(_killer, deathLoot);
+		this.dropLoot(_tile, tileLoot, !flip);
 
 		this.actor.onDeath(_killer, _skill, _tile, _fatalityType);
 	}
