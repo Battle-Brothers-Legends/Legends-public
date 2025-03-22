@@ -1,6 +1,6 @@
 this.legend_second_wind_effect <- this.inherit("scripts/skills/skill", {
 	m = {
-		Counter = 3;
+		Counter = 3,
 		ApplicableEffects = [
 			::Legends.Effect.Stunned,
 			::Legends.Effect.Dazed,
