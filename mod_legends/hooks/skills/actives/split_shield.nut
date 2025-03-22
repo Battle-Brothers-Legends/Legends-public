@@ -31,7 +31,6 @@
 
 			if (shield != null && shield.getCondition() == 0)
 			{
-				target.onDamageReceived(this.getContainer().getActor(), this, hitInfo);
 				if (!_user.isHiddenToPlayer() && _targetTile.IsVisibleForPlayer)
 				{
 					local logMessage = this.Const.UI.getColorizedEntityName(_user) + " has destroyed " + this.Const.UI.getColorizedEntityName(_targetTile.getEntity()) + "\'s shield";
