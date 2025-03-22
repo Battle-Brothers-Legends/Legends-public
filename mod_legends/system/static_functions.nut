@@ -60,3 +60,7 @@
 			return false;
 	}
 }
+
+::Legends.S.extraLootChance <- function (_baseLootAmount = 0) {
+	return _baseLootAmount + (!this.Tactical.State.isScenarioMode() && ::Math.rand(1, 100) <= this.World.Assets.getExtraLootChance() ? 1 : 0)
+}

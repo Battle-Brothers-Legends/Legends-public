@@ -1,5 +1,14 @@
 ::mods_hookExactClass("entity/tactical/enemies/trickster_god", function(o)
 {
+	local create = o.create;
+	o.create = function ()
+	{
+		create();
+		this.m.OnDeathLootTable.extend([
+			[15, "scripts/items/misc/legend_masterwork_tools"]
+		]);
+	}
+
 	local onInit = o.onInit;
 	o.onInit = function ()
 	{
@@ -17,20 +26,6 @@
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendCarnage);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendBattleheart);
 			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
-		}
-	}
-
-	local onDeath = o.onDeath;
-	o.onDeath = function ( _killer, _skill, _tile, _fatalityType )
-	{
-		onDeath( _killer, _skill, _tile, _fatalityType );
-		if (_killer == null || _killer.getFaction() == this.Const.Faction.Player || _killer.getFaction() == this.Const.Faction.PlayerAnimals)
-		{
-			if (this.Math.rand(1, 100) <= 15) //15%
-			{
-				local loot = this.new("scripts/items/misc/legend_masterwork_tools");
-				loot.drop(_tile);
-			}
 		}
 	}
 });

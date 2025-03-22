@@ -6,6 +6,11 @@
 		create();
 		this.m.AIAgent = this.new("scripts/ai/tactical/agents/legend_hedge_knight_less_flanking_less_zoc");
 		this.m.AIAgent.setActor(this);
+		this.m.OnDeathLootTable.extend([
+			[1.5, "scripts/items/misc/legend_masterwork_fabric"],
+			[1.0, "scripts/items/misc/legend_masterwork_metal"],
+			[1.5, "scripts/items/misc/legend_masterwork_tools"]
+		]);
 	}
 
 	local onInit = o.onInit;
@@ -113,31 +118,4 @@
 		::Legends.Perks.grant(this, ::Legends.Perk.Relentless);
 		return true;
 	}
-
-	o.onDeath <- function(_killer, _skill, _tile,  _fatalityType)
-	{
-		this.human.onDeath(_killer, _skill, _tile, _fatalityType);
-
-		if (_killer == null || _killer.getFaction() == this.Const.Faction.Player || _killer.getFaction() == this.Const.Faction.PlayerAnimals)
-		{
-			if (this.Math.rand(1, 1000) <= 15) //1.5%
-			{
-				local loot = this.new("scripts/items/misc/legend_masterwork_fabric");
-				loot.drop(_tile);
-			}
-
-			if (this.Math.rand(1, 100) <= 1)
-			{
-				local loot = this.new("scripts/items/misc/legend_masterwork_metal");
-				loot.drop(_tile);
-			}
-
-			if (this.Math.rand(1, 1000) <= 5) //0.5%
-			{
-				local loot = this.new("scripts/items/misc/legend_masterwork_tools");
-				loot.drop(_tile);
-			}
-		}
-	}
-
 });

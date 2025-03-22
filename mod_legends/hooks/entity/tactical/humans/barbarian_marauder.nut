@@ -4,15 +4,6 @@
 	o.onInit = function ()
 	{
 		onInit();
-		// todo delete it - chopeks
-//		if (this.LegendsMod.Configs().LegendTherianthropyEnabled())
-//		{
-//			if(this.Math.rand(1, 20) == 1)
-//			{
-//				this.m.Skills.add(this.new("scripts/skills/injury_permanent/legend_aperthropy_injury"));
-//			}
-//		}
-
 		if(::Legends.isLegendaryDifficulty())
 		{
 			::Legends.Perks.grant(this, ::Legends.Perk.Overwhelm);

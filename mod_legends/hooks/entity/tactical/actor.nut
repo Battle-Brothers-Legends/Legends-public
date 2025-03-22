@@ -561,27 +561,25 @@
 
 	local getLootForTile = o.getLootForTile;
 	o.getLootForTile = function (_killer, _loot) {
-		local loot = getLootForTile(_killer, _loot);
-
 		if (!(_killer == null || _killer.getFaction() == this.Const.Faction.Player || _killer.getFaction() == this.Const.Faction.PlayerAnimals))
-			return loot;
+			return getLootForTile(_killer, _loot);
 
 		foreach (entry in this.m.OnDeathLootTable) {
 			if (entry[0] == 0) { // no division by zero!
 				::logError("division by zero, skipping " + entry[1]);
 				continue;
 			}
-			local count = 100 / entry[0];
+			local count = ::Math.round(100 / entry[0]);
 			if (::Math.rand(1, count) == 1) {
 				if (typeof(entry[1]) == "function") {
-					loot.push(entry[1]());
+					_loot.push(entry[1]());
 				} else {
-					loot.push(::new(entry[1]));
+					_loot.push(::new(entry[1]));
 				}
 			}
 		}
 
-		return loot;
+		return getLootForTile(_killer, _loot);
 	}
 
 	local onSerialize = o.onSerialize;

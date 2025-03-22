@@ -1,110 +1,14 @@
 ::mods_hookExactClass("entity/tactical/enemies/orc_warlord", function(o)
 {
-	o.onDeath = function ( _killer, _skill, _tile, _fatalityType )
+	local create = o.create;
+	o.create = function ()
 	{
-		if (!this.Tactical.State.isScenarioMode() && _killer != null && _killer.isPlayerControlled() && _skill != null && !_skill.isRanged())
-		{
-			this.updateAchievement("Beastmode", 1, 1);
-		}
-
-		local flip = this.Math.rand(1, 100) < 50;
-
-		if (_tile != null)
-		{
-			this.m.IsCorpseFlipped = flip;
-			this.spawnBloodPool(_tile, 1);
-			local decal;
-			local appearance = this.getItems().getAppearance();
-			local sprite_body = this.getSprite("body");
-			local sprite_head = this.getSprite("head");
-			decal = _tile.spawnDetail(sprite_body.getBrush().Name + "_dead", this.Const.Tactical.DetailFlag.Corpse, flip);
-			decal.Color = sprite_body.Color;
-			decal.Saturation = sprite_body.Saturation;
-			decal.Scale = 0.9;
-			decal.setBrightness(0.9);
-
-			if (appearance.CorpseArmor != "")
-			{
-				decal = _tile.spawnDetail(appearance.CorpseArmor, this.Const.Tactical.DetailFlag.Corpse, flip);
-				decal.Scale = 0.9;
-				decal.setBrightness(0.9);
-			}
-
-			if (_fatalityType != this.Const.FatalityType.Decapitated)
-			{
-				if (!appearance.HideCorpseHead)
-				{
-					decal = _tile.spawnDetail(sprite_head.getBrush().Name + "_dead", this.Const.Tactical.DetailFlag.Corpse, flip);
-					decal.Color = sprite_head.Color;
-					decal.Saturation = sprite_head.Saturation;
-					decal.Scale = 0.9;
-					decal.setBrightness(0.9);
-				}
-
-				if (appearance.HelmetCorpse != "")
-				{
-					decal = _tile.spawnDetail(appearance.HelmetCorpse, this.Const.Tactical.DetailFlag.Corpse, flip);
-					decal.Scale = 0.9;
-					decal.setBrightness(0.9);
-				}
-			}
-			else if (_fatalityType == this.Const.FatalityType.Decapitated)
-			{
-				local layers = [];
-
-				if (!appearance.HideCorpseHead)
-				{
-					layers.push(sprite_head.getBrush().Name + "_dead");
-				}
-
-				if (appearance.HelmetCorpse.len() != 0)
-				{
-					layers.push(appearance.HelmetCorpse);
-				}
-
-				local decap = this.Tactical.spawnHeadEffect(this.getTile(), layers, this.createVec(-50, 30), 180.0, "bust_orc_04_head_dead_bloodpool");
-				local idx = 0;
-
-				if (!appearance.HideCorpseHead)
-				{
-					decap[idx].Color = sprite_head.Color;
-					decap[idx].Saturation = sprite_head.Saturation;
-					decap[idx].Scale = 0.9;
-					decap[idx].setBrightness(0.9);
-					idx = ++idx;
-				}
-
-				if (appearance.HelmetCorpse.len() != 0)
-				{
-					decap[idx].Scale = 0.9;
-					decap[idx].setBrightness(0.9);
-					idx = ++idx;
-				}
-			}
-
-			if (_killer == null || _killer.getFaction() == this.Const.Faction.Player || _killer.getFaction() == this.Const.Faction.PlayerAnimals)
-			{
-				if (this.Math.rand(1, 100) <= 5) //5%
-				{
-					local loot = this.new("scripts/items/misc/legend_masterwork_fabric");
-					loot.drop(_tile);
-				}
-
-				if (this.Math.rand(1, 100) <= 4) //4%
-				{
-					local loot = this.new("scripts/items/misc/legend_masterwork_metal");
-					loot.drop(_tile);
-				}
-
-				if (this.Math.rand(1, 100) <= 3) //3%
-				{
-					local loot = this.new("scripts/items/misc/legend_masterwork_tools");
-					loot.drop(_tile);
-				}
-			}
-		}
-		this.getItems().dropAll(_tile, _killer, flip);
-		this.actor.onDeath(_killer, _skill, _tile, _fatalityType);
+		create();
+		this.m.OnDeathLootTable.extend([
+			[5, "scripts/items/misc/legend_masterwork_fabric"],
+			[4, "scripts/items/misc/legend_masterwork_metal"],
+			[3, "scripts/items/misc/legend_masterwork_tools"]
+		]);
 	}
 
 	o.onFactionChanged <- function ()

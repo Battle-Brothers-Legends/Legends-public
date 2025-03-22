@@ -5,30 +5,19 @@
 		::Legends.Rune.LegendRsaSafety
 	];
 
-	local onDeath = o.onDeath;
-	o.onDeath = function ( _killer, _skill, _tile, _fatalityType )
-	{
-		onDeath( _killer, _skill, _tile, _fatalityType );
-
-		if (_killer == null || _killer.getFaction() == this.Const.Faction.Player || _killer.getFaction() == this.Const.Faction.PlayerAnimals)
+	local create = o.create;
+	o.create = function () {
+		create();
+		local rolls = ::Legends.S.extraLootChance(1);
+		for(local i = 0; i < rolls; i++)
 		{
-			local n = 1 + (!this.Tactical.State.isScenarioMode() && this.Math.rand(1, 100) <= this.World.Assets.getExtraLootChance() ? 1 : 0);
-
-			for( local i = 0; i < n; i = ++i )
-			{
-				if (this.Math.rand(1, 100) <= 1)
-				{
-					local selected = this.m.DroppableRunes[this.Math.rand(0, this.m.DroppableRunes.len() - 1)];
-					local def = ::Legends.Runes.get(selected);
-					if (def != null)
-					{
-						local rune = ::new(def.Script);
-						rune.setRuneVariant(selected);
-						rune.setRuneBonus(true);
-						rune.drop(_tile);
-					}
-				}
-			}
+			this.m.OnDeathLootTable.push([1, function () {
+				local selected = this.m.DroppableRunes[::Math.rand(0, this.m.DroppableRunes.len() - 1)];
+				local rune = ::new(::Legends.Runes.get(selected).Script);
+				rune.setRuneVariant(selected);
+				rune.setRuneBonus(true);
+				return rune;
+			}.bindenv(this)]);
 		}
 	}
 
