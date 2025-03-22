@@ -8,6 +8,8 @@
 	o.m.BloodPoolScale = 1.25;
 	o.m.HealRemainder <- 0.0;
 	o.m.RiderID <- "";
+	// Follows the [% chance, script|function] convention
+	o.m.OnDeathLootTable <- [];
 
 	o.getGender <- function()
 	{
@@ -555,6 +557,31 @@
 	{
 		_hitInfo.BodyDamageMultBeforeSteelBrow = _hitInfo.BodyDamageMult;
 		return onDamageReceived(_attacker, _skill, _hitInfo);
+	}
+
+	local getLootForTile = o.getLootForTile;
+	o.getLootForTile = function (_killer, _loot) {
+		local loot = getLootForTile(_killer, _loot);
+
+		if (!(_killer == null || _killer.getFaction() == this.Const.Faction.Player || _killer.getFaction() == this.Const.Faction.PlayerAnimals))
+			return loot;
+
+		foreach (entry in this.m.OnDeathLootTable) {
+			if (entry[0] == 0) { // no division by zero!
+				::logError("division by zero, skipping " + entry[1]);
+				continue;
+			}
+			local count = 100 / entry[0];
+			if (::Math.rand(1, count) == 1) {
+				if (typeof(entry[1]) == "function") {
+					loot.push(entry[1]());
+				} else {
+					loot.push(::new(entry[1]));
+				}
+			}
+		}
+
+		return loot;
 	}
 
 	local onSerialize = o.onSerialize;
