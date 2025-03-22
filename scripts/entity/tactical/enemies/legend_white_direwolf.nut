@@ -187,12 +187,7 @@ this.legend_white_direwolf <- this.inherit("scripts/entity/tactical/actor", {
 		corpse.CorpseName = "A Direwolf";
 		corpse.Items = this.getItems();
 		corpse.IsHeadAttached = _fatalityType != this.Const.FatalityType.Decapitated;
-
-		if (_tile != null)
-		{
-			corpse.Tile = _tile;
-		}
-
+		corpse.Tile = _tile;
 		return corpse;
 	}
 

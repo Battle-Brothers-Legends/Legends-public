@@ -109,6 +109,17 @@ this.legend_skin_ghoul <- this.inherit("scripts/entity/tactical/actor", {
 		this.getFlags().add("undead");
 		this.m.AIAgent = this.new("scripts/ai/tactical/agents/ghoul_agent");
 		this.m.AIAgent.setActor(this);
+
+		local rolls = ::Legends.S.extraLootChance(1);
+		for(local i = 0; i < rolls; i++) {
+			this.m.OnDeathLootTable.extend([
+				[100,  function () {
+					if (::Const.DLC.Unhold)
+						return ::new("scripts/items/misc/legend_skin_ghoul_skin_item");
+					return ::new("scripts/items/misc/ghoul_teeth_item");
+				}],
+			]);
+		}
 	}
 
 	function onDeath( _killer, _skill, _tile, _fatalityType )
@@ -168,42 +179,33 @@ this.legend_skin_ghoul <- this.inherit("scripts/entity/tactical/actor", {
 
 			this.spawnTerrainDropdownEffect(_tile);
 			this.spawnFlies(_tile);
-			local corpse = clone this.Const.Corpse;
-			corpse.CorpseName = "A " + this.getName();
-			corpse.Tile = _tile;
-			corpse.Value = 2.0;
-			corpse.IsResurrectable = false;
-			corpse.Armor = this.m.BaseProperties.Armor;
-			corpse.IsHeadAttached = _fatalityType != this.Const.FatalityType.Decapitated;
+		}
+
+		local deathLoot = this.getItems().getDroppableLoot(_killer);
+		local tileLoot = this.getLootForTile(_killer, deathLoot);
+		local corpse = this.generateCorpse(_tile, _fatalityType);
+		this.dropLoot(_tile, tileLoot, !flip);
+
+		if (_tile == null) {
+			this.Tactical.Entities.addUnplacedCorpse(corpse);
+		} else {
 			_tile.Properties.set("Corpse", corpse);
 			this.Tactical.Entities.addCorpse(_tile);
-
-			if ((_killer == null || _killer.getFaction() == this.Const.Faction.Player || _killer.getFaction() == this.Const.Faction.PlayerAnimals) && this.Math.rand(1, 100) <= 50)
-			{
-				local n = 1 + (!this.Tactical.State.isScenarioMode() && this.Math.rand(1, 100) <= this.World.Assets.getExtraLootChance() ? 1 : 0);
-
-				for( local i = 0; i < n; i = ++i )
-				{
-					if (this.Const.DLC.Unhold)
-					{
-
-						local loot;
-
-							loot = this.new("scripts/items/misc/legend_skin_ghoul_skin_item");
-
-
-						loot.drop(_tile);
-					}
-					else
-					{
-						local loot = this.new("scripts/items/misc/ghoul_teeth_item");
-						loot.drop(_tile);
-					}
-				}
-			}
 		}
 
 		this.actor.onDeath(_killer, _skill, _tile, _fatalityType);
+	}
+
+	function generateCorpse( _tile, _fatalityType )
+	{
+		local corpse = clone this.Const.Corpse;
+		corpse.CorpseName = "A " + this.getName();
+		corpse.Tile = _tile;
+		corpse.Value = 2.0;
+		corpse.IsResurrectable = false;
+		corpse.Armor = this.m.BaseProperties.Armor;
+		corpse.IsHeadAttached = _fatalityType != this.Const.FatalityType.Decapitated;
+		return corpse;
 	}
 
 	function onAfterDeath( _tile )

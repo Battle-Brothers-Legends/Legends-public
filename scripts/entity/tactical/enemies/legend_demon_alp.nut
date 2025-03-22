@@ -75,6 +75,26 @@ this.legend_demon_alp <- this.inherit("scripts/entity/tactical/actor", {
 		this.m.AIAgent.setActor(this);
 		this.m.Flags.add("demon");
 		this.m.Flags.add("alp");
+
+		this.m.OnDeathLootTable.extend([
+			[50,  function () {
+				local token = this.new("scripts/items/rune_sigils/legend_vala_inscription_token");
+				token.setRuneVariant(this.m.DroppableRunes[this.Math.rand(0, this.m.DroppableRunes.len() - 1)]);
+				token.setRuneBonus(true);
+				token.updateRuneSigilToken();
+				return token;
+			}.bindenv(this)]
+		]);
+
+		local rolls = ::Legends.S.extraLootChance(1);
+		for(local i = 0; i < rolls; i++) {
+			this.m.OnDeathLootTable.extend([
+				[33, "scripts/items/misc/legend_demon_alp_skin_item"],
+				[50, "scripts/items/misc/legend_demon_alp_skin_item"],
+				[50, "scripts/items/misc/legend_demon_third_eye_item"],
+				[100, "scripts/items/misc/petrified_scream_item"]
+			]);
+		}
 	}
 
 	function playIdleSound()
@@ -183,21 +203,34 @@ this.legend_demon_alp <- this.inherit("scripts/entity/tactical/actor", {
 
 			this.spawnTerrainDropdownEffect(_tile);
 			this.spawnFlies(_tile);
-			local corpse = clone this.Const.Corpse;
-			corpse.CorpseName = "An " + this.getName();
-			corpse.Tile = _tile;
-			corpse.Value = 2.0;
-			corpse.IsResurrectable = false;
-			corpse.IsHeadAttached = _fatalityType != this.Const.FatalityType.Decapitated;
-			_tile.Properties.set("Corpse", corpse);
-			this.Tactical.Entities.addCorpse(_tile);
-
-			if (_killer == null || _killer.getFaction() == this.Const.Faction.Player || _killer.getFaction() == this.Const.Faction.PlayerAnimals)
-				this.onDropLootForPlayer(_tile);
 		}
 
 		this.onKillAllSummonedMinions();
+
+		local deathLoot = this.getItems().getDroppableLoot(_killer);
+		local tileLoot = this.getLootForTile(_killer, deathLoot);
+		local corpse = this.generateCorpse(_tile, _fatalityType);
+		this.dropLoot(_tile, tileLoot, !flip);
+
+		if (_tile == null) {
+			this.Tactical.Entities.addUnplacedCorpse(corpse);
+		} else {
+			_tile.Properties.set("Corpse", corpse);
+			this.Tactical.Entities.addCorpse(_tile);
+		}
+
 		this.actor.onDeath(_killer, _skill, _tile, _fatalityType);
+	}
+
+	function generateCorpse( _tile, _fatalityType )
+	{
+		local corpse = clone this.Const.Corpse;
+		corpse.CorpseName = "An " + this.getName();
+		corpse.Tile = _tile;
+		corpse.Value = 2.0;
+		corpse.IsResurrectable = false;
+		corpse.IsHeadAttached = _fatalityType != this.Const.FatalityType.Decapitated;
+		return corpse;
 	}
 
 	function onKillAllSummonedMinions()
@@ -214,26 +247,6 @@ this.legend_demon_alp <- this.inherit("scripts/entity/tactical/actor", {
 
 			a.killSilently();
 		}
-	}
-
-	function onDropLootForPlayer( _tile )
-	{
-		local n = 1 + (!this.Tactical.State.isScenarioMode() && this.Math.rand(1, 100) <= this.World.Assets.getExtraLootChance() ? 1 : 0);
-
-		for( local i = 0; i < n; ++i )
-		{
-			if (this.Math.rand(1, 100) <= 33)
-				this.new("scripts/items/misc/legend_demon_alp_skin_item").drop(_tile);
-
-			this.new("scripts/items/misc/" + (this.Math.rand(1, 100) <= 50 ? "legend_demon_third_eye_item" : "legend_demon_alp_skin_item")).drop(_tile);
-			this.new("scripts/items/misc/petrified_scream_item").drop(_tile);
-		}
-
-		local token = this.new("scripts/items/rune_sigils/legend_vala_inscription_token");
-		token.setRuneVariant(this.m.DroppableRunes[this.Math.rand(0, this.m.DroppableRunes.len() - 1)]);
-		token.setRuneBonus(true);
-		token.updateRuneSigilToken();
-		token.drop(_tile);
 	}
 
 	function onInit()

@@ -65,6 +65,7 @@ this.legend_vampire_lord <- this.inherit("scripts/entity/tactical/actor", {
 			decal.Scale = 0.9;
 			decal.setBrightness(0.9);
 			this.spawnTerrainDropdownEffect(_tile);
+			this.spawnFlies(_tile);
 		}
 
 		local deathLoot = this.getItems().getDroppableLoot(_killer);
@@ -87,12 +88,12 @@ this.legend_vampire_lord <- this.inherit("scripts/entity/tactical/actor", {
 		local corpse = clone this.Const.Corpse;
 		corpse.Faction = this.getFaction();
 		corpse.CorpseName = "A " + this.getName();
-		corpse.Tile = _tile;
 		corpse.Armor = this.m.BaseProperties.Armor;
 		corpse.Items = this.getItems();
 		corpse.IsHeadAttached = true;
 		corpse.IsConsumable = false;
 		corpse.IsResurrectable = false;
+		corpse.Tile = _tile;
 		return corpse;
 	}
 
