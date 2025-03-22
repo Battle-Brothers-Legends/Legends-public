@@ -334,7 +334,7 @@ this.legend_intensive_training_trait <- this.inherit("scripts/skills/traits/char
 					id = 6,
 					type = "text",
 					icon = "ui/icons/special.png",
-					text = "Can train in settelements."
+					text = "Can train in settlements."
 				});
 			}
 		} else {
@@ -352,14 +352,14 @@ this.legend_intensive_training_trait <- this.inherit("scripts/skills/traits/char
 					id = 6,
 					type = "text",
 					icon = "ui/icons/special.png",
-					text = "Can change trained trait in settelements."
+					text = "Can change trained trait in settlements."
 				});
 			} else {
 				tooltip.push({
 					id = 6,
 					type = "text",
 					icon = "ui/icons/special.png",
-					text = "Can change trained trait in settelements again after [color=" + this.Const.UI.Color.PositiveValue + "]" + this.m.TraitRerollDelay + "[/color] battles."
+					text = "Can change trained trait in settlements again after [color=" + this.Const.UI.Color.PositiveValue + "]" + this.m.TraitRerollDelay + "[/color] battles."
 				});
 			}
 		}
