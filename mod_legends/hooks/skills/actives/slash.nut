@@ -27,7 +27,7 @@
 		local tooltip = this.getDefaultTooltip();
 		if (this.m.IsStaffSlash)
 		{
-			ret.push({
+			tooltip.push({
 				id = 7,
 				type = "text",
 				icon = "ui/icons/vision.png",
