@@ -1,5 +1,5 @@
 this.sato_escaped_slaves_scenario <- this.inherit("scripts/scenarios/world/starting_scenario", {
-	m = {},
+	m = {}, 
 	function create()
 	{
 		this.m.ID = "scenario.sato_escaped_slaves";

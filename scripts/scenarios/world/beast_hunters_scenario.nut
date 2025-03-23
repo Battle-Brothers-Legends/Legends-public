@@ -1,5 +1,5 @@
 this.beast_hunters_scenario <- this.inherit("scripts/scenarios/world/starting_scenario", {
-	m = {
+	m = { 
 		FavouredEnemyPerks = [
 			::Legends.Perk.LegendFavouredEnemyGhoul,
 			::Legends.Perk.LegendFavouredEnemyHexen,

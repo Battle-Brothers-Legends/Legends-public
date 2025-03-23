@@ -1,5 +1,5 @@
 this.manhunters_scenario <- this.inherit("scripts/scenarios/world/starting_scenario", {
-	m = {},
+	m = {}, 
 	function create()
 	{
 		this.m.ID = "scenario.manhunters";
