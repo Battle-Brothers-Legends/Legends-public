@@ -22,6 +22,8 @@ this.legend_named_glaive <- this.inherit("scripts/items/weapons/named/named_weap
 		this.m.RangeMin = 1;
 		this.m.RangeMax = 2;
 		this.m.RangeIdeal = 2;
+		this.m.Condition = 72.0;
+		this.m.ConditionMax = 72.0;
 		this.m.RegularDamage = 60;
 		this.m.RegularDamageMax = 80;
 		this.m.ArmorDamageMult = 0.9;

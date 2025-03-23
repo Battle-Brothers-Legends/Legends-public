@@ -12,6 +12,8 @@
 		this.m.IsAoE = true;
 		this.m.Value = 700;
 		this.m.StaminaModifier = -10;
+		this.m.Condition = 48.0;
+		this.m.ConditionMax = 48.0;
 		this.m.RangeMin = 1;
 		this.m.RangeMax = 2;
 		this.m.RangeIdeal = 2;

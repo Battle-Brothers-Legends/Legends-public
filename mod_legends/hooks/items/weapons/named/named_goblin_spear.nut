@@ -19,6 +19,8 @@
 	o.randomizeValues <- function ()
 	{
 		this.m.StaminaModifier = -10;
+		this.m.Condition = 48.0;
+		this.m.ConditionMax = 48.0;
 		this.m.RegularDamage = 35;
 		this.m.RegularDamageMax = 65;
 
