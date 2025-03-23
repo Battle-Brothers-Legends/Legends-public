@@ -25,6 +25,5 @@ this.surgeon_follower <- this.inherit("scripts/retinue/follower", {
 		if ("IsSurvivalGuaranteed" in this.World.Assets.m)
 			this.World.Assets.m.IsSurvivalGuaranteed = true;
 	}
-
 });
 

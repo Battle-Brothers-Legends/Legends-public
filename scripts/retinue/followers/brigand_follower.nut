@@ -36,6 +36,5 @@ this.brigand_follower <- this.inherit("scripts/retinue/follower", {
 		if ("IsBrigand" in this.World.Assets.m)
 			this.World.Assets.m.IsBrigand = true;
 	}
-
 });
 

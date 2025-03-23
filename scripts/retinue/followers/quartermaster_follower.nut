@@ -29,5 +29,6 @@ this.quartermaster_follower <- this.inherit("scripts/retinue/follower", {
 		if ("ArmorPartsMaxAdditional" in this.World.Assets.m)
 			this.World.Assets.m.ArmorPartsMaxAdditional = 50;
 	}
+
 });
 

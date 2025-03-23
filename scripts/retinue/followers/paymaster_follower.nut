@@ -27,6 +27,5 @@ this.paymaster_follower <- this.inherit("scripts/retinue/follower", {
 	{
 		return this.m.Multiplier;
 	}
-
 });
 

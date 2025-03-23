@@ -20,7 +20,7 @@ this.agent_follower <- this.inherit("scripts/retinue/follower", {
 			}
 
 			local factions = ::World.FactionManager.getFactionsOfType(::Const.FactionType.NobleHouse);
-			factions.extend(::World.FactionManager.getFactionsOfType(::Const.FactionType.OrientalCityState));		
+			factions.extend(::World.FactionManager.getFactionsOfType(::Const.FactionType.OrientalCityState));
 
 			foreach (f in factions) {
 				if (f.getPlayerRelation() >= 90.0 ) {
@@ -40,6 +40,5 @@ this.agent_follower <- this.inherit("scripts/retinue/follower", {
 			"background.legend_companion_ranged"
 		]);
 	}
-
 });
 

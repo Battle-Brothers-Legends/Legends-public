@@ -31,6 +31,5 @@ this.recruiter_follower <- this.inherit("scripts/retinue/follower", {
 		if ("TryoutPriceMult" in this.World.Assets.m)
 			this.World.Assets.m.TryoutPriceMult *= 0.5;
 	}
-
 });
 

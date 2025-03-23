@@ -33,6 +33,5 @@ this.scavenger_follower <- this.inherit("scripts/retinue/follower", {
 		if ("IsRecoveringArmor" in this.World.Assets.m)
 			this.World.Assets.m.IsRecoveringArmor = true;
 	}
-
 });
 

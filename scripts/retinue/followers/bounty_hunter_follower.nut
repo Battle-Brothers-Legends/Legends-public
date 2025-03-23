@@ -65,6 +65,5 @@ this.bounty_hunter_follower <- this.inherit("scripts/retinue/follower", {
 
 		return n;
 	}
-
 });
 

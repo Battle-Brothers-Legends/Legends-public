@@ -27,6 +27,5 @@ this.lookout_follower <- this.inherit("scripts/retinue/follower", {
 		if ("IsShowingExtendedFootprints" in this.World.Assets.m)
 			this.World.Assets.m.IsShowingExtendedFootprints = true;
 	}
-
 });
 

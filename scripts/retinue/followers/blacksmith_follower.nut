@@ -28,6 +28,5 @@ this.blacksmith_follower <- this.inherit("scripts/retinue/follower", {
 		if ("IsBlacksmithed" in this.World.Assets.m)
 			this.World.Assets.m.IsBlacksmithed = true;
 	}
-
 });
 

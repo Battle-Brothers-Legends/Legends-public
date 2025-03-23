@@ -38,6 +38,5 @@ this.alchemist_follower <- this.inherit("scripts/retinue/follower", {
 	{
 		return this.Const.DLC.Unhold;
 	}
-
 });
 

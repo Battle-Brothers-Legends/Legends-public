@@ -31,6 +31,5 @@ this.trader_follower <- this.inherit("scripts/retinue/follower", {
 			"background.legend_companion_ranged"
 		]);
 	}
-
 });
 

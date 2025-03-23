@@ -36,6 +36,5 @@ this.scout_follower <- this.inherit("scripts/retinue/follower", {
 			}
 		}
 	}
-
 });
 

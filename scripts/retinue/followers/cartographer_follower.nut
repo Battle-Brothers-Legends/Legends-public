@@ -51,6 +51,5 @@ this.cartographer_follower <- this.inherit("scripts/retinue/follower", {
 
 		this.World.Assets.addMoney(reward);
 	}
-
 });
 

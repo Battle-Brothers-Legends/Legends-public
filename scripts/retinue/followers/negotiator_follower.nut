@@ -56,6 +56,5 @@ this.negotiator_follower <- this.inherit("scripts/retinue/follower", {
 	{
 		this.onUpdate();
 	}
-
 });
 

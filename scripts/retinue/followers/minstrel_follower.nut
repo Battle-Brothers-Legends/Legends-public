@@ -27,6 +27,5 @@ this.minstrel_follower <- this.inherit("scripts/retinue/follower", {
 		if ("IsNonFlavorRumorsOnly" in this.World.Assets.m)
 			this.World.Assets.m.IsNonFlavorRumorsOnly = true;
 	}
-
 });
 
