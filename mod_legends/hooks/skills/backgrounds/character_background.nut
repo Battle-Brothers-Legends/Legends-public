@@ -617,6 +617,15 @@
 				text = this.getDescription()
 			}
 		];
+		if (this.getContainer() != null && this.m.Level >= 12)
+		{
+			ret.push({
+				id = 10,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = "Gain a perk point every [color=" + this.Const.UI.Color.PositiveValue + "]" + this.getContainer().getActor().getVeteranPerks() + "[/color] Levels"
+			});
+		}
 		if (this.getContainer() != null) ret.extend(this.getAttributesTooltip());
 		return ret;
 	}
