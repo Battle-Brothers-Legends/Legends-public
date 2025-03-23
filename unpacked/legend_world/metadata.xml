@@ -23,6 +23,9 @@
 	<sprite id="figure_player_troupe" offsetY="20" ic="FF334959" width="68" height="106" img="world_entity\party\figure_player_troupe.png" left="-18" right="24" top="-39" bottom="9" />
 	<sprite id="figure_player_slave" offsetY="20" ic="FF284E72" width="68" height="106" img="world_entity\party\figure_player_slave.png" left="-21" right="23" top="-40" bottom="18" />
 	<sprite id="figure_player_nomad" offsetY="20" ic="FF284E72" width="68" height="106" img="world_entity\party\figure_player_nomad.png" left="-21" right="23" top="-40" bottom="18" />
+	<sprite id="banner_101" offsetY="28" ic="FF625C5C" width="56" height="90" img="world_entity\banner\banner_101.png" left="-22" right="24" />
+  	<sprite id="banner_102" offsetX="-8" offsetY="22" ic="FF305436" width="56" height="90" img="world_entity\banner\banner_102.png" left="-24" right="26" top="-39" bottom="45" />
+  	<sprite id="banner_103" offsetY="28" ic="FF2C6366" img="world_entity\banner\banner_103.png" />
 	<sprite id="Battlesite_Bandits_Bandits" ic="FF293742" img="world_entity\location\Battlesite_Bandits_Bandits.png" />
 	<sprite id="Battlesite_Bandits_Beasts" ic="FF293742" img="world_entity\location\Battlesite_Bandits_Beasts.png" />
 	<sprite id="Battlesite_Bandits_Beasts2" ic="FF293742" img="world_entity\location\Battlesite_Bandits_Beasts2.png" />

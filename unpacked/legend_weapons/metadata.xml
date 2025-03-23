@@ -551,4 +551,10 @@
 
 	<sprite id="icon_wildmen_10_bloodied" offsetY="35" ic="FF2A3F54" width="130" height="142" img="icons\icon_wildmen_10_bloodied.png" left="-23" right="65" top="-69" bottom="-9" />
 	<sprite id="icon_goblin_crossbow_named_01" offsetY="35" ic="FF2C3137" width="140" height="142" img="icons\icon_goblin_crossbow_named_01.png" left="-25" right="64" top="-66" bottom="6" />
+	<sprite id="player_banner_101" offsetY="35" ic="FF5E5958" width="200" height="300" img="icons\player_banner\player_banner_101.png" left="-43" right="37" top="-33" bottom="107" />
+	<sprite id="player_banner_101_shaft" offsetY="35" ic="FF464A53" width="200" height="300" img="icons\player_banner\player_banner_101_shaft.png" left="23" right="47" top="-60" bottom="16" />
+	<sprite id="player_banner_102" offsetY="35" ic="FF2F5037" width="200" height="300" img="icons\player_banner\player_banner_102.png" left="-59" right="27" top="-35" bottom="107" />
+  	<sprite id="player_banner_102_shaft" offsetY="35" ic="FF34506F" width="200" height="300" img="icons\player_banner\player_banner_102_shaft.png" left="21" right="55" top="-53" bottom="19" />
+  	<sprite id="player_banner_103" offsetY="35" ic="FF2D686D" width="200" height="230" img="icons\player_banner\player_banner_103.png" left="-79" right="33" top="-1" bottom="115" />
+  	<sprite id="player_banner_103_shaft" offsetY="35" ic="FF1B343B" width="200" height="230" img="icons\player_banner\player_banner_103_shaft.png" left="-78" right="44" top="-60" bottom="0" />
 </brush>
