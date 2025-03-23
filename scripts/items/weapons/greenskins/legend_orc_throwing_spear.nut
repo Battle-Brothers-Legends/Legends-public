@@ -27,9 +27,9 @@ this.legend_orc_throwing_spear <- this.inherit("scripts/items/weapons/weapon", {
 		this.m.RangeMax = 4;
 		this.m.RangeIdeal = 4;
 		this.m.StaminaModifier = -6;
-		this.m.ShieldDamage = 32;
-		this.m.RegularDamage = 45;
-		this.m.RegularDamageMax = 70;
+		this.m.ShieldDamage = 35;
+		this.m.RegularDamage = 35;
+		this.m.RegularDamageMax = 60;
 		this.m.ArmorDamageMult = 1.3;
 		this.m.DirectDamageMult = 0.4;
 		this.m.IsDroppedAsLoot = true;
