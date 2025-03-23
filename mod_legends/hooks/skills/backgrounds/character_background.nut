@@ -1790,15 +1790,7 @@
 		this.m.RawDescription = _in.readString();
 		this.m.Level = _in.readU8();
 		this.m.IsNew = _in.readBool();
-
-		if (_in.getMetaData().getVersion() >= 39)
-		{
-			this.m.DailyCostMult = _in.readF32();
-		}
-		else
-		{
-			this.m.DailyCostMult = 1.0;
-		}
+		this.m.DailyCostMult = _in.readF32();
 
 		if(_in.readBool())
 		{

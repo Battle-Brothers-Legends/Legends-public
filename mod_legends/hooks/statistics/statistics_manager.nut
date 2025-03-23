@@ -79,27 +79,6 @@
 
 	o.onDeserialize = function ( _in )
 	{
-		if (_in.getMetaData().getVersion() <= 53)
-		{
-			this.m.Flags.set("LastLocationDestroyedName", _in.readString());
-			this.m.Flags.set("LastLocationDestroyedFaction", _in.readU8());
-			this.m.Flags.set("LastLocationDestroyedForContract", _in.readBool());
-			this.m.Flags.set("LastEnemiesDefeatedCount", _in.readU16());
-			this.m.Flags.set("LastCombatResult", _in.readU8());
-
-			if (_in.getMetaData().getVersion() >= 42)
-			{
-				this.m.Flags.set("LastCombatFaction", _in.readU8());
-			}
-			else
-			{
-				this.m.Flags.set("LastCombatFaction", 0);
-			}
-
-			this.m.Flags.set("LastCombatSavedCaravan", false);
-			this.m.Flags.set("LastCombatSavedCaravanProduce", "");
-		}
-
 		this.m.Flags.onDeserialize(_in);
 		local numNews = _in.readU8();
 		this.m.News.resize(numNews);
@@ -126,32 +105,29 @@
 			f.Battles <- _in.readU32();
 			f.KilledBy <- _in.readString();
 
-			if (_in.getMetaData().getVersion() >= 57)
+			f.level <- _in.readU8();
+			f.traits <- [];
+			local numtraits = _in.readU8();
+
+			for( local i = 0; i != numtraits; i++ )
 			{
-				f.level <- _in.readU8();
-				f.traits <- [];
-				local numtraits = _in.readU8();
+				f.traits.push(_in.readString());
+			}
 
-				for( local i = 0; i != numtraits; i++ )
-				{
-					f.traits.push(_in.readString());
-				}
+			f.stats <- [];
+			local numstats = _in.readU8();
 
-				f.stats <- [];
-				local numstats = _in.readU8();
+			for( local i = 0; i != numstats; i++ )
+			{
+				f.stats.push(_in.readU32());
+			}
 
-				for( local i = 0; i != numstats; i++ )
-				{
-					f.stats.push(_in.readU32());
-				}
+			f.talents <- [];
+			local numtalents = _in.readU8();
 
-				f.talents <- [];
-				local numtalents = _in.readU8();
-
-				for( local i = 0; i != numtalents; i++ )
-				{
-					f.talents.push(_in.readU8());
-				}
+			for( local i = 0; i != numtalents; i++ )
+			{
+				f.talents.push(_in.readU8());
 			}
 
 			f.Expendable <- _in.readBool();

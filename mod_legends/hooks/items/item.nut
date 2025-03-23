@@ -410,7 +410,7 @@
 		_out.writeU8(this.m.RuneBonus1);
 		_out.writeU8(this.m.RuneBonus2);
 		_out.writeI32(this.m.OriginSettlementID);
-		::MSU.Utils.serialize(this.m.TradeHistorySettlementIDs, _out);
+		::MSU.Serialization.serialize(this.m.TradeHistorySettlementIDs, _out);
 	}
 
 	local onDeserialize = o.onDeserialize;
@@ -425,7 +425,7 @@
 		this.m.RuneBonus1 = _in.readU8();
 		this.m.RuneBonus2 = _in.readU8();
 		this.m.OriginSettlementID = _in.readI32();
-		this.m.TradeHistorySettlementIDs = ::MSU.Utils.deserialize(_in);
+		this.m.TradeHistorySettlementIDs = ::MSU.Serialization.deserialize(_in);
 		this.updateVariant();
 	}
 });

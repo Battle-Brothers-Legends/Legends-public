@@ -670,11 +670,7 @@ this.sato_find_slave_after_battle_event <- this.inherit("scripts/events/event", 
 	function onDeserialize( _in )
 	{
 		this.event.onDeserialize(_in);
-
-		if (_in.getMetaData().getVersion() >= 54)
-		{
-			this.m.LastCombatID = _in.readU32();
-		}
+		this.m.LastCombatID = _in.readU32();
 	}
 
 });
