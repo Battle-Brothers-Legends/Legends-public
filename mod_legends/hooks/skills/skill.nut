@@ -443,17 +443,6 @@
 			}
 		}
 
-		if (this.m.IsShieldwallRelevant)
-		{
-			if (_targetTile.IsOccupiedByActor && targetEntity.getSkills().hasEffect(::Legends.Effect.Shieldwall))
-			{
-				ret.push({
-					icon = "ui/tooltips/negative.png",
-					text = "Shieldwall"
-				});
-			}
-		}
-
 		if (_targetTile.IsOccupiedByActor && myTile.getDistanceTo(_targetTile) <= 1 && targetEntity.getSkills().hasEffect(::Legends.Effect.Riposte))
 		{
 			ret.push({
@@ -984,11 +973,6 @@
 			{
 				local shieldBonus = (this.m.IsRanged ? shield.getRangedDefense() : shield.getMeleeDefense()) * (_targetEntity.getCurrentProperties().IsSpecializedInShields ? 1.25 : 1.0);
 				toHit = toHit + shieldBonus;
-
-				if (!this.m.IsShieldwallRelevant && _targetEntity.getSkills().hasEffect(::Legends.Effect.Shieldwall))
-				{
-					toHit = toHit + shieldBonus;
-				}
 			}
 		}
 
@@ -1265,19 +1249,8 @@
 		if (shield != null && shield.isItemType(this.Const.Items.ItemType.Shield))
 		{
 			shieldBonus = (this.m.IsRanged ? shield.getRangedDefense() : shield.getMeleeDefense()) * (_targetEntity.getCurrentProperties().IsSpecializedInShields ? 1.25 : 1.0);
-
-			if (!this.m.IsShieldRelevant)
-			{
-				toHit = toHit + shieldBonus;
-			}
-
 			if (_targetEntity.getSkills().hasEffect(::Legends.Effect.Shieldwall))
 			{
-				if (!this.m.IsShieldwallRelevant)
-				{
-					toHit = toHit + shieldBonus;
-				}
-
 				shieldBonus = shieldBonus * 2;
 			}
 		}
