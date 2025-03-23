@@ -186,7 +186,7 @@
 ::Const.Strings.PerkName.LegendSpecialistMusician <- "Entrancing Song";
 ::Const.Strings.PerkName.LegendSpecialistMilitia <- "Militia Practice";
 ::Const.Strings.PerkName.LegendSpecialistMiner <- "Ore Hunter";
-::Const.Strings.PerkName.LegendSpecialistFarmhand <- "Hay Bailing";
+::Const.Strings.PerkName.LegendSpecialistFarmhand <- "Hay Baling";
 ::Const.Strings.PerkName.LegendSpecialistPoacher <- "Poachers Arm";
 ::Const.Strings.PerkName.LegendSpecialistGravedigger <- "Gravesman";
 ::Const.Strings.PerkName.LegendSpecialistWoodsman <- "Woodsman\'s Cuts";
