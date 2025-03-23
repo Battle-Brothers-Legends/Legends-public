@@ -2,6 +2,7 @@ this.legend_rock_unhold_hide_item <- this.inherit("scripts/items/item", {
 	m = {},
 	function create()
 	{
+		this.item.create();
 		this.m.ID = "misc.legend_rock_unhold_hide";
 		this.m.Name = "Rock Unhold Hide";
 		this.m.Description = "The thick hide of an unhold mixes the best properties of hide and rock, pliable but nearly industructible";

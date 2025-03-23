@@ -2,6 +2,7 @@ this.legend_banshee_essence_item <- this.inherit("scripts/items/item", {
 	m = {},
 	function create()
 	{
+		this.item.create();
 		this.m.ID = "misc.legend_banshee_essence";
 		this.m.Name = "Banshee Essence";
 		this.m.Description = "The remaining residue of a dissipated Winselmutter. if you listen closely you can still hear her sobbing from the jar.";

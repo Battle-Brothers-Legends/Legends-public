@@ -1,6 +1,7 @@
 this.legend_vala_inscription_token <- this.inherit("scripts/items/item", {
 	m = {},
 	function create() {
+		this.item.create();
 		this.m.ID = "token.legend_vala_inscription";
 		this.m.Name = "";
 		this.m.Description = "";

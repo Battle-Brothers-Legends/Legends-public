@@ -4,15 +4,16 @@ this.legend_ancient_scroll_item <- ::inherit("scripts/items/item", {
 	},
 	function create()
 	{
-		m.ID = "misc.ancient_scroll";
-		m.Name = "Ancient Scroll";
-		m.Description = "A torn-up scroll with knowledge unseen for centuries. It can be translated by a character with the interpretation perk in the crafting tent. Highly valuable to some historians, although it is useless to many. They can, however, be studied with effort and a high chance of headache. Every brother may use up to 1 scroll. Being bright increases this to 2 scrolls, and being dumb decreases this to 0 scrolls.";
-		m.Icon = "trade/scroll.png";
-		m.SlotType = ::Const.ItemSlot.None;
-		m.ItemType = ::Const.Items.ItemType.Usable;
-		m.IsDroppedAsLoot = true;
-		m.IsUsable = true;
-		m.Value = 50;
+		this.item.create();
+		this.m.ID = "misc.ancient_scroll";
+		this.m.Name = "Ancient Scroll";
+		this.m.Description = "A torn-up scroll with knowledge unseen for centuries. It can be translated by a character with the interpretation perk in the crafting tent. Highly valuable to some historians, although it is useless to many. They can, however, be studied with effort and a high chance of headache. Every brother may use up to 1 scroll. Being bright increases this to 2 scrolls, and being dumb decreases this to 0 scrolls.";
+		this.m.Icon = "trade/scroll.png";
+		this.m.SlotType = ::Const.ItemSlot.None;
+		this.m.ItemType = ::Const.Items.ItemType.Usable;
+		this.m.IsDroppedAsLoot = true;
+		this.m.IsUsable = true;
+		this.m.Value = 50;
 	}
 
 	function playInventorySound( _eventType )
