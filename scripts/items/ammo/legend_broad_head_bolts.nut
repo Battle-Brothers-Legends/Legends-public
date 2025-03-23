@@ -2,6 +2,7 @@ this.legend_broad_head_bolts <- this.inherit("scripts/items/ammo/ammo", {
 	m = {},
 	function create()
 	{
+		this.ammo.create();
 		this.m.ID = "ammo.bolts";
 		this.m.Name = "Broad Head Bolts";
 		this.m.Description = "A quiver of bolts with broad tips, designed for tearing flesh, but easily stopped by armor. Is automatically refilled after each battle if you have enough global ammunition. Grants +10% damage but -10% armor piercing damage while wielding a crossbow.";

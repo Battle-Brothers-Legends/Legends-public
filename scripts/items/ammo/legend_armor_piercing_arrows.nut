@@ -2,6 +2,7 @@ this.legend_armor_piercing_arrows <- this.inherit("scripts/items/ammo/ammo", {
 	m = {},
 	function create()
 	{
+		this.ammo.create();
 		this.m.ID = "ammo.arrows";
 		this.m.Name = "Armor Piercing Arrows";
 		this.m.Description = "A quiver of arrows with piercing tips, designed for punching through thick armor. Is automatically refilled after each battle if you have enough ammunition. Grants +30% (multiplicative) armor piercing and -10% damage while wielding a bow.";

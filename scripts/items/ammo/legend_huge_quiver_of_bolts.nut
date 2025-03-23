@@ -2,6 +2,7 @@ this.legend_huge_quiver_of_bolts <- this.inherit("scripts/items/ammo/ammo", {
 	m = {},
 	function create()
 	{
+		this.ammo.create();
 		this.m.ID = "ammo.bolts";
 		this.m.Name = "Huge Quiver of Bolts";
 		this.m.Description = "A huge quiver of bolts, required to use crossbows. Is automatically refilled after each battle if you have enough ammunition.";
