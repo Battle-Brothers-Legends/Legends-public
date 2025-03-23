@@ -617,7 +617,7 @@
 				text = this.getDescription()
 			}
 		];
-		if (this.getContainer() != null && this.m.Level >= 12)
+		if (this.getContainer() != null && this.getContainer().getActor().getLevel() >= 12)
 		{
 			ret.push({
 				id = 10,
