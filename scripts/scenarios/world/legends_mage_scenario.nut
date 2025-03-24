@@ -1,4 +1,4 @@
-this.mage_legends_mage_scenario <- this.inherit("scripts/scenarios/world/starting_scenario", {
+this.legends_mage_scenario <- this.inherit("scripts/scenarios/world/starting_scenario", {
 	m = {},
 	function create()
 	{

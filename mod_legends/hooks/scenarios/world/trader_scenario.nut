@@ -1,6 +1,5 @@
-this.trader_scenario <- this.inherit("scripts/scenarios/world/starting_scenario", {
-	m = {}, 
-	function create()
+::mods_hookExactClass("scenarios/world/trader_scenario", function (o) {
+	o.create = function ()
 	{
 		this.m.ID = "scenario.trader";
 		this.m.Name = "Trading Caravan";
@@ -11,9 +10,7 @@ this.trader_scenario <- this.inherit("scripts/scenarios/world/starting_scenario"
 		this.m.StartingRosterTier = this.Const.Roster.getTierForSize(6);
 	}
 
-
-
-	function onSpawnAssets()
+	o.onSpawnAssets = function ()
 	{
 		local roster = this.World.getPlayerRoster();
 		local names = [];
@@ -73,7 +70,7 @@ this.trader_scenario <- this.inherit("scripts/scenarios/world/starting_scenario"
 		this.World.Assets.m.Money = this.World.Assets.m.Money * 3;
 	}
 
-	function onSpawnPlayer()
+	o.onSpawnPlayer = function ()
 	{
 		local randomVillage;
 
@@ -140,7 +137,7 @@ this.trader_scenario <- this.inherit("scripts/scenarios/world/starting_scenario"
 		}, null);
 	}
 
-	function onInit()
+	o.onInit = function ()
 	{
 		this.starting_scenario.onInit();
 		// this.World.Assets.m.BusinessReputationRate = 0.5;
@@ -149,7 +146,7 @@ this.trader_scenario <- this.inherit("scripts/scenarios/world/starting_scenario"
 		this.World.Flags.set("IsLegendsTrader", true);
 	}
 
-	function onCombatFinished() //is kill?
+	o.onCombatFinished <- function () //is kill?
 	{
 		local roster = this.World.getPlayerRoster().getAll();
 
@@ -164,7 +161,7 @@ this.trader_scenario <- this.inherit("scripts/scenarios/world/starting_scenario"
 		return false;
 	}
 
-	function onHiredByScenario( bro )
+	o.onHiredByScenario <- function ( bro )
 	{
 		if (bro.getBackground().isBackgroundType(this.Const.BackgroundType.Combat))
 		{
@@ -177,7 +174,7 @@ this.trader_scenario <- this.inherit("scripts/scenarios/world/starting_scenario"
 		}
 	}
 
-	function onUpdateHiringRoster( _roster )
+	o.onUpdateHiringRoster <- function ( _roster )
 	{
 		local bros = _roster.getAll();
 		local garbage = [];
@@ -200,7 +197,7 @@ this.trader_scenario <- this.inherit("scripts/scenarios/world/starting_scenario"
 		}
 	}
 
-	function onGenerateBro(bro)
+	o.onGenerateBro <- function (bro)
 	{
 		if (bro.getBackground().isBackgroundType(this.Const.BackgroundType.Combat))
 			{
@@ -250,7 +247,7 @@ this.trader_scenario <- this.inherit("scripts/scenarios/world/starting_scenario"
 	}
 
 
-	function onBuildPerkTree( _background )
+	o.onBuildPerkTree <- function ( _background )
 	{
 		this.addScenarioPerk(_background, this.Const.Perks.PerkDefs.LegendPeaceful, 0, !_background.isBackgroundType(this.Const.BackgroundType.Combat));
 	}

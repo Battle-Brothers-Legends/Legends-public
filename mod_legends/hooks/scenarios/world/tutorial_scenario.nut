@@ -1,6 +1,5 @@
-this.tutorial_scenario <- this.inherit("scripts/scenarios/world/starting_scenario", {
-	m = {}, 
-	function create()
+::mods_hookExactClass("scenarios/world/tutorial_scenario", function (o) {
+	o.create = function ()
 	{
 		this.m.ID = "scenario.tutorial";
 		this.m.Name = "(Tutorial)";
@@ -11,7 +10,7 @@ this.tutorial_scenario <- this.inherit("scripts/scenarios/world/starting_scenari
 		this.setRosterReputationTiers(this.Const.Roster.createReputationTiers(this.m.StartingBusinessReputation));
 	}
 
-	function onSpawnAssets()
+	o.onSpawnAssets = function ()
 	{
 		local roster = this.World.getPlayerRoster();
 		local names = [];
@@ -51,7 +50,7 @@ this.tutorial_scenario <- this.inherit("scripts/scenarios/world/starting_scenari
 		this.World.Assets.m.Money = this.World.Assets.m.Money * 2;
 	}
 
-	function onSpawnPlayer()
+	o.onSpawnPlayer = function ()
 	{
 		local randomVillage;
 

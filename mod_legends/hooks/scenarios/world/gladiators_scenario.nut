@@ -1,6 +1,5 @@
-this.gladiators_scenario <- this.inherit("scripts/scenarios/world/starting_scenario", {
-	m = {}, 
-	function create()
+::mods_hookExactClass("scenarios/world/gladiators_scenario", function (o) {
+	o.create = function ()
 	{
 		this.m.ID = "scenario.gladiators";
 		this.m.Name = "Gladiators";
@@ -14,12 +13,7 @@ this.gladiators_scenario <- this.inherit("scripts/scenarios/world/starting_scena
 		this.setRosterReputationTiers(this.Const.Roster.createReputationTiers(this.m.StartingBusinessReputation));
 	}
 
-	function isValid()
-	{
-		return this.Const.DLC.Desert;
-	}
-
-	function onSpawnAssets()
+	o.onSpawnAssets = function ()
 	{
 		local roster = this.World.getPlayerRoster();
 
@@ -130,7 +124,7 @@ this.gladiators_scenario <- this.inherit("scripts/scenarios/world/starting_scena
 		this.World.Assets.m.Ammo = 0;
 	}
 
-	function onSpawnPlayer()
+	o.onSpawnPlayer = function ()
 	{
 		local randomVillage;
 
@@ -188,12 +182,12 @@ this.gladiators_scenario <- this.inherit("scripts/scenarios/world/starting_scena
 		}, null);
 	}
 
-	function onInit()
+	o.onInit = function ()
 	{
 		this.starting_scenario.onInit();
 	}
 
-	function onCombatFinished()
+	o.onCombatFinished <- function ()
 	{
 		local roster = this.World.getPlayerRoster().getAll();
 		local gladiators = 0;

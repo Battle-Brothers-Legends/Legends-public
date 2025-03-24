@@ -1,6 +1,5 @@
-this.paladins_scenario <- this.inherit("scripts/scenarios/world/starting_scenario", {
-	m = {}, 
-	function create()
+::mods_hookExactClass("scenarios/world/paladins_scenario", function (o) {
+	o.create = function ()
 	{
 		this.m.ID = "scenario.paladins";
 		this.m.Name = "Oathtakers";
@@ -10,12 +9,7 @@ this.paladins_scenario <- this.inherit("scripts/scenarios/world/starting_scenari
 		this.m.IsFixedLook = true;
 	}
 
-	function isValid()
-	{
-		return this.Const.DLC.Paladins;
-	}
-
-	function onSpawnAssets()
+	o.onSpawnAssets = function ()
 	{
 		local roster = this.World.getPlayerRoster();
 		local names = [];
@@ -128,7 +122,7 @@ this.paladins_scenario <- this.inherit("scripts/scenarios/world/starting_scenari
 		this.World.Assets.m.Ammo = this.World.Assets.m.Ammo / 2;
 	}
 
-	function onSpawnPlayer()
+	o.onSpawnPlayer = function ()
 	{
 		local randomVillage;
 
@@ -188,12 +182,12 @@ this.paladins_scenario <- this.inherit("scripts/scenarios/world/starting_scenari
 		}, null);
 	}
 
-	function onInit()
+	o.onInit = function ()
 	{
 		this.World.Assets.m.BrothersMax = 18;
 	}
 
-	function onHired( _bro )
+	o.onHired = function ( _bro )
 	{
 		if (this.World.Ambitions.hasActiveAmbition())
 		{
@@ -253,7 +247,7 @@ this.paladins_scenario <- this.inherit("scripts/scenarios/world/starting_scenari
 		}
 	}
 
-	function onUpdateLevel( _bro )
+	o.onUpdateLevel = function ( _bro )
 	{
 		if (!this.World.Ambitions.hasActiveAmbition())
 		{
@@ -266,7 +260,7 @@ this.paladins_scenario <- this.inherit("scripts/scenarios/world/starting_scenari
 		}
 	}
 
-	function onActorKilled( _actor, _killer, _combatID )
+	o.onActorKilled = function ( _actor, _killer, _combatID )
 	{
 		if (!this.World.Ambitions.hasActiveAmbition())
 		{
@@ -323,7 +317,7 @@ this.paladins_scenario <- this.inherit("scripts/scenarios/world/starting_scenari
 		}
 	}
 
-	function onBattleWon( _combatLoot )
+	o.onBattleWon = function ( _combatLoot )
 	{
 		if (!this.World.Ambitions.hasActiveAmbition())
 		{
@@ -341,7 +335,7 @@ this.paladins_scenario <- this.inherit("scripts/scenarios/world/starting_scenari
 		}
 	}
 
-	function onContractFinished( _contractType, _cancelled )
+	o.onContractFinished = function ( _contractType, _cancelled )
 	{
 		if (!this.World.Ambitions.hasActiveAmbition())
 		{

@@ -1,6 +1,5 @@
-this.manhunters_scenario <- this.inherit("scripts/scenarios/world/starting_scenario", {
-	m = {}, 
-	function create()
+::mods_hookExactClass("scenarios/world/manhunters_scenario", function (o) {
+	o.create = function ()
 	{
 		this.m.ID = "scenario.manhunters";
 		this.m.Name = "Manhunters";
@@ -13,12 +12,7 @@ this.manhunters_scenario <- this.inherit("scripts/scenarios/world/starting_scena
 		this.setRosterReputationTiers(this.Const.Roster.createReputationTiers(this.m.StartingBusinessReputation));
 	}
 
-	function isValid()
-	{
-		return this.Const.DLC.Desert;
-	}
-
-	function onSpawnAssets()
+	o.onSpawnAssets = function ()
 	{
 		local roster = this.World.getPlayerRoster();
 		local names = [];
@@ -145,7 +139,7 @@ this.manhunters_scenario <- this.inherit("scripts/scenarios/world/starting_scena
 		this.World.Assets.m.Ammo = this.World.Assets.m.Ammo / 2;
 	}
 
-	function onSpawnPlayer()
+	o.onSpawnPlayer = function ()
 	{
 		local randomVillage;
 
@@ -208,7 +202,7 @@ this.manhunters_scenario <- this.inherit("scripts/scenarios/world/starting_scena
 		}, null);
 	}
 
-	function onGenerateBro(bro)
+	o.onGenerateBro <- function (bro)
 	{
 		if (bro.getBackground().getID() == "slave_background")
 		{
@@ -224,7 +218,7 @@ this.manhunters_scenario <- this.inherit("scripts/scenarios/world/starting_scena
 		}
 	}
 
-	function onInit()
+	o.onInit = function ()
 	{
 		this.starting_scenario.onInit();
 		this.World.Assets.m.BrothersMax = 25;
@@ -232,7 +226,7 @@ this.manhunters_scenario <- this.inherit("scripts/scenarios/world/starting_scena
 		this.World.Assets.m.BrothersScaleMax = 14;
 	}
 
-	function onHired( _bro )
+	o.onHired = function ( _bro )
 	{
 		if (_bro.getBackground().getID() != "background.slave")
 		{
@@ -246,13 +240,13 @@ this.manhunters_scenario <- this.inherit("scripts/scenarios/world/starting_scena
 		this.countIndebted();
 	}
 
-	function onCombatFinished()
+	o.onCombatFinished <- function ()
 	{
 		this.countIndebted();
 		return true;
 	}
 
-	function onUnlockPerk( _bro, _perkID )
+	o.onUnlockPerk = function ( _bro, _perkID )
 	{
 		if (_bro.getLevel() == 7 && _bro.getBackground().getID() == "background.slave" && _perkID == ::Legends.Perks.getID(::Legends.Perk.Student))
 		{
@@ -260,7 +254,7 @@ this.manhunters_scenario <- this.inherit("scripts/scenarios/world/starting_scena
 		}
 	}
 
-	function onUpdateLevel( _bro )
+	o.onUpdateLevel = function ( _bro )
 	{
 		if (_bro.getLevel() == 7 && _bro.getBackground().getID() == "background.slave" && _bro.getSkills().hasPerk(::Legends.Perk.Student))
 		{
@@ -268,7 +262,7 @@ this.manhunters_scenario <- this.inherit("scripts/scenarios/world/starting_scena
 		}
 	}
 
-	function onGetBackgroundTooltip( _background, _tooltip )
+	o.onGetBackgroundTooltip = function ( _background, _tooltip )
 	{
 		if (_background.getID() != "background.slave")
 		{
@@ -329,7 +323,7 @@ this.manhunters_scenario <- this.inherit("scripts/scenarios/world/starting_scena
 		}
 	}
 
-	function countIndebted()
+	o.countIndebted = function ()
 	{
 		local roster = this.World.getPlayerRoster().getAll();
 		local indebted = 0;

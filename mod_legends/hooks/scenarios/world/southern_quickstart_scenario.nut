@@ -1,6 +1,5 @@
-this.southern_quickstart_scenario <- this.inherit("scripts/scenarios/world/starting_scenario", {
-	m = {}, 
-	function create()
+::mods_hookExactClass("scenarios/world/southern_quickstart_scenario", function (o) {
+	o.create = function ()
 	{
 		this.m.ID = "scenario.southern_quickstart";
 		this.m.Name = "Southern Mercenaries";
@@ -9,12 +8,7 @@ this.southern_quickstart_scenario <- this.inherit("scripts/scenarios/world/start
 		this.m.Order = 270;
 	}
 
-	function isValid()
-	{
-		return this.Const.DLC.Desert;
-	}
-
-	function onSpawnAssets()
+	o.onSpawnAssets = function ()
 	{
 		local roster = this.World.getPlayerRoster();
 		local names = [];
@@ -40,7 +34,7 @@ this.southern_quickstart_scenario <- this.inherit("scripts/scenarios/world/start
 			"companion_1h_southern_background"
 		]);
 		bros[0].getBackground().m.RawDescription = "{%name% was once in a Vizier\'s elite vanguard. A pitched battle saw the entire legion annihilated and %name% buried beneath their bodies. Abandoned to the desert, %name% survived by means that even to this day shall not be told. But the unerring loyalty to you speaks more than any war story ever could.}";
-		bros[0].setPlaceInFormation(3);		
+		bros[0].setPlaceInFormation(3);
 		bros[0].setVeteranPerks(2);
 
 		bros[1].setStartValuesEx([
@@ -62,7 +56,7 @@ this.southern_quickstart_scenario <- this.inherit("scripts/scenarios/world/start
 		this.World.Assets.m.Money = this.World.Assets.m.Money + 400;
 	}
 
-	function onSpawnPlayer()
+	o.onSpawnPlayer = function ()
 	{
 		local randomVillage;
 

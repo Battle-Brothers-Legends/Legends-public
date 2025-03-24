@@ -1,6 +1,5 @@
-this.early_access_scenario <- this.inherit("scripts/scenarios/world/starting_scenario", {
-	m = {}, 
-	function create()
+::mods_hookExactClass("scenarios/world/early_access_scenario", function (o) {
+	o.create = function ()
 	{
 		this.m.ID = "scenario.early_access";
 		this.m.Name = "A New Company";
@@ -9,7 +8,7 @@ this.early_access_scenario <- this.inherit("scripts/scenarios/world/starting_sce
 		this.m.Order = 1;
 	}
 
-	function onSpawnAssets()
+	o.onSpawnAssets = function ()
 	{
 		local roster = this.World.getPlayerRoster();
 		local names = [];
@@ -56,7 +55,7 @@ this.early_access_scenario <- this.inherit("scripts/scenarios/world/starting_sce
 		this.World.Assets.m.Money = this.World.Assets.m.Money * 2;
 	}
 
-	function onSpawnPlayer()
+	o.onSpawnPlayer = function ()
 	{
 		local randomVillage;
 
