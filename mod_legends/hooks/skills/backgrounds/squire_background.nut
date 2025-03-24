@@ -139,7 +139,7 @@
 		return c;
 	}
 
-	o.onUpdate = function ( _properties )
+	o.onUpdate <- function ( _properties )
 	{
 		this.character_background.onUpdate(_properties);
 		_properties.XPGainMult *= 1.10;

@@ -151,7 +151,7 @@
 		this.character_background.onAdded();
 	}
 
-	o.onAddEquipment = function  = function ()
+	o.onAddEquipment = function ()
 	{
 		local items = this.getContainer().getActor().getItems();
 		local r;
