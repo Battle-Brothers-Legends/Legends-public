@@ -1,6 +1,6 @@
-this.assassin_southern_background <- this.inherit("scripts/skills/backgrounds/character_background", {
-	m = {},
-	function create()
+::mods_hookExactClass("skills/backgrounds/assassin_southern_background", function(o)
+{
+	o.create = function ()
 	{
 		this.character_background.create();
 		this.m.ID = "background.assassin_southern";
@@ -110,7 +110,7 @@ this.assassin_southern_background <- this.inherit("scripts/skills/backgrounds/ch
 	}
 
 	//Default Male
-	function setGender(_gender = -1)
+	o.setGender <- function (_gender = -1)
 	{
 		if (_gender == -1) _gender = ::Legends.Mod.ModSettings.getSetting("GenderEquality").getValue() == "Disabled" ? 0 : ::Math.rand(0, 1);
 
@@ -127,7 +127,7 @@ this.assassin_southern_background <- this.inherit("scripts/skills/backgrounds/ch
 
 	}
 
-	function getTooltip()
+	o.getTooltip = function ()
 	{
 		local ret = this.character_background.getTooltip();
 		ret.push(
@@ -141,7 +141,7 @@ this.assassin_southern_background <- this.inherit("scripts/skills/backgrounds/ch
 		return ret;
 	}
 
-	function onBuildDescription()
+	o.onBuildDescription <- function ()
 	{
 		if(this.isBackgroundType(this.Const.BackgroundType.Female))
 		{
@@ -154,7 +154,7 @@ this.assassin_southern_background <- this.inherit("scripts/skills/backgrounds/ch
 
 	}
 
-	function onChangeAttributes()
+	o.onChangeAttributes = function ()
 	{
 		local c = {
 			Hitpoints = [
@@ -193,7 +193,7 @@ this.assassin_southern_background <- this.inherit("scripts/skills/backgrounds/ch
 		return c;
 	}
 
-	function onAddEquipment()
+	o.onAddEquipment = function ()
 	{
 		local items = this.getContainer().getActor().getItems();
 		local r;
@@ -229,10 +229,9 @@ this.assassin_southern_background <- this.inherit("scripts/skills/backgrounds/ch
 		]))
 	}
 
-	function onUpdate( _properties )
+	o.onUpdate <- function ( _properties )
 	{
 		this.character_background.onUpdate(_properties);
 		_properties.HitChance[this.Const.BodyPart.Head] += 10;
 	}
 });
-

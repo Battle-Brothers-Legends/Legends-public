@@ -1,6 +1,6 @@
-this.anatomist_background <- this.inherit("scripts/skills/backgrounds/character_background", {
-	m = {},
-	function create()
+::mods_hookExactClass("skills/backgrounds/anatomist_background", function(o)
+{
+	o.create = function ()
 	{
 		this.character_background.create();
 		this.m.ID = "background.anatomist";
@@ -122,7 +122,7 @@ this.anatomist_background <- this.inherit("scripts/skills/backgrounds/character_
 	}
 
 	//Default Male
-	function setGender(_gender = -1)
+	o.setGender <- function (_gender = -1)
 	{
 		if (_gender == -1) _gender = ::Legends.Mod.ModSettings.getSetting("GenderEquality").getValue() == "Disabled" ? 0 : ::Math.rand(0, 1);
 
@@ -139,7 +139,7 @@ this.anatomist_background <- this.inherit("scripts/skills/backgrounds/character_
 
 	}
 
-	function getTooltip()
+	o.getTooltip = function ()
 	{
 		local ret = this.character_background.getTooltip();
 		ret.push(
@@ -153,7 +153,7 @@ this.anatomist_background <- this.inherit("scripts/skills/backgrounds/character_
 		return ret;
 	}
 
-	function onBuildDescription()
+	o.onBuildDescription <- function()
 	{
 		if (this.isBackgroundType(this.Const.BackgroundType.Female))
 		{
@@ -165,7 +165,7 @@ this.anatomist_background <- this.inherit("scripts/skills/backgrounds/character_
 		}
 	}
 
-	function onChangeAttributes()
+	o.onChangeAttributes = function ()
 	{
 		local c = {
 			Hitpoints = [
@@ -204,7 +204,7 @@ this.anatomist_background <- this.inherit("scripts/skills/backgrounds/character_
 		return c;
 	}
 
-	function onAddEquipment()
+	o.onAddEquipment = function ()
 	{
 		local items = this.getContainer().getActor().getItems();
 		local r;
@@ -236,11 +236,10 @@ this.anatomist_background <- this.inherit("scripts/skills/backgrounds/character_
 		]));
 	}
 
-	function onUpdate( _properties )
+	o.onUpdate <- function ( _properties )
 	{
 		this.character_background.onUpdate(_properties);
 		_properties.XPGainMult *= 1.15;
 	}
 
 });
-

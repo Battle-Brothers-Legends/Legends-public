@@ -1,6 +1,6 @@
-this.belly_dancer_background <- this.inherit("scripts/skills/backgrounds/character_background", {
-	m = {},
-	function create()
+::mods_hookExactClass("skills/backgrounds/belly_dancer_background", function(o)
+{
+	o.create = function ()
 	{
 		this.character_background.create();
 		this.m.ID = "background.belly_dancer";
@@ -66,7 +66,7 @@ this.belly_dancer_background <- this.inherit("scripts/skills/backgrounds/charact
 		}
 	}
 
-	function onChangeAttributes()
+	o.onChangeAttributes = function ()
 	{
 		local c = {
 			Hitpoints = [
@@ -105,14 +105,14 @@ this.belly_dancer_background <- this.inherit("scripts/skills/backgrounds/charact
 		return c;
 	}
 
-	function onAdded()
+	o.onAdded <- function ()
 	{
 		this.character_background.onAdded();
 		local actor = this.getContainer().getActor();
 		actor.setTitle("the Belly Dancer");
 	}
 
-	function onAddEquipment()
+	o.onAddEquipment = function ()
 	{
 		local items = this.getContainer().getActor().getItems();
 		items.equip(this.Const.World.Common.pickArmor([
@@ -126,4 +126,3 @@ this.belly_dancer_background <- this.inherit("scripts/skills/backgrounds/charact
 		]));
 	}
 });
-
