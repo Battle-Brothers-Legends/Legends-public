@@ -1,6 +1,5 @@
-this.peddler_southern_background <- this.inherit("scripts/skills/backgrounds/peddler_background", {
-	m = {},
-	function create()
+::mods_hookExactClass("skills/backgrounds/peddler_southern_background", function (o) {
+	o.create = function ()
 	{
 		this.peddler_background.create();
 		this.m.Bodies = this.Const.Bodies.SouthernMale;
@@ -35,7 +34,7 @@ this.peddler_southern_background <- this.inherit("scripts/skills/backgrounds/ped
 
 
 	//Default Male
-	function setGender(_gender = -1)
+	o.setGender <- function (_gender = -1)
 	{
 		if (_gender == -1) _gender = ::Legends.Mod.ModSettings.getSetting("GenderEquality").getValue() == "Disabled" ? 0 : ::Math.rand(0, 1);
 
@@ -54,12 +53,12 @@ this.peddler_southern_background <- this.inherit("scripts/skills/backgrounds/ped
 
 	}
 
-	function onBuildDescription()
+	o.onBuildDescription <- function ()
 	{
 		return "{House to house, | Once a proud merchant, now | An annoyance to most, | In tough times, everyone has to scrape by somehow, hence why | Not of the trades, but instead of trade itself,} %name% is a mere peddler. {dancing, singing, boasting and acting like a king, anything to make that sale. | Pushy and unrelenting, that tenacity is admirable. | %name%\'ll try to sell off a rusty bucket for a helm once worn by kings. This peddler will sell anything. | This peddler will make you crave things you never knew you wanted. No refunds, though. | %name% used to make a decent living selling {used carts | pots, pans and jars}, until fierce competition drove down business - by breaking arms.} {Marketing is what this frail peddler does best, though few believe the pitch about having \'Great swordsmanship and resolute bravery\'. | %name% supposedly handed out \'coupons\' for services, whatever those are. %name%\'s chippy, though, and any outfit these days could use a warm body no matter its real value. | If hired, %name% promises, you\'ll get a special discount on a virility enhancing potion. | The merchant lowers their voice and tells you the\'ve got a great deal on rusted arrow tips, just for you. %name% looks disappointed at your lack of interest. | This merchant knows a man who knows a man who knows a man. All three strangers potentially better at fighting. | A shame a war can\'t be fought with words these days. %name% would be unstoppable.}";
 	}
 
-	function onAddEquipment()
+	o.onAddEquipment = function ()
 	{
 		local items = this.getContainer().getActor().getItems();
 		local r;

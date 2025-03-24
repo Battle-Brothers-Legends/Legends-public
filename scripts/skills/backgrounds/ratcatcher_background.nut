@@ -1,6 +1,5 @@
-this.ratcatcher_background <- this.inherit("scripts/skills/backgrounds/character_background", {
-	m = {},
-	function create()
+::mods_hookExactClass("skills/backgrounds/ratcatcher_background", function (o) {
+	o.create = function ()
 	{
 		this.character_background.create();
 		this.m.ID = "background.ratcatcher";
@@ -69,7 +68,7 @@ this.ratcatcher_background <- this.inherit("scripts/skills/backgrounds/character
 	}
 
 		//Default Male
-	function setGender(_gender = -1)
+	o.setGender <- function (_gender = -1)
 	{
 		if (_gender == -1) _gender = ::Legends.Mod.ModSettings.getSetting("GenderEquality").getValue() == "Disabled" ? 0 : ::Math.rand(0, 1);
 
@@ -87,22 +86,14 @@ this.ratcatcher_background <- this.inherit("scripts/skills/backgrounds/character
 
 	}
 
-
-
-	function onBuildDescription()
+	o.onBuildDescription = function ()
 	{
 		if(this.isBackgroundType(this.Const.BackgroundType.Female))
-		{
-		return "{Catcher of rats, that\'s the title %name% once preferred. | With perhaps misplaced pride, %name% fashions herself as a woman of the sewers. | Bowlegged and scrawny, %name%\'s career of hunting rats has seemingly turned her into one.} She grew up in %townname%, surviving {in the alleys | on rat, the fruit of the sewers | alongside the furry and scuttling, as well as some rats}. {For cheap entertainment, her father taught her the ways of snaring tiny rodents | Her fallen brother\'s body was eaten by rats, forging an angry future of rodent-revenge | Her mother demanded the finest meats she could find, and she didn\'t mean from the market}. But %townname% wears on people, and it wore on %name% like a giant, nibbling creature. {Hearing of greater rats in the world | Sensing that there must be more to life than rats | Trusting her rat-whispering skills}, %name% now seeks to {put her shriveled nose, odd gnawing habits, and quick but kind of gross hands to better use. | crush every rat, see them driven before her, and to hear the squeals of their kin. She has a thousand-yard stare and a clenched fist as she tells you this. | perhaps graduate her skills from rats to dogs and maybe humans, so she says. She doesn\'t appear to know what she\'s in for, but perhaps it is best to not tell her. | dish up some rat soup, rat salad, rat kebab, rat bread, rat stew, rat chicken, rat wine... after a while, you just stop listening.}";
-		}
-		else
-		{
+			return "{Catcher of rats, that\'s the title %name% once preferred. | With perhaps misplaced pride, %name% fashions herself as a woman of the sewers. | Bowlegged and scrawny, %name%\'s career of hunting rats has seemingly turned her into one.} She grew up in %townname%, surviving {in the alleys | on rat, the fruit of the sewers | alongside the furry and scuttling, as well as some rats}. {For cheap entertainment, her father taught her the ways of snaring tiny rodents | Her fallen brother\'s body was eaten by rats, forging an angry future of rodent-revenge | Her mother demanded the finest meats she could find, and she didn\'t mean from the market}. But %townname% wears on people, and it wore on %name% like a giant, nibbling creature. {Hearing of greater rats in the world | Sensing that there must be more to life than rats | Trusting her rat-whispering skills}, %name% now seeks to {put her shriveled nose, odd gnawing habits, and quick but kind of gross hands to better use. | crush every rat, see them driven before her, and to hear the squeals of their kin. She has a thousand-yard stare and a clenched fist as she tells you this. | perhaps graduate her skills from rats to dogs and maybe humans, so she says. She doesn\'t appear to know what she\'s in for, but perhaps it is best to not tell her. | dish up some rat soup, rat salad, rat kebab, rat bread, rat stew, rat chicken, rat wine... after a while, you just stop listening.}";
 		return "{Catcher of rats, that\'s the title %name% once preferred. | With perhaps misplaced pride, %name% fashions himself as a man of the sewers. | Bowlegged and scrawny, %name%\'s career of hunting rats has seemingly turned him into one.} He grew up in %townname%, surviving {in the alleys | on rat, the fruit of the sewers | alongside the furry and scuttling, as well as some rats}. {For cheap entertainment, his father taught him the ways of snaring tiny rodents | His fallen brother\'s body was eaten by rats, forging an angry future of rodent-revenge | His mother demanded the finest meats he could find, and she didn\'t mean from the market}. But %townname% wears on people, and it wore on %name% like a giant, nibbling creature. {Hearing of greater rats in the world | Sensing that there must be more to life than rats | Trusting his rat-whispering skills}, %name% now seeks to {put his shriveled nose, odd gnawing habits, and quick but kind of gross hands to better use. | crush every rat, see them driven before him, and to hear the squeals of their kin. He has a thousand-yard stare and a clenched fist as he tells you this. | perhaps graduate his skills from rats to dogs and maybe humans, so he says. He doesn\'t appear to know what he\'s in for, but perhaps it is best to not tell him. | dish up some rat soup, rat salad, rat kebab, rat bread, rat stew, rat chicken, rat wine... after a while, you just stop listening.}";
-		}
 	}
 
-
-	function onChangeAttributes()
+	o.onChangeAttributes = function ()
 	{
 		local c = {
 			Hitpoints = [
@@ -141,7 +132,7 @@ this.ratcatcher_background <- this.inherit("scripts/skills/backgrounds/character
 		return c;
 	}
 
-	function onAdded()
+	o.onAdded = function ()
 	{
 		this.character_background.onAdded();
 
@@ -152,7 +143,7 @@ this.ratcatcher_background <- this.inherit("scripts/skills/backgrounds/character
 		}
 	}
 
-	function onAddEquipment()
+	o.onAddEquipment = function ()
 	{
 		local items = this.getContainer().getActor().getItems();
 

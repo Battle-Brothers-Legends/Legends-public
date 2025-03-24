@@ -1,6 +1,5 @@
-this.pimp_background <- this.inherit("scripts/skills/backgrounds/character_background", {
-	m = {},
-	function create()
+::mods_hookExactClass("skills/backgrounds/pimp_background", function (o) {
+	o.create = function ()
 	{
 		this.character_background.create();
 		this.m.ID = "background.pimp";
@@ -68,14 +67,12 @@ this.pimp_background <- this.inherit("scripts/skills/backgrounds/character_backg
 		this.m.Bodies = this.Const.Bodies.Thick;
 	}
 
-
-
-	function onBuildDescription()
+	o.onBuildDescription <- function ()
 	{
 		return "";
 	}
 
-	function onChangeAttributes()
+	o.onChangeAttributes = function ()
 	{
 		local c = {
 			Hitpoints = [
@@ -114,7 +111,7 @@ this.pimp_background <- this.inherit("scripts/skills/backgrounds/character_backg
 		return c;
 	}
 
-	function onAddEquipment()
+	o.onAddEquipment = function ()
 	{
 		local items = this.getContainer().getActor().getItems();
 		items.equip(this.Const.World.Common.pickArmor([

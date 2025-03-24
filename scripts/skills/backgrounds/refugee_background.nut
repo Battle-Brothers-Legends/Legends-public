@@ -1,6 +1,5 @@
-this.refugee_background <- this.inherit("scripts/skills/backgrounds/character_background", {
-	m = {},
-	function create()
+::mods_hookExactClass("skills/backgrounds/refugee_background", function (o) {
+	o.create = function ()
 	{
 		this.character_background.create();
 		this.m.ID = "background.refugee";
@@ -56,7 +55,7 @@ this.refugee_background <- this.inherit("scripts/skills/backgrounds/character_ba
 			this.m.HairColors = this.Const.HairColors.African;
 			this.m.Beards = this.Const.Beards.Untidy;
 		}
-		
+
 		this.m.BackgroundType = this.Const.BackgroundType.OffendedByViolence | this.Const.BackgroundType.Lowborn;
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Merciless;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Good;
@@ -86,7 +85,7 @@ this.refugee_background <- this.inherit("scripts/skills/backgrounds/character_ba
 	}
 
 	//Default Male
-	function setGender(_gender = -1)
+	o.setGender <- function (_gender = -1)
 	{
 		if (_gender == -1) _gender = ::Legends.Mod.ModSettings.getSetting("GenderEquality").getValue() == "Disabled" ? 0 : ::Math.rand(0, 1);
 
@@ -99,15 +98,13 @@ this.refugee_background <- this.inherit("scripts/skills/backgrounds/character_ba
 		this.addBackgroundType(this.Const.BackgroundType.Female);
 	}
 
-
-
-	function onBuildDescription()
+	o.onBuildDescription <- function ()
 	{
 		//gender neutral description
 		return "{Catastrophes are cheap. | Disease, the ultimate invisible hand. | Win or lose a war, everything is as it has been.} %name% hails from a tiny village that {is now only remembered by spoken word, a generation away from being forgotten. | was destroyed, to put it succinctly. | now stands as a mere footnote, wasting little of the historian\'s ink. | suffered the world\'s wrath.} But %name% is a survivor. {%name% fled the disaster with only clothes. | With home ablaze, %name% saved what little could be saved, and fled. | After stumbling upon their dead family, %name% gathered what could be saved and ran. | War, famine, disease. It\'s all a blur now.} {%name% is merely anxious to look ahead rather than behind. | %name% carries little more than a sense of steeled determination, but that is something worth having. | A horrific history scars %name%\'s body and glazes their eyes, but the mercenary is easily motivated to never experience that past again. | Whatever befell the %name%\'s town didn\'t get %name% and, judging by the rumors you hear, that\'s saying something. | %name% isn\'t skilled in martial arts, but is damn sure determined to survive. | Whatever vocation %name% had in the past is now lost. Like many others, seeking mercenary work to get by in this increasingly bloody world. | One of many refugees you\'ve seen, this victim has decided to stop running and start fighting.}";
 	}
 
-	function onChangeAttributes()
+	o.onChangeAttributes = function ()
 	{
 		local c = {
 			Hitpoints = [
@@ -146,8 +143,7 @@ this.refugee_background <- this.inherit("scripts/skills/backgrounds/character_ba
 		return c;
 	}
 
-
-	function onAddEquipment()
+	o.onAddEquipment = function ()
 	{
 		local items = this.getContainer().getActor().getItems();
 		local r;

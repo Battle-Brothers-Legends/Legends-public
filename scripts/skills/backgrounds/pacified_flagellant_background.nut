@@ -1,6 +1,5 @@
-this.pacified_flagellant_background <- this.inherit("scripts/skills/backgrounds/character_background", {
-	m = {},
-	function create()
+::mods_hookExactClass("skills/backgrounds/pacified_flagellant_background", function (o) {
+	o.create = function ()
 	{
 		this.character_background.create();
 		this.m.ID = "background.pacified_flagellant";
@@ -61,12 +60,12 @@ this.pacified_flagellant_background <- this.inherit("scripts/skills/backgrounds/
 		}
 	}
 
-	function onBuildDescription()
+	o.onBuildDescription <- function ()
 	{
 		return "After a long talk with a monk, %name% was converted to a more peaceful means of expressing his faith. Now when he picks up a weapon you can be assured it will only be pointed at someone other than himself.";
 	}
 
-	function onAddEquipment()
+	o.onAddEquipment = function ()
 	{
 	}
 });

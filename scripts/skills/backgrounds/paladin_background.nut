@@ -1,6 +1,5 @@
-this.paladin_background <- this.inherit("scripts/skills/backgrounds/character_background", {
-	m = {},
-	function create()
+::mods_hookExactClass("skills/backgrounds/paladin_background", function (o) {
+	o.create = function ()
 	{
 		this.character_background.create();
 		this.m.ID = "background.paladin";
@@ -92,7 +91,7 @@ this.paladin_background <- this.inherit("scripts/skills/backgrounds/character_ba
 				0.0, //desert
 				0.0 //oasis
 			];
-		
+
 		this.m.PerkTreeDynamic = {
 			Weapon = [
 				this.Const.Perks.TwoHandedTree,
@@ -105,7 +104,7 @@ this.paladin_background <- this.inherit("scripts/skills/backgrounds/character_ba
 				this.Const.Perks.CrossbowTree
 			],
 			Defense = [
-				this.Const.Perks.HeavyArmorTree,	
+				this.Const.Perks.HeavyArmorTree,
 				this.Const.Perks.LightArmorTree
 			],
 			Traits = [
@@ -125,7 +124,7 @@ this.paladin_background <- this.inherit("scripts/skills/backgrounds/character_ba
 	}
 
 	//Default Male
-	function setGender(_gender = -1)
+	o.setGender <- function (_gender = -1)
 	{
 		if (_gender == -1) _gender = ::Legends.Mod.ModSettings.getSetting("GenderEquality").getValue() == "Disabled" ? 0 : ::Math.rand(0, 1);
 
@@ -143,7 +142,7 @@ this.paladin_background <- this.inherit("scripts/skills/backgrounds/character_ba
 
 	}
 
-	function onBuildDescription()
+	o.onBuildDescription <- function ()
 	{
 		if(this.isBackgroundType(this.Const.BackgroundType.Female))
 		{
@@ -155,7 +154,7 @@ this.paladin_background <- this.inherit("scripts/skills/backgrounds/character_ba
 		}
 	}
 
-	function onSetAppearance()
+	o.onSetAppearance = function ()
 	{
 		local actor = this.getContainer().getActor();
 		local tattoo_body = actor.getSprite("tattoo_body");
@@ -175,7 +174,7 @@ this.paladin_background <- this.inherit("scripts/skills/backgrounds/character_ba
 		}
 	}
 
-	function updateAppearance()
+	o.updateAppearance = function ()
 	{
 		local actor = this.getContainer().getActor();
 		local tattoo_body = actor.getSprite("tattoo_body");
@@ -187,7 +186,7 @@ this.paladin_background <- this.inherit("scripts/skills/backgrounds/character_ba
 		}
 	}
 
-	function onChangeAttributes()
+	o.onChangeAttributes = function ()
 	{
 		local c = {
 			Hitpoints = [
@@ -226,7 +225,7 @@ this.paladin_background <- this.inherit("scripts/skills/backgrounds/character_ba
 		return c;
 	}
 
-	function onAddEquipment()
+	o.onAddEquipment = function ()
 	{
 		local items = this.getContainer().getActor().getItems();
 		local r;

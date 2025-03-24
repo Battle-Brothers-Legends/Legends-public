@@ -1,6 +1,5 @@
-this.regent_in_absentia_background <- this.inherit("scripts/skills/backgrounds/character_background", {
-	m = {},
-	function create()
+::mods_hookExactClass("skills/backgrounds/regent_in_absentia_background", function (o) {
+	o.create = function ()
 	{
 		this.character_background.create();
 		this.m.ID = "background.regent_in_absentia";
@@ -56,7 +55,7 @@ this.regent_in_absentia_background <- this.inherit("scripts/skills/backgrounds/c
 		}
 	}
 
-	function setGender(_gender = -1)
+	o.setGender <- function (_gender = -1)
 	{
 		if (_gender == -1) _gender = ::Legends.Mod.ModSettings.getSetting("GenderEquality").getValue() == "Disabled" ? 0 : ::Math.rand(0, 1);
 
@@ -72,12 +71,12 @@ this.regent_in_absentia_background <- this.inherit("scripts/skills/backgrounds/c
 		this.m.Icon = "ui/backgrounds/background_06.png";
 	}
 
-	function onBuildDescription()
+	o.onBuildDescription <- function ()
 	{
 		return "{%name% is no longer disowned by %their% royal family, yet %their% allegiance is now with the %companyname%. Despite not returning home to %their% lineage, you know that deep down %they% is emboldened by the fact that %they% is back in %their% natural bloodline.}";
 	}
 
-	function onChangeAttributes()
+	o.onChangeAttributes = function ()
 	{
 		local c = {
 			Hitpoints = [
@@ -116,7 +115,7 @@ this.regent_in_absentia_background <- this.inherit("scripts/skills/backgrounds/c
 		return c;
 	}
 
-	function onAddEquipment()
+	o.onAddEquipment = function ()
 	{
 		local items = this.getContainer().getActor().getItems();
 		local r;

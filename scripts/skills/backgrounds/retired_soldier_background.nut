@@ -1,6 +1,5 @@
-this.retired_soldier_background <- this.inherit("scripts/skills/backgrounds/character_background", {
-	m = {},
-	function create()
+::mods_hookExactClass("skills/backgrounds/retired_soldier_background", function (o) {
+	o.create = function ()
 	{
 		this.character_background.create();
 		this.m.ID = "background.retired_soldier";
@@ -87,12 +86,12 @@ this.retired_soldier_background <- this.inherit("scripts/skills/backgrounds/char
 
 
 
-	function onBuildDescription()
+	o.onBuildDescription <- function ()
 	{
 		return "Once {a sergeant | a royal guardsman | a dedicated soldier | a respected armsman | a frontliner | a soldier | a footman} in the army of a local lord, %fullname% {retired from service after taking an arrow to the knee | was replaced by an aspiring youngster | was expelled after falling asleep on guard duty | retired after a long and exemplary service | was wounded in combat and forced to retire | grew weary of the battles and bloodbaths, formally ending his service before it ruined his mind | battled the ferocious orc hordes, the campaigns eventually forcing him into retirement}. {He locked his equipment in a chest along with the memories of his duty, intending to never pick up either one again | He shelved both sword and shield in his study as merely relics of a military past | He hung his weapons above the chimney as a silent reminder of the man he used to be | But a new chapter in his life was awaiting him, one where he would not need a sword to get on with his day | With many years of service behind him, he could finally get some peace and quiet | Absent of a military drill\'s barking, his life never felt so quiet}. {For many years he lived a happy life with his beloved wife, until she died of old age. With nothing else to turn to | Only when finding out that his former comrades were brutally slain in an ambush | Only when hearing rumors of a large invasion about to destroy his homeland, | He tried to live as a farmer for a while, but every day he missed having a good sword in hand and standing in the shieldwall. Finally, | But life outside the army, as it turned out, was not for him, for he felt idle and useless. Finally, | For a time, he felt at ease. But as the land was consumed by warfare, | Time spent away from war was short-lived, as the war soon came to him. It wasn\'t long until | Living out on a farm, boredom crept at %name%\'s wits until, finally,} he picked up arms once more. Although {his best days are long over | not as physically fit as he once was | his constitution is not that of a young man anymore | he is not the brash young fighter he once was | time away from the service has dampened his abilities}, {his swordfighting skills are still enough to beat any young braggart | he still knows how fighting is done on the battlefield | his experience is second to few | he can rely on the combat experience of a lifetime | he is eager to stand amongst brothers | he is eager to find battle again | his itch to find battle is mirrored by his capabilities to actually fight | he still knows a thing or two about holding a shieldwall}.";
 	}
 
-	function onChangeAttributes()
+	o.onChangeAttributes = function ()
 	{
 		local c = {
 			Hitpoints = [
@@ -131,7 +130,7 @@ this.retired_soldier_background <- this.inherit("scripts/skills/backgrounds/char
 		return c;
 	}
 
-	function onAddEquipment()
+	o.onAddEquipment = function ()
 	{
 		local items = this.getContainer().getActor().getItems();
 		local r;
@@ -177,7 +176,6 @@ this.retired_soldier_background <- this.inherit("scripts/skills/backgrounds/char
 			[1, "aketon_cap"],
 			[1, "full_aketon_cap"]
 		]));
-
 	}
 
 });
