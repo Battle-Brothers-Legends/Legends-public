@@ -1,6 +1,5 @@
-this.thief_southern_background <- this.inherit("scripts/skills/backgrounds/thief_background", {
-	m = {},
-	function create()
+::mods_hookExactClass("skills/backgrounds/thief_southern_background", function (o) {
+	o.create = function ()
 	{
 		this.thief_background.create();
 		this.m.Bodies = this.Const.Bodies.SouthernSkinny;
@@ -39,7 +38,7 @@ this.thief_southern_background <- this.inherit("scripts/skills/backgrounds/thief
 	}
 
 	//Default Male
-	function setGender(_gender = -1)
+	o.setGender <- function (_gender = -1)
 	{
 		if (_gender == -1) _gender = ::Legends.Mod.ModSettings.getSetting("GenderEquality").getValue() == "Disabled" ? 0 : ::Math.rand(0, 1);
 
@@ -60,7 +59,7 @@ this.thief_southern_background <- this.inherit("scripts/skills/backgrounds/thief
 		this.m.BadEnding = "The former farmhand, %name%, soon left the %companyname%. She purchased a bit of land out {south | north | east | west} and was doing quite well for herself - until noble soldiers hanged her from a tree for refusing to hand over all her crops.";
 	}
 
-	function onBuildDescription()
+	o.onBuildDescription = function ()
 	{
 		if (this.isBackgroundType(this.Const.BackgroundType.Female))
 		{
@@ -72,7 +71,7 @@ this.thief_southern_background <- this.inherit("scripts/skills/backgrounds/thief
 		}
 	}
 
-	function onAddEquipment()
+	o.onAddEquipment = function ()
 	{
 		local items = this.getContainer().getActor().getItems();
 		local r;

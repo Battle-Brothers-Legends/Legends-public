@@ -1,6 +1,5 @@
-this.slave_background <- this.inherit("scripts/skills/backgrounds/character_background", {
-	m = {},
-	function create()
+::mods_hookExactClass("skills/backgrounds/slave_background", function (o) {
+	o.create = function ()
 	{
 		this.character_background.create();
 		this.m.ID = "background.slave";
@@ -105,7 +104,7 @@ this.slave_background <- this.inherit("scripts/skills/backgrounds/character_back
 		}
 	}
 
-	function getTooltip()
+	o.getTooltip = function ()
 	{
 		local ret = this.character_background.getTooltip();
 
@@ -131,12 +130,12 @@ this.slave_background <- this.inherit("scripts/skills/backgrounds/character_back
 		return ret;
 	}
 
-	function onBuildDescription()
+	o.onBuildDescription = function ()
 	{
 		return "{You can tell %name% is a northerner simply by appearance. And %their% servitude in the south has come by way of being indebted to the Gilder whom %they% has transgressed with %their% faith in the heretical old gods. | %name% bears the features of a northerner, easily capturing the eye of passing men or women. It also happened to catch the attention of a priest who claimed the northerner was indebted to the Gilder and promptly sold the interloper into servitude. | A northerner, %name% was once a soldier sent south on patrol. Lost in the desert, %their% troop slowly dwindled until %they% was the last survivor. Manhunters caught %them% and brought %them% back from the brink, and of course sold %them% into servitude once %their% healed body was worth something. | Despite being a northerner and thus easily spotted, %name% unwisely sought the criminal life and was caught thieving pomegranates from a Vizier\'s garden. %they%\'s lucky to have %their% head, but now serves as a commodity of labor on the slave markets.}";
 	}
 
-	function setGender(_gender = -1)
+	o.setGender <- function (_gender = -1)
 	{
 		_gender = ::Legends.Mod.ModSettings.getSetting("GenderEquality").getValue() == "Disabled" ? 0 : ::Math.rand(0, 19);
 
@@ -151,7 +150,7 @@ this.slave_background <- this.inherit("scripts/skills/backgrounds/character_back
 		this.addBackgroundType(this.Const.BackgroundType.Female);
 	}
 
-	function onChangeAttributes()
+	o.onChangeAttributes = function ()
 	{
 		local c = {
 			Hitpoints = [
@@ -190,7 +189,7 @@ this.slave_background <- this.inherit("scripts/skills/backgrounds/character_back
 		return c;
 	}
 
-	function onSetAppearance()
+	o.onSetAppearance = function ()
 	{
 		local actor = this.getContainer().getActor();
 		local dirt = actor.getSprite("dirt");
@@ -207,7 +206,7 @@ this.slave_background <- this.inherit("scripts/skills/backgrounds/character_back
 		}
 	}
 
-	function onAddEquipment()
+	o.onAddEquipment = function ()
 	{
 		local items = this.getContainer().getActor().getItems();
 		items.equip(this.Const.World.Common.pickArmor([
@@ -218,7 +217,7 @@ this.slave_background <- this.inherit("scripts/skills/backgrounds/character_back
 		]));
 	}
 
-	function onUpdate( _properties )
+	o.onUpdate = function ( _properties )
 	{
 		this.character_background.onUpdate(_properties);
 		_properties.IsContentWithBeingInReserve = true;

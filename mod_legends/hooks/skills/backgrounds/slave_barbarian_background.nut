@@ -1,6 +1,5 @@
-this.slave_barbarian_background <- this.inherit("scripts/skills/backgrounds/slave_background", {
-	m = {},
-	function create()
+::mods_hookExactClass("skills/backgrounds/slave_barbarian_background", function (o) {
+	o.create = function ()
 	{
 		this.slave_background.create();
 		this.m.GoodEnding = null;
@@ -59,7 +58,7 @@ this.slave_barbarian_background <- this.inherit("scripts/skills/backgrounds/slav
 		}
 	}
 
-	function onChangeAttributes()
+	o.onChangeAttributes = function ()
 	{
 		local c = {
 			Hitpoints = [
