@@ -2,7 +2,7 @@ this.legends_escaped_slaves_scenario <- this.inherit("scripts/scenarios/world/st
 	m = {},
 	function create()
 	{
-		this.m.ID = "scenario.sato_escaped_slaves";
+		this.m.ID = "scenario.legend_escaped_slaves";
 		this.m.Name = "Escaped Slaves";
 		this.m.Description = "[p=c][img]gfx/ui/events/event_166.png[/img][/p][p]You lead a group of slaves trying to escape their cruel fate, but you cannot run forever. Can you keep your band intact and start a new life as mercenaries?\n\n[color=#bcad8c]Escapees:[/color] Start with five escaped Indebted and find others held in captivity.\n[color=#bcad8c]Brothers in Chains:[/color] Your newfound family of Indebted are stronger together and gain skill based on how many you field.\n[color=#bcad8c]Downtrodden and Discarded:[/color] Good relations with any faction decay 15% faster and bad relations recover 15% slower.[/p]";
 		this.m.Difficulty = 3;
@@ -20,7 +20,7 @@ this.legends_escaped_slaves_scenario <- this.inherit("scripts/scenarios/world/st
 		this.starting_scenario.onInit();
 		this.World.Assets.m.RelationDecayGoodMult += 0.15;
 		this.World.Assets.m.RelationDecayBadMult -= 0.15;
-		this.World.Events.addSpecialEvent("event.sato_find_slave_after_battle");
+		this.World.Events.addSpecialEvent("event.legend_find_slave_after_battle");
 	}
 
 	function onSpawnAssets()
@@ -435,9 +435,9 @@ this.legends_escaped_slaves_scenario <- this.inherit("scripts/scenarios/world/st
 
 		local cityStateFaction = randomVillage.getOwner();
 		cityStateFaction.addPlayerRelation(-99.0, "You escaped before repaying your debts to the Gilder");
-		this.logInfo("Sato: nemesis faction ID: " + cityStateFaction.getID());
+		this.logInfo("Legend: nemesis faction ID: " + cityStateFaction.getID());
 		this.World.Statistics.getFlags().set("NemesisCityStateID", cityStateFaction.getID());
-		this.World.Statistics.getFlags().set("SatoLastAmbushType", "");
+		this.World.Statistics.getFlags().set("LegendLastAmbushType", "");
 		local cityStates = this.World.FactionManager.getFactionsOfType(this.Const.FactionType.OrientalCityState);
 
 		foreach( c in cityStates )
@@ -456,7 +456,7 @@ this.legends_escaped_slaves_scenario <- this.inherit("scripts/scenarios/world/st
 			this.Music.setTrackList([
 				"music/worldmap_11.ogg"
 			], this.Const.Music.CrossFadeTime);
-			this.World.Events.fire("event.sato_escaped_slaves_scenario_intro");
+			this.World.Events.fire("event.legend_escaped_slaves_scenario_intro");
 		}, null);
 	}
 

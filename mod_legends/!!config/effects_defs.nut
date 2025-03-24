@@ -1669,12 +1669,12 @@ effectsDefs.push({
 	Const = "LegendZombiePoison"
 });
 
-::Legends.Effect.SatoBrothersInChains <- null;
+::Legends.Effect.LegendBrothersInChains <- null;
 effectsDefs.push({
-	ID = "effects.sato_brothers_in_chains",
-	Script = "scripts/skills/effects/sato_brothers_in_chains_effect",
+	ID = "effects.legend_brothers_in_chains",
+	Script = "scripts/skills/effects/legend_brothers_in_chains_effect",
 	Name = "Brothers in Chains",
-	Const = "SatoBrothersInChains"
+	Const = "LegendBrothersInChains"
 });
 
 ::Legends.Effect.LegendHeadache <- null;

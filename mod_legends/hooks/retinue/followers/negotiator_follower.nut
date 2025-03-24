@@ -36,14 +36,14 @@
 			this.World.Assets.m.AdvancePaymentCap = 0.75;
 
 		if ("RelationDecayGoodMult" in this.World.Assets.m) {
-			if (this.World.Assets.getOrigin().getID() == "scenario.sato_escaped_slaves") {
+			if (this.World.Assets.getOrigin().getID() == "scenario.legend_escaped_slaves") {
 				this.World.Assets.m.RelationDecayGoodMult = 1.075;
 			} else {
 				this.World.Assets.m.RelationDecayGoodMult = 0.85;
 			}
 		}
 		if ("RelationDecayBadMult" in this.World.Assets.m) {
-			if (this.World.Assets.getOrigin().getID() == "scenario.sato_escaped_slaves") {
+			if (this.World.Assets.getOrigin().getID() == "scenario.legend_escaped_slaves") {
 				this.World.Assets.m.RelationDecayBadMult = 0.925;
 			} else {
 				this.World.Assets.m.RelationDecayBadMult = 1.15;

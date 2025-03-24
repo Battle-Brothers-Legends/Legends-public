@@ -1,4 +1,4 @@
-this.sato_pursuer_ambush_event <- this.inherit("scripts/events/event", {
+this.legend_pursuer_ambush_event <- this.inherit("scripts/events/event", {
 	m = {
 		BribeAmount = 0.0,
 		DifficultyMult = 0.0,
@@ -12,7 +12,7 @@ this.sato_pursuer_ambush_event <- this.inherit("scripts/events/event", {
 		local ManhuntersText1 = "An unnatural quiet takes hold, and the hairs on the back of your neck prick up. It seems %nemesisviziername% has not forgotten about you or your escape. You\'re surrounded by manhunters!";
 		local ManhuntersText2 = "Two men come out from behind a thicket, standing directly in your path. More materialize behind you. One of them brandishes a pair of manacles and jeers at you. Your heart sinks as you realize their true purpose: Manhunters from the %nemesiscityname%, here to capture or kill you! You have no choice but to defend yourselves!";
 		local ManhuntersText3 = "A group of mean looking men filter out into the path in front of you. You glance over your shoulder and see more of them there, too.%SPEECH_ON%%nemesisviziername% sends his regards, slave.%SPEECH_OFF%One of the men in front of you spits out. Manhunters, then. You order the company to defend themselves as the hunters close in...";
-		this.m.ID = "event.sato_pursuer_ambush";
+		this.m.ID = "event.legend_pursuer_ambush";
 		this.m.Title = "Along the way...";
 		this.m.Cooldown = 6.0 * this.World.getTime().SecondsPerDay;
 		this.m.Screens.push({
@@ -26,7 +26,7 @@ this.sato_pursuer_ambush_event <- this.inherit("scripts/events/event", {
 					Text = "To arms!",
 					function getResult( _event )
 					{
-						this.World.Statistics.getFlags().set("SatoLastAmbushType", "Manhunters");
+						this.World.Statistics.getFlags().set("LegendLastAmbushType", "Manhunters");
 						_event.m.NemesisCityState.addPlayerRelation(this.Const.World.Assets.RelationAttacked, "You evaded capture");
 						local properties = this.World.State.getLocalCombatProperties(this.World.State.getPlayer().getPos());
 						properties.CombatID = "Event";
@@ -35,7 +35,7 @@ this.sato_pursuer_ambush_event <- this.inherit("scripts/events/event", {
 						properties.Entities = [];
 						properties.PlayerDeploymentType = this.Const.Tactical.DeploymentType.Center;
 						properties.EnemyDeploymentType = this.Const.Tactical.DeploymentType.Circle;
-						this.Const.World.Common.addUnitsToCombat(properties.Entities, this.Const.World.Spawn.SatoManhunters, (100 + _event.m.ResourceBoost) * _event.m.DifficultyMult * _event.m.DifficultyMultScale, this.Const.Faction.Enemy, _event.m.ChampionChance);
+						this.Const.World.Common.addUnitsToCombat(properties.Entities, this.Const.World.Spawn.LegendManhunters, (100 + _event.m.ResourceBoost) * _event.m.DifficultyMult * _event.m.DifficultyMultScale, this.Const.Faction.Enemy, _event.m.ChampionChance);
 						this.World.State.startScriptedCombat(properties, false, false, true);
 						return 0;
 					}
@@ -60,7 +60,7 @@ this.sato_pursuer_ambush_event <- this.inherit("scripts/events/event", {
 					Text = "You\'ll regret crossing our path, manhunter.",
 					function getResult( _event )
 					{
-						this.World.Statistics.getFlags().set("SatoLastAmbushType", "ManhuntersBribe");
+						this.World.Statistics.getFlags().set("LegendLastAmbushType", "ManhuntersBribe");
 						return "ManhuntersBribeBattle";
 					}
 
@@ -69,7 +69,7 @@ this.sato_pursuer_ambush_event <- this.inherit("scripts/events/event", {
 					Text = "Perhaps we can work this out. Will %bribe% crowns do?",
 					function getResult( _event )
 					{
-						this.World.Statistics.getFlags().set("SatoLastAmbushType", "ManhuntersBribe");
+						this.World.Statistics.getFlags().set("LegendLastAmbushType", "ManhuntersBribe");
 						return "ManhuntersBribeSuccess";
 					}
 
@@ -99,7 +99,7 @@ this.sato_pursuer_ambush_event <- this.inherit("scripts/events/event", {
 						properties.Entities = [];
 						properties.PlayerDeploymentType = this.Const.Tactical.DeploymentType.Center;
 						properties.EnemyDeploymentType = this.Const.Tactical.DeploymentType.Circle;
-						this.Const.World.Common.addUnitsToCombat(properties.Entities, this.Const.World.Spawn.SatoManhunters, (115 + _event.m.ResourceBoost) * _event.m.DifficultyMult * _event.m.DifficultyMultScale, this.Const.Faction.Enemy, _event.m.ChampionChance);
+						this.Const.World.Common.addUnitsToCombat(properties.Entities, this.Const.World.Spawn.LegendManhunters, (115 + _event.m.ResourceBoost) * _event.m.DifficultyMult * _event.m.DifficultyMultScale, this.Const.Faction.Enemy, _event.m.ChampionChance);
 						this.World.State.startScriptedCombat(properties, false, false, true);
 						return 0;
 					}
@@ -151,7 +151,7 @@ this.sato_pursuer_ambush_event <- this.inherit("scripts/events/event", {
 					Text = "To arms!",
 					function getResult( _event )
 					{
-						this.World.Statistics.getFlags().set("SatoLastAmbushType", "Assassins");
+						this.World.Statistics.getFlags().set("LegendLastAmbushType", "Assassins");
 						_event.m.NemesisCityState.addPlayerRelation(this.Const.World.Assets.RelationAttacked, "You evaded capture");
 						local properties = this.World.State.getLocalCombatProperties(this.World.State.getPlayer().getPos());
 						properties.CombatID = "Event";
@@ -185,7 +185,7 @@ this.sato_pursuer_ambush_event <- this.inherit("scripts/events/event", {
 					Text = "To arms!",
 					function getResult( _event )
 					{
-						this.World.Statistics.getFlags().set("SatoLastAmbushType", "BountyHunters");
+						this.World.Statistics.getFlags().set("LegendLastAmbushType", "BountyHunters");
 						_event.m.NemesisCityState.addPlayerRelation(this.Const.World.Assets.RelationAttacked, "You evaded capture");
 						local properties = this.World.State.getLocalCombatProperties(this.World.State.getPlayer().getPos());
 						properties.CombatID = "Event";
@@ -215,7 +215,7 @@ this.sato_pursuer_ambush_event <- this.inherit("scripts/events/event", {
 			return false;
 		}
 
-		if (this.World.Assets.getOrigin().getID() != "scenario.sato_escaped_slaves")
+		if (this.World.Assets.getOrigin().getID() != "scenario.legend_escaped_slaves")
 		{
 			return;
 		}
@@ -273,7 +273,7 @@ this.sato_pursuer_ambush_event <- this.inherit("scripts/events/event", {
 		local currentTile = this.World.State.getPlayer().getTile();
 		local days = this.World.getTime().Days;
 		local renown = this.World.Assets.getBusinessReputation();
-		local lastAmbush = this.World.Statistics.getFlags().get("SatoLastAmbushType");
+		local lastAmbush = this.World.Statistics.getFlags().get("LegendLastAmbushType");
 
 		if (renown >= 2350 && !this.World.getTime().IsDaytime && lastAmbush != "Assassins")
 		{

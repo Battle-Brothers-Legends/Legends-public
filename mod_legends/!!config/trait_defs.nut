@@ -1030,8 +1030,8 @@ traitDefs.push({
 
 ::Legends.Trait.LegendBrothersInChains <- null;
 traitDefs.push({
-	ID = "trait.sato_brothers_in_chains",
-	Script = "scripts/skills/traits/sato_brothers_in_chains_trait",
+	ID = "trait.legend_brothers_in_chains",
+	Script = "scripts/skills/traits/legend_brothers_in_chains_trait",
 	Const = "LegendBrothersInChains"
 });
 

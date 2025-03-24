@@ -1,9 +1,9 @@
-this.sato_manhunter_melee_agent <- this.inherit("scripts/ai/tactical/agent", {
+this.legend_manhunter_melee_agent <- this.inherit("scripts/ai/tactical/agent", {
 	m = {},
 	function create()
 	{
 		this.agent.create();
-		this.m.ID = "agent.sato_manhunter_melee";
+		this.m.ID = "agent.legend_manhunter_melee";
 		this.m.Properties.BehaviorMult[this.Const.AI.Behavior.ID.Defend] = 1.0;
 		this.m.Properties.TargetPriorityHitchanceMult = 0.5;
 		this.m.Properties.TargetPriorityHitpointsMult = 0.3;

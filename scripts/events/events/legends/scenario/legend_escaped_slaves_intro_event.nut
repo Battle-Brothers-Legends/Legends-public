@@ -1,4 +1,4 @@
-this.sato_escaped_slaves_intro_event <- this.inherit("scripts/events/event", {
+this.legend_escaped_slaves_intro_event <- this.inherit("scripts/events/event", {
 	m = {},
 	function create()
 	{
@@ -8,7 +8,7 @@ this.sato_escaped_slaves_intro_event <- this.inherit("scripts/events/event", {
 		local introText4 = "\n\nYou know you can\'t keep running forever, though. You\'ll be caught eventually, and if you don\'t turn this group of miserable, downtrodden slaves into warriors soon, all of you will surely perish. You won\'t let that happen. You\'ve suffered with these men, shed sweat, blood, and tears together, and formed a bond of brotherhood stronger than any blood tie. Whether through mercenary work or common brigandry, you\'ll see them shaped into soldiers the likes of which %viziershortname% has never seen, and damn anyone who gets in your way.";
 		local introText5 = "\n\nBut for now, you keep running.";
 
-		this.m.ID = "event.sato_escaped_slaves_scenario_intro";
+		this.m.ID = "event.legend_escaped_slaves_scenario_intro";
 		this.m.IsSpecial = true;
 		this.m.Screens.push({
 			ID = "A",

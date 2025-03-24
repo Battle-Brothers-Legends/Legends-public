@@ -1,19 +1,19 @@
-this.sato_manhunter_veteran <- this.inherit("scripts/entity/tactical/human", {
+this.legend_manhunter_veteran_ranged <- this.inherit("scripts/entity/tactical/human", {
 	m = {},
 	function create()
 	{
-		this.m.Type = this.Const.EntityType.SatoManhunterVeteranRanged;
+		this.m.Type = this.Const.EntityType.LegendManhunterVeteran;
 		this.m.BloodType = this.Const.BloodType.Red;
-		this.m.XP = this.Const.Tactical.Actor.SatoManhunterVeteran.XP;
+		this.m.XP = this.Const.Tactical.Actor.LegendManhunterVeteranRanged.XP;
 		this.human.create();
 		this.m.Bodies = this.Const.Bodies.SouthernMale;
 		this.m.Faces = this.Const.Faces.SouthernMale;
 		this.m.Hairs = this.Const.Hair.SouthernMale;
 		this.m.HairColors = this.Const.HairColors.Southern;
 		this.m.Beards = this.Const.Beards.SouthernUntidy;
-		this.m.BeardChance = 90;
+		this.m.BeardChance = 80;
 		this.m.Ethnicity = 1;
-		this.m.AIAgent = this.new("scripts/ai/tactical/agents/sato_manhunter_melee_agent");
+		this.m.AIAgent = this.new("scripts/ai/tactical/agents/legend_manhunter_ranged_agent");
 		this.m.AIAgent.setActor(this);
 	}
 
@@ -21,8 +21,9 @@ this.sato_manhunter_veteran <- this.inherit("scripts/entity/tactical/human", {
 	{
 		this.human.onInit();
 		local b = this.m.BaseProperties;
-		b.setValues(this.Const.Tactical.Actor.SatoManhunterVeteran);
-
+		b.setValues(this.Const.Tactical.Actor.LegendManhunterVeteranRanged);
+		b.TargetAttractionMult = 1.1;
+		b.Vision = 8;
 		this.m.ActionPoints = b.ActionPoints;
 		this.m.Hitpoints = b.Hitpoints;
 		this.m.CurrentProperties = clone b;
@@ -46,21 +47,17 @@ this.sato_manhunter_veteran <- this.inherit("scripts/entity/tactical/human", {
 			this.getSprite("eye_rings").Visible = true;
 		}
 
-		b.IsSpecializedInMaces = true;
-		b.IsSpecializedInCleavers = true;
-		b.IsSpecializedInSwords = true;
-		b.IsSpecializedInDaggers = true;
 		b.IsSpecializedInThrowing = true;
+		b.IsSpecializedInBows = true;
+		b.IsSpecializedInCrossbows = true;
+		b.IsSpecializedInDaggers = true;
 
-		::Legends.Perks.grant(this, ::Legends.Perk.CripplingStrikes);
-		::Legends.Perks.grant(this, ::Legends.Perk.Anticipation);
+		::Legends.Perks.grant(this, ::Legends.Perk.FastAdaption);
+		::Legends.Perks.grant(this, ::Legends.Perk.CoupDeGrace);
 		::Legends.Perks.grant(this, ::Legends.Perk.QuickHands);
-		::Legends.Perks.grant(this, ::Legends.Perk.Brawny);
-		::Legends.Perks.grant(this, ::Legends.Perk.Relentless);
-		::Legends.Perks.grant(this, ::Legends.Perk.Overwhelm);
+		::Legends.Perks.grant(this, ::Legends.Perk.HeadHunter);
 		::Legends.Perks.grant(this, ::Legends.Perk.BattleForged);
 		::Legends.Perks.grant(this, ::Legends.Perk.Fearsome);
-		::Legends.Perks.grant(this, ::Legends.Perk.Rotation);
 	}
 
 	function onOtherActorDeath( _killer, _victim, _skill )
@@ -87,44 +84,56 @@ this.sato_manhunter_veteran <- this.inherit("scripts/entity/tactical/human", {
 	{
 		if (this.m.Items.hasEmptySlot(this.Const.ItemSlot.Mainhand))
 		{
-			local weapons = [
-				"weapons/shamshir",
-				"weapons/oriental/heavy_southern_mace",
-				"weapons/oriental/qatal_dagger",
-				"weapons/oriental/polemace"
-			];
+			local r = this.Math.rand(1, 3);
 
-			if (this.Const.DLC.Wildmen)
+			if (r == 1)
 			{
-				weapons.extend([
-					"weapons/shamshir",
-					"weapons/shamshir",
-					"weapons/oriental/heavy_southern_mace",
-					"weapons/oriental/heavy_southern_mace",
-					"weapons/oriental/qatal_dagger",
-					"weapons/oriental/qatal_dagger",
-					"weapons/oriental/polemace",
-					"weapons/oriental/polemace",
-					"weapons/battle_whip"
-				]);
+				this.m.Items.equip(this.new("scripts/items/weapons/oriental/handgonne"));
+				this.m.Items.equip(this.new("scripts/items/ammo/powder_bag"));
 			}
+			else
+			{
+				local weapons = [
+					"weapons/throwing_axe",
+					"weapons/throwing_axe",
+					"weapons/javelin"
+				];
 
-			this.m.Items.equip(this.new("scripts/items/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
+				if (this.World.getTime().Days < 80)
+				{
+					weapons.extend([
+						"weapons/greenskins/goblin_spiked_balls"
+					]);
+				}
+
+				weapons.extend([
+					"weapons/greenskins/goblin_spiked_balls"
+				]);
+
+				this.m.Items.equip(this.new("scripts/items/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
+			}
 		}
 
-		if (this.m.Items.hasEmptySlot(this.Const.ItemSlot.Offhand) && this.Math.rand(1, 100) <= 90)
+		local mainhandWeaponID = this.m.Items.getItemAtSlot(this.Const.ItemSlot.Mainhand).getID();
+		if (mainhandWeaponID == "weapon.handgonne" || mainhandWeaponID == "weapon.named_handgonne")
 		{
-			this.m.Items.equip(this.new("scripts/items/tools/throwing_net"));
+			this.m.Items.addToBag(this.new("scripts/items/weapons/oriental/qatal_dagger"));
 		}
-
-		if (this.m.Items.getItemAtSlot(this.Const.ItemSlot.Mainhand).getID() == "weapon.battle_whip")
+		else
 		{
-			this.m.Items.addToBag(this.new("scripts/items/weapons/oriental/light_southern_mace"));
+			local backupWeapons = [
+				"weapons/hooked_blade",
+				"weapons/warbrand",
+				"weapons/oriental/two_handed_saif",
+				"weapons/warfork"
+			];
+			this.m.Items.addToBag(this.new("scripts/items/" + backupWeapons[this.Math.rand(0, backupWeapons.len() - 1)]));
 		}
 
 		if (this.m.Items.hasEmptySlot(this.Const.ItemSlot.Body))
 		{
 			local armors = [
+				[1, "oriental/mail_and_lamellar_plating"],
 				[1, "oriental/southern_long_mail_with_padding"],
 				[1, "mail_hauberk"],
 				[1, "reinforced_mail_hauberk"],
@@ -139,44 +148,29 @@ this.sato_manhunter_veteran <- this.inherit("scripts/entity/tactical/human", {
 				]);
 			}
 
-			if (this.World.getTime().Days <= 50) {
-				armors.extend([
-					[1, "oriental/southern_long_mail_with_padding"]
-				]);
-			} else {
-				armors.extend([
-					[1, "heavy_lamellar_armor"],
-					[1, "oriental/padded_mail_and_lamellar_hauberk"]
-				]);
-			}
-
 			this.m.Items.equip(this.Const.World.Common.pickArmor(armors));
 		}
 
 		if (this.m.Items.hasEmptySlot(this.Const.ItemSlot.Head))
 		{
 			local helmets = [
-				[2, "oriental/spiked_skull_cap_with_mail"],
-				[2, "oriental/southern_helmet_with_coif"]
+				[1, "oriental/wrapped_southern_helmet"],
+				[1, "oriental/spiked_skull_cap_with_mail"],
+				[1, "oriental/southern_helmet_with_coif"]
 			];
 
 			if (this.World.getTime().Days > 50) {
 				helmets.extend([
-					[1, "oriental/heavy_lamellar_helmet"],
-					[1, "oriental/turban_helmet"]
+					[1, "oriental/heavy_lamellar_helmet"]
 				]);
-			}
 
-			if (this.Const.DLC.Wildmen)
-			{
-				helmets.extend([
-					[1, "conic_helmet_with_closed_mail"],
-					[1, "conic_helmet_with_faceguard"],
-					[1, "barbute_helmet"],
-				]);
-				helmets.push([1, "theamson_barbute_helmet"])
+				if (this.Const.DLC.Wildmen)
+				{
+					helmets.extend([
+						[1, "conic_helmet_with_closed_mail"]
+					]);
+				}
 			}
-
 
 			this.m.Items.equip(this.Const.World.Common.pickHelmet(helmets));
 		}
@@ -191,9 +185,16 @@ this.sato_manhunter_veteran <- this.inherit("scripts/entity/tactical/human", {
 
 		this.getSprite("miniboss").setBrush("bust_miniboss");
 		local weapons = [
-			"weapons/named/named_shamshir",
-			"weapons/named/named_mace",
-			"weapons/named/named_polemace"
+			[
+				"weapons/named/named_javelin"
+			],
+			[
+				"weapons/named/named_throwing_axe"
+			],
+			[
+				"weapons/named/named_handgonne",
+				"ammo/powder_bag"
+			]
 		];
 		local armors = clone this.Const.Items.NamedSouthernArmors;
 
@@ -206,9 +207,15 @@ this.sato_manhunter_veteran <- this.inherit("scripts/entity/tactical/human", {
 		local helmets = clone this.Const.Items.NamedSouthernHelmets;
 
 		local r = this.Math.rand(1, 3);
+
 		if (r == 1)
 		{
-			this.m.Items.equip(this.new("scripts/items/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
+			local r = this.Math.rand(0, weapons.len() - 1);
+
+			foreach( w in weapons[r] )
+			{
+				this.m.Items.equip(this.new("scripts/items/" + w));
+			}
 		}
 		else if (r == 2)
 		{
@@ -223,8 +230,9 @@ this.sato_manhunter_veteran <- this.inherit("scripts/entity/tactical/human", {
 			));
 		}
 
-		::Legends.Perks.grant(this, ::Legends.Perk.Underdog);
 		::Legends.Perks.grant(this, ::Legends.Perk.Duelist);
+		::Legends.Perks.grant(this, ::Legends.Perk.KillingFrenzy);
 		return true;
 	}
 });
+

@@ -1,10 +1,10 @@
-this.sato_destroyed_caravan_event <- this.inherit("scripts/events/event", {
+this.legend_destroyed_caravan_event <- this.inherit("scripts/events/event", {
 	m = {
 		Items = []
 	},
 	function create()
 	{
-		this.m.ID = "event.sato_destroyed_caravan";
+		this.m.ID = "event.legend_destroyed_caravan";
 		this.m.Title = "Along the way...";
 		this.m.Cooldown = 999999.0 * this.World.getTime().SecondsPerDay;
 		this.m.Screens.push({
@@ -169,7 +169,7 @@ this.sato_destroyed_caravan_event <- this.inherit("scripts/events/event", {
 
 	function onUpdateScore()
 	{
-		if (this.World.Assets.getOrigin().getID() != "scenario.sato_escaped_slaves")
+		if (this.World.Assets.getOrigin().getID() != "scenario.legend_escaped_slaves")
 		{
 			return;
 		}

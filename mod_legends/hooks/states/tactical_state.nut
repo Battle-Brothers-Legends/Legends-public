@@ -25,7 +25,7 @@
 				if (this.m.StrategicProperties != null && this.m.StrategicProperties.IsAttackingLocation)
 				{
 					this.World.Assets.addBusinessReputation(this.Const.World.Assets.ReputationOnVictoryVSLocation);
-					if (this.World.Assets.getOrigin().getID() == "scenario.sato_escaped_slaves")
+					if (this.World.Assets.getOrigin().getID() == "scenario.legend_escaped_slaves")
 					{
 						this.World.Statistics.getFlags().set("LastBattleWasLocation", true);
 						local findCaptiveChance = 15;
@@ -49,7 +49,7 @@
 				else
 				{
 					this.World.Assets.addBusinessReputation(this.Const.World.Assets.ReputationOnVictory);
-					if (this.World.Assets.getOrigin().getID() == "scenario.sato_escaped_slaves")
+					if (this.World.Assets.getOrigin().getID() == "scenario.legend_escaped_slaves")
 					{
 						this.World.Statistics.getFlags().set("LastBattleWasLocation", false);
 						this.World.Statistics.getFlags().set("FindCaptivePostBattle", false);

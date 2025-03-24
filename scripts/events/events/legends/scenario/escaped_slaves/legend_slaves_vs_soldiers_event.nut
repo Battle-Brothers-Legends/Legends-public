@@ -1,8 +1,8 @@
-this.sato_slaves_vs_soldiers_event <- this.inherit("scripts/events/event", {
+this.legend_slaves_vs_soldiers_event <- this.inherit("scripts/events/event", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "event.sato_slaves_vs_soldiers";
+		this.m.ID = "event.legend_slaves_vs_soldiers";
 		this.m.Title = "During camp...";
 		this.m.Cooldown = 50.0 * this.World.getTime().SecondsPerDay;
 		this.m.Screens.push({
@@ -70,7 +70,7 @@ this.sato_slaves_vs_soldiers_event <- this.inherit("scripts/events/event", {
 			return;
 		}
 
-		if (this.World.Assets.getOrigin().getID() != "scenario.sato_escaped_slaves")
+		if (this.World.Assets.getOrigin().getID() != "scenario.legend_escaped_slaves")
 		{
 			return;
 		}

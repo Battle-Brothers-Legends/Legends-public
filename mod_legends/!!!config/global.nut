@@ -194,9 +194,9 @@ for (local i = -1; i < ::Const.EntityIcon.len(); i++) {
 	::Const.EntityType.addNew("rabble_poacher_orientation", "Bandit Rabble Poacher", "Bandit Rabble Poachers", this.Const.FactionType.Bandits);
 ::Const.EntityType.BanditVermes <-
 	::Const.EntityType.addNew("bandit_raider_orientation", "Infected Bandit", "Bandit Vermes", this.Const.FactionType.Bandits);
-::Const.EntityType.SatoManhunter <-
+::Const.EntityType.LegendManhunter <-
 	::Const.EntityType.addNew("nomad_02_orientation", "Manhunter", "Manhunters", this.Const.FactionType.OrientalCityState);
-::Const.EntityType.SatoManhunterVeteran <-
+::Const.EntityType.LegendManhunterVeteran <-
 	::Const.EntityType.addNew("nomad_05_orientation", "Manhunter Veteran", "Manhunter Veterans", this.Const.FactionType.OrientalCityState);
 ::Const.EntityType.LegendMummyLight <-
 	::Const.EntityType.addNew("mummy_light_orientation", "Embalmed Slave", "Embalmed Slaves", this.Const.FactionType.Undead);
@@ -234,9 +234,9 @@ for (local i = -1; i < ::Const.EntityIcon.len(); i++) {
 	::Const.EntityType.addNew("mercenary_orientation", "Free Company Leader", "Free Company Leaders");
 ::Const.EntityType.FreeCompanyLeaderLow <-
 	::Const.EntityType.addNew("mercenary_orientation", "Free Company Ringleader", "Free Company Ringleaders");
-::Const.EntityType.SatoManhunterRanged <-
+::Const.EntityType.LegendManhunterRanged <-
 	::Const.EntityType.addNew("nomad_02_orientation", "Manhunter Handgonner", "Manhunter Handgonners", this.Const.FactionType.OrientalCityState);
-::Const.EntityType.SatoManhunterVeteranRanged <-
+::Const.EntityType.LegendManhunterVeteranRanged <-
 	::Const.EntityType.addNew("nomad_05_orientation", "Manhunter Veteran Handgonner", "Manhunter Veteran Handgonners", this.Const.FactionType.OrientalCityState);
 ::Const.EntityType.LegendNobleGuard <-
 	::Const.EntityType.addNew("footman_veteran_orientation", "Royal Guard", "Royal Guards", this.Const.FactionType.NobleHouse);

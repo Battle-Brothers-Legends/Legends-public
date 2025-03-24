@@ -1,4 +1,4 @@
-this.sato_brothers_in_chains_trait <- this.inherit("scripts/skills/traits/character_trait", {
+this.legend_brothers_in_chains_trait <- this.inherit("scripts/skills/traits/character_trait", {
 	m = {},
 	function create()
 	{
@@ -28,13 +28,13 @@ this.sato_brothers_in_chains_trait <- this.inherit("scripts/skills/traits/charac
 
 	function onCombatStarted()
 	{
-		::Legends.Effects.grant(this, ::Legends.Effect.SatoBrothersInChains);
+		::Legends.Effects.grant(this, ::Legends.Effect.LegendBrothersInChains);
 		this.m.IsHidden = true;
 	}
 
 	function onCombatFinished()
 	{
-		::Legends.Effects.remove(this, ::Legends.Effect.SatoBrothersInChains);
+		::Legends.Effects.remove(this, ::Legends.Effect.LegendBrothersInChains);
 		this.m.IsHidden = false;
 	}
 
