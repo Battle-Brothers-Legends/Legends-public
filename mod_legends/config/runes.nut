@@ -34,7 +34,7 @@
 		}
 	},
 	getTooltip = function(_item) {
-		return "This item has the power of the rune sigil of Power:\n[color=" + ::Const.UI.Color.PositiveValue + "]+" + _item.m.RuneBonus1 + "%[/color] Damage inflicted.\n" + "[color=" + ::Const.UI.Color.PositiveValue + "]+" + _item.m.RuneBonus2 + "[/color] Max damage.";
+		return "This item has the power of the rune sigil of Power:\n[color=" + ::Const.UI.Color.PositiveValue + "]+" + _item.getRuneBonus1() + "%[/color] Damage inflicted.\n" + "[color=" + ::Const.UI.Color.PositiveValue + "]+" + _item.getRuneBonus2() + "[/color] Max damage.";
 	},
 	getRuneTooltip = function (_item) {
 		local max1 = _item.isUpgraded() ? 9 : 6;
@@ -62,7 +62,7 @@
 		}
 	},
 	getTooltip = function(_item) {
-		return "This item has the power of the rune sigil of Accuracy:\n[color=" + ::Const.UI.Color.PositiveValue + "]+" + _item.m.RuneBonus1 + "%[/color] Melee skill.\n" + "[color=" + ::Const.UI.Color.PositiveValue + "]+" + _item.m.RuneBonus2 + "%[/color] Ranged skill.";
+		return "This item has the power of the rune sigil of Accuracy:\n[color=" + ::Const.UI.Color.PositiveValue + "]+" + _item.getRuneBonus1() + "%[/color] Melee skill.\n" + "[color=" + ::Const.UI.Color.PositiveValue + "]+" + _item.getRuneBonus2() + "%[/color] Ranged skill.";
 	},
 	getRuneTooltip = function (_item) {
 		local max1 = _item.isUpgraded() ? 9 : 6;
@@ -86,7 +86,7 @@
 		}
 	},
 	getTooltip = function(_item) {
-		return "This item has the power of the rune sigil of Feeding:\n[color=" + ::Const.UI.Color.PositiveValue + "]" + _item.m.RuneBonus1 + "%[/color] of inflicted health damage recovers fatigue.";
+		return "This item has the power of the rune sigil of Feeding:\n[color=" + ::Const.UI.Color.PositiveValue + "]" + _item.getRuneBonus1() + "%[/color] of inflicted health damage recovers fatigue.";
 	}
 	getRuneTooltip = function (_item) {
 		local max1 = _item.isUpgraded() ? 6 : 4;
@@ -112,7 +112,7 @@
 		}
 	},
 	getTooltip = function(_item) {
-		return "This item has the power of the rune sigil of Poison:\n[color=" + ::Const.UI.Color.PositiveValue + "]" + _item.m.RuneBonus1 + "[/color] turn(s) of poison applied, with a strength of [color=" + ::Const.UI.Color.PositiveValue + "]" + _item.m.RuneBonus2 + "[/color]. Lowers action points and initiative.";
+		return "This item has the power of the rune sigil of Poison:\n[color=" + ::Const.UI.Color.PositiveValue + "]" + _item.getRuneBonus1() + "[/color] turn(s) of poison applied, with a strength of [color=" + ::Const.UI.Color.PositiveValue + "]" + _item.getRuneBonus2() + "[/color]. Lowers action points and initiative.";
 	}
 	getRuneTooltip = function (_item) {
 		local max1 = _item.isUpgraded() ? 3 : 2;
@@ -139,7 +139,7 @@
 		}
 	},
 	getTooltip = function(_item) {
-		return "This item has the power of the rune sigil of Bleeding:\n[color=" + ::Const.UI.Color.PositiveValue + "]" + _item.m.RuneBonus1 + "[/color] bleed damage every turn for [color=" + ::Const.UI.Color.PositiveValue + "]" + _item.m.RuneBonus2 + "[/color] turn(s).";
+		return "This item has the power of the rune sigil of Bleeding:\n[color=" + ::Const.UI.Color.PositiveValue + "]" + _item.getRuneBonus1() + "[/color] bleed damage every turn for [color=" + ::Const.UI.Color.PositiveValue + "]" + _item.getRuneBonus2() + "[/color] turn(s).";
 	}
 	getRuneTooltip = function (_item) {
 		local max1 = _item.isUpgraded() ? 9 : 6;
@@ -166,7 +166,7 @@
 		}
 	},
 	getTooltip = function(_item) {
-		return "This item has the power of the rune sigil of Unbreaking:\n[color=" + ::Const.UI.Color.PositiveValue + "]" + _item.m.RuneBonus1 + "[/color] to [color=" + ::Const.UI.Color.PositiveValue + "]" + _item.m.RuneBonus2 + "[/color] durability restored on every kill.";
+		return "This item has the power of the rune sigil of Unbreaking:\n[color=" + ::Const.UI.Color.PositiveValue + "]" + _item.getRuneBonus1() + "[/color] to [color=" + ::Const.UI.Color.PositiveValue + "]" + _item.getRuneBonus2() + "[/color] durability restored on every kill.";
 	}
 	getRuneTooltip = function (_item) {
 		local max1 = _item.isUpgraded() ? 3 : 2;
@@ -193,7 +193,7 @@
 		}
 	},
 	getTooltip = function(_item) {
-		return "This item has the power of the rune sigil of Clarity:\n[color=" + ::Const.UI.Color.PositiveValue + "]+" + _item.m.RuneBonus1 + "[/color] Vision.\n[color=" + ::Const.UI.Color.PositiveValue + "]+" + _item.m.RuneBonus2 + "%[/color] Experience gain.";
+		return "This item has the power of the rune sigil of Clarity:\n[color=" + ::Const.UI.Color.PositiveValue + "]+" + _item.getRuneBonus1() + "[/color] Vision.\n[color=" + ::Const.UI.Color.PositiveValue + "]+" + _item.getRuneBonus2() + "%[/color] Experience gain.";
 	}
 	getRuneTooltip = function (_item) {
 		local max1 = _item.isUpgraded() ? 2 : 1;
@@ -220,7 +220,7 @@
 		}
 	},
 	getTooltip = function(_item) {
-		return "This item has the power of the rune sigil of Bravery:\n[color=" + ::Const.UI.Color.PositiveValue + "]+" + _item.m.RuneBonus1 + "%[/color] Resolve.\n[color=" + ::Const.UI.Color.PositiveValue + "]+" + _item.m.RuneBonus2 + "[/color] Resolve at all morale checks.";
+		return "This item has the power of the rune sigil of Bravery:\n[color=" + ::Const.UI.Color.PositiveValue + "]+" + _item.getRuneBonus1() + "%[/color] Resolve.\n[color=" + ::Const.UI.Color.PositiveValue + "]+" + _item.getRuneBonus2() + "[/color] Resolve at all morale checks.";
 	}
 	getRuneTooltip = function (_item) {
 		local max1 = _item.isUpgraded() ? 9 : 6;
@@ -245,7 +245,7 @@
 		}
 	},
 	getTooltip = function(_item) {
-		return "This item has the power of the rune sigil of Luck:\n[color=" + ::Const.UI.Color.PositiveValue + "]+" + _item.m.RuneBonus1 + "%[/color] chance to have any attacker require two successful attack rolls in order to hit.";
+		return "This item has the power of the rune sigil of Luck:\n[color=" + ::Const.UI.Color.PositiveValue + "]+" + _item.getRuneBonus1() + "%[/color] chance to have any attacker require two successful attack rolls in order to hit.";
 	}
 	getRuneTooltip = function (_item) {
 		local max1 = _item.isUpgraded() ? 9 : 6;
@@ -271,7 +271,7 @@
 		}
 	},
 	getTooltip = function(_item) {
-		return "This item has the power of the rune sigil of Endurance:\n[color=" + ::Const.UI.Color.PositiveValue + "]+" + _item.m.RuneBonus1 + "[/color] Fatigue recovery per turn.\n[color=" + ::Const.UI.Color.PositiveValue + "]-" + _item.m.RuneBonus2 + "%[/color] Fatigue cost and effects multiplier.";
+		return "This item has the power of the rune sigil of Endurance:\n[color=" + ::Const.UI.Color.PositiveValue + "]+" + _item.getRuneBonus1() + "[/color] Fatigue recovery per turn.\n[color=" + ::Const.UI.Color.PositiveValue + "]-" + _item.getRuneBonus2() + "%[/color] Fatigue cost and effects multiplier.";
 	}
 	getRuneTooltip = function (_item) {
 		local max1 = _item.isUpgraded() ? 3 : 1;
@@ -298,7 +298,7 @@
 		}
 	},
 	getTooltip = function(_item) {
-		return "This item has the power of the rune sigil of Safety:\n[color=" + ::Const.UI.Color.PositiveValue + "]+" + _item.m.RuneBonus1 + "%[/color] Hitpoints.\n[color=" + ::Const.UI.Color.PositiveValue + "]-" + _item.m.RuneBonus2 + "%[/color] Damage received.";
+		return "This item has the power of the rune sigil of Safety:\n[color=" + ::Const.UI.Color.PositiveValue + "]+" + _item.getRuneBonus1() + "%[/color] Hitpoints.\n[color=" + ::Const.UI.Color.PositiveValue + "]-" + _item.getRuneBonus2() + "%[/color] Damage received.";
 	}
 	getRuneTooltip = function (_item) {
 		local max1 = _item.isUpgraded() ? 9 : 6;
@@ -343,7 +343,7 @@
 		}
 	},
 	getTooltip = function(_item) {
-		return "This item has the power of the rune sigil of Defense:\n[color=" + ::Const.UI.Color.PositiveValue + "]+" + _item.m.RuneBonus1 + "%[/color] Melee defense.\n" + "[color=" + ::Const.UI.Color.PositiveValue + "]+" + _item.m.RuneBonus2 + "%[/color] Ranged defense.";
+		return "This item has the power of the rune sigil of Defense:\n[color=" + ::Const.UI.Color.PositiveValue + "]+" + _item.getRuneBonus1() + "%[/color] Melee defense.\n" + "[color=" + ::Const.UI.Color.PositiveValue + "]+" + _item.getRuneBonus2() + "%[/color] Ranged defense.";
 	}
 	getRuneTooltip = function (_item) {
 		local max1 = _item.isUpgraded() ? 9 : 6;
@@ -369,7 +369,7 @@
 		}
 	},
 	getTooltip = function(_item) {
-		return "This item has the power of the rune sigil of Radiance:\n[color=" + ::Const.UI.Color.PositiveValue + "]-" + _item.m.RuneBonus1 + "%[/color] to all adjacent enemies\' Melee skill.\n" + "[color=" + ::Const.UI.Color.PositiveValue + "]-" + _item.m.RuneBonus2 + "%[/color] to all adjacent enemies\' Melee defense.";
+		return "This item has the power of the rune sigil of Radiance:\n[color=" + ::Const.UI.Color.PositiveValue + "]-" + _item.getRuneBonus1() + "%[/color] to all adjacent enemies\' Melee skill.\n" + "[color=" + ::Const.UI.Color.PositiveValue + "]-" + _item.getRuneBonus2() + "%[/color] to all adjacent enemies\' Melee defense.";
 	}
 	getRuneTooltip = function (_item) {
 		max1 = _item.isUpgraded() ? 9 : 6;
