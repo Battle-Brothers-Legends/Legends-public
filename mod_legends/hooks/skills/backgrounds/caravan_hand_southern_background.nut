@@ -1,6 +1,6 @@
-this.caravan_hand_southern_background <- this.inherit("scripts/skills/backgrounds/caravan_hand_background", {
-	m = {},
-	function create()
+::mods_hookExactClass("skills/backgrounds/caravan_hand_southern_background", function(o)
+{
+	o.create = function ()
 	{
 		this.caravan_hand_background.create();
 		this.m.Bodies = this.Const.Bodies.SouthernSkinny;
@@ -24,7 +24,7 @@ this.caravan_hand_southern_background <- this.inherit("scripts/skills/background
 	}
 	
 	//Default Male
-	function setGender(_gender = -1)
+	o.setGender(_gender = -1)
 	{
 		if (_gender == -1) _gender = ::Legends.Mod.ModSettings.getSetting("GenderEquality").getValue() == "Disabled" ? 0 : ::Math.rand(0, 1);
 
@@ -41,7 +41,7 @@ this.caravan_hand_southern_background <- this.inherit("scripts/skills/background
 
 	}	
 
-	function onBuildDescription()
+	o.onBuildDescription <- function ()
 	{
 	
 		if(this.isBackgroundType(this.Const.BackgroundType.Female))
@@ -54,7 +54,7 @@ this.caravan_hand_southern_background <- this.inherit("scripts/skills/background
 		}		
 	}
 
-	function onAddEquipment()
+	o.onAddEquipment = function ()
 	{
 		local items = this.getContainer().getActor().getItems();
 		local r;
@@ -91,4 +91,3 @@ this.caravan_hand_southern_background <- this.inherit("scripts/skills/background
 		]))
 	}
 });
-

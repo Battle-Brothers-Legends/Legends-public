@@ -1,6 +1,6 @@
-this.cripple_southern_background <- this.inherit("scripts/skills/backgrounds/cripple_background", {
-	m = {},
-	function create()
+::mods_hookExactClass("skills/backgrounds/cripple_southern_background", function(o)
+{
+	o.create = function ()
 	{
 		this.cripple_background.create();
 		this.m.Faces = this.Const.Faces.SouthernMale;
@@ -13,7 +13,7 @@ this.cripple_southern_background <- this.inherit("scripts/skills/backgrounds/cri
 		this.m.Names = this.Const.Strings.SouthernNames;
 	}
 
-	function onBuildDescription()
+	o.onBuildDescription <- function ()
 	{
 		if(this.isBackgroundType(this.Const.BackgroundType.Female))
 		{
@@ -27,7 +27,7 @@ this.cripple_southern_background <- this.inherit("scripts/skills/backgrounds/cri
 	}
 
 	//Default Male
-	function setGender(_gender = -1)
+	o.setGender <- function (_gender = -1)
 	{
 		if (_gender == -1) _gender = ::Legends.Mod.ModSettings.getSetting("GenderEquality").getValue() == "Disabled" ? 0 : ::Math.rand(0, 1);
 
@@ -44,7 +44,7 @@ this.cripple_southern_background <- this.inherit("scripts/skills/backgrounds/cri
 
 	}
 
-	function onAddEquipment()
+	o.onAddEquipment = function ()
 	{
 		local items = this.getContainer().getActor().getItems();
 		local r;

@@ -1,6 +1,6 @@
-this.crucified_background <- this.inherit("scripts/skills/backgrounds/character_background", {
-	m = {},
-	function create()
+::mods_hookExactClass("skills/backgrounds/crucified_background", function(o)
+{
+	o.create = function ()
 	{
 		this.character_background.create();
 		this.m.ID = "background.crucified";
@@ -75,7 +75,7 @@ this.crucified_background <- this.inherit("scripts/skills/backgrounds/character_
 
 
 
-	function onSetAppearance()
+	o.onSetAppearance = function ()
 	{
 		local actor = this.getContainer().getActor();
 		local tattoo_body = actor.getSprite("tattoo_body");
@@ -87,7 +87,7 @@ this.crucified_background <- this.inherit("scripts/skills/backgrounds/character_
 		tattoo_head.Visible = true;
 	}
 
-	function updateAppearance()
+	o.updateAppearance = function ()
 	{
 		local actor = this.getContainer().getActor();
 		local tattoo_body = actor.getSprite("tattoo_body");
@@ -99,7 +99,7 @@ this.crucified_background <- this.inherit("scripts/skills/backgrounds/character_
 		}
 	}
 
-	function onChangeAttributes()
+	o.onChangeAttributes = function ()
 	{
 		local c = {
 			Hitpoints = [
@@ -138,7 +138,7 @@ this.crucified_background <- this.inherit("scripts/skills/backgrounds/character_
 		return c;
 	}
 
-	function onAddEquipment()
+	o.onAddEquipment = function ()
 	{
 	}
 
