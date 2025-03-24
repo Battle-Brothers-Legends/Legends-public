@@ -80,7 +80,7 @@
 		actor.setDirty(true);
 	}
 
-	o.onAdded = function ()
+	o.onAdded <- function ()
 	{
 		this.character_background.onAdded();
 		this.getContainer().getActor().getFlags().add("cultist");
