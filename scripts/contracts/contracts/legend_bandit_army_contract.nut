@@ -842,7 +842,7 @@ this.legend_bandit_army_contract <- this.inherit("scripts/contracts/contract", {
 
 	function spawnRaidingParty() {
 		local tile = this.m.Destination.getTile();
-		local party = this.World.FactionManager.getFactionOfType(this.Const.FactionType.Bandits).spawnEntity(tile, "Raiding party", false, this.Const.World.Spawn.BanditRoamers, 80 * this.getDifficultyMult() * this.getScaledDifficultyMult(), this.Contract.getMinibossModifier());
+		local party = this.World.FactionManager.getFactionOfType(this.Const.FactionType.Bandits).spawnEntity(tile, "Raiding party", false, this.Const.World.Spawn.BanditRoamers, 80 * this.getDifficultyMult() * this.getScaledDifficultyMult(), this.getMinibossModifier());
 		party.getSprite("banner").setBrush(this.m.Destination.getBanner());
 		party.setAttackableByAI(false);
 		this.m.Target = this.WeakTableRef(party);
@@ -862,7 +862,7 @@ this.legend_bandit_army_contract <- this.inherit("scripts/contracts/contract", {
 
 	function spawnBribedParty() {
 		local playerTile = this.World.State.getPlayer().getTile();
-		local party = this.World.FactionManager.getFactionOfType(this.Const.FactionType.Settlement).spawnEntity(playerTile, "Bribed Raiders", false, this.Const.World.Spawn.BanditArmy, 50 * this.getDifficultyMult() * this.getScaledDifficultyMult(), this.Contract.getMinibossModifier());
+		local party = this.World.FactionManager.getFactionOfType(this.Const.FactionType.Settlement).spawnEntity(playerTile, "Bribed Raiders", false, this.Const.World.Spawn.BanditArmy, 50 * this.getDifficultyMult() * this.getScaledDifficultyMult(), this.getMinibossModifier());
 		party.setDescription("Those who like gold above all");
 		return party;
 	}

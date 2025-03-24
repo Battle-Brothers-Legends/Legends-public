@@ -612,7 +612,7 @@ this.legend_hunting_stollwurms_contract <- this.inherit("scripts/contracts/contr
 			this.Const.World.TerrainType.Mountains
 		]);
 		local nearTile = this.getTileToSpawnLocation(playerTile, 4, 7);
-		local party = this.World.FactionManager.getFactionOfType(this.Const.FactionType.Beasts).spawnEntity(tile, "Stollwurm", false, this.Const.World.Spawn.LegendStollwurm, 100 * this.getDifficultyMult() * this.getScaledDifficultyMult(), this.Contract.getMinibossModifier());
+		local party = this.World.FactionManager.getFactionOfType(this.Const.FactionType.Beasts).spawnEntity(tile, "Stollwurm", false, this.Const.World.Spawn.LegendStollwurm, 100 * this.getDifficultyMult() * this.getScaledDifficultyMult(), this.getMinibossModifier());
 		party.getSprite("banner").setBrush("banner_beasts_01");
 		party.setDescription("A Stollwurm - a burrowing bipedal dragon resembling a giant snake.");
 		party.setAttackableByAI(false);

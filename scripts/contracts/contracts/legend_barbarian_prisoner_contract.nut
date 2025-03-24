@@ -624,7 +624,7 @@ this.legend_barbarian_prisoner_contract <- this.inherit("scripts/contracts/contr
 	}
 
 	function spawnEnemies() {
-		local party = this.World.FactionManager.getFactionOfType(this.Const.FactionType.Barbarians).spawnEntity(this.m.BarbCamp.getTile(), "Barbarian Retaliation", false, this.Const.World.Spawn.Barbarians, 200 * this.getDifficultyMult() * this.getScaledDifficultyMult(), this.Contract.getMinibossModifier());
+		local party = this.World.FactionManager.getFactionOfType(this.Const.FactionType.Barbarians).spawnEntity(this.m.BarbCamp.getTile(), "Barbarian Retaliation", false, this.Const.World.Spawn.Barbarians, 200 * this.getDifficultyMult() * this.getScaledDifficultyMult(), this.getMinibossModifier());
 		party.getSprite("banner").setBrush(this.m.BarbCamp.getBanner());
 		party.setAttackableByAI(false);
 		this.m.BarbRetal = this.WeakTableRef(party);
@@ -646,7 +646,7 @@ this.legend_barbarian_prisoner_contract <- this.inherit("scripts/contracts/contr
 	function spawnCaravan()
 	{
 		local faction = this.World.FactionManager.getFaction(this.getFaction());
-		local party = faction.spawnEntity(this.m.Home.getTile(), "Escort Caravan", false, this.Const.World.Spawn.Caravan, this.m.Home.getResources() * 0.8, this.Contract.getMinibossModifier());
+		local party = faction.spawnEntity(this.m.Home.getTile(), "Escort Caravan", false, this.Const.World.Spawn.Caravan, this.m.Home.getResources() * 0.8, this.getMinibossModifier());
 		party.getSprite("banner").Visible = false;
 		party.getSprite("base").Visible = false;
 		party.setMirrored(true);
