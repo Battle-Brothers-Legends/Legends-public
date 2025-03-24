@@ -1,4 +1,5 @@
 // left as is to credit sato properly
+// actually renamed to disrespect sato
 this.legend_brothers_in_chains_effect <- this.inherit("scripts/skills/skill", {
 	m = {
 		AttackBonus = 0,

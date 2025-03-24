@@ -76,7 +76,7 @@
 		return "{%name% is no longer disowned by %their% royal family, yet %their% allegiance is now with the %companyname%. Despite not returning home to %their% lineage, you know that deep down %they% is emboldened by the fact that %they% is back in %their% natural bloodline.}";
 	}
 
-	o.onChangeAttributes = function ()
+	o.onChangeAttributes <- function ()
 	{
 		local c = {
 			Hitpoints = [
