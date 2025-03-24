@@ -1,8 +1,7 @@
-this.paymaster_follower <- this.inherit("scripts/retinue/follower", {
-	m = {
-		Multiplier = 0.85,
-	},
-	function create()
+::mods_hookExactClass("scripts/retinue/followers/paymaster_follower", function(o) {
+	o.m.Multiplier <- 0.85;
+
+	o.create = function ()
 	{
 		this.follower.create();
 		this.m.ID = "follower.paymaster";
@@ -23,7 +22,10 @@ this.paymaster_follower <- this.inherit("scripts/retinue/follower", {
 		]);
 	}
 
-	function getMultiplier()
+	o.isVisible = function () { return true; }
+	o.onUpdate = function () {}
+
+	o.getMultiplier = function ()
 	{
 		return this.m.Multiplier;
 	}

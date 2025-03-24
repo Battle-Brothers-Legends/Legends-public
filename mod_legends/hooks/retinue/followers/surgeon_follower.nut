@@ -1,6 +1,5 @@
-this.surgeon_follower <- this.inherit("scripts/retinue/follower", {
-	m = {},
-	function create()
+::mods_hookExactClass("scripts/retinue/followers/surgeon_follower", function(o) {
+	o.create = function ()
 	{
 		this.follower.create();
 		this.m.ID = "follower.surgeon";
@@ -20,10 +19,14 @@ this.surgeon_follower <- this.inherit("scripts/retinue/follower", {
 		]);
 	}
 
-	function onUpdate()
+	o.onUpdate = function ()
 	{
 		if ("IsSurvivalGuaranteed" in this.World.Assets.m)
 			this.World.Assets.m.IsSurvivalGuaranteed = true;
+	}
+
+	o.onEvaluate = function () {
+		this.follower.onEvaluate();
 	}
 });
 

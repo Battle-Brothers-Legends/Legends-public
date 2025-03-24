@@ -1,6 +1,5 @@
-this.negotiator_follower <- this.inherit("scripts/retinue/follower", {
-	m = {},
-	function create()
+::mods_hookExactClass("scripts/retinue/followers/negotiator_follower", function(o)  {
+	o.create = function ()
 	{
 		this.follower.create();
 		this.m.ID = "follower.negotiator";
@@ -29,7 +28,7 @@ this.negotiator_follower <- this.inherit("scripts/retinue/follower", {
 		], true);
 	}
 
-	function onUpdate()
+	o.onUpdate = function ()
 	{
 		if ("NegotiationAnnoyanceMult" in this.World.Assets.m)
 			this.World.Assets.m.NegotiationAnnoyanceMult = 0.5;
@@ -52,9 +51,8 @@ this.negotiator_follower <- this.inherit("scripts/retinue/follower", {
 		}
 	}
 
-	function onNewDay()
-	{
-		this.onUpdate();
+	o.onEvaluate = function () {
+		this.follower.onEvaluate();
 	}
 });
 

@@ -1,6 +1,5 @@
-this.blacksmith_follower <- this.inherit("scripts/retinue/follower", {
-	m = {},
-	function create()
+::mods_hookExactClass("scripts/retinue/followers/blacksmith_follower", function(o) {
+	o.create = function ()
 	{
 		this.follower.create();
 		this.m.ID = "follower.blacksmith";
@@ -20,13 +19,17 @@ this.blacksmith_follower <- this.inherit("scripts/retinue/follower", {
 		]);
 	}
 
-	function onUpdate()
+	o.onUpdate = function()
 	{
 		this.follower.onUpdate();
 		if ("RepairSpeedMult" in this.World.Assets.m)
 			this.World.Assets.m.RepairSpeedMult *= 1.33;
 		if ("IsBlacksmithed" in this.World.Assets.m)
 			this.World.Assets.m.IsBlacksmithed = true;
+	}
+
+	o.onEvaluate = function () {
+		this.follower.onEvaluate();
 	}
 });
 

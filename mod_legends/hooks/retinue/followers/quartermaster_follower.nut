@@ -1,6 +1,5 @@
-this.quartermaster_follower <- this.inherit("scripts/retinue/follower", {
-	m = {},
-	function create()
+::mods_hookExactClass("scripts/retinue/followers/quartermaster_follower", function(o) {
+	o.create = function ()
 	{
 		this.follower.create();
 		this.m.ID = "follower.quartermaster";
@@ -20,7 +19,7 @@ this.quartermaster_follower <- this.inherit("scripts/retinue/follower", {
 		]);
 	}
 
-	function onUpdate()
+	o.onUpdate = function ()
 	{
 		if ("AmmoMaxAdditional" in this.World.Assets.m)
 			this.World.Assets.m.AmmoMaxAdditional = 100;
@@ -30,5 +29,8 @@ this.quartermaster_follower <- this.inherit("scripts/retinue/follower", {
 			this.World.Assets.m.ArmorPartsMaxAdditional = 50;
 	}
 
+	o.onEvaluate = function () {
+		this.follower.onEvaluate();
+	}
 });
 

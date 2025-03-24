@@ -1,6 +1,5 @@
-this.cook_follower <- this.inherit("scripts/retinue/follower", {
-	m = {},
-	function create()
+::mods_hookExactClass("scripts/retinue/followers/cook_follower", function(o) {
+	o.create = function ()
 	{
 		this.follower.create();
 		this.m.ID = "follower.cook";
@@ -19,12 +18,16 @@ this.cook_follower <- this.inherit("scripts/retinue/follower", {
 		]);
 	}
 
-	function onUpdate()
+	o.onUpdate = function ()
 	{
 		if ("FoodAdditionalDays" in this.World.Assets.m)
 			this.World.Assets.m.FoodAdditionalDays = 4;
 		//if ("HitpointsPerHourMult" in this.World.Assets.m)
 			//this.World.Assets.m.HitpointsPerHourMult = 1.33;
+	}
+
+	o.onEvaluate = function () {
+		this.follower.onEvaluate();
 	}
 });
 

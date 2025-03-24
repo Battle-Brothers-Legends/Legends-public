@@ -1,6 +1,5 @@
-this.scout_follower <- this.inherit("scripts/retinue/follower", {
-	m = {},
-	function create()
+::mods_hookExactClass("scripts/retinue/followers/scout_follower", function(o) {
+	o.create = function ()
 	{
 		this.follower.create();
 		this.m.ID = "follower.scout";
@@ -26,7 +25,7 @@ this.scout_follower <- this.inherit("scripts/retinue/follower", {
 		]);
 	}
 
-	function onUpdate()
+	o.onUpdate = function ()
 	{
 		for( local i = 0; i < this.World.Assets.m.TerrainTypeSpeedMult.len(); i = ++i )
 		{
@@ -35,6 +34,10 @@ this.scout_follower <- this.inherit("scripts/retinue/follower", {
 				this.World.Assets.m.TerrainTypeSpeedMult[i] *= (this.Const.World.TerrainTypeSpeedMult[i] + 0.15) / this.Const.World.TerrainTypeSpeedMult[i];
 			}
 		}
+	}
+
+	o.onEvaluate = function () {
+		this.follower.onEvaluate();
 	}
 });
 

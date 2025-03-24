@@ -1,6 +1,5 @@
-this.lookout_follower <- this.inherit("scripts/retinue/follower", {
-	m = {},
-	function create()
+::mods_hookExactClass("scripts/retinue/followers/lookout_follower", function(o) {
+	o.create = function ()
 	{
 		this.follower.create();
 		this.m.ID = "follower.lookout";
@@ -20,12 +19,16 @@ this.lookout_follower <- this.inherit("scripts/retinue/follower", {
 		]);
 	}
 
-	function onUpdate()
+	o.onUpdate = function ()
 	{
 		if ("VisionRadiusMult" in this.World.Assets.m)
 			this.World.Assets.m.VisionRadiusMult = 1.25;
 		if ("IsShowingExtendedFootprints" in this.World.Assets.m)
 			this.World.Assets.m.IsShowingExtendedFootprints = true;
+	}
+
+	o.onEvaluate = function () {
+		this.follower.onEvaluate();
 	}
 });
 

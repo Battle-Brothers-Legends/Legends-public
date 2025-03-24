@@ -1,6 +1,5 @@
-this.alchemist_follower <- this.inherit("scripts/retinue/follower", {
-	m = {},
-	function create()
+::mods_hookExactClass("scripts/retinue/followers/alchemist_follower", function(o) {
+	o.create = function ()
 	{
 		this.follower.create();
 		this.m.ID = "follower.alchemist";
@@ -34,9 +33,8 @@ this.alchemist_follower <- this.inherit("scripts/retinue/follower", {
 		]);
 	}
 
-	function isValid()
-	{
-		return this.Const.DLC.Unhold;
+	o.onEvaluate = function () {
+		this.follower.onEvaluate();
 	}
 });
 

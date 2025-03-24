@@ -1,6 +1,5 @@
-this.drill_sergeant_follower <- this.inherit("scripts/retinue/follower", {
-	m = {},
-	function create()
+::mods_hookExactClass("scripts/retinue/followers/drill_sergeant_follower", function(o) {
+	o.create = function ()
 	{
 		this.follower.create();
 		this.m.ID = "follower.drill_sergeant";
@@ -32,10 +31,14 @@ this.drill_sergeant_follower <- this.inherit("scripts/retinue/follower", {
 		], true);
 	}
 
-	function onUpdate()
+	o.onUpdate = function ()
 	{
 		if ("IsDisciplined" in this.World.Assets.m)
 			this.World.Assets.m.IsDisciplined = true;
+	}
+
+	o.onEvaluate = function () {
+		this.follower.onEvaluate();
 	}
 });
 

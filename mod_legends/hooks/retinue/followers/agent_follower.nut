@@ -1,6 +1,5 @@
-this.agent_follower <- this.inherit("scripts/retinue/follower", {
-	m = {},
-	function create()
+::mods_hookExactClass("scripts/retinue/followers/agent_follower", function(o) {
+	o.create = function ()
 	{
 		this.follower.create();
 		this.m.ID = "follower.agent";
@@ -39,6 +38,10 @@ this.agent_follower <- this.inherit("scripts/retinue/follower", {
 			"background.legend_companion_melee",
 			"background.legend_companion_ranged"
 		]);
+	}
+
+	o.onEvaluate = function () {
+		this.follower.onEvaluate();
 	}
 });
 

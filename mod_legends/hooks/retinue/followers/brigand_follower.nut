@@ -1,6 +1,5 @@
-this.brigand_follower <- this.inherit("scripts/retinue/follower", {
-	m = {},
-	function create()
+::mods_hookExactClass("scripts/retinue/followers/brigand_follower", function(o) {
+	o.create = function ()
 	{
 		this.follower.create();
 		this.m.ID = "follower.brigand";
@@ -31,10 +30,14 @@ this.brigand_follower <- this.inherit("scripts/retinue/follower", {
 		], true);
 	}
 
-	function onUpdate()
+	o.onUpdate = function ()
 	{
 		if ("IsBrigand" in this.World.Assets.m)
 			this.World.Assets.m.IsBrigand = true;
+	}
+
+	o.onEvaluate = function () {
+		this.follower.onEvaluate();
 	}
 });
 

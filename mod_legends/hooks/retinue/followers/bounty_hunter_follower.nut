@@ -1,6 +1,5 @@
-this.bounty_hunter_follower <- this.inherit("scripts/retinue/follower", {
-	m = {},
-	function create()
+::mods_hookExactClass("scripts/retinue/followers/bounty_hunter_follower", function(o) {
+	o.create = function ()
 	{
 		this.follower.create();
 		this.m.ID = "follower.bounty_hunter";
@@ -27,13 +26,13 @@ this.bounty_hunter_follower <- this.inherit("scripts/retinue/follower", {
 		]);
 	}
 
-	function onUpdate()
+	o.onUpdate = function()
 	{
 		if ("ChampionChanceAdditional" in this.World.Assets.m)
 			this.World.Assets.m.ChampionChanceAdditional = this.World.Assets.getOrigin().getID() == "scenario.legends_party" ? 8 : 3;
 	}
 
-	function onChampionKilled( _champion )
+	o.onChampionKilled = function( _champion )
 	{
 		if (this.Tactical.State.getStrategicProperties() == null || !this.Tactical.State.getStrategicProperties().IsArenaMode)
 		{
@@ -41,7 +40,7 @@ this.bounty_hunter_follower <- this.inherit("scripts/retinue/follower", {
 		}
 	}
 
-	function getNumberOfNamedItems()
+	o.getNumberOfNamedItems = function()
 	{
 		local n = 0;
 		local items = this.World.Assets.getStash().getItems();
@@ -64,6 +63,10 @@ this.bounty_hunter_follower <- this.inherit("scripts/retinue/follower", {
 		}
 
 		return n;
+	}
+
+	o.onEvaluate = function () {
+		this.follower.onEvaluate();
 	}
 });
 

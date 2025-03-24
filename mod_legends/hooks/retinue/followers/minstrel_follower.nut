@@ -1,6 +1,5 @@
-this.minstrel_follower <- this.inherit("scripts/retinue/follower", {
-	m = {},
-	function create()
+::mods_hookExactClass("scripts/retinue/followers/minstrel_follower", function(o) {
+	o.create = function ()
 	{
 		this.follower.create();
 		this.m.ID = "follower.minstrel";
@@ -20,12 +19,16 @@ this.minstrel_follower <- this.inherit("scripts/retinue/follower", {
 		]);
 	}
 
-	function onUpdate()
+	o.onUpdate = function ()
 	{
 		if ("BusinessReputationRate" in this.World.Assets.m)
 			this.World.Assets.m.BusinessReputationRate *= 1.15;
 		if ("IsNonFlavorRumorsOnly" in this.World.Assets.m)
 			this.World.Assets.m.IsNonFlavorRumorsOnly = true;
+	}
+
+	o.onEvaluate = function () {
+		this.follower.onEvaluate();
 	}
 });
 

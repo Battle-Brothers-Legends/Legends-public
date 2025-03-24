@@ -1,6 +1,5 @@
-this.scavenger_follower <- this.inherit("scripts/retinue/follower", {
-	m = {},
-	function create()
+::mods_hookExactClass("scripts/retinue/followers/scavenger_follower", function(o) {
+	o.create = function ()
 	{
 		this.follower.create();
 		this.m.ID = "follower.scavenger";
@@ -26,12 +25,16 @@ this.scavenger_follower <- this.inherit("scripts/retinue/follower", {
 		]);
 	}
 
-	function onUpdate()
+	o.onUpdate = function ()
 	{
 		if ("IsRecoveringAmmo" in this.World.Assets.m)
 			this.World.Assets.m.IsRecoveringAmmo = true;
 		if ("IsRecoveringArmor" in this.World.Assets.m)
 			this.World.Assets.m.IsRecoveringArmor = true;
+	}
+
+	o.onEvaluate = function () {
+		this.follower.onEvaluate();
 	}
 });
 

@@ -1,6 +1,5 @@
-this.recruiter_follower <- this.inherit("scripts/retinue/follower", {
-	m = {},
-	function create()
+::mods_hookExactClass("scripts/retinue/followers/recruiter_follower", function(o) {
+	o.create = function ()
 	{
 		this.follower.create();
 		this.m.ID = "follower.recruiter";
@@ -20,7 +19,7 @@ this.recruiter_follower <- this.inherit("scripts/retinue/follower", {
 		]);
 	}
 
-	function onUpdate()
+	o.onUpdate = function ()
 	{
 		if ("RosterSizeAdditionalMin" in this.World.Assets.m)
 			this.World.Assets.m.RosterSizeAdditionalMin += 2;
@@ -30,6 +29,10 @@ this.recruiter_follower <- this.inherit("scripts/retinue/follower", {
 			this.World.Assets.m.HiringCostMult *= 0.9;
 		if ("TryoutPriceMult" in this.World.Assets.m)
 			this.World.Assets.m.TryoutPriceMult *= 0.5;
+	}
+
+	o.onEvaluate = function () {
+		this.follower.onEvaluate();
 	}
 });
 
