@@ -1,6 +1,6 @@
-this.gladiator_background <- this.inherit("scripts/skills/backgrounds/character_background", {
-	m = {},
-	function create()
+::mods_hookExactClass("skills/backgrounds/gladiator_background", function(o)
+{
+	o.create = function ()
 	{
 		this.character_background.create();
 		this.m.ID = "background.gladiator";
@@ -112,7 +112,7 @@ this.gladiator_background <- this.inherit("scripts/skills/backgrounds/character_
 	}
 
 	//Default Male
-	function setGender(_gender = -1)
+	o.setGender <- function (_gender = -1)
 	{
 		if (_gender == -1) _gender = ::Legends.Mod.ModSettings.getSetting("GenderEquality").getValue() == "Disabled" ? 0 : ::Math.rand(0, 1);
 
@@ -137,13 +137,12 @@ this.gladiator_background <- this.inherit("scripts/skills/backgrounds/character_
 		this.addBackgroundType(this.Const.BackgroundType.Female);
 	}
 
-
-	function onBuildDescription()
+	o.onBuildDescription <- function ()
 	{
 		return "{The South is littered with slaves of all sorts, called the indebted for their debt to the Gilder. While most find themselves in the fields, a select few are taken to the fighting pits to battle it out. | While northerners do partake in combat tournaments, nothing gets close to the violence and gore of a southern gladiatorial pit. | In the South, rich and poor alike enjoy cheering on the gladiators of the fighting pits. | Southern gladiatorial pits are filled with indebted and voluntary killers alike. | A bloody house of combat and betting, a gladiatorial pit is the one place in the South one may find rich and poor crowded together.} {It was from these ranks %name% came. %they% rapidly grew through the ranks and managed to buy %their% way out of the pits and into whatever \'freedom\' one could find after such a life. | A crowd-favorite, %name%\'s time as a gladiator ended after a \'pardon\' by %their% wealthy sponsors. But in early retirement %they% found %their% life unfulfilled. | Successful killers such as %name% can buy their way to freedom, though the bloodlust has yet to leave the woman. | %name% was involved in a \'diving\' incident and received a year long ban from the pits. | But gladiators like %name% are not just popular with the public, but particularly with lusty folk . A raunchy tryst with a noble led to the fighter being spirited away under the cover of night lest %they% be mutilated. | A pit\'s most popular fighter is usually a blend of murderous handsomeness, and a woman such as %name% was only the former. Dispirited by the lack of fame %they% thought %they% had earned, %they% purchased %their% freedom and departed the blood sport.} {Gladiators usually cross from fighting pit to fighting pit, so a sturdy, well skilled fighter such as %name% is rare to find in the wild. Yet here %they% stands, albeit with enough scars to make a flagellant blush. | You\'ve met many a warrior, but rarely one with the particular skillsets of a pit fighter such as %name%. All the clashing in the arenas has made %their% a clever warrior indeed, and also one with many a scar and injury to match %their% time there. | There\'s many pairings in this world, and a gladiator with an untouched body is not one of them. %name% is a skilled fighter, but %they% earned those experiences with %their% own blood and body. | An impressive gladiatorial resume such as the one %name% brings hints at a woman well versed in killing. The many scars, however, flatly state that %their% time in the pits came with an irreversible price of their own. | Gladiators such as %name% could be the most skilled fighters in all the land, but the fighting pits are full of games and are designed to bring harm to all who partake. The woman is a talented warrior, but %they% wears the scars and wounds of a career in the arena.}";
 	}
 
-	function onSetAppearance()
+	o.onSetAppearance = function ()
 	{
 		local actor = this.getContainer().getActor();
 		local tattoo_body = actor.getSprite("tattoo_body");
@@ -163,7 +162,7 @@ this.gladiator_background <- this.inherit("scripts/skills/backgrounds/character_
 		}
 	}
 
-	function updateAppearance()
+	o.updateAppearance = function ()
 	{
 		local actor = this.getContainer().getActor();
 		local tattoo_body = actor.getSprite("tattoo_body");
@@ -175,7 +174,7 @@ this.gladiator_background <- this.inherit("scripts/skills/backgrounds/character_
 		}
 	}
 
-	function onChangeAttributes()
+	o.onChangeAttributes = function ()
 	{
 		local c = {
 			Hitpoints = [
@@ -214,7 +213,7 @@ this.gladiator_background <- this.inherit("scripts/skills/backgrounds/character_
 		return c;
 	}
 
-	function onAdded()
+	o.onAdded = function ()
 	{
 		this.character_background.onAdded();
 
@@ -225,7 +224,7 @@ this.gladiator_background <- this.inherit("scripts/skills/backgrounds/character_
 		}
 	}
 
-	function onAddEquipment()
+	o.onAddEquipment = function ()
 	{
 		local items = this.getContainer().getActor().getItems();
 		local r;
@@ -290,4 +289,3 @@ this.gladiator_background <- this.inherit("scripts/skills/backgrounds/character_
 	}
 
 });
-

@@ -1,6 +1,6 @@
-this.lindwurm_slayer_background <- this.inherit("scripts/skills/backgrounds/character_background", {
-	m = {},
-	function create()
+::mods_hookExactClass("skills/backgrounds/lindwurm_slayer_background", function(o)
+{
+	o.create = function ()
 	{
 		this.character_background.create();
 		this.m.ID = "background.lindwurm_slayer";
@@ -109,7 +109,7 @@ this.lindwurm_slayer_background <- this.inherit("scripts/skills/backgrounds/char
 	}
 
 	//Default Male
-	function setGender(_gender = -1)
+	o.setGender <- function (_gender = -1)
 	{
 		if (_gender == -1) _gender = ::Legends.Mod.ModSettings.getSetting("GenderEquality").getValue() == "Disabled" ? 0 : ::Math.rand(0, 1);
 
@@ -123,12 +123,12 @@ this.lindwurm_slayer_background <- this.inherit("scripts/skills/backgrounds/char
 		this.addBackgroundType(this.Const.BackgroundType.Female);
 	}
 
-	function onBuildDescription()
+	o.onBuildDescription <- function ()
 	{
 		return "{%name% is a supposedly famous monster hunter with a particular talent for slaying lindwurms. They says he is the son of Dirk the Dragonslayer, the monster hunter who ostensibly slew the last living dragon.}";
 	}
 
-	function onChangeAttributes()
+	o.onChangeAttributes = function ()
 	{
 		local c = {
 			Hitpoints = [
@@ -167,12 +167,12 @@ this.lindwurm_slayer_background <- this.inherit("scripts/skills/backgrounds/char
 		return c;
 	}
 
-	function onAdded()
+	o.onAdded = function ()
 	{
 		this.character_background.onAdded();
 	}
 
-	function onAddEquipment()
+	o.onAddEquipment = function ()
 	{
 		local items = this.getContainer().getActor().getItems();
 		local r;
@@ -212,4 +212,3 @@ this.lindwurm_slayer_background <- this.inherit("scripts/skills/backgrounds/char
 	}
 
 });
-
