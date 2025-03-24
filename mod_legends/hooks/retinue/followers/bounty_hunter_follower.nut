@@ -1,4 +1,4 @@
-::mods_hookExactClass("scripts/retinue/followers/bounty_hunter_follower", function(o) {
+::mods_hookExactClass("retinue/followers/bounty_hunter_follower", function(o) {
 	o.create = function ()
 	{
 		this.follower.create();

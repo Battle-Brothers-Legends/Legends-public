@@ -1,4 +1,4 @@
-::mods_hookExactClass("scripts/retinue/followers/drill_sergeant_follower", function(o) {
+::mods_hookExactClass("retinue/followers/drill_sergeant_follower", function(o) {
 	o.create = function ()
 	{
 		this.follower.create();

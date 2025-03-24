@@ -1,4 +1,4 @@
-::mods_hookExactClass("scripts/retinue/followers/paymaster_follower", function(o) {
+::mods_hookExactClass("retinue/followers/paymaster_follower", function(o) {
 	o.m.Multiplier <- 0.85;
 
 	o.create = function ()
