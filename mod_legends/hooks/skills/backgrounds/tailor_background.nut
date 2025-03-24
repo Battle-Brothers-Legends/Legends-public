@@ -94,7 +94,7 @@
 		this.m.BadEnding = "A tailor at heart, it didn\'t take much to compel %name% to bail from the quickly sinking company. She left to go start a business, but was kidnapped along the way by a group of brigands. When they threatened to kill her, she pretended to be a simple and weak tailor and showed her talents in creating clothes. Impressed, the raggedly dressed outlaws took her into their band. A few days later they were all dead and this \'meek\' woman walked out of their camp with a bit of red on her. She started his business a week later and is doing well to this day.";
 	}
 
-	o.onBuildDescription = function ()
+	o.onBuildDescription <- function ()
 	{
 		if (this.isBackgroundType(this.Const.BackgroundType.Female))
 		{

@@ -130,7 +130,7 @@
 		return ret;
 	}
 
-	o.onBuildDescription = function ()
+	o.onBuildDescription <- function ()
 	{
 		return "{You can tell %name% is a northerner simply by appearance. And %their% servitude in the south has come by way of being indebted to the Gilder whom %they% has transgressed with %their% faith in the heretical old gods. | %name% bears the features of a northerner, easily capturing the eye of passing men or women. It also happened to catch the attention of a priest who claimed the northerner was indebted to the Gilder and promptly sold the interloper into servitude. | A northerner, %name% was once a soldier sent south on patrol. Lost in the desert, %their% troop slowly dwindled until %they% was the last survivor. Manhunters caught %them% and brought %them% back from the brink, and of course sold %them% into servitude once %their% healed body was worth something. | Despite being a northerner and thus easily spotted, %name% unwisely sought the criminal life and was caught thieving pomegranates from a Vizier\'s garden. %they%\'s lucky to have %their% head, but now serves as a commodity of labor on the slave markets.}";
 	}

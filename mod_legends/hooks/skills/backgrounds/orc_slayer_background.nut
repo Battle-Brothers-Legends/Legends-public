@@ -1,6 +1,6 @@
-this.orc_slayer_background <- this.inherit("scripts/skills/backgrounds/character_background", {
-	m = {},
-	function create()
+::mods_hookExactClass("skills/backgrounds/orc_slayer_background", function(o)
+{
+	o.create = function ()
 	{
 		this.character_background.create();
 		this.m.ID = "background.orc_slayer";
@@ -109,12 +109,12 @@ this.orc_slayer_background <- this.inherit("scripts/skills/backgrounds/character
 
 
 
-	function onBuildDescription()
+	o.onBuildDescription <- function ()
 	{
 		return "%name% doesn\'t talk much about himself. He just wants to kill orcs and goblins which, given the state of things, makes him a perfect fit for the company. If he\'s true to his word, he\'ll leave as soon as the invasion is taken care of.";
 	}
 
-	function onSetAppearance()
+	o.onSetAppearance = function ()
 	{
 		local actor = this.getContainer().getActor();
 		local tattoo_body = actor.getSprite("tattoo_body");
@@ -134,7 +134,7 @@ this.orc_slayer_background <- this.inherit("scripts/skills/backgrounds/character
 		}
 	}
 
-	function updateAppearance()
+	o.updateAppearance = function ()
 	{
 		local actor = this.getContainer().getActor();
 		local tattoo_body = actor.getSprite("tattoo_body");
@@ -146,7 +146,7 @@ this.orc_slayer_background <- this.inherit("scripts/skills/backgrounds/character
 		}
 	}
 
-	function onChangeAttributes()
+	o.onChangeAttributes = function ()
 	{
 		local c = {
 			Hitpoints = [
@@ -185,14 +185,14 @@ this.orc_slayer_background <- this.inherit("scripts/skills/backgrounds/character
 		return c;
 	}
 
-	function onAdded()
+	o.onAdded = function ()
 	{
 		this.character_background.onAdded();
 		local actor = this.getContainer().getActor();
 		actor.setTitle("the Orc Slayer");
 	}
 
-	function onAddEquipment()
+	o.onAddEquipment = function ()
 	{
 		local items = this.getContainer().getActor().getItems();
 		items.equip(this.new("scripts/items/weapons/two_handed_hammer"));
@@ -202,4 +202,3 @@ this.orc_slayer_background <- this.inherit("scripts/skills/backgrounds/character
 	}
 
 });
-

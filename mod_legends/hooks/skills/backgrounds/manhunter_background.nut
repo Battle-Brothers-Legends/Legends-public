@@ -1,6 +1,6 @@
-this.manhunter_background <- this.inherit("scripts/skills/backgrounds/character_background", {
-	m = {},
-	function create()
+::mods_hookExactClass("skills/backgrounds/manhunter_background", function(o)
+{
+	o.create = function ()
 	{
 		this.character_background.create();
 		this.m.ID = "background.manhunter";
@@ -88,7 +88,7 @@ this.manhunter_background <- this.inherit("scripts/skills/backgrounds/character_
 	}
 
 	//Default Male
-	function setGender(_gender = -1)
+	o.setGender <- function (_gender = -1)
 	{
 		if (_gender == -1) _gender = ::Legends.Mod.ModSettings.getSetting("GenderEquality").getValue() == "Disabled" ? 0 : ::Math.rand(0, 1);
 
@@ -102,12 +102,12 @@ this.manhunter_background <- this.inherit("scripts/skills/backgrounds/character_
 		this.addBackgroundType(this.Const.BackgroundType.Female);
 	}
 
-	function onBuildDescription()
+	o.onBuildDescription <- function ()
 	{
 		return "{The large population of slaves, prisoners, criminals, and indebted servants in the south has produced an economy of sellers, buyers, and, given the flighty nature of the product, hunters. | Southern city states must have enormous reserves of labor to fuel their desert-borne economies. While many are born into working tirelessly for Viziers, some must be coerced into a life of servitude. | The deserts so sparse in natural resources, it is often an ample supply of captured criminals and indebted souls which bolsters the southern economy. And the business of hunting down these eventual servants is a prosperous one. | Southern Viziers are so fearful of rebellions that an entire market of Manhunters has emerged to nip them in the bud.} {%name% entered manhunting with a vengeful attitude: their entire family was massacred in a slave uprising. | %name% was once an ordinary caravan guard but turned to manhunting nomads who kept trying to ambush their convoys. Finding more profit in the human trade, %name%\'s stuck with it ever since. | %name% is a manhunter with a good nose for tracking criminals, deserters, prisoners of war, and more. You sometimes wonder if %name%\'s got a keen sense of smell for fearful sweat. | Once a big game hunter, %name% grew fond of chasing the greatest game of all: man. %name% is an expert tracker with a nose for sniffing out desperation.} {For %name%, the opportunity of working for a mercenary band simply brings in more consistent work than waiting around for some pressed criminal to get antsy about his chains. | %name% is a rugged, shady individual and it is quite possibly just as flighty as those being hunted. | Hunters like %name% carry traits and skills that would be useful in a mercenary band, but to some their past may be an ever present slight. Not all manhunters are seen in good light. | Capturing humans for the purpose of labor is frowned upon by many and catching those seeking their freedom equally so. Manhunters like %name% certainly have useful skills, but may rub some the wrong way. | To no surprise, many see slavers like %name% as opportunistic slugs. If %name% can make it with the company, it may take time to change the minds of some about the past.}";
 	}
 
-	function onChangeAttributes()
+	o.onChangeAttributes = function ()
 	{
 		local c = {
 			Hitpoints = [
@@ -146,7 +146,7 @@ this.manhunter_background <- this.inherit("scripts/skills/backgrounds/character_
 		return c;
 	}
 
-	function onAddEquipment()
+	o.onAddEquipment = function ()
 	{
 		local items = this.getContainer().getActor().getItems();
 		local r;
@@ -182,4 +182,3 @@ this.manhunter_background <- this.inherit("scripts/skills/backgrounds/character_
 		items.equip(helm);
 	}
 });
-

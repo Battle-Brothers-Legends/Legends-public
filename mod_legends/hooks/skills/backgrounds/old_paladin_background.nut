@@ -1,6 +1,6 @@
-this.old_paladin_background <- this.inherit("scripts/skills/backgrounds/paladin_background", {
-	m = {},
-	function create()
+::mods_hookExactClass("skills/backgrounds/old_paladin_background", function(o)
+{
+	o.create = function ()
 	{
 		this.paladin_background.create();
 		this.m.HairColors = this.Const.HairColors.Old;
@@ -37,7 +37,7 @@ this.old_paladin_background <- this.inherit("scripts/skills/backgrounds/paladin_
 		}
 	}
 
-	function onSetAppearance()
+	o.onSetAppearance = function ()
 	{
 		local actor = this.getContainer().getActor();
 		local tattoo_body = actor.getSprite("tattoo_body");
@@ -50,4 +50,3 @@ this.old_paladin_background <- this.inherit("scripts/skills/backgrounds/paladin_
 	}
 
 });
-

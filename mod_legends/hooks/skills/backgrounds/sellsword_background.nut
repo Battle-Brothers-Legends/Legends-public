@@ -94,7 +94,7 @@
 
 	}
 
-	o.onBuildDescription = function ()
+	o.onBuildDescription <- function ()
 	{
 		if(this.isBackgroundType(this.Const.BackgroundType.Female))
 		{

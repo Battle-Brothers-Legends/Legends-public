@@ -146,7 +146,7 @@
 		return c;
 	}
 
-	o.onAdded = function ()
+	o.onAdded <- function ()
 	{
 		this.character_background.onAdded();
 	}

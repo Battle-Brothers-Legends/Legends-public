@@ -1,12 +1,12 @@
-this.nomad_ranged_background <- this.inherit("scripts/skills/backgrounds/nomad_background", {
-	m = {},
-	function create()
+::mods_hookExactClass("skills/backgrounds/nomad_ranged_background", function(o)
+{
+	o.create = function ()
 	{
 		this.nomad_background.create();
 		this.m.HiringCost = 300;
 	}
 
-	function onChangeAttributes()
+	o.onChangeAttributes = function ()
 	{
 		local c = {
 			Hitpoints = [
@@ -45,13 +45,13 @@ this.nomad_ranged_background <- this.inherit("scripts/skills/backgrounds/nomad_b
 		return c;
 	}
 
-	function onAdded()
+	o.onAdded <- function ()
 	{
 		this.character_background.onAdded();
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendThrowSand);
 	}
 
-	function onAddEquipment()
+	o.onAddEquipment = function ()
 	{
 		local items = this.getContainer().getActor().getItems();
 		local r;
@@ -82,4 +82,3 @@ this.nomad_ranged_background <- this.inherit("scripts/skills/backgrounds/nomad_b
 		items.equip(helm);
 	}
 });
-

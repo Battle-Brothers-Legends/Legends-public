@@ -106,7 +106,7 @@
 		this.m.BadEnding = "The former farmhand, %name%, soon left the %companyname%. She purchased a bit of land out {south | north | east | west} and was doing quite well for herself - until noble soldiers hanged her from a tree for refusing to hand over all her crops.";
 	}
 
-	o.onBuildDescription = function ()
+	o.onBuildDescription <- function ()
 	{
 		if (this.isBackgroundType(this.Const.BackgroundType.Female))
 		{

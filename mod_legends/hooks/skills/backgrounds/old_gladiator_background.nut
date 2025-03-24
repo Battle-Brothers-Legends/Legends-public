@@ -1,13 +1,13 @@
-this.old_gladiator_background <- this.inherit("scripts/skills/backgrounds/gladiator_background", {
-	m = {},
-	function create()
+::mods_hookExactClass("skills/backgrounds/old_gladiator_background", function(o)
+{
+	o.create = function ()
 	{
 		this.gladiator_background.create();
 		this.m.HairColors = this.Const.HairColors.Old;
 		this.m.Level = 3;
 	}
 
-	function onSetAppearance()
+	o.onSetAppearance = function ()
 	{
 		local actor = this.getContainer().getActor();
 		local tattoo_body = actor.getSprite("tattoo_body");
@@ -19,7 +19,7 @@ this.old_gladiator_background <- this.inherit("scripts/skills/backgrounds/gladia
 		tattoo_head.Visible = true;
 	}
 
-	function onAddEquipment()
+	o.onAddEquipment = function ()
 	{
 		local items = this.getContainer().getActor().getItems();
 		local a = this.Const.World.Common.pickArmor([
@@ -39,4 +39,3 @@ this.old_gladiator_background <- this.inherit("scripts/skills/backgrounds/gladia
 		items.equip(a);
 	}
 });
-

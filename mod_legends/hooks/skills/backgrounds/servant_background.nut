@@ -98,7 +98,7 @@
 		this.m.BadEnding = "%name% the servant grew tired of the sellsword life and left the company. She returned to serving nobility. When raiders attacked her liege\'s castle, the nobleman pushed the housemaid out the door with only a kitchen knife to defend herself with. She was found headless in a pile of broken chairs, a few dead raiders littered around her.";
 	}
 
-	o.onBuildDescription = function ()
+	o.onBuildDescription <- function ()
 	{
 		if (this.isBackgroundType(this.Const.BackgroundType.Female))
 		{
