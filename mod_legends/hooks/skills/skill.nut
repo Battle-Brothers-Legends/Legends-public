@@ -772,22 +772,8 @@
 				return null;
 			}
 
-			local racialSkill;
-			local racialSkills = [
-				::Legends.Trait.RacialSkeleton,
-				::Legends.Trait.RacialGolem,
-				::Legends.Trait.RacialSerpent,
-				::Legends.Trait.RacialAlp,
-				::Legends.Trait.RacialSchrat
-			];
-
-			foreach (r in racialSkills) {
-				racialSkill = ::Legends.Traits.get(targetEntity, r);
-				if (racialSkill)
-					break;
-			}
-
-			if (!racialSkill)
+			local racialSkills = this.m.Skills.getAllSkillsOfType(::Const.SkillType.Racial);
+			if (len(racialSkills) == 0)
 				return null;
 
 			local propertiesBefore = targetEntity.getCurrentProperties();
@@ -797,7 +783,7 @@
 
 			local hitInfo = clone this.Const.Tactical.HitInfo;
 			local propertiesAfter = propertiesBefore.getClone();
-			racialSkill.onBeforeDamageReceived(attackingEntity, thisSkill, hitInfo, propertiesAfter);
+			racialSkills[0].onBeforeDamageReceived(attackingEntity, thisSkill, hitInfo, propertiesAfter);
 			local diff = propertiesBefore.DamageReceivedRegularMult - propertiesAfter.DamageReceivedRegularMult;
 			return this.Math.ceil(diff * 100);
 		};
