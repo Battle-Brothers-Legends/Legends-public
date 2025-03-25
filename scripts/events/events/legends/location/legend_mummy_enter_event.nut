@@ -1,5 +1,17 @@
 this.legend_mummy_enter_event <- this.inherit("scripts/events/event", {
-	m = {},
+	m = {
+		LootTable = [
+			"loot/white_pearls_item",
+			"loot/jeweled_crown_item",
+			"loot/gemstones_item",
+			"loot/golden_chalice_item",
+			"loot/ancient_gold_coins_item",
+			"misc/legend_ancient_scroll_item",
+			"misc/legend_masterwork_metal",
+			"misc/legend_masterwork_fabric",
+			"misc/legend_masterwork_tools"
+		]
+	},
 	function create()
 	{
 		this.m.ID = "event.location.legend_mummy_enter";
@@ -88,24 +100,21 @@ this.legend_mummy_enter_event <- this.inherit("scripts/events/event", {
 						p.IsWithoutAmbience = true;
 						p.Entities = [];
 
-						for( local i = 0; i < 4; i = i )
+						for( local i = 0; i < 4; ++i )
 						{
 							p.Entities.push(clone this.Const.World.Spawn.Troops.LegendMummyHeavy);
-							i = ++i;
 						}
 						
-						for( local i = 0; i < 4; i = i )
+						for( local i = 0; i < 4; ++i )
 						{
 							p.Entities.push(clone this.Const.World.Spawn.Troops.LegendMummyPriest);
-							i = ++i;
 						}
 
 						local f = this.World.FactionManager.getFactionOfType(this.Const.FactionType.Undead).getID();
 
-						for( local i = 0; i < p.Entities.len(); i = i )
+						for( local i = 0; i < p.Entities.len(); ++i )
 						{
 							p.Entities[i].Faction <- f;
-							i = ++i;
 						}
 
 						p.BeforeDeploymentCallback = function ()
@@ -245,6 +254,7 @@ this.legend_mummy_enter_event <- this.inherit("scripts/events/event", {
 							this.Tactical.getWeather().setAmbientLightingPreset(5);
 							this.Tactical.getWeather().setAmbientLightingSaturation(0.9);
 						};
+						_event.addLootToScriptedCombat(p);
 						_event.registerToShowAfterCombat("Victory", "Defeat");
 						this.World.State.startScriptedCombat(p, false, false, false);
 						return 0;
@@ -321,6 +331,14 @@ this.legend_mummy_enter_event <- this.inherit("scripts/events/event", {
 			}
 
 		});
+	}
+
+	function addLootToScriptedCombat( _properties )
+	{
+		for (local i = 0; i < ::Math.rand(4, 5); ++i)
+		{
+			_properties.Loot.push("scripts/items" + ::MSU.Array.rand(m.LootTable));
+		}
 	}
 
 	function onUpdateScore()
