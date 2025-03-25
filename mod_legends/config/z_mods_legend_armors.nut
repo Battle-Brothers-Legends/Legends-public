@@ -2550,6 +2550,16 @@ Tabard = [[1, "tabard/legend_noble_tabard"]],
 Attachments = [[3, ""], [1, "armor_upgrades/legend_leather_neckguard_upgrade", 0], [1, "armor_upgrades/legend_double_mail_upgrade", 0], [1, "armor_upgrades/legend_leather_shoulderguards_upgrade", 0]],
 }]
 },
+{
+	ID = "grand_diviner_robes",
+	Script = "scripts/items/legend_armor/armor/golems/legend_grand_diviner_robes",
+	Sets = []
+},
+{
+	ID = "fault_finder_robes",
+	Script = "scripts/items/legend_armor/armor/golems/legend_fault_finder_robes",
+	Sets = []
+}
 ]);
 
 ::Const.LegendMod.Armors <- {};
