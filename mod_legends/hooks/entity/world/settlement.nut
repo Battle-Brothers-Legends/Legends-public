@@ -49,16 +49,15 @@
 		if ( current > limit )
 		{
 			// The settlement is shrinking and will have to abandon attached locations that exceed the Tier limit
-			for (local i = limit; i < current; i++ )
-			{
-				this.getActiveAttachedLocations()[i].setAbandoned(true);
+			while (this.getActiveAttachedLocations().len() > limit) {
+				this.getActiveAttachedLocations()[this.getActiveAttachedLocations().len() - 1].setAbandoned(true);
 			}
 		}
-		else if ( current < limit && this.getAttachedLocations().len() > current )
+		else if (current < limit && this.getAttachedLocations().len() > current)
 		{
 			// Check if we can repopulate attached locations that were previously abandoned
 			local maxIndex = ::Math.min(this.getAttachedLocations().len(), limit);
-			for (local i = current; i < maxIndex; i++ )
+			for (local i = current; i < maxIndex; i++)
 			{
 				if (this.getAttachedLocations()[i].isAbandoned())
 				{
