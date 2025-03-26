@@ -101,7 +101,7 @@ this.legend_safeguarded_effect <- this.inherit("scripts/skills/skill", {
 
 	function onRemoved()
 	{
-		if (!(this.m.Protector != null && !this.m.Protector.isNull() && !this.m.Protector.getSkills().isNull()))
+		if (!(this.m.Protector != null && !this.m.Protector.isNull() && !this.m.Protector.m.Ward.isNull()))
 			return;
 		local effect = ::Legends.Effects.get(this.m.Protector, ::Legends.Effect.LegendSafeguarding);
 		if (effect == null)
