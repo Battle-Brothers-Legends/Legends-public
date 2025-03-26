@@ -773,7 +773,7 @@
 			}
 
 			local racialSkills = targetEntity.getSkills().getAllSkillsOfType(::Const.SkillType.Racial);
-			if (len(racialSkills) == 0)
+			if (racialSkills.len() == 0)
 				return null;
 
 			local propertiesBefore = targetEntity.getCurrentProperties();
