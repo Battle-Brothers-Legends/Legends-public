@@ -101,15 +101,15 @@ this.legend_safeguarded_effect <- this.inherit("scripts/skills/skill", {
 
 	function onRemoved()
 	{
-		if (this.m.Protector != null && !this.m.Protector.isNull() && !this.m.Protector.getContainer().isNull())
-		{
-			local container = this.m.Protector.getContainer();
-			local protector = this.m.Protector;
-			this.m.Protector = null;
-			protector.setWard(null);
-			protector.removeSelf();
-			container.update();
-		}
+		if (!(this.m.Protector != null && !this.m.Protector.isNull() && !this.m.Protector.getSkills().isNull()))
+			return;
+		local effect = ::Legends.Effects.get(this.m.Protector, ::Legends.Effect.LegendSafeguarding);
+		if (effect == null)
+			return;
+		effect.setWard(null);
+		effect.removeSelf();
+		this.m.Protector.getSkills().update();
+		this.m.Protector = null;
 	}
 
 	function onDeath( _fatalityType )
