@@ -36,16 +36,26 @@
 			30,
 			31,
 			32,
-			33,
+			// 33,
 			34,
 			35,
-			36,
+			// 36,
 			37,
 			38,
 			39,
 			40,
-			41
+			// 41,
+			42,
+			43,
+			44
+			104
 		];
+		if (this.Const.DLC.UnholdSupporter)
+			this.m.Variants.push(33)
+		if (this.Const.DLC.WildmenSupporter)
+			this.m.Variants.push(36)
+		if (this.Const.DLC.DesertSupporter)
+			this.m.Variants.push(41)
 		this.m.Variant = this.Math.rand(0, 9); //random one is only 1-9 though
 	}
 

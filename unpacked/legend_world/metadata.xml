@@ -26,6 +26,7 @@
 	<sprite id="banner_101" offsetY="28" ic="FF625C5C" width="56" height="90" img="world_entity\banner\banner_101.png" left="-22" right="24" />
   	<sprite id="banner_102" offsetX="-8" offsetY="22" ic="FF305436" width="56" height="90" img="world_entity\banner\banner_102.png" left="-24" right="26" top="-39" bottom="45" />
   	<sprite id="banner_103" offsetY="28" ic="FF2C6366" img="world_entity\banner\banner_103.png" />
+  	<sprite id="banner_104" offsetX="4" offsetY="33" ic="FF2E3E58" width="56" height="90" img="world_entity\banner\banner_104.png" left="-22" right="28" top="-40" bottom="44" />
 	<sprite id="Battlesite_Bandits_Bandits" ic="FF293742" img="world_entity\location\Battlesite_Bandits_Bandits.png" />
 	<sprite id="Battlesite_Bandits_Beasts" ic="FF293742" img="world_entity\location\Battlesite_Bandits_Beasts.png" />
 	<sprite id="Battlesite_Bandits_Beasts2" ic="FF293742" img="world_entity\location\Battlesite_Bandits_Beasts2.png" />

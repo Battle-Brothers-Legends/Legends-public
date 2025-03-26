@@ -37,16 +37,29 @@
 			31,
 			32,
 			33,
-			34,
+			// 34,
 			35,
 			36,
-			37,
+			// 37,
 			38,
 			39,
 			40,
 			41,
-			42
+			// 42,
+			43,
+			44,
+			45,
+			101,
+			102,
+			103,
+			104
 		];
+		if (this.Const.DLC.UnholdSupporter)
+			this.m.Variants.push(34)
+		if (this.Const.DLC.WildmenSupporter)
+			this.m.Variants.push(37)
+		if (this.Const.DLC.DesertSupporter)
+			this.m.Variants.push(42)
 		this.m.Variant = this.Math.rand(1, 11); //random one is only 1-11 though
 	}
 
