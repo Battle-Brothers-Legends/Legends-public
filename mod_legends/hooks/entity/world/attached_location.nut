@@ -107,9 +107,7 @@
 	o.setAbandoned <- function ( _a, _force = false)
 	{
 		if (_a == this.m.IsAbandoned && _force == false)
-		{
 			return;
-		}
 
 		this.m.IsAbandoned = _a;
 		this.setActive( !_a, _force );
