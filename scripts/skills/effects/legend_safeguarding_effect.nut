@@ -39,7 +39,7 @@ this.legend_safeguarding_effect <- this.inherit("scripts/skills/skill", {
 
 	function getTooltip()
 	{
-		local tooltip = 
+		local tooltip =
 		[
 			{
 				id = 1,
@@ -110,14 +110,16 @@ this.legend_safeguarding_effect <- this.inherit("scripts/skills/skill", {
 
 	function onRemoved()
 	{
-		if (this.m.Ward != null && !this.m.Ward.isNull() && !this.m.Ward.getContainer().isNull())
-		{
-			local ward = this.m.Ward;
-			this.m.Ward = null;
-			ward.setProtector(null);
-			ward.removeSelf();
-			ward.getContainer().update();
-		}
+		if (!(this.m.Ward != null && !this.m.Ward.isNull()))
+			return;
+		local effect = ::Legends.Effects.get(this.m.Ward, ::Legends.Effect.LegendSafeguarded);
+		if (effect == null)
+			return;
+		ward.setProtector(null);
+		ward.removeSelf();
+		this.m.Ward.getSkills().update();
+		this.m.Ward = null;
+
 		local item = this.m.Container.getActor().getItems().getItemAtSlot(this.Const.ItemSlot.Offhand);
 
 		if (item != null && item.isItemType(this.Const.Items.ItemType.Shield))
