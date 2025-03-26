@@ -50,7 +50,7 @@
 		{
 			// The settlement is shrinking and will have to abandon attached locations that exceed the Tier limit
 			while (this.getActiveAttachedLocations().len() > limit) {
-				this.getActiveAttachedLocations()[this.getActiveAttachedLocations().len() - 1].setAbandoned(true);
+				this.getActiveAttachedLocations().top().setAbandoned(true);
 			}
 		}
 		else if (current < limit && this.getAttachedLocations().len() > current)
