@@ -772,7 +772,7 @@
 				return null;
 			}
 
-			local racialSkills = this.m.Skills.getAllSkillsOfType(::Const.SkillType.Racial);
+			local racialSkills = targetEntity.getSkills().getAllSkillsOfType(::Const.SkillType.Racial);
 			if (len(racialSkills) == 0)
 				return null;
 
