@@ -103,11 +103,12 @@ this.legend_safeguarded_effect <- this.inherit("scripts/skills/skill", {
 	{
 		if (this.m.Protector != null && !this.m.Protector.isNull() && !this.m.Protector.getContainer().isNull())
 		{
+			local container = this.m.Protector.getContainer();
 			local protector = this.m.Protector;
 			this.m.Protector = null;
 			protector.setWard(null);
 			protector.removeSelf();
-			protector.getContainer().update();
+			container.update();
 		}
 	}
 
