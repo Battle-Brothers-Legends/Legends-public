@@ -48,7 +48,7 @@ this.legend_intensive_training_trait <- this.inherit("scripts/skills/traits/char
 		for( local i = 0; i < _skillsNum; i++ )
 		{
 			this.m.TrainingSeed = ::Legends.LCG.get(this.m.TrainingSeed).nextState();
-			local attr = attributes[this.m.TrainingSeed % attributes.len()];
+			local attr = attributes[::Math.abs(this.m.TrainingSeed % attributes.len())];
 
 			switch(attr)
 			{

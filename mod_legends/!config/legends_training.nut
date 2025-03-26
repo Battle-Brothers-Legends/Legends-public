@@ -45,7 +45,7 @@
 		local newTrait;
 
 		while (newTraitConst == null) {
-			newTraitConst = traitLookup[rng.nextState() % traitLookup.len()];
+			newTraitConst = traitLookup[::Math.abs(rng.nextState() % traitLookup.len())];
 			if (::Legends.Traits.has(_bro, newTraitConst)) {
 				newTraitConst = null;
 				continue;
