@@ -1,7 +1,8 @@
 this.legend_safeguarded_effect <- this.inherit("scripts/skills/skill", {
 	m = {
 		Protector = null,
-		IsActivated = false
+		IsActivated = false,
+		TurnsLeft = 0
 	},
 
 	function activate()
@@ -43,8 +44,7 @@ this.legend_safeguarded_effect <- this.inherit("scripts/skills/skill", {
 
 	function getTooltip()
 	{
-		local tooltip = 
-		[
+		local tooltip = [
 			{
 				id = 1,
 				type = "title",
