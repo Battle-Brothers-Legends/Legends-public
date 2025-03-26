@@ -208,7 +208,6 @@
 
 	o.onEquipRuneSigil <- function ()
 	{
-		::logInfo("rune variant is " + variant);
 		local def = ::Legends.Runes.get(this.getRuneVariant());
 		if (def == null)
 			return;

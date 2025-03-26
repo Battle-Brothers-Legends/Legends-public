@@ -43,8 +43,6 @@ this.legend_intensive_training_trait <- this.inherit("scripts/skills/traits/char
 				attributes.push(index);
 		}
 
-		::MSU.Log.printData(attributes);
-
 		for( local i = 0; i < _skillsNum; i++ )
 		{
 			this.m.TrainingSeed = ::Legends.LCG.get(this.m.TrainingSeed).nextState();
