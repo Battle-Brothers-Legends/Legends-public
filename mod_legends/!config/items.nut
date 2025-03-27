@@ -20,7 +20,9 @@
 	"legend_armor/plate/legend_armor_leather_brigandine_named",
 	"legend_armor/plate/legend_armor_scale_coat_named",
 	"legend_armor/plate/legend_southern_named_golden_plates",
-	"legend_armor/plate/legend_southern_named_plates"
+	"legend_armor/plate/legend_southern_named_plates",
+	// "legend_armor/plate/legend_thick_plated_barbarian_armor_named",
+	// "legend_armor/plate/legend_bronze_armor_named"
 ];
 
 ::Const.Items.LegendNamedTabardLayers <- [
@@ -33,6 +35,11 @@
 ];
 
 ::Const.Items.LegendNamedSouthernArmorLayers <- [
+	"legend_armor/plate/legend_southern_named_golden_plates",
+	"legend_armor/plate/legend_southern_named_plates"
+];
+
+::Const.Items.LegendNamedBarbarianArmorLayers <- [
 	"legend_armor/plate/legend_southern_named_golden_plates",
 	"legend_armor/plate/legend_southern_named_plates"
 ];
