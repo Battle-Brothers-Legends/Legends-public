@@ -39,7 +39,7 @@ this.perk_legend_unarmed_training <- this.inherit("scripts/skills/skill", {
 			_properties.MeleeSkill += 10;
 		}
 
-		foreach (tier in ::Const.Perks.FistsTree)
+		foreach (tier in ::Const.Perks.FistsTree.Tree)
 		{
 			foreach (perk in tier)
 			{
