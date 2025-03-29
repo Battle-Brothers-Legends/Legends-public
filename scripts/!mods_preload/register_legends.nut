@@ -2,7 +2,7 @@
 	ID = "mod_legends",
 	Version = "19.1.0",
 	Name = "Legends Mod",
-	BuildName = "Name Pending",
+	BuildName = "Tales & Professions",
 	IsStartingNewCampaign = false
 };
 
