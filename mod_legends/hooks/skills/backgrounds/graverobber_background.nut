@@ -2,7 +2,7 @@
 {
 	o.create = function ()
 	{
-		this.character_background.create = function ();
+		this.character_background.create();
 		this.m.ID = "background.graverobber";
 		this.m.Name = "Graverobber";
 		this.m.Icon = "ui/backgrounds/background_25.png";
