@@ -17,7 +17,7 @@
 	{
 		onUpdate( _properties );
 		// removes the negative effect
-		if (!this.getContainer().hasPerk(::Legends.Perk.LegendAssuredConquest))
+		if (this.getContainer().hasPerk(::Legends.Perk.LegendAssuredConquest))
 		{
 			_properties.MeleeDefense += 5;
 			_properties.RangedDefense += 5;
