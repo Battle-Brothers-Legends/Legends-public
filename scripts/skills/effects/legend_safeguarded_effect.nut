@@ -67,7 +67,13 @@ this.legend_safeguarded_effect <- this.inherit("scripts/skills/skill", {
 		}
 	}
 
-	function onDamageReceived( _attacker, _damageHitpoints, _damageArmor )
+	function rotate(_protector, _ward)
+	{
+		this.Tactical.getNavigator().switchEntities(_protector, _ward, null, null, 1.0);
+		return true;
+	}
+
+	function onBeforeDamageReceived( _attacker, _skill, _hitInfo, _properties )
 	{
 		if (this.m.Protector == null || this.m.Protector.isNull() || !this.m.Protector.isAlive())
 		{
@@ -75,20 +81,64 @@ this.legend_safeguarded_effect <- this.inherit("scripts/skills/skill", {
 			return;
 		}
 
-		if (_damageHitpoints > 0)
+		if (_hitInfo.DamageRegular < 1 && _hitInfo.DamageArmor < 1)
+			return;
+
+		local ward = this.getContainer().getActor();
+		// if (_attacker != null && !_attacker.isPlayerControlled() && this.isPlayerControlled())
+		// {
+		// 	actor.setDiscovered(true);
+		// 	_attacker.getTile().addVisibilityForFaction(this.Const.Faction.Player);
+		// }
+
+		local overlapping = ::Legends.S.getOverlappingNeighbourActors(ward, this.m.Protector);
+		local wardNeighbours = ::Legends.S.getNeighbouringActors(ward.getTile());
+		local protectorNeighbours = ::Legends.S.getNeighbouringActors(this.m.Protector.getTile());
+
+		local attackerIsAdjacentToProtector = protectorNeighbours.find(_attacker) != null;
+		local attackerIsAdjacentToWard = wardNeighbours.find(_attacker) != null;
+		local protectorIsAdjacentToWard = wardNeighbours.find(this.m.Protector) != null;
+		local protectorHasAdjacentEnemies = false;
+		foreach (entity in protectorNeighbours)
 		{
-			local actor = this.getContainer().getActor();
-			if (!_attacker.isHiddenToPlayer() && actor.getTile().IsVisibleForPlayer)
+			if (::Legends.S.isInZocWithActor(this.m.Protector, entity))
 			{
-				this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(_attacker) + " attacks " + this.Const.UI.getColorizedEntityName(actor) + "but " + this.Const.UI.getColorizedEntityName(this.m.Protector) + "takes the hit instead");
+				protectorHasAdjacentEnemies = true;
 			}
-			this.m.Protector.applyDamage(_damageHitpoints, _attacker);
 		}
 
-		if (this.m.Protector == null || this.m.Protector.isNull() || !this.m.Protector.isAlive())
+		local ret = false;
+		local rotate = false;
+		local canRotate = !this.m.Protector.getCurrentProperties().IsRooted && !ward.getCurrentProperties().IsRooted && ward.getCurrentProperties().IsMovable && !ward.getCurrentProperties().IsImmuneToRotation && (protectorHasAdjacentEnemies || this.m.Protector.getSkills().hasPerk(::Legends.Perk.LegendTwirl));
+
+		if (attackerIsAdjacentToWard && attackerIsAdjacentToProtector && protectorIsAdjacentToWard)
 		{
-			this.removeSelf();
+			ret = _skill.attackEntity(_user, this.m.Protector);
 		}
+
+		if ((attackerIsAdjacentToWard || _skill.isRanged()) && !attackerIsAdjacentToProtector && !protectorHasAdjacentEnemies && protectorIsAdjacentToWard && canRotate)
+		{
+			this.rotate(this.m.Protector, this.getContainer().getActor())
+			ret = _skill.attackEntity(_user, this.m.Protector);
+			rotate = true;
+		}
+
+		if (attackerIsAdjacentToWard && !attackerIsAdjacentToProtector && protectorHasAdjacentEnemies)
+			return; // do nothing Ward takes the hit
+
+		if (!_attacker.isHiddenToPlayer() && ward.getTile().IsVisibleForPlayer && this.m.Protector.getTile().IsVisibleForPlayer)
+		{
+			if (ret && rotate)
+			{
+				this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(_attacker) + " attacks " + this.Const.UI.getColorizedEntityName(ward) + "but " + this.Const.UI.getColorizedEntityName(this.m.Protector) + "quickly gets them out of harms way and steps in their place");
+			}
+			else if (ret)
+			{
+				this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(_attacker) + " attacks " + this.Const.UI.getColorizedEntityName(ward) + "but " + this.Const.UI.getColorizedEntityName(this.m.Protector) + "steps in as their defender");
+			}
+		}
+
+		_properties.DamageReceivedTotalMult = 0;
 	}
 
 	function onUpdate( _properties )
@@ -101,7 +151,7 @@ this.legend_safeguarded_effect <- this.inherit("scripts/skills/skill", {
 
 	function onRemoved()
 	{
-		if (!(this.m.Protector != null && !this.m.Protector.isNull()))
+		if (this.m.Protector == null || this.m.Protector.isNull() || !this.m.Protector.isAlive())
 			return;
 		local effect = ::Legends.Effects.get(this.m.Protector, ::Legends.Effect.LegendSafeguarding);
 		if (effect == null)

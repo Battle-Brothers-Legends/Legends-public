@@ -8,7 +8,7 @@ this.legend_orc_throwing_spear <- this.inherit("scripts/items/weapons/weapon", {
 		this.m.Description = "Crudely made light throwing spear, this weapon is intended to be thrown over short distances. The tip will bend on impact, potentially rendering shields unusable. Can be used against unshielded opponents as well for great effect.";
 		this.m.Categories = "Throwing Weapon, Spear, One-Handed";
 		this.m.IconLarge = "weapons/ranged/legend_orc_throwing_spear.png";
-		this.m.Icon = "weapons/ranged/legend_orc_throwing_spear_01_70x70.png";
+		this.m.Icon = "weapons/ranged/legend_orc_throwing_spear_70x70.png";
 		this.m.SlotType = this.Const.ItemSlot.Mainhand;
 		this.m.ItemType = this.Const.Items.ItemType.Weapon | this.Const.Items.ItemType.RangedWeapon | this.Const.Items.ItemType.Tool;
 		this.m.IsAgainstShields = true;
