@@ -1,0 +1,544 @@
+
+.camp-screen > .l-painter-dialog-container
+{
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	width: 102.4rem;
+	height: 76.8rem;
+	position: absolute;
+	margin: auto;
+	z-index: 2;
+}
+
+
+.camp-screen > .l-painter-dialog-container .l-tab-container
+{
+	top: -1.0rem;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	width: 88.0rem;
+	height: 3.0rem;
+	position: absolute;
+	margin: auto;
+}
+
+.camp-screen > .l-painter-dialog-container .l-tab-asset
+{
+	top: 0;
+	bottom: 0;
+	width: 13.0rem;
+	height: 4.3rem;
+	position: absolute;
+}
+
+.camp-screen > .l-painter-dialog-container .l-tab-asset.is-money
+{
+	left: 0;
+}
+
+.camp-screen > .l-painter-dialog-container .l-tab-asset.is-food
+{
+	left: 15.0rem;
+}
+
+.camp-screen > .l-painter-dialog-container .l-tab-asset.is-supplies
+{
+	left: 30.0rem;
+}
+
+.camp-screen > .l-painter-dialog-container .l-tab-asset.is-ammo
+{
+	left: 45.0rem;
+}
+
+.camp-screen > .l-painter-dialog-container .l-tab-asset.is-medicine
+{
+	left: 60.0rem;
+}
+
+.camp-screen > .l-painter-dialog-container .l-tab-asset.is-brothers
+{
+	left: 75.0rem;
+	width: 9.8rem;
+}
+
+.camp-screen > .l-painter-dialog-container .l-tab-asset img
+{
+	top: 0;
+	bottom: 0;
+	left: 0;
+	width: 2.8rem;
+	height: 2.8rem;
+	margin: auto;
+	margin-left: 1.0rem;
+	position: absolute;
+}
+
+.camp-screen > .l-painter-dialog-container .l-tab-asset .label
+{
+	top: 0;
+	bottom: 0;
+	left: 3.4rem;
+	width: 11.2rem;
+	height: 3.0rem;
+	margin: auto;
+	margin-left: 1.0rem;
+	position: absolute;
+
+	text-align : left;
+	line-height: 3.0rem;
+}
+
+
+.camp-screen > .l-painter-dialog-container .content > .column
+{
+	width: 50%;
+	height: 100%;
+	padding-top: 0.9rem;
+	padding-bottom: 0.9rem;
+	position: relative;
+	float : left;
+
+	background-image: url("coui://gfx/ui/skin/dialog_panel_01.png");
+	background-size: 50.8rem 56.8rem;
+	background-repeat: no-repeat;
+}
+
+.camp-screen > .l-painter-dialog-container .content > .column.is-left
+{
+	padding-left: 1.0rem;
+	padding-right: 1.6rem;
+	padding-bottom: 3.5rem;
+}
+
+.camp-screen > .l-painter-dialog-container .content > .column.is-right
+{
+	padding-left: 0.5rem;
+	padding-right: 1.0rem;
+}
+
+.camp-screen > .l-painter-dialog-container .content .l-list-container
+{
+	width: 100%;
+	height: 100%;
+}
+
+/* disable font shadow */
+.camp-screen > .l-painter-dialog-container .content .l-list-container .ui-control.list .list-entry.is-selected
+{
+	text-shadow: 1px 1px 1px #000;
+}
+
+.camp-screen > .l-painter-dialog-container .content .l-list-container .scroll-container
+{
+	margin-top: 0.4rem;
+	margin-bottom: 0.4rem;
+}
+
+.camp-screen > .l-painter-dialog-container .content .scroll-container .l-row
+{
+	width: 46.5rem;
+	height: 10.7rem;
+	position: relative;
+	margin-bottom: -0.1rem;
+
+	overflow: hidden;
+}
+
+.camp-screen > .l-painter-dialog-container .content .scroll-container .l-row:last-child
+{
+	margin-bottom: 0;
+}
+
+.camp-screen > .l-painter-dialog-container .content .l-row .column
+{
+	height: 100%;
+	position: absolute;
+}
+
+.camp-screen > .l-painter-dialog-container .content .l-row .column.is-left
+{
+	top: 0;
+	left: 0;
+	width: 9.0rem;
+	z-index: 2;
+}
+
+.camp-screen > .l-painter-dialog-container .content .l-row .column.is-left > img
+{
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	position: absolute;
+	margin: auto;
+
+	display: block;
+}
+
+.camp-screen > .l-painter-dialog-container .content .l-row .column.is-right
+{
+	top: 0;
+	left: 9.0rem;
+	right: 0;
+	z-index: 1;
+}
+
+.camp-screen > .l-painter-dialog-container .content .l-row .row
+{
+	left: 0;
+	right: 1.0rem;
+	position: absolute;
+}
+
+.camp-screen > .l-painter-dialog-container .content .l-row .row.is-top
+{
+	top: 1.0rem;   
+	height: 3.8rem;
+
+	/*border-bottom: 1px rgba(130, 130, 130, 1) solid;*/
+}
+
+.camp-screen > .l-painter-dialog-container .content .l-row .row.is-top > img
+{
+	left: 0;
+	bottom: 0.2rem;
+	width: 2.6rem;
+	height: 2.6rem;
+	position: absolute;
+
+	display: block;
+}
+
+.camp-screen > .l-painter-dialog-container .content .l-row .row.is-top .name
+{
+	left: 3.4rem;
+	bottom: 0.2rem;
+	height: 2.6rem;
+	position: absolute;
+	overflow: hidden;
+
+	line-height: 3.0rem;
+}
+
+.camp-screen > .l-painter-dialog-container .content .l-row .row.is-top .l-level-container
+{
+	right: 0;
+	width: 6.0rem;
+	height: 100%;
+	position: absolute;
+}
+
+.camp-screen > .l-painter-dialog-container .content .l-row .row.is-top .l-level-container img
+{
+	left: 0;
+	bottom: 0.1rem;
+	width: 2.6rem;
+	height: 2.6rem;
+	position: absolute;
+
+	display: block;
+}
+
+.camp-screen > .l-painter-dialog-container .content .l-row .row.is-top .l-level-container > .level
+{
+	left: 3.0rem;
+	right: 0;
+	bottom: 0.2rem;
+	height: 2.6rem;
+	position: absolute;
+
+	line-height: 3.0rem;
+}
+
+.camp-screen > .l-painter-dialog-container .content .l-details-frame
+{
+	width: 100%;
+	height: 100%;
+
+	overflow: hidden;
+	-webkit-mask-image: #fff; /* Bugfix for Chrome, as the absolute position breaks the overflow somehow..*/
+}
+
+.camp-screen > .l-painter-dialog-container .content .details-container
+{
+	width: 100%;
+	height: 100%;
+	position: relative;
+}
+
+.camp-screen > .l-painter-dialog-container .content .details-container .column
+{
+	top: 0;
+	height: 100%;
+	position: absolute;
+}
+
+.camp-screen > .l-painter-dialog-container .content .details-container > .row
+{
+	left: 0;
+	right: 0;
+	position: absolute;
+}
+
+.camp-screen > .l-painter-dialog-container .content .details-container > .row.is-character-container
+{
+	top: 0;
+	left: 0;
+	height: 39.0rem;
+}
+
+.camp-screen > .l-painter-dialog-container .content .details-container .column.is-character-portrait-container
+{
+	top: 20.0rem;
+	left: 17.0rem;
+	width: 13.0rem;
+	height: 16.0rem;
+}
+
+.camp-screen > .l-painter-dialog-container .content .details-container .column.is-character-portrait-container > img
+{
+	top: 0;
+	left: 0;
+	right: 0;
+	position: absolute;
+	margin: auto;
+
+	display: block;
+}
+
+.camp-screen > .l-painter-dialog-container .content .details-container .column.is-character-background-container
+{
+	top: 0;
+	left: 0.0rem;
+	right: 0;
+}
+
+.camp-screen > .l-painter-dialog-container .content .details-container .column.is-character-background-container .row
+{
+	left: 1.0rem;
+	right: 1.0rem;
+	position: absolute;
+}
+
+.camp-screen > .l-painter-dialog-container .content .details-container .column.is-character-background-container .row.is-top
+{
+	top: 0;
+	height: 4.4rem;
+}
+
+.camp-screen > .l-painter-dialog-container .content .details-container .column.is-character-background-container .row.is-top .armorname
+{
+	top: 1.5rem;
+	left: 6.2rem;
+	height: 3.6rem;
+	position: absolute;
+	overflow: hidden;
+	text-align: left;
+
+	line-height: 3.0rem;
+}
+
+.camp-screen > .l-painter-dialog-container .content .details-container .column.is-character-background-container .row.is-top .helmetname
+{
+	top: 1.5rem;
+	left: 34.0rem; /*25.0rem - right*/
+	height: 3.6rem;
+	position: absolute;
+	overflow: hidden;
+	text-align: left;
+
+	line-height: 3.0rem;
+}
+
+.camp-screen > .l-painter-dialog-container .content .details-container .row.is-button-container
+{
+	top: 50.0rem;
+	left: 1.0rem;
+	right: 1.0rem;
+	height: 6.0rem;
+
+   /*border-top: 1px rgba(130, 130, 130, 1) solid;*/
+}
+
+.camp-screen > .l-painter-dialog-container .content .details-container .row.is-button-container .totalmoney
+{
+	top: 0.5rem;
+	left: 1.7rem;
+	height: 3.6rem;
+	position: absolute;
+	text-align: left;
+
+	line-height: 3.0rem;
+}
+
+.camp-screen > .l-painter-dialog-container .content .details-container .row.is-button-container .moneyimg
+{
+	top: 0.5rem;
+	left: 15.3rem;
+	width: 2.8rem;
+	height: 2.8rem;
+	margin: auto;
+	position: absolute;
+}
+
+.camp-screen > .l-painter-dialog-container .content .details-container .row.is-button-container .totalmoneysum
+{
+	top: 0.5rem;
+	left: 18.3rem;
+	height: 3.6rem;
+	position: absolute;
+	text-align: left;
+
+	line-height: 3.0rem;
+}
+
+.camp-screen > .l-painter-dialog-container .content .details-container .row.is-button-container .l-confirm-button
+{
+	top: 0;
+	left: 30.0rem;
+	width: 17.5rem;
+	height: 4.3rem;
+	position: absolute;
+	margin: auto;
+
+	line-height: 3.0rem;
+}
+
+.camp-screen > .l-painter-dialog-container .content .details-container .layers-row
+{
+	top: 4.5rem;
+	width: 100%;
+	height: 17%; /* AUTO HEIGHT */
+	position: relative;
+}
+
+.camp-screen > .l-painter-dialog-container .content .details-container .layers-row > .l-stats-row-icon
+{
+	top: 0px;
+	left: 2.2rem;
+	width: 6.6rem;
+	height: 6.6rem;
+	position: absolute;
+	background-image: url("coui://gfx/ui/skin/breditor_ni_frame.png");
+	background-size: 6.6rem 6.6rem;
+}
+
+.camp-screen > .l-painter-dialog-container .content .details-container .l-stats-row-icon .row-icon-img
+{
+	width: 5.6rem;
+	height: 5.6rem;
+	margin: 5px 5px 5px 5px;
+	position: absolute;
+}
+
+.camp-screen > .l-painter-dialog-container .content .details-container .layers-row .value-container
+{
+	top: 0.6rem;
+	left: 2.7rem;
+	position: absolute;
+	z-index: 3;
+}
+
+.camp-screen > .l-painter-dialog-container .content .details-container .layers-row .value-container .label
+{
+	height: 1.0rem;
+	position: absolute;
+	text-align: left;
+	line-height: 1.0rem;
+}
+
+.camp-screen > .l-painter-dialog-container .content .details-container .layers-row .l-input
+{
+	top: 3.5rem;
+	left: 9.0rem;
+	width: 12.4rem;
+	height: 2.8rem;
+	z-index: 10;
+	position: absolute;
+}
+
+.camp-screen > .l-painter-dialog-container .content .details-container .layers-row .l-leftbutton
+{
+	top: -0.1rem;
+	left: 8.5rem;
+	width: 4.5rem;
+	height: 4.1rem;
+	position: absolute;
+}
+
+.camp-screen > .l-painter-dialog-container .content .details-container .layers-row .l-rightbutton
+{
+	top: -0.1rem;
+	left: 12.0rem;
+	width: 4.5rem;
+	height: 4.1rem;
+	position: absolute;
+}
+
+.camp-screen > .l-painter-dialog-container .content .details-container .layers-row .l-resetbutton
+{
+	top: -0.1rem;
+	left: 15.5rem;
+	width: 4.5rem;
+	height: 4.1rem;
+	position: absolute;
+}
+
+.camp-screen > .l-painter-dialog-container .content .details-container .l-helmet-icon
+{
+	top: 4.8rem; /*4.8rem*/
+	left: 22.0rem; /*40.5rem - right*/
+	width: 6.6rem;
+	height: 6.6rem;
+	position: absolute;
+}
+
+.camp-screen > .l-painter-dialog-container .content .details-container .l-helmet-icon .helmet-icon-img
+{
+	width: 6.6rem;
+	height: 6.6rem;
+	position: absolute;
+}
+
+.camp-screen > .l-painter-dialog-container .content .details-container .l-armor-icon
+{
+	top: 10.5rem; /*10.5rem*/
+	left: 21.6rem; /*40.1rem - right*/
+	width: 6.6rem;
+	height: 13.6rem;
+	position: absolute;
+}
+
+.camp-screen > .l-painter-dialog-container .content .details-container .l-armor-icon .armor-icon-img
+{
+	width: 6.6rem;
+	height: 13.6rem;
+	position: absolute;
+}
+
+.camp-screen > .l-painter-dialog-container .footer .l-button-bar
+{
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	width: 16.0rem;
+	height: 4.3rem;
+	position: absolute;
+	margin: auto;
+}
+
+.camp-screen > .l-painter-dialog-container .footer .l-leave-button
+{
+	top: 0;
+	right: 0;
+	bottom: 0;
+	width: 17.5rem;
+	position: absolute;
+
+	line-height: 3.0rem;
+}

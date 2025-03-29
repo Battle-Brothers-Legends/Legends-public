@@ -16,7 +16,7 @@
 	position: relative;
 	float: left;
 
-    /*border-bottom: 1px rgba(130, 130, 130, 1) solid;*/
+	/*border-bottom: 1px rgba(130, 130, 130, 1) solid;*/
 }
 
 .character-screen-container .left-panel-header-module .portrait-container
@@ -26,9 +26,9 @@
 	bottom: 0;
 	width: 9.0rem;
 	position: absolute;
-/*    background-color: blue;*/
+/*	background-color: blue;*/
 
-    /*border-right: 1px rgba(130, 130, 130, 1) solid;*/
+	/*border-right: 1px rgba(130, 130, 130, 1) solid;*/
 }
 
 .character-screen-container .left-panel-header-module .portrait-container .l-portrait-image-container
@@ -37,28 +37,28 @@
 	right: 0;
 	top: -2.5rem;
 	bottom: 0;
-    width: 15.0rem;
-    height: 15.0rem;
-/*    background-color: red;*/
+	width: 15.0rem;
+	height: 15.0rem;
+/*	background-color: red;*/
 
 /*
 	width: 10.0rem;
 	height: 10.0rem;
 */
-    pointer-events: none;
+	pointer-events: none;
 	position: absolute;
 	margin: auto;
-    z-index: 2;
+	z-index: 2;
 }
 
 .character-screen-container .left-panel-header-module .portrait-container img
 {
 	/*width: 100%;*/
-    
-    display: block;
-    margin: auto;
-    position: absolute;
-/*    background-color: grey;*/
+	
+	display: block;
+	margin: auto;
+	position: absolute;
+/*	background-color: grey;*/
 }
 
 .character-screen-container .left-panel-header-module .portrait-container .l-button
@@ -67,13 +67,20 @@
 	height: 4.1rem;
 	position: absolute;
 
-    line-height: 2.6rem;
+	line-height: 2.6rem;
 }
 
 .character-screen-container .left-panel-header-module .portrait-container .l-button.is-dismiss
 {
-    left: 0.4rem;
-	top: 5.8rem;
+	left: 1.0rem;
+	top: 8.3rem;
+	z-index: 3;
+}
+
+.character-screen-container .left-panel-header-module .portrait-container .l-button.is-reserve
+{
+	left: 5.6rem;
+	top: 8.3rem;
 	z-index: 3;
 }
 
@@ -87,42 +94,42 @@
 
 	overflow: hidden;
 
-    /*border-bottom: 1px rgba(130, 130, 130, 1) solid;*/
+	/*border-bottom: 1px rgba(130, 130, 130, 1) solid;*/
 }
 
 .character-screen-container .left-panel-header-module .name-container.is-clickable:hover
 {
-    /*background-color: rgb(129, 50, 24);
-    box-shadow: inset 0 0 4px rgba(0, 0, 0, 1);*/
+	/*background-color: rgb(129, 50, 24);
+	box-shadow: inset 0 0 4px rgba(0, 0, 0, 1);*/
 }
 
 
 .character-screen-container .left-panel-header-module .name-container .label
 {
-    /* vertical center */
-    top: 50%;
-    width: 100%;
-    position: relative;
+	/* vertical center */
+	top: 50%;
+	width: 100%;
+	position: relative;
 
-    -webkit-transform: translateY(-50%);
-    -ms-transform: translateY(-50%);
-    transform: translateY(-50%);
+	-webkit-transform: translateY(-50%);
+	-ms-transform: translateY(-50%);
+	transform: translateY(-50%);
 
-    white-space: nowrap;
-    text-align: center;
-    text-overflow: ellipsis;
-    line-height: 2.6rem;
+	white-space: nowrap;
+	text-align: center;
+	text-overflow: ellipsis;
+	line-height: 2.6rem;
 }
 
 .character-screen-container .left-panel-header-module .name-container img
 {
-    top: 0;
-    bottom: 0;
-    right: 0.4rem;
-    width: 1.8rem;
-    height: 1.8rem;
-    position: absolute;
-    margin: auto;
+	top: 0;
+	bottom: 0;
+	right: 0.4rem;
+	width: 1.8rem;
+	height: 1.8rem;
+	position: absolute;
+	margin: auto;
 }
 
 .character-screen-container .left-panel-header-module .level-container
@@ -133,38 +140,38 @@
 	height: 3.0rem;
 	position: absolute;
 
-    overflow: hidden;
+	overflow: hidden;
 
-    /*border-right: 1px rgba(130, 130, 130, 1) solid;*//
+	/*border-right: 1px rgba(130, 130, 130, 1) solid;*//
 }
 
 .character-screen-container .left-panel-header-module .level-container.is-clickable:hover
 {
-    /*background-color: rgb(129, 50, 24);
-    box-shadow: inset 0 0 4px rgba(0, 0, 0, 1);*/
+	/*background-color: rgb(129, 50, 24);
+	box-shadow: inset 0 0 4px rgba(0, 0, 0, 1);*/
 }
 
 .character-screen-container .left-panel-header-module .level-container > .label
 {
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	position: absolute;
 
-    line-height: 3.0rem;
-    text-align: center;
+	line-height: 3.0rem;
+	text-align: center;
 }
 
 .character-screen-container .left-panel-header-module .level-container > img
 {
-    top: 0;
-    right: -0.2rem;
-    bottom: 0;
-    width: 2.0rem;
-    height: 2.0rem;
-    position: absolute;
-    margin: auto;
+	top: 0;
+	right: -0.2rem;
+	bottom: 0;
+	width: 2.0rem;
+	height: 2.0rem;
+	position: absolute;
+	margin: auto;
 }
 
 .character-screen-container .left-panel-header-module .xp-container
@@ -192,53 +199,53 @@
 /* Dismiss Dialog Container */
 .character-screen .ui-control.popup-dialog.dismiss-popup
 {
-    width: 44.9rem;
-    height: 25.0rem;
+	width: 44.9rem;
+	height: 25.0rem;
 
-    background-image: url("coui://gfx/ui/skin/popup_background_449x250.png");
-    background-size: 44.9rem 25.0rem;
-    background-repeat: no-repeat;
+	background-image: url("coui://gfx/ui/skin/popup_background_449x250.png");
+	background-size: 44.9rem 25.0rem;
+	background-repeat: no-repeat;
 }
 
 .character-screen .ui-control.popup-dialog .dismiss-character-container
 {
-    margin-top: -3.5rem;
-    margin-bottom: -0.5rem;
-    width: 100%;
-    /*height: 14.0rem;*/
-    padding: 2.6rem;
-    position: relative;
-    float: left;
+	margin-top: -3.5rem;
+	margin-bottom: -0.5rem;
+	width: 100%;
+	/*height: 14.0rem;*/
+	padding: 2.6rem;
+	position: relative;
+	float: left;
 }
 
 .character-screen .ui-control.popup-dialog .dismiss-character-container .title-label
 {
-    width: 100%;
-    height: 3.6rem;
-    position: relative;
-    float: left;
-    clear: left;
+	width: 100%;
+	height: 3.6rem;
+	position: relative;
+	float: left;
+	clear: left;
 
-    text-align: left;
-    line-height: 4.4rem;
+	text-align: left;
+	line-height: 4.4rem;
 }
 
 .character-screen .ui-control.popup-dialog .dismiss-character-container .label
 {
-    width: 100%;
-    position: relative;
-    float: left;
+	width: 100%;
+	position: relative;
+	float: left;
 
-    text-align: left;
+	text-align: left;
 }
 
 .character-screen .ui-control.popup-dialog .dismiss-character-container .retirement-package
 {
-    width: 100%;
-    position: relative;
-    float: left;
+	width: 100%;
+	position: relative;
+	float: left;
 
-    text-align: left;
+	text-align: left;
 	margin-top: 1.5rem;
 	margin-bottom: -1.0rem;
 	margin-left: auto;
@@ -260,147 +267,147 @@
 /* Change Name & Title Dialog Container */
 .character-screen .ui-control.popup-dialog.change-name-and-title-popup
 {
-    width: 44.9rem;
-    height: 25.0rem;
+	width: 44.9rem;
+	height: 25.0rem;
 
-    background-image: url("coui://gfx/ui/skin/popup_background_449x250.png");
-    background-size: 44.9rem 25.0rem;
-    background-repeat: no-repeat;
+	background-image: url("coui://gfx/ui/skin/popup_background_449x250.png");
+	background-size: 44.9rem 25.0rem;
+	background-repeat: no-repeat;
 }
 
 .character-screen .ui-control.popup-dialog .change-name-and-title-container
 {
-    width: 100%;
-    padding: 0.6rem;
-    position: relative;
-    float: left;
+	width: 100%;
+	padding: 0.6rem;
+	position: relative;
+	float: left;
 }
 
 .character-screen .ui-control.popup-dialog .change-name-and-title-container .row
 {
-    width: 100%;
-    height: 5.9rem;
-    position: relative;
-    float: left;
+	width: 100%;
+	height: 5.9rem;
+	position: relative;
+	float: left;
 }
 
 .character-screen .ui-control.popup-dialog .change-name-and-title-container .row .label
 {
-    width: 9.0rem;
-    height: 5.9rem;
-    margin-right: 1.0rem;
-    position: relative;
-    float: left;
+	width: 9.0rem;
+	height: 5.9rem;
+	margin-right: 1.0rem;
+	position: relative;
+	float: left;
 
-    line-height: 5.9rem;
-    text-align: right;
+	line-height: 5.9rem;
+	text-align: right;
 }
 
 .character-screen .ui-control.popup-dialog .change-name-and-title-container .row .l-input
 {
-    width: 30.0rem;
-    height: 4.0rem;
-    margin-top: 1.0rem;
-    margin-bottom: 1.0rem;
-    position: relative;
-    float: left;
+	width: 30.0rem;
+	height: 4.0rem;
+	margin-top: 1.0rem;
+	margin-bottom: 1.0rem;
+	position: relative;
+	float: left;
 }
 
 
 /* LevelUp Dialog Content */
 .character-screen .ui-control.popup-dialog.levelup-popup
 {
-    width: 60.0rem;
-    height: 30.0rem;
+	width: 60.0rem;
+	height: 30.0rem;
 
-    background-image: url("coui://gfx/ui/skin/popup_background_600x300.png");
-    background-size: 60.0rem 30.0rem;
-    background-repeat: no-repeat;
+	background-image: url("coui://gfx/ui/skin/popup_background_600x300.png");
+	background-size: 60.0rem 30.0rem;
+	background-repeat: no-repeat;
 }
 
 .character-screen .ui-control.popup-dialog .levelup-header
 {
-    width: 100%;
-    height: 3.0rem;
-    position: relative;
+	width: 100%;
+	height: 3.0rem;
+	position: relative;
 }
 
 .character-screen .ui-control.popup-dialog .levelup-header .l-center-container
 {
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    width: 8.0rem;
-    height: 3.0rem;
-    position: absolute;
-    margin: auto;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	width: 8.0rem;
+	height: 3.0rem;
+	position: absolute;
+	margin: auto;
 }
 
 .character-screen .ui-control.popup-dialog .levelup-header .l-center-container > img
 {
-    top: -0.1rem;
-    left: 0;
-    bottom: 0;
-    width: 3.0rem;
-    height: 3.0rem;
-    position: absolute;
-    margin: auto;
+	top: -0.1rem;
+	left: 0;
+	bottom: 0;
+	width: 3.0rem;
+	height: 3.0rem;
+	position: absolute;
+	margin: auto;
 }
 
 .character-screen .ui-control.popup-dialog .levelup-header .l-center-container > .label
 {
-    top: 0;
-    left: 4.0rem;
-    bottom: 0;
-    width: 4.0rem;
-    height: 3.0rem;
-    position: absolute;
-    margin: auto;
+	top: 0;
+	left: 4.0rem;
+	bottom: 0;
+	width: 4.0rem;
+	height: 3.0rem;
+	position: absolute;
+	margin: auto;
 
-    line-height: 3.0rem;
+	line-height: 3.0rem;
 }
 
 .character-screen .ui-control.popup-dialog .levelup-container
 {
-    width: 100%; /* 46.0rem */
-    padding: 0.6rem;
-    padding-left: 7.0rem;
-    padding-right: 7.0rem;
-    margin-bottom: 1.5rem;
-    position: relative;
-    float: left;
+	width: 100%; /* 46.0rem */
+	padding: 0.6rem;
+	padding-left: 7.0rem;
+	padding-right: 7.0rem;
+	margin-bottom: 1.5rem;
+	position: relative;
+	float: left;
 }
 
 .character-screen .ui-control.popup-dialog .levelup-container .column
 {
-    width: 22.4rem;
-    position: relative;
-    float: left;
+	width: 22.4rem;
+	position: relative;
+	float: left;
 }
 
 .character-screen .ui-control.popup-dialog .levelup-container .row
 {
-    width: 100%;
-    height: 3.0rem;
-    position: relative;
-    float: left;
+	width: 100%;
+	height: 3.0rem;
+	position: relative;
+	float: left;
 }
 
 .character-screen .ui-control.popup-dialog .levelup-container .row > img
 {
-    top: 0;
-    left: 1.0rem;
-    bottom: 0;
-    width: 2.6rem;
-    height: 2.6rem;
-    position: absolute;
-    margin: auto;
+	top: 0;
+	left: 1.0rem;
+	bottom: 0;
+	width: 2.6rem;
+	height: 2.6rem;
+	position: absolute;
+	margin: auto;
 }
 
 .character-screen .ui-control.popup-dialog .levelup-container .row .talent
 {
-    top: -1.3rem;
+	top: -1.3rem;
 	left: 3.7rem;
 
 	position: absolute;
@@ -412,22 +419,22 @@
 
 .character-screen .ui-control.popup-dialog .levelup-container .row > .l-progressbar-container
 {
-    top: 0;
-    left: 4.0rem;
-    bottom: 0;
-    width: 12.7rem;
-    height: 2.2rem;
-    position: absolute;
-    margin: auto;
+	top: 0;
+	left: 4.0rem;
+	bottom: 0;
+	width: 12.7rem;
+	height: 2.2rem;
+	position: absolute;
+	margin: auto;
 }
 
 .character-screen .ui-control.popup-dialog .levelup-container .row > .l-increase-button-container
 {
-    top: 0.1rem;
-    left: 17.6rem;
-    bottom: 0;
-    width: 4.2rem;
-    height: 2.8rem;
-    position: absolute;
-    margin: auto;
+	top: 0.1rem;
+	left: 17.6rem;
+	bottom: 0;
+	width: 4.2rem;
+	height: 2.8rem;
+	position: absolute;
+	margin: auto;
 }

@@ -1,0 +1,27 @@
+.character-screen .notice-popup-dialog
+{
+	width: 44.9rem;
+	height: 20.3rem;
+
+	background-image: url("coui://gfx/ui/skin/save_game_name_background.png");
+	background-size: 44.9rem 20.3rem;
+	background-repeat: no-repeat;
+}
+
+.character-screen .ui-control.popup-dialog .notice-popup-container
+{
+	width: 44.9rem;
+	padding-left: 2.5rem;
+	padding-right: 2.5rem;
+	position: relative;
+	float: left;
+}
+
+.character-screen .ui-control.popup-dialog .notice-popup-container .row
+{
+	width: 100%;
+	height: 8.0rem;
+	position: relative;
+	margin: auto;
+	float: left;
+}

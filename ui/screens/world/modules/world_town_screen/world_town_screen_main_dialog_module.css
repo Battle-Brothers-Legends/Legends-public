@@ -1,144 +1,144 @@
 
 .world-town-screen > .l-main-dialog-container
 {
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    width: 102.4rem;
-    height: 76.8rem;
-    position: absolute;
-    margin: auto;
-    z-index: 2;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	width: 102.4rem;
+	height: 76.8rem;
+	position: absolute;
+	margin: auto;
+	z-index: 2;
 }
 
 
 .world-town-screen > .l-main-dialog-container .settlement-container
 {
-    top: -0.8rem; /* -1.4rem */
-    padding-left: 0.1rem;
-    width: 102.3rem;
-    height: 58.8rem;
-    position: absolute;
-    overflow: hidden;
+	top: -0.8rem; /* -1.4rem */
+	padding-left: 0.1rem;
+	width: 102.3rem;
+	height: 58.8rem;
+	position: absolute;
+	overflow: hidden;
 }
 
 
 .world-town-screen > .l-main-dialog-container .l-tab-container
 {
-    top: -1.0rem;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    width: 88.0rem;
-    height: 3.0rem;
-    position: absolute;
-    margin: auto;
+	top: -1.0rem;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	width: 88.0rem;
+	height: 3.0rem;
+	position: absolute;
+	margin: auto;
 }
 
 .world-town-screen > .l-main-dialog-container .l-tab-asset
 {
-    top: 0;
-    bottom: 0;
-    width: 13.0rem;
-    height: 4.3rem;
-    position: absolute;
+	top: 0;
+	bottom: 0;
+	width: 13.0rem;
+	height: 4.3rem;
+	position: absolute;
 }
 
 .world-town-screen > .l-main-dialog-container .l-tab-asset.is-money
 {
-    left: 0;
+	left: 0;
 }
 
 .world-town-screen > .l-main-dialog-container .l-tab-asset.is-food
 {
-    left: 15.0rem;
+	left: 15.0rem;
 }
 
 .world-town-screen > .l-main-dialog-container .l-tab-asset.is-supplies
 {
-    left: 30.0rem;
+	left: 30.0rem;
 }
 
 .world-town-screen > .l-main-dialog-container .l-tab-asset.is-ammo
 {
-    left: 45.0rem;
+	left: 45.0rem;
 }
 
 .world-town-screen > .l-main-dialog-container .l-tab-asset.is-medicine
 {
-    left: 60.0rem;
+	left: 60.0rem;
 }
 
 .world-town-screen > .l-main-dialog-container .l-tab-asset.is-brothers
 {
-    left: 75.0rem;
-    width: 9.8rem;
+	left: 75.0rem;
+	width: 9.8rem;
 }
 
 .world-town-screen > .l-main-dialog-container .l-tab-asset img
 {
-    top: 0;
-    bottom: 0;
-    left: 0;
-    width: 2.8rem;
-    height: 2.8rem;
-    margin: auto;
-    margin-left: 1.0rem;
-    position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	width: 2.8rem;
+	height: 2.8rem;
+	margin: auto;
+	margin-left: 1.0rem;
+	position: absolute;
 }
 
 .world-town-screen > .l-main-dialog-container .l-tab-asset .label
 {
-    top: 0;
-    bottom: 0;
-    left: 3.4rem;
-    width: 11.2rem;
-    height: 3.0rem;
-    margin: auto;
-    margin-left: 1.0rem;
-    position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 3.4rem;
+	width: 11.2rem;
+	height: 3.0rem;
+	margin: auto;
+	margin-left: 1.0rem;
+	position: absolute;
 
-    text-align : left;
-    line-height: 3.0rem;
+	text-align : left;
+	line-height: 3.0rem;
 }
 
 .world-town-screen > .l-main-dialog-container .background
 {
-    position: absolute;
-    pointer-events: none;
+	position: absolute;
+	pointer-events: none;
 	width: 102.4rem;
 	height: 58.8rem;
 }
 
 .world-town-screen > .l-main-dialog-container .ramp
 {
-    position: absolute;
-    pointer-events: none;
+	position: absolute;
+	pointer-events: none;
 	width: 102.4rem;
 	height: 58.8rem;
 }
 
 .world-town-screen > .l-main-dialog-container .ramp-pathway
 {
-    position: absolute;
-    pointer-events: none;
+	position: absolute;
+	pointer-events: none;
 	width: 102.4rem;
 	height: 58.8rem;
 }
 
 .world-town-screen > .l-main-dialog-container .background-left
 {
-    position: absolute;
-    pointer-events: none;
+	position: absolute;
+	pointer-events: none;
 	width: 102.4rem;
 	height: 58.8rem;
 }
 
 .world-town-screen > .l-main-dialog-container .background-right
 {
-    position: absolute;
-    pointer-events: none;
+	position: absolute;
+	pointer-events: none;
 	width: 102.4rem;
 	height: 58.8rem;
 }
@@ -146,16 +146,16 @@
 /* center top (townhall) */
 .world-town-screen > .l-main-dialog-container .background-center
 {
-    position: absolute;
-    pointer-events: none;
+	position: absolute;
+	pointer-events: none;
 	width: 102.4rem;
 	height: 58.8rem;
 }
 
 .world-town-screen > .l-main-dialog-container .water
 {
-    position: absolute;
-    pointer-events: none;
+	position: absolute;
+	pointer-events: none;
 	width: 102.4rem;
 	height: 58.8rem;
 }
@@ -163,148 +163,182 @@
 /* buildings */
 .world-town-screen > .l-main-dialog-container .slot0
 {
-    -webkit-transform: scale(-0.7, 0.7);
-    position: absolute;
-    right: 21.0rem;
-    bottom: 21.0rem;
+	-webkit-transform: scale(-0.7, 0.7);
+	position: absolute;
+	right: 21.0rem;
+	bottom: 21.0rem;
 }
 
 .world-town-screen > .l-main-dialog-container .slot1
 {
-    -webkit-transform: scale(0.8, 0.8);
-    position: absolute;
-    left: 15.0rem;
-    bottom: 16.0rem;
+	-webkit-transform: scale(0.8, 0.8);
+	position: absolute;
+	left: 15.0rem;
+	bottom: 16.0rem;
 }
 
 /*.world-town-screen > .l-main-dialog-container .slot2
 {
-    -webkit-transform: scale(-0.85, 0.85);
-    position: absolute;
-    right: 12.0rem;
-    bottom: 16.0rem;
+	-webkit-transform: scale(-0.85, 0.85);
+	position: absolute;
+	right: 12.0rem;
+	bottom: 16.0rem;
 }*/
 
 /* center (marketplace) */
 .world-town-screen > .l-main-dialog-container .slot2
 {
    /* -webkit-transform: scale(0.9, 0.9);*/
-    position: absolute;
-    left: 25.0rem;
-    top: 36.0rem;
+	position: absolute;
+	left: 25.0rem;
+	top: 36.0rem;
 }
 
 .world-town-screen > .l-main-dialog-container .slot3
 {
-    position: absolute;
-    right: 72.0rem;
-    bottom: 4.0rem;
+	position: absolute;
+	right: 72.0rem;
+	bottom: 4.0rem;
 }
 
 .world-town-screen > .l-main-dialog-container .slot4
 {
-    -webkit-transform: scaleX(-1);
-    position: absolute;
-    left: 72.0rem;
-    bottom: 5.0rem;
+	-webkit-transform: scaleX(-1);
+	position: absolute;
+	left: 72.0rem;
+	bottom: 5.0rem;
 }
 
 /* center bottom (recruitment) */
 .world-town-screen > .l-main-dialog-container .slot5
 {
-    position: absolute;
-    left: 42.0rem;
-    bottom: 0.0rem;
+	position: absolute;
+	left: 42.0rem;
+	bottom: 0.0rem;
 }
 
 .world-town-screen > .l-main-dialog-container .contract-scroll
 {
-    position: absolute;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: auto;
-    margin-bottom: auto;
+	position: absolute;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: auto;
+	margin-bottom: auto;
 }
 
 .world-town-screen > .l-main-dialog-container .contract0
 {
-    position: absolute;
-    left: 2.0rem;
+	position: absolute;
+	left: 2.0rem;
 }
 
 .world-town-screen > .l-main-dialog-container .contract1
 {
-    position: absolute;
-    left: 8.0rem;
+	position: absolute;
+	left: 8.0rem;
 }
 
 .world-town-screen > .l-main-dialog-container .contract2
 {
-    position: absolute;
-    left: 14.0rem;
+	position: absolute;
+	left: 14.0rem;
 }
 
 .world-town-screen > .l-main-dialog-container .contract3
 {
-    position: absolute;
-    left: 20.0rem;
+	position: absolute;
+	left: 20.0rem;
 }
 
 .world-town-screen > .l-main-dialog-container .contract4
 {
-    position: absolute;
-    left: 26.0rem;
+	position: absolute;
+	left: 26.0rem;
 }
 
 .world-town-screen > .l-main-dialog-container .contract5
 {
-    position: absolute;
-    left: 32.0rem;
+	position: absolute;
+	left: 32.0rem;
 }
 
 .world-town-screen > .l-main-dialog-container .contract6
 {
-    position: absolute;
-    left: 39.0rem;
+	position: absolute;
+	left: 39.0rem;
 }
 
 .world-town-screen > .l-main-dialog-container .contract7
 {
-    position: absolute;
-    left: 45.0rem;
+	position: absolute;
+	left: 45.0rem;
 }
 
 .world-town-screen > .l-main-dialog-container .contract8
 {
-    position: absolute;
-    left: 51.0rem;
+	position: absolute;
+	left: 51.0rem;
 }
 
 .world-town-screen > .l-main-dialog-container .contract9
 {
-    position: absolute;
-    left: 57.0rem;
+	position: absolute;
+	left: 57.0rem;
 }
 
 .world-town-screen > .l-main-dialog-container .is-contract
 {
-     max-width: 5.0rem;
-     height: auto;
-     top: 2.0rem;
+	 max-width: 5.0rem;
+	 height: auto;
+	 top: 2.0rem;
 }
 
 .world-town-screen > .l-main-dialog-container .is-scroll
 {
-     top: 3.4rem;
-     margin-left: 0.6rem;
-     pointer-events: none;
+	 top: 3.4rem;
+	 margin-left: 0.6rem;
+	 pointer-events: none;
 }
+
+/*Bottom Middle*/
+.world-town-screen > .l-main-dialog-container .is-contract-category-middle
+{
+	 top: 7.4rem;
+	 margin-left: 0.9rem;
+	 pointer-events: none;
+}
+
+/*Bottom Right*/
+.world-town-screen > .l-main-dialog-container .is-contract-category-right
+{
+	 top: 7.4rem;
+	 margin-left: 2.6rem;
+	 pointer-events: none;
+}
+
+
+/*Bottom Left*/
+.world-town-screen > .l-main-dialog-container .is-contract-category-left
+{
+	 top: 7.4rem;
+	 margin-left: -0.8rem;
+	 pointer-events: none;
+}
+
+/*Below*/
+.world-town-screen > .l-main-dialog-container .is-contract-category-below
+{
+	 top: 9rem;
+	 margin-left: 0.9rem;
+	 pointer-events: none;
+}
+
 
 .world-town-screen > .l-main-dialog-container .is-difficulty
 {
-     top: 1.5rem;
-     margin-left: 0.5rem;
-     pointer-events: none;
+	 top: 1.5rem;
+	 margin-left: 0.5rem;
+	 pointer-events: none;
 }
 
 .world-town-screen > .l-main-dialog-container .is-highlighted
@@ -324,120 +358,120 @@
 
 .world-town-screen > .l-main-dialog-container .status-effect
 {
-    position: absolute;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: auto;
-    margin-bottom: auto;
+	position: absolute;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: auto;
+	margin-bottom: auto;
 }
 
 .world-town-screen > .l-main-dialog-container .is-status-effect
 {
-     max-width: 5.6rem;
-     height: auto;
-     top: 2.0rem;
+	 max-width: 5.6rem;
+	 height: auto;
+	 top: 2.0rem;
 }
 
 .world-town-screen > .l-main-dialog-container .effect0
 {
-    position: absolute;
-    right: 2.0rem;
+	position: absolute;
+	right: 2.0rem;
 }
 
 .world-town-screen > .l-main-dialog-container .effect1
 {
-    position: absolute;
-    right: 8.0rem;
+	position: absolute;
+	right: 8.0rem;
 }
 
 .world-town-screen > .l-main-dialog-container .effect2
 {
-    position: absolute;
-    right: 14.0rem;
+	position: absolute;
+	right: 14.0rem;
 }
 
 .world-town-screen > .l-main-dialog-container .effect3
 {
-    position: absolute;
-    right: 20.0rem;
+	position: absolute;
+	right: 20.0rem;
 }
 
 .world-town-screen > .l-main-dialog-container .effect4
 {
-    position: absolute;
-    right: 26.0rem;
+	position: absolute;
+	right: 26.0rem;
 }
 
 .world-town-screen > .l-main-dialog-container .effect5
 {
-    position: absolute;
-    right: 32.0rem;
+	position: absolute;
+	right: 32.0rem;
 }
 
 .world-town-screen > .l-main-dialog-container .effect6
 {
-    position: absolute;
-    right: 39.0rem;
+	position: absolute;
+	right: 39.0rem;
 }
 
 .world-town-screen > .l-main-dialog-container .effect7
 {
-    position: absolute;
-    right: 45.0rem;
+	position: absolute;
+	right: 45.0rem;
 }
 
 .world-town-screen > .l-main-dialog-container .effect8
 {
-    position: absolute;
-    right: 51.0rem;
+	position: absolute;
+	right: 51.0rem;
 }
 
 .world-town-screen > .l-main-dialog-container .effect9
 {
-    position: absolute;
-    right: 57.0rem;
+	position: absolute;
+	right: 57.0rem;
 }
 
 .world-town-screen > .l-main-dialog-container .mood
 {
-    position: absolute;
-    pointer-events: none;
+	position: absolute;
+	pointer-events: none;
 }
 
 .world-town-screen > .l-main-dialog-container .foreground
 {
-    position: absolute;
-    pointer-events: none;
-    bottom: 0;
+	position: absolute;
+	pointer-events: none;
+	bottom: 0;
 	width: 102.4rem;
 	height: 58.8rem;
 }
 
 .world-town-screen > .l-main-dialog-container .content img
 {
-    position: absolute;
-    z-index: 1;
+	position: absolute;
+	z-index: 1;
 }
 
 .world-town-screen > .l-main-dialog-container .footer .l-button-bar
 {
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    width: 16.0rem;
-    height: 4.3rem;
-    position: absolute;
-    margin: auto;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	width: 16.0rem;
+	height: 4.3rem;
+	position: absolute;
+	margin: auto;
 }
 
 .world-town-screen > .l-main-dialog-container .footer .l-leave-button
 {
-    top: 0;
-    right: 0;
-    bottom: 0;
-    width: 17.5rem;
-    position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	width: 17.5rem;
+	position: absolute;
 
-    line-height: 3.0rem;
+	line-height: 3.0rem;
 }

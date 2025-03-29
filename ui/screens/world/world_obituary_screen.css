@@ -3,12 +3,12 @@
  *	@Company:		Overhype Studios
  *
  *	@Copyright:		(c) Overhype Studios | 2013 - 2020
- * 
+ *
  *  @Author:		Overhype Studios
  *  @Date:			31.10.2017
  *  @Description:	Factions & Relations CSS
  */
- 
+
 .world-obituary-screen
 {
 	top: 0;
@@ -22,65 +22,65 @@
 
 .world-obituary-screen > .l-obituary-dialog-container
 {
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    width: 102.4rem;
-    height: 76.8rem;
-    position: absolute;
-    margin: auto;
-    z-index: 2;
+	top: 0;
+	left: 5;
+	right: 0;
+	bottom: 0;
+	width: 171.0rem;
+	height: 76.8rem;
+	position: absolute;
+	margin: auto;
+	z-index: 2;
 }
 
 
 .world-obituary-screen > .l-obituary-dialog-container .l-tab-container
 {
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    width: 88.0rem;
-    height: 3.0rem;
-    position: absolute;
-    margin: auto;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	width: 128.0rem;
+	height: 3.0rem;
+	position: absolute;
+	margin: auto;
 }
 
 .world-obituary-screen > .l-obituary-dialog-container .l-tab-asset
 {
-    top: 0;
-    bottom: 0;
-    width: 13.0rem;
-    height: 3.0rem;
-    position: absolute;
+	top: 0;
+	bottom: 0;
+	width: 13.0rem;
+	height: 3.0rem;
+	position: absolute;
 }
 
 .world-obituary-screen > .l-obituary-dialog-container .table-header
 {
-    width: 100%;
+	width: 100%;
 	height: 2.5rem;
-    padding-top: 0.0rem;
-    padding-bottom: 0.0rem;
+	padding-top: 0.0rem;
+	padding-bottom: 0.0rem;
 	padding-left: 1.0rem;
 	padding-right: 1.0rem;
-    position: relative;
-    float : left;
+	position: relative;
+	float : left;
 
 	border-image: url("coui://gfx/ui/skin/line_gold.png") 0% 0% 100% 0%;
-    border-image-outset: 0 0 0.5rem 0;
+	border-image-outset: 0 0 0.5rem 0;
 }
 
 .world-obituary-screen > .l-obituary-dialog-container .table-header .table-header-name
 {
 	top: 0.0rem;
-	left: 1.0rem;
+	left: 2.5rem;
 	position: absolute;
 }
 
 .world-obituary-screen > .l-obituary-dialog-container .table-header .table-header-time
 {
 	top: 0.0rem;
-	left: 30.0rem;
+	left: 33.0rem;
 	position: absolute;
 }
 
@@ -94,51 +94,72 @@
 .world-obituary-screen > .l-obituary-dialog-container .table-header .table-header-kills
 {
 	top: 0.0rem;
-	left: 53.0rem;
+	left: 51.0rem;
 	position: absolute;
 }
 
 .world-obituary-screen > .l-obituary-dialog-container .table-header .table-header-killed-by
 {
 	top: 0.0rem;
-	left: 63.0rem;
+	left: 59.0rem;
+	position: absolute;
+}
+
+.world-obituary-screen > .l-obituary-dialog-container .table-header .table-header-level
+{
+	top: 0.0rem;
+	left: 96.0rem;
+	position: absolute;
+}
+
+.world-obituary-screen > .l-obituary-dialog-container .table-header .table-header-traits
+{
+	top: 0.0rem;
+	left: 101.0rem;
+	position: absolute;
+}
+
+.world-obituary-screen > .l-obituary-dialog-container .table-header .table-header-stats
+{
+	top: 0.0rem;
+	left: 113.0rem;
 	position: absolute;
 }
 
 .world-obituary-screen > .l-obituary-dialog-container .content > .column
 {
-    width: 100%;
-    height: 100%;
-    padding-top: 2.0rem;
-    padding-bottom: 0.9rem;
+	width: 100%;
+	height: 100%;
+	padding-top: 0.0rem;
+	padding-bottom: 0.9rem;
 	padding-left: 1.0rem;
 	padding-right: 1.0rem;
-    position: relative;
-    float : left;
+	position: relative;
+	float : left;
 
-    /*background-image: url("coui://gfx/ui/skin/dialog_panel_01.png");
-    background-size: 50.8rem 56.8rem;
-    background-repeat: no-repeat;*/
+	/*background-image: url("coui://gfx/ui/skin/dialog_panel_01.png");
+	background-size: 50.8rem 56.8rem;
+	background-repeat: no-repeat;*/
 }
 
 
 .world-obituary-screen > .l-obituary-dialog-container .content > .column.is-left
 {
-    padding-left: 1.0rem;
-    padding-right: 1.6rem;
-    padding-bottom: 3.5rem;
+	padding-left: 1.0rem;
+	padding-right: 1.6rem;
+	padding-bottom: 3.5rem;
 }
 
 .world-obituary-screen > .l-obituary-dialog-container .content > .column.is-right
 {
-    padding-left: 0.5rem;
-    padding-right: 1.0rem;
+	padding-left: 0.5rem;
+	padding-right: 1.0rem;
 }
 
 .world-obituary-screen > .l-obituary-dialog-container .content .l-list-container
 {
-    width: 100%;
-    height: 100%;
+	width: 100%;
+	height: 100%;
 }
 
 
@@ -146,159 +167,319 @@
 
 .world-obituary-screen > .l-obituary-dialog-container .content .l-list-container .scroll-container
 {
-    margin-top: 0.4rem;
-    margin-bottom: 0.4rem;
+	margin-top: 0.4rem;
+	margin-bottom: 0.4rem;
 }
 
 .world-obituary-screen > .l-obituary-dialog-container .content .scroll-container .l-row
 {
-    width: 100%;
-    height: 3.0rem;
-    position: relative;
+	width: 100%;
+	height: 3.0rem;
+	position: relative;
 
-    overflow: hidden;
+	overflow: hidden;
 }
 
 .world-obituary-screen > .l-obituary-dialog-container .content .scroll-container .l-row .name
 {
-    top: 0.0rem;
-	left: 0.5rem;
+	top: 0.0rem;
+	left: 2.0rem;
 	position: absolute;
 }
 
 .world-obituary-screen > .l-obituary-dialog-container .content .scroll-container .l-row .time
 {
-    top: 0.0rem;
-	left: 31.0rem;
+	top: 0.0rem;
+	left: 33.5rem;
 	position: absolute;
 }
 
 .world-obituary-screen > .l-obituary-dialog-container .content .scroll-container .l-row .battles
 {
-    top: 0.0rem;
-	left: 42.0rem;
+	top: 0.0rem;
+	left: 43.0rem;
 	position: absolute;
 }
 
 .world-obituary-screen > .l-obituary-dialog-container .content .scroll-container .l-row .kills
 {
-    top: 0.0rem;
-	left: 54.0rem;
+	top: 0.0rem;
+	left: 52.5rem;
+	position: absolute;
+}
+
+.world-obituary-screen > .l-obituary-dialog-container .content .scroll-container .l-row .level
+{
+	top: 0.0rem;
+	left: 96.0rem;
 	position: absolute;
 }
 
 .world-obituary-screen > .l-obituary-dialog-container .content .scroll-container .l-row .killed-by
 {
-    top: 0.0rem;
-	left: 63.0rem;
+	top: 0.0rem;
+	left: 59.0rem;
+	position: absolute;
+}
+
+.world-obituary-screen > .l-obituary-dialog-container .content .scroll-container .l-row .trait1
+{
+	top: 0.0rem;
+	left: 99.0rem;
+	position: absolute;
+}
+
+.world-obituary-screen > .l-obituary-dialog-container .content .scroll-container .l-row .trait2
+{
+	top: 0.0rem;
+	left: 103.0rem;
+	position: absolute;
+}
+
+.world-obituary-screen > .l-obituary-dialog-container .content .scroll-container .l-row .trait3
+{
+	top: 0.0rem;
+	left: 106.0rem;
+	position: absolute;
+}
+
+.world-obituary-screen > .l-obituary-dialog-container .content .scroll-container .l-row .trait4
+{
+	top: 0.0rem;
+	left: 109.0rem;
+	position: absolute;
+}
+
+.world-obituary-screen > .l-obituary-dialog-container .content .scroll-container .l-row .trait > img
+{
+	width: 2.6rem;
+	height: 2.6rem;
+}
+
+.world-obituary-screen > .l-obituary-dialog-container .content .scroll-container .l-row .stats
+{
+	top: 0.0rem;
+	left: 100.0rem;
+	position: absolute;
+}
+
+.world-obituary-screen > .l-obituary-dialog-container .content .scroll-container .l-row .hpicon
+{
+	top: 0.0rem;
+	left: 113.0rem;
+	position: absolute;
+}
+
+.world-obituary-screen > .l-obituary-dialog-container .content .scroll-container .l-row .hptext
+{
+	top: 0.0rem;
+	left: 113.0rem;
+	position: absolute;
+}
+
+.world-obituary-screen > .l-obituary-dialog-container .content .scroll-container .l-row .fticon
+{
+	top: 0.0rem;
+	left: 120.0rem;
+	position: absolute;
+}
+
+.world-obituary-screen > .l-obituary-dialog-container .content .scroll-container .l-row .fttext
+{
+	top: 0.0rem;
+	left: 120.0rem;
+	position: absolute;
+}
+
+.world-obituary-screen > .l-obituary-dialog-container .content .scroll-container .l-row .bricon
+{
+	top: 0.0rem;
+	left: 127.0rem;
+	position: absolute;
+}
+
+.world-obituary-screen > .l-obituary-dialog-container .content .scroll-container .l-row .brtext
+{
+	top: 0.0rem;
+	left: 127.0rem;
+	position: absolute;
+}
+
+.world-obituary-screen > .l-obituary-dialog-container .content .scroll-container .l-row .iticon
+{
+	top: 0.0rem;
+	left: 134.0rem;
+	position: absolute;
+}
+
+.world-obituary-screen > .l-obituary-dialog-container .content .scroll-container .l-row .ittext
+{
+	top: 0.0rem;
+	left: 134.0rem;
+	position: absolute;
+}
+
+.world-obituary-screen > .l-obituary-dialog-container .content .scroll-container .l-row .maicon
+{
+	top: 0.0rem;
+	left: 141.0rem;
+	position: absolute;
+}
+
+.world-obituary-screen > .l-obituary-dialog-container .content .scroll-container .l-row .matext
+{
+	top: 0.0rem;
+	left: 141.0rem;
+	position: absolute;
+}
+
+.world-obituary-screen > .l-obituary-dialog-container .content .scroll-container .l-row .raicon
+{
+	top: 0.0rem;
+	left: 148.0rem;
+	position: absolute;
+}
+
+.world-obituary-screen > .l-obituary-dialog-container .content .scroll-container .l-row .ratext
+{
+	top: 0.0rem;
+	left: 148.0rem;
+	position: absolute;
+}
+
+.world-obituary-screen > .l-obituary-dialog-container .content .scroll-container .l-row .mdicon
+{
+	top: 0.0rem;
+	left: 154.6rem;
+	position: absolute;
+}
+
+.world-obituary-screen > .l-obituary-dialog-container .content .scroll-container .l-row .mdtext
+{
+	top: 0.0rem;
+	left: 154.6rem;
+	position: absolute;
+}
+
+.world-obituary-screen > .l-obituary-dialog-container .content .scroll-container .l-row .rdicon
+{
+	top: 0.0rem;
+	left: 161.2rem;
+	position: absolute;
+}
+
+.world-obituary-screen > .l-obituary-dialog-container .content .scroll-container .l-row .rdtext
+{
+	top: 0.0rem;
+	left: 161.2rem;
 	position: absolute;
 }
 
 .world-obituary-screen > .l-obituary-dialog-container .content .scroll-container .l-row:last-child
 {
-    margin-bottom: 0;
+	margin-bottom: 0;
 }
 
 .world-obituary-screen > .l-obituary-dialog-container .content .l-row .column
 {
-    height: 100%;
-    position: absolute;
+	height: 100%;
+	position: absolute;
 }
 
 .world-obituary-screen > .l-obituary-dialog-container .content .l-row .column.is-left
 {
-    top: 0;
-    left: 0;
-    width: 9.0rem;
-    z-index: 2;
+	top: 0;
+	left: 0;
+	width: 9.0rem;
+	z-index: 2;
 }
 
 .world-obituary-screen > .l-obituary-dialog-container .content .l-row .column.is-left > img
 {
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    position: absolute;
-    margin: auto;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	position: absolute;
+	margin: auto;
 
-    display: block;
+	display: block;
 }
 
 .world-obituary-screen > .l-obituary-dialog-container .content .l-row .column.is-right
 {
-    top: 0;
-    left: 9.0rem;
-    right: 0;
-    z-index: 1;
+	top: 0;
+	left: 9.0rem;
+	right: 0;
+	z-index: 1;
 }
 
 .world-obituary-screen > .l-obituary-dialog-container .content .l-row .row
 {
-    left: 0;
-    right: 1.0rem;
-    position: absolute;
+	left: 0;
+	right: 1.0rem;
+	position: absolute;
 }
 
 .world-obituary-screen > .l-obituary-dialog-container .content .l-row .row.is-top
 {
-    top: 1.0rem;
-    height: 3.8rem;
+	top: 1.0rem;
+	height: 3.8rem;
 
-    /*border-bottom: 1px rgba(130, 130, 130, 1) solid;*/
+	/*border-bottom: 1px rgba(130, 130, 130, 1) solid;*/
 }
 
 .world-obituary-screen > .l-obituary-dialog-container .content .l-row .row.is-top > img
 {
-    left: 0;
-    bottom: 0.2rem;
-    width: 2.6rem;
-    height: 2.6rem;
-    position: absolute;
+	left: 0;
+	bottom: 0.2rem;
+	width: 2.6rem;
+	height: 2.6rem;
+	position: absolute;
 
-    display: block;
+	display: block;
 }
 
 .world-obituary-screen > .l-obituary-dialog-container .content .l-row .row.is-top .name
 {
-    /*left: 3.4rem;*/
-    left: 0.0rem;
-    right: 6.0rem;
-    bottom: 0.2rem;
-    height: 2.6rem;
-    position: absolute;
-    overflow: hidden;
+	/*left: 3.4rem;*/
+	left: 0.0rem;
+	right: 6.0rem;
+	bottom: 0.2rem;
+	height: 2.6rem;
+	position: absolute;
+	overflow: hidden;
 
-    line-height: 3.0rem;
+	line-height: 3.0rem;
 }
 
 .world-obituary-screen > .l-obituary-dialog-container .content .l-row .row.is-bottom
 {
-    top: 5.5rem;
-    bottom: 0;
+	top: 5.5rem;
+	bottom: 0;
 }
 
 
 
 .world-obituary-screen > .l-obituary-dialog-container .footer .l-button-bar
 {
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    width: 17.5rem;
-    height: 4.3rem;
-    position: absolute;
-    margin: auto;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	width: 17.5rem;
+	height: 4.3rem;
+	position: absolute;
+	margin: auto;
 }
 
 .world-obituary-screen > .l-obituary-dialog-container .footer .l-leave-button
 {
-    top: 0;
-    right: 0;
-    bottom: 0;
-    width: 17.5rem;
-    position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	width: 17.5rem;
+	position: absolute;
 
-    line-height: 3.0rem;
+	line-height: 3.0rem;
 }

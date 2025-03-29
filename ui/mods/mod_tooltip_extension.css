@@ -1,0 +1,14 @@
+.tooltip-module
+{
+	background-image: url("coui://gfx/ui/skin/mod_tooltip_extension_315_900_bottom.png");
+	background-size: 25.5rem 130rem;
+}
+
+.tooltip-module.is-full-width
+{
+	background-image: url("coui://gfx/ui/skin/mod_tooltip_extension_315_900_bottom.png");
+	background-size: 31.5rem 130rem;
+}
+
+
+

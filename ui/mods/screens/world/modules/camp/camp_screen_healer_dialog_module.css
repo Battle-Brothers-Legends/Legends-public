@@ -1,0 +1,453 @@
+
+.camp-screen > .l-healer-dialog-container
+{
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	width: 102.4rem;
+	height: 76.8rem;
+	position: absolute;
+	margin: auto;
+	z-index: 2;
+}
+
+
+.camp-screen > .l-healer-dialog-container .l-tab-container
+{
+	top: -1.0rem;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	width: 88.0rem;
+	height: 3.0rem;
+	position: absolute;
+	margin: auto;
+}
+
+
+.camp-screen > .l-healer-dialog-container .l-tab-asset
+{
+	top: 0;
+	bottom: 0;
+	width: 13.0rem;
+	height: 4.3rem;
+	position: absolute;
+}
+
+.camp-screen > .l-healer-dialog-container .l-tab-asset.is-supplies
+{
+	left: 0;
+}
+
+.camp-screen > .l-healer-dialog-container .l-tab-asset.is-num-required
+{
+	left: 15.0rem;
+}
+
+.camp-screen > .l-healer-dialog-container .l-tab-asset.is-time-required
+{
+	left: 30.0rem;
+}
+
+.camp-screen > .l-healer-dialog-container .l-tab-asset.is-brothers
+{
+	width: 9.8rem;
+	left: 75.0rem;
+}
+
+.camp-screen > .l-healer-dialog-container .l-tab-asset img
+{
+	top: 0;
+	bottom: 0;
+	left: 0;
+	width: 2.8rem;
+	height: 2.8rem;
+	margin: auto;
+	margin-left: 1.0rem;
+	position: absolute;
+}
+
+.camp-screen > .l-healer-dialog-container .l-tab-asset .label
+{
+	top: 0;
+	bottom: 0;
+	left: 3.4rem;
+	width: 11.2rem;
+	height: 3.0rem;
+	margin: auto;
+	margin-left: 1.0rem;
+	position: absolute;
+
+	text-align : left;
+	line-height: 3.0rem;
+}
+
+
+.camp-screen > .l-healer-dialog-container .content > .column
+{
+	width: 50%;
+	height: 100%;
+	padding-top: 0.9rem;
+	padding-bottom: 0.9rem;
+	position: relative;
+	float : left;
+
+	background-image: url("coui://gfx/ui/skin/dialog_panel_01.png");
+	background-size: 50.8rem 56.8rem;
+	background-repeat: no-repeat;
+}
+
+.camp-screen > .l-healer-dialog-container .content > .column.is-left
+{
+	padding-left: 1.0rem;
+	padding-right: 1.6rem;
+	padding-bottom: 3.5rem;
+}
+
+.camp-screen > .l-healer-dialog-container .content > .column.is-right
+{
+	padding-left: 0.5rem;
+	padding-right: 1.0rem;
+}
+
+.camp-screen > .l-healer-dialog-container .content .l-list-container
+{
+	width: 100%;
+	height: 100%;
+}
+
+/* disable font shadow */
+.camp-screen > .l-healer-dialog-container .content .l-list-container .ui-control.list .list-entry.is-selected
+{
+	text-shadow: 1px 1px 1px #000;
+}
+
+.camp-screen > .l-healer-dialog-container .content .l-list-container .scroll-container
+{
+	margin-top: 0.4rem;
+	margin-bottom: 0.4rem;
+}
+
+.camp-screen > .l-healer-dialog-container .content .scroll-container .l-row
+{
+	width: 46.5rem;
+	height: 10.7rem;
+	position: relative;
+	margin-bottom: -0.1rem;
+
+	overflow: hidden;
+}
+
+.camp-screen > .l-healer-dialog-container .content .scroll-container .l-row:last-child
+{
+	margin-bottom: 0;
+}
+
+.camp-screen > .l-healer-dialog-container .content .l-row .column
+{
+	height: 100%;
+	position: absolute;
+}
+
+.camp-screen > .l-healer-dialog-container .content .l-row .column.is-left
+{
+	top: 0;
+	left: 0;
+	width: 9.0rem;
+	z-index: 2;
+}
+
+.camp-screen > .l-healer-dialog-container .content .l-row .column.is-left > img
+{
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	position: absolute;
+	margin: auto;
+
+	display: block;
+}
+
+.camp-screen > .l-healer-dialog-container .content .l-row .column.is-right
+{
+	top: 0;
+	left: 9.0rem;
+	right: 0;
+	z-index: 1;
+}
+
+.camp-screen > .l-healer-dialog-container .content .l-row .row
+{
+	left: 0;
+	right: 1.0rem;
+	position: absolute;
+}
+
+.camp-screen > .l-healer-dialog-container .content .l-row .row.is-top
+{
+	top: 1.0rem;   
+	height: 3.8rem;
+
+	width: 92%;
+
+	border-image: url("coui://gfx/ui/skin/line_metal.png") 0% 0% 100% 0%;
+	border-image-outset: 0 0 -0.5rem 0;
+}
+
+.camp-screen > .l-healer-dialog-container .content .l-row .row.is-top > img
+{
+	left: 0;
+	bottom: 0.2rem;
+	width: 2.6rem;
+	height: 2.6rem;
+	position: absolute;
+
+	display: block;
+}
+
+.camp-screen > .l-healer-dialog-container .content .l-row .row.is-top .name
+{
+	left: 3.4rem;
+	/*right: 6.0rem;*/
+	bottom: 0.2rem;
+	height: 2.6rem;
+	position: absolute;
+	overflow: hidden;
+
+	line-height: 3.0rem;
+}
+
+.camp-screen > .l-healer-dialog-container .content .l-row .row.is-bottom
+{
+	top: 5.3rem;
+	bottom: 0;
+	width: 100%;
+}
+
+.camp-screen > .l-healer-dialog-container .content .l-row .row.is-bottom > img
+{
+	width: 3.2rem;
+	height: 3.2rem;
+}
+
+.camp-screen > .l-healer-dialog-container .content .l-row .row.is-bottom .l-assets-center-container
+{
+	top: 0;
+	left: 3.0rem;
+	right: 0;
+	bottom: 0;
+	width: 21.0rem;
+	height: 3.0rem;
+	position: absolute;
+	margin: auto;
+}
+
+.camp-screen > .l-healer-dialog-container .content .l-row .row.is-bottom .l-assets-container
+{
+	width: 10.0rem;
+	height: 3.0rem;
+	position: relative;
+	float: left;
+	margin-right: 1.0rem;
+}
+
+.camp-screen > .l-healer-dialog-container .content .l-row .row.is-bottom .l-assets-container:last-child
+{
+	margin-right: 0;
+}
+
+.camp-screen > .l-healer-dialog-container .content .l-row .row.is-bottom .l-assets-container img
+{
+	top: 0;
+	bottom: 0;
+	left: 0;
+	width: 2.8rem;
+	height: 2.8rem;
+	margin: auto;
+	position: absolute;
+}
+
+.camp-screen > .l-healer-dialog-container .content .l-row .row.is-bottom .l-assets-container .label
+{
+	top: 0;
+	bottom: 0;
+	left: 3.4rem;
+	width: 6.0rem;
+	height: 3.0rem;
+	margin: auto;
+	position: absolute;
+
+	text-align : left;
+	line-height: 3.4rem;
+}
+
+
+.camp-screen > .l-healer-dialog-container .content .l-details-frame
+{
+	width: 100%;
+	height: 100%;
+
+	overflow: hidden;
+	-webkit-mask-image: #fff; /* Bugfix for Chrome, as the absolute position breaks the overflow somehow..*/
+}
+
+.camp-screen > .l-healer-dialog-container .content .details-container
+{
+	width: 100%;
+	height: 100%;
+	position: relative;
+}
+
+.camp-screen > .l-healer-dialog-container .content .details-container .column
+{
+	top: 0;
+	height: 100%;
+}
+
+
+.camp-screen > .l-healer-dialog-container .content .details-container .row.is-header
+{
+	height: 4.0rem;
+	margin-left: 1.0rem;
+	margin-right: 1.0rem;
+	border-image: url("coui://gfx/ui/skin/line_metal.png") 0% 0% 100% 0%;
+	border-image-outset: 0 0 -0.5rem 0;
+}
+
+.camp-screen > .l-healer-dialog-container .content .details-container .row.is-header > .label
+{
+	margin-top: 1.0rem;
+	margin-left: 1.0rem;
+	height: 3.0rem;
+	text-align: left;
+	line-height: 3.0rem;
+}
+
+.camp-screen > .l-healer-dialog-container .content .details-container .row.is-queue-container
+{
+	height: 15.0rem;
+	margin-left: 2.0rem;
+	margin-right: 2.0rem;
+}
+
+.camp-screen > .l-healer-dialog-container .content .details-container .row.is-injuries-container
+{
+	height: 35.0rem;
+}
+
+.camp-screen > .l-healer-dialog-container .content .details-container .row.is-injuries-container > .l-list-container
+{
+	margin-left: 1.0rem;
+	margin-right: 1.0rem;
+	height: 100%;
+}
+
+
+.camp-screen > .l-healer-dialog-container .content .details-container .row.is-button-container
+{
+	top: 48.0rem;
+	left: 1.0rem;
+	right: 1.0rem;
+	height: 6.0rem;
+
+   /*border-top: 1px rgba(130, 130, 130, 1) solid;*/
+}
+
+
+
+.camp-screen > .l-healer-dialog-container .footer .l-button-bar
+{
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	width: 16.0rem;
+	height: 4.3rem;
+	position: absolute;
+	margin: auto;
+}
+
+.camp-screen > .l-healer-dialog-container .footer .l-leave-button
+{
+	top: 0;
+	right: 0;
+	bottom: 0;
+	width: 17.5rem;
+	position: absolute;
+
+	line-height: 3.0rem;
+}
+
+.camp-screen > .l-healer-dialog-container .is-explanation
+{
+	position: absolute;
+
+	top: 6.0rem;
+	left: 13.0rem;
+	right: 1.0rem;
+}
+
+/* .camp-screen > .l-healer-dialog-container .is-injury-list
+{
+	position: absolute;
+
+	top: 24.0rem;
+	left: 1.0rem;
+	right: 1.0rem;
+	bottom: 1.0rem;
+} */
+
+.camp-screen > .l-healer-dialog-container .is-injury-row
+{
+	position: relative;
+	float:left;
+	width: 100%;
+}
+
+.camp-screen > .l-healer-dialog-container .is-injury-row .is-icon
+{
+	position: absolute;
+	left: 0;
+}
+
+.camp-screen > .l-healer-dialog-container .is-injury-row .is-name
+{
+	position: absolute;
+	top: 1.7rem;
+	left: 7.0rem;
+}
+
+.camp-screen > .l-healer-dialog-container .is-injury-row .is-button
+{
+	position: absolute;
+	top: 0.8rem;
+	right: 2.0rem;
+
+	height: 4.3rem;
+	width: 17.5rem;
+	line-height: 3.0rem;
+}
+
+.camp-screen > .l-healer-dialog-container .is-injury-row .is-price
+{
+	position: absolute;
+	top:-1.0rem;
+	text-align : center;
+	width: 100%;
+}
+
+.camp-screen > .l-healer-dialog-container .is-injury-row .is-price-ffs
+{
+	text-align : center;
+}
+
+.camp-screen > .l-healer-dialog-container .is-no-wounded-hint
+{
+	position: absolute;
+	z-index: 5;
+
+	top: 28.0rem;
+	left: 2.5rem;
+}

@@ -1,0 +1,766 @@
+
+.camp-screen > .l-commander-dialog-container
+{
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	width: 90.0rem;
+	height: 76.8rem;
+	position: absolute;
+	margin: auto;
+	z-index: 2;
+}
+
+.camp-screen > .l-commander-dialog-container .l-tab-asset
+{
+	top: 0;
+	bottom: 0;
+	width: 13.0rem;
+	height: 4.3rem;
+	position: absolute;
+}
+
+.camp-screen > .l-commander-dialog-container .l-tab-asset.is-money
+{
+	left: 0.0rem;
+}
+
+.camp-screen > .l-commander-dialog-container .l-tab-asset.is-food
+{
+	left: 15.0rem;
+}
+
+.camp-screen > .l-commander-dialog-container .l-tab-asset.is-supplies
+{
+	left: 30.0rem;
+}
+
+.camp-screen > .l-commander-dialog-container .l-tab-asset.is-ammo
+{
+	left: 45.0rem;
+}
+
+.camp-screen > .l-commander-dialog-container .l-tab-asset.is-medicine
+{
+	left: 60.0rem;
+}
+
+.camp-screen > .l-commander-dialog-container .l-tab-asset.is-brothers
+{
+	left: 75.0rem;
+	width: 9.8rem;
+}
+
+.camp-screen > .l-commander-dialog-container .l-tab-asset img
+{
+	top: 0;
+	bottom: 0;
+	left: 0;
+	width: 2.8rem;
+	height: 2.8rem;
+	margin: auto;
+	margin-left: 1.0rem;
+	position: absolute;
+}
+
+.camp-screen > .l-commander-dialog-container .l-tab-asset .label
+{
+	top: 0;
+	bottom: 0;
+	left: 3.4rem;
+	width: 11.2rem;
+	height: 3.0rem;
+	margin: auto;
+	margin-left: 1.0rem;
+	position: absolute;
+
+	text-align : left;
+	line-height: 3.0rem;
+}
+
+
+/* .camp-screen > .l-commander-dialog-container .content > .column
+{
+	width: 50%;
+	height: 100%;
+	padding-top: 0.9rem;
+	padding-bottom: 0.9rem;
+	position: relative;
+	float : left;
+
+	background-image: url("coui://gfx/ui/skin/dialog_panel_01.png");
+	background-size: 50.8rem 56.8rem;
+	background-repeat: no-repeat;
+} */
+
+.camp-screen > .l-commander-dialog-container .content > .left-column
+{
+	width: 30%;
+	height: 100%;
+	position: relative;
+	float: left;
+
+	background-image: url("coui://gfx/ui/skin/dialog_panel_01.png");
+	background-size: 100% 100%; 
+	background-repeat: no-repeat;
+	/* overflow: hidden; */
+}
+
+
+.camp-screen > .l-commander-dialog-container .content  > .left-column .l-list-container
+{
+	width: 100%;
+	height: 100%;
+}
+
+/* disable font shadow */
+.camp-screen > .l-commander-dialog-container .content  > .left-column .l-list-container .ui-control.list .list-entry.is-selected
+{
+	text-shadow: 1px 1px 1px #000;
+}
+
+.camp-screen > .l-commander-dialog-container .content  > .left-column .l-list-container .scroll-container
+{
+	margin-top: 0.4rem;
+	margin-bottom: 0.4rem;
+}
+
+.camp-screen > .l-commander-dialog-container .content  > .left-column .scroll-container .l-row
+{
+	width: 100%;
+	height: 10.7rem;
+	position: relative;
+	margin-bottom: -0.1rem;
+
+	overflow: hidden;
+}
+
+.camp-screen > .l-commander-dialog-container .content  > .left-column .scroll-container .l-row:last-child
+{
+	margin-bottom: 0;
+}
+
+.camp-screen > .l-commander-dialog-container .content  > .left-column .l-row .column
+{
+	height: 100%;
+	position: absolute;
+}
+
+.camp-screen > .l-commander-dialog-container .content  > .left-column .l-row .column.is-left
+{
+	top: 0;
+	left: 0;
+	width: 9.0rem;
+	z-index: 2;
+}
+
+.camp-screen > .l-commander-dialog-container .content  > .left-column .l-row .column.is-left > img
+{
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	position: absolute;
+	margin: auto;
+
+	display: block;
+}
+
+.camp-screen > .l-commander-dialog-container .content  > .left-column .l-row .column.is-right
+{
+	top: 0;
+	left: 9.0rem;
+	right: 0;
+	z-index: 1;
+}
+
+.camp-screen > .l-commander-dialog-container .content  > .left-column .l-row .column.is-right > .bro-list-banner
+{
+	position: absolute;
+	top: 1.5rem;
+	right: 1.5rem;
+	height: 75%;
+	width: 3.0rem;
+}
+
+.camp-screen > .l-commander-dialog-container .content  > .left-column .l-row .row
+{
+	left: 0;
+	right: 1.0rem;
+	position: absolute;
+}
+
+.camp-screen > .l-commander-dialog-container .content  > .left-column .l-row .row.is-top
+{
+	top: 1.0rem;   
+	height: 3.8rem;
+	width: 85%;
+
+	border-image: url("coui://gfx/ui/skin/line_metal.png") 0% 0% 100% 0%;
+	border-image-outset: 0 0 -0.5rem 0;	
+}
+
+.camp-screen > .l-commander-dialog-container .content  > .left-column .l-row .row.is-top > img
+{
+	left: 0;
+	bottom: 0.2rem;
+	width: 2.6rem;
+	height: 2.6rem;
+	position: absolute;
+
+	display: block;
+}
+
+.camp-screen > .l-commander-dialog-container .content  > .left-column .l-row .row.is-top .name
+{
+	left: 3.4rem;
+	bottom: 0.2rem;
+	height: 2.6rem;
+	position: absolute;
+	overflow: hidden;
+
+	line-height: 3.0rem;
+}
+
+.camp-screen > .l-commander-dialog-container .content .l-row .row.is-bottom
+{
+	top: 5.3rem;
+	bottom: 0;
+	width: 100%;
+}
+
+.camp-screen > .l-commander-dialog-container .content .l-row .row.is-bottom > img
+{
+	width: 3.2rem;
+	height: 3.2rem;
+}
+
+.camp-screen > .l-commander-dialog-container .content .l-row .row.is-bottom .l-assets-center-container
+{
+	top: 0;
+	left: 3.0rem;
+	right: 0;
+	bottom: 0;
+	width: 21.0rem;
+	height: 3.0rem;
+	position: absolute;
+	margin: auto;
+}
+
+.camp-screen > .l-commander-dialog-container .content .l-row .row.is-bottom .l-assets-container
+{
+	width: 10.0rem;
+	height: 3.0rem;
+	position: relative;
+	float: left;
+	margin-right: 1.0rem;
+}
+
+.camp-screen > .l-commander-dialog-container .content .l-row .row.is-bottom .l-assets-container:last-child
+{
+	margin-right: 0;
+}
+
+.camp-screen > .l-commander-dialog-container .content .l-row .row.is-bottom .l-assets-container img
+{
+	top: 0;
+	bottom: 0;
+	left: 0;
+	width: 2.8rem;
+	height: 2.8rem;
+	margin: auto;
+	position: absolute;
+}
+
+.camp-screen > .l-commander-dialog-container .content .l-row .row.is-bottom .l-assets-container .label
+{
+	top: 0;
+	bottom: 0;
+	left: 3.4rem;
+	width: 6.0rem;
+	height: 3.0rem;
+	margin: auto;
+	position: absolute;
+
+	text-align : left;
+	line-height: 3.4rem;
+}
+
+.camp-screen > .l-commander-dialog-container .content > .right-column
+{
+	width: 100%;
+	height: 100%;
+	position: relative;
+	float: left;
+}
+
+
+.camp-screen > .l-commander-dialog-container .content > .right-column > .top-row
+{
+	width: 100%;
+	height: 48%;
+	/* padding-top: 0.9rem;
+	padding-bottom: 0.9rem; */
+	position: relative;
+	float: left;
+
+	background-image: url("coui://gfx/ui/skin/dialog_panel_01.png");
+	background-size: 100% 100%; 
+	/* background-size: 102.0rem 25.0rem; */
+	background-repeat: no-repeat;
+	overflow: hidden;
+
+	/* padding-left: 1.0rem;
+	padding-right: 1.6rem;
+	padding-bottom: 3.5rem; */
+}
+
+.camp-screen > .l-commander-dialog-container .content > .right-column > .middle-row
+{
+	width: 100%;
+	height: 4%;
+	/* padding-top: 0.9rem;
+	padding-bottom: 0.9rem; */
+	position: relative;
+	float: left;
+
+	/* padding-left: 1.0rem;
+	padding-right: 1.6rem;
+	padding-bottom: 3.5rem; */
+}
+
+.camp-screen > .l-commander-dialog-container .content > .right-column > .bottom-row
+{
+	width: 100%;
+	height: 48%;
+	position: relative;
+	float: left;
+}
+
+.camp-screen > .l-commander-dialog-container .content > .right-column > .bottom-row > .stats
+{
+	width: 30%;
+	height: 100%;
+	padding-left: 0.5rem;
+	padding-right: 0.5rem;
+	position: relative;
+	float: left;
+
+	background-image: url("coui://gfx/ui/skin/tooltip_255_bottom.png");
+	background-size: 100% 100%; 
+	background-repeat: no-repeat;
+}
+
+/*Added by Necro*/
+.camp-screen > .l-commander-dialog-container .content > .right-column > .bottom-row > .stats > .stats-list-container
+{
+	top: 5.0rem;
+	width: 97%;
+	height: 22.5rem;
+	position: absolute;
+}
+
+/*Added by Necro*/
+.camp-screen > .l-commander-dialog-container .content > .right-column > .bottom-row > .stats > .tent-button-container
+{
+	width: 100%;
+	height: 4.5rem;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+/*Added by Necro*/
+.camp-screen > .l-commander-dialog-container .content .l-tent-button-175-43
+{
+	height: 4.3rem;
+	width: 17.5rem;
+	flex: 0 0 auto;
+
+	line-height: 3.0rem;
+}
+
+/*Added by Necro*/
+.camp-screen > .l-commander-dialog-container .content .l-tent-button-45-41
+{
+    width: 4.5rem;
+    height: 4.1rem;
+    flex: 0 0 auto;
+
+    line-height: 3.0rem;
+}
+
+.camp-screen > .l-commander-dialog-container .content > .right-column > .bottom-row > .stats > .tent-button
+{
+	margin-left: 4.0rem;
+	width: 17.5rem;
+	height: 4.0rem;
+	line-height: 3.0rem;
+}
+
+.camp-screen > .l-commander-dialog-container .content > .right-column > .bottom-row > .l-list-container
+{
+	width: 70%;
+	height: 100%;
+	position: relative;
+	float: left;
+
+	background-image: url("coui://gfx/ui/skin/dialog_panel_01.png");
+	background-size: 100% 100%; 
+	background-repeat: no-repeat;
+}
+
+
+.ui-control.is-camp-action-slot
+{
+	/*width: 10.7rem;
+	height: 12rem;*/
+	width: 16.0rem;
+	height:10.7rem;
+	float: left;
+	position: relative;
+	margin-left: 1.0rem;
+	margin-top: 0.5rem;
+}
+
+.ui-control.is-camp-action-slot > .tent-panel
+{
+	width: 100%;
+	height: 100%;
+	/* top: 4.4rem;
+	position: absolute; */
+	background-image: url("coui://gfx/ui/skin/tent-panel.png");
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+}
+
+
+.ui-control.is-camp-action-slot > .tent-panel:hover,
+.ui-control.is-camp-action-slot > .tent-panel.is-selected
+{
+	background-image: url("coui://gfx/ui/skin/tent_panel_active.png");
+	background-size: 100% 100%;
+}
+
+.ui-control.is-camp-action-slot > .tent-panel.is-selected
+{
+	text-shadow: 1px 1px #A36426, -1px -1px #000;
+	/*box-shadow: inset 0 0 2px #000;*/
+}
+
+.ui-control.is-camp-action-slot > .tent-panel img.banner
+{
+	top: 1.0rem;
+	left: 1.0rem;
+	height: 9.2rem;
+	width: 3.0rem;
+	position : absolute;
+}
+
+.ui-control.is-camp-action-slot > .tent-panel img.bro-count
+{
+	top: 1.0rem;
+	right: 2.5rem;
+	height: 3.0rem;
+	width: 3.0rem;
+	position : absolute;
+}
+
+
+.ui-control.is-camp-action-slot > .tent-panel .bro-count-label
+{
+	top: 1.0rem;
+	right: 1.0rem;
+	height: 3.0rem;
+	width: 1.0rem;
+	line-height: 3.0rem;
+	position : absolute;
+}
+
+.ui-control.is-camp-action-slot > .tent-panel img.asset-count
+{
+	bottom: 1.0rem;
+	right: 2.5rem;
+	height: 3.0rem;
+	width: 3.0rem;
+	position : absolute;
+}
+
+
+.ui-control.is-camp-action-slot > .tent-panel .asset-count-label
+{
+	bottom: 1.0rem;
+	right: 1.0rem;
+	height: 3.0rem;
+	width: 1.0rem;
+	line-height: 3.0rem;
+	position : absolute;
+}
+
+/* .ui-control.is-camp-action-slot .is-reserve-slot
+{
+	width: 14.7rem;
+	height: 7.6rem;
+	top: 4.4rem;
+	position: absolute;
+	background-image: url("coui://gfx/ui/skin/inventory_tent.png");
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: 7.1rem 7.7rem;
+} */
+
+
+.camp-screen > .l-commander-dialog-container .footer .l-button-bar
+{
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	width: 16.0rem;
+	height: 4.3rem;
+	position: absolute;
+	margin: auto;
+}
+
+.camp-screen > .l-commander-dialog-container .footer .l-leave-button
+{
+	top: 0;
+	right: 0;
+	bottom: 0;
+	width: 17.5rem;
+	flex: 0 0 auto;
+
+	line-height: 3.0rem;
+}
+
+/*Added by Necro*/
+.camp-screen > .l-commander-dialog-container .footer .l-save-load-button-container
+{
+	top: 0;
+	bottom: 0;
+	right: 0;
+	width: 52.5rem;
+	height: 4.3rem;
+	position: absolute;
+	margin: auto;
+
+	display: flex;
+   	align-items: center;
+   	justify-content: space-between;
+}
+
+/*Added by Necro*/
+.camp-screen > .l-commander-dialog-container .footer .l-slot-button-container
+{
+	top: 0.6rem;
+	bottom: 0;
+	left: 1.0rem;
+	width: 35.8rem; /*enough for 8 buttons + preset name*/
+	height: 4.3rem;
+	position: absolute;
+
+	display: flex;
+   	align-items: center;
+}
+
+/*Added by Necro*/
+.camp-screen > .l-commander-dialog-container .footer .l-flex-button-save-load
+{
+	height: 4.3rem;
+	width: 17.5rem;
+	flex: 0 0 auto;
+
+	line-height: 3.0rem;
+}
+
+.camp-screen > .l-commander-dialog-container .footer .l-flex-button-preset-name
+{
+    height: 4.3rem;
+    width: 4.3rem;
+    flex: 0 0 auto;
+
+    line-height: 3.0rem;
+}
+
+/*Added by Necro*/
+.camp-screen > .l-commander-dialog-container .footer .l-flex-button-preset
+{
+    height: 4.3rem;
+    width: 3.9rem;
+    flex: 0 0 auto;
+
+    line-height: 2.8rem;
+}
+
+.camp-screen > .l-commander-dialog-container .ui-control.brother > .mood-layer img
+{
+	right: -0.6rem;
+	top: 0.3rem;
+	width: 2.1rem;
+	height: 4.5rem;
+	position: absolute;
+
+	pointer-events: none;
+}
+
+/* 
+    Popup Dialog 
+*/
+.camp-screen .ui-control.popup-dialog.popup-300x600-dialog
+{
+	width: 30.0rem;
+	height: 60.0rem;
+
+	background-image: url("coui://gfx/ui/skin/popup_background_300x600.png");
+	background-size: 30.0rem 60.0rem;
+	background-repeat: no-repeat;
+}
+
+.camp-screen .ui-control.popup-dialog .popup-300x600-dialog-content-container
+{
+	width: 100%;
+	height: 47.0rem;
+	position: relative;
+
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.camp-screen .ui-control.popup-dialog .l-popup-button-175-43
+{
+ 	height: 4.3rem;
+ 	width: 17.5rem;
+ 
+ 	line-height: 3.0rem;
+}
+
+/*Added by Necro*/
+.camp-screen > .l-commander-dialog-container .content > .right-column > .bottom-row > .stats > .tent-button-container
+{
+	width: 100%;
+	height: 4.5rem;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+/*Added by Necro*/
+.camp-screen > .l-commander-dialog-container .content .l-tent-button-175-43
+{
+	height: 4.3rem;
+	width: 17.5rem;
+	flex: 0 0 auto;
+
+	line-height: 3.0rem;
+}
+
+/*Added by Necro*/
+.camp-screen > .l-commander-dialog-container .content .l-tent-button-45-41
+{
+    width: 4.5rem;
+    height: 4.1rem;
+    flex: 0 0 auto;
+
+    line-height: 3.0rem;
+}
+
+/* Change Preset Name Dialog Container */
+.camp-screen .ui-control.popup-dialog.change-preset-name-popup
+{
+	width: 44.9rem;
+	height: 25.0rem; /*popup dialog height*/
+
+	background-image: url("coui://gfx/ui/skin/popup_background_449x250.png");
+	background-size: 44.9rem 25.0rem;
+	background-repeat: no-repeat;
+}
+
+.camp-screen .ui-control.popup-dialog .footer .l-delete-preset-name-button
+{
+	top: 0;
+	bottom: 0;
+	left: 2.8rem;
+	height: 4.1rem;
+	width: 4.5rem;
+	position: absolute;
+	margin: auto;
+
+	line-height: 3.0rem;
+}
+
+.camp-screen .ui-control.popup-dialog .footer .l-cancel-save-button-container
+{
+	top: 0;
+	bottom: 0;
+	left: 7.2rem;
+	width: 35.0rem;
+	height: 4.3rem;
+	position: absolute;
+	margin: auto;
+
+	display: flex;
+   	align-items: center;
+   	justify-content: space-between;
+}
+
+.camp-screen .ui-control.popup-dialog .footer .l-flex-button-cancel-save
+{
+	height: 4.3rem;
+	width: 17.5rem;
+	flex: 0 0 auto;
+
+	line-height: 3.0rem;
+}
+
+/*
+To get the footer be at the perfect place, you should make sure the container
+that is going to be appended to the content of dialog to have this height:
+		height = popup dialog height - 13.0rem
+In your case, your popup has a height of 25.0rem so this container should have the height of 25.0 - 13.0 = 12.0rem
+However this would change if you decide to add a subtitle or a tab bar to your popup 
+*/
+.camp-screen .ui-control.popup-dialog .change-preset-name-container
+{
+	width: 100%;
+	height: 12.0rem; 
+	padding-left: 0.6rem;
+	padding-right: 0.6rem;
+	position: relative;
+	float: left;
+}
+
+.camp-screen .ui-control.popup-dialog .change-preset-name-container .row
+{
+	width: 100%;
+	height: 5.9rem;
+	position: relative;
+	float: left;
+}
+
+.camp-screen .ui-control.popup-dialog .change-preset-name-container .row .label
+{
+	width: 9.0rem;
+	height: 5.9rem;
+	margin-right: 1.0rem;
+	position: relative;
+	float: left;
+
+	line-height: 5.9rem;
+	text-align: right;
+}
+
+.camp-screen .ui-control.popup-dialog .change-preset-name-container .row .l-input
+{
+	width: 30.0rem;
+	height: 4.0rem;
+	margin-top: 1.0rem;
+	margin-bottom: 1.0rem;
+	position: relative;
+	float: left;
+}

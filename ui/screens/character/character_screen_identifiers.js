@@ -18,15 +18,15 @@ var CharacterScreenIdentifier =
 		PaperdollNamespace: '.paperdoll',
 		BrothersListNamespace: '.brothers-list',
 		InventoryListNamespace: '.inventory-list',
-        PerksModuleNamespace: '.perks-module'
+		PerksModuleNamespace: '.perks-module'
 	},
 
 	Skill:
 	{
-        Id: 'id',
-        ImagePath: 'imagePath',
-        ImageOverlayPath: 'imageOverlayPath'
-    },
+		Id: 'id',
+		ImagePath: 'imagePath',
+		ImageOverlayPath: 'imageOverlayPath'
+	},
 
 	SkillTypes:
 	{
@@ -38,22 +38,22 @@ var CharacterScreenIdentifier =
 	Item:
 	{
 		Id: 'id',
-        Slot: 'slot',
+		Slot: 'slot',
 		ImagePath: 'imagePath',
-        Amount: 'amount',
+		Amount: 'amount',
 		AmountMax: 'amountMax',
 		AmountColor: 'amountColor'
 	},
 
 	ItemSlot:
 	{
-        None: 'none',
+		None: 'none',
 		Mainhand: 'mainhand',
 		Offhand: 'offhand',
 		Head: 'head',
 		Body: 'body',
 		Accessory: 'accessory',
-        Ammo: 'ammo',
+		Ammo: 'ammo',
 		Free: 'free'
 	},
 
@@ -62,23 +62,22 @@ var CharacterScreenIdentifier =
 		IsLarge: 'isLarge',
 		IsBlockingOffhand: 'isBlockingOffhand',
 		IsChangeableInBattle: 'isChangeableInBattle',
-        IsBagSlot: 'isBagSlot'
+		IsBagSlot: 'isBagSlot'
 	},
 
 	ItemOwner:
 	{
-        Stash: 'character-screen-inventory-list-module.stash',
-        Ground: 'character-screen-inventory-list-module.ground',
-        Paperdoll: 'character-screen-inventory-list-module.paperdoll',
-        Backpack: 'character-screen-inventory-list-module.backpack'
-    },
+		Stash: 'character-screen-inventory-list-module.stash',
+		Ground: 'character-screen-inventory-list-module.ground',
+		Paperdoll: 'character-screen-inventory-list-module.paperdoll',
+		Backpack: 'character-screen-inventory-list-module.backpack'
+	},
 
 	QueryResult:
 	{
-        Perks: 'perks',
-        PerkTrees: 'perkTrees',
+		Perks: 'perks',
 		Brother: 'brother',
-        Brothers: 'brothers',
+		Brothers: 'brothers',
 		Stash: 'stash'
 	},
 
@@ -96,29 +95,29 @@ var CharacterScreenIdentifier =
 			Name: 'name',
 			Title: 'title',
 			ImagePath: 'imagePath',
-            ImageOffsetX: 'imageOffsetX',
-            ImageOffsetY: 'imageOffsetY',
-            PerkPoints: 'perkPoints',
-            PerkPointsSpent: 'perkPointsSpent',
-            IsPlayerCharacter: 'isPlayerCharacter',
-            Level: 'level',
-            LevelUp: {
-                Key: 'levelUp',
-                HitpointsIncrease: 'hitpointsIncrease',
-                BraveryIncrease: 'braveryIncrease',
-                FatigueIncrease: 'fatigueIncrease',
-                InitiativeIncrease: 'initiativeIncrease',
-                MeleeSkillIncrease: 'meleeSkillIncrease',
-                RangeSkillIncrease: 'rangeSkillIncrease',
-                MeleeDefenseIncrease: 'meleeDefenseIncrease',
-                RangeDefenseIncrease: 'rangeDefenseIncrease'
-            },
+			ImageOffsetX: 'imageOffsetX',
+			ImageOffsetY: 'imageOffsetY',
+			PerkPoints: 'perkPoints',
+			PerkPointsSpent: 'perkPointsSpent',
+			IsPlayerCharacter: 'isPlayerCharacter',
+			Level: 'level',
+			LevelUp: {
+				Key: 'levelUp',
+				HitpointsIncrease: 'hitpointsIncrease',
+				BraveryIncrease: 'braveryIncrease',
+				FatigueIncrease: 'fatigueIncrease',
+				InitiativeIncrease: 'initiativeIncrease',
+				MeleeSkillIncrease: 'meleeSkillIncrease',
+				RangeSkillIncrease: 'rangeSkillIncrease',
+				MeleeDefenseIncrease: 'meleeDefenseIncrease',
+				RangeDefenseIncrease: 'rangeDefenseIncrease'
+			},
 			XPValue: 'xpValue',
 			XPValueMax: 'xpValueMax',
-            DailyMoneyCost: 'dailyMoneyCost',
-            DaysWounded: 'daysWounded',
-            LeveledUp: 'leveledUp'
-            
+			DailyMoneyCost: 'dailyMoneyCost',
+			DaysWounded: 'daysWounded',
+			LeveledUp: 'leveledUp'
+			
 		},
 		Stats: 'stats',
 		Ground: 'ground'
@@ -129,24 +128,24 @@ var CharacterScreenIdentifier =
 		IsSelected: 'isSelected'
 	},
 
-    Perk: {
-        Key: 'perks',
-
-        Type: {
-            Offensive: 'offensive',
-            Defensive: 'defensive',
-            Utility: 'utility'
-        },
-        Tier: {
-            Tier1: 'tier1',
-            Tier2: 'tier2',
-            Tier3: 'tier3'
-        },
-        Id: 'ID',
-        Name: 'Name',
-        Description: 'Description',
-        ImagePath: 'Icon',
-        ImagePathDisabled: 'IconDisabled',
-    	Unlocks: 'Unlocks'
-    }
+	Perk: {
+		Key: 'perks',
+		Tree: 'perkTree',
+		Type: {
+			Offensive: 'offensive',
+			Defensive: 'defensive',
+			Utility: 'utility'
+		},
+		Tier: {
+			Tier1: 'tier1',
+			Tier2: 'tier2',
+			Tier3: 'tier3'
+		},
+		Id: 'ID',
+		Name: 'Name',
+		Description: 'Description',
+		ImagePath: 'Icon',
+		ImagePathDisabled: 'IconDisabled',
+		Unlocks: 'Unlocks'
+	}
 };

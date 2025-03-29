@@ -197,6 +197,7 @@ TooltipModule.prototype.setCursorOffsets = function(_offsets)
 **/
 TooltipModule.prototype.bindToElement = function(_targetDIV, _data)
 {
+	var baseself = this;
 	if (_targetDIV === null || typeof(_targetDIV) != 'object')
 	{
 		console.error('ERROR: Failed to bind Tooltip to element. Reason: Element is not valid.');
@@ -234,7 +235,14 @@ TooltipModule.prototype.bindToElement = function(_targetDIV, _data)
 
 	_targetDIV.on('mouseenter' + TooltipModuleIdentifier.KeyEvent.Namespace + ' mouseover' + TooltipModuleIdentifier.KeyEvent.Namespace + ' focus' + TooltipModuleIdentifier.KeyEvent.Namespace, null, this, function(_event) {
 		var self = _event.data;
-
+		//console.error('killmeeeeeee ' + _data.contentType); 
+		//TESTSTART
+/* 		var height = baseself.mContainer.outerHeight(true);
+		var targetOffset    = _targetDIV.offset();
+		var scrollheight = baseself.mContainer.get(0).scrollHeight;
+		var divheight = _targetDIV.outerHeight(true);
+		console.error('targetdiv ' + divheight + ', height ' + height + ', left ' + baseself.mContainer.css("left") + ', top ' + baseself.mContainer.css("top")); */
+		//TESTEND
 		//console.log('TooltipModule::mouseenter event triggered');
 
 		// clear timer
@@ -261,7 +269,7 @@ TooltipModule.prototype.bindToElement = function(_targetDIV, _data)
     _targetDIV.on('mouseleave' + TooltipModuleIdentifier.KeyEvent.Namespace + ' mouseout' + TooltipModuleIdentifier.KeyEvent.Namespace + ' blur' + TooltipModuleIdentifier.KeyEvent.Namespace, null, this, function (_event)
     {
 		var self = _event.data;
-
+		//console.error('killmeeeeeee 2 ' + _data.contentType); 
 		//console.log('TooltipModule::mouseleave event triggered');
 
 		// remove mouse position listener
@@ -271,11 +279,32 @@ TooltipModule.prototype.bindToElement = function(_targetDIV, _data)
 
 		self.hideUITooltip();
 	});
+	
+	
+/*     _targetDIV.on('keydown' + TooltipModuleIdentifier.KeyEvent.Namespace, null, _targetDIV, function (_event)
+    {
+		console.error('oilala');
+         var code = _event.which || _event.keyCode;
+		var scrollheight = baseself.mContainer.get(0).scrollHeight;
+		var height = baseself.mContainer.outerHeight(true);
+		console.error('scrollheight ' + scrollheight + ', height ' + height);
+
+        if (code === KeyConstants.PageDown)
+		{
+			
+			console.error('scrollheight ' + scrollheight + ', heigh ' + height);
+		}
+		else if (code === KeyConstants.PageUp)
+		{
+			
+		} 
+	}); */
 
 	// bind special callbacks
     _targetDIV.on('update-tooltip' + TooltipModuleIdentifier.KeyEvent.Namespace, null, this, function (_event)
     {
 		var self = _event.data;
+		//console.error('killmeeeeeee 3 ' + _data.contentType); 
 
 		//console.log('TooltipModule::update-tooltip event triggered');
 
@@ -331,7 +360,7 @@ TooltipModule.prototype.setupUITooltip = function(_targetDIV, _data)
 	var wnd = this.mParent; // $(window);
 	
 	// calculate tooltip position
-	var targetOffset    = _targetDIV.offset();
+	var targetOffset    = _targetDIV.offset(); //from top to element
 	var elementWidth    = _targetDIV.outerWidth(true);
 	var elementHeight   = _targetDIV.outerHeight(true);
 	var containerWidth  = this.mContainer.outerWidth(true);
@@ -339,6 +368,8 @@ TooltipModule.prototype.setupUITooltip = function(_targetDIV, _data)
 	
 	var posLeft = (targetOffset.left + (elementWidth / 2)) - (containerWidth / 2);
 	var posTop  = targetOffset.top - containerHeight - offsetY;
+	var monitorheight = screen.height;
+	//console.error('posTop ' + posTop + ', contentType ' +  _data.contentType + ', bgimage ' + this.mContainer.css("background-image") + ', size ' + this.mContainer.css("background-size") + ', containerHeight' + containerHeight + ', containerWidth' + containerWidth + ', targetOffset.left' + targetOffset.left + ', targetOffset.top' + targetOffset.top + ', elementHeight' + elementHeight + ', containerWidth' + containerWidth);
 
 	if (posLeft < 0)
 	{
@@ -350,34 +381,55 @@ TooltipModule.prototype.setupUITooltip = function(_targetDIV, _data)
 		posLeft = targetOffset.left + elementWidth - containerWidth;
 	}
 			
-	if (posTop < 0)
+	if (posTop < 0) //below
 	{
 		posTop = targetOffset.top + elementHeight + offsetY;
-	}
-
-	// TODO: Remove
-	/*
-	if (_targetDIV !== undefined && _targetDIV !== null)
-	{
-		if (this.mCurrentData !== null && this.mCurrentData.contentType === 'ui-item')
+		//console.error('posTop 2 ' + posTop + ', targetOffset.top ' + targetOffset.top + ', elementHeight ' + elementHeight + ', offsetY ' + offsetY);
+		if ((posTop + containerHeight) > monitorheight && posTop > 100)
 		{
-			console.log('containerHeight: ' + containerHeight);
-			console.log('DEBUG: setupUITooltip:(targetTop: ' + targetOffset.top + ' targetLeft:' + targetOffset.left + ' top: ' + posTop + ' left:' + posLeft + ' elementWidth: ' + elementWidth + ' elementHeight:' + elementHeight +  ' - Element in DOM: ' + _targetDIV.isInDOM() + ')');	
+			var TCenter = Math.max(Math.min(((targetOffset.top + (elementHeight / 2)) - (containerHeight/2)), monitorheight - containerHeight), offsetY);
+			
+			posTop = TCenter;
+			if ((posLeft - (containerWidth / 2) - (elementWidth / 2)) > 10)
+			{
+				posLeft = posLeft - (containerWidth / 2) - (elementWidth / 2);
+			}
+			else
+			{
+				posLeft = posLeft + (containerWidth / 2) + (elementWidth / 2);
+			}
 		}
-		//console.log('DEBUG: setupUITooltip:(top: ' + posTop + ' left:' + posLeft + ' - Element in DOM: ' + _targetDIV.isInDOM() + ')');	
 	}
-	*/
-	/*
-	else
-	{
-		console.log('DEBUG: setupUITooltip:(top: ' + posTop + ' left:' + posLeft + ' - ERROR: _targetDIV NOT assigned)');	
-	}
-	*/
 
+ 	//if (containerHeight > 553) //553
+	//{
+		//var backsize = this.mContainer.css("background-size").split(' ');
+		//this.mContainer.css({ 'background-size' : backsize[0] + ' ' + (containerHeight*0.1) + 'rem' });
+/* 		if (this.mContainer.css("background-image") == 'url(coui://gfx/ui/skin/tooltip_315_bottom.png)')
+		{
+			this.mContainer.css({ 'background-size' : '31.5rem ' + (containerHeight*0.1) + 'rem' });
+		}
+		else if (this.mContainer.css("background-image") == 'url(coui://gfx/ui/skin/tooltip_255_bottom.png)')
+		{
+			this.mContainer.css({ 'background-size' : '25.5rem ' + (containerHeight*0.1) + 'rem' });
+		} */
+		//console.error('bgimage: ' + this.mContainer.css("background-image"));
+	//} 
 	// show & position tooltip & animate
 	this.mContainer.removeClass('display-none').addClass('display-block');
 	this.mContainer.css({ left: posLeft, top: posTop });
+	this.mContainer.css({ 'background-size' : (containerWidth*0.1) + 'rem ' + Math.max((containerHeight*0.1), 55) + 'rem' });
 	this.mContainer.velocity("finish", true).velocity({ opacity: 0.99 }, { duration: this.mFadeInTime }); // Anti Alias Fix
+	if (containerHeight > monitorheight)
+	{
+		var scrollingdur = 30 * (containerHeight - monitorheight);
+		var finaltop = ((monitorheight - containerHeight)*0.1) + "rem";
+		this.mContainer.velocity("finish", true).velocity({ top:  finaltop}, { duration: scrollingdur });
+	}
+	else
+	{
+		this.mContainer.velocity("finish", true).velocity({ top:  posTop}, { duration: 10 });
+	}
 };
 
 
@@ -737,7 +789,7 @@ TooltipModule.prototype.setupTileTooltip = function()
 	var containerHeight = this.mContainer.outerHeight(true);
 	
 	var posLeft = this.mLastMouseX + (this.mCursorXOffset === 0 ? (this.mCursorWidth / 2) : (this.mCursorWidth - ((this.mCursorWidth / 2) - this.mCursorXOffset)) );
-	var posTop = this.mLastMouseY + (this.mCursorYOffset === 0 ? (this.mCursorHeight / 2) : (this.mCursorHeight - ((this.mCursorHeight / 2) - this.mCursorYOffset)) );
+	var posTop = this.mLastMouseY + (this.mCursorYOffset === 0 ? (this.mCursorHeight / 2) : (this.mCursorHeight - ((this.mCursorHeight / 2) - this.mCursorYOffset)));
 	
 	if (posLeft < 0)
 	{
@@ -751,16 +803,36 @@ TooltipModule.prototype.setupTileTooltip = function()
 	
 	if ((posTop + containerHeight) > wnd.height())
 	{
-		posTop = this.mLastMouseY - (this.mCursorYOffset === 0 ? ((this.mCursorHeight / 2) + containerHeight) : (this.mCursorYOffset + containerHeight));
+		if (containerHeight > wnd.height())
+		{
+			posTop = 10;
+		}
+		else
+		{
+			posTop = this.mLastMouseY - (this.mCursorYOffset === 0 ? ((this.mCursorHeight / 2) + containerHeight) : (this.mCursorYOffset + containerHeight));
+		}
 	}
+	var posTop = Math.max(posTop, 10);
 
 	// TODO: Remove
 	//console.log('DEBUG: setupTileTooltip:(top: ' + posTop + ' left:' + posLeft + ')');
 	
 	// show & position tooltip & animate
+	
 	this.mContainer.removeClass('display-none').addClass('display-block');
 	this.mContainer.css({ left: posLeft, top: posTop });
+	this.mContainer.css({ 'background-size' : (containerWidth*0.1) + 'rem ' + Math.max((containerHeight*0.1), 55) + 'rem' });
 	this.mContainer.velocity("finish", true).velocity({ opacity: 0.99 }, { duration: this.mFadeInTime }); // Anti Alias Fix
+	if (containerHeight > wnd.height())
+	{
+		var scrollingdur = 30 * (containerHeight - wnd.height());
+		var finaltop = ((wnd.height() - containerHeight)*0.1) + "rem";
+		this.mContainer.velocity("finish", true).velocity({ top:  finaltop}, { duration: scrollingdur });
+	}
+	else
+	{
+		this.mContainer.velocity("finish", true).velocity({ top:  posTop}, { duration: 10 });
+	}
 };
 
 
@@ -2104,6 +2176,27 @@ TooltipModule.prototype.addHintDiv = function(_parentDIV, _data, _isChildRow, _i
 		for (var i = 0; i < _data.children.length; ++i)
 		{
 			this.addHintDiv(container, _data.children[i], true, useFullWidth);
+		}
+	}
+
+	// add optional dividers
+	if ('divider' in _data)
+	{
+		switch(_data.divider)
+		{
+			case 'top':
+			{			
+				container.addClass('ui-control-tooltip-module-top-devider');
+			} break;
+			case 'bottom':
+			{			
+				container.addClass('ui-control-tooltip-module-bottom-devider');
+			} break;
+			case 'both':
+			{			
+				container.addClass('ui-control-tooltip-module-top-devider');
+				container.addClass('ui-control-tooltip-module-bottom-devider');
+			} break;
 		}
 	}
 

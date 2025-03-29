@@ -1,0 +1,255 @@
+/*
+ *  @Project:		Battle Brothers
+ *	@Company:		Overhype Studios
+ *
+ *	@Copyright:		(c) Overhype Studios | 2013 - 2017
+ *
+ *  @Author:		Overhype Studios
+ *  @Date:			24.01.2017 / Reworked: 26.11.2017
+ *  @Description:	Inventory List Module CSS
+ */
+
+.character-screen-container .formations-module
+{
+	top: 4.3rem;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	position: absolute;
+
+	/*border-bottom: 1px rgba(130, 130, 130, 1) solid;*/
+}
+
+.character-screen-container .formations-module .title-row
+{
+	height: 3.4rem;
+	text-align: center;
+	width: 100%;
+
+	/*border-bottom: 1px rgba(130, 130, 130, 1) solid;*/
+}
+
+
+.character-screen-container .formations-module .l-list-container
+{
+	top: 0;
+	left: 1.9rem;
+	right: 0;
+	bottom: 0;
+}
+
+.character-screen-container .formations-module .top-row
+{
+	height: 8.0rem;
+	width: 100%;
+}
+
+.character-screen-container .formations-module .top-row-bro
+{
+	height: 8.0rem;
+	width: 100%;
+}
+
+.character-screen-container .formations-module .bottom-row
+{
+	margin-top: 4.0rem;
+	height: 8.0rem;
+	width: 100%;
+}
+
+.character-screen-container .formations-module .bottom-row-bro
+{
+	height: 8.0;
+	width: 100%;
+}
+
+.character-screen-container .formations-module .slot-count-panel
+{
+	left: 0;
+	right: 0;
+	bottom: 0;
+	height: 3.4rem;
+	width: 100%;
+	position: absolute;
+
+	z-index: 10;
+	/*border-top: 1px rgba(130, 130, 130, 1) solid;*/
+}
+
+.character-screen-container .formations-module .formations-panel
+{
+	position: absolute;
+	left: 2.0rem;
+	top: 0.8rem;
+	z-index: 10;
+}
+
+.character-screen-container .formations-module .formations-panel .l-button
+{
+	   width: 5.2rem;
+	   height: 3.9rem;
+	   position: absolute;
+	   line-height: 2.6rem;
+}
+
+/* .formation-panel-btn 
+{
+	width: 3.5rem;
+	height: 3.5rem ;
+	position: absolute;
+	line-height: 2.6rem;
+}
+
+.formation-button-img
+{
+ width: 3.0rem !important;
+ height: 3.0rem !important;
+}
+
+.clear-formation-btn img
+{
+	margin-left: 1.0rem !important;
+} */
+
+/* .character-screen-container .formations-module .formations-panel .l-button.is-formation-1
+{
+} */
+
+.character-screen-container .formations-module .formations-panel .l-button.is-formation-1
+{
+	left: 5.0rem;
+}
+
+.character-screen-container .formations-module .formations-panel .l-button.is-formation-2
+{
+	left: 10.0rem;
+}
+
+.character-screen-container .formations-module .formations-panel .l-button.is-formation-3
+{
+	left: 15.0rem;
+}
+
+.character-screen-container .formations-module .formations-panel .l-button.is-formation-4
+{
+	left: 20.0rem;
+}
+
+.character-screen-container .formations-module .formations-panel .l-button.is-formation-5
+{
+	left: 25.0rem;
+
+}
+.character-screen-container .formations-module .formations-panel .l-button.is-formation-6
+{
+	left: 30.0rem;
+}
+
+.character-screen-container .formations-module .formations-panel .l-button.is-formation-7
+{
+	left: 35.0rem;
+}
+
+.character-screen-container .formations-module .formations-panel .l-button.is-formation-7 img
+{
+	width: 50%;
+}
+
+.character-screen-container .formations-module .formations-panel .l-button.is-formation-8
+{
+	left: 40.0rem;
+	width: 5.2rem;
+	height: 4.1rem;
+}
+
+.character-screen-container .formations-module .formations-panel .l-button.is-formation-9
+{
+	left: 45.0rem;
+}
+
+.character-screen-container .formations-module .formations-panel .formation-name
+{
+	left: 41.0rem;
+	top: 2.0rem;
+	position: absolute;
+
+	/*border-bottom: 1px rgba(130, 130, 130, 1) solid;*/
+}
+
+.character-screen-container .formations-module .formations-panel .formation-name .label
+{
+	/* vertical center */
+	top: 100%;
+	width: 100%;
+	position: relative;
+
+	-webkit-transform: translateY(-50%);
+	-ms-transform: translateY(-50%);
+	transform: translateY(-50%);
+
+	white-space: nowrap;
+	text-align: center;
+	text-overflow: ellipsis;
+	line-height: 2.6rem;
+}
+
+.character-screen-container .formations-module .formations-panel .formation-name img
+{
+	top: 0;
+	bottom: 0;
+	right: 0.4rem;
+	width: 1.8rem;
+	height: 1.8rem;
+	position: absolute;
+	margin: auto;
+}
+
+
+/* Change Name & Title Dialog Container */
+.character-screen .ui-control.popup-dialog.change-formation-name-popup
+{
+	width: 44.9rem;
+	height: 25.0rem;
+
+	background-image: url("coui://gfx/ui/skin/popup_background_449x250.png");
+	background-size: 44.9rem 25.0rem;
+	background-repeat: no-repeat;
+}
+
+.character-screen .ui-control.popup-dialog .change-formation-name-container
+{
+	width: 100%;
+	padding: 0.6rem;
+	position: relative;
+	float: left;
+}
+
+.character-screen .ui-control.popup-dialog .change-formation-name-container .row
+{
+	width: 100%;
+	height: 5.9rem;
+	position: relative;
+	float: left;
+}
+
+.character-screen .ui-control.popup-dialog .change-formation-name-container .row .label
+{
+	width: 9.0rem;
+	height: 5.9rem;
+	margin-right: 1.0rem;
+	position: relative;
+	float: left;
+
+	line-height: 5.9rem;
+	text-align: right;
+}
+
+.character-screen .ui-control.popup-dialog .change-formation-name-container .row .l-input
+{
+	width: 30.0rem;
+	height: 4.0rem;
+	margin-top: 1.0rem;
+	margin-bottom: 1.0rem;
+	position: relative;
+	float: left;
+}

@@ -1,0 +1,586 @@
+<brush name="gfx/legend_weapons.png" version="17">
+	<sprite id="projectile_blood" ic="FF445660" width="32" height="64" img="effects\projectile_blood.png" left="-8" right="14" top="-31" bottom="29" />
+	<sprite id="projectile_missile" ic="FF445660" width="32" height="64" img="effects\projectile_missile.png" left="-8" right="14" top="-31" bottom="29" />
+	<sprite id="projectile_pebble" ic="FF445660" width="32" height="64" img="effects\projectile_pebble.png" left="-8" right="14" top="-31" bottom="29" />
+	<sprite id="projectile_dart" ic="FF445660" width="32" height="64" img="effects\projectile_dart.png" left="-8" right="14" top="-31" bottom="29" />
+	<sprite id="icon_legend_shiv_01" offsetY="35" ic="FF6B6B74" width="104" height="142" img="icons\icon_legend_shiv_01.png" left="-6" right="30" top="-55" bottom="-15" />
+	<sprite id="icon_legend_shiv_01_bloodied" offsetY="35" ic="FF58596A" width="104" height="142" img="icons\icon_legend_shiv_01_bloodied.png" left="-6" right="30" top="-55" bottom="-15" />
+	<sprite id="icon_legend_hammer_01" offsetY="35" ic="FF484F57" width="104" height="142" img="icons\icon_legend_hammer_01.png" left="0" right="48" top="-56" bottom="8" />
+	<sprite id="icon_legend_hammer_01_bloodied" offsetY="35" ic="FF3B4153" width="104" height="142" img="icons\icon_legend_hammer_01_bloodied.png" left="0" right="48" top="-56" bottom="8" />
+	<sprite id="icon_legend_saw_01" offsetY="35" ic="FF484F57" width="104" height="142" img="icons\icon_legend_saw_01.png" left="0" right="48" top="-56" bottom="8" />
+	<sprite id="icon_legend_saw_01_bloodied" offsetY="35" ic="FF3B4153" width="104" height="142" img="icons\icon_legend_saw_01_bloodied.png" left="0" right="48" top="-56" bottom="8" />
+	<sprite id="icon_legend_sickle_01" offsetY="35" ic="FF484F57" width="104" height="142" img="icons\icon_legend_sickle_01.png" left="0" right="48" top="-56" bottom="8" />
+	<sprite id="icon_legend_sickle_01_bloodied" offsetY="35" ic="FF3B4153" width="104" height="142" img="icons\icon_legend_sickle_01_bloodied.png" left="0" right="48" top="-56" bottom="8" />
+	<sprite id="icon_legend_sling_01" offsetY="35" ic="FF484F57" width="104" height="142" img="icons\icon_legend_sling_01.png" left="0" right="48" top="-56" bottom="8" />
+	<sprite id="icon_legend_sling_01_bloodied" offsetY="35" ic="FF3B4153" width="104" height="142" img="icons\icon_legend_sling_01_bloodied.png" left="0" right="48" top="-56" bottom="8" />
+	<sprite id="icon_legend_sling_02" offsetY="35" ic="FF484F57" width="104" height="142" img="icons\icon_legend_sling_02.png" left="0" right="48" top="-56" bottom="8" />
+	<sprite id="icon_legend_sling_02_bloodied" offsetY="35" ic="FF3B4153" width="104" height="142" img="icons\icon_legend_sling_02_bloodied.png" left="0" right="48" top="-56" bottom="8" />
+	<sprite id="icon_legend_slingstaff_01" offsetY="35" f1="20" f2="-45" ic="FF4E5159" width="130" height="142" img="icons\icon_legend_slingstaff_01.png" left="-9" right="49" top="-62" bottom="12" />
+	<sprite id="icon_legend_slingstaff_01_bloodied" offsetY="35" f1="20" f2="-45" ic="FF2F3A4F" width="130" height="142" img="icons\icon_legend_slingstaff_01_bloodied.png" left="-10" right="50" top="-67" bottom="13" />
+	<sprite id="icon_legend_named_slingstaff_01" offsetY="35" ic="FF2F405A" width="130" height="142" img="icons\icon_legend_named_slingstaff_01.png" left="-50" right="12" top="-48" bottom="26" />
+	<sprite id="icon_legend_named_slingstaff_01_bloodied" offsetY="35" ic="FF2F405A" width="130" height="142" img="icons\icon_legend_named_slingstaff_01.png" left="-50" right="12" top="-48" bottom="26" />
+	<sprite id="icon_legend_named_slingstaff_02" offsetY="35" ic="FF2F405A" width="130" height="142" img="icons\icon_legend_named_slingstaff_02.png" left="-50" right="12" top="-48" bottom="26" />
+	<sprite id="icon_legend_named_slingstaff_02_bloodied" offsetY="35" ic="FF2F405A" width="130" height="142" img="icons\icon_legend_named_slingstaff_02.png" left="-50" right="12" top="-48" bottom="26" />
+	<sprite id="icon_legend_chain_01" offsetY="35" f1="20" f2="-45" ic="FF4E5159" width="130" height="142" img="icons\icon_legend_chain_01.png" left="-9" right="49" top="-62" bottom="12" />
+	<sprite id="icon_legend_chain_01_bloodied" offsetY="35" f1="20" f2="-45" ic="FF2F3A4F" width="130" height="142" img="icons\icon_legend_chain_01_bloodied.png" left="-10" right="50" top="-67" bottom="13" />
+	<sprite id="icon_legend_wooden_spear_01" offsetY="35" f1="20" f2="-45" ic="FF4E5159" width="130" height="142" img="icons\icon_legend_wooden_spear_01.png" left="-9" right="49" top="-62" bottom="12" />
+	<sprite id="icon_legend_wooden_spear_01_bloodied" offsetY="35" f1="20" f2="-45" ic="FF2F3A4F" width="130" height="142" img="icons\icon_legend_wooden_spear_01_bloodied.png" left="-10" right="50" top="-67" bottom="13" />
+	<sprite id="icon_legend_staff_01" offsetY="35" ic="FF4E5860" width="104" height="142" img="icons\icon_legend_staff_01.png" left="-52" right="12" top="-64" bottom="54" />
+	<sprite id="icon_legend_staff_01_bloodied" offsetY="35" ic="FF3D4758" width="130" height="142" img="icons\icon_legend_staff_01_bloodied.png" left="-52" right="12" top="-64" bottom="52" />
+	<sprite id="icon_legend_staff_02" offsetY="35" ic="FF4E5860" width="104" height="142" img="icons\icon_legend_staff_02.png" left="-52" right="12" top="-64" bottom="54" />
+	<sprite id="icon_legend_staff_02_bloodied" offsetY="35" ic="FF3D4758" width="130" height="142" img="icons\icon_legend_staff_02_bloodied.png" left="-52" right="12" top="-64" bottom="52" />
+	<sprite id="icon_legend_staff_03" offsetY="35" ic="FF4E5860" width="104" height="142" img="icons\icon_legend_staff_03.png" left="-52" right="12" top="-64" bottom="54" />
+	<sprite id="icon_legend_staff_03_bloodied" offsetY="35" ic="FF3D4758" width="130" height="142" img="icons\icon_legend_staff_03_bloodied.png" left="-52" right="12" top="-64" bottom="52" />
+	<sprite id="icon_legend_staff_04" offsetY="35" ic="FF4E5860" width="104" height="142" img="icons\icon_legend_staff_04.png" left="-52" right="12" top="-64" bottom="54" />
+	<sprite id="icon_legend_staff_04_bloodied" offsetY="35" ic="FF3D4758" width="130" height="142" img="icons\icon_legend_staff_04_bloodied.png" left="-52" right="12" top="-64" bottom="52" />
+	<sprite id="icon_legend_staff_05" offsetY="35" ic="FF4E5860" width="104" height="142" img="icons\icon_legend_staff_05.png" left="-52" right="12" top="-64" bottom="54" />
+	<sprite id="icon_legend_staff_05_bloodied" offsetY="35" ic="FF3D4758" width="130" height="142" img="icons\icon_legend_staff_05_bloodied.png" left="-52" right="12" top="-64" bottom="52" />
+	<sprite id="icon_legend_footman_axe_01" offsetY="35" ic="FF4E5860" width="104" height="142" img="icons\icon_legend_footman_axe_01.png" left="-52" right="12" top="-64" bottom="54" />
+	<sprite id="icon_legend_footman_axe_01_bloodied" offsetY="35" ic="FF3D4758" width="130" height="142" img="icons\icon_legend_footman_axe_01_bloodied.png" left="-52" right="12" top="-64" bottom="52" />
+	<sprite id="icon_legend_bough_01" offsetY="35" ic="FF4E5860" width="104" height="142" img="icons\icon_legend_bough_01.png" left="-52" right="12" top="-64" bottom="54" />
+	<sprite id="icon_legend_bough_01_bloodied" offsetY="35" ic="FF3D4758" width="130" height="142" img="icons\icon_legend_bough_01_bloodied.png" left="-52" right="12" top="-64" bottom="52" />
+	<sprite id="icon_legend_limb_lopper_01" offsetY="35" ic="FF4E5860" width="104" height="142" img="icons\icon_legend_limb_lopper_01.png" left="-52" right="12" top="-64" bottom="54" />
+	<sprite id="icon_legend_limb_lopper_01_bloodied" offsetY="35" ic="FF3D4758" width="130" height="142" img="icons\icon_legend_limb_lopper_01_bloodied.png" left="-52" right="12" top="-64" bottom="52" />
+	<sprite id="icon_legend_man_mangler_01" offsetY="35" ic="FF4E5860" width="104" height="142" img="icons\icon_legend_man_mangler_01.png" left="-52" right="12" top="-64" bottom="54" />
+	<sprite id="icon_legend_man_mangler_01_bloodied" offsetY="35" ic="FF3D4758" width="130" height="142" img="icons\icon_legend_man_mangler_01_bloodied.png" left="-52" right="12" top="-64" bottom="52" />
+	<sprite id="icon_legend_meat_hacker_01" offsetY="35" ic="FF4E5860" width="104" height="142" img="icons\icon_legend_meat_hacker_01.png" left="-52" right="12" top="-64" bottom="54" />
+	<sprite id="icon_legend_meat_hacker_01_bloodied" offsetY="35" ic="FF3D4758" width="130" height="142" img="icons\icon_legend_meat_hacker_01_bloodied.png" left="-52" right="12" top="-64" bottom="52" />
+
+	<sprite id="icon_legend_bone_carver_01" offsetY="35" ic="FF484F57" width="104" height="142" img="icons\icon_legend_bone_carver_01.png" left="0" right="48" top="-56" bottom="8" />
+	<sprite id="icon_legend_bone_carver_01_bloodied" offsetY="35" ic="FF3B4153" width="104" height="142" img="icons\icon_legend_bone_carver_01_bloodied.png" left="0" right="48" top="-56" bottom="8" />
+	<sprite id="icon_legend_skin_flayer_01" offsetY="35" ic="FF484F57" width="104" height="142" img="icons\icon_legend_skin_flayer_01.png" left="0" right="48" top="-56" bottom="8" />
+	<sprite id="icon_legend_skin_flayer_01_bloodied" offsetY="35" ic="FF3B4153" width="104" height="142" img="icons\icon_legend_skin_flayer_01_bloodied.png" left="0" right="48" top="-56" bottom="8" />
+
+	<sprite id="icon_legend_hammer_01" offsetY="35" ic="FF484F57" width="104" height="142" img="icons\icon_legend_hammer_01.png" left="0" right="48" top="-56" bottom="8" />
+	<sprite id="icon_legend_hammer_01_bloodied" offsetY="35" ic="FF3B4153" width="104" height="142" img="icons\icon_legend_hammer_01_bloodied.png" left="0" right="48" top="-56" bottom="8" />
+
+	<sprite id="icon_legend_scythe_02" offsetY="35" ic="FF4E5860" width="104" height="142" img="icons\icon_legend_scythe_02.png" left="-52" right="12" top="-64" bottom="54" />
+	<sprite id="icon_legend_scythe_02_bloodied" offsetY="35" ic="FF3D4758" width="130" height="142" img="icons\icon_legend_scythe_02_bloodied.png" left="-52" right="12" top="-64" bottom="52" />
+
+	<sprite id="icon_legend_shovel_01" offsetY="35" ic="FF4E5860" width="104" height="142" img="icons\icon_legend_shovel_01.png" left="-52" right="12" top="-64" bottom="54" />
+	<sprite id="icon_legend_shovel_01_bloodied" offsetY="35" ic="FF3D4758" width="130" height="142" img="icons\icon_legend_shovel_01_bloodied.png" left="-52" right="12" top="-64" bottom="52" />
+	<sprite id="icon_legend_shovel_02" offsetY="35" ic="FF4E5860" width="104" height="142" img="icons\icon_legend_shovel_02.png" left="-52" right="12" top="-64" bottom="54" />
+	<sprite id="icon_legend_shovel_02_bloodied" offsetY="35" ic="FF3D4758" width="130" height="142" img="icons\icon_legend_shovel_02_bloodied.png" left="-52" right="12" top="-64" bottom="52" />
+
+	<sprite id="icon_legend_hoe_01" offsetY="35" ic="FF4E5860" width="104" height="142" img="icons\icon_legend_hoe_01.png" left="-52" right="12" top="-64" bottom="54" />
+	<sprite id="icon_legend_hoe_01_bloodied" offsetY="35" ic="FF3D4758" width="130" height="142" img="icons\icon_legend_hoe_01_bloodied.png" left="-52" right="12" top="-64" bottom="52" />
+
+	<sprite id="icon_legend_wooden_pitchfork_01" offsetY="35" ic="FF4E5860" width="104" height="142" img="icons\icon_legend_wooden_pitchfork_01.png" left="-52" right="12" top="-64" bottom="54" />
+	<sprite id="icon_legend_wooden_pitchfork_01_bloodied" offsetY="35" ic="FF3D4758" width="130" height="142" img="icons\icon_legend_wooden_pitchfork_01_bloodied.png" left="-52" right="12" top="-64" bottom="52" />
+
+	<sprite id="icon_legend_crusader_sword_01" offsetY="35" ic="FF4E5860" width="104" height="142" img="icons\icon_legend_crusader_sword_01.png" left="-52" right="12" top="-64" bottom="54" />
+	<sprite id="icon_legend_crusader_sword_01_bloodied" offsetY="35" ic="FF3D4758" width="130" height="142" img="icons\icon_legend_crusader_sword_01_bloodied.png" left="-52" right="12" top="-64" bottom="52" />
+
+	<sprite id="icon_legend_skullbreaker_01" offsetY="35" ic="FF4E5860" width="104" height="142" img="icons\icon_legend_skullbreaker_01.png" left="-52" right="12" top="-64" bottom="54" />
+	<sprite id="icon_legend_skullbreaker_01_bloodied" offsetY="35" ic="FF3D4758" width="130" height="142" img="icons\icon_legend_skullbreaker_01_bloodied.png" left="-52" right="12" top="-64" bottom="52" />
+
+	<sprite id="icon_legend_skullsmasher_01" offsetY="35" ic="FF484F57" width="104" height="142" img="icons\icon_legend_skullsmasher_01.png" left="0" right="48" top="-56" bottom="8" />
+	<sprite id="icon_legend_skullsmasher_01_bloodied" offsetY="35" ic="FF3B4153" width="104" height="142" img="icons\icon_legend_skullsmasher_01_bloodied.png" left="0" right="48" top="-56" bottom="8" />
+	<sprite id="icon_legend_military_goedendag_01" offsetY="35" ic="FF4E5860" width="104" height="142" img="icons\icon_legend_military_goedendag_01.png" left="-52" right="12" top="-64" bottom="54" />
+	<sprite id="icon_legend_military_goedendag_01_bloodied" offsetY="35" ic="FF3D4758" width="130" height="142" img="icons\icon_legend_military_goedendag_01_bloodied.png" left="-52" right="12" top="-64" bottom="52" />
+
+	<sprite id="icon_legend_two_handed_club_01" offsetY="35" ic="FF4E5860" width="104" height="142" img="icons\icon_legend_two_handed_club_01.png" left="-52" right="12" top="-64" bottom="54" />
+	<sprite id="icon_legend_two_handed_club_01_bloodied" offsetY="35" ic="FF3D4758" width="130" height="142" img="icons\icon_legend_two_handed_club_01_bloodied.png" left="-52" right="12" top="-64" bottom="52" />
+
+	<sprite id="icon_legend_estoc_01" offsetY="35" ic="FF4E5860" width="104" height="142" img="icons\icon_legend_estoc_01.png" left="-52" right="12" top="-64" bottom="54" />
+	<sprite id="icon_legend_estoc_01_bloodied" offsetY="35" ic="FF3D4758" width="130" height="142" img="icons\icon_legend_estoc_01_bloodied.png" left="-52" right="12" top="-64" bottom="52" />
+
+	<sprite id="icon_legend_estoc_03" offsetY="35" ic="FF4E5860" width="104" height="142" img="icons\icon_legend_estoc_03.png" left="-52" right="12" top="-64" bottom="54" />
+	<sprite id="icon_legend_estoc_03_bloodied" offsetY="35" ic="FF3D4758" width="130" height="142" img="icons\icon_legend_estoc_03_bloodied.png" left="-52" right="12" top="-64" bottom="52" />
+
+
+	<sprite id="icon_legend_named_estoc_01" offsetY="35" ic="FF4E5860" width="104" height="142" img="icons\icon_legend_named_estoc_01.png" left="-52" right="38" top="-66" bottom="40" />
+	<sprite id="icon_legend_named_estoc_01_bloodied" offsetY="35" ic="FF3D4758" width="130" height="142" img="icons\icon_legend_named_estoc_01_bloodied.png" left="-52" right="38" top="-66" bottom="40" />
+
+	<sprite id="icon_legend_reinforced_flail_01" offsetY="35" ic="FF4E5860" width="130" height="142" img="icons\icon_legend_reinforced_flail_01.png" left="-65" right="17" top="-50" bottom="64" />
+	<sprite id="icon_legend_reinforced_flail_01_bloodied" offsetY="35" ic="FF3D4758" width="130" height="142" img="icons\icon_legend_reinforced_flail_01_bloodied.png" left="-65" right="17" top="-50" bottom="64" />
+
+	<sprite id="icon_legend_cat_o_nine_tails_01" offsetY="35" ic="FF484F57" width="104" height="142" img="icons\icon_legend_cat_o_nine_tails_01.png" left="0" right="48" top="-56" bottom="8" />
+	<sprite id="icon_legend_cat_o_nine_tails_01_bloodied" offsetY="35" ic="FF3B4153" width="104" height="142" img="icons\icon_legend_cat_o_nine_tails_01_bloodied.png" left="0" right="48" top="-56" bottom="8" />
+
+	<sprite id="icon_legend_parrying_dagger_01" offsetY="35" ic="FF345274" width="130" height="142" img="icons\icon_legend_parrying_dagger_01.png" left="7" right="55" top="-58" bottom="2" />
+	<sprite id="icon_legend_parrying_dagger_01_damaged" offsetY="35" ic="FF2E4864" width="130" height="142" img="icons\icon_legend_parrying_dagger_01_damaged.png" left="8" right="56" top="-58" bottom="2" />
+	<sprite id="icon_legend_parrying_dagger_01_destroyed" offsetY="26" f="640A" ic="FF54556B" width="95" height="71" img="icons\icon_legend_parrying_dagger_01_destroyed.png" left="-39" right="41" top="-29" bottom="23" />
+
+	<sprite id="icon_legend_redback_dagger" offsetY="35" ic="FF484F57" width="104" height="142" img="icons\icon_legend_reback_dagger.png" left="0" right="48" top="-56" bottom="8" />
+	<sprite id="icon_legend_redback_dagger_bloodied" offsetY="35" ic="FF3B4153" width="104" height="142" img="icons\icon_legend_reback_dagger_bloodied.png" left="0" right="48" top="-56" bottom="8" />
+
+	<sprite id="towershield_01" offsetY="35" ic="FF14182B" width="100" height="176" img="icons\towershield_01.png" left="4" right="62" top="-70" bottom="22" />
+	<sprite id="towershield_01_damaged" offsetY="35" ic="FF15192E" width="100" height="176" img="icons\towershield_01_damaged.png" left="7" right="55" top="-70" bottom="22" />
+	<sprite id="towershield_01_destroyed" offsetX="-18" offsetY="30" f="640A" ic="FF15192E" width="176" height="100" img="icons\towershield_01_destroyed.png" top="-30" bottom="22" />
+
+
+	<sprite id="towershield_02" offsetY="35" ic="FF14182B" width="100" height="176" img="icons\towershield_02.png" left="4" right="62" top="-70" bottom="22" />
+	<sprite id="towershield_02_damaged" offsetY="35" ic="FF15192E" width="100" height="176" img="icons\towershield_02_damaged.png" left="7" right="55" top="-70" bottom="22" />
+	<sprite id="towershield_02_destroyed" offsetX="-18" offsetY="30" f="640A" ic="FF15192E" width="176" height="100" img="icons\towershield_02_destroyed.png" top="-30" bottom="22" />
+
+	<sprite id="towershield_03" offsetY="35" ic="FF14182B" width="100" height="176" img="icons\towershield_03.png" left="4" right="62" top="-70" bottom="22" />
+	<sprite id="towershield_03_damaged" offsetY="35" ic="FF15192E" width="100" height="176" img="icons\towershield_03_damaged.png" left="7" right="55" top="-70" bottom="22" />
+	<sprite id="towershield_03_destroyed" offsetX="-18" offsetY="30" f="640A" ic="FF15192E" width="176" height="100" img="icons\towershield_03_destroyed.png" top="-30" bottom="22" />
+
+
+	<sprite id="towershield_04" offsetY="35" ic="FF14182B" width="100" height="176" img="icons\towershield_04.png" left="4" right="62" top="-70" bottom="22" />
+	<sprite id="towershield_04_damaged" offsetY="35" ic="FF15192E" width="100" height="176" img="icons\towershield_04_damaged.png" left="7" right="55" top="-70" bottom="22" />
+	<sprite id="towershield_04_destroyed" offsetX="-18" offsetY="30" f="640A" ic="FF15192E" width="176" height="100" img="icons\towershield_04_destroyed.png" top="-30" bottom="22" />
+
+
+	<sprite id="towershield_05" offsetY="35" ic="FF14182B" width="100" height="176" img="icons\towershield_05.png" left="4" right="62" top="-70" bottom="22" />
+	<sprite id="towershield_05_damaged" offsetY="35" ic="FF15192E" width="100" height="176" img="icons\towershield_05_damaged.png" left="7" right="55" top="-70" bottom="22" />
+	<sprite id="towershield_05_destroyed" offsetX="-18" offsetY="30" f="640A" ic="FF15192E" width="176" height="100" img="icons\towershield_05_destroyed.png" top="-30" bottom="22" />
+
+
+	<sprite id="towershield_06" offsetY="35" ic="FF14182B" width="100" height="176" img="icons\towershield_06.png" left="4" right="62" top="-70" bottom="22" />
+	<sprite id="towershield_06_damaged" offsetY="35" ic="FF15192E" width="100" height="176" img="icons\towershield_06_damaged.png" left="7" right="55" top="-70" bottom="22" />
+	<sprite id="towershield_06_destroyed" offsetX="-18" offsetY="30" f="640A" ic="FF15192E" width="176" height="100" img="icons\towershield_06_destroyed.png" top="-30" bottom="22" />
+	<sprite id="towershield_07" offsetY="35" ic="FF14182B" width="100" height="176" img="icons\towershield_07.png" left="4" right="62" top="-70" bottom="22" />
+	<sprite id="towershield_07_damaged" offsetY="35" ic="FF15192E" width="100" height="176" img="icons\towershield_07_damaged.png" left="7" right="55" top="-70" bottom="22" />
+	<sprite id="towershield_07_destroyed" offsetX="-18" offsetY="30" f="640A" ic="FF15192E" width="176" height="100" img="icons\towershield_07_destroyed.png" top="-30" bottom="22" />
+
+	<sprite id="towershield_08" offsetY="35" ic="FF14182B" width="100" height="176" img="icons\towershield_08.png" left="4" right="62" top="-70" bottom="22" />
+	<sprite id="towershield_08_damaged" offsetY="35" ic="FF15192E" width="100" height="176" img="icons\towershield_08_damaged.png" left="7" right="55" top="-70" bottom="22" />
+	<sprite id="towershield_08_destroyed" offsetX="-18" offsetY="30" f="640A" ic="FF15192E" width="176" height="100" img="icons\towershield_08_destroyed.png" top="-30" bottom="22" />
+
+
+	<sprite id="towershield_09" offsetY="35" ic="FF14182B" width="100" height="176" img="icons\towershield_09.png" left="4" right="62" top="-70" bottom="22" />
+	<sprite id="towershield_09_damaged" offsetY="35" ic="FF15192E" width="100" height="176" img="icons\towershield_09_damaged.png" left="7" right="55" top="-70" bottom="22" />
+	<sprite id="towershield_09_destroyed" offsetX="-18" offsetY="30" f="640A" ic="FF15192E" width="176" height="100" img="icons\towershield_09_destroyed.png" top="-30" bottom="22" />
+
+
+	<sprite id="towershield_10" offsetY="35" ic="FF14182B" width="100" height="176" img="icons\towershield_10.png" left="4" right="62" top="-70" bottom="22" />
+	<sprite id="towershield_10_damaged" offsetY="35" ic="FF15192E" width="100" height="176" img="icons\towershield_10_damaged.png" left="7" right="55" top="-70" bottom="22" />
+	<sprite id="towershield_10_destroyed" offsetX="-18" offsetY="30" f="640A" ic="FF15192E" width="176" height="100" img="icons\towershield_10_destroyed.png" top="-30" bottom="22" />
+
+
+	<sprite id="towershield_11" offsetY="35" ic="FF14182B" width="100" height="176" img="icons\towershield_11.png" left="4" right="62" top="-70" bottom="22" />
+	<sprite id="towershield_11_damaged" offsetY="35" ic="FF15192E" width="100" height="176" img="icons\towershield_11_damaged.png" left="7" right="55" top="-70" bottom="22" />
+	<sprite id="towershield_11_destroyed" offsetX="-18" offsetY="30" f="640A" ic="FF15192E" width="176" height="100" img="icons\towershield_11_destroyed.png" top="-30" bottom="22" />
+
+
+
+	<sprite id="towershield_12" offsetY="35" ic="FF14182B" width="100" height="176" img="icons\towershield_12.png" left="4" right="62" top="-70" bottom="22" />
+	<sprite id="towershield_12_damaged" offsetY="35" ic="FF15192E" width="100" height="176" img="icons\towershield_12_damaged.png" left="7" right="55" top="-70" bottom="22" />
+	<sprite id="towershield_12_destroyed" offsetX="-18" offsetY="30" f="640A" ic="FF15192E" width="176" height="100" img="icons\towershield_12_destroyed.png" top="-30" bottom="22" />
+
+
+	<sprite id="towershield_13" offsetY="35" ic="FF14182B" width="100" height="176" img="icons\towershield_13.png" left="4" right="62" top="-70" bottom="22" />
+	<sprite id="towershield_13_damaged" offsetY="35" ic="FF15192E" width="100" height="176" img="icons\towershield_13_damaged.png" left="7" right="55" top="-70" bottom="22" />
+	<sprite id="towershield_13_destroyed" offsetX="-18" offsetY="30" f="640A" ic="FF15192E" width="176" height="100" img="icons\towershield_13_destroyed.png" top="-30" bottom="22" />
+
+
+	<sprite id="towershield_14" offsetY="35" ic="FF14182B" width="100" height="176" img="icons\towershield_14.png" left="4" right="62" top="-70" bottom="22" />
+	<sprite id="towershield_14_damaged" offsetY="35" ic="FF15192E" width="100" height="176" img="icons\towershield_14_damaged.png" left="7" right="55" top="-70" bottom="22" />
+	<sprite id="towershield_14_destroyed" offsetX="-18" offsetY="30" f="640A" ic="FF15192E" width="176" height="100" img="icons\towershield_14_destroyed.png" top="-30" bottom="22" />
+
+
+	<sprite id="towershield_15" offsetY="35" ic="FF14182B" width="100" height="176" img="icons\towershield_15.png" left="4" right="62" top="-70" bottom="22" />
+	<sprite id="towershield_15_damaged" offsetY="35" ic="FF15192E" width="100" height="176" img="icons\towershield_15_damaged.png" left="7" right="55" top="-70" bottom="22" />
+	<sprite id="towershield_15_destroyed" offsetX="-18" offsetY="30" f="640A" ic="FF15192E" width="176" height="100" img="icons\towershield_15_destroyed.png" top="-30" bottom="22" />
+
+
+	<sprite id="towershield_16" offsetY="35" ic="FF14182B" width="100" height="176" img="icons\towershield_16.png" left="4" right="62" top="-70" bottom="22" />
+	<sprite id="towershield_16_damaged" offsetY="35" ic="FF15192E" width="100" height="176" img="icons\towershield_16_damaged.png" left="7" right="55" top="-70" bottom="22" />
+	<sprite id="towershield_16_destroyed" offsetX="-18" offsetY="30" f="640A" ic="FF15192E" width="176" height="100" img="icons\towershield_16_destroyed.png" top="-30" bottom="22" />
+
+	<sprite id="towershield_17" offsetY="35" ic="FF14182B" width="100" height="176" img="icons\towershield_17.png" left="4" right="62" top="-70" bottom="22" />
+	<sprite id="towershield_17_damaged" offsetY="35" ic="FF15192E" width="100" height="176" img="icons\towershield_17_damaged.png" left="7" right="55" top="-70" bottom="22" />
+	<sprite id="towershield_17_destroyed" offsetX="-18" offsetY="30" f="640A" ic="FF15192E" width="176" height="100" img="icons\towershield_17_destroyed.png" top="-30" bottom="22" />
+
+
+	<sprite id="towershield_18" offsetY="35" ic="FF14182B" width="100" height="176" img="icons\towershield_18.png" left="4" right="62" top="-70" bottom="22" />
+	<sprite id="towershield_18_damaged" offsetY="35" ic="FF15192E" width="100" height="176" img="icons\towershield_18_damaged.png" left="7" right="55" top="-70" bottom="22" />
+	<sprite id="towershield_18_destroyed" offsetX="-18" offsetY="30" f="640A" ic="FF15192E" width="176" height="100" img="icons\towershield_18_destroyed.png" top="-30" bottom="22" />
+
+	<sprite id="towershield_19" offsetY="35" ic="FF14182B" width="100" height="176" img="icons\towershield_19.png" left="4" right="62" top="-70" bottom="22" />
+	<sprite id="towershield_19_damaged" offsetY="35" ic="FF15192E" width="100" height="176" img="icons\towershield_19_damaged.png" left="7" right="55" top="-70" bottom="22" />
+	<sprite id="towershield_19_destroyed" offsetX="-18" offsetY="30" f="640A" ic="FF15192E" width="176" height="100" img="icons\towershield_19_destroyed.png" top="-30" bottom="22" />
+
+
+	<sprite id="towershield_20" offsetY="35" ic="FF14182B" width="100" height="176" img="icons\towershield_20.png" left="4" right="62" top="-70" bottom="22" />
+	<sprite id="towershield_20_damaged" offsetY="35" ic="FF15192E" width="100" height="176" img="icons\towershield_20_damaged.png" left="7" right="55" top="-70" bottom="22" />
+	<sprite id="towershield_20_destroyed" offsetX="-18" offsetY="30" f="640A" ic="FF15192E" width="176" height="100" img="icons\towershield_20_destroyed.png" top="-30" bottom="22" />
+
+
+	<sprite id="towershield_21" offsetY="35" ic="FF14182B" width="100" height="176" img="icons\towershield_21.png" left="4" right="62" top="-70" bottom="22" />
+	<sprite id="towershield_21_damaged" offsetY="35" ic="FF15192E" width="100" height="176" img="icons\towershield_21_damaged.png" left="7" right="55" top="-70" bottom="22" />
+	<sprite id="towershield_21_destroyed" offsetX="-18" offsetY="30" f="640A" ic="FF15192E" width="176" height="100" img="icons\towershield_21_destroyed.png" top="-30" bottom="22" />
+
+
+	<sprite id="towershield_22" offsetY="35" ic="FF14182B" width="100" height="176" img="icons\towershield_22.png" left="4" right="62" top="-70" bottom="22" />
+	<sprite id="towershield_22_damaged" offsetY="35" ic="FF15192E" width="100" height="176" img="icons\towershield_22_damaged.png" left="7" right="55" top="-70" bottom="22" />
+	<sprite id="towershield_22_destroyed" offsetX="-18" offsetY="30" f="640A" ic="FF15192E" width="176" height="100" img="icons\towershield_22_destroyed.png" top="-30" bottom="22" />
+
+	<sprite id="towershield_23" offsetY="35" ic="FF14182B" width="100" height="176" img="icons\towershield_23.png" left="4" right="62" top="-70" bottom="22" />
+	<sprite id="towershield_23_damaged" offsetY="35" ic="FF15192E" width="100" height="176" img="icons\towershield_23_damaged.png" left="7" right="55" top="-70" bottom="22" />
+	<sprite id="towershield_23_destroyed" offsetX="-18" offsetY="30" f="640A" ic="FF15192E" width="176" height="100" img="icons\towershield_23_destroyed.png" top="-30" bottom="22" />
+
+
+	<sprite id="towershield_24" offsetY="35" ic="FF14182B" width="100" height="176" img="icons\towershield_24.png" left="4" right="62" top="-70" bottom="22" />
+	<sprite id="towershield_24_damaged" offsetY="35" ic="FF15192E" width="100" height="176" img="icons\towershield_24_damaged.png" left="7" right="55" top="-70" bottom="22" />
+	<sprite id="towershield_24_destroyed" offsetX="-18" offsetY="30" f="640A" ic="FF15192E" width="176" height="100" img="icons\towershield_24_destroyed.png" top="-30" bottom="22" />
+
+
+	<sprite id="towershield_25" offsetY="35" ic="FF14182B" width="100" height="176" img="icons\towershield_25.png" left="4" right="62" top="-70" bottom="22" />
+	<sprite id="towershield_25_damaged" offsetY="35" ic="FF15192E" width="100" height="176" img="icons\towershield_25_damaged.png" left="7" right="55" top="-70" bottom="22" />
+	<sprite id="towershield_25_destroyed" offsetX="-18" offsetY="30" f="640A" ic="FF15192E" width="176" height="100" img="icons\towershield_25_destroyed.png" top="-30" bottom="22" />
+
+
+	<sprite id="towershield_26" offsetY="35" ic="FF14182B" width="100" height="176" img="icons\towershield_26.png" left="4" right="62" top="-70" bottom="22" />
+	<sprite id="towershield_26_damaged" offsetY="35" ic="FF15192E" width="100" height="176" img="icons\towershield_26_damaged.png" left="7" right="55" top="-70" bottom="22" />
+	<sprite id="towershield_26_destroyed" offsetX="-18" offsetY="30" f="640A" ic="FF15192E" width="176" height="100" img="icons\towershield_26_destroyed.png" top="-30" bottom="22" />
+
+
+	<sprite id="towershield_27" offsetY="35" ic="FF14182B" width="100" height="176" img="icons\towershield_27.png" left="4" right="62" top="-70" bottom="22" />
+	<sprite id="towershield_27_damaged" offsetY="35" ic="FF15192E" width="100" height="176" img="icons\towershield_27_damaged.png" left="7" right="55" top="-70" bottom="22" />
+	<sprite id="towershield_27_destroyed" offsetX="-18" offsetY="30" f="640A" ic="FF15192E" width="176" height="100" img="icons\towershield_27_destroyed.png" top="-30" bottom="22" />
+
+
+	<sprite id="towershield_28" offsetY="35" ic="FF14182B" width="100" height="176" img="icons\towershield_28.png" left="4" right="62" top="-70" bottom="22" />
+	<sprite id="towershield_28_damaged" offsetY="35" ic="FF15192E" width="100" height="176" img="icons\towershield_28_damaged.png" left="7" right="55" top="-70" bottom="22" />
+	<sprite id="towershield_28_destroyed" offsetX="-18" offsetY="30" f="640A" ic="FF15192E" width="176" height="100" img="icons\towershield_28_destroyed.png" top="-30" bottom="22" />
+
+	<sprite id="towershield_29" offsetY="35" ic="FF14182B" width="100" height="176" img="icons\towershield_29.png" left="4" right="62" top="-70" bottom="22" />
+	<sprite id="towershield_29_damaged" offsetY="35" ic="FF15192E" width="100" height="176" img="icons\towershield_29_damaged.png" left="7" right="55" top="-70" bottom="22" />
+	<sprite id="towershield_29_destroyed" offsetX="-18" offsetY="30" f="640A" ic="FF15192E" width="176" height="100" img="icons\towershield_29_destroyed.png" top="-30" bottom="22" />
+
+
+	<sprite id="towershield_30" offsetY="35" ic="FF14182B" width="100" height="176" img="icons\towershield_30.png" left="4" right="62" top="-70" bottom="22" />
+	<sprite id="towershield_30_damaged" offsetY="35" ic="FF15192E" width="100" height="176" img="icons\towershield_30_damaged.png" left="7" right="55" top="-70" bottom="22" />
+	<sprite id="towershield_30_destroyed" offsetX="-18" offsetY="30" f="640A" ic="FF15192E" width="176" height="100" img="icons\towershield_30_destroyed.png" top="-30" bottom="22" />
+
+
+	<sprite id="towershield_31" offsetY="35" ic="FF14182B" width="100" height="176" img="icons\towershield_31.png" left="4" right="62" top="-70" bottom="22" />
+	<sprite id="towershield_31_damaged" offsetY="35" ic="FF15192E" width="100" height="176" img="icons\towershield_31_damaged.png" left="7" right="55" top="-70" bottom="22" />
+	<sprite id="towershield_31_destroyed" offsetX="-18" offsetY="30" f="640A" ic="FF15192E" width="176" height="100" img="icons\towershield_31_destroyed.png" top="-30" bottom="22" />
+
+
+	<sprite id="towershield_32" offsetY="35" ic="FF14182B" width="100" height="176" img="icons\towershield_32.png" left="4" right="62" top="-70" bottom="22" />
+	<sprite id="towershield_32_damaged" offsetY="35" ic="FF15192E" width="100" height="176" img="icons\towershield_32_damaged.png" left="7" right="55" top="-70" bottom="22" />
+	<sprite id="towershield_32_destroyed" offsetX="-18" offsetY="30" f="640A" ic="FF15192E" width="176" height="100" img="icons\towershield_32_destroyed.png" top="-30" bottom="22" />
+
+
+	<sprite id="towershield_33" offsetY="35" ic="FF14182B" width="100" height="176" img="icons\towershield_33.png" left="4" right="62" top="-70" bottom="22" />
+	<sprite id="towershield_33_damaged" offsetY="35" ic="FF15192E" width="100" height="176" img="icons\towershield_33_damaged.png" left="7" right="55" top="-70" bottom="22" />
+	<sprite id="towershield_33_destroyed" offsetX="-18" offsetY="30" f="640A" ic="FF15192E" width="176" height="100" img="icons\towershield_33_destroyed.png" top="-30" bottom="22" />
+
+
+	<sprite id="towershield_34" offsetY="35" ic="FF14182B" width="100" height="176" img="icons\towershield_34.png" left="4" right="62" top="-70" bottom="22" />
+	<sprite id="towershield_34_damaged" offsetY="35" ic="FF15192E" width="100" height="176" img="icons\towershield_34_damaged.png" left="7" right="55" top="-70" bottom="22" />
+	<sprite id="towershield_34_destroyed" offsetX="-18" offsetY="30" f="640A" ic="FF15192E" width="176" height="100" img="icons\towershield_34_destroyed.png" top="-30" bottom="22" />
+
+
+	<sprite id="towershield_35" offsetY="35" ic="FF14182B" width="100" height="176" img="icons\towershield_35.png" left="4" right="62" top="-70" bottom="22" />
+	<sprite id="towershield_35_damaged" offsetY="35" ic="FF15192E" width="100" height="176" img="icons\towershield_35_damaged.png" left="7" right="55" top="-70" bottom="22" />
+	<sprite id="towershield_35_destroyed" offsetX="-18" offsetY="30" f="640A" ic="FF15192E" width="176" height="100" img="icons\towershield_35_destroyed.png" top="-30" bottom="22" />
+
+
+	<sprite id="towershield_36" offsetY="35" ic="FF14182B" width="100" height="176" img="icons\towershield_36.png" left="4" right="62" top="-70" bottom="22" />
+	<sprite id="towershield_36_damaged" offsetY="35" ic="FF15192E" width="100" height="176" img="icons\towershield_36_damaged.png" left="7" right="55" top="-70" bottom="22" />
+	<sprite id="towershield_36_destroyed" offsetX="-18" offsetY="30" f="640A" ic="FF15192E" width="176" height="100" img="icons\towershield_36_destroyed.png" top="-30" bottom="22" />
+
+		<sprite id="towershield_37" offsetY="35" ic="FF14182B" width="100" height="176" img="icons\towershield_37.png" left="4" right="62" top="-70" bottom="22" />
+	<sprite id="towershield_37_damaged" offsetY="35" ic="FF15192E" width="100" height="176" img="icons\towershield_37_damaged.png" left="7" right="55" top="-70" bottom="22" />
+	<sprite id="towershield_37_destroyed" offsetX="-18" offsetY="30" f="640A" ic="FF15192E" width="176" height="100" img="icons\towershield_37_destroyed.png" top="-30" bottom="22" />
+
+		<sprite id="towershield_38" offsetY="35" ic="FF14182B" width="100" height="176" img="icons\towershield_38.png" left="4" right="62" top="-70" bottom="22" />
+	<sprite id="towershield_38_damaged" offsetY="35" ic="FF15192E" width="100" height="176" img="icons\towershield_38_damaged.png" left="7" right="55" top="-70" bottom="22" />
+	<sprite id="towershield_38_destroyed" offsetX="-18" offsetY="30" f="640A" ic="FF15192E" width="176" height="100" img="icons\towershield_38_destroyed.png" top="-30" bottom="22" />
+
+		<sprite id="towershield_39" offsetY="35" ic="FF14182B" width="100" height="176" img="icons\towershield_39.png" left="4" right="62" top="-70" bottom="22" />
+	<sprite id="towershield_39_damaged" offsetY="35" ic="FF15192E" width="100" height="176" img="icons\towershield_39_damaged.png" left="7" right="55" top="-70" bottom="22" />
+	<sprite id="towershield_39_destroyed" offsetX="-18" offsetY="30" f="640A" ic="FF15192E" width="176" height="100" img="icons\towershield_39_destroyed.png" top="-30" bottom="22" />
+
+		<sprite id="towershield_40" offsetY="35" ic="FF14182B" width="100" height="176" img="icons\towershield_40.png" left="4" right="62" top="-70" bottom="22" />
+	<sprite id="towershield_40_damaged" offsetY="35" ic="FF15192E" width="100" height="176" img="icons\towershield_40_damaged.png" left="7" right="55" top="-70" bottom="22" />
+	<sprite id="towershield_40_destroyed" offsetX="-18" offsetY="30" f="640A" ic="FF15192E" width="176" height="100" img="icons\towershield_40_destroyed.png" top="-30" bottom="22" />
+
+		<sprite id="towershield_41" offsetY="35" ic="FF14182B" width="100" height="176" img="icons\towershield_41.png" left="4" right="62" top="-70" bottom="22" />
+	<sprite id="towershield_41_damaged" offsetY="35" ic="FF15192E" width="100" height="176" img="icons\towershield_41_damaged.png" left="7" right="55" top="-70" bottom="22" />
+	<sprite id="towershield_41_destroyed" offsetX="-18" offsetY="30" f="640A" ic="FF15192E" width="176" height="100" img="icons\towershield_41_destroyed.png" top="-30" bottom="22" />
+
+	<sprite id="towershield_42" offsetY="35" ic="FF14182B" width="100" height="176" img="icons\towershield_42.png" left="4" right="62" top="-70" bottom="22" />
+	<sprite id="towershield_42_damaged" offsetY="35" ic="FF15192E" width="100" height="176" img="icons\towershield_42_damaged.png" left="7" right="55" top="-70" bottom="22" />
+	<sprite id="towershield_42_destroyed" offsetX="-18" offsetY="30" f="640A" ic="FF15192E" width="176" height="100" img="icons\towershield_42_destroyed.png" top="-30" bottom="22" />
+	<sprite id="towershield_104" offsetY="35" ic="FF14182B" width="100" height="176" img="icons\towershield_104.png" left="4" right="62" top="-70" bottom="22" />
+	<sprite id="towershield_104_damaged" offsetY="35" ic="FF15192E" width="100" height="176" img="icons\towershield_104_damaged.png" left="7" right="55" top="-70" bottom="22" />
+	<sprite id="towershield_104_destroyed" offsetX="-18" offsetY="30" f="640A" ic="FF15192E" width="176" height="100" img="icons\towershield_104_destroyed.png" top="-30" bottom="22" />
+
+	<sprite id="towershield_noble_01" offsetY="35" ic="FF14182B" width="100" height="176" img="icons\towershield_noble_01.png" left="4" right="62" top="-70" bottom="22" />
+	<sprite id="towershield_noble_01_damaged" offsetY="35" ic="FF15192E" width="100" height="176" img="icons\towershield_noble_01_damaged.png" left="7" right="55" top="-70" bottom="22" />
+	<sprite id="towershield_noble_01_destroyed" offsetX="-18" offsetY="30" f="640A" ic="FF15192E" width="176" height="100" img="icons\towershield_noble_01_destroyed.png" top="-30" bottom="22" />
+
+		<sprite id="towershield_noble_02" offsetY="35" ic="FF14182B" width="100" height="176" img="icons\towershield_noble_02.png" left="4" right="62" top="-70" bottom="22" />
+	<sprite id="towershield_noble_02_damaged" offsetY="35" ic="FF15192E" width="100" height="176" img="icons\towershield_noble_02_damaged.png" left="7" right="55" top="-70" bottom="22" />
+	<sprite id="towershield_noble_02_destroyed" offsetX="-18" offsetY="30" f="640A" ic="FF15192E" width="176" height="100" img="icons\towershield_noble_02_destroyed.png" top="-30" bottom="22" />
+
+		<sprite id="towershield_noble_03" offsetY="35" ic="FF14182B" width="100" height="176" img="icons\towershield_noble_03.png" left="4" right="62" top="-70" bottom="22" />
+	<sprite id="towershield_noble_03_damaged" offsetY="35" ic="FF15192E" width="100" height="176" img="icons\towershield_noble_03_damaged.png" left="7" right="55" top="-70" bottom="22" />
+	<sprite id="towershield_noble_03_destroyed" offsetX="-18" offsetY="30" f="640A" ic="FF15192E" width="176" height="100" img="icons\towershield_noble_03_destroyed.png" top="-30" bottom="22" />
+
+		<sprite id="towershield_noble_04" offsetY="35" ic="FF14182B" width="100" height="176" img="icons\towershield_noble_04.png" left="4" right="62" top="-70" bottom="22" />
+	<sprite id="towershield_noble_04_damaged" offsetY="35" ic="FF15192E" width="100" height="176" img="icons\towershield_noble_04_damaged.png" left="7" right="55" top="-70" bottom="22" />
+	<sprite id="towershield_noble_04_destroyed" offsetX="-18" offsetY="30" f="640A" ic="FF15192E" width="176" height="100" img="icons\towershield_noble_04_destroyed.png" top="-30" bottom="22" />
+
+		<sprite id="towershield_noble_05" offsetY="35" ic="FF14182B" width="100" height="176" img="icons\towershield_noble_05.png" left="4" right="62" top="-70" bottom="22" />
+	<sprite id="towershield_noble_05_damaged" offsetY="35" ic="FF15192E" width="100" height="176" img="icons\towershield_noble_05_damaged.png" left="7" right="55" top="-70" bottom="22" />
+	<sprite id="towershield_noble_05_destroyed" offsetX="-18" offsetY="30" f="640A" ic="FF15192E" width="176" height="100" img="icons\towershield_noble_05_destroyed.png" top="-30" bottom="22" />
+
+		<sprite id="towershield_noble_06" offsetY="35" ic="FF14182B" width="100" height="176" img="icons\towershield_noble_06.png" left="4" right="62" top="-70" bottom="22" />
+	<sprite id="towershield_noble_06_damaged" offsetY="35" ic="FF15192E" width="100" height="176" img="icons\towershield_noble_06_damaged.png" left="7" right="55" top="-70" bottom="22" />
+	<sprite id="towershield_noble_06_destroyed" offsetX="-18" offsetY="30" f="640A" ic="FF15192E" width="176" height="100" img="icons\towershield_noble_06_destroyed.png" top="-30" bottom="22" />
+
+		<sprite id="towershield_noble_07" offsetY="35" ic="FF14182B" width="100" height="176" img="icons\towershield_noble_07.png" left="4" right="62" top="-70" bottom="22" />
+	<sprite id="towershield_noble_07_damaged" offsetY="35" ic="FF15192E" width="100" height="176" img="icons\towershield_noble_07_damaged.png" left="7" right="55" top="-70" bottom="22" />
+	<sprite id="towershield_noble_07_destroyed" offsetX="-18" offsetY="30" f="640A" ic="FF15192E" width="176" height="100" img="icons\towershield_noble_07_destroyed.png" top="-30" bottom="22" />
+
+		<sprite id="towershield_noble_08" offsetY="35" ic="FF14182B" width="100" height="176" img="icons\towershield_noble_08.png" left="4" right="62" top="-70" bottom="22" />
+	<sprite id="towershield_noble_08_damaged" offsetY="35" ic="FF15192E" width="100" height="176" img="icons\towershield_noble_08_damaged.png" left="7" right="55" top="-70" bottom="22" />
+	<sprite id="towershield_noble_08_destroyed" offsetX="-18" offsetY="30" f="640A" ic="FF15192E" width="176" height="100" img="icons\towershield_noble_08_destroyed.png" top="-30" bottom="22" />
+
+		<sprite id="towershield_noble_09" offsetY="35" ic="FF14182B" width="100" height="176" img="icons\towershield_noble_09.png" left="4" right="62" top="-70" bottom="22" />
+	<sprite id="towershield_noble_09_damaged" offsetY="35" ic="FF15192E" width="100" height="176" img="icons\towershield_noble_09_damaged.png" left="7" right="55" top="-70" bottom="22" />
+	<sprite id="towershield_noble_09_destroyed" offsetX="-18" offsetY="30" f="640A" ic="FF15192E" width="176" height="100" img="icons\towershield_noble_09_destroyed.png" top="-30" bottom="22" />
+
+		<sprite id="towershield_noble_10" offsetY="35" ic="FF14182B" width="100" height="176" img="icons\towershield_noble_10.png" left="4" right="62" top="-70" bottom="22" />
+	<sprite id="towershield_noble_10_damaged" offsetY="35" ic="FF15192E" width="100" height="176" img="icons\towershield_noble_10_damaged.png" left="7" right="55" top="-70" bottom="22" />
+	<sprite id="towershield_noble_10_destroyed" offsetX="-18" offsetY="30" f="640A" ic="FF15192E" width="176" height="100" img="icons\towershield_noble_10_destroyed.png" top="-30" bottom="22" />
+
+	<sprite id="shield_heartwood" offsetY="35" ic="FF2B3F5A" width="130" height="142" img="icons\shield_heartwood.png" left="-1" right="65" top="-69" bottom="19" />
+	<sprite id="shield_heartwood_damaged" offsetY="35" ic="FF2A3D56" width="130" height="142" img="icons\shield_heartwood_damaged.png" left="1" right="65" top="-69" bottom="19" />
+	<sprite id="shield_heartwood_destroyed" offsetX="-20" offsetY="8" f="6406" ic="FF2A3D56" width="95" height="71" img="icons\shield_heartwood_destroyed.png" left="-44" right="46" top="-36" bottom="34" />
+
+	<sprite id="icon_legend_swordstaff_legendary_01" offsetY="35" ic="FF3D4550" width="130" height="142" img="icons\icon_legend_swordstaff_legendary_01.png" left="-52" right="14" top="-64" bottom="60" />
+	<sprite id="icon_legend_swordstaff_legendary_01_bloodied" offsetY="35" ic="FF363E4E" width="130" height="142" img="icons\icon_legend_swordstaff_legendary_01_bloodied.png" left="-52" right="14" top="-64" bottom="60" />
+
+	<sprite id="icon_legend_swordstaff_01" offsetY="35" ic="FF38424D" width="130" height="142" img="icons\icon_legend_swordstaff_01.png" left="-53" right="15" top="-55" bottom="49" />
+	<sprite id="icon_legend_swordstaff_01_bloodied" offsetY="35" ic="FF313A4B" width="130" height="142" img="icons\icon_legend_swordstaff_01_bloodied.png" left="-53" right="15" top="-55" bottom="49" />
+	<sprite id="icon_legend_named_swordstaff_01" offsetY="35" ic="FF3D4550" width="130" height="142" img="icons\icon_legend_named_swordstaff_01.png" left="-52" right="14" top="-64" bottom="60" />
+	<sprite id="icon_legend_named_swordstaff_01_bloodied" offsetY="35" ic="FF363E4E" width="130" height="142" img="icons\icon_legend_named_swordstaff_01_bloodied.png" left="-52" right="14" top="-64" bottom="60" />
+
+	<sprite id="icon_legend_battle_glaive_01" offsetY="35" f1="20" f2="-45" ic="FF4E5159" width="130" height="142" img="icons\icon_legend_battle_glaive_01.png" left="-10" right="50" top="-67" bottom="13" />
+	<sprite id="icon_legend_battle_glaive_01_bloodied" offsetY="35" f1="20" f2="-45" ic="FF454856" width="130" height="142" img="icons\icon_legend_battle_glaive_01_bloodied.png" left="-10" right="50" top="-67" bottom="13" />
+
+	<sprite id="icon_legend_battle_glaive_02" offsetY="35" f1="20" f2="-45" ic="FF4E5159" width="130" height="142" img="icons\icon_legend_battle_glaive_02.png" left="-10" right="50" top="-67" bottom="13" />
+	<sprite id="icon_legend_battle_glaive_02_bloodied" offsetY="35" f1="20" f2="-45" ic="FF454856" width="130" height="142" img="icons\icon_legend_battle_glaive_02.png" left="-10" right="50" top="-67" bottom="13" />
+
+	<sprite id="icon_legend_militia_glaive_01" offsetY="35" f1="20" f2="-45" ic="FF4D535A" width="130" height="142" img="icons\icon_legend_militia_glaive_01.png" left="-6" right="50" top="-60" bottom="14" />
+	<sprite id="icon_legend_militia_glaive_01_bloodied" offsetY="35" f1="20" f2="-45" ic="FF4D535A" width="130" height="142" img="icons\icon_legend_militia_glaive_01_bloodied.png" left="-6" right="50" top="-60" bottom="14" />
+
+	<sprite id="icon_legend_named_glaive_01" offsetY="35" f1="20" f2="-45" ic="FF586572" width="130" height="142" img="icons\icon_legend_named_glaive_01.png" left="-7" right="55" top="-61" bottom="21" />
+	<sprite id="icon_legend_named_glaive_01_bloodied" offsetY="35" f1="20" f2="-45" ic="FF56616F" width="130" height="142" img="icons\icon_legend_named_glaive_01_bloodied.png" left="-7" right="55" top="-61" bottom="21" />
+	<sprite id="icon_legend_named_glaive_02" offsetY="35" ic="FF3B404A" width="96" height="146" img="icons\icon_legend_named_glaive_02.png" left="-60" right="14" top="-58" bottom="54" />
+	<sprite id="icon_legend_named_glaive_02_bloodied" offsetY="35" ic="FF3B404A" width="96" height="146" img="icons\icon_legend_named_glaive_02_bloodied.png" left="-60" right="14" top="-58" bottom="54" />
+
+	<sprite id="icon_drum" offsetY="35" ic="FF3F5874" width="130" height="142" img="icons\icon_drum.png" left="-15" right="65" top="-69" bottom="17" />
+	<sprite id="icon_drum_bloodied" offsetY="35" ic="FF3F5874" width="130" height="142" img="icons\icon_drum_bloodied.png" left="-15" right="65" top="-69" bottom="17" />
+
+	<sprite id="icon_legend_great_khopesh" offsetY="35" ic="FF374554" width="130" height="142" img="icons\icon_legend_great_khopesh.png" left="-65" right="13" top="-56" bottom="52" />
+	<sprite id="icon_legend_great_khopesh_bloodied" offsetY="35" ic="FF29344E" width="130" height="142" img="icons\icon_legend_great_khopesh_bloodied.png" left="-65" right="13" top="-56" bottom="52" />
+	<sprite id="icon_legend_great_khopesh_named" offsetY="35" ic="FF374554" width="130" height="142" img="icons\icon_legend_great_khopesh_named.png" left="-65" right="13" top="-56" bottom="52" />
+	<sprite id="icon_legend_great_khopesh_named_bloodied" offsetY="35" ic="FF29344E" width="130" height="142" img="icons\icon_legend_great_khopesh_named_bloodied.png" left="-65" right="13" top="-56" bottom="52" />
+
+	<sprite id="icon_lute_named_01" offsetY="35" ic="FF3F5874" width="130" height="142" img="icons\icon_lute_named_01.png" left="-15" right="65" top="-69" bottom="17" />
+	<sprite id="icon_lute_named_01_bloodied" offsetY="35" ic="FF3F5874" width="130" height="142" img="icons\icon_lute_named_01_bloodied.png" left="-15" right="65" top="-69" bottom="17" />
+
+	<sprite id="icon_legend_estoc_02" offsetY="35" ic="FF575759" width="130" height="142" img="icons\icon_legend_estoc_02.png" left="-64" right="32" top="-61" bottom="49" />
+	<sprite id="icon_legend_estoc_02_bloodied" offsetY="35" ic="FF4E4E54" width="130" height="142" img="icons\icon_legend_estoc_02_bloodied.png" left="-64" right="32" top="-61" bottom="49" />
+
+	<sprite id="icon_legend_estoc_04" offsetY="35" ic="FF575759" width="130" height="142" img="icons\icon_legend_estoc_04.png" left="-64" right="32" top="-61" bottom="49" />
+	<sprite id="icon_legend_estoc_04_bloodied" offsetY="35" ic="FF4E4E54" width="130" height="142" img="icons\icon_legend_estoc_04_bloodied.png" left="-64" right="32" top="-61" bottom="49" />
+
+
+	<sprite id="icon_legend_military_goedendag_02" offsetY="35" ic="FF3B404A" width="150" height="160" img="icons\icon_legend_military_goedendag_02.png" left="-68" right="20" top="-56" bottom="48" />
+	<sprite id="icon_legend_military_goedendag_02_bloodied" offsetY="35" ic="FF303547" width="150" height="160" img="icons\icon_legend_military_goedendag_02_bloodied.png" left="-68" right="20" top="-56" bottom="48" />
+	<sprite id="icon_legend_military_goedendag_named_01" offsetY="35" ic="FF323941" width="130" height="142" img="icons\icon_legend_military_goedendag_01_named_01.png" left="-64" right="18" top="-55" bottom="41" />
+	<sprite id="icon_legend_military_goedendag_named_01_bloodied" offsetY="35" ic="FF2C3140" width="130" height="142" img="icons\icon_legend_military_goedendag_01_named_01_bloodied.png" left="-64" right="18" top="-55" bottom="41" />
+	<sprite id="icon_legend_halberd_named_01" offsetY="35" ic="FF3F4756" width="130" height="142" img="icons\icon_legend_halberd_named_01.png" left="-56" right="14" top="-57" bottom="53" />
+	<sprite id="icon_legend_halberd_named_01_bloodied" offsetY="35" ic="FF394153" width="130" height="142" img="icons\icon_legend_halberd_named_01_bloodied.png" left="-56" right="14" top="-57" bottom="53" />
+	<sprite id="icon_legend_halberd_01" offsetY="35" ic="FF424952" width="150" height="160" img="icons\icon_legend_halberd_01.png" left="-59" right="11" top="-61" bottom="53" />
+	<sprite id="icon_legend_halberd_01_bloodied" offsetY="35" ic="FF3C424F" width="150" height="160" img="icons\icon_legend_halberd_01_bloodied.png" left="-59" right="11" top="-61" bottom="53" />
+	<sprite id="icon_legend_halberd_02" offsetY="35" ic="FF474B52" width="130" height="142" img="icons\icon_legend_halberd_02.png" left="-64" right="14" top="-64" bottom="58" />
+	<sprite id="icon_legend_halberd_02_bloodied" offsetY="35" ic="FF3B3E4C" width="130" height="142" img="icons\icon_legend_halberd_02_bloodied.png" left="-64" right="14" top="-64" bottom="58" />
+	<sprite id="icon_flail_two_handed_02_named_03" offsetY="35" ic="FF3A3E4A" width="130" height="142" img="icons\icon_flail_two_handed_02_named_03.png" left="-65" right="17" top="-50" bottom="64" />
+	<sprite id="icon_flail_two_handed_02_named_03_bloodied" offsetY="35" ic="FF353949" width="130" height="142" img="icons\icon_flail_two_handed_02_named_03_bloodied.png" left="-65" right="17" top="-50" bottom="64" />
+
+
+	<sprite id="icon_legend_flail_ranged_02_named_01" offsetY="35" ic="FF3A3E4A" width="130" height="142" img="icons\icon_legend_flail_ranged_02_named_01.png" left="-65" right="17" top="-50" bottom="64" />
+	<sprite id="icon_legend_flail_ranged_02_named_01_bloodied" offsetY="35" ic="FF353949" width="130" height="142" img="icons\icon_legend_flail_ranged_02_named_01_bloodied.png" left="-65" right="17" top="-50" bottom="64" />
+	<sprite id="icon_legend_flail_ranged_01" offsetY="35" ic="FF424B55" width="124" height="142" img="icons\icon_legend_flail_ranged_01.png" left="-62" right="22" />
+	<sprite id="icon_legend_flail_ranged_01_bloodied" offsetY="35" ic="FF343B4F" width="124" height="142" img="icons\icon_legend_flail_ranged_01_bloodied.png" left="-62" right="22" />
+	<sprite id="icon_legend_flail_ranged_02" offsetY="35" ic="FF424B55" width="74" height="108" img="icons\icon_legend_flail_ranged_02.png" left="-62" right="22" />
+	<sprite id="icon_legend_flail_ranged_02_bloodied" offsetY="35" ic="FF343B4F" width="74" height="108" img="icons\icon_legend_flail_ranged_02_bloodied.png" left="-62" right="22" />
+	<sprite id="icon_named_two_handed_orc_axe_01" offsetY="35" ic="FF32353E" width="144" height="142" img="icons\icon_named_two_handed_orc_axe_01.png" left="-65" right="19" top="-53" bottom="49" />
+	<sprite id="icon_named_two_handed_orc_axe_01_bloodied" offsetY="35" ic="FF292C3B" width="144" height="142" img="icons\icon_named_two_handed_orc_axe_01_bloodied.png" left="-65" right="19" top="-53" bottom="49" />
+	<sprite id="icon_named_two_handed_orc_axe_02" offsetY="35" ic="FF32353E" width="144" height="142" img="icons\icon_named_two_handed_orc_axe_02.png" left="-65" right="19" top="-53" bottom="49" />
+	<sprite id="icon_named_two_handed_orc_axe_02_bloodied" offsetY="35" ic="FF292C3B" width="144" height="142" img="icons\icon_named_two_handed_orc_axe_02_bloodied.png" left="-65" right="19" top="-53" bottom="49" />
+	<sprite id="icon_named_two_handed_orc_axe_03" offsetY="35" ic="FF32353E" width="144" height="142" img="icons\icon_named_two_handed_orc_axe_03.png" left="-65" right="19" top="-53" bottom="49" />
+	<sprite id="icon_named_two_handed_orc_axe_03_bloodied" offsetY="35" ic="FF292C3B" width="144" height="142" img="icons\icon_named_two_handed_orc_axe_03_bloodied.png" left="-65" right="19" top="-53" bottom="49" />
+	<sprite id="icon_named_two_handed_orc_flail_01" offsetY="35" ic="FF2E3236" width="140" height="142" img="icons\icon_named_two_handed_orc_flail_01.png" left="-32" right="70" top="-69" bottom="9" />
+	<sprite id="icon_named_two_handed_orc_flail_01_bloodied" offsetY="35" ic="FF2B2F37" width="140" height="142" img="icons\icon_named_two_handed_orc_flail_01_bloodied.png" left="-32" right="70" top="-69" bottom="9" />
+	<sprite id="icon_named_two_handed_orc_flail_02" offsetY="35" ic="FF2E3236" width="140" height="142" img="icons\icon_named_two_handed_orc_flail_02.png" left="-32" right="70" top="-69" bottom="9" />
+	<sprite id="icon_named_two_handed_orc_flail_02_bloodied" offsetY="35" ic="FF2B2F37" width="140" height="142" img="icons\icon_named_two_handed_orc_flail_02_bloodied.png" left="-32" right="70" top="-69" bottom="9" />
+	<sprite id="icon_named_two_handed_orc_flail_03" offsetY="35" ic="FF2E3236" width="140" height="142" img="icons\icon_named_two_handed_orc_flail_03.png" left="-32" right="70" top="-69" bottom="9" />
+	<sprite id="icon_named_two_handed_orc_flail_03_bloodied" offsetY="35" ic="FF2B2F37" width="140" height="142" img="icons\icon_named_two_handed_orc_flail_03_bloodied.png" left="-32" right="70" top="-69" bottom="9" />
+
+	<sprite id="icon_wooden_stake_01" offsetY="35" ic="FF6B6B74" width="75" height="75" img="icons\icon_wooden_stake_01.png" left="-6" right="30" top="-55" bottom="-15" />
+	<sprite id="icon_wooden_stake_01_bloodied" offsetY="35" ic="FF6B6B74" width="75" height="75" img="icons\icon_wooden_stake_01_bloodied.png" left="-6" right="30" top="-55" bottom="-15" />
+
+	<sprite id="icon_legend_sickle_02" offsetY="35" ic="FF484F57" width="104" height="142" img="icons\icon_legend_sickle_02.png" left="0" right="48" top="-56" bottom="8" />
+	<sprite id="icon_legend_sickle_02_bloodied" offsetY="35" ic="FF3B4153" width="104" height="142" img="icons\icon_legend_sickle_02_bloodied.png" left="0" right="48" top="-56" bottom="8" />
+	<sprite id="icon_legend_named_hammer_01" offsetY="35" ic="FF484F57" width="104" height="142" img="icons\icon_legend_named_hammer_01.png" left="0" right="48" top="-56" bottom="8" />
+	<sprite id="icon_legend_named_hammer_01_bloodied" offsetY="35" ic="FF3B4153" width="104" height="142" img="icons\icon_legend_named_hammer_01_bloodied.png" left="0" right="48" top="-56" bottom="8" />
+
+	<sprite id="icon_named_two_handed_axe_06" offsetY="35" ic="FF365471" width="130" height="142" img="icons\icon_named_two_handed_axe_06.png" left="-63" right="3" top="-56" bottom="66" />
+	<sprite id="icon_named_two_handed_axe_06_bloodied" offsetY="35" ic="FF34506D" width="130" height="142" img="icons\icon_named_two_handed_axe_06_bloodied.png" left="-63" right="3" top="-56" bottom="66" />
+	<sprite id="icon_named_two_handed_axe_07" offsetY="35" ic="FF365471" width="130" height="142" img="icons\icon_named_two_handed_axe_07.png" left="-63" right="3" top="-56" bottom="66" />
+	<sprite id="icon_named_two_handed_axe_07_bloodied" offsetY="35" ic="FF34506D" width="130" height="142" img="icons\icon_named_two_handed_axe_07_bloodied.png" left="-63" right="3" top="-56" bottom="66" />
+	<sprite id="icon_named_axe_07" offsetY="35" ic="FF2D5879" width="130" height="142" img="icons\icon_named_axe_07.png" left="-8" right="60" top="-59" bottom="23" />
+	<sprite id="icon_named_axe_07_bloodied" offsetY="35" ic="FF294F71" width="130" height="142" img="icons\icon_named_axe_07_bloodied.png" left="-8" right="60" top="-59" bottom="23" />
+
+	<sprite id="icon_heavy_southern_mace_01_named_01" offsetY="35" ic="FF2D5879" width="130" height="142" img="icons\icon_heavy_southern_mace_01_named_01.png" left="-8" right="60" top="-59" bottom="23" />
+	<sprite id="icon_heavy_southern_mace_01_named_01_bloodied" offsetY="35" ic="FF294F71" width="130" height="142" img="icons\icon_heavy_southern_mace_01_named_01_bloodied.png" left="-8" right="60" top="-59" bottom="23" />
+	<sprite id="icon_heavy_southern_mace_01_named_02" offsetY="35" ic="FF2D5879" width="130" height="142" img="icons\icon_heavy_southern_mace_01_named_02.png" left="-8" right="60" top="-59" bottom="23" />
+	<sprite id="icon_heavy_southern_mace_01_named_02_bloodied" offsetY="35" ic="FF294F71" width="130" height="142" img="icons\icon_heavy_southern_mace_01_named_02_bloodied.png" left="-8" right="60" top="-59" bottom="23" />
+
+
+	<sprite id="mummy_shield_01" offsetY="35" ic="FF2B293A" width="104" height="142" img="icons\mummy_shield_01.png" left="10" right="52" top="-69" bottom="15" />
+	<sprite id="mummy_shield_01_damaged" offsetY="35" ic="FF262635" width="104" height="142" img="icons\mummy_shield_01_damaged.png" left="10" right="52" top="-69" bottom="17" />
+	<sprite id="mummy_shield_02" offsetY="35" ic="FF2B293A" width="104" height="142" img="icons\mummy_shield_02.png" left="10" right="52" top="-69" bottom="15" />
+	<sprite id="mummy_shield_02_damaged" offsetY="35" ic="FF262635" width="104" height="142" img="icons\mummy_shield_02_damaged.png" left="10" right="52" top="-69" bottom="17" />
+	<sprite id="mummy_shield_03" offsetY="35" ic="FF2B293A" width="104" height="142" img="icons\mummy_shield_03.png" left="10" right="52" top="-69" bottom="15" />
+	<sprite id="mummy_shield_03_damaged" offsetY="35" ic="FF262635" width="104" height="142" img="icons\mummy_shield_03_damaged.png" left="10" right="52" top="-69" bottom="17" />
+	<sprite id="mummy_shield_04" offsetY="35" ic="FF2B293A" width="104" height="142" img="icons\mummy_shield_04.png" left="10" right="52" top="-69" bottom="15" />
+	<sprite id="mummy_shield_04_damaged" offsetY="35" ic="FF262635" width="104" height="142" img="icons\mummy_shield_04_damaged.png" left="10" right="52" top="-69" bottom="17" />
+	<sprite id="mummy_shield_05" offsetY="35" ic="FF2B293A" width="104" height="142" img="icons\mummy_shield_05.png" left="10" right="52" top="-69" bottom="15" />
+	<sprite id="mummy_shield_05_damaged" offsetY="35" ic="FF262635" width="104" height="142" img="icons\mummy_shield_05_damaged.png" left="10" right="52" top="-69" bottom="17" />
+
+	<sprite id="mummy_shield_01_destroyed" offsetX="18" offsetY="-16" f="6402" ic="FF252634" width="97" height="61" img="icons\mummy_shield_01_destroyed.png" top="-26" bottom="22" />
+	<sprite id="mummy_shield_02_destroyed" offsetX="18" offsetY="-16" f="6402" ic="FF252634" width="97" height="61" img="icons\mummy_shield_02_destroyed.png" top="-26" bottom="22" />
+	<sprite id="mummy_shield_03_destroyed" offsetX="18" offsetY="-16" f="6402" ic="FF252634" width="97" height="61" img="icons\mummy_shield_03_destroyed.png" top="-26" bottom="22" />
+	<sprite id="mummy_shield_04_destroyed" offsetX="18" offsetY="-16" f="6402" ic="FF252634" width="97" height="61" img="icons\mummy_shield_04_destroyed.png" top="-26" bottom="22" />
+	<sprite id="mummy_shield_05_destroyed" offsetX="18" offsetY="-16" f="6402" ic="FF252634" width="97" height="61" img="icons\mummy_shield_05_destroyed.png" top="-26" bottom="22" />
+
+	<sprite id="mummy_towershield_01" offsetY="35" ic="FF595A5D" width="130" height="142" img="icons\mummy_towershield_01.png" left="12" right="54" top="-70" bottom="18" />
+	<sprite id="mummy_towershield_01_damaged" offsetY="35" ic="FF494C52" width="130" height="142" img="icons\mummy_towershield_01_damaged.png" left="12" right="54" top="-70" bottom="18" />
+	<sprite id="mummy_towershield_02" offsetY="35" ic="FF595A5D" width="130" height="142" img="icons\mummy_towershield_02.png" left="12" right="54" top="-70" bottom="18" />
+	<sprite id="mummy_towershield_02_damaged" offsetY="35" ic="FF494C52" width="130" height="142" img="icons\mummy_towershield_02_damaged.png" left="12" right="54" top="-70" bottom="18" />
+	<sprite id="mummy_towershield_03" offsetY="35" ic="FF595A5D" width="130" height="142" img="icons\mummy_towershield_03.png" left="12" right="54" top="-70" bottom="18" />
+	<sprite id="mummy_towershield_03_damaged" offsetY="35" ic="FF494C52" width="130" height="142" img="icons\mummy_towershield_03_damaged.png" left="12" right="54" top="-70" bottom="18" />
+	<sprite id="mummy_towershield_04" offsetY="35" ic="FF595A5D" width="130" height="142" img="icons\mummy_towershield_04.png" left="12" right="54" top="-70" bottom="18" />
+	<sprite id="mummy_towershield_04_damaged" offsetY="35" ic="FF494C52" width="130" height="142" img="icons\mummy_towershield_04_damaged.png" left="12" right="54" top="-70" bottom="18" />
+	<sprite id="mummy_towershield_05" offsetY="35" ic="FF595A5D" width="130" height="142" img="icons\mummy_towershield_05.png" left="12" right="54" top="-70" bottom="18" />
+	<sprite id="mummy_towershield_05_damaged" offsetY="35" ic="FF494C52" width="130" height="142" img="icons\mummy_towershield_05_damaged.png" left="12" right="54" top="-70" bottom="18" />
+
+	<sprite id="mummy_towershield_01_destroyed" offsetX="18" offsetY="-16" f="6402" ic="FF252634" width="97" height="61" img="icons\mummy_towershield_01_destroyed.png" top="-26" bottom="22" />
+	<sprite id="mummy_towershield_02_destroyed" offsetX="18" offsetY="-16" f="6402" ic="FF252634" width="97" height="61" img="icons\mummy_towershield_02_destroyed.png" top="-26" bottom="22" />
+	<sprite id="mummy_towershield_03_destroyed" offsetX="18" offsetY="-16" f="6402" ic="FF252634" width="97" height="61" img="icons\mummy_towershield_03_destroyed.png" top="-26" bottom="22" />
+	<sprite id="mummy_towershield_04_destroyed" offsetX="18" offsetY="-16" f="6402" ic="FF252634" width="97" height="61" img="icons\mummy_towershield_04_destroyed.png" top="-26" bottom="22" />
+	<sprite id="mummy_towershield_05_destroyed" offsetX="18" offsetY="-16" f="6402" ic="FF252634" width="97" height="61" img="icons\mummy_towershield_05_destroyed.png" top="-26" bottom="22" />
+
+	<sprite id="icon_legend_fan_axe_01" offsetY="35" ic="FF3B404A" width="150" height="160" img="icons\icon_legend_fan_axe_01.png" left="-68" right="20" top="-56" bottom="48" />
+	<sprite id="icon_legend_fan_axe_01_bloodied" offsetY="35" ic="FF303547" width="150" height="160" img="icons\icon_legend_fan_axe_01_bloodied.png" left="-68" right="20" top="-56" bottom="48" />
+
+	<sprite id="icon_legend_gladius_01" offsetY="35" f1="20" f2="-45" ic="FF4D535A" width="130" height="142" img="icons\icon_legend_gladius_01.png" left="-6" right="50" top="-60" bottom="14" />
+	<sprite id="icon_legend_gladius_01_bloodied" offsetY="35" f1="20" f2="-45" ic="FF4D535A" width="130" height="142" img="icons\icon_legend_gladius_01_bloodied.png" left="-6" right="50" top="-60" bottom="14" />
+
+	<sprite id="icon_legend_footman_axe_02" offsetY="35" ic="FF4E5860" width="104" height="142" img="icons\icon_legend_footman_axe_02.png" left="-52" right="12" top="-64" bottom="54" />
+	<sprite id="icon_legend_footman_axe_02_bloodied" offsetY="35" ic="FF3D4758" width="130" height="142" img="icons\icon_legend_footman_axe_02_bloodied.png" left="-52" right="12" top="-64" bottom="52" />
+
+
+	<sprite id="icon_legend_footman_axe_03" offsetY="35" ic="FF4E5860" width="104" height="142" img="icons\icon_legend_footman_axe_03.png" left="-52" right="12" top="-64" bottom="54" />
+	<sprite id="icon_legend_footman_axe_03_bloodied" offsetY="35" ic="FF3D4758" width="130" height="142" img="icons\icon_legend_footman_axe_03_bloodied.png" left="-52" right="12" top="-64" bottom="52" />
+	<sprite id="icon_legend_footman_axe_04" offsetY="35" ic="FF4E5860" width="104" height="142" img="icons\icon_legend_footman_axe_04.png" left="-52" right="12" top="-64" bottom="54" />
+	<sprite id="icon_legend_footman_axe_04_bloodied" offsetY="35" ic="FF3D4758" width="130" height="142" img="icons\icon_legend_footman_axe_04_bloodied.png" left="-52" right="12" top="-64" bottom="52" />
+
+	<sprite id="icon_legend_parrying_dagger_02" offsetY="35" f1="20" f2="-45" ic="FF4D535A" width="130" height="142" img="icons\icon_legend_parrying_dagger_02.png" left="-6" right="50" top="-60" bottom="14" />
+	<sprite id="icon_legend_parrying_dagger_02_damaged" offsetY="35" f1="20" f2="-45" ic="FF4D535A" width="130" height="142" img="icons\icon_legend_parrying_dagger_02_damaged.png" left="-6" right="50" top="-60" bottom="14" />
+	<sprite id="icon_legend_parrying_dagger_02_destroyed" offsetY="26" f="640A" ic="FF54556B" width="95" height="71" img="icons\icon_legend_parrying_dagger_01_destroyed.png" left="-39" right="41" top="-29" bottom="23" />
+
+	<sprite id="icon_named_sword_06" offsetY="35" ic="FF687279" width="104" height="142" img="icons\icon_named_sword_06.png" left="-3" right="47" top="-63" bottom="17" />
+	<sprite id="icon_named_sword_06_bloodied" offsetY="35" ic="FF4F5A6A" width="104" height="142" img="icons\icon_named_sword_06_bloodied.png" left="-3" right="47" top="-63" bottom="17" />
+
+	<sprite id="icon_named_greatsword_04" offsetY="35" ic="FF58595C" width="130" height="142" img="icons\icon_named_greatsword_04.png" left="-62" right="32" top="-64" bottom="50" />
+	<sprite id="icon_named_greatsword_04_bloodied" offsetY="35" ic="FF4E4F5A" width="130" height="142" img="icons\icon_named_greatsword_04_bloodied.png" left="-62" right="32" top="-64" bottom="50" />
+	<sprite id="icon_named_greatsword_05" offsetY="35" ic="FF58595C" width="130" height="142" img="icons\icon_named_greatsword_05.png" left="-62" right="32" top="-64" bottom="50" />
+	<sprite id="icon_named_greatsword_05_bloodied" offsetY="35" ic="FF4E4F5A" width="130" height="142" img="icons\icon_named_greatsword_05_bloodied.png" left="-62" right="32" top="-64" bottom="50" />
+	<sprite id="icon_named_greatsword_06" offsetY="35" ic="FF58595C" width="130" height="142" img="icons\icon_named_greatsword_06.png" left="-62" right="32" top="-64" bottom="50" />
+	<sprite id="icon_named_greatsword_06_bloodied" offsetY="35" ic="FF4E4F5A" width="130" height="142" img="icons\icon_named_greatsword_06_bloodied.png" left="-62" right="32" top="-64" bottom="50" />
+
+	<sprite id="icon_legend_blowgun_01" offsetY="35" ic="FF4E5860" width="130" height="142" img="icons\icon_legend_blowgun_01.png" left="-14" right="38" top="-76" bottom="0" />
+
+	<sprite id="icon_named_longsword_01" offsetY="35" ic="FF3B404A" width="128" height="172" img="icons\icon_named_longsword_01.png" left="-68" right="30" top="-60" bottom="69" />
+	<sprite id="icon_named_longsword_01_bloodied" offsetY="35" ic="FF3B404A" width="128" height="172" img="icons\icon_named_longsword_01_bloodied.png" left="-68" right="30" top="-60" bottom="69" />
+	<sprite id="icon_named_sword_07" offsetY="35" ic="FF3B404A" width="64" height="116" img="icons\icon_named_sword_07.png" left="1" right="48" top="-61" bottom="27" />
+	<sprite id="icon_named_sword_07_bloodied" offsetY="35" ic="FF3B404A" width="64" height="116" img="icons\icon_named_sword_07_bloodied.png" left="1" right="48" top="-61" bottom="27" />
+	<sprite id="icon_legend_halberd_named_02" offsetY="35" ic="FF3B404A" width="80" height="197" img="icons\icon_legend_halberd_named_02.png" left="-60" right="0" top="-58" bottom="90" />
+	<sprite id="icon_legend_halberd_named_02_bloodied" offsetY="35" ic="FF3B404A" width="80" height="197" img="icons\icon_legend_halberd_named_02_bloodied.png" left="-60" right="0" top="-58" bottom="90" />
+	<sprite id="icon_legend_halberd_named_03" offsetY="35" ic="FF3B404A" width="72" height="205" img="icons\icon_legend_halberd_named_03.png" left="-54" right="0" top="-62" bottom="102" />
+	<sprite id="icon_legend_halberd_named_03_bloodied" offsetY="35" ic="FF3B404A" width="72" height="205" img="icons\icon_legend_halberd_named_03_bloodied.png" left="-54" right="0" top="-62" bottom="102" />
+
+	<sprite id="icon_legend_gladius_named_01" offsetY="35" f1="20" f2="-45" ic="FF4D535A" width="130" height="142" img="icons\icon_legend_gladius_named_01.png" left="-6" right="50" top="-60" bottom="14" />
+	<sprite id="icon_legend_gladius_named_01_bloodied" offsetY="35" f1="20" f2="-45" ic="FF4D535A" width="130" height="142" img="icons\icon_legend_gladius_named_01_bloodied.png" left="-6" right="50" top="-60" bottom="14" />
+
+	<sprite id="icon_legend_kopesh_01" offsetY="35" ic="FF364455" width="130" height="142" img="icons\icon_legend_kopesh_01.png" left="-50" right="14" top="-52" bottom="26" />
+	<sprite id="icon_legend_kopesh_01_bloodied" offsetY="35" ic="FF303D52" width="130" height="142" img="icons\icon_legend_kopesh_01_bloodied.png" left="-50" right="14" top="-52" bottom="26" />
+	<sprite id="icon_legend_kopis_01" offsetY="35" ic="FF5D6676" width="130" height="142" img="icons\icon_legend_kopis_01.png" left="-9" right="55" top="-59" bottom="31" />
+	<sprite id="icon_legend_kopis_01_bloodied" offsetY="35" ic="FF505A70" width="130" height="142" img="icons\icon_legend_kopis_01_bloodied.png" left="-9" right="55" top="-59" bottom="31" />
+	<sprite id="icon_katar_01" offsetY="35" ic="FF777B83" width="104" height="142" img="icons\icon_katar_01.png" left="-3" right="47" top="-57" bottom="7" />
+	<sprite id="icon_katar_01_bloodied" offsetY="35" ic="FF636778" width="104" height="142" img="icons\icon_katar_01_bloodied.png" left="-3" right="47" top="-57" bottom="7" />
+
+	<sprite id="icon_legend_royal_lance_01" offsetY="35" ic="FF37424F" width="130" height="142" img="icons\icon_legend_royal_lance_01.png" left="-3" right="59" top="-63" bottom="23" />
+	<sprite id="icon_legend_royal_lance_01_bloodied" offsetY="35" ic="FF413B4C" width="130" height="142" img="icons\icon_legend_royal_lance_01_bloodied.png" left="-3" right="59" top="-63" bottom="23" />
+
+	<sprite id="icon_cleaver_02_named" offsetY="35" ic="FF535559" width="104" height="142" img="icons\icon_cleaver_02_named.png" left="1" right="43" top="-62" bottom="-8" />
+	<sprite id="icon_cleaver_02_named_bloodied" offsetY="35" ic="FF404352" width="104" height="142" img="icons\icon_cleaver_02_named_bloodied.png" left="1" right="43" top="-62" bottom="-8" />
+
+	<sprite id="icon_warscythe_named_02" offsetY="35" ic="FF3B404A" width="79" height="191" img="icons\icon_warscythe_named_02.png" left="-54" right="5" top="-63" bottom="80" />
+	<sprite id="icon_warscythe_named_02_bloodied" offsetY="35" ic="FF3B404A" width="79" height="191" img="icons\icon_warscythe_named_02_bloodied.png" left="-54" right="5" top="-63" bottom="80" />
+
+	<sprite id="icon_warscythe_named_03" offsetY="35" ic="FF3B404A" width="86" height="224" img="icons\icon_warscythe_named_03.png" left="-60" right="6" top="-64" bottom="104" />
+	<sprite id="icon_warscythe_named_03_bloodied" offsetY="35" ic="FF3B404A" width="86" height="224" img="icons\icon_warscythe_named_03_bloodied.png" left="-60" right="6" top="-64" bottom="104" />
+	<sprite id="icon_bardiche_02" offsetY="35" ic="FF424952" width="150" height="160" img="icons\icon_bardiche_02.png" left="-59" right="11" top="-61" bottom="53" />
+	<sprite id="icon_bardiche_02_bloodied" offsetY="35" ic="FF3C424F" width="150" height="160" img="icons\icon_bardiche_02_bloodied.png" left="-59" right="11" top="-61" bottom="53" />
+	<sprite id="icon_bardiche_01_named_03" offsetY="35" ic="FF3B404A" width="93" height="166" img="icons\icon_bardiche_01_named_03.png" left="-60" right="10" top="-60" bottom="65" />
+	<sprite id="icon_bardiche_01_named_03_bloodied" offsetY="35" ic="FF3B404A" width="93" height="166" img="icons\icon_bardiche_01_named_03_bloodied.png" left="-60" right="10" top="-60" bottom="65" />
+	<sprite id="icon_bardiche_01_named_04" offsetY="35" ic="FF484B50" width="130" height="142" img="icons\icon_bardiche_01_named_04.png" left="-65" right="15" top="-70" bottom="60" />
+	<sprite id="icon_bardiche_01_named_04_bloodied" offsetY="35" ic="FF3E424C" width="130" height="142" img="icons\icon_bardiche_01_named_04_bloodied.png" left="-65" right="15" top="-70" bottom="60" />
+
+	<sprite id="icon_named_warhammer_04" offsetY="35" ic="FF3B404A" width="49" height="109" img="icons\icon_named_warhammer_04.png" left="0" right="47" top="-70" bottom="12" />
+	<sprite id="icon_named_warhammer_04_bloodied" offsetY="35" ic="FF3B404A" width="49" height="109" img="icons\icon_named_warhammer_04_bloodied.png" left="0" right="47" top="-70" bottom="12" />
+
+	<sprite id="icon_named_warhammer_05" offsetY="35" ic="FF3B404A" width="65" height="108" img="icons\icon_named_warhammer_05.png" left="0" right="49" top="-70" bottom="11" />
+	<sprite id="icon_named_warhammer_05_bloodied" offsetY="35" ic="FF3B404A" width="65" height="108" img="icons\icon_named_warhammer_05_bloodied.png" left="0" right="49" top="-70" bottom="11" />
+	<sprite id="icon_legend_hand_crossbow_01" offsetY="35" ic="FF484F57" width="104" height="142" img="icons\icon_legend_hand_crossbow_01.png" left="0" right="48" top="-56" bottom="8" />
+	<sprite id="icon_legend_hand_crossbow_01_bloodied" offsetY="35" ic="FF3B4153" width="104" height="142" img="icons\icon_legend_hand_crossbow_01_bloodied.png" left="0" right="48" top="-56" bottom="8" />
+
+	<sprite id="icon_wildmen_10_bloodied" offsetY="35" ic="FF2A3F54" width="130" height="142" img="icons\icon_wildmen_10_bloodied.png" left="-23" right="65" top="-69" bottom="-9" />
+	<sprite id="icon_goblin_crossbow_named_01" offsetY="35" ic="FF2C3137" width="140" height="142" img="icons\icon_goblin_crossbow_named_01.png" left="-25" right="64" top="-66" bottom="6" />
+	<sprite id="player_banner_101" offsetY="35" ic="FF5E5958" width="200" height="300" img="icons\player_banner\player_banner_101.png" left="-43" right="37" top="-33" bottom="107" />
+	<sprite id="player_banner_101_shaft" offsetY="35" ic="FF464A53" width="200" height="300" img="icons\player_banner\player_banner_101_shaft.png" left="23" right="47" top="-60" bottom="16" />
+	<sprite id="player_banner_102" offsetY="35" ic="FF2F5037" width="200" height="300" img="icons\player_banner\player_banner_102.png" left="-59" right="27" top="-35" bottom="107" />
+  	<sprite id="player_banner_102_shaft" offsetY="35" ic="FF34506F" width="200" height="300" img="icons\player_banner\player_banner_102_shaft.png" left="21" right="55" top="-53" bottom="19" />
+  	<sprite id="player_banner_103" offsetY="35" ic="FF2D686D" width="200" height="230" img="icons\player_banner\player_banner_103.png" left="-79" right="33" top="-1" bottom="115" />
+  	<sprite id="player_banner_103_shaft" offsetY="35" ic="FF1B343B" width="200" height="230" img="icons\player_banner\player_banner_103_shaft.png" left="-78" right="44" top="-60" bottom="0" />
+  	<sprite id="player_banner_104" offsetY="35" ic="FF2E3E59" width="200" height="230" img="icons\player_banner\player_banner_104.png" left="-65" right="33" top="-35" bottom="109" />
+  	<sprite id="player_banner_104_shaft" offsetY="35" ic="FF2B3144" width="200" height="230" img="icons\player_banner\player_banner_104_shaft.png" left="-19" right="45" top="-55" bottom="7" />
+  	<sprite id="shield_heater_101" offsetY="35" ic="FF505051" width="104" height="142" img="icons\shield_heater_101.png" left="8" right="50" top="-65" bottom="3" />
+  	<sprite id="shield_heater_101_damaged" offsetY="35" ic="FF4F5155" width="104" height="142" img="icons\shield_heater_101_damaged.png" left="8" right="50" top="-66" bottom="2" />
+  	<sprite id="shield_heater_101_destroyed" offsetX="-18" offsetY="30" f="640C" ic="FF594D4B" width="89" height="44" img="icons\shield_heater_101_destroyed.png" left="-36" right="38" />
+  	<sprite id="shield_heater_102" offsetY="35" ic="FF505051" width="104" height="142" img="icons\shield_heater_102.png" left="8" right="50" top="-65" bottom="3" />
+  	<sprite id="shield_heater_102_damaged" offsetY="35" ic="FF4F5155" width="104" height="142" img="icons\shield_heater_102_damaged.png" left="8" right="50" top="-66" bottom="2" />
+  	<sprite id="shield_heater_102_destroyed" offsetX="-18" offsetY="30" f="640C" ic="FF594D4B" width="89" height="44" img="icons\shield_heater_102_destroyed.png" left="-36" right="38" />
+  	<sprite id="shield_heater_103" offsetY="35" ic="FF505051" width="104" height="142" img="icons\shield_heater_103.png" left="8" right="50" top="-65" bottom="3" />
+  	<sprite id="shield_heater_103_damaged" offsetY="35" ic="FF4F5155" width="104" height="142" img="icons\shield_heater_103_damaged.png" left="8" right="50" top="-66" bottom="2" />
+  	<sprite id="shield_heater_103_destroyed" offsetX="-18" offsetY="30" f="640C" ic="FF594D4B" width="89" height="44" img="icons\shield_heater_103_destroyed.png" left="-36" right="38" />
+  	<sprite id="shield_heater_104" offsetY="35" ic="FF505051" width="104" height="142" img="icons\shield_heater_104.png" left="8" right="50" top="-65" bottom="3" />
+  	<sprite id="shield_heater_104_damaged" offsetY="35" ic="FF4F5155" width="104" height="142" img="icons\shield_heater_104_damaged.png" left="8" right="50" top="-66" bottom="2" />
+  	<sprite id="shield_heater_104_destroyed" offsetX="-18" offsetY="30" f="640C" ic="FF594D4B" width="89" height="44" img="icons\shield_heater_104_destroyed.png" left="-36" right="38" />
+  	<sprite id="shield_round_104" offsetY="35" ic="FF28344A" width="104" height="142" img="icons\shield_round_104.png" left="8" right="52" top="-53" bottom="3" />
+  	<sprite id="shield_round_104_damaged" offsetY="35" ic="FF273246" width="104" height="142" img="icons\shield_round_104_damaged.png" left="6" right="52" top="-53" bottom="3" />
+  	<sprite id="shield_round_104_destroyed" offsetX="-25" offsetY="-6" f="6404" ic="FF273143" img="icons\shield_round_104_destroyed.png" />
+  	<sprite id="shield_kite_104" offsetY="35" ic="FF564E47" width="130" height="142" img="icons\shield_kite_104.png" left="11" right="53" top="-70" bottom="18" />
+  	<sprite id="shield_kite_104_damaged" offsetY="35" ic="FF4F4B4B" width="130" height="142" img="icons\shield_kite_104_damaged.png" left="11" right="53" top="-70" bottom="18" />
+  	<sprite id="shield_kite_104_destroyed" offsetY="-18" f="6401" ic="FF45413E" img="icons\shield_kite_104_destroyed.png" left="-44" right="45" />
+  	<sprite id="shield_metal_round_03_named_03" offsetY="35" ic="FF3A4340" width="130" height="142" img="icons\shield_metal_round_03_named_03.png" left="4" right="60" top="-61" bottom="9" />
+  	<sprite id="shield_metal_round_03_named_03_damaged" offsetY="35" ic="FF363F3E" width="130" height="142" img="icons\shield_metal_round_03_named_03_damaged.png" left="3" right="59" top="-60" bottom="8" />
+  	<sprite id="shield_metal_round_03_named_03_destroyed" offsetX="30" offsetY="-3" f="6404" ic="FF363F3E" width="70" height="68" img="icons\shield_metal_round_03_named_03_destroyed.png" top="-33" bottom="27" />
+</brush>

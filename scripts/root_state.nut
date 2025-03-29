@@ -10,6 +10,7 @@ this.root_state <- this.inherit("scripts/states/state", {
 		globalTable.Cursor <- this.new("scripts/ui/global/cursor");
 		globalTable.MapGen <- this.new("scripts/mapgen/map_generator");
 		globalTable.DialogScreen <- this.new("scripts/ui/screens/dialog_screen");
+		::mods_callHook("root_state.onInit", this);
 		this.add("MainMenuState", "scripts/states/main_menu_state");
 	}
 

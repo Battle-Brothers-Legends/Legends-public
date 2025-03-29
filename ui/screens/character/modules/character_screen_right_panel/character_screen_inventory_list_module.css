@@ -17,23 +17,23 @@
 	bottom: 0;
 	position: absolute;
 
-    /*border-bottom: 1px rgba(130, 130, 130, 1) solid;*/
+	/*border-bottom: 1px rgba(130, 130, 130, 1) solid;*/
 }
 
 .character-screen-container .inventory-list-module .l-list-container
 {
-    top: 0;
-    left: 0.5rem;
-    right: 0;
-    bottom: 3.4rem;
-    position: absolute;
-    margin-right: 0.2rem;
+	top: 0;
+	left: 0.5rem;
+	right: 0;
+	bottom: 3.4rem;
+	position: absolute;
+	margin-right: 0.2rem;
 
-    height: 44.4rem;
+	height: 44.4rem;
 
-    /*background-image: url("coui://gfx/ui/skin/raster.png");
-    background-repeat: no-repeat;
-    background-position: 0.0rem 0.5rem;*/
+	/*background-image: url("coui://gfx/ui/skin/raster.png");
+	background-repeat: no-repeat;
+	background-position: 0.0rem 0.5rem;*/
 }
 
 .character-screen-container .inventory-list-module .l-list-container.is-filter-panel-visible
@@ -43,68 +43,68 @@
 
 .character-screen-container .inventory-list-module .l-list-container .scroll-container
 {
-    margin-bottom: 0.0rem;
+	margin-bottom: 0.0rem;
 }
 
 
 
 .character-screen-container .inventory-list-module .slot-count-panel
 {
-    left: 0;
-    right: 0;
-    bottom: 0;
-    height: 3.4rem;
-    width: 100%;
-    position: absolute;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	height: 3.4rem;
+	width: 100%;
+	position: absolute;
 
-    z-index: 10;
-    /*border-top: 1px rgba(130, 130, 130, 1) solid;*/
+	z-index: 10;
+	/*border-top: 1px rgba(130, 130, 130, 1) solid;*/
 }
 
 .character-screen-container .inventory-list-module .slot-count-panel .slot-count-container
 {
-    top: 2.2rem;
-    right: 5.0rem;
-    bottom: 0;
-    width: 12.6rem;
-    height: 2.4rem;
-    position: absolute;
-    margin: auto;
+	top: 2.2rem;
+	right: 11.7rem;
+	bottom: 0;
+	width: 12.6rem;
+	height: 2.4rem;
+	position: absolute;
+	margin: auto;
 }
 
 .character-screen-container .inventory-list-module .slot-count-panel .slot-count-container img
 {
-    top: 0;
-    left: 0;
-    bottom: 0;
-    width: 2.4rem;
-    height: 2.4rem;
-    position: absolute;
-    margin: auto;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	width: 2.4rem;
+	height: 2.4rem;
+	position: absolute;
+	margin: auto;
 }
 
 .character-screen-container .inventory-list-module .slot-count-panel .slot-count-container .label
 {
-    top: 0;
-    left: 2.6rem;
-    bottom: 0;
-    width: 10.0rem;
-    height: 2.0rem;
-    position: absolute;
-    margin: auto;
+	top: 0;
+	left: 2.6rem;
+	bottom: 0;
+	width: 10.0rem;
+	height: 2.0rem;
+	position: absolute;
+	margin: auto;
 
-    line-height: 2.0rem;
-    text-align: left;
+	line-height: 2.0rem;
+	text-align: left;
 }
 
 
 
 .character-screen-container .inventory-list-module .filter-panel
 {
-    position: absolute;
-    left: 2.0rem;
-    top: 0.8rem;
-    z-index: 10;
+	position: absolute;
+	left: 2.0rem;
+	top: 0.8rem;
+	z-index: 10;
 }
 
 .character-screen-container .inventory-list-module .filter-panel .l-button
@@ -113,40 +113,219 @@
 	height: 4.1rem;
 	position: absolute;
 
-    line-height: 2.6rem;
+	line-height: 2.6rem;
 }
 
 .character-screen-container .inventory-list-module .filter-panel .l-button.is-sort
 {
-    
+	
 }
 
 .character-screen-container .inventory-list-module .filter-panel .l-button.is-all-filter
 {
-    left: 5.0rem;
+	left: 5.0rem;
 }
 
 .character-screen-container .inventory-list-module .filter-panel .l-button.is-weapons-filter
 {
-    left: 10.0rem;
+	left: 10.0rem;
 }
 
 .character-screen-container .inventory-list-module .filter-panel .l-button.is-armor-filter
 {
-    left: 15.0rem;
+	left: 15.0rem;
 }
 
 .character-screen-container .inventory-list-module .filter-panel .l-button.is-usable-filter
 {
-    left: 20.0rem;
+	left: 20.0rem;
 }
 
 .character-screen-container .inventory-list-module .filter-panel .l-button.is-misc-filter
 {
-    left: 25.0rem;
+	left: 25.0rem;
 }
 
 .character-screen-container .inventory-list-module .filter-panel .l-button.is-mood-filter
 {
-    left: 30.0rem;
+	left: 30.0rem;
+}
+
+
+.character-screen-container .inventory-list-module .formations-panel
+{
+	position: absolute;
+	left: 2.0rem;
+	top: 0.8rem;
+	z-index: 10;
+}
+
+.character-screen-container .inventory-list-module .formations-panel .l-button
+{
+	   width: 5.2rem;
+	   height: 3.9rem;
+	   position: absolute;
+	   line-height: 2.6rem;
+}
+
+/* .formation-panel-btn 
+{
+	width: 3.5rem;
+	height: 3.5rem ;
+	position: absolute;
+	line-height: 2.6rem;
+}
+
+.formation-button-img
+{
+ width: 3.0rem !important;
+ height: 3.0rem !important;
+}
+
+.clear-formation-btn img
+{
+	margin-left: 1.0rem !important;
+} */
+
+/* .character-screen-container .inventory-list-module .formations-panel .l-button.is-formation-1
+{
+} */
+
+.character-screen-container .inventory-list-module .formations-panel .l-button.is-formation-1
+{
+	left: 5.0rem;
+}
+
+.character-screen-container .inventory-list-module .formations-panel .l-button.is-formation-2
+{
+	left: 10.0rem;
+}
+
+.character-screen-container .inventory-list-module .formations-panel .l-button.is-formation-3
+{
+	left: 15.0rem;
+}
+
+.character-screen-container .inventory-list-module .formations-panel .l-button.is-formation-4
+{
+	left: 20.0rem;
+}
+
+.character-screen-container .inventory-list-module .formations-panel .l-button.is-formation-5
+{
+	left: 25.0rem;
+
+}
+.character-screen-container .inventory-list-module .formations-panel .l-button.is-formation-6
+{
+	left: 30.0rem;
+}
+
+.character-screen-container .inventory-list-module .formations-panel .l-button.is-formation-7
+{
+	left: 35.0rem;
+}
+
+.character-screen-container .inventory-list-module .formations-panel .l-button.is-formation-7 img
+{
+	width: 50%;
+}
+
+.character-screen-container .inventory-list-module .formations-panel .l-button.is-formation-8
+{
+	left: 40.0rem;
+	width: 5.2rem;
+	height: 4.1rem;
+}
+
+.character-screen-container .inventory-list-module .formations-panel .l-button.is-formation-9
+{
+	left: 45.0rem;
+}
+
+.character-screen-container .inventory-list-module .formations-panel .formation-name
+{
+	left: 41.0rem;
+	top: 2.0rem;
+	position: absolute;
+
+	/*border-bottom: 1px rgba(130, 130, 130, 1) solid;*/
+}
+
+.character-screen-container .inventory-list-module .formations-panel .formation-name .label
+{
+	/* vertical center */
+	top: 100%;
+	width: 100%;
+	position: relative;
+
+	-webkit-transform: translateY(-50%);
+	-ms-transform: translateY(-50%);
+	transform: translateY(-50%);
+
+	white-space: nowrap;
+	text-align: center;
+	text-overflow: ellipsis;
+	line-height: 2.6rem;
+}
+
+.character-screen-container .inventory-list-module .formations-panel .formation-name img
+{
+	top: 0;
+	bottom: 0;
+	right: 0.4rem;
+	width: 1.8rem;
+	height: 1.8rem;
+	position: absolute;
+	margin: auto;
+}
+
+
+/* Change Name & Title Dialog Container */
+.character-screen .ui-control.popup-dialog.change-formation-name-popup
+{
+	width: 44.9rem;
+	height: 25.0rem;
+
+	background-image: url("coui://gfx/ui/skin/popup_background_449x250.png");
+	background-size: 44.9rem 25.0rem;
+	background-repeat: no-repeat;
+}
+
+.character-screen .ui-control.popup-dialog .change-formation-name-container
+{
+	width: 100%;
+	padding: 0.6rem;
+	position: relative;
+	float: left;
+}
+
+.character-screen .ui-control.popup-dialog .change-formation-name-container .row
+{
+	width: 100%;
+	height: 5.9rem;
+	position: relative;
+	float: left;
+}
+
+.character-screen .ui-control.popup-dialog .change-formation-name-container .row .label
+{
+	width: 9.0rem;
+	height: 5.9rem;
+	margin-right: 1.0rem;
+	position: relative;
+	float: left;
+
+	line-height: 5.9rem;
+	text-align: right;
+}
+
+.character-screen .ui-control.popup-dialog .change-formation-name-container .row .l-input
+{
+	width: 30.0rem;
+	height: 4.0rem;
+	margin-top: 1.0rem;
+	margin-bottom: 1.0rem;
+	position: relative;
+	float: left;
 }

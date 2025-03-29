@@ -18,116 +18,132 @@
 	height: 100%;
 	position: relative;
 
-    overflow: visible;
+	overflow: visible;
 }
 
 .ui-control.brother.is-list-brother
 {
-    /*width: 10.7rem;
-    height: 12rem;*/
-    width: 7.1rem;
-    height: 7.8rem;
-    float: left;
-    position: relative;
-    /*margin-left: 0.4rem;
-    margin-top: 0.4rem;*/
+	/*width: 10.7rem;
+	height: 12rem;*/
+	width: 7.1rem;
+	height: 7.8rem;
+	float: left;
+	position: relative;
+	/*margin-left: 0.4rem;
+	margin-top: 0.4rem;*/
 }
 
 .ui-control.brother.is-proxy
 {
-    width: 7.1rem;
-    height: 7.8rem;
-    position: absolute;
+	width: 7.1rem;
+	height: 7.8rem;
+	position: absolute;
 
-    overflow: hidden;
+	overflow: hidden;
 }
 
 .ui-control.brother.has-slot-frame
 {
-    /*border: 1px rgba(130, 130, 130, 1) solid;*/
-    /*border-radius: 10px 10px 10px 10px;*/
-    /*box-shadow: inset 0 0 10px rgba(0, 0, 0, 1);*/
+	/*border: 1px rgba(130, 130, 130, 1) solid;*/
+	/*border-radius: 10px 10px 10px 10px;*/
+	/*box-shadow: inset 0 0 10px rgba(0, 0, 0, 1);*/
 }
 
 .ui-control.is-brother-slot
 {
-    /*width: 10.7rem;
-    height: 12rem;*/
-    width: 7.1rem;
-    height: 7.8rem;
-    float: left;
-    position: relative;
-    margin-left: 0.4rem;
-    margin-top: 0.4rem;
+	/*width: 10.7rem;
+	height: 12rem;*/
+	width: 7.1rem;
+	height: 7.8rem;
+	float: left;
+	position: relative;
+	margin-left: 0.4rem;
+	margin-top: 0.4rem;
 }
 
 .ui-control.is-brother-slot.is-roster-slot
 {
-    background-image: url("coui://gfx/ui/skin/inventory_figure.png");
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: 6.8rem 7.8rem;
+	background-image: url("coui://gfx/ui/skin/inventory_figure.png");
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: 6.8rem 7.8rem;
 }
 
 .ui-control.is-brother-slot.is-reserve-slot
 {
-    background-image: url("coui://gfx/ui/skin/inventory_tent.png");
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: 7.1rem 7.7rem;
+	background-image: url("coui://gfx/ui/skin/inventory_tent.png");
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: 7.1rem 7.7rem;
+}
+
+.ui-control.is-brother-slot.is-horse-slot
+{
+	background-image: url("coui://gfx/ui/skin/inventory_tent.png");
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: 7.1rem 7.7rem;
+}
+
+.ui-control.is-brother-slot.is-rider-slot
+{
+	background-image: url("coui://gfx/ui/skin/inventory_figure.png");
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: 7.1rem 7.7rem;
 }
 
 .ui-control.is-brother-slot.is-blocked-slot
 {
-    background-image: none;
+	background-image: none;
 }
 
 .ui-control.is-brother-slot.is-active-slot
 {
-    background-color: green;
+	background-color: green;
 }
 
 .ui-control.brother.is-list-brother:hover,
 .ui-control.brother.is-list-brother.is-selected
 {
-    /*background-image: url("coui://gfx/ui/skin/inventory_highlight.png");
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: 7.1rem 7.3rem;*/
+	/*background-image: url("coui://gfx/ui/skin/inventory_highlight.png");
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: 7.1rem 7.3rem;*/
 }
 
 
 .ui-control.brother.is-list-brother .highlight-layer
 {
-    opacity: 0;
+	opacity: 0;
 
-    position: absolute;
-    top: -1.0rem;
-    left: -1.2rem;
+	position: absolute;
+	top: -1.0rem;
+	left: -1.2rem;
 }
 
 .ui-control.brother.is-list-brother.is-selected .highlight-layer
 {
-    opacity: 1;
+	opacity: 1;
 }
 
 .ui-control.brother > .image-layer
 {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    padding: 0.0rem;
-    z-index: 1;
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	padding: 0.0rem;
+	z-index: 1;
 
-    bottom: 0;
-    left: 0;
+	bottom: 0;
+	left: 0;
 
-    pointer-events: none;
+	pointer-events: none;
 }
 
 .ui-control.brother.is-dragged > .image-layer
 {
-    opacity: 0.6;
+	opacity: 0.6;
 }
 
 .ui-control.brother > .image-layer img
@@ -140,165 +156,165 @@
 
 .ui-control.brother > .lock-layer
 {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    padding: 0.4rem;
-    z-index: 2;
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	padding: 0.4rem;
+	z-index: 2;
 
-    pointer-events: none;
+	pointer-events: none;
 }
 
 .ui-control.brother > .lock-layer img
 {
-    right: -0.4rem;
-    top: 0.3rem;
-    width: 2.0rem;
-    height: 2.52rem;
-    position: absolute;
+	right: -0.4rem;
+	top: 0.3rem;
+	width: 2.0rem;
+	height: 2.52rem;
+	position: absolute;
 
-    pointer-events: none;
+	pointer-events: none;
 }
 
 .ui-control.brother > .mood-layer
 {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    padding: 0.4rem;
-    z-index: 2;
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	padding: 0.4rem;
+	z-index: 2;
 
-    pointer-events: none;
+	pointer-events: none;
 }
 
 .ui-control.brother > .mood-layer img
 {
-    right: -0.6rem;
-    top: 0.3rem;
-    width: 2.1rem;
-    height: 2.5rem;
-    position: absolute;
+	right: -0.6rem;
+	top: 0.3rem;
+	width: 2.1rem;
+	height: 2.5rem;
+	position: absolute;
 
-    pointer-events: none;
+	pointer-events: none;
 }
 
 
 .ui-control.brother > .name-layer
  {
-     width: 100%;
-     height: 100%;
-     position: absolute;
-     z-index: 3;
+	 width: 100%;
+	 height: 100%;
+	 position: absolute;
+	 z-index: 3;
 
-     pointer-events: none;
+	 pointer-events: none;
  }
 
 .ui-control.brother > .name-layer .label
 {
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    padding: 0.2rem;
-    position: absolute;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	padding: 0.2rem;
+	position: absolute;
 
-    font-weight: bold;
-    text-align: center;
-    text-shadow: 1px 1px 1px #000;
-    line-height: 1.4rem;
+	font-weight: bold;
+	text-align: center;
+	text-shadow: 1px 1px 1px #000;
+	line-height: 1.4rem;
 
-    border-top: 1px rgba(130, 130, 130, 1) solid;
-    /*border-radius: 0 0 10px 10px;*/
-    background-color: rgba(0, 0, 0, 0.8);
+	border-top: 1px rgba(130, 130, 130, 1) solid;
+	/*border-radius: 0 0 10px 10px;*/
+	background-color: rgba(0, 0, 0, 0.8);
 
-    display: none;
+	display: none;
 
-    pointer-events: none;
+	pointer-events: none;
 }
 
 .ui-control.brother:hover > .name-layer .label
 {
-    display: block;
+	display: block;
 }
 
 
 .ui-control.brother > .asset-layer
  {
-     width: 100%;
-     height: 100%;
-     position: absolute;
-     z-index: 4;
+	 width: 100%;
+	 height: 100%;
+	 position: absolute;
+	 z-index: 4;
  }
 
 .ui-control.brother > .asset-layer .daily-money-container
 {
-    width: 10.0rem;
-    height: 3.0rem;
-    position: relative;
-    float: left;
-    margin-right: 1.0rem;
+	width: 10.0rem;
+	height: 3.0rem;
+	position: relative;
+	float: left;
+	margin-right: 1.0rem;
 }
 
 .ui-control.brother > .asset-layer .daily-money-container img
 {
-    top: 0;
-    bottom: 0;
-    left: 0;
-    width: 2.8rem;
-    height: 2.8rem;
-    margin: auto;
-    position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	width: 2.8rem;
+	height: 2.8rem;
+	margin: auto;
+	position: absolute;
 }
 
 .ui-control.brother > .asset-layer .daily-money-container .label
 {
-    top: 0;
-    bottom: 0;
-    left: 3.0rem;
-    width: 6.0rem;
-    height: 3.0rem;
-    margin: auto;
-    position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 3.0rem;
+	width: 6.0rem;
+	height: 3.0rem;
+	margin: auto;
+	position: absolute;
 
-    text-align : left;
-    line-height: 3.0rem;
+	text-align : left;
+	line-height: 3.0rem;
 }
 
 
 .ui-control.brother > .asset-layer .primary-status-container
 {
-    width: 10.0rem;
-    height: 3.0rem;
+	width: 10.0rem;
+	height: 3.0rem;
 	position: absolute;
-    float: left;
-    /*margin-top: 3.3rem;*/
+	float: left;
+	/*margin-top: 3.3rem;*/
 	margin-top: 2.8rem;
-    margin-left: 5.9rem;
+	margin-left: 5.9rem;
 }
 
 .ui-control.brother > .asset-layer .primary-status-container img 
 {
-    width: 2.0rem;
-    height: 2.0rem;
-    float: left;
-    display: block;
-    position: relative;
+	width: 2.0rem;
+	height: 2.0rem;
+	float: left;
+	display: block;
+	position: relative;
 }
 
 .ui-control.brother > .asset-layer .status-container
 {
-    width: 10.0rem;
-    height: 3.0rem;
-    position: relative;
-    float: left;
-    margin-top: 5.8rem;
+	width: 10.0rem;
+	height: 3.0rem;
+	position: relative;
+	float: left;
+	margin-top: 5.8rem;
 	margin-left: 0.4rem;
 }
 
 .ui-control.brother > .asset-layer .status-container img 
 {
-    width: 2.5rem;
-    height: 2.5rem;
-    float: left;
-    display: block;
-    margin-left: -0.2rem;
+	width: 2.5rem;
+	height: 2.5rem;
+	float: left;
+	display: block;
+	margin-left: -0.2rem;
 }

@@ -1,703 +1,705 @@
 
 .world-campfire-screen > .l-hire-dialog-container
 {
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    width: 102.4rem;
-    height: 76.8rem;
-    position: absolute;
-    margin: auto;
-    z-index: 2;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	width: 102.4rem;
+	height: 76.8rem;
+	position: absolute;
+	margin: auto;
+	z-index: 2;
 }
 
 
 .world-campfire-screen > .l-hire-dialog-container .l-tab-container
 {
-    top: -1.0rem;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    width: 88.0rem;
-    height: 3.0rem;
-    position: absolute;
-    margin: auto;
+	top: -1.0rem;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	width: 88.0rem;
+	height: 3.0rem;
+	position: absolute;
+	margin: auto;
 }
 
 .world-campfire-screen > .l-hire-dialog-container .l-tab-asset
 {
-    top: 0;
-    bottom: 0;
-    width: 13.0rem;
-    height: 4.3rem;
-    position: absolute;
+	top: 0;
+	bottom: 0;
+	width: 13.0rem;
+	height: 4.3rem;
+	position: absolute;
 }
 
 .world-campfire-screen > .l-hire-dialog-container .l-tab-asset.is-money
 {
-    left: 28.0rem;
+	left: 28.0rem;
 }
 
 .world-campfire-screen > .l-hire-dialog-container .l-tab-asset.is-business-reputation
 {
-    left: 50.0rem;
+	left: 50.0rem;
 }
 
 .world-campfire-screen > .l-hire-dialog-container .l-tab-asset img
 {
-    top: 0;
-    bottom: 0;
-    left: 0;
-    width: 2.8rem;
-    height: 2.8rem;
-    margin: auto;
-    margin-left: 1.0rem;
-    position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	width: 2.8rem;
+	height: 2.8rem;
+	margin: auto;
+	margin-left: 1.0rem;
+	position: absolute;
 }
 
 .world-campfire-screen > .l-hire-dialog-container .l-tab-asset .label
 {
-    top: 0;
-    bottom: 0;
-    left: 3.1rem;
-    width: 11.2rem;
-    height: 3.0rem;
-    margin: auto;
-    margin-left: 1.5rem;
-    position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 3.1rem;
+	width: 11.2rem;
+	height: 3.0rem;
+	margin: auto;
+	margin-left: 1.5rem;
+	position: absolute;
 
-    text-align : left;
-    line-height: 3.0rem;
+	text-align : left;
+	line-height: 3.0rem;
 }
 
 
 .world-campfire-screen > .l-hire-dialog-container .content > .column
 {
-    width: 50%;
-    height: 100%;
-    padding-top: 0.9rem;
-    padding-bottom: 0.9rem;
-    position: relative;
-    float : left;
+	width: 50%;
+	height: 100%;
+	padding-top: 0.9rem;
+	padding-bottom: 0.9rem;
+	position: relative;
+	float : left;
 
-    background-image: url("coui://gfx/ui/skin/dialog_panel_01.png");
-    background-size: 50.8rem 56.8rem;
-    background-repeat: no-repeat;
+	background-image: url("coui://gfx/ui/skin/dialog_panel_01.png");
+	background-size: 50.8rem 56.8rem;
+	background-repeat: no-repeat;
 }
 
 .world-campfire-screen > .l-hire-dialog-container .content > .column.is-left
 {
-    padding-left: 1.0rem;
-    padding-right: 1.6rem;
-    padding-bottom: 3.5rem;
+	padding-left: 1.0rem;
+	padding-right: 1.6rem;
+	padding-bottom: 3.5rem;
 }
 
 .world-campfire-screen > .l-hire-dialog-container .content > .column.is-right
 {
-    padding-left: 0.5rem;
-    padding-right: 1.0rem;
+	padding-left: 0.5rem;
+	padding-right: 1.0rem;
 }
 
 .world-campfire-screen > .l-hire-dialog-container .content .l-list-container
 {
-    width: 100%;
-    height: 100%;
+	width: 100%;
+	height: 100%;
 }
 
 /* disable font shadow */
 .world-campfire-screen > .l-hire-dialog-container .content .l-list-container .ui-control.list .list-entry.is-selected
 {
-    text-shadow: 1px 1px 1px #000;
+	text-shadow: 1px 1px 1px #000;
 }
 
 .world-campfire-screen > .l-hire-dialog-container .content .l-list-container .scroll-container
 {
-    margin-top: 0.4rem;
-    margin-bottom: 0.4rem;
+	margin-top: 0.4rem;
+	margin-bottom: 0.4rem;
 }
 
 .world-campfire-screen > .l-hire-dialog-container .content .scroll-container .l-row
 {
-    width: 46.5rem;
-    height: 10.7rem;
-    position: relative;
-    margin-bottom: -0.1rem;
+	width: 46.5rem;
+	height: 10.7rem;
+	position: relative;
+	margin-bottom: -0.1rem;
 
-    overflow: hidden;
+	overflow: hidden;
 }
 
 .world-campfire-screen > .l-hire-dialog-container .content .scroll-container .l-row:last-child
 {
-    margin-bottom: 0;
+	margin-bottom: 0;
 }
 
 .world-campfire-screen > .l-hire-dialog-container .content .l-row .column
 {
-    height: 100%;
-    position: absolute;
+	height: 100%;
+	position: absolute;
 }
 
 .world-campfire-screen > .l-hire-dialog-container .content .l-row .column.is-left
 {
-    top: 0;
-    left: 0;
-    width: 9.0rem;
-    z-index: 2;
+	top: 0;
+	left: 0;
+	width: 9.0rem;
+	z-index: 2;
 }
 
 .world-campfire-screen > .l-hire-dialog-container .content .l-row .column.is-left > img
 {
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    position: absolute;
-    margin: auto;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	position: absolute;
+	margin: auto;
 
-    display: block;
+	display: block;
 }
 
 .world-campfire-screen > .l-hire-dialog-container .content .l-row .column.is-right
 {
-    top: 0;
-    left: 9.0rem;
-    right: 0;
-    z-index: 1;
+	top: 0;
+	left: 9.0rem;
+	right: 0;
+	z-index: 1;
 }
 
 .world-campfire-screen > .l-hire-dialog-container .content .l-row .row
 {
-    left: 0;
-    right: 1.0rem;
-    position: absolute;
+	left: 0;
+	right: 1.0rem;
+	position: absolute;
 }
 
 .world-campfire-screen > .l-hire-dialog-container .content .l-row .row.is-top
 {
-    top: 1.0rem;
-    height: 3.8rem;
+	top: 1.0rem;
+	height: 3.8rem;
 
-    width: 96%;
+	width: 96%;
 
-    border-image: url("coui://gfx/ui/skin/line_metal.png") 0% 0% 100% 0%;
-    border-image-outset: 0 0 -0.5rem 0;
+	border-image: url("coui://gfx/ui/skin/line_metal.png") 0% 0% 100% 0%;
+	border-image-outset: 0 0 -0.5rem 0;
 }
 
 .world-campfire-screen > .l-hire-dialog-container .content .l-row .row.is-top > img
 {
-    left: 0;
-    bottom: 0.2rem;
-    width: 2.6rem;
-    height: 2.6rem;
-    position: absolute;
+	left: 0;
+	bottom: 0.2rem;
+	width: 2.6rem;
+	height: 2.6rem;
+	position: absolute;
 
-    display: block;
+	display: block;
 }
 
 .world-campfire-screen > .l-hire-dialog-container .content .l-row .row.is-top .is-locked-icon
 {
-    left: 0;
-    bottom: 0.2rem;
-    width: 2.6rem;
-    height: 2.6rem;
-    position: absolute;
+	left: 0;
+	bottom: 0.2rem;
+	width: 2.6rem;
+	height: 2.6rem;
+	position: absolute;
 
-    display: block;
+	display: block;
 }
 
 
 .world-campfire-screen > .l-hire-dialog-container .content .l-row .row.is-top .name
 {
-    left: 3.4rem;
-    /*right: 6.0rem;*/
-    bottom: 0.2rem;
-    height: 2.6rem;
-    position: absolute;
-    overflow: hidden;
+	left: 3.4rem;
+	/*right: 6.0rem;*/
+	bottom: 0.2rem;
+	height: 2.6rem;
+	position: absolute;
+	overflow: hidden;
 
-    line-height: 3.0rem;
+	line-height: 3.0rem;
 }
 
 .world-campfire-screen > .l-hire-dialog-container .content .l-row .row.is-bottom
 {
-    top: 3.6rem;
-    bottom: 0;
+	top: 3.6rem;
+	bottom: 0;
 }
 
 .world-campfire-screen > .l-hire-dialog-container .content .l-row .row.is-bottom .l-assets-center-container
 {
-    top: 0;
-    left: -5.0rem;
-    right: 0;
-    bottom: 0;
-    width: 21.0rem;
-    height: 3.0rem;
-    position: absolute;
-    margin: auto;
+	top: 0;
+	left: -5.0rem;
+	right: 0;
+	bottom: 0;
+	width: 21.0rem;
+	height: 3.0rem;
+	position: absolute;
+	margin: auto;
 }
 
 .world-campfire-screen > .l-hire-dialog-container .content .l-row .row.is-bottom .l-assets-container
 {
-    width: 10.0rem;
-    height: 3.0rem;
-    position: relative;
-    float: left;
-    margin-right: 1.0rem;
+	width: 10.0rem;
+	height: 3.0rem;
+	position: relative;
+	float: left;
+	margin-right: 1.0rem;
 }
 
 .world-campfire-screen > .l-hire-dialog-container .content .l-row .row.is-bottom .l-assets-container:last-child
 {
-    margin-right: 0;
+	margin-right: 0;
 }
 
 .world-campfire-screen > .l-hire-dialog-container .content .l-row .row.is-bottom .l-assets-container img
 {
-    top: 0;
-    bottom: 0;
-    left: 0;
-    width: 2.8rem;
-    height: 2.8rem;
-    margin: auto;
-    position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	width: 2.8rem;
+	height: 2.8rem;
+	margin: auto;
+	position: absolute;
 }
 
 .world-campfire-screen > .l-hire-dialog-container .content .l-row .row.is-bottom .l-assets-container .label
 {
-    top: 0;
-    bottom: 0;
-    left: 3.4rem;
-    width: 6.0rem;
-    height: 3.0rem;
-    margin: auto;
-    position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 3.4rem;
+	width: 6.0rem;
+	height: 3.0rem;
+	margin: auto;
+	position: absolute;
 
-    text-align : left;
-    line-height: 3.4rem;
+	text-align : left;
+	line-height: 3.4rem;
 }
 
 
 .world-campfire-screen > .l-hire-dialog-container .content .l-details-frame
 {
-    width: 100%;
-    height: 100%;
+	width: 100%;
+	height: 100%;
 
-    overflow: hidden;
-    -webkit-mask-image: #fff; /* Bugfix for Chrome, as the absolute position breaks the overflow somehow..*/
+	overflow: hidden;
+	-webkit-mask-image: #fff; /* Bugfix for Chrome, as the absolute position breaks the overflow somehow..*/
 }
 
 .world-campfire-screen > .l-hire-dialog-container .content .details-container
 {
-    width: 100%;
-    height: 100%;
-    position: relative;
+	width: 100%;
+	height: 100%;
+	position: relative;
 }
 
 .world-campfire-screen > .l-hire-dialog-container .content .details-container .column
 {
-    top: 0;
-    height: 100%;
-    position: absolute;
+	top: 0;
+	height: 100%;
+	position: absolute;
 }
 
 .world-campfire-screen > .l-hire-dialog-container .content .details-container > .row
 {
-    left: 0;
-    right: 0;
-    position: absolute;
+	left: 0;
+	right: 0;
+	position: absolute;
 }
 
 .world-campfire-screen > .l-hire-dialog-container .content .details-container > .row.is-character-container
 {
-    top: 0;
-    left: 0;
-    height: 39.0rem;
+	top: 0;
+	left: 0;
+	height: 39.0rem;
 }
 
 .world-campfire-screen > .l-hire-dialog-container .content .details-container .column.is-character-portrait-container
 {
-    top: 0;
-    left: 0;
-    width: 13.0rem;
-    height: 16.0rem;
+	top: 0;
+	left: 0;
+	width: 13.0rem;
+	height: 16.0rem;
 }
 
 .world-campfire-screen > .l-hire-dialog-container .content .details-container .column.is-character-portrait-container > img
 {
-    top: 0;
-    left: 0;
-    right: 0;
-    position: absolute;
-    margin: auto;
+	top: 0;
+	left: 0;
+	right: 0;
+	position: absolute;
+	margin: auto;
 
-    display: block;
+	display: block;
 }
 
 .world-campfire-screen > .l-hire-dialog-container .content .details-container .column.is-character-background-container
 {
-    top: 0;
-    left: 13.0rem;
-    right: 0;
+	top: 0;
+	left: 13.0rem;
+	right: 0;
 }
 
 .world-campfire-screen > .l-hire-dialog-container .content .details-container .column.is-character-background-container > img
 {
-    top: 1.0rem;
-    left: 0;
-    width: 4.0rem;
-    height: 4.0rem;
-    position: absolute;
+	top: 1.0rem;
+	left: 0;
+	width: 4.0rem;
+	height: 4.0rem;
+	position: absolute;
 
-    display: block;
+	display: block;
 }
 
 .world-campfire-screen > .l-hire-dialog-container .content .details-container .column.is-character-background-container .row
 {
-    left: 1.0rem;
-    right: 1.0rem;
-    position: absolute;
+	left: 1.0rem;
+	right: 1.0rem;
+	position: absolute;
 }
 
 .world-campfire-screen > .l-hire-dialog-container .content .details-container .column.is-character-background-container .row.is-top
 {
-    top: 0;
-    height: 4.4rem;
+	top: 0;
+	height: 4.4rem;
 
-    /*border-bottom: 1px rgba(130, 130, 130, 1) solid;*/
+	/*border-bottom: 1px rgba(130, 130, 130, 1) solid;*/
 }
 
 .world-campfire-screen > .l-hire-dialog-container .content .details-container .column.is-character-background-container .row.is-top .border
 {
-    top: 0;
-    left: -0.2rem;
-    right: 0;
-    height: 4.4rem;
+	top: 0;
+	left: -0.2rem;
+	right: 0;
+	height: 4.4rem;
 
-    border-image: url("coui://gfx/ui/skin/line_metal.png") 0% 0% 100% 0%;
-    border-image-outset: 0 0 -0.5rem 0;
+	border-image: url("coui://gfx/ui/skin/line_metal.png") 0% 0% 100% 0%;
+	border-image-outset: 0 0 -0.5rem 0;
 }
 
 .world-campfire-screen > .l-hire-dialog-container .content .details-container .column.is-character-background-container .row.is-top > img
 {
-    left: 0;
-    bottom: 0.2rem;
-    width: 2.6rem;
-    height: 2.6rem;
-    position: absolute;
+	left: 0;
+	bottom: 0.2rem;
+	width: 2.6rem;
+	height: 2.6rem;
+	position: absolute;
 
-    display: block;
+	display: block;
 }
 
 .world-campfire-screen > .l-hire-dialog-container .content .details-container .column.is-character-background-container .row.is-top .name
 {
-    left: 0.0rem;
-    right: 1.0rem;
-    bottom: 0.2rem;
-    height: 2.6rem;
-    position: absolute;
-    overflow: hidden;
+	left: 0.0rem;
+	right: 1.0rem;
+	bottom: 0.2rem;
+	height: 2.6rem;
+	position: absolute;
+	overflow: hidden;
 
-    line-height: 3.0rem;
+	line-height: 3.0rem;
 }
 
 .world-campfire-screen > .l-hire-dialog-container .content .details-container .column.is-character-background-container .row.is-bottom
 {
-    top: 5.5rem;
-    left: 1.0rem;
-    height: 32.0rem;
+	top: 5.5rem;
+	left: 1.0rem;
+	height: 32.0rem;
 
-    text-align: left;
-    line-height: 2.6rem;
+	text-align: left;
+	line-height: 2.6rem;
 }
 
 
 .world-campfire-screen > .l-hire-dialog-container .content .details-container .row.is-ingredients-container
 {
-    top: 16.0rem;
-    height: 20.0rem;
+	top: 16.0rem;
+	height: 20.0rem;
 }
 
 .world-campfire-screen > .l-hire-dialog-container .content .details-container .row.is-ingredients-container > .row
 {
-    left: 1.0rem;
-    right: 1.0rem;
-    position: absolute;
+	left: 1.0rem;
+	right: 1.0rem;
+	position: absolute;
 }
 
 .world-campfire-screen > .l-hire-dialog-container .content .details-container .row.is-ingredients-container > .row.is-header
 {
-    top: 0;
-    height: 4.0rem;
+	top: 0;
+	height: 4.0rem;
 
-    border-image: url("coui://gfx/ui/skin/line_metal.png") 0% 0% 100% 0%;
-    border-image-outset: 0 0 -0.5rem 0;
+	border-image: url("coui://gfx/ui/skin/line_metal.png") 0% 0% 100% 0%;
+	border-image-outset: 0 0 -0.5rem 0;
 }
 
 .world-campfire-screen > .l-hire-dialog-container .content .details-container .row.is-ingredients-container > .row.is-header .label
 {
-    top: 1.0rem;
-    left: 1.0rem;
-    height: 3.0rem;
-    position: absolute;
+	top: 1.0rem;
+	left: 1.0rem;
+	height: 3.0rem;
+	position: absolute;
 
-    text-align: left;
-    line-height: 3.0rem;
+	text-align: left;
+	line-height: 3.0rem;
 }
 
 .world-campfire-screen > .l-hire-dialog-container .content .details-container .row.is-ingredients-container > .is-components-container
 {
-    top: 5.0rem;
-    left: 2.0rem;
-    right: 2.0rem;
-    position: absolute;
+	top: 5.0rem;
+	left: 2.0rem;
+	right: 2.0rem;
+	position: absolute;
 
-    width: 40.0rem;
-    height: 20.0rem;
+	width: 40.0rem;
+	height: 20.0rem;
 }
 
 .world-campfire-screen > .l-hire-dialog-container .content .details-container .row.is-ingredients-container .is-components-container > .container
 {
-    position: relative;
-    float: left;
-    width: 20.0rem;
-    height: 4.0rem;
-    margin: 0.5rem;
+	position: relative;
+	float: left;
+	width: 20.0rem;
+	height: 4.0rem;
+	margin: 0.5rem;
 }
 
 .world-campfire-screen > .l-hire-dialog-container .content .details-container .row.is-ingredients-container .is-components-container .row-container
 {
-    position: relative;
+	position: relative;
 }
 
 .world-campfire-screen > .l-hire-dialog-container .content .details-container .row.is-ingredients-container .is-components-container .row-container > img
 {
-    position: absolute;
-    left: 0;
-    top: 0;
+	position: absolute;
+	left: 0;
+	top: 0;
 }
 
 .world-campfire-screen > .l-hire-dialog-container .content .details-container .row.is-ingredients-container .is-components-container .row-container .label
 {
-    position: absolute;
-    left: 3.0rem;
-    top: 0;
+	position: absolute;
+	left: 3.0rem;
+	top: 0;
 }
 
 
 .world-campfire-screen > .l-hire-dialog-container .content .details-container .row.is-requirements-container
 {
-    top: 31.0rem;
-    height: 20.0rem;
+	top: 31.0rem;
+	height: 20.0rem;
 }
 
 .world-campfire-screen > .l-hire-dialog-container .content .details-container .row.is-requirements-container > .row
 {
-    left: 1.0rem;
-    right: 1.0rem;
-    position: absolute;
+	left: 1.0rem;
+	right: 1.0rem;
+	position: absolute;
 }
 
 .world-campfire-screen > .l-hire-dialog-container .content .details-container .row.is-requirements-container > .row.is-header
 {
-    top: 0;
-    height: 4.0rem;
+	top: 0;
+	height: 4.0rem;
 
-    border-image: url("coui://gfx/ui/skin/line_metal.png") 0% 0% 100% 0%;
-    border-image-outset: 0 0 -0.5rem 0;
+	border-image: url("coui://gfx/ui/skin/line_metal.png") 0% 0% 100% 0%;
+	border-image-outset: 0 0 -0.5rem 0;
 }
 
 .world-campfire-screen > .l-hire-dialog-container .content .details-container .row.is-requirements-container > .row.is-header .label
 {
-    top: 1.0rem;
-    left: 1.0rem;
-    height: 3.0rem;
-    position: absolute;
+	top: 1.0rem;
+	left: 1.0rem;
+	height: 3.0rem;
+	position: absolute;
 
-    text-align: left;
-    line-height: 3.0rem;
+	text-align: left;
+	line-height: 3.0rem;
 }
 
 .world-campfire-screen > .l-hire-dialog-container .content .details-container .row.is-requirements-container > .is-requirements-components-container
 {
-    top: 5.0rem;
-    left: 2.0rem;
-    right: 2.0rem;
-    position: absolute;
+	top: 5.0rem;
+	left: 2.0rem;
+	right: 2.0rem;
+	position: absolute;
 
-    width: 40.0rem;
-    height: 20.0rem;
+	width: 47.0rem;
+	height: 10.0rem; /*20*/
+
+	/*border: 1px solid green;*/
 }
 
 .world-campfire-screen > .l-hire-dialog-container .content .details-container .row.is-requirements-container .is-requirements-components-container > .container
 {
-    position: relative;
-    float: left;
-    width: 20.0rem;
-    height: 4.0rem;
-    margin: 0.5rem;
+	position: relative;
+	float: left;
+	width: 20.0rem;
+	height: 4.0rem;
+	margin: 0.5rem;
 }
 
 .world-campfire-screen > .l-hire-dialog-container .content .details-container .row.is-requirements-container .is-requirements-components-container .row-container
 {
-    position: relative;
+	position: relative;
 }
 
 .world-campfire-screen > .l-hire-dialog-container .content .details-container .row.is-requirements-container .is-requirements-components-container .row-container > img
 {
-    position: absolute;
-    left: 0;
-    top: 0;
+	position: absolute;
+	left: 0;
+	top: 0;
 }
 
 .world-campfire-screen > .l-hire-dialog-container .content .details-container .row.is-requirements-container .is-requirements-components-container .row-container .label
 {
-    position: absolute;
-    left: 3.0rem;
-    top: 0;
+	position: absolute;
+	left: 3.0rem;
+	top: 0;
 }
 
 
 .world-campfire-screen > .l-hire-dialog-container .content .details-container .row.is-costs-container
 {
-    top: 41.0rem;
-    height: 8.0rem;
+	top: 45.0rem;
+	height: 8.0rem;
 }
 
 .world-campfire-screen > .l-hire-dialog-container .content .details-container .row.is-costs-container > .row
 {
-    left: 1.0rem;
-    right: 1.0rem;
-    position: absolute;
+	left: 1.0rem;
+	right: 1.0rem;
+	position: absolute;
 }
 
 .world-campfire-screen > .l-hire-dialog-container .content .details-container .row.is-costs-container > .row.is-header
 {
-    top: 0;
-    height: 4.0rem;
+	top: 0;
+	height: 4.0rem;
 
-    border-image: url("coui://gfx/ui/skin/line_metal.png") 0% 0% 100% 0%;
-    border-image-outset: 0 0 -0.5rem 0;
+	/*border-image: url("coui://gfx/ui/skin/line_metal.png") 0% 0% 100% 0%;
+	border-image-outset: 0 0 -0.5rem 0;*/
 }
 
 .world-campfire-screen > .l-hire-dialog-container .content .details-container .row.is-costs-container > .row.is-header .label
 {
-    top: 1.0rem;
-    left: 1.0rem;
-    height: 3.0rem;
-    position: absolute;
+	top: 1.0rem;
+	left: 1.0rem;
+	height: 3.0rem;
+	position: absolute;
 
-    text-align: left;
-    line-height: 3.0rem;
+	text-align: left;
+	line-height: 3.0rem;
 }
 
 .world-campfire-screen > .l-hire-dialog-container .content .details-container .row.is-costs-container > .row.is-initial-costs
 {
-    top: 4.0rem;
-    left: 3.0rem;
-    height: 4.0rem;
+	top: 4.0rem;
+	left: 3.0rem;
+	height: 4.0rem;
 }
 
 .world-campfire-screen > .l-hire-dialog-container .content .details-container .row.is-costs-container > .row .costs-label
 {
-    top: 0;
-    left: 0;
-    bottom: 0;
-    width: 10.0rem;
-    height: 3.0rem;
-    position: absolute;
-    margin: auto;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	width: 10.0rem;
+	height: 3.0rem;
+	position: absolute;
+	margin: auto;
 
-    text-align: left;
-    line-height: 3.2rem;
+	text-align: left;
+	line-height: 3.2rem;
 }
 
 .world-campfire-screen > .l-hire-dialog-container .content .details-container .row.is-costs-container > .row .l-costs-container
 {
-    top: 0;
-    left: 10.9rem;
-    bottom: 0;
-    width: 16.0rem;
-    height: 3.0rem;
-    position: absolute;
-    margin: auto;
+	top: 1.0rem;
+	left: 7.9rem; /*10.9*/
+	bottom: 0;
+	width: 16.0rem;
+	height: 3.0rem;
+	position: absolute;
+	margin: auto;
 }
 
 .world-campfire-screen > .l-hire-dialog-container .content .details-container .row.is-costs-container > .row .l-costs-container.is-second
 {
-    left: 27.0rem;
+	left: 27.0rem;
 }
 
 .world-campfire-screen > .l-hire-dialog-container .content .details-container .row.is-costs-container > .row .l-costs-container img
 {
-    top: 0;
-    bottom: 0;
-    left: 0;
-    width: 2.8rem;
-    height: 2.8rem;
-    margin: auto;
-    position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	width: 2.8rem;
+	height: 2.8rem;
+	margin: auto;
+	position: absolute;
 }
 
 .world-campfire-screen > .l-hire-dialog-container .content .details-container .row.is-costs-container > .row .l-costs-container .label
 {
-    top: 0;
-    bottom: 0;
-    left: 3.4rem;
-    width: 6.0rem;
-    height: 3.0rem;
-    margin: auto;
-    position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 3.4rem;
+	width: 6.0rem;
+	height: 3.0rem;
+	margin: auto;
+	position: absolute;
 
-    text-align : left;
-    line-height: 3.4rem;
+	text-align : left;
+	line-height: 3.4rem;
 }
 
 
 .world-campfire-screen > .l-hire-dialog-container .content .details-container .row.is-button-container
 {
-    top: 49.0rem;
-    left: 1.0rem;
-    right: 1.0rem;
-    height: 6.0rem;
+	top: 49.0rem;
+	left: 1.0rem;
+	right: 1.0rem;
+	height: 6.0rem;
 
-    border-image: url("coui://gfx/ui/skin/line_metal.png") 100% 0% 0% 0%;
-    border-image-outset: 0 0 0 0;
+	border-image: url("coui://gfx/ui/skin/line_metal.png") 100% 0% 0% 0%;
+	border-image-outset: 0 0 0 0;
 }
 
 .world-campfire-screen > .l-hire-dialog-container .content .details-container .row.is-button-container .l-hire-button
 {
-    top: 0;
-    left: 0.0rem;
-    right: 0;
-    bottom: 0;
-    width: 17.0rem;
-    height: 4.3rem;
-    position: absolute;
-    margin: auto;
+	top: 0;
+	left: 0.0rem;
+	right: 0;
+	bottom: 0;
+	width: 17.0rem;
+	height: 4.3rem;
+	position: absolute;
+	margin: auto;
 
-    line-height: 3.0rem;
+	line-height: 3.0rem;
 }
 
 
 .world-campfire-screen > .l-hire-dialog-container .footer .l-button-bar
 {
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    width: 16.0rem;
-    height: 4.3rem;
-    position: absolute;
-    margin: auto;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	width: 16.0rem;
+	height: 4.3rem;
+	position: absolute;
+	margin: auto;
 }
 
 .world-campfire-screen > .l-hire-dialog-container .footer .l-leave-button
 {
-    top: 0;
-    right: 0;
-    bottom: 0;
-    width: 17.5rem;
-    position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	width: 17.5rem;
+	position: absolute;
 
-    line-height: 3.0rem;
+	line-height: 3.0rem;
 }

@@ -3,7 +3,7 @@
  *	@Company:		Overhype Studios
  *
  *	@Copyright:		(c) Overhype Studios | 2013 - 2020
- * 
+ *
  *  @Author:		Overhype Studios
  *  @Date:			15.02.2017
  *  @Description:	Global UI JS Stuff
@@ -40,7 +40,9 @@ var Constants =
         MIN_BROTHER_TITLE_LENGTH: 0,
         MAX_BROTHER_TITLE_LENGTH: 16,
 
-        MAX_STATS_INCREASE_COUNT: 3
+        MAX_STATS_INCREASE_COUNT: 3,
+
+		MAX_CAMPING_PRESET_NAME_LENGTH: 70
     }
 };
 
@@ -64,4 +66,13 @@ var queryStackTrace = function() {
     return obj.stack;
     */
     return Error().stack;
+};
+
+var ResponseCode =
+{
+    // Global UI Response Codes
+    CanSwap: 0,
+    ConfirmReplaceSwap: 1,
+    ConfirmNoReplaceSwap: 2,
+    DoNotSwap: 3
 };

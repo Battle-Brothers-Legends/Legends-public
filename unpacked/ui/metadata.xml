@@ -1,0 +1,787 @@
+<brush name="gfx/ui.png" version="17" b1="2" b5="0">
+	<sprite id="cursor_boot" ic="FF1E355C" width="32" height="32" img="cursors\cursor_boot.png" />
+	<sprite id="cursor_denied" ic="FF0000A6" img="cursors\cursor_denied.png" />
+	<sprite id="cursor_hand" offsetX="16" offsetY="-14" b7="0" ic="FF2F4A70" width="32" height="32" img="cursors\cursor_hand.png" top="-10" bottom="16" />
+	<sprite id="cursor_hourglass" ic="FF858577" width="32" height="32" img="cursors\cursor_hourglass.png" />
+	<sprite id="cursor_rotate" ic="FF969696" width="32" height="32" img="cursors\cursor_rotate.png" />
+	<sprite id="cursor_sword" offsetX="16" offsetY="-14" b7="0" ic="FF51656F" img="cursors\cursor_sword.png" />
+	<sprite id="steps_bot" f="64C0" width="120" height="80" img="footprints\steps_bot.png" left="-39" right="41" />
+	<sprite id="steps_bot_left" f="64C0" width="120" height="80" img="footprints\steps_bot_left.png" />
+	<sprite id="steps_bot_right" f="64C0" width="120" height="80" img="footprints\steps_bot_right.png" />
+	<sprite id="steps_top" f="64C0" width="120" height="80" img="footprints\steps_top.png" left="-39" right="41" top="-36" bottom="38" />
+	<sprite id="steps_top_left" f="64C0" width="120" height="80" img="footprints\steps_top_left.png" top="-34" bottom="30" />
+	<sprite id="steps_top_right" f="64C0" width="120" height="80" img="footprints\steps_top_right.png" top="-34" bottom="30" />
+	<sprite id="cursor_scroll" ic="FFB1B2B1" width="32" height="32" img="cursors\cursor_scroll.png" top="-17" bottom="14" />
+	<sprite id="active_01" ic="FF614551" img="skills\active_01.png" />
+	<sprite id="active_02" ic="FF23165B" img="skills\active_02.png" />
+	<sprite id="active_03" ic="FF443B5D" img="skills\active_03.png" />
+	<sprite id="active_04" ic="FF4F324E" img="skills\active_04.png" />
+	<sprite id="active_05" ic="FF33225D" img="skills\active_05.png" />
+	<sprite id="active_06" ic="FF493A7B" img="skills\active_06.png" />
+	<sprite id="active_07" ic="FF2F246C" img="skills\active_07.png" />
+	<sprite id="active_08" ic="FF3A3877" img="skills\active_08.png" />
+	<sprite id="active_09" ic="FF3A354F" img="skills\active_09.png" />
+	<sprite id="active_10" ic="FF49285C" img="skills\active_10.png" />
+	<sprite id="active_11" ic="FF221E53" img="skills\active_11.png" />
+	<sprite id="active_12" ic="FF632B2D" img="skills\active_12.png" />
+	<sprite id="active_13" ic="FF55312E" img="skills\active_13.png" />
+	<sprite id="active_14" ic="FF4B324A" img="skills\active_14.png" />
+	<sprite id="active_15" ic="FF2F2E3C" img="skills\active_15.png" />
+	<sprite id="active_16" ic="FF332B3E" img="skills\active_16.png" />
+	<sprite id="active_17" ic="FF63353F" img="skills\active_17.png" />
+	<sprite id="active_18" ic="FF373968" img="skills\active_18.png" />
+	<sprite id="active_19" ic="FF352956" img="skills\active_19.png" />
+	<sprite id="active_20" ic="FF222943" img="skills\active_20.png" />
+	<sprite id="active_21" ic="FF180C55" img="skills\active_21.png" />
+	<sprite id="active_22" ic="FF17182A" img="skills\active_22.png" />
+	<sprite id="active_23" ic="FF483037" img="skills\active_23.png" />
+	<sprite id="active_24" ic="FF282535" img="skills\active_24.png" />
+	<sprite id="cursor_attack" offsetX="21" offsetY="-19" f="3200" b6="19" b7="0" ic="FF51656F" width="42" height="42">
+	<frame img="cursors\cursor_attack_01.png" left="-21" right="11" top="-11" bottom="21" />
+	<frame img="cursors\cursor_attack_02.png" left="-20" right="12" top="-12" bottom="20" />
+	<frame img="cursors\cursor_attack_03.png" left="-19" right="13" top="-13" bottom="19" />
+	<frame img="cursors\cursor_attack_04.png" left="-18" right="14" top="-14" bottom="18" />
+	<frame img="cursors\cursor_attack_05.png" left="-17" right="15" top="-15" bottom="17" />
+	<frame img="cursors\cursor_attack_06.png" />
+	<frame img="cursors\cursor_attack_07.png" left="-17" right="15" top="-15" bottom="17" />
+	<frame img="cursors\cursor_attack_08.png" left="-18" right="14" top="-14" bottom="18" />
+	<frame img="cursors\cursor_attack_09.png" left="-19" right="13" top="-13" bottom="19" />
+	<frame img="cursors\cursor_attack_10.png" left="-20" right="12" top="-12" bottom="20" />
+	</sprite>
+	<sprite id="active_25" ic="FF261B4F" img="skills\active_25.png" />
+	<sprite id="active_26" ic="FF314840" img="skills\active_26.png" />
+	<sprite id="active_27" ic="FF272442" img="skills\active_27.png" />
+	<sprite id="active_28" ic="FF4F1B3D" img="skills\active_28.png" />
+	<sprite id="overlay_aoe_attack" offsetY="8" img="ui\overlay_aoe_attack.png" left="-14" right="15" />
+	<sprite id="overlay_ranged_attack_blocked" offsetX="-4" offsetY="8" img="ui\overlay_ranged_attack_blocked.png" />
+	<sprite id="status_effect_01" ic="FF141147" img="skills\status_effect_01.png" />
+	<sprite id="status_effect_02" ic="FF51555F" img="skills\status_effect_02.png" />
+	<sprite id="status_effect_03" ic="FF323341" img="skills\status_effect_03.png" />
+	<sprite id="status_effect_04" ic="FF443237" img="skills\status_effect_04.png" />
+	<sprite id="status_effect_05" ic="FF5A434C" img="skills\status_effect_05.png" />
+	<sprite id="status_effect_06" ic="FF1F2135" img="skills\status_effect_06.png" />
+	<sprite id="status_effect_07" ic="FF3C5149" img="skills\status_effect_07.png" />
+	<sprite id="active_29" ic="FF2B314A" img="skills\active_29.png" />
+	<sprite id="status_effect_29" ic="FF2D3649" img="skills\status_effect_29.png" />
+	<sprite id="active_30" ic="FF23184C" img="skills\active_30.png" />
+	<sprite id="active_31" ic="FF3F3447" img="skills\active_31.png" />
+	<sprite id="active_32" ic="FF5C5363" img="skills\active_32.png" />
+	<sprite id="active_33" ic="FF423B6A" img="skills\active_33.png" />
+	<sprite id="entityoverlay_bar_1" offsetY="35" ic="FFFFFFFF" width="120" height="40" img="ui\entity_overlay\entityoverlay_bar_1.png" left="-48" right="-44" top="5" bottom="9" />
+	<sprite id="entityoverlay_bar_2" offsetY="35" ic="FFFFFFFF" width="120" height="40" img="ui\entity_overlay\entityoverlay_bar_2.png" left="-48" right="-40" top="5" bottom="9" />
+	<sprite id="entityoverlay_bar_3" offsetY="35" ic="FFFFFFFF" width="120" height="40" img="ui\entity_overlay\entityoverlay_bar_3.png" left="-48" right="-36" top="5" bottom="9" />
+	<sprite id="entityoverlay_bar_4" offsetY="35" ic="FFFFFFFF" width="120" height="40" img="ui\entity_overlay\entityoverlay_bar_4.png" left="-48" right="-32" top="5" bottom="9" />
+	<sprite id="entityoverlay_bar_5" offsetY="35" ic="FFFFFFFF" width="120" height="40" img="ui\entity_overlay\entityoverlay_bar_5.png" left="-48" right="-28" top="5" bottom="9" />
+	<sprite id="entityoverlay_bar_6" offsetY="35" ic="FFFFFFFF" width="120" height="40" img="ui\entity_overlay\entityoverlay_bar_6.png" left="-48" right="-24" top="5" bottom="9" />
+	<sprite id="entityoverlay_bar_7" offsetY="35" ic="FFFFFFFF" width="120" height="40" img="ui\entity_overlay\entityoverlay_bar_7.png" left="-48" right="-20" top="5" bottom="9" />
+	<sprite id="entityoverlay_bar_8" offsetY="35" ic="FFFFFFFF" width="120" height="40" img="ui\entity_overlay\entityoverlay_bar_8.png" left="-48" right="-16" top="5" bottom="9" />
+	<sprite id="entityoverlay_bar_9" offsetY="35" ic="FFFFFFFF" width="120" height="40" img="ui\entity_overlay\entityoverlay_bar_9.png" left="-48" right="-12" top="5" bottom="9" />
+	<sprite id="entityoverlay_bar_10" offsetY="35" ic="FFFFFFFF" width="120" height="40" img="ui\entity_overlay\entityoverlay_bar_10.png" left="-48" right="-8" top="5" bottom="9" />
+	<sprite id="entityoverlay_bar_11" offsetY="35" ic="FFFFFFFF" width="120" height="40" img="ui\entity_overlay\entityoverlay_bar_11.png" left="-48" right="-4" top="5" bottom="9" />
+	<sprite id="entityoverlay_bar_12" offsetY="35" ic="FFFFFFFF" width="120" height="40" img="ui\entity_overlay\entityoverlay_bar_12.png" left="-48" right="0" top="5" bottom="9" />
+	<sprite id="entityoverlay_bottom" offsetY="35" ic="FF000000" width="120" height="40" img="ui\entity_overlay\entityoverlay_bottom.png" />
+	<sprite id="entityoverlay_top" offsetY="35" ic="FF51547A" width="120" height="40" img="ui\entity_overlay\entityoverlay_top.png" left="-56" right="58" top="-15" bottom="17" />
+	<sprite id="status_effect_01_mini" offsetY="35" ic="FF131048" img="skills\mini\status_effect_01_mini.png" />
+	<sprite id="status_effect_02_mini" offsetY="35" ic="FF525661" img="skills\mini\status_effect_02_mini.png" />
+	<sprite id="status_effect_03_mini" offsetY="35" ic="FF323342" img="skills\mini\status_effect_03_mini.png" />
+	<sprite id="status_effect_04_mini" offsetY="35" ic="FF443136" img="skills\mini\status_effect_04_mini.png" />
+	<sprite id="status_effect_05_mini" offsetY="35" ic="FF5B414A" img="skills\mini\status_effect_05_mini.png" />
+	<sprite id="status_effect_06_mini" offsetY="35" ic="FF1D1F34" img="skills\mini\status_effect_06_mini.png" />
+	<sprite id="status_effect_08_mini" offsetY="35" ic="FF1F2E25" img="skills\mini\status_effect_08_mini.png" />
+	<sprite id="status_effect_29_mini" offsetY="35" ic="FF2C3549" img="skills\mini\status_effect_29_mini.png" />
+	<sprite id="status_effect_33_mini" offsetY="35" ic="FF4E4977" img="skills\mini\status_effect_33_mini.png" />
+	<sprite id="terrain_icon_03_mini" offsetY="35" ic="FF33494B" img="skills\mini\terrain_icon_03_mini.png" />
+	<sprite id="status_effect_13_mini" offsetY="35" ic="FF623B37" img="skills\mini\status_effect_13_mini.png" />
+	<sprite id="active_34" ic="FF161453" img="skills\active_34.png" />
+	<sprite id="active_35" ic="FF130F63" img="skills\active_35.png" />
+	<sprite id="active_36" ic="FF382C4E" img="skills\active_36.png" />
+	<sprite id="passive_07_mini" offsetY="35" ic="FF242B3E" img="skills\mini\passive_07_mini.png" />
+	<sprite id="status_effect_09" ic="FF2E326F" img="skills\status_effect_09.png" />
+	<sprite id="white_square" ic="FFFFFFFF" img="_debug\white_square.png" />
+	<sprite id="active_40" ic="FF373C63" img="skills\active_40.png" />
+	<sprite id="active_41" ic="FF554225" img="skills\active_41.png" />
+	<sprite id="active_42" ic="FF5F4D2D" img="skills\active_42.png" />
+	<sprite id="status_effect_10_mini" offsetY="35" ic="FF3F4572" img="skills\mini\status_effect_10_mini.png" />
+	<sprite id="morale_down" ic="FF464765" img="skills\morale_down.png" />
+	<sprite id="morale_up" ic="FF434443" img="skills\morale_up.png" />
+	<sprite id="active_38" ic="FF1E174E" img="skills\active_38.png" />
+	<sprite id="active_39" ic="FF2A2762" img="skills\active_39.png" />
+	<sprite id="active_46" ic="FF1C184F" img="skills\active_46.png" />
+	<sprite id="active_47" ic="FF1C1651" img="skills\active_47.png" />
+	<sprite id="active_37" ic="FF2E2C60" img="skills\active_37.png" />
+	<sprite id="active_49" ic="FF212B3E" img="skills\active_49.png" />
+	<sprite id="active_50" ic="FF20173D" img="skills\active_50.png" />
+	<sprite id="active_52" ic="FF242639" img="skills\active_52.png" />
+	<sprite id="status_effect_34" ic="FF263749" img="skills\status_effect_34.png" />
+	<sprite id="active_43" ic="FF241551" img="skills\active_43.png" />
+	<sprite id="status_effect_14_mini" offsetY="35" ic="FF3D3C3C" img="skills\mini\status_effect_14_mini.png" />
+	<sprite id="status_effect_34_mini" offsetY="35" ic="FF24374A" img="skills\mini\status_effect_34_mini.png" />
+	<sprite id="active_53" ic="FF0F152A" img="skills\active_53.png" />
+	<sprite id="perk_01_mini" offsetY="35" ic="FF312D2F" img="skills\mini\perk_01_mini.png" />
+	<sprite id="perk_26_mini" offsetY="35" ic="FF252B48" img="skills\mini\perk_26_mini.png" />
+	<sprite id="perk_11_active" ic="FF333031" img="skills\perk_11_active.png" />
+	<sprite id="status_effect_35_mini" offsetY="35" ic="FF332B2A" img="skills\mini\status_effect_35_mini.png" />
+	<sprite id="perk_25_active" ic="FF21434E" img="skills\perk_25_active.png" />
+	<sprite id="perk_30_active" ic="FF2B325B" img="skills\perk_30_active.png" />
+	<sprite id="perk_31_active" ic="FF364142" img="skills\perk_31_active.png" />
+	<sprite id="perk_34_active" ic="FF2F3A59" img="skills\perk_34_active.png" />
+	<sprite id="perk_37_active" ic="FF0B0B4B" img="skills\perk_37_active.png" />
+	<sprite id="perk_38_active" ic="FF252C42" img="skills\perk_38_active.png" />
+	<sprite id="perk_42_active" ic="FF2B3540" img="skills\perk_42_active.png" />
+	<sprite id="perk_30_mini" offsetY="35" ic="FF2B3C60" img="skills\mini\perk_30_mini.png" />
+	<sprite id="perk_34_mini" offsetY="35" ic="FF314063" img="skills\mini\perk_34_mini.png" />
+	<sprite id="perk_36_mini" offsetY="35" ic="FF40465B" img="skills\mini\perk_36_mini.png" />
+	<sprite id="perk_38_mini" offsetY="35" ic="FF2B3249" img="skills\mini\perk_38_mini.png" />
+	<sprite id="perk_31_mini" offsetY="35" ic="FF374B50" img="skills\mini\perk_31_mini.png" />
+	<sprite id="perk_42" ic="FF303B45" img="skills\perk_42.png" />
+	<sprite id="band_of_brothers_mini" ic="FF4C4B4D" img="skills\mini\band_of_brothers_mini.png" />
+	<sprite id="drums_of_war_mini" offsetY="35" ic="FF374B50" img="skills/mini/drums_of_war_mini.png" />
+	<sprite id="martial_march_mini" offsetY="35" ic="FF374B50" img="skills/mini/martial_march_mini.png" />
+	<sprite id="perk_barrage_mini" offsetY="35" ic="FF374B50" img="skills/mini/perk_barrage_mini.png" />
+	<sprite id="perk_sling_mastery_mini" offsetY="35" ic="FF374B50" img="skills/mini/perk_sling_mastery_mini.png" />
+	<sprite id="perk_spec_2hsword_mini" offsetY="35" ic="FF374B50" img="skills/mini/perk_spec_2hsword_mini.png" />
+	<sprite id="perk_spec_bard_mini" offsetY="35" ic="FF374B50" img="skills/mini/perk_spec_bard_mini.png" />
+	<sprite id="perk_spec_bitchfork_mini" offsetY="35" ic="FF374B50" img="skills/mini/perk_spec_bitchfork_mini.png" />
+	<sprite id="perk_spec_butcher_mini" offsetY="35" ic="FF374B50" img="skills/mini/perk_spec_butcher_mini.png" />
+	<sprite id="perk_spec_cultist_mini" offsetY="35" ic="FF374B50" img="skills/mini/perk_spec_cultist_mini.png" />
+	<sprite id="perk_spec_dagger_mini" offsetY="35" ic="FF374B50" img="skills/mini/perk_spec_dagger_mini.png" />
+	<sprite id="perk_spec_firearm_mini" offsetY="35" ic="FF374B50" img="skills/mini/perk_spec_firearm_mini.png" />
+	<sprite id="perk_spec_instrument_staff_mini" offsetY="35" ic="FF374B50" img="skills/mini/perk_spec_instrument_staff_mini.png" />
+	<sprite id="perk_spec_mace_mini" offsetY="35" ic="FF374B50" img="skills/mini/perk_spec_mace_mini.png" />
+	<sprite id="perk_spec_militia_mini" offsetY="35" ic="FF374B50" img="skills/mini/perk_spec_militia_mini.png" />
+	<sprite id="perk_spec_pickaxe_mini" offsetY="35" ic="FF374B50" img="skills/mini/perk_spec_pickaxe_mini.png" />
+	<sprite id="perk_spec_scythe_mini" offsetY="35" ic="FF374B50" img="skills/mini/perk_spec_scythe_mini.png" />
+	<sprite id="perk_spec_shortbow_mini" offsetY="35" ic="FF374B50" img="skills/mini/perk_spec_shortbow_mini.png" />
+	<sprite id="perk_spec_shovel_mini" offsetY="35" ic="FF374B50" img="skills/mini/perk_spec_shovel_mini.png" />
+	<sprite id="perk_spec_sickle_mini" offsetY="35" ic="FF374B50" img="skills/mini/perk_spec_sickle_mini.png" />
+	<sprite id="perk_spec_sling_mini" offsetY="35" ic="FF374B50" img="skills/mini/perk_spec_sling_mini.png" />
+	<sprite id="perk_spec_smith_mini" offsetY="35" ic="FF374B50" img="skills/mini/perk_spec_smith_mini.png" />
+	<sprite id="perk_spec_staff_mini" offsetY="35" ic="FF374B50" img="skills/mini/perk_spec_staff_mini.png" />
+	<sprite id="perk_spec_woodsman_mini" offsetY="35" ic="FF374B50" img="skills/mini/perk_spec_woodsman_mini.png" />
+	<sprite id="perk_spec_xbow_mini" offsetY="35" ic="FF374B50" img="skills/mini/perk_spec_xbow_mini.png" />
+	<sprite id="shovel_01_mini" offsetY="35" ic="FF374B50" img="skills/mini/shovel_01_mini.png" />
+	<sprite id="slinger_spins_mini" offsetY="35" ic="FF374B50" img="skills/mini/slinger_spins_mini.png" />
+	<sprite id="status_effect_36" ic="FF333A44" img="skills\status_effect_36.png" />
+	<sprite id="status_effect_02_a" ic="FF464765" img="skills\status_effect_02_a.png" />
+	<sprite id="status_effect_02_c" ic="FF28274E" img="skills\status_effect_02_c.png" />
+	<sprite id="status_effect_02_b" ic="FF373653" img="skills\status_effect_02_b.png" />
+	<sprite id="status_effect_02_a_mini" offsetY="35" ic="FF3F4058" img="skills\mini\status_effect_02_a_mini.png" />
+	<sprite id="status_effect_02_b_mini" offsetY="35" ic="FF323149" img="skills\mini\status_effect_02_b_mini.png" />
+	<sprite id="status_effect_02_c_mini" offsetY="35" ic="FF252544" img="skills\mini\status_effect_02_c_mini.png" />
+	<sprite id="active_48" ic="FF252052" img="skills\active_48.png" />
+	<sprite id="perk_37_mini" offsetY="35" ic="FF0A1448" img="skills\mini\perk_37_mini.png" />
+	<sprite id="active_54" ic="FF241C40" img="skills\active_54.png" />
+	<sprite id="active_55" ic="FF6C3F40" img="skills\active_55.png" />
+	<sprite id="active_56" ic="FF1F1A4D" img="skills\active_56.png" />
+	<sprite id="active_57" ic="FF1E153A" img="skills\active_57.png" />
+	<sprite id="active_58" ic="FF643B3B" img="skills\active_58.png" />
+	<sprite id="active_59" ic="FF2F2446" img="skills\active_59.png" />
+	<sprite id="active_60" ic="FF1A1755" img="skills\active_60.png" />
+	<sprite id="active_61" ic="FF2B206C" img="skills\active_61.png" />
+	<sprite id="perk_34" ic="FF374870" img="skills\perk_34.png" />
+	<sprite id="perk_38" ic="FF2F3753" img="skills\perk_38.png" />
+	<sprite id="perk_35" ic="FF25335D" img="skills\perk_35.png" />
+	<sprite id="perk_36" ic="FF4A475B" img="skills\perk_36.png" />
+	<sprite id="active_62" ic="FF1C1867" img="skills\active_62.png" />
+	<sprite id="active_63" ic="FF161150" img="skills\active_63.png" />
+	<sprite id="active_64" ic="FF1C1549" img="skills\active_64.png" />
+	<sprite id="active_65" ic="FF241E58" img="skills\active_65.png" />
+	<sprite id="status_effect_50_mini" offsetY="35" ic="FF263343" img="skills\mini\status_effect_50_mini.png" />
+	<sprite id="status_effect_52_mini" offsetY="35" ic="FF2F3A55" img="skills\mini\status_effect_52_mini.png" />
+	<sprite id="status_effect_53_mini" offsetY="35" ic="FF5D4F49" img="skills\mini\status_effect_53_mini.png" />
+	<sprite id="status_effect_50" ic="FF2A394D" img="skills\status_effect_50.png" />
+	<sprite id="status_effect_52" ic="FF344162" img="skills\status_effect_52.png" />
+	<sprite id="status_effect_53" ic="FF695952" img="skills\status_effect_53.png" />
+	<sprite id="active_66" ic="FF232252" img="skills\active_66.png" />
+	<sprite id="active_67" ic="FF373957" img="skills\active_67.png" />
+	<sprite id="active_68" ic="FF32294C" img="skills\active_68.png" />
+	<sprite id="status_effect_56" ic="FF2F3943" img="skills\status_effect_56.png" />
+	<sprite id="status_effect_56_mini" offsetY="35" ic="FF2A323B" img="skills\mini\status_effect_56_mini.png" />
+	<sprite id="status_effect_54" ic="FF224C3B" img="skills\status_effect_54.png" />
+	<sprite id="status_effect_55" ic="FF213133" img="skills\status_effect_55.png" />
+	<sprite id="status_effect_54_mini" offsetY="35" ic="FF204234" img="skills\mini\status_effect_54_mini.png" />
+	<sprite id="status_effect_55_mini" offsetY="35" ic="FF1D292A" img="skills\mini\status_effect_55_mini.png" />
+	<sprite id="status_effect_57_mini" offsetY="35" ic="FF233530" img="skills\mini\status_effect_57_mini.png" />
+	<sprite id="status_effect_58_mini" offsetY="35" ic="FF27333E" img="skills\mini\status_effect_58_mini.png" />
+	<sprite id="active_69" ic="FF1C332D" img="skills\active_69.png" />
+	<sprite id="active_70" ic="FF14372F" img="skills\active_70.png" />
+	<sprite id="active_71" ic="FF181B33" img="skills\active_71.png" />
+	<sprite id="active_72" ic="FF2F3532" img="skills\active_72.png" />
+	<sprite id="active_73" ic="FF2A3132" img="skills\active_73.png" />
+	<sprite id="active_74" ic="FF2C343C" img="skills\active_74.png" />
+	<sprite id="active_75" ic="FF28362F" img="skills\active_75.png" />
+	<sprite id="active_76" ic="FF171448" img="skills\active_76.png" />
+	<sprite id="active_77" ic="FF141240" img="skills\active_77.png" />
+	<sprite id="active_78" ic="FF191747" img="skills\active_78.png" />
+	<sprite id="active_79" ic="FF1C173F" img="skills\active_79.png" />
+	<sprite id="active_80" ic="FF18173B" img="skills\active_80.png" />
+	<sprite id="active_81" ic="FF202040" img="skills\active_81.png" />
+	<sprite id="active_82" ic="FF2F3435" img="skills\active_82.png" />
+	<sprite id="status_effect_58" ic="FF2B3946" img="skills\status_effect_58.png" />
+	<sprite id="status_effect_59" ic="FF3B4F5B" img="skills\status_effect_59.png" />
+	<sprite id="status_effect_57" ic="FF253B36" img="skills\status_effect_57.png" />
+	<sprite id="active_83" ic="FF1D2044" img="skills\active_83.png" />
+	<sprite id="active_84" ic="FF1D1E3E" img="skills\active_84.png" />
+	<sprite id="active_85" ic="FF1D1F50" img="skills\active_85.png" />
+	<sprite id="active_86" ic="FF171B51" img="skills\active_86.png" />
+	<sprite id="active_87" ic="FF1D2046" img="skills\active_87.png" />
+	<sprite id="perk_37" ic="FF0D0D46" img="skills\perk_37.png" />
+	<sprite id="status_effect_33" ic="FF4D4775" img="skills\status_effect_33.png" />
+	<sprite id="active_88" ic="FF4B5D6A" img="skills\active_88.png" />
+	<sprite id="perk_07" ic="FF2B3C57" img="skills\perk_07.png" />
+	<sprite id="perk_31" ic="FF3F5358" img="skills\perk_31.png" />
+	<sprite id="perk_30" ic="FF343C62" img="skills\perk_30.png" />
+	<sprite id="active_89" ic="FF3A2C55" img="skills\active_89.png" />
+	<sprite id="active_90" ic="FF332057" img="skills\active_90.png" />
+	<sprite id="active_91" ic="FF272D4C" img="skills\active_91.png" />
+	<sprite id="active_92" ic="FF232A46" img="skills\active_92.png" />
+	<sprite id="active_93" ic="FF221F63" img="skills\active_93.png" />
+	<sprite id="status_effect_65" ic="FF504839" img="skills\status_effect_65.png" />
+	<sprite id="status_effect_65_mini" offsetY="35" ic="FF484134" img="skills\mini\status_effect_65_mini.png" />
+	<sprite id="status_effect_59_mini" offsetY="35" ic="FF35454E" img="skills\mini\status_effect_59_mini.png" />
+	<sprite id="status_effect_63_mini" offsetY="35" ic="FF2D3E4A" img="skills\mini\status_effect_63_mini.png" />
+	<sprite id="injury_icon_01" ic="FF212B5B" width="65" height="65" img="skills\injury\injury_icon_01.png" left="-27" right="29" />
+	<sprite id="injury_icon_02" ic="FF394F7E" width="65" height="65" img="skills\injury\injury_icon_02.png" left="-27" right="29" top="-33" bottom="31" />
+	<sprite id="injury_icon_03" ic="FF3B5080" width="65" height="65" img="skills\injury\injury_icon_03.png" left="-27" right="29" top="-33" bottom="31" />
+	<sprite id="injury_icon_04" ic="FF1B235A" width="65" height="65" img="skills\injury\injury_icon_04.png" left="-27" right="29" top="-33" bottom="31" />
+	<sprite id="injury_icon_05" ic="FF293C67" width="65" height="65" img="skills\injury\injury_icon_05.png" left="-27" right="29" />
+	<sprite id="injury_icon_06" ic="FF202C78" width="65" height="65" img="skills\injury\injury_icon_06.png" left="-27" right="29" />
+	<sprite id="injury_icon_07" ic="FF1C2871" width="65" height="65" img="skills\injury\injury_icon_07.png" left="-27" right="29" top="-33" bottom="31" />
+	<sprite id="injury_icon_08" ic="FF182066" width="65" height="65" img="skills\injury\injury_icon_08.png" left="-27" right="29" top="-33" bottom="31" />
+	<sprite id="injury_icon_09" ic="FF2B3D83" width="65" height="65" img="skills\injury\injury_icon_09.png" left="-27" right="29" top="-33" bottom="31" />
+	<sprite id="injury_icon_10" ic="FF213078" width="65" height="65" img="skills\injury\injury_icon_10.png" left="-27" right="29" />
+	<sprite id="injury_icon_11" ic="FF252F71" width="65" height="65" img="skills\injury\injury_icon_11.png" left="-27" right="29" top="-32" bottom="30" />
+	<sprite id="injury_icon_12" ic="FF2F3C7C" width="65" height="65" img="skills\injury\injury_icon_12.png" left="-27" right="29" top="-33" bottom="31" />
+	<sprite id="injury_icon_13" ic="FF293680" width="65" height="65" img="skills\injury\injury_icon_13.png" left="-27" right="29" top="-33" bottom="31" />
+	<sprite id="injury_icon_14" ic="FF2D3C86" width="65" height="65" img="skills\injury\injury_icon_14.png" left="-27" right="29" top="-33" bottom="31" />
+	<sprite id="injury_icon_15" ic="FF273677" width="65" height="65" img="skills\injury\injury_icon_15.png" left="-27" right="29" top="-32" bottom="30" />
+	<sprite id="injury_icon_16" ic="FF2C3989" width="65" height="65" img="skills\injury\injury_icon_16.png" left="-27" right="29" />
+	<sprite id="active_94" ic="FF202C54" img="skills\active_94.png" />
+	<sprite id="injury_icon_17" ic="FF32446F" width="65" height="65" img="skills\injury\injury_icon_17.png" left="-27" right="29" />
+	<sprite id="injury_icon_18" ic="FF1A2359" width="65" height="65" img="skills\injury\injury_icon_18.png" left="-27" right="29" top="-33" bottom="31" />
+	<sprite id="injury_icon_19" ic="FF31416D" width="65" height="65" img="skills\injury\injury_icon_19.png" left="-27" right="29" top="-33" bottom="31" />
+	<sprite id="injury_icon_20" ic="FF354C85" width="65" height="65" img="skills\injury\injury_icon_20.png" left="-27" right="29" />
+	<sprite id="injury_icon_21" ic="FF222B65" width="65" height="65" img="skills\injury\injury_icon_21.png" left="-27" right="29" top="-33" bottom="31" />
+	<sprite id="injury_icon_22" ic="FF2B3B7D" width="65" height="65" img="skills\injury\injury_icon_22.png" left="-27" right="29" top="-33" bottom="31" />
+	<sprite id="injury_icon_23" ic="FF1F285A" width="65" height="65" img="skills\injury\injury_icon_23.png" left="-27" right="29" top="-33" bottom="31" />
+	<sprite id="injury_icon_24" ic="FF222B67" width="65" height="65" img="skills\injury\injury_icon_24.png" left="-27" right="29" />
+	<sprite id="injury_icon_25" ic="FF23325A" width="65" height="65" img="skills\injury\injury_icon_25.png" left="-27" right="29" top="-33" bottom="31" />
+	<sprite id="injury_icon_26" ic="FF37447E" width="65" height="65" img="skills\injury\injury_icon_26.png" left="-27" right="29" />
+	<sprite id="injury_icon_27" ic="FF2E4294" width="65" height="65" img="skills\injury\injury_icon_27.png" left="-27" right="29" />
+	<sprite id="injury_icon_28" ic="FF222B70" width="65" height="65" img="skills\injury\injury_icon_28.png" left="-27" right="29" />
+	<sprite id="injury_icon_29" ic="FF324595" width="65" height="65" img="skills\injury\injury_icon_29.png" left="-27" right="29" />
+	<sprite id="injury_icon_30" ic="FF344394" width="65" height="65" img="skills\injury\injury_icon_30.png" left="-27" right="29" top="-33" bottom="31" />
+	<sprite id="injury_icon_31" ic="FF110B61" width="65" height="65" img="skills\injury\injury_icon_31.png" left="-27" right="29" top="-33" bottom="31" />
+	<sprite id="injury_icon_32" ic="FF2E4589" width="65" height="65" img="skills\injury\injury_icon_32.png" left="-27" right="29" top="-33" bottom="31" />
+	<sprite id="injury_icon_33" ic="FF253267" width="65" height="65" img="skills\injury\injury_icon_33.png" left="-27" right="29" />
+	<sprite id="injury_icon_34" ic="FF202D83" width="65" height="65" img="skills\injury\injury_icon_34.png" left="-27" right="29" top="-33" bottom="31" />
+	<sprite id="injury_icon_35" ic="FF3A4C94" width="65" height="65" img="skills\injury\injury_icon_35.png" left="-27" right="29" />
+	<sprite id="injury_icon_36" ic="FF1F1970" width="65" height="65" img="skills\injury\injury_icon_36.png" left="-27" right="29" top="-33" bottom="31" />
+	<sprite id="injury_icon_37" ic="FF1F2764" width="65" height="65" img="skills\injury\injury_icon_37.png" />
+	<sprite id="injury_icon_38" ic="FF252474" width="65" height="65" img="skills\injury\injury_icon_38.png" left="-27" right="29" />
+	<sprite id="injury_icon_39" ic="FF3F4D9A" width="65" height="65" img="skills\injury\injury_icon_39.png" left="-27" right="29" />
+	<sprite id="injury_icon_40" ic="FF233080" width="65" height="65" img="skills\injury\injury_icon_40.png" left="-27" right="29" />
+	<sprite id="injury_icon_41" ic="FF334084" width="65" height="65" img="skills\injury\injury_icon_41.png" left="-27" right="29" top="-33" bottom="31" />
+	<sprite id="injury_icon_42" ic="FF253079" width="65" height="65" img="skills\injury\injury_icon_42.png" left="-27" right="29" />
+	<sprite id="injury_icon_43" ic="FF1C285F" width="65" height="65" img="skills\injury\injury_icon_43.png" left="-27" right="29" />
+	<sprite id="injury_icon_01_mini" offsetY="35" ic="FF1A2253" img="skills\injury\injury_icon_01_mini.png" />
+	<sprite id="injury_icon_02_mini" offsetY="35" ic="FF2E3F6E" img="skills\injury\injury_icon_02_mini.png" />
+	<sprite id="injury_icon_03_mini" offsetY="35" ic="FF2F3F70" img="skills\injury\injury_icon_03_mini.png" />
+	<sprite id="injury_icon_04_mini" offsetY="35" ic="FF171E53" img="skills\injury\injury_icon_04_mini.png" />
+	<sprite id="injury_icon_05_mini" offsetY="35" ic="FF1E2D57" img="skills\injury\injury_icon_05_mini.png" />
+	<sprite id="injury_icon_06_mini" offsetY="35" ic="FF182063" img="skills\injury\injury_icon_06_mini.png" />
+	<sprite id="injury_icon_07_mini" offsetY="35" ic="FF172063" img="skills\injury\injury_icon_07_mini.png" />
+	<sprite id="injury_icon_08_mini" offsetY="35" ic="FF131A5B" img="skills\injury\injury_icon_08_mini.png" />
+	<sprite id="injury_icon_09_mini" offsetY="35" ic="FF223173" img="skills\injury\injury_icon_09_mini.png" />
+	<sprite id="injury_icon_10_mini" offsetY="35" ic="FF1B2669" img="skills\injury\injury_icon_10_mini.png" />
+	<sprite id="injury_icon_11_mini" offsetY="35" ic="FF1E2664" img="skills\injury\injury_icon_11_mini.png" />
+	<sprite id="injury_icon_12_mini" offsetY="35" ic="FF25306D" img="skills\injury\injury_icon_12_mini.png" />
+	<sprite id="injury_icon_13_mini" offsetY="35" ic="FF212C70" img="skills\injury\injury_icon_13_mini.png" />
+	<sprite id="injury_icon_14_mini" offsetY="35" ic="FF243175" img="skills\injury\injury_icon_14_mini.png" />
+	<sprite id="injury_icon_15_mini" offsetY="35" ic="FF1F2B69" img="skills\injury\injury_icon_15_mini.png" />
+	<sprite id="injury_icon_16_mini" offsetY="35" ic="FF222C76" img="skills\injury\injury_icon_16_mini.png" />
+	<sprite id="injury_icon_17_mini" offsetY="35" ic="FF273461" img="skills\injury\injury_icon_17_mini.png" />
+	<sprite id="injury_icon_18_mini" offsetY="35" ic="FF161D52" img="skills\injury\injury_icon_18_mini.png" />
+	<sprite id="injury_icon_19_mini" offsetY="35" ic="FF293763" img="skills\injury\injury_icon_19_mini.png" />
+	<sprite id="injury_icon_20_mini" offsetY="35" ic="FF293A72" img="skills\injury\injury_icon_20_mini.png" />
+	<sprite id="injury_icon_21_mini" offsetY="35" ic="FF1D265E" img="skills\injury\injury_icon_21_mini.png" />
+	<sprite id="injury_icon_22_mini" offsetY="35" ic="FF23306E" img="skills\injury\injury_icon_22_mini.png" />
+	<sprite id="injury_icon_23_mini" offsetY="35" ic="FF1A2155" img="skills\injury\injury_icon_23_mini.png" />
+	<sprite id="injury_icon_24_mini" offsetY="35" ic="FF1B225D" img="skills\injury\injury_icon_24_mini.png" />
+	<sprite id="injury_icon_25_mini" offsetY="35" ic="FF1C2851" img="skills\injury\injury_icon_25_mini.png" />
+	<sprite id="injury_icon_26_mini" offsetY="35" ic="FF2B356D" img="skills\injury\injury_icon_26_mini.png" />
+	<sprite id="injury_icon_27_mini" offsetY="35" ic="FF23347F" img="skills\injury\injury_icon_27_mini.png" />
+	<sprite id="injury_icon_28_mini" offsetY="35" ic="FF1B2264" img="skills\injury\injury_icon_28_mini.png" />
+	<sprite id="injury_icon_29_mini" offsetY="35" ic="FF27357E" img="skills\injury\injury_icon_29_mini.png" />
+	<sprite id="injury_icon_30_mini" offsetY="35" ic="FF2A3680" img="skills\injury\injury_icon_30_mini.png" />
+	<sprite id="injury_icon_31_mini" offsetY="35" ic="FF0E0858" img="skills\injury\injury_icon_31_mini.png" />
+	<sprite id="injury_icon_32_mini" offsetY="35" ic="FF243677" img="skills\injury\injury_icon_32_mini.png" />
+	<sprite id="injury_icon_33_mini" offsetY="35" ic="FF1E295E" img="skills\injury\injury_icon_33_mini.png" />
+	<sprite id="injury_icon_34_mini" offsetY="35" ic="FF182371" img="skills\injury\injury_icon_34_mini.png" />
+	<sprite id="injury_icon_35_mini" offsetY="35" ic="FF2D3B7E" img="skills\injury\injury_icon_35_mini.png" />
+	<sprite id="injury_icon_36_mini" offsetY="35" ic="FF191464" img="skills\injury\injury_icon_36_mini.png" />
+	<sprite id="injury_icon_37_mini" offsetY="35" ic="FF181F5A" img="skills\injury\injury_icon_37_mini.png" />
+	<sprite id="injury_icon_38_mini" offsetY="35" ic="FF1C1C65" img="skills\injury\injury_icon_38_mini.png" />
+	<sprite id="injury_icon_39_mini" offsetY="35" ic="FF303B82" img="skills\injury\injury_icon_39_mini.png" />
+	<sprite id="injury_icon_40_mini" offsetY="35" ic="FF1B256F" img="skills\injury\injury_icon_40_mini.png" />
+	<sprite id="injury_icon_41_mini" offsetY="35" ic="FF2A3473" img="skills\injury\injury_icon_41_mini.png" />
+	<sprite id="injury_icon_42_mini" offsetY="35" ic="FF1C2569" img="skills\injury\injury_icon_42_mini.png" />
+	<sprite id="injury_icon_43_mini" offsetY="35" ic="FF161F55" img="skills\injury\injury_icon_43_mini.png" />
+	<sprite id="perk_28_active" ic="FF1B293C" img="skills\perk_28_active.png" />
+	<sprite id="perk_54_active" ic="FF76562E" img="skills\perk_54_active.png" />
+	<sprite id="perk_55" ic="FF3F4E6E" img="skills\perk_55.png" />
+	<sprite id="perk_55_active" ic="FF3E5176" img="skills\perk_55_active.png" />
+	<sprite id="perk_28_mini" offsetY="35" ic="FF223041" img="skills\mini\perk_28_mini.png" />
+	<sprite id="perk_61_mini" offsetY="35" ic="FF323537" img="skills\mini\perk_61_mini.png" />
+	<sprite id="perk_28" ic="FF25354A" img="skills\perk_28.png" />
+	<sprite id="status_effect_63" ic="FF324856" img="skills\status_effect_63.png" />
+	<sprite id="status_effect_66_mini" offsetY="35" ic="FF354C47" img="skills\mini\status_effect_66_mini.png" />
+	<sprite id="active_95" ic="FF2D4940" img="skills\active_95.png" />
+	<sprite id="active_96" ic="FF446A58" img="skills\active_96.png" />
+	<sprite id="active_97" ic="FF61502E" img="skills\active_97.png" />
+	<sprite id="active_98" ic="FF4A4060" img="skills\active_98.png" />
+	<sprite id="status_effect_67" ic="FF4F4666" img="skills\status_effect_67.png" />
+	<sprite id="status_effect_67_mini" offsetY="35" ic="FF463E5A" img="skills\mini\status_effect_67_mini.png" />
+	<sprite id="active_99" ic="FF353D55" img="skills\active_99.png" />
+	<sprite id="status_effect_69" ic="FF3D455E" img="skills\status_effect_69.png" />
+	<sprite id="status_effect_69_mini" offsetY="35" ic="FF373E53" img="skills\mini\status_effect_69_mini.png" />
+	<sprite id="perk_19_mini" offsetY="35" ic="FF2E3967" img="skills\mini\perk_19_mini.png" />
+	<sprite id="active_100" ic="FF0B0D39" img="skills\active_100.png" />
+	<sprite id="active_101" ic="FF293E4A" img="skills\active_101.png" />
+	<sprite id="active_102" ic="FF2D3755" img="skills\active_102.png" />
+	<sprite id="status_effect_70" ic="FF354267" img="skills\status_effect_70.png" />
+	<sprite id="status_effect_70_mini" offsetY="35" ic="FF323D5A" img="skills\mini\status_effect_70_mini.png" />
+	<sprite id="status_effect_00" ic="FF22464C" img="skills\status_effect_00.png" />
+	<sprite id="active_103" ic="FF23273A" img="skills\active_103.png" />
+	<sprite id="status_effect_72" ic="FF2B2F43" img="skills\status_effect_72.png" />
+	<sprite id="status_effect_72_mini" offsetY="35" ic="FF272B3B" img="skills\mini\status_effect_72_mini.png" />
+	<sprite id="status_effect_73" ic="FF154670" img="skills\status_effect_73.png" />
+	<sprite id="status_effect_73_mini" offsetY="35" ic="FF153E61" img="skills\mini\status_effect_73_mini.png" />
+	<sprite id="active_104" ic="FF263560" img="skills\active_104.png" />
+	<sprite id="status_effect_74" ic="FF3F4354" img="skills\status_effect_74.png" />
+	<sprite id="status_effect_74_mini" offsetY="35" ic="FF383C4A" img="skills\mini\status_effect_74_mini.png" />
+	<sprite id="active_105" ic="FF303C78" img="skills\active_105.png" />
+	<sprite id="injury_icon_44" ic="FF344689" width="65" height="65" img="skills\injury\injury_icon_44.png" left="-27" right="29" />
+	<sprite id="injury_icon_45" ic="FF2F3C7F" width="65" height="65" img="skills\injury\injury_icon_45.png" left="-27" right="29" />
+	<sprite id="injury_icon_44_mini" offsetY="35" ic="FF293676" img="skills\injury\injury_icon_44_mini.png" />
+	<sprite id="injury_icon_45_mini" offsetY="35" ic="FF242E6E" img="skills\injury\injury_icon_45_mini.png" />
+	<sprite id="perk_29" ic="FF4C4B4D" img="skills\perk_29.png" />
+	<sprite id="status_effect_78_mini" offsetY="35" ic="FF2B3A35" img="skills\mini\status_effect_78_mini.png" />
+	<sprite id="active_106" ic="FF2F554E" img="skills\active_106.png" />
+	<sprite id="active_107" ic="FF2D475E" img="skills\active_107.png" />
+	<sprite id="active_108" ic="FF1A325A" img="skills\active_108.png" />
+	<sprite id="status_effect_78" ic="FF2F403A" img="skills\status_effect_78.png" />
+	<sprite id="active_109" ic="FF354D47" img="skills\active_109.png" />
+	<sprite id="active_110" ic="FF3E4D51" img="skills\active_110.png" />
+	<sprite id="active_111" ic="FF3D532C" img="skills\active_111.png" />
+	<sprite id="active_112" ic="FF333D3E" img="skills\active_112.png" />
+	<sprite id="status_effect_79" ic="FF232658" img="skills\status_effect_79.png" />
+	<sprite id="active_113" ic="FF6D6B52" img="skills\active_113.png" />
+	<sprite id="active_114" ic="FF56564F" img="skills\active_114.png" />
+	<sprite id="active_115" ic="FF1B2F47" img="skills\active_115.png" />
+	<sprite id="status_effect_80" ic="FF7D7E7F" img="skills\status_effect_80.png" />
+	<sprite id="status_effect_80_mini" offsetY="35" ic="FF6C6D6E" img="skills\mini\status_effect_80_mini.png" />
+	<sprite id="active_116" ic="FF555465" img="skills\active_116.png" />
+	<sprite id="active_117" ic="FF524B4E" img="skills\active_117.png" />
+	<sprite id="active_118" ic="FF476097" img="skills\active_118.png" />
+	<sprite id="status_effect_81" ic="FF554F51" img="skills\status_effect_81.png" />
+	<sprite id="status_effect_82" ic="FF5B5E72" img="skills\status_effect_82.png" />
+	<sprite id="status_effect_81_mini" offsetY="35" ic="FF484447" img="skills\mini\status_effect_81_mini.png" />
+	<sprite id="status_effect_82_mini" offsetY="35" ic="FF4F5363" img="skills\mini\status_effect_82_mini.png" />
+	<sprite id="status_effect_83" ic="FF496090" img="skills\status_effect_83.png" />
+	<sprite id="active_119" ic="FF0B044F" img="skills\active_119.png" />
+	<sprite id="active_120" ic="FF23286C" img="skills\active_120.png" />
+	<sprite id="status_effect_84" ic="FF120B56" img="skills\status_effect_84.png" />
+	<sprite id="status_effect_85" ic="FF292E6D" img="skills\status_effect_85.png" />
+	<sprite id="status_effect_84_mini" offsetY="35" ic="FF130D4D" img="skills\mini\status_effect_84_mini.png" />
+	<sprite id="status_effect_85_mini" offsetY="35" ic="FF252A5F" img="skills\mini\status_effect_85_mini.png" />
+	<sprite id="active_121" ic="FF133C45" img="skills\active_121.png" />
+	<sprite id="active_122" ic="FF124249" img="skills\active_122.png" />
+	<sprite id="status_effect_86_mini" offsetY="35" ic="FF1A3A44" img="skills\mini\status_effect_86_mini.png" />
+	<sprite id="active_123" ic="FF171B53" img="skills\active_123.png" />
+	<sprite id="active_124" ic="FF452B2F" img="skills\active_124.png" />
+	<sprite id="active_125" ic="FF1E2349" img="skills\active_125.png" />
+	<sprite id="active_126" ic="FF252E51" img="skills\active_126.png" />
+	<sprite id="active_127" ic="FF504851" img="skills\active_127.png" />
+	<sprite id="active_128" ic="FF462843" img="skills\active_128.png" />
+	<sprite id="active_129" ic="FF261E4A" img="skills\active_129.png" />
+	<sprite id="active_130" ic="FF1D184D" img="skills\active_130.png" />
+	<sprite id="active_131" ic="FF2B2161" img="skills\active_131.png" />
+	<sprite id="active_132" ic="FF2F3661" img="skills\active_132.png" />
+	<sprite id="active_133" ic="FF281A62" img="skills\active_133.png" />
+	<sprite id="active_134" ic="FF373E6E" img="skills\active_134.png" />
+	<sprite id="status_effect_87" ic="FF5C5861" img="skills\status_effect_87.png" />
+	<sprite id="status_effect_87_mini" offsetY="35" ic="FF504C53" img="skills\mini\status_effect_87_mini.png" />
+	<sprite id="active_135" ic="FF0C044C" img="skills\active_135.png" />
+	<sprite id="active_136" ic="FF252264" img="skills\active_136.png" />
+	<sprite id="active_137" ic="FF39304F" img="skills\active_137.png" />
+	<sprite id="active_138" ic="FF363878" img="skills\active_138.png" />
+	<sprite id="active_139" ic="FF274042" img="skills\active_139.png" />
+	<sprite id="active_140" ic="FF47412D" img="skills\active_140.png" />
+	<sprite id="active_141" ic="FF152850" img="skills\active_141.png" />
+	<sprite id="active_142" ic="FF4F2444" img="skills\active_142.png" />
+	<sprite id="active_143" ic="FF1D334A" img="skills\active_143.png" />
+	<sprite id="active_144" ic="FF355465" img="skills\active_144.png" />
+	<sprite id="status_effect_88" ic="FF324B4D" img="skills\status_effect_88.png" />
+	<sprite id="status_effect_89" ic="FF554C37" img="skills\status_effect_89.png" />
+	<sprite id="status_effect_90" ic="FF1E3358" img="skills\status_effect_90.png" />
+	<sprite id="status_effect_91" ic="FF552D4E" img="skills\status_effect_91.png" />
+	<sprite id="status_effect_92" ic="FF273C55" img="skills\status_effect_92.png" />
+	<sprite id="status_effect_93" ic="FF3E6073" img="skills\status_effect_93.png" />
+	<sprite id="status_effect_88_mini" offsetY="35" ic="FF2E4244" img="skills\mini\status_effect_88_mini.png" />
+	<sprite id="status_effect_89_mini" offsetY="35" ic="FF4A4331" img="skills\mini\status_effect_89_mini.png" />
+	<sprite id="status_effect_90_mini" offsetY="35" ic="FF1C2E4D" img="skills\mini\status_effect_90_mini.png" />
+	<sprite id="status_effect_91_mini" offsetY="35" ic="FF4B2945" img="skills\mini\status_effect_91_mini.png" />
+	<sprite id="status_effect_92_mini" offsetY="35" ic="FF24364A" img="skills\mini\status_effect_92_mini.png" />
+	<sprite id="status_effect_93_mini" offsetY="35" ic="FF375465" img="skills\mini\status_effect_93_mini.png" />
+	<sprite id="status_effect_68" ic="FF755D31" img="skills\status_effect_68.png" />
+	<sprite id="status_effect_68_mini" offsetY="35" ic="FF66522D" img="skills\mini\status_effect_68_mini.png" />
+	<sprite id="status_effect_94" ic="FF3F5D6E" img="skills\status_effect_94.png" />
+	<sprite id="status_effect_94_mini" offsetY="35" ic="FF385160" img="skills\mini\status_effect_94_mini.png" />
+	<sprite id="status_effect_95" ic="FF3A5361" img="skills\status_effect_95.png" />
+	<sprite id="status_effect_95_mini" offsetY="35" ic="FF344955" img="skills\mini\status_effect_95_mini.png" />
+	<sprite id="active_146" ic="FF1D2165" img="skills\active_146.png" />
+	<sprite id="active_147" ic="FF334C5A" img="skills\active_147.png" />
+	<sprite id="active_148" ic="FF2A364B" img="skills\active_148.png" />
+	<sprite id="active_149" ic="FF3A4A56" img="skills\active_149.png" />
+	<sprite id="active_150" ic="FF2F3854" img="skills\active_150.png" />
+	<sprite id="active_151" ic="FF32444D" img="skills\active_151.png" />
+	<sprite id="status_effect_96" ic="FF3A4C55" img="skills\status_effect_96.png" />
+	<sprite id="active_155" ic="FF595333" img="skills\active_155.png" />
+	<sprite id="active_152" ic="FF6F650E" img="skills\active_152.png" />
+	<sprite id="active_153" ic="FF7F7017" img="skills\active_153.png" />
+	<sprite id="active_154" ic="FF665D2B" img="skills\active_154.png" />
+	<sprite id="entityoverlay_bar_13" offsetY="35" ic="FFFFFFFF" width="120" height="40" img="ui\entity_overlay\entityoverlay_bar_13.png" left="-48" right="4" top="5" bottom="9" />
+	<sprite id="entityoverlay_bar_14" offsetY="35" ic="FFFFFFFF" width="120" height="40" img="ui\entity_overlay\entityoverlay_bar_14.png" left="-48" right="8" top="5" bottom="9" />
+	<sprite id="entityoverlay_bar_15" offsetY="35" ic="FFFFFFFF" width="120" height="40" img="ui\entity_overlay\entityoverlay_bar_15.png" left="-48" right="12" top="5" bottom="9" />
+	<sprite id="entityoverlay_bar_16" offsetY="35" ic="FFFFFFFF" width="120" height="40" img="ui\entity_overlay\entityoverlay_bar_16.png" left="-48" right="16" top="5" bottom="9" />
+	<sprite id="entityoverlay_bar_17" offsetY="35" ic="FFFFFFFF" width="120" height="40" img="ui\entity_overlay\entityoverlay_bar_17.png" left="-48" right="20" top="5" bottom="9" />
+	<sprite id="entityoverlay_bar_18" offsetY="35" ic="FFFFFFFF" width="120" height="40" img="ui\entity_overlay\entityoverlay_bar_18.png" left="-48" right="24" top="5" bottom="9" />
+	<sprite id="entityoverlay_bar_19" offsetY="35" ic="FFFFFFFF" width="120" height="40" img="ui\entity_overlay\entityoverlay_bar_19.png" left="-48" right="28" top="5" bottom="9" />
+	<sprite id="entityoverlay_bar_20" offsetY="35" ic="FFFFFFFF" width="120" height="40" img="ui\entity_overlay\entityoverlay_bar_20.png" left="-48" right="32" top="5" bottom="9" />
+	<sprite id="entityoverlay_bar_21" offsetY="35" ic="FFFFFFFF" width="120" height="40" img="ui\entity_overlay\entityoverlay_bar_21.png" left="-48" right="36" top="5" bottom="9" />
+	<sprite id="entityoverlay_bar_22" offsetY="35" ic="FFFFFFFF" width="120" height="40" img="ui\entity_overlay\entityoverlay_bar_22.png" left="-48" right="40" top="5" bottom="9" />
+	<sprite id="entityoverlay_bar_23" offsetY="35" ic="FFFFFFFF" width="120" height="40" img="ui\entity_overlay\entityoverlay_bar_23.png" left="-48" right="44" top="5" bottom="9" />
+	<sprite id="entityoverlay_bar_24" offsetY="35" ic="FFFFFFFF" width="120" height="40" img="ui\entity_overlay\entityoverlay_bar_24.png" top="5" bottom="9" />
+	<sprite id="status_effect_97" ic="FF547665" img="skills\status_effect_97.png" />
+	<sprite id="cursor_drink" ic="FF356846" width="32" height="32" img="cursors\cursor_drink.png" left="-16" right="10" top="-17" bottom="14" />
+	<sprite id="cursor_give" ic="FF314F5A" width="32" height="32" img="cursors\cursor_give.png" left="-16" right="14" top="-12" bottom="16" />
+	<sprite id="cursor_bandage" ic="FF5D7899" width="32" height="32" img="cursors\cursor_bandages.png" top="-11" bottom="15" />
+	<sprite id="cursor_rotation" ic="FFCA7D46" width="32" height="32" img="cursors\cursor_rotation.png" top="-9" bottom="13" />
+	<sprite id="active_156" ic="FF353D49" img="skills\active_156.png" />
+	<sprite id="status_effect_98" ic="FF384750" img="skills\status_effect_98.png" />
+	<sprite id="active_157" ic="FF2B3B43" img="skills\active_157.png" />
+	<sprite id="active_158" ic="FF3C474E" img="skills\active_158.png" />
+	<sprite id="active_159" ic="FF2C4046" img="skills\active_159.png" />
+	<sprite id="status_effect_99" ic="FF314047" img="skills\status_effect_99.png" />
+	<sprite id="status_effect_100" ic="FF3E494E" img="skills\status_effect_100.png" />
+	<sprite id="status_effect_101" ic="FF304347" img="skills\status_effect_101.png" />
+	<sprite id="active_160" ic="FF2A272A" img="skills\active_160.png" />
+	<sprite id="status_effect_102" ic="FF312D31" img="skills\status_effect_102.png" />
+	<sprite id="status_effect_102_mini" offsetY="35" ic="FF2C292C" img="skills\mini\status_effect_102_mini.png" />
+	<sprite id="status_effect_103" ic="FF181B56" img="skills\status_effect_103.png" />
+	<sprite id="status_effect_104" ic="FF3F5381" img="skills\status_effect_104.png" />
+	<sprite id="status_effect_103_mini" offsetY="35" ic="FF171A4D" img="skills\mini\status_effect_103_mini.png" />
+	<sprite id="status_effect_104_mini" offsetY="35" ic="FF394A70" img="skills\mini\status_effect_104_mini.png" />
+	<sprite id="active_161" ic="FF13144E" img="skills\active_161.png" />
+	<sprite id="active_162" ic="FF2D302C" img="skills\active_162.png" />
+	<sprite id="active_163" ic="FF374643" img="skills\active_163.png" />
+	<sprite id="status_effect_105" ic="FF40504D" img="skills\status_effect_105.png" />
+	<sprite id="status_effect_106" ic="FF28376A" img="skills\status_effect_106.png" />
+	<sprite id="status_effect_107" ic="FF635842" img="skills\status_effect_107.png" />
+	<sprite id="active_164" ic="FF1F2238" img="skills\active_164.png" />
+	<sprite id="active_165" ic="FF212541" img="skills\active_165.png" />
+	<sprite id="status_effect_108" ic="FF405266" img="skills\status_effect_108.png" />
+	<sprite id="status_effect_108_mini" offsetY="35" ic="FF384759" img="skills\mini\status_effect_108_mini.png" />
+	<sprite id="active_166" ic="FF434337" img="skills\active_166.png" />
+	<sprite id="active_167" ic="FF816030" img="skills\active_167.png" />
+	<sprite id="status_effect_109" ic="FF877D6A" img="skills\status_effect_109.png" />
+	<sprite id="status_effect_109_mini" offsetY="35" ic="FF756C5C" img="skills\mini\status_effect_109_mini.png" />
+	<sprite id="active_168" ic="FF22225E" img="skills\active_168.png" />
+	<sprite id="active_169" ic="FF2D3071" img="skills\active_169.png" />
+	<sprite id="active_170" ic="FF19244C" img="skills\active_170.png" />
+	<sprite id="active_171" ic="FF141A49" img="skills\active_171.png" />
+	<sprite id="active_172" ic="FF593843" img="skills\active_172.png" />
+	<sprite id="active_173" ic="FF4D3337" img="skills\active_173.png" />
+	<sprite id="active_174" ic="FF1B1955" img="skills\active_174.png" />
+	<sprite id="status_effect_110" ic="FF212C57" img="skills\status_effect_110.png" />
+	<sprite id="status_effect_110_mini" offsetY="35" ic="FF1E284D" img="skills\mini\status_effect_110_mini.png" />
+	<sprite id="status_effect_111" ic="FF1B2058" img="skills\status_effect_111.png" />
+	<sprite id="status_effect_111_mini" offsetY="35" ic="FF181B49" img="skills\mini\status_effect_111_mini.png" />
+	<sprite id="active_175" ic="FF141848" img="skills\active_175.png" />
+	<sprite id="active_176" ic="FF435A7D" img="skills\active_176.png" />
+	<sprite id="active_177" ic="FF232260" img="skills\active_177.png" />
+	<sprite id="active_178" ic="FF2B286E" img="skills\active_178.png" />
+	<sprite id="active_179" ic="FF384773" img="skills\active_179.png" />
+	<sprite id="active_180" ic="FF32345D" img="skills\active_180.png" />
+	<sprite id="active_181" ic="FF2E275D" img="skills\active_181.png" />
+	<sprite id="active_182" ic="FF1B1E63" img="skills\active_182.png" />
+	<sprite id="active_183" ic="FF21155E" img="skills\active_183.png" />
+	<sprite id="active_184" ic="FF141558" img="skills\active_184.png" />
+	<sprite id="active_185" ic="FF1E1A49" img="skills\active_185.png" />
+	<sprite id="active_186" ic="FF5A535F" img="skills\active_186.png" />
+	<sprite id="active_187" ic="FF1C2163" img="skills\active_187.png" />
+	<sprite id="active_188" ic="FF171A58" img="skills\active_188.png" />
+	<sprite id="status_effect_112" ic="FF495E80" img="skills\status_effect_112.png" />
+	<sprite id="status_effect_112_mini" offsetY="35" ic="FF40536F" img="skills\mini\status_effect_112_mini.png" />
+	<sprite id="active_189" ic="FF373E77" img="skills\active_189.png" />
+	<sprite id="active_190" ic="FF314352" img="skills\active_190.png" />
+	<sprite id="active_191" ic="FF203862" img="skills\active_191.png" />
+	<sprite id="active_192" ic="FF1D365D" img="skills\active_192.png" />
+	<sprite id="status_effect_113" ic="FF243A5F" img="skills\status_effect_113.png" />
+	<sprite id="status_effect_113_mini" offsetY="35" ic="FF213453" img="skills\mini\status_effect_113_mini.png" />
+	<sprite id="status_effect_114" ic="FF344858" img="skills\status_effect_114.png" />
+	<sprite id="active_193" ic="FF495757" img="skills\active_193.png" />
+	<sprite id="status_effect_115" ic="FF435A63" img="skills\status_effect_115.png" />
+	<sprite id="active_194" ic="FF42575E" img="skills\active_194.png" />
+	<sprite id="active_195" ic="FF244273" img="skills\active_195.png" />
+	<sprite id="active_196" ic="FF213079" img="skills\active_196.png" />
+	<sprite id="active_197" ic="FF1C2446" img="skills\active_197.png" />
+	<sprite id="active_198" ic="FF201B65" img="skills\active_198.png" />
+	<sprite id="active_199" ic="FF24234D" img="skills\active_199.png" />
+	<sprite id="active_200" ic="FF1D115E" img="skills\active_200.png" />
+	<sprite id="active_201" ic="FF191256" img="skills\active_201.png" />
+	<sprite id="active_202" ic="FF476386" img="skills\active_202.png" />
+	<sprite id="active_203" ic="FF41526B" img="skills\active_203.png" />
+	<sprite id="active_204" ic="FF2C2C35" img="skills\active_204.png" />
+	<sprite id="active_205" ic="FF20184C" img="skills\active_205.png" />
+	<sprite id="active_206" ic="FF524D54" img="skills\active_206.png" />
+	<sprite id="active_207" ic="FF4E5552" img="skills\active_207.png" />
+	<sprite id="active_208" ic="FF3A4553" img="skills\active_208.png" />
+	<sprite id="active_209" ic="FF284869" img="skills\active_209.png" />
+	<sprite id="active_210" ic="FF1B1A60" img="skills\active_210.png" />
+	<sprite id="injury_icon_46" ic="FF192166" img="skills\injury\injury_icon_46.png" />
+	<sprite id="injury_icon_46_mini" offsetY="35" ic="FF141A5C" width="24" height="24" img="skills\injury\injury_icon_46_mini.png" left="-10" right="13" />
+	<sprite id="injury_icon_47" ic="FF1F2563" img="skills\injury\injury_icon_47.png" />
+	<sprite id="injury_icon_47_mini" offsetY="35" ic="FF181E59" width="24" height="24" img="skills\injury\injury_icon_47_mini.png" left="-10" right="13" />
+	<sprite id="injury_icon_48" ic="FF232C64" img="skills\injury\injury_icon_48.png" />
+	<sprite id="injury_icon_48_mini" offsetY="35" ic="FF1C235B" img="skills\injury\injury_icon_48_mini.png" left="-10" right="11" />
+	<sprite id="injury_icon_49" ic="FF1A2E6D" img="skills\injury\injury_icon_49.png" />
+	<sprite id="injury_icon_49_mini" offsetY="35" ic="FF152661" width="24" height="24" img="skills\injury\injury_icon_49_mini.png" left="-10" right="13" />
+	<sprite id="status_effect_116" ic="FF133563" img="skills\status_effect_116.png" />
+	<sprite id="status_effect_117" ic="FF43474D" img="skills\status_effect_117.png" />
+	<sprite id="status_effect_116_mini" offsetY="35" ic="FF133057" img="skills\mini\status_effect_116_mini.png" />
+	<sprite id="status_effect_117_mini" offsetY="35" ic="FF3C3F45" img="skills\mini\status_effect_117_mini.png" />
+	<sprite id="status_effect_118_mini" offsetY="35" ic="FF1D3B4C" img="skills\mini\status_effect_118_mini.png" />
+	<sprite id="status_effect_118" ic="FF1E4354" img="skills\status_effect_118.png" />
+	<sprite id="active_211" ic="FF266298" img="skills\active_211.png" />
+	<sprite id="status_effect_119" ic="FF29456B" img="skills\status_effect_119.png" />
+	<sprite id="status_effect_119_mini" offsetY="35" ic="FF253E5C" img="skills\mini\status_effect_119_mini.png" />
+	<sprite id="active_212" ic="FF293652" img="skills\active_212.png" />
+	<sprite id="trait_icon_71" ic="FF1A3C44" img="skills\trait_icon_71.png" />
+	<sprite id="active_214" ic="FF1B2C58" img="skills\active_214.png" />
+	<sprite id="status_effect_121" ic="FF233460" img="skills\status_effect_121.png" />
+	<sprite id="status_effect_121_mini" offsetY="35" ic="FF212F55" img="skills\mini\status_effect_121_mini.png" />
+	<sprite id="active_215" ic="FF2C5477" img="skills\active_215.png" />
+	<sprite id="status_effect_122" ic="FF2F5A6D" img="skills\status_effect_122.png" />
+	<sprite id="status_effect_122_mini" offsetY="35" ic="FF284A5A" img="skills\mini\status_effect_122_mini.png" />
+	<sprite id="perk_27" ic="FF303131" img="skills\perk_27.png" />
+	<sprite id="perk_07_mini" offsetY="35" ic="FF28364D" img="skills\mini\perk_07_mini.png" />
+	<sprite id="active_216" ic="FF735B1C" img="skills\active_216.png" />
+	<sprite id="active_217" ic="FF283F3C" img="skills\active_217.png" />
+	<sprite id="active_218" ic="FF444932" img="skills\active_218.png" />
+	<sprite id="status_effect_123" ic="FF304745" img="skills\status_effect_123.png" />
+	<sprite id="status_effect_123_mini" offsetY="35" ic="FF1A2B35" img="skills\mini\status_effect_123_mini.png" />
+	<sprite id="active_219" ic="FF304B42" img="skills\active_219.png" />
+	<sprite id="active_220" ic="FF264A58" img="skills\active_220.png" />
+	<sprite id="active_221" ic="FF263D3D" img="skills\active_221.png" />
+	<sprite id="cursor_enter" ic="FF254864" width="32" height="32" img="cursors\cursor_enter.png" left="-14" right="17" top="-10" bottom="16" />
+	<sprite id="perk_16" ic="FF27273F" img="skills\perk_16.png" />
+	<sprite id="active_222" ic="FF1D2647" img="skills\active_222.png" />
+	<sprite id="active_213" ic="FF354530" img="skills\active_213.png" />
+	<sprite id="status_effect_125_mini" offsetY="35" ic="FF516360" img="skills\mini\status_effect_125_mini.png" />
+	<sprite id="status_effect_128_mini" offsetY="35" ic="FF325561" img="skills\mini\status_effect_128_mini.png" />
+	<sprite id="status_effect_129_mini" offsetY="35" ic="FF324E78" img="skills\mini\status_effect_129_mini.png" />
+	<sprite id="status_effect_132_mini" offsetY="35" ic="FF2B536F" img="skills\mini\status_effect_132_mini.png" />
+	<sprite id="status_effect_133_mini" offsetY="35" ic="FF354A80" img="skills\mini\status_effect_133_mini.png" />
+	<sprite id="status_effect_134_mini" offsetY="35" ic="FF30606D" img="skills\mini\status_effect_134_mini.png" />
+	<sprite id="status_effect_140_mini" offsetY="35" ic="FF33767F" img="skills\mini\status_effect_140_mini.png" />
+	<sprite id="status_effect_141_mini" offsetY="35" ic="FF35688A" img="skills\mini\status_effect_141_mini.png" />
+	<sprite id="status_effect_144_mini" offsetY="35" ic="FF2F5D7B" img="skills\mini\status_effect_144_mini.png" />
+	<sprite id="status_effect_146_mini" offsetY="35" ic="FF295A6D" img="skills\mini\status_effect_146_mini.png" />
+	<sprite id="status_effect_147_mini" offsetY="35" ic="FF505F8E" img="skills\mini\status_effect_147_mini.png" />
+	<sprite id="status_effect_148_mini" offsetY="35" ic="FF464B76" img="skills\mini\status_effect_148_mini.png" />
+	<sprite id="status_effect_51_mini" offsetY="35" ic="FF3A636A" img="skills\mini\status_effect_151_mini.png" />
+	<sprite id="status_effect_150_mini" offsetY="35" ic="FF4E676F" img="skills\mini\status_effect_150_mini.png" />
+	<sprite id="status_effect_153_mini" offsetY="35" ic="FF7E864E" img="skills\mini\status_effect_153_mini.png" />
+	<sprite id="status_effect_125" ic="FF455E66" img="skills\status_effect_125.png" />
+	<sprite id="status_effect_128" ic="FF3B5A6F" img="skills\status_effect_128.png" />
+	<sprite id="status_effect_129" ic="FF3D557E" img="skills\status_effect_129.png" />
+	<sprite id="status_effect_132" ic="FF37566B" img="skills\status_effect_132.png" />
+	<sprite id="status_effect_134" ic="FF375764" img="skills\status_effect_134.png" />
+	<sprite id="status_effect_133" ic="FF3A4F6E" img="skills\status_effect_133.png" />
+	<sprite id="status_effect_140" ic="FF3E6C75" img="skills\status_effect_140.png" />
+	<sprite id="status_effect_141" ic="FF3F647C" img="skills\status_effect_141.png" />
+	<sprite id="status_effect_144" ic="FF3C596D" img="skills\status_effect_144.png" />
+	<sprite id="status_effect_147" ic="FF4E627B" img="skills\status_effect_147.png" />
+	<sprite id="status_effect_146" ic="FF3E6172" img="skills\status_effect_146.png" />
+	<sprite id="status_effect_148" ic="FF485B77" img="skills\status_effect_148.png" />
+	<sprite id="status_effect_150" ic="FF616D68" img="skills\status_effect_150.png" />
+	<sprite id="status_effect_151" ic="FF425E63" img="skills\status_effect_151.png" />
+	<sprite id="status_effect_153" ic="FF5E6953" img="skills\status_effect_153.png" />
+	<sprite id="status_effect_124" ic="FF446670" img="skills\status_effect_124.png" />
+	<sprite id="status_effect_126" ic="FF445A6B" img="skills\status_effect_126.png" />
+	<sprite id="status_effect_127" ic="FF3B5B78" img="skills\status_effect_127.png" />
+	<sprite id="status_effect_130" ic="FF41576E" img="skills\status_effect_130.png" />
+	<sprite id="status_effect_131" ic="FF3F596E" img="skills\status_effect_131.png" />
+	<sprite id="status_effect_135" ic="FF416378" img="skills\status_effect_135.png" />
+	<sprite id="status_effect_136" ic="FF37505E" img="skills\status_effect_136.png" />
+	<sprite id="status_effect_137" ic="FF5E7276" img="skills\status_effect_137.png" />
+	<sprite id="status_effect_138" ic="FF465D6F" img="skills\status_effect_138.png" />
+	<sprite id="status_effect_139" ic="FF3D536F" img="skills\status_effect_139.png" />
+	<sprite id="status_effect_142" ic="FF3E5E6C" img="skills\status_effect_142.png" />
+	<sprite id="status_effect_143" ic="FF3B526E" img="skills\status_effect_143.png" />
+	<sprite id="status_effect_145" ic="FF465874" img="skills\status_effect_145.png" />
+	<sprite id="status_effect_149" ic="FF3F5770" img="skills\status_effect_149.png" />
+	<sprite id="status_effect_154" ic="FF3A5D68" img="skills\status_effect_154.png" />
+	<sprite id="status_effect_158" ic="FF294246" img="skills\status_effect_158.png" />
+	<sprite id="status_effect_98_mini" offsetY="35" ic="FF3B4850" img="skills\mini\status_effect_98_mini.png" />
+	<sprite id="status_effect_159" ic="FF416F87" img="skills\status_effect_159.png" />
+	<sprite id="status_effect_159_mini" offsetY="35" ic="FF417993" img="skills\mini\status_effect_159_mini.png" />
+	<sprite id="status_effect_160" ic="FF47748A" img="skills\status_effect_160.png" />
+	<sprite id="status_effect_160_mini" offsetY="35" ic="FF4C849B" img="skills\mini\status_effect_160_mini.png" />
+	<sprite id="legend_halberd_impale" ic="FF23165B" img="skills\legend_halberd_impale.png" />
+	<sprite id="legend_halberd_smite" ic="FF23165B" img="skills\legend_halberd_smite.png" />
+	<sprite id="cat_bite" ic="FF23165B" img="skills\cat_bite.png" />
+	<sprite id="stone_aim_square" ic="FF23165B" img="skills\stone_aim_square.png" />
+	<sprite id="coordinated_volleys_square" ic="FF23165B" img="skills\coordinated_volleys_square.png" />
+	<sprite id="mini_coordinated_volleys_circle" offsetY="35" ic="FF344955" img="skills\mini\mini_coordinated_volleys_circle.png" />
+	<sprite id="mini_mark_target" offsetY="35" ic="FF344955" img="skills\mini\mini_mark_target.png" />
+	<sprite id="mini_meek" offsetY="35" ic="FF344955" img="skills\mini\mini_meek.png" />
+	<sprite id="mini_big_game_hunter" offsetY="35" ic="FF344955" img="skills\mini\mini_big_game_hunter.png" />
+	<sprite id="status_daze56_circle" ic="FF23165B" img="skills\status_daze56_circle.png" />
+	<sprite id="daze_square" ic="FF23165B" img="skills\daze_square.png" />
+	<sprite id="mini_daze56_circle" offsetY="35" ic="FF344955" img="skills\mini\mini_daze56_circle.png" />
+	<sprite id="deathtouch_square" ic="FF23165B" img="skills\deathtouch_square.png" />
+	<sprite id="blooddrop_square" ic="FF23165B" img="skills\blooddrop_square.png" />
+	<sprite id="siphon_square" ic="FF23165B" img="skills\siphon_square.png" />
+	<sprite id="en_garde_square" ic="2D6CB955" img="skills\en_garde_square.png" />
+	<sprite id="en_garde_circle" ic="2D6CB955" img="skills\en_garde_circle.png" />
+	<sprite id="mini_en_garde_circle" offsetY="35" ic="2D6CB955" img="skills\mini\mini_en_garde_circle.png" />
+	<sprite id="enthrall" ic="FF23165B" img="skills\enthrall.png" />
+	<sprite id="entice" ic="FF23165B" img="skills\entice.png" />
+	<sprite id="evasion" ic="FF23165B" img="skills\evasion.png" />
+	<sprite id="horse_kick" ic="FF23165B" img="skills\horse_kick.png" />
+	<sprite id="scry" ic="FF23165B" img="skills\scry.png" />
+	<sprite id="teleport" ic="FF23165B" img="skills\teleport.png" />
+	<sprite id="mini_steel_brow" offsetY="35" ic="FF344955" img="skills\mini\mini_steel_brow.png" />
+	<sprite id="mark_target" ic="FF23165B" img="skills\MarkTarget.png" />
+	<sprite id="mini_choke" offsetY="35" ic="FF344955" img="skills\mini\mini_choke.png" />
+	<sprite id="mini_grapple" offsetY="35" ic="FF344955" img="skills\mini\mini_grapple.png" />
+	<sprite id="mini_tackle" offsetY="35" ic="FF344955" img="skills\mini\mini_tackle.png" />
+	<sprite id="piercing_bolt" ic="FF23165B" img="skills\PiercingBolt.png" />
+	<sprite id="guided_steps_square" ic="FF23165B" img="skills\guided_steps_square.png" />
+	<sprite id="mini_guided_steps_circle" offsetY="35" ic="FF344955" img="skills\mini\mini_guided_steps_circle.png" />
+	<sprite id="holdtheline_square" ic="FF23165B" img="skills\holdtheline_square.png" />
+	<sprite id="status_holdtheline_circle" ic="FF23165B" img="skills\status_holdtheline_circle.png" />
+	<sprite id="mini_holdtheline_circle" offsetY="35" ic="FF344955" img="skills\mini\mini_holdtheline_circle.png" />
+	<sprite id="missile_square" ic="FF23165B" img="skills\missile_square.png" />
+	<sprite id="miasma_square" ic="FF23165B" img="skills\miasma_square.png" />
+	<sprite id="nightvision_square" ic="FF23165B" img="skills\nightvision_square.png" />
+	<sprite id="spears_square" ic="FF23165B" img="skills\spears_square.png" />
+	<sprite id="status_spears_circle" ic="FF23165B" img="skills\status_spears_circle.png" />
+	<sprite id="status_effect_doublestrike" ic="FF23165B" img="skills\status_effect_doublestrike.png" />
+	<sprite id="mini_doublestrike_circle" offsetY="35" ic="FF344955" img="skills\mini\mini_doublestrike_circle.png" />
+	<sprite id="mini_spears_circle" offsetY="35" ic="FF344955" img="skills\mini\mini_spears_circle.png" />
+	<sprite id="revolt_square" ic="FF23165B" img="skills\revolt_square.png" />
+	<sprite id="relax_square" ic="FF23165B" img="skills\relax_square.png" />
+	<sprite id="rebuild_skeleton" ic="FF23165B" img="skills\rebuild_skeleton.png" />
+	<sprite id="rust" ic="FF23165B" img="skills\rust56.png" />
+	<sprite id="skeleton_archer_01_square" ic="FF23165B" img="skills\skeleton_archer_01_square.png" />
+	<sprite id="skeleton_archer_02_square" ic="FF23165B" img="skills\skeleton_archer_02_square.png" />
+	<sprite id="skeleton_archer_03_square" ic="FF23165B" img="skills\skeleton_archer_03_square.png" />
+	<sprite id="arrange_bones" ic="FF23165B" img="skills\arrange_bones.png" />
+	<sprite id="align_joints" ic="FF23165B" img="skills\align_joints.png" />
+	<sprite id="remake_man" ic="FF23165B" img="skills\remake_man.png" />
+	<sprite id="mold_carrion" ic="FF23165B" img="skills\mold_carrion.png" />
+	<sprite id="fashion_body" ic="FF23165B" img="skills\fashion_body.png" />
+	<sprite id="zombie_archer_01_square" ic="FF23165B" img="skills\zombie_archer_01_square.png" />
+	<sprite id="zombie_archer_02_square" ic="FF23165B" img="skills\zombie_archer_02_square.png" />
+	<sprite id="zombie_archer_03_square" ic="FF23165B" img="skills\zombie_archer_03_square.png" />
+	<sprite id="stun56" ic="FF23165B" img="skills\stun56.png" />
+	<sprite id="cat_square" ic="FF23165B" img="skills\cat_square.png" />
+	<sprite id="violent_decomposition" ic="FF23165B" img="skills\violent_decomposition.png" />
+	<sprite id="wither" ic="FF23165B" img="skills\wither56_skill.png" />
+	<sprite id="blood_potion_circle" ic="FF23165B" img="skills\blood_potion_circle.png" />
+	<sprite id="ichor_potion_circle" ic="FF23165B" img="skills\ichor_potion_circle.png" />
+	<sprite id="drums_of_life_circle" ic="FF23165B" img="skills\drums_of_life_circle.png" />
+	<sprite id="drums_of_life_square" ic="FF23165B" img="skills\drums_of_life_square.png" />
+	<sprite id="drums_of_war_square" ic="FF23165B" img="skills\drums_of_war_square.png" />
+	<sprite id="drums_of_war_circle" ic="FF23165B" img="skills\drums_of_war_circle.png" />
+	<sprite id="martial_march_square" ic="FF23165B" img="skills\martial_march_square.png" />
+	<sprite id="martial_march_circle" ic="FF23165B" img="skills\martial_march_circle.png" />
+	<sprite id="climb_square" ic="FF23165B" img="skills\climb_square.png" />
+	<sprite id="prayer_purple" ic="FF23165B" img="skills\prayer_purple.png" />
+	<sprite id="prayer_green" ic="FF23165B" img="skills\prayer_green.png" />
+	<sprite id="prayer_blue" ic="FF23165B" img="skills\prayer_green.png" />
+	<sprite id="alcohol" ic="FF23165B" img="skills\alcohol.png" />
+	<sprite id="graze" ic="FF23165B" img="skills\graze.png" />
+	<sprite id="bleed" ic="FF23165B" img="skills\bleed.png" />
+	<sprite id="horse_charge" ic="FF23165B" img="skills\horse_charge.png" />
+	<sprite id="horse_pirouette" ic="FF23165B" img="skills\horse_pirouette.png" />
+	<sprite id="dog_circle" ic="FF23165B" img="skills\dog_circle.png" />
+	<sprite id="wolf_circle" ic="FF23165B" img="skills\wolf_circle.png" />
+	<sprite id="falcon_circle" ic="FF23165B" img="skills\falcon_circle.png" />
+	<sprite id="bear_circle" ic="FF23165B" img="skills\bear_circle.png" />
+	<sprite id="catapult_circle" ic="FF23165B" img="skills\catapult_circle.png" />
+	<sprite id="food_circle" ic="FF23165B" img="skills\food_circle.png" />
+	<sprite id="baffled_circle" ic="FF23165B" img="skills\baffled_circle.png" />
+	<sprite id="fire_circle" ic="FF23165B" img="skills\fire_circle.png" />
+	<sprite id="bluefire_circle" ic="FF23165B" img="skills\bluefire_circle.png" />
+	<sprite id="incoming_circle" ic="FF23165B" img="skills\incoming_circle.png" />
+	<sprite id="throw_sand" ic="FF23165B" img="skills\throw_sand_01.png" />
+	<sprite id="boneplating_effect" ic="FF23165B" img="skills\boneplating_effect.png" />
+	<sprite id="trait_invictus" ic="FF23165B" img="skills\trait_invictus.png" />
+	<sprite id="mini_boneplating_effect" offsetY="35" ic="FF344955" img="skills\mini\mini_boneplating_effect.png" />
+	<sprite id="mini_safegaurd_circle" offsetY="35" ic="FF344955" img="skills\mini\mini_safegaurd_circle.png" />
+	<sprite id="mini_shimmering_visage_circle" offsetY="35" ic="FF344955" img="skills\mini\mini_shimmering_visage_circle.png" />
+	<sprite id="mini_fortified_circle" offsetY="35" ic="FF344955" img="skills\mini\mini_fortified_circle.png" />
+	<sprite id="parried_circle" offsetY="35" ic="FF344955" img="skills\parried_circle.png" />
+	<sprite id="mini_parried_circle" offsetY="35" ic="FF344955" img="skills\mini\mini_parried_circle.png" />
+	<sprite id="parrying_circle" offsetY="35" ic="FF344955" img="skills\parrying_circle.png" />
+	<sprite id="mini_parrying_circle" offsetY="35" ic="FF344955" img="skills\mini\mini_parrying_circle.png" />
+	<sprite id="mini_bear_circle" offsetY="35" ic="FF344955" img="skills\mini\mini_bear_circle.png" />
+	<sprite id="mini_wolf_circle" offsetY="35" ic="FF344955" img="skills\mini\mini_wolf_circle.png" />
+	<sprite id="mini_dog_circle" offsetY="35" ic="FF344955" img="skills\mini\mini_dog_circle.png" />
+	<sprite id="mini_falcon_circle" offsetY="35" ic="FF344955" img="skills\mini\mini_falcon_circle.png" />
+	<sprite id="mini_catapult_circle" offsetY="35" ic="FF344955" img="skills\mini\mini_catapult_circle.png" />
+	<sprite id="mini_incoming_circle" ic="FF23165B" img="skills\mini\mini_incoming_circle.png" />
+	<sprite id="mini_omens_circle" ic="FF23165B" img="skills\mini\mini_omens_circle.png" />
+	<sprite id="demon_hound_flame_01" ic="FF23165B" img="skills\demon_hound_flame_01.png" />
+	<sprite id="demon_hound_bite" ic="FF23165B" img="skills\demon_hound_bite.png" />
+	<sprite id="demon_hound_bite_effect" ic="FF23165B" img="skills\demon_hound_bite_effect.png" />
+	<sprite id="mini_graze_circle" offsetY="35" ic="FF344955" img="skills\mini\mini_graze_circle.png" />
+	<sprite id="mini_bleed_circle" offsetY="35" ic="FF344955" img="skills\mini\mini_bleed_circle.png" />
+	<sprite id="mini_food_circle" offsetY="35" ic="FF344955" img="skills\mini\mini_food_circle.png" />
+	<sprite id="mini_baffled_circle" offsetY="35" ic="FF344955" img="skills\mini\mini_baffled_circle.png" />
+	<sprite id="mini_prayer_green" offsetY="35" ic="FF344955" img="skills\mini\mini_prayer_green.png" />
+	<sprite id="mini_prayer_purple" offsetY="35" ic="FF344955" img="skills\mini\mini_prayer_purple.png" />
+	<sprite id="mini_fire_circle" offsetY="35" ic="FF344955" img="skills\mini\mini_fire_circle.png" />
+	<sprite id="mini_bluefire_circle" offsetY="35" ic="FF344955" img="skills\mini\mini_bluefire_circle.png" />
+	<sprite id="mini_throw_sand_circle" offsetY="35" ic="FF344955" img="skills\mini\mini_throw_sand_circle.png" />
+	<sprite id="mini_smackdown_circle" ic="2E343FFF" img="skills\mini\mini_smackdown_circle.png" />
+	<sprite id="active_71" ic="FF181B33" img="skills\active_71.png" />
+	<sprite id="active_21" ic="FF181B33" img="skills\active_21.png" />
+	<sprite id="active_24" ic="FF181B33" img="skills\active_24.png" />
+	<sprite id="active_117" ic="FF181B33" img="skills\active_117.png" />
+	<sprite id="rat_bite" ic="FF181B33" img="skills\rat_bite.png" />
+	<sprite id="blowgun_square" ic="FF23165B" img="skills\blowgun_square.png" />
+	<sprite id="mummy_curse" ic="FF23165B" img="skills\mummy_curse.png" />
+	<sprite id="icon_mummy_curse" ic="FF23165B" img="skills\icon_mummy_curse.png" />
+	<sprite id="mini_icon_mummy_curse" offsetY="35" ic="FF344955" img="skills\mini\mini_icon_mummy_curse.png" />
+	<sprite id="active_pass" ic="FF2B206C" img="skills\pass.png" />
+	<sprite id="status_helpful" ic="FF3D536F" img="skills\helpful.png" />
+	<sprite id="active_kick" ic="FF2B206C" img="skills\kick_square.png" />
+	<sprite id="active_choke" ic="FF2B206C" img="skills\choke_square.png" />
+	<sprite id="active_grapple" ic="FF2B206C" img="skills\grapple_square.png" />
+	<sprite id="mini_vengeance" ic ="322E2DFF" img="skills\mini\mini_vengeance.png" />
+	<sprite id="basilisk_peck" ic="60312BFF" img="skills\basilisk_peck.png" />
+	<sprite id="mini_second_wind" ic="4D3315FF" img="skills\mini\mini_second_wind.png" />
+	<sprite id="choke_circle" ic="724543FF" img="skills\choke_circle.png" />
+	<sprite id="grapple_circle" ic="5E3f37FF" img="skills\grapple_circle.png" />
+	<sprite id="tackle_circle" ic="3E2929FF" img="skills\tackle_circle.png" />
+	<sprite id="holybluefire_square" ic="2E343FFF" img="skills\holybluefire_square.png" />
+	<sprite id="placeholder_circle" ic="2E343FFF" img="skills\placeholder_circle.png" />
+	<sprite id="placeholder_circle" ic="2E343FFF" img="skills\mini\mini_placeholder_circle.png" />
+	<sprite id="lightning_square" ic="2E343FFF" img="skills\lightning_square.png" />
+</brush>

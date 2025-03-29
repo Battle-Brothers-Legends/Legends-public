@@ -1,0 +1,1 @@
+::Const.LegendMod.DebugMode <- false;

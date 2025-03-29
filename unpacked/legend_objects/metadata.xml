@@ -1,0 +1,105 @@
+<brush name="gfx/legend_objects.png" version="17"> 
+	<sprite id="camp_test_01" offsetX="5" offsetY="56" ic="FF283B3F" img="objects\camp_test_01.png" left="-85" right="85" />
+	<sprite id="camp_test_02" offsetX="5" offsetY="56" ic="FF283B3F" img="objects\camp_test_02.png" left="-85" right="85" />
+	<sprite id="camp_test_03" offsetX="5" offsetY="56" ic="FF283B3F" img="objects\camp_test_03.png" left="-85" right="85" />
+	<sprite id="camp_test_04" offsetX="5" offsetY="56" ic="FF283B3F" img="objects\camp_test_04.png" left="-85" right="85" />
+	<sprite id="camp_block" offsetX="5" offsetY="56" ic="FF283B3F" img="objects\camp_test_05.png" left="-85" right="85" />
+	<sprite id="camp_test_06" offsetX="5" offsetY="56" ic="FF283B3F" img="objects\camp_test_06.png" left="-85" right="85" />
+	<sprite id="camp_test_07" offsetX="5" offsetY="56" ic="FF283B3F" img="objects\camp_test_07.png" left="-85" right="85" />
+	<sprite id="camp_pot_01" offsetX="5" offsetY="56" ic="FF283B3F" img="objects\camp_pot_01.png" left="-65" right="65" />
+	<sprite id="camp_tent_01" offsetX="5" offsetY="56" ic="FF283B3F" img="objects\camp_tent_01.png" left="-65" right="65" />
+	<sprite id="camp_training_01" offsetX="5" offsetY="56" ic="FF283B3F" img="objects\camp_training_01.png" left="-65" right="65" />
+	<sprite id="chopped_wood_01" offsetX="8" offsetY="28" ic="FF224245" img="objects\chopped_wood_01.png" left="-65" right="66" />
+	<sprite id="chopped_wood_02" offsetX="8" offsetY="28" ic="FF224245" img="objects\chopped_wood_02.png" left="-65" right="66" />
+	<sprite id="chopped_wood_03" offsetX="8" offsetY="28" ic="FF224245" img="objects\chopped_wood_03.png" left="-65" right="66" />
+	<sprite id="chopped_wood_04" offsetX="8" offsetY="28" ic="FF224245" img="objects\chopped_wood_04.png" left="-65" right="66" />
+	<sprite id="chopped_wood_05" offsetX="8" offsetY="28" ic="FF224245" img="objects\chopped_wood_05.png" left="-65" right="66" />
+	<sprite id="chopped_wood_06" offsetX="8" offsetY="28" ic="FF224245" img="objects\chopped_wood_06.png" left="-65" right="66" />
+	<sprite id="chopped_wood_07" offsetX="8" offsetY="28" ic="FF224245" img="objects\chopped_wood_07.png" left="-65" right="66" />
+	<sprite id="chopped_wood_08" offsetX="8" offsetY="28" ic="FF224245" img="objects\chopped_wood_08.png" left="-65" right="66" />
+	<sprite id="desert_camp_chair_01" offsetX="6" offsetY="15" ic="FF2C4A6D" img="objects\desert_camp_chair_01.png" left="-78" right="79" />
+	<sprite id="desert_camp_chair_02" offsetX="6" offsetY="15" ic="FF2C4A6D" img="objects\desert_camp_chair_02.png" left="-78" right="79" />
+	<sprite id="desert_camp_chair_03" offsetX="6" offsetY="15" ic="FF2C4A6D" img="objects\desert_camp_chair_03.png" left="-78" right="79" />
+	<sprite id="desert_camp_chair_04" offsetX="6" offsetY="15" ic="FF2C4A6D" img="objects\desert_camp_chair_04.png" left="-78" right="79" />
+	<sprite id="desert_camp_chair_05" offsetX="6" offsetY="15" ic="FF2C4A6D" img="objects\desert_camp_chair_05.png" left="-78" right="79" />
+	<sprite id="desert_camp_chair_06" offsetX="6" offsetY="15" ic="FF2C4A6D" img="objects\desert_camp_chair_06.png" left="-78" right="79" />
+	<sprite id="desert_camp_chair_07" offsetX="6" offsetY="15" ic="FF2C4A6D" img="objects\desert_camp_chair_07.png" left="-78" right="79" />
+	<sprite id="desert_camp_chair_08" offsetX="6" offsetY="15" ic="FF2C4A6D" img="objects\desert_camp_chair_08.png" left="-78" right="79" />
+	<sprite id="desert_camp_chair_09" offsetX="6" offsetY="15" ic="FF2C4A6D" img="objects\desert_camp_chair_09.png" left="-78" right="79" />
+	<sprite id="desert_camp_chair_10" offsetX="6" offsetY="15" ic="FF2C4A6D" img="objects\desert_camp_chair_10.png" left="-78" right="79" />
+	<sprite id="desert_camp_chair_11" offsetX="6" offsetY="15" ic="FF2C4A6D" img="objects\desert_camp_chair_11.png" left="-78" right="79" />
+	<sprite id="desert_camp_chair_12" offsetX="6" offsetY="15" ic="FF2C4A6D" img="objects\desert_camp_chair_12.png" left="-78" right="79" />
+	<sprite id="desert_camp_chair_13" offsetX="6" offsetY="15" ic="FF2C4A6D" img="objects\desert_camp_chair_13.png" left="-78" right="79" />
+	<sprite id="desert_camp_chair_14" offsetX="6" offsetY="15" ic="FF2C4A6D" img="objects\desert_camp_chair_14.png" left="-78" right="79" />
+	<sprite id="desert_camp_ottoman_01" offsetX="10" offsetY="5" ic="FF2C415B" img="objects\desert_camp_ottoman_01.png" left="-67" right="68" />
+	<sprite id="desert_camp_ottoman_02" offsetX="10" offsetY="5" ic="FF2C415B" img="objects\desert_camp_ottoman_02.png" left="-67" right="68" />
+	<sprite id="desert_camp_ottoman_03" offsetX="10" offsetY="5" ic="FF2C415B" img="objects\desert_camp_ottoman_03.png" left="-67" right="68" />
+	<sprite id="desert_camp_ottoman_04" offsetX="10" offsetY="5" ic="FF2C415B" img="objects\desert_camp_ottoman_04.png" left="-67" right="68" />
+	<sprite id="desert_camp_ottoman_05" offsetX="10" offsetY="5" ic="FF2C415B" img="objects\desert_camp_ottoman_05.png" left="-67" right="68" />
+	<sprite id="desert_camp_ottoman_06" offsetX="10" offsetY="5" ic="FF2C415B" img="objects\desert_camp_ottoman_06.png" left="-67" right="68" />
+	<sprite id="desert_camp_ottoman_07" offsetX="10" offsetY="5" ic="FF2C415B" img="objects\desert_camp_ottoman_07.png" left="-67" right="68" />
+	<sprite id="desert_camp_ottoman_08" offsetX="10" offsetY="5" ic="FF2C415B" img="objects\desert_camp_ottoman_08.png" left="-67" right="68" />
+	<sprite id="desert_camp_ottoman_09" offsetX="10" offsetY="5" ic="FF2C415B" img="objects\desert_camp_ottoman_09.png" left="-67" right="68" />
+	<sprite id="desert_camp_ottoman_10" offsetX="10" offsetY="5" ic="FF2C415B" img="objects\desert_camp_ottoman_10.png" left="-67" right="68" />
+ 
+	<sprite id="desert_camp_rug_01" offsetX="19" offsetY="20" f="643E" ic="FF334D72" img="objects\desert_camp_rug_01.png" />
+	<sprite id="desert_camp_rug_02" offsetX="19" offsetY="20" f="643E" ic="FF334D72" img="objects\desert_camp_rug_02.png" />
+	<sprite id="desert_camp_rug_03" offsetX="19" offsetY="20" f="643E" ic="FF334D72" img="objects\desert_camp_rug_03.png" />
+	<sprite id="desert_camp_rug_04" offsetX="19" offsetY="20" f="643E" ic="FF334D72" img="objects\desert_camp_rug_04.png" />
+	<sprite id="desert_camp_rug_05" offsetX="19" offsetY="20" f="643E" ic="FF334D72" img="objects\desert_camp_rug_05.png" />
+	<sprite id="desert_camp_rug_06" offsetX="19" offsetY="20" f="643E" ic="FF334D72" img="objects\desert_camp_rug_06.png" />
+	<sprite id="desert_camp_rug_07" offsetX="19" offsetY="20" f="643E" ic="FF334D72" img="objects\desert_camp_rug_07.png" />
+	<sprite id="desert_camp_rug_08" offsetX="19" offsetY="20" f="643E" ic="FF334D72" img="objects\desert_camp_rug_08.png" />
+	<sprite id="desert_camp_rug_09" offsetX="19" offsetY="20" f="643E" ic="FF334D72" img="objects\desert_camp_rug_09.png" />
+	<sprite id="desert_camp_rug_10" offsetX="19" offsetY="20" f="643E" ic="FF334D72" img="objects\desert_camp_rug_10.png" />
+	<sprite id="desert_camp_rug_11" offsetX="19" offsetY="20" f="643E" ic="FF334D72" img="objects\desert_camp_rug_11.png" />
+	<sprite id="desert_camp_rug_12" offsetX="19" offsetY="20" f="643E" ic="FF334D72" img="objects\desert_camp_rug_12.png" />
+	<sprite id="desert_camp_rug_13" offsetX="19" offsetY="20" f="643E" ic="FF334D72" img="objects\desert_camp_rug_13.png" />
+	<sprite id="desert_camp_rug_14" offsetX="19" offsetY="20" f="643E" ic="FF334D72" img="objects\desert_camp_rug_14.png" />
+	<sprite id="desert_camp_rug_15" offsetX="19" offsetY="20" f="643E" ic="FF334D72" img="objects\desert_camp_rug_15.png" />
+	<sprite id="desert_camp_rug_16" offsetX="19" offsetY="20" f="643E" ic="FF334D72" img="objects\desert_camp_rug_16.png" />
+	<sprite id="desert_camp_rug_17" offsetX="19" offsetY="20" f="643E" ic="FF334D72" img="objects\desert_camp_rug_17.png" />
+	<sprite id="desert_camp_rug_18" offsetX="19" offsetY="20" f="643E" ic="FF334D72" img="objects\desert_camp_rug_18.png" />
+	<sprite id="desert_camp_rug_19" offsetX="19" offsetY="20" f="643E" ic="FF334D72" img="objects\desert_camp_rug_19.png" />
+	<sprite id="desert_camp_rug_20" offsetX="19" offsetY="20" f="643E" ic="FF334D72" img="objects\desert_camp_rug_20.png" />
+	<sprite id="desert_camp_rug_21" offsetX="19" offsetY="20" f="643E" ic="FF334D72" img="objects\desert_camp_rug_21.png" />
+	<sprite id="desert_camp_rug_22" offsetX="19" offsetY="20" f="643E" ic="FF334D72" img="objects\desert_camp_rug_22.png" />
+	<sprite id="desert_camp_rug_23" offsetX="19" offsetY="20" f="643E" ic="FF334D72" img="objects\desert_camp_rug_23.png" />
+	<sprite id="desert_camp_rug_24" offsetX="19" offsetY="20" f="643E" ic="FF334D72" img="objects\desert_camp_rug_24.png" />
+	<sprite id="desert_camp_rug_25" offsetX="19" offsetY="20" f="643E" ic="FF334D72" img="objects\desert_camp_rug_25.png" />
+	<sprite id="desert_camp_rug_26" offsetX="19" offsetY="20" f="643E" ic="FF334D72" img="objects\desert_camp_rug_26.png" />
+	<sprite id="desert_camp_rug_27" offsetX="19" offsetY="20" f="643E" ic="FF334D72" img="objects\desert_camp_rug_27.png" />
+	<sprite id="desert_camp_rug_28" offsetX="19" offsetY="20" f="643E" ic="FF334D72" img="objects\desert_camp_rug_28.png" />
+	<sprite id="desert_camp_rug_29" offsetX="19" offsetY="20" f="643E" ic="FF334D72" img="objects\desert_camp_rug_29.png" />
+	<sprite id="desert_camp_rug_30" offsetX="19" offsetY="20" f="643E" ic="FF334D72" img="objects\desert_camp_rug_30.png" />
+	<sprite id="desert_camp_rug_31" offsetX="19" offsetY="20" f="643E" ic="FF334D72" img="objects\desert_camp_rug_31.png" />
+	<sprite id="desert_camp_rug_32" offsetX="19" offsetY="20" f="643E" ic="FF334D72" img="objects\desert_camp_rug_32.png" />
+	<sprite id="desert_camp_rug_33" offsetX="19" offsetY="20" f="643E" ic="FF334D72" img="objects\desert_camp_rug_33.png" />
+	<sprite id="desert_camp_rug_34" offsetX="19" offsetY="20" f="643E" ic="FF334D72" img="objects\desert_camp_rug_34.png" />
+	<sprite id="desert_camp_rug_35" offsetX="19" offsetY="20" f="643E" ic="FF334D72" img="objects\desert_camp_rug_35.png" />
+	<sprite id="desert_camp_rug_36" offsetX="19" offsetY="20" f="643E" ic="FF334D72" img="objects\desert_camp_rug_36.png" />
+	<sprite id="desert_camp_rug_37" offsetX="19" offsetY="20" f="643E" ic="FF334D72" img="objects\desert_camp_rug_37.png" />
+	<sprite id="desert_camp_rug_38" offsetX="19" offsetY="20" f="643E" ic="FF334D72" img="objects\desert_camp_rug_38.png" />
+	<sprite id="desert_camp_rug_39" offsetX="19" offsetY="20" f="643E" ic="FF334D72" img="objects\desert_camp_rug_39.png" />
+	<sprite id="desert_camp_rug_40" offsetX="19" offsetY="20" f="643E" ic="FF334D72" img="objects\desert_camp_rug_40.png" />
+	<sprite id="desert_camp_rug_41" offsetX="19" offsetY="20" f="643E" ic="FF334D72" img="objects\desert_camp_rug_41.png" />
+	<sprite id="desert_camp_rug_42" offsetX="19" offsetY="20" f="643E" ic="FF334D72" img="objects\desert_camp_rug_42.png" />
+	<sprite id="desert_camp_rug_43" offsetX="19" offsetY="20" f="643E" ic="FF334D72" img="objects\desert_camp_rug_43.png" />
+	<sprite id="desert_camp_rug_44" offsetX="19" offsetY="20" f="643E" ic="FF334D72" img="objects\desert_camp_rug_44.png" />
+	<sprite id="desert_camp_rug_45" offsetX="19" offsetY="20" f="643E" ic="FF334D72" img="objects\desert_camp_rug_45.png" />
+	<sprite id="desert_camp_rug_46" offsetX="19" offsetY="20" f="643E" ic="FF334D72" img="objects\desert_camp_rug_46.png" />
+	<sprite id="desert_camp_rug_47" offsetX="19" offsetY="20" f="643E" ic="FF334D72" img="objects\desert_camp_rug_47.png" />
+	<sprite id="desert_camp_rug_48" offsetX="19" offsetY="20" f="643E" ic="FF334D72" img="objects\desert_camp_rug_48.png" />
+	<sprite id="desert_camp_rug_49" offsetX="19" offsetY="20" f="643E" ic="FF334D72" img="objects\desert_camp_rug_49.png" />
+	<sprite id="desert_camp_rug_50" offsetX="19" offsetY="20" f="643E" ic="FF334D72" img="objects\desert_camp_rug_50.png" />
+	<sprite id="desert_camp_rug_51" offsetX="19" offsetY="20" f="643E" ic="FF334D72" img="objects\desert_camp_rug_51.png" />
+	<sprite id="desert_camp_rug_52" offsetX="19" offsetY="20" f="643E" ic="FF334D72" img="objects\desert_camp_rug_52.png" />
+	<sprite id="desert_camp_rug_53" offsetX="19" offsetY="20" f="643E" ic="FF334D72" img="objects\desert_camp_rug_53.png" />
+	<sprite id="desert_camp_rug_54" offsetX="19" offsetY="20" f="643E" ic="FF334D72" img="objects\desert_camp_rug_54.png" />
+	<sprite id="desert_camp_rug_55" offsetX="19" offsetY="20" f="643E" ic="FF334D72" img="objects\desert_camp_rug_55.png" />
+	<sprite id="desert_camp_rug_56" offsetX="19" offsetY="20" f="643E" ic="FF334D72" img="objects\desert_camp_rug_56.png" />
+	<sprite id="desert_camp_rug_57" offsetX="19" offsetY="20" f="643E" ic="FF334D72" img="objects\desert_camp_rug_57.png" />
+	<sprite id="desert_camp_rug_58" offsetX="19" offsetY="20" f="643E" ic="FF334D72" img="objects\desert_camp_rug_58.png" />
+	<sprite id="desert_camp_rug_59" offsetX="19" offsetY="20" f="643E" ic="FF334D72" img="objects\desert_camp_rug_59.png" />
+	<sprite id="desert_camp_rug_60" offsetX="19" offsetY="20" f="643E" ic="FF334D72" img="objects\desert_camp_rug_60.png" />
+</brush>

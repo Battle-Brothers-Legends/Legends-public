@@ -10,133 +10,142 @@
  */
 
 /* TODO:
-    Container einbauen, welcher dann das Frame und alles andere beinhaltet, so dass der Border nie unter der Scrollbar verschwindet!
+	Container einbauen, welcher dann das Frame und alles andere beinhaltet, so dass der Border nie unter der Scrollbar verschwindet!
 */
 
 .ui-control.campaign
 {
 	width: 100%;
-    height: 11.6rem;
+	height: 11.6rem;
 	position: relative;
-    margin-top: 0.4rem;
-    padding-left: 0.4rem;
-    padding-right: 0.4rem;
-    float: left;
-    clear: left;
+	margin-top: 0.4rem;
+	padding-left: 0.4rem;
+	padding-right: 0.4rem;
+	float: left;
+	clear: left;
 
-    overflow: hidden;
+	overflow: hidden;
 }
 
 .ui-control.campaign:first-child
 {
-    margin-top: 0;
+	margin-top: 0;
 }
 
 .ui-control.campaign:last-child
 {
-    margin-bottom: 0;
+	margin-bottom: 0;
 }
 
 .ui-control.campaign .inner-container
 {
-    width: 100%;
-    height: 100%;
-    position: relative;
+	width: 100%;
+	height: 100%;
+	position: relative;
 
-    overflow: hidden;
+	overflow: hidden;
 
-    background-image: url("coui://gfx/ui/skin/list_item_03.png");
-    background-repeat: no-repeat;
-    background-size: 72.9rem 11.8rem;
+	background-image: url("coui://gfx/ui/skin/list_item_03.png");
+	background-repeat: no-repeat;
+	background-size: 72.9rem 11.8rem;
 }
 
 .ui-control.campaign .inner-container.has-slot-frame
 {
-    /*border: 1px rgba(130, 130, 130, 1) solid;
-    border-radius: 10px 10px 10px 10px;
-    box-shadow: inset 0 0 10px rgba(0, 0, 0, 1);*/
+	/*border: 1px rgba(130, 130, 130, 1) solid;
+	border-radius: 10px 10px 10px 10px;
+	box-shadow: inset 0 0 10px rgba(0, 0, 0, 1);*/
 }
 
 .ui-control.campaign:hover .inner-container,
 .ui-control.campaign.is-selected .inner-container
 {
-    background-image: url("coui://gfx/ui/skin/list_item_03_hovered.png");
-    background-size: 72.9rem 11.8rem;
+	background-image: url("coui://gfx/ui/skin/list_item_03_hovered.png");
+	background-size: 72.9rem 11.8rem;
 }
 
 .ui-control.campaign.is-disabled .inner-container,
 .ui-control.campaign.is-disabled:hover .inner-container,
 .ui-control.campaign[disabled]:hover .inner-container
 {
-    background-image: url("coui://gfx/ui/skin/list_item_03_inactive.png");
-    background-size: 72.9rem 11.8rem;
+	background-image: url("coui://gfx/ui/skin/list_item_03_inactive.png");
+	background-size: 72.9rem 11.8rem;
 }
 
 
 .ui-control.campaign .inner-container > .column
 {
-    top: 0;
-    bottom: 0;
-    height: 100%;
-    position: absolute;
+	top: 0;
+	bottom: 0;
+	height: 100%;
+	position: absolute;
 }
 
 .ui-control.campaign .inner-container > .column.is-left
 {
-    left: 0;
-    width: 12.0rem;
+	left: 0;
+	width: 12.0rem;
 }
 
 .ui-control.campaign .inner-container > .column.is-right
 {
-    top: 0.2rem;
-    left: 12.0rem;
-    right: 0;
+	top: 0.2rem;
+	left: 12.0rem;
+	right: 0;
 }
 
 
 .ui-control.campaign .inner-container > .column.is-left img
 {
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    height: 10.0rem;
-    position: absolute;
-    margin: auto;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	height: 10.0rem;
+	position: absolute;
+	margin: auto;
 }
 
 
 .ui-control.campaign .inner-container > .column.is-right .label
 {
-    left: 0;
-    right: 0;
-    position: absolute;
+	left: 0;
+	right: 0;
+	position: absolute;
 }
 
 .ui-control.campaign .inner-container > .column.is-right .label.is-campaign-name
 {
-    top: 1.0rem;
-    height: 3.0rem;
+	top: 1.0rem;
+	height: 3.0rem;
 }
 
 .ui-control.campaign .inner-container > .column.is-right .label.is-group-name
 {
-     top: 4.0rem;
-     height: 3.0rem;
+	 top: 4.0rem;
+	 height: 3.0rem;
 }
 
 .ui-control.campaign .inner-container > .column.is-right .label.is-day-name
 {
-    top: 7.0rem;
-    height: 3.0rem;
+	top: 7.0rem;
+	height: 3.0rem;
 }
 
 .ui-control.campaign .inner-container > .column.is-right .label.is-date-time
 {
-    right: 3.5rem;
-    bottom: 1.3rem;
-    height: 1.6rem;
+	right: 3.5rem;
+	bottom: 1.3rem;
+	height: 1.6rem;
 
-    text-align: right;
+	text-align: right;
+}
+
+.ui-control.campaign .inner-container > .column.is-right .label.is-legends-version
+{
+	right: 3.5rem;
+	bottom: 2.9rem;
+	height: 1.6rem;
+
+	text-align: right;
 }

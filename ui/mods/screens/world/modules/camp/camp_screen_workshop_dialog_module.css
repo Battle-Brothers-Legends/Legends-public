@@ -1,0 +1,300 @@
+
+.camp-screen > .l-workshop-dialog-container
+{
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	width: 102.4rem;
+	height: 76.8rem;
+	position: absolute;
+	margin: auto;
+	z-index: 2;
+}
+
+
+.camp-screen > .l-workshop-dialog-container .l-tab-container
+{
+	top: -1.0rem;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	width: 88.0rem;
+	height: 3.0rem;
+	position: absolute;
+	margin: auto;
+}
+
+.camp-screen > .l-workshop-dialog-container .l-tab-asset
+{
+	top: 0;
+	bottom: 0;
+	width: 13.0rem;
+	height: 4.3rem;
+	position: absolute;
+}
+
+.camp-screen > .l-workshop-dialog-container .l-tab-asset.is-supplies
+{
+	left: 0;
+}
+
+.camp-screen > .l-workshop-dialog-container .l-tab-asset.is-num-required
+{
+	left: 15.0rem;
+}
+
+.camp-screen > .l-workshop-dialog-container .l-tab-asset.is-time-required
+{
+	left: 30.0rem;
+}
+
+.camp-screen > .l-workshop-dialog-container .l-tab-asset.is-brothers
+{
+	width: 9.8rem;
+	left: 75.0rem;
+}
+
+.camp-screen > .l-workshop-dialog-container .l-tab-asset img
+{
+	top: 0;
+	bottom: 0;
+	left: 0;
+	width: 2.8rem;
+	height: 2.8rem;
+	margin: auto;
+	margin-left: 1.0rem;
+	position: absolute;
+}
+
+.camp-screen > .l-workshop-dialog-container .l-tab-asset .label
+{
+	top: 0;
+	bottom: 0;
+	left: 3.3rem;
+	width: 11.2rem;
+	height: 3.0rem;
+	margin: auto;
+	margin-left: 1.0rem;
+	position: absolute;
+
+	text-align : left;
+	line-height: 3.0rem;
+}
+
+
+.camp-screen > .l-workshop-dialog-container .content .column
+{
+	height: 100%;
+	position: relative;
+	float : left;
+}
+
+.camp-screen > .l-workshop-dialog-container .content .column.is-left
+{
+	width: 48.0rem;
+	background-image: url("coui://gfx/ui/skin/dialog_panel_02.png");
+	background-size: 48.0rem 56.8rem;
+	background-repeat: no-repeat;
+}
+
+.camp-screen > .l-workshop-dialog-container .content .column.is-middle
+{
+	width: 6.4rem;
+}
+
+.camp-screen > .l-workshop-dialog-container .content .column.is-right
+{
+	width: 48.0rem;
+	background-image: url("coui://gfx/ui/skin/dialog_panel_02.png");
+	background-size: 48.0rem 56.8rem;
+	background-repeat: no-repeat;
+}
+
+
+.camp-screen > .l-workshop-dialog-container .content .row
+{
+	left: 0;
+	right: 0;
+	position: absolute;
+}
+
+.camp-screen > .l-workshop-dialog-container .content .row.is-header
+{
+	top: -0.1rem;
+	height: 3.0rem;
+
+	line-height: 4.6rem;
+	text-align: center;
+}
+
+.camp-screen > .l-workshop-dialog-container .content .row.is-content
+{
+	top: 3.4rem;
+	bottom: 3.0rem;
+}
+
+.camp-screen > .l-workshop-dialog-container .content .row.is-footer
+{
+	bottom: 0;
+	height: 3.0rem;
+}
+
+.camp-screen > .l-workshop-dialog-container .content .row.is-content .button-container
+{
+	position: absolute;
+	
+	left: 0.8rem;
+	width: 6.4rem;
+	height: 55.0rem;
+}
+
+.camp-screen > .l-workshop-dialog-container .content .row.is-content .l-button.is-sort
+{
+	width: 5.2rem;
+	height: 4.1rem;
+}
+
+.camp-screen > .l-workshop-dialog-container .content .row.is-content .l-button.is-all-filter
+{
+	position: absolute;
+	
+	width: 5.2rem;
+	height: 4.1rem;
+	top: 4.0rem;
+}
+
+/* .camp-screen > .l-workshop-dialog-container .content .row.is-content .l-button.is-bro-filter
+{
+	position: absolute;
+	
+	width: 5.2rem;
+	height: 4.1rem;
+	top: 8.0rem;
+} */
+
+.camp-screen > .l-workshop-dialog-container .content .row.is-content .l-button.is-weapons-filter
+{
+	position: absolute;
+ 
+	width: 5.2rem;
+	height: 4.1rem;
+	top: 8.0rem;
+}
+
+.camp-screen > .l-workshop-dialog-container .content .row.is-content .l-button.is-armor-filter
+{
+	position: absolute;
+	
+	width: 5.2rem;
+	height: 4.1rem;
+	top: 12.0rem;
+}
+
+.camp-screen > .l-workshop-dialog-container .content .row.is-content .l-button.is-assign-all
+{
+	position: absolute;
+	
+	width: 5.2rem;
+	height: 4.1rem;
+	top: 16.0rem;
+}
+
+.camp-screen > .l-workshop-dialog-container .content .row.is-content .l-button.is-remove-all
+{
+	position: absolute;
+	
+	width: 5.2rem;
+	height: 4.1rem;
+	top: 20.0rem;
+}
+
+.camp-screen > .l-workshop-dialog-container .content .row.is-content .slot-count-container
+{
+	position: absolute;
+
+	width: 12.6rem;
+	height: 2.4rem;
+	top: 50.0rem;
+	left: -1.0rem;
+}
+
+.camp-screen > .l-workshop-dialog-container .content .row.is-content .slot-count-container img
+{
+	top: -4.0rem;
+	left: 2.3rem;
+	bottom: 0;
+	width: 2.4rem;
+	height: 2.4rem;
+	position: absolute;
+	margin: auto;
+}
+
+.camp-screen > .l-workshop-dialog-container .content .row.is-content .slot-count-container .label
+{
+	top: 0;
+	left: 0.0rem;
+	bottom: 0;
+	width: 7.2rem;
+	height: 2.0rem;
+	position: absolute;
+	margin: auto;
+
+	line-height: 2.0rem;
+	text-align: center;
+}
+
+.camp-screen > .l-workshop-dialog-container .content .l-list-container
+{
+	top: -0.1rem;
+	bottom: 0;
+	position: absolute;
+	height: 51.8rem;
+}
+
+.camp-screen > .l-workshop-dialog-container .content .l-list-container.is-left
+{
+	left: 5.0rem;
+	right: 1.6rem;
+}
+
+.camp-screen > .l-workshop-dialog-container .content .l-list-container.is-right
+{
+	left: 5.0rem;
+	right: 1.6rem;
+}
+
+.camp-screen > .l-workshop-dialog-container .content .l-list-container .scroll-container
+{
+	margin-bottom: 0.0rem;
+}
+
+
+.camp-screen > .l-workshop-dialog-container .footer .l-button-bar
+{
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	width: 17.5rem;
+	height: 4.3rem;
+	position: absolute;
+	margin: auto;
+}
+
+.camp-screen > .l-workshop-dialog-container .footer .l-leave-button
+{
+	top: 0;
+	right: 0;
+	bottom: 0;
+	width: 17.5rem;
+	position: absolute;
+
+	line-height: 3.0rem;
+}
+
+
+.camp-screen .ui-control.item.is-proxy
+{
+	z-index: 100;
+}

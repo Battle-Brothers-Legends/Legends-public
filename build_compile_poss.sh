@@ -1,0 +1,1 @@
+./build_legends_mod.sh "c:\\Steam\\steamapps\\common\\Battle Brothers\\data" "Legends"

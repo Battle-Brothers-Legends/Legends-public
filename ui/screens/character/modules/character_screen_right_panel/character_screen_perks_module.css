@@ -3,7 +3,7 @@
  *	@Company:		Overhype Studios
  *
  *	@Copyright:		(c) Overhype Studios | 2013 - 2020
- * 
+ *
  *  @Author:		Overhype Studios
  *  @Date:			04.08.2017 / Reworked: 26.11.2017
  *  @Description:	Perks Module CSS
@@ -15,15 +15,22 @@
     top: 3.5rem;
 	left: 1.0rem;
 	right: 1.5rem;
-	bottom: 4.0rem;
+	bottom: -0.8rem;
 	position: absolute;
 
     overflow: hidden;
 
+
     /*border-bottom: 1px rgba(130, 130, 130, 1) solid;*/
 }
 
-.character-screen-container .perks-module .column
+.character-screen-container .perks-module .scroll-container
+{
+    margin-top: 0.4rem;
+    margin-bottom: 0.4rem;
+}
+
+.character-screen-container .scroll-container .column
 {
     position: absolute;
 
@@ -39,7 +46,7 @@
     /*height: 48.0rem;*/
 }
 
-.character-screen-container .perks-module .column .row
+.character-screen-container .scroll-container .column .row
 {
     /*background-color: #5F98F8;*/
 
@@ -50,7 +57,7 @@
     position: absolute;
 }
 
-.character-screen-container .perks-module .column .row .center
+.character-screen-container .scroll-container .column .row .center
 {
    position: absolute;
 
@@ -60,19 +67,19 @@
    /*background-color: red;*/
 }
 
-.character-screen-container .perks-module .is-unlocked
+.character-screen-container .scroll-container .is-unlocked
 {
 	/*background-color: rgba(200, 120, 20, 0.1);*/
 	opacity: 1;
 }
 
-.character-screen-container .perks-module .is-locked
+.character-screen-container .scroll-container .is-locked
 {
 	opacity: 0.33;
 }
 
 
-.character-screen-container .perks-module .row .l-perk-container
+.character-screen-container .scroll-container .row .l-perk-container
 {
     width: 5.0rem;
     height: 5.0rem;
@@ -80,7 +87,7 @@
     float: left;
 }
 
-.character-screen-container .perks-module .l-perk-container .selection-image-layer
+.character-screen-container .scroll-container .l-perk-container .selection-image-layer
 {
     top: 0;
     left: 0;
@@ -94,7 +101,7 @@
     z-index: 1;
 }
 
-.character-screen-container .perks-module .l-perk-container .perk-image-layer
+.character-screen-container .scroll-container .l-perk-container .perk-image-layer
 {
     top: 0;
     left: 0;

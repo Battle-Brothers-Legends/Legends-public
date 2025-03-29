@@ -10,7 +10,7 @@
  */
 
 /* TODO:
-    + Progressbars im Tactical und Tooltip auf neue Progressbar Komponente und dessen Farben umstellen!
+	+ Progressbars im Tactical und Tooltip auf neue Progressbar Komponente und dessen Farben umstellen!
 */
 
 .ui-control
@@ -33,68 +33,68 @@
 	/*background-color: rgba(100, 100, 100, 0.8);
 	border: 1px rgba(130, 130, 130, 1) solid;
 	box-shadow: inset 0 0 10px rgba(0, 0, 0, 1);*/
-    background-image: url("coui://gfx/ui/skin/bar_empty.png");
-    background-size: 15.5rem 2.6rem;
+	background-image: url("coui://gfx/ui/skin/bar_empty.png");
+	background-size: 15.5rem 2.6rem;
 }
 
 .ui-control-stats-progressbar.armor-head,
 .ui-control-stats-progressbar-preview.armor-head
 {	
-    background-image: url("coui://gfx/ui/skin/bar_fill_armor.png");
-    background-repeat: no-repeat;
-    background-size: 15.5rem 2.6rem;
+	background-image: url("coui://gfx/ui/skin/bar_fill_armor.png");
+	background-repeat: no-repeat;
+	background-size: 15.5rem 2.6rem;
 }
 
 .ui-control-stats-progressbar.armor-body,
 .ui-control-stats-progressbar-preview.armor-body
 {
-    background-image: url("coui://gfx/ui/skin/bar_fill_armor.png");
-    background-repeat: no-repeat;
-    background-size: 15.5rem 2.6rem;
+	background-image: url("coui://gfx/ui/skin/bar_fill_armor.png");
+	background-repeat: no-repeat;
+	background-size: 15.5rem 2.6rem;
 }
 
 .ui-control-stats-progressbar.hitpoints,
 .ui-control-stats-progressbar-preview.hitpoints
 {
 	background-image: url("coui://gfx/ui/skin/bar_fill_health.png");
-    background-repeat: no-repeat;
-    background-size: 15.5rem 2.6rem;
+	background-repeat: no-repeat;
+	background-size: 15.5rem 2.6rem;
 }
 
 .ui-control-stats-progressbar.action-points
 {
 	background-image: url("coui://gfx/ui/skin/bar_fill_action_preview.png");
-    background-repeat: no-repeat;
-    background-size: 15.5rem 2.6rem;
+	background-repeat: no-repeat;
+	background-size: 15.5rem 2.6rem;
 }
 
 .ui-control-stats-progressbar-preview.action-points
 {
 	background-image: url("coui://gfx/ui/skin/bar_fill_action.png");
-    background-repeat: no-repeat;
-    background-size: 15.5rem 2.6rem;
+	background-repeat: no-repeat;
+	background-size: 15.5rem 2.6rem;
 }
 
 .ui-control-stats-progressbar.morale,
 .ui-control-stats-progressbar-preview.morale
 {
 	background-image: url("coui://gfx/ui/skin/bar_fill_morale.png");
-    background-repeat: no-repeat;
-    background-size: 15.5rem 2.6rem;
+	background-repeat: no-repeat;
+	background-size: 15.5rem 2.6rem;
 }
 
 .ui-control-stats-progressbar.fatigue
 {
 	background-image: url("coui://gfx/ui/skin/bar_fill_fatigue_preview.png");
-    background-repeat: no-repeat;
-    background-size: 15.5rem 2.6rem;
+	background-repeat: no-repeat;
+	background-size: 15.5rem 2.6rem;
 }
 
 .ui-control-stats-progressbar-preview.fatigue
 {
 	background-image: url("coui://gfx/ui/skin/bar_fill_fatigue.png");
-    background-repeat: no-repeat;
-    background-size: 15.5rem 2.6rem;
+	background-repeat: no-repeat;
+	background-size: 15.5rem 2.6rem;
 }
 
 .ui-control-stats-progressbar.melee-skill,
@@ -154,71 +154,80 @@
 .ui-control-stats-progressbar.bravery,
 .ui-control-stats-progressbar-preview.bravery
 {
-    background-color: #826800;
+	background-color: #826800;
 }
 
 /* Large and Slim */
 
 .ui-control-stats-progressbar-container-slim
 {
-    background-image: url("coui://gfx/ui/skin/bar_empty_196.png");
-    background-size: 19.6rem 2.0rem;
+	background-image: url("coui://gfx/ui/skin/bar_empty_196.png");
+	background-size: 19.6rem 2.0rem;
 }
 
 .ui-control-stats-progressbar.armor-head-slim,
 .ui-control-stats-progressbar-preview.armor-head-slim
 {	
-    background-image: url("coui://gfx/ui/skin/bar_fill_armor_196.png");
-    background-repeat: no-repeat;
-    background-size: 19.6rem 2.0rem;
+	background-image: url("coui://gfx/ui/skin/bar_fill_armor_196.png");
+	background-repeat: no-repeat;
+	background-size: 19.6rem 2.0rem;
 }
 
 .ui-control-stats-progressbar.armor-body-slim,
 .ui-control-stats-progressbar-preview.armor-body-slim
 {	
-    background-image: url("coui://gfx/ui/skin/bar_fill_armor_196.png");
-    background-repeat: no-repeat;
-    background-size: 19.6rem 2.0rem;
+	background-image: url("coui://gfx/ui/skin/bar_fill_armor_196.png");
+	background-repeat: no-repeat;
+	background-size: 19.6rem 2.0rem;
 }
 
 .ui-control-stats-progressbar.hitpoints-slim,
 .ui-control-stats-progressbar-preview.hitpoints-slim
 {	
-    background-image: url("coui://gfx/ui/skin/bar_fill_health_196.png");
-    background-repeat: no-repeat;
-    background-size: 19.6rem 2.0rem;
+	background-image: url("coui://gfx/ui/skin/bar_fill_health_196.png");
+	background-repeat: no-repeat;
+	background-size: 19.6rem 2.0rem;
 }
 
 .ui-control-stats-progressbar.morale-slim,
 .ui-control-stats-progressbar-preview.morale-slim
 {	
-    background-image: url("coui://gfx/ui/skin/bar_fill_morale_196.png");
-    background-repeat: no-repeat;
-    background-size: 19.6rem 2.0rem;
+	background-image: url("coui://gfx/ui/skin/bar_fill_morale_196.png");
+	background-repeat: no-repeat;
+	background-size: 19.6rem 2.0rem;
 }
 
 .ui-control-stats-progressbar.fatigue-slim,
 .ui-control-stats-progressbar-preview.fatigue-slim
 {	
-    background-image: url("coui://gfx/ui/skin/bar_fill_fatigue_196.png");
-    background-repeat: no-repeat;
-    background-size: 19.6rem 2.0rem;
+	background-image: url("coui://gfx/ui/skin/bar_fill_fatigue_196.png");
+	background-repeat: no-repeat;
+	background-size: 19.6rem 2.0rem;
 }
 
 /* Relations */
 
 .ui-control-stats-progressbar-container-relations
 {
-    background-image: url("coui://gfx/ui/skin/relations_bar_empty.png");
-    background-repeat: no-repeat;
-    background-size: 30.5rem 2.6rem;
+	background-image: url("coui://gfx/ui/skin/relations_bar_empty.png");
+	background-repeat: no-repeat;
+	background-size: 30.5rem 2.6rem;
 }
 
 .ui-control-stats-progressbar.relations
 {	
-    background-image: url("coui://gfx/ui/skin/relations_bar_fill.png");
-    background-repeat: no-repeat;
-    background-size: 30.5rem 2.6rem;
+	background-image: url("coui://gfx/ui/skin/relations_bar_fill.png");
+	background-repeat: no-repeat;
+	background-size: 30.5rem 2.6rem;
+}
+
+/* Add slim stripe for remaining action points */
+.ui-control-stats-progressbar.action-points-slim,
+.ui-control-stats-progressbar-preview.action-points-slim
+{
+	background-image: url("coui://gfx/ui/skin/bar_fill_action_196.png");
+	background-repeat: no-repeat;
+	background-size: 19.6rem 2.0rem;
 }
 
 /*
@@ -327,9 +336,9 @@
 
 .ui-control-button > .label
 {
-	top     : 0;
+	top	 : 0;
 	bottom  : 0;
-	left    : 0;
+	left	: 0;
 	right   : 0;
 	width   : 90%;
 	height  : 2.8rem;

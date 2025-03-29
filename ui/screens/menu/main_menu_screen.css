@@ -3,7 +3,7 @@
  *	@Company:		Overhype Studios
  *
  *	@Copyright:		(c) Overhype Studios | 2013 - 2020
- * 
+ *
  *  @Author:		Overhype Studios
  *  @Date:			01.10.2017
  *  @Description:	Main Menu Screen CSS
@@ -12,91 +12,121 @@
 
 .main-menu-screen
 {
-    background-color: #000;
+	background-color: #000;
 
 	top: 0;
 	left: 0;
 	width: 100%;
 	height: 100%;
 	position: absolute;
-    overflow: hidden;
+	overflow: hidden;
 }
 
 .main-menu-screen > img
 {
-    position: absolute;
-    z-index: 1;
+	position: absolute;
+	z-index: 1;
 }
 
 .main-menu-screen > .screen-header
 {
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 10.0rem;
-    position: absolute;
-    z-index: 3;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 10.0rem;
+	position: absolute;
+	z-index: 3;
 }
 
 .main-menu-screen > .screen-footer
 {
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    height: 10.0rem;
-    position: absolute;
-    z-index: 3;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	height: 10.0rem;
+	position: absolute;
+	z-index: 3;
 }
 
 .main-menu-screen > .screen-content
 {
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    z-index: 2;
-    pointer-events: none;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	z-index: 2;
+	pointer-events: none;
 }
 
 .main-menu-screen .version
 {
-	bottom: 1.0rem;
-    right: 1.0rem;
-    position: absolute;
-    z-index: 3;
+	bottom: 3.0rem;
+	right: 1.0rem;
+	position: absolute;
+	z-index: 3;
 
 	/*display: none;*/
 }
 
+.main-menu-screen .legends-version
+{
+	bottom: 1.0rem;
+	right: 1.0rem;
+	position: absolute;
+	z-index: 3;
+
+	/*display: none;*/
+}
+
+
+
 .main-menu-screen .dlc-container
 {
 	bottom: 1.0rem;
-    left: 1.0rem;
-    position: absolute;
-    z-index: 2;
+	left: 1.0rem;
+	position: absolute;
+	z-index: 2;
 
-    width   : 40.0rem;
+	width   : 40.0rem;
 	height  : 6.4rem;
 }
 
 .main-menu-screen .dlc-container > .dlc-image
 {
 	margin-right: 1.0rem;
-    width   : 6.4rem;
+	width   : 6.4rem;
 	height  : 6.4rem;
+}
+
+.main-menu-screen .legends-motd-container
+{
+	bottom: 6.0rem;
+	right: 50.0rem;
+	position: absolute;
+	z-index: 2;
+
+	background: rgba(0, 0, 0, 0.4);
+
+	width   : 55.0rem;
+	height  : 18.0rem;
+}
+
+.main-menu-screen .legends-motd
+{
+	margin: 1.0rem;
 }
 
 .main-menu-screen .motd-container
 {
 	bottom: 6.0rem;
-    right: 1.0rem;
-    position: absolute;
-    z-index: 2;
+	right: 1.0rem;
+	position: absolute;
+	z-index: 2;
 
-    background: rgba(0, 0, 0, 0.4);
+	background: rgba(0, 0, 0, 0.4);
 
-    width   : 38.0rem;
+	width   : 38.0rem;
 	height  : 12.4rem;
 }
 
@@ -107,8 +137,8 @@
 
 .main-menu-screen .menu-dialog-container
 {
-	top     : 0;
-	left    : 0;
+	top	 : 0;
+	left	: 0;
 	right   : 0;
 	bottom  : 0;
 	width   : 30.0rem;
@@ -123,9 +153,9 @@
 */
 .main-menu-screen .menu-dialog-container *
 {
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
 }
 
 .menu-dialog-container .header
@@ -138,8 +168,8 @@
 
 .menu-dialog-container .header .header-text-container
 {
-	top     : 0;
-	left    : 0;
+	top	 : 0;
+	left	: 0;
 	right   : 0;
 	bottom  : 0;
 	width   : 80%;
@@ -160,37 +190,37 @@
 {
 	width: 100%;
 	height: 16.0rem;
-    position: relative;
+	position: relative;
 	float: left;
 }
 
 .menu-dialog-container .l-center-content-container
 {
-    top: 1.0rem;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    width: 80%;
-    height: 100%;
-    position: absolute;
-    margin: auto;
+	top: 1.0rem;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	width: 80%;
+	height: 100%;
+	position: absolute;
+	margin: auto;
 }
 
 .menu-dialog-container .content-container .row
 {
-    width: 100%;
+	width: 100%;
 	height: 3.0rem;
 	position: relative;
 	float: left;
-    margin-bottom: 1.0rem;
+	margin-bottom: 1.0rem;
 }
 
 .menu-dialog-container .content-container .row > .ui-control-button
 {
-    width: 100%;
-    height: 3.0rem;
-    position: relative;
-    float: left;
+	width: 100%;
+	height: 3.0rem;
+	position: relative;
+	float: left;
 }
 
 
@@ -198,7 +228,7 @@
 
 
 .menu-dialog-container .dialog-footer
-{	
+{
 	width   : 100%;
 	height  : 5.0rem;
 	float   : left;
@@ -207,8 +237,8 @@
 
 .menu-dialog-container .dialog-footer .button-container
 {
-	top     : -0.4rem;
-	left    : 0;
+	top	 : -0.4rem;
+	left	: 0;
 	right   : 0;
 	bottom  : 0;
 	width   : 80%;
@@ -219,8 +249,8 @@
 
 .menu-dialog-container .button-container .l-button
 {
-	top     : 0;
-	left    : 0;
+	top	 : 0;
+	left	: 0;
 	right   : 0;
 	bottom  : 0;
 	width   : 12.0rem;

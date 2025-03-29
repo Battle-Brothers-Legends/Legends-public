@@ -1,0 +1,38 @@
+<brush name="gfx/legend_detail.png" version="17">
+  <sprite id="hiding_swamp_green_01_back" offsetX="2" offsetY="36" f="641E" ic="FF2A5264" width="135" height="129" img="detail\hiding_swamp_green_01_back.png" left="-66" right="68" top="-32" bottom="62" />
+  <sprite id="hiding_swamp_green_01_front" offsetY="-2" f="64D8" ic="FF2D576A" width="135" height="129" img="detail\hiding_swamp_green_01_front.png" left="-54" right="56" top="-65" bottom="3" />
+  <sprite id="swamp_moss_green_01" offsetX="7" offsetY="3" f="6428" b7="20" ic="FF1F5050" img="detail\swamp_moss_green_01.png" left="-81" right="82" />
+  <sprite id="swamp_moss_green_02" offsetX="-26" offsetY="21" f="6428" b7="20" ic="FF205554" img="detail\swamp_moss_green_02.png" />
+  <sprite id="swamp_moss_green_03" offsetY="-15" f="6428" b7="20" ic="FF204D4E" img="detail\swamp_moss_green_03.png" left="-45" right="46" />
+  <sprite id="swamp_moss_green_04" offsetX="5" offsetY="20" f="6428" b7="20" ic="FF205554" img="detail\swamp_moss_green_04.png" />
+  <sprite id="swamp_moss_green_05" offsetX="26" offsetY="8" f="6428" b7="20" ic="FF1E4F4F" img="detail\swamp_moss_green_05.png" />
+  <sprite id="swamp_moss_green_06" offsetX="-13" offsetY="-4" f="6428" b7="20" ic="FF1D4A4B" img="detail\swamp_moss_green_06.png" />
+  <sprite id="swamp_puddle_green_02" offsetX="12" offsetY="-16" f="6428" b7="20" ic="FF3E5757" img="detail\swamp_puddle_green_02.png" />
+  <sprite id="swamp_puddle_green_03" offsetY="16" f="6428" b7="20" ic="FF425C5B" img="detail\swamp_puddle_green_03.png" />
+  <sprite id="swamp_puddle_green_04" offsetX="-14" offsetY="13" f="6428" b7="20" ic="FF425C5C" img="detail\swamp_puddle_green_04.png" />
+  <sprite id="swamp_puddle_green_05" offsetX="-18" offsetY="-9" f="6428" b7="20" ic="FF405959" img="detail\swamp_puddle_green_05.png" />
+  <sprite id="swamp_puddle_green_06" offsetX="18" offsetY="-17" f="6428" b7="20" ic="FF3E5656" img="detail\swamp_puddle_green_06.png" />
+  <sprite id="swamp_puddle_green_07" offsetX="-7" offsetY="9" f="6428" b7="20" ic="FF405A5A" img="detail\swamp_puddle_green_07.png" left="-47" right="48" />
+  <sprite id="swamp_grass_green_04" offsetX="18" offsetY="-10" f="6402" b7="20" ic="FF325161" img="detail\swamp_grass_green_04.png" left="-24" right="25" />
+  <sprite id="swamp_grass_green_05" offsetX="-38" offsetY="19" f="6408" b7="20" ic="FF325261" img="detail\swamp_grass_green_05.png" left="-20" right="21" />
+  <sprite id="swamp_grass_green_06" offsetX="-17" offsetY="-28" f="64D8" b7="20" ic="FF2B4855" img="detail\swamp_grass_green_06.png" left="-35" right="36" />
+  <sprite id="swamp_grass_green_09" offsetX="-41" offsetY="20" f="6406" b7="20" ic="FF2C4B58" img="detail\swamp_grass_green_09.png" left="-41" right="42" />
+  <sprite id="swamp_grass_green_10" offsetX="39" offsetY="3" f="6405" b7="20" ic="FF2B4856" img="detail\swamp_grass_green_10.png" />
+  <sprite id="swamp_grass_green_08" offsetX="25" offsetY="-1" f="6404" b7="20" ic="FF2C4B58" img="detail\swamp_grass_green_09.png" left="-41" right="42" />
+  <sprite id="swamp_grass_green_07" offsetX="-15" offsetY="-4" f="6403" b7="20" ic="FF2B4856" img="detail\swamp_grass_green_10.png" />
+  <sprite id="swamp_grass_green_03" offsetX="6" offsetY="7" f="6402" b7="20" ic="FF345C6B" img="detail\swamp_grass_green_03.png" />
+  <sprite id="swamp_grass_green_01" offsetX="-5" f="6402" ic="FF2D596D" img="detail\swamp_grass_green_01.png" left="-92" right="93" />
+  <sprite id="swamp_grass_green_11" offsetX="5" offsetY="-9" f="6403" ic="FF356073" img="detail\swamp_grass_green_07.png" />
+  <sprite id="swamp_grass_green_12" offsetX="-24" offsetY="16" f="6407" ic="FF376377" img="detail\swamp_grass_green_08.png" />
+  <sprite id="swamp_schilf_green_01" offsetX="34" offsetY="12" f="6407" b7="20" ic="FF2A4654" img="detail\swamp_schilf_green_01.png" />
+  <sprite id="swamp_schilf_green_02" offsetX="-26" offsetY="1" f="6406" b7="20" ic="FF2B4856" img="detail\swamp_schilf_green_02.png" />
+  <sprite id="swamp_schilf_green_03" offsetY="-7" f="6404" b7="20" ic="FF294552" img="detail\swamp_schilf_green_03.png" />
+  <sprite id="swamp_schilf_green_04" offsetX="-31" offsetY="12" f="6408" b7="20" ic="FF284451" img="detail\swamp_schilf_green_04.png" left="-13" right="14" />
+  <sprite id="hiding_swamp_green_01_back_reflect" offsetX="2" offsetY="36" f="641E" ic="FF284D5E" img="detail\hiding_swamp_green_01_back_reflect.png" left="-69" right="70" />
+  <sprite id="hiding_swamp_green_01_front_reflect" offsetY="-20" f="64D8" ic="FF2C5467" img="detail\hiding_swamp_green_01_front_reflect.png" left="-58" right="59" />
+  <sprite id="swamp_grass_green_06_reflect" offsetX="34" offsetY="9" f="6407" img="detail\swamp_grass_green_06_reflect.png" left="-31" right="32" />
+  <sprite id="swamp_grass_green_07_reflect" offsetY="-17" ic="FF356073" img="detail\swamp_grass_green_07_reflect.png" />
+  <sprite id="swamp_grass_green_08_reflect" offsetX="-35" offsetY="18" f="6408" ic="FF366174" img="detail\swamp_grass_green_08_reflect.png" left="-52" right="53" />
+  <sprite id="swamp_grass_green_09_reflect" offsetX="23" offsetY="17" f="640A" img="detail\swamp_grass_green_09_reflect.png" left="-35" right="36" />
+  <sprite id="swamp_grass_green_10_reflect" offsetX="-15" offsetY="10" f="6405" ic="FF36657A" img="detail\swamp_grass_green_10_reflect.png" />
+</brush>

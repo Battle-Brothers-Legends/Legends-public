@@ -13,6 +13,9 @@ var CharacterScreenPerksModule = function(_parent, _dataSource)
 
 	// container
 	this.mContainer = null;
+    this.mListContainer = null;
+    this.mListScrollContainer = null;
+	this.mHorizontalBar = null;
 
     this.mLeftColumn = null;
     this.mMiddleColumn = null;
@@ -31,10 +34,36 @@ CharacterScreenPerksModule.prototype.createDIV = function (_parentDiv)
 	// create: containers (init hidden!)
 	this.mContainer = $('<div class="perks-module opacity-none"/>');
 	_parentDiv.append(this.mContainer);
-
+	
+	this.mListContainer = $('<div class="ui-control list has-frame"/>');
+	var scrollContainer = $('<div class="scroll-container"/>');
+    this.mListContainer.append(scrollContainer);
+	this.mContainer.append(this.mListContainer);
+    this.mListContainer.aciScrollBar({
+         delta: 1.0,
+         lineDelay: 0,
+         lineTimer: 0,
+         pageDelay: 0,
+         pageTimer: 0,
+         bindKeyboard: false,
+         resizable: false,
+         smoothScroll: false,
+		 verticalBar: 'none',
+    });
+    //this.mListContainer = this.mContainer.createList(1.0/*8.85*/);
+    this.mListScrollContainer = this.mListContainer.findListScrollContainer();
+	//this.mListContainer.showListScrollbar(false);
+	this.mHorizontalBar = this.mListContainer.find('.aciSb_bar_h:first');
+/*     if (this.mHorizontalBar.length > 0)
+    {
+        console.error('foundit');
+		var _container = this.mHorizontalBar.find('.aciSb_cnt:first');
+		_container.css({ 'left' : '-30px' });
+		//horizbar.css({ 'bottom': '-30px' });
+    }  */
     // create rows
     this.mLeftColumn = $('<div class="column"/>');
-    this.mContainer.append(this.mLeftColumn);
+    this.mListScrollContainer.append(this.mLeftColumn);
 };
 
 CharacterScreenPerksModule.prototype.destroyDIV = function ()
@@ -43,6 +72,12 @@ CharacterScreenPerksModule.prototype.destroyDIV = function ()
     this.mLeftColumn.remove();
     this.mLeftColumn = null;
 
+    this.mListScrollContainer.empty();
+    this.mListScrollContainer = null;
+    this.mListContainer.destroyList();
+    this.mListContainer.remove();
+    this.mListContainer = null;
+	
     this.mContainer.empty();
     this.mContainer.remove();
     this.mContainer = null;
@@ -52,7 +87,19 @@ CharacterScreenPerksModule.prototype.destroyDIV = function ()
 CharacterScreenPerksModule.prototype.createPerkTreeDIV = function (_perkTree, _parentDiv)
 {
 	var self = this;
+	var widetree = false;
+	var lowestx = 0;
 
+	for (var row = 0; row < _perkTree.length; ++row)
+	{
+		lowestx = Math.min(lowestx, ((660 - (50.0 * _perkTree[row].length)) / 2));
+		if (_perkTree[row].length > 13)
+		{
+			widetree = true;
+		}
+	}
+	//console.error('lowestx = ' + lowestx);
+	
 	for (var row = 0; row < _perkTree.length; ++row)
 	{
 		var rowDIV = $('<div class="row"/>');
@@ -63,7 +110,7 @@ CharacterScreenPerksModule.prototype.createPerkTreeDIV = function (_perkTree, _p
 		rowDIV.append(centerDIV);
 
 		this.mPerkRows[row] = rowDIV;
-
+		
 		for (var i = 0; i < _perkTree[row].length; ++i)
 		{
 			var perk = _perkTree[row][i];
@@ -80,9 +127,21 @@ CharacterScreenPerksModule.prototype.createPerkTreeDIV = function (_perkTree, _p
 			perk.Image.attr('src', Path.GFX + perk.IconDisabled);
 			perk.Container.append(perk.Image);
 		}
-
+		
 		centerDIV.css({ 'width': (5.0 * _perkTree[row].length) + 'rem' }); // css is retarded?
-		centerDIV.css({ 'left': ((660 - centerDIV.width()) / 2) + 'px' }); // css is retarded?
+		centerDIV.css({ 'left': (((660 - centerDIV.width()) / 2) - lowestx) + 'px' }); // css is retarded?
+	}
+	if (widetree == true)
+	{
+		self.mHorizontalBar.css({ opacity : 1 });
+		//self.mHorizontalBar.css({ 'z-index' : '10' });
+	}
+	else
+	{
+		self.mHorizontalBar.css({ opacity : 0 });
+/* 		var zet = this.mListContainer.find('.aciScrollBar:first');
+		zet.css({ 'z-index' : '-10' }); */
+		//console.error('forbidden lowestx = ' + lowestx);
 	}
 };
 
@@ -91,6 +150,8 @@ CharacterScreenPerksModule.prototype.resetPerkTree = function(_perkTree)
 {
 	if (_perkTree == null)
 		return;
+	
+	this.mPerkTree = _perkTree;
 
 	for (var row = 0; row < this.mPerkRows.length; ++row)
 	{
@@ -102,6 +163,7 @@ CharacterScreenPerksModule.prototype.resetPerkTree = function(_perkTree)
 		for (var i = 0; i < _perkTree[row].length; ++i)
 		{
 			var perk = _perkTree[row][i];
+			console.error(Object.keys(perk));
 			perk.Unlocked = false;
 
 			perk.Image.attr('src', Path.GFX + perk.IconDisabled);
@@ -171,9 +233,13 @@ CharacterScreenPerksModule.prototype.setupPerkTreeTooltips = function(_perkTree,
 	}
 };
 
-CharacterScreenPerksModule.prototype.setupPerkTree = function ()
+CharacterScreenPerksModule.prototype.setupPerkTree = function (_perkTree)
 {
-    this.mLeftColumn.empty();
+	if (this.mPerkTree !== null) {
+		this.removePerksEventHandlers()
+	}
+	this.mLeftColumn.empty();
+	this.mPerkTree = _perkTree;
     this.createPerkTreeDIV(this.mPerkTree, this.mLeftColumn);
 
     this.setupPerksEventHandlers(this.mPerkTree);
@@ -185,7 +251,7 @@ CharacterScreenPerksModule.prototype.updatePerkTreeLayout = function (_inventory
 
 CharacterScreenPerksModule.prototype.loadPerkTreesWithBrotherData = function (_brother)
 {
-    this.resetPerkTree(this.mPerkTree);
+    this.setupPerkTree(_brother[CharacterScreenIdentifier.Perk.Tree]);
 
     if (CharacterScreenIdentifier.Perk.Key in _brother)
     {
@@ -200,15 +266,16 @@ CharacterScreenPerksModule.prototype.loadPerkTreesWithBrotherData = function (_b
 
 CharacterScreenPerksModule.prototype.isPerkUnlockable = function (_perk)
 {
-	var perkPoints = this.mDataSource.getBrotherPerkPoints(this.mDataSource.getSelectedBrother());
-	var perkPointsSpent = this.mDataSource.getBrotherPerkPointsSpent(this.mDataSource.getSelectedBrother());
-
-	if(perkPoints > 0 && perkPointsSpent >= _perk.Unlocks)
-	{
-		return true;
+	var _brother = this.mDataSource.getSelectedBrother();
+	var character = _brother[CharacterScreenIdentifier.Entity.Character.Key];
+	var level = character[CharacterScreenIdentifier.Entity.Character.Level];
+	var perkPoints = this.mDataSource.getBrotherPerkPoints(_brother);
+	var perkPointsSpent = this.mDataSource.getBrotherPerkPointsSpent(_brother);
+	
+	if(level >= 13 && _perk.ID === 'perk.student') {
+		return false;
 	}
-
-	return false;
+	return perkPoints > 0 && perkPointsSpent >= _perk.Unlocks;
 };
 
 CharacterScreenPerksModule.prototype.attachEventHandler = function(_perk)
@@ -264,7 +331,7 @@ CharacterScreenPerksModule.prototype.removePerksEventHandler = function (_perkTr
 
 CharacterScreenPerksModule.prototype.setupPerksEventHandlers = function(_perkTree)
 {
-	this.removePerksEventHandlers();
+	//this.removePerksEventHandlers();
 
 	for (var row = 0; row < _perkTree.length; ++row)
 	{
@@ -428,11 +495,11 @@ CharacterScreenPerksModule.prototype.onInventoryModeUpdated = function (_dataSou
 
 CharacterScreenPerksModule.prototype.onPerkTreeLoaded = function (_dataSource, _perkTree)
 {
-    if (_perkTree !== null)
-    {
-    	this.mPerkTree = _perkTree;
-        this.setupPerkTree();
-    }
+    // if (_perkTree !== null)
+    // {
+    // 	this.mPerkTree = _perkTree;
+    //     this.setupPerkTree();
+    // }
 };
 
 CharacterScreenPerksModule.prototype.onBrotherUpdated = function (_dataSource, _brother)

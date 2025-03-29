@@ -1,0 +1,432 @@
+<brush name="gfx/legend_world.png" version="17">
+	<sprite id="legend_mastaba" ic="FF3E525F" img="world_entity\location\legend_mastaba.png" />
+	<sprite id="legend_berserker_cave" ic="FF3E525F" img="world_entity\location\berserker_cave.png" />
+	<sprite id="legend_necromancer_swamp" ic="FF3E525F" img="world_entity\location\necromancer_swamp.png" />
+	<sprite id="legend_ranger_tower" ic="FF3E525F" img="world_entity\location\ranger_tower.png" />
+	<sprite id="legend_seer_tower" ic="FF3E525F" img="world_entity\location\seer_tower.png" />
+	<sprite id="legend_spider_nest" ic="5F5B51FF" img="world_entity\location\legend_spider_nest.png" />
+	<sprite id="legend_tournament" ic="FF3E525F" img="world_entity\location\legend_tournament.png" />
+	<sprite id="figure_player_berserker" offsetY="20" ic="FF334959" width="68" height="106" img="world_entity\party\figure_player_berserker.png" left="-18" right="24" top="-39" bottom="9" />
+	<sprite id="figure_player_crusader" offsetY="20" ic="FF334959" width="68" height="106" img="world_entity\party\figure_player_crusader.png" left="-18" right="24" top="-39" bottom="9" />
+	<sprite id="figure_player_ranger" offsetY="20" ic="FF334959" width="68" height="106" img="world_entity\party\figure_player_ranger.png" left="-18" right="24" top="-39" bottom="9" />
+	<sprite id="figure_player_beggar" offsetY="20" ic="FF334959" width="68" height="106" img="world_entity\party\figure_player_beggar.png" left="-18" right="24" top="-39" bottom="9" />
+	<sprite id="figure_player_legion" offsetY="20" ic="FF334959" width="68" height="106" img="world_entity\party\figure_player_legion.png" left="-18" right="24" top="-39" bottom="9" />
+	<sprite id="figure_player_noble" offsetY="20" ic="FF334959" width="68" height="106" img="world_entity\party\figure_player_noble.png" left="-18" right="24" top="-39" bottom="9" />
+	<sprite id="figure_player_seer" offsetY="20" ic="FF334959" width="68" height="106" img="world_entity\party\figure_player_seer.png" left="-18" right="24" top="-39" bottom="9" />
+	<sprite id="figure_player_warlock" offsetY="20" ic="FF334959" width="68" height="106" img="world_entity\party\figure_player_warlock.png" left="-18" right="24" top="-39" bottom="9" />
+	<sprite id="figure_player_trader" offsetY="20" ic="FF334959" width="68" height="106" img="world_entity\party\figure_player_trader.png" left="-18" right="24" top="-39" bottom="9" />
+	<sprite id="figure_player_party" offsetY="20" ic="FF334959" width="68" height="106" img="world_entity\party\figure_player_party.png" left="-18" right="24" top="-39" bottom="9" />
+	<sprite id="figure_player_vala" offsetY="20" ic="FF334959" width="68" height="106" img="world_entity\party\figure_player_vala.png" left="-18" right="24" top="-39" bottom="9" />
+	<sprite id="figure_player_assassin" offsetY="20" ic="FF334959" width="68" height="106" img="world_entity\party\figure_player_assassin.png" left="-18" right="24" top="-39" bottom="9" />
+	<sprite id="figure_player_inquisition" offsetY="20" ic="FF334959" width="68" height="106" img="world_entity\party\figure_player_inquisition.png" left="-18" right="24" top="-39" bottom="9" />
+	<sprite id="figure_player_druid" offsetY="20" ic="FF334959" width="68" height="106" img="world_entity\party\figure_player_druid.png" left="-18" right="24" top="-39" bottom="9" />
+	<sprite id="figure_player_troupe" offsetY="20" ic="FF334959" width="68" height="106" img="world_entity\party\figure_player_troupe.png" left="-18" right="24" top="-39" bottom="9" />
+	<sprite id="figure_player_slave" offsetY="20" ic="FF284E72" width="68" height="106" img="world_entity\party\figure_player_slave.png" left="-21" right="23" top="-40" bottom="18" />
+	<sprite id="figure_player_nomad" offsetY="20" ic="FF284E72" width="68" height="106" img="world_entity\party\figure_player_nomad.png" left="-21" right="23" top="-40" bottom="18" />
+	<sprite id="banner_101" offsetY="28" ic="FF625C5C" width="56" height="90" img="world_entity\banner\banner_101.png" left="-22" right="24" />
+  	<sprite id="banner_102" offsetX="-8" offsetY="22" ic="FF305436" width="56" height="90" img="world_entity\banner\banner_102.png" left="-24" right="26" top="-39" bottom="45" />
+  	<sprite id="banner_103" offsetY="28" ic="FF2C6366" img="world_entity\banner\banner_103.png" />
+  	<sprite id="banner_104" offsetX="4" offsetY="33" ic="FF2E3E58" width="56" height="90" img="world_entity\banner\banner_104.png" left="-22" right="28" top="-40" bottom="44" />
+	<sprite id="Battlesite_Bandits_Bandits" ic="FF293742" img="world_entity\location\Battlesite_Bandits_Bandits.png" />
+	<sprite id="Battlesite_Bandits_Beasts" ic="FF293742" img="world_entity\location\Battlesite_Bandits_Beasts.png" />
+	<sprite id="Battlesite_Bandits_Beasts2" ic="FF293742" img="world_entity\location\Battlesite_Bandits_Beasts2.png" />
+	<sprite id="Battlesite_Bandits_Goblins" ic="FF293742" img="world_entity\location\Battlesite_Bandits_Goblins.png" />
+	<sprite id="Battlesite_Bandits_Goblins2" ic="FF293742" img="world_entity\location\Battlesite_Bandits_Goblins2.png" />
+	<sprite id="Battlesite_Bandits_Humans" ic="FF293742" img="world_entity\location\Battlesite_Bandits_Humans.png" />
+	<sprite id="Battlesite_Bandits_Humans2" ic="FF293742" img="world_entity\location\Battlesite_Bandits_Humans2.png" />
+	<sprite id="Battlesite_Bandits_Orcs" ic="FF293742" img="world_entity\location\Battlesite_Bandits_Orcs.png" />
+	<sprite id="Battlesite_Bandits_Orcs2" ic="FF293742" img="world_entity\location\Battlesite_Bandits_Orcs2.png" />
+	<sprite id="Battlesite_Bandits_Undead" ic="FF293742" img="world_entity\location\Battlesite_Bandits_Undead.png" />
+	<sprite id="Battlesite_Bandits_Undead2" ic="FF293742" img="world_entity\location\Battlesite_Bandits_Undead2.png" />
+	<sprite id="Battlesite_Beasts_Beasts" ic="FF293742" img="world_entity\location\Battlesite_Beasts_Beasts.png" />
+	<sprite id="Battlesite_Beasts_Goblins" ic="FF293742" img="world_entity\location\Battlesite_Beasts_Goblins.png" />
+	<sprite id="Battlesite_Beasts_Goblins2" ic="FF293742" img="world_entity\location\Battlesite_Beasts_Goblins2.png" />
+	<sprite id="Battlesite_Beasts_Humans" ic="FF293742" img="world_entity\location\Battlesite_Beasts_Humans.png" />
+	<sprite id="Battlesite_Beasts_Humans2" ic="FF293742" img="world_entity\location\Battlesite_Beasts_Humans2.png" />
+	<sprite id="Battlesite_Beasts_Orcs" ic="FF293742" img="world_entity\location\Battlesite_Beasts_Orcs2.png" />
+	<sprite id="Battlesite_Goblins_Goblins" ic="FF293742" img="world_entity\location\Battlesite_Goblins_Goblins.png" />
+	<sprite id="Battlesite_Goblins_Humans" ic="FF293742" img="world_entity\location\Battlesite_Goblins_Humans.png" />
+	<sprite id="Battlesite_Goblins_Humans2" ic="FF293742" img="world_entity\location\Battlesite_Goblins_Humans2.png" />
+	<sprite id="Battlesite_Goblins_Orcs" ic="FF293742" img="world_entity\location\Battlesite_Goblins_Orcs.png" />
+	<sprite id="Battlesite_Goblins_Orcs2" ic="FF293742" img="world_entity\location\Battlesite_Goblins_Orcs2.png" />
+	<sprite id="Battlesite_Humans_Humans" ic="FF293742" img="world_entity\location\Battlesite_Humans_Humans.png" />
+	<sprite id="Battlesite_Humans_Orcs" ic="FF293742" img="world_entity\location\Battlesite_Humans_Orcs.png" />
+	<sprite id="Battlesite_Humans_Orcs2" ic="FF293742" img="world_entity\location\Battlesite_Humans_Orcs2.png" />
+	<sprite id="Battlesite_Orcs_Orcs" ic="FF293742" img="world_entity\location\Battlesite_Orcs_Orcs.png" />
+	<sprite id="Battlesite_Undead_Beasts" ic="FF293742" img="world_entity\location\Battlesite_Undead_Beasts.png" />
+	<sprite id="Battlesite_Undead_Beasts2" ic="FF293742" img="world_entity\location\Battlesite_Undead_Beasts2.png" />
+	<sprite id="Battlesite_Undead_Goblins" ic="FF293742" img="world_entity\location\Battlesite_Undead_Goblins.png" />
+	<sprite id="Battlesite_Undead_Goblins2" ic="FF293742" img="world_entity\location\Battlesite_Undead_Goblins2.png" />
+	<sprite id="Battlesite_Undead_Humans" ic="FF293742" img="world_entity\location\Battlesite_Undead_Humans.png" />
+	<sprite id="Battlesite_Undead_Humans2" ic="FF293742" img="world_entity\location\Battlesite_Undead_Humans2.png" />
+	<sprite id="Battlesite_Undead_Orcs" ic="FF293742" img="world_entity\location\Battlesite_Undead_Orcs.png" />
+	<sprite id="Battlesite_Undead_Orcs2" ic="FF293742" img="world_entity\location\Battlesite_Undead_Orcs2.png" />
+	<sprite id="Battlesite_Undead_Undead" ic="FF293742" img="world_entity\location\Battlesite_Undead_Undead.png" />
+		<sprite id="figure_mummy_01" offsetY="20" ic="FF7687A4" width="68" height="106" img="world_entity\party\figure_mummy_01.png" left="-21" right="25" top="-43" bottom="5" />
+	<sprite id="figure_demonalp_01" offsetY="20" ic="FF7687A4" width="68" height="106" img="world_entity\party\figure_demonalp_01.png" left="-21" right="25" top="-43" bottom="5" />
+	<sprite id="figure_hexe_leader_01" offsetY="20" ic="FF384556" width="68" height="106" img="world_entity\party\figure_hexe_leader_01.png" left="-18" right="22" top="-40" bottom="4" />
+	<sprite id="figure_rock_unhold_01" offsetY="20" ic="FF13384A" width="68" height="106" img="world_entity\party\figure_rock_unhold_01.png" left="-28" right="30" top="-50" bottom="12" />
+	<sprite id="figure_redback_spider_01" offsetY="20" ic="FF222E38" width="68" height="106" img="world_entity\party\figure_redback_spider_01.png" left="-22" right="26" top="-43" bottom="1" />
+	<sprite id="figure_hexe_leader_01" offsetY="20" ic="FF384556" width="68" height="106" img="world_entity\party\figure_hexe_leader_01.png" left="-18" right="22" top="-40" bottom="4" />
+	<sprite id="figure_greenwood_schrat_01" offsetY="20" ic="FF213A56" width="68" height="106" img="world_entity\party\figure_greenwood_schrat_01.png" top="-43" bottom="23" />
+	<sprite id="figure_stollwurm_01" offsetY="20" ic="FF295956" width="68" height="106" img="world_entity\party\figure_stollwurm_01.png" left="-24" right="22" top="-43" bottom="21" />
+	<sprite id="figure_white_direwolf_01" offsetY="20" ic="FF232832" width="68" height="106" img="world_entity\party\figure_white_direwolf_01.png" left="-22" right="26" top="-46" bottom="0" />
+	<sprite id="figure_skin_ghoul_01" offsetY="20" ic="FF33383C" width="68" height="106" img="world_entity\party\figure_skin_ghoul_01.png" left="-17" right="21" top="-41" bottom="1" />
+	<sprite id="figure_skin_ghoul_02" offsetY="20" ic="FF33383C" width="68" height="106" img="world_entity\party\figure_skin_ghoul_02.png" left="-17" right="21" top="-41" bottom="1" />
+	<sprite id="figure_kobold_01" offsetY="20" ic="FF33383C" width="68" height="106" img="world_entity\party\figure_kobold_01.png" left="-18" right="22" top="-40" bottom="4" />
+	<sprite id="figure_basilisk_01" offsetY="20" ic="FF295956" width="68" height="106" img="world_entity\party\figure_basilisk_01.png" left="-24" right="22" top="-43" bottom="21" />
+
+	<sprite id="legend_world_amber_collector_01_upgrade" ic="FF556A6F" width="239" height="145" img="world_settlement\amber_collector_01_upgrade.png" left="-118" right="116" top="-73" bottom="63" />
+	<sprite id="legend_world_bee_keeper_01_upgrade" ic="FF324B54" width="214" height="125" img="world_settlement\bee_keeper_01_upgrade.png" left="-107" right="85" />
+	<sprite id="legend_world_blast_furnace_01_upgrade" ic="FF28383E" img="world_settlement\blast_furnace_01_upgrade.png" left="-96" right="97" />
+	<sprite id="legend_world_brewery_01_upgrade" ic="FF2A3B44" width="251" height="159" img="world_settlement\brewery_01_upgrade.png" left="-125" right="126" top="-80" bottom="78" />
+	<sprite id="legend_world_copper_vein_01_upgrade" ic="FF283A45" width="220" height="142" img="world_settlement\copper_vein_01_upgrade.png" top="-59" bottom="69" />
+	<sprite id="legend_world_dye_maker_01_upgrade" ic="FF2F4851" width="212" height="131" img="world_settlement\dye_maker_01_upgrade.png" left="-104" right="106" />
+	<sprite id="legend_world_fishing_huts_01_upgrade" ic="FF314953" width="242" height="155" img="world_settlement\fishing_huts_01_upgrade.png" left="-121" right="109" />
+	<sprite id="legend_world_fletchers_hut_01_upgrade" ic="FF324A54" width="196" height="149" img="world_settlement\fletchers_hut_01_upgrade.png" left="-98" right="88" />
+	<sprite id="legend_world_fortified_outpost_01_upgrade" ic="FF283944" img="world_settlement\fortified_outpost_01_upgrade.png" left="-122" right="123" />
+	<sprite id="legend_world_gatherers_hut_01_upgrade" ic="FF24353E" width="215" height="142" img="world_settlement\gatherers_hut_01_upgrade.png" left="-106" right="108" />
+	<sprite id="legend_world_gem_mine_01_upgrade" ic="FF2B373C" width="267" height="146" img="world_settlement\gem_mine_01_upgrade.png" left="-133" right="134" top="-73" bottom="67" />
+	<sprite id="legend_world_goat_herd_01_upgrade" ic="FF28363B" img="world_settlement\goat_herd_01_upgrade.png" left="-130" right="131" />
+	<sprite id="legend_world_gold_mine_01_upgrade" ic="FF293840" width="249" height="152" img="world_settlement\gold_mine_01_upgrade.png" left="-124" right="125" top="-76" bottom="64" />
+	<sprite id="legend_world_herbalists_grove_01_upgrade" ic="FF304B4E" width="220" height="168" img="world_settlement\herbalists_grove_01_upgrade.png" left="-104" right="110" top="-75" bottom="81" />
+	<sprite id="legend_world_hunter_01_upgrade" ic="FF203039" width="254" height="164" img="world_settlement\hunter_01_upgrade.png" left="-127" right="107" top="-64" bottom="76" />
+	<sprite id="legend_world_iron_mine_01_upgrade" ic="FF243341" img="world_settlement\iron_mine_01_upgrade.png" />
+	<sprite id="legend_world_leather_tanner_01_upgrade" ic="FF23333E" width="256" height="150" img="world_settlement\leather_tanner_01_upgrade.png" left="-104" right="112" top="-76" bottom="73" />
+	<sprite id="legend_world_lumber_camp_01_upgrade" ic="FF283B42" img="world_settlement\lumber_camp_01_upgrade.png" />
+	<sprite id="legend_world_militia_trainingcamp_01_upgrade" ic="FF3A505C" img="world_settlement\militia_trainingcamp_01_upgrade.png" />
+	<sprite id="legend_world_mushroom_grove_01_upgrade" ic="FF37474B" img="world_settlement\mushroom_grove_01_upgrade.png" left="-97" right="98" />
+	<sprite id="legend_world_orchard_01_upgrade" ic="FF264142" width="221" height="167" img="world_settlement\orchard_01_upgrade.png" left="-110" right="111" />
+	<sprite id="legend_world_ore_smelters_01_upgrade" ic="FF28373C" img="world_settlement\ore_smelters_01_upgrade.png" left="-107" right="108" />
+	<sprite id="legend_world_peat_pit_01_upgrade" ic="FF23343A" width="236" height="167" img="world_settlement\peat_pit_01_upgrade.png" top="-84" bottom="82" />
+	<sprite id="legend_world_pig_farm_01_upgrade" ic="FF324A54" width="254" height="178" img="world_settlement\pig_farm_01_upgrade.png" left="-118" right="88" />
+	<sprite id="legend_world_salt_mine_01_upgrade" ic="FF394750" width="239" height="148" img="world_settlement\salt_mine_01_upgrade.png" left="-119" right="120" top="-74" bottom="64" />
+	<sprite id="legend_world_stone_watchtower_01_upgrade" ic="FF233036" width="260" height="188" img="world_settlement\stone_watchtower_01_upgrade.png" left="-111" right="107" top="-84" bottom="94" />
+	<sprite id="legend_world_trapper_01_upgrade" ic="FF203039" width="216" height="142" img="world_settlement\trapper_01_upgrade.png" left="-106" right="102" top="-65" bottom="71" />
+	<sprite id="legend_world_wheat_farm_01_upgrade" ic="FF314B58" img="world_settlement\wheat_farm_01_upgrade.png" />
+	<sprite id="legend_world_winery_01_upgrade" ic="FF263D3D" img="world_settlement\winery_01_upgrade.png" />
+	<sprite id="legend_world_wooden_watchtower_01_upgrade" ic="FF212E36" width="203" height="176" img="world_settlement\wooden_watchtower_01_upgrade.png" left="-100" right="92" top="-77" bottom="85" />
+	<sprite id="legend_world_wool_spinner_01_upgrade" ic="FF324A54" width="240" height="150" img="world_settlement\wool_spinner_01_upgrade.png" left="-101" right="85" />
+	<sprite id="legend_world_workshop_01_upgrade" ic="FF28373D" img="world_settlement\workshop_01_upgrade.png" />
+	<sprite id="legend_world_houses_01_01_upgrade" offsetY="-4" ic="FF2C434C" width="292" height="183" img="world_settlement\houses_01_01_upgrade.png" left="-146" right="138" />
+	<sprite id="legend_world_houses_01_02_upgrade" offsetY="-4" ic="FF2B414A" img="world_settlement\houses_01_02_upgrade.png" />
+	<sprite id="legend_world_houses_02_01_upgrade" offsetY="-4" ic="FF344C56" width="260" height="167" img="world_settlement\houses_02_01_upgrade.png" left="-128" right="131" />
+	<sprite id="legend_world_houses_02_02_upgrade" offsetY="-4" ic="FF395460" width="275" height="168" img="world_settlement\houses_02_02_upgrade.png" left="-136" right="138" />
+	<sprite id="legend_world_houses_03_01_upgrade" offsetY="-4" ic="FF2D3C4A" width="282" height="180" img="world_settlement\houses_03_01_upgrade.png" top="-90" bottom="74" />
+	<sprite id="legend_world_houses_03_02_upgrade" offsetY="-4" ic="FF2F3F4E" width="249" height="176" img="world_settlement\houses_03_02_upgrade.png" left="-124" right="125" top="-88" bottom="78" />
+	<sprite id="legend_world_stronghold_02_upgrade" offsetY="15" ic="FF353E41" width="255" height="224" img="world_settlement\stronghold_02_upgrade.png" left="-127" right="128" top="-106" bottom="112" />
+	<sprite id="legend_world_stronghold_03_upgrade" offsetY="15" ic="FF313A3F" img="world_settlement\stronghold_03_upgrade.png" />
+	<sprite id="legend_world_townhall_01_upgrade" offsetY="5" ic="FF35505D" img="world_settlement\townhall_01_upgrade.png" />
+	<sprite id="legend_world_townhall_02_upgrade" offsetY="5" ic="FF2E4350" width="241" height="208" img="world_settlement\townhall_02_upgrade.png" left="-111" right="121" top="-100" bottom="104" />
+	<sprite id="legend_world_townhall_03_upgrade" offsetY="5" ic="FF2C3946" width="294" height="249" img="world_settlement\townhall_03_upgrade.png" left="-133" right="147" top="-114" bottom="112" />
+	<sprite id="legend_world_stronghold_01_upgrade" offsetY="10" ic="FF2C363B" img="world_settlement\stronghold_01_upgrade.png" />
+	<sprite id="legend_world_harbor_s_upgrade" offsetY="-15" ic="FF21313E" width="193" height="121" img="world_settlement\harbor_n_upgrade.png" left="-96" right="97" top="-61" bottom="55" />
+	<sprite id="legend_world_harbor_sw_upgrade" offsetX="15" offsetY="5" ic="FF23333F" width="201" height="137" img="world_settlement\harbor_ne_upgrade.png" left="-100" right="101" top="-69" bottom="55" />
+	<sprite id="legend_world_harbor_se_upgrade" offsetX="-10" offsetY="5" ic="FF22323E" width="199" height="133" img="world_settlement\harbor_nw_upgrade.png" left="-99" right="100" top="-67" bottom="61" />
+	<sprite id="legend_world_harbor_n_upgrade" offsetY="-19" ic="FF233442" width="198" height="126" img="world_settlement\harbor_s_upgrade.png" left="-99" right="93" />
+	<sprite id="legend_world_harbor_nw_upgrade" offsetX="15" offsetY="-10" ic="FF23333F" width="194" height="139" img="world_settlement\harbor_se_upgrade.png" top="-70" bottom="68" />
+	<sprite id="legend_world_harbor_ne_upgrade" offsetX="-5" offsetY="-9" ic="FF23333F" width="202" height="149" img="world_settlement\harbor_sw_upgrade.png" />
+
+	<sprite id="legend_world_city_01_upgrade" offsetY="15" b7="0" ic="FF345569" img="world_settlement\city_01.png" />
+	<sprite id="legend_world_houses_04_01_upgrade" offsetY="-4" b7="0" ic="FF3F6379" width="278" height="181" img="world_settlement\houses_04_01.png" left="-135" right="137" top="-91" bottom="75" />
+	<sprite id="legend_world_houses_04_02_upgrade" offsetY="-4" b7="0" ic="FF3C6178" img="world_settlement\houses_04_02.png" left="-123" right="124" />
+	<sprite id="legend_world_incense_01_upgrade" ic="FF2D5766" img="world_settlement\incense_01_upgrade.png" />
+	<sprite id="legend_world_silk_01_upgrade" ic="FF415F6D" width="228" height="156" img="world_settlement\silk_01_upgrade.png" left="-106" right="114" top="-78" bottom="74" />
+	<sprite id="legend_world_spice_01_upgrade" ic="FF2F5867" img="world_settlement\spice_01_upgrade.png" left="-125" right="126" />
+	<sprite id="legend_world_houses_04_01_light_upgrade" offsetY="-4" b7="0" ic="FF67D3EB" width="278" height="181" img="world_settlement\houses_04_01_light.png" left="-89" right="99" top="-59" bottom="61" />
+	<sprite id="legend_world_houses_04_02_light_upgrade" offsetY="-4" b7="0" ic="FF5EC0DC" width="247" height="172" img="world_settlement\houses_04_02_light.png" left="-114" right="104" top="-53" bottom="59" />
+	<sprite id="legend_world_city_01_light_upgrade" offsetY="15" b7="0" ic="FF69CBD5" width="302" height="247" img="world_settlement\city_01_light.png" left="-101" right="117" top="-97" bottom="109" />
+	<sprite id="legend_world_southern_dye_upgrade" ic="FF35526A" width="244" height="172" img="world_settlement\southern_dye_upgrade.png" left="-94" right="122" top="-78" bottom="86" />
+	<sprite id="legend_world_southern_fishing_huts_upgrade" ic="FF324F60" img="world_settlement\southern_fishing_huts_upgrade.png" />
+	<sprite id="legend_world_southern_goat_upgrade" ic="FF324F63" img="world_settlement\southern_goat_upgrade.png" left="-127" right="128" />
+	<sprite id="legend_world_southern_militia_upgrade" ic="FF2E4C66" img="world_settlement\southern_militia_upgrade.png" left="-110" right="111" />
+	<sprite id="legend_world_southern_watchtower_upgrade" ic="FF2C4D62" img="world_settlement\southern_watchtower_upgrade.png" left="-108" right="109" />
+	<sprite id="legend_world_southern_watchtower_lights_upgrade" ic="FF52C5E3" width="217" height="178" img="world_settlement\southern_watchtower_lights_upgrade.png" left="-103" right="61" top="-48" bottom="60" />
+
+	<sprite id="legend_world_bee_keeper_01" ic="FF2D4752" width="214" height="125" img="world_settlement\bee_keeper_01.png" left="-103" right="99" top="-56" bottom="60" />
+	<sprite id="legend_world_copper_vein_01" ic="FF293B46" width="220" height="142" img="world_settlement\copper_vein_01.png" top="-59" bottom="69" />
+	<sprite id="legend_world_goat_herd_01" ic="FF35414A" width="261" height="153" img="world_settlement\goat_herd_01.png" left="-125" right="131" top="-74" bottom="72" />
+	<sprite id="legend_world_houses_01_01" offsetY="-4" b7="0" ic="FF334E58" img="world_settlement\houses_01_01.png" />
+	<sprite id="legend_world_houses_01_02" offsetY="-4" b7="0" ic="FF2C424C" img="world_settlement\houses_01_02.png" />
+	<sprite id="legend_world_houses_02_01" offsetY="-4" b7="0" ic="FF344C56" img="world_settlement\houses_02_01.png" />
+	<sprite id="legend_world_houses_02_02" offsetY="-4" b7="0" ic="FF38545F" img="world_settlement\houses_02_02.png" left="-137" right="138" />
+	<sprite id="legend_world_houses_03_01" offsetY="-4" b7="0" ic="FF334454" img="world_settlement\houses_03_01.png" />
+	<sprite id="legend_world_houses_03_02" offsetY="-4" b7="0" ic="FF354759" width="249" height="176" img="world_settlement\houses_03_02.png" left="-124" right="125" top="-88" bottom="78" />
+	<sprite id="legend_world_hunter_01" ic="FF263746" width="254" height="164" img="world_settlement\hunter_01.png" left="-112" right="114" top="-74" bottom="82" />
+	<sprite id="legend_world_mushroom_grove_01" ic="FF425256" img="world_settlement\mushroom_grove_01.png" left="-97" right="98" />
+	<sprite id="legend_world_orchard_01" ic="FF2B4A49" width="221" height="167" img="world_settlement\orchard_01.png" left="-110" right="111" />
+	<sprite id="legend_world_peat_pit_01" ic="FF25373D" img="world_settlement\peat_pit_01.png" />
+	<sprite id="legend_world_pig_farm_01" ic="FF3B5867" width="254" height="178" img="world_settlement\pig_farm_01.png" left="-113" right="127" />
+	<sprite id="legend_world_stronghold_01" offsetY="10" ic="FF313B3F" img="world_settlement\stronghold_01.png" />
+	<sprite id="legend_world_stronghold_02" offsetY="15" ic="FF374145" width="255" height="224" img="world_settlement\stronghold_02.png" left="-127" right="128" top="-106" bottom="112" />
+	<sprite id="legend_world_stronghold_03" offsetY="15" ic="FF353F46" width="294" height="246" img="world_settlement\stronghold_03.png" top="-121" bottom="123" />
+	<sprite id="legend_world_townhall_01" offsetY="5" ic="FF3B5967" img="world_settlement\townhall_01.png" />
+	<sprite id="legend_world_townhall_02" offsetY="5" ic="FF354E5C" width="241" height="208" img="world_settlement\townhall_02.png" left="-120" right="121" top="-100" bottom="104" />
+	<sprite id="legend_world_townhall_03" offsetY="5" ic="FF313E4F" width="294" height="249" img="world_settlement\townhall_03.png" left="-133" right="147" top="-114" bottom="112" />
+	<sprite id="legend_world_wheat_farm_01" offsetY="-4" ic="FF3F667C" img="world_settlement\wheat_farm_01.png" />
+	<sprite id="legend_world_brewery_01" ic="FF2D424E" img="world_settlement\brewery_01.png" left="-125" right="126" />
+	<sprite id="legend_world_dye_maker_01" ic="FF2C4457" width="212" height="131" img="world_settlement\dye_maker_01.png" left="-102" right="106" top="-66" bottom="62" />
+	<sprite id="legend_world_fishing_huts_01" offsetY="-4" ic="FF304955" width="242" height="155" img="world_settlement\fishing_huts_01.png" left="-121" right="109" top="-64" bottom="76" />
+	<sprite id="legend_world_gem_mine_01" ic="FF2D3A41" width="267" height="146" img="world_settlement\gem_mine_01.png" left="-133" right="134" top="-73" bottom="67" />
+	<sprite id="legend_world_gold_mine_01" ic="FF2F3D47" width="249" height="152" img="world_settlement\gold_mine_01.png" left="-124" right="125" top="-76" bottom="64" />
+	<sprite id="legend_world_lumber_camp_01" ic="FF314851" width="254" height="136" img="world_settlement\lumber_camp_01.png" top="-68" bottom="62" />
+	<sprite id="legend_world_winery_01" ic="FF2C4A46" img="world_settlement\winery_01.png" />
+	<sprite id="legend_world_wool_spinner_01" ic="FF3A5761" width="240" height="150" img="world_settlement\wool_spinner_01.png" top="-61" bottom="71" />
+	<sprite id="legend_world_amber_collector_01" ic="FF556A70" width="239" height="145" img="world_settlement\amber_collector_01.png" left="-118" right="116" top="-73" bottom="63" />
+	<sprite id="legend_world_blast_furnace_01" ic="FF2B363F" width="193" height="150" img="world_settlement\blast_furnace_01.png" left="-95" right="93" top="-69" bottom="75" />
+	<sprite id="legend_world_fletchers_hut_01" ic="FF3B5761" width="196" height="149" img="world_settlement\fletchers_hut_01.png" left="-98" right="92" />
+	<sprite id="legend_world_herbalists_grove_01" ic="FF325053" width="220" height="168" img="world_settlement\herbalists_grove_01.png" left="-104" right="110" top="-75" bottom="81" />
+	<sprite id="legend_world_iron_mine_01" ic="FF27374D" img="world_settlement\iron_mine_01.png" />
+	<sprite id="legend_world_ore_smelters_01" ic="FF33444E" img="world_settlement\ore_smelters_01.png" left="-107" right="108" />
+	<sprite id="legend_world_salt_mine_01" ic="FF47565E" width="239" height="148" img="world_settlement\salt_mine_01.png" left="-119" right="120" top="-74" bottom="64" />
+	<sprite id="legend_world_stone_watchtower_01" ic="FF293742" width="260" height="188" img="world_settlement\stone_watchtower_01.png" left="-111" right="107" top="-84" bottom="94" />
+	<sprite id="legend_world_trapper_01" ic="FF293A47" width="216" height="142" img="world_settlement\trapper_01.png" left="-106" right="108" />
+	<sprite id="legend_world_wooden_watchtower_01" ic="FF23343F" width="203" height="176" img="world_settlement\wooden_watchtower_01.png" left="-100" right="92" top="-77" bottom="85" />
+	<sprite id="legend_world_workshop_01" ic="FF26353F" width="226" height="140" img="world_settlement\workshop_01.png" left="-107" right="113" />
+	<sprite id="legend_world_gatherers_hut_01" ic="FF2B3F4A" width="215" height="142" img="world_settlement\gatherers_hut_01.png" left="-106" right="108" />
+	<sprite id="legend_world_fortified_outpost_01" ic="FF344957" width="245" height="190" img="world_settlement\fortified_outpost_01.png" />
+	<sprite id="legend_world_leather_tanner_01" ic="FF243542" width="256" height="150" img="world_settlement\leather_tanner_01.png" left="-101" right="115" />
+	<sprite id="legend_world_militia_trainingcamp_01" ic="FF46606E" img="world_settlement\militia_trainingcamp_01.png" />
+	<sprite id="legend_world_harbor_s" offsetY="-15" ic="FF233441" img="world_settlement\harbor_n.png" left="-96" right="97" />
+	<sprite id="legend_world_harbor_sw" offsetX="15" offsetY="5" ic="FF253643" img="world_settlement\harbor_ne.png" left="-100" right="101" />
+	<sprite id="legend_world_harbor_se" offsetX="-10" offsetY="5" ic="FF253643" img="world_settlement\harbor_nw.png" left="-99" right="100" />
+	<sprite id="legend_world_harbor_n" offsetY="-20" ic="FF253745" img="world_settlement\harbor_s.png" />
+	<sprite id="legend_world_harbor_nw" offsetX="15" offsetY="-10" ic="FF243643" width="194" height="139" img="world_settlement\harbor_se.png" top="-70" bottom="68" />
+	<sprite id="legend_world_harbor_ne" offsetX="-5" offsetY="-10" ic="FF243642" img="world_settlement\harbor_sw.png" />
+	<sprite id="legend_world_ship_01" ic="FF2E404E" img="world_settlement\ship_01.png" />
+	<sprite id="legend_world_ship_02" ic="FF324553" img="world_settlement\ship_02.png" />
+	<sprite id="legend_world_wheat_field_01" ic="FF4D88A7" img="world_settlement\wheat_field_01.png" />
+	<sprite id="legend_world_wheat_field_02" ic="FF4D88A7" width="148" height="90" img="world_settlement\wheat_field_02.png" top="-39" bottom="45" />
+	<sprite id="legend_world_orchard_detail_01" ic="FF2E544F" img="world_settlement\orchard_detail_01.png" left="-32" right="33" />
+	<sprite id="legend_world_orchard_detail_02" ic="FF2D514D" img="world_settlement\orchard_detail_02.png" />
+	<sprite id="legend_world_brewery_detail_01" ic="FF2B5545" img="world_settlement\brewery_detail_01.png" left="-93" right="94" />
+	<sprite id="legend_world_brewery_detail_02" ic="FF2B5445" img="world_settlement\brewery_detail_02.png" />
+	<sprite id="legend_world_winery_detail_01" ic="FF2A5443" width="128" height="111" img="world_settlement\winery_detail_01.png" left="-62" right="64" />
+	<sprite id="legend_world_winery_detail_02" ic="FF295240" width="112" height="89" img="world_settlement\winery_detail_02.png" top="-45" bottom="41" />
+	<sprite id="legend_world_amber_collector_01_ruins" ic="FF556A6F" width="239" height="145" img="world_settlement\amber_collector_01_ruins.png" left="-118" right="116" top="-73" bottom="63" />
+	<sprite id="legend_world_bee_keeper_01_ruins" ic="FF324B54" width="214" height="125" img="world_settlement\bee_keeper_01_ruins.png" left="-107" right="85" />
+	<sprite id="legend_world_blast_furnace_01_ruins" ic="FF28383E" img="world_settlement\blast_furnace_01_ruins.png" left="-96" right="97" />
+	<sprite id="legend_world_brewery_01_ruins" ic="FF2A3B44" width="251" height="159" img="world_settlement\brewery_01_ruins.png" left="-125" right="126" top="-80" bottom="78" />
+	<sprite id="legend_world_copper_vein_01_ruins" ic="FF283A45" width="220" height="142" img="world_settlement\copper_vein_01_ruins.png" top="-59" bottom="69" />
+	<sprite id="legend_world_dye_maker_01_ruins" ic="FF2F4851" width="212" height="131" img="world_settlement\dye_maker_01_ruins.png" left="-104" right="106" />
+	<sprite id="legend_world_fishing_huts_01_ruins" ic="FF314953" width="242" height="155" img="world_settlement\fishing_huts_01_ruins.png" left="-121" right="109" />
+	<sprite id="legend_world_fletchers_hut_01_ruins" ic="FF324A54" width="196" height="149" img="world_settlement\fletchers_hut_01_ruins.png" left="-98" right="88" />
+	<sprite id="legend_world_fortified_outpost_01_ruins" ic="FF283944" img="world_settlement\fortified_outpost_01_ruins.png" left="-122" right="123" />
+	<sprite id="legend_world_gatherers_hut_01_ruins" ic="FF24353E" width="215" height="142" img="world_settlement\gatherers_hut_01_ruins.png" left="-106" right="108" />
+	<sprite id="legend_world_gem_mine_01_ruins" ic="FF2B373C" width="267" height="146" img="world_settlement\gem_mine_01_ruins.png" left="-133" right="134" top="-73" bottom="67" />
+	<sprite id="legend_world_goat_herd_01_ruins" ic="FF28363B" img="world_settlement\goat_herd_01_ruins.png" left="-130" right="131" />
+	<sprite id="legend_world_gold_mine_01_ruins" ic="FF293840" width="249" height="152" img="world_settlement\gold_mine_01_ruins.png" left="-124" right="125" top="-76" bottom="64" />
+	<sprite id="legend_world_herbalists_grove_01_ruins" ic="FF304B4E" width="220" height="168" img="world_settlement\herbalists_grove_01_ruins.png" left="-104" right="110" top="-75" bottom="81" />
+	<sprite id="legend_world_hunter_01_ruins" ic="FF203039" width="254" height="164" img="world_settlement\hunter_01_ruins.png" left="-127" right="107" top="-64" bottom="76" />
+	<sprite id="legend_world_iron_mine_01_ruins" ic="FF243341" img="world_settlement\iron_mine_01_ruins.png" />
+	<sprite id="legend_world_leather_tanner_01_ruins" ic="FF23333E" width="256" height="150" img="world_settlement\leather_tanner_01_ruins.png" left="-104" right="112" top="-76" bottom="73" />
+	<sprite id="legend_world_lumber_camp_01_ruins" ic="FF283B42" img="world_settlement\lumber_camp_01_ruins.png" />
+	<sprite id="legend_world_militia_trainingcamp_01_ruins" ic="FF3A505C" img="world_settlement\militia_trainingcamp_01_ruins.png" />
+	<sprite id="legend_world_mushroom_grove_01_ruins" ic="FF37474B" img="world_settlement\mushroom_grove_01_ruins.png" left="-97" right="98" />
+	<sprite id="legend_world_orchard_01_ruins" ic="FF264142" width="221" height="167" img="world_settlement\orchard_01_ruins.png" left="-110" right="111" />
+	<sprite id="legend_world_ore_smelters_01_ruins" ic="FF28373C" img="world_settlement\ore_smelters_01_ruins.png" left="-107" right="108" />
+	<sprite id="legend_world_peat_pit_01_ruins" ic="FF23343A" width="236" height="167" img="world_settlement\peat_pit_01_ruins.png" top="-84" bottom="82" />
+	<sprite id="legend_world_pig_farm_01_ruins" ic="FF324A54" width="254" height="178" img="world_settlement\pig_farm_01_ruins.png" left="-118" right="88" />
+	<sprite id="legend_world_salt_mine_01_ruins" ic="FF394750" width="239" height="148" img="world_settlement\salt_mine_01_ruins.png" left="-119" right="120" top="-74" bottom="64" />
+	<sprite id="legend_world_stone_watchtower_01_ruins" ic="FF233036" width="260" height="188" img="world_settlement\stone_watchtower_01_ruins.png" left="-111" right="107" top="-84" bottom="94" />
+	<sprite id="legend_world_trapper_01_ruins" ic="FF203039" width="216" height="142" img="world_settlement\trapper_01_ruins.png" left="-106" right="102" top="-65" bottom="71" />
+	<sprite id="legend_world_wheat_farm_01_ruins" ic="FF314B58" img="world_settlement\wheat_farm_01_ruins.png" />
+	<sprite id="legend_world_winery_01_ruins" ic="FF263D3D" img="world_settlement\winery_01_ruins.png" />
+	<sprite id="legend_world_wooden_watchtower_01_ruins" ic="FF212E36" width="203" height="176" img="world_settlement\wooden_watchtower_01_ruins.png" left="-100" right="92" top="-77" bottom="85" />
+	<sprite id="legend_world_wool_spinner_01_ruins" ic="FF324A54" width="240" height="150" img="world_settlement\wool_spinner_01_ruins.png" left="-101" right="85" />
+	<sprite id="legend_world_workshop_01_ruins" ic="FF28373D" img="world_settlement\workshop_01_ruins.png" />
+	<sprite id="legend_world_stone_watchtower_01_light" ic="FF55CBE6" width="260" height="188" img="world_settlement\stone_watchtower_01_light.png" left="-107" right="57" top="-43" bottom="71" />
+	<sprite id="legend_world_wooden_watchtower_01_light" ic="FF5FC6F0" width="203" height="176" img="world_settlement\wooden_watchtower_01_light.png" left="-37" right="31" top="-20" bottom="52" />
+	<sprite id="legend_world_stronghold_01_light" offsetY="10" ic="FF6AF7EE" width="252" height="199" img="world_settlement\stronghold_01_light.png" left="-104" right="112" top="-60" bottom="84" />
+	<sprite id="legend_world_stronghold_02_light" offsetY="15" ic="FF61D3EF" width="255" height="224" img="world_settlement\stronghold_02_light.png" left="-123" right="121" top="-91" bottom="105" />
+	<sprite id="legend_world_stronghold_03_light" offsetY="15" ic="FF2E4B61" width="294" height="246" img="world_settlement\stronghold_03_light.png" top="-92" bottom="86" />
+	<sprite id="legend_world_townhall_01_light" offsetY="5" ic="FF67DCEA" width="244" height="171" img="world_settlement\townhall_01_light.png" left="-91" right="105" top="-63" bottom="53" />
+	<sprite id="legend_world_townhall_02_light" offsetY="5" ic="FF5BD2EE" width="241" height="208" img="world_settlement\townhall_02_light.png" left="-105" right="109" top="-54" bottom="52" />
+	<sprite id="legend_world_townhall_03_light" offsetY="5" ic="FF54C6E3" width="294" height="249" img="world_settlement\townhall_03_light.png" left="-110" right="144" top="-108" bottom="60" />
+	<sprite id="legend_world_houses_01_01_light" offsetY="-4" b7="0" ic="FF86CFE4" width="292" height="183" img="world_settlement\houses_01_01_light.png" left="-108" right="118" top="-72" bottom="46" />
+	<sprite id="legend_world_houses_01_02_light" offsetY="-4" b7="0" ic="FF5FBED9" width="234" height="170" img="world_settlement\houses_01_02_light.png" left="-83" right="101" top="-81" bottom="59" />
+	<sprite id="legend_world_houses_02_01_light" offsetY="-4" b7="0" ic="FF5EE1EA" width="260" height="167" img="world_settlement\houses_02_01_light.png" left="-112" right="102" top="-60" bottom="58" />
+	<sprite id="legend_world_houses_02_02_light" offsetY="-4" b7="0" ic="FF6BD8E9" width="275" height="168" img="world_settlement\houses_02_02_light.png" left="-102" right="90" top="-72" bottom="78" />
+	<sprite id="legend_world_houses_03_01_light" offsetY="-4" b7="0" ic="FF51F3F7" width="282" height="180" img="world_settlement\houses_03_01_light.png" left="-95" right="105" top="-64" bottom="54" />
+	<sprite id="legend_world_houses_03_02_light" offsetY="-4" b7="0" ic="FF63FCFF" width="249" height="176" img="world_settlement\houses_03_02_light.png" left="-123" right="115" />
+	<sprite id="legend_world_fortified_outpost_01_light" ic="FF3D6B87" width="245" height="190" img="world_settlement\fortified_outpost_01_light.png" top="-95" bottom="93" />
+	<sprite id="legend_world_militia_trainingcamp_01_light" ic="FF315369" width="220" height="146" img="world_settlement\militia_trainingcamp_01_light.png" top="-72" bottom="70" />
+	<sprite id="legend_world_houses_01_01_ruins" offsetY="-4" ic="FF2C434C" width="292" height="183" img="world_settlement\houses_01_01_ruins.png" left="-146" right="138" />
+	<sprite id="legend_world_houses_01_02_ruins" offsetY="-4" ic="FF2B414A" img="world_settlement\houses_01_02_ruins.png" />
+	<sprite id="legend_world_houses_02_01_ruins" offsetY="-4" ic="FF344C56" width="260" height="167" img="world_settlement\houses_02_01_ruins.png" left="-128" right="131" />
+	<sprite id="legend_world_houses_02_02_ruins" offsetY="-4" ic="FF395460" width="275" height="168" img="world_settlement\houses_02_02_ruins.png" left="-136" right="138" />
+	<sprite id="legend_world_houses_03_01_ruins" offsetY="-4" ic="FF2D3C4A" width="282" height="180" img="world_settlement\houses_03_01_ruins.png" top="-90" bottom="74" />
+	<sprite id="legend_world_houses_03_02_ruins" offsetY="-4" ic="FF2F3F4E" width="249" height="176" img="world_settlement\houses_03_02_ruins.png" left="-124" right="125" top="-88" bottom="78" />
+	<sprite id="legend_world_stronghold_02_ruins" offsetY="15" ic="FF353E41" width="255" height="224" img="world_settlement\stronghold_02_ruins.png" left="-127" right="128" top="-106" bottom="112" />
+	<sprite id="legend_world_stronghold_02_undead" offsetY="15" ic="FF363B3D" width="255" height="224" img="world_settlement\stronghold_02_undead.png" left="-127" right="128" top="-106" bottom="112" />
+	<sprite id="legend_world_stronghold_02_undead_lights" offsetY="15" ic="FF8CAD4E" width="255" height="224" img="world_settlement\stronghold_02_undead_lights.png" left="-51" right="67" top="-20" bottom="86" />
+	<sprite id="legend_world_stronghold_03_ruins" offsetY="15" ic="FF313A3F" img="world_settlement\stronghold_03_ruins.png" />
+	<sprite id="legend_world_stronghold_03_undead" offsetY="18" ic="FF303639" width="294" height="246" img="world_settlement\stronghold_03_undead.png" top="-124" bottom="121" />
+	<sprite id="legend_world_stronghold_03_undead_lights" offsetY="18" ic="FF829F47" width="294" height="246" img="world_settlement\stronghold_03_undead_lights.png" left="-94" right="80" top="-75" bottom="91" />
+	<sprite id="legend_world_townhall_01_ruins" offsetY="5" ic="FF35505D" img="world_settlement\townhall_01_ruins.png" />
+	<sprite id="legend_world_townhall_01_undead" offsetY="5" ic="FF374952" width="244" height="171" img="world_settlement\townhall_01_undead.png" left="-122" right="118" />
+	<sprite id="legend_world_townhall_01_undead_lights" offsetY="5" ic="FF5F8594" width="244" height="171" img="world_settlement\townhall_01_undead_lights.png" left="-65" right="59" top="-46" bottom="32" />
+	<sprite id="legend_world_townhall_02_ruins" offsetY="5" ic="FF2E4350" width="241" height="208" img="world_settlement\townhall_02_ruins.png" left="-111" right="121" top="-100" bottom="104" />
+	<sprite id="legend_world_townhall_02_undead" offsetY="5" ic="FF33424A" width="241" height="208" img="world_settlement\townhall_02_undead.png" left="-110" right="116" top="-100" bottom="104" />
+	<sprite id="legend_world_townhall_02_undead_lights" offsetY="5" ic="FF8BAB4C" width="241" height="208" img="world_settlement\townhall_02_undead_lights.png" left="-87" right="117" top="-59" bottom="49" />
+	<sprite id="legend_world_townhall_03_ruins" offsetY="5" ic="FF2C3946" width="294" height="249" img="world_settlement\townhall_03_ruins.png" left="-133" right="147" top="-114" bottom="112" />
+	<sprite id="legend_world_townhall_03_undead" offsetY="5" ic="FF30363C" width="294" height="249" img="world_settlement\townhall_03_undead.png" left="-133" right="147" top="-114" bottom="112" />
+	<sprite id="legend_world_townhall_03_undead_lights" offsetY="5" ic="FF8FB04D" width="294" height="249" img="world_settlement\townhall_03_undead_lights.png" left="-134" right="76" top="-43" bottom="85" />
+	<sprite id="legend_world_stronghold_01_ruins" offsetY="10" ic="FF2C363B" img="world_settlement\stronghold_01_ruins.png" />
+	<sprite id="legend_world_stronghold_01_undead" offsetY="10" ic="FF2D3235" img="world_settlement\stronghold_01_undead.png" />
+	<sprite id="legend_world_stronghold_01_undead_lights" offsetY="10" width="252" height="199" img="world_settlement\stronghold_01_undead_lights.png" top="-53" bottom="75" />
+	<sprite id="legend_world_harbor_s_ruins" offsetY="-15" ic="FF21313E" width="193" height="121" img="world_settlement\harbor_n_ruins.png" left="-96" right="97" top="-61" bottom="55" />
+	<sprite id="legend_world_harbor_sw_ruins" offsetX="15" offsetY="5" ic="FF23333F" width="201" height="137" img="world_settlement\harbor_ne_ruins.png" left="-100" right="101" top="-69" bottom="55" />
+	<sprite id="legend_world_harbor_se_ruins" offsetX="-10" offsetY="5" ic="FF22323E" width="199" height="133" img="world_settlement\harbor_nw_ruins.png" left="-99" right="100" top="-67" bottom="61" />
+	<sprite id="legend_world_harbor_n_ruins" offsetY="-19" ic="FF233442" width="198" height="126" img="world_settlement\harbor_s_ruins.png" left="-99" right="93" />
+	<sprite id="legend_world_harbor_nw_ruins" offsetX="15" offsetY="-10" ic="FF23333F" width="194" height="139" img="world_settlement\harbor_se_ruins.png" top="-70" bottom="68" />
+	<sprite id="legend_world_harbor_ne_ruins" offsetX="-5" offsetY="-9" ic="FF23333F" width="202" height="149" img="world_settlement\harbor_sw_ruins.png" />
+
+	<sprite id="legend_world_city_01" offsetY="15" b7="0" ic="FF345569" img="world_settlement\city_01.png" />
+	<sprite id="legend_world_houses_04_01" offsetY="-4" b7="0" ic="FF3F6379" width="278" height="181" img="world_settlement\houses_04_01.png" left="-135" right="137" top="-91" bottom="75" />
+	<sprite id="legend_world_houses_04_02" offsetY="-4" b7="0" ic="FF3C6178" img="world_settlement\houses_04_02.png" left="-123" right="124" />
+	<sprite id="legend_world_incense_01" ic="FF2D5766" img="world_settlement\incense_01.png" />
+	<sprite id="legend_world_silk_01" ic="FF415F6D" width="228" height="156" img="world_settlement\silk_01.png" left="-106" right="114" top="-78" bottom="74" />
+	<sprite id="legend_world_spice_01" ic="FF2F5867" img="world_settlement\spice_01.png" left="-125" right="126" />
+	<sprite id="legend_world_houses_04_01_light" offsetY="-4" b7="0" ic="FF67D3EB" width="278" height="181" img="world_settlement\houses_04_01_light.png" left="-89" right="99" top="-59" bottom="61" />
+	<sprite id="legend_world_houses_04_02_light" offsetY="-4" b7="0" ic="FF5EC0DC" width="247" height="172" img="world_settlement\houses_04_02_light.png" left="-114" right="104" top="-53" bottom="59" />
+	<sprite id="legend_world_city_01_light" offsetY="15" b7="0" ic="FF69CBD5" width="302" height="247" img="world_settlement\city_01_light.png" left="-101" right="117" top="-97" bottom="109" />
+	<sprite id="legend_world_incense_01_ruins" ic="FF2B4F64" img="world_settlement\incense_01_ruins.png" />
+	<sprite id="legend_world_spice_01_ruins" ic="FF314F64" img="world_settlement\spice_01_ruins.png" left="-125" right="126" />
+	<sprite id="legend_world_silk_01_ruins" ic="FF354B5B" width="228" height="156" img="world_settlement\silk_01_ruins.png" left="-106" right="114" top="-78" bottom="74" />
+	<sprite id="legend_world_southern_dye" ic="FF35526A" width="244" height="172" img="world_settlement\southern_dye.png" left="-94" right="122" top="-78" bottom="86" />
+	<sprite id="legend_world_southern_dye_ruins" ic="FF2B4252" width="244" height="172" img="world_settlement\southern_dye_ruins.png" left="-100" right="122" top="-78" bottom="86" />
+	<sprite id="legend_world_southern_fishing_huts" ic="FF324F60" img="world_settlement\southern_fishing_huts.png" />
+	<sprite id="legend_world_southern_fishing_huts_ruins" ic="FF2A4351" img="world_settlement\southern_fishing_huts_ruins.png" />
+	<sprite id="legend_world_southern_goat" ic="FF324F63" img="world_settlement\southern_goat.png" left="-127" right="128" />
+	<sprite id="legend_world_southern_goat_ruins" ic="FF254051" img="world_settlement\southern_goat_ruins.png" left="-127" right="128" />
+	<sprite id="legend_world_southern_militia" ic="FF2E4C66" img="world_settlement\southern_militia.png" left="-110" right="111" />
+	<sprite id="legend_world_southern_militia_ruins" ic="FF284258" img="world_settlement\southern_militia_ruins.png" left="-110" right="111" />
+	<sprite id="legend_world_southern_watchtower" ic="FF2C4D62" img="world_settlement\southern_watchtower.png" left="-108" right="109" />
+	<sprite id="legend_world_southern_watchtower_lights" ic="FF52C5E3" width="217" height="178" img="world_settlement\southern_watchtower_lights.png" left="-103" right="61" top="-48" bottom="60" />
+	<sprite id="legend_world_southern_watchtower_ruins" ic="FF234153" img="world_settlement\southern_watchtower_ruins.png" left="-108" right="109" />
+  <sprite id="world_grass_07" ic="FF386261" width="400" height="200" img="world_detail\grass\world_grass_07.png" left="-130" right="118" top="-79" bottom="53" />
+   <sprite id="world_grass_08" ic="FF386261" width="400" height="200" img="world_detail\grass\world_grass_08.png" left="-130" right="118" top="-79" bottom="53" />
+   <sprite id="world_grass_09" ic="FF386261" width="400" height="200" img="world_detail\grass\world_grass_09.png" left="-130" right="118" top="-79" bottom="53" />
+   <sprite id="world_grass_10" ic="FF386261" width="400" height="200" img="world_detail\grass\world_grass_10.png" left="-130" right="118" top="-79" bottom="53" />
+   <sprite id="world_grass_11" ic="FF386261" width="400" height="200" img="world_detail\grass\world_grass_11.png" left="-130" right="118" top="-79" bottom="53" />
+    <sprite id="world_grass_12" ic="FF386261" width="400" height="200" img="world_detail\grass\world_grass_12.png" left="-130" right="118" top="-79" bottom="53" />
+	<sprite id="legend_world_grass_hill_01" ic="FF315856" width="550" height="350" img="world_detail\grass\legend_world_grass_hill_01.png" left="-151" right="149" top="-117" bottom="65" />
+	<sprite id="legend_world_grass_hill_02" ic="FF315856" width="550" height="350" img="world_detail\grass\legend_world_grass_hill_02.png" left="-151" right="149" top="-117" bottom="65" />
+	<sprite id="legend_world_grass_hill_03" ic="FF315856" width="550" height="350" img="world_detail\grass\legend_world_grass_hill_03.png" left="-151" right="149" top="-117" bottom="65" />
+	<sprite id="legend_world_grass_hill_04" ic="FF315856" width="550" height="350" img="world_detail\grass\legend_world_grass_hill_04.png" left="-151" right="149" top="-117" bottom="65" />
+	<sprite id="legend_world_grass_hill_05" ic="FF315856" width="550" height="350" img="world_detail\grass\legend_world_grass_hill_05.png" left="-151" right="149" top="-117" bottom="65" />
+	<sprite id="legend_world_grass_hill_06" ic="FF315856" width="550" height="350" img="world_detail\grass\legend_world_grass_hill_06.png" left="-151" right="149" top="-117" bottom="65" />
+	<sprite id="legend_world_grass_hill_07" ic="FF315856" width="550" height="350" img="world_detail\grass\legend_world_grass_hill_07.png" left="-151" right="149" top="-117" bottom="65" />
+	<sprite id="world_grass_hill_07" ic="FF315856" width="550" height="350" img="world_detail\grass\world_grass_hill_07.png" left="-151" right="149" top="-117" bottom="65" />
+	<sprite id="world_detail_flowers_07" ic="FF6EA4AA" width="400" height="200" img="world_detail\world_detail_flowers_07.png" left="-45" right="33" top="-55" bottom="5" />
+	<sprite id="world_detail_flowers_08" ic="FF6EA4AA" width="400" height="200" img="world_detail\world_detail_flowers_08.png" left="-45" right="33" top="-55" bottom="5" />	
+	<sprite id="world_detail_flowers_09" ic="FF6EA4AA" width="400" height="200" img="world_detail\world_detail_flowers_09.png" left="-45" right="33" top="-55" bottom="5" />	
+	<sprite id="world_detail_flowers_10" ic="FF6EA4AA" width="400" height="200" img="world_detail\world_detail_flowers_10.png" left="-45" right="33" top="-55" bottom="5" />		
+	<sprite id="world_detail_flowers_11" ic="FF6EA4AA" width="400" height="200" img="world_detail\world_detail_flowers_11.png" left="-45" right="33" top="-55" bottom="5" />		
+	<sprite id="world_detail_flowers_12" ic="FF6EA4AA" width="400" height="200" img="world_detail\world_detail_flowers_12.png" left="-45" right="33" top="-55" bottom="5" />
+	<sprite id="world_detail_flowers_13" ic="FF6EA4AA" width="400" height="200" img="world_detail\world_detail_flowers_13.png" left="-45" right="33" top="-55" bottom="5" />	
+	<sprite id="world_detail_forest_04" offsetY="20" ic="FF19231D" width="400" height="220" img="world_detail\forest\world_detail_forest_04.png" left="-133" right="137" top="-110" bottom="84" />
+	<sprite id="world_detail_forest_05" offsetY="20" ic="FF19231D" width="400" height="220" img="world_detail\forest\world_detail_forest_05.png" left="-133" right="137" top="-110" bottom="84" />
+	<sprite id="world_detail_forest_06" offsetY="20" ic="FF19231D" width="400" height="220" img="world_detail\forest\world_detail_forest_06.png" left="-133" right="137" top="-110" bottom="84" />
+	<sprite id="world_detail_forest_green_01" offsetY="20" ic="FF19231D" width="400" height="220" img="world_detail\forest\world_detail_forest_green_01.png" left="-133" right="137" top="-110" bottom="84" />
+	<sprite id="world_detail_forest_green_02" offsetY="20" ic="FF19231D" width="400" height="220" img="world_detail\forest\world_detail_forest_green_02.png" left="-133" right="137" top="-110" bottom="84" />
+	<sprite id="world_detail_forest_green_03" offsetY="20" ic="FF19231D" width="400" height="220" img="world_detail\forest\world_detail_forest_green_03.png" left="-133" right="137" top="-110" bottom="84" />
+	<sprite id="world_detail_forest_green_04" offsetY="20" ic="FF19231D" width="400" height="220" img="world_detail\forest\world_detail_forest_green_04.png" left="-133" right="137" top="-110" bottom="84" />
+	<sprite id="world_detail_forest_green_05" offsetY="20" ic="FF19231D" width="400" height="220" img="world_detail\forest\world_detail_forest_green_05.png" left="-133" right="137" top="-110" bottom="84" />
+	<sprite id="world_detail_forest_green_06" offsetY="20" ic="FF19231D" width="400" height="220" img="world_detail\forest\world_detail_forest_green_06.png" left="-133" right="137" top="-110" bottom="84" />
+	<sprite id="world_detail_forest_light_06" offsetY="20" ic="FF19241D" width="400" height="220" img="world_detail\forest\world_detail_forest_light_06.png" left="-142" right="120" top="-110" bottom="96" />
+	<sprite id="world_detail_forest_light_07" offsetY="20" ic="FF19241D" width="400" height="220" img="world_detail\forest\world_detail_forest_light_07.png" left="-142" right="120" top="-110" bottom="96" />
+	<sprite id="world_detail_forest_light_07" offsetY="20" ic="FF19241D" width="400" height="220" img="world_detail\forest\world_detail_forest_light_07.png" left="-142" right="120" top="-110" bottom="96" />
+	<sprite id="world_detail_forest_light_08" offsetY="20" ic="FF19241D" width="400" height="220" img="world_detail\forest\world_detail_forest_light_08.png" left="-142" right="120" top="-110" bottom="96" />
+	<sprite id="world_detail_forest_light_09" offsetY="20" ic="FF19241D" width="400" height="220" img="world_detail\forest\world_detail_forest_light_09.png" left="-142" right="120" top="-110" bottom="96" />	
+	<sprite id="world_detail_forest_light_10" offsetY="20" ic="FF19241D" width="400" height="220" img="world_detail\forest\world_detail_forest_light_10.png" left="-142" right="120" top="-110" bottom="96" />	
+	<sprite id="world_detail_forest_light_11" offsetY="20" ic="FF19241D" width="400" height="220" img="world_detail\forest\world_detail_forest_light_11.png" left="-142" right="120" top="-110" bottom="96" />
+	<sprite id="world_detail_forest_light_12" offsetY="20" ic="FF19241D" width="400" height="220" img="world_detail\forest\world_detail_forest_light_12.png" left="-142" right="120" top="-110" bottom="96" />
+	<sprite id="world_detail_forest_light_13" offsetY="20" ic="FF19241D" width="400" height="220" img="world_detail\forest\world_detail_forest_light_13.png" left="-142" right="120" top="-110" bottom="96" />
+	<sprite id="world_detail_forest_light_14" offsetY="20" ic="FF19241D" width="400" height="220" img="world_detail\forest\world_detail_forest_light_14.png" left="-142" right="120" top="-110" bottom="96" />
+	<sprite id="world_detail_forest_light_15" offsetY="20" ic="FF19241D" width="400" height="220" img="world_detail\forest\world_detail_forest_light_15.png" left="-142" right="120" top="-110" bottom="96" />
+	<sprite id="world_detail_forest_light_16" offsetY="20" ic="FF19241D" width="400" height="220" img="world_detail\forest\world_detail_forest_light_16.png" left="-142" right="120" top="-110" bottom="96" />
+	<sprite id="world_detail_forest_light_17" offsetY="20" ic="FF19241D" width="400" height="220" img="world_detail\forest\world_detail_forest_light_17.png" left="-142" right="120" top="-110" bottom="96" />
+	<sprite id="world_detail_forest_light_18" offsetY="20" ic="FF19241D" width="400" height="220" img="world_detail\forest\world_detail_forest_light_18.png" left="-142" right="120" top="-110" bottom="96" />
+	<sprite id="world_detail_forest_light_19" offsetY="20" ic="FF19241D" width="400" height="220" img="world_detail\forest\world_detail_forest_light_19.png" left="-142" right="120" top="-110" bottom="96" />
+	<sprite id="world_detail_forest_light_20" offsetY="20" ic="FF19241D" width="400" height="220" img="world_detail\forest\world_detail_forest_light_20.png" left="-142" right="120" top="-110" bottom="96" />
+	<sprite id="world_detail_forest_light_21" offsetY="20" ic="FF19241D" width="400" height="220" img="world_detail\forest\world_detail_forest_light_21.png" left="-142" right="120" top="-110" bottom="96" />
+	<sprite id="world_detail_forest_light_22" offsetY="20" ic="FF19241D" width="400" height="220" img="world_detail\forest\world_detail_forest_light_22.png" left="-142" right="120" top="-110" bottom="96" />
+	<sprite id="world_detail_forest_light_23" offsetY="20" ic="FF19241D" width="400" height="220" img="world_detail\forest\world_detail_forest_light_23.png" left="-142" right="120" top="-110" bottom="96" />
+	<sprite id="world_detail_forest_light_24" offsetY="20" ic="FF19241D" width="400" height="220" img="world_detail\forest\world_detail_forest_light_24.png" left="-142" right="120" top="-110" bottom="96" />
+	<sprite id="world_detail_forest_light_25" offsetY="20" ic="FF19241D" width="400" height="220" img="world_detail\forest\world_detail_forest_light_25.png" left="-142" right="120" top="-110" bottom="96" />
+	<sprite id="world_detail_forest_light_26" offsetY="20" ic="FF19241D" width="400" height="220" img="world_detail\forest\world_detail_forest_light_26.png" left="-142" right="120" top="-110" bottom="96" />
+	<sprite id="world_detail_forest_light_27" offsetY="20" ic="FF19241D" width="400" height="220" img="world_detail\forest\world_detail_forest_light_27.png" left="-142" right="120" top="-110" bottom="96" />
+	<sprite id="world_detail_forest_light_28" offsetY="20" ic="FF19241D" width="400" height="220" img="world_detail\forest\world_detail_forest_light_28.png" left="-142" right="120" top="-110" bottom="96" />
+	<sprite id="world_detail_forest_leaves_light_06" offsetX="10" offsetY="25" ic="FF1F3F37" width="400" height="220" img="world_detail\leave_forest\world_detail_forest_leaves_light_06.png" left="-135" right="113" top="-107" bottom="89" />
+	<sprite id="world_detail_forest_leaves_light_07" offsetX="10" offsetY="25" ic="FF1F3F37" width="400" height="220" img="world_detail\leave_forest\world_detail_forest_leaves_light_07.png" left="-135" right="113" top="-107" bottom="89" />
+	<sprite id="world_detail_forest_leaves_light_08" offsetX="10" offsetY="25" ic="FF1F3F37" width="400" height="220" img="world_detail\leave_forest\world_detail_forest_leaves_light_08.png" left="-135" right="113" top="-107" bottom="89" />
+	<sprite id="world_detail_forest_leaves_light_09" offsetX="10" offsetY="25" ic="FF1F3F37" width="400" height="220" img="world_detail\leave_forest\world_detail_forest_leaves_light_09.png" left="-135" right="113" top="-107" bottom="89" />
+	<sprite id="world_detail_forest_leaves_light_10" offsetX="10" offsetY="25" ic="FF1F3F37" width="400" height="220" img="world_detail\leave_forest\world_detail_forest_leaves_light_10.png" left="-135" right="113" top="-107" bottom="89" />	
+	<sprite id="world_detail_forest_leaves_light_11" offsetX="10" offsetY="25" ic="FF1F3F37" width="400" height="220" img="world_detail\leave_forest\world_detail_forest_leaves_light_11.png" left="-135" right="113" top="-107" bottom="89" />	
+	<sprite id="world_detail_forest_leaves_light_12" offsetX="10" offsetY="25" ic="FF1F3F37" width="400" height="220" img="world_detail\leave_forest\world_detail_forest_leaves_light_12.png" left="-135" right="113" top="-107" bottom="89" />	
+	<sprite id="world_detail_forest_leaves_light_13" offsetX="10" offsetY="25" ic="FF1F3F37" width="400" height="220" img="world_detail\leave_forest\world_detail_forest_leaves_light_13.png" left="-135" right="113" top="-107" bottom="89" />		
+	<sprite id="world_detail_forest_leaves_light_14" offsetX="10" offsetY="25" ic="FF1F3F37" width="400" height="220" img="world_detail\leave_forest\world_detail_forest_leaves_light_14.png" left="-135" right="113" top="-107" bottom="89" />	
+	<sprite id="world_detail_forest_leaves_light_15" offsetX="10" offsetY="25" ic="FF1F3F37" width="400" height="220" img="world_detail\leave_forest\world_detail_forest_leaves_light_15.png" left="-135" right="113" top="-107" bottom="89" />	
+	<sprite id="world_detail_forest_leaves_light_16" offsetX="10" offsetY="25" ic="FF1F3F37" width="400" height="220" img="world_detail\leave_forest\world_detail_forest_leaves_light_16.png" left="-135" right="113" top="-107" bottom="89" />	
+	<sprite id="world_detail_forest_leaves_light_17" offsetX="10" offsetY="25" ic="FF1F3F37" width="400" height="220" img="world_detail\leave_forest\world_detail_forest_leaves_light_17.png" left="-135" right="113" top="-107" bottom="89" />	
+	<sprite id="world_detail_forest_leaves_light_18" offsetX="10" offsetY="25" ic="FF1F3F37" width="400" height="220" img="world_detail\leave_forest\world_detail_forest_leaves_light_18.png" left="-135" right="113" top="-107" bottom="89" />	
+	<sprite id="world_detail_autumn_07" ic="FF0F3E64" width="400" height="200" img="world_detail\forest_autumn\world_detail_autumn_07.png" left="-127" right="117" top="-100" bottom="80" />
+	<sprite id="world_detail_autumn_08" ic="FF0F3E64" width="400" height="200" img="world_detail\forest_autumn\world_detail_autumn_08.png" left="-127" right="117" top="-100" bottom="80" />
+	<sprite id="world_detail_autumn_09" ic="FF0F3E64" width="400" height="200" img="world_detail\forest_autumn\world_detail_autumn_09.png" left="-127" right="117" top="-100" bottom="80" />
+	<sprite id="world_detail_autumn_10" ic="FF0F3E64" width="400" height="200" img="world_detail\forest_autumn\world_detail_autumn_10.png" left="-127" right="117" top="-100" bottom="80" />
+	<sprite id="world_detail_autumn_11" ic="FF0F3E64" width="400" height="200" img="world_detail\forest_autumn\world_detail_autumn_11.png" left="-127" right="117" top="-100" bottom="80" />
+	<sprite id="world_detail_autumn_12" ic="FF0F3E64" width="400" height="200" img="world_detail\forest_autumn\world_detail_autumn_12.png" left="-127" right="117" top="-100" bottom="80" />
+	<sprite id="world_detail_autumn_13" ic="FF0F3E64" width="400" height="200" img="world_detail\forest_autumn\world_detail_autumn_13.png" left="-127" right="117" top="-100" bottom="80" />
+	<sprite id="world_detail_autumn_green_01" ic="FF0F3E64" width="400" height="200" img="world_detail\forest_autumn\world_detail_autumn_green_01.png" left="-127" right="117" top="-100" bottom="80" />
+	<sprite id="world_detail_autumn_green_02" ic="FF0F3E64" width="400" height="200" img="world_detail\forest_autumn\world_detail_autumn_green_02.png" left="-127" right="117" top="-100" bottom="80" />
+	<sprite id="world_detail_autumn_green_03" ic="FF0F3E64" width="400" height="200" img="world_detail\forest_autumn\world_detail_autumn_green_03.png" left="-127" right="117" top="-100" bottom="80" />
+	<sprite id="world_detail_autumn_green_04" ic="FF0F3E64" width="400" height="200" img="world_detail\forest_autumn\world_detail_autumn_green_04.png" left="-127" right="117" top="-100" bottom="80" />
+	<sprite id="world_detail_autumn_green_05" ic="FF0F3E64" width="400" height="200" img="world_detail\forest_autumn\world_detail_autumn_green_05.png" left="-127" right="117" top="-100" bottom="80" />
+	<sprite id="world_detail_autumn_green_06" ic="FF0F3E64" width="400" height="200" img="world_detail\forest_autumn\world_detail_autumn_green_06.png" left="-127" right="117" top="-100" bottom="80" />
+	<sprite id="world_detail_autumn_leaves_01" ic="FF0F3E64" width="400" height="200" img="world_detail\forest_autumn\world_detail_autumn_leaves_01.png" left="-127" right="117" top="-100" bottom="80" />
+	<sprite id="world_detail_autumn_leaves_02" ic="FF0F3E64" width="400" height="200" img="world_detail\forest_autumn\world_detail_autumn_leaves_02.png" left="-127" right="117" top="-100" bottom="80" />
+	<sprite id="world_detail_autumn_leaves_03" ic="FF0F3E64" width="400" height="200" img="world_detail\forest_autumn\world_detail_autumn_leaves_03.png" left="-127" right="117" top="-100" bottom="80" />
+	<sprite id="world_detail_autumn_leaves_04" ic="FF0F3E64" width="400" height="200" img="world_detail\forest_autumn\world_detail_autumn_leaves_04.png" left="-127" right="117" top="-100" bottom="80" />
+	<sprite id="world_detail_autumn_leaves_05" ic="FF0F3E64" width="400" height="200" img="world_detail\forest_autumn\world_detail_autumn_leaves_05.png" left="-127" right="117" top="-100" bottom="80" />
+	<sprite id="world_detail_autumn_light_11" ic="FF0F3E64" width="400" height="200" img="world_detail\forest_autumn\world_detail_autumn_light_11.png" left="-127" right="117" top="-100" bottom="80" />	
+	<sprite id="world_detail_autumn_light_12" ic="FF0F3E64" width="400" height="200" img="world_detail\forest_autumn\world_detail_autumn_light_12.png" left="-127" right="117" top="-100" bottom="80" />	
+	<sprite id="world_detail_autumn_light_13" ic="FF0F3E64" width="400" height="200" img="world_detail\forest_autumn\world_detail_autumn_light_13.png" left="-127" right="117" top="-100" bottom="80" />	
+	<sprite id="world_detail_autumn_light_14" ic="FF0F3E64" width="400" height="200" img="world_detail\forest_autumn\world_detail_autumn_light_14.png" left="-127" right="117" top="-100" bottom="80" />	
+	<sprite id="world_detail_autumn_light_15" ic="FF0F3E64" width="400" height="200" img="world_detail\forest_autumn\world_detail_autumn_light_15.png" left="-127" right="117" top="-100" bottom="80" />	
+	<sprite id="world_detail_autumn_light_16" ic="FF0F3E64" width="400" height="200" img="world_detail\forest_autumn\world_detail_autumn_light_16.png" left="-127" right="117" top="-100" bottom="80" />
+	<sprite id="world_detail_autumn_light_17" ic="FF0F3E64" width="400" height="200" img="world_detail\forest_autumn\world_detail_autumn_light_17.png" left="-127" right="117" top="-100" bottom="80" />	
+	<sprite id="world_detail_autumn_light_18" ic="FF0F3E64" width="400" height="200" img="world_detail\forest_autumn\world_detail_autumn_light_18.png" left="-127" right="117" top="-100" bottom="80" />	
+	<sprite id="world_detail_autumn_light_19" ic="FF0F3E64" width="400" height="200" img="world_detail\forest_autumn\world_detail_autumn_light_19.png" left="-127" right="117" top="-100" bottom="80" />
+	<sprite id="world_detail_autumn_light_20" ic="FF0F3E64" width="400" height="200" img="world_detail\forest_autumn\world_detail_autumn_light_20.png" left="-127" right="117" top="-100" bottom="80" />	
+	<sprite id="world_detail_green_autumn_01" ic="FF0F3E64" width="400" height="200" img="world_detail\forest_autumn\world_detail_green_autumn_01.png" left="-127" right="117" top="-100" bottom="80" />
+	<sprite id="world_detail_green_autumn_02" ic="FF0F3E64" width="400" height="200" img="world_detail\forest_autumn\world_detail_green_autumn_02.png" left="-127" right="117" top="-100" bottom="80" />
+	<sprite id="world_detail_green_autumn_03" ic="FF0F3E64" width="400" height="200" img="world_detail\forest_autumn\world_detail_green_autumn_03.png" left="-127" right="117" top="-100" bottom="80" />
+	<sprite id="world_detail_green_autumn_04" ic="FF0F3E64" width="400" height="200" img="world_detail\forest_autumn\world_detail_green_autumn_04.png" left="-127" right="117" top="-100" bottom="80" />
+	<sprite id="world_detail_green_autumn_05" ic="FF0F3E64" width="400" height="200" img="world_detail\forest_autumn\world_detail_green_autumn_05.png" left="-127" right="117" top="-100" bottom="80" />
+	<sprite id="world_detail_green_autumn_06" ic="FF0F3E64" width="400" height="200" img="world_detail\forest_autumn\world_detail_green_autumn_06.png" left="-127" right="117" top="-100" bottom="80" />
+	<sprite id="world_detail_green_autumn_light_01" ic="FF0F3E64" width="400" height="200" img="world_detail\forest_autumn\world_detail_green_autumn_light_01.png" left="-127" right="117" top="-100" bottom="80" />
+	<sprite id="world_detail_green_autumn_light_02" ic="FF0F3E64" width="400" height="200" img="world_detail\forest_autumn\world_detail_green_autumn_light_02.png" left="-127" right="117" top="-100" bottom="80" />
+	<sprite id="world_detail_green_autumn_light_03" ic="FF0F3E64" width="400" height="200" img="world_detail\forest_autumn\world_detail_green_autumn_light_03.png" left="-127" right="117" top="-100" bottom="80" />
+	<sprite id="world_detail_green_autumn_light_04" ic="FF0F3E64" width="400" height="200" img="world_detail\forest_autumn\world_detail_green_autumn_light_04.png" left="-127" right="117" top="-100" bottom="80" />
+	<sprite id="world_detail_swamp_green_01" offsetY="10" ic="FF364D58" width="400" height="200" img="world_detail\swamp\world_detail_swamp_green_01.png" left="-115" right="117" top="-100" bottom="80" />
+	<sprite id="world_detail_swamp_green_02" offsetY="10" b7="0" ic="FF435C63" width="400" height="200" img="world_detail\swamp\world_detail_swamp_green_02.png" left="-127" right="113" top="-100" bottom="68" />
+	<sprite id="world_detail_swamp_green_03" offsetY="10" b7="0" ic="FF415A61" width="400" height="200" img="world_detail\swamp\world_detail_swamp_green_03.png" left="-137" right="157" top="-93" bottom="75" />	<sprite id="world_detail_swamp_green_04" offsetY="10" ic="FF364D58" width="400" height="200" img="world_detail\swamp\world_detail_swamp_green_04.png" left="-115" right="117" top="-100" bottom="80" />
+	<sprite id="world_detail_swamp_green_05" offsetY="10" ic="FF364D58" width="400" height="200" img="world_detail\swamp\world_detail_swamp_green_05.png" left="-115" right="117" top="-100" bottom="80" />
+	<sprite id="world_detail_swamp_green_06" offsetY="10" b7="0" ic="FF435C63" width="400" height="200" img="world_detail\swamp\world_detail_swamp_green_06.png" left="-127" right="113" top="-100" bottom="68" />
+	<sprite id="world_detail_swamp_green_forest_01" offsetY="10" ic="FF364D58" width="400" height="200" img="world_detail\swamp\world_detail_swamp_green_forest_01.png" left="-115" right="117" top="-100" bottom="80" />
+	<sprite id="world_detail_swamp_green_forest_02" offsetY="10" b7="0" ic="FF435C63" width="400" height="200" img="world_detail\swamp\world_detail_swamp_green_forest_02.png" left="-127" right="113" top="-100" bottom="68" />
+	<sprite id="world_detail_swamp_green_forest_03" offsetY="10" b7="0" ic="FF415A61" width="400" height="200" img="world_detail\swamp\world_detail_swamp_green_forest_03.png" left="-137" right="157" top="-93" bottom="75" />	<sprite id="world_detail_swamp_green_04" offsetY="10" ic="FF364D58" width="400" height="200" img="world_detail\swamp\world_detail_swamp_green_04.png" left="-115" right="117" top="-100" bottom="80" />
+	<sprite id="world_detail_swamp_green_leaves_01" offsetY="10" b7="0" ic="FF435C63" width="400" height="200" img="world_detail\swamp\world_detail_swamp_green_leaves_01.png" left="-127" right="113" top="-100" bottom="68" />
+	<sprite id="world_detail_swamp_green_leaves_02" offsetY="10" b7="0" ic="FF415A61" width="400" height="200" img="world_detail\swamp\world_detail_swamp_green_leaves_02.png" left="-137" right="157" top="-93" bottom="75" />	<sprite id="world_detail_swamp_green_04" offsetY="10" ic="FF364D58" width="400" height="200" img="world_detail\swamp\world_detail_swamp_green_04.png" left="-115" right="117" top="-100" bottom="80" />
+	<sprite id="world_detail_swamp_green_leaves_03" offsetY="10" ic="FF364D58" width="400" height="200" img="world_detail\swamp\world_detail_swamp_green_leaves_03.png" left="-115" right="117" top="-100" bottom="80" />
+	<sprite id="world_detail_swamp_green_leaves_04" offsetY="10" ic="FF364D58" width="400" height="200" img="world_detail\swamp\world_detail_swamp_green_leaves_04.png" left="-115" right="117" top="-100" bottom="80" />
+   <sprite id="world_detail_swamp_green_light_01" ic="FF394D54" width="400" height="200" img="world_detail\swamp\world_detail_swamp_green_light_01.png" left="-100" right="80" top="-67" bottom="33" />
+   <sprite id="world_detail_swamp_green_light_02" ic="FF405B65" width="400" height="200" img="world_detail\swamp\world_detail_swamp_green_light_02.png" left="-27" right="109" top="-74" bottom="-16" />
+   <sprite id="world_detail_swamp_green_light_03" ic="FF41585D" width="400" height="200" img="world_detail\swamp\world_detail_swamp_green_light_03.png" left="-108" right="72" top="-69" bottom="7" />
+   <sprite id="world_detail_swamp_green_light_04" ic="FF3B4A49" width="400" height="200" img="world_detail\swamp\world_detail_swamp_green_light_04.png" left="-100" right="80" top="-25" bottom="73" />
+   <sprite id="world_detail_swamp_green_light_05" ic="FF3C535C" width="400" height="200" img="world_detail\swamp\world_detail_swamp_green_light_05.png" left="-92" right="110" top="-67" bottom="57" />
+   <sprite id="world_detail_swamp_green_light_05" ic="FF3C535C" width="400" height="200" img="world_detail\swamp\world_detail_swamp_green_light_05.png" left="-92" right="110" top="-67" bottom="57" />
+   <sprite id="world_detail_swamp_green_light_06" ic="FF4A5B56" width="400" height="200" img="world_detail\swamp\world_detail_swamp_green_light_06.png" left="-104" right="82" top="-29" bottom="37" />
+</brush>

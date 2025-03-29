@@ -1,0 +1,45 @@
+.msu-popup {
+	height: 72.0rem !important;
+	width: 80.0rem !important;
+	position: relative;
+	background-size: 100% 100%;
+	background-image: url("coui://gfx/ui/skin/dialog_background_03.png");
+	background-repeat: no-repeat;
+	z-index: 100 !important;
+}
+
+.msu-popup .header {
+	height: 10rem;
+	width: 100%;
+	margin: 1rem 0 1rem 0;
+	position: relative;
+	vertical-align: middle;
+}
+
+.msu-popup .header .title {
+	margin-top: 2rem !important;
+}
+
+.msu-popup .text-container {
+	top: 11.8rem;
+	height: calc(100% - 11.8rem - 6.3rem);
+	width: 90%;
+	margin: 0 5% 0 5%;
+	color: white;
+	font-family: monospace, arial;
+	font-size: 20;
+	background-color: rgba(0, 0, 0, 1.0);
+	position: relative;
+}
+
+.msu-popup .footer {
+	position: relative;
+	width: 100%;
+}
+
+.msu-popup .ok-button {
+	left: calc(50% - 17.5rem / 2);
+	height: 4.3rem;
+	width: 17.5rem;
+	position: relative;
+}

@@ -14,338 +14,352 @@
 */
 .ui-control.dialog-modal-background
 {
-    background-color: rgba(0, 0, 0, 0.3);
+	background-color: rgba(0, 0, 0, 0.3);
 
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    z-index : 1;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	z-index : 1;
 }
 
 
 .ui-control.dialog-modal-background-black
 {
-    background-color: rgba(0, 0, 0, 1.0);
+	background-color: rgba(0, 0, 0, 1.0);
 
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    z-index : 1;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	z-index : 1;
 }
 
 
 .ui-control.dialog
 {
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    margin: auto;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	margin: auto;
 
-    overflow: hidden;
+	overflow: hidden;
 }
 
 .ui-control.dialog-449-250
 {
-    background-image: url("coui://gfx/ui/skin/popup_background_449x250.png");
-    background-size: 44.9rem 25.0rem;
-    background-repeat: no-repeat;
+	background-image: url("coui://gfx/ui/skin/popup_background_449x250.png");
+	background-size: 44.9rem 25.0rem;
+	background-repeat: no-repeat;
 }
 
 .ui-control.dialog-800-720
 {
-    background-image: url("coui://gfx/ui/skin/dialog_background_03.png");
-    background-size: 80.0rem 72.0rem;
-    background-repeat: no-repeat;
+	background-image: url("coui://gfx/ui/skin/dialog_background_03.png");
+	background-size: 80.0rem 72.0rem;
+	background-repeat: no-repeat;
 }
 
 .ui-control.dialog-800-720-2
 {
-    background-image: url("coui://gfx/ui/skin/dialog_background_02.png");
-    background-size: 80.0rem 72.0rem;
-    background-repeat: no-repeat;
+	background-image: url("coui://gfx/ui/skin/dialog_background_02.png");
+	background-size: 80.0rem 72.0rem;
+	background-repeat: no-repeat;
 }
 
 .ui-control.dialog-1024-768
 {
-    background-image: url("coui://gfx/ui/skin/dialog_background_01.png");
-    background-size: 102.4rem 76.8rem;
-    background-repeat: no-repeat;
+	background-image: url("coui://gfx/ui/skin/dialog_background_01.png");
+	background-size: 102.4rem 76.8rem;
+	background-repeat: no-repeat;
+}
+
+.ui-control.dialog-1710-768
+{
+	background-image: url("coui://gfx/ui/skin/dialog_background_obit_01.png");
+	background-size: 171.0rem 76.8rem;
+	background-repeat: no-repeat;
+}
+
+.ui-control.dialog-1280-768
+{
+	background-image: url("coui://gfx/ui/skin/dialog_background_01_wide.png");
+	background-size: 128.0rem 76.8rem;
+	background-repeat: no-repeat;
 }
 
 .ui-control.dialog *
 {
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
 }
 
 .ui-control.dialog > .header
 {
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 8.0rem;
-    padding: 0.4rem;
-    position: absolute;
-    margin: auto;
-    overflow: hidden;
+	top: 0;
+	left: 0;
+	right: 0;
+	height: 8.0rem;
+	padding: 0.4rem;
+	position: absolute;
+	margin: auto;
+	overflow: hidden;
 
-    /*border-bottom: 1px rgba(130, 130, 130, 1) solid;*/
+	/*border-bottom: 1px rgba(130, 130, 130, 1) solid;*/
 }
 
 .ui-control.dialog > .header .image-container
 {
-    width: 100%;
-    height: 100%;
-    position: relative;
-    z-index: 1;
+	width: 100%;
+	height: 100%;
+	position: relative;
+	z-index: 1;
 
-    border-radius: 5px 5px 0 0;
+	border-radius: 5px 5px 0 0;
 
-    overflow: hidden;
+	overflow: hidden;
 }
 
 .ui-control.dialog > .header img
 {
-    top: 0;
-    left: 0;
-    /* NOTE: Keep orginal size
-    width: 100%;
-    height: 100%;
-    */
-    position: relative;
-    z-index: 1;
+	top: 0;
+	left: 0;
+	/* NOTE: Keep orginal size
+	width: 100%;
+	height: 100%;
+	*/
+	position: relative;
+	z-index: 1;
 
-    opacity: 0.4;
+	opacity: 0.4;
 }
 
 /*
 .ui-control.dialog > .header .image-container:after
 {
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    position: absolute;
-    z-index: 2;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	position: absolute;
+	z-index: 2;
 
-    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.6);
-    content: "";
+	box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.6);
+	content: "";
 }*/
 
 .ui-control.dialog > .header .text-container
 {
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    position: absolute;
-    margin: auto;
-    z-index: 2;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	position: absolute;
+	margin: auto;
+	z-index: 2;
 }
 
 .ui-control.dialog > .header .title
 {
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 4.0rem;
-    position: absolute;
-    margin: auto;
+	top: 0;
+	left: 0;
+	right: 0;
+	height: 4.0rem;
+	position: absolute;
+	margin: auto;
 
-    text-align : center;
-    line-height: 4.0rem;
+	text-align : center;
+	line-height: 4.0rem;
 }
 
 .ui-control.dialog > .header .title.has-sub-title
 {
-    top: 1.0rem;
+	top: 1.0rem;
 }
 
 .ui-control.dialog > .header .title.has-no-sub-title
 {
-    top: 0;
-    bottom: 0;
+	top: 0;
+	bottom: 0;
 }
 
 .ui-control.dialog > .header .sub-title
 {
-    top: 5.0rem;
-    left: 0;
-    right: 0;
-    height: 2.0rem;
-    position: absolute;
-    margin: auto;
+	top: 5.0rem;
+	left: 0;
+	right: 0;
+	height: 2.0rem;
+	position: absolute;
+	margin: auto;
 
-    text-align : center;
-    line-height: 2.0rem;
+	text-align : center;
+	line-height: 2.0rem;
 }
 
 .ui-control.dialog > .tab-container
 {
-    top: 8.0rem;
-    left: 0;
-    right: 0;
-    height: 4.0rem;
-    position: absolute;
-    margin: auto;
+	top: 8.0rem;
+	left: 0;
+	right: 0;
+	height: 4.0rem;
+	position: absolute;
+	margin: auto;
 
-    /*border-bottom: 1px rgba(130, 130, 130, 1) solid;*/
+	/*border-bottom: 1px rgba(130, 130, 130, 1) solid;*/
 }
 
 .ui-control.dialog > .content
 {
-    top: 8.0rem;
-    left: 0;
-    right: 0;
-    bottom: 6.0rem;
-    position: absolute;
-    margin: auto;
-    overflow: hidden;
+	top: 8.0rem;
+	left: 0;
+	right: 0;
+	bottom: 6.0rem;
+	position: absolute;
+	margin: auto;
+	overflow: hidden;
 }
 
 .ui-control.dialog > .content.is-overflow-visible
 {
-    overflow: visible;
+	overflow: visible;
 }
 
 .ui-control.dialog > .content.is-nudged-top
 {
-    top: 12.4rem;
+	top: 12.4rem;
 }
 
 .ui-control.dialog.has-tab-container > .content
 {
-    top: 13.0rem;
+	top: 13.0rem;
 }
 
 .ui-control.dialog.has-tab-container > .content.is-nudged-top
 {
-    top: 12.4rem;
+	top: 12.4rem;
 }
 
 .ui-control.dialog.has-one-row-footer > .content
 {
-    bottom: 6.0rem;
+	bottom: 6.0rem;
 }
 
 .ui-control.dialog.has-two-rows-footer > .content
 {
-    bottom: 10.0rem;
+	bottom: 10.0rem;
 }
 
 .ui-control.dialog.has-three-rows-footer > .content
 {
-    bottom: 14.0rem;
+	bottom: 14.0rem;
 }
 
 .ui-control.dialog.has-four-rows-footer > .content
 {
-    bottom: 18.0rem;
+	bottom: 18.0rem;
 }
 
 .ui-control.dialog.has-five-rows-footer > .content
 {
-    bottom: 22.0rem;
+	bottom: 22.0rem;
 }
 
 .ui-control.dialog.has-six-rows-footer > .content
 {
-    bottom: 26.0rem;
+	bottom: 26.0rem;
 }
 
 .ui-control.dialog > .footer
 {
-    left: 0;
-    right: 0;
-    bottom: 0;
-    height: 6.0rem;
-    position: absolute;
-    margin: auto;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	height: 6.0rem;
+	position: absolute;
+	margin: auto;
 
-    /*border-top: 1px rgba(130, 130, 130, 1) solid;*/
+	/*border-top: 1px rgba(130, 130, 130, 1) solid;*/
 }
 
 .ui-control.dialog.dialog.has-one-row-footer > .footer
 {
-    height: 6.0rem;
+	height: 6.0rem;
 }
 
 .ui-control.dialog.dialog.has-two-rows-footer > .footer
 {
-    height: 10.0rem;
+	height: 10.0rem;
 }
 
 .ui-control.dialog.dialog.has-three-rows-footer > .footer
 {
-    height: 14.0rem;
+	height: 14.0rem;
 }
 
 .ui-control.dialog.dialog.has-four-rows-footer > .footer
 {
-    height: 18.0rem;
+	height: 18.0rem;
 }
 
 .ui-control.dialog.dialog.has-five-rows-footer > .footer
 {
-    height: 22.0rem;
+	height: 22.0rem;
 }
 
 .ui-control.dialog.dialog.has-six-rows-footer > .footer
 {
-    height: 26.0rem;
+	height: 26.0rem;
 }
 
 /* -- big buttons -- */
 
 .ui-control.dialog.has-one-row-footer.has-big-footer > .content
 {
-    bottom: 8.8rem;
+	bottom: 8.8rem;
 }
 
 .ui-control.dialog.has-two-rows-footer.has-big-footer > .content
 {
-    bottom: 15.6rem;
+	bottom: 15.6rem;
 }
 
 .ui-control.dialog.has-three-rows-footer.has-big-footer > .content
 {
-    bottom: 22.4rem;
+	bottom: 22.4rem;
 }
 
 .ui-control.dialog.has-four-rows-footer.has-big-footer > .content
 {
-    bottom: 29.2rem;
+	bottom: 29.2rem;
 }
 
 .ui-control.dialog.dialog.has-one-row-footer.has-big-footer > .footer
 {
-    height: 8.8rem;
+	height: 8.8rem;
 }
 
 .ui-control.dialog.dialog.has-two-rows-footer.has-big-footer > .footer
 {
-    height: 15.6rem;
+	height: 15.6rem;
 }
 
 .ui-control.dialog.dialog.has-three-rows-footer.has-big-footer > .footer
 {
-    height: 22.4rem;
+	height: 22.4rem;
 }
 
 .ui-control.dialog.dialog.has-four-rows-footer.has-big-footer > .footer
 {
-    height: 29.2rem;
+	height: 29.2rem;
 }

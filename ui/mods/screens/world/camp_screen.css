@@ -1,0 +1,21 @@
+/*
+ *  @Project:		Battle Brothers
+ *	@Company:		Overhype Studios
+ *
+ *	@Copyright:		(c) Overhype Studios | 2013 - 2017
+ * 
+ *  @Author:		Overhype Studios
+ *  @Date:			31.10.2017
+ *  @Description:	World Town Screen JS
+ */
+
+.camp-screen
+{
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	position: absolute;
+
+	overflow: hidden;
+}

@@ -18,116 +18,116 @@
 	position: absolute;
 	margin: auto;
 	z-index : 1;
-    pointer-events: auto;
+	pointer-events: auto;
 }
 
 .new-campaign-menu-module.is-center
 {
-    left: 0;
-    right: 0;
+	left: 0;
+	right: 0;
 }
 
 .new-campaign-menu-module > .dialog .content .column,
 .new-campaign-menu-module > .dialog .content .column2,
 .new-campaign-menu-module > .dialog .content .column3
 {
-    padding-top: 5.0rem;
-    width: 40.0rem;
-    height: 100%;
-    float: left;
+	padding-top: 5.0rem;
+	width: 40.0rem;
+	height: 100%;
+	float: left;
 }
 
 .new-campaign-menu-module > .dialog .content .column2
 {
-    width: 35.0rem;
-    height: 500px;
+	width: 35.0rem;
+	height: 500px;
 }
 
 .new-campaign-menu-module > .dialog .content .column3
 {
-    width: 45.0rem;
+	width: 45.0rem;
 }
 
 .new-campaign-menu-module > .dialog .content .row,
 .new-campaign-menu-module > .dialog .content .row2,
 .new-campaign-menu-module > .dialog .content .row3
 {
-    width: 36.0rem;
-    float: left;
-    position: relative;
-    padding-top : 1.0rem;
-    padding-left: 2.0rem;
+	width: 36.0rem;
+	float: left;
+	position: relative;
+	padding-top : 1.0rem;
+	padding-left: 2.0rem;
 }
 
 .new-campaign-menu-module > .dialog .content .row2
 {
-    width: 31.0rem;
+	width: 31.0rem;
 }
 
 .new-campaign-menu-module > .dialog .content .row3
 {
-    width: 41.0rem;
+	width: 44.0rem;
 }
 
 .new-campaign-menu-module > .dialog .content .row4
 {
-    width: 33.0rem;
-    padding-top : 0.0rem;
-    padding-left: 0.0rem;
+	width: 33.0rem;
+	padding-top : 0.0rem;
+	padding-left: 0.0rem;
 }
 
 .new-campaign-menu-module > .dialog .content .difficulty
 {
-     position: absolute;
-     top: 0.5rem;
-     right: 17.3rem;
+	 position: absolute;
+	 top: 0.5rem;
+	 right: 17.3rem;
 }
 
 .new-campaign-menu-module > .dialog .content .row:first-child,
 .new-campaign-menu-module > .dialog .content .row4:first-child
 {
-    margin-top: 1.0rem;
+	margin-top: 1.0rem;
 }
 
 .new-campaign-menu-module > .dialog .content .row .title
 {
-    width: 96%;
-    height: 2.0rem;
-    float: left;
-    margin-bottom: 2.0rem;
+	width: 96%;
+	height: 2.0rem;
+	float: left;
+	margin-bottom: 2.0rem;
 	/*margin-top: -0.5rem;*/
 
-    line-height: 2.0rem;
+	line-height: 2.0rem;
 
-    border-image: url("coui://gfx/ui/skin/line_gold.png") 0% 0% 100% 0%;
-    border-image-outset: 0 0 0.5rem 0;
+	border-image: url("coui://gfx/ui/skin/line_gold.png") 0% 0% 100% 0%;
+	border-image-outset: 0 0 0.5rem 0;
 }
 
 .new-campaign-menu-module > .dialog .content .row .spacer
 {
-    width: 96%;
-    height: 1.6rem;
-    float: left;
+	width: 96%;
+	height: 1.6rem;
+	float: left;
 }
 
 .new-campaign-menu-module > .dialog .content .row .control,
 .new-campaign-menu-module > .dialog .content .row4 .control
 {
-    float: left;
-    clear: left;
-    position: relative;
-    margin-left  : 1.0rem;
-    /*margin-bottom: 1.6rem;*/
+	float: left;
+	clear: left;
+	position: relative;
+	margin-left  : 1.0rem;
+	/*margin-bottom: 1.6rem;*/
 	margin-bottom: 2.0rem;
 }
 
 .new-campaign-menu-module > .dialog .content .description-container
 {
-    top: 1.0rem;
-    right: 2.0rem;
-    bottom: 1.0rem;
-    width: 40.0rem;
-    position: absolute;
+	top: 1.0rem;
+	right: 2.0rem;
+	bottom: 1.0rem;
+	width: 40.0rem;
+	position: absolute;
 }
 
 .new-campaign-menu-module > .dialog .content .row .ironman-control
@@ -144,68 +144,72 @@
 {
 	/*margin-top: 20.0rem;*/
 }
-
-.new-campaign-menu-module > .dialog .content .control label
+.new-campaign-menu-module > .dialog .content .row .unexplored-map-control
 {
-    top: 0;
-    bottom: 0;
-    height: 2.0rem;
-    position: absolute;
-    margin: auto;
-    margin-left: 1.4rem;
-
-    white-space: nowrap;
-    line-height: 2.0rem;
+	margin-top: 17rem;
 }
 
 
+.new-campaign-menu-module > .dialog .content .control label
+{
+	top: 0;
+	bottom: 0;
+	height: 2.0rem;
+	position: absolute;
+	margin: auto;
+	margin-left: 1.4rem;
+
+	white-space: nowrap;
+	line-height: 2.0rem;
+}
+
 .new-campaign-menu-module > .dialog .footer .l-button-bar
 {
-    top: 0;
-    left: 2.0rem;
-    right: 2.0rem;
-    bottom: 0;
-    height: 4.3rem;
-    position: absolute;
-    margin: auto;
+	top: 0;
+	left: 2.0rem;
+	right: 2.0rem;
+	bottom: 0;
+	height: 4.3rem;
+	position: absolute;
+	margin: auto;
 }
 
 .new-campaign-menu-module > .dialog .footer .l-cancel-button
 {
-    top: 0;
-    left: 0;
-    bottom: 0;
-    width: 17.5rem;
-    position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	width: 17.5rem;
+	position: absolute;
 
-    line-height: 3.0rem;
+	line-height: 3.0rem;
 }
 
 .new-campaign-menu-module > .dialog .footer .l-ok-button
 {
-    top: 0;
-    right: 0;
-    bottom: 0;
-    width: 17.5rem;
-    position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	width: 17.5rem;
+	position: absolute;
 
-    line-height: 3.0rem;
+	line-height: 3.0rem;
 }
 
 .new-campaign-menu-module .column .row .l-input
 {
-    width: 30.0rem;
-    height: 4.0rem;
-    margin-bottom: 2.0rem;
-    float: left;
-    position: relative;
+	width: 30.0rem;
+	height: 4.0rem;
+	margin-bottom: 2.0rem;
+	float: left;
+	position: relative;
 }
 
 .new-campaign-menu-module .column .row .banner-container
 {
-    width: 100%;
-    height: 38.0rem;
-    /*margin-top: 1.0rem;*/
+	width: 100%;
+	height: 38.0rem;
+	/*margin-top: 1.0rem;*/
 }
 
 .new-campaign-menu-module .column .row .banner-container .prev-banner-button
@@ -226,5 +230,5 @@
 {
 	vertical-align: middle;
 	margin-left: auto;
-    margin-right: auto;
+	margin-right: auto;
 }

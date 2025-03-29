@@ -14,11 +14,12 @@ var CampaignMenuModulesIdentifier =
 {
 	Campaign:
 	{
-        Name: 'name',
-        FileName: 'fileName',
+		Name: 'name',
+		FileName: 'fileName',
 		GroupName: 'groupName',
 		Image: 'banner',
-        DayName: 'dayName',
-        CreationDate: 'creationDate'
-    }
+		DayName: 'dayName',
+		CreationDate: 'creationDate',
+		LegendsVersion: 'legendsVersion'
+	}
 };

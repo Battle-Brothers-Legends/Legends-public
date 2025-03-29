@@ -1,273 +1,273 @@
 
 .world-campfire-screen > .l-main-dialog-container
 {
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    width: 102.4rem;
-    height: 76.8rem;
-    position: absolute;
-    margin: auto;
-    z-index: 2;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	width: 102.4rem;
+	height: 76.8rem;
+	position: absolute;
+	margin: auto;
+	z-index: 2;
 }
 
 
 .world-campfire-screen > .l-main-dialog-container .settlement-container
 {
-    top: -0.8rem; /* -1.4rem */
-    padding-left: 0.1rem;
-    width: 102.3rem;
-    height: 58.8rem;
-    position: absolute;
-    overflow: hidden;
+	top: -0.8rem; /* -1.4rem */
+	padding-left: 0.1rem;
+	width: 102.3rem;
+	height: 58.8rem;
+	position: absolute;
+	overflow: hidden;
 }
 
 
 .world-campfire-screen > .l-main-dialog-container .l-tab-container
 {
-    top: -1.0rem;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    width: 88.0rem;
-    height: 3.0rem;
-    position: absolute;
-    margin: auto;
+	top: -1.0rem;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	width: 88.0rem;
+	height: 3.0rem;
+	position: absolute;
+	margin: auto;
 }
 
 .world-campfire-screen > .l-main-dialog-container .l-tab-asset
 {
-    top: 0;
-    bottom: 0;
-    width: 13.0rem;
-    height: 4.3rem;
-    position: absolute;
+	top: 0;
+	bottom: 0;
+	width: 13.0rem;
+	height: 4.3rem;
+	position: absolute;
 }
 
 .world-campfire-screen > .l-main-dialog-container .l-tab-asset.is-money
 {
-    left: 28.0rem;
+	left: 28.0rem;
 }
 
 .world-campfire-screen > .l-main-dialog-container .l-tab-asset.is-business-reputation
 {
-    left: 50.0rem;
+	left: 50.0rem;
 }
 
 .world-campfire-screen > .l-main-dialog-container .l-tab-asset img
 {
-    top: 0;
-    bottom: 0;
-    left: 0;
-    width: 2.8rem;
-    height: 2.8rem;
-    margin: auto;
-    margin-left: 1.0rem;
-    position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	width: 2.8rem;
+	height: 2.8rem;
+	margin: auto;
+	margin-left: 1.0rem;
+	position: absolute;
 }
 
 .world-campfire-screen > .l-main-dialog-container .l-tab-asset .label
 {
-    top: 0;
-    bottom: 0;
-    left: 3.4rem;
-    width: 11.2rem;
-    height: 3.0rem;
-    margin: auto;
-    margin-left: 1.0rem;
-    position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 3.4rem;
+	width: 11.2rem;
+	height: 3.0rem;
+	margin: auto;
+	margin-left: 1.0rem;
+	position: absolute;
 
-    text-align : left;
-    line-height: 3.0rem;
+	text-align : left;
+	line-height: 3.0rem;
 }
 
 .world-campfire-screen > .l-main-dialog-container .background
 {
-    position: absolute;
-    pointer-events: none;
+	position: absolute;
+	pointer-events: none;
 	width: 102.4rem;
 	height: 58.8rem;
 }
 
 .world-campfire-screen > .l-main-dialog-container .background-left
 {
-    position: absolute;
-    pointer-events: none;
+	position: absolute;
+	pointer-events: none;
 	left: 0.0rem;
-    bottom: 16.0rem;
+	bottom: 16.0rem;
 }
 
 .world-campfire-screen > .l-main-dialog-container .background-right
 {
-    position: absolute;
-    pointer-events: none;
+	position: absolute;
+	pointer-events: none;
 	width: 102.4rem;
 	height: 58.8rem;
 }
 
 .world-campfire-screen > .l-main-dialog-container .background-center
 {
-    position: absolute;
-    pointer-events: none;
+	position: absolute;
+	pointer-events: none;
 	width: 102.4rem;
 	height: 58.8rem;
 }
 
 .world-campfire-screen > .l-main-dialog-container .slot0
 {
-    -webkit-transform: scale(0.8, 0.8);
-    position: absolute;
-    left: 18.0rem;
-    bottom: 12.0rem;
+	-webkit-transform: scale(0.8, 0.8);
+	position: absolute;
+	left: 18.0rem;
+	bottom: 12.0rem;
 }
 
 .world-campfire-screen > .l-main-dialog-container .slot1
 {
-    -webkit-transform: scale(-0.8, 0.8);
-    position: absolute;
-    left: 36.0rem;
-    bottom: 11.0rem;
+	-webkit-transform: scale(-0.8, 0.8);
+	position: absolute;
+	left: 36.0rem;
+	bottom: 11.0rem;
 }
 
 .world-campfire-screen > .l-main-dialog-container .fire
 {
-    position: absolute;
-    pointer-events: none;
+	position: absolute;
+	pointer-events: none;
 	width: 102.4rem;
 	height: 58.8rem;
 }
 
 .world-campfire-screen > .l-main-dialog-container .slot2
 {
-    -webkit-transform: scale(0.9, 0.9);
-    position: absolute;
-    left: 0.0rem;
-    bottom: 7.0rem;
+	-webkit-transform: scale(0.9, 0.9);
+	position: absolute;
+	left: 0.0rem;
+	bottom: 7.0rem;
 }
 
 .world-campfire-screen > .l-main-dialog-container .slot3
 {
-    position: absolute;
-    left: 11.0rem;
-    bottom: -5.0rem;
+	position: absolute;
+	left: 11.0rem;
+	bottom: -5.0rem;
 }
 
 .world-campfire-screen > .l-main-dialog-container .slot4
 {
-    -webkit-transform: scaleX(-1);
-    position: absolute;
-    left: 49.0rem;
-    bottom: 2.0rem;
+	-webkit-transform: scaleX(-1);
+	position: absolute;
+	left: 49.0rem;
+	bottom: 2.0rem;
 }
 
 /*.world-campfire-screen > .l-main-dialog-container .slot0
 {
-    -webkit-transform: scale(0.8, 0.8);
-    position: absolute;
-    left: 18.0rem;
-    bottom: 11.0rem;
+	-webkit-transform: scale(0.8, 0.8);
+	position: absolute;
+	left: 18.0rem;
+	bottom: 11.0rem;
 }
 
 .world-campfire-screen > .l-main-dialog-container .slot1
 {
-    -webkit-transform: scale(-0.8, 0.8);
-    position: absolute;
-    left: 39.0rem;
-    bottom: 12.0rem;
+	-webkit-transform: scale(-0.8, 0.8);
+	position: absolute;
+	left: 39.0rem;
+	bottom: 12.0rem;
 }
 
 .world-campfire-screen > .l-main-dialog-container .fire
 {
-    position: absolute;
-    pointer-events: none;
+	position: absolute;
+	pointer-events: none;
 	width: 102.4rem;
 	height: 58.8rem;
 }
 
 .world-campfire-screen > .l-main-dialog-container .slot2
 {
-    -webkit-transform: scale(-0.9, 0.9);
-    position: absolute;
-    left: 51.0rem;
-    bottom: 5.0rem;
+	-webkit-transform: scale(-0.9, 0.9);
+	position: absolute;
+	left: 51.0rem;
+	bottom: 5.0rem;
 }
 
 .world-campfire-screen > .l-main-dialog-container .slot3
 {
-    position: absolute;
-    left: 2.0rem;
-    bottom: 2.0rem;
+	position: absolute;
+	left: 2.0rem;
+	bottom: 2.0rem;
 }
 
 .world-campfire-screen > .l-main-dialog-container .slot4
 {
-    -webkit-transform: scaleX(-1);
-    position: absolute;
-    left: 39.0rem;
-    bottom: -4.0rem;
+	-webkit-transform: scaleX(-1);
+	position: absolute;
+	left: 39.0rem;
+	bottom: -4.0rem;
 }*/
 
 /*
 .world-campfire-screen > .l-main-dialog-container .slot0
 {
-    -webkit-transform: scale(0.8, 0.8);
-    position: absolute;
-    left: 21.0rem;
-    bottom: 11.0rem;
+	-webkit-transform: scale(0.8, 0.8);
+	position: absolute;
+	left: 21.0rem;
+	bottom: 11.0rem;
 }
 
 .world-campfire-screen > .l-main-dialog-container .slot1
 {
-    -webkit-transform: scale(-0.8, 0.8);
-    position: absolute;
-    left: 36.0rem;
-    bottom: 11.0rem;
+	-webkit-transform: scale(-0.8, 0.8);
+	position: absolute;
+	left: 36.0rem;
+	bottom: 11.0rem;
 }
 
 .world-campfire-screen > .l-main-dialog-container .fire
 {
-    position: absolute;
-    pointer-events: none;
+	position: absolute;
+	pointer-events: none;
 	width: 102.4rem;
 	height: 58.8rem;
 }
 
 .world-campfire-screen > .l-main-dialog-container .slot2
 {
-    -webkit-transform: scale(0.9, 0.9);
-    position: absolute;
-    left: 7.0rem;
-    bottom: 7.0rem;
+	-webkit-transform: scale(0.9, 0.9);
+	position: absolute;
+	left: 7.0rem;
+	bottom: 7.0rem;
 }
 
 .world-campfire-screen > .l-main-dialog-container .slot3
 {
-    -webkit-transform: scale(-0.9, 0.9);
-    position: absolute;
-    left: 50.0rem;
-    bottom: 7.0rem;
+	-webkit-transform: scale(-0.9, 0.9);
+	position: absolute;
+	left: 50.0rem;
+	bottom: 7.0rem;
 }
 
 .world-campfire-screen > .l-main-dialog-container .slot4
 {
-    position: absolute;
-    left: -2.0rem;
-    bottom: -2.0rem;
+	position: absolute;
+	left: -2.0rem;
+	bottom: -2.0rem;
 }
 
 .world-campfire-screen > .l-main-dialog-container .slot5
 {
-    -webkit-transform: scaleX(-1);
-    position: absolute;
-    left: 42.0rem;
-    bottom: -5.0rem;
+	-webkit-transform: scaleX(-1);
+	position: absolute;
+	left: 42.0rem;
+	bottom: -5.0rem;
 }
 */
 
 .world-campfire-screen > .l-main-dialog-container .is-highlighted
 {
-	/*-webkit-filter: brightness(125%);*/
+	-webkit-filter: brightness(120%);
 }
 
 .world-campfire-screen > .l-main-dialog-container .is-negotiated
@@ -282,51 +282,51 @@
 
 .world-campfire-screen > .l-main-dialog-container .cart
 {
-    position: absolute;
-    right: 0.0rem;
-    bottom: 0.0rem;
+	position: absolute;
+	right: 0.0rem;
+	bottom: 0.0rem;
 }
 
 .world-campfire-screen > .l-main-dialog-container .mood
 {
-    position: absolute;
-    pointer-events: none;
+	position: absolute;
+	pointer-events: none;
 }
 
 .world-campfire-screen > .l-main-dialog-container .foreground
 {
-    position: absolute;
-    pointer-events: none;
-    bottom: 0;
+	position: absolute;
+	pointer-events: none;
+	bottom: 0;
 	width: 102.4rem;
 	height: 58.8rem;
 }
 
 .world-campfire-screen > .l-main-dialog-container .content img
 {
-    position: absolute;
-    z-index: 1;
+	position: absolute;
+	z-index: 1;
 }
 
 .world-campfire-screen > .l-main-dialog-container .footer .l-button-bar
 {
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    width: 16.0rem;
-    height: 4.3rem;
-    position: absolute;
-    margin: auto;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	width: 16.0rem;
+	height: 4.3rem;
+	position: absolute;
+	margin: auto;
 }
 
 .world-campfire-screen > .l-main-dialog-container .footer .l-leave-button
 {
-    top: 0;
-    right: 0;
-    bottom: 0;
-    width: 17.5rem;
-    position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	width: 17.5rem;
+	position: absolute;
 
-    line-height: 3.0rem;
+	line-height: 3.0rem;
 }

@@ -1,11 +1,11 @@
 /*
- *  @Project:       Battle Brothers
- *  @Company:       Overhype Studios
+ *  @Project:	   Battle Brothers
+ *  @Company:	   Overhype Studios
  *
- *  @Copyright:     (c) Overhype Studios | 2013 - 2020
+ *  @Copyright:	 (c) Overhype Studios | 2013 - 2020
  *
- *  @Author:        Overhype Studios
- *  @Date:          24.01.2017 / Reworked: 26.11.2017
+ *  @Author:		Overhype Studios
+ *  @Date:		  24.01.2017 / Reworked: 26.11.2017
  *  @Description:   Brothers List Module CSS
  */
 
@@ -16,7 +16,7 @@
 	position: relative;
 	float: left;
 
-    margin-top: 1.2rem;
+	margin-top: 1.2rem;
 }
 
 .character-screen-container .brothers-list-module .l-list-container
@@ -30,53 +30,89 @@
 
 .character-screen-container .brothers-list-module .l-list-container .scroll-container
 {
-    margin-bottom: 0.4rem;
+	margin-bottom: 0.4rem;
 }
 
+.character-screen-container .brothers-list-module .frontline-count-container
+{
+	top: -3.0rem;
+	right: 3.0rem;
+	bottom: 0;
+	width: 12.6rem;
+	height: 2.4rem;
+	position: absolute;
+
+	z-index: 10;
+}
+
+.character-screen-container .brothers-list-module .frontline-count-container img
+{
+	top: 0;
+	left: 0;
+	bottom: 0;
+	width: 2.4rem;
+	height: 2.4rem;
+	position: absolute;
+	margin: auto;
+}
+
+.character-screen-container .brothers-list-module .frontline-count-container .label
+{
+	top: 0;
+	left: 2.6rem;
+	bottom: 0;
+	width: 10.0rem;
+	height: 2.0rem;
+	position: absolute;
+	margin: auto;
+
+	line-height: 2.0rem;
+	text-align: left;
+}
 
 .character-screen-container .brothers-list-module .roster-count-container
 {
-    top: -3.0rem;
-    right: -4.0rem;
-    bottom: 0;
-    width: 12.6rem;
-    height: 2.4rem;
-    position: absolute;
+	top: -3.0rem;
+	right: -4.0rem;
+	bottom: 0;
+	width: 12.6rem;
+	height: 2.4rem;
+	position: absolute;
 
-    z-index: 10;
+	z-index: 10;
 }
 
 .character-screen-container .brothers-list-module .roster-count-container img
 {
-    top: 0;
-    left: 0;
-    bottom: 0;
-    width: 2.4rem;
-    height: 2.4rem;
-    position: absolute;
-    margin: auto;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	width: 2.4rem;
+	height: 2.4rem;
+	position: absolute;
+	margin: auto;
 }
 
 .character-screen-container .brothers-list-module .roster-count-container .label
 {
-    top: 0;
-    left: 2.6rem;
-    bottom: 0;
-    width: 10.0rem;
-    height: 2.0rem;
-    position: absolute;
-    margin: auto;
+	top: 0;
+	left: 2.6rem;
+	bottom: 0;
+	width: 10.0rem;
+	height: 2.0rem;
+	position: absolute;
+	margin: auto;
 
-    line-height: 2.0rem;
-    text-align: left;
+	line-height: 2.0rem;
+	text-align: left;
 }
 
 .character-screen-container .brothers-list-module .l-start-battle-button
 {
-    bottom: 1.2rem;
-    left: 27.5rem;
-    width: 17.5rem;
-    height: 4.3rem;
-    position: absolute;
-    line-height: 3.0rem;
+	bottom: 1.2rem;
+	left: 27.5rem;
+	width: 17.5rem;
+	height: 4.3rem;
+	position: absolute;
+	line-height: 3.0rem;
 }

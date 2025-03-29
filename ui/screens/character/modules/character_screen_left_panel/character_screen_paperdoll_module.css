@@ -3,40 +3,37 @@
  *	@Company:		Overhype Studios
  *
  *	@Copyright:		(c) Overhype Studios | 2013 - 2020
- * 
+ *
  *  @Author:		Overhype Studios
  *  @Date:			24.01.2017 / Reworked: 26.11.2017
  *  @Description:	Paperdoll Module JS
  */
 
 
-.character-screen-container .paperdoll-module
-{
+.character-screen-container .paperdoll-module {
 	width: 100%;
-    /* height: 43.5%; */ /* AUTO HEIGHT */
+	/* height: 43.5%; */
+	/* AUTO HEIGHT */
 	position: relative;
 	float: left;
 
-    margin-top: 1.2rem;
-    /*border-bottom: 1px rgba(130, 130, 130, 1) solid;*/
+	margin-top: 1.2rem;
+	/*border-bottom: 1px rgba(130, 130, 130, 1) solid;*/
 }
 
 
-.character-screen-container .paperdoll-module .equipment-column
-{
+.character-screen-container .paperdoll-module .equipment-column {
 	width: 33%;
 	height: 25.0rem;
 	position: relative;
 	float: left;
 }
 
-.character-screen-container .paperdoll-module .equipment-column.is-middle
-{
+.character-screen-container .paperdoll-module .equipment-column.is-middle {
 	width: 34%;
 }
 
-.character-screen-container .paperdoll-module .equipment-column > .l-equipment-column
-{
+.character-screen-container .paperdoll-module .equipment-column>.l-equipment-column {
 	top: 0;
 	left: 0;
 	right: 0;
@@ -46,68 +43,66 @@
 	margin: auto;
 }
 
-.character-screen-container .paperdoll-module .l-equipment-column.is-left
-{
+.character-screen-container .paperdoll-module .l-equipment-column.is-left {
 	left: 0.5rem;
 }
 
-.character-screen-container .paperdoll-module .l-equipment-column.is-right
-{
+.character-screen-container .paperdoll-module .l-equipment-column.is-right {
 	right: 0.7rem;
 }
 
-.character-screen-container .paperdoll-module .l-equipment-column > .l-equipment-container-top-small-offset
-{
-    margin-top: 1.0rem;
+.character-screen-container .paperdoll-module .l-equipment-column>.l-equipment-container-top-small-offset {
+	margin-top: 1.0rem;
 }
 
-.character-screen-container .paperdoll-module .l-equipment-column > .l-equipment-container-top-big-offset
-{
-    margin-top: 2.0rem;
+.character-screen-container .paperdoll-module .l-equipment-column>.l-equipment-container-top-big-offset {
+	margin-top: 2.0rem;
 }
 
-.character-screen-container .paperdoll-module .l-equipment-column > .l-equipment-container-between-offset
-{
-    margin-top: 1.0rem;
+.character-screen-container .paperdoll-module .l-equipment-column>.l-equipment-container-between-offset {
+	margin-top: 1.0rem;
 }
 
-.character-screen-container .paperdoll-module .l-slot-container
-{
+.character-screen-container .paperdoll-module .l-slot-container {
 	width: 7.0rem;
 	height: 7.0rem;
 	position: relative;
 
-    /*background-image: url("coui://gfx/ui/skin/paperdoll_slot_small.png");
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: 7.4rem 7.4rem;*/
+	/*background-image: url("coui://gfx/ui/skin/paperdoll_slot_small.png");
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: 7.4rem 7.4rem;*/
 }
 
-.character-screen-container .paperdoll-module .l-slot-container.is-big
-{
+.character-screen-container .paperdoll-module .l-slot-container.is-big {
 	height: 14.0rem;
 
-    /*background-image: url("coui://gfx/ui/skin/paperdoll_slot_big.png");
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: 7.4rem 14.0rem;*/
+	/*background-image: url("coui://gfx/ui/skin/paperdoll_slot_big.png");
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: 7.4rem 14.0rem;*/
 }
 
-.character-screen-container .paperdoll-module .l-slot-container.is-top-small-offset
-{
-    margin-top: 1.0rem;
+.character-screen-container .paperdoll-module .l-slot-container.is-top-small-offset {
+	margin-top: 1.0rem;
 }
 
-.character-screen-container .paperdoll-module .l-slot-container.is-top-big-offset
-{
-    margin-top: 1.8rem;
+.character-screen-container .paperdoll-module .l-slot-container.helm-is-top-small-offset {
+	padding-top: 2.0rem;
 }
 
-.character-screen-container .paperdoll-module .l-slot-container.is-in-between-offset
-{
-    margin-top: 1.0rem;
+
+.character-screen-container .paperdoll-module .l-slot-container.is-top-big-offset {
+	margin-top: 1.8rem;
 }
 
+.character-screen-container .paperdoll-module .l-slot-container.is-in-between-offset {
+	margin-top: 1.0rem;
+}
+
+.character-screen-container .paperdoll-module .l-slot-container.body-is-in-between-offset {
+	margin-top: 3.0rem;
+}
 
 /*
 .character-screen-container .paperdoll-module .equipment-slot-container-small .equipment-slot-background-layer,
@@ -225,34 +220,33 @@
 .character-screen-container .paperdoll-module .equipment-slot-container-small .equipment-slot-amount-layer,
 .character-screen-container .paperdoll-module .equipment-slot-container-big .equipment-slot-amount-layer
 {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    z-index: 4;
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	z-index: 4;
 
-    pointer-events: none;
+	pointer-events: none;
 }
 
 .character-screen-container .paperdoll-module .equipment-slot-container-small .l-equipment-slot-amount-label,
 .character-screen-container .paperdoll-module .equipment-slot-container-big .l-equipment-slot-amount-label
 {
-    right: 0.4rem;
-    bottom: 0.0rem;
-    height: 1.2rem;
-    position: absolute;
+	right: 0.4rem;
+	bottom: 0.0rem;
+	height: 1.2rem;
+	position: absolute;
 
-    text-align: right;
-    line-height: 1.2rem;
+	text-align: right;
+	line-height: 1.2rem;
 
-    pointer-events: none;
+	pointer-events: none;
 }
 */
 
 
 
 
-.character-screen-container .paperdoll-module .backpack-row
-{
+.character-screen-container .paperdoll-module .backpack-row {
 	width: 100%;
 	height: 7.4rem;
 	position: relative;
@@ -261,8 +255,7 @@
 	margin-bottom: 0.5rem;
 }
 
-.character-screen-container .paperdoll-module .backpack-row .l-backpack-row
-{
+.character-screen-container .paperdoll-module .backpack-row .l-backpack-row {
 	top: 0;
 	left: 0;
 	right: 0;
@@ -272,42 +265,93 @@
 	/*margin: auto;*/
 }
 
-.character-screen-container .paperdoll-module .l-backpack-row.has-slot-1
-{
-    width: 7.4rem;
+.character-screen-container .paperdoll-module .l-backpack-row.has-slot-1 {
+	width: 7.4rem;
 }
 
-.character-screen-container .paperdoll-module .l-backpack-row.has-slot-2
-{
-    width: 14.8rem;
-    left: 9.8rem;
+.character-screen-container .paperdoll-module .l-backpack-row.has-slot-2 {
+	width: 14.8rem;
+	left: 9.8rem;
 }
 
-.character-screen-container .paperdoll-module .l-backpack-row.has-slot-3
-{
-    width: 22.6rem;
+.character-screen-container .paperdoll-module .l-backpack-row.has-slot-3 {
+	width: 22.6rem;
 }
 
-.character-screen-container .paperdoll-module .l-backpack-row.has-slot-4
-{
-    width: 30.4rem;
-    left: 2.4rem;
+.character-screen-container .paperdoll-module .l-backpack-row.has-slot-4 {
+	width: 30.4rem;
+	left: 2.4rem;
 }
 
-.character-screen-container .paperdoll-module .l-slot-container.is-backpack
-{
-    float: left;
-    margin-left: 0.4rem;
+.character-screen-container .paperdoll-module .l-slot-container.is-backpack {
+	float: left;
+	margin-left: 0.4rem;
 
-    background-image: url("coui://gfx/ui/skin/inventory_bag_slot.png");
-    background-size: 7.4rem 7.4rem;
-    background-position: center;
-    background-repeat: no-repeat;
+	background-image: url("coui://gfx/ui/skin/inventory_bag_slot.png");
+	background-size: 7.4rem 7.4rem;
+	background-position: center;
+	background-repeat: no-repeat;
 
-    overflow: hidden;
+	overflow: hidden;
 }
 
-.character-screen-container .paperdoll-module .l-slot-container.is-backpack:first-child
-{
-    margin-left: 0;
+.character-screen-container .paperdoll-module .l-slot-container.is-backpack:first-child {
+	margin-left: 0;
+}
+
+.character-screen-container .paperdoll-module .l-button {
+	width: 2.2rem;
+	height: 2.2rem;
+	position: absolute;
+	line-height: 2.2rem;
+	left: -0.5rem;
+}
+
+.character-screen-container .paperdoll-module .l-button.h-remove4 {
+	top: -0.6rem;
+}
+
+.character-screen-container .paperdoll-module .l-button.h-remove3 {
+	top: 1.6rem;
+}
+
+.character-screen-container .paperdoll-module .l-button.h-remove2 {
+	top: 3.8rem;
+}
+
+.character-screen-container .paperdoll-module .l-button.h-remove1 {
+	top: 6.0rem;
+}
+
+.character-screen-container .paperdoll-module .l-button.h-remove0 {
+	top: 8.2rem;
+}
+
+.character-screen-container .paperdoll-module .l-button.remove5 {
+	top: 11.4rem;
+}
+
+.character-screen-container .paperdoll-module .l-button.remove4 {
+	top: 13.6rem;
+}
+
+.character-screen-container .paperdoll-module .l-button.remove3 {
+	top: 15.8rem;
+}
+
+.character-screen-container .paperdoll-module .l-button.remove2 {
+	top: 18.0rem;
+}
+
+.character-screen-container .paperdoll-module .l-button.remove1 {
+	top: 20.2rem;
+}
+
+.character-screen-container .paperdoll-module .l-button.remove0 {
+	top: 22.4rem;
+}
+
+.armor_button_invisible {
+	background-image: url("coui://gfx/ui/skin/armor_button_invisible.png") !important;
+	background-size: 2.2rem 2.2rem;
 }

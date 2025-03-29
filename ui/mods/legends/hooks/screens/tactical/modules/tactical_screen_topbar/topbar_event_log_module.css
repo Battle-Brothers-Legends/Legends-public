@@ -1,0 +1,50 @@
+/*
+ *  @Project:	   Battle Brothers
+ *  @Company:	   Overhype Studios
+ *
+ *  @Copyright:	 (c) Overhype Studios | 2013 - 2020
+ *
+ *  @Author:		Overhype Studios
+ *  @Date:		  03.03.2017
+ *  @Description:   Tactical Screen - Topbar: Event Log Module CSS
+ */
+
+/*
+	Event Log: Module
+*/
+
+.tactical-screen .new-log-container
+{
+	bottom  : 0;
+	top	 : 0.3rem;
+	left	: 0.3rem;
+	width   : 52rem;
+	height  : 15.1rem;
+	position: relative;
+	background-image: url("coui://gfx/ui/skin/tactical_character_background.png");
+	z-index : 1;
+}
+
+.tactical-screen .topbar-event-log-module .ui-control.list
+{
+	background-image: url("coui://gfx/ui/skin/combat_log_bottom.png");
+	background-size: 39.0rem 41.1rem;
+	background-repeat: no-repeat;
+}
+
+.tactical-screen .topbar-event-log-module .l-event-logs-container
+{
+	top: 0.0rem;
+	left: 1.0rem;
+	bottom: 0.0rem;
+	height: 13.0rem;
+	position: absolute;
+	margin: auto;
+}
+
+.tactical-screen .topbar-event-log-module .l-event-logs-container .entry
+{
+	margin-left: 1.0rem;
+	margin-right: 0.2rem;
+	/*line-height: 1.3rem;*/
+}

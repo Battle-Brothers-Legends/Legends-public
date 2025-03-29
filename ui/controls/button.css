@@ -12,8 +12,7 @@
 /*
 	Button
 */
-.ui-control.button
-{
+.ui-control.button {
 	width: 100%;
 	height: 100%;
 	position: relative;
@@ -26,107 +25,96 @@
 	color: #dda21f;
 	text-shadow: 1px 1px 1px #000;
 
-    /*
+	/*
 	Enable Border Box Model
-    */
-    /*
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-    */
+	*/
+	/*
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	*/
 }
 
 .ui-control.button:hover,
-.ui-control.button.is-selected
-{
+.ui-control.button.is-selected {
 	/*background-color: rgba(120, 120, 120, 1);*/
-    /*background-color: rgba(230, 52, 26, 0.6);*/
+	/*background-color: rgba(230, 52, 26, 0.6);*/
 
-    background-color: rgb(129, 50, 24);
+	background-color: rgb(129, 50, 24);
 }
 
-.ui-control.button.is-selected
-{
-    text-shadow: 1px 1px #A36426, -1px -1px #000;
+.ui-control.button.is-selected {
+	text-shadow: 1px 1px #A36426, -1px -1px #000;
 }
 
-.ui-control.button.is-active
-{
-    background-color: rgb(129, 50, 24);
+.ui-control.button.is-active {
+	background-color: rgb(129, 50, 24);
 }
 
 /*
 .ui-control.button:active
  {
-     background-color: rgba(160, 160, 160, 1);
-     text-shadow: 2px 2px 1px #000;
+	 background-color: rgba(160, 160, 160, 1);
+	 text-shadow: 2px 2px 1px #000;
  }
 */
 
-.ui-control.button[disabled]
-{
+.ui-control.button[disabled] {
 	background-color: rgba(60, 60, 60, 1);
-	color : #997522;
+	color: #997522;
 }
 
-.ui-control.button[disabled]:hover
-{
+.ui-control.button[disabled]:hover {
 	background-color: rgba(60, 60, 60, 1);
-	color : #997522;
+	color: #997522;
 }
 
-.ui-control.button[disabled]:active
-{
+.ui-control.button[disabled]:active {
 	background-color: rgba(60, 60, 60, 1);
-	color : #997522;
+	color: #997522;
 }
 
-.ui-control.button > .label
-{
-    top: 0;
+.ui-control.button>.label {
+	top: 0;
 	bottom: 0;
 	left: 0;
 	right: 0;
-    /*
-    width: 90%;
+	/*
+	width: 90%;
 	height: 90%;
-    margin: auto;
-    */
+	margin: auto;
+	*/
 	position: absolute;
 
-	text-align : center;
-    /*line-height: 2.6rem;*/
+	text-align: center;
+	/*line-height: 2.6rem;*/
 
-    overflow: hidden;
+	overflow: hidden;
 }
 
-.ui-control.button.is-selected > .label
-{
-    top: 0.1rem;
-    left: 0.1rem;
+.ui-control.button.is-selected>.label {
+	top: 0.1rem;
+	left: 0.1rem;
 }
 
-.ui-control.button > img
-{
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    width: 80%;
-    height: 80%;
-    position: absolute;
-    margin: auto;
+.ui-control.button>img {
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	width: 80%;
+	height: 80%;
+	position: absolute;
+	margin: auto;
 }
 
-.ui-control.button[disabled] > img
-{
-    -webkit-filter: grayscale(100%);
+.ui-control.button[disabled]>img {
+	-webkit-filter: grayscale(100%);
 }
 
-.ui-control.button.is-selected > img
-{
-    top: 0.2rem;
-    left: 0.2rem;
+.ui-control.button.is-selected>img {
+	top: 0.2rem;
+	left: 0.2rem;
 }
 
 
@@ -134,100 +122,88 @@
 	Button Size 1
 ***********************************************************************/
 
-.ui-control.button-1
-{
+.ui-control.button-1 {
 	width: 100%;
 	height: 100%;
 	position: relative;
 
-    background-image: url("coui://gfx/ui/skin/button_01_default.png");
+	background-image: url("coui://gfx/ui/skin/button_01_default.png");
 	background-size: 17.5rem 4.3rem;
-    text-shadow: 1px 1px 1px #000;
+	text-shadow: 1px 1px 1px #000;
 
-    color: #dda21f;
+	color: #dda21f;
 }
 
 .ui-control.button-1:hover,
-.ui-control.button-1.is-selected
-{
-    background-image: url("coui://gfx/ui/skin/button_01_hovered.png");
-    background-size: 17.5rem 4.3rem;
+.ui-control.button-1.is-selected {
+	background-image: url("coui://gfx/ui/skin/button_01_hovered.png");
+	background-size: 17.5rem 4.3rem;
 }
 
-.ui-control.button-1.is-selected
-{
-    text-shadow: 1px 1px #A36426, -1px -1px #000;
+.ui-control.button-1.is-selected {
+	text-shadow: 1px 1px #A36426, -1px -1px #000;
 }
 
-.ui-control.button-1.is-active
-{
-    background-image: url("coui://gfx/ui/skin/button_01_pressed.png");
-    background-size: 17.5rem 4.3rem;
+.ui-control.button-1.is-active {
+	background-image: url("coui://gfx/ui/skin/button_01_pressed.png");
+	background-size: 17.5rem 4.3rem;
 }
 
-.ui-control.button-1[disabled]
-{
-	color : #a7a7a7;
-    background-image: url("coui://gfx/ui/skin/button_01_inactive.png");
-    background-size: 17.5rem 4.3rem;
+.ui-control.button-1[disabled] {
+	color: #a7a7a7;
+	background-image: url("coui://gfx/ui/skin/button_01_inactive.png");
+	background-size: 17.5rem 4.3rem;
 }
 
-.ui-control.button-1[disabled]:hover
-{
-    color : #a7a7a7;
-    background-image: url("coui://gfx/ui/skin/button_01_inactive.png");
-    background-size: 17.5rem 4.3rem;
+.ui-control.button-1[disabled]:hover {
+	color: #a7a7a7;
+	background-image: url("coui://gfx/ui/skin/button_01_inactive.png");
+	background-size: 17.5rem 4.3rem;
 }
 
-.ui-control.button-1[disabled]:active
-{
-    color : #a7a7a7;
-    background-image: url("coui://gfx/ui/skin/button_01_inactive.png");
-    background-size: 17.5rem 4.3rem;
+.ui-control.button-1[disabled]:active {
+	color: #a7a7a7;
+	background-image: url("coui://gfx/ui/skin/button_01_inactive.png");
+	background-size: 17.5rem 4.3rem;
 }
 
-.ui-control.button-1 > .label
-{
-    top: 0;
+.ui-control.button-1>.label {
+	top: 0;
 	bottom: 0;
 	left: 0;
 	right: 0;
 
 	position: absolute;
 
-    margin-top: 0.4rem;
-	text-align : center;
+	margin-top: 0.4rem;
+	text-align: center;
 
-    overflow: hidden;
+	overflow: hidden;
 }
 
-.ui-control.button-1.is-selected > .label
-{
-    top: 0.1rem;
-    left: 0.1rem;
+.ui-control.button-1.is-selected>.label {
+	top: 0.1rem;
+	left: 0.1rem;
 }
 
-.ui-control.button-1 > img
-{
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    width: 80%;
-    height: 80%;
-    position: absolute;
-    margin: auto;
+.ui-control.button-1>img {
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	width: 80%;
+	height: 80%;
+	position: absolute;
+	margin: auto;
 }
 
-.ui-control.button-1[disabled] > img
-{
-    -webkit-filter: grayscale(100%);
+.ui-control.button-1[disabled]>img {
+	-webkit-filter: grayscale(100%);
 }
 
-.ui-control.button-1.is-selected > img
-{
-    top: 0.2rem;
-    left: 0.2rem;
+.ui-control.button-1.is-selected>img {
+	top: 0.2rem;
+	left: 0.2rem;
 }
 
 
@@ -235,101 +211,89 @@
 	Button Size 2
 ***********************************************************************/
 
-.ui-control.button-2
-{
+.ui-control.button-2 {
 	width: 100%;
 	height: 100%;
 	position: relative;
 
-    background-image: url("coui://gfx/ui/skin/button_02_default.png");
-    background-size: 9.8rem 4.3rem;
+	background-image: url("coui://gfx/ui/skin/button_02_default.png");
+	background-size: 9.8rem 4.3rem;
 	text-shadow: 1px 1px 1px #000;
 
-    color: #dda21f;
+	color: #dda21f;
 }
 
 .ui-control.button-2:hover,
-.ui-control.button-2.is-selected
-{
-    background-image: url("coui://gfx/ui/skin/button_02_hovered.png");
-    background-size: 9.8rem 4.3rem;
+.ui-control.button-2.is-selected {
+	background-image: url("coui://gfx/ui/skin/button_02_hovered.png");
+	background-size: 9.8rem 4.3rem;
 }
 
-.ui-control.button-2.is-selected
-{
-    text-shadow: 1px 1px #A36426, -1px -1px #000;
+.ui-control.button-2.is-selected {
+	text-shadow: 1px 1px #A36426, -1px -1px #000;
 }
 
-.ui-control.button-2.is-active
-{
-    background-image: url("coui://gfx/ui/skin/button_02_pressed.png");
-    background-size: 9.8rem 4.3rem;
+.ui-control.button-2.is-active {
+	background-image: url("coui://gfx/ui/skin/button_02_pressed.png");
+	background-size: 9.8rem 4.3rem;
 }
 
-.ui-control.button-2[disabled]
-{
-	color : #a7a7a7;
-    background-image: url("coui://gfx/ui/skin/button_02_inactive.png");
-    background-size: 9.8rem 4.3rem;
+.ui-control.button-2[disabled] {
+	color: #a7a7a7;
+	background-image: url("coui://gfx/ui/skin/button_02_inactive.png");
+	background-size: 9.8rem 4.3rem;
 }
 
-.ui-control.button-2[disabled]:hover
-{
-    color: #a7a7a7;
-    background-image: url("coui://gfx/ui/skin/button_02_inactive.png");
-    background-size: 9.8rem 4.3rem;
+.ui-control.button-2[disabled]:hover {
+	color: #a7a7a7;
+	background-image: url("coui://gfx/ui/skin/button_02_inactive.png");
+	background-size: 9.8rem 4.3rem;
 }
 
-.ui-control.button-2[disabled]:active
-{
-    color: #a7a7a7;
-    background-image: url("coui://gfx/ui/skin/button_02_inactive.png");
-    background-size: 9.8rem 4.3rem;
+.ui-control.button-2[disabled]:active {
+	color: #a7a7a7;
+	background-image: url("coui://gfx/ui/skin/button_02_inactive.png");
+	background-size: 9.8rem 4.3rem;
 }
 
-.ui-control.button-2 > .label
-{
-    top: 0;
+.ui-control.button-2>.label {
+	top: 0;
 	bottom: 0;
 	left: 0;
 	right: 0;
 
 	position: absolute;
 
-    margin-top: 0.4rem;
-    margin-left: 0.4rem;
-	text-align : center;
+	margin-top: 0.4rem;
+	margin-left: 0.4rem;
+	text-align: center;
 
-    overflow: hidden;
+	overflow: hidden;
 }
 
-.ui-control.button-2.is-selected > .label
-{
-    top: 0.1rem;
-    left: 0.1rem;
+.ui-control.button-2.is-selected>.label {
+	top: 0.1rem;
+	left: 0.1rem;
 }
 
-.ui-control.button-2 > img
-{
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    width: 80%;
-    height: 80%;
-    position: absolute;
-    margin: auto;
+.ui-control.button-2>img {
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	width: 80%;
+	height: 80%;
+	position: absolute;
+	margin: auto;
 }
 
-.ui-control.button-2[disabled] > img
-{
-    -webkit-filter: grayscale(100%);
+.ui-control.button-2[disabled]>img {
+	-webkit-filter: grayscale(100%);
 }
 
-.ui-control.button-2.is-selected > img
-{
-    top: 0.2rem;
-    left: 0.2rem;
+.ui-control.button-2.is-selected>img {
+	top: 0.2rem;
+	left: 0.2rem;
 }
 
 
@@ -337,101 +301,89 @@
 	Button Size 3
 ***********************************************************************/
 
-.ui-control.button-3
-{
+.ui-control.button-3 {
 	width: 100%;
 	height: 100%;
 	position: relative;
 
-    background-image: url("coui://gfx/ui/skin/button_03_default.png");
-    background-size: 5.2rem 4.1rem;
+	background-image: url("coui://gfx/ui/skin/button_03_default.png");
+	background-size: 5.2rem 4.1rem;
 	text-shadow: 1px 1px 1px #000;
 
-    color: #dda21f;
+	color: #dda21f;
 }
 
 .ui-control.button-3:hover,
-.ui-control.button-3.is-selected
-{
-    background-image: url("coui://gfx/ui/skin/button_03_hovered.png");
-    background-size: 5.2rem 4.1rem;
+.ui-control.button-3.is-selected {
+	background-image: url("coui://gfx/ui/skin/button_03_hovered.png");
+	background-size: 5.2rem 4.1rem;
 }
 
-.ui-control.button-2.is-selected
-{
-    text-shadow: 1px 1px #A36426, -1px -1px #000;
+.ui-control.button-2.is-selected {
+	text-shadow: 1px 1px #A36426, -1px -1px #000;
 }
 
-.ui-control.button-3.is-active
-{
-    background-image: url("coui://gfx/ui/skin/button_03_hovered.png");
-    background-size: 5.2rem 4.1rem;
+.ui-control.button-3.is-active {
+	background-image: url("coui://gfx/ui/skin/button_03_hovered.png");
+	background-size: 5.2rem 4.1rem;
 }
 
-.ui-control.button-3[disabled]
-{
-	color : #a7a7a7;
-    background-image: url("coui://gfx/ui/skin/button_03_inactive.png");
-    background-size: 5.2rem 4.1rem;
+.ui-control.button-3[disabled] {
+	color: #a7a7a7;
+	background-image: url("coui://gfx/ui/skin/button_03_inactive.png");
+	background-size: 5.2rem 4.1rem;
 }
 
-.ui-control.button-3[disabled]:hover
-{
-    color: #a7a7a7;
-    background-image: url("coui://gfx/ui/skin/button_03_inactive.png");
-    background-size: 5.2rem 4.1rem;
+.ui-control.button-3[disabled]:hover {
+	color: #a7a7a7;
+	background-image: url("coui://gfx/ui/skin/button_03_inactive.png");
+	background-size: 5.2rem 4.1rem;
 }
 
-.ui-control.button-3[disabled]:active
-{
-    color: #a7a7a7;
-    background-image: url("coui://gfx/ui/skin/button_03_inactive.png");
-    background-size: 5.2rem 4.1rem;
+.ui-control.button-3[disabled]:active {
+	color: #a7a7a7;
+	background-image: url("coui://gfx/ui/skin/button_03_inactive.png");
+	background-size: 5.2rem 4.1rem;
 }
 
-.ui-control.button-3 > .label
-{
-    top: 0;
+.ui-control.button-3>.label {
+	top: 0;
 	bottom: 0;
 	left: 0;
 	right: 0;
 
 	position: absolute;
 
-    margin-top: 0.4rem;
-    margin-left: 0.4rem;
-	text-align : center;
+	margin-top: 0.4rem;
+	margin-left: 0.4rem;
+	text-align: center;
 
-    overflow: hidden;
+	overflow: hidden;
 }
 
-.ui-control.button-3.is-selected > .label
-{
-    top: 0.1rem;
-    left: 0.1rem;
+.ui-control.button-3.is-selected>.label {
+	top: 0.1rem;
+	left: 0.1rem;
 }
 
-.ui-control.button-3 > img
-{
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    width: 60%;
-    height: 60%;
-    position: absolute;
-    margin: auto;
+.ui-control.button-3>img {
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	width: 60%;
+	height: 60%;
+	position: absolute;
+	margin: auto;
 }
 
-.ui-control.button-3[disabled] > img
-{
-    -webkit-filter: grayscale(100%);
+.ui-control.button-3[disabled]>img {
+	-webkit-filter: grayscale(100%);
 }
 
-.ui-control.button-3.is-selected > img
-{
-    top: 0.1rem;
-    left: 0.1rem;
+.ui-control.button-3.is-selected>img {
+	top: 0.1rem;
+	left: 0.1rem;
 }
 
 
@@ -439,102 +391,90 @@
 	Button Size 4
 ***********************************************************************/
 
-.ui-control.button-4
-{
+.ui-control.button-4 {
 	width: 100%;
 	height: 100%;
 	position: relative;
 
-    background-image: url("coui://gfx/ui/skin/button_04_default.png");
-    background-size: 23.0rem 4.3rem;
+	background-image: url("coui://gfx/ui/skin/button_04_default.png");
+	background-size: 23.0rem 4.3rem;
 	text-shadow: 1px 1px 1px #000;
 
-    color: #dda21f;
+	color: #dda21f;
 }
 
 .ui-control.button-4:hover,
-.ui-control.button-4.is-selected
-{
-    background-image: url("coui://gfx/ui/skin/button_04_hovered.png");
-    background-size: 23.0rem 4.3rem;
-    color: #f0b121;
+.ui-control.button-4.is-selected {
+	background-image: url("coui://gfx/ui/skin/button_04_hovered.png");
+	background-size: 23.0rem 4.3rem;
+	color: #f0b121;
 }
 
-.ui-control.button-4.is-selected
-{
-    text-shadow: 1px 1px #A36426, -1px -1px #000;
-    color: #f0b121;
+.ui-control.button-4.is-selected {
+	text-shadow: 1px 1px #A36426, -1px -1px #000;
+	color: #f0b121;
 }
 
-.ui-control.button-4.is-active
-{
-    background-image: url("coui://gfx/ui/skin/button_04_pressed.png");
-    background-size: 23.0rem 4.3rem;
-    color: #f0b121;
+.ui-control.button-4.is-active {
+	background-image: url("coui://gfx/ui/skin/button_04_pressed.png");
+	background-size: 23.0rem 4.3rem;
+	color: #f0b121;
 }
 
-.ui-control.button-4[disabled]
-{
-	color : #a7a7a7;
-    background-image: url("coui://gfx/ui/skin/button_04_inactive.png");
-    background-size: 23.0rem 4.3rem;
+.ui-control.button-4[disabled] {
+	color: #a7a7a7;
+	background-image: url("coui://gfx/ui/skin/button_04_inactive.png");
+	background-size: 23.0rem 4.3rem;
 }
 
-.ui-control.button-4[disabled]:hover
-{
-    background-image: url("coui://gfx/ui/skin/button_04_inactive.png");
-    background-size: 23.0rem 4.3rem;
+.ui-control.button-4[disabled]:hover {
+	background-image: url("coui://gfx/ui/skin/button_04_inactive.png");
+	background-size: 23.0rem 4.3rem;
 }
 
-.ui-control.button-4[disabled]:active
-{
-    background-image: url("coui://gfx/ui/skin/button_04_inactive.png");
-    background-size: 23.0rem 4.3rem;
+.ui-control.button-4[disabled]:active {
+	background-image: url("coui://gfx/ui/skin/button_04_inactive.png");
+	background-size: 23.0rem 4.3rem;
 }
 
-.ui-control.button-4 > .label
-{
-    top: 0;
+.ui-control.button-4>.label {
+	top: 0;
 	bottom: 0;
 	left: 0;
 	right: 0;
 
 	position: absolute;
 
-    margin-top: 0.4rem;
-	text-align : center;
+	margin-top: 0.4rem;
+	text-align: center;
 
-    overflow: hidden;
+	overflow: hidden;
 }
 
-.ui-control.button-4.is-selected > .label,
-.ui-control.button-4.is-active > .label
-{
-    top: 0.1rem;
-    left: 0.1rem;
+.ui-control.button-4.is-selected>.label,
+.ui-control.button-4.is-active>.label {
+	top: 0.1rem;
+	left: 0.1rem;
 }
 
-.ui-control.button-4 > img
-{
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    width: 80%;
-    height: 80%;
-    position: absolute;
-    margin: auto;
+.ui-control.button-4>img {
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	width: 80%;
+	height: 80%;
+	position: absolute;
+	margin: auto;
 }
 
-.ui-control.button-4[disabled] > img
-{
-    -webkit-filter: grayscale(100%);
+.ui-control.button-4[disabled]>img {
+	-webkit-filter: grayscale(100%);
 }
 
-.ui-control.button-4.is-selected > img
-{
-    top: 0.2rem;
-    left: 0.2rem;
+.ui-control.button-4.is-selected>img {
+	top: 0.2rem;
+	left: 0.2rem;
 }
 
 
@@ -542,101 +482,89 @@
 	Button Size 5
 ***********************************************************************/
 
-.ui-control.button-5
-{
+.ui-control.button-5 {
 	width: 100%;
 	height: 100%;
 	position: relative;
 
-    background-image: url("coui://gfx/ui/skin/button_05_default.png");
-    background-size: 78.0rem 4.3rem;
+	background-image: url("coui://gfx/ui/skin/button_05_default.png");
+	background-size: 78.0rem 4.3rem;
 	text-shadow: 1px 1px 1px #000;
 
-    color: #dda21f;
+	color: #dda21f;
 }
 
 .ui-control.button-5:hover,
-.ui-control.button-5.is-selected
-{
-    background-image: url("coui://gfx/ui/skin/button_05_hovered.png");
-    background-size: 78.0rem 4.3rem;
-    color: #f0b121;
+.ui-control.button-5.is-selected {
+	background-image: url("coui://gfx/ui/skin/button_05_hovered.png");
+	background-size: 78.0rem 4.3rem;
+	color: #f0b121;
 }
 
-.ui-control.button-5.is-selected
-{
-    text-shadow: 1px 1px #A36426, -1px -1px #000;
-    color: #f0b121;
+.ui-control.button-5.is-selected {
+	text-shadow: 1px 1px #A36426, -1px -1px #000;
+	color: #f0b121;
 }
 
-.ui-control.button-5.is-active
-{
-    background-image: url("coui://gfx/ui/skin/button_05_pressed.png");
-    background-size: 78.0rem 4.3rem;
-    color: #f0b121;
+.ui-control.button-5.is-active {
+	background-image: url("coui://gfx/ui/skin/button_05_pressed.png");
+	background-size: 78.0rem 4.3rem;
+	color: #f0b121;
 }
 
-.ui-control.button-5[disabled]
-{
-	color : #a7a7a7;
-    background-image: url("coui://gfx/ui/skin/button_05_inactive.png");
-    background-size: 78.0rem 4.3rem;
+.ui-control.button-5[disabled] {
+	color: #a7a7a7;
+	background-image: url("coui://gfx/ui/skin/button_05_inactive.png");
+	background-size: 78.0rem 4.3rem;
 }
 
-.ui-control.button-5[disabled]:hover
-{
-    background-image: url("coui://gfx/ui/skin/button_05_inactive.png");
-    background-size: 78.0rem 4.3rem;
+.ui-control.button-5[disabled]:hover {
+	background-image: url("coui://gfx/ui/skin/button_05_inactive.png");
+	background-size: 78.0rem 4.3rem;
 }
 
-.ui-control.button-5[disabled]:active
-{
-    background-image: url("coui://gfx/ui/skin/button_05_inactive.png");
-    background-size: 78.0rem 4.3rem;
+.ui-control.button-5[disabled]:active {
+	background-image: url("coui://gfx/ui/skin/button_05_inactive.png");
+	background-size: 78.0rem 4.3rem;
 }
 
-.ui-control.button-5 > .label
-{
-    top: 0.3rem;
+.ui-control.button-5>.label {
+	top: 0.3rem;
 	bottom: 0;
 	left: 0;
 	right: 0;
 
 	position: absolute;
 
-    margin-top: 0.4rem;
-	text-align : center;
+	margin-top: 0.4rem;
+	text-align: center;
 
-    overflow: hidden;
+	overflow: hidden;
 }
 
-.ui-control.button-5.is-selected > .label
-{
-    top: 0.4rem;
-    left: 0.1rem;
+.ui-control.button-5.is-selected>.label {
+	top: 0.4rem;
+	left: 0.1rem;
 }
 
-.ui-control.button-5 > img
-{
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    width: 80%;
-    height: 80%;
-    position: absolute;
-    margin: auto;
+.ui-control.button-5>img {
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	width: 80%;
+	height: 80%;
+	position: absolute;
+	margin: auto;
 }
 
-.ui-control.button-5[disabled] > img
-{
-    -webkit-filter: grayscale(100%);
+.ui-control.button-5[disabled]>img {
+	-webkit-filter: grayscale(100%);
 }
 
-.ui-control.button-5.is-selected > img
-{
-    top: 0.2rem;
-    left: 0.2rem;
+.ui-control.button-5.is-selected>img {
+	top: 0.2rem;
+	left: 0.2rem;
 }
 
 
@@ -644,108 +572,96 @@
 	Button Size 6 (HUD)
 ***********************************************************************/
 
-.ui-control.button-6
-{
+.ui-control.button-6 {
 	width: 100%;
 	height: 100%;
 	position: relative;
 
-    background-image: url("coui://gfx/ui/skin/hud_button_01_default.png");
-    background-size: 4.5rem 4.1rem;
+	background-image: url("coui://gfx/ui/skin/hud_button_01_default.png");
+	background-size: 4.5rem 4.1rem;
 	text-shadow: 1px 1px 1px #000;
 
-    color: #dda21f;
+	color: #dda21f;
 }
 
 .ui-control.button-6:hover,
-.ui-control.button-6.is-selected
-{
-    background-image: url("coui://gfx/ui/skin/hud_button_01_hovered.png");
-    background-size: 4.5rem 4.1rem;
-    color: #f0b121;
+.ui-control.button-6.is-selected {
+	background-image: url("coui://gfx/ui/skin/hud_button_01_hovered.png");
+	background-size: 4.5rem 4.1rem;
+	color: #f0b121;
 }
 
-.ui-control.button-6.is-selected
-{
-    text-shadow: 1px 1px #A36426, -1px -1px #000;
-    color: #f0b121;
+.ui-control.button-6.is-selected {
+	text-shadow: 1px 1px #A36426, -1px -1px #000;
+	color: #f0b121;
 }
 
-.ui-control.button-6.is-active
-{
-    background-image: url("coui://gfx/ui/skin/hud_button_01_hovered.png");
-    background-size: 4.5rem 4.1rem;
-    color: #f0b121;
+.ui-control.button-6.is-active {
+	background-image: url("coui://gfx/ui/skin/hud_button_01_hovered.png");
+	background-size: 4.5rem 4.1rem;
+	color: #f0b121;
 }
 
-.ui-control.button-6[disabled]
-{
-	color : #a7a7a7;
-    background-image: url("coui://gfx/ui/skin/hud_button_01_inactive.png");
-    background-size: 4.5rem 4.1rem;
+.ui-control.button-6[disabled] {
+	color: #a7a7a7;
+	background-image: url("coui://gfx/ui/skin/hud_button_01_inactive.png");
+	background-size: 4.5rem 4.1rem;
 }
 
-.ui-control.button-6[disabled]:hover
-{
-    background-image: url("coui://gfx/ui/skin/hud_button_01_inactive.png");
-    background-size: 4.5rem 4.1rem;
+.ui-control.button-6[disabled]:hover {
+	background-image: url("coui://gfx/ui/skin/hud_button_01_inactive.png");
+	background-size: 4.5rem 4.1rem;
 }
 
-.ui-control.button-6[disabled]:active
-{
-    background-image: url("coui://gfx/ui/skin/hud_button_01_inactive.png");
-    background-size: 4.5rem 4.1rem;
+.ui-control.button-6[disabled]:active {
+	background-image: url("coui://gfx/ui/skin/hud_button_01_inactive.png");
+	background-size: 4.5rem 4.1rem;
 }
 
-.ui-control.button-6 > .label
-{
-    top: 0.3rem;
+.ui-control.button-6>.label {
+	top: 0.3rem;
 	bottom: 0;
 	left: 0;
 	right: 0;
 
 	position: absolute;
 
-    margin-top: 0.4rem;
-	text-align : center;
+	margin-top: 0.4rem;
+	text-align: center;
 
-    overflow: hidden;
+	overflow: hidden;
 }
 
-.ui-control.button-6.is-selected > .label
-{
-    top: 0.4rem;
-    left: 0.1rem;
+.ui-control.button-6.is-selected>.label {
+	top: 0.4rem;
+	left: 0.1rem;
 }
 
-.ui-control.button-6 > img
-{
-    top: -0.3rem;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    /*width: 80%;
-    height: 80%;*/
-    position: absolute;
-    margin: auto;
+.ui-control.button-6>img {
+	top: -0.3rem;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	/*width: 80%;
+	height: 80%;*/
+	position: absolute;
+	margin: auto;
 }
 
-.ui-control.button-6[disabled] > img
-{
-    -webkit-filter: grayscale(100%);
+.ui-control.button-6[disabled]>img {
+	-webkit-filter: grayscale(100%);
 
 	top: -0.3rem;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    position: absolute;
-    margin: auto;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	position: absolute;
+	margin: auto;
 }
 
-.ui-control.button-6.is-selected > img
-{
-    top: -0.2rem;
-    left: 0.1rem;
+.ui-control.button-6.is-selected>img {
+	top: -0.2rem;
+	left: 0.1rem;
 }
 
 
@@ -753,101 +669,89 @@
 	Button Size 7 (Tab)
 ***********************************************************************/
 
-.ui-control.button-7
-{
+.ui-control.button-7 {
 	width: 100%;
 	height: 100%;
 	position: relative;
 
-    background-image: url("coui://gfx/ui/skin/button_tab_default.png");
-    background-size: 17.4rem 4.3rem;
+	background-image: url("coui://gfx/ui/skin/button_tab_default.png");
+	background-size: 17.4rem 4.3rem;
 	text-shadow: 1px 1px 1px #000;
 
-    color: #dda21f;
+	color: #dda21f;
 }
 
 .ui-control.button-7:hover,
-.ui-control.button-7.is-selected
-{
-    background-image: url("coui://gfx/ui/skin/button_tab_hovered.png");
-    background-size: 17.4rem 4.3rem;
-    color: #f0b121;
+.ui-control.button-7.is-selected {
+	background-image: url("coui://gfx/ui/skin/button_tab_hovered.png");
+	background-size: 17.4rem 4.3rem;
+	color: #f0b121;
 }
 
-.ui-control.button-7.is-selected
-{
-    /*text-shadow: 1px 1px #A36426, -1px -1px #000;*/
-    color: #f0b121;
+.ui-control.button-7.is-selected {
+	/*text-shadow: 1px 1px #A36426, -1px -1px #000;*/
+	color: #f0b121;
 }
 
-.ui-control.button-7.is-active
-{
-    background-image: url("coui://gfx/ui/skin/button_tab_hovered.png");
-    background-size: 17.4rem 4.3rem;
-    color: #f0b121;
+.ui-control.button-7.is-active {
+	background-image: url("coui://gfx/ui/skin/button_tab_hovered.png");
+	background-size: 17.4rem 4.3rem;
+	color: #f0b121;
 }
 
-.ui-control.button-7[disabled]
-{
-	color : #a7a7a7;
-    background-image: url("coui://gfx/ui/skin/button_tab_inactive.png");
-    background-size: 17.4rem 4.3rem;
+.ui-control.button-7[disabled] {
+	color: #a7a7a7;
+	background-image: url("coui://gfx/ui/skin/button_tab_inactive.png");
+	background-size: 17.4rem 4.3rem;
 }
 
-.ui-control.button-7[disabled]:hover
-{
-    background-image: url("coui://gfx/ui/skin/button_tab_inactive.png");
-    background-size: 17.4rem 4.3rem;
+.ui-control.button-7[disabled]:hover {
+	background-image: url("coui://gfx/ui/skin/button_tab_inactive.png");
+	background-size: 17.4rem 4.3rem;
 }
 
-.ui-control.button-7[disabled]:active
-{
-    background-image: url("coui://gfx/ui/skin/button_tab_inactive.png");
-    background-size: 17.4rem 4.3rem;
+.ui-control.button-7[disabled]:active {
+	background-image: url("coui://gfx/ui/skin/button_tab_inactive.png");
+	background-size: 17.4rem 4.3rem;
 }
 
-.ui-control.button-7 > .label
-{
-    top: 0;
+.ui-control.button-7>.label {
+	top: 0;
 	bottom: 0;
 	left: 0;
 	right: 0;
 
 	position: absolute;
 
-    margin-top: 0.4rem;
-	text-align : center;
+	margin-top: 0.4rem;
+	text-align: center;
 
-    overflow: hidden;
+	overflow: hidden;
 }
 
-.ui-control.button-7.is-selected > .label
-{
-    top: 0;
-    left: 0;
+.ui-control.button-7.is-selected>.label {
+	top: 0;
+	left: 0;
 }
 
-.ui-control.button-7 > img
-{
-    top: -0.3rem;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    /*width: 80%;
-    height: 80%;*/
-    position: absolute;
-    margin: auto;
+.ui-control.button-7>img {
+	top: -0.3rem;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	/*width: 80%;
+	height: 80%;*/
+	position: absolute;
+	margin: auto;
 }
 
-.ui-control.button-7[disabled] > img
-{
-    -webkit-filter: grayscale(100%);
+.ui-control.button-7[disabled]>img {
+	-webkit-filter: grayscale(100%);
 }
 
-.ui-control.button-7.is-selected > img
-{
-    top: -0.2rem;
-    left: 0.1rem;
+.ui-control.button-7.is-selected>img {
+	top: -0.2rem;
+	left: 0.1rem;
 }
 
 
@@ -855,101 +759,89 @@
 	Button Size 8 (Levelup)
 ***********************************************************************/
 
-.ui-control.button-8
-{
+.ui-control.button-8 {
 	width: 100%;
 	height: 100%;
 	position: relative;
 
-    background-image: url("coui://gfx/ui/skin/lvl_up_button_default.png");
-    background-size: 4.2rem 2.8rem;
+	background-image: url("coui://gfx/ui/skin/lvl_up_button_default.png");
+	background-size: 4.2rem 2.8rem;
 	text-shadow: 1px 1px 1px #000;
 
-    color: #dda21f;
+	color: #dda21f;
 }
 
 .ui-control.button-8:hover,
-.ui-control.button-8.is-selected
-{
-    background-image: url("coui://gfx/ui/skin/lvl_up_button_hovered.png");
-    background-size: 4.2rem 2.8rem;
-    color: #f0b121;
+.ui-control.button-8.is-selected {
+	background-image: url("coui://gfx/ui/skin/lvl_up_button_hovered.png");
+	background-size: 4.2rem 2.8rem;
+	color: #f0b121;
 }
 
-.ui-control.button-8.is-selected
-{
-    /*text-shadow: 1px 1px #A36426, -1px -1px #000;*/
-    color: #f0b121;
+.ui-control.button-8.is-selected {
+	/*text-shadow: 1px 1px #A36426, -1px -1px #000;*/
+	color: #f0b121;
 }
 
-.ui-control.button-8.is-active
-{
-    background-image: url("coui://gfx/ui/skin/lvl_up_button_hovered.png");
-    background-size: 4.2rem 2.8rem;
-    color: #f0b121;
+.ui-control.button-8.is-active {
+	background-image: url("coui://gfx/ui/skin/lvl_up_button_hovered.png");
+	background-size: 4.2rem 2.8rem;
+	color: #f0b121;
 }
 
-.ui-control.button-8[disabled]
-{
-	color : #a7a7a7;
-    background-image: url("coui://gfx/ui/skin/lvl_up_button_inactive.png");
-    background-size: 4.2rem 2.8rem;
+.ui-control.button-8[disabled] {
+	color: #a7a7a7;
+	background-image: url("coui://gfx/ui/skin/lvl_up_button_inactive.png");
+	background-size: 4.2rem 2.8rem;
 }
 
-.ui-control.button-8[disabled]:hover
-{
-    background-image: url("coui://gfx/ui/skin/lvl_up_button_inactive.png");
-    background-size: 4.2rem 2.8rem;
+.ui-control.button-8[disabled]:hover {
+	background-image: url("coui://gfx/ui/skin/lvl_up_button_inactive.png");
+	background-size: 4.2rem 2.8rem;
 }
 
-.ui-control.button-8[disabled]:active
-{
-    background-image: url("coui://gfx/ui/skin/lvl_up_button_inactive.png");
-    background-size: 4.2rem 2.8rem;
+.ui-control.button-8[disabled]:active {
+	background-image: url("coui://gfx/ui/skin/lvl_up_button_inactive.png");
+	background-size: 4.2rem 2.8rem;
 }
 
-.ui-control.button-8 > .label
-{
-    top: -0.2rem;
+.ui-control.button-8>.label {
+	top: -0.2rem;
 	bottom: 0;
 	left: 0;
 	right: 0;
 
 	position: absolute;
 
-    margin-top: 0.4rem;
-	text-align : center;
+	margin-top: 0.4rem;
+	text-align: center;
 
-    overflow: hidden;
+	overflow: hidden;
 }
 
-.ui-control.button-8.is-selected > .label
-{
-    top: -0.1rem;
-    left: 0;
+.ui-control.button-8.is-selected>.label {
+	top: -0.1rem;
+	left: 0;
 }
 
-.ui-control.button-8 > img
-{
-    top: -0.3rem;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    /*width: 80%;
-    height: 80%;*/
-    position: absolute;
-    margin: auto;
+.ui-control.button-8>img {
+	top: -0.3rem;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	/*width: 80%;
+	height: 80%;*/
+	position: absolute;
+	margin: auto;
 }
 
-.ui-control.button-8[disabled] > img
-{
-    -webkit-filter: grayscale(100%);
+.ui-control.button-8[disabled]>img {
+	-webkit-filter: grayscale(100%);
 }
 
-.ui-control.button-8.is-selected > img
-{
-    top: -0.2rem;
-    left: 0.1rem;
+.ui-control.button-8.is-selected>img {
+	top: -0.2rem;
+	left: 0.1rem;
 }
 
 
@@ -957,100 +849,88 @@
 	Button Size 9 (Big Event Buttons)
 ***********************************************************************/
 
-.ui-control.button-9
-{
+.ui-control.button-9 {
 	width: 100%;
 	height: 100%;
 	position: relative;
 
-    background-image: url("coui://gfx/ui/skin/button_ambition_default.png");
-    background-size: 78.0rem 7.1rem;
+	background-image: url("coui://gfx/ui/skin/button_ambition_default.png");
+	background-size: 78.0rem 7.1rem;
 	text-shadow: 1px 1px 1px #000;
 
-    color: #dda21f;
+	color: #dda21f;
 }
 
 .ui-control.button-9:hover,
-.ui-control.button-9.is-selected
-{
-    background-image: url("coui://gfx/ui/skin/button_ambition_hovered.png");
-    background-size: 78.0rem 7.1rem;
-    color: #f0b121;
+.ui-control.button-9.is-selected {
+	background-image: url("coui://gfx/ui/skin/button_ambition_hovered.png");
+	background-size: 78.0rem 7.1rem;
+	color: #f0b121;
 }
 
-.ui-control.button-9.is-selected
-{
-    text-shadow: 1px 1px #A36426, -1px -1px #000;
-    color: #f0b121;
+.ui-control.button-9.is-selected {
+	text-shadow: 1px 1px #A36426, -1px -1px #000;
+	color: #f0b121;
 }
 
-.ui-control.button-9.is-active
-{
-    background-image: url("coui://gfx/ui/skin/button_ambition_hovered.png");
-    background-size: 78.0rem 7.1rem;
-    color: #f0b121;
+.ui-control.button-9.is-active {
+	background-image: url("coui://gfx/ui/skin/button_ambition_hovered.png");
+	background-size: 78.0rem 7.1rem;
+	color: #f0b121;
 }
 
-.ui-control.button-9[disabled]
-{
-	color : #a7a7a7;
-    background-image: url("coui://gfx/ui/skin/button_ambition_inactive.png");
-    background-size: 78.0rem 7.1rem;
+.ui-control.button-9[disabled] {
+	color: #a7a7a7;
+	background-image: url("coui://gfx/ui/skin/button_ambition_inactive.png");
+	background-size: 78.0rem 7.1rem;
 }
 
-.ui-control.button-9[disabled]:hover
-{
-    background-image: url("coui://gfx/ui/skin/button_ambition_inactive.png");
-    background-size: 78.0rem 7.1rem;
+.ui-control.button-9[disabled]:hover {
+	background-image: url("coui://gfx/ui/skin/button_ambition_inactive.png");
+	background-size: 78.0rem 7.1rem;
 }
 
-.ui-control.button-9[disabled]:active
-{
-    background-image: url("coui://gfx/ui/skin/button_ambition_inactive.png");
-    background-size: 78.0rem 7.1rem;
+.ui-control.button-9[disabled]:active {
+	background-image: url("coui://gfx/ui/skin/button_ambition_inactive.png");
+	background-size: 78.0rem 7.1rem;
 }
 
-.ui-control.button-9 > .label
-{
-    top: 0.5rem;
+.ui-control.button-9>.label {
+	top: 0.5rem;
 	bottom: 0;
 	left: 0.3rem;
 	right: 0;
 
 	position: absolute;
 
-    margin-top: 0.4rem;
+	margin-top: 0.4rem;
 	margin-left: 0.4rem;
 	margin-right: 0.4rem;
-	text-align : center;
+	text-align: center;
 
-    overflow: hidden;
+	overflow: hidden;
 }
 
-.ui-control.button-9.is-selected > .label
-{
-    top: 0.6rem;
-    left: 0.4rem;
+.ui-control.button-9.is-selected>.label {
+	top: 0.6rem;
+	left: 0.4rem;
 }
 
-.ui-control.button-9 > img
-{
-    top: 2.0rem;
-    left: 1.0rem;
-    right: 0;
-    bottom: 0;
-    position: absolute;
+.ui-control.button-9>img {
+	top: 2.0rem;
+	left: 1.0rem;
+	right: 0;
+	bottom: 0;
+	position: absolute;
 }
 
-.ui-control.button-9[disabled] > img
-{
-    -webkit-filter: grayscale(100%);
+.ui-control.button-9[disabled]>img {
+	-webkit-filter: grayscale(100%);
 }
 
-.ui-control.button-9.is-selected > img
-{
-    top: 2.0rem;
-    left: 1.0rem;
+.ui-control.button-9.is-selected>img {
+	top: 2.0rem;
+	left: 1.0rem;
 }
 
 
@@ -1058,100 +938,272 @@
 	Button Size 10 (Round)
 ***********************************************************************/
 
-.ui-control.button-10
-{
+.ui-control.button-10 {
 	width: 100%;
 	height: 100%;
 	position: relative;
 
-    background-image: url("coui://gfx/ui/skin/button_round_default.png");
-    background-size: 3.9rem 3.9rem;
+	background-image: url("coui://gfx/ui/skin/button_round_default.png");
+	background-size: 3.9rem 3.9rem;
 	text-shadow: 1px 1px 1px #000;
 
-    color: #dda21f;
+	color: #dda21f;
 }
 
 .ui-control.button-10:hover,
-.ui-control.button-10.is-selected
-{
-    background-image: url("coui://gfx/ui/skin/button_round_hovered.png");
-    background-size: 3.9rem 3.9rem;
-    color: #f0b121;
+.ui-control.button-10.is-selected {
+	background-image: url("coui://gfx/ui/skin/button_round_hovered.png");
+	background-size: 3.9rem 3.9rem;
+	color: #f0b121;
 }
 
-.ui-control.button-10.is-selected
-{
-    text-shadow: 1px 1px #A36426, -1px -1px #000;
-    color: #f0b121;
+.ui-control.button-10.is-selected {
+	text-shadow: 1px 1px #A36426, -1px -1px #000;
+	color: #f0b121;
 }
 
-.ui-control.button-10.is-active
-{
-    background-image: url("coui://gfx/ui/skin/button_round_hovered.png");
-    background-size: 3.9rem 3.9rem;
-    color: #f0b121;
+.ui-control.button-10.is-active {
+	background-image: url("coui://gfx/ui/skin/button_round_hovered.png");
+	background-size: 3.9rem 3.9rem;
+	color: #f0b121;
 }
 
-.ui-control.button-10[disabled]
-{
-	color : #a7a7a7;
-    background-image: url("coui://gfx/ui/skin/button_round_inactive.png");
-    background-size: 3.9rem 3.9rem;
+.ui-control.button-10[disabled] {
+	color: #a7a7a7;
+	background-image: url("coui://gfx/ui/skin/button_round_inactive.png");
+	background-size: 3.9rem 3.9rem;
 }
 
-.ui-control.button-10[disabled]:hover
-{
-    background-image: url("coui://gfx/ui/skin/button_round_inactive.png");
-    background-size: 3.9rem 3.9rem;
+.ui-control.button-10[disabled]:hover {
+	background-image: url("coui://gfx/ui/skin/button_round_inactive.png");
+	background-size: 3.9rem 3.9rem;
 }
 
-.ui-control.button-10[disabled]:active
-{
-    background-image: url("coui://gfx/ui/skin/button_round_inactive.png");
-    background-size: 3.9rem 3.9rem;
+.ui-control.button-10[disabled]:active {
+	background-image: url("coui://gfx/ui/skin/button_round_inactive.png");
+	background-size: 3.9rem 3.9rem;
 }
 
-.ui-control.button-10 > .label
-{
-    top: 0.3rem;
+.ui-control.button-10>.label {
+	top: 0.3rem;
 	bottom: 0;
 	left: 0;
 	right: 0;
 
 	position: absolute;
 
-    margin-top: 0.4rem;
-	text-align : center;
+	margin-top: 0.4rem;
+	text-align: center;
 
-    overflow: hidden;
+	overflow: hidden;
 }
 
-.ui-control.button-10.is-selected > .label
-{
-    top: 0.4rem;
-    left: 0.1rem;
+.ui-control.button-10.is-selected>.label {
+	top: 0.4rem;
+	left: 0.1rem;
 }
 
-.ui-control.button-10 > img
-{
-    top: 0.0rem;
-    left: 0.2rem;
-    right: 0;
-    bottom: 0;
-    /*width: 80%;
-    height: 80%;*/
-    position: absolute;
-    margin: auto;
+.ui-control.button-10>img {
+	top: 0.0rem;
+	left: 0.2rem;
+	right: 0;
+	bottom: 0;
+	/*width: 80%;
+	height: 80%;*/
+	position: absolute;
+	margin: auto;
 }
 
-.ui-control.button-10[disabled] > img
-{
-    -webkit-filter: grayscale(100%);
+.ui-control.button-10[disabled]>img {
+	-webkit-filter: grayscale(100%);
 }
 
-.ui-control.button-10.is-selected > img
-{
-    top: 0.2rem;
-    left: 0.3rem;
+.ui-control.button-10.is-selected>img {
+	top: 0.2rem;
+	left: 0.3rem;
 }
 
+
+/**********************************************************************
+	Button Size 7 (Tab)
+***********************************************************************/
+
+.ui-control.button-75 {
+	width: 100%;
+	height: 100%;
+	position: relative;
+
+	background-image: url("coui://gfx/ui/skin/button_tab_default.png");
+	background-size: 14.0rem 4.3rem;
+	text-shadow: 1px 1px 1px #000;
+
+	color: #dda21f;
+}
+
+.ui-control.button-75:hover,
+.ui-control.button-75.is-selected {
+	background-image: url("coui://gfx/ui/skin/button_tab_hovered.png");
+	background-size: 14.0rem 4.3rem;
+	color: #f0b121;
+}
+
+.ui-control.button-75.is-selected {
+	/*text-shadow: 1px 1px #A36426, -1px -1px #000;*/
+	color: #f0b121;
+}
+
+.ui-control.button-75.is-active {
+	background-image: url("coui://gfx/ui/skin/button_tab_hovered.png");
+	background-size: 14.0rem 4.3rem;
+	color: #f0b121;
+}
+
+.ui-control.button-75[disabled] {
+	color: #a7a7a7;
+	background-image: url("coui://gfx/ui/skin/button_tab_inactive.png");
+	background-size: 14.0rem 4.3rem;
+}
+
+.ui-control.button-75[disabled]:hover {
+	background-image: url("coui://gfx/ui/skin/button_tab_inactive.png");
+	background-size: 14.0rem 4.3rem;
+}
+
+.ui-control.button-75[disabled]:active {
+	background-image: url("coui://gfx/ui/skin/button_tab_inactive.png");
+	background-size: 14.0rem 4.3rem;
+}
+
+.ui-control.button-75>.label {
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+
+	position: absolute;
+
+	margin-top: 0.4rem;
+	text-align: center;
+
+	overflow: hidden;
+}
+
+.ui-control.button-75.is-selected>.label {
+	top: 0;
+	left: 0;
+}
+
+.ui-control.button-75>img {
+	top: -0.3rem;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	/*width: 80%;
+	height: 80%;*/
+	position: absolute;
+	margin: auto;
+}
+
+.ui-control.button-75[disabled]>img {
+	-webkit-filter: grayscale(100%);
+}
+
+.ui-control.button-75.is-selected>img {
+	top: -0.2rem;
+	left: 0.1rem;
+}
+
+/**********************************************************************
+	Button Size 11 (Armor Layer)
+***********************************************************************/
+
+.ui-control.button-11 {
+	width: 100%;
+	height: 100%;
+	position: relative;
+
+	background-image: url("coui://gfx/ui/skin/armor_button_default.png");
+	background-size: 2.2rem 2.2rem;
+	text-shadow: 1px 1px 1px #000;
+
+	color: #dda21f;
+}
+
+.ui-control.button-11:hover,
+.ui-control.button-11.is-selected, {
+    background-image: url("coui://gfx/ui/skin/armor_button_hovered.png");
+    background-size: 2.2rem 2.2rem;
+    color: #f0b121;
+}
+
+.ui-control.button-11.is-selected {
+    color: #f0b121;
+}
+
+.ui-control.button-11.is-active {
+	background-image: url("coui://gfx/ui/skin/armor_button_hovered.png");
+	background-size: 2.2rem 2.2rem;
+	color: #f0b121;
+}
+
+.ui-control.button-11[disabled] {
+	color: #a7a7a7;
+	background-image: url("coui://gfx/ui/skin/armor_button_inactive.png");
+	background-size: 2.2rem 2.2rem;
+}
+
+.ui-control.button-11[disabled]:hover {
+	background-image: url("coui://gfx/ui/skin/armor_button_inactive.png");
+	background-size: 2.2rem 2.2rem;
+}
+
+.ui-control.button-11[disabled]:active {
+	background-image: url("coui://gfx/ui/skin/armor_button_inactive.png");
+	background-size: 2.2rem 2.2rem;
+}
+
+.ui-control.button-11>.label {
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+
+	position: absolute;
+
+	margin-top: 0;
+	text-align: center;
+
+	overflow: hidden;
+}
+
+.ui-control.button-11.is-selected>.label {
+	top: 0.2rem;
+	left: 0.1rem;
+}
+
+.ui-control.button-11>img {
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	/*width: 80%;
+	height: 80%;*/
+	position: absolute;
+	margin: auto;
+}
+
+.ui-control.button-11[disabled]>img {
+	-webkit-filter: grayscale(100%);
+
+	top: -0.2rem;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	position: absolute;
+	margin: auto;
+}
+
+.ui-control.button-11.is-selected>img {
+	top: -0.2rem;
+	left: 0.1rem;
+}
