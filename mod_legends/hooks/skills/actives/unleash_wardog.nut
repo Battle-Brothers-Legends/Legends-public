@@ -13,6 +13,7 @@
 		entity.setFaction(this.Const.Faction.PlayerAnimals);
 		entity.setItem(this.m.Item);
 		entity.setName(this.m.Item.getName());
+		entity.setVariant(this.m.Item.getVariant());
 		this.m.Item.setEntity(entity);
 
 		if (this.m.Item.getArmorScript() != null)
@@ -30,7 +31,7 @@
 
 		if (!this.World.getTime().IsDaytime)
 		{
-			::Legends.Effects.grant(entity, ::Lengeds.Effect.Night);
+			::Legends.Effects.grant(entity, ::Legends.Effect.Night);
 		}
 
 		this.m.IsHidden = true;

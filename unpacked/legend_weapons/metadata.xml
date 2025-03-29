@@ -297,9 +297,12 @@
 	<sprite id="towershield_41_damaged" offsetY="35" ic="FF15192E" width="100" height="176" img="icons\towershield_41_damaged.png" left="7" right="55" top="-70" bottom="22" />
 	<sprite id="towershield_41_destroyed" offsetX="-18" offsetY="30" f="640A" ic="FF15192E" width="176" height="100" img="icons\towershield_41_destroyed.png" top="-30" bottom="22" />
 
-		<sprite id="towershield_42" offsetY="35" ic="FF14182B" width="100" height="176" img="icons\towershield_42.png" left="4" right="62" top="-70" bottom="22" />
+	<sprite id="towershield_42" offsetY="35" ic="FF14182B" width="100" height="176" img="icons\towershield_42.png" left="4" right="62" top="-70" bottom="22" />
 	<sprite id="towershield_42_damaged" offsetY="35" ic="FF15192E" width="100" height="176" img="icons\towershield_42_damaged.png" left="7" right="55" top="-70" bottom="22" />
 	<sprite id="towershield_42_destroyed" offsetX="-18" offsetY="30" f="640A" ic="FF15192E" width="176" height="100" img="icons\towershield_42_destroyed.png" top="-30" bottom="22" />
+	<sprite id="towershield_104" offsetY="35" ic="FF14182B" width="100" height="176" img="icons\towershield_104.png" left="4" right="62" top="-70" bottom="22" />
+	<sprite id="towershield_104_damaged" offsetY="35" ic="FF15192E" width="100" height="176" img="icons\towershield_104_damaged.png" left="7" right="55" top="-70" bottom="22" />
+	<sprite id="towershield_104_destroyed" offsetX="-18" offsetY="30" f="640A" ic="FF15192E" width="176" height="100" img="icons\towershield_104_destroyed.png" top="-30" bottom="22" />
 
 	<sprite id="towershield_noble_01" offsetY="35" ic="FF14182B" width="100" height="176" img="icons\towershield_noble_01.png" left="4" right="62" top="-70" bottom="22" />
 	<sprite id="towershield_noble_01_damaged" offsetY="35" ic="FF15192E" width="100" height="176" img="icons\towershield_noble_01_damaged.png" left="7" right="55" top="-70" bottom="22" />
@@ -551,4 +554,33 @@
 
 	<sprite id="icon_wildmen_10_bloodied" offsetY="35" ic="FF2A3F54" width="130" height="142" img="icons\icon_wildmen_10_bloodied.png" left="-23" right="65" top="-69" bottom="-9" />
 	<sprite id="icon_goblin_crossbow_named_01" offsetY="35" ic="FF2C3137" width="140" height="142" img="icons\icon_goblin_crossbow_named_01.png" left="-25" right="64" top="-66" bottom="6" />
+	<sprite id="player_banner_101" offsetY="35" ic="FF5E5958" width="200" height="300" img="icons\player_banner\player_banner_101.png" left="-43" right="37" top="-33" bottom="107" />
+	<sprite id="player_banner_101_shaft" offsetY="35" ic="FF464A53" width="200" height="300" img="icons\player_banner\player_banner_101_shaft.png" left="23" right="47" top="-60" bottom="16" />
+	<sprite id="player_banner_102" offsetY="35" ic="FF2F5037" width="200" height="300" img="icons\player_banner\player_banner_102.png" left="-59" right="27" top="-35" bottom="107" />
+  	<sprite id="player_banner_102_shaft" offsetY="35" ic="FF34506F" width="200" height="300" img="icons\player_banner\player_banner_102_shaft.png" left="21" right="55" top="-53" bottom="19" />
+  	<sprite id="player_banner_103" offsetY="35" ic="FF2D686D" width="200" height="230" img="icons\player_banner\player_banner_103.png" left="-79" right="33" top="-1" bottom="115" />
+  	<sprite id="player_banner_103_shaft" offsetY="35" ic="FF1B343B" width="200" height="230" img="icons\player_banner\player_banner_103_shaft.png" left="-78" right="44" top="-60" bottom="0" />
+  	<sprite id="player_banner_104" offsetY="35" ic="FF2E3E59" width="200" height="230" img="icons\player_banner\player_banner_104.png" left="-65" right="33" top="-35" bottom="109" />
+  	<sprite id="player_banner_104_shaft" offsetY="35" ic="FF2B3144" width="200" height="230" img="icons\player_banner\player_banner_104_shaft.png" left="-19" right="45" top="-55" bottom="7" />
+  	<sprite id="shield_heater_101" offsetY="35" ic="FF505051" width="104" height="142" img="icons\shield_heater_101.png" left="8" right="50" top="-65" bottom="3" />
+  	<sprite id="shield_heater_101_damaged" offsetY="35" ic="FF4F5155" width="104" height="142" img="icons\shield_heater_101_damaged.png" left="8" right="50" top="-66" bottom="2" />
+  	<sprite id="shield_heater_101_destroyed" offsetX="-18" offsetY="30" f="640C" ic="FF594D4B" width="89" height="44" img="icons\shield_heater_101_destroyed.png" left="-36" right="38" />
+  	<sprite id="shield_heater_102" offsetY="35" ic="FF505051" width="104" height="142" img="icons\shield_heater_102.png" left="8" right="50" top="-65" bottom="3" />
+  	<sprite id="shield_heater_102_damaged" offsetY="35" ic="FF4F5155" width="104" height="142" img="icons\shield_heater_102_damaged.png" left="8" right="50" top="-66" bottom="2" />
+  	<sprite id="shield_heater_102_destroyed" offsetX="-18" offsetY="30" f="640C" ic="FF594D4B" width="89" height="44" img="icons\shield_heater_102_destroyed.png" left="-36" right="38" />
+  	<sprite id="shield_heater_103" offsetY="35" ic="FF505051" width="104" height="142" img="icons\shield_heater_103.png" left="8" right="50" top="-65" bottom="3" />
+  	<sprite id="shield_heater_103_damaged" offsetY="35" ic="FF4F5155" width="104" height="142" img="icons\shield_heater_103_damaged.png" left="8" right="50" top="-66" bottom="2" />
+  	<sprite id="shield_heater_103_destroyed" offsetX="-18" offsetY="30" f="640C" ic="FF594D4B" width="89" height="44" img="icons\shield_heater_103_destroyed.png" left="-36" right="38" />
+  	<sprite id="shield_heater_104" offsetY="35" ic="FF505051" width="104" height="142" img="icons\shield_heater_104.png" left="8" right="50" top="-65" bottom="3" />
+  	<sprite id="shield_heater_104_damaged" offsetY="35" ic="FF4F5155" width="104" height="142" img="icons\shield_heater_104_damaged.png" left="8" right="50" top="-66" bottom="2" />
+  	<sprite id="shield_heater_104_destroyed" offsetX="-18" offsetY="30" f="640C" ic="FF594D4B" width="89" height="44" img="icons\shield_heater_104_destroyed.png" left="-36" right="38" />
+  	<sprite id="shield_round_104" offsetY="35" ic="FF28344A" width="104" height="142" img="icons\shield_round_104.png" left="8" right="52" top="-53" bottom="3" />
+  	<sprite id="shield_round_104_damaged" offsetY="35" ic="FF273246" width="104" height="142" img="icons\shield_round_104_damaged.png" left="6" right="52" top="-53" bottom="3" />
+  	<sprite id="shield_round_104_destroyed" offsetX="-25" offsetY="-6" f="6404" ic="FF273143" img="icons\shield_round_104_destroyed.png" />
+  	<sprite id="shield_kite_104" offsetY="35" ic="FF564E47" width="130" height="142" img="icons\shield_kite_104.png" left="11" right="53" top="-70" bottom="18" />
+  	<sprite id="shield_kite_104_damaged" offsetY="35" ic="FF4F4B4B" width="130" height="142" img="icons\shield_kite_104_damaged.png" left="11" right="53" top="-70" bottom="18" />
+  	<sprite id="shield_kite_104_destroyed" offsetY="-18" f="6401" ic="FF45413E" img="icons\shield_kite_104_destroyed.png" left="-44" right="45" />
+  	<sprite id="shield_metal_round_03_named_03" offsetY="35" ic="FF3A4340" width="130" height="142" img="icons\shield_metal_round_03_named_03.png" left="4" right="60" top="-61" bottom="9" />
+  	<sprite id="shield_metal_round_03_named_03_damaged" offsetY="35" ic="FF363F3E" width="130" height="142" img="icons\shield_metal_round_03_named_03_damaged.png" left="3" right="59" top="-60" bottom="8" />
+  	<sprite id="shield_metal_round_03_named_03_destroyed" offsetX="30" offsetY="-3" f="6404" ic="FF363F3E" width="70" height="68" img="icons\shield_metal_round_03_named_03_destroyed.png" top="-33" bottom="27" />
 </brush>

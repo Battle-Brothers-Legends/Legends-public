@@ -2,10 +2,7 @@ this.perk_legend_staff_block <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "perk.legend_staff_block";
-		this.m.Name = this.Const.Strings.PerkName.LegendStaffBlock;
-		this.m.Description = this.Const.Strings.PerkDescription.LegendStaffBlock;
-		this.m.Icon = "ui/perks/staff_skill_circle.png";
+		::Const.Perks.setup(this.m, ::Legends.Perk.LegendStaffBlock);
 		this.m.Type = this.Const.SkillType.Perk;
 		this.m.Order = this.Const.SkillOrder.Perk;
 		this.m.IsActive = false;
@@ -18,7 +15,7 @@ this.perk_legend_staff_block <- this.inherit("scripts/skills/skill", {
 		local actor = this.getContainer().getActor();
 		if (actor.getMainhandItem() == null || !actor.getMainhandItem().isWeaponType(this.Const.Items.WeaponType.Staff))
 			return;
-		if (_properties.IsImmuneToSurrounding == true || actor.getSkills().hasSkill("perk.underdog"))
+		if (_properties.IsImmuneToSurrounding == true || actor.getSkills().hasPerk(::Legends.Perk.Underdog))
 		{
 			_properties.MeleeDefense += 5;
 			_properties.RangedDefense += 5;

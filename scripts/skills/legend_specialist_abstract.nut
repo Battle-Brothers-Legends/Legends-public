@@ -169,9 +169,13 @@ this.legend_specialist_abstract <- this.inherit("scripts/skills/skill", {
 		return true;
 	}
 
+	function onUpdate( _properties )
+	{
+	}
+
 	function onAnySkillUsed( _skill, _targetEntity, _properties )
 	{
-		if (!onAnySkillUsedSpecialistChecks(_skill))
+		if (!this.onAnySkillUsedSpecialistChecks(_skill))
 			return;
 
 		local validTarget = _targetEntity != null && this.validTarget(_targetEntity.getType());
@@ -187,10 +191,11 @@ this.legend_specialist_abstract <- this.inherit("scripts/skills/skill", {
 		{
 			hitBonus = this.calculateSpecialistBonus(this.m.BonusRanged, item) * (validTarget ? 2 : 1);
 			_properties.RangedSkill += hitBonus;
-			_skill.m.HitChanceBonus += hitBonus;
+			// _skill.m.HitChanceBonus += hitBonus;
+			_skill.m.AdditionalAccuracy += hitBonus;
 		}
 
-		if (::Legends.S.isCharacterWeaponSpecialized(_properties, item))
+		if (::Legends.S.isCharacterWeaponSpecialized(_properties, item) && this.m.BonusDamage != null)
 		{
 			_properties.DamageTotalMult *= 1.0 + 0.01 * this.calculateSpecialistBonus(this.m.BonusDamage, item) * (validTarget ? 2 : 1);
 		}

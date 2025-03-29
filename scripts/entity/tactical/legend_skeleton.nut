@@ -191,6 +191,7 @@ this.legend_skeleton <- this.inherit("scripts/entity/tactical/skeleton", {
 		local sprite_hair = this.getSprite("hair");
 		local sprite_beard = this.getSprite("beard");
 		local sprite_beard_top = this.getSprite("beard_top");
+		local corpse = clone this.Const.Corpse;
 
 		if (_tile != null)
 		{
@@ -409,7 +410,6 @@ this.legend_skeleton <- this.inherit("scripts/entity/tactical/skeleton", {
 				BodyColor = sprite_body.Color,
 				BodySaturation = sprite_body.Saturation
 			};
-			local corpse = clone this.Const.Corpse;
 			corpse.Type = this.m.ResurrectWithScript;
 			corpse.Faction = this.getFaction();
 			corpse.CorpseName = this.Const.Strings.getArticleCapitalized(this.getName()) + this.getName();
@@ -423,13 +423,20 @@ this.legend_skeleton <- this.inherit("scripts/entity/tactical/skeleton", {
 			corpse.IsHeadAttached = _fatalityType != this.Const.FatalityType.Decapitated;
 			corpse.IsConsumable = false;
 			corpse.IsResurrectable = false;
-
-			_tile.Properties.set("Corpse", corpse);
 			_tile.Properties.set("IsSummoned", true);
+		}
+
+		local deathLoot = this.getItems().getDroppableLoot(_killer);
+		local tileLoot = this.getLootForTile(_killer, deathLoot);
+		this.dropLoot(_tile, tileLoot, !flip);
+
+		if (_tile == null) {
+			this.Tactical.Entities.addUnplacedCorpse(corpse);
+		} else {
+			_tile.Properties.set("Corpse", corpse);
 			this.Tactical.Entities.addCorpse(_tile);
 		}
 
-		//this.getItems().dropAll(_tile, _killer, !flip);
 		this.actor.onDeath(_killer, _skill, _tile, _fatalityType);
 	}
 

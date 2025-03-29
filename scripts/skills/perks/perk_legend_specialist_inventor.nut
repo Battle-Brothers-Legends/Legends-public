@@ -11,7 +11,7 @@ this.perk_legend_specialist_inventor <- this.inherit("scripts/skills/legend_spec
 	{
 		this.legend_specialist_abstract.create();
 		::Const.Perks.setup(this.m, ::Legends.Perk.LegendSpecialistInventor);
-		this.m.IconMini = "perk_spec_firearm_mini.png";
+		this.m.IconMini = "perk_spec_firearm_mini";
 	}
 
 	function onAfterUpdate(_properties)
@@ -21,7 +21,7 @@ this.perk_legend_specialist_inventor <- this.inherit("scripts/skills/legend_spec
 		{
 			if (this.m.Skills.find(::Legends.Actives.getID(::Legends.Active.ReloadHandgonne)))
 			{
-				skill.m.ActionPointCost -= 2;
+				skill.m.ActionPointCost -= 1;
 			}
 		}
 	}

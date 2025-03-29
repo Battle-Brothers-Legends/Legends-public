@@ -107,7 +107,7 @@ this.legend_berserker_commander_background <- this.inherit("scripts/skills/backg
 			Traits = [
 				this.Const.Perks.SturdyTree,
 				this.Const.Perks.IndestructibleTree,
-				this.Const.Perks.ViciousTree
+				this.Const.Perks.ViciousTree,
 				this.Const.Perks.LargeTree,
 				this.Const.Perks.MartyrTree,
 				this.Const.Perks.AgileTree,
@@ -124,33 +124,33 @@ this.legend_berserker_commander_background <- this.inherit("scripts/skills/backg
 		};
 		this.m.CustomPerkTree = [
 			[
-				this.Const.Perks.PerkDefs.Steadfast,
-				this.Const.Perks.PerkDefs.BagsAndBelts,
-				this.Const.Perks.PerkDefs.LegendAlert
+				::Legends.Perk.Steadfast,
+				::Legends.Perk.BagsAndBelts,
+				::Legends.Perk.LegendAlert
 			],
 			[
-				this.Const.Perks.PerkDefs.CoupDeGrace,
+				::Legends.Perk.CoupDeGrace,
 			],
 			[
-				this.Const.Perks.PerkDefs.Rotation,
-				this.Const.Perks.PerkDefs.Anticipation,
-				this.Const.Perks.PerkDefs.LegendTrueBeliever,
+				::Legends.Perk.Rotation,
+				::Legends.Perk.Anticipation,
+				::Legends.Perk.LegendTrueBeliever,
 
 			],
 			[],
 			[
-				this.Const.Perks.PerkDefs.LegendDoubleStrike,
-				this.Const.Perks.PerkDefs.LegendBattleheart,
-				this.Const.Perks.PerkDefs.LegendTwirl,
-				this.Const.Perks.PerkDefs.LegendLionheart
+				::Legends.Perk.LegendDoubleStrike,
+				::Legends.Perk.LegendBattleheart,
+				::Legends.Perk.LegendTwirl,
+				::Legends.Perk.LegendLionheart
 			],
 			[
-				this.Const.Perks.PerkDefs.LegendLacerate,
-				this.Const.Perks.PerkDefs.LegendForwardPush
+				::Legends.Perk.LegendLacerate,
+				::Legends.Perk.LegendForwardPush
 			],
 			[
-				this.Const.Perks.PerkDefs.LegendBigGameHunter,
-				this.Const.Perks.PerkDefs.LegendTumble,
+				::Legends.Perk.LegendBigGameHunter,
+				::Legends.Perk.LegendTumble,
 			]
 		];
 	}
@@ -168,20 +168,6 @@ this.legend_berserker_commander_background <- this.inherit("scripts/skills/backg
 		this.m.BeardChance = 0;
 		this.m.Bodies = this.Const.Bodies.AllFemale;
 		this.addBackgroundType(this.Const.BackgroundType.Female);
-	}
-
-	function getTooltip()
-	{
-		local ret = this.character_background.getTooltip();
-		ret.push(
-			{
-				id = 12,
-				type = "text",
-				icon = "ui/icons/regular_damage.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+25%[/color] Damage when unarmed"
-			}
-		);
-		return ret;
 	}
 
 	function onBuildDescription()

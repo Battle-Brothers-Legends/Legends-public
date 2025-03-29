@@ -73,6 +73,8 @@
 			User = _user,
 			TargetTile = _targetTile
 		});
+
+		this.m.Item.drop(_targetTile);
 	}
 
 	o.onAfterUpdate = function( _properties )

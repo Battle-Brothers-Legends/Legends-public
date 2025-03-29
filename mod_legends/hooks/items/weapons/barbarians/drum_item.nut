@@ -34,6 +34,7 @@
 		::Legends.Actives.grant(this, ::Legends.Active.KnockOut);
 		::Legends.Actives.grant(this, ::Legends.Active.LegendDrumsOfWar);
 		::Legends.Actives.grant(this, ::Legends.Active.LegendDrumsOfLife);
+		::Legends.Actives.remove(this, ::Legends.Active.DrumsOfWar);
 	}
 
 	o.onUpdateProperties <- function ( _properties )

@@ -78,11 +78,15 @@ this.legend_bandit_rabble <- this.inherit("scripts/entity/tactical/legend_random
 	function makeMiniboss()
 	{
 		if (!this.actor.makeMiniboss())
-		{
 			return false;
-		}
-		local weapons = ["legend_named_blacksmith_hammer", "legend_named_butchers_cleaver", "legend_named_shovel", "legend_named_sickle" ];
+
+		local weapons = [
+			"scripts/items/weapons/named/legend_named_blacksmith_hammer",
+			"scripts/items/weapons/named/legend_named_butchers_cleaver",
+			"scripts/items/weapons/named/legend_named_shovel",
+			"scripts/items/weapons/named/legend_named_sickle"
+		];
 		this.m.Items.unequip(this.m.Items.getItemAtSlot(this.Const.ItemSlot.Mainhand));
-		this.m.Items.equip(this.new("scripts/items/named/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
+		this.m.Items.equip(::new(weapons[this.Math.rand(0, weapons.len() - 1)]));
 	}
 });

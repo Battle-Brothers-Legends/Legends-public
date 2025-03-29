@@ -18,6 +18,16 @@
 	return "decrease";
 }
 
+::Legends.S.patternIsInText <- function ( pattern, text )
+{
+	if (!pattern || !text)
+	{
+		return false;
+	}
+
+	return this.regexp(pattern).search(text);
+};
+
 ::Legends.S.isCharacterWeaponSpecialized <- function( _properties, _weapon )
 {
 	switch (true)
@@ -49,4 +59,67 @@
 		default:
 			return false;
 	}
+}
+
+::Legends.S.extraLootChance <- function (_baseLootAmount = 0) {
+	return _baseLootAmount + (!this.Tactical.State.isScenarioMode() && ::Math.rand(1, 100) <= this.World.Assets.getExtraLootChance() ? 1 : 0)
+}
+
+::Legends.S.getNeighbouringActors <- function (_tile)
+{
+	local c = 0;
+	local actors = [];
+
+	for( local i = 0; i != 6; i = ++i )
+	{
+		if (!_tile.hasNextTile(i))
+		{
+		}
+		else
+		{
+			local next = _tile.getNextTile(i);
+
+			if (next.IsOccupiedByActor && this.Math.abs(next.Level - _tile.Level) <= 1)
+			{
+				actors.push(next.getEntity());
+			}
+		}
+	}
+
+	return actors;
+}
+
+::Legends.S.getOverlappingNeighbourActors <- function (_actor, _secondActor)
+{
+	local firstActorEntities = Legends.S.getNeighbouringActors(_actor.getTile());
+	local overlaps = [];
+	foreach (entity in Legends.S.getNeighbouringActors(_secondActor.getTile()))
+	{
+		if (firstActorEntities.find(entity) != null);
+		{
+			overlaps.push(entity);
+		}	
+	}
+
+	return overlaps;
+}
+
+::Legends.S.isInZocWithActor <- function (_actor, _secondActor)
+{
+	if (!_secondActor.isAlive() || !_secondActor.isDying())
+		return false
+
+	if (_secondActor.isNonCombatant())
+		return false;
+
+	if (_secondActor.isAlliedWith(_actor))
+		return false;
+
+	if (!_secondActor.m.IsUsingZoneOfControl)
+		return false;
+
+	if (!_secondActor.getCurrentProperties().IsStunned || !_secondActor.isArmedWithRangedWeapon())
+		return false;
+
+	return true;
 }

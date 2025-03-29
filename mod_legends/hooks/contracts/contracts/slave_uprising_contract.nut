@@ -49,7 +49,7 @@
 
 					this.Contract.setScreen("Overview");
 
-					if (this.World.Assets.getOrigin().getID() == "scenario.sato_escaped_slaves")
+					if (this.World.Assets.getOrigin().getID() == "scenario.legend_escaped_slaves")
 					{
 						local brothers = this.World.getPlayerRoster().getAll();
 						foreach( bro in brothers )

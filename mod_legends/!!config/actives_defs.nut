@@ -1814,14 +1814,6 @@ activesDefs.push({
 	Name = "Throw Knife",
 });
 
-::Legends.Active.LegendAiRotation <- null;
-activesDefs.push({
-	ID = "actives.legend_ai_rotation",
-	Script = "scripts/skills/actives/legend_ai_rotation_skill",
-	Const = "LegendAiRotation",
-	Name = "Rotation",
-});
-
 ::Legends.Active.LegendAlpSummonNightmare <- null;
 activesDefs.push({
 	ID = "actives.legend_alp_summon_nightmare",
@@ -3100,6 +3092,22 @@ activesDefs.push({
 	Script = "scripts/skills/actives/legend_launch_smoke_bomb_skill",
 	Const = "LegendLaunchSmokeBomb",
 	Name = "Launch Smoke Bomb",
+});
+
+::Legends.Active.LegendMartialMarch <- null;
+activesDefs.push({
+	ID = "actives.legend_martial_march",
+	Script = "scripts/skills/actives/legend_martial_march_skill",
+	Const = "LegendMartialMarch",
+	Name = "Martial March",
+});
+
+::Legends.Active.LegendSecondWind <- null;
+activesDefs.push({
+	ID = "actives.legend_second_wind",
+	Script = "scripts/skills/actives/legend_second_wind_skill",
+	Const = "LegendSecondWind",
+	Name = "Second Wind",
 });
 
 ::Legends.Actives.addActiveDefObjects(activesDefs);

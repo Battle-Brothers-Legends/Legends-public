@@ -169,24 +169,14 @@
 				}
 			}
 		}
-		if (::Legends.Mod.Serialization.isSavedVersionAtLeast("19.0.13", _in.getMetaData())) {
-			while(_in.readBool()) {
-				local id = _in.readString();
-				if (::Legends.Retinue.IDs.find(id) != null) {
-					this.m.OwnedFollowerIDs.push(id);
-					this.getFollower(id).setOwned();
-				}
-			}
-		} else {
-			local ownedFollowerCount = _in.readU8();
-			for (local i = 0; i < ownedFollowerCount; ++i)
-			{
-				local id = _in.readString();
+
+		while(_in.readBool()) {
+			local id = _in.readString();
+			if (::Legends.Retinue.IDs.find(id) != null) {
 				this.m.OwnedFollowerIDs.push(id);
 				this.getFollower(id).setOwned();
 			}
 		}
-
 
 		this.m.InventoryUpgrades = _in.readU8();
 		this.World.Assets.resetToDefaults();

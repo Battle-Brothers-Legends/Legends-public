@@ -17,14 +17,21 @@ this.perk_legend_specialist_blacksmith <- this.inherit("scripts/skills/legend_sp
 	{
 		this.legend_specialist_abstract.create();
 		::Const.Perks.setup(this.m, ::Legends.Perk.LegendSpecialistBlacksmith);
-		this.m.IconMini = "perk_spec_blacksmith_mini.png";
+		this.m.IconMini = "perk_spec_blacksmith_mini";
+	}
+
+	function onAnySkillUsed( _skill, _targetEntity, _properties )
+	{
+		this.legend_specialist_abstract.onAnySkillUsed(_skill, _targetEntity, _properties);
+		if (this.onAnySkillUsedSpecialistChecks(_skill))
+			_properties.DamageMinimum += this.Math.floor(_skill.getItem().m.ArmorDamageMult);
 	}
 
 	// function specialistWeaponTooltip (_item, _isRanged)
 	// {
 	// 	local properties = this.getContainer().getActor().getCurrentProperties();
 	// 	local tooltip = [];
-		
+
 	// 	tooltip.push({
 	// 		id = 6,
 	// 		type = "text",
@@ -35,7 +42,7 @@ this.perk_legend_specialist_blacksmith <- this.inherit("scripts/skills/legend_sp
 	// 		id = 6,
 	// 		type = "text",
 	// 		icon = "ui/icons/special.png",
-	// 		text = "Receive [color=" + this.Const.UI.Color.PositiveValue + "]+1%[/color] of your current armor and helmet condition as damage to hitpoints, regardless of armor" 
+	// 		text = "Receive [color=" + this.Const.UI.Color.PositiveValue + "]+1%[/color] of your current armor and helmet condition as damage to hitpoints, regardless of armor"
 	// 	});
 	// 	if (::Legends.S.isCharacterWeaponSpecialized(properties, _item))
 	// 	{

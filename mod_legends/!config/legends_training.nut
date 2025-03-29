@@ -28,6 +28,9 @@
 
 	// returns trait const
 	addRandomTrainingTrait = function (_bro) {
+		local trainingTrait = ::Legends.Traits.get(_bro, ::Legends.Trait.LegendIntensiveTraining);
+		local rng = ::Legends.LCG.get(trainingTrait.m.TrainingSeed);
+
 		local traits = _bro.getSkills().query(::Const.SkillType.Trait);
 		local talents = _bro.getTalents();
 		local traitLookup = [];
@@ -42,7 +45,7 @@
 		local newTrait;
 
 		while (newTraitConst == null) {
-			newTraitConst = traitLookup[::Math.rand(0, traitLookup.len() - 1)];
+			newTraitConst = traitLookup[::Math.abs(rng.nextState() % traitLookup.len())];
 			if (::Legends.Traits.has(_bro, newTraitConst)) {
 				newTraitConst = null;
 				continue;
@@ -58,6 +61,8 @@
 				}
 			}
 		}
+
+		trainingTrait.m.TrainingSeed = rng.getState();
 
 		_bro.getSkills().add(newTrait);
 

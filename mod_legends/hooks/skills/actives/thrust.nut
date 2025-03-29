@@ -3,7 +3,7 @@
 	local getTooltip = o.getTooltip;
 	o.getTooltip = function ()
 	{
-		local tooltip = getTooltip();
+		local tooltip = this.getDefaultTooltip();
 		if (this.getContainer().getActor().getCurrentProperties().IsSpecializedInSpearThrust)
 		{
 			tooltip.push({

@@ -14,6 +14,11 @@ this.legend_bandit_warlord <- this.inherit("scripts/entity/tactical/human", {
 		this.m.Beards = this.Const.Beards.Raider;
 		this.m.AIAgent = this.new("scripts/ai/tactical/agents/legend_bandit_melee_agent_less_flanking");
 		this.m.AIAgent.setActor(this);
+
+		this.m.OnDeathLootTable.extend([
+			[3, "scripts/items/misc/legend_masterwork_fabric"],
+			[2, "scripts/items/misc/legend_masterwork_metal"]
+		]);
 	}
 
 	function generateName()
@@ -233,27 +238,6 @@ this.legend_bandit_warlord <- this.inherit("scripts/entity/tactical/human", {
 			local item = this.Const.World.Common.pickHelmet(helmet);
 			this.m.Items.equip(item);
 		}
-	}
-
-	function onDeath( _killer, _skill, _tile, _fatalityType )
-	{
-		local flip = this.Math.rand(1, 100) < 50;
-		if (_killer == null || _killer.getFaction() == this.Const.Faction.Player || _killer.getFaction() == this.Const.Faction.PlayerAnimals)
-		{
-			if (this.Math.rand(1, 100) <= 3) //3%
-			{
-				local loot = this.new("scripts/items/misc/legend_masterwork_fabric");
-				loot.drop(_tile);
-			}
-
-			if (this.Math.rand(1, 100) <= 2) //2%
-			{
-				local loot = this.new("scripts/items/misc/legend_masterwork_metal");
-				loot.drop(_tile);
-			}
-		}
-		this.getItems().dropAll(_tile, _killer, flip);
-		this.actor.onDeath(_killer, _skill, _tile, _fatalityType);
 	}
 
 	function makeMiniboss()

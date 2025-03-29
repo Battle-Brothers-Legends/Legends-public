@@ -1,6 +1,7 @@
 this.legend_vala_inscription_token <- this.inherit("scripts/items/item", {
 	m = {},
 	function create() {
+		this.item.create();
 		this.m.ID = "token.legend_vala_inscription";
 		this.m.Name = "";
 		this.m.Description = "";
@@ -66,7 +67,7 @@ this.legend_vala_inscription_token <- this.inherit("scripts/items/item", {
 
 	function onUse(_actor, _item = null) {
 		local target = null;
-		local def = ::Legends.Runes.get(this.m.RuneVariant);
+		local def = ::Legends.Runes.get(this.getRuneVariant());
 		if (def.ItemType == ::Const.Items.ItemType.Weapon) {
 			target = _actor.getItems().getItemAtSlot(this.Const.ItemSlot.Mainhand);
 			if (target == null)
@@ -91,9 +92,9 @@ this.legend_vala_inscription_token <- this.inherit("scripts/items/item", {
 
 		this.Sound.play("sounds/combat/legend_vala_inscribe.wav");
 		local alreadyRuned = target.isRuned();
-		target.setRuneVariant(this.m.RuneVariant);
-		target.setRuneBonus1(this.m.RuneBonus1);
-		target.setRuneBonus2(this.m.RuneBonus2);
+		target.setRuneVariant(this.getRuneVariant());
+		target.setRuneBonus1(this.getRuneBonus1());
+		target.setRuneBonus2(this.getRuneBonus2());
 		if (!alreadyRuned) {
 			target.updateRuneSigil();
 		}

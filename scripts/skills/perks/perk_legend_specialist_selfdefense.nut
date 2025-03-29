@@ -16,7 +16,7 @@ this.perk_legend_specialist_selfdefense <- this.inherit("scripts/skills/legend_s
 	{
 		this.legend_specialist_abstract.create();
 		::Const.Perks.setup(this.m, ::Legends.Perk.LegendSpecialistSelfdefense);
-		this.m.IconMini = "perk_spec_staff_mini.png";
+		this.m.IconMini = "perk_spec_staff_mini";
 	}
 
 	function getDescription()
@@ -57,7 +57,7 @@ this.perk_legend_specialist_selfdefense <- this.inherit("scripts/skills/legend_s
 	function onAnySkillUsed( _skill, _targetEntity, _properties )
 	{
 		this.legend_specialist_abstract.onAnySkillUsed(_skill, _targetEntity, _properties);
-		if (onAnySkillUsedSpecialistChecks(_skill))
+		if (this.onAnySkillUsedSpecialistChecks(_skill))
 		{
 			_properties.MeleeDefense += this.calculateSpecialistBonus(16, _skill.getItem());
 			_properties.RangedDefense += this.calculateSpecialistBonus(16, _skill.getItem());

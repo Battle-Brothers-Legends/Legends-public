@@ -8,6 +8,8 @@
 	o.m.BloodPoolScale = 1.25;
 	o.m.HealRemainder <- 0.0;
 	o.m.RiderID <- "";
+	// Follows the [% chance, script|function] convention
+	o.m.OnDeathLootTable <- [];
 
 	o.getGender <- function()
 	{
@@ -88,51 +90,51 @@
 	}
 	*/
 
-	local onRender = o.onRender;
-	o.onRender = function()
-	{
-		if (this.m.IsLoweringWeapon) {
-			local mainhand = this.getMainhandItem();
-			if (mainhand != null && ::Const.Items.LegendItemWithSpearwall.find(mainhand.getID()) != null) {
-				local p = (this.Time.getVirtualTimeF() - this.m.RenderAnimationStartTime) / this.Const.Items.Default.LowerWeaponDuration;
-				this.getSprite("arms_icon").Rotation = this.Math.minf(1.0, p) * -70.0;
-				this.moveSpriteOffset("arms_icon", this.getSpriteOffset("arms_icon"), this.createVec(46 * this.Math.minf(1.0, p), -33 * this.Math.minf(1.0, p)), this.Const.Items.Default.LowerWeaponDuration, this.m.RenderAnimationStartTime);
+	// local onRender = o.onRender;
+	// o.onRender = function()
+	// {
+	// 	if (this.m.IsLoweringWeapon) {
+	// 		local mainhand = this.getMainhandItem();
+	// 		if (mainhand != null && ::Const.Items.LegendItemWithSpearwall.find(mainhand.getID()) != null) {
+	// 			local p = (this.Time.getVirtualTimeF() - this.m.RenderAnimationStartTime) / this.Const.Items.Default.LowerWeaponDuration;
+	// 			this.getSprite("arms_icon").Rotation = this.Math.minf(1.0, p) * -70.0;
+	// 			this.moveSpriteOffset("arms_icon", this.getSpriteOffset("arms_icon"), this.createVec(46 * this.Math.minf(1.0, p), -33 * this.Math.minf(1.0, p)), this.Const.Items.Default.LowerWeaponDuration, this.m.RenderAnimationStartTime);
 
-				if (p >= 1.0) {
-					this.m.IsLoweringWeapon = false;
+	// 			if (p >= 1.0) {
+	// 				this.m.IsLoweringWeapon = false;
 
-					if (!this.m.IsUsingCustomRendering)
-						this.setRenderCallbackEnabled(false);
-				}
-				else {
-					this.m.IsLoweringWeapon = true;
-				}
-			}
-			else{
-				onRender();
-			}
-		}
-		else if (this.m.IsRaisingWeapon) {
-			if (this.getSpriteOffset("arms_icon").X != 0 || this.getSpriteOffset("arms_icon").Y != 0) {
-				local p = (this.Time.getVirtualTimeF() - this.m.RenderAnimationStartTime) / this.Const.Items.Default.RaiseWeaponDuration;
-				this.getSprite("arms_icon").Rotation = (1.0 - this.Math.minf(1.0, p)) * -70.0;
-				this.moveSpriteOffset("arms_icon", this.getSpriteOffset("arms_icon"), this.createVec(46 * (1-this.Math.minf(1.0, p)), -33 * (1-this.Math.minf(1.0, p))), this.Const.Items.Default.LowerWeaponDuration, this.m.RenderAnimationStartTime);
+	// 				if (!this.m.IsUsingCustomRendering)
+	// 					this.setRenderCallbackEnabled(false);
+	// 			}
+	// 			else {
+	// 				this.m.IsLoweringWeapon = true;
+	// 			}
+	// 		}
+	// 		else{
+	// 			onRender();
+	// 		}
+	// 	}
+	// 	else if (this.m.IsRaisingWeapon) {
+	// 		if (this.getSpriteOffset("arms_icon").X != 0 || this.getSpriteOffset("arms_icon").Y != 0) {
+	// 			local p = (this.Time.getVirtualTimeF() - this.m.RenderAnimationStartTime) / this.Const.Items.Default.RaiseWeaponDuration;
+	// 			this.getSprite("arms_icon").Rotation = (1.0 - this.Math.minf(1.0, p)) * -70.0;
+	// 			this.moveSpriteOffset("arms_icon", this.getSpriteOffset("arms_icon"), this.createVec(46 * (1-this.Math.minf(1.0, p)), -33 * (1-this.Math.minf(1.0, p))), this.Const.Items.Default.LowerWeaponDuration, this.m.RenderAnimationStartTime);
 
-				if (p >= 1.0) {
-					this.m.IsRaisingWeapon = false;
+	// 			if (p >= 1.0) {
+	// 				this.m.IsRaisingWeapon = false;
 
-					if (!this.m.IsUsingCustomRendering)
-						this.setRenderCallbackEnabled(false);
-				}
-				else {
-					this.m.IsRaisingWeapon = true;
-				}
-			}
-			else {
-				onRender();
-			}
-		}
-	}
+	// 				if (!this.m.IsUsingCustomRendering)
+	// 					this.setRenderCallbackEnabled(false);
+	// 			}
+	// 			else {
+	// 				this.m.IsRaisingWeapon = true;
+	// 			}
+	// 		}
+	// 		else {
+	// 			onRender();
+	// 		}
+	// 	}
+	// }
 
 	local onOtherActorDeath = o.onOtherActorDeath;
 	o.onOtherActorDeath = function ( _killer, _victim, _skill )
@@ -194,13 +196,14 @@
 	}
 
 	local onMovementFinish = o.onMovementFinish;
-	o.onMovementFinish = function (_tile)
+	o.onMovementFinish = function ()
 	{
+		local currentTile = this.getContainer().getActor().getTile();
 		// Lionheart perk start
 		local otherActors = [];
 		for (local i = 0; i != 6; i++) {
-			if (_tile.hasNextTile(i)) {
-				local tile = _tile.getNextTile(i);
+			if (currentTile.hasNextTile(i)) {
+				local tile = currentTile.getNextTile(i);
 				if (!tile.IsOccupiedByActor)
 					continue;
 				otherActors.push(tile.getEntity());
@@ -226,13 +229,13 @@
 		}.bindenv(this);
 		// Lionheart perk stop
 
-		onMovementFinish(_tile);
+		onMovementFinish();
 		// restore state
 		foreach (i, actor in otherActors)
 			actor.isAlliedWith = isAliedPtrs[i];
 		this.checkMorale = fnPtr;
 
-		this.m.Skills.MovementCompleted(_tile);
+		this.m.Skills.MovementCompleted(currentTile);
 	}
 
 	o.isArmedWithMagicStaff <- function()
@@ -555,6 +558,29 @@
 	{
 		_hitInfo.BodyDamageMultBeforeSteelBrow = _hitInfo.BodyDamageMult;
 		return onDamageReceived(_attacker, _skill, _hitInfo);
+	}
+
+	local getLootForTile = o.getLootForTile;
+	o.getLootForTile = function (_killer, _loot) {
+		if (!(_killer == null || _killer.getFaction() == this.Const.Faction.Player || _killer.getFaction() == this.Const.Faction.PlayerAnimals))
+			return getLootForTile(_killer, _loot);
+
+		foreach (entry in this.m.OnDeathLootTable) {
+			if (entry[0] == 0) { // no division by zero!
+				::logError("division by zero, skipping " + entry[1]);
+				continue;
+			}
+			local count = ::Math.round(100 / entry[0]);
+			if (::Math.rand(1, count) == 1) {
+				if (typeof(entry[1]) == "function") {
+					_loot.push(entry[1]());
+				} else {
+					_loot.push(::new(entry[1]));
+				}
+			}
+		}
+
+		return getLootForTile(_killer, _loot);
 	}
 
 	local onSerialize = o.onSerialize;

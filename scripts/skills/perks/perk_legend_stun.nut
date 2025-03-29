@@ -2,7 +2,7 @@ this.perk_legend_stun <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		::Const.Perks.setup(this.m, ::Legends.Perk.LegendStunned);
+		::Const.Perks.setup(this.m, ::Legends.Perk.LegendStun);
 		this.m.Type = this.Const.SkillType.Perk;
 		this.m.Order = this.Const.SkillOrder.Perk;
 		this.m.IsActive = false;

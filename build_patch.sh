@@ -58,9 +58,12 @@ if [ -n "$commit_hash" ]; then
   # Filter the files that are in 'gfx' or 'sounds' directories
   filtered_files=$(echo "$modified_files" | grep -E '^(gfx|sounds)/')
   # Add the filtered files into the existing zip archive
-  echo "$filtered_files" | while read -r file; do
-      7z a "$zip_archive" "$file" >> $log_file
-  done
+  if [ -n "$filtered_files" ]; then
+    # Add the filtered files into the existing zip archive
+    echo "$filtered_files" | while read -r file; do
+        7z a "$zip_archive" "$file" >> $log_file
+    done
+  fi
 fi
 
 handleExit

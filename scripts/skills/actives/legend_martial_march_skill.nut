@@ -5,9 +5,9 @@ this.legend_martial_march_skill <- this.inherit("scripts/skills/skill", {
 		this.m.ID = "actives.legend_martial_march";
 		this.m.Name = "Martial March";
 		this.m.Description = "A good marching melody uplifts the company, granting them temporary AP. Targets can only be inspired once per turn.";
-		this.m.Icon = "skills/drums_of_war_square.png";
-		this.m.IconDisabled = "skills/drums_of_war_square_bw.png";
-		this.m.Overlay = "drums_of_war_square";
+		this.m.Icon = "skills/martial_march_square.png";
+		this.m.IconDisabled = "skills/martial_march_square_bw.png";
+		this.m.Overlay = "martial_march_square";
 		this.m.SoundOnUse = [
 			"sounds/enemies/dlc4/wardrums_01.wav",
 			"sounds/enemies/dlc4/wardrums_02.wav",
@@ -54,7 +54,7 @@ this.legend_martial_march_skill <- this.inherit("scripts/skills/skill", {
 				text = "Grants all allied units within 8 tiles [color=" + this.Const.UI.Color.PositiveValue + "]1[/color] additional Action Point for their next turn."
 			}
 		];
-		
+
 		if (this.Tactical.isActive() && this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions()))
 		{
 			ret.push({
@@ -64,7 +64,7 @@ this.legend_martial_march_skill <- this.inherit("scripts/skills/skill", {
 				text = "[color=" + this.Const.UI.Color.NegativeValue + "]Can not be used because this character is engaged in melee[/color]"
 			});
 		}
-		
+
 		return ret;
 	}
 
@@ -82,7 +82,7 @@ this.legend_martial_march_skill <- this.inherit("scripts/skills/skill", {
 	function onAfterUpdate( _properties )
 	{
 		this.m.FatigueCostMult = 1.0;
-		if (this.getSkills().hasPerk(::Legends.Perk.LegendMinnesanger))
+		if (this.getContainer().hasPerk(::Legends.Perk.LegendMinnesanger))
 		{
 			this.m.FatigueCostMult = this.Const.Combat.WeaponSpecFatigueMult;
 			this.m.ActionPointCost -= 1;
@@ -112,7 +112,7 @@ this.legend_martial_march_skill <- this.inherit("scripts/skills/skill", {
 			}
 		}
 
-		::Legends.Effects.grant(a, ::Legends.Effect.LegendMartialMarch);
+		::Legends.Effects.grant(_user, ::Legends.Effect.LegendMartialMarch);
 		return true;
 	}
 

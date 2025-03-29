@@ -2,6 +2,7 @@ this.legend_large_broad_head_bolts <- this.inherit("scripts/items/ammo/ammo", {
 	m = {},
 	function create()
 	{
+		this.ammo.create();
 		this.m.ID = "ammo.bolts";
 		this.m.Name = "Large Quiver of Broad Head Bolts";
 		this.m.Description = "A large quiver of bolts with broad tips, designed for tearing flesh, but easily stopped by armor. Is automatically refilled after each battle if you have enough global ammunition. Grants +10% damage but -10% armor piercing damage while wielding a crossbow.";
@@ -89,19 +90,13 @@ this.legend_large_broad_head_bolts <- this.inherit("scripts/items/ammo/ammo", {
 		return result;
 	}
 
-function onUpdateProperties( _properties )
+	function onAnySkillUsed( _skill, _targetEntity, _properties )
 	{
-		this.ammo.onUpdateProperties(_properties);
-		local actor = this.getContainer().getActor();
-		local item = actor.getItems().getItemAtSlot(this.Const.ItemSlot.Mainhand);
-		if (item == null) return;
-
-		if (item.isWeaponType(this.Const.Items.WeaponType.Crossbow))
+		if (_skill.isAttack() && _skill.getItem() != null && _skill.getItem().isWeaponType(this.Const.Items.WeaponType.Crossbow))
 		{
 			_properties.DamageDirectMult *= 0.9;
 			_properties.RangedDamageMult *= 1.1;
 		}
-
 	}
 });
 

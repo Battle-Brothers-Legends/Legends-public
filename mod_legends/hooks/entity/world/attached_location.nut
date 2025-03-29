@@ -107,9 +107,7 @@
 	o.setAbandoned <- function ( _a, _force = false)
 	{
 		if (_a == this.m.IsAbandoned && _force == false)
-		{
 			return;
-		}
 
 		this.m.IsAbandoned = _a;
 		this.setActive( !_a, _force );
@@ -182,10 +180,7 @@
 
 		local active = _in.readBool();
 		this.m.IsNew = _in.readBool();
-		if (::Legends.Mod.Serialization.isSavedVersionAtLeast("18.2.0-pre-02", _in.getMetaData()))
-		{
-			this.m.IsAbandoned = _in.readBool();
-		}
+		this.m.IsAbandoned = _in.readBool();
 		this.setActive(active, true);
 		this.setAttackable(false);
 		this.getSprite("lighting").Color = this.createColor("ffffff00");

@@ -617,6 +617,15 @@
 				text = this.getDescription()
 			}
 		];
+		if (this.getContainer() != null && this.getContainer().getActor().getLevel() >= 12)
+		{
+			ret.push({
+				id = 10,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = "Gain a perk point every [color=" + this.Const.UI.Color.PositiveValue + "]" + this.getContainer().getActor().getVeteranPerks() + "[/color] Levels"
+			});
+		}
 		if (this.getContainer() != null) ret.extend(this.getAttributesTooltip());
 		return ret;
 	}
@@ -826,7 +835,7 @@
 		{
 			id = _perk;
 			local basePerkDefObject = this.Const.Perks.findById(_perk);
-			perkDef = this.Const.Perks.PerkDefs[basePerkDefObject.Const];
+			perkDef = ::Legends.Perk[basePerkDefObject.Const];
 		}
 		else
 		{
@@ -1724,13 +1733,13 @@
 	{
 		this.addBackgroundType(this.Const.BackgroundType.ConvertedCultist);
 		local cultistGroup = [
-						[this.Const.Perks.PerkDefs.LegendSpecialistNinetailsSkill],
-						[this.Const.Perks.PerkDefs.LegendSpecCultHood],
-						[this.Const.Perks.PerkDefs.LegendSpecialistNinetailsDamage],
+						[::Legends.Perk.LegendSpecialistCultist],
+						[::Legends.Perk.LegendSpecCultHood],
 						[],
-						[this.Const.Perks.PerkDefs.LegendPrepareGraze],
-						[this.Const.Perks.PerkDefs.LegendSpecCultArmor],
-						[this.Const.Perks.PerkDefs.LegendLacerate]
+						[],
+						[::Legends.Perk.LegendPrepareGraze],
+						[::Legends.Perk.LegendSpecCultArmor],
+						[::Legends.Perk.LegendLacerate]
 					];
 
 		this.addPerkGroup(cultistGroup);
@@ -1771,7 +1780,7 @@
 			{
 				if (!perk.IsRefundable)
 				{
-					nonRefundablePerks.push(this.Const.Perks.PerkDefs[perk.Const]);
+					nonRefundablePerks.push(::Legends.Perk[perk.Const]);
 				}
 			}
 		}
@@ -1790,15 +1799,7 @@
 		this.m.RawDescription = _in.readString();
 		this.m.Level = _in.readU8();
 		this.m.IsNew = _in.readBool();
-
-		if (_in.getMetaData().getVersion() >= 39)
-		{
-			this.m.DailyCostMult = _in.readF32();
-		}
-		else
-		{
-			this.m.DailyCostMult = 1.0;
-		}
+		this.m.DailyCostMult = _in.readF32();
 
 		if(_in.readBool())
 		{

@@ -2,6 +2,7 @@
 	o.m.OriginalDescription <- "";
 	o.m.OriginalValue <- 0;
 	o.m.OwnerID <- null;
+	o.m.OriginalAmmoCost <- 0;
 
 	o.isAmountShown <- function()
 	{
@@ -30,7 +31,8 @@
 		m.OriginalValue = m.Value;
 		m.OriginalDescription = m.Description;
 		m.ItemType = m.ItemType | ::Const.Items.ItemType.Ammo | ::Const.Items.ItemType.Net;
-		m.AmmoCost = 20;
+		m.OriginalAmmoCost = 15;
+		m.AmmoCost = m.OriginalAmmoCost;
 		m.AmmoMax = 1;
 		m.Ammo = 1;
 	}
@@ -103,7 +105,7 @@
 	{
 		m.AmmoCost = 0;
 		weapon.consumeAmmo(); // to prevent scavenger retinue from recover ammo part
-		m.AmmoCost = 20;
+		m.AmmoCost = m.OriginalAmmoCost;
 	}
 
 	o.updateAmmo <- function()

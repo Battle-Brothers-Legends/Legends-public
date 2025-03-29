@@ -1,13 +1,12 @@
 ::mods_hookExactClass("skills/actives/sling_stone_skill", function(o)
 {
-	o.m.AdditionalAccuracy = -10;
-	o.m.AdditionalHitChance = -6;
+	o.m.AdditionalAccuracy = -5;
+	o.m.AdditionalHitChance = -4;
 
 	local create = o.create;
 	o.create = function ()
 	{
 		create();
-		this.m.MinRange = 2;
 		this.m.IsShieldRelevant = true;
 	}
 
@@ -15,7 +14,7 @@
 	{
 		local ret = this.getRangedTooltip(this.getDefaultTooltip());
 
-		if (!this.getContainer().getActor().getSkills().hasSkill("perk.legend_barrage"))
+		if (!this.getContainer().hasPerk(::Legends.Perk.LegendBarrage))
 		{
 			ret.push({
 				id = 7,
@@ -64,9 +63,9 @@
 		this.m.MaxRange = this.m.Item.getRangeMax() + (_properties.IsSpecializedInSlings ? 1 : 0);
 		this.m.AdditionalAccuracy = _properties.IsSpecializedInSlings ? (this.m.Item.getAdditionalAccuracy() + 5) : this.m.Item.getAdditionalAccuracy();
 		this.m.FatigueCostMult = _properties.IsSpecializedInSlings ? this.Const.Combat.WeaponSpecFatigueMult : 1.0;
-		if (this.getContainer().hasSkill("perk.legend_slinger_spins"))
+		if (this.getContainer().hasPerk(::Legends.Perk.LegendSlingerSpins))
 			this.m.IsShieldRelevant = false;
-		if (this.getContainer().hasSkill("effects.legend_slinger_spins"))
+		if (this.getContainer().hasEffect(::Legends.Effect.LegendPrepareBullet))
 			this.m.MaxRange += 1;
 	}
 
@@ -87,50 +86,42 @@
 			local targetTile = _targetEntity.getTile();
 			local user = this.getContainer().getActor();
 			local isApplied = _bodyPart == this.Const.BodyPart.Head ? true : this.Math.rand(1, 100) <= 33;
-			local effect = !_targetEntity.getCurrentProperties().IsImmuneToDaze ? this.new("scripts/skills/effects/dazed_effect") : this.new("scripts/skills/effects/staggered_effect");
+			local effect = !_targetEntity.getCurrentProperties().IsImmuneToDaze ? ::Legends.Effects.new(::Legends.Effect.Dazed) : ::Legends.Effects.new(::Legends.Effect.Staggered);
 			local effectName = !_targetEntity.getCurrentProperties().IsImmuneToDaze ? "dazed" : "staggered";
 
-			if (user.getSkills().hasSkill("perk.legend_barrage") && isApplied)
+			if (user.getSkills().hasPerk(::Legends.Perk.LegendBarrage) && isApplied)
 			{
 				local targetStatus = _targetEntity.getSkills();
 				local effectCounter = 0;
 
 				switch (true)
 				{
-					case targetStatus.hasSkill("effects.dazed"):
-						effectCounter += 1;
-					case targetStatus.hasSkill("effects.legend_baffled"):
-						effectCounter += 1;
-					case targetStatus.hasSkill("effects.debilitated"):
-						effectCounter += 1;
-					case targetStatus.hasSkill("effects.staggered"):
+					case targetStatus.hasEffect(::Legends.Effect.Dazed):
+					case targetStatus.hasEffect(::Legends.Effect.LegendDazed):
+					case targetStatus.hasEffect(::Legends.Effect.LegendBaffled):
+					case targetStatus.hasEffect(::Legends.Effect.Debilitated):
+					case targetStatus.hasEffect(::Legends.Effect.Staggered):
 						effectCounter += 1;
 				}
 				if (effectCounter >= 3 && !_targetEntity.getCurrentProperties().IsImmuneToStun)
 				{
-					_targetEntity.getSkills().add(this.new("scripts/skills/effects/stunned_effect"));
+					::Legends.Effects.grant(_targetEntity, ::Legends.Effect.Stunned);
 					if (!user.isHiddenToPlayer() && targetTile.IsVisibleForPlayer)
 						this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(user) + " struck a hit that leaves the already reeling " + this.Const.UI.getColorizedEntityName(_targetEntity) + " stunned");
 					return;
 				}
 				else
 				{
-					local rand = this.Math.rand(1, 100);
-					switch (true)
-					{
-						case rand <= 25:
-							effect = this.new("scripts/skills/effects/dazed_effect");
-							effectName = "dazed";
-						case rand <= 50:
-							effect = this.new("scripts/skills/effects/staggered_effect");
-							effectName = "staggered";
-						case rand <= 75:
-							effect = this.new("scripts/skills/effects/debilitated_effect");
-							effectName = "debilitated";
-						case rand <= 100:
-							effect = this.new("scripts/skills/effects/legend_baffled_effect");
-							effectName = "baffled";
-					}
+					// todo, this is bs, doesn't check if can be dazed for example
+					local effects = [
+						[::Legends.Effect.Dazed, "dazed"],
+						[::Legends.Effect.Staggered, "staggered"],
+						[::Legends.Effect.Debilitated, "debilitated"],
+						[::Legends.Effect.LegendBaffled, "baffled"]
+					];
+					local rand = this.Math.rand(0, effects.len() - 1);
+					effect = ::Legends.Effects.new(effects[rand][0]);
+					effectName = effects[rand][1];
 				}
 			}
 

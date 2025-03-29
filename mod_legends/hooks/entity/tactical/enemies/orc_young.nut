@@ -88,9 +88,18 @@
 		local r;
 		local weapon;
 
-		if (this.Math.rand(1, 100) <= 25)
+		r = this.Math.rand(1, 100)
+		if (r <= 30)
 		{
-			this.m.Items.addToBag(this.new("scripts/items/weapons/greenskins/orc_javelin"));
+			r = this.Math.rand(1, 2);
+			if (r == 1)
+			{
+				this.m.Items.addToBag(this.new("scripts/items/weapons/greenskins/orc_javelin"));
+			}
+			else if (r == 2)
+			{
+				this.m.Items.addToBag(this.new("scripts/items/weapons/greenskins/legend_orc_throwing_spear"));
+			}
 		}
 
 		if (this.Math.rand(1, 100) <= 75)

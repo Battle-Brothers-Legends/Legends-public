@@ -77,6 +77,20 @@ this.legend_white_direwolf <- this.inherit("scripts/entity/tactical/actor", {
 		this.m.SoundPitch = this.Math.rand(95, 105) * 0.01;
 		this.m.AIAgent = this.new("scripts/ai/tactical/agents/legend_white_wolf_agent");
 		this.m.AIAgent.setActor(this);
+
+		local rolls = ::Legends.S.extraLootChance(1);
+		for(local i = 0; i < rolls; i++) {
+			this.m.OnDeathLootTable.extend([
+				[100, "scripts/items/misc/legend_white_wolf_pelt_item"],
+				[100, "scripts/items/loot/sabertooth_item"],
+				[100, "scripts/items/loot/valuable_furs_item"],
+				[100, "scripts/items/supplies/strange_meat_item"],
+				[33, "scripts/items/loot/sabertooth_item"],
+				[33, "scripts/items/loot/valuable_furs_item"],
+				[33, "scripts/items/supplies/strange_meat_item"],
+				[20, "scripts/items/misc/legend_white_wolf_pelt_item"]
+			]);
+		}
 	}
 
 	function playAttackSound()
@@ -99,8 +113,7 @@ this.legend_white_direwolf <- this.inherit("scripts/entity/tactical/actor", {
 			this.updateAchievement("Ulfhednar", 1, 1);
 		}
 
-		if (_tile != null)
-		{
+		if (_tile != null) {
 			local flip = this.Math.rand(0, 100) < 50;
 			local decal;
 			this.m.IsCorpseFlipped = flip;
@@ -112,27 +125,22 @@ this.legend_white_direwolf <- this.inherit("scripts/entity/tactical/actor", {
 			decal.Saturation = body.Saturation;
 			decal.Scale = 0.95;
 
-			if (_fatalityType != this.Const.FatalityType.Decapitated)
-			{
+			if (_fatalityType != this.Const.FatalityType.Decapitated) {
 				decal = _tile.spawnDetail(head.getBrush().Name + "_dead", this.Const.Tactical.DetailFlag.Corpse, flip);
 				decal.Color = head.Color;
 				decal.Saturation = head.Saturation;
 				decal.Scale = 0.95;
 
-				if (head_frenzy.HasBrush)
-				{
+				if (head_frenzy.HasBrush) {
 					decal = _tile.spawnDetail(head_frenzy.getBrush().Name + "_dead", this.Const.Tactical.DetailFlag.Corpse, flip);
 					decal.Scale = 0.95;
 				}
-			}
-			else if (_fatalityType == this.Const.FatalityType.Decapitated)
-			{
+			} else if (_fatalityType == this.Const.FatalityType.Decapitated) {
 				local layers = [
-					head.getBrush().Name + "_dead"
+				head.getBrush().Name + "_dead"
 				];
 
-				if (head_frenzy.HasBrush)
-				{
+				if (head_frenzy.HasBrush) {
 					layers.push(head_frenzy.getBrush().Name + "_dead");
 				}
 
@@ -141,72 +149,46 @@ this.legend_white_direwolf <- this.inherit("scripts/entity/tactical/actor", {
 				decap[0].Saturation = head.Saturation;
 				decap[0].Scale = 0.95;
 
-				if (head_frenzy.HasBrush)
-				{
+				if (head_frenzy.HasBrush) {
 					decap[1].Scale = 0.95;
 				}
 			}
 
-			if (_skill && _skill.getProjectileType() == this.Const.ProjectileType.Arrow)
-			{
+			if (_skill && _skill.getProjectileType() == this.Const.ProjectileType.Arrow) {
 				decal = _tile.spawnDetail("bust_direwolf_01_body_dead_arrows", this.Const.Tactical.DetailFlag.Corpse, flip);
 				decal.Scale = 0.95;
-			}
-			else if (_skill && _skill.getProjectileType() == this.Const.ProjectileType.Javelin)
-			{
+			} else if (_skill && _skill.getProjectileType() == this.Const.ProjectileType.Javelin) {
 				decal = _tile.spawnDetail("bust_direwolf_01_body_dead_javelin", this.Const.Tactical.DetailFlag.Corpse, flip);
 				decal.Scale = 0.95;
 			}
 
 			this.spawnTerrainDropdownEffect(_tile);
 			this.spawnFlies(_tile);
-			local corpse = clone this.Const.Corpse;
-			corpse.CorpseName = "A Direwolf";
-			corpse.IsHeadAttached = _fatalityType != this.Const.FatalityType.Decapitated;
+		}
+
+		local deathLoot = this.getItems().getDroppableLoot(_killer);
+		local tileLoot = this.getLootForTile(_killer, deathLoot);
+		local corpse = this.generateCorpse(_tile, _fatalityType);
+		this.dropLoot(_tile, tileLoot, !flip);
+
+		if (_tile == null) {
+			this.Tactical.Entities.addUnplacedCorpse(corpse);
+		} else {
 			_tile.Properties.set("Corpse", corpse);
 			this.Tactical.Entities.addCorpse(_tile);
-
-			if (_killer == null || _killer.getFaction() == this.Const.Faction.Player || _killer.getFaction() == this.Const.Faction.PlayerAnimals)
-			{
-				local n = 1 + (!this.Tactical.State.isScenarioMode() && this.Math.rand(1, 100) <= this.World.Assets.getExtraLootChance() ? 1 : 0);
-
-				for( local i = 0; i < n; i = ++i )
-				{
-
-					local loot = this.new("scripts/items/misc/legend_white_wolf_pelt_item");
-					loot.drop(_tile);
-					local loot = this.new("scripts/items/loot/sabertooth_item");
-					loot.drop(_tile);
-					local loot = this.new("scripts/items/loot/valuable_furs_item");
-					loot.drop(_tile);
-					local loot = this.new("scripts/items/supplies/strange_meat_item");
-					loot.drop(_tile);
-					if (this.Math.rand(1, 100) <= 33)
-					{
-					local loot = this.new("scripts/items/loot/sabertooth_item");
-					loot.drop(_tile);
-					}
-					if (this.Math.rand(1, 100) <= 33)
-					{
-					local loot = this.new("scripts/items/loot/valuable_furs_item");
-					loot.drop(_tile);
-					}
-					if (this.Math.rand(1, 100) <= 33)
-					{
-					local loot = this.new("scripts/items/supplies/strange_meat_item");
-					loot.drop(_tile);
-					}
-
-					if (this.Math.rand(1, 100) <= 20)
-					{
-						local loot = this.new("scripts/items/misc/legend_white_wolf_pelt_item");
-						loot.drop(_tile);
-					}
-				}
-			}
 		}
 
 		this.actor.onDeath(_killer, _skill, _tile, _fatalityType);
+	}
+
+	function generateCorpse( _tile, _fatalityType )
+	{
+		local corpse = clone this.Const.Corpse;
+		corpse.CorpseName = "A Direwolf";
+		corpse.Items = this.getItems();
+		corpse.IsHeadAttached = _fatalityType != this.Const.FatalityType.Decapitated;
+		corpse.Tile = _tile;
+		return corpse;
 	}
 
 	function onInit()

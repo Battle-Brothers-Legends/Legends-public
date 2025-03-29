@@ -76,14 +76,6 @@
 		this.m.StaminaModifier = _in.readI8();
 		this.m.MeleeDefense = _in.readU16();
 		this.m.RangedDefense = _in.readU16();
-
-		if (_in.getMetaData().getVersion() >= 47)
-		{
-			this.m.FatigueOnSkillUse = _in.readI16();
-		}
-		else
-		{
-			this.m.FatigueOnSkillUse = 0;
-		}
+		this.m.FatigueOnSkillUse = _in.readI16();
 	}
 });

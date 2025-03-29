@@ -27,15 +27,10 @@
 				"weapons/greenskins/goblin_falchion",
 				"weapons/greenskins/goblin_spear",
 				"weapons/legend_chain",
-				"weapons/greenskins/goblin_notched_blade"
+				"weapons/greenskins/goblin_notched_blade",
+				"weapons/greenskins/legend_goblin_longaxe",
+				"weapons/greenskins/goblin_pike"
 			];
-
-			if (this.m.Items.hasEmptySlot(this.Const.ItemSlot.Offhand))
-			{
-				weapons.extend([
-					"weapons/greenskins/goblin_pike"
-				]);
-			}
 
 			this.m.Items.equip(this.new("scripts/items/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
 		}
@@ -45,7 +40,7 @@
 			this.m.Items.addToBag(this.new("scripts/items/weapons/greenskins/goblin_spiked_balls"));
 		}
 
-		if(::Legends.isLegendaryDifficulty())
+		if (::Legends.isLegendaryDifficulty())
 		{
 			this.m.Items.addToBag(this.new("scripts/items/weapons/greenskins/goblin_spiked_balls"));
 			this.m.Items.addToBag(this.new("scripts/items/weapons/greenskins/goblin_spiked_balls"));

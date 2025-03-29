@@ -18,7 +18,7 @@ this.perk_legend_specialist_bodyguard <- this.inherit("scripts/skills/legend_spe
 	{
 		this.legend_specialist_abstract.create();
 		::Const.Perks.setup(this.m, ::Legends.Perk.LegendSpecialistBodyguard);
-		this.m.IconMini = "perk_spec_2hsword_mini.png";
+		this.m.IconMini = "perk_spec_2hsword_mini";
 	}
 
 	// function specialistWeaponTooltip (_item, _isRanged)
@@ -59,7 +59,7 @@ this.perk_legend_specialist_bodyguard <- this.inherit("scripts/skills/legend_spe
 	function onAnySkillUsed( _skill, _targetEntity, _properties )
 	{
 		this.legend_specialist_abstract.onAnySkillUsed(_skill, _targetEntity, _properties);
-		if (onAnySkillUsedSpecialistChecks(_skill))
+		if (this.onAnySkillUsedSpecialistChecks(_skill))
 		{
 			if (_properties.IsRiposting)
 			{

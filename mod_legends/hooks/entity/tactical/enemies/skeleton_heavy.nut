@@ -72,12 +72,12 @@
 		if (this.m.Items.hasEmptySlot(this.Const.ItemSlot.Head))
 		{
 			local item = this.Const.World.Common.pickHelmet([
-			[66, "ancient/ancient_honorguard_helmet"]
-		]);
-		if (item != null)
-		{
-			this.m.Items.equip(item);
-		}
+				[66, "ancient/ancient_honorguard_helmet"]
+			]);
+			if (item != null)
+			{
+				this.m.Items.equip(item);
+			}
 		}
 	}
 });

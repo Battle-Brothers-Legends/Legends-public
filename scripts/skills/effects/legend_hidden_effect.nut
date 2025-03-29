@@ -46,7 +46,7 @@ this.legend_hidden_effect <- this.inherit("scripts/skills/skill", {
 					}
 			}
 
-			if (actor.getSkills().hasSkill("bbackground.legend_commander_assassin"))
+			if (actor.getSkills().hasSkill("background.legend_commander_assassin"))
 			{
 					{
 						id = 13,

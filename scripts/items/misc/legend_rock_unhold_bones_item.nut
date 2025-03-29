@@ -2,6 +2,7 @@ this.legend_rock_unhold_bones_item <- this.inherit("scripts/items/item", {
 	m = {},
 	function create()
 	{
+		this.item.create();
 		this.m.ID = "misc.legend_rock_unhold_bones";
 		this.m.Name = "Rock Unhold Bones";
 		this.m.Description = "These large bones taken from a Rock Unhold are incredibly strong and valuable";

@@ -1,10 +1,9 @@
-this.legend_pass_skill <- this.inherit("scripts/skills/skill", {
-
-
+this.legend_pass_skill <- this.inherit("scripts/skills/skill",
+{
 	function create()
 	{
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendPass);
-		this.m.Description = "Give the first item in your bag to an adjacent ally. Can not be used while engaged in melee, and anyone receiving the item needs to have a free bag slot.";
+		this.m.Description = "Give the first item in your bag to an adjacent ally. Can not be used while engaged in melee, and anyone receiving the item needs to have a free main hand, off hand or bag slot.";
 		this.m.Icon = "skills/pass.png";
 		this.m.IconDisabled = "skills/pass_bw.png";
 		this.m.Overlay = "active_pass";
@@ -20,7 +19,7 @@ this.legend_pass_skill <- this.inherit("scripts/skills/skill", {
 		this.m.IsAttack = false;
 		this.m.IsUsingHitchance = false;
 		this.m.IsIgnoredAsAOO = true;
-		this.m.ActionPointCost = 0;
+		this.m.ActionPointCost = 2;
 		this.m.FatigueCost = 5;
 		this.m.MinRange = 0;
 		this.m.MaxRange = 1;
@@ -49,6 +48,12 @@ this.legend_pass_skill <- this.inherit("scripts/skills/skill", {
 				type = "text",
 				icon = "ui/icons/special.png",
 				text = "Passes the first item in your bag to an ally"
+			},
+			{
+				id = 8,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = "If passing a main hand or off hand item, will try to place the item in the relevant slot instead of the ally\'s bag if said slot is free"
 			}
 		];
 
@@ -65,6 +70,14 @@ this.legend_pass_skill <- this.inherit("scripts/skills/skill", {
 		return ret;
 	}
 
+	function onAfterUpdate(_properties)
+	{
+		if (this.getContainer().hasPerk(::Legends.Perk.QuickHands))
+		{
+			this.m.ActionPointCost -= 2;
+		}
+	}
+
 	function getCursorForTile( _tile )
 	{
 		return this.Const.UI.Cursor.Give;
@@ -77,12 +90,14 @@ this.legend_pass_skill <- this.inherit("scripts/skills/skill", {
 		{
 			return false;
 		}
-		local item = this.getContainer().getActor().getItems().getItemAtBagSlot(0);
+		local items = this.getContainer().getActor().getItems().getAllItemsAtSlot(::Const.ItemSlot.Bag);
 
-		if (item = null)
-		{
+		if (items.len() == 0)
 			return false;
-		}
+
+		if (items[0] == null)
+			return false;
+
 		local tile = this.getContainer().getActor().getTile();
 		return this.skill.isUsable() && !tile.hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions());
 	}
@@ -95,13 +110,11 @@ this.legend_pass_skill <- this.inherit("scripts/skills/skill", {
 			return false;
 		}
 
-
-
 		local target = _targetTile.getEntity();
 		local user = _originTile.getEntity();
-		local item = user.getItems().getItemAtBagSlot(0);
+		local item = user.getItems().getAllItemsAtSlot(this.Const.ItemSlot.Bag)[0];
 
-		if (item = null)
+		if (item == null)
 		{
 			return false;
 		}
@@ -113,6 +126,14 @@ this.legend_pass_skill <- this.inherit("scripts/skills/skill", {
 
 		if (target.getID() != user.getID())
 		{
+			if (item.m.SlotType == this.Const.ItemSlot.Mainhand && target.getItems().hasEmptySlot(this.Const.ItemSlot.Mainhand))
+			{
+				return true;
+			}
+			if (item.m.SlotType == this.Const.ItemSlot.Offhand && target.getItems().hasEmptySlot(this.Const.ItemSlot.Offhand))
+			{
+				return true;
+			}
 			if (!target.getItems().hasEmptySlot(this.Const.ItemSlot.Bag))
 			{
 				return false;
@@ -125,7 +146,7 @@ this.legend_pass_skill <- this.inherit("scripts/skills/skill", {
 	function onUse( _user, _targetTile )
 	{
 		local target = _targetTile.getEntity();
-		local item = this.getContainer().getActor().getItems().getItemAtBagSlot(0);
+		local item = _user.getItems().getAllItemsAtSlot(this.Const.ItemSlot.Bag)[0];
 		local itemName = item.getName();
 
 		this.spawnIcon("status_helpful", _targetTile);
@@ -137,7 +158,18 @@ this.legend_pass_skill <- this.inherit("scripts/skills/skill", {
 
 		this.Sound.play("sounds/cloth_01.wav", this.Const.Sound.Volume.Inventory);
 
+
 		_user.getItems().removeFromBag(item);
+		if (item.m.SlotType == this.Const.ItemSlot.Mainhand && target.getItems().hasEmptySlot(this.Const.ItemSlot.Mainhand))
+		{
+			target.getItems().equip(item);
+			return true;
+		}
+		if (item.m.SlotType == this.Const.ItemSlot.Offhand && target.getItems().hasEmptySlot(this.Const.ItemSlot.Offhand))
+		{
+			target.getItems().equip(item);
+			return true;
+		}
 		target.getItems().addToBag(item);
 
 		return true;

@@ -21,6 +21,9 @@ this.legend_militia_glaive <- this.inherit("scripts/items/weapons/weapon", {
 		this.m.Condition = 48.0;
 		this.m.ConditionMax = 48.0;
 		this.m.StaminaModifier = -12;
+		this.m.RangeMin = 1;
+		this.m.RangeMax = 2;
+		this.m.RangeIdeal = 2;
 		this.m.RegularDamage = 45;
 		this.m.RegularDamageMax = 55;
 		this.m.ArmorDamageMult = 0.9;

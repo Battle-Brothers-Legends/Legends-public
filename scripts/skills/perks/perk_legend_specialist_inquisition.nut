@@ -20,6 +20,6 @@ this.perk_legend_specialist_inquisition <- this.inherit("scripts/skills/legend_s
 	{
 		this.legend_specialist_abstract.create();
 		::Const.Perks.setup(this.m, ::Legends.Perk.LegendSpecialistInquisition);
-		this.m.IconMini = "perk_spec_xbow_mini.png";
+		this.m.IconMini = "perk_spec_xbow_mini";
 	}
 });

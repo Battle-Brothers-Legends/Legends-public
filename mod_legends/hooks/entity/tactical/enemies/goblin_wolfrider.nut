@@ -14,17 +14,13 @@
 
 	o.assignRandomEquipment = function ()
 	{
-		local r;
-		r = this.Math.rand(1, 2);
+		local weapons = [
+			"weapons/greenskins/goblin_falchion",
+			"weapons/greenskins/goblin_spear",
+			"weapons/greenskins/legend_goblin_longaxe",
+		];
 
-		if (r == 1)
-		{
-			this.m.Items.equip(this.new("scripts/items/weapons/greenskins/goblin_spear"));
-		}
-		else if (r == 2)
-		{
-			this.m.Items.equip(this.new("scripts/items/weapons/greenskins/goblin_falchion"));
-		}
+		this.m.Items.equip(this.new("scripts/items/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
 
 		local item = this.Const.World.Common.pickArmor([
 			[3, "greenskins/goblin_medium_armor"],

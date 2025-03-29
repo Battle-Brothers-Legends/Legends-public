@@ -42,7 +42,6 @@ this.legend_mummy_light <- this.inherit("scripts/entity/tactical/legend_mummy", 
 			::Legends.Perks.grant(this, ::Legends.Perk.CripplingStrikes);
 			::Legends.Perks.grant(this, ::Legends.Perk.CoupDeGrace);
 		}
-
 	}
 
 	function assignRandomEquipment()

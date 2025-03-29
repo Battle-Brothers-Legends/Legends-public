@@ -215,6 +215,10 @@
 
 			break;
 
+		case this.Const.Tactical.DeploymentType.LineCenter:
+			this.placePlayersInFormation(frontline, 3 + shiftX);
+			break;
+
 		case this.Const.Tactical.DeploymentType.LineForward:
 			this.placePlayersInFormation(frontline, 8 + shiftX);
 			break;
@@ -297,6 +301,10 @@
 				{
 					this.spawnEntitiesInFormation(f.Entities, n, 8 + shiftX);
 				}
+				else if (f.IsAlliedWithPlayer && _properties.PlayerDeploymentType == this.Const.Tactical.DeploymentType.LineCenter)
+				{
+					this.spawnEntitiesInFormation(f.Entities, n, 3 + shiftX);
+				}
 				else if (!f.IsAlliedWithPlayer && _properties.PlayerDeploymentType == this.Const.Tactical.DeploymentType.LineForward)
 				{
 					this.spawnEntitiesInFormation(f.Entities, n, -10 - shiftX);
@@ -306,6 +314,21 @@
 					this.spawnEntitiesInFormation(f.Entities, n, -10 + shiftX);
 				}
 
+				break;
+
+			case this.Const.Tactical.DeploymentType.LineCenter:
+				if (f.IsAlliedWithPlayer && _properties.PlayerDeploymentType == this.Const.Tactical.DeploymentType.LineForward)
+				{
+					this.spawnEntitiesInFormation(f.Entities, n, 8 + shiftX);
+				}
+				else if (!f.IsAlliedWithPlayer && _properties.PlayerDeploymentType == this.Const.Tactical.DeploymentType.LineForward)
+				{
+					this.spawnEntitiesInFormation(f.Entities, n, 3 - shiftX);
+				}
+				else
+				{
+					this.spawnEntitiesInFormation(f.Entities, n, 3 + shiftX);
+				}
 				break;
 
 			case this.Const.Tactical.DeploymentType.Arena:
@@ -504,12 +527,12 @@
 
 			if (!this.World.getTime().IsDaytime && e.getBaseProperties().IsAffectedByNight)
 			{
-				::Legends.Effects.grant(e, ::Lengeds.Effect.Night);
+				::Legends.Effects.grant(e, ::Legends.Effect.Night);
 			}
 
 			if (this.Tactical.getWeather().IsRaining && e.getBaseProperties().IsAffectedByRain)
 			{
-				::Legends.Effects.grant(e, ::Lengeds.Effect.LegendRain);
+				::Legends.Effects.grant(e, ::Legends.Effect.LegendRain);
 			}
 
 

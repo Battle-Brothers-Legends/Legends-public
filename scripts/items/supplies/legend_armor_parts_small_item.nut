@@ -24,6 +24,7 @@ this.legend_armor_parts_small_item <- this.inherit("scripts/items/item", {
 
 	function create()
 	{
+		this.item.create();
 		this.m.ID = "supplies.legend_armor_parts_small";
 		this.m.Name = "Small Tools and Supplies";
 		this.m.Icon = "supplies/armor_parts_small.png";

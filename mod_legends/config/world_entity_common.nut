@@ -529,13 +529,13 @@ if (!("World" in ::Const))
 	UpgradeResourceCost = 50,
 }
 
-::Const.World.Common.assignTroops = function( _party, _partyList, _resources, _weightMode = 1 )
+::Const.World.Common.assignTroops = function( _party, _partyList, _resources, _minibossify = 0, _weightMode = 1 )
 {
 	local p;
 	//New Legends Dynamic Spawn lists
 	if (typeof(_partyList) == "table")
 	{
-		p = this.Const.World.Common.buildDynamicTroopList(_partyList, _resources)
+		p = this.Const.World.Common.buildDynamicTroopList(_partyList, _resources);
 	}
 	//Vanilla partlyList spawnlists
 	else

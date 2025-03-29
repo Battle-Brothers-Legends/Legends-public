@@ -73,6 +73,22 @@ this.legend_greenwood_schrat <- this.inherit("scripts/entity/tactical/actor", {
 		this.m.SoundPitch = this.Math.rand(95, 105) * 0.01;
 		this.m.AIAgent = this.new("scripts/ai/tactical/agents/schrat_agent");
 		this.m.AIAgent.setActor(this);
+
+		local rolls = ::Legends.S.extraLootChance(2);
+		for(local i = 0; i < rolls; i++) {
+			this.m.OnDeathLootTable.extend([
+				[50, "scripts/items/misc/legend_ancient_green_wood_item"],
+				[30, "scripts/items/misc/glowing_resin_item"],
+				[20, "scripts/items/misc/heart_of_the_forest_item"],
+				[20,  function () {
+					local token = this.new("scripts/items/rune_sigils/legend_vala_inscription_token");
+					token.setRuneVariant(this.m.DroppableRunes[this.Math.rand(0, this.m.DroppableRunes.len() - 1)]);
+					token.setRuneBonus(true);
+					token.updateRuneSigilToken();
+					return token;
+				}.bindenv(this)],
+			]);
+		}
 	}
 
 	function playSound( _type, _volume, _pitch = 1.0 )
@@ -121,52 +137,31 @@ this.legend_greenwood_schrat <- this.inherit("scripts/entity/tactical/actor", {
 				decal = _tile.spawnDetail("bust_schrat_green_body_01_dead_javelin", this.Const.Tactical.DetailFlag.Corpse, flip);
 				decal.Scale = 0.95;
 			}
-
 			this.spawnTerrainDropdownEffect(_tile);
-			local corpse = clone this.Const.Corpse;
-			corpse.CorpseName = "A Greenwood Schrat";
-			corpse.IsHeadAttached = true;
+		}
+
+		local deathLoot = this.getItems().getDroppableLoot(_killer);
+		local tileLoot = this.getLootForTile(_killer, deathLoot);
+		local corpse = this.generateCorpse(_tile, _fatalityType);
+		this.dropLoot(_tile, tileLoot, !flip);
+
+		if (_tile == null) {
+			this.Tactical.Entities.addUnplacedCorpse(corpse);
+		} else {
 			_tile.Properties.set("Corpse", corpse);
 			this.Tactical.Entities.addCorpse(_tile);
-
-			if ((_killer == null || _killer.getFaction() == this.Const.Faction.Player || _killer.getFaction() == this.Const.Faction.PlayerAnimals) && this.Math.rand(1, 100) <= 90)
-			{
-				local n = 1 + (!this.Tactical.State.isScenarioMode() && this.Math.rand(1, 100) <= this.World.Assets.getExtraLootChance() ? 1 : 0);
-
-				for( local i = 0; i < n; i = ++i )
-				{
-					local r = this.Math.rand(1, 100);
-					local loot;
-
-					if (r <= 50)
-					{
-						loot = this.new("scripts/items/misc/legend_ancient_green_wood_item");
-					}
-
-					else if (r <= 80)
-					{
-						loot = this.new("scripts/items/misc/glowing_resin_item");
-					}
-					else
-					{
-						loot = this.new("scripts/items/misc/heart_of_the_forest_item");
-					}
-
-					loot.drop(_tile);
-
-					if (this.Math.rand(1, 100) <= 10)
-					{
-						local token = this.new("scripts/items/rune_sigils/legend_vala_inscription_token");
-						token.setRuneVariant(this.m.DroppableRunes[this.Math.rand(0, this.m.DroppableRunes.len() - 1)]);
-						token.setRuneBonus(true);
-						token.updateRuneSigilToken();
-						token.drop(_tile);
-					}
-				}
-			}
 		}
 
 		this.actor.onDeath(_killer, _skill, _tile, _fatalityType);
+	}
+
+	function generateCorpse( _tile, _fatalityType )
+	{
+		local corpse = clone this.Const.Corpse;
+		corpse.CorpseName = "A Greenwood Schrat";
+		corpse.IsHeadAttached = true;
+		corpse.Tile = _tile;
+		return corpse;
 	}
 
 	function onInit()

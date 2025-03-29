@@ -31,66 +31,66 @@ this.legend_horse_destrier <- this.inherit("scripts/skills/backgrounds/legend_ho
 
 		this.m.CustomPerkTree = [
 				[
-				this.Const.Perks.PerkDefs.Colossus,
-				this.Const.Perks.PerkDefs.NineLives,
-				this.Const.Perks.PerkDefs.Steadfast,
-				this.Const.Perks.PerkDefs.Recover,
-				this.Const.Perks.PerkDefs.Adrenaline,
-				this.Const.Perks.PerkDefs.LegendHorseLongeing
+				::Legends.Perk.Colossus,
+				::Legends.Perk.NineLives,
+				::Legends.Perk.Steadfast,
+				::Legends.Perk.Recover,
+				::Legends.Perk.Adrenaline,
+				::Legends.Perk.LegendHorseLongeing
 			],
 			[
-				this.Const.Perks.PerkDefs.Dodge,
-				this.Const.Perks.PerkDefs.HoldOut,
-				this.Const.Perks.PerkDefs.LegendComposure,
-				this.Const.Perks.PerkDefs.SteelBrow,
-				this.Const.Perks.PerkDefs.LegendHorseLiberty,
-				this.Const.Perks.PerkDefs.LegendHorseBitting,
-				this.Const.Perks.PerkDefs.LegendHorseDesensitization
+				::Legends.Perk.Dodge,
+				::Legends.Perk.HoldOut,
+				::Legends.Perk.LegendComposure,
+				::Legends.Perk.SteelBrow,
+				::Legends.Perk.LegendHorseLiberty,
+				::Legends.Perk.LegendHorseBitting,
+				::Legends.Perk.LegendHorseDesensitization
 			],
 			[
-				this.Const.Perks.PerkDefs.Anticipation,
-				this.Const.Perks.PerkDefs.Steadfast,
-				this.Const.Perks.PerkDefs.LegendSprint,
-				this.Const.Perks.PerkDefs.LegendOnslaught,
-				this.Const.Perks.PerkDefs.LegendHorseCollection,
-				this.Const.Perks.PerkDefs.LegendBackToBasics,
-				this.Const.Perks.PerkDefs.LegendHorseCharge
+				::Legends.Perk.Anticipation,
+				::Legends.Perk.Steadfast,
+				::Legends.Perk.LegendSprint,
+				::Legends.Perk.LegendOnslaught,
+				::Legends.Perk.LegendHorseCollection,
+				::Legends.Perk.LegendBackToBasics,
+				::Legends.Perk.LegendHorseCharge
 
 			],
 			[
-				this.Const.Perks.PerkDefs.LegendEfficientPacking,
-				this.Const.Perks.PerkDefs.LegendAmmoBinding,
-				this.Const.Perks.PerkDefs.LegendMedPackages,
-				this.Const.Perks.PerkDefs.LegendToolsDrawers,
-				this.Const.Perks.PerkDefs.LegendHorseImpulsion,
-				this.Const.Perks.PerkDefs.LegendHorseHippology
+				::Legends.Perk.LegendEfficientPacking,
+				::Legends.Perk.LegendAmmoBinding,
+				::Legends.Perk.LegendMedPackages,
+				::Legends.Perk.LegendToolsDrawers,
+				::Legends.Perk.LegendHorseImpulsion,
+				::Legends.Perk.LegendHorseHippology
 			],
 			[
-				this.Const.Perks.PerkDefs.LoneWolf,
-				this.Const.Perks.PerkDefs.Underdog,
-				this.Const.Perks.PerkDefs.Footwork,
-				this.Const.Perks.PerkDefs.LegendHorseLegControl,
-				this.Const.Perks.PerkDefs.LegendHorseLeadChange,
-				this.Const.Perks.PerkDefs.LegendHorseParthianShot
+				::Legends.Perk.LoneWolf,
+				::Legends.Perk.Underdog,
+				::Legends.Perk.Footwork,
+				::Legends.Perk.LegendHorseLegControl,
+				::Legends.Perk.LegendHorseLeadChange,
+				::Legends.Perk.LegendHorseParthianShot
 			],
 			[
-				this.Const.Perks.PerkDefs.Nimble,
-				this.Const.Perks.PerkDefs.LegendLastStand,
-				this.Const.Perks.PerkDefs.LegendRebound,
-				this.Const.Perks.PerkDefs.Rotation,
-				this.Const.Perks.PerkDefs.LegendMuscularity,
-				this.Const.Perks.PerkDefs.LegendHorsePiaffe,
-				this.Const.Perks.PerkDefs.LegendHorseTempiChange,
+				::Legends.Perk.Nimble,
+				::Legends.Perk.LegendLastStand,
+				::Legends.Perk.LegendRebound,
+				::Legends.Perk.Rotation,
+				::Legends.Perk.LegendMuscularity,
+				::Legends.Perk.LegendHorsePiaffe,
+				::Legends.Perk.LegendHorseTempiChange,
 			],
 			[
-				this.Const.Perks.PerkDefs.Stalwart,
-				this.Const.Perks.PerkDefs.LegendSkillfulStacking,
-				this.Const.Perks.PerkDefs.LegendAmmoBundles,
-				this.Const.Perks.PerkDefs.LegendMedIngredients,
-				this.Const.Perks.PerkDefs.LegendToolsSpares,
-				this.Const.Perks.PerkDefs.LegendHorseFlyingChange,
-				this.Const.Perks.PerkDefs.LegendHorsePirouette,
-				this.Const.Perks.PerkDefs.LegendHorsePassage
+				::Legends.Perk.Stalwart,
+				::Legends.Perk.LegendSkillfulStacking,
+				::Legends.Perk.LegendAmmoBundles,
+				::Legends.Perk.LegendMedIngredients,
+				::Legends.Perk.LegendToolsSpares,
+				::Legends.Perk.LegendHorseFlyingChange,
+				::Legends.Perk.LegendHorsePirouette,
+				::Legends.Perk.LegendHorsePassage
 			],
 			[],
 			[],

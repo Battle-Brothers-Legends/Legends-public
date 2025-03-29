@@ -24,6 +24,7 @@ this.legend_medicine_small_item <- this.inherit("scripts/items/item", {
 
 	function create()
 	{
+		this.item.create();
 		this.m.ID = "supplies.legend_medicine_small";
 		this.m.Name = "Small Medical Supplies";
 		this.m.Icon = "supplies/medicine_small.png";

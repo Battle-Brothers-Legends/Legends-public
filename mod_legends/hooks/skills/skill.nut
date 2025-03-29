@@ -148,6 +148,26 @@
 			ret.extend(this.m.AdditionalTooltip);
 		}
 
+		if (p.ThresholdToInflictInjuryMult != 1.0)
+		{
+			ret.push({
+				id = 10,
+				type = "text",
+				icon = "ui/icons/injury.png",
+				text = "Has a [color=" + this.Const.UI.Color.NegativeValue + "]" + this.Math.floor((1.0 - p.ThresholdToInflictInjuryMult) * 100) + "%[/color] lower threshold to inflict injuries"
+			});
+		}
+
+		if (p.DamageMinimum > 0)
+		{
+			ret.push({
+				id = 7,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = "Always inflicts at least [color=" + this.Const.UI.Color.DamageValue + "]" + p.DamageMinimum + "[/color] damage to hitpoints, regardless of armor"
+			});
+		}
+
 		if (this.m.Container.getActor().getSkills().hasTrait(::Legends.Trait.OathOfHonor) && (this.m.IsWeaponSkill && this.m.IsRanged || this.m.IsOffensiveToolSkill))
 		{
 			ret.push({
@@ -423,17 +443,6 @@
 			}
 		}
 
-		if (this.m.IsShieldwallRelevant)
-		{
-			if (_targetTile.IsOccupiedByActor && targetEntity.getSkills().hasEffect(::Legends.Effect.Shieldwall))
-			{
-				ret.push({
-					icon = "ui/tooltips/negative.png",
-					text = "Shieldwall"
-				});
-			}
-		}
-
 		if (_targetTile.IsOccupiedByActor && myTile.getDistanceTo(_targetTile) <= 1 && targetEntity.getSkills().hasEffect(::Legends.Effect.Riposte))
 		{
 			ret.push({
@@ -572,7 +581,7 @@
 
 			return this.regexp(pattern).search(text);
 		};
-		local user = this.m.Container.getActor();
+		local self = this, user = this.m.Container.getActor();
 		local myTile = user.getTile();
 		local targetEntity = _targetTile.IsOccupiedByActor ? _targetTile.getEntity() : null;
 		local getBadTerrainFactor = function ( attributeIcon ) {
@@ -684,7 +693,7 @@
 		};
 		modifier["Fast Adaption"] <- function ( row, description )
 		{
-			local fast_adaption = ::Legends.Perks.get(this, ::Legends.Perk.FastAdaption);
+			local fast_adaption = ::Legends.Perks.get(self, ::Legends.Perk.FastAdaption);
 			local bonus = 10 * fast_adaption.m.Stacks;
 			row.text = green(bonus + "%") + " " + description;
 		};
@@ -763,22 +772,8 @@
 				return null;
 			}
 
-			local racialSkill;
-			local racialSkills = [
-				::Legends.Trait.RacialSkeleton,
-				::Legends.Trait.RacialGolem,
-				::Legends.Trait.RacialSerpent,
-				::Legends.Trait.RacialAlp,
-				::Legends.Trait.RacialSchrat
-			];
-
-			foreach (r in racialSkills) {
-				racialSkill = ::Legends.Traits.get(targetEntity, r);
-				if (racialSkill)
-					break;
-			}
-
-			if (!racialSkill)
+			local racialSkills = targetEntity.getSkills().getAllSkillsOfType(::Const.SkillType.Racial);
+			if (racialSkills.len() == 0)
 				return null;
 
 			local propertiesBefore = targetEntity.getCurrentProperties();
@@ -788,7 +783,7 @@
 
 			local hitInfo = clone this.Const.Tactical.HitInfo;
 			local propertiesAfter = propertiesBefore.getClone();
-			racialSkill.onBeforeDamageReceived(attackingEntity, thisSkill, hitInfo, propertiesAfter);
+			racialSkills[0].onBeforeDamageReceived(attackingEntity, thisSkill, hitInfo, propertiesAfter);
 			local diff = propertiesBefore.DamageReceivedRegularMult - propertiesAfter.DamageReceivedRegularMult;
 			return this.Math.ceil(diff * 100);
 		};
@@ -964,11 +959,6 @@
 			{
 				local shieldBonus = (this.m.IsRanged ? shield.getRangedDefense() : shield.getMeleeDefense()) * (_targetEntity.getCurrentProperties().IsSpecializedInShields ? 1.25 : 1.0);
 				toHit = toHit + shieldBonus;
-
-				if (!this.m.IsShieldwallRelevant && _targetEntity.getSkills().hasEffect(::Legends.Effect.Shieldwall))
-				{
-					toHit = toHit + shieldBonus;
-				}
 			}
 		}
 
@@ -1208,6 +1198,7 @@
 					this.Tactical.spawnProjectileEffect(this.Const.ProjectileSprite[this.m.ProjectileType], _user.getTile(), _targetEntity.getTile(), 1.0, this.m.ProjectileTimeScale, this.m.IsProjectileRotated, flip);
 				}
 			}
+			this.m.Container.onTargetMissed(this, _targetEntity);
 
 			return false;
 		}
@@ -1244,19 +1235,8 @@
 		if (shield != null && shield.isItemType(this.Const.Items.ItemType.Shield))
 		{
 			shieldBonus = (this.m.IsRanged ? shield.getRangedDefense() : shield.getMeleeDefense()) * (_targetEntity.getCurrentProperties().IsSpecializedInShields ? 1.25 : 1.0);
-
-			if (!this.m.IsShieldRelevant)
-			{
-				toHit = toHit + shieldBonus;
-			}
-
 			if (_targetEntity.getSkills().hasEffect(::Legends.Effect.Shieldwall))
 			{
-				if (!this.m.IsShieldwallRelevant)
-				{
-					toHit = toHit + shieldBonus;
-				}
-
 				shieldBonus = shieldBonus * 2;
 			}
 		}

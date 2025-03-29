@@ -1,8 +1,8 @@
 ::Legends <- {
 	ID = "mod_legends",
-	Version = "19.1.0",
+	Version = "19.1.1",
 	Name = "Legends Mod",
-	BuildName = "Name Pending",
+	BuildName = "Tales & Professions",
 	IsStartingNewCampaign = false
 };
 
@@ -15,7 +15,7 @@ else
 	::mods_registerMod(::Legends.ID, ::Legends.Version, ::Legends.Name);
 }
 
-::mods_queue(::Legends.ID, "mod_msu, mod_legends_assets(>=19.1.0), vanilla(>=1.5.0-15), dlc_lindwurm, dlc_unhold, dlc_wildmen, dlc_desert, dlc_paladins, mod_events_delayed_fix_legends, !mod_tooltip_extension(<=1.01)", function()
+::mods_queue(::Legends.ID, "mod_msu(<=1.6.0), mod_legends_assets(>=19.1.0), vanilla(>=1.5.0-15), dlc_lindwurm, dlc_unhold, dlc_wildmen, dlc_desert, dlc_paladins, mod_events_delayed_fix_legends, !mod_tooltip_extension(<=1.01)", function()
 {
 	::Legends.Mod <- ::MSU.Class.Mod(::Legends.ID, ::Legends.Version, ::Legends.Name);
 

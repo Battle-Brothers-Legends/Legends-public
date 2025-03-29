@@ -16,6 +16,16 @@ this.legend_catapult <- this.inherit("scripts/entity/tactical/human", {
 		];
 		this.m.AIAgent = this.new("scripts/ai/tactical/agents/legend_catapult_agent");
 		this.m.AIAgent.setActor(this);
+
+		this.m.OnDeathLootTable.extend([
+			[100, "scripts/items/supplies/ammo_item"],
+		]);
+		local rolls = ::Legends.S.extraLootChance(1);
+		for(local i = 0; i < rolls; i++) {
+			this.m.OnDeathLootTable.extend([
+				[100, "scripts/items/trade/quality_wood_item"],
+			]);
+		}
 	}
 
 	function onInit()
@@ -104,38 +114,32 @@ this.legend_catapult <- this.inherit("scripts/entity/tactical/human", {
 			}
 
 			this.spawnTerrainDropdownEffect(_tile);
-			local corpse = clone this.Const.Corpse;
-			corpse.CorpseName = "A catapult";
-			corpse.Tile = _tile;
-			corpse.IsResurrectable = false;
-			corpse.IsConsumable = false;
-			corpse.Items = this.getItems();
-			_tile.Properties.set("Corpse", corpse);
-			this.Tactical.Entities.addCorpse(_tile);
 		}
 
-		if (_killer == null || _killer.getFaction() == this.Const.Faction.Player || _killer.getFaction() == this.Const.Faction.PlayerAnimals)
-		{
-			local n = 1 + (!this.Tactical.State.isScenarioMode() && this.Math.rand(1, 100) <= this.World.Assets.getExtraLootChance() ? 1 : 0);
+		local deathLoot = this.getItems().getDroppableLoot(_killer);
+		local tileLoot = this.getLootForTile(_killer, deathLoot);
+		local corpse = this.generateCorpse(_tile, _fatalityType);
+		this.dropLoot(_tile, tileLoot, !flip);
 
-			for( local i = 0; i < n; i = ++i )
-			{
-				local loot = this.new("scripts/items/trade/quality_wood_item");
-
-				loot.drop(_tile);
-			}
-
-			if (this.Math.rand(1, 100) <= 33)
-			{
-				local loot = this.new("scripts/items/supplies/ammo_item");
-				loot.drop(_tile);
-			}
+		if (_tile == null) {
+			this.Tactical.Entities.addUnplacedCorpse(corpse);
+		} else {
+			_tile.Properties.set("Corpse", corpse);
+			this.Tactical.Entities.addCorpse(_tile);
 		}
 
 		this.actor.onDeath(_killer, _skill, _tile, _fatalityType);
 	}
 
-
-
+	function generateCorpse( _tile, _fatalityType )
+	{
+		local corpse = clone this.Const.Corpse;
+		corpse.CorpseName = "A catapult";
+		corpse.Tile = _tile;
+		corpse.IsResurrectable = false;
+		corpse.IsConsumable = false;
+		corpse.Items = this.getItems();
+		return corpse;
+	}
 });
 

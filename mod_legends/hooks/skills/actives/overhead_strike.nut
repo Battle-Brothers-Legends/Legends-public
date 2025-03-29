@@ -1,5 +1,12 @@
 ::mods_hookExactClass("skills/actives/overhead_strike", function(o)
 {
+	local create = o.create;
+	o.create = function()
+	{
+		create();
+		this.m.HitChanceBonus = 5;
+	}
+
 	o.getTooltip = function ()
 	{
 		local tooltip = this.getDefaultTooltip();
@@ -17,11 +24,6 @@
 		return tooltip;
 	}
 
-	o.onAfterUpdate = function ( _properties )
-	{
-		this.m.FatigueCostMult = _properties.IsSpecializedInSwords ? this.Const.Combat.WeaponSpecFatigueMult : 1.0;
-	}
-
 	o.onUse = function ( _user, _targetTile )
 	{
 		this.spawnAttackEffect(_targetTile, this.Const.Tactical.AttackEffectBash);
@@ -29,6 +31,11 @@
 		local success = this.attackEntity(_user, target);
 
 		if (!_user.isAlive() || _user.isDying())
+		{
+			return success;
+		}
+
+		if (!target.isAlive() || target.isDying())
 		{
 			return success;
 		}
@@ -55,6 +62,7 @@
 			if (this.getContainer().getActor().getCurrentProperties().IsSpecializedInSwords)
 			{
 				_properties.MeleeSkill += 5;
+				this.m.HitChanceBonus += 5;
 			}
 
 		}

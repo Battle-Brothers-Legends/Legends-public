@@ -33,6 +33,7 @@ this.legend_armor_upgrade <- this.inherit("scripts/items/item", {
 	},
 	function create()
 	{
+		this.item.create();
 		this.m.SlotType = this.Const.ItemSlot.Body;
 		this.m.ItemType = this.Const.Items.ItemType.Armor;
 		this.m.IsDroppedAsLoot = true;

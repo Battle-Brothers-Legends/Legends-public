@@ -1669,12 +1669,12 @@ effectsDefs.push({
 	Const = "LegendZombiePoison"
 });
 
-::Legends.Effect.SatoBrothersInChains <- null;
+::Legends.Effect.LegendBrothersInChains <- null;
 effectsDefs.push({
-	ID = "effects.sato_brothers_in_chains",
-	Script = "scripts/skills/effects/sato_brothers_in_chains_effect",
+	ID = "effects.legend_brothers_in_chains",
+	Script = "scripts/skills/effects/legend_brothers_in_chains_effect",
 	Name = "Brothers in Chains",
-	Const = "SatoBrothersInChains"
+	Const = "LegendBrothersInChains"
 });
 
 ::Legends.Effect.LegendHeadache <- null;
@@ -1943,24 +1943,24 @@ effectsDefs.push({
 
 ::Legends.Effect.LegendGravedigging <- null;
 effectsDefs.push({
-	ID = "special.legend_gravedigging",
-	Script = "scripts/skills/special/legend_gravedigging_effect",
-	Const = "LegendGravediggingEffect",
+	ID = "effects.legend_gravedigging",
+	Script = "scripts/skills/effects/legend_gravedigging_effect",
+	Const = "LegendGravedigging",
 	Name = "Gravedigging",
 });
 
 ::Legends.Effect.LegendMartialMarch <- null;
 effectsDefs.push({
-	ID = "special.legend_martial_march",
-	Script = "scripts/skills/special/legend_martial_march_effect",
+	ID = "effects.legend_martial_march",
+	Script = "scripts/skills/effects/legend_martial_march_effect",
 	Const = "LegendMartialMarch",
 	Name = "Martial March",
 });
 
 ::Legends.Effect.LegendPrepareBullet <- null;
 effectsDefs.push({
-	ID = "special.legend_prepare_bullet",
-	Script = "scripts/skills/special/legend_prepare_bullet_effect",
+	ID = "effects.legend_prepare_bullet",
+	Script = "scripts/skills/effects/legend_prepare_bullet_effect",
 	Const = "LegendPrepareBullet",
 	Name = "Prepare Bullet",
 });

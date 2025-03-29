@@ -623,12 +623,24 @@ class Defs:
 {"name": "legend_thick_furs_armor",                       "layer": "plate", "min": 91, "max": 91, "value" : 15, "con" : 10, "stam" : -1, "impactSound" : "leather", "invSound" : "leather", "vanilla" : "body",
  "title" :  "Thick Furs",
  "desc" :  "Thick furs that are crudely dried and tied together to protect from both the cold and any incoming blows.",
- "adesc" : "Includes Thick furs that are crudely dried and tied together to protect from both the cold and any incoming blows."
+ "adesc" : "Includes thick furs that are crudely dried and tied together to protect from both the cold and any incoming blows."
 },
 {"name": "legend_thick_plated_barbarian_armor",           "layer": "plate", "min": 96, "max": 96, "value" : 1500, "con" : 155, "stam" : -26, "impactSound" : "plate", "invSound" : "leather", "vanilla" : "body",
  "title" :  "Thick Plated Barbarian Armor",
  "desc" :  "A heavy armor that is made from mostly metal. Only one chosen by the ancestors will own a set like this.",
- "adesc" : "Includes A heavy armor that is made from mostly metal. Only one chosen by the ancestors will own a set like this."
+ "adesc" : "Includes a heavy armor that is made from mostly metal. Only one chosen by the ancestors will own a set like this."
+},
+{"name": "legend_thick_plated_barbarian_armor_named",           "layer": "plate", "min": 103, "max": 103, "value" : 5500, "con" : 155, "stam" : -26, "impactSound" : "plate", "invSound" : "plate", "vanilla" : "body",
+ "title" :  "Alloy Plated Barbarian Armor",
+ "desc" :  "This armor is composed of a strange alloy, and well crafted for barbarian standards. A truly rare and remarkable piece.",
+ "adesc" : "Includes a heavy armor composed of a strange alloy, and well crafted for barbarian standards. A truly rare and remarkable piece.",
+ "named" : True, "rminStam" : 23, "rmaxStam": 26, "rminCond" : 155, "rmaxCond" : 175,  "names" : ["Tarnished Harness", "Alloy Plate Armor", "Tainted Bulwark", "Tribal Plate"]
+},
+{"name": "legend_bronze_armor_named",           "layer": "plate", "min": 104, "max": 104, "value" : 4000, "con" : 130, "stam" : -14, "impactSound" : "plate", "invSound" : "plate", "vanilla" : "body",
+ "title" :  "Rivet Plated Fur Armor",
+ "desc" :  "A simple fur and leather armor with thick layers of metal plates rivetted ontop. A very simple and heavy design, but quite effective in combat.",
+ "adesc" : "Includes a heavy armor that is made from fur and leather armor with thick layers of metal plates rivetted ontop. A very simple and heavy design, but quite effective in combat.",
+ "named" : True, "rminStam" : 12, "rmaxStam": 15, "rminCond" : 93, "rmaxCond" : 113,  "names" : ["Plated Fur Armor", "Plate Harness", "Plate-covered Hide", "Rivetted Fur"]
 },
 
 {"name": "legend_southern_named_golden_plates",           "layer": "plate", "min": 1, "max": 1, "value" : 5600, "con" : 200, "stam" : -36, "impactSound" : "plate", "invSound" : "leather", "brush" : "named_southern_gold_plates",

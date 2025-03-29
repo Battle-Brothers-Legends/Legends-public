@@ -87,7 +87,7 @@ this.legend_launch_holy_water_skill <- this.inherit("scripts/skills/actives/thro
 
 	function isHidden()
 	{
-		if (!this.getContainer().hasSkill("perk.legend_slinger_spins"))
+		if (!this.getContainer().hasPerk(::Legends.Perk.LegendSlingerSpins))
 			return true;
 		if (this.m.Item != null && !this.m.Item.isNull())
 			if (this.m.Item.getAmmo() != 0)
@@ -139,20 +139,11 @@ this.legend_launch_holy_water_skill <- this.inherit("scripts/skills/actives/thro
 	function applyEffect( _target )
 	{
 		if (!_target.getFlags().has("undead"))
-		{
 			return;
-		}
 
-		local poison = _target.getSkills().getSkillByID("effects.holy_water");
-
-		if (poison == null)
-		{
-			_target.getSkills().add(this.new("scripts/skills/effects/holy_water_effect"));
-		}
-		else
-		{
-			poison.resetTime();
-		}
+		::Legends.Effects.grant(_target, ::Legends.Effect.HolyWater, function(_effect) {
+			_effect.resetTime();
+		});
 	}
 
 	function onVerifyTarget( _originTile, _targetTile )

@@ -24,6 +24,7 @@ this.legend_ammo_small_item <- this.inherit("scripts/items/item", {
 
 	function create()
 	{
+		this.item.create();
 		this.m.ID = "supplies.legend_ammo_small";
 		this.m.Name = "Small Ammunition";
 		this.m.Icon = "supplies/ammo_small.png";

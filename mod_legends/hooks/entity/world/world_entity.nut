@@ -208,36 +208,24 @@
 			troop.Row = _in.readI8();
 			troop.Party = this.WeakTableRef(this);
 			troop.Faction = this.getFaction();
+			troop.Name = _in.readString();
 
-			if (_in.getMetaData().getVersion() >= 48)
+			if (_in.readBool())
 			{
-				troop.Name = _in.readString();
-			}
-			else if (_in.getMetaData().getVersion() < 40)
-			{
-				troop.ID = this.Const.EntityType.convertOldToNew(troop.ID);
-			}
-
-			if (_in.getMetaData().getVersion() >= 71)
-			{
-				local hasOutfits = _in.readBool();
-				if (hasOutfits)
+				local outfits = [];
+				local outfitLength = _in.readU8();
+				for (local i = 0; i < outfitLength; i++)
 				{
-					local outfits = [];
-					local outfitLength = _in.readU8();
-					for (local i = 0; i < outfitLength; i++)
+					if (_in.readU8() == 2)
 					{
-						if (_in.readU8() == 2)
-						{
-							outfits.push( [_in.readU8(), _in.readString()] )
-						}
-						else
-						{
-							outfits.push( [_in.readU8(), _in.readString(), _in.readString()] )
-						}
+						outfits.push( [_in.readU8(), _in.readString()] )
 					}
-					troop.Outfits <- clone outfits
+					else
+					{
+						outfits.push( [_in.readU8(), _in.readString(), _in.readString()] )
+					}
 				}
+				troop.Outfits <- clone outfits
 			}
 
 			local hash = _in.readI32();
@@ -258,12 +246,7 @@
 
 		this.updateStrength();
 		this.m.CombatID = _in.readI32();
-
-		if (_in.getMetaData().getVersion() >= 49)
-		{
-			this.m.CombatSeed = _in.readI32();
-		}
-
+		this.m.CombatSeed = _in.readI32();
 		this.m.VisionRadius = _in.readF32();
 		this.m.VisibilityMult = _in.readF32();
 		local numInventoryItems = _in.readU8();

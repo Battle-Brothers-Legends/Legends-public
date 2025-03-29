@@ -1,13 +1,5 @@
 this.legend_choke_skill <- this.inherit("scripts/skills/skill", {
-	m = {
-		Backgrounds = [
-			"background.legend_commander_druid",
-			"background.legend_druid",
-			"background.brawler",
-			"background.legend_commander_berserker",
-			"background.legend_berserker"
-		]
-	},
+	m = {},
 	function create()
 	{
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendChoke);
@@ -43,32 +35,12 @@ this.legend_choke_skill <- this.inherit("scripts/skills/skill", {
 		this.m.FatigueCost = 20;
 		this.m.MinRange = 1;
 		this.m.MaxRange = 1;
-		this.m.Backgrounds = [
-			"background.legend_commander_druid",
-			"background.legend_druid",
-			"background.brawler",
-			"background.legend_commander_berserker",
-			"background.legend_berserker"
-		];
 	}
 
 	function getTooltip()
 	{
 		local actor = this.getContainer().getActor();
 		local tooltip = this.getDefaultTooltip();
-		foreach( bg in this.m.Backgrounds )
-		{
-			if (actor.getSkills().hasSkill(bg))
-			{
-				tooltip.push({
-				id = 5,
-				type = "text",
-				icon = "ui/icons/regular_damage.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+25%[/color] damage from background"
-			});
-				break;
-			}
-		}
 
 		if (this.m.Container.getActor().getCurrentProperties().IsSpecializedInFists)
 		{
@@ -216,16 +188,6 @@ this.legend_choke_skill <- this.inherit("scripts/skills/skill", {
 		_properties.IsIgnoringArmorOnAttack = true;
 		_properties.DamageArmorMult *= 0.0;
 		_properties.MeleeSkill += chance;
-
-
-		foreach( bg in this.m.Backgrounds )
-		{
-			if (actor.getSkills().hasSkill(bg))
-			{
-				_properties.DamageTotalMult *= 1.25;
-				break;
-			}
-		}
 
 		// Based on decapitate
 		if (_targetEntity != null && actor.getFatiguePct() < _targetEntity.getFatiguePct()) {

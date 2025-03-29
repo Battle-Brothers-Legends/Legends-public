@@ -6,9 +6,6 @@
 	o.m.MedicinePerDay <- 0;
 	o.m.IsToBeRepairedQueue <- 0;
 	o.m.IsToBeSalvagedQueue <- 0;
-	o.m.RuneVariant <- 0;
-	o.m.RuneBonus1 <- 0;
-	o.m.RuneBonus2 <- 0;
 	o.m.IsToBeSalvaged <- false;
 	o.m.ResourceValue <- 0;
 	o.m.Type <- -1;
@@ -211,7 +208,7 @@
 
 	o.onEquipRuneSigil <- function ()
 	{
-		local def = ::Legends.Runes.get(this.m.RuneVariant);
+		local def = ::Legends.Runes.get(this.getRuneVariant());
 		if (def == null)
 			return;
 		this.addSkill(::Legends.Effects.new(def.Effect));
@@ -219,21 +216,21 @@
 
 	o.getRuneSigilTooltip <- function ()
 	{
-		local def = ::Legends.Runes.get(this.m.RuneVariant);
+		local def = ::Legends.Runes.get(this.getRuneVariant());
 		if (def == null)
-			return "This item is inscribed with a rune sigil, even though it shouldn't have been: please report this bug. Variant = " + this.m.RuneVariant;
-		return def.getTooltip(this);;
+			return "This item is inscribed with a rune sigil, even though it shouldn't have been: please report this bug. Variant = " + this.getRuneVariant();
+		return def.getTooltip(this);
 	}
 
 	o.setRuneBonus <- function ( _bonus = false) {
-		local def = ::Legends.Runes.get(this.m.RuneVariant);
+		local def = ::Legends.Runes.get(this.getRuneVariant());
 		if (def == null)
 			return;
 		def.setRuneBonus(this, _bonus);
 	}
 
 	o.updateRuneSigilToken <- function() {
-		local def = ::Legends.Runes.get(this.m.RuneVariant);
+		local def = ::Legends.Runes.get(this.getRuneVariant());
 		if (def == null) {
 			this.m.Name = "Unknown Rune Sigil: Error";
 			this.m.Description = "An inscribed rock that cannot be attached to a character\'s equipment.";
@@ -248,31 +245,31 @@
 	}
 
 	o.setRuneVariant <- function (_rune) {
-		this.m.RuneVariant = _rune;
+		this.getFlags().set("LegendsRuneVariant", _rune);
 	}
 
 	o.getRuneVariant <- function ()	{
-		return this.m.RuneVariant;
+		return this.getFlags().getAsInt("LegendsRuneVariant");
 	}
 
 	o.setRuneBonus1 <- function (_mult)	{
-		this.m.RuneBonus1 = _mult;
+		this.getFlags().set("LegendsRuneBonus1", _mult);
 	}
 
 	o.getRuneBonus1 <- function () {
-		return this.m.RuneBonus1;
+		return this.getFlags().getAsInt("LegendsRuneBonus1");
 	}
 
 	o.setRuneBonus2 <- function (_mult) {
-		this.m.RuneBonus2 = _mult;
+		this.getFlags().set("LegendsRuneBonus2", _mult);
 	}
 
 	o.getRuneBonus2 <- function () {
-		return this.m.RuneBonus2;
+		return this.getFlags().getAsInt("LegendsRuneBonus2");
 	}
 
 	o.isRuned <- function () {
-		return this.m.RuneVariant > 0;
+		return this.getRuneVariant() > 0;
 	}
 
 	o.updateRuneSigil <- function ()
@@ -403,14 +400,11 @@
 	{
 		onSerialize(_out);
 		_out.writeString(this.getInstanceID()); //Need old ID for saved formations
-		_out.writeU8(this.m.RuneVariant);
 		_out.writeBool(this.m.IsToBeSalvaged);
 		_out.writeU16(this.m.IsToBeRepairedQueue);
 		_out.writeU16(this.m.IsToBeSalvagedQueue);
-		_out.writeU8(this.m.RuneBonus1);
-		_out.writeU8(this.m.RuneBonus2);
 		_out.writeI32(this.m.OriginSettlementID);
-		::MSU.Utils.serialize(this.m.TradeHistorySettlementIDs, _out);
+		::MSU.Serialization.serialize(this.m.TradeHistorySettlementIDs, _out);
 	}
 
 	local onDeserialize = o.onDeserialize;
@@ -418,14 +412,11 @@
 	{
 		onDeserialize(_in);
 		this.m.OldID = _in.readString();
-		this.m.RuneVariant = _in.readU8();
 		this.m.IsToBeSalvaged = _in.readBool();
 		this.m.IsToBeRepairedQueue = _in.readU16();
 		this.m.IsToBeSalvagedQueue = _in.readU16();
-		this.m.RuneBonus1 = _in.readU8();
-		this.m.RuneBonus2 = _in.readU8();
 		this.m.OriginSettlementID = _in.readI32();
-		this.m.TradeHistorySettlementIDs = ::MSU.Utils.deserialize(_in);
+		this.m.TradeHistorySettlementIDs = ::MSU.Serialization.deserialize(_in);
 		this.updateVariant();
 	}
 });

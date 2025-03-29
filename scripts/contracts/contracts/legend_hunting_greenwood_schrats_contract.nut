@@ -456,7 +456,7 @@ this.legend_hunting_greenwood_schrats_contract <- this.inherit("scripts/contract
 		}
 
 		local tile = this.getTileToSpawnLocation(playerTile, numWoods >= 12 ? 6 : 3, 11, disallowedTerrain);
-		local party= this.World.FactionManager.getFactionOfType(this.Const.FactionType.Beasts).spawnEntity(tile, "Heartwood Schrats", false, this.Const.World.Spawn.LegendGreenwoodSchrat, 200 * this.getDifficultyMult() * this.getScaledDifficultyMult());
+		local party= this.World.FactionManager.getFactionOfType(this.Const.FactionType.Beasts).spawnEntity(tile, "Heartwood Schrats", false, this.Const.World.Spawn.LegendGreenwoodSchrat, 200 * this.getDifficultyMult() * this.getScaledDifficultyMult(), this.getMinibossModifier());
 		party.setDescription("A creature of bark and wood, blending between trees and shambling slowly, its roots digging through the soil.");
 		party.setAttackableByAI(false);
 		party.setFootprintSizeOverride(0.85);

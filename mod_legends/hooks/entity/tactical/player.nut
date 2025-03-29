@@ -1387,41 +1387,6 @@
 		}
 	}
 
-	o.fillAttributeLevelUpValues = function ( _amount, _maxOnly = false, _minOnly = false )
-	{
-		if (this.m.Attributes.len() == 0)
-		{
-			this.m.Attributes.resize(this.Const.Attributes.COUNT);
-
-			for( local i = 0; i != this.Const.Attributes.COUNT; i = ++i )
-			{
-				this.m.Attributes[i] = [];
-
-			}
-		}
-
-		for( local i = 0; i != this.Const.Attributes.COUNT; i = ++i )
-		{
-			for( local j = 0; j < _amount; j = ++j )
-			{
-				if (_minOnly)
-				{
-					this.m.Attributes[i].insert(0, 1);
-				}
-				else if (_maxOnly)
-				{
-					this.m.Attributes[i].insert(0, this.Const.AttributesLevelUp[i].Max);
-				}
-				else
-				{
-					this.m.Attributes[i].insert(0, this.Math.rand(this.Const.AttributesLevelUp[i].Min + (this.m.Talents[i] == 3 ? 2 : this.m.Talents[i]), this.Const.AttributesLevelUp[i].Max + (this.m.Talents[i] == 3 ? 1 : 0)));
-				}
-
-			}
-
-		}
-	}
-
 	o.getAttributeLevelUpValues = function ()
 	{
 		local b = this.getBaseProperties();

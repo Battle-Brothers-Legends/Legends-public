@@ -2,6 +2,7 @@ this.legend_armor_piercing_arrows <- this.inherit("scripts/items/ammo/ammo", {
 	m = {},
 	function create()
 	{
+		this.ammo.create();
 		this.m.ID = "ammo.arrows";
 		this.m.Name = "Armor Piercing Arrows";
 		this.m.Description = "A quiver of arrows with piercing tips, designed for punching through thick armor. Is automatically refilled after each battle if you have enough ammunition. Grants +30% (multiplicative) armor piercing and -10% damage while wielding a bow.";
@@ -81,14 +82,9 @@ this.legend_armor_piercing_arrows <- this.inherit("scripts/items/ammo/ammo", {
 		return result;
 	}
 
-	function onUpdateProperties( _properties )
+	function onAnySkillUsed( _skill, _targetEntity, _properties )
 	{
-		this.ammo.onUpdateProperties(_properties);
-		local actor = this.getContainer().getActor();
-		local item = actor.getItems().getItemAtSlot(this.Const.ItemSlot.Mainhand);
-
-		if (item == null) return;
-		if (item.isWeaponType(this.Const.Items.WeaponType.Bow))
+		if (_skill.isAttack() && _skill.getItem() != null && _skill.getItem().isWeaponType(this.Const.Items.WeaponType.Bow))
 		{
 			_properties.DamageDirectMult *= 1.3;
 			_properties.RangedDamageMult *= 0.9;

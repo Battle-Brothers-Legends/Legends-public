@@ -24,16 +24,33 @@
 
 	o.getTooltip = function ()
 	{
-		return this.getDefaultTooltip();
+		local tooltip = this.getDefaultTooltip();
+		if (this.m.IsStaffSlash)
+		{
+			tooltip.push({
+				id = 7,
+				type = "text",
+				icon = "ui/icons/vision.png",
+				text = "Has a range of [color=" + this.Const.UI.Color.PositiveValue + "]2[/color] tiles"
+			});
+		}
+		return tooltip;
 	}
 
 	local onAfterUpdate = o.onAfterUpdate;
 	o.onAfterUpdate = function( _properties )
 	{
-		if (!this.m.IsStaffSlash)
-			return onAfterUpdate(_properties);
+		if (this.m.IsStaffSlash)
+		{
+			this.m.ActionPointCost = _properties.IsSpecializedInPolearms ? 4 : 5;
+		}
 
-		this.m.ActionPointCost = _properties.IsSpecializedInPolearms ? 4 : 5;
+		if (this.getContainer().getActor().getSkills().hasPerk(::Legends.Perk.LegendSpecialistHerbalist) && this.m.Item != null && (this.m.Item.getID() == "weapon.sickle" || this.m.Item.getID() == "weapon.named_sickle"))
+		{
+			this.m.ActionPointCost = _properties.IsSpecializedInSwords ? 3 : 4;
+		}
+
+		onAfterUpdate(_properties);
 	}
 
 	o.onAnySkillUsed = function ( _skill, _targetEntity, _properties )

@@ -120,7 +120,6 @@ MainMenuScreen.prototype.createDIV = function (_parentDiv)
 	this.mLMOTD = $('<div class="legends-motd text-font-medium font-color-subtitle"/>');
 	this.mLMOTDContainer.append(this.mLMOTD);
 
-
 	this.mMOTDContainer = $('<div class="motd-container"/>');
 	this.mContainer.append(this.mMOTDContainer);
 
@@ -363,6 +362,21 @@ MainMenuScreen.prototype.hideOptionsMenu = function ()
 	this.mOptionsMenuModule.hide();
 };
 
+MainMenuScreen.prototype.addCrossMarketing = function ()
+{
+    this.mMarketingContainer = $('<div class="marketing-container"/>');
+    this.mContainer.append(this.mMarketingContainer);
+
+    this.mMarketing = $('<div class="marketing text-font-medium font-color-subtitle">Wishlist our new game!</>');
+    this.mMarketingContainer.append(this.mMarketing);
+
+    this.setDLCClickHandler(this.mMarketing, 'steam://advertise/2432860');
+
+    var img = this.mDLC.createImage(null, null, null, 'marketing-image');
+    img.attr('src', Path.GFX + 'ui/images/cross_marketing.jpg');
+    this.mMarketing.append(img);
+};
+
 MainMenuScreen.prototype.setVersion = function (_v)
 {
 	this.mVersion.text(_v[0]);
@@ -401,7 +415,7 @@ MainMenuScreen.prototype.setMOTD = function (_data)
 	});
 
 	this.mMOTD.html(parsedDescriptionText.html);
-	
+
 };
 
 MainMenuScreen.prototype.setLMOTD = function (_data)

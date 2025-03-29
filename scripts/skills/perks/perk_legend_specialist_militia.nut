@@ -16,7 +16,7 @@ this.perk_legend_specialist_militia <- this.inherit("scripts/skills/legend_speci
 	{
 		this.legend_specialist_abstract.create();
 		::Const.Perks.setup(this.m, ::Legends.Perk.LegendSpecialistMilitia);
-		this.m.IconMini = "perk_spec_militia_mini.png";
+		this.m.IconMini = "perk_spec_militia_mini";
 	}
 
 	// function specialistWeaponTooltip (_item, _isRanged)
@@ -55,9 +55,15 @@ this.perk_legend_specialist_militia <- this.inherit("scripts/skills/legend_speci
 	function onAnySkillUsed( _skill, _targetEntity, _properties )
 	{
 		this.legend_specialist_abstract.onAnySkillUsed(_skill, _targetEntity, _properties);
-		if (onAnySkillUsedSpecialistChecks(_skill))
+		local actor = this.getContainer().getActor();
+		if (!actor.isPlacedOnMap() || ("State" in this.Tactical) && this.Tactical.State.isBattleEnded())
+			return;
+		if (this.onAnySkillUsedSpecialistChecks(_skill))
 		{
-			_properties.MeleeDefense += this.calculateSpecialistBonus(6, _skill.getItem());
+			if (this.Tactical.TurnSequenceBar.getActiveEntity() == null || this.Tactical.TurnSequenceBar.getActiveEntity().getID() != actor.getID())
+			{
+				_properties.DamageTotalMult *= 1.0 + 0.01 * this.calculateSpecialistBonus(15, _skill.getItem());
+			}
 		}
 	}
 });

@@ -64,7 +64,14 @@ this.perk_legend_vala_chant_disharmony <- this.inherit("scripts/skills/skill", {
 			id = 7,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "Until the start of her next turn, enemies adjacent to the Vala are unable to enforce Zones of Control."
+			text = "Until the start of her next turn, enemies adjacent to the Vala are unable to enforce Zones of Control"
+		});
+
+		ret.push({
+			id = 8,
+			type = "text",
+			icon = "ui/icons/special.png",
+			text = "Until the start of her next turn, enemies within 3 tiles of the Vala will receive a reduction to Initiative. Being closer to the Vala increases the strength of the Chant"
 		});
 
 		if (actor.getMainhandItem() == null || actor.getMainhandItem() != "weapon.legend_staff_vala")
@@ -73,7 +80,7 @@ this.perk_legend_vala_chant_disharmony <- this.inherit("scripts/skills/skill", {
 				id = 9,
 				type = "text",
 				icon = "ui/tooltips/warning.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]Requires the Vala\'s staff.[/color]"
+				text = "[color=" + this.Const.UI.Color.NegativeValue + "]Requires the Vala\'s staff[/color]"
 			});
 		}
 
@@ -83,7 +90,7 @@ this.perk_legend_vala_chant_disharmony <- this.inherit("scripts/skills/skill", {
 				id = 10,
 				type = "text",
 				icon = "ui/tooltips/warning.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]Already chanting.[/color]"
+				text = "[color=" + this.Const.UI.Color.NegativeValue + "]Already chanting[/color]"
 			});
 		}
 

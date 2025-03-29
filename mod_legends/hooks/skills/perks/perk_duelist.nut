@@ -90,8 +90,14 @@
 		return bonus;
 	}
 
+	o.onAnySkillUsed <- function ( _skill, _targetEntity, _properties )
+	{
+		if (_skill.isRanged)
+			return;
+		_properties.DamageDirectAdd += this.getBonus();
+	}
+
 	o.onUpdate = function ( _properties )
 	{
-		_properties.DamageDirectAdd += this.getBonus();
 	}
 });

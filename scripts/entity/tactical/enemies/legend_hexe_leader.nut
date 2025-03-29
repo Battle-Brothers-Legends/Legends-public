@@ -88,6 +88,24 @@ this.legend_hexe_leader <- this.inherit("scripts/entity/tactical/actor", {
 		this.m.SoundVolume[this.Const.Sound.ActorEvent.Other1] = 2.5;
 		this.m.AIAgent = this.new("scripts/ai/tactical/agents/hexe_agent");
 		this.m.AIAgent.setActor(this);
+
+		this.m.OnDeathLootTable.extend([
+			[20, function () {
+				local selected = this.m.DroppableRunes[this.Math.rand(0, this.m.DroppableRunes.len() - 1)];
+				local rune = ::new(::Legends.Runes.get(selected).Script);
+				rune.setRuneVariant(selected);
+				rune.setRuneBonus(true);
+				return rune;
+			}.bindenv(this)]
+		]);
+		local rolls = ::Legends.S.extraLootChance(2);
+		for(local i = 0; i < rolls; i++) {
+			this.m.OnDeathLootTable.extend([
+				[50, "scripts/items/misc/legend_witch_leader_hair_item"],
+				[20, "scripts/items/misc/mysterious_herbs_item"],
+				[30, "scripts/items/misc/poisoned_apple_item"],
+			]);
+		}
 	}
 
 	function playIdleSound()
@@ -162,61 +180,18 @@ this.legend_hexe_leader <- this.inherit("scripts/entity/tactical/actor", {
 
 			this.spawnTerrainDropdownEffect(_tile);
 			this.spawnFlies(_tile);
-			local corpse = clone this.Const.Corpse;
-			corpse.CorpseName = "A Hexe";
-			corpse.IsHeadAttached = _fatalityType != this.Const.FatalityType.Decapitated;
-			_tile.Properties.set("Corpse", corpse);
-			this.Tactical.Entities.addCorpse(_tile);
-
-			if (_killer == null || _killer.getFaction() == this.Const.Faction.Player || _killer.getFaction() == this.Const.Faction.PlayerAnimals)
-			{
-				local n = 1 + (!this.Tactical.State.isScenarioMode() && this.Math.rand(1, 100) <= this.World.Assets.getExtraLootChance() ? 1 : 0);
-
-				for( local i = 0; i < n; i = ++i )
-				{
-					local r = this.Math.rand(1, 100);
-					local loot;
-
-					if (r <= 50)
-					{
-						loot = this.new("scripts/items/misc/legend_witch_leader_hair_item");
-					}
-					else if (r <= 70)
-					{
-						loot = this.new("scripts/items/misc/mysterious_herbs_item");
-					}
-					else
-					{
-						loot = this.new("scripts/items/misc/poisoned_apple_item");
-					}
-
-					loot.drop(_tile);
-
-					if (this.Math.rand(1, 100) <= 50)
-					{
-						local food = this.new("scripts/items/supplies/black_marsh_stew_item");
-						food.randomizeAmount();
-						food.randomizeBestBefore();
-						food.drop(_tile);
-					}
-				}
-
-				if (this.Math.rand(1, 100) <= 20)
-				{
-					local selected = this.m.DroppableRunes[this.Math.rand(0, this.m.DroppableRunes.len() - 1)];
-					local def = ::Legends.Runes.get(selected);
-					if (def != null)
-					{
-						local rune = ::new(def.Script);
-						rune.setRuneVariant(selected);
-						rune.setRuneBonus(true);
-						rune.drop(_tile);
-					}
-				}
-			}
 		}
 
 		this.actor.onDeath(_killer, _skill, _tile, _fatalityType);
+	}
+
+	function generateCorpse( _tile, _fatalityType )
+	{
+		local corpse = clone this.Const.Corpse;
+		corpse.CorpseName = "A Hexe";
+		corpse.IsHeadAttached = _fatalityType != this.Const.FatalityType.Decapitated;
+		corpse.Tile = _tile;
+		return corpse;
 	}
 
 	function onFactionChanged()

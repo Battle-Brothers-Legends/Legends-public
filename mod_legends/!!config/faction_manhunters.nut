@@ -1,4 +1,4 @@
-::Const.Tactical.Actor.SatoManhunter <- {
+::Const.Tactical.Actor.LegendManhunter <- {
 	XP = 225,
 	ActionPoints = 9,
 	Hitpoints = 80,
@@ -18,7 +18,7 @@
 	FatigueRecoveryRate = 18
 };
 
-::Const.Tactical.Actor.SatoManhunterVeteran <- {
+::Const.Tactical.Actor.LegendManhunterVeteran <- {
 	XP = 350,
 	ActionPoints = 9,
 	Hitpoints = 105,
@@ -38,7 +38,7 @@
 	FatigueRecoveryRate = 18
 };
 
-::Const.Tactical.Actor.SatoManhunterRanged <- {
+::Const.Tactical.Actor.LegendManhunterRanged <- {
 	XP = 200,
 	ActionPoints = 9,
 	Hitpoints = 60,
@@ -58,7 +58,7 @@
 	FatigueRecoveryRate = 18
 };
 
-::Const.Tactical.Actor.SatoManhunterVeteranRanged <- {
+::Const.Tactical.Actor.LegendManhunterVeteranRanged <- {
 	XP = 350,
 	ActionPoints = 9,
 	Hitpoints = 75,

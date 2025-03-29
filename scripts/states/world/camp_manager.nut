@@ -512,7 +512,7 @@ this.camp_manager <- {
 			}
 		}
 
-		::MSU.Utils.serialize(this.m.PresetNames, _out);
+		::MSU.Serialization.serialize(this.m.PresetNames, _out);
 		// serialize encounters
 		_out.writeF32(this.m.CampEncountersCooldownUntil);
 		foreach(i, e in this.m.CampEncounters) {
@@ -530,44 +530,27 @@ this.camp_manager <- {
 		this.m.LastHourUpdated = _in.readU8();
 		this.m.StartTime = _in.readF32();
 		this.m.LastCampTime = _in.readF32();
+		this.m.Tents = [];
+		local numBuildings = _in.readU8();
 
-		if (_in.getMetaData().getVersion() >= 52)
+		for( local i = 0; i < numBuildings; ++i )
 		{
-			this.m.Tents = [];
-			local numBuildings = _in.readU8();
-
-			for( local i = 0; i < numBuildings; ++i )
+			local id = _in.readI32();
+			if (id != 0)
 			{
-				local id = _in.readI32();
-
-				if (id != 0)
-				{
-					local b = this.new(this.IO.scriptFilenameByHash(id));
-					b.setCamp(this);
-					b.onDeserialize(_in);
-					this.m.Tents.push(b);
-				}
-			}
-
-			if (_in.getMetaData().getVersion() < 65)
-			{
-				this.addBuilding(this.new("scripts/entity/world/camp/buildings/painter_building"));
+				local b = this.new(this.IO.scriptFilenameByHash(id));
+				b.setCamp(this);
+				b.onDeserialize(_in);
+				this.m.Tents.push(b);
 			}
 		}
-
-		if (::Legends.Mod.Serialization.isSavedVersionAtLeast("17.1.0", _in.getMetaData()))
-		{
-			this.m.PresetNames = ::MSU.Utils.deserialize(_in);
-		}
-
-		if (::Legends.Mod.Serialization.isSavedVersionAtLeast("19.1.0", _in.getMetaData())) {
-			this.m.CampEncountersCooldownUntil = _in.readF32();
-			this.m.CampEncounters.push(::World.Encounters.m.CampEncounters[0]);
-			while(_in.readBool()) {
-				local e = ::World.Encounters.getEncounter(_in.readString());
-				if (e != null) {
-					this.m.CampEncounters.push(e);
-				}
+		this.m.PresetNames = ::MSU.Serialization.deserialize(_in);
+		this.m.CampEncountersCooldownUntil = _in.readF32();
+		this.m.CampEncounters.push(::World.Encounters.m.CampEncounters[0]);
+		while(_in.readBool()) {
+			local e = ::World.Encounters.getEncounter(_in.readString());
+			if (e != null) {
+				this.m.CampEncounters.push(e);
 			}
 		}
 	}

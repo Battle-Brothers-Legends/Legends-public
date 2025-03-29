@@ -11,7 +11,19 @@
 	{
 		create();
 		this.m.Flags.add("alp");
+		local rolls = ::Legends.S.extraLootChance(1);
+		for(local i = 0; i < rolls; i++)
+		{
+			this.m.OnDeathLootTable.push([1, function () {
+				local token = this.new("scripts/items/rune_sigils/legend_vala_inscription_token");
+				token.setRuneVariant(this.m.DroppableRunes[this.Math.rand(0, this.m.DroppableRunes.len() - 1)]);
+				token.setRuneBonus(true);
+				token.updateRuneSigilToken();
+				return token;
+			}.bindenv(this)]);
+		}
 	}
+
 
 	o.onDeath = function ( _killer, _skill, _tile, _fatalityType )
 	{
@@ -21,7 +33,6 @@
 		}
 
 		local flip = this.Math.rand(0, 100) < 50;
-		local isResurrectable = _fatalityType != this.Const.FatalityType.Decapitated;
 		local sprite_body = this.getSprite("body");
 		local sprite_head = this.getSprite("head");
 
@@ -88,55 +99,6 @@
 
 			this.spawnTerrainDropdownEffect(_tile);
 			this.spawnFlies(_tile);
-			local corpse = clone this.Const.Corpse;
-			corpse.CorpseName = "An " + this.getName();
-			corpse.Tile = _tile;
-			corpse.Value = 2.0;
-			corpse.IsResurrectable = false;
-			corpse.IsHeadAttached = _fatalityType != this.Const.FatalityType.Decapitated;
-			_tile.Properties.set("Corpse", corpse);
-			this.Tactical.Entities.addCorpse(_tile);
-
-			if (_killer == null || _killer.getFaction() == this.Const.Faction.Player || _killer.getFaction() == this.Const.Faction.PlayerAnimals)
-			{
-				local n = 1 + (!this.Tactical.State.isScenarioMode() && this.Math.rand(1, 100) <= this.World.Assets.getExtraLootChance() ? 1 : 0);
-
-				for( local i = 0; i < n; i = ++i )
-				{
-
-					local r = this.Math.rand(1, 100);
-					local loot;
-					if (r <= 40)
-					{
-						loot = this.new("scripts/items/misc/parched_skin_item");
-					}
-					else if (r <= 80)
-					{
-						loot = this.new("scripts/items/misc/third_eye_item");
-					}
-					else
-					{
-						loot = this.new("scripts/items/misc/petrified_scream_item");
-					}
-
-					loot.drop(_tile);
-
-					if (this.Math.rand(1, 100) <= 1)
-					{
-						local token = this.new("scripts/items/rune_sigils/legend_vala_inscription_token");
-						token.setRuneVariant(this.m.DroppableRunes[this.Math.rand(0, this.m.DroppableRunes.len() - 1)]);
-						token.setRuneBonus(true);
-						token.updateRuneSigilToken();
-						token.drop(_tile);
-					}
-				}
-
-				if (this.Math.rand(1, 100) <= 20)
-				{
-					local loot = this.new("scripts/items/loot/soul_splinter_item");
-					loot.drop(_tile);
-				}
-			}
 		}
 
 		local allies = this.Tactical.Entities.getInstancesOfFaction(this.getFaction());
@@ -160,6 +122,21 @@
 					ally.killSilently();
 				}
 			}
+		}
+
+		local deathLoot = this.getItems().getDroppableLoot(_killer);
+		local tileLoot = this.getLootForTile(_killer, deathLoot);
+		local corpse = this.generateCorpse(_tile, _fatalityType);
+		this.dropLoot(_tile, tileLoot, !flip);
+
+		if (_tile == null)
+		{
+			this.Tactical.Entities.addUnplacedCorpse(corpse);
+		}
+		else
+		{
+			_tile.Properties.set("Corpse", corpse);
+			this.Tactical.Entities.addCorpse(_tile);
 		}
 
 		this.actor.onDeath(_killer, _skill, _tile, _fatalityType);

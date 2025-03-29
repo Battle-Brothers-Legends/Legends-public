@@ -288,6 +288,38 @@ local VanillaTree = [
 		_localMap.Enemy.push(t);
 	}
 
+	local weaponClassMap = [
+		[::Const.Perks.ShovelClassTree, ::Const.Perks.MaceTree],
+		[::Const.Perks.BardClassTree, ::Const.Perks.StaffTree],
+		[::Const.Perks.KnifeClassTree, ::Const.Perks.DaggerTree],
+		[::Const.Perks.ButcherClassTree, ::Const.Perks.CleaverTree],
+		[::Const.Perks.HammerClassTree, ::Const.Perks.HammerTree],
+		[::Const.Perks.MilitiaClassTree,  ::Const.Perks.SpearTree],
+		[::Const.Perks.PickaxeClassTree, ::Const.Perks.HammerTree],
+		[::Const.Perks.PitchforkClassTree, ::Const.Perks.PolearmTree],
+		[::Const.Perks.ShortbowClassTree, ::Const.Perks.BowTree],
+		[::Const.Perks.WoodaxeClassTree, ::Const.Perks.AxeTree],
+		[::Const.Perks.SickleClassTree, ::Const.Perks.SwordTree],
+		[::Const.Perks.NinetailsClassTree, ::Const.Perks.FlailTree],
+		[::Const.Perks.ScytheClassTree, ::Const.Perks.PolearmTree],
+		[::Const.Perks.ClubClassTree, ::Const.Perks.MaceTree],
+		[::Const.Perks.InquisitionClassTree, ::Const.Perks.CrossbowTree],
+		[::Const.Perks.LongswordClassTree, ::Const.Perks.SwordTree],
+		[::Const.Perks.InventorClassTree,::Const.Perks.CrossbowTree],
+		[::Const.Perks.StaffClassTree,::Const.Perks.StaffTree],
+		[::Const.Perks.SlingClassTree, ::Const.Perks.SlingTree]
+	];
+
+	local toExclude = [];
+	foreach (group in weaponClassMap)
+	{
+
+		if (_localMap.Weapon.find(group[1]) == null)
+		{
+			toExclude.push(group[0].ID);
+		}
+	}
+
 	//Add Class
 	local count = _mins.Class - _localMap.Class.len();
 	for (local i = 0; i <= count; i = ++i)
@@ -297,7 +329,7 @@ local VanillaTree = [
 		{
 			continue
 		}
-		local _exclude = [];
+		local _exclude = toExclude;
 		foreach (tt in _localMap.Class)
 		{
 			_exclude.push(tt.ID);

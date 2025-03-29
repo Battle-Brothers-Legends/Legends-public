@@ -1,3 +1,5 @@
+::mods_registerJS("legends/hooks/msu_hotfix.js");
+
 ::mods_registerJS("legends_assets.js");
 ::mods_registerJS("legends/hooks/!container.js");
 ::mods_registerJS("legends/hooks/character_screen.js");

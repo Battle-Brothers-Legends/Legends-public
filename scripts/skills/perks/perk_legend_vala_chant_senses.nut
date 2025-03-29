@@ -66,7 +66,7 @@ this.perk_legend_vala_chant_senses <- this.inherit("scripts/skills/skill", {
 			id = 7,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "Until the start of her next turn all allies within 3 tiles of the Vala receive a bonus to their melee and ranged defenses. Being closer to the Vala increases the bonus amount."
+			text = "Until the start of her next turn all allies within 3 tiles of the Vala receive a bonus to their melee and ranged defenses. Being closer to the Vala increases the bonus amount"
 		});
 
 		if (actor.getMainhandItem() == null || actor.getMainhandItem() != "weapon.legend_staff_vala")
