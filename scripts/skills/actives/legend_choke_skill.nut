@@ -35,13 +35,6 @@ this.legend_choke_skill <- this.inherit("scripts/skills/skill", {
 		this.m.FatigueCost = 20;
 		this.m.MinRange = 1;
 		this.m.MaxRange = 1;
-		this.m.Backgrounds = [
-			"background.legend_commander_druid",
-			"background.legend_druid",
-			"background.brawler",
-			"background.legend_commander_berserker",
-			"background.legend_berserker"
-		];
 	}
 
 	function getTooltip()
