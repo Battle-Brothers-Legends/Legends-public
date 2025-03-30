@@ -71,12 +71,11 @@ this.legend_crusader_background <- this.inherit("scripts/skills/backgrounds/char
 				this.Const.Perks.SwordTree,
 				this.Const.Perks.TwoHandedTree,
 				this.Const.Perks.PolearmTree,
-				this.Const.Perks.CrossbowTree,
 				this.Const.Perks.ThrowingTree,
 				this.Const.Perks.ShieldTree
 			],
 			Defense = [
-				this.Const.Perks.LightArmorTree,
+				this.Const.Perks.MediumArmorTree,
 				this.Const.Perks.HeavyArmorTree
 			],
 			Traits = [
@@ -91,7 +90,6 @@ this.legend_crusader_background <- this.inherit("scripts/skills/backgrounds/char
 			],
 			Enemy = [
 				this.Const.Perks.HexenTree,
-				this.Const.Perks.UndeadTree,
 				this.Const.Perks.GhoulTree
 			],
 			Class = [
@@ -106,14 +104,19 @@ this.legend_crusader_background <- this.inherit("scripts/skills/backgrounds/char
 				::Legends.Perk.Pathfinder,
 				::Legends.Perk.BagsAndBelts,
 				// ::Legends.Perk.LegendComposure,
-				::Legends.Perk.Adrenaline
+				::Legends.Perk.Adrenaline,
+				::Legends.Perk.LegendHolyFlame
 			],
 			[
 				::Legends.Perk.Dodge,
 				::Legends.Perk.RallyTheTroops,
 				::Legends.Perk.LegendTrueBeliever,
 			],
-			[],
+			[
+				::Legends.Perk.LegendFavouredEnemySkeleton,
+				::Legends.Perk.LegendFavouredEnemyZombie,
+				::Legends.Perk.LegendFavouredEnemyVampire
+			],
 			[],
 			[
 				::Legends.Perk.Footwork,
@@ -122,9 +125,10 @@ this.legend_crusader_background <- this.inherit("scripts/skills/backgrounds/char
 			],
 			[
 				::Legends.Perk.InspiringPresence,
+				::Legends.Perk.Fearsome,
+
 			],
 			[
-				::Legends.Perk.Fearsome,
 				::Legends.Perk.LegendPerfectFocus
 			],
 			[],
