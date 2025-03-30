@@ -43,6 +43,11 @@
 		}
 	}
 
+	o.getTooltip = function ()
+	{
+		return this.character_background.getTooltip();
+	}
+
 	o.onAdded = function ()
 	{
 		this.character_background.onAdded();

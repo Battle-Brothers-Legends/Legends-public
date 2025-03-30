@@ -60,6 +60,11 @@
 		}
 	}
 
+	o.getTooltip = function ()
+	{
+		return this.character_background.getTooltip();
+	}
+
 	//Default Male
 	o.setGender <- function (_gender = -1)
 	{

@@ -78,7 +78,10 @@
 		}
 	}
 
-
+	o.getTooltip = function ()
+	{
+		return this.character_background.getTooltip();
+	}
 
 	o.onBuildDescription <- function ()
 	{

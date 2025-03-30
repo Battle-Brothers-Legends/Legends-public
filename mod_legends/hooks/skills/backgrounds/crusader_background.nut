@@ -90,6 +90,11 @@
 		}
 	}
 
+	o.getTooltip = function ()
+	{
+		return this.character_background.getTooltip();
+	}
+
 	o.onBuildDescription <- function ()
 	{
 		return "%name% joined your party during the undead scourge. Little is known about him and he almost never talks save for the occasional grunt while swinging his sword. His language seems to be codified into one simple structure: killing creatures of evil.";

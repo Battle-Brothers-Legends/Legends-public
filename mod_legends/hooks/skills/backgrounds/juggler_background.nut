@@ -68,8 +68,6 @@
 		this.m.Bodies = this.Const.Bodies.Skinny;
 	}
 
-
-
 	o.getTooltip = function ()
 	{
 		local ret = this.character_background.getTooltip();
