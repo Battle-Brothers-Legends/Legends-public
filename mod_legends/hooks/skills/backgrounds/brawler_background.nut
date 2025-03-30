@@ -110,6 +110,28 @@
 		return c;
 	}
 
+	o.getTooltip = function ()
+	{
+		return [
+			{
+				id = 1,
+				type = "title",
+				text = this.getName()
+			},
+			{
+				id = 2,
+				type = "description",
+				text = this.getDescription()
+			},
+			{
+				id = 12,
+				type = "text",
+				icon = "ui/icons/regular_damage.png",
+				text = "[color=" + this.Const.UI.Color.PositiveValue + "]5%[/color] bonus damage to [color=#400080]Hand to Hand[/color] and [color=#400080]Choke[/color]"
+			}
+		];
+	}
+
 	o.onAdded <- function()
 	{
 		this.character_background.onAdded();
@@ -132,7 +154,11 @@
 		items.equip(this.new("scripts/items/accessory/legend_hand_wraps_item"))
 	}
 
-	o.onAnySkillUsed = function( _skill, _targetEntity, _properties ) //overwrite vanilla background bonus
+	o.onAnySkillUsed = function( _skill, _targetEntity, _properties )
 	{
+		if (_skill.getID() == ::Legends.Actives.getID(::Legends.Active.LegendChoke) || _skill.getID() == ::Legends.Actives.getID(::Legends.Active.HandToHand))
+		{
+			_properties.DamageTotalMult *= 1.05;
+		}
 	}
 });

@@ -49,7 +49,7 @@ this.perk_legend_unarmed_training <- this.inherit("scripts/skills/skill", {
 				}
 			}
 		}
-		if (_skill.getID() == "actives.legend_choke" || _skill.getID() == "actives.hand_to_hand")
+		if (_skill.getID() == ::Legends.Actives.getID(::Legends.Active.LegendChoke) || _skill.getID() == ::Legends.Actives.getID(::Legends.Active.HandToHand))
 		{
 			_properties.DamageTotalMult *= 1.25;
 		}
