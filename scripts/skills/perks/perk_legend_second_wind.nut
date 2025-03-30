@@ -16,6 +16,9 @@ this.perk_legend_second_wind <- this.inherit("scripts/skills/skill", {
 		if (!actor.isPlacedOnMap() || ("State" in this.Tactical) && this.Tactical.State.isBattleEnded())
 			return;
 
+		if (!actor.isAlive() || actor.isDying())
+			return;
+
 		if (!actor.getSkills().hasEffect(::Legends.Effect.LegendSecondWind) && actor.getHitpointsPct() < 0.5)
 		{
 			::Legends.Effects.grant(actor, ::Legends.Effect.LegendSecondWind);
