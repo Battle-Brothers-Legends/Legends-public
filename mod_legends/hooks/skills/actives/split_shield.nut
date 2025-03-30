@@ -28,6 +28,13 @@
 
 			local conditionBefore = shield.getCondition();
 			shield.applyShieldDamage(damage);
+			if (!this.Tactical.getNavigator().isTravelling(target))
+			{
+				this.Tactical.getShaker().shake(target, _user.getTile(), 2, this.Const.Combat.ShakeEffectSplitShieldColor, this.Const.Combat.ShakeEffectSplitShieldHighlight, this.Const.Combat.ShakeEffectSplitShieldFactor, 1.0, [
+					"shield_icon"
+				], 1.0);
+			}
+			local overflowDamage = this.Math.floor(damage - conditionBefore);
 
 			if (shield != null && shield.getCondition() == 0)
 			{
@@ -38,20 +45,21 @@
 					{
 						_user.setActionPoints(this.Math.min(_user.getActionPointsMax(), _user.getActionPoints() + 4));
 						this.Tactical.EventLog.log(logMessage + " and recovered 4 Action Points");
-						local overflowDamage = damage - conditionBefore;
-						if (overflowDamage > 0)
+						if (overflowDamage > 1)
 						{
-							local p = this.getContainer().buildPropertiesForUse(this, target);
+							local p = this.getContainer().buildPropertiesForUse(this, targetEntity);
 							local hitInfo = clone this.Const.Tactical.HitInfo;
-							local damageRegular = overflowDamage * p.DamageRegularMult * 0.5;
-							local damageArmor = overflowDamage * p.DamageArmorMult * 0.5;
+							local damageMult = p.MeleeDamageMult * p.DamageTotalMult;
+							local damageRegular = overflowDamage * p.DamageRegularMult;
+							local damageArmor = overflowDamage * p.DamageArmorMult;
 							local damageDirect = this.Math.minf(1.0, p.DamageDirectMult * (this.m.DirectDamageMult + p.DamageDirectAdd + p.DamageDirectMeleeAdd));
-							hitInfo.DamageRegular = damageRegular;
-							hitInfo.DamageArmor = damageArmor;
+							hitInfo.DamageRegular = damageRegular * damageMult;
+							hitInfo.DamageArmor = damageArmor * damageMult;
 							hitInfo.DamageDirect = damageDirect;
 							hitInfo.BodyPart = this.Const.BodyPart.Body;
 							hitInfo.BodyDamageMult = 1.0;
-							target.onDamageReceived(this.getContainer().getActor(), this, hitInfo);
+							hitInfo.FatalityChanceMult = 0.0;
+							targetEntity.onDamageReceived(this.getContainer().getActor(), this, hitInfo);
 						}
 					}
 					else
@@ -73,16 +81,9 @@
 				}
 			}
 
-			if (!this.Tactical.getNavigator().isTravelling(target))
-			{
-				this.Tactical.getShaker().shake(target, _user.getTile(), 2, this.Const.Combat.ShakeEffectSplitShieldColor, this.Const.Combat.ShakeEffectSplitShieldHighlight, this.Const.Combat.ShakeEffectSplitShieldFactor, 1.0, [
-					"shield_icon"
-				], 1.0);
-			}
-
 			local overwhelm = ::Legends.Perks.get(this, ::Legends.Perk.Overwhelm);
 
-			if (overwhelm != null)
+			if (overwhelm != null && target.isAlive() && !target.isDying())
 			{
 				overwhelm.onTargetHit(this, _targetTile.getEntity(), this.Const.BodyPart.Body, 0, 0);
 			}
