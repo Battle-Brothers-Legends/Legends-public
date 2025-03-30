@@ -24,7 +24,6 @@
 		}
 	}
 
-
 	o.onDeath = function ( _killer, _skill, _tile, _fatalityType )
 	{
 		if (!this.Tactical.State.isScenarioMode() && _killer != null && _killer.isPlayerControlled())
