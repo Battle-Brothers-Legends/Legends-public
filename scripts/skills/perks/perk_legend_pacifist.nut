@@ -28,9 +28,12 @@ this.perk_legend_pacifist <- this.inherit("scripts/skills/skill", {
 	function onCombatFinished()
 	{
 		this.skill.onCombatFinished();
+		local actor = this.getContainer().getActor();
+		if (actor == null)
+			return;
 		if (this.m.ForcedToFight != null)
 		{
-			this.getContainer.getActor().worsenMood(1.5, "Was forced to attack someone agains their wishes");
+			actor.worsenMood(1.5, "Was forced to attack someone agains their wishes");
 			this.m.ForcedToFight = null;
 		}
 	}
