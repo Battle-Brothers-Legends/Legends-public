@@ -47,7 +47,7 @@
 						this.Tactical.EventLog.log(logMessage + " and recovered 4 Action Points");
 						if (overflowDamage > 1)
 						{
-							local p = this.getContainer().buildPropertiesForUse(this, targetEntity);
+							local p = this.getContainer().buildPropertiesForUse(this, target);
 							local hitInfo = clone this.Const.Tactical.HitInfo;
 							local damageMult = p.MeleeDamageMult * p.DamageTotalMult;
 							local damageRegular = overflowDamage * p.DamageRegularMult;
@@ -59,7 +59,7 @@
 							hitInfo.BodyPart = this.Const.BodyPart.Body;
 							hitInfo.BodyDamageMult = 1.0;
 							hitInfo.FatalityChanceMult = 0.0;
-							targetEntity.onDamageReceived(this.getContainer().getActor(), this, hitInfo);
+							target.onDamageReceived(this.getContainer().getActor(), this, hitInfo);
 						}
 					}
 					else
