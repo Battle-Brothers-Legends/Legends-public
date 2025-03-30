@@ -504,7 +504,7 @@ if (!("Perks" in ::Const))
 		]
 	},
 	Tree = [
-		[],
+		[::Legends.Perk.LegendStrengthInNumbers],
 		[::Legends.Perk.LegendSpecSpearWall],
 		[],
 		[::Legends.Perk.SpecSpear],
