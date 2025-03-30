@@ -132,4 +132,7 @@
 		items.equip(this.new("scripts/items/accessory/legend_hand_wraps_item"))
 	}
 
+	o.onAnySkillUsed = function( _skill, _targetEntity, _properties ) //overwrite vanilla background bonus
+	{
+	}
 });
