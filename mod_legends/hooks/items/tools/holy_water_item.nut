@@ -6,8 +6,6 @@
 	o.create = function()
 	{
 		create();
-		this.m.ID = "weapon.holy_water"; // vanilla error
-		this.m.Description = "A flask filled with water blessed by a man of the gods. Can be thrown at short ranges.";
 		this.m.OriginalDescription = this.m.Description;
 		this.m.Value = 800;
 		this.m.OriginalValue = this.m.Value;
