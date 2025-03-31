@@ -81,7 +81,7 @@ this.legend_prepare_bullet_effect <- this.inherit("scripts/skills/skill", {
 		this.removeSelf();
 	}
 
-	function onMovementCompleted( _tile )
+	function onMovementFinished()
 	{
 		this.removeSelf();
 	}

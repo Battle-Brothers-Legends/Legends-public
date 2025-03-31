@@ -1,18 +1,5 @@
 ::mods_hookNewObject("skills/skill_container", function ( o )
 {
-	o.MovementCompleted <- function( _tile )
-	{
-		if (!this.m.Actor.isAlive())
-		{
-			return;
-		}
-
-		foreach( skill in this.m.Skills )
-		{
-			skill.onMovementCompleted(_tile);
-		}
-	}
-
 	// o.buildPropertiesForUse = function( _caller, _targetEntity )
 	// {
 	// 	local superCurrent = this.m.Actor.getCurrentProperties().getClone();
@@ -105,5 +92,12 @@
 
 	o.hasEffect <- function (_const) {
 		return ::Legends.Effects.has(this, _const);
+	}
+
+	local onMovementFinished = o.onMovementFinished;
+	o.onMovementFinished = function () {
+		if (this.getActor() == null)
+			return;
+		onMovementFinished();
 	}
 });
