@@ -12,6 +12,8 @@ this.perk_legend_feint <- this.inherit("scripts/skills/skill", {
 
 	function onTargetMissed( _skill, _targetEntity )
 	{
+		if (!_targetEntity.isAttackable())
+			return;
 		local actor = this.getContainer().getActor();
 		actor.setFatigue(this.Math.max(0, actor.getFatigue() - this.Math.floor(_skill.getFatigueCost() * 0.2)));
 		if (!_targetEntity.isAlive() || ("isDying" in _targetEntity && _targetEntity.isDying()))
