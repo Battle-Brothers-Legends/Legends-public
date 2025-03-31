@@ -9,6 +9,10 @@ this.perk_legend_specialist_selfdefense <- this.inherit("scripts/skills/legend_s
 		ApplicableWeaponTypes = [
 			this.Const.Items.WeaponType.Staff
 		],
+		ExcludedWeaponTypes = [
+			this.Const.Items.WeaponType.Musical,
+			this.Const.Items.WeaponType.Sling
+		],
 		BonusMelee = 12,
 		BonusDamage = 10
 	},
@@ -19,48 +23,28 @@ this.perk_legend_specialist_selfdefense <- this.inherit("scripts/skills/legend_s
 		this.m.IconMini = "perk_spec_staff_mini";
 	}
 
-	function getDescription()
+	function onUpdate( _properties )
 	{
-		return this.getDefaultSpecialistSkillDescription("Staves and Musical Instruments");
+		local item = this.getContainer().getActor().getMainhandItem();
+		local bonus = 16;
+		if (item == null)
+			return;
+		if (item.isWeaponType(this.Const.Items.WeaponType.Staff) && item.isWeaponType(this.Const.Items.WeaponType.Sling))
+			bonus = 8;
+		else if (item.isWeaponType(this.Const.Items.WeaponType.MagicStaff) && item.isWeaponType(this.Const.Items.WeaponType.Sword))
+			bonus = 8;
+		else if (item.isWeaponType(this.Const.Items.WeaponType.Musical))
+			bonus = 8
+		if (!item.isWeaponType(this.Const.Items.WeaponType.Staff) && !item.isWeaponType(this.Const.Items.WeaponType.MagicStaff) && item.isWeaponType(this.Const.Items.WeaponType.Musical))
+			return;
+
+		_properties.MeleeDefense  += bonus;
+		_properties.RangedDefense += bonus;
 	}
-
-	// function specialistWeaponTooltip (_item, _isRanged)
-	// {
-	// 	local properties = this.getContainer().getActor().getCurrentProperties();
-	// 	local tooltip = [];
-
-	// 	tooltip.push({
-	// 		id = 7,
-	// 		type = "text",
-	// 		icon = "ui/icons/hitchance.png",
-	// 		text = "[color=" + this.Const.UI.Color.PositiveValue + "]+" + this.calculateSpecialistBonus(this.m.BonusMelee, _item) + "[/color] chance to hit"
-	// 	});
-	// 	tooltip.push({
-	// 		id = 6,
-	// 		type = "text",
-	// 		icon = "ui/icons/melee_defense.png",
-	// 		text = "[color=" + this.Const.UI.Color.PositiveValue + "]+" + this.calculateSpecialistBonus(16, _item) + "[/color] Defense"
-	// 	});
-
-	// 	if (::Legends.S.isCharacterWeaponSpecialized(properties, _item))
-	// 	{
-	// 		tooltip.push({
-	// 			id = 7,
-	// 			type = "text",
-	// 			icon = "ui/icons/damage_dealt.png",
-	// 			text = "[color=" + this.Const.UI.Color.PositiveValue + "]+" + this.calculateSpecialistBonus(this.m.BonusDamage, _item) + "%[/color] Damage"
-	// 		});
-	// 	}
-	// 	return tooltip;
-	// }
 
 	function onAnySkillUsed( _skill, _targetEntity, _properties )
 	{
 		this.legend_specialist_abstract.onAnySkillUsed(_skill, _targetEntity, _properties);
-		if (this.onAnySkillUsedSpecialistChecks(_skill))
-		{
-			_properties.MeleeDefense += this.calculateSpecialistBonus(16, _skill.getItem());
-			_properties.RangedDefense += this.calculateSpecialistBonus(16, _skill.getItem());
-		}
+
 	}
 });
