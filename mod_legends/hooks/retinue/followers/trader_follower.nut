@@ -30,5 +30,9 @@
 			"background.legend_companion_ranged"
 		]);
 	}
+
+	o.onEvaluate = function () {
+		this.follower.onEvaluate();
+	}
 });
 
