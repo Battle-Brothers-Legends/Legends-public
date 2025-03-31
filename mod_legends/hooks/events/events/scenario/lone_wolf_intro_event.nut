@@ -1,4 +1,6 @@
 ::mods_hookExactClass("events/events/scenario/lone_wolf_intro_event", function(o) {
+	o.m.Dude <- null;
+
 	local create = o.create;
 	o.create = function() {
 		create();
@@ -115,6 +117,8 @@
 					icon = "ui/items/" + item.getIcon(),
 					text = "You gain " + this.Const.Strings.getArticle(item.getName()) + item.getName()
 				});
+
+				_event.m.Dude.getBackground().addPerkGroup(::Const.Perks.SwordTree.Tree);
 			}
 		});
 
@@ -169,6 +173,9 @@
 					icon = "ui/items/" + item.getIcon(),
 					text = "You gain " + this.Const.Strings.getArticle(item.getName()) + item.getName()
 				});
+
+				_event.m.Dude.getBackground().addPerkGroup(::Const.Perks.HammerTree.Tree);
+				_event.m.Dude.getBackground().addPerkGroup(::Const.Perks.ShieldTree.Tree);
 			}
 		});
 
@@ -225,6 +232,9 @@
 					icon = "ui/items/" + item.getIcon(),
 					text = "You gain " + this.Const.Strings.getArticle(item.getName()) + item.getName()
 				});
+
+				_event.m.Dude.getBackground().addPerkGroup(::Const.Perks.AxeTree.Tree);
+				_event.m.Dude.getBackground().addPerkGroup(::Const.Perks.LightArmorTree.Tree);
 			}
 		});
 
@@ -287,6 +297,9 @@
 					icon = "ui/items/" + item.getIcon(),
 					text = "You gain " + this.Const.Strings.getArticle(item.getName()) + item.getName()
 				});
+
+				_event.m.Dude.getBackground().addPerkGroup(::Const.Perks.CrossbowTree.Tree);
+				_event.m.Dude.getBackground().addPerkGroup(::Const.Perks.MediumArmorTree.Tree);
 			}
 		});
 
@@ -349,6 +362,10 @@
 					icon = "ui/items/" + item.getIcon(),
 					text = "You gain " + this.Const.Strings.getArticle(item.getName()) + item.getName()
 				});
+
+				_event.m.Dude.getBackground().addPerkGroup(::Const.Perks.BowTree.Tree);
+				_event.m.Dude.getBackground().addPerkGroup(::Const.Perks.DaggerTree.Tree);
+				_event.m.Dude.getBackground().addPerkGroup(::Const.Perks.LightArmorTree.Tree);
 			}
 		});
 
@@ -395,7 +412,20 @@
 					icon = "ui/items/" + item.getIcon(),
 					text = "You gain " + this.Const.Strings.getArticle(item.getName()) + item.getName()
 				});
+				_event.m.Dude.getBackground().addPerkGroup(::Const.Perks.PolearmTree.Tree);
+				_event.m.Dude.getBackground().addPerkGroup(::Const.Perks.MediumArmorTree.Tree);
 			}
 		});
+	}
+
+	o.onUpdateScore = function ()
+	{
+		this.m.Dude = this.World.getPlayerRoster().getAll()[0];
+		return;
+	}
+
+	o.onClear = function ()
+	{
+		this.m.Dude = null;
 	}
 })

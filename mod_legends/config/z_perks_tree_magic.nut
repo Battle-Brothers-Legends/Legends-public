@@ -3,6 +3,26 @@ if (!("Perks" in ::Const))
 	::Const.Perks <- {};
 }
 
+::Const.Perks.ImmortalMagicTree <- {
+	ID = "ImmortalMagicTree",
+	Name = "Immortal",
+	Descriptions = [
+		"combat"
+	],
+	Tree = [
+		[],
+		[],
+		[],
+		[],
+		[
+			::Legends.Perk.LegendLionheart,
+			::Legends.Perk.LegendBattleheart
+		],
+		[],
+		[]
+	]
+};
+
 ::Const.Perks.ValaChantMagicTree <- {
 	ID = "ValaChantMagicTree",
 	Name = "Vala Chant",
