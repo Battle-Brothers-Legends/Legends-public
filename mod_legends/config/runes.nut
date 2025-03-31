@@ -1,6 +1,12 @@
 ::Legends.Rune <- {}
 
 ::Legends.Runes <- {
+	Target = {
+		Shield = 64,
+		Weapon = 2048,
+		Helmet = 4096,
+		Armor = 8192
+	}
 	Defs = {},
 	add = function(_def) {
 		local id = ::Legends.Rune.len() + 1;
@@ -17,7 +23,7 @@
 * getRuneTooltip - crafting tooltip
 */
 ::Legends.Rune.LegendRswPower <- ::Legends.Runes.add({
-	ItemType = ::Const.Items.ItemType.Weapon,
+	ItemType = ::Legends.Runes.Target.Weapon,
 	Name = "Weapon Rune Sigil: Power",
 	Description = "An inscribed rock that can be attached to a character\'s weapon.",
 	Icon = "rune_sigils/rune_stone_1.png",
@@ -45,7 +51,7 @@
 
 
 ::Legends.Rune.LegendRswAccuracy <- ::Legends.Runes.add({
-	ItemType = ::Const.Items.ItemType.Weapon,
+	ItemType = ::Legends.Runes.Target.Weapon,
 	Name = "Weapon Rune Sigil: Accuracy",
 	Description = "An inscribed rock that can be attached to a character\'s weapon.",
 	Icon = "rune_sigils/rune_stone_1.png",
@@ -71,7 +77,7 @@
 });
 
 ::Legends.Rune.LegendRswFeeding <- ::Legends.Runes.add({
-	ItemType = ::Const.Items.ItemType.Weapon,
+	ItemType = ::Legends.Runes.Target.Weapon,
 	Name = "Weapon Rune Sigil: Feeding",
 	Description = "An inscribed rock that can be attached to a character\'s weapon.",
 	Icon = "rune_sigils/rune_stone_1.png",
@@ -95,7 +101,7 @@
 });
 
 ::Legends.Rune.LegendRswPoison <- ::Legends.Runes.add({
-	ItemType = ::Const.Items.ItemType.Weapon,
+	ItemType = ::Legends.Runes.Target.Weapon,
 	Name = "Weapon Rune Sigil: Poison",
 	Description = "An inscribed rock that can be attached to a character\'s weapon.",
 	Icon = "rune_sigils/rune_stone_1.png",
@@ -122,7 +128,7 @@
 });
 
 ::Legends.Rune.LegendRswBleeding <- ::Legends.Runes.add({
-	ItemType = ::Const.Items.ItemType.Weapon,
+	ItemType = ::Legends.Runes.Target.Weapon,
 	Name = "Weapon Rune Sigil: Bleeding",
 	Description = "An inscribed rock that can be attached to a character\'s weapon.",
 	Icon = "rune_sigils/rune_stone_1.png",
@@ -149,7 +155,7 @@
 });
 
 ::Legends.Rune.LegendRswUnbreaking <- ::Legends.Runes.add({
-	ItemType = ::Const.Items.ItemType.Weapon,
+	ItemType = ::Legends.Runes.Target.Weapon,
 	Name = "Weapon Rune Sigil: Unbreaking",
 	Description = "An inscribed rock that can be attached to a character\'s weapon.",
 	Icon = "rune_sigils/rune_stone_1.png",
@@ -176,7 +182,7 @@
 });
 
 ::Legends.Rune.LegendRshClarity <- ::Legends.Runes.add({
-	ItemType = ::Const.Items.ItemType.Helmet,
+	ItemType = ::Legends.Runes.Target.Helmet,
 	Name = "Helmet Rune Sigil: Clarity",
 	Description = "An inscribed rock that can be attached to a character\'s helmet.",
 	Icon = "rune_sigils/rune_stone_2.png",
@@ -203,7 +209,7 @@
 });
 
 ::Legends.Rune.LegendRshBravery <- ::Legends.Runes.add({
-	ItemType = ::Const.Items.ItemType.Helmet,
+	ItemType = ::Legends.Runes.Target.Helmet,
 	Name = "Helmet Rune Sigil: Bravery",
 	Description = "An inscribed rock that can be attached to a character\'s helmet.",
 	Icon = "rune_sigils/rune_stone_2.png",
@@ -230,7 +236,7 @@
 });
 
 ::Legends.Rune.LegendRshLuck <- ::Legends.Runes.add({
-	ItemType = ::Const.Items.ItemType.Helmet,
+	ItemType = ::Legends.Runes.Target.Helmet,
 	Name = "Helmet Rune Sigil: Luck",
 	Description = "An inscribed rock that can be attached to a character\'s helmet.",
 	Icon = "rune_sigils/rune_stone_2.png",
@@ -254,7 +260,7 @@
 });
 
 ::Legends.Rune.LegendRsaEndurance <- ::Legends.Runes.add({
-	ItemType = ::Const.Items.ItemType.Armor,
+	ItemType = ::Legends.Runes.Target.Armor,
 	Name = "Armor Rune Sigil: Endurance",
 	Description = "An inscribed rock that can be attached to a character\'s armor.",
 	Icon = "rune_sigils/rune_stone_3.png",
@@ -281,7 +287,7 @@
 });
 
 ::Legends.Rune.LegendRsaSafety <- ::Legends.Runes.add({
-	ItemType = ::Const.Items.ItemType.Armor,
+	ItemType = ::Legends.Runes.Target.Armor,
 	Name = "Armor Rune Sigil: Safety",
 	Description = "An inscribed rock that can be attached to a character\'s armor.",
 	Icon = "rune_sigils/rune_stone_3.png",
@@ -307,7 +313,7 @@
 });
 
 ::Legends.Rune.LegendRsaResilience <- ::Legends.Runes.add({
-	ItemType = ::Const.Items.ItemType.Armor,
+	ItemType = ::Legends.Runes.Target.Armor,
 	Name = "Armor Rune Sigil: Resilience",
 	Description = "An inscribed rock that can be attached to a character\'s armor.",
 	Icon = "rune_sigils/rune_stone_3.png",
@@ -326,7 +332,7 @@
 });
 
 ::Legends.Rune.LegendRssDefense <- ::Legends.Runes.add({
-	ItemType = ::Const.Items.ItemType.Shield,
+	ItemType = ::Legends.Runes.Target.Shield,
 	Name = "Shield Rune Sigil: Defense",
 	Description = "An inscribed rock that can be attached to a character\'s shield.",
 	Icon = "rune_sigils/rune_stone_4.png",
@@ -352,7 +358,7 @@
 });
 
 ::Legends.Rune.LegendRssRadiance <- ::Legends.Runes.add({
-	ItemType = ::Const.Items.ItemType.Shield,
+	ItemType = ::Legends.Runes.Target.Shield,
 	Name = "Shield Rune Sigil: Radiance",
 	Description = "An inscribed rock that can be attached to a character\'s shield.",
 	Icon = "rune_sigils/rune_stone_4.png",
