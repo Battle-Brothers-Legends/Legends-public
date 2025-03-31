@@ -147,7 +147,7 @@ this.perk_legend_vala_chant_fury <- this.inherit("scripts/skills/skill", {
 		}
 	}
 
-	function onMovementCompleted( _tile )
+	function onMovementFinished()
 	{
 		local actor = this.getContainer().getActor();
 		local targets = this.Tactical.Entities.getAllInstances();

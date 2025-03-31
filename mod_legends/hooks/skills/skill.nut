@@ -248,10 +248,6 @@
 	{
 	}
 
-	o.onMovementCompleted <- function( _tile )
-	{
-	}
-
 	o.factoringOffhand <- function( _properties )
 	{
 		if (this.m.Item == null || this.m.Item.isNull()) return _properties;

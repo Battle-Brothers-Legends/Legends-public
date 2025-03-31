@@ -111,9 +111,10 @@ this.legend_alp_realm_of_shadow_effect <- ::inherit("scripts/skills/skill", {
 			this.removeSelf();
 	}
 
-	function onMovementCompleted( _tile )
+	function onMovementFinished()
 	{
-		if (_tile.Properties.Effect == null || _tile.Properties.Effect.Type != "shadows")
+		local tile = this.getContainer().getActor().getTile();
+		if (tile.Properties.Effect == null || tile.Properties.Effect.Type != "shadows")
 			this.removeSelf();
 	}
 

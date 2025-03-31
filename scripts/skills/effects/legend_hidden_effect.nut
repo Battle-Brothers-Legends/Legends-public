@@ -67,9 +67,10 @@ this.legend_hidden_effect <- this.inherit("scripts/skills/skill", {
 
 	}
 
-	function onMovementCompleted( _tile )
+	function onMovementFinished()
 	{
-		if (_tile.hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions()))
+		local tile = this.getContainer().getActor().getTile();
+		if (tile.hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions()))
 		{
 			this.getContainer().getActor().setHidden(false);
 			this.removeSelf();

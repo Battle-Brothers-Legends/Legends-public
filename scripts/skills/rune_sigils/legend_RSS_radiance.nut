@@ -13,7 +13,7 @@ this.legend_RSS_radiance <- this.inherit("scripts/skills/skill", {
 	}
 
 
-	function onMovementCompleted( _tile )
+	function onMovementFinished()
 	{
 		local actor = this.getContainer().getActor();
 		local myTile = actor.getTile();

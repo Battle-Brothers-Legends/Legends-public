@@ -68,16 +68,17 @@ this.legend_hidden_kobold_effect <- this.inherit("scripts/skills/skill", {
 
 	}
 
-	function onMovementCompleted( _tile )
+	function onMovementFinished()
 	{
-		if (_tile.hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions()))
+		local actor = this.getContainer().getActor();
+		local tile = actor.getTile();
+		if (tile.hasZoneOfControlOtherThan(actor.getAlliedFactions()))
 		{
-			this.getContainer().getActor().setHidden(false);
+			actor.setHidden(false);
 			this.removeSelf();
 			return;
 		}
-
-		this.getContainer().getActor().setHidden(true);
+		actor.setHidden(true);
 	}
 
 	function onTargetHit( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor )
