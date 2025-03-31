@@ -78,7 +78,7 @@
 			mod += 50;
 		}
 		local chance = _targetEntity.getFatiguePct() * 50;
-		return mod - this.Math.round(chance);
+		return mod + this.Math.round(chance);
 	}
 
 	o.onAnySkillUsed = function ( _skill, _targetEntity, _properties )

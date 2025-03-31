@@ -150,7 +150,7 @@ this.legend_choke_skill <- this.inherit("scripts/skills/skill", {
 		}
 
 		local chance = (1.0 - _targetEntity.getFatiguePct()) * 50;
-		return mod - this.Math.round(chance);
+		return mod + this.Math.round(chance);
 	}
 
 	function onAfterUpdate( _properties )
