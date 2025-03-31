@@ -29,7 +29,7 @@ this.legend_choke_skill <- this.inherit("scripts/skills/skill", {
 		this.m.IsWeaponSkill = true;
 		this.m.InjuriesOnBody = this.Const.Injury.BluntBody;
 		this.m.InjuriesOnHead = this.Const.Injury.BluntHead;
-		this.m.HitChanceBonus = -15;
+		this.m.HitChanceBonus = -65;
 		this.m.DirectDamageMult = 1.0;
 		this.m.ActionPointCost = 4;
 		this.m.FatigueCost = 20;
@@ -113,52 +113,41 @@ this.legend_choke_skill <- this.inherit("scripts/skills/skill", {
 			return 0;
 		}
 		local mod = 0;
-
 		if (_targetEntity.getSkills().hasEffect(::Legends.Effect.LegendDazed))
 		{
-			mod = mod + 10;
+			mod += 10;
 		}
-
 		if (_targetEntity.getSkills().hasEffect(::Legends.Effect.LegendParried))
 		{
-			mod = mod + 10;
+			mod += 10;
 		}
-
 		if (_targetEntity.getSkills().hasEffect(::Legends.Effect.LegendGrappled))
 		{
-			mod = mod + 50;
+			mod += 50;
 		}
-
 		if (_targetEntity.getSkills().hasEffect(::Legends.Effect.Stunned))
 		{
-			mod = mod + 25;
+			mod += 25;
 		}
-
 		if (_targetEntity.getSkills().hasEffect(::Legends.Effect.Sleeping))
 		{
-			mod = mod + 50;
+			mod += 50;
 		}
-
 		if (_targetEntity.getSkills().hasEffect(::Legends.Effect.Net))
 		{
-			mod = mod + 25;
+			mod += 25;
 		}
-
 		if (_targetEntity.getMoraleState() == this.Const.MoraleState.Fleeing)
 		{
-			mod = mod + 50;
+			mod += 50;
 		}
-
-		local chance = (1.0 - _targetEntity.getFatiguePct()) * 50;
+		local chance = _targetEntity.getFatiguePct() * 50;
 		return mod + this.Math.round(chance);
 	}
 
 	function onAfterUpdate( _properties )
 	{
-		if (_properties.IsSpecializedInFists)
-		{
-			this.m.FatigueCostMult = this.Const.Combat.WeaponSpecFatigueMult;
-		}
+			this.m.FatigueCostMult = _properties.IsSpecializedInFists ? this.Const.Combat.WeaponSpecFatigueMult : 1.0;
 	}
 
 	function onUse( _user, _targetTile )
@@ -176,18 +165,16 @@ this.legend_choke_skill <- this.inherit("scripts/skills/skill", {
 	function onAnySkillUsed( _skill, _targetEntity, _properties )
 	{
 		if (_skill != this)
-		{
 			return;
-		}
 
-		local chance = this.getHitChance(_targetEntity); // Calculates the hitchance bonus from other status effects
+		this.m.HitChanceBonus += this.getHitChance(_targetEntity); // Calculates the hitchance bonus from other status effects
 		local actor = this.getContainer().getActor();
 
 		_properties.DamageRegularMin += 10; // If you change these values, change them in the tooltip above too.
 		_properties.DamageRegularMax += 15;
 		_properties.IsIgnoringArmorOnAttack = true;
 		_properties.DamageArmorMult *= 0.0;
-		_properties.MeleeSkill += chance;
+		_properties.MeleeSkill += this.m.HitChanceBonus;
 
 		// Based on decapitate
 		if (_targetEntity != null && actor.getFatiguePct() < _targetEntity.getFatiguePct()) {
