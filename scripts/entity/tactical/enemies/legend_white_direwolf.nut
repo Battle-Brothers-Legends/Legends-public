@@ -113,8 +113,9 @@ this.legend_white_direwolf <- this.inherit("scripts/entity/tactical/actor", {
 			this.updateAchievement("Ulfhednar", 1, 1);
 		}
 
+		local flip = this.Math.rand(0, 100) < 50;
+
 		if (_tile != null) {
-			local flip = this.Math.rand(0, 100) < 50;
 			local decal;
 			this.m.IsCorpseFlipped = flip;
 			local body = this.getSprite("body");

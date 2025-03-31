@@ -106,6 +106,7 @@ this.legend_greenwood_schrat <- this.inherit("scripts/entity/tactical/actor", {
 
 	function onDeath( _killer, _skill, _tile, _fatalityType )
 	{
+		local flip = this.Math.rand(0, 100) < 50;
 		if (!this.Tactical.State.isScenarioMode() && _killer != null && _killer.isPlayerControlled())
 		{
 			this.updateAchievement("ChoppingWood", 1, 1);
@@ -113,7 +114,6 @@ this.legend_greenwood_schrat <- this.inherit("scripts/entity/tactical/actor", {
 
 		if (_tile != null)
 		{
-			local flip = this.Math.rand(0, 100) < 50;
 			local decal;
 			this.m.IsCorpseFlipped = flip;
 			local body = this.getSprite("body");

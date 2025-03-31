@@ -127,9 +127,9 @@ this.legend_stollwurm <- this.inherit("scripts/entity/tactical/actor", {
 
 	function onDeath( _killer, _skill, _tile, _fatalityType )
 	{
+		local flip = this.Math.rand(0, 100) < 50;
 		if (_tile != null)
 		{
-			local flip = this.Math.rand(0, 100) < 50;
 			local decal;
 			this.m.IsCorpseFlipped = flip;
 			local body = this.getSprite("body");

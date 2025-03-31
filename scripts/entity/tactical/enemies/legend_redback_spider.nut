@@ -120,9 +120,9 @@ this.legend_redback_spider <- this.inherit("scripts/entity/tactical/actor", {
 
 	function onDeath( _killer, _skill, _tile, _fatalityType )
 	{
+		local flip = this.Math.rand(0, 100) < 50;
 		if (_tile != null)
 		{
-			local flip = this.Math.rand(0, 100) < 50;
 			local decal;
 			local body_decal;
 			local head_decal;
