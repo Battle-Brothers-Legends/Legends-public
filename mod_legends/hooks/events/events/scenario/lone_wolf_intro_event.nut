@@ -119,6 +119,8 @@
 				});
 
 				_event.m.Dude.getBackground().addPerkGroup(::Const.Perks.SwordTree.Tree);
+				_event.m.Dude.getBackground().addPerkGroup(::Const.Perks.HammerTree.Tree);
+				_event.m.Dude.getBackground().addPerkGroup(::Const.Perks.MediumArmorTree.Tree);
 			}
 		});
 
@@ -174,6 +176,7 @@
 					text = "You gain " + this.Const.Strings.getArticle(item.getName()) + item.getName()
 				});
 
+				_event.m.Dude.getBackground().addPerkGroup(::Const.Perks.SwordTree.Tree);
 				_event.m.Dude.getBackground().addPerkGroup(::Const.Perks.HammerTree.Tree);
 				_event.m.Dude.getBackground().addPerkGroup(::Const.Perks.ShieldTree.Tree);
 			}
@@ -233,6 +236,7 @@
 					text = "You gain " + this.Const.Strings.getArticle(item.getName()) + item.getName()
 				});
 
+				_event.m.Dude.getBackground().addPerkGroup(::Const.Perks.SwordTree.Tree);
 				_event.m.Dude.getBackground().addPerkGroup(::Const.Perks.AxeTree.Tree);
 				_event.m.Dude.getBackground().addPerkGroup(::Const.Perks.LightArmorTree.Tree);
 			}
@@ -299,6 +303,8 @@
 				});
 
 				_event.m.Dude.getBackground().addPerkGroup(::Const.Perks.CrossbowTree.Tree);
+				_event.m.Dude.getBackground().addPerkGroup(::Const.Perks.DaggerTree.Tree);
+				_event.m.Dude.getBackground().addPerkGroup(::Const.Perks.BowTree.Tree);
 				_event.m.Dude.getBackground().addPerkGroup(::Const.Perks.MediumArmorTree.Tree);
 			}
 		});
@@ -364,6 +370,7 @@
 				});
 
 				_event.m.Dude.getBackground().addPerkGroup(::Const.Perks.BowTree.Tree);
+				_event.m.Dude.getBackground().addPerkGroup(::Const.Perks.CrossbowTree.Tree);
 				_event.m.Dude.getBackground().addPerkGroup(::Const.Perks.DaggerTree.Tree);
 				_event.m.Dude.getBackground().addPerkGroup(::Const.Perks.LightArmorTree.Tree);
 			}
