@@ -172,8 +172,7 @@ this.legend_stollwurm <- this.inherit("scripts/entity/tactical/actor", {
 			this.spawnFlies(_tile);
 		}
 
-		local deathLoot = this.getItems().getDroppableLoot(_killer);
-		local tileLoot = this.getLootForTile(_killer, deathLoot);
+		local tileLoot = this.getLootForTile(_killer, []);
 		local corpse = this.generateCorpse(_tile, _fatalityType);
 		this.dropLoot(_tile, tileLoot, !flip);
 
@@ -191,6 +190,7 @@ this.legend_stollwurm <- this.inherit("scripts/entity/tactical/actor", {
 	{
 		local corpse = clone this.Const.Corpse;
 		corpse.CorpseName = "A Stollwurm";
+		corpse.Items = this.getItems();
 		corpse.IsHeadAttached = _fatalityType != this.Const.FatalityType.Decapitated;
 		corpse.Tile = _tile;
 		return corpse;

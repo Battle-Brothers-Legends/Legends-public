@@ -220,6 +220,7 @@ this.legend_redback_spider <- this.inherit("scripts/entity/tactical/actor", {
 
 		this.actor.onDeath(_killer, _skill, _tile, _fatalityType);
 	}
+
 	function generateCorpse( _tile, _fatalityType )
 	{
 		local corpse = clone this.Const.Corpse;
