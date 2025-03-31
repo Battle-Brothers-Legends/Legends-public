@@ -8,6 +8,7 @@ this.legend_oms_paw_item <- this.inherit("scripts/items/accessory/accessory", {
 		this.m.Description = "A preserved hand that is somewhere between that of a large man and a beast. It has been cleanly cut at the wrist and shows no sign of decay.";
 		this.m.SlotType = this.Const.ItemSlot.Accessory;
 		this.m.IsDroppedAsLoot = true;
+		this.m.IsUnique = true;
 		//this.m.ShowOnCharacter = true;
 		this.m.IconLarge = "";
 		this.m.Icon = "misc/inventory_werehand.png";
@@ -59,9 +60,8 @@ this.legend_oms_paw_item <- this.inherit("scripts/items/accessory/accessory", {
 				id = 10,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "Does something when equipped in the \'accessory\' slot."
+				text = "You aren\'n sure what it does. You\'ve heard of an ancient witch living in a hut in the forest who might know more about this"
 			});
-			return result;
 		}
 		else
 		{
@@ -69,10 +69,11 @@ this.legend_oms_paw_item <- this.inherit("scripts/items/accessory/accessory", {
 				id = 10,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "Adds an addition +6 to fatigue recovery per turn. Increases the effect from morale effects and mental attacks by 50%."
+				text = "Adds an addition +6 to fatigue recovery per turn. Increases the effect from morale effects and mental attacks by 50%"
 			});
-			return result;
 		}
+
+		return result;
 	}
 
 	function onUpdateProperties( _properties )

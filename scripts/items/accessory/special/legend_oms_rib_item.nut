@@ -8,6 +8,7 @@ this.legend_oms_rib_item <- this.inherit("scripts/items/accessory/accessory", {
 		this.m.Description = "A supposed rib bone from a long dead saint, locked away in a secure chest. Apparently the figure in question was killed by a volley of arrows — it has been picked clean and preserved with great care and thought. More superstitious minds claim it to be warm to the touch.";
 		this.m.SlotType = this.Const.ItemSlot.Accessory;
 		this.m.IsDroppedAsLoot = true;
+		this.m.IsUnique = true;
 		//this.m.ShowOnCharacter = true;
 		this.m.IconLarge = "";
 		this.m.Icon = "accessory/oms_rib.png";
@@ -59,9 +60,8 @@ this.legend_oms_rib_item <- this.inherit("scripts/items/accessory/accessory", {
 				id = 10,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "Does something when equipped in the \'accessory\' slot."
+				text = "You aren\'n sure what it does. You\'ve heard of an ancient witch living in a hut in the forest who might know more about this"
 			});
-			return result;
 		}
 		else
 		{
@@ -69,10 +69,11 @@ this.legend_oms_rib_item <- this.inherit("scripts/items/accessory/accessory", {
 				id = 10,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "Damage from ranged weapons reduced by 66%. Damage received from melee weapons increased by 33%."
+				text = "Damage from ranged weapons reduced by 66%. Damage received from melee weapons increased by 33%"
 			});
-			return result;
 		}
+
+		return result;
 	}
 
 	function onUpdateProperties( _properties )

@@ -8,6 +8,7 @@ this.legend_oms_ledger_item <- this.inherit("scripts/items/accessory/accessory",
 		this.m.Description = "A small ledger that is made of skin, inside the pages are names laid out in rows, some crossed or or with symbols beside them. Closing and opening the book again results in the names and markings changing once again.";
 		this.m.SlotType = this.Const.ItemSlot.Accessory;
 		this.m.IsDroppedAsLoot = true;
+		this.m.IsUnique = true;
 		//this.m.ShowOnCharacter = true;
 		this.m.IconLarge = "";
 		this.m.Icon = "accessory/oms_ledger.png";
@@ -59,9 +60,8 @@ this.legend_oms_ledger_item <- this.inherit("scripts/items/accessory/accessory",
 				id = 10,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "Does something when equipped in the \'accessory\' slot."
+				text = "You aren\'n sure what it does. You\'ve heard of an ancient witch living in a hut in the forest who might know more about this"
 			});
-			return result;
 		}
 		else
 		{
@@ -69,10 +69,11 @@ this.legend_oms_ledger_item <- this.inherit("scripts/items/accessory/accessory",
 				id = 10,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "Melee damage received from undead reduced by 50%."
+				text = "Melee damage received from undead reduced by 50%"
 			});
-			return result;
 		}
+
+		return result;
 	}
 
 	function onUpdateProperties( _properties )
