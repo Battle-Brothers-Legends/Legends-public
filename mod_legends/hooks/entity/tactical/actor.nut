@@ -196,9 +196,9 @@
 	}
 
 	local onMovementFinish = o.onMovementFinish;
-	o.onMovementFinish = function (_tile)
+	o.onMovementFinish = function ()
 	{
-		local currentTile = _tile;
+		local currentTile = this.getContainer().getActor().getTile();
 		// Lionheart perk start
 		local otherActors = [];
 		for (local i = 0; i != 6; i++) {
@@ -229,7 +229,7 @@
 		}.bindenv(this);
 		// Lionheart perk stop
 
-		onMovementFinish(currentTile);
+		onMovementFinish();
 		// restore state
 		foreach (i, actor in otherActors)
 			actor.isAlliedWith = isAliedPtrs[i];

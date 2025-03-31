@@ -402,9 +402,9 @@ this.legend_stollwurm <- this.inherit("scripts/entity/tactical/actor", {
 		}
 	}
 
-	function onMovementFinish(_tile)
+	function onMovementFinish()
 	{
-		this.actor.onMovementFinish(_tile);
+		this.actor.onMovementFinish();
 
 		if (this.m.Tail != null && !this.m.Tail.isNull() && this.m.Tail.isAlive())
 		{
