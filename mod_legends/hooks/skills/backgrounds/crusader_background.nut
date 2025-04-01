@@ -62,6 +62,7 @@
 		this.m.Modifiers.Training = this.Const.LegendMod.ResourceModifiers.Training[2];
 		this.m.PerkTreeDynamic = {
 			Weapon = [
+				this.Const.Perks.SwordTree,
 				this.Const.Perks.ShieldTree,
 				this.Const.Perks.TwoHandedTree,
 				this.Const.Perks.FlailTree,
@@ -86,7 +87,9 @@
 				this.Const.Perks.SkeletonTree
 			],
 			Class = [],
-			Magic = []
+			Magic = [
+				this.Const.Perks.FaithClassTree
+			]
 		}
 	}
 
