@@ -8,6 +8,14 @@
 		this.m.Icon = "ui/backgrounds/background_54.png";
 		this.m.HiringCost = 200;
 		this.m.DailyCost = 23;
+		this.m.Titles = [
+			"the Exalted",
+			"the Crusader",
+			"the Argent",
+			"the Holy Champion",
+			"the Righteous",
+			"the Venerable"
+		];
 		this.m.Excluded = [
 			::Legends.Traits.getID(::Legends.Trait.Weasel),
 			::Legends.Traits.getID(::Legends.Trait.FearUndead),
@@ -178,7 +186,6 @@
 	{
 		this.character_background.onAdded();
 		local actor = this.getContainer().getActor();
-		actor.setTitle("the Crusader");
 	}
 
 	o.onAddEquipment = function ()
