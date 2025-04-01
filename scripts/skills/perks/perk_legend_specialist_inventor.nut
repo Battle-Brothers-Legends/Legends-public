@@ -19,7 +19,7 @@ this.perk_legend_specialist_inventor <- this.inherit("scripts/skills/legend_spec
 		local skills = this.getContainer().getAllSkillsOfType(this.Const.SkillType.Active);
 		foreach (skill in skills)
 		{
-			if (this.m.Skills.find(::Legends.Actives.getID(::Legends.Active.ReloadHandgonne)))
+			if (skill.getID() == ::Legends.Actives.getID(::Legends.Active.ReloadHandgonne))
 			{
 				skill.m.ActionPointCost -= 1;
 			}
