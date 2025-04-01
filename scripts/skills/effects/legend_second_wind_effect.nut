@@ -73,7 +73,7 @@ this.legend_second_wind_effect <- this.inherit("scripts/skills/skill", {
 		{
 			if (this.getContainer().hasEffect(effect))
 			{
-				::Legends.Effects.remove(effect);
+				::Legends.Effects.remove(actor, effect);
 			}
 		}
 
