@@ -51,7 +51,7 @@
 				continue;
 			}
 
-			newTrait = this.new(::Legends.Traits.TraitDefObjects[newTraitConst]);
+			newTrait = this.new(::Legends.Traits.TraitDefObjects[newTraitConst].Script);
 
 			local skipTrait = false;
 			foreach(bTrait in traits) {

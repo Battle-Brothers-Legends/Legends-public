@@ -180,15 +180,15 @@ this.legend_intensive_training_trait <- this.inherit("scripts/skills/traits/char
 	function getTooltip()
 	{
 		local tooltip = this.skill.getTooltip();
-			tooltip.push({
-				id = 6,
-				type = "text",
-				icon = "",
-				text = ""
-			});
+		tooltip.push({
+			id = 6,
+			type = "text",
+			icon = "",
+			text = ""
+		});
 //		this.logInfo(this.getContainer().getActor().getBackground().getNameOnly());
 
-		if ( this.getContainer().getActor().getBackground().getNameOnly()=="Donkey" )
+		if (this.getContainer().getActor().getBackground().getNameOnly() == "Donkey")
 		{
 			tooltip.push({
 				id = 6,
