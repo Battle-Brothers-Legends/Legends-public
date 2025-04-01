@@ -1437,10 +1437,18 @@ effectsDefs.push({
 	Const = "LegendMagicCircleOfProtectionEffect"
 });
 
-::Legends.Effect.LegendMarkedTarget <- null;
+::Legends.Effect.LegendMarked <- null;
 effectsDefs.push({
 	ID = "effects.legend_marked_target",
 	Script = "scripts/skills/effects/legend_marked_effect",
+	Name = "Marked",
+	Const = "LegendMarked"
+});
+
+::Legends.Effect.LegendMarkedTarget <- null;
+effectsDefs.push({
+	ID = "effects.legend_marked_target",
+	Script = "scripts/skills/effects/legend_marked_target_effect",
 	Name = "Marked",
 	Const = "LegendMarkedTarget"
 });
