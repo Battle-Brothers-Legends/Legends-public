@@ -35,7 +35,8 @@
 	{
 		onPrepareVariables(_vars);
 		::Const.LegendMod.extendVarsWithPronouns(_vars, this.m.Other.getGender(), "otherbrother");
-		::Const.LegendMod.extendVarsWithPronouns(_vars, this.m.Strong.getGender(), "strongbrother");
+		if (this.m.Strong != null)
+			::Const.LegendMod.extendVarsWithPronouns(_vars, this.m.Strong.getGender(), "strongbrother");
 	}
 
 	local onUpdateScore = o.onUpdateScore;
