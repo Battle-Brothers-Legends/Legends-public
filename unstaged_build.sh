@@ -1,6 +1,8 @@
 BBDir="${1-"c:\\Steam\\steamapps\\common\\Battle Brothers\\data"}"
 RepoDir="${2-"battlebrothers"}"
 
+current_dir=$(pwd)
+
 function checkForCompileError() {
 code=0
 while read -r line; do
@@ -38,27 +40,33 @@ function handleExit() {
 }
 
 function copyBrushes() {
-echo "Copying brushes to $BBDir\\brushes ..."
-mkdir -p "$BBDir\\brushes"
-cp -R brushes/. "$BBDir\\brushes"
-handleExit
-mkdir -p "$BBDir\\gfx"
-cp -R gfx/*.png "$BBDir\\gfx"
-handleExit
+    echo "Copying brushes to $BBDir\\brushes ..."
+    mkdir -p "$BBDir\\brushes"
+    cp -R brushes/. "$BBDir\\brushes"
+    handleExit
+    mkdir -p "$BBDir\\gfx"
+    cp -R gfx/*.png "$BBDir\\gfx"
+    handleExit
 }
 
 
-declare -a ArmorBrushes=(
-"legend_armor/0"
-"legend_armor/1"
-)
+declare -a ArmorBrushes=()
+for dir in "$current_dir/unpacked/legend_armor/"*/; do
+    dir_name=$(basename "$dir")
+    if [[ "$dir_name" =~ ^[0-9]+$ ]]; then
+        ArmorBrushes+=("legend_armor/$dir_name")
+    fi
+done
 
-declare -a HelmetBrushes=(
-"legend_helmets"
-"legend_helmets/0"
-"legend_helmets/1"
-"legend_helmets/2"
-)
+declare -a HelmetBrushes=()
+for dir in "$current_dir/unpacked/legend_helmets/"*/; do
+    # Check if directory name is numeric
+    dir_name=$(basename "$dir")
+    if [[ "$dir_name" =~ ^[0-9]+$ ]]; then
+        BRUSHES+=("legend_helmets/$dir_name")
+    fi
+done
+
 
 FILES=$(git status -s)
 while read -r line; do
