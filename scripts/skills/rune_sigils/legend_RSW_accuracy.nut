@@ -1,5 +1,13 @@
 this.legend_RSW_accuracy <- this.inherit("scripts/skills/skill", {
-	m = {},
+	m = {
+		Item = null
+	},
+
+	function setItem( _i )
+	{
+		this.m.Item = ::MSU.asWeakTableRef(_a);
+	}
+
 	function create()
 	{
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendRswAccuracy);
