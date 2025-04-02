@@ -56,6 +56,8 @@
 			return _properties.IsSpecializedInThrowing;
 		case _weapon.isWeaponType(::Const.Items.WeaponType.Polearm):
 			return _properties.IsSpecializedInPolearms;
+		case _weapon.isWeaponType(::Const.Items.WeaponType.Staff):
+			return _properties.IsSpecializedInStaves;
 		default:
 			return false;
 	}

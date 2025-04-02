@@ -62,6 +62,11 @@
 		}
 	}
 
+	o.getTooltip = function ()
+	{
+		return this.character_background.getTooltip();
+	}
+
 	o.onBuildDescription <- function ()
 	{
 		return "{The gods pity men, spurring many, not unlike %name%, to seek their favor. | Illiterate and born to poverty, %name% found refuge in tales of the gods. | Always one to devour books, it wasn\'t long until %name% discovered texts of the gods. | Some say the gods speak to us and, if true, they definitely spoke to %name%. | With new cults springing up in the wilds, %name% returned to the familiarity of the gods. | Raised by %their% firebrand father, %name% spent much of %their% early years nursing wounds from good floggings. The gods would approve.} {When war came to the land, the gods told %them% to take part for greater justice. | As cultists spread their vile word like disease on a rat, %name% saw fit to take up arms and battle the heresy. | Straying from %their% faith, %they% committed a horrific crime in %randomtown%. While flagellating %themselves% nightly, %they% seeks redemption. | Hearing but a mere rumor of a holy place, the pilgrim took up staff and supplies to seek it out. | Now that war has returned to the land, the gods devotee wished to find out why, through prayer and corporeal means. | A night spent in a cave revealed to the believer that the gods demanded blood. %name% was not one to refuse their beckoning. | After raiders looted the coffers of their church, %name%\'s quest was to refill the pure purses.} {As the laws of the universe bend to a world-consuming war, a thaumaturge like %name% might be useful to have around. | %They% carries a whip with glass-barbed leather. This is not for your enemies, %they% states, but for purity. Interesting. | %They% professes to hate evil, but for a few crowns %name% can be persuaded to make anything \'evil\'. | This chosen one seeks the difficult road, no doubt why %they% saw fit to join a mercenary band. | If %name% had the power, you believe %they%\'d purge the entire world. | Talks of the gods might be a tad irksome, but %name%\'s fiery passion lends itself well to the battlefield. | So enamored with the world of the gods, it\'s not much of a surprise that the pilgrim sees the real one filled with enemies.}";

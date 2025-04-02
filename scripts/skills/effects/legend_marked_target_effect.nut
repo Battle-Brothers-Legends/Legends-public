@@ -1,4 +1,4 @@
-this.legend_marked_target <- this.inherit("scripts/skills/skill", {
+this.legend_marked_target_effect <- this.inherit("scripts/skills/skill", {
 	m = {
 		TurnsLeft = 2
 	},

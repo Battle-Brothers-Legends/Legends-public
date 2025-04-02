@@ -25,9 +25,12 @@
 	o.isVisible = function () { return true; }
 	o.onUpdate = function () {}
 
-	o.getMultiplier <- function ()
-	{
+	o.getMultiplier <- function () {
 		return this.m.Multiplier;
+	}
+
+	o.onEvaluate = function () {
+		this.follower.onEvaluate();
 	}
 });
 

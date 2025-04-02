@@ -186,9 +186,7 @@ this.encounter <- {
                 notnagel = brothers[i];
 
                 if (brothers.len() > 1)
-                {
                     brothers.remove(i);
-                }
             }
             else if (brothers.len() > 1 && brothers[i].getBackground().getID() == "background.slave")
             {
@@ -202,55 +200,40 @@ this.encounter <- {
         brothers.remove(r);
 
         if (brothers.len() != 0)
-            brother2 = brothers[this.Math.rand(0, brothers.len() - 1)].getName();
+            brother2 = brothers[::Math.rand(0, brothers.len() - 1)].getName();
         else if (slaves.len() != 0)
-            brother2 = slaves[this.Math.rand(0, slaves.len() - 1)].getName();
+            brother2 = slaves[::Math.rand(0, slaves.len() - 1)].getName();
         else if (notnagel != null)
 			brother2 = notnagel.getName();
 		else
 			brother2 = brother1;
 
-        local villages = this.World.EntityManager.getSettlements();
-        local randomTown;
+		local towns = this.World.EntityManager.getSettlements();
+		local nearestTown;
+		local nearestDist = 9999;
+		foreach (t in towns)
+		{
+			local d = t.getTile().getDistanceTo(::World.State.getPlayer().getTile());
+			if (d < nearestDist && t.isAlliedWithPlayer() && ::World.FactionManager.getFaction(t.getFaction()).getContracts().len() != 0)
+			{
+				nearestTown = t;
+				nearestDist = d;
+			}
+		}
+		if (nearestTown == null)
+			return;
 
         local text;
         local vars = [
-        [
-			"SPEECH_ON",
-			"\n\n[color=#bcad8c]\""
-        ],
-        [
-			"SPEECH_START",
-			"[color=#bcad8c]\""
-        ],
-        [
-			"SPEECH_OFF",
-			"\"[/color]\n\n"
-        ],
-        [
-			"companyname",
-			this.World.Assets.getName()
-        ],
-        [
-			"randomname",
-			this.Const.Strings.CharacterNames[this.Math.rand(0, this.Const.Strings.CharacterNames.len() - 1)]
-        ],
-        [
-			"randomnoble",
-			this.Const.Strings.KnightNames[this.Math.rand(0, this.Const.Strings.KnightNames.len() - 1)]
-        ],
-        [
-			"randombrother",
-			brother1
-        ],
-        [
-			"randombrother2",
-			brother2
-        ],
-        [
-			"randomtown",
-			randomTown
-        ]
+			["SPEECH_ON", "\n\n[color=#bcad8c]\""],
+			["SPEECH_START", "[color=#bcad8c]\""],
+			["SPEECH_OFF", "\"[/color]\n\n"],
+			["companyname", ::World.Assets.getName()],
+			["randomname", ::Const.Strings.CharacterNames[::Math.rand(0, ::Const.Strings.CharacterNames.len() - 1)]],
+			["randomnoble", ::Const.Strings.KnightNames[::Math.rand(0, ::Const.Strings.KnightNames.len() - 1)]],
+			["randombrother", brother1],
+			["randombrother2", brother2],
+        	["settlement", nearestTown.getName()]
         ];
         this.onPrepareVariables(vars);
         return this.buildTextFromTemplate(_text, vars);
@@ -259,13 +242,9 @@ this.encounter <- {
     function getUITitle()
     {
         if (this.m.ActiveScreen && "Title" in this.m.ActiveScreen)
-        {
             return this.m.ActiveScreen.Title;
-        }
         else
-        {
             return this.m.Name;
-        }
     }
 
     function getUIButtons()

@@ -117,6 +117,27 @@ this.legend_berserker_background <- this.inherit("scripts/skills/backgrounds/cha
 		}
 	}
 
+	function getTooltip ()
+	{
+		local ret = this.character_background.getTooltip();
+		ret.push({
+			id = 12,
+			type = "text",
+			icon = "ui/icons/regular_damage.png",
+			text = "[color=" + this.Const.UI.Color.PositiveValue + "]5%[/color] bonus damage to [color=#400080]Hand to Hand[/color] and [color=#400080]Choke[/color]"
+		})
+		return ret;
+	}
+
+	function onAnySkillUsed( _skill, _targetEntity, _properties )
+	{
+		if (_skill.getID() == ::Legends.Actives.getID(::Legends.Active.LegendChoke) || _skill.getID() == ::Legends.Actives.getID(::Legends.Active.HandToHand))
+		{
+			_properties.DamageTotalMult *= 1.05;
+		}
+	}
+
+
 	//Default Male
 	function setGender(_gender = -1)
 	{

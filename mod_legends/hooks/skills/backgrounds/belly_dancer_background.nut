@@ -66,6 +66,11 @@
 		}
 	}
 
+	o.getTooltip = function ()
+	{
+		return this.character_background.getTooltip();
+	}
+
 	o.onChangeAttributes = function ()
 	{
 		local c = {

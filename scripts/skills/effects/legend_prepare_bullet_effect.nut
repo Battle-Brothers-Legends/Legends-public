@@ -58,6 +58,9 @@ this.legend_prepare_bullet_effect <- this.inherit("scripts/skills/skill", {
 	function onUpdate( _properties )
 	{
 		local weapon = this.getContainer().getActor().getMainhandItem();
+		if (weapon == null)
+			this.removeSelf();
+			return;
 		if (weapon.getID() != "weapon.legend_sling")
 			this.removeSelf();
 	}
@@ -79,7 +82,7 @@ this.legend_prepare_bullet_effect <- this.inherit("scripts/skills/skill", {
 		this.removeSelf();
 	}
 
-	function onMovementCompleted( _tile )
+	function onMovementFinished()
 	{
 		this.removeSelf();
 	}

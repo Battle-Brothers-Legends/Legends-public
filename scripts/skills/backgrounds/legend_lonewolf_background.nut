@@ -90,14 +90,13 @@ this.legend_lonewolf_background <- this.inherit("scripts/skills/backgrounds/char
 		this.m.PerkTreeDynamic = {
 			Weapon = [
 				this.Const.Perks.TwoHandedTree,
-				this.Const.Perks.PolearmTree,
-				this.Const.Perks.AxeTree,
 				this.Const.Perks.MaceTree,
 				this.Const.Perks.FlailTree,
+				this.Const.Perks.HammerTree,
+				this.Const.Perks.AxeTree,
+				this.Const.Perks.HammerTree,
 				this.Const.Perks.ThrowingTree,
-				this.Const.Perks.CrossbowTree,
-				this.Const.Perks.BowTree,
-				this.Const.Perks.HammerTree
+				this.Const.Perks.FistsTree
 			],
 			Defense = [
 				this.Const.Perks.HeavyArmorTree
@@ -114,7 +113,9 @@ this.legend_lonewolf_background <- this.inherit("scripts/skills/backgrounds/char
 				this.Const.Perks.SwordmastersTree
 			],
 			Class = [],
-			Magic = []
+			Magic = [
+				this.Const.Perks.ImmortalMagicTree
+			]
 		}
 	}
 
@@ -131,6 +132,7 @@ this.legend_lonewolf_background <- this.inherit("scripts/skills/backgrounds/char
 			this.m.Hairs = this.Const.Hair.AllFemale;
 			this.m.HairColors = this.Const.HairColors.All;
 			this.m.Bodies = this.Const.Bodies.AllFemale;
+			this.m.Names = this.Const.Strings.CharacterNamesFemale;
 		}	
 		else if (this.m.Ethnicity == 1)
 		{

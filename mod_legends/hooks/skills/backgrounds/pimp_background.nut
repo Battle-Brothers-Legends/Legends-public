@@ -67,6 +67,11 @@
 		this.m.Bodies = this.Const.Bodies.Thick;
 	}
 
+	o.getTooltip = function ()
+	{
+		return this.character_background.getTooltip();
+	}
+
 	o.onBuildDescription <- function ()
 	{
 		return "";

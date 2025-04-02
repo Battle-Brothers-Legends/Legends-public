@@ -54,15 +54,23 @@ declare -a BRUSHES=(
 "ui"
 "orientation"
 "legend_objects"
-"legend_helmets/0"
-"legend_helmets/1"
-"legend_helmets/2"
-"legend_armor/0"
-"legend_armor/1"
-"legend_armor/2"
-"legend_armor/3"
-"legend_armor/4"
 )
+
+for dir in "$current_dir/unpacked/legend_helmets/"*/; do
+    # Check if directory name is numeric
+    dir_name=$(basename "$dir")
+    if [[ "$dir_name" =~ ^[0-9]+$ ]]; then
+        BRUSHES+=("legend_helmets/$dir_name")
+    fi
+done
+
+for dir in "$current_dir/unpacked/legend_armor/"*/; do
+    dir_name=$(basename "$dir")
+    if [[ "$dir_name" =~ ^[0-9]+$ ]]; then
+        BRUSHES+=("legend_armor/$dir_name")
+    fi
+done
+
 
 rm -rf brushes
 mkdir -p brushes

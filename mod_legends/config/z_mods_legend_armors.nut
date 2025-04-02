@@ -864,7 +864,7 @@ if (!("ArmorObjs" in ::Const.LegendMod))
 			//[1, "cloth/legend_tunic"], //20
 		],
 		Chain = [
-			[1, ""],
+			// [1, ""],
 			[1, "chain/legend_armor_hauberk"], //95
 			[1, "chain/legend_armor_hauberk_full"], //115
 			[1, "chain/legend_armor_hauberk_sleevless"], //65

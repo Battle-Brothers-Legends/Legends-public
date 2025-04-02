@@ -68,20 +68,20 @@ this.legend_vala_inscription_token <- this.inherit("scripts/items/item", {
 	function onUse(_actor, _item = null) {
 		local target = null;
 		local def = ::Legends.Runes.get(this.getRuneVariant());
-		if (def.ItemType == ::Const.Items.ItemType.Weapon) {
-			target = _actor.getItems().getItemAtSlot(this.Const.ItemSlot.Mainhand);
+		if (def.ItemType == ::Legends.Runes.Target.Weapon) {
+			target = _actor.getItems().getItemAtSlot(::Const.ItemSlot.Mainhand);
 			if (target == null)
 				return false;
-		} else if (def.ItemType == ::Const.Items.ItemType.Helmet) {
-			target = _actor.getItems().getItemAtSlot(this.Const.ItemSlot.Head);
+		} else if (def.ItemType == ::Legends.Runes.Target.Helmet) {
+			target = _actor.getItems().getItemAtSlot(::Const.ItemSlot.Head);
 			if (target == null)
 				return false;
-		} else if (def.ItemType == ::Const.Items.ItemType.Armor) {
-			target = _actor.getItems().getItemAtSlot(this.Const.ItemSlot.Body);
+		} else if (def.ItemType == ::Legends.Runes.Target.Armor) {
+			target = _actor.getItems().getItemAtSlot(::Const.ItemSlot.Body);
 			if (target == null)
 				return false;
-		} else if (def.ItemType == ::Const.Items.ItemType.Shield) {
-			target = _actor.getItems().getItemAtSlot(this.Const.ItemSlot.Offhand);
+		} else if (def.ItemType == ::Legends.Runes.Target.Shield) {
+			target = _actor.getItems().getItemAtSlot(::Const.ItemSlot.Offhand);
 			if (target == null)
 				return false;
 			if (target.getID().find("shield") == null)

@@ -26,18 +26,19 @@ gfx/*.png
 *.cnut
 *.DS_Store
 temp.nut
+log.txt
 NUL
 
 unpacked/legend_enemies/metadata.xml
 unpacked/**/*dead_arrows.png
 unpacked/**/*dead_javelin.png
 unpacked/legend_armor/metadata.xml
+unpacked/legend_armor/[0-9]/
+unpacked/legend_armor/[0-9][0-9]/
 unpacked/legend_helmets/metadata.xml
-unpacked/legend_helmets/0
-unpacked/legend_helmets/1
-unpacked/legend_helmets/2
-unpacked/legend_helmets/3
-unpacked/legend_helmets/4
+unpacked/legend_helmets/[0-9]/
+unpacked/legend_helmets/[0-9][0-9]/
+
 !unpacked/dead_arrows.png
 !unpacked/dead_javelin.png
 !**/bust_naked_body_00_dead*

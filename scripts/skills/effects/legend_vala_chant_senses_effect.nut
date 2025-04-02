@@ -59,7 +59,7 @@ this.legend_vala_chant_senses_effect <- this.inherit("scripts/skills/effects/leg
 		}
 	}
 
-	function onMovementCompleted( _tile )
+	function onMovementFinished()
 	{
 		if (!this.checkEntities())
 		{

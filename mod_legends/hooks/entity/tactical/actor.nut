@@ -228,14 +228,11 @@
 			}
 		}.bindenv(this);
 		// Lionheart perk stop
-
 		onMovementFinish();
 		// restore state
 		foreach (i, actor in otherActors)
 			actor.isAlliedWith = isAliedPtrs[i];
 		this.checkMorale = fnPtr;
-
-		this.m.Skills.MovementCompleted(currentTile);
 	}
 
 	o.isArmedWithMagicStaff <- function()

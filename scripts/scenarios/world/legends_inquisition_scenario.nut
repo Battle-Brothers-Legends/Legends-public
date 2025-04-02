@@ -258,7 +258,7 @@ this.legends_inquisition_scenario <- this.inherit("scripts/scenarios/world/start
 		this.addBroToRoster(_roster, "monk_background", 6);
 		this.addBroToRoster(_roster, "witchhunter_background", 4);
 		this.addBroToRoster(_roster, "legend_youngblood_background", 4);
-		this.addBroToRoster(_roster, "legend_crusader_background", 8);
+		this.addBroToRoster(_roster, "crusader_background", 8);
 
 
 		foreach( i, bro in bros )

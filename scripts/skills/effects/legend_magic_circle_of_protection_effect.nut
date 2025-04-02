@@ -42,7 +42,7 @@ this.legend_magic_circle_of_protection_effect <- this.inherit("scripts/skills/sk
 		return ret;
 	}
 
-	function onMovementCompleted( _tile )
+	function onMovementFinished()
 	{
 		if (!this.isInRange())
 		{

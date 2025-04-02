@@ -3,6 +3,26 @@ if (!("Perks" in ::Const))
 	::Const.Perks <- {};
 }
 
+::Const.Perks.ImmortalMagicTree <- {
+	ID = "ImmortalMagicTree",
+	Name = "Immortal",
+	Descriptions = [
+		"combat"
+	],
+	Tree = [
+		[],
+		[],
+		[],
+		[],
+		[
+			::Legends.Perk.LegendLionheart,
+			::Legends.Perk.LegendBattleheart
+		],
+		[],
+		[]
+	]
+};
+
 ::Const.Perks.ValaChantMagicTree <- {
 	ID = "ValaChantMagicTree",
 	Name = "Vala Chant",
@@ -250,10 +270,13 @@ if (!("Perks" in ::Const))
 		[::Legends.Perk.LegendPush],
 		[::Legends.Perk.LegendMagicDaze],
 		[::Legends.Perk.LegendEntice],
-		[::Legends.Perk.LegendHorrify],
+		[
+			::Legends.Perk.LegendHorrify,
+			::Legends.Perk.LegendStun
+		],
 		[::Legends.Perk.LegendTerrifyingVisage],
 		[],
-		[::Legends.Perk.LegendStun]
+		[]
 	]
 };
 
@@ -393,7 +416,8 @@ if (!("Perks" in ::Const))
 			::Legends.Perk.LegendMagicMissileFocus
 		],
 		[
-			::Legends.Perk.LegendChainLightning
+			::Legends.Perk.LegendChainLightning,
+			::Legends.Perk.LegendMagicSleep
 		],
 		[
 			::Legends.Perk.LegendLevitate,
@@ -401,8 +425,7 @@ if (!("Perks" in ::Const))
 		],
 		[
 			::Legends.Perk.LegendMagicMissileMastery,
-			::Legends.Perk.LegendFirefield,
-			::Legends.Perk.LegendMagicSleep
+			::Legends.Perk.LegendFirefield
 		]
 	]
 };

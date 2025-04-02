@@ -57,6 +57,11 @@
 
 	o.getTooltip = function ()
 	{
+		return this.character_background.getTooltip();
+	}
+
+	o.getTooltip = function ()
+	{
 		local ret = this.character_background.getTooltip();
 		ret.push(
 			{

@@ -74,7 +74,7 @@ this.legend_vala_trance_perspective_effect <- this.inherit("scripts/skills/skill
 	}
 
 
-	function onMovementCompleted( _tile )
+	function onMovementFinished()
 	{
 		if (this.m.Vala == null)
 		{

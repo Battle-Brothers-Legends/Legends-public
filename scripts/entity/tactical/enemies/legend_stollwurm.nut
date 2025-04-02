@@ -127,9 +127,9 @@ this.legend_stollwurm <- this.inherit("scripts/entity/tactical/actor", {
 
 	function onDeath( _killer, _skill, _tile, _fatalityType )
 	{
+		local flip = this.Math.rand(0, 100) < 50;
 		if (_tile != null)
 		{
-			local flip = this.Math.rand(0, 100) < 50;
 			local decal;
 			this.m.IsCorpseFlipped = flip;
 			local body = this.getSprite("body");
@@ -172,8 +172,7 @@ this.legend_stollwurm <- this.inherit("scripts/entity/tactical/actor", {
 			this.spawnFlies(_tile);
 		}
 
-		local deathLoot = this.getItems().getDroppableLoot(_killer);
-		local tileLoot = this.getLootForTile(_killer, deathLoot);
+		local tileLoot = this.getLootForTile(_killer, []);
 		local corpse = this.generateCorpse(_tile, _fatalityType);
 		this.dropLoot(_tile, tileLoot, !flip);
 
@@ -191,6 +190,7 @@ this.legend_stollwurm <- this.inherit("scripts/entity/tactical/actor", {
 	{
 		local corpse = clone this.Const.Corpse;
 		corpse.CorpseName = "A Stollwurm";
+		corpse.Items = this.getItems();
 		corpse.IsHeadAttached = _fatalityType != this.Const.FatalityType.Decapitated;
 		corpse.Tile = _tile;
 		return corpse;
@@ -402,9 +402,9 @@ this.legend_stollwurm <- this.inherit("scripts/entity/tactical/actor", {
 		}
 	}
 
-	function onMovementFinish()
+	function onMovementFinish(_tile)
 	{
-		this.actor.onMovementFinish();
+		this.actor.onMovementFinish(_tile);
 
 		if (this.m.Tail != null && !this.m.Tail.isNull() && this.m.Tail.isAlive())
 		{

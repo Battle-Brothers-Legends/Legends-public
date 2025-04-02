@@ -24,7 +24,6 @@
 		}
 	}
 
-
 	o.onDeath = function ( _killer, _skill, _tile, _fatalityType )
 	{
 		if (!this.Tactical.State.isScenarioMode() && _killer != null && _killer.isPlayerControlled())
@@ -140,6 +139,18 @@
 		}
 
 		this.actor.onDeath(_killer, _skill, _tile, _fatalityType);
+	}
+
+	o.generateCorpse = function (_tile, _fatalityType)
+	{
+		local corpse = clone this.Const.Corpse;
+		corpse.CorpseName = "An " + this.getName();
+		corpse.Value = 2.0;
+		corpse.Items = this.getItems();
+		corpse.IsResurrectable = false;
+		corpse.IsHeadAttached = _fatalityType != this.Const.FatalityType.Decapitated;
+		corpse.Tile = _tile;
+		return corpse;
 	}
 
 	local onInit = o.onInit;
