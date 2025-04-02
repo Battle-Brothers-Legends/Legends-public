@@ -10,6 +10,7 @@
 	o.m.FormationIndex <- 0;
 	o.m.FormationNames <- [];
 	o.m.LastRosterSize <- 0;
+	o.m.IsArenaTooled <- false;
 
 	o.getArmorPartsF <- function()
 	{
