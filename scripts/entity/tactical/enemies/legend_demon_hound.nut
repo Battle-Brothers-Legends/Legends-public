@@ -82,7 +82,7 @@ this.legend_demon_hound <- this.inherit("scripts/entity/tactical/actor", {
 		if (result.Destinations.len() == 0)
 		{
 			return;
-		};
+		}
 
 		local targetTile = result.Destinations[this.Math.rand(0, result.Destinations.len() - 1)];
 		local tag = {
