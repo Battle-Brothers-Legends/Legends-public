@@ -24,7 +24,7 @@
 		local tooltip = getTooltip();
 		if (this.getContainer().getActor().getCurrentProperties().IsSpecializedInCleavers)
 		{
-			ret.push({
+			tooltip.push({
 				id = 8,
 				type = "text",
 				icon = "ui/icons/special.png",
