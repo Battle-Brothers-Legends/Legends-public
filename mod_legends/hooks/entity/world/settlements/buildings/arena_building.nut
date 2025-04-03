@@ -29,7 +29,7 @@
 	
 		if(this.World.Assets.m.IsArenaTooled && !this.isClosed() && (this.World.getTime().Days >= this.m.CooldownUntil) && this.m.DailyRefresh)
 		{
-			this.m.ArenaAttemptsRefresh = 10;
+			this.m.ArenaAttemptsRefresh = 6;
 			this.m.DailyRefresh = false;
 		}
 		onClicked(_townScreen);
