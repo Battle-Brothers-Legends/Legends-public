@@ -103,7 +103,12 @@
 			}
 		}
 
-		this.m.Payment.Pool = pay * this.getPaymentMult() * this.getReputationToPaymentMult();
+		local paymentMult = 1;
+		if(this.World.Assets.m.IsArenaTooled){
+			paymentMult = 1.25
+		}
+
+		this.m.Payment.Pool = pay * this.getPaymentMult() * this.getReputationToPaymentMult() * paymentMult;
 		this.m.Payment.Completion = 1.0;
 	}
 

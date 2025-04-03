@@ -6,8 +6,8 @@ this.arena_follower <- this.inherit("scripts/retinue/follower", {
 		this.m.ID = "follower.arena";
 		this.m.Name = "Gladiator's Tools";
 		this.m.Description = "Winning fights in the arena can be tough, however with these tools one can entertain the croud for many more hours.";
-		this.m.Image = "ui/campfire/blacksmith_01";
-		this.m.Cost = 3000;
+		this.m.Image = "ui/campfire/legend_blacksmith_01";
+		this.m.Cost = 3250;
 		this.m.Effects = [
 			"Increase winnings from the arena by 25%",
 			"Fight up to 5 arena matches per day"
@@ -19,7 +19,7 @@ this.arena_follower <- this.inherit("scripts/retinue/follower", {
 
 	function onUpdate()
 	{
-		this.World.Assets.m.IsArenaTooled = true;
+		::World.Assets.m.IsArenaTooled = true;
 	}
 
 	function onEvaluate()
