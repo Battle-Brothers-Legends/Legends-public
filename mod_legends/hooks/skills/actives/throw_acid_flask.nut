@@ -6,6 +6,7 @@
 		this.m.Item = this.WeakTableRef(_i);
 	}
 
+	local getTooltip = o.getTooltip;
 	o.getTooltip = function()
 	{
 		local ret = getTooltip();
