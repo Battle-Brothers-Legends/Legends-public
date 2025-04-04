@@ -22,16 +22,5 @@ this.arena_follower <- this.inherit("scripts/retinue/follower", {
 		::World.Assets.m.IsArenaTooled = true;
 	}
 
-	function onEvaluate()
-	{
-		local arena_wins = ::World.Statistics.getFlags().getAsInt("ArenaFightsWon");
-
-		this.m.Requirements[0].Text = this.World.Assets.getName() + " have triumphed in the arena " + arena_wins + " times.";
-		
-		if (arena_wins >= 5)
-		{
-			this.m.Requirements[0].IsSatisfied = true;
-		}
-	}
 
 });

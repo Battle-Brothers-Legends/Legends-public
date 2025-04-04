@@ -8,7 +8,8 @@
 	{
 
 		this.updateAttempts();
-		if(this.m.NumArenaAttempts == 0){
+		if(this.m.NumArenaAttempts == 0)
+		{
 			refreshCooldown();
 			this.m.DailyRefresh = true;
 		}
@@ -20,7 +21,6 @@
 	
 		if(this.World.Assets.m.IsArenaTooled && this.m.DailyRefresh)
 		{
-
 			this.m.NumArenaAttempts = 3;
 			this.m.DailyRefresh = false;
 		}
@@ -32,7 +32,8 @@
 		if(this.World.Assets.m.IsArenaTooled)
 		{
 			this.m.NumArenaAttempts--;
-		}else
+		}
+		else
 		{
 			this.m.NumArenaAttempts = 0;
 		}
@@ -41,21 +42,27 @@
 	o.getAttempts <- function ()
 	{
 		if(!this.World.Assets.m.IsArenaTooled){
-			if(this.isClosed()){
+			if(this.isClosed())
+			{
 				return [0,1]
 			}
-			else if(this.m.DailyRefresh){
+			else if(this.m.DailyRefresh)
+			{
 				return [1,1];
-			}else{
+			}
+			else
+			{
 				return [0,1];
 			}
 		}
 		else
 		{
-			if(this.isClosed()){
+			if(this.isClosed())
+			{
 				return [0,3]
 			}
-			else if(this.m.DailyRefresh){
+			else if(this.m.DailyRefresh)
+			{
 				return [3,3];
 			}
 			else
@@ -75,11 +82,10 @@
 
 	local onDeserialize = o.onDeserialize;
 	o.onDeserialize = function (_in){
-        onDeserialize(_in);
-        if(::ArenaRetinue.Mod.Serialization.isSavedVersionAtLeast("1.0.0", _in.getMetaData())) {
-          this.m.DailyRefresh = _in.readBool();
-          this.m.NumArenaAttempts = _in.readI16();
-        }
+		onDeserialize(_in);
+
+		this.m.DailyRefresh = _in.readBool();
+		this.m.NumArenaAttempts = _in.readI16();
 	}
 
 
