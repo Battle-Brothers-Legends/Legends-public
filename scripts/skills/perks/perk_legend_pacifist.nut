@@ -33,7 +33,7 @@ this.perk_legend_pacifist <- this.inherit("scripts/skills/skill", {
 			return;
 		if (this.m.ForcedToFight != null)
 		{
-			actor.worsenMood(1.5, "Was forced to attack someone agains their wishes");
+			actor.worsenMood(1.5, "Was forced to attack someone against their wishes");
 			this.m.ForcedToFight = null;
 		}
 	}
