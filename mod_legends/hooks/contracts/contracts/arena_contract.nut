@@ -340,13 +340,20 @@
 	local onClear = o.onClear;
 	o.onClear = function ()
 	{
-		foreach (bro in this.m.WasInReserves)
-		{
-			bro.setInReserves(true);
-		}
+		if(this.m.Home != null && this.m.IsActive){
+			foreach (bro in this.m.WasInReserves)
+			{
+				bro.setInReserves(true);
+			}
 
-		this.m.WasInReserves.clear();
-		onClear();
+			this.m.WasInReserves.clear();
+
+			local building = this.m.Home.getBuilding("building.arena");
+			local original = building.refreshCooldown;
+			building.refreshCooldown = function () {};
+			onClear();
+			building.refreshCooldown = original;
+		}	
 	}
 
 	local onPrepareVariables = o.onPrepareVariables;
