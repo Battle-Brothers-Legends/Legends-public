@@ -51,9 +51,7 @@
 	o.setActiveContract = function ( _contract, _alreadyStarted = false )
 	{
 		if (this.m.Active != null)
-		{
 			return;
-		}
 
 		if (!_alreadyStarted)
 		{
@@ -76,6 +74,7 @@
 		_contract.setActive(true);
 		this.World.State.getWorldScreen().updateContract(this.m.Active);
 		this.World.State.getTownScreen().updateContracts();
+		this.World.State.getCampScreen().updateContracts();
 
 		if (!_alreadyStarted)
 		{

@@ -349,6 +349,10 @@ CampScreenMainDialogModule.prototype.loadFromData = function (_data)
 		content.createImage(Path.GFX + _data['Foreground'], null, null, 'display-block foreground');
 	}
 
+	if('Contracts' in _data && _data['Contracts'] !== null)
+	{
+		this.updateContracts(_data);
+	}
 };
 
 CampScreenMainDialogModule.prototype.createSlot = function (_data, _i, _content)
@@ -395,6 +399,130 @@ CampScreenMainDialogModule.prototype.createSlot = function (_data, _i, _content)
 
 			slot.attr('src', Path.GFX + _data.Image + '.png');
 			slot_placeholder.removeClass('opacity-almost-none');
+		});
+	}
+}
+
+CampScreenMainDialogModule.prototype.updateContracts = function (_data)
+{
+	var content = this.mDialogContainer.findDialogContentContainer();
+
+	for(var i=0; i < 10; ++i)
+	{
+		for(var j=0; j<4; ++j)
+		{
+			var c = content.find('.contract' + i + ':first');
+
+			if (c !== undefined && c !== null)
+			{
+				c.unbindTooltip();
+				c.remove();
+			}
+		}
+	}
+
+	if(_data.Contracts.length != 0)
+	{
+		for (var i = 0; i < _data.Contracts.length; ++i)
+		{
+			this.createContract(_data.Contracts[i], i, _data.IsContractActive, content);
+		}
+	}
+	else if(_data.IsContractsLocked === true)
+	{
+		var contract = content.createImage(Path.GFX + Asset.ICON_CONTRACT_LOCKED, null, null, 'display-block is-contract contract0');
+		contract.bindTooltip({ contentType: 'ui-element', elementId: TooltipIdentifier.WorldTownScreen.MainDialogModule.ContractLocked });
+	}
+}
+
+CampScreenMainDialogModule.prototype.createContract = function (_data, _i, _isDisabled, _content)
+{
+	if(_data == null)
+	{
+		return;
+	}
+
+	var self = this;
+	var classes = 'display-block is-contract contract' + _i + (_data.IsNegotiated ? ' is-negotiated' : '');
+
+	if(_isDisabled === true)
+		classes += ' is-disabled';
+
+	var contract = _content.createImage(Path.GFX + _data.Icon + (_isDisabled ? 'w.png' : '.png'), null, null, classes);
+	var scroll;
+	var category;
+
+	if(_data.IsNegotiated)
+	{
+		contract.bindTooltip({ elementOwner: _data.ID, contentType: 'ui-element', elementId: _isDisabled ? TooltipIdentifier.WorldTownScreen.MainDialogModule.ContractDisabled : TooltipIdentifier.WorldTownScreen.MainDialogModule.ContractNegotiated });
+		scroll = _content.createImage(Path.GFX + 'ui/icons/scroll_01' + (_isDisabled ? '_sw.png' : '.png'), null, null, 'display-block is-scroll contract' + _i + (_isDisabled ? ' is-disabled' : ''));
+	}
+	else
+	{
+		contract.bindTooltip({ elementOwner: _data.ID, contentType: 'ui-element', elementId: _isDisabled ? TooltipIdentifier.WorldTownScreen.MainDialogModule.ContractDisabled : TooltipIdentifier.WorldTownScreen.MainDialogModule.Contract });
+		scroll = _content.createImage(Path.GFX + 'ui/icons/scroll_02' + (_isDisabled ? '_sw.png' : '.png'), null, null, 'display-block is-scroll contract' + _i + (_isDisabled ? ' is-disabled' : ''));
+	}
+
+	// category = _content.createImage(Path.GFX + _data.CategoryIcon, null, null, 'display-block is-contract-category contract-category-alignment-' + _data.Alignment + ' contract'  + _i);
+	// category = _content.createImage(Path.GFX + _data.CategoryIcon, null, null, 'display-block is-contract-category contract-category-alignment-middle' + ' contract'  + _i);
+
+	if(_data.CategoryIcon)
+	{
+		category = _content.createImage(Path.GFX + _data.CategoryIcon + (_isDisabled ? '_sw.png' : '.png'), null, null, 'display-block is-contract-category-' + _data.Alignment + ' contract' + _i);
+	}
+
+
+	// if(_data.CategoryIcon)
+	// {
+	// 	category = _content.createImage(Path.GFX + _data.CategoryIcon, null, null, 'display-block is-contract-category contract' + _i);
+	// }
+
+	var difficulty = _content.createImage(Path.GFX + _data.DifficultyIcon + (_isDisabled ? '_sw.png' : '.png'), null, null, 'display-block is-difficulty contract' + _i + (_isDisabled ? ' is-disabled' : ''));
+
+	if(!_isDisabled)
+	{
+		var img1 = new Image();
+		img1.src = Path.GFX + _data.Icon + 'b.png';
+		var img2 = new Image();
+		img2.src = Path.GFX + 'ui/icons/scroll_' + (_data.IsNegotiated ? '01' : '02') + '_b.png';
+		if(_data.CategoryIcon)
+		{
+			var img3 = new Image();
+			img3.src = Path.GFX + _data.CategoryIcon + '_b.png';
+		}
+
+
+		contract.click(function (_event)
+		{
+			self.mParent.notifyBackendContractClicked(_data.ID);
+		});
+
+		contract.mouseover(function()
+		{
+			this.classList.add('is-highlighted');
+			scroll.addClass('is-highlighted');
+			difficulty.addClass('is-highlighted');
+
+			scroll.attr('src', Path.GFX + 'ui/icons/scroll_' + (_data.IsNegotiated ? '01' : '02') + '_b.png');
+			contract.attr('src', Path.GFX + _data.Icon + 'b.png');
+			if(_data.CategoryIcon)
+			{
+				category.attr('src', Path.GFX + _data.CategoryIcon + '_b.png')
+			}
+		});
+
+		contract.mouseout(function()
+		{
+			this.classList.remove('is-highlighted');
+			scroll.removeClass('is-highlighted');
+			difficulty.removeClass('is-highlighted');
+
+			scroll.attr('src', Path.GFX + 'ui/icons/scroll_' + (_data.IsNegotiated ? '01' : '02') + '.png');
+			contract.attr('src', Path.GFX + _data.Icon + '.png');
+			if(_data.CategoryIcon)
+			{
+				category.attr('src', Path.GFX + _data.CategoryIcon + '.png');
+			}
 		});
 	}
 }

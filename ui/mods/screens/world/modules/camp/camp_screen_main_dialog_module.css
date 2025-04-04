@@ -1061,3 +1061,120 @@
 
 	line-height: 3.0rem;
 }
+
+
+.camp-screen > .l-main-dialog-container .contract-scroll
+{
+	position: absolute;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: auto;
+	margin-bottom: auto;
+}
+
+.camp-screen > .l-main-dialog-container .contract0
+{
+	position: absolute;
+	left: 2.0rem;
+}
+
+.camp-screen > .l-main-dialog-container .contract1
+{
+	position: absolute;
+	left: 8.0rem;
+}
+
+.camp-screen > .l-main-dialog-container .contract2
+{
+	position: absolute;
+	left: 14.0rem;
+}
+
+.camp-screen > .l-main-dialog-container .contract3
+{
+	position: absolute;
+	left: 20.0rem;
+}
+
+.camp-screen > .l-main-dialog-container .contract4
+{
+	position: absolute;
+	left: 26.0rem;
+}
+
+.camp-screen > .l-main-dialog-container .contract5
+{
+	position: absolute;
+	left: 32.0rem;
+}
+
+.camp-screen > .l-main-dialog-container .contract6
+{
+	position: absolute;
+	left: 39.0rem;
+}
+
+.camp-screen > .l-main-dialog-container .contract7
+{
+	position: absolute;
+	left: 45.0rem;
+}
+
+.camp-screen > .l-main-dialog-container .contract8
+{
+	position: absolute;
+	left: 51.0rem;
+}
+
+.camp-screen > .l-main-dialog-container .contract9
+{
+	position: absolute;
+	left: 57.0rem;
+}
+
+.camp-screen > .l-main-dialog-container .is-contract
+{
+	 max-width: 5.0rem;
+	 height: auto;
+	 top: 2.0rem;
+}
+
+.camp-screen > .l-main-dialog-container .is-scroll
+{
+	 top: 3.4rem;
+	 margin-left: 0.6rem;
+	 pointer-events: none;
+}
+
+/*Bottom Middle*/
+.camp-screen > .l-main-dialog-container .is-contract-category-middle
+{
+	 top: 7.4rem;
+	 margin-left: 0.9rem;
+	 pointer-events: none;
+}
+
+/*Bottom Right*/
+.camp-screen > .l-main-dialog-container .is-contract-category-right
+{
+	 top: 7.4rem;
+	 margin-left: 2.6rem;
+	 pointer-events: none;
+}
+
+
+/*Bottom Left*/
+.camp-screen > .l-main-dialog-container .is-contract-category-left
+{
+	 top: 7.4rem;
+	 margin-left: -0.8rem;
+	 pointer-events: none;
+}
+
+/*Below*/
+.camp-screen > .l-main-dialog-container .is-contract-category-below
+{
+	 top: 9rem;
+	 margin-left: 0.9rem;
+	 pointer-events: none;
+}

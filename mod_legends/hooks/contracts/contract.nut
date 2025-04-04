@@ -267,29 +267,18 @@
 	o.getDifficulty <- function ()
 	{
 		if (this.m.DifficultyMult < 0.9)
-		{
 			return 1;
-		}
-
 		if (this.m.DifficultyMult >= 0.9 && this.m.DifficultyMult < 1.1)
-		{
 			return 2;
-		}
-
 		if (this.m.DifficultyMult >= 1.1 && this.m.DifficultyMult < 1.4)
-		{
 			return 3;
-		}
-
 		return 4;
 	}
 
 	o.resolveSituation = function ( _situationInstance, _settlement, _list = null)
 	{
 		if (_situationInstance == 0 || _settlement == null || typeof _settlement == "instance" && _settlement.isNull())
-		{
 			return 0;
-		}
 
 		local s = _settlement.getSituationByInstance(_situationInstance);
 		local ret = _situationInstance;
@@ -411,22 +400,29 @@
 				this.World.FactionManager.getFaction(this.m.Faction).getName()
 			],
 			[
-				"townname",
-				this.m.Home.getName()
-			],
-			[
-				"produce",
-				this.m.Home.getProduceAsString()
-			],
-			[
-				"origin",
-				this.m.Origin.getName()
-			],
-			[
 				"maxcount",
 				this.m.Payment.MaxCount
 			]
 		];
+
+		if (this.m.Origin != null) {
+			vars.push([
+				"origin",
+				this.m.Origin.getName()
+			]);
+		}
+
+		if (this.m.Home != null) {
+			vars.push([
+				"townname",
+				this.m.Home.getName()
+			]);
+			vars.push(			[
+				"produce",
+				this.m.Home.getProduceAsString()
+			]);
+		}
+
 		this.onPrepareVariables(vars);
 		vars.push([
 			"reward",
