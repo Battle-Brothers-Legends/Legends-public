@@ -19,5 +19,6 @@ if (!("Retinue" in ::Legends))
 	"follower.scavenger",
 	"follower.scout",
 	"follower.surgeon",
-	"follower.trader"
+	"follower.trader",
+	"follower.arena"
 ]
