@@ -6,7 +6,6 @@
 	local refreshCooldown = o.refreshCooldown;
 	o.refreshCooldown = function ()
 	{
-
 		this.updateAttempts();
 		if(this.m.NumArenaAttempts == 0)
 		{
@@ -24,7 +23,8 @@
 			this.m.NumArenaAttempts = 3;
 			this.m.DailyRefresh = false;
 		}
-		onClicked(_townScreen);
+		
+	onClicked(_townScreen);
 	}
 	
 	o.updateAttempts <- function ()
@@ -83,7 +83,6 @@
 	local onDeserialize = o.onDeserialize;
 	o.onDeserialize = function (_in){
 		onDeserialize(_in);
-
 		this.m.DailyRefresh = _in.readBool();
 		this.m.NumArenaAttempts = _in.readI16();
 	}
