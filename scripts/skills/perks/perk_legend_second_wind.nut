@@ -10,18 +10,18 @@ this.perk_legend_second_wind <- this.inherit("scripts/skills/skill", {
 		this.m.IsHidden = false;
 	}
 
-	function onUpdate( _properties )
+	function onDamageReceived ( _attacker, _damageHitpoints, _damageArmor )
 	{
 		local actor = this.getContainer().getActor();
 		if (!actor.isPlacedOnMap() || ("State" in this.Tactical) && this.Tactical.State.isBattleEnded())
 			return;
 
-		if (!actor.isAlive() || actor.isDying())
-			return;
-
-		if (!actor.getSkills().hasEffect(::Legends.Effect.LegendSecondWind) && actor.getHitpointsPct() < 0.5)
+		if (_damageHitpoints > 0 && actor.isAlive() && !actor.isDying())
 		{
-			::Legends.Effects.grant(actor, ::Legends.Effect.LegendSecondWind);
+			if (!actor.getSkills().hasEffect(::Legends.Effect.LegendSecondWind) && actor.getHitpointsPct() < 0.5)
+			{
+				::Legends.Effects.grant(actor, ::Legends.Effect.LegendSecondWind);
+			}
 		}
 	}
 

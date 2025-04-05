@@ -60,7 +60,7 @@ this.legend_oms_rib_item <- this.inherit("scripts/items/accessory/accessory", {
 				id = 10,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "You aren\'n sure what it does. You\'ve heard of an ancient witch living in a hut in the forest who might know more about this"
+				text = "You aren\'t sure what it does. You\'ve heard of an ancient witch living in a hut in the forest who might know more about this"
 			});
 		}
 		else

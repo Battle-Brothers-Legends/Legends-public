@@ -1,9 +1,10 @@
 this.legend_launch_acid_flask_skill <- this.inherit("scripts/skills/actives/throw_acid_flask", {
 	m = {
-		Item = null
+		ammoCount = 0
 	},
 	function create()
 	{
+		this.throw_acid_flask.create();
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendLaunchAcidFlask);
 		this.m.Description = "Launch a flask of acid, with your slingstaff, towards a target, where it will shatter and spray its contents. The acid will slowly corrode away any armor of those hit - friend and foe alike.";
 		this.m.SoundOnUse = [
@@ -13,6 +14,7 @@ this.legend_launch_acid_flask_skill <- this.inherit("scripts/skills/actives/thro
 			"sounds/combat/dlc4/sling_use_04.wav"
 		];
 		this.m.Delay = 750;
+		this.m.IsOffensiveToolSkill = false;
 		this.m.IsRanged = true;
 		this.m.IsWeaponSkill = true;
 		this.m.ActionPointCost = 7;
@@ -82,23 +84,12 @@ this.legend_launch_acid_flask_skill <- this.inherit("scripts/skills/actives/thro
 	{
 		if (!::Legends.Perks.get(this, ::Legends.Perk.LegendSlingerSpins))
 			return true;
-		if (this.m.Item != null && !this.m.Item.isNull())
-			if (this.m.Item.getAmmo() != 0)
-				return false;
-
-		foreach (item in this.getContainer().getActor().getItems().getAllItemsAtSlot(this.Const.ItemSlot.Bag))
+		if (this.m.Item != null && !this.m.Item.isNull() && this.m.Item.getAmmo() != 0)
 		{
-			if (item.getID() == "weapon.acid_flask")
-			{
-				if (item.getAmmo() != 0)
-				{
-					this.setItem(item);
-					return false;
-				}
-			}
+			return false;
 		}
-		this.m.Item = null;
-		return true;
+
+		return this.skill.isHidden();
 	}
 
 	function getAmmo()

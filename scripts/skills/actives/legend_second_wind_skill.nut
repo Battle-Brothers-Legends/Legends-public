@@ -10,11 +10,12 @@ this.legend_second_wind_skill <- this.inherit("scripts/skills/skill", {
 		this.m.Order = this.Const.SkillOrder.Any;
 		this.m.IsSerialized = false;
 		this.m.IsActive = true;
-		this.m.IsTargeted = true;
+		this.m.IsTargeted = false;
 		this.m.IsStacking = false;
 		this.m.IsAttack = false;
 		this.m.IsUsingHitchance = false;
 		this.m.IsVisibleTileNeeded = false;
+		this.m.IsIgnoredAsAOO = true;
 		this.m.ActionPointCost = 4;
 		this.m.FatigueCost = 0;
 		this.m.MinRange = 1;
