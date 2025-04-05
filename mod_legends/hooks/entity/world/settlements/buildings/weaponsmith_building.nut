@@ -264,6 +264,11 @@
 					S = "weapons/legend_military_goedendag"
 				},
 				{
+					R = 90,
+					P = 1.0,
+					S = "weapons/legend_military_warscythe"
+				},
+				{
 					R = 55,
 					P = 1.0,
 					S = "weapons/two_handed_mace"

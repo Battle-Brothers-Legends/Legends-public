@@ -50,31 +50,17 @@ this.legend_free_company_leader <- this.inherit("scripts/entity/tactical/legend_
 
 	function assignRandomEquipment()
 	{
-		local r = this.Math.rand(1, 5); //can open it up to a 1h fighting axe by changing to 6
-		if (r == 1)
-		{
-			this.m.Items.equip(this.new("scripts/items/weapons/bardiche"));
-		}
-		else if (r == 2)
-		{
-			this.m.Items.equip(this.new("scripts/items/weapons/greataxe"));
-		}
-		else if (r == 3)
-		{
-			this.m.Items.equip(this.new("scripts/items/weapons/greatsword"));
-		}
-		else if (r == 4)
-		{
-			this.m.Items.equip(this.new("scripts/items/weapons/two_handed_flanged_mace"));
-		}
-		else if (r == 5)
-		{
-			this.m.Items.equip(this.new("scripts/items/weapons/legend_military_goedendag"));
-		}
-		else
-		{
-			this.m.Items.equip(this.new("scripts/items/weapons/fighting_axe"));
-		}
+		local weapons = [
+			"weapons/bardiche",
+			"weapons/greataxe",
+			"weapons/greatsword",
+			"weapons/two_handed_flanged_mace",
+			"weapons/fighting_axe",
+			"weapons/legend_military_goedendag",
+			"weapons/legend_military_warscythe",
+		];
+
+		this.m.Items.equip(this.new("scripts/items/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
 
 		if (this.getIdealRange() == 1)
 		{
