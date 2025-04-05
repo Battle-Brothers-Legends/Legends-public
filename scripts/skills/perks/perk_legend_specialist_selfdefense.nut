@@ -35,11 +35,11 @@ this.perk_legend_specialist_selfdefense <- this.inherit("scripts/skills/legend_s
 			bonus = 8;
 		else if (item.isWeaponType(this.Const.Items.WeaponType.Musical))
 			bonus = 8
-		if (!item.isWeaponType(this.Const.Items.WeaponType.Staff) && !item.isWeaponType(this.Const.Items.WeaponType.MagicStaff) && item.isWeaponType(this.Const.Items.WeaponType.Musical))
-			return;
-
-		_properties.MeleeDefense  += bonus;
-		_properties.RangedDefense += bonus;
+		if (item.isWeaponType(this.Const.Items.WeaponType.Staff) || item.isWeaponType(this.Const.Items.WeaponType.MagicStaff) || item.isWeaponType(this.Const.Items.WeaponType.Musical))
+		{
+			_properties.MeleeDefense  += bonus;
+			_properties.RangedDefense += bonus;
+		}
 	}
 
 	function onAnySkillUsed( _skill, _targetEntity, _properties )
