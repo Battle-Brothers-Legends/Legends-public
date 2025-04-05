@@ -41,8 +41,4 @@ this.camp_main_dialog_module <- this.inherit("scripts/ui/screens/ui_module", {
 	function onEncounterClicked (_data) {
 		this.m.Parent.onEncounterClicked(_data);
 	}
-
-	function onCompleteButtonPressed (_data) {
-		::logInfo("onCompleteButtonPressed yay");
-	}
 });

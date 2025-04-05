@@ -20,7 +20,6 @@ var CampScreenMainDialogModule = function(_parent)
 	// buttons
 	this.mLeaveButton = null;
 	this.mCampButton = null;
-	this.mCompleteButton = null;
 
 	// generics
 	this.mIsVisible = false;
@@ -90,21 +89,18 @@ CampScreenMainDialogModule.prototype.createDIV = function (_parentDiv)
 	// create: buttons
 	var layout = $('<div class="l-camp-button"/>');
 	footerButtonBar.append(layout);
-	this.mCampButton = layout.createTextButton("Camp", function() {
+	this.mCampButton = layout.createTextButton("Camp", function()
+	{
 		self.notifyBackendCampButtonPressed();
 	}, '', 1);
 
 	var layout = $('<div class="l-leave-button"/>');
 	footerButtonBar.append(layout);
-	this.mLeaveButton = layout.createTextButton("Leave", function() {
+	this.mLeaveButton = layout.createTextButton("Leave", function()
+	{
 		self.notifyBackendLeaveButtonPressed();
 	}, '', 1);
 
-	var layout = $('<div class="l-complete-button"/>');
-	footerButtonBar.append(layout);
-	this.mCompleteButton = layout.createTextButton("Get Paid", function() {
-		self.notifyBackendCompleteButtonPressed();
-	}, '', 1);
 
 	this.mIsVisible = false;
 };
@@ -118,9 +114,6 @@ CampScreenMainDialogModule.prototype.destroyDIV = function ()
 
 	this.mCampButton.remove();
 	this.mCampButton = null;
-
-	this.mCompleteButton.remove();
-	this.mCompleteButton = null;
 
 	this.mDialogContainer.empty();
 	this.mDialogContainer.remove();
@@ -136,7 +129,6 @@ CampScreenMainDialogModule.prototype.bindTooltips = function ()
 	this.mAssets.bindTooltips();
 	this.mLeaveButton.bindTooltip({ contentType: 'ui-element', elementId: TooltipIdentifier.WorldTownScreen.MainDialogModule.LeaveButton });
 	this.mCampButton.bindTooltip({ contentType: 'ui-element', elementId: 'camp-screen.main-dialog-module.CampButton' });
-	this.mCompleteButton.bindTooltip({ contentType: 'ui-element', elementId: 'camp-screen.main-dialog-module.CompleteButton' });
 };
 
 CampScreenMainDialogModule.prototype.unbindTooltips = function ()
@@ -144,7 +136,6 @@ CampScreenMainDialogModule.prototype.unbindTooltips = function ()
 	this.mAssets.unbindTooltips();
 	this.mLeaveButton.unbindTooltip();
 	this.mCampButton.unbindTooltip();
-	this.mCompleteButton.unbindTooltip();
 };
 
 CampScreenMainDialogModule.prototype.create = function(_parentDiv)
@@ -415,12 +406,6 @@ CampScreenMainDialogModule.prototype.updateContracts = function (_data)
 {
 	var content = this.mDialogContainer.findDialogContentContainer();
 
-	if ("CanGetPaid" in _data && _data.CanGetPaid == true) {
-		$(this.mCompleteButton).removeClass('display-none').addClass('display-block');
-	} else {
-		$(this.mCompleteButton).removeClass('display-block').addClass('display-none');
-	}
-
 	for(var i=0; i < 10; ++i)
 	{
 		for(var j=0; j<4; ++j)
@@ -564,11 +549,6 @@ CampScreenMainDialogModule.prototype.notifyBackendModuleAnimating = function ()
 CampScreenMainDialogModule.prototype.notifyBackendLeaveButtonPressed = function ()
 {
 	SQ.call(this.mSQHandle, 'onLeaveButtonPressed');
-};
-
-CampScreenMainDialogModule.prototype.notifyBackendCompleteButtonPressed = function ()
-{
-	SQ.call(this.mSQHandle, 'onCompleteButtonPressed');
 };
 
 CampScreenMainDialogModule.prototype.notifyBackendCampButtonPressed = function ()

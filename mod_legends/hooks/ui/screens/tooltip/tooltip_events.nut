@@ -4596,19 +4596,7 @@
 					text = "Setup camp."
 				}
 			];
-		case "camp-screen.main-dialog-module.CompleteButton":
-			return [
-				{
-					id = 1,
-					type = "title",
-					text = "Complete contract"
-				},
-				{
-					id = 2,
-					type = "description",
-					text = "Talk with employer to fulfill current contract."
-				}
-			];
+
 		case "dlc_4":
 			local ret = [
 				{
