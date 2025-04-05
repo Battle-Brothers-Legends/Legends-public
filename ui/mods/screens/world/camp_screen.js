@@ -796,12 +796,4 @@ CampScreen.prototype.notifyBackendContractClicked = function (_data)
 	}
 };
 
-CampScreen.prototype.notifyBackendContractClicked = function (_data)
-{
-    if(this.mSQHandle !== null)
-    {
-        SQ.call(this.mSQHandle, 'onContractClicked', _data);
-    }
-};
-
 registerScreen("CampScreen", new CampScreen());

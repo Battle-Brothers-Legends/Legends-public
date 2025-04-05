@@ -1,4 +1,4 @@
-this.legend_camp_discover_location_contract <- this.inherit("scripts/contracts/contract", {
+this.legend_camp_discover_location_contract <- this.inherit("scripts/contracts/camp_contract", {
 	m = {
 		Location = null,
 		LastHelpTime = 0.0
@@ -19,11 +19,6 @@ this.legend_camp_discover_location_contract <- this.inherit("scripts/contracts/c
 
 	function start()
 	{
-		if (this.m.Home == null)
-		{
-			this.setHome(::World.Camp);
-		}
-
 		this.contract.start();
 	}
 
@@ -33,7 +28,7 @@ this.legend_camp_discover_location_contract <- this.inherit("scripts/contracts/c
 		locations.extend(this.World.FactionManager.getFactionOfType(this.Const.FactionType.Zombies).getSettlements());
 		local lowestDistance = 9000;
 		local best;
-		local myTile = this.m.Home.getTile();
+		local myTile = ::World.State.getPlayer().getTile();
 
 		foreach( b in locations )
 		{
@@ -56,7 +51,7 @@ this.legend_camp_discover_location_contract <- this.inherit("scripts/contracts/c
 
 			local d = myTile.getDistanceTo(b.getTile());
 
-			if (d > 20)
+			if (d > 50)
 				continue;
 
 			if (d + this.Math.rand(0, 5) < lowestDistance)
@@ -594,10 +589,6 @@ this.legend_camp_discover_location_contract <- this.inherit("scripts/contracts/c
 			this.m.Flags.get("Location").toupper()
 		]);
 		_vars.push([
-			"townnameC",
-			this.m.Home.getName().toupper()
-		]);
-		_vars.push([
 			"direction",
 			this.m.Location == null || this.m.Location.isNull() ? "" : this.Const.Strings.Direction8[this.World.State.getPlayer().getTile().getDirection8To(this.m.Location.getTile())]
 		]);
@@ -628,7 +619,7 @@ this.legend_camp_discover_location_contract <- this.inherit("scripts/contracts/c
 				this.m.Location.getSprite("selection").Visible = false;
 			}
 
-			this.m.Home.getSprite("selection").Visible = false;
+//			this.m.Home.getSprite("selection").Visible = false;
 		}
 	}
 

@@ -405,8 +405,7 @@ this.camp_manager <- {
 	function getContracts()
 	{
 		local contracts = [];
-		::MSU.Log.printData(::World.FactionManager.getFaction(::Const.Faction.DummyFaction), 100);
-		foreach(c in ::World.FactionManager.getFaction(::Const.Faction.DummyFaction).getContracts() )
+		foreach(c in ::World.FactionManager.getFactionOfType(::Const.FactionType.FreeCompany).getContracts())
 		{
 			contracts.push(c);
 		}
