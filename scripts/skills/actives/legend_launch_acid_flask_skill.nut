@@ -1,6 +1,6 @@
 this.legend_launch_acid_flask_skill <- this.inherit("scripts/skills/actives/throw_acid_flask", {
 	m = {
-		Item = null
+		ammoCount = 0
 	},
 	function create()
 	{
@@ -84,23 +84,12 @@ this.legend_launch_acid_flask_skill <- this.inherit("scripts/skills/actives/thro
 	{
 		if (!::Legends.Perks.get(this, ::Legends.Perk.LegendSlingerSpins))
 			return true;
-		if (this.m.Item != null && !this.m.Item.isNull())
-			if (this.m.Item.getAmmo() != 0)
-				return false;
-
-		foreach (item in this.getContainer().getActor().getItems().getAllItemsAtSlot(this.Const.ItemSlot.Bag))
+		if (this.m.Item != null && !this.m.Item.isNull() && this.m.Item.getAmmo() != 0)
 		{
-			if (item.getID() == "weapon.acid_flask")
-			{
-				if (item.getAmmo() != 0)
-				{
-					this.setItem(item);
-					return false;
-				}
-			}
+			return false;
 		}
-		this.m.Item = null;
-		return true;
+
+		return this.skill.isHidden();
 	}
 
 	function getAmmo()
