@@ -1,9 +1,10 @@
-this.legend_launch_fire_bomb_skill <- this.inherit("scripts/skills/skill", {
+this.legend_launch_fire_bomb_skill <- this.inherit("scripts/skills/actives/throw_fire_bomb_skill", {
 	m = {
 		Item = null
 		},
 	function create()
 	{
+		this.throw_fire_bomb_skill.create();
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendLaunchFireBomb);
 		this.m.Description = "Ignite and launch, using your slingstaff, a pot filled with highly flammable liquids towards a target, where it will shatter and set the area ablaze. Anyone ending their turn inside the burning area will catch fire and take damage - friend and foe alike.";
 		this.m.SoundOnHit = [
@@ -13,6 +14,7 @@ this.legend_launch_fire_bomb_skill <- this.inherit("scripts/skills/skill", {
 			"sounds/combat/dlc6/fire_pot_04.wav"
 		];
 		this.m.Delay = 750;
+		this.m.IsOffensiveToolSkill = false;
 		this.m.IsRanged = true;
 		this.m.IsWeaponSkill = true;
 		this.m.ActionPointCost = 7;
