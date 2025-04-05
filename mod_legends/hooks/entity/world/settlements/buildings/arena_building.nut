@@ -18,12 +18,16 @@
 	o.onClicked = function (_townScreen)
 	{
 	
+		if(this.World.getTime().Days != this.World.Assets.m.LastArenaVictory)
+		{
+			this.m.NumArenaAttempts = 5;
+			this.m.DailyRefresh = false;
+		}
 		if(this.World.Assets.m.IsArenaTooled && this.m.DailyRefresh)
 		{
 			this.m.NumArenaAttempts = 3;
 			this.m.DailyRefresh = false;
 		}
-		
 	onClicked(_townScreen);
 	}
 	
@@ -65,6 +69,10 @@
 			{
 				return [3,3];
 			}
+			else if(this.World.getTime().Days != this.World.Assets.m.LastArenaVictory)
+			{
+				return [3, 3];
+			}
 			else
 			{
 				return [this.m.NumArenaAttempts, 3];
@@ -77,7 +85,8 @@
 	o.onSerialize = function ( _out){
 		onSerialize(_out);
 		_out.writeBool(this.m.DailyRefresh);
-		_out.writeI16(this.m.NumArenaAttempts)
+		_out.writeI16(this.m.NumArenaAttempts);
+		_out.writeI16(this.World.Assets.m.LastArenaVictory);
 	}
 
 	local onDeserialize = o.onDeserialize;
@@ -85,6 +94,7 @@
 		onDeserialize(_in);
 		this.m.DailyRefresh = _in.readBool();
 		this.m.NumArenaAttempts = _in.readI16();
+		this.World.Assets.m.LastArenaVictory = _in.readI16();
 	}
 
 
