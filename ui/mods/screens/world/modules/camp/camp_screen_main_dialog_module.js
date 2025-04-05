@@ -415,7 +415,7 @@ CampScreenMainDialogModule.prototype.updateContracts = function (_data)
 {
 	var content = this.mDialogContainer.findDialogContentContainer();
 
-	if (_data["CanGetPaid"] == true) {
+	if ("CanGetPaid" in _data && _data.CanGetPaid == true) {
 		$(this.mCompleteButton).removeClass('display-none').addClass('display-block');
 	} else {
 		$(this.mCompleteButton).removeClass('display-block').addClass('display-none');

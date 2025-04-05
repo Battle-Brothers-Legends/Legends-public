@@ -219,32 +219,25 @@ this.legend_camp_discover_location_contract <- this.inherit("scripts/contracts/c
 			function start()
 			{
 				this.Contract.m.BulletpointsObjectives = [
-					"Return to " + this.Contract.m.Home.getName()
+					"Open camp window and click Get Paid."
 				];
 
-				if (this.Contract.m.Location != null && !this.Contract.m.Location.isNull())
-				{
+				if (this.Contract.m.Location != null && !this.Contract.m.Location.isNull()) {
 					this.Contract.m.Location.getSprite("selection").Visible = false;
 				}
-
-				this.Contract.m.Home.getSprite("selection").Visible = true;
 			}
 
 			function update()
 			{
-				if (this.Contract.isPlayerAt(this.Contract.m.Home))
+				if (this.Flags.get("IsAnotherParty"))
 				{
-					if (this.Flags.get("IsAnotherParty"))
-					{
-						this.Contract.setScreen("AnotherParty2");
-					}
-					else
-					{
-						this.Contract.setScreen("Success1");
-					}
-
-					this.World.Contracts.showActiveContract();
+					this.Contract.setScreen("AnotherParty2");
 				}
+				else
+				{
+					this.Contract.setScreen("Success1");
+				}
+				this.World.Contracts.showActiveContract();
 			}
 
 		});

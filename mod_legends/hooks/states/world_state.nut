@@ -1262,11 +1262,12 @@
 				this.Sound.play(this.Const.Events.GlobalSound, 1.0);
 			}
 
-			this.m.CampScreen.hideAllDialogs();
+			this.m.CampScreen.hide();
 			this.m.EventScreen.setIsContract(_isContract);
 			this.m.EventScreen.show(_event);
 			this.m.MenuStack.push(function () {
 				this.m.EventScreen.hide();
+				this.m.EventScreen.setIsContract(false);
 				this.m.CampScreen.show();
 				this.m.WorldTownScreen.refresh();
 			}, function () {

@@ -1,6 +1,11 @@
 this.camp_contract <- ::inherit("scripts/contracts/contract", {
 	m = {},
 
+	function create() {
+		this.contract.create();
+		this.m.IsDone = false;
+	}
+
 	function start() {
 		this.m.IsStarted = true;
 
