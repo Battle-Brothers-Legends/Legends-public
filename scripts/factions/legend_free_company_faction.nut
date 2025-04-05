@@ -16,6 +16,19 @@ this.legend_free_company_faction <- this.inherit("scripts/factions/faction", {
 		return this.m.Contracts.len() < 3 && (this.m.LastContractTime == 0 || this.Time.getVirtualTimeF() > this.m.LastContractTime + ::World.getTime().SecondsPerDay * 4.0)
 	}
 
+	function onUpdateRoster()
+	{
+		for( local roster = this.getRoster(); roster.getSize() < 4;  )
+		{
+			local character = roster.create("scripts/entity/tactical/humans/noble");
+			character.setFaction(this.m.ID);
+			character.m.HairColors = this.Const.HairColors.Old;
+			character.setAppearance();
+			character.setTitle("von " + this.m.Name);
+			character.assignRandomEquipment();
+		}
+	}
+
 	function addPlayerRelation( _r, _reason = "" )
 	{
 	}

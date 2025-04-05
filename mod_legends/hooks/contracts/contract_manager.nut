@@ -95,4 +95,18 @@
 
 		return null;
 	}
+
+	local showContract = o.showContract;
+	o.showContract = function ( _c ) {
+		local isInCamp = ::World.State.getCampScreen().isVisible();
+		local worldState = ::World.State.get();
+		local originalShowEvent = worldState.showEventScreen;
+		if (isInCamp) {
+			worldState.showEventScreen = function (_event, _isContract = false, _playSound = true) {
+				return worldState.showEventScreenFromCamp(_event, _isContract, _playSound);
+			}
+		}
+		showContract(_c);
+		worldState.showEventScreen = originalShowEvent;
+	}
 });

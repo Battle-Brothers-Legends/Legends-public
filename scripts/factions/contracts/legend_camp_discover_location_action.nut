@@ -67,7 +67,7 @@ this.legend_camp_discover_location_action <- this.inherit("scripts/factions/fact
 			return;
 		local contract = this.new("scripts/contracts/contracts/legend_camp_discover_location_contract");
 		contract.setFaction(_faction.getID());
-//		contract.setEmployerID(_faction.getRandomCharacter().getID());
+		contract.setEmployerID(_faction.getRandomCharacter().getID());
 //		contract.setHome(::World.Camp);
 //		contract.setOrigin(::World.Camp);
 		contract.setup();
