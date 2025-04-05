@@ -1439,10 +1439,18 @@ effectsDefs.push({
 
 ::Legends.Effect.LegendMarked <- null;
 effectsDefs.push({
-	ID = "effects.legend_marked",
+	ID = "effects.legend_marked_target",
 	Script = "scripts/skills/effects/legend_marked_effect",
 	Name = "Marked",
 	Const = "LegendMarked"
+});
+
+::Legends.Effect.LegendMarkedTarget <- null;
+effectsDefs.push({
+	ID = "effects.legend_marked_target",
+	Script = "scripts/skills/effects/legend_marked_target_effect",
+	Name = "Marked",
+	Const = "LegendMarkedTarget"
 });
 
 ::Legends.Effect.LegendMummyCurse <- null;
@@ -1963,15 +1971,6 @@ effectsDefs.push({
 	Script = "scripts/skills/effects/legend_prepare_bullet_effect",
 	Const = "LegendPrepareBullet",
 	Name = "Prepare Bullet",
-});
-
-
-::Legends.Effect.LegendMarkedTarget <- null;
-effectsDefs.push({
-	ID = "effects.legend_marked_target",
-	Script = "scripts/skills/effects/legend_marked_target_effect",
-	Name = "Marked",
-	Const = "LegendMarkedTarget"
 });
 
 ::Legends.Effects.addEffectDefObjects(effectsDefs);
