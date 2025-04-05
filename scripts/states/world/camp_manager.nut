@@ -427,6 +427,7 @@ this.camp_manager <- {
 	{
 		local isEscorting = ::World.State.m.EscortedEntity != null && !::World.State.m.EscortedEntity.isNull();
 		local result = {
+			CanGetPaid = false,
 			Contracts = [],
 			IsContractActive = !isEscorting && ::World.Contracts.getActiveContract() != null,
 			IsContractsLocked = false
@@ -500,6 +501,7 @@ this.camp_manager <- {
 			Slots = [],
 			Situations = [],
 			Contracts = [],
+			CanGetPaid = false,
 			IsContractActive = !isEscorting && ::World.Contracts.getActiveContract() != null,
 			IsContractsLocked = false,
 		};
