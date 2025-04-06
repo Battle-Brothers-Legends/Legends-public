@@ -65,7 +65,7 @@
 		this.updateAppearance();
 	}
 
-	o.onPaintInCompanyColors <- function ()
+	o.onPaintInCompanyColors = function ()
 	{
 		local bannerID = this.World.Assets.getBannerID() > 100 ? this.World.Assets.getBannerID() : this.World.Assets.getBannerID() + 11
 		this.setVariant(bannerID);
