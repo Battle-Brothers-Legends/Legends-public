@@ -1,6 +1,6 @@
 this.perk_legend_pacifist <- this.inherit("scripts/skills/skill", {
 	m = {
-		ForcedToFight = null
+		ForcedToFight = false
 	},
 	function create()
 	{
@@ -29,12 +29,10 @@ this.perk_legend_pacifist <- this.inherit("scripts/skills/skill", {
 	{
 		this.skill.onCombatFinished();
 		local actor = this.getContainer().getActor();
-		if (actor == null)
-			return;
-		if (this.m.ForcedToFight != null)
+		if (actor != null && this.m.ForcedToFight)
 		{
 			actor.worsenMood(1.5, "Was forced to attack someone against their wishes");
-			this.m.ForcedToFight = null;
+			this.m.ForcedToFight = false;
 		}
 	}
 });
