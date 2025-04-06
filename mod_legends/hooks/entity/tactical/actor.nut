@@ -572,7 +572,7 @@
 				chance = 0.005; // limited by 16 bit rand
 			if (chance > 100)
 				chance = 100;
-			if (chance < 10 ? ::Math.rand(1, ::Math.round(100 / chance)) == 1 : Math.rand(1, 100) < ::Math.round(chance)) {
+			if (chance < 10 ? ::Math.rand(1, ::Math.round(100 / chance)) == 1 : Math.rand(1, 100) <= ::Math.round(chance)) {
 				if (typeof(entry[1]) == "function") {
 					_loot.push(entry[1]());
 				} else {
