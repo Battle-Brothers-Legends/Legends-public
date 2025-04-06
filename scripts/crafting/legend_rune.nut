@@ -49,9 +49,7 @@ this.legend_rune <- this.inherit("scripts/crafting/blueprint", {
 		local rune = ::new(def.Script);
 		rune.setRuneVariant(this.m.Rune);
 		rune.setRuneBonus(_bonus);
-		if (def.ItemType == ::Legends.Runes.Target.Armor ||	def.ItemType == ::Legends.Runes.Target.Helmet) {
-			rune.setRuneVariant(0);
-		} else {
+		if (def.ItemType == ::Legends.Runes.Target.Weapon || def.ItemType == ::Legends.Runes.Target.Shield) {
 			rune.updateRuneSigilToken();
 		}
 		_stash.add(rune);
