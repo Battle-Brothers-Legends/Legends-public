@@ -1,6 +1,7 @@
 this.legend_skewer_skill <- this.inherit("scripts/skills/skill", {
 	m = {
 		IsSpearSkewer = false,
+		IsSecondAttack = false
 	},
 	function create()
 	{
@@ -85,7 +86,9 @@ this.legend_skewer_skill <- this.inherit("scripts/skills/skill", {
 
 			if (forwardTile.IsOccupiedByActor && forwardTile.getEntity().isAttackable() && this.Math.abs(forwardTile.Level - ownTile.Level) <= 1)
 			{
+				this.m.IsSecondAttack = true;
 				ret = this.attackEntity(_user, forwardTile.getEntity()) || ret;
+				this.m.IsSecondAttack = false;
 			}
 		}
 

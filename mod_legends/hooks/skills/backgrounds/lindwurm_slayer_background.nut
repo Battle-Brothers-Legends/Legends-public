@@ -130,7 +130,7 @@
 
 	o.onBuildDescription <- function ()
 	{
-		return "{%name% is a supposedly famous monster hunter with a particular talent for slaying lindwurms. They says he is the son of Dirk the Dragonslayer, the monster hunter who ostensibly slew the last living dragon.}";
+		return "{%name% is a supposedly famous monster hunter with a particular talent for slaying lindwurms. They says %they% is the %offspring% of Dirk the Dragonslayer, the monster hunter who ostensibly slew the last living dragon.}";
 	}
 
 	o.onChangeAttributes = function ()

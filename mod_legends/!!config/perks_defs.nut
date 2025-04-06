@@ -2704,6 +2704,17 @@ perkDefObjects.push({
 	Const = "LegendThrustMaster"
 });
 
+::Legends.Perk.LegendRunThemThrough <- null;
+perkDefObjects.push({
+	ID = "perk.legend_run_them_through",
+	Script = "scripts/skills/perks/perk_legend_run_them_through",
+	Name = ::Const.Strings.PerkName.LegendRunThemThrough,
+	Tooltip = ::Const.Strings.PerkDescription.LegendRunThemThrough,
+	Icon = "ui/perks/ring_jousting_perk.png",
+	IconDisabled = "ui/perks/ring_jousting_perk_bw.png",
+	Const = "LegendRunThemThrough"
+});
+
 ::Legends.Perk.LegendAssuredConquest <- null;
 perkDefObjects.push({
 	ID = "perk.legend_assured_conquest",

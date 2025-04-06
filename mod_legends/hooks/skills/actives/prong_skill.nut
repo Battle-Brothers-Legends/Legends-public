@@ -23,4 +23,12 @@
 
 		return tooltip;
 	}
+
+	local onAfterUpdate = o.onAfterUpdate;
+	o.onAfterUpdate = function ( _properties )
+	{
+		onAfterUpdate(_properties);
+		if (_properties.IsSpecializedInSpears)
+			this.m.ActionPointCost -= 1;
+	}
 });
