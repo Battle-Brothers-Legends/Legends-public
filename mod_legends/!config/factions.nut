@@ -3,7 +3,7 @@
 		Simple helper function that adds new factions with all respective fields set
 	*/
 	add = function(_color, _bust = "", _allies = []) {
-		local newID = ++::Const.Faction.COUNT;
+		local newID = ::Const.Faction.COUNT++;
 		// ensure related lists are right size
 		while (::Const.FactionColor.len() <= ::Const.Faction.COUNT)
 			::Const.FactionColor.push(::createColor("#ffffff"));
@@ -23,14 +23,14 @@
 }
 
 // add new legends factions
-::Const.FactionType.FreeCompany <- ++::Const.FactionType.COUNT;
+::Const.FactionType.FreeCompany <- ::Const.FactionType.COUNT++;
 ::Const.Faction.FreeCompany <- ::Legends.Factions.add("#ffffff", "bust_base_militia", [
 	::Const.Faction.Civilian,
 	::Const.Faction.OrientalCityState,
 	::Const.Faction.NobleHouse
 ]);
 
-::Const.FactionType.DummyFaction <- ++::Const.FactionType.COUNT;
+::Const.FactionType.DummyFaction <- ::Const.FactionType.COUNT++;
 ::Const.Faction.DummyFaction <- ::Legends.Factions.add("#ffffff");
 
 //was 20, set to 0 due to greenskin crisis becoming uncontrollable. Currently a quick fix and will need to be looked at further!! (28/11/21 by Luft)
