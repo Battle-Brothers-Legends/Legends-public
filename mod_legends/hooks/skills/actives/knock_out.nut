@@ -11,7 +11,7 @@
 	o.isHidden <- function()
 	{
 		local actor = this.getContainer().getActor();
-		local item = actor.getMainhandItem().getID();
+		local item = actor.getMainhandItem();
 		if ((item.getID() == "weapon.legend_shovel" || item.getID() == "weapon.legend_named_shovel") && this.getContainer().hasPerk(::Legends.Perk.LegendSpecialistGravedigger))
 			return true;
 
