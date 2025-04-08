@@ -215,8 +215,9 @@
 
 	o.getPerkBackgroundDescription <- function ( _tree )
 	{
-		local bgID = this.m.ID + ", " + this.m.Name; // TODO remove, it's for logging
 		local text = "";
+		if (_tree == null) // donkeys don't have tree
+			return text;
 		text += this.getPerkTreeGroupDescription(_tree.Weapon,  "Has an aptitude for");
 		text += this.getPerkTreeGroupDescription(_tree.Defense,  "Likes wearing");
 		text += this.getPerkTreeGroupDescription(_tree.Enemy,  "Prefers fighting");
