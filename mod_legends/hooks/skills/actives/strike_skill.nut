@@ -30,10 +30,6 @@
 				_properties.MeleeSkill += -15;
 				this.m.HitChanceBonus += -5;
 			}
-			else if (!this.m.ApplyAxeMastery)
-			{
-				this.m.HitChanceBonus += 5;
-			}
 		}
 	}
 });
