@@ -196,14 +196,13 @@
 	}
 
 	local onMovementFinish = o.onMovementFinish;
-	o.onMovementFinish = function ()
+	o.onMovementFinish = function (_tile)
 	{
-		local currentTile = this.getContainer().getActor().getTile();
 		// Lionheart perk start
 		local otherActors = [];
 		for (local i = 0; i != 6; i++) {
-			if (currentTile.hasNextTile(i)) {
-				local tile = currentTile.getNextTile(i);
+			if (_tile.hasNextTile(i)) {
+				local tile = _tile.getNextTile(i);
 				if (!tile.IsOccupiedByActor)
 					continue;
 				otherActors.push(tile.getEntity());
@@ -228,7 +227,7 @@
 			}
 		}.bindenv(this);
 		// Lionheart perk stop
-		onMovementFinish();
+		onMovementFinish(_tile);
 		// restore state
 		foreach (i, actor in otherActors)
 			actor.isAlliedWith = isAliedPtrs[i];
@@ -567,8 +566,12 @@
 				::logError("division by zero, skipping " + entry[1]);
 				continue;
 			}
-			local count = ::Math.round(100 / entry[0]);
-			if (::Math.rand(1, count) == 1) {
+			local chance = entry[0];
+			if (chance < 0.005)
+				chance = 0.005; // limited by 16 bit rand
+			if (chance > 100)
+				chance = 100;
+			if (chance < 10 ? ::Math.rand(1, ::Math.round(100 / chance)) == 1 : Math.rand(1, 100) <= ::Math.round(chance)) {
 				if (typeof(entry[1]) == "function") {
 					_loot.push(entry[1]());
 				} else {
@@ -579,6 +582,7 @@
 
 		return getLootForTile(_killer, _loot);
 	}
+
 
 	local onSerialize = o.onSerialize;
 	o.onSerialize = function( _out )

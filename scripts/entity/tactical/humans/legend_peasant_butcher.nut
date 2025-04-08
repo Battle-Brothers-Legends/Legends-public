@@ -82,7 +82,7 @@ this.legend_peasant_butcher <- this.inherit("scripts/entity/tactical/human", {
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendCarnage);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendSlaughterer);
 		::Legends.Perks.grant(this, ::Legends.Perk.KillingFrenzy);
-		::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecialistButcherDamage);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecialistButcher);
 		::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
 		this.m.Items.equip(this.Const.World.Common.pickHelmet([
 			[1, "legend_champion_butcher_helmet"]

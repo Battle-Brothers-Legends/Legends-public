@@ -67,7 +67,7 @@ this.legend_second_wind_effect <- this.inherit("scripts/skills/skill", {
 		local actor = this.getContainer().getActor();
 		if (!actor.isAlive() || actor.isDying())
 			return;
-		actor.setFatigue(this.Math.max(actor.getFatigue(), actor.getFatigueMax()));
+		actor.setFatigue(0);
 		::Legends.Effects.grant(actor, ::Legends.Effect.RecoveryPotion);
 		foreach (effect in this.m.ApplicableEffects)
 		{

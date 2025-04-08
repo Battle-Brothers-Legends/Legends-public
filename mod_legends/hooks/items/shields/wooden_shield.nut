@@ -64,4 +64,11 @@
 		this.setVariant(_color);
 		this.updateAppearance();
 	}
+
+	o.onPaintInCompanyColors = function ()
+	{
+		local bannerID = this.World.Assets.getBannerID() > 100 ? this.World.Assets.getBannerID() : this.World.Assets.getBannerID() + 11
+		this.setVariant(bannerID);
+		this.updateAppearance();
+	}
 });

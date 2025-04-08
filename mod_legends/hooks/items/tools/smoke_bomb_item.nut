@@ -132,4 +132,19 @@
 
 		this.updateAppearance();
 	}
+
+	o.onPutIntoBag <- function ()
+	{
+		local skill = ::Legends.Actives.get(this, ::Legends.Active.LegendLaunchSmokeBomb)
+		if (skill != null)
+			skill.setItem(this);
+	}
+
+	o.onRemovedFromBag <- function()
+	{
+		this.item.onRemovedFromBag();
+		local skill = ::Legends.Actives.get(this, ::Legends.Active.LegendLaunchSmokeBomb)
+		if (skill != null)
+			skill.setItem(null);
+	}
 });

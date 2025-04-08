@@ -772,7 +772,7 @@
 
     //Bodyguard
         case _item.getID() == "weapon.legend_longsword" || _item.getID() == "weapon.longsword":
-            return this.Const.Perks.BodyguardClassTree;
+            return this.Const.Perks.LongswordClassTree;
 
     //Slings
         case _item.getID() == "weapon.legend_sling":

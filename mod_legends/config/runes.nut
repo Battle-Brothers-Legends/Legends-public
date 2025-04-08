@@ -378,7 +378,7 @@
 		return "This item has the power of the rune sigil of Radiance:\n[color=" + ::Const.UI.Color.PositiveValue + "]-" + _item.getRuneBonus1() + "%[/color] to all adjacent enemies\' Melee skill.\n" + "[color=" + ::Const.UI.Color.PositiveValue + "]-" + _item.getRuneBonus2() + "%[/color] to all adjacent enemies\' Melee defense.";
 	}
 	getRuneTooltip = function (_item) {
-		max1 = _item.isUpgraded() ? 9 : 6;
+		local max1 = _item.isUpgraded() ? 9 : 6;
 		return "This item has the power of the rune sigil of Radiance:\n[color=" + ::Const.UI.Color.PositiveValue + "]-3% to -" + max1 + "%[/color] to all adjacent enemies\' Melee skill.\n" + "[color=" + ::Const.UI.Color.PositiveValue + "]-3% to -" + max1 + "%[/color] to all adjacent enemies\' Melee defense.";
 	}
 });

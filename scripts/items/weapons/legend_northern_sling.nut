@@ -42,5 +42,14 @@ this.legend_northern_sling <- this.inherit("scripts/items/weapons/weapon", {
 		::Legends.Actives.grant(this, ::Legends.Active.LegendLaunchSmokeBomb);
 	}
 
+	function onUpdateProperties (_properties)
+	{
+		this.weapon.onUpdateProperties(_properties);
+		foreach (item in this.getContainer().getActor().getItems().getAllItemsAtSlot(this.Const.ItemSlot.Bag))
+		{
+			item.onPutIntoBag();
+		}
+	}
+
 });
 
