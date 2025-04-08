@@ -1,6 +1,22 @@
 ::mods_hookExactClass("skills/actives/knock_out", function(o)
 {
 	o.m.IsStaffKnockOut <- false;
+	local create = o.create;
+	o.create = function()
+	{
+		create();
+		this.m.IsHidden = true;
+	}
+
+	o.isHidden <- function()
+	{
+		local actor = this.getContainer().getActor();
+		local item = actor.getMainhandItem().getID();
+		if ((item.getID() == "weapon.legend_shovel" || item.getID() == "weapon.legend_named_shovel") && this.getContainer().hasPerk(::Legends.Perk.LegendSpecialistGravedigger))
+			return true;
+
+		return this.skill.isHidden();
+	}
 
 	o.setItem <- function (_item)
 	{
