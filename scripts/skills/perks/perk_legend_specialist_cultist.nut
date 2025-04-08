@@ -4,10 +4,10 @@ this.perk_legend_specialist_cultist <- this.inherit("scripts/skills/legend_speci
 			"weapon.legend_cat_o_nine_tails"
 		],
 		ApplicableItemTypes = [
-			this.Const.Items.ItemType.Cultist
+			::Const.Items.ItemType.Cultist
 		],
 		ApplicableWeaponTypes = [
-			this.Const.Items.ItemType.Flail
+			::Const.Items.WeaponType.Flail
 		],
 		BonusMelee = 12,
 		BonusDamage = 10
