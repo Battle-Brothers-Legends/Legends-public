@@ -40,10 +40,13 @@
 				s.end <- function ()
 				{
 					end();
-					party.getLoot().Money = this.Math.rand(100, 300);
-					party.getLoot().ArmorParts = this.Math.rand(10, 35);
-					party.getLoot().Medicine = this.Math.rand(5, 15);
-					party.getLoot().Ammo = this.Math.rand(10, 40);
+					foreach (id in this.Contract.m.UnitsSpawned) {
+						local party = ::World.getEntityByID(id);
+						party.getLoot().Money = this.Math.rand(100, 300);
+						party.getLoot().ArmorParts = this.Math.rand(10, 35);
+						party.getLoot().Medicine = this.Math.rand(5, 15);
+						party.getLoot().Ammo = this.Math.rand(10, 40);
+					}
 				}
 			}
 		}

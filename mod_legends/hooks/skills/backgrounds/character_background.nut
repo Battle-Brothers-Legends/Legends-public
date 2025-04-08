@@ -215,6 +215,7 @@
 
 	o.getPerkBackgroundDescription <- function ( _tree )
 	{
+		local bgID = this.m.ID + ", " + this.m.Name; // TODO remove, it's for logging
 		local text = "";
 		text += this.getPerkTreeGroupDescription(_tree.Weapon,  "Has an aptitude for");
 		text += this.getPerkTreeGroupDescription(_tree.Defense,  "Likes wearing");
