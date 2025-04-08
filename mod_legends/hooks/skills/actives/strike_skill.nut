@@ -12,4 +12,28 @@
 			this.m.ChanceDecapitate = 0;
 		}
 	}
+
+	local onAnySkillUsed = o.onAnySkillUsed;
+	o.onAnySkillUsed = function ( _skill, _targetEntity, _properties )
+	{
+		onAnySkillUsed( _skill, _targetEntity, _properties );
+		if (_skill == this)
+		{
+			if (!this.m.ApplyAxeMastery)
+			{
+				_properties.MeleeSkill += 5;
+				this.m.HitChanceBonus += 5;
+			}
+
+			if (_targetEntity != null && (this.m.ApplyAxeMastery && !this.getContainer().getActor().getCurrentProperties().IsSpecializedInAxes || !this.m.ApplyAxeMastery && !this.getContainer().getActor().getCurrentProperties().IsSpecializedInPolearms) && this.getContainer().getActor().getTile().getDistanceTo(_targetEntity.getTile()) == 1)
+			{
+				_properties.MeleeSkill += -15;
+				this.m.HitChanceBonus += -5;
+			}
+			else if (!this.m.ApplyAxeMastery)
+			{
+				this.m.HitChanceBonus += 5;
+			}
+		}
+	}
 });
