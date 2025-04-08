@@ -93,7 +93,11 @@ this.legend_gladiator_prizefighter_background <- this.inherit("scripts/skills/ba
 			_properties.DamageTotalMult *= 1.05;
 		}
 	}
-
+	function onAdded()
+	{
+		this.character_background.onAdded();
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendThrowSand);
+	}
 	function onAddEquipment()
 	{
 		local items = this.getContainer().getActor().getItems();
