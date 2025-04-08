@@ -68,8 +68,9 @@
 		if (this.m.Condition == 0)
 		{
 			local isPlayer = this.m.LastEquippedByFaction == this.Const.Faction.Player || actor != null && !actor.isNull() && this.isKindOf(actor.get(), "player");
-			local isBlacksmithed = isPlayer && !this.Tactical.State.isScenarioMode() && (this.isNamed() || this.World.Assets.m.IsBlacksmithed);
-			if (isBlacksmithed)
+			local isBlacksmithed = isPlayer && !this.Tactical.State.isScenarioMode() && this.World.Assets.m.IsBlacksmithed;
+
+			if (!isBlacksmithed && this.isNamed()) // already dropped from vanilla blacksmithed
 			{
 				this.drop(actor.getTile());
 			}
