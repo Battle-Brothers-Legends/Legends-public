@@ -1,7 +1,7 @@
 ::mods_hookExactClass("factions/contracts/intercept_raiding_parties_action", function(o) {
 	local onExecute = o.onExecute;
 	o.onExecute = function( _faction ) {
-		local manager = ::World.Contracts;
+		local manager = ::World.Contracts.get();
 		local original = manager.addContract;
 		manager.addContract = function (_c) {
 			if (_c.m.Home == null)
