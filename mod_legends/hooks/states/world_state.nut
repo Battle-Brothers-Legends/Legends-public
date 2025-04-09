@@ -1249,6 +1249,34 @@
 		}
 	}
 
+	/**
+	 * Adds convenience method to world state to mimic original
+	 * Shows event dialog while in camp
+	 */
+	o.showEventScreenFromCamp <- function ( _event, _isContract = false, _playSound = true )
+	{
+		if (!this.m.EventScreen.isVisible() && !this.m.EventScreen.isAnimating())
+		{
+			if (_playSound && this.Const.Events.GlobalSound != "")
+			{
+				this.Sound.play(this.Const.Events.GlobalSound, 1.0);
+			}
+
+			this.m.CampScreen.hide();
+			this.m.EventScreen.setIsContract(_isContract);
+			this.m.EventScreen.show(_event);
+			this.m.MenuStack.push(function () {
+				this.m.EventScreen.hide();
+				this.m.EventScreen.setIsContract(false);
+				this.m.CampScreen.show();
+				this.m.WorldTownScreen.refresh();
+			}, function () {
+				return false;
+			});
+		}
+	}
+
+
 	o.showCombatDialog = function ( _isPlayerInitiated = true, _isCombatantsVisible = true, _allowFormationPicking = true, _properties = null, _pos = null )
 	{
 		local entities = [];

@@ -590,6 +590,11 @@ this.camp_screen <- {
 		}
 	}
 
+	function updateContracts()
+	{
+		this.m.JSHandle.asyncCall("updateContracts", ::World.Camp.getUIContractInformation());
+	}
+
 	function updateAssets()
 	{
 		this.m.JSHandle.asyncCall("loadAssetData", this.queryAssetsInformation());
@@ -639,14 +644,10 @@ this.camp_screen <- {
 	function onCommanderButtonPressed()
 	{
 		if (this.m.returnModule != null)
-		{
 			return false;
-		}
 
 		if (this.m.OnCommanderButtonPressedListener == null)
-		{
 			return false;
-		}
 
 		this.m.returnModule = this.m.LastActiveModule;
 		this.m.OnCommanderButtonPressedListener();
@@ -656,14 +657,10 @@ this.camp_screen <- {
 	function onShowTentBuilding( _id )
 	{
 		if (this.m.returnModule != null)
-		{
 			return false;
-		}
 
 		if (this.m.OnTentButtonPressedListener == null)
-		{
 			return false;
-		}
 
 		this.m.returnModule = this.m.LastActiveModule;
 		this.m.OnTentButtonPressedListener(_id);
@@ -695,18 +692,18 @@ this.camp_screen <- {
 	function onSlotClicked( _data )
 	{
 		if (this.isAnimating())
-		{
 			return;
-		}
-
 		local building = this.World.Camp.getBuildingByID(_data);
-
 		if (building == null)
-		{
 			return;
-		}
-
 		building.onClicked(this);
+	}
+
+	function onContractClicked( _data )
+	{
+		if (this.isAnimating())
+			return;
+		this.World.Contracts.showContractByID(_data);
 	}
 
 	function getTimeRequired()

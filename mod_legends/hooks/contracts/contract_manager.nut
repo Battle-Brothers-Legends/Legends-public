@@ -51,9 +51,7 @@
 	o.setActiveContract = function ( _contract, _alreadyStarted = false )
 	{
 		if (this.m.Active != null)
-		{
 			return;
-		}
 
 		if (!_alreadyStarted)
 		{
@@ -76,6 +74,7 @@
 		_contract.setActive(true);
 		this.World.State.getWorldScreen().updateContract(this.m.Active);
 		this.World.State.getTownScreen().updateContracts();
+		this.World.State.getCampScreen().updateContracts();
 
 		if (!_alreadyStarted)
 		{
@@ -95,5 +94,19 @@
 		}
 
 		return null;
+	}
+
+	local showContract = o.showContract;
+	o.showContract = function ( _c ) {
+		local isInCamp = ::World.State.getCampScreen().isVisible();
+		local worldState = ::World.State.get();
+		local originalShowEvent = worldState.showEventScreen;
+		if (isInCamp) {
+			worldState.showEventScreen = function (_event, _isContract = false, _playSound = true) {
+				return worldState.showEventScreenFromCamp(_event, _isContract, _playSound);
+			}
+		}
+		showContract(_c);
+		worldState.showEventScreen = originalShowEvent;
 	}
 });

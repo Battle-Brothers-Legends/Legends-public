@@ -3,7 +3,7 @@
  *	@Company:		Overhype Studios
  *
  *	@Copyright:		(c) Overhype Studios | 2013 - 2017
- * 
+ *
  *  @Author:		Overhype Studios
  *  @Date:			31.10.2017
  *  @Description:	World Town Screen JS
@@ -291,7 +291,7 @@ CampScreen.prototype.hide = function ()
 CampScreen.prototype.hideAllDialogs = function (_withSlideAnimation)
 {
 	this.mMainDialogModule.hide(false);
-	
+
 	if(this.mActiveModule != null)
 	{
 		this.mActiveModule.hide(_withSlideAnimation);
@@ -317,6 +317,11 @@ CampScreen.prototype.refresh = function (_data)
 
 	this.mMainDialogModule.show(false);
 };
+
+CampScreen.prototype.updateContracts = function (_data)
+{
+	this.mMainDialogModule.updateContracts(_data);
+}
 
 CampScreen.prototype.showMainDialog = function (/*_withSlideAnimation,*/ _data)
 {
@@ -672,7 +677,7 @@ CampScreen.prototype.showWorkshopDialog = function (/*_withSlideAnimation,*/ _da
 CampScreen.prototype.loadAssetData = function (_data)
 {
 	if(_data !== undefined && _data !== null)
-	{	 
+	{
 		this.mMainDialogModule.updateAssets(_data);
 
 		if(this.mActiveModule != null)
@@ -701,7 +706,7 @@ CampScreen.prototype.getModule = function (_name)
 		case 'CampScoutDialogModule': return this.mScoutDialogModule;
 		case 'CampTrainingDialogModule': return this.mTrainingDialogModule;
 		case 'CampWorkshopDialogModule': return this.mWorkshopDialogModule;
-		
+
 		default: return null;
 	}
 };
