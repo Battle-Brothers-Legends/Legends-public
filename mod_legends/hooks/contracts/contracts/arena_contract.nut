@@ -103,7 +103,12 @@
 			}
 		}
 
-		this.m.Payment.Pool = pay * this.getPaymentMult() * this.getReputationToPaymentMult();
+		local paymentMult = 1;
+		if(this.World.Assets.m.IsArenaTooled){
+			paymentMult = 1.25
+		}
+
+		this.m.Payment.Pool = pay * this.getPaymentMult() * this.getReputationToPaymentMult() * paymentMult;
 		this.m.Payment.Completion = 1.0;
 	}
 
@@ -335,13 +340,20 @@
 	local onClear = o.onClear;
 	o.onClear = function ()
 	{
-		foreach (bro in this.m.WasInReserves)
+		if(this.m.Home != null && this.m.IsActive)
 		{
-			bro.setInReserves(true);
-		}
+			foreach (bro in this.m.WasInReserves)
+			{
+				bro.setInReserves(true);
+			}
 
-		this.m.WasInReserves.clear();
-		onClear();
+			this.m.WasInReserves.clear();
+			local building = this.m.Home.getBuilding("building.arena");
+			local original = building.refreshCooldown;
+			building.refreshCooldown = function () {};
+			onClear();
+			building.refreshCooldown = original;
+		}	
 	}
 
 	local onPrepareVariables = o.onPrepareVariables;
