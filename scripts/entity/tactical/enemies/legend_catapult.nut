@@ -83,9 +83,9 @@ this.legend_catapult <- this.inherit("scripts/entity/tactical/human", {
 
 	function onDeath( _killer, _skill, _tile, _fatalityType )
 	{
+		local flip = this.Math.rand(0, 100) < 50;
 		if (_tile != null)
 		{
-			local flip = this.Math.rand(0, 100) < 50;
 			this.m.IsCorpseFlipped = flip;
 			local decal;
 			local appearance = this.getItems().getAppearance();
