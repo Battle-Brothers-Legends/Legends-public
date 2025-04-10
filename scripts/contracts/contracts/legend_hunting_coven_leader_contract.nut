@@ -5,7 +5,9 @@ this.legend_hunting_coven_leader_contract <- this.inherit("scripts/contracts/con
 		IsPlayerAttacking = true,
 		MinStrength = 10, // player needs to earn 10% of bonus (not including base 5% bonus) for this contract to be valid
 		Perk = ::Legends.Perk.LegendFavouredEnemyHexen,
-		ValidTypes = this.Const.LegendMod.FavoriteHexe
+		ValidTypes = this.Const.LegendMod.FavoriteHexe,
+		LevelSumRequiredForRandomSpawn = 50,
+		IsRandomlyAdded = null,
 	},
 	function create()
 	{
@@ -19,6 +21,7 @@ this.legend_hunting_coven_leader_contract <- this.inherit("scripts/contracts/con
 			"The Coven is a cabal of dark souls and twisted minds, their sinister powers spreads their malevolent influence far and wide.",
 			"A Coven is a cesspit of dark magic and corruption. Burn them all, and quickly! Lest they claim your soul.",
 		];
+		this.m.IsRandomlyAdded = ::Math.rand(1, 100) <= 5;
 	}
 
 	function getBanner()
@@ -617,22 +620,19 @@ this.legend_hunting_coven_leader_contract <- this.inherit("scripts/contracts/con
 
 	function onIsValid()
 	{
+		local sumLevels = 0;
 		foreach( bro in this.World.getPlayerRoster().getAll() )
 		{
+			sumLevels += bro.getLevel();
 			if (!bro.getSkills().hasPerk(this.m.Perk))
-			{
 				continue;
-			}
 
 			local stats = this.Const.LegendMod.GetFavoriteEnemyStats(bro, this.m.ValidTypes);
-
 			if (stats.Strength >= this.m.MinStrength)
-			{
 				return true;
-			}
 		}
 
-		return false;
+		return this.m.IsRandomlyAdded && sumLevels > this.m.LevelSumRequiredForRandomSpawn;
 	}
 
 	function onSerialize( _out )
@@ -645,7 +645,7 @@ this.legend_hunting_coven_leader_contract <- this.inherit("scripts/contracts/con
 		{
 			_out.writeU32(0);
 		}
-
+		_out.writeBool(this.m.IsRandomlyAdded);
 		this.contract.onSerialize(_out);
 	}
 
@@ -657,7 +657,7 @@ this.legend_hunting_coven_leader_contract <- this.inherit("scripts/contracts/con
 		{
 			this.m.Target = this.WeakTableRef(this.World.getEntityByID(target));
 		}
-
+		this.m.IsRandomlyAdded = _out.readBool();
 		this.contract.onDeserialize(_in);
 	}
 
