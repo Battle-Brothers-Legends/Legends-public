@@ -5,7 +5,9 @@ this.legend_hunting_greenwood_schrats_contract <- this.inherit("scripts/contract
 		IsPlayerAttacking = false,
 		MinStrength = 10, // player needs to earn 10% of bonus (not including base 5% bonus) for this contract to be valid
 		Perk =  ::Legends.Perk.LegendFavouredEnemySchrat,
-		ValidTypes = this.Const.LegendMod.FavoriteSchrat
+		ValidTypes = this.Const.LegendMod.FavoriteSchrat,
+		LevelSumRequiredForRandomSpawn = 50,
+		IsRandomlyAdded = null,
 	},
 	function create()
 	{
@@ -19,6 +21,7 @@ this.legend_hunting_greenwood_schrats_contract <- this.inherit("scripts/contract
 			"A malevolent presence lurks in the heart of the forest, its dark aura spreading like a poison through the trees and soil.",
 			"Some locals talk about the heart of the forest is if it were alive, or perhaps a deity to be worshiped.",
 		];
+		this.m.IsRandomlyAdded = ::Math.rand(1, 100) <= 5;
 	}
 
 	function getBanner()
@@ -526,22 +529,19 @@ this.legend_hunting_greenwood_schrats_contract <- this.inherit("scripts/contract
 
 	function onIsValid()
 	{
+		local sumLevels = 0;
 		foreach( bro in this.World.getPlayerRoster().getAll() )
 		{
+			sumLevels += bro.getLevel();
 			if (!bro.getSkills().hasPerk(this.m.Perk))
-			{
 				continue;
-			}
 
 			local stats = this.Const.LegendMod.GetFavoriteEnemyStats(bro, this.m.ValidTypes);
-
 			if (stats.Strength >= this.m.MinStrength)
-			{
 				return true;
-			}
 		}
-
-		return false;
+		_out.writeBool(this.m.IsRandomlyAdded);
+		return this.m.IsRandomlyAdded && sumLevels > this.m.LevelSumRequiredForRandomSpawn;
 	}
 
 	function onSerialize( _out )
@@ -566,7 +566,7 @@ this.legend_hunting_greenwood_schrats_contract <- this.inherit("scripts/contract
 		{
 			this.m.Target = this.WeakTableRef(this.World.getEntityByID(target));
 		}
-
+		this.m.IsRandomlyAdded = _out.readBool();
 		this.contract.onDeserialize(_in);
 	}
 

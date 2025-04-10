@@ -5,7 +5,9 @@ this.legend_hunting_redback_webknechts_contract <- this.inherit("scripts/contrac
 		IsPlayerAttacking = false,
 		MinStrength = 10, // player needs to earn 10% of bonus (not including base 5% bonus) for this contract to be valid
 		Perk = ::Legends.Perk.LegendFavouredEnemySpider,
-		ValidTypes = this.Const.LegendMod.FavoriteSpider
+		ValidTypes = this.Const.LegendMod.FavoriteSpider,
+		LevelSumRequiredForRandomSpawn = 50,
+		IsRandomlyAdded = null,
 	},
 	function create()
 	{
@@ -19,6 +21,7 @@ this.legend_hunting_redback_webknechts_contract <- this.inherit("scripts/contrac
 			"Bloated red bodies and gaping maws skitter through the darkness, hungry for blood.",
 			"Monstrous forms of red chitin haunt the dark, driven by an insatiable hunger to constantly feed.",
 		];
+		this.m.IsRandomlyAdded = ::Math.rand(1, 100) <= 5;
 	}
 
 	function getBanner()
@@ -529,22 +532,19 @@ this.legend_hunting_redback_webknechts_contract <- this.inherit("scripts/contrac
 
 	function onIsValid()
 	{
+		local sumLevels = 0;
 		foreach( bro in this.World.getPlayerRoster().getAll() )
 		{
+			sumLevels += bro.getLevel();
 			if (!bro.getSkills().hasPerk(this.m.Perk))
-			{
 				continue;
-			}
 
 			local stats = this.Const.LegendMod.GetFavoriteEnemyStats(bro, this.m.ValidTypes);
-
 			if (stats.Strength >= this.m.MinStrength)
-			{
 				return true;
-			}
 		}
 
-		return false;
+		return this.m.IsRandomlyAdded && sumLevels > this.m.LevelSumRequiredForRandomSpawn;
 	}
 
 	function onSerialize( _out )
@@ -557,7 +557,7 @@ this.legend_hunting_redback_webknechts_contract <- this.inherit("scripts/contrac
 		{
 			_out.writeU32(0);
 		}
-
+		_out.writeBool(this.m.IsRandomlyAdded);
 		this.contract.onSerialize(_out);
 	}
 
@@ -569,7 +569,7 @@ this.legend_hunting_redback_webknechts_contract <- this.inherit("scripts/contrac
 		{
 			this.m.Target = this.WeakTableRef(this.World.getEntityByID(target));
 		}
-
+		this.m.IsRandomlyAdded = _out.readBool();
 		this.contract.onDeserialize(_in);
 	}
 
