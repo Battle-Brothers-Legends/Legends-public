@@ -55,12 +55,15 @@
 		local injury = this.addSprite("injury");
 		injury.Visible = false;
 		injury.setBrush("bust_orc_01_head_injured");
-		local v = -7;
-		local v2 = 0;
+		this.setAlwaysApplySpriteOffset(true);
+		local v = -3;
+		local v2 = -3;
 		foreach (a in this.Const.CharacterSprites.Helmets)
 		{
+
 			this.addSprite(a);
 			this.setSpriteOffset(a, this.createVec(v2, v));
+
 		}
 		local body_blood = this.addSprite("body_blood");
 		body_blood.setBrush("bust_orc_01_body_bloodied");
