@@ -70,7 +70,7 @@ this.legend_demon_hound <- this.inherit("scripts/entity/tactical/actor", {
 
 	function teleport( _tag )
 	{
-		if (this.actor.getCurrentProperties().IsRooted || this.actor.getCurrentProperties().IsStunned)
+		if (this.getCurrentProperties().IsRooted || this.getCurrentProperties().IsStunned)
 			return;
 
 		local result = {
