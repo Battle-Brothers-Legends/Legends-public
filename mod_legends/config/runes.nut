@@ -45,7 +45,7 @@
 	getRuneTooltip = function (_item) {
 		local max1 = _item.isUpgraded() ? 9 : 6;
 		local max2 = _item.isUpgraded() ? 9 : 6;
-		return "This item has the power of the rune sigil of Power:\n[color=" + ::Const.UI.Color.PositiveValue + "]+3% to +" + max1 + "%[/color] total damage inflicted and [color=" + ::Const.UI.Color.PositiveValue + "]+3 to +" + max2 + "%[/color] maximum damage.";
+		return "This item has the power of the rune sigil of Power:\n[color=" + ::Const.UI.Color.PositiveValue + "]+3% to +" + max1 + "%[/color] total damage inflicted and [color=" + ::Const.UI.Color.PositiveValue + "]+3 to +" + max2 + "[/color] maximum damage.";
 	}
 });
 

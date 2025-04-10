@@ -38,10 +38,7 @@ this.legend_shovel <- this.inherit("scripts/items/weapons/weapon", {
 			_skill.m.Icon = "skills/shovel_bash.png";
 			_skill.m.IconDisabled = "skills/shovel_bash_bw.png";
 		}.bindenv(this));
-		if (this.getContainer().getActor().getSkills().hasPerk(::Legends.Perk.LegendSpecialistGravedigger))
-		{
-			::Legends.Actives.grant(this, ::Legends.Active.KnockOut);
-		}
+		::Legends.Actives.grant(this, ::Legends.Active.KnockOut);
 	}
 
 });

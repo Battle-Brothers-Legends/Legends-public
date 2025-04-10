@@ -65,7 +65,7 @@
 		{
 			this.addSprite(a)
 		}
-
+		this.setAlwaysApplySpriteOffset(true);
 		local v = 8;
 		local v2 = -15;
 		foreach (a in this.Const.CharacterSprites.Helmets)

@@ -4,8 +4,10 @@ this.perk_legend_specialist_cultist <- this.inherit("scripts/skills/legend_speci
 			"weapon.legend_cat_o_nine_tails"
 		],
 		ApplicableItemTypes = [
-			this.Const.Items.ItemType.Cultist,
-			this.Const.Items.ItemType.Flail
+			::Const.Items.ItemType.Cultist
+		],
+		ApplicableWeaponTypes = [
+			::Const.Items.WeaponType.Flail
 		],
 		BonusMelee = 12,
 		BonusDamage = 10
@@ -31,7 +33,7 @@ this.perk_legend_specialist_cultist <- this.inherit("scripts/skills/legend_speci
 		{
 			id = 8,
 			type = "text",
-			icon = "ui/tooltips/chance_to_hit_head.png",
+			icon = "ui/icons/chance_to_hit_head.png",
 			text = "[color=" + this.Const.UI.Color.PositiveValue + "]+" + this.calculateSpecialistBonus(15, _item) + "[/color] Chance to hit Head"
 		}]);
 		if (::Legends.S.isCharacterWeaponSpecialized(properties, _item))

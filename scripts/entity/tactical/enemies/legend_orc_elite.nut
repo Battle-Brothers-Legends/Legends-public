@@ -268,9 +268,13 @@ this.legend_orc_elite <- this.inherit("scripts/entity/tactical/actor", {
 		injury.Visible = false;
 		injury.setBrush("bust_orc_03_head_injured");
 
+		this.setAlwaysApplySpriteOffset(true);
+		local v = 1;
+		local v2 = -6;
 		foreach (a in this.Const.CharacterSprites.Helmets)
 		{
 			this.addSprite(a);
+			this.setSpriteOffset(a, this.createVec(v2, v));
 		}
 
 		local body_blood = this.addSprite("body_blood");

@@ -20,7 +20,10 @@
 		local r = ::MSU.Array.rand(this.m.DescriptionTemplates);
 
 		if (r.find("%") != null)
-			r = format(r, ::Const.UI.getColorized(this.m.Home.getName(), ::Const.UI.Color.getHighlightLightBackgroundValue()));
+			if (this.m.Home != null)
+				r = format(r, ::Const.UI.getColorized(this.m.Home.getName(), ::Const.UI.Color.getHighlightLightBackgroundValue()));
+			else if (this.m.Origin != null)
+				r = format(r, ::Const.UI.getColorized(this.m.Origin.getName(), ::Const.UI.Color.getHighlightLightBackgroundValue()));
 
 		this.m.Description = r;
 	}
@@ -37,10 +40,13 @@
 				s.end <- function ()
 				{
 					end();
-					party.getLoot().Money = this.Math.rand(100, 300);
-					party.getLoot().ArmorParts = this.Math.rand(10, 35);
-					party.getLoot().Medicine = this.Math.rand(5, 15);
-					party.getLoot().Ammo = this.Math.rand(10, 40);
+					foreach (id in this.Contract.m.UnitsSpawned) {
+						local party = ::World.getEntityByID(id);
+						party.getLoot().Money = this.Math.rand(100, 300);
+						party.getLoot().ArmorParts = this.Math.rand(10, 35);
+						party.getLoot().Medicine = this.Math.rand(5, 15);
+						party.getLoot().Ammo = this.Math.rand(10, 40);
+					}
 				}
 			}
 		}
