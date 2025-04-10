@@ -1,6 +1,7 @@
 this.legend_skewer_skill <- this.inherit("scripts/skills/skill", {
 	m = {
 		IsSpearSkewer = false,
+		IsSecondAttack = false
 	},
 	function create()
 	{
@@ -85,7 +86,9 @@ this.legend_skewer_skill <- this.inherit("scripts/skills/skill", {
 
 			if (forwardTile.IsOccupiedByActor && forwardTile.getEntity().isAttackable() && this.Math.abs(forwardTile.Level - ownTile.Level) <= 1)
 			{
+				this.m.IsSecondAttack = true;
 				ret = this.attackEntity(_user, forwardTile.getEntity()) || ret;
+				this.m.IsSecondAttack = false;
 			}
 		}
 
@@ -102,17 +105,6 @@ this.legend_skewer_skill <- this.inherit("scripts/skills/skill", {
 
 			if (this.Math.abs(forwardTile.Level - ownTile.Level) <= 1) {
 				this.Tactical.getHighlighter().addOverlayIcon(this.Const.Tactical.Settings.AreaOfEffectIcon, forwardTile, forwardTile.Pos.X, forwardTile.Pos.Y);
-			}
-		}
-	}
-
-	function onAnySkillUsed ( _skill, _targetEntity, _properties )
-	{
-		if (_skill == this)
-		{
-			if (_properties.IsSpecializedInSpearThrust)
-			{
-				_properties.DamageTotalMult *= 1.15;
 			}
 		}
 	}

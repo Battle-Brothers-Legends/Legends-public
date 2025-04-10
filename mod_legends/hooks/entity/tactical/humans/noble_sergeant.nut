@@ -81,6 +81,7 @@
 			"weapons/legend_swordstaff",
 			"weapons/legend_infantry_axe",
 			"weapons/legend_military_goedendag",
+			"weapons/legend_military_warscythe",
 		];
 
 		this.m.Items.equip(this.new("scripts/items/" + weapons[this.Math.rand(0, weapons.len() - 1)]));

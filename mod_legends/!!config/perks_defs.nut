@@ -2693,15 +2693,26 @@ perkDefObjects.push({
 	Const = "LegendSpecSpearWall"
 });
 
-::Legends.Perk.LegendSpecSpearThrust <- null;
+::Legends.Perk.LegendThrustMaster <- null;
 perkDefObjects.push({
-	ID = "perk.legend_specialist_spearthrust",
-	Script = "scripts/skills/perks/perk_legend_specialist_spearthrust",
-	Name = ::Const.Strings.PerkName.LegendSpecSpearThrust,
-	Tooltip = ::Const.Strings.PerkDescription.LegendSpecSpearThrust,
+	ID = "perk.legend_thrust_master",
+	Script = "scripts/skills/perks/perk_legend_thrust_master",
+	Name = ::Const.Strings.PerkName.LegendThrustMaster,
+	Tooltip = ::Const.Strings.PerkDescription.LegendThrustMaster,
 	Icon = "ui/perks/spearthrust_mastery.png",
 	IconDisabled = "ui/perks/spearthrust_mastery_bw.png",
-	Const = "LegendSpecSpearThrust"
+	Const = "LegendThrustMaster"
+});
+
+::Legends.Perk.LegendRunThemThrough <- null;
+perkDefObjects.push({
+	ID = "perk.legend_run_them_through",
+	Script = "scripts/skills/perks/perk_legend_run_them_through",
+	Name = ::Const.Strings.PerkName.LegendRunThemThrough,
+	Tooltip = ::Const.Strings.PerkDescription.LegendRunThemThrough,
+	Icon = "ui/perks/ring_jousting_perk.png",
+	IconDisabled = "ui/perks/ring_jousting_perk_bw.png",
+	Const = "LegendRunThemThrough"
 });
 
 ::Legends.Perk.LegendAssuredConquest <- null;

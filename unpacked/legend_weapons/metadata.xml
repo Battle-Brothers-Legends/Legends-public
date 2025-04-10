@@ -583,4 +583,12 @@
   	<sprite id="shield_metal_round_03_named_03" offsetY="35" ic="FF3A4340" width="130" height="142" img="icons\shield_metal_round_03_named_03.png" left="4" right="60" top="-61" bottom="9" />
   	<sprite id="shield_metal_round_03_named_03_damaged" offsetY="35" ic="FF363F3E" width="130" height="142" img="icons\shield_metal_round_03_named_03_damaged.png" left="3" right="59" top="-60" bottom="8" />
   	<sprite id="shield_metal_round_03_named_03_destroyed" offsetX="30" offsetY="-3" f="6404" ic="FF363F3E" width="70" height="68" img="icons\shield_metal_round_03_named_03_destroyed.png" top="-33" bottom="27" />
+  	<sprite id="icon_warscythe_02" offsetY="35" ic="FF363F49" width="130" height="142" img="icons\warscythe_02.png" left="-55" right="5" top="-65" bottom="71" />
+  	<sprite id="icon_warscythe_02_bloodied" offsetY="35" ic="FF313948" width="130" height="142" img="icons\warscythe_02_bloodied.png" left="-55" right="5" top="-65" bottom="71" />
+  	<sprite id="icon_warscythe_03" offsetY="35" ic="FF363F49" width="130" height="142" img="icons\warscythe_03.png" left="-55" right="5" top="-65" bottom="71" />
+  	<sprite id="icon_warscythe_03_bloodied" offsetY="35" ic="FF313948" width="130" height="142" img="icons\warscythe_03_bloodied.png" left="-55" right="5" top="-65" bottom="71" />
+  	<sprite id="icon_warscythe_named_04" offsetY="35" ic="FF363F49" width="130" height="142" img="icons\icon_warscythe_named_04.png" left="-55" right="5" top="-65" bottom="71" />
+  	<sprite id="icon_warscythe_named_04_bloodied" offsetY="35" ic="FF313948" width="130" height="142" img="icons\icon_warscythe_named_04_bloodied.png" left="-55" right="5" top="-65" bottom="71" />
+  	<sprite id="icon_warscythe_named_05" offsetY="35" ic="FF363F49" width="130" height="142" img="icons\icon_warscythe_named_05.png" left="-55" right="5" top="-65" bottom="71" />
+  	<sprite id="icon_warscythe_named_05_bloodied" offsetY="35" ic="FF313948" width="130" height="142" img="icons\icon_warscythe_named_05_bloodied.png" left="-55" right="5" top="-65" bottom="71" />
 </brush>

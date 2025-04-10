@@ -268,7 +268,7 @@ this.legend_bandit_veteran <- this.inherit("scripts/entity/tactical/human", {
 
 				if (::Legends.isLegendaryDifficulty())
 				{
-					::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecSpearThrust);
+					::Legends.Perks.grant(this, ::Legends.Perk.LegendThrustMaster);
 				}
 			}
 			else if (r == 5)

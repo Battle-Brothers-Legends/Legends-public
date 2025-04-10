@@ -11,7 +11,7 @@
 			::Legends.Perks.grant(this, ::Legends.Perk.SpecSpear);
 			::Legends.Perks.grant(this, ::Legends.Perk.ShieldExpert);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecSpearWall);
-			::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecSpearThrust);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendThrustMaster);
 			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
 		}
 	}
