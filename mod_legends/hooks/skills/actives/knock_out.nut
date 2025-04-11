@@ -1,12 +1,6 @@
 ::mods_hookExactClass("skills/actives/knock_out", function(o)
 {
 	o.m.IsStaffKnockOut <- false;
-	local create = o.create;
-	o.create = function()
-	{
-		create();
-		this.m.IsHidden = true;
-	}
 
 	o.isHidden <- function()
 	{
