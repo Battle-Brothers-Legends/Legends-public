@@ -145,7 +145,7 @@ this.legend_RSS_radiance_effect <- this.inherit("scripts/skills/skill", {
 			{
 				if (!t.isAlliedWith(actor) && t.getSkills().hasEffect(::Legends.Effect.LegendRssRadiance) && t.getTile().getDistanceTo(actor.getTile()) == 1)
 				{
-					local BlinderValues = ::Legends.Effect.get(t, ::Legends.Effect.LegendRssRadiance);
+					local BlinderValues = ::Legends.Effects.get(t, ::Legends.Effect.LegendRssRadiance);
 					this.m.MalusOne = BlinderValues.getItem().getRuneBonus1();
 					this.m.MalusTwo = BlinderValues.getItem().getRuneBonus2();
 					this.spawnIcon("status_effect_52", actor.getTile());
