@@ -71,7 +71,7 @@ this.legend_recruitment_druid_encounter <- this.inherit("scripts/encounters/enco
             }
         });
     }
-    function isValid(_settlement) {
+    function isValid(_camp) {
 		local currentTile = this.World.State.getPlayer().getTile();
 		if (currentTile.Type != this.Const.World.TerrainType.Forest && currentTile.Type != this.Const.World.TerrainType.SnowyForest && currentTile.Type != this.Const.World.TerrainType.LeaveForest && currentTile.Type != this.Const.World.TerrainType.AutumnForest)
 		{
