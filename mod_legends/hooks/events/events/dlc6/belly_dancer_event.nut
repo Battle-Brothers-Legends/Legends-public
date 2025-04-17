@@ -35,4 +35,7 @@
 			}
 		}
 	}
+o.onUpdateScore = function(){
+	this.m.Score = 0;//disable
+}
 })

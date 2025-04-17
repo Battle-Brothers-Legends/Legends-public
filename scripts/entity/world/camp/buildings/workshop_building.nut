@@ -418,7 +418,6 @@ this.workshop_building <- this.inherit("scripts/entity/world/camp/camp_building"
 						rune.setRuneVariant(myItem.getRuneVariant());
 						rune.setRuneBonus1(myItem.getRuneBonus1());
 						rune.setRuneBonus2(myItem.getRuneBonus2());
-						rune.setRuneVariant(0);
 						this.World.Assets.getStash().add(rune);
 					}
 				}

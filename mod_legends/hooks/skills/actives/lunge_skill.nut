@@ -2,10 +2,9 @@
 {
 	o.m.isGreatLunge <- false;
 
-	local create = o.create;
-	o.create = function ()
+	o.setItem <- function (_item)
 	{
-		create();
+		this.skill.setItem(_item);
 		if (this.m.isGreatLunge)
 		{
 			this.m.Name = "Great Lunge";

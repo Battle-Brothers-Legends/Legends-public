@@ -647,7 +647,7 @@
 				return;
 			}
 
-			local malus = this.Math.max(0, attackingEntity.getCurrentProperties().SurroundedBonus - targetEntity.getCurrentProperties().SurroundedDefense) * targetEntity.getSurroundedCount();
+			local malus = this.Math.max(0, attackingEntity.getCurrentProperties().SurroundedBonus * attackingEntity.getCurrentProperties().SurroundedBonusMult - targetEntity.getCurrentProperties().SurroundedDefense) * targetEntity.getSurroundedCount();
 
 			if (malus)
 			{

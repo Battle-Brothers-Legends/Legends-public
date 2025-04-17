@@ -92,7 +92,8 @@ this.legend_large_armor_piercing_bolts <- this.inherit("scripts/items/ammo/ammo"
 
 	function onAnySkillUsed( _skill, _targetEntity, _properties )
 	{
-		if (_skill.isAttack() && _skill.getItem() != null && _skill.getItem().isWeaponType(this.Const.Items.WeaponType.Crossbow))
+		local item = _skill.getItem();
+		if (_skill.isAttack() && item != null && item.isItemType(this.Const.Items.ItemType.Weapon) && item.isWeaponType(this.Const.Items.WeaponType.Crossbow))
 		{
 			_properties.DamageDirectMult *= 1.2;
 			_properties.RangedDamageMult *= 0.9;

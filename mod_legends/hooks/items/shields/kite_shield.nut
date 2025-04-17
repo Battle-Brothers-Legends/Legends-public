@@ -55,17 +55,24 @@
 			104
 		];
 		if (this.Const.DLC.UnholdSupporter)
-			this.m.Variants.push(34)
+			this.m.Variants.push(34);
 		if (this.Const.DLC.WildmenSupporter)
-			this.m.Variants.push(37)
+			this.m.Variants.push(37);
 		if (this.Const.DLC.DesertSupporter)
-			this.m.Variants.push(42)
+			this.m.Variants.push(42);
 		this.m.Variant = this.Math.rand(0, 9); //random one is only 1-9 though
 	}
 
 	o.onPaintSpecificColor <- function ( _color )
 	{
 		this.setVariant(_color);
+		this.updateAppearance();
+	}
+
+	o.onPaintInCompanyColors = function ()
+	{
+		local bannerID = this.World.Assets.getBannerID() > 100 ? this.World.Assets.getBannerID() : this.World.Assets.getBannerID() + 11;
+		this.setVariant(bannerID);
 		this.updateAppearance();
 	}
 });

@@ -51,6 +51,7 @@
 		local injury = this.addSprite("injury");
 		injury.Visible = false;
 		injury.setBrush("bust_orc_03_head_injured");
+		this.setAlwaysApplySpriteOffset(true);
 		local v = 1;
 		local v2 = -6;
 		foreach (a in this.Const.CharacterSprites.Helmets)

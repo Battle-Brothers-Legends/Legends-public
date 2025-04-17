@@ -29,15 +29,15 @@ echo "Copying mod ui files to $BuildDir\\ui ..."
 cp -R ui/. "$BuildDir\\ui"
 handleExit
 echo "Copying mod preload files to $BuildDir\\preload ..."
-cp -R ui/. "$BuildDir\\preload"
+cp -R preload/. "$BuildDir\\preload"
 handleExit
 
 # zip the content of build dir and move file to bb's /data dir
 cd "$BuildDir"
 zipNameAssets=$(artifactNameAssets)
 zipNameMod=$(artifactNameMod)
-7z a -tzip $zipNameAssets brushes gfx sounds preload
-7z a -tzip $zipNameMod mod_legends scripts ui
+7z a -tzip $zipNameAssets brushes gfx sounds
+7z a -tzip $zipNameMod mod_legends scripts ui preload
 
 buildAssetsScript > mod_legends_assets.nut
 rm "scripts" -r

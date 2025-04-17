@@ -93,7 +93,7 @@ this.legend_oms_amphora_item <- this.inherit("scripts/items/accessory/accessory"
 				id = 10,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "Does something when equipped in the \'accessory\' slot and consumed in battle."
+				text = "You aren\'t sure what it does. You\'ve heard of an ancient witch living in a hut in the forest who might know more about this"
 			});
 			return result;
 		}
@@ -103,7 +103,7 @@ this.legend_oms_amphora_item <- this.inherit("scripts/items/accessory/accessory"
 				id = 10,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "Drinking in battle provides a random status effect. May be harmful or helpful. Refills after every battle."
+				text = "Drinking in battle provides a random status effect. May be harmful or helpful. Refills after every battle"
 			});
 			return result;
 		}

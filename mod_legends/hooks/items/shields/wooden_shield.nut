@@ -14,7 +14,7 @@
 			8,
 			9,
  			//10,
-			11, 
+			11,
 			12,
 			13,
 			14,
@@ -47,21 +47,28 @@
 			// 41,
 			42,
 			43,
-			44
+			44,
 			104
 		];
 		if (this.Const.DLC.UnholdSupporter)
-			this.m.Variants.push(33)
+			this.m.Variants.push(33);
 		if (this.Const.DLC.WildmenSupporter)
-			this.m.Variants.push(36)
+			this.m.Variants.push(36);
 		if (this.Const.DLC.DesertSupporter)
-			this.m.Variants.push(41)
+			this.m.Variants.push(41);
 		this.m.Variant = this.Math.rand(0, 9); //random one is only 1-9 though
 	}
 
 	o.onPaintSpecificColor <- function ( _color )
 	{
 		this.setVariant(_color);
+		this.updateAppearance();
+	}
+
+	o.onPaintInCompanyColors = function ()
+	{
+		local bannerID = this.World.Assets.getBannerID() > 100 ? this.World.Assets.getBannerID() : this.World.Assets.getBannerID() + 11;
+		this.setVariant(bannerID);
 		this.updateAppearance();
 	}
 });

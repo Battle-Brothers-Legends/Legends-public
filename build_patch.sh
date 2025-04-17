@@ -5,7 +5,7 @@ source "./buildscript/lib.sh"
 current_dir=$(pwd)
 log_file="$current_dir\\log.txt"
 
-latest_tag=$(getBaseVersion)
+latest_tag=$(getLegendsAssetsVersion)
 
 commit_hash=$(git rev-parse "$latest_tag" 2>$log_file)
 if [ $? -ne 0 ]; then

@@ -115,7 +115,6 @@
 ];
 ::Const.SupposedWitchBackgrounds <- [
 	"legend_shieldmaiden_background",
-	"legend_vala_background",
 	"adventurous_noble_background",
 	"disowned_noble_background",
 	"monk_background"

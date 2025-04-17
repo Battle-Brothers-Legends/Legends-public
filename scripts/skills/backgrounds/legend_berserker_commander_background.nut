@@ -231,7 +231,7 @@ this.legend_berserker_commander_background <- this.inherit("scripts/skills/backg
 			type = "text",
 			icon = "ui/icons/regular_damage.png",
 			text = "[color=" + this.Const.UI.Color.PositiveValue + "]5%[/color] bonus damage to [color=#400080]Hand to Hand[/color] and [color=#400080]Choke[/color]"
-		})
+		});
 		return ret;
 	}
 

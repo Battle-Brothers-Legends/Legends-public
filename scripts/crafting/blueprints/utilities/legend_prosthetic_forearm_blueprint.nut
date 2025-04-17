@@ -10,9 +10,14 @@ this.legend_prosthetic_forearm_blueprint <- this.inherit("scripts/crafting/bluep
 		local ingredients = [
 			{
 				Script = "scripts/items/trade/quality_wood_item",
+				Num = 2
+			},
+			{
+				Script = "scripts/items/trade/legend_iron_ingots_item",
 				Num = 1
 			}
 		];
+		this.init(ingredients);
 		local skills = [
 			::Legends.Perks.blueprint(::Legends.Perk.LegendInventorAnatomy)
 		];

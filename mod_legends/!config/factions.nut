@@ -3,7 +3,7 @@
 		Simple helper function that adds new factions with all respective fields set
 	*/
 	add = function(_color, _bust = "", _allies = []) {
-		local newID = ::Const.Faction.COUNT++;
+		local newID = ::Const.Faction.COUNT;
 		// ensure related lists are right size
 		while (::Const.FactionColor.len() <= ::Const.Faction.COUNT)
 			::Const.FactionColor.push(::createColor("#ffffff"));
@@ -11,7 +11,7 @@
 			::Const.FactionBase.push("");
 		while (::Const.FactionAlliance.len() <= ::Const.Faction.COUNT)
 			::Const.FactionAlliance.push([]);
-
+		::Const.Faction.COUNT++;
 		::Const.FactionBase[newID] = _bust;
 		::Const.FactionAlliance[newID].push(newID); // adds self to allies so parties of same faction don't attack each other
 		foreach (ally in _allies) {

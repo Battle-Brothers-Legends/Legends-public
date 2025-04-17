@@ -170,7 +170,7 @@ this.legend_kobold_wolfrider <- this.inherit("scripts/entity/tactical/legend_kob
 		}
 		else
 		{
-			this.kobold.onDeath(_killer, _skill, _tile, _fatalityType);
+			this.legend_kobold.onDeath(_killer, _skill, _tile, _fatalityType);
 		}
 	}
 

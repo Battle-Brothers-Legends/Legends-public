@@ -92,8 +92,8 @@ this.legend_magic_daze_skill <- this.inherit("scripts/skills/actives/legend_magi
 			if (targetEntity.isAlive())
 			{
 				::Legends.Effects.grant(targetEntity, ::Legends.Effect.LegendDazed, function(_effect) {
-					_effect.m.TurnsLeft = this.Math.max(1, 1 + newDaze.getContainer().getActor().getCurrentProperties().NegativeStatusEffectDuration);
-				}.bindenv(this));
+					_effect.m.TurnsLeft = ::Math.max(1, 1 + this.getCurrentProperties().NegativeStatusEffectDuration);
+				}.bindenv(targetEntity));
 
 				if (!_user.isHiddenToPlayer() && _targetTile.IsVisibleForPlayer)
 				{

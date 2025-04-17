@@ -43,6 +43,9 @@ if (!("Effects" in ::Legends))
 	local skill = null;
 	if (container.hasSkill(effectDef.ID)) {
 		skill = container.getSkillByID(effectDef.ID);
+		if (skill.m.IsStacking) {
+			skill = ::new(effectDef.Script);
+		}
 	} else {
 		skill = ::new(effectDef.Script);
 	}

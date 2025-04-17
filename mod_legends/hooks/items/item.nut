@@ -395,6 +395,9 @@
 		this.addSettlementIDToTradeHistory(_settlement.getID());
 	}
 
+	// for items that slings are able to throw
+	o.onSlingUpdateProperties <- function () {}
+
 	local onSerialize = o.onSerialize;
 	o.onSerialize = function ( _out )
 	{

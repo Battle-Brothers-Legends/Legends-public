@@ -3,7 +3,7 @@ this.legend_root_skill <- this.inherit("scripts/skills/skill", {
 	function create()
 	{
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendRoot);
-		this.m.Description = "Unleash roots from the ground to ensnare your foes. Fatigue and AP costs reduced while raining and with staff mastery.";
+		this.m.Description = "Unleash roots from the ground to ensnare your target to prevent them from moving or defending themself effectively. Will always hit if the enemy isn\'t immune. This spell is easier to cast when it\'s raining.";
 		this.m.Icon = "skills/roots_square.png";
 		this.m.IconDisabled = "skills/roots_square_bw.png";
 		this.m.Overlay = "active_70";
@@ -36,6 +36,23 @@ this.legend_root_skill <- this.inherit("scripts/skills/skill", {
 		this.m.MinRange = 1;
 		this.m.MaxRange = 8;
 		this.m.MaxLevelDifference = 4;
+	}
+
+	function getTooltip()
+	{
+		local tooltip = this.getDefaultUtilityTooltip();
+
+		if (this.Tactical.isActive() && this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions()))
+		{
+			tooltip.push({
+				id = 5,
+				type = "text",
+				icon = "ui/tooltips/warning.png",
+				text = "[color=" + this.Const.UI.Color.NegativeValue + "]Can not be used because this character is engaged in melee[/color]"
+			});
+		}
+
+		return tooltip;
 	}
 
 	function isViableTarget( _user, _target )

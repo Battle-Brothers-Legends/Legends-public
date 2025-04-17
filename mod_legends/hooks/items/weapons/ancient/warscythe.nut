@@ -5,6 +5,7 @@
 		create();
 		this.m.WeaponType = this.Const.Items.WeaponType.Cleaver | this.Const.Items.WeaponType.Polearm;
 		this.m.ItemType = this.Const.Items.ItemType.Weapon | this.Const.Items.ItemType.MeleeWeapon | this.Const.Items.ItemType.TwoHanded;
+		this.setCategories("Cleaver/Polearm, Two-Handed");
 	}
 
 	o.addSkill <- function( _skill )

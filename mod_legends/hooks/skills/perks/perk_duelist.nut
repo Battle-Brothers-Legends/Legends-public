@@ -18,11 +18,6 @@
 		return "Become one with your weapon and go for the weak spots!";
 	}
 
-	o.isHidden <- function ()
-	{
-		return ::Tactical.isActive();
-	}
-
 	o.getTooltip <- function ()
 	{
 		local tooltip = this.skill.getTooltip();
@@ -92,7 +87,7 @@
 
 	o.onAnySkillUsed <- function ( _skill, _targetEntity, _properties )
 	{
-		if (_skill.isRanged)
+		if (_skill.isRanged())
 			return;
 		_properties.DamageDirectAdd += this.getBonus();
 	}

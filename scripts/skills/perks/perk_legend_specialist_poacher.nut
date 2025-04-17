@@ -88,16 +88,18 @@ this.perk_legend_specialist_poacher <- this.inherit("scripts/skills/legend_speci
 		{
 			return false;
 		}
-
 		local user = _skill.getContainer().getActor();
-		::Legends.Effects.grant(_targetEntity, ::Legends.Effect.LegendGrazedEffect);
-
-		if (!user.isHiddenToPlayer() && _targetEntity.getTile().IsVisibleForPlayer)
+		local ammo = user.getItems().getItemAtSlot(this.Const.ItemSlot.Ammo);
+		if (::Legends.S.patternIsInText("Piercing", ammo.getName()))
 		{
-			this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(user) + " lacerated " + this.Const.UI.getColorizedEntityName(_targetEntity) + " leaving them grazed");
+			::Legends.Effects.grant(_targetEntity, ::Legends.Effect.LegendGrazedEffect);
+
+			if (!user.isHiddenToPlayer() && _targetEntity.getTile().IsVisibleForPlayer)
+			{
+				this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(user) + " lacerated " + this.Const.UI.getColorizedEntityName(_targetEntity) + " leaving them grazed");
+			}
+
+			return true;
 		}
-
-		return true;
-
 	}
 });

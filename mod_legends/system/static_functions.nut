@@ -100,7 +100,7 @@
 		if (firstActorEntities.find(entity) != null);
 		{
 			overlaps.push(entity);
-		}	
+		}
 	}
 
 	return overlaps;
@@ -109,7 +109,7 @@
 ::Legends.S.isInZocWithActor <- function (_actor, _secondActor)
 {
 	if (!_secondActor.isAlive() || !_secondActor.isDying())
-		return false
+		return false;
 
 	if (_secondActor.isNonCombatant())
 		return false;
@@ -124,4 +124,20 @@
 		return false;
 
 	return true;
+}
+
+::Legends.S.getClosestSettlement <- function () {
+	local towns = this.World.EntityManager.getSettlements();
+	local nearestTown;
+	local nearestDist = 9999;
+	foreach (t in towns)
+	{
+		local d = t.getTile().getDistanceTo(::World.State.getPlayer().getTile());
+		if (d < nearestDist && t.isAlliedWithPlayer() && ::World.FactionManager.getFaction(t.getFaction()).getContracts().len() != 0)
+		{
+			nearestTown = t;
+			nearestDist = d;
+		}
+	}
+	return nearestTown;
 }

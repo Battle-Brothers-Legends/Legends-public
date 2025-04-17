@@ -26,12 +26,6 @@ this.legend_coordinating_volleys <- this.inherit("scripts/skills/effects/legend_
 				type = "text",
 				icon = "ui/icons/regular_damage.png",
 				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+5%[/color] Ranged Damage"
-			},
-			{
-				id = 11,
-				type = "text",
-				icon = "ui/icons/locked_small.png",
-				text = "Immune to being knocked back or grabbed"
 			}
 		]);
 

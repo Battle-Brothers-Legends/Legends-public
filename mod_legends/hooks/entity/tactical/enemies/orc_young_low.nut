@@ -5,7 +5,7 @@
 		local r;
 		local weapon;
 
-		r = this.Math.rand(1, 100)
+		r = this.Math.rand(1, 100);
 		if (r <= 30)
 		{
 			r = this.Math.rand(1, 2);

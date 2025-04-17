@@ -74,12 +74,12 @@ this.named_goblin_crossbow <- this.inherit("scripts/items/weapons/named/named_we
 	function onEquip()
 	{
 		this.named_weapon.onEquip();
-		this.addSkill(this.new("scripts/skills/actives/shoot_stake"));
-
+		::Legends.Actives.grant(this, ::Legends.Active.ShootStake);
 		if (!this.m.IsLoaded)
 		{
-			this.addSkill(this.new("scripts/skills/actives/reload_bolt"));
+			::Legends.Actives.grant(this, ::Legends.Active.ReloadBolt);
 		}
+		::Legends.Actives.grant(this, ::Legends.Active.LegendPiercingBolt);
 	}
 
 	function onCombatFinished()

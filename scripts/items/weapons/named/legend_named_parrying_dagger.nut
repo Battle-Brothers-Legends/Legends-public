@@ -161,14 +161,14 @@ this.legend_named_parrying_dagger <- this.inherit("scripts/items/shields/named/n
 		named_shield.onEquip();
 		::Legends.Actives.grant(this, ::Legends.Active.Stab, function (_skill) {
 			this.m.OffHandWeaponSkills[_skill.m.ID] <- ::MSU.asWeakTableRef(_skill);
-			this.m.PrimaryOffhandAttack = m.OffHandWeaponSkills[_skill.m.ID];
-			_skill.m.Order = this.Const.SkillOrder.UtilityTargeted - 3;
-			_skill.m.ID = stab.m.ID + "_offhand";
+			this.m.PrimaryOffhandAttack = this.m.OffHandWeaponSkills[_skill.m.ID];
+			_skill.m.Order = ::Const.SkillOrder.UtilityTargeted - 3;
+			_skill.m.ID = _skill.m.ID + "_offhand";
 		}.bindenv(this));
 		::Legends.Actives.grant(this, ::Legends.Active.Puncture, function (_skill) {
 			this.m.OffHandWeaponSkills[_skill.m.ID] <- ::MSU.asWeakTableRef(_skill);
-			_skill.m.Order = this.Const.SkillOrder.UtilityTargeted - 2;
-			_skill.m.ID = puncture.m.ID + "_offhand";
+			_skill.m.Order = ::Const.SkillOrder.UtilityTargeted - 2;
+			_skill.m.ID = _skill.m.ID + "_offhand";
 		}.bindenv(this));
 		::Legends.Actives.grant(this, ::Legends.Active.LegendEnGarde);
 		::Legends.Effects.grant(this, ::Legends.Effect.LegendParryingDagger, function(_effect) {

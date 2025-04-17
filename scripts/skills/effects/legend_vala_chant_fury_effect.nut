@@ -87,6 +87,8 @@ this.legend_vala_chant_fury_effect <- this.inherit("scripts/skills/effects/legen
 	function onDamageReceived( _attacker, _damageHitpoints, _damageArmor )
 	{
 		local actor = this.getContainer().getActor();
+		if (actor == null)
+			return;
 		if (_attacker == null || _attacker.isAlliedWith(actor) || ::Tactical.TurnSequenceBar.isActiveEntity(actor) || actor.getTile().getDistanceTo(_attacker.getTile()) != 1)
 			return;
 

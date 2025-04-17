@@ -101,6 +101,12 @@
 
 		if (shield != null && shield.isItemType(this.Const.Items.ItemType.Shield))
 		{
+			local damage = _user.getItems().getItemAtSlot(this.Const.ItemSlot.Mainhand).getShieldDamage();
+
+			if (shield.getID() == "weapon.legend_parrying_dagger" || shield.getID() == "shield.legend_named_parrying_dagger")
+			{
+				damage *= 0.20;
+			}
 			local flip = !this.m.IsProjectileRotated && targetEntity.getPos().X > _user.getPos().X;
 			local time = this.Tactical.spawnProjectileEffect(this.Const.ProjectileSprite[this.m.ProjectileType], _user.getTile(), _targetTile, 1.0, this.m.ProjectileTimeScale, this.m.IsProjectileRotated, flip);
 			this.Time.scheduleEvent(this.TimeUnit.Virtual, time, this.onApplyShieldDamage.bindenv(this), {
@@ -108,7 +114,7 @@
 				Skill = this,
 				TargetTile = _targetTile,
 				Shield = shield,
-				Damage = _user.getItems().getItemAtSlot(this.Const.ItemSlot.Mainhand).getShieldDamage()
+				Damage = damage
 			});
 		}
 		else
@@ -153,20 +159,34 @@
 	{
 		local conditionBefore = _tag.Shield.getCondition();
 		_tag.Shield.applyShieldDamage(_tag.Damage);
-
+		local overflowDamage = this.Math.floor(_tag.Damage - conditionBefore);
 		if (_tag.Shield != null && _tag.Shield.getCondition() == 0)
 		{
-			if (!_tag.User.isHiddenToPlayer() && _tag.TargetTile.IsVisibleForPlayer)
+			local logMessage = this.Const.UI.getColorizedEntityName(_tag.User) + " has destroyed " + this.Const.UI.getColorizedEntityName(_tag.TargetTile.getEntity()) + "\'s shield";
+			if (this.getContainer().hasPerk(::Legends.Perk.LegendSmashingShields))
 			{
-				local logMessage = this.Const.UI.getColorizedEntityName(_tag.User) + " has destroyed " + this.Const.UI.getColorizedEntityName(_tag.TargetTile.getEntity()) + "\'s shield";
-				if (this.getContainer().hasPerk(::Legends.Perk.LegendSmashingShields))
+				_tag.User.setActionPoints(this.Math.min(_tag.User.getActionPointsMax(), _tag.User.getActionPoints() + 4));
+				this.Tactical.EventLog.log(logMessage + " and recovered 4 Action Points");
+				if (overflowDamage > 1)
 				{
-					this.Tactical.EventLog.log(logMessage + " and recovered 4 Action Points");
+					local p = this.getContainer().buildPropertiesForUse(this, _tag.TargetTile.getEntity());
+					local hitInfo = clone this.Const.Tactical.HitInfo;
+					local damageMult = p.MeleeDamageMult * p.DamageTotalMult;
+					local damageRegular = overflowDamage * p.DamageRegularMult;
+					local damageArmor = overflowDamage * p.DamageArmorMult;
+					local damageDirect = this.Math.minf(1.0, p.DamageDirectMult * (this.m.DirectDamageMult + p.DamageDirectAdd + p.DamageDirectMeleeAdd));
+					hitInfo.DamageRegular = damageRegular * damageMult;
+					hitInfo.DamageArmor = damageArmor * damageMult;
+					hitInfo.DamageDirect = damageDirect;
+					hitInfo.BodyPart = this.Const.BodyPart.Body;
+					hitInfo.BodyDamageMult = 1.0;
+					hitInfo.FatalityChanceMult = 0.0;
+					_tag.TargetTile.getEntity().onDamageReceived(this.getContainer().getActor(), this, hitInfo);
 				}
-				else
-				{
-					this.Tactical.EventLog.log(logMessage);
-				}
+			}
+			else
+			{
+				this.Tactical.EventLog.log(logMessage);
 			}
 		}
 		else
