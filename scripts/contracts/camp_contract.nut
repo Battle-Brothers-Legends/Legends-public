@@ -1,5 +1,7 @@
 this.camp_contract <- ::inherit("scripts/contracts/contract", {
-	m = {},
+	m = {
+		EmployerFaction = null
+	},
 
 	function create() {
 		this.contract.create();
@@ -24,6 +26,10 @@ this.camp_contract <- ::inherit("scripts/contracts/contract", {
 			return false;
 
 		return this.onIsValid();
+	}
+
+	function onImportIntro() {
+		this.importCampIntro();
 	}
 
 	function onClear() {
@@ -134,5 +140,18 @@ this.camp_contract <- ::inherit("scripts/contracts/contract", {
 		::Const.LegendMod.extendVarsWithPronouns(vars, gender1, "randombrother");
 		::Const.LegendMod.extendVarsWithPronouns(vars, gender2, "randombrother2");
 		return this.buildTextFromTemplate(_text, vars);
+	}
+
+	function importCampIntro()
+	{
+		if (this.m.EmployerFaction == ::Legends.CampContracts.EmployerFaction.Barbarians) {
+			this.m.Screens.extend(::Legends.CampContracts.IntroBarbarians);
+		}
+		else if (this.m.EmployerFaction == ::Legends.CampContracts.EmployerFaction.Bandits) {
+			this.m.Screens.extend(::Legends.CampContracts.IntroBandits);
+		}
+		else if (this.m.EmployerFaction == ::Legends.CampContracts.EmployerFaction.Necromancers) {
+			this.m.Screens.extend(::Legends.CampContracts.IntroNecromancers);
+		}
 	}
 });

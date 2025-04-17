@@ -6,20 +6,18 @@ this.legend_camp_discover_location_contract <- this.inherit("scripts/contracts/c
 	function create()
 	{
 		this.contract.create();
-		this.m.DifficultyMult = this.Math.rand(75, 105) * 0.01;
 		this.m.Type = "contract.legend_camp_discover_location";
 		this.m.Name = "Camp Find Location";
+		this.m.EmployerFaction = ::Legends.CampContracts.EmployerFaction.Necromancers;
 		this.m.TimeOut = this.Time.getVirtualTimeF() + this.World.getTime().SecondsPerDay * 7.0;
+		this.m.DifficultyMult = this.Math.rand(75, 105) * 0.01;
+		this.m.DescriptionTemplates = [
+			"Shady figure wants you to locate some forgotten graves.",
+		];
 	}
 
-	function onImportIntro()
-	{
-		this.importSettlementIntro();
-	}
-
-	function start()
-	{
-		this.contract.start();
+	function getBanner() {
+		return "ui/banners/factions/banner_legend_s";
 	}
 
 	function setup()

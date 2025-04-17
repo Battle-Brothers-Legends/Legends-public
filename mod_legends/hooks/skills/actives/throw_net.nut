@@ -1,30 +1,41 @@
 ::mods_hookExactClass("skills/actives/throw_net", function(o)
 {
+	o.m.IsUnholdNet <- false;
+
 	local create = o.create;
 	o.create = function ()
 	{
 		create();
-		m.Description = "Throw a net on your target in order to prevent them from moving or defending themself effectively.";
-		m.IsRanged = true;
+		this.m.Description = "Throw a net on your target in order to prevent them from moving or defending themself effectively.";
+		this.m.IsRanged = true;
 	}
 
 	local getTooltip = o.getTooltip;
 	o.getTooltip = function ()
 	{
 		local tooltip = getTooltip();
-		tooltip.push({
-			id = 6,
-			type = "text",
-			icon = "ui/icons/special.png",
-			text = "Some targets can never be caught or ensnared"
-		});
+		if (this.m.IsUnholdNet) {
+			tooltip.push({
+				id = 6,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = "Can be used on stunned unholds only"
+			});
+		} else {
+			tooltip.push({
+				id = 6,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = "Some targets can never be caught or ensnared"
+			});
+		}
 
 		return tooltip;
 	}
 
 	o.onAfterUpdate = function ( _properties )
 	{
-		m.IsHidden = !::MSU.isNull(getItem()) && getItem().isItemType(::Const.Items.ItemType.Net) && getItem().m.Ammo <= 0;
+		this.m.IsHidden = !::MSU.isNull(this.getItem()) && this.getItem().isItemType(::Const.Items.ItemType.Net) && this.getItem().m.Ammo <= 0;
 
 		if (_properties.IsSpecializedInNets) {
 			this.m.FatigueCostMult = this.Const.Combat.WeaponSpecFatigueMult;
@@ -56,7 +67,36 @@
 				::Tactical.Entities.addNetTiles(_targetTile);
 		}
 
-		return onUse(_user, _targetTile);
+		local ret = onUse(_user, _targetTile);
+		if (this.m.IsUnholdNet && ret != false) {
+			local targetEntity = _targetTile.getEntity();
+			::Legends.Actives.remove(targetEntity, ::Legends.Active.BreakFree);
+			targetEntity.setFaction(::Const.Faction.None);
+			targetEntity.m.IsAttackable = false;
+			local contract = ::World.Contracts.getActiveContract();
+			if (contract != null) {
+				contract.m.Flags.increment("CapturedUnholds");
+			}
+		}
+		return ret;
 	}
 
+	o.makeUnholdNet <- function () {
+		this.m.Description = "Throw a net on stunned unhold to disable them effectively.";
+		this.m.IsUnholdNet = true;
+	}
+
+	local onVerifyTarget = o.onVerifyTarget;
+	o.onVerifyTarget = function (_originTile, _targetTile) {
+		local ret = onVerifyTarget(_originTile, _targetTile);
+		if (this.m.IsUnholdNet && ret) {
+			local target = _targetTile.getEntity();
+			if (::isKindOf(target, "unhold") || ::isKindOf(target, "unhold_bog") || ::isKindOf(target, "unhold_frost")) {
+//				return target.getSkills().hasEffect(::Legends.Effect.Stunned);
+				return true;
+			}
+			return false;
+		}
+		return ret;
+	}
 });
