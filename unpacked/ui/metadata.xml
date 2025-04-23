@@ -146,6 +146,9 @@
 	<sprite id="perk_spec_cultist_mini" offsetY="35" ic="FF374B50" img="skills/mini/perk_spec_cultist_mini.png" />
 	<sprite id="perk_spec_dagger_mini" offsetY="35" ic="FF374B50" img="skills/mini/perk_spec_dagger_mini.png" />
 	<sprite id="perk_spec_firearm_mini" offsetY="35" ic="FF374B50" img="skills/mini/perk_spec_firearm_mini.png" />
+	<sprite id="perk_spec_cultist_mini" offsetY="35" ic="FF374B50" img="skills/mini/perk_spec_longbow_mini.png" />
+	<sprite id="perk_spec_dagger_mini" offsetY="35" ic="FF374B50" img="skills/mini/perk_spec_raider_mini.png" />
+	<sprite id="perk_spec_firearm_mini" offsetY="35" ic="FF374B50" img="skills/mini/perk_spec_javelin_mini.png" />
 	<sprite id="perk_spec_instrument_staff_mini" offsetY="35" ic="FF374B50" img="skills/mini/perk_spec_instrument_staff_mini.png" />
 	<sprite id="perk_spec_mace_mini" offsetY="35" ic="FF374B50" img="skills/mini/perk_spec_mace_mini.png" />
 	<sprite id="perk_spec_militia_mini" offsetY="35" ic="FF374B50" img="skills/mini/perk_spec_militia_mini.png" />

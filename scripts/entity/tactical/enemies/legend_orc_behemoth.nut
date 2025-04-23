@@ -298,58 +298,34 @@ this.legend_orc_behemoth <- this.inherit("scripts/entity/tactical/actor", {
 	function makeMiniboss()
 	{
 		if (!this.actor.makeMiniboss())
-		{
 			return false;
-		}
 
 		this.getSprite("miniboss").setBrush("bust_miniboss_greenskins");
-		local weapons = [
-			"weapons/named/legend_named_orc_axe_2h",
-			"weapons/named/legend_named_orc_flail_2h"
-		];
 
-		this.m.Items.equip(this.new("scripts/items/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
+		this.getItems().equip(::Const.World.Common.pickItem([
+			[1, "weapons/named/legend_named_orc_axe_2h"],
+			[1, "weapons/named/legend_named_orc_flail_2h"],
+		], "scripts/items/"));
 
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendTrueBeliever);
 		return true;
 	}
 
-	function assignRandomEquipment()
-	{
-		local r;
+	function assignRandomEquipment() {
+		this.getItems().equip(::Const.World.Common.pickItem([
+			[1, "weapons/greenskins/legend_limb_lopper"],
+			[1, "weapons/greenskins/legend_bough"],
+			[1, "weapons/greenskins/legend_man_mangler"],
+			[1, "weapons/greenskins/legend_skullbreaker"],
+		], "scripts/items/"));
 
-			r = this.Math.rand(1, 4);
+		this.getItems().equip(::Const.World.Common.pickArmor([
+			[1, ::Legends.Armor.Greenskin.legend_orc_behemoth_armor]
+		]));
 
-			if (r == 1)
-			{
-				this.m.Items.equip(this.new("scripts/items/weapons/greenskins/legend_limb_lopper"));
-			}
-			else if (r == 2)
-			{
-				this.m.Items.equip(this.new("scripts/items/weapons/greenskins/legend_bough"));
-			}
-				else if (r == 3)
-			{
-				this.m.Items.equip(this.new("scripts/items/weapons/greenskins/legend_man_mangler"));
-			}
-					else if (r == 4)
-			{
-				this.m.Items.equip(this.new("scripts/items/weapons/greenskins/legend_skullbreaker"));
-			}
-
-			local item = this.Const.World.Common.pickArmor([
-				[1, "greenskins/legend_orc_behemoth_armor"]
-			]);
-			this.m.Items.equip(item);
-
-			local item = this.Const.World.Common.pickHelmet([
-				[1, "greenskins/legend_orc_behemoth_helmet"]
-			]);
-			if (item != null)
-			{
-				this.m.Items.equip(item);
-			}
-
+		this.getItems().equip(::Const.World.Common.pickHelmet([
+			[1, ::Legends.Helmet.Greenskin.legend_orc_behemoth_helmet]
+		]));
 	}
 
 });

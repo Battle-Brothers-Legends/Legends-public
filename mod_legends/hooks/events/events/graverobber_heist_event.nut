@@ -38,10 +38,10 @@
 					if (r == 1)
 						item = this.new("scripts/items/weapons/arming_sword");
 					else if (r == 2)
-						item = this.Const.World.Common.pickHelmet([[1, "decayed_full_helm"]]);
+						item = this.Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Standard.decayed_full_helm]]);
 					else if (r == 3)
 						item = this.Const.World.Common.pickArmor([
-							[1, "decayed_coat_of_plates"],
+							[1, ::Legends.Armor.Standard.decayed_coat_of_plates],
 						]);
 
 					item.setCondition(item.getRepair() / 2);

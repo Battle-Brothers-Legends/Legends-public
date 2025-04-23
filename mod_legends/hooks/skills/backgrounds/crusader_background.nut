@@ -194,15 +194,15 @@
 		local r;
 		items.equip(this.new("scripts/items/weapons/greatsword"));
 		items.equip(this.Const.World.Common.pickArmor([
-			[1, "mail_hauberk"],
-			[2, "reinforced_mail_hauberk"],
-			[1, "scale_armor"],
-			[1, "worn_mail_shirt"]
+			[1, ::Legends.Armor.Standard.mail_hauberk],
+			[2, ::Legends.Armor.Standard.reinforced_mail_hauberk],
+			[1, ::Legends.Armor.Standard.scale_armor],
+			[1, ::Legends.Armor.Standard.worn_mail_shirt]
 		]));
 		items.equip(this.Const.World.Common.pickHelmet([
-			[1, "nasal_helmet_with_mail"],
-			[1, "full_helm"],
-			[1, "closed_flat_top_helmet"]
+			[1, ::Legends.Helmet.Standard.nasal_helmet_with_mail],
+			[1, ::Legends.Helmet.Standard.full_helm],
+			[1, ::Legends.Helmet.Standard.closed_flat_top_helmet]
 		]));
 	}
 });

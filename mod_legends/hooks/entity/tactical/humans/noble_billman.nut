@@ -51,8 +51,8 @@
 		this.m.Items.equip(this.new("scripts/items/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
 
 		this.m.Items.equip(this.Const.World.Common.pickArmor([
-			[1, "seedmaster_noble_armor"],
-			[1, "citreneking_noble_armor"],
+			[1, ::Legends.Armor.Standard.seedmaster_noble_armor],
+			[1, ::Legends.Armor.Standard.citreneking_noble_armor],
 		]));
 
 		if (this.Math.rand(1, 100) <= 33)
@@ -62,41 +62,40 @@
 			if (banner <= 4)
 			{
 				helmet = this.Const.World.Common.pickHelmet([
-					[1, "kettle_hat"],
-					[1, "rondel_helm"],
-					[1, "scale_helm"],
-					[1, "padded_kettle_hat"],
-					[1, "kettle_hat_with_mail"],
-					[1, "mail_coif"],
-					[2, "legend_enclave_vanilla_skullcap_01"],
-					[5, "heavy_noble_house_helmet_00"]
+					[1, ::Legends.Helmet.Standard.kettle_hat],
+					[1, ::Legends.Helmet.Standard.rondel_helm],
+					[1, ::Legends.Helmet.Standard.scale_helm],
+					[1, ::Legends.Helmet.Standard.padded_kettle_hat],
+					[1, ::Legends.Helmet.Standard.kettle_hat_with_mail],
+					[1, ::Legends.Helmet.Standard.mail_coif],
+					[2, ::Legends.Helmet.Standard.legend_enclave_vanilla_skullcap_01],
+					[5, ::Legends.Helmet.Standard.heavy_noble_house_helmet_00]
 				])
 			}
 			else if (banner <= 7)
 			{
 				helmet = this.Const.World.Common.pickHelmet([
-					[1, "flat_top_helmet"],
-					[1, "padded_flat_top_helmet"],
-					[1, "rondel_helm"],
-					[1, "scale_helm"],
-					[1, "flat_top_with_mail"],
-					[1, "mail_coif"],
-					[1, "legend_enclave_vanilla_skullcap_01"],
-					[5, "heavy_noble_house_helmet_00"]
+					[1, ::Legends.Helmet.Standard.flat_top_helmet],
+					[1, ::Legends.Helmet.Standard.padded_flat_top_helmet],
+					[1, ::Legends.Helmet.Standard.rondel_helm],
+					[1, ::Legends.Helmet.Standard.scale_helm],
+					[1, ::Legends.Helmet.Standard.flat_top_with_mail],
+					[1, ::Legends.Helmet.Standard.mail_coif],
+					[1, ::Legends.Helmet.Standard.legend_enclave_vanilla_skullcap_01],
+					[5, ::Legends.Helmet.Standard.heavy_noble_house_helmet_00]
 				])
 			}
 			else
 			{
 				helmet = this.Const.World.Common.pickHelmet([
-					[1, "nasal_helmet"],
-					[1, "padded_nasal_helmet"],
-					[1, "nasal_helmet_with_mail"],
-					[1, "rondel_helm"],
-					[1, "scale_helm"],
-					[1, "mail_coif"],
-					[2, "legend_enclave_vanilla_skullcap_01"],
-					[5, "heavy_noble_house_helmet_00"]
-
+					[1, ::Legends.Helmet.Standard.nasal_helmet],
+					[1, ::Legends.Helmet.Standard.padded_nasal_helmet],
+					[1, ::Legends.Helmet.Standard.nasal_helmet_with_mail],
+					[1, ::Legends.Helmet.Standard.rondel_helm],
+					[1, ::Legends.Helmet.Standard.scale_helm],
+					[1, ::Legends.Helmet.Standard.mail_coif],
+					[2, ::Legends.Helmet.Standard.legend_enclave_vanilla_skullcap_01],
+					[5, ::Legends.Helmet.Standard.heavy_noble_house_helmet_00]
 				])
 			}
 
@@ -109,10 +108,10 @@
 		else
 		{
 			this.m.Items.equip(this.Const.World.Common.pickHelmet([
-				[1, "full_aketon_cap"],
-				[2, "aketon_cap"],
-				[1, ""],
-				[1, "headscarf"]
+				[1, ::Legends.Helmet.Standard.full_aketon_cap],
+				[2, ::Legends.Helmet.Standard.aketon_cap],
+				[1, ::Legends.Helmet.None],
+				[1, ::Legends.Helmet.Standard.headscarf]
 			]))
 		}
 	}

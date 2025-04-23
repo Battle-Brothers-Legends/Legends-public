@@ -31,7 +31,7 @@
 						this.Contract.m.Destination = null;
 					}
 
-					local item = this.Const.World.Common.pickHelmet([[1, "barbarians/heavy_horned_plate_helmet"]]);
+					local item = this.Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Barbarian.heavy_horned_plate_helmet]]);
 					this.World.Assets.getStash().add(item);
 					this.List.push({
 						id = 10,

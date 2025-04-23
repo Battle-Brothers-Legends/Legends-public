@@ -284,34 +284,34 @@ this.legend_puppet_background <- this.inherit("scripts/skills/backgrounds/charac
 		}
 
 		items.equip(this.Const.World.Common.pickArmor([ //1 = least likely
-		//	[1, "decayed_coat_of_plates"],
-		//	[1, "southern_knight_armor"],
-			[1, "decayed_coat_of_scales"],
-			[1, "dark_southern_armor_00"],
-			[2, ""],
-			[2, "decayed_reinforced_mail_hauberk"],
-			[2, "cultist_leather_robe"],
-			[3, "basic_mail_shirt"],
-			[3, "gambeson"],
-			[4, "apron"],
-			[4, "butcher_apron"],
-			[4, "leather_tunic"],
-			[5, "leather_wraps"],
-			[5, "linen_tunic", this.Math.rand(6, 7)]
+		//	[1, ::Legends.Armor.Standard.decayed_coat_of_plates],
+		//	[1, ::Legends.Armor.Standard.southern_knight_armor],
+			[1, ::Legends.Armor.Standard.decayed_coat_of_scales],
+			[1, ::Legends.Armor.Standard.dark_southern_armor_00],
+			[2, ::Legends.Armor.None],
+			[2, ::Legends.Armor.Standard.decayed_reinforced_mail_hauberk],
+			[2, ::Legends.Armor.Standard.cultist_leather_robe],
+			[3, ::Legends.Armor.Standard.basic_mail_shirt],
+			[3, ::Legends.Armor.Standard.gambeson],
+			[4, ::Legends.Armor.Standard.apron],
+			[4, ::Legends.Armor.Standard.butcher_apron],
+			[4, ::Legends.Armor.Standard.leather_tunic],
+			[5, ::Legends.Armor.Standard.leather_wraps],
+			[5, ::Legends.Armor.Standard.linen_tunic, this.Math.rand(6, 7)]
 		]));
 
 		items.equip(this.Const.World.Common.pickHelmet([
-		//	[1, "decayed_great_helm"],
-			[1, "decayed_closed_flat_top_with_mail"],
-			[1, "decayed_closed_flat_top_with_sack"],
-		//	[1, "decayed_full_helm"],
-		//	[2, "legend_noble_southern_hat"],
-			[2, "full_aketon_cap"],
-			[2, "kettle_hat"],
-		//	[2, "dark_southern_helmet_00"],
-			[3, "open_leather_cap"],
-			[3, "full_leather_cap"],
-			[4, ""]
+		//	[1, ::Legends.Helmet.Standard.decayed_great_helm],
+			[1, ::Legends.Helmet.Standard.decayed_closed_flat_top_with_mail],
+			[1, ::Legends.Helmet.Standard.decayed_closed_flat_top_with_sack],
+		//	[1, ::Legends.Helmet.Standard.decayed_full_helm],
+		//	[2, ::Legends.Helmet.Standard.legend_noble_southern_hat],
+			[2, ::Legends.Helmet.Standard.full_aketon_cap],
+			[2, ::Legends.Helmet.Standard.kettle_hat],
+		//	[2, ::Legends.Helmet.Standard.dark_southern_helmet_00],
+			[3, ::Legends.Helmet.Standard.open_leather_cap],
+			[3, ::Legends.Helmet.Standard.full_leather_cap],
+			[4, ::Legends.Helmet.None]
 		]));
 	}
 });

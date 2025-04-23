@@ -23,7 +23,7 @@
 						text = "You gain " + this.Const.Strings.getArticle(item.getName()) + item.getName()
 					});
 					item = this.Const.World.Common.pickArmor([
-						[1, "adorned_heavy_mail_hauberk"],
+						[1, ::Legends.Armor.Standard.adorned_heavy_mail_hauberk],
 					]);
 					item.setCondition(item.getRepair() / 3 - 1);
 					stash.add(item);
@@ -33,7 +33,7 @@
 						text = "You gain " + this.Const.Strings.getArticle(item.getName()) + item.makeName()
 					});
 					item = this.Const.World.Common.pickHelmet([
-						[1, "adorned_full_helm"],
+						[1, ::Legends.Helmet.Standard.adorned_full_helm],
 					]);
 					item.setCondition(item.getRepair() / 3 - 1);
 					stash.add(item);
@@ -98,12 +98,12 @@
 					item.setCondition(item.getRepair() / 3 - 1);
 					dudeItems.equip(item);
 					item = this.Const.World.Common.pickHelmet([
-						[1, "adorned_full_helm"],
+						[1, ::Legends.Helmet.Standard.adorned_full_helm],
 					]);
 					item.setCondition(item.getRepair() / 3 - 1);
 					dudeItems.equip(item);
 					item = this.Const.World.Common.pickArmor([
-						[1, "adorned_heavy_mail_hauberk"],
+						[1, ::Legends.Armor.Standard.adorned_heavy_mail_hauberk],
 					]);
 					item.setCondition(item.getConditionMax() / 3 - 1);
 					dudeItems.equip(item);

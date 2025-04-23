@@ -12,7 +12,7 @@
 			::Legends.Perks.grant(this, ::Legends.Perk.SpecSpear);
 			::Legends.Perks.grant(this, ::Legends.Perk.ShieldExpert);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecSpearWall);
-			::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecSpearThrust);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendThrustMaster);
 			::Legends.Perks.grant(this, ::Legends.Perk.Rotation);
 			::Legends.Perks.grant(this, ::Legends.Perk.ReachAdvantage);
 			::Legends.Perks.grant(this, ::Legends.Perk.CoupDeGrace);
@@ -58,20 +58,20 @@
 		}
 
 		this.m.Items.equip(this.Const.World.Common.pickArmor([
-			[1, "leather_tunic"],
-			[1, "gambeson"],
-			[1, "padded_leather"],
-			[1, "padded_surcoat"],
-			[1, "leather_lamellar"],
-			[1, "thick_tunic"]
+			[1, ::Legends.Armor.Standard.leather_tunic],
+			[1, ::Legends.Armor.Standard.gambeson],
+			[1, ::Legends.Armor.Standard.padded_leather],
+			[1, ::Legends.Armor.Standard.padded_surcoat],
+			[1, ::Legends.Armor.Standard.leather_lamellar],
+			[1, ::Legends.Armor.Standard.thick_tunic]
 		]));
 
 		if (this.Math.rand(1, 100) <= 75)
 		{
 			this.m.Items.equip(this.Const.World.Common.pickHelmet([
-				[1, "hood"],
-				[1, "aketon_cap"],
-				[1, "full_leather_cap"]
+				[1, ::Legends.Helmet.Standard.hood],
+				[1, ::Legends.Helmet.Standard.aketon_cap],
+				[1, ::Legends.Helmet.Standard.full_leather_cap]
 			]))
 		}
 	}

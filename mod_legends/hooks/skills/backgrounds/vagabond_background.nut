@@ -133,16 +133,16 @@
 
 		r = this.Math.rand(0, 3);
 		items.equip(this.Const.World.Common.pickArmor([
-			[1, "tattered_sackcloth"],
-			[1, "sackcloth"],
-			[1, "leather_wraps"],
-			[1, "leather_tunic"]
+			[1, ::Legends.Armor.Standard.tattered_sackcloth],
+			[1, ::Legends.Armor.Standard.sackcloth],
+			[1, ::Legends.Armor.Standard.leather_wraps],
+			[1, ::Legends.Armor.Standard.leather_tunic]
 		]));
 
 		items.equip(this.Const.World.Common.pickHelmet([
-			[1, ""],
-			[1, "hood"],
-			[1, "straw_hat"]
+			[1, ::Legends.Helmet.None],
+			[1, ::Legends.Helmet.Standard.hood],
+			[1, ::Legends.Helmet.Standard.straw_hat]
 		]));
 	}
 });

@@ -144,10 +144,10 @@ this.legend_healer_background <- this.inherit("scripts/skills/backgrounds/charac
 		talents[this.Const.Attributes.Hitpoints] = 3;
 		local items = this.getContainer().getActor().getItems();
 		items.equip(this.Const.World.Common.pickArmor([
-			[1, "monk_robe"]
+			[1, ::Legends.Armor.Standard.monk_robe]
 		]));
 		items.equip(this.Const.World.Common.pickHelmet([
-			[1, "noble_headgear"]
+			[1, ::Legends.Helmet.Standard.noble_headgear]
 		]));
 	}
 });

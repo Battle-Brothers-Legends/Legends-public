@@ -66,23 +66,18 @@ this.legend_mummy_queen <- this.inherit("scripts/entity/tactical/legend_mummy", 
 
 	}
 
-	function assignRandomEquipment()
-	{
-		this.m.Items.equip(this.new("scripts/items/weapons/named/legend_named_royal_lance"));
+	function assignRandomEquipment() {
+		this.getItems().equip(::Const.World.Common.pickItem([
+			[1, "weapons/named/legend_named_royal_lance"]
+		], "scripts/items/"));
 
-		local armor = [
-			[1, "ancient/legend_mummy_dress"]
-		];
-		local item = this.Const.World.Common.pickArmor(armor);
-		this.m.Items.equip(item);
+		this.getItems().equip(::Const.World.Common.pickArmor([
+			[1, ::Legends.Armor.Ancient.legend_mummy_dress]
+		]));
 
-		local item = this.Const.World.Common.pickHelmet([
-			[1, "ancient/legend_mummy_crown"]
-		]);
-		if (item != null)
-		{
-			this.m.Items.equip(item);
-		}
+		this.getItems().equip(::Const.World.Common.pickHelmet([
+			[1, ::Legends.Helmet.Ancient.legend_mummy_crown]
+		]));
 	}
 
 });

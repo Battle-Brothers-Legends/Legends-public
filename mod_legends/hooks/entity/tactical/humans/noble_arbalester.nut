@@ -63,16 +63,16 @@
 		}
 
 		this.m.Items.equip(this.Const.World.Common.pickArmor([
-			[1, "padded_surcoat"],
-			[1, "gambeson"]
+			[1, ::Legends.Armor.Standard.padded_surcoat],
+			[1, ::Legends.Armor.Standard.gambeson]
 		]));
 
 		local helmet = this.Const.World.Common.pickHelmet([
-				[1, "mail_coif"],
-				[1, "aketon_cap"],
-				[1, "open_leather_cap"],
-				[1, "headscarf"],
-				[1, ""]
+			[1, ::Legends.Helmet.Standard.mail_coif],
+			[1, ::Legends.Helmet.Standard.aketon_cap],
+			[1, ::Legends.Helmet.Standard.open_leather_cap],
+			[1, ::Legends.Helmet.Standard.headscarf],
+			[1, ::Legends.Helmet.None]
 		]);
 		if (helmet != null)
 		{

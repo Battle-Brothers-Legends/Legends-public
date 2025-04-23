@@ -5,7 +5,9 @@ this.legend_hunting_stollwurms_contract <- this.inherit("scripts/contracts/contr
 		IsPlayerAttacking = true,
 		MinStrength = 10, // player needs to earn 10% of bonus (not including base 5% bonus) for this contract to be valid
 		Perk = ::Legends.Perk.LegendFavouredEnemyLindwurm,
-		ValidTypes = this.Const.LegendMod.FavoriteLindwurm
+		ValidTypes = this.Const.LegendMod.FavoriteLindwurm,
+		LevelSumRequiredForRandomSpawn = 50,
+		IsRandomlyAdded = null,
 	},
 	function create()
 	{
@@ -19,6 +21,7 @@ this.legend_hunting_stollwurms_contract <- this.inherit("scripts/contracts/contr
 			"Stollwurms scales are as hard as iron. Some tribes worship these apex predators as gods.",
 			"Blessed are the maker stollwurms, whose passage cleanses the world. You don\'t believe that farkin\' nonsense of course.",
 		];
+		this.m.IsRandomlyAdded = ::Math.rand(1, 100) <= 5;
 	}
 
 	function getBanner()
@@ -683,22 +686,19 @@ this.legend_hunting_stollwurms_contract <- this.inherit("scripts/contracts/contr
 
 	function onIsValid()
 	{
+		local sumLevels = 0;
 		foreach( bro in this.World.getPlayerRoster().getAll() )
 		{
+			sumLevels += bro.getLevel();
 			if (!bro.getSkills().hasPerk(this.m.Perk))
-			{
 				continue;
-			}
 
 			local stats = this.Const.LegendMod.GetFavoriteEnemyStats(bro, this.m.ValidTypes);
-
 			if (stats.Strength >= this.m.MinStrength)
-			{
 				return true;
-			}
 		}
 
-		return false;
+		return this.m.IsRandomlyAdded && sumLevels > this.m.LevelSumRequiredForRandomSpawn;
 	}
 
 	function onSerialize( _out )
@@ -711,7 +711,7 @@ this.legend_hunting_stollwurms_contract <- this.inherit("scripts/contracts/contr
 		{
 			_out.writeU32(0);
 		}
-
+		_out.writeBool(this.m.IsRandomlyAdded);
 		this.contract.onSerialize(_out);
 	}
 
@@ -723,7 +723,7 @@ this.legend_hunting_stollwurms_contract <- this.inherit("scripts/contracts/contr
 		{
 			this.m.Target = this.WeakTableRef(this.World.getEntityByID(target));
 		}
-
+		this.m.IsRandomlyAdded = _out.readBool();
 		this.contract.onDeserialize(_in);
 	}
 

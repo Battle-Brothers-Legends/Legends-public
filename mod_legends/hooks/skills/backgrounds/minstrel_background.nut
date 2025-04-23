@@ -166,7 +166,7 @@
 		local r;
 
 		items.equip(this.Const.World.Common.pickHelmet([
-			[1, "feathered_hat"]
+			[1, ::Legends.Helmet.Standard.feathered_hat]
 		]));
 
 		local r = this.Math.rand(0, 1);

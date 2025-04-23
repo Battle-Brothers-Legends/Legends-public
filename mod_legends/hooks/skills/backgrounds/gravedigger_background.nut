@@ -126,14 +126,14 @@
 		}
 
 		items.equip(this.Const.World.Common.pickArmor([
-			[1, "sackcloth"],
-			[1, "tattered_sackcloth"],
-			[1, "leather_tunic"]
+			[1, ::Legends.Armor.Standard.sackcloth],
+			[1, ::Legends.Armor.Standard.tattered_sackcloth],
+			[1, ::Legends.Armor.Standard.leather_tunic]
 		]));
 
 		items.equip(this.Const.World.Common.pickHelmet([
-			[1, "hood"],
-			[1, ""]
+			[1, ::Legends.Helmet.Standard.hood],
+			[1, ::Legends.Helmet.None]
 		]));
 	}
 

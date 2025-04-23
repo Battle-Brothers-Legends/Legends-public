@@ -36,13 +36,13 @@ this.legend_peddler_commander_background <- this.inherit("scripts/skills/backgro
 		this.m.Ethnicity = this.Math.rand(0, 2);
 		if (this.m.Ethnicity == 0)
 		{
-			this.m.Bodies = this.Const.Bodies.Skinny;			
+			this.m.Bodies = this.Const.Bodies.Skinny;
 			this.m.Faces = this.Const.Faces.AllWhiteMale;
 			this.m.Hairs = this.Const.Hair.CommonMale;
 			this.m.HairColors = this.Const.HairColors.All;
 			this.m.Beards = this.Const.Beards.All;
 			this.m.BeardChance = 60;
-		}	
+		}
 		else if (this.m.Ethnicity == 1)
 		{
 			this.m.Bodies = this.Const.Bodies.SouthernMale;
@@ -90,7 +90,7 @@ this.legend_peddler_commander_background <- this.inherit("scripts/skills/backgro
 				0.0, //ocean
 				0.0, //desert
 				0.1  //oasis
-			];		
+			];
 		this.m.PerkTreeDynamic = {
 			Weapon = [
 				this.Const.Perks.StaffTree,
@@ -135,7 +135,7 @@ this.legend_peddler_commander_background <- this.inherit("scripts/skills/backgro
 			this.m.Hairs = this.Const.Hair.AllFemale;
 			this.m.HairColors = this.Const.HairColors.All;
 			this.m.Bodies = this.Const.Bodies.AllFemale;
-		}	
+		}
 		else if (this.m.Ethnicity == 1)
 		{
 			this.m.Faces = this.Const.Faces.SouthernFemale;
@@ -247,17 +247,17 @@ this.legend_peddler_commander_background <- this.inherit("scripts/skills/backgro
 		}
 
 		items.equip(this.Const.World.Common.pickArmor([
-			[4, "linen_tunic"],
-			[2, "oriental/cloth_sash"],
-			[3, "noble_tunic"],
-			[1, "noble_gear"]
+			[4, ::Legends.Armor.Standard.linen_tunic],
+			[2, ::Legends.Armor.Southern.cloth_sash],
+			[3, ::Legends.Armor.Standard.noble_tunic],
+			[1, ::Legends.Armor.Standard.noble_gear]
 		]));
 
 		items.equip(this.Const.World.Common.pickHelmet([ //higher number = more likely to spawn
-			[4, ""],
-			[2, "legend_noble_hood"],
-			[1, "noble_headgear"],
-			[3, "feathered_hat"]
+			[4, ::Legends.Helmet.None],
+			[2, ::Legends.Helmet.Standard.legend_noble_hood],
+			[1, ::Legends.Helmet.Standard.noble_headgear],
+			[3, ::Legends.Helmet.Standard.feathered_hat]
 		]));
 
 	}

@@ -269,24 +269,24 @@ this.legend_lonewolf_background <- this.inherit("scripts/skills/backgrounds/char
 		// // }
 
 		// items.equip(this.Const.World.Common.pickArmor([
-		// 	// [1, "mail_hauberk"],
-		// 	// [1, "basic_mail_shirt"],
-		// 	// [1, "scale_armor"],
-		// 	// [1, "reinforced_mail_hauberk"],
+		// 	// [1, ::Legends.Armor.Standard.mail_hauberk],
+		// 	// [1, ::Legends.Armor.Standard.basic_mail_shirt],
+		// 	// [1, ::Legends.Armor.Standard.scale_armor],
+		// 	// [1, ::Legends.Armor.Standard.reinforced_mail_hauberk],
 		// 	[1, ""]
 		// ]));
 
 		// local helm = [
-		// 	// [1, "nasal_helmet"],
-		// 	// [1, "nasal_helmet_with_mail"],
-		// 	// [1, "mail_coif"],
-		// 	// [1, "bascinet_with_mail"],
+		// 	// [1, ::Legends.Helmet.Standard.nasal_helmet],
+		// 	// [1, ::Legends.Helmet.Standard.nasal_helmet_with_mail],
+		// 	// [1, ::Legends.Helmet.Standard.mail_coif],
+		// 	// [1, ::Legends.Helmet.Standard.bascinet_with_mail],
 		// 	[1, ""]
 		// ];
 
 		// // if (!::Legends.Mod.ModSettings.getSetting("UnlayeredArmor").getValue())
 		// // {
-		// // 	helm.push([1, "theamson_barbute_helmet"])
+		// // 	helm.push([1, ::Legends.Helmet.Standard.theamson_barbute_helmet])
 		// // }
 
 		// // items.equip(this.Const.World.Common.pickHelmet(helm));

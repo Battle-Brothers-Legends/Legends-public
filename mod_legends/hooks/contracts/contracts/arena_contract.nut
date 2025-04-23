@@ -179,15 +179,15 @@
 								}.bindenv(this));
 							} else if (bro.getFlags().getAsInt("ArenaFightsWon") >= 12 && bro.getSkills().hasTrait(::Legends.Trait.ArenaFighter)) {
 								::Legends.Traits.remove(bro, ::Legends.Trait.ArenaFighter);
-								::Legends.Traits.grant(bro, ::Legends.Trait.LegendArenaVeteran, function(skill) {
+								::Legends.Traits.grant(bro, ::Legends.Trait.ArenaVeteran, function(skill) {
 									this.List.push({
 										id = 10,
 										icon = skill.getIcon(),
 										text = bro.getName() + " is now " + this.Const.Strings.getArticle(skill.getName()) + skill.getName()
 									});
 								}.bindenv(this));
-							} else if (bro.getFlags().getAsInt("ArenaFightsWon") >= 25 && bro.getSkills().hasTrait(::Legends.Trait.LegendArenaVeteran)) {
-								::Legends.Traits.remove(bro, ::Legends.Trait.LegendArenaVeteran);
+							} else if (bro.getFlags().getAsInt("ArenaFightsWon") >= 25 && bro.getSkills().hasTrait(::Legends.Trait.ArenaVeteran)) {
+								::Legends.Traits.remove(bro, ::Legends.Trait.ArenaVeteran);
 								::Legends.Traits.grant(bro, ::Legends.Trait.LegendArenaChampion, function(skill) {
 									this.List.push({
 										id = 10,
@@ -231,7 +231,7 @@
 						{
 						case 1:
 							a = this.Const.World.Common.pickArmor([
-									[1, "oriental/gladiator_harness"],
+									[1, ::Legends.Armor.Southern.gladiator_harness],
 							]);
 							a.setUpgrade(this.new("scripts/items/legend_armor/armor_upgrades/legend_light_gladiator_upgrade"));
 
@@ -244,7 +244,7 @@
 
 						case 2:
 							a = this.Const.World.Common.pickArmor([
-									[1, "oriental/gladiator_harness"],
+									[1, ::Legends.Armor.Southern.gladiator_harness],
 							]);
 							a.setUpgrade(this.new("scripts/items/legend_armor/armor_upgrades/legend_heavy_gladiator_upgrade"));
 							this.List.push({

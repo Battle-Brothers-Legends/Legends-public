@@ -12,27 +12,26 @@
 		this.m.HiringCost = 800;
 		this.m.DailyCost = 25;
 		this.m.Excluded = [
-			::Legends.Traits.getID(::Legends.Trait.Superstitious),
-			::Legends.Traits.getID(::Legends.Trait.Huge),
 			::Legends.Traits.getID(::Legends.Trait.Weasel),
 			::Legends.Traits.getID(::Legends.Trait.Teamplayer),
+			::Legends.Traits.getID(::Legends.Trait.FearBeasts),
+			::Legends.Traits.getID(::Legends.Trait.LegendFearNobles),
+			::Legends.Traits.getID(::Legends.Trait.HateUndead),
+			::Legends.Traits.getID(::Legends.Trait.Paranoid),
 			::Legends.Traits.getID(::Legends.Trait.NightBlind),
-			::Legends.Traits.getID(::Legends.Trait.Brute),
+			::Legends.Traits.getID(::Legends.Trait.Ailing),
+			::Legends.Traits.getID(::Legends.Trait.Clubfooted),
 			::Legends.Traits.getID(::Legends.Trait.Dumb),
 			::Legends.Traits.getID(::Legends.Trait.Loyal),
 			::Legends.Traits.getID(::Legends.Trait.Clumsy),
 			::Legends.Traits.getID(::Legends.Trait.Fat),
-			::Legends.Traits.getID(::Legends.Trait.Strong),
-			::Legends.Traits.getID(::Legends.Trait.Hesistant),
-			::Legends.Traits.getID(::Legends.Trait.Insecure),
-			::Legends.Traits.getID(::Legends.Trait.Clubfooted),
 			::Legends.Traits.getID(::Legends.Trait.ShortSighted),
-			::Legends.Traits.getID(::Legends.Trait.LegendFearDark),
-			::Legends.Traits.getID(::Legends.Trait.Brute),
-			::Legends.Traits.getID(::Legends.Trait.Strong),
-			::Legends.Traits.getID(::Legends.Trait.Bloodthirsty),
-			::Legends.Traits.getID(::Legends.Trait.LegendFearNobles),
-			::Legends.Traits.getID(::Legends.Trait.LegendPragmatic),
+			::Legends.Traits.getID(::Legends.Trait.Insecure),
+			::Legends.Traits.getID(::Legends.Trait.Hesistant),
+			::Legends.Traits.getID(::Legends.Trait.Greedy),
+			::Legends.Traits.getID(::Legends.Trait.Fragile),
+			::Legends.Traits.getID(::Legends.Trait.Fainthearthed),
+			::Legends.Traits.getID(::Legends.Trait.Dumb),
 			::Legends.Traits.getID(::Legends.Trait.LegendPredictable)
 		];
 		this.m.ExcludedTalents = [
@@ -220,12 +219,12 @@
 		}
 
 		items.equip(this.Const.World.Common.pickArmor([
-			[1, "oriental/thick_nomad_robe"],
-			[1, "oriental/assassin_robe"]
+			[1, ::Legends.Armor.Southern.thick_nomad_robe],
+			[1, ::Legends.Armor.Southern.assassin_robe]
 		]));
 
 		items.equip(this.Const.World.Common.pickHelmet([
-			[1, "oriental/assassin_head_wrap"]
+			[1, ::Legends.Helmet.Southern.assassin_head_wrap]
 		]))
 	}
 

@@ -21,10 +21,10 @@
 					else if (r == 2)
 						item = this.new("scripts/items/weapons/named/named_spear");
 					else if (r == 3)
-						item = this.Const.World.Common.pickHelmet([[1, "named/wolf_helmet"]]);
+						item = this.Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Named.wolf_helmet]]);
 					else if (r == 4) {
 						item = this.Const.World.Common.pickArmor([
-						[1, "named/black_leather_armor"],
+							[1, ::Legends.Armor.Named.black_leather_armor],
 						]);
 					}
 

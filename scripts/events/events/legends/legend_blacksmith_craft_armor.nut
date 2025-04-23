@@ -87,10 +87,7 @@ this.legend_blacksmith_craft_armor <- this.inherit("scripts/events/event", {
 					text = "You spend [color=" + this.Const.UI.Color.NegativeEventValue + "]10000[/color] Crowns"
 				});
 				local item = this.Const.World.Common.pickArmor([
-					[
-						1,
-						"named/named_golden_lamellar_armor"
-					]
+					[1, ::Legends.Armor.Named.named_golden_lamellar_armor]
 				]);
 				item.m.Name = _event.m.Blacksmith.getNameOnly() + "\'s golden lamellar armor";
 				this.World.Assets.getStash().add(item);
@@ -137,10 +134,7 @@ this.legend_blacksmith_craft_armor <- this.inherit("scripts/events/event", {
 					text = "You spend [color=" + this.Const.UI.Color.NegativeEventValue + "]10000[/color] Crowns"
 				});
 				local item = this.Const.World.Common.pickArmor([
-					[
-						1,
-						"heavy_lamellar_armor"
-					]
+					[1, ::Legends.Armor.Standard.heavy_lamellar_armor]
 				]);
 				item.m.Name = _event.m.Blacksmith.getNameOnly() + "\'s " + item.m.Name;
 				this.World.Assets.getStash().add(item);
@@ -199,10 +193,7 @@ this.legend_blacksmith_craft_armor <- this.inherit("scripts/events/event", {
 				}
 
 				local item = this.Const.World.Common.pickArmor([
-					[
-						1,
-						"named/named_golden_lamellar_armor"
-					]
+					[1, ::Legends.Armor.Named.named_golden_lamellar_armor]
 				]);
 				item.m.Name = _event.m.Blacksmith.getNameOnly() + "\'s golden lamellar armor";
 				this.World.Assets.getStash().add(item);
@@ -271,10 +262,7 @@ this.legend_blacksmith_craft_armor <- this.inherit("scripts/events/event", {
 				}
 
 				local item = this.Const.World.Common.pickArmor([
-					[
-						1,
-						"heavy_lamellar_armor"
-					]
+					[1, ::Legends.Armor.Standard.heavy_lamellar_armor]
 				]);
 				item.m.Name = _event.m.Blacksmith.getNameOnly() + "\'s " + item.m.Name;
 				this.World.Assets.getStash().add(item);

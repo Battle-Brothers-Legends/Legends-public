@@ -12,7 +12,9 @@ this.legend_bandit_army_contract <- this.inherit("scripts/contracts/contract", {
 		MinStrength = 10, // player needs to earn 10% of bonus (not including base 5% bonus) for this contract to be valid
 		BribeMoney = 1000,
 		Perk = ::Legends.Perk.LegendFavouredEnemyBandit,
-		ValidTypes = this.Const.LegendMod.FavoriteBandit
+		ValidTypes = this.Const.LegendMod.FavoriteBandit,
+		LevelSumRequiredForRandomSpawn = 50,
+		IsRandomlyAdded = null,
 	},
 	function getBanner()
 	{
@@ -31,6 +33,7 @@ this.legend_bandit_army_contract <- this.inherit("scripts/contracts/contract", {
 			"A new era dawns as brigand gangs across the land swear fealty to the banner of the underworld king, their unified front heralding a dark chapter in the history of the realm.",
 			"A charismatic new crime lord had united all the brigand gangs, marking a dark turning point for the realm.",
 		];
+		this.m.IsRandomlyAdded = ::Math.rand(1, 100) <= 5;
 	}
 
 	function generateName()
@@ -824,20 +827,19 @@ this.legend_bandit_army_contract <- this.inherit("scripts/contracts/contract", {
 			return false;
 		}
 
+		local sumLevels = 0;
 		foreach( bro in this.World.getPlayerRoster().getAll() )
 		{
+			sumLevels += bro.getLevel();
 			if (!bro.getSkills().hasPerk(this.m.Perk))
-			{
 				continue;
-			}
 
 			local stats = this.Const.LegendMod.GetFavoriteEnemyStats(bro, this.m.ValidTypes);
 			if (stats.Strength >= this.m.MinStrength)
-			{
 				return true;
-			}
 		}
-		return false;
+
+		return this.m.IsRandomlyAdded && sumLevels > this.m.LevelSumRequiredForRandomSpawn;
 	}
 
 	function spawnRaidingParty() {
@@ -895,33 +897,30 @@ this.legend_bandit_army_contract <- this.inherit("scripts/contracts/contract", {
 		{
 			_out.writeU32(0);
 		}
-
+		_out.writeBool(this.m.IsRandomlyAdded);
 		this.contract.onSerialize(_out);
 	}
 
 	function onDeserialize( _in )
 	{
 		local destination = _in.readU32();
-
 		if (destination != 0)
 		{
 			this.m.Destination = this.WeakTableRef(this.World.getEntityByID(destination));
 		}
 
 		local location1 = _in.readU32();
-
 		if (location1 != 0)
 		{
 			this.m.Location1 = this.WeakTableRef(this.World.getEntityByID(location1));
 		}
 
 		local location2 = _in.readU32();
-
 		if (location2 != 0)
 		{
 			this.m.Location2 = this.WeakTableRef(this.World.getEntityByID(location2));
 		}
-
+		this.m.IsRandomlyAdded = _out.readBool();
 		this.contract.onDeserialize(_in);
 	}
 

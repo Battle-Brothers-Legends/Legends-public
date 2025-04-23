@@ -16,7 +16,7 @@
 						text = "You gain " + this.Const.Strings.getArticle(item.getName()) + item.getName()
 					});
 					item = this.Const.World.Common.pickArmor([
-						[1, "basic_mail_shirt"],
+						[1, ::Legends.Armor.Standard.basic_mail_shirt],
 					]);
 					item.setArmor(item.getArmorMax() / 2 - 1);
 					stash.add(item);

@@ -324,32 +324,23 @@ this.legend_kobold_wolfrider <- this.inherit("scripts/entity/tactical/legend_kob
 		this.m.SoundVolume[this.Const.Sound.ActorEvent.Death] = 1.0;
 	}
 
-	function assignRandomEquipment()
-	{
-		this.m.Items.addToBag(this.new("scripts/items/weapons/greenskins/goblin_notched_blade"));
-		this.m.Items.equip(this.new("scripts/items/weapons/greenskins/legend_blowgun"));
-		this.m.Items.equip(this.new("scripts/items/ammo/legend_darts"));
+	function assignRandomEquipment() {
+		this.getItems().addToBag(this.new("scripts/items/weapons/greenskins/goblin_notched_blade"));
+		this.getItems().equip(this.new("scripts/items/weapons/greenskins/legend_blowgun"));
+		this.getItems().equip(this.new("scripts/items/ammo/legend_darts"));
 
-		if(::Legends.isLegendaryDifficulty())
-		{
-			this.m.Items.addToBag(this.new("scripts/items/accessory/poison_item"));
-		}
-		else
-		{
-			if (this.Math.rand(1, 100) <= 90)
-			{
-				this.m.Items.addToBag(this.new("scripts/items/accessory/poison_item"));
+		if (::Legends.isLegendaryDifficulty()) {
+			this.getItems().addToBag(this.new("scripts/items/accessory/poison_item"));
+		} else {
+			if (::Math.rand(1, 100) <= 90) {
+				this.getItems().addToBag(this.new("scripts/items/accessory/poison_item"));
 			}
 		}
 
-		local item = this.Const.World.Common.pickHelmet([
-			[25, "greenskins/goblin_light_helmet"],
-			[75, ""]
-		]);
-		if (item != null)
-		{
-			this.m.Items.equip(item);
-		}
+		this.getItems().equip(::Const.World.Common.pickHelmet([
+			[25, ::Legends.Helmet.Greenskin.goblin_light_helmet],
+			[75, ::Legends.Helmet.None]
+		]));
 	}
 
 });

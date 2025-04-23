@@ -48,12 +48,12 @@
 		}
 
 		items.equip(this.Const.World.Common.pickArmor([
-			[1, "sackcloth"],
-			[1, "oriental/cloth_sash"]
+			[1, ::Legends.Armor.Standard.sackcloth],
+			[1, ::Legends.Armor.Southern.cloth_sash]
 		]));
 
 		local helm = this.Const.World.Common.pickHelmet([
-			[1, "oriental/southern_head_wrap"]
+			[1, ::Legends.Helmet.Southern.southern_head_wrap]
 		]);
 		items.equip(helm);
 	}

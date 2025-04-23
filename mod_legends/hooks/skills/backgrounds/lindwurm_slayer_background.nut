@@ -47,6 +47,7 @@
 		this.m.Level = this.Math.rand(2, 4);
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Cruel;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Chivalrous;
+		this.m.BackgroundType = this.Const.BackgroundType.Combat | this.Const.BackgroundType.Ranger | this.Const.BackgroundType.ExpertHunter;
 		this.m.Modifiers.Stash = this.Const.LegendMod.ResourceModifiers.Stash[1];
 		this.m.Modifiers.Repair = this.Const.LegendMod.ResourceModifiers.Repair[1];
 		this.m.Modifiers.Salvage = this.Const.LegendMod.ResourceModifiers.Salvage[2];
@@ -130,7 +131,7 @@
 
 	o.onBuildDescription <- function ()
 	{
-		return "{%name% is a supposedly famous monster hunter with a particular talent for slaying lindwurms. They says he is the son of Dirk the Dragonslayer, the monster hunter who ostensibly slew the last living dragon.}";
+		return "{%name% is a supposedly famous monster hunter with a particular talent for slaying lindwurms. They says %they% is the %offspring% of Dirk the Dragonslayer, the monster hunter who ostensibly slew the last living dragon.}";
 	}
 
 	o.onChangeAttributes = function ()
@@ -198,22 +199,20 @@
 		}
 
 		items.equip(this.Const.World.Common.pickArmor([
-			[1, "mail_hauberk"],
-			[1, "leather_scale_armor"],
-			[1, "noble_mail_armor"],
-			[1, "light_scale_armor"],
-			[1, "footman_armor"],
-			[1, "reinforced_mail_hauberk"]
+			[1, ::Legends.Armor.Standard.mail_hauberk],
+			[1, ::Legends.Armor.Standard.leather_scale_armor],
+			[1, ::Legends.Armor.Standard.noble_mail_armor],
+			[1, ::Legends.Armor.Standard.light_scale_armor],
+			[1, ::Legends.Armor.Standard.footman_armor],
+			[1, ::Legends.Armor.Standard.reinforced_mail_hauberk]
 		]));
 
-		local helm = [
-			[1, "feathered_hat"],
-			[1, "headscarf"],
-			[1, "mail_coif"],
-			[1, "greatsword_hat"]
-		];
-
-		items.equip(this.Const.World.Common.pickHelmet(helm));
+		items.equip(this.Const.World.Common.pickHelmet([
+			[1, ::Legends.Helmet.Standard.feathered_hat],
+			[1, ::Legends.Helmet.Standard.headscarf],
+			[1, ::Legends.Helmet.Standard.mail_coif],
+			[1, ::Legends.Helmet.Standard.greatsword_hat]
+		]));
 	}
 
 });

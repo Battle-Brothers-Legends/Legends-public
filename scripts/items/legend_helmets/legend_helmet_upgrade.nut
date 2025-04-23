@@ -210,6 +210,12 @@ this.legend_helmet_upgrade <- this.inherit("scripts/items/item", {
 			text = "Hold Shift and drag onto a helmet in the stash to attach."
 		});
 		result.push({
+			id = 67,
+			type = "hint",
+			icon = "ui/icons/mouse_left_button_shift.png", //I wish I could vanish this easily
+			text = "Hold Left-Shift and Left-Click this layer square to toggle it hidden on this character (stats & other benefits will not be affected)."
+		});
+		result.push({
 			id = 4,
 			type = "progressbar",
 			icon = "ui/icons/armor_head.png",

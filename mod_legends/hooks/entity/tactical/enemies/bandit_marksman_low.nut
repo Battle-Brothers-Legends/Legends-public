@@ -27,7 +27,7 @@
 
 
 		local item = this.Const.World.Common.pickArmor([
-			[20, "leather_wraps"]
+			[20, ::Legends.Armor.Standard.leather_wraps]
 		]);
 		this.m.Items.equip(item);
 
@@ -35,8 +35,8 @@
 		if (this.Math.rand(0,1) == 0)
 		{
 			local item = this.Const.World.Common.pickHelmet([
-				[5, "headscarf"],
-				[5, "mouth_piece"]
+				[5, ::Legends.Helmet.Standard.headscarf],
+				[5, ::Legends.Helmet.Standard.mouth_piece]
 			]);
 
 			if (item != null)

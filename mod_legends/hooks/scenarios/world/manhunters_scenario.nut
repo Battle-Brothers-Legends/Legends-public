@@ -65,7 +65,7 @@
 		items.unequip(items.getItemAtSlot(this.Const.ItemSlot.Head));
 
 		items.equip(this.Const.World.Common.pickHelmet([
-			[1, "oriental/southern_head_wrap"]
+			[1, ::Legends.Helmet.Southern.southern_head_wrap]
 		]));
 		items.equip(this.new("scripts/items/weapons/battle_whip"));
 		::Legends.Actives.grant(bros[1], ::Legends.Active.WhipSlave);
@@ -89,7 +89,7 @@
 		items.unequip(items.getItemAtSlot(this.Const.ItemSlot.Mainhand));
 		items.equip(this.new("scripts/items/weapons/wooden_stick"));
 		items.equip(this.Const.World.Common.pickHelmet([
-			[1, "oriental/nomad_head_wrap"]
+			[1, ::Legends.Helmet.Southern.nomad_head_wrap]
 		]));
 		bros[2].worsenMood(0.0, "Misses his books");
 		bros[3].setStartValuesEx([

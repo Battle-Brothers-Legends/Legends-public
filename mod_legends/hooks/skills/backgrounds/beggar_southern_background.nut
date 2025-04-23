@@ -34,13 +34,13 @@
 		}
 
 		items.equip(this.Const.World.Common.pickArmor([
-			[1, "tattered_sackcloth"],
-			[1, "leather_wraps"]
+			[1, ::Legends.Armor.Standard.tattered_sackcloth],
+			[1, ::Legends.Armor.Standard.leather_wraps]
 		]));
 
 		local helm = this.Const.World.Common.pickHelmet([
-			[1, "oriental/nomad_head_wrap", 16],
-			[3, ""]
+			[1, ::Legends.Helmet.Southern.nomad_head_wrap, 16],
+			[3, ::Legends.Helmet.None]
 		]);
 		items.equip(helm);
 

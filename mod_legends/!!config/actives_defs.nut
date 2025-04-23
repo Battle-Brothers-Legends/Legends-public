@@ -3110,4 +3110,20 @@ activesDefs.push({
 	Name = "Second Wind",
 });
 
+::Legends.Active.CenserCastigate <- null;
+activesDefs.push({
+	ID = "actives.censer_castigate",
+	Script = "scripts/skills/actives/censer_castigate_skill",
+	Const = "CenserCastigate",
+	Name = "Castigate",
+});
+
+::Legends.Active.CenserStrike <- null;
+activesDefs.push({
+	ID = "actives.censer_strike",
+	Script = "scripts/skills/actives/censer_strike",
+	Const = "CenserStrike",
+	Name = "Censer Strike",
+});
+
 ::Legends.Actives.addActiveDefObjects(activesDefs);

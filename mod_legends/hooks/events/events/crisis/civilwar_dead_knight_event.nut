@@ -5,7 +5,7 @@
 		foreach (s in this.m.Screens) {
 			if (s.ID == "A") {
 				s.start <- function ( _event ) {
-					local item = this.Const.World.Common.pickHelmet([[1, "faction_helm"]]);
+					local item = this.Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Standard.faction_helm]]);
 					item.setCondition(27.0);
 					this.World.Assets.getStash().add(item);
 					this.List.push({

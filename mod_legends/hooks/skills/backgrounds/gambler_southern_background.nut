@@ -48,9 +48,9 @@
 		local items = this.getContainer().getActor().getItems();
 
 		items.equip(this.Const.World.Common.pickArmor([
-			[1, "noble_tunic"],
-			[1, "oriental/cloth_sash"],
-			[2, ""]
+			[1, ::Legends.Armor.Standard.noble_tunic],
+			[1, ::Legends.Armor.Southern.cloth_sash],
+			[2, ::Legends.Armor.None]
 		]));
 	}
 });

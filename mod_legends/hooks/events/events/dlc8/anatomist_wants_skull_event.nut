@@ -71,12 +71,12 @@
 					}
 
 					local armorList = this.Const.World.Common.pickArmor([
-						[1, "leather_tunic"],
-						[1, "leather_tunic"],
-						[1, "thick_tunic"],
-						[1, "thick_tunic"],
-						[1, "padded_surcoat"],
-						[1, "padded_leather"]
+						[1, ::Legends.Armor.Standard.leather_tunic],
+						[1, ::Legends.Armor.Standard.leather_tunic],
+						[1, ::Legends.Armor.Standard.thick_tunic],
+						[1, ::Legends.Armor.Standard.thick_tunic],
+						[1, ::Legends.Armor.Standard.padded_surcoat],
+						[1, ::Legends.Armor.Standard.padded_leather]
 					]);
 					itemAmount = this.Math.rand(1, 2);
 

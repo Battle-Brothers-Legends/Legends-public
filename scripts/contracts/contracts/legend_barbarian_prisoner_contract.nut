@@ -9,7 +9,9 @@ this.legend_barbarian_prisoner_contract <- this.inherit("scripts/contracts/contr
 		IsEscortUpdated = false,
 		MinStrength = 10, // player needs to earn 10% of bonus (not including base 5% bonus) for this contract to be valid
 		Perk = ::Legends.Perk.LegendFavouredEnemyBarbarian,
-		ValidTypes = this.Const.LegendMod.FavoriteBarbarian
+		ValidTypes = this.Const.LegendMod.FavoriteBarbarian,
+		LevelSumRequiredForRandomSpawn = 50,
+		IsRandomlyAdded = null,
 	},
 	function create()
 	{
@@ -23,6 +25,7 @@ this.legend_barbarian_prisoner_contract <- this.inherit("scripts/contracts/contr
 			"Despite his captivity, the barbarian prisoner remains a formidable threat. Bulging muscles and furious eyes, not to mention the savage kin waiting to ambush you in the forest.",
 			"Wrapped in thick chains, a hulking barbarian prisoner awaits transport. Nobody wants the job, for his savage kin are fiercely loyal and they will come for him."
 		];
+		this.m.IsRandomlyAdded = ::Math.rand(1, 100) <= 5;
 	}
 
 	function getBanner()
@@ -737,21 +740,19 @@ this.legend_barbarian_prisoner_contract <- this.inherit("scripts/contracts/contr
 			return false;
 		}
 
+		local sumLevels = 0;
 		foreach( bro in this.World.getPlayerRoster().getAll() )
 		{
+			sumLevels += bro.getLevel();
 			if (!bro.getSkills().hasPerk(this.m.Perk))
-			{
 				continue;
-			}
 
 			local stats = this.Const.LegendMod.GetFavoriteEnemyStats(bro, this.m.ValidTypes);
-
 			if (stats.Strength >= this.m.MinStrength)
-			{
 				return true;
-			}
 		}
-		return false;
+
+		return this.m.IsRandomlyAdded && sumLevels > this.m.LevelSumRequiredForRandomSpawn;
 	}
 
 	function onIsTileUsed( _tile )
@@ -801,7 +802,7 @@ this.legend_barbarian_prisoner_contract <- this.inherit("scripts/contracts/contr
 		{
 			_out.writeU32(0);
 		}
-
+		_out.writeBool(this.m.IsRandomlyAdded);
 		this.contract.onSerialize(_out);
 	}
 
@@ -840,6 +841,7 @@ this.legend_barbarian_prisoner_contract <- this.inherit("scripts/contracts/contr
 			this.m.Flags.set("Distance", 0);
 		}
 
+		this.m.IsRandomlyAdded = _out.readBool();
 		this.contract.onDeserialize(_in);
 	}
 

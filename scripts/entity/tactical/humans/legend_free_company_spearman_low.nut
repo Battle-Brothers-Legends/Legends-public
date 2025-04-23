@@ -1,8 +1,8 @@
 this.legend_free_company_spearman_low <- this.inherit("scripts/entity/tactical/humans/legend_free_company_spearman", {
 	m = {
 		Outfits = [
-			[1, "low_tier_unit_catchall_outfit_01"]
-			// [1, "mercenary_spearman_outfit_01"]
+			[1, ::Legends.Outfit.low_tier_unit_catchall_outfit_01],
+			// [1, ::Legends.Outfit.mercenary_spearman_outfit_01]
 		]
 		PerkList = this.Const.EnemyPerks.FreeCompanySpearman,
 		PerkPower = 3
@@ -40,28 +40,17 @@ this.legend_free_company_spearman_low <- this.inherit("scripts/entity/tactical/h
 
 	function assignRandomEquipment()
 	{
+		this.getItems().equip(::Const.World.Common.pickItem([
+			[1, "weapons/militia_spear"],
+			[1, "weapons/legend_wooden_spear"],
+		], "scripts/items/"));
 
-		if (this.Math.rand(0, 1) == 0)
-		{
-			this.m.Items.equip(this.new("scripts/items/weapons/militia_spear"));
-		}
-		else
-		{
-			this.m.Items.equip(this.new("scripts/items/weapons/legend_wooden_spear"));
-		}
-		if (this.Math.rand(0, 2) != 0) //33% chance to not have a shield
-		{
-			if (this.Math.rand(0, 1) == 0)
-			{
-				this.m.Items.equip(this.new("scripts/items/shields/buckler_shield"));
-			}
-			else
-			{
-				this.m.Items.equip(this.new("scripts/items/shields/wooden_shield"));
-			}	
-		}
-			
-		
+		this.getItems().equip(::Const.World.Common.pickItem([
+			[1, "shields/buckler_shield"],
+			[1, "shields/wooden_shield"],
+			[1, null],
+		], "scripts/items/"));
+
 		this.legend_free_company_abstract.assignRandomEquipment();
 	}
 

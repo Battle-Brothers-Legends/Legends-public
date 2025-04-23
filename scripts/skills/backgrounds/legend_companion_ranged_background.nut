@@ -308,13 +308,13 @@ this.legend_companion_ranged_background <- this.inherit("scripts/skills/backgrou
 		}
 
 		local outfits = [
-			[1, "mercenary_crossbow_outfit_00"],
-			[1, "mercenary_longbow_outfit_00"],
-			[1, "mercenary_spearman_outfit_00"],
-			[1, "mercenary_spearman_outfit_01"],
-			[1, "mercenary_leader_outfit_uncommon_00"],
-			[1, "mercenary_leader_outfit_00"],
-			[1, "mercenary_billman_outfit_00"]
+			[1, ::Legends.Outfit.mercenary_crossbow_outfit_00],
+			[1, ::Legends.Outfit.mercenary_longbow_outfit_00],
+			[1, ::Legends.Outfit.mercenary_spearman_outfit_00],
+			[1, ::Legends.Outfit.mercenary_spearman_outfit_01],
+			[1, ::Legends.Outfit.mercenary_leader_outfit_uncommon_00],
+			[1, ::Legends.Outfit.mercenary_leader_outfit_00],
+			[1, ::Legends.Outfit.mercenary_billman_outfit_00]
 		];
 
 		foreach (item in this.Const.World.Common.pickOutfit(outfits))

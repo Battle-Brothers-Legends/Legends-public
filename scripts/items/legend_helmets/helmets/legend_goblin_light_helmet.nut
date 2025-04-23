@@ -9,7 +9,7 @@ this.legend_goblin_light_helmet <- this.inherit("scripts/items/helmets/greenskin
 
 	function getLootLayers()
 	{
-		return [this.Const.World.Common.pickHelmet([[1, "legend_goblin_light_helmet"]])];
+		return [this.Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Greenskin.legend_goblin_light_helmet]])];
 	}
 });
 

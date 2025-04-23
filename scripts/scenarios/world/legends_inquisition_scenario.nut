@@ -35,7 +35,7 @@ this.legends_inquisition_scenario <- this.inherit("scripts/scenarios/world/start
 		this.addScenarioPerk(bros[0].getBackground(), this.Const.Perks.PerkDefs.LegendMindOverBody);
 		local items = bros[0].getItems();
 		items.unequip(items.getItemAtSlot(this.Const.ItemSlot.Head));
-		items.equip(this.Const.World.Common.pickHelmet([[1, "barbarians/leather_helmet"]]));
+		items.equip(this.Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Barbarian.leather_helmet]]));
 		items.unequip(items.getItemAtSlot(this.Const.ItemSlot.Mainhand));
 		items.equip(this.new("scripts/items/weapons/legend_cat_o_nine_tails"));
 		bros[0].m.Talents = [];

@@ -42,8 +42,8 @@
 						item.setFaction(banner);
 					} else {
 						item = this.Const.World.Common.pickArmor([
-							[1, "mail_shirt"],
-							[1, "basic_mail_shirt"],
+							[1, ::Legends.Armor.Standard.mail_shirt],
+							[1, ::Legends.Armor.Standard.basic_mail_shirt],
 						]);
 					}
 

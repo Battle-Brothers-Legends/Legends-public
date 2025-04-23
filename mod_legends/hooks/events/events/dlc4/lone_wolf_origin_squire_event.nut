@@ -19,7 +19,7 @@
 					_event.m.Dude.getItems().unequip(_event.m.Dude.getItems().getItemAtSlot(this.Const.ItemSlot.Body));
 
 					_event.m.Dude.getItems().equip(this.Const.World.Common.pickArmor([
-						[1, "linen_tunic"],
+						[1, ::Legends.Armor.Standard.linen_tunic],
 					]));
 
 					_event.m.Dude.setTitle("the Squire");

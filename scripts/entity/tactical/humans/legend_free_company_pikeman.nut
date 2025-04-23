@@ -1,7 +1,7 @@
 this.legend_free_company_pikeman <- this.inherit("scripts/entity/tactical/legend_free_company_abstract", {
 	m = {
 		Outfits = [
-			[1, "mercenary_billman_outfit_00"]
+			[1, ::Legends.Outfit.mercenary_billman_outfit_00]
 		],
 		PerkList = this.Const.EnemyPerks.FreeCompanyPikeman,
 		PerkPower = 7

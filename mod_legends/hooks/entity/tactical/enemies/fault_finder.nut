@@ -8,7 +8,7 @@
 		];
 		this.m.Items.equip(this.new(weapons[::Math.rand(0, weapons.len() - 1)]));
 		this.m.Items.equip(::Const.World.Common.pickArmor([
-			[1, "fault_finder_robes"]
+			[1, ::Legends.Armor.Standard.fault_finder_robes]
 		]));
 
 		local helmets = [

@@ -1,7 +1,7 @@
 this.legend_free_company_archer_low <- this.inherit("scripts/entity/tactical/humans/legend_free_company_archer", {
 	m = {
 		Outfits = [
-			[1, "low_tier_unit_catchall_outfit_01"]
+			[1, ::Legends.Outfit.low_tier_unit_catchall_outfit_01]
 		],
 		PerkList = this.Const.EnemyPerks.FreeCompanyArcher,
 		PerkPower = 3
@@ -40,10 +40,13 @@ this.legend_free_company_archer_low <- this.inherit("scripts/entity/tactical/hum
 	function assignRandomEquipment()
 	{
 		this.m.Items.equip(this.new("scripts/items/weapons/short_bow"));
-		this.m.Items.equip(this.new("scripts/items/ammo/quiver_of_arrows"));		
-		this.m.Items.addToBag(this.new("scripts/items/weapons/knife"));
+		this.m.Items.equip(this.new("scripts/items/ammo/quiver_of_arrows"));
 
 		this.legend_free_company_abstract.assignRandomEquipment();
+
+		this.getItems().addToBag(::Const.World.Common.pickItem([
+			[1, "weapons/knife"]
+		], "scripts/items/"));
 	}
 
 });

@@ -66,9 +66,9 @@
 		if (this.m.Items.getItemAtSlot(this.Const.ItemSlot.Body) == null)
 		{
 			local item = this.Const.World.Common.pickArmor([
-				[1, "greenskins/goblin_light_armor"],
-				[1, "greenskins/goblin_medium_armor"],
-				[1, "greenskins/goblin_heavy_armor"]
+				[1, ::Legends.Armor.Greenskin.goblin_light_armor],
+				[1, ::Legends.Armor.Greenskin.goblin_medium_armor],
+				[1, ::Legends.Armor.Greenskin.goblin_heavy_armor]
 			]);
 			this.m.Items.equip(item);
 		}
@@ -76,8 +76,8 @@
 		if (this.m.Items.getItemAtSlot(this.Const.ItemSlot.Head) == null)
 		{
 			local item = this.Const.World.Common.pickHelmet([
-				[75, "greenskins/goblin_light_helmet"],
-				[25, "greenskins/goblin_heavy_helmet"]
+				[75, ::Legends.Helmet.Greenskin.goblin_light_helmet],
+				[25, ::Legends.Helmet.Greenskin.goblin_heavy_helmet]
 			]);
 			if (item != null)
 			{

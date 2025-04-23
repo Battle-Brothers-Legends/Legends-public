@@ -235,16 +235,16 @@
 		}
 
 		items.equip(this.Const.World.Common.pickArmor([
-			[1, "barbarians/thick_furs_armor"],
-			[1, "barbarians/reinforced_animal_hide_armor"],
-			[1, "barbarians/hide_and_bone_armor"],
-			[1, "barbarians/scrap_metal_armor"]
+			[1, ::Legends.Armor.Barbarian.thick_furs_armor],
+			[1, ::Legends.Armor.Barbarian.reinforced_animal_hide_armor],
+			[1, ::Legends.Armor.Barbarian.hide_and_bone_armor],
+			[1, ::Legends.Armor.Barbarian.scrap_metal_armor]
 		]));
 
 		items.equip(this.Const.World.Common.pickHelmet([
-			[1, "barbarians/bear_headpiece"],
-			[1, "barbarians/leather_headband"],
-			[1, "barbarians/leather_helmet"]
+			[1, ::Legends.Helmet.Barbarian.bear_headpiece],
+			[1, ::Legends.Helmet.Barbarian.leather_headband],
+			[1, ::Legends.Helmet.Barbarian.leather_helmet]
 		]))
 	}
 

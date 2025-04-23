@@ -292,7 +292,7 @@ this.legend_berserker_commander_background <- this.inherit("scripts/skills/backg
 		this.getContainer().getActor().fillTalentValues(2, true);
 		local items = this.getContainer().getActor().getItems();
 		items.equip(this.Const.World.Common.pickArmor([
-			[1, "werewolf_hide_armor"]
+			[1, ::Legends.Armor.Standard.werewolf_hide_armor]
 		]));
 
 		local r = this.Math.rand(0, 5);

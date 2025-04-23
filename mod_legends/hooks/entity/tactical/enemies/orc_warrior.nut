@@ -105,10 +105,10 @@
 		if (this.m.Items.getItemAtSlot(this.Const.ItemSlot.Body) == null)
 		{
 			local armor = [
-				[1, "greenskins/orc_warrior_light_armor"],
-				[1, "greenskins/orc_warrior_medium_armor"],
-				[1, "greenskins/orc_warrior_heavy_armor"],
-				[1, "greenskins/orc_warrior_heavy_armor"]
+				[1, ::Legends.Armor.Greenskin.orc_warrior_light_armor],
+				[1, ::Legends.Armor.Greenskin.orc_warrior_medium_armor],
+				[1, ::Legends.Armor.Greenskin.orc_warrior_heavy_armor],
+				[1, ::Legends.Armor.Greenskin.orc_warrior_heavy_armor]
 			];
 			local item = this.Const.World.Common.pickArmor(armor);
 			this.m.Items.equip(item);
@@ -117,9 +117,9 @@
 		if (this.m.Items.getItemAtSlot(this.Const.ItemSlot.Head) == null)
 		{
 			local helmet = [
-				[1, "greenskins/orc_warrior_light_helmet"],
-				[1, "greenskins/orc_warrior_medium_helmet"],
-				[1, "greenskins/orc_warrior_heavy_helmet"]
+				[1, ::Legends.Helmet.Greenskin.orc_warrior_light_helmet],
+				[1, ::Legends.Helmet.Greenskin.orc_warrior_medium_helmet],
+				[1, ::Legends.Helmet.Greenskin.orc_warrior_heavy_helmet]
 			];
 			local item = this.Const.World.Common.pickHelmet(helmet);
 			this.m.Items.equip(item);

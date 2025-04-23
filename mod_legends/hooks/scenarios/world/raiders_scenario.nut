@@ -49,10 +49,7 @@
 		armor.setUpgrade(plate);
 		items.equip(armor);
 		items.equip(this.Const.World.Common.pickHelmet([
-			[
-				1,
-				"barbarians/bear_headpiece"
-			]
+			[1, ::Legends.Helmet.Barbarian.bear_headpiece]
 		]));
 		bros[1].setStartValuesEx([
 			"barbarian_background"
@@ -79,10 +76,7 @@
 		items.equip(armor);
 
 		items.equip(this.Const.World.Common.pickHelmet([
-			[
-				1,
-				"barbarians/leather_headband"
-			]
+			[1, ::Legends.Helmet.Barbarian.leather_headband]
 		]));
 		bros[2].setStartValuesEx([
 			"barbarian_background"
@@ -108,10 +102,7 @@
 		armor.setUpgrade(plate);
 		items.equip(armor);
 		items.equip(this.Const.World.Common.pickHelmet([
-			[
-				1,
-				"barbarians/leather_helmet"
-			]
+			[1, ::Legends.Helmet.Barbarian.leather_helmet]
 		]));
 		bros[3].setStartValuesEx([
 			"monk_background"

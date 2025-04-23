@@ -529,13 +529,28 @@ if (!("World" in ::Const))
 	UpgradeResourceCost = 50,
 }
 
+::Const.World.Common.getMinibossChances <- function (_template, _minibossify) {
+	local minibossChanceMap = {};
+	foreach (troop in _template.Troops) {
+		if (troop.Type.ID in minibossChanceMap)
+			continue;
+
+		local chance = _minibossify;
+		chance += ::World.getTime().Days > 100 ? 0 : -1;
+		chance += ::Const.LegendMod.GetFavEnemyBossChance(troop.Type.ID);
+		chance += ::World.Assets.m.ChampionChanceAdditional;
+		minibossChanceMap[troop.Type.ID] <- chance;
+	}
+	return minibossChanceMap;
+}
+
 ::Const.World.Common.assignTroops = function( _party, _partyList, _resources, _minibossify = 0, _weightMode = 1 )
 {
 	local p;
 	//New Legends Dynamic Spawn lists
 	if (typeof(_partyList) == "table")
 	{
-		p = this.Const.World.Common.buildDynamicTroopList(_partyList, _resources);
+		p = ::Const.World.Common.buildDynamicTroopList(_partyList, _resources);
 	}
 	//Vanilla partlyList spawnlists
 	else
@@ -631,24 +646,12 @@ if (!("World" in ::Const))
 	_party.setVisionRadius(this.Const.World.Settings.Vision * p.VisionMult);
 	_party.getSprite("body").setBrush(p.Body);
 
-
-	local troopMbMap = {};
-	foreach( t in p.Troops )
-	{
-		local key = "Enemy" + t.Type.ID;
-		if (!(key in troopMbMap))
-		{
-			troopMbMap[key] <- this.Const.LegendMod.GetFavEnemyBossChance(t.Type.ID);
-		}
-
-		local mb = troopMbMap[key];
-
-		for( local i = 0; i != t.Num; i = ++i )
-		{
-			this.addTroop(_party, t, false, mb);
+	local minibossChanceMap = this.getMinibossChances(p, _minibossify);
+	foreach( t in p.Troops ) {
+		for( local i = 0; i != t.Num; i = ++i ) {
+			::Const.World.Common.addTroop(_party, t, false, minibossChanceMap[t.Type.ID]);
 		}
 	}
-
 	_party.updateStrength();
 	return p;
 }
@@ -659,12 +662,13 @@ if (!("World" in ::Const))
 	troop.Party <- this.WeakTableRef(_party);
 	troop.Faction <- _party.getFaction();
 	troop.Name <- "";
+	if (("Credits" in _troop))
+		troop.Credits <- _troop.Credits;
 
 	if (troop.Variant > 0)
 	{
-		_minibossify = _minibossify + this.World.Assets.m.ChampionChanceAdditional;
 		local upperBound = ("DieRoll" in troop) ? troop.DieRoll : 100;
-		if (!this.Const.DLC.Wildmen || this.Math.rand(1, upperBound) > troop.Variant + _minibossify + (this.World.getTime().Days > 90 ? 0 : -1))
+		if (!this.Const.DLC.Wildmen || this.Math.rand(1, upperBound) > troop.Variant + _minibossify)
 		{
 			troop.Variant = 0;
 		}
@@ -687,6 +691,60 @@ if (!("World" in ::Const))
 		_party.updateStrength();
 	}
 
+	return troop;
+}
+
+::Const.World.Common.serializeTroop <- function (_out, _troop) {
+	_out.writeU16(_troop.ID);
+	_out.writeU8(_troop.Variant);
+	_out.writeF32(_troop.Strength);
+	_out.writeI8(_troop.Row);
+	_out.writeString(_troop.Name);
+	if ("Outfits" in _troop) {
+		_out.writeBool(true);
+		_out.writeU8(_troop.Outfits.len());
+		foreach (o in _troop.Outfits) {
+			_out.writeU8(o.len());
+			_out.writeU8(o[0]);
+			_out.writeString(o[1]);
+			if (o.len() == 3)
+				_out.writeString(o[2]);
+		}
+	} else {
+		_out.writeBool(false);
+	}
+	_out.writeI32(this.IO.scriptHashByFilename(_troop.Script));
+	_out.writeI16(("Credits" in _troop) ? _troop.Credits : 0);
+	_out.writeI8(("DieRoll" in _troop) ? _troop.DieRoll : 100);
+}
+
+::Const.World.Common.deserializeTroop <- function (_in) {
+	local troop = clone this.Const.World.Spawn.Unit;
+	troop.ID = _in.readU16();
+	troop.Variant = _in.readU8();
+	troop.Strength = _in.readF32();
+	troop.Row = _in.readI8();
+	troop.Name = _in.readString();
+
+	if (_in.readBool())
+	{
+		local outfits = [];
+		local outfitLength = _in.readU8();
+		for (local i = 0; i < outfitLength; i++) {
+			if (_in.readU8() == 2) {
+				outfits.push( [_in.readU8(), _in.readString()] )
+			} else {
+				outfits.push( [_in.readU8(), _in.readString(), _in.readString()] )
+			}
+		}
+		troop.Outfits <- clone outfits
+	}
+
+	local hash = _in.readI32();
+	if (hash != 0)
+		troop.Script = this.IO.scriptFilenameByHash(hash);
+	troop.Credits <- _in.readI16();
+	troop.DieRoll <- _in.readI8();
 	return troop;
 }
 
@@ -752,17 +810,9 @@ if (!("World" in ::Const))
 		}
 	}
 
-	local troopMbMap = {};
+	local minibossChanceMap = this.getMinibossChances(p, _minibossify);
 	foreach( t in p.Troops )
 	{
-		local key = "Enemy" + t.Type.ID;
-		if (!(key in troopMbMap))
-		{
-			troopMbMap[key] <- this.Const.LegendMod.GetFavEnemyBossChance(t.Type.ID);
-		}
-		local mb = troopMbMap[key];
-		mb += _minibossify;
-
 		for( local i = 0; i != t.Num; i = ++i )
 		{
 			local unit = clone t.Type;
@@ -772,7 +822,7 @@ if (!("World" in ::Const))
 			if (unit.Variant > 0)
 			{
 				local upperBound = ("DieRoll" in unit) ? unit.DieRoll : 100;
-				if (this.Math.rand(1, upperBound) > unit.Variant + mb + (this.World.getTime().Days > 100 ? 0 : -1))
+				if (this.Math.rand(1, upperBound) > unit.Variant + minibossChanceMap[t.Type.ID])
 				{
 					unit.Variant = 0;
 				}
@@ -1118,14 +1168,14 @@ if (!("World" in ::Const))
 		return "MaxR" in _template ? (_resources * 1.0) / (_template.MaxR * 1.0) : 1.0;
 	},
 	// Defines how excess credits should be spent after fixed units are added
-	selectDynamicTroops = function(_template, _resources, _scale, _troopMap, _credits) {
+	selectDynamicTroops = function(_template, _resources, _scale, _troopMap, _credits, _limit) {
 		local credits = _credits;
 		if ("Troops" in _template && _template.Troops.len() > 0)
 		{
-			local tries = 200;
+			local tries = _limit;
 			while (credits > 0 && tries > 0)
 			{
-				credits = this.Const.World.Common.dynamicSelectTroop(_template.Troops, _resources, _scale, _troopMap, credits);
+				credits = ::Const.World.Common.dynamicSelectTroop(_template.Troops, _resources, _scale, _troopMap, credits);
 				tries--;
 			}
 		}
@@ -1135,11 +1185,12 @@ if (!("World" in ::Const))
 
 ::Const.World.Common.buildDynamicTroopList <- function( _template, _resources)
 {
-//	::logInfo("*DynamicTroopList : template = " + _template.Name + " : resources = " + _resources)
+//	::logInfo("*DynamicTroopList : template = " + _template.Name + " : resources = " + _resources);
 	local credits = ::Const.World.Common.DynamicTroops.getCredits(_template, _resources);
 	local scale = ::Const.World.Common.DynamicTroops.getScale(_template, _resources);
 	local troopMap = {};
 	local prevPoints = 0;
+//	::logInfo("*DynamicTroopList : credits = " + credits + " : scale = " + scale);
 
 	foreach(name in ::Const.World.Common.DynamicTroops.Templates) {
 		if (name in _template) {
@@ -1147,14 +1198,22 @@ if (!("World" in ::Const))
 		}
 	}
 
-	credits = ::Const.World.Common.DynamicTroops.selectDynamicTroops(_template, _resources, scale, troopMap, credits);
+	local count = 0;
+	foreach (k, v in troopMap)
+		count += v.Num;
+	local partySizeLimit = 200 - count;
+
+	credits = ::Const.World.Common.DynamicTroops.selectDynamicTroops(_template, _resources, scale, troopMap, credits, partySizeLimit);
+	credits = ::Math.max(0, credits);
 
 	local T = [];
-	foreach (k, v in troopMap)
+	foreach (k, v in troopMap) {
+		v.Credits <- credits,
 		T.push(v);
+	}
 
-//	 foreach (t in T) //TESTING
-//	 	::logInfo(t.Type.Script + " : " + t.Num);
+//	::MSU.Log.printData(T, 100); // test
+
 	return {
 		MovementSpeedMult = _template.MovementSpeedMult,
 		VisibilityMult = _template.VisibilityMult,
@@ -1164,439 +1223,12 @@ if (!("World" in ::Const))
 	}
 }
 
-::Const.World.Common.pickLegendArmor <- function (_list)
-{
-	return this.Const.World.Common.pickItem(_list, "scripts/items/legend_armor/");
-}
-
-::Const.World.Common.pickLegendHelmet <- function (_list)
-{
-	return this.Const.World.Common.pickItem(_list, "scripts/items/legend_helmets/");
-}
-
-::Const.World.Common.pickItem <- function (_list, _script = "")
-{
-	local candidates = [];
-	local totalWeight = 0;
-	local w = 0;
-	foreach (t in _list)
-	{
-		if (t[0] == 0)
-		{
-			continue;
-		}
-		candidates.push(t);
-		totalWeight += t[0];
-	}
-
-	local r = this.Math.rand(0, totalWeight);
-	foreach (t in candidates)
-	{
-		r = r - t[0];
-		if (r > 0)
-		{
-			continue;
-		}
-
-		if (_script == "")
-		{
-			return t[1];
-		}
-
-		if (t[1] == "")
-		{
-			return null
-		}
-		local ret = this.new(_script + t[1]);
-		if (t.len() == 3)
-			ret.setVariant(t[2]);
-		return ret;
-	}
-	return null;
-}
-
-::Const.World.Common.pickHelmet <- function (_helms)
-{
-	local candidates = [];
-	local totalWeight = 0;
-	foreach (t in _helms)
-	{
-		if (t[0] == 0)
-		{
-			continue;
-		}
-		candidates.push(t);
-		totalWeight += t[0];
-	}
-
-	local r = this.Math.rand(0, totalWeight);
-	local helm = "";
-	local variant = null;
-	foreach (t in candidates)
-	{
-		r = r - t[0];
-		if (r > 0)
-		{
-			continue;
-		}
-		helm = t[1];
-
-		if (t.len() == 3)
-		{
-			variant = t[2];
-		}
-		break;
-	}
-
-	//Disabling helmet layers temporariliy
-	if (helm == "")
-	{
-		return null;
-	}
-	// return this.new("scripts/items/helmets/" + helm);
-
-
-	local layersObj = this.Const.LegendMod.Helmets[helm];
-	if (layersObj.Script != "")
-	{
-		local helmet = this.new(layersObj.Script);
-		if (variant != null)
-		{
-			helmet.setupArmor(variant);
-		}
-		return helmet;
-	}
-
-	local set = layersObj.Sets[this.Math.rand(0, layersObj.Sets.len() -1)];
-	local helmet = this.Const.World.Common.pickLegendHelmet(set.Hoods);
-	if (helmet != null)
-	{
-		if (variant != null)
-		{
-			if (helm == "greatsword_faction_helm") //this doesn't set variant properly for things like [1, "hood", 63] in cripple_background file
-				helmet.setupArmor(variant);
-		}
-
-		 local helm = this.Const.World.Common.pickLegendHelmet(set.Helms);
-		 if (helm != null)
-		 {
-			 helmet.setUpgrade(helm)
-		 }
-
-		 local top = this.Const.World.Common.pickLegendHelmet(set.Tops);
-		 if (top != null)
-		 {
-			 helmet.setUpgrade(top)
-		 }
-
-		local van = this.Const.World.Common.pickLegendHelmet(set.Vanity);
-		 if (van != null)
-		 {
-			 helmet.setUpgrade(van)
-		 }
-
-		if ("Vanity2" in set)
-		{
-			local van2 = this.Const.World.Common.pickLegendHelmet(set.Vanity2);
-			if (van2 != null)
-			{
-				helmet.setUpgrade(van2)
-			}
-		}
-	}
-
-	return helmet;
-}
-
-::Const.World.Common.pickArmor <- function (_armors)
-{
-	local candidates = [];
-	local totalWeight = 0;
-	foreach (t in _armors)
-	{
-		if (t[0] == 0)
-		{
-			continue;
-		}
-		candidates.push(t);
-		totalWeight += t[0];
-	}
-
-	local r = this.Math.rand(0, totalWeight);
-	local armorID = "";
-	local variant = null;
-	local faction = null;
-	foreach (t in candidates)
-	{
-		r = r - t[0];
-		if (r > 0)
-		{
-			continue;
-		}
-		armorID = t[1];
-		if (t.len() == 3)
-		{
-			variant = t[2];
-		}
-		if (t.len() == 4)
-		{
-			faction = t[3];
-		}
-		break;
-	}
-
-	if (armorID == "")
-	{
-		return null;
-	}
-
-
-	if (!(armorID in this.Const.LegendMod.Armors))
-	{
-
-		return this.new("scripts/items/armor/" + armorID);
-	}
-
-	local layersObj = this.Const.LegendMod.Armors[armorID];
-	if (layersObj.Script != "")
-	{
-		local item = this.new(layersObj.Script);
-		if (faction != null)
-		{
-			item.setupArmor(faction);
-		}
-		return item;
-	}
-
-	local set = layersObj.Sets[this.Math.rand(0, layersObj.Sets.len() -1)];
-	local armor = this.Const.World.Common.pickLegendArmor(set.Cloth);
-	if (armor == null)
-	{
-		return this.new("scripts/items/armor/" + armorID);
-	}
-
-	if (faction != null)
-	{
-		armor.setupArmor(faction);
-	}
-
-	local chain = this.Const.World.Common.pickLegendArmor(set.Chain);
-	if (chain != null)
-	{
-		armor.setUpgrade(chain)
-	}
-
-	local plate = this.Const.World.Common.pickLegendArmor(set.Plate);
-	if (plate != null)
-	{
-		armor.setUpgrade(plate)
-	}
-
-	local cloak = this.Const.World.Common.pickLegendArmor(set.Cloak);
-	if (cloak != null)
-	{
-		armor.setUpgrade(cloak)
-	}
-
-	local tab = this.Const.World.Common.pickLegendArmor(set.Tabard);
-	if (tab != null)
-	{
-		armor.setUpgrade(tab)
-	}
-
-	local att = this.Const.World.Common.pickLegendArmor(set.Attachments);
-	if (att != null)
-	{
-		armor.setUpgrade(att)
-	}
-
-	return armor;
-}
-
-::Const.World.Common.pickArmorUpgrade <- function (_armors)
-{
-	local candidates = [];
-	local totalWeight = 0;
-	foreach (t in _armors)
-	{
-		if (t[0] == 0)
-		{
-			continue;
-		}
-		candidates.push(t);
-		totalWeight += t[0];
-	}
-
-	local r = this.Math.rand(0, totalWeight);
-	local armorID = "";
-	local variant = null;
-	local faction = null;
-	foreach (t in candidates)
-	{
-		r = r - t[0];
-		if (r > 0)
-		{
-			continue;
-		}
-		armorID = t[1];
-		if (t.len() == 3)
-		{
-			variant = t[2];
-		}
-		if (t.len() == 4)
-		{
-			faction = t[3];
-		}
-		break;
-	}
-
-
-	if (!(armorID in this.Const.LegendMod.Armors))
-	{
-		return this.new("scripts/items/armor_upgrades/" + armorID);
-	}
-
-	local layersObj = this.Const.LegendMod.Armors[armorID];
-	if (layersObj.Script != "")
-	{
-		return this.new(layersObj.Script);
-	}
-
-	return null;
-}
-
-/*
-
-	_outfitArr
-	[
-		[1, "my outfit"]
-		[1, "my outfit"]
-	]
-
-	_armorArr same
-	_helmetArr same
-
-
-*/
-
-//Operating assuming that if we have chance not -1 we sent in an armor and helmet array that aren't null
-::Const.World.Common.pickOutfit <- function ( _outfitArr, _armorArr = null, _helmetArr = null, _chance = 0)
-{
-	if (_chance != 0)
-	{
-		if (this.Math.rand(1, 100) >= _chance)
-		{
-			// this.logInfo("Pick outfit rolled against a chance and returned two things")
-			return [this.Const.World.Common.pickArmor(_armorArr), this.Const.World.Common.pickHelmet(_helmetArr)]
-		}
-	}
-	else if (_armorArr != null && _helmetArr != null && _armorArr.len() > 0 && _helmetArr.len() > 0)
-	{
-		local armorCount = 0;
-		local helmCount = 0;
-		local outfitCount = 0;
-
-		foreach (t in _armorArr)
-		{
-			if (t[0] > 0)
-			{
-				armorCount += 1;
-			}
-		}
-		foreach (t in _helmetArr)
-		{
-			if (t[0] > 0)
-			{
-				helmCount += 1;
-			}
-		}
-		foreach (t in _outfitArr)
-		{
-			if (t[0] > 0)
-			{
-				outfitCount += 1;
-			}
-		}
-
-		if (this.Math.rand(1, armorCount * helmCount) > outfitCount)
-		{
-			// this.logInfo("Pick outfit rolled against an armor*helmcount and returned two things")
-			return [this.Const.World.Common.pickArmor(_armorArr), this.Const.World.Common.pickHelmet(_helmetArr)]
-		}
-	}
-
-	local candidates = [];
-	local totalWeight = 0;
-	foreach (t in _outfitArr)
-	{
-		if (t[0] == 0)
-		{
-			continue;
-		}
-		candidates.push(t);
-		totalWeight += t[0];
-	}
-
-	local r = this.Math.rand(0, totalWeight);
-	local outfitID = "";
-	foreach (t in candidates)
-	{
-		r = r - t[0];
-		if (r > 0)
-		{
-			continue;
-		}
-		outfitID = t[1];
-		break;
-	}
-
-	local layersObj = this.Const.LegendMod.Outfits[outfitID];
-	// this.logInfo("Pick outfit picked an outfit")
-	return [this.Const.World.Common.pickArmor(layersObj.Body), this.Const.World.Common.pickHelmet(layersObj.Helmet)]
-
-}
-
-::Const.World.Common.convNameToList <- function ( _named )
-{
-	local findString = ["helmets/", "armor/", "legend_armor/", "legend_helmets/"];
-	local retArr = [];
-	foreach( search in findString )
-	{
-		if (_named[0].find(search) != null ) //was this list
-		{
-			foreach( item in _named )
-			{
-				retArr.push(
-					[1, item.slice(item.find(search) + search.len())]
-				);
-			}
-			break; //can skip 1-2 list[0].finds with this
-		}
-	}
-	return retArr;
-}
-
 ::Const.World.Common.getArenaBros <- function()
 {
-	local ret = [];
-	local roster = this.World.getPlayerRoster().getAll();
-
-	foreach( bro in roster )
-	{
+	return ::World.getPlayerRoster().getAll().filter(function (bro) {
 		local item = bro.getItems().getItemAtSlot(this.Const.ItemSlot.Accessory);
-
-		if (item != null && item.getID() == "accessory.legend_arena_collar")
-		{
-			ret.push(bro);
-		}
-	}
-
-	return ret;
-}
-
-if (!("LegendMod" in ::Const))
-{
-	::Const.LegendMod <- {};
+		return item != null && item.getID() == "accessory.legend_arena_collar";
+	});
 }
 
 ::Const.LegendMod.BoxMuller <- {
@@ -1646,13 +1278,10 @@ if (!("LegendMod" in ::Const))
 ::Const.World.Common.addHostileUnitsToCombat <- function ( _into, _partyList, _resources, _faction, _minibossify = 0)
 {
 	local fact = _faction;
-	// this.logWarning("Faction: " + fact)
-	if (this.World.FactionManager.isAlliedWithPlayer(_faction))
-	{
+	if (::World.FactionManager.isAlliedWithPlayer(_faction)) {
 		fact = this.World.FactionManager.getFactionOfType(this.Const.FactionType.DummyFaction).getID();
-		// this.logWarning("Modified: " + fact)
 	}
-	this.Const.World.Common.addUnitsToCombat(_into, _partyList, _resources, fact, _minibossify = 0)
+	this.Const.World.Common.addUnitsToCombat(_into, _partyList, _resources, fact, _minibossify)
 }
 
 //Perks array is [weight, perk name, cost]
@@ -1667,61 +1296,28 @@ if (!("LegendMod" in ::Const))
 	if (_power == 0)
 		return [];
 
-	local candidates = [];
-	local totalWeight = 0;
-	foreach (t in _perks)
-	{
-		if (t[0] == 0)
-			continue;
-
-		if (t[2] > _power)
-			continue; //no need to add stuff that's a cost higher than our power selector
-
-		candidates.push(t);
-		totalWeight += t[0];
-	}
+	local candidates = _perks.filter(@(idx, t) t[0] != 0 && t[2] <= _power);
+	local totalWeight = candidates.map(@(t) t[0]).reduce(@(p, c) p + c);
 
 	local ret = [];
-	while (_power > 0) {
-		if (candidates.len() == 0)
-			return ret;
+	while (_power > 0 && candidates.len() > 0) {
+		local r = ::Math.rand(0, totalWeight);
+		local selected = candidates.filter(@(idx, t) (r -= t[0]) <= 0);
+		if (!selected.len())
+			break;
+		local t = selected[0];
 
-		local r = this.Math.rand(0, totalWeight);
-		foreach (i, t in candidates)
-		{
-			r -= t[0];
-			if (r > 0)
-				continue;
+		local skill = null;
+		if (typeof t[1] == "number")
+			ret.push(t[1]);
+		else if (typeof t[1] == "array")
+			ret.extend(t[1]);
+		else
+			::logWarning("Attempted to select perks from something that isn't a number or an array");
 
-			local skill = null;
-			if (typeof t[1] == "number")
-			{
-				ret.push(t[1]);
-			}
-			else if (typeof t[1] == "array")
-			{
-				ret.extend(t[1]);
-			}
-			else {
-				::logWarning("Attempted to select perks from something that isn't a number or an array")
-			}
-
-			totalWeight -= t[0];
-			_power -= t[2];
-			candidates.remove(i);
-		}
-		//we necessarily had to have selected something to get here so we check if anything has a higher power + remove it
-		local garbage = [];
-		foreach (i, t in candidates)
-		{
-			if (t[2] > _power)
-				garbage.push(i)  //checking like this means if we only have 2 power costs left and have 1 it won't put us negative
-		}
-		garbage.reverse();
-		foreach (i in garbage)
-		{
-			candidates.remove(i)
-		}
+		totalWeight -= t[0];
+		_power -= t[2];
+		candidates = candidates.filter(@(idx, t) t[2] <= _power);
 	}
 	return ret;
 }

@@ -171,8 +171,8 @@
 		r = this.Math.rand(0, 1);
 
 		items.equip(this.Const.World.Common.pickArmor([
-			[1, "ragged_surcoat"],
-			[1, "thick_tunic"]
+			[1, ::Legends.Armor.Standard.ragged_surcoat],
+			[1, ::Legends.Armor.Standard.thick_tunic]
 		]));
 	}
 });

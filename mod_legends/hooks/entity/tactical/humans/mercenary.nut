@@ -98,57 +98,57 @@
 		}
 
 		local armor = [
-			[1, "sellsword_armor"],
-			// [1, "padded_leather"],
-			// [1, "patched_mail_shirt"],
-			// [1, "basic_mail_shirt"],
-			// [1, "mail_shirt"],
-			[1, "reinforced_mail_hauberk"],
-			[1, "mail_hauberk"],
-			[1, "traze_northern_mercenary_armor"],
-			[1, "northern_mercenary_armor_00"],
-			[1, "northern_mercenary_armor_01"],
-			[1, "northern_mercenary_armor_02"],
-			[1, "lamellar_harness"],
-			[1, "footman_armor"],
-			[1, "light_scale_armor"],
-			[1, "leather_scale_armor"]
+			[1, ::Legends.Armor.Standard.sellsword_armor],
+			// [1, ::Legends.Armor.Standard.padded_leather],
+			// [1, ::Legends.Armor.Standard.patched_mail_shirt],
+			// [1, ::Legends.Armor.Standard.basic_mail_shirt],
+			// [1, ::Legends.Armor.Standard.mail_shirt],
+			[1, ::Legends.Armor.Standard.reinforced_mail_hauberk],
+			[1, ::Legends.Armor.Standard.mail_hauberk],
+			[1, ::Legends.Armor.Standard.traze_northern_mercenary_armor],
+			[1, ::Legends.Armor.Standard.northern_mercenary_armor_00],
+			[1, ::Legends.Armor.Standard.northern_mercenary_armor_01],
+			[1, ::Legends.Armor.Standard.northern_mercenary_armor_02],
+			[1, ::Legends.Armor.Standard.lamellar_harness],
+			[1, ::Legends.Armor.Standard.footman_armor],
+			[1, ::Legends.Armor.Standard.light_scale_armor],
+			[1, ::Legends.Armor.Standard.leather_scale_armor]
 		];
 
 		local helm = [
-			[1, ""],
-			[5, "nasal_helmet_with_mail"],
-			[5, "nasal_helmet"],
-			[5, "mail_coif"],
-			[5, "reinforced_mail_coif"],
-			[5, "headscarf"],
-			[5, "kettle_hat"],
-			[5, "kettle_hat_with_mail"],
-			[5, "rondel_helm"],
-			[5, "traze_northern_mercenary_cap"],
-			[5, "deep_sallet"],
-			[5, "scale_helm"],
-			[5, "flat_top_helmet"],
-			[5, "flat_top_with_mail"],
-			[5, "closed_flat_top_helmet"],
-			[5, "closed_mail_coif"],
-			[5, "bascinet_with_mail"],
-			[5, "nordic_helmet"],
-			[5, "nordic_helmet_with_closed_mail"],
-			[5, "legend_enclave_vanilla_kettle_sallet_02"],
-			[5, "legend_enclave_vanilla_kettle_sallet_03"],
-			[5, "legend_enclave_vanilla_skullcap_01"],
-			[5, "steppe_helmet_with_mail"],
-			[5, "barbute_helmet"]
+			[1, ::Legends.Helmet.None],
+			[5, ::Legends.Helmet.Standard.nasal_helmet_with_mail],
+			[5, ::Legends.Helmet.Standard.nasal_helmet],
+			[5, ::Legends.Helmet.Standard.mail_coif],
+			[5, ::Legends.Helmet.Standard.reinforced_mail_coif],
+			[5, ::Legends.Helmet.Standard.headscarf],
+			[5, ::Legends.Helmet.Standard.kettle_hat],
+			[5, ::Legends.Helmet.Standard.kettle_hat_with_mail],
+			[5, ::Legends.Helmet.Standard.rondel_helm],
+			[5, ::Legends.Helmet.Standard.traze_northern_mercenary_cap],
+			[5, ::Legends.Helmet.Standard.deep_sallet],
+			[5, ::Legends.Helmet.Standard.scale_helm],
+			[5, ::Legends.Helmet.Standard.flat_top_helmet],
+			[5, ::Legends.Helmet.Standard.flat_top_with_mail],
+			[5, ::Legends.Helmet.Standard.closed_flat_top_helmet],
+			[5, ::Legends.Helmet.Standard.closed_mail_coif],
+			[5, ::Legends.Helmet.Standard.bascinet_with_mail],
+			[5, ::Legends.Helmet.Standard.nordic_helmet],
+			[5, ::Legends.Helmet.Standard.nordic_helmet_with_closed_mail],
+			[5, ::Legends.Helmet.Standard.legend_enclave_vanilla_kettle_sallet_02],
+			[5, ::Legends.Helmet.Standard.legend_enclave_vanilla_kettle_sallet_03],
+			[5, ::Legends.Helmet.Standard.legend_enclave_vanilla_skullcap_01],
+			[5, ::Legends.Helmet.Standard.steppe_helmet_with_mail],
+			[5, ::Legends.Helmet.Standard.barbute_helmet]
 		];
 
-		helm.push([5, "theamson_barbute_helmet"]);
+		helm.push([5, ::Legends.Helmet.Standard.theamson_barbute_helmet]);
 
 		local outfits = [
-			[1, "northern_mercenary_outfit_00"],
-			[1, "northern_mercenary_outfit_01"],
-			[1, "northern_mercenary_outfit_02"],
-			[1, "traze_northern_mercenary_outfit_00"],
+			[1, ::Legends.Outfit.northern_mercenary_outfit_00],
+			[1, ::Legends.Outfit.northern_mercenary_outfit_01],
+			[1, ::Legends.Outfit.northern_mercenary_outfit_02],
+			[1, ::Legends.Outfit.traze_northern_mercenary_outfit_00],
 		];
 
 		foreach( item in this.Const.World.Common.pickOutfit(outfits, armor, helm) )

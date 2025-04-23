@@ -23,19 +23,13 @@ this.legend_bandit_raider_low <- this.inherit("scripts/entity/tactical/enemies/l
 	function assignRandomEquipment()
 	{
 		this.legend_bandit_raider.assignRandomEquipment();
-		
+
 		if (this.getIdealRange() == 1 && this.Math.rand(1, 100) <= 25)
 		{
-			local r = this.Math.rand(1, 2);
-
-			if (r == 1)
-			{
-				this.m.Items.addToBag(this.new("scripts/items/weapons/throwing_axe"));
-			}
-			else if (r == 2)
-			{
-				this.m.Items.addToBag(this.new("scripts/items/weapons/javelin"));
-			}
+			this.getItems().addToBag(::Const.World.Common.pickItem([
+				[1, "weapons/throwing_axe"],
+				[1, "weapons/javelin"],
+			], "scripts/items/"));
 		}
 	}
 });

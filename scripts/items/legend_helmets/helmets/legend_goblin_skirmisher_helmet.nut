@@ -9,7 +9,7 @@ this.legend_goblin_skirmisher_helmet <- this.inherit("scripts/items/helmets/gree
 
 	function getLootLayers()
 	{
-		return [this.Const.World.Common.pickHelmet([[1, "legend_goblin_skirmisher_helmet"]])];
+		return [this.Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Greenskin.legend_goblin_skirmisher_helmet]])];
 	}
 
 });

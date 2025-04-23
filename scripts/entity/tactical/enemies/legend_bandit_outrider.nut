@@ -314,38 +314,26 @@ this.legend_bandit_outrider <- this.inherit("scripts/entity/tactical/human", {
 
 	function assignRandomEquipment()
 	{
-		local r;
-		r = this.Math.rand(1, 2);
+		this.getItems().equip(::Const.World.Common.pickItem([
+			[1, "weapons/legend_militia_glaive"],
+			[1, "weapons/militia_spear"],
+		], "scripts/items/"));
 
-		if (r == 1)
-		{
-			this.m.Items.equip(this.new("scripts/items/weapons/legend_militia_glaive"));
-		}
-		else if (r == 2)
-		{
-			this.m.Items.equip(this.new("scripts/items/weapons/militia_spear"));
-		}
-
-		local item = this.Const.World.Common.pickArmor([
-			[3, "gambeson"],
-			[1, "padded_surcoat"]
-		]);
-		this.m.Items.equip(item);
+		this.getItems().equip(::Const.World.Common.pickArmor([
+			[3, ::Legends.Armor.Standard.gambeson],
+			[1, ::Legends.Armor.Standard.padded_surcoat]
+		]));
 
 		if (this.Math.rand(1, 100) <= 75)
 		{
-			local item = this.Const.World.Common.pickHelmet([
-				[1, "hood"],
-				[1, "open_leather_cap"],
-				[1, "headscarf"],
-				[1, "mouth_piece"],
-				[1, "full_leather_cap"],
-				[1, "aketon_cap"]
-			]);
-			if (item != null)
-			{
-				this.m.Items.equip(item);
-			}
+			this.getItems().equip(::Const.World.Common.pickHelmet([
+				[1, ::Legends.Helmet.Standard.hood],
+				[1, ::Legends.Helmet.Standard.open_leather_cap],
+				[1, ::Legends.Helmet.Standard.headscarf],
+				[1, ::Legends.Helmet.Standard.mouth_piece],
+				[1, ::Legends.Helmet.Standard.full_leather_cap],
+				[1, ::Legends.Helmet.Standard.aketon_cap]
+			]));
 		}
 	}
 
@@ -358,12 +346,9 @@ this.legend_bandit_outrider <- this.inherit("scripts/entity/tactical/human", {
 		}
 		else {
 			local r = this.Math.rand(0,1);
-			if (r == 0) {
+			if (r == 0)
 				return "bust_head_female_0" + this.Math.rand(1, 9);
-			}
-			else {
-				return "bust_head_female_1" + this.Math.rand(0,6);
-			}
+			return "bust_head_female_1" + this.Math.rand(0,6);
 		}
 	}
 

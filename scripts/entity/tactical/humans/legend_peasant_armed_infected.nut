@@ -70,99 +70,44 @@ this.legend_peasant_armed_infected <- this.inherit("scripts/entity/tactical/huma
 
 	function assignRandomEquipment()
 	{
-		local r;
-		r = this.Math.rand(1, 14);
+		this.getItems().equip(::Const.World.Common.pickItem([
+			[1, "weapons/knife"],
+			[1, "weapons/pitchfork"],
+			[1, "weapons/wooden_stick"],
+			[1, "weapons/pickaxe"],
+			[1, "weapons/legend_wooden_pitchfork"],
+			[1, "weapons/legend_wooden_spear"],
+			[1, "weapons/legend_shovel"],
+			[1, "weapons/legend_hoe"],
+			[1, "weapons/legend_saw"],
+			[1, "weapons/legend_hammer"],
+			[1, "weapons/legend_scythe"],
+			[1, "weapons/legend_sickle"],
+			[1, "weapons/legend_chain"],
+			[1, "weapons/legend_shiv"],
+			[5, "weapons/legend_sling"],
+		], "scripts/items/"));
 
-		if (r == 1)
-		{
-			this.m.Items.equip(this.new("scripts/items/weapons/knife"));
-		}
-		else if (r == 2)
-		{
-			this.m.Items.equip(this.new("scripts/items/weapons/pitchfork"));
-		}
-		else if (r == 3)
-		{
-			this.m.Items.equip(this.new("scripts/items/weapons/wooden_stick"));
-		}
-		else if (r == 4)
-		{
-			this.m.Items.equip(this.new("scripts/items/weapons/pickaxe"));
-		}
-		else if (r == 5)
-		{
-			this.m.Items.equip(this.new("scripts/items/weapons/legend_wooden_pitchfork"));
-		}
-		else if (r == 6)
-		{
-			this.m.Items.equip(this.new("scripts/items/weapons/legend_wooden_spear"));
-		}
-		else if (r == 7)
-		{
-			this.m.Items.equip(this.new("scripts/items/weapons/legend_shovel"));
-		}
-		else if (r == 8)
-		{
-			this.m.Items.equip(this.new("scripts/items/weapons/legend_hoe"));
-		}
-		else if (r == 9)
-		{
-			this.m.Items.equip(this.new("scripts/items/weapons/legend_saw"));
-		}
-		else if (r == 10)
-		{
-			this.m.Items.equip(this.new("scripts/items/weapons/legend_hammer"));
-		}
-		else if (r == 11)
-		{
-			this.m.Items.equip(this.new("scripts/items/weapons/legend_scythe"));
-		}
-		else if (r == 12)
-		{
-			this.m.Items.equip(this.new("scripts/items/weapons/legend_sickle"));
-		}
-		else if (r == 13)
-		{
-			this.m.Items.equip(this.new("scripts/items/weapons/legend_chain"));
-		}
-		else if (r == 14)
-		{
-			this.m.Items.equip(this.new("scripts/items/weapons/legend_shiv"));
-		}
-
-		local r;
-		r = this.Math.rand(1, 4);
-
-		if (r == 1)
-		{
-		this.m.Items.equip(this.new("scripts/items/shields/buckler_shield"));
-		}
-
-		local r;
-		r = this.Math.rand(1, 2);
-
-		if (r == 1)
-		{
-		this.m.Items.equip(this.new("scripts/items/weapons/legend_sling"));
-		}
-
+		this.getItems().equip(::Const.World.Common.pickItem([
+			[1, "shields/buckler_shield"],
+			[3, null],
+		], "scripts/items/"));
 
 		this.m.Items.equip(this.Const.World.Common.pickArmor([
-			[2, "sackcloth"],
-			[1, "thick_tunic"],
-			[2, "apron"],
-			[1, "tattered_sackcloth"],
-			[2, "linen_tunic"]
+			[2, ::Legends.Armor.Standard.sackcloth],
+			[1, ::Legends.Armor.Standard.thick_tunic],
+			[2, ::Legends.Armor.Standard.apron],
+			[1, ::Legends.Armor.Standard.tattered_sackcloth],
+			[2, ::Legends.Armor.Standard.linen_tunic]
 		]));
-
 
 		if (this.Math.rand(1, 100) <= 50)
 		{
 			local helmet = [
-				[1, "hood"],
-				[1, "headscarf"],
-				[1, "straw_hat"],
-				[1, "feathered_hat"]
+				[1, ::Legends.Helmet.Standard.hood],
+				[1, ::Legends.Helmet.Standard.headscarf],
+				[1, ::Legends.Helmet.Standard.straw_hat],
+				[1, ::Legends.Helmet.Standard.feathered_hat]
 			];
 			this.m.Items.equip(this.Const.World.Common.pickHelmet(helmet))
 		}

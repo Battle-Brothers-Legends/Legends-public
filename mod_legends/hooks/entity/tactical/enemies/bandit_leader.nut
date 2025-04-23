@@ -120,32 +120,32 @@
 		if (this.m.Items.hasEmptySlot(this.Const.ItemSlot.Body) && this.m.Items.hasEmptySlot(this.Const.ItemSlot.Head))
 		{
 			local armor = [
-				[1, "coat_of_plates"],
-				[1, "coat_of_scales"],
-				[1, "heavy_lamellar_armor"],
-				[1, "footman_armor"],
-				[1, "brown_hedgeknight_armor"],
-				[1, "northern_mercenary_armor_02"],
-				[1, "lamellar_harness"],
-				[1, "reinforced_mail_hauberk"],
-				[1, "leather_scale_armor"],
-				[1, "light_scale_armor"]
+				[1, ::Legends.Armor.Standard.coat_of_plates],
+				[1, ::Legends.Armor.Standard.coat_of_scales],
+				[1, ::Legends.Armor.Standard.heavy_lamellar_armor],
+				[1, ::Legends.Armor.Standard.footman_armor],
+				[1, ::Legends.Armor.Standard.brown_hedgeknight_armor],
+				[1, ::Legends.Armor.Standard.northern_mercenary_armor_02],
+				[1, ::Legends.Armor.Standard.lamellar_harness],
+				[1, ::Legends.Armor.Standard.reinforced_mail_hauberk],
+				[1, ::Legends.Armor.Standard.leather_scale_armor],
+				[1, ::Legends.Armor.Standard.light_scale_armor]
 			];
 
 			local helmet = [
-				[1, "closed_mail_coif"],
-				[1, "padded_kettle_hat"],
-				[1, "kettle_hat_with_closed_mail"],
-				[1, "kettle_hat_with_mail"],
-				[1, "padded_flat_top_helmet"],
-				[1, "nasal_helmet_with_mail"],
-				[1, "flat_top_with_mail"],
-				[1, "padded_nasal_helmet"],
-				[1, "bascinet_with_mail"]
+				[1, ::Legends.Helmet.Standard.closed_mail_coif],
+				[1, ::Legends.Helmet.Standard.padded_kettle_hat],
+				[1, ::Legends.Helmet.Standard.kettle_hat_with_closed_mail],
+				[1, ::Legends.Helmet.Standard.kettle_hat_with_mail],
+				[1, ::Legends.Helmet.Standard.padded_flat_top_helmet],
+				[1, ::Legends.Helmet.Standard.nasal_helmet_with_mail],
+				[1, ::Legends.Helmet.Standard.flat_top_with_mail],
+				[1, ::Legends.Helmet.Standard.padded_nasal_helmet],
+				[1, ::Legends.Helmet.Standard.bascinet_with_mail]
 			];
 
 			local outfits = [
-				[1, "red_bandit_leader_outfit_00"]
+				[1, ::Legends.Outfit.red_bandit_leader_outfit_00]
 			];
 
 			foreach( item in this.Const.World.Common.pickOutfit(outfits, armor, helmet) )
@@ -158,13 +158,13 @@
 		if (this.m.Items.getItemAtSlot(this.Const.ItemSlot.Body) == null)
 		{
 			local armor = [
-				[1, "reinforced_mail_hauberk"],
-				[2, "heavy_lamellar_armor"],
-				[2, "bandit_armor_heavy"],
-				[1, "footman_armor"],
-				[1, "leather_scale_armor"],
-				[1, "light_scale_armor"],
-				[1, "red_bandit_leader_armor"]
+				[1, ::Legends.Armor.Standard.reinforced_mail_hauberk],
+				[2, ::Legends.Armor.Standard.heavy_lamellar_armor],
+				[2, ::Legends.Armor.Standard.bandit_armor_heavy],
+				[1, ::Legends.Armor.Standard.footman_armor],
+				[1, ::Legends.Armor.Standard.leather_scale_armor],
+				[1, ::Legends.Armor.Standard.light_scale_armor],
+				[1, ::Legends.Armor.Standard.red_bandit_leader_armor]
 			];
 
 			this.m.Items.equip(this.Const.World.Common.pickArmor(armor))
@@ -173,16 +173,16 @@
 		if (this.m.Items.getItemAtSlot(this.Const.ItemSlot.Head) == null)
 		{
 			local item = this.Const.World.Common.pickHelmet([
-				[1, "closed_mail_coif"],
-				[1, "padded_kettle_hat"],
-				[1, "kettle_hat_with_closed_mail"],
-				[1, "kettle_hat_with_mail"],
-				[1, "padded_flat_top_helmet"],
-				[1, "nasal_helmet_with_mail"],
-				[1, "flat_top_with_mail"],
-				[1, "padded_nasal_helmet"],
-				[1, "bascinet_with_mail"],
-				[1, "red_bandit_leader_helmet"]
+				[1, ::Legends.Helmet.Standard.closed_mail_coif],
+				[1, ::Legends.Helmet.Standard.padded_kettle_hat],
+				[1, ::Legends.Helmet.Standard.kettle_hat_with_closed_mail],
+				[1, ::Legends.Helmet.Standard.kettle_hat_with_mail],
+				[1, ::Legends.Helmet.Standard.padded_flat_top_helmet],
+				[1, ::Legends.Helmet.Standard.nasal_helmet_with_mail],
+				[1, ::Legends.Helmet.Standard.flat_top_with_mail],
+				[1, ::Legends.Helmet.Standard.padded_nasal_helmet],
+				[1, ::Legends.Helmet.Standard.bascinet_with_mail],
+				[1, ::Legends.Helmet.Standard.red_bandit_leader_helmet]
 			]);
 			if (item != null)
 			{

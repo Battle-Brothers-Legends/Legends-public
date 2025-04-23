@@ -534,8 +534,6 @@
 			{
 				::Legends.Effects.grant(e, ::Legends.Effect.LegendRain);
 			}
-
-
 		}
 	}
 
@@ -636,10 +634,10 @@
 	o.setupEntity = function( _e, _t )
 	{
 		setupEntity( _e, _t );
-		if (("Outfits") in _t) //this is mostly only used for free companies currently, I'll admit I just can't think of a better way to do these
-		{
+		if (("Outfits") in _t) { //this is mostly only used for free companies currently, I'll admit I just can't think of a better way to do these
 			_e.m.Outfits = _t.Outfits;
 		}
+		::Legends.Scaling.scaleEnemy(_e, _t);
 	}
 
 	local getHostilesNum = o.getHostilesNum;

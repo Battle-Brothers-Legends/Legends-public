@@ -115,36 +115,34 @@ this.legend_manhunter_veteran_ranged <- this.inherit("scripts/entity/tactical/hu
 		}
 
 		local mainhandWeaponID = this.m.Items.getItemAtSlot(this.Const.ItemSlot.Mainhand).getID();
-		if (mainhandWeaponID == "weapon.handgonne" || mainhandWeaponID == "weapon.named_handgonne")
-		{
-			this.m.Items.addToBag(this.new("scripts/items/weapons/oriental/qatal_dagger"));
-		}
-		else
-		{
-			local backupWeapons = [
-				"weapons/hooked_blade",
-				"weapons/warbrand",
-				"weapons/oriental/two_handed_saif",
-				"weapons/warfork"
-			];
-			this.m.Items.addToBag(this.new("scripts/items/" + backupWeapons[this.Math.rand(0, backupWeapons.len() - 1)]));
+		if (mainhandWeaponID == "weapon.handgonne" || mainhandWeaponID == "weapon.named_handgonne") {
+			this.getItems().addToBag(::Const.World.Common.pickItem([
+				[1, "weapons/oriental/qatal_dagger"],
+			], "scripts/items/"));
+		} else {
+			this.getItems().addToBag(::Const.World.Common.pickItem([
+				[1, "weapons/hooked_blade"],
+				[1, "weapons/warbrand"],
+				[1, "weapons/oriental/two_handed_saif"],
+				[1, "weapons/warfork"],
+			], "scripts/items/"));
 		}
 
 		if (this.m.Items.hasEmptySlot(this.Const.ItemSlot.Body))
 		{
 			local armors = [
-				[1, "oriental/mail_and_lamellar_plating"],
-				[1, "oriental/southern_long_mail_with_padding"],
-				[1, "mail_hauberk"],
-				[1, "reinforced_mail_hauberk"],
-				[1, "lamellar_harness"]
+				[1, ::Legends.Armor.Southern.mail_and_lamellar_plating],
+				[1, ::Legends.Armor.Southern.southern_long_mail_with_padding],
+				[1, ::Legends.Armor.Standard.mail_hauberk],
+				[1, ::Legends.Armor.Standard.reinforced_mail_hauberk],
+				[1, ::Legends.Armor.Standard.lamellar_harness]
 			];
 
 			if (this.Const.DLC.Unhold)
 			{
 				armors.extend([
-					[1, "leather_scale_armor"],
-					[1, "footman_armor"]
+					[1, ::Legends.Armor.Standard.leather_scale_armor],
+					[1, ::Legends.Armor.Standard.footman_armor]
 				]);
 			}
 
@@ -154,20 +152,20 @@ this.legend_manhunter_veteran_ranged <- this.inherit("scripts/entity/tactical/hu
 		if (this.m.Items.hasEmptySlot(this.Const.ItemSlot.Head))
 		{
 			local helmets = [
-				[1, "oriental/wrapped_southern_helmet"],
-				[1, "oriental/spiked_skull_cap_with_mail"],
-				[1, "oriental/southern_helmet_with_coif"]
+				[1, ::Legends.Helmet.Southern.wrapped_southern_helmet],
+				[1, ::Legends.Helmet.Southern.spiked_skull_cap_with_mail],
+				[1, ::Legends.Helmet.Southern.southern_helmet_with_coif]
 			];
 
 			if (this.World.getTime().Days > 50) {
 				helmets.extend([
-					[1, "oriental/heavy_lamellar_helmet"]
+					[1, ::Legends.Helmet.Southern.heavy_lamellar_helmet]
 				]);
 
 				if (this.Const.DLC.Wildmen)
 				{
 					helmets.extend([
-						[1, "conic_helmet_with_closed_mail"]
+						[1, ::Legends.Helmet.Standard.conic_helmet_with_closed_mail]
 					]);
 				}
 			}

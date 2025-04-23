@@ -62,30 +62,24 @@ this.legend_noble_slinger <- this.inherit("scripts/entity/tactical/human", {
 			this.getSprite("surcoat").setBrush("surcoat_" + (banner < 10 ? "0" + banner : banner));
 		}
 
-			this.m.Items.equip(this.new("scripts/items/weapons/legend_northern_sling"));
+		this.m.Items.equip(this.new("scripts/items/weapons/legend_northern_sling"));
 
-		r = this.Math.rand(1, 2);
+		this.getItems().addToBag(::Const.World.Common.pickItem([
+			[1, "weapons/dagger"],
+			[1, "weapons/knife"],
+		], "scripts/items/"));
 
-		if (r == 1)
-		{
-			this.m.Items.addToBag(this.new("scripts/items/weapons/dagger"));
-		}
-		else if (r == 2)
-		{
-			this.m.Items.addToBag(this.new("scripts/items/weapons/knife"));
-		}
-
-		this.m.Items.equip(this.Const.World.Common.pickArmor([
-			[1, "padded_surcoat"],
-			[1, "gambeson"]
+		this.getItems().equip(::Const.World.Common.pickArmor([
+			[1, ::Legends.Armor.Standard.padded_surcoat],
+			[1, ::Legends.Armor.Standard.gambeson]
 		]));
-		local helmet = this.Const.World.Common.pickHelmet([
-				[1, "aketon_cap"],
-				[1, "full_aketon_cap"],
-				[1, "headscarf"],
-				[1, "mail_coif"],
-				[1, ""]
-			]);
+		local helmet = ::Const.World.Common.pickHelmet([
+			[1, ::Legends.Helmet.Standard.aketon_cap],
+			[1, ::Legends.Helmet.Standard.full_aketon_cap],
+			[1, ::Legends.Helmet.Standard.headscarf],
+			[1, ::Legends.Helmet.Standard.mail_coif],
+			[1, ::Legends.Helmet.None]
+		]);
 
 		if (helmet != null)
 		{

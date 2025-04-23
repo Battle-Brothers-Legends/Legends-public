@@ -176,13 +176,13 @@
 
 		items.equip(this.new("scripts/items/tools/throwing_net"));
 		items.equip(this.Const.World.Common.pickArmor([
-			[1, "oriental/nomad_robe"],
-			[1, "oriental/thick_nomad_robe"]
+			[1, ::Legends.Armor.Southern.nomad_robe],
+			[1, ::Legends.Armor.Southern.thick_nomad_robe]
 		]));
 
 		local helm = this.Const.World.Common.pickHelmet([
-			[1, "oriental/southern_head_wrap"],
-			[1, ""]
+			[1, ::Legends.Helmet.Southern.southern_head_wrap],
+			[1, ::Legends.Helmet.None]
 		]);
 		items.equip(helm);
 	}

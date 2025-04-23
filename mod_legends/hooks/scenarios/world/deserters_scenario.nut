@@ -49,23 +49,10 @@
 
 		items.unequip(items.getItemAtSlot(this.Const.ItemSlot.Body));
 		local armor = this.Const.World.Common.pickArmor([
-			[
-				1,
-				"mail_hauberk",
-				28
-			],
-			[
-				1,
-				"mail_shirt"
-			],
-			[
-				1,
-				"gambeson"
-			],
-			[
-				2,
-				"basic_mail_shirt"
-			]
+			[1, ::Legends.Armor.Standard.mail_hauberk, 28],
+			[1, ::Legends.Armor.Standard.mail_shirt],
+			[1, ::Legends.Armor.Standard.gambeson],
+			[2, ::Legends.Armor.Standard.basic_mail_shirt]
 		]);
 		armor.setCondition(armor.getConditionMax() * this.Math.rand(25, 100) * 0.01);
 		items.equip(armor);

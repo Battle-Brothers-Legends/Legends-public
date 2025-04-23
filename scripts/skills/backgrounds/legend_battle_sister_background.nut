@@ -29,7 +29,7 @@ this.legend_battle_sister_background <- this.inherit("scripts/skills/backgrounds
 		];
 		this.m.ExcludedTalents = [
 			this.Const.Attributes.Initiative
-		];	
+		];
 		this.m.Faces = this.Const.Faces.OldFemale;
 		this.m.Hairs = this.Const.Hair.AllFemale;
 		this.m.HairColors = this.Const.HairColors.Old;
@@ -183,15 +183,15 @@ this.legend_battle_sister_background <- this.inherit("scripts/skills/backgrounds
 		}
 
 		items.equip(this.Const.World.Common.pickArmor([
-			[1, "reinforced_mail_hauberk"],
-			[1, "worn_mail_shirt"]
+			[1, ::Legends.Armor.Standard.reinforced_mail_hauberk],
+			[1, ::Legends.Armor.Standard.worn_mail_shirt]
 		]));
 
 		items.equip(this.Const.World.Common.pickHelmet([
-			[2, "hood"],
-			[2, "aketon_cap"],
-			[1, "mail_coif"],
-			[3, ""]
+			[2, ::Legends.Helmet.Standard.hood],
+			[2, ::Legends.Helmet.Standard.aketon_cap],
+			[1, ::Legends.Helmet.Standard.mail_coif],
+			[3, ::Legends.Helmet.None]
 		]));
 	}
 });

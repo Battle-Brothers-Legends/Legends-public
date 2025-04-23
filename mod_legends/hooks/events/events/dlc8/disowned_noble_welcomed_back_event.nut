@@ -61,10 +61,10 @@
 					local stash = this.World.Assets.getStash();
 
 					local armor_list = this.Const.World.Common.pickArmor([
-						[1, "footman_armor"],
-						[1, "light_scale_armor"],
-						[1, "sellsword_armor"],
-						[1, "noble_mail_armor"]
+						[1, ::Legends.Armor.Standard.footman_armor],
+						[1, ::Legends.Armor.Standard.light_scale_armor],
+						[1, ::Legends.Armor.Standard.sellsword_armor],
+						[1, ::Legends.Armor.Standard.noble_mail_armor]
 					]);
 
 					local weapons_list = [

@@ -56,9 +56,9 @@
 		}
 
 		local aList = [
-			[1, "decayed_coat_of_plates"],
-			[1, "decayed_coat_of_scales"],
-			[1, "decayed_reinforced_mail_hauberk"]
+			[1, ::Legends.Armor.Standard.decayed_coat_of_plates],
+			[1, ::Legends.Armor.Standard.decayed_coat_of_scales],
+			[1, ::Legends.Armor.Standard.decayed_reinforced_mail_hauberk]
 		];
 		local armor = this.Const.World.Common.pickArmor(aList);
 
@@ -73,10 +73,10 @@
 		if (this.m.Items.getItemAtSlot(this.Const.ItemSlot.Head) == null && this.Math.rand(1, 100) <= 90)
 		{
 			local helmet = [
-				[1, "decayed_closed_flat_top_with_sack"],
-				[3, "decayed_closed_flat_top_with_mail"],
-				[3, "decayed_full_helm"],
-				[3, "decayed_great_helm"]
+				[1, ::Legends.Helmet.Standard.decayed_closed_flat_top_with_sack],
+				[3, ::Legends.Helmet.Standard.decayed_closed_flat_top_with_mail],
+				[3, ::Legends.Helmet.Standard.decayed_full_helm],
+				[3, ::Legends.Helmet.Standard.decayed_great_helm]
 			];
 			local h = this.Const.World.Common.pickHelmet(helmet);
 

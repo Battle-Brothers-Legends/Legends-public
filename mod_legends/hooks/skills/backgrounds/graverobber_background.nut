@@ -134,16 +134,16 @@
 		}
 
 		items.equip(this.Const.World.Common.pickArmor([
-			[1, "ragged_surcoat"],
-			[1, "leather_wraps"],
-			[1, "leather_tunic"]
+			[1, ::Legends.Armor.Standard.ragged_surcoat],
+			[1, ::Legends.Armor.Standard.leather_wraps],
+			[1, ::Legends.Armor.Standard.leather_tunic]
 		]));
 
 		items.equip(this.Const.World.Common.pickHelmet([
-			[1, "hood"],
-			[1, "open_leather_cap"],
-			[1, "headscarf"],
-			[1, "ancient/ancient_household_helmet"]
+			[1, ::Legends.Helmet.Standard.hood],
+			[1, ::Legends.Helmet.Standard.open_leather_cap],
+			[1, ::Legends.Helmet.Standard.headscarf],
+			[1, ::Legends.Helmet.Ancient.ancient_household_helmet]
 		]));
 	}
 

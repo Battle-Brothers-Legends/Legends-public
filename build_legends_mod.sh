@@ -36,8 +36,8 @@ handleExit
 cd "$BuildDir"
 zipNameAssets=$(artifactNameAssets)
 zipNameMod=$(artifactNameMod)
-7z a -tzip $zipNameAssets brushes gfx sounds
-7z a -tzip $zipNameMod mod_legends scripts ui preload
+7z a -tzip $zipNameAssets brushes gfx sounds preload
+7z a -tzip $zipNameMod mod_legends scripts ui
 
 buildAssetsScript > mod_legends_assets.nut
 rm "scripts" -r

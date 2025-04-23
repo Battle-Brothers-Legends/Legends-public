@@ -273,12 +273,12 @@ this.legend_assassin_commander_background <- this.inherit("scripts/skills/backgr
 		items.addToBag(this.new("scripts/items/weapons/legend_slingshot"));
 
 		items.equip(this.Const.World.Common.pickArmor([
-			[1, "thick_dark_tunic"],
-			[1, "ragged_dark_surcoat"]
+			[1, ::Legends.Armor.Standard.thick_dark_tunic],
+			[1, ::Legends.Armor.Standard.ragged_dark_surcoat]
 		]));
 
 		items.equip(this.Const.World.Common.pickHelmet([
-			[1, "hood"]
+			[1, ::Legends.Helmet.Standard.hood]
 		]));
 	}
 

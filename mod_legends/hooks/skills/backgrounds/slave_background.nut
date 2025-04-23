@@ -210,10 +210,10 @@
 	{
 		local items = this.getContainer().getActor().getItems();
 		items.equip(this.Const.World.Common.pickArmor([
-			[3, "tattered_sackcloth"],
-			[2, "leather_wraps"],
-			[1, "indebted_armor_rags"],
-			[2, ""]
+			[3, ::Legends.Armor.Standard.tattered_sackcloth],
+			[2, ::Legends.Armor.Standard.leather_wraps],
+			[1, ::Legends.Armor.Standard.indebted_armor_rags],
+			[2, ::Legends.Armor.None]
 		]));
 	}
 

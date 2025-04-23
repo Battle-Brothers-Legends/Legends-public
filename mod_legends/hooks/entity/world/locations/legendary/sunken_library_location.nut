@@ -32,7 +32,7 @@
 			}
 		}
 		// _lootTable.push(this.Const.World.Common.pickArmor([
-		// 	[1, "legendary/legend_emperors_armor"]
+		// 	[1, ::Legends.Armor.Legendary.legend_emperors_armor]
 		// ]))
 	}
 });

@@ -31,14 +31,14 @@
 		if (this.m.Items.hasEmptySlot(this.Const.ItemSlot.Body))
 		{
 			this.m.Items.equip(this.Const.World.Common.pickArmor([
-				[1, "barbarians/barbarian_ritual_armor"]
+				[1, ::Legends.Armor.Barbarian.barbarian_ritual_armor]
 			]));
 		}
 
 		if (this.m.Items.hasEmptySlot(this.Const.ItemSlot.Head))
 		{
 			this.m.Items.equip(this.Const.World.Common.pickHelmet([
-				[1, "barbarians/barbarian_ritual_helmet"]
+				[1, ::Legends.Helmet.Barbarian.barbarian_ritual_helmet]
 			]));
 		}
 	}

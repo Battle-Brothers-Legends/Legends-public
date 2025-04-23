@@ -23,7 +23,7 @@
 	{
 		local items = this.getContainer().getActor().getItems();
 		items.equip(this.Const.World.Common.pickArmor([
-			[1, "oriental/cloth_sash"]
+			[1, ::Legends.Armor.Southern.cloth_sash]
 		]));
 	}
 });

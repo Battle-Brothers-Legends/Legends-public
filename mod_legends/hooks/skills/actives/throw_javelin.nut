@@ -66,7 +66,7 @@
 		if (_skill == this)
 		{
 			_properties.RangedSkill += this.m.AdditionalAccuracy;
-			if (_properties.IsSpecializedInSpearThrust)
+			if (this.getContainer().hasPerk(::Legends.Perk.LegendThrustMaster))
 			{
 				this.m.AdditionalHitChance += 10;
 			}

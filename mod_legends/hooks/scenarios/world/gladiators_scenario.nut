@@ -54,7 +54,7 @@
 		bros[0].getTalents()[this.Const.Attributes.MeleeSkill] = 3;
 		bros[0].fillAttributeLevelUpValues(this.Const.XP.MaxLevelWithPerkpoints - 1);
 		a = this.Const.World.Common.pickArmor([
-				[1, "oriental/gladiator_harness"],
+			[1, ::Legends.Armor.Southern.gladiator_harness],
 		]);
 		a.setUpgrade(this.new("scripts/items/legend_armor/armor_upgrades/legend_light_gladiator_upgrade"));
 
@@ -75,7 +75,7 @@
 		bros[1].getTalents()[this.Const.Attributes.Bravery] = 2;
 		bros[1].fillAttributeLevelUpValues(this.Const.XP.MaxLevelWithPerkpoints - 1);
 		a = this.Const.World.Common.pickArmor([
-				[1, "oriental/gladiator_harness"],
+			[1, ::Legends.Armor.Southern.gladiator_harness],
 		]);
 		a.setUpgrade(this.new("scripts/items/legend_armor/armor_upgrades/legend_heavy_gladiator_upgrade"));
 		bros[1].getItems().equip(a);
@@ -95,7 +95,7 @@
 		bros[2].getTalents()[this.Const.Attributes.MeleeSkill] = 2;
 		bros[2].fillAttributeLevelUpValues(this.Const.XP.MaxLevelWithPerkpoints - 1);
 		a = this.Const.World.Common.pickArmor([
-				[1, "oriental/gladiator_harness"],
+			[1, ::Legends.Armor.Southern.gladiator_harness],
 		]);
 		a.setUpgrade(this.new("scripts/items/legend_armor/armor_upgrades/legend_light_gladiator_upgrade"));
 		bros[2].getItems().equip(a);

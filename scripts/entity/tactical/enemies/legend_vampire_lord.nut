@@ -125,7 +125,7 @@ this.legend_vampire_lord <- this.inherit("scripts/entity/tactical/actor", {
 			this.m.WasInjured = true;
 		}
 
-		this.actor.onDamageReceived(_attacker, _skill, _hitInfo);
+		return this.actor.onDamageReceived(_attacker, _skill, _hitInfo);
 	}
 
 	function onUpdateInjuryLayer()
@@ -335,60 +335,34 @@ this.legend_vampire_lord <- this.inherit("scripts/entity/tactical/actor", {
 
 	function assignRandomEquipment()
 	{
+		this.getItems().equip(::Const.World.Common.pickItem([
+			[1, "weapons/ancient/crypt_cleaver"],
+			[1, "weapons/ancient/legend_great_khopesh"]
+		], "scripts/items/"));
 
-		local item = this.Const.World.Common.pickArmor([
-			[1, "legend_vampire_lord_armor"]
-		]);
-		this.m.Items.equip(item);
-		local item = this.Const.World.Common.pickHelmet([
-			[66, "legend_vampire_lord_helmet"]
-		]);
-		if (item != null)
-		{
-			this.m.Items.equip(item);
-		}
-
-		local r = this.Math.rand(1, 2);
-
-		// if (r == 1)
-		// {
-		// 	this.m.Items.equip(this.new("scripts/items/weapons/named/named_crypt_cleaver"));
-		// }
-		// else if (r <= 4)
-		// {
-		// 	this.m.Items.equip(this.new("scripts/items/weapons/named/legend_named_great_khopesh"));
-		// }
-		if (r == 1)
-		{
-			this.m.Items.equip(this.new("scripts/items/weapons/ancient/crypt_cleaver"));
-		}
-		else
-		{
-			this.m.Items.equip(this.new("scripts/items/weapons/ancient/legend_great_khopesh"));
-		}
+		this.getItems().equip(::Const.World.Common.pickArmor([
+			[1, ::Legends.Armor.Standard.legend_vampire_lord_armor]
+		]));
+		this.getItems().equip(::Const.World.Common.pickHelmet([
+			[1, ::Legends.Helmet.Standard.legend_vampire_lord_helmet]
+		]));
 	}
 
 	function makeMiniboss()
 	{
 		if (!this.actor.makeMiniboss())
-		{
 			return false;
-		}
 
 		this.getSprite("miniboss").setBrush("bust_miniboss");
-		if (this.Math.rand(1, 100) <= 33)
-		{
-			this.m.Items.equip(this.new("scripts/items/weapons/named/named_khopesh"));
-		}
-		else
-		{
-			this.m.Items.equip(this.new("scripts/items/weapons/named/named_crypt_cleaver"));
-		}
 
-		{
+		this.getItems().equip(::Const.World.Common.pickItem([
+			[1, "weapons/named/named_khopesh"],
+			[2, "weapons/named/named_crypt_cleaver"]
+		], "scripts/items/"));
+
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendTerrifyingVisage);
+
 		return true;
-		}
 	}
 
 });

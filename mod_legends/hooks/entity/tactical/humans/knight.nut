@@ -86,29 +86,29 @@
 		}
 
 		this.m.Items.equip(this.Const.World.Common.pickArmor([
-			[1, "coat_of_plates"],
-			[1, "coat_of_scales"]
+			[1, ::Legends.Armor.Standard.coat_of_plates],
+			[1, ::Legends.Armor.Standard.coat_of_scales]
 		]));
 
 		if (this.m.Items.hasEmptySlot(this.Const.ItemSlot.Head))
 		{
 			this.m.Items.equip(this.Const.World.Common.pickHelmet([
-				[30, "full_helm"],
-				[5, "legend_helm_breathed"],
-				[5, "legend_helm_full"],
-				[5, "legend_helm_bearded"],
-				[5, "legend_helm_point"],
-				[5, "legend_helm_snub"],
-				[5, "legend_helm_wings"],
-				[5, "legend_helm_short"],
-				[5, "legend_helm_curved"],
-				[2, "legend_enclave_vanilla_great_helm_01"],
-				[2, "legend_enclave_vanilla_great_bascinet_01"],
-				[2, "legend_enclave_vanilla_great_bascinet_02"],
-				[2, "legend_enclave_vanilla_great_bascinet_03"],
-				[15, "faction_helm", banner],
-				[5, "legend_frogmouth_helm"],
-				[1, "legend_frogmouth_helm_crested"]
+				[30, ::Legends.Helmet.Standard.full_helm],
+				[5, ::Legends.Helmet.Standard.legend_helm_breathed],
+				[5, ::Legends.Helmet.Standard.legend_helm_full],
+				[5, ::Legends.Helmet.Standard.legend_helm_bearded],
+				[5, ::Legends.Helmet.Standard.legend_helm_point],
+				[5, ::Legends.Helmet.Standard.legend_helm_snub],
+				[5, ::Legends.Helmet.Standard.legend_helm_wings],
+				[5, ::Legends.Helmet.Standard.legend_helm_short],
+				[5, ::Legends.Helmet.Standard.legend_helm_curved],
+				[2, ::Legends.Helmet.Standard.legend_enclave_vanilla_great_helm_01],
+				[2, ::Legends.Helmet.Standard.legend_enclave_vanilla_great_bascinet_01],
+				[2, ::Legends.Helmet.Standard.legend_enclave_vanilla_great_bascinet_02],
+				[2, ::Legends.Helmet.Standard.legend_enclave_vanilla_great_bascinet_03],
+				[15, ::Legends.Helmet.Standard.faction_helm, banner],
+				[5, ::Legends.Helmet.Standard.legend_frogmouth_helm],
+				[1, ::Legends.Helmet.Standard.legend_frogmouth_helm_crested]
 			]))
 		}
 	}
@@ -156,13 +156,13 @@
 			this.m.Items.equip(h);
 		}
 		this.m.Items.equip(this.Const.World.Common.pickHelmet([
-			[3, "named/legend_frogmouth_helm_crested_painted"],
-			[3, "named/bascinet_named"],
-			[3, "named/kettle_helm_named"],
-			[3, "named/deep_sallet_named"],
-			[3, "named/barbute_named"],
-			[3, "named/italo_norman_helm_named"],
-			[1, "named/legend_helm_full_named"]
+			[3, ::Legends.Helmet.Named.legend_frogmouth_helm_crested_painted],
+			[3, ::Legends.Helmet.Named.bascinet_named],
+			[3, ::Legends.Helmet.Named.kettle_helm_named],
+			[3, ::Legends.Helmet.Named.deep_sallet_named],
+			[3, ::Legends.Helmet.Named.barbute_named],
+			[3, ::Legends.Helmet.Named.italo_norman_helm_named],
+			[1, ::Legends.Helmet.Named.legend_helm_full_named]
 		]));
 
 

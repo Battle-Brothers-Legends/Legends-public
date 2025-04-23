@@ -29,7 +29,7 @@
 
 					_event.m.Dude.getItems().equip(this.new("scripts/items/weapons/fighting_spear"));
 					_event.m.Dude.getItems().equip(this.new("scripts/items/shields/buckler_shield"));
-					_event.m.Dude.getItems().equip(this.Const.World.Common.pickHelmet([[1, "heavy_mail_coif"]]));
+					_event.m.Dude.getItems().equip(this.Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Standard.heavy_mail_coif]]));
 					_event.m.Dude.getItems().equip(this.new("scripts/items/legend_armor/legendary/legend_lindwurm_armor"));
 					this.Characters.push(_event.m.Dude.getImagePath());
 				}
@@ -59,7 +59,7 @@
 
 					_event.m.Dude.getItems().equip(this.new("scripts/items/weapons/fighting_spear"));
 					_event.m.Dude.getItems().equip(this.new("scripts/items/shields/buckler_shield"));
-					_event.m.Dude.getItems().equip(this.Const.World.Common.pickHelmet([[1, "heavy_mail_coif"]]));
+					_event.m.Dude.getItems().equip(this.Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Standard.heavy_mail_coif]]));
 					_event.m.Dude.getItems().equip(this.new("scripts/items/legend_armor/legendary/legend_lindwurm_armor"));
 					this.Characters.push(_event.m.Dude.getImagePath());
 				}

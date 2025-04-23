@@ -78,14 +78,13 @@
 		items.equip(this.new("scripts/items/weapons/knife"));
 
 		items.equip(this.Const.World.Common.pickArmor([
-			[1, "sackcloth"],
-			[1, "oriental/cloth_sash"],
-			[1, "oriental/nomad_robe"]
+			[1, ::Legends.Armor.Standard.sackcloth],
+			[1, ::Legends.Armor.Southern.cloth_sash],
+			[1, ::Legends.Armor.Southern.nomad_robe]
 		]));
 		items.equip(this.Const.World.Common.pickHelmet([
-			[1, "oriental/nomad_head_wrap"]
+			[1, ::Legends.Helmet.Southern.nomad_head_wrap]
 		]));
-		items.equip(this.new("scripts/items/helmets/oriental/nomad_head_wrap"));
 	}
 });
 

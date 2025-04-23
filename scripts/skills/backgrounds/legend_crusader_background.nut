@@ -252,19 +252,19 @@ function onAddEquipment()
 		items.equip(this.new("scripts/items/weapons/legend_longsword"));
 
 		items.equip(this.Const.World.Common.pickArmor([
-			[1, "mail_hauberk"],
-			[1, "basic_mail_shirt"],
-			[1, "scale_armor"],
-			[1, "reinforced_mail_hauberk"],
-			[1, "worn_mail_shirt"]
+			[1, ::Legends.Armor.Standard.mail_hauberk],
+			[1, ::Legends.Armor.Standard.basic_mail_shirt],
+			[1, ::Legends.Armor.Standard.scale_armor],
+			[1, ::Legends.Armor.Standard.reinforced_mail_hauberk],
+			[1, ::Legends.Armor.Standard.worn_mail_shirt]
 		]));
 
 		local item = this.Const.World.Common.pickHelmet([
-			[1, "nasal_helmet"],
-			[1, "nasal_helmet_with_mail"],
-			[1, "mail_coif"],
-			[1, "bascinet_with_mail"],
-			[1, "closed_flat_top_helmet"]
+			[1, ::Legends.Helmet.Standard.nasal_helmet],
+			[1, ::Legends.Helmet.Standard.nasal_helmet_with_mail],
+			[1, ::Legends.Helmet.Standard.mail_coif],
+			[1, ::Legends.Helmet.Standard.bascinet_with_mail],
+			[1, ::Legends.Helmet.Standard.closed_flat_top_helmet]
 		]);
 		if (item != null)
 		{

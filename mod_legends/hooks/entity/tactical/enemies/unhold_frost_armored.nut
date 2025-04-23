@@ -4,7 +4,7 @@
 	{
 		this.m.Items.equip(this.new("scripts/items/armor/barbarians/unhold_armor_heavy"));
 		local item = this.Const.World.Common.pickHelmet([
-			[1, "barbarians/unhold_helmet_heavy"]
+			[1, ::Legends.Helmet.Barbarian.unhold_helmet_heavy]
 		]);
 		if (item != null)
 		{

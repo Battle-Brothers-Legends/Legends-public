@@ -70,21 +70,21 @@
 		}
 
 		local armor = [
-			[33, "barbarians/scrap_metal_armor"],
-			[34, "barbarians/hide_and_bone_armor"],
-			[33, "barbarians/reinforced_animal_hide_armor"]
+			[33, ::Legends.Armor.Barbarian.scrap_metal_armor],
+			[34, ::Legends.Armor.Barbarian.hide_and_bone_armor],
+			[33, ::Legends.Armor.Barbarian.reinforced_animal_hide_armor]
 		];
 		armor.push(
-			[5, "barbarians/legend_barbarian_southern_armor"]
+			[5, ::Legends.Armor.Barbarian.legend_barbarian_southern_armor]
 		);
 
 		this.m.Items.equip(this.Const.World.Common.pickArmor(armor));
 
 		local item = this.Const.World.Common.pickHelmet([
-			[1, "barbarians/leather_headband"],
-			[1, "barbarians/bear_headpiece"],
-			[1, "barbarians/leather_helmet"],
-			[1, "barbarians/crude_metal_helmet"],
+			[1, ::Legends.Helmet.Barbarian.leather_headband],
+			[1, ::Legends.Helmet.Barbarian.bear_headpiece],
+			[1, ::Legends.Helmet.Barbarian.leather_helmet],
+			[1, ::Legends.Helmet.Barbarian.crude_metal_helmet],
 			[1, ""]
 		]);
 		if (item != null)

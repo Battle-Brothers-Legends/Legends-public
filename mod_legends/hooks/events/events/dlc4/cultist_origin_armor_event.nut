@@ -22,7 +22,7 @@
 						}
 					}
 					local item = this.Const.World.Common.pickArmor([
-						[1, "cultist_leather_robe"],
+						[1, ::Legends.Armor.Standard.cultist_leather_robe],
 					]);
 					this.World.Assets.getStash().add(item);
 					this.List.push({

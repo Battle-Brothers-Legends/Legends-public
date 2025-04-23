@@ -197,16 +197,16 @@
 		}
 
 		items.equip(this.Const.World.Common.pickArmor([
-			[1, "leather_tunic"],
-			[1, "padded_surcoat"],
-			[1, "gambeson"]
+			[1, ::Legends.Armor.Standard.leather_tunic],
+			[1, ::Legends.Armor.Standard.padded_surcoat],
+			[1, ::Legends.Armor.Standard.gambeson]
 		]));
 		items.equip(this.Const.World.Common.pickHelmet([
-			[1, "hood"],
-			[1, "open_leather_cap"],
-			[1, "aketon_cap"],
-			[1, "full_aketon_cap"],
-			[2, ""]
+			[1, ::Legends.Helmet.Standard.hood],
+			[1, ::Legends.Helmet.Standard.open_leather_cap],
+			[1, ::Legends.Helmet.Standard.aketon_cap],
+			[1, ::Legends.Helmet.Standard.full_aketon_cap],
+			[2, ::Legends.Helmet.None]
 		]));
 	}
 

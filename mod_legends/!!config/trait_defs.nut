@@ -519,6 +519,13 @@ traitDefs.push({
 	Const = "ArenaFighter"
 });
 
+::Legends.Trait.ArenaVeteran <- null;
+traitDefs.push({
+	ID = "trait.arena_veteran",
+	Script = "scripts/skills/traits/arena_veteran_trait",
+	Const = "ArenaVeteran"
+});
+
 ::Legends.Trait.Addict <- null;
 traitDefs.push({
 	ID = "trait.addict",
@@ -893,13 +900,6 @@ traitDefs.push({
 	ID = "trait.legend_prosthetic_nose",
 	Script = "scripts/skills/traits/legend_prosthetic_nose",
 	Const = "LegendProstheticNose"
-});
-
-::Legends.Trait.LegendArenaVeteran <- null;
-traitDefs.push({
-	ID = "trait.legend_arena_veteran",
-	Script = "scripts/skills/traits/legend_arena_veteran_trait",
-	Const = "LegendArenaVeteran"
 });
 
 ::Legends.Trait.LegendArenaChampion <- null;

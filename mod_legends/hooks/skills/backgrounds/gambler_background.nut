@@ -82,7 +82,7 @@
 	o.setGender <- function (_gender = -1)
 	{
 		if (_gender == -1) _gender = ::Legends.Mod.ModSettings.getSetting("GenderEquality").getValue() == "Disabled" ? 0 : ::Math.rand(0, 1);
-		
+
 		if (_gender != 1) return;
 
 		this.m.Name = "Gambler";
@@ -152,14 +152,14 @@
 	{
 		local items = this.getContainer().getActor().getItems();
 		items.equip(this.Const.World.Common.pickArmor([
-			[1, "noble_tunic"],
-			[1, "linen_tunic"],
-			[2, ""]
+			[1, ::Legends.Armor.Standard.noble_tunic],
+			[1, ::Legends.Armor.Standard.linen_tunic],
+			[2, ::Legends.Armor.None]
 		]));
 
 		items.equip(this.Const.World.Common.pickHelmet([
-				[1, "feathered_hat"],
-				[3, ""]
+			[1, ::Legends.Helmet.Standard.feathered_hat],
+			[3, ::Legends.Helmet.None]
 		]))
 
 	}

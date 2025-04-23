@@ -889,56 +889,56 @@
 	{
 
 		this.m.Items.equip(this.Const.World.Common.pickArmor([
-			[1, "padded_surcoat"],
-			[1, "mail_shirt"],
-			[1, "coat_of_plates"],
-			[1, "gambeson"],
-			[1, "leather_tunic"],
-			[1, "lamellar_harness"],
-			[1, "sackcloth"],
-			[1, "heavy_lamellar_armor"],
-			[1, "basic_mail_shirt"],
-			[1, "scale_armor"],
-			[1, "coat_of_scales"],
-			[1, "linen_tunic"],
-			[1, "tattered_sackcloth"],
-			[1, "heraldic_mail"],
-			[1, "named/black_leather_armor"],
-			[1, "named/golden_scale_armor"],
-			[1, "named/blue_studded_mail_armor"],
-			[1, "named/brown_coat_of_plates_armor"],
-			[1, "named/green_coat_of_plates_armor"],
-			[1, "reinforced_mail_hauberk"],
-			[1, "mail_hauberk"],
-			[1, "leather_lamellar"],
+			[1, ::Legends.Armor.Standard.padded_surcoat],
+			[1, ::Legends.Armor.Standard.mail_shirt],
+			[1, ::Legends.Armor.Standard.coat_of_plates],
+			[1, ::Legends.Armor.Standard.gambeson],
+			[1, ::Legends.Armor.Standard.leather_tunic],
+			[1, ::Legends.Armor.Standard.lamellar_harness],
+			[1, ::Legends.Armor.Standard.sackcloth],
+			[1, ::Legends.Armor.Standard.heavy_lamellar_armor],
+			[1, ::Legends.Armor.Standard.basic_mail_shirt],
+			[1, ::Legends.Armor.Standard.scale_armor],
+			[1, ::Legends.Armor.Standard.coat_of_scales],
+			[1, ::Legends.Armor.Standard.linen_tunic],
+			[1, ::Legends.Armor.Standard.tattered_sackcloth],
+			[1, ::Legends.Armor.Standard.heraldic_mail],
+			[1, ::Legends.Armor.Named.black_leather_armor],
+			[1, ::Legends.Armor.Named.golden_scale_armor],
+			[1, ::Legends.Armor.Named.blue_studded_mail_armor],
+			[1, ::Legends.Armor.Named.brown_coat_of_plates_armor],
+			[1, ::Legends.Armor.Named.green_coat_of_plates_armor],
+			[1, ::Legends.Armor.Standard.reinforced_mail_hauberk],
+			[1, ::Legends.Armor.Standard.mail_hauberk],
+			[1, ::Legends.Armor.Standard.leather_lamellar],
 		]));
 
 		local item = this.Const.World.Common.pickHelmet([
-			[6, ""],
-			[1, "hood"],
-			[1, "mail_coif"],
-			[1, "closed_mail_coif"],
-			[1, "reinforced_mail_coif"],
-			[1, "kettle_hat"],
-			[1, "nasal_helmet"],
-			[1, "padded_nasal_helmet"],
-			[1, "nasal_helmet_with_mail"],
-			[1, "full_helm"],
-			[1, "flat_top_helmet"],
-			[1, "padded_flat_top_helmet"],
-			[1, "flat_top_with_mail"],
-			[1, "kettle_hat_with_mail"],
-			[1, "kettle_hat_with_closed_mail"],
-			[1, "closed_flat_top_with_neckguard"],
-			[1, "closed_flat_top_helmet"],
-			[1, "closed_flat_top_with_mail"],
-			[1, "witchhunter_hat"],
-			[1, "named/golden_feathers_helmet"],
-			[1, "named/heraldic_mail_helmet"],
-			[1, "named/nasal_feather_helmet"],
-			[1, "named/norse_helmet"],
-			[1, "named/sallet_green_helmet"],
-			[1, "named/wolf_helmet"]
+			[6, ::Legends.Helmet.None],
+			[1, ::Legends.Helmet.Standard.hood],
+			[1, ::Legends.Helmet.Standard.mail_coif],
+			[1, ::Legends.Helmet.Standard.closed_mail_coif],
+			[1, ::Legends.Helmet.Standard.reinforced_mail_coif],
+			[1, ::Legends.Helmet.Standard.kettle_hat],
+			[1, ::Legends.Helmet.Standard.nasal_helmet],
+			[1, ::Legends.Helmet.Standard.padded_nasal_helmet],
+			[1, ::Legends.Helmet.Standard.nasal_helmet_with_mail],
+			[1, ::Legends.Helmet.Standard.full_helm],
+			[1, ::Legends.Helmet.Standard.flat_top_helmet],
+			[1, ::Legends.Helmet.Standard.padded_flat_top_helmet],
+			[1, ::Legends.Helmet.Standard.flat_top_with_mail],
+			[1, ::Legends.Helmet.Standard.kettle_hat_with_mail],
+			[1, ::Legends.Helmet.Standard.kettle_hat_with_closed_mail],
+			[1, ::Legends.Helmet.Standard.closed_flat_top_with_neckguard],
+			[1, ::Legends.Helmet.Standard.closed_flat_top_helmet],
+			[1, ::Legends.Helmet.Standard.closed_flat_top_with_mail],
+			[1, ::Legends.Helmet.Standard.witchhunter_hat],
+			[1, ::Legends.Helmet.Named.golden_feathers_helmet],
+			[1, ::Legends.Helmet.Named.heraldic_mail_helmet],
+			[1, ::Legends.Helmet.Named.nasal_feather_helmet],
+			[1, ::Legends.Helmet.Named.norse_helmet],
+			[1, ::Legends.Helmet.Named.sallet_green_helmet],
+			[1, ::Legends.Helmet.Named.wolf_helmet]
 		]);
 
 		if (item != null)
@@ -1026,25 +1026,25 @@
 	o.assignRandomRangedEquipment = function()
 	{
 		this.m.Items.equip(this.Const.World.Common.pickArmor([
-			[1, "padded_surcoat"],
-			[1, "mail_shirt"],
-			[1, "padded_leather"],
-			[1, "gambeson"],
-			[1, "leather_tunic"],
-			[1, "sackcloth"],
-			[1, "linen_tunic"],
-			[1, "tattered_sackcloth"],
-			[1, "ragged_surcoat"],
-			[1, "thick_tunic"],
+			[1, ::Legends.Armor.Standard.padded_surcoat],
+			[1, ::Legends.Armor.Standard.mail_shirt],
+			[1, ::Legends.Armor.Standard.padded_leather],
+			[1, ::Legends.Armor.Standard.gambeson],
+			[1, ::Legends.Armor.Standard.leather_tunic],
+			[1, ::Legends.Armor.Standard.sackcloth],
+			[1, ::Legends.Armor.Standard.linen_tunic],
+			[1, ::Legends.Armor.Standard.tattered_sackcloth],
+			[1, ::Legends.Armor.Standard.ragged_surcoat],
+			[1, ::Legends.Armor.Standard.thick_tunic],
 		]));
 
 		local item = this.Const.World.Common.pickHelmet([
-			[2, ""],
-			[1, "hood"],
-			[1, "aketon_cap"],
-			[1, "full_aketon_cap"],
-			[1, "open_leather_cap"],
-			[1, "full_leather_cap"]
+			[2, ::Legends.Helmet.None],
+			[1, ::Legends.Helmet.Standard.hood],
+			[1, ::Legends.Helmet.Standard.aketon_cap],
+			[1, ::Legends.Helmet.Standard.full_aketon_cap],
+			[1, ::Legends.Helmet.Standard.open_leather_cap],
+			[1, ::Legends.Helmet.Standard.full_leather_cap]
 		]);
 
 		if (item != null)
@@ -1080,21 +1080,21 @@
 	o.assignRandomThrowingEquipment = function()
 	{
 		this.m.Items.equip(this.Const.World.Common.pickArmor([
-			[1, "padded_surcoat"],
-			[1, "mail_shirt"],
-			[1, "padded_leather"],
-			[1, "gambeson"],
-			[1, "leather_tunic"],
-			[1, "sackcloth"],
-			[1, "linen_tunic"],
-			[1, "tattered_sackcloth"],
+			[1, ::Legends.Armor.Standard.padded_surcoat],
+			[1, ::Legends.Armor.Standard.mail_shirt],
+			[1, ::Legends.Armor.Standard.padded_leather],
+			[1, ::Legends.Armor.Standard.gambeson],
+			[1, ::Legends.Armor.Standard.leather_tunic],
+			[1, ::Legends.Armor.Standard.sackcloth],
+			[1, ::Legends.Armor.Standard.linen_tunic],
+			[1, ::Legends.Armor.Standard.tattered_sackcloth],
 		]));
 
 		local item = this.Const.World.Common.pickHelmet([
-			[1, ""],
-			[1, "hood"],
-			[1, "aketon_cap"],
-			[1, "full_aketon_cap"]
+			[1, ::Legends.Helmet.None],
+			[1, ::Legends.Helmet.Standard.hood],
+			[1, ::Legends.Helmet.Standard.aketon_cap],
+			[1, ::Legends.Helmet.Standard.full_aketon_cap]
 		]);
 
 		if (item != null)

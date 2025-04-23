@@ -6,25 +6,7 @@
 
 	o.getDefenderCount <- function ()
 	{
-
 		return this.m.Troops.len()
-		// local count = 0
-		// foreach( t in this.m.Troops )
-		// {
-		// 	if (t.Script.len() != "")
-		// 	{
-		// 		if (t.Variant != 0)
-		// 		{
-		// 			count++
-		// 		}
-		// 		else
-		// 		{
-		// 			++entityTypes[t.ID];
-		// 		}
-		// 	}
-		// }
-		// return count;
-
 	}
 
 	o.getTroopComposition = function ()
@@ -130,32 +112,8 @@
 		_out.writeString(this.m.Description);
 		_out.writeU8(this.Math.min(255, this.m.Troops.len()));
 
-		foreach( t in this.m.Troops )
-		{
-			_out.writeU16(t.ID);
-			_out.writeU8(t.Variant);
-			_out.writeF32(t.Strength);
-			_out.writeI8(t.Row);
-			_out.writeString(t.Name);
-			if ("Outfits" in t)
-			{
-				_out.writeBool(true);
-				_out.writeU8(t.Outfits.len());
-
-				foreach (o in t.Outfits)
-				{
-					_out.writeU8(o.len());
-					_out.writeU8(o[0]);
-					_out.writeString(o[1]);
-					if (o.len() == 3)
-						_out.writeString(o[2]);
-				}
-			}
-			else
-			{
-				_out.writeBool(false);
-			}
-			_out.writeI32(this.IO.scriptHashByFilename(t.Script));
+		foreach( t in this.m.Troops ) {
+			::Const.World.Common.serializeTroop(_out, t)
 		}
 
 		_out.writeI32(this.m.CombatID);
@@ -179,7 +137,6 @@
 		_out.writeBool(this.m.IsDroppingLoot);
 		_out.writeU16(::Math.abs(this.m.Resources));
 		this.m.Flags.onSerialize(_out);
-		//_out.writeBool(false);
 	}
 
 	o.onDeserialize = function ( _in )
@@ -201,45 +158,10 @@
 
 		for( local i = 0; i < numTroops; i = ++i )
 		{
-			local troop = clone this.Const.World.Spawn.Unit;
-			troop.ID = _in.readU16();
-			troop.Variant = _in.readU8();
-			troop.Strength = _in.readF32();
-			troop.Row = _in.readI8();
+			local troop = ::Const.World.Common.deserializeTroop(_in);
 			troop.Party = this.WeakTableRef(this);
 			troop.Faction = this.getFaction();
-			troop.Name = _in.readString();
-
-			if (_in.readBool())
-			{
-				local outfits = [];
-				local outfitLength = _in.readU8();
-				for (local i = 0; i < outfitLength; i++)
-				{
-					if (_in.readU8() == 2)
-					{
-						outfits.push( [_in.readU8(), _in.readString()] )
-					}
-					else
-					{
-						outfits.push( [_in.readU8(), _in.readString(), _in.readString()] )
-					}
-				}
-				troop.Outfits <- clone outfits
-			}
-
-			local hash = _in.readI32();
-
-			if (hash != 0)
-			{
-				troop.Script = this.IO.scriptFilenameByHash(hash);
-			}
-
-			if (troop.Script == "scripts/entity/tactical/enemies/alp_illusion")
-			{
-			}
-			else
-			{
+			if (troop.Script != "scripts/entity/tactical/enemies/alp_illusion") {
 				this.m.Troops.push(troop);
 			}
 		}
@@ -271,6 +193,5 @@
 		}
 
 		this.m.Flags.onDeserialize(_in);
-		//_in.readBool();
 	}
 });

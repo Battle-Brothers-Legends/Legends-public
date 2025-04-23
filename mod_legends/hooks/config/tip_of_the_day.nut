@@ -108,6 +108,7 @@
 	"Elevated terrain like hills and mountains allow you to see farther on the worldmap.",
 	"You can have your items repaired at the smith for a fee by using \'ALT\' + \'Right Click\'.",
 	"You may find powerful named items far away from civilization by exploring or following tavern rumors.",
+	"Blackmarkets will only be open at night.",
 
 	//Items - anything roughly relating to items like weapons or food
 	"Food can be equipped and consumed in battle to restore health and fatigue.",

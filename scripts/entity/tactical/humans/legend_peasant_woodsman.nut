@@ -49,15 +49,15 @@ this.legend_peasant_woodsman <- this.inherit("scripts/entity/tactical/human", {
 		this.m.Items.equip(this.new("scripts/items/weapons/woodcutters_axe"));
 
 		this.m.Items.equip(this.Const.World.Common.pickArmor([
-			[1, "sackcloth"],
-			[1, "thick_tunic"],
-			[8, "linen_tunic"]
+			[1, ::Legends.Armor.Standard.sackcloth],
+			[1, ::Legends.Armor.Standard.thick_tunic],
+			[8, ::Legends.Armor.Standard.linen_tunic]
 		]));
 		if (this.Math.rand(1, 100) <= 66)
 		{
 			this.m.Items.equip(this.Const.World.Common.pickHelmet([
-				[3, "straw_hat"],
-				[1, "hood"]
+				[3, ::Legends.Helmet.Standard.straw_hat],
+				[1, ::Legends.Helmet.Standard.hood]
 			]))
 		}
 	}

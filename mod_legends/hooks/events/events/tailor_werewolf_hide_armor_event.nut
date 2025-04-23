@@ -25,7 +25,7 @@
 					}
 
 					local item = this.Const.World.Common.pickArmor([
-						[1, "werewolf_hide_armor"],
+						[1, ::Legends.Armor.Standard.werewolf_hide_armor],
 					]);
 
 

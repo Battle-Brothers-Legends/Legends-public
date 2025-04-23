@@ -66,7 +66,7 @@
 			else if (r == 2)
 				item = this.new("scripts/items/weapons/knife");
 			else if (r == 3)
-					item = this.Const.World.Common.pickHelmet([[1, "hood"]]);
+					item = this.Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Standard.hood]]);
 			else if (r == 4)
 				item = this.new("scripts/items/weapons/woodcutters_axe");
 			else if (r == 5)
@@ -74,12 +74,12 @@
 			else if (r == 6)
 				item = this.new("scripts/items/weapons/pickaxe");
 			else if (r == 7)
-				item = this.Const.World.Common.pickHelmet([[1, "feathered_hat"]]);
+				item = this.Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Standard.feathered_hat]]);
 			else {
 				item = this.Const.World.Common.pickArmor([
-					[1, "linen_tunic"],
-					[1, "leather_wraps"],
-					[1, "tattered_sackcloth"],
+					[1, ::Legends.Armor.Standard.linen_tunic],
+					[1, ::Legends.Armor.Standard.leather_wraps],
+					[1, ::Legends.Armor.Standard.tattered_sackcloth],
 				]);
 			}
 

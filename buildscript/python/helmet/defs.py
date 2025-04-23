@@ -741,7 +741,7 @@ class Defs:
  "title" :  "Breathed Faceplate",
  "desc" :  "A faceplate filled with breathes for easy breathing and increased sight."
  },
-{"name" : "unhold_head_chain"                     , "layer" : "top", "min" : 1, "max" : 1, "value" : 240, "con" : 45, "stam" : -7, "vis" : 0, "hair" : "false", "beard" : "true",
+{"name" : "unhold_head_chain"                     , "layer" : "top", "min" : 1, "max" : 1, "value" : 240, "con" : 45, "stam" : -7, "vis" : 0, "hair" : "false", "beard" : "false",
  "title" :  "Unhold Head Chain",
  "desc" :  "The chain used by barbarian beastmasters for controlling unholds."
  },

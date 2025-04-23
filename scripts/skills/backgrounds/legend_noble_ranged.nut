@@ -178,9 +178,9 @@ this.legend_noble_ranged <- this.inherit("scripts/skills/backgrounds/character_b
 		local items = this.getContainer().getActor().getItems();
 		local r;
 		items.equip(this.Const.World.Common.pickHelmet([
-			// [3, "hunters_hat"],
-			[1, "aketon_cap"],
-			[1, "open_leather_cap"]
+			// [3, ::Legends.Helmet.Standard.hunters_hat],
+			[1, ::Legends.Helmet.Standard.aketon_cap],
+			[1, ::Legends.Helmet.Standard.open_leather_cap]
 		]));
 
 		items.equip(this.new("scripts/items/weapons/light_crossbow"));
@@ -188,8 +188,8 @@ this.legend_noble_ranged <- this.inherit("scripts/skills/backgrounds/character_b
 		items.addToBag(this.new("scripts/items/weapons/knife"));
 
 		items.equip(this.Const.World.Common.pickArmor([
-			[2, "padded_surcoat"],
-			[1, "basic_mail_shirt"]
+			[2, ::Legends.Armor.Standard.padded_surcoat],
+			[1, ::Legends.Armor.Standard.basic_mail_shirt]
 		]));
 	}
 

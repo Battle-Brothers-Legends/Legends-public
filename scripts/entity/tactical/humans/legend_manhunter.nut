@@ -80,52 +80,41 @@ this.legend_manhunter <- this.inherit("scripts/entity/tactical/human", {
 
 	function assignRandomEquipment()
 	{
-		local weapons = [
-			"weapons/scimitar",
-			"weapons/oriental/light_southern_mace"
-		];
+		this.getItems().equip(::Const.World.Common.pickItem([
+			[2, "weapons/scimitar"],
+			[2, "weapons/oriental/light_southern_mace"],
+			[1, "weapons/battle_whip"],
+		], "scripts/items/"));
 
-		if (this.Const.DLC.Wildmen)
-		{
-			weapons.extend([
-				"weapons/scimitar",
-				"weapons/scimitar",
-				"weapons/oriental/light_southern_mace",
-				"weapons/oriental/light_southern_mace",
-				"weapons/battle_whip"
-			]);
-		}
-
-		this.m.Items.equip(this.new("scripts/items/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
-
-		this.m.Items.equip(this.new("scripts/items/tools/throwing_net"));
+		this.getItems().equip(this.new("scripts/items/tools/throwing_net"));
 
 		local armor = [
-			[1, "leather_lamellar"],
-			[1, "oriental/plated_nomad_mail"],
-			[1, "oriental/southern_mail_shirt"]
+			[1, ::Legends.Armor.Standard.leather_lamellar],
+			[1, ::Legends.Armor.Southern.plated_nomad_mail],
+			[1, ::Legends.Armor.Southern.southern_mail_shirt]
 		];
 
 		if (this.World.getTime().Days > 18)
 		{
 			armor.extend([
-				[1, "mail_shirt"],
-				[1, "oriental/mail_and_lamellar_plating"]
+				[1, ::Legends.Armor.Standard.mail_shirt],
+				[1, ::Legends.Armor.Southern.mail_and_lamellar_plating]
 			]);
 		}
-		this.m.Items.equip(this.Const.World.Common.pickArmor(armor));
+
+		this.getItems().equip(this.Const.World.Common.pickArmor(armor));
 
 		local helmet = [
-			[1, "oriental/nomad_leather_cap"],
-			[1, "oriental/nomad_light_helmet"],
-			[1, "oriental/wrapped_southern_helmet"],
-			[1, "oriental/spiked_skull_cap_with_mail"]
+			[1, ::Legends.Helmet.Southern.nomad_leather_cap],
+			[1, ::Legends.Helmet.Southern.nomad_light_helmet],
+			[1, ::Legends.Helmet.Southern.wrapped_southern_helmet],
+			[1, ::Legends.Helmet.Southern.spiked_skull_cap_with_mail]
 		];
 
 		if (this.World.getTime().Days <= 18)
 		{
 			helmet.extend([
-				[1, "oriental/southern_head_wrap"]
+				[1, ::Legends.Helmet.Southern.southern_head_wrap]
 			]);
 		}
 		this.m.Items.equip(this.Const.World.Common.pickHelmet(helmet));

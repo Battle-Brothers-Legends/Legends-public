@@ -43,22 +43,22 @@ this.legend_peasant_witchhunter <- this.inherit("scripts/entity/tactical/human",
 
 	function assignRandomEquipment()
 	{
-		local r;
-		r = this.Math.rand(1, 4);
+		this.getItems().equip(this.new("scripts/items/weapons/light_crossbow"));
+		this.getItems().equip(this.new("scripts/items/ammo/quiver_of_bolts"));
 
-		this.m.Items.equip(this.new("scripts/items/weapons/light_crossbow"));
-		this.m.Items.equip(this.new("scripts/items/ammo/quiver_of_bolts"));
-		this.m.Items.addToBag(this.new("scripts/items/weapons/shortsword"));
+		this.getItems().addToBag(::Const.World.Common.pickItem([
+			[1, "weapons/shortsword"],
+		], "scripts/items/"));
 
-		this.m.Items.equip(this.Const.World.Common.pickArmor([
-			[1, "thick_tunic"]
+		this.getItems().equip(::Const.World.Common.pickArmor([
+			[1, ::Legends.Armor.Standard.thick_tunic]
 		]));
 
 		if (this.Math.rand(1, 100) <= 66)
 		{
-			this.m.Items.equip(this.Const.World.Common.pickHelmet([
-				[1, "witchhunter_hat"],
-				[6, "hood"]
+			this.getItems().equip(::Const.World.Common.pickHelmet([
+				[1, ::Legends.Helmet.Standard.witchhunter_hat],
+				[6, ::Legends.Helmet.Standard.hood]
 			]))
 		}
 	}

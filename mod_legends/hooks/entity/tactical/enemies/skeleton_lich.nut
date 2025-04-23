@@ -25,12 +25,12 @@
 	o.assignRandomEquipment = function ()
 	{
 		local armor = [
-			[1, "ancient/ancient_lich_attire"]
+			[1, ::Legends.Armor.Ancient.ancient_lich_attire]
 		];
 		local item = this.Const.World.Common.pickArmor(armor);
 		this.m.Items.equip(item);
 		local helmet = [
-			[1, "ancient/ancient_lich_headpiece"]
+			[1, ::Legends.Helmet.Ancient.ancient_lich_headpiece]
 		];
 		this.m.Items.equip(this.Const.World.Common.pickHelmet(helmet));
 	}

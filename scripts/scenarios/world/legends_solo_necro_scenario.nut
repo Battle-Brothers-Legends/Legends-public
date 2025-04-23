@@ -62,16 +62,10 @@ this.legends_solo_necro_scenario <- this.inherit("scripts/scenarios/world/starti
 		items.unequip(items.getItemAtSlot(this.Const.ItemSlot.Body));
 		items.equip(this.new("scripts/items/weapons/legend_mystic_staff"));
 		items.equip(this.Const.World.Common.pickHelmet([
-			[
-				1,
-				"wizard_hat"
-			]
+			[1, ::Legends.Helmet.Standard.wizard_hat]
 		]));
 		items.equip(this.Const.World.Common.pickArmor([
-			[
-				1,
-				"wizard_robe"
-			]
+			[1, ::Legends.Armor.Standard.wizard_robe]
 		]));
 
 		bros[2].setStartValuesEx([
@@ -88,16 +82,10 @@ this.legends_solo_necro_scenario <- this.inherit("scripts/scenarios/world/starti
 		items.unequip(items.getItemAtSlot(this.Const.ItemSlot.Body));
 		items.equip(this.new("scripts/items/weapons/throwing_axe"));
 		items.equip(this.Const.World.Common.pickHelmet([
-			[
-				1,
-				"jesters_hat"
-			]
+			[1, ::Legends.Helmet.Standard.jesters_hat]
 		]));
 		items.equip(this.Const.World.Common.pickArmor([
-			[
-				1,
-				"noble_tunic"
-			]
+			[1, ::Legends.Armor.Standard.noble_tunic]
 		]));
 
 		bros[3].setStartValuesEx([

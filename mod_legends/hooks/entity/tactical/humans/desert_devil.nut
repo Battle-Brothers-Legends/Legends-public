@@ -41,15 +41,15 @@
 		}
 
 		this.m.Items.equip(this.Const.World.Common.pickArmor([
-			[1, "oriental/assassin_robe"],
-			[1, "blade_dancer_armor_00"]
-			// [1, "leather_scale_armor"]
+			[1, ::Legends.Armor.Southern.assassin_robe],
+			[1, ::Legends.Armor.Southern.blade_dancer_armor_00]
+			// [1, ::Legends.Armor.Standard.leather_scale_armor]
 		]));
 		if (this.m.Items.hasEmptySlot(this.Const.ItemSlot.Head))
 		{
 			local helm =this.Const.World.Common.pickHelmet([
-				[1, "oriental/blade_dancer_head_wrap"],
-				[1, "blade_dancer_helmet_00"]
+				[1, ::Legends.Helmet.Southern.blade_dancer_head_wrap],
+				[1, ::Legends.Helmet.Southern.blade_dancer_helmet_00]
 			]);
 			this.m.Items.equip(helm);
 		}
@@ -76,7 +76,7 @@
 		else
 		{
 			this.m.Items.equip(this.Const.World.Common.pickArmor([
-				[1, "named/black_leather_armor"]
+				[1, ::Legends.Armor.Named.black_leather_armor]
 			]));
 		}
 

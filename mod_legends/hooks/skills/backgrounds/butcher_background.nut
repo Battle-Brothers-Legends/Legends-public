@@ -166,7 +166,7 @@
 		}
 
 		items.equip(this.Const.World.Common.pickArmor([
-			[1, "butcher_apron"]
+			[1, ::Legends.Armor.Standard.butcher_apron]
 		]));
 	}
 });

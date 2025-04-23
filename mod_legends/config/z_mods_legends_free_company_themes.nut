@@ -27,7 +27,7 @@
 		UnitOutfits = [															//Unit outfits each need a type and an array of outfits
 			// {
 			//	 Type = this.Const.EntityType.FreeCompanyLeader,
-			//	 Outfits = [ [1, "mercenary_archer_outfit_00"] ]
+			//	 Outfits = [ [1, ::Legends.Outfit.mercenary_archer_outfit_00] ]
 			// }
 		]														   //Leave this for default outfits
 	},
@@ -64,7 +64,9 @@
 		UnitOutfits = [
 			{
 				Type = this.Const.EntityType.FreeCompanyLeader,
-				Outfits = [ "mercenary_leader_outfit_gilded_00" ]
+				Outfits = [
+					::Legends.Outfit.mercenary_leader_outfit_gilded_00
+				]
 				// Outfits = this.Const.Outfits.GildedFreeCompanyLeader //alternatively can store the outfits elsewhere to keep this clean
 			}
 		]

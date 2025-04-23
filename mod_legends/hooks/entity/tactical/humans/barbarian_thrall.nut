@@ -57,15 +57,15 @@
 		}
 
 		this.m.Items.equip(this.Const.World.Common.pickArmor([
-			[1, "barbarians/thick_furs_armor"],
-			[1, "barbarians/animal_hide_armor"],
-			[2, ""]
+			[1, ::Legends.Armor.Barbarian.thick_furs_armor],
+			[1, ::Legends.Armor.Barbarian.animal_hide_armor],
+			[2, ::Legends.Armor.None]
 		]));
 
 
 		local item = this.Const.World.Common.pickHelmet([
-			[1, "barbarians/leather_headband"],
-			[1, "barbarians/bear_headpiece"],
+			[1, ::Legends.Helmet.Barbarian.leather_headband],
+			[1, ::Legends.Helmet.Barbarian.bear_headpiece],
 			[2, ""]
 		]);
 		if (item != null)

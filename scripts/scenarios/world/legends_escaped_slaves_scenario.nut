@@ -164,10 +164,7 @@ this.legends_escaped_slaves_scenario <- this.inherit("scripts/scenarios/world/st
 		this.addRandomEquipment(items);
 		items.unequip(items.getItemAtSlot(this.Const.ItemSlot.Head));
 		items.equip(this.Const.World.Common.pickHelmet([
-			[
-				5,
-				"oriental/gunner_hat"
-			]
+			[5, ::Legends.Helmet.Southern.gunner_hat]
 		]));
 
 		bros[3].setStartValuesEx([
@@ -258,38 +255,14 @@ this.legends_escaped_slaves_scenario <- this.inherit("scripts/scenarios/world/st
 
 		if (getsArmor) {
 			items.equip(this.Const.World.Common.pickArmor([
-				[
-					10,
-					"oriental/nomad_robe"
-				],
-				[
-					10,
-					"oriental/thick_nomad_robe"
-				],
-				[
-					10,
-					"oriental/padded_vest"
-				],
-				[
-					5,
-					"oriental/stitched_nomad_armor"
-				],
-				[
-					5,
-					"oriental/plated_nomad_mail"
-				],
-				[
-					5,
-					"oriental/linothorax"
-				],
-				[
-					5,
-					"legend_rabble_fur"
-				],
-				[
-					5,
-					"legend_rabble_tunic"
-				]
+				[10, ::Legends.Armor.Southern.nomad_robe],
+				[10, ::Legends.Armor.Southern.thick_nomad_robe],
+				[10, ::Legends.Armor.Southern.padded_vest],
+				[5, ::Legends.Armor.Southern.stitched_nomad_armor],
+				[5, ::Legends.Armor.Southern.plated_nomad_mail],
+				[5, ::Legends.Armor.Southern.linothorax],
+				[5, ::Legends.Armor.Standard.legend_rabble_fur],
+				[5, ::Legends.Armor.Standard.legend_rabble_tunic]
 			]));
 			local armor = items.getItemAtSlot(this.Const.ItemSlot.Body);
 
@@ -301,30 +274,12 @@ this.legends_escaped_slaves_scenario <- this.inherit("scripts/scenarios/world/st
 
 		if (getsHelmet) {
 			items.equip(this.Const.World.Common.pickHelmet([
-				[
-					5,
-					"oriental/nomad_reinforced_helmet"
-				],
-				[
-					5,
-					"oriental/wrapped_southern_helmet"
-				],
-				[
-					5,
-					"oriental/spiked_skull_cap_with_mail"
-				],
-				[
-					20,
-					"oriental/nomad_head_wrap"
-				],
-				[
-					15,
-					"oriental/nomad_leather_cap"
-				],
-				[
-					15,
-					"oriental/nomad_light_helmet"
-				]
+				[5, ::Legends.Helmet.Southern.nomad_reinforced_helmet],
+				[5, ::Legends.Helmet.Southern.wrapped_southern_helmet],
+				[5, ::Legends.Helmet.Southern.spiked_skull_cap_with_mail],
+				[20, ::Legends.Helmet.Southern.nomad_head_wrap],
+				[15, ::Legends.Helmet.Southern.nomad_leather_cap],
+				[15, ::Legends.Helmet.Southern.nomad_light_helmet]
 			]));
 			local helmet = items.getItemAtSlot(this.Const.ItemSlot.Head);
 

@@ -109,31 +109,31 @@
 		}
 
 		this.m.Items.equip(this.Const.World.Common.pickArmor([
-			[5, "gambeson"],
-			[2, "werewolf_mail_armor"],
-			[1, "northern_mercenary_armor_00"],
-			[3, "northern_mercenary_armor_01"],
-			[3, "padded_surcoat"],
-			[4, "basic_mail_shirt"],
-			[4, "mail_shirt"],
-			[4, "mail_hauberk"]
+			[5, ::Legends.Armor.Standard.gambeson],
+			[2, ::Legends.Armor.Standard.werewolf_mail_armor],
+			[1, ::Legends.Armor.Standard.northern_mercenary_armor_00],
+			[3, ::Legends.Armor.Standard.northern_mercenary_armor_01],
+			[3, ::Legends.Armor.Standard.padded_surcoat],
+			[4, ::Legends.Armor.Standard.basic_mail_shirt],
+			[4, ::Legends.Armor.Standard.mail_shirt],
+			[4, ::Legends.Armor.Standard.mail_hauberk]
 		]));
 
 		if (this.Math.rand(1, 100) <= 90)
 		{
 			this.m.Items.equip(this.Const.World.Common.pickHelmet([
-				[1, "padded_nasal_helmet"],
-				[1, "rondel_helm"],
-				[1, "scale_helm"],
-				[1, "nasal_helmet"],
-				[1, "closed_mail_coif"],
-				[1, "mail_coif"],
-				[1, "headscarf"],
-				[1, "padded_kettle_hat"],
-				[1, "kettle_hat"],
-				[1, "flat_top_helmet"],
-				[1, "padded_flat_top_helmet"],
-				[1, ""]
+				[1, ::Legends.Helmet.Standard.padded_nasal_helmet],
+				[1, ::Legends.Helmet.Standard.rondel_helm],
+				[1, ::Legends.Helmet.Standard.scale_helm],
+				[1, ::Legends.Helmet.Standard.nasal_helmet],
+				[1, ::Legends.Helmet.Standard.closed_mail_coif],
+				[1, ::Legends.Helmet.Standard.mail_coif],
+				[1, ::Legends.Helmet.Standard.headscarf],
+				[1, ::Legends.Helmet.Standard.padded_kettle_hat],
+				[1, ::Legends.Helmet.Standard.kettle_hat],
+				[1, ::Legends.Helmet.Standard.flat_top_helmet],
+				[1, ::Legends.Helmet.Standard.padded_flat_top_helmet],
+				[1, ::Legends.Helmet.None]
 			]))
 		}
 	}

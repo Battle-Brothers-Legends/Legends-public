@@ -6,7 +6,7 @@
 	{
 		local actor = this.getContainer().getActor();
 		local item = actor.getMainhandItem();
-		if ((item.getID() == "weapon.legend_shovel" || item.getID() == "weapon.legend_named_shovel") && this.getContainer().hasPerk(::Legends.Perk.LegendSpecialistGravedigger))
+		if ((item.getID() == "weapon.legend_shovel" || item.getID() == "weapon.legend_named_shovel") && !this.getContainer().hasPerk(::Legends.Perk.LegendSpecialistGravedigger))
 			return true;
 
 		return this.skill.isHidden();
@@ -38,6 +38,12 @@
 			type = "text",
 			icon = "ui/icons/special.png",
 			text = "Inflicts [color=" + this.Const.UI.Color.DamageValue + "]" + fatPerHit + "[/color] extra fatigue"
+		});
+		ret.push({
+			id = 7,
+			type = "text",
+			icon = "ui/icons/vision.png",
+			text = "Has a range of [color=" + this.Const.UI.Color.PositiveValue + "]2[/color] tiles"
 		});
 
 		local properties = this.getContainer().getActor().getCurrentProperties();

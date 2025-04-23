@@ -95,7 +95,9 @@
 				this.Const.Perks.SchratTree,
 				this.Const.Perks.ArcherTree
 			],
-			Class = [],
+			Class = [
+				this.Const.Perks.SharpshooterClassTree
+			],
 			Magic = []
 		}
 	}
@@ -179,14 +181,14 @@
 		}
 
 		items.equip(this.Const.World.Common.pickArmor([
-			[1, "leather_tunic"],
-			[1, "ragged_surcoat"],
-			[1, "linen_tunic"]
+			[1, ::Legends.Armor.Standard.leather_tunic],
+			[1, ::Legends.Armor.Standard.ragged_surcoat],
+			[1, ::Legends.Armor.Standard.linen_tunic]
 		]));
 
 		items.equip(this.Const.World.Common.pickHelmet([
-				[1, "hood"]
-				// [1, "hunters_hat"]
+				[1, ::Legends.Helmet.Standard.hood]
+				// [1, ::Legends.Helmet.Standard.hunters_hat]
 		]))
 	}
 

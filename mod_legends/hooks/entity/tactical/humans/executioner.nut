@@ -38,22 +38,19 @@
 		if (this.m.Items.hasEmptySlot(this.Const.ItemSlot.Body))
 		{
 			this.m.Items.equip(this.Const.World.Common.pickArmor([
-				[1, "lamellar_harness"],
-				[1, "heavy_lamellar_armor"]
+				[1, ::Legends.Armor.Standard.lamellar_harness],
+				[1, ::Legends.Armor.Standard.heavy_lamellar_armor]
 			]));
 		}
 
 		if (this.m.Items.hasEmptySlot(this.Const.ItemSlot.Head))
 		{
 			local helm = [
-				[3, "oriental/nomad_reinforced_helmet"],
-				[3, "oriental/southern_helmet_with_coif"],
-				[3, "oriental/turban_helmet"]
+				[3, ::Legends.Helmet.Southern.nomad_reinforced_helmet],
+				[3, ::Legends.Helmet.Southern.southern_helmet_with_coif],
+				[3, ::Legends.Helmet.Southern.turban_helmet],
+				[1, ::Legends.Helmet.Southern.janissary_helmet]
 			];
-			helm.push(
-				[1, "oriental/janissary_helmet"]
-			);
-
 			this.m.Items.equip(this.Const.World.Common.pickHelmet(helm));
 		}
 	}

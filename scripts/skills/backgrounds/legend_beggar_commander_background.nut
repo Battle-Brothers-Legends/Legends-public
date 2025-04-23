@@ -185,13 +185,13 @@ this.legend_beggar_commander_background <- this.inherit("scripts/skills/backgrou
 		}
 
 		items.equip(this.Const.World.Common.pickArmor([
-			[1, "tattered_sackcloth"],
-			[1, "leather_wraps"]
+			[1, ::Legends.Armor.Standard.tattered_sackcloth],
+			[1, ::Legends.Armor.Standard.leather_wraps]
 		]));
 
 		local item = this.Const.World.Common.pickHelmet([
-			[3, ""],
-			[1, "hood", 38]
+			[3, ::Legends.Helmet.None],
+			[1, ::Legends.Helmet.Standard.hood, 38]
 		]);
 		items.equip(item);
 

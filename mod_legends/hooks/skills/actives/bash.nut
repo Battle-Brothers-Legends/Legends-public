@@ -35,15 +35,25 @@
 	local getTooltip = o.getTooltip;
 	o.getTooltip = function ()
 	{
+		local ret = this.getDefaultTooltip();
 		if (this.m.IsDrumBash)
 		{
-			local ret = this.getDefaultTooltip();
 			local fatPerHit = (this.getContainer().getActor().getCurrentProperties().FatigueDealtPerHitMult + 1) * this.Const.Combat.FatigueReceivedPerHit;
 			ret.push({
 				id = 6,
 				type = "text",
 				icon = "ui/icons/special.png",
 				text = "Inflicts [color=" + this.Const.UI.Color.DamageValue + "]" + fatPerHit + "[/color] extra fatigue"
+			});
+			return ret;
+		}
+		else if (this.m.IsStaffBash)
+		{
+			ret.push({
+				id = 7,
+				type = "text",
+				icon = "ui/icons/vision.png",
+				text = "Has a range of [color=" + this.Const.UI.Color.PositiveValue + "]2[/color] tiles"
 			});
 			return ret;
 		}

@@ -47,6 +47,14 @@
 		return tooltip;
 	}
 
+	local onAfterUpdate = o.onAfterUpdate;
+	function onAfterUpdate( _properties )
+	{
+		onAfterUpdate(_properties);
+		local bonusRange = (_properties.IsSpecializedInBows ? 1 : 0) + (this.getContainer().hasPerk(::Legends.Perk.LegendSpecialistSharpshooter) ? 1 : 0);
+		this.m.MaxRange = this.m.Item.getRangeMax() + bonusRange - 1;
+	}
+
 	local onAnySkillUsed = o.onAnySkillUsed;
 	o.onAnySkillUsed = function ( _skill, _targetEntity, _properties )
 	{

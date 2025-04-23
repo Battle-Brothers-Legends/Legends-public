@@ -148,15 +148,15 @@
 		}
 
 		items.equip(this.Const.World.Common.pickArmor([
-			[1, "padded_leather"],
-			[1, "ragged_surcoat"],
-			[1, "basic_mail_shirt"],
-			[1, "padded_surcoat"]
+			[1, ::Legends.Armor.Standard.padded_leather],
+			[1, ::Legends.Armor.Standard.ragged_surcoat],
+			[1, ::Legends.Armor.Standard.basic_mail_shirt],
+			[1, ::Legends.Armor.Standard.padded_surcoat]
 		]));
 		items.equip(this.Const.World.Common.pickHelmet([
-			[1, "nasal_helmet"],
-			[1, "padded_nasal_helmet"],
-			[1, "hood"]
+			[1, ::Legends.Helmet.Standard.nasal_helmet],
+			[1, ::Legends.Helmet.Standard.padded_nasal_helmet],
+			[1, ::Legends.Helmet.Standard.hood]
 		]));
 	}
 });

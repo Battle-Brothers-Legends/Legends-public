@@ -100,7 +100,7 @@ this.legend_gladiator_prizefighter_background <- this.inherit("scripts/skills/ba
 		local r;
 
 		local a = this.Const.World.Common.pickArmor([
-			[1, "oriental/gladiator_harness"]
+			[1, ::Legends.Armor.Southern.gladiator_harness]
 		]);
 
 		r = this.Math.rand(1, 5);
@@ -114,8 +114,8 @@ this.legend_gladiator_prizefighter_background <- this.inherit("scripts/skills/ba
 		items.equip(a);
 
 		items.equip(this.Const.World.Common.pickHelmet([
-			[1, "oriental/gladiator_helmet", this.Math.rand(13, 15)],
-			[1, ""]
+			[1, ::Legends.Helmet.Southern.gladiator_helmet, this.Math.rand(13, 15)],
+			[1, ::Legends.Helmet.None]
 		]));
 
 		this.getContainer().getActor().getItems().equip(this.new("scripts/items/accessory/legend_cestus_item"));

@@ -151,12 +151,12 @@ this.legend_premonitionist_background <- this.inherit("scripts/skills/background
 		this.getContainer().getActor().fillTalentValues(2, true);
 		local items = this.getContainer().getActor().getItems();
 		items.equip(this.Const.World.Common.pickArmor([
-			[1, "legend_seer_robes"]
+			[1, ::Legends.Armor.Standard.legend_seer_robes]
 		]));
 		items.equip(this.new("scripts/items/weapons/legend_mystic_staff"));
 		items.equip(this.Const.World.Common.pickHelmet([
-			[1, "legend_seer_hat"],
-			[1, "magician_hat"]
+			[1, ::Legends.Helmet.Standard.legend_seer_hat],
+			[1, ::Legends.Helmet.Standard.magician_hat]
 		]));
 	}
 });

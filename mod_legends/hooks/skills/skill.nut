@@ -1227,6 +1227,8 @@
 
 		local shieldBonus = 0;
 		local shield = _targetEntity.getItems().getItemAtSlot(this.Const.ItemSlot.Offhand);
+		if (shield != null && !shield.isItemType(this.Const.Items.ItemType.Shield))
+			shield = null;
 
 		if (shield != null && shield.isItemType(this.Const.Items.ItemType.Shield))
 		{

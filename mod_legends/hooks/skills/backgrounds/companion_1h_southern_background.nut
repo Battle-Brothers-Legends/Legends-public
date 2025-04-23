@@ -57,16 +57,16 @@
 		items.equip(this.new("scripts/items/weapons/oriental/firelance"));
 		items.equip(this.new("scripts/items/shields/oriental/southern_light_shield"));
 		local item = this.Const.World.Common.pickArmor([
-			[1, "oriental/thick_nomad_robe"],
-			[1, "oriental/padded_vest"],
-			[1, "oriental/leather_nomad_robe"]
+			[1, ::Legends.Armor.Southern.thick_nomad_robe],
+			[1, ::Legends.Armor.Southern.padded_vest],
+			[1, ::Legends.Armor.Southern.leather_nomad_robe]
 		]);
 		items.equip(item);
 
 		local helm = this.Const.World.Common.pickHelmet([
-			[1, "oriental/leather_head_wrap"],
-			[1, "oriental/leather_head_wrap"],
-			[1, "oriental/southern_head_wrap", this.Math.rand(0, 1) == 1 ? 12 : 8]
+			[1, ::Legends.Helmet.Southern.leather_head_wrap],
+			[1, ::Legends.Helmet.Southern.leather_head_wrap],
+			[1, ::Legends.Helmet.Southern.southern_head_wrap, this.Math.rand(0, 1) == 1 ? 12 : 8]
 		]);
 		items.equip(helm);
 	}

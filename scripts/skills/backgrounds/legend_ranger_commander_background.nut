@@ -278,11 +278,11 @@ this.legend_ranger_commander_background <- this.inherit("scripts/skills/backgrou
 		}
 
 		items.equip(this.Const.World.Common.pickArmor([
-			[1, "legend_ranger_armor"]
+			[1, ::Legends.Armor.Standard.legend_ranger_armor]
 		]));
 		items.equip(this.Const.World.Common.pickHelmet([
-			[1, "hood"]
-			// [1, "hunters_hat"]
+			[1, ::Legends.Helmet.Standard.hood]
+			// [1, ::Legends.Helmet.Standard.hunters_hat]
 		]));
 
 	}

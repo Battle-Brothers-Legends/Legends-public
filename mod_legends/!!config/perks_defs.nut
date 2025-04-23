@@ -2693,15 +2693,26 @@ perkDefObjects.push({
 	Const = "LegendSpecSpearWall"
 });
 
-::Legends.Perk.LegendSpecSpearThrust <- null;
+::Legends.Perk.LegendThrustMaster <- null;
 perkDefObjects.push({
-	ID = "perk.legend_specialist_spearthrust",
-	Script = "scripts/skills/perks/perk_legend_specialist_spearthrust",
-	Name = ::Const.Strings.PerkName.LegendSpecSpearThrust,
-	Tooltip = ::Const.Strings.PerkDescription.LegendSpecSpearThrust,
+	ID = "perk.legend_thrust_master",
+	Script = "scripts/skills/perks/perk_legend_thrust_master",
+	Name = ::Const.Strings.PerkName.LegendThrustMaster,
+	Tooltip = ::Const.Strings.PerkDescription.LegendThrustMaster,
 	Icon = "ui/perks/spearthrust_mastery.png",
 	IconDisabled = "ui/perks/spearthrust_mastery_bw.png",
-	Const = "LegendSpecSpearThrust"
+	Const = "LegendThrustMaster"
+});
+
+::Legends.Perk.LegendRunThemThrough <- null;
+perkDefObjects.push({
+	ID = "perk.legend_run_them_through",
+	Script = "scripts/skills/perks/perk_legend_run_them_through",
+	Name = ::Const.Strings.PerkName.LegendRunThemThrough,
+	Tooltip = ::Const.Strings.PerkDescription.LegendRunThemThrough,
+	Icon = "ui/perks/ring_jousting_perk.png",
+	IconDisabled = "ui/perks/ring_jousting_perk_bw.png",
+	Const = "LegendRunThemThrough"
 });
 
 ::Legends.Perk.LegendAssuredConquest <- null;
@@ -4431,6 +4442,50 @@ perkDefObjects.push({
 	Icon = "ui/perks/strength_in_numbers.png",
 	IconDisabled = "ui/perks/strength_in_numbers_bw.png",
 	Const = "LegendStrengthInNumbers"
+});
+
+::Legends.Perk.LegendBackswing <- null;
+perkDefObjects.push({
+	ID = "perk.legend_backswing",
+	Script = "scripts/skills/perks/perk_legend_backswing",
+	Name = ::Const.Strings.PerkName.LegendBackswing,
+	Tooltip = ::Const.Strings.PerkDescription.LegendBackswing,
+	Icon = "ui/perks/feint_circle.png",
+	IconDisabled = "ui/perks/feint_circle_bw.png",
+	Const = "LegendBackswing"
+});
+
+::Legends.Perk.LegendSpecialistSharpshooter <- null;
+perkDefObjects.push({
+	ID = "perk.legend_specialist_sharpshooter",
+	Script = "scripts/skills/perks/perk_legend_specialist_sharpshooter",
+	Name = ::Const.Strings.PerkName.LegendSpecialistSharpshooter,
+	Tooltip = ::Const.Strings.PerkDescription.LegendSpecialistSharpshooter,
+	Icon = "ui/perks/perk_spec_longbow.png",
+	IconDisabled = "ui/perks/perk_spec_longbow_bw.png",
+	Const = "LegendSpecialistSharpshooter"
+});
+
+::Legends.Perk.LegendSpecialistRaider <- null;
+perkDefObjects.push({
+	ID = "perk.legend_specialist_raider",
+	Script = "scripts/skills/perks/perk_legend_specialist_raider",
+	Name = ::Const.Strings.PerkName.LegendSpecialistRaider,
+	Tooltip = ::Const.Strings.PerkDescription.LegendSpecialistRaider,
+	Icon = "ui/perks/perk_spec_raider.png",
+	IconDisabled = "ui/perks/perk_spec_raider_bw.png",
+	Const = "LegendSpecialistRaider"
+});
+
+::Legends.Perk.LegendSpecialistSpearfisher <- null;
+perkDefObjects.push({
+	ID = "perk.legend_specialist_spearfisher",
+	Script = "scripts/skills/perks/perk_legend_specialist_spearfisher",
+	Name = ::Const.Strings.PerkName.LegendSpecialistSpearfisher,
+	Tooltip = ::Const.Strings.PerkDescription.LegendSpecialistSpearfisher,
+	Icon = "ui/perks/perk_spec_javelin.png",
+	IconDisabled = "ui/perks/perk_spec_javelin_bw.png",
+	Const = "LegendSpecialistSpearfisher"
 });
 
 ::Const.Perks.addPerkDefObjects(perkDefObjects);

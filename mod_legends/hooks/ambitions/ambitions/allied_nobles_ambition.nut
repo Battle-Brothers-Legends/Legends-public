@@ -1,4 +1,4 @@
-::mods_hookExactClass("ambitions/ambitions/allied_nobles_ambition", function(o) 
+::mods_hookExactClass("ambitions/ambitions/allied_nobles_ambition", function(o)
 {
 	o.onReward = function ()
 	{
@@ -19,7 +19,7 @@
 		local item;
 		local stash = this.World.Assets.getStash();
 
-		item = this.Const.World.Common.pickHelmet([[1, "faction_helm", banner]]);
+		item = this.Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Standard.faction_helm, banner]]);
 		stash.add(item);
 		this.m.SuccessList.push({
 			id = 10,
@@ -29,7 +29,7 @@
 
 
 		item = this.Const.World.Common.pickArmor([
-			[1, "special/heraldic_armor", null, banner],
+			[1, ::Legends.Armor.Standard.heraldic_armor, null, banner],
 		]);
 		stash.add(item);
 		this.m.SuccessList.push({

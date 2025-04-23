@@ -1,7 +1,7 @@
 this.legend_free_company_leader_low <- this.inherit("scripts/entity/tactical/humans/legend_free_company_leader", {
 	m = {
 		Outfits = [
-			[1, "low_tier_unit_catchall_outfit_00"]
+			[1, ::Legends.Outfit.low_tier_unit_catchall_outfit_00]
 		],
 		PerkList = this.Const.EnemyPerks.FreeCompanyLeader,
 		PerkPower = 2
@@ -49,19 +49,11 @@ this.legend_free_company_leader_low <- this.inherit("scripts/entity/tactical/hum
 
 	function assignRandomEquipment()
 	{
-		local r = this.Math.rand(1, 3);
-		if (r == 1)
-		{
-			this.m.Items.equip(this.new("scripts/items/weapons/warfork"));
-		}
-		else if (r == 2)
-		{
-			this.m.Items.equip(this.new("scripts/items/weapons/legend_longsword"));
-		}
-		else if (r == 3)
-		{
-			this.m.Items.equip(this.new("scripts/items/weapons/legend_katar"));
-		}
+		this.getItems().equip(::Const.World.Common.pickItem([
+			[1, "weapons/warfork"],
+			[1, "weapons/legend_longsword"],
+			[1, "weapons/legend_katar"],
+		], "scripts/items/"));
 
 		this.legend_free_company_abstract.assignRandomEquipment();
 	}

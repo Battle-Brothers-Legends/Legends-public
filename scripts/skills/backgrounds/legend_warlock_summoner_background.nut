@@ -193,15 +193,15 @@ this.legend_warlock_summoner_background <- this.inherit("scripts/skills/backgrou
 		local items = this.getContainer().getActor().getItems();
 		//items
 		items.equip(this.Const.World.Common.pickHelmet([
-			[3, "necromancer_hat"],
-			[2, "dark_cowl"],
-			[1, ""],
-			[4, "witchhunter_hat"]
+			[3, ::Legends.Helmet.Standard.necromancer_hat],
+			[2, ::Legends.Helmet.Standard.dark_cowl],
+			[1, ::Legends.Helmet.None],
+			[4, ::Legends.Helmet.Standard.witchhunter_hat]
 		]));
 
 		items.equip(this.Const.World.Common.pickArmor([
-			[1, "thick_dark_tunic"],
-			[1, "ragged_dark_surcoat"]
+			[1, ::Legends.Armor.Standard.thick_dark_tunic],
+			[1, ::Legends.Armor.Standard.ragged_dark_surcoat]
 		]));
 
 		items.equip(this.new("scripts/items/weapons/legend_staff"));

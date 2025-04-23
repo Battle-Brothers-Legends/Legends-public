@@ -347,96 +347,55 @@ this.legend_orc_elite <- this.inherit("scripts/entity/tactical/actor", {
 
 	function assignRandomEquipment()
 	{
-		local r;
-
-		if (this.Math.rand(1, 100) <= 15)
-		{
-			r = this.Math.rand(1, 2);
-
-			if (r == 1)
-			{
-				this.m.Items.equip(this.new("scripts/items/weapons/greenskins/orc_cleaver"));
-			}
-			else if (r == 2)
-			{
-				this.m.Items.equip(this.new("scripts/items/weapons/greenskins/orc_axe"));
-			}
-
-		}
-		else
-		{
-			r = this.Math.rand(1, 4);
-
-			if (r == 1)
-			{
-				this.m.Items.equip(this.new("scripts/items/weapons/greenskins/legend_skullsmasher"));
-			}
-			else if (r == 2)
-			{
-				this.m.Items.equip(this.new("scripts/items/weapons/greenskins/orc_axe"));
-			}
-				else if (r == 3)
-			{
-				this.m.Items.equip(this.new("scripts/items/weapons/greenskins/orc_cleaver"));
-			}
-					else if (r == 4)
-			{
-				this.m.Items.equip(this.new("scripts/items/weapons/greenskins/legend_skin_flayer"));
-			}
+		if (::Math.rand(1, 100) <= 15) {
+			this.getItems().equip(::Const.World.Common.pickItem([
+				[1, "weapons/greenskins/orc_cleaver"],
+				[1, "weapons/greenskins/orc_axe"],
+			], "scripts/items/"));
+		} else {
+			this.getItems().equip(::Const.World.Common.pickItem([
+				[1, "weapons/greenskins/legend_skullsmasher"],
+				[1, "weapons/greenskins/orc_axe"],
+				[1, "weapons/greenskins/orc_cleaver"],
+				[1, "weapons/greenskins/legend_skin_flayer"]
+			], "scripts/items/"));
 		}
 
-		if (this.Math.rand(1, 100) <= 2)
-		{
-			this.m.Items.equip(this.new("scripts/items/shields/named/named_orc_heavy_shield"));
-		}
-		else
-		{
-			this.m.Items.equip(this.new("scripts/items/shields/greenskins/orc_heavy_shield"));
-		}
+		this.getItems().equip(::Const.World.Common.pickItem([
+			[1, "shields/named/named_orc_heavy_shield"],
+			[49, "shields/greenskins/orc_heavy_shield"]
+		], "scripts/items/"));
 
+		this.getItems().equip(::Const.World.Common.pickArmor([
+			[1, ::Legends.Armor.Greenskin.legend_orc_elite_heavy_armor]
+		]));
 
-			local item = this.Const.World.Common.pickArmor([
-				[1, "greenskins/legend_orc_elite_heavy_armor"]
-			]);
-			this.m.Items.equip(item);
-			local item = this.Const.World.Common.pickHelmet([
-				[1, "greenskins/orc_elite_heavy_helmet"]
-			]);
-			if (item != null)
-			{
-				this.m.Items.equip(item);
-			}
+		this.getItems().equip(::Const.World.Common.pickHelmet([
+			[1, ::Legends.Helmet.Greenskin.orc_elite_heavy_helmet]
+		]));
 	}
 
 	function makeMiniboss()
 	{
 		if (!this.actor.makeMiniboss())
-		{
 			return false;
-		}
 
 		this.getSprite("miniboss").setBrush("bust_miniboss_greenskins");
-		local weapons = [
-			"weapons/named/named_orc_cleaver",
-			"weapons/named/named_orc_axe"
-		];
-		local shields = [
-			"shields/named/named_orc_heavy_shield"
-		];
 
-		if (this.Math.rand(1, 100) <= 50)
-		{
-			this.m.Items.unequip(this.m.Items.getItemAtSlot(this.Const.ItemSlot.Mainhand));
-			this.m.Items.equip(this.new("scripts/items/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
-		}
-		else
-		{
-			this.m.Items.unequip(this.m.Items.getItemAtSlot(this.Const.ItemSlot.Offhand));
-			this.m.Items.equip(this.new("scripts/items/" + shields[this.Math.rand(0, shields.len() - 1)]));
+		if (::Math.rand(1, 100) <= 50) {
+			this.getItems().unequip(this.getItems().getItemAtSlot(::Const.ItemSlot.Mainhand));
+			this.getItems().equip(::Const.World.Common.pickItem([
+				[1, "weapons/named/named_orc_cleaver"],
+				[1, "weapons/named/named_orc_axe"]
+			], "scripts/items/"));
+		} else {
+			this.getItems().unequip(this.getItems().getItemAtSlot(::Const.ItemSlot.Offhand));
+			this.getItems().equip(::Const.World.Common.pickItem([
+				[1, "shields/named/named_orc_heavy_shield"]
+			], "scripts/items/"));
 		}
 
-		if("Assets" in this.World && this.World.Assets != null && this.World.Assets.getCombatDifficulty() != this.Const.Difficulty.Legendary)
-		{
+		if(::Legends.isLegendaryDifficulty()) {
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendLastStand);
 			::Legends.Perks.grant(this, ::Legends.Perk.Underdog);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendSecondWind);

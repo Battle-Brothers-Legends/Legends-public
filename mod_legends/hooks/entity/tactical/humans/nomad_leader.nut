@@ -62,18 +62,18 @@
 		if (this.m.Items.hasEmptySlot(this.Const.ItemSlot.Body) && this.m.Items.hasEmptySlot(this.Const.ItemSlot.Head))
 		{
 			local armor = [
-				[1, "oriental/plated_nomad_mail"],
-				[1, "oriental/southern_long_mail_with_padding"],
+				[1, ::Legends.Armor.Southern.plated_nomad_mail],
+				[1, ::Legends.Armor.Southern.southern_long_mail_with_padding],
 			];
 
 			local helmet = [
-				[4, "oriental/southern_helmet_with_coif"],
-				[8, "oriental/nomad_reinforced_helmet"]
+				[4, ::Legends.Helmet.Southern.southern_helmet_with_coif],
+				[8, ::Legends.Helmet.Southern.nomad_reinforced_helmet]
 			];
 
 			local outfits = [
-				[1, "southern_knight_outfit_00"],
-				[1, "white_nomad_leader_outfit_00"]
+				[1, ::Legends.Outfit.southern_knight_outfit_00],
+				[1, ::Legends.Outfit.white_nomad_leader_outfit_00]
 			];
 
 			foreach( item in this.Const.World.Common.pickOutfit(outfits, armor, helmet) )
@@ -86,25 +86,25 @@
 		if (this.m.Items.getItemAtSlot(this.Const.ItemSlot.Body) == null)
 		{
 			this.m.Items.equip(this.Const.World.Common.pickArmor([
-				[3, "oriental/plated_nomad_mail"],
-				[2, "oriental/southern_long_mail_with_padding"],
-				[1, "theamson_nomad_leader_armor_heavy"],
-				[2, "citrene_nomad_leader_armor_00"],
-				[1, "southern_knight_armor"]
+				[3, ::Legends.Armor.Southern.plated_nomad_mail],
+				[2, ::Legends.Armor.Southern.southern_long_mail_with_padding],
+				[1, ::Legends.Armor.Standard.theamson_nomad_leader_armor_heavy],
+				[2, ::Legends.Armor.Standard.citrene_nomad_leader_armor_00],
+				[1, ::Legends.Armor.Standard.southern_knight_armor]
 			]));
 		}
 
 		if (this.m.Items.getItemAtSlot(this.Const.ItemSlot.Head) == null)
 		{
 			local helmet = [
-				[4, "oriental/southern_helmet_with_coif"],
-				[1, "theamson_nomad_leader_helmet_facemask"],
-				[1, "theamson_nomad_leader_helmet_heavy"],
-				[8, "oriental/nomad_reinforced_helmet"]
+				[4, ::Legends.Helmet.Southern.southern_helmet_with_coif],
+				[1, ::Legends.Helmet.Standard.theamson_nomad_leader_helmet_facemask],
+				[1, ::Legends.Helmet.Standard.theamson_nomad_leader_helmet_heavy],
+				[8, ::Legends.Helmet.Southern.nomad_reinforced_helmet]
 			];
 
-			helmet.push([4, "oriental/kamy_southern_helmet"]);
-			helmet.push([4, "southern_knight_helmet"]);
+			helmet.push([4, ::Legends.Helmet.Southern.kamy_southern_helmet]);
+			helmet.push([4, ::Legends.Helmet.Standard.southern_knight_helmet]);
 
 			this.m.Items.equip(this.Const.World.Common.pickHelmet(helmet));
 		}

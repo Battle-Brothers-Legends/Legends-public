@@ -137,9 +137,9 @@
 	{
 		local items = this.getContainer().getActor().getItems();
 		items.equip(this.Const.World.Common.pickArmor([
-			[1, "sackcloth"],
-			[1, "tattered_sackcloth"],
-			[1, "leather_wraps"]
+			[1, ::Legends.Armor.Standard.sackcloth],
+			[1, ::Legends.Armor.Standard.tattered_sackcloth],
+			[1, ::Legends.Armor.Standard.leather_wraps]
 		]));
 		items.equip(this.new("scripts/items/accessory/legend_hand_wraps_item"))
 	}

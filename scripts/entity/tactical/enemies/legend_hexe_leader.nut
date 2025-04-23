@@ -335,7 +335,7 @@ this.legend_hexe_leader <- this.inherit("scripts/entity/tactical/actor", {
 
 	function assignRandomEquipment()
 	{
-		 this.m.Items.equip(this.new("scripts/items/weapons/legend_staff_gnarled"));
+		 this.getItems().equip(this.new("scripts/items/weapons/legend_staff_gnarled"));
 	}
 
 	function setCharming( _f )

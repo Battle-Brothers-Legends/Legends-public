@@ -1,7 +1,7 @@
 this.legend_free_company_slayer <- this.inherit("scripts/entity/tactical/legend_free_company_abstract", {
 	m = {
 		Outfits = [
-			[1, "mercenary_spearman_outfit_00"]
+			[1, ::Legends.Outfit.mercenary_spearman_outfit_00]
 		],
 		PerkList = this.Const.EnemyPerks.FreeCompanySlayer,
 		PerkPower = 12
@@ -49,52 +49,25 @@ this.legend_free_company_slayer <- this.inherit("scripts/entity/tactical/legend_
 
 	function assignRandomEquipment()
 	{
-		local r = this.Math.rand(1, 100);
-		if (r <= 32)
-		{
-			this.m.Items.equip(this.new("scripts/items/weapons/morning_star"));
-		}
-		else if (r <= 64)
-		{
-			this.m.Items.equip(this.new("scripts/items/weapons/flail"));
-		}
-		else if (r <= 96)
-		{
-			this.m.Items.equip(this.new("scripts/items/weapons/hand_axe"));
-		}
-		else
-		{
-			this.m.Items.equip(this.new("scripts/items/weapons/three_headed_flail"));
-		}
+		this.getItems().equip(::Const.World.Common.pickItem([
+			[32, "weapons/morning_star"],
+			[32, "weapons/flail"],
+			[32, "weapons/hand_axe"],
+			[6, "weapons/three_headed_flail"],
+		], "scripts/items/"));
 
-
-		r = this.Math.rand(1, 100);
-		if (r <= 30)
-		{
-			this.m.Items.equip(this.new("scripts/items/shields/kite_shield"));
-
-		}
-		else if (r <= 60)
-		{
-			this.m.Items.equip(this.new("scripts/items/shields/heater_shield"));
-		}
-		else if (r <= 70)
-		{
-			this.m.Items.equip(this.new("scripts/items/tools/throwing_net"));
-		}
+		this.getItems().equip(::Const.World.Common.pickItem([
+			[3, "shields/kite_shield"],
+			[3, "shields/heater_shield"],
+			[4, "tools/throwing_net"],
+		], "scripts/items/"));
 
 		if (this.getIdealRange() == 1 && this.Math.rand(1, 100) <= 50)
 		{
-			r = this.Math.rand(1, 2);
-
-			if (r == 1)
-			{
-				this.m.Items.addToBag(this.new("scripts/items/weapons/throwing_axe"));
-			}
-			else if (r == 2)
-			{
-				this.m.Items.addToBag(this.new("scripts/items/weapons/javelin"));
-			}
+			this.getItems().addToBag(::Const.World.Common.pickItem([
+				[1, "weapons/throwing_axe"],
+				[1, "weapons/javelin"],
+			], "scripts/items/"));
 		}
 
 		this.legend_free_company_abstract.assignRandomEquipment();

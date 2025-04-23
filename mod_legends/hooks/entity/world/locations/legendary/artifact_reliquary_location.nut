@@ -7,7 +7,7 @@
 		], _lootTable);
 //		_lootTable.push(this.new("scripts/items/helmets/golems/grand_diviner_headdress"));
 		_lootTable.push(::Const.World.Common.pickArmor([
-			[1, "grand_diviner_robes"]
+			[1, ::Legends.Armor.Standard.grand_diviner_robes]
 		]));
 	}
 
