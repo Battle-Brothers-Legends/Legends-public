@@ -1,4 +1,4 @@
-this.belly_dancer_event <- this.inherit("scripts/encounters/encounter_event", {
+this.legend_belly_dancer_encounter <- this.inherit("scripts/encounters/encounter_event", {
     m = {},
     function create() {
         this.m.Type = "encounter.belly_dancer_encounter";
