@@ -59,7 +59,7 @@ this.legend_RSW_poison <- this.inherit("scripts/skills/skill", {
 		{
 			::Legends.Effects.grant(_targetEntity, ::Legends.Effect.LegendRswPoisonEffect, function (_effect) {
 				_effect.setStats(this.getItem().getRuneBonus1(), this.getItem().getRuneBonus2());
-			});
+			}.bindenv(this));
 		}
 		else if (runePoison != null && gobboPoison == null)
 		{

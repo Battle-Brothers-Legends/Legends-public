@@ -62,9 +62,9 @@ this.legend_greenwood_schrat_small <- this.inherit("scripts/entity/tactical/acto
 
 	function onDeath( _killer, _skill, _tile, _fatalityType )
 	{
+		local flip = this.Math.rand(0, 100) < 50;
 		if (_tile != null)
 		{
-			local flip = this.Math.rand(0, 100) < 50;
 			local decal;
 			this.m.IsCorpseFlipped = flip;
 			local body = this.getSprite("body");
@@ -73,14 +73,30 @@ this.legend_greenwood_schrat_small <- this.inherit("scripts/entity/tactical/acto
 			decal.Saturation = body.Saturation;
 			decal.Scale = 0.95;
 			this.spawnTerrainDropdownEffect(_tile);
-			local corpse = clone this.Const.Corpse;
-			corpse.CorpseName = "A " + this.getName();
-			corpse.IsHeadAttached = true;
+		}
+
+		local deathLoot = this.getItems().getDroppableLoot(_killer);
+		local tileLoot = this.getLootForTile(_killer, deathLoot);
+		local corpse = this.generateCorpse(_tile, _fatalityType);
+		this.dropLoot(_tile, tileLoot, !flip);
+
+		if (_tile == null) {
+			this.Tactical.Entities.addUnplacedCorpse(corpse);
+		} else {
 			_tile.Properties.set("Corpse", corpse);
 			this.Tactical.Entities.addCorpse(_tile);
 		}
 
 		this.actor.onDeath(_killer, _skill, _tile, _fatalityType);
+	}
+
+	function generateCorpse( _tile, _fatalityType )
+	{
+		local corpse = clone this.Const.Corpse;
+		corpse.CorpseName = "A " + this.getName();
+		corpse.IsHeadAttached = true;
+		corpse.Tile = _tile;
+		return corpse;
 	}
 
 	function onInit()

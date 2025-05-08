@@ -25,6 +25,12 @@ this.legend_named_warlock_hood <- this.inherit("scripts/items/legend_helmets/leg
         this.randomizeValues();
 	}
 
+	function resetStats()
+	{
+		this.m.Condition = 10;
+		this.m.ConditionMax = 10;
+	}
+
 	function getTooltip()
 	{
 		local result = this.legend_helmet_upgrade.getTooltip();

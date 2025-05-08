@@ -172,14 +172,13 @@ this.legend_magic_circle_of_protection_skill <- this.inherit("scripts/skills/act
 		this.endEffect();
 	}
 
-	function onMovementCompleted( _tile )
+	function onMovementFinished()
 	{
+		local tile = this.getContainer().getActor().getTile();
 		if (this.m.TurnsRemaining <= 0)
-		{
 			return;
-		}
 
-		if (!this.tileInCircleRange(_tile))
+		if (!this.tileInCircleRange(tile))
 		{
 			this.endEffect();
 		}

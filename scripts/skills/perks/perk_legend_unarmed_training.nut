@@ -38,6 +38,21 @@ this.perk_legend_unarmed_training <- this.inherit("scripts/skills/skill", {
 			_properties.DamageTotalMult *= 1.5;
 			_properties.MeleeSkill += 10;
 		}
+
+		foreach (tier in ::Const.Perks.FistsTree.Tree)
+		{
+			foreach (perk in tier)
+			{
+				if (!this.getContainer().hasPerk(perk))
+				{
+					return; // we don't have a perk in the tree
+				}
+			}
+		}
+		if (_skill.getID() == ::Legends.Actives.getID(::Legends.Active.LegendChoke) || _skill.getID() == ::Legends.Actives.getID(::Legends.Active.HandToHand))
+		{
+			_properties.DamageTotalMult *= 1.25;
+		}
 	}
 
 	function onAdded()

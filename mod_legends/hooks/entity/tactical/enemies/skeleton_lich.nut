@@ -5,25 +5,6 @@
 		this.skeleton.onFactionChanged();
 	}
 
-	// local onDeath = o.onDeath;
-	// o.onDeath = function ( _killer, _skill, _tile, _fatalityType )
-	// {
-	// 	onDeath( _killer, _skill, _tile, _fatalityType );
-	// 	if (_killer == null || _killer.getFaction() == this.Const.Faction.Player || _killer.getFaction() == this.Const.Faction.PlayerAnimals)
-	// 	{
-	// 		local n = 1 + (!this.Tactical.State.isScenarioMode() && this.Math.rand(1, 100) <= this.World.Assets.getExtraLootChance() ? 1 : 0);
-
-	// 		for( local i = 0; i < n; i = ++i )
-	// 		{
-	// 			for (local v = 0; v < 5; ++v)
-	// 			{
-	// 				local loot = this.new("scripts/items/misc/legend_ancient_scroll_item");
-	// 				loot.drop(_tile);
-	// 			}
-	// 		}
-	// 	}
-	// }
-
 	local onInit = o.onInit;
 	o.onInit = function ()
 	{
@@ -44,12 +25,12 @@
 	o.assignRandomEquipment = function ()
 	{
 		local armor = [
-			[1, "ancient/ancient_lich_attire"]
+			[1, ::Legends.Armor.Ancient.ancient_lich_attire]
 		];
 		local item = this.Const.World.Common.pickArmor(armor);
 		this.m.Items.equip(item);
 		local helmet = [
-			[1, "ancient/ancient_lich_headpiece"]
+			[1, ::Legends.Helmet.Ancient.ancient_lich_headpiece]
 		];
 		this.m.Items.equip(this.Const.World.Common.pickHelmet(helmet));
 	}

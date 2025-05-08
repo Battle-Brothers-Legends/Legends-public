@@ -525,7 +525,7 @@ this.legend_hunting_basilisks_contract <- this.inherit("scripts/contracts/contra
 		}
 
 		local tile = this.getTileToSpawnLocation(playerTile, numWoods >= 12 ? 6 : 3, 9, disallowedTerrain);
-		local party = this.World.FactionManager.getFactionOfType(this.Const.FactionType.Beasts).spawnEntity(tile, "Basilisks", false, this.Const.World.Spawn.LegendBasiliskLOW, 110 * this.getDifficultyMult() * this.getScaledDifficultyMult());
+		local party = this.World.FactionManager.getFactionOfType(this.Const.FactionType.Beasts).spawnEntity(tile, "Basilisks", false, this.Const.World.Spawn.LegendBasiliskLOW, 110 * this.getDifficultyMult() * this.getScaledDifficultyMult(), this.getMinibossModifier());
 		party.setDescription("A stampede of basilisks hunting for food");
 		party.setFootprintType(this.Const.World.FootprintsType.Basilisks);
 		party.setAttackableByAI(false);

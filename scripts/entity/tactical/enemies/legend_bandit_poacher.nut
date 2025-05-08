@@ -102,15 +102,15 @@ this.legend_bandit_poacher <- this.inherit("scripts/entity/tactical/legend_rando
 	// 	}
 
 	// 	local item = this.Const.World.Common.pickArmor([
-	// 		[20, "leather_wraps"]
+	// 		[20, ::Legends.Armor.Standard.leather_wraps]
 	// 	])
 	// 	this.m.Items.equip(item);
 
 	// 	if (this.Math.rand(1, 100) <= 50)
 	// 	{
 	// 		local item = this.Const.World.Common.pickHelmet([
-	// 			[1, "headscarf"],
-	// 			[1, "mouth_piece"]
+	// 			[1, ::Legends.Helmet.Standard.headscarf],
+	// 			[1, ::Legends.Helmet.Standard.mouth_piece]
 	// 		])
 	// 		if (item != null)
 	// 		{

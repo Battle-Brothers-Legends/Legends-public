@@ -11,7 +11,7 @@
 ::Const.RandomizedCharacterInfo <- {}
 ::Const.RandomizedCharacterInfo["Default"] <- {
     Outfits = [
-        [1, "low_tier_unit_catchall_outfit_01"]
+        [1, ::Legends.Outfit.low_tier_unit_catchall_outfit_01]
     ],
     ClassPerkList = [],
     DefensePerkList = [
@@ -47,7 +47,7 @@
 }
 ::Const.RandomizedCharacterInfo[::Const.EntityType.Peasant] <- {
     Outfits = [
-        [1, "peasant_outfit_00"]
+        [1, ::Legends.Outfit.peasant_outfit_00]
     ],
     WeaponsAndTrees = [
         [2, ["knife",  100, 80]],
@@ -86,7 +86,7 @@
 }
 ::Const.RandomizedCharacterInfo[::Const.EntityType.CaravanHand] <- {
     Outfits = [
-        [1, "caravan_hand_outfit_00"]
+        [1, ::Legends.Outfit.caravan_hand_outfit_00]
     ],
     WeaponsAndTrees = [
         [1, ["dagger", 100, 75]],
@@ -131,7 +131,7 @@
 }
 ::Const.RandomizedCharacterInfo[::Const.EntityType.CaravanGuard] <- {
     Outfits = [
-        [1, "caravan_guard_outfit_00"]
+        [1, ::Legends.Outfit.caravan_guard_outfit_00]
     ],
      DefensePerkList = [
         this.Const.Perks.HeavyArmorTree,
@@ -171,7 +171,7 @@
 }
 ::Const.RandomizedCharacterInfo[::Const.EntityType.BanditRabble] <- {
     Outfits = [
-        [1, "bandit_rabble_outfit_00"]
+        [1, ::Legends.Outfit.bandit_rabble_outfit_00]
     ],
     TraitsPerkList = [
         this.Const.Perks.AgileTree,
@@ -213,7 +213,7 @@
 }
 ::Const.RandomizedCharacterInfo[::Const.EntityType.BanditRabblePoacher] <- {
     Outfits = [
-        [1, "bandit_rabble_poacher_outfit_00"]
+        [1, ::Legends.Outfit.bandit_rabble_poacher_outfit_00]
     ],
     TraitsPerkList = [
         this.Const.Perks.AgileTree,
@@ -240,7 +240,7 @@
 }
 ::Const.RandomizedCharacterInfo[::Const.EntityType.BanditThug] <- {
     Outfits = [
-        [1, "bandit_thug_outfit_00"]
+        [1, ::Legends.Outfit.bandit_thug_outfit_00]
     ],
     WeaponsAndTrees = [
         [1, ["woodcutters_axe", 70], [::Legends.Perk.LegendSmashingShields]],
@@ -292,7 +292,7 @@
 }
 ::Const.RandomizedCharacterInfo[::Const.EntityType.BanditPoacher] <- {
     Outfits = [
-        [1, "bandit_poacher_outfit_00"]
+        [1, ::Legends.Outfit.bandit_poacher_outfit_00]
     ],
     WeaponsAndTrees = [
         [3, ["wonky_bow", 65]],
@@ -324,8 +324,8 @@
 }
 ::Const.RandomizedCharacterInfo[::Const.EntityType.BanditRaider] <- {
     Outfits = [
-        [1, "dark_southern_outfit_00"],
-        [19, "bandit_raider_outfit_00"]
+        [1, ::Legends.Outfit.dark_southern_outfit_00],
+        [19, ::Legends.Outfit.bandit_raider_outfit_00]
     ],
      DefensePerkList = [
         this.Const.Perks.HeavyArmorTree,
@@ -394,7 +394,7 @@
 // Should look at how to normalize this for low-tier units?
 ::Const.RandomizedCharacterInfo["BanditRaiderLow"] <- {
     Outfits = [
-        [1, "bandit_raider_low_outfit_00"]
+        [1, ::Legends.Outfit.bandit_raider_low_outfit_00]
     ],
     WeaponsAndTrees = [
         [1, ["woodcutters_axe", 70]],
@@ -417,7 +417,7 @@
 
 ::Const.RandomizedCharacterInfo[::Const.EntityType.LegendCaravanPolearm] <- {
     Outfits = [
-        [1, "legend_caravan_polearm_outfit_00"]
+        [1, ::Legends.Outfit.legend_caravan_polearm_outfit_00]
     ],
     WeaponsAndTrees = [
         [5, ["legend_ranged_wooden_flail", 75, 35]],
@@ -456,7 +456,7 @@
 
 ::Const.RandomizedCharacterInfo[::Const.EntityType.NobleEliteFootman] <- {
     Outfits = [
-        [1, "noble_elite_footman_outfit_00"] //todo
+        [1, ::Legends.Outfit.noble_elite_footman_outfit_00] //todo
     ],
     WeaponsAndTrees = [
         [4, ["military_pick", 100]],
@@ -500,8 +500,8 @@
 
 ::Const.RandomizedCharacterInfo[::Const.EntityType.NoblePollax] <- {
     Outfits = [
-        [1, "mercury_pollax_00"], //Looking @ around 200 each at most ideally
-        [1, "mercury_pollax_colorful"]
+        [1, ::Legends.Outfit.mercury_pollax_00], //Looking @ around 200 each at most ideally
+        [1, ::Legends.Outfit.mercury_pollax_colorful]
     ],
     WeaponsAndTrees = [
         [1, ["polehammer", 100]],
@@ -537,10 +537,10 @@
 }
 ::Const.RandomizedCharacterInfo[::Const.EntityType.NobleSureshot] <- {
     Outfits = [
-        [1, "mercury_sureshot_00"], // looking for low helmets maybe 150ish body
-        [1, "mercury_sureshot_brown_00"],
-        [1, "mercury_sureshot_blue_00"],
-        [1, "mercury_sureshot_green_00"]
+        [1, ::Legends.Outfit.mercury_sureshot_00], // looking for low helmets maybe 150ish body
+        [1, ::Legends.Outfit.mercury_sureshot_brown_00],
+        [1, ::Legends.Outfit.mercury_sureshot_blue_00],
+        [1, ::Legends.Outfit.mercury_sureshot_green_00]
     ],
     WeaponsAndTrees = [
         [3, ["war_bow", 100]],
@@ -576,7 +576,7 @@
 
 ::Const.RandomizedCharacterInfo[::Const.EntityType.LegendNobleGuard] <- {
     Outfits = [
-        [1, "noble_footman_veteran_00"] //todo
+        [1, ::Legends.Outfit.noble_footman_veteran_00] //todo
     ],
     WeaponsAndTrees = [
         [4, ["military_pick", 100]],
@@ -772,7 +772,7 @@
 
     //Bodyguard
         case _item.getID() == "weapon.legend_longsword" || _item.getID() == "weapon.longsword":
-            return this.Const.Perks.BodyguardClassTree;
+            return this.Const.Perks.LongswordClassTree;
 
     //Slings
         case _item.getID() == "weapon.legend_sling":

@@ -216,6 +216,8 @@
 	o.getPerkBackgroundDescription <- function ( _tree )
 	{
 		local text = "";
+		if (_tree == null) // donkeys don't have tree
+			return text;
 		text += this.getPerkTreeGroupDescription(_tree.Weapon,  "Has an aptitude for");
 		text += this.getPerkTreeGroupDescription(_tree.Defense,  "Likes wearing");
 		text += this.getPerkTreeGroupDescription(_tree.Enemy,  "Prefers fighting");
@@ -617,6 +619,15 @@
 				text = this.getDescription()
 			}
 		];
+		if (this.getContainer() != null && this.getContainer().getActor().getLevel() >= 12)
+		{
+			ret.push({
+				id = 10,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = "Gain a perk point every [color=" + this.Const.UI.Color.PositiveValue + "]" + this.getContainer().getActor().getVeteranPerks() + "[/color] Levels"
+			});
+		}
 		if (this.getContainer() != null) ret.extend(this.getAttributesTooltip());
 		return ret;
 	}
@@ -1790,15 +1801,7 @@
 		this.m.RawDescription = _in.readString();
 		this.m.Level = _in.readU8();
 		this.m.IsNew = _in.readBool();
-
-		if (_in.getMetaData().getVersion() >= 39)
-		{
-			this.m.DailyCostMult = _in.readF32();
-		}
-		else
-		{
-			this.m.DailyCostMult = 1.0;
-		}
+		this.m.DailyCostMult = _in.readF32();
 
 		if(_in.readBool())
 		{

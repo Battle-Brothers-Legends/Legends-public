@@ -2,6 +2,7 @@ this.legend_demon_alp_skin_item <- this.inherit("scripts/items/item", {
 	m = {},
 	function create()
 	{
+		this.item.create();
 		this.m.ID = "misc.legend_demon_alp_skin";
 		this.m.Name = "Demon Alp Skin";
 		this.m.Description = "This skin taken from an Demon Alp is leathery and seems to ooze ichor.";

@@ -2,6 +2,7 @@ this.legend_demon_third_eye_item <- this.inherit("scripts/items/item", {
 	m = {},
 	function create()
 	{
+		this.item.create();
 		this.m.ID = "misc.legend_demon_third_eye";
 		this.m.Name = "Third Demon Eye";
 		this.m.Description = "Demon alps have no eyes, yet this eye-like organ can be retreived from inside their skulls.";

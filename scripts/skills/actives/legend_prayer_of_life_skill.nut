@@ -60,7 +60,7 @@ this.legend_prayer_of_life_skill <- this.inherit("scripts/skills/skill", {
 	{
 		local myTile = _user.getTile();
 		local actors = this.Tactical.Entities.getAllInstancesAsArray();
-		local bonus = _user.Bravery * 0.20;
+		local bonus = _user.getCurrentProperties().Bravery * 0.20;
 		foreach( a in actors )
 		{
 			if (a.getID() == _user.getID())

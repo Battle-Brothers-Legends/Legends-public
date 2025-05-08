@@ -151,7 +151,8 @@
 	"bust_head_female_13",
 	"bust_head_female_14",
 	"bust_head_female_15",
-	"bust_head_female_16"
+	"bust_head_female_16",
+	"bust_head_female_17",
 ];
 
 ::Const.Faces.AllFemale <- [

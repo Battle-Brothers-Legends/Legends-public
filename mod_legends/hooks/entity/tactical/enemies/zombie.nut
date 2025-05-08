@@ -198,15 +198,15 @@
 
 
 		local aList = [
-			[1, "leather_tunic"],
-			[1, "linen_tunic"],
-			[1, "linen_tunic"],
-			[1, "sackcloth"],
-			[1, "tattered_sackcloth"],
-			[1, "leather_wraps"],
-			[1, "apron"],
-			[1, "butcher_apron"],
-			[1, "monk_robe"]
+			[1, ::Legends.Armor.Standard.leather_tunic],
+			[1, ::Legends.Armor.Standard.linen_tunic],
+			[1, ::Legends.Armor.Standard.linen_tunic],
+			[1, ::Legends.Armor.Standard.sackcloth],
+			[1, ::Legends.Armor.Standard.tattered_sackcloth],
+			[1, ::Legends.Armor.Standard.leather_wraps],
+			[1, ::Legends.Armor.Standard.apron],
+			[1, ::Legends.Armor.Standard.butcher_apron],
+			[1, ::Legends.Armor.Standard.monk_robe]
 		];
 		local armor = this.Const.World.Common.pickArmor(aList);
 
@@ -220,11 +220,11 @@
 		if (this.Math.rand(1, 100) <= 33)
 		{
 			local item = this.Const.World.Common.pickHelmet([
-				[1, "aketon_cap"],
-				[1, "full_aketon_cap"],
-				[1, "kettle_hat"],
-				[1, "padded_kettle_hat"],
-				[1, "full_leather_cap"]
+				[1, ::Legends.Helmet.Standard.aketon_cap],
+				[1, ::Legends.Helmet.Standard.full_aketon_cap],
+				[1, ::Legends.Helmet.Standard.kettle_hat],
+				[1, ::Legends.Helmet.Standard.padded_kettle_hat],
+				[1, ::Legends.Helmet.Standard.full_leather_cap]
 			]);
 			if (item != null)
 			{

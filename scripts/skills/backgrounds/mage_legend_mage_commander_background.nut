@@ -214,16 +214,10 @@ this.mage_legend_mage_commander_background <- this.inherit("scripts/skills/backg
 		this.getContainer().getActor().fillTalentValues(1, true);
 		local items = this.getContainer().getActor().getItems();
 		items.equip(this.Const.World.Common.pickArmor([
-			[
-				1,
-				"legend_seer_robes"
-			]
+			[1, ::Legends.Armor.Standard.legend_seer_robes]
 		]));
 		items.equip(this.Const.World.Common.pickHelmet([
-			[
-				1,
-				"legend_seer_hat"
-			]
+			[1, ::Legends.Helmet.Standard.legend_seer_hat]
 		]));
 		items.equip(this.new("scripts/items/weapons/legend_mystic_staff"));
 	}

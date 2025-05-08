@@ -11,13 +11,20 @@
 		"sounds/combat/chop_hit_03.wav"
 	];
 
+	local create = o.create;
+	o.create = function()
+	{
+		create();
+		this.m.HitChanceBonus = 0;
+	}
+
 	local getTooltip = o.getTooltip;
 	o.getTooltip = function ()
 	{
 		local tooltip = getTooltip();
 		if (this.getContainer().getActor().getCurrentProperties().IsSpecializedInCleavers)
 		{
-			ret.push({
+			tooltip.push({
 				id = 8,
 				type = "text",
 				icon = "ui/icons/special.png",
@@ -38,6 +45,18 @@
 		foreach( r in this.m.SoundsB )
 		{
 			this.Tactical.addResource(r);
+		}
+	}
+
+	function onAnySkillUsed( _skill, _targetEntity, _properties )
+	{
+		if (_skill == this)
+		{
+			if (_targetEntity != null && !this.getContainer().getActor().getCurrentProperties().IsSpecializedInPolearms && this.getContainer().getActor().getTile().getDistanceTo(_targetEntity.getTile()) == 1)
+			{
+				_properties.MeleeSkill += -15;
+				this.m.HitChanceBonus = -15;
+			}
 		}
 	}
 

@@ -471,6 +471,57 @@ if (!("Perks" in ::Const))
 	]
 };
 
+::Const.Perks.SharpshooterClassTree <- {
+	ID = "SharpshooterClassTree",
+	Name = "Sharpshooter",
+	Descriptions = [
+		"longbows"
+	],
+	Tree = [
+		[::Legends.Perk.LegendSpecialistSharpshooter],
+		[],
+		[],
+		[],
+		[],
+		[],
+		[]
+	]
+};
+
+::Const.Perks.RaiderClassTree <- {
+	ID = "RaiderClassTree",
+	Name = "Raider",
+	Descriptions = [
+		"handaxes and throwing axes"
+	],
+	Tree = [
+		[::Legends.Perk.LegendSpecialistRaider],
+		[],
+		[],
+		[],
+		[],
+		[],
+		[]
+	]
+};
+
+::Const.Perks.SpearfisherClassTree <- {
+	ID = "SpearfisherClassTree",
+	Name = "Spearfisher",
+	Descriptions = [
+		"javelins"
+	],
+	Tree = [
+		[::Legends.Perk.LegendSpecialistSpearfisher],
+		[],
+		[],
+		[],
+		[],
+		[],
+		[]
+	]
+};
+
 ::Const.Perks.ClassTrees <- {
 	Tree = [
 		::Const.Perks.BeastClassTree,
@@ -488,18 +539,21 @@ if (!("Perks" in ::Const))
 		::Const.Perks.PitchforkClassTree,
 		::Const.Perks.ShortbowClassTree,
 		::Const.Perks.WoodaxeClassTree,
-		::Const.Perks.SickleClassTree,
 		::Const.Perks.NinetailsClassTree,
 		::Const.Perks.JugglerClassTree,
 		::Const.Perks.HoundmasterClassTree,
-		::Const.Perks.ScytheClassTree,
 		::Const.Perks.ClubClassTree,
 		::Const.Perks.InquisitionClassTree,
 		::Const.Perks.LongswordClassTree,
 		::Const.Perks.InventorClassTree,
-		::Const.Perks.StaffClassTree,
+		::Const.Perks.SickleClassTree,
+		::Const.Perks.ScytheClassTree,
+		::Const.Perks.SharpshooterClassTree
+		::Const.Perks.ShovelClassTree,
 		::Const.Perks.SlingClassTree,
-		::Const.Perks.ShovelClassTree
+		::Const.Perks.SpearfisherClassTree
+		::Const.Perks.StaffClassTree,
+		::Const.Perks.RaiderClassTree
 	],
 	function getRandom(_exclude)
 	{

@@ -215,6 +215,10 @@
 
 			break;
 
+		case this.Const.Tactical.DeploymentType.LineCenter:
+			this.placePlayersInFormation(frontline, 3 + shiftX);
+			break;
+
 		case this.Const.Tactical.DeploymentType.LineForward:
 			this.placePlayersInFormation(frontline, 8 + shiftX);
 			break;
@@ -297,6 +301,10 @@
 				{
 					this.spawnEntitiesInFormation(f.Entities, n, 8 + shiftX);
 				}
+				else if (f.IsAlliedWithPlayer && _properties.PlayerDeploymentType == this.Const.Tactical.DeploymentType.LineCenter)
+				{
+					this.spawnEntitiesInFormation(f.Entities, n, 3 + shiftX);
+				}
 				else if (!f.IsAlliedWithPlayer && _properties.PlayerDeploymentType == this.Const.Tactical.DeploymentType.LineForward)
 				{
 					this.spawnEntitiesInFormation(f.Entities, n, -10 - shiftX);
@@ -306,6 +314,21 @@
 					this.spawnEntitiesInFormation(f.Entities, n, -10 + shiftX);
 				}
 
+				break;
+
+			case this.Const.Tactical.DeploymentType.LineCenter:
+				if (f.IsAlliedWithPlayer && _properties.PlayerDeploymentType == this.Const.Tactical.DeploymentType.LineForward)
+				{
+					this.spawnEntitiesInFormation(f.Entities, n, 8 + shiftX);
+				}
+				else if (!f.IsAlliedWithPlayer && _properties.PlayerDeploymentType == this.Const.Tactical.DeploymentType.LineForward)
+				{
+					this.spawnEntitiesInFormation(f.Entities, n, 3 - shiftX);
+				}
+				else
+				{
+					this.spawnEntitiesInFormation(f.Entities, n, 3 + shiftX);
+				}
 				break;
 
 			case this.Const.Tactical.DeploymentType.Arena:
@@ -511,8 +534,6 @@
 			{
 				::Legends.Effects.grant(e, ::Legends.Effect.LegendRain);
 			}
-
-
 		}
 	}
 
@@ -613,10 +634,10 @@
 	o.setupEntity = function( _e, _t )
 	{
 		setupEntity( _e, _t );
-		if (("Outfits") in _t) //this is mostly only used for free companies currently, I'll admit I just can't think of a better way to do these
-		{
+		if (("Outfits") in _t) { //this is mostly only used for free companies currently, I'll admit I just can't think of a better way to do these
 			_e.m.Outfits = _t.Outfits;
 		}
+		::Legends.Scaling.scaleEnemy(_e, _t);
 	}
 
 	local getHostilesNum = o.getHostilesNum;

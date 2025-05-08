@@ -9,6 +9,17 @@ this.legend_mummy_queen <- this.inherit("scripts/entity/tactical/legend_mummy", 
 		this.legend_mummy.create();
 		this.m.AIAgent = this.new("scripts/ai/tactical/agents/legend_mummy_queen_agent");
 		this.m.AIAgent.setActor(this);
+
+		this.m.OnDeathLootTable.extend([
+			[100, "scripts/items/loot/ancient_gold_coins_item"],
+			[100, "scripts/items/loot/jeweled_crown_item"],
+		]);
+		local rolls = ::Legends.S.extraLootChance(1);
+		for(local i = 0; i < rolls; i++) {
+			this.m.OnDeathLootTable.extend([
+				[50, "scripts/items/misc/legend_ancient_scroll_item"]
+			]);
+		}
 	}
 
 	function onInit()
@@ -54,44 +65,19 @@ this.legend_mummy_queen <- this.inherit("scripts/entity/tactical/legend_mummy", 
 		}
 
 	}
-	function onDeath( _killer, _skill, _tile, _fatalityType )
-	{
-		local loot = this.new("scripts/items/loot/ancient_gold_coins_item");
-		local loot = this.new("scripts/items/loot/jeweled_crown_item");
-		loot.drop(_tile);
-		if (_killer == null || _killer.getFaction() == this.Const.Faction.Player || _killer.getFaction() == this.Const.Faction.PlayerAnimals)
-		{
-			local n = 1 + (!this.Tactical.State.isScenarioMode() && this.Math.rand(1, 100) <= this.World.Assets.getExtraLootChance() ? 1 : 0);
 
-			for( local i = 0; i < n; i = ++i )
-			{
-				local r = this.Math.rand(1, 100);
-				local loot;
-				if (r <= 50)
-				{
-					loot = this.new("scripts/items/misc/legend_ancient_scroll_item");
-					loot.drop(_tile);
-				}
-			}
-		}
-	}
-	function assignRandomEquipment()
-	{
-		this.m.Items.equip(this.new("scripts/items/weapons/named/legend_named_royal_lance"));
+	function assignRandomEquipment() {
+		this.getItems().equip(::Const.World.Common.pickItem([
+			[1, "weapons/named/legend_named_royal_lance"]
+		], "scripts/items/"));
 
-		local armor = [
-			[1, "ancient/legend_mummy_dress"]
-		];
-		local item = this.Const.World.Common.pickArmor(armor);
-		this.m.Items.equip(item);
+		this.getItems().equip(::Const.World.Common.pickArmor([
+			[1, ::Legends.Armor.Ancient.legend_mummy_dress]
+		]));
 
-		local item = this.Const.World.Common.pickHelmet([
-			[1, "ancient/legend_mummy_crown"]
-		]);
-		if (item != null)
-		{
-			this.m.Items.equip(item);
-		}
+		this.getItems().equip(::Const.World.Common.pickHelmet([
+			[1, ::Legends.Helmet.Ancient.legend_mummy_crown]
+		]));
 	}
 
 });

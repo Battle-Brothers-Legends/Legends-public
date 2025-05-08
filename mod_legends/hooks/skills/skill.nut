@@ -248,10 +248,6 @@
 	{
 	}
 
-	o.onMovementCompleted <- function( _tile )
-	{
-	}
-
 	o.factoringOffhand <- function( _properties )
 	{
 		if (this.m.Item == null || this.m.Item.isNull()) return _properties;
@@ -439,17 +435,6 @@
 				ret.push({
 					icon = "ui/tooltips/negative.png",
 					text = "Armed with shield"
-				});
-			}
-		}
-
-		if (this.m.IsShieldwallRelevant)
-		{
-			if (_targetTile.IsOccupiedByActor && targetEntity.getSkills().hasEffect(::Legends.Effect.Shieldwall))
-			{
-				ret.push({
-					icon = "ui/tooltips/negative.png",
-					text = "Shieldwall"
 				});
 			}
 		}
@@ -662,7 +647,7 @@
 				return;
 			}
 
-			local malus = this.Math.max(0, attackingEntity.getCurrentProperties().SurroundedBonus - targetEntity.getCurrentProperties().SurroundedDefense) * targetEntity.getSurroundedCount();
+			local malus = this.Math.max(0, attackingEntity.getCurrentProperties().SurroundedBonus * attackingEntity.getCurrentProperties().SurroundedBonusMult - targetEntity.getCurrentProperties().SurroundedDefense) * targetEntity.getSurroundedCount();
 
 			if (malus)
 			{
@@ -783,22 +768,8 @@
 				return null;
 			}
 
-			local racialSkill;
-			local racialSkills = [
-				::Legends.Trait.RacialSkeleton,
-				::Legends.Trait.RacialGolem,
-				::Legends.Trait.RacialSerpent,
-				::Legends.Trait.RacialAlp,
-				::Legends.Trait.RacialSchrat
-			];
-
-			foreach (r in racialSkills) {
-				racialSkill = ::Legends.Traits.get(targetEntity, r);
-				if (racialSkill)
-					break;
-			}
-
-			if (!racialSkill)
+			local racialSkills = targetEntity.getSkills().getAllSkillsOfType(::Const.SkillType.Racial);
+			if (racialSkills.len() == 0)
 				return null;
 
 			local propertiesBefore = targetEntity.getCurrentProperties();
@@ -808,7 +779,7 @@
 
 			local hitInfo = clone this.Const.Tactical.HitInfo;
 			local propertiesAfter = propertiesBefore.getClone();
-			racialSkill.onBeforeDamageReceived(attackingEntity, thisSkill, hitInfo, propertiesAfter);
+			racialSkills[0].onBeforeDamageReceived(attackingEntity, thisSkill, hitInfo, propertiesAfter);
 			local diff = propertiesBefore.DamageReceivedRegularMult - propertiesAfter.DamageReceivedRegularMult;
 			return this.Math.ceil(diff * 100);
 		};
@@ -984,11 +955,6 @@
 			{
 				local shieldBonus = (this.m.IsRanged ? shield.getRangedDefense() : shield.getMeleeDefense()) * (_targetEntity.getCurrentProperties().IsSpecializedInShields ? 1.25 : 1.0);
 				toHit = toHit + shieldBonus;
-
-				if (!this.m.IsShieldwallRelevant && _targetEntity.getSkills().hasEffect(::Legends.Effect.Shieldwall))
-				{
-					toHit = toHit + shieldBonus;
-				}
 			}
 		}
 
@@ -1261,23 +1227,14 @@
 
 		local shieldBonus = 0;
 		local shield = _targetEntity.getItems().getItemAtSlot(this.Const.ItemSlot.Offhand);
+		if (shield != null && !shield.isItemType(this.Const.Items.ItemType.Shield))
+			shield = null;
 
 		if (shield != null && shield.isItemType(this.Const.Items.ItemType.Shield))
 		{
 			shieldBonus = (this.m.IsRanged ? shield.getRangedDefense() : shield.getMeleeDefense()) * (_targetEntity.getCurrentProperties().IsSpecializedInShields ? 1.25 : 1.0);
-
-			if (!this.m.IsShieldRelevant)
-			{
-				toHit = toHit + shieldBonus;
-			}
-
 			if (_targetEntity.getSkills().hasEffect(::Legends.Effect.Shieldwall))
 			{
-				if (!this.m.IsShieldwallRelevant)
-				{
-					toHit = toHit + shieldBonus;
-				}
-
 				shieldBonus = shieldBonus * 2;
 			}
 		}

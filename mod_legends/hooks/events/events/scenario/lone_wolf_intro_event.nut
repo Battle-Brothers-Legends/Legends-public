@@ -1,4 +1,6 @@
 ::mods_hookExactClass("events/events/scenario/lone_wolf_intro_event", function(o) {
+	o.m.Dude <- null;
+
 	local create = o.create;
 	o.create = function() {
 		create();
@@ -97,7 +99,7 @@
 				});
 
 				item = this.Const.World.Common.pickArmor([
-					[1, "leather_lamellar"]
+					[1, ::Legends.Armor.Standard.leather_lamellar]
 				]);
 				this.World.Assets.getStash().add(item);
 				this.List.push({
@@ -107,7 +109,7 @@
 				});
 
 				item = this.Const.World.Common.pickHelmet([
-					[1, "padded_kettle_hat"]
+					[1, ::Legends.Helmet.Standard.padded_kettle_hat]
 				]);
 				this.World.Assets.getStash().add(item);
 				this.List.push({
@@ -115,6 +117,10 @@
 					icon = "ui/items/" + item.getIcon(),
 					text = "You gain " + this.Const.Strings.getArticle(item.getName()) + item.getName()
 				});
+
+				_event.m.Dude.getBackground().addPerkGroup(::Const.Perks.SwordTree.Tree);
+				_event.m.Dude.getBackground().addPerkGroup(::Const.Perks.HammerTree.Tree);
+				_event.m.Dude.getBackground().addPerkGroup(::Const.Perks.MediumArmorTree.Tree);
 			}
 		});
 
@@ -151,7 +157,7 @@
 				});
 
 				item = this.Const.World.Common.pickArmor([
-					[1, "patched_mail_shirt"]
+					[1, ::Legends.Armor.Standard.patched_mail_shirt]
 				]);
 				this.World.Assets.getStash().add(item);
 				this.List.push({
@@ -161,7 +167,7 @@
 				});
 
 				item = this.Const.World.Common.pickHelmet([
-					[1, "padded_kettle_hat"]
+					[1, ::Legends.Helmet.Standard.padded_kettle_hat]
 				]);
 				this.World.Assets.getStash().add(item);
 				this.List.push({
@@ -169,6 +175,10 @@
 					icon = "ui/items/" + item.getIcon(),
 					text = "You gain " + this.Const.Strings.getArticle(item.getName()) + item.getName()
 				});
+
+				_event.m.Dude.getBackground().addPerkGroup(::Const.Perks.SwordTree.Tree);
+				_event.m.Dude.getBackground().addPerkGroup(::Const.Perks.HammerTree.Tree);
+				_event.m.Dude.getBackground().addPerkGroup(::Const.Perks.ShieldTree.Tree);
 			}
 		});
 
@@ -207,7 +217,7 @@
 				});
 
 				item = this.Const.World.Common.pickArmor([
-					[1, "leather_lamellar"]
+					[1, ::Legends.Armor.Standard.leather_lamellar]
 				]);
 				this.World.Assets.getStash().add(item);
 				this.List.push({
@@ -217,7 +227,7 @@
 				});
 
 				item = this.Const.World.Common.pickHelmet([
-					[1, "padded_kettle_hat"]
+					[1, ::Legends.Helmet.Standard.padded_kettle_hat]
 				]);
 				this.World.Assets.getStash().add(item);
 				this.List.push({
@@ -225,6 +235,10 @@
 					icon = "ui/items/" + item.getIcon(),
 					text = "You gain " + this.Const.Strings.getArticle(item.getName()) + item.getName()
 				});
+
+				_event.m.Dude.getBackground().addPerkGroup(::Const.Perks.SwordTree.Tree);
+				_event.m.Dude.getBackground().addPerkGroup(::Const.Perks.AxeTree.Tree);
+				_event.m.Dude.getBackground().addPerkGroup(::Const.Perks.LightArmorTree.Tree);
 			}
 		});
 
@@ -269,7 +283,7 @@
 				});
 
 				item = this.Const.World.Common.pickArmor([
-					[1, "padded_leather"]
+					[1, ::Legends.Armor.Standard.padded_leather]
 				]);
 				this.World.Assets.getStash().add(item);
 				this.List.push({
@@ -279,7 +293,7 @@
 				});
 
 				item = this.Const.World.Common.pickHelmet([
-					[1, "closed_mail_coif"]
+					[1, ::Legends.Helmet.Standard.closed_mail_coif]
 				]);
 				this.World.Assets.getStash().add(item);
 				this.List.push({
@@ -287,6 +301,11 @@
 					icon = "ui/items/" + item.getIcon(),
 					text = "You gain " + this.Const.Strings.getArticle(item.getName()) + item.getName()
 				});
+
+				_event.m.Dude.getBackground().addPerkGroup(::Const.Perks.CrossbowTree.Tree);
+				_event.m.Dude.getBackground().addPerkGroup(::Const.Perks.DaggerTree.Tree);
+				_event.m.Dude.getBackground().addPerkGroup(::Const.Perks.BowTree.Tree);
+				_event.m.Dude.getBackground().addPerkGroup(::Const.Perks.MediumArmorTree.Tree);
 			}
 		});
 
@@ -331,7 +350,7 @@
 				});
 
 				item = this.Const.World.Common.pickArmor([
-					[1, "patched_mail_shirt"]
+					[1, ::Legends.Armor.Standard.patched_mail_shirt]
 				]);
 				this.World.Assets.getStash().add(item);
 				this.List.push({
@@ -341,7 +360,7 @@
 				});
 
 				item = this.Const.World.Common.pickHelmet([
-					[1, "closed_mail_coif"]
+					[1, ::Legends.Helmet.Standard.closed_mail_coif]
 				]);
 				this.World.Assets.getStash().add(item);
 				this.List.push({
@@ -349,6 +368,11 @@
 					icon = "ui/items/" + item.getIcon(),
 					text = "You gain " + this.Const.Strings.getArticle(item.getName()) + item.getName()
 				});
+
+				_event.m.Dude.getBackground().addPerkGroup(::Const.Perks.BowTree.Tree);
+				_event.m.Dude.getBackground().addPerkGroup(::Const.Perks.CrossbowTree.Tree);
+				_event.m.Dude.getBackground().addPerkGroup(::Const.Perks.DaggerTree.Tree);
+				_event.m.Dude.getBackground().addPerkGroup(::Const.Perks.LightArmorTree.Tree);
 			}
 		});
 
@@ -377,7 +401,7 @@
 				});
 
 				item = this.Const.World.Common.pickArmor([
-					[1, "reinforced_mail_hauberk"]
+					[1, ::Legends.Armor.Standard.reinforced_mail_hauberk]
 				]);
 				this.World.Assets.getStash().add(item);
 				this.List.push({
@@ -387,7 +411,7 @@
 				});
 
 				item = this.Const.World.Common.pickHelmet([
-					[1, "conic_helmet_with_closed_mail"]
+					[1, ::Legends.Helmet.Standard.conic_helmet_with_closed_mail]
 				]);
 				this.World.Assets.getStash().add(item);
 				this.List.push({
@@ -395,7 +419,20 @@
 					icon = "ui/items/" + item.getIcon(),
 					text = "You gain " + this.Const.Strings.getArticle(item.getName()) + item.getName()
 				});
+				_event.m.Dude.getBackground().addPerkGroup(::Const.Perks.PolearmTree.Tree);
+				_event.m.Dude.getBackground().addPerkGroup(::Const.Perks.MediumArmorTree.Tree);
 			}
 		});
+	}
+
+	o.onUpdateScore = function ()
+	{
+		this.m.Dude = this.World.getPlayerRoster().getAll()[0];
+		return;
+	}
+
+	o.onClear = function ()
+	{
+		this.m.Dude = null;
 	}
 })

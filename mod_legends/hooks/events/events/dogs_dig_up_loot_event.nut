@@ -5,18 +5,18 @@
 
 		if (r == 1) {
 			item = this.Const.World.Common.pickArmor([
-				[1, "thick_dark_tunic"],
-				[1, "noble_tunic"],
-				[1, "ragged_surcoat"],
-				[1, "thick_tunic"],
-				[1, "wizard_robe"],
+				[1, ::Legends.Armor.Standard.thick_dark_tunic],
+				[1, ::Legends.Armor.Standard.noble_tunic],
+				[1, ::Legends.Armor.Standard.ragged_surcoat],
+				[1, ::Legends.Armor.Standard.thick_tunic],
+				[1, ::Legends.Armor.Standard.wizard_robe],
 			]);
 		} else {
 			item = this.Const.World.Common.pickHelmet([
-				[1, "aketon_cap"],
-				[1, "cultist_hood"],
-				[1, "hood"],
-				[1, "full_leather_cap"],
+				[1, ::Legends.Helmet.Standard.aketon_cap],
+				[1, ::Legends.Helmet.Standard.cultist_hood],
+				[1, ::Legends.Helmet.Standard.hood],
+				[1, ::Legends.Helmet.Standard.full_leather_cap],
 			]);
 		}
 

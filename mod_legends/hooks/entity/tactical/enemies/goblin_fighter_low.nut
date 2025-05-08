@@ -5,22 +5,16 @@
 		local r;
 		r = this.Math.rand(1, 4);
 
-		if (r == 1)
+		if (this.m.Items.getItemAtSlot(this.Const.ItemSlot.Mainhand) == null)
 		{
-			this.m.Items.equip(this.new("scripts/items/weapons/greenskins/goblin_falchion"));
-		}
-		else if (r == 2)
-		{
-			this.m.Items.equip(this.new("scripts/items/weapons/greenskins/goblin_spear"));
-		}
-		else if (r == 3)
-		{
-			this.m.Items.equip(this.new("scripts/items/weapons/greenskins/goblin_notched_blade"));
-		}
+			local weapons = [
+				"weapons/greenskins/goblin_falchion",
+				"weapons/greenskins/goblin_spear",
+				"weapons/legend_chain",
+				"weapons/greenskins/goblin_notched_blade",
+			];
 
-		else if (r == 4)
-		{
-			this.m.Items.equip(this.new("scripts/items/weapons/legend_chain"));
+			this.m.Items.equip(this.new("scripts/items/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
 		}
 
 
@@ -42,15 +36,15 @@
 		}
 
 		local item = this.Const.World.Common.pickArmor([
-			[1, "greenskins/goblin_light_armor"],
-			[1, "greenskins/goblin_medium_armor"]
+			[1, ::Legends.Armor.Greenskin.goblin_light_armor],
+			[1, ::Legends.Armor.Greenskin.goblin_medium_armor]
 		]);
 		this.m.Items.equip(item);
 
 		if (this.Math.rand(1, 100) <= 50)
 		{
 			local item = this.Const.World.Common.pickHelmet([
-				[1, "greenskins/goblin_light_helmet"]
+				[1, ::Legends.Helmet.Greenskin.goblin_light_helmet]
 			]);
 			if (item != null)
 			{

@@ -68,7 +68,7 @@ this.legend_mark_target_skill <- this.inherit("scripts/skills/skill", {
 		local target = _targetTile.getEntity();
 		this.spawnAttackEffect(_targetTile, this.Const.Tactical.AttackEffectBash);
 
-		if (target.isAlive())
+		if (target.isAlive() && !target.isDying())
 		{
 			::Legends.Effects.grant(target, ::Legends.Effect.LegendMarkedTarget);
 

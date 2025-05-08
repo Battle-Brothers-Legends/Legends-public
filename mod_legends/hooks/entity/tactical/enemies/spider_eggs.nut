@@ -3,6 +3,19 @@
 	o.m.SpawnDelay <- 0; // Number of combat rounds before the egg can spawn spiders; 0 = on Round 1 onwards, 1 = only on Round 2 onwards etc.
 	o.m.MaxSpawnCount <- 4; // The maximum number of spider spawns allowed. Vanilla is always 4
 
+	local create = o.create;
+	o.create = function () {
+		create();
+		local rolls = ::Legends.S.extraLootChance(1);
+		for(local i = 0; i < rolls; i++)
+		{
+			this.m.OnDeathLootTable.extend([
+				[60, "scripts/items/loot/webbed_valuables_item"],
+				[30, "scripts/items/misc/spider_silk_item"]
+			]);
+		}
+	}
+
 	local onInit = o.onInit;
 	o.onInit = function ()
 	{
@@ -15,60 +28,19 @@
 	o.assignRandomEquipment <- function ()
 	{
 		local armor = [
-			[1, "ancient/ancient_priest_attire"]
+			[1, ::Legends.Armor.Ancient.ancient_priest_attire]
 		];
 		local item = this.Const.World.Common.pickArmor(armor);
 		this.m.Items.equip(item);
 
 		local item = this.Const.World.Common.pickHelmet([
-			[99, "ancient/ancient_priest_diadem"]
+			[99, ::Legends.Helmet.Ancient.ancient_priest_diadem]
 		]);
 		if (item != null)
 		{
 			this.m.Items.equip(item);
 		}
 	}
-
-	local onDeath = o.onDeath;
-	o.onDeath = function ( _killer, _skill, _tile, _fatalityType )
-	{
-		onDeath( _killer, _skill, _tile, _fatalityType );
-		// Loot only drops if the player killed it. If the egg "dies" from spawning all possible hatchlings, it will not drop loot.
-		// This is to incentivise players to go after the eggs
-		if (_killer != null && (_killer.getFaction() == this.Const.Faction.Player || _killer.getFaction() == this.Const.Faction.PlayerAnimals))
-		{
-			local n = 1 + (!this.Tactical.State.isScenarioMode() && this.Math.rand(1, 100) <= this.World.Assets.getExtraLootChance() ? 1 : 0);
-
-			for( local i = 0; i < n; i = ++i )
-			{
-				local r = this.Math.rand(1, 100);
-				local loot;
-
-				if (r <= 60)
-				{
-					// 60% chance to get Webbed Valuables
-					loot = this.new("scripts/items/loot/webbed_valuables_item");
-				}
-				else if (r <= 90)
-				{
-					// 30% chance to get Spider Silk
-					loot = this.new("scripts/items/misc/spider_silk_item");
-				}
-				else
-				{
-					// 10% chance to get nothing
-				}
-
-				if (loot != null)
-				{
-					loot.drop(_tile);
-				}
-
-			}
-
-		}
-	}
-
 
 	o.onSpawn = function ( _tile )
 	{

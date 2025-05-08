@@ -29,7 +29,7 @@ this.legend_rune_clarity <- this.inherit("scripts/items/legend_helmets/legend_he
 			id = 7,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "This item has the power of the rune sigil of Clarity:\n[color=" + this.Const.UI.Color.PositiveValue + "]+" + this.m.RuneBonus1 + "[/color] Vision.\n[color=" + this.Const.UI.Color.PositiveValue + "]+" + this.m.RuneBonus2 + "%[/color] Experience gain."
+			text = "This item has the power of the rune sigil of Clarity:\n[color=" + this.Const.UI.Color.PositiveValue + "]+" + this.getRuneBonus1() + "[/color] Vision.\n[color=" + this.Const.UI.Color.PositiveValue + "]+" + this.getRuneBonus2() + "%[/color] Experience gain."
 		});
 		return result;
 	}
@@ -40,7 +40,7 @@ this.legend_rune_clarity <- this.inherit("scripts/items/legend_helmets/legend_he
 			id = 7,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "This item has the power of the rune sigil of Clarity:\n[color=" + this.Const.UI.Color.PositiveValue + "]+" + this.m.RuneBonus1 + "[/color] Vision.\n[color=" + this.Const.UI.Color.PositiveValue + "]+" + this.m.RuneBonus2 + "%[/color] Experience gain."
+			text = "This item has the power of the rune sigil of Clarity:\n[color=" + this.Const.UI.Color.PositiveValue + "]+" + this.getRuneBonus1() + "[/color] Vision.\n[color=" + this.Const.UI.Color.PositiveValue + "]+" + this.getRuneBonus2() + "%[/color] Experience gain."
 		});
 	}
 });

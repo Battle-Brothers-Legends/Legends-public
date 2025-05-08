@@ -127,10 +127,10 @@ this.legend_ironmonger_background <- this.inherit("scripts/skills/backgrounds/ch
 	{
 		local items = this.getContainer().getActor().getItems();
 		items.equip(this.Const.World.Common.pickArmor([
-			[1, "apron"],
-			[1, "linen_tunic"],
-			[1, "leather_tunic"]
-			//, [1, "legend_blacksmith_apron"]
+			[1, ::Legends.Armor.Standard.apron],
+			[1, ::Legends.Armor.Standard.linen_tunic],
+			[1, ::Legends.Armor.Standard.leather_tunic]
+			//, [1, ::Legends.Armor.Standard.legend_blacksmith_apron]
 		]));
 	}
 

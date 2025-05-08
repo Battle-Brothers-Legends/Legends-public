@@ -6,26 +6,16 @@
 		::Legends.Rune.LegendRshLuck
 	];
 
-	local onDeath = o.onDeath;
-	o.onDeath = function ( _killer, _skill, _tile, _fatalityType )
-	{
-		onDeath( _killer, _skill, _tile, _fatalityType );
-
-		if (_killer == null || _killer.getFaction() == this.Const.Faction.Player || _killer.getFaction() == this.Const.Faction.PlayerAnimals)
-		{
-			if (this.Math.rand(1, 100) <= 1)
-			{
-				local selected = this.m.DroppableRunes[this.Math.rand(0, this.m.DroppableRunes.len() - 1)];
-				local def = ::Legends.Runes.get(selected);
-				if (def != null)
-				{
-					local rune = ::new(def.Script);
-					rune.setRuneVariant(selected);
-					rune.setRuneBonus(true);
-					rune.drop(_tile);
-				}
-			}
-		}
+	local create = o.create;
+	o.create = function () {
+		create();
+		this.m.OnDeathLootTable.push([1, function () {
+			local selected = this.m.DroppableRunes[::Math.rand(0, this.m.DroppableRunes.len() - 1)];
+			local rune = ::new(::Legends.Runes.get(selected).Script);
+			rune.setRuneVariant(selected);
+			rune.setRuneBonus(true);
+			return rune;
+		}.bindenv(this)]);
 	}
 
 	local onInit = o.onInit;
@@ -52,7 +42,7 @@
 	{
 		 if(::Legends.isLegendaryDifficulty())
 		 {
-		 this.m.Items.equip(this.new("scripts/items/weapons/legend_staff_gnarled"));
+		 	this.m.Items.equip(this.new("scripts/items/weapons/legend_staff_gnarled"));
 		 }
 	}
 });

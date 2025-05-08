@@ -2,6 +2,7 @@ this.legend_redback_poison_gland_item <- this.inherit("scripts/items/item", {
 	m = {},
 	function create()
 	{
+		this.item.create();
 		this.m.ID = "misc.legend_redback_poison_gland";
 		this.m.Name = "Redback Poison Gland";
 		this.m.Description = "The poison gland of a Redback. Should not be carried close to any food or drink.";

@@ -481,22 +481,11 @@ this.crafting_building <- this.inherit("scripts/entity/world/camp/camp_building"
 		local num = _in.readU16();
 		for( local i = 0; i < num; i = ++i )
 		{
-			if (_in.getMetaData().getVersion() >= 67)
-			{
-				this.m.Queue.push({
-					Blueprint =  this.World.Crafting.getBlueprint(_in.readString()),
-					Points = _in.readF32(),
-					Forever = _in.readBool()
-				});
-			}
-			else
-			{
-				this.m.Queue.push({
-					Blueprint =  this.World.Crafting.getBlueprint(_in.readString()),
-					Points = _in.readF32(),
-					Forever = false
-				});
-			}
+			this.m.Queue.push({
+				Blueprint =  this.World.Crafting.getBlueprint(_in.readString()),
+				Points = _in.readF32(),
+				Forever = _in.readBool()
+			});
 		}
 	}
 

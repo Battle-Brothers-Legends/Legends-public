@@ -1,5 +1,5 @@
 from string import Template
-from helmet import Templates, Defs
+from helmet import Templates, Defs, cleanupDirs
 from PIL import Image
 from crop import CropTool
 import os, argparse
@@ -42,6 +42,7 @@ def makeSheet(path, num):
 
 
 def makeBrushes(path):
+    cleanupDirs(os.path.join(path, "unpacked", "legend_helmets"))
     helmetDir = os.path.join(path, "unpacked", "legend_helmets", "entity")
     fileCount = 0
     imageCount = 0

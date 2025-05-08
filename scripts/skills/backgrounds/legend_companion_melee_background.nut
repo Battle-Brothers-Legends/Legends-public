@@ -303,22 +303,20 @@ this.legend_companion_melee_background <- this.inherit("scripts/skills/backgroun
 		}
 
 		local outfits = [
-			[1, "traze_northern_mercenary_outfit_00"],
-			[1, "mercenary_infantry_outfit_00"],
-			[1, "mercenary_infantry_outfit_01"],
-			[1, "mercenary_spearman_outfit_00"],
-			[1, "mercenary_spearman_outfit_01"],
-			[1, "mercenary_leader_outfit_uncommon_00"],
-			[1, "mercenary_leader_outfit_00"],
-			[1, "southern_knight_outfit_00"],
-			[1, "mercenary_spearman_outfit_01"],
-			[1, "brown_hedgeknight_outfit_00"],
-			[1, "red_bandit_leader_outfit_00"],
-			[1, "mercenary_billman_outfit_00"]
+			[1, ::Legends.Outfit.traze_northern_mercenary_outfit_00],
+			[1, ::Legends.Outfit.mercenary_infantry_outfit_00],
+			[1, ::Legends.Outfit.mercenary_infantry_outfit_01],
+			[1, ::Legends.Outfit.mercenary_spearman_outfit_00],
+			[1, ::Legends.Outfit.mercenary_spearman_outfit_01],
+			[1, ::Legends.Outfit.mercenary_leader_outfit_uncommon_00],
+			[1, ::Legends.Outfit.mercenary_leader_outfit_00],
+			[1, ::Legends.Outfit.southern_knight_outfit_00],
+			[1, ::Legends.Outfit.brown_hedgeknight_outfit_00],
+			[1, ::Legends.Outfit.red_bandit_leader_outfit_00],
+			[1, ::Legends.Outfit.mercenary_billman_outfit_00]
 		];
 
-		foreach (item in this.Const.World.Common.pickOutfit(outfits))
-		{
+		foreach (item in this.Const.World.Common.pickOutfit(outfits)) {
 			items.equip(item)
 		}
 	}

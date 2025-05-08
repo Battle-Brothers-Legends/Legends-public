@@ -19,12 +19,12 @@
 							item = this.new("scripts/items/weapons/wooden_stick");
 						else if (r == 2)
 							item = this.Const.World.Common.pickArmor([
-								[1, "tattered_sackcloth"],
+								[1, ::Legends.Armor.Standard.tattered_sackcloth],
 							]);
 						else if (r == 3)
 							item = this.new("scripts/items/weapons/knife");
 						else if (r == 4)
-							ithis.Const.World.Common.pickHelmet([[1, "hood"]]);
+							ithis.Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Standard.hood]]);
 						else if (r == 5)
 							item = this.new("scripts/items/misc/ghoul_teeth_item");
 						else if (r == 6)

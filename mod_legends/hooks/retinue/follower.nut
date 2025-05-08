@@ -39,32 +39,6 @@
 		return this.m.WasOwned ? 0 : this.m.Cost;
 	}
 
-	o.isUnlocked = function ()
-	{
-		local hasSecondary = false;
-		local isSecondaryFulfilled = false;
-
-		foreach (r in this.m.Requirements)
-		{
-			if (r.NotImportant)
-			{
-				hasSecondary = true;
-
-				if (isSecondaryFulfilled || !r.IsSatisfied) continue;
-
-				isSecondaryFulfilled = true;
-				continue;
-			}
-
-			// primary requirement (must fulfill this)
-			if (!r.IsSatisfied) return false;
-		}
-
-		if (hasSecondary) return isSecondaryFulfilled;
-
-		return true;
-	}
-
 	o.onEvaluate = function ()
 	{
 		foreach (r in this.m.Requirements)

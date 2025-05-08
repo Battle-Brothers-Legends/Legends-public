@@ -24,7 +24,8 @@ this.legend_donkey_background <- this.inherit("scripts/skills/backgrounds/charac
 			::Legends.Traits.getID(::Legends.Trait.LegendGiftOfPeople),
 			::Legends.Traits.getID(::Legends.Trait.LegendDoubleTongued),
 			::Legends.Traits.getID(::Legends.Trait.LegendDeathlySpectre),
-			::Legends.Traits.getID(::Legends.Trait.LegendSureshot)
+			::Legends.Traits.getID(::Legends.Trait.LegendSureshot),
+			::Legends.Traits.getID(::Legends.Trait.Superstitious)
 		];
 		this.m.Faces = this.Const.Faces.Donkey;
 		this.m.Hairs = this.Const.Hair.None;

@@ -14,6 +14,11 @@ this.legend_bandit_warlord <- this.inherit("scripts/entity/tactical/human", {
 		this.m.Beards = this.Const.Beards.Raider;
 		this.m.AIAgent = this.new("scripts/ai/tactical/agents/legend_bandit_melee_agent_less_flanking");
 		this.m.AIAgent.setActor(this);
+
+		this.m.OnDeathLootTable.extend([
+			[3, "scripts/items/misc/legend_masterwork_fabric"],
+			[2, "scripts/items/misc/legend_masterwork_metal"]
+		]);
 	}
 
 	function generateName()
@@ -140,14 +145,14 @@ this.legend_bandit_warlord <- this.inherit("scripts/entity/tactical/human", {
 			::MSU.Array.remove(namedWeaponArray, "weapons/named/legend_named_parrying_dagger");
 			::MSU.Array.remove(namedWeaponArray, "weapons/named/legend_named_shovel");
 			::MSU.Array.remove(namedWeaponArray, "weapons/named/legend_named_sickle");
-			this.m.Items.equip(this.new("scripts/items/" + ::MSU.Array.rand(namedWeaponArray)));
+			this.getItems().equip(::Const.World.Common.pickItem(namedWeaponArray, "scripts/items/"));
 		}
 		else
 		{
-			this.m.Items.equip(this.new("scripts/items/" + shields[this.Math.rand(0, shields.len() - 1)]));
+			this.getItems().equip(::Const.World.Common.pickItem(shields, "scripts/items/"));
 		}
 
-		if (this.m.Items.getItemAtSlot(this.Const.ItemSlot.Mainhand) == null)
+		if (this.getItems().getItemAtSlot(this.Const.ItemSlot.Mainhand) == null)
 		{
 			local weapons = [
 				"weapons/noble_sword",
@@ -159,7 +164,7 @@ this.legend_bandit_warlord <- this.inherit("scripts/entity/tactical/human", {
 				"weapons/military_cleaver"
 			];
 
-			if (this.m.Items.getItemAtSlot(this.Const.ItemSlot.Offhand) == null)
+			if (this.getItems().getItemAtSlot(this.Const.ItemSlot.Offhand) == null)
 			{
 				weapons.extend([
 					"weapons/greatsword",
@@ -169,99 +174,68 @@ this.legend_bandit_warlord <- this.inherit("scripts/entity/tactical/human", {
 					"weapons/warbrand",
 					"weapons/legend_estoc",
 					"weapons/legend_battle_glaive"
-
 				]);
 			}
-
-			this.m.Items.equip(this.new("scripts/items/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
+			this.getItems().equip(::Const.World.Common.pickItem(weapons, "scripts/items/"));
 		}
 
-		if (this.m.Items.getItemAtSlot(this.Const.ItemSlot.Offhand) == null)
+		if (this.getItems().getItemAtSlot(this.Const.ItemSlot.Offhand) == null)
 		{
-			local shields = [
-				"shields/wooden_shield",
-				"shields/heater_shield",
-				"shields/kite_shield"
-			];
-			this.m.Items.equip(this.new("scripts/items/" + shields[this.Math.rand(0, shields.len() - 1)]));
+			this.getItems().equip(::Const.World.Common.pickItem([
+				[1, "shields/wooden_shield"],
+				[1, "shields/heater_shield"],
+				[1, "shields/kite_shield"],
+			], "scripts/items/"));
 		}
 
 		if (this.Math.rand(1, 100) > 50)
 		{
 			local named = this.Const.Items.NamedArmors;
 			local weightName = this.Const.World.Common.convNameToList(named);
-			this.m.Items.equip(this.Const.World.Common.pickArmor(weightName));
+			this.getItems().equip(this.Const.World.Common.pickArmor(weightName));
 
 		}
 		else
 		{
 			local named = this.Const.Items.NamedHelmets;
 			local weightName = this.Const.World.Common.convNameToList(named);
-			this.m.Items.equip(this.Const.World.Common.pickHelmet(weightName));
+			this.getItems().equip(this.Const.World.Common.pickHelmet(weightName));
 		}
 
-		if (this.m.Items.getItemAtSlot(this.Const.ItemSlot.Body) == null)
+		if (this.getItems().getItemAtSlot(this.Const.ItemSlot.Body) == null)
 		{
-			local armor = [
-				[1, "bandit_armor_ultraheavy"],
-				[2, "coat_of_plates"],
-				[2, "coat_of_scales"],
-				[2, "heavy_lamellar_armor"],
-				[1, "reinforced_mail_hauberk"],
-				[1, "brown_hedgeknight_armor"],
-				[1, "northern_mercenary_armor_02"]
-			];
-
-			local item = this.Const.World.Common.pickArmor(armor);
-			this.m.Items.equip(item);
+			this.getItems().equip(::Const.World.Common.pickArmor([
+				[1, ::Legends.Armor.Standard.bandit_armor_ultraheavy],
+				[2, ::Legends.Armor.Standard.coat_of_plates],
+				[2, ::Legends.Armor.Standard.coat_of_scales],
+				[2, ::Legends.Armor.Standard.heavy_lamellar_armor],
+				[1, ::Legends.Armor.Standard.reinforced_mail_hauberk],
+				[1, ::Legends.Armor.Standard.brown_hedgeknight_armor],
+				[1, ::Legends.Armor.Standard.northern_mercenary_armor_02]
+			]));
 		}
 
-		if (this.m.Items.getItemAtSlot(this.Const.ItemSlot.Head) == null)
+		if (this.getItems().getItemAtSlot(this.Const.ItemSlot.Head) == null)
 		{
-			local helmet = [
-				[1, "closed_mail_coif"],
-				[1, "legend_enclave_vanilla_kettle_sallet_01"],
-				[1, "padded_kettle_hat"],
-				[1, "kettle_hat_with_closed_mail"],
-				[1, "kettle_hat_with_mail"],
-				[1, "padded_flat_top_helmet"],
-				[1, "nasal_helmet_with_mail"],
-				[1, "flat_top_with_mail"],
-				[1, "padded_nasal_helmet"],
-				[1, "bascinet_with_mail"]
-			];
-			local item = this.Const.World.Common.pickHelmet(helmet);
-			this.m.Items.equip(item);
+			this.getItems().equip(::Const.World.Common.pickHelmet([
+				[1, ::Legends.Helmet.Standard.closed_mail_coif],
+				[1, ::Legends.Helmet.Standard.legend_enclave_vanilla_kettle_sallet_01],
+				[1, ::Legends.Helmet.Standard.padded_kettle_hat],
+				[1, ::Legends.Helmet.Standard.kettle_hat_with_closed_mail],
+				[1, ::Legends.Helmet.Standard.kettle_hat_with_mail],
+				[1, ::Legends.Helmet.Standard.padded_flat_top_helmet],
+				[1, ::Legends.Helmet.Standard.nasal_helmet_with_mail],
+				[1, ::Legends.Helmet.Standard.flat_top_with_mail],
+				[1, ::Legends.Helmet.Standard.padded_nasal_helmet],
+				[1, ::Legends.Helmet.Standard.bascinet_with_mail]
+			]));
 		}
-	}
-
-	function onDeath( _killer, _skill, _tile, _fatalityType )
-	{
-		local flip = this.Math.rand(1, 100) < 50;
-		if (_killer == null || _killer.getFaction() == this.Const.Faction.Player || _killer.getFaction() == this.Const.Faction.PlayerAnimals)
-		{
-			if (this.Math.rand(1, 100) <= 3) //3%
-			{
-				local loot = this.new("scripts/items/misc/legend_masterwork_fabric");
-				loot.drop(_tile);
-			}
-
-			if (this.Math.rand(1, 100) <= 2) //2%
-			{
-				local loot = this.new("scripts/items/misc/legend_masterwork_metal");
-				loot.drop(_tile);
-			}
-		}
-		this.getItems().dropAll(_tile, _killer, flip);
-		this.actor.onDeath(_killer, _skill, _tile, _fatalityType);
 	}
 
 	function makeMiniboss()
 	{
 		if (!this.actor.makeMiniboss())
-		{
 			return false;
-		}
 
 		this.getSprite("miniboss").setBrush("bust_miniboss");
 		return true;

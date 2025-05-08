@@ -28,8 +28,8 @@
 				s.start <- function ()
 				{
 					local item = this.Const.World.Common.pickArmor([
-						[1, "decayed_reinforced_mail_hauberk"],
-						[1, "decayed_coat_of_scales"],
+						[1, ::Legends.Armor.Standard.decayed_reinforced_mail_hauberk],
+						[1, ::Legends.Armor.Standard.decayed_coat_of_scales],
 					]);
 					this.World.Assets.getStash().add(item);
 					this.List.push({

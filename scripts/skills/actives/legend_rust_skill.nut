@@ -38,6 +38,7 @@ this.legend_rust_skill <- this.inherit("scripts/skills/legend_magic_skill", {
 		this.m.FatigueCost = 10;
 		this.m.MinRange = 1;
 		this.m.MaxRange = 3;
+		this.m.MaxLevelDifference = 3;
 		this.m.ChanceDecapitate = 0;
 		this.m.ChanceDisembowel = 0;
 		this.m.ChanceSmash = 0;

@@ -22,6 +22,7 @@ this.legend_helmet_upgrade <- this.inherit("scripts/items/item", {
 	},
 	function create()
 	{
+		this.item.create();
 		this.m.SlotType = this.Const.ItemSlot.Head;
 		this.m.ItemType = this.Const.Items.ItemType.Helmet;
 		this.m.IsDroppedAsLoot = true;
@@ -207,6 +208,12 @@ this.legend_helmet_upgrade <- this.inherit("scripts/items/item", {
 			type = "hint",
 			icon = "ui/icons/mouse_right_button_shift_drag.png",
 			text = "Hold Shift and drag onto a helmet in the stash to attach."
+		});
+		result.push({
+			id = 67,
+			type = "hint",
+			icon = "ui/icons/mouse_left_button_shift.png", //I wish I could vanish this easily
+			text = "Hold Left-Shift and Left-Click this layer square to toggle it hidden on this character (stats & other benefits will not be affected)."
 		});
 		result.push({
 			id = 4,

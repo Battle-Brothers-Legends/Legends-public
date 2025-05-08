@@ -1,5 +1,16 @@
 ::mods_hookExactClass("entity/tactical/humans/officer", function(o)
 {
+	local create = o.create;
+	o.create = function ()
+	{
+		create();
+		this.m.OnDeathLootTable.extend([
+			[2.5, "scripts/items/misc/legend_masterwork_fabric"],
+			[1.5, "scripts/items/misc/legend_masterwork_metal"],
+			[1.0, "scripts/items/misc/legend_masterwork_tools"]
+		]);
+	}
+
 	local onInit = o.onInit;
 	o.onInit = function ()
 	{
@@ -38,18 +49,18 @@
 		if (this.m.Items.hasEmptySlot(this.Const.ItemSlot.Body))
 		{
 			this.m.Items.equip(this.Const.World.Common.pickArmor([
-				[1, "oriental/padded_mail_and_lamellar_hauberk"],
-				[1, "oriental/southern_long_mail_with_padding"],
-				[1, "oriental/mail_and_lamellar_plating"]
+				[1, ::Legends.Armor.Southern.padded_mail_and_lamellar_hauberk],
+				[1, ::Legends.Armor.Southern.southern_long_mail_with_padding],
+				[1, ::Legends.Armor.Southern.mail_and_lamellar_plating]
 			]));
 		}
 
 		if (this.m.Items.hasEmptySlot(this.Const.ItemSlot.Head))
 		{
 			local helmet = [
-				[1, "oriental/turban_helmet"],
-				[1, "oriental/heavy_lamellar_helmet"],
-				[1, "oriental/southern_helmet_with_coif"]
+				[1, ::Legends.Helmet.Southern.turban_helmet],
+				[1, ::Legends.Helmet.Southern.heavy_lamellar_helmet],
+				[1, ::Legends.Helmet.Southern.southern_helmet_with_coif]
 			];
 			this.m.Items.equip(this.Const.World.Common.pickHelmet(helmet));
 		}
@@ -105,32 +116,4 @@
 		::Legends.Perks.grant(this, ::Legends.Perk.NineLives);
 		return true;
 	}
-
-	o.onDeath <- function(_killer, _skill, _tile,  _fatalityType)
-	{
-		this.human.onDeath(_killer, _skill, _tile, _fatalityType);
-
-		if (_killer == null || _killer.getFaction() == this.Const.Faction.Player || _killer.getFaction() == this.Const.Faction.PlayerAnimals)
-		{
-			if (this.Math.rand(1, 1000) <= 25) //2.5%
-			{
-				local loot = this.new("scripts/items/misc/legend_masterwork_fabric");
-				loot.drop(_tile);
-			}
-
-			if (this.Math.rand(1, 1000) <= 15) //1.5%
-			{
-				local loot = this.new("scripts/items/misc/legend_masterwork_metal");
-				loot.drop(_tile);
-			}
-
-			if (this.Math.rand(1, 100) <= 1)
-			{
-				local loot = this.new("scripts/items/misc/legend_masterwork_tools");
-				loot.drop(_tile);
-			}
-		}
-	}
-
-
 });

@@ -26,14 +26,14 @@
 		if (r == 1)
 		{
 			this.m.Items.equip(this.Const.World.Common.pickArmor([
-				[1, "noble_tunic"]
+				[1, ::Legends.Armor.Standard.noble_tunic]
 			]));
 			alwaysWithDetails = true;
 		}
 		else if (r == 2)
 		{
 			this.m.Items.equip(this.Const.World.Common.pickArmor([
-				[1, "coat_of_plates"]
+				[1, ::Legends.Armor.Standard.coat_of_plates]
 			]));
 			withDetails = false;
 			withHelmet = false;
@@ -46,7 +46,7 @@
 			if (this.Math.rand(1, 100) <= 25)
 			{
 				local h = this.Const.World.Common.pickHelmet([
-					[1, "greatsword_faction_helm", this.World.FactionManager.getFaction(this.getFaction()).getBanner()]
+					[1, ::Legends.Helmet.Standard.greatsword_faction_helm, this.World.FactionManager.getFaction(this.getFaction()).getBanner()]
 				]);
 				this.m.Items.equip(h);
 			}
@@ -63,7 +63,7 @@
 		else if (r == 3)
 		{
 			this.m.Items.equip(this.Const.World.Common.pickArmor([
-				[1, "coat_of_scales"]
+				[1, ::Legends.Armor.Standard.coat_of_scales]
 			]));
 			withDetails = false;
 			withHelmet = false;
@@ -76,7 +76,7 @@
 			if (this.Math.rand(1, 100) <= 25)
 			{
 				local h = this.Const.World.Common.pickHelmet([
-					[1, "greatsword_faction_helm", this.World.FactionManager.getFaction(this.getFaction()).getBanner()]
+					[1, ::Legends.Helmet.Standard.greatsword_faction_helm, this.World.FactionManager.getFaction(this.getFaction()).getBanner()]
 				]);
 				this.m.Items.equip(h);
 			}
@@ -93,7 +93,7 @@
 		else
 		{
 			this.m.Items.equip(this.Const.World.Common.pickArmor([
-				[1, "noble_gear"]
+				[1, ::Legends.Armor.Standard.noble_gear]
 			]));
 		}
 

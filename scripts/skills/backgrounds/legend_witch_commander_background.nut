@@ -52,48 +52,51 @@ this.legend_witch_commander_background <- this.inherit("scripts/skills/backgroun
 		this.m.Modifiers.MedConsumption = this.Const.LegendMod.ResourceModifiers.MedConsumption[3];
 		this.m.PerkTreeDynamic = {
 			Weapon = [
-				this.Const.Perks.StaffTree,
-				this.Const.Perks.ThrowingTree,
+				::Const.Perks.StaffTree
 			],
 			Defense = [
-				this.Const.Perks.LightArmorTree,
-				this.Const.Perks.ClothArmorTree
+				::Const.Perks.LightArmorTree,
+				::Const.Perks.ClothArmorTree
 			],
 			Traits = [
-				this.Const.Perks.SturdyTree,
-				this.Const.Perks.InspirationalTree,
-				this.Const.Perks.IntelligentTree,
-				this.Const.Perks.CalmTree,
-				this.Const.Perks.IndestructibleTree
+				::Const.Perks.SturdyTree,
+				::Const.Perks.InspirationalTree,
+				::Const.Perks.IntelligentTree,
+				::Const.Perks.CalmTree,
+				::Const.Perks.IndestructibleTree
 			],
 			Enemy = [
-				this.Const.Perks.HexenTree
+				::Const.Perks.HexenTree
 			],
 			Class = [
-				this.Const.Perks.HealerClassTree,
+				::Const.Perks.HealerClassTree,
 			],
 			Magic = [
-				this.Const.Perks.SeerMagicTree,
-				this.Const.Perks.IllusionistMagicTree
+				::Const.Perks.SeerMagicTree,
+				::Const.Perks.IllusionistMagicTree
 			]
 		};
 
 		this.m.CustomPerkTree = [
 			[
-				this.Const.Perks.PerkDefs.LegendSummonCat
+				::Legends.Perk.LegendSummonCat,
+				::Legends.Perk.CripplingStrikes,
+				::Legends.Perk.Recover
 			],
 			[
 				::Legends.Perk.Bullseye,
+				::Legends.Perk.BagsAndBelts,
+				::Legends.Perk.QuickHands
 			],
 			[],
 			[],
-			[],
+			[
+				::Legends.Perk.BattleFlow
+			],
 			[
 				::Legends.Perk.LegendBallistics,
 			],
-			[
-				::Legends.Perk.BattleFlow,
-			],
+			[],
 			[],
 			[],
 			[],
@@ -181,10 +184,10 @@ this.legend_witch_commander_background <- this.inherit("scripts/skills/backgroun
 		this.getContainer().getActor().fillTalentValues(2, true);
 		local items = this.getContainer().getActor().getItems();
 		items.equip(this.Const.World.Common.pickArmor([
-			[1, "legend_seer_robes"]
+			[1, ::Legends.Armor.Standard.legend_seer_robes]
 		]));
 		items.equip(this.Const.World.Common.pickHelmet([
-			[1, "legend_seer_hat"]
+			[1, ::Legends.Helmet.Standard.legend_seer_hat]
 		]));
 		items.equip(this.new("scripts/items/weapons/legend_mystic_staff"));
 	}

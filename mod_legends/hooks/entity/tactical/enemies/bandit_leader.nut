@@ -6,6 +6,11 @@
 		create();
 		this.m.AIAgent = this.new("scripts/ai/tactical/agents/legend_bandit_melee_agent_less_flanking");
 		this.m.AIAgent.setActor(this);
+		this.m.OnDeathLootTable.extend([
+			[1, "scripts/items/misc/legend_masterwork_fabric"],
+			[0.7, "scripts/items/misc/legend_masterwork_metal"],
+			[0.5, "scripts/items/misc/legend_masterwork_tools"]
+		]);
 	}
 
 	o.onInit = function ()
@@ -115,32 +120,32 @@
 		if (this.m.Items.hasEmptySlot(this.Const.ItemSlot.Body) && this.m.Items.hasEmptySlot(this.Const.ItemSlot.Head))
 		{
 			local armor = [
-				[1, "coat_of_plates"],
-				[1, "coat_of_scales"],
-				[1, "heavy_lamellar_armor"],
-				[1, "footman_armor"],
-				[1, "brown_hedgeknight_armor"],
-				[1, "northern_mercenary_armor_02"],
-				[1, "lamellar_harness"],
-				[1, "reinforced_mail_hauberk"],
-				[1, "leather_scale_armor"],
-				[1, "light_scale_armor"]
+				[1, ::Legends.Armor.Standard.coat_of_plates],
+				[1, ::Legends.Armor.Standard.coat_of_scales],
+				[1, ::Legends.Armor.Standard.heavy_lamellar_armor],
+				[1, ::Legends.Armor.Standard.footman_armor],
+				[1, ::Legends.Armor.Standard.brown_hedgeknight_armor],
+				[1, ::Legends.Armor.Standard.northern_mercenary_armor_02],
+				[1, ::Legends.Armor.Standard.lamellar_harness],
+				[1, ::Legends.Armor.Standard.reinforced_mail_hauberk],
+				[1, ::Legends.Armor.Standard.leather_scale_armor],
+				[1, ::Legends.Armor.Standard.light_scale_armor]
 			];
 
 			local helmet = [
-				[1, "closed_mail_coif"],
-				[1, "padded_kettle_hat"],
-				[1, "kettle_hat_with_closed_mail"],
-				[1, "kettle_hat_with_mail"],
-				[1, "padded_flat_top_helmet"],
-				[1, "nasal_helmet_with_mail"],
-				[1, "flat_top_with_mail"],
-				[1, "padded_nasal_helmet"],
-				[1, "bascinet_with_mail"]
+				[1, ::Legends.Helmet.Standard.closed_mail_coif],
+				[1, ::Legends.Helmet.Standard.padded_kettle_hat],
+				[1, ::Legends.Helmet.Standard.kettle_hat_with_closed_mail],
+				[1, ::Legends.Helmet.Standard.kettle_hat_with_mail],
+				[1, ::Legends.Helmet.Standard.padded_flat_top_helmet],
+				[1, ::Legends.Helmet.Standard.nasal_helmet_with_mail],
+				[1, ::Legends.Helmet.Standard.flat_top_with_mail],
+				[1, ::Legends.Helmet.Standard.padded_nasal_helmet],
+				[1, ::Legends.Helmet.Standard.bascinet_with_mail]
 			];
 
 			local outfits = [
-				[1, "red_bandit_leader_outfit_00"]
+				[1, ::Legends.Outfit.red_bandit_leader_outfit_00]
 			];
 
 			foreach( item in this.Const.World.Common.pickOutfit(outfits, armor, helmet) )
@@ -153,13 +158,13 @@
 		if (this.m.Items.getItemAtSlot(this.Const.ItemSlot.Body) == null)
 		{
 			local armor = [
-				[1, "reinforced_mail_hauberk"],
-				[2, "heavy_lamellar_armor"],
-				[2, "bandit_armor_heavy"],
-				[1, "footman_armor"],
-				[1, "leather_scale_armor"],
-				[1, "light_scale_armor"],
-				[1, "red_bandit_leader_armor"]
+				[1, ::Legends.Armor.Standard.reinforced_mail_hauberk],
+				[2, ::Legends.Armor.Standard.heavy_lamellar_armor],
+				[2, ::Legends.Armor.Standard.bandit_armor_heavy],
+				[1, ::Legends.Armor.Standard.footman_armor],
+				[1, ::Legends.Armor.Standard.leather_scale_armor],
+				[1, ::Legends.Armor.Standard.light_scale_armor],
+				[1, ::Legends.Armor.Standard.red_bandit_leader_armor]
 			];
 
 			this.m.Items.equip(this.Const.World.Common.pickArmor(armor))
@@ -168,16 +173,16 @@
 		if (this.m.Items.getItemAtSlot(this.Const.ItemSlot.Head) == null)
 		{
 			local item = this.Const.World.Common.pickHelmet([
-				[1, "closed_mail_coif"],
-				[1, "padded_kettle_hat"],
-				[1, "kettle_hat_with_closed_mail"],
-				[1, "kettle_hat_with_mail"],
-				[1, "padded_flat_top_helmet"],
-				[1, "nasal_helmet_with_mail"],
-				[1, "flat_top_with_mail"],
-				[1, "padded_nasal_helmet"],
-				[1, "bascinet_with_mail"],
-				[1, "red_bandit_leader_helmet"]
+				[1, ::Legends.Helmet.Standard.closed_mail_coif],
+				[1, ::Legends.Helmet.Standard.padded_kettle_hat],
+				[1, ::Legends.Helmet.Standard.kettle_hat_with_closed_mail],
+				[1, ::Legends.Helmet.Standard.kettle_hat_with_mail],
+				[1, ::Legends.Helmet.Standard.padded_flat_top_helmet],
+				[1, ::Legends.Helmet.Standard.nasal_helmet_with_mail],
+				[1, ::Legends.Helmet.Standard.flat_top_with_mail],
+				[1, ::Legends.Helmet.Standard.padded_nasal_helmet],
+				[1, ::Legends.Helmet.Standard.bascinet_with_mail],
+				[1, ::Legends.Helmet.Standard.red_bandit_leader_helmet]
 			]);
 			if (item != null)
 			{
@@ -231,32 +236,4 @@
 		::Legends.Perks.grant(this, ::Legends.Perk.Underdog);
 		return true;
 	}
-
-	o.onDeath <- function(_killer, _skill, _tile,  _fatalityType)
-	{
-		this.human.onDeath(_killer, _skill, _tile, _fatalityType);
-
-		if (_killer == null || _killer.getFaction() == this.Const.Faction.Player || _killer.getFaction() == this.Const.Faction.PlayerAnimals)
-		{
-			if (this.Math.rand(1, 100) <= 1)
-			{
-				local loot = this.new("scripts/items/misc/legend_masterwork_fabric");
-				loot.drop(_tile);
-			}
-
-			if (this.Math.rand(1, 1000) <= 7) //0.7%
-			{
-				local loot = this.new("scripts/items/misc/legend_masterwork_metal");
-				loot.drop(_tile);
-			}
-
-			if (this.Math.rand(1, 1000) <= 5) //0.5%
-			{
-				local loot = this.new("scripts/items/misc/legend_masterwork_tools");
-				loot.drop(_tile);
-			}
-		}
-	}
-
-
 });

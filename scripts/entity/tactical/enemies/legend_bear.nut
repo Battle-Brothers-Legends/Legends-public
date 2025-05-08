@@ -37,15 +37,25 @@ this.legend_bear <- this.inherit("scripts/entity/tactical/actor", {
 		this.m.SoundVolumeOverall = 1.25;
 		this.m.AIAgent = this.new("scripts/ai/tactical/agents/legend_bear_agent");
 		this.m.AIAgent.setActor(this);
+
+
+		this.m.OnDeathLootTable.extend([
+			[66, "scripts/items/supplies/strange_meat_item"]
+		]);
+		local rolls = ::Legends.S.extraLootChance(1);
+		for(local i = 0; i < rolls; i++) {
+			this.m.OnDeathLootTable.extend([
+				[40, "scripts/items/trade/furs_item"],
+				[40, "scripts/items/trade/furs_item"],
+				[40, "scripts/items/loot/legend_bear_fur_item"]
+			]);
+		}
 	}
 
 	function playSound( _type, _volume, _pitch = 1.0 )
 	{
 		if (_type == this.Const.Sound.ActorEvent.Move && this.Math.rand(1, 100) <= 50)
-		{
 			return;
-		}
-
 		this.actor.playSound(_type, _volume, _pitch);
 	}
 
@@ -143,50 +153,33 @@ this.legend_bear <- this.inherit("scripts/entity/tactical/actor", {
 			}
 
 			this.spawnTerrainDropdownEffect(_tile);
-			local corpse = clone this.Const.Corpse;
-			corpse.CorpseName = "A Bear";
-			corpse.Tile = _tile;
-			corpse.IsResurrectable = false;
-			corpse.IsConsumable = true;
-			corpse.Items = this.getItems();
-			corpse.IsHeadAttached = _fatalityType != this.Const.FatalityType.Decapitated;
+		}
+
+		local deathLoot = this.getItems().getDroppableLoot(_killer);
+		local tileLoot = this.getLootForTile(_killer, deathLoot);
+		local corpse = this.generateCorpse(_tile, _fatalityType);
+		this.dropLoot(_tile, tileLoot, !flip);
+
+		if (_tile == null) {
+			this.Tactical.Entities.addUnplacedCorpse(corpse);
+		} else {
 			_tile.Properties.set("Corpse", corpse);
 			this.Tactical.Entities.addCorpse(_tile);
 		}
 
-		if (_killer == null || _killer.getFaction() == this.Const.Faction.Player || _killer.getFaction() == this.Const.Faction.PlayerAnimals)
-		{
-			local n = 1 + (!this.Tactical.State.isScenarioMode() && this.Math.rand(1, 100) <= this.World.Assets.getExtraLootChance() ? 1 : 0);
-
-			for( local i = 0; i < n; i = ++i )
-			{
-				local r = this.Math.rand(1, 100);
-				local loot;
-
-				if (r <= 40)
-				{
-					loot = this.new("scripts/items/trade/furs_item");
-				}
-				else if (r <= 80)
-				{
-					loot = this.new("scripts/items/loot/legend_bear_fur_item");
-					loot = this.new("scripts/items/misc/furs_item");
-				}
-
-				if (loot != null)
-				{
-					loot.drop(_tile);
-				}
-			}
-
-			if (this.Math.rand(1, 100) <= 66)
-			{
-				local loot = this.new("scripts/items/supplies/strange_meat_item");
-				loot.drop(_tile);
-			}
-		}
-
 		this.actor.onDeath(_killer, _skill, _tile, _fatalityType);
+	}
+
+	function generateCorpse( _tile, _fatalityType )
+	{
+		local corpse = clone this.Const.Corpse;
+		corpse.CorpseName = "A Bear";
+		corpse.Tile = _tile;
+		corpse.IsResurrectable = false;
+		corpse.IsConsumable = true;
+		corpse.Items = this.getItems();
+		corpse.IsHeadAttached = _fatalityType != this.Const.FatalityType.Decapitated;
+		return corpse;
 	}
 
 	function onInit()

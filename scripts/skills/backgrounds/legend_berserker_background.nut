@@ -117,6 +117,27 @@ this.legend_berserker_background <- this.inherit("scripts/skills/backgrounds/cha
 		}
 	}
 
+	function getTooltip ()
+	{
+		local ret = this.character_background.getTooltip();
+		ret.push({
+			id = 12,
+			type = "text",
+			icon = "ui/icons/regular_damage.png",
+			text = "[color=" + this.Const.UI.Color.PositiveValue + "]5%[/color] bonus damage to [color=#400080]Hand to Hand[/color] and [color=#400080]Choke[/color]"
+		});
+		return ret;
+	}
+
+	function onAnySkillUsed( _skill, _targetEntity, _properties )
+	{
+		if (_skill.getID() == ::Legends.Actives.getID(::Legends.Active.LegendChoke) || _skill.getID() == ::Legends.Actives.getID(::Legends.Active.HandToHand))
+		{
+			_properties.DamageTotalMult *= 1.05;
+		}
+	}
+
+
 	//Default Male
 	function setGender(_gender = -1)
 	{
@@ -131,20 +152,6 @@ this.legend_berserker_background <- this.inherit("scripts/skills/backgrounds/cha
 		this.m.Bodies = this.Const.Bodies.AllFemale;
 		this.addBackgroundType(this.Const.BackgroundType.Female);
 
-	}
-
-	function getTooltip()
-	{
-		local ret = this.character_background.getTooltip();
-		ret.push(
-			{
-				id = 12,
-				type = "text",
-				icon = "ui/icons/regular_damage.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+25%[/color] Damage when unarmed"
-			}
-		);
-		return ret;
 	}
 
 	function onBuildDescription()
@@ -246,10 +253,10 @@ this.legend_berserker_background <- this.inherit("scripts/skills/backgrounds/cha
 
 		local items = this.getContainer().getActor().getItems();
 		items.equip(this.Const.World.Common.pickArmor([
-			[1, "barbarians/hide_and_bone_armor"]
+			[1, ::Legends.Armor.Barbarian.hide_and_bone_armor]
 		]));
 		local item = this.Const.World.Common.pickHelmet([
-			[1, "barbarians/leather_helmet"]
+			[1, ::Legends.Helmet.Barbarian.leather_helmet]
 		]);
 		local r = this.Math.rand(0, 4);
 

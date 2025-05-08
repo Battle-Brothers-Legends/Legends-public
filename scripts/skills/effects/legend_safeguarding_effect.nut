@@ -39,7 +39,7 @@ this.legend_safeguarding_effect <- this.inherit("scripts/skills/skill", {
 
 	function getTooltip()
 	{
-		local tooltip = 
+		local tooltip =
 		[
 			{
 				id = 1,
@@ -52,13 +52,13 @@ this.legend_safeguarding_effect <- this.inherit("scripts/skills/skill", {
 				text = this.getDescription()
 			}
 		];
-		if (this.m.Protector)
+		if (this.m.Ward)
 		{
 			tooltip.push({
 				id = 10,
 				type = "text",
 				icon = "ui/icons/melee_defense.png",
-				text = "All damage done to this character will be transfered to " + this.m.Protector.getName()
+				text = "All damage done to " + this.m.Ward.getName() + " will be transfered to this character"
 			});
 		}
 		local tooltip = [
@@ -94,30 +94,22 @@ this.legend_safeguarding_effect <- this.inherit("scripts/skills/skill", {
 				text = "All damage done to " + this.m.Ward.getName() + " will be transfered to this character"
 			});
 		}
-	}
 
-	function applyDamage( _damage, _attacker )
-	{
-		local hitInfo = clone this.Const.Tactical.HitInfo;
-		hitInfo.DamageRegular = _damage;
-		hitInfo.DamageDirect = 1.0;
-		hitInfo.BodyPart = this.Const.BodyPart.Body;
-		hitInfo.BodyDamageMult = 1.0;
-		hitInfo.FatalityChanceMult = 0.0;
-		this.getContainer().getActor().onDamageReceived(_attacker, this, hitInfo);
-		this.removeSelf();
+		return tooltip;
 	}
 
 	function onRemoved()
 	{
-		if (this.m.Ward != null && !this.m.Ward.isNull() && !this.m.Ward.getContainer().isNull())
-		{
-			local ward = this.m.Ward;
-			this.m.Ward = null;
-			ward.setProtector(null);
-			ward.removeSelf();
-			ward.getContainer().update();
-		}
+		if (!(this.m.Ward != null && !this.m.Ward.isNull()))
+			return;
+		local effect = ::Legends.Effects.get(this.m.Ward, ::Legends.Effect.LegendSafeguarded);
+		if (effect == null)
+			return;
+		effect.setProtector(null);
+		effect.removeSelf();
+		this.m.Ward.getSkills().update();
+		this.m.Ward = null;
+
 		local item = this.m.Container.getActor().getItems().getItemAtSlot(this.Const.ItemSlot.Offhand);
 
 		if (item != null && item.isItemType(this.Const.Items.ItemType.Shield))

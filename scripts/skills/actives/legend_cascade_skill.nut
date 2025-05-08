@@ -161,7 +161,8 @@ this.legend_cascade_skill <- this.inherit("scripts/skills/skill", {
 
 	function onAfterUpdate( _properties )
 	{
-		this.m.MaxRange = this.m.Item.getRangeMax() - 1 + (_properties.IsSpecializedInBows ? 1 : 0);
+		local bonusRange = (_properties.IsSpecializedInBows ? 1 : 0) + (this.getContainer().hasPerk(::Legends.Perk.LegendSpecialistSharpshooter) ? 1 : 0);
+		this.m.MaxRange = this.m.Item.getRangeMax() + bonusRange - 1;
 		this.m.AdditionalAccuracy = this.m.Item.getAdditionalAccuracy();
 		this.m.FatigueCostMult = _properties.IsSpecializedInBows ? this.Const.Combat.WeaponSpecFatigueMult : 1.0;
 	}

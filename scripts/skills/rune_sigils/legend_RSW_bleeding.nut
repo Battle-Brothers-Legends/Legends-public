@@ -36,7 +36,7 @@ this.legend_RSW_bleeding <- this.inherit("scripts/skills/skill", {
 			::Legends.Effects.grant(_targetEntity, ::Legends.Effect.LegendRswBleedingEffect, function (_effect) {
 				_effect.setActor(this.getContainer().getActor());
 				_effect.setStats(this.getItem().getRuneBonus1(), this.getItem().getRuneBonus2());
-			});
+			}.bindenv(this));
 
 			if (!_targetEntity.isHiddenToPlayer())
 			{

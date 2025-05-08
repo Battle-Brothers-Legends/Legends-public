@@ -1437,10 +1437,18 @@ effectsDefs.push({
 	Const = "LegendMagicCircleOfProtectionEffect"
 });
 
-::Legends.Effect.LegendMarkedTarget <- null;
+::Legends.Effect.LegendMarked <- null;
 effectsDefs.push({
 	ID = "effects.legend_marked_target",
 	Script = "scripts/skills/effects/legend_marked_effect",
+	Name = "Marked",
+	Const = "LegendMarked"
+});
+
+::Legends.Effect.LegendMarkedTarget <- null;
+effectsDefs.push({
+	ID = "effects.legend_marked_target",
+	Script = "scripts/skills/effects/legend_marked_target_effect",
 	Name = "Marked",
 	Const = "LegendMarkedTarget"
 });
@@ -1669,12 +1677,12 @@ effectsDefs.push({
 	Const = "LegendZombiePoison"
 });
 
-::Legends.Effect.SatoBrothersInChains <- null;
+::Legends.Effect.LegendBrothersInChains <- null;
 effectsDefs.push({
-	ID = "effects.sato_brothers_in_chains",
-	Script = "scripts/skills/effects/sato_brothers_in_chains_effect",
+	ID = "effects.legend_brothers_in_chains",
+	Script = "scripts/skills/effects/legend_brothers_in_chains_effect",
 	Name = "Brothers in Chains",
-	Const = "SatoBrothersInChains"
+	Const = "LegendBrothersInChains"
 });
 
 ::Legends.Effect.LegendHeadache <- null;

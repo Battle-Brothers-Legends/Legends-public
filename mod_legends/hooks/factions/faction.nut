@@ -210,12 +210,12 @@
 	}
 
 	local spawnEntity = o.spawnEntity;
-	o.spawnEntity = function (_tile, _name, _uniqueName, _template, _resources) {
-		local entity = spawnEntity(_tile, _name, _uniqueName, _template, _resources);
+	o.spawnEntity = function (_tile, _name, _uniqueName, _template, _resources, _minibossify = 0) {
+		local entity = spawnEntity(_tile, _name, _uniqueName, _template, _resources, _minibossify);
 		if (this.m.SpawnListener != null)
 			this.m.SpawnListener(entity);
 		this.m.SpawnListener = null;
 		return entity;
 	}
-	
+
 });

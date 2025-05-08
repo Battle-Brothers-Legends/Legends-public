@@ -34,13 +34,13 @@ this.legends_skeleton_low <- this.inherit("scripts/entity/tactical/legend_skelet
 		// }
 
 		this.m.Items.equip(this.Const.World.Common.pickArmor([
-			[1, "ancient/ancient_ripped_cloth"],
-			[1, ""]
+			[1, ::Legends.Armor.Ancient.ancient_ripped_cloth],
+			[1, ::Legends.Armor.None]
 		]));
 
 		local item = this.Const.World.Common.pickHelmet([
-			[34, ""],
-			[66, "ancient/ancient_household_helmet"]
+			[34, ::Legends.Helmet.None],
+			[66, ::Legends.Helmet.Ancient.ancient_household_helmet]
 		]);
 
 		if (item != null)

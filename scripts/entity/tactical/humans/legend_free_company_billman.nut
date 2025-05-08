@@ -1,7 +1,7 @@
 this.legend_free_company_billman <- this.inherit("scripts/entity/tactical/legend_free_company_abstract", {
 	m = {
 		Outfits = [
-			[1, "mercenary_billman_outfit_00"]
+			[1, ::Legends.Outfit.mercenary_billman_outfit_00]
 		],
 		PerkList = this.Const.EnemyPerks.FreeCompanyBillman,
 		PerkPower = 7
@@ -49,27 +49,13 @@ this.legend_free_company_billman <- this.inherit("scripts/entity/tactical/legend
 
 	function assignRandomEquipment()
 	{
-		local r = this.Math.rand(1, 101);
-		if (r <= 25)
-		{
-			this.m.Items.equip(this.new("scripts/items/weapons/billhook"));
-		}
-		else if (r <= 49)
-		{
-			this.m.Items.equip(this.new("scripts/items/weapons/longaxe"));
-		}
-		else if (r <= 73)
-		{
-			this.m.Items.equip(this.new("scripts/items/weapons/legend_halberd"));
-		}
-		else if (r <= 99)
-		{
-			this.m.Items.equip(this.new("scripts/items/weapons/legend_military_halberd"));
-		}
-		else
-		{
-			this.m.Items.equip(this.new("scripts/items/weapons/polehammer"));
-		}
+		this.getItems().equip(::Const.World.Common.pickItem([
+			[25, "weapons/billhook"],
+			[25, "weapons/longaxe"],
+			[25, "weapons/legend_halberd"],
+			[25, "weapons/legend_battle_glaive"],
+			[3, "weapons/polehammer"],
+		], "scripts/items/"));
 
 		this.legend_free_company_abstract.assignRandomEquipment();
 	}

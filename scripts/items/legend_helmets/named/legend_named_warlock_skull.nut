@@ -37,22 +37,30 @@ this.legend_named_warlock_skull <- this.inherit("scripts/items/legend_helmets/le
 		return result;
 	}
 
-	// taste the pain
-	function onDamageReceived( _attacker, _damageHitpoints, _damageArmor )
+	function resetStats()
 	{
-		ret = this.legend_helmet_upgrade.onDamageReceived(_damage, _fatalityType, _attacker);
+		this.m.Condition = 90;
+		this.m.ConditionMax = 90;
+		this.m.StaminaModifier = -2;
+		this.m.Vision = 0;
+	}
+
+	// taste the pain
+	function onDamageReceived (_damage, _fatalityType, _attacker)
+	{
+		local ret = this.legend_helmet_upgrade.onDamageReceived(_damage, _fatalityType, _attacker);
 
 		if (_attacker == null)
-			return;
+			return ret;
 
 		if (_attacker.isAlliedWith(this.getContainer().getActor()))
-			return;
+			return ret;
 
 		if (this.Tactical.TurnSequenceBar.getActiveEntity() == null)
-			return;
+			return ret;
 
 		if (this.Tactical.TurnSequenceBar.getActiveEntity().getID() != _attacker.getID())
-			return;
+			return ret;
 
 		this.getContainer().getActor().getCurrentProperties().MoraleCheckBravery[0] += 10;
 		this.getContainer().getActor().getCurrentProperties().MoraleCheckBravery[1] += 10;

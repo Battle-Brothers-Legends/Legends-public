@@ -180,11 +180,8 @@
 		this.m.DirectDamageAdd = _in.readF32();
 		this.m.FatigueOnSkillUse = _in.readI16();
 		this.m.AmmoMax = _in.readU16();
-		if (::Legends.Mod.Serialization.isSavedVersionAtLeast("18.2.0-pre-03", _in.getMetaData()))
-		{
-			this.m.PossibleEffectIdx = _in.readI8();
-			this.m.EffectChanceOrBonus = _in.readI8();
-		}
+		this.m.PossibleEffectIdx = _in.readI8();
+		this.m.EffectChanceOrBonus = _in.readI8();
 		//_in.readF32();
 		this.weapon.onDeserialize(_in);
 		this.updateVariant();

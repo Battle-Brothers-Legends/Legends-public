@@ -7,12 +7,16 @@ this.perk_legend_specialist_woodsman <- this.inherit("scripts/skills/legend_spec
 		ApplicableWeaponTypes = [
 			this.Const.Items.WeaponType.Axe
 		],
+		ApplicableItemTypes = [
+			this.Const.Items.ItemType.TwoHanded
+		],
 		ValidEntities = [
 			this.Const.EntityType.Schrat,
-			this.Const.EntityType.LegendGreenwoodSchrat
+			this.Const.EntityType.LegendGreenwoodSchrat,
+			this.Const.EntityType.SchratSmall,
+			this.Const.EntityType.LegendGreenwoodSchratSmall
 		],
 		BonusMelee = 12,
-		BonusRanged = 12,
 		BonusDamage = 10
 	},
 	function create()

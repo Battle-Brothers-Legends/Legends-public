@@ -71,7 +71,7 @@
 					{
 						spawnParty = this.Const.World.Spawn.MixedNobleCaravan;
 					}
-					local party = enemyFaction.spawnEntity(best_start.getTile(), "Caravan", false, this.Const.World.Spawn.NobleCaravan, 100 * this.Contract.getDifficultyMult() * this.Contract.getScaledDifficultyMult());
+					local party = enemyFaction.spawnEntity(best_start.getTile(), "Caravan", false, this.Const.World.Spawn.NobleCaravan, 100 * this.Contract.getDifficultyMult() * this.Contract.getScaledDifficultyMult(), this.Contract.getMinibossModifier());
 					party.getSprite("base").Visible = false;
 					party.getSprite("banner").setBrush(enemyFaction.getBannerSmall());
 					party.setMirrored(true);

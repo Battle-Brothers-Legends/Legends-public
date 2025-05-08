@@ -21,7 +21,7 @@
 						}
 					}
 
-					local item = this.Const.World.Common.pickHelmet([[1, "cultist_leather_hood"]]);
+					local item = this.Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Standard.cultist_leather_hood]]);
 					this.World.Assets.getStash().add(item);
 					this.List.push({
 						id = 10,

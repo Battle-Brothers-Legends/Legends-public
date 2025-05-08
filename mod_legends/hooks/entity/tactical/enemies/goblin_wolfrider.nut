@@ -14,29 +14,25 @@
 
 	o.assignRandomEquipment = function ()
 	{
-		local r;
-		r = this.Math.rand(1, 2);
+		local weapons = [
+			"weapons/greenskins/goblin_falchion",
+			"weapons/greenskins/goblin_spear",
+			"weapons/greenskins/legend_goblin_longaxe",
+		];
 
-		if (r == 1)
-		{
-			this.m.Items.equip(this.new("scripts/items/weapons/greenskins/goblin_spear"));
-		}
-		else if (r == 2)
-		{
-			this.m.Items.equip(this.new("scripts/items/weapons/greenskins/goblin_falchion"));
-		}
+		this.m.Items.equip(this.new("scripts/items/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
 
 		local item = this.Const.World.Common.pickArmor([
-			[3, "greenskins/goblin_medium_armor"],
-			[1, "greenskins/goblin_heavy_armor"]
+			[3, ::Legends.Armor.Greenskin.goblin_medium_armor],
+			[1, ::Legends.Armor.Greenskin.goblin_heavy_armor]
 		]);
 		this.m.Items.equip(item);
 
 
 
 		local item = this.Const.World.Common.pickHelmet([
-			[75, "greenskins/goblin_light_helmet"],
-			[25, "greenskins/goblin_heavy_helmet"]
+			[75, ::Legends.Helmet.Greenskin.goblin_light_helmet],
+			[25, ::Legends.Helmet.Greenskin.goblin_heavy_helmet]
 		]);
 		if (item != null)
 		{

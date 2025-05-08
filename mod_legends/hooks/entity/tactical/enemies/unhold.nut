@@ -1,7 +1,6 @@
-::mods_hookExactClass("entity/tactical/enemies/unhold", function(o)
-{
+::mods_hookExactClass("entity/tactical/enemies/unhold", function(o) {
 	local onFactionChanged = o.onFactionChanged;
-	o.onFactionChanged = function ()
+	o.onFactionChanged = function()
 	{
 		onFactionChanged();
 		local flip = this.isAlliedWithPlayer();
@@ -9,12 +8,12 @@
 		{
 			if (!this.hasSprite(a))
 				continue;
-			
+
 			this.getSprite(a).setHorizontalFlipping(flip);
 		}
 	}
 
-	o.onInit = function ()
+	o.onInit = function()
 	{
 		this.actor.onInit();
 		local b = this.m.BaseProperties;
@@ -40,13 +39,13 @@
 		this.m.Items.getAppearance().Body = "bust_unhold_body_02";
 		this.addSprite("socket").setBrush("bust_base_beasts");
 		local body = this.addSprite("body");
-		if(this.Math.rand(1, 100) < 5)
+		if (this.Math.rand(1, 100) < 5)
 		{
-		body.setBrush("bust_unhold_body_04");
+			body.setBrush("bust_unhold_body_04");
 		}
 		else
 		{
-		body.setBrush("bust_unhold_body_02");
+			body.setBrush("bust_unhold_body_02");
 		}
 		body.varySaturation(0.1);
 		body.varyColor(0.09, 0.09, 0.09);
@@ -55,13 +54,13 @@
 		injury_body.setBrush("bust_unhold_02_injured");
 		this.addSprite("armor");
 		local head = this.addSprite("head");
-		if(this.Math.rand(1, 100) < 3)
+		if (this.Math.rand(1, 100) < 3)
 		{
-		head.setBrush("bust_unhold_head_04");
+			head.setBrush("bust_unhold_head_04");
 		}
 		else
 		{
-		head.setBrush("bust_unhold_head_02");
+			head.setBrush("bust_unhold_head_02");
 		}
 		head.Saturation = body.Saturation;
 		head.Color = body.Color;
@@ -87,7 +86,7 @@
 		::Legends.Actives.grant(this, ::Legends.Active.SweepZoc);
 		::Legends.Actives.grant(this, ::Legends.Active.FlingBack);
 		::Legends.Actives.grant(this, ::Legends.Active.UnstoppableCharge);
-		if(::Legends.isLegendaryDifficulty())
+		if (::Legends.isLegendaryDifficulty())
 		{
 			this.m.Hitpoints = 2 * b.Hitpoints;
 			b.MeleeSkill += 10;
@@ -97,7 +96,7 @@
 		}
 	}
 
-	o.assignRandomEquipment = function ()
+	o.assignRandomEquipment = function()
 	{
 	}
 });

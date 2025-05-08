@@ -25,6 +25,7 @@
 - *Olve* - art
 - *Shiro* - art
 - *Evie Nekomancer* ꜀(^. .^꜀ )꜆੭ - art
+- *kamy (Cutethulu)* - art
 
 #### Previous Contributors
 - *Hanter* - programming

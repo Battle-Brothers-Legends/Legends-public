@@ -124,12 +124,12 @@ this.legend_ancient_summoner_background <- this.inherit("scripts/skills/backgrou
 		this.getContainer().getActor().fillTalentValues(1, true);
 		local items = this.getContainer().getActor().getItems();
 		items.equip(this.Const.World.Common.pickHelmet([
-			[1, "cultist_hood"],
-			[1, "hood"],
-			[1, "cultist_leather_hood"]
+			[1, ::Legends.Helmet.Standard.cultist_hood],
+			[1, ::Legends.Helmet.Standard.hood],
+			[1, ::Legends.Helmet.Standard.cultist_leather_hood]
 		]));
 		items.equip(this.Const.World.Common.pickArmor([
-			[1, "thick_dark_tunic"]
+			[1, ::Legends.Armor.Standard.thick_dark_tunic]
 		]));
 		local r;
 		r = this.Math.rand(0, 8);

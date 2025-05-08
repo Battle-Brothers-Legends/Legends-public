@@ -60,7 +60,8 @@ this.legend_vala_background <- this.inherit("scripts/skills/backgrounds/characte
 			Enemy = [],
 			Class = [
 				this.Const.Perks.HealerClassTree,
-				this.Const.Perks.ChefClassTree
+				this.Const.Perks.ChefClassTree,
+				this.Const.Perks.StaffClassTree
 			],
 			Magic = [
 				this.Const.Perks.ValaChantMagicTree,
@@ -173,8 +174,8 @@ this.legend_vala_background <- this.inherit("scripts/skills/backgrounds/characte
 		items.equip(this.new("scripts/items/weapons/legend_staff_vala"));
 
 		items.equip(this.Const.World.Common.pickArmor([
-			[1, "legend_vala_cloak"],
-			[1, "legend_vala_dress"]
+			[1, ::Legends.Armor.Standard.legend_vala_cloak],
+			[1, ::Legends.Armor.Standard.legend_vala_dress]
 		]));
 	}
 

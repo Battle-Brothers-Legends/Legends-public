@@ -9,8 +9,6 @@ this.legends_party_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 		this.m.Order = 10;
 	}
 
-
-
 	function onSpawnAssets()
 	{
 		local roster = this.World.getPlayerRoster();
@@ -85,7 +83,6 @@ this.legends_party_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 		bros[5].setVeteranPerks(2);
 		::Legends.Traits.grant(bros[5], ::Legends.Trait.LegendSureshot);
 		::Legends.Traits.grant(bros[5], ::Legends.Trait.LegendPragmatic);
-		this.World.Assets.m.ChampionChanceAdditional = 5;
 	}
 
 	function onInit()

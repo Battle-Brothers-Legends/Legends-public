@@ -5,6 +5,12 @@
 		return this.m.IsShowingDefenders || this.World.Assets.getOrigin().getID() == "scenario.rangers" || this.World.Assets.getOrigin().getID() == "scenario.legends_rangers";
 	}
 
+
+	// named item chances:
+	// 10% shield
+	// 30% weapon
+	// 25% armor
+	// 35% helmet
 	o.onSpawned = function ()
 	{
 		local nearestSettlement = 9000;
@@ -34,7 +40,7 @@
 					num = ++num;
 					local type = this.Math.rand(1, 100);
 
-					if (type <= 40)
+					if (type <= 30)
 					{
 						local weapons = clone this.Const.Items.NamedWeapons;
 
@@ -46,7 +52,7 @@
 
 						this.m.Loot.add(this.new("scripts/items/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
 					}
-					else if (type <= 50)
+					else if (type <= 40)
 					{
 						local shields = clone this.Const.Items.NamedShields;
 
@@ -58,7 +64,7 @@
 
 						this.m.Loot.add(this.new("scripts/items/" + shields[this.Math.rand(0, shields.len() - 1)]));
 					}
-					else if (type <= 70)
+					else if (type <= 65)
 					{
 						local helmets = clone this.Const.Items.NamedHelmets;
 

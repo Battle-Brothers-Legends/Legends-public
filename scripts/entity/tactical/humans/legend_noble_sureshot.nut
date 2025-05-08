@@ -2,7 +2,7 @@ this.legend_noble_sureshot <- this.inherit("scripts/entity/tactical/legend_rando
 	m = {},
 	function create()
 	{
-		this.m.Type = this.Const.EntityType.NobleSureshot; 
+		this.m.Type = this.Const.EntityType.NobleSureshot;
 		this.m.BloodType = this.Const.BloodType.Red;
 		this.m.XP = this.Const.Tactical.Actor.NobleSureshot.XP;
 		this.legend_randomized_unit_noble_abstract.create();
@@ -33,7 +33,9 @@ this.legend_noble_sureshot <- this.inherit("scripts/entity/tactical/legend_rando
 	function assignRandomEquipment()
 	{
         this.legend_randomized_unit_noble_abstract.assignRandomEquipment();
-		this.m.Items.addToBag(this.new("scripts/items/weapons/dagger"));
+		this.getItems().addToBag(::Const.World.Common.pickItem([
+			[1, "weapons/dagger"],
+		], "scripts/items/"));
 	}
 
 });

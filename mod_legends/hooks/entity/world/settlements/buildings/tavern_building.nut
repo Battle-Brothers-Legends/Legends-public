@@ -36,6 +36,7 @@
 			"The Black Hag",
 			"Drifter\'s Rest",
 			"The Swillbucket",
+			"Lilac Donkey Inn",
 			"The Huntsmarshal"
 		]);
 	}

@@ -277,15 +277,15 @@ this.legend_lurker_background <- this.inherit("scripts/skills/backgrounds/charac
 		}
 
 		items.equip(this.Const.World.Common.pickArmor([
-			[1, "tattered_sackcloth"],
-			[1, "leather_wraps"],
-			[1, "monk_robe"],
-			[1, "cultist_leather_robe"]
+			[1, ::Legends.Armor.Standard.tattered_sackcloth],
+			[1, ::Legends.Armor.Standard.leather_wraps],
+			[1, ::Legends.Armor.Standard.monk_robe],
+			[1, ::Legends.Armor.Standard.cultist_leather_robe]
 		]));
 		items.equip(this.Const.World.Common.pickHelmet([
-			[1, "cultist_hood"],
-			[1, "hood"],
-			[1, "cultist_leather_hood"]
+			[1, ::Legends.Helmet.Standard.cultist_hood],
+			[1, ::Legends.Helmet.Standard.hood],
+			[1, ::Legends.Helmet.Standard.cultist_leather_hood]
 		]));
 	}
 

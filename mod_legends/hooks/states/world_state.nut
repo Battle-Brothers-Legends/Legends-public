@@ -1548,9 +1548,7 @@
 	local onDeserialize = o.onDeserialize;
 	o.onDeserialize = function ( _in )
 	{
-		if (::Legends.Mod.Serialization.isSavedVersionAtLeast("19.1.0", _in.getMetaData())) {
-			::World.Encounters.onDeserialize(_in);
-		}
+		::World.Encounters.onDeserialize(_in);
 		onDeserialize(_in);
 		if (this.m.EscortedEntity == null) {
 			::World.State.setCampingAllowed(true);

@@ -34,6 +34,18 @@ this.legend_vampire_lord <- this.inherit("scripts/entity/tactical/actor", {
 		this.getFlags().add("vampire");
 		this.m.AIAgent = this.new("scripts/ai/tactical/agents/vampire_agent");
 		this.m.AIAgent.setActor(this);
+
+		this.m.OnDeathLootTable.extend([
+			[100, "scripts/items/misc/vampire_dust_item"],
+			[8, "scripts/items/misc/legend_masterwork_metal"],
+			[7, "scripts/items/misc/legend_masterwork_tools"]
+		]);
+		local rolls = ::Legends.S.extraLootChance(1);
+		for(local i = 0; i < rolls; i++) {
+			this.m.OnDeathLootTable.extend([
+				[50, "scripts/items/misc/legend_ancient_scroll_item"]
+			]);
+		}
 	}
 
 	function onDeath( _killer, _skill, _tile, _fatalityType )
@@ -53,53 +65,36 @@ this.legend_vampire_lord <- this.inherit("scripts/entity/tactical/actor", {
 			decal.Scale = 0.9;
 			decal.setBrightness(0.9);
 			this.spawnTerrainDropdownEffect(_tile);
-			local corpse = clone this.Const.Corpse;
-			corpse.Faction = this.getFaction();
-			corpse.CorpseName = "A " + this.getName();
-			corpse.Tile = _tile;
-			corpse.Armor = this.m.BaseProperties.Armor;
-			corpse.Items = this.getItems();
-			corpse.IsHeadAttached = true;
-			corpse.IsConsumable = false;
-			corpse.IsResurrectable = false;
+			this.spawnFlies(_tile);
+		}
+
+		local deathLoot = this.getItems().getDroppableLoot(_killer);
+		local tileLoot = this.getLootForTile(_killer, deathLoot);
+		local corpse = this.generateCorpse(_tile, _fatalityType);
+		this.dropLoot(_tile, tileLoot, !flip);
+
+		if (_tile == null) {
+			this.Tactical.Entities.addUnplacedCorpse(corpse);
+		} else {
 			_tile.Properties.set("Corpse", corpse);
 			this.Tactical.Entities.addCorpse(_tile);
 		}
 
-		this.getItems().dropAll(_tile, _killer, !flip);
-
-		local loot = this.new("scripts/items/misc/vampire_dust_item");
-		loot.drop(_tile);
-
-		if (_killer == null || _killer.getFaction() == this.Const.Faction.Player || _killer.getFaction() == this.Const.Faction.PlayerAnimals)
-		{
-			local n = 1 + (!this.Tactical.State.isScenarioMode() && this.Math.rand(1, 100) <= this.World.Assets.getExtraLootChance() ? 1 : 0);
-
-			for( local i = 0; i < n; i = ++i )
-			{
-				if (this.Math.rand(1, 100) <= 50)
-				{
-					local loot = this.new("scripts/items/misc/legend_ancient_scroll_item");
-					loot.drop(_tile);
-				}
-			}
-
-			if (this.Math.rand(1, 100) <= 8)
-			{
-				local loot = this.new("scripts/items/misc/legend_masterwork_metal");
-				loot.drop(_tile);
-			}
-
-			if (this.Math.rand(1, 100) <= 7)
-			{
-				local loot = this.new("scripts/items/misc/legend_masterwork_tools");
-				loot.drop(_tile);
-			}
-
-
-		}
-
 		this.actor.onDeath(_killer, _skill, _tile, _fatalityType);
+	}
+
+	function generateCorpse( _tile, _fatalityType )
+	{
+		local corpse = clone this.Const.Corpse;
+		corpse.Faction = this.getFaction();
+		corpse.CorpseName = "A " + this.getName();
+		corpse.Armor = this.m.BaseProperties.Armor;
+		corpse.Items = this.getItems();
+		corpse.IsHeadAttached = true;
+		corpse.IsConsumable = false;
+		corpse.IsResurrectable = false;
+		corpse.Tile = _tile;
+		return corpse;
 	}
 
 	function onFactionChanged()
@@ -130,7 +125,7 @@ this.legend_vampire_lord <- this.inherit("scripts/entity/tactical/actor", {
 			this.m.WasInjured = true;
 		}
 
-		this.actor.onDamageReceived(_attacker, _skill, _hitInfo);
+		return this.actor.onDamageReceived(_attacker, _skill, _hitInfo);
 	}
 
 	function onUpdateInjuryLayer()
@@ -340,60 +335,34 @@ this.legend_vampire_lord <- this.inherit("scripts/entity/tactical/actor", {
 
 	function assignRandomEquipment()
 	{
+		this.getItems().equip(::Const.World.Common.pickItem([
+			[1, "weapons/ancient/crypt_cleaver"],
+			[1, "weapons/ancient/legend_great_khopesh"]
+		], "scripts/items/"));
 
-		local item = this.Const.World.Common.pickArmor([
-			[1, "legend_vampire_lord_armor"]
-		]);
-		this.m.Items.equip(item);
-		local item = this.Const.World.Common.pickHelmet([
-			[66, "legend_vampire_lord_helmet"]
-		]);
-		if (item != null)
-		{
-			this.m.Items.equip(item);
-		}
-
-		local r = this.Math.rand(1, 2);
-
-		// if (r == 1)
-		// {
-		// 	this.m.Items.equip(this.new("scripts/items/weapons/named/named_crypt_cleaver"));
-		// }
-		// else if (r <= 4)
-		// {
-		// 	this.m.Items.equip(this.new("scripts/items/weapons/named/legend_named_great_khopesh"));
-		// }
-		if (r == 1)
-		{
-			this.m.Items.equip(this.new("scripts/items/weapons/ancient/crypt_cleaver"));
-		}
-		else
-		{
-			this.m.Items.equip(this.new("scripts/items/weapons/ancient/legend_great_khopesh"));
-		}
+		this.getItems().equip(::Const.World.Common.pickArmor([
+			[1, ::Legends.Armor.Standard.legend_vampire_lord_armor]
+		]));
+		this.getItems().equip(::Const.World.Common.pickHelmet([
+			[1, ::Legends.Helmet.Standard.legend_vampire_lord_helmet]
+		]));
 	}
 
 	function makeMiniboss()
 	{
 		if (!this.actor.makeMiniboss())
-		{
 			return false;
-		}
 
 		this.getSprite("miniboss").setBrush("bust_miniboss");
-		if (this.Math.rand(1, 100) <= 33)
-		{
-			this.m.Items.equip(this.new("scripts/items/weapons/named/named_khopesh"));
-		}
-		else
-		{
-			this.m.Items.equip(this.new("scripts/items/weapons/named/named_crypt_cleaver"));
-		}
 
-		{
+		this.getItems().equip(::Const.World.Common.pickItem([
+			[1, "weapons/named/named_khopesh"],
+			[2, "weapons/named/named_crypt_cleaver"]
+		], "scripts/items/"));
+
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendTerrifyingVisage);
+
 		return true;
-		}
 	}
 
 });

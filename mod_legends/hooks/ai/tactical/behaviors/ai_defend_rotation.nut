@@ -30,7 +30,7 @@
 
 		this.m.Skill = this.selectSkill(this.m.PossibleSkills);
 
-		if (this.m.Skill == null)
+		if (::Legends.Mod.ModSettings.getSetting("AiRotation").getValue() == "Disabled" || this.m.Skill == null)
 		{
 			return this.Const.AI.Behavior.Score.Zero;
 		}

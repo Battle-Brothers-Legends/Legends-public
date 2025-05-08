@@ -2,41 +2,19 @@ if (!("LegendMod" in ::Const)) {
 	::Const.LegendMod <- {}
 }
 
-// load config folder
-foreach (file in ::IO.enumerateFiles("mod_legends/!!!config")) {
-	::include(file);
-}
-foreach (file in ::IO.enumerateFiles("mod_legends/!!config")) {
-	::include(file);
-}
-foreach (file in ::IO.enumerateFiles("mod_legends/!config")) {
-	::include(file);
-}
-foreach (file in ::IO.enumerateFiles("mod_legends/config")) {
-	::include(file);
-}
-
-// load helpers
-foreach (file in ::IO.enumerateFiles("mod_legends/helper")) {
-	::include(file);
-}
-
-// load query folder
-foreach (file in ::IO.enumerateFiles("mod_legends/system"))
-{
-	::include(file);
-}
-
-// load register folder
-foreach (file in ::IO.enumerateFiles("mod_legends/register"))
-{
-	::include(file);
-}
-
-// load hooks folder
-foreach (file in ::IO.enumerateFiles("mod_legends/hooks"))
-{
-	::include(file);
+// load order
+foreach (dir in [
+	"mod_legends/!!config",
+	"mod_legends/!config/outfit",
+	"mod_legends/!config",
+	"mod_legends/config",
+	"mod_legends/helper",
+	"mod_legends/system",
+	"mod_legends/register",
+	"mod_legends/hooks"
+]) {
+	foreach (file in ::IO.enumerateFiles(dir))
+		::include(file);
 }
 
 // load afterHooks folder

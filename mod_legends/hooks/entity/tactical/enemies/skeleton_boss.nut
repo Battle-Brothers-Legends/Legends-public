@@ -39,12 +39,12 @@
 		}
 
 		local item = this.Const.World.Common.pickArmor([
-			[1, "legendary/emperors_armor_fake"] //legend_emperors_armor_fake
+			[1, ::Legends.Armor.Legendary.emperors_armor_fake] //legend_emperors_armor_fake
 		]);
 		this.m.Items.equip(item);
 
 		local item = this.Const.World.Common.pickHelmet([
-			[66, "ancient/ancient_laurels"]
+			[66, ::Legends.Helmet.Ancient.ancient_laurels]
 		]);
 		if (item != null)
 		{

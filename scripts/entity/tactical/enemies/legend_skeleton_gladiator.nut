@@ -42,29 +42,22 @@ this.legend_skeleton_gladiator <- this.inherit("scripts/entity/tactical/skeleton
 	function assignRandomEquipment()
 	{
 
-		this.m.Items.equip(this.new("scripts/items/weapons/ancient/ancient_spear"));
-		this.m.Items.equip(this.new("scripts/items/weapons/throwing_spear"));
-		this.m.Items.equip(this.new("scripts/items/weapons/throwing_spear"));
-		this.m.Items.equip(this.new("scripts/items/weapons/throwing_spear"));
-		this.m.Items.equip(this.new("scripts/items/tools/throwing_net"));
+		this.getItems().equip(this.new("scripts/items/weapons/ancient/ancient_spear"));
+		this.getItems().equip(this.new("scripts/items/weapons/throwing_spear"));
+		this.getItems().equip(this.new("scripts/items/weapons/throwing_spear"));
+		this.getItems().equip(this.new("scripts/items/weapons/throwing_spear"));
+		this.getItems().equip(this.new("scripts/items/tools/throwing_net"));
 
+		this.getItems().equip(this.new("scripts/items/shields/ancient/tower_shield"));
 
-		this.m.Items.equip(this.new("scripts/items/shields/ancient/tower_shield"));
+		this.getItems().equip(::Const.World.Common.pickArmor([
+			[1, ::Legends.Armor.Ancient.ancient_ripped_cloth]
+		]));
 
-
-		local item = this.Const.World.Common.pickArmor([
-			[1, "ancient/ancient_ripped_cloth"]
-		]);
-		this.m.Items.equip(item);
-
-		local item = this.Const.World.Common.pickHelmet([
-			[34, ""],
-			[66, "ancient/ancient_gladiator_helmet"]
-		]);
-		if (item != null)
-		{
-			this.m.Items.equip(item);
-		}
+		this.getItems().equip(::Const.World.Common.pickHelmet([
+			[1, ::Legends.Helmet.None],
+			[2, ::Legends.Helmet.Ancient.ancient_gladiator_helmet]
+		]));
 	}
 
 });

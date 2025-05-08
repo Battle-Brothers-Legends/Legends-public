@@ -62,6 +62,8 @@ this.legend_piercing_shot_skill <- ::inherit("scripts/skills/actives/aimed_shot"
 	{
 		this.aimed_shot.onAfterUpdate(_properties);
 		m.AdditionalAccuracy = m.Item.getAdditionalAccuracy();
+		local bonusRange = (_properties.IsSpecializedInBows ? 1 : 0) + (this.getContainer().hasPerk(::Legends.Perk.LegendSpecialistSharpshooter) ? 1 : 0);
+		this.m.MaxRange = this.m.Item.getRangeMax() + bonusRange;
 	}
 
 	function onUse( _user, _targetTile )
@@ -84,7 +86,10 @@ this.legend_piercing_shot_skill <- ::inherit("scripts/skills/actives/aimed_shot"
 		// show the effect
 		_info.Skill.onSpawnPiercingEffect(targetTile, _info.Skill.m.OriginalDirection);
 
-		if (forwardTile == null || !forwardTile.IsOccupiedByActor || !forwardTile.getEntity().isAttackable())
+		if (forwardTile.len() == 0) return;
+		else forwardTile = forwardTile[0];
+
+		if (!forwardTile.IsOccupiedByActor || !forwardTile.getEntity().isAttackable())
 			return;
 
 		// change these
@@ -129,10 +134,10 @@ this.legend_piercing_shot_skill <- ::inherit("scripts/skills/actives/aimed_shot"
 		this.skill.onTargetSelected(_targetTile);
 
 		local forwardTile = getAffectedTiles(_targetTile);
-		if (forwardTile == null)
+		if (forwardTile.len() == 0)
 			return;
 
-		::Tactical.getHighlighter().addOverlayIcon(::Const.Tactical.Settings.AreaOfEffectIcon, forwardTile, forwardTile.Pos.X, forwardTile.Pos.Y);
+		::Tactical.getHighlighter().addOverlayIcon(::Const.Tactical.Settings.AreaOfEffectIcon, forwardTile[0], forwardTile[0].Pos.X, forwardTile[0].Pos.Y);
 	}
 
 	function onAnySkillUsed( _skill, _targetEntity, _properties )
@@ -149,15 +154,15 @@ this.legend_piercing_shot_skill <- ::inherit("scripts/skills/actives/aimed_shot"
 			_direction = getContainer().getActor().getTile().getDirectionTo(_targetTile);
 
 		if (!_targetTile.hasNextTile(_direction))
-			return null;
+			return [];
 
 		local forwardTile = _targetTile.getNextTile(_direction);
 		local diff = _targetTile.Level - forwardTile.Level;
 
 		if (diff < 0 || diff > 1)
-			return null;
+			return [];
 
-		return forwardTile;
+		return [forwardTile];
 	}
 
 });

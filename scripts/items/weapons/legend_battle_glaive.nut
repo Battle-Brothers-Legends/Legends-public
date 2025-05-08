@@ -21,6 +21,8 @@ this.legend_battle_glaive <- this.inherit("scripts/items/weapons/weapon", {
 		this.m.RangeMin = 1;
 		this.m.RangeMax = 2;
 		this.m.RangeIdeal = 2;
+		this.m.Condition = 72.0;
+		this.m.ConditionMax = 72.0;
 		this.m.RegularDamage = 60;
 		this.m.RegularDamageMax = 75;
 		this.m.ArmorDamageMult = 0.9;

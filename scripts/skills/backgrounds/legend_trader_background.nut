@@ -192,10 +192,10 @@ this.legend_trader_background <- this.inherit("scripts/skills/backgrounds/charac
 		local items = this.getContainer().getActor().getItems();
 		items.equip(this.new("scripts/items/weapons/legend_tipstaff"));
 		items.equip(this.Const.World.Common.pickArmor([
-			[1, "linen_tunic"]
+			[1, ::Legends.Armor.Standard.linen_tunic]
 		]));
 		items.equip(this.Const.World.Common.pickHelmet([
-			[1, "feathered_hat"]
+			[1, ::Legends.Helmet.Standard.feathered_hat]
 		]));
 	}
 });

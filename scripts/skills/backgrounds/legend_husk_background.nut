@@ -244,15 +244,15 @@ this.legend_husk_background <- this.inherit("scripts/skills/backgrounds/characte
 		}
 
 		items.equip(this.Const.World.Common.pickArmor([
-			[1, "tattered_sackcloth"],
-			[1, "leather_wraps"],
-			[1, "decayed_reinforced_mail_hauberk"],
-			[1, "decayed_coat_of_plates"]
+			[1, ::Legends.Armor.Standard.tattered_sackcloth],
+			[1, ::Legends.Armor.Standard.leather_wraps],
+			[1, ::Legends.Armor.Standard.decayed_reinforced_mail_hauberk],
+			[1, ::Legends.Armor.Standard.decayed_coat_of_plates]
 		]));
 		items.equip(this.Const.World.Common.pickHelmet([
-			[1, "cultist_hood"],
-			[1, "hood"],
-			[1, "cultist_leather_hood"]
+			[1, ::Legends.Helmet.Standard.cultist_hood],
+			[1, ::Legends.Helmet.Standard.hood],
+			[1, ::Legends.Helmet.Standard.cultist_leather_hood]
 		]));
 	}
 

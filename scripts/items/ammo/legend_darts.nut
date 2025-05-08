@@ -2,6 +2,7 @@ this.legend_darts <- this.inherit("scripts/items/ammo/ammo", {
 	m = {},
 	function create()
 	{
+		this.ammo.create();
 		this.m.ID = "ammo.legend_darts";
 		this.m.Name = "Bag of Darts";
 		this.m.Description = "A bag of darts, required to use blow guns of all kinds. Is automatically refilled after each battle if you have enough ammunition.";

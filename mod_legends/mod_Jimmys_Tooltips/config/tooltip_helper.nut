@@ -395,7 +395,7 @@
 			if(mainhand != null){
 				local name = mainhand.getName();
 				//::logInfo(name);
-				pushSectionName(mainhand, "Equiped Items:", 400);
+				pushSectionName(mainhand, "Equipped Items:", 400);
 				if(mainhand.isItemType(this.Const.Items.ItemType.Ammo)){
 					tooltip.push({
 						id = 401,

@@ -4,8 +4,8 @@ this.legend_prepare_bullet_effect <- this.inherit("scripts/skills/skill", {
 	{
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendPrepareBullet);
 		this.m.Description = "This character is preparing a shot with a sling, increasing velocity and damage.";
-		this.m.Icon = "ui/effects/slinger_spins.png";
-		this.m.IconMini = "slinger_spins_mini.png";
+		this.m.Icon = "ui/perks/perk_slinger_spins.png";
+		this.m.IconMini = "slinger_spins_mini";
 		this.m.Overlay = "slinger_spins_mini";
 		this.m.Type = this.Const.SkillType.StatusEffect;
 		this.m.IsActive = false;
@@ -14,7 +14,7 @@ this.legend_prepare_bullet_effect <- this.inherit("scripts/skills/skill", {
 
 	function getTooltip()
 	{
-		ret = [
+		local ret = [
 			{
 				id = 1,
 				type = "title",
@@ -39,13 +39,14 @@ this.legend_prepare_bullet_effect <- this.inherit("scripts/skills/skill", {
 			}
 		];
 		if (::Legends.Perks.has(this, ::Legends.Perk.LegendBallistics))
-			ret.push(
-			{
+		{
+			ret.push({
 				id = 12,
 				type = "text",
 				icon = "ui/icons/direct_damage.png",
 				text = "[color=" + this.Const.UI.Color.PositiveValue + "]" + this.getBonus() + "%[/color] Armor Penetration"
 			});
+		}
 		return ret;
 	}
 
@@ -57,13 +58,16 @@ this.legend_prepare_bullet_effect <- this.inherit("scripts/skills/skill", {
 	function onUpdate( _properties )
 	{
 		local weapon = this.getContainer().getActor().getMainhandItem();
-		if (weapon.getID() != "weapon.legend_sling" || weapon.getID() != "weapon.named_sling")
+		if (weapon == null)
+			this.removeSelf();
+			return;
+		if (weapon.getID() != "weapon.legend_sling")
 			this.removeSelf();
 	}
 
 	function onAfterUpdate( _properties )
 	{
-		local skill = this.getContainer().getSkillByID("active.sling_stone");
+		local skill = ::Legends.Actives.get(this, ::Legends.Active.SlingStone);
 		if (skill != null)
 			skill.m.ActionPointCost -= 1;
 	}
@@ -78,7 +82,7 @@ this.legend_prepare_bullet_effect <- this.inherit("scripts/skills/skill", {
 		this.removeSelf();
 	}
 
-	function onMovementCompleted( _tile )
+	function onMovementFinished()
 	{
 		this.removeSelf();
 	}
@@ -90,11 +94,12 @@ this.legend_prepare_bullet_effect <- this.inherit("scripts/skills/skill", {
 
 	function onAnySkillUsed( _skill, _targetEntity, _properties )
 	{
-		if (_skill.isGarbage() || !_skill.getID() == "actives.sling_stone")
+		if (_skill.isGarbage() || _skill.getID() != ::Legends.Actives.getID(::Legends.Active.SlingStone))
 			return;
-		_properties.DamageRegularMin += this.getBonus();
-		_properties.DamageRegularMax += this.getBonus();
+		local bonus = this.getBonus();
+		_properties.DamageRegularMin += bonus;
+		_properties.DamageRegularMax += bonus;
 		if (::Legends.Perks.has(this, ::Legends.Perk.LegendBallistics))
-			_properties.DirectDamageAdd += this.getBonus() * 0.01;
+			_properties.DirectDamageAdd += bonus * 0.01;
 	}
 });

@@ -62,6 +62,12 @@ this.legend_scythe_cleave_skill <- this.inherit("scripts/skills/skill", {
 		local ret = this.getDefaultTooltip();
 		local dmg = this.getContainer().getActor().getCurrentProperties().IsSpecializedInCleavers ? 10 : 5;
 		ret.push({
+			id = 7,
+			type = "text",
+			icon = "ui/icons/vision.png",
+			text = "Has a range of [color=" + this.Const.UI.Color.PositiveValue + "]2" + "[/color] tiles"
+		});
+		ret.push({
 			id = 8,
 			type = "text",
 			icon = "ui/icons/special.png",

@@ -202,13 +202,13 @@ this.legend_noble_commander_background <- this.inherit("scripts/skills/backgroun
 		this.getContainer().getActor().fillTalentValues(1, true);
 		local items = this.getContainer().getActor().getItems();
 		items.equip(this.Const.World.Common.pickArmor([
-			[1, "noble_tunic"]
+			[1, ::Legends.Armor.Standard.noble_tunic]
 		]));
 		items.equip(this.Const.World.Common.pickHelmet([
-			[1, "legend_noble_hat"],
-			[1, "legend_noble_crown"],
-			[1, "legend_noble_floppy_hat"],
-			[1, "legend_noble_hood"]
+			[1, ::Legends.Helmet.Standard.legend_noble_hat],
+			[1, ::Legends.Helmet.Standard.legend_noble_crown],
+			[1, ::Legends.Helmet.Standard.legend_noble_floppy_hat],
+			[1, ::Legends.Helmet.Standard.legend_noble_hood]
 		]));
 		items.equip(this.new("scripts/items/weapons/ancient/broken_bladed_pike"));
 	}

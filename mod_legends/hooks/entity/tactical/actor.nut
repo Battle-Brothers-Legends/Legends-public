@@ -8,6 +8,8 @@
 	o.m.BloodPoolScale = 1.25;
 	o.m.HealRemainder <- 0.0;
 	o.m.RiderID <- "";
+	// Follows the [% chance, script|function] convention
+	o.m.OnDeathLootTable <- [];
 
 	o.getGender <- function()
 	{
@@ -210,6 +212,10 @@
 		foreach(i, actor in otherActors) {
 			isAliedPtrs.push(actor.isAlliedWith);
 			actor.isAlliedWith = function(_other) {
+				if (this == null)
+					return false;
+				if (_other == null)
+					return false;
 				// check if checkMorale should happen when enemies are affected by it
 				return isAliedPtrs[i](_other) && this.m.CurrentProperties.IsAffectedByMovementMorale;
 			}.bindenv(actor);
@@ -225,14 +231,14 @@
 			}
 		}.bindenv(this);
 		// Lionheart perk stop
-
 		onMovementFinish(_tile);
 		// restore state
-		foreach (i, actor in otherActors)
+		foreach (i, actor in otherActors) {
+			if (actor == null)
+				continue;
 			actor.isAlliedWith = isAliedPtrs[i];
+		}
 		this.checkMorale = fnPtr;
-
-		this.m.Skills.MovementCompleted(_tile);
 	}
 
 	o.isArmedWithMagicStaff <- function()
@@ -556,6 +562,34 @@
 		_hitInfo.BodyDamageMultBeforeSteelBrow = _hitInfo.BodyDamageMult;
 		return onDamageReceived(_attacker, _skill, _hitInfo);
 	}
+
+	local getLootForTile = o.getLootForTile;
+	o.getLootForTile = function (_killer, _loot) {
+		if (!(_killer == null || _killer.getFaction() == this.Const.Faction.Player || _killer.getFaction() == this.Const.Faction.PlayerAnimals))
+			return getLootForTile(_killer, _loot);
+
+		foreach (entry in this.m.OnDeathLootTable) {
+			if (entry[0] == 0) { // no division by zero!
+				::logError("division by zero, skipping " + entry[1]);
+				continue;
+			}
+			local chance = entry[0];
+			if (chance < 0.005)
+				chance = 0.005; // limited by 16 bit rand
+			if (chance > 100)
+				chance = 100;
+			if (chance < 10 ? ::Math.rand(1, ::Math.round(100 / chance)) == 1 : Math.rand(1, 100) <= ::Math.round(chance)) {
+				if (typeof(entry[1]) == "function") {
+					_loot.push(entry[1]());
+				} else {
+					_loot.push(::new(entry[1]));
+				}
+			}
+		}
+
+		return getLootForTile(_killer, _loot);
+	}
+
 
 	local onSerialize = o.onSerialize;
 	o.onSerialize = function( _out )

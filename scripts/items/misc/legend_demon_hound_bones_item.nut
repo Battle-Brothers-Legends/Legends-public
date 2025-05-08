@@ -2,6 +2,7 @@ this.legend_demon_hound_bones_item <- this.inherit("scripts/items/item", {
 	m = {},
 	function create()
 	{
+		this.item.create();
 		this.m.ID = "misc.legend_demon_hound_bones";
 		this.m.Name = "Demon Hound Bones";
 		this.m.Description = "A few bones from a Höllenhund; they still have a faint, eerie glow about them.";

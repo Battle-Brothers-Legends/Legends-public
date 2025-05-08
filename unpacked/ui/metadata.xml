@@ -134,6 +134,7 @@
 	<sprite id="perk_38_mini" offsetY="35" ic="FF2B3249" img="skills\mini\perk_38_mini.png" />
 	<sprite id="perk_31_mini" offsetY="35" ic="FF374B50" img="skills\mini\perk_31_mini.png" />
 	<sprite id="perk_42" ic="FF303B45" img="skills\perk_42.png" />
+	<sprite id="band_of_brothers_mini" ic="FF4C4B4D" img="skills\mini\band_of_brothers_mini.png" />
 	<sprite id="drums_of_war_mini" offsetY="35" ic="FF374B50" img="skills/mini/drums_of_war_mini.png" />
 	<sprite id="martial_march_mini" offsetY="35" ic="FF374B50" img="skills/mini/martial_march_mini.png" />
 	<sprite id="perk_barrage_mini" offsetY="35" ic="FF374B50" img="skills/mini/perk_barrage_mini.png" />
@@ -145,6 +146,9 @@
 	<sprite id="perk_spec_cultist_mini" offsetY="35" ic="FF374B50" img="skills/mini/perk_spec_cultist_mini.png" />
 	<sprite id="perk_spec_dagger_mini" offsetY="35" ic="FF374B50" img="skills/mini/perk_spec_dagger_mini.png" />
 	<sprite id="perk_spec_firearm_mini" offsetY="35" ic="FF374B50" img="skills/mini/perk_spec_firearm_mini.png" />
+	<sprite id="perk_spec_cultist_mini" offsetY="35" ic="FF374B50" img="skills/mini/perk_spec_longbow_mini.png" />
+	<sprite id="perk_spec_dagger_mini" offsetY="35" ic="FF374B50" img="skills/mini/perk_spec_raider_mini.png" />
+	<sprite id="perk_spec_firearm_mini" offsetY="35" ic="FF374B50" img="skills/mini/perk_spec_javelin_mini.png" />
 	<sprite id="perk_spec_instrument_staff_mini" offsetY="35" ic="FF374B50" img="skills/mini/perk_spec_instrument_staff_mini.png" />
 	<sprite id="perk_spec_mace_mini" offsetY="35" ic="FF374B50" img="skills/mini/perk_spec_mace_mini.png" />
 	<sprite id="perk_spec_militia_mini" offsetY="35" ic="FF374B50" img="skills/mini/perk_spec_militia_mini.png" />

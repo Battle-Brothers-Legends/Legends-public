@@ -14,12 +14,6 @@
 		::Legends.Effect.Sleeping,
 		::Legends.Effect.Staggered
 	];
-	o.m.ApplicableItems <- [
-		"weapon.qatal_dagger",
-		"weapon.named_qatal_dagger",
-		"weapon.legend_katar",
-		"weapon.obsidian_dagger"
-	];
 
 	local create = o.create;
 	o.create = function()
@@ -58,15 +52,7 @@
 	{
 		local actor = this.getContainer().getActor();
 		local item = actor.getMainhandItem().getID();
-		local deathblowDagger = false;
-		foreach (id in this.m.ApplicableItems)
-		{
-			if (item == id)
-			{
-				deathblowDagger = true;
-			}
-		}
-		if (deathblowDagger || this.getContainer().hasPerk(::Legends.Perk.LegendSpecialistPrisoner))
+		if (this.m.DeathblowBonus || this.getContainer().hasPerk(::Legends.Perk.LegendSpecialistPrisoner))
 			return false;
 
 		return this.skill.isHidden();

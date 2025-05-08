@@ -20,6 +20,6 @@ this.perk_legend_specialist_farmhand <- this.inherit("scripts/skills/legend_spec
 	{
 		this.legend_specialist_abstract.onAnySkillUsed(_skill, _targetEntity, _properties);
 		if (this.onAnySkillUsedSpecialistChecks(_skill))
-			_properties.DamageArmorMult += this.calculateSpecialistBonus(0.25, _skill.getItem());
+			_properties.DamageArmorMult += 0.01 * this.calculateSpecialistBonus(25, _skill.getItem());
 	}
 });

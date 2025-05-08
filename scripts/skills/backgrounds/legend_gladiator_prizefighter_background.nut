@@ -74,13 +74,33 @@ this.legend_gladiator_prizefighter_background <- this.inherit("scripts/skills/ba
 		return c;
 	}
 
+	function getTooltip ()
+	{
+		local ret = this.character_background.getTooltip();
+		ret.push({
+			id = 12,
+			type = "text",
+			icon = "ui/icons/regular_damage.png",
+			text = "[color=" + this.Const.UI.Color.PositiveValue + "]5%[/color] bonus damage to [color=#400080]Hand to Hand[/color] and [color=#400080]Choke[/color]"
+		});
+		return ret;
+	}
+
+	function onAnySkillUsed( _skill, _targetEntity, _properties )
+	{
+		if (_skill.getID() == ::Legends.Actives.getID(::Legends.Active.LegendChoke) || _skill.getID() == ::Legends.Actives.getID(::Legends.Active.HandToHand))
+		{
+			_properties.DamageTotalMult *= 1.05;
+		}
+	}
+
 	function onAddEquipment()
 	{
 		local items = this.getContainer().getActor().getItems();
 		local r;
 
 		local a = this.Const.World.Common.pickArmor([
-			[1, "oriental/gladiator_harness"]
+			[1, ::Legends.Armor.Southern.gladiator_harness]
 		]);
 
 		r = this.Math.rand(1, 5);
@@ -94,8 +114,8 @@ this.legend_gladiator_prizefighter_background <- this.inherit("scripts/skills/ba
 		items.equip(a);
 
 		items.equip(this.Const.World.Common.pickHelmet([
-			[1, "oriental/gladiator_helmet", this.Math.rand(13, 15)],
-			[1, ""]
+			[1, ::Legends.Helmet.Southern.gladiator_helmet, this.Math.rand(13, 15)],
+			[1, ::Legends.Helmet.None]
 		]));
 
 		this.getContainer().getActor().getItems().equip(this.new("scripts/items/accessory/legend_cestus_item"));

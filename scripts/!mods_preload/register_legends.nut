@@ -1,8 +1,8 @@
 ::Legends <- {
 	ID = "mod_legends",
-	Version = "19.1.0",
+	Version = "19.1.16",
 	Name = "Legends Mod",
-	BuildName = "Name Pending",
+	BuildName = "Tales & Professions",
 	IsStartingNewCampaign = false
 };
 
@@ -15,7 +15,7 @@ else
 	::mods_registerMod(::Legends.ID, ::Legends.Version, ::Legends.Name);
 }
 
-::mods_queue(::Legends.ID, "mod_msu, mod_legends_assets(>=19.1.0), vanilla(>=1.5.0-15), dlc_lindwurm, dlc_unhold, dlc_wildmen, dlc_desert, dlc_paladins, mod_events_delayed_fix_legends, !mod_tooltip_extension(<=1.01)", function()
+::mods_queue(::Legends.ID, "mod_msu(>=1.7.0), mod_legends_assets(>=19.1.0), vanilla(>=1.5.1-5), dlc_lindwurm, dlc_unhold, dlc_wildmen, dlc_desert, dlc_paladins, mod_events_delayed_fix_legends, !mod_tooltip_extension(<=1.01)", function()
 {
 	::Legends.Mod <- ::MSU.Class.Mod(::Legends.ID, ::Legends.Version, ::Legends.Name);
 
@@ -26,4 +26,10 @@ else
     // loading mod files
     ::include("mod_legends/load.nut");
     ::Const.Perks.updatePerkGroupTooltips(); // this adds the "From the x Perk Group" tooltip
+});
+
+::include("mod_legends/compat_defs.nut");
+::mods_registerMod(::Legends.ID + "_compat_check", ::Legends.Version, ::Legends.Name);
+::mods_queue(::Legends.ID + "_compat_check", ">mod_legends", function() {
+	::include("mod_legends/compat.nut");
 });

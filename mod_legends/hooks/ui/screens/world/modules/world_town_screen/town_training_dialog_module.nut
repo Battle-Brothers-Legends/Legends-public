@@ -126,7 +126,7 @@
 					local traitConst = ::Legends.Training.addRandomTrainingTrait(entity);
 					trait.finishedTraining(traitConst);
 					::Time.scheduleEvent(::TimeUnit.Real, 200, this.showTraitPopup.bindenv(this),
-						::format("Trait [color=%s]%s[/color] gained. [color=%s]1[/color] perk point granted.", ::Const.UI.Color.PositiveEventValue, ::Legends.Traits.get(entity, traitConst).getName())
+						::format("Trait [color=%s]%s[/color] gained. [color=%s]1[/color] perk point granted.", ::Const.UI.Color.PositiveEventValue, ::Legends.Traits.get(entity, traitConst).getName(), ::Const.UI.Color.PositiveEventValue)
 					);
 				}
 				break;
@@ -141,7 +141,7 @@
 					local traitConst = ::Legends.Training.addRandomTrainingTrait(entity);
 					trait.finishedTraining(traitConst);
 					::Time.scheduleEvent(::TimeUnit.Real, 200, this.showTraitPopup.bindenv(this),
-						::format("Trait [color=%s]%s[/color] gained. [color=%s]1[/color] perk point granted.", ::Const.UI.Color.PositiveEventValue, ::Legends.Traits.get(entity, traitConst).getName())
+						::format("Trait [color=%s]%s[/color] gained. [color=%s]1[/color] perk point granted.", ::Const.UI.Color.PositiveEventValue, ::Legends.Traits.get(entity, traitConst).getName(), ::Const.UI.Color.PositiveEventValue)
 					);
 				}
 				break;
@@ -149,12 +149,7 @@
 				price = ::Legends.Training.CostRerollBase + trait.m.TraitRerollCount * ::Legends.Training.CostRerollScaled;
 				trait.m.TraitRerollDelay += 5;
 				trait.m.TraitRerollCount += 1;
-				foreach (skill in entity.getSkills().m.Skills) {
-					if (skill.getName() == trait.m.TraitGained) {
-						entity.getSkills().remove(skill);
-						break;
-					}
-				}
+				::Legends.Traits.remove(entity, trait.m.TraitGained);
 				local traitConst = ::Legends.Training.addRandomTrainingTrait(entity);
 				trait.finishedTraining(traitConst);
 				::Time.scheduleEvent(::TimeUnit.Real, 200, this.showTraitPopup.bindenv(this),

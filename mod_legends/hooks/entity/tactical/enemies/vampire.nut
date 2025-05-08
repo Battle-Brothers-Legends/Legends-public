@@ -6,9 +6,12 @@
 	o.create = function ()
 	{
 		create();
-		if(this.Math.rand(1, 100) <= 25)
+		this.m.IsLady = this.Math.rand(1, 100) <= 25;
+
+		local rolls = ::Legends.S.extraLootChance(1);
+		for(local i = 0; i < rolls; i++)
 		{
-			this.m.IsLady = true;
+			this.m.OnDeathLootTable.push([5, "scripts/items/misc/legend_ancient_scroll_item"]);
 		}
 	}
 
@@ -128,27 +131,6 @@
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendBloodbath);
 			::Legends.Perks.grant(this, ::Legends.Perk.Nimble);
 			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
-		}
-	}
-
-	local onDeath = o.onDeath;
-	o.onDeath = function ( _killer, _skill, _tile, _fatalityType )
-	{
-		onDeath( _killer, _skill, _tile, _fatalityType );
-		if (_killer == null || _killer.getFaction() == this.Const.Faction.Player || _killer.getFaction() == this.Const.Faction.PlayerAnimals)
-		{
-			local n = 1 + (!this.Tactical.State.isScenarioMode() && this.Math.rand(1, 100) <= this.World.Assets.getExtraLootChance() ? 1 : 0);
-
-			for( local i = 0; i < n; i = ++i )
-			{
-				local r = this.Math.rand(1, 100);
-				local loot;
-				if (r <= 5)
-				{
-					loot = this.new("scripts/items/misc/legend_ancient_scroll_item");
-					loot.drop(_tile);
-				}
-			}
 		}
 	}
 

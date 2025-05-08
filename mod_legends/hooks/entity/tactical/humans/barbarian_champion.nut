@@ -1,5 +1,16 @@
 ::mods_hookExactClass("entity/tactical/humans/barbarian_champion", function(o)
 {
+	local create = o.create;
+	o.create = function ()
+	{
+		create();
+		this.m.OnDeathLootTable.extend([
+			[2.5, "scripts/items/misc/legend_masterwork_fabric"],
+			[1.5, "scripts/items/misc/legend_masterwork_metal"],
+			[1.0, "scripts/items/misc/legend_masterwork_tools"]
+		]);
+	}
+
 	local onInit = o.onInit;
 	o.onInit = function ()
 	{
@@ -42,12 +53,12 @@
 		}
 
 		local armor = [
-				[33, "barbarians/rugged_scale_armor"],
-				[34, "barbarians/heavy_iron_armor"],
-				[33, "barbarians/thick_plated_barbarian_armor"]
+				[33, ::Legends.Armor.Barbarian.rugged_scale_armor],
+				[34, ::Legends.Armor.Barbarian.heavy_iron_armor],
+				[33, ::Legends.Armor.Barbarian.thick_plated_barbarian_armor]
 		];
 		armor.push(
-			[5, "barbarians/reinforced_heavy_iron_armor"]
+			[5, ::Legends.Armor.Barbarian.reinforced_heavy_iron_armor]
 		);
 
 		this.m.Items.equip(this.Const.World.Common.pickArmor(armor));
@@ -55,9 +66,9 @@
 		if (this.m.Items.hasEmptySlot(this.Const.ItemSlot.Head))
 		{
 			this.m.Items.equip(this.Const.World.Common.pickHelmet([
-				[1, "barbarians/crude_faceguard_helmet"],
-				[1, "barbarians/closed_scrap_metal_helmet"],
-				[1, "barbarians/crude_metal_helmet"]
+				[1, ::Legends.Helmet.Barbarian.crude_faceguard_helmet],
+				[1, ::Legends.Helmet.Barbarian.closed_scrap_metal_helmet],
+				[1, ::Legends.Helmet.Barbarian.crude_metal_helmet]
 			]));
 
 		}
@@ -93,31 +104,5 @@
 
 		::Legends.Perks.grant(this, ::Legends.Perk.Fearsome);
 		return true;
-	}
-
-	o.onDeath <- function(_killer, _skill, _tile,  _fatalityType)
-	{
-		this.human.onDeath(_killer, _skill, _tile, _fatalityType);
-
-		if (_killer == null || _killer.getFaction() == this.Const.Faction.Player || _killer.getFaction() == this.Const.Faction.PlayerAnimals)
-		{
-			if (this.Math.rand(1, 1000) <= 25) //2.5%
-			{
-				local loot = this.new("scripts/items/misc/legend_masterwork_fabric");
-				loot.drop(_tile);
-			}
-
-			if (this.Math.rand(1, 1000) <= 15) //1.5%
-			{
-				local loot = this.new("scripts/items/misc/legend_masterwork_metal");
-				loot.drop(_tile);
-			}
-
-			if (this.Math.rand(1, 100) <= 1)
-			{
-				local loot = this.new("scripts/items/misc/legend_masterwork_tools");
-				loot.drop(_tile);
-			}
-		}
 	}
 });

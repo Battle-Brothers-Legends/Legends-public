@@ -5,6 +5,22 @@
 		::Legends.Rune.LegendRsaSafety
 	];
 
+	local create = o.create;
+	o.create = function () {
+		create();
+		local rolls = ::Legends.S.extraLootChance(1);
+		for(local i = 0; i < rolls; i++)
+		{
+			this.m.OnDeathLootTable.push([1, function () {
+				local token = this.new("scripts/items/rune_sigils/legend_vala_inscription_token");
+				token.setRuneVariant(this.m.DroppableRunes[this.Math.rand(0, this.m.DroppableRunes.len() - 1)]);
+				token.setRuneBonus(true);
+				token.updateRuneSigilToken();
+				return token;
+			}.bindenv(this)]);
+		}
+	}
+
 	local onInit = o.onInit;
 	o.onInit = function ()
 	{
@@ -23,27 +39,4 @@
 			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
 		}
 	}
-
-	local onDeath = o.onDeath;
-	o.onDeath = function ( _killer, _skill, _tile, _fatalityType )
-	{
-		onDeath( _killer, _skill, _tile, _fatalityType );
-		if (_killer == null || _killer.getFaction() == this.Const.Faction.Player || _killer.getFaction() == this.Const.Faction.PlayerAnimals)
-		{
-			local n = 1 + (!this.Tactical.State.isScenarioMode() && this.Math.rand(1, 100) <= this.World.Assets.getExtraLootChance() ? 1 : 0);
-
-			for( local i = 0; i < n; i = ++i )
-			{
-				if (this.Math.rand(1, 100) <= 1)
-				{
-					local token = this.new("scripts/items/rune_sigils/legend_vala_inscription_token");
-					token.setRuneVariant(this.m.DroppableRunes[this.Math.rand(0, this.m.DroppableRunes.len() - 1)]);
-					token.setRuneBonus(true);
-					token.updateRuneSigilToken();
-					token.drop(_tile);
-				}
-			}
-		}
-	}
-
 });

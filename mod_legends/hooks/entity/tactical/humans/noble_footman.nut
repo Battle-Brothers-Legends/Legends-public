@@ -77,51 +77,51 @@
 		this.m.Items.equip(shield);
 
 		this.m.Items.equip(this.Const.World.Common.pickArmor([
-			[1, "seedmaster_noble_armor"],
-			[1, "citreneking_noble_armor"]
+			[1, ::Legends.Armor.Standard.seedmaster_noble_armor],
+			[1, ::Legends.Armor.Standard.citreneking_noble_armor]
 		]));
 		// this.m.Items.equip(this.Const.World.Common.pickArmor([
-		// 	[1, "mail_hauberk", 28],
-		// 	[1, "mail_shirt"],
-		// 	[1, "basic_mail_shirt"]
+		// 	[1, ::Legends.Armor.Standard.mail_hauberk, 28],
+		// 	[1, ::Legends.Armor.Standard.mail_shirt],
+		// 	[1, ::Legends.Armor.Standard.basic_mail_shirt]
 		// ]));
 
 		local helmet;
 		if (banner <= 4)
 			{
 				helmet = this.Const.World.Common.pickHelmet([
-					[5, "kettle_hat"],
-					[5, "rondel_helm"],
-					[4, "scale_helm"],
-					[4, "kettle_hat_with_mail"],
-					[3, "padded_kettle_hat"],
-					[3, "legend_enclave_vanilla_skullcap_01"],
-					[2, "mail_coif"],
-					[1, "heavy_noble_house_helmet_00"]
+					[5, ::Legends.Helmet.Standard.kettle_hat],
+					[5, ::Legends.Helmet.Standard.rondel_helm],
+					[4, ::Legends.Helmet.Standard.scale_helm],
+					[4, ::Legends.Helmet.Standard.kettle_hat_with_mail],
+					[3, ::Legends.Helmet.Standard.padded_kettle_hat],
+					[3, ::Legends.Helmet.Standard.legend_enclave_vanilla_skullcap_01],
+					[2, ::Legends.Helmet.Standard.mail_coif],
+					[1, ::Legends.Helmet.Standard.heavy_noble_house_helmet_00]
 				])
 			}
 		else if (banner <= 7)
 			{
 				helmet = this.Const.World.Common.pickHelmet([
-					[5, "rondel_helm"],
-					[4, "padded_flat_top_helmet"],
-					[3, "legend_enclave_vanilla_skullcap_01"],
-					[3, "mail_coif"],
-					[2, "flat_top_helmet"],
-					[2, "scale_helm"],
-					[1, "flat_top_with_mail"],
-					[1, "heavy_noble_house_helmet_00"]
+					[5, ::Legends.Helmet.Standard.rondel_helm],
+					[4, ::Legends.Helmet.Standard.padded_flat_top_helmet],
+					[3, ::Legends.Helmet.Standard.legend_enclave_vanilla_skullcap_01],
+					[3, ::Legends.Helmet.Standard.mail_coif],
+					[2, ::Legends.Helmet.Standard.flat_top_helmet],
+					[2, ::Legends.Helmet.Standard.scale_helm],
+					[1, ::Legends.Helmet.Standard.flat_top_with_mail],
+					[1, ::Legends.Helmet.Standard.heavy_noble_house_helmet_00]
 				])
 			}
 		else
 			{
 				helmet = this.Const.World.Common.pickHelmet([
-					[5, "nasal_helmet"],
-					[5, "padded_nasal_helmet"],
-					[4, "nasal_helmet_with_mail"],
-					[3, "mail_coif"],
-					[2, "legend_enclave_vanilla_skullcap_01"],
-					[1, "heavy_noble_house_helmet_00"]
+					[5, ::Legends.Helmet.Standard.nasal_helmet],
+					[5, ::Legends.Helmet.Standard.padded_nasal_helmet],
+					[4, ::Legends.Helmet.Standard.nasal_helmet_with_mail],
+					[3, ::Legends.Helmet.Standard.mail_coif],
+					[2, ::Legends.Helmet.Standard.legend_enclave_vanilla_skullcap_01],
+					[1, ::Legends.Helmet.Standard.heavy_noble_house_helmet_00]
 				])
 			}
 

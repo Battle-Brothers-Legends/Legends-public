@@ -111,21 +111,21 @@
 		}
 
 		local item = this.Const.World.Common.pickArmor([
-			[20, "thick_tunic"],
-			[20, "padded_surcoat"],
-			[20,"leather_wraps"],
-			[20,"blotched_gambeson"]
+			[20, ::Legends.Armor.Standard.thick_tunic],
+			[20, ::Legends.Armor.Standard.padded_surcoat],
+			[20, ::Legends.Armor.Standard.leather_wraps],
+			[20, ::Legends.Armor.Standard.blotched_gambeson]
 		]);
 		this.m.Items.equip(item);
 
 		if (this.Math.rand(1, 100) <= 50)
 		{
 			local item = this.Const.World.Common.pickHelmet([
-				[20, "hood"],
-				[20, "open_leather_cap"],
-				[20,"headscarf"],
-				[20,"full_leather_cap"],
-				[20,"mouth_piece"]
+				[20, ::Legends.Helmet.Standard.hood],
+				[20, ::Legends.Helmet.Standard.open_leather_cap],
+				[20, ::Legends.Helmet.Standard.headscarf],
+				[20, ::Legends.Helmet.Standard.full_leather_cap],
+				[20, ::Legends.Helmet.Standard.mouth_piece]
 			]);
 			if (item != null)
 			{

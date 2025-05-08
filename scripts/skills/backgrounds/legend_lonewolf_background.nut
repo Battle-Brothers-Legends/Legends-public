@@ -90,14 +90,13 @@ this.legend_lonewolf_background <- this.inherit("scripts/skills/backgrounds/char
 		this.m.PerkTreeDynamic = {
 			Weapon = [
 				this.Const.Perks.TwoHandedTree,
-				this.Const.Perks.PolearmTree,
-				this.Const.Perks.AxeTree,
 				this.Const.Perks.MaceTree,
 				this.Const.Perks.FlailTree,
+				this.Const.Perks.HammerTree,
+				this.Const.Perks.AxeTree,
+				this.Const.Perks.HammerTree,
 				this.Const.Perks.ThrowingTree,
-				this.Const.Perks.CrossbowTree,
-				this.Const.Perks.BowTree,
-				this.Const.Perks.HammerTree
+				this.Const.Perks.FistsTree
 			],
 			Defense = [
 				this.Const.Perks.HeavyArmorTree
@@ -114,7 +113,9 @@ this.legend_lonewolf_background <- this.inherit("scripts/skills/backgrounds/char
 				this.Const.Perks.SwordmastersTree
 			],
 			Class = [],
-			Magic = []
+			Magic = [
+				this.Const.Perks.ImmortalMagicTree
+			]
 		}
 	}
 
@@ -131,6 +132,7 @@ this.legend_lonewolf_background <- this.inherit("scripts/skills/backgrounds/char
 			this.m.Hairs = this.Const.Hair.AllFemale;
 			this.m.HairColors = this.Const.HairColors.All;
 			this.m.Bodies = this.Const.Bodies.AllFemale;
+			this.m.Names = this.Const.Strings.CharacterNamesFemale;
 		}	
 		else if (this.m.Ethnicity == 1)
 		{
@@ -158,14 +160,7 @@ this.legend_lonewolf_background <- this.inherit("scripts/skills/backgrounds/char
 
 	function onBuildDescription()
 	{
-		if (this.isBackgroundType(this.Const.BackgroundType.Female))
-		{
-			return "{You\'ve come so far that you forgot where you came from and how it all started. Distant memories of gold grew into fame. But what point is fame and gold to those who are mortal? If you want to create a legacy you\'ll need to prove yourself first - but years spent alone training for battles that never came will make it hard for anyone to notice you outside of a tournament.}";
-		}
-		else
-		{
-			return "{You\'ve come so far that you forgot where you came from and how it all started. Distant memories of gold grew into fame. But what point is fame and gold to those who are mortal? If you want to create a legacy you\'ll need to prove yourself first - but years spent alone training for battles that never came will make it hard for anyone to notice you outside of a tournament.}";
-		}
+		return "{You\'ve come so far that you forgot where you came from and how it all started. Distant memories of gold grew into fame. But what point is fame and gold to those who are mortal? If you want to create a legacy you\'ll need to prove yourself first - but years spent alone training for battles that never came will make it hard for anyone to notice you outside of a tournament.}";
 	}
 
 	function onSetAppearance()
@@ -274,24 +269,24 @@ this.legend_lonewolf_background <- this.inherit("scripts/skills/backgrounds/char
 		// // }
 
 		// items.equip(this.Const.World.Common.pickArmor([
-		// 	// [1, "mail_hauberk"],
-		// 	// [1, "basic_mail_shirt"],
-		// 	// [1, "scale_armor"],
-		// 	// [1, "reinforced_mail_hauberk"],
+		// 	// [1, ::Legends.Armor.Standard.mail_hauberk],
+		// 	// [1, ::Legends.Armor.Standard.basic_mail_shirt],
+		// 	// [1, ::Legends.Armor.Standard.scale_armor],
+		// 	// [1, ::Legends.Armor.Standard.reinforced_mail_hauberk],
 		// 	[1, ""]
 		// ]));
 
 		// local helm = [
-		// 	// [1, "nasal_helmet"],
-		// 	// [1, "nasal_helmet_with_mail"],
-		// 	// [1, "mail_coif"],
-		// 	// [1, "bascinet_with_mail"],
+		// 	// [1, ::Legends.Helmet.Standard.nasal_helmet],
+		// 	// [1, ::Legends.Helmet.Standard.nasal_helmet_with_mail],
+		// 	// [1, ::Legends.Helmet.Standard.mail_coif],
+		// 	// [1, ::Legends.Helmet.Standard.bascinet_with_mail],
 		// 	[1, ""]
 		// ];
 
 		// // if (!::Legends.Mod.ModSettings.getSetting("UnlayeredArmor").getValue())
 		// // {
-		// // 	helm.push([1, "theamson_barbute_helmet"])
+		// // 	helm.push([1, ::Legends.Helmet.Standard.theamson_barbute_helmet])
 		// // }
 
 		// // items.equip(this.Const.World.Common.pickHelmet(helm));

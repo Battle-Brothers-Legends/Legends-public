@@ -412,13 +412,12 @@ this.workshop_building <- this.inherit("scripts/entity/world/camp/camp_building"
 				if (myItem.getRuneVariant() > 0)
 				{
 					local def = ::Legends.Runes.get(myItem.getRuneVariant());
-					if (def.ItemType == ::Const.Items.ItemType.Armor || def.ItemType == ::Const.Items.ItemType.Helmet)
+					if (def.ItemType == ::Legends.Runes.Target.Armor || def.ItemType == ::Legends.Runes.Target.Helmet)
 					{
 						local rune = ::new(def.Script);
 						rune.setRuneVariant(myItem.getRuneVariant());
 						rune.setRuneBonus1(myItem.getRuneBonus1());
 						rune.setRuneBonus2(myItem.getRuneBonus2());
-						rune.setRuneVariant(0);
 						this.World.Assets.getStash().add(rune);
 					}
 				}

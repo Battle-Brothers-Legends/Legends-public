@@ -25,7 +25,7 @@
 					}
 
 					properties.Loot = [
-						this.Const.World.Common.pickHelmet([[1, "legendary/mask_of_davkul"]])
+						this.Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Legendary.mask_of_davkul]])
 					];
 					this.World.State.startScriptedCombat(properties, false, false, true);
 					return 0;

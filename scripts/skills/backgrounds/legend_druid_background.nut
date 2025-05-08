@@ -126,20 +126,6 @@ this.legend_druid_background <- this.inherit("scripts/skills/backgrounds/charact
 		this.addBackgroundType(this.Const.BackgroundType.Female);
 	}
 
-	function getTooltip()
-	{
-		local ret = this.character_background.getTooltip();
-		ret.push(
-			{
-				id = 12,
-				type = "text",
-				icon = "ui/icons/regular_damage.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+25%[/color] Damage when unarmed"
-			}
-		);
-		return ret;
-	}
-
 	function onBuildDescription()
 	{
 		if(this.isBackgroundType(this.Const.BackgroundType.Female))
@@ -228,10 +214,10 @@ this.legend_druid_background <- this.inherit("scripts/skills/backgrounds/charact
 		this.getContainer().getActor().fillTalentValues(2, true);
 		local items = this.getContainer().getActor().getItems();
 		items.equip(this.Const.World.Common.pickArmor([
-			[1, "barbarians/hide_and_bone_armor"]
+			[1, ::Legends.Armor.Barbarian.hide_and_bone_armor]
 		]));
 		items.equip(this.Const.World.Common.pickHelmet([
-			[1, "barbarians/bear_headpiece"]
+			[1, ::Legends.Helmet.Barbarian.bear_headpiece]
 		]));
 		items.equip(this.new("scripts/items/weapons/legend_staff"));
 		//this.getContainer().getActor().TherianthropeInfectionRandom();

@@ -12,7 +12,7 @@
 			if (s.ID == "Robbing") {
 				s.start <- function ( _event ) {
 					this.World.Assets.addMoralReputation(-2);
-					local item = this.Const.World.Common.pickHelmet([[1, "jesters_hat"]]);
+					local item = this.Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Standard.jesters_hat]]);
 					this.World.Assets.getStash().add(item);
 					this.List.push({
 						id = 10,

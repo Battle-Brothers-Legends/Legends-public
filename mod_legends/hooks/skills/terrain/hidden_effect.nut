@@ -81,8 +81,9 @@
 	}
 
 	//added all this missing code from legend_hidden_effect which seemingly controls the hidden graphics--
-	o.onMovementCompleted <- function ( _tile )
+	o.onMovementFinished <- function ()
 	{
+		local tile = this.getContainer().getActor().getTile();
 		//initialise variables
 		local body = 0;
 		local head = 0;
@@ -120,7 +121,7 @@
 	            {
 	                continue;
 	            }
-				if (unit.getTile().getDistanceTo(_tile) <= 3)
+				if (unit.getTile().getDistanceTo(tile) <= 3)
 				{
 					outOfEarshot3 = false;
 					break;
@@ -143,7 +144,7 @@
 	            {
 	                continue;
 	            }
-				if (unit.getTile().getDistanceTo(_tile) <= 5)
+				if (unit.getTile().getDistanceTo(tile) <= 5)
 				{
 					outOfEarshot5 = false;
 					break;
@@ -158,7 +159,7 @@
 			}
 		}
 		if(fat <= 15){
-			if (_tile.hasZoneOfControlOtherThan(actor.getAlliedFactions()))
+			if (tile.hasZoneOfControlOtherThan(actor.getAlliedFactions()))
 			{
 				this.m.ToRemove = true;
 				this.effect();

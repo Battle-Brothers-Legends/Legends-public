@@ -46,13 +46,6 @@ this.legend_prayer_of_faith_effect <- this.inherit("scripts/skills/skill", {
 		];
 	}
 
-
-	function onAdded()
-	{
-		local actor = this.getContainer().getActor();
-		this.spawnIcon(this.m.Overlay, actor.getTile());
-	}
-
 	function onTurnEnd()
 	{
 		this.removeSelf();
@@ -63,7 +56,6 @@ this.legend_prayer_of_faith_effect <- this.inherit("scripts/skills/skill", {
 		local bonus = this.getBonus();
 		_properties.MeleeDefense += bonus;
 		_properties.RangedDefense += bonus;
-
 	}
 
 });

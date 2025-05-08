@@ -1,8 +1,8 @@
 this.legend_free_company_infantry <- this.inherit("scripts/entity/tactical/legend_free_company_abstract", {
 	m = {
 		Outfits = [
-			[1, "mercenary_infantry_outfit_00"],
-			[1, "mercenary_infantry_outfit_01"]
+			[1, ::Legends.Outfit.mercenary_infantry_outfit_00],
+			[1, ::Legends.Outfit.mercenary_infantry_outfit_01]
 		],
 		PerkList = this.Const.EnemyPerks.FreeCompanyInfantry,
 		PerkPower = 9
@@ -50,40 +50,19 @@ this.legend_free_company_infantry <- this.inherit("scripts/entity/tactical/legen
 
 	function assignRandomEquipment()
 	{
-		local r = this.Math.rand(1, 100);
-		if (r <= 4)
-		{
-			this.m.Items.equip(this.new("scripts/items/weapons/bardiche"));
-		}
-		else if (r <= 28)
-		{
-			this.m.Items.equip(this.new("scripts/items/weapons/greatsword"));
-		}
-		else if (r <= 52)
-		{
-			this.m.Items.equip(this.new("scripts/items/weapons/two_handed_hammer"));
-		}
-		else if (r <= 76)
-		{
-			this.m.Items.equip(this.new("scripts/items/weapons/two_handed_mace"));
-		}
-		else
-		{
-			this.m.Items.equip(this.new("scripts/items/weapons/warbrand"));
-		}
+		this.getItems().equip(::Const.World.Common.pickItem([
+			[5, "weapons/bardiche"],
+			[25, "weapons/greatsword"],
+			[25, "weapons/two_handed_hammer"],
+			[25, "weapons/two_handed_mace"],
+			[20, "weapons/warbrand"],
+		], "scripts/items/"));
 
-		if (this.getIdealRange() == 1 && this.Math.rand(1, 100) <= 50)
-		{
-			r = this.Math.rand(1, 2);
-
-			if (r == 1)
-			{
-				this.m.Items.addToBag(this.new("scripts/items/weapons/throwing_axe"));
-			}
-			else if (r == 2)
-			{
-				this.m.Items.addToBag(this.new("scripts/items/weapons/javelin"));
-			}
+		if (this.getIdealRange() == 1 && this.Math.rand(1, 100) <= 50) {
+			this.getItems().addToBag(::Const.World.Common.pickItem([
+				[1, "weapons/throwing_axe"],
+				[1, "weapons/javelin"],
+			], "scripts/items/"));
 		}
 
 		this.legend_free_company_abstract.assignRandomEquipment();

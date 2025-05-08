@@ -8,8 +8,10 @@ this.perk_legend_specialist_militia <- this.inherit("scripts/skills/legend_speci
 		ApplicableWeaponTypes = [
 			this.Const.Items.WeaponType.Spear
 		],
+		ExcludedItemTypes = [
+			this.Const.Items.ItemType.RangedWeapon
+		],
 		BonusMelee = 12,
-		BonusRanged = 12,
 		BonusDamage = 10
 	},
 	function create()

@@ -1,13 +1,5 @@
 ::mods_hookExactClass("skills/actives/hand_to_hand", function(o)
 {
-	o.m.Backgrounds <- [
-		"background.legend_commander_druid",
-		"background.legend_druid",
-		"background.brawler",
-		"background.legend_commander_berserker",
-		"background.legend_berserker"
-	];
-
 	local create = o.create;
 	o.create = function()
 	{
@@ -30,20 +22,6 @@
 			icon = "ui/icons/special.png",
 			text = "Inflicts [color=" + this.Const.UI.Color.DamageValue + "]" + fatPerHit + "[/color] extra fatigue on hit"
 		});
-
-		foreach( bg in this.m.Backgrounds )
-		{
-			if (actor.getSkills().hasSkill(bg))
-			{
-				tooltip.push({
-					id = 7,
-					type = "text",
-					icon = "ui/icons/regular_damage.png",
-					text = "[color=" + this.Const.UI.Color.PositiveValue + "]+25%[/color] damage from background"
-				});
-				break;
-			}
-		}
 
 		return tooltip;
 	}
@@ -128,16 +106,6 @@
 			if (actor.getMainhandItem() != null)
 			{
 				_properties.MeleeDamageMult/=1.25; // Attempt to undo double grip damage bonus for just this skill. Might not work for missing hand.
-			}
-		}
-
-		// Damage bonus for certain bgs
-		foreach( bg in this.m.Backgrounds )
-		{
-			if (actor.getSkills().hasSkill(bg))
-			{
-				_properties.DamageTotalMult *= 1.25;
-				break;
 			}
 		}
 

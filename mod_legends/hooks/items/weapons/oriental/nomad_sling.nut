@@ -30,4 +30,12 @@
 		::Legends.Actives.grant(this, ::Legends.Active.LegendLaunchHolyWater);
 		::Legends.Actives.grant(this, ::Legends.Active.LegendLaunchSmokeBomb);
 	}
+
+	o.onUpdateProperties <- function (_properties)
+	{
+		this.weapon.onUpdateProperties(_properties);
+		foreach (item in this.getContainer().getActor().getItems().getAllItemsAtSlot(this.Const.ItemSlot.Bag)) {
+			item.onSlingUpdateProperties();
+		}
+	}
 });

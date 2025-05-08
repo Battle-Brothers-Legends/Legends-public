@@ -27,6 +27,7 @@
 
 	o.create = function ()
 	{
+		this.item.create();
 		this.m.SlotType = this.Const.ItemSlot.Bag;
 		this.m.ItemType = this.Const.Items.ItemType.Food;
 		this.m.Amount = 25.0;

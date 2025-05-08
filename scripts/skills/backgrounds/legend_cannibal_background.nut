@@ -125,7 +125,7 @@ this.legend_cannibal_background <- this.inherit("scripts/skills/backgrounds/char
 		local items = this.getContainer().getActor().getItems();
 
 		items.equip(this.Const.World.Common.pickArmor([
-			[1, "tattered_sackcloth"]
+			[1, ::Legends.Armor.Standard.tattered_sackcloth]
 		]));
 		items.equip(this.new("scripts/items/weapons/butchers_cleaver"));
 	}

@@ -21,6 +21,9 @@ this.legend_swordstaff <- this.inherit("scripts/items/weapons/weapon", {
 		this.m.Condition = 65.0;
 		this.m.ConditionMax = 65.0;
 		this.m.StaminaModifier = -14;
+		this.m.RangeMin = 1;
+		this.m.RangeMax = 2;
+		this.m.RangeIdeal = 2;
 		this.m.RegularDamage = 50;
 		this.m.RegularDamageMax = 70;
 		this.m.ArmorDamageMult = 1.0;

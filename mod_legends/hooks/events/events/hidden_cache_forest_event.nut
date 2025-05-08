@@ -41,11 +41,11 @@
 					});
 
 					item = this.Const.World.Common.pickArmor([
-						[1, "gambeson"],
-						[1, "leather_tunic"],
-						[1, "thick_tunic"],
-						[1, "wizard_robe"],
-						[1, "worn_mail_shirt"],
+						[1, ::Legends.Armor.Standard.gambeson],
+						[1, ::Legends.Armor.Standard.leather_tunic],
+						[1, ::Legends.Armor.Standard.thick_tunic],
+						[1, ::Legends.Armor.Standard.wizard_robe],
+						[1, ::Legends.Armor.Standard.worn_mail_shirt],
 					]);
 
 					this.World.Assets.getStash().add(item);

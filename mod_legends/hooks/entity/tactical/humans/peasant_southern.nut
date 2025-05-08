@@ -32,17 +32,17 @@
 
 
 		this.m.Items.equip(this.Const.World.Common.pickArmor([
-			[1, "sackcloth"],
-			[1, "apron"],
-			[1, "tattered_sackcloth"],
-			[7, "oriental/cloth_sash"]
+			[1, ::Legends.Armor.Standard.sackcloth],
+			[1, ::Legends.Armor.Standard.apron],
+			[1, ::Legends.Armor.Standard.tattered_sackcloth],
+			[7, ::Legends.Armor.Southern.cloth_sash]
 		]));
 
 		if (this.Math.rand(1, 100) <= 50)
 		{
 			this.m.Items.equip(this.Const.World.Common.pickHelmet([
-				[2, "oriental/southern_head_wrap"],
-				[1, "oriental/nomad_head_wrap"]
+				[2, ::Legends.Helmet.Southern.southern_head_wrap],
+				[1, ::Legends.Helmet.Southern.nomad_head_wrap]
 			]));
 		}
 	}

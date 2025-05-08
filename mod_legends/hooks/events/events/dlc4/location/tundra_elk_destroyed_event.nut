@@ -21,7 +21,7 @@
 					}
 
 					this.World.Assets.getStash().makeEmptySlots(2);
-					local item = this.Const.World.Common.pickHelmet([[1, "legendary/legend_ijirok_helmet"]]);
+					local item = this.Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Legendary.legend_ijirok_helmet]]);
 					this.World.Assets.getStash().add(item);
 					this.List.push({
 						id = 10,
@@ -29,7 +29,7 @@
 						text = "You gain " + item.getName()
 					});
 
-					item = this.Const.World.Common.pickArmor([[1, "legendary/legend_ijirok_armor"]]);
+					item = this.Const.World.Common.pickArmor([[1, ::Legends.Armor.Legendary.legend_ijirok_armor]]);
 
 					this.World.Assets.getStash().add(item);
 					this.List.push({

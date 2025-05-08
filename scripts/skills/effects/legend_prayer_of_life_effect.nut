@@ -31,6 +31,7 @@ this.legend_prayer_of_life_effect <- this.inherit("scripts/skills/skill", {
 	{
 		if (this.m.LastRoundApplied != this.Time.getRound())
 		{
+			local actor = this.getContainer().getActor();
 			this.m.LastRoundApplied = this.Time.getRound();
 			this.spawnIcon(this.m.Overlay, actor.getTile());
 			local toHeal = this.Math.min(10, this.m.Heal);

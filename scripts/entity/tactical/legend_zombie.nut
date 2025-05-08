@@ -475,6 +475,10 @@ this.legend_zombie <- this.inherit("scripts/entity/tactical/enemies/zombie", {
 			this.Tactical.Entities.addCorpse(_tile);
 		}
 
+		local deathLoot = this.getItems().getDroppableLoot(_killer);
+		local tileLoot = this.getLootForTile(_killer, deathLoot);
+		this.dropLoot(_tile, tileLoot, !flip);
+
 		//this.getItems().dropAll(_tile, _killer, !flip);
 		this.actor.onDeath(_killer, _skill, _tile, _fatalityType);
 	}

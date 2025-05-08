@@ -29,7 +29,7 @@ this.legend_rune_luck <- this.inherit("scripts/items/legend_helmets/legend_helme
 			id = 7,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "This item has the power of the rune sigil of Luck:\n[color=" + this.Const.UI.Color.PositiveValue + "]+" + this.m.RuneBonus1 + "%[/color] chance to have any attacker require two successful attack rolls in order to hit."
+			text = "This item has the power of the rune sigil of Luck:\n[color=" + this.Const.UI.Color.PositiveValue + "]+" + this.getRuneBonus1() + "%[/color] chance to have any attacker require two successful attack rolls in order to hit."
 		});
 		return result;
 	}
@@ -40,7 +40,7 @@ this.legend_rune_luck <- this.inherit("scripts/items/legend_helmets/legend_helme
 			id = 7,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "This item has the power of the rune sigil of Luck:\n[color=" + this.Const.UI.Color.PositiveValue + "]+" + this.m.RuneBonus1 + "%[/color] chance to have any attacker require two successful attack rolls in order to hit."
+			text = "This item has the power of the rune sigil of Luck:\n[color=" + this.Const.UI.Color.PositiveValue + "]+" + this.getRuneBonus1() + "%[/color] chance to have any attacker require two successful attack rolls in order to hit."
 		});
 	}
 });

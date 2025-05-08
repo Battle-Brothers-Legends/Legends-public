@@ -484,7 +484,7 @@
 	"Abdamelek"
 ];
 
-::Const.Strings.SatoManhunterVeteranTitles <- [
+::Const.Strings.LegendManhunterVeteranTitles <- [
 	"the Blight",
 	"the Iron Shackle",
 	"the Steel Shackle",

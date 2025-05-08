@@ -54,16 +54,10 @@ this.legend_caravan_guard <- this.inherit("scripts/entity/tactical/legend_random
 		this.legend_randomized_unit_abstract.assignRandomEquipment();
 		if (this.Math.rand(1, 100) <= 35)
 		{
-			local r = this.Math.rand(1, 2);
-
-			if (r == 1)
-			{
-				this.m.Items.addToBag(this.new("scripts/items/weapons/throwing_axe"));
-			}
-			else if (r == 2)
-			{
-				this.m.Items.addToBag(this.new("scripts/items/weapons/javelin"));
-			}
+			this.getItems().addToBag(::Const.World.Common.pickItem([
+				[1, "weapons/throwing_axe"],
+				[1, "weapons/javelin"],
+			], "scripts/items/"));
 		}
 	}
 });

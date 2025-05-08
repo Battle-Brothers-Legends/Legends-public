@@ -23,13 +23,13 @@
 		r = this.Math.rand(1, 4);
 
 		if (r == 1) {
-			item = this.Const.World.Common.pickHelmet([[1, "faction_helm"]]);
+			item = this.Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Standard.faction_helm]]);
 			item.setVariant(banner);
 		} else {
 			item = this.Const.World.Common.pickArmor([
-				[1, "special/heraldic_armor", null, banner],
-				[1, "mail_shirt"],
-				[1, "mail_hauberk", 28],
+				[1, ::Legends.Armor.Standard.heraldic_armor, null, banner],
+				[1, ::Legends.Armor.Standard.mail_shirt],
+				[1, ::Legends.Armor.Standard.mail_hauberk, 28],
 			]);
 		}
 

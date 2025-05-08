@@ -1,6 +1,6 @@
 from string import Template
 from shutil import copyfile
-from armor import Templates, Defs
+from armor import Templates, Defs, cleanupDirs
 import os, argparse
 
 
@@ -47,6 +47,7 @@ def main():
     args = parser.parse_args()
     path = args.path
 
+    cleanupDirs(os.path.join(path, "unpacked", "legend_armor"))
     #Build Brushes
     fileCount = 0
     imageCount = 0

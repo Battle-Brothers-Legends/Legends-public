@@ -74,17 +74,14 @@ this.legend_noble_halberdier <- this.inherit("scripts/entity/tactical/human", {
 			this.getSprite("surcoat").setBrush("surcoat_" + (banner < 10 ? "0" + banner : banner));
 		}
 
-		local weapons = [
-			"weapons/legend_halberd",
-			"weapons/legend_military_halberd",
-			"weapons/legend_battle_glaive"
-		];
+		this.getItems().equip(::Const.World.Common.pickItem([
+			[1, "weapons/legend_halberd"],
+			[1, "weapons/legend_battle_glaive"],
+		], "scripts/items/"));
 
-		this.m.Items.equip(this.new("scripts/items/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
-
-		this.m.Items.equip(this.Const.World.Common.pickArmor([
-			[1, "seedmaster_noble_armor"],
-			[1, "citreneking_noble_armor"],
+		this.getItems().equip(this.Const.World.Common.pickArmor([
+			[1, ::Legends.Armor.Standard.seedmaster_noble_armor],
+			[1, ::Legends.Armor.Standard.citreneking_noble_armor],
 		]));
 
 		if (this.Math.rand(1, 100) <= 90)
@@ -94,55 +91,55 @@ this.legend_noble_halberdier <- this.inherit("scripts/entity/tactical/human", {
 			if (banner <= 4)
 			{
 				helmet = this.Const.World.Common.pickHelmet([
-					[1, "flat_top_helmet"],
-					[1, "padded_flat_top_helmet"],
-					[1, "flat_top_with_mail"],
-					[1, "mail_coif"],
-					[1, "rondel_helm"],
-					[1, "scale_helm"],
-					[1, "legend_enclave_vanilla_kettle_sallet_01"],
-					[1, "legend_enclave_vanilla_kettle_sallet_03"],
-					[5, "heavy_noble_house_helmet_00"]
+					[1, ::Legends.Helmet.Standard.flat_top_helmet],
+					[1, ::Legends.Helmet.Standard.padded_flat_top_helmet],
+					[1, ::Legends.Helmet.Standard.flat_top_with_mail],
+					[1, ::Legends.Helmet.Standard.mail_coif],
+					[1, ::Legends.Helmet.Standard.rondel_helm],
+					[1, ::Legends.Helmet.Standard.scale_helm],
+					[1, ::Legends.Helmet.Standard.legend_enclave_vanilla_kettle_sallet_01],
+					[1, ::Legends.Helmet.Standard.legend_enclave_vanilla_kettle_sallet_03],
+					[5, ::Legends.Helmet.Standard.heavy_noble_house_helmet_00]
 				])
 			}
 			else if (banner <= 7)
 			{
 				helmet = this.Const.World.Common.pickHelmet([
-					[1, "flat_top_helmet"],
-					[1, "padded_flat_top_helmet"],
-					[1, "flat_top_with_mail"],
-					[1, "mail_coif"],
-					[1, "legend_enclave_vanilla_kettle_sallet_02"],
-					[1, "legend_enclave_vanilla_kettle_sallet_03"],
-					[5, "heavy_noble_house_helmet_00"]
+					[1, ::Legends.Helmet.Standard.flat_top_helmet],
+					[1, ::Legends.Helmet.Standard.padded_flat_top_helmet],
+					[1, ::Legends.Helmet.Standard.flat_top_with_mail],
+					[1, ::Legends.Helmet.Standard.mail_coif],
+					[1, ::Legends.Helmet.Standard.legend_enclave_vanilla_kettle_sallet_02],
+					[1, ::Legends.Helmet.Standard.legend_enclave_vanilla_kettle_sallet_03],
+					[5, ::Legends.Helmet.Standard.heavy_noble_house_helmet_00]
 				])
 			}
 			else
 			{
 				helmet = this.Const.World.Common.pickHelmet([
-					[1, "nasal_helmet"],
-					[1, "padded_nasal_helmet"],
-					[1, "nasal_helmet_with_mail"],
-					[1, "mail_coif"],
-					[1, "rondel_helm"],
-					[1, "scale_helm"],
-					[1, "legend_enclave_vanilla_kettle_sallet_01"],
-					[1, "legend_enclave_vanilla_kettle_sallet_02"],
-					[5, "heavy_noble_house_helmet_00"]
+					[1, ::Legends.Helmet.Standard.nasal_helmet],
+					[1, ::Legends.Helmet.Standard.padded_nasal_helmet],
+					[1, ::Legends.Helmet.Standard.nasal_helmet_with_mail],
+					[1, ::Legends.Helmet.Standard.mail_coif],
+					[1, ::Legends.Helmet.Standard.rondel_helm],
+					[1, ::Legends.Helmet.Standard.scale_helm],
+					[1, ::Legends.Helmet.Standard.legend_enclave_vanilla_kettle_sallet_01],
+					[1, ::Legends.Helmet.Standard.legend_enclave_vanilla_kettle_sallet_02],
+					[5, ::Legends.Helmet.Standard.heavy_noble_house_helmet_00]
 				])
 			}
 
 			if (helmet != null)
 			{
 				if ("setPlainVariant" in helmet) { helmet.setPlainVariant(); }
-				this.m.Items.equip(helmet);
+				this.getItems().equip(helmet);
 			}
 		}
 		else
 		{
-			this.m.Items.equip(this.Const.World.Common.pickHelmet([
-				[2, "aketon_cap"],
-				[1, "full_aketon_cap"]
+			this.getItems().equip(this.Const.World.Common.pickHelmet([
+				[2, ::Legends.Helmet.Standard.aketon_cap],
+				[1, ::Legends.Helmet.Standard.full_aketon_cap]
 			]))
 		}
 	}

@@ -50,7 +50,8 @@ this.legend_tower_shield <- this.inherit("scripts/items/shields/shield", {
 			39,
 			40,
 			41,
-			42
+			42,
+			104
 		];
 		this.m.Variant = this.Math.rand(1, 21); //random one is only 1-21 though
 		this.updateVariant();
@@ -87,7 +88,8 @@ this.legend_tower_shield <- this.inherit("scripts/items/shields/shield", {
 
 	function onPaintInCompanyColors()
 	{
-		this.setVariant(this.World.Assets.getBannerID() + 11);
+		local bannerID = this.World.Assets.getBannerID() > 100 ? this.World.Assets.getBannerID() : this.World.Assets.getBannerID() + 11;
+		this.setVariant(bannerID);
 		this.updateAppearance();
 	}
 

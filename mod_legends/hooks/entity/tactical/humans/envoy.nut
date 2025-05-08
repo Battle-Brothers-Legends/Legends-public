@@ -10,11 +10,11 @@
 	o.assignRandomEquipment = function ()
 	{
 		this.m.Items.equip(this.Const.World.Common.pickArmor([
-			[1, "linen_tunic"]
+			[1, ::Legends.Armor.Standard.linen_tunic]
 		]));
 		local item = this.Const.World.Common.pickHelmet([
-			[1, "feathered_hat"],
-			[2, ""]
+			[1, ::Legends.Helmet.Standard.feathered_hat],
+			[2, ::Legends.Helmet.None]
 		]);
 		if (item != null)
 		{

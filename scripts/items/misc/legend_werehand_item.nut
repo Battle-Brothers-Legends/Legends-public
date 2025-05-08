@@ -2,6 +2,7 @@ this.legend_werehand_item <- this.inherit("scripts/items/item", {
 	m = {},
 	function create()
 	{
+		this.item.create();
 		this.m.ID = "misc.legend_werehand";
 		this.m.Name = "Severed clawed hand";
 		this.m.Description = "This hand was taken from a being that was half man and half beast.";

@@ -37,7 +37,7 @@ These scripts can seem daunting, but they are much easier than maintaining all a
 
 **make_legends_helmets** 
 
-this script takes the place of all the *.nut files and .XML files that would otherwise be need to be maintained seperately. 
+this script takes the place of all the *.nut files and .XML files that would otherwise be need to be maintained separately. 
 
 Each of these item entries is essentially a .nut file waiting to be born. 
 

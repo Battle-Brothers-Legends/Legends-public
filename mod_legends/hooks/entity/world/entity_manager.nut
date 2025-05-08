@@ -571,27 +571,22 @@
 			}
 		}
 
-		if (_in.getMetaData().getVersion() >= 70) {
-			local numMercs = _in.readU8();
+		local numMercs = _in.readU8();
 
-			for( local i = 0; i != numMercs; i = ++i )
+		for( local i = 0; i != numMercs; i = ++i )
+		{
+			local merc = this.World.getEntityByID(_in.readU32());
+
+			if (merc != null)
 			{
-				local merc = this.World.getEntityByID(_in.readU32());
-
-				if (merc != null)
-				{
-					this.m.FreeCompanies.push(this.WeakTableRef(merc));
-				}
+				this.m.FreeCompanies.push(this.WeakTableRef(merc));
 			}
 		}
 
-		if (_in.getMetaData().getVersion() >= 72)
+		local numFC = _in.readU8();
+		for (local i = 0; i != numFC; i = ++i)
 		{
-			local numFC = _in.readU8();
-			for (local i = 0; i != numFC; i = ++i)
-			{
-				this.m.NonDefaultFreeCompanies.push(_in.readU8());
-			}
+			this.m.NonDefaultFreeCompanies.push(_in.readU8());
 		}
 
 		this.buildRoadAmbushSpots();

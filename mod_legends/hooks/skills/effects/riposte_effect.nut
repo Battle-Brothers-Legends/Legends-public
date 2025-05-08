@@ -15,9 +15,11 @@
 	local onAnySkillUsed = o.onAnySkillUsed;
 	o.onAnySkillUsed = function ( _skill, _targetEntity, _properties )
 	{
-		if (this.getContainer().getActor().getMainhandItem().isWeaponType(this.Const.Items.WeaponType.Staff))
+		local actor = this.getContainer().getActor();		
+		local item = actor.getMainhandItem();
+		if (item != null && item.isWeaponType(this.Const.Items.WeaponType.Staff))
 		{
-			if (!this.getContainer().getActor().getCurrentProperties().IsSpecializedInStaves)
+			if (!actor.getCurrentProperties().IsSpecializedInStaves)
 			{
 				_properties.MeleeSkill -= 10;
 			}

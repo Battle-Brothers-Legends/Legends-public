@@ -1,6 +1,12 @@
 ::Legends.Rune <- {}
 
 ::Legends.Runes <- {
+	Target = {
+		Shield = 64,
+		Weapon = 2048,
+		Helmet = 4096,
+		Armor = 8192
+	}
 	Defs = {},
 	add = function(_def) {
 		local id = ::Legends.Rune.len() + 1;
@@ -17,7 +23,7 @@
 * getRuneTooltip - crafting tooltip
 */
 ::Legends.Rune.LegendRswPower <- ::Legends.Runes.add({
-	ItemType = ::Const.Items.ItemType.Weapon,
+	ItemType = ::Legends.Runes.Target.Weapon,
 	Name = "Weapon Rune Sigil: Power",
 	Description = "An inscribed rock that can be attached to a character\'s weapon.",
 	Icon = "rune_sigils/rune_stone_1.png",
@@ -34,18 +40,18 @@
 		}
 	},
 	getTooltip = function(_item) {
-		return "This item has the power of the rune sigil of Power:\n[color=" + ::Const.UI.Color.PositiveValue + "]+" + _item.m.RuneBonus1 + "%[/color] Damage inflicted.\n" + "[color=" + ::Const.UI.Color.PositiveValue + "]+" + _item.m.RuneBonus2 + "[/color] Max damage.";
+		return "This item has the power of the rune sigil of Power:\n[color=" + ::Const.UI.Color.PositiveValue + "]+" + _item.getRuneBonus1() + "%[/color] Damage inflicted.\n" + "[color=" + ::Const.UI.Color.PositiveValue + "]+" + _item.getRuneBonus2() + "[/color] Max damage.";
 	},
 	getRuneTooltip = function (_item) {
 		local max1 = _item.isUpgraded() ? 9 : 6;
 		local max2 = _item.isUpgraded() ? 9 : 6;
-		return "This item has the power of the rune sigil of Power:\n[color=" + ::Const.UI.Color.PositiveValue + "]+3% to +" + max1 + "%[/color] total damage inflicted and [color=" + ::Const.UI.Color.PositiveValue + "]+3 to +" + max2 + "%[/color] maximum damage.";
+		return "This item has the power of the rune sigil of Power:\n[color=" + ::Const.UI.Color.PositiveValue + "]+3% to +" + max1 + "%[/color] total damage inflicted and [color=" + ::Const.UI.Color.PositiveValue + "]+3 to +" + max2 + "[/color] maximum damage.";
 	}
 });
 
 
 ::Legends.Rune.LegendRswAccuracy <- ::Legends.Runes.add({
-	ItemType = ::Const.Items.ItemType.Weapon,
+	ItemType = ::Legends.Runes.Target.Weapon,
 	Name = "Weapon Rune Sigil: Accuracy",
 	Description = "An inscribed rock that can be attached to a character\'s weapon.",
 	Icon = "rune_sigils/rune_stone_1.png",
@@ -62,7 +68,7 @@
 		}
 	},
 	getTooltip = function(_item) {
-		return "This item has the power of the rune sigil of Accuracy:\n[color=" + ::Const.UI.Color.PositiveValue + "]+" + _item.m.RuneBonus1 + "%[/color] Melee skill.\n" + "[color=" + ::Const.UI.Color.PositiveValue + "]+" + _item.m.RuneBonus2 + "%[/color] Ranged skill.";
+		return "This item has the power of the rune sigil of Accuracy:\n[color=" + ::Const.UI.Color.PositiveValue + "]+" + _item.getRuneBonus1() + "%[/color] Melee skill.\n" + "[color=" + ::Const.UI.Color.PositiveValue + "]+" + _item.getRuneBonus2() + "%[/color] Ranged skill.";
 	},
 	getRuneTooltip = function (_item) {
 		local max1 = _item.isUpgraded() ? 9 : 6;
@@ -71,7 +77,7 @@
 });
 
 ::Legends.Rune.LegendRswFeeding <- ::Legends.Runes.add({
-	ItemType = ::Const.Items.ItemType.Weapon,
+	ItemType = ::Legends.Runes.Target.Weapon,
 	Name = "Weapon Rune Sigil: Feeding",
 	Description = "An inscribed rock that can be attached to a character\'s weapon.",
 	Icon = "rune_sigils/rune_stone_1.png",
@@ -86,7 +92,7 @@
 		}
 	},
 	getTooltip = function(_item) {
-		return "This item has the power of the rune sigil of Feeding:\n[color=" + ::Const.UI.Color.PositiveValue + "]" + _item.m.RuneBonus1 + "%[/color] of inflicted health damage recovers fatigue.";
+		return "This item has the power of the rune sigil of Feeding:\n[color=" + ::Const.UI.Color.PositiveValue + "]" + _item.getRuneBonus1() + "%[/color] of inflicted health damage recovers fatigue.";
 	}
 	getRuneTooltip = function (_item) {
 		local max1 = _item.isUpgraded() ? 6 : 4;
@@ -95,7 +101,7 @@
 });
 
 ::Legends.Rune.LegendRswPoison <- ::Legends.Runes.add({
-	ItemType = ::Const.Items.ItemType.Weapon,
+	ItemType = ::Legends.Runes.Target.Weapon,
 	Name = "Weapon Rune Sigil: Poison",
 	Description = "An inscribed rock that can be attached to a character\'s weapon.",
 	Icon = "rune_sigils/rune_stone_1.png",
@@ -112,7 +118,7 @@
 		}
 	},
 	getTooltip = function(_item) {
-		return "This item has the power of the rune sigil of Poison:\n[color=" + ::Const.UI.Color.PositiveValue + "]" + _item.m.RuneBonus1 + "[/color] turn(s) of poison applied, with a strength of [color=" + ::Const.UI.Color.PositiveValue + "]" + _item.m.RuneBonus2 + "[/color]. Lowers action points and initiative.";
+		return "This item has the power of the rune sigil of Poison:\n[color=" + ::Const.UI.Color.PositiveValue + "]" + _item.getRuneBonus1() + "[/color] turn(s) of poison applied, with a strength of [color=" + ::Const.UI.Color.PositiveValue + "]" + _item.getRuneBonus2() + "[/color]. Lowers action points and initiative.";
 	}
 	getRuneTooltip = function (_item) {
 		local max1 = _item.isUpgraded() ? 3 : 2;
@@ -122,7 +128,7 @@
 });
 
 ::Legends.Rune.LegendRswBleeding <- ::Legends.Runes.add({
-	ItemType = ::Const.Items.ItemType.Weapon,
+	ItemType = ::Legends.Runes.Target.Weapon,
 	Name = "Weapon Rune Sigil: Bleeding",
 	Description = "An inscribed rock that can be attached to a character\'s weapon.",
 	Icon = "rune_sigils/rune_stone_1.png",
@@ -139,7 +145,7 @@
 		}
 	},
 	getTooltip = function(_item) {
-		return "This item has the power of the rune sigil of Bleeding:\n[color=" + ::Const.UI.Color.PositiveValue + "]" + _item.m.RuneBonus1 + "[/color] bleed damage every turn for [color=" + ::Const.UI.Color.PositiveValue + "]" + _item.m.RuneBonus2 + "[/color] turn(s).";
+		return "This item has the power of the rune sigil of Bleeding:\n[color=" + ::Const.UI.Color.PositiveValue + "]" + _item.getRuneBonus1() + "[/color] bleed damage every turn for [color=" + ::Const.UI.Color.PositiveValue + "]" + _item.getRuneBonus2() + "[/color] turn(s).";
 	}
 	getRuneTooltip = function (_item) {
 		local max1 = _item.isUpgraded() ? 9 : 6;
@@ -149,7 +155,7 @@
 });
 
 ::Legends.Rune.LegendRswUnbreaking <- ::Legends.Runes.add({
-	ItemType = ::Const.Items.ItemType.Weapon,
+	ItemType = ::Legends.Runes.Target.Weapon,
 	Name = "Weapon Rune Sigil: Unbreaking",
 	Description = "An inscribed rock that can be attached to a character\'s weapon.",
 	Icon = "rune_sigils/rune_stone_1.png",
@@ -166,7 +172,7 @@
 		}
 	},
 	getTooltip = function(_item) {
-		return "This item has the power of the rune sigil of Unbreaking:\n[color=" + ::Const.UI.Color.PositiveValue + "]" + _item.m.RuneBonus1 + "[/color] to [color=" + ::Const.UI.Color.PositiveValue + "]" + _item.m.RuneBonus2 + "[/color] durability restored on every kill.";
+		return "This item has the power of the rune sigil of Unbreaking:\n[color=" + ::Const.UI.Color.PositiveValue + "]" + _item.getRuneBonus1() + "[/color] to [color=" + ::Const.UI.Color.PositiveValue + "]" + _item.getRuneBonus2() + "[/color] durability restored on every kill.";
 	}
 	getRuneTooltip = function (_item) {
 		local max1 = _item.isUpgraded() ? 3 : 2;
@@ -176,7 +182,7 @@
 });
 
 ::Legends.Rune.LegendRshClarity <- ::Legends.Runes.add({
-	ItemType = ::Const.Items.ItemType.Helmet,
+	ItemType = ::Legends.Runes.Target.Helmet,
 	Name = "Helmet Rune Sigil: Clarity",
 	Description = "An inscribed rock that can be attached to a character\'s helmet.",
 	Icon = "rune_sigils/rune_stone_2.png",
@@ -193,7 +199,7 @@
 		}
 	},
 	getTooltip = function(_item) {
-		return "This item has the power of the rune sigil of Clarity:\n[color=" + ::Const.UI.Color.PositiveValue + "]+" + _item.m.RuneBonus1 + "[/color] Vision.\n[color=" + ::Const.UI.Color.PositiveValue + "]+" + _item.m.RuneBonus2 + "%[/color] Experience gain.";
+		return "This item has the power of the rune sigil of Clarity:\n[color=" + ::Const.UI.Color.PositiveValue + "]+" + _item.getRuneBonus1() + "[/color] Vision.\n[color=" + ::Const.UI.Color.PositiveValue + "]+" + _item.getRuneBonus2() + "%[/color] Experience gain.";
 	}
 	getRuneTooltip = function (_item) {
 		local max1 = _item.isUpgraded() ? 2 : 1;
@@ -203,7 +209,7 @@
 });
 
 ::Legends.Rune.LegendRshBravery <- ::Legends.Runes.add({
-	ItemType = ::Const.Items.ItemType.Helmet,
+	ItemType = ::Legends.Runes.Target.Helmet,
 	Name = "Helmet Rune Sigil: Bravery",
 	Description = "An inscribed rock that can be attached to a character\'s helmet.",
 	Icon = "rune_sigils/rune_stone_2.png",
@@ -220,7 +226,7 @@
 		}
 	},
 	getTooltip = function(_item) {
-		return "This item has the power of the rune sigil of Bravery:\n[color=" + ::Const.UI.Color.PositiveValue + "]+" + _item.m.RuneBonus1 + "%[/color] Resolve.\n[color=" + ::Const.UI.Color.PositiveValue + "]+" + _item.m.RuneBonus2 + "[/color] Resolve at all morale checks.";
+		return "This item has the power of the rune sigil of Bravery:\n[color=" + ::Const.UI.Color.PositiveValue + "]+" + _item.getRuneBonus1() + "%[/color] Resolve.\n[color=" + ::Const.UI.Color.PositiveValue + "]+" + _item.getRuneBonus2() + "[/color] Resolve at all morale checks.";
 	}
 	getRuneTooltip = function (_item) {
 		local max1 = _item.isUpgraded() ? 9 : 6;
@@ -230,7 +236,7 @@
 });
 
 ::Legends.Rune.LegendRshLuck <- ::Legends.Runes.add({
-	ItemType = ::Const.Items.ItemType.Helmet,
+	ItemType = ::Legends.Runes.Target.Helmet,
 	Name = "Helmet Rune Sigil: Luck",
 	Description = "An inscribed rock that can be attached to a character\'s helmet.",
 	Icon = "rune_sigils/rune_stone_2.png",
@@ -245,7 +251,7 @@
 		}
 	},
 	getTooltip = function(_item) {
-		return "This item has the power of the rune sigil of Luck:\n[color=" + ::Const.UI.Color.PositiveValue + "]+" + _item.m.RuneBonus1 + "%[/color] chance to have any attacker require two successful attack rolls in order to hit.";
+		return "This item has the power of the rune sigil of Luck:\n[color=" + ::Const.UI.Color.PositiveValue + "]+" + _item.getRuneBonus1() + "%[/color] chance to have any attacker require two successful attack rolls in order to hit.";
 	}
 	getRuneTooltip = function (_item) {
 		local max1 = _item.isUpgraded() ? 9 : 6;
@@ -254,7 +260,7 @@
 });
 
 ::Legends.Rune.LegendRsaEndurance <- ::Legends.Runes.add({
-	ItemType = ::Const.Items.ItemType.Armor,
+	ItemType = ::Legends.Runes.Target.Armor,
 	Name = "Armor Rune Sigil: Endurance",
 	Description = "An inscribed rock that can be attached to a character\'s armor.",
 	Icon = "rune_sigils/rune_stone_3.png",
@@ -271,7 +277,7 @@
 		}
 	},
 	getTooltip = function(_item) {
-		return "This item has the power of the rune sigil of Endurance:\n[color=" + ::Const.UI.Color.PositiveValue + "]+" + _item.m.RuneBonus1 + "[/color] Fatigue recovery per turn.\n[color=" + ::Const.UI.Color.PositiveValue + "]-" + _item.m.RuneBonus2 + "%[/color] Fatigue cost and effects multiplier.";
+		return "This item has the power of the rune sigil of Endurance:\n[color=" + ::Const.UI.Color.PositiveValue + "]+" + _item.getRuneBonus1() + "[/color] Fatigue recovery per turn.\n[color=" + ::Const.UI.Color.PositiveValue + "]-" + _item.getRuneBonus2() + "%[/color] Fatigue cost and effects multiplier.";
 	}
 	getRuneTooltip = function (_item) {
 		local max1 = _item.isUpgraded() ? 3 : 1;
@@ -281,7 +287,7 @@
 });
 
 ::Legends.Rune.LegendRsaSafety <- ::Legends.Runes.add({
-	ItemType = ::Const.Items.ItemType.Armor,
+	ItemType = ::Legends.Runes.Target.Armor,
 	Name = "Armor Rune Sigil: Safety",
 	Description = "An inscribed rock that can be attached to a character\'s armor.",
 	Icon = "rune_sigils/rune_stone_3.png",
@@ -298,7 +304,7 @@
 		}
 	},
 	getTooltip = function(_item) {
-		return "This item has the power of the rune sigil of Safety:\n[color=" + ::Const.UI.Color.PositiveValue + "]+" + _item.m.RuneBonus1 + "%[/color] Hitpoints.\n[color=" + ::Const.UI.Color.PositiveValue + "]-" + _item.m.RuneBonus2 + "%[/color] Damage received.";
+		return "This item has the power of the rune sigil of Safety:\n[color=" + ::Const.UI.Color.PositiveValue + "]+" + _item.getRuneBonus1() + "%[/color] Hitpoints.\n[color=" + ::Const.UI.Color.PositiveValue + "]-" + _item.getRuneBonus2() + "%[/color] Damage received.";
 	}
 	getRuneTooltip = function (_item) {
 		local max1 = _item.isUpgraded() ? 9 : 6;
@@ -307,7 +313,7 @@
 });
 
 ::Legends.Rune.LegendRsaResilience <- ::Legends.Runes.add({
-	ItemType = ::Const.Items.ItemType.Armor,
+	ItemType = ::Legends.Runes.Target.Armor,
 	Name = "Armor Rune Sigil: Resilience",
 	Description = "An inscribed rock that can be attached to a character\'s armor.",
 	Icon = "rune_sigils/rune_stone_3.png",
@@ -326,7 +332,7 @@
 });
 
 ::Legends.Rune.LegendRssDefense <- ::Legends.Runes.add({
-	ItemType = ::Const.Items.ItemType.Shield,
+	ItemType = ::Legends.Runes.Target.Shield,
 	Name = "Shield Rune Sigil: Defense",
 	Description = "An inscribed rock that can be attached to a character\'s shield.",
 	Icon = "rune_sigils/rune_stone_4.png",
@@ -343,7 +349,7 @@
 		}
 	},
 	getTooltip = function(_item) {
-		return "This item has the power of the rune sigil of Defense:\n[color=" + ::Const.UI.Color.PositiveValue + "]+" + _item.m.RuneBonus1 + "%[/color] Melee defense.\n" + "[color=" + ::Const.UI.Color.PositiveValue + "]+" + _item.m.RuneBonus2 + "%[/color] Ranged defense.";
+		return "This item has the power of the rune sigil of Defense:\n[color=" + ::Const.UI.Color.PositiveValue + "]+" + _item.getRuneBonus1() + "%[/color] Melee defense.\n" + "[color=" + ::Const.UI.Color.PositiveValue + "]+" + _item.getRuneBonus2() + "%[/color] Ranged defense.";
 	}
 	getRuneTooltip = function (_item) {
 		local max1 = _item.isUpgraded() ? 9 : 6;
@@ -352,7 +358,7 @@
 });
 
 ::Legends.Rune.LegendRssRadiance <- ::Legends.Runes.add({
-	ItemType = ::Const.Items.ItemType.Shield,
+	ItemType = ::Legends.Runes.Target.Shield,
 	Name = "Shield Rune Sigil: Radiance",
 	Description = "An inscribed rock that can be attached to a character\'s shield.",
 	Icon = "rune_sigils/rune_stone_4.png",
@@ -369,10 +375,10 @@
 		}
 	},
 	getTooltip = function(_item) {
-		return "This item has the power of the rune sigil of Radiance:\n[color=" + ::Const.UI.Color.PositiveValue + "]-" + _item.m.RuneBonus1 + "%[/color] to all adjacent enemies\' Melee skill.\n" + "[color=" + ::Const.UI.Color.PositiveValue + "]-" + _item.m.RuneBonus2 + "%[/color] to all adjacent enemies\' Melee defense.";
+		return "This item has the power of the rune sigil of Radiance:\n[color=" + ::Const.UI.Color.PositiveValue + "]-" + _item.getRuneBonus1() + "%[/color] to all adjacent enemies\' Melee skill.\n" + "[color=" + ::Const.UI.Color.PositiveValue + "]-" + _item.getRuneBonus2() + "%[/color] to all adjacent enemies\' Melee defense.";
 	}
 	getRuneTooltip = function (_item) {
-		max1 = _item.isUpgraded() ? 9 : 6;
+		local max1 = _item.isUpgraded() ? 9 : 6;
 		return "This item has the power of the rune sigil of Radiance:\n[color=" + ::Const.UI.Color.PositiveValue + "]-3% to -" + max1 + "%[/color] to all adjacent enemies\' Melee skill.\n" + "[color=" + ::Const.UI.Color.PositiveValue + "]-3% to -" + max1 + "%[/color] to all adjacent enemies\' Melee defense.";
 	}
 });

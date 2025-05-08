@@ -27,15 +27,10 @@
 				"weapons/greenskins/goblin_falchion",
 				"weapons/greenskins/goblin_spear",
 				"weapons/legend_chain",
-				"weapons/greenskins/goblin_notched_blade"
+				"weapons/greenskins/goblin_notched_blade",
+				"weapons/greenskins/legend_goblin_longaxe",
+				"weapons/greenskins/goblin_pike"
 			];
-
-			if (this.m.Items.hasEmptySlot(this.Const.ItemSlot.Offhand))
-			{
-				weapons.extend([
-					"weapons/greenskins/goblin_pike"
-				]);
-			}
 
 			this.m.Items.equip(this.new("scripts/items/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
 		}
@@ -45,7 +40,7 @@
 			this.m.Items.addToBag(this.new("scripts/items/weapons/greenskins/goblin_spiked_balls"));
 		}
 
-		if(::Legends.isLegendaryDifficulty())
+		if (::Legends.isLegendaryDifficulty())
 		{
 			this.m.Items.addToBag(this.new("scripts/items/weapons/greenskins/goblin_spiked_balls"));
 			this.m.Items.addToBag(this.new("scripts/items/weapons/greenskins/goblin_spiked_balls"));
@@ -71,9 +66,9 @@
 		if (this.m.Items.getItemAtSlot(this.Const.ItemSlot.Body) == null)
 		{
 			local item = this.Const.World.Common.pickArmor([
-				[1, "greenskins/goblin_light_armor"],
-				[1, "greenskins/goblin_medium_armor"],
-				[1, "greenskins/goblin_heavy_armor"]
+				[1, ::Legends.Armor.Greenskin.goblin_light_armor],
+				[1, ::Legends.Armor.Greenskin.goblin_medium_armor],
+				[1, ::Legends.Armor.Greenskin.goblin_heavy_armor]
 			]);
 			this.m.Items.equip(item);
 		}
@@ -81,8 +76,8 @@
 		if (this.m.Items.getItemAtSlot(this.Const.ItemSlot.Head) == null)
 		{
 			local item = this.Const.World.Common.pickHelmet([
-				[75, "greenskins/goblin_light_helmet"],
-				[25, "greenskins/goblin_heavy_helmet"]
+				[75, ::Legends.Helmet.Greenskin.goblin_light_helmet],
+				[25, ::Legends.Helmet.Greenskin.goblin_heavy_helmet]
 			]);
 			if (item != null)
 			{

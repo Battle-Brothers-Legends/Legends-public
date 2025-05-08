@@ -46,6 +46,13 @@ this.legend_horse <- this.inherit("scripts/entity/tactical/actor", {
 		this.m.SoundPitch = this.Math.rand(95, 105) * 0.01;
 		this.m.AIAgent = this.new("scripts/ai/tactical/agents/direwolf_agent");
 		this.m.AIAgent.setActor(this);
+
+		local rolls = ::Legends.S.extraLootChance(1);
+		for(local i = 0; i < rolls; i++) {
+			this.m.OnDeathLootTable.extend([
+				[100, "scripts/items/supplies/strange_meat_item"]
+			]);
+		}
 	}
 
 	function playAttackSound()
@@ -116,27 +123,30 @@ this.legend_horse <- this.inherit("scripts/entity/tactical/actor", {
 
 			this.spawnTerrainDropdownEffect(_tile);
 			this.spawnFlies(_tile);
-			local corpse = clone this.Const.Corpse;
-			corpse.CorpseName = "A Horse";
-			corpse.IsHeadAttached = _fatalityType != this.Const.FatalityType.Decapitated;
+		}
+
+		local deathLoot = this.getItems().getDroppableLoot(_killer);
+		local tileLoot = this.getLootForTile(_killer, deathLoot);
+		local corpse = this.generateCorpse(_tile, _fatalityType);
+		this.dropLoot(_tile, tileLoot, !flip);
+
+		if (_tile == null) {
+			this.Tactical.Entities.addUnplacedCorpse(corpse);
+		} else {
 			_tile.Properties.set("Corpse", corpse);
 			this.Tactical.Entities.addCorpse(_tile);
-
-			if (_killer == null || _killer.getFaction() == this.Const.Faction.Player || _killer.getFaction() == this.Const.Faction.PlayerAnimals)
-			{
-				local n = 1 + (!this.Tactical.State.isScenarioMode() && this.Math.rand(1, 100) <= this.World.Assets.getExtraLootChance() ? 1 : 0);
-
-				for( local i = 0; i < n; i = ++i )
-				{
-
-						local loot = this.new("scripts/items/supplies/strange_meat_item");
-						loot.drop(_tile);
-
-				}
-			}
 		}
 
 		this.actor.onDeath(_killer, _skill, _tile, _fatalityType);
+	}
+
+	function generateCorpse( _tile, _fatalityType )
+	{
+		local corpse = clone this.Const.Corpse;
+		corpse.CorpseName = "A Horse";
+		corpse.IsHeadAttached = _fatalityType != this.Const.FatalityType.Decapitated;
+		corpse.Tile = _tile;
+		return corpse;
 	}
 
 	function onInit()

@@ -25,13 +25,9 @@ this.perk_legend_specialist_butcher <- this.inherit("scripts/skills/legend_speci
 	}
 	function create()
 	{
+		this.legend_specialist_abstract.create();
 		::Const.Perks.setup(this.m, ::Legends.Perk.LegendSpecialistButcher);
-		this.m.Type = this.Const.SkillType.Perk | this.Const.SkillType.StatusEffect;
 		this.m.IconMini = "perk_spec_butcher_mini";
-		this.m.Order = this.Const.SkillOrder.Perk;
-		this.m.IsActive = false;
-		this.m.IsStacking = false;
-		this.m.IsHidden = false;
 	}
 
 	function specialistWeaponTooltip (_item, _isRanged)

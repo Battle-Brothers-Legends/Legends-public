@@ -45,7 +45,7 @@
 					::Legends.Perks.remove(e, ::Legends.Perk.Overwhelm);
 					::Legends.Perks.remove(e, ::Legends.Perk.Nimble);
 					local armor = this.Const.World.Common.pickArmor([
-						[1, "mail_hauberk", 32],
+						[1, ::Legends.Armor.Standard.mail_hauberk, 32],
 					]);
 					armor.setArmor(0);
 					e.getItems().equip(armor);
@@ -79,7 +79,7 @@
 					e.getAIAgent().addBehavior(this.new("scripts/ai/tactical/behaviors/ai_retreat_always"));
 					local items = e.getItems();
 					items.equip(this.Const.World.Common.pickArmor([
-						[1, "patched_mail_shirt"],
+						[1, ::Legends.Armor.Standard.patched_mail_shirt],
 					]));
 					items.equip(this.new("scripts/items/weapons/hunting_bow"));
 					this.Flags.set("BossHead", e.getSprite("head").getBrush().Name);
@@ -106,7 +106,7 @@
 					e.getFlags().add("IsFinalBoss", true);
 					local items = e.getItems();
 					items.equip(this.Const.World.Common.pickArmor([
-						[1, "patched_mail_shirt"],
+						[1, ::Legends.Armor.Standard.patched_mail_shirt],
 					]));
 					items.equip(this.new("scripts/items/weapons/falchion"));
 					local shield = this.new("scripts/items/shields/wooden_shield");

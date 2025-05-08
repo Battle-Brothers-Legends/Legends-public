@@ -1,6 +1,6 @@
 this.legend_randomized_unit_abstract <- this.inherit("scripts/entity/tactical/human", {
 	// Most of the m table is filled out inthe config file z_randomized_perk_tiers
-	// Outfits  		| [chance to roll, outfit] | outfits are defined in the z_mods_legends_outfits.nut config file
+	// Outfits  		| [chance to roll, outfit] | outfits are defined in the outfits.nut config file
 	// ClassPerkList  	| Virtually always empty, this is for magic
 	// DefensePerkList 	| Defensive perk list | e.g. ClothArmorTree
 	// TraitsPerkList  	| Traits lists, generally very filled out | e.g. FitTree

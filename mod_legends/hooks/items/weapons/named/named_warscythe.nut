@@ -8,7 +8,7 @@
 		this.m.Variant = this.m.Variants[this.Math.rand(0, this.m.Variants.len() -1)];
 		this.updateVariant();
 		this.m.WeaponType = this.Const.Items.WeaponType.Cleaver | this.Const.Items.WeaponType.Polearm;
-		this.m.ItemType = this.m.ItemType | this.Const.Items.ItemType.Pitchfork;
+		this.setCategories("Cleaver/Polearm, Two-Handed");
 	}
 
 	o.addSkill <- function( _skill )

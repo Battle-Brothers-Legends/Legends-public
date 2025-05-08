@@ -95,12 +95,12 @@ this.legend_astrologist_background <- this.inherit("scripts/skills/backgrounds/c
 		// this.getContainer().getActor().fillTalentValues(2, true);
 		local items = this.getContainer().getActor().getItems();
 		items.equip(this.Const.World.Common.pickHelmet([
-			[1, ""],
-			[1, "legend_seer_hat"],
-			[1, "magician_hat"]
+			[1, ::Legends.Helmet.None],
+			[1, ::Legends.Helmet.Standard.legend_seer_hat],
+			[1, ::Legends.Helmet.Standard.magician_hat]
 		]));
 		items.equip(this.Const.World.Common.pickArmor([
-			[1, "thick_dark_tunic"]
+			[1, ::Legends.Armor.Standard.thick_dark_tunic]
 		]));
 		items.equip(this.new("scripts/items/weapons/ancient/broken_ancient_sword"));
 	}

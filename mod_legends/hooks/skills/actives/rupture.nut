@@ -17,12 +17,6 @@
 				text = "Inflicts additional [color=" + this.Const.UI.Color.DamageValue + "]" + this.getContainer().getActor().getCurrentProperties().IsSpecializedInPolearms ? 10 : 5 + "[/color] bleeding damage over time if not stopped by armor"
 			}
 		]);
-		tooltip.push({
-			id = 6,
-			type = "text",
-			icon = "ui/icons/hitchance.png",
-			text = "Has [color=" + this.Const.UI.Color.PositiveValue + "]+5%[/color] chance to hit"
-		});
 
 		if (!this.getContainer().getActor().getCurrentProperties().IsSpecializedInPolearms)
 		{
@@ -42,6 +36,20 @@
 		});
 
 		return tooltip;
+	}
+
+	function onAnySkillUsed( _skill, _targetEntity, _properties )
+	{
+		if (_skill == this)
+		{
+			_properties.MeleeSkill += 5;
+
+			if (_targetEntity != null && !this.getContainer().getActor().getCurrentProperties().IsSpecializedInPolearms && this.getContainer().getActor().getTile().getDistanceTo(_targetEntity.getTile()) == 1)
+			{
+				_properties.MeleeSkill += -15;
+				this.m.HitChanceBonus = -10;
+			}
+		}
 	}
 
 	o.onUse = function ( _user, _targetTile )

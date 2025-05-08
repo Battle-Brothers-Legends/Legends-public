@@ -29,7 +29,7 @@ this.legend_rune_bravery <- this.inherit("scripts/items/legend_helmets/legend_he
 			id = 7,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "This item has the power of the rune sigil of Bravery:\n[color=" + this.Const.UI.Color.PositiveValue + "]+" + this.m.RuneBonus1 + "%[/color] Resolve.\n[color=" + this.Const.UI.Color.PositiveValue + "]+" + this.m.RuneBonus2 + "[/color] Resolve at all morale checks."
+			text = "This item has the power of the rune sigil of Bravery:\n[color=" + this.Const.UI.Color.PositiveValue + "]+" + this.getRuneBonus1() + "%[/color] Resolve.\n[color=" + this.Const.UI.Color.PositiveValue + "]+" + this.getRuneBonus2() + "[/color] Resolve at all morale checks."
 		});
 		return result;
 	}
@@ -40,7 +40,7 @@ this.legend_rune_bravery <- this.inherit("scripts/items/legend_helmets/legend_he
 			id = 7,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "This item has the power of the rune sigil of Bravery:\n[color=" + this.Const.UI.Color.PositiveValue + "]+" + this.m.RuneBonus1 + "%[/color] Resolve.\n[color=" + this.Const.UI.Color.PositiveValue + "]+" + this.m.RuneBonus2 + "[/color] Resolve at all morale checks."
+			text = "This item has the power of the rune sigil of Bravery:\n[color=" + this.Const.UI.Color.PositiveValue + "]+" + this.getRuneBonus1() + "%[/color] Resolve.\n[color=" + this.Const.UI.Color.PositiveValue + "]+" + this.getRuneBonus2() + "[/color] Resolve at all morale checks."
 		});
 	}
 });

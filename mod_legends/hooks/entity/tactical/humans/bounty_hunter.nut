@@ -96,28 +96,28 @@
 		}
 
 		this.m.Items.equip(this.Const.World.Common.pickArmor([
-			[1, "ragged_surcoat"],
-			[1, "padded_leather"],
-			[1, "patched_mail_shirt"],
-			[1, "leather_lamellar"],
-			[1, "basic_mail_shirt"],
-			[1, "mail_hauberk"]
+			[1, ::Legends.Armor.Standard.ragged_surcoat],
+			[1, ::Legends.Armor.Standard.padded_leather],
+			[1, ::Legends.Armor.Standard.patched_mail_shirt],
+			[1, ::Legends.Armor.Standard.leather_lamellar],
+			[1, ::Legends.Armor.Standard.basic_mail_shirt],
+			[1, ::Legends.Armor.Standard.mail_hauberk]
 		]));
 
 		if (this.Math.rand(1, 100) <= 90)
 		{
 			local helm = [
-				[1, "nasal_helmet"],
-				[1, "nasal_helmet_with_mail"],
-				[1, "reinforced_mail_coif"],
-				[1, "headscarf"],
-				[1, "kettle_hat"],
-				[1, "kettle_hat_with_mail"],
-				[1, "nordic_helmet"],
-				[1, "nordic_helmet_with_closed_mail"],
-				[1, "barbute_helmet"]
+				[1, ::Legends.Helmet.Standard.nasal_helmet],
+				[1, ::Legends.Helmet.Standard.nasal_helmet_with_mail],
+				[1, ::Legends.Helmet.Standard.reinforced_mail_coif],
+				[1, ::Legends.Helmet.Standard.headscarf],
+				[1, ::Legends.Helmet.Standard.kettle_hat],
+				[1, ::Legends.Helmet.Standard.kettle_hat_with_mail],
+				[1, ::Legends.Helmet.Standard.nordic_helmet],
+				[1, ::Legends.Helmet.Standard.nordic_helmet_with_closed_mail],
+				[1, ::Legends.Helmet.Standard.barbute_helmet]
 			];
-			helm.push([1, "theamson_barbute_helmet"]);
+			helm.push([1, ::Legends.Helmet.Standard.theamson_barbute_helmet]);
 			local item = this.Const.World.Common.pickHelmet(helm);
 
 			if (item != null)

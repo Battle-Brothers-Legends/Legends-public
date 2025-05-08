@@ -66,10 +66,7 @@ this.legend_armor_tabard <- this.inherit("scripts/items/legend_armor/legend_armo
 
 	function onDeserialize( _in )
 	{
-		if (_in.getMetaData().getVersion() >= 64)
-		{
-			this.m.Name = _in.readString();
-		}
+		this.m.Name = _in.readString();
 		this.legend_armor_upgrade.onDeserialize(_in);
 	}
 

@@ -7,7 +7,7 @@
 		foreach (s in this.m.Screens) {
 			if (s.ID == "A") {
 				s.Options[2].getResult <- function (_event) {
-					if (this.World.Assets.getOrigin().getID() == "scenario.sato_escaped_slaves" || this.World.Assets.getOrigin().getID() == "scenario.legends_sisterhood")
+					if (this.World.Assets.getOrigin().getID() == "scenario.legend_escaped_slaves" || this.World.Assets.getOrigin().getID() == "scenario.legends_sisterhood")
 						return "E";
 					else
 						return "B";

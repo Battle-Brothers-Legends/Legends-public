@@ -1,5 +1,16 @@
 ::mods_hookExactClass("entity/tactical/humans/desert_devil", function(o)
 {
+	local create = o.create;
+	o.create = function ()
+	{
+		create();
+		this.m.OnDeathLootTable.extend([
+			[1.5, "scripts/items/misc/legend_masterwork_fabric"],
+			[1.0, "scripts/items/misc/legend_masterwork_metal"],
+			[0.5, "scripts/items/misc/legend_masterwork_tools"]
+		]);
+	}
+
 	local onInit = o.onInit;
 	o.onInit = function ()
 	{
@@ -30,15 +41,15 @@
 		}
 
 		this.m.Items.equip(this.Const.World.Common.pickArmor([
-			[1, "oriental/assassin_robe"],
-			[1, "blade_dancer_armor_00"]
-			// [1, "leather_scale_armor"]
+			[1, ::Legends.Armor.Southern.assassin_robe],
+			[1, ::Legends.Armor.Southern.blade_dancer_armor_00]
+			// [1, ::Legends.Armor.Standard.leather_scale_armor]
 		]));
 		if (this.m.Items.hasEmptySlot(this.Const.ItemSlot.Head))
 		{
 			local helm =this.Const.World.Common.pickHelmet([
-				[1, "oriental/blade_dancer_head_wrap"],
-				[1, "blade_dancer_helmet_00"]
+				[1, ::Legends.Helmet.Southern.blade_dancer_head_wrap],
+				[1, ::Legends.Helmet.Southern.blade_dancer_helmet_00]
 			]);
 			this.m.Items.equip(helm);
 		}
@@ -65,7 +76,7 @@
 		else
 		{
 			this.m.Items.equip(this.Const.World.Common.pickArmor([
-				[1, "named/black_leather_armor"]
+				[1, ::Legends.Armor.Named.black_leather_armor]
 			]));
 		}
 
@@ -73,31 +84,4 @@
 		::Legends.Perks.grant(this, ::Legends.Perk.Relentless);
 		return true;
 	}
-
-	o.onDeath <- function(_killer, _skill, _tile,  _fatalityType)
-	{
-		this.human.onDeath(_killer, _skill, _tile, _fatalityType);
-
-		if (_killer == null || _killer.getFaction() == this.Const.Faction.Player || _killer.getFaction() == this.Const.Faction.PlayerAnimals)
-		{
-			if (this.Math.rand(1, 1000) <= 15) //1.5%
-			{
-				local loot = this.new("scripts/items/misc/legend_masterwork_fabric");
-				loot.drop(_tile);
-			}
-
-			if (this.Math.rand(1, 100) <= 1)
-			{
-				local loot = this.new("scripts/items/misc/legend_masterwork_metal");
-				loot.drop(_tile);
-			}
-
-			if (this.Math.rand(1, 1000) <= 5) //0.5%
-			{
-				local loot = this.new("scripts/items/misc/legend_masterwork_tools");
-				loot.drop(_tile);
-			}
-		}
-	}
-
 });

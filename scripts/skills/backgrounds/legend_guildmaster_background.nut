@@ -242,18 +242,18 @@ this.legend_guildmaster_background <- this.inherit("scripts/skills/backgrounds/c
 		}
 
 		items.equip(this.Const.World.Common.pickArmor([
-			[1, "ragged_surcoat"],
-			[1, "thick_tunic"],
-			[1, "leather_tunic"],
-			[1, "padded_leather"],
-			[1, "werewolf_hide_armor"]
+			[1, ::Legends.Armor.Standard.ragged_surcoat],
+			[1, ::Legends.Armor.Standard.thick_tunic],
+			[1, ::Legends.Armor.Standard.leather_tunic],
+			[1, ::Legends.Armor.Standard.padded_leather],
+			[1, ::Legends.Armor.Standard.werewolf_hide_armor]
 		]));
 
 		items.equip(this.Const.World.Common.pickHelmet([
-			[1, "hood"],
-			[1, "feathered_hat"],
-			[1, "dark_cowl"],
-			[1, ""]
+			[1, ::Legends.Helmet.Standard.hood],
+			[1, ::Legends.Helmet.Standard.feathered_hat],
+			[1, ::Legends.Helmet.Standard.dark_cowl],
+			[1, ::Legends.Helmet.None]
 		]));
 	}
 });

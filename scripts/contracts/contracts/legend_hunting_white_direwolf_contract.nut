@@ -5,7 +5,9 @@ this.legend_hunting_white_direwolf_contract <- this.inherit("scripts/contracts/c
 		IsPlayerAttacking = true,
 		MinStrength = 10, // player needs to earn 10% of bonus (not including base 5% bonus) for this contract to be valid
 		Perk = ::Legends.Perk.LegendFavouredEnemyDirewolf,
-		ValidTypes = this.Const.LegendMod.FavoriteDirewolf
+		ValidTypes = this.Const.LegendMod.FavoriteDirewolf,
+		LevelSumRequiredForRandomSpawn = 50,
+		IsRandomlyAdded = null,
 	},
 	function setEnemyType( _t )
 	{
@@ -29,6 +31,7 @@ this.legend_hunting_white_direwolf_contract <- this.inherit("scripts/contracts/c
 			"Many consider white wolves to be myth, a campfire tale of the supernatural to scare new travelers with.",
 			"In traditional folklore tales, white wolves are always supernatural beings who herald doom.",
 		];
+		this.m.IsRandomlyAdded = ::Math.rand(1, 100) <= 5;
 	}
 
 	function onImportIntro()
@@ -485,7 +488,7 @@ this.legend_hunting_white_direwolf_contract <- this.inherit("scripts/contracts/c
 			this.Const.World.TerrainType.Mountains
 		]);
 		local nearTile = this.getTileToSpawnLocation(playerTile, 4, 8);
-		local party = this.World.FactionManager.getFactionOfType(this.Const.FactionType.Beasts).spawnEntity(tile, "White Wolf Pack", false, this.Const.World.Spawn.LegendWhiteDirewolf, 200 * this.getDifficultyMult() * this.getScaledDifficultyMult());
+		local party = this.World.FactionManager.getFactionOfType(this.Const.FactionType.Beasts).spawnEntity(tile, "White Wolf Pack", false, this.Const.World.Spawn.LegendWhiteDirewolf, 200 * this.getDifficultyMult() * this.getScaledDifficultyMult(), this.getMinibossModifier());
 		party.setDescription("The wolf pack of the legendary White Wolf.");
 		party.setAttackableByAI(false);
 		party.setFootprintSizeOverride(0.75);
@@ -552,22 +555,19 @@ this.legend_hunting_white_direwolf_contract <- this.inherit("scripts/contracts/c
 
 	function onIsValid()
 	{
+		local sumLevels = 0;
 		foreach( bro in this.World.getPlayerRoster().getAll() )
 		{
+			sumLevels += bro.getLevel();
 			if (!bro.getSkills().hasPerk(this.m.Perk))
-			{
 				continue;
-			}
 
 			local stats = this.Const.LegendMod.GetFavoriteEnemyStats(bro, this.m.ValidTypes);
-
 			if (stats.Strength >= this.m.MinStrength)
-			{
 				return true;
-			}
 		}
 
-		return false;
+		return this.m.IsRandomlyAdded && sumLevels > this.m.LevelSumRequiredForRandomSpawn;
 	}
 
 	function onSerialize( _out )
@@ -580,7 +580,7 @@ this.legend_hunting_white_direwolf_contract <- this.inherit("scripts/contracts/c
 		{
 			_out.writeU32(0);
 		}
-
+		_out.writeBool(this.m.IsRandomlyAdded);
 		this.contract.onSerialize(_out);
 	}
 
@@ -592,7 +592,7 @@ this.legend_hunting_white_direwolf_contract <- this.inherit("scripts/contracts/c
 		{
 			this.m.Target = this.WeakTableRef(this.World.getEntityByID(target));
 		}
-
+		this.m.IsRandomlyAdded = _out.readBool();
 		this.contract.onDeserialize(_in);
 	}
 

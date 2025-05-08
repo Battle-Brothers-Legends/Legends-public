@@ -233,15 +233,15 @@ this.legend_bounty_hunter_background <- this.inherit("scripts/skills/backgrounds
 
 		items.equip(this.new("scripts/items/tools/throwing_net"));
 		items.equip(this.Const.World.Common.pickArmor([
-			[1, "oriental/assassin_robe"],
-			[1, "oriental/cloth_sash"],
-			[1, "blade_dancer_armor_00"]
+			[1, ::Legends.Armor.Southern.assassin_robe],
+			[1, ::Legends.Armor.Southern.cloth_sash],
+			[1, ::Legends.Armor.Southern.blade_dancer_armor_00]
 		]));
 
 		local helm = this.Const.World.Common.pickHelmet([
-			[1, "oriental/assassin_face_mask"],
-			[1, "theamson_barbute_helmet"],
-			[1, "blade_dancer_helmet_00"]
+			[1, ::Legends.Helmet.Southern.assassin_face_mask],
+			[1, ::Legends.Helmet.Standard.theamson_barbute_helmet],
+			[1, ::Legends.Helmet.Southern.blade_dancer_helmet_00]
 		]);
 		items.equip(helm);
 	}

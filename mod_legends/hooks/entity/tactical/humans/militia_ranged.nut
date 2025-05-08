@@ -41,19 +41,19 @@
 		}
 
 		this.m.Items.equip(this.Const.World.Common.pickArmor([
-			[1, "leather_tunic"],
-			[1, "linen_tunic"],
-			[1, "tattered_sackcloth"],
-			[1, "sackcloth"]
+			[1, ::Legends.Armor.Standard.leather_tunic],
+			[1, ::Legends.Armor.Standard.linen_tunic],
+			[1, ::Legends.Armor.Standard.tattered_sackcloth],
+			[1, ::Legends.Armor.Standard.sackcloth]
 		]));
 
 		if (this.Math.rand(1, 100) <= 50)
 		{
 			this.m.Items.equip(this.Const.World.Common.pickHelmet([
-				[1, "hood"],
-				[1, "aketon_cap"],
-				[1, "open_leather_cap"],
-				[1, "full_leather_cap"]
+				[1, ::Legends.Helmet.Standard.hood],
+				[1, ::Legends.Helmet.Standard.aketon_cap],
+				[1, ::Legends.Helmet.Standard.open_leather_cap],
+				[1, ::Legends.Helmet.Standard.full_leather_cap]
 			]))
 		}
 	}

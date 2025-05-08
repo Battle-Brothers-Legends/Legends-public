@@ -29,7 +29,7 @@ echo "Copying mod ui files to $BuildDir\\ui ..."
 cp -R ui/. "$BuildDir\\ui"
 handleExit
 echo "Copying mod preload files to $BuildDir\\preload ..."
-cp -R ui/. "$BuildDir\\preload"
+cp -R preload/. "$BuildDir\\preload"
 handleExit
 
 # zip the content of build dir and move file to bb's /data dir

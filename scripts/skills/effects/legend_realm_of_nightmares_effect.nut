@@ -20,16 +20,21 @@ this.legend_realm_of_nightmares_effect <- this.inherit("scripts/skills/skill", {
 		local actor = this.getContainer().getActor();
 
 		if (!actor.isPlacedOnMap())
-		{
 			return true;
-		}
 
 		local myTile = this.getContainer().getActor().getTile();
 
-		if (myTile.Properties.Effect == null || myTile.Properties.Effect.Timeout == this.Time.getRound() || myTile.Properties.Effect.Type != "shadows")
-		{
+		if (myTile == null || !("Properties" in myTile))
 			return true;
-		}
+
+		if (myTile.Properties == null || !("Effect" in myTile.Properties))
+			return true;
+
+		if (myTile.Properties.Effect == null || !("Timeout" in myTile.Properties.Effect) || !("Type" in myTile.Properties.Effect))
+			return true;
+
+		if (myTile.Properties.Effect.Timeout == this.Time.getRound() || myTile.Properties.Effect.Type != "shadows")
+			return true;
 
 		return false;
 	}

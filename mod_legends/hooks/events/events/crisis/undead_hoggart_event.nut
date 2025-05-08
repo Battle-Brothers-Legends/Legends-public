@@ -17,7 +17,7 @@
 			if (s.ID == "F") {
 				s.start <- function (_event) {
 					local item = this.Const.World.Common.pickArmor([
-						[1, "named/black_leather_armor"],
+						[1, ::Legends.Armor.Named.black_leather_armor],
 					]);
 
 					this.World.Assets.getStash().add(item);

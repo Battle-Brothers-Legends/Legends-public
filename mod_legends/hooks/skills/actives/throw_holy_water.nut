@@ -6,6 +6,7 @@
 		this.m.Item = this.WeakTableRef(_i);
 	}
 
+	local getTooltip = o.getTooltip;
 	o.getTooltip = function()
 	{
 		local ret = getTooltip();
@@ -74,6 +75,8 @@
 			Skill = this,
 			TargetTile = _targetTile
 		});
+
+		this.m.Item.drop(_targetTile);
 	}
 
 	o.onAfterUpdate = function( _properties )

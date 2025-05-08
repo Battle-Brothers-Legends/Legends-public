@@ -71,12 +71,11 @@ this.legend_crusader_background <- this.inherit("scripts/skills/backgrounds/char
 				this.Const.Perks.SwordTree,
 				this.Const.Perks.TwoHandedTree,
 				this.Const.Perks.PolearmTree,
-				this.Const.Perks.CrossbowTree,
 				this.Const.Perks.ThrowingTree,
 				this.Const.Perks.ShieldTree
 			],
 			Defense = [
-				this.Const.Perks.LightArmorTree,
+				this.Const.Perks.MediumArmorTree,
 				this.Const.Perks.HeavyArmorTree
 			],
 			Traits = [
@@ -91,7 +90,6 @@ this.legend_crusader_background <- this.inherit("scripts/skills/backgrounds/char
 			],
 			Enemy = [
 				this.Const.Perks.HexenTree,
-				this.Const.Perks.UndeadTree,
 				this.Const.Perks.GhoulTree
 			],
 			Class = [
@@ -106,14 +104,19 @@ this.legend_crusader_background <- this.inherit("scripts/skills/backgrounds/char
 				::Legends.Perk.Pathfinder,
 				::Legends.Perk.BagsAndBelts,
 				// ::Legends.Perk.LegendComposure,
-				::Legends.Perk.Adrenaline
+				::Legends.Perk.Adrenaline,
+				::Legends.Perk.LegendHolyFlame
 			],
 			[
 				::Legends.Perk.Dodge,
 				::Legends.Perk.RallyTheTroops,
 				::Legends.Perk.LegendTrueBeliever,
 			],
-			[],
+			[
+				::Legends.Perk.LegendFavouredEnemySkeleton,
+				::Legends.Perk.LegendFavouredEnemyZombie,
+				::Legends.Perk.LegendFavouredEnemyVampire
+			],
 			[],
 			[
 				::Legends.Perk.Footwork,
@@ -122,9 +125,10 @@ this.legend_crusader_background <- this.inherit("scripts/skills/backgrounds/char
 			],
 			[
 				::Legends.Perk.InspiringPresence,
+				::Legends.Perk.Fearsome,
+
 			],
 			[
-				::Legends.Perk.Fearsome,
 				::Legends.Perk.LegendPerfectFocus
 			],
 			[],
@@ -230,7 +234,7 @@ this.legend_crusader_background <- this.inherit("scripts/skills/backgrounds/char
 	{
 		this.character_background.onAdded();
 		local actor = this.getContainer().getActor();
-		actor.setTitle("the Crusader");
+		actor.setTitle("the Holy Avenger");
 		::Legends.Traits.grant(this, ::Legends.Trait.Loyal);
 		::Legends.Traits.grant(this, ::Legends.Trait.LegendUndeadKiller);
 
@@ -248,19 +252,19 @@ function onAddEquipment()
 		items.equip(this.new("scripts/items/weapons/legend_longsword"));
 
 		items.equip(this.Const.World.Common.pickArmor([
-			[1, "mail_hauberk"],
-			[1, "basic_mail_shirt"],
-			[1, "scale_armor"],
-			[1, "reinforced_mail_hauberk"],
-			[1, "worn_mail_shirt"]
+			[1, ::Legends.Armor.Standard.mail_hauberk],
+			[1, ::Legends.Armor.Standard.basic_mail_shirt],
+			[1, ::Legends.Armor.Standard.scale_armor],
+			[1, ::Legends.Armor.Standard.reinforced_mail_hauberk],
+			[1, ::Legends.Armor.Standard.worn_mail_shirt]
 		]));
 
 		local item = this.Const.World.Common.pickHelmet([
-			[1, "nasal_helmet"],
-			[1, "nasal_helmet_with_mail"],
-			[1, "mail_coif"],
-			[1, "bascinet_with_mail"],
-			[1, "closed_flat_top_helmet"]
+			[1, ::Legends.Helmet.Standard.nasal_helmet],
+			[1, ::Legends.Helmet.Standard.nasal_helmet_with_mail],
+			[1, ::Legends.Helmet.Standard.mail_coif],
+			[1, ::Legends.Helmet.Standard.bascinet_with_mail],
+			[1, ::Legends.Helmet.Standard.closed_flat_top_helmet]
 		]);
 		if (item != null)
 		{

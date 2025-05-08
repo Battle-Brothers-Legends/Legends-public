@@ -1,20 +1,24 @@
 this.perk_legend_push_the_advantage <- this.inherit("scripts/skills/skill", {
 	m = {
 		EffectsToGiveBonus = [
-			::Legends.Effect.Sleeping,
-			::Legends.Effect.Stunned,
-			::Legends.Effect.Dazed,
-			::Legends.Effect.LegendDazed,
-			::Legends.Effect.Net,
-			::Legends.Effect.LegendGrappled,
-			::Legends.Effect.Staggered,
-			::Legends.Effect.Web,
-			::Legends.Effect.LegendBaffled,
-			::Legends.Effect.Rooted,
-			::Legends.Effect.Distracted,
+			::Legends.Effect.Disarmed,
+			::Legends.Effect.LegendParried,
 			::Legends.Effect.Debilitated,
-			::Legends.Effect.InsectSwarm,
-		]
+			::Legends.Effect.LegendTackled,
+			::Legends.Effect.Dazed,
+			::Legends.Effect.Distracted,
+			::Legends.Effect.LegendBaffled,
+			::Legends.Effect.LegendGrappled,
+			::Legends.Effect.Net,
+			::Legends.Effect.Rooted,
+			::Legends.Effect.Shellshocked,
+			::Legends.Effect.Sleeping,
+			::Legends.Effect.Staggered,
+			::Legends.Effect.Stunned,
+			::Legends.Effect.Web,
+			::Legends.Effect.Withered
+		],
+		FirstAttackDone = false
 	},
 	function create()
 	{
@@ -39,20 +43,60 @@ this.perk_legend_push_the_advantage <- this.inherit("scripts/skills/skill", {
 		return false;
 	}
 
-	function onAnySkillUsed( _skill, _targetEntity, _properties )
+	function isAttackEligible (_skill)
 	{
-		if (_targetEntity == null)
+		local isH2h = _skill.getID == ::Legends.Actives.getID(::Legends.Active.HandToHand);
+		local is1h = _skill.getItem() != null && _skill.getItem().isItemType(this.Const.Items.ItemType.Weapon) && _skill.getItem().isItemType(this.Const.Items.ItemType.OneHanded);
+		if (!isH2h && !is1h)
+			return false;
+
+		return true;
+	}
+
+	function onAnySkillExecuted( _skill, _targetTile, _targetEntity, _forFree )
+	{
+		if (!_skill.isAttack())
 			return;
 
-		if ( !_targetEntity.isAlliedWith(this.getContainer().getActor()) )
+		if (_skill.isRanged())
+			return;
+
+		if (this.m.FirstAttackDone)
+			return;
+
+		if (!this.isAttackEligible(_skill))
+			return;
+
+		local actor = this.getContainer().getActor();
+		// actor.setFatigue(this.Math.max(0, actor.getFatigue() - this.Math.floor(_skill.getFatigueCost() * 0.2)));
+		if (!_targetEntity.isAlive() || ("isDying" in _targetEntity && _targetEntity.isDying()))
+			return;
+
+		if (!_targetEntity.getSkills().hasEffect(::Legends.Effect.LegendParried))
 		{
-			if ( this.isBonusEligible( _targetEntity ) )
+			::Legends.Effects.grant(_targetEntity, ::Legends.Effect.LegendParried);
+
+			if (!actor.isHiddenToPlayer() && !_targetEntity.isHiddenToPlayer() && _targetEntity.getTile().IsVisibleForPlayer)
 			{
-				_properties.MeleeSkill += 10;
-				_properties.RangedSkill += 10;
-				_properties.HitChance[this.Const.BodyPart.Head] += 20;
+				this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(actor) + " feinted " + this.Const.UI.getColorizedEntityName(_targetEntity) + " leaving them exposed!");
+			}
+		}
+
+		this.m.FirstAttackDone = true;
+	}
+
+	function onAnySkillUsed( _skill, _targetEntity, _properties )
+	{
+		if (_targetEntity == null || !this.isAttackEligible(_skill))
+			return;
+
+		if (!_targetEntity.isAlliedWith(this.getContainer().getActor()))
+		{
+			if (this.isBonusEligible( _targetEntity ))
+			{
+				_properties.DamageTotalMult *= 1.1;
+				_properties.DamageDirectAdd += 0.1;
 			}
 		}
 	}
-
 });

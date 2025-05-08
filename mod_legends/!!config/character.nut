@@ -56,10 +56,12 @@
 	this.Const.BackgroundType[_typeKey] <- max << 1;
 }
 
-::Const.ProjectileType.Missile <- 11;
-::Const.ProjectileType.Blood <- 12;
-::Const.ProjectileType.Dart <- 13;
-::Const.ProjectileType.COUNT = 14;
+::Const.ProjectileType.Missile <- ::Const.ProjectileType.COUNT;
+::Const.ProjectileType.COUNT += 1;
+::Const.ProjectileType.Blood <- ::Const.ProjectileType.COUNT;
+::Const.ProjectileType.COUNT += 1;
+::Const.ProjectileType.Dart <- ::Const.ProjectileType.COUNT;
+::Const.ProjectileType.COUNT += 1;
 
 ::Const.ProjectileDecals.extend([
 	[],
@@ -174,8 +176,6 @@
 ::Const.CharacterProperties.IsAffectedByRain <- true;
 ::Const.CharacterProperties.SurvivesAsUndead <- false;
 ::Const.CharacterProperties.IsAffectedByMovementMorale <- true;
-::Const.CharacterProperties.IsSpecializedInOneHandedSwords <- false;
-::Const.CharacterProperties.IsSpecializedInSpearThrust <- false;
 ::Const.CharacterProperties.IsSpecializedInShieldPush <- false;
 ::Const.CharacterProperties.IsSpecializedInNets <- false;
 ::Const.CharacterProperties.IsSpecializedInNetCasting <- false;

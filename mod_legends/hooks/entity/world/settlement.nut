@@ -43,29 +43,14 @@
 
 	o.changeSupportedOrAbandonedAttachedLocations <- function ()
 	{
-		local current = this.getActiveAttachedLocations().len();
+		local attachedLocations = this.getAttachedLocations();
 		local limit = this.getAttachedLocationsMax();
-
-		if ( current > limit )
-		{
-			// The settlement is shrinking and will have to abandon attached locations that exceed the Tier limit
-			for (local i = limit; i < current; i++ )
-			{
-				this.getActiveAttachedLocations()[i].setAbandoned(true);
-			}
-		}
-		else if ( current < limit && this.getAttachedLocations().len() > current )
-		{
-			// Check if we can repopulate attached locations that were previously abandoned
-			local maxIndex = ::Math.min(this.getAttachedLocations().len(), limit);
-			for (local i = current; i < maxIndex; i++ )
-			{
-				if (this.getAttachedLocations()[i].isAbandoned())
-				{
-					this.getAttachedLocations()[i].setAbandoned(false);
-				}
-			}
-		}
+		// The settlement is shrinking and will have to abandon attached locations that exceed the Tier limit
+		while (this.getActiveAttachedLocations().len() > limit)
+			this.getActiveAttachedLocations().top().setAbandoned(true);
+		// Check if we can repopulate attached locations that were previously abandoned
+		for (local i = 0; i < ::Math.min(attachedLocations.len(), limit); i++)
+			attachedLocations[i].setAbandoned(false);
 	}
 
 	o.changeSize <- function ( _v )
@@ -1198,8 +1183,8 @@
 		_out.writeF32(this.m.LastStablesUpdate);
 		_out.writeI32(this.m.StablesSeed);
 		this.m.ImportedGoodsInventory.onSerialize(_out);
-		::MSU.Utils.serialize(this.m.CaravanReceivedHistory, _out);
-		::MSU.Utils.serialize(this.m.CaravanSentHistory, _out);
+		::MSU.Serialization.serialize(this.m.CaravanReceivedHistory, _out);
+		::MSU.Serialization.serialize(this.m.CaravanSentHistory, _out);
 
 		_out.writeF32(this.m.SettlementEncountersCooldownUntil);
 		foreach(e in this.m.SettlementEncounters) {
@@ -1221,8 +1206,8 @@
 		this.m.StablesSeed = _in.readI32();
 
 		this.m.ImportedGoodsInventory.onDeserialize(_in);
-		this.m.CaravanReceivedHistory = ::MSU.Utils.deserialize(_in);
-		this.m.CaravanSentHistory = ::MSU.Utils.deserialize(_in);
+		this.m.CaravanReceivedHistory = ::MSU.Serialization.deserialize(_in);
+		this.m.CaravanSentHistory = ::MSU.Serialization.deserialize(_in);
 
 		this.m.SettlementEncountersCooldownUntil = _in.readF32();
 		while(_in.readBool()) {

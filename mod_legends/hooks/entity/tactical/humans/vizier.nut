@@ -9,9 +9,9 @@
 		local withHelmet = true;
 
 		this.m.Items.equip(this.Const.World.Common.pickArmor([
-				[1, "oriental/padded_mail_and_lamellar_hauberk"],
-				[1, "oriental/mail_and_lamellar_plating"],
-				[1, "oriental/vizier_gear"]
+				[1, ::Legends.Armor.Southern.padded_mail_and_lamellar_hauberk],
+				[1, ::Legends.Armor.Southern.mail_and_lamellar_plating],
+				[1, ::Legends.Armor.Southern.vizier_gear]
 		]));
 
 		if (withDetails && (alwaysWithDetails || this.Math.rand(1, 100) <= 50))
@@ -26,9 +26,9 @@
 		if (withHelmet && this.Math.rand(1, 100) <= 80)
 		{
 			local helmet = [
-				[5, "oriental/vizier_headgear"],
-				[1, "legend_noble_southern_crown"],
-				[1, "legend_noble_southern_hat"]
+				[5, ::Legends.Helmet.Southern.vizier_headgear],
+				[1, ::Legends.Helmet.Standard.legend_noble_southern_crown],
+				[1, ::Legends.Helmet.Standard.legend_noble_southern_hat]
 			];
 			this.m.Items.equip(this.Const.World.Common.pickHelmet(helmet));
 		}

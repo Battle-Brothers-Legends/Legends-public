@@ -30,7 +30,7 @@ this.legend_rune_safety <- this.inherit("scripts/items/legend_armor/legend_armor
 			id = 7,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "This item has the power of the rune sigil of Safety:\n[color=" + this.Const.UI.Color.PositiveValue + "]+" + this.m.RuneBonus1 + "%[/color] Hitpoints.\n[color=" + this.Const.UI.Color.PositiveValue + "]-" + this.m.RuneBonus2 + "%[/color] Damage received."
+			text = "This item has the power of the rune sigil of Safety:\n[color=" + this.Const.UI.Color.PositiveValue + "]+" + this.getRuneBonus1() + "%[/color] Hitpoints.\n[color=" + this.Const.UI.Color.PositiveValue + "]-" + this.getRuneBonus2() + "%[/color] Damage received."
 		});
 		return result;
 	}
@@ -41,7 +41,7 @@ this.legend_rune_safety <- this.inherit("scripts/items/legend_armor/legend_armor
 			id = 7,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "This item has the power of the rune sigil of Safety:\n[color=" + this.Const.UI.Color.PositiveValue + "]+" + this.m.RuneBonus1 + "%[/color] Hitpoints.\n[color=" + this.Const.UI.Color.PositiveValue + "]-" + this.m.RuneBonus2 + "%[/color] Damage received."
+			text = "This item has the power of the rune sigil of Safety:\n[color=" + this.Const.UI.Color.PositiveValue + "]+" + this.getRuneBonus1() + "%[/color] Hitpoints.\n[color=" + this.Const.UI.Color.PositiveValue + "]-" + this.getRuneBonus2() + "%[/color] Damage received."
 		});
 	}
 

@@ -23,10 +23,10 @@ this.legend_drums_of_life_effect <- this.inherit("scripts/skills/skill", {
 	function onAdded()
 	{
 		local actor = this.getContainer().getActor();
-		if (actor.getHitpoints() < actor.getHitpointsMax())
-		{
+		if (actor.getHitpoints() < actor.getHitpointsMax()) {
 			actor.setHitpoints(this.Math.max(0, this.Math.min(actor.getHitpointsMax(), actor.getHitpoints() + this.m.Effect)));
-			this.spawnIcon(this.m.Overlay, actor.getTile());
+			if (actor.isPlacedOnMap())
+				this.spawnIcon(this.m.Overlay, actor.getTile());
 		}
 	}
 });

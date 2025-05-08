@@ -2,10 +2,9 @@
 {
 	o.m.IsChain <- false;
 
-	local create = o.create;
-	o.create = function ()
+	o.setItem <- function (_item)
 	{
-		create();
+		this.skill.setItem(_item);
 		if (this.m.IsChain)
 		{
 			this.m.Description = "A target up to 3 tiles away is hooked and pulled close if there is space. Anyone hit will be staggered and lose initiative. A target can not be pulled up a level of height, but may take damage if it is pulled down several levels of height at once. Shieldwall, Spearwall and Riposte will be canceled for a successfully hooked-in target. A rooted target can not be hooked.";

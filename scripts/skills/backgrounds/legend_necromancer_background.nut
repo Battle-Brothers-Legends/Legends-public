@@ -124,12 +124,12 @@ this.legend_necromancer_background <- this.inherit("scripts/skills/backgrounds/c
 		this.getContainer().getActor().fillTalentValues(1, true);
 		local items = this.getContainer().getActor().getItems();
 		items.equip(this.Const.World.Common.pickHelmet([
-			[1, ""],
-			[1, "witchhunter_hat"],
-			[1, "dark_cowl"]
+			[1, ::Legends.Helmet.None],
+			[1, ::Legends.Helmet.Standard.witchhunter_hat],
+			[1, ::Legends.Helmet.Standard.dark_cowl]
 		]));
 		items.equip(this.Const.World.Common.pickArmor([
-			[1, "thick_dark_tunic"]
+			[1, ::Legends.Armor.Standard.thick_dark_tunic]
 		]));
 		items.equip(this.new("scripts/items/weapons/legend_grisly_scythe"));
 		local stash = this.World.Assets.getStash()
