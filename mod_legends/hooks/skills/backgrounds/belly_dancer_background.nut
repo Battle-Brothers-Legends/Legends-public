@@ -37,6 +37,7 @@
 		this.m.HairColors = this.Const.HairColors.SouthernYoung;
 		this.m.BeardChance = 1;
 		this.m.Ethnicity = 1;
+		this.m.OverrideVeteranPerks = 2;
 		this.m.BackgroundType = this.Const.BackgroundType.Female | this.Const.BackgroundType.Performing;
 		this.m.Modifiers.Barter = this.Const.LegendMod.ResourceModifiers.Barter[1];
 		this.m.PerkTreeDynamic = {

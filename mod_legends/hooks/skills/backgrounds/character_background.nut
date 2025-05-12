@@ -102,6 +102,7 @@
 	o.m.PerkTreeMap <- null;
 	o.m.PerkTree <- null;
 	o.m.IsGuaranteed <- [];
+	o.m.OverrideVeteranPerks <- null;
 
 	local create = o.create;
 	o.create = function()

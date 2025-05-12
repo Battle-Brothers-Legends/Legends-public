@@ -1292,6 +1292,11 @@
 			this.fillTalentValues(3);
 			this.fillAttributeLevelUpValues(this.Const.XP.MaxLevelWithPerkpoints - 1);
 		}
+
+		if(!::MSU.isNull(background.m.OverrideVeteranPerks))
+		{
+			this.setVeteranPerks(background.m.OverrideVeteranPerks);
+		}
 	}
 
 	o.getAlignment <- function()

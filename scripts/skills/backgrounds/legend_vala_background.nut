@@ -42,6 +42,7 @@ this.legend_vala_background <- this.inherit("scripts/skills/backgrounds/characte
 		this.m.Modifiers.Injury = this.Const.LegendMod.ResourceModifiers.Injury[3];
 		this.m.Modifiers.Enchanting = 1.0;
 		this.m.Level = 2;
+		this.m.OverrideVeteranPerks = 2;
 		this.m.PerkTreeDynamic = {
 			Weapon = [
 				this.Const.Perks.StaffTree
