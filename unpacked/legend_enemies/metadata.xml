@@ -524,4 +524,35 @@
 <sprite id="head_kobold_03_dead" offsetY="35" ic="FF4E5053" width="70" height="50" img="entity\goblins\head_kobold_03_dead.png" left="-45" right="25" top="-65" bottom="-15" />
 <sprite id="head_kobold_04_dead" offsetY="35" ic="FF4E5053" width="70" height="50" img="entity\goblins\head_kobold_04_dead.png" left="-45" right="25" top="-65" bottom="-15" />
 <sprite id="head_kobold_05_dead" offsetY="35" ic="FF4E5053" width="70" height="50" img="entity\goblins\head_kobold_05_dead.png" left="-45" right="25" top="-65" bottom="-15" />
+
+<sprite id="bust_dawg_01_armor_01" offsetY="25" ic="FF212748" width="104" height="142" img="entity\beasts\bust_dawg_01_armor_01.png" left="-37" right="33" top="-38" bottom="22" />
+<sprite id="bust_dawg_01_armor_01_damaged" offsetY="25" ic="FF202645" width="104" height="142" img="entity\beasts\bust_dawg_01_armor_01_damaged.png" left="-37" right="33" top="-38" bottom="22" />
+<sprite id="bust_dawg_01_armor_01_dead" offsetY="4" f="64FF" ic="FF222849" width="117" height="64" img="entity\beasts\bust_dawg_01_armor_01_dead.png" left="-18" right="54" top="-30" bottom="32" />
+<!-- <sprite id="bust_dawg_01_body_01_dead_arrows" offsetY="8" f="64FA" ic="FF434A4F" width="117" height="64" img="entity\beasts\bust_dawg_01_body_dead_arrows.png" left="26" right="58" /> -->
+<!-- <sprite id="bust_dawg_01_body_01_dead_javelin" offsetY="8" f="64FA" ic="FF151C29" width="117" height="130" img="entity\beasts\bust_dawg_01_body_dead_javelin.png" left="-6" right="54" top="-21" bottom="63" /> -->
+<!-- <sprite id="bust_dawg_01_head_01_dead_bloodpool" offsetY="8" f="6420" f1="-10" f2="-15" width="117" height="64" img="entity\beasts\bust_dawg_01_head_dead_bloodpool.png" left="-32" right="28" top="-32" bottom="12" /> -->
+<!-- <sprite id="bust_dawg_01_injured" offsetY="25" ic="FF111134" width="104" height="142" img="entity\beasts\bust_dawg_01_injured.png" left="-22" right="30" top="-31" bottom="27" /> -->
+<sprite id="bust_dawg_01_body_01" offsetY="25" ic="FF242B3A" width="104" height="142" img="entity\beasts\bust_dawg_01_body_01.png" left="-31" right="29" top="-38" bottom="12" />
+<sprite id="bust_dawg_01_body_01_dead" offsetY="8" ic="FF22293E" img="entity\beasts\bust_dawg_01_body_01_dead.png" left="-58" right="59" />
+<sprite id="bust_dawg_01_body_02_dead" offsetY="8" ic="FF262530" width="117" height="64" img="entity\beasts\bust_dawg_01_body_02_dead.png" left="-58" right="59" top="-32" bottom="30" />
+<!-- <sprite id="bust_dawg_01_body_02_dead_arrows" offsetY="8" f="64FA" ic="FF434A4F" width="117" height="64" img="entity\beasts\bust_dawg_01_body_dead_arrows.png" left="26" right="58" /> -->
+<!-- <sprite id="bust_dawg_01_body_02_dead_javelin" offsetY="8" f="64FA" ic="FF151C29" width="117" height="130" img="entity\beasts\bust_dawg_01_body_dead_javelin.png" left="-6" right="54" top="-21" bottom="63" /> -->
+<sprite id="bust_dawg_01_head_01" offsetY="25" ic="FF2B3144" width="104" height="142" img="entity\beasts\bust_dawg_01_head_01.png" left="-9" right="47" top="-17" bottom="27" />
+<sprite id="bust_dawg_01_head_01_dead" offsetY="8" f="64FE" f1="-10" f2="-15" ic="FF272C3F" width="117" height="64" img="entity\beasts\bust_dawg_01_head_01_dead.png" left="-37" right="19" top="-32" bottom="8" />
+<sprite id="bust_dawg_01_head_02_dead" offsetY="8" f="64FE" f1="-10" f2="-15" ic="FF2C2931" width="117" height="64" img="entity\beasts\bust_dawg_01_head_02_dead.png" left="-34" right="18" top="-32" bottom="6" />
+<!-- <sprite id="bust_dawg_01_head_02_dead_bloodpool" offsetY="8" f="6420" f1="-10" f2="-15" width="117" height="64" img="entity\beasts\bust_dawg_01_head_dead_bloodpool.png" left="-32" right="28" top="-32" bottom="12" /> -->
+<sprite id="bust_dawg_01_body_02" offsetY="25" ic="FF2A2627" width="104" height="142" img="entity\beasts\bust_dawg_01_body_02.png" left="-31" right="43" top="-38" bottom="12" />
+<sprite id="bust_dawg_01_head_02" offsetY="25" ic="FF312F35" width="104" height="142" img="entity\beasts\bust_dawg_01_head_02.png" left="-10" right="46" top="-17" bottom="27" />
+
+<sprite id="bust_hyena_07" offsetX="-10" offsetY="35" ic="FF213754" width="104" height="142" img="entity\beasts\bust_hyena_07.png" top="-57" bottom="35" />
+<sprite id="bust_hyena_07_body_dead" offsetX="4" offsetY="24" f="6403" ic="FF1B2944" width="179" height="154" img="entity\beasts\bust_hyena_07_body_dead.png" left="-85" right="81" />
+<sprite id="bust_hyena_07_head" offsetX="-10" offsetY="35" ic="FF273D55" width="104" height="142" img="entity\beasts\bust_hyena_07_head.png" left="-49" right="9" top="-41" bottom="35" />
+<sprite id="bust_hyena_07_head_dead" offsetX="4" offsetY="24" f="6401" ic="FF263953" width="179" height="154" img="entity\beasts\bust_hyena_07_head_dead.png" left="-47" right="25" top="-48" bottom="18" />
+<sprite id="bust_hyena_08" offsetX="-10" offsetY="35" ic="FF1F334E" width="104" height="142" img="entity\beasts\bust_hyena_08.png" left="-52" right="50" top="-54" bottom="20" />
+<sprite id="bust_hyena_08_head" offsetX="-10" offsetY="35" ic="FF33445D" width="104" height="142" img="entity\beasts\bust_hyena_08_head.png" left="-47" right="23" top="-46" bottom="30" />
+<sprite id="bust_hyena_08_head_dead" offsetX="4" offsetY="24" f="6401" ic="FF303F59" width="179" height="154" img="entity\beasts\bust_hyena_08_head_dead.png" left="-46" right="34" top="-57" bottom="9" />
+<!-- <sprite id="bust_hyena_01_body_dead_arrows" offsetX="4" offsetY="24" f="6402" ic="FF474D52" width="179" height="154" img="entity\beasts\bust_direwolf_01_body_dead_arrows.png" left="-5" right="33" top="-16" bottom="32" /> -->
+<!-- <sprite id="bust_hyena_01_body_dead_javelin" offsetX="4" offsetY="24" f="6402" ic="FF151C29" width="179" height="154" img="entity\beasts\bust_direwolf_01_body_dead_javelin.png" left="-2" right="44" top="-11" bottom="61" /> -->
+<!-- <sprite id="bust_hyena_head_bloodpool" offsetX="4" offsetY="24" f="6420" width="179" height="154" img="entity\beasts\bust_hyena_01_head_bloodpool.png" left="-48" right="50" top="-66" bottom="18" /> -->
+
 </brush>
