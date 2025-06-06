@@ -15,8 +15,6 @@ this.legend_dawg <- this.inherit("scripts/entity/tactical/actor", {
 		m.DecapitateSplatterOffset	= createVec(-4, -25);
 		m.DecapitateBloodAmount		= 0.5;
 
-		actor.create();
-
 		m.Sound[Const.Sound.ActorEvent.DamageReceived]	= [ "sounds/enemies/wardog_hurt_00.wav", "sounds/enemies/wardog_hurt_01.wav", "sounds/enemies/wardog_hurt_02.wav", "sounds/enemies/wardog_hurt_03.wav", "sounds/enemies/wardog_hurt_04.wav", "sounds/enemies/wardog_hurt_05.wav" ];
 		m.Sound[Const.Sound.ActorEvent.Death]			= [ "sounds/enemies/wardog_death_00.wav", "sounds/enemies/wardog_death_01.wav", "sounds/enemies/wardog_death_02.wav", "sounds/enemies/wardog_death_03.wav" ];
 		m.Sound[Const.Sound.ActorEvent.Flee]			= [ "sounds/enemies/wardog_flee_00.wav", "sounds/enemies/wardog_flee_01.wav", "sounds/enemies/wardog_flee_02.wav", "sounds/enemies/wardog_flee_03.wav", "sounds/enemies/wardog_flee_04.wav" ];
@@ -50,24 +48,19 @@ this.legend_dawg <- this.inherit("scripts/entity/tactical/actor", {
 			decal.setBrightness(0.9);
 			decal.Scale = 0.95;
 
-			if(appearance.CorpseArmor != "")
-			{
+			if (appearance.CorpseArmor != "") {
 				decal = _tile.spawnDetail(appearance.CorpseArmor, this.Const.Tactical.DetailFlag.Corpse, flip);
 				decal.setBrightness(0.9);
 				decal.Scale = 0.95;
 			}
 
-			// no fatality
-			if(_fatalityType != this.Const.FatalityType.Decapitated)
-			{
+			if (_fatalityType != this.Const.FatalityType.Decapitated) {
+				// no fatality
 				decal = _tile.spawnDetail(getSprite("head").getBrush().Name + "_dead", this.Const.Tactical.DetailFlag.Corpse, flip);
 				decal.setBrightness(0.9);
 				decal.Scale = 0.95;
-			}
-
-			// decapitated
-			else if(_fatalityType == this.Const.FatalityType.Decapitated)
-			{
+			} else if(_fatalityType == this.Const.FatalityType.Decapitated) {
+				// decapitated
 				local layers = [ getSprite("head").getBrush().Name + "_dead" ];
 				local decap = Tactical.spawnHeadEffect(getTile(), layers, createVec(-15, 5), 0.0, getSprite("head").getBrush().Name + "_dead_bloodpool");
 
@@ -76,12 +69,11 @@ this.legend_dawg <- this.inherit("scripts/entity/tactical/actor", {
 				decap[0].setHorizontalFlipping(true);
 			}
 
-			if(_skill && _skill.getProjectileType() == this.Const.ProjectileType.Arrow)
+			if (_skill && _skill.getProjectileType() == this.Const.ProjectileType.Arrow) {
 				_tile.spawnDetail(getSprite("body").getBrush().Name + "_dead_arrows", this.Const.Tactical.DetailFlag.Corpse, flip);
-
-			else
-				if(_skill && _skill.getProjectileType() == this.Const.ProjectileType.Javelin)
+			} else if (_skill && _skill.getProjectileType() == this.Const.ProjectileType.Javelin) {
 				_tile.spawnDetail(getSprite("body").getBrush().Name + "_dead_javelin", this.Const.Tactical.DetailFlag.Corpse, flip);
+			}
 
 			spawnTerrainDropdownEffect(_tile);
 
@@ -104,6 +96,8 @@ this.legend_dawg <- this.inherit("scripts/entity/tactical/actor", {
 		getSprite("body").setHorizontalFlipping(flip);
 		getSprite("armor").setHorizontalFlipping(flip);
 		getSprite("head").setHorizontalFlipping(flip);
+		getSprite("injury").setHorizontalFlipping(flip);
+		getSprite("closed_eyes").setHorizontalFlipping(flip);
 
 		if (!Tactical.State.isScenarioMode()) {
 			local f = World.FactionManager.getFaction(getFaction());
@@ -119,15 +113,14 @@ this.legend_dawg <- this.inherit("scripts/entity/tactical/actor", {
 	{
 		actor.onActorKilled(_actor, _tile, _skill);
 
-		if(getFaction() == this.Const.Faction.Player || getFaction() == this.Const.Faction.PlayerAnimals)
-		{
+		if(getFaction() == this.Const.Faction.Player || getFaction() == this.Const.Faction.PlayerAnimals) {
 			local XPgroup = _actor.getXPValue();
 
 			local brothers = Tactical.Entities.getInstancesOfFaction(Const.Faction.Player);
-			foreach(bro in brothers)
-			{
-				if(bro.getCurrentProperties().IsAllyXPBlocked)
+			foreach (bro in brothers) {
+				if (bro.getCurrentProperties().IsAllyXPBlocked) {
 					return;
+				}
 
 				bro.addXP(Math.max(1, Math.floor(XPgroup / brothers.len())));
 			}
@@ -139,8 +132,7 @@ this.legend_dawg <- this.inherit("scripts/entity/tactical/actor", {
 	// C++ Interface
 	//////////////////////////////////////////////////////
 
-	function onInit()
-	{
+	function onInit() {
 		actor.onInit();
 
 		// stats
@@ -168,15 +160,17 @@ this.legend_dawg <- this.inherit("scripts/entity/tactical/actor", {
 		local body = addSprite("body");
 		body.setBrush("bust_dawg_01_body_0" + variant);
 
-// 		if(Math.rand(0, 100) < 90)
-// 			body.varySaturation(0.25);
-//
-// 		if(Math.rand(0, 100) < 90)
-// 			body.varyColor(0.14, 0.14, 0.14);
-
 		local armor = addSprite("armor");
 
 		addSprite("head").setBrush("bust_dawg_01_head_0" + variant);
+
+		local closed_eyes = addSprite("closed_eyes");
+		closed_eyes.setBrush("bust_dawg_01_body_0" + variant + "_eyes_closed");
+		closed_eyes.Visible = false;
+
+		local injury = addSprite("injury");
+		injury.Visible = false;
+		injury.setBrush("bust_awg_01_injured");
 
 		// add default status sprites
 		addDefaultStatusSprites();
