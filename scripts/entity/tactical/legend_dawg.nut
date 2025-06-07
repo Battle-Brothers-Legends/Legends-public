@@ -26,20 +26,17 @@ this.legend_dawg <- this.inherit("scripts/entity/tactical/actor", {
 		m.AIAgent.setActor(this);
 	}
 
-	function setVariant(_v) {
-		::logInfo("Dawg: setVariant=" + _v);
-		local variants = ["1", "2"];
-		local variant = variants[_v % variants.len()];
-		getSprite("body").setBrush("bust_dawg_01_body_0" + variant);
-		getSprite("head").setBrush("bust_dawg_01_head_0" + variant);
+	function setVariant(_variant) {
+		getSprite("body").setBrush("bust_dawg_01_body_0" + _variant);
+		getSprite("head").setBrush("bust_dawg_01_head_0" + _variant);
+		getSprite("closed_eyes").setBrush("bust_dawg_01_body_0" + _variant + "_eyes_closed");
 		setDirty(true);
 	}
 
 	function onDeath(_killer, _skill, _tile, _fatalityType) {
 		// spawn corpse
-		if(_tile != null)
-		{
-			local flip = Math.rand(0, 100) < 50;
+		if (_tile != null) {
+			local flip = this.Math.rand(0, 100) < 50;
 			local appearance = getItems().getAppearance();
 			local decal;
 			this.m.IsCorpseFlipped = flip;
@@ -89,51 +86,8 @@ this.legend_dawg <- this.inherit("scripts/entity/tactical/actor", {
 		this.actor.onDeath(_killer, _skill, _tile, _fatalityType);
 	}
 
-	function onFactionChanged() {
-		this.actor.onFactionChanged();
-
-		local flip = !isAlliedWithPlayer();
-		getSprite("body").setHorizontalFlipping(flip);
-		getSprite("armor").setHorizontalFlipping(flip);
-		getSprite("head").setHorizontalFlipping(flip);
-		getSprite("injury").setHorizontalFlipping(flip);
-		getSprite("closed_eyes").setHorizontalFlipping(flip);
-
-		if (!Tactical.State.isScenarioMode()) {
-			local f = World.FactionManager.getFaction(getFaction());
-			if (f != null) {
-				getSprite("socket").setBrush(f.getTacticalBase());
-			}
-		} else {
-			getSprite("socket").setBrush(Const.FactionBase[getFaction()]);
-		}
-	}
-
-	function onActorKilled(_actor, _tile, _skill)
-	{
-		actor.onActorKilled(_actor, _tile, _skill);
-
-		if(getFaction() == this.Const.Faction.Player || getFaction() == this.Const.Faction.PlayerAnimals) {
-			local XPgroup = _actor.getXPValue();
-
-			local brothers = Tactical.Entities.getInstancesOfFaction(Const.Faction.Player);
-			foreach (bro in brothers) {
-				if (bro.getCurrentProperties().IsAllyXPBlocked) {
-					return;
-				}
-
-				bro.addXP(Math.max(1, Math.floor(XPgroup / brothers.len())));
-			}
-		}
-	}
-
-
-	//////////////////////////////////////////////////////
-	// C++ Interface
-	//////////////////////////////////////////////////////
-
 	function onInit() {
-		actor.onInit();
+		this.actor.onInit();
 
 		// stats
 		local b = m.BaseProperties;
@@ -142,17 +96,17 @@ this.legend_dawg <- this.inherit("scripts/entity/tactical/actor", {
 		b.IsAffectedByInjuries	= false;
 		b.IsImmuneToDisarm		= true;
 
-		m.ActionPoints			= b.ActionPoints;
-		m.Hitpoints				= b.Hitpoints;
-		m.CurrentProperties 	= clone b;
+		m.ActionPoints = b.ActionPoints;
+		m.Hitpoints = b.Hitpoints;
+		m.CurrentProperties = clone b;
 
 		m.ActionPointCosts = this.Const.DefaultMovementAPCost;
 		m.FatigueCosts = this.Const.DefaultMovementFatigueCost;
 
-		local variant = Math.rand(1, 2);
+		local variant = this.Math.rand(1, 2);
 
 		// inventory
-		m.Items.getAppearance().Body = "bust_dawg_01_body_0" + variant;
+		// m.Items.getAppearance().Body = "bust_dawg_01_body_0" + variant;
 
 		// appearance
 		addSprite("socket").setBrush("bust_base_player");
@@ -162,15 +116,16 @@ this.legend_dawg <- this.inherit("scripts/entity/tactical/actor", {
 
 		local armor = addSprite("armor");
 
-		addSprite("head").setBrush("bust_dawg_01_head_0" + variant);
+		local head = addSprite("head");
+		head.setBrush("bust_dawg_01_head_0" + variant);
 
 		local closed_eyes = addSprite("closed_eyes");
-		closed_eyes.setBrush("bust_dawg_01_body_0" + variant + "_eyes_closed");
 		closed_eyes.Visible = false;
+		closed_eyes.setBrush("bust_dawg_01_body_0" + variant + "_eyes_closed");
 
 		local injury = addSprite("injury");
 		injury.Visible = false;
-		injury.setBrush("bust_awg_01_injured");
+		injury.setBrush("bust_dawg_01_injured");
 
 		// add default status sprites
 		addDefaultStatusSprites();

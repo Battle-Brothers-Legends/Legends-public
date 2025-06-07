@@ -543,6 +543,8 @@
 <sprite id="bust_dawg_01_head_02_dead_bloodpool" offsetY="8" f="6420" f1="-10" f2="-15" width="117" height="64" img="entity\beasts\bust_dawg_01_head_dead_bloodpool.png" left="-32" right="28" top="-32" bottom="12" />
 <sprite id="bust_dawg_01_body_02" offsetY="25" ic="FF2A2627" width="104" height="142" img="entity\beasts\bust_dawg_01_body_02.png" left="-31" right="43" top="-38" bottom="12" />
 <sprite id="bust_dawg_01_head_02" offsetY="25" ic="FF312F35" width="104" height="142" img="entity\beasts\bust_dawg_01_head_02.png" left="-10" right="46" top="-17" bottom="27" />
+<sprite id="bust_dawg_01_body_01_eyes_closed" offsetY="25" width="104" height="142" img="entity\beasts\bust_dawg_01_body_01_eyes_closed.png" left="16" right="26" top="14" bottom="20" />
+<sprite id="bust_dawg_01_body_02_eyes_closed" offsetY="25" width="104" height="142" img="entity\beasts\bust_dawg_01_body_02_eyes_closed.png" left="16" right="26" top="13" bottom="19" />
 
 <sprite id="bust_hyena_07" offsetX="-10" offsetY="35" ic="FF213754" width="104" height="142" img="entity\beasts\bust_hyena_07.png" top="-57" bottom="35" />
 <sprite id="bust_hyena_07_body_dead" offsetX="4" offsetY="24" f="6403" ic="FF1B2944" width="179" height="154" img="entity\beasts\bust_hyena_07_body_dead.png" left="-85" right="81" />
