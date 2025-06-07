@@ -548,10 +548,10 @@
 
 <sprite id="bust_hyena_07" offsetX="-10" offsetY="35" ic="FF213754" width="104" height="142" img="entity\beasts\bust_hyena_07.png" top="-57" bottom="35" />
 <sprite id="bust_hyena_07_body_dead" offsetX="4" offsetY="24" f="6403" ic="FF1B2944" width="179" height="154" img="entity\beasts\bust_hyena_07_body_dead.png" left="-85" right="81" />
-<sprite id="bust_hyena_07_head" offsetX="-10" offsetY="35" ic="FF273D55" width="104" height="142" img="entity\beasts\bust_hyena_07_head.png" left="-49" right="9" top="-41" bottom="35" />
+<sprite id="bust_hyena_07_head" offsetX="-10" offsetY="35" ic="FF273D55" width="104" height="142" img="entity\beasts\bust_hyena_07_head.png" left="-45" right="13" top="-37" bottom="39" />
 <sprite id="bust_hyena_07_head_dead" offsetX="4" offsetY="24" f="6401" ic="FF263953" width="179" height="154" img="entity\beasts\bust_hyena_07_head_dead.png" left="-47" right="25" top="-48" bottom="18" />
 <sprite id="bust_hyena_08" offsetX="-10" offsetY="35" ic="FF1F334E" width="104" height="142" img="entity\beasts\bust_hyena_08.png" left="-52" right="50" top="-54" bottom="20" />
-<sprite id="bust_hyena_08_head" offsetX="-10" offsetY="35" ic="FF33445D" width="104" height="142" img="entity\beasts\bust_hyena_08_head.png" left="-47" right="23" top="-46" bottom="30" />
+<sprite id="bust_hyena_08_head" offsetX="-10" offsetY="35" ic="FF33445D" width="104" height="142" img="entity\beasts\bust_hyena_08_head.png" left="-52" right="18" top="-36" bottom="40" />
 <sprite id="bust_hyena_08_head_dead" offsetX="4" offsetY="24" f="6401" ic="FF303F59" width="179" height="154" img="entity\beasts\bust_hyena_08_head_dead.png" left="-46" right="34" top="-57" bottom="9" />
 
 </brush>
