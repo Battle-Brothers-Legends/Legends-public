@@ -3126,4 +3126,12 @@ activesDefs.push({
 	Name = "Dawg Bite",
 });
 
+::Legends.Active.LegendUnleashDawg <- null;
+activesDefs.push({
+	ID = "actives.legend_unleash_bear",
+	Script = "scripts/skills/actives/legend_unleash_dawg_skill",
+	Const = "LegendUnleashDawg",
+	Name = "Unleash Dawg",
+});
+
 ::Legends.Actives.addActiveDefObjects(activesDefs);
