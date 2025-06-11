@@ -59,7 +59,6 @@ this.legend_unleash_dawg_skill <- this.inherit("scripts/skills/actives/legend_un
 			"sounds/combat/unleash_wardog_03.wav",
 			"sounds/combat/unleash_wardog_04.wav"
 		];
-		this.m.SoundPitch = 0.85;
 		this.m.Type = this.Const.SkillType.Active;
 		this.m.Order = this.Const.SkillOrder.Last + 5;
 		this.m.IsSerialized = false;
