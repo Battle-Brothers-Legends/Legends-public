@@ -1973,4 +1973,12 @@ effectsDefs.push({
 	Name = "Prepare Bullet",
 });
 
+::Legends.Effect.LegendSummonedDawgEffect <- null;
+effectsDefs.push({
+	ID = "effects.legend_summoned_dawg_effect",
+	Script = "scripts/skills/effects/legend_summoned_dawg_effect",
+	Name = "Summoned a Dawg",
+	Const = "LegendSummonedDawgEffect"
+});
+
 ::Legends.Effects.addEffectDefObjects(effectsDefs);
