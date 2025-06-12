@@ -8,7 +8,7 @@ this.legend_dawg_item <- this.inherit("scripts/items/accessory/legend_accessory_
 		this.updateVariant();
 		this.m.ID = "accessory.legend_dawg";
 		this.m.Name = this.Const.Strings.WardogNames[this.Math.rand(0, this.Const.Strings.WardogNames.len() - 1)] + " the Dawg";
-		this.m.Description = "A strong and loyal southern hound bred for war. Can be unleashed in battle for scouting, tracking or running down routing enemies.";
+		this.m.Description = "A strong and loyal southern dawg bred for war. Can be unleashed in battle for scouting, tracking or running down routing enemies.";
 		this.m.Value = 200;
 	}
 
@@ -41,7 +41,6 @@ this.legend_dawg_item <- this.inherit("scripts/items/accessory/legend_accessory_
 		}.bindenv(this));
 	}
 
-
 	function setEntity(_e) {
 		this.m.Entity = _e;
 		if (this.m.Entity != null) {
@@ -50,6 +49,5 @@ this.legend_dawg_item <- this.inherit("scripts/items/accessory/legend_accessory_
 			this.m.Icon = "tools/dawg_01_0" + this.m.Variant + "_70x70.png";
 		}
 	}
-
 
 });

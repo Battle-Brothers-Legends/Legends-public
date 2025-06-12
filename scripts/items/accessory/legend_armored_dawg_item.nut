@@ -15,7 +15,7 @@ this.legend_armored_dawg_item <- this.inherit("scripts/items/accessory/legend_da
 	function setEntity(_e) {
 		this.m.Entity = _e;
 		if (this.m.Entity != null) {
-			this.m.Icon = "tools/hound_01_leash_70x70.png";
+			this.m.Icon = "tools/dog_01_leash_70x70.png";
 		} else {
 			this.m.Icon = "tools/dawg_01_0" + this.m.Variant + "_armor_01_70x70.png";
 		}
