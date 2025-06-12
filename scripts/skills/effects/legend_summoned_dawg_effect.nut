@@ -3,7 +3,7 @@ this.legend_summoned_dawg_effect <- this.inherit("scripts/skills/skill", {
 
 	function create() {
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendSummonedDawgEffect);
-		this.m.Icon = "ui/skills/dawg_circle.png";
+		this.m.Icon = "skills/dawg_circle.png";
 		this.m.IconMini = "mini_dawg_circle";
 		this.m.Overlay = "dawg_circle";
 		this.m.Type = this.Const.SkillType.StatusEffect;
