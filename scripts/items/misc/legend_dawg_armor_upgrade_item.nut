@@ -4,10 +4,10 @@ this.legend_dawg_armor_upgrade_item <- inherit("scripts/items/misc/wardog_armor_
 
 	function create() {
 		this.wardog_armor_upgrade_item.create();
-		this.m.ID = "misc.wardog_armor_upgrade";
-		m.Name = "Wardog Armor";
-		m.Description = "A simple leather coat that can be donned by any wardog to give it some protection in combat.";
-		m.Icon = "armor_upgrades/upgrade_21.png";
+		this.m.ID = "misc.legend_dawg_armor_upgrade";
+		m.Name = "Dawg Armor";
+		m.Description = "A simple leather coat that can be donned by any dawg to give it some protection in combat.";
+		m.Icon = "armor_upgrades/upgrade_dawg.png";
 		m.Value = 200;
 	}
 
