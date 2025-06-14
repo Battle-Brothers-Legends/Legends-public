@@ -1,24 +1,100 @@
-## Prerequisites ##
+# Building Legends Mod - Cross-Platform Guide
 
-1. Install git bash
-2. Install python3
-3. Install 7zip
-4. Add all above to PATH variable (if you don't know how, check this [webpage](https://www.computerhope.com/issues/ch000549.htm))
-5. Make sure you have microsoft web runtime
-6. Download adam's [modkit](http://www.adammil.net/blog/v133_Battle_Brothers_mod_kit.html#modkit) and unpack it at the same level that legends project is (see screenshot).
+## Overview
+
+The Legends mod uses a cross-platform Python-based build system that replaces the previous Windows-specific bash scripts. All major build functions are now available on Windows, Linux, and macOS.
+
+## Prerequisites
+
+**Cross-Platform Requirements:**
+1. **Python 3.6+** - Required for all build scripts
+2. **Git** - For version control and build tracking (optional but recommended)
+3. **Battle Brothers Game** - Installed via Steam or other means
+4. **7-Zip** - Optional for archive creation (Python's zipfile module is used as fallback)
+
+**Platform-Specific Requirements:**
+
+**Windows:**
+- 7zip or WinRAR (Python's zipfile is used as fallback)
+- Git Bash or PowerShell
+- Microsoft Visual C++ Runtime (for modding tools)
+
+**Linux/macOS:**
+- zip/unzip utilities (usually pre-installed)
+- Terminal/shell access
+
+**Modding Tools:**
+1. Download adam's [modkit](http://www.adammil.net/blog/v133_Battle_Brothers_mod_kit.html#modkit) and unpack it at the same level that legends project is (see screenshot).
 
 ![dir_structure.webp](dir_structure.webp)
 
-7. Install python dependencies `pip install Pillow`
-8. Copy `build_compile_poss.sh` and name it something like `build_compile_yourname.sh`
-9. Inside the `build_compile_yourname.sh` replace the destination variable with your own
+On Linux/macOS you'll need to alias `bbrusher.exe` to `bbrusher.sh` and add the necessary wrappers to make it work on your OS.
 
-## How to build Legends ##
+Here's an example using Wine on Linux:
 
-1. Open git bash in the legends repo and run bash `build_compile_yourname.sh`
+```
+#!/bin/bash
+wine bbrusher.exe
+```
 
-## Note when adding brushes ## 
-Adding images to the make_ scripts is not always enough. 
+## Platform-Specific Features
+
+### Path Detection
+The build system automatically detects platform-specific paths:
+
+**Windows:**
+- Battle Brothers: `c:\Steam\steamapps\common\Battle Brothers\data`
+- Executables: `.exe` extension
+- Batch files: `.bat` extension
+
+**Linux/Unix:**
+- Battle Brothers: `~/.local/share/Steam/steamapps/common/Battle Brothers/data`
+- Executables: `.sh` extension
+- Shell scripts: `.sh` extension
+
+### Archive Creation
+The system attempts to use 7-Zip for archive creation but falls back to Python's built-in `zipfile` module if 7-Zip is not available.
+
+## How to Build Legends
+
+**Quick Start (OS-Agnostic):**
+```bash
+# Build complete mod from scratch
+python3 build_legends_mod.py
+
+# Create a patch since specific commit
+python3 build_patch.py [commit_hash]
+```
+
+## Error Handling
+
+All scripts include comprehensive error handling:
+
+- Clear error messages with context
+- Proper exit codes
+- Cleanup of temporary files
+- Validation of required tools and paths
+
+## Troubleshooting
+
+### Common Issues
+
+1. **Python not found**: Ensure Python 3.6+ is installed and available in PATH
+2. **Permission errors**: Make sure scripts are executable (`chmod +x script.py`)
+3. **Missing tools**: Verify that bbrusher, masscompile, and massdecompile are available
+4. **Path issues**: Check that Battle Brothers directory is correctly detected or specified
+
+### Debug Mode
+
+Most scripts accept verbose output. Check the console output for detailed information about what the script is doing.
+
+### Log Files
+
+Some operations create log files (e.g., `log.txt`) that contain detailed output from external tools.
+
+## Note when adding brushes
+
+Adding images to the make_ scripts is not always enough.
 While it will create a new brush xml automatically when its reached the limit of images per sheet, it won't build those into brushes unless you also add a line to the build_brushes file
 so if you add more images than fit in the current number of sheets,  or if you want to change the size of the sheets,   you can't just change the imagecount and run the whole build script.
 you've got to:
@@ -28,50 +104,50 @@ you've got to:
 4. check how many directories it created
 5. update the build_brushes script to reference that number of directories
 
-Only then can you run the whole build script 
+Only then can you run the whole build script
+
+## Explanation of the python build scripts
+
+These scripts can seem daunting, but they are much easier than maintaining all armor and helmet layers by hand.
 
 
-## Explaination of the python build scripts ##
-These scripts can seem daunting, but they are much easier than maintaining all armor and helmet layers by hand. 
+**make_legends_helmets**
 
+this script takes the place of all the *.nut files and .XML files that would otherwise be need to be maintained separately.
 
-**make_legends_helmets** 
-
-this script takes the place of all the *.nut files and .XML files that would otherwise be need to be maintained separately. 
-
-Each of these item entries is essentially a .nut file waiting to be born. 
+Each of these item entries is essentially a .nut file waiting to be born.
 
 {"name" : "goblin_scarf"                     , "layer" : "hood", "min" : 1, "max" : 4, "base" : True, "value" : 5, "con" : 5, "stam" : 0, "vis" : 0, "hair" : "true", "beard" : "false",  \
  "title" :  "Goblin Scarf", \
  "desc" :  "Goblin Scarf." \
 },
 
-- Name is the filename which will have legend_helmets prepended to it.   
+- Name is the filename which will have legend_helmets prepended to it.
 - Layer is what number on the helmet stack it will coccupy
-- Min and max define how many visual variants there are 
-- base defines if other layers can go on top of it, this is true for all hood layers, and false for all others 
-- value is how much it costs 
+- Min and max define how many visual variants there are
+- base defines if other layers can go on top of it, this is true for all hood layers, and false for all others
+- value is how much it costs
 - con is how much durability it has
-- stam is how much it weights 
+- stam is how much it weights
 - vis is the penalty to sight range
-- hair determines if hair is hidden while this is worn 
-- beard determines if beards are hidden while this is worn 
-- title is the item name players see in game 
-- description is meant to be the description that shows in the tooltip when items are layered 
+- hair determines if hair is hidden while this is worn
+- beard determines if beards are hidden while this is worn
+- title is the item name players see in game
+- description is meant to be the description that shows in the tooltip when items are layered
 
 
 These entries are for stacking unlayered helmets, they are copied verbatim into the first helmet brush
 <sprite id="italo_norman_helm_named_01" offsetY="35" ic="FF383D5F" width="104" height="142" img="entity\legend_helmets\italo_norman_helm_named_01.png" left="-31" right="30" top="-18" bottom="70" />
-these should all be phased out and bigrated into the defintions as they are turned into visual layers. 
-- id is the brush name you call from within squirrel files 
-- offsets, width, heigh, left and right all define the image size and offsets. There is an image guide on the discord for these 
-- img is the actual image of the helmet which needs to be in the unpacked directory 
+these should all be phased out and bigrated into the defintions as they are turned into visual layers.
+- id is the brush name you call from within squirrel files
+- offsets, width, heigh, left and right all define the image size and offsets. There is an image guide on the discord for these
+- img is the actual image of the helmet which needs to be in the unpacked directory
 
 
-checkForIcon function verifies that each item defined above has a icon and inventory image file saved into gfx/ui/items/legend_helmets. 
+checkForIcon function verifies that each item defined above has a icon and inventory image file saved into gfx/ui/items/legend_helmets.
 
-makeSheet function creates the .XML files which store the metadata for the brush files Battle Brothers uses to store spritesheets. 
+makeSheet function creates the .XML files which store the metadata for the brush files Battle Brothers uses to store spritesheets.
 
 makebrushes function goes through each value set in the item entires, and writes tehm into the XML metadata file for the brush. When it reaches the imacount value it will finish the current sheet and write a new one
 
-main function iterates through all the item entries and creates the nut files. 
+main function iterates through all the item entries and creates the nut files.

@@ -53,6 +53,7 @@ buildscript/python/**/__pycache__/
 
 build_compile_*.sh
 unstaged_build_*.sh
+__pycache__
 
 *.sublime-workspace
 *.sublime-project

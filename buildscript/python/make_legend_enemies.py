@@ -467,7 +467,9 @@ def makeBrushes(path):
                 )
                 s = Template(t)
                 text = s.substitute(opts)
-                text.replace("/", "\\")
+                # Only replace forward slashes in img paths, not in "/>" endings
+                import re
+                text = re.sub(r'img="([^"]*)"', lambda m: f'img="{m.group(1).replace("/", "\\")}"', text)
                 F.write(text)
     F.write('</brush>')
     F.close()
@@ -481,6 +483,3 @@ def main():
     makeBrushes(path)
 
 main()
-
-
-
