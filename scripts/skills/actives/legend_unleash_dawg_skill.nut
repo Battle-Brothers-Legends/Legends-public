@@ -137,11 +137,14 @@ this.legend_unleash_dawg_skill <- this.inherit("scripts/skills/actives/legend_un
 		::Legends.Effects.grant(_user, ::Legends.Effect.LegendSummonedDawgEffect);
 		local entity = this.Tactical.spawnEntity(this.m.Script, _targetTile.Coords.X, _targetTile.Coords.Y);
 		entity.setFaction(this.Const.Faction.PlayerAnimals);
-		entity.setName(this.m.EntityName);
+		entity.setItem(this.m.Item);
+		entity.setName(this.m.Item.getName());
+		entity.setVariant(this.m.Item.getVariant());
+		this.m.Item.setEntity(entity);
 
-		if (this.m.Item != null) {
-			entity.setVariant(this.m.Item.getVariant());
-			this.m.Item.setEntity(entity);
+		if (this.m.Item.getArmorScript() != null) {
+			local item = this.new(this.m.Item.getArmorScript());
+			entity.getItems().equip(item);
 		}
 
 		if (this.getContainer().hasSkill("background.houndmaster")) {
