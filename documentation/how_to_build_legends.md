@@ -14,6 +14,11 @@ The Legends mod uses a cross-platform Python-based build system that replaces th
 
 **Platform-Specific Requirements:**
 
+**Modding Tools:**
+Download adam's [modkit](http://www.adammil.net/blog/v133_Battle_Brothers_mod_kit.html#modkit) and unpack it at the same level that legends project is (see screenshot).
+
+![dir_structure.webp](dir_structure.webp)
+
 **Windows:**
 - 7zip or WinRAR (Python's zipfile is used as fallback)
 - Git Bash or PowerShell
@@ -22,11 +27,6 @@ The Legends mod uses a cross-platform Python-based build system that replaces th
 **Linux/macOS:**
 - zip/unzip utilities (usually pre-installed)
 - Terminal/shell access
-
-**Modding Tools:**
-1. Download adam's [modkit](http://www.adammil.net/blog/v133_Battle_Brothers_mod_kit.html#modkit) and unpack it at the same level that legends project is (see screenshot).
-
-![dir_structure.webp](dir_structure.webp)
 
 On Linux/macOS you'll need to alias `bbrusher.exe` to `bbrusher.sh` and add the necessary wrappers to make it work on your OS.
 
