@@ -81,6 +81,7 @@
 
 /** Just a list of integrated mods, to prevent loading them again */
 ::Legends.Compat.Integrated <- [
+	"mod_quickly_swap_items",
 	"mod_legends_compat",
 	"mod_buyback",
 	"mod_events_delayed_fix",
@@ -238,7 +239,6 @@
 
 //region IncompatButPatched
 ::Legends.Compat.IncompatButPatched.add("mod_breditor", "on Legends Discord (#submod_files/Breaky's Battle Brothers Bargain Bin (BBBBB))");
-::Legends.Compat.IncompatButPatched.add("mod_quickly_swap_items", "on Legends Discord (#submod_files/Breaky's Battle Brothers Bargain Bin (BBBBB))");
 //endregion
 
 //region OtherVersionCompat

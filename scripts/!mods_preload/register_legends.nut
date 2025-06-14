@@ -15,7 +15,7 @@ else
 	::mods_registerMod(::Legends.ID, ::Legends.Version, ::Legends.Name);
 }
 
-::mods_queue(::Legends.ID, "mod_msu(>=1.7.0), mod_legends_assets(>=19.1.0), vanilla(>=1.5.1-5), dlc_lindwurm, dlc_unhold, dlc_wildmen, dlc_desert, dlc_paladins, mod_events_delayed_fix_legends, !mod_tooltip_extension(<=1.01)", function()
+::mods_queue(::Legends.ID, "mod_msu(>=1.7.0), mod_legends_assets(>=19.2.0), vanilla(>=1.5.1-5), dlc_lindwurm, dlc_unhold, dlc_wildmen, dlc_desert, dlc_paladins, mod_events_delayed_fix_legends, !mod_tooltip_extension(<=1.01)", function()
 {
 	::Legends.Mod <- ::MSU.Class.Mod(::Legends.ID, ::Legends.Version, ::Legends.Name);
 
@@ -25,7 +25,6 @@ else
 
     // loading mod files
     ::include("mod_legends/load.nut");
-    ::Const.Perks.updatePerkGroupTooltips(); // this adds the "From the x Perk Group" tooltip
 });
 
 ::include("mod_legends/compat_defs.nut");

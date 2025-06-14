@@ -2,7 +2,8 @@
 	EmployerFaction = {
 		Barbarians = 0,
 		Bandits = 1,
-		Necromancers = 2
+		Necromancers = 2,
+		COUNT = 3
 	}
 }
 
