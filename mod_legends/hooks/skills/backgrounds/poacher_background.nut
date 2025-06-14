@@ -79,7 +79,10 @@
 				this.Const.Perks.SpiderTree,
 				this.Const.Perks.GoblinTree
 			],
-			Class = [this.Const.Perks.ShortbowClassTree],
+			Class = [
+				this.Const.Perks.ShortbowClassTree
+			],
+			Profession = [], 
 			Magic = []
 		}
 	}

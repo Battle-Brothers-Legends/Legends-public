@@ -65,6 +65,7 @@
 			],
 			Enemy = [],
 			Class = [],
+			Profession = [], 
 			Magic = []
 		}
 	}

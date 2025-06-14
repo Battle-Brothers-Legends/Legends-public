@@ -6,7 +6,7 @@
 	o.create = function()
 	{
 		create();
-		this.m.Description = "A pot filled with highly flammable liquid that will set an area ablaze with fire when thrown.";
+		this.m.Description = "A pot filled with highly flammable liquid that will set an area ablaze with fire when thrown. If the company has Alchemy Tools, this item is refilled after each battle, consuming 30 ammunition per use.";
 		this.m.OriginalDescription = this.m.Description;
 		this.m.Value = 1300;
 		this.m.OriginalValue = this.m.Value;

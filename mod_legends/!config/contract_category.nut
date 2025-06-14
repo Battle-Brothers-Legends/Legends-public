@@ -81,7 +81,7 @@
 	legend_hunting_coven_leader_contract = this.Const.Contracts.Categories.Legendary,
 	legend_hunting_demon_alps_contract = this.Const.Contracts.Categories.Legendary,
 	legend_hunting_greenwood_schrats_contract = this.Const.Contracts.Categories.Legendary,
-	legend_hunting_mummies_contract = this.Const.Contracts.Categories.Legendary,
+	legend_hunting_mummies_contract = this.Const.Contracts.Categories.Battle,
 	legend_hunting_redback_webknechts_contract = this.Const.Contracts.Categories.Legendary,
 	legend_hunting_rock_unholds_contract = this.Const.Contracts.Categories.Legendary,
 	legend_hunting_skin_ghouls_contract = this.Const.Contracts.Categories.Legendary,

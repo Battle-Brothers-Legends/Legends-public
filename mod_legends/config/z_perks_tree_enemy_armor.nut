@@ -53,7 +53,7 @@ if (!("Perks" in ::Const))
         ],
 		[
             ::Legends.Perk.LegendMuscularity,
-            ::Legends.Perk.LegendFullForce
+            ::Legends.Perk.LegendImmovableObject
         ]
 	]
 };

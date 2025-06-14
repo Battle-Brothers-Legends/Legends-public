@@ -64,10 +64,12 @@ this.legend_qiyan_background <- this.inherit("scripts/skills/backgrounds/charact
 			],
 			Enemy = [],
 			Class = [
-				this.Const.Perks.KnifeClassTree,
-				this.Const.Perks.BardClassTree
+				this.Const.Perks.KnifeClassTree
 			],
-			Magic = []
+			Profession = [],
+			Magic = [
+				this.Const.Perks.BardMagicTree
+			]
 		}
 	}
 

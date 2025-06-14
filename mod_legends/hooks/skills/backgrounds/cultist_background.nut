@@ -86,6 +86,7 @@
 				this.Const.Perks.NinetailsClassTree,
 				this.Const.Perks.BeastClassTree
 			],
+			Profession = [], 
 			Magic = []
 		}
 	}

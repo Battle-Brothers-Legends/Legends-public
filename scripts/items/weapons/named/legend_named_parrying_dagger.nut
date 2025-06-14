@@ -27,7 +27,7 @@ this.legend_named_parrying_dagger <- this.inherit("scripts/items/shields/named/n
 		this.m.ShowOnCharacter = true;
 		this.m.Variants = [2];
 		this.m.Variant = this.m.Variants[this.Math.rand(0, this.m.Variants.len() -1)];
-		this.m.ItemType = this.Const.Items.ItemType.Defensive | this.Const.Items.ItemType.Weapon | this.Const.Items.ItemType.Named;
+		this.m.ItemType = this.Const.Items.ItemType.Shield | this.Const.Items.ItemType.Defensive | this.Const.Items.ItemType.Weapon | this.Const.Items.ItemType.Named;
 		this.updateVariant();
 		this.m.Value = 1000;
 		this.m.MeleeDefense = 5;
@@ -193,6 +193,11 @@ this.legend_named_parrying_dagger <- this.inherit("scripts/items/shields/named/n
 
 		foreach (id, offhandSkill in m.OffHandWeaponSkills)
 		{
+
+			if (::MSU.isNull(offhandSkill)) {
+				continue;
+			}
+
 			local mainhandSkill = getContainer().getActor().getSkills().getSkillByID(id);
 
 			if (mainhandSkill != null)
@@ -220,11 +225,14 @@ this.legend_named_parrying_dagger <- this.inherit("scripts/items/shields/named/n
 			local mainhandSkill = getContainer().getActor().getSkills().getSkillByID(id);
 
 			if (mainhandSkill == null) {
-				offhandSkill.m.IsHidden = false;
+				if (offhandSkill != null && "m" in offhandSkill) {
+					offhandSkill.m.IsHidden = false;
+				}
 				continue;
-			}
-			else if (::MSU.isNull(offhandSkill)) {
-				mainhandSkill.m.IsHidden = false;
+			} else if (::MSU.isNull(offhandSkill)) {
+				if (mainhandSkill != null && "m" in mainhandSkill) {
+					mainhandSkill.m.IsHidden = false;
+				}
 				continue;
 			}
 

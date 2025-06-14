@@ -69,6 +69,7 @@ this.legend_illusionist_background <- this.inherit("scripts/skills/backgrounds/c
 				this.Const.Perks.AlpTree
 			],
 			Class = [],
+			Profession = [],
 			Magic = [
 				this.Const.Perks.IllusionistMagicTree,
 				this.Const.Perks.PremonitionMagicTree

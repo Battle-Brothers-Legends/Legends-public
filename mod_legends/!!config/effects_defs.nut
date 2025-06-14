@@ -1113,7 +1113,7 @@ effectsDefs.push({
 effectsDefs.push({
 	ID = "effects.legend_demon_hound_bite_effect",
 	Script = "scripts/skills/effects/legend_demon_hound_bite_effect",
-	Name = "H÷llenhund Curse",
+	Name = "Höllenhund Curse",
 	Const = "LegendDemonHoundBiteEffect"
 });
 

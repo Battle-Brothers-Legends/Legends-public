@@ -131,7 +131,7 @@ this.legend_attack_target_skill <- this.inherit("scripts/skills/skill", {
 			local e = this.Tactical.getEntityByID(this.m.LastTarget);
 			if (e != null)
 			{
-				::Legends.Effects.remove(e, ::Legends.Effect.LegendMarked);
+				::Legends.Effects.remove(e, ::Legends.Effect.LegendMarkedTarget);
 			}
 		}
 		this.m.LastTarget = null;
@@ -169,9 +169,9 @@ this.legend_attack_target_skill <- this.inherit("scripts/skills/skill", {
 
 	function onUse( _user, _targetTile )
 	{
-		if (_user.getSkills().hasActive(::Legends.Active.LegendProtect))
+		if (_user.getSkills().hasActive(::Legends.Active.LegendProtectTarget))
 		{
-			local skill = ::Legends.Actives.get(_user, ::Legends.Active.LegendProtect);
+			local skill = ::Legends.Actives.get(_user, ::Legends.Active.LegendProtectTarget);
 			skill.setTarget(null);
 		}
 

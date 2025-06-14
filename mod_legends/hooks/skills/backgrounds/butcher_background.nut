@@ -65,8 +65,10 @@
 			],
 			Enemy = [],
 			Class = [
-				this.Const.Perks.ButcherClassTree,
-				this.Const.Perks.ChefClassTree
+				this.Const.Perks.ButcherClassTree		
+			],
+			Profession = [
+				this.Const.Perks.ChefProfessionTree
 			],
 			Magic = []
 		}

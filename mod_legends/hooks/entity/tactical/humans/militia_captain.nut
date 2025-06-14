@@ -14,7 +14,7 @@
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendSmashingShields);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendBackToBasics);
 			::Legends.Perks.grant(this, ::Legends.Perk.ShieldBash);
-			::Legends.Perks.grant(this, ::Legends.Perk.LegendFullForce);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendImmovableObject);
 			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
 
 		}

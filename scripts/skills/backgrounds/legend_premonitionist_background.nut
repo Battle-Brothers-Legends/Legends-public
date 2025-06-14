@@ -67,7 +67,10 @@ this.legend_premonitionist_background <- this.inherit("scripts/skills/background
 			],
 			Enemy = [],
 			Class = [],
-			Magic = [this.Const.Perks.PremonitionMagicTree]
+			Profession = [],
+			Magic = [
+				this.Const.Perks.PremonitionMagicTree
+			]
 		}
 
 	}

@@ -51,7 +51,7 @@ this.legend_noble_man_at_arms <- this.inherit("scripts/entity/tactical/human", {
 		::Legends.Perks.grant(this, ::Legends.Perk.ShieldBash);
 		if(::Legends.isLegendaryDifficulty())
 		{
-			::Legends.Perks.grant(this, ::Legends.Perk.LegendFullForce);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendImmovableObject);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendStrengthInNumbers);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendBruiser);
 			::Legends.Perks.grant(this, ::Legends.Perk.CoupDeGrace);

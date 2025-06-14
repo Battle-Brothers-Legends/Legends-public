@@ -245,6 +245,9 @@
 
 		result.salvage <- _item.isToBeSalvaged();
 		result.upgrades <- _item.getUpgrades();
+		if (result.slot == "accessory" && _item.m != null && _item.m.ShowOnCharacter != null) {
+			result.showOnCharacter <- _item.m.ShowOnCharacter;
+		}
 		return result;
 	}
 

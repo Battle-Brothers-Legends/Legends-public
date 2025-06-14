@@ -105,6 +105,22 @@ this.camp_painter_dialog_module <- this.inherit("scripts/ui/screens/ui_module", 
 				};
 			}
 
+			local weapon = {};
+			if (b.getItems().getItemAtSlot(this.Const.ItemSlot.Mainhand) != null) {
+				local weaponitem = b.getItems().getItemAtSlot(this.Const.ItemSlot.Mainhand);
+				weapon.Weapon <- {
+					Link = this.IO.scriptFilenameByHash(weaponitem.ClassNameHash),
+					ID = weaponitem.m.ID,
+					Value = this.Math.max(50, weaponitem.m.Value * 0.025),
+					Variant = (weaponitem.m.Variants.find(weaponitem.m.Variant) != null) ? (weaponitem.m.Variants.find(weaponitem.m.Variant) + 1) : 1,
+					Variants = this.Math.max(weaponitem.m.Variants.len(), 1),
+					Icon = weaponitem.m.IconLarge,
+					IconLarge = weaponitem.m.IconLarge
+				};
+			} else {
+				weapon.Weapon <- null;
+			}
+
 			local shield = {};
 			if (b.getItems().getItemAtSlot(this.Const.ItemSlot.Offhand) != null)
 			{
@@ -135,6 +151,7 @@ this.camp_painter_dialog_module <- this.inherit("scripts/ui/screens/ui_module", 
 				BackgroundText = background.getDescription(),
 				BodyArmor = bodyarmorfinal,
 				Helmet = helmetfinal,
+				Weapon = weapon,
 				Shield = shield
 			};
 			roster.push(e);
@@ -142,7 +159,7 @@ this.camp_painter_dialog_module <- this.inherit("scripts/ui/screens/ui_module", 
 
 		return {
 			Title = "Painting Tent",
-			SubTitle = "Customize the appearance of your armor",
+			SubTitle = "Customize the appearance of your equipment",
 			Roster = roster,
 			Assets = this.m.Parent.queryAssetsInformation()
 		};
@@ -171,8 +188,7 @@ this.camp_painter_dialog_module <- this.inherit("scripts/ui/screens/ui_module", 
 			else
 			{break;}
 		}
-		if (item.isItemType(this.Const.Items.ItemType.Shield))
-		{
+		if (item.isItemType(this.Const.Items.ItemType.Weapon) || item.isItemType(this.Const.Items.ItemType.Shield)) {
 			return {
 				Icon = item.m.IconLarge,
 				IconLarge = item.m.IconLarge
@@ -244,6 +260,17 @@ this.camp_painter_dialog_module <- this.inherit("scripts/ui/screens/ui_module", 
 					helmetbase.updateAppearance();
 				}
 
+				local weapon = b.getItems().getItemAtSlot(this.Const.ItemSlot.Mainhand);
+				if (weapon != null) {
+					if (_result.Weapon.Weapon != null) {
+						if (weapon.m.ID == _result.Weapon.Weapon.ID) {
+							weapon.m.Variant = weapon.m.Variants[_result.Weapon.Weapon.Variant - 1];
+							weapon.updateVariant();
+							weapon.updateAppearance();
+						}
+					}
+				}
+
 				local shield = b.getItems().getItemAtSlot(this.Const.ItemSlot.Offhand);
 				if (shield != null)
 				{
@@ -276,4 +303,3 @@ this.camp_painter_dialog_module <- this.inherit("scripts/ui/screens/ui_module", 
 	}
 
 });
-

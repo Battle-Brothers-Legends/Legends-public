@@ -631,6 +631,8 @@
 	<sprite id="demonalp_trophy_dead" offsetX="6" offsetY="10" f="64FD" ic="FF484A54" width="191" height="185" img="entity\details\demonalp_trophy_dead.png" left="-39" right="13" top="-45" bottom="17" />
 	<sprite id="hexe_leader_trophy" offsetY="35" ic="FF374C5A" width="140" height="248" img="entity\details\hexe_leader_trophy.png" left="-26" right="34" top="-49" bottom="3" />
 	<sprite id="hexe_leader_trophy_dead" offsetX="6" offsetY="10" f="64FD" ic="FF384D5B" width="191" height="185" img="entity\details\hexe_leader_trophy_dead.png" left="-36" right="16" top="-47" bottom="17" />
+	<sprite id="demon_banshee_trophy" offsetY="35" ic="FF374C5A" width="140" height="248" img="entity\details\demon_banshee_trophy.png" left="-26" right="34" top="-49" bottom="3" />
+	<sprite id="demon_banshee_trophy_dead" offsetX="6" offsetY="10" f="64FD" ic="FF384D5B" width="191" height="185" img="entity\details\demon_banshee_trophy_dead.png" left="-36" right="16" top="-47" bottom="17" />
 
 	<sprite id="basilisk_trophy" offsetY="35" ic="FF374C5A" width="140" height="248" img="entity\details\basilisk_trophy.png" left="-26" right="34" top="-49" bottom="3" />
 	<sprite id="basilisk_trophy_dead" offsetX="6" offsetY="10" f="64FD" ic="FF384D5B" width="191" height="185" img="entity\details\basilisk_trophy_dead.png" left="-36" right="16" top="-47" bottom="17" />

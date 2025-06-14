@@ -1,4 +1,11 @@
 ::mods_hookExactClass("items/ammo/legendary/quiver_of_coated_arrows", function(o) {
+	local create = o.create;
+	o.create = function ()
+	{
+		create();
+		this.m.AddGenericSkill = true;
+	}
+
 	o.onDamageDealt = function ( _target, _skill, _hitInfo )
 	{
 		local item = _skill.getItem();
@@ -13,8 +20,8 @@
 			}
 			else if (!_target.getCurrentProperties().IsImmuneToBleeding && _hitInfo.DamageInflictedHitpoints >= this.Const.Combat.MinDamageToApplyBleeding)
 			{
-				::Legends.Effects.grant(target, ::Legends.Effect.Bleeding, function(_effect) {
-					if (_user.getFaction() == this.Const.Faction.Player )
+				::Legends.Effects.grant(_target, ::Legends.Effect.Bleeding, function(_effect) {
+					if (this.getContainer().getActor().getFaction() == this.Const.Faction.Player )
 						_effect.setActor(this.getContainer().getActor());
 					_effect.setDamage(this.m.BleedDamage);
 				}.bindenv(this));

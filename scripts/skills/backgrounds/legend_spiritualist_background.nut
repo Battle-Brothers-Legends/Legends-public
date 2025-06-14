@@ -60,7 +60,10 @@ this.legend_spiritualist_background <- this.inherit("scripts/skills/backgrounds/
 			],
 			Enemy = [],
 			Class = [],
-			Magic = [this.Const.Perks.ValaSpiritMagicTree]
+			Profession = [],
+			Magic = [
+				this.Const.Perks.ValaSpiritMagicTree
+			]
 		}
 	}
 

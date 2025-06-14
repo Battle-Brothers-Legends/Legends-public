@@ -81,6 +81,7 @@ this.legend_muladi_background <- this.inherit("scripts/skills/backgrounds/charac
 				this.Const.Perks.ShortbowClassTree,
 				this.Const.Perks.HoundmasterClassTree
 			],
+			Profession = [],
 			Magic = []
 		}
 	}

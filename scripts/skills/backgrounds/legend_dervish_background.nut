@@ -50,8 +50,10 @@ this.legend_dervish_background <- this.inherit("scripts/skills/backgrounds/chara
 			],
 			Enemy = [],
 			Class = [
-				this.Const.Perks.HealerClassTree,
 				this.Const.Perks.FaithClassTree
+			],
+			Profession = [
+				this.Const.Perks.HealerProfessionTree,
 			],
 			Magic = []
 		}

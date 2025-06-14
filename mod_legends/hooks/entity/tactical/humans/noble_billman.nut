@@ -14,7 +14,7 @@
 			::Legends.Perks.grant(this, ::Legends.Perk.CoupDeGrace);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendFeint);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendBackToBasics);
-			::Legends.Perks.grant(this, ::Legends.Perk.LegendFullForce);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendImmovableObject);
 			::Legends.Perks.grant(this, ::Legends.Perk.Berserk);
 			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
 		}

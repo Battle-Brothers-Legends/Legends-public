@@ -41,6 +41,11 @@ this.legend_rune <- this.inherit("scripts/crafting/blueprint", {
 		return def.getRuneTooltip(this);
 	}
 
+	function isQualified()
+	{
+		return this.blueprint.isQualified();
+	}
+
 	function onEnchant( _stash, _bonus )
 	{
 		local def = ::Legends.Runes.get(this.m.Rune);

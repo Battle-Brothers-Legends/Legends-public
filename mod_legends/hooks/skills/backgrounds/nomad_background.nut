@@ -92,9 +92,8 @@
 			Weapon = [
 				this.Const.Perks.SwordTree,
 				this.Const.Perks.MaceTree,
-				this.Const.Perks.BowTree,
 				this.Const.Perks.SpearTree,
-				this.Const.Perks.SlingTree
+				this.Const.Perks.CleaverTree
 			],
 			Defense = [
 				this.Const.Perks.LightArmorTree
@@ -110,7 +109,8 @@
 				this.Const.Perks.DirewolfTree,
 				this.Const.Perks.ArcherTree
 			],
-			Class = [this.Const.Perks.SlingClassTree],
+			Class = [],
+			Profession = [],
 			Magic = []
 		}
 	}

@@ -111,9 +111,12 @@
 			],
 			Enemy = [],
 			Class = [
-				this.Const.Perks.HealerClassTree,
 				this.Const.Perks.SickleClassTree
 
+			],
+			Profession = [
+				this.Const.Perks.HealerProfessionTree,
+				this.Const.Perks.HerbalismProfessionTree,
 			],
 			Magic = [
 				this.Const.Perks.PhilosophyMagicTree

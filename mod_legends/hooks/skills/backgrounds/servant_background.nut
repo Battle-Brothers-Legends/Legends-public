@@ -70,10 +70,11 @@
 				this.Const.Perks.FastTree
 			],
 			Enemy = [],
-			Class = [
-				this.Const.Perks.BarterClassTree,
-				this.Const.Perks.ChefClassTree
-			],
+			Class = [],
+			Profession = [
+				this.Const.Perks.BarterProfessionTree,
+				this.Const.Perks.ChefProfessionTree
+			], 
 			Magic = []
 		}
 	}

@@ -94,6 +94,7 @@ this.legend_husk_background <- this.inherit("scripts/skills/backgrounds/characte
 				this.Const.Perks.BeastClassTree,
 				this.Const.Perks.NinetailsClassTree
 			],
+			Profession = [],
 			Magic = []
 		}
 	}

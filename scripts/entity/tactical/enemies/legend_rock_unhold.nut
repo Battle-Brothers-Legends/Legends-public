@@ -258,7 +258,7 @@ this.legend_rock_unhold <- this.inherit("scripts/entity/tactical/actor", {
 			b.MeleeSkill += 10;
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendBattleheart);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendLastStand);
-			::Legends.Perks.grant(this, ::Legends.Perk.LegendFullForce);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendImmovableObject);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendSmackdown);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendBloodyHarvest);
 			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);

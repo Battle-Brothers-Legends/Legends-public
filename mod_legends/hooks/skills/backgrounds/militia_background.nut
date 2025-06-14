@@ -56,6 +56,7 @@
 			Class = [
 				this.Const.Perks.MilitiaClassTree
 			],
+			Profession = [], 
 			Magic = []
 		}
 	}

@@ -82,12 +82,6 @@ this.legend_shoot_precise_stone_skill <- this.inherit("scripts/skills/skill", {
 				type = "text",
 				icon = "ui/icons/special.png",
 				text = "Has a [color=" + this.Const.UI.Color.NegativeValue + "]100%[/color] chance to daze a target on a hit to the head"
-			},
-			{
-				id = 9,
-				type = "text",
-				icon = "ui/icons/special.png",
-				text = "Has a [color=" + this.Const.UI.Color.PositiveValue + "]100%[/color] chance to hit the head"
 			}
 		]);
 

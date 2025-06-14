@@ -1,40 +1,27 @@
-::mods_hookExactClass("ambitions/ambitions/hammer_mastery_ambition", function(o) 
+::mods_hookExactClass("ambitions/ambitions/hammer_mastery_ambition", function(o)
 {
-	o.onPrepareVariables = function ( _vars )
-	{
+	o.onPrepareVariables = function(_vars) {
 		local brothers = this.World.getPlayerRoster().getAll();
 		local candidates = [];
 		local not_candidates = [];
 
-		if (brothers.len() > 2)
-		{
-			for( local i = 0; i < brothers.len(); i = ++i )
-			{
-				if (brothers[i].getSkills().hasTrait(::Legends.Trait.Player))
-				{
-					brothers.remove(i);
-					break;
-				}
-			}
-		}
+		// given how much avatars legends sometimes has, player check should be omited
 
-		foreach( bro in brothers )
-		{
+		foreach (bro in brothers) {
 			local p = bro.getCurrentProperties();
-
-			if (p.IsSpecializedInHammers)
-			{
+			if (p.IsSpecializedInHammers) {
 				candidates.push(bro);
-			}
-			else
-			{
+			} else {
 				not_candidates.push(bro);
 			}
 		}
 
-		if (candidates.len() == 0)
-		{
+		if (candidates.len() == 0) {
 			candidates = not_candidates;
+		}
+
+		if (not_candidates.len() == 0) {
+			not_candidates.push(candidates.pop());
 		}
 
 		_vars.push([
@@ -46,5 +33,4 @@
 			not_candidates[this.Math.rand(0, not_candidates.len() - 1)].getName()
 		]);
 	}
-
 });

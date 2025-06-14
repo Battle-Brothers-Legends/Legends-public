@@ -39,6 +39,7 @@
 				this.Const.Perks.SwordmastersTree
 			],
 			Class = [],
+			Profession = [], 
 			Magic = []
 		}
 	}

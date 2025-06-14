@@ -51,7 +51,8 @@
 			Class = [],
 			Magic = [
 				this.Const.Perks.CaptainMagicTree
-			]
+			],
+			Profession = []
 		}
 	}
 

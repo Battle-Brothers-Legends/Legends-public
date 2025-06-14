@@ -8,6 +8,7 @@
 			local subV = [5,6,7,8,9];
 			this.m.Variant = subV[this.Math.rand(0, subV.len()-1)];
 		}
+		this.updateVariant();
 	}
 
 	o.updateVariant = function () {

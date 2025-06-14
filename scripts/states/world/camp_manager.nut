@@ -452,6 +452,51 @@ this.camp_manager <- {
 		return result;
 	}
 
+	function getContracts() {
+		local contracts = [];
+		foreach(c in ::World.FactionManager.getFactionOfType(::Const.FactionType.FreeCompany).getContracts()) {
+			contracts.push(c);
+		}
+		return contracts;
+	}
+
+	function hasContract( _id ) {
+		local contracts = this.getContracts();
+		foreach( c in contracts ) {
+			if (c.getType() == _id)
+				return true;
+		}
+		return false;
+	}
+
+	function getUIContractInformation() {
+		local isEscorting = ::World.State.m.EscortedEntity != null && !::World.State.m.EscortedEntity.isNull();
+		local result = {
+			Contracts = [],
+			IsContractActive = !isEscorting && ::World.Contracts.getActiveContract() != null,
+			IsContractsLocked = false
+		};
+		local contracts = this.getContracts();
+
+		foreach( i, contract in contracts )
+		{
+			if (i > 9)
+				break;
+
+			if (contract.isActive())
+				continue;
+
+			local c = {
+				Icon = contract.getBanner(),
+				ID = contract.getID(),
+				IsNegotiated = contract.isNegotiated(),
+				DifficultyIcon = contract.getUIDifficultySmall()
+			};
+			result.Contracts.push(c);
+		}
+		return result;
+	}
+
 	function getUITerrain () {
 		local tile = ::World.State.getPlayer().getTile();
 		local terrain = [];
@@ -545,6 +590,11 @@ this.camp_manager <- {
 				}
 			}
 		}
+
+		local contractUI = this.getUIContractInformation();
+		foreach(contract in contractUI.Contracts)
+			result.Contracts.push(contract);
+
 		return result;
 	}
 

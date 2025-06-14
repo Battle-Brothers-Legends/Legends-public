@@ -84,6 +84,7 @@
 			],
 			Enemy = [],
 			Class = [this.Const.Perks.WoodaxeClassTree],
+			Profession = [], 
 			Magic = []
 		}
 	}

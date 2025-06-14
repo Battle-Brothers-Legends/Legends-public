@@ -186,6 +186,38 @@
 	{
 		this.clearSkills();
 		if (this.m.Container != null && ("getSkills" in this.getContainer().getActor())) this.getContainer().getActor().getSkills().update();
+		maybeUpdateParryingDaggerSkills();
+	}
+
+	// Parrying dagger may hide its skills when the main hand weapon is stronger.
+	// So when the main hand is unequipped, we check if we have to re-add the skills.
+	function maybeUpdateParryingDaggerSkills() {
+		// Check we are not a parrying dagger (otherwise this will stack overflow)
+		if (isParryingDagger(this)) {
+			return;
+		}
+		local container = getContainer();
+		if (container == null || !("getActor" in container)) {
+			return;
+		}
+		local actor = container.getActor();
+		if (actor == null || !("getOffhandItem" in actor)) {
+			return;
+		}
+		local offhand = actor.getOffhandItem();
+		if (!isParryingDagger(offhand)) {
+			return;
+		}
+		offhand.onUnequip();
+		offhand.onEquip();
+	}
+
+	function isParryingDagger(_item) {
+		if (_item == null || !("m" in _item)) {
+			return false;
+		}
+		return _item.m.ID == "shield.legend_parrying_dagger"
+			|| _item.m.ID == "shield.legend_named_parrying_dagger";
 	}
 
 	o.onEquip = function ()
@@ -204,6 +236,16 @@
 		{
 			this.setToBeSalvaged(false, 0);
 		}
+	}
+
+	local onPutIntoBag = o.onPutIntoBag;
+	o.onPutIntoBag = function () {
+		if (this.m.Container != null) {
+			if (this.m.Container.getActor() != null) {
+				this.m.LastEquippedByFaction = this.m.Container.getActor().getFaction();
+			}
+		}
+		onPutIntoBag();
 	}
 
 	o.onEquipRuneSigil <- function ()

@@ -156,7 +156,7 @@
 			::Legends.Traits.grant(bro, ::Legends.Trait.LegendBeastslayers);
 			bro.improveMood(1.5, "Excited to teach the new blood");
 		}
-		else if (bro.getBackground().getID() == "background.legend_vala")
+		else if (bro.getBackground().getID() == "background.legend_vala" || bro.getBackground().getID() == "background.legend_druid")
 		{
 			bro.m.HiringCost = this.Math.floor(bro.m.HiringCost * 1.0);
 			bro.getBaseProperties().DailyWageMult *= 0.0;
@@ -177,6 +177,9 @@
 			bro.worsenMood(2.0, "Has heard worrying things about your kind...");
 		}
 
+		bro.getBackground().m.PerkTreeDynamicMins.EnemyChance += 0.04;
+		bro.getBackground().m.PerkTreeDynamicMins.ClassChance += 0.01;
+		bro.getBackground().m.PerkTreeDynamicMins.MagicChance += 0.001;
 		bro.getSkills().update();
 	}
 

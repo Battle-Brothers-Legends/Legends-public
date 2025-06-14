@@ -43,22 +43,14 @@ this.legend_ranged_lash_skill <- this.inherit("scripts/skills/skill", {
 	function getTooltip()
 	{
 		local ret = this.getDefaultTooltip();
-		ret.extend([
-			{
-				id = 9,
-				type = "text",
-				icon = "ui/icons/special.png",
-				text = "Has a [color=" + this.Const.UI.Color.PositiveValue + "]100%[/color] chance to hit the head"
-			}
-		]);
 
-		if (this.getContainer().getActor().getCurrentProperties().IsSpecializedInFlails)
+		if (!this.getContainer().getActor().getCurrentProperties().IsSpecializedInPolearms)
 		{
 			ret.push({
-				id = 8,
+				id = 6,
 				type = "text",
-				icon = "ui/icons/special.png",
-				text = "Ignores the bonus to Melee Defense granted by shields"
+				icon = "ui/icons/hitchance.png",
+				text = "Has [color=" + this.Const.UI.Color.NegativeValue + "]-15%[/color] chance to hit targets directly adjacent because the weapon is too unwieldy"
 			});
 		}
 
@@ -81,6 +73,11 @@ this.legend_ranged_lash_skill <- this.inherit("scripts/skills/skill", {
 	{
 		if (_skill == this)
 		{
+			if (_targetEntity != null && !this.getContainer().getActor().getCurrentProperties().IsSpecializedInPolearms && this.getContainer().getActor().getTile().getDistanceTo(_targetEntity.getTile()) == 1)
+			{
+				this.m.HitChanceBonus += -15;
+				_properties.MeleeSkill += -15;
+			}
 			_properties.HitChance[this.Const.BodyPart.Head] += 100.0;
 		}
 	}

@@ -7,8 +7,8 @@
 		this.m.Name = "Belly Dancer";
 		this.m.Icon = "ui/backgrounds/background_64.png";
 		this.m.BackgroundDescription = "";
-		this.m.GoodEnding = "%name% the southern belly dancer left the company in good time. While their... particularities made them an excellent soldier, it was not their life\'s passion. To entertain, through rhythmic, confusingly erotic motions, that is what they wanted. The last you heard, they were in the court of a Vizier serving not only as an entertainer, but, thanks to time with the %companyname%, also as an adviser on marital matters.";
-		this.m.BadEnding = "As the company failed to achieve the success you had hoped for, many departed its ranks. The southern belly dancer joined them. Unfortunately, %name% sought to ply their trade in the north, thinking they may be able to spread culture there. The indigenous population was quick to accuse them of \'unregulated body sorcery\' and burn %name% at the stake.";
+		this.m.GoodEnding = "%name% the southern belly dancer left the company in good time. While their... particularities made her an excellent soldier, it was not her life\'s passion. To entertain, through rhythmic, confusingly erotic motions, that is what she wanted. The last you heard, they were in the court of a Vizier serving not only as an entertainer, but, thanks to time with the %companyname%, also as an adviser on martial matters.";
+		this.m.BadEnding = "As the company failed to achieve the success you had hoped for, many departed its ranks. The southern belly dancer joined them. Unfortunately, %name% sought to ply her trade in the north, thinking she might be able to spread culture there. The indigenous population was quick to accuse her of \'unregulated body sorcery\' and burn %name% at the stake.";
 		this.m.HiringCost = 500;
 		this.m.DailyCost = 20;
 		this.m.Excluded = [
@@ -67,6 +67,7 @@
 			Class = [
 				this.Const.Perks.JugglerClassTree
 			],
+			Profession = [],
 			Magic = [
 				this.Const.Perks.AssassinMagicTree
 			]

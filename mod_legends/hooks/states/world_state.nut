@@ -1276,7 +1276,6 @@
 		}
 	}
 
-
 	o.showCombatDialog = function ( _isPlayerInitiated = true, _isCombatantsVisible = true, _allowFormationPicking = true, _properties = null, _pos = null )
 	{
 		local entities = [];

@@ -33,6 +33,7 @@ this.legend_conscript_ranged_background <- this.inherit("scripts/skills/backgrou
 				this.Const.Perks.ArcherTree
 			],
 			Class = [],
+			Profession = [],
 			Magic = []
 		}
 	}

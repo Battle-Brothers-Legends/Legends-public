@@ -68,9 +68,10 @@ this.legend_transmuter_background <- this.inherit("scripts/skills/backgrounds/ch
 			],
 			Enemy = [],
 			Class = [],
+			Profession = [],
 			Magic = [
-			this.Const.Perks.TransmutationMagicTree,
-			this.Const.Perks.PremonitionMagicTree
+				this.Const.Perks.TransmutationMagicTree,
+				this.Const.Perks.PremonitionMagicTree
 			]
 		}
 

@@ -75,9 +75,11 @@
 				this.Const.Perks.VampireTree
 			],
 			Class = [
-				this.Const.Perks.HealerClassTree,
 				this.Const.Perks.FaithClassTree
 			],
+			Profession = [
+				this.Const.Perks.HealerProfessionTree
+			], 
 			Magic = []
 		}
 	}

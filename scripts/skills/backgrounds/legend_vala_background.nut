@@ -59,9 +59,12 @@ this.legend_vala_background <- this.inherit("scripts/skills/backgrounds/characte
 			],
 			Enemy = [],
 			Class = [
-				this.Const.Perks.HealerClassTree,
-				this.Const.Perks.ChefClassTree,
 				this.Const.Perks.StaffClassTree
+			],
+			Profession = [
+				this.Const.Perks.HealerProfessionTree,
+				this.Const.Perks.ChefProfessionTree,
+				this.Const.Perks.HerbalistProfessionTree
 			],
 			Magic = [
 				this.Const.Perks.ValaChantMagicTree,
@@ -87,6 +90,8 @@ this.legend_vala_background <- this.inherit("scripts/skills/backgrounds/characte
 	function getTooltip()
 	{
 		local ret = this.character_background.getTooltip();
+		if (this.getContainer() == null)
+			return ret; // this is for crafting because the preview in crafting screen creates the background but it has no actor attached
 		ret.extend([
 		{
 			id = 13,
@@ -116,7 +121,7 @@ this.legend_vala_background <- this.inherit("scripts/skills/backgrounds/characte
 			});
 		}
 
-		return ret
+		return ret;
 	}
 
 	function onBuildDescription()

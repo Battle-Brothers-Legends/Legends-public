@@ -40,7 +40,10 @@ this.legend_philosopher_background <- this.inherit("scripts/skills/backgrounds/c
 			],
 			Enemy = [],
 			Class = [],
-			Magic = [this.Const.Perks.PhilosophyMagicTree   ]
+			Profession = [],
+			Magic = [
+				this.Const.Perks.PhilosophyMagicTree
+			]
 		}
 	}
 

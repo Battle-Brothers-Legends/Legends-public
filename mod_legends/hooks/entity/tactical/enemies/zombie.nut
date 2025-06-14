@@ -143,59 +143,22 @@
 
 	o.assignRandomEquipment = function ()
 	{
-		local r;
 
-		if (this.Math.rand(1, 100) <= 50)
-		{
-			r = this.Math.rand(1, 12);
-
-			if (r == 1)
-			{
-				this.m.Items.equip(this.new("scripts/items/weapons/knife"));
-			}
-			else if (r == 2)
-			{
-				this.m.Items.equip(this.new("scripts/items/weapons/bludgeon"));
-			}
-			else if (r == 3)
-			{
-				this.m.Items.equip(this.new("scripts/items/weapons/legend_scythe"));
-			}
-			else if (r == 4)
-			{
-				this.m.Items.equip(this.new("scripts/items/weapons/militia_spear"));
-			}
-			else if (r == 5)
-			{
-				this.m.Items.equip(this.new("scripts/items/weapons/pitchfork"));
-			}
-			else if (r == 6)
-			{
-				this.m.Items.equip(this.new("scripts/items/weapons/pickaxe"));
-			}
-			else if (r == 7)
-			{
-				this.m.Items.equip(this.new("scripts/items/weapons/butchers_cleaver"));
-			}
-			else if (r == 8)
-			{
-				this.m.Items.equip(this.new("scripts/items/weapons/legend_hammer"));
-			}
-			else if (r == 9)
-			{
-				this.m.Items.equip(this.new("scripts/items/weapons/legend_shovel"));
-			}
-			else if (r == 10)
-			{
-				this.m.Items.equip(this.new("scripts/items/weapons/legend_tipstaff"));
-			}
-			else if (r == 11)
-			{
-				this.m.Items.equip(this.new("scripts/items/weapons/legend_scythe"));
-			}
-
+		if (this.Math.rand(1, 100) <= 50) {
+			// Make sure not to include weapons that only have 6AP skills
+			// in this list, as zombies only have 5AP.
+			local weapons = [
+				"weapons/knife",
+				"weapons/bludgeon",
+				"weapons/militia_spear",
+				"weapons/pickaxe",
+				"weapons/butchers_cleaver",
+				"weapons/legend_hammer",
+				"weapons/legend_shovel",
+				"weapons/legend_tipstaff",
+			];
+			this.m.Items.equip(this.new("scripts/items/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
 		}
-
 
 		local aList = [
 			[1, ::Legends.Armor.Standard.leather_tunic],

@@ -5,7 +5,7 @@ this.legend_sleep_skill <- this.inherit("scripts/skills/skill", {
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendSleep);
 		this.m.Description = "";
 		this.m.Icon = "skills/active_116.png";
-		this.m.IconDisabled = "skills/active_116.png";
+		this.m.IconDisabled = "skills/active_116_bw.png";
 		this.m.Overlay = "active_116";
 		this.m.SoundOnUse = [
 			"sounds/enemies/dlc2/alp_sleep_01.wav",

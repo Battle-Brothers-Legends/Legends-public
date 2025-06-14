@@ -82,7 +82,7 @@ this.legend_orc_throwing_spear <- this.inherit("scripts/items/weapons/weapon", {
 	function onEquip()
 	{
 		this.weapon.onEquip();
-		this.addSkill(this.new("scripts/skills/actives/throw_spear_skill"));
+		::Legends.Actives.grant(this, ::Legends.Active.ThrowSpear);
 	}
 
 });

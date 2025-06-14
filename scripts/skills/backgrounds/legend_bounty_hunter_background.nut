@@ -110,6 +110,7 @@ this.legend_bounty_hunter_background <- this.inherit("scripts/skills/backgrounds
 				this.Const.Perks.MercenaryTree
 			],
 			Class = [],
+			Profession = [],
 			Magic = [
 				this.Const.Perks.AssassinMagicTree
 			]

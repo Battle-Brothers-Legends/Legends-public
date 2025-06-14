@@ -5,7 +5,7 @@ this.legend_evasion_skill <- this.inherit("scripts/skills/skill", {
 	function create()
 	{
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendEvasion);
-		this.m.Description = "Prepares the character to move safely through any Zone of Control next turn without incurring any free attacks.";
+		this.m.Description = "%name% will move safely through any Zone of Control without incurring any free attacks and the first attack done against you will be automatically evaded. Can only be used if your total armor weight is 30 or less.";
 		this.m.Icon = "skills/evasion.png";
 		this.m.IconDisabled = "skills/evasion_bw.png";
 		this.m.Overlay = "evasion";
@@ -17,9 +17,10 @@ this.legend_evasion_skill <- this.inherit("scripts/skills/skill", {
 		this.m.IsStacking = false;
 		this.m.IsAttack = false;
 		this.m.ActionPointCost = 4;
-		this.m.FatigueCost = 30;
+		this.m.FatigueCost = 20;
 		this.m.MinRange = 0;
 		this.m.MaxRange = 0;
+		this.m.IsHidden = false;
 	}
 
 	function getTooltip()
@@ -42,6 +43,13 @@ this.legend_evasion_skill <- this.inherit("scripts/skills/skill", {
 				text = this.getCostString()
 			}
 		];
+	}
+
+	function isHidden()
+	{	
+		if (this.getContainer().getActor().getItems().getStaminaModifier([::Const.ItemSlot.Body, ::Const.ItemSlot.Head]) > 30)
+			return true;
+		return false;
 	}
 
 	function isUsable()

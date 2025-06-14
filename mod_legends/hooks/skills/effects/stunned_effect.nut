@@ -12,9 +12,10 @@
 	{
 		// Legends Steel Brow Stun -> Daze logic here
 		local skill = ::Legends.Perks.get(this, ::Legends.Perk.SteelBrow);
-
-		if (skill != null)
+		local otherSkill = ::Legends.Perks.get(this, ::Legends.Perk.LegendFullForce)
+		if (skill != null || (otherSkill != null && otherSkill.m.SteelBrow))
 		{
+			skill = skill != null ? skill : otherSkill;
 			if (this.getContainer().getActor().getTile().IsVisibleForPlayer)
 			{
 				this.Tactical.EventLog.logEx(this.Const.UI.getColorizedEntityName(this.getContainer().getActor()) + " resists the Stun with " + skill.getName() + " and is Dazed instead.");

@@ -88,7 +88,7 @@ this.legend_bandit_veteran <- this.inherit("scripts/entity/tactical/human", {
 
 		if (::Legends.isLegendaryDifficulty())
 		{
-			::Legends.Perks.grant(this, ::Legends.Perk.LegendFullForce);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendImmovableObject);
 			::Legends.Perks.grant(this, ::Legends.Perk.SteelBrow);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendOnslaught);
 			::Legends.Perks.grant(this, ::Legends.Perk.Dodge);

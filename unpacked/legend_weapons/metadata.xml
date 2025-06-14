@@ -356,17 +356,17 @@
 	<sprite id="icon_legend_named_swordstaff_01" offsetY="35" ic="FF3D4550" width="130" height="142" img="icons\icon_legend_named_swordstaff_01.png" left="-52" right="14" top="-64" bottom="60" />
 	<sprite id="icon_legend_named_swordstaff_01_bloodied" offsetY="35" ic="FF363E4E" width="130" height="142" img="icons\icon_legend_named_swordstaff_01_bloodied.png" left="-52" right="14" top="-64" bottom="60" />
 
-	<sprite id="icon_legend_battle_glaive_01" offsetY="35" f1="20" f2="-45" ic="FF4E5159" width="130" height="142" img="icons\icon_legend_battle_glaive_01.png" left="-10" right="50" top="-67" bottom="13" />
-	<sprite id="icon_legend_battle_glaive_01_bloodied" offsetY="35" f1="20" f2="-45" ic="FF454856" width="130" height="142" img="icons\icon_legend_battle_glaive_01_bloodied.png" left="-10" right="50" top="-67" bottom="13" />
+	<sprite id="icon_legend_battle_glaive_01" offsetY="35" f1="20" f2="-45" ic="FF4E5159" width="130" height="142" img="icons\icon_legend_battle_glaive_01.png" left="-53" right="15" top="-55" bottom="49" />
+	<sprite id="icon_legend_battle_glaive_01_bloodied" offsetY="35" f1="20" f2="-45" ic="FF454856" width="130" height="142" img="icons\icon_legend_battle_glaive_01_bloodied.png" left="-53" right="15" top="-55" bottom="49" />
 
-	<sprite id="icon_legend_battle_glaive_02" offsetY="35" f1="20" f2="-45" ic="FF4E5159" width="130" height="142" img="icons\icon_legend_battle_glaive_02.png" left="-10" right="50" top="-67" bottom="13" />
-	<sprite id="icon_legend_battle_glaive_02_bloodied" offsetY="35" f1="20" f2="-45" ic="FF454856" width="130" height="142" img="icons\icon_legend_battle_glaive_02.png" left="-10" right="50" top="-67" bottom="13" />
+	<sprite id="icon_legend_battle_glaive_02" offsetY="35" f1="20" f2="-45" ic="FF4E5159" width="130" height="142" img="icons\icon_legend_battle_glaive_02.png" left="-53" right="15" top="-55" bottom="49" />
+	<sprite id="icon_legend_battle_glaive_02_bloodied" offsetY="35" f1="20" f2="-45" ic="FF454856" width="130" height="142" img="icons\icon_legend_battle_glaive_02.png" left="-53" right="15" top="-55" bottom="49" />
 
-	<sprite id="icon_legend_militia_glaive_01" offsetY="35" f1="20" f2="-45" ic="FF4D535A" width="130" height="142" img="icons\icon_legend_militia_glaive_01.png" left="-6" right="50" top="-60" bottom="14" />
-	<sprite id="icon_legend_militia_glaive_01_bloodied" offsetY="35" f1="20" f2="-45" ic="FF4D535A" width="130" height="142" img="icons\icon_legend_militia_glaive_01_bloodied.png" left="-6" right="50" top="-60" bottom="14" />
+	<sprite id="icon_legend_militia_glaive_01" offsetY="35" f1="20" f2="-45" ic="FF4D535A" width="130" height="142" img="icons\icon_legend_militia_glaive_01.png" left="-53" right="15" top="-55" bottom="49" />
+	<sprite id="icon_legend_militia_glaive_01_bloodied" offsetY="35" f1="20" f2="-45" ic="FF4D535A" width="130" height="142" img="icons\icon_legend_militia_glaive_01_bloodied.png" left="-53" right="15" top="-55" bottom="49" />
 
-	<sprite id="icon_legend_named_glaive_01" offsetY="35" f1="20" f2="-45" ic="FF586572" width="130" height="142" img="icons\icon_legend_named_glaive_01.png" left="-7" right="55" top="-61" bottom="21" />
-	<sprite id="icon_legend_named_glaive_01_bloodied" offsetY="35" f1="20" f2="-45" ic="FF56616F" width="130" height="142" img="icons\icon_legend_named_glaive_01_bloodied.png" left="-7" right="55" top="-61" bottom="21" />
+	<sprite id="icon_legend_named_glaive_01" offsetY="35" f1="20" f2="-45" ic="FF586572" width="130" height="142" img="icons\icon_legend_named_glaive_01.png" left="-53" right="15" top="-55" bottom="49" />
+	<sprite id="icon_legend_named_glaive_01_bloodied" offsetY="35" f1="20" f2="-45" ic="FF56616F" width="130" height="142" img="icons\icon_legend_named_glaive_01_bloodied.png" left="-53" right="15" top="-55" bottom="49" />
 	<sprite id="icon_legend_named_glaive_02" offsetY="35" ic="FF3B404A" width="96" height="146" img="icons\icon_legend_named_glaive_02.png" left="-60" right="14" top="-58" bottom="54" />
 	<sprite id="icon_legend_named_glaive_02_bloodied" offsetY="35" ic="FF3B404A" width="96" height="146" img="icons\icon_legend_named_glaive_02_bloodied.png" left="-60" right="14" top="-58" bottom="54" />
 

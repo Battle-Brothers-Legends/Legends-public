@@ -73,7 +73,10 @@ this.legend_entrancer_background <- this.inherit("scripts/skills/backgrounds/cha
 			],
 			Enemy = [],
 			Class = [],
-			Magic = [this.Const.Perks.ValaTranceMagicTree]
+			Profession = [],
+			Magic = [
+				this.Const.Perks.ValaTranceMagicTree
+			]
 		}
 	}
 

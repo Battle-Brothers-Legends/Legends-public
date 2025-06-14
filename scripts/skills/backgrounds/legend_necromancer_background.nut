@@ -64,7 +64,10 @@ this.legend_necromancer_background <- this.inherit("scripts/skills/backgrounds/c
 			],
 			Enemy = [],
 			Class = [],
-			Magic = [this.Const.Perks.BasicNecroMagicTree]
+			Profession = [],
+			Magic = [
+				this.Const.Perks.BasicNecroMagicTree
+			]
 		}
 	}
 

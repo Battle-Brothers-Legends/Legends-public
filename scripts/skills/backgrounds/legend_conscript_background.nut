@@ -104,6 +104,7 @@ this.legend_conscript_background <- this.inherit("scripts/skills/backgrounds/cha
 			],
 			Enemy = [],
 			Class = [],
+			Profession = [],
 			Magic = []
 		}
 	}

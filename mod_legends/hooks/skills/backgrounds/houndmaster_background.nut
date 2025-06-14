@@ -59,6 +59,9 @@
 			Class = [
 				this.Const.Perks.HoundmasterClassTree
 			],
+			Profession = [
+				this.Const.Perks.DogBreederProfessionTree
+			], 
 			Magic = []
 		}
 	}

@@ -58,6 +58,7 @@
 				this.Const.Perks.NinetailsClassTree,
 				this.Const.Perks.FaithClassTree
 			],
+			Profession = [], 
 			Magic = []
 		}
 	}

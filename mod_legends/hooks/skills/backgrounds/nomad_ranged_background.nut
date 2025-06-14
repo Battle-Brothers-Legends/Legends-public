@@ -4,6 +4,33 @@
 	{
 		this.nomad_background.create();
 		this.m.HiringCost = 300;
+		this.m.PerkTreeDynamic = {
+			Weapon = [
+				this.Const.Perks.MaceTree,
+				this.Const.Perks.SpearTree,
+				this.Const.Perks.BowTree,
+				this.Const.Perks.SlingTree
+			],
+			Defense = [
+				this.Const.Perks.LightArmorTree
+			],
+			Traits = [
+				this.Const.Perks.ViciousTree,
+				this.Const.Perks.FastTree,
+				this.Const.Perks.AgileTree,
+				this.Const.Perks.DeviousTree
+			],
+			Enemy = [
+				this.Const.Perks.SouthernersTree,
+				this.Const.Perks.DirewolfTree,
+				this.Const.Perks.ArcherTree
+			],
+			Class = [
+				this.Const.Perks.SlingClassTree
+			],
+			Profession = [],
+			Magic = []
+		}
 	}
 
 	o.onChangeAttributes = function ()

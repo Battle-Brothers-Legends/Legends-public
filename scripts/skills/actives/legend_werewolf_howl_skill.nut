@@ -61,9 +61,8 @@ this.legend_werewolf_howl_skill <- this.inherit("scripts/skills/skill", {
 			Self = _user,
 			Skill = this
 		};
-		this.Tactical.queryActorsInRange(_user.getTile(), 6, this.raiseMorale, this.result);
+		this.Tactical.queryActorsInRange(_user.getTile(), 1, 6, this.raiseMorale, this.result);
 		return true;
 	}
 
 });
-

@@ -68,7 +68,8 @@
 				this.Const.Perks.FastTree
 			],
 			Enemy = [],
-			Class = []
+			Class = [],
+			Profession = [], 
 			Magic = []
 		}
 	}

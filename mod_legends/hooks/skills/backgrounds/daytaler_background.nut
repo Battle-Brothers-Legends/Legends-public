@@ -51,6 +51,7 @@
 				0.0, //desert
 				0.0 //oasis
 			];
+		this.m.PerkTreeDynamicMins.ClassChance += 0.20;
 		this.m.PerkTreeDynamic = {
 			Weapon = [
 				this.Const.Perks.HammerTree,
@@ -71,6 +72,7 @@
 			],
 			Enemy = [],
 			Class = [],
+			Profession = [], 
 			Magic = []
 		}
 	}

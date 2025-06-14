@@ -28,6 +28,10 @@
 						}
 					}
 
+					// Keep two separe lists so candle changes can be displayed first
+					local moodChanges = [];
+					local candleChanges = [];
+
 					foreach( bro in brothers ) {
 						if (bro.getSkills().hasEffect(::Legends.Effect.LegendAnimatedPlayerProperties))
 							continue;
@@ -36,7 +40,7 @@
 							bro.improveMood(3.0, "Appeased Davkul");
 
 							if (bro.getMoodState() >= this.Const.MoodState.Neutral) {
-								this.List.push({
+								moodChanges.push({
 									id = 10,
 									icon = this.Const.MoodStateIcon[bro.getMoodState()],
 									text = bro.getName() + this.Const.MoodStateEvent[bro.getMoodState()]
@@ -58,33 +62,33 @@
 								hasProphet = true;
 								this.updateAchievement("VoiceOfDavkul", 1, 1);
 								::Legends.Traits.remove(skills, ::Legends.Trait.CultistChosen);
-								skill = ::Legends.Actives.grant(this, ::Legends.Active.VoiceOfDavkul, function (_skill) {
-									this.List.push({
-										id = 10,
-										icon = _skill.getIcon(),
-										text = bro.getName() + " has received " + this.Const.Strings.getArticle(_skill.getName()) + _skill.getName()
-									});
-								}.bindenv(this));
+								::Legends.Actives.grant(bro, ::Legends.Active.VoiceOfDavkul);
+								skill = ::Legends.Actives.get(bro, ::Legends.Active.VoiceOfDavkul);
+								candleChanges.push({
+									id = 10,
+									icon = skill.getIcon(),
+									text = bro.getName() + " has received " + this.Const.Strings.getArticle(skill.getName()) + skill.getName()
+								});
 
 								::Legends.Traits.grant(skills, ::Legends.Trait.CultistProphet);
 							} else if (skills.hasTrait(::Legends.Trait.CultistDisciple)) {
 								::Legends.Traits.remove(skills, ::Legends.Trait.CultistDisciple);
-								::Legends.Traits.grant(skills, ::Legends.Trait.CultistChosen);
+								skill = ::Legends.Traits.grant(skills, ::Legends.Trait.CultistChosen);
 							} else if (skills.hasTrait(::Legends.Trait.CultistAcolyte)) {
 								::Legends.Traits.remove(skills, ::Legends.Trait.CultistAcolyte);
-								::Legends.Traits.grant(skills, ::Legends.Trait.CultistDisciple);
+								skill = ::Legends.Traits.grant(skills, ::Legends.Trait.CultistDisciple);
 							} else if (skills.hasTrait(::Legends.Trait.CultistZealot)) {
 								::Legends.Traits.remove(skills, ::Legends.Trait.CultistZealot);
-								::Legends.Traits.grant(skills, ::Legends.Trait.CultistAcolyte);
+								skill = ::Legends.Traits.grant(skills, ::Legends.Trait.CultistAcolyte);
 							} else if (skills.hasTrait(::Legends.Trait.GloriousQuickness)) {
 								::Legends.Traits.remove(skills, ::Legends.Trait.GloriousQuickness);
-								::Legends.Traits.grant(skills, ::Legends.Trait.CultistZealot);
+								skill = ::Legends.Traits.grant(skills, ::Legends.Trait.CultistZealot);
 							} else {
-								::Legends.Traits.grant(skills, ::Legends.Trait.CultistFanatic);
+								skill = ::Legends.Traits.grant(skills, ::Legends.Trait.CultistFanatic);
 							}
 
 							if (skill != null) {
-								this.List.push({
+								candleChanges.push({
 									id = 10,
 									icon = skill.getIcon(),
 									text = bro.getName() + " is now " + this.Const.Strings.getArticle(skill.getName()) + skill.getName()
@@ -94,7 +98,7 @@
 							bro.worsenMood(2.5, "Horrified by the sacrifice of " + _event.m.Sacrifice.getName());
 
 							if (bro.getMoodState() < this.Const.MoodState.Neutral) {
-								this.List.push({
+								moodChanges.push({
 									id = 10,
 									icon = this.Const.MoodStateIcon[bro.getMoodState()],
 									text = bro.getName() + this.Const.MoodStateEvent[bro.getMoodState()]
@@ -102,6 +106,14 @@
 							}
 						}
 					}
+
+					foreach (_, c in candleChanges) {
+						this.List.push(c);
+					}
+					foreach (_, c in moodChanges) {
+						this.List.push(c);
+					}
+
 				}
 			}
 		}

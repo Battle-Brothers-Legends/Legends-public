@@ -1,98 +1,93 @@
 this.perk_legend_freedom_of_movement <- this.inherit("scripts/skills/skill", {
-	m = {},
+	m = {
+		Skills = [
+			::Legends.Actives.getID(::Legends.Active.Lunge),
+			::Legends.Actives.getID(::Legends.Active.Footwork),
+			::Legends.Actives.getID(::Legends.Active.Rotation),
+			::Legends.Actives.getID(::Legends.Active.LegendTumble),
+			::Legends.Actives.getID(::Legends.Active.LegendLeap),
+			::Legends.Actives.getID(::Legends.Active.LegendHorsePirouette),
+			::Legends.Actives.getID(::Legends.Active.LegendQuickStep),
+			::Legends.Actives.getID(::Legends.Active.LegendEvasion)
+		]
+	},
 	function create()
 	{
 		::Const.Perks.setup(this.m, ::Legends.Perk.LegendFreedomOfMovement);
-		this.m.Description = "You are moving with freedom.";
-		this.m.Type = this.Const.SkillType.Perk | this.Const.SkillType.StatusEffect;
+		this.m.Type = this.Const.SkillType.Perk;
 		this.m.Order = this.Const.SkillOrder.Perk;
 		this.m.IsActive = false;
 		this.m.IsStacking = false;
 		this.m.IsHidden = false;
 	}
 
-	function getTooltip()
+	function onAfterUpdate(_properties)
 	{
-		local tooltip = this.skill.getTooltip();
-		tooltip.push({
-			id = 6,
-			type = "text",
-			icon = "ui/icons/special.png",
-			text = "Gain hit point damage reduction proportional to the difference between your current initiative and your attacker\'s, up to 80% for 100 initiative."
-		});
-		return tooltip;
-	}
-
-	function getBonus( _attacker, _defender )
-	{
-		local bonus = 1;
-		if (::MSU.isNull(_attacker) || ::MSU.isNull(_defender)) return bonus;
-
-		local defenderCurrentInitiative = _defender.getInitiative();
-		local attackerCurrentInitiative = _attacker.getInitiative();
-
-		if (defenderCurrentInitiative > attackerCurrentInitiative)
+		local skills = this.getContainer().getAllSkillsOfType(this.Const.SkillType.Active);
+		foreach (skill in skills)
 		{
-			local diff = (defenderCurrentInitiative - attackerCurrentInitiative) / 100.0;
-			local diffPoint = this.Math.minf(1, this.Math.pow(diff, 0.4)) * 0.80;
-			bonus = 1 - diffPoint;
+			if (this.m.Skills.find(skill.getID()) != null)
+			{
+				skill.m.FatigueCostMult *= 0.5;
+
+				if (skill.getID() == ::Legends.Actives.getID(::Legends.Active.LegendLeap) || skill.getID() == ::Legends.Actives.getID(::Legends.Active.LegendEvasion))
+				{
+					skill.m.ActionPointCost /= 2;
+				}
+				else if (skill.getID() == ::Legends.Actives.getID(::Legends.Active.LegendQuickStep))
+				{
+					skill.m.ActionPointCost /= 2;
+				}
+				else if (skill.getID() != ::Legends.Actives.getID(::Legends.Active.Lunge) && skill.getID() != ::Legends.Actives.getID(::Legends.Active.LegendQuickStep))
+				{
+					skill.m.ActionPointCost -= 1; //For Footwork, Tumble, and Rotation
+				}
+			}
 		}
-
-		return bonus;
 	}
 
-	function onBeforeDamageReceived( _attacker, _skill, _hitInfo, _properties )
+	function onAdded()
 	{
-		if (_attacker == null || _attacker != null && _attacker.getID() == this.getContainer().getActor().getID() || _skill == null || !_skill.isAttack() || !_skill.isUsingHitchance())
-		{
+		if (!this.m.IsNew)
 			return;
-		}
 
-		local bonus = this.getBonus(_attacker, this.getContainer().getActor());
-
-		_properties.DamageReceivedRegularMult *= bonus;
-	}
-
-	// MSU custom-added event
-	function onOtherActorTooltip( _tooltip, _targetActor )
-	{
-		if (::MSU.isNull(_targetActor) || _targetActor.isPlayerControlled())
+		local addPerk = function ( _perk, _row = 0 )
 		{
-			return;
+			local actor = this.getContainer().getActor();
+			if (!actor.isPlayerControlled())
+				return;
+
+			local bg = actor.getBackground();
+			local hasRow = false;
+			local direction = -1;
+			local row = _row;
+			while (row >= 0 && row <= 6)
+			{
+				if (bg.m.CustomPerkTree[row].len() < 13)
+				{
+					hasRow = true;
+					break;
+				}
+
+				row += direction;
+
+				if (row == -1)
+				{
+					row = _row;
+					direction = 1;
+				}
+			}
+
+			row = hasRow ? this.Math.max(0, this.Math.min(row, 6)) : _row;
+			bg.addPerk(_perk, row);
 		}
 
-		local bonus = (1 - this.getBonus( _targetActor, this.getContainer().getActor() )) * 100;
-
-		_tooltip.push({
-			id = "10",
-			type = "hint",
-			icon = "ui/perks/freedom_of_movement_circle.png",
-			text = "Receive " + ::Const.UI.getColorized(::Math.round(bonus) + "%", ::Const.UI.Color.PositiveValue) + " less damage from this character due to the current difference in Initiative"
-		});
+		if (!this.getContainer().hasPerk(::Legends.Perk.Footwork))
+			addPerk(this.Const.Perks.PerkDefs.Footwork, 4);
+		if (!this.getContainer().hasPerk(::Legends.Perk.LegendQuickStep))
+			addPerk(this.Const.Perks.PerkDefs.Footwork, 2);
+		if (!this.getContainer().hasPerk(::Legends.Perk.Rotation))
+			addPerk(this.Const.Perks.PerkDefs.Footwork, 3);
 	}
-
-	// MSU function
-	function onGetHitFactorsAsTarget( _skill, _targetTile, _tooltip )
-	{
-		local attacker = ::MSU.isNull(_skill) ? null : _skill.getContainer().getActor();
-
-		if (::MSU.isNull(attacker))
-		{
-			return;
-		}
-
-		local bonus = (1 - this.getBonus(attacker, this.getContainer().getActor())) * 100;
-
-		if (bonus > 0)
-		{
-			_tooltip.push({
-				id = "10",
-				type = "text",
-				icon = "ui/icons/damage_dealt.png",
-				text = ::Const.UI.getColorized("-" + ::Math.round(bonus) + "%", ::Const.UI.Color.NegativeValue) + " damage from " + this.m.Name,
-			})
-		}
-	}
-
 });
 

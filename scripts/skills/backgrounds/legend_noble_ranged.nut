@@ -79,6 +79,7 @@ this.legend_noble_ranged <- this.inherit("scripts/skills/backgrounds/character_b
 				this.Const.Perks.OutlandersTree,
 				this.Const.Perks.NoblesTree
 			],
+			Profession = [],
 			Class = [],
 			Magic = []
 		}

@@ -73,10 +73,12 @@
 				this.Const.Perks.NoblesTree
 			],
 			Class = [
-				this.Const.Perks.BardClassTree,
 				this.Const.Perks.JugglerClassTree
 			],
-			Magic = []
+			Profession = [], 
+			Magic = [
+				this.Const.Perks.BardMagicTree,
+			]
 		}
 	}
 

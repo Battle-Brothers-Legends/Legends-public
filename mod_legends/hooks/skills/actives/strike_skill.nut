@@ -13,10 +13,8 @@
 		}
 	}
 
-	local onAnySkillUsed = o.onAnySkillUsed;
 	o.onAnySkillUsed = function ( _skill, _targetEntity, _properties )
 	{
-		onAnySkillUsed( _skill, _targetEntity, _properties );
 		if (_skill == this)
 		{
 			if (!this.m.ApplyAxeMastery)

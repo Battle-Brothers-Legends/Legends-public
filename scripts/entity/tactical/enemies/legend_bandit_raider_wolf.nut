@@ -67,6 +67,9 @@ this.legend_bandit_raider_wolf <- this.inherit("scripts/entity/tactical/enemies/
 				[1, ::Legends.Helmet.Standard.nasal_helmet_with_rusty_mail]
 			]));
 		}
+
+		this.assignPerks();
+
 	}
 
 });

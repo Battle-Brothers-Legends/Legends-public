@@ -62,7 +62,9 @@ if (!("Perks" in ::Const))
 			::Legends.Perk.Footwork
 		],
 		[],
-		[]
+		[
+			::Legends.Perk.LegendInTheZone
+		]
 	]
 };
 ::Const.Perks.IndestructibleTree <- {
@@ -303,7 +305,7 @@ if (!("Perks" in ::Const))
 	},
 	Tree = [
 		[
-			::Legends.Perk.LegendStrengthInNumbers
+			::Legends.Perk.LegendBlendIn
 		],
 		[
 			::Legends.Perk.LegendTrueBeliever

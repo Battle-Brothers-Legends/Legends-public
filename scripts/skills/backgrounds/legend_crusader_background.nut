@@ -93,8 +93,10 @@ this.legend_crusader_background <- this.inherit("scripts/skills/backgrounds/char
 				this.Const.Perks.GhoulTree
 			],
 			Class = [
-				this.Const.Perks.RepairClassTree,
 				this.Const.Perks.FaithClassTree
+			],
+			Profession = [
+				this.Const.Perks.RepairProfessionTree
 			],
 			Magic = []
 		};

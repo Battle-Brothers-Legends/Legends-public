@@ -3,6 +3,7 @@
 	o.create = function () {
 		create();
 		this.m.Variant = this.Math.rand(20, 26);
+		this.updateVariant();
 	}
 
 	o.updateVariant = function () {

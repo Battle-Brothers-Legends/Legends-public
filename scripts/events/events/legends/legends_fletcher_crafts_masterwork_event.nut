@@ -262,7 +262,7 @@ this.legends_fletcher_crafts_masterwork_event <- this.inherit("scripts/events/ev
 			"bowyer",
 			this.m.Bowyer.getNameOnly()
 		]);
-		::Const.LegendMod.extendVarsWithPronouns(_vars, this.m.Other.getGender(), "bowyer");
+		::Const.LegendMod.extendVarsWithPronouns(_vars, this.m.Bowyer.getGender(), "bowyer");
 	}
 
 	function onClear()

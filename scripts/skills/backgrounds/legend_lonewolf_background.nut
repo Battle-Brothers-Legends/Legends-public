@@ -113,6 +113,7 @@ this.legend_lonewolf_background <- this.inherit("scripts/skills/backgrounds/char
 				this.Const.Perks.SwordmastersTree
 			],
 			Class = [],
+			Profession = [],
 			Magic = [
 				this.Const.Perks.ImmortalMagicTree
 			]

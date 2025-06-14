@@ -68,7 +68,10 @@
 				this.Const.Perks.ViciousTree
 			],
 			Enemy = [],
-			Class = [this.Const.Perks.RepairClassTree],
+			Class = [],
+			Profession = [
+				this.Const.Perks.RepairProfessionTree
+			], 
 			Magic = []
 		}
 	}

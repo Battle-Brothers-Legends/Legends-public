@@ -32,22 +32,29 @@ this.legend_specialist_abstract <- this.inherit("scripts/skills/skill", {
 	{
 		if (hasSpecialistWeapon(_item))
 			return true;
+		local included = false;
 		foreach (type in this.m.ApplicableItemTypes)
 		{
-			if (!_item.isItemType(type))
+			if (_item.isItemType(type))
 			{
-				return false;
+				included = true;
+				break;
 			}
 		}
+		if (!included && this.m.ApplicableItemTypes.len() > 0)
+			return false;
 
+		included = false;
 		foreach (type in this.m.ApplicableWeaponTypes)
 		{
-			if (!_item.isWeaponType(type))
+			if (_item.isWeaponType(type))
 			{
-				return false;
+				included = true;
+				break;
 			}
 		}
-
+		if (!included && this.m.ApplicableWeaponTypes.len() > 0)
+			return false;
 		foreach (type in this.m.ExcludedItemTypes)
 		{
 			if (_item.isItemType(type))
@@ -55,7 +62,6 @@ this.legend_specialist_abstract <- this.inherit("scripts/skills/skill", {
 				return false;
 			}
 		}
-
 		foreach (type in this.m.ExcludedWeaponTypes)
 		{
 			if (_item.isWeaponType(type))
@@ -63,7 +69,6 @@ this.legend_specialist_abstract <- this.inherit("scripts/skills/skill", {
 				return false;
 			}
 		}
-
 		return true;
 	}
 

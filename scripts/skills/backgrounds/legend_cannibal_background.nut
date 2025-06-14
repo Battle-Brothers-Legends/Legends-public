@@ -46,8 +46,10 @@ this.legend_cannibal_background <- this.inherit("scripts/skills/backgrounds/char
 				this.Const.Perks.CaravanTree
 			],
 			Class = [
-				this.Const.Perks.ButcherClassTree,
-				this.Const.Perks.ChefClassTree
+				this.Const.Perks.ButcherClassTree
+			],
+			Profession = [
+				this.Const.Perks.ChefProfessionTree
 			],
 			Magic = []
 		}

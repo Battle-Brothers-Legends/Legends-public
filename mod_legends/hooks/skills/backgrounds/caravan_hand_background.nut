@@ -73,6 +73,7 @@
 				this.Const.Perks.OutlandersTree
 			],
 			Class = [],
+			Profession = [],
 			Magic = []
 		}
 	}
@@ -161,11 +162,10 @@
 			[1, ::Legends.Armor.Standard.leather_tunic]
 		]));
 
-		local item = this.Const.World.Common.pickHelmet([
+		items.equip(this.Const.World.Common.pickHelmet([
 			[1, ::Legends.Helmet.Standard.headscarf],
 			[1, ::Legends.Helmet.Standard.open_leather_cap]
-		]);
-		items.equip(item);
+		]));
 	}
 
 });

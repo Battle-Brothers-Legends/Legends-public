@@ -975,15 +975,15 @@ perkDefObjects.push({
 	Const = "LegendSleep"
 });
 
-::Legends.Perk.LegendFullForce <- null;
+::Legends.Perk.LegendImmovableObject <- null;
 perkDefObjects.push({
-	ID = "perk.legend_full_force",
-	Script = "scripts/skills/perks/perk_legend_full_force",
-	Name = ::Const.Strings.PerkName.LegendFullForce,
-	Tooltip = ::Const.Strings.PerkDescription.LegendFullForce,
+	ID = "perk.legend_immovable_object",
+	Script = "scripts/skills/perks/perk_legend_immovable_object",
+	Name = ::Const.Strings.PerkName.LegendImmovableObject,
+	Tooltip = ::Const.Strings.PerkDescription.LegendImmovableObject,
 	Icon = "ui/perks/fullforce_circle.png",
 	IconDisabled = "ui/perks/fullforce_circle_bw.png",
-	Const = "LegendFullForce"
+	Const = "LegendImmovableObject"
 });
 
 ::Legends.Perk.LegendLookout <- null;
@@ -3179,17 +3179,6 @@ perkDefObjects.push({
 	Const = "LegendClimb"
 });
 
-::Legends.Perk.LegendSmallTarget <- null;
-perkDefObjects.push({
-	ID = "perk.legend_small_target",
-	Script = "scripts/skills/perks/perk_legend_small_target",
-	Name = ::Const.Strings.PerkName.LegendSmallTarget,
-	Tooltip = ::Const.Strings.PerkDescription.LegendSmallTarget,
-	Icon = "ui/perks/small_target.png",
-	IconDisabled = "ui/perks/small_target_bw.png",
-	Const = "LegendSmallTarget"
-});
-
 ::Legends.Perk.LegendFashionable <- null;
 perkDefObjects.push({
 	ID = "perk.legend_fashionable",
@@ -3199,17 +3188,6 @@ perkDefObjects.push({
 	Icon = "ui/perks/fashionable.png",
 	IconDisabled = "ui/perks/fashionable_bw.png",
 	Const = "LegendFashionable"
-});
-
-::Legends.Perk.LegendUnburdened <- null;
-perkDefObjects.push({
-	ID = "perk.legend_unburdened",
-	Script = "scripts/skills/perks/perk_legend_unburdened",
-	Name = ::Const.Strings.PerkName.LegendUnburdened,
-	Tooltip = ::Const.Strings.PerkDescription.LegendUnburdened,
-	Icon = "ui/perks/meek.png",
-	IconDisabled = "ui/perks/meek_bw.png",
-	Const = "LegendUnburdened"
 });
 
 ::Legends.Perk.LegendHelpful <- null;
@@ -3982,6 +3960,17 @@ perkDefObjects.push({
 	Const = "LegendWoodworking"
 });
 
+::Legends.Perk.LegendOreHunter <- null;
+perkDefObjects.push({
+	ID = "perk.legend_ore_hunter",
+	Script = "scripts/skills/perks/perk_legend_ore_hunter",
+	Name = this.Const.Strings.PerkName.LegendOreHunter,
+	Tooltip = this.Const.Strings.PerkDescription.LegendOreHunter,
+	Icon = "ui/perks/pickaxe_02.png",
+	IconDisabled = "ui/perks/pickaxe_bw.png",
+	Const = "LegendOreHunter"
+});
+
 ::Legends.Perk.LegendSurpressUrges <- null;
 perkDefObjects.push({
 	ID = "perk.legend_surpress_urges",
@@ -4486,6 +4475,28 @@ perkDefObjects.push({
 	Icon = "ui/perks/perk_spec_javelin.png",
 	IconDisabled = "ui/perks/perk_spec_javelin_bw.png",
 	Const = "LegendSpecialistSpearfisher"
+});
+
+::Legends.Perk.LegendHimshaw <- null;
+perkDefObjects.push({
+	ID = "perk.legend_himshaw",
+	Script = "scripts/skills/perks/perk_legend_himshaw",
+	Name = ::Const.Strings.PerkName.LegendHimshaw,
+	Tooltip = ::Const.Strings.PerkDescription.LegendHimshaw,
+	Icon = "ui/perks/himshaw.png",
+	IconDisabled = "ui/perks/himshaw_bw.png",
+	Const = "LegendHimshaw"
+});
+
+::Legends.Perk.LegendSwagger <- null;
+perkDefObjects.push({
+	ID = "perk.legend_swagger",
+	Script = "scripts/skills/perks/perk_legend_swagger",
+	Name = ::Const.Strings.PerkName.LegendSwagger,
+	Tooltip = ::Const.Strings.PerkDescription.LegendSwagger,
+	Icon = "ui/perks/meek.png",
+	IconDisabled = "ui/perks/meek_bw.png",
+	Const = "LegendSwagger"
 });
 
 ::Const.Perks.addPerkDefObjects(perkDefObjects);

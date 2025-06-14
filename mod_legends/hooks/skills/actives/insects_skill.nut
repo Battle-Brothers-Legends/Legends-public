@@ -6,6 +6,7 @@
 		create();
 		this.m.Icon = "skills/insects_square.png";
 		this.m.IconDisabled = "skills/insects_square_bw.png";
+		this.m.MaxLevelDifference = 8;
 	}
 
 	o.getTooltip <- function ()

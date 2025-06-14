@@ -224,7 +224,10 @@ this.perk_legend_adaptive <- this.inherit("scripts/skills/skill", {
 	function getWeaponPerkTree( _item )
 	{
 		switch(true) {
-		    //Shovel
+		//Banner
+			case _item.getID() == "weapon.player_banner":
+				return this.Const.Perks.InspirationalTree;
+	    //Shovel
 	        case _item.getID() == "weapon.legend_shovel" || _item.getID() == "weapon.legend_named_shovel":
 	            return this.Const.Perks.ShovelClassTree;
 

@@ -99,7 +99,8 @@
 				this.Const.Perks.IndestructibleTree
 			],
 			Enemy = [this.Const.Perks.SouthernersTree],
-			Class = []
+			Class = [],
+			Profession = [], 
 			Magic = []
 		}
 	}

@@ -15,10 +15,9 @@
 		}
 	}
 
-	local getTooltip = o.getTooltip;
 	o.getTooltip = function()
 	{
-		local ret = getTooltip();
+		local ret = this.getDefaultTooltip();
 		if (this.m.IsChain)
 		{
 			ret.push({

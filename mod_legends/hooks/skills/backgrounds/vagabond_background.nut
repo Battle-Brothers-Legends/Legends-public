@@ -63,6 +63,7 @@
 			Class = [
 				this.Const.Perks.StaffClassTree
 			],
+			Profession = [], 
 			Magic = []
 		}
 	}

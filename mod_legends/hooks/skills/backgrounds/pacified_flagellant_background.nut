@@ -52,11 +52,12 @@
 			Enemy = [],
 			Class = [
 				this.Const.Perks.NinetailsClassTree,
-				this.Const.Perks.HealerClassTree,
 				this.Const.Perks.FaithClassTree
 				],
-			Magic = [
-			]
+			Profession = [
+				this.Const.Perks.HealerProfessionTree,
+			], 
+			Magic = []
 		}
 	}
 

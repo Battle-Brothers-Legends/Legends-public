@@ -117,11 +117,16 @@ this.legend_sling_heavy_stone_skill <- this.inherit("scripts/skills/skill", {
 	}
 
 	function onAfterUpdate( _properties )
-	{
-		this.m.MaxRange = this.m.Item.getRangeMax() + (_properties.IsSpecializedInSlings ? 1 : 0);
-		this.m.AdditionalAccuracy = _properties.IsSpecializedInSlings ? 0 : -5;
-		this.m.AdditionalHitChance = _properties.IsSpecializedInSlings ? -2 : -4;
-		this.m.FatigueCostMult = _properties.IsSpecializedInSlings ? this.Const.Combat.WeaponSpecFatigueMult : 1.0;
+	{	
+		this.m.MaxRange = this.m.Item.getRangeMax();
+		this.m.AdditionalAccuracy = this.m.Item.getAdditionalAccuracy();
+		if (_properties.IsSpecializedInSlings)
+		{
+			this.m.MaxRange = this.m.Item.getRangeMax() + 1;
+			this.m.AdditionalAccuracy += 5;
+			this.m.AdditionalHitChance += 2;
+			this.m.FatigueCostMult = this.Const.Combat.WeaponSpecFatigueMult;
+		}
 		if (_properties.IsSpecializedInSlings && this.getContainer().hasPerk(::Legends.Perk.LegendBarrage))
 		{
 			this.m.ActionPointCost = 7;

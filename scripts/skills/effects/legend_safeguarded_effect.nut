@@ -116,13 +116,13 @@ this.legend_safeguarded_effect <- this.inherit("scripts/skills/skill", {
 
 		if (attackerIsAdjacentToWard && attackerIsAdjacentToProtector && protectorIsAdjacentToWard)
 		{
-			ret = _skill.attackEntity(_user, this.m.Protector);
+			ret = _skill.attackEntity(_attacker, this.m.Protector);
 		}
 
 		if ((attackerIsAdjacentToWard || _skill.isRanged()) && !attackerIsAdjacentToProtector && !protectorHasAdjacentEnemies && protectorIsAdjacentToWard && canRotate)
 		{
 			this.rotate(this.m.Protector, this.getContainer().getActor());
-			ret = _skill.attackEntity(_user, this.m.Protector);
+			ret = _skill.attackEntity(_attacker, this.m.Protector);
 			rotate = true;
 		}
 

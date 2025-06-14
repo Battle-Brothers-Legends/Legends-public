@@ -1,10 +1,26 @@
 ::mods_hookExactClass("skills/actives/split_shield", function(o)
 {
 	o.m.IsOrcWeapon <- false;
+	o.m.OverflowDamage <- 0;
 
 	o.setApplyOrcWeapon <- function ( _f )
 	{
 		this.m.IsOrcWeapon = _f;
+	}
+
+	o.calculateDamage <- function (_target)
+	{
+		local mastery = this.m.ApplyAxeMastery && this.getContainer().getActor().getCurrentProperties().IsSpecializedInAxes;
+		local damage = this.getItem().getShieldDamage();
+		local shield = _target.getItems().getItemAtSlot(this.Const.ItemSlot.Offhand);
+
+		if (mastery)
+			damage += this.Math.max(1, damage / 2);
+
+		if (shield.getID() == "shield.legend_parrying_dagger" || shield.getID() == "shield.legend_named_parrying_dagger")
+			damage *= 0.20;
+
+		return this.Math.floor(damage);
 	}
 
 	o.onUse = function ( _user, _targetTile )
@@ -15,16 +31,7 @@
 		if (shield != null)
 		{
 			this.spawnAttackEffect(_targetTile, this.Const.Tactical.AttackEffectSplitShield);
-			local damage = _user.getItems().getItemAtSlot(this.Const.ItemSlot.Mainhand).getShieldDamage();
-
-			if (this.m.ApplyAxeMastery && _user.getCurrentProperties().IsSpecializedInAxes)
-			{
-				damage = damage + this.Math.max(1, damage / 2);
-			}
-			if (shield.getID() == "weapon.legend_parrying_dagger" || shield.getID() == "shield.legend_named_parrying_dagger")
-			{
-				damage *= 0.20;
-			}
+			local damage = calculateDamage(target);
 
 			local conditionBefore = shield.getCondition();
 			shield.applyShieldDamage(damage);
@@ -40,26 +47,16 @@
 			{
 				if (!_user.isHiddenToPlayer() && _targetTile.IsVisibleForPlayer)
 				{
-					local logMessage = this.Const.UI.getColorizedEntityName(_user) + " has destroyed " + this.Const.UI.getColorizedEntityName(_targetTile.getEntity()) + "\'s shield";
+					local logMessage = this.Const.UI.getColorizedEntityName(_user) + " has destroyed " + this.Const.UI.getColorizedEntityName(target) + "\'s shield";
 					if (this.getContainer().hasPerk(::Legends.Perk.LegendSmashingShields))
 					{
 						_user.setActionPoints(this.Math.min(_user.getActionPointsMax(), _user.getActionPoints() + 4));
 						this.Tactical.EventLog.log(logMessage + " and recovered 4 Action Points");
-						if (overflowDamage > 1)
+						if (overflowDamage > 0)
 						{
-							local p = this.getContainer().buildPropertiesForUse(this, target);
-							local hitInfo = clone this.Const.Tactical.HitInfo;
-							local damageMult = p.MeleeDamageMult * p.DamageTotalMult;
-							local damageRegular = overflowDamage * p.DamageRegularMult;
-							local damageArmor = overflowDamage * p.DamageArmorMult;
-							local damageDirect = this.Math.minf(1.0, p.DamageDirectMult * (this.m.DirectDamageMult + p.DamageDirectAdd + p.DamageDirectMeleeAdd));
-							hitInfo.DamageRegular = damageRegular * damageMult;
-							hitInfo.DamageArmor = damageArmor * damageMult;
-							hitInfo.DamageDirect = damageDirect;
-							hitInfo.BodyPart = this.Const.BodyPart.Body;
-							hitInfo.BodyDamageMult = 1.0;
-							hitInfo.FatalityChanceMult = 0.0;
-							target.onDamageReceived(this.getContainer().getActor(), this, hitInfo);
+							this.m.OverflowDamage = overflowDamage;
+							attackEntity(_user, target);
+							this.m.OverflowDamage = 0;
 						}
 					}
 					else
@@ -98,6 +95,25 @@
 		onAfterUpdate( _properties );
 		if (this.m.IsOrcWeapon)
 			this.m.ActionPointCost = 5;
+	}
+
+	o.onAnySkillUsed = function ( _skill, _targetEntity, _properties )
+	{	
+		if (_skill != this)
+			return;
+
+		if (this.m.MaxRange > 1)
+		{
+			if (_targetEntity != null && !this.getContainer().getActor().getCurrentProperties().IsSpecializedInAxes && this.getContainer().getActor().getTile().getDistanceTo(_targetEntity.getTile()) == 1)
+			{
+				_properties.MeleeSkill += -15;
+				this.m.HitChanceBonus -= 15;
+			}
+		}
+		_properties.DamageRegularMin = this.m.OverflowDamage;
+		_properties.DamageRegularMax = this.m.OverflowDamage;
+		_properties.HitChanceMult[this.Const.BodyPart.Head] = 0.0;
+		_properties.HitChanceMult[this.Const.BodyPart.Body] = 1.0;
 	}
 
 });

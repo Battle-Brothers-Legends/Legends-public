@@ -67,6 +67,7 @@
 			],
 			Enemy = [this.Const.Perks.DirewolfTree],
 			Class = [this.Const.Perks.SlingClassTree],
+			Profession = [], 
 			Magic = []
 		}
 	}

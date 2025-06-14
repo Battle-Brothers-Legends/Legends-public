@@ -1459,7 +1459,7 @@ activesDefs.push({
 	ID = "actives.legend_demon_hound_bite",
 	Script = "scripts/skills/actives/legend_demon_hound_bite_skill",
 	Const = "LegendDemonHoundBite",
-	Name = "H÷llenhund Bite",
+	Name = "Höllenhund Bite",
 });
 
 ::Legends.Active.LegendRangedFlail <- null;
@@ -2932,14 +2932,6 @@ activesDefs.push({
 	Script = "scripts/skills/actives/legend_transform_into_wolf_skill",
 	Const = "LegendTransformIntoWolf",
 	Name = "Transform into Wolf",
-});
-
-::Legends.Active.LegendTumble <- null;
-activesDefs.push({
-	ID = "actives.legend_tumble",
-	Script = "scripts/skills/actives/legend_tumble_skill",
-	Const = "LegendTumble",
-	Name = "Tumble",
 });
 
 ::Legends.Active.LegendUnarmedLunge <- null;

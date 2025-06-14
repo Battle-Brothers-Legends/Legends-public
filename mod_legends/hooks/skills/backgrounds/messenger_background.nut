@@ -80,6 +80,7 @@
 			],
 			Enemy = [],
 			Class = [],
+			Profession = [], 
 			Magic = []
 		}
 		this.m.Bodies = this.Const.Bodies.Skinny;

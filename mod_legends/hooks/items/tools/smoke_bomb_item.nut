@@ -6,9 +6,9 @@
 	o.create = function()
 	{
 		create();
-		this.m.Description = "A flask filled with the concentrate of a Lindwurm\'s acidic blood. It is highly corrosive to many materials and burns through armor quickly.";
+		this.m.Description = "A small pot that quickly creates a dense smoke cloud when broken on the ground. Useful for covering movement. If the company has Alchemy Tools, this item is refilled after each battle, consuming 30 ammunition per use.";
 		this.m.OriginalDescription = this.m.Description;
-		this.m.Value = 700;
+		this.m.Value = 1000;
 		this.m.OriginalValue = this.m.Value;
 		this.m.ItemType = this.Const.Items.ItemType.Ammo | this.Const.Items.ItemType.Tool;
 		this.m.Ammo = 1;

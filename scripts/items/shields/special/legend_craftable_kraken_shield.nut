@@ -54,7 +54,6 @@ this.legend_craftable_kraken_shield <- this.inherit("scripts/items/shields/named
 			this.m.BaseProperties.RangedDefense <- this.m.RangedDefense;
 			this.m.BaseProperties.StaminaModifier <- this.m.StaminaModifier;
 			this.m.BaseProperties.FatigueOnSkillUse <- this.m.FatigueOnSkillUse;
-			this.m.BaseProperties.RegularDamage <- this.m.RegularDamage;
 			this.m.BaseProperties.RegularDamageMax <- this.m.RegularDamageMax;
 		}
 

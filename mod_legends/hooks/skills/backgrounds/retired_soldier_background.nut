@@ -78,9 +78,8 @@
 			Class = [
 				this.Const.Perks.LongswordClassTree
 			],
-			Magic = [
-				// this.Const.Perks.CaptainMagicTree
-			]
+			Profession = [], 
+			Magic = []
 		}
 	}
 

@@ -161,7 +161,7 @@ this.legend_swordmaster_fav_enemy_event <- this.inherit("scripts/events/event", 
 
 						if (_event.m.Champion.isInReserves())
 						{
-							this.m.WasInReserves.push(_event.m.Champion);
+							_event.m.WasInReserves.push(_event.m.Champion);
 							_event.m.Champion.setInReserves(false);
 
 						}
@@ -271,7 +271,7 @@ this.legend_swordmaster_fav_enemy_event <- this.inherit("scripts/events/event", 
 
 						if (_event.m.Champion.isInReserves())
 						{
-							this.m.WasInReserves.push(_event.m.Champion);
+							_event.m.WasInReserves.push(_event.m.Champion);
 							_event.m.Champion.setInReserves(false);
 						}
 
@@ -582,4 +582,3 @@ this.legend_swordmaster_fav_enemy_event <- this.inherit("scripts/events/event", 
 	}
 
 });
-

@@ -82,6 +82,7 @@
 				this.Const.Perks.MercenaryTree
 			],
 			Class = [],
+			Profession = [], 
 			Magic = [
 				this.Const.Perks.AssassinMagicTree
 			]

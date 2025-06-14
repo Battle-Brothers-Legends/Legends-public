@@ -37,7 +37,10 @@ this.legend_astrologist_background <- this.inherit("scripts/skills/backgrounds/c
 			],
 			Enemy = [],
 			Class = [],
-			Magic = [this.Const.Perks.PremonitionMagicTree]
+			Profession = [],
+			Magic = [
+				this.Const.Perks.PremonitionMagicTree
+			]
 		}
 	}
 

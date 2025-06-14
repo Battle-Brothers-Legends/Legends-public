@@ -6,10 +6,10 @@ this.legend_blacksmith_reforges_orc_cleaver_event <- this.inherit("scripts/event
 	{
 		this.m.ID = "event.legend_blacksmith_reforges_orc_cleaver"; //—
 		this.m.Title = "During camp...";
-		this.m.Cooldown = 999999.0 * this.World.getTime().SecondsPerDay;
+		this.m.Cooldown = 60.0 * this.World.getTime().SecondsPerDay;
 		this.m.Screens.push({
 			ID = "A",
-			Text = "[img]gfx/ui/events/event_05.png[/img]While at a short rest, %blacksmith% is ideally amusing themselves by digging through the company stash — reorganising various items to be in better order. Eventually they come across a worn orc cleaver that has seen better days. %blacksmith% notices you and brings the weapon to your attention. %SPEECH_ON%If I were two foot taller and about half as smart I\'d say this is almost a decent weapon.%SPEECH_OFF% The blacksmith carefully turns the blade in their hands, inspecting every angle as an artist would a painting. %SPEECH_ON%There\'s a warp running along the blade and the spine \'as a crack in it, you\'ve got a really bad amount of edge damage around the tip here as well. On top of that — it is far too heavy to swing and I can barely hold it in one hand. If I swung this thing too hard I\'d likely go with it...%SPEECH_OFF% %blacksmith% scratches their chin and gently puts the blade back in the cart. %SPEECH_ON%I don\'t know what its made of, but I can have a try at just reforging the whole thing if you give me a thousand crowns to cover my materials and I can start right now — but the blade may already be too far gone...%SPEECH_OFF%",
+			Text = "[img]gfx/ui/events/event_05.png[/img]While at a short rest, %blacksmith% is ideally amusing %themselves_blacksmith% by digging through the company stash — reorganising various items to be in better order. Eventually %they_blacksmith% come across a worn orc cleaver that has seen better days. %blacksmith% notices you and brings the weapon to your attention. %SPEECH_ON%If I were two foot taller and about half as smart I\'d say this is almost a decent weapon.%SPEECH_OFF% The blacksmith carefully turns the blade in %their_blacksmith% hands, inspecting every angle as an artist would a painting. %SPEECH_ON%There\'s a warp running along the blade and the spine \'as a crack in it, you\'ve got a really bad amount of edge damage around the tip here as well. On top of that — it is far too heavy to swing and I can barely hold it in one hand. If I swung this thing too hard I\'d likely go with it...%SPEECH_OFF% %blacksmith% scratches %their_blacksmith% chin and gently puts the blade back in the cart. %SPEECH_ON%I don\'t know what its made of, but I can have a try at just reforging the whole thing if you give me a thousand crowns to cover my materials and I can start right now — but the blade may already be too far gone...%SPEECH_OFF%",
 			Image = "",
 			List = [],
 			Characters = [],
@@ -39,7 +39,7 @@ this.legend_blacksmith_reforges_orc_cleaver_event <- this.inherit("scripts/event
 		});
 		this.m.Screens.push({ //succeed
 			ID = "B",
-			Text = "[img]gfx/ui/events/event_05.png[/img]%blacksmith% warms up the blade and hammers on it for some time — quickly twisting it this way and that as the blade cycles between hot and cold. They fight with the crude weapon until it begins to take a more sleek and finer form, losing some of the bloated mass of metal from both sides.\n They take it to the grindstone and slowly resharpen all the edges from haft to tip, lastly dressing the handle in something more comfortable for human hands.\n\n While not an artistic masterpiece, you can\'t deny that improvements have been made to the performance of the weapon overall.",
+			Text = "[img]gfx/ui/events/event_05.png[/img]%blacksmith% warms up the blade and hammers on it for some time — quickly twisting it this way and that as the blade cycles between hot and cold. %They_blacksmith% fights with the crude weapon until it begins to take a more sleek and finer form, losing some of the bloated mass of metal from both sides.\n %They_blacksmith% takes it to the grindstone and slowly resharpen all the edges from haft to tip, lastly dressing the handle in something more comfortable for human hands.\n\n While not an artistic masterpiece, you can\'t deny that improvements have been made to the performance of the weapon overall.",
 			Image = "",
 			List = [],
 			Characters = [],
@@ -55,6 +55,7 @@ this.legend_blacksmith_reforges_orc_cleaver_event <- this.inherit("scripts/event
 			],
 			function start( _event )
 			{
+				this.World.Assets.getStash().makeEmptySlots(1);
 				this.World.Assets.addMoney(-1000);
 				this.List.push({
 					id = 10,
@@ -93,7 +94,7 @@ this.legend_blacksmith_reforges_orc_cleaver_event <- this.inherit("scripts/event
 		});
 		this.m.Screens.push({ //Fail
 			ID = "C",
-			Text = "[img]gfx/ui/events/event_05.png[/img]%blacksmith% warms up the blade and hammers on it for some time — quickly twisting it this way and that as the blade cycles between hot and cold. They fight with the crude weapon until it begins to take a more sleek and finer form, %blacksmith% begins to curse under their breath as they put the weapon back into their forge to reheat it. This happens again several times more as they fight with the metal more and more.\n\n After the fourth attempt, the blade eventually cracks and snaps in two under the weight of their hammer. %blacksmith% gracefully accepts this by whispering insults at the blade before tossing it into the undergrowth with an almighty force.",
+			Text = "[img]gfx/ui/events/event_05.png[/img]%blacksmith% warms up the blade and hammers on it for some time — quickly twisting it this way and that as the blade cycles between hot and cold. %They_blacksmith% fight with the crude weapon until it begins to take a more sleek and finer form, %blacksmith% begins to curse under %their_blacksmith% breath as %they_blacksmith% puts the weapon back into %their_blacksmith% forge to reheat it. This happens again several times more as %they_blacksmith% fights with the metal more and more.\n\n After the fourth attempt, the blade eventually cracks and snaps in two under the weight of %their_blacksmith% hammer. %blacksmith% gracefully accepts this by whispering insults at the blade before tossing it into the undergrowth with an almighty force.",
 			Image = "",
 			List = [],
 			Characters = [],
@@ -203,6 +204,7 @@ this.legend_blacksmith_reforges_orc_cleaver_event <- this.inherit("scripts/event
 			"blacksmith",
 			this.m.Blacksmith.getNameOnly()
 		]);
+		::Const.LegendMod.extendVarsWithPronouns(_vars, this.m.Blacksmith.getGender(), "blacksmith");
 	}
 
 	function onClear()

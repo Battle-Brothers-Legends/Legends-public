@@ -92,15 +92,19 @@ this.perk_legend_ambidextrous <- this.inherit("scripts/skills/skill", {
 			// Don't execute a follow up attack if the first skill is not an attack, or if you are using hand to hand while the mainhand is holding a weapon
 			return;
 		}
-		local items = this.getContainer().getActor().getItems();
+		local actor = this.getContainer().getActor();
+		local items = actor.getItems();
 		local off = items.getItemAtSlot(this.Const.ItemSlot.Offhand);
 
 		if (_targetEntity != null && !items.hasBlockedSlot(this.Const.ItemSlot.Offhand) && (off == null || !::MSU.isNull(m.offHandSkill)))
 		{
 			if (!_forFree)
 			{
-				if (_targetTile == null) // Is this necessary?
+				if (!actor.isAlive() || actor.isDying())
 					return;
+				if (_targetTile == null || actor.getTile() == null) // Is this necessary?
+					return;
+
 				// i need to somehow do this more dynamically
 				::Time.scheduleEvent(::TimeUnit.Virtual, ::Const.Combat.RiposteDelay, this.executeFollowUpAttack.bindenv(this), {
 					TargetTile = _targetTile,

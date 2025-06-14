@@ -87,10 +87,18 @@ this.legend_piercing_bolt_skill <- ::inherit("scripts/skills/actives/shoot_bolt"
 		_info.Skill.m.IsDoingPiercingShot = true;
 		_info.Skill.m.IsShowingProjectile = false;
 
-		if (targetTile.IsVisibleForPlayer)
-			::Tactical.EventLog.logEx(format("%s pierces %s and hits %s", _info.Skill.getName(), targetName, ::Const.UI.getColorizedEntityName(forwardTile.getEntity())));
+		if (::Legends.Traits.has(forwardTile.getEntity(), ::Legends.Trait.RacialGhost))
+		{
+			if (targetTile.IsVisibleForPlayer)
+				::Tactical.EventLog.logEx(format("%s pierces %s but %s\'s corporeal form is unscathed", _info.Skill.getName(), targetName, ::Const.UI.getColorizedEntityName(forwardTile.getEntity())));	
+		}
+		else
+		{
+			if (targetTile.IsVisibleForPlayer)
+				::Tactical.EventLog.logEx(format("%s pierces %s and hits %s", _info.Skill.getName(), targetName, ::Const.UI.getColorizedEntityName(forwardTile.getEntity())));
 
-		_info.Skill.attackEntity(_info.User, forwardTile.getEntity(), false);
+			_info.Skill.attackEntity(_info.User, forwardTile.getEntity(), false);
+		}
 
 		// reset back to normal lol
 		_info.Skill.m.IsUsingHitchance = true;

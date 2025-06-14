@@ -66,8 +66,9 @@ this.legend_witch_background <- this.inherit("scripts/skills/backgrounds/charact
 				this.Const.Perks.InspirationalTree
 			],
 			Enemy = [],
-			Class = [
-				this.Const.Perks.HealerClassTree
+			Class = [],
+			Profession = [
+				this.Const.Perks.HealerProfessionTree
 			],
 			Magic = [
 				this.Const.Perks.PremonitionMagicTree,

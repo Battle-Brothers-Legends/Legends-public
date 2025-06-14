@@ -1,5 +1,78 @@
 ::mods_hookExactClass("states/tactical_state", function(o)
 {
+	o.swapToItem <- function ( _activeEntity, _item )
+	{
+		if (this.m.CurrentActionState != null)
+		{
+			this.cancelEntitySkill(_activeEntity);
+		}
+
+		this.m.CharacterScreen.onEquipBagItem([
+			_activeEntity.getID(),
+			_item.getInstanceID()
+		]);
+	}
+
+	local _turnsequencebar_onEntitySkillClicked = o.turnsequencebar_onEntitySkillClicked;
+	o.turnsequencebar_onEntitySkillClicked = function ( _skillId )
+	{
+		local activeEntity = ::Tactical.TurnSequenceBar.getActiveEntity();
+
+		if (activeEntity == null || activeEntity.getSkills().hasSkill(_skillId))
+		{
+			_turnsequencebar_onEntitySkillClicked(_skillId);
+		}
+		else if (!this.isInputLocked())
+		{
+			local item = activeEntity.getItems().getItemByInstanceID(_skillId);
+
+			if (item != null)
+			{
+				this.swapToItem(activeEntity, item);
+			}
+		}
+	}
+
+	local _setActionStateBySkillIndex = o.setActionStateBySkillIndex;
+	o.setActionStateBySkillIndex = function ( _index )
+	{
+		if (this.m.CurrentActionState != null)
+		{
+			switch(this.m.CurrentActionState)
+			{
+			case ::Const.Tactical.ActionState.TravelPath:
+				::logInfo("entity is currently travelling!");
+				return;
+
+			case ::Const.Tactical.ActionState.ExecuteSkill:
+				::logInfo("entity is currently executing a skill!");
+				return;
+			}
+		}
+
+		local e = ::Tactical.TurnSequenceBar.getActiveEntity();
+		local itemIndex = -1;
+
+		if (e != null && !this.isInputLocked())
+		{
+			itemIndex = _index - e.getSkills().queryActives().len();
+		}
+
+		if (itemIndex >= 0)
+		{
+			local items = e.querySwitchableItems();
+
+			if (itemIndex < items.len())
+			{
+				this.swapToItem(e, items[itemIndex]);
+			}
+		}
+		else
+		{
+			_setActionStateBySkillIndex(_index);
+		}
+	};
+
 	o.onBattleEnded = function()
 	{
 		if (this.m.IsExitingToMenu)

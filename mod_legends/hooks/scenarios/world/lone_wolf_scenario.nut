@@ -166,7 +166,7 @@
 		}
 	}
 
-	o.onUpdateDraftList( _draftList ) //insert specfic backgrounds at x renown level(s). *most* crafting/support backgrounds ahve been removed from this master list - companions from events cover any gaps re: retinue/camp tasks.
+	o.onUpdateDraftList <- function ( _draftList ) //insert specfic backgrounds at x renown level(s). *most* crafting/support backgrounds ahve been removed from this master list - companions from events cover any gaps re: retinue/camp tasks.
 	{
 		if (this.World.Assets.getBusinessReputation() > 750) { //peasant/lowborn + Squires
 			_draftList.push("brawler_background");

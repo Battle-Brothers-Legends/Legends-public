@@ -136,6 +136,46 @@
 	// 	}
 	// }
 
+	o.querySwitchableItems <- function()
+	{
+		local items = [];
+		local inv = this.getItems();
+
+		if (inv.isActionAffordable([]))
+		{
+			for( local i = 0; i < inv.getUnlockedBagSlots(); i++ )
+			{
+				local item = inv.getItemAtBagSlot(i);
+
+				if (item == null)
+				{
+					continue;
+				}
+				
+				local slot = item.getSlotType();
+
+				if (slot == ::Const.ItemSlot.None || slot == ::Const.ItemSlot.Bag)
+				{
+					continue;
+				}
+				
+				local currentItem = inv.getItemAtSlot(slot);
+
+				if (item != null && (item.isItemType(::Const.Items.ItemType.Weapon) || item.isItemType(::Const.Items.ItemType.Tool) || item.isItemType(::Const.Items.ItemType.Shield) || item.isItemType(::Const.Items.ItemType.Accessory) || item.isItemType(::Const.Items.ItemType.Ammo) && item.m.Ammo != 0) && inv.isActionAffordable(currentItem != null ? [
+					currentItem,
+					item
+				] : [
+					item
+				]))
+				{
+					items.append(item);
+				}
+			}
+		}
+
+		return items;
+	}
+
 	local onOtherActorDeath = o.onOtherActorDeath;
 	o.onOtherActorDeath = function ( _killer, _victim, _skill )
 	{
@@ -628,6 +668,32 @@
 			onDeath(null, _skill, _tile, _fatalityType);
 		else
 			onDeath(_killer, _skill, _tile, _fatalityType);
+
+
+		// Drops net if net flags are met. It should be used in dropLoot to free space here
+		if (this.getFlags().get("DropNet")){
+			local net;
+
+			if (this.getFlags().get("IsReinforcedNet"))
+				net = this.new("scripts/items/tools/reinforced_throwing_net");
+			else
+				net = this.new("scripts/items/tools/throwing_net");
+
+			if (!this.getFlags().get("IsByNetCasting")){
+				net.m.Ammo = 0; 
+				net.updateAmmo();
+			}
+			
+			if (net != null){
+				if (net.drop(this.getTile())) {// drops the net on the tile
+					::Tactical.Entities.addNetTiles(this.getTile());
+				}
+			}
+
+			this.getFlags().remove("DropNet");
+   			this.getFlags().remove("IsReinforcedNet");
+    		this.getFlags().remove("IsByNetCasting");
+		}
 	}
 
 	// local onResurrected = o.onResurrected;
@@ -645,5 +711,5 @@
 	//	 o.m.BloodPoolScale = 1.25;
 	//	 o.m.BloodSplatterOffset = this.createVec(-1, -1);
 	// }
-	// }
+	// 
 });

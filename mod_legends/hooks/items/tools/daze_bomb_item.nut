@@ -6,7 +6,7 @@
 	o.create = function()
 	{
 		create();
-		this.m.Description = "A throwable pot filled with mysterious powders that react violently on impact to create a bright flash and loud bang. Will daze anyone close by.";
+		this.m.Description = "A throwable pot filled with mysterious powders that react violently on impact to create a bright flash and loud bang. Will daze anyone close by. If the company has Alchemy Tools, this item is refilled after each battle, consuming 30 ammunition per use.";
 		this.m.OriginalDescription = this.m.Description;
 		this.m.Value = 1100;
 		this.m.OriginalValue = this.m.Value;

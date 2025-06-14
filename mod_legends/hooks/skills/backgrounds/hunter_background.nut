@@ -98,6 +98,7 @@
 			Class = [
 				this.Const.Perks.SharpshooterClassTree
 			],
+			Profession = [], 
 			Magic = []
 		}
 	}

@@ -103,6 +103,7 @@
 					this.Const.Perks.UnholdTree,
 					],
 			Class = [],
+			Profession = [], 
 			Magic = []
 		}
 	}

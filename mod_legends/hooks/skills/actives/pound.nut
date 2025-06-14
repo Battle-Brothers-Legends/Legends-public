@@ -28,12 +28,6 @@
 			icon = "ui/icons/special.png",
 			text = "Has a [color=" + this.Const.UI.Color.PositiveValue + "]" + this.m.StunChance + "%[/color] chance to stun on a hit"
 		});
-		ret.push({
-			id = 8,
-			type = "text",
-			icon = "ui/icons/special.png",
-			text = "Ignores the bonus to Melee Defense granted by shields"
-		});
 		return ret;
 	}
 

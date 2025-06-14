@@ -35,7 +35,7 @@ this.legend_root_skill <- this.inherit("scripts/skills/skill", {
 		this.m.FatigueCost = 15;
 		this.m.MinRange = 1;
 		this.m.MaxRange = 8;
-		this.m.MaxLevelDifference = 4;
+		this.m.MaxLevelDifference = 8;
 	}
 
 	function getTooltip()

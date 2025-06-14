@@ -14,7 +14,7 @@
 				id = 8,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "Inflicts additional [color=" + this.Const.UI.Color.DamageValue + "]" + this.getContainer().getActor().getCurrentProperties().IsSpecializedInPolearms ? 10 : 5 + "[/color] bleeding damage over time if not stopped by armor"
+				text = "Inflicts additional [color=" + this.Const.UI.Color.DamageValue + "]" + (this.getContainer().getActor().getCurrentProperties().IsSpecializedInPolearms ? 10 : 5) + "[/color] bleeding damage over time if not stopped by armor"
 			}
 		]);
 

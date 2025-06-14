@@ -75,6 +75,7 @@ this.legend_noble_shield <- this.inherit("scripts/skills/backgrounds/character_b
 			],
 			Enemy = [],
 			Class = [],
+			Profession = [],
 			Magic = []
 		};
 	}

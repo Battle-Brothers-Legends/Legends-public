@@ -7,6 +7,10 @@
 
 		local target = _targetTile.getEntity();
 		local actor = this.getContainer().getActor();
+		local setting = ::Legends.Mod.ModSettings.getSetting("AiRotation").getValue();
+
+		if (setting == "Disabled")
+			return false;
 
 		if (!target.isAlive() && ::MSU.isNull(target))
 			return false;
@@ -30,7 +34,7 @@
 
 		if (actor.getFaction() != this.Const.Faction.Player && target.getFaction() == this.Const.Faction.Player)
 		{
-			if (setting == "Disabled" || (setting && !canRotate))
+			if (setting == "Limited" || (setting && !canRotate))
 			{
 				return false;
 			}

@@ -72,6 +72,7 @@
 			Class = [
 				this.Const.Perks.PitchforkClassTree
 			],
+			Profession = [], 
 			Magic = []
 		}
 	}

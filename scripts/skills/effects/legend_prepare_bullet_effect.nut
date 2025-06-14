@@ -100,6 +100,6 @@ this.legend_prepare_bullet_effect <- this.inherit("scripts/skills/skill", {
 		_properties.DamageRegularMin += bonus;
 		_properties.DamageRegularMax += bonus;
 		if (::Legends.Perks.has(this, ::Legends.Perk.LegendBallistics))
-			_properties.DirectDamageAdd += bonus * 0.01;
+			_properties.DamageDirectAdd += bonus * 0.01;
 	}
 });

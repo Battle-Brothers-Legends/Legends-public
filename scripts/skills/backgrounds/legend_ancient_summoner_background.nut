@@ -63,8 +63,13 @@ this.legend_ancient_summoner_background <- this.inherit("scripts/skills/backgrou
 				this.Const.Perks.ViciousTree
 			],
 			Enemy = [],
-			Class = [this.Const.Perks.NinetailsClassTree],
-			Magic = [this.Const.Perks.SkeletonMagicTree]
+			Class = [
+				this.Const.Perks.NinetailsClassTree
+			],
+			Profession = [],
+			Magic = [
+				this.Const.Perks.SkeletonMagicTree
+			]
 		}
 	}
 

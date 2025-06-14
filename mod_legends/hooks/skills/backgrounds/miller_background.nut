@@ -55,7 +55,10 @@
 				this.Const.Perks.SturdyTree
 			],
 			Enemy = [],
-			Class = [this.Const.Perks.ChefClassTree],
+			Class = [],
+			Profession = [
+				this.Const.Perks.ChefProfessionTree
+			], 
 			Magic = []
 		}
 	}

@@ -57,6 +57,7 @@
 				this.Const.Perks.BeastClassTree,
 				this.Const.Perks.SpearfisherClassTree
 			],
+			Profession = [], 
 			Magic = []
 		}
 	}

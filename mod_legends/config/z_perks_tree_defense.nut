@@ -11,12 +11,12 @@ if (!("Perks" in ::Const))
 	],
 	Tree = [
 		[],
-		[::Legends.Perk.SteelBrow],
 		[::Legends.Perk.Brawny],
+		[::Legends.Perk.Steadfast],
 		[],
 		[],
 		[::Legends.Perk.BattleForged],
-		[::Legends.Perk.LegendFullForce]
+		[::Legends.Perk.LegendImmovableObject]
 	]
 };
 
@@ -40,7 +40,7 @@ if (!("Perks" in ::Const))
 			::Legends.Perk.LegendLithe
 		],
 		[
-			::Legends.Perk.LegendInTheZone
+			::Legends.Perk.LegendSwagger
 		]
 	]
 };
@@ -57,16 +57,15 @@ if (!("Perks" in ::Const))
 			::Legends.Perk.Dodge
 		],
 		[
-			::Legends.Perk.LegendOnslaught
+			::Legends.Perk.LegendOnslaught,
+			::Legends.Perk.SteelBrow
 		],
 		[],
 		[],
 		[
 			::Legends.Perk.Nimble
 		],
-		[
-			::Legends.Perk.LegendFreedomOfMovement
-		]
+		[]
 	]
 };
 
@@ -77,12 +76,12 @@ if (!("Perks" in ::Const))
 		"cloth armor"
 	],
 	Tree = [
-		[
-			::Legends.Perk.LegendBlendIn
-		],
 		[],
 		[
-			::Legends.Perk.LegendSmallTarget
+			::Legends.Perk.LegendHimshaw
+		],
+		[
+			::Legends.Perk.LegendEvasion
 		],
 		[],
 		[],
@@ -90,7 +89,7 @@ if (!("Perks" in ::Const))
 			::Legends.Perk.LegendFashionable
 		],
 		[
-			::Legends.Perk.LegendUnburdened
+			::Legends.Perk.LegendFreedomOfMovement
 		]
 	]
 };

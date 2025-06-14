@@ -103,6 +103,7 @@ this.legend_guildmaster_background <- this.inherit("scripts/skills/backgrounds/c
 			Class = [
 				this.Const.Perks.BeastClassTree
 			],
+			Profession = [],
 			Magic = []
 		}
 	}

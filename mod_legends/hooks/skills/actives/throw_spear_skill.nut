@@ -2,10 +2,11 @@
 {
 	o.m.AdditionalAccuracy <- 20;
 	o.m.AdditionalHitChance <- -10;
+
 	o.getTooltip = function ()
 	{
 		local tooltip = this.getRangedTooltip(this.getDefaultTooltip());
-
+		local actor = this.getContainer().getActor();
 		local ammo = this.getAmmo();
 
 		if (ammo > 0)
@@ -27,7 +28,7 @@
 			});
 		}
 
-		local damage = this.getContainer().getActor().getItems().getItemAtSlot(this.Const.ItemSlot.Mainhand).getShieldDamage();
+		local damage = actor.getItems().getItemAtSlot(this.Const.ItemSlot.Mainhand).getShieldDamage();
 		tooltip.push({
 			id = 7,
 			type = "text",
@@ -35,7 +36,7 @@
 			text = "Inflicts [color=" + this.Const.UI.Color.DamageValue + "]" + damage + "[/color] damage to shields"
 		});
 
-		if (this.Tactical.isActive() && this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions()))
+		if (this.Tactical.isActive() && actor.getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions()) && !::Legends.Perks.has(this, ::Legends.Perk.LegendCloseCombatArcher))
 		{
 			tooltip.push({
 				id = 9,
@@ -93,21 +94,32 @@
 		this.m.AdditionalAccuracy = 20 + this.m.Item.getAdditionalAccuracy();
 	}
 
+	o.calculateDamage <- function (_target)
+	{
+		local damage = this.getItem().getShieldDamage();
+		local shield = _target.getItems().getItemAtSlot(this.Const.ItemSlot.Offhand);
+
+		if (shield.getID() == "shield.legend_parrying_dagger" || shield.getID() == "shield.legend_named_parrying_dagger")
+			damage *= 0.20;
+
+		return this.Math.floor(damage);
+	}
+
 	o.onUse = function ( _user, _targetTile )
 	{
-		local targetEntity = _targetTile.getEntity();
+		local target = _targetTile.getEntity();
 		this.consumeAmmo();
-		local shield = targetEntity.getItems().getItemAtSlot(this.Const.ItemSlot.Offhand);
+		local shield = target.getItems().getItemAtSlot(this.Const.ItemSlot.Offhand);
 
 		if (shield != null && shield.isItemType(this.Const.Items.ItemType.Shield))
 		{
-			local damage = _user.getItems().getItemAtSlot(this.Const.ItemSlot.Mainhand).getShieldDamage();
+			local damage = this.calculateDamage(target);
 
 			if (shield.getID() == "weapon.legend_parrying_dagger" || shield.getID() == "shield.legend_named_parrying_dagger")
 			{
 				damage *= 0.20;
 			}
-			local flip = !this.m.IsProjectileRotated && targetEntity.getPos().X > _user.getPos().X;
+			local flip = !this.m.IsProjectileRotated && target.getPos().X > _user.getPos().X;
 			local time = this.Tactical.spawnProjectileEffect(this.Const.ProjectileSprite[this.m.ProjectileType], _user.getTile(), _targetTile, 1.0, this.m.ProjectileTimeScale, this.m.IsProjectileRotated, flip);
 			this.Time.scheduleEvent(this.TimeUnit.Virtual, time, this.onApplyShieldDamage.bindenv(this), {
 				User = _user,
@@ -116,12 +128,12 @@
 				Shield = shield,
 				Damage = damage
 			});
+			return true;
 		}
 		else
 		{
-			local ret = this.attackEntity(_user, targetEntity);
+			return this.attackEntity(_user, target);
 		}
-		return true;
 	}
 
 	o.onAnySkillUsed = function ( _skill, _targetEntity, _properties )
@@ -158,30 +170,40 @@
 	o.onApplyShieldDamage = function ( _tag )
 	{
 		local conditionBefore = _tag.Shield.getCondition();
+		local target = _tag.TargetTile.getEntity();
 		_tag.Shield.applyShieldDamage(_tag.Damage);
 		local overflowDamage = this.Math.floor(_tag.Damage - conditionBefore);
 		if (_tag.Shield != null && _tag.Shield.getCondition() == 0)
 		{
-			local logMessage = this.Const.UI.getColorizedEntityName(_tag.User) + " has destroyed " + this.Const.UI.getColorizedEntityName(_tag.TargetTile.getEntity()) + "\'s shield";
+			local logMessage = this.Const.UI.getColorizedEntityName(_tag.User) + " has destroyed " + this.Const.UI.getColorizedEntityName(target) + "\'s shield";
 			if (this.getContainer().hasPerk(::Legends.Perk.LegendSmashingShields))
 			{
 				_tag.User.setActionPoints(this.Math.min(_tag.User.getActionPointsMax(), _tag.User.getActionPoints() + 4));
 				this.Tactical.EventLog.log(logMessage + " and recovered 4 Action Points");
-				if (overflowDamage > 1)
-				{
-					local p = this.getContainer().buildPropertiesForUse(this, _tag.TargetTile.getEntity());
-					local hitInfo = clone this.Const.Tactical.HitInfo;
-					local damageMult = p.MeleeDamageMult * p.DamageTotalMult;
-					local damageRegular = overflowDamage * p.DamageRegularMult;
-					local damageArmor = overflowDamage * p.DamageArmorMult;
-					local damageDirect = this.Math.minf(1.0, p.DamageDirectMult * (this.m.DirectDamageMult + p.DamageDirectAdd + p.DamageDirectMeleeAdd));
-					hitInfo.DamageRegular = damageRegular * damageMult;
-					hitInfo.DamageArmor = damageArmor * damageMult;
-					hitInfo.DamageDirect = damageDirect;
-					hitInfo.BodyPart = this.Const.BodyPart.Body;
-					hitInfo.BodyDamageMult = 1.0;
-					hitInfo.FatalityChanceMult = 0.0;
-					_tag.TargetTile.getEntity().onDamageReceived(this.getContainer().getActor(), this, hitInfo);
+				if (overflowDamage > 0)
+				{	
+					local rand = this.Math.rand(1, 100);
+					if (rand <= this.getHitchance(target))
+					{
+						this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(_tag.User) + " uses Throw Spear and hits " + this.Const.UI.getColorizedEntityName(target) + " (Chance: " + this.getHitchance(target) + ", Rolled: " + rand + ")");
+						local p = this.getContainer().buildPropertiesForUse(this, target);
+						local hitInfo = clone this.Const.Tactical.HitInfo;
+						local damageMult = p.RangedDamageMult * p.DamageTotalMult;
+						local damageRegular = overflowDamage * p.DamageRegularMult * 0.5;
+						local damageArmor = overflowDamage * p.DamageArmorMult * 0.5;
+						local damageDirect = this.Math.minf(1.0, p.DamageDirectMult * (this.m.DirectDamageMult + p.DamageDirectAdd + p.DamageDirectRangedAdd));
+						hitInfo.DamageRegular = damageRegular * damageMult;
+						hitInfo.DamageArmor = damageArmor * damageMult;
+						hitInfo.DamageDirect = damageDirect;
+						hitInfo.BodyPart = this.Const.BodyPart.Body;
+						hitInfo.BodyDamageMult = 1.0;
+						hitInfo.FatalityChanceMult = 1.0;
+						target.onDamageReceived(this.getContainer().getActor(), this, hitInfo);
+					}
+					else
+					{
+						this.Tactical.EventLog.logEx(this.Const.UI.getColorizedEntityName(_tag.User) + " uses Throw Spear and misses " + this.Const.UI.getColorizedEntityName(target) + " (Chance: " + this.getHitchance(target) + ", Rolled: " + rand + ")");
+					}
 				}
 			}
 			else

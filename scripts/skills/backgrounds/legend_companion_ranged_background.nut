@@ -105,6 +105,7 @@ this.legend_companion_ranged_background <- this.inherit("scripts/skills/backgrou
 			Class = [
 				this.Const.Perks.BeastClassTree
 			],
+			Profession = [],
 			Magic = []
 		}
 	}

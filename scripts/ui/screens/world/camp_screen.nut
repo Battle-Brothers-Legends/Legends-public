@@ -689,6 +689,13 @@ this.camp_screen <- {
 		}
 	}
 
+	function onContractClicked( _data )
+	{
+		if (this.isAnimating())
+			return;
+		this.World.Contracts.showContractByID(_data);
+	}
+
 	function onSlotClicked( _data )
 	{
 		if (this.isAnimating())

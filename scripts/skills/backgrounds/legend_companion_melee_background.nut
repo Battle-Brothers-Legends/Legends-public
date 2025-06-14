@@ -103,6 +103,7 @@ this.legend_companion_melee_background <- this.inherit("scripts/skills/backgroun
 			],
 			Enemy = [],
 			Class = [],
+			Profession = [],
 			Magic = []
 		}
 	}

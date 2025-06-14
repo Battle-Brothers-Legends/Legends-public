@@ -67,6 +67,7 @@ this.legend_diviner_background <- this.inherit("scripts/skills/backgrounds/chara
 			],
 			Enemy = [],
 			Class = [],
+			Profession = [],
 			Magic = [
 				this.Const.Perks.PremonitionMagicTree
 			]

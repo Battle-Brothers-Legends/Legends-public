@@ -1,6 +1,8 @@
 foreach(event in [
 	"jousting_tournament_event",
 	"traveling_troupe_event",
+	"apprentice_learns_event",
+	"bad_curse_event",
 ]) {
 	::mods_hookExactClass("events/events/" + event, function(o) {
 		o.m.isValidForEncounter <- false;

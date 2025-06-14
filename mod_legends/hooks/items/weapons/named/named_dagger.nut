@@ -9,14 +9,10 @@
 		this.updateVariant();
 	}
 
-	o.addSkill <- function( _skill )
+	local onEquip = o.onEquip;
+	o.onEquip = function ()
 	{
-		if (_skill.getID() == "actives.deathblow")
-		{
-			_skill = ::new("scripts/skills/actives/deathblow_skill"); // replace strike with scythe cleave
-			_skill.m.DeathblowBonus = true;
-		}
-
-		weapon.addSkill(_skill);
+		onEquip();
+		::Legends.Actives.grant(this, ::Legends.Active.Deathblow);
 	}
 });

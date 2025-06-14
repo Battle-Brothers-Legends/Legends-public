@@ -113,8 +113,9 @@ this.legend_peddler_commander_background <- this.inherit("scripts/skills/backgro
 			Enemy = [
 				this.Const.Perks.BanditTree
 			],
-			Class = [
-				this.Const.Perks.BarterClassTree
+			Class = [],
+			Profession = [
+				this.Const.Perks.BarterProfessionTree
 			],
 			Magic = [
 				this.Const.Perks.PhilosophyMagicTree

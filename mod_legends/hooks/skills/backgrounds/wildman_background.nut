@@ -109,6 +109,7 @@
 			Class = [
 				this.Const.Perks.ClubClassTree
 			],
+			Profession = [], 
 			Magic = []
 		}
 	}

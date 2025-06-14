@@ -105,6 +105,10 @@ this.legend_druid_background <- this.inherit("scripts/skills/backgrounds/charact
 				this.Const.Perks.HealerClassTree,
 				this.Const.Perks.SickleClassTree
 			],
+			Profession = [
+				this.Const.Perks.HealerProfessionTree,
+				this.Const.Perks.HerbalistProfessionTree
+			]
 			Magic = [
 				this.Const.Perks.DruidMagicTree
 			]

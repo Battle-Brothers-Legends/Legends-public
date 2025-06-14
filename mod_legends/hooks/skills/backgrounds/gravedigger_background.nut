@@ -57,6 +57,7 @@
 			Class = [
 				this.Const.Perks.ShovelClassTree
 			],
+			Profession = [], 
 			Magic = []
 		}
 	}

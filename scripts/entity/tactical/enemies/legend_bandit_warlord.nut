@@ -74,7 +74,7 @@ this.legend_bandit_warlord <- this.inherit("scripts/entity/tactical/human", {
 		::Legends.Perks.grant(this, ::Legends.Perk.BattleForged);
 		::Legends.Perks.grant(this, ::Legends.Perk.InspiringPresence);
 		::Legends.Perks.grant(this, ::Legends.Perk.RallyTheTroops);
-		::Legends.Perks.grant(this, ::Legends.Perk.LegendFullForce);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendImmovableObject);
 		::Legends.Perks.grant(this, ::Legends.Perk.LoneWolf); // Am I unfair? No - it is the players who are wrong.
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendComposure);
 		::Legends.Perks.grant(this, ::Legends.Perk.Underdog);

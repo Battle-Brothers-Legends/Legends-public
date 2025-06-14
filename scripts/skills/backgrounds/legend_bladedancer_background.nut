@@ -85,6 +85,7 @@ this.legend_bladedancer_background <- this.inherit("scripts/skills/backgrounds/c
 				this.Const.Perks.MercenaryTree
 			],
 			Class = [],
+			Profession = [],
 			Magic = []
 		}
 	}

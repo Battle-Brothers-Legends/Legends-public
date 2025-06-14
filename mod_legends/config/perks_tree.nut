@@ -185,6 +185,7 @@ local VanillaTree = [
 		Traits = [],
 		Enemy = [],
 		Class = [],
+		Profession = [],
 		Magic = []
 	}
 
@@ -214,6 +215,12 @@ local VanillaTree = [
 		}
 	}
 	if ("Class" in _map) {
+		foreach (p in _map.Class)
+		{
+			_localMap.Class.push(p);
+		}
+	}
+	if ("Profession" in _map) {
 		foreach (p in _map.Class)
 		{
 			_localMap.Class.push(p);
@@ -290,7 +297,6 @@ local VanillaTree = [
 
 	local weaponClassMap = [
 		[::Const.Perks.ShovelClassTree, ::Const.Perks.MaceTree],
-		[::Const.Perks.BardClassTree, ::Const.Perks.StaffTree],
 		[::Const.Perks.KnifeClassTree, ::Const.Perks.DaggerTree],
 		[::Const.Perks.ButcherClassTree, ::Const.Perks.CleaverTree],
 		[::Const.Perks.HammerClassTree, ::Const.Perks.HammerTree],
@@ -337,6 +343,25 @@ local VanillaTree = [
 		local t = this.Const.Perks.ClassTrees.getRandom(_exclude);
 		//this.logInfo("Adding Class perk tree " + t.ID);
 		_localMap.Class.push(t);
+	}
+
+	//Add Profession
+	local count = _mins.Profession - _localMap.Profession.len();
+	for (local i = 0; i <= count; i = ++i)
+	{
+		local r = this.Math.rand(0, 100);
+		if (r > (_mins.ProfessionChance * 100.0))
+		{
+			continue
+		}
+		local _exclude = toExclude;
+		foreach (tt in _localMap.Profession)
+		{
+			_exclude.push(tt.ID);
+		}
+		local t = this.Const.Perks.ProfessionTrees.getRandom(_exclude);
+		//this.logInfo("Adding Profession perk tree " + t.ID);
+		_localMap.Profession.push(t);
 	}
 
 	//Add Magic

@@ -67,11 +67,7 @@ this.legend_ninetails_disarm_skill <- this.inherit("scripts/skills/skill", {
 
 		if (this.getContainer().getActor().getCurrentProperties().IsSpecializedInCleavers)
 		{
-			this.m.HitChanceBonus = 0;
-		}
-		else
-		{
-			this.m.HitChanceBonus = -15;
+			this.m.HitChanceBonus += 15;
 		}
 	}
 

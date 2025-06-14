@@ -64,7 +64,9 @@ this.legend_necrosavant_background <- this.inherit("scripts/skills/backgrounds/c
 			],
 			Enemy = [],
 			Class = [],
-			Magic = [this.Const.Perks.VampireMagicTree]
+			Magic = [
+				this.Const.Perks.VampireMagicTree
+			]
 		}
 	}
 

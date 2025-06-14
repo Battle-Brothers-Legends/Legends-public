@@ -2,12 +2,12 @@
 
 /** Because fuck you, that's why */
 ::Legends.Compat.normalizeVersion <- function (_version) {
-    local parts = ::split(_version, ".");
-    if (parts.len() == 1)
-        return _version + ".0.0";
-    if (parts.len() == 2)
-        return _version + ".0";
-    return _version;
+	local parts = ::split(_version, ".");
+	if (parts.len() == 1)
+		return _version + ".0.0";
+	if (parts.len() == 2)
+		return _version + ".0";
+	return _version;
 }
 
 /**
@@ -15,40 +15,40 @@
  *  If no version provided, we don't care checking at all, incompat means incompat
  */
 ::Legends.Compat.HardIncompat <- {
-    List = [],
-    function add(_id, _lastKnownNotWorkingVersion = null, _replacement = null) {
-        this.List.push({
-            ID = _id,
-            Version = _lastKnownNotWorkingVersion,
-            Replacement = _replacement
-        })
-    }
+	List = [],
+	function add(_id, _lastKnownNotWorkingVersion = null, _replacement = null) {
+		this.List.push({
+			ID = _id,
+			Version = _lastKnownNotWorkingVersion,
+			Replacement = _replacement
+		})
+	}
 };
 
 /**
  * For hooked mods, that technically work, but might cause some weird issues
  */
 ::Legends.Compat.SoftIncompat <- {
-    List = [],
-    function add(_id, _lastKnownNotWorkingVersion = null, _replacement = null) {
-        this.List.push({
-            ID = _id,
-            Version = _lastKnownNotWorkingVersion,
-            Replacement = _replacement
-        })
-    }
+	List = [],
+	function add(_id, _lastKnownNotWorkingVersion = null, _replacement = null) {
+		this.List.push({
+			ID = _id,
+			Version = _lastKnownNotWorkingVersion,
+			Replacement = _replacement
+		})
+	}
 };
 
 /** For hooked mods that have patches by community */
 ::Legends.Compat.IncompatButPatched <- {
-    List = [],
-    function add(_id, _wherePatch, _patchModId = null) {
-        this.List.push({
-            ID = _id,
-            Patch = _wherePatch,
-            PatchID = _patchModId
-        })
-    }
+	List = [],
+	function add(_id, _wherePatch, _patchModId = null) {
+		this.List.push({
+			ID = _id,
+			Patch = _wherePatch,
+			PatchID = _patchModId
+		})
+	}
 }
 
 /**
@@ -56,37 +56,37 @@
  * version is array
  */
 ::Legends.Compat.OtherVersionCompat <- {
-    List = [],
-    function add(_id, _compatVersions) {
-        this.List.push({
-            ID = _id,
-            Version = _compatVersions
-        })
-    }
+	List = [],
+	function add(_id, _compatVersions) {
+		this.List.push({
+			ID = _id,
+			Version = _compatVersions
+		})
+	}
 }
 
 /**
  * For mods that are not registered, have no hooks, no IDs, but add new stuff
  */
 ::Legends.Compat.IncompatNotRegistered <- {
-    List = [],
-    function add(_name, _filesToCheck, _replacement = null) {
-        this.List.push({
-            ID = _name,
-            Files = _filesToCheck,
-            Replacement = _replacement
-        })
-    }
+	List = [],
+	function add(_name, _filesToCheck, _replacement = null) {
+		this.List.push({
+			ID = _name,
+			Files = _filesToCheck,
+			Replacement = _replacement
+		})
+	}
 }
 
 /** Just a list of integrated mods, to prevent loading them again */
 ::Legends.Compat.Integrated <- [
-    "mod_legends_compat",
-    "mod_buyback",
-    "mod_events_delayed_fix",
-    "mod_Jimmys_Tooltips",
-    "mod_alwaysLootNamedItems",
-    "mod_make_lindwurms_great_again",
+	"mod_legends_compat",
+	"mod_buyback",
+	"mod_events_delayed_fix",
+	"mod_Jimmys_Tooltips",
+	"mod_alwaysLootNamedItems",
+	"mod_make_lindwurms_great_again",
 	"mod_MINA", // More Indefinite Numeral Adjectives - a similar feature is implemented in legends
 	"mod_tooltip_extension", // Rygar's perk tooltip
 	"mod_turn_it_in"
@@ -97,8 +97,8 @@
 ::Legends.Compat.HardIncompat.add("mod_AC", "1.30.33"); // Accessory Companions
 ::Legends.Compat.HardIncompat.add("mod_allCripplesBecomeTheKingsGuard", "1.0");
 ::Legends.Compat.HardIncompat.add("and_justice_for_all", "1.4.0");
-::Legends.Compat.HardIncompat.add("mod_autopilot", "23");
-::Legends.Compat.HardIncompat.add("mod_auto_level", "1.1.1");
+::Legends.Compat.HardIncompat.add("mod_autopilot", "23", "Instead use Hackflow's Autopilot New mod");
+::Legends.Compat.HardIncompat.add("mod_auto_level", "1.1.1", "Instead use Hackflow's Bro Studio for something similar");
 ::Legends.Compat.HardIncompat.add("mod_avatar", "1.0.2");
 ::Legends.Compat.HardIncompat.add("mod_avgmax", "1.0"); // Average bro max stats
 ::Legends.Compat.HardIncompat.add("mod_backgrounds_attribute_ranges", "2.0.0");
@@ -131,12 +131,14 @@
 ::Legends.Compat.HardIncompat.add("mod_equipment_loot_chance", "1.0.4");
 ::Legends.Compat.HardIncompat.add("mod_every_item_drops", "1.1.1"); // Waterplouf version
 ::Legends.Compat.HardIncompat.add("mod_extra_keybinds", "2.1.0"); // a lot of bug reports lately with this mod...
+::Legends.Compat.HardIncompat.add("fantasyReforgedTrees");
 ::Legends.Compat.HardIncompat.add("mod_faster", null, "Use Swifter instead, found on Nexus");
 ::Legends.Compat.HardIncompat.add("mod_fastest", null, "Use Swifter instead, found on Nexus");
 ::Legends.Compat.HardIncompat.add("mod_legends_favoured_enemy_refund", "2.0.1");
-::Legends.Compat.SoftIncompat.add("mod_fun_facts", "0.5.0"); // Seen some reports causing hard crashes with this mod.
+::Legends.Compat.SoftIncompat.add("mod_fun_facts", "0.5.0"); // Seen some reports causing hard crashes with this mod. But new comments suggest issues might be fixed need more feedback vs Legends play
 ::Legends.Compat.HardIncompat.add("graven_passive_shield_damage_bonus", "1.0");
 ::Legends.Compat.HardIncompat.add("graven_plentiful_paints", "1.1");
+::Legends.Compat.HardIncompat.add("mod_graze_and_crit");
 ::Legends.Compat.HardIncompat.add("mod_hackflows_perks", "1.4");
 ::Legends.Compat.HardIncompat.add("mod_hardened"); // Darx's RF submod
 ::Legends.Compat.HardIncompat.add("mod_healable_injury", "1.0");
@@ -157,7 +159,7 @@
 ::Legends.Compat.HardIncompat.add("mod_more_champions_x10");
 ::Legends.Compat.HardIncompat.add("mod_more_champions_x25");
 ::Legends.Compat.HardIncompat.add("mod_more_followers", "1.1");
-::Legends.Compat.HardIncompat.add("mod_moreRecruits", "2");
+::Legends.Compat.HardIncompat.add("mod_moreRecruits", "2", "For more recruits a safe alternative seems to be Necro's World Editor");
 ::Legends.Compat.HardIncompat.add("mod_more_weapon_skins", "0.8.0"); // Many of Karl's skins are being integ into Legends
 ::Legends.Compat.HardIncompat.add("mod_namedShieldsInShops", "1.0");
 ::Legends.Compat.HardIncompat.add("mod_necro", "0.3.0"); // Hackflow's Proper Necromancer
@@ -222,9 +224,9 @@
 ::Legends.Compat.SoftIncompat.add("mod_BLPT", "0.1.2"); // Darx's Bad Luck Protection
 ::Legends.Compat.SoftIncompat.add("mod_bro_storage", "1.0.2");
 ::Legends.Compat.SoftIncompat.add("mod_camps_and_artifacts", "3.4");
-::Legends.Compat.SoftIncompat.add("mod_career_stats", "1.0.2");
+::Legends.Compat.SoftIncompat.add("mod_career_stats", "1.0.2"); // I've seen this mod being the issue in logs as cause of errors
 ::Legends.Compat.SoftIncompat.add("mod_cultists", "1.04"); // Davkul Rising
-::Legends.Compat.SoftIncompat.add("mod_fantasybro", "1.0");
+::Legends.Compat.SoftIncompat.add("mod_fantasybro", "1.0"); // Yorik's "Legends patches are poorly built, yes even into FB V5"
 ::Legends.Compat.SoftIncompat.add("mod_find_legendary_locations", "1", "Use Chopek's Find Legendary Maps instead, at Nexus or Legends Discord (#submod_files/Find Legendary Maps)");
 ::Legends.Compat.SoftIncompat.add("mod_necropolis", "1.0");
 ::Legends.Compat.SoftIncompat.add("mod_PLHO", "0.1.1"); // Darx's Player Hideout
@@ -245,338 +247,338 @@
 
 //region IncompatNotRegistered
 ::Legends.Compat.IncompatNotRegistered.add("mod_anatomists", [
-"scripts/retinue/followers/remedist_follower.nut",
-"scripts/items/misc/essence_honor_guard_potion_item.nut",
-"scripts/items/misc/essence_geist_potion_item.nut"
+	"scripts/retinue/followers/remedist_follower.nut",
+	"scripts/items/misc/essence_honor_guard_potion_item.nut",
+	"scripts/items/misc/essence_geist_potion_item.nut"
 ]); // Anatomist Origin Rework
 ::Legends.Compat.IncompatNotRegistered.add("mod_1AC_MAIN", [
-"scripts/config/!!MAIN_IS_POLEARMS.nut",
-"scripts/config/!!MAIN_IS_POLEARMS.nut",
-"scripts/config/!!MAIN_IS_RECOVER.nut"
+	"scripts/config/!!MAIN_IS_POLEARMS.nut",
+	"scripts/config/!!MAIN_IS_POLEARMS.nut",
+	"scripts/config/!!MAIN_IS_RECOVER.nut"
 ]); // Altered Combat Main
 ::Legends.Compat.IncompatNotRegistered.add("main", [
-"scripts/!mods_preload/mod_ae_perkBEYE.nut",
-"scripts/!mods_preload/mod_ae_perkDuelist.nut",
-"scripts/!mods_preload/mod_ae_perkRAdvantage.nut"
+	"scripts/!mods_preload/mod_ae_perkBEYE.nut",
+	"scripts/!mods_preload/mod_ae_perkDuelist.nut",
+	"scripts/!mods_preload/mod_ae_perkRAdvantage.nut"
 ]); // Altered Things
 ::Legends.Compat.IncompatNotRegistered.add("difficulty", [
-"scripts/!mods_preload/mod_ae_difficulty.nut"
+	"scripts/!mods_preload/mod_ae_difficulty.nut"
 ]); // Altered Things
 ::Legends.Compat.IncompatNotRegistered.add("aw_all_upd2020", [
-"scripts/skills/special/weapon_check.nut",
-"scripts/skills/special/stored_ap_1.nut",
-"scripts/skills/special/balance_check1.nut"
+	"scripts/skills/special/weapon_check.nut",
+	"scripts/skills/special/stored_ap_1.nut",
+	"scripts/skills/special/balance_check1.nut"
 ]); // Altered Weapons
 ::Legends.Compat.IncompatNotRegistered.add("mod_auto_recover", [
-"scripts/!mods_preload/mod_auto_recover.nut"
+	"scripts/!mods_preload/mod_auto_recover.nut"
 ]); // Auto Recover
 ::Legends.Compat.IncompatNotRegistered.add("mod_better_kings_guard", [
-"scripts/skills/backgrounds/hidden_kings_guard_background.nut"
+	"scripts/skills/backgrounds/hidden_kings_guard_background.nut"
 ]); // Better King’s Guard
 ::Legends.Compat.IncompatNotRegistered.add("mod_contract", [
-"scripts/!mods_preload/mod_contract.nut",
-"scripts/config/z_mod_contracts.nut"
+	"scripts/!mods_preload/mod_contract.nut",
+	"scripts/config/z_mod_contracts.nut"
 ]); // Better Contracts in Late Game
 ::Legends.Compat.IncompatNotRegistered.add("mod_buffedNamedShields", [
-"scripts/!mods_preload/mod_buffedNamedShields.nut"
+	"scripts/!mods_preload/mod_buffedNamedShields.nut"
 ]); // Buffed Names Shields
 ::Legends.Compat.IncompatNotRegistered.add("mod_buffNamedWeaponsSlight", [
-"scripts/!mods_preload/mod_buffedNamedWeaponsSlight.nut"
+	"scripts/!mods_preload/mod_buffedNamedWeaponsSlight.nut"
 ]); // Buffed Named Weapons
 ::Legends.Compat.IncompatNotRegistered.add("data_991 (Campaign Tweakster)", [
-"scripts/!mods_preload/mod_campaignTweakster.nut"
+	"scripts/!mods_preload/mod_campaignTweakster.nut"
 ]); // Campaign Tweakster
 ::Legends.Compat.IncompatNotRegistered.add("mod_rule_101_formations", [
-"scripts/config/z_mods_rule_000.nut",
-"scripts/config/z_mods_rule_000_formations.nut"
+	"scripts/config/z_mods_rule_000.nut",
+	"scripts/config/z_mods_rule_000_formations.nut"
 ]); // Company Formations and all variations
 ::Legends.Compat.IncompatNotRegistered.add("Mod_Non_Company_Tabards", [
-"scripts/items/armor_upgrades/tabard_10_upgrade.nut",
-"scripts/items/armor_upgrades/tabard_11_upgrade.nut",
-"scripts/items/armor_upgrades/tabard_12_upgrade.nut"
+	"scripts/items/armor_upgrades/tabard_10_upgrade.nut",
+	"scripts/items/armor_upgrades/tabard_11_upgrade.nut",
+	"scripts/items/armor_upgrades/tabard_12_upgrade.nut"
 ]); // Company Tabards
 ::Legends.Compat.IncompatNotRegistered.add("mod_pots", [
-"scripts/entity/tactical/enemies/pot.nut",
-"scripts/config/mod_pots.nut"
+	"scripts/entity/tactical/enemies/pot.nut",
+	"scripts/config/mod_pots.nut"
 ]); // Cracking Pots Minigame in Arena
 ::Legends.Compat.IncompatNotRegistered.add("Craftable Autonomist Potions", [
-"scripts/crafting/blueprints/ifrit_potion_item_blueprint.nut",
-"scripts/crafting/blueprints/ijirok_potion_item_blueprint.nut",
-"scripts/crafting/blueprints/kraken_potion_item_blueprint.nut",
-"scripts/crafting/blueprints/lindwurm_potion_item_blueprint.nut",
-"scripts/crafting/blueprints/lorekeeper_potion_item_blueprint.nut",
-"scripts/crafting/blueprints/nachzehrer_potion_item_blueprint.nut",
-"scripts/crafting/blueprints/necromancer_potion_item_blueprint.nut"
+	"scripts/crafting/blueprints/ifrit_potion_item_blueprint.nut",
+	"scripts/crafting/blueprints/ijirok_potion_item_blueprint.nut",
+	"scripts/crafting/blueprints/kraken_potion_item_blueprint.nut",
+	"scripts/crafting/blueprints/lindwurm_potion_item_blueprint.nut",
+	"scripts/crafting/blueprints/lorekeeper_potion_item_blueprint.nut",
+	"scripts/crafting/blueprints/nachzehrer_potion_item_blueprint.nut",
+	"scripts/crafting/blueprints/necromancer_potion_item_blueprint.nut"
 ]); // Craftable Autonomist Potion
 ::Legends.Compat.IncompatNotRegistered.add("craft_more_potions", [
-"scripts/items/accessory/berserker_mushrooms_item_preview.nut",
-"scripts/items/special/bodily_reward_item_preview.nut",
-"scripts/items/special/spiritual_reward_item_preview.nut",
-"scripts/items/tools/holy_water_item_preview.nut"
+	"scripts/items/accessory/berserker_mushrooms_item_preview.nut",
+	"scripts/items/special/bodily_reward_item_preview.nut",
+	"scripts/items/special/spiritual_reward_item_preview.nut",
+	"scripts/items/tools/holy_water_item_preview.nut"
 ]); // Craft More Potions
 ::Legends.Compat.IncompatNotRegistered.add("mod_cultistOriginEventFrequency", [
-"scripts/!mods_preload/cultistOriginEventFrequencyTweaks.nut"
+	"scripts/!mods_preload/cultistOriginEventFrequencyTweaks.nut"
 ]); // Cultist Origin Event Frequency Increase
 ::Legends.Compat.IncompatNotRegistered.add("zzz_mod_Deathgun_by_firehand", [
-"scripts/!mods_preload/hs_added_perks.nut",
-"scripts/!mods_preload/items_for_hs_mod.nut",
-"scripts/entity/tactical/enemies/vampire_praetoriani.nut"
+	"scripts/!mods_preload/hs_added_perks.nut",
+	"scripts/!mods_preload/items_for_hs_mod.nut",
+	"scripts/entity/tactical/enemies/vampire_praetoriani.nut"
 ]); // Deathgun Mod
 ::Legends.Compat.IncompatNotRegistered.add("mod_deterministic_loot", [
-"scripts/!mods_preload/mod_deterministic_loot.nut"
+	"scripts/!mods_preload/mod_deterministic_loot.nut"
 ]); // Deterministic Loot
 ::Legends.Compat.IncompatNotRegistered.add("dual_wielding", [
-"scripts/crafting/blueprints/flail_dw_blueprint.nut",
-"scripts/crafting/blueprints/heavy_southern_mace_dw_blueprint.nut",
-"scripts/crafting/blueprints/rondel_dagger_dw_blueprint.nut",
+	"scripts/crafting/blueprints/flail_dw_blueprint.nut",
+	"scripts/crafting/blueprints/heavy_southern_mace_dw_blueprint.nut",
+	"scripts/crafting/blueprints/rondel_dagger_dw_blueprint.nut",
 ]); // Dual Wielding
 ::Legends.Compat.IncompatNotRegistered.add("mod.elves.dwarves", [
-"scripts/skills/backgrounds/dwarf_background.nut",
-"scripts/skills/backgrounds/elf_background.nut"
+	"scripts/skills/backgrounds/dwarf_background.nut",
+	"scripts/skills/backgrounds/elf_background.nut"
 ]); // Elves and Dwarves
 ::Legends.Compat.IncompatNotRegistered.add("mod_enchant_weapons", [
-"scripts/items/misc/enchant_potion_item.nut",
-"scripts/items/misc/potion_of_rename.nut",
-"scripts/items/misc/dumb_enchant_item.nut",
-"scripts/items/misc/rnamed_potion_item.nut",
-"scripts/!mods_preload/mod_enchant.nut"
+	"scripts/items/misc/enchant_potion_item.nut",
+	"scripts/items/misc/potion_of_rename.nut",
+	"scripts/items/misc/dumb_enchant_item.nut",
+	"scripts/items/misc/rnamed_potion_item.nut",
+	"scripts/!mods_preload/mod_enchant.nut"
 ]); // Enchant Weapon
 ::Legends.Compat.IncompatNotRegistered.add("Enclave's more Armour and Weapons for Legends", [
-"Enclave Armor Mod/data/scripts/items/helmets/kettle_sallet_1.nut",
-"Enclave Armor Mod/data/scripts/items/helmets/kettle_sallet_2.nut",
-"Enclave Armor Mod/data/scripts/items/helmets/kettle_sallet_3.nut"
+	"Enclave Armor Mod/data/scripts/items/helmets/kettle_sallet_1.nut",
+	"Enclave Armor Mod/data/scripts/items/helmets/kettle_sallet_2.nut",
+	"Enclave Armor Mod/data/scripts/items/helmets/kettle_sallet_3.nut"
 ]); //Enclave's more Armour and Weapons
 ::Legends.Compat.IncompatNotRegistered.add("Extra_Starting_Scenarios", [
-"scripts/scenarios/world/barbarians_scenario.nut",
-"scripts/scenarios/world/pros_scenario.nut",
-"scripts/scenarios/world/vaegirs_scenario.nut"
+	"scripts/scenarios/world/barbarians_scenario.nut",
+	"scripts/scenarios/world/pros_scenario.nut",
+	"scripts/scenarios/world/vaegirs_scenario.nut"
 ]); //Extra Starting Scenarios
 ::Legends.Compat.IncompatNotRegistered.add("z_artifacts_and_camps", [
-"scripts/skills/traits/preternatural_dodge_trait.nut",
-"scripts/skills/traits/bonus_stam_regen_trait.nut",
-"scripts/items/armor_upgrades/litany_of_speed.nut",
-"scripts/items/armor/artifact/artifact_armor.nut"
+	"scripts/skills/traits/preternatural_dodge_trait.nut",
+	"scripts/skills/traits/bonus_stam_regen_trait.nut",
+	"scripts/items/armor_upgrades/litany_of_speed.nut",
+	"scripts/items/armor/artifact/artifact_armor.nut"
 ]); //Expanded Camps and Artifacts
 ::Legends.Compat.IncompatNotRegistered.add("mod_fencer", [
-"scripts/!mods_preload/mod_fencer.nut",
-"scripts/skills/actives/rush.nut"
+	"scripts/!mods_preload/mod_fencer.nut",
+	"scripts/skills/actives/rush.nut"
 ]); // Fencer New Skill
 ::Legends.Compat.IncompatNotRegistered.add("Gender Scenarios", [
-"scripts/events/events/scenario/legend_gendered_seer_intro_event.nut",
-"scripts/events/events/scenario/legend_vala_mid_intro_event.nut",
-"scripts/scenarios/world/legends_gendered_seer_scenario.nut"
+	"scripts/events/events/scenario/legend_gendered_seer_intro_event.nut",
+	"scripts/events/events/scenario/legend_vala_mid_intro_event.nut",
+	"scripts/scenarios/world/legends_gendered_seer_scenario.nut"
 ], "It's integrated into Legends"); // Gender Scenarios Legends
 ::Legends.Compat.IncompatNotRegistered.add("mod_removelastkillerrestriction", [
-"scripts/!mods_preload/mod_removelastkillerrestriction.nut"
+	"scripts/!mods_preload/mod_removelastkillerrestriction.nut"
 ]); // Get Loot Without Last Hit
 ::Legends.Compat.IncompatNotRegistered.add("Graverobbers-start", [
-"scripts/events/events/scenario/graverobbers_intro_event.nut",
-"scripts/scenarios/world/graverobbers_scenario.nut"
+	"scripts/events/events/scenario/graverobbers_intro_event.nut",
+	"scripts/scenarios/world/graverobbers_scenario.nut"
 ]); // Graverobbers Origin
 ::Legends.Compat.IncompatNotRegistered.add("zzz_mod_zzz_delz_houndmasterbgplus", [
-"scripts/items/accessory/accessory_dog.nut",
-"scripts/skills/actives/legend_unleash_warbear.nut",
-"scripts/skills/actives/unleash_animal.nut",
-"scripts/crafting/blueprints/wolf1_blueprint.nut"
+	"scripts/items/accessory/accessory_dog.nut",
+	"scripts/skills/actives/legend_unleash_warbear.nut",
+	"scripts/skills/actives/unleash_animal.nut",
+	"scripts/crafting/blueprints/wolf1_blueprint.nut"
 ]); // Houndmaster Class Perk Buff
 ::Legends.Compat.IncompatNotRegistered.add("mod_leaders_origins", [
-"scripts/scenarios/world/serpent_scenario.nut",
-"scripts/scenarios/world/shepherd_scenario.nut",
-"scripts/scenarios/world/stalker_scenario.nut",
-"scripts/scenarios/world/veteran_scenario.nut",
-"scripts/skills/backgrounds/order_knight_background.nut"
+	"scripts/scenarios/world/serpent_scenario.nut",
+	"scripts/scenarios/world/shepherd_scenario.nut",
+	"scripts/scenarios/world/stalker_scenario.nut",
+	"scripts/scenarios/world/veteran_scenario.nut",
+	"scripts/skills/backgrounds/order_knight_background.nut"
 ]); // Leaders
 ::Legends.Compat.IncompatNotRegistered.add("mod_oard", [
-"scripts/!mods_preload/mod_tohru_hooks.nut",
-"scripts/ai/tactical/agents/tohru_agent.nut",
-"scripts/mapgen/templates/tactical/tactical_hoard.nut"
+	"scripts/!mods_preload/mod_tohru_hooks.nut",
+	"scripts/ai/tactical/agents/tohru_agent.nut",
+	"scripts/mapgen/templates/tactical/tactical_hoard.nut"
 ]); //Legendary Location the Hoard
 ::Legends.Compat.IncompatNotRegistered.add("mod_spear", [
-"scripts/skills/actives/call_back.nut",
-"scripts/skills/actives/penetration.nut",
-"scripts/config/mod_spear.nut",
-"scripts/items/weapons/legendary/longinus_spear.nut"
+	"scripts/skills/actives/call_back.nut",
+	"scripts/skills/actives/penetration.nut",
+	"scripts/config/mod_spear.nut",
+	"scripts/items/weapons/legendary/longinus_spear.nut"
 ]); // Legendary Spear
 ::Legends.Compat.IncompatNotRegistered.add("z_mod_legends_noble_uniform", [
-"scripts/!mods_preload/noble_uniform.nut"
+	"scripts/!mods_preload/noble_uniform.nut"
 ]); // Legends Noble Army Uniforms
 ::Legends.Compat.IncompatNotRegistered.add("mod_lb", [
-"scripts/!mods_preload/mod_lb_faction_action.nut",
-"scripts/!mods_preload/mod_lb_contract.nut",
-"scripts/!mods_preload/mod_lb_location.nut"
+	"scripts/!mods_preload/mod_lb_faction_action.nut",
+	"scripts/!mods_preload/mod_lb_contract.nut",
+	"scripts/!mods_preload/mod_lb_location.nut"
 ]); //Limit Break Mod
 ::Legends.Compat.IncompatNotRegistered.add("Lone Chosen", [
-"scripts/skills/traits/hel_chosen_trait.nut",
-"scripts/skills/traits/soul_erased_trait.nut",
-"scripts/skills/traits/thor_chosen_trait.nut"
+	"scripts/skills/traits/hel_chosen_trait.nut",
+	"scripts/skills/traits/soul_erased_trait.nut",
+	"scripts/skills/traits/thor_chosen_trait.nut"
 ]); //Lone Chosen
 ::Legends.Compat.IncompatNotRegistered.add("mod_Lute_battle_song_skill", [
-"scripts/skills/actives/battle_song_skill.nut",
-"scripts/skills/effects/battle_song_effect.nut"
+	"scripts/skills/actives/battle_song_skill.nut",
+	"scripts/skills/effects/battle_song_effect.nut"
 ]); // Lute New Skill
 ::Legends.Compat.IncompatNotRegistered.add("Mercenary and Brigands Mod", [
-"scripts/skills/perks/perk_verytough.nut",
-"scripts/skills/perks/perk_veteran.nut",
-"scripts/skills/perks/perk_veteran2.nut",
-"scripts/skills/racial/brigands_racial.nut"
+	"scripts/skills/perks/perk_verytough.nut",
+	"scripts/skills/perks/perk_veteran.nut",
+	"scripts/skills/perks/perk_veteran2.nut",
+	"scripts/skills/racial/brigands_racial.nut"
 ]); // Mercenary and Brigands Mod
 ::Legends.Compat.IncompatNotRegistered.add("mod_Universal_Helmets_2.0_Khtulhu", [
-"scripts/items/helmets/named/ahnenerbe_helmet.nut",
-"scripts/events/events/AI_vs_AI.nut",
-"scripts/!mods_preload/!mod_additional_equipment.nut"
+	"scripts/items/helmets/named/ahnenerbe_helmet.nut",
+	"scripts/events/events/AI_vs_AI.nut",
+	"scripts/!mods_preload/!mod_additional_equipment.nut"
 ]); // Mod Universal Helmets
 ::Legends.Compat.IncompatNotRegistered.add("1.2.3, more ammos mod", [
-"scripts/!mods_preload/mod_legendary_arrow.nut",
-"scripts/!mods_preload/mod_powders.nut",
-"scripts/items/ammo/magic_powder_bag.nut",
-"scripts/items/ammo/effective_powder_bag.nut",
-"scripts/!mods_preload/mod_ammos.nut"
+	"scripts/!mods_preload/mod_legendary_arrow.nut",
+	"scripts/!mods_preload/mod_powders.nut",
+	"scripts/items/ammo/magic_powder_bag.nut",
+	"scripts/items/ammo/effective_powder_bag.nut",
+	"scripts/!mods_preload/mod_ammos.nut"
 ]); // More Ammos
 ::Legends.Compat.IncompatNotRegistered.add("mod_more_champions", [
-"scripts/!mods_preload/mod_morechampions.nut"
+	"scripts/!mods_preload/mod_morechampions.nut"
 ]); // mod_more_champions
 ::Legends.Compat.IncompatNotRegistered.add("Mod_Morecrafting", [
-"scripts/crafting/blueprints/heraldic_plates_upgrade_blueprint.nut",
-"scripts/crafting/blueprints/joint_cover_upgrade_blueprint.nut",
-"scripts/crafting/blueprints/leather_neckguard_upgrade_blueprint.nut"
+	"scripts/crafting/blueprints/heraldic_plates_upgrade_blueprint.nut",
+	"scripts/crafting/blueprints/joint_cover_upgrade_blueprint.nut",
+	"scripts/crafting/blueprints/leather_neckguard_upgrade_blueprint.nut"
 ]); // More Crafting
 ::Legends.Compat.IncompatNotRegistered.add("mod_more_scaling_100", [
-"scripts/!mods_preload/mod_more_scaling_100.nut"
+	"scripts/!mods_preload/mod_more_scaling_100.nut"
 ]); // More Scaling
 ::Legends.Compat.IncompatNotRegistered.add("mod_more_scaling_200", [
-"scripts/!mods_preload/mod_more_scaling_200.nut"
+	"scripts/!mods_preload/mod_more_scaling_200.nut"
 ]); // More Scaling
 ::Legends.Compat.IncompatNotRegistered.add("mod_more_scaling_5", [
-"scripts/!mods_preload/mod_more_scaling_5.nut"
+	"scripts/!mods_preload/mod_more_scaling_5.nut"
 ]); // More Scaling
 ::Legends.Compat.IncompatNotRegistered.add("Named Item Rarity in Shops", [
-"scripts/!mods_preload/mod_rarity.nut"
+	"scripts/!mods_preload/mod_rarity.nut"
 ]); // Named Item Rarity in Shops
 ::Legends.Compat.IncompatNotRegistered.add("z_mod_OrcWarlords_named_2h_orc_axe_flail", [
-"scripts/!mods_preload/z_orc_2h_named.nut",
-"scripts/items/weapons/named/named_two_handed_orc_axe.nut",
-"scripts/items/weapons/named/named_two_handed_orc_flail.nut"
+	"scripts/!mods_preload/z_orc_2h_named.nut",
+	"scripts/items/weapons/named/named_two_handed_orc_axe.nut",
+	"scripts/items/weapons/named/named_two_handed_orc_flail.nut"
 ]); // Named Two Handed Orc Axe, Flail Stand Alone
 ::Legends.Compat.IncompatNotRegistered.add("Olto Mod", [
-"scripts/crafting/blueprints/armor_h_20_blueprint.nut",
-"scripts/crafting/blueprints/armor_h_30_blueprint.nut",
-"scripts/crafting/blueprints/armor_h_320_blueprint.nut"
+	"scripts/crafting/blueprints/armor_h_20_blueprint.nut",
+	"scripts/crafting/blueprints/armor_h_30_blueprint.nut",
+	"scripts/crafting/blueprints/armor_h_320_blueprint.nut"
 ]); // OltoMod Test
 ::Legends.Compat.IncompatNotRegistered.add("mod_obsidian_dagger", [
-"scripts/states/hook_tactical_state.nut"
+	"scripts/states/hook_tactical_state.nut"
 ]); // Obsidian Dagger Loot Fix
 ::Legends.Compat.IncompatNotRegistered.add("Main file (The Player NPC Equality Mod)", [
-"scripts/skills/perks/perk_drums_of_war.nut",
-"scripts/skills/perks/perk_iron_lungs.nut"
+	"scripts/skills/perks/perk_drums_of_war.nut",
+	"scripts/skills/perks/perk_iron_lungs.nut"
 ]); // The Player NPC Equality Mod
 ::Legends.Compat.IncompatNotRegistered.add("mod_tryout_talents_hooks", [
-"scripts/!mods_preload/tryout_talents.nut"
+	"scripts/!mods_preload/tryout_talents.nut"
 ], "Use Clever Recruiter instead"); // Tryout Talents Alternative
 ::Legends.Compat.IncompatNotRegistered.add("WotN Perks", [
-"scripts/skills/perks/perk_last_stand.nut",
-"scripts/skills/perks/perk_lookout.nut",
-"scripts/skills/perks/perk_rebound.nut"
+	"scripts/skills/perks/perk_last_stand.nut",
+	"scripts/skills/perks/perk_lookout.nut",
+	"scripts/skills/perks/perk_rebound.nut"
 ]); // Perks for Warriors of the North
 ::Legends.Compat.IncompatNotRegistered.add("Purchasable Perks", [
-"scripts/!mods_preload/store_add.nut",
-"scripts/items/bags_belt.nut",
-"scripts/items/book_cooking.nut"
+	"scripts/!mods_preload/store_add.nut",
+	"scripts/items/bags_belt.nut",
+	"scripts/items/book_cooking.nut"
 ]); // Purchasable Perks (legends)
 ::Legends.Compat.IncompatNotRegistered.add("mod_ReserveSize", [
-"scripts/!mods_preload/mod_reservesize.nut"
+	"scripts/!mods_preload/mod_reservesize.nut"
 ]); //Reserve Size
 ::Legends.Compat.IncompatNotRegistered.add("Sato Pot Tweaks", [
-"scripts/!mods_preload/mod_pots.nut"
+	"scripts/!mods_preload/mod_pots.nut"
 ]); // Sato’s Assorted Tweaks
 ::Legends.Compat.IncompatNotRegistered.add("Sato Potion Tweaks", [
-"scripts/!mods_preload/mod_potions.nut"
+	"scripts/!mods_preload/mod_potions.nut"
 ]); // Sato’s Assorted Tweaks
 ::Legends.Compat.IncompatNotRegistered.add("Sato Swordlance to Glaive", [
-"scripts/!mods_preload/mod_swordlances.nut"
+	"scripts/!mods_preload/mod_swordlances.nut"
 ]); // Sato’s Assorted Tweaks
 ::Legends.Compat.IncompatNotRegistered.add("sato_flail_tweaks", [
-"scripts/!mods_preload/mod_flails.nut"
+	"scripts/!mods_preload/mod_flails.nut"
 ]); // Sato’s Assorted Tweaks
 ::Legends.Compat.IncompatNotRegistered.add("sato_handgonne_tweaks", [
-"scripts/!mods_preload/mod_handgonne.nut"
+	"scripts/!mods_preload/mod_handgonne.nut"
 ]); // Sato’s Assorted Tweaks
 ::Legends.Compat.IncompatNotRegistered.add("sato_named_weapon_tweaks", [
-"scripts/!mods_preload/mod_named_weapons.nut"
+	"scripts/!mods_preload/mod_named_weapons.nut"
 ]); // Sato’s Assorted Tweaks
 ::Legends.Compat.IncompatNotRegistered.add("sato_taxidermist_tweaks", [
-"scripts/!mods_preload/mod_taxidermist.nut"
+	"scripts/!mods_preload/mod_taxidermist.nut"
 ]); // Sato’s Assorted Tweaks
 ::Legends.Compat.IncompatNotRegistered.add("sato_expanded_scenarios", [
-"scripts/!mods_preload/mod_sato_expanded_scenarios.nut",
-"scripts/scenarios/tactical/scenario_sato_barbarians.nut",
-"scripts/scenarios/tactical/scenario_sato_gilded.nut"
+	"scripts/!mods_preload/mod_sato_expanded_scenarios.nut",
+	"scripts/scenarios/tactical/scenario_sato_barbarians.nut",
+	"scripts/scenarios/tactical/scenario_sato_gilded.nut"
 ]); // Sato’s Expanded Scenarios
 ::Legends.Compat.IncompatNotRegistered.add("sato_established_company", [
-"scripts/events/events/scenario/sato_established_company_intro_event.nut",
-"scripts/scenarios/world/sato_established_company_scenario.nut"
+	"scripts/events/events/scenario/sato_established_company_intro_event.nut",
+	"scripts/scenarios/world/sato_established_company_scenario.nut"
 ]); // Sato’s Established Company Origin
 ::Legends.Compat.IncompatNotRegistered.add("sato_additional_equipment", [
-"scripts/!mods_preload/!mod_additional_equipment.nut",
-"scripts/items/helmets/closed_conic_helmet.nut",
-"scripts/items/helmets/closed_conic_helmet_with_mail.nut"
+	"scripts/!mods_preload/!mod_additional_equipment.nut",
+	"scripts/items/helmets/closed_conic_helmet.nut",
+	"scripts/items/helmets/closed_conic_helmet_with_mail.nut"
 ]); // Sato’s Additional Equipment
 ::Legends.Compat.IncompatNotRegistered.add("mod_settlement_situations_worldmap_tooltip", [
-"scripts/!mods_preload/mod_settlement_situations_worldmap_tooltip.nut"
+	"scripts/!mods_preload/mod_settlement_situations_worldmap_tooltip.nut"
 ]); // Settlement Situation Worldmap Tooltip
 ::Legends.Compat.IncompatNotRegistered.add("mod_stabilized_medium_armor_perk", [
-"scripts/config/stabilized_config.nut",
-"scripts/skills/perks/perk_stabilized.nut"
+	"scripts/config/stabilized_config.nut",
+	"scripts/skills/perks/perk_stabilized.nut"
 ]); // Stabilized Perk
 ::Legends.Compat.IncompatNotRegistered.add("Sons of Spandau", [
-"scripts/events/events/scenario/spandau_intro_event.nut",
-"scripts/scenarios/world/spandau_scenario.nut"
+	"scripts/events/events/scenario/spandau_intro_event.nut",
+	"scripts/scenarios/world/spandau_scenario.nut"
 ]); // Sons of Spandau
 ::Legends.Compat.IncompatNotRegistered.add("mod_tactical_hit_factors", [
-"scripts/!mods_preload/mod_tactical_hit_factors.nut"
+	"scripts/!mods_preload/mod_tactical_hit_factors.nut"
 ]); // Tactical Hit Factors
 ::Legends.Compat.IncompatNotRegistered.add("TheTrials", [
-"scripts/config/spawnlist_trials.nut",
-"scripts/events/events/triala.nut",
-"scripts/events/events/trialb.nut"
+	"scripts/config/spawnlist_trials.nut",
+	"scripts/events/events/triala.nut",
+	"scripts/events/events/trialb.nut"
 ]); // The Battle Trials
 ::Legends.Compat.IncompatNotRegistered.add("The last Paladin", [
-"scripts/events/events/scenario/last_paladin_intro_event.nut",
-"scripts/scenarios/world/last_paladin_scenario.nut",
-"scripts/skills/backgrounds/paladin22_background.nut",
-"scripts/skills/perks/perk_warrior_of_the_light.nut"
+	"scripts/events/events/scenario/last_paladin_intro_event.nut",
+	"scripts/scenarios/world/last_paladin_scenario.nut",
+	"scripts/skills/backgrounds/paladin22_background.nut",
+	"scripts/skills/perks/perk_warrior_of_the_light.nut"
 ]); // The last Paladin
 ::Legends.Compat.IncompatNotRegistered.add("mod_totemer", [
-"scripts/config/mod_totem.nut",
-"scripts/skills/backgrounds/totemer_background.nut",
-"scripts/items/weapons/totem_staff.nut"
+	"scripts/config/mod_totem.nut",
+	"scripts/skills/backgrounds/totemer_background.nut",
+	"scripts/items/weapons/totem_staff.nut"
 ]); // Totemer Origin
 ::Legends.Compat.IncompatNotRegistered.add("Nectomancy", [
-"scripts/config/x_more_perks.nut",
-"scripts/skills/actives/necromancy.nut",
-"scripts/skills/perks/perk_necromancy.nut"
+	"scripts/config/x_more_perks.nut",
+	"scripts/skills/actives/necromancy.nut",
+	"scripts/skills/perks/perk_necromancy.nut"
 ]); // True Necromancy
 ::Legends.Compat.IncompatNotRegistered.add("mod_fallen_order", [
-"scripts/crafting/blueprints/order_kite_shield_blueprint2.nut",
-"scripts/crafting/blueprints/order_heater_shield_blueprint2.nut",
-"scripts/crafting/blueprints/order_holy_water_blueprint2.nut"
+	"scripts/crafting/blueprints/order_kite_shield_blueprint2.nut",
+	"scripts/crafting/blueprints/order_heater_shield_blueprint2.nut",
+	"scripts/crafting/blueprints/order_holy_water_blueprint2.nut"
 ]); // UNFINISHED Fallen Order origin
 ::Legends.Compat.IncompatNotRegistered.add("mod_UnlimitedFoodAmmoParts", [
-"scripts/!mods_preload/FAP_ammo_item.nut",
-"scripts/!mods_preload/FAP_armor_parts_item.nut",
-"scripts/!mods_preload/FAP_cured_rations_item.nut"
+	"scripts/!mods_preload/FAP_ammo_item.nut",
+	"scripts/!mods_preload/FAP_armor_parts_item.nut",
+	"scripts/!mods_preload/FAP_cured_rations_item.nut"
 ]); // Unlimited Food Ammo Supplies
 ::Legends.Compat.IncompatNotRegistered.add("mod_location", [
-"scripts/!mods_preload/mod_location.nut"
+	"scripts/!mods_preload/mod_location.nut"
 ]); // Unlock Camps
 ::Legends.Compat.IncompatNotRegistered.add("witcher_mod", [
-"scripts/skills/actives/gryphon_style.nut",
-"scripts/skills/actives/igni_skill.nut",
-"scripts/skills/actives/quen_skill.nut"
+	"scripts/skills/actives/gryphon_style.nut",
+	"scripts/skills/actives/igni_skill.nut",
+	"scripts/skills/actives/quen_skill.nut"
 ]); // Witcher Mod Revamp
 ::Legends.Compat.IncompatNotRegistered.add("witcher_mod PTR", [
-"scripts/skills/effects/willow_potion_effect.nut",
-"scripts/skills/effects/yrden_effect.nut",
-"scripts/skills/traits/sign_trait.nut"
+	"scripts/skills/effects/willow_potion_effect.nut",
+	"scripts/skills/effects/yrden_effect.nut",
+	"scripts/skills/traits/sign_trait.nut"
 ]); // Witcher Mod Revamp
 //endregion
 

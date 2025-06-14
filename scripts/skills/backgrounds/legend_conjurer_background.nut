@@ -67,7 +67,10 @@ this.legend_conjurer_background <- this.inherit("scripts/skills/backgrounds/char
 			],
 			Enemy = [],
 			Class = [],
-			Magic = [this.Const.Perks.ConjurationMagicTree]
+			Profession = [],
+			Magic = [
+				this.Const.Perks.ConjurationMagicTree
+			]
 		}
 
 	}

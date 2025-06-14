@@ -97,8 +97,9 @@ this.legend_surgeon_background <- this.inherit("scripts/skills/backgrounds/chara
 				this.Const.Perks.InspirationalTree
 			],
 			Enemy = [],
-			Class = [
-				this.Const.Perks.HealerClassTree
+			Class = [],
+			Profession = [
+				this.Const.Perks.HealerProfessionTree
 			],
 			Magic = []
 		}

@@ -23,7 +23,7 @@
 		if(::Legends.isLegendaryDifficulty())
 		{
 			::Legends.Perks.grant(this, ::Legends.Perk.BattleForged);
-			::Legends.Perks.grant(this, ::Legends.Perk.LegendFullForce);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendImmovableObject);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendComposure);
 			::Legends.Perks.grant(this, ::Legends.Perk.ShieldExpert);
 		}

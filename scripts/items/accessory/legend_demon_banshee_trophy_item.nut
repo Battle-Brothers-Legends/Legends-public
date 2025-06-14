@@ -11,7 +11,7 @@ this.legend_demon_banshee_trophy_item <- this.inherit("scripts/items/accessory/a
 		this.m.ShowOnCharacter = true;
 		this.m.IconLarge = "";
 		this.m.Icon = "accessory/demon_banshee_trophy.png";
-		this.m.Sprite = "hexe_leader_trophy";
+		this.m.Sprite = "demon_banshee_trophy";
 		this.m.Value = 1000;
 	}
 

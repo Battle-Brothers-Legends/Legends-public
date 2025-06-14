@@ -21,38 +21,23 @@
 	o.assignRandomEquipment = function ()
 	{
 
-		local r = this.Math.rand(1, 5);
+		if (this.m.Items.getItemAtSlot(this.Const.ItemSlot.Mainhand) == null) {
+			local weapons = [
+				"weapons/legend_militia_glaive",
+				"weapons/militia_spear",
+				"weapons/ancient/ancient_spear",
+				"weapons/legend_saw",
+				"weapons/legend_sickle"
+			];
+			this.m.Items.equip(this.new("scripts/items/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
+		}
 
-		if (r == 1)
-		{
-			this.m.Items.equip(this.new("scripts/items/weapons/legend_militia_glaive"));
-		}
-		else if (r == 2)
-		{
-			this.m.Items.equip(this.new("scripts/items/weapons/militia_spear"));
-		}
-		else if (r == 3)
-		{
-			this.m.Items.equip(this.new("scripts/items/weapons/ancient/ancient_spear"));
-		}
-		else if (r == 4)
-		{
-			this.m.Items.equip(this.new("scripts/items/weapons/legend_saw"));
-		}
-		// else if (r == 6)
-		// {
-		// 	this.m.Items.equip(this.new("scripts/items/weapons/legend_sickle")); // Unsure about this
-		// }
-
-		local r = this.Math.rand(1, 4);
-
-		if (r == 1)
-		{
-			this.m.Items.equip(this.new("scripts/items/shields/buckler_shield"));
-		}
-		if (r == 2)
-		{
-			this.m.Items.equip(this.new("scripts/items/shields/wooden_shield"));
+		if (this.m.Items.getItemAtSlot(this.Const.ItemSlot.Offhand) == null && this.Math.rand(1, 2) == 1) {
+			local shields = [
+				"shields/buckler_shield",
+				"shields/wooden_shield"
+			];
+			this.m.Items.equip(this.new("scripts/items/" + shields[this.Math.rand(0, shields.len() - 1)]));
 		}
 
 		this.m.Items.equip(this.Const.World.Common.pickArmor([

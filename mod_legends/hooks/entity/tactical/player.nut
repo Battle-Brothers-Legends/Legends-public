@@ -1708,6 +1708,23 @@
 		this.Sound.play(this.m.Sound[_type][this.Math.rand(0, this.m.Sound[_type].len() - 1)], volume, this.getPos(), _pitch);
 	}
 
+	o.getToggleAccessoryTooltip <- function (_slot, _layer) {
+		local accessory = this.getItems().getItemAtSlot(_slot);
+		local tt = [
+			{
+				id = 1,
+				type = "title",
+				text = "Accessory Layer"
+			},
+			{
+				id = 2,
+				type = "description",
+				text = "Click to toggle the visibility of the accessory layer."
+			}
+		];
+		return tt;
+	}
+
 	o.getRemoveLayerTooltip <- function (_slot, _layer)
 	{
 		local armor = this.getItems().getItemAtSlot(_slot);
@@ -1801,7 +1818,6 @@
 
 		return tt;
 	}
-
 
 	// todo delete it - chopeks
 	o.TherianthropeInfection <- function (_killer)

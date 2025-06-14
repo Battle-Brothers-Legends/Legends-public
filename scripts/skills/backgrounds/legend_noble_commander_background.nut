@@ -92,8 +92,9 @@ this.legend_noble_commander_background <- this.inherit("scripts/skills/backgroun
 				this.Const.Perks.OutlandersTree,
 				this.Const.Perks.CivilizationTree
 			],
-			Class = [
-				this.Const.Perks.BarterClassTree
+			Class = [],
+			Profession = [
+				this.Const.Perks.BarterProfessionTree
 			],
 			Magic = [
 				this.Const.Perks.CaptainMagicTree

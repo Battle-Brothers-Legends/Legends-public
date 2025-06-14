@@ -1,6 +1,5 @@
 ::mods_hookExactClass("skills/actives/prong_skill", function(o)
 {
-	local getTooltip = o.getTooltip;
 	o.getTooltip = function ()
 	{
 		local tooltip = this.getDefaultTooltip();
@@ -34,15 +33,14 @@
 	local onAnySkillUsed = o.onAnySkillUsed;
 	o.onAnySkillUsed = function ( _skill, _targetEntity, _properties )
 	{
-		onAnySkillUsed( _skill, _targetEntity, _properties );
 		if (_skill == this)
 		{
 			_properties.MeleeSkill += 10;
 
 			if (_targetEntity != null && !this.getContainer().getActor().getCurrentProperties().IsSpecializedInPolearms && this.getContainer().getActor().getTile().getDistanceTo(_targetEntity.getTile()) == 1)
 			{
-				_properties.MeleeSkill += -15;
-				this.m.HitChanceBonus += -5;
+				_properties.MeleeSkill -= 15;
+				this.m.HitChanceBonus -= 5;
 			}
 		}
 	}

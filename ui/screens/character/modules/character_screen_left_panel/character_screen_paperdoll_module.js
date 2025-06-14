@@ -50,9 +50,9 @@ var CharacterScreenPaperdollModule = function (_parent, _dataSource) {
 			BackgroundImage: Path.GFX + Asset.SLOT_BACKGROUND_BODY
 		}
 	};
-
 	this.mUpgradeButtons = [null, null, null, null, null, null];
 	this.mHelmetUpgradeButtons = [null, null, null, null, null];
+	this.mAccessoryToggleButton = null;
 
 	this.mRightEquipmentSlots = {
 		Ammo: {
@@ -98,34 +98,44 @@ CharacterScreenPaperdollModule.prototype.createDIV = function (_parentDiv) {
 	var middleEquipmentColumnLayout = $('<div class="l-equipment-column"/>');
 	middleEquipmentColumn.append(middleEquipmentColumnLayout);
 
-	var callBackLayerButton = function(_button, _event)
-	{
-			if (KeyModiferConstants.ShiftKey in _event && _event[KeyModiferConstants.ShiftKey] === true)
-			{
-					self.mDataSource.notifyBackendToggleUpgradeVisible(_button.data('slotType'), _button.data('index'));
-			}
-			else
-			{
-					self.mDataSource.notifyBackendRemoveUpgrade(_button.data('slotType'), _button.data('index'));
-			}
+	var callBackLayerButton = function (_button, _event) {
+		if (KeyModiferConstants.ShiftKey in _event && _event[KeyModiferConstants.ShiftKey] === true) {
+			self.mDataSource.notifyBackendToggleUpgradeVisible(_button.data('slotType'), _button.data('index'));
+		} else {
+			self.mDataSource.notifyBackendRemoveUpgrade(_button.data('slotType'), _button.data('index'));
+		}
 	}
 
 	for (var i = 0; i < 5; i++) {
-			var layout = $('<div class="l-button h-remove' + i + '"/>');
-			middleEquipmentColumn.append(layout);
-			this.mHelmetUpgradeButtons[i] = layout.createTextButton((i + 1).toString(), callBackLayerButton, "display-block", 11);
-			this.mHelmetUpgradeButtons[i].data('index', i);
-			this.mHelmetUpgradeButtons[i].data('slotType', CharacterScreenIdentifier.ItemSlot.Head);
-			this.mHelmetUpgradeButtons[i].data('itemOwner', 'paperdoll.remove-helmet-layer')
+		var layout = $('<div class="l-button h-remove' + i + '"/>');
+		middleEquipmentColumn.append(layout);
+		this.mHelmetUpgradeButtons[i] = layout.createTextButton((i + 1).toString(), callBackLayerButton, "display-block", 11);
+		this.mHelmetUpgradeButtons[i].data('index', i);
+		this.mHelmetUpgradeButtons[i].data('slotType', CharacterScreenIdentifier.ItemSlot.Head);
+		this.mHelmetUpgradeButtons[i].data('itemOwner', 'paperdoll.remove-helmet-layer')
 	}
 	for (var i = 0; i < 6; i++) {
-			var layout = $('<div class="l-button remove' + i + '"/>');
-			middleEquipmentColumn.append(layout);
-			this.mUpgradeButtons[i] = layout.createTextButton((i + 1).toString(), callBackLayerButton,"display-block", 11);
-			this.mUpgradeButtons[i].data('index', i);
-			this.mUpgradeButtons[i].data('slotType', CharacterScreenIdentifier.ItemSlot.Body);
-			this.mUpgradeButtons[i].data('itemOwner', 'paperdoll.remove-armor-layer')
+		var layout = $('<div class="l-button remove' + i + '"/>');
+		middleEquipmentColumn.append(layout);
+		this.mUpgradeButtons[i] = layout.createTextButton((i + 1).toString(), callBackLayerButton, "display-block", 11);
+		this.mUpgradeButtons[i].data('index', i);
+		this.mUpgradeButtons[i].data('slotType', CharacterScreenIdentifier.ItemSlot.Body);
+		this.mUpgradeButtons[i].data('itemOwner', 'paperdoll.remove-armor-layer')
 	}
+	// Create accessory visibility toggle button
+	var accessoryToggleLayout = $('<div class="l-button accessory-toggle"/>');
+	leftEquipmentColumn.append(accessoryToggleLayout);
+	this.mAccessoryToggleButton = accessoryToggleLayout.createTextButton("1", function (_button, _event) {
+		if (_button.hasClass('armor_button_invisible')) {
+			_button.removeClass('armor_button_invisible');
+		} else {
+			_button.addClass('armor_button_invisible');
+		}
+		self.mDataSource.notifyBackendToggleUpgradeVisible(CharacterScreenIdentifier.ItemSlot.Accessory, 0);
+	}, "display-block", 11);
+	this.mAccessoryToggleButton.data('tooltip', 'Toggle accessory visibility');
+	this.mAccessoryToggleButton.data('itemOwner', 'paperdoll.toggle-accessory-visibility');
+	this.mAccessoryToggleButton.hide();
 
 	var rightEquipmentColumn = $('<div class="equipment-column"/>');
 	this.mContainer.append(rightEquipmentColumn);
@@ -243,8 +253,8 @@ CharacterScreenPaperdollModule.prototype.createBagSlot = function (
 
 		var entityId =
 			sourceData !== null && "entityId" in sourceData ?
-			sourceData.entityId :
-			null;
+				sourceData.entityId :
+				null;
 		var sourceItemId =
 			sourceData !== null && "itemId" in sourceData ? sourceData.itemId : null;
 		var sourceItemIdx =
@@ -254,24 +264,24 @@ CharacterScreenPaperdollModule.prototype.createBagSlot = function (
 		//var targetItemId = (targetData !== null && 'itemId' in targetData) ? targetData.itemId : null;
 		var sourceSlotType =
 			sourceData !== null && "slotType" in sourceData ?
-			sourceData.slotType :
-			null;
+				sourceData.slotType :
+				null;
 		var targetSlotType =
 			targetData !== null && "slotType" in targetData ?
-			targetData.slotType :
-			null;
+				targetData.slotType :
+				null;
 		var sourceIsBlockingOffhand =
 			sourceData !== null && "isBlockingOffhand" in sourceData ?
-			sourceData.isBlockingOffhand :
-			false;
+				sourceData.isBlockingOffhand :
+				false;
 		var targetIsBlockingOffhand =
 			targetData !== null && "isBlockingOffhand" in targetData ?
-			targetData.isBlockingOffhand :
-			false;
+				targetData.isBlockingOffhand :
+				false;
 		var isUsable =
 			sourceData !== null && "isUsable" in sourceData ?
-			sourceData.isUsable :
-			false;
+				sourceData.isUsable :
+				false;
 
 		if (sourceOwner === CharacterScreenIdentifier.ItemOwner.Ground) {
 			// bullshit hack, fu imp
@@ -439,8 +449,8 @@ CharacterScreenPaperdollModule.prototype.createBagSlot = function (
 
 		var isAllowedToDrop =
 			sourceData !== null && "isAllowedToDrop" in sourceData ?
-			sourceData.isAllowedToDrop :
-			false;
+				sourceData.isAllowedToDrop :
+				false;
 		if (isAllowedToDrop === false) {
 			console.info(
 				"Backpack::dragEndHandler: Failed to drop item. Not allowed."
@@ -465,8 +475,8 @@ CharacterScreenPaperdollModule.prototype.createBagSlot = function (
 		//var proxyData = _source.data('item');
 		var sourceSlotType =
 			sourceData !== null && "slotType" in sourceData ?
-			sourceData.slotType :
-			null;
+				sourceData.slotType :
+				null;
 		//console.log("Source data: " + sourceSlotType);
 
 		switch (sourceSlotType) {
@@ -635,32 +645,32 @@ CharacterScreenPaperdollModule.prototype.createEquipmentSlot = function (
 
 		var entityId =
 			sourceData !== null && "entityId" in sourceData ?
-			sourceData.entityId :
-			null;
+				sourceData.entityId :
+				null;
 		var itemId =
 			sourceData !== null && "itemId" in sourceData ? sourceData.itemId : null;
 
 		// we only allow equipping items with the same slot type
 		var sourceSlotType =
 			sourceData !== null && "slotType" in sourceData ?
-			sourceData.slotType :
-			null;
+				sourceData.slotType :
+				null;
 		var targetSlotType =
 			targetData !== null && "slotType" in targetData ?
-			targetData.slotType :
-			null;
+				targetData.slotType :
+				null;
 		var sourceItemId =
 			sourceData !== null && "itemId" in sourceData ? sourceData.itemId : null;
 		var sourceItemIdx =
 			sourceData !== null && "index" in sourceData ? sourceData.index : null;
 		var sourceIsBlockingOffhand =
 			sourceData !== null && "isBlockingOffhand" in sourceData ?
-			sourceData.isBlockingOffhand :
-			false;
+				sourceData.isBlockingOffhand :
+				false;
 		var targetIsBlockingOffhand =
 			targetData !== null && "isBlockingOffhand" in targetData ?
-			targetData.isBlockingOffhand :
-			false;
+				targetData.isBlockingOffhand :
+				false;
 		var isUsable =
 			sourceData !== null && "isUsable" in sourceData ? sourceData.isUsable : 0;
 
@@ -825,11 +835,11 @@ CharacterScreenPaperdollModule.prototype.createEquipmentSlot = function (
 
 		var isAllowedToDrop =
 			sourceData !== null &&
-			"isAllowedToDrop" in sourceData &&
-			targetData !== undefined &&
-			targetData !== null ?
-			sourceData.isAllowedToDrop :
-			false;
+				"isAllowedToDrop" in sourceData &&
+				targetData !== undefined &&
+				targetData !== null ?
+				sourceData.isAllowedToDrop :
+				false;
 		if (isAllowedToDrop === false) {
 			console.info(
 				"Paperdoll::dragEndHandler: Failed to drop item. Not allowed."
@@ -845,8 +855,8 @@ CharacterScreenPaperdollModule.prototype.createEquipmentSlot = function (
 			targetData !== null && "index" in targetData && targetData.index !== null;
 		var isEmpty =
 			targetData !== null && "isEmpty" in targetData ?
-			targetData.isEmpty :
-			true;
+				targetData.isEmpty :
+				true;
 
 		/*
 								if (sourceOwner === null || targetOwner === null)
@@ -959,8 +969,8 @@ CharacterScreenPaperdollModule.prototype.createEquipmentSlot = function (
 		//var proxyData = _source.data('item');
 		var sourceSlotType =
 			sourceData !== null && "slotType" in sourceData ?
-			sourceData.slotType :
-			null;
+				sourceData.slotType :
+				null;
 		//console.log("Source data: " + sourceSlotType);
 
 		switch (sourceSlotType) {
@@ -1042,8 +1052,8 @@ CharacterScreenPaperdollModule.prototype.createEquipmentSlot = function (
 			KeyModiferConstants.AltKey in _event &&
 			_event[KeyModiferConstants.AltKey] === true;
 		var unequipAllLayers =
-				KeyModiferConstants.ShiftKey in _event &&
-				_event[KeyModiferConstants.ShiftKey] === true;
+			KeyModiferConstants.ShiftKey in _event &&
+			_event[KeyModiferConstants.ShiftKey] === true;
 
 		if (
 			isEmpty === false &&
@@ -1103,11 +1113,14 @@ CharacterScreenPaperdollModule.prototype.clearItems = function () {
 		btn.hide();
 		btn.unbindTooltip();
 	});
-
 	this.mHelmetUpgradeButtons.forEach(function (btn, index) {
 		btn.hide();
 		btn.unbindTooltip();
 	});
+
+	// Hide and unbind accessory toggle button
+	this.mAccessoryToggleButton.hide();
+	this.mAccessoryToggleButton.unbindTooltip();
 
 };
 
@@ -1146,18 +1159,18 @@ CharacterScreenPaperdollModule.prototype.assignItemToSlot = function (
 		// set slot type correctly to offhand if the mainhand is a twohander
 		itemData.slotType =
 			isSlotBlocked === true &&
-			_item[CharacterScreenIdentifier.Item.Slot] ===
-			CharacterScreenIdentifier.ItemSlot.Mainhand ?
-			CharacterScreenIdentifier.ItemSlot.Offhand :
-			_item[CharacterScreenIdentifier.Item.Slot];
+				_item[CharacterScreenIdentifier.Item.Slot] ===
+				CharacterScreenIdentifier.ItemSlot.Mainhand ?
+				CharacterScreenIdentifier.ItemSlot.Offhand :
+				_item[CharacterScreenIdentifier.Item.Slot];
 		itemData.entityId = _entityId;
 		itemData.isChangeableInBattle =
 			CharacterScreenIdentifier.ItemFlag.IsChangeableInBattle in _item &&
 			_item[CharacterScreenIdentifier.ItemFlag.IsChangeableInBattle] === true;
 		itemData.isBlockingOffhand =
 			CharacterScreenIdentifier.ItemFlag.IsBlockingOffhand in _item ?
-			_item[CharacterScreenIdentifier.ItemFlag.IsBlockingOffhand] :
-			false;
+				_item[CharacterScreenIdentifier.ItemFlag.IsBlockingOffhand] :
+				false;
 		itemData.isAllowedInBag = _item.isAllowedInBag;
 		itemData.isUsable = _item.isUsable;
 		_slot.Container.data("item", itemData);
@@ -1230,13 +1243,13 @@ CharacterScreenPaperdollModule.prototype.updateSlotLocks = function (
 			this.showSlotLock(this.mMiddleEquipmentSlots.Body, false);
 			this.mIsUpgradeButtonsLocked = false;
 		}
-		break;
-	case CharacterScreenDatasourceIdentifier.InventoryMode.Ground: {
-		this.showSlotLock(this.mMiddleEquipmentSlots.Head, true);
-		this.showSlotLock(this.mMiddleEquipmentSlots.Body, true);
-		this.mIsUpgradeButtonsLocked = true;
-	}
-	break;
+			break;
+		case CharacterScreenDatasourceIdentifier.InventoryMode.Ground: {
+			this.showSlotLock(this.mMiddleEquipmentSlots.Head, true);
+			this.showSlotLock(this.mMiddleEquipmentSlots.Body, true);
+			this.mIsUpgradeButtonsLocked = true;
+		}
+			break;
 	}
 };
 
@@ -1382,26 +1395,25 @@ CharacterScreenPaperdollModule.prototype.assignEquipment = function (
 	this.resetLayerButtons(this.mHelmetUpgradeButtons);
 	this.resetLayerButtons(this.mUpgradeButtons);
 
-	if (CharacterScreenIdentifier.ItemSlot.Head in _data)
-	{
+	if (CharacterScreenIdentifier.ItemSlot.Head in _data) {
 		this.assignItemToSlot(this.mMiddleEquipmentSlots.Head, _brotherId, _data[CharacterScreenIdentifier.ItemSlot.Head])
 		this.setupLayerButtons(this.mHelmetUpgradeButtons, _brotherId, _data[CharacterScreenIdentifier.ItemSlot.Head]["upgrades"])
 	}
 
 
-	if (CharacterScreenIdentifier.ItemSlot.Body in _data)
-	{
+	if (CharacterScreenIdentifier.ItemSlot.Body in _data) {
 		this.assignItemToSlot(this.mMiddleEquipmentSlots.Body, _brotherId, _data[CharacterScreenIdentifier.ItemSlot.Body])
 		this.setupLayerButtons(this.mUpgradeButtons, _brotherId, _data[CharacterScreenIdentifier.ItemSlot.Body]["upgrades"])
 	}
-
-
 	if (CharacterScreenIdentifier.ItemSlot.Accessory in _data) {
 		this.assignItemToSlot(
 			this.mLeftEquipmentSlots.Accessory,
 			_brotherId,
 			_data[CharacterScreenIdentifier.ItemSlot.Accessory]
 		);
+		this.setupAccessoryToggleButton(_brotherId, _data[CharacterScreenIdentifier.ItemSlot.Accessory]);
+	} else {
+		this.mAccessoryToggleButton.hide();
 	}
 
 	if (CharacterScreenIdentifier.ItemSlot.Ammo in _data) {
@@ -1413,33 +1425,28 @@ CharacterScreenPaperdollModule.prototype.assignEquipment = function (
 	}
 };
 
-CharacterScreenPaperdollModule.prototype.resetLayerButtons = function(_buttonArray)
-{
+CharacterScreenPaperdollModule.prototype.resetLayerButtons = function (_buttonArray) {
 	_buttonArray.forEach(function (btn, index) {
 		var text = index + 1;
 		var slotType = btn.data('slotType');
 		btn.removeClass('armor_button_invisible');
 		btn.enableButton(false);
-		if ((slotType == CharacterScreenIdentifier.ItemSlot.Head && index === 4) || (slotType == CharacterScreenIdentifier.ItemSlot.Body && index === 5))
-		{
-				text = "R";
+		if ((slotType == CharacterScreenIdentifier.ItemSlot.Head && index === 4) || (slotType == CharacterScreenIdentifier.ItemSlot.Body && index === 5)) {
+			text = "R";
 		}
 		btn.changeButtonText(text);
 	})
 }
 
-CharacterScreenPaperdollModule.prototype.setupLayerButtons = function(_buttonArray, _brotherId, _upgradeArray)
-{
+CharacterScreenPaperdollModule.prototype.setupLayerButtons = function (_buttonArray, _brotherId, _upgradeArray) {
 	var self = this;
 	_buttonArray.forEach(function (btn, index) {
 		var enabled = false;
-		if (_upgradeArray !== undefined && _upgradeArray !== '' && _upgradeArray.length > 0)
-		{
+		if (_upgradeArray !== undefined && _upgradeArray !== '' && _upgradeArray.length > 0) {
 			btn.show();
 			enabled = _upgradeArray[index] > 0 && !self.mIsUpgradeButtonsLocked;
 
-			if( _upgradeArray[index] == 2)
-			{
+			if (_upgradeArray[index] == 2) {
 				btn.addClass('armor_button_invisible')
 			}
 			else if (_upgradeArray[index] == -1) // blocked
@@ -1457,6 +1464,23 @@ CharacterScreenPaperdollModule.prototype.setupLayerButtons = function(_buttonArr
 	});
 }
 
+CharacterScreenPaperdollModule.prototype.setupAccessoryToggleButton = function (_brotherId, _accessoryData) {
+	if (_accessoryData !== undefined && _accessoryData !== null) {
+		if (_accessoryData.showOnCharacter !== null && _accessoryData.showOnCharacter !== false) {
+			this.mAccessoryToggleButton.show();
+			this.mAccessoryToggleButton.enableButton(!this.mIsUpgradeButtonsLocked);
+			this.mAccessoryToggleButton.bindTooltip({
+				contentType: 'ui-item',
+				entityId: _brotherId,
+				itemId: 0,
+				itemOwner: this.mAccessoryToggleButton.data('itemOwner')
+			});
+		}
+	} else {
+		this.mAccessoryToggleButton.hide();
+	}
+}
+
 
 CharacterScreenPaperdollModule.prototype.assignBags = function (
 	_brotherId,
@@ -1465,8 +1489,8 @@ CharacterScreenPaperdollModule.prototype.assignBags = function (
 	if (jQuery.isArray(_data) && _data.length !== null) {
 		var numBags =
 			_data.length > Constants.Game.MAX_BACKPACK_SLOTS ?
-			Constants.Game.MAX_BACKPACK_SLOTS :
-			_data.length;
+				Constants.Game.MAX_BACKPACK_SLOTS :
+				_data.length;
 		this.showBags(numBags);
 
 		for (var i = 0; i < numBags; ++i) {
@@ -1524,14 +1548,14 @@ CharacterScreenPaperdollModule.prototype.onDataSourceError = function (
 	}
 
 	switch (
-		_data
-		/*
-				case ErrorCode.NotEnoughStashSpace:
-				{
-						this.mSlotCountContainer.shakeLeftRight();
-				} break;
-				*/
-	) {}
+	_data
+	/*
+			case ErrorCode.NotEnoughStashSpace:
+			{
+					this.mSlotCountContainer.shakeLeftRight();
+			} break;
+			*/
+	) { }
 
 	console.info(
 		"CharacterScreenPaperdollModule::onDataSourceError(" + _data + ")"

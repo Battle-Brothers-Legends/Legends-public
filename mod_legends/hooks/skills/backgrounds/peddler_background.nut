@@ -62,7 +62,10 @@
 				this.Const.Perks.DeviousTree
 			],
 			Enemy = [this.Const.Perks.BanditTree],
-			Class = [this.Const.Perks.BarterClassTree],
+			Class = [],
+			Profession = [
+				this.Const.Perks.BarterProfessionTree
+			], 
 			Magic = []
 		}
 	}

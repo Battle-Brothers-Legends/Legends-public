@@ -51,22 +51,22 @@
 	{
 		local isPlayer = ::MSU.isKindOf(_user, "player");
 		local net = _user.getItems().getItemAtSlot(::Const.ItemSlot.Offhand);
+		local target = _targetTile.getEntity();
 
-		if (net != null && net.isItemType(::Const.Items.ItemType.Net)) {
-			if (isPlayer)
-				net.setOwnerID(_user.getID());
+		if (net != null && target != null && !target.getCurrentProperties().IsImmuneToRoot && isPlayer) { //prevent player from looting enemy nets
+			target.getFlags().set("DropNet", true);
+			target.getFlags().set("IsByNetCasting", false);
+			target.getFlags().set("IsReinforcedNet", false);
 
-			if (!_targetTile.getEntity().getCurrentProperties().IsImmuneToRoot) {
-				net.consumeAmmo();
-
-				if (!isPlayer) // wasn't used by player
-					net.m.IsDroppedAsLoot = false; // prevent player from looting enemy broken net
+			if(_user.getCurrentProperties().IsSpecializedInNetCasting) //Net casting flag
+			{
+				target.getFlags().set("IsByNetCasting", true);
 			}
-
-			if (net.drop(_targetTile))
-				::Tactical.Entities.addNetTiles(_targetTile);
+			if (net.getID().find("reinforced_throwing_net") != null) //Reinforced net flag
+			{
+				target.getFlags().set("IsReinforcedNet", true);
+			}
 		}
-
 		local ret = onUse(_user, _targetTile);
 		if (this.m.IsUnholdNet && ret != false) {
 			local targetEntity = _targetTile.getEntity();
@@ -79,6 +79,7 @@
 			}
 		}
 		return ret;
+
 	}
 
 	o.makeUnholdNet <- function () {

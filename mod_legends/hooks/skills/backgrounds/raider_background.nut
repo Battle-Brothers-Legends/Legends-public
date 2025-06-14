@@ -77,6 +77,7 @@
 			Class = [
 				this.Const.Perks.RaiderClassTree
 			],
+			Profession = [], 
 			Magic = []
 		}
 	}

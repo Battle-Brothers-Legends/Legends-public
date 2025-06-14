@@ -48,6 +48,47 @@
 		}
 	}
 
+	local _onQuerySkillTooltipData = o.onQuerySkillTooltipData;
+	o.onQuerySkillTooltipData = function ( _entityId, _skillId )
+	{
+		local tooltip = _onQuerySkillTooltipData(_entityId, _skillId);
+
+		if (tooltip == null)
+		{
+			local entity = ::Tactical.getEntityByID(_entityId);
+			local item = entity.getItems().getItemByInstanceID(_skillId);
+
+			if (item != null)
+			{
+				local currentItem = entity.getItems().getItemAtSlot(item.getSlotType());
+				tooltip = [
+					{
+						id = 1,
+						type = "title",
+						text = "Switch to " + item.getName()
+					},
+					{
+						id = 2,
+						type = "description",
+						text = "Quickly switch to another item from your bag."
+					},
+					{
+						id = 3,
+						type = "text",
+						text = "Costs [b][color=" + ::Const.UI.Color.PositiveValue + "] " + entity.getItems().getActionCost(currentItem != null ? [
+							currentItem,
+							item
+						] : [
+							item
+						]) + "[/color][/b] AP to switch."
+					}
+				];
+			}
+		}
+
+		return tooltip;
+	}
+
 	o.tactical_queryUIItemTooltipData = function ( _entityId, _itemId, _itemOwner )
 	{
 		local entity = this.Tactical.getEntityByID(_entityId);
@@ -128,6 +169,12 @@
 			}
 
 			return entity.getRemoveLayerTooltip(this.Const.ItemSlot.Head, _itemId);
+
+		case "paperdoll.toggle-accessory-visibility":
+			if (entity == null) {
+				return null;
+			}
+			return entity.getToggleAccessoryTooltip(this.Const.ItemSlot.Accessory, _itemId);
 		}
 
 		return null;
@@ -631,6 +678,12 @@
 			}
 
 			return entity.getRemoveLayerTooltip(this.Const.ItemSlot.Head, _itemId);
+
+		case "paperdoll.toggle-accessory-visibility":
+			if (entity == null) {
+				return null;
+			}
+			return entity.getToggleAccessoryTooltip(this.Const.ItemSlot.Accessory, _itemId);
 		}
 
 		return null;

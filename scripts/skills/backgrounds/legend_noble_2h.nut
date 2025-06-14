@@ -75,6 +75,7 @@ this.legend_noble_2h <- this.inherit("scripts/skills/backgrounds/character_backg
 			],
 			Enemy = [],
 			Class = [],
+			Profession = [],
 			Magic = []
 		}
 	}

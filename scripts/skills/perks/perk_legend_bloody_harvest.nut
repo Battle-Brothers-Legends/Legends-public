@@ -16,6 +16,7 @@ this.perk_legend_bloody_harvest <- this.inherit("scripts/skills/skill", {
 		{
 			_properties.DamageTotalMult *= 1.1;
 			_properties.MeleeSkill += 10;
+			_skill.m.HitChanceBonus += 10;
 		}
 	}
 

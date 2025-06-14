@@ -87,7 +87,10 @@ this.legend_magister_background <- this.inherit("scripts/skills/backgrounds/char
 			Class = [
 				this.Const.Perks.NinetailsClassTree,
 				this.Const.Perks.SickleClassTree,
-				this.Const.Perks.HealerClassTree
+			],
+			Profession = [
+				this.Const.Perks.HealerProfessionTree,
+				this.Const.Perks.HerbalistProfessionTree
 			],
 			Magic = []
 		}

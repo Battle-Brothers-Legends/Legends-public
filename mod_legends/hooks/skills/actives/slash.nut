@@ -45,7 +45,7 @@
 			this.m.ActionPointCost = _properties.IsSpecializedInPolearms ? 4 : 5;
 		}
 
-		if (this.getContainer().getActor().getSkills().hasPerk(::Legends.Perk.LegendSpecialistHerbalist) && this.m.Item != null && (this.m.Item.getID() == "weapon.sickle" || this.m.Item.getID() == "weapon.named_sickle"))
+		if (this.getContainer().getActor().getSkills().hasPerk(::Legends.Perk.LegendSpecialistHerbalist) && this.m.Item != null && (this.m.Item.getID() == "weapon.sickle" || this.m.Item.getID() == "weapon.legend_named_sickle"))
 		{
 			this.m.ActionPointCost = _properties.IsSpecializedInSwords ? 3 : 4;
 		}

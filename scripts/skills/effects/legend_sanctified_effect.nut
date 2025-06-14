@@ -43,9 +43,7 @@ this.legend_sanctified_effect <- this.inherit("scripts/skills/skill", {
 
 	function onAdded()
 	{
-		// Commenting this out so that adding this effect via the Holy Flame tile effect will impact the countdown
-		// If adding from any other source, you will need to manually set m.TurnsLeft
-		// this.m.TurnsLeft = 2;
+		this.m.TurnsLeft = 2;
 	}
 
 	function onRefresh()
@@ -109,4 +107,3 @@ this.legend_sanctified_effect <- this.inherit("scripts/skills/skill", {
 
 
 });
-

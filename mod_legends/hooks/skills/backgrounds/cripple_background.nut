@@ -73,6 +73,7 @@
 				this.Const.Perks.NoblesTree
 			],
 			Class = [],
+			Profession = [], 
 			Magic = []
 		}
 	}

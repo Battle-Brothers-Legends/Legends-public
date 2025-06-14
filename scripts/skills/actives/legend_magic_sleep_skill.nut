@@ -8,7 +8,7 @@ this.legend_magic_sleep_skill <- this.inherit("scripts/skills/actives/legend_mag
 		this.m.Description = "Use soothing vapours to lull an enemy to sleep. The chance of success is determined by the resolves of the user and target.";
 		this.m.KilledString = "Slept";
 		this.m.Icon = "skills/active_116.png";
-		this.m.IconDisabled = "skills/active_116.png";
+		this.m.IconDisabled = "skills/active_116_bw.png";
 		this.m.Overlay = "active_116";
 		this.m.SoundOnUse = [
 			"sounds/enemies/dlc2/alp_sleep_01.wav",

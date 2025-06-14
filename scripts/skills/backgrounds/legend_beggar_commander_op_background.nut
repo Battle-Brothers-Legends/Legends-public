@@ -279,7 +279,7 @@ this.legend_beggar_commander_op_background <- this.inherit("scripts/skills/backg
 		{
 			local perk = target_skills[i];
 
-			if (!actor.getSkills().hasSkill(perk.getID()))
+			if (!actor.getSkills().hasSkill(perk.getID()) && perk.getID() != ::Legends.Perks.getID(::Legends.Perk.LegendPacifist)) // ensure the whiners don't get pacifist
 			{
 				allperks.push(perk);
 			}

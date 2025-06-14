@@ -299,7 +299,7 @@ this.legend_orc_elite <- this.inherit("scripts/entity/tactical/actor", {
 			this.m.Hitpoints = 1.5 * b.Hitpoints;
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendLastStand);
 			::Legends.Perks.grant(this, ::Legends.Perk.Underdog);
-			::Legends.Perks.grant(this, ::Legends.Perk.LegendFullForce);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendImmovableObject);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendSecondWind);
 			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
 		}

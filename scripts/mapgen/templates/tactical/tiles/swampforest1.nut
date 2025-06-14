@@ -58,7 +58,7 @@ this.swampforest1 <- this.inherit("scripts/mapgen/tactical_template", {
 		FogColor = this.createColor("#8d9271"),
 		FogFiller = "fog_detail_03",
 		Objects = [
-			"entity/tactical/objects/tree_forest",
+			// "entity/tactical/objects/tree_forest",
 			"entity/tactical/objects/tree_needle1",
 			"entity/tactical/objects/tree_needle1",
 			"entity/tactical/objects/tree_needle2",

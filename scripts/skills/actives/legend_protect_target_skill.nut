@@ -176,6 +176,7 @@ this.legend_protect_target_skill <- this.inherit("scripts/skills/skill", {
 			if (skill == null)
 			{
 				::Legends.Effects.grant(pet, ::Legends.Effect.LegendGuard);
+				skill = ::Legends.Effects.get(pet, ::Legends.Effect.LegendGuard);
 			}
 
 			skill.setTarget(_t);

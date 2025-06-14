@@ -1,5 +1,11 @@
 this.perk_legend_fashionable <- this.inherit("scripts/skills/skill", {
-	m = {},
+	m = {
+		FreeSlotTypes = [
+			this.Const.Items.ArmorUpgrades.Tabbard,
+			this.Const.Items.ArmorUpgrades.Cloak,
+			this.Const.Items.HelmetUpgrades.Vanity
+		]
+	},
 	function create()
 	{
 		::Const.Perks.setup(this.m, ::Legends.Perk.LegendFashionable);

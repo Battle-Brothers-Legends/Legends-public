@@ -54,30 +54,21 @@
 		EnemyChance = 0.01,
 		Class = 1,
 		ClassChance = 0.01,
+		Profession = 1,
+		ProfessionChance = 0.01,
 		Magic = 1,
 		MagicChance = 0
 	};
-	o.m.PerkTreeDynamicMinsMagic <- {
-		Weapon = 8,
-		Defense = 2,
-		Traits = 8,
-		Enemy = 1,
-		EnemyChance = 0.01,
-		Class = 1,
-		ClassChance = 0.01,
-		Magic = 1,
-		MagicChance = 0.001
-	};
-	o.m.PerkTreeDynamicMinsBeast <- {
-		Weapon = 8,
-		Defense = 2,
-		Traits = 8,
-		Enemy = 1,
-		EnemyChance = 0.05,
-		Class = 1,
-		ClassChance = 0.02,
-		Magic = 1,
-		MagicChance = 0.001
+	o.m.PerkTreeCustomMins <- { // overwritten if needed
+		Weapon = 0,
+		Defense = 0,
+		Traits = 0,
+		Enemy = 0,
+		EnemyChance = 0.00,
+		Class = 0,
+		ClassChance = 0.00,
+		Magic = 0,
+		MagicChance = 0
 	};
 	o.m.PerkTreeDynamicBase <- { // this is a base perk tree so even if you don't add custom or dynamic perk tree it will default to this and build an average bro
 		Weapon = [
@@ -1277,11 +1268,10 @@
 	o.getPerkTreeDynamicMins <- function ()
 	{
 		local mins = this.m.PerkTreeDynamicMins;
-
-		if (this.World.Assets.getOrigin().getID() == "scenario.beast_hunters")
-		{
-			mins = this.m.PerkTreeDynamicMinsBeast;
-		}
+		if (this.isBackgroundType(this.Const.BackgroundType.Educated))
+			mins.ProfessionChance += 0.09;
+		if (this.isBackgroundType(this.Const.BackgroundType.Lowborn))
+			mins.ClassChance += 0.09;
 		return mins;
 	}
 

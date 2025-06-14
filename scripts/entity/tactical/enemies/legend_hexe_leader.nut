@@ -182,6 +182,18 @@ this.legend_hexe_leader <- this.inherit("scripts/entity/tactical/actor", {
 			this.spawnFlies(_tile);
 		}
 
+		local deathLoot = this.getItems().getDroppableLoot(_killer);
+		local tileLoot = this.getLootForTile(_killer, deathLoot);
+		local corpse = this.generateCorpse(_tile, _fatalityType);
+		this.dropLoot(_tile, tileLoot, !flip);
+
+		if (_tile == null) {
+			this.Tactical.Entities.addUnplacedCorpse(corpse);
+		} else {
+			_tile.Properties.set("Corpse", corpse);
+			this.Tactical.Entities.addCorpse(_tile);
+		}
+
 		this.actor.onDeath(_killer, _skill, _tile, _fatalityType);
 	}
 

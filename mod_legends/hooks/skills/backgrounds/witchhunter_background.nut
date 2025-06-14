@@ -89,6 +89,7 @@
 				this.Const.Perks.FaithClassTree,
 				this.Const.Perks.InquisitionClassTree
 			],
+			Profession = [], 
 			Magic = []
 		}
 	}

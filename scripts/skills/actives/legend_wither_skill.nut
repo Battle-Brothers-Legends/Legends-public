@@ -20,6 +20,7 @@ this.legend_wither_skill <- this.inherit("scripts/skills/skill", {
 		this.m.IsVisibleTileNeeded = false;
 		this.m.IsIgnoredAsAOO = true;
 		this.m.IsStacking = false;
+		this.m.IsUsingHitchance = false;
 		this.m.IsAttack = false;
 		this.m.IsRanged = true;
 		this.m.ActionPointCost = 5;
@@ -34,8 +35,18 @@ this.legend_wither_skill <- this.inherit("scripts/skills/skill", {
 		return this.skill.getDefaultUtilityTooltip();
 	}
 
-	function onVerifyTarget( _originTile, _targetTile )
+	function isViableTarget( _user, _target )
 	{
+		if (_target.isAlliedWith(_user))
+		{
+			return false;
+		}
+
+		if (_target.getFlags().get("undead"))
+		{
+			return false;
+		}
+
 		return true;
 	}
 

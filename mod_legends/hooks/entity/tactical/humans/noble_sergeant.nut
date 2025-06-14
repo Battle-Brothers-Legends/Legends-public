@@ -45,7 +45,7 @@
 			::Legends.Actives.grant(this, ::Legends.Active.RallyTheTroops);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendFeint);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendBackToBasics);
-			::Legends.Perks.grant(this, ::Legends.Perk.LegendFullForce);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendImmovableObject);
 			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
 		}
 	}

@@ -62,7 +62,7 @@ this.legend_redback_spider_poison_effect <- this.inherit("scripts/skills/skill",
 	function getDescription()
 	{
 		local timeDamage = (this.m.Damage * this.m.TurnsLeft);
-		if(::Legends.isLegendaryDifficulty())
+		if (::Legends.isLegendaryDifficulty() && !this.getAttacker().isPlayerControlled())
 		{
 			timeDamage *= 2;
 		}
@@ -95,12 +95,11 @@ this.legend_redback_spider_poison_effect <- this.inherit("scripts/skills/skill",
 			local hitInfo = clone this.Const.Tactical.HitInfo;
 			hitInfo.DamageRegular = timeDamage;
 
-		if (::Legends.isLegendaryDifficulty())
+			if (::Legends.isLegendaryDifficulty() && !this.getAttacker().isPlayerControlled())
 			{
-			local timeDamage = (this.m.Damage * this.m.TurnsLeft);
-			hitInfo.DamageRegular = 2 * timeDamage;
+				local timeDamage = (this.m.Damage * this.m.TurnsLeft);
+				hitInfo.DamageRegular = 2 * timeDamage;
 			}
-
 
 			hitInfo.DamageDirect = 1.0;
 			hitInfo.BodyPart = this.Const.BodyPart.Body;

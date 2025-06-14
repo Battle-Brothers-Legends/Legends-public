@@ -120,7 +120,7 @@
 					this.List.push({
 						id = 10,
 						icon = this.Const.MoodStateIcon[_event.m.Doubter.getMoodState()],
-						text = _event.m.Doubter.getName() + this.Const.MoodStateEvent[_event.m.Traveller.getMoodState()]
+						text = _event.m.Doubter.getName() + this.Const.MoodStateEvent[_event.m.Doubter.getMoodState()]
 					});
 				}
 				this.List.push({

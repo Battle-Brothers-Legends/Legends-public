@@ -71,6 +71,7 @@ this.legend_battle_sister_background <- this.inherit("scripts/skills/backgrounds
 			Class = [
 				this.Const.Perks.FaithClassTree
 			],
+			Profession = [],
 			Magic = []
 		}
 	}

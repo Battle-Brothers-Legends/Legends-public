@@ -1,6 +1,6 @@
 ::Legends <- {
 	ID = "mod_legends",
-	Version = "19.1.16",
+	Version = "19.2.0",
 	Name = "Legends Mod",
 	BuildName = "Tales & Professions",
 	IsStartingNewCampaign = false
@@ -29,7 +29,7 @@ else
 });
 
 ::include("mod_legends/compat_defs.nut");
-::mods_registerMod(::Legends.ID + "_compat_check", ::Legends.Version, ::Legends.Name);
+::mods_registerMod(::Legends.ID + "_compat_check", ::Legends.Version, ::Legends.Name + " - Compat");
 ::mods_queue(::Legends.ID + "_compat_check", ">mod_legends", function() {
 	::include("mod_legends/compat.nut");
 });

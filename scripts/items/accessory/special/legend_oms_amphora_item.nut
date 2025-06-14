@@ -117,7 +117,7 @@ this.legend_oms_amphora_item <- this.inherit("scripts/items/accessory/accessory"
 	function onEquip()
 	{
 		this.accessory.onEquip();
-		this.addSkill(::new("scripts/skills/actives/legend_oms_amphora_skill"));
+		::Legends.Actives.grant(this, ::Legends.Active.LegendOmsAmphora);
 	}
 
 	function onCombatFinished()

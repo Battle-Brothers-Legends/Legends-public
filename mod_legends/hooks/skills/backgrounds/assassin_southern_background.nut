@@ -102,6 +102,7 @@
 				this.Const.Perks.CivilizationTree
 			],
 			Class = [],
+			Profession = [], 
 			Magic = [
 				this.Const.Perks.AssassinMagicTree
 			]

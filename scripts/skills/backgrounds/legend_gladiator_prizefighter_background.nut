@@ -31,6 +31,7 @@ this.legend_gladiator_prizefighter_background <- this.inherit("scripts/skills/ba
 			Class = [
 				this.Const.Perks.BeastClassTree
 			],
+			Profession = [],
 			Magic = []
 		}
 	}

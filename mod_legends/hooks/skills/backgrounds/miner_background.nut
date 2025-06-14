@@ -81,7 +81,12 @@
 				this.Const.Perks.OrcTree,
 				this.Const.Perks.UnholdTree
 			],
-			Class = [this.Const.Perks.PickaxeClassTree],
+			Class = [
+				this.Const.Perks.PickaxeClassTree
+			],
+			Profession = [
+				this.Const.Perks.MinerProfessionTree
+			], 
 			Magic = []
 		}
 	}

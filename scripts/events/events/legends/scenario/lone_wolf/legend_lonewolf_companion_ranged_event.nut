@@ -49,12 +49,6 @@ this.legend_lonewolf_companion_ranged_event <- this.inherit("scripts/events/even
 			],
 			function start( _event )
 			{
-				local roster = this.World.getTemporaryRoster();
-				_event.m.Dude = roster.create("scripts/entity/tactical/player");
-				_event.m.Dude.setStartValuesEx([
-					"legend_companion_ranged_background"
-				]);
-				this.Characters.push(_event.m.Dude.getImagePath());
 			}
 
 		});
@@ -172,6 +166,8 @@ this.legend_lonewolf_companion_ranged_event <- this.inherit("scripts/events/even
 					Text = "I\'m not recruiting everyone from here to the coast.",
 					function getResult( _event )
 					{
+						this.World.getTemporaryRoster().clear();
+						_event.m.Dude = null;
 						return 0;
 					}
 
@@ -208,6 +204,16 @@ this.legend_lonewolf_companion_ranged_event <- this.inherit("scripts/events/even
 
 	function onPrepareVariables( _vars )
 	{
+		if (this.m.Dude == null)
+		{
+			local roster = this.World.getTemporaryRoster();
+			this.m.Dude = roster.create("scripts/entity/tactical/player");
+			this.m.Dude.setStartValuesEx([
+				"legend_companion_ranged_background"
+			]);
+			this.m.Dude.getSprite("miniboss").setBrush("bust_miniboss");
+		}
+
 		_vars.push([
 			"recruit",
 			this.m.Dude.getName()

@@ -64,7 +64,10 @@ this.legend_warlock_background <- this.inherit("scripts/skills/backgrounds/chara
 			],
 			Enemy = [],
 			Class = [],
-			Magic = [this.Const.Perks.WarlockMagicTree]
+			Profession = [],
+			Magic = [
+				this.Const.Perks.WarlockMagicTree
+			]
 		}
 	}
 

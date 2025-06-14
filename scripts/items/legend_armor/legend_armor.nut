@@ -165,7 +165,7 @@ this.legend_armor <- this.inherit("scripts/items/armor/armor", {
 	}
 
 	function getStaminaModifier()
-	{
+	{	
 		return this.getAddedValue("getStaminaModifier", this.m.StaminaModifier);
 	}
 

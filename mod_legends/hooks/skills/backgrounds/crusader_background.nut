@@ -95,6 +95,7 @@
 				this.Const.Perks.SkeletonTree
 			],
 			Class = [],
+			Profession = [], 
 			Magic = [
 				this.Const.Perks.FaithClassTree
 			]

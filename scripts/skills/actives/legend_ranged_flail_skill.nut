@@ -46,10 +46,21 @@ this.legend_ranged_flail_skill <- this.inherit("scripts/skills/skill", {
 			{
 				id = 7,
 				type = "text",
-				icon = "ui/icons/special.png",
-				text = "Ignores the bonus to Melee Defense granted by shields"
+				icon = "ui/icons/vision.png",
+				text = "Has a range of [color=" + this.Const.UI.Color.PositiveValue + "]2[/color] tiles"
 			}
 		]);
+
+		if (!this.getContainer().getActor().getCurrentProperties().IsSpecializedInPolearms)
+		{
+			ret.push({
+				id = 6,
+				type = "text",
+				icon = "ui/icons/hitchance.png",
+				text = "Has [color=" + this.Const.UI.Color.NegativeValue + "]-15%[/color] chance to hit targets directly adjacent because the weapon is too unwieldy"
+			});
+		}		
+
 		return ret;
 	}
 
@@ -62,6 +73,18 @@ this.legend_ranged_flail_skill <- this.inherit("scripts/skills/skill", {
 	{
 		this.spawnAttackEffect(_targetTile, this.Const.Tactical.AttackEffectChop);
 		return this.attackEntity(_user, _targetTile.getEntity());
+	}
+
+	function onAnySkillUsed( _skill, _targetEntity, _properties )
+	{
+		if (_skill == this)
+		{
+			if (_targetEntity != null && !this.getContainer().getActor().getCurrentProperties().IsSpecializedInPolearms && this.getContainer().getActor().getTile().getDistanceTo(_targetEntity.getTile()) == 1)
+			{
+				this.m.HitChanceBonus += -15;
+				_properties.MeleeSkill += -15;
+			}
+		}
 	}
 
 });

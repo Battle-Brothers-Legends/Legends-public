@@ -21,6 +21,15 @@ this.legend_berserker_rage_effect <- this.inherit("scripts/skills/skill", {
 		this.m.IsSerialized = false;
 		this.m.IsActive = false;
 	}
+
+	function getName() {
+		if (this.m.RageStacks <= 1) {
+			return this.m.Name;
+		} else {
+			return this.m.Name + " (x" + this.m.RageStacks + ")";
+		}
+	}
+
 	function getTooltip()
 	{
 		return [

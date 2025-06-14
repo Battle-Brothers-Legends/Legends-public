@@ -60,9 +60,10 @@
 				this.Const.Perks.MartyrTree
 			],
 			Enemy = [],
-			Class = [
-				this.Const.Perks.BarterClassTree
-			],
+			Class = [],
+			Profession = [
+				this.Const.Perks.BarterProfessionTree
+			], 
 			Magic = []
 		}
 

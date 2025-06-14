@@ -39,27 +39,29 @@ this.legend_second_wind_effect <- this.inherit("scripts/skills/skill", {
 				id = 2,
 				type = "description",
 				text = this.getDescription()
-			},
-			{
+			}
+		];
+		if (this.m.Counter >= 0)
+		{
+			ret.push({
 				id = 11,
 				type = "text",
 				icon = "ui/icons/fatigue.png",
 				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+5[/color] Fatigue Recovery per turn for [color=" + this.Const.UI.Color.PositiveValue + "]" + this.m.Counter +"[/color] more turns"
-			}
-		];
+			});
+		}
 		return ret;
 	}
 
 	function onUpdate( _properties )
 	{
-		_properties.FatigueRecoveryRate += 5;
+		if (this.m.Counter >= 0)
+			_properties.FatigueRecoveryRate += 5;
 	}
 
 	function onTurnStart()
 	{
 		this.m.Counter -= 1;
-		if (this.m.Counter >= 0)
-			this.removeSelf();
 	}
 
 	function onAdded()
@@ -68,7 +70,6 @@ this.legend_second_wind_effect <- this.inherit("scripts/skills/skill", {
 		if (!actor.isAlive() || actor.isDying())
 			return;
 		actor.setFatigue(0);
-		::Legends.Effects.grant(actor, ::Legends.Effect.RecoveryPotion);
 		foreach (effect in this.m.ApplicableEffects)
 		{
 			if (this.getContainer().hasEffect(effect))

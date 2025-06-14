@@ -100,6 +100,7 @@ this.legend_pilgrim_background <- this.inherit("scripts/skills/backgrounds/chara
 			Class = [
 				this.Const.Perks.FaithClassTree
 			],
+			Profession = [],
 			Magic = []
 		}
 	}

@@ -63,8 +63,13 @@ this.legend_death_summoner_background <- this.inherit("scripts/skills/background
 				this.Const.Perks.ViciousTree
 			],
 			Enemy = [],
-			Class = [this.Const.Perks.NinetailsClassTree],
-			Magic = [this.Const.Perks.ZombieMagicTree]
+			Profession = [],
+			Class = [
+				this.Const.Perks.NinetailsClassTree
+			],
+			Magic = [
+				this.Const.Perks.ZombieMagicTree
+			]
 		}
 	}
 
