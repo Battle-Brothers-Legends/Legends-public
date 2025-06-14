@@ -1,4 +1,4 @@
-this.legend_camp_unhold_bondage_contract <- this.inherit("scripts/contracts/camp_contract", {
+this.legend_camp_unhold_bondage_contract <- this.inherit("scripts/contracts/legend_camp_contract", {
 	m = {
 		Target = null,
 		Dude = null,

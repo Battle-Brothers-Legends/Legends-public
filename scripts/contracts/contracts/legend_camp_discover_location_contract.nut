@@ -1,4 +1,4 @@
-this.legend_camp_discover_location_contract <- this.inherit("scripts/contracts/camp_contract", {
+this.legend_camp_discover_location_contract <- this.inherit("scripts/contracts/legend_camp_contract", {
 	m = {
 		Location = null,
 		LastHelpTime = 0.0
