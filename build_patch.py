@@ -15,6 +15,7 @@ import platform
 
 class PatchBuildError(Exception):
     """Custom exception for patch build errors"""
+
     pass
 
 
@@ -54,11 +55,12 @@ class PatchBuilder:
         if not register_file.exists():
             raise PatchBuildError("Could not find register_legends.nut to extract assets version")
 
-        with open(register_file, 'r') as f:
+        with open(register_file, "r") as f:
             content = f.read()
             # Look for mod_legends_assets(>=X.Y.Z) pattern
             import re
-            match = re.search(r'mod_legends_assets\(>=([0-9]+\.[0-9]+\.[0-9]+)\)', content)
+
+            match = re.search(r"mod_legends_assets\(>=([0-9]+\.[0-9]+\.[0-9]+)\)", content)
             if match:
                 return match.group(1)
             else:
@@ -67,8 +69,12 @@ class PatchBuilder:
     def get_commit_hash(self, tag):
         """Get commit hash for a given tag"""
         try:
-            result = subprocess.run(["git", "rev-parse", tag],
-                                  capture_output=True, text=True, cwd=self.current_dir)
+            result = subprocess.run(
+                ["git", "rev-parse", tag],
+                capture_output=True,
+                text=True,
+                cwd=self.current_dir,
+            )
             if result.returncode == 0:
                 return result.stdout.strip()
             else:
@@ -83,10 +89,11 @@ class PatchBuilder:
         if not register_file.exists():
             raise PatchBuildError("Could not find register_legends.nut to extract version")
 
-        with open(register_file, 'r') as f:
+        with open(register_file, "r") as f:
             content = f.read()
             # Look for Version = "X.Y.Z" pattern
             import re
+
             match = re.search(r'Version = "([0-9]+\.[0-9]+\.[0-9]+)"', content)
             if match:
                 return match.group(1)
@@ -107,8 +114,12 @@ class PatchBuilder:
             raise PatchBuildError(f"Python script {script_path} not found")
 
         try:
-            result = subprocess.run([sys.executable, str(script_full_path), str(self.current_dir)],
-                                  capture_output=True, text=True, cwd=self.current_dir)
+            result = subprocess.run(
+                [sys.executable, str(script_full_path), str(self.current_dir)],
+                capture_output=True,
+                text=True,
+                cwd=self.current_dir,
+            )
             self.handle_exit(result, context)
             return result.stdout
         except FileNotFoundError:
@@ -161,10 +172,7 @@ class PatchBuilder:
 
     def copy_mod_directories(self):
         """Copy mod directories to build directory"""
-        directories = [
-            "mod_legends",
-            "ui"
-        ]
+        directories = ["mod_legends", "scripts", "ui"]
 
         for dir_name in directories:
             src_dir = self.current_dir / dir_name
@@ -173,8 +181,29 @@ class PatchBuilder:
             if src_dir.exists():
                 print(f"Copying {dir_name} to {dest_dir} ...")
                 if dest_dir.exists():
-                    shutil.rmtree(dest_dir)
-                shutil.copytree(src_dir, dest_dir)
+                    # For scripts directory, merge instead of replace to preserve generated content
+                    if dir_name == "scripts":
+                        # Use the merge function from build_legends_mod
+                        self._merge_directories(src_dir, dest_dir)
+                    else:
+                        shutil.rmtree(dest_dir)
+                        shutil.copytree(src_dir, dest_dir)
+                else:
+                    shutil.copytree(src_dir, dest_dir)
+
+    def _merge_directories(self, src_dir, dest_dir):
+        """Merge source directory into destination, preserving existing content"""
+        for item in src_dir.rglob("*"):
+            if item.is_file():
+                # Calculate relative path and destination
+                rel_path = item.relative_to(src_dir)
+                dest_item = dest_dir / rel_path
+
+                # Create parent directories if they don't exist
+                dest_item.parent.mkdir(parents=True, exist_ok=True)
+
+                # Copy the file (overwrites existing files)
+                shutil.copy2(item, dest_item)
 
     def create_initial_zip(self):
         """Create initial zip archive"""
@@ -187,11 +216,21 @@ class PatchBuilder:
         try:
             # Check if 7z is available, otherwise use Python's zipfile
             try:
-                result = subprocess.run([
-                    "7z", "a", "-tzip", zip_archive,
-                    "mod_legends", "scripts", "ui"
-                ], capture_output=True, text=True,
-                stdout=open(self.log_file, 'a'), stderr=subprocess.STDOUT)
+                with open(self.log_file, "a") as log:
+                    result = subprocess.run(
+                        [
+                            "7z",
+                            "a",
+                            "-tzip",
+                            zip_archive,
+                            "mod_legends",
+                            "scripts",
+                            "ui",
+                        ],
+                        stdout=log,
+                        stderr=subprocess.STDOUT,
+                        text=True,
+                    )
 
                 if result.returncode != 0:
                     raise subprocess.CalledProcessError(result.returncode, "7z")
@@ -201,11 +240,14 @@ class PatchBuilder:
                 print("7z not found, using Python zipfile...")
                 import zipfile
 
-                with zipfile.ZipFile(zip_archive, 'w', zipfile.ZIP_DEFLATED) as zf:
+                with zipfile.ZipFile(zip_archive, "w", zipfile.ZIP_DEFLATED) as zf:
                     for root, dirs, files in os.walk("."):
                         for file in files:
                             file_path = Path(root) / file
-                            if any(str(file_path).startswith(d) for d in ["mod_legends", "scripts", "ui"]):
+                            if any(
+                                str(file_path).startswith(d)
+                                for d in ["mod_legends", "scripts", "ui"]
+                            ):
                                 zf.write(file_path, file_path)
 
             # Move zip to build directory root
@@ -225,10 +267,13 @@ class PatchBuilder:
         try:
             # Check if 7z is available, otherwise use Python's zipfile
             try:
-                result = subprocess.run([
-                    "7z", "a", "-tzip", zip_archive, "scripts"
-                ], capture_output=True, text=True,
-                stdout=open(self.log_file, 'a'), stderr=subprocess.STDOUT)
+                with open(self.log_file, "a") as log:
+                    result = subprocess.run(
+                        ["7z", "a", "-tzip", zip_archive, "scripts"],
+                        stdout=log,
+                        stderr=subprocess.STDOUT,
+                        text=True,
+                    )
 
                 if result.returncode != 0:
                     raise subprocess.CalledProcessError(result.returncode, "7z")
@@ -238,7 +283,7 @@ class PatchBuilder:
                 print("7z not found, using Python zipfile...")
                 import zipfile
 
-                with zipfile.ZipFile(zip_archive, 'a', zipfile.ZIP_DEFLATED) as zf:
+                with zipfile.ZipFile(zip_archive, "a", zipfile.ZIP_DEFLATED) as zf:
                     for root, dirs, files in os.walk("scripts"):
                         for file in files:
                             file_path = Path(root) / file
@@ -253,10 +298,14 @@ class PatchBuilder:
             return []
 
         try:
-            result = subprocess.run(["git", "diff", "--name-only", self.source, "HEAD"],
-                                  capture_output=True, text=True, cwd=self.current_dir)
+            result = subprocess.run(
+                ["git", "diff", "--name-only", self.source, "HEAD"],
+                capture_output=True,
+                text=True,
+                cwd=self.current_dir,
+            )
             if result.returncode == 0:
-                return result.stdout.strip().split('\n') if result.stdout.strip() else []
+                return result.stdout.strip().split("\n") if result.stdout.strip() else []
             else:
                 print("Warning: Could not get git diff")
                 return []
@@ -269,7 +318,7 @@ class PatchBuilder:
         modified_files = self.get_modified_files()
 
         # Filter files that are in 'gfx' or 'sounds' directories
-        filtered_files = [f for f in modified_files if f.startswith(('gfx/', 'sounds/'))]
+        filtered_files = [f for f in modified_files if f.startswith(("gfx/", "sounds/"))]
 
         if filtered_files:
             print("Modified asset files found, adding to archive...")
@@ -290,21 +339,23 @@ class PatchBuilder:
             try:
                 asset_dirs = set()
                 for file_path in filtered_files:
-                    asset_dirs.add(file_path.split('/')[0])
+                    asset_dirs.add(file_path.split("/")[0])
 
                 # Check if 7z is available, otherwise use Python's zipfile
                 try:
                     for asset_dir in asset_dirs:
                         if Path(asset_dir).exists():
-                            result = subprocess.run([
-                                "7z", "a", "-tzip", zip_archive, asset_dir
-                            ], capture_output=True, text=True)
+                            result = subprocess.run(
+                                ["7z", "a", "-tzip", zip_archive, asset_dir],
+                                capture_output=True,
+                                text=True,
+                            )
 
                 except (FileNotFoundError, subprocess.CalledProcessError):
                     # Fall back to Python zipfile
                     import zipfile
 
-                    with zipfile.ZipFile(zip_archive, 'a', zipfile.ZIP_DEFLATED) as zf:
+                    with zipfile.ZipFile(zip_archive, "a", zipfile.ZIP_DEFLATED) as zf:
                         for asset_dir in asset_dirs:
                             if Path(asset_dir).exists():
                                 for root, dirs, files in os.walk(asset_dir):
@@ -362,8 +413,12 @@ def main():
     """Main entry point"""
     parser = argparse.ArgumentParser(description="Build patch for Legends mod")
     parser.add_argument("source", nargs="?", help="Source commit hash or branch")
-    parser.add_argument("build_dir", nargs="?", default="./build",
-                       help="Build directory (default: ./build)")
+    parser.add_argument(
+        "build_dir",
+        nargs="?",
+        default="./build",
+        help="Build directory (default: ./build)",
+    )
 
     args = parser.parse_args()
 

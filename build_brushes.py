@@ -15,6 +15,7 @@ import platform
 
 class BrushBuildError(Exception):
     """Custom exception for brush build errors"""
+
     pass
 
 
@@ -49,7 +50,7 @@ class BrushBuilder:
     def check_for_error(self, output, brush_name):
         """Check output for ERROR messages"""
         if "ERROR" in output:
-            for line in output.split('\n'):
+            for line in output.split("\n"):
                 print(line)
             raise BrushBuildError(f"Failed to build Legends brush {brush_name}")
 
@@ -63,8 +64,12 @@ class BrushBuilder:
 
         try:
             # Pass the current directory as the path argument that the scripts expect
-            result = subprocess.run([sys.executable, str(script_full_path), str(self.current_dir)],
-                                  capture_output=True, text=True, cwd=self.current_dir)
+            result = subprocess.run(
+                [sys.executable, str(script_full_path), str(self.current_dir)],
+                capture_output=True,
+                text=True,
+                cwd=self.current_dir,
+            )
             self.handle_exit(result, context)
             return result.stdout
         except FileNotFoundError:
@@ -163,7 +168,9 @@ class BrushBuilder:
         unpacked_dir = self.current_dir / "unpacked" / brush_path
 
         if not unpacked_dir.exists():
-            print(f"Warning: Unpacked directory {unpacked_dir} does not exist, skipping {brush_path}")
+            print(
+                f"Warning: Unpacked directory {unpacked_dir} does not exist, skipping {brush_path}"
+            )
             return
 
         try:
@@ -173,9 +180,12 @@ class BrushBuilder:
 
             # Run bbrusher command
             cmd = [
-                str(bbrusher_exe), "pack",
-                "--gfxPath", f"../{self.repo_dir}/",
-                str(brush_file), str(unpacked_dir)
+                str(bbrusher_exe),
+                "pack",
+                "--gfxPath",
+                f"../{self.repo_dir}/",
+                str(brush_file),
+                str(unpacked_dir),
             ]
 
             result = subprocess.run(cmd, capture_output=True, text=True)
@@ -278,7 +288,12 @@ def main():
     """Main entry point"""
     parser = argparse.ArgumentParser(description="Build brushes for Legends mod")
     parser.add_argument("build_dir", nargs="?", help="Build directory (default: .\\build)")
-    parser.add_argument("repo_dir", nargs="?", default="Legends-public", help="Repository directory name (default: Legends-public)")
+    parser.add_argument(
+        "repo_dir",
+        nargs="?",
+        default="Legends-public",
+        help="Repository directory name (default: Legends-public)",
+    )
 
     args = parser.parse_args()
 

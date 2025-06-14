@@ -15,6 +15,7 @@ import platform
 
 class LegendsModBuildError(Exception):
     """Custom exception for legends mod build errors"""
+
     pass
 
 
@@ -25,7 +26,9 @@ class LegendsModBuilder:
             if platform.system() == "Windows":
                 bb_dir = r"c:\Steam\steamapps\common\Battle Brothers\data"
             else:
-                bb_dir = os.path.expanduser("~/.local/share/Steam/steamapps/common/Battle Brothers/data")
+                bb_dir = os.path.expanduser(
+                    "~/.local/share/Steam/steamapps/common/Battle Brothers/data"
+                )
 
         if build_dir is None:
             build_dir = "./build"
@@ -55,10 +58,11 @@ class LegendsModBuilder:
         if not register_file.exists():
             raise LegendsModBuildError("Could not find register_legends.nut to extract version")
 
-        with open(register_file, 'r') as f:
+        with open(register_file, "r") as f:
             content = f.read()
             # Look for Version = "X.Y.Z" pattern
             import re
+
             match = re.search(r'Version = "([0-9]+\.[0-9]+\.[0-9]+)"', content)
             if match:
                 return match.group(1)
@@ -69,17 +73,22 @@ class LegendsModBuilder:
         """Extract legends assets version from register_legends.nut"""
         register_file = self.current_dir / "scripts" / "!mods_preload" / "register_legends.nut"
         if not register_file.exists():
-            raise LegendsModBuildError("Could not find register_legends.nut to extract assets version")
+            raise LegendsModBuildError(
+                "Could not find register_legends.nut to extract assets version"
+            )
 
-        with open(register_file, 'r') as f:
+        with open(register_file, "r") as f:
             content = f.read()
             # Look for mod_legends_assets(>=X.Y.Z) pattern
             import re
-            match = re.search(r'mod_legends_assets\(>=([0-9]+\.[0-9]+\.[0-9]+)\)', content)
+
+            match = re.search(r"mod_legends_assets\(>=([0-9]+\.[0-9]+\.[0-9]+)\)", content)
             if match:
                 return match.group(1)
             else:
-                raise LegendsModBuildError("Could not extract assets version from register_legends.nut")
+                raise LegendsModBuildError(
+                    "Could not extract assets version from register_legends.nut"
+                )
 
     def build_assets_script(self):
         """Build asset mod script dynamically"""
@@ -121,12 +130,20 @@ class LegendsModBuilder:
         try:
             # Import and use the brush builder
             from build_brushes import BrushBuilder
+
             brush_builder = BrushBuilder(str(self.build_dir), self.repo_dir)
             brush_builder.build()
         except ImportError:
             # Fall back to running as subprocess
-            result = subprocess.run([sys.executable, "build_brushes.py", str(self.build_dir), self.repo_dir],
-                                  cwd=self.current_dir)
+            result = subprocess.run(
+                [
+                    sys.executable,
+                    "build_brushes.py",
+                    str(self.build_dir),
+                    self.repo_dir,
+                ],
+                cwd=self.current_dir,
+            )
             self.handle_exit(result, "brush building")
 
     def copy_directories(self):
@@ -137,7 +154,7 @@ class LegendsModBuilder:
             ("mod_legends", "mod_legends"),
             ("scripts", "scripts"),
             ("ui", "ui"),
-            ("preload", "preload")
+            ("preload", "preload"),
         ]
 
         for src_name, dest_name in directories:
@@ -184,19 +201,30 @@ class LegendsModBuilder:
             # Check if 7z is available, otherwise use Python's zipfile
             try:
                 # Create assets zip
-                result = subprocess.run([
-                    "7z", "a", "-tzip", zip_name_assets,
-                    "brushes", "gfx", "sounds", "preload"
-                ], capture_output=True, text=True)
+                result = subprocess.run(
+                    [
+                        "7z",
+                        "a",
+                        "-tzip",
+                        zip_name_assets,
+                        "brushes",
+                        "gfx",
+                        "sounds",
+                        "preload",
+                    ],
+                    capture_output=True,
+                    text=True,
+                )
 
                 if result.returncode != 0:
                     raise subprocess.CalledProcessError(result.returncode, "7z")
 
                 # Create mod zip
-                result = subprocess.run([
-                    "7z", "a", "-tzip", zip_name_mod,
-                    "mod_legends", "scripts", "ui"
-                ], capture_output=True, text=True)
+                result = subprocess.run(
+                    ["7z", "a", "-tzip", zip_name_mod, "mod_legends", "scripts", "ui"],
+                    capture_output=True,
+                    text=True,
+                )
 
                 if result.returncode != 0:
                     raise subprocess.CalledProcessError(result.returncode, "7z")
@@ -207,19 +235,25 @@ class LegendsModBuilder:
                 import zipfile
 
                 # Create assets zip
-                with zipfile.ZipFile(zip_name_assets, 'w', zipfile.ZIP_DEFLATED) as zf:
+                with zipfile.ZipFile(zip_name_assets, "w", zipfile.ZIP_DEFLATED) as zf:
                     for root, dirs, files in os.walk("."):
                         for file in files:
                             file_path = Path(root) / file
-                            if any(str(file_path).startswith(d) for d in ["brushes", "gfx", "sounds", "preload"]):
+                            if any(
+                                str(file_path).startswith(d)
+                                for d in ["brushes", "gfx", "sounds", "preload"]
+                            ):
                                 zf.write(file_path, file_path)
 
                 # Create mod zip
-                with zipfile.ZipFile(zip_name_mod, 'w', zipfile.ZIP_DEFLATED) as zf:
+                with zipfile.ZipFile(zip_name_mod, "w", zipfile.ZIP_DEFLATED) as zf:
                     for root, dirs, files in os.walk("."):
                         for file in files:
                             file_path = Path(root) / file
-                            if any(str(file_path).startswith(d) for d in ["mod_legends", "scripts", "ui"]):
+                            if any(
+                                str(file_path).startswith(d)
+                                for d in ["mod_legends", "scripts", "ui"]
+                            ):
                                 zf.write(file_path, file_path)
 
             # Create assets script and add to assets zip
@@ -232,17 +266,19 @@ class LegendsModBuilder:
             scripts_dir = Path("scripts") / "!mods_preload"
             scripts_dir.mkdir(parents=True)
 
-            with open(scripts_dir / "mod_legends_assets.nut", 'w') as f:
+            with open(scripts_dir / "mod_legends_assets.nut", "w") as f:
                 f.write(assets_script_content)
 
             # Add scripts to assets zip
             try:
-                result = subprocess.run([
-                    "7z", "a", zip_name_assets, "scripts"
-                ], capture_output=True, text=True)
+                result = subprocess.run(
+                    ["7z", "a", zip_name_assets, "scripts"],
+                    capture_output=True,
+                    text=True,
+                )
             except FileNotFoundError:
                 # Use Python zipfile
-                with zipfile.ZipFile(zip_name_assets, 'a', zipfile.ZIP_DEFLATED) as zf:
+                with zipfile.ZipFile(zip_name_assets, "a", zipfile.ZIP_DEFLATED) as zf:
                     for root, dirs, files in os.walk("scripts"):
                         for file in files:
                             file_path = Path(root) / file
@@ -293,8 +329,18 @@ def main():
     """Main entry point"""
     parser = argparse.ArgumentParser(description="Build complete Legends mod")
     parser.add_argument("bb_dir", nargs="?", help="Battle Brothers data directory")
-    parser.add_argument("repo_dir", nargs="?", default="Legends-public", help="Repository directory name (default: Legends-public)")
-    parser.add_argument("build_dir", nargs="?", default="./build", help="Build directory (default: ./build)")
+    parser.add_argument(
+        "repo_dir",
+        nargs="?",
+        default="Legends-public",
+        help="Repository directory name (default: Legends-public)",
+    )
+    parser.add_argument(
+        "build_dir",
+        nargs="?",
+        default="./build",
+        help="Build directory (default: ./build)",
+    )
 
     args = parser.parse_args()
 
