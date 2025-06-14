@@ -7,30 +7,43 @@ The Legends mod uses a cross-platform Python-based build system that replaces th
 ## Prerequisites
 
 **Cross-Platform Requirements:**
-1. **Python 3.6+** - Required for all build scripts
-2. **Git** - For version control and build tracking (optional but recommended)
-3. **Battle Brothers Game** - Installed via Steam or other means
-4. **7-Zip** - Optional for archive creation (Python's zipfile module is used as fallback)
 
-**Platform-Specific Requirements:**
-
-**Modding Tools:**
-Download adam's [modkit](http://www.adammil.net/blog/v133_Battle_Brothers_mod_kit.html#modkit) and unpack it at the same level that legends project is (see screenshot).
+1. Download adam's [modkit](http://www.adammil.net/blog/v133_Battle_Brothers_mod_kit.html#modkit) and unpack it at the same level that legends project is (see screenshot). The tools should be placed in a `bin/` directory at the workspace level, one directory up from the `Legends-public` project folder.
 
 ![dir_structure.webp](dir_structure.webp)
 
+**Expected Directory Structure:**
+
+```plaintext
+work-dir/                      # Your workspace folder
+├── bin/                       # Modding tools go here
+│   ├── bbrusher.exe           # Windows executable
+│   ├── bbrusher.sh            # [Linux/macOS only] wrapper script
+│   ├── masscompile.bat/.sh
+│   └── massdecompile.bat/.sh
+└── Legends-public/            # Legends project
+    ├── build_legends_mod.py
+    ├── build_brushes.py
+    └── ...
+```
+
+**Platform-Specific Requirements:**
+
 **Windows:**
-- 7zip or WinRAR (Python's zipfile is used as fallback)
-- Git Bash or PowerShell
-- Microsoft Visual C++ Runtime (for modding tools)
+1. Install git bash
+2. Install python3
+3. Optional: 7zip (Python's zipfile is used as fallback)
+4. Add all above to PATH variable (if you don't know how, check this [webpage](https://www.computerhope.com/issues/ch000549.htm))
+5. Make sure you have microsoft web runtime
+6. Install python dependencies `pip install Pillow`
+7. Copy `build_compile_poss.sh` and name it something like `build_compile_yourname.sh`
+8. Inside the `build_compile_yourname.sh` replace the destination variable with your own
 
 **Linux/macOS:**
-- zip/unzip utilities (usually pre-installed)
-- Terminal/shell access
+1. Python3
+2. On Linux/macOS you'll need to make `bbrusher.exe` - a windows binary - work transparently. The build scripts will call `bbrusher.sh` instead of the .exe directly, but it is your responsibility to make it work on your OS.
 
-On Linux/macOS you'll need to alias `bbrusher.exe` to `bbrusher.sh` and add the necessary wrappers to make it work on your OS.
-
-Here's an example using Wine on Linux:
+The simplest way is to install `wine`. You will also need Microsoft C++ Runtime; the easiest way to add it to your wine prefix is probably to run `winetricks dotnet45` (or newer). This might require installing `winetricks` separately. Then you can just wrap wine in `bbrusher.sh` like this:
 
 ```
 #!/bin/bash
@@ -66,31 +79,8 @@ python3 build_legends_mod.py
 python3 build_patch.py [commit_hash]
 ```
 
-## Error Handling
-
-All scripts include comprehensive error handling:
-
-- Clear error messages with context
-- Proper exit codes
-- Cleanup of temporary files
-- Validation of required tools and paths
-
-## Troubleshooting
-
-### Common Issues
-
-1. **Python not found**: Ensure Python 3.6+ is installed and available in PATH
-2. **Permission errors**: Make sure scripts are executable (`chmod +x script.py`)
-3. **Missing tools**: Verify that bbrusher, masscompile, and massdecompile are available
-4. **Path issues**: Check that Battle Brothers directory is correctly detected or specified
-
-### Debug Mode
-
-Most scripts accept verbose output. Check the console output for detailed information about what the script is doing.
-
-### Log Files
-
-Some operations create log files (e.g., `log.txt`) that contain detailed output from external tools.
+**Windows:**
+1. Open git bash in the legends repo and run bash `build_compile_yourname.sh`
 
 ## Note when adding brushes
 
