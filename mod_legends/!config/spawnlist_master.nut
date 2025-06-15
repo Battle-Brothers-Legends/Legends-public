@@ -768,6 +768,33 @@
 	Script = "scripts/entity/tactical/enemies/legend_basilisk_sentry"
 };
 
+::Const.World.Spawn.Troops.LegendDawg <- {
+	ID = this.Const.EntityType.LegendDawg,
+	Variant = 0,
+	Strength = 10,
+	Cost = 10,
+	Row = 0,
+	Script = "scripts/entity/tactical/legend_dawg"
+};
+
+::Const.World.Spawn.Troops.LegendArmoredDawg <- {
+	ID = this.Const.EntityType.LegendDawg,
+	Variant = 0,
+	Strength = 10,
+	Cost = 10,
+	Row = 0,
+	Script = "scripts/entity/tactical/legend_armored_dawg"
+};
+
+::Const.World.Spawn.Troops.LegendEnragedHyena <- {
+	ID = this.Const.EntityType.LegendEnragedHyena,
+	Variant = 0,
+	Strength = 25,
+	Cost = 25,
+	Row = -1,
+	Script = "scripts/entity/tactical/legend_enraged_hyena"
+};
+
 ::Const.World.Spawn.CaravanFort <-
 {
 	Name = "CaravanFort",

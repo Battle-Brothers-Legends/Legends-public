@@ -9,7 +9,7 @@ this.legend_dawg <- this.inherit("scripts/entity/tactical/wardog", {
 		this.wardog.create();
 		this.m.Type = this.Const.EntityType.Wardog;
 		this.m.XP = this.Const.Tactical.Actor.Wardog.XP;
-		this.m.SoundPitch = 0.85;
+		this.m.SoundPitch = this.Math.rand(85, 105) * 0.01;
 	}
 
 	function setVariant(_variant) {
@@ -76,6 +76,5 @@ this.legend_dawg <- this.inherit("scripts/entity/tactical/wardog", {
 		::Legends.Perks.grant(this, ::Legends.Perk.Pathfinder);
 		::Legends.Perks.grant(this, ::Legends.Perk.Overwhelm);
 	}
-
 
 })

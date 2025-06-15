@@ -113,6 +113,15 @@
 			]
 		},
 		{
+			Weight = 3,
+			Types = [
+				{
+					Type = this.Const.World.Spawn.Troops.LegendDawg,
+					Cost = 5
+				}
+			]
+		},
+		{
 			Weight = 1,
 			MinR = 160,
 			Types =

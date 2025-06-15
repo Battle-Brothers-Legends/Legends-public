@@ -7,7 +7,7 @@
 	VisionMult = 1.0,
 	Body = "figure_southern_01",
 	MaxR = 560,
-	Troops = 
+	Troops =
 	[
 		{
 			Weight = 50,
@@ -29,6 +29,15 @@
 				{
 					Type = this.Const.World.Spawn.Troops.ConscriptPolearm,
 					Cost = 20
+				}
+			]
+		},
+		{
+			Weight = 3,
+			Types = [
+				{
+					Type = this.Const.World.Spawn.Troops.LegendArmoredDawg,
+					Cost = 5
 				}
 			]
 		},
@@ -104,7 +113,7 @@
 			Cost = 0
 		}
 	],
-	Troops = 
+	Troops =
 	[
 		{
 			Weight = 62,
@@ -171,7 +180,7 @@
 	VisionMult = 1.0,
 	Body = "figure_slave_01",
 	MaxR = 210,
-	Troops = 
+	Troops =
 	[
 		{
 			Weight = 100,
@@ -193,7 +202,7 @@
 	VisionMult = 1.0,
 	Body = "figure_slave_01",
 	MaxR = 210,
-	Troops = 
+	Troops =
 	[
 		{
 			Weight = 100,
@@ -215,7 +224,7 @@
 	VisionMult = 1.0,
 	Body = "figure_southern_01",
 	MaxR = 420,
-	Troops = 
+	Troops =
 	[
 		{
 			Weight = 100,

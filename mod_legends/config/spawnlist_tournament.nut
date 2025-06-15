@@ -644,6 +644,11 @@ if (!("Spawn" in ::Const.World))
 					Cost = 20
 				},
 				{
+					Type = this.Const.World.Spawn.Troops.LegendEnragedHyena,
+					MinR = 500,
+					Cost = 25
+				},
+				{
 					Type = this.Const.World.Spawn.Troops.DirewolfHIGH,
 					Cost = 25
 				},

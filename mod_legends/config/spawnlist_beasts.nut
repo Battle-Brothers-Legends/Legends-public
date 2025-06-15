@@ -51,6 +51,11 @@
 					Type = this.Const.World.Spawn.Troops.HyenaHIGH,
 					MinR = 400,
 					Cost = 20
+				},
+				{
+					Type = this.Const.World.Spawn.Troops.LegendEnragedHyena,
+					MinR = 500,
+					Cost = 25
 				}
 			]
 		},

@@ -8,7 +8,6 @@ this.legend_enraged_hyena <- this.inherit("scripts/entity/tactical/enemies/hyena
 
 	function create() {
 		this.hyena.create();
-		this.m.IsHigh = true;
 	}
 
 	function onInit() {
@@ -48,59 +47,59 @@ this.legend_enraged_hyena <- this.inherit("scripts/entity/tactical/enemies/hyena
 
 		// spawn corpse
 		if (_tile != null) {
-			local flip = Math.rand(0, 100) < 50;
+			local flip = this.Math.rand(0, 100) < 50;
 			local decal;
 			m.IsCorpseFlipped = flip;
 
 			local body = getSprite("body");
 			local head = getSprite("head");
 
-			decal = _tile.spawnDetail("bust_hyena_07_body_dead", Const.Tactical.DetailFlag.Corpse, flip);
+			decal = _tile.spawnDetail("bust_hyena_07_body_dead", this.Const.Tactical.DetailFlag.Corpse, flip);
 			decal.Color = body.Color;
 			decal.Saturation = body.Saturation;
 			decal.Scale = 0.95;
 
-			if (_fatalityType != Const.FatalityType.Decapitated) {
+			if (_fatalityType != this.Const.FatalityType.Decapitated) {
 				// no fatality
-				decal = _tile.spawnDetail(head.getBrush().Name + "_dead", Const.Tactical.DetailFlag.Corpse, flip);
+				decal = _tile.spawnDetail(head.getBrush().Name + "_dead", this.Const.Tactical.DetailFlag.Corpse, flip);
 				decal.Color = head.Color;
 				decal.Saturation = head.Saturation;
 				decal.Scale = 0.95;
-			} else if (_fatalityType == Const.FatalityType.Decapitated) {
+			} else if (_fatalityType == this.Const.FatalityType.Decapitated) {
 				// decapitated
 				local layers = [ head.getBrush().Name + "_dead" ];
 
-				local decap = Tactical.spawnHeadEffect(getTile(), layers, createVec(0, 0), 0.0, "bust_hyena_head_bloodpool");
+				local decap = this.Tactical.spawnHeadEffect(getTile(), layers, createVec(0, 0), 0.0, "bust_hyena_head_bloodpool");
 
 				decap[0].Color			= head.Color;
 				decap[0].Saturation		= head.Saturation;
 				decap[0].Scale = 0.95;
 			}
 
-			if (_skill && _skill.getProjectileType() == Const.ProjectileType.Arrow) {
-				decal = _tile.spawnDetail("bust_hyena_01_body_dead_arrows", Const.Tactical.DetailFlag.Corpse, flip);
+			if (_skill && _skill.getProjectileType() == this.Const.ProjectileType.Arrow) {
+				decal = _tile.spawnDetail("bust_hyena_01_body_dead_arrows", this.Const.Tactical.DetailFlag.Corpse, flip);
 				decal.Scale = 0.95;
-			} else if(_skill && _skill.getProjectileType() == Const.ProjectileType.Javelin) {
-				decal = _tile.spawnDetail("bust_hyena_01_body_dead_javelin", Const.Tactical.DetailFlag.Corpse, flip);
+			} else if(_skill && _skill.getProjectileType() == this.Const.ProjectileType.Javelin) {
+				decal = _tile.spawnDetail("bust_hyena_01_body_dead_javelin", this.Const.Tactical.DetailFlag.Corpse, flip);
 				decal.Scale = 0.95;
 			}
 
 			spawnTerrainDropdownEffect(_tile);
 			spawnFlies(_tile);
 
-			local corpse = clone Const.Corpse;
+			local corpse = clone this.Const.Corpse;
 			corpse.CorpseName		= "An Enraged Hyena";
-			corpse.IsHeadAttached	= _fatalityType != Const.FatalityType.Decapitated;
+			corpse.IsHeadAttached	= _fatalityType != this.Const.FatalityType.Decapitated;
 
 			_tile.Properties.set("Corpse", corpse);
-			Tactical.Entities.addCorpse(_tile);
+			this.Tactical.Entities.addCorpse(_tile);
 
 			// loot
-			if((_killer == null || _killer.getFaction() == Const.Faction.Player || _killer.getFaction() == Const.Faction.PlayerAnimals)) {
-				local n = 1 + (!Tactical.State.isScenarioMode() && Math.rand(1, 100) <= World.Assets.getExtraLootChance() ? 1 : 0);
+			if((_killer == null || _killer.getFaction() == this.Const.Faction.Player || _killer.getFaction() == this.Const.Faction.PlayerAnimals)) {
+				local n = 1 + (!this.Tactical.State.isScenarioMode() && this.Math.rand(1, 100) <= this.World.Assets.getExtraLootChance() ? 1 : 0);
 				for (local i = 0; i < n; ++i) {
-					if (Math.rand(1, 100) <= 50) {
-						local r = Math.rand(1, 100);
+					if (this.Math.rand(1, 100) <= 50) {
+						local r = this.Math.rand(1, 100);
 						local loot;
 
 						if (r <= 60) {
@@ -110,14 +109,14 @@ this.legend_enraged_hyena <- this.inherit("scripts/entity/tactical/enemies/hyena
 						}
 
 						loot.drop(_tile);
-					} else if (Math.rand(1, 100) <= 33) {
+					} else if (this.Math.rand(1, 100) <= 33) {
 						local loot = new("scripts/items/supplies/strange_meat_item");
 						loot.drop(_tile);
 					}
 				}
 
-				if (isKindOf(this, "hyena_high") && Math.rand(1, 100) <= 20) {
-					local loot = new("scripts/items/loot/sabertooth_item");
+				if (this.Math.rand(1, 100) <= 20) {
+					local loot = this.new("scripts/items/loot/sabertooth_item");
 					loot.drop(_tile);
 				}
 			}
