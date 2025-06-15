@@ -1,35 +1,34 @@
 ::mods_hookExactClass("items/misc/wardog_armor_upgrade_item", function(o) {
+	o.m.UpgradeableCreatures <- [
+		["accessory.legend_wardog", "scripts/items/accessory/legend_armored_wardog_item"],
+		["accessory.legend_warhound", "scripts/items/accessory/legend_armored_warhound_item"],
+		["accessory.legend_dawg", "scripts/items/accessory/legend_armored_dawg_item"]
+	];
+
 	o.onUse = function(_actor, _item = null) {
 		local dog = _item == null ? _actor.getItems().getItemAtSlot(this.Const.ItemSlot.Accessory) : _item;
 
-		if (dog == null ||
-			(dog.getID() != "accessory.legend_wardog" &&
-			 dog.getID() != "accessory.legend_warhound" &&
-			 dog.getID() != "accessory.legend_dawg")) {
+		if (dog == null) {
+			return false;
+		}
+
+		local scripts = this.m.UpgradeableCreatures.filter(@(idx, entry) entry[0] == dog.getID()).map(@(it) it[1]);
+		if (scripts.len() == 0) {
 			return false;
 		}
 
 		this.Sound.play("sounds/combat/armor_leather_impact_03.wav", this.Const.Sound.Volume.Inventory);
-		local new_dog = null;
 
-		if (dog.getID() == "accessory.legend_wardog") {
-			new_dog = this.new("scripts/items/accessory/legend_armored_wardog_item");
-		} else if (dog.getID() == "accessory.legend_warhound") {
-			new_dog = this.new("scripts/items/accessory/legend_armored_warhound_item");
-		} else if (dog.getID() == "accessory.legend_dawg") {
-			new_dog = this.new("scripts/items/accessory/legend_armored_dawg_item");
-		} else {
-			::logError("Unexpected dog type: " + dog.getID());
-		}
+		local new_dog = this.new(scripts[0]);
 
-		if (new_dog == null) {
+		if (newDog == null) {
 			return false;
 		}
 
-		new_dog.setName(dog.getName());
-		new_dog.setVariant(dog.getVariant());
+		newDog.setName(dog.getName());
+		newDog.setVariant(dog.getVariant());
 		_actor.getItems().unequip(dog);
-		_actor.getItems().equip(new_dog);
+		_actor.getItems().equip(newDog);
 		return true;
 	}
 });
