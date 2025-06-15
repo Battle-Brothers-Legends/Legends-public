@@ -592,9 +592,8 @@ this.legend_hunting_white_direwolf_contract <- this.inherit("scripts/contracts/c
 		{
 			this.m.Target = this.WeakTableRef(this.World.getEntityByID(target));
 		}
-		this.m.IsRandomlyAdded = _out.readBool();
+		this.m.IsRandomlyAdded = _in.readBool();
 		this.contract.onDeserialize(_in);
 	}
 
 });
-

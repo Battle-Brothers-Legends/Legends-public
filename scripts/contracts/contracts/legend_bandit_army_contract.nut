@@ -920,9 +920,8 @@ this.legend_bandit_army_contract <- this.inherit("scripts/contracts/contract", {
 		{
 			this.m.Location2 = this.WeakTableRef(this.World.getEntityByID(location2));
 		}
-		this.m.IsRandomlyAdded = _out.readBool();
+		this.m.IsRandomlyAdded = _in.readBool();
 		this.contract.onDeserialize(_in);
 	}
 
 });
-

@@ -448,7 +448,7 @@ this.legend_hunting_demon_alps_contract <- this.inherit("scripts/contracts/contr
 		{
 			this.m.Flags.set("StartTime", 0);
 		}
-		this.m.IsRandomlyAdded = _out.readBool();
+		this.m.IsRandomlyAdded = _in.readBool();
 		this.contract.onDeserialize(_in);
 
 		if (this.m.Flags.has("SpawnAtTime"))
@@ -458,4 +458,3 @@ this.legend_hunting_demon_alps_contract <- this.inherit("scripts/contracts/contr
 	}
 
 });
-

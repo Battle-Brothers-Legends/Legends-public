@@ -379,9 +379,8 @@ this.legend_hunting_skin_ghouls_contract <- this.inherit("scripts/contracts/cont
 		{
 			this.m.Target = this.WeakTableRef(this.World.getEntityByID(target));
 		}
-		this.m.IsRandomlyAdded = _out.readBool();
+		this.m.IsRandomlyAdded = _in.readBool();
 		this.contract.onDeserialize(_in);
 	}
 
 });
-

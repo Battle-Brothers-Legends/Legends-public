@@ -566,9 +566,8 @@ this.legend_hunting_greenwood_schrats_contract <- this.inherit("scripts/contract
 		{
 			this.m.Target = this.WeakTableRef(this.World.getEntityByID(target));
 		}
-		this.m.IsRandomlyAdded = _out.readBool();
+		this.m.IsRandomlyAdded = _in.readBool();
 		this.contract.onDeserialize(_in);
 	}
 
 });
-

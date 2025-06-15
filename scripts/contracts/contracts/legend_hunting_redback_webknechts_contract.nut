@@ -563,9 +563,8 @@ this.legend_hunting_redback_webknechts_contract <- this.inherit("scripts/contrac
 		{
 			this.m.Target = this.WeakTableRef(this.World.getEntityByID(target));
 		}
-		this.m.IsRandomlyAdded = _out.readBool();
+		this.m.IsRandomlyAdded = _in.readBool();
 		this.contract.onDeserialize(_in);
 	}
 
 });
-

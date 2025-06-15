@@ -841,9 +841,8 @@ this.legend_barbarian_prisoner_contract <- this.inherit("scripts/contracts/contr
 			this.m.Flags.set("Distance", 0);
 		}
 
-		this.m.IsRandomlyAdded = _out.readBool();
+		this.m.IsRandomlyAdded = _in.readBool();
 		this.contract.onDeserialize(_in);
 	}
 
 });
-
