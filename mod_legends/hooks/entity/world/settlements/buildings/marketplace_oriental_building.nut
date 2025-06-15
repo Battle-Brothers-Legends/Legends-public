@@ -222,6 +222,11 @@
 				R = 50,
 				P = 1.0,
 				S = "weapons/warfork"
+			},
+			{
+				R = 60,
+				P = 1.0,
+				S = "accessory/legend_dawg_item"
 			}
 		];
 
