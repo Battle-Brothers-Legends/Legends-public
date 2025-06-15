@@ -9,7 +9,7 @@ this.legend_dawg <- this.inherit("scripts/entity/tactical/wardog", {
 		this.wardog.create();
 		this.m.Type = this.Const.EntityType.Wardog;
 		this.m.XP = this.Const.Tactical.Actor.Wardog.XP;
-		this.m.SoundPitch = 0.65;
+		this.m.SoundPitch = 0.85;
 	}
 
 	function setVariant(_variant) {
