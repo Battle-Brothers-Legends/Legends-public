@@ -144,4 +144,6 @@
 	<sprite id="kobold_wolfrider_orientation" ic="FF22200A" img="orientation\kobold_wolfrider_orientation.png" />
 	<sprite id="mummy_queen_orientation" ic="FF22200A" img="orientation\mummy_medium_orientation.png" />
   <sprite id="basilisk_drone_orientation" ic="FF22200A" img="orientation\basilisk_drone_orientation.png" />
+  <sprite id="dawg_orientation" ic="FF22200A" img="orientation\dawg_orientation.png" />
+  <sprite id="enraged_hyena_orientation" ic="FF22200A" img="orientation\enraged_hyena_orientation.png" />
 </brush>
