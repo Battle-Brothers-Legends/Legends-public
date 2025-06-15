@@ -416,7 +416,7 @@ this.legend_hunting_demon_alps_contract <- this.inherit("scripts/contracts/contr
 			if (stats.Strength >= this.m.MinStrength)
 				return true;
 		}
-		_out.writeBool(this.m.IsRandomlyAdded);
+
 		return this.m.IsRandomlyAdded && sumLevels > this.m.LevelSumRequiredForRandomSpawn;
 	}
 
@@ -430,7 +430,7 @@ this.legend_hunting_demon_alps_contract <- this.inherit("scripts/contracts/contr
 		{
 			_out.writeU32(0);
 		}
-
+		_out.writeBool(this.m.IsRandomlyAdded);
 		this.m.Flags.set("SpawnAtTime", this.m.SpawnAtTime);
 		this.contract.onSerialize(_out);
 	}
