@@ -789,5 +789,6 @@
 	<sprite id="lightning_square" ic="2E343FFF" img="skills\lightning_square.png" />
 	<sprite id="dawg_circle" ic="2E343FFF" img="skills\dawg_circle.png" />
 	<sprite id="mini_dawg_circle" ic="2E343FFF" img="skills\mini\mini_dawg_circle.png" />
+	<sprite id="unleash_dawg" ic="2E343FFF" img="skills\unleash_dawg.png" />
 	<sprite id="mini_unleash_dawg" ic="2E343FFF" img="skills\mini\mini_unleash_dawg.png" />
 </brush>
