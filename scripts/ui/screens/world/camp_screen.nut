@@ -590,6 +590,11 @@ this.camp_screen <- {
 		}
 	}
 
+	function updateContracts()
+	{
+		this.m.JSHandle.asyncCall("updateContracts", ::World.Camp.getUIContractInformation());
+	}
+
 	function updateAssets()
 	{
 		this.m.JSHandle.asyncCall("loadAssetData", this.queryAssetsInformation());
@@ -690,6 +695,13 @@ this.camp_screen <- {
 		{
 			this.m.OnCampListener();
 		}
+	}
+
+	function onContractClicked( _data )
+	{
+		if (this.isAnimating())
+			return;
+		this.World.Contracts.showContractByID(_data);
 	}
 
 	function onSlotClicked( _data )

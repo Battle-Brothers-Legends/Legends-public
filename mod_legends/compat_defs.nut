@@ -81,6 +81,7 @@
 
 /** Just a list of integrated mods, to prevent loading them again */
 ::Legends.Compat.Integrated <- [
+	"mod_quickly_swap_items",
 	"mod_legends_compat",
 	"mod_buyback",
 	"mod_events_delayed_fix",
@@ -97,8 +98,8 @@
 ::Legends.Compat.HardIncompat.add("mod_AC", "1.30.33"); // Accessory Companions
 ::Legends.Compat.HardIncompat.add("mod_allCripplesBecomeTheKingsGuard", "1.0");
 ::Legends.Compat.HardIncompat.add("and_justice_for_all", "1.4.0");
-::Legends.Compat.HardIncompat.add("mod_autopilot", "23");
-::Legends.Compat.HardIncompat.add("mod_auto_level", "1.1.1");
+::Legends.Compat.HardIncompat.add("mod_autopilot", "23", "Instead use Hackflow's Autopilot New mod");
+::Legends.Compat.HardIncompat.add("mod_auto_level", "1.1.1", "Instead use Hackflow's Bro Studio for something similar");
 ::Legends.Compat.HardIncompat.add("mod_avatar", "1.0.2");
 ::Legends.Compat.HardIncompat.add("mod_avgmax", "1.0"); // Average bro max stats
 ::Legends.Compat.HardIncompat.add("mod_backgrounds_attribute_ranges", "2.0.0");
@@ -135,9 +136,10 @@
 ::Legends.Compat.HardIncompat.add("mod_faster", null, "Use Swifter instead, found on Nexus");
 ::Legends.Compat.HardIncompat.add("mod_fastest", null, "Use Swifter instead, found on Nexus");
 ::Legends.Compat.HardIncompat.add("mod_legends_favoured_enemy_refund", "2.0.1");
-::Legends.Compat.SoftIncompat.add("mod_fun_facts", "0.5.0"); // Seen some reports causing hard crashes with this mod.
+::Legends.Compat.SoftIncompat.add("mod_fun_facts", "0.5.0"); // Seen some reports causing hard crashes with this mod. But new comments suggest issues might be fixed need more feedback vs Legends play
 ::Legends.Compat.HardIncompat.add("graven_passive_shield_damage_bonus", "1.0");
 ::Legends.Compat.HardIncompat.add("graven_plentiful_paints", "1.1");
+::Legends.Compat.HardIncompat.add("mod_graze_and_crit");
 ::Legends.Compat.HardIncompat.add("mod_hackflows_perks", "1.4");
 ::Legends.Compat.HardIncompat.add("mod_hardened"); // Darx's RF submod
 ::Legends.Compat.HardIncompat.add("mod_healable_injury", "1.0");
@@ -158,7 +160,7 @@
 ::Legends.Compat.HardIncompat.add("mod_more_champions_x10");
 ::Legends.Compat.HardIncompat.add("mod_more_champions_x25");
 ::Legends.Compat.HardIncompat.add("mod_more_followers", "1.1");
-::Legends.Compat.HardIncompat.add("mod_moreRecruits", "2");
+::Legends.Compat.HardIncompat.add("mod_moreRecruits", "2", "For more recruits a safe alternative seems to be Necro's World Editor");
 ::Legends.Compat.HardIncompat.add("mod_more_weapon_skins", "0.8.0"); // Many of Karl's skins are being integ into Legends
 ::Legends.Compat.HardIncompat.add("mod_namedShieldsInShops", "1.0");
 ::Legends.Compat.HardIncompat.add("mod_necro", "0.3.0"); // Hackflow's Proper Necromancer
@@ -223,9 +225,9 @@
 ::Legends.Compat.SoftIncompat.add("mod_BLPT", "0.1.2"); // Darx's Bad Luck Protection
 ::Legends.Compat.SoftIncompat.add("mod_bro_storage", "1.0.2");
 ::Legends.Compat.SoftIncompat.add("mod_camps_and_artifacts", "3.4");
-::Legends.Compat.SoftIncompat.add("mod_career_stats", "1.0.2");
+::Legends.Compat.SoftIncompat.add("mod_career_stats", "1.0.2"); // I've seen this mod being the issue in logs as cause of errors
 ::Legends.Compat.SoftIncompat.add("mod_cultists", "1.04"); // Davkul Rising
-::Legends.Compat.SoftIncompat.add("mod_fantasybro", "1.0"); // Yorik's "Legends patches are poorly built"
+::Legends.Compat.SoftIncompat.add("mod_fantasybro", "1.0"); // Yorik's "Legends patches are poorly built, yes even into FB V5"
 ::Legends.Compat.SoftIncompat.add("mod_find_legendary_locations", "1", "Use Chopek's Find Legendary Maps instead, at Nexus or Legends Discord (#submod_files/Find Legendary Maps)");
 ::Legends.Compat.SoftIncompat.add("mod_necropolis", "1.0");
 ::Legends.Compat.SoftIncompat.add("mod_PLHO", "0.1.1"); // Darx's Player Hideout
@@ -237,7 +239,6 @@
 
 //region IncompatButPatched
 ::Legends.Compat.IncompatButPatched.add("mod_breditor", "on Legends Discord (#submod_files/Breaky's Battle Brothers Bargain Bin (BBBBB))");
-::Legends.Compat.IncompatButPatched.add("mod_quickly_swap_items", "on Legends Discord (#submod_files/Breaky's Battle Brothers Bargain Bin (BBBBB))");
 //endregion
 
 //region OtherVersionCompat

@@ -4,7 +4,6 @@ this.perk_legend_freedom_of_movement <- this.inherit("scripts/skills/skill", {
 			::Legends.Actives.getID(::Legends.Active.Lunge),
 			::Legends.Actives.getID(::Legends.Active.Footwork),
 			::Legends.Actives.getID(::Legends.Active.Rotation),
-			::Legends.Actives.getID(::Legends.Active.LegendTumble),
 			::Legends.Actives.getID(::Legends.Active.LegendLeap),
 			::Legends.Actives.getID(::Legends.Active.LegendHorsePirouette),
 			::Legends.Actives.getID(::Legends.Active.LegendQuickStep),

@@ -1,0 +1,60 @@
+::Legends.CampContracts <- {
+	EmployerFaction = {
+		Barbarians = 0,
+		Bandits = 1,
+		Necromancers = 2,
+		COUNT = 3
+	}
+}
+
+::Legends.CampContracts.IntroBarbarians <- [{
+	ID = "Intro",
+	Title = "Negotiations",
+	Text = "[img]gfx/ui/events/legend_camp_hunt.png[/img]{A group of scarred warriors walk into camp like they own the place. One grunts a greeting, another spits in the dirt, and the largest tosses a half-roasted leg of meat onto your fire. %SPEECH_ON%We talk. You listen.%SPEECH_OFF%Seems they want to hire you, or maybe fight you. Either way, best to hear them out. | You wake to find a pile of unhold bones stacked at the edge of the camp. A moment later, barbarian drums rumble from the treeline, and hulking silhouettes approach. This is either a challenge or an invitation. Or both.}",
+	Image = "",
+	List = [],
+	ShowEmployer = false,
+	ShowDifficulty = true,
+	Options = [{
+		Text = "Let\'s talk business.",
+		function getResult() {
+			return "Task";
+		}
+	}]
+}];
+
+::Legends.CampContracts.IntroBandits <- [{
+	ID = "Intro",
+	Title = "Negotiations",
+	Text = "[img]gfx/ui/events/legend_camp_hunt.png[/img]{A man surprises you by sliding into your shoulder. You just about draw your sword when he quickly explains that a man by the name of %employer% has sought your acquaintance. Sheathing your weapon, you tell the stranger to take you to him - if he\'s got business, he should tell you himself. The messenger nods and leads the way to a bandit\'s hideut. | A messenger - a young lad about as tall as a longsword - sprints by you, throwing a scroll into the air as he swings past. You catch it, but by the time you can look for the kid he\'s already gone. Shrugging, you open the scroll and find the name of %employer%. Directions to a bandit\'s hideout tag the bottom of the scroll.}",
+	Image = "",
+	List = [],
+	ShowEmployer = false,
+	ShowDifficulty = true,
+	Options = [
+		{
+			Text = "Let\'s talk business.",
+			function getResult() {
+				return "Task";
+			}
+		}
+	]
+}];
+
+::Legends.CampContracts.IntroNecromancers <- [{
+	ID = "Intro",
+	Title = "Negotiations",
+	Text = "[img]gfx/ui/events/legend_camp_hunt.png[/img]{Your fire dims without warning. Flames hiss, shrinking to embers. Then you see a %person_employer% made of shadow and silk, gliding closer. %SPEECH_ON%Don’t be alarmed. I need help… not a heart.%SPEECH_OFF% A ritual has gone wrong. Something is feeding on the dead, but it’s not %them_employer% doing. %SPEECH_ON%Not everything that reeks of death is mine.%SPEECH_OFF%%They_employer% offers more gold than sense.}",
+	Image = "",
+	List = [],
+	ShowEmployer = false,
+	ShowDifficulty = true,
+	Options = [
+		{
+			Text = "Let\'s talk business.",
+			function getResult() {
+				return "Task";
+			}
+		}
+	]
+}];

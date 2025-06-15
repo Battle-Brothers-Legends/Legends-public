@@ -8,6 +8,8 @@ this.perk_legend_cascade <- this.inherit("scripts/skills/skill", {
 		this.m.IsActive = false;
 		this.m.IsStacking = false;
 		this.m.IsHidden = false;
+		this.m.ActionPointCost = 4;
+		this.m.FatigueCost = 13;
 	}
 
 });

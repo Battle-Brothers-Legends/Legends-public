@@ -20,6 +20,7 @@ this.legend_wither_skill <- this.inherit("scripts/skills/skill", {
 		this.m.IsVisibleTileNeeded = false;
 		this.m.IsIgnoredAsAOO = true;
 		this.m.IsStacking = false;
+		this.m.IsUsingHitchance = false;
 		this.m.IsAttack = false;
 		this.m.IsRanged = true;
 		this.m.ActionPointCost = 5;

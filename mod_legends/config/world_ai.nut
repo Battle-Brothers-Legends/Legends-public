@@ -1,3 +1,2 @@
-::Const.World.AI.Behavior.ID.Dock <- 21;
-::Const.World.AI.Behavior.ID.FreeCompany <- 22;
-::Const.World.AI.Behavior.ID.COUNT = 23;
+::Const.World.AI.Behavior.ID.Dock <- ::Const.World.AI.Behavior.ID.COUNT++;
+::Const.World.AI.Behavior.ID.FreeCompany <- ::Const.World.AI.Behavior.ID.COUNT++;
