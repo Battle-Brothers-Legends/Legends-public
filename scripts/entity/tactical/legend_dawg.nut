@@ -9,7 +9,7 @@ this.legend_dawg <- this.inherit("scripts/entity/tactical/wardog", {
 		this.wardog.create();
 		this.m.Type = this.Const.EntityType.Wardog;
 		this.m.XP = this.Const.Tactical.Actor.Wardog.XP;
-		this.m.SoundPitch = 0.85;
+		this.m.SoundPitch = 0.65;
 	}
 
 	function setVariant(_variant) {
@@ -26,9 +26,9 @@ this.legend_dawg <- this.inherit("scripts/entity/tactical/wardog", {
 		// stats
 		local b = m.BaseProperties;
 		b.setValues(Const.Tactical.Actor.Wardog);
-		b.TargetAttractionMult	= 0.1;
-		b.IsAffectedByInjuries	= false;
-		b.IsImmuneToDisarm		= true;
+		b.TargetAttractionMult = 0.1;
+		b.IsAffectedByInjuries = false;
+		b.IsImmuneToDisarm = true;
 
 		m.ActionPoints = b.ActionPoints;
 		m.Hitpoints = b.Hitpoints;
