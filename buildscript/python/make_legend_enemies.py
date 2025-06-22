@@ -1,7 +1,7 @@
 
 from string import Template
 from shutil import copyfile
-import os, argparse
+import re, os, argparse
 
 Normal = '<sprite id="$name" offsetY="$offsetY" ic="FF4E5053" width="$w" height="$h" img="$img" left="$left" right="$right" top="$top" bottom="$bottom" />\n'
 Full = '<sprite id="$name" offsetX="$offsetX" offsetY="$offsetY" f="64F6" f1="$f1" f2="$f2" ic="FF313D49" width="$w" height="$h" img="$img" left="$left" right="$right" top="$top" bottom="$bottom" />\n'
@@ -468,8 +468,7 @@ def makeBrushes(path):
                 s = Template(t)
                 text = s.substitute(opts)
                 # Only replace forward slashes in img paths, not in "/>" endings
-                import re
-                text = re.sub(r'img="([^"]*)"', lambda m: f'img="{m.group(1).replace("/", "\\")}"', text)
+                text = re.sub(r'img="([^"]*)"', lambda m: f'img="{m.group(1).replace("/", chr(92))}"', text)
                 F.write(text)
     F.write('</brush>')
     F.close()
@@ -478,7 +477,7 @@ def main():
     parser = argparse.ArgumentParser(description='Legends armor generator.')
     parser.add_argument('path', type=str, help='The file or directory path')
     args = parser.parse_args()
-    path = args.path;
+    path = args.path
 
     makeBrushes(path)
 

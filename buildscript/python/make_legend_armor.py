@@ -1,7 +1,7 @@
 from string import Template
 from shutil import copyfile
 from armor import Templates, Defs, cleanupDirs
-import os, argparse
+import re, os, argparse
 
 
 def checkForIcon(path, iconpath, variants):
@@ -223,8 +223,7 @@ def main():
                 s = Template(t)
                 text = s.substitute(opts)
                 # Only replace forward slashes in img paths, not in "/>" endings
-                import re
-                text = re.sub(r'img="([^"]*)"', lambda m: f'img="{m.group(1).replace("/", "\\")}"', text)
+                text = re.sub(r'img="([^"]*)"', lambda m: f'img="{m.group(1).replace("/", chr(92))}"', text)
                 Brush.write(text)
                 imageCount += 1
                 if (imageCount > 700):
@@ -277,8 +276,7 @@ def main():
                 s = Template(t)
                 text = s.substitute(opts)
                 # Only replace forward slashes in img paths, not in "/>" endings
-                import re
-                text = re.sub(r'img="([^"]*)"', lambda m: f'img="{m.group(1).replace("/", "\\")}"', text)
+                text = re.sub(r'img="([^"]*)"', lambda m: f'img="{m.group(1).replace("/", chr(92))}"', text)
                 Brush.write(text)
                 imageCount += 1
                 if (imageCount > 700):
