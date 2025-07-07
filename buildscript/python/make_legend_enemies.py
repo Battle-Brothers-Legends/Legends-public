@@ -1,29 +1,182 @@
-
 from string import Template
 from shutil import copyfile
 import re, os, argparse
+from pathlib import Path
 
 Normal = '<sprite id="$name" offsetY="$offsetY" ic="FF4E5053" width="$w" height="$h" img="$img" left="$left" right="$right" top="$top" bottom="$bottom" />\n'
 Full = '<sprite id="$name" offsetX="$offsetX" offsetY="$offsetY" f="64F6" f1="$f1" f2="$f2" ic="FF313D49" width="$w" height="$h" img="$img" left="$left" right="$right" top="$top" bottom="$bottom" />\n'
 
-#Moving Brush:
-#DOWN :  bigger negative
-#UP : smaller negative
+# Moving Brush:
+# DOWN :  bigger negative
+# UP : smaller negative
 brush_only_layers = [
-    {"template": [Normal], "entity":"goblins", "name": "bust_goblin_04_helmet",                      "min" : 4, "max" : 15, "w": 60, "h": 80,  "left": -36, "right" :24, "top": -28, "bottom": 52, "offsetY" : 35},
-    {"template": [Normal], "entity":"goblins", "name": "bust_goblin_04_helmet", "suffix": "damaged", "min" : 4, "max" : 15, "w": 60, "h": 80,  "left": -36, "right" :24, "top": -28, "bottom": 52, "offsetY" : 35},
-    {"template": [Normal], "entity":"goblins", "name": "bust_goblin_04_helmet", "suffix": "dead", "img":"bust_goblin_04_helmet_00_dead", "min" : 4, "max" : 15, "w": 125, "h": 114,  "left": -10, "right" :46, "top": -46, "bottom": 4, "offsetY" : 15},
-
-    {"template": [Normal], "entity":"goblins", "name": "bust_goblin_01_helmet",                      "min" : 4, "max" : 20, "w": 60, "h": 80,  "left": -36, "right" :24, "top": -28, "bottom": 52, "offsetY" : 35},
-    {"template": [Normal], "entity":"goblins", "name": "bust_goblin_01_helmet", "suffix": "damaged", "min" : 4, "max" : 20, "w": 60, "h": 80,  "left": -36, "right" :24, "top": -28, "bottom": 52, "offsetY" : 35},
-    {"template": [Normal], "entity":"goblins", "name": "bust_goblin_01_helmet", "suffix": "dead", "img":"bust_goblin_04_helmet_00_dead", "min" : 4, "max" : 20, "w": 125, "h": 114,  "left": -10, "right" :46, "top": -46, "bottom": 4, "offsetY" : 15},
-
-    {"template": [Normal], "entity":"goblins", "name": "bust_goblin_02_helmet",                      "min" : 20, "max" : 26, "w": 60, "h": 80,  "left": -36, "right" :24, "top": -28, "bottom": 52, "offsetY" : 35},
-    {"template": [Normal], "entity":"goblins", "name": "bust_goblin_02_helmet", "suffix": "damaged", "min" : 20, "max" : 26, "w": 60, "h": 80,  "left": -36, "right" :24, "top": -28, "bottom": 52, "offsetY" : 35},
-    {"template": [Normal], "entity":"goblins", "name": "bust_goblin_02_helmet", "suffix": "dead", "img":"bust_goblin_04_helmet_00_dead", "min" : 20, "max" : 26, "w": 125, "h": 114,  "left": -10, "right" :46, "top": -46, "bottom": 4, "offsetY" : 15},
-
-    {"template": [Normal], "entity":"undead", "name": "mummy_head",                   "min" : 1, "max" : 9, "w": 104, "h": 142, "left": -17, "right" :29, "top": -14, "bottom": 48, "offsetY" : 35},
-    {"template": [Full],   "entity":"undead", "name": "mummy_head", "suffix": "dead", "min" : 1, "max" : 9, "w": 191, "h": 185, "left": -45, "right" :11, "top": -53, "bottom": 3, "offsetY" : 10, "offsetX" : 6, "f1":-15, "f2": -15}
+    {
+        "template": [Normal],
+        "entity": "goblins",
+        "name": "bust_goblin_04_helmet",
+        "min": 4,
+        "max": 15,
+        "w": 60,
+        "h": 80,
+        "left": -36,
+        "right": 24,
+        "top": -28,
+        "bottom": 52,
+        "offsetY": 35,
+    },
+    {
+        "template": [Normal],
+        "entity": "goblins",
+        "name": "bust_goblin_04_helmet",
+        "suffix": "damaged",
+        "min": 4,
+        "max": 15,
+        "w": 60,
+        "h": 80,
+        "left": -36,
+        "right": 24,
+        "top": -28,
+        "bottom": 52,
+        "offsetY": 35,
+    },
+    {
+        "template": [Normal],
+        "entity": "goblins",
+        "name": "bust_goblin_04_helmet",
+        "suffix": "dead",
+        "img": "bust_goblin_04_helmet_00_dead",
+        "min": 4,
+        "max": 15,
+        "w": 125,
+        "h": 114,
+        "left": -10,
+        "right": 46,
+        "top": -46,
+        "bottom": 4,
+        "offsetY": 15,
+    },
+    {
+        "template": [Normal],
+        "entity": "goblins",
+        "name": "bust_goblin_01_helmet",
+        "min": 4,
+        "max": 20,
+        "w": 60,
+        "h": 80,
+        "left": -36,
+        "right": 24,
+        "top": -28,
+        "bottom": 52,
+        "offsetY": 35,
+    },
+    {
+        "template": [Normal],
+        "entity": "goblins",
+        "name": "bust_goblin_01_helmet",
+        "suffix": "damaged",
+        "min": 4,
+        "max": 20,
+        "w": 60,
+        "h": 80,
+        "left": -36,
+        "right": 24,
+        "top": -28,
+        "bottom": 52,
+        "offsetY": 35,
+    },
+    {
+        "template": [Normal],
+        "entity": "goblins",
+        "name": "bust_goblin_01_helmet",
+        "suffix": "dead",
+        "img": "bust_goblin_04_helmet_00_dead",
+        "min": 4,
+        "max": 20,
+        "w": 125,
+        "h": 114,
+        "left": -10,
+        "right": 46,
+        "top": -46,
+        "bottom": 4,
+        "offsetY": 15,
+    },
+    {
+        "template": [Normal],
+        "entity": "goblins",
+        "name": "bust_goblin_02_helmet",
+        "min": 20,
+        "max": 26,
+        "w": 60,
+        "h": 80,
+        "left": -36,
+        "right": 24,
+        "top": -28,
+        "bottom": 52,
+        "offsetY": 35,
+    },
+    {
+        "template": [Normal],
+        "entity": "goblins",
+        "name": "bust_goblin_02_helmet",
+        "suffix": "damaged",
+        "min": 20,
+        "max": 26,
+        "w": 60,
+        "h": 80,
+        "left": -36,
+        "right": 24,
+        "top": -28,
+        "bottom": 52,
+        "offsetY": 35,
+    },
+    {
+        "template": [Normal],
+        "entity": "goblins",
+        "name": "bust_goblin_02_helmet",
+        "suffix": "dead",
+        "img": "bust_goblin_04_helmet_00_dead",
+        "min": 20,
+        "max": 26,
+        "w": 125,
+        "h": 114,
+        "left": -10,
+        "right": 46,
+        "top": -46,
+        "bottom": 4,
+        "offsetY": 15,
+    },
+    {
+        "template": [Normal],
+        "entity": "undead",
+        "name": "mummy_head",
+        "min": 1,
+        "max": 9,
+        "w": 104,
+        "h": 142,
+        "left": -17,
+        "right": 29,
+        "top": -14,
+        "bottom": 48,
+        "offsetY": 35,
+    },
+    {
+        "template": [Full],
+        "entity": "undead",
+        "name": "mummy_head",
+        "suffix": "dead",
+        "min": 1,
+        "max": 9,
+        "w": 191,
+        "h": 185,
+        "left": -45,
+        "right": 11,
+        "top": -53,
+        "bottom": 3,
+        "offsetY": 10,
+        "offsetX": 6,
+        "f1": -15,
+        "f2": -15,
+    },
 ]
 
 
@@ -392,6 +545,7 @@ enemies = r"""
 <sprite id="bust_hyena_08_head_dead" offsetX="4" offsetY="24" f="6401" ic="FF283B55" width="179" height="154" img="entity\beasts\bust_hyena_08_head_dead.png" left="-48" right="22" top="-52" bottom="12" />
 """
 
+
 def makeBrushes(path):
     dirpath = os.path.join(path, "unpacked", "legend_enemies")
     if not os.path.exists(dirpath):
@@ -416,7 +570,7 @@ def makeBrushes(path):
                     name = name + "_" + d["suffix"]
 
                 img = name
-                if "img" in d :
+                if "img" in d:
                     img = d["img"]
 
                 offsetX = 0
@@ -443,23 +597,40 @@ def makeBrushes(path):
                     offsetX=offsetX,
                     f1=f1,
                     f2=f2,
-                    img=os.path.join("entity", d["entity"], img + ".png")
-                    #dead_path=os.path.join("..", "entity", "goblins", name + "_dead.png")
+                    img=os.path.join("entity", d["entity"], img + ".png"),
+                    # dead_path=os.path.join("..", "entity", "goblins", name + "_dead.png")
                 )
                 s = Template(t)
                 text = s.substitute(opts)
                 # Only replace forward slashes in img paths, not in "/>" endings
-                text = re.sub(r'img="([^"]*)"', lambda m: f'img="{m.group(1).replace("/", chr(92))}"', text)
+                text = re.sub(
+                    r'img="([^"]*)"', lambda m: f'img="{m.group(1).replace("/", chr(92))}"', text
+                )
                 F.write(text)
-    F.write('</brush>')
+    F.write("</brush>")
     F.close()
 
-def main():
-    parser = argparse.ArgumentParser(description='Legends armor generator.')
-    parser.add_argument('path', type=str, help='The file or directory path')
-    args = parser.parse_args()
-    path = args.path
+
+def generate_legend_enemies(base_path):
+    """
+    Generate legend enemies for the given base path.
+
+    Args:
+        base_path: Path object or string pointing to the project root
+    """
+    path = str(base_path)  # Convert Path to string for compatibility
 
     makeBrushes(path)
 
-main()
+
+def main():
+    parser = argparse.ArgumentParser(description="Legends enemies brushes generator.")
+    parser.add_argument("path", type=str, help="The base directory path")
+    args = parser.parse_args()
+
+    base_path = Path(args.path)
+    generate_legend_enemies(base_path)
+
+
+if __name__ == "__main__":
+    main()

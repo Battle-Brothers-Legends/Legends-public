@@ -1,7 +1,8 @@
 from string import Template
 from shutil import copyfile
-from armor import Templates, Defs, cleanupDirs
+from buildscript.python.armor import Templates, Defs, cleanupDirs
 import re, os, argparse
+from pathlib import Path
 
 
 def checkForIcon(path, iconpath, variants):
@@ -41,14 +42,11 @@ def makeSheet(path, num):
     return F
 
 
-def main():
-    parser = argparse.ArgumentParser(description='Legends armor generator.')
-    parser.add_argument('path', type=str, help='The file or directory path')
-    args = parser.parse_args()
-    path = args.path
+def generate_legend_armor(base_path):
+    path = str(base_path)  # Convert Path to string for compatibility
 
     cleanupDirs(os.path.join(path, "unpacked", "legend_armor"))
-    #Build Brushes
+    # Build Brushes
     fileCount = 0
     imageCount = 0
     Brush = makeSheet(path, fileCount)
@@ -57,12 +55,12 @@ def main():
 
     IC = 4280560954
 
-    #Build Nuts
+    # Build Nuts
     has_missing = False
     for d in Defs.layers:
 
         inherit = ""
-        if "inherit"in d:
+        if "inherit" in d:
             inherit = d["inherit"]
         layer = d["layer"]
 
@@ -94,21 +92,19 @@ def main():
             for x in range(d["min"], d["max"] + 1):
                 variants.append(x)
 
-
         impactsound = "::Const.Sound.ArmorLeatherImpact"
         invsound = "::Const.Sound.ArmorLeatherImpact"
-        if d["invSound"] == 'cloth':
+        if d["invSound"] == "cloth":
             invsound = "::Const.Sound.ClothEquip"
-        elif d["invSound"] == 'chain':
+        elif d["invSound"] == "chain":
             invsound = "::Const.Sound.ArmorChainmailImpact"
 
-        if d["impactSound"] == 'chain':
+        if d["impactSound"] == "chain":
             impactsound = "::Const.Sound.ArmorChainmailImpact"
-        elif d["impactSound"] == 'plate':
+        elif d["impactSound"] == "plate":
             impactsound = "::Const.Sound.ArmorHalfplateImpact"
-        elif d["impactSound"] == 'bone':
+        elif d["impactSound"] == "bone":
             impactsound = "::Const.Sound.ArmorBoneImpact"
-
 
         brushName = d["name"].replace("legend_armor", "legend")
         if "brush" in d:
@@ -122,20 +118,27 @@ def main():
         if "vanilla" in d:
             brush = "bust_" + d["vanilla"]
             overlayLarge = "armor/inventory_" + d["vanilla"] + "_armor"
-            overlay = "armor/icon_" + d["vanilla"]  + "_armor"
-            icon = "armor/icon_" + d["vanilla"]  + "_armor"
+            overlay = "armor/icon_" + d["vanilla"] + "_armor"
+            icon = "armor/icon_" + d["vanilla"] + "_armor"
 
         if inherit != "":
             if inherit == "legend_padded_surcoat":
-                has_missing = has_missing or checkForIcon(path, "legend_armor/inventory_" + "legend_gambeson", variants)
-                has_missing = has_missing or checkForIcon(path, "legend_armor/icon_" + "legend_gambeson", variants)
+                has_missing = has_missing or checkForIcon(
+                    path, "legend_armor/inventory_" + "legend_gambeson", variants
+                )
+                has_missing = has_missing or checkForIcon(
+                    path, "legend_armor/icon_" + "legend_gambeson", variants
+                )
             else:
-                has_missing = has_missing or checkForIcon(path, "legend_armor/inventory_" + inherit, variants)
-                has_missing = has_missing or checkForIcon(path, "legend_armor/icon_" + inherit, variants)
+                has_missing = has_missing or checkForIcon(
+                    path, "legend_armor/inventory_" + inherit, variants
+                )
+                has_missing = has_missing or checkForIcon(
+                    path, "legend_armor/icon_" + inherit, variants
+                )
         else:
             has_missing = has_missing or checkForIcon(path, overlayLarge, variants)
             has_missing = has_missing or checkForIcon(path, icon, variants)
-
 
         namesL = []
         if "names" in d:
@@ -159,34 +162,34 @@ def main():
             title=d["title"],
             desc=d["desc"],
             adesc=d["adesc"],
-            condition = d["con"],
-            value = d["value"],
-            stamina = d["stam"],
+            condition=d["con"],
+            value=d["value"],
+            stamina=d["stam"],
             id="legend_armor.body." + fname,
-            variants = variants,
-            layer = layer,
-            type= d["layer"].capitalize(),
-            brush = brush,
-            overlayLarge = overlayLarge,
-            overlay = overlay,
-            icon = icon,
-            impactSound = impactsound,
-            invSound = invsound,
-            names = namesL,
-            rminStam = d["rminStam"] if "rminStam" in d else 0,
-            rmaxStam = d["rmaxStam"] if "rmaxStam" in d else 0,
-            rminCond = d["rminCond"] if "rminCond" in d else 0,
-            rmaxCond = d["rmaxCond"] if "rmaxCond" in d else 0,
-            bravery = bravery,
-            itemType = itemType,
+            variants=variants,
+            layer=layer,
+            type=d["layer"].capitalize(),
+            brush=brush,
+            overlayLarge=overlayLarge,
+            overlay=overlay,
+            icon=icon,
+            impactSound=impactsound,
+            invSound=invsound,
+            names=namesL,
+            rminStam=d["rminStam"] if "rminStam" in d else 0,
+            rmaxStam=d["rmaxStam"] if "rmaxStam" in d else 0,
+            rminCond=d["rminCond"] if "rminCond" in d else 0,
+            rmaxCond=d["rmaxCond"] if "rmaxCond" in d else 0,
+            bravery=bravery,
+            itemType=itemType,
         )
         s = Template(temp)
         text = s.substitute(opts)
         F.write(text)
         F.close()
 
-        #print('[1, "' + layer + '/' + fname + '"],' + "// " + str(d["con"]))
-        #print('"' + layer + '/' + fname +'",')
+        # print('[1, "' + layer + '/' + fname + '"],' + "// " + str(d["con"]))
+        # print('"' + layer + '/' + fname +'",')
 
         if "inherit" in d:
             continue
@@ -208,26 +211,30 @@ def main():
                 name = "bust_" + name
                 IC += 1
                 opts = dict(
-                    ic=hex(IC).upper().lstrip('0X'),
+                    ic=hex(IC).upper().lstrip("0X"),
                     name=name,
                     damaged=name + "_damaged",
                     dead=name + "_dead",
                     arrow=name + "_dead_arrows",
                     javelin=name + "_dead_javelin",
                     name_path=os.path.join("..", "entity", "legend_armor", name + ".png"),
-                    damaged_path=os.path.join("..", "entity", "legend_armor", name + "_damaged.png"),
+                    damaged_path=os.path.join(
+                        "..", "entity", "legend_armor", name + "_damaged.png"
+                    ),
                     dead_path=os.path.join("..", "entity", "legend_armor", name + "_dead.png"),
-                    arrow_path=os.path.join("..", "..",  "dead_arrows.png"),
-                    javelin_path=os.path.join("..", "..", "dead_javelin.png")
+                    arrow_path=os.path.join("..", "..", "dead_arrows.png"),
+                    javelin_path=os.path.join("..", "..", "dead_javelin.png"),
                 )
                 s = Template(t)
                 text = s.substitute(opts)
                 # Only replace forward slashes in img paths, not in "/>" endings
-                text = re.sub(r'img="([^"]*)"', lambda m: f'img="{m.group(1).replace("/", chr(92))}"', text)
+                text = re.sub(
+                    r'img="([^"]*)"', lambda m: f'img="{m.group(1).replace("/", chr(92))}"', text
+                )
                 Brush.write(text)
                 imageCount += 1
-                if (imageCount > 700):
-                    Brush.write('</brush>\n')
+                if imageCount > 700:
+                    Brush.write("</brush>\n")
                     Brush.close()
                     imageCount = 0
                     fileCount += 1
@@ -251,7 +258,6 @@ def main():
             for x in range(d["min"], d["max"] + 1):
                 variants.append(x)
 
-
         for i in variants:
             ind = "0" + str(i) if i < 10 else str(i)
             names.append(brushName + "_" + ind)
@@ -261,37 +267,50 @@ def main():
                 name = "bust_" + name
                 IC += 1
                 opts = dict(
-                    ic=hex(IC).upper().lstrip('0X'),
+                    ic=hex(IC).upper().lstrip("0X"),
                     name=name,
                     damaged=name + "_damaged",
                     dead=name + "_dead",
                     arrow=name + "_dead_arrows",
                     javelin=name + "_dead_javelin",
                     name_path=os.path.join("..", "entity", "legend_armor", name + ".png"),
-                    damaged_path=os.path.join("..", "entity", "legend_armor", name + "_damaged.png"),
+                    damaged_path=os.path.join(
+                        "..", "entity", "legend_armor", name + "_damaged.png"
+                    ),
                     dead_path=os.path.join("..", "entity", "legend_armor", name + "_dead.png"),
-                    arrow_path=os.path.join("..", "..",  "dead_arrows.png"),
-                    javelin_path=os.path.join("..", "..", "dead_javelin.png")
+                    arrow_path=os.path.join("..", "..", "dead_arrows.png"),
+                    javelin_path=os.path.join("..", "..", "dead_javelin.png"),
                 )
                 s = Template(t)
                 text = s.substitute(opts)
                 # Only replace forward slashes in img paths, not in "/>" endings
-                text = re.sub(r'img="([^"]*)"', lambda m: f'img="{m.group(1).replace("/", chr(92))}"', text)
+                text = re.sub(
+                    r'img="([^"]*)"', lambda m: f'img="{m.group(1).replace("/", chr(92))}"', text
+                )
                 Brush.write(text)
                 imageCount += 1
-                if (imageCount > 700):
-                    Brush.write('</brush>\n')
+                if imageCount > 700:
+                    Brush.write("</brush>\n")
                     Brush.close()
                     imageCount = 0
                     fileCount += 1
                     Brush = makeSheet(path, fileCount)
 
-
-    Brush.write('</brush>\n')
+    Brush.write("</brush>\n")
     Brush.close()
 
     if has_missing:
         raise ValueError("Missing gfx icons")
 
 
-main()
+def main():
+    parser = argparse.ArgumentParser(description="Legends armor brushes generator.")
+    parser.add_argument("path", type=str, help="The base directory path")
+    args = parser.parse_args()
+
+    base_path = Path(args.path)
+    generate_legend_armor(base_path)
+
+
+if __name__ == "__main__":
+    main()

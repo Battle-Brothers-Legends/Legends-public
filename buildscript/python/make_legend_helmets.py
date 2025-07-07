@@ -1,8 +1,9 @@
 from string import Template
-from helmet import Templates, Defs, cleanupDirs
+from buildscript.python.helmet import Templates, Defs, cleanupDirs
 from PIL import Image
-from crop import CropTool
+from buildscript.python.crop import CropTool
 import re, os, argparse
+from pathlib import Path
 
 
 def checkForIcon(path, iconpath, variants):
@@ -70,14 +71,22 @@ def makeBrushes(path):
         for t in R:
             for name in names:
                 name_path, damaged_path, dead_path, _dir = Templates.get_sprites(name)
-                c_name_path, c_damaged_path, c_dead_path, c_dir = Templates.get_cropped_sprites(name)
+                c_name_path, c_damaged_path, c_dead_path, c_dir = Templates.get_cropped_sprites(
+                    name
+                )
 
-                CropTool.crop(os.path.abspath(os.path.join(helmetDir, name_path)),
-                              os.path.abspath(os.path.join(helmetDir, c_name_path)))
-                CropTool.crop(os.path.abspath(os.path.join(helmetDir, damaged_path)),
-                              os.path.abspath(os.path.join(helmetDir, c_damaged_path)))
-                CropTool.crop(os.path.abspath(os.path.join(helmetDir, dead_path)),
-                              os.path.abspath(os.path.join(helmetDir, c_dead_path)))
+                CropTool.crop(
+                    os.path.abspath(os.path.join(helmetDir, name_path)),
+                    os.path.abspath(os.path.join(helmetDir, c_name_path)),
+                )
+                CropTool.crop(
+                    os.path.abspath(os.path.join(helmetDir, damaged_path)),
+                    os.path.abspath(os.path.join(helmetDir, c_damaged_path)),
+                )
+                CropTool.crop(
+                    os.path.abspath(os.path.join(helmetDir, dead_path)),
+                    os.path.abspath(os.path.join(helmetDir, c_dead_path)),
+                )
                 cardinals = Templates.Cardinals
 
                 opts = dict(
@@ -88,25 +97,30 @@ def makeBrushes(path):
                     damaged_path=c_damaged_path,
                     dead_path=c_dead_path,
                     name_cardinals=Templates.calculate_cardinals(
-                        cardinals[0], CropTool.getBounds(os.path.abspath(os.path.join(helmetDir, name_path)))
+                        cardinals[0],
+                        CropTool.getBounds(os.path.abspath(os.path.join(helmetDir, name_path))),
                     ),
                     damaged_cardinals=Templates.calculate_cardinals(
-                        cardinals[1], CropTool.getBounds(os.path.abspath(os.path.join(helmetDir, damaged_path)))
+                        cardinals[1],
+                        CropTool.getBounds(os.path.abspath(os.path.join(helmetDir, damaged_path))),
                     ),
                     dead_cardinals=Templates.calculate_cardinals(
-                        cardinals[2], CropTool.getBounds(os.path.abspath(os.path.join(helmetDir, dead_path)))
-                    )
+                        cardinals[2],
+                        CropTool.getBounds(os.path.abspath(os.path.join(helmetDir, dead_path))),
+                    ),
                 )
                 #                 print(calculateCropArea(os.path.abspath(os.path.join(helmetDir, name + ".png"))))
 
                 s = Template(t)
                 text = s.substitute(opts)
                 # Only replace forward slashes in img paths, not in "/>" endings
-                text = re.sub(r'img="([^"]*)"', lambda m: f'img="{m.group(1).replace("/", chr(92))}"', text)
+                text = re.sub(
+                    r'img="([^"]*)"', lambda m: f'img="{m.group(1).replace("/", chr(92))}"', text
+                )
                 F.write(text)
                 imageCount += 1
-                if (imageCount > 1600):
-                    F.write('</brush>\n')
+                if imageCount > 1600:
+                    F.write("</brush>\n")
                     F.close()
                     imageCount = 0
                     fileCount += 1
@@ -129,14 +143,22 @@ def makeBrushes(path):
         for t in R:
             for name in names:
                 name_path, damaged_path, dead_path, _dir = Templates.get_sprites(name)
-                c_name_path, c_damaged_path, c_dead_path, c_dir = Templates.get_cropped_sprites(name)
+                c_name_path, c_damaged_path, c_dead_path, c_dir = Templates.get_cropped_sprites(
+                    name
+                )
 
-                CropTool.crop(os.path.abspath(os.path.join(helmetDir, name_path)),
-                              os.path.abspath(os.path.join(helmetDir, c_name_path)))
-                CropTool.crop(os.path.abspath(os.path.join(helmetDir, damaged_path)),
-                              os.path.abspath(os.path.join(helmetDir, c_damaged_path)))
-                CropTool.crop(os.path.abspath(os.path.join(helmetDir, dead_path)),
-                              os.path.abspath(os.path.join(helmetDir, c_dead_path)))
+                CropTool.crop(
+                    os.path.abspath(os.path.join(helmetDir, name_path)),
+                    os.path.abspath(os.path.join(helmetDir, c_name_path)),
+                )
+                CropTool.crop(
+                    os.path.abspath(os.path.join(helmetDir, damaged_path)),
+                    os.path.abspath(os.path.join(helmetDir, c_damaged_path)),
+                )
+                CropTool.crop(
+                    os.path.abspath(os.path.join(helmetDir, dead_path)),
+                    os.path.abspath(os.path.join(helmetDir, c_dead_path)),
+                )
                 cardinals = Templates.Cardinals
 
                 opts = dict(
@@ -145,37 +167,39 @@ def makeBrushes(path):
                     damaged_path=c_damaged_path,
                     dead_path=c_dead_path,
                     name_cardinals=Templates.calculate_cardinals(
-                        cardinals[0], CropTool.getBounds(os.path.abspath(os.path.join(helmetDir, name_path)))
+                        cardinals[0],
+                        CropTool.getBounds(os.path.abspath(os.path.join(helmetDir, name_path))),
                     ),
                     damaged_cardinals=Templates.calculate_cardinals(
-                        cardinals[1], CropTool.getBounds(os.path.abspath(os.path.join(helmetDir, damaged_path)))
+                        cardinals[1],
+                        CropTool.getBounds(os.path.abspath(os.path.join(helmetDir, damaged_path))),
                     ),
                     dead_cardinals=Templates.calculate_cardinals(
-                        cardinals[2], CropTool.getBounds(os.path.abspath(os.path.join(helmetDir, dead_path)))
-                    )
+                        cardinals[2],
+                        CropTool.getBounds(os.path.abspath(os.path.join(helmetDir, dead_path))),
+                    ),
                 )
                 s = Template(t)
                 text = s.substitute(opts)
                 # Only replace forward slashes in img paths, not in "/>" endings
-                text = re.sub(r'img="([^"]*)"', lambda m: f'img="{m.group(1).replace("/", chr(92))}"', text)
+                text = re.sub(
+                    r'img="([^"]*)"', lambda m: f'img="{m.group(1).replace("/", chr(92))}"', text
+                )
                 F.write(text)
                 imageCount += 1
-                if (imageCount > 1600):
-                    F.write('</brush>\n')
+                if imageCount > 1600:
+                    F.write("</brush>\n")
                     F.close()
                     imageCount = 0
                     fileCount += 1
                     F = makeSheet(path, fileCount)
 
-    F.write('</brush>\n')
+    F.write("</brush>\n")
     F.close()
 
 
-def main():
-    parser = argparse.ArgumentParser(description='Legends armor generator.')
-    parser.add_argument('path', type=str, help='The file or directory path')
-    args = parser.parse_args()
-    path = args.path
+def generate_legend_helmets(base_path):
+    path = str(base_path)  # Convert Path to string for compatibility
 
     has_missing = False
     for d in Defs.layers:
@@ -256,9 +280,19 @@ def main():
         raise ValueError("Missing gfx icons")
 
 
-main()
+def main():
+    parser = argparse.ArgumentParser(description="Legends helmet brushes generator.")
+    parser.add_argument("path", type=str, help="The base directory path")
+    args = parser.parse_args()
 
-'''
+    base_path = Path(args.path)
+    generate_legend_helmets(base_path)
+
+
+if __name__ == "__main__":
+    main()
+
+"""
 
 "helm/legend_helmet_southern_leather_helm",
 "helm/legend_helmet_southern_studded_leather_helm",
@@ -470,4 +504,4 @@ Sets = [{
         [1, "vanity_lower/legend_helmet_wings"], //10
     ]
 }]
-'''
+"""

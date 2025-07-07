@@ -9,6 +9,7 @@ import sys
 import subprocess
 import shutil
 import argparse
+import importlib.util
 from pathlib import Path
 import platform
 
@@ -55,27 +56,6 @@ class BrushBuilder:
                 print(line)
             raise BrushBuildError(f"Failed to build Legends brush {brush_name}")
 
-    def run_python_script(self, script_path, context=""):
-        """Run a Python script and handle errors"""
-        script_full_path = self.current_dir / script_path
-        print(f"Running {script_path}...")
-
-        if not script_full_path.exists():
-            raise BrushBuildError(f"Python script {script_path} not found")
-
-        try:
-            # Pass the current directory as the path argument that the scripts expect
-            result = subprocess.run(
-                [sys.executable, str(script_full_path), str(self.current_dir)],
-                capture_output=True,
-                text=True,
-                cwd=self.current_dir,
-            )
-            self.handle_exit(result, context)
-            return result.stdout
-        except FileNotFoundError:
-            raise BrushBuildError(f"Python script {script_path} not found")
-
     def build_helmets(self):
         """Build helmet scripts and setup directories"""
         print("Building helmets...")
@@ -86,8 +66,11 @@ class BrushBuilder:
             shutil.rmtree(helmet_scripts_dir)
         helmet_scripts_dir.mkdir(exist_ok=True)
 
-        # Run helmet generation script
-        self.run_python_script("buildscript/python/make_legend_helmets.py", "helmet generation")
+        # Run helmet generation directly
+        from buildscript.python.make_legend_helmets import generate_legend_helmets
+
+        generate_legend_helmets(self.current_dir)
+
         build_helmet_dir = self.build_dir / "scripts" / "items" / "legend_helmets"
         build_helmet_dir.mkdir(parents=True, exist_ok=True)
 
@@ -110,8 +93,10 @@ class BrushBuilder:
             shutil.rmtree(armor_scripts_dir)
         armor_scripts_dir.mkdir(exist_ok=True)
 
-        # Run armor generation script
-        self.run_python_script("buildscript/python/make_legend_armor.py", "armor generation")
+        # Run armor generation directly
+        from buildscript.python.make_legend_armor import generate_legend_armor
+
+        generate_legend_armor(self.current_dir)
 
         # Copy armor scripts to build directory
         build_armor_dir = self.build_dir / "scripts" / "items" / "legend_armor"
@@ -129,7 +114,9 @@ class BrushBuilder:
     def build_enemies(self):
         """Build enemies"""
         print("Building enemies...")
-        self.run_python_script("buildscript/python/make_legend_enemies.py", "enemies generation")
+        from buildscript.python.make_legend_enemies import generate_legend_enemies
+
+        generate_legend_enemies(self.current_dir)
 
     def get_helmet_brushes(self):
         """Get list of helmet brush directories"""

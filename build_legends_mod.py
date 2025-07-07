@@ -6,7 +6,6 @@ Replaces build_legends_mod.sh with cross-platform Python implementation
 
 import os
 import sys
-import subprocess
 import shutil
 import argparse
 from pathlib import Path
@@ -42,15 +41,6 @@ class LegendsModBuilder:
         print(f"Repository directory: {self.repo_dir}")
         print(f"Build directory: {self.build_dir}")
         print(f"Current directory: {self.current_dir}")
-
-    def handle_exit(self, result, context=""):
-        """Handle subprocess exit codes"""
-        if result.returncode != 0:
-            error_msg = f"Failed to build {context if context else 'Legends mod'}!"
-            print(error_msg)
-            if result.stderr:
-                print(f"Error output: {result.stderr}")
-            raise LegendsModBuildError(error_msg)
 
     def extract_version(self):
         """Extract current version from register_legends.nut"""
@@ -127,24 +117,10 @@ class LegendsModBuilder:
     def build_brushes(self):
         """Build brushes using the brush builder"""
         print("Building brushes...")
-        try:
-            # Import and use the brush builder
-            from build_brushes import BrushBuilder
+        from build_brushes import BrushBuilder
 
-            brush_builder = BrushBuilder(str(self.build_dir), self.repo_dir)
-            brush_builder.build()
-        except ImportError:
-            # Fall back to running as subprocess
-            result = subprocess.run(
-                [
-                    sys.executable,
-                    "build_brushes.py",
-                    str(self.build_dir),
-                    self.repo_dir,
-                ],
-                cwd=self.current_dir,
-            )
-            self.handle_exit(result, "brush building")
+        brush_builder = BrushBuilder(str(self.build_dir), self.repo_dir)
+        brush_builder.build()
 
     def copy_directories(self):
         """Copy required directories to build directory"""
@@ -190,6 +166,8 @@ class LegendsModBuilder:
 
     def create_zip_archives(self):
         """Create zip archives for mod and assets"""
+        import zipfile
+
         # Change to build directory
         original_cwd = os.getcwd()
         os.chdir(self.build_dir)
@@ -198,63 +176,28 @@ class LegendsModBuilder:
             zip_name_assets = self.artifact_name_assets()
             zip_name_mod = self.artifact_name_mod()
 
-            # Check if 7z is available, otherwise use Python's zipfile
-            try:
-                # Create assets zip
-                result = subprocess.run(
-                    [
-                        "7z",
-                        "a",
-                        "-tzip",
-                        zip_name_assets,
-                        "brushes",
-                        "gfx",
-                        "sounds",
-                        "preload",
-                    ],
-                    capture_output=True,
-                    text=True,
-                )
+            print("Creating zip archives with Python zipfile...")
 
-                if result.returncode != 0:
-                    raise subprocess.CalledProcessError(result.returncode, "7z")
+            # Create assets zip
+            with zipfile.ZipFile(zip_name_assets, "w", zipfile.ZIP_DEFLATED) as zf:
+                for root, dirs, files in os.walk("."):
+                    for file in files:
+                        file_path = Path(root) / file
+                        if any(
+                            str(file_path).startswith(d)
+                            for d in ["brushes", "gfx", "sounds", "preload"]
+                        ):
+                            zf.write(file_path, file_path)
 
-                # Create mod zip
-                result = subprocess.run(
-                    ["7z", "a", "-tzip", zip_name_mod, "mod_legends", "scripts", "ui"],
-                    capture_output=True,
-                    text=True,
-                )
-
-                if result.returncode != 0:
-                    raise subprocess.CalledProcessError(result.returncode, "7z")
-
-            except (FileNotFoundError, subprocess.CalledProcessError):
-                # Fall back to Python zipfile
-                print("7z not found, using Python zipfile...")
-                import zipfile
-
-                # Create assets zip
-                with zipfile.ZipFile(zip_name_assets, "w", zipfile.ZIP_DEFLATED) as zf:
-                    for root, dirs, files in os.walk("."):
-                        for file in files:
-                            file_path = Path(root) / file
-                            if any(
-                                str(file_path).startswith(d)
-                                for d in ["brushes", "gfx", "sounds", "preload"]
-                            ):
-                                zf.write(file_path, file_path)
-
-                # Create mod zip
-                with zipfile.ZipFile(zip_name_mod, "w", zipfile.ZIP_DEFLATED) as zf:
-                    for root, dirs, files in os.walk("."):
-                        for file in files:
-                            file_path = Path(root) / file
-                            if any(
-                                str(file_path).startswith(d)
-                                for d in ["mod_legends", "scripts", "ui"]
-                            ):
-                                zf.write(file_path, file_path)
+            # Create mod zip
+            with zipfile.ZipFile(zip_name_mod, "w", zipfile.ZIP_DEFLATED) as zf:
+                for root, dirs, files in os.walk("."):
+                    for file in files:
+                        file_path = Path(root) / file
+                        if any(
+                            str(file_path).startswith(d) for d in ["mod_legends", "scripts", "ui"]
+                        ):
+                            zf.write(file_path, file_path)
 
             # Create assets script and add to assets zip
             assets_script_content = self.build_assets_script()
@@ -270,19 +213,11 @@ class LegendsModBuilder:
                 f.write(assets_script_content)
 
             # Add scripts to assets zip
-            try:
-                result = subprocess.run(
-                    ["7z", "a", zip_name_assets, "scripts"],
-                    capture_output=True,
-                    text=True,
-                )
-            except FileNotFoundError:
-                # Use Python zipfile
-                with zipfile.ZipFile(zip_name_assets, "a", zipfile.ZIP_DEFLATED) as zf:
-                    for root, dirs, files in os.walk("scripts"):
-                        for file in files:
-                            file_path = Path(root) / file
-                            zf.write(file_path, file_path)
+            with zipfile.ZipFile(zip_name_assets, "a", zipfile.ZIP_DEFLATED) as zf:
+                for root, dirs, files in os.walk("scripts"):
+                    for file in files:
+                        file_path = Path(root) / file
+                        zf.write(file_path, file_path)
 
             # Move zip files to BB directory
             shutil.move(zip_name_assets, self.bb_dir / zip_name_assets)
