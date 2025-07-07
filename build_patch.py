@@ -201,13 +201,13 @@ class PatchBuilder:
 
         try:
             with zipfile.ZipFile(zip_archive, "w", zipfile.ZIP_DEFLATED) as zf:
-                for root, dirs, files in os.walk("."):
-                    for file in files:
-                        file_path = Path(root) / file
-                        if any(
-                            str(file_path).startswith(d) for d in ["mod_legends", "scripts", "ui"]
-                        ):
-                            zf.write(file_path, file_path)
+                # Only walk through the specific directories we want to include
+                for dir_name in ["mod_legends", "scripts", "ui"]:
+                    if Path(dir_name).exists():
+                        for root, dirs, files in os.walk(dir_name):
+                            for file in files:
+                                file_path = Path(root) / file
+                                zf.write(file_path, file_path)
 
             # Move zip to build directory root
             shutil.move(zip_archive, f"../{zip_archive}")

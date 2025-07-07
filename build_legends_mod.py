@@ -209,24 +209,23 @@ class LegendsModBuilder:
 
             # Create assets zip
             with zipfile.ZipFile(zip_name_assets, "w", zipfile.ZIP_DEFLATED) as zf:
-                for root, dirs, files in os.walk("."):
-                    for file in files:
-                        file_path = Path(root) / file
-                        if any(
-                            str(file_path).startswith(d)
-                            for d in ["brushes", "gfx", "sounds", "preload"]
-                        ):
-                            zf.write(file_path, file_path)
+                # Only walk through the specific directories we want to include
+                for dir_name in ["brushes", "gfx", "sounds", "preload"]:
+                    if Path(dir_name).exists():
+                        for root, dirs, files in os.walk(dir_name):
+                            for file in files:
+                                file_path = Path(root) / file
+                                zf.write(file_path, file_path)
 
             # Create mod zip
             with zipfile.ZipFile(zip_name_mod, "w", zipfile.ZIP_DEFLATED) as zf:
-                for root, dirs, files in os.walk("."):
-                    for file in files:
-                        file_path = Path(root) / file
-                        if any(
-                            str(file_path).startswith(d) for d in ["mod_legends", "scripts", "ui"]
-                        ):
-                            zf.write(file_path, file_path)
+                # Only walk through the specific directories we want to include
+                for dir_name in ["mod_legends", "scripts", "ui"]:
+                    if Path(dir_name).exists():
+                        for root, dirs, files in os.walk(dir_name):
+                            for file in files:
+                                file_path = Path(root) / file
+                                zf.write(file_path, file_path)
 
             # Create assets script and add to assets zip
             assets_script_content = self.build_assets_script()
