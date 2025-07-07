@@ -612,12 +612,6 @@ def makeBrushes(path):
 
 
 def generate_legend_enemies(base_path):
-    """
-    Generate legend enemies for the given base path.
-
-    Args:
-        base_path: Path object or string pointing to the project root
-    """
     path = str(base_path)  # Convert Path to string for compatibility
 
     makeBrushes(path)
