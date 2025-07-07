@@ -9,7 +9,6 @@ import sys
 import subprocess
 import shutil
 import argparse
-import importlib.util
 from pathlib import Path
 import platform
 
