@@ -12,6 +12,29 @@ from pathlib import Path
 import platform
 
 
+def load_config():
+    """Load configuration from .build_config.py if it exists"""
+    config = {"REPO_DIR": "Legends-public", "BB_DIR": None, "BUILD_DIR": "./build"}
+
+    try:
+        config_path = Path(__file__).parent / ".build_config.py"
+        if config_path.exists():
+            import importlib.util
+
+            spec = importlib.util.spec_from_file_location("config", config_path)
+            config_module = importlib.util.module_from_spec(spec)
+            spec.loader.exec_module(config_module)
+
+            # Update config with values from the file
+            for key in config:
+                if hasattr(config_module, key):
+                    config[key] = getattr(config_module, key)
+    except Exception:
+        pass  # Use defaults if config loading fails
+
+    return config
+
+
 class LegendsModBuildError(Exception):
     """Custom exception for legends mod build errors"""
 
@@ -19,8 +42,19 @@ class LegendsModBuildError(Exception):
 
 
 class LegendsModBuilder:
-    def __init__(self, bb_dir=None, repo_dir="Legends-public", build_dir=None):
-        # Set default paths based on OS
+    def __init__(self, bb_dir=None, repo_dir=None, build_dir=None):
+        # Load config first
+        config = load_config()
+
+        # Use provided values, fall back to config, then to defaults
+        if repo_dir is None:
+            repo_dir = config["REPO_DIR"]
+        if build_dir is None:
+            build_dir = config["BUILD_DIR"]
+        if bb_dir is None:
+            bb_dir = config["BB_DIR"]
+
+        # Set default paths based on OS if still None
         if bb_dir is None:
             if platform.system() == "Windows":
                 bb_dir = r"c:\Steam\steamapps\common\Battle Brothers\data"
@@ -28,9 +62,6 @@ class LegendsModBuilder:
                 bb_dir = os.path.expanduser(
                     "~/.local/share/Steam/steamapps/common/Battle Brothers/data"
                 )
-
-        if build_dir is None:
-            build_dir = "./build"
 
         self.bb_dir = Path(bb_dir)
         self.repo_dir = repo_dir
@@ -263,18 +294,20 @@ class LegendsModBuilder:
 def main():
     """Main entry point"""
     parser = argparse.ArgumentParser(description="Build complete Legends mod")
-    parser.add_argument("bb_dir", nargs="?", help="Battle Brothers data directory")
+    parser.add_argument(
+        "bb_dir",
+        nargs="?",
+        help="Battle Brothers data directory (default: from .build_config.py or auto-detect)",
+    )
     parser.add_argument(
         "repo_dir",
         nargs="?",
-        default="Legends-public",
-        help="Repository directory name (default: Legends-public)",
+        help="Repository directory name (default: from .build_config.py or 'Legends-public')",
     )
     parser.add_argument(
         "build_dir",
         nargs="?",
-        default="./build",
-        help="Build directory (default: ./build)",
+        help="Build directory (default: from .build_config.py or './build')",
     )
 
     args = parser.parse_args()

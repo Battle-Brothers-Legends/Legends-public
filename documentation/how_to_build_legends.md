@@ -23,6 +23,7 @@ work-dir/                      # Your workspace folder
 │   └── massdecompile.bat/.sh
 └── Legends-public/            # Legends project
     ├── build_legends_mod.py
+    ├── build_patch.py
     ├── build_brushes.py
     └── ...
 ```
@@ -30,16 +31,17 @@ work-dir/                      # Your workspace folder
 **Platform-Specific Requirements:**
 
 **Windows:**
+
 1. Install git bash
 2. Install python3
-3. Optional: 7zip (Python's zipfile is used as fallback)
-4. Add all above to PATH variable (if you don't know how, check this [webpage](https://www.computerhope.com/issues/ch000549.htm))
-5. Make sure you have microsoft web runtime
-6. Install python dependencies `pip install Pillow`
-7. Copy `build_compile_poss.sh` and name it something like `build_compile_yourname.sh`
-8. Inside the `build_compile_yourname.sh` replace the destination variable with your own
+3. Add all above to PATH variable (if you don't know how, check this [webpage](https://www.computerhope.com/issues/ch000549.htm))
+4. Make sure you have microsoft web runtime
+5. Install python dependencies `pip install Pillow`
+6. Copy `build_compile_poss.sh` and name it something like `build_compile_yourname.sh`
+7. Inside the `build_compile_yourname.sh` replace the destination variable with your own
 
 **Linux/macOS:**
+
 1. Python3
 2. On Linux/macOS you'll need to make `bbrusher.exe` - a windows binary - work transparently. The build scripts will call `bbrusher.sh` instead of the .exe directly, but it is your responsibility to make it work on your OS.
 
@@ -53,24 +55,29 @@ wine bbrusher.exe "$@"
 ## Platform-Specific Features
 
 ### Path Detection
+
 The build system automatically detects platform-specific paths:
 
 **Windows:**
+
 - Battle Brothers: `c:\Steam\steamapps\common\Battle Brothers\data`
 - Executables: `.exe` extension
 - Batch files: `.bat` extension
 
 **Linux/Unix:**
+
 - Battle Brothers: `~/.local/share/Steam/steamapps/common/Battle Brothers/data`
 - Executables: `.sh` extension
 - Shell scripts: `.sh` extension
 
 ### Archive Creation
-The system attempts to use 7-Zip for archive creation but falls back to Python's built-in `zipfile` module if 7-Zip is not available.
+
+The build always uses Python's built-in `zipfile` module.
 
 ## How to Build Legends
 
 **Quick Start (OS-Agnostic):**
+
 ```bash
 # Build complete mod from scratch
 python3 build_legends_mod.py
@@ -80,14 +87,16 @@ python3 build_patch.py [commit_hash]
 ```
 
 **Windows:**
+
 1. Open git bash in the legends repo and run bash `build_compile_yourname.sh`
 
 ## Note when adding brushes
 
-Adding images to the make_ scripts is not always enough.
+Adding images to the make\_ scripts is not always enough.
 While it will create a new brush xml automatically when its reached the limit of images per sheet, it won't build those into brushes unless you also add a line to the build_brushes file
-so if you add more images than fit in the current number of sheets,  or if you want to change the size of the sheets,   you can't just change the imagecount and run the whole build script.
+so if you add more images than fit in the current number of sheets, or if you want to change the size of the sheets, you can't just change the imagecount and run the whole build script.
 you've got to:
+
 1. change the imagecount in the make_armor script
 2. delete your local numbered armor directories and xml files
 3. run just the make script
@@ -100,16 +109,15 @@ Only then can you run the whole build script
 
 These scripts can seem daunting, but they are much easier than maintaining all armor and helmet layers by hand.
 
-
 **make_legends_helmets**
 
-this script takes the place of all the *.nut files and .XML files that would otherwise be need to be maintained separately.
+this script takes the place of all the \*.nut files and .XML files that would otherwise be need to be maintained separately.
 
 Each of these item entries is essentially a .nut file waiting to be born.
 
-{"name" : "goblin_scarf"                     , "layer" : "hood", "min" : 1, "max" : 4, "base" : True, "value" : 5, "con" : 5, "stam" : 0, "vis" : 0, "hair" : "true", "beard" : "false",  \
- "title" :  "Goblin Scarf", \
- "desc" :  "Goblin Scarf." \
+{"name" : "goblin_scarf" , "layer" : "hood", "min" : 1, "max" : 4, "base" : True, "value" : 5, "con" : 5, "stam" : 0, "vis" : 0, "hair" : "true", "beard" : "false", \
+ "title" : "Goblin Scarf", \
+ "desc" : "Goblin Scarf." \
 },
 
 - Name is the filename which will have legend_helmets prepended to it.
@@ -125,14 +133,13 @@ Each of these item entries is essentially a .nut file waiting to be born.
 - title is the item name players see in game
 - description is meant to be the description that shows in the tooltip when items are layered
 
-
 These entries are for stacking unlayered helmets, they are copied verbatim into the first helmet brush
 <sprite id="italo_norman_helm_named_01" offsetY="35" ic="FF383D5F" width="104" height="142" img="entity\legend_helmets\italo_norman_helm_named_01.png" left="-31" right="30" top="-18" bottom="70" />
 these should all be phased out and bigrated into the defintions as they are turned into visual layers.
+
 - id is the brush name you call from within squirrel files
 - offsets, width, heigh, left and right all define the image size and offsets. There is an image guide on the discord for these
 - img is the actual image of the helmet which needs to be in the unpacked directory
-
 
 checkForIcon function verifies that each item defined above has a icon and inventory image file saved into gfx/ui/items/legend_helmets.
 
