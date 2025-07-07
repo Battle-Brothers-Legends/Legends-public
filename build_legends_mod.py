@@ -207,8 +207,6 @@ class LegendsModBuilder:
             zip_name_assets = self.artifact_name_assets()
             zip_name_mod = self.artifact_name_mod()
 
-            print("Creating zip archives with Python zipfile...")
-
             # Create assets zip
             with zipfile.ZipFile(zip_name_assets, "w", zipfile.ZIP_DEFLATED) as zf:
                 for root, dirs, files in os.walk("."):

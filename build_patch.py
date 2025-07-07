@@ -200,8 +200,6 @@ class PatchBuilder:
         os.chdir(self.build_dir)
 
         try:
-            print("Creating zip archive with Python zipfile...")
-
             with zipfile.ZipFile(zip_archive, "w", zipfile.ZIP_DEFLATED) as zf:
                 for root, dirs, files in os.walk("."):
                     for file in files:
@@ -228,8 +226,6 @@ class PatchBuilder:
         os.chdir(self.build_dir)
 
         try:
-            print("Adding scripts to zip with Python zipfile...")
-
             with zipfile.ZipFile(zip_archive, "a", zipfile.ZIP_DEFLATED) as zf:
                 for root, dirs, files in os.walk("scripts"):
                     for file in files:
