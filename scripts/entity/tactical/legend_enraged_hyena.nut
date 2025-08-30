@@ -1,6 +1,15 @@
 this.legend_enraged_hyena <- this.inherit("scripts/entity/tactical/enemies/hyena", {
 
-	m = {},
+	m = {
+		Size = 1.0,
+		DistortTargetA = null,
+		DistortTargetPrevA = this.createVec(0, 0),
+		DistortTargetB = null,
+		DistortTargetPrevB = this.createVec(0, 0),
+		DistortAnimationStartTimeA = 0,
+		IsFlipping = false,
+		LastSmokeTime = 0
+	},
 
 	function getName() {
 		return "Enraged Hyena";
@@ -12,6 +21,8 @@ this.legend_enraged_hyena <- this.inherit("scripts/entity/tactical/enemies/hyena
 
 	function onInit() {
 		this.hyena.onInit();
+		this.setRenderCallbackEnabled(true);
+
 		local b = this.m.BaseProperties;
 		b.setValues(this.Const.Tactical.Actor.FrenziedHyena);
 		b.IsAffectedByNight = false;
@@ -27,6 +38,7 @@ this.legend_enraged_hyena <- this.inherit("scripts/entity/tactical/enemies/hyena
 		local head = this.getSprite("head");
 		head.setBrush("bust_hyena_0" + this.Math.rand(7, 8) + "_head");
 
+		::Legends.Actives.grant(this, ::Legends.Active.LegendEnragedHyenaBite);
 		::Legends.Perks.grant(this, ::Legends.Perk.Berserk);
 		::Legends.Perks.grant(this, ::Legends.Perk.Overwhelm);
 		::Legends.Perks.grant(this, ::Legends.Perk.Relentless);
@@ -43,7 +55,122 @@ this.legend_enraged_hyena <- this.inherit("scripts/entity/tactical/enemies/hyena
 		}
 	}
 
+	function onDamageReceived(_attacker, _skill, _hitInfo) {
+		// Release all bitten victims when the hyena takes damage
+		if (_hitInfo.DamageRegular > 0) {
+			this.freeAllBittenVictims();
+		}
+
+		return this.actor.onDamageReceived(_attacker, _skill, _hitInfo);
+	}
+
+	function freeAllBittenVictims() {
+		// Find all actors with the bite effect that are linked to this hyena
+		local entities = this.Tactical.Entities.getInstancesOfFaction(this.Const.Faction.Player);
+		entities.extend(this.Tactical.Entities.getInstancesOfFaction(this.Const.Faction.PlayerAnimals));
+		foreach (entity in entities) {
+			if (entity.isAlive()) {
+				local biteEffect = ::Legends.Effects.get(entity, ::Legends.Effect.LegendEnragedHyenaBite);
+				if (biteEffect != null && biteEffect.getHyena() == this) {
+					// Free the victim
+					biteEffect.checkHyenaHit();
+				}
+			}
+		}
+	}
+
+	function onRender() {
+		this.actor.onRender();
+
+		if (this.m.DistortTargetA == null) {
+			// Initialize breathing animation targets - more pronounced movement for visibility
+			this.m.DistortTargetA = this.m.IsFlipping ? this.createVec(0, 1.5 * this.m.Size) : this.createVec(0, -1.5 * this.m.Size);
+			this.m.DistortTargetB = this.m.IsFlipping ? this.createVec(0, 1.0 * this.m.Size) : this.createVec(0, -1.0 * this.m.Size);
+			this.m.DistortAnimationStartTimeA = this.Time.getVirtualTimeF() - this.Math.rand(10, 100) * 0.01;
+			this.m.LastSmokeTime = this.Time.getVirtualTimeF();
+		}
+
+		// Apply breathing animation to body and head
+		this.moveSpriteOffset("body", this.m.DistortTargetPrevA, this.m.DistortTargetA, 1.8, this.m.DistortAnimationStartTimeA);
+		this.moveSpriteOffset("injury", this.m.DistortTargetPrevA, this.m.DistortTargetA, 1.8, this.m.DistortAnimationStartTimeA);
+
+		// Head moves slightly less for more natural look
+		local breathCycleComplete = this.moveSpriteOffset("head", this.m.DistortTargetPrevB, this.m.DistortTargetB, 1.8, this.m.DistortAnimationStartTimeA);
+		if (breathCycleComplete) {
+			// Reset animation cycle
+			this.m.DistortAnimationStartTimeA = this.Time.getVirtualTimeF();
+			this.m.DistortTargetPrevA = this.m.DistortTargetA;
+			this.m.DistortTargetA = this.m.IsFlipping ? this.createVec(0, 1.5 * this.m.Size) : this.createVec(0, -1.5 * this.m.Size);
+			this.m.DistortTargetPrevB = this.m.DistortTargetB;
+			this.m.DistortTargetB = this.m.IsFlipping ? this.createVec(0, 1.0 * this.m.Size) : this.createVec(0, -1.0 * this.m.Size);
+			this.m.IsFlipping = !this.m.IsFlipping;
+		}
+
+		// Breath effects should be synchronized with body movement
+		local currentTime = this.Time.getVirtualTimeF();
+		if (breathCycleComplete && currentTime - this.m.LastSmokeTime > 2.0) {
+			this.m.LastSmokeTime = currentTime;
+
+			this.Tactical.spawnParticleEffect(
+				false,
+				["legend_dust_03"],
+				this.getTile(),
+				0,
+				4,
+				4,
+				150,
+				[
+					{
+						LifeTimeMin = 0.1,
+						LifeTimeMax = 0.1,
+						ColorMin = this.createColor("ffffff00"),
+						ColorMax = this.createColor("ffffff00"),
+						ScaleMin = 0.3,
+						ScaleMax = 0.4,
+						RotationMin = 0,
+						RotationMax = 359,
+						VelocityMin = 25,
+						VelocityMax = 35,
+						DirectionMin = this.createVec(-0.5, 0.1),
+						DirectionMax = this.createVec(-0.3, 0.3),
+						SpawnOffsetMin = this.createVec(-1, -1),
+						SpawnOffsetMax = this.createVec(1, 1),
+						ForceMin = this.createVec(0, 0),
+						ForceMax = this.createVec(0, 0)
+					},
+					{
+						LifeTimeMin = 0.8,
+						LifeTimeMax = 1.2,
+						ColorMin = this.createColor("ffffffbb"),
+						ColorMax = this.createColor("ffffffbb"),
+						ScaleMin = 0.4,
+						ScaleMax = 0.6,
+						VelocityMin = 25,
+						VelocityMax = 35,
+						ForceMin = this.createVec(-5, -15),
+						ForceMax = this.createVec(0, -10)
+					},
+					{
+						LifeTimeMin = 0.3,
+						LifeTimeMax = 0.4,
+						ColorMin = this.createColor("ffffff99"),
+						ColorMax = this.createColor("ffffff99"),
+						ScaleMin = 0.6,
+						ScaleMax = 0.8,
+						VelocityMin = 0,
+						VelocityMax = 0,
+						ForceMin = this.createVec(0, -5),
+						ForceMax = this.createVec(0, -5)
+					}
+				],
+				this.createVec(-48, 14)
+			);
+		}
+	}
+
 	function onDeath(_killer, _skill, _tile, _fatalityType) {
+		// Free all bitten victims when the hyena dies
+		this.freeAllBittenVictims();
 
 		// spawn corpse
 		if (_tile != null) {
@@ -68,9 +195,7 @@ this.legend_enraged_hyena <- this.inherit("scripts/entity/tactical/enemies/hyena
 			} else if (_fatalityType == this.Const.FatalityType.Decapitated) {
 				// decapitated
 				local layers = [ head.getBrush().Name + "_dead" ];
-
 				local decap = this.Tactical.spawnHeadEffect(getTile(), layers, createVec(0, 0), 0.0, "bust_hyena_head_bloodpool");
-
 				decap[0].Color			= head.Color;
 				decap[0].Saturation		= head.Saturation;
 				decap[0].Scale = 0.95;
@@ -88,14 +213,14 @@ this.legend_enraged_hyena <- this.inherit("scripts/entity/tactical/enemies/hyena
 			spawnFlies(_tile);
 
 			local corpse = clone this.Const.Corpse;
-			corpse.CorpseName		= "An Enraged Hyena";
-			corpse.IsHeadAttached	= _fatalityType != this.Const.FatalityType.Decapitated;
+			corpse.CorpseName = "An Enraged Hyena";
+			corpse.IsHeadAttached = _fatalityType != this.Const.FatalityType.Decapitated;
 
 			_tile.Properties.set("Corpse", corpse);
 			this.Tactical.Entities.addCorpse(_tile);
 
 			// loot
-			if((_killer == null || _killer.getFaction() == this.Const.Faction.Player || _killer.getFaction() == this.Const.Faction.PlayerAnimals)) {
+			if ((_killer == null || _killer.getFaction() == this.Const.Faction.Player || _killer.getFaction() == this.Const.Faction.PlayerAnimals)) {
 				local n = 1 + (!this.Tactical.State.isScenarioMode() && this.Math.rand(1, 100) <= this.World.Assets.getExtraLootChance() ? 1 : 0);
 				for (local i = 0; i < n; ++i) {
 					if (this.Math.rand(1, 100) <= 50) {
@@ -122,7 +247,6 @@ this.legend_enraged_hyena <- this.inherit("scripts/entity/tactical/enemies/hyena
 			}
 		}
 
-		// die
 		actor.onDeath(_killer, _skill, _tile, _fatalityType);
 	}
 
