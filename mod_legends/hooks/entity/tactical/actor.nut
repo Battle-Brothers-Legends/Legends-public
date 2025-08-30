@@ -633,130 +633,16 @@
 		}
 	}
 
-
-	/*
-	o.onRender <- function ()
+	// todo same as vanilla, i've added it because vanilla line numbers are off, trying to catch turn_sequence_bar bug - chopeks
+	o.updateVisibilityForFaction = function()
 	{
-		if (this.m.IsLoweringWeapon)
-		{
-			local p = (this.Time.getVirtualTimeF() - this.m.RenderAnimationStartTime) / this.Const.Items.Default.LowerWeaponDuration;
+		if (!this.isAlive())
+			return;
 
-			if (this.m.Items.getItemAtSlot(this.Const.ItemSlot.Mainhand).m.ID == "weapon.legend_named_swordstaff" || this.m.Items.getItemAtSlot(this.Const.ItemSlot.Mainhand).m.ID == "weapon.legend_swordstaff" || this.m.Items.getItemAtSlot(this.Const.ItemSlot.Mainhand).m.ID == "weapon.legend_mage_swordstaff")
-			{
-				this.getSprite("arms_icon").Rotation = this.Math.minf(1.0, p) * -70.0;
-				this.moveSpriteOffset("arms_icon", this.getSpriteOffset("arms_icon"), this.createVec(46 * this.Math.minf(1.0, p), -33 * this.Math.minf(1.0, p)), this.Const.Items.Default.LowerWeaponDuration, this.m.RenderAnimationStartTime);
-			}
-			else if (this.m.Items.getAppearance().TwoHanded)
-			{
-				this.getSprite("arms_icon").Rotation = this.Math.minf(1.0, p) * -70.0;
-			}
-			else
-			{
-				this.getSprite("arms_icon").Rotation = this.Math.minf(1.0, p) * -33.0;
-			}
+		this.updateVisibility(this.getTile(), this.m.CurrentProperties.getVision(), this.getFaction());
 
-			if (p >= 1.0)
-			{
-				this.m.IsLoweringWeapon = false;
-
-				if (!this.m.IsUsingCustomRendering)
-				{
-					this.setRenderCallbackEnabled(false);
-				}
-			}
-		}
-		else if (this.m.IsRaisingWeapon)
-		{
-			local p = (this.Time.getVirtualTimeF() - this.m.RenderAnimationStartTime) / this.Const.Items.Default.RaiseWeaponDuration;
-
-			if (this.getSpriteOffset("arms_icon").X != 0 || this.getSpriteOffset("arms_icon").Y != 0)
-			{
-				this.getSprite("arms_icon").Rotation = (1.0 - this.Math.minf(1.0, p)) * -70.0;
-				this.moveSpriteOffset("arms_icon", this.getSpriteOffset("arms_icon"), this.createVec(46 * (1-this.Math.minf(1.0, p)), -33 * (1-this.Math.minf(1.0, p))), this.Const.Items.Default.LowerWeaponDuration, this.m.RenderAnimationStartTime);
-				//this.logDebug("hey there calls");
-			}
-			else if (this.m.Items.getAppearance().TwoHanded)
-			{
-				this.getSprite("arms_icon").Rotation = (1.0 - this.Math.minf(1.0, p)) * -70.0;
-			}
-			else
-			{
-				this.getSprite("arms_icon").Rotation = (1.0 - this.Math.minf(1.0, p)) * -33.0;
-			}
-
-			if (p >= 1.0)
-			{
-				this.m.IsRaisingWeapon = false;
-
-				if (!this.m.IsUsingCustomRendering)
-				{
-					this.setRenderCallbackEnabled(false);
-				}
-			}
+		if (this.getFaction() == this.Const.Faction.PlayerAnimals) {
+			this.updateVisibility(this.getTile(), this.m.CurrentProperties.getVision(), this.Const.Faction.Player);
 		}
 	}
-	*/
-
-	// local onRender = o.onRender;
-	// o.onRender = function()
-	// {
-	// 	if (this.m.IsLoweringWeapon) {
-	// 		local mainhand = this.getMainhandItem();
-	// 		if (mainhand != null && ::Const.Items.LegendItemWithSpearwall.find(mainhand.getID()) != null) {
-	// 			local p = (this.Time.getVirtualTimeF() - this.m.RenderAnimationStartTime) / this.Const.Items.Default.LowerWeaponDuration;
-	// 			this.getSprite("arms_icon").Rotation = this.Math.minf(1.0, p) * -70.0;
-	// 			this.moveSpriteOffset("arms_icon", this.getSpriteOffset("arms_icon"), this.createVec(46 * this.Math.minf(1.0, p), -33 * this.Math.minf(1.0, p)), this.Const.Items.Default.LowerWeaponDuration, this.m.RenderAnimationStartTime);
-
-	// 			if (p >= 1.0) {
-	// 				this.m.IsLoweringWeapon = false;
-
-	// 				if (!this.m.IsUsingCustomRendering)
-	// 					this.setRenderCallbackEnabled(false);
-	// 			}
-	// 			else {
-	// 				this.m.IsLoweringWeapon = true;
-	// 			}
-	// 		}
-	// 		else{
-	// 			onRender();
-	// 		}
-	// 	}
-	// 	else if (this.m.IsRaisingWeapon) {
-	// 		if (this.getSpriteOffset("arms_icon").X != 0 || this.getSpriteOffset("arms_icon").Y != 0) {
-	// 			local p = (this.Time.getVirtualTimeF() - this.m.RenderAnimationStartTime) / this.Const.Items.Default.RaiseWeaponDuration;
-	// 			this.getSprite("arms_icon").Rotation = (1.0 - this.Math.minf(1.0, p)) * -70.0;
-	// 			this.moveSpriteOffset("arms_icon", this.getSpriteOffset("arms_icon"), this.createVec(46 * (1-this.Math.minf(1.0, p)), -33 * (1-this.Math.minf(1.0, p))), this.Const.Items.Default.LowerWeaponDuration, this.m.RenderAnimationStartTime);
-
-	// 			if (p >= 1.0) {
-	// 				this.m.IsRaisingWeapon = false;
-
-	// 				if (!this.m.IsUsingCustomRendering)
-	// 					this.setRenderCallbackEnabled(false);
-	// 			}
-	// 			else {
-	// 				this.m.IsRaisingWeapon = true;
-	// 			}
-	// 		}
-	// 		else {
-	// 			onRender();
-	// 		}
-	// 	}
-	// }
-
-	// local onResurrected = o.onResurrected;
-	// o.onResurrected = function ( _info )
-	// {
-	//	 onResurrected(_info);
-	//	 this.World.getPlayerRoster().add(_info);
-	// }
-	// local onInit = o.onInit;
-	// o.onInit = function ()
-	// {
-	//	 o.onInit();
-	//	 o.m.BloodSaturation = 1.5;
-	//	 o.m.DeathBloodAmount = 1.5;
-	//	 o.m.BloodPoolScale = 1.25;
-	//	 o.m.BloodSplatterOffset = this.createVec(-1, -1);
-	// }
-	//
 });

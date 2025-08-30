@@ -3,7 +3,7 @@
 	o.create = function ()
 	{
 		create();
-		this.m.Categories = "Musical Instrument, Two-Handed";
+		this.setCategories("Musical Instrument, Two-Handed");
 		this.m.IsDoubleGrippable = false;
 		this.m.Value = 50;
 		this.m.Condition = 30.0;

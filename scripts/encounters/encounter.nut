@@ -322,6 +322,11 @@ this.encounter <- {
         return false;
     }
 
+	function isVisible()
+	{
+		return true;
+	}
+
     function isOnCooldown() {
         return this.m.CooldownUntil > this.Time.getVirtualTimeF()
     }

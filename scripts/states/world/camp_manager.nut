@@ -526,7 +526,7 @@ this.camp_manager <- {
 		if (!isEscorting) {
 			result.Encounters <- [];
 			foreach(encounter in this.m.CampEncounters) {
-				if (encounter != null) {
+				if (encounter != null && encounter.isVisible()) {
 					result.Encounters.push({
 						Icon = encounter.m.Icon,
 						Type = encounter.getType(),

@@ -1,5 +1,3 @@
-// TODO - this should be called at very end of loading order, like after all mods are already loaded, is it possible? - chopeks
-// EDIT - move this to after hooks :lol:
 function onCostCompare( _t1, _t2 )
 {
 	if (_t1.Cost < _t2.Cost)

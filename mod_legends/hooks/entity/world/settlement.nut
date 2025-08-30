@@ -355,7 +355,7 @@
 
 		result.Encounters <- [];
 		foreach(encounter in this.m.SettlementEncounters) {
-			if (encounter != null) {
+			if (encounter != null && encounter.isVisible()) {
 				result.Encounters.push({
 					Icon = encounter.m.Icon,
 					Type = encounter.getType(),

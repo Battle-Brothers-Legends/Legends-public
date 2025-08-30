@@ -46,7 +46,7 @@ this.legend_named_flamberge <- this.inherit("scripts/items/weapons/named/named_w
 
 	function getTooltip()
 	{
-		local result = this.weapon.getTooltip();
+		local result = this.named_weapon.getTooltip();
 		result.push({
 			id = 8,
 			type = "text",

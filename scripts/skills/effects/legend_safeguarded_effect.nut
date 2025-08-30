@@ -111,7 +111,7 @@ this.legend_safeguarded_effect <- this.inherit("scripts/skills/skill", {
 		local rotate = false;
 		local canRotate = !this.m.Protector.getCurrentProperties().IsRooted && !ward.getCurrentProperties().IsRooted && ward.getCurrentProperties().IsMovable && !ward.getCurrentProperties().IsImmuneToRotation && (protectorHasAdjacentEnemies || this.m.Protector.getSkills().hasPerk(::Legends.Perk.LegendTwirl));
 
-		if (_skill != null)
+		if (_skill == null)
 			return; // miasma case, ward takes dmg
 
 		if (attackerIsAdjacentToWard && attackerIsAdjacentToProtector && protectorIsAdjacentToWard)

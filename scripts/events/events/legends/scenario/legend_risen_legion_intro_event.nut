@@ -1,4 +1,4 @@
-this.legend_risen_legion_intro_event<- this.inherit("scripts/events/event", {
+this.legend_risen_legion_intro_event <- this.inherit("scripts/events/event", {
 	m = {},
 	function create()
 	{
@@ -27,11 +27,15 @@ this.legend_risen_legion_intro_event<- this.inherit("scripts/events/event", {
 			],
 			function start( _event )
 			{
-				this.World.uncoverFogOfWar(_event.m.Location.getTile().Pos, 700.0);
-				_event.m.Location.getFlags().set("IsEventLocation", true);
-				_event.m.Location.setDiscovered(true);
-				this.World.getCamera().moveTo(_event.m.Location);
-				this.Banner = "ui/banners/" + this.World.Assets.getBanner() + "s.png";
+				local locations = ::World.EntityManager.getLocations().filter(@(idx, loc) loc.getTypeID() == "location.black_monolith");
+				if (locations.len() > 0) {
+					local monolith = locations[0];
+					this.World.uncoverFogOfWar(monolith.getTile().Pos, 700.0);
+					monolith.getFlags().set("IsEventLocation", true);
+					monolith.setDiscovered(true);
+					this.World.getCamera().moveTo(monolith);
+				}
+				this.Banner = "ui/banners/" + ::World.Assets.getBanner() + "s.png";
 			}
 
 		});
@@ -39,7 +43,6 @@ this.legend_risen_legion_intro_event<- this.inherit("scripts/events/event", {
 
 	function onUpdateScore()
 	{
-		this.m.Location = candidates_location ("entity/world/locations/legendary/black_monolith_location");
 	}
 
 	function onPrepare()

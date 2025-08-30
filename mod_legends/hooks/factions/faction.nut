@@ -218,7 +218,7 @@
 		return entity;
 	}
 
-	// same as vanilla, i've added it because vanilla line numbers are off, trying to catch bug in smuggle contract - chopeks
+	// todo same as vanilla, i've added it because vanilla line numbers are off, trying to catch bug in smuggle contract - chopeks
 	o.update = function (_ignoreDelay = false, _isNewCampaign = false) {
 		if (!this.m.IsActive)
 			return;

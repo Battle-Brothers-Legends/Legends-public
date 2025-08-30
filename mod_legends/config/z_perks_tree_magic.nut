@@ -104,13 +104,13 @@ if (!("Perks" in ::Const))
 		"runes"
 	],
 	Tree = [
-		[], // [::Legends.Perk.LegendValaInscribeShield], todo, removed ? - chopeks
 		[],
-		[], // [::Legends.Perk.LegendValaInscribeHelmet], todo, removed ? - chopeks
-	[], // [::Legends.Perk.LegendValaInscriptionMastery], todo, removed ? - chopeks
-		[], // [::Legends.Perk.LegendValaInscribeArmor],  todo, removed ? - chopeks
 		[],
-		[], // [::Legends.Perk.LegendValaInscribeWeapon]  todo, removed ? - chopeks
+		[],
+		[],
+		[],
+		[],
+		[],
 	]
 };
 

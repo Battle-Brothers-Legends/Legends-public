@@ -17,4 +17,12 @@
 		this.m.ArmamentIcon = "icon_spear_03_" + this.m.Variant;
 	}
 
+	o.onEquip = function()
+	{
+		this.weapon.onEquip();
+		::Legends.Actives.grant(this.weapon, ::Legends.Active.Thrust);
+		::Legends.Actives.grant(this.weapon, ::Legends.Active.LegendHeartseeker);
+		::Legends.Actives.grant(this.weapon, ::Legends.Active.Spearwall);
+	}
+
 });

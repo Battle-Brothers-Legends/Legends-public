@@ -3142,4 +3142,20 @@ activesDefs.push({
 	Name = "Command Legionary",
 });
 
+::Legends.Active.LegendHeartseeker <- null;
+activesDefs.push({
+	ID = "actives.legend_heartseeker",
+	Script = "scripts/skills/actives/legend_heartseeker_skill",
+	Const = "LegendHeartseeker",
+	Name = "Heartseeker",
+});
+
+::Legends.Active.LegendWarforkDisarm <- null;
+activesDefs.push({
+	ID = "actives.legend_warfork_disarm",
+	Script = "scripts/skills/actives/legend_warfork_disarm_skill",
+	Const = "LegendWarforkDisarm",
+	Name = "Disarm",
+});
+
 ::Legends.Actives.addActiveDefObjects(activesDefs);

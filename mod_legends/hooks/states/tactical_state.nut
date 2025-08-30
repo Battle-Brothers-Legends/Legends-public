@@ -323,7 +323,7 @@
 		foreach (id, tile in ::Tactical.Entities.m.NetTiles)
 		{
 			if (!tile.IsContainingItems) continue;
-			
+
 			for (local i = tile.Items.len() - 1; i >= 0; --i)
 			{
 				local item = tile.Items[i];
@@ -664,5 +664,49 @@
 	o.isEnemyRetreatDialogShown <- function ()
 	{
 		return this.m.IsEnemyRetreatDialogShown;
+	}
+
+	// todo same as vanilla, i've added it because vanilla line numbers are off, trying to catch turn_sequence_bar bug - chopeks
+	o.turnsequencebar_onNextRound = function ( _round )
+	{
+		this.logDebug("INFO: Next round issued: " + _round);
+		this.Time.setRound(_round);
+
+		if (this.m.StrategicProperties != null && this.m.StrategicProperties.IsArenaMode)
+		{
+			if (_round == 1) {
+				this.Sound.play(this.Const.Sound.ArenaStart[this.Math.rand(0, this.Const.Sound.ArenaStart.len() - 1)], this.Const.Sound.Volume.Tactical);
+			}
+			else {
+				this.Sound.play(this.Const.Sound.ArenaNewRound[this.Math.rand(0, this.Const.Sound.ArenaNewRound.len() - 1)], this.Const.Sound.Volume.Tactical * this.Const.Sound.Volume.Arena);
+			}
+		}
+		else {
+			this.Sound.play(this.Const.Sound.NewRound[this.Math.rand(0, this.Const.Sound.NewRound.len() - 1)], this.Const.Sound.Volume.Tactical);
+		}
+
+		this.Tactical.clearVisibility();
+
+		if (!this.m.IsFogOfWarVisible) {
+			this.Tactical.fillVisibility(this.Const.Faction.Player, true);
+			this.Tactical.fillVisibility(this.Const.Faction.PlayerAnimals, true);
+		}
+
+		local heroes = this.Tactical.Entities.getInstancesOfFaction(this.Const.Faction.Player);
+
+		foreach( hero in heroes ) {
+			hero.updateVisibilityForFaction();
+		}
+
+		this.m.MaxPlayers = this.Math.max(this.m.MaxPlayers, heroes.len());
+
+		local pets = this.Tactical.Entities.getInstancesOfFaction(this.Const.Faction.PlayerAnimals);
+		foreach( pet in pets ) {
+			pet.updateVisibilityForFaction();
+		}
+
+		this.Tactical.Entities.updateTileEffects();
+		this.Tactical.TopbarRoundInformation.update();
+		this.m.MaxHostiles = this.Math.max(this.m.MaxHostiles, this.Tactical.Entities.getHostilesNum());
 	}
 });

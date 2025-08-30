@@ -159,6 +159,7 @@
 	<sprite id="active_kick" ic="FF2B206C" img="skills\kick_square.png" />
 	<sprite id="active_choke" ic="FF2B206C" img="skills\choke_square.png" />
 	<sprite id="active_grapple" ic="FF2B206C" img="skills\grapple_square.png" />
+	<sprite id="active_heartseeker" ic="FF2B206C" img="skills\active_heartseeker.png" />
 	<sprite id="mini_vengeance" ic ="322E2DFF" img="skills\mini\mini_vengeance.png" />
 	<sprite id="basilisk_peck" ic="60312BFF" img="skills\basilisk_peck.png" />
 	<sprite id="mini_second_wind" ic="4D3315FF" img="skills\mini\mini_second_wind.png" />
@@ -180,6 +181,7 @@
 	<sprite id="skewer_spetum" ic="FF1B293C" img="skills\skewer_spetum.png" />
 	<sprite id="skewer_warfork" ic="FF1B293C" img="skills\skewer_warfork.png" />
 	<sprite id="skewer_general" ic="FF1B293C" img="skills\skewer_general.png" />
+	<sprite id="active_legend_warfork_disarm" ic="FF1B293C" img="skills\active_legend_warfork_disarm.png" />
 	<!-- Orientation below -->
 
 
