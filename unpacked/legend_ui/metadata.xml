@@ -183,6 +183,8 @@
 	<sprite id="skewer_general" ic="FF1B293C" img="skills\skewer_general.png" />
 	<sprite id="active_legend_warfork_disarm" ic="FF1B293C" img="skills\active_legend_warfork_disarm.png" />
 	<sprite id="active_legend_heartseeker" ic="FF1B293C" img="skills\active_legend_heartseeker.png" />
+	<sprite id="legend_enraged_hyena_bite_effect" ic="FF1B293C" img="skills\legend_enraged_hyena_bite_effect.png" />
+	<sprite id="legend_enraged_hyena_bite_effect_mini" ic="FF1B293C" img="skills\mini\legend_enraged_hyena_bite_effect_mini.png" />
 	<!-- Orientation below -->
 
 
