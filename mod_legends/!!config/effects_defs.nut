@@ -1989,4 +1989,12 @@ effectsDefs.push({
 	Name = "Legend Ram Hammer",
 });
 
+::Legends.Effect.LegendEnragedHyenaBite <- null;
+effectsDefs.push({
+	ID = "effects.legend_enraged_hyena_bite",
+	Script = "scripts/skills/effects/legend_enraged_hyena_bite_effect",
+	Const = "LegendEnragedHyenaBite",
+	Name = "Enraged Hyena Bite",
+});
+
 ::Legends.Effects.addEffectDefObjects(effectsDefs);
