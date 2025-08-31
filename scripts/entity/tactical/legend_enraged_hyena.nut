@@ -17,6 +17,8 @@ this.legend_enraged_hyena <- this.inherit("scripts/entity/tactical/enemies/hyena
 
 	function create() {
 		this.hyena.create();
+		this.m.AIAgent = this.new("scripts/ai/tactical/agents/legend_enraged_hyena_agent");
+		this.m.AIAgent.setActor(this);
 	}
 
 	function onInit() {
@@ -52,6 +54,42 @@ this.legend_enraged_hyena <- this.inherit("scripts/entity/tactical/enemies/hyena
 			::Legends.Perks.grant(this, ::Legends.Perk.CripplingStrikes);
 			::Legends.Perks.grant(this, ::Legends.Perk.KillingFrenzy);
 			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
+		}
+
+		if (this.Tactical.State.isScenarioMode()) {
+			return;
+		}
+
+		local dateToSkip = 0;
+		switch (this.World.Assets.getCombatDifficulty()) {
+			case this.Const.Difficulty.Easy:
+				dateToSkip = 125;
+				break;
+			case this.Const.Difficulty.Normal:
+				dateToSkip = 100;
+				break;
+			case this.Const.Difficulty.Hard:
+				dateToSkip = 75;
+				break;
+			case this.Const.Difficulty.Legendary:
+				dateToSkip = 50;
+				break;
+		}
+
+		// Helps testing, to be removed
+		b.MeleeSkill += 100;
+
+		if (this.World.getTime().Days >= dateToSkip) {
+			// Bonus is 1 every 10 days after dateToSkip, up to 50
+			local bonus = Math.min(50, this.Math.floor((this.World.getTime().Days - dateToSkip) / 10.0));
+			b.MeleeSkill += bonus;
+			b.MeleeDefense += this.Math.floor(bonus / 2);
+			b.RangedDefense += this.Math.floor(bonus / 2);
+			b.Hitpoints += this.Math.floor(bonus * 2);
+			b.Initiative += this.Math.floor(bonus);
+			b.Stamina += bonus;
+			b.Bravery += bonus;
+			b.FatigueRecoveryRate += this.Math.floor(bonus / 5);
 		}
 	}
 
