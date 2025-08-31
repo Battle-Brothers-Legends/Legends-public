@@ -28,40 +28,16 @@ this.legend_warrior_vs_footsoldier_event <- this.inherit("scripts/events/event",
 			{
 				this.Characters.push(_event.m.noble1h.getImagePath());
 				this.Characters.push(_event.m.noble2h.getImagePath());
-				local meleeSkill = this.Math.rand(3, 5);
-				local meleeDefense = this.Math.rand(3, 5);
-				_event.m.noble1h.getBaseProperties().MeleeSkill += meleeSkill;
-				_event.m.noble2h.getBaseProperties().MeleeDefense += meleeDefense;
+
+				this.List.push(::Legends.EventList.changeMood(_event.m.noble1h, 1.0, "Bonded with " + _event.m.noble2h.getName()));
+				this.List.push(::Legends.EventList.changeMeleeSkill(_event.m.noble1h, ::Math.rand(3, 5)));
+
+				this.List.push(::Legends.EventList.changeMood(_event.m.noble2h, 1.0, "Bonded with " + _event.m.noble1h.getName()));
+				this.List.push(::Legends.EventList.changeMeleeDefense(_event.m.noble2h, ::Math.rand(3, 5)));
 
 				_event.m.noble1h.getSkills().update();
 				_event.m.noble2h.getSkills().update();
-
-					//1 hander
-				_event.m.noble1h.improveMood(1.0, "Bonded with " + _event.m.noble2h.getName());
-				this.List.push({
-					id = 10,
-					icon = this.Const.MoodStateIcon[_event.m.noble1h.getMoodState()],
-					text = _event.m.noble1h.getName() + this.Const.MoodStateEvent[_event.m.noble1h.getMoodState()]
-				});
-				this.List.push({
-					id = 16,
-					icon = "ui/icons/melee_skill.png",
-					text = _event.m.noble1h.getName() + " gains [color=" + this.Const.UI.Color.PositiveEventValue + "]+" + meleeSkill + "[/color] Melee Skill"
-				});
-					//2 hander
-				_event.m.noble2h.improveMood(1.0, "Bonded with " + _event.m.noble1h.getName());
-				this.List.push({
-					id = 10,
-					icon = this.Const.MoodStateIcon[_event.m.noble2h.getMoodState()],
-					text = _event.m.noble2h.getName() + this.Const.MoodStateEvent[_event.m.noble2h.getMoodState()]
-				});
-				this.List.push({
-					id = 16,
-					icon = "ui/icons/melee_defense.png",
-					text = _event.m.noble2h.getName() + " gains [color=" + this.Const.UI.Color.PositiveEventValue + "]+" + meleeDefense + "[/color] Melee Defense"
-				});
 			}
-
 		});
 	}
 

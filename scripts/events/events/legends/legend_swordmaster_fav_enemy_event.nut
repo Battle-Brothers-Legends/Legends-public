@@ -341,35 +341,18 @@ this.legend_swordmaster_fav_enemy_event <- this.inherit("scripts/events/event", 
 
 				if (_event.m.Champion.getBaseProperties().MeleeSkill < 100)
 				{
-					local meleeSkill = this.Math.rand(1, 3);
-					_event.m.Champion.getBaseProperties().MeleeSkill += meleeSkill;
 					_event.m.Champion.improveMood(0.5, "Improved his skills though duel");
-					this.List.push({
-						id = 16,
-						icon = "ui/icons/melee_skill.png",
-						text = _event.m.Champion.getName() + " gains [color=" + this.Const.UI.Color.PositiveEventValue + "]+" + meleeSkill + "[/color] Melee Skill"
-					});
+					this.List.push(::Legends.EventList.changeMeleeSkill(_event.m.Champion, ::Math.rand(1, 3)));
 				}
 
 				if (_event.m.Champion.getBaseProperties().MeleeDefense < 50)
 				{
-					local meleeDefense = this.Math.rand(1, 3);
-					_event.m.Champion.getBaseProperties().MeleeDefense += meleeDefense;
 					_event.m.Champion.improveMood(0.5, "Improved his skills though duel");
-					this.List.push({
-						id = 17,
-						icon = "ui/icons/melee_defense.png",
-						text = _event.m.Champion.getName() + " gains [color=" + this.Const.UI.Color.PositiveEventValue + "]+" + meleeDefense + "[/color] Melee Defense"
-					});
+					::Legends.EventList.changeMeleeDefense(_event.m.Champion, ::Math.rand(1, 3));
 				}
 
-				if (_event.m.Champion.getMoodState() >= this.Const.MoodState.Neutral)
-				{
-					this.List.push({
-						id = 10,
-						icon = this.Const.MoodStateIcon[_event.m.Champion.getMoodState()],
-						text = _event.m.Champion.getName() + this.Const.MoodStateEvent[_event.m.Champion.getMoodState()]
-					});
+				if (_event.m.Champion.getMoodState() >= this.Const.MoodState.Neutral) {
+					this.List.push(::Legends.EventList.changeMood(_event.m.Champion));
 				}
 
 				_event.m.Champion.getSkills().update();
@@ -377,18 +360,12 @@ this.legend_swordmaster_fav_enemy_event <- this.inherit("scripts/events/event", 
 
 				foreach( bro in playerRoster )
 				{
-					if (bro.getBackground().isBackgroundType(this.Const.BackgroundType.Combat) && this.Math.rand(1, 100) <= 33)
-					{
+					if (bro.getBackground().isBackgroundType(this.Const.BackgroundType.Combat) && this.Math.rand(1, 100) <= 33) {
 						bro.improveMood(0.5, "The company\'s champion won an impressive duel");
 					}
 
-					if (bro.getMoodState() > this.Const.MoodState.Neutral)
-					{
-						this.List.push({
-							id = 10,
-							icon = this.Const.MoodStateIcon[bro.getMoodState()],
-							text = bro.getName() + this.Const.MoodStateEvent[bro.getMoodState()]
-						});
+					if (bro.getMoodState() > this.Const.MoodState.Neutral) {
+						this.List.push(::Legends.EventList.changeMood(bro));
 					}
 				}
 			}

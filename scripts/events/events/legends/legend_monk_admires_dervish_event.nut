@@ -23,18 +23,12 @@ this.legend_monk_admires_dervish_event <- ::inherit("scripts/events/event", {
 			],
 			function start(_event) {
 				this.Characters.push(_event.m.Dervish.getImagePath());
-				local bonusHP = ::Math.rand(1, 3);
-				_event.m.Dervish.getBaseProperties().Hitpoints += bonusHP;
-				_event.m.Dervish.improveMood(2.0, "Is pleased to be a paragon for others!");
-				this.List.push(::Legends.EventList.changeHitpoints(_event.m.Dervish, bonusHP));
-				this.List.push(::Legends.EventList.changeMood(_event.m.Dervish));
+				this.List.push(::Legends.EventList.changeHitpoints(_event.m.Dervish, ::Math.rand(1, 3)));
+				this.List.push(::Legends.EventList.changeMood(_event.m.Dervish, 2.0, "Is pleased to be a paragon for others!"));
 
-				local bonusResolve = ::Math.rand(1, 3);
 				this.Characters.push(_event.m.Monk.getImagePath());
-				_event.m.Monk.getBaseProperties().Bravery += bonusResolve;
-				_event.m.Monk.improveMood(2.0, "Was inspired by the dervish\'s iron will!");
-				this.List.push(::Legends.EventList.changeResolve(_event.m.Monk, bonusResolve));
-				this.List.push(::Legends.EventList.changeMood(_event.m.Monk));
+				this.List.push(::Legends.EventList.changeResolve(_event.m.Monk, ::Math.rand(1, 3)));
+				this.List.push(::Legends.EventList.changeMood(_event.m.Monk, 2.0, "Was inspired by the dervish\'s iron will!"));
 			}
 		});
 	}
@@ -59,7 +53,6 @@ this.legend_monk_admires_dervish_event <- ::inherit("scripts/events/event", {
 		this.m.Monk = candidates_monk[::Math.rand(0, candidates_monk.len() - 1)];
 
 		this.m.Score = 5.0;
-		this.m.Score = 99999.0;
 	}
 
 	function onPrepareVariables(_vars) {

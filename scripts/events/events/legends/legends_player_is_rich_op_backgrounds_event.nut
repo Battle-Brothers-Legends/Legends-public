@@ -52,16 +52,8 @@ this.legends_player_is_rich_op_backgrounds_event <- this.inherit("scripts/events
 
 				foreach( bro in _event.m.Uniquebros )
 				{
-
-					if (bro.getMoodState() >= this.Const.MoodState.Neutral)
-					{
-						bro.worsenMood(2.0, "Rivalry!");
-
-						this.List.push({
-							id = 10,
-							icon = this.Const.MoodStateIcon[bro.getMoodState()],
-							text = bro.getName() + this.Const.MoodStateEvent[bro.getMoodState()]
-						});
+					if (bro.getMoodState() >= this.Const.MoodState.Neutral) {
+						this.List.push(::Legends.EventList.changeMood(bro, -2.0, "Rivalry!"));
 					}
 				}
 			}
@@ -98,31 +90,13 @@ this.legends_player_is_rich_op_backgrounds_event <- this.inherit("scripts/events
 				foreach( bro in _event.m.Uniquebros )
 				{
 					bro.getBaseProperties().DailyWage += 12;
-					bro.improveMood(2.0, "Got a pay raise");
-
-					if (bro.getMoodState() >= this.Const.MoodState.Neutral)
-					{
-						this.List.push({
-							id = 10,
-							icon = this.Const.MoodStateIcon[bro.getMoodState()],
-							text = bro.getName() + this.Const.MoodStateEvent[bro.getMoodState()]
-						});
-					}
+					this.List.push(::Legends.EventList.changeMood(bro, 2.0, "Got a pay raise"));
 				}
 
 				foreach( bro in _event.m.Regularbros )
 				{
 					bro.getBaseProperties().DailyWage += 4;
-					bro.improveMood(2.0, "Got a pay raise");
-
-					if (bro.getMoodState() >= this.Const.MoodState.Neutral)
-					{
-						this.List.push({
-							id = 10,
-							icon = this.Const.MoodStateIcon[bro.getMoodState()],
-							text = bro.getName() + this.Const.MoodStateEvent[bro.getMoodState()]
-						});
-					}
+					this.List.push(::Legends.EventList.changeMood(bro, 2.0, "Got a pay raise"));
 				}
 			}
 
@@ -158,16 +132,7 @@ this.legends_player_is_rich_op_backgrounds_event <- this.inherit("scripts/events
 
 					if (bro.getSkills().hasTrait(::Legends.Trait.Greedy))
 					{
-						bro.worsenMood(2.0, "Was denied a pay raise");
-
-						if (bro.getMoodState() < this.Const.MoodState.Neutral)
-						{
-							this.List.push({
-								id = 10,
-								icon = this.Const.MoodStateIcon[bro.getMoodState()],
-								text = bro.getName() + this.Const.MoodStateEvent[bro.getMoodState()]
-							});
-						}
+						this.List.push(::Legends.EventList.changeMood(bro, -2.0, "Was denied a pay raise"));
 					}
 					else if (!bro.getBackground().isExcluded(::Legends.Traits.getID(::Legends.Trait.Greedy)))
 					{
@@ -183,16 +148,7 @@ this.legends_player_is_rich_op_backgrounds_event <- this.inherit("scripts/events
 						}
 						else
 						{
-							bro.worsenMood(1.0, "Was denied a pay raise");
-
-							if (bro.getMoodState() < this.Const.MoodState.Neutral)
-							{
-								this.List.push({
-									id = 10,
-									icon = this.Const.MoodStateIcon[bro.getMoodState()],
-									text = bro.getName() + this.Const.MoodStateEvent[bro.getMoodState()]
-								});
-							}
+							this.List.push(::Legends.EventList.changeMood(bro, -1.0, "Was denied a pay raise"));
 						}
 					}
 				}
@@ -230,16 +186,7 @@ this.legends_player_is_rich_op_backgrounds_event <- this.inherit("scripts/events
 				foreach( bro in _event.m.Uniquebros )
 				{
 					bro.getBaseProperties().DailyWage += 8;
-					bro.improveMood(2.0, "Got a pay raise");
-
-					if (bro.getMoodState() >= this.Const.MoodState.Neutral)
-					{
-						this.List.push({
-							id = 10,
-							icon = this.Const.MoodStateIcon[bro.getMoodState()],
-							text = bro.getName() + this.Const.MoodStateEvent[bro.getMoodState()]
-						});
-					}
+					this.List.push(::Legends.EventList.changeMood(bro, 2.0, "Got a pay raise"));
 				}
 			}
 		});

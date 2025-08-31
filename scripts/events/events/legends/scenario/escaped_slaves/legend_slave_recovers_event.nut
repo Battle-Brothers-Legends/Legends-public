@@ -43,54 +43,29 @@ this.legend_slave_recovers_event <- this.inherit("scripts/events/event", {
 
 				local r = this.Math.rand(0, rolls.len() - 1);
 				local healthRoll = rolls[r] + 2;
-				dude.getBaseProperties().Hitpoints += healthRoll;
-				dude.setHitpoints(this.Math.min(dude.getHitpoints(), dude.getHitpointsMax()));
 				rolls.remove(r);
 
 				r = this.Math.rand(0, rolls.len() - 1);
 				local fatigueRoll = rolls[r];
-				dude.getBaseProperties().Stamina += fatigueRoll;
 				rolls.remove(r);
 
 				r = this.Math.rand(0, rolls.len() - 1);
 				local resolveRoll = rolls[r] + 2;
-				dude.getBaseProperties().Bravery += resolveRoll;
 				rolls.remove(r);
 
 				r = this.Math.rand(0, rolls.len() - 1);
 				local initiativeRoll = rolls[r] + 5;
-				dude.getBaseProperties().Initiative += initiativeRoll;
 				rolls.remove(r);
 
-				dude.getSkills().update();
-				this.List.push({
-					id = 16,
-					icon = "ui/icons/health.png",
-					text = dude.getName() + " gains [color=" + this.Const.UI.Color.PositiveEventValue + "]+" + healthRoll + "[/color] Max Health"
-				});
-				this.List.push({
-					id = 17,
-					icon = "ui/icons/fatigue.png",
-					text = dude.getName() + " gains [color=" + this.Const.UI.Color.PositiveEventValue + "]+" + fatigueRoll + "[/color] Max Fatigue"
-				});
-				this.List.push({
-					id = 18,
-					icon = "ui/icons/bravery.png",
-					text = dude.getName() + " gains [color=" + this.Const.UI.Color.PositiveEventValue + "]+" + resolveRoll + "[/color] Resolve"
-				});
-				this.List.push({
-					id = 19,
-					icon = "ui/icons/initiative.png",
-					text = dude.getName() + " gains [color=" + this.Const.UI.Color.PositiveEventValue + "]+" + initiativeRoll + "[/color] Initiative"
-				});
-				dude.improveMood(1.0, "Has found a sense of purpose in life");
-				this.List.push({
-					id = 10,
-					icon = this.Const.MoodStateIcon[dude.getMoodState()],
-					text = dude.getName() + this.Const.MoodStateEvent[dude.getMoodState()]
-				});
-			}
 
+				this.List.push(::Legends.EventList.changeHitpoints(dude, healthRoll));
+				this.List.push(::Legends.EventList.changeFatigue(dude, fatigueRoll));
+				this.List.push(::Legends.EventList.changeResolve(dude, resolveRoll));
+				this.List.push(::Legends.EventList.changeInitiative(dude, initiativeRoll));
+				this.List.push(::Legends.EventList.changeMood(dude, 1.0, "Has found a sense of purpose in life"));
+
+				dude.getSkills().update();
+			}
 		});
 	}
 

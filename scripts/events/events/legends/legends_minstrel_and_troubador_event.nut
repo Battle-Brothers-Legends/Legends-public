@@ -44,16 +44,7 @@ this.legends_minstrel_and_troubador_event <- this.inherit("scripts/events/event"
 
 					if (this.Math.rand(1, 100) <= 33)
 					{
-						bro.improveMood(1.0, "Felt entertained");
-
-						if (bro.getMoodState() >= this.Const.MoodState.Neutral)
-						{
-							this.List.push({
-								id = 10,
-								icon = this.Const.MoodStateIcon[bro.getMoodState()],
-								text = bro.getName() + this.Const.MoodStateEvent[bro.getMoodState()]
-							});
-						}
+						this.List.push(::Legends.EventList.changeMood(bro, 1.0, "Felt entertained"));
 					}
 				}
 			}

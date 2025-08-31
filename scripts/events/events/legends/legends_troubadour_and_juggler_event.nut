@@ -34,37 +34,26 @@ this.legends_troubadour_and_juggler_event <- this.inherit("scripts/events/event"
 				local avgmdef = this.Math.floor((tmdef + jmdef) / 2);
 				if (r > avgmdef)
 				{
-				r = this.Math.rand(1, 5);
-
+					r = this.Math.rand(1, 5);
 					if (r == 1)
 					{
-						_event.m.Troubadour.getBaseProperties().MeleeDefense += 1;
+						this.List.push(::Legends.EventList.changeMeleeDefense(_event.m.Troubadour, 1));
 						_event.m.Troubadour.getSkills().update();
-						this.List.push({
-							id = 17,
-							icon = "ui/icons/melee_defense.png",
-							text = _event.m.Troubadour.getName() + " gains [color=" + this.Const.UI.Color.PositiveEventValue + "]+1[/color] Melee Defense"
-						});
 					}
 
 					if (r == 2)
 					{
-						_event.m.Troubadour.getBaseProperties().MeleeSkill += 1;
+						this.List.push(::Legends.EventList.changeMeleeSkill(_event.m.Troubadour, 1));
 						_event.m.Troubadour.getSkills().update();
-						this.List.push({
-							id = 17,
-							icon = "ui/icons/melee_skill.png",
-							text = _event.m.Troubadour.getName() + " gains [color=" + this.Const.UI.Color.PositiveEventValue + "]+1[/color] Melee Skill"
-						});
 					}
 
 					if (r == 3)
 					{
 						local injury = _event.m.Troubadour.addInjury(this.Const.Injury.BluntBody);
 						this.List.push({
-						id = 10,
-						icon = injury.getIcon(),
-						text = _event.m.Troubadour.getName() + " suffers " + injury.getNameOnly()
+							id = 10,
+							icon = injury.getIcon(),
+							text = _event.m.Troubadour.getName() + " suffers " + injury.getNameOnly()
 						});
 					}
 
@@ -85,24 +74,14 @@ this.legends_troubadour_and_juggler_event <- this.inherit("scripts/events/event"
 
 					if (r == 1)
 					{
-						_event.m.Juggler.getBaseProperties().Meleedefense += 1;
+						this.List.push(::Legends.EventList.changeRangedDefense(_event.m.Juggler, 1));
 						_event.m.Juggler.getSkills().update();
-						this.List.push({
-							id = 17,
-							icon = "ui/icons/ranged_skill.png",
-							text = _event.m.Juggler.getName() + " gains [color=" + this.Const.UI.Color.PositiveEventValue + "]+1[/color] Melee Defense"
-						});
 					}
 
 					if (r == 2)
 					{
-						_event.m.Juggler.getBaseProperties().Meleeskill += 1;
+						this.List.push(::Legends.EventList.changeRangedSkill(_event.m.Juggler, 1));
 						_event.m.Juggler.getSkills().update();
-						this.List.push({
-							id = 17,
-							icon = "ui/icons/ranged_skill.png",
-							text = _event.m.Juggler.getName() + " gains [color=" + this.Const.UI.Color.PositiveEventValue + "]+1[/color] Melee Skill"
-						});
 					}
 
 					if (r == 3)
@@ -137,21 +116,17 @@ this.legends_troubadour_and_juggler_event <- this.inherit("scripts/events/event"
 
 						if (r == 1)
 						{
-							bro.getBaseProperties().RangedDefense += 1;
-							this.List.push({
-							id = 17,
-							icon = "ui/icons/ranged_skill.png",
-							text = bro.getName() + " gains [color=" + this.Const.UI.Color.PositiveEventValue + "]+1[/color] Ranged Defense"
-							});
+							this.List.push(::Legends.EventList.changeRangedDefense(bro, 1));
+							bro.getSkills().update();
 						}
 
 						if (r == 2)
 						{
 							local injury = bro.addInjury(this.Const.Injury.Archery);
 							this.List.push({
-							id = 10,
-							icon = injury.getIcon(),
-							text = bro.getName() + " suffers " + injury.getNameOnly()
+								id = 10,
+								icon = injury.getIcon(),
+								text = bro.getName() + " suffers " + injury.getNameOnly()
 							});
 
 						}

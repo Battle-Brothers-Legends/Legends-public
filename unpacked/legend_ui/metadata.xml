@@ -182,6 +182,7 @@
 	<sprite id="skewer_warfork" ic="FF1B293C" img="skills\skewer_warfork.png" />
 	<sprite id="skewer_general" ic="FF1B293C" img="skills\skewer_general.png" />
 	<sprite id="active_legend_warfork_disarm" ic="FF1B293C" img="skills\active_legend_warfork_disarm.png" />
+	<sprite id="active_legend_heartseeker" ic="FF1B293C" img="skills\active_legend_heartseeker.png" />
 	<!-- Orientation below -->
 
 

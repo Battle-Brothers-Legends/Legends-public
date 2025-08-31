@@ -39,13 +39,8 @@ this.legend_slaves_vs_soldiers_event <- this.inherit("scripts/events/event", {
 						}
 					}
 
-					if (bro.getMoodState() < this.Const.MoodState.Neutral)
-					{
-						this.List.push({
-							id = 10,
-							icon = this.Const.MoodStateIcon[bro.getMoodState()],
-							text = bro.getName() + this.Const.MoodStateEvent[bro.getMoodState()]
-						});
+					if (bro.getMoodState() < this.Const.MoodState.Neutral) {
+						this.List.push(::Legends.EventList.changeMood(bro));
 					}
 
 					if (this.Math.rand(1, 100) <= 40)

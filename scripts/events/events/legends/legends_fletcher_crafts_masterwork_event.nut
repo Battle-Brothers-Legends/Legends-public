@@ -90,16 +90,7 @@ this.legends_fletcher_crafts_masterwork_event <- this.inherit("scripts/events/ev
 					icon = "ui/items/" + item.getIcon(),
 					text = "You gain " + item.getName()
 				});
-				_event.m.Bowyer.improveMood(2.0, "Created a masterwork");
-
-				if (_event.m.Bowyer.getMoodState() >= this.Const.MoodState.Neutral)
-				{
-					this.List.push({
-						id = 10,
-						icon = this.Const.MoodStateIcon[_event.m.Bowyer.getMoodState()],
-						text = _event.m.Bowyer.getName() + this.Const.MoodStateEvent[_event.m.Bowyer.getMoodState()]
-					});
-				}
+				this.List.push(::Legends.EventList.changeMood(_event.m., 2.0, "Created a masterwork"));
 			}
 
 		});
@@ -159,16 +150,7 @@ this.legends_fletcher_crafts_masterwork_event <- this.inherit("scripts/events/ev
 					icon = "ui/items/" + item.getIcon(),
 					text = "You gain " + item.getName()
 				});
-				_event.m.Bowyer.worsenMood(1.0, "Failed in creating a masterwork");
-
-				if (_event.m.Bowyer.getMoodState() < this.Const.MoodState.Neutral)
-				{
-					this.List.push({
-						id = 10,
-						icon = this.Const.MoodStateIcon[_event.m.Bowyer.getMoodState()],
-						text = _event.m.Bowyer.getName() + this.Const.MoodStateEvent[_event.m.Bowyer.getMoodState()]
-					});
-				}
+				this.List.push(::Legends.EventList.changeMood(_event.m.Bowyer, -1.0, "Failed in creating a masterwork"));
 			}
 
 		});
@@ -191,16 +173,7 @@ this.legends_fletcher_crafts_masterwork_event <- this.inherit("scripts/events/ev
 			function start( _event )
 			{
 				this.Characters.push(_event.m.Bowyer.getImagePath());
-				_event.m.Bowyer.worsenMood(2.0, "Was denied a request");
-
-				if (_event.m.Bowyer.getMoodState() < this.Const.MoodState.Neutral)
-				{
-					this.List.push({
-						id = 10,
-						icon = this.Const.MoodStateIcon[_event.m.Bowyer.getMoodState()],
-						text = _event.m.Bowyer.getName() + this.Const.MoodStateEvent[_event.m.Bowyer.getMoodState()]
-					});
-				}
+				this.List.push(::Legends.EventList.changeMood(_event.m.Bowyer, -2.0, "Was denied a request"));
 			}
 
 		});

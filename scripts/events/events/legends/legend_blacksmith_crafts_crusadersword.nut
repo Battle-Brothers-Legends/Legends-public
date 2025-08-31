@@ -91,16 +91,7 @@ this.legend_blacksmith_crafts_crusadersword <- this.inherit("scripts/events/even
 					icon = "ui/items/" + item.getIcon(),
 					text = "You gain " + item.getName()
 				});
-				_event.m.Blacksmith.improveMood(2.5, "Created a legendary sword");
-
-				if (_event.m.Blacksmith.getMoodState() >= this.Const.MoodState.Neutral)
-				{
-					this.List.push({
-						id = 10,
-						icon = this.Const.MoodStateIcon[_event.m.Blacksmith.getMoodState()],
-						text = _event.m.Blacksmith.getName() + this.Const.MoodStateEvent[_event.m.Blacksmith.getMoodState()]
-					});
-				}
+				this.List.push(::Legends.EventList.changeMood(_event.m.Blacksmith, 2.5, "Created a legendary sword"));
 			}
 		});
 
@@ -187,16 +178,7 @@ this.legend_blacksmith_crafts_crusadersword <- this.inherit("scripts/events/even
 			function start( _event )
 			{
 				this.Characters.push(_event.m.Blacksmith.getImagePath());
-				_event.m.Blacksmith.worsenMood(2.0, "Was denied a request");
-
-				if (_event.m.Blacksmith.getMoodState() < this.Const.MoodState.Neutral)
-				{
-					this.List.push({
-						id = 10,
-						icon = this.Const.MoodStateIcon[_event.m.Blacksmith.getMoodState()],
-						text = _event.m.Blacksmith.getName() + this.Const.MoodStateEvent[_event.m.Blacksmith.getMoodState()]
-					});
-				}
+				this.List.push(::Legends.EventList.changeMood(_event.m.Blacksmith, -2.0, "Was denied a request"));
 			}
 
 		});

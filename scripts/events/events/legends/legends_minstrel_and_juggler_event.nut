@@ -36,21 +36,16 @@ this.legends_minstrel_and_juggler_event <- this.inherit("scripts/events/event", 
 					r = this.Math.rand(1, 2);
 					if (r == 1)
 					{
-						_event.m.Minstrel.getBaseProperties().RangedDefense += 1;
+						this.List.push(::Legends.EventList.changeRangedDefense(_event.m.Minstrel, 1));
 						_event.m.Minstrel.getSkills().update();
-						this.List.push({
-							id = 17,
-							icon = "ui/icons/ranged_skill.png",
-							text = _event.m.Minstrel.getName() + " gains [color=" + this.Const.UI.Color.PositiveEventValue + "]+1[/color] Ranged Skill"
-						});
 					}
 					else
 					{
 						local injury = _event.m.Minstrel.addInjury(this.Const.Injury.Archery);
 						this.List.push({
-						id = 10,
-						icon = injury.getIcon(),
-						text = _event.m.Minstrel.getName() + " suffers " + injury.getNameOnly()
+							id = 10,
+							icon = injury.getIcon(),
+							text = _event.m.Minstrel.getName() + " suffers " + injury.getNameOnly()
 						});
 					}
 				}
@@ -60,13 +55,8 @@ this.legends_minstrel_and_juggler_event <- this.inherit("scripts/events/event", 
 					r = this.Math.rand(1, 3);
 					if (r == 1)
 					{
-						_event.m.Juggler.getBaseProperties().RangedSkill += 1;
+						this.List.push(::Legends.EventList.changeRangedSkill(_event.m.Juggler, 1));
 						_event.m.Juggler.getSkills().update();
-						this.List.push({
-							id = 17,
-							icon = "ui/icons/ranged_skill.png",
-							text = _event.m.Juggler.getName() + " gains [color=" + this.Const.UI.Color.PositiveEventValue + "]+1[/color] Ranged Skill"
-						});
 					}
 
 					local brothers = this.World.getPlayerRoster().getAll();
@@ -80,20 +70,16 @@ this.legends_minstrel_and_juggler_event <- this.inherit("scripts/events/event", 
 						r = this.Math.rand(1, 20);
 						if (r == 1)
 						{
-							bro.getBaseProperties().RangedDefense += 1;
-							this.List.push({
-							id = 17,
-							icon = "ui/icons/ranged_skill.png",
-							text = bro.getName() + " gains [color=" + this.Const.UI.Color.PositiveEventValue + "]+1[/color] Ranged Defense"
-							});
+							this.List.push(::Legends.EventList.changeRangedDefense(bro, 1));
+							bro.getSkills().update();
 						}
 						if (r == 2)
 						{
 							local injury = bro.addInjury(this.Const.Injury.Archery);
 							this.List.push({
-							id = 10,
-							icon = injury.getIcon(),
-							text = bro.getName() + " suffers " + injury.getNameOnly()
+								id = 10,
+								icon = injury.getIcon(),
+								text = bro.getName() + " suffers " + injury.getNameOnly()
 							});
 						}
 					}
