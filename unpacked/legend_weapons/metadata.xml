@@ -719,6 +719,12 @@
   <sprite id="icon_wildmen_11_1" offsetY="35" ic="FF243344" width="130" height="142" img="icons\icon_wildmen_11_1.png" left="-7" right="63" top="-71" bottom="19" />
   <sprite id="icon_wildmen_11_2_bloodied" offsetY="35" ic="FF212E42" width="130" height="142" img="icons\icon_wildmen_11_2_bloodied.png" left="-7" right="63" top="-71" bottom="19" />
   <sprite id="icon_wildmen_11_2" offsetY="35" ic="FF243344" width="130" height="142" img="icons\icon_wildmen_11_2.png" left="-7" right="63" top="-71" bottom="19" />
+  <sprite id="icon_legend_named_rusty_greatsword_01" offsetY="35" ic="FF273951" width="180" height="142" img="icons\icon_legend_named_rusty_greatsword_01.png" left="-90" right="20" top="-56" bottom="71" />
+  <sprite id="icon_legend_named_rusty_greatsword_01_bloodied" offsetY="35" ic="FF273951" width="180" height="142" img="icons\icon_legend_named_rusty_greatsword_01_bloodied.png" left="-90" right="20" top="-56" bottom="71" />
+  <sprite id="icon_legend_named_rusty_greatsword_02" offsetY="35" ic="FF273951" width="180" height="142" img="icons\icon_legend_named_rusty_greatsword_02.png" left="-90" right="20" top="-56" bottom="71" />
+  <sprite id="icon_legend_named_rusty_greatsword_02_bloodied" offsetY="35" ic="FF273951" width="180" height="142" img="icons\icon_legend_named_rusty_greatsword_02_bloodied.png" left="-90" right="20" top="-56" bottom="71" />
+  <sprite id="icon_legend_named_rusty_serrated_axe_01" offsetY="35" ic="FF2E4260" width="160" height="142" img="icons\icon_legend_named_rusty_serrated_axe_01.png" left="-84" right="7" top="-55" bottom="71" />
+  <sprite id="icon_legend_named_rusty_serrated_axe_01_bloodied" offsetY="35" ic="FF2E4260" width="160" height="142" img="icons\icon_legend_named_rusty_serrated_axe_01_bloodied.png" left="-84" right="7" top="-55" bottom="71" />
   <sprite id="icon_wooden_stake_01_bloodied" offsetY="35" ic="FF6B6B74" width="75" height="75" img="icons\icon_wooden_stake_01_bloodied.png" left="-6" right="30" top="-55" bottom="-15" />
   <sprite id="icon_wooden_stake_01" offsetY="35" ic="FF6B6B74" width="75" height="75" img="icons\icon_wooden_stake_01.png" left="-6" right="30" top="-55" bottom="-15" />
   <sprite id="mummy_shield_01_damaged" offsetY="35" ic="FF262635" width="104" height="142" img="icons\mummy_shield_01_damaged.png" left="10" right="52" top="-69" bottom="17" />

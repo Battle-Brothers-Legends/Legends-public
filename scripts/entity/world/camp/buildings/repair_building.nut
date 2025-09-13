@@ -14,7 +14,6 @@ this.repair_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 		this.camp_building.create();
 		this.m.ID = this.Const.World.CampBuildings.Repair;
 		this.m.BaseCraft = 10.0;
-		this.m.Conversion = 10.0;
 		this.m.ModName = "Repair";
 		this.m.Escorting = true;
 		this.m.Slot = "repair";
@@ -99,7 +98,7 @@ this.repair_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 		desc += "Items will repair very slowly when not camped. Camping increases the speed even with no one assigned. Default repair speed is based on game combat difficulty.";
 		desc += "The more people assigned to the repair tent, the quicker the repairs. Mercenaries with repair skills increase the speed even further and may save you tools.";
 		desc += "\n\n";
-		desc += "Buying an upgraded tent from a settlement will increase repair speed by 33% and reduce tool use by -33%.";
+		desc += "Buying an upgraded tent from a settlement will increase repair speed by [color=" + this.Const.UI.Color.PositiveEventValue + "]33%[/color] and increase tool efficiency by [color=" + this.Const.UI.Color.PositiveEventValue + "]33%[/color] (1 tool repairs 20 instead of 15).";
 		return desc;
 	}
 
@@ -198,9 +197,12 @@ this.repair_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 		}
 	}
 
-	function getConversionRate()
-	{
-		return this.m.Conversion;
+	// Convert tools-per-condition to condition-per-tool for display.
+	// Base: ArmorPartsPerArmor=0.067 (~1/15).
+	// If upgraded, reduce tools-per-condition by ~25% yielding ~20 per tool instead of 15.
+	function getConversionRate() {
+		local cons = this.World.Assets.m.ArmorPartsPerArmor * (this.getUpgraded() ? (3.0 / 4.0) : 1.0);
+		return this.Math.floor(1.0 / cons + 0.5);
 	}
 
 	function getStash()
@@ -237,13 +239,18 @@ this.repair_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 	function getModifiers()
 	{
 		local ret = this.camp_building.getModifiers();
-		if (this.getUpgraded())
-		{
-			ret.Consumption = 1.0 / 20.0
+		// Align consumption with field repairs.
+		// Base: ArmorPartsPerArmor=0.067 (~1/15).
+		// If upgraded, reduce tools-per-condition by ~25% yielding ~20 per tool instead of 15.
+		ret.Consumption = this.World.Assets.m.ArmorPartsPerArmor;
+		if (this.getUpgraded()) {
+			ret.Consumption = ret.Consumption * (3.0 / 4.0);
 		}
 
 		ret.Craft += this.m.BaseCraft;
-		ret.Craft = ret.Craft * this.World.Assets.m.RepairSpeedMult; // should be taken into account (blacksmith influence)
+		ret.Craft = ret.Craft * this.World.Assets.m.RepairSpeedMult;
+		if (::World.Retinue.hasFollower("follower.blacksmith"))
+			ret.Craft *= 1.33; // should be taken into account (blacksmith influence)
 		local buff =  this.Math.ceil(this.World.getPlayerRoster().getAll().len() * this.Const.Difficulty.RepairMult[this.World.Assets.getEconomicDifficulty()] * this.World.Assets.m.RepairSpeedMult * (1.33 * this.Const.World.Assets.ArmorPerHour));
 		ret.Craft = ret.Craft + buff; // to buff it as a compensation for disabling asset_manager part while camping
 		if (this.getUpgraded())
@@ -266,7 +273,7 @@ this.repair_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 			points += r.Item.getRepairMax() - r.Item.getRepair()
 		}
 		local modifiers = this.getModifiers();
-		return this.Math.ceil(points * modifiers.Consumption);
+		return this.Math.ceil(points * modifiers.Consumption * ::Legends.S.getToolEfficiency());
 	}
 
 	function getRequiredTime()
@@ -344,25 +351,7 @@ this.repair_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 		local modifiers = this.getModifiers();
 		modifiers.Craft = this.Math.round(modifiers.Craft); //important
 
-		local roster = this.World.getPlayerRoster().getAll(); // so that repair perks have effect while camping too
-		local perkMod = 1.0;
-
-		foreach( bro in roster )
-		{
-			local items = bro.getItems().getAllItems();
-			local skills = [
-				::Legends.Perk.LegendToolsSpares,
-				::Legends.Perk.LegendToolsDrawers
-			];
-			foreach( s in skills )
-			{
-				local skill = ::Legends.Perks.get(bro, s);
-				if (skill != null)
-				{
-					perkMod = this.Math.maxf(perkMod - skill.getModifier() * 0.003, 0.5);
-				}
-			}
-		}
+		local toolEfficiency = ::Legends.S.getToolEfficiency();
 		foreach (i, r in this.m.Repairs)
 		{
 			if (r == null)
@@ -380,11 +369,11 @@ this.repair_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 			this.m.PointsRepaired += needed;
 			modifiers.Craft -= needed;
 
-			if (this.World.Assets.isConsumingAssets())
-			{
-				local consumed = needed * modifiers.Consumption;
-				this.m.ToolsUsed += consumed * perkMod;
-				this.World.Assets.addArmorPartsF(consumed * perkMod * -1.0);
+			if (this.World.Assets.isConsumingAssets()) {
+				// Round to 3 decimal places for better determinism
+				local toolsUsed = this.Math.round(needed * modifiers.Consumption * toolEfficiency * 1000.0) / 1000.0;
+				this.m.ToolsUsed += toolsUsed;
+				this.World.Assets.addArmorPartsF(toolsUsed * -1.0);
 			}
 
 			if (r.Item.getRepair() >= r.Item.getRepairMax())

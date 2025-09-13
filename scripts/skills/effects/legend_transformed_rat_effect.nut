@@ -47,7 +47,7 @@ this.legend_transformed_rat_effect <- this.inherit("scripts/skills/effects/legen
 		::Legends.Traits.remove(this, ::Legends.Trait.RacialSpider);
 		::Legends.Actives.remove(this, ::Legends.Active.LegendRatClaws);
 		::Legends.Actives.remove(this, ::Legends.Active.LegendRatBite);
-		if (!actor.getSkills().hasPerk(::Legends.Perk.Footwork))
+		if (!this.getContainer().hasPerk(::Legends.Perk.Footwork))
 		{
 			::Legends.Actives.remove(this, ::Legends.Active.Footwork);
 		}
@@ -73,4 +73,3 @@ this.legend_transformed_rat_effect <- this.inherit("scripts/skills/effects/legen
 	}
 
 });
-

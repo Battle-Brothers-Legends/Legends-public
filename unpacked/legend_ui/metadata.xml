@@ -27,6 +27,7 @@
 	<sprite id="perk_spec_staff_mini" offsetY="35" ic="FF374B50" img="skills/mini/perk_spec_staff_mini.png" />
 	<sprite id="perk_spec_woodsman_mini" offsetY="35" ic="FF374B50" img="skills/mini/perk_spec_woodsman_mini.png" />
 	<sprite id="perk_spec_xbow_mini" offsetY="35" ic="FF374B50" img="skills/mini/perk_spec_xbow_mini.png" />
+	<sprite id="legend_compromised_armor_mini" offsetY="35" ic="FF374B50" img="skills/mini/legend_compromised_armor_mini.png" />
 	<sprite id="shovel_01_mini" offsetY="35" ic="FF374B50" img="skills/mini/shovel_01_mini.png" />
 	<sprite id="slinger_spins_mini" offsetY="35" ic="FF374B50" img="skills/mini/slinger_spins_mini.png" />
 	<sprite id="legend_halberd_impale" ic="FF23165B" img="skills\legend_halberd_impale.png" />
@@ -92,6 +93,7 @@
 	<sprite id="violent_decomposition" ic="FF23165B" img="skills\violent_decomposition.png" />
 	<sprite id="wither" ic="FF23165B" img="skills\wither56_skill.png" />
 	<sprite id="blood_potion_circle" ic="FF23165B" img="skills\blood_potion_circle.png" />
+	<sprite id="legend_compromised_armor" ic="FF23165B" img="skills\legend_compromised_armor.png" />
 	<sprite id="ichor_potion_circle" ic="FF23165B" img="skills\ichor_potion_circle.png" />
 	<sprite id="drums_of_life_circle" ic="FF23165B" img="skills\drums_of_life_circle.png" />
 	<sprite id="drums_of_life_square" ic="FF23165B" img="skills\drums_of_life_square.png" />
@@ -183,6 +185,8 @@
 	<sprite id="skewer_general" ic="FF1B293C" img="skills\skewer_general.png" />
 	<sprite id="active_legend_warfork_disarm" ic="FF1B293C" img="skills\active_legend_warfork_disarm.png" />
 	<sprite id="active_legend_heartseeker" ic="FF1B293C" img="skills\active_legend_heartseeker.png" />
+	<sprite id="active_legend_pry_armor_warhammer" ic="FF1B293C" img="skills\legend_active_pry_armor_warhammer.png" />
+	<sprite id="active_legend_pry_armor_polehammer" ic="FF1B293C" img="skills\legend_active_pry_armor_polehammer.png" />
 	<sprite id="legend_enraged_hyena_bite_effect" ic="FF1B293C" img="skills\legend_enraged_hyena_bite_effect.png" />
 	<sprite id="legend_enraged_hyena_bite_effect_mini" ic="FF1B293C" img="skills\mini\legend_enraged_hyena_bite_effect_mini.png" />
 	<!-- Orientation below -->

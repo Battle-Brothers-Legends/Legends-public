@@ -1210,6 +1210,14 @@ traitDefs.push({
 	Name = "Redback Poison",
 });
 
+::Legends.Trait.RacialLegendClusterSpider <- null;
+traitDefs.push({
+	ID = "racial.legend_cluster_spider",
+	Script = "scripts/skills/racial/legend_cluster_spider_racial",
+	Const = "RacialLegendClusterSpider",
+	Name = "Cluster",
+});
+
 ::Legends.Trait.RacialLegendRockUnhold <- null;
 traitDefs.push({
 	ID = "racial.legend_rock_unhold",

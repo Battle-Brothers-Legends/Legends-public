@@ -1148,8 +1148,10 @@
 			];
 
 		case "assets.Supplies":
-			local desc = "Assorted tools and supplies to keep your weapons, armor, helmets and shields in good condition. Running out of supplies may result in weapons breaking in combat and will leave your armor damaged and useless. Items can only be repaired while camping. More tools can be purchased in town or salvaged from equipment while camping.";
-			desc = desc + ("  You can carry " + this.World.Assets.getMaxArmorParts() + " units at most.");
+			local desc = "Assorted tools and supplies to keep your weapons, armor, helmets, and shields in good condition. Running out of supplies may result in weapons breaking during combat and will leave your armor damaged and useless. More tools can be purchased in town or salvaged from equipment while camping.";
+			desc += "\nItems can be repaired while camping or out in the open. However, in that case, only one item can be repaired at a time per bro."
+			desc += "\nYou can carry [color=" + this.Const.UI.Color.PositiveValue + "]" + this.World.Assets.getMaxArmorParts() + "[/color] units at most.";
+			desc += "\nTool efficiency when repairing damaged items may be increased by recruiting specialized backgrounds. Tool efficiency is capped at [color=" + this.Const.UI.Color.NegativeValue + "]50%[/color].";
 			local ret = [
 				{
 					id = 1,
@@ -1163,44 +1165,38 @@
 				}
 			];
 
-			local dailyTools = 0;
-			local toolsMult = 0.0;
-			local brolist = [];
-			local tools = 1;
-
-			foreach( bro in this.World.getPlayerRoster().getAll() )
-			{
-
-				if (bro.getSkills().hasPerk(::Legends.Perk.LegendToolsSpares))
-				{
-					tools = tools - (tools * 0.06); //6%, as it is on this perk above
-					toolsMult += 6;
+			foreach (bro in this.World.getPlayerRoster().getAll()) {
+				local broToolEfficiencyModifier = bro.getToolEfficiencyModifier();
+				if (broToolEfficiencyModifier > 0) {
+					ret.push({
+						id = 3,
+						type = "hint",
+						icon = "ui/icons/asset_supplies.png",
+						text = "[color=" + this.Const.UI.Color.PositiveValue + "]+" + broToolEfficiencyModifier + "%[/color] " + bro.getName()
+					});
 				}
-				if (bro.getSkills().hasPerk(::Legends.Perk.LegendToolsDrawers))
-				{
-					tools = tools - (tools * 0.04); //4%, as it is on this perk above
-					toolsMult += 4;
-				}
-
 			}
 
-				ret.push({
-					id = 3,
-					type = "hint",
-					icon = "ui/icons/asset_supplies.png",
-					text = 	" [color=" + this.Const.UI.Color.PositiveValue + "]" + toolsMult + "%[/color] Reduction Multiplier"
-				});
-				ret.push({
-					id = 4,
-					type = "hint",
-					icon = "ui/icons/asset_supplies.png",
-					text = 	" [color=" + this.Const.UI.Color.PositiveValue + "]" + tools * 100 + "%[/color] Tool usage percent out"
-				});
+			local toolEfficiency = ::Legends.S.getToolEfficiency();
+
+			ret.push({
+				id = 3,
+				type = "hint",
+				icon = "ui/icons/asset_supplies.png",
+				text = "[color=" + this.Const.UI.Color.PositiveValue + "]"+ this.Math.round((1 - toolEfficiency) * 100) + "%[/color] Tool Efficiency"
+			});
+			ret.push({
+				id = 4,
+				type = "hint",
+				icon = "ui/icons/asset_supplies.png",
+				text = "[color=" + this.Const.UI.Color.PositiveValue + "]" + this.Math.round(toolEfficiency * 100) + "%[/color] Tool usage percent out"
+			});
 
 			return ret;
 
 		case "repairs.Supplies":
-			local desc = "Number of tools on hand to repair equipment. One tool is required to repair 15 points of item condition. More tools can be purchased in towns or can be salvaged from equipment while camping ";
+			local tent = this.World.Camp.getBuildingByID(this.Const.World.CampBuildings.Repair);
+			local desc = "Number of tools on hand to repair equipment. One tool is required to repair " + tent.getConversionRate() + " points of item condition. More tools can be purchased in towns or can be salvaged from equipment while camping ";
 			desc = desc + ("  You can carry " + this.World.Assets.getMaxArmorParts() + " units at most.");
 			local ret = [
 				{
@@ -1218,7 +1214,7 @@
 
 		case "repairs.Required":
 			local tent = this.World.Camp.getBuildingByID(this.Const.World.CampBuildings.Repair);
-			local desc = "Number of tools required to repair the selected equipment. One point is required to repair " + tent.getConversionRate() + " points of item condition.";
+			local desc = "Number of tools required to repair the selected equipment. One tool is required to repair " + tent.getConversionRate() + " points of item condition.";
 			local ret = [
 				{
 					id = 1,
@@ -2178,7 +2174,7 @@
 				{
 					id = 2,
 					type = "description",
-					text = "Not recommended in Legends Beta. Ironman mode disables manual saving. Only a single save will exist for the company, and the game is automatically saved during the game and on exiting it. Losing the whole company means losing the save. Not recommended in while Legends is in Beta due to possible save corruptions.\n\nNote that on weaker computers autosaves may result in the game pausing for a few seconds."
+					text = "Not recommended in Legends. Ironman mode disables manual saving. Only a single save will exist for the company, and the game is automatically saved during the game and on exiting it. Losing the whole company means losing the save. Not recommended in while Legends is in Beta due to possible save corruptions.\n\nNote that on weaker computers autosaves may result in the game pausing for a few seconds."
 				}
 			];
 

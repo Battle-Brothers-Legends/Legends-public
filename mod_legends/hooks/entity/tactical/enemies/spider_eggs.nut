@@ -83,11 +83,11 @@
 
 		if (tile != null)
 		{
-			local spawn = this.Tactical.spawnEntity("scripts/entity/tactical/enemies/spider", tile.Coords);
-			spawn.setSize(this.Math.rand(60, 75) * 0.01);
+			local spawn = this.Tactical.spawnEntity("scripts/entity/tactical/enemies/legend_spider_cluster", tile.Coords);
+			// spawn.setSize(this.Math.rand(60, 75) * 0.01);
 			spawn.setFaction(this.getFaction());
-			spawn.m.XP = spawn.m.XP / 2;
-			spawn.setName(spawn.getName() + " Hatchling");
+			// spawn.m.XP = spawn.m.XP / 2;
+			// spawn.setName(spawn.getName() + " Hatchling");
 			local allies = this.Tactical.Entities.getInstancesOfFaction(this.getFaction());
 
 			foreach( a in allies )

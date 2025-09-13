@@ -44,6 +44,16 @@
 		return meds;
 	}
 
+	local addBusinessReputation = o.addBusinessReputation;
+	o.addBusinessReputation = function( _f )
+	{
+		local original = this.m.BusinessReputationRate;
+		if (::World.Retinue.hasFollower("follower.minstrel"))
+			this.m.BusinessReputationRate *= 1.25; // should be taken into account (blacksmith influence)
+		addBusinessReputation(_f)
+		this.m.BusinessReputationRate = original;
+	}
+
 	o.getBusinessReputationMax <- function()
 	{
 		return this.m.BusinessReputationMax;
@@ -131,7 +141,7 @@
 					break;
 			}
 		}
-		else { ::World.Statistics.getFlags().remove("LegendsCanRepairNet"); } 
+		else { ::World.Statistics.getFlags().remove("LegendsCanRepairNet"); }
 
 		refillAmmo();
 	}
@@ -553,69 +563,57 @@
 
 			 }
 
-			 //local perkMod = 1;
-
-			 foreach( bro in roster )
-			 {
-				local perkMod = 1.0; // should be here, not outside foreach, otherwise it works like inconsistent mess
-				if (this.m.ArmorParts == 0)
-				{
+			local toolEfficiency = ::Legends.S.getToolEfficiency();
+			foreach (bro in roster) {
+				if (this.m.ArmorParts == 0) {
 					break;
 				}
-				if (this.isCamping()) //disable in camp, otherwise mess
-			 	{
+
+				// Camp repair is handled in `repair_building.nut`
+				if (this.isCamping()) {
 			 		break;
 			 	}
+
 			 	local items = bro.getItems().getAllItems();
-			 	local updateBro = false;
+				local updateBro = false;
 
-				local skills = [
-					::Legends.Perk.LegendToolsSpares,
-					::Legends.Perk.LegendToolsDrawers
-				];
-				foreach (s in skills)
-				{
-					local skill = ::Legends.Perks.get(bro, s);
-					if (skill != null)
-					{
-						perkMod = perkMod * (1 - skill.getModifier() * 0.01); // /100 won't work in Squirrel, also should probably be buffed since it only works on the bro's own equipment and only outside of camp
-					}
-				}
-
-			 	foreach( item in items )
-			 	{
-			 		if (item.getRepair() < item.getRepairMax())
-			 		{
+				foreach (item in items) {
+					if (item.getRepair() < item.getRepairMax()) {
 						local d = this.Math.ceil(this.Math.minf(this.Const.World.Assets.ArmorPerHour * this.Const.Difficulty.RepairMult[this.World.Assets.getEconomicDifficulty()] * this.m.RepairSpeedMult, item.getRepairMax() - item.getRepair())); //rounding is crucial because otherwise it repairs nothing but eats tools if below 1, and in any case repair value has to be a round value
+						if (::World.Retinue.hasFollower("follower.blacksmith")) {
+							// Round blacksmith bonus for better determinism
+							d = this.Math.ceil(d * 1.33);
+						}
 						item.onRepair(item.getRepair() + d);
-						this.m.ArmorParts = this.Math.maxf(0, this.m.ArmorParts - d * this.m.ArmorPartsPerArmor * perkMod); // * this.Const.Difficulty.RepairMult[this.World.Assets.getEconomicDifficulty()] - doesn't make sense here, it was already used when calculating d
+						// Round to 3 decimal places for better determinism
+						local toolsUsed = this.Math.round(d * this.m.ArmorPartsPerArmor * toolEfficiency * 1000.0) / 1000.0;
+						this.m.ArmorParts = this.Math.maxf(0, this.m.ArmorParts - toolsUsed);
 						updateBro = true;
 			 		}
 
-			 		if (item.getRepair() >= item.getRepairMax())
-			 		{
+			 		if (item.getRepair() >= item.getRepairMax()) {
 			 			item.setToBeRepaired(false, 0);
 			 		}
 
-			 		if (this.m.ArmorParts == 0)
-			 		{
+			 		if (this.m.ArmorParts == 0) {
 			 			break;
 			 		}
 
-					if (updateBro)
-					{
-						break; //so each bro only repairs 1 item at a time, otherwise too good, makes camp redundant
+					// Can only repair as many items at the same time as there are bros in the roster
+					if (updateBro) {
+						break;
 					}
-			 	}
+				}
 
-			 	if (updateBro)
-			 	{
-			 		bro.getSkills().update();
-			 	}
+				if (updateBro) {
+					bro.getSkills().update();
+				}
 			 }
 
 			 local items = this.m.Stash.getItems();
 			 local stashmaxrepairpotential = this.Math.ceil(roster.len() * this.Const.Difficulty.RepairMult[this.World.Assets.getEconomicDifficulty()] * this.m.RepairSpeedMult * this.Const.World.Assets.ArmorPerHour); //otherwise fixed version will be too good
+			 if (::World.Retinue.hasFollower("follower.blacksmith"))
+				stashmaxrepairpotential *= 1.33 // should be taken into account (blacksmith influence)
 			 foreach( item in items )
 			 {
 				if (this.isCamping()) //disable in camp, otherwise mess
@@ -641,7 +639,9 @@
 			 		{
 						local d = this.Math.ceil(this.Math.minf(stashmaxrepairpotential, item.getRepairMax() - item.getRepair()));
 						item.onRepair(item.getRepair() + d);
-						this.m.ArmorParts = this.Math.maxf(0, this.m.ArmorParts - d * this.m.ArmorPartsPerArmor); // * this.Const.Difficulty.RepairMult[this.World.Assets.getEconomicDifficulty()]
+						// Round to 3 decimal places for better determinism
+						local toolsUsed = this.Math.round(d * this.m.ArmorPartsPerArmor * toolEfficiency * 1000.0) / 1000.0;
+						this.m.ArmorParts = this.Math.maxf(0, this.m.ArmorParts - toolsUsed);
 						stashmaxrepairpotential = stashmaxrepairpotential - d;
 			 		}
 

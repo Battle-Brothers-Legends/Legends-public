@@ -13,7 +13,7 @@
 							"legend_youngblood_background"
 						]);
 						_event.m.Dude.getBaseProperties().Hitpoints += 5;
-						_event.m.Dude.getBaseProperties().Fatigue += 7;
+						_event.m.Dude.getBaseProperties().Stamina += 7;
 						_event.m.Dude.getBaseProperties().MeleeSkill += 10;
 						_event.m.Dude.getBaseProperties().RangedSkill += 10;
 						_event.m.Dude.getBackground().m.RawDescription = "With nowhere else to go, %name% resorted to seeking you out after the destruction of the monastery. With their home gone, the future from %them% and the order looks bleaker still.";

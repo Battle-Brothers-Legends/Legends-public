@@ -15,6 +15,12 @@ this.legend_camp_unhold_bondage_contract <- this.inherit("scripts/contracts/lege
 			"Friendly barbarian tribe tries to expand their forces. They're looking for some unholds.",
 			"Local barbarian warlord is looking for new pet. You can only imagine what he wants.",
 		];
+		this.m.Payment.ItemPool = [
+			[50, "loot/bone_figurines_item"],
+			[30, "loot/bead_necklace_item"],
+			[20, "loot/valuable_furs_item"],
+			[10, "loot/looted_valuables_item"]
+		];
 	}
 
 	function isVisible() {
@@ -156,8 +162,8 @@ this.legend_camp_unhold_bondage_contract <- this.inherit("scripts/contracts/lege
 	}
 
 	function createScreens() {
-		this.importScreens(this.Const.Contracts.NegotiationDefault);
-		this.importScreens(this.Const.Contracts.Overview);
+		this.importScreens(::Const.Contracts.NegotiationItemsOnly);
+		this.importScreens(::Const.Contracts.Overview);
 
 		this.m.Screens.push({
 			ID = "Task",
@@ -169,7 +175,7 @@ this.legend_camp_unhold_bondage_contract <- this.inherit("scripts/contracts/lege
 			ShowDifficulty = true,
 			Options = [
 				{
-					Text = "{The %companyname% can help for the right price. | Let\'s talk crowns.}",
+					Text = "{The %companyname% can help for the right price. | Let\'s what you offer.}",
 					function getResult() {
 						return "Negotiation";
 					}
@@ -248,7 +254,7 @@ this.legend_camp_unhold_bondage_contract <- this.inherit("scripts/contracts/lege
 		this.m.Screens.push({
 			ID = "Success",
 			Title = "On your return...",
-			Text = "[img]gfx/ui/events/event_31.png[/img]{You hand over the cage over to the %employer%. %SPEECH_ON%Impressive, fine specimen.%SPEECH_OFF%Tribe leaves with their new pet, while you wonder, what will happen to it.}",
+			Text = "[img]gfx/ui/events/event_31.png[/img]You hand over the cage over to the %employer%. %SPEECH_ON%{Impressive, fine specimen. | Look at that beast, impressive. }%SPEECH_OFF%Tribe leaves with their new pet, while you wonder, what will happen to it.",
 			Image = "",
 			Characters = [],
 			List = [],
@@ -257,17 +263,12 @@ this.legend_camp_unhold_bondage_contract <- this.inherit("scripts/contracts/lege
 				Text = "A successful hunt.",
 				function getResult() {
 					this.World.Assets.addBusinessReputation(this.Const.World.Assets.ReputationOnContractSuccess);
-					this.World.Assets.addMoney(this.Contract.m.Payment.getOnCompletion());
 					this.World.Contracts.finishActiveContract();
 					return 0;
 				}
 			}],
 			function start() {
-				this.List.push({
-					id = 10,
-					icon = "ui/icons/asset_money.png",
-					text = "You gain [color=" + this.Const.UI.Color.PositiveEventValue + "]" + this.Contract.m.Payment.getOnCompletion() + "[/color] Crowns"
-				});
+				this.List.extend(::Legends.EventList.addItems(this.Contract.m.Payment.Items, ::World.Assets.getStash()));
 				this.Contract.m.SituationID = this.Contract.resolveSituation(this.Contract.m.SituationID, this.Contract.m.Home, this.List);
 			}
 		});

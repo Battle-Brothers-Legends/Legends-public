@@ -7,10 +7,10 @@ this.legend_bros_cure_traumatized_encounter <- this.inherit("scripts/encounters/
     },
 
     function create() {
-        this.createScreens();
         this.m.Type = "encounter.legend_bros_cure_traumatized";
         this.m.Name = ::Const.Strings.randomCampEncounterName();
 		this.m.Cooldown = 30 * ::World.getTime().SecondsPerDay;
+	    this.createScreens();
 	}
 
     function createScreens() {
@@ -228,13 +228,12 @@ this.legend_bros_cure_traumatized_encounter <- this.inherit("scripts/encounters/
 			}
 		}
 		if (this.m.Traumatized == null)
-			return;
+			return false;
 
 		if ((this.m.Drunkard == null && !this.m.Traumatized.getSkills().hasTrait(::Legends.Trait.Drunkard)) || this.m.Monk == null)
-			return;
+			return false;
 
-
-		return !isOnCooldown();
+		return !this.isOnCooldown();
 	}
 
 	function onClear()

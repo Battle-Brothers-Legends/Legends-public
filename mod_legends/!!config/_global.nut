@@ -134,6 +134,8 @@ for (local i = -1; i < ::Const.EntityIcon.len(); i++) {
 	::Const.EntityType.addNew("rock_unhold_orientation", "Rock Unhold", "Rock Unholds", this.Const.FactionType.Beasts);
 ::Const.EntityType.LegendRedbackSpider <-
 	::Const.EntityType.addNew("redback_spider_orientation", "Redback Spider", "Redback Spiders", this.Const.FactionType.Beasts);
+::Const.EntityType.LegendSpiderCluster <-
+	::Const.EntityType.addNew("spider_cluster_orientation", "Webknecht Cluster", "Webknecht Clusters", this.Const.FactionType.Beasts);
 ::Const.EntityType.LegendDemonAlp <-
 	::Const.EntityType.addNew("demonalp_orientation", "Demon Alp", "Demon Alps", this.Const.FactionType.Beasts);
 ::Const.EntityType.LegendHexeLeader <-

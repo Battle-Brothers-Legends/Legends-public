@@ -1,6 +1,5 @@
 # Local build configuration
-# If you want to make changes to the config without generating a diff, run:
-#   git update-index --skip-worktree .build_config.py
+# This file is ignored by git, feel free to make changes to match your local setup.
 
 # Repository directory name (if different from 'Legends-public')
 REPO_DIR = "Legends-public"

@@ -82,10 +82,11 @@ if (!("LegendMod" in ::Const))
 	::Const.EntityType.FlyingSkull
 ];
 ::Const.LegendMod.FavoriteSpider <- [
-	::Const.EntityType.Spider,
-	//::Const.EntityType.SpiderBodyguard,
-	::Const.EntityType.SpiderEggs,
-	::Const.EntityType.LegendRedbackSpider
+	this.Const.EntityType.Spider,
+	this.Const.EntityType.LegendSpiderCluster,
+	//this.Const.EntityType.SpiderBodyguard,
+	this.Const.EntityType.SpiderEggs,
+	this.Const.EntityType.LegendRedbackSpider
 ];
 ::Const.LegendMod.FavoriteUnhold <- [
 	::Const.EntityType.Unhold,

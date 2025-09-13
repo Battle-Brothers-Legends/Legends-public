@@ -17,4 +17,11 @@
 		this.m.ArmamentIcon = "icon_warhammer_01_" + this.m.Variant;
 	}
 
+	local onEquip = o.onEquip;
+	o.onEquip = function ()
+	{
+		onEquip();
+		::Legends.Actives.grant(this, ::Legends.Active.LegendPryArmor);
+	}
+
 });

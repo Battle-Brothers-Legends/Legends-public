@@ -33,7 +33,7 @@
 
 		if (this.World.getTime().Days >= dateToSkip)
 		{
-			local bonus = this.Math.min(1, this.Math.floor(this.World.getTime().Days - dateToSkip));
+			local bonus = this.Math.floor(this.World.getTime().Days - dateToSkip);
 			this.m.Resources += bonus;
 		}
 	}

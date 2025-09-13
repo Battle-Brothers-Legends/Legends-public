@@ -52,8 +52,12 @@
 				}
 
 				local currentItem = inv.getItemAtSlot(slot);
+				if (item == null)
+					continue;
+				if (!item.isChangeableInBattle())
+					continue;
 
-				if (item != null && (item.isItemType(::Const.Items.ItemType.Weapon) || item.isItemType(::Const.Items.ItemType.Tool) || item.isItemType(::Const.Items.ItemType.Shield) || item.isItemType(::Const.Items.ItemType.Accessory) || item.isItemType(::Const.Items.ItemType.Ammo) && item.m.Ammo != 0) && inv.isActionAffordable(currentItem != null ? [
+				if ((item.isItemType(::Const.Items.ItemType.Weapon) || item.isItemType(::Const.Items.ItemType.Tool) || item.isItemType(::Const.Items.ItemType.Shield) || item.isItemType(::Const.Items.ItemType.Accessory) || item.isItemType(::Const.Items.ItemType.Ammo) && item.m.Ammo != 0) && inv.isActionAffordable(currentItem != null ? [
 					currentItem,
 					item
 				] : [
@@ -638,6 +642,9 @@
 	{
 		if (!this.isAlive())
 			return;
+
+		if (this.m.CurrentProperties == null)
+			::logInfo("wtf, this.m.CurrentProperties == null?");
 
 		this.updateVisibility(this.getTile(), this.m.CurrentProperties.getVision(), this.getFaction());
 

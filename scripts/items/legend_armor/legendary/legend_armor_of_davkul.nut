@@ -11,11 +11,7 @@ this.legend_armor_of_davkul <- this.inherit("scripts/items/legend_armor/legend_n
 		this.m.IsDroppedAsLoot = true;
 		this.m.ShowOnCharacter = true;
 		this.m.IsIndestructible = true;
-		this.m.Icon = "legend_armor/icon_named_davkul_armor_01.png";
-		this.m.IconLarge = "legend_armor/inventory_named_davkul_armor_01.png";
-		this.m.Sprite = "bust_body_81";
-		this.m.SpriteDamaged = "bust_body_81_damaged";
-		this.m.SpriteCorpse= "bust_body_81_dead";
+		this.m.Variant = 81;
 		this.m.ImpactSound = [
 			"sounds/combat/cleave_hit_hitpoints_01.wav",
 			"sounds/combat/cleave_hit_hitpoints_02.wav",
@@ -30,6 +26,16 @@ this.legend_armor_of_davkul <- this.inherit("scripts/items/legend_armor/legend_n
 		this.randomizeValues();
 	}
 
+	function updateVariant()
+	{
+		this.m.Sprite = "bust_body_81";
+		this.m.SpriteDamaged = "bust_body_81_damaged";
+		this.m.SpriteCorpse = "bust_body_81_dead";
+		this.m.Icon = "legend_armor/icon_named_davkul_armor_01.png";
+		this.m.IconLarge = "legend_armor/inventory_named_davkul_armor_01.png";
+		//this.m.OverlayIcon = "legend_armor/inventory_named_davkul_armor_01.png";
+		//this.m.OverlayIconLarge = "legend_armor/inventory_named_davkul_armor_01.png";
+	}
 
 	function getTooltip()
 	{

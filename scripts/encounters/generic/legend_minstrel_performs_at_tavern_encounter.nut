@@ -123,7 +123,7 @@ this.legend_minstrel_performs_at_tavern_encounter <- this.inherit("scripts/encou
 
 		this.m.Minstrel = candidates[::Math.rand(0, candidates.len() - 1)];
 
-        return !isOnCooldown();
+        return !this.isOnCooldown();
     }
 
 	function onPrepareVariables( _vars ) {

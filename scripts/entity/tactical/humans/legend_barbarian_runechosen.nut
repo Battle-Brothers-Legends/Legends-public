@@ -166,7 +166,7 @@ this.legend_barbarian_runechosen <- this.inherit("scripts/entity/tactical/human"
 
 	function makeMiniboss()
 	{
-		assignRune();
+		assignRune(); // make miniboss is always called so hopefully this works
 		if (!this.actor.makeMiniboss())
 		{
 			return false;

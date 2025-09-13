@@ -43,7 +43,7 @@
 			}
 			this.m.JSHandle.asyncCall("setLMOTD", disabledMotdText);
 		} else {
-			this.m.JSHandle.asyncCall("setMOTD", "Welcome to Legends Beta. \n\n To report bugs, share strategies and ideas, or try out new test builds, join us on https://discord.gg/ZfCHGuC");
+			this.m.JSHandle.asyncCall("setMOTD", "Welcome to Legends. \n\n To report bugs, share strategies and ideas, or try out new test builds, join us on https://discord.gg/ZfCHGuC");
 		}
 	}
 

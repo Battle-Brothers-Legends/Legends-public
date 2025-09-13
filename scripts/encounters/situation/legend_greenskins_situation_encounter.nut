@@ -30,6 +30,6 @@ this.legend_greenskins_situation_encounter <- this.inherit("scripts/encounters/e
     function isValid(_settlement) {
         if (!_settlement.hasSituation("situation.greenskins"))
             return false;
-        return !isOnCooldown();
+        return !this.isOnCooldown();
     }
 })

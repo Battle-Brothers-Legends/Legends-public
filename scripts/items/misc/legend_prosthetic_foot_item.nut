@@ -5,7 +5,7 @@ this.legend_prosthetic_foot_item <- this.inherit("scripts/items/item", {
 		this.item.create();
 		this.m.ID = "misc.legend_prosthetic_foot";
 		this.m.Name = "Prosthetic Foot";
-		this.m.Description = "It\'s more than a prosthetic foot, it’s a foundation! Or so it\'s creator says, but this contraption looks like hell to walk with. Crafted out of wood, metal and various leather straps, it manages to mimic foot movement well enough and will allow the wearer to at least recover a part of their dexterity.";
+		this.m.Description = "It\'s more than a prosthetic foot, it\'s a foundation! Or so it\'s creator says, but this contraption looks like hell to walk with. Crafted out of wood, metal and various leather straps, it manages to mimic foot movement well enough and will allow the wearer to at least recover a part of their dexterity.";
 		this.m.Icon = "consumables/prosthetic_foot.png";
 		this.m.SlotType = this.Const.ItemSlot.None;
 		this.m.ItemType = this.Const.Items.ItemType.Usable;

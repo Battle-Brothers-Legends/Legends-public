@@ -6,10 +6,10 @@ this.legend_vala_crafts_staff_encounter <- this.inherit("scripts/encounters/enco
     },
 
     function create() {
-        this.createScreens();
         this.m.Type = "encounter.legend_vala_crafts_staff";
         this.m.Name = "Vala crafts staff";
 		this.m.Cooldown = 60 * ::World.getTime().SecondsPerDay;
+	    this.createScreens();
 	}
 
     function createScreens() {
@@ -135,7 +135,7 @@ this.legend_vala_crafts_staff_encounter <- this.inherit("scripts/encounters/enco
 		this.m.RandomBrother2 = randomBros[this.Math.rand(0, randomBros.len() - 1)];
 
 
-		return !isOnCooldown();
+		return !this.isOnCooldown();
 	}
 
 	function onClear()

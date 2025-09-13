@@ -193,6 +193,7 @@
 			local speed = this.m.BaseMovementSpeed;
 
 			local terrainTable = this.Const.World.TerrainTypeSpeedMult;
+			local wheelMaintenance = 0;
 			if (this.getFaction() == this.Const.Faction.Player)
 			{
 				local tTable = [];
@@ -209,11 +210,34 @@
 					{
 						continue
 					}
-					for (local i=0; i < broTable.len() ; ++i)
+					for (local i = 0; i < broTable.len(); ++i)
 					{
 						tTable[i] += broTable[i];
 					}
+					if (bro.getSkills().hasPerk(::Legends.Perk.LegendWheelMaintenance))
+					{
+						wheelMaintenance += 1;
+					}
 				}
+				if (this.World.Retinue.hasFollower("follower.scout"))
+				{
+					for (local i = 0; i < terrainTable.len(); ++i)
+					{
+						if (this.Const.World.TerrainTypeSpeedMult[i] <= 0.65 && this.Const.World.TerrainTypeSpeedMult[i] > 0.0)
+						{
+							tTable[i] *= (this.Const.World.TerrainTypeSpeedMult[i] + 0.15) / this.Const.World.TerrainTypeSpeedMult[i];
+						}
+					}
+				}
+
+				if (wheelMaintenance > 0)
+				{
+					for (local i = 0; i < terrainTable.len(); ++i)
+					{
+						tTable[i] *= (this.Const.World.TerrainTypeSpeedMult[i] + (0.05 * wheelMaintenance.tofloat())) / this.Const.World.TerrainTypeSpeedMult[i];
+					}
+				}
+
 				terrainTable = tTable;
 			}
 

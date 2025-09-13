@@ -82,10 +82,9 @@ this.legend_named_royal_lance <- this.inherit("scripts/items/weapons/named/named
 			_skill.m.IconDisabled = "skills/active_54_sw.png";
 			_skill.m.Overlay = "active_54";
 			_skill.m.BaseAttackName = "Prong";
-			_skill.setFatigueCost(spearwall.getFatigueCostRaw() + 5);
+			_skill.setFatigueCost(_skill.getFatigueCostRaw() + 5);
 			_skill.m.ActionPointCost = 6;
 		}.bindenv(this));
 	}
 
 });
-

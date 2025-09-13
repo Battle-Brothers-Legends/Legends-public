@@ -498,6 +498,7 @@ this.legend_helmet <- this.inherit("scripts/items/helmets/helmet", {
 		if (this.m.Upgrades[slot] != null)
 		{
 			oldItem = this.removeUpgrade(slot);
+			if (oldItem == null) return false;
 		}
 
 		this.m.Upgrades[slot] = _upgrade;

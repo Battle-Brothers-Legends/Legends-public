@@ -39,7 +39,7 @@
 			_skill.m.IconDisabled = "skills/active_173_sw.png";
 			_skill.m.Overlay = "active_173";
 			_skill.m.BaseAttackName = "Prong";
-			_skill.setFatigueCost(spearwall.getFatigueCostRaw() + 5);
+			_skill.setFatigueCost(_skill.getFatigueCostRaw() + 5);
 			_skill.m.ActionPointCost = 6;
 		}.bindenv(this));
 	}

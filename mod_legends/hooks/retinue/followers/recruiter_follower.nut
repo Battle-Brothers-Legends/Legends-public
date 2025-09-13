@@ -4,7 +4,7 @@
 		this.follower.create();
 		this.m.ID = "follower.recruiter";
 		this.m.Name = "Pre-filled Contracts";
-		this.m.Description = "The deviousness of a pre-filled contract that needs a single signiture can make the labours of arguing about pay a thing of the past. Just simply sign on the line and you are ready to go! Just don't let them read the small print.";
+		this.m.Description = "The deviousness of a pre-filled contract that needs a single signature can make the labours of arguing about pay a thing of the past. Just simply sign on the line and you are ready to go! Just don't let them read the small print.";
 		this.m.Image = "ui/campfire/legend_recruiter_01";
 		this.m.Cost = 1500;
 		this.m.Effects = [
@@ -21,14 +21,19 @@
 
 	o.onUpdate = function ()
 	{
-		if ("RosterSizeAdditionalMin" in this.World.Assets.m)
-			this.World.Assets.m.RosterSizeAdditionalMin += 2;
-		if ("RosterSizeAdditionalMax" in this.World.Assets.m)
-			this.World.Assets.m.RosterSizeAdditionalMax  += 4;
-		if ("HiringCostMult" in this.World.Assets.m)
-			this.World.Assets.m.HiringCostMult *= 0.9;
-		if ("TryoutPriceMult" in this.World.Assets.m)
-			this.World.Assets.m.TryoutPriceMult *= 0.5;
+		// handled in settlement
+		// if ("RosterSizeAdditionalMin" in this.World.Assets.m)
+		// 	this.World.Assets.m.RosterSizeAdditionalMin += 2;
+		// if ("RosterSizeAdditionalMax" in this.World.Assets.m)
+		// 	this.World.Assets.m.RosterSizeAdditionalMax  += 4;
+		
+		// handled in town_hire_dialog_module
+		// if ("HiringCostMult" in this.World.Assets.m)
+		// 	this.World.Assets.m.HiringCostMult *= 0.9;
+		
+		// handled in player
+		// if ("TryoutPriceMult" in this.World.Assets.m)
+		// 	this.World.Assets.m.TryoutPriceMult *= 0.5;
 	}
 
 	o.onEvaluate = function () {

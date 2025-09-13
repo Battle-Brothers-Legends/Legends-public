@@ -47,6 +47,7 @@ unpacked/legend_helmets/4/metadata.xml
 .vscode
 .vscode/
 
+.build_config.py
 build_compile_*.sh
 unstaged_build_*.sh
 build_legends_mod_*.py

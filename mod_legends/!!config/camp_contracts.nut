@@ -83,7 +83,7 @@
 ::Legends.CampContracts.IntroNecromancers <- [{
 	ID = "Intro",
 	Title = "Negotiations",
-	Text = "[img]gfx/ui/events/legend_camp_hunt.png[/img]{Your fire dims without warning. Flames hiss, shrinking to embers. Then you see a %person_employer% made of shadow and silk, gliding closer. %SPEECH_ON%Don’t be alarmed. I need help… not a heart.%SPEECH_OFF% A ritual has gone wrong. Something is feeding on the dead, but it’s not %them_employer% doing. %SPEECH_ON%Not everything that reeks of death is mine.%SPEECH_OFF%%They_employer% offers more gold than sense.}",
+	Text = "[img]gfx/ui/events/legend_camp_hunt.png[/img]{Your fire dims without warning. Flames hiss, shrinking to embers. Then you see a %person_employer% made of shadow and silk, gliding closer. %SPEECH_ON%Don\'t be alarmed. I need help… not a heart.%SPEECH_OFF% A ritual has gone wrong. Something is feeding on the dead, but it\'s not %them_employer% doing. %SPEECH_ON%Not everything that reeks of death is mine.%SPEECH_OFF%%They_employer% offers more gold than sense.}",
 	Image = "",
 	List = [],
 	ShowEmployer = false,

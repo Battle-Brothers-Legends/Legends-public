@@ -556,6 +556,8 @@
 	local updateRoster = o.updateRoster;
 	o.updateRoster = function ( _force = false )
 	{
+		local originalRosterMin = ::World.Assets.m.RosterSizeAdditionalMin;
+		local originalRosterMax = ::World.Assets.m.RosterSizeAdditionalMax;
 		if (_force || m.LastRosterUpdate == 0 || ((::Time.getVirtualTimeF() - m.LastRosterUpdate) / ::World.getTime().SecondsPerDay) >= 2) {
 			m.DraftList = getDraftList(); // apply the draftlist
 			::World.getTemporaryRoster().clear(); // using this to store the stabled
@@ -571,8 +573,16 @@
 
 				bro.getFlags().set("Legend_onGenerateBroPass", true);
 			}
-
+			if (::World.Retinue.hasFollower("follower.recruiter"))
+			{
+				::World.Assets.m.RosterSizeAdditionalMin += 2;
+				::World.Assets.m.RosterSizeAdditionalMax += 4;
+			}
+			
 			updateRoster(_force); // run the original function
+
+			::World.Assets.m.RosterSizeAdditionalMin = originalRosterMin;
+			::World.Assets.m.RosterSizeAdditionalMax = originalRosterMax;
 
 			foreach (bro in roster.getAll())
 			{

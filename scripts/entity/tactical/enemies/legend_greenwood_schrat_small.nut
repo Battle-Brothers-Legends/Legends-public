@@ -143,40 +143,8 @@ this.legend_greenwood_schrat_small <- this.inherit("scripts/entity/tactical/acto
 			::Legends.Perks.grant(this, ::Legends.Perk.FastAdaption);
 			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
 		}
-		if (!this.Tactical.State.isScenarioMode())
-		{
-			local dateToSkip = 0;
-			switch (this.World.Assets.getCombatDifficulty())
-			{
-				case this.Const.Difficulty.Easy:
-					dateToSkip = 250;
-					break;
-				case this.Const.Difficulty.Normal:
-					dateToSkip = 200;
-					break;
-				case this.Const.Difficulty.Hard:
-					dateToSkip = 150;
-					break;
-				case this.Const.Difficulty.Legendary:
-					dateToSkip = 100;
-					break;
-			}
 
-			if (this.World.getTime().Days >= dateToSkip)
-			{
-				local bonus = this.Math.min(1, this.Math.floor( (this.World.getTime().Days - dateToSkip) / 20.0));
-				b.MeleeSkill += bonus;
-				b.RangedSkill += bonus;
-				b.MeleeDefense += this.Math.floor(bonus / 2);
-				b.RangedDefense += this.Math.floor(bonus / 2);
-				b.Hitpoints += this.Math.floor(bonus * 2);
-				b.Initiative += this.Math.floor(bonus / 2);
-				b.Stamina += bonus;
-			//	b.XP += this.Math.floor(bonus * 4);
-				b.Bravery += bonus;
-				b.FatigueRecoveryRate += this.Math.floor(bonus / 4);
-			}
-		}
+		::Legends.S.scaleBaseProperties(b);
 	}
 
 	function onDamageReceived( _attacker, _skill, _hitInfo )
@@ -203,4 +171,3 @@ this.legend_greenwood_schrat_small <- this.inherit("scripts/entity/tactical/acto
 	}
 
 });
-

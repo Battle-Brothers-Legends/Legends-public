@@ -72,7 +72,7 @@ this.legend_recruitment_vala_encounter <- this.inherit("scripts/encounters/encou
 		if (totalbrothers < 1 || brotherlevels < 30)
 			return false;
 
-	    return !isOnCooldown();
+	    return !this.isOnCooldown();
     }
 
 	function onClear() {

@@ -20,9 +20,10 @@
 	}
 
 	o.onUpdate = function ()
-	{
-		if ("BusinessReputationRate" in this.World.Assets.m)
-			this.World.Assets.m.BusinessReputationRate *= 1.15;
+	{	
+		// handled in asset_manager
+		// if ("BusinessReputationRate" in this.World.Assets.m)
+		// 	this.World.Assets.m.BusinessReputationRate *= 1.15;
 		if ("IsNonFlavorRumorsOnly" in this.World.Assets.m)
 			this.World.Assets.m.IsNonFlavorRumorsOnly = true;
 	}

@@ -5,6 +5,8 @@
 	o.m.Category <- "";
 	o.m.Description <- "";
 	o.m.DescriptionTemplates <- [];
+	o.m.Payment.Items <- [];
+	o.m.Payment.ItemPool <- []; // weighted list
 
 	o.create = function()
 	{
@@ -60,29 +62,6 @@
 		this.m.Description = ::MSU.Array.rand(this.m.DescriptionTemplates);
 	}
 
-	local onDeserialize = o.onDeserialize;
-	o.onDeserialize = function(_in)
-	{
-		onDeserialize( _in );
-		if (this.m.Flags.get("UpdatedBulletpoints"))
-		{
-			local contract_faction = this.World.FactionManager.getFaction(this.getFaction());
-			local towns = contract_faction.getSettlements();
-			this.m.BulletpointsObjectives.pop();
-			if (this.m.Type == "contract.big_game_hunt"){
-				this.m.BulletpointsObjectives.push("Return to any town of " + contract_faction.getName() + " to get paid")
-			}
-			else{
-				this.m.BulletpointsObjectives.push("Return to any town of " + contract_faction.getName())
-			}
-			foreach (town in towns)
-			{
-				town.getSprite("selection").Visible = true;
-			}
-			this.World.State.getWorldScreen().updateContract(this);
-		}
-	}
-
 	local getOnCompletion = o.m.Payment.getOnCompletion;
 	o.m.Payment.getOnCompletion = function ()
 	{
@@ -109,6 +88,30 @@
 		local repDiffMult = this.Math.pow(this.getScaledDifficultyMult(), 0.5);
 		local broMult = this.World.State.getPlayer().getBarterMult();
 		return (this.m.PaymentMult + broMult) * (this.m.DifficultyMult * repDiffMult) * this.World.Assets.m.ContractPaymentMult;
+	}
+
+	o.getPaymentItems <- function() {
+		local grouped = {};
+		foreach (item in this.m.Payment.Items) {
+			if (item.getID() in grouped) {
+				grouped[item.getID()].count++;
+				continue;
+			}
+			grouped[item.getID()] <- {
+				item = item,
+				count = 1
+			};
+		}
+
+		local list = [];
+		foreach (entry in grouped) {
+			list.push({
+				id = 1,
+				icon = "ui/items/" + entry.item.getIcon(),
+				text = (entry.count > 1 ? ::format("%dx ", entry.count) : "") + entry.item.getName()
+			});
+		}
+		return list;
 	}
 
 	o.addUnitsToEntity = function ( _entity, _partyList, _resources )
@@ -392,6 +395,10 @@
 				this.m.Payment.getPerCount()
 			],
 			[
+				"reward_item_count",
+				this.m.Payment.Items.len()
+			],
+			[
 				"employer",
 				this.m.EmployerID != 0 ? this.Tactical.getEntityByID(this.m.EmployerID).getName() : ""
 			],
@@ -456,6 +463,68 @@
 	o.setCategory <- function( _c )
 	{
 		this.m.Category = _c;
+	}
+
+	local getUIBulletpoints = o.getUIBulletpoints;
+	o.getUIBulletpoints = function (_objectives = true, _payment = true) {
+		local ret = getUIBulletpoints(_objectives, _payment);
+		foreach (entry in ret) {
+			if (!("title" in entry))
+				continue;
+			if (entry.title != "Payment")
+				continue;
+			if (this.m.Payment.Pool == 0)
+				entry.items = []; // this will fix dummy 100 coins minimum if there's no money in the pool
+			if (this.m.Payment.Items.len() > 0) {
+				foreach (item in ::Legends.EventList.addItems(this.m.Payment.Items)) {
+					entry.items.push({
+						icon = item.icon,
+						text = item.text + " on completion"
+					});
+				}
+			}
+		}
+		return ret;
+	}
+
+	local onSerialize = o.onSerialize;
+	o.onSerialize = function (_out) {
+		onSerialize(_out);
+		foreach (item in this.m.Payment.Items) {
+			_out.writeBool(true);
+			_out.writeI32(item.ClassNameHash);
+			item.onSerialize(_out);
+		}
+		_out.writeBool(false);
+	}
+
+	local onDeserialize = o.onDeserialize;
+	o.onDeserialize = function(_in)
+	{
+		onDeserialize( _in );
+		while (_in.readBool()) {
+			local item = ::new(this.IO.scriptFilenameByHash(_in.readI32()));
+			item.onDeserialize(_in);
+			this.m.Payment.Items.push(item);
+		}
+
+		if (this.m.Flags.get("UpdatedBulletpoints"))
+		{
+			local contract_faction = this.World.FactionManager.getFaction(this.getFaction());
+			local towns = contract_faction.getSettlements();
+			this.m.BulletpointsObjectives.pop();
+			if (this.m.Type == "contract.big_game_hunt"){
+				this.m.BulletpointsObjectives.push("Return to any town of " + contract_faction.getName() + " to get paid")
+			}
+			else{
+				this.m.BulletpointsObjectives.push("Return to any town of " + contract_faction.getName())
+			}
+			foreach (town in towns)
+			{
+				town.getSprite("selection").Visible = true;
+			}
+			this.World.State.getWorldScreen().updateContract(this);
+		}
 	}
 
 });

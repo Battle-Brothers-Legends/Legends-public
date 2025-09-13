@@ -864,8 +864,10 @@ if (!("World" in ::Const))
 		case this.Const.Difficulty.Legendary:
 			dateToSkip = 30;
 			break;
+		default:
+			dateToSkip = 90;
+			break;
 	}
-	dateToSkip = 90;
 
 	//Go through each Item in the spawn list (which are structures defining enemies)
 	foreach (t in _list)

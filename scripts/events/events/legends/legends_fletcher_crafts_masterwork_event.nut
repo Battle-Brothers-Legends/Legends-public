@@ -90,7 +90,7 @@ this.legends_fletcher_crafts_masterwork_event <- this.inherit("scripts/events/ev
 					icon = "ui/items/" + item.getIcon(),
 					text = "You gain " + item.getName()
 				});
-				this.List.push(::Legends.EventList.changeMood(_event.m., 2.0, "Created a masterwork"));
+				this.List.push(::Legends.EventList.changeMood(_event.m.Bowyer, 2.0, "Created a masterwork"));
 			}
 
 		});

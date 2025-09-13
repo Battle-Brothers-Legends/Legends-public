@@ -43,38 +43,7 @@ this.legend_bandit_veteran <- this.inherit("scripts/entity/tactical/human", {
 			b.IsSpecializedInHammers = true;
 			b.IsSpecializedInSpears = true;
 			b.IsSpecializedInCleavers = true;
-
-			if (!this.Tactical.State.isScenarioMode())
-			{
-				local dateToSkip = 0;
-
-				switch(this.World.Assets.getCombatDifficulty())
-				{
-				case this.Const.Difficulty.Easy:
-					dateToSkip = 360;
-					break;
-
-				case this.Const.Difficulty.Normal:
-					dateToSkip = 270;
-					break;
-
-				case this.Const.Difficulty.Hard:
-					dateToSkip = 180;
-					break;
-
-				case this.Const.Difficulty.Legendary:
-					dateToSkip = 90;
-					break;
-				}
-
-				if (this.World.getTime().Days >= dateToSkip)
-				{
-					local bonus = this.Math.min(1, this.Math.floor((this.World.getTime().Days - dateToSkip) / 20.0));
-					b.MeleeSkill += bonus;
-					b.RangedSkill += bonus;
-					b.Hitpoints += bonus;
-				}
-			}
+			::Legends.S.scaleBaseProperties(b);
 		}
 
 		::Legends.Perks.grant(this, ::Legends.Perk.Brawny);
@@ -377,4 +346,3 @@ this.legend_bandit_veteran <- this.inherit("scripts/entity/tactical/human", {
 	}
 
 });
-

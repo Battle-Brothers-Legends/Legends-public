@@ -1978,7 +1978,7 @@ effectsDefs.push({
 	ID = "effects.legend_commanded",
 	Script = "scripts/skills/effects/legend_commanded_effect",
 	Const = "LegendCommanded",
-	Name = "Legend Commanded",
+	Name = "Commanded",
 });
 
 ::Legends.Effect.LegendRamHammer <- null;
@@ -1986,7 +1986,15 @@ effectsDefs.push({
 	ID = "effects.legend_ram_hammer",
 	Script = "scripts/skills/effects/legend_ram_hammer_effect",
 	Const = "LegendRamHammer",
-	Name = "Legend Ram Hammer",
+	Name = "Ram Hammer",
+});
+
+::Legends.Effect.LegendCompromisedArmor <- null;
+effectsDefs.push({
+	ID = "effects.legend_compromised_armor",
+	Script = "scripts/skills/effects/legend_compromised_armor_effect",
+	Const = "LegendCompromisedArmor",
+	Name = "Compromised Armor",
 });
 
 ::Legends.Effect.LegendEnragedHyenaBite <- null;

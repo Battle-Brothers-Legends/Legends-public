@@ -237,7 +237,7 @@ this.legend_belly_dancer_encounter <- this.inherit("scripts/encounters/encounter
 		if (::World.Assets.getMoney() < 750)
 			return false;
 
-	    return !isOnCooldown();
+	    return !this.isOnCooldown();
     }
 
 	function onClear() {

@@ -162,7 +162,11 @@ this.encounter <- {
             this.m.ActiveScreen.start(this);
         }
 
-        this.m.ActiveScreen.Title = this.buildText(this.m.ActiveScreen.Title);
+	    if (!("Title" in this.m.ActiveScreen)) {
+		    this.m.ActiveScreen.Title <- "";
+	    }
+
+        this.m.ActiveScreen.Title = this.getUITitle();
         this.m.ActiveScreen.Text = this.buildText(this.m.ActiveScreen.Text);
 
         foreach( option in this.m.ActiveScreen.Options )

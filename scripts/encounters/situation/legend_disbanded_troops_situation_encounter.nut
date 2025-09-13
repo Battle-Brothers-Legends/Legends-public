@@ -30,6 +30,6 @@ this.legend_disbanded_troops_situation_encounter <- this.inherit("scripts/encoun
     function isValid(_settlement) {
         if (!_settlement.hasSituation("situation.disbanded_troops"))
             return false;
-        return !isOnCooldown();
+        return !this.isOnCooldown();
     }
 })

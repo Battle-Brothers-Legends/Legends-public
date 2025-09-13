@@ -20,5 +20,14 @@ this.perk_legend_vengeance <- this.inherit("scripts/skills/skill", {
 		}
 	}
 
+	function onOtherActorDeath( _killer, _victim, _skill, _deathTile, _corpseTile, _fatalityType )
+	{
+		local actor = this.getContainer().getActor();
+		if (_victim.getFaction() == actor.getFaction())
+			::Legends.Effects.grant(actor, ::Legends.Effect.LegendVengeance);
+		if (_victim.getFaction() == this.Const.Faction.PlayerAnimals && actor.getFaction() == this.Const.Faction.Player)
+			::Legends.Effects.grant(actor, ::Legends.Effect.LegendVengeance);
+	}
+
 });
 

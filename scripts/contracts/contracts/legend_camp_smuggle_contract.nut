@@ -295,7 +295,7 @@ this.legend_camp_smuggle_contract <- ::inherit("scripts/contracts/legend_camp_co
 			ID = "ItemPickedUp",
 			Title = "Inside town",
 			Text = ::format("[img]gfx/ui/events/event_112.png[/img]{%s | %s | %s}",
-				"A smuggler meets you behind the tavern, tossing a chest into your hands. %SPEECH_ON%Road's clear - for now. And if it starts squeaking, you didn’t get it from me.%SPEECH_OFF%",
+				"A smuggler meets you behind the tavern, tossing a chest into your hands. %SPEECH_ON%Road's clear - for now. And if it starts squeaking, you didn\'t get it from me.%SPEECH_OFF%",
 				"A nervous clerk meets you by the well, handing off a small chest. %SPEECH_ON%Here! Just take it and go. I never saw you, understood?%SPEECH_OFF%",
 				"As you near the market, a passing drunk addresses you with a slurred greeting, then produces a small box from under their ragged cloak. %SPEECH_ON%Took you long enough, take it and be quick, the boss is waiting.%SPEECH_OFF%They push the box into your chest and slink past, quickly resuming their act with a hiccup and some surprisingly good singing."
 			),
@@ -349,7 +349,7 @@ this.legend_camp_smuggle_contract <- ::inherit("scripts/contracts/legend_camp_co
 			Title = "At bandit camp...",
 			Text = ::format("[img]gfx/ui/events/event_05.png[/img]{%s | %s}",
 				"You hand over the package over to the %employer%.%SPEECH_ON%Give me that and scram.%SPEECH_OFF%You leave the camp, wondering if you really did the right thing.",
-				"As you near the camp, several figures approach with steel at the ready. %randombrother% reaches for their weapon, but stops as one of the bandits speak. %SPEECH_ON%You have it?%SPEECH_OFF% A nod and gesture to the package in your arms disarms any tension. They produce a purse, tossing it your way. You catch it as you set the package on the floor. %SPEECH_ON%As agreed, it's %reward_count% crowns. Now, if you don’t mind.%SPEECH_OFF% They look away from the camp, then back to you. %SPEECH_ON%Piss off.%SPEECH_OFF%"
+				"As you near the camp, several figures approach with steel at the ready. %randombrother% reaches for their weapon, but stops as one of the bandits speak. %SPEECH_ON%You have it?%SPEECH_OFF% A nod and gesture to the package in your arms disarms any tension. They produce a purse, tossing it your way. You catch it as you set the package on the floor. %SPEECH_ON%As agreed, it's %reward_count% crowns. Now, if you don\'t mind.%SPEECH_OFF% They look away from the camp, then back to you. %SPEECH_ON%Piss off.%SPEECH_OFF%"
 			)
 			Image = "",
 			Characters = [],
@@ -427,13 +427,13 @@ this.legend_camp_smuggle_contract <- ::inherit("scripts/contracts/legend_camp_co
 
 		local party = null;
 		if (this.getDifficulty() <= 2) { // we want militia party for these
-			party = ::World.FactionManager.getFaction(this.m.Town.getFaction())
+			party = ::World.FactionManager.getFaction(::Const.Faction.Enemy)
 				.spawnEntity(tile, this.m.Town.getName() + " Militia", false, ::Const.World.Spawn.Militia, 80 * this.getDifficultyMult() * this.getScaledDifficultyMult(), this.getMinibossModifier());
 			party.getSprite("banner").setBrush(this.m.Town.getBanner());
 			party.setDescription("Brave men defending their homes with their lives. Farmers, craftsmen, artisans - but not one real soldier.");
 			party.setFootprintType(this.Const.World.FootprintsType.Militia);
 		} else { // hardest should spawn nobles
-			party = ::World.FactionManager.getFaction(this.m.Flags.get("EnemyNobleHouse"))
+			party = ::World.FactionManager.getFaction(::Const.Faction.Enemy)
 				.spawnEntity(tile, "Patrol", false, ::Const.World.Spawn.Noble, 80 * this.getDifficultyMult() * this.getScaledDifficultyMult(), this.getMinibossModifier());
 			party.getSprite("banner").setBrush(::World.FactionManager.getFaction(this.m.Flags.get("EnemyNobleHouse")).getBannerSmall());
 			party.setDescription("Professional soldiers in service to local lords.");
@@ -451,7 +451,6 @@ this.legend_camp_smuggle_contract <- ::inherit("scripts/contracts/legend_camp_co
 		party.getLoot().ArmorParts = this.Math.rand(0, 10);
 		party.getLoot().Medicine = this.Math.rand(0, 2);
 		party.getLoot().Ammo = this.Math.rand(0, 20);
-		party.setFaction(::Const.Faction.Enemy);
 		party.setMovementSpeed(::Const.World.MovementSettings.Speed * 2.0);
 
 		local r = this.Math.rand(1, 6);
@@ -600,8 +599,6 @@ this.legend_camp_smuggle_contract <- ::inherit("scripts/contracts/legend_camp_co
 			local entity = ::World.getEntityByID(target);
 			if (entity != null) {
 				this.m.PursuitParty = ::WeakTableRef(entity);
-				if (this.m.PursuitParty.getFaction() != ::Const.Faction.Bandits)
-					this.m.PursuitParty.setFaction(::Const.Faction.Enemy);
 			}
 		}
 		this.contract.onDeserialize(_in);

@@ -3158,6 +3158,14 @@ activesDefs.push({
 	Name = "Disarm",
 });
 
+::Legends.Active.LegendPryArmor <- null;
+activesDefs.push({
+	ID = "actives.legend_pry_armor",
+	Script = "scripts/skills/actives/legend_pry_armor_skill",
+	Const = "LegendPryArmor",
+	Name = "Pry Armor",
+});
+
 ::Legends.Active.LegendEnragedHyenaBite <- null;
 activesDefs.push({
 	ID = "actives.legend_enraged_hyena_bite",

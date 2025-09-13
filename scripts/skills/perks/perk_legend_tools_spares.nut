@@ -1,7 +1,9 @@
 this.perk_legend_tools_spares <- this.inherit("scripts/skills/skill", {
 	m = {
-		Amount = 20
+		Amount = 20,
+		ToolEfficiencyModifier = 6
 	},
+
 	function create()
 	{
 		::Const.Perks.setup(this.m, ::Legends.Perk.LegendToolsSpares);
@@ -15,6 +17,10 @@ this.perk_legend_tools_spares <- this.inherit("scripts/skills/skill", {
 	function getModifier()
 	{
 		return this.m.Amount;
+	}
+
+	function getToolEfficiencyModifier() {
+		return this.m.ToolEfficiencyModifier;
 	}
 
 	function onAdded()

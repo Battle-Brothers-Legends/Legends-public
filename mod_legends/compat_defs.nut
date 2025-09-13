@@ -220,13 +220,14 @@
 ::Legends.Compat.HardIncompat.add("mod_new_named_weapons", "1.0"); // Zythaer's Better Weapons
 ::Legends.Compat.HardIncompat.add("mod_xpInReserve", "1.0"); // XP in Reserve
 ::Legends.Compat.HardIncompat.add("sato_corpse_loot_fix"); // Sato's Corpse Loot Fix
+::Legends.Compat.HardIncompat.add("mod_career_stats", "1.0.2"); // I've seen this mod being the issue in logs as cause of errors
 //endregion
 
 //region SoftIncompat
+::Legends.Compat.SoftIncompat.add("advanced_grader"); // Needs to be updated with Legends specific things to work with Legends
 ::Legends.Compat.SoftIncompat.add("mod_BLPT", "0.1.2"); // Darx's Bad Luck Protection
 ::Legends.Compat.SoftIncompat.add("mod_bro_storage", "1.0.2");
 ::Legends.Compat.SoftIncompat.add("mod_camps_and_artifacts", "3.4");
-::Legends.Compat.SoftIncompat.add("mod_career_stats", "1.0.2"); // I've seen this mod being the issue in logs as cause of errors
 ::Legends.Compat.SoftIncompat.add("mod_cultists", "1.04"); // Davkul Rising
 ::Legends.Compat.SoftIncompat.add("mod_fantasybro", "1.0"); // Yorik's "Legends patches are poorly built, yes even into FB V5"
 ::Legends.Compat.SoftIncompat.add("mod_find_legendary_locations", "1", "Use Chopek's Find Legendary Maps instead, at Nexus or Legends Discord (#submod_files/Find Legendary Maps)");

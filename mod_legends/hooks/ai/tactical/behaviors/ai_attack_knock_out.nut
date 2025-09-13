@@ -3,7 +3,8 @@
 	o.m.PossibleSkills.extend([
 		::Legends.Actives.getID(::Legends.Active.LegendGrapple),
 		::Legends.Actives.getID(::Legends.Active.LegendBucklerBash),
-		::Legends.Actives.getID(::Legends.Active.LegendNinetailsDisarm)
+		::Legends.Actives.getID(::Legends.Active.LegendNinetailsDisarm),
+		::Legends.Actives.getID(::Legends.Active.LegendWarforkDisarm)
 	]);
 
 	local getBestTarget = o.getBestTarget;

@@ -16,12 +16,12 @@
 }
 
 ::Legends.EventList.changeHitpoints <- function (_bro, _value) {
-	_bro.getBaseProperties().Hitpoints += value;
+	_bro.getBaseProperties().Hitpoints += _value;
 	return ::Legends.EventList.changeStat(_bro.getName(), _value, "ui/icons/health.png", "Hitpoints");
 }
 
 ::Legends.EventList.changeResolve <- function (_bro, _value) {
-	_bro.getBaseProperties().Bravery += value;
+	_bro.getBaseProperties().Bravery += _value;
 	return ::Legends.EventList.changeStat(_bro.getName(), _value, "ui/icons/bravery.png", "Resolve");
 }
 
@@ -58,7 +58,7 @@
 ::Legends.EventList.changeMood <- function (_bro, _value = 0, _cause = "") {
 	if (_value > 0)
 		_bro.improveMood(_value, _cause);
-	else if (value < 0)
+	else if (_value < 0)
 		_bro.worsenMood(_value * -1.0, _cause);
 	return {
 		id = 10,
@@ -84,4 +84,32 @@
 		icon = "ui/icons/days_wounded.png",
 		text = ::format(::Legends.EventList.LightWound, _bro.getName())
 	};
+}
+
+::Legends.EventList.addItems <- function (_itemList, _stash = null,  _prefix = "You gain ") {
+	if (_stash != null)
+		_stash.makeEmptySlots(_itemList.len());
+	local grouped = {};
+	foreach (item in _itemList) {
+		if (_stash != null)
+			_stash.add(item);
+		if (item.getID() in grouped) {
+			grouped[item.getID()].count++;
+			continue;
+		}
+		grouped[item.getID()] <- {
+			item = item,
+			count = 1
+		};
+	}
+
+	local list = [];
+	foreach (entry in grouped) {
+		list.push({
+			id = 1,
+			icon = "ui/items/" + entry.item.getIcon(),
+			text = _prefix + (entry.count > 1 ? ::format("%dx ", entry.count) : "") + entry.item.getName()
+		});
+	}
+	return list;
 }

@@ -1,4 +1,4 @@
-::mods_hookExactClass("states/main_menu_state", function(o) 
+::mods_hookExactClass("states/main_menu_state", function(o)
 {
 
 	o.onSiblingAdded = function ( _stateName )
@@ -132,6 +132,10 @@
 
 				case 41:
 					tacticalState.setScenario(this.new("scripts/scenarios/tactical/legend_scenario_basilisks"));
+					break;
+
+				case 42:
+					tacticalState.setScenario(this.new("scripts/scenarios/tactical/legend_scenario_test_map"));
 					break;
 
 				default:
@@ -278,6 +282,11 @@
 				id = 40,
 				name = "Camp battle (Experiment)",
 				description = "[p=c][img]gfx/ui/events/event_05.png[/img][/p]\n[p=c]Taking the fight to an enemy may come with disadvantages, trial of wall combat[/p]"
+			},
+			{
+				id = 42,
+				name = "Test Map",
+				description = "[p=c][img]gfx/ui/events/event_28.png[/img][/p]\n[p=c]Custom test map.[/p]"
 			}
 		];
 

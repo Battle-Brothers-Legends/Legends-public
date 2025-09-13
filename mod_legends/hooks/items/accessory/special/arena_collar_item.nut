@@ -25,7 +25,7 @@
 	{
 		local skills = this.getContainer().getActor().getSkills();
 		foreach (skill in this.m.affectedSkills)
-		{	
+		{
 			if (skills.hasSkill("actives." + skill))
 			{
 				skills.removeByID("actives." + skill);
@@ -42,11 +42,17 @@
 	{
 		local skills = this.getContainer().getActor().getSkills();
 		foreach (skill in this.m.affectedSkills)
-		{	
+		{
 			if (skills.hasSkill("perk." + skill))
 			{
 				skills.add(this.new("scripts/skills/actives/" + skill));
 			}
 		}
+	}
+
+	o.isChangeableInBattle <- function () {
+		if (this.getCurrentSlotType() == ::Const.ItemSlot.Bag)
+			return false;
+		return this.item.isChangeableInBattle();
 	}
 });

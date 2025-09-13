@@ -1,1 +1,0 @@
-./unstaged_build.sh "c:\\Steam\\steamapps\\common\\Battle Brothers\\data" "Legends"

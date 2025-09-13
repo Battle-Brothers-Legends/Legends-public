@@ -39,7 +39,7 @@ this.legend_named_warhammer <- this.inherit("scripts/items/weapons/named/named_w
 		this.named_weapon.onEquip();
 		::Legends.Actives.grant(this, ::Legends.Active.Hammer);
 		::Legends.Actives.grant(this, ::Legends.Active.CrushArmor);
-		//::Legends.Actives.grant(this, ::Legends.Active.LegendHarvestRock);
+		::Legends.Actives.grant(this, ::Legends.Active.LegendPryArmor);
 	}
 
 });

@@ -126,6 +126,10 @@ this.legend_camp_contract <- ::inherit("scripts/contracts/contract", {
 				this.m.Payment.getPerCount()
 			],
 			[
+				"reward_item_count",
+				this.m.Payment.Items.len()
+			],
+			[
 				"employer",
 				this.m.EmployerID != 0 ? this.Tactical.getEntityByID(this.m.EmployerID).getName() : ""
 			],

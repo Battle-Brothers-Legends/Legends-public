@@ -323,6 +323,9 @@ enemies = r"""
 <sprite id="bust_spider_redback_head_01_dead" offsetY="30" f="64F6" f1="30" f2="-25" ic="FF20313D" width="169" height="139" img="entity\beasts\bust_spider_redback_head_01_dead.png" left="2" right="66" top="-62" bottom="6" />
 <sprite id="bust_spider_redback_legs_front" offsetY="35" ic="FF171C20" width="174" height="214" img="entity\beasts\bust_spider_redback_front.png" left="-7" right="61" top="-54" bottom="16" />
 <sprite id="bust_spider_redback_legs_back" offsetY="35" ic="FF12171C" width="174" height="214" img="entity\beasts\bust_spider_redback_legs_back.png" left="-47" right="17" top="-52" bottom="32" />
+<sprite id="bust_spider_cluster_body_01" offsetY="35" ic="FF212E38" width="174" height="214" img="entity\beasts\bust_spider_cluster_body_01.png" left="-41" right="71" top="-53" bottom="43" />
+<sprite id="bust_spider_cluster_body_01_wounded" offsetY="35" ic="FF212E38" width="174" height="214" img="entity\beasts\bust_spider_cluster_body_01_wounded.png" left="-41" right="71" top="-53" bottom="43" />
+<sprite id="bust_spider_cluster_body_01_dead" offsetY="30" f="64FF" ic="FF1A262B" width="169" height="139" img="entity\beasts\bust_spider_cluster_body_01_dead.png" left="-71" right="81" top="-64" bottom="50" />
 
 <sprite id="demon_alp_head" offsetX="-5" offsetY="35" ic="FF203653" width="174" height="214" img="entity\beasts\demon_alp_head.png" left="-58" right="38" top="-16" bottom="98" />
 <sprite id="demon_alp_head_dead" offsetY="35" f="64F6" ic="FF1E324C" width="185" height="157" img="entity\beasts\demon_alp_head_dead.png" left="-31" right="93" top="-70" bottom="28" />

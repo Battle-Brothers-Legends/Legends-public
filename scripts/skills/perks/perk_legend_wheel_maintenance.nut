@@ -10,12 +10,13 @@ this.perk_legend_wheel_maintenance <- this.inherit("scripts/skills/skill", {
 		this.m.IsHidden = false;
 	}
 
-	function onUpdate(_properties)
-	{
-		for( local i = 0; i < this.World.Assets.m.TerrainTypeSpeedMult.len(); i = ++i )
-		{
-			this.World.Assets.m.TerrainTypeSpeedMult[i] *= 1.05;
-		}
-	}
+	// handled in party.nut
+	// function onUpdate(_properties)
+	// {
+	// 	for( local i = 0; i < this.World.Assets.m.TerrainTypeSpeedMult.len(); i = ++i )
+	// 	{
+	// 		this.World.Assets.m.TerrainTypeSpeedMult[i] *= 1.05;
+	// 	}
+	// }
 
 });

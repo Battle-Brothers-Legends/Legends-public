@@ -1,7 +1,9 @@
 this.perk_legend_tools_drawers <- this.inherit("scripts/skills/skill", {
 	m = {
-		Amount = 10
+		Amount = 10,
+		ToolEfficiencyModifier = 4
 	},
+
 	function create()
 	{
 		::Const.Perks.setup(this.m, ::Legends.Perk.LegendToolsDrawers);
@@ -14,6 +16,10 @@ this.perk_legend_tools_drawers <- this.inherit("scripts/skills/skill", {
 	function getModifier()
 	{
 		return this.m.Amount;
+	}
+
+	function getToolEfficiencyModifier() {
+		return this.m.ToolEfficiencyModifier;
 	}
 
 	function onAdded()
