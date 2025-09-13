@@ -38,7 +38,7 @@
 	FatigueRecoveryRate = 30
 };
 
-::Const.Tactical.Actor.BarbarianChosen <- {
+::Const.Tactical.Actor.LegendBarbarianRunechosen <- {
 	XP = 800,
 	ActionPoints = 10,
 	Hitpoints = 250,
