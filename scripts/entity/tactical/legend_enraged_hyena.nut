@@ -35,18 +35,30 @@ this.legend_enraged_hyena <- this.inherit("scripts/entity/tactical/enemies/hyena
 		this.m.CurrentProperties = clone b;
 		this.m.ActionPointCosts = this.Const.DefaultMovementAPCost;
 		this.m.FatigueCosts = this.Const.DefaultMovementFatigueCost;
+
 		local body = this.getSprite("body");
 		body.setBrush("bust_hyena_0" + this.Math.rand(7, 8));
 		local head = this.getSprite("head");
 		head.setBrush("bust_hyena_0" + this.Math.rand(7, 8) + "_head");
+		if (this.Math.rand(0, 100) < 90) {
+			body.varySaturation(0.2);
+		}
+		if (this.Math.rand(0, 100) < 90) {
+			body.varyColor(0.05, 0.05, 0.05);
+		}
 
 		::Legends.Actives.grant(this, ::Legends.Active.LegendEnragedHyenaBite);
 		::Legends.Perks.grant(this, ::Legends.Perk.Berserk);
-		::Legends.Perks.grant(this, ::Legends.Perk.Overwhelm);
-		::Legends.Perks.grant(this, ::Legends.Perk.Relentless);
-		::Legends.Perks.grant(this, ::Legends.Perk.Nimble);
 		::Legends.Perks.grant(this, ::Legends.Perk.FastAdaption);
+		::Legends.Perks.grant(this, ::Legends.Perk.Fearsome);
+		::Legends.Perks.grant(this, ::Legends.Perk.Footwork);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendBattleheart);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendStrengthInNumbers);
+		::Legends.Perks.grant(this, ::Legends.Perk.Nimble);
+		::Legends.Perks.grant(this, ::Legends.Perk.Relentless);
+		::Legends.Perks.grant(this, ::Legends.Perk.Rotation);
+		::Legends.Perks.grant(this, ::Legends.Perk.Overwhelm);
+
 		if (::Legends.isLegendaryDifficulty()) {
 			::Legends.Perks.grant(this, ::Legends.Perk.BattleFlow);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendLastStand);
@@ -60,37 +72,10 @@ this.legend_enraged_hyena <- this.inherit("scripts/entity/tactical/enemies/hyena
 			return;
 		}
 
-		local dateToSkip = 0;
-		switch (this.World.Assets.getCombatDifficulty()) {
-			case this.Const.Difficulty.Easy:
-				dateToSkip = 125;
-				break;
-			case this.Const.Difficulty.Normal:
-				dateToSkip = 100;
-				break;
-			case this.Const.Difficulty.Hard:
-				dateToSkip = 75;
-				break;
-			case this.Const.Difficulty.Legendary:
-				dateToSkip = 50;
-				break;
-		}
+		::Legends.S.scaleBaseProperties(b);
 
 		// Helps testing, to be removed
 		b.MeleeSkill += 100;
-
-		if (this.World.getTime().Days >= dateToSkip) {
-			// Bonus is 1 every 10 days after dateToSkip, up to 50
-			local bonus = Math.min(50, this.Math.floor((this.World.getTime().Days - dateToSkip) / 10.0));
-			b.MeleeSkill += bonus;
-			b.MeleeDefense += this.Math.floor(bonus / 2);
-			b.RangedDefense += this.Math.floor(bonus / 2);
-			b.Hitpoints += this.Math.floor(bonus * 2);
-			b.Initiative += this.Math.floor(bonus);
-			b.Stamina += bonus;
-			b.Bravery += bonus;
-			b.FatigueRecoveryRate += this.Math.floor(bonus / 5);
-		}
 	}
 
 	function onDamageReceived(_attacker, _skill, _hitInfo) {
