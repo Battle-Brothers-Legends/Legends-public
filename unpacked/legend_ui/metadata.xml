@@ -239,6 +239,7 @@
 	<sprite id="dawg_orientation" ic="FF22200A" img="orientation\dawg_orientation.png" />
 	<sprite id="barbarian_pillager_orientation" ic="FF22200A" img="orientation\barbarian_pillager_orientation.png" />
 	<sprite id="barbarian_marauder_orientation" ic="FF22200A" img="orientation\barbarian_marauder_orientation.png" />
+	<sprite id="barbarian_runechosen_orientation" ic="FF22200A" img="orientation\barbarian_runechosen_orientation.png" />
 	<sprite id="goblin_harrier_orientation" ic="FF22200A" img="orientation\goblin_harrier_orientation.png" />
 	<sprite id="goblin_plunderer_orientation" ic="FF22200A" img="orientation\goblin_plunderer_orientation.png" />
 	<sprite id="goblin_witchdoctor_orientation" ic="FF22200A" img="orientation\goblin_witchdoctor_orientation.png" />
