@@ -83,7 +83,7 @@ this.legend_enraged_hyena_bite_effect <- this.inherit("scripts/skills/skill", {
 
 	function onTurnStart() {
 		// Check if the hyena is still alive and adjacent
-		if (this.m.Hyena == null || !this.m.Hyena.isAlive() || this.m.Hyena.getHitpoints() <= 0) {
+		if (::Legends.S.skillEntityAliveCheck(this.m.Hyena)) {
 			// Hyena is dead or invalid, free the victim
 			this.removeSelf();
 			return;
