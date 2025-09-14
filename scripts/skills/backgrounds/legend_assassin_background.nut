@@ -98,7 +98,7 @@ this.legend_assassin_background <- this.inherit("scripts/skills/backgrounds/char
 				::Legends.Perk.Backstabber,
 				::Legends.Perk.LegendDebilitate,
 				::Legends.Perk.LegendOnslaught,
-				::Legends.Perk.LegendGrapple,
+				//::Legends.Perk.LegendGrapple,
 				::Legends.Perk.LegendTrueBeliever,
 				::Legends.Perk.LegendPrepareBleed,
 				::Legends.Perk.LegendEscapeArtist,
