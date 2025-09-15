@@ -69,169 +69,249 @@ this.legend_enraged_hyena_bite_skill <- this.inherit("scripts/skills/skill", {
 	function onUpdate(_properties) {
 		_properties.DamageRegularMin += 25;
 		_properties.DamageRegularMax += 40;
-		_properties.DamageArmorMult *= 0.8;
+		_properties.DamageArmorMult *= 1.6;
 	}
 
-	function validateLeapPath(_originTile, _targetTile, _distance) {
-		local dir = _originTile.getDirectionTo(_targetTile);
-		local tile1 = null;
-		if (_originTile.hasNextTile(dir)) {
-			tile1 = _originTile.getNextTile(dir);
-		}
-		if (tile1 == null || !tile1.IsEmpty || tile1.IsOccupiedByActor) {
-			::logDebug("legend_enraged_hyena_bite_skill: Invalid 1st tile (null/occupied/not empty)");
-			return false;
-		}
-		if (this.Math.abs(tile1.Level - _originTile.Level) > 1) {
-			::logDebug("legend_enraged_hyena_bite_skill: Height difference origin -> tile1 too large (" + _originTile.Level + " -> " + tile1.Level + ")");
-			return false;
-		}
-		if (_distance == 2) {
-			return true;
+	function formatTile(_t) {
+		return "(x=" + _t.X + " y=" + _t.Y + ")";
+	}
+
+	function validateLeapPath(_originTile, _targetTile) {
+		// ::logDebug("legend_enraged_hyena_bite_skill: validateLeapPath _originTile=" + this.formatTile(_originTile) + " _targetTile=" + this.formatTile(_targetTile));
+		local distance = _originTile.getDistanceTo(_targetTile);
+		if (distance < this.m.MinRange || distance > this.m.MaxRange) {
+			return null;
 		}
 
-		local tile2 = null;
-		if (tile1.hasNextTile(dir)) {
-			tile2 = tile1.getNextTile(dir);
-		}
-		if (tile2 == null || !tile2.IsEmpty || tile2.IsOccupiedByActor) {
-			::logDebug("legend_enraged_hyena_bite_skill: Invalid 2nd tile (null/occupied/not empty)");
-			return false;
-		}
-		if (this.Math.abs(tile2.Level - tile1.Level) > 1) {
-			::logDebug("legend_enraged_hyena_bite_skill: Height difference tile1 -> tile2 too large (" + tile1.Level + " -> " + tile2.Level + ")");
-			return false;
-		}
-		if (this.Math.abs(_targetTile.Level - tile2.Level) > 1) {
-			::logDebug("legend_enraged_hyena_bite_skill: Height difference tile2 -> target too large (" + tile2.Level + " -> " + _targetTile.Level + ")");
-			return false;
+		local path = [];
+		local current = _originTile;
+		for (local i = 0; i < distance - 1; i++) {
+			local dir = current.getDirectionTo(_targetTile);
+
+			if (!current.hasNextTile(dir)) {
+				// ::logDebug("legend_enraged_hyena_bite_skill: validateLeapPath current has no next tile in dir=" + dir);
+				return null;
+			}
+
+			local next = current.getNextTile(dir);
+			if (!this.validateNextTile(current, next)) {
+				// ::logDebug("legend_enraged_hyena_bite_skill: validateLeapPath next tile is not valid: " + this.formatTile(next));
+				return null;
+			}
+
+			path.append(next);
+			current = next;
 		}
 
+		// Next tile should be the _targetTile
+		local dir = current.getDirectionTo(_targetTile);
+		if (!current.hasNextTile(dir)) {
+			// ::logDebug("legend_enraged_hyena_bite_skill: validateLeapPath current has no next tile in dir=" + dir);
+			return null;
+		}
+		if (!current.getNextTile(dir).isSameTileAs(_targetTile)) {
+			// ::logDebug("legend_enraged_hyena_bite_skill: validateLeapPath next tile is not target tile: " + this.formatTile(current.getNextTile(dir)) + " != " + this.formatTile(_targetTile));
+			return null;
+		}
+
+		// Also ensure the final step to the target respects the height difference
+		if (this.Math.abs(_targetTile.Level - current.Level) > 1) {
+			// ::logDebug("legend_enraged_hyena_bite_skill: validateLeapPath target tile level difference too high: " + _targetTile.Level + " vs " + current.Level);
+			return null;
+		}
+
+		return path;
+	}
+
+	function validateNextTile(_originTile, _targetTile) {
+		if (_targetTile == null || !_targetTile.IsEmpty || _targetTile.IsOccupiedByActor) {
+			return false;
+		}
+		if (this.Math.abs(_targetTile.Level - _originTile.Level) > 1) {
+			return false;
+		}
 		return true;
 	}
 
-	// TODO needs to be flexible on directionand allow leaping diagonally
-	// TODO must not be engaged in melee
 	function onVerifyTarget(_originTile, _targetTile) {
-		::logDebug("legend_enraged_hyena_bite_skill: onVerifyTarget _originTile= x=" + _originTile.X + " y=" + _originTile.Y + " ; _targetTile= x=" + _targetTile.X + " y=" + _targetTile.Y);
+		// ::logDebug("legend_enraged_hyena_bite_skill: onVerifyTarget _originTile=" + this.formatTile(_originTile) + " _targetTile=" + this.formatTile(_targetTile));
 
 		if (!this.skill.onVerifyTarget(_originTile, _targetTile)) {
-			::logDebug("legend_enraged_hyena_bite_skill: Base skill target verification failed");
+			// ::logDebug("legend_enraged_hyena_bite_skill: onVerifyTarget failed");
 			return false;
 		}
 
 		local distance = _originTile.getDistanceTo(_targetTile);
-		if (distance != 2 && distance != 3) {
-			::logDebug("legend_enraged_hyena_bite_skill: Target distance " + distance + " is invalid");
-			return false;
-		}
 
 		local target = _targetTile.getEntity();
 		if (::Legends.S.skillEntityAliveCheck(target)) {
-			::logDebug("legend_enraged_hyena_bite_skill: Target is not alive");
+			// ::logDebug("legend_enraged_hyena_bite_skill: Target is not alive");
 			return false;
 		}
 
 		if (target.getCurrentProperties().IsImmuneToKnockBackAndGrab) {
-			::logDebug("legend_enraged_hyena_bite_skill: Target is immune to knockback and grab");
+			// ::logDebug("legend_enraged_hyena_bite_skill: Target is immune to knockback and grab");
 			return false;
 		}
 
-		// Ensure exactly one or two empty tiles in between to leap into, max height difference 1
-		if (!this.validateLeapPath(_originTile, _targetTile, distance)) {
+		local path = this.validateLeapPath(_originTile, _targetTile);
+		// ::logDebug("legend_enraged_hyena_bite_skill: onVerifyTarget path=" + path);
+		if (path == null || path.len() == 0) {
+			// ::logDebug("legend_enraged_hyena_bite_skill: Invalid leap path");
 			return false;
 		}
 
-		::logDebug("legend_enraged_hyena_bite_skill: Valid target at distance " + distance);
+		// local pathString = "";
+		// for (local i = 0; i < path.len(); i++) {
+		// 	pathString += "x=" + path[i].X + " y=" + path[i].Y;
+		// 	if (i < path.len() - 1) {
+		// 		pathString += " -> ";
+		// 	}
+		// }
+		// ::logDebug("legend_enraged_hyena_bite_skill: Valid leap path: " + pathString);
 		return true;
 	}
 
-	function onUse(_user, _targetTile) {
-		::logDebug("legend_enraged_hyena_bite_skill: onUse called");
+	function isUsable() {
+		if (!this.skill.isUsable()) {
+			return false;
+		}
+		local actor = this.getContainer().getActor();
+		if (actor == null) {
+			return false;
+		}
+		if (actor.getTile() != null && actor.getTile().hasZoneOfControlOtherThan(actor.getAlliedFactions())) {
+			return false;
+		}
+		if (actor.getFlags() != null && actor.getFlags().has("LegendEnragedHyenaHoldingVictim")) {
+			return false;
+		}
+		return true;
+	}
 
-		local originTile = _user.getTile();
+	function onUse(_actor, _targetTile) {
+		// ::logDebug("legend_enraged_hyena_bite_skill: onUse _actor= " + _actor + " ; _targetTile= x=" + _targetTile.X + " y=" + _targetTile.Y);
+		local originTile = _actor.getTile();
 		local target = _targetTile.getEntity();
-		local distance = originTile.getDistanceTo(_targetTile);
-		local dir = originTile.getDirectionTo(_targetTile);
 
-		::logDebug("legend_enraged_hyena_bite_skill: onUse originTile= x=" + originTile.X + " y=" + originTile.Y + " ; targetTile x=" + _targetTile.X + " y=" + _targetTile.Y + " distance= " + distance + " dir= " + dir);
-
-		if (!this.validateLeapPath(originTile, _targetTile, distance)) {
+		// Paranoid checks
+		local path = this.validateLeapPath(originTile, _targetTile);
+		if (path == null || path.len() == 0) {
 			::logError("legend_enraged_hyena_bite_skill: Invalid leap path on use");
 			return false;
 		}
-
-		// Get the intermediate tiles for leap destination
-		local tile1 = originTile.getNextTile(dir);
-		if (tile1 != null) {
-			::logDebug("tile1= x=" + tile1.X + " y=" + tile1.Y);
-		}
-		local tile2 = null;
-		if (distance == 3) {
-			tile2 = tile1.getNextTile(dir);
-			if (tile2 != null) {
-				::logDebug("tile2= x=" + tile2.X + " y=" + tile2.Y);
+		for (local i = 0; i < path.len(); i++) {
+			if (path[i] == null || !path[i].IsEmpty || path[i].IsOccupiedByActor) {
+				::logError("legend_enraged_hyena_bite_skill: tile " + i + " became unavailable");
+				return false;
 			}
 		}
 
-		// Double-check tiles are still valid right before execution
-		if (tile1 == null || !tile1.IsEmpty || tile1.IsOccupiedByActor) {
-			::logError("legend_enraged_hyena_bite_skill: tile1 became unavailable");
-			return false;
-		}
-		if (distance == 3 && (tile2 == null || !tile2.IsEmpty || tile2.IsOccupiedByActor)) {
-			::logError("legend_enraged_hyena_bite_skill: tile2 became unavailable");
-			return false;
+		if (!_actor.isHiddenToPlayer()) {
+			this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(_actor) + " leaps towards " + this.Const.UI.getColorizedEntityName(target));
 		}
 
-		local leapDest = distance == 2 ? tile1 : tile2;
-		if (!_user.isHiddenToPlayer()) {
-			this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(_user) + " leaps towards " + this.Const.UI.getColorizedEntityName(target));
+		local tag = {
+			skill = this,
+			actor = _actor,
+			target = target,
+			originTile = originTile,
+			tile1 = path[0],
+			tile2 = path[path.len() - 1],
+		};
+
+		this.onLeapStart(tag);
+		return true;
+	}
+
+	function onLeapStart(_tag) {
+		for (local i = 0; i < Const.Tactical.DustParticles.len(); i++) {
+			Tactical.spawnParticleEffect(
+				false,
+				Const.Tactical.DustParticles[i].Brushes,
+				_tag.actor.getTile(),
+				Const.Tactical.DustParticles[i].Delay,
+				Const.Tactical.DustParticles[i].Quantity,
+				Const.Tactical.DustParticles[i].LifeTimeQuantity,
+				Const.Tactical.DustParticles[i].SpawnRate,
+				Const.Tactical.DustParticles[i].Stages
+			);
 		}
 
 		// Leap to destination
-		::logDebug("legend_enraged_hyena_bite_skill: Leaping to x=" + leapDest.X + " y=" + leapDest.Y);
-		_user.setCurrentMovementType(this.Const.Tactical.MovementType.Involuntary);
-		this.Tactical.getNavigator().teleport(_user, leapDest, null, null, true, 0.0);
-		::logDebug("legend_enraged_hyena_bite_skill: Hyena position after leap x=" + _user.getTile().X + " y=" + _user.getTile().Y);
+		_tag.actor.setCurrentMovementType(this.Const.Tactical.MovementType.Involuntary);
+		this.Tactical.getNavigator().teleport(_tag.actor, _tag.tile2, null, null, false, 3.0);
 
-		// Attack from current (leaped) position
-		::logDebug("legend_enraged_hyena_bite_skill: Attacking from leaped position");
-		if (::Legends.S.skillEntityAliveCheck(target)) {
-			return true;
+		// Schedule attack
+		this.Time.scheduleEvent(this.TimeUnit.Virtual, 200, this.onAttackStart.bindenv(this), _tag);
+	}
+
+	function onAttackStart(_tag) {
+		// ::logDebug("legend_enraged_hyena_bite_skill: onAttackStart _tag= " + _tag);
+
+		if (::Legends.S.skillEntityAliveCheck(_tag.target)) {
+			::logError("legend_enraged_hyena_bite_skill: Target is no longer valid");
+			return;
 		}
-		local success = this.attackEntity(_user, target);
-		if (!success || target.getHitpoints() <= 0 || ::Legends.S.skillEntityAliveCheck(target)) {
-			::logDebug("legend_enraged_hyena_bite_skill: Attack missed or target is dead");
-			return success;
+		local success = _tag.skill.attackEntity(_tag.actor, _tag.target);
+		if (!success || _tag.target.getHitpoints() <= 0 || ::Legends.S.skillEntityAliveCheck(_tag.target)) {
+			// ::logDebug("legend_enraged_hyena_bite_skill: Attack missed or target is dead");
+			return;
 		}
 
-		// Retreat hyena to original tile
-		::logDebug("legend_enraged_hyena_bite_skill: Retreating to original position");
-		_user.setCurrentMovementType(this.Const.Tactical.MovementType.Involuntary);
-		this.Tactical.getNavigator().teleport(_user, originTile, null, null, true, 0.0);
-		::logDebug("legend_enraged_hyena_bite_skill: Hyena position after retreat x=" + _user.getTile().X + " y=" + _user.getTile().Y);
+		// Schedule retreat
+		this.Time.scheduleEvent(this.TimeUnit.Virtual, 300, this.onRetreatStart.bindenv(this), _tag);
+	}
 
-		// Drag target to tile1
-		::logDebug("legend_enraged_hyena_bite_skill: Dragging target");
-		target.setCurrentMovementType(this.Const.Tactical.MovementType.Involuntary);
-		this.Tactical.getNavigator().teleport(target, tile1, null, null, true, 0.0);
-		if (!_user.isHiddenToPlayer()) {
-			this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(_user) + " drags " + this.Const.UI.getColorizedEntityName(target) + " back!");
+	function onRetreatStart(_tag) {
+		::logDebug("legend_enraged_hyena_bite_skill: onRetreatStart _tag= " + _tag);
+
+		for (local i = 0; i < Const.Tactical.DustParticles.len(); i++) {
+			Tactical.spawnParticleEffect(
+				false,
+				Const.Tactical.DustParticles[i].Brushes,
+				_tag.actor.getTile(),
+				Const.Tactical.DustParticles[i].Delay,
+				Const.Tactical.DustParticles[i].Quantity,
+				Const.Tactical.DustParticles[i].LifeTimeQuantity,
+				Const.Tactical.DustParticles[i].SpawnRate,
+				Const.Tactical.DustParticles[i].Stages
+			);
 		}
-		::logDebug("legend_enraged_hyena_bite_skill: Target position after dragging x=" + target.getTile().X + " y=" + target.getTile().Y);
 
-		::logDebug("legend_enraged_hyena_bite_skill: Applying grab effect");
-		this.spawnIcon("legend_enraged_hyena_bite_effect", target.getTile());
-		::Legends.Effects.grant(target, ::Legends.Effect.LegendEnragedHyenaBite, function(_effect) {
+		// Retreat to original tile
+		_tag.actor.setCurrentMovementType(this.Const.Tactical.MovementType.Involuntary);
+		this.Tactical.getNavigator().teleport(_tag.actor, _tag.originTile, null, null, false, 2.0);
+
+		// Schedule drag
+		this.Time.scheduleEvent(this.TimeUnit.Virtual, 100, this.onDragStart.bindenv(this), _tag);
+	}
+
+	function onDragStart(_tag) {
+		// ::logDebug("legend_enraged_hyena_bite_skill: onDragStart _tag= " + _tag);
+
+		if (::Legends.S.skillEntityAliveCheck(_tag.target)) {
+			::logError("legend_enraged_hyena_bite_skill: Target is no longer valid");
+			return;
+		}
+
+		_tag.target.setCurrentMovementType(this.Const.Tactical.MovementType.Involuntary);
+		this.Tactical.getNavigator().teleport(_tag.target, _tag.tile1, null, null, false, 1.0);
+
+		if (!_tag.actor.isHiddenToPlayer()) {
+			this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(_tag.actor) + " drags " + this.Const.UI.getColorizedEntityName(_tag.target) + " back!");
+		}
+
+		// Apply grab effect and spawn icon
+		_tag.skill.spawnIcon("legend_enraged_hyena_bite_effect", _tag.target.getTile());
+		::Legends.Effects.grant(_tag.target, ::Legends.Effect.LegendEnragedHyenaBite, function(_effect) {
 			if ("setHyena" in _effect) {
-				_effect.setHyena(_user);
+				_effect.setHyena(_tag.actor);
 			} else {
 				::logError("legend_enraged_hyena_bite_skill: effect has no setHyena function");
 			}
 		}.bindenv(this));
 
-		return success;
 	}
 
 });

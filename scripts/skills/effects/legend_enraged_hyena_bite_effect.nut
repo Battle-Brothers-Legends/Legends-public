@@ -73,11 +73,31 @@ this.legend_enraged_hyena_bite_effect <- this.inherit("scripts/skills/skill", {
 		if (!this.getContainer().getActor().isHiddenToPlayer()) {
 			this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(this.getContainer().getActor()) + " is locked in the hyena's jaws!");
 		}
+
+		// Tag hyena as holding a victim
+		if (this.m.Hyena == null) {
+			::logError("legend_enraged_hyena_bite_effect: onAdded called but Hyena is null");
+		} else {
+			local flags = this.m.Hyena.getFlags();
+			if (flags != null) {
+				flags.set("LegendEnragedHyenaHoldingVictim", true);
+			}
+		}
 	}
 
 	function onRemoved() {
 		if (!this.getContainer().getActor().isHiddenToPlayer()) {
 			this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(this.getContainer().getActor()) + " breaks free from the hyena's bite!");
+		}
+
+		// Clear hyena as holding a victim
+		if (this.m.Hyena == null) {
+			::logError("legend_enraged_hyena_bite_effect: onRemoved called but Hyena is null");
+		} else {
+			local flags = this.m.Hyena.getFlags();
+			if (flags != null) {
+				flags.remove("LegendEnragedHyenaHoldingVictim");
+			}
 		}
 	}
 
