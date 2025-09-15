@@ -55,8 +55,9 @@ this.legend_enraged_hyena_agent <- this.inherit("scripts/ai/tactical/agents/hyen
 		}
 
 		if (found) {
-			this.m.Properties.BehaviorMult[this.Const.AI.Behavior.ID.AttackDefault] = 1.25;
-			this.m.Properties.BehaviorMult[this.Const.AI.Behavior.ID.EngageMelee] = 0.9;
+			// TODO: Not sure that's the best way to do it
+			this.m.Properties.BehaviorMult[this.Const.AI.Behavior.ID.Charge] = 1.25;
+			this.m.Properties.BehaviorMult[this.Const.AI.Behavior.ID.EngageMelee] = 1.25;
 		}
 
 		// TODO: should prioritize disengaging then biting if it doesn't have a bite victim
