@@ -10,7 +10,7 @@ this.legend_enraged_hyena_agent <- this.inherit("scripts/ai/tactical/agents/hyen
 	function onAddBehaviors() {
 		this.hyena_agent.onAddBehaviors();
 		this.addBehavior(this.new("scripts/ai/tactical/behaviors/ai_charge"));
-		this.addBehavior(this.new("scripts/ai/tactical/behaviors/ai_disengage"));
+		// this.addBehavior(this.new("scripts/ai/tactical/behaviors/ai_disengage"));
 		this.addBehavior(this.new("scripts/ai/tactical/behaviors/ai_defend_rotation"));
 
 		// Needs Charge to properly position, and EngageMelee to consider using bite
@@ -55,9 +55,7 @@ this.legend_enraged_hyena_agent <- this.inherit("scripts/ai/tactical/agents/hyen
 		}
 
 		if (found) {
-			// TODO: Not sure that's the best way to do it
-			this.m.Properties.BehaviorMult[this.Const.AI.Behavior.ID.Charge] = 1.25;
-			this.m.Properties.BehaviorMult[this.Const.AI.Behavior.ID.EngageMelee] = 1.25;
+			this.m.Properties.BehaviorMult[this.Const.AI.Behavior.ID.AttackDefault] = 1.25;
 		}
 
 		// TODO: should prioritize disengaging then biting if it doesn't have a bite victim
