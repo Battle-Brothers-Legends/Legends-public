@@ -334,3 +334,23 @@
 		0
 	]
 }
+
+::Const.Tactical.Actor.LegendEnragedHyena <- {
+	XP = 400,
+	ActionPoints = 14,
+	Hitpoints = 240,
+	Bravery = 80,
+	Stamina = 200,
+	MeleeSkill = 95,
+	RangedSkill = 0,
+	MeleeDefense = 20,
+	RangedDefense = 20,
+	Initiative = 160,
+	FatigueEffectMult = 1.0,
+	MoraleEffectMult = 1.0,
+	FatigueRecoveryRate = 25,
+	Armor = [
+		80,
+		80
+	]
+};

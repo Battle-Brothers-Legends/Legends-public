@@ -26,7 +26,7 @@ this.legend_enraged_hyena <- this.inherit("scripts/entity/tactical/enemies/hyena
 		this.setRenderCallbackEnabled(true);
 
 		local b = this.m.BaseProperties;
-		b.setValues(this.Const.Tactical.Actor.FrenziedHyena);
+		b.setValues(this.Const.Tactical.Actor.LegendEnragedHyena);
 		b.IsAffectedByNight = false;
 		b.IsImmuneToDisarm = true;
 		b.DamageTotalMult = 1.25;
@@ -73,9 +73,6 @@ this.legend_enraged_hyena <- this.inherit("scripts/entity/tactical/enemies/hyena
 		}
 
 		::Legends.S.scaleBaseProperties(b);
-
-		// Helps testing, to be removed
-		b.MeleeSkill += 100;
 	}
 
 	function onDamageReceived(_attacker, _skill, _hitInfo) {
