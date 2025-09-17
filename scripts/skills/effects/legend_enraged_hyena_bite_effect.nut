@@ -69,11 +69,16 @@ this.legend_enraged_hyena_bite_effect <- this.inherit("scripts/skills/skill", {
 	}
 
 	function onAdded() {
-		// TODO: Add visual effect showing the character is held
 		local actor = this.getContainer().getActor();
 		if (!actor.isHiddenToPlayer()) {
 			this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(this.getContainer().getActor()) + " is locked in the hyena's jaws!");
 		}
+
+		if (!actor.hasSprite("status_bite")) {
+			actor.addSprite("status_bite").setBrush("legend_enraged_hyena_bite_effect");
+		}
+		actor.getSprite("status_bite").Visible = true;
+		actor.setDirty(true);
 
 		// Tag actor as being held
 		actor.getFlags().set("LegendEnragedHyenaBite", true);
@@ -94,6 +99,11 @@ this.legend_enraged_hyena_bite_effect <- this.inherit("scripts/skills/skill", {
 
 		// Clear actor as being held
 		actor.getFlags().remove("LegendEnragedHyenaBite");
+
+		if (actor.hasSprite("status_bite")) {
+			actor.getSprite("status_bite").Visible = false;
+			actor.setDirty(true);
+		}
 
 		// Clear hyena as holding a victim
 		if (this.m.Hyena == null) {
