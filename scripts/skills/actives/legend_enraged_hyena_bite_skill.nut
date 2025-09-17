@@ -141,8 +141,6 @@ this.legend_enraged_hyena_bite_skill <- this.inherit("scripts/skills/skill", {
 			return false;
 		}
 
-		local distance = _originTile.getDistanceTo(_targetTile);
-
 		local target = _targetTile.getEntity();
 		if (::Legends.S.skillEntityAliveCheck(target)) {
 			// ::logDebug("legend_enraged_hyena_bite_skill: Target is not alive");
@@ -151,6 +149,11 @@ this.legend_enraged_hyena_bite_skill <- this.inherit("scripts/skills/skill", {
 
 		if (target.getCurrentProperties().IsImmuneToKnockBackAndGrab) {
 			// ::logDebug("legend_enraged_hyena_bite_skill: Target is immune to knockback and grab");
+			return false;
+		}
+
+		if (target.getFlags().has("LegendEnragedHyenaBite")) {
+			// ::logDebug("legend_enraged_hyena_bite_skill: Target is already held by another hyena");
 			return false;
 		}
 

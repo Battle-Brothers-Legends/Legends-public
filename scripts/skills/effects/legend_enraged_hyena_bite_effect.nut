@@ -70,34 +70,36 @@ this.legend_enraged_hyena_bite_effect <- this.inherit("scripts/skills/skill", {
 
 	function onAdded() {
 		// TODO: Add visual effect showing the character is held
-		if (!this.getContainer().getActor().isHiddenToPlayer()) {
+		local actor = this.getContainer().getActor();
+		if (!actor.isHiddenToPlayer()) {
 			this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(this.getContainer().getActor()) + " is locked in the hyena's jaws!");
 		}
+
+		// Tag actor as being held
+		actor.getFlags().set("LegendEnragedHyenaBite", true);
 
 		// Tag hyena as holding a victim
 		if (this.m.Hyena == null) {
 			::logError("legend_enraged_hyena_bite_effect: onAdded called but Hyena is null");
 		} else {
-			local flags = this.m.Hyena.getFlags();
-			if (flags != null) {
-				flags.set("LegendEnragedHyenaHoldingVictim", true);
-			}
+			this.m.Hyena.getFlags().set("LegendEnragedHyenaHoldingVictim", true);
 		}
 	}
 
 	function onRemoved() {
-		if (!this.getContainer().getActor().isHiddenToPlayer()) {
+		local actor = this.getContainer().getActor();
+		if (!actor.isHiddenToPlayer()) {
 			this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(this.getContainer().getActor()) + " breaks free from the hyena's bite!");
 		}
+
+		// Clear actor as being held
+		actor.getFlags().remove("LegendEnragedHyenaBite");
 
 		// Clear hyena as holding a victim
 		if (this.m.Hyena == null) {
 			::logError("legend_enraged_hyena_bite_effect: onRemoved called but Hyena is null");
 		} else {
-			local flags = this.m.Hyena.getFlags();
-			if (flags != null) {
-				flags.remove("LegendEnragedHyenaHoldingVictim");
-			}
+			this.m.Hyena.getFlags().remove("LegendEnragedHyenaHoldingVictim");
 		}
 	}
 
