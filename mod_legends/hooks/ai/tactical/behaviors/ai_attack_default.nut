@@ -23,6 +23,5 @@
 		::Legends.Actives.getID(::Legends.Active.LegendBasiliskSentryFowleye),
 		::Legends.Actives.getID(::Legends.Active.LegendDawgBite),
 		::Legends.Actives.getID(::Legends.Active.LegendHeartseeker),
-		::Legends.Actives.getID(::Legends.Active.LegendEnragedHyenaBite),
 	]);
 });
