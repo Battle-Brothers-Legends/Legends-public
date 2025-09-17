@@ -5,17 +5,24 @@ this.legend_enraged_hyena_agent <- this.inherit("scripts/ai/tactical/agents/hyen
 	function create() {
 		this.hyena_agent.create();
 		this.m.ID = ::Const.AI.Agent.ID.LegendEnragedHyena;
+		// Try to help force ranged position for bite
+		this.m.Properties.EngageRangeMin = 1;
+		this.m.Properties.EngageRangeMax = 3;
+		this.m.Properties.EngageRangeIdeal = 2;
+		// Reduce flanking behavior (base = 4.0)
+		this.m.Properties.EngageFlankingMult = 1.0;
+		// this.m.Properties.EngageLockDownTargetMult = 3.0;
+		// Make long detours less attractive
+		// this.m.Properties.EngageHeatCostMult = 1.0;
 	}
 
 	function onAddBehaviors() {
 		this.hyena_agent.onAddBehaviors();
-		this.addBehavior(this.new("scripts/ai/tactical/behaviors/ai_charge"));
 		// this.addBehavior(this.new("scripts/ai/tactical/behaviors/ai_disengage"));
+		// Seems thematic to have hyenas bite, retreat, let others close in, then bite again
 		this.addBehavior(this.new("scripts/ai/tactical/behaviors/ai_defend_rotation"));
 
-		// Needs Charge to properly position, and EngageMelee to consider using bite
 		this.addBite(this.Const.AI.Behavior.ID.EngageMelee);
-		this.addBite(this.Const.AI.Behavior.ID.Charge);
 	}
 
 	function addBite(_behaviorID) {
@@ -29,6 +36,9 @@ this.legend_enraged_hyena_agent <- this.inherit("scripts/ai/tactical/agents/hyen
 
 	function onUpdate() {
 		this.hyena_agent.onUpdate();
+		this.m.Properties.EngageRangeMin = 1;
+		this.m.Properties.EngageRangeMax = 3;
+		this.m.Properties.EngageRangeIdeal = 2;
 
 		local actor = this.getActor();
 		if (actor == null || !actor.isAlive()) {
@@ -54,11 +64,10 @@ this.legend_enraged_hyena_agent <- this.inherit("scripts/ai/tactical/agents/hyen
 			}
 		}
 
-		if (found) {
-			this.m.Properties.BehaviorMult[this.Const.AI.Behavior.ID.AttackDefault] = 1.25;
-		}
+		local mult = found ? 2.0 : 1.0;
+		this.m.Properties.BehaviorMult[this.Const.AI.Behavior.ID.AttackDefault] = mult;
 
-		// TODO: should prioritize disengaging then biting if it doesn't have a bite victim
+		// TODO: maybe should prioritize disengaging then biting if it doesn't have a bite victim?
 	}
 
 });
