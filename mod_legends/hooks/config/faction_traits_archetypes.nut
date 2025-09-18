@@ -91,7 +91,7 @@
 			Description = "House %noblehousename% works in the dark to protect its lands. The agents of %noblehousename%  have eyes in every shady corner and ears in every wall, inside and outside their borders. Peace is maintained through their lands, because %noblehousename% is always watching.",
 			Mottos = [
 				"Eyes on all",
-				"Security through surveilence",
+				"Security through surveillance",
 				"Total information awareness",
 				"Report thy neighbour, to protect him",
 				"All seeing",
@@ -109,7 +109,7 @@
 				this.Const.FactionTrait.Collector,
 				this.Const.FactionTrait.Tyrant
 			],
-			Description = "The house of %noblehousename% is well known for its jealously guarded horde of treasures. The horded treasures of %noblehousename% are whispered through the lands, and still they crave more.",
+			Description = "The house of %noblehousename% is well known for its jealously guarded horde of treasures. The hoarded treasures of %noblehousename% are whispered through the lands, and still they crave more.",
 			Mottos = [
 				"One of everything",
 				"To the zoo",
@@ -128,7 +128,7 @@
 				this.Const.FactionTrait.ManOfThePeople,
 				this.Const.FactionTrait.Schemer
 			],
-			Description = "The house of %noblehousename% subtley manipulates events for the greater good. From their home in %factionfortressname%, they strategise to bring wellbeing to the common man. In a brutal world they are a faint glimmer of a better world.",
+			Description = "The house of %noblehousename% subtly manipulates events for the greater good. From their home in %factionfortressname%, they strategise to bring wellbeing to the common man. In a brutal world they are a faint glimmer of a better world.",
 			Mottos = [
 				"Plan for the future",
 				"Nurture with foresight",
@@ -154,7 +154,7 @@
 				"Our own first",
 				"We are the chosen",
 				"The heathens shall fall",
-				"Whats yours is ours",
+				"What's yours is ours",
 				"Anything for our people",
 				"Blood for my people",
 				"Bringing it home",
@@ -205,7 +205,7 @@
 				this.Const.FactionTrait.Marauder,
 				this.Const.FactionTrait.Schemer
 			],
-			Description = "Most members of the house of %noblehousename% live secluded behind thick doors and barred windows and some of them have not been seen for years. Rumor has it that their noble blood is plagued with madness and insanity but no ordinary man dares to utter such claims in fear of their vengeance. Other noble houses mainly avoid contact to house %noblehousename% as guests may be greeted with open arms as well as crossbow bolts.",
+			Description = "Most members of the house of %noblehousename% live secluded behind thick doors and barred windows and some of them have not been seen for years. Rumor has it that their noble blood is plagued with madness and insanity but no ordinary man dares to utter such claims in fear of their vengeance. Other noble houses mainly avoid contact with house %noblehousename% as guests may be greeted with open arms as well as crossbow bolts.",
 			Mottos = [
 				"Nothing in life is permanent",
 				"Consider the end",
