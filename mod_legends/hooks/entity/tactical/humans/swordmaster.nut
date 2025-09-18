@@ -23,12 +23,15 @@
 
 		if (::Legends.isLegendaryDifficulty())
 		{
-			::Legends.Perks.grant(this, ::Legends.Perk.LegendImmovableObject);
+			::Legend.Effects.grant(this, ::Legends.Effect.LegendFreedomOfMovement);
+			::Legend.Effects.grant(this, ::Legends.Effect.LegendFlourish, function(_skill) {
+				_skill.IsRemoved = false;
+			});
+			::Legends.Perks.remove(this, ::Legends.Perk.Dodge); // balancing ig
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendFeint);
 			::Legends.Perks.grant(this, ::Legends.Perk.Pathfinder);
 			::Legends.Perks.grant(this, ::Legends.Perk.HeadHunter);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendReturnFavor);
-			::Legends.Perks.grant(this, ::Legends.Perk.BattleForged);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendComposure);
 			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
 		}

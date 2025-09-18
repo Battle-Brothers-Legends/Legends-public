@@ -3126,12 +3126,20 @@ activesDefs.push({
 	Name = "Censer Strike",
 });
 
-::Legends.Active.LegendDawgBite <- null;
+::Legends.Active.LegendSighthoundBite <- null;
 activesDefs.push({
-	ID = "actives.legend_dawg_bite",
-	Script = "scripts/skills/actives/legend_dawg_bite_skill",
-	Const = "LegendDawgBite",
-	Name = "Dawg Bite",
+	ID = "actives.legend_sighthound_bite",
+	Script = "scripts/skills/actives/legend_sighthound_bite_skill",
+	Const = "LegendSighthoundBite",
+	Name = "Sighthound Bite",
+});
+
+::Legends.Active.LegendUnleashSighthound <- null;
+activesDefs.push({
+	ID = "actives.legend_unleash_sighthound",
+	Script = "scripts/skills/actives/legend_unleash_sighthound",
+	Const = "LegendUnleashSighthound",
+	Name = "Legend Unleash Sighthound",
 });
 
 ::Legends.Active.LegendCommandLegion <- null;
@@ -3164,6 +3172,14 @@ activesDefs.push({
 	Script = "scripts/skills/actives/legend_pry_armor_skill",
 	Const = "LegendPryArmor",
 	Name = "Pry Armor",
+});
+
+::Legends.Active.LegendFlourish <- null;
+activesDefs.push({
+	ID = "actives.legend_flourish",
+	Script = "scripts/skills/actives/legend_flourish",
+	Const = "LegendFlourish",
+	Name = "Flourish",
 });
 
 ::Legends.Active.LegendEnragedHyenaBite <- null;

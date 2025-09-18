@@ -342,7 +342,7 @@ this.legend_northmen_forest_ambush_event <- this.inherit("scripts/events/event",
 			{
 				candidates_masterarcher.push(b);
 			}
-			else if (b.getBackground().getID() == "background.assassin" || b.getBackground().getID() == "background.assassin_southern" || b.getBackground().getID() == "background.legend_assassin")
+			else if (b.getBackground().getID() == "background.assassin" || b.getBackground().getID() == "background.assassin_southern")
 			{
 				candidates_assassin.push(b);
 			}

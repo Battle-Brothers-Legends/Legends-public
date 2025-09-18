@@ -1,5 +1,7 @@
 ::mods_hookExactClass("events/events/childrens_crusade_event", function(o) {
 	o.m.Doubter <- null;
+	o.m.Shieldmaiden <- null;
+
 	local create = o.create;
 	o.create = function() {
 		create();
@@ -9,36 +11,36 @@
 					if (_event.m.Monk != null) {
 						this.Options.push({
 							Text = "%monk%, you speak for the old gods. What say you?",
-							function getResult( _event ) {
-								return "Monk";
-							}
+							getResult = @(_event) "Monk"
+						});
+					}
+
+					if (_event.m.Shieldmaiden != null) {
+						this.Options.push({
+							Text = "%shieldmaiden%, why don\'t you show these runts what war really feels like.",
+							getResult = @(_event) "Shieldmaiden"
 						});
 					}
 
 					if (_event.m.Doubter != null) {
 						this.Options.push({
 							Text = "%doubter%, you\'ve travelled up there. Say something.",
-							function getResult( _event ) {
-								return "Doubter";
-							}
+							getResult = @(_event) "Doubter"
 						});
 					}
 
 					if (_event.m.Traveller != null) {
 						this.Options.push({
 							Text = "%walker%, you\'ve travelled up there. Say something.",
-							function getResult( _event ) {
-								return "Traveller";
-							}
+							getResult = @(_event) "Traveller"
 						});
 					}
 
 					this.Options.push({
 						Text = "I\'ll save you the long walk and rid you of any valuables right here.",
-						function getResult( _event ) {
-							return "C";
-						}
+						getResult = @(_event) "C"
 					});
+
 					this.Options.push({
 						Text = "Good luck, I guess. (Decrease Moral Reputation)",
 						function getResult( _event ) {
@@ -89,19 +91,40 @@
 		}
 
 		this.m.Screens.push({
+			ID = "Shieldmaiden",
+			Text = "[img]gfx_ui/events/event_50.png[/img]%Shieldmaiden% the shieldmaiden looks alarmingly eager as she steps up to the gaggle of little soldiers. She barks at them with such menace that you almost flinch, and it sends a few children physically reeling.%SPEECH_ON%Right then, \'crusaders\'. Let me see your technique, show me how you resist a real charge from a real enemy. Form up- into position!%SPEECH_OFF%She turns her back to the startled albeit enthusiastic horde of kids. She takes a few steps towards you, reveals a wicked smile, then spins on her heels. With a primal howl and mighty rap of her shield, she charges into the mass of flesh, sending a ripple through the meagre formation that sends some children crashing into the muck, with others immediately shattering and turning tail. A few shoves, hollers, and feinted strikes later, and the crusade had been thoroughly killed in its crib- children lay amongst the dirt groaning, others begin to snivel and loudly doubt their holy mission. %shieldmaiden% ends her assault almost as quick as she started it, planting her shield to the floor to offer a hand to the leader of the now broken army. Lifting him up, the ranks begin to reform around your now placated shieldmaiden, and she continues.%SPEECH_ON%See, my brave warriors. Such foes are not to be trifled with at such a tender age. Savages would not show mercy as I have, nor would they give such warning. Together, we can beat them, but for now you would all do better to go home and train, grow- become strong! In time, perhaps I will find you in my shieldwall, side to side as we bring the old gods to that godless land.%SPEECH_OFF%The leader, at first crestfallen from his troop\'s blistering destruction, is renewed with a vigour that could only be childlike naivety. He turns to his host and echoes the shieldmaiden, telling the children that they will serve the old gods in time, but for now they need to practice and prepare themselves. Like a horde of ants, the children begin to spill away in their singular purpose back down the road. %shieldmaiden% returns to you, visibly pleased with her instruction, although perhaps she just enjoyed the mock beatdown. A few of the company applaud her \'hands on\' lesson, others muse at how long such a rabble would have lasted had she not scared them off. Regardless, %shieldmaiden%\'s fierce assault has left her in a markedly better mood- after all, it\'s not everyday you can beat up kids and feel like the good guy.",
+			Image = "",
+			List = [],
+			Characters = [],
+			Options = [{
+				Text = "You\'ve been waiting for a moment like that, haven\'t you?"
+				getResult = @(_event) 0
+			}],
+			function start(_event) {
+				this.Characters.push(_event.m.Shieldmaiden.getImagePath());
+				this.World.Assets.addMoralReputation(1);
+				this.List.extend([{
+						id = 10,
+						icon = "ui/icons/asset_moral_reputation.png",
+						text = "The company\'s moral reputation decreases greatly"
+					},
+					::Legends.EventList.changeMeleeSkill(_event.m.Shieldmaiden, 2),
+					::Legends.EventList.changeInitiative(_event.m.Shieldmaiden, ::Math.rand(1, 3)),
+					::Legends.EventList.changeMood(_event.m.Shieldmaiden, 1.0, "Roughhoused kids out of the suicidal crusade")
+				]);
+			}
+		});
+
+		this.m.Screens.push({
 			ID = "Doubter",
 			Text = "[img]gfx/ui/events/legend_doubter_kids.png[/img]Looking grizzled and sad %doubter% approaches the kids, gets on a knee down at their level and speaks directly. He encourages them to march on, saying that the heartless fires of war needed their bodies as kindling. He speaks of the inevitability of death, the gruesome horrors of violence, the certainty of injury, a lifetimes of disability for the victors, and the endless entropy which tears at the bodies and souls of fragile humans.  The children stare mouths agape in horror, one cries and another runs. Their crusade is over.",
 			Image = "",
 			List = [],
 			Characters = [],
-			Options = [
-			{
+			Options = [{
 				Text = "Always the life of the party.",
-				function getResult( _event ) {
-					return 0;
-				}
-			}
-			],
+				getResult = @(_event) 0
+			}],
 			function start( _event )
 			{
 				this.Characters.push(_event.m.Doubter.getImagePath());
@@ -185,12 +208,15 @@
 		local candidates_monk = [];
 		local candidates_doubter = [];
 		local candidates_traveller = [];
+		local candidates_shieldmaiden = [];
 
 		foreach( bro in brothers ) {
 			if (bro.getBackground().getID() == "background.monk")
 				candidates_monk.push(bro);
 			else if (bro.getBackground().getID() == "background.messenger" || bro.getBackground().getID() == "background.vagabond" || bro.getBackground().getID() == "background.refugee" || bro.getBackground().getID() == "background.legend_ranger_commander")
 				candidates_traveller.push(bro);
+			else if (bro.getBackground().getID() == "background.legend_shieldmaiden")
+				candidates_shieldmaiden.push(bro);
 			else if (bro.getSkills().hasTrait(::Legends.Trait.LegendDoubleTongued))
 				candidates_doubter.push(bro);
 		}
@@ -204,6 +230,9 @@
 		if (candidates_doubter.len() != 0)
 			this.m.Doubter = candidates_doubter[this.Math.rand(0, candidates_doubter.len() - 1)];
 
+		if (candidates_shieldmaiden.len())
+			this.m.Shieldmaiden = candidates_shieldmaiden[this.Math.rand(0, candidates_shieldmaiden.len() - 1)];
+
 		this.m.Score = 5;
 	}
 
@@ -214,12 +243,17 @@
 			"doubter",
 			this.m.Doubter != null ? this.m.Doubter.getName() : ""
 		]);
+		if (this.m.Shieldmaiden) {
+			_vars.push(["shieldmaiden", this.m.Shieldmaiden.getName()]);
+			::Const.LegendMod.extendVarsWithPronouns(_vars, this.m.Shieldmaiden.getGender(), "shieldmaiden");
+		}
 	}
 
 	local onClear = o.onClear;
 	o.onClear = function () {
 		onClear();
 		this.m.Doubter = null;
+		this.m.Shieldmaiden = null;
 	}
 
 })

@@ -37,7 +37,7 @@
 			]);
 		}
 
-		if (actor.getSkills().hasSkill("background.legend_assassin") || actor.getSkills().hasSkill("background.assassin") || actor.getSkills().hasSkill("background.assassin_southern"))
+		if (actor.getSkills().hasSkill("background.assassin") || actor.getSkills().hasSkill("background.assassin_southern"))
 		ret.extend([
 			{
 				id = 13,
@@ -261,7 +261,7 @@
             _properties.DamageRegularMin *= 1.2;
             _properties.DamageRegularMax *= 1.2;
 
-            if (actor.getSkills().hasSkill("background.legend_assassin") || actor.getSkills().hasSkill("background.assassin") || actor.getSkills().hasSkill("background.assassin_southern"))
+            if (actor.getSkills().hasSkill("background.assassin") || actor.getSkills().hasSkill("background.assassin_southern"))
             {
                 _properties.DamageRegularMax *= 1.3;
             }

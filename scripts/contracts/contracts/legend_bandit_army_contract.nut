@@ -316,7 +316,7 @@ this.legend_bandit_army_contract <- this.inherit("scripts/contracts/contract", {
 
 					foreach( bro in bros )
 					{
-						if (bro.getBackground().getID() == "background.thief" || bro.getBackground().getID() == "background.sellsword" || bro.getBackground().getID() == "background.legend_trader_commander" || bro.getBackground().getID() == "background.legend_assassin_commander" || bro.getBackground().getID() == "background.legend_assassin" || bro.getSkills().hasPerk(::Legends.Perk.LegendBribe))
+						if (bro.getBackground().getID() == "background.thief" || bro.getBackground().getID() == "background.sellsword" || bro.getBackground().getID() == "background.legend_trader_commander" || bro.getBackground().getID() == "background.legend_assassin_commander" || bro.getSkills().hasPerk(::Legends.Perk.LegendBribe))
 						{
 							candidates.push(bro);
 						}
@@ -925,3 +925,4 @@ this.legend_bandit_army_contract <- this.inherit("scripts/contracts/contract", {
 	}
 
 });
+

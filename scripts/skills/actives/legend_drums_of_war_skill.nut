@@ -129,10 +129,6 @@ this.legend_drums_of_war_skill <- this.inherit("scripts/skills/skill", {
 	{
 		foreach(actor in this.m.AffectedActors)
 		{
-			if (actor == null)
-				continue;
-			if ("isNull" in actor && actor.isNull())
-				continue;
 			if (::Legends.S.skillEntityAliveCheck(actor))
 				continue;
 			::Legends.Effects.remove(actor.getSkills(), ::Legends.Effect.LegendDrumsOfWar);

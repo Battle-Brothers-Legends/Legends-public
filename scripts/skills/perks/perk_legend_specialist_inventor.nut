@@ -13,16 +13,4 @@ this.perk_legend_specialist_inventor <- this.inherit("scripts/skills/legend_spec
 		::Const.Perks.setup(this.m, ::Legends.Perk.LegendSpecialistInventor);
 		this.m.IconMini = "perk_spec_firearm_mini";
 	}
-
-	function onAfterUpdate(_properties)
-	{
-		local skills = this.getContainer().getAllSkillsOfType(this.Const.SkillType.Active);
-		foreach (skill in skills)
-		{
-			if (skill.getID() == ::Legends.Actives.getID(::Legends.Active.ReloadHandgonne))
-			{
-				skill.m.ActionPointCost -= 1;
-			}
-		}
-	}
 });

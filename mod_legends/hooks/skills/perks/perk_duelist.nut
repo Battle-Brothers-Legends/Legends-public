@@ -2,45 +2,46 @@
 	o.m.AllowedWeapons <-
 	[
 		"_parrying_dagger",
-		"_hand_crossbow",
+		// "_hand_crossbow",
 		"buckler",
+		"legend_mummy_shield"
 	];
 	local create = o.create;
 	o.create = function ()
 	{
 		create();
 		this.m.Icon = "ui/perks/perk_41.png";
-		this.m.Type = this.Const.SkillType.Perk | this.Const.SkillType.StatusEffect;
+		this.m.Type = this.Const.SkillType.Perk;
 	}
 
-	o.getDescription <- function ()
-	{
-		return "Become one with your weapon and go for the weak spots!";
-	}
+	// o.getDescription <- function ()
+	// {
+	// 	return "Become one with your weapon and go for the weak spots!";
+	// }
 
-	o.getTooltip <- function ()
-	{
-		local tooltip = this.skill.getTooltip();
-		local bonus = this.getBonus() * 100;
-		if (bonus == 0)
-		{
-			tooltip.push({
-				id = 6,
-				type = "text",
-				icon = "ui/tooltips/warning.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]You do not have the right equipment to receive Duelist's effect[/color]"
-			});
-			return tooltip;
-		}
-		tooltip.push({
-			id = 6,
-			type = "text",
-			icon = "ui/icons/direct_damage.png",
-			text = "[color=" + this.Const.UI.Color.PositiveValue + "]"+ bonus + "%[/color] of any damage ignores armor"
-		});
+	// o.getTooltip <- function ()
+	// {
+	// 	local tooltip = this.skill.getTooltip();
+	// 	local bonus = this.getBonus() * 100;
+	// 	if (bonus == 0)
+	// 	{
+	// 		tooltip.push({
+	// 			id = 6,
+	// 			type = "text",
+	// 			icon = "ui/tooltips/warning.png",
+	// 			text = "[color=" + this.Const.UI.Color.NegativeValue + "]You do not have the right equipment to receive Duelist's effect[/color]"
+	// 		});
+	// 		return tooltip;
+	// 	}
+	// 	tooltip.push({
+	// 		id = 6,
+	// 		type = "text",
+	// 		icon = "ui/icons/direct_damage.png",
+	// 		text = "[color=" + this.Const.UI.Color.PositiveValue + "]"+ bonus + "%[/color] of any damage ignores armor"
+	// 	});
 
-		return tooltip;
-	}
+	// 	return tooltip;
+	// }
 
 	o.isValid <- function ( _mainhand, _offhand )
 	{
@@ -50,12 +51,7 @@
 		return true;
 	}
 
-	o.isFullEffect <- function ( _mainhand, _offhand )
-	{
-		return getContainer().hasSkill("injury.missing_hand") || _offhand == null && !_mainhand.isItemType(::Const.Items.ItemType.TwoHanded) || _offhand != null && _offhand.isItemType(::Const.Items.ItemType.Tool);
-	}
-
-	o.isPartialEffect <- function ( _mainhand, _offhand )
+	o.isValidOffhand <- function ( _mainhand, _offhand )
 	{
 		if (_offhand == null)
 			return false;
@@ -77,12 +73,10 @@
 		if (!isValid(main, off))
 			return 0;
 
-		local bonus = 0.0;
-		if (isFullEffect(main, off))
-			bonus += 0.25;
-		else if (isPartialEffect(main, off))
-			bonus += 0.13;
-		return bonus;
+		if (isValidOffhand(main, off))
+			return 0.25;
+
+		return 0;
 	}
 
 	o.onAnySkillUsed <- function ( _skill, _targetEntity, _properties )

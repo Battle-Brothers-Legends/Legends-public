@@ -152,6 +152,7 @@
 ::Legends.Compat.HardIncompat.add("mod_items_recipes", "2.0.0");
 ::Legends.Compat.HardIncompat.add("mod_jin", "1.0"); // Jurchen mod
 ::Legends.Compat.HardIncompat.add("mod_lifetime_stats", "1");
+::Legends.Compat.HardIncompat.add("mod_lima_tactics"); // overhauls mods don't mix
 ::Legends.Compat.HardIncompat.add("lng_combat_tweak", "1.0");
 ::Legends.Compat.HardIncompat.add("mod_lessgr", "1.3");
 ::Legends.Compat.HardIncompat.add("mod_legendary_kriegsgeist_boss_location", "1.0.5"); // SSU has more updated version of this now

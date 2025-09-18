@@ -36,7 +36,7 @@
 			Weight = 3,
 			Types = [
 				{
-					Type = this.Const.World.Spawn.Troops.LegendArmoredDawg,
+					Type = this.Const.World.Spawn.Troops.LegendArmoredSighthound,
 					Cost = 5
 				}
 			]

@@ -85,6 +85,15 @@ this.legend_recruitment_druid_camp_encounter <- this.inherit("scripts/encounters
 		this.Const.LegendMod.extendVarsWithPronouns(_vars, this.m.Druid.getGender(), "Druid");
 	}
 
+	function isVisible() {
+		local towns = this.World.EntityManager.getSettlements();
+		foreach(t in towns){
+			if (t.getTile().getDistanceTo(currentTile) <= 7)
+				return false; //if too close to town, hide
+		}
+		return true;
+	}
+
 	function isValid(_camp) {
 		if (::World.getPlayerRoster().getSize() >= ::World.Assets.getBrothersMax())
 			return false;
@@ -99,12 +108,6 @@ this.legend_recruitment_druid_camp_encounter <- this.inherit("scripts/encounters
 
 		local totalbrothers = 0;
 		local brotherlevels = 0;
-
-		local towns = this.World.EntityManager.getSettlements();
-		foreach(t in towns){
-			if (t.getTile().getDistanceTo(currentTile) <= 7)
-				return false //if too close to town, disable
-		}
 
 		foreach (bro in ::World.getPlayerRoster().getAll()) {
 			if ((bro.getBackground().getID() == "background.legend_druid") || (bro.getBackground().getID() == "background.legend_commander_druid"))

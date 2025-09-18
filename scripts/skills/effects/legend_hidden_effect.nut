@@ -36,7 +36,7 @@ this.legend_hidden_effect <- this.inherit("scripts/skills/skill", {
 				}
 			]);
 
-			if (actor.getSkills().hasSkill("background.legend_assassin") || actor.getSkills().hasSkill("background.assassin") || actor.getSkills().hasSkill("background.assassin_southern"))
+			if (actor.getSkills().hasSkill("background.assassin") || actor.getSkills().hasSkill("background.assassin_southern"))
 			{
 					{
 						id = 13,
@@ -143,7 +143,7 @@ this.legend_hidden_effect <- this.inherit("scripts/skills/skill", {
 			_properties.DamageRegularMin *= 1.5;
 			_properties.DamageRegularMax *= 1.5;
 
-			if (actor.getSkills().hasSkill("background.legend_assassin") || actor.getSkills().hasSkill("background.assassin") || actor.getSkills().hasSkill("background.assassin_southern"))
+			if (actor.getSkills().hasSkill("background.assassin") || actor.getSkills().hasSkill("background.assassin_southern"))
 			{
 			_properties.DamageRegularMax *= 1.5;
 			}
@@ -170,4 +170,5 @@ this.legend_hidden_effect <- this.inherit("scripts/skills/skill", {
 		}
 	}
 });
+
 

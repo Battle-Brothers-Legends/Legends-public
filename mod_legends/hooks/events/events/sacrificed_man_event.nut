@@ -82,7 +82,7 @@
 		foreach( bro in brothers ) {
 			if (bro.getSkills().hasTrait(::Legends.Trait.Player))
 				continue;
-			if (bro.getBackground().isBackgroundType(this.Const.BackgroundType.ConvertedCultist))
+			if (bro.getBackground().isBackgroundType(this.Const.BackgroundType.ConvertedCultist) || bro.getBackground().isBackgroundType(this.Const.BackgroundType.Cultist))
 				candidates_cultist.push(bro);
 			else if (bro.getBackground().getID() != "background.slave")
 				candidates_other.push(bro);

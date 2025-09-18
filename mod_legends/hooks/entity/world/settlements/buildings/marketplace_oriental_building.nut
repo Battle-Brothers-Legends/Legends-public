@@ -221,7 +221,7 @@
 			{
 				R = 60,
 				P = 1.0,
-				S = "accessory/legend_dawg_item"
+				S = "accessory/legend_sighthound_item"
 			}
 		];
 

@@ -207,7 +207,7 @@
 					local brothers = this.World.getPlayerRoster().getAll();
 
 					foreach( bro in brothers ) {
-						if (bro.getID() != _event.m.Cultist.getID() && bro.getBackground().isBackgroundType(this.Const.BackgroundType.ConvertedCultist)) {
+						if (bro.getID() != _event.m.Cultist.getID() && (bro.getBackground().isBackgroundType(this.Const.BackgroundType.ConvertedCultist) || bro.getBackground().isBackgroundType(this.Const.BackgroundType.Cultist))) {
 							bro.improveMood(1.0, "Witnessed Davkul\'s power");
 
 							if (bro.getMoodState() >= this.Const.MoodState.Neutral)
@@ -262,7 +262,7 @@
 				candidate_monk.push(bro);
 			else if (bro.getSkills().hasPerk(::Legends.Perk.LegendScholar)) //maybe add this here?
 				candidate_monk.push(bro);
-			else if (bro.getBackground().isBackgroundType(this.Const.BackgroundType.ConvertedCultist))
+			else if (bro.getBackground().isBackgroundType(this.Const.BackgroundType.ConvertedCultist) || bro.getBackground().isBackgroundType(this.Const.BackgroundType.Cultist))
 				candidate_cultist.push(bro);
 		}
 

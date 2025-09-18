@@ -203,3 +203,11 @@
 	// Cap efficiency at 50%
 	return this.Math.maxf(0.5, (100.0 - toolEfficiencyModifier) / 100.0);
 }
+
+::Legends.S.oneOf <- function (_value, ...) {
+	foreach(val in vargv) {
+		if (_value == val)
+			return true;
+	}
+	return false;
+}
