@@ -73,6 +73,44 @@ class LegendsModBuilder:
         print(f"Build directory: {self.build_dir}")
         print(f"Current directory: {self.current_dir}")
 
+    def prebuild_cleanup(self):
+        """Clean up generated folders and PNGs before building"""
+        try:
+            # Remove generated directories
+            for rel in [
+                "brushes",
+                "build",
+                "helmet_scripts",
+                "legend_armor_scripts",
+            ]:
+                p = self.current_dir / rel
+                if p.exists():
+                    print(f"Deleting {p} ...")
+                    shutil.rmtree(p, ignore_errors=True)
+
+            # Remove top-level gfx PNGs
+            gfx_dir = self.current_dir / "gfx"
+            if gfx_dir.exists():
+                for png in gfx_dir.glob("*.png"):
+                    try:
+                        print(f"Deleting {png}")
+                        png.unlink()
+                    except Exception:
+                        pass
+
+            # Remove gfx/ui PNGs
+            gfx_ui_dir = gfx_dir / "ui"
+            if gfx_ui_dir.exists():
+                for png in gfx_ui_dir.glob("*.png"):
+                    try:
+                        print(f"Deleting {png} ...")
+                        png.unlink()
+                    except Exception:
+                        pass
+
+        except Exception as e:
+            print(f"Warning: cleanup error {e}")
+
     def extract_version(self):
         """Extract current version from register_legends.nut"""
         register_file = self.current_dir / "scripts" / "!mods_preload" / "register_legends.nut"
@@ -260,6 +298,9 @@ class LegendsModBuilder:
         """Main build process"""
         try:
             print("Starting Legends mod build process...")
+
+            # Build cleanup to ensure a fresh state
+            self.prebuild_cleanup()
 
             # Remove and recreate build directory
             if self.build_dir.exists():
