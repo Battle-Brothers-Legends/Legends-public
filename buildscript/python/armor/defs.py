@@ -225,6 +225,11 @@ class Defs:
  "desc" :  "A studded and heavy padded coat that offers decent protection.",
  "adesc" : ""
 },
+{"name": "fleshcultist_tunic",           "layer": "cloth", "min": 1, "max": 4, "value" : 350, "con" : 55, "stam" : -6, "impactSound" : "leather", "invSound" : "cloth", "brush" : "fleshcultist_tunic",
+ "title" :  "Fleshcultist Tunic",
+ "desc" :  "A studded jacket worn by Fleshcultist.",
+ "adesc" : ""
+},
 
 # {"name": "legend_southern_cloth_sash",           "layer": "cloth", "min": 0, "max": 0, "value" : 30, "con" : 20, "stam" : 0, "impactSound" : "leather", "invSound" : "cloth", "vanilla" : "body_southern", "variants" : [12,18,19], \
 #     "title" :  "Cloth Sash", \
@@ -723,6 +728,17 @@ class Defs:
  "desc" :  "A heavy lamellar plated harness",
  "adesc" : "Has a heavy lamellar plated harness"
 },
+{"name": "diviner_jacket",           "layer": "plate", "min": 1, "max": 2, "value" : 350, "con" : 55, "stam" : -6, "impactSound" : "leather", "invSound" : "cloth", "brush" : "diviner_jacket",
+ "title" :  "Diviner Jacket",
+ "desc" :  "A studded jacket worn by diviner.",
+ "adesc" : ""
+},
+{"name": "fleshcultist_jacket",           "layer": "plate", "min": 1, "max": 2, "value" : 350, "con" : 55, "stam" : -6, "impactSound" : "leather", "invSound" : "cloth", "brush" : "fleshcultist_jacket",
+ "title" :  "Fleshcultist Jacket",
+ "desc" :  "A studded jacket worn by fleshcultist.",
+ "adesc" : ""
+},
+
 {"name": "legend_shoulder_cloth",           "layer": "cloak", "min": 1, "max": 12, "value" : 50, "con" : 5, "stam" : 0, "bravery" : 0, "impactSound" : "leather", "invSound" : "cloth", "brush" : "shoulder_cloth",
  "title" :  "Shoulder Cloth",
  "desc" :  "A Piece of cloth drapped over the shoulder",
@@ -883,5 +899,4 @@ class Defs:
  "desc" :  "A flowing cloth covering for armor, to show your allegiance. Offers minimal protection and small boost to morale.",
  "adesc" : "Has a flowing cloth tabard"
 }
-
 ]

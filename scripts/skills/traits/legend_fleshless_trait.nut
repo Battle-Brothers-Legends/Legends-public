@@ -226,15 +226,4 @@ this.legend_fleshless_trait <- this.inherit("scripts/skills/traits/character_tra
 		actor.getFlags().remove("PlayerSkeleton");
 	}
 
-	function onSerialize( _out )
-	{
-		this.skill.onSerialize(_out);
-		_out.writeU8(this.m.InjuryType);
-	}
-
-	function onDeserialize( _in )
-	{
-		this.skill.onDeserialize(_in);
-		this.m.InjuryType = _in.readU8();
-	}
 });

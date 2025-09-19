@@ -68,7 +68,5 @@ this.legend_nomad_remembers_past_encounter <- ::inherit("scripts/encounters/enco
 	function onClear()
 	{
 		this.m.Nomad = null;
-		this.m.RandomBrother = null;
-		this.m.RandomBrother2 = null;
 	}
 });
