@@ -761,6 +761,8 @@
   <sprite id="player_banner_104_shaft" offsetY="35" ic="FF2B3144" width="200" height="230" img="icons\player_banner\player_banner_104_shaft.png" left="-19" right="45" top="-55" bottom="7" />
   <sprite id="player_banner_105" offsetY="35" ic="FF2E3E59" width="200" height="230" img="icons\player_banner\player_banner_105.png" left="-65" right="33" top="-35" bottom="109" />
   <sprite id="player_banner_105_shaft" offsetY="35" ic="FF2B3144" width="200" height="230" img="icons\player_banner\player_banner_105_shaft.png" left="-19" right="45" top="-55" bottom="7" />
+  <sprite id="player_banner_106" offsetY="35" ic="FF2E3E59" width="200" height="230" img="icons\player_banner\player_banner_106.png" left="-65" right="33" top="-35" bottom="109" />
+  <sprite id="player_banner_106_shaft" offsetY="35" ic="FF2B3144" width="200" height="230" img="icons\player_banner\player_banner_106_shaft.png" left="-19" right="45" top="-55" bottom="7" />
   <sprite id="projectile_blood" ic="FF445660" width="32" height="64" img="effects\projectile_blood.png" left="-8" right="14" top="-31" bottom="29" />
   <sprite id="projectile_dart" ic="FF445660" width="32" height="64" img="effects\projectile_dart.png" left="-8" right="14" top="-31" bottom="29" />
   <sprite id="projectile_missile" ic="FF445660" width="32" height="64" img="effects\projectile_missile.png" left="-8" right="14" top="-31" bottom="29" />
@@ -783,12 +785,16 @@
   <sprite id="shield_heater_105" offsetY="35" ic="FF2D3A4A" width="130" height="142" img="icons\shield_heater_105.png" left="7" right="53" top="-71" bottom="3"/>
   <sprite id="shield_heater_105_damaged" offsetY="35" ic="FF273545" width="130" height="142" img="icons\shield_heater_105_damaged.png" left="7" right="53" top="-71" bottom="5"/>
   <sprite id="shield_heater_105_destroyed" offsetY="26" f="640A" ic="FF273545" width="102" height="54" img="icons\shield_heater_105_destroyed.png" left="-42" right="40" top="-28" bottom="25"/>
+  <sprite id="shield_heater_106_damaged" offsetY="35" ic="FF273545" width="130" height="142" img="icons\shield_heater_106_damaged.png" left="7" right="53" top="-71" bottom="5"/>
+  <sprite id="shield_heater_106_destroyed" offsetY="26" f="640A" ic="FF273545" width="102" height="54" img="icons\shield_heater_106_destroyed.png" left="-42" right="40" top="-28" bottom="25"/>
   <sprite id="shield_kite_104_damaged" offsetY="35" ic="FF4F4B4B" width="130" height="142" img="icons\shield_kite_104_damaged.png"  left="7" right="55" top="-70" bottom="22" />
   <sprite id="shield_kite_104_destroyed" offsetY="-18" f="6401" ic="FF45413E" img="icons\shield_kite_104_destroyed.png" left="-44" right="45" />
   <sprite id="shield_kite_104" offsetY="35" ic="FF564E47" width="130" height="142" img="icons\shield_kite_104.png"  left="4" right="62" top="-70" bottom="22" />
   <sprite id="shield_kite_105" offsetY="35" ic="FF2D3B4A" width="130" height="142" img="icons\shield_kite_105.png"  left="4" right="62" top="-70" bottom="22"/>
   <sprite id="shield_kite_105_damaged" offsetY="35" ic="FF253243" width="130" height="142" img="icons\shield_kite_105_damaged.png"  left="7" right="55" top="-70" bottom="22"/>
   <sprite id="shield_kite_105_destroyed" offsetX="-18" offsetY="30" f="640A" ic="FF253243" width="98" height="61" img="icons\shield_kite_105_destroyed.png" left="-49" right="47" top="-30" bottom="22"/>
+  <sprite id="shield_kite_106_damaged" offsetY="35" ic="FF253243" width="130" height="142" img="icons\shield_kite_106_damaged.png"  left="7" right="55" top="-70" bottom="22"/>
+  <sprite id="shield_kite_106_destroyed" offsetX="-18" offsetY="30" f="640A" ic="FF253243" width="98" height="61" img="icons\shield_kite_106_destroyed.png" left="-49" right="47" top="-30" bottom="22"/>
   <sprite id="shield_metal_round_03_named_03_damaged" offsetY="35" ic="FF363F3E" width="130" height="142" img="icons\shield_metal_round_03_named_03_damaged.png" left="3" right="59" top="-60" bottom="8" />
   <sprite id="shield_metal_round_03_named_03_destroyed" offsetX="30" offsetY="-3" f="6404" ic="FF363F3E" width="70" height="68" img="icons\shield_metal_round_03_named_03_destroyed.png" top="-33" bottom="27" />
   <sprite id="shield_metal_round_03_named_03" offsetY="35" ic="FF3A4340" width="130" height="142" img="icons\shield_metal_round_03_named_03.png" left="4" right="60" top="-61" bottom="9" />
@@ -798,6 +804,8 @@
   <sprite id="shield_round_105" offsetY="35" ic="FF385258" width="130" height="142" img="icons\shield_round_105.png" left="7" right="55" top="-58" bottom="0"/>
   <sprite id="shield_round_105_damaged" offsetY="35" ic="FF324A52" width="130" height="142" img="icons\shield_round_105_damaged.png" left="7" right="55" top="-58" bottom="2"/>
   <sprite id="shield_round_105_destroyed" offsetY="2" f="6405" ic="FF324A52" width="70" height="68" img="icons\shield_round_105_destroyed.png" left="-31" right="33" top="-30" bottom="24"/>
+  <sprite id="shield_round_106_damaged" offsetY="35" ic="FF324A52" width="130" height="142" img="icons\shield_round_106_damaged.png" left="7" right="55" top="-58" bottom="2"/>
+  <sprite id="shield_round_106_destroyed" offsetY="2" f="6405" ic="FF324A52" width="70" height="68" img="icons\shield_round_106_destroyed.png" left="-31" right="33" top="-30" bottom="24"/>
   <sprite id="towershield_01_damaged" offsetY="35" ic="FF15192E" width="100" height="176" img="icons\towershield_01_damaged.png" left="7" right="55" top="-70" bottom="22" />
   <sprite id="towershield_01_destroyed" offsetX="-18" offsetY="30" f="640A" ic="FF15192E" width="176" height="100" img="icons\towershield_01_destroyed.png" top="-30" bottom="22" />
   <sprite id="towershield_01" offsetY="35" ic="FF14182B" width="100" height="176" img="icons\towershield_01.png" left="4" right="62" top="-70" bottom="22" />
@@ -828,9 +836,12 @@
   <sprite id="towershield_104_damaged" offsetY="35" ic="FF15192E" width="100" height="176" img="icons\towershield_104_damaged.png" left="7" right="55" top="-70" bottom="22" />
   <sprite id="towershield_104_destroyed" offsetX="-18" offsetY="30" f="640A" ic="FF15192E" width="176" height="100" img="icons\towershield_104_destroyed.png" top="-30" bottom="22" />
   <sprite id="towershield_104" offsetY="35" ic="FF14182B" width="100" height="176" img="icons\towershield_104.png" left="4" right="62" top="-70" bottom="22" />
-  <sprite id="towershield_105" offsetY="35" ic="FF14182B" width="100" height="176" img="icons\shield_tower_105.png" left="4" right="62" top="-70" bottom="22"/>
-  <sprite id="towershield_105_damaged" offsetY="35" ic="FF15192E" width="100" height="176" img="icons\shield_tower_105_damaged.png" left="7" right="55" top="-70" bottom="22"/>
-  <sprite id="towershield_105_destroyed" offsetX="-18" offsetY="30" f="640A" ic="FF15192E" width="176" height="100" img="icons\shield_tower_105_destroyed.png" top="-30" bottom="22"/>
+  <sprite id="towershield_105" offsetY="35" ic="FF14182B" width="100" height="176" img="icons\towershield_105.png" left="4" right="62" top="-70" bottom="22"/>
+  <sprite id="towershield_105_damaged" offsetY="35" ic="FF15192E" width="100" height="176" img="icons\towershield_105_damaged.png" left="7" right="55" top="-70" bottom="22"/>
+  <sprite id="towershield_105_destroyed" offsetX="-18" offsetY="30" f="640A" ic="FF15192E" width="176" height="100" img="icons\towershield_105_destroyed.png" top="-30" bottom="22"/>
+  <sprite id="towershield_106" offsetY="35" ic="FF14182B" width="100" height="176" img="icons\towershield_106.png" left="4" right="62" top="-70" bottom="22"/>
+  <sprite id="towershield_106_damaged" offsetY="35" ic="FF15192E" width="100" height="176" img="icons\towershield_106_damaged.png" left="7" right="55" top="-70" bottom="22"/>
+  <sprite id="towershield_106_destroyed" offsetX="-18" offsetY="30" f="640A" ic="FF15192E" width="176" height="100" img="icons\towershield_106_destroyed.png" top="-30" bottom="22"/>
   <sprite id="towershield_10_damaged" offsetY="35" ic="FF15192E" width="100" height="176" img="icons\towershield_10_damaged.png" left="7" right="55" top="-70" bottom="22" />
   <sprite id="towershield_10_destroyed" offsetX="-18" offsetY="30" f="640A" ic="FF15192E" width="176" height="100" img="icons\towershield_10_destroyed.png" top="-30" bottom="22" />
   <sprite id="towershield_10" offsetY="35" ic="FF14182B" width="100" height="176" img="icons\towershield_10.png" left="4" right="62" top="-70" bottom="22" />

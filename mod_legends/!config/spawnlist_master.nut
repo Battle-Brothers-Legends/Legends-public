@@ -850,22 +850,22 @@
 	Script = "scripts/entity/tactical/enemies/legend_basilisk_sentry"
 };
 
-::Const.World.Spawn.Troops.LegendDawg <- {
-	ID = this.Const.EntityType.LegendDawg,
+::Const.World.Spawn.Troops.LegendSighthound <- {
+	ID = this.Const.EntityType.LegendSighthound,
 	Variant = 0,
 	Strength = 10,
 	Cost = 10,
 	Row = 0,
-	Script = "scripts/entity/tactical/legend_dawg"
+	Script = "scripts/entity/tactical/legend_sighthound"
 };
 
-::Const.World.Spawn.Troops.LegendArmoredDawg <- {
-	ID = this.Const.EntityType.LegendDawg,
+::Const.World.Spawn.Troops.LegendArmoredSighthound <- {
+	ID = this.Const.EntityType.LegendSighthound,
 	Variant = 0,
 	Strength = 10,
 	Cost = 10,
 	Row = 0,
-	Script = "scripts/entity/tactical/legend_armored_dawg"
+	Script = "scripts/entity/tactical/legend_armored_sighthound"
 };
 
 ::Const.World.Spawn.Troops.LegendEnragedHyena <- {

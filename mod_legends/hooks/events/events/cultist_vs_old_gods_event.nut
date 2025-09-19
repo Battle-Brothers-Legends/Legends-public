@@ -25,7 +25,7 @@
 		local cultist_candidates = [];
 
 		foreach( bro in brothers )
-			if (bro.getBackground().isBackgroundType(this.Const.BackgroundType.ConvertedCultist))
+			if (bro.getBackground().isBackgroundType(this.Const.BackgroundType.ConvertedCultist) || bro.getBackground().isBackgroundType(this.Const.BackgroundType.Cultist))
 				cultist_candidates.push(bro);
 
 		if (cultist_candidates.len() == 0)

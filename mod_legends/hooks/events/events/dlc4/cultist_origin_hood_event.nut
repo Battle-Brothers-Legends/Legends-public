@@ -44,7 +44,7 @@
 		local candidates = [];
 
 		foreach( bro in brothers ) {
-			if (bro.getBackground().isBackgroundType(this.Const.BackgroundType.ConvertedCultist))
+			if (bro.getBackground().isBackgroundType(this.Const.BackgroundType.ConvertedCultist) || bro.getBackground().isBackgroundType(this.Const.BackgroundType.Cultist))
 				candidates.push(bro);
 		}
 

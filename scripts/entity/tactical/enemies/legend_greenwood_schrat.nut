@@ -81,11 +81,11 @@ this.legend_greenwood_schrat <- this.inherit("scripts/entity/tactical/actor", {
 				[30, "scripts/items/misc/glowing_resin_item"],
 				[20, "scripts/items/misc/heart_of_the_forest_item"],
 				[20,  function () {
-					local token = this.new("scripts/items/rune_sigils/legend_vala_inscription_token");
-					token.setRuneVariant(this.m.DroppableRunes[this.Math.rand(0, this.m.DroppableRunes.len() - 1)]);
-					token.setRuneBonus(true);
-					token.updateRuneSigilToken();
-					return token;
+					local selected = this.m.DroppableRunes[this.Math.rand(0, this.m.DroppableRunes.len() - 1)];
+					local rune = ::new(::Legends.Runes.get(selected).Script);
+					rune.setRuneVariant(selected);
+					rune.setRuneBonus(true);
+					return rune;
 				}.bindenv(this)],
 			]);
 		}

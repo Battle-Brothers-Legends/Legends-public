@@ -869,28 +869,64 @@
 		return this.m.PerkTreeMap[id];
 	}
 
-	o.addPerk <- function ( _perk, _row = 0, _isRefundable = true )
-	{
-		local perkDefObject = clone this.Const.Perks.PerkDefObjects[_perk];
-		//Dont add dupes
-		if (this.m.PerkTreeMap == null || perkDefObject.ID in this.m.PerkTreeMap)
-		{
-			return false;
-		}
+    o.addPerk <- function ( _perk, _preferredRow = 0, _isRefundable = true )
+    {
+        local perkDefObject = clone this.Const.Perks.PerkDefObjects[_perk];
 
-		perkDefObject.Row <- _row;
-		perkDefObject.Unlocks <- _row;
-		perkDefObject.IsRefundable <- _isRefundable;
+        // Don't add duplicates
+        if (this.m.PerkTreeMap == null || perkDefObject.ID in this.m.PerkTreeMap)
+        {
+            return false;
+        }
 
-		for (local i = this.getPerkTree().len(); i < _row + 1; i = ++i)
-		{
-			this.getPerkTree().push([]);
-		}
-		this.getPerkTree()[_row].push(perkDefObject);
-		this.m.CustomPerkTree[_row].push(_perk);
-		this.m.PerkTreeMap[perkDefObject.ID] <- perkDefObject;
-		return true;
-	}
+        // Attempt to find a valid row
+        local finalRow = _preferredRow;
+        local foundRow = false;
+
+        for (local i = 0; i <= 6; i++)
+        {
+            local tryRow = (_preferredRow + i) % 7;
+
+            // Ensure row exists
+            while (this.getPerkTree().len() <= tryRow)
+            {
+                this.getPerkTree().push([]);
+            }
+
+            if (this.getPerkTree()[tryRow].len() < 13)
+            {
+                finalRow = tryRow;
+                foundRow = true;
+                break;
+            }
+        }
+
+        if (!foundRow)
+        {
+            // All rows are full, fallback to preferredRow
+            finalRow = _preferredRow;
+        }
+
+        perkDefObject.Row <- finalRow;
+        perkDefObject.Unlocks <- finalRow;
+        perkDefObject.IsRefundable <- _isRefundable;
+
+        // Extend perk tree if not enough rows exist
+        while (this.getPerkTree().len() <= finalRow)
+        {
+            this.getPerkTree().push([]);
+        }
+        while (this.m.CustomPerkTree.len() <= finalRow)
+        {
+            this.m.CustomPerkTree.push([]);
+        }
+
+        this.getPerkTree()[finalRow].push(perkDefObject);
+        this.m.CustomPerkTree[finalRow].push(_perk);
+        this.m.PerkTreeMap[perkDefObject.ID] <- perkDefObject;
+
+        return true;
+    }
 
 	o.addPerkGroup <- function (_Tree) {
 		foreach(index, arrAdd in _Tree)

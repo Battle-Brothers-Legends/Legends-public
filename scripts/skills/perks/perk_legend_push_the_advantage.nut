@@ -1,13 +1,14 @@
 this.perk_legend_push_the_advantage <- this.inherit("scripts/skills/skill", {
 	m = {
-		EffectsToGiveBonus = [
-			::Legends.Effect.Disarmed,
-			::Legends.Effect.LegendParried,
+		HighBonus = [
 			::Legends.Effect.Debilitated,
-			::Legends.Effect.LegendTackled,
+			::Legends.Effect.LegendTackled
+		],
+		LowBonus = [
 			::Legends.Effect.Dazed,
 			::Legends.Effect.Distracted,
 			::Legends.Effect.LegendBaffled,
+			::Legends.Effect.LegendParried,
 			::Legends.Effect.LegendGrappled,
 			::Legends.Effect.Net,
 			::Legends.Effect.Rooted,
@@ -17,8 +18,7 @@ this.perk_legend_push_the_advantage <- this.inherit("scripts/skills/skill", {
 			::Legends.Effect.Stunned,
 			::Legends.Effect.Web,
 			::Legends.Effect.Withered
-		],
-		FirstAttackDone = false
+		]
 	},
 	function create()
 	{
@@ -32,71 +32,51 @@ this.perk_legend_push_the_advantage <- this.inherit("scripts/skills/skill", {
 		this.m.IsHidden = false;
 	}
 
-	function isBonusEligible( _targetEntity )
+	function onBeforeTargetHit( _skill, _targetEntity, _hitInfo )
 	{
-		local targetSkills = _targetEntity.getSkills();
-		foreach ( effect in this.m.EffectsToGiveBonus )
+		if ( _targetEntity != null && (this.isBonusEligible(_skill, _targetEntity) || this.isLowerBonusEligible(_skill, _targetEntity)))
 		{
-			if ( targetSkills.hasEffect(effect) )
-				return true;
+			this.spawnIcon("perk_16", this.getContainer().getActor().getTile());
 		}
-		return false;
 	}
 
-	function isAttackEligible (_skill)
+	function calculateBonus ( _skill, _targetEntity )
 	{
-		local isH2h = _skill.getID == ::Legends.Actives.getID(::Legends.Active.HandToHand);
-		local is1h = _skill.getItem() != null && _skill.getItem().isItemType(this.Const.Items.ItemType.Weapon) && _skill.getItem().isItemType(this.Const.Items.ItemType.OneHanded);
-		if (!isH2h && !is1h)
-			return false;
+		
+		local bonus = 0;
 
-		return true;
-	}
-
-	function onAnySkillExecuted( _skill, _targetTile, _targetEntity, _forFree )
-	{
-		if (!_skill.isAttack())
-			return;
-
-		if (_skill.isRanged())
-			return;
-
-		if (this.m.FirstAttackDone)
-			return;
-
-		if (!this.isAttackEligible(_skill))
-			return;
-
-		local actor = this.getContainer().getActor();
-		// actor.setFatigue(this.Math.max(0, actor.getFatigue() - this.Math.floor(_skill.getFatigueCost() * 0.2)));
-		if (!_targetEntity.isAlive() || ("isDying" in _targetEntity && _targetEntity.isDying()))
-			return;
-
-		if (!_targetEntity.getSkills().hasEffect(::Legends.Effect.LegendParried))
+		foreach (effect in this.m.HighBonus)
 		{
-			::Legends.Effects.grant(_targetEntity, ::Legends.Effect.LegendParried);
-
-			if (!actor.isHiddenToPlayer() && !_targetEntity.isHiddenToPlayer() && _targetEntity.getTile().IsVisibleForPlayer)
+			if (_targetEntity.getSkills().hasEffect(effect))
 			{
-				this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(actor) + " feinted " + this.Const.UI.getColorizedEntityName(_targetEntity) + " leaving them exposed!");
+				bonus += 20;
+			}
+		}
+		foreach (effect in this.m.LowBonus)
+		{
+			if (_targetEntity.getSkills().hasEffect(effect))
+			{
+				bonus += 10;
 			}
 		}
 
-		this.m.FirstAttackDone = true;
+		return bonus;
+	}
+
+	function onBeforeTargetHit ( _skill, _targetEntity, _hitInfo )
+	{
+		if (_targetEntity != null && this.calculateBonus(_targetEntity) != 0) {
+			this.spawnIcon("perk_16", this.getContainer().getActor().getTile());
+		}
 	}
 
 	function onAnySkillUsed( _skill, _targetEntity, _properties )
 	{
-		if (_targetEntity == null || !this.isAttackEligible(_skill))
+		if (_targetEntity == null)
 			return;
 
-		if (!_targetEntity.isAlliedWith(this.getContainer().getActor()))
-		{
-			if (this.isBonusEligible( _targetEntity ))
-			{
-				_properties.DamageTotalMult *= 1.1;
-				_properties.DamageDirectAdd += 0.1;
-			}
-		}
+		local bonus = this.calculateBonus(_targetEntity);
+		_properties.DamageAgainstMult[this.Const.BodyPart.Head] += 0.01 * bonus;
+		_properties.HitChance[this.Const.BodyPart.Head] += bonus;
 	}
 });

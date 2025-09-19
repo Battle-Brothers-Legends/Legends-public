@@ -2629,17 +2629,6 @@ perkDefObjects.push({
 	Const = "LegendThrustMaster"
 });
 
-::Legends.Perk.LegendRunThemThrough <- null;
-perkDefObjects.push({
-	ID = "perk.legend_run_them_through",
-	Script = "scripts/skills/perks/perk_legend_run_them_through",
-	Name = ::Const.Strings.PerkName.LegendRunThemThrough,
-	Tooltip = ::Const.Strings.PerkDescription.LegendRunThemThrough,
-	Icon = "ui/perks/ring_jousting_perk.png",
-	IconDisabled = "ui/perks/ring_jousting_perk_bw.png",
-	Const = "LegendRunThemThrough"
-});
-
 ::Legends.Perk.LegendAssuredConquest <- null;
 perkDefObjects.push({
 	ID = "perk.legend_assured_conquest",
@@ -4477,6 +4466,17 @@ perkDefObjects.push({
 	Icon = "ui/perks/perk_11.png",
 	IconDisabled = "ui/perks/perk_11_sw.png",
 	Const = "LegendTacticalManeuvers"
+});
+
+::Legends.Perk.LegendVersatile <- null;
+perkDefObjects.push({
+	ID = "perk.legend_versatile",
+	Script = "scripts/skills/perks/perk_legend_versatile",
+	Name = ::Const.Strings.PerkName.LegendVersatile,
+	Tooltip = ::Const.Strings.PerkDescription.LegendVersatile,
+	Icon = "ui/perks/jack_of_all_trades.png",
+	IconDisabled = "ui/perks/jack_of_all_trades_bw.png",
+	Const = "LegendVersatile"
 });
 
 ::Const.Perks.addPerkDefObjects(perkDefObjects);

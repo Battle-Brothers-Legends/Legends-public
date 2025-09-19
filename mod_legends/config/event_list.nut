@@ -2,6 +2,7 @@
 	StatGain = "%s gains [color=%s]+%d[/color] %s",
 	StatLose = "%s loses [color=%s]-%d[/color] %s",
 	LightWound = "%s suffers light wounds",
+	HeavyWound = "%s suffers heavy wounds",
 	Injury = "%s suffers %s",
 }
 
@@ -83,6 +84,14 @@
 		id = 10,
 		icon = "ui/icons/days_wounded.png",
 		text = ::format(::Legends.EventList.LightWound, _bro.getName())
+	};
+}
+::Legends.EventList.addHeavyInjury <- function (_bro) {
+	_bro.addHeavyInjury();
+	return {
+		id = 10,
+		icon = "ui/icons/days_wounded.png",
+		text = ::format(::Legends.EventList.HeavyWound, _bro.getName())
 	};
 }
 

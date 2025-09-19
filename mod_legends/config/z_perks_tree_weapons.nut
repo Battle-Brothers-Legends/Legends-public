@@ -353,8 +353,8 @@ if (!("Perks" in ::Const))
 	},
 	Tree = [
 		[],
-		[], //[::Legends.Perk.Versatility],
-		[],
+		[], 
+		[::Legends.Perk.LegendVersatile],
 		[],
 		[::Legends.Perk.LegendPushTheAdvantage],
 		[::Legends.Perk.Duelist],
@@ -404,7 +404,7 @@ if (!("Perks" in ::Const))
 	},
 	Tree = [
 		[],
-		[],
+		[::Legends.Perk.LegendFeint],
 		[],
 		[::Legends.Perk.SpecSword],
 		[],
@@ -559,7 +559,7 @@ if (!("Perks" in ::Const))
 		[::Legends.Perk.LegendSpecSpearWall],
 		[],
 		[::Legends.Perk.SpecSpear],
-		[::Legends.Perk.LegendRunThemThrough],
+		[],
 		[::Legends.Perk.LegendThrustMaster],
 		[]
 	]

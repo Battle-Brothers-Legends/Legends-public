@@ -2,7 +2,7 @@
 	o.m.UpgradeableCreatures <- [
 		["accessory.legend_wardog", "scripts/items/accessory/legend_armored_wardog_item"],
 		["accessory.legend_warhound", "scripts/items/accessory/legend_armored_warhound_item"],
-		["accessory.legend_dawg", "scripts/items/accessory/legend_armored_dawg_item"]
+		["accessory.legend_sighthound", "scripts/items/accessory/legend_armored_sighthound_item"]
 	];
 
 	o.onUse = function(_actor, _item = null) {

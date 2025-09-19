@@ -26,7 +26,7 @@
 		local candidates = [];
 
 		foreach( bro in brothers ) {
-			if (bro.getBackground().isBackgroundType(this.Const.BackgroundType.ConvertedCultist) || bro.getBackground().getID() == "background.slave")
+			if (bro.getBackground().isBackgroundType(this.Const.BackgroundType.ConvertedCultist) || bro.getBackground().isBackgroundType(this.Const.BackgroundType.Cultist) || bro.getBackground().getID() == "background.slave")
 				continue;
 
 			if (bro.getLevel() >= 8 && !bro.getSkills().hasTrait(::Legends.Trait.Drunkard) && this.World.getTime().Days - bro.getDaysWithCompany() < fallen[0].Time && this.World.getTime().Days - bro.getDaysWithCompany() < fallen[1].Time && !bro.getSkills().hasTrait(::Legends.Trait.Player) && !bro.getFlags().get("IsPlayerCharacter"))

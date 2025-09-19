@@ -258,10 +258,10 @@ for (local i = -1; i < ::Const.EntityIcon.len(); i++) {
 	::Const.EntityType.addNew("arbalester_orientation", "Sureshot", "Sureshots");
 ::Const.EntityType.LegendBasiliskSentry <-
 	::Const.EntityType.addNew("basilisk_drone_orientation", "Basilisk Sentries", "Basilisk Sentries", this.Const.FactionType.Beasts);
-::Const.EntityType.LegendDawg <-
-	::Const.EntityType.addNew("dawg_orientation", "Dawg", "Dawgs");
-::Const.EntityType.LegendArmoredDawg <-
-	::Const.EntityType.addNew("dawg_orientation", "Armored Dawg", "Armored Dawgs");
+::Const.EntityType.LegendSighthound <-
+	::Const.EntityType.addNew("dawg_orientation", "Sighthound", "Sighthounds");
+::Const.EntityType.LegendArmoredSighthound <-
+	::Const.EntityType.addNew("dawg_orientation", "Armored Sighthound", "Armored Sighthound");
 ::Const.EntityType.LegendEnragedHyena <-
 	::Const.EntityType.addNew("enraged_hyena_orientation", "Enraged Hyena", "Enraged Hyenas", this.Const.FactionType.Beasts);
 ::Const.EntityType.LegendGoblinHarrier <-
