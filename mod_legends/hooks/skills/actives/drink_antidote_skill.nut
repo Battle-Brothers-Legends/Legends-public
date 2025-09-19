@@ -51,17 +51,17 @@
 
 		if (_user.getID() == user.getID())
 		{
-			if (user.getSkills().hasEffect(::Legends.Effect.GoblinPoison))
+			while (user.getSkills().hasEffect(::Legends.Effect.GoblinPoison))
 			{
 				user.getSkills().removeByID("effects.goblin_poison");
 			}
 
-			if (user.getSkills().hasEffect(::Legends.Effect.SpiderPoison))
+			while (user.getSkills().hasEffect(::Legends.Effect.SpiderPoison))
 			{
 				user.getSkills().removeByID("effects.spider_poison");
 			}
 
-			if (user.getSkills().hasEffect(::Legends.Effect.LegendRedbackSpiderPoison))
+			while (user.getSkills().hasEffect(::Legends.Effect.LegendRedbackSpiderPoison))
 			{
 				user.getSkills().removeByID("effects.legend_redback_spider_poison");
 			}
