@@ -44,7 +44,7 @@
 		}
 	}
 
-	o.onUse( _user, _targetTile )
+	o.onUse = function( _user, _targetTile )
 	{
 		local user = _targetTile.getEntity();
 		this.spawnIcon("status_effect_97", _targetTile);
