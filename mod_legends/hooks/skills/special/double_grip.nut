@@ -92,7 +92,7 @@
 		onUpdate(_properties);
 		if (this.canDoubleGrip())
 		{
-			_properties.DamageDirectAdd += this.Math.floor(_properties.MeleeSkill * 0.25);
+			_properties.DamageDirectAdd += this.Math.floor(_properties.MeleeSkill * 0.25) * 0.01;
 		}
 	}
 });

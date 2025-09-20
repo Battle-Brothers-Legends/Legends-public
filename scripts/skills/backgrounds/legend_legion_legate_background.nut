@@ -91,7 +91,7 @@ this.legend_legion_legate_background <- this.inherit("scripts/skills/backgrounds
 		this.m.Level = this.Math.rand(5, 7);
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Dreaded;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Merciless;
-		this.m.Modifiers.Training = this.Const.LegendMod.ResourceModifiers.Training[4]; // 0.0, 0.1, 0.2, 0.3
+		this.m.Modifiers.Training = this.Const.LegendMod.ResourceModifiers.Training[3]; // 0.0, 0.1, 0.2, 0.3
 		this.m.Modifiers.Terrain = [
 				0.0, // ?
 				0.0, //ocean

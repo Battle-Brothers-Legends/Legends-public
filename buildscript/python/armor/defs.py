@@ -898,5 +898,15 @@ class Defs:
  "title" :  "Southern Tabard",
  "desc" :  "A flowing cloth covering for armor, to show your allegiance. Offers minimal protection and small boost to morale.",
  "adesc" : "Has a flowing cloth tabard"
-}
+},
+{"name": "diviner_tabard",           "layer": "tabard", "min": 1, "max": 2, "value" : 200, "con" : 5, "stam" : 0, "bravery" : 2, "impactSound" : "leather", "invSound" : "cloth", "brush" : "diviner_tabard",
+ "title" :  "Diviner Tabard",
+ "desc" :  "A diviner tabard.",
+ "adesc" : "Has a flowing cloth tabard"
+},
+{"name": "fleshcultist_tabard",           "layer": "tabard", "min": 1, "max": 2, "value" : 200, "con" : 5, "stam" : 0, "bravery" : 2, "impactSound" : "leather", "invSound" : "cloth", "brush" : "fleshcultist_tabard",
+  "title" :  "Fleshcultist Tabard",
+  "desc" :  "A fleshcultist tabard.",
+  "adesc" : "Has a flowing cloth tabard"
+ }
 ]
