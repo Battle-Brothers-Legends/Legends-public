@@ -219,7 +219,6 @@ class BrushBuilder:
         brushes = [
             # "entity_blood",
             "legend_characters",
-            "legend_effects",
             "legend_enemies",
             "legend_weapons",
             "legend_world",
@@ -229,6 +228,7 @@ class BrushBuilder:
             "legend_terrain",
             "legend_ui",
             "legend_objects",
+            "legend_effects",
         ]
 
         # Add dynamic helmet brushes
