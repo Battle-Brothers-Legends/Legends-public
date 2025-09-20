@@ -1,0 +1,46 @@
+.fu-nested-popover {
+  position: absolute;
+  z-index: 2147483000; /* above most UI */
+  max-width: 24rem;
+  padding: 6px 8px;
+  border: 1px solid rgba(30, 25, 15, 0.7);
+  background: rgba(250, 248, 238, 0.98); /* parchment-like */
+  border-radius: 4px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+  pointer-events: none; /* behave like a tooltip, not a dialog */
+}
+
+.fu-nested-popover-title {
+  font-weight: 700;
+  margin-bottom: 3px;
+}
+
+.fu-nested-popover-text {
+  line-height: 1.2;
+}
+
+/* Arrow */
+.fu-nested-popover::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+}
+
+/* Arrow placement when popover is above the target */
+.fu-nested-popover.is-above::after {
+  border-top: 6px solid rgba(250, 248, 238, 0.98);
+  bottom: -6px;
+  left: 12px;
+  filter: drop-shadow(0 -1px 0 rgba(30, 25, 15, 0.6));
+}
+
+/* Arrow placement when popover is below the target */
+.fu-nested-popover.is-below::after {
+  border-bottom: 6px solid rgba(250, 248, 238, 0.98);
+  top: -6px;
+  left: 12px;
+  filter: drop-shadow(0 1px 0 rgba(30, 25, 15, 0.6));
+}
