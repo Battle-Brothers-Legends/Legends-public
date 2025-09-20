@@ -1,0 +1,84 @@
+.line
+{
+	outline: 2px solid white;
+}
+
+.black
+{
+	outline-color: black;
+}
+
+.red
+{
+	outline-color: red;
+}
+
+.green
+{
+	outline-color: green;
+}
+
+.blue
+{
+	outline-color: blue;
+}
+
+
+.FU-button
+{
+	background-image: url("coui://gfx/mods/fu/buttons/fu_button_default.png");
+	background-size: 100% 100%;
+	text-shadow: 1px 1px 1px #000;
+	color: #dda21f;
+	box-shadow: 1px -2px 3px 2px rgba(0, 0, 0, 0.4);
+
+	width: 23.0rem;
+	min-height: 2.9rem;
+	height: auto;
+	position: relative;
+	left: 0.5rem;
+	line-height: 2.3rem;
+	text-align: center;
+
+	padding-top: 0.1rem;
+	padding-bottom: 2%;
+	margin-bottom: 1.0rem;
+}
+
+.FU-button:hover,
+.FU-button.is-selected
+{
+	background-image: url("coui://gfx/mods/fu/buttons/fu_button_hovered.png");
+	background-size: 100% 100%;
+	color: #f0b121;
+}
+
+.FU-button.is-selected
+{
+	text-shadow: 1px 1px #A36426, -1px -1px #000;
+}
+
+.FU-button.is-active
+{
+	background-image: url("coui://gfx/mods/fu/buttons/fu_button_pressed.png");
+	background-size: 100% 100%;
+
+	padding-top: 0.2rem;
+	padding-bottom: calc(2% + 0.1rem);
+	margin-bottom: 0.8rem;
+
+	color: #f0b121;
+}
+
+.FU-button[disabled]
+{
+	color : #a7a7a7;
+}
+
+.FU-button[disabled],
+.FU-button[disabled]:hover,
+.FU-button[disabled]:active
+{
+	background-image: url("coui://gfx/mods/fu/buttons/fu_button_inactive.png");
+	background-size: 100% 100%;
+}

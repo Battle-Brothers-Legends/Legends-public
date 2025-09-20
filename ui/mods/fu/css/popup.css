@@ -1,0 +1,148 @@
+.msu-popup {
+	display: none;
+	height: 72.0rem !important;
+	width: 80.0rem !important;
+	position: relative;
+	background-size: 100% 100%;
+	background-image: url("coui://gfx/ui/skin/dialog_background_03.png");
+	background-repeat: no-repeat;
+	z-index: 9999 !important;
+}
+.msu-popup-link
+{
+	color: lightblue;
+	text-decoration: underline;
+	cursor: default;
+}
+
+.msu-popup-small
+{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	position: absolute;
+	bottom: 0;
+	z-index: 100 !important;
+	background-image: url("coui://gfx/mods/msu/skin/generic_background_large_border.png");
+	background-size: 100% 100%;
+	padding: 0.5rem;
+}
+.msu-popup-small.msu-popup-main-menu-screen
+{
+	left: 50%;
+	transform: translateX(-50%);
+}
+.msu-popup-small-update-button
+{
+	margin-bottom: 1rem;
+	height: 3rem;
+	width: 3rem;
+	background-image: url("coui://gfx/mods/msu/buttons/mod_update.png");
+	background-size: 100% 100%;
+}
+.msu-popup-main-menu-screen > .msu-popup-small-update-button
+{
+	height: 5rem;
+	width: 5rem;
+}
+.msu-popup-small-update-info
+{
+	max-width: 12rem;
+	font-size: 1.5rem;
+	word-wrap: break-word;
+	text-align: center;
+}
+
+.msu-popup .header {
+	height: 10rem;
+	width: 100%;
+	margin: 1rem 0 1rem 0;
+}
+
+.msu-popup .header .title {
+	margin-top: 2rem !important;
+}
+
+.msu-popup .content-container {
+	top: 11.8rem;
+	height: calc(100% - 11.8rem - 6.3rem);
+	width: 90%;
+	margin: 0 5% 0 5%;
+	color: white;
+	font-family: monospace, arial;
+	font-size: 20;
+	position: relative;
+}
+
+.msu-popup .footer {
+	position: relative;
+	width: 100%;
+}
+
+.msu-popup .ok-button {
+	left: calc(50% - 17.5rem / 2);
+	height: 4.3rem;
+	width: 17.5rem;
+	position: relative;
+}
+
+.msu-mod-info-container
+{
+	width: 100%;
+	overflow: hidden;
+	position: relative;
+	color: #dda21f;
+	padding-top: 0.5rem;
+	padding-bottom: 0.5rem;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	border: 10px solid transparent;
+	border-image: url("coui://gfx/ui/skin/list_item_03.png") 10 fill  stretch;
+}
+
+.msu-mod-info-container > div
+{
+	width: 90%;
+	height: auto;
+	overflow:auto;
+	word-wrap: break-word;
+}
+.msu-mod-info-description h1,
+.msu-mod-info-description h2,
+.msu-mod-info-description h3,
+.msu-mod-info-description h4,
+.msu-mod-info-description h5
+{
+	margin: 0;
+}
+
+.msu-mod-info-container .msu-mod-version-row .msu-mod-version-info
+{
+	float: left;
+}
+
+.msu-mod-info-container .l-source-button
+{
+	float: right;
+	width: 3.2rem;
+	height: 3.2rem;
+}
+
+.msu-mod-info-container .msu-popup-is-new-symbol
+{
+	width: 2rem;
+	height: 2rem;
+	position:absolute;
+	top: 0;
+	right: 0;
+	background-image: url("coui://gfx/ui/icons/special.png");
+	background-size: 100% 100%;
+}
+
+.msu-mod-info-container .ui-control.button,
+.msu-mod-info-container .ui-control.button[disabled]
+{
+	background-color: rgba(0, 0, 0, 0.0);
+}
