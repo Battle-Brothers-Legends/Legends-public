@@ -1,3 +1,6 @@
+::include("scripts/fu/shims/msu_shim_early.nut");
+::include("scripts/fu/squirrel_hooks/mod_hooks.nut");
+
 ::Legends <- {
 	ID = "mod_legends",
 	Version = "19.2.0",
@@ -15,9 +18,11 @@ else
 	::mods_registerMod(::Legends.ID, ::Legends.Version, ::Legends.Name);
 }
 
-::mods_queue(::Legends.ID, "mod_msu(>=1.7.0), mod_legends_assets(>=19.2.0), vanilla(>=1.5.1-5), dlc_lindwurm, dlc_unhold, dlc_wildmen, dlc_desert, dlc_paladins, mod_events_delayed_fix_legends, !mod_tooltip_extension(<=1.01)", function()
+::mods_queue(::Legends.ID, "mod_legends_assets(>=19.2.0), vanilla(>=1.5.1-5), dlc_lindwurm, dlc_unhold, dlc_wildmen, dlc_desert, dlc_paladins, mod_events_delayed_fix_legends, !mod_tooltip_extension(<=1.01)", function()
 {
-	::Legends.Mod <- ::MSU.Class.Mod(::Legends.ID, ::Legends.Version, ::Legends.Name);
+	    ::include("scripts/fu/load.nut");
+
+	::Legends.Mod <- ::FU.Class.Mod(::Legends.ID, ::Legends.Version, ::Legends.Name);
 
 	// ::Legends.Mod <- this.new("scripts/mods/legends_mod")
 	::Legends.Mod.Registry.addModSource(::MSU.System.Registry.ModSourceDomain.GitHub, "https://github.com/Battle-Brothers-Legends/Legends-public");

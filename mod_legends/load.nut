@@ -2,6 +2,8 @@ if (!("LegendMod" in ::Const)) {
 	::Const.LegendMod <- {}
 }
 
+::include("scripts/fu/load.nut");
+
 // load order
 foreach (dir in [
 	"mod_legends/!!config",
