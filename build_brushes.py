@@ -29,7 +29,10 @@ class BrushBuilder:
 
         self.build_dir = Path(build_dir)
         self.repo_dir = repo_dir
-        self.bin_dir = self.current_dir.parent / "bin"
+        # Prefer repo-local bin; fall back to parent ../bin
+        local_bin = self.current_dir / "bin"
+        parent_bin = self.current_dir.parent / "bin"
+        self.bin_dir = local_bin if local_bin.exists() else parent_bin
 
         # Determine executable extension based on OS
         self.exe_ext = ".exe" if platform.system() == "Windows" else ".sh"

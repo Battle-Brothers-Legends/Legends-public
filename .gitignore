@@ -1,5 +1,9 @@
 build/
+vanilla/
+bin/
+src/
 brushes/
+unpacked/vanilla/
 helmet_scripts/
 legend_armor_scripts/
 unpacked/legend_armor/0
