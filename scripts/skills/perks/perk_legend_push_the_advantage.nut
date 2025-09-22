@@ -40,9 +40,9 @@ this.perk_legend_push_the_advantage <- this.inherit("scripts/skills/skill", {
 		}
 	}
 
-	function calculateBonus ( _skill, _targetEntity )
+	function calculateBonus ( _targetEntity )
 	{
-		
+
 		local bonus = 0;
 
 		foreach (effect in this.m.HighBonus)
