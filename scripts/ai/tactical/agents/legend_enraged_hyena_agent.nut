@@ -22,7 +22,6 @@ this.legend_enraged_hyena_agent <- this.inherit("scripts/ai/tactical/agents/hyen
 	function onAddBehaviors() {
 		this.hyena_agent.onAddBehaviors();
 		// this.addBehavior(this.new("scripts/ai/tactical/behaviors/ai_disengage"));
-		// Seems thematic to have hyenas bite, retreat, let others close in, then bite again
 		// this.addBehavior(this.new("scripts/ai/tactical/behaviors/ai_defend_rotation"));
 
 		this.addBite(this.Const.AI.Behavior.ID.EngageMelee);
@@ -40,13 +39,44 @@ this.legend_enraged_hyena_agent <- this.inherit("scripts/ai/tactical/agents/hyen
 	}
 
 	function onUpdate() {
-		this.hyena_agent.onUpdate();
-		// Restore engage range after onUpdate()
-		this.m.Properties.EngageRangeMin = 2;
-		this.m.Properties.EngageRangeMax = 3;
-		this.m.Properties.EngageRangeIdeal = 3;
+		local actor = this.getActor();
+		local tile = actor != null ? actor.getTile() : null;
+		local preferBite = false;
+		// Prefer ranged bite positioning only if we can actually bite someone
+		if (actor != null && tile != null && !actor.getFlags().has("LegendEnragedHyenaBiteVictim")) {
+			local bite = ::Legends.Actives.get(actor, ::Legends.Active.LegendEnragedHyenaBite);
+			if (bite != null && bite.isUsable()) {
+				foreach (t in this.getKnownOpponents()) {
+					if (t.Actor.isNull()) {
+						continue;
+					}
+					local targetTile = t.Actor.getTile();
+					if (targetTile == null) {
+						continue;
+					}
+					if (bite.onVerifyTarget(tile, targetTile)) {
+						preferBite = true;
+						break;
+					}
+				}
+			}
+		}
 
-		if (this.getActor().getFlags().has("LegendEnragedHyenaHoldingVictim")) {
+		if (preferBite) {
+			// Encourage standing at 2-3 tiles to set up a bite
+			this.m.Properties.EngageRangeMin = 2;
+			this.m.Properties.EngageRangeMax = 3;
+			this.m.Properties.EngageRangeIdeal = 3;
+		} else {
+			// Default to standard melee range so Idle doesn't win
+			this.m.Properties.EngageRangeMin = 1;
+			this.m.Properties.EngageRangeMax = 1;
+			this.m.Properties.EngageRangeIdeal = 1;
+		}
+
+		this.hyena_agent.onUpdate();
+
+		if (actor.getFlags().has("LegendEnragedHyenaBiteVictim")) {
 			this.m.Properties.BehaviorMult[this.Const.AI.Behavior.ID.AttackDefault] = 5.0;
 			this.m.Properties.BehaviorMult[this.Const.AI.Behavior.ID.EngageMelee] = 0.5;
 			this.m.Properties.BehaviorMult[this.Const.AI.Behavior.ID.Roam] = 0.5;
