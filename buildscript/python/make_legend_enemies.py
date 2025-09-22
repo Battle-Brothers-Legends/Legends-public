@@ -412,8 +412,8 @@ enemies = r"""
 <sprite id="bust_vampire_lord_head_02" offsetY="35" ic="FF3E4C5A" width="104" height="142" img="entity\undead\bust_vampire_lord_head_02.png" left="-17" right="29" top="-12" bottom="48" />
 <sprite id="bust_vampire_lord_head_01" offsetY="35" ic="FF495564" width="104" height="142" img="entity\undead\bust_vampire_lord_head_01.png" left="-17" right="27" top="-30" bottom="44" />
 <sprite id="bust_vampire_lord_dead" offsetY="12" f="64FF" ic="FF465E6A" img="entity\undead\bust_vampire_lord_dead.png" left="-58" right="59" />
-<sprite id="bust_vampire_lady_head_01" offsetY="35" ic="FF495564" width="104" height="142" img="entity\undead\bust_vampire_lady_head_01.png" left="-24" right="25" top="-21" bottom="52" />
-<sprite id="bust_vampire_lady_head_02" offsetY="35" ic="FF495564" width="104" height="142" img="entity\undead\bust_vampire_lady_head_02.png" left="-24" right="25" top="-21" bottom="52" />
+<sprite id="bust_vampire_lady_head_01" offsetY="35" ic="FF495564" width="104" height="142" img="entity\undead\bust_vampire_lady_head_01.png" left="-24" right="28" top="-22" bottom="45" />
+<sprite id="bust_vampire_lady_head_02" offsetY="35" ic="FF495564" width="104" height="142" img="entity\undead\bust_vampire_lady_head_02.png" left="-24" right="28" top="-22" bottom="45" />
 <sprite id="bust_vampire_lady_body_01" offsetY="35" ic="FF5B6878" width="104" height="142" img="entity\undead\bust_vampire_lady_body_01.png" left="-42" right="40" top="-49" bottom="9" />
 <sprite id="bust_vampire_lady_body_02" offsetY="35" ic="FF5B6878" width="104" height="142" img="entity\undead\bust_vampire_lady_body_02.png" left="-42" right="40" top="-49" bottom="9" />
 <sprite id="hair_black_zombie_lady_01" offsetY="35" ic="FF5B6878" width="104" height="142" img="entity\undead\hair_zombie_lady_black_01.png" left="-28" right="28" top="-11" bottom="57" />
