@@ -1,8 +1,8 @@
-this.perk_legend_close_combat_archer <- this.inherit("scripts/skills/skill", {
+this.perk_legend_point_blank <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		::Const.Perks.setup(this.m, ::Legends.Perk.LegendCloseCombatArcher);
+		::Const.Perks.setup(this.m, ::Legends.Perk.LegendPointBlank);
 		this.m.Type = this.Const.SkillType.Perk | this.Const.SkillType.StatusEffect;
 		this.m.Order = this.Const.SkillOrder.Perk;
 		this.m.IsActive = false;

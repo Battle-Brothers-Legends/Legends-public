@@ -139,7 +139,7 @@ this.legend_assassin_commander_background <- this.inherit("scripts/skills/backgr
 			],
 			[
 				::Legends.Perk.LegendTumble,
-				::Legends.Perk.LegendCloseCombatArcher,
+				::Legends.Perk.LegendPointBlank,
 				::Legends.Perk.KillingFrenzy,
 				::Legends.Perk.Duelist,
 				::Legends.Perk.LegendRebound,

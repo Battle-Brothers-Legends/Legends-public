@@ -829,6 +829,7 @@
         Hammer = this.Const.Perks.HammerTree,
         Mace = this.Const.Perks.MaceTree,
         Polearm = this.Const.Perks.PolearmTree,
+        Staff = this.Const.Perks.PolearmTree,
         Sling = this.Const.Perks.SlingTree,
         Spear = this.Const.Perks.SpearTree,
         Sword = this.Const.Perks.SwordTree,

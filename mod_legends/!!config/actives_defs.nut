@@ -3177,7 +3177,7 @@ activesDefs.push({
 ::Legends.Active.LegendFlourish <- null;
 activesDefs.push({
 	ID = "actives.legend_flourish",
-	Script = "scripts/skills/actives/legend_flourish",
+	Script = "scripts/skills/actives/legend_flourish_skill",
 	Const = "LegendFlourish",
 	Name = "Flourish",
 });

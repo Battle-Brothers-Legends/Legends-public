@@ -36,7 +36,7 @@
 			text = "Inflicts [color=" + this.Const.UI.Color.DamageValue + "]" + damage + "[/color] damage to shields"
 		});
 
-		if (this.Tactical.isActive() && actor.getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions()) && !::Legends.Perks.has(this, ::Legends.Perk.LegendCloseCombatArcher))
+		if (this.Tactical.isActive() && actor.getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions()) && !::Legends.Perks.has(this, ::Legends.Perk.LegendPointBlank))
 		{
 			tooltip.push({
 				id = 9,
@@ -75,7 +75,7 @@
 	{
 
 		local isUsable = !this.Tactical.isActive() || this.skill.isUsable() && this.getAmmo() > 0;
-		if (this.getContainer().hasPerk(::Legends.Perk.LegendCloseCombatArcher))
+		if (this.getContainer().hasPerk(::Legends.Perk.LegendPointBlank))
 			return isUsable;
 
 		return isUsable && !this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions());
@@ -85,7 +85,7 @@
 	o.onAfterUpdate = function ( _properties )
 	{
 		onAfterUpdate(_properties);
-		if (this.getContainer().hasPerk(::Legends.Perk.LegendCloseCombatArcher))
+		if (this.getContainer().hasPerk(::Legends.Perk.LegendPointBlank))
 		{
 			this.m.MinRange = 1;
 			this.m.MaxRange = 3;

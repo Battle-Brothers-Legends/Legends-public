@@ -714,7 +714,7 @@ if (!("Perks" in ::Const))
 		[::Legends.Perk.SpecThrowing],
 		[],
 		[],
-		[::Legends.Perk.LegendCloseCombatArcher]
+		[::Legends.Perk.LegendPointBlank]
 	]
 };
 

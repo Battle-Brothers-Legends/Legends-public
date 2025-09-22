@@ -1,4 +1,4 @@
-::mods_hookExactClass("skills/perks/perk_legend_close_combat_archer", function(o) {
+::mods_hookExactClass("skills/perks/perk_legend_point_blank", function(o) {
 	// Author: WNTR Jimmy
 	// Date: 1/18/23
 	// nessesaries to register

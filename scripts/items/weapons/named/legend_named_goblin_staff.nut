@@ -9,7 +9,7 @@ this.legend_named_goblin_staff <- this.inherit("scripts/items/weapons/named/name
 		this.m.ID = "weapon.legend_named_staff_vala";
 		this.m.Name = "Adorned Gnarly Staff";
 		this.m.Description = "A gnarly staff carved from old and hard wood, decorated with a menacing skull, feathers and small bones. The runes on the head are intricate and tell a story that only the goblins can read.";
-		this.m.WeaponType = this.Const.Items.WeaponType.Staff | this.Const.Items.WeaponType.MagicStaff;
+		this.m.WeaponType = this.Const.Items.WeaponType.Staff | this.Const.Items.WeaponType.MagicStaff | this.Const.Items.WeaponType.Polearm;
 		this.m.SlotType = this.Const.ItemSlot.Mainhand;
 		this.m.BlockedSlotType = this.Const.ItemSlot.Offhand;
 		this.m.ItemType = this.Const.Items.ItemType.Named | this.Const.Items.ItemType.Weapon | this.Const.Items.ItemType.MeleeWeapon | this.Const.Items.ItemType.TwoHanded | this.Const.Items.ItemType.Defensive;
