@@ -5,9 +5,8 @@ this.legend_enraged_hyena_bite_effect <- this.inherit("scripts/skills/skill", {
 	},
 
 	function create() {
-		this.m.ID = "effects.legend_enraged_hyena_bite";
-		this.m.Name = "Locked in Jaws";
-		this.m.Description = "This character is held immobilized in the jaws of an enraged hyena. Their defenses are severely compromised and they cannot move until freed by a melee attack on the hyena.";
+		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendEnragedHyenaBite);
+		this.m.Description = "This character is held immobilized in the jaws of an enraged hyena. Their defenses are severely compromised and they cannot move until freed by attacking the hyena or by disengaging.";
 		this.m.Icon = "skills/legend_enraged_hyena_bite_effect.png";
 		this.m.IconMini = "legend_enraged_hyena_bite_effect_mini";
 		this.m.Overlay = "legend_enraged_hyena_bite_effect";
@@ -57,7 +56,7 @@ this.legend_enraged_hyena_bite_effect <- this.inherit("scripts/skills/skill", {
 				id = 13,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "Can be freed by attacking the hyena"
+				text = "Can be removed by attacking the hyena or by disengaging"
 			}
 		];
 	}
@@ -114,6 +113,7 @@ this.legend_enraged_hyena_bite_effect <- this.inherit("scripts/skills/skill", {
 			::logError("legend_enraged_hyena_bite_effect: onRemoved called but Hyena is null");
 		} else {
 			this.m.Hyena.getFlags().remove("LegendEnragedHyenaBiteVictim");
+			::Legends.Effects.remove(this.m.Hyena, ::Legends.Effect.LegendEnragedHyenaGrip);
 		}
 	}
 

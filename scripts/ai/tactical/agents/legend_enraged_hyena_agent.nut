@@ -33,7 +33,7 @@ this.legend_enraged_hyena_agent <- this.inherit("scripts/ai/tactical/agents/hyen
 		if (behavior == null) {
 			::logError("legend_enraged_hyena_agent: could not find behavior with ID " + _behaviorID);
 		} else {
-			::logDebug("legend_enraged_hyena_agent: adding bite to behavior " + _behaviorID);
+			// ::logDebug("legend_enraged_hyena_agent: adding bite to behavior " + _behaviorID);
 			behavior.m.PossibleSkills.push(::Legends.Actives.getID(::Legends.Active.LegendEnragedHyenaBite));
 		}
 	}

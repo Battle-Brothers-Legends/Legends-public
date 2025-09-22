@@ -267,7 +267,7 @@ this.legend_enraged_hyena_bite_skill <- this.inherit("scripts/skills/skill", {
 	}
 
 	function onRetreatStart(_tag) {
-		::logDebug("legend_enraged_hyena_bite_skill: onRetreatStart _tag= " + _tag);
+		// ::logDebug("legend_enraged_hyena_bite_skill: onRetreatStart _tag= " + _tag);
 
 		for (local i = 0; i < Const.Tactical.DustParticles.len(); i++) {
 			Tactical.spawnParticleEffect(
@@ -315,8 +315,7 @@ this.legend_enraged_hyena_bite_skill <- this.inherit("scripts/skills/skill", {
 			}
 		}.bindenv(this));
 
-		// TODO Should also show which hyena is holding the victim
-
+		::Legends.Effects.grant(_tag.actor, ::Legends.Effect.LegendEnragedHyenaGrip);
 	}
 
 });

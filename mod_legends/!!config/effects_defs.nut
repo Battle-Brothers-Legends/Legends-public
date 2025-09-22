@@ -2034,7 +2034,15 @@ effectsDefs.push({
 	ID = "effects.legend_enraged_hyena_bite",
 	Script = "scripts/skills/effects/legend_enraged_hyena_bite_effect",
 	Const = "LegendEnragedHyenaBite",
-	Name = "Enraged Hyena Bite",
+	Name = "Locked in Jaws",
+});
+
+::Legends.Effect.LegendEnragedHyenaGrip <- null;
+effectsDefs.push({
+	ID = "effects.legend_enraged_hyena_grip",
+	Script = "scripts/skills/effects/legend_enraged_hyena_grip_effect",
+	Const = "LegendEnragedHyenaGrip",
+	Name = "Predatory Grip",
 });
 
 ::Legends.Effects.addEffectDefObjects(effectsDefs);
