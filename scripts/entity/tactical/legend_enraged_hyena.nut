@@ -84,16 +84,27 @@ this.legend_enraged_hyena <- this.inherit("scripts/entity/tactical/enemies/hyena
 	}
 
 	function freeAllBittenVictims() {
-		if (!this.getFlags().has("LegendEnragedHyenaHoldingVictim")) return;
+		if (!this.getFlags().has("LegendEnragedHyenaBiteVictim")) {
+			return;
+		}
 
-		local everyone = this.Tactical.Entities.getAllInstancesAsArray();
-		foreach (entity in everyone) {
-			if (!entity.isAlive()) continue;
-			if (!entity.getFlags().has("LegendEnragedHyenaBite")) continue;
+		local victimToken = this.getFlags().get("LegendEnragedHyenaBiteVictim");
+
+		foreach (entity in this.Tactical.Entities.getAllInstancesAsArray()) {
+			if (::Legends.S.skillEntityAliveCheck(entity)) {
+				continue;
+			}
+			if (!entity.getFlags().has("LegendEnragedHyenaAttacker")) {
+				continue;
+			}
+			local attackerToken = entity.getFlags().get("LegendEnragedHyenaAttacker");
+			if (attackerToken != victimToken) {
+				continue;
+			}
 			local biteEffect = ::Legends.Effects.get(entity, ::Legends.Effect.LegendEnragedHyenaBite);
-			if (biteEffect != null && biteEffect.getHyena() == this) {
+			if (biteEffect != null) {
 				biteEffect.removeSelf();
-				break; // single victim only
+				break;
 			}
 		}
 	}
@@ -101,29 +112,30 @@ this.legend_enraged_hyena <- this.inherit("scripts/entity/tactical/enemies/hyena
 	function onMovementFinish(_tile) {
 		this.actor.onMovementFinish(_tile);
 
-		if (!this.getFlags().has("LegendEnragedHyenaHoldingVictim")) {
+		if (!this.getFlags().has("LegendEnragedHyenaBiteVictim")) {
 			return;
 		}
 
-		local hyenaTile = this.getTile();
-		if (hyenaTile == null) {
-			return;
-		}
+		local victimToken = this.getFlags().get("LegendEnragedHyenaBiteVictim");
 
 		foreach (entity in this.Tactical.Entities.getAllInstancesAsArray()) {
 			if (::Legends.S.skillEntityAliveCheck(entity)) {
 				continue;
 			}
-			if (!entity.getFlags().has("LegendEnragedHyenaBite")) {
+			if (!entity.getFlags().has("LegendEnragedHyenaAttacker")) {
 				continue;
 			}
-			local biteEffect = ::Legends.Effects.get(entity, ::Legends.Effect.LegendEnragedHyenaBite);
-			if (biteEffect != null && biteEffect.getHyena() == this) {
-				local victimTile = entity.getTile();
-				if (victimTile == null || victimTile.getDistanceTo(hyenaTile) > 1) {
+			local attackerToken = entity.getFlags().get("LegendEnragedHyenaAttacker");
+			if (attackerToken != victimToken) {
+				continue;
+			}
+			local victimTile = entity.getTile();
+			if (victimTile == null || victimTile.getDistanceTo(_tile) > 1) {
+				local biteEffect = ::Legends.Effects.get(entity, ::Legends.Effect.LegendEnragedHyenaBite);
+				if (biteEffect != null) {
 					biteEffect.removeSelf();
+					break;
 				}
-				break;
 			}
 		}
 	}

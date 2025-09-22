@@ -1,6 +1,7 @@
 this.legend_enraged_hyena_bite_effect <- this.inherit("scripts/skills/skill", {
 	m = {
 		Hyena = null,
+		Token = null,
 	},
 
 	function create() {
@@ -80,14 +81,17 @@ this.legend_enraged_hyena_bite_effect <- this.inherit("scripts/skills/skill", {
 		actor.getSprite("status_bite").Visible = true;
 		actor.setDirty(true);
 
-		// Tag actor as being held
-		actor.getFlags().set("LegendEnragedHyenaBite", true);
+		// Generate a unique token for this instance (idk how to make refs work properly)
+		this.m.Token = this.Math.rand(1, 2147483647);
 
-		// Tag hyena as holding a victim
+		// Tag victim with attacker
+		actor.getFlags().set("LegendEnragedHyenaAttacker", this.m.Token);
+
+		// Tag attacker with victim
 		if (this.m.Hyena == null) {
 			::logError("legend_enraged_hyena_bite_effect: onAdded called but Hyena is null");
 		} else {
-			this.m.Hyena.getFlags().set("LegendEnragedHyenaHoldingVictim", true);
+			this.m.Hyena.getFlags().set("LegendEnragedHyenaBiteVictim", this.m.Token);
 		}
 	}
 
@@ -97,19 +101,19 @@ this.legend_enraged_hyena_bite_effect <- this.inherit("scripts/skills/skill", {
 			this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(this.getContainer().getActor()) + " breaks free from the hyena's bite!");
 		}
 
-		// Clear actor as being held
-		actor.getFlags().remove("LegendEnragedHyenaBite");
+		// Clear attacker from victim
+		actor.getFlags().remove("LegendEnragedHyenaAttacker");
 
 		if (actor.hasSprite("status_bite")) {
 			actor.getSprite("status_bite").Visible = false;
 			actor.setDirty(true);
 		}
 
-		// Clear hyena as holding a victim
+		// Clear victim from attacker
 		if (this.m.Hyena == null) {
 			::logError("legend_enraged_hyena_bite_effect: onRemoved called but Hyena is null");
 		} else {
-			this.m.Hyena.getFlags().remove("LegendEnragedHyenaHoldingVictim");
+			this.m.Hyena.getFlags().remove("LegendEnragedHyenaBiteVictim");
 		}
 	}
 
@@ -152,10 +156,6 @@ this.legend_enraged_hyena_bite_effect <- this.inherit("scripts/skills/skill", {
 
 	function setHyena(_hyena) {
 		this.m.Hyena = _hyena;
-	}
-
-	function getHyena() {
-		return this.m.Hyena;
 	}
 
 });

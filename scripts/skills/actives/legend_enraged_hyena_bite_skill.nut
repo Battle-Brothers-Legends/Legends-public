@@ -152,7 +152,7 @@ this.legend_enraged_hyena_bite_skill <- this.inherit("scripts/skills/skill", {
 			return false;
 		}
 
-		if (target.getFlags().has("LegendEnragedHyenaBite")) {
+		if (target.getFlags().has("LegendEnragedHyenaAttacker")) {
 			// ::logDebug("legend_enraged_hyena_bite_skill: Target is already held by another hyena");
 			return false;
 		}
@@ -186,7 +186,7 @@ this.legend_enraged_hyena_bite_skill <- this.inherit("scripts/skills/skill", {
 		if (actor.getTile() != null && actor.getTile().hasZoneOfControlOtherThan(actor.getAlliedFactions())) {
 			return false;
 		}
-		if (actor.getFlags() != null && actor.getFlags().has("LegendEnragedHyenaHoldingVictim")) {
+		if (actor.getFlags().has("LegendEnragedHyenaBiteVictim")) {
 			return false;
 		}
 		return true;
@@ -314,6 +314,8 @@ this.legend_enraged_hyena_bite_skill <- this.inherit("scripts/skills/skill", {
 				::logError("legend_enraged_hyena_bite_skill: effect has no setHyena function");
 			}
 		}.bindenv(this));
+
+		// TODO Should also show which hyena is holding the victim
 
 	}
 
