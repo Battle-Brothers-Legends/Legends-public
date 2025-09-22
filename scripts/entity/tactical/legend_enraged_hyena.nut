@@ -76,8 +76,7 @@ this.legend_enraged_hyena <- this.inherit("scripts/entity/tactical/enemies/hyena
 	}
 
 	function onDamageReceived(_attacker, _skill, _hitInfo) {
-		// Release all bitten victims when the hyena takes damage
-		if (_hitInfo.DamageRegular > 0) {
+		if (_hitInfo.DamageRegular > 0 || _hitInfo.DamageArmor > 0) {
 			this.freeAllBittenVictims();
 		}
 
@@ -85,16 +84,46 @@ this.legend_enraged_hyena <- this.inherit("scripts/entity/tactical/enemies/hyena
 	}
 
 	function freeAllBittenVictims() {
-		// Find all actors with the bite effect that are linked to this hyena
-		local entities = this.Tactical.Entities.getInstancesOfFaction(this.Const.Faction.Player);
-		entities.extend(this.Tactical.Entities.getInstancesOfFaction(this.Const.Faction.PlayerAnimals));
-		foreach (entity in entities) {
-			if (entity.isAlive()) {
-				local biteEffect = ::Legends.Effects.get(entity, ::Legends.Effect.LegendEnragedHyenaBite);
-				if (biteEffect != null && biteEffect.getHyena() == this) {
-					// Free the victim
-					biteEffect.checkHyenaHit();
+		if (!this.getFlags().has("LegendEnragedHyenaHoldingVictim")) return;
+
+		local everyone = this.Tactical.Entities.getAllInstancesAsArray();
+		foreach (entity in everyone) {
+			if (!entity.isAlive()) continue;
+			if (!entity.getFlags().has("LegendEnragedHyenaBite")) continue;
+			local biteEffect = ::Legends.Effects.get(entity, ::Legends.Effect.LegendEnragedHyenaBite);
+			if (biteEffect != null && biteEffect.getHyena() == this) {
+				biteEffect.removeSelf();
+				break; // single victim only
+			}
+		}
+	}
+
+	function onMovementFinish(_tile) {
+		this.actor.onMovementFinish(_tile);
+
+		if (!this.getFlags().has("LegendEnragedHyenaHoldingVictim")) {
+			return;
+		}
+
+		local hyenaTile = this.getTile();
+		if (hyenaTile == null) {
+			return;
+		}
+
+		foreach (entity in this.Tactical.Entities.getAllInstancesAsArray()) {
+			if (::Legends.S.skillEntityAliveCheck(entity)) {
+				continue;
+			}
+			if (!entity.getFlags().has("LegendEnragedHyenaBite")) {
+				continue;
+			}
+			local biteEffect = ::Legends.Effects.get(entity, ::Legends.Effect.LegendEnragedHyenaBite);
+			if (biteEffect != null && biteEffect.getHyena() == this) {
+				local victimTile = entity.getTile();
+				if (victimTile == null || victimTile.getDistanceTo(hyenaTile) > 1) {
+					biteEffect.removeSelf();
 				}
+				break;
 			}
 		}
 	}
@@ -103,7 +132,7 @@ this.legend_enraged_hyena <- this.inherit("scripts/entity/tactical/enemies/hyena
 		this.actor.onRender();
 
 		if (this.m.DistortTargetA == null) {
-			// Initialize breathing animation targets - more pronounced movement for visibility
+			// Initialize breathing animation targets
 			this.m.DistortTargetA = this.m.IsFlipping ? this.createVec(0, 1.5 * this.m.Size) : this.createVec(0, -1.5 * this.m.Size);
 			this.m.DistortTargetB = this.m.IsFlipping ? this.createVec(0, 1.0 * this.m.Size) : this.createVec(0, -1.0 * this.m.Size);
 			this.m.DistortAnimationStartTimeA = this.Time.getVirtualTimeF() - this.Math.rand(10, 100) * 0.01;

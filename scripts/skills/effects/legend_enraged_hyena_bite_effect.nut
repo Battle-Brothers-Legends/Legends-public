@@ -132,6 +132,24 @@ this.legend_enraged_hyena_bite_effect <- this.inherit("scripts/skills/skill", {
 		}
 	}
 
+	function onMovementFinished() {
+		if (this.m.Hyena == null || ::Legends.S.skillEntityAliveCheck(this.m.Hyena)) {
+			this.removeSelf();
+			return;
+		}
+
+		local victimTile = this.getContainer().getActor().getTile();
+		local hyenaTile = this.m.Hyena.getTile();
+		if (victimTile == null || hyenaTile == null) {
+			this.removeSelf();
+			return;
+		}
+
+		if (victimTile.getDistanceTo(hyenaTile) > 1) {
+			this.removeSelf();
+		}
+	}
+
 	function setHyena(_hyena) {
 		this.m.Hyena = _hyena;
 	}
@@ -140,8 +158,4 @@ this.legend_enraged_hyena_bite_effect <- this.inherit("scripts/skills/skill", {
 		return this.m.Hyena;
 	}
 
-	// This function will be called by the hyena when it takes damage
-	function checkHyenaHit() {
-		this.removeSelf();
-	}
 });
