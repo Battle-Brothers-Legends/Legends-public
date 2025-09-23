@@ -1,5 +1,9 @@
 ::FU.Mod.Keybinds.addSQKeybind("ClosePopup", "escape", ::FU.Key.State.All, function()
 {
+	if (!("Popup" in ::FU))
+	{
+		return false;
+	}
 	if (::FU.Popup.isVisible() && !::FU.Popup.isAnimating())
 	{
 		if (::FU.Popup.isForceQuitting())

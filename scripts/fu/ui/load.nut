@@ -18,12 +18,14 @@
 ::mods_registerJS("fu/ui_screen.js");
 
 local _modSettingsFiles = ::IO.enumerateFiles("ui/mods/fu/mod_settings/");
+::logInfo("FU: Found " + (_modSettingsFiles != null ? _modSettingsFiles.len() : 0) + " mod settings UI files");
 if (_modSettingsFiles != null)
 foreach (file in _modSettingsFiles)
 {
 	local splitFile = split(file, "/");
 	local shortArray = splitFile.slice(2, splitFile.len());
 	local shortenedString = shortArray.reduce(@(a, b) a + "/" + b);
+	::logInfo("FU: Registering JS file: " + shortenedString + ".js");
 	::mods_registerJS(shortenedString + ".js");
 }
 
@@ -32,3 +34,9 @@ foreach (file in _modSettingsFiles)
 
 ::FU.UI.JSConnection = ::new("scripts/mods/FU/FU_connection");
 ::FU.UI.registerConnection(::FU.UI.JSConnection);
+
+// Popup will be created in bootstrap phase
+if ("Popup" in ::FU)
+{
+    ::FU.UI.registerConnection(::FU.Popup);
+}

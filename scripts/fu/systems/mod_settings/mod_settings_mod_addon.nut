@@ -12,6 +12,7 @@
 
 		function addPage( _pageID, _pageName = null )
 		{
+			::logInfo("FU ModSettings: addPage called for mod '" + this.Mod.getID() + "' page '" + _pageID + "'");
 			local page = ::FU.Class.SettingsPage(_pageID, _pageName);
 			this.getPanel().addPage(page);
 			::logInfo("FU ModSettings: mod '" + this.Mod.getID() + "' added page '" + page.getID() + "' (name: " + page.getName() + ")");

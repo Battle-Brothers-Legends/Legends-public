@@ -32,3 +32,6 @@ if (!("EndQueue" in ::FU)) ::FU.EndQueue <- {
 // Install MSU shim and enhanced mod_hooks wrappers before validation/queue
 ::include("scripts/fu/shims/msu_shim_early.nut");
 // mod_hooks wrapper is included in register_legends after vanilla mod_hooks is ready
+
+
+::FU.Popup <- ::new("scripts/mods/FU/popup");

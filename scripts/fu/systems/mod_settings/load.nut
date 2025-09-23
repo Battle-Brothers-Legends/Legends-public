@@ -16,7 +16,9 @@ includeFile("settings_page.nut");
 includeFile("settings_panel.nut");
 
 includeFile("mod_settings_system.nut");
+::logInfo("FU: Creating ModSettingsSystem");
 ::FU.System.ModSettings <- ::FU.Class.ModSettingsSystem();
+::logInfo("FU: ModSettingsSystem created");
 ::getModSetting <- function( _modID, _settingID )
 {
 	local panel = ::FU.System.ModSettings.getPanel(_modID);
@@ -26,12 +28,15 @@ includeFile("mod_settings_system.nut");
 }
 includeFile("mod_settings_mod_addon.nut");
 
+::logInfo("FU: Creating SettingsScreen");
 ::FU.SettingsScreen <- ::new("scripts/mods/FU/settings_screen");
+::logInfo("FU: SettingsScreen created, registering UI connection");
 ::FU.UI.registerConnection(::FU.SettingsScreen);
 ::FU.UI.addOnConnectCallback(::FU.System.ModSettings.finalize.bindenv(::FU.System.ModSettings));
 ::FU.System.ModSettings.Screen = ::FU.SettingsScreen;
 
 
+::logInfo("FU: Creating SettingsFlags");
 ::FU.SettingsFlags <- {
 	NewCampaign = {
 		required = [
@@ -54,3 +59,4 @@ includeFile("mod_settings_mod_addon.nut");
 		]
 	}
 };
+::logInfo("FU: SettingsFlags created successfully");

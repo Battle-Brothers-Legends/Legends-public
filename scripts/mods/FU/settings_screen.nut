@@ -21,20 +21,33 @@ this.settings_screen <- ::inherit("scripts/mods/FU/ui_screen", {
 
 	function show( _flags = [] )
 	{
+		::logInfo("FU: SettingsScreen.show called with flags: " + (_flags.len() > 0 ? "provided" : "empty"));
 		if (this.m.JSHandle == null)
 		{
+			::logError("FU: SettingsScreen JSHandle is null - not connected to UI");
 			throw ::FU.Exception.NotConnected;
 		}
 		else if (this.isVisible())
 		{
+			::logError("FU: SettingsScreen is already visible");
 			throw ::FU.Exception.AlreadyInState;
 		}
+		::logInfo("FU: SettingsScreen calling asyncCall to show");
 		this.m.JSHandle.asyncCall("show", ::FU.System.ModSettings.getUIData(_flags));
 	}
 
 	function connect()
 	{
+		::logInfo("FU: SettingsScreen connecting to UI with identifier 'ModSettingsScreen'");
 		this.m.JSHandle = ::UI.connect("ModSettingsScreen", this);
+		if (this.m.JSHandle != null)
+		{
+			::logInfo("FU: SettingsScreen successfully connected to UI");
+		}
+		else
+		{
+			::logError("FU: SettingsScreen failed to connect to UI - JSHandle is null");
+		}
 	}
 
 	function linkMenuStack( _menuStack )

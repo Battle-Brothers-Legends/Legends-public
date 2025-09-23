@@ -38,7 +38,10 @@ this.FU_connection <- ::inherit("scripts/mods/FU/js_connection", {
 
 	function clearKeys()
 	{
-		this.m.JSHandle.asyncCall("clearKeys", null);
+		if (this.m.JSHandle != null)
+		{
+			this.m.JSHandle.asyncCall("clearKeys", null);
+		}
 	}
 
 	function checkForModUpdates()
