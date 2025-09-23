@@ -2,7 +2,7 @@ if (!("LegendMod" in ::Const)) {
 	::Const.LegendMod <- {}
 }
 
-::include("scripts/fu/load.nut");
+// FU is already loaded by register_legends.nut, no need to reload it
 
 // load order
 foreach (dir in [

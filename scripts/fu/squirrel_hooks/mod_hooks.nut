@@ -2,6 +2,11 @@
 // Note: use getroottable() instead of 'in ::' which is invalid in Squirrel.
 if (!("MSU" in getroottable()) || ("IsShim" in ::MSU))
 {
+// Only proceed if vanilla mod hooks API is ready. Otherwise, do nothing; this file may be included again later.
+if (!("mods_registerMod" in getroottable())) { }
+else if (!("mods_queue" in getroottable())) { }
+else if (!("_mods_runQueue" in getroottable())) { }
+else {
 ::FU.QueueErrors <- {
 	Errors = "",
 
@@ -128,14 +133,22 @@ local _mods_runQueue = ::_mods_runQueue;
 
 	foreach (mod in ::mods_getRegisteredMods())
 	{
+		// Skip mods that registered before our wrapper and thus lack Dependencies
+		if (!("Dependencies" in mod)) continue;
 		foreach (dependencyTable in mod.Dependencies)
 		{
 			local dependencyMod = ::mods_getRegisteredMod(dependencyTable.Name);
 			// Treat MSU dependency as satisfied if FU's MSU shim is active
-				if (dependencyMod == null && dependencyTable.Name == "mod_msu" && ("MSU" in getroottable()) && ("IsShim" in ::MSU))
+			if (dependencyMod == null && dependencyTable.Name == "mod_msu" && ("MSU" in getroottable()) && ("IsShim" in ::MSU))
 			{
 				// Fabricate a minimal mod record for version comparisons
 				dependencyMod = { Name = "mod_msu", FriendlyName = "MSU (shim)", Version = 2147483647, SemVer = ::MSU.SemVer.getTable(::MSU.Version) };
+			}
+			// Treat vanilla dependency using the game version
+			if (dependencyMod == null && dependencyTable.Name == "vanilla" && ("GameInfo" in getroottable()))
+			{
+				local v = ("SemVer" in ::FU && typeof ::GameInfo.getVersionNumber == "function") ? ::FU.SemVer.getTable(::FU.SemVer.formatVanillaVersion(::GameInfo.getVersionNumber())) : null;
+				dependencyMod = { Name = "vanilla", FriendlyName = "vanilla", Version = 2147483647, SemVer = v };
 			}
 			// First check mod presence
 			if (dependencyTable.Operator == "!")
@@ -214,18 +227,19 @@ local _mods_runQueue = ::_mods_runQueue;
 		}
 	}
 
-	if (::FU.QueueErrors.Errors != "")
-	{
-		::FU.Popup.showRawText(::FU.QueueErrors.Errors, true);
-		throw ::FU.QueueErrors.Errors;
-	}
+    if (::FU.QueueErrors.Errors != "")
+    {
+    	if ("Popup" in ::FU) ::FU.Popup.showRawText(::FU.QueueErrors.Errors, true);
+    	throw ::FU.QueueErrors.Errors;
+    }
 
 	_mods_runQueue();
 
-	if (::FU.QueueErrors.Errors != "")
-	{
-		::FU.Popup.showRawText(::FU.QueueErrors.Errors, true);
-		throw ::FU.QueueErrors.Errors;
-	}
+    if (::FU.QueueErrors.Errors != "")
+    {
+    	if ("Popup" in ::FU) ::FU.Popup.showRawText(::FU.QueueErrors.Errors, true);
+    	throw ::FU.QueueErrors.Errors;
+    }
+}
 }
 }

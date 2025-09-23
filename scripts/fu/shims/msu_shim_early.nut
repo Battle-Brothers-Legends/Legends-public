@@ -23,29 +23,29 @@ if (!("MSU" in getroottable()))
         }
     };
 
-    // Map utilities available at config time
-    ::MSU.Exception <- ::FU.Exception;
-    ::MSU.Array <- ::FU.Array;
-    ::MSU.String <- ::FU.String;
-    ::MSU.Math <- ::FU.Math;
-    ::MSU.Table <- ::FU.Table;
-    ::MSU.Text <- ::FU.Text;
-    ::MSU.TypeCheckers <- ::FU.TypeCheckers;
-    ::MSU.SemVer <- ::FU.SemVer;
-    ::MSU.Utils <- ::FU.Utils;
-    ::MSU.Log <- ::FU.Log;
-    ::MSU.Globals <- ::FU.Globals;
+    // Map utilities available at config time (only if already defined on ::FU)
+    if ("Exception" in ::FU) ::MSU.Exception <- ::FU.Exception;
+    if ("Array" in ::FU) ::MSU.Array <- ::FU.Array;
+    if ("String" in ::FU) ::MSU.String <- ::FU.String;
+    if ("Math" in ::FU) ::MSU.Math <- ::FU.Math;
+    if ("Table" in ::FU) ::MSU.Table <- ::FU.Table;
+    if ("Text" in ::FU) ::MSU.Text <- ::FU.Text;
+    if ("TypeCheckers" in ::FU) ::MSU.TypeCheckers <- ::FU.TypeCheckers;
+    if ("SemVer" in ::FU) ::MSU.SemVer <- ::FU.SemVer;
+    if ("Utils" in ::FU) ::MSU.Utils <- ::FU.Utils;
+    if ("Log" in ::FU) ::MSU.Log <- ::FU.Log;
+    if ("Globals" in ::FU) ::MSU.Globals <- ::FU.Globals;
 
     // Common direct aliases used by mods (avoid requiring .Globals)
-    ::MSU.isNull <- ::FU.isNull;
-    ::MSU.getField <- ::FU.getField;
-    ::MSU.getMember <- ::FU.getMember;
-    ::MSU.isIn <- ::FU.isIn;
-    ::MSU.isKindOf <- ::FU.isKindOf;
-    ::MSU.asWeakTableRef <- ::FU.asWeakTableRef;
-    ::MSU.regexMatch <- ::FU.regexMatch;
-    ::MSU.isEqual <- ::FU.isEqual;
-    ::MSU.isBBObject <- ::FU.isBBObject;
+    if ("isNull" in ::FU) ::MSU.isNull <- ::FU.isNull;
+    if ("getField" in ::FU) ::MSU.getField <- ::FU.getField;
+    if ("getMember" in ::FU) ::MSU.getMember <- ::FU.getMember;
+    if ("isIn" in ::FU) ::MSU.isIn <- ::FU.isIn;
+    if ("isKindOf" in ::FU) ::MSU.isKindOf <- ::FU.isKindOf;
+    if ("asWeakTableRef" in ::FU) ::MSU.asWeakTableRef <- ::FU.asWeakTableRef;
+    if ("regexMatch" in ::FU) ::MSU.regexMatch <- ::FU.regexMatch;
+    if ("isEqual" in ::FU) ::MSU.isEqual <- ::FU.isEqual;
+    if ("isBBObject" in ::FU) ::MSU.isBBObject <- ::FU.isBBObject;
 
     // Namespaces commonly referenced early
     if ("Key" in ::FU) ::MSU.Key <- ::FU.Key;
@@ -55,6 +55,6 @@ if (!("MSU" in getroottable()))
     // Copy require* helpers
     foreach (k, v in ::FU)
     {
-        if (typeof v == "function" && ::FU.String.startsWith(k, "require")) ::MSU[k] <- v;
+        if (typeof v == "function" && ("String" in ::FU) && ::FU.String.startsWith(k, "require")) ::MSU[k] <- v;
     }
 }

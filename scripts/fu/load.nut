@@ -17,3 +17,6 @@ includeLoad("test");
 
 // Provide compatibility shims (e.g., MSU) after core systems are loaded
 ::FU.includeFile("scripts/fu/", "shims/msu_shim.nut");
+
+// Execute any queued end-of-load functions
+if ("EndQueue" in ::FU && "execute" in ::FU.EndQueue) ::FU.EndQueue.execute();

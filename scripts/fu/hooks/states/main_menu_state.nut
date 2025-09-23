@@ -9,12 +9,7 @@
         local mainMenuModule = this.m.MainMenuScreen.getMainMenuModule();
         mainMenuModule.setOnModOptionsPressedListener(this.main_menu_module_onModOptionsPressed.bindenv(this));
 
-        // Ensure FU UI connections happen after the main menu screen exists
-        if ("UI" in ::FU)
-        {
-            ::FU.UI.registerConnection(::FU.Popup);
-            ::FU.UI.connect();
-        }
+        // FU UI connections are handled by the FU system itself
     }
 
 	o.main_menu_module_onModOptionsPressed <- function()

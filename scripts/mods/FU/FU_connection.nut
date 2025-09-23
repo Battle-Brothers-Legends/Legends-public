@@ -10,11 +10,14 @@ this.FU_connection <- ::inherit("scripts/mods/FU/js_connection", {
 
 	function querySettingsData()
 	{
-		local data = {
-			keybinds = ::FU.System.Keybinds.getJSKeybinds(),
-			settings = ::FU.System.ModSettings.getUIData()
-		};
-		this.m.JSHandle.asyncCall("onQuerySettingsData", data);
+		if (this.m.JSHandle != null)
+		{
+			local data = {
+				keybinds = ::FU.System.Keybinds.getJSKeybinds(),
+				settings = ::FU.System.ModSettings.getUIData()
+			};
+			this.m.JSHandle.asyncCall("onQuerySettingsData", data);
+		}
 	}
 
 	function removeKeybind( _keybind )
@@ -40,7 +43,10 @@ this.FU_connection <- ::inherit("scripts/mods/FU/js_connection", {
 
 	function checkForModUpdates()
 	{
-		this.m.JSHandle.asyncCall("checkForModUpdates", ::FU.System.Registry.getModsForUpdateCheck());
+		if (this.m.JSHandle != null)
+		{
+			this.m.JSHandle.asyncCall("checkForModUpdates", ::FU.System.Registry.getModsForUpdateCheck());
+		}
 	}
 
 	function receiveModVersions( _modVersions )

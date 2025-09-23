@@ -20,26 +20,26 @@ if ("System" in ::FU) ::MSU.System <- ::FU.System;
 if ("Mod" in ::FU) ::MSU.Mod <- ::FU.Mod;
 ::MSU.Class <- ::FU.Class;
 if ("UI" in ::FU) ::MSU.UI <- ::FU.UI;
-::MSU.Popup <- ("Popup" in ::FU ? ::FU.Popup : ::rawget(::MSU, "Popup", null));
-::MSU.EndQueue <- ("EndQueue" in ::FU ? ::FU.EndQueue : ::rawget(::MSU, "EndQueue", null));
+::MSU.Popup <- ("Popup" in ::FU ? ::FU.Popup : (("MSU" in getroottable() && "Popup" in ::MSU) ? ::MSU.Popup : null));
+::MSU.EndQueue <- ("EndQueue" in ::FU ? ::FU.EndQueue : (("MSU" in getroottable() && "EndQueue" in ::MSU) ? ::MSU.EndQueue : null));
 
 // Utilities and helpers
-::MSU.Exception <- ::FU.Exception;
-::MSU.Array <- ::FU.Array;
-::MSU.String <- ::FU.String;
-::MSU.Math <- ::FU.Math;
-::MSU.Table <- ::FU.Table;
-::MSU.Text <- ::FU.Text;
-::MSU.TypeCheckers <- ::FU.TypeCheckers;
+if ("Exception" in ::FU) ::MSU.Exception <- ::FU.Exception;
+if ("Array" in ::FU) ::MSU.Array <- ::FU.Array;
+if ("String" in ::FU) ::MSU.String <- ::FU.String;
+if ("Math" in ::FU) ::MSU.Math <- ::FU.Math;
+if ("Table" in ::FU) ::MSU.Table <- ::FU.Table;
+if ("Text" in ::FU) ::MSU.Text <- ::FU.Text;
+if ("TypeCheckers" in ::FU) ::MSU.TypeCheckers <- ::FU.TypeCheckers;
 if ("Tile" in ::FU) ::MSU.Tile <- ::FU.Tile;
-::MSU.SemVer <- ::FU.SemVer;
-::MSU.Utils <- ::FU.Utils;
+if ("SemVer" in ::FU) ::MSU.SemVer <- ::FU.SemVer;
+if ("Utils" in ::FU) ::MSU.Utils <- ::FU.Utils;
 if ("AI" in ::FU) ::MSU.AI <- ::FU.AI;
 if ("Skills" in ::FU) ::MSU.Skills <- ::FU.Skills;
 if ("Key" in ::FU) ::MSU.Key <- ::FU.Key;
 if ("Tile" in ::FU) ::MSU.Tile <- ::FU.Tile;
-::MSU.Log <- ::FU.Log;
-::MSU.Globals <- ::FU.Globals;
+if ("Log" in ::FU) ::MSU.Log <- ::FU.Log;
+if ("Globals" in ::FU) ::MSU.Globals <- ::FU.Globals;
 
 // Common require/checker aliases
 foreach (k, v in ::FU)

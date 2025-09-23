@@ -9,16 +9,13 @@
 	IsStartingNewCampaign = false
 };
 
-if (!("MSU" in this.getroottable()) || ::MSU.SemVer.compare(::MSU.SemVer.getTable(::MSU.Version), ::MSU.SemVer.getTable("1.3.0")) >= 0 && !("Hooks" in this.getroottable()))
-{
-	::mods_registerMod(::Legends.ID, ::Legends.Version, ::Legends.Name);
-}
-else
-{
-	::mods_registerMod(::Legends.ID, ::Legends.Version, ::Legends.Name);
-}
+// Register FU mod with mod_hooks so registry system can find it
+::mods_registerMod(::FU.ID, ::FU.Version, ::FU.Name);
 
-::mods_queue(::Legends.ID, "mod_legends_assets(>=19.2.0), vanilla(>=1.5.1-5), dlc_lindwurm, dlc_unhold, dlc_wildmen, dlc_desert, dlc_paladins, mod_events_delayed_fix_legends, !mod_tooltip_extension(<=1.01)", function()
+// Register Legends with vanilla mod_hooks (avoid depending on MSU at this point)
+::mods_registerMod(::Legends.ID, ::Legends.Version, ::Legends.Name);
+
+::mods_queue(::Legends.ID, "mod_legends_assets(>=19.2.0), dlc_lindwurm, dlc_unhold, dlc_wildmen, dlc_desert, dlc_paladins, mod_events_delayed_fix_legends, !mod_tooltip_extension(<=1.01)", function()
 {
 	    ::include("scripts/fu/load.nut");
 

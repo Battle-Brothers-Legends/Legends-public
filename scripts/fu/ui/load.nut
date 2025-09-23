@@ -3,6 +3,12 @@
 
 ::mods_registerJS("fu/utilities.js");
 
+// Load keybinds system before connection files that depend on it
+::mods_registerJS("fu/keybinds/key_static.js");
+::mods_registerJS("fu/keybinds/keybind.js");
+::mods_registerJS("fu/keybinds/keybinds_system.js");
+::mods_registerJS("fu/keybinds/document_events.js");
+
 ::mods_registerJS("fu/ui_hooks/main_menu_module.js");
 ::mods_registerJS("fu/ui_hooks/main_menu_screen.js");
 ::mods_registerJS("fu/ui_hooks/tooltip_module.js");
@@ -20,11 +26,6 @@ foreach (file in _modSettingsFiles)
 	local shortenedString = shortArray.reduce(@(a, b) a + "/" + b);
 	::mods_registerJS(shortenedString + ".js");
 }
-
-::mods_registerJS("fu/keybinds/key_static.js");
-::mods_registerJS("fu/keybinds/keybind.js");
-::mods_registerJS("fu/keybinds/keybinds_system.js");
-::mods_registerJS("fu/keybinds/document_events.js");
 
 
 ::FU.includeFile("scripts/fu/ui/", "ui.nut");
