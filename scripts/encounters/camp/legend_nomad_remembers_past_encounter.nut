@@ -1,6 +1,8 @@
 this.legend_nomad_remembers_past_encounter <- ::inherit("scripts/encounters/encounter", {
 	m = {
-		Nomad = null
+		Nomad = null,
+		RandomBrother = null,
+		RandomBrother2 = null
 	},
 
 	function create() {

@@ -22,23 +22,38 @@
 		if (this.m.LastRelationUpdateDay != this.World.getTime().Days)
 		{
 			this.m.LastRelationUpdateDay = this.World.getTime().Days;
-			local StaticRelations = this.World.Assets.getOrigin().getStaticRelations();
-
-			foreach( f in this.m.Factions )
+			local origin = this.World.Assets.getOrigin();
+			local StaticRelations = {};
+			if (origin != null && "getStaticRelations" in origin)
 			{
-				if (f != null && !(StaticRelations[f.getType()])) //init to false automatically so should
-				{ //normalize relations unless we set in scenario init
-					f.normalizeRelation();
-				}
+				StaticRelations = origin.getStaticRelations();
 			}
+			else
+			{
+				// Default to no static relations if origin doesn't provide it (compat with FU)
+				StaticRelations = {};
+			}
+
+				foreach( f in this.m.Factions )
+				{
+					if (f == null) continue;
+					local t = f.getType();
+					local isStatic = (t in StaticRelations) ? StaticRelations[t] : false;
+					// Normalize relations unless explicitly marked static in the origin
+					if (!isStatic)
+					{
+						f.normalizeRelation();
+					}
+				}
 		}
 
 		if (++this.m.NextFactionToUpdate >= this.m.Factions.len())
 		{
-			this.m.NextFactionToUpdate = 3;
+			// Skip first three slots as in vanilla, but clamp to valid range
+			this.m.NextFactionToUpdate = this.m.Factions.len() > 4 ? 3 : 0;
 		}
 
-		if (this.m.Factions[this.m.NextFactionToUpdate] != null)
+		if (this.m.Factions.len() > this.m.NextFactionToUpdate && this.m.Factions[this.m.NextFactionToUpdate] != null)
 		{
 			this.m.Factions[this.m.NextFactionToUpdate].update(_ignoreDelay, false);
 		}

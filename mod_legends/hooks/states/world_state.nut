@@ -110,17 +110,26 @@
 		getPlayer().calculateModifiers(); //Leonion's fix
 	}
 
-	local startNewCampaign = o.startNewCampaign;
-	o.startNewCampaign = function()
-	{
-		m.AppropriateTimeToRecalc = 0; // set to 0 as you don't want it to update those modifiers
-		::Legends.IsStartingNewCampaign = true;
-		startNewCampaign();
-		::World.setFogOfWar(!::Legends.Mod.ModSettings.getSetting("DebugMap").getValue()); //
-		::World.Crafting.resetAllBlueprints(); //
-		onCalculatePlayerPartyModifiers();
-		::Legends.IsStartingNewCampaign = false;
-	}
+    // Defer starting a new campaign until CampaignSettings are available
+    o.m.LegendsDeferredCampaignStart <- false;
+    local startNewCampaign = o.startNewCampaign;
+    o.startNewCampaign = function()
+    {
+        if (this.m.CampaignSettings == null || !("Seed" in this.m.CampaignSettings))
+        {
+            ::logError("Legends: CampaignSettings missing or incomplete (no Seed). Deferring campaign start.");
+            this.m.LegendsDeferredCampaignStart = true;
+            return;
+        }
+
+        m.AppropriateTimeToRecalc = 0; // set to 0 as you don't want it to update those modifiers
+        ::Legends.IsStartingNewCampaign = true;
+        startNewCampaign();
+        ::World.setFogOfWar(!::Legends.Mod.ModSettings.getSetting("DebugMap").getValue()); //
+        ::World.Crafting.resetAllBlueprints(); //
+        onCalculatePlayerPartyModifiers();
+        ::Legends.IsStartingNewCampaign = false;
+    }
 
 	o.showIntroductionScreen <- function ( _tag = null )
 	{
@@ -128,16 +137,23 @@
 		::World.Contracts.update(true);
 	}
 
-	local setNewCampaignSettings = o.setNewCampaignSettings;
-	o.setNewCampaignSettings = function ( _settings )
-	{
-		foreach(k,v in _settings)
-		{
-			::logInfo(k + " = " + v);
-		}
+    local setNewCampaignSettings = o.setNewCampaignSettings;
+    o.setNewCampaignSettings = function ( _settings )
+    {
+        foreach(k,v in _settings)
+        {
+            ::logInfo(k + " = " + v);
+        }
 
-		setNewCampaignSettings(_settings);
-	}
+        setNewCampaignSettings(_settings);
+
+        // If we previously deferred starting the campaign, start now
+        if (this.m.LegendsDeferredCampaignStart)
+        {
+            this.m.LegendsDeferredCampaignStart = false;
+            this.startNewCampaign();
+        }
+    }
 
 	local setPause = o.setPause;
 	o.setPause = function( _f )
