@@ -424,7 +424,8 @@ this.legend_armor <- this.inherit("scripts/items/armor/armor", {
 		local oldIndex;
 
 
-		if ("Assets" in this.World && this.World.Assets.getStash())
+		// Guard against missing stash in scenarios
+		if ("Assets" in this.World && this.World.Assets != null && ("getStash" in this.World.Assets) && this.World.Assets.getStash())
 		{
 
 			oldIndex = this.World.Assets.getStash().getItemByInstanceID(_upgrade.getInstanceID())
@@ -465,7 +466,12 @@ this.legend_armor <- this.inherit("scripts/items/armor/armor", {
 
 	function removeUpgrade( _slot )
 	{
-		if (this.m.Upgrades[_slot] == null || this.Stash.getNumberOfEmptySlots() == 0) return null;
+		local stashHasSpace = true;
+		if ("Stash" in this && this.Stash != null && ("getNumberOfEmptySlots" in this.Stash))
+		{
+			stashHasSpace = this.Stash.getNumberOfEmptySlots() > 0;
+		}
+		if (this.m.Upgrades[_slot] == null || !stashHasSpace) return null;
 
 		local app = this.getContainer() == null ? null : this.getContainer().getAppearance();
 		local item = this.m.Upgrades[_slot];

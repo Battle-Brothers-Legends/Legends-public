@@ -488,7 +488,8 @@ this.legend_helmet <- this.inherit("scripts/items/helmets/helmet", {
 		}
 		local oldIndex;
 
-		if ("Assets" in this.World && this.World.Assets.getStash())
+		// In scenarios there may be no world stash; guard both existence and method
+		if ("Assets" in this.World && this.World.Assets != null && ("getStash" in this.World.Assets) && this.World.Assets.getStash())
 		{
 			oldIndex =  this.World.Assets.getStash().getItemByInstanceID(_upgrade.getInstanceID());
 		}
@@ -525,7 +526,12 @@ this.legend_helmet <- this.inherit("scripts/items/helmets/helmet", {
 
 	function removeUpgrade( _slot )
 	{
-		if (this.m.Upgrades[_slot] == null || this.Stash.getNumberOfEmptySlots() == 0) return null;
+		local stashHasSpace = true;
+		if ("Stash" in this && this.Stash != null && ("getNumberOfEmptySlots" in this.Stash))
+		{
+			stashHasSpace = this.Stash.getNumberOfEmptySlots() > 0;
+		}
+		if (this.m.Upgrades[_slot] == null || !stashHasSpace) return null;
 
 		local app = this.getContainer() == null ? null : this.getContainer().getAppearance();
 		local item = this.m.Upgrades[_slot];
