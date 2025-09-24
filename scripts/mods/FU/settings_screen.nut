@@ -24,8 +24,13 @@ this.settings_screen <- ::inherit("scripts/mods/FU/ui_screen", {
 		::logInfo("FU: SettingsScreen.show called with flags: " + (_flags.len() > 0 ? "provided" : "empty"));
 		if (this.m.JSHandle == null)
 		{
-			::logError("FU: SettingsScreen JSHandle is null - not connected to UI");
-			throw ::FU.Exception.NotConnected;
+			// Attempt a lazy connect in case UI registered after initial load
+			this.connect();
+			if (this.m.JSHandle == null)
+			{
+				::logError("FU: SettingsScreen JSHandle is null - not connected to UI");
+				throw ::FU.Exception.NotConnected;
+			}
 		}
 		else if (this.isVisible())
 		{

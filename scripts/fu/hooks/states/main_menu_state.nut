@@ -134,6 +134,8 @@
 		else
 		{
 			this.m.ModSettingsShown = true;
+			// Ensure FU UI connections are established before showing the settings screen
+			::FU.UI.connect();
 			::FU.SettingsScreen.setOnCancelPressedListener(this.FU_settings_screen_onCancelPressed.bindenv(this));
 			::FU.SettingsScreen.setOnSavePressedListener(this.FU_settings_screen_onSavepressed.bindenv(this));
 			this.m.MainMenuScreen.hideNewCampaignModule();
