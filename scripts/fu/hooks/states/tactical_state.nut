@@ -1,4 +1,15 @@
 ::mods_hookExactClass("states/tactical_state", function(o) {
+    // Ensure custom maps run in Scenario mode by setting the scenario early if selected
+    local onInit = o.onInit;
+    o.onInit = function()
+    {
+        if ("Legends" in getroottable() && "CustomMaps" in ::Legends && ::Legends.CustomMaps.Selected != null)
+        {
+            ::logInfo("CustomMaps: TacticalState onInit - setting custom scenario");
+            this.setScenario(this.new("scripts/scenarios/tactical/scenario_custom_map"));
+        }
+        onInit();
+    }
 	local executeEntityTravel = o.executeEntityTravel;
 	o.executeEntityTravel = function( _activeEntity, _mouseEvent )
 	{

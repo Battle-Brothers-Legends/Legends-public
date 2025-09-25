@@ -9,7 +9,7 @@ this.tactical_test_map <- this.inherit("scripts/mapgen/tactical_template", {
 
 	function fill( _rect, _properties, _pass = 1 )
 	{
-		local Tiles = [ null, this.MapGen.get("tactical.tile.autumn1"), this.MapGen.get("tactical.tile.swamp3"), this.MapGen.get("tactical.tile_legend_desert15"), this.MapGen.get("tactical.tile.steppe1"), this.MapGen.get("tactical.tile.steppe2"), this.MapGen.get("tactical.tile.steppe4"), this.MapGen.get("tactical.tile.forest2"), this.MapGen.get("tactical.tile.swamp5"), this.MapGen.get("tactical.tile.swampgreen2"), this.MapGen.get("tactical.tile.swampgreen3"), this.MapGen.get("tactical.tile.snow4"), this.MapGen.get("tactical.tile.swampgreen5"), this.MapGen.get("tactical.tile.grass1"), this.MapGen.get("tactical.tile.forest1") ];
+		local Tiles = [ null, this.MapGen.get("tactical.tile.autumn1"), this.MapGen.get("tactical.tile.swamp3"), this.MapGen.get("tactical.tile.desert5"), this.MapGen.get("tactical.tile.steppe1"), this.MapGen.get("tactical.tile.steppe2"), this.MapGen.get("tactical.tile.steppe4"), this.MapGen.get("tactical.tile.forest2"), this.MapGen.get("tactical.tile.swamp5"), this.MapGen.get("tactical.tile.swampgreen2"), this.MapGen.get("tactical.tile.swampgreen3"), this.MapGen.get("tactical.tile.snow4"), this.MapGen.get("tactical.tile.swampgreen5"), this.MapGen.get("tactical.tile.grass1"), this.MapGen.get("tactical.tile.forest1") ];
 		local terrainMap = [
 			[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
 			[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],

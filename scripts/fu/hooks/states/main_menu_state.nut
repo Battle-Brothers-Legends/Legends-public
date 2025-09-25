@@ -6,6 +6,23 @@
     o.onInit = function()
     {
         ::logInfo("FU: Main menu onInit hook running");
+        // Ensure our scenario query override is in place BEFORE the vanilla registration binds the listener
+        local _orig = this.scenario_menu_module_onQueryData;
+        this.scenario_menu_module_onQueryData = function()
+        {
+            ::logInfo("CustomMaps: scenario menu query data");
+            local data = _orig.bindenv(this)();
+            this._discoverCustomMaps();
+            foreach (m in ::Legends.CustomMaps.List)
+            {
+                data.push({ id = m.ID, name = m.Name, description = "[p=c]Experimental tactical map template[/p]" });
+                ::logInfo("CustomMaps: added scenario entry id=" + m.ID + " name='" + m.Name + "'");
+            }
+            ::logInfo("CustomMaps: total scenario entries now " + data.len());
+            return data;
+        }
+        // Optional early discovery to confirm file scanning in logs at boot
+        this._discoverCustomMaps();
         onInit();
         ::logInfo("FU: Original onInit completed");
         local mainMenuModule = this.m.MainMenuScreen.getMainMenuModule();
@@ -13,16 +30,143 @@
 
     }
 
-	o.main_menu_module_onModOptionsPressed <- function()
-	{
-		::logInfo("FU: Mod options button pressed");
+    // Force custom map IDs to load TacticalState instead of WorldState
+    local loading_screen_onScreenShown = o.loading_screen_onScreenShown;
+    o.loading_screen_onScreenShown = function()
+    {
+        // If a custom map (id >= BaseID) is selected, go to TacticalState
+        if (this.m.SelectedScenarioID >= ::Legends.CustomMaps.BaseID)
+        {
+            this.m.MenuStack.popAll();
+            this.RootState.add("TacticalState", "scripts/states/tactical_state");
+            this.hide();
+            return;
+        }
+        return loading_screen_onScreenShown();
+    }
 
-		// Check FU namespace
-		if (!("FU" in getroottable()))
-		{
-			::logError("FU: FU namespace not found in root table");
-			return;
-		}
+    // --- Custom Tactical Map Discovery ---
+    ::Legends <- ("Legends" in getroottable()) ? ::Legends : {};
+    ::Legends.CustomMaps <- ("CustomMaps" in ::Legends) ? ::Legends.CustomMaps : { BaseID = 1000, List = [], ByID = {}, Selected = null };
+
+    o._discoverCustomMaps <- function()
+    {
+        // Only list everything under custom maps roots; do not filter by specific suffixes.
+        local roots = [
+            "scripts/custom_maps",
+            "scripts/mapgen/custom_maps"
+        ];
+        local files = [];
+        foreach (r in roots)
+        {
+            local fs = ::IO.enumerateFiles(r);
+            if (fs == null)
+            {
+                ::logInfo("CustomMaps: path not found or empty: " + r);
+                continue;
+            }
+            ::logInfo("CustomMaps: enumerated " + fs.len() + " file(s) under " + r);
+            foreach (f in fs)
+            {
+                files.push(f);
+            }
+        }
+        ::logInfo("CustomMaps: total files enumerated: " + files.len());
+        local maps = [];
+        local added = 0;
+        foreach (f in files)
+        {
+            // IO.enumerateFiles returns script paths without the .nut extension.
+            local parts = split(f, "/");
+            local stem = parts[parts.len() - 1];
+            local scriptPath = f; // already extension-less
+            // Friendly name from filename (replace underscores without relying on FU.String at boot)
+            local label = stem;
+            local pos = null;
+            while ((pos = label.find("_")) != null)
+            {
+                label = label.slice(0, pos) + " " + label.slice(pos + 1);
+            }
+            local name = "Custom Map: " + label;
+            maps.push({ Script = scriptPath, Name = name });
+            ++added;
+            ::logInfo("CustomMaps: found script: " + scriptPath + " as '" + name + "'");
+        }
+        if (added == 0)
+        {
+            ::logInfo("CustomMaps: no custom map scripts discovered");
+        }
+        // Persist with IDs (reset structures to known types)
+        ::Legends.CustomMaps.List <- [];
+        ::Legends.CustomMaps.ByID <- {};
+        local id = ::Legends.CustomMaps.BaseID;
+        foreach (m in maps)
+        {
+            local entry = { ID = id, Name = m.Name, Script = m.Script };
+            ::Legends.CustomMaps.List.push(entry);
+            ::Legends.CustomMaps.ByID[id] <- entry;
+            id++;
+        }
+        ::logInfo("CustomMaps: registered entries: " + ::Legends.CustomMaps.List.len());
+    }
+
+    // scenario_menu_module_onQueryData is overridden inside onInit so the listener binds to our override
+
+    // Handle launching a custom map when selected
+    local onSiblingAdded = o.onSiblingAdded;
+    o.onSiblingAdded = function( _stateName )
+    {
+        if (_stateName == "TacticalState" && this.m.SelectedScenarioID >= ::Legends.CustomMaps.BaseID)
+        {
+            ::logInfo("CustomMaps: launching custom map with SelectedScenarioID=" + this.m.SelectedScenarioID);
+            local tacticalState = this.RootState.get(_stateName);
+            if (tacticalState != null)
+            {
+                ::Legends.CustomMaps.Selected = ::Legends.CustomMaps.ByID[this.m.SelectedScenarioID];
+                if (::Legends.CustomMaps.Selected == null)
+                {
+                    ::logError("CustomMaps: Selected entry not found for id=" + this.m.SelectedScenarioID);
+                }
+                else
+                {
+                    ::logInfo("CustomMaps: Selected Script='" + (::Legends.CustomMaps.Selected.Script ? ::Legends.CustomMaps.Selected.Script : "<none>") + "' Name='" + ::Legends.CustomMaps.Selected.Name + "'");
+                }
+                tacticalState.setScenario(this.new("scripts/scenarios/tactical/scenario_custom_map"));
+            }
+            return; // Do not call original handler for custom scenarios
+        }
+        return onSiblingAdded(_stateName);
+    }
+
+    // Capture selection at click time so Selected is definitely set before TacticalState.onInit
+    local scenario_menu_module_onPlayPressed = o.scenario_menu_module_onPlayPressed;
+    o.scenario_menu_module_onPlayPressed = function( _scenarioId )
+    {
+        if (_scenarioId >= ::Legends.CustomMaps.BaseID)
+        {
+            ::Legends.CustomMaps.Selected = (_scenarioId in ::Legends.CustomMaps.ByID) ? ::Legends.CustomMaps.ByID[_scenarioId] : null;
+            if (::Legends.CustomMaps.Selected == null)
+            {
+                ::logError("CustomMaps: PlayPressed: entry not found for id=" + _scenarioId);
+            }
+            else
+            {
+                ::logInfo("CustomMaps: PlayPressed: Selected id=" + _scenarioId + " name='" + ::Legends.CustomMaps.Selected.Name + "'");
+            }
+        }
+        return scenario_menu_module_onPlayPressed(_scenarioId);
+    }
+
+    o.main_menu_module_onModOptionsPressed <- function()
+    {
+        ::logInfo("FU: Mod options button pressed");
+
+        // Check FU namespace
+        if (!("FU" in getroottable()))
+        {
+            ::logError("FU: FU namespace not found in root table");
+            return;
+        }
 		::logInfo("FU: FU namespace found");
 
 		// Check System
