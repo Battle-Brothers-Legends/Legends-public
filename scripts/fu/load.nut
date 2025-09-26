@@ -9,6 +9,7 @@ local function includeLoad( _folder )
 ::FU.includeFiles(::IO.enumerateFiles("scripts/fu/classes"));
 
 includeLoad("ui");
+includeLoad("utils");
 includeLoad("systems");
 includeLoad("hooks");
 includeLoad("FU_mod");

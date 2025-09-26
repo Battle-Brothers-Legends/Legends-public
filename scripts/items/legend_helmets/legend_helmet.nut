@@ -488,21 +488,13 @@ this.legend_helmet <- this.inherit("scripts/items/helmets/helmet", {
 		}
 		local oldIndex = null;
 
-		// Determine source stash slot, but do not mutate stash here.
-		// Use robust access that works in both campaign and scenario contexts.
-		try
+		// Determine source stash slot via safe helper
+		local stash = ::FU.GetStash();
+		if (stash != null)
 		{
-			if (::World != null && ::World.Assets != null)
-			{
-				local stash = ::World.Assets.getStash();
-				if (stash != null)
-				{
-					local lookup = stash.getItemByInstanceID(_upgrade.getInstanceID());
-					if (lookup != null) oldIndex = lookup.index;
-				}
-			}
+			local lookup = stash.getItemByInstanceID(_upgrade.getInstanceID());
+			if (lookup != null) oldIndex = lookup.index;
 		}
-		catch (e) { oldIndex = null; }
 		local oldItem;
 		if (this.m.Upgrades[slot] != null)
 		{
@@ -537,11 +529,7 @@ this.legend_helmet <- this.inherit("scripts/items/helmets/helmet", {
 
 	function removeUpgrade( _slot )
 	{
-		local stashHasSpace = true;
-		if ("Stash" in this && this.Stash != null && ("getNumberOfEmptySlots" in this.Stash))
-		{
-			stashHasSpace = this.Stash.getNumberOfEmptySlots() > 0;
-		}
+		local stashHasSpace = ::FU.HasStashSpace();
 		if (this.m.Upgrades[_slot] == null || !stashHasSpace) return null;
 
 		local app = this.getContainer() == null ? null : this.getContainer().getAppearance();
