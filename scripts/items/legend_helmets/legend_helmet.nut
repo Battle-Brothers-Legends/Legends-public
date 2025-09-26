@@ -486,15 +486,23 @@ this.legend_helmet <- this.inherit("scripts/items/helmets/helmet", {
 		{
 			slot = this.Const.Items.HelmetUpgrades.ExtraVanity;
 		}
-		local oldIndex;
+		local oldIndex = null;
 
-		// In scenarios there may be no world stash; guard both existence and method
-		if ("Assets" in this.World && this.World.Assets != null && ("getStash" in this.World.Assets) && this.World.Assets.getStash())
+		// Determine source stash slot, but do not mutate stash here.
+		// Use robust access that works in both campaign and scenario contexts.
+		try
 		{
-			oldIndex =  this.World.Assets.getStash().getItemByInstanceID(_upgrade.getInstanceID());
+			if (::World != null && ::World.Assets != null)
+			{
+				local stash = ::World.Assets.getStash();
+				if (stash != null)
+				{
+					local lookup = stash.getItemByInstanceID(_upgrade.getInstanceID());
+					if (lookup != null) oldIndex = lookup.index;
+				}
+			}
 		}
-
-		if (oldIndex != null) oldIndex = oldIndex.index;
+		catch (e) { oldIndex = null; }
 		local oldItem;
 		if (this.m.Upgrades[slot] != null)
 		{
@@ -521,6 +529,9 @@ this.legend_helmet <- this.inherit("scripts/items/helmets/helmet", {
 		}
 
 		this.updateAppearance();
+
+		// Do not modify the stash here; rely on returned index for the UI to handle sources.
+
 		return result;
 	}
 

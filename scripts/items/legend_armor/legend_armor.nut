@@ -421,18 +421,23 @@ this.legend_armor <- this.inherit("scripts/items/armor/armor", {
 		if (_upgrade == null) return true;
 		if (_upgrade != null && this.m.Blocked[_upgrade.getType()]) return false;
 
-		local oldIndex;
+		local oldIndex = null;
 
-
-		// Guard against missing stash in scenarios
-		if ("Assets" in this.World && this.World.Assets != null && ("getStash" in this.World.Assets) && this.World.Assets.getStash())
+		// Determine source stash slot, but do not mutate stash here.
+		// Use robust access that works in both campaign and scenario contexts.
+		try
 		{
-
-			oldIndex = this.World.Assets.getStash().getItemByInstanceID(_upgrade.getInstanceID())
-
+			if (::World != null && ::World.Assets != null)
+			{
+				local stash = ::World.Assets.getStash();
+				if (stash != null)
+				{
+					local lookup = stash.getItemByInstanceID(_upgrade.getInstanceID());
+					if (lookup != null) oldIndex = lookup.index;
+				}
+			}
 		}
-
-		if (oldIndex != null) oldIndex = oldIndex.index;
+		catch (e) { oldIndex = null; }
 
 		local oldItem;
 		if (this.m.Upgrades[_upgrade.getType()] != null)
@@ -461,6 +466,7 @@ this.legend_armor <- this.inherit("scripts/items/armor/armor", {
 		}
 
 		this.updateAppearance();
+
 		return result;
 	}
 

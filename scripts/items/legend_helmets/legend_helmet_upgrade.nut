@@ -520,6 +520,13 @@ this.legend_helmet_upgrade <- this.inherit("scripts/items/item", {
 
 		if (success)
 		{
+			// If no world stash exists, remove the consumed item from the bag now
+			local hasStash = false;
+			try { hasStash = (::World != null && ::World.Assets != null && ::World.Assets.getStash() != null); } catch (e) { hasStash = false; }
+			if (!hasStash && _actor != null && _actor.getItems() != null)
+			{
+				_actor.getItems().removeFromBag(this);
+			}
 			this.Sound.play("sounds/inventory/armor_upgrade_use_01.wav", this.Const.Sound.Volume.Inventory);
 		}
 
@@ -555,4 +562,3 @@ this.legend_helmet_upgrade <- this.inherit("scripts/items/item", {
 		this.m.Visible = _in.readBool();
 	}
 });
-
