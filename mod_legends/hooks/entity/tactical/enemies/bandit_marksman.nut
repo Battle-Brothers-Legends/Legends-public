@@ -36,7 +36,7 @@
 			b.Vision = 8;
 		}
 
-		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= 40)
+		if (!::FU.InScenario() && this.World.getTime().Days >= 40)
 		{
 			b.RangedDefense += 5;
 		}
@@ -44,7 +44,7 @@
 		::Legends.Perks.grant(this, ::Legends.Perk.Rotation);
 		::Legends.Perks.grant(this, ::Legends.Perk.Recover);
 
-		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= 20)
+		if (!::FU.InScenario() && this.World.getTime().Days >= 20)
 		{
 			::Legends.Perks.grant(this, ::Legends.Perk.Bullseye);
 		}

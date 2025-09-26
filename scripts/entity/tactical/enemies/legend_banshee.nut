@@ -51,7 +51,7 @@ this.legend_banshee <- this.inherit("scripts/entity/tactical/actor", {
 	{
 		local flip = this.Math.rand(1, 100) < 50;
 
-		if (!this.Tactical.State.isScenarioMode() && _killer != null && _killer.isPlayerControlled())
+		if (!::FU.InScenario() && _killer != null && _killer.isPlayerControlled())
 		{
 			this.updateAchievement("OvercomingFear", 1, 1);
 		}
@@ -143,7 +143,7 @@ this.legend_banshee <- this.inherit("scripts/entity/tactical/actor", {
 		b.IsAffectedByInjuries = false;
 		b.IsAffectedByRain = false;
 
-		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= 140)
+		if (!::FU.InScenario() && this.World.getTime().Days >= 140)
 		{
 			b.MeleeDefense += 5;
 		}
@@ -257,4 +257,3 @@ this.legend_banshee <- this.inherit("scripts/entity/tactical/actor", {
 	}
 
 });
-

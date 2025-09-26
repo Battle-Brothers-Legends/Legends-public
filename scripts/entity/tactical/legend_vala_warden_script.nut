@@ -141,7 +141,7 @@ this.legend_vala_warden_script <- this.inherit("scripts/entity/tactical/actor", 
 		this.getSprite("blur_1").setHorizontalFlipping(flip);
 		this.getSprite("blur_2").setHorizontalFlipping(flip);
 
-		if (!this.Tactical.State.isScenarioMode())
+		if (!::FU.InScenario())
 		{
 			local f = this.World.FactionManager.getFaction(this.getFaction());
 

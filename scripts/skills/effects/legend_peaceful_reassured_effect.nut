@@ -49,7 +49,7 @@ this.legend_peaceful_reassured_effect <- this.inherit("scripts/skills/skill", {
 
 	function getPeacefuls()
 	{
-		if (!("Entities" in this.Tactical) || this.Tactical.Entities == null || !this.Tactical.isActive())
+		if (!::FU.HasTacticalEntities() || !this.Tactical.isActive())
 		{
 			return 0;
 		}
@@ -76,4 +76,3 @@ this.legend_peaceful_reassured_effect <- this.inherit("scripts/skills/skill", {
 		_properties.XPGainMult *= peaceXP;
 	}
 });
-

@@ -56,7 +56,7 @@ this.legend_catapult <- this.inherit("scripts/entity/tactical/human", {
 		b.IsSpecializedInSlings = true;
 
 
-		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= 40)
+		if (!::FU.InScenario() && this.World.getTime().Days >= 40)
 		{
 			b.RangedDefense += 5;
 		}
@@ -64,7 +64,7 @@ this.legend_catapult <- this.inherit("scripts/entity/tactical/human", {
 		::Legends.Actives.grant(this, ::Legends.Active.LegendCatapultBoulder);
 
 
-		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= 20)
+		if (!::FU.InScenario() && this.World.getTime().Days >= 20)
 		{
 			::Legends.Perks.grant(this, ::Legends.Perk.Bullseye);
 		}
@@ -142,4 +142,3 @@ this.legend_catapult <- this.inherit("scripts/entity/tactical/human", {
 		return corpse;
 	}
 });
-

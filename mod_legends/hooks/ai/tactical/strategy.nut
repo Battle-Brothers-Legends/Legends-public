@@ -6,7 +6,7 @@
 
 		for( local f = 0; f != instances.len(); f = ++f )
 		{
-			if (this.Tactical.State.isScenarioMode())
+			if (::FU.InScenario())
 			{
 				if (this.Const.FactionAlliance[this.m.Faction].find(f) != null)
 				{
@@ -47,7 +47,7 @@
 
 		foreach( i, o in this.m.KnownOpponents )
 		{
-			if (o.Actor == null || o.Actor.isNull() || !o.Actor.isAlive() || !o.Actor.isPlacedOnMap() || this.Tactical.State.isScenarioMode() && this.Const.FactionAlliance[this.m.Faction].find(o.Actor.getFaction()) != null || !this.Tactical.State.isScenarioMode() && this.World.FactionManager.isAllied(this.m.Faction, o.Actor.getFaction()))
+			if (o.Actor == null || o.Actor.isNull() || !o.Actor.isAlive() || !o.Actor.isPlacedOnMap() || ::FU.InScenario() && this.Const.FactionAlliance[this.m.Faction].find(o.Actor.getFaction()) != null || !::FU.InScenario() && this.World.FactionManager.isAllied(this.m.Faction, o.Actor.getFaction()))
 			{
 				garbage.push(i);
 				continue

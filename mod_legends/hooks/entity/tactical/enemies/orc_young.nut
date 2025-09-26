@@ -21,7 +21,7 @@
 		local b = this.m.BaseProperties;
 		b.setValues(this.Const.Tactical.Actor.OrcYoung);
 
-		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= 70)
+		if (!::FU.InScenario() && this.World.getTime().Days >= 70)
 		{
 			b.IsSpecializedInThrowing = true;
 

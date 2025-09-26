@@ -7,7 +7,7 @@
 		::Legends.Perks.grant(this, ::Legends.Perk.Rotation);
 		::Legends.Perks.grant(this, ::Legends.Perk.Recover);
 
-		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= 40)
+		if (!::FU.InScenario() && this.World.getTime().Days >= 40)
 		{
 			::Legends.Perks.grant(this, ::Legends.Perk.Dodge);
 		}

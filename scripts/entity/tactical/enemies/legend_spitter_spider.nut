@@ -241,7 +241,7 @@ this.legend_spitter_spider <- this.inherit("scripts/entity/tactical/enemies/spid
 		b.IsAffectedByNight = false;
 		b.IsImmuneToDisarm = true;
 
-		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= 30)
+		if (!::FU.InScenario() && this.World.getTime().Days >= 30)
 		{
 			b.DamageDirectAdd += 0.05;
 		}

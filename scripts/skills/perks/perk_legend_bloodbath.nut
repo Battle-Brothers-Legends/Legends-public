@@ -44,11 +44,11 @@ this.perk_legend_bloodbath <- this.inherit("scripts/skills/skill", {
 
 	function getBleeders()
 	{
-		if (!("Entities" in this.Tactical))
+		if (!::FU.HasTacticalEntities())
 		{
 			return 0;
 		}
-		if (this.Tactical.Entities == null)
+		if (!::FU.HasTacticalEntities())
 		{
 			return 0;
 		}
@@ -87,4 +87,3 @@ this.perk_legend_bloodbath <- this.inherit("scripts/skills/skill", {
 	}
 
 });
-

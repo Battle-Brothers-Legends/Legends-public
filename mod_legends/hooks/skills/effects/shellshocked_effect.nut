@@ -1,9 +1,9 @@
 ::mods_hookExactClass("skills/effects/shellshocked_effect", function(o) {
-	
+
 	o.onAdded = function()
 	{
 		local actor = this.getContainer().getActor();
-		if (!actor.isPlacedOnMap() || ("State" in this.Tactical) && this.Tactical.State.isBattleEnded())
+		if (!actor.isPlacedOnMap() || ::FU.HasTacticalState() && ::FU.IsBattleEnded())
 		{
 			this.removeSelf();
 			return;

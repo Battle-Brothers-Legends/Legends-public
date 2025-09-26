@@ -26,7 +26,7 @@
 
 	o.onDeath = function ( _killer, _skill, _tile, _fatalityType )
 	{
-		if (!this.Tactical.State.isScenarioMode() && _killer != null && _killer.isPlayerControlled())
+		if (!::FU.InScenario() && _killer != null && _killer.isPlayerControlled())
 		{
 			this.updateAchievement("SleepTight", 1, 1);
 		}

@@ -32,7 +32,7 @@
 // 		{
 // 			b.IsSpecializedInBows = true;
 
-// 			if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= 180)
+// 			if (!::FU.InScenario() && this.World.getTime().Days >= 180)
 // 			{
 // 				b.DamageDirectMult = 1.5;
 // 			}
@@ -85,4 +85,3 @@
 // 	}
 
 // });
-

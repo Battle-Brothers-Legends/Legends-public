@@ -260,7 +260,7 @@ this.legend_stollwurm <- this.inherit("scripts/entity/tactical/actor", {
 		b.IsImmuneToDisarm = true;
 		b.IsAffectedByRain = false;
 
-		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= 170)
+		if (!::FU.InScenario() && this.World.getTime().Days >= 170)
 		{
 			b.MeleeSkill += 10;
 			b.DamageTotalMult += 0.1;

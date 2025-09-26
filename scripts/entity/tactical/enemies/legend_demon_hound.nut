@@ -416,7 +416,7 @@ this.legend_demon_hound <- this.inherit("scripts/entity/tactical/actor", {
 
 	function onDeath( _killer, _skill, _tile, _fatalityType )
 	{
-		if (!this.Tactical.State.isScenarioMode() && _killer != null && _killer.isPlayerControlled())
+		if (!::FU.InScenario() && _killer != null && _killer.isPlayerControlled())
 		{
 			this.updateAchievement("OvercomingFear", 1, 1);
 		}
@@ -650,4 +650,3 @@ this.legend_demon_hound <- this.inherit("scripts/entity/tactical/actor", {
 	}
 
 });
-

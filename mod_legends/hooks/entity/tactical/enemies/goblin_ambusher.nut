@@ -18,7 +18,7 @@
 		{
 			local r = this.Math.rand(1, 2);
 
-			if (r == 1 || !this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= 60)
+			if (r == 1 || !::FU.InScenario() && this.World.getTime().Days >= 60)
 			{
 				this.m.Items.equip(this.new("scripts/items/weapons/greenskins/goblin_heavy_bow"));
 			}

@@ -19,7 +19,7 @@ this.legend_liquor_item <- this.inherit("scripts/items/supplies/food_item", {
 			return this.getSellPrice();
 		}
 
-		if (("State" in this.World) && this.World.State != null && this.World.State.getCurrentTown() != null)
+		if (("State" in this.World) && ::FU.InTown())
 		{
 			local isBuildingPresent = this.World.State.getCurrentTown().hasAttachedLocation("attached_location.brewery");
 			return this.Math.max(this.getSellPrice(), this.Math.ceil(this.getValue() * this.getPriceMult() * this.World.State.getCurrentTown().getFoodPriceMult() * this.World.State.getCurrentTown().getBuyPriceMult() * (isBuildingPresent ? this.Const.World.Assets.BaseBuyPrice : this.Const.World.Assets.BuyPriceNotProducedHere)));
@@ -35,7 +35,7 @@ this.legend_liquor_item <- this.inherit("scripts/items/supplies/food_item", {
 			return this.getBuyPrice();
 		}
 
-		if (("State" in this.World) && this.World.State != null && this.World.State.getCurrentTown() != null)
+		if (("State" in this.World) && ::FU.InTown())
 		{
 			local isBuildingPresent = this.World.State.getCurrentTown().hasAttachedLocation("attached_location.brewery");
 			return this.Math.floor(this.item.getSellPrice() * (isBuildingPresent ? this.Const.World.Assets.BaseSellPrice : this.Const.World.Assets.SellPriceNotProducedHere));
@@ -57,4 +57,3 @@ this.legend_liquor_item <- this.inherit("scripts/items/supplies/food_item", {
 		}.bindenv(this));
 	}
 });
-

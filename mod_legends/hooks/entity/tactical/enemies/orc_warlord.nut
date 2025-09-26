@@ -32,7 +32,7 @@
 		local b = this.m.BaseProperties;
 		b.setValues(this.Const.Tactical.Actor.OrcWarlord);
 
-		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= 200)
+		if (!::FU.InScenario() && this.World.getTime().Days >= 200)
 		{
 			b.MeleeSkill += 5;
 			b.DamageTotalMult += 0.1;

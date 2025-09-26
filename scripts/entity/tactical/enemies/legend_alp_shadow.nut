@@ -87,7 +87,7 @@ this.legend_alp_shadow <- this.inherit("scripts/entity/tactical/actor", {
 		b.IsAffectedByInjuries = false;
 		b.IsAffectedByRain = false;
 
-		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= 150)
+		if (!::FU.InScenario() && this.World.getTime().Days >= 150)
 			b.MeleeDefense += 5;
 
 		if (::Legends.isLegendaryDifficulty())
@@ -228,4 +228,3 @@ this.legend_alp_shadow <- this.inherit("scripts/entity/tactical/actor", {
 	}
 
 });
-

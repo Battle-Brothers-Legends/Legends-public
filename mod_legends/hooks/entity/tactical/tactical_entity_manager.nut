@@ -356,7 +356,7 @@
 
 		this.m.IsLineVSLine = _properties.PlayerDeploymentType == this.Const.Tactical.DeploymentType.Line && _properties.EnemyDeploymentType == this.Const.Tactical.DeploymentType.Line;
 
-		if (!this.Tactical.State.isScenarioMode() && !_properties.IsPlayerInitiated && !_properties.InCombatAlready)
+		if (!::FU.InScenario() && !_properties.IsPlayerInitiated && !_properties.InCombatAlready)
 		{
 			foreach( i, s in this.m.Strategies )
 			{
@@ -367,7 +367,7 @@
 			}
 		}
 
-		if(this.m.IsLineVSLine && !this.Tactical.State.isScenarioMode())
+		if(this.m.IsLineVSLine && !::FU.InScenario())
 		{
 			local friendlyRanged = false, enemyRanged = false;
 				for( local i = this.Const.Faction.Player; i != this.m.Instances.len(); i = ++i )

@@ -273,14 +273,14 @@ this.legend_basilisk_drone <- this.inherit("scripts/entity/tactical/actor", {
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendSecondWind);
 			::Legends.Perks.grant(this, ::Legends.Perk.SteelBrow);
 
-			if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= 35)
+			if (!::FU.InScenario() && this.World.getTime().Days >= 35)
 			{
 				b.MeleeDefense += 5;
 				b.RangedDefense += 5;
 				::Legends.Perks.grant(this, ::Legends.Perk.HeadHunter);
 			}
 
-			if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= 50)
+			if (!::FU.InScenario() && this.World.getTime().Days >= 50)
 			{
 				::Legends.Perks.grant(this, ::Legends.Perk.LegendEscapeArtist);
 			}
@@ -301,4 +301,3 @@ this.legend_basilisk_drone <- this.inherit("scripts/entity/tactical/actor", {
 	}
 
 });
-

@@ -2702,7 +2702,7 @@
 				]);
 			}
 
-			if (!this.Tactical.State.isScenarioMode() && this.Tactical.State.getStrategicProperties() != null && this.Tactical.State.getStrategicProperties().IsFleeingProhibited)
+			if (!::FU.InScenario() && this.Tactical.State.getStrategicProperties() != null && this.Tactical.State.getStrategicProperties().IsFleeingProhibited)
 			{
 				ret.push({
 					id = 3,

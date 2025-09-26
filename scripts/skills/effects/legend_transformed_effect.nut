@@ -59,7 +59,7 @@ this.legend_transformed_effect <- this.inherit("scripts/skills/skill", {
 
 	function transformEffect()
 	{
-		if (!("State" in this.Tactical) || this.Tactical.State == null)
+		if (!::FU.HasTacticalState())
 		{
 			return;
 		}
@@ -217,7 +217,7 @@ this.legend_transformed_effect <- this.inherit("scripts/skills/skill", {
 		this.setSkills();
 		actor.setDirty(true);
 
-		this.Tactical.State.onUpdate();
+		::FU.WithTacticalState(function(ts) { ts.onUpdate(); });
 		if (nextTurn)
 		{
 			this.Tactical.TurnSequenceBar.initNextTurn();
@@ -359,4 +359,3 @@ this.legend_transformed_effect <- this.inherit("scripts/skills/skill", {
 	}
 
 });
-

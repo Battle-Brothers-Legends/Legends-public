@@ -1,4 +1,4 @@
-::mods_hookNewObject("ambitions/ambition_manager", function(o) 
+::mods_hookNewObject("ambitions/ambition_manager", function(o)
 {
 	o.isAvailable = function ()
 	{
@@ -7,7 +7,7 @@
 			return;
 		}
 
-		if (("State" in this.Tactical) && this.Tactical.State != null)
+		if (::FU.HasTacticalState())
 		{
 			return false;
 		}

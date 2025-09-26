@@ -129,7 +129,7 @@ this.perk_legend_vala_chant_senses <- this.inherit("scripts/skills/skill", {
 	function onDeath( _fatalityType )
 	{
 		local actor = this.getContainer().getActor();
-		if (!actor.isPlacedOnMap() || ("State" in this.Tactical) && this.Tactical.State.isBattleEnded())
+		if (!actor.isPlacedOnMap() || (::FU.HasTacticalState() && ::FU.IsBattleEnded()))
 			return;
 
 		this.endChant();
@@ -216,4 +216,3 @@ this.perk_legend_vala_chant_senses <- this.inherit("scripts/skills/skill", {
 	}
 
 });
-

@@ -678,10 +678,10 @@ this.legend_armor <- this.inherit("scripts/items/armor/armor", {
 		}
 
 		local isPlayer = this.m.LastEquippedByFaction == this.Const.Faction.Player || this.getContainer() != null && this.getContainer().getActor() != null && !this.getContainer().getActor().isNull() && this.isKindOf(this.getContainer().getActor().get(), "player");
-		local isLucky = !this.Tactical.State.isScenarioMode() && this.World.Assets.getOrigin().isDroppedAsLoot(this);
+		local isLucky = !::FU.InScenario() && this.World.Assets.getOrigin().isDroppedAsLoot(this);
 		local repair = this.getRepair();
 		local repairMax = this.getRepairMax();
-		local isBlacksmithed = isPlayer && !this.Tactical.State.isScenarioMode() && this.World.Assets.m.IsBlacksmithed;
+		local isBlacksmithed = isPlayer && !::FU.InScenario() && this.World.Assets.m.IsBlacksmithed;
 
 		if (repair > 10 && isPlayer)
 		{

@@ -42,7 +42,7 @@ this.legend_alp_nightmare_serpent <- this.inherit("scripts/entity/tactical/enemi
 		b.IsAffectedByNight = false;
 		b.IsImmuneToDisarm = true;
 
-		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= 20)
+		if (!::FU.InScenario() && this.World.getTime().Days >= 20)
 		{
 			b.MeleeDefense += 5;
 
@@ -109,4 +109,3 @@ this.legend_alp_nightmare_serpent <- this.inherit("scripts/entity/tactical/enemi
 	}
 
 });
-

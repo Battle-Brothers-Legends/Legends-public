@@ -22,7 +22,7 @@
 		local r;
 		local banner = 4;
 
-		if (("State" in this.Tactical) && this.Tactical.State != null && !this.Tactical.State.isScenarioMode())
+		if (::FU.HasTacticalState() && !::FU.InScenario())
 		{
 			banner = this.World.FactionManager.getFaction(this.getFaction()).getBanner();
 		}

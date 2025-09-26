@@ -58,7 +58,7 @@ this.perk_legend_specialist_militia <- this.inherit("scripts/skills/legend_speci
 	{
 		this.legend_specialist_abstract.onAnySkillUsed(_skill, _targetEntity, _properties);
 		local actor = this.getContainer().getActor();
-		if (!actor.isPlacedOnMap() || ("State" in this.Tactical) && this.Tactical.State.isBattleEnded())
+		if (!actor.isPlacedOnMap() || (::FU.HasTacticalState() && ::FU.IsBattleEnded()))
 			return;
 		if (this.onAnySkillUsedSpecialistChecks(_skill))
 		{

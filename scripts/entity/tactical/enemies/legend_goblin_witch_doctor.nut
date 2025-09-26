@@ -44,7 +44,7 @@ this.legend_goblin_witch_doctor <- this.inherit("scripts/entity/tactical/goblin"
 
 	function onDeath( _killer, _skill, _tile, _fatalityType )
 	{
-		if (!this.Tactical.State.isScenarioMode() && _killer != null && _killer.isPlayerControlled())
+		if (!::FU.InScenario() && _killer != null && _killer.isPlayerControlled())
 		{
 			this.updateAchievement("Wildgrowth", 1, 1);
 		}
@@ -81,4 +81,3 @@ this.legend_goblin_witch_doctor <- this.inherit("scripts/entity/tactical/goblin"
 	}
 
 });
-

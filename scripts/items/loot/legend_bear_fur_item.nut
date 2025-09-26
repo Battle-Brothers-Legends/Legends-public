@@ -42,7 +42,7 @@ this.legend_bear_fur_item <- this.inherit("scripts/items/item", {
 			return this.getSellPrice();
 		}
 
-		if (("State" in this.World) && this.World.State != null && this.World.State.getCurrentTown() != null)
+		if (("State" in this.World) && ::FU.InTown())
 		{
 			return this.Math.max(this.getSellPrice(), this.Math.ceil(this.getValue() * 1.5 * this.World.State.getCurrentTown().getBuyPriceMult()));
 		}
@@ -59,7 +59,7 @@ this.legend_bear_fur_item <- this.inherit("scripts/items/item", {
 			return this.getBuyPrice();
 		}
 
-		if (("State" in this.World) && this.World.State != null && this.World.State.getCurrentTown() != null)
+		if (("State" in this.World) && ::FU.InTown())
 		{
 			return this.Math.floor(this.getValue() * this.Const.World.Assets.BaseLootSellPrice * this.World.State.getCurrentTown().getSellPriceMult() * this.Const.Difficulty.SellPriceMult[this.World.Assets.getEconomicDifficulty()]);
 		}
@@ -75,4 +75,3 @@ this.legend_bear_fur_item <- this.inherit("scripts/items/item", {
 	}
 
 });
-

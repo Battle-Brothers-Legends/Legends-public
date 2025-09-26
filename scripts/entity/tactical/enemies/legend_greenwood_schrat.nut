@@ -107,7 +107,7 @@ this.legend_greenwood_schrat <- this.inherit("scripts/entity/tactical/actor", {
 	function onDeath( _killer, _skill, _tile, _fatalityType )
 	{
 		local flip = this.Math.rand(0, 100) < 50;
-		if (!this.Tactical.State.isScenarioMode() && _killer != null && _killer.isPlayerControlled())
+		if (!::FU.InScenario() && _killer != null && _killer.isPlayerControlled())
 		{
 			this.updateAchievement("ChoppingWood", 1, 1);
 		}
@@ -188,7 +188,7 @@ this.legend_greenwood_schrat <- this.inherit("scripts/entity/tactical/actor", {
 		b.IsAffectedByInjuries = false;
 		b.IsImmuneToDisarm = true;
 
-		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= 250)
+		if (!::FU.InScenario() && this.World.getTime().Days >= 250)
 		{
 			b.MeleeSkill += 5;
 		}

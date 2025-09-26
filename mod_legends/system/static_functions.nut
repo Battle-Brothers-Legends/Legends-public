@@ -70,7 +70,7 @@
 }
 
 ::Legends.S.extraLootChance <- function (_baseLootAmount = 0) {
-	return _baseLootAmount + (!this.Tactical.State.isScenarioMode() && ::Math.rand(1, 100) <= this.World.Assets.getExtraLootChance() ? 1 : 0)
+	return _baseLootAmount + (!::FU.InScenario() && ::Math.rand(1, 100) <= this.World.Assets.getExtraLootChance() ? 1 : 0)
 }
 
 ::Legends.S.getNeighbouringActors <- function (_tile)
@@ -175,7 +175,7 @@
 }
 
 ::Legends.S.scaleBaseProperties <- function (_properties) {
-	if (this.Tactical.State.isScenarioMode()) {
+	if (::FU.InScenario()) {
 		return;
 	}
 	local daysToScale = this.World.getTime().Days - this.getDaysToScaleDifficulty();

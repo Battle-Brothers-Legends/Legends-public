@@ -16,7 +16,7 @@
 			return this.getBuyPrice();
 		}
 
-		if (("State" in this.World) && this.World.State != null && this.World.State.getCurrentTown() != null)
+		if (("State" in this.World) && ::FU.InTown())
 		{
 			local isBuildingPresent = this.World.State.getCurrentTown().hasAttachedLocation("attached_location.winery");
 			return this.Math.floor(this.item.getSellPrice() * (isBuildingPresent ? this.Const.World.Assets.BaseSellPrice : this.Const.World.Assets.SellPriceNotProducedHere));

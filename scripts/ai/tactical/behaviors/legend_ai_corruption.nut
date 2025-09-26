@@ -38,7 +38,7 @@ this.legend_ai_corruption <- this.inherit("scripts/ai/tactical/behavior", {
 			return this.Const.AI.Behavior.Score.Zero;
 		}
 
-		if (this.Tactical.State.isAutoRetreat())
+		if (::FU.IsAutoRetreat())
 		{
 			return this.Const.AI.Behavior.Score.Zero;
 		}
@@ -108,7 +108,7 @@ this.legend_ai_corruption <- this.inherit("scripts/ai/tactical/behavior", {
 			myTile
 		];
 		local nearestOpponentDist = 9000;
-		local advancedAI = !this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= 100;
+		local advancedAI = !::FU.InScenario() && this.World.getTime().Days >= 100;
 
 		foreach( o in _targets )
 		{
@@ -362,4 +362,3 @@ this.legend_ai_corruption <- this.inherit("scripts/ai/tactical/behavior", {
 	}
 
 });
-

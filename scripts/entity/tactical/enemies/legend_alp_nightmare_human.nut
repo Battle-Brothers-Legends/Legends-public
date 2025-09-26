@@ -39,7 +39,7 @@ this.legend_alp_nightmare_human <- this.inherit("scripts/entity/tactical/enemies
 		b.IsSpecializedInSpears = true;
 		b.IsSpecializedInCleavers = true;
 
-		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= 50)
+		if (!::FU.InScenario() && this.World.getTime().Days >= 50)
 		{
 			b.MeleeSkill += 5;
 			b.RangedSkill += 5;
@@ -323,4 +323,3 @@ this.legend_alp_nightmare_human <- this.inherit("scripts/entity/tactical/enemies
 	}
 
 });
-

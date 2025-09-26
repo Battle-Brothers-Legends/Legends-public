@@ -61,12 +61,12 @@ this.legend_transformed_rat_effect <- this.inherit("scripts/skills/effects/legen
 
 	function onBeingAttacked( _attacker, _skill, _properties )
 	{
-		if (("State" in this.Tactical) && this.Tactical.State != null && this.Tactical.State.isScenarioMode())
+		if (::FU.InScenario())
 		{
 			return;
 		}
 
-		if (this.getContainer().getActor().isPlacedOnMap() && this.Tactical.State.isAutoRetreat() && this.Tactical.TurnSequenceBar.getActiveEntity() != null && this.Tactical.TurnSequenceBar.getActiveEntity().getID() == this.getContainer().getActor().getID())
+		if (this.getContainer().getActor().isPlacedOnMap() && ::FU.IsAutoRetreat() && this.Tactical.TurnSequenceBar.getActiveEntity() != null && this.Tactical.TurnSequenceBar.getActiveEntity().getID() == this.getContainer().getActor().getID())
 		{
 			_properties.MeleeDefense += 25;
 		}

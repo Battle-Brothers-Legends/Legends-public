@@ -63,7 +63,7 @@ this.legend_rock_unhold_racial <- this.inherit("scripts/skills/skill", {
 	{
 		local actor = this.getContainer().getActor().get();
 
-		if ((!this.Tactical.State.isScenarioMode() && this.Time.getRound() <= 2 || this.Tactical.State.isScenarioMode() && this.Time.getRound() <= 3) && (this.isKindOf(actor, "unhold_armored") || this.isKindOf(actor, "unhold_frost_armored")))
+		if ((!::FU.InScenario() && this.Time.getRound() <= 2 || ::FU.InScenario() && this.Time.getRound() <= 3) && (this.isKindOf(actor, "unhold_armored") || this.isKindOf(actor, "unhold_frost_armored")))
 		{
 			_properties.InitiativeForTurnOrderAdditional += 40;
 		}
@@ -88,4 +88,3 @@ this.legend_rock_unhold_racial <- this.inherit("scripts/skills/skill", {
 		}
 	}
 });
-

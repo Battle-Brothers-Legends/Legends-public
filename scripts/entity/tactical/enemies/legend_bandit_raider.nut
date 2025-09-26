@@ -44,7 +44,7 @@ this.legend_bandit_raider <- this.inherit("scripts/entity/tactical/legend_random
 			b.IsSpecializedInSpears = true;
 			b.IsSpecializedInCleavers = true;
 
-			if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= 40)
+			if (!::FU.InScenario() && this.World.getTime().Days >= 40)
 			{
 				b.MeleeSkill += 5;
 				b.RangedSkill += 5;
@@ -64,4 +64,3 @@ this.legend_bandit_raider <- this.inherit("scripts/entity/tactical/legend_random
 		this.legend_randomized_unit_abstract.assignRandomEquipment();
 	}
 });
-

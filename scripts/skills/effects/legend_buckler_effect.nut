@@ -34,7 +34,7 @@ this.legend_buckler_effect <- this.inherit("scripts/skills/skill", {
 			return 0;
 		}
 
-		if (!actor.isPlacedOnMap() || ("State" in this.Tactical) && this.Tactical.State.isBattleEnded())
+		if (!actor.isPlacedOnMap() || (::FU.HasTacticalState() && ::FU.IsBattleEnded()))
 		{
 			return 0;
 		}
@@ -48,17 +48,17 @@ this.legend_buckler_effect <- this.inherit("scripts/skills/skill", {
 			return 0;
 		}
 
-		if (!("Entities" in this.Tactical))
+		if (!::FU.HasTacticalEntities())
 		{
 			return 0;
 		}
 
-		if (this.Tactical.Entities == null)
+		if (!::FU.HasTacticalEntities())
 		{
 			return 0;
 		}
 
-		if (this.Tactical.State.isAutoRetreat())
+		if (::FU.IsAutoRetreat())
 		{
 			return 0;
 		}

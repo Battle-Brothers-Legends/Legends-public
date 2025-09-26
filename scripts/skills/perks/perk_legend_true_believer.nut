@@ -21,11 +21,11 @@ this.perk_legend_true_believer <- this.inherit("scripts/skills/skill", {
 
 	function getFleeing()
 	{
-		if (!("Entities" in this.Tactical))
+		if (!::FU.HasTacticalEntities())
 		{
 			return 0;
 		}
-		if (this.Tactical.Entities == null)
+		if (!::FU.HasTacticalEntities())
 		{
 			return 0;
 		}

@@ -142,7 +142,7 @@ this.legend_warbear <- this.inherit("scripts/entity/tactical/actor", {
 		this.getSprite("head").setHorizontalFlipping(flip);
 		this.getSprite("injury").setHorizontalFlipping(flip);
 
-		if (!this.Tactical.State.isScenarioMode())
+		if (!::FU.InScenario())
 		{
 			local f = this.World.FactionManager.getFaction(this.getFaction());
 
@@ -233,4 +233,3 @@ this.legend_warbear <- this.inherit("scripts/entity/tactical/actor", {
 	}
 
 });
-

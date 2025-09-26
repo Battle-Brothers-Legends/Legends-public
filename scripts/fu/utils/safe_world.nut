@@ -103,6 +103,20 @@ if (!("Safe" in ::FU)) ::FU.Safe <- {};
     return null;
 }
 
+// Tactical Entities
+::FU.Safe.HasTacticalEntities <- function()
+{
+    try { return ::Tactical.Entities != null; } catch (e) { return false; }
+}
+
+::FU.Safe.WithTacticalEntities <- function( _fn )
+{
+    try {
+        if (::Tactical.Entities != null) return _fn(::Tactical.Entities);
+    } catch (e) {}
+    return null;
+}
+
 // Expose convenience aliases at ::FU for succinct usage in ifs
 ::FU.WorldHasStash <- ::FU.Safe.WorldHasStash;
 ::FU.GetStash <- ::FU.Safe.GetStash;
@@ -121,3 +135,5 @@ if (!("Safe" in ::FU)) ::FU.Safe <- {};
 ::FU.WithCurrentTown <- ::FU.Safe.WithCurrentTown;
 ::FU.WithPlayer <- ::FU.Safe.WithPlayer;
 ::FU.WithTacticalState <- ::FU.Safe.WithTacticalState;
+::FU.HasTacticalEntities <- ::FU.Safe.HasTacticalEntities;
+::FU.WithTacticalEntities <- ::FU.Safe.WithTacticalEntities;

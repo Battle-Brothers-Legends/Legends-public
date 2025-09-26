@@ -15,7 +15,7 @@
 
 	o.assignRandomEquipment = function ()
 	{
-		if (!this.Tactical.State.isScenarioMode() && this.Math.rand(1, 100) <= this.Math.max(10, 60 - this.World.getTime().Days))
+		if (!::FU.InScenario() && this.Math.rand(1, 100) <= this.Math.max(10, 60 - this.World.getTime().Days))
 		{
 			this.m.Items.equip(this.new("scripts/items/weapons/ancient/broken_bladed_pike"));
 		}

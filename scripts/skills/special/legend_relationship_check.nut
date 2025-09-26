@@ -210,7 +210,7 @@ this.legend_relationship_check <- this.inherit("scripts/skills/skill", {
 	function getTooltip()
 	{
 
-		if (("State" in this.Tactical) && this.Tactical.State != null)
+		if (::FU.HasTacticalState())
 		{
 			return getCombatTooltip();
 		}
@@ -373,11 +373,10 @@ this.legend_relationship_check <- this.inherit("scripts/skills/skill", {
 
 	// function onUpdate( _properties )
 	// {
-	// 	// if (("State" in this.Tactical) && this.Tactical.State != null)
+	// 	// if (::FU.HasTacticalState())
 	// 	// {
 	// 	// 	//this.doAllModifiers(_properties);
 	// 	// }
 	// }
 
 });
-

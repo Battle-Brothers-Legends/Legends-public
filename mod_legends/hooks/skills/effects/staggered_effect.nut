@@ -11,7 +11,7 @@
 	o.onAdded = function ()
 	{
 		local actor = this.getContainer().getActor();
-		if (actor.getFlags().get("CanNotBeStaggered") || !actor.isPlacedOnMap() || ("State" in this.Tactical) && this.Tactical.State.isBattleEnded())
+		if (actor.getFlags().get("CanNotBeStaggered") || !actor.isPlacedOnMap() || ::FU.HasTacticalState() && ::FU.IsBattleEnded())
 		{
 			this.removeSelf();
 			return;

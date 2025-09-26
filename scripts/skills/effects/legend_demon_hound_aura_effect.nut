@@ -40,7 +40,7 @@ this.legend_demon_hound_aura_effect <- this.inherit("scripts/skills/skill", {
 	{
 		local actor = this.getContainer().getActor();
 
-		if (!actor.isPlacedOnMap() || ("State" in this.Tactical) && this.Tactical.State.isBattleEnded())
+		if (!actor.isPlacedOnMap() || (::FU.HasTacticalState() && ::FU.IsBattleEnded()))
 		{
 			return 0;
 		}
@@ -51,12 +51,12 @@ this.legend_demon_hound_aura_effect <- this.inherit("scripts/skills/skill", {
 			return 0;
 		}
 
-		if (!("Entities" in this.Tactical))
+		if (!::FU.HasTacticalEntities())
 		{
 			return 0;
 		}
 
-		if (this.Tactical.Entities == null)
+		if (!::FU.HasTacticalEntities())
 		{
 			return 0;
 		}
@@ -132,4 +132,3 @@ this.legend_demon_hound_aura_effect <- this.inherit("scripts/skills/skill", {
 	}
 
 });
-

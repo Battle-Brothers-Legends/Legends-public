@@ -124,7 +124,7 @@ this.legend_vala_chant_fury_effect <- this.inherit("scripts/skills/effects/legen
 	{
 		local actor = this.getContainer().getActor();
 
-		if (!actor.isPlacedOnMap() || ("State" in this.Tactical) && this.Tactical.State.isBattleEnded())
+		if (!actor.isPlacedOnMap() || (::FU.HasTacticalState() && ::FU.IsBattleEnded()))
 			return;
 
 		if (!this.checkEntities() || !this.isInRange())

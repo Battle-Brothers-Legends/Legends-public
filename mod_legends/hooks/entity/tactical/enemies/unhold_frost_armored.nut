@@ -16,7 +16,7 @@
 	{
 		this.unhold_frost.onTurnStart();
 
-		if (this.Time.getRound() >= 2 && !this.m.HasTurned && !this.m.HasBeenWhipped && !this.Tactical.State.isAutoRetreat())
+		if (this.Time.getRound() >= 2 && !this.m.HasTurned && !this.m.HasBeenWhipped && !::FU.IsAutoRetreat())
 		{
 			this.m.Skills.getSkillByID("racial.unhold").spawnIcon("status_effect_107", this.getTile());
 
@@ -29,7 +29,7 @@
 			{
 				this.updateAchievement("FriendOrFoe", 1, 1);
 				this.m.HasTurned = true;
-				this.setFaction(this.Tactical.State.isScenarioMode() ? this.Const.Faction.Beasts : this.World.FactionManager.getFactionOfType(this.Const.FactionType.Beasts).getID());
+				this.setFaction(::FU.InScenario() ? this.Const.Faction.Beasts : this.World.FactionManager.getFactionOfType(this.Const.FactionType.Beasts).getID());
 				this.getSprite("socket").setBrush("bust_base_beasts");
 			}
 		}

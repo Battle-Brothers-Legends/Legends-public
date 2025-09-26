@@ -21,12 +21,12 @@
 		b.IsImmuneToDisarm = true;
 		b.IsImmuneToRotation = true;
 
-		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= 90)
+		if (!::FU.InScenario() && this.World.getTime().Days >= 90)
 		{
 			b.DamageTotalMult += 0.1;
 		}
 
-		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= 190)
+		if (!::FU.InScenario() && this.World.getTime().Days >= 190)
 		{
 			b.DamageTotalMult += 0.2;
 		}

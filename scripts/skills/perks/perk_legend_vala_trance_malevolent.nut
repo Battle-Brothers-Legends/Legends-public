@@ -326,7 +326,7 @@ this.perk_legend_vala_trance_malevolent <- this.inherit("scripts/skills/skill", 
 	{
 		local actor = this.getContainer().getActor();
 
-		if (!actor.isPlacedOnMap() || ("State" in this.Tactical) && this.Tactical.State.isBattleEnded())
+		if (!actor.isPlacedOnMap() || (::FU.HasTacticalState() && ::FU.IsBattleEnded()))
 			return;
 
 		local actor = this.getContainer().getActor();
@@ -394,4 +394,3 @@ this.perk_legend_vala_trance_malevolent <- this.inherit("scripts/skills/skill", 
 	}
 
 });
-

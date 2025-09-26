@@ -626,7 +626,7 @@
 	local onDeath = o.onDeath;
 	o.onDeath = function ( _killer, _skill, _tile, _fatalityType )
 	{
-		if (this.Tactical.State.isScenarioMode())
+		if (::FU.InScenario())
 			return onDeath(_killer, _skill, _tile, _fatalityType);
 		local bro = this;
 		local originalAddFallen = ::World.Statistics.addFallen;

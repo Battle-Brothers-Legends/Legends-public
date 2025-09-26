@@ -24,17 +24,17 @@ this.legend_favoured_enemy_skill <- this.inherit("scripts/skills/skill", {
 
 	function inBattleHiddenCheck()
 	{
-		if (!("State" in this.Tactical) || this.Tactical.State == null) //don't bother hiding the skill when it's not in combat
+		if (!::FU.HasTacticalState()) //don't bother hiding the skill when it's not in combat
 		{
 			return false;
 		}
 
-		if (!("Entities" in this.Tactical))
+		if (!::FU.HasTacticalEntities())
 		{
 			return false;
 		}
 
-		if (this.Tactical.Entities == null)
+		if (!::FU.HasTacticalEntities())
 		{
 			return false;
 		}
@@ -197,12 +197,12 @@ this.legend_favoured_enemy_skill <- this.inherit("scripts/skills/skill", {
 			return;
 		}
 
-		if (!("Entities" in this.Tactical))
+		if (!::FU.HasTacticalEntities())
 		{
 			return;
 		}
 
-		if (this.Tactical.Entities == null)
+		if (!::FU.HasTacticalEntities())
 		{
 			return;
 		}
@@ -242,4 +242,3 @@ this.legend_favoured_enemy_skill <- this.inherit("scripts/skills/skill", {
 	}
 
 });
-

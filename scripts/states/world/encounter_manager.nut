@@ -89,7 +89,7 @@ this.encounter_manager <- {
             return false;
         }
 
-        if (("State" in this.Tactical) && this.Tactical.State != null) {
+        if (::FU.HasTacticalState()) {
             return false;
         }
 

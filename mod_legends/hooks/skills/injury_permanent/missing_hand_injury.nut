@@ -30,7 +30,7 @@ this.mods_hookExactClass("skills/injury_permanent/missing_hand_injury", function
 		else if (off)
 			item = off;
 
-		if (item && (!actor.isPlacedOnMap() || ("State" in this.Tactical) && this.Tactical.State.isBattleEnded()))
+		if (item && (!actor.isPlacedOnMap() || ::FU.HasTacticalState() && ::FU.IsBattleEnded()))
 		{
 			items.unequip(item);
 			if (items.hasEmptySlot(this.Const.ItemSlot.Bag))
@@ -38,7 +38,7 @@ this.mods_hookExactClass("skills/injury_permanent/missing_hand_injury", function
 				items.addToBag(item);
 			}
 			else if (this.World.Assets.getStash().hasEmptySlot())
-			{	
+			{
 				this.World.Assets.getStash().add(item);
 			}
 			else

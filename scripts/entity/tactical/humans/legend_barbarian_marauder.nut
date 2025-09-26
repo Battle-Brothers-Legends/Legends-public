@@ -77,7 +77,7 @@ this.legend_barbarian_marauder <- this.inherit("scripts/entity/tactical/human", 
 			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
 		}
 
-		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= 60)
+		if (!::FU.InScenario() && this.World.getTime().Days >= 60)
 		{
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendCloseCombatArcher);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendOnslaught);

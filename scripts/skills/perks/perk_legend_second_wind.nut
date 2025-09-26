@@ -13,7 +13,7 @@ this.perk_legend_second_wind <- this.inherit("scripts/skills/skill", {
 	function onDamageReceived ( _attacker, _damageHitpoints, _damageArmor )
 	{
 		local actor = this.getContainer().getActor();
-		if (!actor.isPlacedOnMap() || ("State" in this.Tactical) && this.Tactical.State.isBattleEnded())
+		if (!actor.isPlacedOnMap() || (::FU.HasTacticalState() && ::FU.IsBattleEnded()))
 			return;
 
 		if (_damageHitpoints > 0 && actor.isAlive() && !actor.isDying())

@@ -15,7 +15,7 @@
 			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
 		}
 
-		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= 60)
+		if (!::FU.InScenario() && this.World.getTime().Days >= 60)
 		{
 			::Legends.Perks.grant(this, ::Legends.Perk.Relentless);
 		}

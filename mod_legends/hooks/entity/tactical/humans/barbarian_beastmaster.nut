@@ -16,7 +16,7 @@
 			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
 		}
 
-		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= 30)
+		if (!::FU.InScenario() && this.World.getTime().Days >= 30)
 		{
 			::Legends.Perks.grant(this, ::Legends.Perk.Dodge);
 		}

@@ -20,7 +20,7 @@ this.legend_clams_item <- this.inherit("scripts/items/supplies/food_item", {
 			return this.getSellPrice();
 		}
 
-		if (("State" in this.World) && this.World.State != null && this.World.State.getCurrentTown() != null)
+		if (("State" in this.World) && ::FU.InTown())
 		{
 			return this.Math.max(this.getSellPrice(), this.Math.ceil(this.getValue() * this.getPriceMult() * this.World.State.getCurrentTown().getFoodPriceMult() * this.World.State.getCurrentTown().getBuyPriceMult()));
 		}
@@ -35,7 +35,7 @@ this.legend_clams_item <- this.inherit("scripts/items/supplies/food_item", {
 			return this.getBuyPrice();
 		}
 
-		if (("State" in this.World) && this.World.State != null && this.World.State.getCurrentTown() != null)
+		if (("State" in this.World) && ::FU.InTown())
 		{
 			return this.Math.floor(this.getValue() * this.World.State.getCurrentTown().getFoodPriceMult() * this.World.State.getCurrentTown().getSellPriceMult());
 		}

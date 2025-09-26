@@ -1,6 +1,6 @@
-this.legend_randomized_unit_noble_abstract <- this.inherit("scripts/entity/tactical/legend_randomized_unit_abstract", { 
+this.legend_randomized_unit_noble_abstract <- this.inherit("scripts/entity/tactical/legend_randomized_unit_abstract", {
 	m = {},
-	function onInit() 
+	function onInit()
 	{
 		this.legend_randomized_unit_abstract.onInit();
         this.getSprite("socket").setBrush("bust_base_military");
@@ -8,7 +8,7 @@ this.legend_randomized_unit_noble_abstract <- this.inherit("scripts/entity/tacti
 
     function create()
 	{
-		this.legend_randomized_unit_abstract.create();     
+		this.legend_randomized_unit_abstract.create();
 	}
 
 	function assignRandomEquipment()
@@ -16,7 +16,7 @@ this.legend_randomized_unit_noble_abstract <- this.inherit("scripts/entity/tacti
         this.legend_randomized_unit_abstract.assignRandomEquipment();
 
         local banner;
-        if (!this.Tactical.State.isScenarioMode())
+        if (!::FU.InScenario())
 		{
 			banner = this.World.FactionManager.getFaction(this.getFaction()).getBanner();
 		}
@@ -47,13 +47,13 @@ this.legend_randomized_unit_noble_abstract <- this.inherit("scripts/entity/tacti
 		local helmet = this.m.Items.getItemAtSlot(this.Const.ItemSlot.Head);
 		if (helmet != null)
 		{
-			if ("setPlainVariant" in helmet) 
-			{ 
-				helmet.setPlainVariant(); 
+			if ("setPlainVariant" in helmet)
+			{
+				helmet.setPlainVariant();
 			}
 
 			local helmLayer = helmet.getUpgrade(0);
-			if(helmLayer != null) 
+			if(helmLayer != null)
 			{
 				switch (helmLayer.getID())
 				{
@@ -82,7 +82,7 @@ this.legend_randomized_unit_noble_abstract <- this.inherit("scripts/entity/tacti
 					case "armor.head.legend_helmet_viking_helm":
 						helmLayer.setVariant(::Const.FacColors.VikingHelm[banner]);
 						break;
-				}				
+				}
 			}
 
 			local faceplate = helmet.getUpgrade(1); // The flat mask
@@ -120,7 +120,7 @@ this.legend_randomized_unit_noble_abstract <- this.inherit("scripts/entity/tacti
         this.m.Faces = this.Const.Faces.AllFemale;
 		this.m.Hairs = this.Const.Hair.BarberFemale;
 		this.m.HairColors = this.Const.HairColors.All;
-		this.m.Beards = this.Const.Beards.Female;  
+		this.m.Beards = this.Const.Beards.Female;
     }
 
     function setMale()
@@ -129,7 +129,7 @@ this.legend_randomized_unit_noble_abstract <- this.inherit("scripts/entity/tacti
         this.m.Faces = this.Const.Faces.AllMale;
 		this.m.Hairs = this.Const.Hair.CommonMale;
 		this.m.HairColors = this.Const.HairColors.All;
-		this.m.Beards = this.Const.Beards.Tidy;  
+		this.m.Beards = this.Const.Beards.Tidy;
     }
 
-}); 
+});

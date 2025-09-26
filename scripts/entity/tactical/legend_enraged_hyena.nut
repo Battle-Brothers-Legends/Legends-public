@@ -96,7 +96,7 @@ this.legend_enraged_hyena <- this.inherit("scripts/entity/tactical/enemies/hyena
 
 			// loot
 			if((_killer == null || _killer.getFaction() == this.Const.Faction.Player || _killer.getFaction() == this.Const.Faction.PlayerAnimals)) {
-				local n = 1 + (!this.Tactical.State.isScenarioMode() && this.Math.rand(1, 100) <= this.World.Assets.getExtraLootChance() ? 1 : 0);
+				local n = 1 + (!::FU.InScenario() && this.Math.rand(1, 100) <= this.World.Assets.getExtraLootChance() ? 1 : 0);
 				for (local i = 0; i < n; ++i) {
 					if (this.Math.rand(1, 100) <= 50) {
 						local r = this.Math.rand(1, 100);

@@ -284,7 +284,7 @@
 			{
 				if (this.m.TacticalCombatResultScreen != null)
 				{
-					if (_isVictory && !this.Tactical.State.isScenarioMode() && this.m.StrategicProperties != null && (!this.m.StrategicProperties.IsLootingProhibited || this.m.StrategicProperties.IsArenaMode && !this.m.CombatResultLoot.isEmpty()) && this.Settings.getGameplaySettings().AutoLoot)
+					if (_isVictory && !::FU.InScenario() && this.m.StrategicProperties != null && (!this.m.StrategicProperties.IsLootingProhibited || this.m.StrategicProperties.IsArenaMode && !this.m.CombatResultLoot.isEmpty()) && this.Settings.getGameplaySettings().AutoLoot)
 					{
 						this.m.TacticalCombatResultScreen.onLootAllItemsButtonPressed();
 						this.World.Assets.consumeItems();

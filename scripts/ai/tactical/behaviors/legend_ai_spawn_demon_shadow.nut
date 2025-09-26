@@ -23,12 +23,12 @@ this.legend_ai_spawn_demon_shadow <- this.inherit("scripts/ai/tactical/behavior"
 			return this.Const.AI.Behavior.Score.Zero;
 		}
 
-		if (_entity.getActionPoints() == _entity.getActionPointsMax() && !this.Tactical.State.isAutoRetreat())
+		if (_entity.getActionPoints() == _entity.getActionPointsMax() && !::FU.IsAutoRetreat())
 		{
 			return this.Const.AI.Behavior.Score.Zero;
 		}
 
-		if (_entity.getActionPoints() >= 5 && !this.Tactical.State.isAutoRetreat())
+		if (_entity.getActionPoints() >= 5 && !::FU.IsAutoRetreat())
 		{
 			return this.Const.AI.Behavior.Score.Zero;
 		}
@@ -178,4 +178,3 @@ this.legend_ai_spawn_demon_shadow <- this.inherit("scripts/ai/tactical/behavior"
 	}
 
 });
-

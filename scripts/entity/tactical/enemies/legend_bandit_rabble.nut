@@ -52,7 +52,7 @@ this.legend_bandit_rabble <- this.inherit("scripts/entity/tactical/legend_random
 			this.getSprite("eye_rings").Visible = true;
 		}
 
-		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= 40)
+		if (!::FU.InScenario() && this.World.getTime().Days >= 40)
 		{
 			b.MeleeDefense += 5;
 		}

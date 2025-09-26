@@ -13,9 +13,9 @@ this.legend_spider_cluster <- this.inherit("scripts/entity/tactical/actor", {
 
 	function create()
 	{
-		this.m.Type = this.Const.EntityType.LegendSpiderCluster; 
+		this.m.Type = this.Const.EntityType.LegendSpiderCluster;
 		this.m.BloodType = this.Const.BloodType.Green;
-		this.m.XP = this.Const.Tactical.Actor.LegendSpiderCluster.XP; 
+		this.m.XP = this.Const.Tactical.Actor.LegendSpiderCluster.XP;
 		this.m.BloodSplatterOffset = this.createVec(0, 0);
 		this.m.DecapitateSplatterOffset = this.createVec(20, -15);
 		this.m.DecapitateBloodAmount = 0.5;
@@ -136,7 +136,7 @@ this.legend_spider_cluster <- this.inherit("scripts/entity/tactical/actor", {
 
 			if ((_killer == null || _killer.getFaction() == this.Const.Faction.Player || _killer.getFaction() == this.Const.Faction.PlayerAnimals) && this.m.Size > 0.75 && this.Math.rand(1, 100) <= 60)
 			{
-				local n = 1 + (!this.Tactical.State.isScenarioMode() && this.Math.rand(1, 100) <= this.World.Assets.getExtraLootChance() ? 1 : 0);
+				local n = 1 + (!::FU.InScenario() && this.Math.rand(1, 100) <= this.World.Assets.getExtraLootChance() ? 1 : 0);
 
 				for( local i = 0; i < n; i = ++i )
 				{
@@ -173,7 +173,7 @@ this.legend_spider_cluster <- this.inherit("scripts/entity/tactical/actor", {
 		b.IsImmuneToDisarm = true;
 		b.IsAffectedByFreshInjuries = false;
 
-		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= 25) //review
+		if (!::FU.InScenario() && this.World.getTime().Days >= 25) //review
 		{
 			b.DamageDirectAdd += 0.05;
 
@@ -193,7 +193,7 @@ this.legend_spider_cluster <- this.inherit("scripts/entity/tactical/actor", {
 		this.m.MaxTraversibleLevels = 3;
 		this.addSprite("socket").setBrush("bust_base_beasts");
 		local body = this.addSprite("body");
-		body.setBrush("bust_spider_cluster_body_01"); 
+		body.setBrush("bust_spider_cluster_body_01");
 
 		if (this.Math.rand(0, 100) < 90)
 		{
@@ -251,4 +251,3 @@ this.legend_spider_cluster <- this.inherit("scripts/entity/tactical/actor", {
 	}
 
 });
-

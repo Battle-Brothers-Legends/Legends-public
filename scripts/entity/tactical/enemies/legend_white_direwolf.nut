@@ -108,7 +108,7 @@ this.legend_white_direwolf <- this.inherit("scripts/entity/tactical/actor", {
 
 	function onDeath( _killer, _skill, _tile, _fatalityType )
 	{
-		if (!this.Tactical.State.isScenarioMode() && _killer != null && _killer.isPlayerControlled() && _skill != null && !_skill.isRanged())
+		if (!::FU.InScenario() && _killer != null && _killer.isPlayerControlled() && _skill != null && !_skill.isRanged())
 		{
 			this.updateAchievement("Ulfhednar", 1, 1);
 		}

@@ -57,7 +57,7 @@
 
 		if (!this.m.IsAlwaysInEffect && !this.getContainer().getActor().getCurrentProperties().IsAffectedByInjuries && this.m.IsHealingMentioned)
 		{
-			if (("State" in this.Tactical) && this.Tactical.State != null)
+			if (::FU.HasTacticalState())
 			{
 				_tooltip.push({
 					id = 7,

@@ -138,7 +138,7 @@ this.legend_demon_alp <- this.inherit("scripts/entity/tactical/actor", {
 	{
 		local flip = this.Math.rand(1, 100) < 50;
 
-		if (!this.Tactical.State.isScenarioMode() && _killer != null && _killer.isPlayerControlled())
+		if (!::FU.InScenario() && _killer != null && _killer.isPlayerControlled())
 		{
 			this.updateAchievement("SleepTight", 1, 1);
 		}
@@ -302,4 +302,3 @@ this.legend_demon_alp <- this.inherit("scripts/entity/tactical/actor", {
 	}
 
 });
-

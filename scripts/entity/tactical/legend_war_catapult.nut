@@ -77,7 +77,7 @@ this.legend_war_catapult <- this.inherit("scripts/entity/tactical/actor", {
 		this.getSprite("body").setHorizontalFlipping(flip);
 
 
-		if (!this.Tactical.State.isScenarioMode())
+		if (!::FU.InScenario())
 		{
 			local f = this.World.FactionManager.getFaction(this.getFaction());
 
@@ -139,7 +139,7 @@ this.legend_war_catapult <- this.inherit("scripts/entity/tactical/actor", {
 		this.setSpriteOffset("status_stunned", this.createVec(0, 10));
 		this.setSpriteOffset("arrow", this.createVec(0, 10));
 
-		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= 40)
+		if (!::FU.InScenario() && this.World.getTime().Days >= 40)
 		{
 			b.RangedDefense += 5;
 		}
@@ -147,7 +147,7 @@ this.legend_war_catapult <- this.inherit("scripts/entity/tactical/actor", {
 		::Legends.Actives.grant(this, ::Legends.Active.LegendCatapultBoulder);
 		::Legends.Actives.grant(this, ::Legends.Active.LegendUseCatapult);
 
-		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= 20)
+		if (!::FU.InScenario() && this.World.getTime().Days >= 20)
 		{
 			::Legends.Perks.grant(this, ::Legends.Perk.Bullseye);
 		}
@@ -163,4 +163,3 @@ this.legend_war_catapult <- this.inherit("scripts/entity/tactical/actor", {
 	}
 
 });
-
