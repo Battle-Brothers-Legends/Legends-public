@@ -61,6 +61,47 @@ if (!("Safe" in ::FU)) ::FU.Safe <- {};
 
 // Convenience
 ::FU.Safe.GetPlayer <- function()
+{
+    try { return ::World.State.getPlayer(); } catch (e) { return null; }
+}
+
+// Functional helpers (execute callback only when context exists)
+// Each returns the callback's return value, or null if not executed
+
+::FU.Safe.WithStash <- function( _fn )
+{
+    try {
+        local s = ::World.Assets.getStash();
+        if (s != null) return _fn(s);
+    } catch (e) {}
+    return null;
+}
+
+::FU.Safe.WithCurrentTown <- function( _fn )
+{
+    try {
+        local t = ::World.State.getCurrentTown();
+        if (t != null) return _fn(t);
+    } catch (e) {}
+    return null;
+}
+
+::FU.Safe.WithPlayer <- function( _fn )
+{
+    try {
+        local p = ::World.State.getPlayer();
+        if (p != null) return _fn(p);
+    } catch (e) {}
+    return null;
+}
+
+::FU.Safe.WithTacticalState <- function( _fn )
+{
+    try {
+        if (::Tactical.State != null) return _fn(::Tactical.State);
+    } catch (e) {}
+    return null;
+}
 
 // Expose convenience aliases at ::FU for succinct usage in ifs
 ::FU.WorldHasStash <- ::FU.Safe.WorldHasStash;
@@ -74,6 +115,9 @@ if (!("Safe" in ::FU)) ::FU.Safe <- {};
 ::FU.IsBattleEnded <- ::FU.Safe.IsBattleEnded;
 ::FU.IsAutoRetreat <- ::FU.Safe.IsAutoRetreat;
 ::FU.GetPlayer <- ::FU.Safe.GetPlayer;
-{
-    try { return ::World.State.getPlayer(); } catch (e) { return null; }
-}
+
+// Functional alias shorthands
+::FU.WithStash <- ::FU.Safe.WithStash;
+::FU.WithCurrentTown <- ::FU.Safe.WithCurrentTown;
+::FU.WithPlayer <- ::FU.Safe.WithPlayer;
+::FU.WithTacticalState <- ::FU.Safe.WithTacticalState;
