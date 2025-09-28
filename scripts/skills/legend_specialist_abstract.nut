@@ -192,7 +192,7 @@ this.legend_specialist_abstract <- this.inherit("scripts/skills/skill", {
 			_properties.MeleeSkill += hitBonus;
 			_skill.m.HitChanceBonus += hitBonus;
 		}
-		else if (this.m.BonusRanged != null && _skill.isRanged())
+		else if (this.m.BonusRanged != null && _skill.isRanged() && _skill.isUsingHitchance())
 		{
 			hitBonus = this.calculateSpecialistBonus(this.m.BonusRanged, item) * (validTarget ? 2 : 1);
 			_properties.RangedSkill += hitBonus;
