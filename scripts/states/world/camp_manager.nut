@@ -563,7 +563,8 @@ this.camp_manager <- {
 			}
 		}
 
-		::MSU.Serialization.serialize(this.m.PresetNames, _out);
+		// Use FU utils instead of MSU Serialization
+		::FU.Utils.serialize(this.m.PresetNames, _out);
 		// serialize encounters
 		_out.writeF32(this.m.CampEncountersCooldownUntil);
 		foreach(i, e in this.m.CampEncounters) {
@@ -595,7 +596,7 @@ this.camp_manager <- {
 				this.m.Tents.push(b);
 			}
 		}
-		this.m.PresetNames = ::MSU.Serialization.deserialize(_in);
+		this.m.PresetNames = ::FU.Utils.deserialize(_in);
 		this.m.CampEncountersCooldownUntil = _in.readF32();
 		this.m.CampEncounters.push(::World.Encounters.m.CampEncounters[0]);
 		while(_in.readBool()) {

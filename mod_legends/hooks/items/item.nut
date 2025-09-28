@@ -449,7 +449,8 @@
 		_out.writeU16(this.m.IsToBeRepairedQueue);
 		_out.writeU16(this.m.IsToBeSalvagedQueue);
 		_out.writeI32(this.m.OriginSettlementID);
-		::MSU.Serialization.serialize(this.m.TradeHistorySettlementIDs, _out);
+		// FU replaces MSU's Serialization helpers with ::FU.Utils
+		::FU.Utils.serialize(this.m.TradeHistorySettlementIDs, _out);
 	}
 
 	local onDeserialize = o.onDeserialize;
@@ -461,7 +462,7 @@
 		this.m.IsToBeRepairedQueue = _in.readU16();
 		this.m.IsToBeSalvagedQueue = _in.readU16();
 		this.m.OriginSettlementID = _in.readI32();
-		this.m.TradeHistorySettlementIDs = ::MSU.Serialization.deserialize(_in);
+		this.m.TradeHistorySettlementIDs = ::FU.Utils.deserialize(_in);
 		this.updateVariant();
 	}
 });

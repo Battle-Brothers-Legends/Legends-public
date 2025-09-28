@@ -57,4 +57,68 @@ if (!("MSU" in getroottable()))
     {
         if (typeof v == "function" && ("String" in ::FU) && ::FU.String.startsWith(k, "require")) ::MSU[k] <- v;
     }
+
+    // Early add of MSU.Registry ModSourceDomain.GitHubTags and class if missing
+    if ("System" in ::MSU && "Registry" in ::MSU.System)
+    {
+        local domain = ::MSU.System.Registry.ModSourceDomain;
+        try { if ("add" in domain && (function(){ try { domain["GitHubTags"]; return true; } catch(e) { return false; } }()) == false) domain.add("GitHubTags"); } catch(e) {}
+
+        if (!("ModSourceGitHubTags" in ::MSU.Class))
+        {
+            ::MSU.Class.ModSourceGitHubTags <- class extends ::MSU.Class.ModSource
+            {
+                static ModSourceDomain = (function(){ try { return ::MSU.System.Registry.ModSourceDomain.GitHubTags; } catch(e) { return ::MSU.System.Registry.ModSourceDomain.GitHub; } })();
+                static Regex = regexp("https:\\/\\/github\\.com\\/([-\\w]+)\\/([-\\w]+)");
+                constructor( _url )
+                {
+                    if (!this.Regex.match(_url))
+                    {
+                        ::logError("A GitHub link must be a link to a specific repository, e.g. 'https://github.com/org/repo'");
+                        throw ::MSU.Exception.InvalidValue(_url);
+                    }
+                    base.constructor(_url);
+                }
+                function getUpdateURL()
+                {
+                    local capture = this.Regex.capture(this.__URL);
+                    local owner = ::MSU.regexMatch(capture, this.__URL, 1);
+                    local repo = ::MSU.regexMatch(capture, this.__URL, 2);
+                    return "https://api.github.com/repos/" + owner + "/" + repo + "/tags";
+                }
+            };
+        }
+        try { ::MSU.System.Registry.addNewModSource(::MSU.Class.ModSourceGitHubTags); } catch(e) {}
+    }
+
+    // Early minimal MSU.Serialization shim if needed
+    if (!("Serialization" in ::MSU))
+    {
+        ::MSU.Serialization <- {
+            serialize = function( _object, _out )
+            {
+                if (!("Utils" in ::FU))
+                {
+                    throw "MSU.Serialization.serialize called before FU.Utils is available";
+                }
+                ::FU.Utils.serialize(_object, _out);
+            },
+            deserialize = function( _in )
+            {
+                if (!("Utils" in ::FU))
+                {
+                    throw "MSU.Serialization.deserialize called before FU.Utils is available";
+                }
+                return ::FU.Utils.deserialize(_in);
+            },
+            deserializeInto = function( _object, _in )
+            {
+                if (!("Utils" in ::FU))
+                {
+                    throw "MSU.Serialization.deserializeInto called before FU.Utils is available";
+                }
+                return ::FU.Utils.deserializeInto(_object, _in);
+            }
+        };
+    }
 }

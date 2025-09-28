@@ -41,6 +41,8 @@ def _normalize_family_number(base: str, num: str | int | None) -> str:
     """
     alias = {
         'legend_desert': 'desert',
+        'stone_brick': 'stonebrick',
+        'legend_stone_brick': 'stonebrick',
     }
     fam = alias.get(base, base)
     limits = {
@@ -48,6 +50,7 @@ def _normalize_family_number(base: str, num: str | int | None) -> str:
         'earth': 2,
         'forest': 2,
         'stone': 3,
+        'stonebrick': 3,
         'steppe': 5,
         'swamp': 5,
         'swampgreen': 5,
@@ -96,7 +99,7 @@ def id_to_key(id_str: str) -> str | None:
     fam = key
     for prefix in (
         'grass', 'earth', 'snow', 'desert', 'tundra', 'autumn', 'moss', 'forest',
-        'stone', 'steppe', 'swamp', 'swampgreen', 'swampforest', 'legend_cave',
+        'stone', 'stonebrick', 'steppe', 'swamp', 'swampgreen', 'swampforest', 'legend_cave',
         'desert7_oasis', 'road',
     ):
         if fam.startswith(prefix):
@@ -198,6 +201,8 @@ def classify_tile_name(img_path: str, meta_map: dict[str, str] | None = None) ->
     # Normalize special composites
     name = name.replace('swamp_green', 'swampgreen')
     name = name.replace('swamp_forest', 'swampforest')
+    name = name.replace('stone_brick', 'stonebrick')
+    name = name.replace('legend_stone_brick', 'stonebrick')
 
     # If ends with _<number>, split
     base, num = name, ''
@@ -222,7 +227,7 @@ def classify_tile_name(img_path: str, meta_map: dict[str, str] | None = None) ->
         return None
     for prefix in (
         'grass', 'earth', 'snow', 'desert', 'tundra', 'autumn', 'moss', 'forest',
-        'stone', 'steppe', 'swamp', 'swampgreen', 'swampforest', 'legend_cave',
+        'stone', 'stonebrick', 'steppe', 'swamp', 'swampgreen', 'swampforest', 'legend_cave',
         'desert7_oasis', 'road',
     ):
         if fam.startswith(prefix):
@@ -244,9 +249,21 @@ def build_gid_to_img(tileset_json: dict, firstgid: int) -> dict[int, str]:
     return gid_to_img
 
 
+def _find_file_by_basename(basename: str, search_roots: list[str]) -> str | None:
+    """Search for a file with the given basename under provided roots."""
+    for root in search_roots:
+        for dirpath, _dirnames, filenames in os.walk(root):
+            if basename in filenames:
+                return os.path.join(dirpath, basename)
+    return None
+
+
 def build_gid_to_img_from_map(map_json: dict, map_dir: str) -> dict[int, str]:
-    """Build a combined gid->image map for all tilesets referenced by the map."""
+    """Build a combined gid->image map for all tilesets referenced by the map.
+    Robust to multiple tilesets and paths that are not local to the repo.
+    """
     combined: dict[int, str] = {}
+    search_roots = [map_dir, '.', 'scripts', 'unpacked', 'vanilla']
     for ts in map_json.get('tilesets', []):
         firstgid = int(ts.get('firstgid', 1))
         src = ts.get('source')
@@ -259,6 +276,11 @@ def build_gid_to_img_from_map(map_json: dict, map_dir: str) -> dict[int, str]:
             tsj_candidate = os.path.splitext(ts_path)[0] + '.tsj'
             if os.path.isfile(tsj_candidate):
                 ts_path = tsj_candidate
+        # If tileset file not found, try to locate it by basename under common roots
+        if not os.path.isfile(ts_path):
+            alt = _find_file_by_basename(base, search_roots)
+            if alt:
+                ts_path = alt
         try:
             ts_json = load_json(ts_path)
         except Exception:
@@ -434,6 +456,13 @@ def write_nut(out_path: str, name: str, width: int, height: int, terrain_grid: l
         w('\t\t\tif (inst != null && ("init" in inst)) inst.init();\n')
         w('\t\t\treturn inst;\n')
         w('\t\t}\n')
+        # Ensure a default tile exists to backfill empty cells (code 0)
+        try:
+            default_idx_py = terrain_keys.index('earth1')
+        except ValueError:
+            terrain_keys.append('earth1')
+            default_idx_py = len(terrain_keys) - 1
+
         # Emit tile objects array indexed by code
         w('\t\tlocal Tiles = [ null')
         for i, key in enumerate(terrain_keys):
@@ -441,6 +470,8 @@ def write_nut(out_path: str, name: str, width: int, height: int, terrain_grid: l
                 continue
             w(', GetTile("tactical.tile.{k}")'.format(k=key))
         w(' ];\n')
+        # Index inside Tiles[] for our default backfill tile
+        w('\t\tlocal DefaultCode = {idx};\n'.format(idx=default_idx_py))
         # Emit terrain map
         w('\t\tlocal terrainMap = [\n')
         for y in range(height):
@@ -453,6 +484,23 @@ def write_nut(out_path: str, name: str, width: int, height: int, terrain_grid: l
             row = height_grid[y]
             w('\t\t\t[' + ', '.join(str(v) for v in row) + ']' + (',' if y < height-1 else '') + '\n')
         w('\t\t];\n')
+        # Build a set of tile codes that shouldn't appear on elevated tiles (e.g., shallow water)
+        no_slope_indices = []
+        for i, key in enumerate(terrain_keys):
+            if i == 0:
+                continue
+            k = key.lower()
+            # Desert6 is shallow water; avoid on elevated tiles
+            if k == 'desert6':
+                no_slope_indices.append(i)
+            # Swamp families are also watery; skip on elevated tiles
+            if k.startswith('swamp'):
+                if i not in no_slope_indices:
+                    no_slope_indices.append(i)
+        w('\t\tlocal NoSlope = [');
+        w(', '.join(str(i) for i in no_slope_indices));
+        w('];\n')
+
         # Fill loop
         w('\t\tfor (local y = 0; y < {h}; y = ++y)\n'.format(h=height))
         w('\t\t{\n')
@@ -465,8 +513,13 @@ def write_nut(out_path: str, name: str, width: int, height: int, terrain_grid: l
         w('\t\t\t\ttile.Level = heightMap[y][x];\n')
         w('\t\t\t\t// Stamp terrain\n')
         w('\t\t\t\tlocal code = terrainMap[y][x];\n')
+        w('\t\t\t\tif (code == 0) code = DefaultCode;\n')
+        w('\t\t\t\tlocal lvl = heightMap[y][x];\n')
+        w('\t\t\t\t// Avoid water on elevated tiles which can crash rendering\n')
+        w('\t\t\t\tforeach (i in NoSlope) { if (code == i && lvl > 0) { code = DefaultCode; break; } }\n')
         w('\t\t\t\tlocal rect = { X = wx, Y = wy, W = 1, H = 1, IsEmpty = false };\n')
-        w('\t\t\t\tif (code != 0 && Tiles[code] != null) Tiles[code].fill(rect, null);\n')
+        w('\t\t\t\ttry { if (code != 0 && Tiles[code] != null) Tiles[code].fill(rect, null); } catch (e) { ::logError("CustomMaps: Fill failed at (" + wx + "," + wy + ") code=" + code + " err=" + e); }\n')
+        # (Optional diagnostics disabled by default)
         w('\t\t\t}\n')
         w('\t\t}\n')
         w('\t\tthis.makeBordersImpassable(_rect);\n')
@@ -577,10 +630,12 @@ def main():
     if args.metadata:
         meta_paths = args.metadata
     else:
+        # Add common defaults if present
         for p in (
             os.path.join('terrain', 'metadata.xml'),
             os.path.join('object_0', 'metadata.xml'),
             os.path.join('object_1', 'metadata.xml'),
+            os.path.join('unpacked', 'legend_terrain', 'metadata.xml'),
         ):
             if os.path.isfile(p):
                 meta_paths.append(p)

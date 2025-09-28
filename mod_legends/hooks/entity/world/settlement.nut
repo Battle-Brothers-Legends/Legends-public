@@ -1188,8 +1188,9 @@
 		_out.writeF32(this.m.LastStablesUpdate);
 		_out.writeI32(this.m.StablesSeed);
 		this.m.ImportedGoodsInventory.onSerialize(_out);
-		::MSU.Serialization.serialize(this.m.CaravanReceivedHistory, _out);
-		::MSU.Serialization.serialize(this.m.CaravanSentHistory, _out);
+		// Switch to FU utils for (de)serialization
+		::FU.Utils.serialize(this.m.CaravanReceivedHistory, _out);
+		::FU.Utils.serialize(this.m.CaravanSentHistory, _out);
 
 		_out.writeF32(this.m.SettlementEncountersCooldownUntil);
 		foreach(e in this.m.SettlementEncounters) {
@@ -1211,8 +1212,8 @@
 		this.m.StablesSeed = _in.readI32();
 
 		this.m.ImportedGoodsInventory.onDeserialize(_in);
-		this.m.CaravanReceivedHistory = ::MSU.Serialization.deserialize(_in);
-		this.m.CaravanSentHistory = ::MSU.Serialization.deserialize(_in);
+		this.m.CaravanReceivedHistory = ::FU.Utils.deserialize(_in);
+		this.m.CaravanSentHistory = ::FU.Utils.deserialize(_in);
 
 		this.m.SettlementEncountersCooldownUntil = _in.readF32();
 		while(_in.readBool()) {

@@ -60,6 +60,8 @@ local mod = ::EventsFix <- { //added to Legends codebase 23/11/23 by Luft with t
         local selectEvent = o.selectEvent;
         o.selectEvent = function() {
             local gen = selectEvent();
+            // FU compatibility: only resume if we actually got a generator
+            if (typeof gen != "generator") return gen;
             while (true) {
                 if (resume gen == true) {
                     // If we finished but didn't get an event we need to restart quick,

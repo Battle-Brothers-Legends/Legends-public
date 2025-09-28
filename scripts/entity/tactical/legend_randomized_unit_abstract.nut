@@ -208,11 +208,15 @@ this.legend_randomized_unit_abstract <- this.inherit("scripts/entity/tactical/hu
 				::Legends.Perks.grant(this, perk);
 		}
 
-		local weaponPerkTree = this.Const.GetWeaponPerkTree(weapon);
-		weaponPerkTree = weaponPerkTree[this.Math.rand(0, weaponPerkTree.len() - 1)];
-		if (weaponPerkTree != null && weaponScriptAndChances.len() >= 2 && this.Math.rand(1, 100) <= weaponScriptAndChances[1])
+		// Select a random applicable weapon tree if any exist
+		local weaponPerkTrees = this.Const.GetWeaponPerkTree(weapon);
+		if (weaponPerkTrees != null && weaponPerkTrees.len() > 0)
 		{
-			this.pickPerk( this.m.PerkPower,  weaponPerkTree, this.m.EnemyLevel - 1);
+			local weaponPerkTree = weaponPerkTrees[this.Math.rand(0, weaponPerkTrees.len() - 1)];
+			if (weaponPerkTree != null && weaponScriptAndChances.len() >= 2 && this.Math.rand(1, 100) <= weaponScriptAndChances[1])
+			{
+				this.pickPerk( this.m.PerkPower,  weaponPerkTree, this.m.EnemyLevel - 1);
+			}
 		}
 
 		local weaponClassTree = this.Const.GetWeaponClassTree(weapon);

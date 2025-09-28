@@ -72,7 +72,14 @@
 			}
 		}
 
-		throw ::FU.Exception.KeyNotFound(_settingID);
+		// Be tolerant for submods that query settings before registering them
+		::FU.Mod.Debug.printWarning(format("Missing setting '%s' in panel '%s' — returning a null setting", _settingID, this.getID()), "modsettings");
+		return {
+			getID = function() { return _settingID; },
+			getValue = function() { return false; },
+			setValue = function(_v) {},
+			isNull = function() { return true; }
+		};
 	}
 
 	function hasSetting( _settingID )

@@ -46,3 +46,87 @@ foreach (k, v in ::FU)
 {
     if (typeof v == "function" && ::FU.String.startsWith(k, "require")) ::MSU[k] <- v;
 }
+
+// Provide minimal MSU.Serialization API via FU for drop-in compatibility
+// Do not override if a real MSU.Serialization exists
+if (!("Serialization" in ::MSU))
+{
+    ::MSU.Serialization <- {
+        serialize = function( _object, _out )
+        {
+            if (!("Utils" in ::FU))
+            {
+                throw "MSU.Serialization.serialize called before FU.Utils is available";
+            }
+            ::FU.Utils.serialize(_object, _out);
+        },
+        deserialize = function( _in )
+        {
+            if (!("Utils" in ::FU))
+            {
+                throw "MSU.Serialization.deserialize called before FU.Utils is available";
+            }
+            return ::FU.Utils.deserialize(_in);
+        },
+        deserializeInto = function( _object, _in )
+        {
+            if (!("Utils" in ::FU))
+            {
+                throw "MSU.Serialization.deserializeInto called before FU.Utils is available";
+            }
+            return ::FU.Utils.deserializeInto(_object, _in);
+        }
+    };
+}
+
+// Provide MSU.Registry ModSourceDomain.GitHubTags and class if missing (compat for submods)
+if ("System" in ::MSU && "Registry" in ::MSU.System)
+{
+    local domain = ::MSU.System.Registry.ModSourceDomain;
+    // Add enum key if supported and missing
+    try { if ("add" in domain && (function(){ try { domain["GitHubTags"]; return true; } catch(e) { return false; } }()) == false) domain.add("GitHubTags"); } catch(e) {}
+
+    if (!("ModSourceGitHubTags" in ::MSU.Class))
+    {
+        ::MSU.Class.ModSourceGitHubTags <- class extends ::MSU.Class.ModSource
+        {
+            static ModSourceDomain = (function(){ try { return ::MSU.System.Registry.ModSourceDomain.GitHubTags; } catch(e) { return ::MSU.System.Registry.ModSourceDomain.GitHub; } })();
+            static Regex = regexp("https:\\/\\/github\\.com\\/([-\\w]+)\\/([-\\w]+)");
+            constructor( _url )
+            {
+                if (!this.Regex.match(_url))
+                {
+                    ::logError("A GitHub link must be a link to a specific repository, e.g. 'https://github.com/org/repo'");
+                    throw ::MSU.Exception.InvalidValue(_url);
+                }
+                base.constructor(_url);
+            }
+            function getUpdateURL()
+            {
+                local capture = this.Regex.capture(this.__URL);
+                local owner = ::MSU.regexMatch(capture, this.__URL, 1);
+                local repo = ::MSU.regexMatch(capture, this.__URL, 2);
+                // Use tags endpoint as requested by some submods
+                return "https://api.github.com/repos/" + owner + "/" + repo + "/tags";
+            }
+        };
+    }
+    // Register source class if not present
+    try { ::MSU.System.Registry.addNewModSource(::MSU.Class.ModSourceGitHubTags); } catch(e) {}
+}
+
+// Align MSU.Serialization meta naming across versions (some mods expect SerializationMetaData)
+if ("UI" in ::FU && "addOnConnectCallback" in ::FU.UI)
+{
+    ::FU.UI.addOnConnectCallback(function(){
+        try
+        {
+            if ("MSU" in getroottable() && "System" in ::MSU && "Serialization" in ::MSU.System)
+            {
+                local s = ::MSU.System.Serialization;
+                if (("MetaData" in s) && !("SerializationMetaData" in s)) s.SerializationMetaData <- s.MetaData;
+            }
+        }
+        catch(e) {}
+    });
+}
