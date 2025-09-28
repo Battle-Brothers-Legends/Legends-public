@@ -88,7 +88,14 @@
                 label = label.slice(0, pos) + " " + label.slice(pos + 1);
             }
             local name = "Custom Map: " + label;
-            maps.push({ Script = scriptPath, Name = name });
+            // Derive Template ID from stem by trimming a trailing '_map'
+            local trimmed = stem;
+            if (trimmed.len() > 4 && trimmed.slice(trimmed.len() - 4) == "_map")
+            {
+                trimmed = trimmed.slice(0, trimmed.len() - 4);
+            }
+            local templateID = "tactical." + trimmed;
+            maps.push({ Script = scriptPath, Name = name, Template = templateID });
             ++added;
             ::logInfo("CustomMaps: found script: " + scriptPath + " as '" + name + "'");
         }
@@ -102,7 +109,7 @@
         local id = ::Legends.CustomMaps.BaseID;
         foreach (m in maps)
         {
-            local entry = { ID = id, Name = m.Name, Script = m.Script };
+            local entry = { ID = id, Name = m.Name, Script = m.Script, Template = m.Template };
             ::Legends.CustomMaps.List.push(entry);
             ::Legends.CustomMaps.ByID[id] <- entry;
             id++;

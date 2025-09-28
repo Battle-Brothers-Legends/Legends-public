@@ -88,7 +88,13 @@ this.scenario_custom_map <- this.inherit("scripts/scenarios/tactical/scenario_te
             local minY = map.getMinY();
             ::logInfo("CustomMaps: map size " + minX + "x" + minY);
             this.Tactical.resizeScene(minX, minY);
-            map.fill({ X = 0, Y = 0, W = minX, H = minY }, null);
+            local rect = { X = 0, Y = 0, W = minX, H = minY };
+            // Pass 1: ground/terrain
+            map.fill(rect, null, 1);
+            // Pass 2: objects/overlays (if implemented)
+            try { map.fill(rect, null, 2); } catch (e) { ::logInfo("CustomMaps: second pass skipped or failed: " + e); }
+            // Pass 3: optional (rarely used)
+            try { map.fill(rect, null, 3); } catch (e) { /* ignore */ }
         }
     }
 
