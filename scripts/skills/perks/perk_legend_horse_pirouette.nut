@@ -14,7 +14,7 @@ this.perk_legend_horse_pirouette <- this.inherit("scripts/skills/skill", {
 	{
 		if (!this.m.Container.hasActive(::Legends.Active.LegendHorsePirouette))
 		{
-			this.m.Container.add(this.new("scripts/skills/actives/legend_horse_pirouette"));
+			this.m.Container.add(this.new("scripts/skills/actives/legend_horse_pirouette_skill"));
 		}
 	}
 
@@ -24,4 +24,3 @@ this.perk_legend_horse_pirouette <- this.inherit("scripts/skills/skill", {
 	}
 
 });
-
