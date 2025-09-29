@@ -89,9 +89,10 @@ this.settings_screen <- ::inherit("scripts/mods/FU/ui_screen", {
 
 	function updateSettingInJS( _modID, _settingID, _value )
 	{
+		// Match UI expectations: keys are 'mod' and 'id'
 		local data = {
-			modID = _modID,
-			settingID = _settingID,
+			mod = _modID,
+			id = _settingID,
 			value = _value
 		}
 		this.m.JSHandle.asyncCall("updateSetting", data);
