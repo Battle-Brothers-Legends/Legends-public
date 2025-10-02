@@ -38,7 +38,7 @@ this.legend_horse_charge_skill <- this.inherit("scripts/skills/skill", {
 		{
 			local knockToTile = _targetTile.getNextTile(dir);
 
-			if (knockToTile.IsEmpty && this.Math.abs(knockToTile.Level - _userTile.Level) <= 1)
+			if (knockToTile.IsEmpty && this.Math.abs(knockToTile.Level - _targetTile.Level) <= 1)
 			{
 				return knockToTile;
 			}
@@ -50,7 +50,7 @@ this.legend_horse_charge_skill <- this.inherit("scripts/skills/skill", {
 		{
 			local knockToTile = _targetTile.getNextTile(altdir);
 
-			if (knockToTile.IsEmpty && this.Math.abs(knockToTile.Level - _userTile.Level) <= 1)
+			if (knockToTile.IsEmpty && this.Math.abs(knockToTile.Level - _targetTile.Level) <= 1)
 			{
 				return knockToTile;
 			}
@@ -62,7 +62,7 @@ this.legend_horse_charge_skill <- this.inherit("scripts/skills/skill", {
 		{
 			local knockToTile = _targetTile.getNextTile(altdir);
 
-			if (knockToTile.IsEmpty && this.Math.abs(knockToTile.Level - _userTile.Level) <= 1)
+			if (knockToTile.IsEmpty && this.Math.abs(knockToTile.Level - _targetTile.Level) <= 1)
 			{
 				return knockToTile;
 			}
@@ -112,32 +112,27 @@ this.legend_horse_charge_skill <- this.inherit("scripts/skills/skill", {
 		target.setCurrentMovementType(this.Const.Tactical.MovementType.Involuntary);
 		local damage = this.Math.max(0, this.Math.abs(knockToTile.Level - _targetTile.Level) - 1) * this.Const.Combat.FallingDamage;
 
-		if (damage == 0)
-		{
-			this.Tactical.getNavigator().teleport(target, knockToTile, null, null, true);
-		}
-
-			local p = this.getContainer().getActor().getCurrentProperties();
-			local tag = {
-				Attacker = _user,
-				Skill = this,
-				HitInfo = clone this.Const.Tactical.HitInfo
-			};
-			tag.HitInfo.DamageRegular = damage;
-			tag.HitInfo.DamageFatigue = this.Const.Combat.FatigueReceivedPerHit;
-			tag.HitInfo.DamageDirect = 1.5;
-			tag.HitInfo.BodyPart = this.Const.BodyPart.Body;
-			tag.HitInfo.BodyDamageMult = 1.5;
-			tag.HitInfo.FatalityChanceMult = 1.5;
-			this.Tactical.getNavigator().teleport(target, knockToTile, this.onKnockedDown, tag, true);
-			this.spawnAttackEffect(_targetTile, this.Const.Tactical.AttackEffectBash);
-			return this.attackEntity(_user, _targetTile.getEntity());
-
 		local tag = {
+			Attacker = _user,
+			Skill = this,
+			HitInfo = clone this.Const.Tactical.HitInfo
+		};
+		tag.HitInfo.DamageRegular = damage;
+		tag.HitInfo.DamageFatigue = this.Const.Combat.FatigueReceivedPerHit;
+		tag.HitInfo.DamageDirect = 1.0;
+		tag.HitInfo.BodyPart = this.Const.BodyPart.Body;
+		tag.HitInfo.BodyDamageMult = 1.0;
+		tag.HitInfo.FatalityChanceMult = 1.0;
+
+		this.Tactical.getNavigator().teleport(target, knockToTile, this.onKnockedDown, tag, true);
+		this.spawnAttackEffect(_targetTile, this.Const.Tactical.AttackEffectBash);
+
+		// Schedule rider to follow into the target's vacated tile
+		local followTag = {
 			TargetTile = _targetTile,
 			Actor = _user
 		};
-		this.Time.scheduleEvent(this.TimeUnit.Virtual, 250, this.onFollow, tag);
+		this.Time.scheduleEvent(this.TimeUnit.Virtual, 250, this.onFollow, followTag);
 		return true;
 	}
 

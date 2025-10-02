@@ -64,6 +64,69 @@
 			frontline.push(r);
 		}
 
+		// Auto-mount at deployment for riders with bridles bound to horses
+		// Build map of horses by bridle UID among frontline
+		local horsesByUID = {};
+		foreach (e in frontline)
+		{
+			if (e.getFlags().has("IsHorse"))
+			{
+				local uid = e.getFlags().has("HorseBridleUID") ? e.getFlags().get("HorseBridleUID") : null;
+				if (uid != null) horsesByUID[uid] <- e;
+			}
+		}
+
+		// Identify rider-horse pairs and prepare a new frontline without the paired horses
+		local newFrontline = [];
+		foreach (e in frontline)
+		{
+			if (e.getFlags().has("IsHorse"))
+			{
+				// Keep horses that are not paired
+				local uid = e.getFlags().has("HorseBridleUID") ? e.getFlags().get("HorseBridleUID") : null;
+				local keep = true;
+				if (uid != null)
+				{
+					// If any rider is paired to this uid, we'll skip spawning the horse
+					keep = true; // default keep; will be set false when rider processed
+				}
+				// We'll decide in rider pass
+				continue;
+			}
+			// Non-horse: check accessory for bridle and pair
+			local items = e.getItems();
+			local bridle = items.getItemAtSlot(this.Const.ItemSlot.Accessory);
+			local paired = false;
+			if (bridle != null && "getHorseUID" in bridle)
+			{
+				local uid = bridle.getHorseUID();
+				if (uid != null && uid in horsesByUID)
+				{
+					local horse = horsesByUID[uid];
+					// Apply mounted status to rider
+					local st = this.new("scripts/skills/status/legend_mounted_status");
+					st.setMountPair(e, horse);
+					e.getSkills().add(st);
+					paired = true;
+
+					// Add horse to frontline so it gets spawned and fully initialized
+					// Then we'll immediately mark it as retreated to hide it
+					newFrontline.push(horse);
+					horse.getFlags().add("HorseHiddenForMount");
+
+					// Mark this horse as consumed from pairing list
+					horsesByUID[uid] <- null;
+				}
+			}
+			newFrontline.push(e);
+		}
+		// Add any unpaired horses back
+		foreach (k, v in horsesByUID)
+		{
+			if (v != null) newFrontline.push(v);
+		}
+		frontline = newFrontline;
+
 		foreach (f in frontline)
 		{
 			local items = f.getItems().getAllItemsAtSlot(this.Const.ItemSlot.Bag);

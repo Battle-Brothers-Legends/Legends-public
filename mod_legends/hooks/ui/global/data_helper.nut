@@ -109,6 +109,26 @@
 	local convertEntityToUIData = o.convertEntityToUIData;
 	o.convertEntityToUIData = function ( _entity, _activeEntity )
 	{
+		// Handle horses that aren't on the tactical map (mounted horses)
+		// Check if entity has no tile - this means it's not placed on the map
+		if (_entity.getTile() == null && _entity.getFlags().has("IsHorse"))
+		{
+			// For unmounted horses, we need to handle them specially since vanilla code expects entities to have tiles
+			// Create a minimal UI data structure without calling the vanilla function
+			local result = {
+				perkTree = []
+			};
+
+			// Add basic entity data that the UI needs
+			local bg = _entity.getBackground();
+			if (bg != null)
+			{
+				result.perkTree = bg.getPerkTree();
+			}
+
+			return result;
+		}
+
 		local result = convertEntityToUIData(_entity, _activeEntity);
 		result.perkTree <- [];
 

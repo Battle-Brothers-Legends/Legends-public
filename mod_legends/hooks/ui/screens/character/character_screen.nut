@@ -600,9 +600,9 @@
 		return null;
 	}
 
-	o.tactical_onQueryBrothersList = function ()
-	{
-		local entities = this.Tactical.Entities.getInstancesOfFaction(this.Const.Faction.Player);
+o.tactical_onQueryBrothersList = function ()
+{
+	local entities = this.Tactical.Entities.getInstancesOfFaction(this.Const.Faction.Player);
 
 		if (entities != null && entities.len() > 0)
 		{
@@ -616,6 +616,17 @@
 					continue;
 				}
 				result.push(this.UIDataHelper.convertEntityToUIData(entity, activeEntity));
+			}
+
+			// If the active entity is mounted, also expose the horse in the list for inventory access
+			if (activeEntity != null && activeEntity.getSkills().hasSkill("status.legend_mounted"))
+			{
+				local st = activeEntity.getSkills().getSkillByID("status.legend_mounted");
+				if (st != null && st.m.Horse != null && !st.m.Horse.isNull())
+				{
+					// Include the horse even if not placed on map
+					result.push(this.UIDataHelper.convertEntityToUIData(st.m.Horse, activeEntity));
+				}
 			}
 
 			return result;

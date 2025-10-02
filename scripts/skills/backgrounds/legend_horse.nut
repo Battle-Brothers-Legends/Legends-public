@@ -208,6 +208,18 @@ this.legend_horse <- this.inherit("scripts/skills/backgrounds/character_backgrou
 		this.character_background.onAdded();
 		::Legends.Actives.grant(this, ::Legends.Active.LegendHorseKick);
 		::Legends.Traits.grant(this, ::Legends.Trait.LegendHorse);
+
+		// Ensure a bridle item exists in stash and binds to this horse
+		local actor = this.getContainer().getActor();
+		local uid = actor.getFlags().has("HorseBridleUID") ? actor.getFlags().get("HorseBridleUID") : null;
+		if (uid == null)
+		{
+			uid = this.Math.rand(100000, 999999) + "-" + this.Math.rand(100000, 999999);
+			actor.getFlags().set("HorseBridleUID", uid);
+		}
+		local bridle = this.new("scripts/items/accessory/legend_horse_bridle_item");
+		bridle.setHorseUID(uid, actor.getName());
+		this.World.Assets.getStash().add(bridle);
 	}
 
 	function onAddEquipment()

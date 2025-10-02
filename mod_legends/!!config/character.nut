@@ -99,6 +99,18 @@
 	4
 ];
 
+::Const.DismountedMovementAPCost <- [
+	0,
+	2,
+	2,
+	4,
+	4,
+	6,
+	6,
+	6,
+	6
+];
+
 ::Const.LegendFlightMovementAPCost <- [
 	0,
 	1,
@@ -145,6 +157,18 @@
 	6,
 	5,
 	5
+];
+
+::Const.DismountedMovementFatigueCost <- [
+	0,
+	2,
+	4,
+	6,
+	6,
+	8,
+	16,
+	14,
+	14
 ];
 
 ::Const.LegendFlightMovementFatigueCost <- [
