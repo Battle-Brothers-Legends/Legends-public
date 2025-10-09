@@ -550,22 +550,28 @@
 ];
 
 ::Const.Faces.AfricanFemale <- [
-	"bust_head_southern_female_10",
-	"bust_head_southern_female_11",
-	"bust_head_southern_female_12",
-	"bust_head_southern_female_13"
+	"bust_head_southern_female_01",
+	"bust_head_southern_female_02",
+	"bust_head_southern_female_03",
+	"bust_head_southern_female_04",
+	"bust_head_southern_female_05",
+	"bust_head_southern_female_06",
+	"bust_head_southern_female_07",
+	"bust_head_southern_female_08",
+	"bust_head_southern_female_09",
+	"bust_head_southern_female_10"
 ];
 
 ::Const.Faces.AfricanMale <- [
+	"bust_head_african_01",
+	"bust_head_african_02",
 	"bust_head_african_03",
+	"bust_head_african_04",
+	"bust_head_african_05",
 	"bust_head_african_06",
 	"bust_head_african_07",
-	"bust_head_african_10",
-	"bust_head_african_11",
-	"bust_head_african_12",
-	"bust_head_african_13",
-	"bust_head_african_14",
-	"bust_head_african_15",
-	"bust_head_african_16",
-	"bust_head_african_17"
+	// "bust_head_african_08",
+	// "bust_head_african_09",
+	// "bust_head_african_10",
+	// "bust_head_african_11"
 ];

@@ -38,7 +38,12 @@
 			_list.push({
 				R = 0,
 				P = 1.0,
-				S = "weapons/legend_sling"
+				S = "weapons/legend_dilapitated_sling"
+			});
+			_list.push({
+				R = 40,
+				P = 1.0,
+				S = "weapons/legend_sturdy_sling"
 			});
 			_list.push({
 				R = 10,

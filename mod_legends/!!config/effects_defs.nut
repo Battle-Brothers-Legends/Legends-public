@@ -2029,4 +2029,36 @@ effectsDefs.push({
 	Name = "Freedom of Movement",
 });
 
+::Legends.Effect.LegendEnragedHyenaBite <- null;
+effectsDefs.push({
+	ID = "effects.legend_enraged_hyena_bite",
+	Script = "scripts/skills/effects/legend_enraged_hyena_bite_effect",
+	Const = "LegendEnragedHyenaBite",
+	Name = "Locked in Jaws",
+});
+
+::Legends.Effect.LegendEnragedHyenaGrip <- null;
+effectsDefs.push({
+	ID = "effects.legend_enraged_hyena_grip",
+	Script = "scripts/skills/effects/legend_enraged_hyena_grip_effect",
+	Const = "LegendEnragedHyenaGrip",
+	Name = "Predatory Grip",
+});
+
+::Legends.Effect.LegendPatientHunter <- null;
+effectsDefs.push({
+	ID = "effects.legend_patient_hunter",
+	Script = "scripts/skills/effects/legend_patient_hunter_effect",
+	Const = "LegendPatientHunter",
+	Name = "Patient Hunter",
+});
+
+::Legends.Effect.LegendArmorTracking <- null;
+effectsDefs.push({
+	ID = "effects.legend_armor_tracking",
+	Script = "scripts/skills/effects/legend_armor_tracking_effect",
+	Const = "LegendArmorTracking",
+	Name = "LegendArmorTracking",
+});
+
 ::Legends.Effects.addEffectDefObjects(effectsDefs);

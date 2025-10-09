@@ -169,12 +169,12 @@ this.legend_armor_upgrade <- this.inherit("scripts/items/item", {
 
 	function getIconOverlay()
 	{
-
 		local L = [];
-
-		if (this.isNamed())
-		{
-			L.push("layers/named_icon_glow.png");
+		if (this.isNamed()) {
+			if (this.isItemType(::Const.Items.ItemType.Legendary))
+				L.push("layers/legendary_icon_glow.png");
+			else
+				L.push("layers/named_icon_glow.png");
 		}
 
 		L.push(this.m.Icon);
@@ -199,11 +199,7 @@ this.legend_armor_upgrade <- this.inherit("scripts/items/item", {
 		}
 
 		if (L.len() == 0)
-		{
-			return [
-				""
-			];
-		}
+			return [""];
 
 		return L;
 	}

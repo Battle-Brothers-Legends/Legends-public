@@ -95,7 +95,7 @@
 
 					local isFood = item.isItemType(this.Const.Items.ItemType.Food);
 					local isMedicine = item.getID() == "supplies.medicine";
-					local isMineral = item.getID() == "misc.uncut_gems" || item.getID() == "misc.copper_ingots" || item.getID() == "misc.legend_gold_ingots" || item.getID() == "misc.legend_iron_ingots";
+					local isMineral = item.getID() == "misc.uncut_gems" || item.getID() == "misc.copper_ingots" || item.getID() == "misc.legend_gold_ingots" || item.getID() == "misc.legend_iron_ingots" || item.getID() == "misc.legend_silver_ingots";
 					local isBuilding = item.getID() == "misc.quality_wood" || item.getID() == "misc.copper_ingots" || item.getID() == "misc.legend_tin_ingots" || item.getID() == "misc.legend_iron_ingots";
 
 					if (!isFood || p * foodRarityMult >= r)

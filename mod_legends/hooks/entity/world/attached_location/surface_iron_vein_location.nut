@@ -37,6 +37,11 @@
 				P = 1.0,
 				S = "weapons/legend_tipstaff"
 			});
+			_list.push({
+				R = 97,
+				P = 1.0,
+				S = "trade/pov_silver_ingots_item"
+			});
 		}
 	}
 });

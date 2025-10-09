@@ -34,19 +34,22 @@ this.legend_prepare_bullet_effect <- this.inherit("scripts/skills/skill", {
 			{
 				id = 12,
 				type = "text",
-				icon = "ui/tooltips/warning.png",
-				text = "Switching your weapon will remove this effect"
-			}
-		];
-		if (::Legends.Perks.has(this, ::Legends.Perk.LegendBallistics))
-		{
-			ret.push({
-				id = 12,
-				type = "text",
 				icon = "ui/icons/direct_damage.png",
 				text = "[color=" + this.Const.UI.Color.PositiveValue + "]" + this.getBonus() + "%[/color] Armor Penetration"
-			});
-		}
+			},
+			{
+				id = 13,
+				type = "text",
+				icon = "ui/icons/hitchance.png",
+				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+1[/color] Sling Stone range"
+			},
+			{
+				id = 14,
+				type = "text",
+				icon = "ui/tooltips/warning.png",
+				text = "Switching your weapon or receiving damage will remove this effect"
+			}
+		];
 		return ret;
 	}
 
@@ -61,15 +64,8 @@ this.legend_prepare_bullet_effect <- this.inherit("scripts/skills/skill", {
 		if (weapon == null)
 			this.removeSelf();
 			return;
-		if (weapon.getID() != "weapon.legend_sling")
+		if (!(weapon.isWeaponType(this.Const.Items.WeaponType.Sling) && weapon.isItemType(this.Const.Items.ItemType.OneHanded)))
 			this.removeSelf();
-	}
-
-	function onAfterUpdate( _properties )
-	{
-		local skill = ::Legends.Actives.get(this, ::Legends.Active.SlingStone);
-		if (skill != null)
-			skill.m.ActionPointCost -= 1;
 	}
 
 	function onTargetHit( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor )
@@ -78,11 +74,6 @@ this.legend_prepare_bullet_effect <- this.inherit("scripts/skills/skill", {
 	}
 
 	function onTargetMissed( _skill, _targetEntity )
-	{
-		this.removeSelf();
-	}
-
-	function onMovementFinished()
 	{
 		this.removeSelf();
 	}
@@ -99,7 +90,6 @@ this.legend_prepare_bullet_effect <- this.inherit("scripts/skills/skill", {
 		local bonus = this.getBonus();
 		_properties.DamageRegularMin += bonus;
 		_properties.DamageRegularMax += bonus;
-		if (::Legends.Perks.has(this, ::Legends.Perk.LegendBallistics))
-			_properties.DamageDirectAdd += bonus * 0.01;
+		_properties.DamageDirectAdd += bonus * 0.01;
 	}
 });

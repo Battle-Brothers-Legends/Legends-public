@@ -10,10 +10,10 @@
 		this.m.RangeMin = 2;
 		this.m.RangeMax = 8;
 		this.m.RangeIdeal = 8;
-		this.m.RegularDamage = 30;
-		this.m.RegularDamageMax = 40;
+		this.m.RegularDamage = 45;
+		this.m.RegularDamageMax = 70;
 		this.m.ArmorDamageMult = 1.0;
-		this.m.DirectDamageMult = 0.7;
+		this.m.DirectDamageMult = 1.5;
 		this.m.StaminaModifier = -10;
 		this.m.Condition = 80.0;
 		this.m.ConditionMax = 80.0;
@@ -34,6 +34,7 @@
 	{
 		this.weapon.onEquip();
 		::Legends.Actives.grant(this, ::Legends.Active.LegendSlingHeavyStone);
+		// ::Legends.Actives.grant(this, ::Legends.Active.LegendSlingCenterMass);
 		::Legends.Actives.grant(this, ::Legends.Active.LegendSlingstaffBash);
 		::Legends.Actives.grant(this, ::Legends.Active.LegendLaunchAcidFlask);
 		::Legends.Actives.grant(this, ::Legends.Active.LegendLaunchDazeBomb);

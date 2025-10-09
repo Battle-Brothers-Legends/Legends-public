@@ -39,7 +39,7 @@
 		local monk_candidates = [];
 
 		foreach( bro in brothers )
-			if (bro.getBackground().getID() == "background.monk" || bro.getBackground().getID() == "background.monk_turned_flagellant" || bro.getBackground().getID() == "background.legend_nun"  || bro.getBackground().getID() == "background.legend_herbalist"  || bro.getBackground().getID() == "background.legend_nun" || bro.getBackground().getID() == "background.legend_ranger" || bro.getBackground().getID() == "background.legend_ranger_commander" || bro.getBackground().getID() == "background.legend_vala")
+			if (bro.getBackground().getID() == "background.monk" || bro.getBackground().getID() == "background.monk_turned_flagellant" || bro.getBackground().getID() == "background.legend_herbalist" || bro.getBackground().getID() == "background.legend_ranger" || bro.getBackground().getID() == "background.legend_commander_ranger" || bro.getBackground().getID() == "background.legend_vala")
 				monk_candidates.push(bro);
 
 		if (monk_candidates.len() == 0)

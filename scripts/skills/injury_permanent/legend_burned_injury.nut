@@ -81,6 +81,10 @@ this.legend_burned_injury <- this.inherit("scripts/skills/injury_permanent/perma
 		{
 			sprite.setBrush("permanent_injury_burned_southern");
 		}
+		else if (this.getContainer().getActor().getEthnicity() == 2)
+		{
+			sprite.setBrush("permanent_injury_burned_african");
+		}
 		else
 		{
 			sprite.setBrush("permanent_injury_burned");

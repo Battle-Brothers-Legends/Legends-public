@@ -52,7 +52,7 @@
 		if (::Legends.isLegendaryDifficulty())
 		{
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendBallistics);
-			::Legends.Perks.grant(this, ::Legends.Perk.LegendCloseCombatArcher);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendPointBlank);
 			::Legends.Perks.grant(this, ::Legends.Perk.CripplingStrikes);
 			::Legends.Perks.grant(this, ::Legends.Perk.LoneWolf);
 			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
@@ -68,7 +68,7 @@
 
 	o.assignRandomEquipment = function ()
 	{
-		local r = this.Math.rand(1, 4);
+		local r = this.Math.rand(1, 6);
 
 		if (r == 1)
 		{
@@ -89,6 +89,14 @@
 		{
 			this.m.Items.equip(this.new("scripts/items/weapons/light_crossbow"));
 			this.m.Items.equip(this.new("scripts/items/ammo/quiver_of_bolts"));
+		}
+		else if (r == 5)
+		{
+			this.m.Items.equip(this.new("scripts/items/weapons/legend_sturdy_sling"));
+		}
+		else if (r == 6)
+		{
+			this.m.Items.equip(this.new("scripts/items/weapons/staff_sling"));
 		}
 
 		r = this.Math.rand(1, 4);

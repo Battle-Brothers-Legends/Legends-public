@@ -56,7 +56,7 @@ this.legend_horse_rouncey <- this.inherit("scripts/skills/backgrounds/legend_hor
 				::Legends.Perk.LegendMedPackages,
 				::Legends.Perk.LegendToolsDrawers,
 				::Legends.Perk.LegendHorseImpulsion,
-				::Legends.Perk.LegendHorseHippology
+				::Legends.Perk.LegendHippology
 			],
 			[
 				::Legends.Perk.LoneWolf,

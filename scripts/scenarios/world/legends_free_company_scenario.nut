@@ -40,9 +40,7 @@ this.legends_free_company_scenario <- this.inherit("scripts/scenarios/world/star
 		bros[0].setStartValuesEx([ //wildcard 1 all possible wildcards
 			"disowned_noble_background",
 			"nomad_background",
-			// "female_disowned_noble_background",
 			"adventurous_noble_background",
-			// "female_adventurous_noble_background",
 			"retired_soldier_background",
 			"sellsword_background",
 			"militia_background",
@@ -53,15 +51,13 @@ this.legends_free_company_scenario <- this.inherit("scripts/scenarios/world/star
 			"legend_noble_shield",
 			"raider_background"
 		]);
-		
+
 		bros[1].setPlaceInFormation(3);
 		bros[1].setVeteranPerks(2);
 		bros[1].setStartValuesEx([ //wildcard 2 all possible wildcards minus noble ranged
 			"disowned_noble_background",
 			"nomad_background",
-			// "female_disowned_noble_background",
 			"adventurous_noble_background",
-			// "female_adventurous_noble_background",
 			"retired_soldier_background",
 			"sellsword_background",
 			"militia_background",
@@ -95,7 +91,7 @@ this.legends_free_company_scenario <- this.inherit("scripts/scenarios/world/star
 		]);
 
 		bros[4].setPlaceInFormation(12);
-		bros[4].setVeteranPerks(2);	
+		bros[4].setVeteranPerks(2);
 		bros[4].setStartValuesEx([ //non combat 1
 			"monk_background",
 			"bowyer_background",

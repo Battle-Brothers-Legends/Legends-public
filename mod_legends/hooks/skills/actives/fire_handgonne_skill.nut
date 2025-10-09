@@ -65,6 +65,16 @@
 			});
 		}
 
+		if (this.getContainer().hasPerk(::Legends.Perk.LegendBarrage))
+		{
+			tooltip.push({
+				id = 7,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = "Has a [color=" + this.Const.UI.Color.NegativeValue + "]100%[/color] chance to Shellshock a target on a hit to the head"
+			});
+		}
+
 		return tooltip;
 	}
 });

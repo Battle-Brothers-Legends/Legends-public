@@ -30,7 +30,7 @@
 					local brothers = this.World.getPlayerRoster().getAll();
 
 					foreach( bro in brothers ) {
-						if (bro.getID() == _event.m.Historian.getID() || bro.getBackground().getID() == "background.historian"  || bro.getBackground().getID() == "background.legend_inventor" || bro.getBackground().getID() == "background.legend_witch" || bro.getBackground().getID() == "background.legend_witch_commander"|| bro.getSkills().hasTrait(::Legends.Trait.Bright))
+						if (bro.getID() == _event.m.Historian.getID() || bro.getBackground().getID() == "background.historian"  || bro.getBackground().getID() == "background.legend_inventor" || bro.getBackground().getID() == "background.legend_witch" || bro.getBackground().getID() == "background.legend_commander_witch"|| bro.getSkills().hasTrait(::Legends.Trait.Bright))
 							continue;
 
 						if (this.Math.rand(1, 100) <= 33) {
@@ -52,7 +52,7 @@
 					local brothers = this.World.getPlayerRoster().getAll();
 
 					foreach( bro in brothers ) {
-						if (bro.getEthnicity() == 1 || bro.getID() == _event.m.Monk.getID() || bro.getBackground().isBackgroundType(this.Const.BackgroundType.ConvertedCultist) || bro.getBackground().isBackgroundType(this.Const.BackgroundType.Cultist) || bro.getBackground().getID() == "background.historian" || bro.getBackground().getID() == "background.historian" || bro.getBackground().getID() == "background.legend_inventor" || bro.getBackground().getID() == "background.legend_witch" || bro.getBackground().getID() == "background.legend_witch_commander" || bro.getBackground().getID() == "background.legend_necro" || bro.getBackground().getID() == "background.legend_necro_commander")
+						if (bro.getEthnicity() == 1 || bro.getID() == _event.m.Monk.getID() || bro.getBackground().isBackgroundType(this.Const.BackgroundType.ConvertedCultist) || bro.getBackground().isBackgroundType(this.Const.BackgroundType.Cultist) || bro.getBackground().getID() == "background.historian" || bro.getBackground().getID() == "background.historian" || bro.getBackground().getID() == "background.legend_inventor" || bro.getBackground().getID() == "background.legend_witch" || bro.getBackground().getID() == "background.legend_commander_witch" || bro.getBackground().getID() == "background.legend_necro" || bro.getBackground().getID() == "background.legend_commander_necro")
 							continue;
 
 						if (this.Math.rand(1, 100) <= 33) {
@@ -195,8 +195,8 @@
 			if (bro.getSkills().hasPerk(::Legends.Perk.LegendScholar) || ::Legends.S.oneOf(bro.getBackground().getID(),
 				"background.historian",
 				"background.legend_inventor",
-				"background.legend_seer",
-				"background.legend_seer_commander"
+				"background.legend_witch",
+				"background.legend_commander_witch"
 			)) {
 				candidate_historian.push(bro);
 			} else if (bro.getBackground().getID() == "background.monk") {
@@ -208,7 +208,7 @@
 				"background.poacher",
 				"background.sellsword",
 				"background.legend_ranger",
-				"background.legend_ranger_commander",
+				"background.legend_commander_ranger",
 				"background.legend_noble_ranged"
 			)) {
 				candidate_archer.push(bro);
@@ -216,15 +216,15 @@
 				"background.nomad",
 				"background.shepherd",
 				"background.manhunter",
-				"background.qiyan",
+				"background.legend_qiyan",
 				"background.gladiator",
 				"background.legend_muladi",
 				"background.belly_dancer",
-				"background.hashashin",
-				"background.conscript"
+				"background.assassin_southern",
+				"background.legend_conscript"
 			)) {
 				candidate_southerner.push(bro);
-			} else if (bro.getBackground().getID() == "background.dervish") {
+			} else if (bro.getBackground().getID() == "background.legend_dervish") {
 				candidate_dervish.push(bro);
 			} else if (bro.getEthnicity() != 1) {
 				candidate_other.push(bro);
@@ -235,13 +235,13 @@
 			return;
 
 		local options = 0;
-		options += candidate_historian.len() != 0;
-		options += candidate_monk.len() != 0;
-		options += candidate_cultist.len() != 0;
-		options += candidate_archer.len() != 0;
-		options += candidate_southerner.len() != 0;
-		options += candidate_dervish.len() != 0;
-		options += candidate_historian.len() != 0;
+		options += ::Math.min(1, candidate_historian.len());
+		options += ::Math.min(1, candidate_monk.len());
+		options += ::Math.min(1, candidate_cultist.len());
+		options += ::Math.min(1, candidate_archer.len());
+		options += ::Math.min(1, candidate_southerner.len());
+		options += ::Math.min(1, candidate_dervish.len());
+		options += ::Math.min(1, candidate_historian.len());
 
 		if (options < 2)
 			return;

@@ -1,14 +1,15 @@
 ::mods_hookExactClass("skills/perks/perk_bullseye", function(o) {
-	o.onAdded <- function()
+	o.onUpdate = function ( _properties )
 	{
-		if (!this.getContainer().hasActive(::Legends.Active.LegendMarkTarget) && this.getContainer().getActor().isPlayerControlled())
-		{
-			::Legends.Actives.grant(this, ::Legends.Active.LegendMarkTarget);
-		}
+		_properties.RangedAttackBlockedChanceMult *= 0.33;
+		_properties.Vision += 1;
 	}
 
-	o.onRemoved <- function()
+	o.onAnySkillUsed <- function ( _skill, _targetEntity, _properties )
 	{
-		::Legends.Actives.remove(this, ::Legends.Active.LegendMarkTarget);
+		if (_skill != null && _skill.getID().find("aimed") != null)
+		{
+			_properties.RangedAttackBlockedChanceMult *= 0.0;
+		}
 	}
 });

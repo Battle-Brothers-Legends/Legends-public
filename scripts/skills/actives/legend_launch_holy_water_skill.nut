@@ -88,7 +88,7 @@ this.legend_launch_holy_water_skill <- this.inherit("scripts/skills/actives/thro
 
 	function isHidden()
 	{
-		if (!::Legends.Perks.get(this, ::Legends.Perk.LegendSlingerSpins))
+		if (!_properties.IsSpecializedInSlings)
 			return true;
 		if (this.m.Item != null && !this.m.Item.isNull() && this.m.Item.getAmmo() != 0)
 		{

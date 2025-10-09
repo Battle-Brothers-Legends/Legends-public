@@ -64,7 +64,7 @@ this.legend_staff_riposte_skill <- this.inherit("scripts/skills/skill", {
 
 	function isHidden()
 	{
-		if (this.getContainer().hasPerk(::Legends.Perk.LegendStaffBlock))
+		if (this.getContainer().hasPerk(::Legends.Perk.ReachAdvantage))
 			return false;
 		return this.skill.isHidden();
 	}

@@ -160,40 +160,28 @@
 		local items = this.getContainer().getActor().getItems();
 		local r;
 
-		if (this.Const.DLC.Wildmen)
-		{
-			r = this.Math.rand(1, 100);
+		r = this.Math.rand(1, 100);
 
-			if (r <= 50)
-			{
-				items.equip(this.new("scripts/items/weapons/short_bow"));
-				items.equip(this.new("scripts/items/ammo/quiver_of_arrows"));
-			}
-			else if (r <= 70)
-			{
-				items.equip(this.new("scripts/items/weapons/legend_sling"));
-			}
-			else if (r <= 85)
-			{
-				items.equip(this.new("scripts/items/weapons/legend_slingshot"));
-			}
-			else
-			{
-				items.equip(this.new("scripts/items/weapons/wonky_bow"));
-				items.equip(this.new("scripts/items/ammo/quiver_of_arrows"));
-			}
+		if (r <= 40)
+		{
+			items.equip(this.new("scripts/items/weapons/short_bow"));
+			items.equip(this.new("scripts/items/ammo/quiver_of_arrows"));
+		}
+		if (r <= 50)
+		{
+			items.equip(this.new("scripts/items/weapons/legend_sturdy_sling"));
+		}
+		else if (r <= 70)
+		{
+			items.equip(this.new("scripts/items/weapons/legend_dilapitated_sling"));
+		}
+		else if (r <= 85)
+		{
+			items.equip(this.new("scripts/items/weapons/legend_slingshot"));
 		}
 		else
 		{
-			if (this.Math.rand(1, 100) <= 75)
-			{
-				items.equip(this.new("scripts/items/weapons/short_bow"));
-			}
-			else
-			{
-				items.equip(this.new("scripts/items/weapons/wonky_bow"));
-			}
-
+			items.equip(this.new("scripts/items/weapons/wonky_bow"));
 			items.equip(this.new("scripts/items/ammo/quiver_of_arrows"));
 		}
 

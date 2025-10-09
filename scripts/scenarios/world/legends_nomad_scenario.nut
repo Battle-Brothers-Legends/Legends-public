@@ -221,7 +221,7 @@ this.legends_nomad_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 
 	function onGenerateBro(bro)
 	{
-		if (bro.getBackground().getID() == "background.nomad" || bro.getBackground().getID() == "background.legend_muladi" || bro.getBackground().getID() == "background.legend_bladedancer")
+		if (bro.getBackground().getID() == "background.nomad" || bro.getBackground().getID() == "background.legend_muladi" || bro.getBackground().getID() == "background.bladedancer")
 		{
 			bro.m.HiringCost = this.Math.floor(bro.m.HiringCost * 0.75); //1.0 = default
 			bro.getBaseProperties().DailyWageMult *= 0.75; //1.0 = default

@@ -51,8 +51,8 @@
 				local roster = this.World.getTemporaryRoster();
 				_event.m.Dude = roster.create("scripts/entity/tactical/player");
 				_event.m.Dude.setStartValuesEx([
-					"female_slave_southern_background"
-				]);
+					"slave_southern_background"
+				], true, 1);
 				_event.m.Dude.setTitle("of the dance");
 				_event.m.Dude.getBackground().m.RawDescription = "You rescued %name% from a life in slavery after she was forced into the vizier\'s harem. She seeks revenge on the vizier.";
 				_event.m.Dude.getBackground().buildDescription(true);

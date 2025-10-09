@@ -225,7 +225,8 @@
     ],
     WeaponsAndTrees = [
         [1, ["wonky_bow", 50]],
-        [2, ["legend_sling", 50]]
+        [2, ["legend_dilapitated_sling", 50]],
+        [1, ["legend_slingshot", 50]],
     ],
     LegendaryPerks = [
 		::Legends.Perk.Dodge,
@@ -297,7 +298,10 @@
     WeaponsAndTrees = [
         [3, ["wonky_bow", 65]],
         [1, ["short_bow", 65]],
-        [3, ["legend_sling", 65]]
+        [1, ["legend_sturdy_sling", 65]],
+        [1, ["legend_slingshot", 65]],
+        [1, ["short_bow", 65]],
+        [3, ["legend_dilapitated_sling", 65]]
     ],
     TraitsPerkList = [
         this.Const.Perks.AgileTree,
@@ -775,7 +779,7 @@
             return this.Const.Perks.LongswordClassTree;
 
     //Slings
-        case _item.getID() == "weapon.legend_sling":
+        case _item.getID() == "weapon.legend_dilapitated_sling" || _item.getID() == "weapon.legend_sturdy_sling" || _item.getID() == "weapon.legend_slingshot":
             return this.Const.Perks.SlingClassTree;
 
     //Staves
@@ -829,6 +833,7 @@
         Hammer = this.Const.Perks.HammerTree,
         Mace = this.Const.Perks.MaceTree,
         Polearm = this.Const.Perks.PolearmTree,
+        Staff = this.Const.Perks.PolearmTree,
         Sling = this.Const.Perks.SlingTree,
         Spear = this.Const.Perks.SpearTree,
         Sword = this.Const.Perks.SwordTree,

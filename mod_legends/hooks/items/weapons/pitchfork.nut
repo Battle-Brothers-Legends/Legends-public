@@ -13,7 +13,7 @@
 			return;
 		}
 		this.m.Icon = "weapons/melee/pitchfork_01_" + this.m.Variant + "_70x70.png";
-		this.m.IconLarge = "weapons/pitchfork_01_" + this.m.Variant + ".png";
+		this.m.IconLarge = "weapons/melee/pitchfork_01_" + this.m.Variant + ".png";
 		this.m.ArmamentIcon = "icon_pitchfork_01_" + this.m.Variant;
 	}
 

@@ -143,7 +143,10 @@ this.legend_helmet_upgrade <- this.inherit("scripts/items/item", {
 
 		if (this.isNamed())
 		{
-			L.push("layers/named_icon_glow.png");
+			if (this.isItemType(::Const.Items.ItemType.Legendary))
+				L.push("layers/legendary_icon_glow.png");
+			else
+				L.push("layers/named_icon_glow.png");
 		}
 
 		L.push(this.m.Icon);

@@ -79,7 +79,7 @@ this.legend_barbarian_pillager <- this.inherit("scripts/entity/tactical/human", 
 
 		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= 60)
 		{
-			::Legends.Perks.grant(this, ::Legends.Perk.LegendCloseCombatArcher);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendPointBlank);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendOnslaught);
 		}
 	}
@@ -91,6 +91,8 @@ this.legend_barbarian_pillager <- this.inherit("scripts/entity/tactical/human", 
 			"scripts/items/weapons/barbarians/heavy_javelin",
 			"scripts/items/weapons/barbarians/heavy_throwing_axe",
 			"scripts/items/weapons/barbarians/heavy_javelin",
+			"scripts/items/weapons/barbarians/legend_barbarian_sling",
+			"scripts/items/weapons/barbarians/legend_barbarian_sling",
 			"scripts/items/weapons/throwing_spear",
 			"scripts/items/weapons/throwing_axe"
 		];

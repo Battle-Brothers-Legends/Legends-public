@@ -62,19 +62,24 @@ this.legend_helmet <- this.inherit("scripts/items/helmets/helmet", {
 
 	function isArmorNamed()
 	{
-		if (this.isNamed()) {
+		if (this.isNamed())
 			return true;
-		}
-
-		foreach (u in this.m.Upgrades)
-		{
+		foreach (u in this.m.Upgrades) {
 			if (u != null && u.isNamed())
-			{
 				return true;
-			}
 		}
-
 		return false;
+	}
+
+	function isArmorLegendary()
+	{
+		if (this.isItemType(::Const.Items.ItemType.Legendary))
+			return true;
+		foreach (u in this.m.Upgrades) {
+			if (u != null && u.isItemType(::Const.Items.ItemType.Legendary))
+				return true;
+		}
+		return false
 	}
 
 	function isBought()
@@ -92,10 +97,10 @@ this.legend_helmet <- this.inherit("scripts/items/helmets/helmet", {
 
 	function getIcon()
 	{
+		if (this.isArmorLegendary())
+			return "layers/legendary_icon_glow.png";
 		if (this.isArmorNamed())
-		{
 			return "layers/named_icon_glow.png";
-		}
 		return this.m.Icon;
 	}
 
@@ -128,10 +133,8 @@ this.legend_helmet <- this.inherit("scripts/items/helmets/helmet", {
 
 	function getIconLarge()
 	{
-		if (this.isArmorNamed()) {
-			return "layers/named_icon_glow.png"
-		}
-
+		if (this.isArmorNamed())
+			return this.getIcon();
 		return this.m.IconLarge != "" ? this.m.IconLarge : null;
 	}
 

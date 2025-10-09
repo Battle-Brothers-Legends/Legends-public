@@ -49,6 +49,7 @@
 		}
 		else if (this.m.IsStaffBash)
 		{
+			ret = getTooltip();
 			ret.push({
 				id = 7,
 				type = "text",

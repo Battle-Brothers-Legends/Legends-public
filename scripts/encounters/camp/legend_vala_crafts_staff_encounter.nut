@@ -122,7 +122,7 @@ this.legend_vala_crafts_staff_encounter <- this.inherit("scripts/encounters/enco
 			{
 				randomBros.push(bro);
 			}
-			else if (bro.getBackground().getID() == "background.legend_vala" && bro.getLevel >= 12)
+			else if (bro.getBackground().getID() == "background.legend_vala" && bro.getLevel() >= 12)
 			{
 				this.m.Vala = bro;
 			}

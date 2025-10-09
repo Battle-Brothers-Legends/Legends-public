@@ -308,9 +308,7 @@ this.legends_noble_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 		this.addBroToRoster(_roster, "legend_noble_shield", 4);
 		this.addBroToRoster(_roster, "legend_noble_ranged", 4);
 		this.addBroToRoster(_roster, "adventurous_noble_background", 8);
-		// this.addBroToRoster(_roster, "female_adventurous_noble_background", 6);
 		this.addBroToRoster(_roster, "disowned_noble_background", 8);
-		// this.addBroToRoster(_roster, "female_disowned_noble_background", 6);
 
 		foreach( i, bro in bros )
 		{

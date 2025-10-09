@@ -434,7 +434,7 @@ this.legends_debug_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 			"legend_shiv",
 			"legend_shovel",
 			"legend_sickle",
-			"legend_sling",
+			"legend_dilapitated_sling",
 			"legend_northern_sling",
 			"legend_staff",
 			"legend_staff_gnarled",

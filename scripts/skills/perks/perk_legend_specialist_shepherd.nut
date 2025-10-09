@@ -1,7 +1,7 @@
 this.perk_legend_specialist_shepherd <- this.inherit("scripts/skills/legend_specialist_abstract", {
 	m = {
 		SpecialistWeaponIds = [
-			"weapon.legend_sling",
+			"weapon.legend_dilapitated_sling",
 			"weapon.legend_slingshot"
 		],
 		ApplicableWeaponTypes = [

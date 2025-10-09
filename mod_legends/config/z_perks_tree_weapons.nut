@@ -657,11 +657,11 @@ if (!("Perks" in ::Const))
 		]
 	},
 	Tree = [
-		[::Legends.Perk.LegendLookout],//::Legends.Perk.BowRange
-		[::Legends.Perk.Bullseye],
+		[],
+		[::Legends.Perk.Bullseye, ::Legends.Perk.LegendAnchor],
 		[],
 		[::Legends.Perk.SpecBow],
-		[::Legends.Perk.LegendKeenEyesight],
+		[::Legends.Perk.LegendKeenEyesight, ::Legends.Perk.LegendPatientHunter],
 		[],
 		[]
 	]
@@ -712,9 +712,9 @@ if (!("Perks" in ::Const))
 		[::Legends.Perk.QuickHands],
 		[],
 		[::Legends.Perk.SpecThrowing],
+		[::Legends.Perk.LegendFirstBlood],
 		[],
-		[],
-		[::Legends.Perk.LegendCloseCombatArcher]
+		[::Legends.Perk.LegendPointBlank]
 	]
 };
 
@@ -760,11 +760,11 @@ if (!("Perks" in ::Const))
 	},
 	Tree = [
 		[],
-		[::Legends.Perk.LegendSlingerSpins],
+		[::Legends.Perk.LegendLookout],
 		[],
 		[::Legends.Perk.LegendMasterySlings],
 		[],
-		[::Legends.Perk.LegendBarrage],
+		[::Legends.Perk.LegendBarrage, ::Legends.Perk.LegendWindReader],
 		[]
 	]
 };

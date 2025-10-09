@@ -237,6 +237,8 @@
 		],
 		Plate = [
 			[1, "plate/legend_armor_leather_brigandine"],
+			[1, "plate/legend_armor_leather_brigandine_hardened"],
+			[1, "plate/legend_armor_leather_brigandine_hardened_full"],
 			[1, "plate/legend_armor_leather_riveted"],
 		],
 		Cloak = [

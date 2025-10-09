@@ -85,7 +85,7 @@ this.legend_peasant_armed_infected <- this.inherit("scripts/entity/tactical/huma
 			[1, "weapons/legend_sickle"],
 			[1, "weapons/legend_chain"],
 			[1, "weapons/legend_shiv"],
-			[5, "weapons/legend_sling"],
+			[5, "weapons/legend_dilapitated_sling"],
 		], "scripts/items/"));
 
 		this.getItems().equip(::Const.World.Common.pickItem([

@@ -64,7 +64,7 @@
 		bros[2].addLightInjury();
 		local items = bros[2].getItems();
 		items.unequip(items.getItemAtSlot(this.Const.ItemSlot.Mainhand));
-		items.equip(this.new("scripts/items/weapons/legend_sling"));
+		items.equip(this.new("scripts/items/weapons/legend_dilapitated_sling"));
 
 		bros[3].setStartValuesEx([
 			"vagabond_background",

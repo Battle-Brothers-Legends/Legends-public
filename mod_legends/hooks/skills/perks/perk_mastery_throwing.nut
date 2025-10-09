@@ -1,37 +1,15 @@
 ::mods_hookExactClass("skills/perks/perk_mastery_throwing", function(o) {
-	o.m.EligibleSkills <- [
-		::Legends.Active.ThrowAxe,
-		::Legends.Active.ThrowBalls,
-		::Legends.Active.ThrowJavelin,
-		::Legends.Active.ThrowSpear,
-		::Legends.Active.LegendThrowKnife
-	];
-
-	o.onAnySkillUsed = function ( _skill, _targetEntity, _properties )
+	o.onAnySkillUsed = function( _skill, _targetEntity, _properties )
 	{
-		if (_targetEntity == null)
-		{
+		if (_targetEntity == null || !_skill.isRanged())
 			return;
-		}
 
-		if (_skill.isRanged())
-		{
-			local d = this.getContainer().getActor().getTile().getDistanceTo(_targetEntity.getTile());
-			foreach (skill in this.m.EligibleSkills)
-			{
-				if (_skill.getID() == ::Legends.Actives.getID(skill))
-				{
-					if (d <= 2)
-					{
-						_properties.DamageTotalMult *= 1.3;
-					}
-					else if (d <= 3)
-					{
-						_properties.DamageTotalMult *= 1.2;
-					}
-					break;
-				}
-			}
-		}
+		local weapon = _skill.getItem();
+		if (weapon == null || !weapon.isWeaponType(::Const.Items.WeaponType.Throwing))
+			return;
+
+		local actor = this.getContainer().getActor();
+		_properties.DamageDirectAdd += 0.002 * _properties.getRangedSkill();
+		_properties.DamageArmorMult += 0.0025 * _properties.getMeleeSkill();
 	}
 });

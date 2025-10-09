@@ -119,14 +119,19 @@
 	o.onAddEquipment = function ()
 	{
 		local items = this.getContainer().getActor().getItems();
-		local r;
+		local r = this.Math.rand(1, 100);
 
-		if (this.Const.DLC.Wildmen)
+		if (r <= 25)
 		{
-			if (this.Math.rand(1, 100) <= 66)
-			{
-				items.equip(this.new("scripts/items/weapons/legend_sling"));
-			}
+			items.equip(this.new("scripts/items/weapons/legend_dilapitated_sling"));
+		}
+		else if (r <= 40)
+		{
+			items.equip(this.new("scripts/items/weapons/legend_sturdy_sling"));
+		}
+		else if (r <= 60)
+		{
+			items.equip(this.new("scripts/items/weapons/legend_staff"));
 		}
 
 		items.equip(this.Const.World.Common.pickArmor([
@@ -134,18 +139,6 @@
 			[1, ::Legends.Armor.Standard.leather_tunic],
 			[1, ::Legends.Armor.Standard.linen_tunic, this.Math.rand(6, 7)]
 		]));
-
-		r = this.Math.rand(0, 4);
-
-		if (r <= 3)
-		{
-			items.equip(this.new("scripts/items/weapons/legend_sling"));
-		}
-		else if (r == 4)
-		{
-			items.equip(this.new("scripts/items/weapons/legend_staff"));
-		}
-
 		items.equip(this.Const.World.Common.pickHelmet([
 			[1, ::Legends.Helmet.Standard.straw_hat],
 		]));

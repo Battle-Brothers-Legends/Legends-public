@@ -12,8 +12,15 @@ this.perk_legend_mastery_slings <- this.inherit("scripts/skills/skill", {
 
 	function onUpdate( _properties )
 	{
-		_properties.Vision += 1;
 		_properties.IsSpecializedInSlings = true;
+	}
+
+	function onWaitTurn()
+	{
+		local actor = this.getContainer().getActor();
+		local item = actor.getMainhandItem();
+		if (item != null && _item.isWeaponType(this.Const.Items.WeaponType.Sling) && _item.isItemType(this.Const.Items.ItemType.OneHanded))
+			::Legends.Effects.grant(actor, ::Legends.Effect.LegendPrepareBullet);
 	}
 
 });

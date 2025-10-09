@@ -271,12 +271,10 @@ this.legend_demon_alp <- this.inherit("scripts/entity/tactical/actor", {
 		body.setBrush("bust_demonalp_body_01");
 		body.varySaturation(0.2);
 		local head = this.addSprite("head");
-		head.setBrush("demon_alp_head");
-		//head.setBrush("bust_demonalp_head_0" + this.Math.rand(1, 3));
+		head.setBrush("bust_demonalp_head_0" + this.Math.rand(1, 3));
 		head.Saturation = body.Saturation;
 		local injury = this.addSprite("injury");
-		injury.setBrush("demon_alp_wounds");
-		//injury.setBrush("bust_demonalp_01_injured");
+		injury.setBrush("bust_demonalp_01_injured");
 		injury.Visible = false;
 		this.addDefaultStatusSprites();
 		this.getSprite("status_rooted").Scale = 0.55;

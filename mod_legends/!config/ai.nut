@@ -17,6 +17,7 @@
 // ::Const.AI.Agent.ID.KoboldWolfrider <- "agent.kobold_wolfrider";
 ::Const.AI.Agent.ID.LegendMummyQueen <- "agent.legend_mummy_queen";
 ::Const.AI.Agent.ID.LegendMinstrel <- "agent.minstrel";
+::Const.AI.Agent.ID.LegendEnragedHyena <- "agent.legend_enraged_hyena";
 
 local count = ::Const.AI.Behavior.ID.COUNT;
 ::Const.AI.Behavior.ID.Howl <- count++;

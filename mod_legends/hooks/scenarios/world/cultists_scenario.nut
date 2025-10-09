@@ -105,7 +105,7 @@
 		bros[4].setPlaceInFormation(6);
 		local items = bros[4].getItems();
 		items.unequip(items.getItemAtSlot(this.Const.ItemSlot.Mainhand));
-		items.equip(this.new("scripts/items/weapons/legend_sling"));
+		items.equip(this.new("scripts/items/weapons/legend_dilapitated_sling"));
 
 		this.World.Assets.getStash().add(this.new("scripts/items/supplies/ground_grains_item"));
 		this.World.Assets.getStash().add(this.new("scripts/items/supplies/ground_grains_item"));
@@ -141,7 +141,7 @@
 	o.onGenerateBro <- function (bro)
 	{
 		//Can't really recruit converted cultists but its here anyway for posterity
-		if (bro.getBackground().getID() == "background.cultist" || bro.getBackground().getID() == "background.converted_cultist" || bro.getBackground().getID() == "background.legend_lurker" || bro.getBackground().getID() == "background.legend_darksoul" || bro.getBackground().getID() == "background.legend_magister")
+		if (bro.getBackground().getID() == "background.cultist" || bro.getBackground().getID() == "background.converted_cultist" || bro.getBackground().getID() == "background.legend_lurker" || bro.getBackground().getID() == "background.legend_husk" || bro.getBackground().getID() == "background.legend_magister")
 		{
 			bro.m.HiringCost = this.Math.floor(bro.m.HiringCost * 0.75); //1.0 = default
 			bro.getBaseProperties().DailyWageMult *= 0.75; //1.0 = default

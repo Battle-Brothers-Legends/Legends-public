@@ -1647,7 +1647,8 @@
 			[1, "chain/legend_armor_basic_mail"]
 		],
 		Plate = [
-			[1, "plate/legend_armor_scale"]
+			[1, "plate/legend_armor_scale"],
+			[1, "plate/legend_armor_leather_brigandine_hardened_full"],
 		],
 		Cloak = [
 		],
@@ -2221,7 +2222,9 @@
 			[1, "plate/legend_armor_leather_scale"],
 			[1, "plate/legend_armor_leather_riveted"],
 			[1, "plate/legend_armor_leather_riveted_light"],
+			[1, "plate/legend_armor_leather_brigandine"],
 			[1, "plate/legend_armor_leather_brigandine_hardened"],
+			[1, "plate/legend_armor_leather_brigandine_hardened_full"],
 		],
 		Cloak = [
 		],
@@ -2493,6 +2496,7 @@
 			[2, "chain/legend_armor_mail_shirt"], //50
 			[1, "chain/legend_armor_reinforced_mail_shirt"], //80
 			[2, "chain/legend_armor_short_mail"], //60
+			[1, "plate/legend_armor_leather_brigandine"], // 65
 			[4, ""], //0
 		],
 		Plate = [
@@ -2535,6 +2539,7 @@
 			[2, "plate/legend_armor_leather_lamellar_reinforced"], //55
 			[1, "plate/legend_armor_scale_shirt"], //85
 			[2, ""], //0
+			[1, "plate/legend_armor_leather_brigandine"], // 65
 			[2, "plate/legend_armor_leather_lamellar_reinforced"], //55
 		],
 		Cloak = [
@@ -2576,6 +2581,9 @@
 			[1, "plate/legend_armor_scale_coat"], //120
 			[2, "plate/legend_armor_leather_lamellar_harness_heavy"], //130
 			[1, "plate/legend_armor_leather_lamellar_reinforced"], //150
+			[1, "plate/legend_armor_leather_brigandine"], // 65
+			[1, "plate/legend_armor_leather_brigandine_hardened"], // 110
+			[1, "plate/legend_armor_leather_brigandine_hardened_full"], // 140
 		],
 		Cloak = [
 			[1, "cloak/legend_armor_cloak_common"], //10
@@ -2616,6 +2624,7 @@
 			[1, "plate/legend_armor_plate_triangle"], //170
 			[1, "plate/legend_armor_leather_lamellar_reinforced"], //150
 			[1, "plate/legend_armor_leather_lamellar_heavy"], //165
+			[1, "plate/legend_armor_leather_brigandine_hardened_full"], // 140
 		],
 		Cloak = [
 			[1, "cloak/legend_armor_cloak_common"], //10
@@ -2820,15 +2829,29 @@
 
 ::Legends.Armor.Standard.grand_diviner_robes <- {
 	ID = "grand_diviner_robes",
-	Script = "scripts/items/legend_armor/armor/golems/legend_grand_diviner_robes",
-	Sets = []
+	Script = "",
+	Sets = [{
+		Cloth = [[1, "cloth/legend_fleshcultist_tunic", 1]],
+		Chain = [[1, ""]],
+		Plate = [[1, "plate/legend_diviner_jacket_named", 1]],
+		Cloak = [[1, ""]],
+		Tabard = [[1, "tabard/legend_diviner_tabard"]],
+		Attachments = [[1, ""]],
+	}]
 };
 ::Const.LegendMod.ArmorObjs.push(::Legends.Armor.Standard.grand_diviner_robes);
 
 ::Legends.Armor.Standard.fault_finder_robes <- {
 	ID = "fault_finder_robes",
-	Script = "scripts/items/legend_armor/armor/golems/legend_fault_finder_robes",
-	Sets = []
+	Script = "",
+	Sets = [{
+		Cloth = [[1, "cloth/legend_fleshcultist_tunic", 1]],
+		Chain = [[1, ""]],
+		Plate = [[1, "plate/legend_fleshcultist_jacket", 1]],
+		Cloak = [[1, ""]],
+		Tabard = [[1, "tabard/legend_fleshcultist_tabard"]],
+		Attachments = [[3, ""]],
+	}]
 };
 ::Const.LegendMod.ArmorObjs.push(::Legends.Armor.Standard.fault_finder_robes);
 

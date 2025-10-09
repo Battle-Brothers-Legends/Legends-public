@@ -19,7 +19,7 @@ this.legend_prayer_of_life_effect <- this.inherit("scripts/skills/skill", {
 
 	function getDescription()
 	{
-		return "This character has been blessed by a prayer of hope and will heal [color=" + this.Const.UI.Color.PositiveValue + "]" + this.m.Heal + "[/color] hitpoints each turn for [color=" + this.Const.UI.Color.PositiveValue + "]" + this.m.TurnsLeft + "[/color] more turn(s).";
+		return "This character has been blessed by a prayer of hope and will heal [color=" + this.Const.UI.Color.PositiveValue + "]" + this.m.Heal + "[/color] hitpoints over [color=" + this.Const.UI.Color.PositiveValue + "]" + this.m.TurnsLeft + "[/color] more turn(s).";
 	}
 
 	function setHeal(_v)

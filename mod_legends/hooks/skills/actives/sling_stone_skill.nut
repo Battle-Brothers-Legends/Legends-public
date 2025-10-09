@@ -20,7 +20,7 @@
 				id = 7,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "Has a [color=" + this.Const.UI.Color.NegativeValue + "]100%[/color] chance to daze a target on a hit to the head"
+				text = "Has a [color=" + this.Const.UI.Color.NegativeValue + "]100%[/color] chance to baffle a target on a hit to the head"
 			});
 		}
 		else
@@ -30,13 +30,13 @@
 				id = 7,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "Has a [color=" + this.Const.UI.Color.PositiveValue + "]100%[/color] chance on a hit to the head and [color=" + this.Const.UI.Color.PositiveValue + "]33%[/color] chance on a hit to the body to apply daze, debilitate, stagger or baffle on the target"
+				text = "Has a [color=" + this.Const.UI.Color.PositiveValue + "]100%[/color] chance to debilitate a target on a hit to the head"
 			},
 			{
 				id = 7,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "Has a [color=" + this.Const.UI.Color.PositiveValue + "]100%[/color] to stun the target if any 3 of the above effects are already applied on the target"
+				text = "Has a [color=" + this.Const.UI.Color.PositiveValue + "]100%[/color] chance to baffle a target on a hit to the body"
 			},
 			{
 				id = 8,
@@ -63,10 +63,6 @@
 		this.m.MaxRange = this.m.Item.getRangeMax() + (_properties.IsSpecializedInSlings ? 1 : 0);
 		this.m.AdditionalAccuracy = _properties.IsSpecializedInSlings ? (this.m.Item.getAdditionalAccuracy() + 5) : this.m.Item.getAdditionalAccuracy();
 		this.m.FatigueCostMult = _properties.IsSpecializedInSlings ? this.Const.Combat.WeaponSpecFatigueMult : 1.0;
-		if (this.getContainer().hasPerk(::Legends.Perk.LegendSlingerSpins))
-			this.m.IsShieldRelevant = false;
-		if (this.getContainer().hasEffect(::Legends.Effect.LegendPrepareBullet))
-			this.m.MaxRange += 1;
 	}
 
 	o.onAnySkillUsed = function ( _skill, _targetEntity, _properties )
@@ -77,66 +73,29 @@
 			_properties.HitChanceAdditionalWithEachTile += this.m.AdditionalHitChance;
 			_properties.FatigueDealtPerHitMult += 2.0;
 		}
+
+		if (this.getContainer().hasPerk(::Legends.Perk.LegendBarrage))
+		{
+			this.m.IsShieldRelevant = false;
+		}
 	}
 
-	o.onTargetHit = function ( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor )
+	function onTargetHit( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor )
 	{
-		if (_skill != this)
-			return;
-
-		if (::Legends.S.skillEntityAliveCheck(this.getContainer().getActor(), _targetEntity))
-			return;
-
-		if(_targetEntity.getCurrentProperties().IsImmuneToStun)
-			return;
-
-		local targetTile = _targetEntity.getTile();
-		local user = this.getContainer().getActor();
-		local isApplied = _bodyPart == this.Const.BodyPart.Head ? true : this.Math.rand(1, 100) <= 33;
-		local effect = !_targetEntity.getCurrentProperties().IsImmuneToDaze ? ::Legends.Effects.new(::Legends.Effect.Dazed) : ::Legends.Effects.new(::Legends.Effect.Staggered);
-		local effectName = !_targetEntity.getCurrentProperties().IsImmuneToDaze ? "dazed" : "staggered";
-
-		if (user.getSkills().hasPerk(::Legends.Perk.LegendBarrage) && isApplied)
+		if (_skill == this && _targetEntity.isAlive() && !_targetEntity.isDying())
 		{
-			local targetStatus = _targetEntity.getSkills();
-			local effectCounter = 0;
+			local targetTile = _targetEntity.getTile();
+			local user = this.getContainer().getActor();
 
-			switch (true)
+			if (_bodyPart == this.Const.BodyPart.Head && !_targetEntity.getCurrentProperties().IsImmuneToDaze)
 			{
-				case targetStatus.hasEffect(::Legends.Effect.Dazed):
-				case targetStatus.hasEffect(::Legends.Effect.LegendDazed):
-				case targetStatus.hasEffect(::Legends.Effect.LegendBaffled):
-				case targetStatus.hasEffect(::Legends.Effect.Debilitated):
-				case targetStatus.hasEffect(::Legends.Effect.Staggered):
-					effectCounter += 1;
-			}
-			if (effectCounter >= 3 && !_targetEntity.getCurrentProperties().IsImmuneToStun)
-			{
-				::Legends.Effects.grant(_targetEntity, ::Legends.Effect.Stunned);
+				::Legends.Effects.grant(_targetEntity, ::Legends.Effect.LegendBaffled);
+
 				if (!user.isHiddenToPlayer() && targetTile.IsVisibleForPlayer)
-					this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(user) + " struck a hit that leaves the already reeling " + this.Const.UI.getColorizedEntityName(_targetEntity) + " stunned");
-				return;
+				{
+					this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(user) + " struck a hit that leaves " + this.Const.UI.getColorizedEntityName(_targetEntity) + " baffled");
+				}
 			}
-			else
-			{
-				// todo, this is bs, doesn't check if can be dazed for example
-				local effects = [
-					[::Legends.Effect.Dazed, "dazed"],
-					[::Legends.Effect.Staggered, "staggered"],
-					[::Legends.Effect.Debilitated, "debilitated"],
-					[::Legends.Effect.LegendBaffled, "baffled"]
-				];
-				local rand = this.Math.rand(0, effects.len() - 1);
-				effect = ::Legends.Effects.new(effects[rand][0]);
-				effectName = effects[rand][1];
-			}
-		}
-
-		_targetEntity.getSkills().add(effect);
-
-		if (!user.isHiddenToPlayer() && targetTile.IsVisibleForPlayer)
-		{
-			this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(user) + " struck a hit that leaves " + this.Const.UI.getColorizedEntityName(_targetEntity) + " " + effectName);
 		}
 	}
 });

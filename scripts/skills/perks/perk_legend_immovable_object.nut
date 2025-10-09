@@ -14,7 +14,7 @@ this.perk_legend_immovable_object <- this.inherit("scripts/skills/skill", {
 
 	function onUpdate( _properties )
 	{
-		local fat = this.getContainer.getActor().getItems().getStaminaModifier(
+		local fat = this.getContainer().getActor().getItems().getStaminaModifier(
 			[
 				::Const.ItemSlot.Body,
 				::Const.ItemSlot.Head,

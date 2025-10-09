@@ -20,11 +20,37 @@
 	{
 		onEquip();
 		::Legends.Actives.grant(this, ::Legends.Active.LegendPiercingBolt);
+		::Legends.Actives.grant(this, ::Legends.Active.KnockOut, function (_skill) {
+			_skill.m.IsRangedKnockOut = true;
+		}.bindenv(this));
 	}
 
 	o.onCombatFinished = function ()
 	{
 		this.weapon.onCombatFinished();
 		this.setLoaded(true);
+	}
+
+	o.onAnySkillUsed <- function ( _skill, _targetEntity, _properties )
+	{
+		local item = _skill.getItem();
+
+		if (!_skill.isAttack())
+			return;
+
+		if (!_skill.isRanged())
+			return;
+
+		if (item == null)
+			return;
+
+		if (item.getID() != this.getID())
+			return;
+
+		if (_targetEntity != null && (_targetEntity.getType() == this.Const.EntityType.Vampire || _targetEntity.getType() == this.Const.EntityType.LegendVampireLord))
+		{
+			_properties.DamageRegularMin += 100;
+			_properties.DamageRegularMax += 100;
+		}
 	}
 });

@@ -50,6 +50,11 @@
 				S = "helmets/legend_helm_curved"
 			});
 			_list.push({
+				R = 80,
+				P = 1.0,
+				S = "helmets/legend_helm_sharp"
+			});
+			_list.push({
 				R = 50,
 				P = 1.0,
 				S = "helmets/great_jaw_helmet_00"

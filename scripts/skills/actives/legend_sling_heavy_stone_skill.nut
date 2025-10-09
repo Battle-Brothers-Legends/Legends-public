@@ -54,8 +54,8 @@ this.legend_sling_heavy_stone_skill <- this.inherit("scripts/skills/skill", {
 		this.m.InjuriesOnBody = this.Const.Injury.BluntBody;
 		this.m.InjuriesOnHead = this.Const.Injury.BluntHead;
 		this.m.DirectDamageMult = 0.75;
-		this.m.ActionPointCost = 5;
-		this.m.FatigueCost = 17;
+		this.m.ActionPointCost = 7;
+		this.m.FatigueCost = 25;
 		this.m.MinRange = 4;
 		this.m.MaxRange = 9;
 		this.m.MaxLevelDifference = 8;
@@ -127,16 +127,6 @@ this.legend_sling_heavy_stone_skill <- this.inherit("scripts/skills/skill", {
 			this.m.AdditionalHitChance += 2;
 			this.m.FatigueCostMult = this.Const.Combat.WeaponSpecFatigueMult;
 		}
-		if (_properties.IsSpecializedInSlings && this.getContainer().hasPerk(::Legends.Perk.LegendBarrage))
-		{
-			this.m.ActionPointCost = 7;
-			this.m.FatigueCost = 25;
-		}
-		else if (_properties.IsSpecializedInSlings || this.getContainer().hasPerk(::Legends.Perk.LegendBarrage))
-		{
-			this.m.ActionPointCost = 6;
-			this.m.FatigueCost = 21;
-		}
 	}
 
 	function onUse( _user, _targetTile )
@@ -177,16 +167,6 @@ this.legend_sling_heavy_stone_skill <- this.inherit("scripts/skills/skill", {
 			_properties.RangedSkill += this.m.AdditionalAccuracy;
 			_properties.HitChanceAdditionalWithEachTile += this.m.AdditionalHitChance;
 			_properties.FatigueDealtPerHitMult += 3.0;
-			if (this.getContainer().hasPerk(::Legends.Perk.LegendBarrage))
-			{
-				_properties.DamageRegularMin += 15;
-				_properties.DamageRegularMax += 30;
-				//_properties.DamageDirectAdd += 0.2;
-			}
-			if (this.getContainer().hasPerk(::Legends.Perk.LegendMasterySlings))
-			{
-				_properties.DamageArmorMult *= 1.5;
-			}
 		}
 	}
 
@@ -208,15 +188,6 @@ this.legend_sling_heavy_stone_skill <- this.inherit("scripts/skills/skill", {
 
 		if (_bodyPart == this.Const.BodyPart.Head) {
 			::Legends.Effects.grant(_targetEntity, ::Legends.Effect.Dazed);
-
-			if (user.getCurrentProperties().IsSpecializedInStaffStun && !_targetEntity.getCurrentProperties().IsImmuneToStun) {
-				::Legends.Effects.grant(_targetEntity, ::Legends.Effect.Stunned);
-
-				if (!user.isHiddenToPlayer() && targetTile.IsVisibleForPlayer) {
-					this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(user) + " struck a hit that leaves " + this.Const.UI.getColorizedEntityName(_targetEntity) + " stunned and dazed");
-					return;
-				}
-			}
 
 			if (!user.isHiddenToPlayer() && targetTile.IsVisibleForPlayer)
 				this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(user) + " struck a hit that leaves " + this.Const.UI.getColorizedEntityName(_targetEntity) + " dazed");

@@ -170,7 +170,7 @@
 	{
 		local items = this.getContainer().getActor().getItems();
 		local r;
-		r = this.Math.rand(1, 4);
+		r = this.Math.rand(1, 5);
 
 		if (r == 1)
 		{
@@ -188,6 +188,10 @@
 		{
 			items.equip(this.new("scripts/items/weapons/short_bow"));
 			items.equip(this.new("scripts/items/ammo/quiver_of_arrows"));
+		}
+		else
+		{
+			items.equip(this.new("scripts/items/weapons/legend_sturdy_sling"));
 		}
 
 		r = this.Math.rand(0, 3);

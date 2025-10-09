@@ -181,7 +181,7 @@ this.legend_vala_warden_ai_protect <- this.inherit("scripts/ai/tactical/behavior
 
 		foreach( a in AllBrothers )
 		{
-			if (a.getBackground().getID() != "background.legend_vala" && a.getBackground().getID() != "background.legend_commander_vala")
+			if (a.getBackground().getID() != "background.legend_vala")
 			{
 				continue;
 			}

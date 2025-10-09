@@ -18,10 +18,8 @@
 
 	o.getIcon = function ()
 	{
-		if (this.m.PreviewCraftable.getIcon() == "layers/named_icon_glow.png")
-		{
+		if (::Legends.S.oneOf(this.m.PreviewCraftable.getIcon(), "layers/named_icon_glow.png", "layers/legendary_icon_glow.png"))
 			return this.m.PreviewCraftable.m.Icon;
-		}
 		return this.m.PreviewCraftable.getIcon();
 	}
 

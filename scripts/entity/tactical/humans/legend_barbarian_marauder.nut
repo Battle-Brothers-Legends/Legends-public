@@ -79,7 +79,7 @@ this.legend_barbarian_marauder <- this.inherit("scripts/entity/tactical/human", 
 
 		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= 60)
 		{
-			::Legends.Perks.grant(this, ::Legends.Perk.LegendCloseCombatArcher);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendPointBlank);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendOnslaught);
 		}
 	}
@@ -89,6 +89,7 @@ this.legend_barbarian_marauder <- this.inherit("scripts/entity/tactical/human", 
 		local items = [
 			"scripts/items/weapons/barbarians/heavy_throwing_axe",
 			"scripts/items/weapons/barbarians/heavy_javelin",
+			"scripts/items/weapons/barbarians/legend_barbarian_sling"
 		];
 
 		this.m.Items.equip(this.new(items[this.Math.rand(0, items.len() - 1)]));
@@ -165,7 +166,8 @@ this.legend_barbarian_marauder <- this.inherit("scripts/entity/tactical/human", 
 		this.getSprite("miniboss").setBrush("bust_miniboss");
 		local weapons = [
 			"weapons/named/legend_named_heavy_throwing_axe",
-			"weapons/named/legend_named_heavy_javelin"
+			"weapons/named/legend_named_heavy_javelin",
+			"weapons/named/legend_named_sling"
 		];
 		this.m.Items.equip(this.new("scripts/items/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
 		::Legends.Perks.grant(this, ::Legends.Perk.Fearsome);

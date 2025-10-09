@@ -8,7 +8,7 @@ this.legend_named_staff_vala <- this.inherit("scripts/items/weapons/named/named_
 		this.m.Description = "A gnarled staff no more, the twisted roots reformed into a beautiful pattern that only the Vala can create.";
 		this.m.IconLarge = "weapons/melee/legend_staff_05_named.png";
 		this.m.Icon = "weapons/melee/legend_staff_05_named_70x70.png";
-		this.m.WeaponType = this.Const.Items.WeaponType.Staff | this.Const.Items.WeaponType.MagicStaff;
+		this.m.WeaponType = this.Const.Items.WeaponType.Staff | this.Const.Items.WeaponType.MagicStaff | this.Const.Items.WeaponType.Polearm;
 		this.m.SlotType = this.Const.ItemSlot.Mainhand;
 		this.m.BlockedSlotType = this.Const.ItemSlot.Offhand;
 		this.m.ItemType = this.Const.Items.ItemType.Named | this.Const.Items.ItemType.Weapon | this.Const.Items.ItemType.MeleeWeapon | this.Const.Items.ItemType.TwoHanded | this.Const.Items.ItemType.Defensive;
@@ -34,7 +34,7 @@ this.legend_named_staff_vala <- this.inherit("scripts/items/weapons/named/named_
 
 	function onEquip()
 	{
-		this.weapon.onEquip();
+		this.named_weapon.onEquip();
 		::Legends.Actives.grant(this, ::Legends.Active.Bash, function (_skill) {
 			_skill.m.Icon = "skills/staff_bash_vala.png";
 			_skill.m.IconDisabled = "skills/staff_bash_vala_bw.png";

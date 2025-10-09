@@ -2630,11 +2630,11 @@ activesDefs.push({
 	Name = "Prepare to Graze",
 });
 
-::Legends.Active.LegendPrepareKnockdown <- null;
+::Legends.Active.LegendWindUp <- null;
 activesDefs.push({
-	ID = "actives.legend_prepare_knockdown",
-	Script = "scripts/skills/actives/legend_prepare_knockback_skill",
-	Const = "LegendPrepareKnockdown",
+	ID = "actives.legend_wind_up",
+	Script = "scripts/skills/actives/legend_wind_up",
+	Const = "LegendWindUp",
 	Name = "Wind Up",
 });
 
@@ -2838,12 +2838,12 @@ activesDefs.push({
 	Name = "Summon Medium Xbow Zombie",
 });
 
-::Legends.Active.LegendSprint <- null;
+::Legends.Active.LegendStrafingRun <- null;
 activesDefs.push({
 	ID = "actives.legend_sprint",
-	Script = "scripts/skills/actives/legend_sprint_skill",
-	Const = "LegendSprint",
-	Name = "Sprint",
+	Script = "scripts/skills/actives/legend_strafing_run_skill",
+	Const = "LegendStrafingRun",
+	Name = "Strafing Run",
 });
 
 ::Legends.Active.LegendStaffwall <- null;
@@ -3177,9 +3177,17 @@ activesDefs.push({
 ::Legends.Active.LegendFlourish <- null;
 activesDefs.push({
 	ID = "actives.legend_flourish",
-	Script = "scripts/skills/actives/legend_flourish",
+	Script = "scripts/skills/actives/legend_flourish_skill",
 	Const = "LegendFlourish",
 	Name = "Flourish",
+});
+
+::Legends.Active.LegendEnragedHyenaBite <- null;
+activesDefs.push({
+	ID = "actives.legend_enraged_hyena_bite",
+	Script = "scripts/skills/actives/legend_enraged_hyena_bite_skill",
+	Const = "LegendEnragedHyenaBite",
+	Name = "Enraged Hyena Bite",
 });
 
 ::Legends.Actives.addActiveDefObjects(activesDefs);

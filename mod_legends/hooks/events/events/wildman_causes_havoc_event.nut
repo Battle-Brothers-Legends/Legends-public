@@ -343,11 +343,10 @@
 		foreach( bro in brothers ) {
 			switch (bro.getBackground().getID()) {
 				case "background.legend_trader":
-				case "background.legend_trader_commander":
+				case "background.legend_commander_trader":
 					thetraders.push(bro);
 					break;
 				case "background.wildman":
-				// case "background.wildwoman":
 					candidates_wildchars.push(bro);
 					break;
 				case "background.legend_berserker":

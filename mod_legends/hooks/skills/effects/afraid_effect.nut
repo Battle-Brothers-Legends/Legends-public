@@ -14,7 +14,7 @@
 			id = 17,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "Has a [color=" + this.Const.UI.Color.NegativeValue + "]" + this.HealChance + "%[/color] chance to remove itself on the start of each new day"
+			text = "Has a [color=" + this.Const.UI.Color.NegativeValue + "]" + this.m.HealChance + "%[/color] chance to remove itself on the start of each new day"
 		});
 
 		return ret;

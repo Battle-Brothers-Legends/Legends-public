@@ -22,7 +22,7 @@ this.legend_longsword <- this.inherit("scripts/items/weapons/weapon", {
 		this.m.ArmorDamageMult = 0.8;
 		this.m.DirectDamageMult = 0.25;
 		this.m.ChanceToHitHead = 10;
-		this.m.Variant = this.Math.rand(0, 1);
+		this.m.Variant = 1;
 		this.updateVariant();
 	}
 

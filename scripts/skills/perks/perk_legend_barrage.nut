@@ -10,12 +10,45 @@ this.perk_legend_barrage <- this.inherit("scripts/skills/skill", {
 		this.m.IsHidden = false;
 	}
 
-	function onUpdate(_properties)
+	function onTargetHit( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor )
 	{
-		local item = this.getContainer().getActor().getItems().getItemAtSlot(this.Const.ItemSlot.Mainhand);
-		if (item != null && item.isWeaponType(this.Const.Items.WeaponType.Sling))
+		if (_skill == null)
+			return;
+
+		if (::Legends.S.skillEntityAliveCheck(_targetEntity))
+			return false;
+
+		if (_targetEntity.isNonCombatant())
+			return false;
+
+		local headshot = _bodyPart == this.Const.BodyPart.Head;
+		local user = this.getContainer().getActor();
+
+		if (_skill.getID() == ::Legends.Actives.getID(::Legends.Active.SlingStone))
 		{
-			_properties.HitChanceAdditionalWithEachTile += 2;
+			if (headshot)
+				this.grantEffect(::Legends.Effect.LegendBaffled, "baffled", _targetEntity, user)
+			else
+				this.grantEffect(::Legends.Effect.Debilitated, "debilitated")
 		}
+
+		if (_skill.getID() == ::Legends.Actives.getID(::Legends.Active.LegendSlingHeavyStone) && headshot && !_targetEntity.getCurrentProperties().IsImmuneToStun)
+		{
+			this.grantEffect(::Legends.Effect.LegendBaffled, "stunned", _targetEntity, user)
+		}
+
+		if (_skill.getID() == ::Legends.Actives.getID(::Legends.Active.FireHandgonne) && headshot)
+		{
+			this.grantEffect(::Legends.Effect.Shellshocked, "shellshocked", _targetEntity, user)
+		}
+
+	}
+
+	function grantEffect(_effect, _string, _targetEntity, _user)
+	{	
+		local targetTile = _targetEntity.getTile();
+		::Legends.Effects.grant(_targetEntity, _effect);
+		if (!user.isHiddenToPlayer() && targetTile.IsVisibleForPlayer)
+			this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(_user) + " struck a hit that leaves " + this.Const.UI.getColorizedEntityName(_targetEntity) + " " + _string);
 	}
 });

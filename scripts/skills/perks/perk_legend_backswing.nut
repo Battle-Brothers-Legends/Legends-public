@@ -1,6 +1,6 @@
 this.perk_legend_backswing <- this.inherit("scripts/skills/skill", {
 	m = {
-		IsBackswing = false,
+		TimeAdded = 0
 		Skills = [
 			::Legends.Actives.getID(::Legends.Active.Swing),
 			::Legends.Actives.getID(::Legends.Active.Thresh),
@@ -12,41 +12,15 @@ this.perk_legend_backswing <- this.inherit("scripts/skills/skill", {
 	function create()
 	{
 		::Const.Perks.setup(this.m, ::Legends.Perk.LegendBackswing);
-		this.m.Type = this.Const.SkillType.Perk;
-		this.m.Order = this.Const.SkillOrder.Perk;
+		this.m.Type = this.Const.SkillType.Perk | this.Const.SkillType.StatusEffect;
+		this.m.Order = this.Const.SkillOrder.Perk | this.Const.SkillOrder.Any;
 		this.m.IsActive = false;
 		this.m.IsStacking = false;
 		this.m.IsHidden = false;
 	}
 
-	function toggleBackswing()
-	{
-		this.m.IsBackswing = this.setBackswing(!this.m.IsBackswing);
-	}
-
-	function setBackswing(_bool)
-	{
-		this.m.IsBackswing = _bool;
-	}
-
-	function isBackswing()
-	{
-		this.m.IsBackswing;
-	}
-
-	function onAnySkillExecuted( _skill, _targetTile, _targetEntity, _forFree )
-	{
-		if (_skill == null)
-			return;
-
-		if (this.m.Skills.find(_skill.getID()) == null)
-			toggleBackswing();
-	}
-
 	function onAfterUpdate(_properties)
 	{
-		if (!this.isBackswing())
-			return;
 		local skills = this.getContainer().getAllSkillsOfType(this.Const.SkillType.Active);
 		foreach (skill in skills)
 		{
@@ -58,29 +32,40 @@ this.perk_legend_backswing <- this.inherit("scripts/skills/skill", {
 		}
 	}
 
-	function onAnySkillUsed (_skill, _targetEntity, _properties)
+	function onAdded()
 	{
-		if (_skill != null && this.m.Skills.find(_skill.getID()) != null && this.isBackswing())
-			_properties.DamageTotalMult *= 0.5;
+		this.m.TimeAdded = this.Time.getVirtualTimeF();
+	}
+
+	function onAnySkillUsed( _skill, _targetEntity, _properties )
+	{
+		if (_targetEntity == null || !_targetEntity.isAttackable())
+			return;
+
+		if (!this.m.IsGarbage && this.m.TimeAdded + 0.1 < this.Time.getVirtualTimeF() && !_targetEntity.isAlliedWith(this.getContainer().getActor()))
+		{
+			if (_skill == null || this.m.Skills.find(_skill.getID()) == null || !this.isBackswing())
+				return;
+			if (_skill.getID() == ::Legends.Actives.getID(::Legends.Active.Swing))
+				_properties.DamageTotalMult *= 0.75;
+			else
+				_properties.DamageTotalMult *= 0.5;
+			this.removeSelf();
+		}
 	}
 
 	function onTurnEnd()
 	{
-		this.setBackswing(false);
+		this.removeSelf();
 	}
 
 	function onWaitTurn()
 	{
-		this.setBackswing(false);
+		this.removeSelf();
 	}
 
 	function onMovementFinished()
 	{
-		this.setBackswing(false);
-	}
-
-	function onCombatFinished()
-	{
-		this.setBackswing(false);
+		this.removeSelf();
 	}
 });

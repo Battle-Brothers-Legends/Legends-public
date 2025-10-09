@@ -54,9 +54,7 @@ if (!("Perks" in ::Const))
 			::Legends.Perk.Pathfinder
 		],
 		[],
-		[
-			::Legends.Perk.LegendAthlete
-		],
+		[],
 		[],
 		[
 			::Legends.Perk.LegendTacticalManeuvers 

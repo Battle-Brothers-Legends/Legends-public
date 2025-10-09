@@ -63,7 +63,7 @@ this.legend_horse_destrier <- this.inherit("scripts/skills/backgrounds/legend_ho
 				::Legends.Perk.LegendMedPackages,
 				::Legends.Perk.LegendToolsDrawers,
 				::Legends.Perk.LegendHorseImpulsion,
-				::Legends.Perk.LegendHorseHippology
+				::Legends.Perk.LegendHippology
 			],
 			[
 				::Legends.Perk.LoneWolf,

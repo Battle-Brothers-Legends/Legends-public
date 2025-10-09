@@ -264,7 +264,7 @@ this.legend_legion_slave_background <- this.inherit("scripts/skills/backgrounds/
 		}
 		else if (r == 4)
 		{
-			items.equip(this.new("scripts/items/weapons/legend_sling"));
+			items.equip(this.new("scripts/items/weapons/legend_dilapitated_sling"));
 		}
 
 		if (this.Math.rand(1, 100) <= 66)

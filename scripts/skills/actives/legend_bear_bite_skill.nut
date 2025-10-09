@@ -57,7 +57,7 @@ function getTooltip()
 			damageMax += avgMax;
 		}
 
-		if (this.getContainer().hasSkill("background.brawler") || this.getContainer().hasSkill("background.legend_commander_berserker") || this.getContainer().hasSkill("background.legend_berserker") || this.getContainer().hasSkill("background.legend_druid_commander") || this.getContainer().hasSkill("background.legend_druid") )
+		if (this.getContainer().hasSkill("background.brawler") || this.getContainer().hasSkill("background.legend_commander_berserker") || this.getContainer().hasSkill("background.legend_berserker") || this.getContainer().hasSkill("background.legend_commander_druid") || this.getContainer().hasSkill("background.legend_druid") )
 		{
 			damageMin = damageMin * 1.25;
 			damageMax = damageMax * 1.25;

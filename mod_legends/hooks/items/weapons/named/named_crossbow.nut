@@ -1,5 +1,12 @@
 ::mods_hookExactClass("items/weapons/named/named_crossbow", function(o) {
 
+	local create = o.create;
+	o.create = function() {
+		create();
+		this.m.RangeMax = 5;
+		this.m.RangeIdeal = 5;
+	}
+
 	o.getTooltip <- function ()
 	{
 		local result = this.named_weapon.getTooltip();
@@ -22,6 +29,10 @@
 	{
 		onEquip();
 		::Legends.Actives.grant(this, ::Legends.Active.LegendPiercingBolt);
+		::Legends.Actives.grant(this, ::Legends.Active.LegendStrafingRun);
+		::Legends.Actives.grant(this, ::Legends.Active.KnockOut, function (_skill) {
+			_skill.m.IsRangedKnockOut = true;
+		}.bindenv(this));
 	}
 
 	o.onCombatFinished = function ()

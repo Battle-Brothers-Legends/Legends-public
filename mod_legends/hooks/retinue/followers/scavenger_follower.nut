@@ -18,7 +18,6 @@
 			"background.refugee",
 			"background.slave",
 			"background.legend_commander_beggar",
-			"background.legend_commander_beggar_female",
 			"background.legend_commander_beggar_op",
 			"background.legend_companion_melee",
 			"background.legend_companion_ranged"

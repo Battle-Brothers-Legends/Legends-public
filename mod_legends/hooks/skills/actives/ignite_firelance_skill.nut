@@ -7,13 +7,13 @@
 	{
 		local tooltip = this.getRangedTooltip(this.getDefaultTooltip());
 
-		ret.push({
+		tooltip.push({
 			id = 6,
 			type = "text",
 			icon = "ui/icons/hitchance.png",
 			text = "Has [color=" + this.Const.UI.Color.PositiveValue + "]+40%[/color] chance to hit"
 		});
-		ret.push({
+		tooltip.push({
 			id = 10,
 			type = "text",
 			icon = "ui/icons/special.png",
@@ -23,7 +23,7 @@
 
 		if (ammo > 0)
 		{
-			ret.push({
+			tooltip.push({
 				id = 8,
 				type = "text",
 				icon = "ui/icons/ammo.png",
@@ -32,7 +32,7 @@
 		}
 		else
 		{
-			ret.push({
+			tooltip.push({
 				id = 8,
 				type = "text",
 				icon = "ui/tooltips/warning.png",
@@ -40,7 +40,7 @@
 			});
 		}
 
-		return ret;
+		return tooltip;
 	}
 
 	o.onAnySkillUsed = function ( _skill, _targetEntity, _properties )

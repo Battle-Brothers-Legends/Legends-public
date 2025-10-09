@@ -14,7 +14,7 @@
 - *Mercury* - programing
 - *Luftwaffle* - programming, writing, balance, art
 - *NgGH707* - programming, support
-- *Sato* - programming
+- *Sato* - programming, art
 - *Abysscrane* - programming
 - *WNTR Jimmy* - programming
 - *Emo Used HM01* - programming, art
@@ -27,6 +27,8 @@
 - *Evie Nekomancer* ꜀(^. .^꜀ )꜆੭ - art
 - *kamy (Cutethulu)* - art
 - *Thog* - art
+- *Ivan* - art
+- *Boockle* - art
 
 #### Previous Contributors
 - *Hanter* - programming

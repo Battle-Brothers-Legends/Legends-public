@@ -30,7 +30,7 @@ this.legend_hand_crossbow <- this.inherit("scripts/items/weapons/weapon", {
 		this.m.ArmamentIcon = "icon_legend_hand_crossbow_01";
 		this.m.Value = 1500;
 		this.m.RangeMin = 1;
-		this.m.RangeMax = 5;
+		this.m.RangeMax = 4;
 		this.m.RangeIdeal = 4;
 		this.m.StaminaModifier = -8;
 		this.m.Condition = 30.0;
@@ -68,12 +68,15 @@ this.legend_hand_crossbow <- this.inherit("scripts/items/weapons/weapon", {
 		this.weapon.onEquip();
 
 		::Legends.Actives.grant(this, ::Legends.Active.ShootBolt);
-		::Legends.Actives.grant(this, ::Legends.Active.LegendPiercingBolt);
 
 		if (!this.m.IsLoaded)
 		{
 			::Legends.Actives.grant(this, ::Legends.Active.ReloadBolt);
 		}
+		::Legends.Actives.grant(this, ::Legends.Active.LegendPiercingBolt);
+		::Legends.Actives.grant(this, ::Legends.Active.KnockOut, function (_skill) {
+			_skill.m.IsRangedKnockOut = true;
+		}.bindenv(this));
 	}
 
 	function onCombatFinished()

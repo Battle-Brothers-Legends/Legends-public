@@ -498,6 +498,7 @@
 		::Legends.Effects.grant(this, ::Legends.Effect.LegendRealmOfNightmares);
 		::Legends.Effects.grant(this, ::Legends.Effect.LegendHorseriderSkill);
 		::Legends.Effects.grant(this, ::Legends.Effect.LegendVeteranLevels);
+		::Legends.Effects.grant(this, ::Legends.Effect.LegendArmorTracking);
 		::Legends.Actives.grant(this, ::Legends.Active.LegendGrapple);
 		::Legends.Actives.grant(this, ::Legends.Active.LegendKick);
 	}
@@ -629,6 +630,11 @@
 		if (this.Tactical.State.isScenarioMode())
 			return onDeath(_killer, _skill, _tile, _fatalityType);
 		local bro = this;
+		if (::Tactical.State.isScenarioMode()) {
+			onDeath(_killer, _skill, _tile, _fatalityType);
+			return; // scenario mode has no obituary and crashes with our changes
+		}
+
 		local originalAddFallen = ::World.Statistics.addFallen;
 		::World.Statistics.addFallen = function (_fallen) {
 			originalAddFallen(bro.finalizeFallen(_fallen));
@@ -1070,7 +1076,7 @@
 		}
 
 
-		local r = this.Math.rand(1, 4);
+		local r = this.Math.rand(1, 6);
 
 		if (r == 1)
 		{
@@ -1091,6 +1097,14 @@
 		{
 			this.m.Items.equip(this.new("scripts/items/weapons/light_crossbow"));
 			this.m.Items.equip(this.new("scripts/items/ammo/quiver_of_bolts"));
+		}
+		else if (r == 5)
+		{
+			this.m.Items.equip(this.new("scripts/items/weapons/legend_sturdy_sling"));
+		}
+		else if (r == 6)
+		{
+			this.m.Items.equip(this.new("scripts/items/weapons/staff_sling"));
 		}
 	}
 

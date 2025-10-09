@@ -13,7 +13,9 @@ this.legend_mummy_bandage <- this.inherit("scripts/items/helmets/helmet", {
 		this.m.ReplaceSprite = true;
 		local variants = [
 			1,
-			2
+			2,
+			3,
+			4
 		];
 		this.m.Variant = variants[this.Math.rand(0, variants.len() - 1)];
 		this.updateVariant();

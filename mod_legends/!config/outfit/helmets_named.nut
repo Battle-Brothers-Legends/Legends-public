@@ -661,7 +661,7 @@
 			[3, "top/legend_helmet_faceplate_full_breaths"],
 			[2, "top/legend_helmet_faceplate_flat"],
 			[2, "top/legend_helmet_faceplate_curved"],
-			[2, "top/legend_helmet_faceplate_curved"],
+			[2, "top/legend_helmet_faceplate_sharp"],
 			[1, "top/legend_helmet_faceplate_gold"],
 			[3, "top/legend_helmet_southern_faceplate"],
 			[1, "top/legend_helmet_facemask"],

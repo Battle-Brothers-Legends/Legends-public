@@ -4,7 +4,7 @@
 	o.create = function ()
 	{
 		create();
-		this.m.Description = "A deep mine built atop a gold ore vein. This rare metal has a tendency to bring out the worst in people. Contributes gold ingots, miners, caravan hands, sellswords and thieves to the local town";
+		this.m.Description = "A deep mine built atop a gold ore vein. This rare metal has a tendency to bring out the worst in people. Contributes gold and silver ingots, miners, caravan hands, sellswords and thieves to the local town";
 	}
 
 	o.onUpdateProduce <- function ( _list )
@@ -12,6 +12,7 @@
 		this.attached_location.onUpdateProduce(_list);
 		_list.push("trade/legend_gold_dust_item");
 		_list.push("trade/legend_gold_nugget_item");
+		_list.push("trade/legend_silver_ingots_item");
 	}
 
 	local onUpdateDraftList = o.onUpdateDraftList;
@@ -52,6 +53,11 @@
 				R = 90,
 				P = 1.0,
 				S = "loot/golden_chalice_item"
+			});
+			_list.push({
+				R = 94,
+				P = 1.0,
+				S = "trade/pov_silver_ingots_item"
 			});
 		}
 	}

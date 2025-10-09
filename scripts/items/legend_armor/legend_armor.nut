@@ -20,18 +20,22 @@ this.legend_armor <- this.inherit("scripts/items/armor/armor", {
 
 	function isArmorNamed()
 	{
-		if (this.isNamed()) {
+		if (this.isNamed())
 			return true;
-		}
-
-		foreach (u in this.m.Upgrades)
-		{
+		foreach (u in this.m.Upgrades) {
 			if (u != null && u.isNamed())
-			{
 				return true;
-			}
 		}
+		return false
+	}
 
+	function isArmorLegendary() {
+		if (this.isItemType(::Const.Items.ItemType.Legendary))
+			return true;
+		foreach (u in this.m.Upgrades) {
+			if (u != null && u.isItemType(::Const.Items.ItemType.Legendary))
+				return true;
+		}
 		return false
 	}
 
@@ -50,10 +54,10 @@ this.legend_armor <- this.inherit("scripts/items/armor/armor", {
 
 	function getIcon()
 	{
+		if (this.isArmorLegendary())
+			return "layers/legendary_icon_glow.png";
 		if (this.isArmorNamed())
-		{
-			return "layers/named_icon_glow.png"
-		}
+			return "layers/named_icon_glow.png";
 		return this.m.Icon;
 	}
 
@@ -87,10 +91,10 @@ this.legend_armor <- this.inherit("scripts/items/armor/armor", {
 
 	function getIconLarge()
 	{
-		if (this.isArmorNamed()) {
-			return "layers/named_inventory_glow.png"
-		}
-
+		if (this.isArmorLegendary())
+			return "layers/legendary_inventory_glow.png";
+		if (this.isArmorNamed())
+			return "layers/named_inventory_glow.png";
 		return this.m.IconLarge != "" ? this.m.IconLarge : null;
 	}
 
@@ -165,7 +169,7 @@ this.legend_armor <- this.inherit("scripts/items/armor/armor", {
 	}
 
 	function getStaminaModifier()
-	{	
+	{
 		return this.getAddedValue("getStaminaModifier", this.m.StaminaModifier);
 	}
 

@@ -56,7 +56,12 @@
 				{
 				R = 15,
 				P = 1.0,
-				S = "weapons/legend_sling"
+				S = "weapons/legend_dilapitated_sling"
+			},
+			{
+				R = 40,
+				P = 1.0,
+				S = "weapons/legend_sturdy_sling"
 			},
 			{
 				R = 30,

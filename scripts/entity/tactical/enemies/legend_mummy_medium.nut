@@ -59,7 +59,7 @@ this.legend_mummy_medium <- this.inherit("scripts/entity/tactical/legend_mummy",
 		else
 		{
 			this.getItems().equip(::Const.World.Common.pickItem([
-				[1, "weapons/legend_sling"]
+				[1, "weapons/legend_dilapitated_sling"]
 			], "scripts/items/"));
 
 			this.getItems().addToBag(::Const.World.Common.pickItem([

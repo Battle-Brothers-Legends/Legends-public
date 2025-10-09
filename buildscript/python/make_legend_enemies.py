@@ -327,9 +327,15 @@ enemies = r"""
 <sprite id="bust_spider_cluster_body_01_wounded" offsetY="35" ic="FF212E38" width="174" height="214" img="entity\beasts\bust_spider_cluster_body_01_wounded.png" left="-41" right="71" top="-53" bottom="43" />
 <sprite id="bust_spider_cluster_body_01_dead" offsetY="30" f="64FF" ic="FF1A262B" width="169" height="139" img="entity\beasts\bust_spider_cluster_body_01_dead.png" left="-71" right="81" top="-64" bottom="50" />
 
-<sprite id="demon_alp_head" offsetX="-5" offsetY="35" ic="FF203653" width="174" height="214" img="entity\beasts\demon_alp_head.png" left="-58" right="38" top="-16" bottom="98" />
-<sprite id="demon_alp_head_dead" offsetY="35" f="64F6" ic="FF1E324C" width="185" height="157" img="entity\beasts\demon_alp_head_dead.png" left="-31" right="93" top="-70" bottom="28" />
-<sprite id="demon_alp_wounds" offsetX="-5" offsetY="35" ic="FF36586C" width="174" height="214" img="entity\beasts\demon_alp_wounds.png" left="-32" right="50" top="-47" bottom="23" />
+<sprite id="bust_demonalp_head_01" offsetY="35" ic="FF6E819D" width="174" height="214" img="entity\beasts\bust_demonalp_head_01.png" left="-51" right="53" top="-22" bottom="58" />
+<sprite id="bust_demonalp_head_01_dead" offsetY="20" f="6401" f1="30" f2="-25" ic="FF61718A" width="169" height="139" img="entity\beasts\bust_demonalp_head_01_dead.png" left="-17" right="59" top="-58" bottom="6" />
+<sprite id="bust_demonalp_head_01_bloodpool" offsetY="20" f="6420" f1="30" f2="-25" width="169" height="139" img="entity\beasts\bust_demonalp_head_01_dead_bloodpool.png" left="-3" right="59" top="-66" bottom="0" />
+<sprite id="bust_demonalp_head_02" offsetY="35" ic="FF7284A0" width="174" height="214" img="entity\beasts\bust_demonalp_head_02.png" left="-44" right="24" top="-30" bottom="52" />
+<sprite id="bust_demonalp_head_02_dead" offsetY="20" f="6401" f1="30" f2="-25" ic="FF677792" width="169" height="139" img="entity\beasts\bust_demonalp_head_02_dead.png" left="-4" right="60" top="-68" bottom="14" />
+<sprite id="bust_demonalp_head_02_bloodpool" offsetY="20" f="6420" f1="30" f2="-25" width="169" height="139" img="entity\beasts\bust_demonalp_head_02_dead_bloodpool.png" left="-2" right="58" top="-60" bottom="18" />
+<sprite id="bust_demonalp_head_03" offsetY="35" ic="FF788BA4" width="174" height="214" img="entity\beasts\bust_demonalp_head_03.png" left="-49" right="21" top="-24" bottom="44" />
+<sprite id="bust_demonalp_head_03_dead" offsetY="20" f="6401" f1="30" f2="-25" ic="FF6D7D95" width="169" height="139" img="entity\beasts\bust_demonalp_head_03_dead.png" left="-21" right="67" top="-61" bottom="13" />
+<sprite id="bust_demonalp_head_03_bloodpool" offsetY="20" f="6420" f1="30" f2="-25" width="169" height="139" img="entity\beasts\bust_demonalp_head_03_dead_bloodpool.png" left="-9" right="63" top="-66" bottom="10" />
 
 <sprite id="bust_alp_human_body_01" offsetY="35" ic="FF4D719A" width="104" height="142" img="entity\beasts\bust_alp_human_body_01.png" top="-48" bottom="10" />
 <sprite id="bust_alp_human_body_02" offsetY="35" ic="FF4D719B" width="104" height="142" img="entity\beasts\bust_alp_human_body_02.png" left="-42" right="40" top="-50" bottom="10" />
@@ -366,8 +372,7 @@ enemies = r"""
 <sprite id="bust_demonalp_head_03" offsetY="35" ic="FF788BA4" width="174" height="214" img="entity\beasts\bust_demonalp_head_03.png" left="-49" right="21" top="-24" bottom="44" />
 <sprite id="bust_demonalp_head_03_dead" offsetY="20" f="64F6" f1="30" f2="-25" ic="FF6D7D95" width="169" height="139" img="entity\beasts\bust_demonalp_head_03_dead.png" left="-21" right="67" top="-61" bottom="13" />
 <sprite id="bust_demonalp_head_03_bloodpool" offsetY="20" f="6420" f1="30" f2="-25" width="169" height="139" img="entity\beasts\bust_demonalp_head_03_dead_bloodpool.png" left="-9" right="63" top="-66" bottom="10" />
-<sprite id="bust_demonalp_head_01" offsetY="35" ic="FF6E819D" width="174" height="214" img="entity\beasts\bust_demonalp_head_01.png" left="-51" right="53" top="-22" bottom="58" />
-<sprite id="bust_demonalp_shadow_01" offsetY="35" ic="FF000000" width="174" height="214" img="entity\beasts\bust_demonalp_shadow_01.png" left="-51" right="53" top="-55" bottom="59" />
+s<sprite id="bust_demonalp_shadow_01" offsetY="35" ic="FF000000" width="174" height="214" img="entity\beasts\bust_demonalp_shadow_01.png" left="-51" right="53" top="-55" bottom="59" />
 <sprite id="bust_demonalp_shadow_02" offsetY="35" ic="FF000000" width="174" height="214" img="entity\beasts\bust_demonalp_shadow_02.png" left="-50" right="48" top="-55" bottom="51" />
 <sprite id="bust_demonalp_shadow_03" offsetY="35" ic="FF000000" width="174" height="214" img="entity\beasts\bust_demonalp_shadow_03.png" left="-50" right="48" top="-55" bottom="43" />
 
@@ -412,8 +417,8 @@ enemies = r"""
 <sprite id="bust_vampire_lord_head_02" offsetY="35" ic="FF3E4C5A" width="104" height="142" img="entity\undead\bust_vampire_lord_head_02.png" left="-17" right="29" top="-12" bottom="48" />
 <sprite id="bust_vampire_lord_head_01" offsetY="35" ic="FF495564" width="104" height="142" img="entity\undead\bust_vampire_lord_head_01.png" left="-17" right="27" top="-30" bottom="44" />
 <sprite id="bust_vampire_lord_dead" offsetY="12" f="64FF" ic="FF465E6A" img="entity\undead\bust_vampire_lord_dead.png" left="-58" right="59" />
-<sprite id="bust_vampire_lady_head_01" offsetY="35" ic="FF495564" width="104" height="142" img="entity\undead\bust_vampire_lady_head_01.png" left="-24" right="25" top="-21" bottom="52" />
-<sprite id="bust_vampire_lady_head_02" offsetY="35" ic="FF495564" width="104" height="142" img="entity\undead\bust_vampire_lady_head_02.png" left="-24" right="25" top="-21" bottom="52" />
+<sprite id="bust_vampire_lady_head_01" offsetY="35" ic="FF495564" width="104" height="142" img="entity\undead\bust_vampire_lady_head_01.png" left="-24" right="28" top="-22" bottom="45" />
+<sprite id="bust_vampire_lady_head_02" offsetY="35" ic="FF495564" width="104" height="142" img="entity\undead\bust_vampire_lady_head_02.png" left="-24" right="28" top="-22" bottom="45" />
 <sprite id="bust_vampire_lady_body_01" offsetY="35" ic="FF5B6878" width="104" height="142" img="entity\undead\bust_vampire_lady_body_01.png" left="-42" right="40" top="-49" bottom="9" />
 <sprite id="bust_vampire_lady_body_02" offsetY="35" ic="FF5B6878" width="104" height="142" img="entity\undead\bust_vampire_lady_body_02.png" left="-42" right="40" top="-49" bottom="9" />
 <sprite id="hair_black_zombie_lady_01" offsetY="35" ic="FF5B6878" width="104" height="142" img="entity\undead\hair_zombie_lady_black_01.png" left="-28" right="28" top="-11" bottom="57" />
@@ -544,6 +549,19 @@ enemies = r"""
 <sprite id="bust_hyena_08" offsetX="-10" offsetY="35" ic="FF1F334E" width="104" height="142" img="entity\beasts\bust_hyena_08.png" top="-58" bottom="30" />
 <sprite id="bust_hyena_08_head" offsetX="-10" offsetY="35" ic="FF2A4059" width="104" height="142" img="entity\beasts\bust_hyena_08_head.png" left="-50" right="10" top="-34" bottom="36" />
 <sprite id="bust_hyena_08_head_dead" offsetX="4" offsetY="24" f="6401" ic="FF283B55" width="179" height="154" img="entity\beasts\bust_hyena_08_head_dead.png" left="-48" right="22" top="-52" bottom="12" />
+<sprite id="mummy_bandage_01" offsetY="35" ic="FF3C6073" width="104" height="142" img="entity\undead\mummybandage_01.png" left="-17" right="29" top="-14" bottom="48" />
+<sprite id="mummy_bandage_01_damaged" offsetY="35" ic="FF3C6073" width="104" height="142" img="entity\undead\mummybandage_01_damaged.png" left="-17" right="29" top="-14" bottom="48" />
+<sprite id="mummy_bandage_02" offsetY="35" ic="FF3C6073" width="104" height="142" img="entity\undead\mummybandage_02.png" left="-28" right="42" top="-22" bottom="48" />
+<sprite id="mummy_bandage_02_damaged" offsetY="35" ic="FF3C6073" width="104" height="142" img="entity\undead\mummybandage_02_damaged.png" left="-28" right="42" top="-22" bottom="48" />
+<sprite id="mummy_bandage_03" offsetY="35" ic="FF3C6073" width="104" height="142" img="entity\undead\mummybandage_03.png" left="-31" right="39" top="-11" bottom="59" />
+<sprite id="mummy_bandage_03_damaged" offsetY="35" ic="FF3C6073" width="104" height="142" img="entity\undead\mummybandage_03_damaged.png" left="-31" right="39" top="-11" bottom="59" />
+<sprite id="mummy_bandage_04" offsetY="35" ic="FF3C6073" width="104" height="142" img="entity\undead\mummybandage_04.png" left="-32" right="38" top="-11" bottom="59" />
+<sprite id="mummy_bandage_04_damaged" offsetY="35" ic="FF3C6073" width="104" height="142" img="entity\undead\mummybandage_04_damaged.png" left="-32" right="38" top="-11" bottom="59" />
+<sprite id="mummy_bandage_04_dead" offsetY="35" ic="FF3C6073" width="104" height="142" img="entity\undead\mummybandage_01_dead.png" left="-17" right="29" top="-14" bottom="48" />
+<sprite id="mummy_bandage_04_dead" offsetY="35" ic="FF3C6073" width="104" height="142" img="entity\undead\mummybandage_01_dead.png" left="-17" right="29" top="-14" bottom="48" />
+<sprite id="mummy_bandage_04_dead" offsetY="35" ic="FF3C6073" width="104" height="142" img="entity\undead\mummybandage_01_dead.png" left="-17" right="29" top="-14" bottom="48" />
+<sprite id="mummy_bandage_04_dead" offsetY="35" ic="FF3C6073" width="104" height="142" img="entity\undead\mummybandage_01_dead.png" left="-17" right="29" top="-14" bottom="48" />
+
 """
 
 

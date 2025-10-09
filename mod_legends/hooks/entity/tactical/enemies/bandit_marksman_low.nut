@@ -14,6 +14,9 @@
 			[
 				"weapons/light_crossbow",
 				"ammo/quiver_of_bolts"
+			],
+			[
+				"weapons/legend_sturdy_sling"
 			]
 		];
 		local n = this.Math.rand(0, weapons.len() - 1);

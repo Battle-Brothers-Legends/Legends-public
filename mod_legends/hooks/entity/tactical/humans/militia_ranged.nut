@@ -19,8 +19,16 @@
 	o.assignRandomEquipment = function ()
 	{
 		local r;
-		this.m.Items.equip(this.new("scripts/items/weapons/short_bow"));
-		this.m.Items.equip(this.new("scripts/items/ammo/quiver_of_arrows"));
+		r = this.Math.rand(1, 2)
+		if (r == 1)
+		{
+			this.m.Items.equip(this.new("scripts/items/weapons/short_bow"));
+			this.m.Items.equip(this.new("scripts/items/ammo/quiver_of_arrows"));
+		}
+		else
+		{
+			this.m.Items.equip(this.new("scripts/items/weapons/legend_sturdy_sling"));
+		}
 		r = this.Math.rand(1, 4);
 
 		if (r == 1)

@@ -3,13 +3,6 @@
 	o.m.AdditionalAccuracy = 10;
 	o.m.AdditionalHitChance = -3;
 
-	local create = o.create;
-	o.create = function ()
-	{
-		create();
-		this.m.Description = "A quick pull of the trigger to loose a heavy bolt. Must be reloaded after each shot to be able to fire again. Knocks targets back. Deals +100 damage to vampires";
-	}
-
 	o.getTooltip = function ()
 	{
 		local tooltip = this.getRangedTooltip(this.getDefaultTooltip());
@@ -35,6 +28,16 @@
 			});
 		}
 
+		if (this.getContainer().hasPerk(::Legends.Perk.LegendBallistics))
+		{
+			tooltip.push({
+				id = 6,
+				type = "text",
+				icon = "ui/icons/direct_damage.png",
+				text = "Up to [color=" + this.Const.UI.Color.PositiveValue + "]+30%[/color] of any damage ignores armor depending on the distance to the target, with the highest bonus in melee and lowest at maximum range"
+			});
+		}
+
 		if (!this.getItem().isLoaded())
 		{
 			tooltip.push({
@@ -55,30 +58,35 @@
 		this.m.AdditionalAccuracy = 10 + this.m.Item.getAdditionalAccuracy();
 	}
 
+	local onTargetHit = o.onTargetHit;
+	o.onTargetHit = function ( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor )
+	{
+		if (_skill != this)
+			return;
+
+		if (::Legends.S.skillEntityAliveCheck(_targetEntity))
+			return;
+
+		::Legends.Effects.grant(_targetEntity, ::Legends.Effect.Staggered);
+		return onTargetHit( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor );
+	}
+
 	o.onAnySkillUsed = function ( _skill, _targetEntity, _properties )
 	{
 		if (_skill != this)
-		{
 			return;
-		}
-
-		if (_targetEntity == null)
-		{
-			return;
-		}
 
 		_properties.RangedSkill += this.m.AdditionalAccuracy;
 		_properties.HitChanceAdditionalWithEachTile += this.m.AdditionalHitChance;
-
-		if (_targetEntity.getType() == this.Const.EntityType.Vampire || _targetEntity.getType() == this.Const.EntityType.LegendVampireLord)
-		{
-			_properties.DamageRegularMin += 100;
-			_properties.DamageRegularMax += 105;
-		}
-
 		if (_properties.IsSharpshooter)
 		{
 			_properties.DamageDirectMult += 0.05;
+		}
+
+		if (_skill == this && this.getContainer().hasPerk(::Legends.Perk.LegendBallistics))
+		{
+			local distance = this.getContainer().getActor().getTile().getDistanceTo(_targetEntity.getTile());
+			_properties.DamageDirectAdd += 0.35 - (distance * 0.05)
 		}
 	}
 

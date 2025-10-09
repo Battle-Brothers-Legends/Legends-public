@@ -53,6 +53,20 @@ this.perk_legend_wind_reader <- this.inherit("scripts/skills/skill", {
 
 	}
 
-
+	function onAnySkillUsed( _skill, _targetEntity, _properties )
+	{
+		if (_targetEntity != null)
+		{	
+			local targetTile = _targetEntity.getTile();
+			local actor = this.getContainer().getActor();
+			local myTile = actor.getTile();
+			local difference = myTile.Level - targetTile.Level;
+			if (difference >= 1)
+			{
+				local weapon = actor.getItems().getItemAtSlot(::Const.ItemSlot.Mainhand);
+				local bonus = 0.05 * difference;
+				_properties.RangedDamageMult *= 1.0 + bonus;
+			}
+		}
+	}
 });
-

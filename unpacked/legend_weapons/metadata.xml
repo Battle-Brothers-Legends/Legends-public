@@ -79,6 +79,9 @@
   <sprite id="icon_club_01_2" offsetY="35" ic="FF2C425B" width="104" height="142" img="icons\icon_club_01_2.png" left="0" right="38" top="-56" bottom="-2" />
   <sprite id="icon_composite_bow_01_1" offsetY="35" ic="FF313F54" width="130" height="142" img="icons\icon_composite_bow_01_1.png" left="2" right="56" top="-66" bottom="6" />
   <sprite id="icon_composite_bow_01_2" offsetY="35" ic="FF313F54" width="130" height="142" img="icons\icon_composite_bow_01_2.png" left="2" right="56" top="-66" bottom="6" />
+  <sprite id="icon_bow_ancient_01" offsetY="35" ic="FF313F54" width="130" height="142" img="icons\icon_bow_ancient_01.png" left="2" right="56" top="-66" bottom="6" />
+  <sprite id="icon_bow_ancient_02" offsetY="35" ic="FF313F54" width="130" height="142" img="icons\icon_bow_ancient_02.png" left="2" right="56" top="-66" bottom="6" />
+  <sprite id="icon_bow_ancient_03" offsetY="35" ic="FF313F54" width="130" height="142" img="icons\icon_bow_ancient_03.png" left="2" right="56" top="-66" bottom="6" />
   <sprite id="icon_crossbow_01_1" offsetY="35" ic="FF39475F" width="130" height="142" img="icons\icon_crossbow_01_1.png" left="-3" right="53" top="-53" bottom="-9" />
   <sprite id="icon_crossbow_01_2" offsetY="35" ic="FF39475F" width="130" height="142" img="icons\icon_crossbow_01_2.png" left="-3" right="53" top="-53" bottom="-9" />
   <sprite id="icon_crossbow_02_1" offsetY="35" ic="FF465D7C" width="130" height="142" img="icons\icon_crossbow_02_1.png" left="-1" right="45" top="-53" bottom="-9" />
@@ -971,4 +974,8 @@
   <sprite id="towershield_noble_10_damaged" offsetY="35" ic="FF15192E" width="100" height="176" img="icons\towershield_noble_10_damaged.png" left="7" right="55" top="-70" bottom="22" />
   <sprite id="towershield_noble_10_destroyed" offsetX="-18" offsetY="30" f="640A" ic="FF15192E" width="176" height="100" img="icons\towershield_noble_10_destroyed.png" top="-30" bottom="22" />
   <sprite id="towershield_noble_10" offsetY="35" ic="FF14182B" width="100" height="176" img="icons\towershield_noble_10.png" left="4" right="62" top="-70" bottom="22" />
+  <sprite id="bust_ancient_quiver_01" offsetY="35" ic="FF2E3439" width="104" height="142" img="icons\bust_ancient_quiver_01.png" left="-38" right="-4" top="-25" bottom="37" />
+  <sprite id="icon_1h_sling_01" offsetY="35" ic="FF484F57" width="104" height="142" img="icons\icon_1h_sling_01.png" left="8" right="48" top="-54" bottom="4" />
+  <sprite id="icon_1h_sling_02" offsetY="35" ic="FF484F57" width="104" height="142" img="icons\icon_1h_sling_02.png" left="8" right="48" top="-54" bottom="4" />
+  <sprite id="icon_named_1h_sling_01" offsetY="35" ic="FF484F57" width="104" height="142" img="icons\icon_named_1h_sling_01.png" left="8" right="48" top="-54" bottom="4" />
 </brush>

@@ -213,7 +213,7 @@
 		foreach( bro in brothers ) {
 			if (bro.getBackground().getID() == "background.monk")
 				candidates_monk.push(bro);
-			else if (bro.getBackground().getID() == "background.messenger" || bro.getBackground().getID() == "background.vagabond" || bro.getBackground().getID() == "background.refugee" || bro.getBackground().getID() == "background.legend_ranger_commander")
+			else if (bro.getBackground().getID() == "background.messenger" || bro.getBackground().getID() == "background.vagabond" || bro.getBackground().getID() == "background.refugee" || bro.getBackground().getID() == "background.legend_commander_ranger")
 				candidates_traveller.push(bro);
 			else if (bro.getBackground().getID() == "background.legend_shieldmaiden")
 				candidates_shieldmaiden.push(bro);

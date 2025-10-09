@@ -147,7 +147,7 @@ this.legend_hidden_effect <- this.inherit("scripts/skills/skill", {
 			{
 			_properties.DamageRegularMax *= 1.5;
 			}
-			if (actor.getSkills().hasSkill("bbackground.legend_commander_assassin"))
+			if (actor.getSkills().hasSkill("background.legend_commander_assassin"))
 			{
 			_properties.DamageRegularMax *= 2.0;
 			}

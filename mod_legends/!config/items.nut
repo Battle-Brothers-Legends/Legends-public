@@ -161,6 +161,7 @@ foreach (i in garbage)
 ::Const.Items.NamedRangedWeapons.extend([
 	"weapons/named/legend_named_northern_sling",
 	"weapons/named/legend_named_nomad_sling",
+	"weapons/named/legend_named_sling",
 	"weapons/named/legend_named_heavy_javelin",
 	"weapons/named/legend_named_heavy_throwing_axe"
 ]);

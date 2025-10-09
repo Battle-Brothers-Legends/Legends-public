@@ -377,15 +377,9 @@
 	o.isNamed <- function ()
 	{
 		if (this.isItemType(this.Const.Items.ItemType.Named))
-		{
 			return true;
-		}
-
 		if (this.isItemType(this.Const.Items.ItemType.Legendary))
-		{
 			return true;
-		}
-
 		return false
 	}
 

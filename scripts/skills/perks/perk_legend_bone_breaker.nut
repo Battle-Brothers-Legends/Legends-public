@@ -34,7 +34,7 @@ this.perk_legend_bone_breaker <- this.inherit("scripts/skills/skill", {
 		local actor = this.getContainer().getActor();
 		local p = _targetEntity.m.Skills.buildPropertiesForBeingHit(actor, _skill, _hitInfo);
 		_targetEntity.m.Items.onBeforeDamageReceived(actor, _skill, _hitInfo, p);
-		local dmgMult = p.DamageReceivedTotalMult * (_skill.isRanged() ? p.DamageReceivedRangedMult : p.DamageReceivedMeleeMult);;
+		local dmgMult = p.DamageReceivedTotalMult * (_skill.isRanged() ? p.DamageReceivedRangedMult : p.DamageReceivedMeleeMult);
 		local armorDamage = _hitInfo.DamageArmor - p.DamageArmorReduction;
 		local armor = p.Armor[_hitInfo.BodyPart] * p.ArmorMult[_hitInfo.BodyPart];
 		armorDamage *= p.DamageReceivedArmorMult * dmgMult;

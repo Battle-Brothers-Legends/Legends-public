@@ -63,8 +63,6 @@ this.legend_recruitment_vala_encounter <- this.inherit("scripts/encounters/encou
 		foreach (bro in ::World.getPlayerRoster().getAll()) {
 			if (bro.getBackground().getID() == "background.legend_vala")
 				return false;
-			if (bro.getBackground().getID() == "background.legend_commander_vala")
-				return false;
 			totalbrothers += 1;
 			brotherlevels += bro.getLevel();
 		}

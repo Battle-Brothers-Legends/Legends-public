@@ -240,7 +240,7 @@ this.legend_companion_ranged_background <- this.inherit("scripts/skills/backgrou
 		}
 		else if (r == 1)
 		{
-			items.equip(this.new("scripts/items/weapons/legend_sling"));
+			items.equip(this.new("scripts/items/weapons/legend_dilapitated_sling"));
 			items.addToBag(this.new("scripts/items/weapons/boar_spear"));
 		}
 		else if (r == 2)
@@ -285,7 +285,7 @@ this.legend_companion_ranged_background <- this.inherit("scripts/skills/backgrou
 		}
 		else if (r == 9)
 		{
-			items.equip(this.new("scripts/items/weapons/legend_sling"));
+			items.equip(this.new("scripts/items/weapons/legend_dilapitated_sling"));
 			items.equip(this.new("scripts/items/shields/legend_tower_shield"));
 			items.addToBag(this.new("scripts/items/weapons/falchion"));
 		}

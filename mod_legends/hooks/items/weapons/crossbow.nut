@@ -3,6 +3,8 @@
 	local create = o.create;
 	o.create = function () {
 		create();
+		this.m.RangeMax = 5;
+		this.m.RangeIdeal = 5;
 		this.m.ItemType = this.Const.Items.ItemType.Weapon | this.Const.Items.ItemType.RangedWeapon | this.Const.Items.ItemType.Defensive | this.Const.Items.ItemType.TwoHanded;
 		this.m.Variant = this.Math.rand(0, 2);
 		this.updateVariant();
@@ -22,6 +24,10 @@
 	{
 		onEquip();
 		::Legends.Actives.grant(this, ::Legends.Active.LegendPiercingBolt);
+		::Legends.Actives.grant(this, ::Legends.Active.LegendStrafingRun);
+		::Legends.Actives.grant(this, ::Legends.Active.KnockOut, function (_skill) {
+			_skill.m.IsRangedKnockOut = true;
+		}.bindenv(this));
 	}
 
 	o.onCombatFinished = function ()
