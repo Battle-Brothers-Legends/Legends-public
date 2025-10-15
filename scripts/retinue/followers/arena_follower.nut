@@ -13,7 +13,7 @@ this.arena_follower <- this.inherit("scripts/retinue/follower", {
 			"Fight up to 3 arena matches per day"
 		];
 		this.addRequirement("Triumph in 5 arena fights ", function() {
-			return ::World.Statistics.getFlags().getAsInt("ArenaFightsWon") >= 5;
+			return true; ::World.Statistics.getFlags().getAsInt("ArenaFightsWon") >= 5;
 		});
 	}
 
