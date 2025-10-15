@@ -1137,6 +1137,11 @@
 	 */
 	local onEnter = o.onEnter;
 	o.onEnter = function () {
+		if (::Legends.S.oneOf(::World.Assets.getOrigin().getID(), "scenario.legend_risen_legion")) {
+			this.m.OnEnter = "event.location.monolith_enter";
+			this.m.OnDestroyed = "event.location.monolith_destroyed";
+			return onEnter();
+		}
 		local ret = onEnter();
 		this.updateEncounters();
 		return ret;

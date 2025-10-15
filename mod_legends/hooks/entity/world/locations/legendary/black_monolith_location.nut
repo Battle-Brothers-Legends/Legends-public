@@ -1,4 +1,4 @@
-::mods_hookExactClass("entity/world/locations/legendary/black_monolith_location", function(o) 
+::mods_hookExactClass("entity/world/locations/legendary/black_monolith_location", function(o)
 {
 	o.onSpawned = function ()
 	{
@@ -98,5 +98,13 @@
 		// _lootTable.push(this.Const.World.Common.pickArmor([
 		// 	[1, ::Legends.Armor.Legendary.legend_emperors_armor]
 		// ]))
+	}
+
+	o.onEnter <- function() {
+		if (::Legends.S.oneOf(::World.Assets.getOrigin().getID(), "scenario.legend_risen_legion")) {
+			::World.State.showCampScreen();
+			return true;
+		}
+		return this.location.onEnter();
 	}
 });
