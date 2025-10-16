@@ -1139,6 +1139,9 @@
 	o.onEnter = function () {
 		local ret = onEnter();
 		this.updateEncounters();
+		if (this.hasBuilding("building.arena")) {
+			this.getBuilding("building.arena").refreshTooltip();
+		}
 		return ret;
 	}
 

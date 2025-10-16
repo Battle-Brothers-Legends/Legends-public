@@ -9,6 +9,10 @@
 		this.m.Attempts.push(::World.getTime().Days)
 	}
 
+	o.refreshTooltip <- function () {
+		this.m.Attempts = this.m.Attempts.filter(@(_, _it) _it == ::World.getTime().Days);
+	}
+
 	local refreshCooldown = o.refreshCooldown;
 	o.refreshCooldown = function () {
 		this.m.Attempts = this.m.Attempts.filter(@(_, _it) _it == ::World.getTime().Days);
