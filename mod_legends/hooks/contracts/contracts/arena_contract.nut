@@ -150,7 +150,7 @@
 					this.Text = "[img]gfx/ui/events/event_147.png[/img]{The arena master talks as if he doesn\'t even remember your face, then again he probably doesn\'t.%SPEECH_ON%Here\'s your pay, please come again.%SPEECH_OFF% | Without even raising his head from a rag of papyrus, the arena master throws you a purse of coin.%SPEECH_ON%I heard the crowds, and so here are your crowns. May you come visit the pits again.%SPEECH_OFF% | The arena master is waiting for you.%SPEECH_ON%That was a mighty fine show, Crownling. Would not mind it in the slightest if you come back again.%SPEECH_OFF%}";
 
 					local arena = this.Contract.getHome().getBuilding("building.arena");
-					if (arena.getCurrentAttempts() == arena.getMaxAttempts()) {
+					if (arena.getCurrentAttempts() == arena.getMaxAttempts() - 1) {
 						this.Text += "The arena will be closed for the day, but you could return as early as tomorrow.";
 					} else {
 						this.Text += "You can continue fighting today if you want.";
