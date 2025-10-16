@@ -95,7 +95,7 @@
 	FatigueRecoveryRate = 15
 };
 
-::Const.Tactical.Actor.Sighthound <- {
+::Const.Tactical.Actor.LegendSighthound <- {
 	XP = 75,
 	ActionPoints = 13,
 	Hitpoints = 45,

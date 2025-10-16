@@ -7,8 +7,8 @@ this.legend_sighthound <- this.inherit("scripts/entity/tactical/wardog", {
 
 	function create() {
 		this.wardog.create();
-		this.m.Type = this.Const.EntityType.Sighthound;
-		this.m.XP = this.Const.Tactical.Actor.Sighthound.XP;
+		this.m.Type = this.Const.EntityType.LegendSighthound;
+		this.m.XP = this.Const.Tactical.Actor.LegendSighthound.XP;
 		this.m.SoundPitch = this.Math.rand(85, 105) * 0.01;
 	}
 
@@ -25,7 +25,7 @@ this.legend_sighthound <- this.inherit("scripts/entity/tactical/wardog", {
 
 		// stats
 		local b = m.BaseProperties;
-		b.setValues(Const.Tactical.Actor.Sighthound);
+		b.setValues(::Const.Tactical.Actor.LegendSighthound);
 		b.TargetAttractionMult = 0.1;
 		b.IsAffectedByInjuries = false;
 		b.IsImmuneToDisarm = true;

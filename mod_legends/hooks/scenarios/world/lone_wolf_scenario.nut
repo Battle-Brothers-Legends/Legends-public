@@ -220,15 +220,15 @@
 			_draftList.push("juggler_background");
 			_draftList.push("barbarian_background");
 			_draftList.push("bastard_background");
-			_draftList.push("blacksmith_background");	
+			_draftList.push("legend_blacksmith_background");
 		}
 
 		if (this.World.Assets.getBusinessReputation() > 2500) { //high tier
 			_draftList.push("adventurous_noble_background");
 			_draftList.push("disowned_noble_background");
-			_draftList.push("beast_hunter_background");	
+			_draftList.push("beast_hunter_background");
 			_draftList.push("witchhunter_background");
-			_draftList.push("legend_shieldmaiden_background");	
+			_draftList.push("legend_shieldmaiden_background");
 			_draftList.push("raider_background");
 		}
 
@@ -251,7 +251,7 @@
 			_draftList.push("legend_conscript_background");
 			_draftList.push("paladin_background");
 			_draftList.push("legend_inventor_background");
-			_draftList.push("legend_berserker_background");	
+			_draftList.push("legend_berserker_background");
 		}
 	}
 
