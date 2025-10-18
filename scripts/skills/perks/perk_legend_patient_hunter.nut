@@ -74,7 +74,7 @@ this.perk_legend_patient_hunter <- this.inherit("scripts/skills/skill", {
 			_properties.DamageTotalMult *= 1.1;
 			_properties.RangedSkill += 5;
 			_properties.MeleeSkill += 5;
-			_properties.DamageDirectMult += 0.05;
+			_properties.DamageDirectAdd += 0.05;
 			_properties.TargetAttractionMult *= 1.5;
 		}
 	}
