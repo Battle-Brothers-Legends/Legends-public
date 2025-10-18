@@ -100,6 +100,7 @@ this.legend_assassin_commander_background <- this.inherit("scripts/skills/backgr
 				::Legends.Perk.LegendFeint,
 				::Legends.Perk.LegendDebilitate,
 				::Legends.Perk.LegendOnslaught,
+				::Legends.Perk.Relentless,
 				::Legends.Perk.LegendPrepared,
 				::Legends.Perk.LegendFavouredEnemyBandit
 			],
