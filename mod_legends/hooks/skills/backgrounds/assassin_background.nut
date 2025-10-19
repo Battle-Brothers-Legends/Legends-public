@@ -78,8 +78,8 @@
 			],
 			Enemy = [
 				this.Const.Perks.SwordmastersTree,
-				this.Const.Perks.NoblesTree,
-				this.Const.Perks.MercenaryTree
+				this.Const.Perks.CivilizationTree,
+				this.Const.Perks.OutlawTree
 			],
 			Class = [],
 			Profession = [],

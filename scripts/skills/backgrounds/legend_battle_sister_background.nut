@@ -65,8 +65,7 @@ this.legend_battle_sister_background <- this.inherit("scripts/skills/backgrounds
 				this.Const.Perks.SturdyTree
 			],
 			Enemy = [
-				this.Const.Perks.ZombieTree,
-				this.Const.Perks.SkeletonTree
+				this.Const.Perks.UndeadTree
 			],
 			Class = [
 				this.Const.Perks.FaithClassTree

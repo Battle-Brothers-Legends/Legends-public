@@ -55,10 +55,10 @@
 				this.Const.Perks.MartyrTree
 			],
 			Enemy = [
-				this.Const.Perks.NoblesTree
+				this.Const.Perks.CivilizationTree
 			],
 			Class = [],
-			Profession = [], 
+			Profession = [],
 			Magic = []
 		}
 	}
@@ -100,7 +100,7 @@
 				this.Const.Perks.TrainedTree
 			],
 			Enemy = [
-				this.Const.Perks.ArchersTree
+				this.Const.Perks.OutlawTree
 			],
 			Class = [],
 			Magic = []

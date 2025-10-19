@@ -79,8 +79,8 @@
 				this.Const.Perks.IndestructibleTree
 			],
 			Enemy = [
-				this.Const.Perks.CaravanTree,
-				this.Const.Perks.NoblesTree
+				this.Const.Perks.CivilizationTree,
+				this.Const.Perks.CivilizationTree
 			],
 			Class = [
 				this.Const.Perks.NinetailsClassTree,

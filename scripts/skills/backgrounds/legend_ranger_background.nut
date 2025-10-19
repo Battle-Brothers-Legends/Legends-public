@@ -96,10 +96,8 @@ this.legend_ranger_background <- this.inherit("scripts/skills/backgrounds/charac
 				this.Const.Perks.AgileTree
 			],
 			Enemy = [
-				this.Const.Perks.BeastsTree,
-				this.Const.Perks.UnholdTree,
-				this.Const.Perks.SchratTree,
-				this.Const.Perks.ArchersTree
+				this.Const.Perks.BeastTree,
+				this.Const.Perks.OccultTree,
 			],
 			Class = [
 				this.Const.Perks.BeastClassTree

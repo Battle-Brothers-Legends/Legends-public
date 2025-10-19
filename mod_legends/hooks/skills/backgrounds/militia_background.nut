@@ -50,8 +50,8 @@
 				this.Const.Perks.AgileTree
 			],
 			Enemy = [
-				this.Const.Perks.BanditTree,
-				this.Const.Perks.BarbarianTree
+				this.Const.Perks.OutlawTree,
+				this.Const.Perks.OutlawTree
 			],
 			Class = [
 				this.Const.Perks.MilitiaClassTree

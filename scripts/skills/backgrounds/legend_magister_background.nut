@@ -73,7 +73,7 @@ this.legend_magister_background <- this.inherit("scripts/skills/backgrounds/char
 				this.Const.Perks.PolearmTree
 			],
 			Defense = [
-				this.Const.Perks.ClothArmorTree
+				this.Const.Perk.ClothArmorTree
 			],
 			Traits = [
 				this.Const.Perks.CalmTree,
@@ -81,8 +81,8 @@ this.legend_magister_background <- this.inherit("scripts/skills/backgrounds/char
 				this.Const.Perks.InspirationalTree
 			],
 			Enemy = [
-				this.Const.Perks.CaravanTree,
-				this.Const.Perks.NoblesTree
+				this.Const.Perks.CivilizationTree,
+				this.Const.Perks.CivilizationTree
 			],
 			Class = [
 				this.Const.Perks.NinetailsClassTree,

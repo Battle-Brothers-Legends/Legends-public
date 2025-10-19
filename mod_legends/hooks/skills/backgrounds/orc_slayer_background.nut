@@ -98,9 +98,8 @@
 				this.Const.Perks.LargeTree
 			],
 			Enemy = [
-					this.Const.Perks.OrcTree,
-					this.Const.Perks.GoblinTree,
-					this.Const.Perks.UnholdTree,
+					this.Const.Perks.GreenskinTree,
+					this.Const.Perks.BeastTree,
 					],
 			Class = [],
 			Profession = [],

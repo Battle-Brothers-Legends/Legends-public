@@ -72,8 +72,8 @@
 				this.Const.Perks.ViciousTree
 			],
 			Enemy = [
-				this.Const.Perks.CaravanTree,
-				this.Const.Perks.MercenaryTree
+				this.Const.Perks.CivilizationTree,
+				this.Const.Perks.OutlawTree
 			],
 			Class = [
 				this.Const.Perks.RaiderClassTree

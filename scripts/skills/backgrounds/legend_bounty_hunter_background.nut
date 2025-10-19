@@ -107,7 +107,7 @@ this.legend_bounty_hunter_background <- this.inherit("scripts/skills/backgrounds
 			Enemy = [
 				this.Const.Perks.NomadsTree,
 				this.Const.Perks.SwordmastersTree,
-				this.Const.Perks.MercenaryTree
+				this.Const.Perks.OutlawTree
 			],
 			Class = [],
 			Profession = [],

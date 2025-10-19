@@ -97,7 +97,7 @@ this.legend_preserver_background <- this.inherit("scripts/skills/backgrounds/cha
 		[
 			::Legends.Perk.Backstabber,
 			::Legends.Perk.LegendDebilitate,
-			::Legends.Perk.LegendFavouredEnemyCaravan,
+			::Legends.Perk.LegendFavouredEnemyCivilization,
 			::Legends.Perk.LegendLookout,
 			::Legends.Perk.RallyTheTroops,
 			::Legends.Perk.InspiringPresence,
@@ -118,7 +118,7 @@ this.legend_preserver_background <- this.inherit("scripts/skills/backgrounds/cha
 		[
 			::Legends.Perk.Nimble,
 			::Legends.Perk.LegendSpecStaffStun,
-			::Legends.Perk.LegendFavouredEnemyGhoul,
+			::Legends.Perk.LegendFavouredEnemyBeast,
 			::Legends.Perk.LegendBlendIn,
 			::Legends.Perk.LegendMindOverBody,
 			::Legends.Perk.LegendMedIngredients,
@@ -129,7 +129,7 @@ this.legend_preserver_background <- this.inherit("scripts/skills/backgrounds/cha
 			::Legends.Perk.LegendClarity,
 			::Legends.Perk.LegendReclamation,
 			::Legends.Perk.LegendHerbcraft,
-			::Legends.Perk.LegendFavouredEnemyHexen,
+			::Legends.Perk.LegendFavouredEnemyOccult,
 			::Legends.Perk.LegendRebound
 		],
 		[

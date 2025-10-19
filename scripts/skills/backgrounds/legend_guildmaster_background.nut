@@ -92,14 +92,8 @@ this.legend_guildmaster_background <- this.inherit("scripts/skills/backgrounds/c
 				this.Const.Perks.TrainedTree
 			],
 			Enemy = [
-				this.Const.Perks.SchratTree,
-				this.Const.Perks.LindwurmTree,
-				this.Const.Perks.AlpTree,
-				this.Const.Perks.HexenTree,
-				this.Const.Perks.DirewolfTree,
-				this.Const.Perks.SpiderTree,
-				this.Const.Perks.GhoulTree,
-				this.Const.Perks.UnholdTree
+				this.Const.Perks.BeastTree,
+				this.Const.Perks.OccultTree,
 			],
 			Class = [
 				this.Const.Perks.BeastClassTree

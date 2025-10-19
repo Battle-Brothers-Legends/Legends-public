@@ -64,7 +64,7 @@
 				talents[this.Const.Attributes.MeleeSkill] = 3;
 				talents[this.Const.Attributes.Bravery] = 3;
 				::Legends.Perks.grant(_event.m.Dude, ::Legends.Perk.CoupDeGrace);
-				::Legends.Perks.grant(_event.m.Dude, ::Legends.Perk.LegendFavouredEnemySoutherner);
+				::Legends.Perks.grant(_event.m.Dude, ::Legends.Perk.LegendFavouredEnemyCivilization);
 				::Legends.Traits.grant(_event.m.Dude, ::Legends.Trait.LegendTalented);
 				::Legends.Traits.grant(_event.m.Dude, ::Legends.Trait.LegendPragmatic);
 				_event.m.Dude.worsenMood(1.0, "Got taken captive by manhunters");

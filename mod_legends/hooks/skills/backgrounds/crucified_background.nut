@@ -65,8 +65,8 @@
 				this.Const.Perks.FitTree
 			],
 			Enemy = [
-					this.Const.Perks.NomadsTree,
-					this.Const.Perks.NoblesTree
+					this.Const.Perks.OutlawTree,
+					this.Const.Perks.CivilizationTree
 					],
 			Class = [],
 			Profession = [],

@@ -51,13 +51,13 @@
 				this.Const.Perks.FastTree
 			],
 			Enemy = [
-				this.Const.Perks.LindwurmTree
+				this.Const.Perks.BeastTree
 			],
 			Class = [
 				this.Const.Perks.BeastClassTree,
 				this.Const.Perks.SpearfisherClassTree
 			],
-			Profession = [], 
+			Profession = [],
 			Magic = []
 		}
 	}

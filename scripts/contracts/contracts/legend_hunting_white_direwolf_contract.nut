@@ -4,8 +4,8 @@ this.legend_hunting_white_direwolf_contract <- this.inherit("scripts/contracts/c
 		Dude = null,
 		IsPlayerAttacking = true,
 		MinStrength = 10, // player needs to earn 10% of bonus (not including base 5% bonus) for this contract to be valid
-		Perk = ::Legends.Perk.LegendFavouredEnemyDirewolf,
-		ValidTypes = this.Const.LegendMod.FavoriteDirewolf,
+		Perk = ::Legends.Perk.LegendFavouredEnemyBeast,
+		ValidTypes = this.Const.LegendMod.FavoriteBeast,
 		LevelSumRequiredForRandomSpawn = 50,
 		IsRandomlyAdded = null,
 	},
@@ -144,7 +144,7 @@ this.legend_hunting_white_direwolf_contract <- this.inherit("scripts/contracts/c
 
 					foreach( bro in bros )
 					{
-						if (bro.getBackground().getID() == "background.houndmaster" || bro.getBackground().getID() == "background.wildman" || bro.getBackground().getID() == "background.beast_slayer" || bro.getBackground().getID() == "background.legend_muladi" || bro.getBackground().getID() == "background.legend_ranger" || bro.getBackground().getID() == "background.legend_vala" || bro.getBackground().getID() == "background.legend_commander_ranger" || bro.getSkills().hasPerk(::Legends.Perk.LegendFavouredEnemyDirewolf))
+						if (bro.getBackground().getID() == "background.houndmaster" || bro.getBackground().getID() == "background.wildman" || bro.getBackground().getID() == "background.beast_slayer" || bro.getBackground().getID() == "background.legend_muladi" || bro.getBackground().getID() == "background.legend_ranger" || bro.getBackground().getID() == "background.legend_vala" || bro.getBackground().getID() == "background.legend_commander_ranger" || bro.getSkills().hasPerk(::Legends.Perk.LegendFavouredEnemyBeast))
 						{
 							candidates.push(bro);
 						}

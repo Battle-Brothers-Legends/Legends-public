@@ -107,8 +107,7 @@ this.legend_berserker_background <- this.inherit("scripts/skills/backgrounds/cha
 				this.Const.Perks.FitTree
 			],
 			Enemy = [
-				this.Const.Perks.OrcTree,
-				this.Const.Perks.GoblinTree
+				this.Const.Perks.GreenskinTree
 			],
 			Class = [],
 			Profession = [],

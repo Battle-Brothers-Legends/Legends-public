@@ -51,8 +51,8 @@
 				this.Const.Perks.SturdyTree
 			],
 			Enemy = [
-				this.Const.Perks.GhoulTree,
-				this.Const.Perks.ZombieTree
+				this.Const.Perks.BeastTree,
+				this.Const.Perks.UndeadTree
 			],
 			Class = [
 				this.Const.Perks.ShovelClassTree

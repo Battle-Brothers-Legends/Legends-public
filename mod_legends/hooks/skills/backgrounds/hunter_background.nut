@@ -90,15 +90,13 @@
 				this.Const.Perks.DeviousTree
 			],
 			Enemy = [
-				this.Const.Perks.DirewolfTree,
-				this.Const.Perks.SpiderTree,
-				this.Const.Perks.SchratTree,
-				this.Const.Perks.ArcherTree
+				this.Const.Perks.BeastTree,
+				this.Const.Perks.OccultTree,
 			],
 			Class = [
 				this.Const.Perks.SharpshooterClassTree
 			],
-			Profession = [], 
+			Profession = [],
 			Magic = []
 		}
 	}

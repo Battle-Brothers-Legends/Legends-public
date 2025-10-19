@@ -77,8 +77,8 @@
 			Enemy = [
 				this.Const.Perks.NomadsTree,
 				this.Const.Perks.SouthernersTree,
-				this.Const.Perks.BanditTree,
-				this.Const.Perks.BarbarianTree
+				this.Const.Perks.OutlawTree,
+				this.Const.Perks.OutlawTree
 			],
 			Class = [
 				this.Const.Perks.BeastClassTree

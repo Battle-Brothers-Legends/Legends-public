@@ -70,7 +70,7 @@
 				this.Const.Perks.InspirationalTree
 			],
 			Enemy = [
-				this.Const.Perks.NoblesTree
+				this.Const.Perks.CivilizationTree
 			],
 			Class = [
 				this.Const.Perks.JugglerClassTree

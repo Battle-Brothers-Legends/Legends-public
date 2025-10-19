@@ -77,15 +77,15 @@
 				this.Const.Perks.DeviousTree
 			],
 			Enemy = [
-				this.Const.Perks.NoblesTree,
+				this.Const.Perks.CivilizationTree,
 				this.Const.Perks.SouthernersTree,
-				this.Const.Perks.MercenaryTree
+				this.Const.Perks.OutlawTree
 			],
 			Class = [
 				this.Const.Perks.KnifeClassTree,
 				this.Const.Perks.ConArtistTree
 			],
-			Profession = [], 
+			Profession = [],
 			Magic = []
 		}
 	}

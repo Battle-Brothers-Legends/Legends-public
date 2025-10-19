@@ -54,10 +54,10 @@
 				this.Const.Perks.LargeTree
 			],
 			Enemy = [
-				this.Const.Perks.NoblesTree
+				this.Const.Perks.CivilizationTree
 			],
 			Class = [],
-			Profession = [], 
+			Profession = [],
 			Magic = []
 		}
 	}

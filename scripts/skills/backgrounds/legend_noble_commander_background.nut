@@ -89,7 +89,7 @@ this.legend_noble_commander_background <- this.inherit("scripts/skills/backgroun
 				this.Const.Perks.InspirationalTree
 			],
 			Enemy = [
-				this.Const.Perks.OutlandersTree,
+				this.Const.Perks.OutlawTree,
 				this.Const.Perks.CivilizationTree
 			],
 			Class = [],

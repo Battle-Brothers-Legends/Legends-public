@@ -81,7 +81,7 @@ this.legend_leech_peddler_background <- this.inherit("scripts/skills/backgrounds
 				this.Const.Perks.CalmTree
 			],
 			Enemy = [
-				this.Const.Perks.LindwurmTree //lol, lmao.
+				this.Const.Perks.BeastTree //lol, lmao.
 			],
 			Class = [
 				this.Const.Perks.SickleClassTree,

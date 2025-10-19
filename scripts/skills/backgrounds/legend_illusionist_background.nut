@@ -66,7 +66,7 @@ this.legend_illusionist_background <- this.inherit("scripts/skills/backgrounds/c
 				this.Const.Perks.InspirationalTree
 			],
 			Enemy = [
-				this.Const.Perks.AlpTree
+				this.Const.Perks.OccultTree
 			],
 			Class = [],
 			Profession = [],

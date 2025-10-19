@@ -58,8 +58,8 @@ this.legend_man_at_arms_background <- this.inherit("scripts/skills/backgrounds/c
 				this.Const.Perks.FitTree
 			],
 			Enemy = [
-				this.Const.Perks.BanditTree,
-				this.Const.Perks.DirewolfTree
+				this.Const.Perks.OutlawTree,
+				this.Const.Perks.BeastTree
 			],
 			Class = [
 				this.Const.Perks.MilitiaClassTree

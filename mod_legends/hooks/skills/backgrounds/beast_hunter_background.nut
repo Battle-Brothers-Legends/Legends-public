@@ -93,19 +93,13 @@
 				this.Const.Perks.FitTree
 			],
 			Enemy = [
-				this.Const.Perks.SchratTree,
-				this.Const.Perks.LindwurmTree,
-				this.Const.Perks.AlpTree,
-				this.Const.Perks.HexenTree,
-				this.Const.Perks.DirewolfTree,
-				this.Const.Perks.SpiderTree,
-				this.Const.Perks.GhoulTree,
-				this.Const.Perks.UnholdTree
+				this.Const.Perks.OccultTree,
+				this.Const.Perks.BeastTree,
 			],
 			Class = [
 				this.Const.Perks.BeastClassTree
 			],
-			Profession = [], 
+			Profession = [],
 			Magic = []
 		}
 	}

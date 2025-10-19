@@ -71,15 +71,14 @@
 				this.Const.Perks.InspirationalTree
 			],
 			Enemy = [
-				this.Const.Perks.ZombieTree,
-				this.Const.Perks.VampireTree
+				this.Const.Perks.UndeadTree
 			],
 			Class = [
 				this.Const.Perks.FaithClassTree
 			],
 			Profession = [
 				this.Const.Perks.HealerProfessionTree
-			], 
+			],
 			Magic = []
 		}
 	}

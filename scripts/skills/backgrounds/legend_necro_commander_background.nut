@@ -121,7 +121,7 @@ this.legend_necro_commander_background <- this.inherit("scripts/skills/backgroun
 				[
 					::Legends.Perk.LegendMiasma,
 					::Legends.Perk.LegendDebilitate,
-					::Legends.Perk.LegendFavouredEnemyCaravan,
+					::Legends.Perk.LegendFavouredEnemyCivilization,
 					::Legends.Perk.LegendSpawnZombieMed,
 					::Legends.Perk.LegendChanneledPower,
 					::Legends.Perk.LegendSpecialistSelfdefense,
@@ -142,7 +142,7 @@ this.legend_necro_commander_background <- this.inherit("scripts/skills/backgroun
 					::Legends.Perk.LegendLacerate,
 					::Legends.Perk.LegendLithe,
 					::Legends.Perk.LegendSpecStaffStun,
-					::Legends.Perk.LegendFavouredEnemyGhoul,
+					::Legends.Perk.LegendFavouredEnemyBeast,
 					::Legends.Perk.LegendViolentDecomposition,
 					::Legends.Perk.LegendMedIngredients,
 					::Legends.Perk.LegendConservation,
@@ -150,8 +150,7 @@ this.legend_necro_commander_background <- this.inherit("scripts/skills/backgroun
 					::Legends.Perk.LegendSpawnZombieHigh
 				],
 				[
-					::Legends.Perk.LegendFavouredEnemyHexen,
-					::Legends.Perk.LegendFavouredEnemyAlps,
+					::Legends.Perk.LegendFavouredEnemyOccult,
 					::Legends.Perk.LegendGruesomeFeast,
 					::Legends.Perk.LegendHerbcraft,
 					::Legends.Perk.LegendRebound,

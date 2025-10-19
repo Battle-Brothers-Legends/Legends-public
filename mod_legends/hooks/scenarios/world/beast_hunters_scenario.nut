@@ -1,13 +1,7 @@
 ::mods_hookExactClass("scenarios/world/beast_hunters_scenario", function (o) {
 	o.m.FavouredEnemyPerks <- [
-		::Legends.Perk.LegendFavouredEnemyGhoul,
-		::Legends.Perk.LegendFavouredEnemyHexen,
-		::Legends.Perk.LegendFavouredEnemyAlps,
-		::Legends.Perk.LegendFavouredEnemyUnhold,
-		::Legends.Perk.LegendFavouredEnemyLindwurm,
-		::Legends.Perk.LegendFavouredEnemyDirewolf,
-		::Legends.Perk.LegendFavouredEnemySpider,
-		::Legends.Perk.LegendFavouredEnemySchrat,
+		::Legends.Perk.LegendFavouredEnemyOccult,
+		::Legends.Perk.LegendFavouredEnemyBeast,
 	];
 
 	o.create <- function ()

@@ -88,7 +88,6 @@ this.legend_assassin_commander_background <- this.inherit("scripts/skills/backgr
 				::Legends.Perk.Bullseye,
 				::Legends.Perk.HoldOut,
 				::Legends.Perk.LegendOpportunist,
-				::Legends.Perk.LegendFavouredEnemyCaravan
 			],
 			[
 				::Legends.Perk.LegendBoondockBlade,
@@ -101,7 +100,6 @@ this.legend_assassin_commander_background <- this.inherit("scripts/skills/backgr
 				::Legends.Perk.LegendDebilitate,
 				::Legends.Perk.LegendOnslaught,
 				::Legends.Perk.LegendPrepared,
-				::Legends.Perk.LegendFavouredEnemyBandit
 			],
 			[
 				::Legends.Perk.SpecDagger,
@@ -112,7 +110,6 @@ this.legend_assassin_commander_background <- this.inherit("scripts/skills/backgr
 				::Legends.Perk.SpecCrossbow,
 				::Legends.Perk.LegendSpecPoison,
 				::Legends.Perk.LegendLurker,
-				::Legends.Perk.LegendFavouredEnemyMercenary
 			],
 			[
 				::Legends.Perk.LegendPushTheAdvantage,
@@ -123,7 +120,8 @@ this.legend_assassin_commander_background <- this.inherit("scripts/skills/backgr
 				::Legends.Perk.Overwhelm,
 				::Legends.Perk.LegendVengeance,
 				::Legends.Perk.LegendLithe,
-				::Legends.Perk.LegendFavouredEnemyNoble
+				::Legends.Perk.LegendFavouredEnemyCivilization
+				::Legends.Perk.LegendFavouredEnemyOutlaw
 			],
 			[
 				::Legends.Perk.LegendLeap,

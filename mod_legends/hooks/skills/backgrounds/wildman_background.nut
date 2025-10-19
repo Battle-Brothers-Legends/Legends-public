@@ -103,8 +103,7 @@
 				this.Const.Perks.FitTree
 			],
 			Enemy = [
-				this.Const.Perks.OrcTree,
-				this.Const.Perks.GoblinTree
+				this.Const.Perks.GreenskinTree
 			],
 			Class = [
 				this.Const.Perks.ClubClassTree

@@ -58,13 +58,13 @@
 				this.Const.Perks.DeviousTree
 			],
 			Enemy = [
-				this.Const.Perks.NoblesTree,
-				this.Const.Perks.BanditTree
+				this.Const.Perks.CivilizationTree,
+				this.Const.Perks.OutlawTree
 					],
 			Class = [],
 			Profession = [
 				this.Const.Perks.BarterProfessionTree
-			], 
+			],
 			Magic = []
 		}
 		this.m.Bodies = this.Const.Bodies.Thick;

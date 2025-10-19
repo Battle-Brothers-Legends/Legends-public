@@ -73,8 +73,8 @@
 				this.Const.Perks.FitTree
 			],
 			Enemy = [
-				this.Const.Perks.BanditTree,
-				this.Const.Perks.BarbarianTree
+				this.Const.Perk.OutlawTree,
+				this.Const.Perks.OutlawTree
 			],
 			Class = [
 				this.Const.Perks.LongswordClassTree

@@ -16,7 +16,7 @@
 				this.Const.Perks.CrossbowTree
 			],
 			Defense = [
-				this.Const.Perks.HeavyArmorTree,	
+				this.Const.Perks.HeavyArmorTree,
 				this.Const.Perks.LightArmorTree
 			],
 			Traits = [
@@ -29,11 +29,10 @@
 				this.Const.Perks.IntelligentTree
 			],
 			Enemy = [
-				this.Const.Perks.ZombieTree,
-				this.Const.Perks.SkeletonTree
+				this.Const.Perks.UndeadTree
 			],
 			Class = [],
-			Profession = [], 
+			Profession = [],
 			Magic = []
 		}
 	}

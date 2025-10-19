@@ -127,7 +127,7 @@ this.mage_legend_mage_commander_background <- this.inherit("scripts/skills/backg
 				::Legends.Perk.LegendMagicTeleport,
 				::Legends.Perk.LegendMagicMissileMastery,
 				::Legends.Perk.LegendPerfectFocus,
-				::Legends.Perk.LegendFavouredEnemyHexen,
+				::Legends.Perk.LegendFavouredEnemyOccult,
 				::Legends.Perk.LegendFreedomOfMovement,
 				::Legends.Perk.LegendFieldTriage,
 			],

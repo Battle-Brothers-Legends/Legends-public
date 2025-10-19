@@ -94,8 +94,7 @@ this.legend_pilgrim_background <- this.inherit("scripts/skills/backgrounds/chara
 				this.Const.Perks.IndestructibleTree
 			],
 			Enemy = [
-				this.Const.Perks.ZombieTree,
-				this.Const.Perks.SkeletonTree
+				this.Const.Perks.UndeadTree
 			],
 			Class = [
 				this.Const.Perks.FaithClassTree

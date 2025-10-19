@@ -77,10 +77,7 @@ this.legend_beggar_commander_op_background <- this.inherit("scripts/skills/backg
 				::Legends.Perk.Rotation,
 				::Legends.Perk.RallyTheTroops,
 				::Legends.Perk.Taunt,
-				::Legends.Perk.LegendFavouredEnemyGhoul,
-				::Legends.Perk.LegendFavouredEnemyDirewolf,
-				::Legends.Perk.LegendFavouredEnemySpider,
-				::Legends.Perk.LegendFavouredEnemyCaravan
+				::Legends.Perk.LegendFavouredEnemyBeast,
 			],
 			[
 				::Legends.Perk.SpecMace,
@@ -101,36 +98,24 @@ this.legend_beggar_commander_op_background <- this.inherit("scripts/skills/backg
 				::Legends.Perk.LoneWolf,
 				::Legends.Perk.ReachAdvantage,
 				::Legends.Perk.Overwhelm,
-				::Legends.Perk.LegendFavouredEnemySkeleton,
-				::Legends.Perk.LegendFavouredEnemyZombie,
-				::Legends.Perk.LegendFavouredEnemyOrk,
-				::Legends.Perk.LegendFavouredEnemyGoblin,
-				::Legends.Perk.LegendFavouredEnemyMercenary,
-				::Legends.Perk.LegendFavouredEnemyBandit
+				::Legends.Perk.LegendFavouredEnemyUndead,
+				::Legends.Perk.LegendFavouredEnemyGreenskin
+				::Legends.Perk.LegendFavouredEnemyCivilization,
+				::Legends.Perk.LegendFavouredEnemyOutlaw
 			],
 			[
 				::Legends.Perk.HeadHunter,
 				::Legends.Perk.Berserk,
 				::Legends.Perk.Nimble,
 				::Legends.Perk.BattleForged,
-				::Legends.Perk.LegendFavouredEnemyLindwurm,
-				::Legends.Perk.LegendFavouredEnemySchrat,
-				::Legends.Perk.LegendFavouredEnemyUnhold,
-				::Legends.Perk.LegendFavouredEnemyNoble,
-				::Legends.Perk.LegendFavouredEnemyBarbarian,
-				::Legends.Perk.LegendFavouredEnemyArcher,
 				::Legends.Perk.LegendFavouredEnemySwordmaster,
-				::Legends.Perk.LegendFavouredEnemySoutherner
 			],
 			[
 				::Legends.Perk.Fearsome,
 				::Legends.Perk.Duelist,
 				::Legends.Perk.KillingFrenzy,
 				::Legends.Perk.Indomitable,
-				::Legends.Perk.LegendFavouredEnemyHexen,
-				::Legends.Perk.LegendFavouredEnemyAlps,
-				::Legends.Perk.LegendFavouredEnemyVampire,
-				::Legends.Perk.LegendFavouredEnemyNomad
+				::Legends.Perk.LegendFavouredEnemyOccult,
 			],
 			[],
 			[],
@@ -228,42 +213,42 @@ this.legend_beggar_commander_op_background <- this.inherit("scripts/skills/backg
 			return;
 		}
 
-		if(actor.getBaseProperties().Hitpoints < _targetEntity.getBaseProperties().Hitpoints) 
+		if(actor.getBaseProperties().Hitpoints < _targetEntity.getBaseProperties().Hitpoints)
 		{
 			actor.getBaseProperties().Hitpoints += 1;
 			this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(actor) + " gained 1 Hitpoint from " + this.Const.UI.getColorizedEntityName(_targetEntity) + "!");
 		}
-		if(actor.getBaseProperties().Bravery < _targetEntity.getBaseProperties().Bravery) 
+		if(actor.getBaseProperties().Bravery < _targetEntity.getBaseProperties().Bravery)
 		{
 			actor.getBaseProperties().Bravery += 1;
 			this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(actor) + " gained 1 Resolve from " + this.Const.UI.getColorizedEntityName(_targetEntity) + "!");
 		}
-		if(actor.getBaseProperties().Stamina < _targetEntity.getBaseProperties().Stamina) 
+		if(actor.getBaseProperties().Stamina < _targetEntity.getBaseProperties().Stamina)
 		{
 			actor.getBaseProperties().Stamina += 1;
 			this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(actor) + " gained 1 Stamina from " + this.Const.UI.getColorizedEntityName(_targetEntity) + "!");
 		}
-		if(actor.getBaseProperties().MeleeSkill < _targetEntity.getBaseProperties().MeleeSkill) 
+		if(actor.getBaseProperties().MeleeSkill < _targetEntity.getBaseProperties().MeleeSkill)
 		{
 			actor.getBaseProperties().MeleeSkill += 1;
 			this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(actor) + " gained 1 Melee Attack from " + this.Const.UI.getColorizedEntityName(_targetEntity) + "!");
 		}
-		if(actor.getBaseProperties().RangedSkill < _targetEntity.getBaseProperties().RangedSkill) 
+		if(actor.getBaseProperties().RangedSkill < _targetEntity.getBaseProperties().RangedSkill)
 		{
 			actor.getBaseProperties().RangedSkill += 1;
 			this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(actor) + " gained 1 Ranged Attack from " + this.Const.UI.getColorizedEntityName(_targetEntity) + "!");
 		}
-		if(actor.getBaseProperties().MeleeDefense < _targetEntity.getBaseProperties().MeleeDefense) 
+		if(actor.getBaseProperties().MeleeDefense < _targetEntity.getBaseProperties().MeleeDefense)
 		{
 			actor.getBaseProperties().MeleeDefense += 1;
 			this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(actor) + " gained 1 Melee Defense from " + this.Const.UI.getColorizedEntityName(_targetEntity) + "!");
 		}
-		if(actor.getBaseProperties().RangedDefense < _targetEntity.getBaseProperties().RangedDefense) 
+		if(actor.getBaseProperties().RangedDefense < _targetEntity.getBaseProperties().RangedDefense)
 		{
 			actor.getBaseProperties().RangedDefense += 1;
 			this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(actor) + " gained 1 Ranged Defense from " + this.Const.UI.getColorizedEntityName(_targetEntity) + "!");
 		}
-		if(actor.getBaseProperties().Initiative < _targetEntity.getBaseProperties().Initiative) 
+		if(actor.getBaseProperties().Initiative < _targetEntity.getBaseProperties().Initiative)
 		{
 			actor.getBaseProperties().Initiative += 1;
 			this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(actor) + " gained 1 Initiative from " + this.Const.UI.getColorizedEntityName(_targetEntity) + "!");

@@ -70,7 +70,7 @@
 				this.Const.Perks.IndestructibleTree
 			],
 			Enemy = [
-				this.Const.Perks.NoblesTree
+				this.Const.Perks.CivilizationTree
 			],
 			Class = [],
 			Profession = [],

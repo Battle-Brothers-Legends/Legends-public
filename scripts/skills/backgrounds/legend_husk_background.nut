@@ -73,7 +73,7 @@ this.legend_husk_background <- this.inherit("scripts/skills/backgrounds/characte
 			Weapon = [
 				this.Const.Perks.CleaverTree,
 				this.Const.Perks.FlailTree,
-				this.Const.Perks.MaceTree,
+				this.Const.Perk.MaceTree,
 				this.Const.Perks.AxeTree
 			],
 			Defense = [
@@ -87,8 +87,8 @@ this.legend_husk_background <- this.inherit("scripts/skills/backgrounds/characte
 				this.Const.Perks.IndestructibleTree
 			],
 			Enemy = [
-				this.Const.Perks.CaravanTree,
-				this.Const.Perks.NoblesTree
+				this.Const.Perks.CivilizationTree,
+				this.Const.Perks.CivilizationTree
 			],
 			Class = [
 				this.Const.Perks.BeastClassTree,

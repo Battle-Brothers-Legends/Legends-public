@@ -70,7 +70,7 @@
 				this.Const.Perks.LargeTree
 			],
 			Enemy = [
-				this.Const.Perks.OutlandersTree
+				this.Const.Perks.OutlawTree
 			],
 			Class = [],
 			Profession = [],

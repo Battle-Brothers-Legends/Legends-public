@@ -97,7 +97,7 @@ this.legend_necro_background <- this.inherit("scripts/skills/backgrounds/charact
 				::Legends.Perk.LegendLithe,
 				::Legends.Perk.LegendBlendIn,
 				::Legends.Perk.LegendReclamation,
-				::Legends.Perk.LegendFavouredEnemyGhoul,
+				::Legends.Perk.LegendFavouredEnemyBeast,
 				::Legends.Perk.LegendSpecStaffStun,
 				::Legends.Perk.LegendMedIngredients,
 				::Legends.Perk.LegendConservation
@@ -105,8 +105,7 @@ this.legend_necro_background <- this.inherit("scripts/skills/backgrounds/charact
 			[
 				::Legends.Perk.LegendClarity,
 				::Legends.Perk.LegendInsects,
-				::Legends.Perk.LegendFavouredEnemyHexen,
-				::Legends.Perk.LegendFavouredEnemyAlps,
+				::Legends.Perk.LegendFavouredEnemyOccult,
 				::Legends.Perk.LegendChanneledPower,
 				::Legends.Perk.LegendPossession
 			],

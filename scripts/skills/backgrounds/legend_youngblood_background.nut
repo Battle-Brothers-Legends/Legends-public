@@ -92,9 +92,8 @@ this.legend_youngblood_background <- this.inherit("scripts/skills/backgrounds/ch
 				this.Const.Perks.ViciousTree
 			],
 			Enemy = [
-				this.Const.Perks.VampireTree,
-				this.Const.Perks.HexenTree,
-				this.Const.Perks.AlpTree
+				this.Const.Perks.UndeadTree,
+				this.Const.Perks.OccultTree
 			],
 			Class = [
 				this.Const.Perks.FaithClassTree,

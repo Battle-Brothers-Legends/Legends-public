@@ -100,7 +100,7 @@
 				this.Const.Perks.FitTree
 			],
 			Enemy = [
-				this.Const.Perks.LindwurmTree
+				this.Const.Perks.BeastTree
 			],
 			Class = [
 				this.Const.Perks.BeastClassTree

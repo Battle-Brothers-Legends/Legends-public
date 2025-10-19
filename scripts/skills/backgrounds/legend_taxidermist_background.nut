@@ -58,10 +58,8 @@ this.legend_taxidermist_background <- this.inherit("scripts/skills/backgrounds/c
 				this.Const.Perks.ViciousTree
 			],
 			Enemy = [
-				this.Const.Perks.GhoulTree,
-				this.Const.Perks.DirewolfTree,
-				this.Const.Perks.UnholdTree,
-				this.Const.Perks.AlpTree
+				this.Const.Perks.BeastTree,
+				this.Const.Perks.OccultTree
 			],
 			Profession = [],
 			Class = [],

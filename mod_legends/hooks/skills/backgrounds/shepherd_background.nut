@@ -65,7 +65,7 @@
 				this.Const.Perks.FastTree,
 				this.Const.Perks.AgileTree
 			],
-			Enemy = [this.Const.Perks.DirewolfTree],
+			Enemy = [this.Const.Perks.BeastTree],
 			Class = [this.Const.Perks.SlingClassTree],
 			Profession = [], 
 			Magic = []

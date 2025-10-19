@@ -68,7 +68,7 @@ this.legend_nightwatch_background <- this.inherit("scripts/skills/backgrounds/ch
 				this.Const.Perks.SturdyTree
 			],
 			Enemy = [
-				this.Const.Perks.AlpTree
+				this.Const.Perks.OccultTree
 			],
 			Profession = [],
 			Class = [],

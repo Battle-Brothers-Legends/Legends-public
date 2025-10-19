@@ -61,7 +61,7 @@
 				this.Const.Perks.IntelligentTree,
 				this.Const.Perks.DeviousTree
 			],
-			Enemy = [this.Const.Perks.BanditTree],
+			Enemy = [this.Const.Perks.OutlawTree],
 			Class = [],
 			Profession = [
 				this.Const.Perks.BarterProfessionTree

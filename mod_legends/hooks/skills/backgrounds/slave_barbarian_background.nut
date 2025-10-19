@@ -49,12 +49,12 @@
 				this.Const.Perks.FitTree
 			],
 			Enemy = [
-				this.Const.Perks.CaravanTree,
+				this.Const.Perks.CivilizationTree,
 				this.Const.Perks.SouthernersTree,
-				this.Const.Perks.NoblesTree
+				this.Const.Perks.CivilizationTree
 			],
 			Class = [],
-			Profession = [], 
+			Profession = [],
 			Magic = []
 		}
 	}

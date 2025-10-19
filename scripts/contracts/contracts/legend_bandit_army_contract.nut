@@ -11,8 +11,8 @@ this.legend_bandit_army_contract <- this.inherit("scripts/contracts/contract", {
 		OriginalReward = 0,
 		MinStrength = 10, // player needs to earn 10% of bonus (not including base 5% bonus) for this contract to be valid
 		BribeMoney = 1000,
-		Perk = ::Legends.Perk.LegendFavouredEnemyBandit,
-		ValidTypes = this.Const.LegendMod.FavoriteBandit,
+		Perk = ::Legends.Perk.LegendFavouredEnemyOutlaw,
+		ValidTypes = this.Const.LegendMod.FavoriteOutlaw,
 		LevelSumRequiredForRandomSpawn = 50,
 		IsRandomlyAdded = null,
 	},

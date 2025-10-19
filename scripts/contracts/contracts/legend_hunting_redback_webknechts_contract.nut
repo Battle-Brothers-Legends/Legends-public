@@ -4,8 +4,8 @@ this.legend_hunting_redback_webknechts_contract <- this.inherit("scripts/contrac
 		Dude = null,
 		IsPlayerAttacking = false,
 		MinStrength = 10, // player needs to earn 10% of bonus (not including base 5% bonus) for this contract to be valid
-		Perk = ::Legends.Perk.LegendFavouredEnemySpider,
-		ValidTypes = this.Const.LegendMod.FavoriteSpider,
+		Perk = ::Legends.Perk.LegendFavouredEnemyBeast,
+		ValidTypes = this.Const.LegendMod.FavoriteBeast,
 		LevelSumRequiredForRandomSpawn = 50,
 		IsRandomlyAdded = null,
 	},

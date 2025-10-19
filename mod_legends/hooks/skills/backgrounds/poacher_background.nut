@@ -75,14 +75,13 @@
 				this.Const.Perks.AgileTree
 			],
 			Enemy = [
-				this.Const.Perks.DirewolfTree,
-				this.Const.Perks.SpiderTree,
-				this.Const.Perks.GoblinTree
+				this.Const.Perks.BeastTree,
+				this.Const.Perks.GreenskinTree
 			],
 			Class = [
 				this.Const.Perks.ShortbowClassTree
 			],
-			Profession = [], 
+			Profession = [],
 			Magic = []
 		}
 	}

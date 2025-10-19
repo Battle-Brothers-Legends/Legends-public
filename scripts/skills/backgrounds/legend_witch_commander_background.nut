@@ -66,7 +66,7 @@ this.legend_witch_commander_background <- this.inherit("scripts/skills/backgroun
 				::Const.Perks.IndestructibleTree
 			],
 			Enemy = [
-				::Const.Perks.HexenTree
+				::Const.Perks.OccultTree
 			],
 			Class = [],
 			Profession = [

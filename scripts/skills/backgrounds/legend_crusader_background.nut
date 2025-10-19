@@ -90,8 +90,8 @@ this.legend_crusader_background <- this.inherit("scripts/skills/backgrounds/char
 				this.Const.Perks.InspirationalTree
 			],
 			Enemy = [
-				this.Const.Perks.HexenTree,
-				this.Const.Perks.GhoulTree
+				this.Const.Perks.OccultTree,
+				this.Const.Perks.BeastTree
 			],
 			Class = [
 				this.Const.Perks.FaithClassTree
@@ -116,9 +116,7 @@ this.legend_crusader_background <- this.inherit("scripts/skills/backgrounds/char
 				::Legends.Perk.LegendTrueBeliever,
 			],
 			[
-				::Legends.Perk.LegendFavouredEnemySkeleton,
-				::Legends.Perk.LegendFavouredEnemyZombie,
-				::Legends.Perk.LegendFavouredEnemyVampire
+				::Legends.Perk.LegendFavouredEnemyUndead
 			],
 			[],
 			[

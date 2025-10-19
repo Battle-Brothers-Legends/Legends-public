@@ -82,7 +82,7 @@ this.legend_bladedancer_background <- this.inherit("scripts/skills/backgrounds/c
 			],
 			Enemy = [
 				this.Const.Perks.SwordmastersTree,
-				this.Const.Perks.MercenaryTree
+				this.Const.Perks.OutlawTree
 			],
 			Class = [],
 			Profession = [],

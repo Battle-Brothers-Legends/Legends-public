@@ -479,7 +479,7 @@ this.legend_find_slave_after_battle_event <- this.inherit("scripts/events/event"
 
 						if (r == 14)
 						{
-							::Legends.Perks.grant(_event.m.Dude, ::Legends.Perk.LegendFavouredEnemyZombie);
+							::Legends.Perks.grant(_event.m.Dude, ::Legends.Perk.LegendFavouredEnemyUndead);
 						}
 
 						_event.m.Dude.improveMood(2.0, "Was rescued from captivity");

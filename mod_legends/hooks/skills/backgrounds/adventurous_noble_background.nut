@@ -62,7 +62,7 @@
 				this.Const.Perks.ViciousTree
 			],
 			Enemy = [
-				this.Const.Perks.NoblesTree
+				this.Const.Perks.CivilizationTree
 			],
 			Class = [],
 			Profession = [],
@@ -108,7 +108,7 @@
 				this.Const.Perks.InspirationalTree
 			],
 			Enemy = [
-				this.Const.Perks.ArchersTree
+				this.Const.Perks.OutlawTree
 			],
 			Class = [],
 			Magic = []

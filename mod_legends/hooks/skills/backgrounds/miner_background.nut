@@ -78,15 +78,15 @@
 				this.Const.Perks.SturdyTree
 			],
 			Enemy = [
-				this.Const.Perks.OrcTree,
-				this.Const.Perks.UnholdTree
+				this.Const.Perks.GreenskinTree,
+				this.Const.Perks.BeastTree
 			],
 			Class = [
 				this.Const.Perks.PickaxeClassTree
 			],
 			Profession = [
 				this.Const.Perks.MinerProfessionTree
-			], 
+			],
 			Magic = []
 		}
 	}

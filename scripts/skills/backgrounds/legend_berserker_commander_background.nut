@@ -115,7 +115,7 @@ this.legend_berserker_commander_background <- this.inherit("scripts/skills/backg
 			],
 			Enemy = [
 				this.Const.Perks.OrcsTree,
-				this.Const.Perks.DirewolfTree
+				this.Const.Perks.BeastTree
 			],
 			Class = [],
 			Magic = [

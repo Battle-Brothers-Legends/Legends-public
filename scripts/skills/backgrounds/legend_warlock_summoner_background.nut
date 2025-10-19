@@ -94,7 +94,7 @@ this.legend_warlock_summoner_background <- this.inherit("scripts/skills/backgrou
 			[
 				::Legends.Perk.Backstabber,
 				::Legends.Perk.LegendDebilitate,
-				::Legends.Perk.LegendFavouredEnemyCaravan,
+				::Legends.Perk.LegendFavouredEnemyCivilization,
 				::Legends.Perk.LegendLookout,
 				::Legends.Perk.LegendSpecialistSelfdefense,
 				::Legends.Perk.LegendBloodbath
@@ -119,8 +119,8 @@ this.legend_warlock_summoner_background <- this.inherit("scripts/skills/backgrou
 			],
 			[
 				::Legends.Perk.LegendClarity,
-				::Legends.Perk.LegendFavouredEnemyAlps,
-				::Legends.Perk.LegendFavouredEnemyGhoul,
+				::Legends.Perk.LegendFavouredEnemyOccult,
+				::Legends.Perk.LegendFavouredEnemyBeast,
 				::Legends.Perk.Taunt
 			],
 			[

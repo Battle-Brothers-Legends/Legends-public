@@ -4,8 +4,8 @@ this.legend_hunting_coven_leader_contract <- this.inherit("scripts/contracts/con
 		Dude = null,
 		IsPlayerAttacking = true,
 		MinStrength = 10, // player needs to earn 10% of bonus (not including base 5% bonus) for this contract to be valid
-		Perk = ::Legends.Perk.LegendFavouredEnemyHexen,
-		ValidTypes = this.Const.LegendMod.FavoriteHexe,
+		Perk = ::Legends.Perk.LegendFavouredEnemyOccult,
+		ValidTypes = this.Const.LegendMod.FavoriteOccult,
 		LevelSumRequiredForRandomSpawn = 50,
 		IsRandomlyAdded = null,
 	},

@@ -106,8 +106,7 @@
 			],
 			Enemy = [
 				this.Const.Perks.SouthernersTree,
-				this.Const.Perks.DirewolfTree,
-				this.Const.Perks.ArcherTree
+				this.Const.Perks.BeastTree,
 			],
 			Class = [],
 			Profession = [],

@@ -1,7 +1,7 @@
 if (!("LegendMod" in ::Const))
 	::Const.LegendMod <- {};
 
-::Const.LegendMod.FavoriteZombies <- [
+::Const.LegendMod.FavoriteUndead <- [
 	::Const.EntityType.ZombieYeoman,
 	::Const.EntityType.Zombie,
 	::Const.EntityType.ZombieBetrayer,
@@ -9,67 +9,6 @@ if (!("LegendMod" in ::Const))
 	::Const.EntityType.ZombieKnight,
 	::Const.EntityType.Necromancer,
 	::Const.EntityType.ZombieTreasureHunter
-];
-
-::Const.LegendMod.FavoriteAlps <- [
-	::Const.EntityType.Alp,
-	::Const.EntityType.AlpShadow,
-	::Const.EntityType.LegendDemonAlp
-];
-
-::Const.LegendMod.FavoriteDirewolf <- [
-	::Const.EntityType.Hyena,
-	::Const.EntityType.Direwolf,
-	// ::Const.EntityType.Wolf,
-	// ::Const.EntityType.GoblinWolfrider,
-	// ::Const.EntityType.KoboldWolfrider, //Not used currently
-	::Const.EntityType.LegendWhiteDirewolf
-];
-
-::Const.LegendMod.FavoriteGhoul <- [
-	::Const.EntityType.Ghoul,
-	::Const.EntityType.LegendSkinGhoul
-];
-
-::Const.LegendMod.FavoriteGoblin <- [
-	::Const.EntityType.GoblinFighter,
-	::Const.EntityType.GoblinAmbusher,
-	::Const.EntityType.GoblinLeader,
-	::Const.EntityType.GoblinShaman,
-	::Const.EntityType.GoblinWolfrider,
-//	::Const.EntityType.KoboldWolfrider, //Not used currently
-//	::Const.EntityType.KoboldFighter //Not used currently
-];
-
-::Const.LegendMod.FavoriteHexe <- [
-	::Const.EntityType.Hexe,
-	::Const.EntityType.LegendHexeLeader
-];
-
-::Const.LegendMod.FavoriteLindwurm <- [
-	::Const.EntityType.Serpent,
-	::Const.EntityType.Lindwurm,
-	::Const.EntityType.LegendStollwurm
-];
-
-::Const.LegendMod.FavoriteOrc <- [
-	::Const.EntityType.OrcBerserker,
-	::Const.EntityType.OrcYoung,
-	::Const.EntityType.OrcWarrior,
-	::Const.EntityType.OrcWarlord,
-	::Const.EntityType.LegendOrcBehemoth,
-	::Const.EntityType.LegendOrcElite
-];
-
-::Const.LegendMod.FavoriteSchrat <- [
-	::Const.EntityType.SandGolem,
-	::Const.EntityType.Schrat,
-	::Const.EntityType.SchratSmall,
-	::Const.EntityType.LegendGreenwoodSchrat,
-	::Const.EntityType.LegendGreenwoodSchratSmall
-];
-
-::Const.LegendMod.FavoriteSkeleton <- [
 	::Const.EntityType.SkeletonLight,
 	::Const.EntityType.SkeletonMedium,
 	::Const.EntityType.SkeletonHeavy,
@@ -79,16 +18,50 @@ if (!("LegendMod" in ::Const))
 	::Const.EntityType.SkeletonLichMirrorImage,
 	::Const.EntityType.SkeletonPhylactery,
 	::Const.EntityType.SkeletonGladiator,
-	::Const.EntityType.FlyingSkull
+	::Const.EntityType.FlyingSkull,
+	::Const.EntityType.Vampire,
+	::Const.EntityType.LegendDemonHound,
+	::Const.EntityType.LegendVampireLord,
+	::Const.EntityType.LegendMummyLight,
+	::Const.EntityType.LegendMummyMedium,
+	::Const.EntityType.LegendMummyHeavy,
+	::Const.EntityType.LegendMummyQueen,
+	::Const.EntityType.LegendMummyPriest
 ];
-::Const.LegendMod.FavoriteSpider <- [
+
+::Const.LegendMod.FavoriteOccult <- [
+	::Const.EntityType.Alp,
+	::Const.EntityType.AlpShadow,
+	::Const.EntityType.LegendDemonAlp,
+	::Const.EntityType.Hexe,
+	::Const.EntityType.LegendHexeLeader,
+	::Const.EntityType.LegendBanshee,
+	::Const.EntityType.LegendDemonHound,
+	::Const.EntityType.Ghost,
+	::Const.EntityType.SandGolem,
+	::Const.EntityType.Schrat,
+	::Const.EntityType.SchratSmall,
+	::Const.EntityType.LegendGreenwoodSchrat,
+	::Const.EntityType.LegendGreenwoodSchratSmall
+];
+
+::Const.LegendMod.FavoriteBeast <- [
+	::Const.EntityType.Hyena,
+	::Const.EntityType.LegendEnragedHyena,
+	::Const.EntityType.Direwolf,
+	// ::Const.EntityType.Wolf, // i guess not beast
+	// ::Const.EntityType.KoboldWolfrider, //Not used currently
+	::Const.EntityType.LegendWhiteDirewolf
+	::Const.EntityType.Ghoul,
+	::Const.EntityType.LegendSkinGhoul
+	::Const.EntityType.Serpent,
+	::Const.EntityType.Lindwurm,
+	::Const.EntityType.LegendStollwurm
 	this.Const.EntityType.Spider,
 	this.Const.EntityType.LegendSpiderCluster,
 	//this.Const.EntityType.SpiderBodyguard,
 	this.Const.EntityType.SpiderEggs,
 	this.Const.EntityType.LegendRedbackSpider
-];
-::Const.LegendMod.FavoriteUnhold <- [
 	::Const.EntityType.Unhold,
 	::Const.EntityType.UnholdBog,
 	::Const.EntityType.UnholdFrost,
@@ -96,18 +69,26 @@ if (!("LegendMod" in ::Const))
 	::Const.EntityType.BarbarianUnholdFrost,
 	::Const.EntityType.LegendRockUnhold
 ];
-::Const.LegendMod.FavoriteVampire <- [
-	::Const.EntityType.Vampire,
-	::Const.EntityType.Ghost,
-	::Const.EntityType.LegendDemonHound,
-	::Const.EntityType.LegendVampireLord,
-	::Const.EntityType.LegendBanshee,
-	::Const.EntityType.LegendMummyLight,
-	::Const.EntityType.LegendMummyMedium,
-	::Const.EntityType.LegendMummyHeavy,
-	::Const.EntityType.LegendMummyQueen,
-	::Const.EntityType.LegendMummyPriest
+
+::Const.LegendMod.FavoriteGreenSkins <- [
+	::Const.EntityType.GoblinFighter,
+	this.Const.EntityType.LegendGoblinPlunderer //
+	::Const.EntityType.LegendGoblinHarrier // these 2 inherit from the goblin fighter but just in case?
+	::Const.EntityType.GoblinAmbusher,
+	::Const.EntityType.LegendGoblinTribeDefender
+	::Const.EntityType.GoblinLeader,
+	::Const.EntityType.GoblinShaman,
+	::Const.EntityType.GoblinWolfrider,
+	::Const.EntityType.OrcBerserker,
+	::Const.EntityType.OrcYoung,
+	::Const.EntityType.OrcWarrior,
+	::Const.EntityType.OrcWarlord,
+	::Const.EntityType.LegendOrcBehemoth,
+	::Const.EntityType.LegendOrcElite
+	//	::Const.EntityType.KoboldWolfrider, //Not used currently
+	//	::Const.EntityType.KoboldFighter //Not used currently
 ];
+
 ::Const.LegendMod.FavoriteSwordmaster <- [
 	::Const.EntityType.HedgeKnight,
 	::Const.EntityType.Knight,
@@ -127,21 +108,8 @@ if (!("LegendMod" in ::Const))
 	::Const.EntityType.DesertDevil,
 	::Const.EntityType.LegendFencer
 ];
-::Const.LegendMod.FavoriteArcher <- [
-	::Const.EntityType.MasterArcher,
-	::Const.EntityType.BanditMarksman,
-	::Const.EntityType.BanditRabblePoacher,
-	::Const.EntityType.BanditPoacher,
-	::Const.EntityType.MilitiaRanged,
-	::Const.EntityType.Arbalester,
-	::Const.EntityType.LegendSlinger,
-	::Const.EntityType.GoblinAmbusher,
-	::Const.EntityType.NomadSlinger,
-	::Const.EntityType.NomadArcher,
-	::Const.EntityType.Gunner,
-	::Const.EntityType.DesertStalker
-];
-::Const.LegendMod.FavoriteBarbarian <- [
+
+::Const.LegenndMod.FavoriteOutlaw <- [
 	::Const.EntityType.Warhound,
 	::Const.EntityType.BarbarianThrall,
 	::Const.EntityType.BarbarianMarauder,
@@ -149,8 +117,6 @@ if (!("LegendMod" in ::Const))
 	::Const.EntityType.BarbarianChosen,
 	::Const.EntityType.BarbarianDrummer,
 	::Const.EntityType.BarbarianBeastmaster
-];
-::Const.LegendMod.FavoriteBandit <- [
 	::Const.EntityType.BanditRabble,
 	::Const.EntityType.BanditRabblePoacher,
 	::Const.EntityType.BanditThug,
@@ -159,9 +125,20 @@ if (!("LegendMod" in ::Const))
 	::Const.EntityType.BanditRaider,
 	::Const.EntityType.BanditVeteran,
 	::Const.EntityType.BanditWarlord,
-	::Const.EntityType.BanditLeader
+	::Const.EntityType.BanditLeader,
+	::Const.EntityType.Slave,
+	::Const.EntityType.NomadCutthroat,
+	::Const.EntityType.NomadOutlaw,
+	::Const.EntityType.NomadSlinger,
+	::Const.EntityType.NomadArcher,
+	::Const.EntityType.NomadLeader
+	// I see sellswords as more civilized outlaws
+	::Const.EntityType.Mercenary, //Contains LOW varient
+	::Const.EntityType.MercenaryRanged,
+	::Const.EntityType.BountyHunter,
 ];
-::Const.LegendMod.FavoriteCaravan <- [
+
+::Const.LegendMod.FavoriteCivilization <- [
 	::Const.EntityType.Peasant,
 	::Const.EntityType.LegendPeasantButcher,
 	::Const.EntityType.LegendPeasantBlacksmith,
@@ -179,11 +156,7 @@ if (!("LegendMod" in ::Const))
 	::Const.EntityType.MilitiaVeteran,
 	::Const.EntityType.MilitiaCaptain,
 	::Const.EntityType.MilitiaRanged,
-	// ::Const.EntityType.Slave,
-	// ::Const.EntityType.Engineer,
 	::Const.EntityType.PeasantSouthern
-];
-::Const.LegendMod.FavoriteNoble <- [
 	::Const.EntityType.Footman,
 	::Const.EntityType.LegendNobleGuard,
 	::Const.EntityType.LegendManAtArms,
@@ -199,27 +172,8 @@ if (!("LegendMod" in ::Const))
 	::Const.EntityType.NoblePollax,
 	::Const.EntityType.NobleSureshot,
 	::Const.EntityType.Knight
-];
-::Const.LegendMod.FavoriteMercenary <- [
 	::Const.EntityType.Wardog,
 	::Const.EntityType.ArmoredWardog,
-	::Const.EntityType.Mercenary, //Contains LOW varient
-	::Const.EntityType.MercenaryRanged,
-	::Const.EntityType.BountyHunter,
-	// ::Const.EntityType.Swordmaster,
-	// ::Const.EntityType.HedgeKnight,
-	// ::Const.EntityType.MasterArcher,
-	::Const.EntityType.FreeCompanyArcher, //Not used
-	::Const.EntityType.FreeCompanyCrossbow, //Not used
-	::Const.EntityType.FreeCompanyLongbow, //Not used
-	::Const.EntityType.FreeCompanyBillman, //Not used
-	::Const.EntityType.FreeCompanyPikeman, //Not used
-	::Const.EntityType.FreeCompanyInfantry, //Not used
-	::Const.EntityType.FreeCompanyLeader, //Not used
-	::Const.EntityType.FreeCompanyLeaderLow //Not used
-];
-::Const.LegendMod.FavoriteSoutherners <- [
-	::Const.EntityType.Slave,
 	::Const.EntityType.Conscript,
 	::Const.EntityType.Gunner,
 	::Const.EntityType.Officer,
@@ -227,21 +181,6 @@ if (!("LegendMod" in ::Const))
 	::Const.EntityType.Assassin,
 	::Const.EntityType.LegendManhunter,
 	::Const.EntityType.LegendManhunterVeteran
-	// ::Const.EntityType.Gladiator,
-	// ::Const.EntityType.PeasantSouthern
-];
-::Const.LegendMod.FavoriteNomad <- [
-	::Const.EntityType.Slave,
-	// ::Const.EntityType.Gladiator,
-	::Const.EntityType.NomadCutthroat,
-	::Const.EntityType.NomadOutlaw,
-	::Const.EntityType.NomadSlinger,
-	::Const.EntityType.NomadArcher,
-	::Const.EntityType.NomadLeader
-	// ::Const.EntityType.DesertStalker,
-	// ::Const.EntityType.Executioner,
-	// ::Const.EntityType.DesertDevil
-	// ::Const.EntityType.PeasantSouthern
 ];
 
 ::Const.LegendMod.GetFavoriteEnemyValue <- function ( _type ) //Number = how many you need to kill to attain 1% towards a fav. enemy multiplier. | EG, 1 = 1%, 4 = 0.25%, etc. | 1 / <return number> = how many needed to gain 1%.
@@ -319,6 +258,9 @@ if (!("LegendMod" in ::Const))
 
 	case ::Const.EntityType.Hyena :
 		return 5;
+
+	case ::Const.EntityType.LegendRagingHyena :
+		return 0.5;
 
 	case ::Const.EntityType.Direwolf :
 		return 5;

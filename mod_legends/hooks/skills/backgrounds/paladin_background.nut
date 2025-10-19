@@ -110,8 +110,7 @@
 				this.Const.Perks.FitTree
 			],
 			Enemy = [
-				this.Const.Perks.ZombieTree,
-				this.Const.Perks.SkeletonTree
+				this.Const.Perks.UndeadTree
 			],
 			Class = [],
 			Profession = [],
