@@ -300,9 +300,9 @@ Specialize in light armor!
 Too fast for you!
 
 [color=%passive%][u]Passive:[/u][/color]
-• Gain [color=%positive%]15%[/color] of this character's current Initiative as a bonus to Melee and Ranged Defense.
+• Gain [color=%positive%]15%[/color] of this character's current %ini% as a bonus to %mdef% and %rdef%.
 
-• Gain a further [color=%positive%]15%[/color] bonus if your Hitpoints are closer to 50
+• Gain a further [color=%positive%]15%[/color] bonus if your %hp% are closer to 50
 ");
 ::Const.Perks.PerkDefObjects[::Legends.Perk.Dodge].Tooltip = ::Const.Strings.PerkDescription.Dodge;
 ::Const.Strings.PerkDescription.Colossus <- ::Legends.tooltip(@"

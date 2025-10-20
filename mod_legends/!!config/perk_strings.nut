@@ -11,8 +11,48 @@ local colors = [
 	["damage", ::Const.UI.Color.DamageValue]
 ];
 
+local icons = [
+	["matk", "[leg_img](gfx/ui/icons/melee_skill.png,height=18px,width=18px)[/leg_img]"],
+	["ratk", "[leg_img](gfx/ui/icons/ranged_skill.png,height=18px,width=18px)[/leg_img]"],
+	["mdef", "[leg_img](gfx/ui/icons/melee_defense.png,height=18px,width=18px)[/leg_img]"],
+	["rdef", "[leg_img](gfx/ui/icons/ranged_defense.png,height=18px,width=18px)[/leg_img]"],
+	["fat", "[leg_img](gfx/ui/icons/fatigue.png,height=18px,width=18px)[/leg_img]"],
+	["res", "[leg_img](gfx/ui/icons/bravery.png,height=18px,width=18px)[/leg_img]"],
+	["hp", "[leg_img](gfx/ui/icons/health.png,height=18px,width=18px)[/leg_img]"],
+	["ini", "[leg_img](gfx/ui/icons/initiative.png,height=18px,width=18px)[/leg_img]"]
+];
+
+local textsAndIcon = [
+	["matk", "[leg_img](gfx/ui/icons/melee_skill.png,height=18px,width=18px)[/leg_img] Melee Skill"],
+	["ratk", "[leg_img](gfx/ui/icons/ranged_skill.png,height=18px,width=18px)[/leg_img] Ranged Skill"],
+	["mdef", "[leg_img](gfx/ui/icons/melee_defense.png,height=18px,width=18px)[/leg_img] Melee Defense"],
+	["rdef", "[leg_img](gfx/ui/icons/ranged_defense.png,height=18px,width=18px)[/leg_img] Ranged Defense"],
+	["fat", "[leg_img](gfx/ui/icons/fatigue.png,height=18px,width=18px)[/leg_img] Fatigue"],
+	["res", "[leg_img](gfx/ui/icons/bravery.png,height=18px,width=18px)[/leg_img] Resolve"],
+	["hp", "[leg_img](gfx/ui/icons/health.png,height=18px,width=18px)[/leg_img] Hitpoints"],
+	["ini", "[leg_img](gfx/ui/icons/initiative.png,height=18px,width=18px)[/leg_img] Initiative"],
+];
+
+local texts = [
+	["matk", "Melee Skill"],
+	["ratk", "Ranged Skill"],
+	["mdef", "Melee Defense"],
+	["rdef", "Ranged Defense"],
+	["fat", "Fatigue"],
+	["res", "Resolve"],
+	["hp", "Hitpoints"],
+	["ini", "Initiative"]
+];
+
 ::Legends.tooltip <- function (_text, _vars = [])  {
 	_vars.extend(colors);
+//	if (settings == "icons") {
+//		_vars.extend(icons);
+//	} else if (settings == "iconsTexts") {
+		_vars.extend(textsAndIcon);
+//	} else {
+//		_vars.extend(texts);
+//	}
 	return ::buildTextFromTemplate(::strip(_text), _vars);
 }
 
