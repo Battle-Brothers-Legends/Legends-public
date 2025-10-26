@@ -257,7 +257,7 @@ for (local i = -1; i < ::Const.EntityIcon.len(); i++) {
 ::Const.EntityType.NobleSureshot <-
 	::Const.EntityType.addNew("arbalester_orientation", "Sureshot", "Sureshots");
 ::Const.EntityType.LegendBasiliskSentry <-
-	::Const.EntityType.addNew("basilisk_drone_orientation", "Basilisk Sentries", "Basilisk Sentries", this.Const.FactionType.Beasts);
+	::Const.EntityType.addNew("basilisk_drone_orientation", "Basilisk Sentry", "Basilisk Sentries", this.Const.FactionType.Beasts);
 ::Const.EntityType.LegendSighthound <-
 	::Const.EntityType.addNew("dawg_orientation", "Sighthound", "Sighthounds");
 ::Const.EntityType.LegendArmoredSighthound <-
