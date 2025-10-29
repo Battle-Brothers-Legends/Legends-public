@@ -71,6 +71,26 @@ myEnumTooltip = "Define AI Rotation rules: 'Default' is the Vanilla behaviour, A
 misc.addElement(::MSU.Class.EnumSetting("AiRotation", "Default", ["Default", "Limited", "Disabled"], "AI Rotation Rules", myEnumTooltip));
 misc.addElement(::MSU.Class.BooleanSetting("SellDialogNamed", true, "Sell Famed Dialog", "Should sell confirmation dialog appear when selling famed items?"));
 
+local betterobituary = ::Legends.Mod.ModSettings.addPage("Obituary");
+betterobituary.addBooleanSetting("SwapPerks",    false, "Show Perks", "Swaps the trait/permanent injuries columns for perks.");
+betterobituary.addBooleanSetting("SwapStats", 	 false, "Swap Stat Order", "Swaps the position of first 4 stats (hp, fatigue, initiative, bravery) with the last 4 (attack / defense).");
+betterobituary.addBooleanSetting("StackedStars", false, "Stacked Talent Stars", "Replace the 3 star talent icon (row of 3) with a triangle of stars.");
+betterobituary.addDivider("Divider");
+betterobituary.addBooleanSetting("HideObituarySetting",    false, "Hide Obituary Settings", "Hide the checkbox settings shown in top right of the obituary.\n\nThese mirror the settings above, providing a way to change them whilst in the obituary without using hotkeys, or simply to view the current settings.");
+betterobituary.addDivider("Divider");
+betterobituary.addTitle("DisplayLimit", "Display Limit (Icons shrink beyond defaults)");
+betterobituary.addRangeSetting( "show_num_traits", 8, 1, 12, 1, "Traits" );
+betterobituary.addRangeSetting( "show_num_perminjuries", 3, 1, 5, 1, "Permanent Injuries" );
+betterobituary.addRangeSetting( "show_num_perks", 10, 1, 20, 1, "Perks" );
+betterobituary.addDivider("Divider");
+betterobituary.addTitle("TooltipSettings", "Tooltip Settings");
+betterobituary.addColorPickerSetting("obituary_hotkey_text_colour", "255,255,0,1", "Hotkey Text Colour");
+
+// Obituary settings hotkeys
+::Legends.Mod.Keybinds.addJSKeybind("toggle_perks",				"shift+p", "Obituary - Show Perks");
+::Legends.Mod.Keybinds.addJSKeybind("toggle_stat_order",		"shift+s", "Obituary - Swap Stat Order");
+::Legends.Mod.Keybinds.addJSKeybind("stacked_talent_stars",		"shift+t", "Obituary - Stacked Talent Stars");
+
 local logging = ::Legends.Mod.ModSettings.addPage("Logging");
 foreach(f in ::Const.LegendMod.Debug.FlagDefs)
 {

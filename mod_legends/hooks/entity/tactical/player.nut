@@ -610,6 +610,8 @@
 	{
 		_fallen.level <- this.getLevel();
 		_fallen.traits <- this.getDeadTraits();
+		_fallen.perks <- this.getDeadPerks();
+		_fallen.perminjuries <- this.getDeadPermanentInjury();
 		_fallen.talents <- this.getTalents();
 		_fallen.stats <- [
 			this.getBaseProperties().Hitpoints,
@@ -659,7 +661,7 @@
 				bro.addXP(this.Math.max(1, this.Math.floor(XPgroup / brothers.len())));
 			}
 		}
-		if (::World.Statistics.getFlags().get("HasDrillSergeant") && this.getLevel() >= 12)
+		if (::World.Assets.m.HasDrillSergeant > 0 && this.getLevel() >= 12)
 		{
 			foreach( bro in brothers )
 			{
@@ -1700,28 +1702,82 @@
 		this.m.LastCampTime = _t;
 	}
 
-	o.getDeadTraits <- function ()
+	o.getDeadTraits <- function() 
 	{
 		local skills = this.getSkills().query(this.Const.SkillType.Trait, false, true);
-		local list = [];
+		
+		local list_traits = [];
+		
+		local Trait = this.Const.SkillType.Trait;
+		local Background = this.Const.SkillType.Background;
+		local StatusEffect = this.Const.SkillType.StatusEffect;
+		local Special = this.Const.SkillType.Special;
 
-		foreach( i, s in skills )
-		{
-			if (s.isType(this.Const.SkillType.StatusEffect) || s.isType(this.Const.SkillType.Active) || s.isType(this.Const.SkillType.Racial) || s.isType(this.Const.SkillType.Special) || s.isType(this.Const.SkillType.Perk) || s.isType(this.Const.SkillType.Terrain) || s.isType(this.Const.SkillType.Injury) || s.isType(this.Const.SkillType.PermanentInjury) || s.isType(this.Const.SkillType.SemiInjury) || s.isType(this.Const.SkillType.DrugEffect) || s.isType(this.Const.SkillType.DamageOverTime))
-			{
-				continue;
+		foreach (i, s in skills)
+		{		
+			if ((s.isType(Trait) || s.isType(Background)) && !s.isType(StatusEffect) && !s.isType(Special))
+			{	
+				local trait_data = {
+					"id": ::IO.scriptFilenameByHash(s.ClassNameHash),
+					"icon": s.getIcon()
+				};
+				list_traits.append(trait_data);
 			}
-
-			list.append(s.getIcon());
 		}
 
-		for( local i = list.len(); i < 4; i++ )
+		return list_traits;
+	};
+	
+	o.getDeadPerks <- function() 
+	{
+		local all_perks = ::Const.Perks.PerkDefObjects;
+
+		local list_perks = [];
+		local PerkType = this.Const.SkillType.Perk;
+
+		foreach (i, skill in this.getSkills().query(PerkType, true, true))
 		{
-			list.append("");
+			if (!skill.isType(PerkType))
+				continue;
+
+			local scriptPath = ::IO.scriptFilenameByHash(skill.ClassNameHash);
+
+			// Find matching perk definition
+			local matches = all_perks.filter(@(_, perk) perk.Script == scriptPath);
+
+			if (matches.len() > 0)
+			{
+				local def = matches[0];  // first match (should only be one)
+				list_perks.append({
+					"id": scriptPath,
+					"icon": def.Icon
+				});
+			}
 		}
 
-		return list;
-	}
+		return list_perks;
+	};
+	
+	o.getDeadPermanentInjury <- function() 
+	{
+		local PermanentInjury = this.Const.SkillType.PermanentInjury;
+		local skills = this.getSkills().query(PermanentInjury);
+		local list_perminjuries = [];
+
+		foreach (i, s in skills) 
+		{		
+			if(s.isType(this.Const.SkillType.PermanentInjury))
+			{
+				local injury_data = {
+					"id": ::IO.scriptFilenameByHash(s.ClassNameHash),
+					"icon": s.getIcon()
+				};
+				list_perminjuries.append(injury_data);
+			}
+		}
+
+		return list_perminjuries;
+	};
 
 	o.playSound <- function ( _type, _volume, _pitch = 1.0 )
 	{
