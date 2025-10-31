@@ -14,13 +14,13 @@ this.legend_minstrel_performs_at_tavern_encounter <- this.inherit("scripts/encou
 		{
             ID = "Task",
             Title = "Strolling around the city...",
-            Text = "Wandering around the town you spot your company gathered around a crackling fire. The familiar sounds of your mercenaries—laughing, drinking, and sharpening blades. %minstrel%, a quiet figure strumming his lute by the fire\'s edge, he spots you and approaches. %SPEECH_ON%Tonight, I\'d like to perform.%SPEECH_OFF% You look up, raising an eyebrow. %SPEECH_ON%Perform? For who?%SPEECH_OFF% %minstrel% smiles at you. %SPEECH_ON%The tavern, the locals could use some cheering up. And the coin\'s always good.%SPEECH_OFF%",
+            Text = "[img]gfx/ui/events/event_20.png[/img]Entering the town square you spot your company gathered around a crackling fire. The familiar sounds of your mercenaries—laughing, drinking, and sharpening blades. Most of them at least. %minstrel%, is off to the side, a quiet figure strumming his lute by the fire\'s edge. You go over and ask what is on their mind. %SPEECH_ON%Tonight, I\'d like to perform.%SPEECH_OFF% You look up, raising an eyebrow. %SPEECH_ON%Perform? For who?%SPEECH_OFF% %minstrel% smiles at you, eyes glinting with a new muse behind them. %SPEECH_ON%The tavern, the locals could use some cheering up. And the coin\'s always good.%SPEECH_OFF%",
             Image = "",
             List = [],
 			Characters = [],
             Options = [
             {
-                Text = "Go",
+                Text = "Go.",
                 function getResult(_event) {
 					local r = ::Math.rand(0, 3);
 					if (r != 0)
@@ -29,7 +29,7 @@ this.legend_minstrel_performs_at_tavern_encounter <- this.inherit("scripts/encou
                 }
             },
             {
-                Text = "Not now",
+                Text = "Not now.",
                 function getResult(_event) {
                     return 0;
                 }
@@ -42,7 +42,7 @@ this.legend_minstrel_performs_at_tavern_encounter <- this.inherit("scripts/encou
 		{
             ID = "Success",
             Title = "At the tavern",
-            Text = "The tavern is packed with locals, the air thick with the smell of roasted meat and spilled ale. You stand near the door, watching as %minstrel% steps onto the makeshift stage, lute in hand. The chatter dies down, and with a few practiced strums, begins. The song fills the room—rich, smooth, and powerful—telling tales of heroic deeds of your company. The crowd listens, some swaying to the melody, others caught in the enchantment of his words. By the time the last note rings out, the room erupts into applause. The barkeep, a burly man with a wide grin, slaps a coin on the table, nodding at you. %SPEECH_ON%That was worth more than a tankard of ale!%SPEECH_OFF% %minstrel% smiles, accepting the praise with humility, and you watch as the tavern fills with laughter and cheer, the energy of the crowd lighter than it had been all day.",
+            Text = "[img]gfx/ui/events/event_24.png[/img]The tavern is packed with locals, the air thick with the smell of roasted meat and spilled ale. You stand near the door, watching as %minstrel% steps onto the makeshift stage, lute in hand. The chatter dies down, and with a few practiced strums, begins. The song fills the room—rich, smooth, and powerful—telling tales of heroic deeds of your company. The crowd listens, some swaying to the melody, others caught in the enchantment of his words. By the time the last note rings out, the room erupts into applause. The barkeep, a burly man with a wide grin, slaps a coin on the table, nodding at you. %SPEECH_ON%That was worth more than a tankard of ale!%SPEECH_OFF% %minstrel% smiles, accepting the praise with humility, and you watch as the tavern fills with laughter and cheer, the energy of the crowd lighter than it had been all day.",
             Image = "",
             List = [],
             Options = [
