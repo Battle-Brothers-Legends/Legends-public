@@ -2525,7 +2525,7 @@ Endless training in holding the line in a spear wall has made it a second nature
 [color=%passive%][u]Passive:[/u][/color]
 • [color=%skill%]Spearwall[/color] costs [color=%negative%]-50%[/color] less Fatigue.
 
-• [color=%skill%]Spearwall[/color] AP cost is reduced to [color=%negative%]3[/color].
+• [color=%skill%]Spearwall[/color] AP cost is reduced by [color=%negative%]1[/color].
 
 • [color=%skill%]Spearwall[/color] does [color=%positive%]+25%[/color] damage.
 ");
