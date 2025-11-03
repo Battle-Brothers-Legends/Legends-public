@@ -351,23 +351,17 @@
 
 	o.calculateModifiers <- function ()
 	{
-		if (this.World.State.m.AppropriateTimeToRecalc == 1)	//Leonion's fix
-		{
-			this.calculateBarterMult();
-			this.calculateWageModifier();
-			this.calculateFoodModifier();
-			this.calculateAmmoModifier();
-			this.calculateArmorPartsModifier();
-			this.calculateMedsModifier();
-			this.calculateStashModifier();
-		}
+		this.calculateBarterMult();
+		this.calculateWageModifier();
+		this.calculateFoodModifier();
+		this.calculateAmmoModifier();
+		this.calculateArmorPartsModifier();
+		this.calculateMedsModifier();
+		this.calculateStashModifier();
 	}
 
 	o.calculateFoodModifier <- function ()
 	{
-		if (this.World.State.m.AppropriateTimeToRecalc != 1)
-			return;
-
 		foreach( bro in this.World.getPlayerRoster().getAll() )
 		{
 			if (!bro.getSkills().hasPerk(::Legends.Perk.LegendQuartermaster))
@@ -380,9 +374,6 @@
 
 	o.calculateWageModifier <- function ()
 	{
-		if (this.World.State.m.AppropriateTimeToRecalc != 1)
-			return;
-
 		foreach( bro in this.World.getPlayerRoster().getAll() )
 		{
 			if (bro.getSkills().hasPerk(::Legends.Perk.LegendPaymaster)) {
@@ -394,9 +385,6 @@
 
 	o.calculateBarterMult <- function ()
 	{
-		if (this.World.State.m.AppropriateTimeToRecalc != 1)
-			return;
-
 		local barterMult = 0.0;
 		local greed = 1;
 		foreach (bro in this.World.getPlayerRoster().getAll())
@@ -414,9 +402,6 @@
 
 	o.calculateAmmoModifier <- function ()
 	{
-		if (this.World.State.m.AppropriateTimeToRecalc != 1)
-			return;
-
 		local s = 0;
 		foreach( bro in this.World.getPlayerRoster().getAll() )
 		{
@@ -427,9 +412,6 @@
 
 	o.calculateArmorPartsModifier <- function ()
 	{
-		if (this.World.State.m.AppropriateTimeToRecalc != 1)
-			return;
-
 		local s = 0;
 		foreach( bro in this.World.getPlayerRoster().getAll() )
 		{
@@ -440,9 +422,6 @@
 
 	o.calculateMedsModifier <- function ()
 	{
-		if (this.World.State.m.AppropriateTimeToRecalc != 1)
-			return;
-
 		local s = 0;
 		foreach( bro in this.World.getPlayerRoster().getAll() )
 		{
@@ -453,27 +432,22 @@
 
 	o.calculateStashModifier <- function (resize = true)
 	{
-		if (::World.State.m.AppropriateTimeToRecalc == 1)	////Leonion's fix
+		local s = ::World.Flags.getAsInt("LegendStartingStash");
+
+		foreach( bro in ::World.getPlayerRoster().getAll())
 		{
-			local s = ::World.Flags.getAsInt("LegendStartingStash");
-
-			foreach( bro in ::World.getPlayerRoster().getAll())
-			{
-				s += bro.getStashModifier();
-			}
-
-			if (this.World.Retinue.hasFollower("follower.quartermaster"))
-			{
-				s += 27;
-			}
-
-			if (resize && s != ::Stash.getCapacity())
-				::Stash.resize(s);
-
-			return s;
+			s += bro.getStashModifier();
 		}
 
-		return ::Stash.getCapacity();
+		if (this.World.Retinue.hasFollower("follower.quartermaster"))
+		{
+			s += 27;
+		}
+
+		if (resize && s != ::Stash.getCapacity())
+			::Stash.resize(s);
+
+		return s;
 	}
 
 	local onInit = o.onInit;
