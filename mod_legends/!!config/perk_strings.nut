@@ -126,7 +126,6 @@ local colors = [
 ::Const.Strings.PerkName.LegendDogMaster <- "Dog Master";
 ::Const.Strings.PerkName.LegendHeightenedReflexes <- "Heightened Reflexes";
 ::Const.Strings.PerkName.LegendWindReader <- "Wind Reader";
-::Const.Strings.PerkName.LegendChoke <- "Choke";
 ::Const.Strings.PerkName.LegendPaymaster <- "Paymaster";
 ::Const.Strings.PerkName.LegendQuartermaster <- "Quartermaster";
 ::Const.Strings.PerkName.LegendBarterGreed <- "Greed";
@@ -372,7 +371,6 @@ local colors = [
 ::Const.Strings.PerkName.LegendRoster5 <- "The Section"; //REMOVE
 ::Const.Strings.PerkName.LegendRoster6 <- "The Platoon"; //REMOVE
 ::Const.Strings.PerkName.LegendRoster7 <- "The Company"; //REMOVE
-::Const.Strings.PerkName.LegendTrophyHunter <- "Trophy Hunter"; //AI skill, currently unused.
 ::Const.Strings.PerkName.LegendCrusher <- "Crusher"; //exists but has no data to provide any affect
 ::Const.Strings.PerkName.LegendDeflect <- "Deflect"; //exists but has no data to provide any affect
 ::Const.Strings.PerkName.LegendIronside <- "Ironside"; //gives damage reduction based on number of adj. enemies
@@ -490,17 +488,6 @@ Master the art of following up for devastating effects.
 • If the attack misses the effect is wasted. Does not work from friendly fire or any self inflicted damage.
 
 • Additionally a party member or pet dying will trigger the effect.
-");
-
-::Const.Strings.PerkDescription.LegendTrophyHunter <- ::Legends.tooltip(@"
-Each fight tells a story, with your glory and strength growing in their end.
-
-[color=%passive%][u]Passive:[/u][/color]
-• The gruesome trophies this character has collected will increase their Hitpoints, Fatigue, Resolve and Initiative by 1.
-
-• Will also allow them to terrify their opponents when enganged in melee and increase total Damage Done.
-
-• Total kills over 5 for a given faction will not count.
 ");
 
 ::Const.Strings.PerkDescription.LegendBruiser <- ::Legends.tooltip(@"
@@ -3206,23 +3193,6 @@ You have learned to read the wind, estimating the path of arrows in uncertain co
 • Gain a third of your character's base Ranged Defense as Ranged Skill, with a minimum bonus of [color=%positive%]3[/color].
 
 • Gain [color=%positive%]+5%[/color] Ranged Damage for each level difference when you have the high ground.
-");
-
-::Const.Strings.PerkDescription.LegendChoke <- ::Legends.tooltip(@"
-Once an opponent is Fatigued, it may be easier to choke them out than to fight through their armor.
-
-[color=%active%][u]Active:[/u][/color]
-• Unlocks the [color=%skill%]Choke[/color] skill when both hands are free.
-
-• [color=%status%]Choked[/color] enemies have their Fatigue Recovery reduced by [color=%negative%]15[/color].
-
-• Damage inflicted is determined by the difference in Fatigue between you and your target.
-
-• Hit chance determined by your target's Fatigue, [color=%negative%]0%[/color] if they are fresh and [color=%positive%]100%[/color] if they are exhausted.
-
-• Hit chance is increased by [color=%positive%]+10%[/color] if your target is [color=%status%]Dazed[/color] or [color=%status%]Parried[/color], [color=%positive%]+25%[/color] if they are [color=%status%]Stunned[/color] or [color=%status%]Netted[/color], and  [color=%positive%]+50%[/color] If they are [color=%status%]Grappled[/color] or [color=%status%]Sleeping[/color].
-
-• Costs [color=%negative%]4[/color] AP and [color=%negative%]20[/color] Fatigue.
 ");
 
 ::Const.Strings.PerkDescription.LegendPaymaster <- ::Legends.tooltip(@"

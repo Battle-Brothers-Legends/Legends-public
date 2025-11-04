@@ -6,7 +6,7 @@ this.legend_goblin_tribe_defender <- this.inherit("scripts/entity/tactical/gobli
 		this.m.Type = ::Const.EntityType.LegendGoblinTribeDefender;
 		this.m.XP = ::Const.Tactical.Actor.LegendGoblinTribeDefender.XP;
 		this.goblin.create();
-		this.m.AIAgent = ::new("scripts/ai/tactical/agents/goblin_ranged_agent");
+		this.m.AIAgent = ::new("scripts/ai/tactical/agents/goblin_leader_agent");
 		this.m.AIAgent.setActor(this);
 	}
 
