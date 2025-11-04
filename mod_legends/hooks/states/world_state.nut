@@ -6,7 +6,6 @@
 	o.m.Camp <- null;
 	o.m.IDToRef <- array(27, -1);
 	o.m.DistantVisionBonus <- false;
-	o.m.AppropriateTimeToRecalc <- 0; //Leonion's fix
 	o.m.Encounters <- null;
 
 	o.getBrothersInReserves <- function ()
@@ -100,24 +99,21 @@
 		if (::Time.getRealTimeF() - m.CampaignLoadTime < 4.0)
 			return;
 
-		m.AppropriateTimeToRecalc = 0;
 		loadCampaign(_campaignFileName);
 	}
 
 	o.onCalculatePlayerPartyModifiers <- function()
 	{
-		m.AppropriateTimeToRecalc = 1;
-		getPlayer().calculateModifiers(); //Leonion's fix
+		getPlayer().calculateModifiers();
 	}
 
 	local startNewCampaign = o.startNewCampaign;
 	o.startNewCampaign = function()
 	{
-		m.AppropriateTimeToRecalc = 0; // set to 0 as you don't want it to update those modifiers
 		::Legends.IsStartingNewCampaign = true;
 		startNewCampaign();
-		::World.setFogOfWar(!::Legends.Mod.ModSettings.getSetting("DebugMap").getValue()); //
-		::World.Crafting.resetAllBlueprints(); //
+		::World.setFogOfWar(!::Legends.Mod.ModSettings.getSetting("DebugMap").getValue()); 
+		::World.Crafting.resetAllBlueprints();
 		onCalculatePlayerPartyModifiers();
 		::Legends.IsStartingNewCampaign = false;
 	}

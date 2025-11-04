@@ -27,10 +27,10 @@
 			this.World.Assets.m.MedicineMaxAdditional  = 50;
 		if ("ArmorPartsMaxAdditional" in this.World.Assets.m)
 			this.World.Assets.m.ArmorPartsMaxAdditional = 50;
+		::World.State.getPlayer().calculateStashModifier();
 	}
 
 	o.onEvaluate = function () {
 		this.follower.onEvaluate();
 	}
 });
-

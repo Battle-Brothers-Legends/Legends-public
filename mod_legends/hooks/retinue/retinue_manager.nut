@@ -68,7 +68,9 @@
 		local before = ::World.Assets.getStash().getCapacity();
 		upgradeInventory();
 		local diff = ::World.Assets.getStash().getCapacity() - before;
+		::World.Assets.getStash().resize(before);
 		::World.Flags.increment("LegendStartingStash", diff);
+		::World.State.getPlayer().calculateStashModifier();
 	}
 
 	o.hasFollowersToRemove <- function ()

@@ -906,7 +906,6 @@
 
 	o.restoreEquipment = function ()
 	{
-		this.World.State.m.AppropriateTimeToRecalc = 0;	//Leonion's fix
 		foreach( s in this.m.RestoreEquipment )
 		{
 			local bro = this.Tactical.getEntityByID(s.ID);
@@ -1021,7 +1020,6 @@
 		}
 
 		this.m.RestoreEquipment = [];
-		this.World.State.m.AppropriateTimeToRecalc = 1;	//Leonion's fix
 		this.World.State.getPlayer().calculateModifiers();	//Leonion's fix
 	}
 
@@ -1225,16 +1223,6 @@
 			this.setFormationName(i, _in.readString())
 		}
 		this.m.LastDayResourcesUpdated = _in.readU16();
-
-		local current = getStash().getCapacity();
-		local s = 0;
-
-		foreach( bro in ::World.getPlayerRoster().getAll())
-		{
-			s += bro.getStashModifier();
-		}
-
-		::World.Flags.set("LegendStartingStash", ::Math.max(0, current - s)); // switch to the new way to calculate stash modifier
 	}
 
 });
