@@ -9,7 +9,7 @@ this.legend_weapon_skill_book_item <- ::inherit("scripts/items/misc/legend_skill
 		this.legend_skill_book.create();
 		this.m.ID = "misc.legend_weapon_skill_book";
 		this.m.Name = "De Re Military";
-		this.m.Description = "A training manual written by a fencing master. Will teach the relevant weapon skill group to the character that uses it.";
+		this.m.Description = format("A training manual written by a fencing master.  Will teach the relevant [color=%s]Weapon[/color] perk group to the character that uses it.", ::Const.UI.Color.NegativeValue);
 		this.m.Icon = "misc/inventory_ledger_item.png";
 		this.m.SlotType = ::Const.ItemSlot.None;
 		this.m.ItemType = ::Const.Items.ItemType.Usable;

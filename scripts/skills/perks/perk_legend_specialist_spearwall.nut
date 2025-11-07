@@ -7,12 +7,8 @@ this.perk_legend_specialist_spearwall <- this.inherit("scripts/skills/skill", {
 	},
 	function create()
 	{
-		::Const.Perks.setup(this.m, ::Legends.Perk.LegendSpecSpearWall);
-		this.m.Type = this.Const.SkillType.Perk;
+		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendSpecSpearWall);
 		this.m.Order = this.Const.SkillOrder.Last;
-		this.m.IsActive = false;
-		this.m.IsStacking = false;
-		this.m.IsHidden = false;
 	}
 
 	function onAfterUpdate( _properties ) {

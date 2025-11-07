@@ -2,12 +2,7 @@ this.perk_legend_carnage <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		::Const.Perks.setup(this.m, ::Legends.Perk.LegendCarnage);
-		this.m.Type = this.Const.SkillType.Perk;
-		this.m.Order = this.Const.SkillOrder.Perk;
-		this.m.IsActive = false;
-		this.m.IsStacking = false;
-		this.m.IsHidden = false;
+		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendCarnage);
 	}
 
 	function onAnySkillUsed( _skill, _targetEntity, _properties )
@@ -17,8 +12,8 @@ this.perk_legend_carnage <- this.inherit("scripts/skills/skill", {
 
 		if (_targetEntity.getSkills().hasEffect(::Legends.Effect.Bleeding) || _targetEntity.getSkills().hasEffect(::Legends.Effect.LegendGrazedEffect) && !_targetEntity.isAlliedWith(this.getContainer().getActor()))
 		{
-			_properties.DamageRegularMin *= 1.1;
-			_properties.DamageRegularMax *= 1.1;
+			_properties.DamageRegularMin *= 1.2;
+			_properties.DamageRegularMax *= 1.2;
 		}
 	}
 

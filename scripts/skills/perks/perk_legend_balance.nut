@@ -4,13 +4,9 @@ this.perk_legend_balance <- this.inherit("scripts/skills/skill", {
 	},
 	function create()
 	{
-		::Const.Perks.setup(this.m, ::Legends.Perk.LegendBalance);
+		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendBalance);
 		this.m.Description = "%name% gains increased Melee and Ranged defense by balancing %their% armor weight.";
 		this.m.Type = this.Const.SkillType.Perk | this.Const.SkillType.StatusEffect;
-		this.m.Order = this.Const.SkillOrder.Perk;
-		this.m.IsActive = false;
-		this.m.IsStacking = false;
-		this.m.IsHidden = false;
 	}
 
 	function getTooltip ()

@@ -69,6 +69,12 @@ this.legend_martial_march_skill <- this.inherit("scripts/skills/skill", {
 		return ret;
 	}
 
+	function isHidden() {
+		if (this.getContainer != null && !::Legends.Perks.has(this.getContainer(), ::Legends.Perk.LegendMeistersanger))
+			return true;
+		return this.skill.isHidden();
+	}
+
 	function isUsable()
 	{
 		if (!this.Tactical.isActive())
@@ -78,16 +84,6 @@ this.legend_martial_march_skill <- this.inherit("scripts/skills/skill", {
 
 		local tile = this.getContainer().getActor().getTile();
 		return this.skill.isUsable() && !tile.hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions());
-	}
-
-	function onAfterUpdate( _properties )
-	{
-		this.m.FatigueCostMult = 1.0;
-		if (_properties.IsSpecializedInMusic)
-		{
-			this.m.FatigueCostMult = this.Const.Combat.WeaponSpecFatigueMult;
-			this.m.ActionPointCost -= 1;
-		}
 	}
 
 	function onUse( _user, _targetTile )

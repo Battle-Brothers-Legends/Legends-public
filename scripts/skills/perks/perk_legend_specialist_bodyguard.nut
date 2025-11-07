@@ -17,7 +17,7 @@ this.perk_legend_specialist_bodyguard <- this.inherit("scripts/skills/legend_spe
 	function create()
 	{
 		this.legend_specialist_abstract.create();
-		::Const.Perks.setup(this.m, ::Legends.Perk.LegendSpecialistBodyguard);
+		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendSpecialistBodyguard);
 		this.m.IconMini = "perk_spec_2hsword_mini";
 	}
 

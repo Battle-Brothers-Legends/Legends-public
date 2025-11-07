@@ -141,10 +141,10 @@
 	return towns.top();
 }
 
-::Legends.S.skillEntityAliveCheck <- function (_entity, _otherEntity = null) {
+::Legends.S.skillEntityAliveCheck <- function (_entity, _otherEntity = 0) {
 	if (::Legends.S.isNull(_entity) || !_entity.isAlive() || _entity.isDying())
 		return true;
-	if (_otherEntity == null)
+	if (_otherEntity == 0)
 		return false;
 	if (::Legends.S.isNull(_otherEntity) || !_otherEntity.isAlive() || _otherEntity.isDying())
 		return true;

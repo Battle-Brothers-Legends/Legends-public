@@ -5,12 +5,8 @@ this.perk_legend_swagger <- this.inherit("scripts/skills/skill", {
 	},
 	function create()
 	{
-		::Const.Perks.setup(this.m, ::Legends.Perk.LegendSwagger);
+		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendSwagger);
 		this.m.Type = this.Const.SkillType.Perk | this.Const.SkillType.StatusEffect;
-		this.m.Order = this.Const.SkillOrder.Perk;
-		this.m.IsActive = false;
-		this.m.IsStacking = false;
-		this.m.IsHidden = false;
 	}
 
 	function getTooltip ()
@@ -52,7 +48,7 @@ this.perk_legend_swagger <- this.inherit("scripts/skills/skill", {
 				text = "This character is not wearing armor or their armor is too cheap to gain a bonus"
 			});
 		}
-		
+
 		return ret;
 	}
 

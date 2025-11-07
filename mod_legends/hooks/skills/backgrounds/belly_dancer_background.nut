@@ -76,7 +76,16 @@
 
 	o.getTooltip = function ()
 	{
-		return this.character_background.getTooltip();
+		local ret = this.character_background.getTooltip();
+		ret.push(
+			{
+				id = 11,
+				type = "text",
+				icon = "ui/icons/chance_to_hit_head.png",
+				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+10%[/color] Chance To Hit Head"
+			}
+		);
+		return ret;
 	}
 
 	o.onChangeAttributes = function ()
@@ -116,6 +125,12 @@
 			]
 		};
 		return c;
+	}
+
+	o.onUpdate <- function ( _properties )
+	{
+		this.character_background.onUpdate(_properties);
+		_properties.HitChance[this.Const.BodyPart.Head] += 10;
 	}
 
 	o.onAdded <- function ()

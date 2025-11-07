@@ -31,7 +31,7 @@ this.legend_flourish_skill <- this.inherit("scripts/skills/skill", {
 	{
 		local effect = ::Legends.Effects.get(this, ::Legends.Effect.LegendFlourish);
 
-		return !this.Tactical.isActive() || this.skill.isUsable() && !this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions()) && effect == null;
+		return !this.Tactical.isActive() || this.skill.isUsable() && effect == null;
 	}
 
 	function onUse( _user, _targetTile )

@@ -297,6 +297,7 @@ this.legend_orc_elite <- this.inherit("scripts/entity/tactical/actor", {
 		if(::Legends.isLegendaryDifficulty())
 		{
 			this.m.Hitpoints = 1.5 * b.Hitpoints;
+			::Legends.Perks.grant(this, ::Legends.Perk.Brawny);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendLastStand);
 			::Legends.Perks.grant(this, ::Legends.Perk.Underdog);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendImmovableObject);
@@ -349,7 +350,7 @@ this.legend_orc_elite <- this.inherit("scripts/entity/tactical/actor", {
 
 		this.getSprite("miniboss").setBrush("bust_miniboss_greenskins");
 
-		if (::Math.rand(1, 100) <= 50) {
+		if (::Math.rand(1, 100) <= 80) {
 			this.getItems().unequip(this.getItems().getItemAtSlot(::Const.ItemSlot.Mainhand));
 			this.getItems().equip(::Const.World.Common.pickItem([
 				[1, "weapons/named/named_orc_cleaver"],

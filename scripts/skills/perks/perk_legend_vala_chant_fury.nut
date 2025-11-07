@@ -9,14 +9,12 @@ this.perk_legend_vala_chant_fury <- this.inherit("scripts/skills/skill", {
 
 	function create()
 	{
-		::Const.Perks.setup(this.m, ::Legends.Perk.LegendValaChantFury);
+		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendValaChantFury);
 		this.m.Type = this.Const.SkillType.Active | this.Const.SkillType.Perk;
 		this.m.Order = this.Const.SkillOrder.NonTargeted + 2;
 		this.m.IsSerialized = true;
 		this.m.IsActive = true;
 		this.m.IsTargeted = false;
-		this.m.IsStacking = false;
-		this.m.IsHidden = false;
 		this.m.IsAttack = false;
 		this.m.IsIgnoredAsAOO = true;
 		this.m.IsVisibleTileNeeded = false;

@@ -28,17 +28,15 @@ this.legend_goblin_plunderer <- this.inherit("scripts/entity/tactical/enemies/go
 
 	function assignRandomEquipment()
 	{
-		local r;
-		r = this.Math.rand(1, 2);
-
-		if (r == 1)
-		{
-			this.m.Items.equip(this.new("scripts/items/weapons/greenskins/goblin_spear"));
-		}
-		else if (r == 2)
-		{
-			this.m.Items.equip(this.new("scripts/items/weapons/greenskins/goblin_falchion"));
-		}
+		local weapons = [
+			"weapons/greenskins/goblin_falchion",
+			"weapons/greenskins/goblin_spear",
+			"weapons/legend_chain",
+			"weapons/greenskins/goblin_notched_blade",
+			"weapons/greenskins/legend_goblin_infantry_axe",
+			"weapons/greenskins/goblin_pike",
+		];
+		this.m.Items.equip(this.new("scripts/items/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
 
 		if (this.m.Items.getItemAtSlot(this.Const.ItemSlot.Body) == null)
 		{
@@ -71,12 +69,11 @@ this.legend_goblin_plunderer <- this.inherit("scripts/entity/tactical/enemies/go
 
 		this.getSprite("miniboss").setBrush("bust_miniboss");
 		local weapons = [
-			"weapons/greenskins/goblin_falchion",
-			"weapons/greenskins/goblin_spear",
-			"weapons/legend_chain",
-			"weapons/greenskins/goblin_notched_blade",
-			"weapons/greenskins/legend_goblin_infantry_axe",
-			"weapons/greenskins/goblin_pike",
+			"weapons/named/legend_named_goblin_gruesome_falchion",
+			"weapons/named/named_goblin_pike",
+			"weapons/named/named_goblin_spear",
+			"weapons/named/named_warbrand",
+			"weapons/named/legend_named_goblin_notched_blade"
 		];
 		this.m.Items.equip(this.new("scripts/items/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
 		::Legends.Perks.grant(this, ::Legends.Perk.Nimble);

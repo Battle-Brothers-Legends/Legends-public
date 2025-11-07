@@ -65,7 +65,7 @@ this.legend_vala_inscription_token <- this.inherit("scripts/items/item", {
 	}
 
 
-	function onUse(_actor, _item = null) {
+	function onUse(_actor, _item = null, _playSound = true) {
 		local target = null;
 		local def = ::Legends.Runes.get(this.getRuneVariant());
 		if (def.ItemType == ::Legends.Runes.Target.Weapon) {
@@ -89,8 +89,8 @@ this.legend_vala_inscription_token <- this.inherit("scripts/items/item", {
 		} else {
 			return false;
 		}
-
-		this.Sound.play("sounds/combat/legend_vala_inscribe.wav");
+		if (_playSound)
+			this.Sound.play("sounds/combat/legend_vala_inscribe.wav");
 		local alreadyRuned = target.isRuned();
 		target.setRuneVariant(this.getRuneVariant());
 		target.setRuneBonus1(this.getRuneBonus1());

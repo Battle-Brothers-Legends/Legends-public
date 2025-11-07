@@ -1,5 +1,8 @@
 this.legend_vala_warden_wail_skill <- this.inherit("scripts/skills/skill", {
-	m = {},
+	m = {
+		AdditionalAccuracy = 0,
+		AdditionalHitChance = 0
+	},
 	function create()
 	{
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendValaWardenWail);

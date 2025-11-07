@@ -87,6 +87,7 @@ this.legend_redback_dagger <- this.inherit("scripts/items/weapons/weapon", {
 
 	function onDamageDealt( _target, _skill, _hitInfo )
 	{
+		this.weapon.onDamageDealt(_target, _skill, _hitInfo);
 		if (_target.getCurrentProperties().IsImmuneToPoison || _hitInfo.DamageInflictedHitpoints <= this.Const.Combat.PoisonEffectMinDamage || _target.getHitpoints() <= 0)
 			return;
 

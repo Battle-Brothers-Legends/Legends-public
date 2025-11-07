@@ -1149,7 +1149,7 @@
 			}
 			if (r == 15)
 			{
-				local loot = this.new("scripts/items/supplies/bandage_item");
+				local loot = this.new("scripts/items/accessory/bandage_item");
 				loot.drop(_targetEntity.getTile());
 			}
 			if (this.m.SoundOnHit.len() != 0)

@@ -5,13 +5,10 @@ this.perk_legend_perfect_fit <- this.inherit("scripts/skills/skill", {
 	},
 	function create()
 	{
-		::Const.Perks.setup(this.m, ::Legends.Perk.LegendPerfectFit);
+		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendPerfectFit);
 		this.m.Description = "Leveraging the superior fit of %their% armor, %name% is gaining increased speed and endurance.";
 		this.m.Type = this.Const.SkillType.Perk | this.Const.SkillType.StatusEffect;
 		this.m.Order = this.Const.SkillOrder.VeryLast;
-		this.m.IsActive = false;
-		this.m.IsStacking = false;
-		this.m.IsHidden = false;
 	}
 
 	function getBonus()

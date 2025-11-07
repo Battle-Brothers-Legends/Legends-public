@@ -132,7 +132,7 @@ this.legend_berserker_commander_background <- this.inherit("scripts/skills/backg
 				::Legends.Perk.CoupDeGrace,
 			],
 			[
-				::Legends.Perk.Rotation,
+				::Legends.Perk.LegendTacticalManeuvers,
 				::Legends.Perk.Anticipation,
 				::Legends.Perk.LegendTrueBeliever,
 

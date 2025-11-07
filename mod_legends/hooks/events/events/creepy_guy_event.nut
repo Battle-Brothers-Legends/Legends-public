@@ -58,6 +58,31 @@
 				]);
 			}
 		});
+			this.m.Screens.push({
+			ID = "Militia"
+			Text = "[img]gfx/ui/events/event_65.png[/img]%militia% looks at the throng of peasants - all clamouring for their own macabre memento – and shakes %their_militia%% head. You see them pull a number of mismatched rags from their jacket pocket and quickly tie one around their arm before passing the rest to a few of the sturdier looking men from the company. %SPEECH_ON%With me. Follow my lead, and this should be over quick.%SPEECH_OFF%The deputised mercenaries are confused but agree nonetheless, perhaps eager to dispense lawful violence against such a lawless mob, or perhaps obliged by the unquestionable gravitas in %militia%\'s order. One ties a floral patch around their arm, earning smirks from the rest of the company as they set off into the rabble. What follows resembles the sound of battle – as though the mob had suddenly become feral and decided to gorge themselves on your ad-hoc militia\'s flesh. Orders, roars, jeers, thuds, boos, and a few embarrassing yelps later, the crowd begins to calm, albeit with a few loud grumbles about them “ruining the fun”. The shouts of your impromptu militia turn to firm but measured commands to disperse and leave the dead alone, no matter how guilty they are. With the peasants returning to the less exciting doldrum of their insignificant realities, %militia% approaches with a self-assured smile.%SPEECH_ON%Well, captain. It can be a real ball-ache at times, but it\'s just like wrangling chickens: you find the cockerel and shut it up, and the rest don\'t feel as cocky all of a sudden.%SPEECH_OFF%%They_militia% turns and gestures to a battered peasant – the instigator perhaps- dazed and slipping in the churned earth of the mob as they slip away. You can\'t say you\'ve ever been involved in chicken wrangling, but you feel you have a better idea of it now. The creep smiles a near toothless smile and slips a purse into your hands, looking through you to the now abandoned corpse. They lick their cracked lips as %militia% undoes their armband and pockets it as they join the rest of the company.%SPEECH_ON%Wait, who was that?%SPEECH_OFF%"
+			Image = ""
+			List = []
+			Characters = []
+			Options = [{
+				Text = "Don't worry about it, let's go."
+				getResult = @(_event) 0
+			}]
+			function start(_event) {
+				this.Characters.push(_event.m.Militia.getImagePath());
+
+				::World.Assets.addMoney(500);
+				this.List.extend([{
+						id = 10,
+						icon = "ui/icons/asset_money.png",
+						text = "You gain [color=" + Const.UI.Color.PositiveEventValue + "]500[/color] Crowns"
+					},
+					::Legends.EventList.changeFatigue(_event.m.Militia, ::Math.rand(1, 2)),
+					::Legends.EventList.changeResolve(_event.m.Militia, ::Math.rand(1, 2)),
+					::Legends.EventList.changeMood(_event.m.Shieldmaiden, 1.5, "Happy to restore order to a town.")
+				]);
+			}
+		});
 	}
 
 	local onUpdateScore = o.onUpdateScore;

@@ -7,7 +7,6 @@ XBBCODE.process = function(config) {
     ret.html = ret.html.replace(
         /(?:\[|&#91;)leg_img(?:\]|&#93;)\(\s*([\s\S]+?)\s*\)(?:\[|&#91;)\/leg_img(?:\]|&#93;)/gi,
         function(_match, content) {
-       		console.error("match found");
             var parts = content.split(',');
             for (var i = 0; i < parts.length; i++) {
                 parts[i] = parts[i].replace(/^\s+|\s+$/g, ''); // trim

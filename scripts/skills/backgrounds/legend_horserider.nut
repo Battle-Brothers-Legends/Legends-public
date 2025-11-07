@@ -66,7 +66,7 @@ this.legend_horserider <- this.inherit("scripts/skills/backgrounds/character_bac
 			],
 			[
 				::Legends.Perk.Anticipation,
-				::Legends.Perk.Rotation,
+				::Legends.Perk.LegendTacticalManeuvers,
 				::Legends.Perk.Taunt,
 				// ::Legends.Perk.LegendSprint
 			],
@@ -79,7 +79,6 @@ this.legend_horserider <- this.inherit("scripts/skills/backgrounds/character_bac
 			],
 			[
 				::Legends.Perk.LoneWolf,
-				::Legends.Perk.Footwork,
 				::Legends.Perk.LegendBattleheart
 			],
 			[

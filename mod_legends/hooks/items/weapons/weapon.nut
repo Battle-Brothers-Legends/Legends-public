@@ -13,6 +13,15 @@
 		return doubleGrip ? this.Math.floor(shieldDamage * 1.25) : this.Math.floor(shieldDamage);
 	}
 
+	local onDamageDealt = o.onDamageDealt;
+	o.onDamageDealt = function ( _target, _skill, _hitInfo )
+	{
+		if (_skill.getID() == ::Legends.Actives.getID(::Legends.Active.HandToHand))
+			return;
+
+		onDamageDealt( _target, _skill, _hitInfo );
+	}
+
 	local getTooltip = o.getTooltip;
 	o.getTooltip = function ()
 	{

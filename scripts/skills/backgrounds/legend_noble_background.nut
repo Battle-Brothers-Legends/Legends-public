@@ -73,7 +73,6 @@ this.legend_noble_background <- this.inherit("scripts/skills/backgrounds/charact
 			[
 				::Legends.Perk.Brawny,
 				::Legends.Perk.Anticipation,
-				::Legends.Perk.Rotation,
 				::Legends.Perk.Taunt,
 				::Legends.Perk.LegendFeint,
 				::Legends.Perk.RallyTheTroops,
@@ -98,7 +97,7 @@ this.legend_noble_background <- this.inherit("scripts/skills/backgrounds/charact
 				::Legends.Perk.ReachAdvantage,
 				::Legends.Perk.Overwhelm,
 				::Legends.Perk.Underdog,
-				::Legends.Perk.Footwork,
+				::Legends.Perk.LegendTacticalManeuvers,
 				::Legends.Perk.LegendLithe,
 				::Legends.Perk.LegendFavouredEnemyBandit,
 				::Legends.Perk.LegendFavouredEnemyBarbarian,

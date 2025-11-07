@@ -27,4 +27,12 @@
 			}
 		}
 	}
+
+	local onAfterUpdate = o.onAfterUpdate;
+	o.onAfterUpdate = function (_properties) {
+		onAfterUpdate(_properties);
+		if (::Legends.Perks.has(this.getContainer(), ::Legends.Perk.LegendFreedomOfMovement)) {
+			this.m.FatigueCostMult *= 0.5;
+		}
+	}
 });

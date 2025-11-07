@@ -122,7 +122,7 @@ this.legend_crusader_background <- this.inherit("scripts/skills/backgrounds/char
 			],
 			[],
 			[
-				::Legends.Perk.Footwork,
+				::Legends.Perk.LegendTacticalManeuvers,
 				::Legends.Perk.LegendBattleheart,
 				::Legends.Perk.LegendLionheart
 			],

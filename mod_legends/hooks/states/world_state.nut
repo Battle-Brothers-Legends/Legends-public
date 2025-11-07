@@ -1185,13 +1185,9 @@
 		if (!this.m.EventScreen.isVisible() && !this.m.EventScreen.isAnimating())
 		{
 			if (::isKindOf(_encounter, "encounter_event")) {
+				::World.Events.addSpecialEvent(_encounter.m.Event);
 				::World.State.getMenuStack().popAll(true);
-				local event = _encounter.m.Event;
-				::Time.scheduleEvent(::TimeUnit.Virtual, 1, function (_tag) {
-					::World.State.setPause(true);
-					::World.Events.fire(_tag);
-				}, event);
-				::Time.scheduleEvent(::TimeUnit.Real, 500, function ( _tag ) {
+				::Time.scheduleEvent(::TimeUnit.Real, 100, function ( _tag ) {
 					::World.State.setPause(false);
 				}, null);
 				::World.Encounters.clearActiveEvent();
@@ -1222,13 +1218,9 @@
 		if (!this.m.EventScreen.isVisible() && !this.m.EventScreen.isAnimating())
 		{
 			if (::isKindOf(_encounter, "encounter_event")) {
+				::World.Events.addSpecialEvent(_encounter.m.Event);
 				::World.State.getMenuStack().popAll(true);
-				local event = _encounter.m.Event;
-				::Time.scheduleEvent(::TimeUnit.Virtual, 1, function (_tag) {
-					::World.State.setPause(true);
-					::World.Events.fire(_tag);
-				}, event);
-				::Time.scheduleEvent(::TimeUnit.Real, 500, function ( _tag ) {
+				::Time.scheduleEvent(::TimeUnit.Real, 100, function ( _tag ) {
 					::World.State.setPause(false);
 				}, null);
 				::World.Encounters.clearActiveEvent();

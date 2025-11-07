@@ -5,12 +5,7 @@ this.perk_legend_versatile <- this.inherit("scripts/skills/skill", {
 	},
 	function create()
 	{
-		::Const.Perks.setup(this.m, ::Legends.Perk.LegendVersatile);
-		this.m.Type = this.Const.SkillType.Perk;
-		this.m.Order = this.Const.SkillOrder.Perk;
-		this.m.IsActive = false;
-		this.m.IsStacking = false;
-		this.m.IsHidden = false;
+		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendVersatile);
 	}
 
 	function onTurnEnd()
@@ -23,7 +18,7 @@ this.perk_legend_versatile <- this.inherit("scripts/skills/skill", {
 	{
 		if (this.m.MeleeBonus)
 			_properties.MeleeDamageMult *= 1.5;
-		
+
 		if (this.m.RangedBonus)
 			_properties.MeleeDamageMult *= 1.5;
 	}

@@ -19,7 +19,8 @@ this.legend_cluster_spider_racial <- this.inherit("scripts/skills/skill", {
 		local bonus = this.Math.floor(100 * (1.0 - currentPercent) / 2.0);
 		_properties.MeleeDefense += bonus;
 		_properties.RangedDefense += bonus;
-		_properties.DamageRegularMult *= (1.0 - currentPercent)
+		_properties.DamageRegularMult *= (1.0 - currentPercent);
+		_properties.ThresholdToReceiveInjuryMult *= 0.0;
 	}
 });
 

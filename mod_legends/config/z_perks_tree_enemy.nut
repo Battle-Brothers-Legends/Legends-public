@@ -5,9 +5,11 @@ if (!("Perks" in ::Const))
 
 ::Const.Perks.BeastsTree <- {
 	ID = "BeastsTree",
+	Name = "Beasts",
 	Descriptions = [
 		"beasts"
 	],
+	
 	Tree = [
 		[],
 		[],
@@ -25,8 +27,9 @@ if (!("Perks" in ::Const))
 
 ::Const.Perks.GhoulTree <- {
 	ID = "GhoulTree",
+	Name = "Nachzehrers",
 	Descriptions = [
-		"ghouls"
+		"nachzehrers"
 	],
 	Tree = [
 		[],
@@ -41,6 +44,7 @@ if (!("Perks" in ::Const))
 
 ::Const.Perks.DirewolfTree <- {
 	ID = "DirewolfTree",
+	Name = "Direwolves",
 	Descriptions = [
 		"direwolves"
 	],
@@ -57,6 +61,7 @@ if (!("Perks" in ::Const))
 
 ::Const.Perks.SpiderTree <- {
 	ID = "SpiderTree",
+	Name = "Webknechts",
 	Descriptions = [
 		"spiders"
 	],
@@ -73,6 +78,7 @@ if (!("Perks" in ::Const))
 
 ::Const.Perks.LindwurmTree <- {
 	ID = "LindwurmTree",
+	Name = "Lindwurms",
 	Descriptions = [
 		"lindwurms"
 	],
@@ -92,6 +98,7 @@ if (!("Perks" in ::Const))
 	Descriptions = [
 		"mystics"
 	],
+	Name = "Mystics",
 	Tree = [
 		[],
 		[],
@@ -108,6 +115,7 @@ if (!("Perks" in ::Const))
 
 ::Const.Perks.SchratTree <- {
 	ID = "SchratTree",
+	Name = "Schrats",
 	Descriptions = [
 		"schrats"
 	],
@@ -124,6 +132,7 @@ if (!("Perks" in ::Const))
 
 ::Const.Perks.HexenTree <- {
 	ID = "HexenTree",
+	Name = "Hexen",
 	Descriptions = [
 		"hexen"
 	],
@@ -140,6 +149,7 @@ if (!("Perks" in ::Const))
 
 ::Const.Perks.AlpTree <- {
 	ID = "AlpTree",
+	Name = "Alps",
 	Descriptions = [
 		"alps"
 	],
@@ -156,6 +166,7 @@ if (!("Perks" in ::Const))
 
 ::Const.Perks.UndeadTree <- {
 	ID = "UndeadTree",
+	Name = "Undead",
 	Descriptions = [
 		"undead"
 	],
@@ -175,8 +186,9 @@ if (!("Perks" in ::Const))
 
 ::Const.Perks.SkeletonTree <- {
 	ID = "SkeletonTree",
+	Name = "Ancient Empire",
 	Descriptions = [
-		"skeletons"
+		"ancient empire"
 	],
 	Tree = [
 		[],
@@ -191,8 +203,9 @@ if (!("Perks" in ::Const))
 
 ::Const.Perks.ZombieTree <- {
 	ID = "ZombieTree",
+	Name = "Wiedergangers",
 	Descriptions = [
-		"zombies"
+		"wiedergangers"
 	],
 	Tree = [
 		[],
@@ -207,8 +220,9 @@ if (!("Perks" in ::Const))
 
 ::Const.Perks.VampireTree <- {
 	ID = "VampireTree",
+	Name = "Necrosavants",
 	Descriptions = [
-		"vampires"
+		"necrosavants"
 	],
 	Tree = [
 		[],
@@ -223,6 +237,7 @@ if (!("Perks" in ::Const))
 
 ::Const.Perks.OrcsTree <- {
 	ID = "OrcsTree",
+	Name = "Greenskins",
 	Descriptions = [
 		"greenskins"
 	],
@@ -242,6 +257,7 @@ if (!("Perks" in ::Const))
 
 ::Const.Perks.OrcTree <- {
 	ID = "OrcTree",
+	Name = "Orcs",
 	Descriptions = [
 		"orcs"
 	],
@@ -258,6 +274,7 @@ if (!("Perks" in ::Const))
 
 ::Const.Perks.GoblinTree <- {
 	ID = "GoblinTree",
+	Name = "Goblins",
 	Descriptions = [
 		"goblins"
 	],
@@ -274,6 +291,7 @@ if (!("Perks" in ::Const))
 
 ::Const.Perks.UnholdTree <- {
 	ID = "UnholdTree",
+	Name = "Unholds",
 	Descriptions = [
 		"unholds"
 	],
@@ -290,6 +308,7 @@ if (!("Perks" in ::Const))
 
 ::Const.Perks.CivilizationTree <- {
 	ID = "CivilizationTree",
+	Name = "Civilians",
 	Descriptions = [
 		"civilians"
 	],
@@ -308,6 +327,7 @@ if (!("Perks" in ::Const))
 
 ::Const.Perks.CaravanTree <- {
 	ID = "CaravanTree",
+	Name = "Caravans",
 	Descriptions = [
 		"caravans"
 	],
@@ -324,6 +344,7 @@ if (!("Perks" in ::Const))
 
 ::Const.Perks.MercenaryTree <- {
 	ID = "MercenaryTree",
+	Name = "Mercenaries",
 	Descriptions = [
 		"mercenaries"
 	],
@@ -340,6 +361,7 @@ if (!("Perks" in ::Const))
 
 ::Const.Perks.NoblesTree <- {
 	ID = "NoblesTree",
+	Name = "Nobles",
 	Descriptions = [
 		"nobles"
 	],
@@ -356,6 +378,7 @@ if (!("Perks" in ::Const))
 
 ::Const.Perks.OutlandersTree <- {
 	ID = "OutlandersTree",
+	Name = "Outlanders",
 	Descriptions = [
 		"outlanders"
 	],
@@ -375,6 +398,7 @@ if (!("Perks" in ::Const))
 
 ::Const.Perks.BanditTree <- {
 	ID = "BanditTree",
+	Name = "Bandits",
 	Descriptions = [
 		"bandits"
 	],
@@ -391,6 +415,7 @@ if (!("Perks" in ::Const))
 
 ::Const.Perks.BarbarianTree <- {
 	ID = "BarbariansTree",
+	Name = "Barbarians",
 	Descriptions = [
 		"barbarians"
 	],
@@ -407,8 +432,9 @@ if (!("Perks" in ::Const))
 
 ::Const.Perks.ArchersTree <- {
 	ID = "ArchersTree",
+	Name = "Sharpshooters",
 	Descriptions = [
-		"archers"
+		"sharpshooter"
 	],
 	Tree = [
 		[::Legends.Perk.Pathfinder],
@@ -423,8 +449,9 @@ if (!("Perks" in ::Const))
 
 ::Const.Perks.ArcherTree <- {
 	ID = "ArcherTree",
+	Name = "Archers"
 	Descriptions = [
-		"archer"
+		"archers"
 	],
 	Tree = [
 		[],
@@ -439,6 +466,7 @@ if (!("Perks" in ::Const))
 
 ::Const.Perks.SwordmastersTree <- {
 	ID = "SwordmastersTree",
+	Name = "Swordmasters",
 	Descriptions = [
 		"swordmasters"
 	],
@@ -458,6 +486,7 @@ if (!("Perks" in ::Const))
 
 ::Const.Perks.SouthernersTree <- {
 	ID = "SouthernersTree",
+	Name = "Southerners",
 	Descriptions = [
 		"southerners"
 	],
@@ -474,6 +503,7 @@ if (!("Perks" in ::Const))
 
 ::Const.Perks.NomadsTree <- {
 	ID = "NomadsTree",
+	Name = "Nomads",
 	Descriptions = [
 		"nomads"
 	],

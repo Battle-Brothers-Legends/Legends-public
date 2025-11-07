@@ -22,14 +22,9 @@ this.perk_legend_push_the_advantage <- this.inherit("scripts/skills/skill", {
 	},
 	function create()
 	{
-		::Const.Perks.setup(this.m, ::Legends.Perk.LegendPushTheAdvantage);
+		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendPushTheAdvantage);
 		this.m.Icon = "ui/perks/onslaught_circle.png";
 		this.m.IconDisabled = "ui/perks/onslaught_circle_bw.png";
-		this.m.Type = this.Const.SkillType.Perk;
-		this.m.Order = this.Const.SkillOrder.Perk;
-		this.m.IsActive = false;
-		this.m.IsStacking = false;
-		this.m.IsHidden = false;
 	}
 
 	function onBeforeTargetHit( _skill, _targetEntity, _hitInfo )

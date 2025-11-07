@@ -60,7 +60,7 @@
 	// ::Legends.Traits.getID(::Legends.Trait.LegendTalented),
 ];
 
-::Legends.Legion.ExludedInjures <- [
+::Legends.Legion.ExcludedInjures <- [
 	//all injuries associated with stamina regen, health or resolve
 	//perma injuries must be managed in actor.nut, NOT here!
 	//	"injury.traumatized",

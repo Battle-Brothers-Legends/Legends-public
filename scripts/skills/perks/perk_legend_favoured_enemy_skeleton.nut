@@ -3,7 +3,8 @@ this.perk_legend_favoured_enemy_skeleton <- this.inherit("scripts/skills/legend_
 	function create()
 	{
 		this.legend_favoured_enemy_skill.create();
-		::Const.Perks.setup(this.m, ::Legends.Perk.LegendFavouredEnemySkeleton);
+		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendFavouredEnemySkeleton);
+		this.m.Type = this.Const.SkillType.Perk | this.Const.SkillType.StatusEffect;
 		this.m.ValidTypes = this.Const.LegendMod.FavoriteSkeleton;
 	}
 

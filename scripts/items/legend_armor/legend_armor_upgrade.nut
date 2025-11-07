@@ -502,7 +502,7 @@ this.legend_armor_upgrade <- this.inherit("scripts/items/item", {
 		this.setCurrentSlotType(this.Const.ItemSlot.None);
 	}
 
-	function onUse( _actor, _item = null )
+	function onUse( _actor, _item = null, _playSound = true )
 	{
 		if (this.isUsed()) return false;
 
@@ -512,7 +512,7 @@ this.legend_armor_upgrade <- this.inherit("scripts/items/item", {
 
 		local success = armor.setUpgrade(this);
 
-		if (success)
+		if (success && _playSound)
 		{
 			this.Sound.play("sounds/inventory/armor_upgrade_use_01.wav", this.Const.Sound.Volume.Inventory);
 		}

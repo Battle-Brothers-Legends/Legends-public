@@ -14,6 +14,11 @@
 		}
 	}
 
+	o.getTooltip = function()
+	{
+		return this.getDefaultTooltip();
+	}
+
 	local onAfterUpdate = o.onAfterUpdate;
 	o.onAfterUpdate = function( _properties )
 	{

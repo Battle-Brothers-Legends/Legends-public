@@ -13,7 +13,7 @@
  *	});
  *
  *	In perk implementation create() method it's encouraged to use helper function to set defined fields automatically by using
- *  ::Const.Perks.setup(this.m, ::Legends.Perk.LegendBallistics);
+ *  ::Legends.Perks.onCreate(this, ::Legends.Perk.LegendBallistics);
  *  Use your name, this will ensure there's not mismatch or typos in ID, Icons etc.
  *  If your perk is an effect or requires to show different icons when used as a skill or whatever other reason, you can still set values you need regardless what helper sets.
  *
@@ -33,26 +33,32 @@ if (!("Perk" in ::Legends))
 ::Const.Perks.PerkDefObjects <- [];
 ::Const.Perks.PerkDefs <- {};
 
-::Const.Perks.addPerkDefObjects <- function( _perkDefObjects )
+/**
+ * @param _perkDefObjects is an array of perk definitions
+ * @param _container is namespace where ids will reside, you can use your own in submods
+ */
+
+::Const.Perks.addPerkDefObjects <- function(_perkDefObjects, _container = ::Legends.Perk)
 {
 	local size = ::Const.Perks.PerkDefObjects.len();
 	::Const.Perks.PerkDefObjects.extend(_perkDefObjects);
 	foreach (i, perkDefObject in _perkDefObjects)
 	{
-		if (perkDefObject.Const in ::Legends.Perk)
-			::Legends.Perk[perkDefObject.Const] = size + i;
+		if (perkDefObject.Const in _container)
+			_container[perkDefObject.Const] = size + i;
 		else
-			::Legends.Perk[perkDefObject.Const] <- size + i;
+			_container[perkDefObject.Const] <- size + i;
 		::Const.Perks.PerkDefs[perkDefObject.Const] <- size + i;
 		::Const.Perks.LookupMap[perkDefObject.ID] <- perkDefObject;
 	}
 }
 
 ::Const.Perks.updatePerkGroupTooltips <- function( _perkDef = null, _groups = [] ) {
-	// deprecated, will be removed in 19.2.0
+	::logError("Attention modders, `::Const.Perks.updatePerkGroupTooltips` has been deprecated in 19.2, remove this call, it's not needed. Will be removed in 19.3");
 }
 
 ::Const.Perks.setup <- function (_m, _perkDef) {
+	::logError("Attention modders, `::Const.Perks.setup` has been deprecated in 19.2, use ::Legends.Perks.onCreate instead. Will be removed in 19.3");
 	local def = ::Const.Perks.PerkDefObjects[_perkDef];
 	_m.ID = def.ID;
 	_m.Name = ::Const.Strings.PerkName[def.Const];

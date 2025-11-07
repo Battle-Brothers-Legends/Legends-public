@@ -40,6 +40,7 @@ this.legend_drum <- this.inherit("scripts/items/weapons/weapon", {
 		::Legends.Actives.grant(this, ::Legends.Active.KnockOut);
 		::Legends.Actives.grant(this, ::Legends.Active.LegendDrumsOfWar);
 		::Legends.Actives.grant(this, ::Legends.Active.LegendDrumsOfLife);
+		::Legends.Actives.grant(this, ::Legends.Active.LegendMartialMarch);
 	}
 
 	function onUpdateProperties( _properties )

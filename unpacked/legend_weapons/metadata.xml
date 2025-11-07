@@ -49,10 +49,10 @@
   <sprite id="icon_bill_02_1" offsetY="35" ic="FF3C4654" width="130" height="142" img="icons\icon_bill_02_1.png" left="-48" right="8" top="-58" bottom="56" />
   <sprite id="icon_bill_02_2_bloodied" offsetY="35" ic="FF30394E" width="130" height="142" img="icons\icon_bill_02_2_bloodied.png" left="-48" right="8" top="-58" bottom="56" />
   <sprite id="icon_bill_02_2" offsetY="35" ic="FF3C4654" width="130" height="142" img="icons\icon_bill_02_2.png" left="-48" right="8" top="-58" bottom="56" />
-  <sprite id="icon_mummy_lance_01" offsetY="35" ic="FF3B4654" width="130" height="142" img="icons\icon_mummy_lance_01.png" left="-59" right="1" top="-57" bottom="71" />
-  <sprite id="icon_mummy_lance_01_bloodied" offsetY="35" ic="FF363F52" width="130" height="142" img="icons\icon_mummy_lance_01_bloodied.png" left="-59" right="1" top="-57" bottom="71" />
-  <sprite id="icon_mummy_lance_named_01" offsetY="35" ic="FF3B4654" width="130" height="142" img="icons\icon_mummy_lance_named_01.png" left="-59" right="1" top="-57" bottom="71" />
-  <sprite id="icon_mummy_lance_named_01_bloodied" offsetY="35" ic="FF363F52" width="130" height="142" img="icons\icon_mummy_lance_named_01_bloodied.png" left="-59" right="1" top="-57" bottom="71" />
+  <sprite id="icon_mummy_lance_01" offsetY="35" f1="-10" f2="-50" ic="FF3B4654" width="130" height="142" img="icons\icon_mummy_lance_01.png" left="-59" right="1" top="-57" bottom="71" />
+  <sprite id="icon_mummy_lance_01_bloodied" offsetY="35" f1="-10" f2="-50" ic="FF363F52" width="130" height="142" img="icons\icon_mummy_lance_01_bloodied.png" left="-59" right="1" top="-57" bottom="71" />
+  <sprite id="icon_mummy_lance_named_01" offsetY="35" f1="-10" f2="-50" ic="FF3B4654" width="130" height="142" img="icons\icon_mummy_lance_named_01.png" left="-59" right="1" top="-57" bottom="71" />
+  <sprite id="icon_mummy_lance_named_01_bloodied" offsetY="35" f1="-10" f2="-50" ic="FF363F52" width="130" height="142" img="icons\icon_mummy_lance_named_01_bloodied.png" left="-59" right="1" top="-57" bottom="71" />
   <sprite id="icon_bladed_pike_01_1_bloodied" offsetY="35" ic="FF363F52" width="130" height="142" img="icons\icon_bladed_pike_01_1_bloodied.png" left="-59" right="1" top="-57" bottom="71" />
   <sprite id="icon_bladed_pike_01_1" offsetY="35" ic="FF3B4654" width="130" height="142" img="icons\icon_bladed_pike_01_1.png" left="-59" right="1" top="-57" bottom="71" />
   <sprite id="icon_bladed_pike_01_2_bloodied" offsetY="35" ic="FF363F52" width="130" height="142" img="icons\icon_bladed_pike_01_2_bloodied.png" left="-59" right="1" top="-57" bottom="71" />

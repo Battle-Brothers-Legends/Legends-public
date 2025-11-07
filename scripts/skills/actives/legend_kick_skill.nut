@@ -34,7 +34,6 @@ this.legend_kick_skill <- this.inherit("scripts/skills/skill", {
 		this.m.FatigueCost = 14;
 		this.m.MinRange = 1;
 		this.m.MaxRange = 1;
-		this.m.IsHidden = true;
 	}
 
 	function getTooltip()
@@ -103,17 +102,22 @@ this.legend_kick_skill <- this.inherit("scripts/skills/skill", {
 		return ret;
 	}
 
+	function isUsable()
+	{
+		if (::Legends.Perks.has(this, ::Legends.Perk.LegendPugilist))
+			return true;
+		local mainhand = this.m.Container.getActor().getItems().getItemAtSlot(this.Const.ItemSlot.Mainhand);
+		local offhand = this.m.Container.getActor().getItems().getItemAtSlot(this.Const.ItemSlot.Offhand);
+		return ((offhand == null || mainhand == null) || this.getContainer().hasEffect(::Legends.Effect.Disarmed)) && this.skill.isUsable();
+	}
+
 	function isHidden()
 	{
 		if (::Legends.Perks.has(this, ::Legends.Perk.LegendPugilist))
 			return false;
-
-		local skill = ::Legends.Effects.get(this, ::Legends.Effect.DoubleGrip);
-		if (skill.canDoubleGrip())
-			return false;
-		local items = this.getContainer().getActor().getItems();
-		local main = items.getItemAtSlot(this.Const.ItemSlot.Mainhand);
-		return (main != null && !this.getContainer().hasEffect(::Legends.Effect.Disarmed)) || this.m.Container.getActor().isStabled();
+		local mainhand = this.m.Container.getActor().getItems().getItemAtSlot(this.Const.ItemSlot.Mainhand);
+		local offhand = this.m.Container.getActor().getItems().getItemAtSlot(this.Const.ItemSlot.Offhand);
+		return mainhand != null && offhand != null && !this.getContainer().hasEffect(::Legends.Effect.Disarmed) || this.getContainer().getActor().getItems().hasBlockedSlot(this.Const.ItemSlot.Offhand) || this.skill.isHidden() || this.m.Container.getActor().isStabled();
 	}
 
 

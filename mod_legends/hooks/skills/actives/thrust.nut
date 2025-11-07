@@ -15,18 +15,23 @@
 			this.m.ActionPointCost = 6;
 			this.m.DirectDamageMult = 0.4;
 			this.m.FatigueCost = 15;
+			this.m.InjuriesOnBody = this.Const.Injury.BluntAndPiercingBody;
+			this.m.InjuriesOnHead = this.Const.Injury.BluntAndPiercingHead;
 		}
 	}
 
 	o.getTooltip = function ()
 	{
 		local ret = this.getDefaultTooltip();
-		ret.push({
-			id = 7,
-			type = "text",
-			icon = "ui/icons/special.png",
-			text = "Has a [color=" + this.Const.UI.Color.PositiveValue + "]" + this.m.DazeChance + "%[/color] chance to Daze on a hit"
-		});
+		if (this.m.IsGoedendagThrust)
+		{
+			ret.push({
+				id = 7,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = "Has a [color=" + this.Const.UI.Color.PositiveValue + "]" + this.m.DazeChance + "%[/color] chance to Daze on a hit"
+			});
+		}
 		return ret;
 	}
 

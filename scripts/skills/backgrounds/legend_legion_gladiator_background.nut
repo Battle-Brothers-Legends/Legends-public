@@ -11,7 +11,7 @@ this.legend_legion_gladiator_background <- this.inherit("scripts/skills/backgrou
 		this.m.BadEnding = "";
 		this.m.HiringCost = 0;
 		this.m.DailyCost = 0;
-		this.m.Excluded = ::Legends.Legion.exludedTraits();
+		this.m.Excluded = ::Legends.Legion.excludedTraits();
 
 		this.m.ExcludedTalents = [
 			this.Const.Attributes.Bravery
@@ -156,7 +156,7 @@ this.legend_legion_gladiator_background <- this.inherit("scripts/skills/backgrou
 		}
 
 		local actor = this.getContainer().getActor();
-		actor.m.ExcludedInjuries = ::Legends.Legion.ExludedInjures;
+		actor.m.ExcludedInjuries = ::Legends.Legion.ExcludedInjures;
 		actor.getFlags().add("legion_can_command");  //justfies if this background is subject to the legion command skill
 	}
 

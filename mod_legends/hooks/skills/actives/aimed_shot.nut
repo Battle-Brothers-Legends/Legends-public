@@ -42,10 +42,11 @@
 	}
 
 	local onAfterUpdate = o.onAfterUpdate;
-	function onAfterUpdate( _properties )
+	o.onAfterUpdate = function ( _properties )
 	{
 		onAfterUpdate(_properties);
-		local bonusRange = (_properties.IsSpecializedInBows ? 1 : 0) + (this.getContainer().hasPerk(::Legends.Perk.LegendSpecialistSharpshooter) ? 1 : 0);
+		local sharpshooter = this.getContainer().hasPerk(::Legends.Perk.LegendSpecialistSharpshooter);
+		local bonusRange = (_properties.IsSpecializedInBows ? 1 : 0) + (sharpshooter ? 1 : 0);
 		this.m.MaxRange = this.m.Item.getRangeMax() + bonusRange;
 	}
 

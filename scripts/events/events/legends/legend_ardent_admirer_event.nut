@@ -122,7 +122,7 @@ this.legend_ardent_admirer_event <- this.inherit("scripts/events/event", {
 		if (!::World.getTime().IsDaytime)
 			return;
 
-		if (::World.Assets.getBusinessReputation() < 1200)
+		if (::World.Assets.getBusinessReputation() < 2250)
 			return;
 
 		if (::World.getPlayerRoster().getAll().len() < 3)

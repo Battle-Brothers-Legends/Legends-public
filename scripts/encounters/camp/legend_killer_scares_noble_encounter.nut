@@ -5,6 +5,7 @@ this.legend_killer_scares_noble_encounter <- ::inherit("scripts/encounters/encou
 	},
 
 	function create() {
+		this.encounter.create();
 		this.m.Type = "encounter.legend_killer_scares_noble";
 		this.m.Name = ::Const.Strings.randomCampEncounterName();
 		this.m.Cooldown = 60 * this.World.getTime().SecondsPerDay;

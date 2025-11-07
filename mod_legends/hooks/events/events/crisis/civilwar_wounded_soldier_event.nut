@@ -23,8 +23,9 @@
 		r = this.Math.rand(1, 4);
 
 		if (r == 1) {
-			item = this.Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Standard.faction_helm]]);
-			item.setVariant(banner);
+//			item = this.Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Standard.faction_helm]]);
+//			item.setVariant(banner); // doesn't work, no icons
+			item = this.Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Standard.full_helm]]);
 		} else {
 			item = this.Const.World.Common.pickArmor([
 				[1, ::Legends.Armor.Standard.heraldic_armor, null, banner],

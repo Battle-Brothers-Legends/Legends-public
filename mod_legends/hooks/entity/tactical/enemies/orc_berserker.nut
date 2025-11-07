@@ -99,6 +99,7 @@
 		if (::Legends.isLegendaryDifficulty())
 		{
 			b.MeleeSkill += 10;
+			::Legends.Perks.grant(this, ::Legends.Perk.Brawny);
 			::Legends.Perks.grant(this, ::Legends.Perk.Colossus);
 			::Legends.Perks.grant(this, ::Legends.Perk.CoupDeGrace);
 			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
@@ -109,38 +110,17 @@
 	{
 		local r = this.Math.rand(1, 8);
 
-		if (r == 1)
-		{
-			this.m.Items.equip(this.new("scripts/items/weapons/greenskins/orc_axe"));
-		}
-		else if (r == 2)
-		{
-			this.m.Items.equip(this.new("scripts/items/weapons/greenskins/orc_cleaver"));
-		}
-		else if (r == 3)
-		{
-			this.m.Items.equip(this.new("scripts/items/weapons/greenskins/orc_flail_2h"));
-		}
-		else if (r == 4)
-		{
-			this.m.Items.equip(this.new("scripts/items/weapons/greenskins/orc_axe_2h"));
-		}
-		else if (r == 5)
-		{
-			this.m.Items.equip(this.new("scripts/items/weapons/greenskins/legend_limb_lopper"));
-		}
-		else if (r == 6)
-		{
-			this.m.Items.equip(this.new("scripts/items/weapons/greenskins/legend_man_mangler"));
-		}
-		else if (r == 7)
-		{
-			this.m.Items.equip(this.new("scripts/items/weapons/greenskins/legend_bough"));
-		}
-		else if (r == 8)
-		{
-			this.m.Items.equip(this.new("scripts/items/weapons/greenskins/legend_skullbreaker"));
-		}
+		local weapons = [
+			"orc_axe",
+			"orc_cleaver",
+			"orc_flail_2h",
+			"orc_axe_2h",
+			"legend_limb_lopper",
+			"legend_man_mangler",
+			"legend_bough",
+			"legend_skullbreaker"
+		];
+		this.m.Items.equip(this.new("scripts/items/greenskins/" + shields[this.Math.rand(0, shields.len() - 1)]));
 
 		local item = this.Const.World.Common.pickArmor([
 			[1, ::Legends.Armor.Greenskin.orc_berserker_light_armor],
@@ -158,5 +138,29 @@
 		{
 			this.m.Items.equip(item);
 		}
+	}
+
+	o.makeMiniboss <- function ()
+	{
+		if (!this.actor.makeMiniboss())
+		{
+			return false;
+		}
+
+		this.getSprite("miniboss").setBrush("bust_miniboss_greenskins");
+		local weapons = [
+			"weapons/named/named_orc_cleaver",
+			"weapons/named/legend_named_orc_axe_2h",
+			"weapons/named/legend_named_orc_flail_2h",
+			"weapons/named/named_orc_axe"
+		];
+		this.m.Items.equip(this.new("scripts/items/" + shields[this.Math.rand(0, shields.len() - 1)]));
+
+		::Legends.Perks.grant(this, ::Legends.Perk.CripplingStrikes);
+		if (::Legends.isLegendaryDifficulty())
+		{
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendUberNimble);
+		}
+		return true;
 	}
 });

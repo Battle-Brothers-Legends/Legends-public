@@ -2,12 +2,7 @@ this.perk_legend_lacerate <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		::Const.Perks.setup(this.m, ::Legends.Perk.LegendLacerate);
-		this.m.Type = this.Const.SkillType.Perk;
-		this.m.Order = this.Const.SkillOrder.Perk;
-		this.m.IsActive = false;
-		this.m.IsStacking = false;
-		this.m.IsHidden = false;
+		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendLacerate);
 		this.m.SoundOnHitHitpoints = [
 			"sounds/combat/cleave_hit_hitpoints_01.wav",
 			"sounds/combat/cleave_hit_hitpoints_02.wav",

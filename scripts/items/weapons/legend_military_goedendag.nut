@@ -18,7 +18,7 @@ this.legend_military_goedendag <- this.inherit("scripts/items/weapons/weapon", {
 		this.m.ShowQuiver = false;
 		this.m.ShowArmamentIcon = true;
 		this.m.Value = 2000;
-		this.m.ShieldDamage = 0;
+		this.m.ShieldDamage = 32;
 		this.m.Condition = 80.0;
 		this.m.ConditionMax = 80.0;
 		this.m.StaminaModifier = -18;

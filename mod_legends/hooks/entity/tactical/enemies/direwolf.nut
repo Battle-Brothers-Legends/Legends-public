@@ -18,16 +18,18 @@
 		this.m.Items.getAppearance().Armor = "bust_wolf_02_armor_01";
 
 		local body = this.getSprite("body");
-		body.setBrush("bust_wolf_0" + _v + "_body");
+		body.setBrush("bust_direwolf_0" + _v + "_body");
 		body.Color = _c;
 		body.Saturation = _s;
 
-		local head = getSprite("head");
-		head.setBrush("bust_wolf_0" + _v + "_head");
+		local head = this.getSprite("head");
+		head.setBrush("bust_direwolf_0" + _v + "_head");
 		head.Color = _c;
 		head.Saturation = _s;
 
-		this.getSprite("armor").Visible = true;
+		local armor = this.addSprite("armor");
+		armor.setBrush("bust_wolf_02_armor_01");
+		armor.Visible = false;
 
 		if(_hp != 1.0)
 		{

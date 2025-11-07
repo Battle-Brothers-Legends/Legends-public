@@ -1,15 +1,5 @@
 this.legend_barbarian_runechosen <- this.inherit("scripts/entity/tactical/human", {
-	m = {
-		ChosenRunes = [
-			::Legends.Rune.LegendRsaEndurance,
-			::Legends.Rune.LegendRsaSafety,
-			::Legends.Rune.LegendRshBravery,
-			::Legends.Rune.LegendRswBleeding,
-			::Legends.Rune.LegendRswPoison,
-			::Legends.Rune.LegendRswAccuracy,
-			::Legends.Rune.LegendRswPower
-		]
-	},
+	m = {},
 	function create()
 	{
 		this.m.Type = this.Const.EntityType.LegendBarbarianRunechosen;
@@ -23,15 +13,11 @@ this.legend_barbarian_runechosen <- this.inherit("scripts/entity/tactical/human"
 		this.m.SoundPitch = 0.95;
 		this.m.AIAgent = this.new("scripts/ai/tactical/agents/barbarian_melee_agent");
 		this.m.AIAgent.setActor(this);
-	}
-
-	function assignRune()
-	{
-		local selected = this.m.ChosenRunes[this.Math.rand(0, this.m.ChosenRunes.len() - 1)];
-		local rune = ::new(::Legends.Runes.get(selected).Script);
-		rune.setRuneVariant(selected);
-		rune.setRuneBonus(true);
-		rune.onUse(this, null);
+		this.m.OnDeathLootTable.extend([
+			[5, "scripts/items/misc/legend_masterwork_fabric"],
+			[5, "scripts/items/misc/legend_masterwork_metal"],
+			[5, "scripts/items/misc/legend_masterwork_tools"]
+		]);
 	}
 
 	function onInit()
@@ -108,6 +94,45 @@ this.legend_barbarian_runechosen <- this.inherit("scripts/entity/tactical/human"
 
 	function assignRandomEquipment()
 	{
+		local weapons = [
+			"weapons/named/legend_named_rusty_serrated_axe",
+			"weapons/named/legend_named_rusty_greatsword"
+		];
+		local armor = this.Const.Items.NamedBarbarianArmors;
+		local helmets = this.Const.Items.NamedBarbarianHelmets;
+		local r = this.Math.rand(1, 3);
+		local runeSelection = [];
+		if (r == 1)
+		{
+			this.m.Items.equip(this.new("scripts/items/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
+			runeSelection = [
+				::Legends.Rune.LegendRswBleeding,
+				::Legends.Rune.LegendRswPoison,
+				::Legends.Rune.LegendRswAccuracy,
+				::Legends.Rune.LegendRswPower
+			];
+		}
+		else if (r == 2)
+		{
+			local weightName = this.Const.World.Common.convNameToList(armor);
+			this.m.Items.equip(this.Const.World.Common.pickArmor(weightName));
+			runeSelection = [
+				::Legends.Rune.LegendRshBravery,
+				::Legends.Rune.LegendRsaEndurance,
+				::Legends.Rune.LegendRsaSafety
+			];
+		}
+		else
+		{
+			local weightName = this.Const.World.Common.convNameToList(helmets);
+			this.m.Items.equip(this.Const.World.Common.pickHelmet(weightName));
+			runeSelection = [
+				::Legends.Rune.LegendRshClarity,
+				::Legends.Rune.LegendRshBravery,
+				::Legends.Rune.LegendRshLuck
+			];
+		}
+		
 		if (this.m.Items.hasEmptySlot(this.Const.ItemSlot.Mainhand))
 		{
 			local weapons = [
@@ -166,32 +191,11 @@ this.legend_barbarian_runechosen <- this.inherit("scripts/entity/tactical/human"
 			];
 			this.m.Items.equip(this.Const.World.Common.pickHelmet(helmet));
 		}
-		local selected = ::Legends.Runes[this.Math.rand(0, ::Legends.Runes.len() - 1)];
-
-		local weapons = [
-			"weapons/named/legend_named_rusty_serrated_axe",
-			"weapons/named/legend_named_rusty_greatsword"
-		];
-		local armor = this.Const.Items.NamedBarbarianArmors;
-		local helmets = this.Const.Items.NamedBarbarianHelmets;
-		local r = this.Math.rand(1, 3);
-
-		if (r == 1)
-		{
-			this.m.Items.equip(this.new("scripts/items/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
-		}
-		else if (r == 2)
-		{
-			local weightName = this.Const.World.Common.convNameToList(armor);
-			this.m.Items.equip(this.Const.World.Common.pickArmor(weightName));
-		}
-		else
-		{
-			local weightName = this.Const.World.Common.convNameToList(helmets);
-			this.m.Items.equip(this.Const.World.Common.pickHelmet(weightName));
-		}
-
-		assignRune();
+		local selected = runeSelection[this.Math.rand(0, runeSelection.len() - 1)];
+		local rune = ::new(::Legends.Runes.get(selected).Script);
+		rune.setRuneVariant(selected);
+		rune.setRuneBonus(true);
+		rune.onUse(this, null, false);
 	}
 
 	function makeMiniboss()

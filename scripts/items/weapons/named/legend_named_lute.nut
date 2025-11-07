@@ -51,6 +51,7 @@ this.legend_named_lute <- this.inherit("scripts/items/weapons/named/named_weapon
 		}.bindenv(this));
 		::Legends.Actives.grant(this, ::Legends.Active.LegendDrumsOfWar);
 		::Legends.Actives.grant(this, ::Legends.Active.LegendDrumsOfLife);
+		::Legends.Actives.grant(this, ::Legends.Active.LegendMartialMarch);
 	}
 
 });

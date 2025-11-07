@@ -9,7 +9,7 @@ this.legend_vala_crafts_staff_encounter <- this.inherit("scripts/encounters/enco
 	    this.encounter.create();
         this.m.Type = "encounter.legend_vala_crafts_staff";
         this.m.Name = ::Const.Strings.randomCampEncounterName();
-		this.m.Cooldown = 60 * ::World.getTime().SecondsPerDay;
+		this.m.Cooldown = 9999 * ::World.getTime().SecondsPerDay;
 	}
 
     function createScreens() {

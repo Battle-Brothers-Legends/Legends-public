@@ -16,8 +16,9 @@ this.legend_bandit_warlord <- this.inherit("scripts/entity/tactical/human", {
 		this.m.AIAgent.setActor(this);
 
 		this.m.OnDeathLootTable.extend([
-			[3, "scripts/items/misc/legend_masterwork_fabric"],
-			[2, "scripts/items/misc/legend_masterwork_metal"]
+			[5, "scripts/items/misc/legend_masterwork_fabric"],
+			[5, "scripts/items/misc/legend_masterwork_metal"],
+			[5, "scripts/items/misc/legend_masterwork_tools"]
 		]);
 	}
 

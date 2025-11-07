@@ -5,17 +5,12 @@ this.perk_legend_distant_visions <- this.inherit("scripts/skills/skill", {
 	},
 	function create()
 	{
-		::Const.Perks.setup(this.m, ::Legends.Perk.LegendDistantVisions);
-		this.m.Type = this.Const.SkillType.Perk;
-		this.m.Order = this.Const.SkillOrder.Perk;
-		this.m.IsActive = false;
-		this.m.IsStacking = false;
-		this.m.IsHidden = false;
+		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendDistantVisions);
 	}
 
 	function onAdded()
 	{
-		if (m.IsNew && ::MSU.isKindOf(getContainer().getActor(), "player") && getContainer().getActor().isPlayerControlled()) 
+		if (m.IsNew && ::MSU.isKindOf(getContainer().getActor(), "player") && getContainer().getActor().isPlayerControlled())
 		{
 			foreach (settlement in ::World.EntityManager.getSettlements())
 			{
@@ -31,7 +26,7 @@ this.perk_legend_distant_visions <- this.inherit("scripts/skills/skill", {
 	{
 		if (!this.getContainer().getActor().isInReserves())
 			return;
-		
+
 		if ( this.Math.rand(1,100) <= this.m.BaseChance + (this.m.DaysNotProcced/4) )
 		{
 			if ( this.World.State.getDistantVisionBonus() ) //just on the off chance 2 different brothers would proc it in the same newDay(), this wouldn't pop 2 events

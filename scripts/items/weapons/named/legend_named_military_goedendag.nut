@@ -20,7 +20,7 @@ this.legend_named_military_goedendag <- this.inherit("scripts/items/weapons/name
 		this.m.ShowQuiver = false;
 		this.m.ShowArmamentIcon = true;
 		this.m.Value = 5400;
-		this.m.ShieldDamage = 0;
+		this.m.ShieldDamage = 32;
 		this.m.StaminaModifier = -18;
 		this.m.Condition = 90.0;
 		this.m.ConditionMax = 90.0;

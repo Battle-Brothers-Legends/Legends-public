@@ -878,12 +878,11 @@ if (!("Perks" in ::Const))
 		],
 		[],
 		[
-			::Legends.Perk.LegendTacticalManeuvers
-		],
-		[],
-		[
+			::Legends.Perk.LegendTacticalManeuvers,
 			::Legends.Perk.Underdog
 		],
+		[],
+		[],
 		[],
 		[]
 	]

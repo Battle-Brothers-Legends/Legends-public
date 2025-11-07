@@ -199,10 +199,6 @@
 			}
 		}
 
-		local patientHunter = ::Legends.Perks.get(actor, ::Legends.Perk.LegendPatientHunter);
-		if (patientHunter != null)
-			patientHunter.activate();
-
 		//actor.setBrushAlpha(10);
 		//actor.getSprite("hair").Visible = false;
 		//actor.getSprite("beard").Visible = false;

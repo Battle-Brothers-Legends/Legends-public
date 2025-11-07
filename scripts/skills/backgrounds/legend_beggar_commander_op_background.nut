@@ -74,7 +74,7 @@ this.legend_beggar_commander_op_background <- this.inherit("scripts/skills/backg
 				::Legends.Perk.ShieldExpert,
 				::Legends.Perk.Brawny,
 				::Legends.Perk.LegendOnslaught,
-				::Legends.Perk.Rotation,
+				::Legends.Perk.LegendTacticalManeuvers,
 				::Legends.Perk.RallyTheTroops,
 				::Legends.Perk.Taunt,
 				::Legends.Perk.LegendFavouredEnemyGhoul,
@@ -228,42 +228,42 @@ this.legend_beggar_commander_op_background <- this.inherit("scripts/skills/backg
 			return;
 		}
 
-		if(actor.getBaseProperties().Hitpoints < _targetEntity.getBaseProperties().Hitpoints) 
+		if(actor.getBaseProperties().Hitpoints < _targetEntity.getBaseProperties().Hitpoints)
 		{
 			actor.getBaseProperties().Hitpoints += 1;
 			this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(actor) + " gained 1 Hitpoint from " + this.Const.UI.getColorizedEntityName(_targetEntity) + "!");
 		}
-		if(actor.getBaseProperties().Bravery < _targetEntity.getBaseProperties().Bravery) 
+		if(actor.getBaseProperties().Bravery < _targetEntity.getBaseProperties().Bravery)
 		{
 			actor.getBaseProperties().Bravery += 1;
 			this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(actor) + " gained 1 Resolve from " + this.Const.UI.getColorizedEntityName(_targetEntity) + "!");
 		}
-		if(actor.getBaseProperties().Stamina < _targetEntity.getBaseProperties().Stamina) 
+		if(actor.getBaseProperties().Stamina < _targetEntity.getBaseProperties().Stamina)
 		{
 			actor.getBaseProperties().Stamina += 1;
 			this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(actor) + " gained 1 Stamina from " + this.Const.UI.getColorizedEntityName(_targetEntity) + "!");
 		}
-		if(actor.getBaseProperties().MeleeSkill < _targetEntity.getBaseProperties().MeleeSkill) 
+		if(actor.getBaseProperties().MeleeSkill < _targetEntity.getBaseProperties().MeleeSkill)
 		{
 			actor.getBaseProperties().MeleeSkill += 1;
 			this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(actor) + " gained 1 Melee Attack from " + this.Const.UI.getColorizedEntityName(_targetEntity) + "!");
 		}
-		if(actor.getBaseProperties().RangedSkill < _targetEntity.getBaseProperties().RangedSkill) 
+		if(actor.getBaseProperties().RangedSkill < _targetEntity.getBaseProperties().RangedSkill)
 		{
 			actor.getBaseProperties().RangedSkill += 1;
 			this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(actor) + " gained 1 Ranged Attack from " + this.Const.UI.getColorizedEntityName(_targetEntity) + "!");
 		}
-		if(actor.getBaseProperties().MeleeDefense < _targetEntity.getBaseProperties().MeleeDefense) 
+		if(actor.getBaseProperties().MeleeDefense < _targetEntity.getBaseProperties().MeleeDefense)
 		{
 			actor.getBaseProperties().MeleeDefense += 1;
 			this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(actor) + " gained 1 Melee Defense from " + this.Const.UI.getColorizedEntityName(_targetEntity) + "!");
 		}
-		if(actor.getBaseProperties().RangedDefense < _targetEntity.getBaseProperties().RangedDefense) 
+		if(actor.getBaseProperties().RangedDefense < _targetEntity.getBaseProperties().RangedDefense)
 		{
 			actor.getBaseProperties().RangedDefense += 1;
 			this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(actor) + " gained 1 Ranged Defense from " + this.Const.UI.getColorizedEntityName(_targetEntity) + "!");
 		}
-		if(actor.getBaseProperties().Initiative < _targetEntity.getBaseProperties().Initiative) 
+		if(actor.getBaseProperties().Initiative < _targetEntity.getBaseProperties().Initiative)
 		{
 			actor.getBaseProperties().Initiative += 1;
 			this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(actor) + " gained 1 Initiative from " + this.Const.UI.getColorizedEntityName(_targetEntity) + "!");

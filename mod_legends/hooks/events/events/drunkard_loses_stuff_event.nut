@@ -174,7 +174,7 @@
 		return ::World.Assets.getStash().getItems().filter(function (_, _item) {
 			if (_item == null)
 				return false;
-			if (_item.isNamed() || item.isIndestructible()) //rap I love you but i do not like how sadistic you can be.
+			if (_item.isNamed() || _item.isIndestructible()) //rap I love you but i do not like how sadistic you can be.
 				return false;
 			if (_item.isItemType(::Const.Items.ItemType.Weapon))
 				return true;
@@ -184,6 +184,7 @@
 				return true;
 			if (_item.isItemType(::Const.Items.ItemType.Helmet))
 				return true;
+			return false;
 		});
 	}
 

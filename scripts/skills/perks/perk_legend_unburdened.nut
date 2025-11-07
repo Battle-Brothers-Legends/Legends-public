@@ -2,13 +2,9 @@ this.perk_legend_unburdened <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		::Const.Perks.setup(this.m, ::Legends.Perk.LegendUnburdened);
+		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendUnburdened);
 		this.m.IconMini = "mini_meek";
-		this.m.Type = this.Const.SkillType.Perk;
 		this.m.Order = this.Const.SkillOrder.Perk | this.Const.SkillOrder.Any;
-		this.m.IsActive = false;
-		this.m.IsStacking = false;
-		this.m.IsHidden = false;
 	}
 
 	function onAdded()

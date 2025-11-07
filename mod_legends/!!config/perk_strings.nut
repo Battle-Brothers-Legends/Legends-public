@@ -411,7 +411,7 @@ Through familiarity and training with your weapon, you know just how your projec
 Use your built up inertia to wreak havoc on the second swing.
 
 [color=%passive%][u]Passive:[/u][/color]
-• After performing [color=%skill%]Round Swing[/color], [color=%skill%]Swing[/color], [color=%skill%]Thresh[/color], [color=%skill%]Reap[/color], [color=%skill%]Castigate[/color], you can perform a followup for [color=%negative%]-50%[/color] Fatigue and Action Points. [color=%skill%]Swing[/color] Damage is reduced by [color=%negative%]-25%[/color] and for the rest of the skills by [color=%negative%]-50%[/color].
+• After performing [color=%skill%]Round Swing[/color], [color=%skill%]Swing[/color], [color=%skill%]Thresh[/color], [color=%skill%]Reap[/color], [color=%skill%]Castigate[/color] and [color=%skill%]Shatter[/color] you can perform a followup for [color=%negative%]-50%[/color] Fatigue and Action Points. [color=%skill%]Swing[/color] Damage is reduced by [color=%negative%]-25%[/color] and for the rest of the skills by [color=%negative%]-50%[/color].
 
 • Moving, ending your turn or waiting will all remove this effect.
 ");
@@ -463,7 +463,7 @@ There's wolves, bears, nachzehrers, and you. All beings of vicious slaughter.
 Heavy armor, a trusty shield and your heels dug into the ground and you can weather any storm.
 
 [color=%passive%][u]Passive:[/u][/color]
-• For every 10 points of gear weight from all slot gain [color=%positive%]1[/color] Melee Defense and [color=%negative%]1%[/color] less damage ignoring armor.
+• For every 10 points of gear weight from all slot gain [color=%positive%]1[/color] Resolve and [color=%negative%]1%[/color] less damage ignoring armor.
 
 • If you have at least 50 gear weight become immune to stuns.
 
@@ -634,7 +634,7 @@ Exert yourself to move one tile at an unusually quick speed.
 You're a well-rounded athlete!
 
 [color=%passive%][u]Passive:[/u][/color]
-• Reduce the Fatigue cost of all your skills by [color=%negative%]20%[/color] of your maximum usable Fatigue.
+• Reduce the Fatigue cost of all your skills by a scaling percentage based on [color=%negative%]20%[/color] of your maximum usable Fatigue. Maximum usable fatigue is your fatigue after gear weight is accounted for.
 ");
 
 ::Const.Strings.PerkDescription.LegendSpecPoison <- ::Legends.tooltip(@"
@@ -1555,7 +1555,9 @@ Give them no quarter!
 ");
 
 ::Const.Strings.PerkDescription.LegendMeistersanger <- ::Legends.tooltip(@"
-You have stepped up above playing shameful songs, ridiculing nobles and are a musician of some renown, whos fine melodies can whip any company into a battle frenzy.[color=%active%][u]Active:[/u][/color]
+You have stepped up above playing shameful songs, ridiculing nobles and are a musician of some renown, whos fine melodies can whip any company into a battle frenzy.
+
+[color=%active%][u]Active:[/u][/color]
 • Unlocks the [color=%skill%]Martial March[/color] skill which increases AP by [color=%negative%]1[/color] for one turn to all allies within an 8 tile range.
 
 • Costs [color=%negative%]9[/color] AP and [color=%negative%]45[/color] Fatigue.
@@ -1576,7 +1578,7 @@ Your skill on the butcher's block seems to be easily translated to chopping limb
 Diligent practice with the hammer each day has proven to be equally good at crafting armor and finding it's weak points.
 
 [color=%passive%][u]Passive:[/u][/color]
-• While using a One Handed Hammer gain [color=%positive%]+12[/color] chance to hit and [color=%positive%]+30%[/color] effectiveness vs armor.
+• While using a Blacksmith's Hammer gain [color=%positive%]+12[/color] chance to hit and [color=%positive%]+30%[/color] effectiveness vs armor.
 
 • When taking [color=%perk%]Hammer Mastery[/color] you will also gain [color=%positive%]10%[/color] bonus damage.
 
@@ -1855,7 +1857,7 @@ Even the fiercest battles can't keep you down.
 [color=%active%][u]Active:[/u][/color]
 • Unlocks the [color=%skill%]Second Wind[/color] skill with the same effects as the passive.
 
-• Costs [color=%negative%]4[/color] AP and [color=%negative%]0[/color] Fatigue. Can only be used when accumulated fatigue is more than 50% of maximum.
+• Costs [color=%negative%]4[/color] AP and [color=%negative%]0[/color] Fatigue. Can only be used once per combat when accumulated fatigue is more than 50% of maximum. If the passive effect activates the active can't be used.
 ");
 
 ::Const.Strings.PerkDescription.LegendMarkTarget <- ::Legends.tooltip(@"
@@ -2021,7 +2023,7 @@ Master the difficult angles and timings of slinging rocks from afar.
 
 • Accuracy with slings and slingshots is increased by [color=%positive%]+10%[/color], accuracy with Staff Slings is increased by [color=%positive%]+5%[/color] and maximum firing range with slings and slingshots is increased by [color=%positive%]+1[/color].
 
-• Waiting during your turn or using [color=%skill%]Wind Up[/color] will add the [color=%skill%]Prepare Bullet[/color] effect, which will increase damage by [color=%positive%]10%[/color] of your Initiative and the Range of attacks by [color=%positive%]+1[/color]
+• When using One Handed slings, waiting during your turn or using [color=%skill%]Wind Up[/color] will add the [color=%skill%]Prepare Bullet[/color] effect, which will increase damage by [color=%positive%]10%[/color] of your Initiative and the Range of attacks by [color=%positive%]+1[/color]
 
 • Additionally allows you to launch bombs and flasks with a Staff Sling.
 ");
@@ -2606,8 +2608,6 @@ Master the martial arts of unarmed combat.
 • [color=%skill%]Tackle[/color] gains [color=%positive%]+10%[/color] chance to hit.
 
 [color=%active%][u]Active:[/u][/color]
-
-[color=%active%][u]Active:[/u][/color]
 • Unlocks the [color=%skill%]Tackle[/color] skill which on a hit knocks over your opponent.
 
 • [color=%status%]Knocked Over[/color] enemies have their Melee Defense reduced by [color=%negative%]-50%[/color], their Initiative reduced by [color=%negative%]-70%[/color], and increases damage they take by [color=%positive%]25%[/color].
@@ -2687,7 +2687,7 @@ Some folks take joy in the simple pleasures of destroying shields.
 Use your size and strength to dominate the battlefield, combining the best of both worlds in offense and defense.
 
 [color=%passive%][u]Passive:[/u][/color]
-• Effectiveness vs Armor is increased by [color=%positive%]+30%[/color] for any weapon used.
+• Effectiveness vs Armor is increased by [color=%positive%]30%[/color] for any weapon used.
 
 [color=%active%][u]Active:[/u][/color]
 • Unlocks the [color=%skill%]Wind Up[/color] skill which allows you to knock back and [color=%status%]Baffle[/color] an opponent on your next swing.
@@ -2725,9 +2725,9 @@ Pay close attention at all times, surveying the surroundings and assessing every
 Take joy in the suffering of others.
 
 [color=%passive%][u]Passive:[/u][/color]
-• Gain Fatigue recovery and Resolve for each character that is [color=%status%]Bleeding[/color] or has a temporary [color=%status%]Injury[/color] on the field.
+• Gain Melee Skill, Ranged Skill, Fatigue Recovery and Resolve for each character that is [color=%status%]Bleeding[/color] or has a temporary [color=%status%]Injury[/color] on the field. Double the bonus if you're adjacent to bleeding enemies.
 
-• Resolve can double if every character on the battlefield is bleeding or wounded and Fatigue Recovery every turn can reach up to [color=%positive%]5[/color] if a quarter of them are.
+• The fatigue recovery bonus cannot exceed 5.
 ");
 
 ::Const.Strings.PerkDescription.LegendTerrifyingVisage <- ::Legends.tooltip(@"
@@ -2743,9 +2743,9 @@ A skilled mercenary has unimpeded movement regardless of armor.
 [color=%passive%][u]Passive:[/u][/color]
 • Reduces Fatigue cost of [color=%skill%]Climb[/color], [color=%skill%]Lunge[/color], [color=%skill%]Footwork[/color], [color=%skill%]Rotation[/color], [color=%skill%]Leap[/color], [color=%skill%]Quick Step[/color], [color=%skill%]Evasion[/color] and [color=%skill%]Tumble[/color] by [color=%negative%]50%[/color].
 
-• The Action Point cost of [color=%skill%]Climb[/color], [color=%skill%]Footwork[/color], [color=%skill%]Rotation[/color], and [color=%skill%]Tumble[/color] is reduced by [color=%negative%]1[/color], and that of [color=%skill%]Leap[/color] and [color=%skill%]Evasion[/color] by [color=%negative%]2[/color].
+• The Action Point cost of [color=%skill%]Climb[/color], [color=%skill%]Footwork[/color] and [color=%skill%]Rotation[/color] is reduced by [color=%negative%]1[/color], [color=%skill%]Leap[/color] by [color=%negative%]3[/color] and [color=%skill%]Evasion[/color] by [color=%negative%]2[/color].
 
-• Picking this perk will also add [color=%skill%]Footwork[/color], [color=%skill%]Quick Step[/color] and [color=%skill%]Rotation[/color] to your perk tree.
+• Picking this perk will also add [color=%perk%]Tactical Maneuvers[/color] and [color=%perk%]Quick Step[/color] to your perk tree.
 ");
 
 ::Const.Strings.PerkDescription.LegendOnslaught <- ::Legends.tooltip(@"
@@ -2867,7 +2867,7 @@ Long, slow, deep rending scratches that leave many bleeding grazes.
 If it bleeds, we can kill it.
 
 [color=%passive%][u]Passive:[/u][/color]
-• Gain [color=%positive%]+10%[/color] damage when attacking a [color=%status%]Bleeding[/color] enemy.
+• Gain [color=%positive%]20%[/color] damage when attacking a [color=%status%]Bleeding[/color] enemy.
 
 [color=%active%][u]Active:[/u][/color]
 • Unlocks the [color=%skill%]Prepare to Bleed[/color] skill which primes your next strike to inflict [color=%damage%]5[/color] [color=%status%]Bleed[/color] damage for the next two turns.
@@ -3314,7 +3314,7 @@ Use your athletic skill to leap high and far.
 
 • Fatigue cost is increased by the weight of your armor.
 
-• Costs [color=%negative%]4[/color] AP and [color=%negative%]15[/color] Fatigue.
+• Costs [color=%negative%]6[/color] AP and [color=%negative%]15[/color] Fatigue.
 ");
 
 ::Const.Strings.PerkDescription.LegendTumble <- ::Legends.tooltip(@"

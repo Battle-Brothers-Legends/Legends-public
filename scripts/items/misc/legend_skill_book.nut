@@ -60,14 +60,23 @@ this.legend_skill_book <- ::inherit("scripts/items/item", {
 				text = "Will apply a " + this.m.Cooldown + " day cooldown until you can read again."
 			}
 		];
-		if (this.m.HasToBeIdentified && ::World.Statistics.getFlags().get("HasScholar") || !this.m.HasToBeIdentified)
+		if (this.m.HasToBeIdentified && ::World.Assets.m.HasScholars > 0 || !this.m.HasToBeIdentified)
 		{
 			result.push({
 				id = 10,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = format("Reading this will allow the user to learn [color=%s]%s[/color] perk group.", ::Const.UI.Color.NegativeValue, this.m.PerkGroupSelection),
+				text = format("Reading this will allow the user to learn [color=%s]%s[/color] perk group. Following perks will be added if not already in the tree:", ::Const.UI.Color.NegativeValue, this.m.PerkGroupSelection),
 			});
+
+			local tree = ::MSU.deepClone(this.m.PerkGroups.filter(function (_, _it) { return _it.Name == this.m.PerkGroupSelection; }.bindenv(this)).top().Tree);
+			foreach (perk in tree.reduce(function (a, b) { a.extend(b); return a; }).map(@(_def) ::Const.Perks.PerkDefObjects[_def])) {
+				result.push({
+					id = 10,
+					type = "text",
+					text = ::Legends.tooltip("[leg_img](gfx/" + perk.Icon + ",height=20px,width=20px)[/leg_img] [color=%perk%]" + perk.Name + "[/color]"),
+				});
+			}
 		}
 		else
 		{
@@ -83,7 +92,7 @@ this.legend_skill_book <- ::inherit("scripts/items/item", {
 
 	function getName()
 	{
-		if (this.m.HasToBeIdentified && ::World.Statistics.getFlags().get("HasScholar") || !this.m.HasToBeIdentified)
+		if (this.m.HasToBeIdentified && ::World.Assets.m.HasScholars > 0 || !this.m.HasToBeIdentified)
 			return this.m.BookName + " " + this.m.PerkGroupSelection;
 		else
 			return this.m.BookName + " " + "Unidentified";
@@ -98,7 +107,7 @@ this.legend_skill_book <- ::inherit("scripts/items/item", {
 		if (effect != null)
 			return "Failed to use this item as the user will be recovering from the last reading for another [color=" + ::Const.UI.Color.NegativeValue + "]" + effect.m.HealingTime + "-" + effect.m.HealingTime +"[/color] days.";
 
-		if (_actor.getFlags().getAsInt("LegendsSkillBookCount") <= 1)
+		if (!_actor.getFlags().has("LegendsSkillBookCount"))
 			return true;
 
 		return true;

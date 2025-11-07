@@ -237,6 +237,10 @@ this.legend_bear <- this.inherit("scripts/entity/tactical/actor", {
 		::Legends.Actives.grant(this, ::Legends.Active.UnstoppableCharge);
 		if(::Legends.isLegendaryDifficulty())
 		{
+			this.m.BaseProperties.Armor[this.Const.BodyPart.Head] += 50;
+			this.m.BaseProperties.ArmorMax[this.Const.BodyPart.Head] += 50;		
+			this.m.BaseProperties.Armor[this.Const.BodyPart.Body] += 120;
+			this.m.BaseProperties.ArmorMax[this.Const.BodyPart.Body] += 120;
 			this.m.Hitpoints = 2 * b.Hitpoints;
 			b.MeleeSkill += 10;
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendBattleheart);

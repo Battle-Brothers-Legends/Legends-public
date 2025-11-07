@@ -403,8 +403,6 @@ Take a deep breath, rest for a turn.
 
 [color=%passive%][u]Active:[/u][/color]
 • Unlocks the [color=%skill%]Recover[/color] skill which allows you to reduce accumulated Fatigue by [color=%negative%]8%[/color] of your maximum Fatigue per Action Point.
-
-[color=%passive%][u]Passive:[/u][/color].
 ");
 ::Const.Perks.PerkDefObjects[::Legends.Perk.Recover].Tooltip = ::Const.Strings.PerkDescription.Recover;
 ::Const.Strings.PerkDescription.Underdog <- ::Legends.tooltip(@"
@@ -414,6 +412,8 @@ I'm used to it.
 • The defense malus due to being surrounded by opponents is reduced by [color=%negative%]5[/color].
 
 • If an attacker has the [color=%perk%]Strength In Numbers[/color] perk, the effect of that perk is negated, and the normal defense malus due to being surrounded is applied instead.
+
+• Gain an additional stacking [color=%positive%]+5%[/color] chance to hit each time you dodge an attack.
 ");
 ::Const.Perks.PerkDefObjects[::Legends.Perk.Underdog].Tooltip = ::Const.Strings.PerkDescription.Underdog;
 ::Const.Strings.PerkDescription.Berserk <- ::Legends.tooltip(@"
@@ -438,7 +438,7 @@ Nailed it!
 Become one with your weapon and go for the weak spots!
 
 [color=%passive%][u]Passive:[/u][/color]
-• When holding a Buckler, Mummy Shield or Parrying Dagger in your offhand an extra [color=%positive%]+25%[/color] of damage ignores armor.
+• When holding a Buckler, Mummy Shield or Parrying Dagger in your offhand an extra [color=%positive%]+25%[/color] of damage ignores armor on Melee Attacks.
 
 [color=%passive%][u]Active:[/u][/color] Unlocks the [color=%skill%]Flourish[/color] skill, which will increase fatigue cost by [color=%positive%]50%[/color] and as long as you are faster than your target grants a chance on each attack to ignore armor completely based on the initiative difference between you and your target. As long as you are faster than the target, any attack that inflicts at least [color=%positive%]1[/color] point of damage to Hitpoints triggers a morale check for the opponent with a penalty equal to [color=%negative%]20%[/color] of the Initiative difference between you and the target
 ");
@@ -495,6 +495,8 @@ By watching your opponent's aim, you have more time to react.
 • When being attacked with ranged weapons, gain [color=%positive%]1 + 10% [/color] of your base Ranged Defense as additional Ranged Defense per tile that the attacker is away.
 
 • Always gain at least [color=%positive%]+10[/color] to Ranged Defense when attacked from range.
+
+• If you're armed with a ranged weapon and a ranged attack misses you, gain a chance to fire back at your attacker. The chance is based on Ranged Defense.
 ");
 ::Const.Perks.PerkDefObjects[::Legends.Perk.Anticipation].Tooltip = ::Const.Strings.PerkDescription.Anticipation;
 ::Const.Strings.PerkDescription.HoldOut <- ::Legends.tooltip(@"

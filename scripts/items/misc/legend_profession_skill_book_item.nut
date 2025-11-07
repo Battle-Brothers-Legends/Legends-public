@@ -9,7 +9,7 @@ this.legend_profession_skill_book_item <- ::inherit("scripts/items/misc/legend_s
 		this.legend_skill_book.create();
 		this.m.ID = "misc.legend_profession_skill_book";
 		this.m.Name = "Skills for Dummies";
-		this.m.Description = "Profession training manual, written by an artisan. Will teach the relevant profession skill group to the character that uses it.";
+		this.m.Description = format("Profession training manual, written by an artisan.  Will teach the relevant [color=%s]Class[/color] perk group to the character that uses it.", ::Const.UI.Color.NegativeValue);
 		this.m.Icon = "misc/inventory_ledger_item.png";
 		this.m.SlotType = ::Const.ItemSlot.None;
 		this.m.ItemType = ::Const.Items.ItemType.Usable;

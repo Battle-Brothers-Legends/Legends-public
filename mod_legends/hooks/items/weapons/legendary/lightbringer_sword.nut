@@ -67,6 +67,7 @@
 
 	o.onDamageDealt <- function ( _target, _skill, _hitInfo )
 	{
+		this.weapon.onDamageDealt(_target, _skill, _hitInfo);
 		local selectedTargets = [];
 		local potentialTargets = [];
 		local potentialTiles = [];

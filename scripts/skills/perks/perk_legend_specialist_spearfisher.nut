@@ -16,7 +16,7 @@ this.perk_legend_specialist_spearfisher <- this.inherit("scripts/skills/legend_s
 	function create()
 	{
 		this.legend_specialist_abstract.create();
-		::Const.Perks.setup(this.m, ::Legends.Perk.LegendSpecialistSpearfisher);
+		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendSpecialistSpearfisher);
 		this.m.IconMini = "perk_spec_longbow_mini";
 	}
 
@@ -32,7 +32,7 @@ this.perk_legend_specialist_spearfisher <- this.inherit("scripts/skills/legend_s
 		}
 		local item = _skill.getItem();
 
-		if (item == null)
+		if (::Legends.S.isNull(item))
 			return;
 		if (!item.isItemType(this.Const.Items.ItemType.Weapon))
 			return;

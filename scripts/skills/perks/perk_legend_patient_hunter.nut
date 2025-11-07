@@ -4,12 +4,8 @@ this.perk_legend_patient_hunter <- this.inherit("scripts/skills/skill", {
 	},
 	function create()
 	{
-		::Const.Perks.setup(this.m, ::Legends.Perk.LegendPatientHunter);
+		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendPatientHunter);
 		this.m.Type = this.Const.SkillType.Perk | this.Const.SkillType.StatusEffect;
-		this.m.Order = this.Const.SkillOrder.Perk;
-		this.m.IsActive = false;
-		this.m.IsStacking = false;
-		this.m.IsHidden = false;
 	}
 
 	function onTurnEnd()

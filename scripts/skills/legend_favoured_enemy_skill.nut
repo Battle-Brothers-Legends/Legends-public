@@ -112,7 +112,7 @@ this.legend_favoured_enemy_skill <- this.inherit("scripts/skills/skill", {
 			})
 		}
 		resp.push({
-			id = 15,
+			id = 16,
 			type = "hint",
 			icon = "ui/icons/special.png",
 			text = ::Const.UI.getColorized(stats.Kills,::Const.UI.Color.getHighlightLightBackgroundValue()) + " favored enemy kills"

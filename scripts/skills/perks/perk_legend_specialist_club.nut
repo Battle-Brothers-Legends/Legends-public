@@ -16,7 +16,7 @@ this.perk_legend_specialist_club <- this.inherit("scripts/skills/legend_speciali
 	function create()
 	{
 		this.legend_specialist_abstract.create();
-		::Const.Perks.setup(this.m, ::Legends.Perk.LegendSpecialistClub);
+		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendSpecialistClub);
 		this.m.IconMini = "perk_spec_mace_mini";
 	}
 

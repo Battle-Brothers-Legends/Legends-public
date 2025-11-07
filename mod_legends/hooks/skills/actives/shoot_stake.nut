@@ -3,6 +3,13 @@
 	o.m.AdditionalAccuracy = 10;
 	o.m.AdditionalHitChance = -3;
 
+	local create = o.create;
+	o.create = function()
+	{
+		create();
+		this.m.Description = "A quick pull of the trigger to loose a heavy bolt. Must be reloaded after each shot to be able to fire again. Will stagger on hit.";
+	}
+
 	o.getTooltip = function ()
 	{
 		local tooltip = this.getRangedTooltip(this.getDefaultTooltip());

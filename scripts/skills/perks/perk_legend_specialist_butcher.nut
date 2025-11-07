@@ -26,7 +26,7 @@ this.perk_legend_specialist_butcher <- this.inherit("scripts/skills/legend_speci
 	function create()
 	{
 		this.legend_specialist_abstract.create();
-		::Const.Perks.setup(this.m, ::Legends.Perk.LegendSpecialistButcher);
+		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendSpecialistButcher);
 		this.m.IconMini = "perk_spec_butcher_mini";
 	}
 

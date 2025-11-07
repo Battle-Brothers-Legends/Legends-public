@@ -17,7 +17,7 @@ this.perk_legend_specialist_militia <- this.inherit("scripts/skills/legend_speci
 	function create()
 	{
 		this.legend_specialist_abstract.create();
-		::Const.Perks.setup(this.m, ::Legends.Perk.LegendSpecialistMilitia);
+		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendSpecialistMilitia);
 		this.m.IconMini = "perk_spec_militia_mini";
 	}
 

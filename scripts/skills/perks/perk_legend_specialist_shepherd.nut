@@ -13,7 +13,7 @@ this.perk_legend_specialist_shepherd <- this.inherit("scripts/skills/legend_spec
 	function create()
 	{
 		this.legend_specialist_abstract.create();
-		::Const.Perks.setup(this.m, ::Legends.Perk.LegendSpecialistShepherd);
+		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendSpecialistShepherd);
 		this.m.IconMini = "perk_spec_sling_mini";
 	}
 

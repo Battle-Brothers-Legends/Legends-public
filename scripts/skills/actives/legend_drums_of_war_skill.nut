@@ -1,7 +1,5 @@
 this.legend_drums_of_war_skill <- this.inherit("scripts/skills/skill", {
-	m = {
-		AffectedActors = []
-	},
+	m = {},
 	function create()
 	{
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendDrumsOfWar);
@@ -68,23 +66,22 @@ this.legend_drums_of_war_skill <- this.inherit("scripts/skills/skill", {
 		return ret;
 	}
 
-	function onAfterUpdate( _properties )
-	{
-		this.m.FatigueCostMult = 1.0;
-		if (_properties.IsSpecializedInMusic)
-		{
-			this.m.FatigueCostMult = this.Const.Combat.WeaponSpecFatigueMult;
-			this.m.ActionPointCost -= 1;
-		}
-	}
-
 	function getBonus()
 	{
 		local effect = 1;
+
+		// +2 from Music Mastery
+		if (this.getContainer().getActor().getCurrentProperties().IsSpecializedInMusic)
+			effect += 2;
+
+		// +2 from Legend Specialist Musician
 		if (this.getContainer().hasPerk(::Legends.Perk.LegendSpecialistMusician))
 			effect += 2;
+
+		// +2 from Legend Minnesanger
 		if (this.getContainer().hasPerk(::Legends.Perk.LegendMinnesanger))
 			effect += 2;
+
 		return effect;
 	}
 
@@ -106,39 +103,36 @@ this.legend_drums_of_war_skill <- this.inherit("scripts/skills/skill", {
 			!tile.hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions());
 	}
 
-	function onUse( _user, _targetTile )
-	{
+	function onUse( _user, _targetTile ) {
 		local myTile = _user.getTile();
-		local actors = this.Tactical.Entities.getInstancesOfFaction(_user.getFaction());
+		local actors = ::Tactical.Entities.getInstancesOfFaction(_user.getFaction());
 
+		local affectedActors = [];
 		foreach( a in actors )
 		{
+			if (_user.getID() == a.getID())
+				continue;
+
 			if (a.getSkills().hasEffect(::Legends.Effect.LegendDrumsOfWar))
+				continue;
+
+			if (a.getTile().getDistanceTo(myTile) > 8)
 				continue;
 
 			::Legends.Effects.grant(a, ::Legends.Effect.LegendDrumsOfWar, function(_effect) {
 				_effect.setEffect(this.getBonus());
 			}.bindenv(this));
-			this.m.AffectedActors.push(a.weakref());
+
+			affectedActors.push(a.weakref());
 		}
 
+		::Legends.Effects.grant(_user, ::Legends.Effect.LegendDrumsOfWar, function(_effect) {
+			_effect.setEffect(this.getBonus());
+			_effect.m.Caster = _user.weakref();
+			_effect.m.AffectedActors = affectedActors;
+		}.bindenv(this));
 		return true;
 	}
 
-	function onTurnStart()
-	{
-		foreach(actor in this.m.AffectedActors)
-		{
-			if (::Legends.S.skillEntityAliveCheck(actor))
-				continue;
-			::Legends.Effects.remove(actor.getSkills(), ::Legends.Effect.LegendDrumsOfWar);
-		}
-		this.m.AffectedActors = [];
-	}
-
-	function onCombatFinished()
-	{
-		this.m.AffectedActors = [];
-	}
 });
 

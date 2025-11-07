@@ -2,12 +2,8 @@ this.perk_legend_pummel_into_submission <- this.inherit("scripts/skills/skill", 
 	m = {},
 	function create()
 	{
-		::Const.Perks.setup(this.m, ::Legends.Perk.LegendPummelIntoSubmission);
-		this.m.Type = this.Const.SkillType.Perk;
+		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendPummelIntoSubmission);
 		this.m.Order = this.Const.SkillOrder.First + 2;
-		this.m.IsActive = false;
-		this.m.IsStacking = false;
-		this.m.IsHidden = false;
 	}
 
 	function onAnySkillUsed( _skill, _targetEntity, _properties )

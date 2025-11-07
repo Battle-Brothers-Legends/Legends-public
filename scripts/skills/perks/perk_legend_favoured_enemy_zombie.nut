@@ -3,7 +3,8 @@ this.perk_legend_favoured_enemy_zombie <- this.inherit("scripts/skills/legend_fa
 	function create()
 	{
 		this.legend_favoured_enemy_skill.create();
-		::Const.Perks.setup(this.m, ::Legends.Perk.LegendFavouredEnemyZombie);
+		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendFavouredEnemyZombie);
+		this.m.Type = this.Const.SkillType.Perk | this.Const.SkillType.StatusEffect;
 		this.m.ValidTypes = this.Const.LegendMod.FavoriteZombies;
 	}
 

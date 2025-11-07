@@ -38,6 +38,11 @@ this.legend_named_goblin_gruesome_falchion <- this.inherit("scripts/items/weapon
 	function onEquip()
 	{
 		this.named_weapon.onEquip();
+		::Legends.Actives.grant(this, ::Legends.Active.Slash, function (_skill) {
+			_skill.m.Icon = "skills/active_78.png";
+			_skill.m.IconDisabled = "skills/active_78_sw.png";
+			_skill.m.Overlay = "active_78";
+		}.bindenv(this));
 		::Legends.Actives.grant(this, ::Legends.Active.Gash, function (_skill) {
 			_skill.m.Icon = "skills/active_78.png";
 			_skill.m.IconDisabled = "skills/active_78_sw.png";

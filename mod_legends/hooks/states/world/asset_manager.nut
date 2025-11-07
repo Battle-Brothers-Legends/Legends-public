@@ -13,6 +13,9 @@
 
 	o.m.IsArenaTooled <- false;
 
+	o.m.HasDrillSergeant <- 0;
+	o.m.HasScholars <- 0;
+
 	o.getArmorPartsF <- function()
 	{
 		return this.m.ArmorParts;

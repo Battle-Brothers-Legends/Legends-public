@@ -2,12 +2,7 @@ this.perk_legend_onslaught <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		::Const.Perks.setup(this.m, ::Legends.Perk.LegendOnslaught);
-		this.m.Type = this.Const.SkillType.Perk;
-		this.m.Order = this.Const.SkillOrder.Perk;
-		this.m.IsActive = false;
-		this.m.IsStacking = false;
-		this.m.IsHidden = false;
+		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendOnslaught);
 		this.m.SoundOnUse = [
 			"sounds/combat/bash_01.wav",
 			"sounds/combat/bash_02.wav",
@@ -31,7 +26,7 @@ this.perk_legend_onslaught <- this.inherit("scripts/skills/skill", {
 			::Const.ItemSlot.Mainhand
 		]);
 		fat *= -1;
-		return ::Math.min(30, fat * 0.30);		
+		return ::Math.min(30, fat * 0.30);
 	}
 
 	function onUpdate( _properties )

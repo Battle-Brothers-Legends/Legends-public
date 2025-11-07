@@ -2,6 +2,11 @@
 {
 	while(!("ID" in o.m)) o=o[o.SuperName];
 
+	local isSpecial = o.isSpecial;
+	o.isSpecial = function () {
+		return "isValidForEncounter" in this.m || isSpecial();
+	}
+
 	o.setScreen = function ( _screen )
 	{
 		if (_screen == null)
@@ -50,6 +55,7 @@
 			option.Event <- this;
 		}
 	}
+
 	o.buildText = function ( _text )
 	{
 		local brothers = this.World.getPlayerRoster().getAll();
@@ -330,8 +336,17 @@
 			]
 		]);
 	}
+
 	o.canFire <- function ()
 	{
 		return true;
+	}
+
+	local fire = o.fire;
+	o.fire = function () {
+		fire();
+		if("isValidForEncounter" in this.m) {
+			::World.Events.removeSpecialEvent(this.m.ID);
+		}
 	}
 });

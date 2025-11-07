@@ -12,7 +12,7 @@ this.perk_legend_specialist_farmhand <- this.inherit("scripts/skills/legend_spec
 	function create()
 	{
 		this.legend_specialist_abstract.create();
-		::Const.Perks.setup(this.m, ::Legends.Perk.LegendSpecialistFarmhand);
+		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendSpecialistFarmhand);
 		this.m.IconMini = "perk_spec_bitchfork_mini";
 	}
 

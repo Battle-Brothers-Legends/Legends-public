@@ -12,7 +12,7 @@ this.perk_legend_specialist_reaper <- this.inherit("scripts/skills/legend_specia
 	function create()
 	{
 		this.legend_specialist_abstract.create();
-		::Const.Perks.setup(this.m, ::Legends.Perk.LegendSpecialistReaper);
+		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendSpecialistReaper);
 		this.m.IconMini = "perk_spec_scythe_mini";
 	}
 });

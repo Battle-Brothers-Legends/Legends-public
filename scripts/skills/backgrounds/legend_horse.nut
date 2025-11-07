@@ -95,7 +95,6 @@ this.legend_horse <- this.inherit("scripts/skills/backgrounds/character_backgrou
 			[
 				::Legends.Perk.LoneWolf,
 				::Legends.Perk.Underdog,
-				::Legends.Perk.Footwork,
 				::Legends.Perk.LegendHorseLegControl,
 				::Legends.Perk.LegendHorseLeadChange,
 				::Legends.Perk.LegendHorseParthianShot
@@ -104,7 +103,7 @@ this.legend_horse <- this.inherit("scripts/skills/backgrounds/character_backgrou
 				::Legends.Perk.Nimble,
 				::Legends.Perk.LegendLastStand,
 				::Legends.Perk.LegendRebound,
-				::Legends.Perk.Rotation,
+				::Legends.Perk.LegendTacticalManeuvers,
 				::Legends.Perk.LegendMuscularity,
 				::Legends.Perk.LegendHorsePiaffe,
 				::Legends.Perk.LegendHorseTempiChange,

@@ -11,7 +11,7 @@ this.perk_legend_vala_trance_perspective <- this.inherit("scripts/skills/skill",
 	}
 	function create()
 	{
-		::Const.Perks.setup(this.m, ::Legends.Perk.LegendValaTrancePerspective);
+		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendValaTrancePerspective);
 		this.m.Icon = "ui/perks/legend_vala_trance_perspective_active.png";
 		this.m.IconDisabled = "ui/perks/legend_vala_trance_perspective_active_sw.png";
 		this.m.Type = this.Const.SkillType.Active | this.Const.SkillType.Perk;
@@ -19,8 +19,6 @@ this.perk_legend_vala_trance_perspective <- this.inherit("scripts/skills/skill",
 		this.m.IsSerialized = true;
 		this.m.IsActive = true;
 		this.m.IsTargeted = false;
-		this.m.IsStacking = false;
-		this.m.IsHidden = false;
 		this.m.IsAttack = false;
 		this.m.IsIgnoredAsAOO = true;
 		this.m.IsVisibleTileNeeded = false;

@@ -11,7 +11,7 @@ this.legend_legion_honour_guard_background <- this.inherit("scripts/skills/backg
 		this.m.BadEnding = "";
 		this.m.HiringCost = 0;
 		this.m.DailyCost = 0;
-		this.m.Excluded = ::Legends.Legion.exludedTraits();
+		this.m.Excluded = ::Legends.Legion.excludedTraits();
 
 		this.m.ExcludedTalents = [
 			// this.Const.Attributes.RangedSkill,
@@ -108,9 +108,9 @@ this.legend_legion_honour_guard_background <- this.inherit("scripts/skills/backg
 		this.addBackgroundType(this.Const.BackgroundType.Female);
 	}
 
-	function onBuildDescription() //to do
+	function onBuildDescription()
 	{
-		return "{ TODO | TODO }";
+		return "{Decades of campaigning and violence have only cemented %name%'s reputation in the Legion as an avatar of war. Their very presence instils confidence in their troop's fighting odds. | Some %name% are born to grant others death. %name% answered this calling alongside his duty to the Emperor, and has carved a path through their many enemies, with little sign of stopping. | %name%'s war never ended. Found amongst a battlefield surrounded by felled foes, they were only too eager to take up arms again in service of the Emperor and his Legion. | %name% sought the Legion out on their own, having felt the call to serve the Emperor through honourable combat. Offered a prestigious position as one of the Legion's best, they stand as both shield and sword against the Empire's many enemies. | Few can compare to %name%'s martial prowess and imposing presence, even in death. Quickly proving their knack for violence, they secured a place in the Legion's honour guard.} {When the lines break, it inevitably falls to this honour guard to hold the line and salvage the day. Unmatched in close combat, they can be trusted to make any enemy pay in rivers of blood. | Perfectly suited to breaking enemy lines and reforming allied ones, this honour guard stands stalwart as a decisive actor on the battlefield. Enemies and allies alike fear their skill of arms. | When the day seems lost, it falls to an honour guard to turn the tide and achieve glory for the Empire. Masterfully applied violence and a feverish loyalty to the mission bolster the Legion's capabilities on and off the battlefield. | The perfect weapon in the Legion, this honour guard is the solution to throw at almost any problem that stands against the Emperor's will. Single-minded in violence, the Empire's enemies tremble at the very sight of this paragon of imperial martial excellence. | Violence made art. Killing made a science. This honour guard is no stranger to war, and can be relied upon to demonstrate the ancient mastery of imperial war to those in the Legion, and those who dare oppose it.} {Cold, reserved and unmistakably absent-minded in camp, %name%'s mind clearly lives on the battlefield. The lulls between battle seem only to send this agent of war into a placated stasis, awaiting the next call to action... | Death comes easy for some. %name% appears aware of their undeath, occasionally spotted admiring their skeletal form. Despite what some might consider horrific, they relish the opportunity to relive the art of killing. Again, and again, and again. | %name% relishes their new undead station in the Legion, eagerly flexing their status against their inferiors, and often failing to hide their glee for their curse of unlife. At least someone is having fun in death. | Bouts of confused stupors quickly give way to an unquestionable discipline practised and perfected over countless years. Though %name% is sometimes spotted pensive and disturbed by their undead company, the order to form ranks quickly sweeps such self-awareness away... | %name% lived and died and now lives again for the Legion. Eagerly taking up the opportunity to serve the Emperor once more, they vow never to never again fall in battle.}";
 	}
 
 	function onChangeAttributes() //uses Character_background.nut template (Skeleton)
@@ -160,7 +160,7 @@ this.legend_legion_honour_guard_background <- this.inherit("scripts/skills/backg
 		}
 
 		local actor = this.getContainer().getActor();
-		actor.m.ExcludedInjuries = ::Legends.Legion.ExludedInjures;
+		actor.m.ExcludedInjuries = ::Legends.Legion.ExcludedInjures;
 		actor.getFlags().add("legion_can_command"); //justfies if this background is subject to the legion command skill
 	}
 

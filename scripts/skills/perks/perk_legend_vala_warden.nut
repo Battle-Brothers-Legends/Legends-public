@@ -5,14 +5,11 @@ this.perk_legend_vala_warden <- this.inherit("scripts/skills/skill", {
 	},
 	function create()
 	{
-		::Const.Perks.setup(this.m, ::Legends.Perk.LegendValaWarden);
+		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendValaWarden);
 		this.m.Type = this.Const.SkillType.Perk | this.Const.SkillType.StatusEffect;
 		this.m.Order = this.Const.SkillOrder.VeryLast + 10;
 		this.m.IsSerialized = true;
-		this.m.IsActive = false;
 		this.m.IsTargeted = false;
-		this.m.IsStacking = false;
-		this.m.IsHidden = false;
 	}
 
 	function isHidden()

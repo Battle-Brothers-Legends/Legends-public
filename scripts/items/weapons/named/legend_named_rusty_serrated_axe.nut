@@ -55,7 +55,7 @@ this.legend_named_rusty_serrated_axe <- this.inherit("scripts/items/weapons/name
 
 	function onAnySkillUsed( _skill, _targetEntity, _properties )
 	{
-		if (_skill != null && _skill.isAttack() && _skill.IsWeaponSkill)
+		if (_skill != null && _skill.isAttack() && _skill.m.IsWeaponSkill)
 		{
 			_properties.ThresholdToInflictInjuryMult *= 0.66;
 		}

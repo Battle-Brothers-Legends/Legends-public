@@ -2,12 +2,8 @@ this.perk_legend_wind_reader <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		::Const.Perks.setup(this.m, ::Legends.Perk.LegendWindReader);
+		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendWindReader);
 		this.m.Type = this.Const.SkillType.Perk | this.Const.SkillType.StatusEffect;
-		this.m.Order = this.Const.SkillOrder.Perk;
-		this.m.IsActive = false;
-		this.m.IsStacking = false;
-		this.m.IsHidden = false;
 	}
 
 	function getBonus()
@@ -56,7 +52,7 @@ this.perk_legend_wind_reader <- this.inherit("scripts/skills/skill", {
 	function onAnySkillUsed( _skill, _targetEntity, _properties )
 	{
 		if (_targetEntity != null)
-		{	
+		{
 			local targetTile = _targetEntity.getTile();
 			local actor = this.getContainer().getActor();
 			local myTile = actor.getTile();

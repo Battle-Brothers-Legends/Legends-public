@@ -20,7 +20,7 @@ this.perk_legend_specialist_miner <- this.inherit("scripts/skills/legend_special
 	function create()
 	{
 		this.legend_specialist_abstract.create();
-		::Const.Perks.setup(this.m, ::Legends.Perk.LegendSpecialistMiner);
+		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendSpecialistMiner);
 		this.m.IconMini = "perk_spec_pickaxe_mini";
 	}
 });

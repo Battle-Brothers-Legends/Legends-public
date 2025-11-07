@@ -5,35 +5,38 @@ this.perk_legend_keen_eyesight <- this.inherit("scripts/skills/skill", {
 		MeleeDefenseBonus = 0,
 		RangedDefenseBonus = 0
 	},
-	
-	function setBonus( _vision )
-	{
+
+	function setBonus( _vision ) {
 		local helmet = this.getContainer().getActor().getItems().getItemAtSlot(::Const.ItemSlot.Head);
 		local bonus = 0;
 		local mult = 1.0;
-		
+
 		this.m.MeleeSkillBonus = 0;
 		this.m.RangedSkillBonus = 0;
 		this.m.MeleeDefenseBonus = 0;
 		this.m.RangedDefenseBonus = 0;
-		
-		
+
 		if (helmet != null)
 		{
+			local positiveVision = helmet.m.Upgrades.filter(@(_, _layer) _layer != null && _layer.getVision() > 0)
+				.map(@(_layer) _layer.getVision()).reduce(@(a,b) a + b);
+			if (positiveVision == null)
+				positiveVision = 0;
 			bonus = helmet.getVision() * -1;
 			if (bonus > 2)
 			{
-				mult += -0,1;
+				mult += -0.1;
 			}
 			if (bonus > 4)
 			{
-				mult += -0,1; 
+				mult += -0.1;
 			}
+			bonus += positiveVision;
 		}
-		
+
 		bonus += _vision - 7;
 		bonus = ::Math.min(12, bonus);
-		
+
 		if (bonus > 0)
 		{
 			this.m.MeleeSkillBonus = ::Math.floor(bonus * 3 * mult);
@@ -42,15 +45,10 @@ this.perk_legend_keen_eyesight <- this.inherit("scripts/skills/skill", {
 			this.m.RangedDefenseBonus = ::Math.floor(bonus * 4 * mult);
 		}
 	}
-	
+
 	function create()
 	{
-		::Const.Perks.setup(this.m, ::Legends.Perk.LegendKeenEyesight);
-		this.m.Type = ::Const.SkillType.Perk;
-		this.m.Order = ::Const.SkillOrder.Perk;
-		this.m.IsActive = false;
-		this.m.IsStacking = false;
-		this.m.IsHidden = false;
+		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendKeenEyesight);
 	}
 
 	function onAfterUpdate( _properties )

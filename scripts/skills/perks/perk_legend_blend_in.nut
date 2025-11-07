@@ -5,12 +5,8 @@ this.perk_legend_blend_in <- this.inherit("scripts/skills/skill", {
 	},
 	function create()
 	{
-		::Const.Perks.setup(this.m, ::Legends.Perk.LegendBlendIn);
+		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendBlendIn);
 		this.m.Type = this.Const.SkillType.Perk | this.Const.SkillType.StatusEffect;
-		this.m.Order = this.Const.SkillOrder.Perk;
-		this.m.IsActive = false;
-		this.m.IsStacking = false;
-		this.m.IsHidden = false;
 	}
 
 	function getDescription()
@@ -21,6 +17,8 @@ this.perk_legend_blend_in <- this.inherit("scripts/skills/skill", {
 	function onUpdate( _properties )
 	{
 		_properties.TargetAttractionMult *= 0.50;
+		_properties.MeleeDefense += 3;
+		_properties.RangedDefense += 5;
 	}
 
 	function checkEntities()

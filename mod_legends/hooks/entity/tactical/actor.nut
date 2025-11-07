@@ -148,7 +148,7 @@
 		foreach(i, actor in otherActors) {
 			isAliedPtrs.push(actor.isAlliedWith);
 			actor.isAlliedWith = function(_other) {
-				if (this == null)
+				if (this == null || actor == null)
 					return false;
 				if (_other == null)
 					return false;
