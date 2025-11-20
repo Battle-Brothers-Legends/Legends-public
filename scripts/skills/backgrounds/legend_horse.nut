@@ -77,7 +77,7 @@ this.legend_horse <- this.inherit("scripts/skills/backgrounds/character_backgrou
 			[
 				::Legends.Perk.Anticipation,
 				::Legends.Perk.Steadfast,
-				::Legends.Perk.LegendSprint,
+				// ::Legends.Perk.LegendSprint,
 				::Legends.Perk.LegendOnslaught,
 				::Legends.Perk.LegendHorseCollection,
 				::Legends.Perk.LegendBackToBasics,

@@ -49,29 +49,22 @@ this.legend_talented_trait <- this.inherit("scripts/skills/traits/character_trai
 			{
 				id = 11,
 				type = "text",
-				icon = "ui/icons/health.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+3[/color] Hitpoints"
-			},
-			{
-				id = 12,
-				type = "text",
-				icon = "ui/icons/fatigue.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+3[/color] Fatigue"
-			},
-			{
-				id = 10,
-				type = "text",
 				icon = "ui/icons/special.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+5%[/color] Experience Gain"
+				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+2[/color] to every attribute"
 			}
 		];
 	}
 
 	function onUpdate( _properties )
 	{
-		_properties.XPGainMult *= 1.05;
-		_properties.Hitpoints += 3;
-		_properties.Stamina += 3;
+		_properties.Hitpoints += 2;
+		_properties.Bravery += 2;
+		_properties.Stamina += 2;
+		_properties.Initiative += 2;
+		_properties.MeleeSkill += 2;
+		_properties.RangedSkill += 2;
+		_properties.MeleeDefense += 2;
+		_properties.RangedDefense += 2;
 	}
 
 });

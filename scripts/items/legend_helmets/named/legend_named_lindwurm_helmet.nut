@@ -60,21 +60,21 @@ this.legend_named_lindwurm_helmet <- this.inherit("scripts/items/legend_helmets/
 	function onEquip()
 	{
 		this.legend_named_helmet_upgrade.onEquip();
-		local c = this.m.Helmet.getContainer();
+		local c = this.m.Armor.getContainer();
 
-		if (c != null && c.getActor() != null && !c.getActor().isNull())
+		if (!c.isNull() && !c.getActor().isNull())
 		{
-			this.m.Container.getActor().getFlags().add("head_immune_to_acid");
+			c.getActor().getFlags().add("head_immune_to_acid");
 		}
 	}
 
 	function onUnequip()
 	{
-		local c = this.m.Helmet.getContainer();
+		local c = this.m.Armor.getContainer();
 
-		if (c != null && c.getActor() != null && !c.getActor().isNull())
+		if (!c.isNull() && !c.getActor().isNull())
 		{
-			this.m.Container.getActor().getFlags().remove("head_immune_to_acid");
+			c.getActor().getFlags().remove("head_immune_to_acid");
 		}
 
 		this.legend_named_helmet_upgrade.onUnequip();

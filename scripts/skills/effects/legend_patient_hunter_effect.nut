@@ -1,11 +1,11 @@
 this.legend_patient_hunter_effect <- this.inherit("scripts/skills/skill", {
 	m = {
-		TimeAdded = 0
+		ApBonus = 0
 	},
 	function create()
 	{
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendPatientHunter);
-		this.m.Description = "This character has carefully weighed their options and primed an attack with maximum effectiveness.";
+		this.m.Description = "This character has carefully weighed their options and gathered their strength for maximum effectiveness.";
 		this.m.Icon = "ui/perks/patient_hunter.png";
 		this.m.IconMini = "patient_hunter_mini";
 		this.m.Overlay = "patient_hunter_mini";
@@ -31,20 +31,8 @@ this.legend_patient_hunter_effect <- this.inherit("scripts/skills/skill", {
 			{
 				id = 12,
 				type = "text",
-				icon = "ui/icons/damage_dealt.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+10%[/color] Damage"
-			},
-			{
-				id = 13,
-				type = "text",
-				icon = "ui/icons/hitchance.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+5[/color] Ranged and Melee Skill"
-			},
-			{
-				id = 14,
-				type = "text",
-				icon = "ui/icons/direct_damage.png",
-				text = "An additional [color=" + this.Const.UI.Color.PositiveValue + "]5%[/color] of damage ignores armor"
+				icon = "ui/icons/action_points.png",
+				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+" + this.m.ApBonus + "[/color] Action Points until the end of your turn"
 			}
 		];
 		return ret;
@@ -52,28 +40,10 @@ this.legend_patient_hunter_effect <- this.inherit("scripts/skills/skill", {
 
 	function onUpdate( _properties )
 	{
-		_properties.DamageTotalMult *= 1.1;
-		_properties.RangedSkill += 5;
-		_properties.MeleeSkill += 5;
-		_properties.DamageDirectMult += 0.05;
-		_properties.TargetAttractionMult *= 1.5;
+		_properties.ActionPoints += this.m.ApBonus;
 	}
 
-	function onAdded()
-	{
-		this.m.TimeAdded = this.Time.getVirtualTimeF();
-	}
-
-	function onAnySkillUsed( _skill, _targetEntity, _properties )
-	{
-		if (_targetEntity == null || !_targetEntity.isAttackable())
-			return;
-
-		if (!this.m.IsGarbage && this.m.TimeAdded + 0.1 < this.Time.getVirtualTimeF() && !_targetEntity.isAlliedWith(this.getContainer().getActor()))
-			this.removeSelf();
-	}
-
-	function onTargetMissed( _skill, _targetEntity )
+	function onTurnEnd()
 	{
 		this.removeSelf();
 	}

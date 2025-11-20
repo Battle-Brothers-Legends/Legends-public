@@ -61,8 +61,13 @@ this.legend_taxidermist_background <- this.inherit("scripts/skills/backgrounds/c
 				this.Const.Perks.BeastTree,
 				this.Const.Perks.OccultTree
 			],
-			Profession = [],
-			Class = [],
+			Profession = [
+				this.Const.Perks.WoodworkingProfessionTree,
+				this.Const.Perks.RepairProfessionTree
+			],
+			Class = [
+				this.Const.Perks.TailorClassTree
+			],
 			Magic = []
 		}
 	}

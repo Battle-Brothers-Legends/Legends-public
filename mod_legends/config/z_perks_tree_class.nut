@@ -3,6 +3,23 @@ if (!("Perks" in ::Const))
 	::Const.Perks <- {};
 }
 
+::Const.Perks.PoisonClassTree <- {
+	ID = "PoisonClassTree",
+	Name = "Poison",
+	Descriptions = [
+		"poisons"
+	],
+	Tree = [
+		[],
+		[],
+		[],
+		[::Legends.Perk.LegendSpecPoison],
+		[],
+		[],
+		[]
+	]
+};
+
 ::Const.Perks.BeastClassTree <- {
 	ID = "BeastClassTree",
 	Name = "Nets",
@@ -505,7 +522,9 @@ ID = "TailorClassTree",
 		::Const.Perks.SlingClassTree,
 		::Const.Perks.SpearfisherClassTree,
 		::Const.Perks.StaffClassTree,
-		::Const.Perks.RaiderClassTree
+		::Const.Perks.RaiderClassTree,
+		::Const.Perks.PoisonClassTree,
+		::Const.Perks.TailorClassTree
 	],
 	function getRandom(_exclude)
 	{

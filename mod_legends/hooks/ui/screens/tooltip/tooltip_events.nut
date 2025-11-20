@@ -1400,58 +1400,52 @@
 				}
 
 				ret.push({
-					id = id,
+					id = id++,
 					type = "description",
-					text = "Next Roster Size increase at Renown: " + nextRenown
+					text = ::format("Next Roster Size increase at %d Renown, current: %d", nextRenown, ::World.Assets.getBusinessReputation())
 				});
-				id = ++id;
 			}
 			else
 			{
 				ret.push({
-					id = id,
+					id = id++,
 					type = "description",
-					text = "Maximum Roster Size achieved!"
+					text = ::format("Maximum Roster Size achieved! Current Renown: %d", ::World.Assets.getBusinessReputation())
 				});
-				id = ++id;
 			}
 
 			ret.push({
-				id = id,
+				id = id++,
 				type = "text",
 				text = "Terrain Movement Modifiers:"
 			});
-			id = ++id;
 
 			foreach( bro in data.TerrainModifiers )
 			{
 				if (bro[1] == 0) continue;
 				ret.push({
-					id = id,
+					id = id++,
 					type = "text",
 					text = bro[0] + " [color=" + this.Const.UI.Color.PositiveValue + "]" + bro[1] + "%[/color]"
 				});
-				id = ++id;
 			}
 
 			ret.push({
-				id = id,
+				id = id++,
 				type = "hint",
 				text = "Company Strength: " + this.World.State.getPlayer().getStrength()
 			});
-			id = ++id;
 
 			local brothersLimit = 12;
 			local i = 0;
 			foreach( bro in data.Brothers )
 			{
 				ret.push({
-					id = id,
+					id = id++,
 					type = "hint",
 					icon = bro.Mood,
 					text = "L" + bro.Level + "  " + bro.Name + " (" + bro.Background + ")"
 				});
-				id = ++id;
 				i++;
 				if (i == brothersLimit) break;
 			}

@@ -1252,3 +1252,4 @@ traitDefs.push({
 
 
 ::Legends.Traits.addTraitDefObjects(traitDefs);
+::Const.CharacterTraits = ::Const.CharacterTraits.filter(@(idx, trait) trait[0] != "trait.legend_frail");

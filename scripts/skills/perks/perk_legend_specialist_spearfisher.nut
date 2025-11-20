@@ -16,7 +16,7 @@ this.perk_legend_specialist_spearfisher <- this.inherit("scripts/skills/legend_s
 	function create()
 	{
 		this.legend_specialist_abstract.create();
-		::Const.Perks.setup(this.m, ::Legends.Perk.LegendSpecialistSharpshooter);
+		::Const.Perks.setup(this.m, ::Legends.Perk.LegendSpecialistSpearfisher);
 		this.m.IconMini = "perk_spec_longbow_mini";
 	}
 

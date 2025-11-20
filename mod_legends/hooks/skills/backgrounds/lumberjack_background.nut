@@ -83,8 +83,12 @@
 				this.Const.Perks.FitTree
 			],
 			Enemy = [],
-			Class = [this.Const.Perks.WoodaxeClassTree],
-			Profession = [],
+			Class = [
+				this.Const.Perks.WoodaxeClassTree
+			],
+			Profession = [
+				this.Const.Perks.WoodworkingProfessionTree
+			],
 			Magic = []
 		}
 	}

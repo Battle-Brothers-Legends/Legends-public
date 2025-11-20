@@ -66,55 +66,54 @@ this.legend_donkey_background <- this.inherit("scripts/skills/backgrounds/charac
 		];
 		this.m.CustomPerkTree = [
 			[
-				::Legends.Perk.Colossus,
-				::Legends.Perk.NineLives,
-				::Legends.Perk.Pathfinder,
-				::Legends.Perk.Steadfast,
-				::Legends.Perk.BagsAndBelts,
-				::Legends.Perk.Recover
+				this.Legends.Perk.Colossus,
+				this.Legends.Perk.NineLives,
+				this.Legends.Perk.Pathfinder,
+				this.Legends.Perk.Steadfast,
+				this.Legends.Perk.BagsAndBelts,
+				this.Legends.Perk.Recover
 			],
 			[
-				::Legends.Perk.Dodge,
-				::Legends.Perk.HoldOut,
-				// ::Legends.Perk.LegendComposure,
-				::Legends.Perk.LegendAlert,
-				::Legends.Perk.LegendOnslaught,
-				::Legends.Perk.SteelBrow
+				this.Legends.Perk.Dodge,
+				this.Legends.Perk.HoldOut,
+				// this.Legends.Perk.LegendComposure,
+				this.Legends.Perk.LegendAlert,
+				this.Legends.Perk.LegendOnslaught,
+				this.Legends.Perk.SteelBrow
 			],
 			[
-				::Legends.Perk.Anticipation,
-				::Legends.Perk.Rotation,
-				::Legends.Perk.LegendPeaceful,
-				::Legends.Perk.Taunt,
-				::Legends.Perk.LegendSprint
+				this.Legends.Perk.Anticipation,
+				this.Legends.Perk.Rotation,
+				this.Legends.Perk.LegendPeaceful,
+				this.Legends.Perk.Taunt,
+				// this.Legends.Perk.LegendSprint
 			],
 			[
-				::Legends.Perk.LegendEfficientPacking,
-				::Legends.Perk.LegendAmmoBinding,
-				::Legends.Perk.LegendMedPackages,
-				::Legends.Perk.LegendToolsDrawers
-
+				this.Legends.Perk.LegendEfficientPacking,
+				this.Legends.Perk.LegendAmmoBinding,
+				this.Legends.Perk.LegendMedPackages,
+				this.Legends.Perk.LegendToolsDrawers
 			],
 			[
-				::Legends.Perk.LoneWolf,
-				::Legends.Perk.Footwork,
-				::Legends.Perk.LegendLastStand,
-				::Legends.Perk.LegendBlendIn,
-				::Legends.Perk.Underdog
+				this.Legends.Perk.LoneWolf,
+				this.Legends.Perk.Footwork,
+				this.Legends.Perk.LegendLastStand,
+				this.Legends.Perk.LegendBlendIn,
+				this.Legends.Perk.Underdog
 			],
 			[
-				::Legends.Perk.Nimble,
-				::Legends.Perk.LegendRebound,
-				::Legends.Perk.LegendPacifist,
-				::Legends.Perk.LegendSkillfulStacking,
-				::Legends.Perk.LegendMuscularity,
+				this.Legends.Perk.Nimble,
+				this.Legends.Perk.LegendRebound,
+				this.Legends.Perk.LegendPacifist,
+				this.Legends.Perk.LegendSkillfulStacking,
+				this.Legends.Perk.LegendMuscularity,
 			],
 			[
-				::Legends.Perk.Fearsome,
-				// ::Legends.Perk.Stalwart,
-				::Legends.Perk.LegendAmmoBundles,
-				::Legends.Perk.LegendMedIngredients,
-				::Legends.Perk.LegendToolsSpares,
+				this.Legends.Perk.Fearsome,
+				// this.Legends.Perk.Stalwart,
+				this.Legends.Perk.LegendAmmoBundles,
+				this.Legends.Perk.LegendMedIngredients,
+				this.Legends.Perk.LegendToolsSpares,
 			],
 			[],
 			[],

@@ -4,7 +4,7 @@ this.legend_gravedigging_effect <- this.inherit("scripts/skills/skill", {
 		},
 	function create()
 	{
-		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendBaffled);
+		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendGravedigging);
 		this.m.Icon = "ui/perks/shovel_01.png";
 		// this.m.IconMini = "shovel_01_mini.png";
 		this.m.Overlay = "shovel_01";
@@ -67,7 +67,7 @@ this.legend_gravedigging_effect <- this.inherit("scripts/skills/skill", {
 
 		return this.Math.floor(count / 2);
 	}
-	
+
 	function isViableTile( _tile )
 	{
 		if (!this.MSU.Tile.canResurrectOnTile(_tile))

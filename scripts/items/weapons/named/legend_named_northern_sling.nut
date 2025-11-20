@@ -26,7 +26,7 @@ this.legend_named_northern_sling <- this.inherit("scripts/items/weapons/named/na
 		this.m.ConditionMax = 100.0;
 		this.m.RegularDamage = 50;
 		this.m.RegularDamageMax = 75;
-		this.m.ArmorDamageMult = 1.1;
+		this.m.ArmorDamageMult = 1.6;
 		this.m.DirectDamageMult = 0.75;
 		this.randomizeValues();
 	}
@@ -53,4 +53,3 @@ this.legend_named_northern_sling <- this.inherit("scripts/items/weapons/named/na
 	}
 
 });
-

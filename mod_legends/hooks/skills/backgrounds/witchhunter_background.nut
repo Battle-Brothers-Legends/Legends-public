@@ -85,8 +85,8 @@
 				this.Const.Perks.OccultTree
 			],
 			Class = [
-				this.Const.Perks.FaithClassTree,
-				this.Const.Perks.InquisitionClassTree
+				this.Const.Perks.InquisitionClassTree,
+				this.Const.Perks.PoisonClassTree
 			],
 			Profession = [],
 			Magic = []

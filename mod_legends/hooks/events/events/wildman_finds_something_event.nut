@@ -24,7 +24,7 @@
 						else if (r == 3)
 							item = this.new("scripts/items/weapons/knife");
 						else if (r == 4)
-							ithis.Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Standard.hood]]);
+							this.Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Standard.hood]]);
 						else if (r == 5)
 							item = this.new("scripts/items/misc/ghoul_teeth_item");
 						else if (r == 6)

@@ -242,7 +242,7 @@
 //endregion
 
 //region IncompatButPatched
-::Legends.Compat.IncompatButPatched.add("mod_breditor", "on Legends Discord (#submod_files/Breaky's Battle Brothers Bargain Bin (BBBBB))");
+::Legends.Compat.IncompatButPatched.add("mod_breditor", "on Legends Discord (pinned message in #battle_brothers_chat)");
 //endregion
 
 //region OtherVersionCompat

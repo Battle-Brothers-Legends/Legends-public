@@ -34,6 +34,15 @@
 	o.getTooltip = function ()
 	{
 		local result = getTooltip();
+		if (this.m.RangedDefense > 0)
+		{
+			result.push({
+				id = 11,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = "Reduces any ranged damage taken by [color=" + ::Const.UI.Color.NegativeValue + "]-" + this.m.RangedDefense + "%[/color]"
+			});
+		}
 		if (this.isRuned())
 		{
 			result.push({
@@ -75,6 +84,13 @@
 				this.drop(actor.getTile());
 			}
 		}
+	}
+
+	local onUpdateProperties = o.onUpdateProperties;
+	o.onUpdateProperties = function (_properties)
+	{
+		onUpdateProperties(_properties);
+		_properties.RangedDamageMult *= 1 - (0.01 * _properties.RangedDefense);
 	}
 
 	o.onDeserialize = function ( _in )

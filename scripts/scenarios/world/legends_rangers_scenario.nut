@@ -45,7 +45,7 @@ this.legends_rangers_scenario <- this.inherit("scripts/scenarios/world/starting_
 		bros[0].getBackground().m.RawDescription = "{%name% grew up in the rangers and was taught the ways of the forest by veteran foresters. Running through the woods for a lifetime has made %name% particularly good at tracking enemies, or tumbling into the homes of wild druids trying to escape from the modern world}";
 		::Legends.Traits.grant(bros[0], ::Legends.Trait.Player);
 		this.addScenarioPerk(bros[0].getBackground(), this.Const.Perks.PerkDefs.Pathfinder);
-		this.addScenarioPerk(bros[0].getBackground(), this.Const.Perks.PerkDefs.Footwork);
+		this.addScenarioPerk(bros[0].getBackground(), this.Const.Perks.PerkDefs.LegendTacticalManeuvers);
 		bros[0].improveMood(1.5, "Narrowly escaped a bear");
 		bros[0].addLightInjury();
 		bros[0].getFlags().set("IsPlayerCharacter", true);
@@ -59,7 +59,7 @@ this.legends_rangers_scenario <- this.inherit("scripts/scenarios/world/starting_
 
 		::Legends.Traits.grant(bros[1], ::Legends.Trait.Player);
 		this.addScenarioPerk(bros[1].getBackground(), this.Const.Perks.PerkDefs.Pathfinder);
-		this.addScenarioPerk(bros[1].getBackground(), this.Const.Perks.PerkDefs.Footwork);
+		this.addScenarioPerk(bros[1].getBackground(), this.Const.Perks.PerkDefs.LegendTacticalManeuvers);
 		bros[1].worsenMood(1.5, "Had my home destroyed by an idiot");
 		bros[1].getFlags().set("IsPlayerCharacter", true);
 		bros[1].setPlaceInFormation(4);

@@ -55,7 +55,8 @@ this.legend_alchemist_background <- this.inherit("scripts/skills/backgrounds/cha
 			],
 			Enemy = [],
 			Class = [
-				this.Const.Perks.SickleClassTree
+				this.Const.Perks.SickleClassTree,
+				this.Const.Perks.PoisonClassTree
 			]
 			Profession = [
 				this.Const.Perks.BarterProfessionTree,

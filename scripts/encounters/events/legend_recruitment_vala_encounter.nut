@@ -5,7 +5,7 @@ this.legend_recruitment_vala_encounter <- this.inherit("scripts/encounters/encou
     function create() {
 	    this.encounter.create();
         this.m.Type = "encounter.legend_recruitment_vala_encounter";
-        this.m.Name = "Mysterious woman";
+        this.m.Name = ::Const.Strings.randomCityEncounterName();
 		this.m.Cooldown = 60 * ::World.getTime().SecondsPerDay;
 	}
 
