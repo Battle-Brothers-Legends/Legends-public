@@ -5,6 +5,7 @@
 	o.m.IsForPerkTooltip <- false; // Indicate whether the Perk is a dummy that is being used only to generate unactivated perk tooltip hints
 	o.m.Sound <- [];
 	o.m.AdditionalTooltip <- [];
+	o.m.setupSkill <- false;
 
 	o.getDescription = function()
 	{

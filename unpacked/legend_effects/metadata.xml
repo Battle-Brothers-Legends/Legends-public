@@ -1,3 +1,4 @@
 <brush name="gfx/legend_effects.png" version="17">
   <sprite id="legend_dust_03" width="50" height="50" img="effects\legend_dust_03.png" top="-26" bottom="23" />
+  <sprite id="deathblow_target" img="effects\deathblow_target.png" />
 </brush>

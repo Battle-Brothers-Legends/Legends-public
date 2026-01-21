@@ -12,14 +12,19 @@
 		::Legends.Effect.LegendTackled,
 		::Legends.Effect.Shellshocked,
 		::Legends.Effect.Sleeping,
-		::Legends.Effect.Staggered
+		::Legends.Effect.Staggered,
+		::Legends.Effect.Rooted,
+		::Legends.Effect.Net,
+		::Legends.Effect.Web
 	];
+	o.m.setupSkill <- true;
 
 	local create = o.create;
 	o.create = function()
 	{
 		create();
 		this.m.IsHidden = true;
+		this.m.setupSkill = true;
 	}
 
 	o.getTooltip = function ()
@@ -46,6 +51,29 @@
 			});
 		}
 		return tooltip;
+	}
+
+	o.onTargetSelected <- function (_targetTile)
+	{
+		local actors = this.Tactical.Entities.getAllInstancesAsArray();
+		local tile;
+		foreach (a in actors)
+		{
+			if (a.getID() == this.getContainer().getActor().getID())
+				continue;
+
+			if (a.isAlliedWithPlayer())
+				continue;
+
+			foreach ( skill in this.m.ApplicableSkills)
+			{
+				if (a.getSkills().hasEffect(skill) || _targetEntity.getCurrentProperties().IsRooted)
+				{
+					tile = a.getTile();
+					this.Tactical.getHighlighter().addOverlayIcon("deathblow_target", tile, tile.Pos.X, tile.Pos.Y);
+				}
+			}
+		}
 	}
 
 	o.isHidden <- function () {
