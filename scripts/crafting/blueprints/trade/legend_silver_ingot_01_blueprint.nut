@@ -17,7 +17,7 @@ this.legend_silver_ingot_01_blueprint <- this.inherit("scripts/crafting/blueprin
 		local skills = [
 			{
 				Scripts = [
-					"scripts/skills/perks/perk_legend_tools_spares"
+					"scripts/skills/backgrounds/legend_blacksmith_background"
 				]
 			}
 		];
@@ -30,4 +30,5 @@ this.legend_silver_ingot_01_blueprint <- this.inherit("scripts/crafting/blueprin
 	}
 
 });
+
 
