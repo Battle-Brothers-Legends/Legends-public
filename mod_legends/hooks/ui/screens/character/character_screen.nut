@@ -845,4 +845,158 @@
 		}
 		return null;
 	}
+
+	local general_onEquipStashItem = o.general_onEquipStashItem;
+	o.general_onEquipStashItem = function (_data) {
+		local entity = this.Tactical.getEntityByID(_data[0]);
+		if (entity == null || !entity.isPlayerControlled()) {
+			return general_onEquipStashItem(_data);
+		}
+
+		if (this.Stash == null) {
+			return general_onEquipStashItem(_data);
+		}
+
+		local sourceItem = this.Stash.getItemByInstanceID(_data[1]);
+		if (sourceItem == null) {
+			return general_onEquipStashItem(_data);
+		}
+		sourceItem = sourceItem.item;
+
+		// Proceed only if this is a 1h main hand weapon
+		if (sourceItem.getSlotType() != this.Const.ItemSlot.Mainhand
+			|| sourceItem.getBlockedSlotType() != null)
+		{
+			return general_onEquipStashItem(_data);
+		}
+
+		local inventory = entity.getItems();
+		local mh = inventory.getItemAtSlot(this.Const.ItemSlot.Mainhand);
+		local oh = inventory.getItemAtSlot(this.Const.ItemSlot.Offhand);
+		local ohBlocked = inventory.hasBlockedSlot(this.Const.ItemSlot.Offhand);
+
+		local targetSlot = null;
+		if (typeof _data == "array" && _data.len() >= 4 && _data[3] == "offhand") {
+			targetSlot = this.Const.ItemSlot.Offhand;
+		}
+
+		// Equipping to offhand
+		if ((targetSlot == this.Const.ItemSlot.Offhand || (mh != null && oh == null))
+			&& !ohBlocked
+			&& inventory.canDualWield(entity, sourceItem))
+		{
+
+			local originalSlotType = sourceItem.m.SlotType;
+			sourceItem.m.SlotType = this.Const.ItemSlot.Offhand;
+
+			general_onEquipStashItem(_data);
+			sourceItem.m.SlotType = originalSlotType;
+
+			this.dualWieldRefresh(entity, this.Const.ItemSlot.Offhand);
+
+			entity.getSkills().update();
+			return this.UIDataHelper.convertStashAndEntityToUIData(entity, null, false, this.m.InventoryFilter);
+		}
+
+		// Equipping to mainhand while offhand has a dw weapon
+		if (oh != null && oh.getSlotType() == this.Const.ItemSlot.Mainhand) {
+
+			general_onEquipStashItem(_data);
+
+			this.dualWieldRefresh(entity, this.Const.ItemSlot.Mainhand);
+
+			entity.getSkills().update();
+			return this.UIDataHelper.convertStashAndEntityToUIData(entity, null, false, this.m.InventoryFilter);
+		}
+
+		return general_onEquipStashItem(_data);
+	}
+
+	local general_onEquipBagItem = o.general_onEquipBagItem;
+	o.general_onEquipBagItem = function (_data) {
+		local entity = this.Tactical.getEntityByID(_data[0]);
+		if (entity == null || !entity.isPlayerControlled()) {
+			return general_onEquipBagItem(_data);
+		}
+
+		local inventory = entity.getItems();
+		if (inventory == null) {
+			return general_onEquipBagItem(_data);
+		}
+
+		local sourceItem = inventory.getItemByInstanceID(_data[1]);
+		if (sourceItem == null) {
+			return general_onEquipBagItem(_data);
+		}
+
+		// Proceed only if this is a 1h main hand weapon
+		if (sourceItem.getSlotType() != this.Const.ItemSlot.Mainhand
+			|| sourceItem.getBlockedSlotType() != null)
+		{
+			return general_onEquipBagItem(_data);
+		}
+
+		local mh = inventory.getItemAtSlot(this.Const.ItemSlot.Mainhand);
+		local oh = inventory.getItemAtSlot(this.Const.ItemSlot.Offhand);
+		local ohBlocked = inventory.hasBlockedSlot(this.Const.ItemSlot.Offhand);
+
+		local targetSlot = null;
+		if (typeof _data == "array" && _data.len() >= 4 && _data[3] == "offhand") {
+			targetSlot = this.Const.ItemSlot.Offhand;
+		}
+
+		// Equipping to offhand
+		if ((targetSlot == this.Const.ItemSlot.Offhand || (mh != null && oh == null))
+			&& !ohBlocked
+			&& inventory.canDualWield(entity, sourceItem))
+		{
+
+			local originalSlotType = sourceItem.m.SlotType;
+			sourceItem.m.SlotType = this.Const.ItemSlot.Offhand;
+
+			general_onEquipBagItem(_data);
+			sourceItem.m.SlotType = originalSlotType;
+
+			this.dualWieldRefresh(entity, this.Const.ItemSlot.Offhand);
+
+			entity.getSkills().update();
+			return this.UIDataHelper.convertStashAndEntityToUIData(entity, null, false, this.m.InventoryFilter);
+		}
+
+		// Equipping to mainhand while offhand has a dw weapon
+		if (oh != null && oh.getSlotType() == this.Const.ItemSlot.Mainhand) {
+
+			general_onEquipBagItem(_data);
+
+			this.dualWieldRefresh(entity, this.Const.ItemSlot.Mainhand);
+
+			entity.getSkills().update();
+			return this.UIDataHelper.convertStashAndEntityToUIData(entity, null, false, this.m.InventoryFilter);
+		}
+
+		return general_onEquipBagItem(_data);
+	}
+
+	o.dualWieldRefresh <- function (_entity, _slot) {
+		local effect = ::Legends.Effects.get(_entity, ::Legends.Effect.LegendDualWield);
+		if (effect == null) {
+			return;
+		}
+
+		local items = _entity.getItems();
+		local mh = items.getItemAtSlot(this.Const.ItemSlot.Mainhand);
+		local oh = items.getItemAtSlot(this.Const.ItemSlot.Offhand);
+
+		if (mh != null && oh != null && mh.getID() != oh.getID()) {
+
+			if (_slot == this.Const.ItemSlot.Offhand) {
+				mh.onUnequip();
+				mh.onEquip();
+			} else if (_slot == this.Const.ItemSlot.Mainhand) {
+				oh.onUnequip();
+				oh.onEquip();
+			}
+
+		}
+	}
 });

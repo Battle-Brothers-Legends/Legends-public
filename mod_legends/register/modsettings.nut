@@ -74,6 +74,7 @@ misc.addElement(::MSU.Class.RangeSetting("MaximumChanceToHit", 95, 0, 100, 1, "M
 myEnumTooltip = "Define AI Rotation rules: 'Default' is the Vanilla behaviour, AI is free to rotate itself and your bros as long as the skill allows; 'Limited' AI can only rotate itself, but not your bros (unless they have the Twirl Perk); 'Disabled' disable AI Rotation entirely";
 misc.addElement(::MSU.Class.EnumSetting("AiRotation", "Default", ["Default", "Limited", "Disabled"], "AI Rotation Rules", myEnumTooltip));
 misc.addElement(::MSU.Class.BooleanSetting("SellDialogNamed", true, "Sell Famed Dialog", "Should sell confirmation dialog appear when selling famed items?"));
+misc.addElement(::MSU.Class.BooleanSetting("LogOutfits", false, "Log Outfits", "An option for fashion submissions which will log the entire outfit someone is wearing when you hover it, used to add custom outfits in Legends."));
 
 local betterobituary = ::Legends.Mod.ModSettings.addPage("Obituary");
 betterobituary.addBooleanSetting("SwapPerks",    false, "Show Perks", "Swaps the trait/permanent injuries columns for perks.");
