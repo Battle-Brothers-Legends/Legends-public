@@ -939,7 +939,7 @@ CharacterScreenDatasource.prototype.toggleInventoryItem = function(_itemId, _ent
 };
 
 
-CharacterScreenDatasource.prototype.equipInventoryItem = function(_brotherId, _sourceItemId, _sourceItemIdx, _targetSlot)
+CharacterScreenDatasource.prototype.equipInventoryItem = function(_brotherId, _sourceItemId, _sourceItemIdx)
 {
 	// if the _brotherId is null, this means we are trying to equip a stash item which is NOT brother bound
 	// thus we have to use the current selected one
@@ -957,7 +957,7 @@ CharacterScreenDatasource.prototype.equipInventoryItem = function(_brotherId, _s
 	}
 
 	var self = this;
-	this.notifyBackendEquipInventoryItem(brotherId, _sourceItemId, _sourceItemIdx, _targetSlot, function (data)
+	this.notifyBackendEquipInventoryItem(brotherId, _sourceItemId, _sourceItemIdx, function (data)
 	{
 		if (data === undefined || data == null || typeof (data) !== 'object')
 		{
@@ -1027,7 +1027,7 @@ CharacterScreenDatasource.prototype.addLayerToItem = function(_brotherId, _sourc
 	}
 
 	var self = this;
-	this.notifyBackendEquipInventoryItem(brotherId, _sourceItemId, _sourceItemIdx, null, function (data)
+	this.notifyBackendEquipInventoryItem(brotherId, _sourceItemId, _sourceItemIdx, function (data)
 	{
 		if (data === undefined || data == null || typeof (data) !== 'object')
 		{
@@ -1149,7 +1149,7 @@ CharacterScreenDatasource.prototype.dropInventoryItemIntoBag = function(_brother
 	});
 };
 
-CharacterScreenDatasource.prototype.equipBagItem = function(_brotherId, _sourceItemId, _sourceItemIdx, _targetSlot)
+CharacterScreenDatasource.prototype.equipBagItem = function(_brotherId, _sourceItemId, _sourceItemIdx)
 {
 	// if the _brotherId is null, this means we are trying to equip a stash item which is NOT brother bound
 	// thus we have to use the current selected one
@@ -1167,7 +1167,7 @@ CharacterScreenDatasource.prototype.equipBagItem = function(_brotherId, _sourceI
 	}
 
 	var self = this;
-	this.notifyBackendEquipBagItem(brotherId, _sourceItemId, _sourceItemIdx, _targetSlot, function (data)
+	this.notifyBackendEquipBagItem(brotherId, _sourceItemId, _sourceItemIdx, function (data)
 	{
 		if (data === undefined || data == null || typeof (data) !== 'object')
 		{
@@ -1877,9 +1877,9 @@ CharacterScreenDatasource.prototype.notifyBackendToggleInventoryItem = function 
 	SQ.call(this.mSQHandle, 'onToggleInventoryItem', [_sourceItemId, _entityId], _callback);
 };
 
-CharacterScreenDatasource.prototype.notifyBackendEquipInventoryItem = function (_brotherId, _sourceItemId, _sourceItemIdx, _targetSlot, _callback)
+CharacterScreenDatasource.prototype.notifyBackendEquipInventoryItem = function (_brotherId, _sourceItemId, _sourceItemIdx, _callback)
 {
-	SQ.call(this.mSQHandle, 'onEquipInventoryItem', [_brotherId, _sourceItemId, _sourceItemIdx, _targetSlot], _callback);
+	SQ.call(this.mSQHandle, 'onEquipInventoryItem', [_brotherId, _sourceItemId, _sourceItemIdx], _callback);
 };
 
 CharacterScreenDatasource.prototype.notifyBackendDropInventoryItemIntoBag = function (_brotherId, _sourceItemId, _sourceItemIdx, _targetItemIdx, _callback)
@@ -1892,9 +1892,9 @@ CharacterScreenDatasource.prototype.notifyBackendDropBagItemIntoInventory = func
 	SQ.call(this.mSQHandle, 'onDropBagItemIntoInventory', [_brotherId, _sourceItemId, _sourceItemIdx, _targetItemIdx], _callback);
 };
 
-CharacterScreenDatasource.prototype.notifyBackendEquipBagItem = function (_brotherId, _sourceItemId, _sourceItemIdx, _targetSlot, _callback)
+CharacterScreenDatasource.prototype.notifyBackendEquipBagItem = function (_brotherId, _sourceItemId, _sourceItemIdx, _callback)
 {
-	SQ.call(this.mSQHandle, 'onEquipBagItem', [_brotherId, _sourceItemId, _sourceItemIdx, _targetSlot], _callback);
+	SQ.call(this.mSQHandle, 'onEquipBagItem', [_brotherId, _sourceItemId, _sourceItemIdx], _callback);
 };
 
 CharacterScreenDatasource.prototype.notifyBackendSwapBagItem = function (_brotherId, _sourceItemIdx, _targetItemIdx, _callback)
@@ -1931,7 +1931,19 @@ CharacterScreenDatasource.prototype.notifyBackendPopupDialogIsVisible = function
 CharacterScreenDatasource.prototype.notifyBackendDismissCharacter = function (_payCompensation)
 {
 	var activeCharacterID = this.mBrothersList[this.mSelectedBrotherIndex]['id'];
-	SQ.call(this.mSQHandle, 'onDismissCharacter', [ activeCharacterID, _payCompensation ]);
+	
+	var addToObituary = false;
+	var dlg = $('.character-screen .dismiss-popup');
+	if (dlg.length > 0) 
+	{
+		var checkbox = dlg.find('.obituary-checkbox');
+		if (checkbox.length > 0)
+		{
+			addToObituary = checkbox.prop('checked') === true;
+		}
+	}
+	
+	SQ.call(this.mSQHandle, 'onDismissCharacter', [ activeCharacterID, _payCompensation, addToObituary ]);
 };
 
 CharacterScreenDatasource.prototype.notifyBackendToggleReservesCharacter = function ()
