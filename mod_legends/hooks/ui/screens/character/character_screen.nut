@@ -217,7 +217,7 @@
 
 	o.queryRosterSizeData <- function (_shake = false)
 	{
-		local brosInCombat = "State" in ::World ? ::World.State.getBrothersInFrontline() : 18;
+		local brosInCombat = "State" in ::World && "getBrothersInFrontline" in ::World.State ? ::World.State.getBrothersInFrontline() : 18;
 		local result = {
 			brothersInCombat = brosInCombat,
 			brothersMaxInCombat = 27,

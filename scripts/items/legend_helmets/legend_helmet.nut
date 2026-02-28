@@ -502,7 +502,7 @@ this.legend_helmet <- this.inherit("scripts/items/helmets/helmet", {
 		}
 		local oldIndex;
 
-		if ("Assets" in this.World && this.World.Assets.getStash())
+		if ("Assets" in this.World && "getStash" in this.World.Assets && this.World.Assets.getStash())
 		{
 			oldIndex =  this.World.Assets.getStash().getItemByInstanceID(_upgrade.getInstanceID());
 		}

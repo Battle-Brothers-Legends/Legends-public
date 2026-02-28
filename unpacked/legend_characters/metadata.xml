@@ -23,28 +23,30 @@
 	<sprite id="bust_head_34" offsetY="35" ic="FF5877A6" width="104" height="142" img="entity\heads\bust_head_34.png" left="-20" right="30" top="-21" bottom="47" />
 	<sprite id="bust_head_34_dead" offsetX="6" offsetY="10" f="64F6" f1="-15" f2="-15" ic="FF4F699A" width="131" height="125" img="entity\heads\bust_head_34_dead.png" left="-44" right="14" top="-56" bottom="0" />
 
-	<sprite id="bust_head_african_01" offsetY="35" ic="FF5877A6" width="104" height="142" img="entity\heads\bust_head_african_01.png" left="-20" right="30" top="-21" bottom="47" />
-	<sprite id="bust_head_african_01_dead" offsetX="6" offsetY="10" f="64F6" f1="-15" f2="-15" ic="FF4F699A" width="131" height="125" img="entity\heads\bust_head_african_01_dead.png" left="-44" right="14" top="-56" bottom="0" />
-	<sprite id="bust_head_african_02" offsetY="35" ic="FF5877A6" width="104" height="142" img="entity\heads\bust_head_african_02.png" left="-20" right="30" top="-21" bottom="47" />
-	<sprite id="bust_head_african_02_dead" offsetX="6" offsetY="10" f="64F6" f1="-15" f2="-15" ic="FF4F699A" width="131" height="125" img="entity\heads\bust_head_african_02_dead.png" left="-44" right="14" top="-56" bottom="0" />
-	<sprite id="bust_head_african_03" offsetY="35" ic="FF5877A6" width="104" height="142" img="entity\heads\bust_head_african_03.png" left="-20" right="30" top="-21" bottom="47" />
-	<sprite id="bust_head_african_03_dead" offsetX="6" offsetY="10" f="64F6" f1="-15" f2="-15" ic="FF4F699A" width="131" height="125" img="entity\heads\bust_head_african_03_dead.png" left="-44" right="14" top="-56" bottom="0" />
-	<sprite id="bust_head_african_04" offsetY="35" ic="FF5877A6" width="104" height="142" img="entity\heads\bust_head_african_04.png" left="-20" right="30" top="-21" bottom="47" />
-	<sprite id="bust_head_african_04_dead" offsetX="6" offsetY="10" f="64F6" f1="-15" f2="-15" ic="FF4F699A" width="131" height="125" img="entity\heads\bust_head_african_04_dead.png" left="-44" right="14" top="-56" bottom="0" />
-	<sprite id="bust_head_african_05" offsetY="35" ic="FF5877A6" width="104" height="142" img="entity\heads\bust_head_african_05.png" left="-20" right="30" top="-21" bottom="47" />
-	<sprite id="bust_head_african_05_dead" offsetX="6" offsetY="10" f="64F6" f1="-15" f2="-15" ic="FF4F699A" width="131" height="125" img="entity\heads\bust_head_african_05_dead.png" left="-44" right="14" top="-56" bottom="0" />
-	<sprite id="bust_head_african_06" offsetY="35" ic="FF5877A6" width="104" height="142" img="entity\heads\bust_head_african_06.png" left="-21" right="36" top="-23" bottom="53" />
-	<sprite id="bust_head_african_06_dead" offsetX="6" offsetY="10" f="64F6" f1="-15" f2="-15" ic="FF4F699A" width="131" height="125" img="entity\heads\bust_head_african_06_dead.png" left="-44" right="14" top="-56" bottom="0" />
-	<sprite id="bust_head_african_07" offsetY="35" ic="FF5877A6" width="104" height="142" img="entity\heads\bust_head_african_07.png" left="-21" right="36" top="-25" bottom="55" />
-	<sprite id="bust_head_african_07_dead" offsetX="6" offsetY="10" f="64F6" f1="-15" f2="-15" ic="FF4F699A" width="131" height="125" img="entity\heads\bust_head_african_07_dead.png" left="-44" right="14" top="-56" bottom="0" />
-	<sprite id="bust_head_african_08" offsetY="35" ic="FF5877A6" width="104" height="142" img="entity\heads\bust_head_african_08.png" left="-22" right="37" top="-26" bottom="55" />
-	<sprite id="bust_head_african_08_dead" offsetX="6" offsetY="10" f="64F6" f1="-15" f2="-15" ic="FF4F699A" width="131" height="125" img="entity\heads\bust_head_african_08_dead.png" left="-54" right="20" top="-59" bottom="3" />
-	<sprite id="bust_head_african_09" offsetY="35" ic="FF5877A6" width="104" height="142" img="entity\heads\bust_head_african_09.png" left="-23" right="37" top="-25" bottom="56" />
-	<sprite id="bust_head_african_09_dead" offsetX="6" offsetY="10" f="64F6" f1="-15" f2="-15" ic="FF4F699A" width="131" height="125" img="entity\heads\bust_head_african_09_dead.png" left="-54" right="20" top="-59" bottom="3" />
-	<sprite id="bust_head_african_10" offsetY="35" ic="FF5877A6" width="104" height="142" img="entity\heads\bust_head_african_10.png" left="-24" right="37" top="-30" bottom="57" />
-	<sprite id="bust_head_african_10_dead" offsetX="6" offsetY="10" f="64F6" f1="-15" f2="-15" ic="FF4F699A" width="131" height="125" img="entity\heads\bust_head_african_10_dead.png" left="-54" right="20" top="-59" bottom="3" />
-	<sprite id="bust_head_african_11" offsetY="35" ic="FF5877A6" width="104" height="142" img="entity\heads\bust_head_african_11.png" left="-24" right="37" top="-29" bottom="56" />
-	<sprite id="bust_head_african_11_dead" offsetX="6" offsetY="10" f="64F6" f1="-15" f2="-15" ic="FF4F699A" width="131" height="125" img="entity\heads\bust_head_african_11_dead.png" left="-54" right="20" top="-59" bottom="3" />
+	<sprite id="bust_head_african_01" offsetY="35" ic="FF5877A6" width="104" height="142" img="entity\heads\bust_head_african_01.png" left="-21" right="31" top="-16" bottom="49" />
+	<sprite id="bust_head_african_01_dead" offsetX="6" offsetY="10" f="64F6" f1="-15" f2="-15" ic="FF4F699A" width="131" height="125" img="entity\heads\bust_head_african_01_dead.png" left="-45" right="10" top="-55" bottom="-1" />
+	<sprite id="bust_head_african_02" offsetY="35" ic="FF5877A6" width="104" height="142" img="entity\heads\bust_head_african_02.png" left="-19" right="30" top="-16" bottom="48" />
+	<sprite id="bust_head_african_02_dead" offsetX="6" offsetY="10" f="64F6" f1="-15" f2="-15" ic="FF4F699A" width="131" height="125" img="entity\heads\bust_head_african_02_dead.png" left="-45" right="9" top="-55" bottom="-2" />
+	<sprite id="bust_head_african_03" offsetY="35" ic="FF5877A6" width="104" height="142" img="entity\heads\bust_head_african_03.png" left="-21" right="30" top="-15" bottom="48" />
+	<sprite id="bust_head_african_03_dead" offsetX="6" offsetY="10" f="64F6" f1="-15" f2="-15" ic="FF4F699A" width="131" height="125" img="entity\heads\bust_head_african_03_dead.png" left="-45" right="9" top="-56" bottom="-1" />
+	<sprite id="bust_head_african_04" offsetY="35" ic="FF5877A6" width="104" height="142" img="entity\heads\bust_head_african_04.png" left="-21" right="30" top="-15" bottom="49" />
+	<sprite id="bust_head_african_04_dead" offsetX="6" offsetY="10" f="64F6" f1="-15" f2="-15" ic="FF4F699A" width="131" height="125" img="entity\heads\bust_head_african_04_dead.png" left="-45" right="10" top="-56" bottom="-2" />
+	<sprite id="bust_head_african_05" offsetY="35" ic="FF5877A6" width="104" height="142" img="entity\heads\bust_head_african_05.png" left="-20" right="31" top="-15" bottom="47" />
+	<sprite id="bust_head_african_05_dead" offsetX="6" offsetY="10" f="64F6" f1="-15" f2="-15" ic="FF4F699A" width="131" height="125" img="entity\heads\bust_head_african_05_dead.png" left="-45" right="10" top="-57" bottom="-1" />
+	<sprite id="bust_head_african_06" offsetY="35" ic="FF5877A6" width="104" height="142" img="entity\heads\bust_head_african_06.png" left="-21" right="30" top="-16" bottom="48" />
+	<sprite id="bust_head_african_06_dead" offsetX="6" offsetY="10" f="64F6" f1="-15" f2="-15" ic="FF4F699A" width="131" height="125" img="entity\heads\bust_head_african_06_dead.png" left="-45" right="11" top="-56" bottom="-2" />
+	<sprite id="bust_head_african_07" offsetY="35" ic="FF5877A6" width="104" height="142" img="entity\heads\bust_head_african_07.png" left="-19" right="31" top="-15" bottom="48" />
+	<sprite id="bust_head_african_07_dead" offsetX="6" offsetY="10" f="64F6" f1="-15" f2="-15" ic="FF4F699A" width="131" height="125" img="entity\heads\bust_head_african_07_dead.png" left="-46" right="11" top="-57" bottom="-2" />
+	<sprite id="bust_head_african_08" offsetY="35" ic="FF5877A6" width="104" height="142" img="entity\heads\bust_head_african_08.png" left="-21" right="29" top="-16" bottom="48" />
+	<sprite id="bust_head_african_08_dead" offsetX="6" offsetY="10" f="64F6" f1="-15" f2="-15" ic="FF4F699A" width="131" height="125" img="entity\heads\bust_head_african_08_dead.png" left="-47" right="10" top="-57" bottom="-2" />
+	<sprite id="bust_head_african_09" offsetY="35" ic="FF5877A6" width="104" height="142" img="entity\heads\bust_head_african_09.png" left="-19" right="30" top="-15" bottom="48" />
+	<sprite id="bust_head_african_09_dead" offsetX="6" offsetY="10" f="64F6" f1="-15" f2="-15" ic="FF4F699A" width="131" height="125" img="entity\heads\bust_head_african_09_dead.png" left="-47" right="10" top="-57" bottom="-2" />
+	<sprite id="bust_head_african_10" offsetY="35" ic="FF5877A6" width="104" height="142" img="entity\heads\bust_head_african_10.png" left="-18" right="28" top="-16" bottom="49" />
+	<sprite id="bust_head_african_10_dead" offsetX="6" offsetY="10" f="64F6" f1="-15" f2="-15" ic="FF4F699A" width="131" height="125" img="entity\heads\bust_head_african_10_dead.png" left="-47" right="10" top="-57" bottom="-2" />
+	<sprite id="bust_head_african_11" offsetY="35" ic="FF5877A6" width="104" height="142" img="entity\heads\bust_head_african_11.png" left="-19" right="30" top="-16" bottom="48" />
+	<sprite id="bust_head_african_11_dead" offsetX="6" offsetY="10" f="64F6" f1="-15" f2="-15" ic="FF4F699A" width="131" height="125" img="entity\heads\bust_head_african_11_dead.png" left="-47" right="11" top="-57" bottom="-1" />
+	<sprite id="bust_head_african_12" offsetY="35" ic="FF5877A6" width="104" height="142" img="entity\heads\bust_head_african_12.png" left="-19" right="31" top="-17" bottom="48" />
+	<sprite id="bust_head_african_12_dead" offsetX="6" offsetY="10" f="64F6" f1="-15" f2="-15" ic="FF4F699A" width="131" height="125" img="entity\heads\bust_head_african_12_dead.png" left="-47" right="11" top="-57" bottom="-2" />
 
 	<sprite id="bust_head_34_orc" offsetY="35" ic="FF5B7CAD" width="104" height="142" img="entity\heads\bust_head_34_orc.png" left="-42" right="40" top="-25" bottom="39" />
 	<sprite id="bust_head_35_orc" offsetY="35" ic="FF5B7CAD" width="104" height="142" img="entity\heads\bust_head_35_orc.png" left="-38" right="36" top="-20" bottom="40" />
