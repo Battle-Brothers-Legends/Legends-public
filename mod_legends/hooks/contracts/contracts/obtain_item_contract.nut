@@ -1,6 +1,6 @@
 ::mods_hookExactClass("contracts/contracts/obtain_item_contract", function(o)
 {
-	o.m.StolenTownRelicNames <- [
+	o.m.Items <- [
 			"Fingerbone of Sir Gerhardt",
 			"Blood Vial of the Holy Mother",
 			"Shroud of the Founder",
