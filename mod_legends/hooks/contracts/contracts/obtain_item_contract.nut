@@ -85,10 +85,10 @@
 			"Rumors of some fancy lost relic being unearthed in nearby ruins has begun to circulate among the local inns.",
 			"Tales of lost treasure have been drawing adventurers and thrill-seekers to these parts for years.",
 			"A blessed local item which went missing years ago has reportedly been sighted in the wilds.",
-			"The relic is likely fake of course, but you/'ll accept coin to retrieve it anyway.",
+			"The relic is likely fake of course, but you\'ll accept coin to retrieve it anyway.",
 			"You get to be the latest in a long-line of missing adventurers sent to find some local bauble.",
-			"You doubt this yokel relic even exists. Still, people have gone missing, so there is certainly danger.",
-			"/'No-one ever comes back/'. Oh, you have a great feeling about this one.",
+			"You doubt this yokel relic even exists. Still, people have gone missing, so there is danger.",
+			"\'No-one ever comes back\'. Oh, you have a great feeling about this one.",
 			"Steal a relic, which may not exist, from a dangerous location which most folk don\'t return from. Perfect.", // 
 			"The inns are full of locals telling tall tales about mighty artifacts of power.",
 			"A relic could make a mighty profit or prize, if it turns out to be actually real of course",
