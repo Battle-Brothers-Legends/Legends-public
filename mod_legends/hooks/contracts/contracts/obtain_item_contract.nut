@@ -85,21 +85,32 @@
 			"Rumors of some fancy lost relic being unearthed in nearby ruins has begun to circulate among the local inns.",
 			"Tales of lost treasure have been drawing adventurers and thrill-seekers to these parts for years.",
 			"A blessed local item which went missing years ago has reportedly been sighted in the wilds.",
-			"A shepard claims to have found the burial site of a holy relic. Sounds like a load of hogwash, but you will be paid to investigate.",
-			"Reports of a lost artifact supposedly discovered in an abandoned temple have piqued local interest.",
-			"Whispers of a long-lost relic discovered in the nearby forest have the townsfolk buzzing with excitement.",
-			"Like many others before you apparently, you get a chance to die seeking some fabled local item.",
-			"Based on nothing but rumour & hearsay, you\'ll be paid to investigate some local legend.",
+			"The relic is likely fake of course, but you/'ll accept coin to retrieve it anyway.",
 			"You get to be the latest in a long-line of missing adventurers sent to find some local bauble.",
-			"The inns are full of locals telling tall tales about mighty artifacts of power.",
 			"You doubt this yokel relic even exists. Still, people have gone missing, so there is certainly danger.",
 			"/'No-one ever comes back/'. Oh, you have a great feeling about this one.",
+			"Steal a relic, which may not exist, from a dangerous location which most folk don\'t return from. Perfect.", // 
+			"The inns are full of locals telling tall tales about mighty artifacts of power.",
 			"A relic could make a mighty profit or prize, if it turns out to be actually real of course",
+			"Whispers of a long-lost relic discovered in the nearby forest have the townsfolk buzzing with excitement.",
+			"Like many others before you, you get a chance to die seeking some fabled local item.",
 			"Relics? Load of old dung in your opinion. At least the job pays well.",
-			"The relic is likely fake of course, but you/'ll accept coin to retrieve it anyway.",
-			"Steal a relic, which may not exist, from a dangerous location which most folk don\'t return from. Perfect."
+			"Based on nothing but rumour & hearsay, you\'ll be paid to investigate some local legend.",
+			"A shepard claims to have found the burial site of a holy relic. Sounds like a load of hogwash, but you will be paid to investigate.",
 		];
 	}
+
+	// If someone has time, please could they add an item array to the town relic list, like we have for the return_item_contract. This would allow some vague descripts to be replaced.
+		//
+		// "The inns are full of locals telling tall tales about the mighty %s.",
+		// "The %s would make a mighty profit or prize, if it turns out to be actually real of course",
+		// "Talk of the long-lost %s has been discovered nearby has the townsfolk buzzing with excitement.",
+		// "Like many others before you, you get a chance to die seeking the fabled %s.",
+		// "%s? Load of old dung in your opinion. At least the job pays well.",
+		// "Based on nothing but rumour & hearsay, you\'ll be paid to investigate the legendary %s.",
+		// "A shepard claims to have found the burial site of the %s. Sounds like a load of hogwash, but you will be paid to investigate.",
+		// "The location of the mighty %s has been a closely guarded secret for years.",
+		// "The %s is legendary in these parts. You\'ll be paid well to locate it.",
 	
 	local createStates = o.createStates;
 	o.createStates = function()
