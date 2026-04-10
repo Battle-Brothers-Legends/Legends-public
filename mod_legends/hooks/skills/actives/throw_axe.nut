@@ -44,7 +44,7 @@
 				id = 8,
 				type = "text",
 				icon = "ui/tooltips/warning.png",
-				text = "[color=%negative%]No %itemName% left[/color]",
+				text = "[color=%negative%]No %_itemName% left[/color]",
 				param = [["_itemName", itemName]]
 			});
 		}

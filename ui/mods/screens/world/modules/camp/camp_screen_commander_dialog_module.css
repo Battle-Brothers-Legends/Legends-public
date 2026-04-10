@@ -595,12 +595,12 @@
     line-height: 2.8rem;
 }
 
-.camp-screen > .l-commander-dialog-container .ui-control.brother > .mood-layer img
+.camp-screen > .l-commander-dialog-container .ui-control.brother > .mood-layer img /*Actual banner list image*/
 {
-	right: -0.6rem;
-	top: 0.3rem;
-	width: 2.1rem;
-	height: 4.5rem;
+	right: -1.0rem;
+	top: 1.3rem;
+	width: 3.0rem;
+	height: 6.4rem;
 	position: absolute;
 
 	pointer-events: none;

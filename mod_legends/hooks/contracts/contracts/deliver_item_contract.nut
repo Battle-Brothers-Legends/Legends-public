@@ -173,7 +173,7 @@
 							this.World.Assets.addMoney(this.Contract.m.Payment.getOnCompletion());
 
 							local playerRoster = this.World.getPlayerRoster().getAll();
-							local xp = this.Contract.m.Payment.getOnCompletion() * 0.25;
+							local xp = this.Math.round(this.Const.Combat.GlobalXPMult * this.Contract.m.Payment.getOnCompletion() * 0.25);
 							foreach( bro in playerRoster )
 							{
 								bro.addXP(xp);

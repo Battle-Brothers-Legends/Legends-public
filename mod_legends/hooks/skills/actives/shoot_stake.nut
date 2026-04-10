@@ -76,7 +76,7 @@
 
 		local actor = this.getContainer().getActor();
 		local stagger = ::Legends.Effects.grant(_targetEntity, ::Legends.Effect.Staggered);
-		if (!actor.isHiddenToPlayer() && _targetEntity.getTile().IsVisibleForPlayer)
+		if (!actor.isHiddenToPlayer() && _targetEntity.getTile().IsVisibleForPlayer && !_targetEntity.getFlags().has("tail"))
 			this.Tactical.EventLog.log(stagger.getLogEntryOnAdded(this.Const.UI.getColorizedEntityName(actor), this.Const.UI.getColorizedEntityName(_targetEntity)));
 		return onTargetHit( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor );
 	}

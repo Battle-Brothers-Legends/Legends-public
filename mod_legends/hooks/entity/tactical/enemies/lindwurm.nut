@@ -4,14 +4,15 @@
 		::Legends.Rune.LegendRsaEndurance,
 		::Legends.Rune.LegendRsaSafety
 	];
-	o.m.EffectsSharedWithTail <- {
-    		"effects.staggered": "scripts/skills/effects/staggered_effect",
-    		"effects.dazed": "scripts/skills/effects/dazed_effect",
-    		"effects.legend_baffled": "scripts/skills/effects/legend_baffled_effect",
-			"effects.withered": "scripts/skills/effects/withered_effect",
-			"effects.insect_swarm": "scripts/skills/effects/insect_swarm_effect",
-			"effects.legend_dazed": "scripts/skills/effects/legend_dazed_effect"
-	}
+	o.m.EffectsSharedWithTail <- [
+		::Legends.Effect.Staggered,
+		::Legends.Effect.Dazed,
+		::Legends.Effect.LegendDazed,
+		::Legends.Effect.LegendBaffled,
+		::Legends.Effect.Withered,
+		::Legends.Effect.InsectSwarm
+	];
+	o.m.EffectsSharedWithTailLookup <- {};
 
 	local create = o.create;
 	o.create = function () {
@@ -27,6 +28,9 @@
 				rune.updateRuneSigilToken();
 				return rune;
 			}.bindenv(this)]);
+		}
+		foreach(def in this.m.EffectsSharedWithTail) { // you have id:def mapping here
+			this.m.EffectsSharedWithTailLookup[::Legends.Effects.getID(def)] <- def
 		}
 	}
 
@@ -51,15 +55,16 @@
 		}
 		local skills = this.getSkills();
 		local skills_add = skills.add;
-		skills.add = function( _skill, _order = 0 )
-		{
+		skills.add = function( _skill, _order = 0 ) {
 			skills_add(_skill, _order);
 
 			local actor = this.getActor();
-			if (_skill.getID() in actor.m.EffectsSharedWithTail && actor.m.Tail != null && actor.m.Tail.isAlive()) {
-				local tempEffect = ::new(actor.m.EffectsSharedWithTail[_skill.getID()]);
-				tempEffect.m.IsFromHead <- true;
-				actor.m.Tail.getSkills().add(tempEffect);
+			if (::Legends.S.isEntityNullOrDead(actor.m.Tail))
+				return;
+			if (_skill.getID() in actor.m.EffectsSharedWithTailLookup) {
+				::Legends.Effects.grant(actor.m.Tail, actor.m.EffectsSharedWithTailLookup[_skill.getID()], function(_effect) {
+					_effect.m.IsFromHead <- true;
+				});
 			}
 		}.bindenv(skills);
 	}

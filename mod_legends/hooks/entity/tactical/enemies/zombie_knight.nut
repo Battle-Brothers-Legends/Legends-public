@@ -1,5 +1,15 @@
 ::mods_hookExactClass("entity/tactical/enemies/zombie_knight", function(o)
 {
+	local create = o.create;
+	o.create = function () {
+		create();
+		this.m.OnDeathLootTable.extend([
+			[0.5, "scripts/items/misc/legend_masterwork_fabric"],
+			[0.5, "scripts/items/misc/legend_masterwork_metal"],
+			[0.5, "scripts/items/misc/legend_masterwork_tools"]
+		]);
+	}
+
 	local onInit = o.onInit;
 	o.onInit = function ()
 	{

@@ -12,13 +12,13 @@
 	Script = "scripts/items/rune_sigils/legend_vala_inscription_token",
 	Tooltip = @"
 This item has the power of the rune sigil of Power:
-[color=%positive%]+%bonus1%%[/color] Damage inflicted.
-[color=%positive%]+%bonus2%[/color] Max damage.
+[color=%positive%]+%bonus1%%[/color] Damage inflicted on attacks with this weapon.
+[color=%positive%]+%bonus2%[/color] Max damage on attacks with this weapon.
 	",
 	RuneTooltip = @"
 This item has the power of the rune sigil of Power:
-[color=%positive%]+3%[/color] to [color=%positive%]+%max1%%[/color] Damage inflicted.
-[color=%positive%]+3[/color] to [color=%positive%]+%max2%[/color] Max damage.
+[color=%positive%]+3%[/color] to [color=%positive%]+%max1%%[/color] Damage inflicted on attacks with this weapon.
+[color=%positive%]+3[/color] to [color=%positive%]+%max2%[/color] Max damage on attacks with this weapon.
 	",
 	setRuneBonus = function(_item, _bonus) {
 		if (_bonus) {
@@ -53,13 +53,13 @@ This item has the power of the rune sigil of Power:
 	Script = "scripts/items/rune_sigils/legend_vala_inscription_token",
 	Tooltip = @"
 This item has the power of the rune sigil of Accuracy:
-[color=%positive%]+%bonus1%%[/color] Melee skill.
-[color=%positive%]+%bonus2%%[/color] Ranged skill.
+[color=%positive%]+%bonus1%%[/color] Melee skill on attacks with this weapon.
+[color=%positive%]+%bonus2%%[/color] Ranged skill on attacks with this weapon.
 	",
 	RuneTooltip = @"
 This item has the power of the rune sigil of Accuracy:
-[color=%positive%]+3%[/color] to [color=%positive%]+%max1%%[/color] Melee skill.
-[color=%positive%]+3%[/color] to [color=%positive%]+%max2%%[/color] Ranged skill.
+[color=%positive%]+3%[/color] to [color=%positive%]+%max1%%[/color] Melee skill on attacks with the weapon.
+[color=%positive%]+3%[/color] to [color=%positive%]+%max2%%[/color] Ranged skill on attacks with the weapon.
 	",
 	setRuneBonus = function(_item, _bonus) {
 		if (_bonus) {
@@ -94,11 +94,11 @@ This item has the power of the rune sigil of Accuracy:
 	Script = "scripts/items/rune_sigils/legend_vala_inscription_token",
 	Tooltip = @"
 This item has the power of the rune sigil of Feeding:
-[color=%positive%]%bonus1%%[/color] of inflicted health damage recovers fatigue.
+[color=%positive%]%bonus1%%[/color] of inflicted health damage recovers fatigue on attacks with this weapon.
 	",
 	RuneTooltip = @"
 This item has the power of the rune sigil of Feeding:
-[color=%positive%]2%[/color] to [color=%positive%]%max1%%[/color] of inflicted health damage recovers fatigue.
+[color=%positive%]2%[/color] to [color=%positive%]%max1%%[/color] of inflicted health damage recovers fatigue on attacks with this weapon.
 	",
 	setRuneBonus = function(_item, _bonus) {
 		if (_bonus) {
@@ -129,11 +129,11 @@ This item has the power of the rune sigil of Feeding:
 	Script = "scripts/items/rune_sigils/legend_vala_inscription_token",
 	Tooltip = @"
 This item has the power of the rune sigil of Poison:
-[color=%positive%]%bonus1%[/color] turn(s) of poison applied, with a strength of [color=%damage%]%bonus2%[/color]. Lowers action points and initiative..
+[color=%positive%]%bonus1%[/color] turn(s) of poison applied on attacks with this weapon, with a strength of [color=%damage%]%bonus2%[/color]. Lowers action points and initiative.
 	",
 	RuneTooltip = @"
 This item has the power of the rune sigil of Poison:
-[color=%positive%]1 to %max1%[/color] turn(s) of poison applied, with a strength of [color=%damage%]3 to %max2%[/color]. Lowers action points and initiative..
+[color=%positive%]1 to %max1%[/color] turn(s) of poison applied on attacks with this weapon, with a strength of [color=%damage%]3 to %max2%[/color]. Lowers action points and initiative.
 	",
 	setRuneBonus = function(_item, _bonus) {
 		if (_bonus) {

@@ -9,5 +9,5 @@ def cleanupDirs(parent_dir):
         if os.path.isdir(item_path) and item.isdigit():
             try:
                 shutil.rmtree(item_path)  # Remove the directory and all its contents
-            except e:
+            except Exception as e:
                 print(f"Error removing {item_path}: {e}")

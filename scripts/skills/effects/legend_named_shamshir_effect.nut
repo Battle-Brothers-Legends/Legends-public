@@ -4,7 +4,7 @@ this.legend_named_shamshir_effect <- this.inherit("scripts/skills/skill", {
 	},
 	function create()
 	{
-		this.m.ID = "effects.legend_named_shamshir";
+		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendNamedShamshir);
 		this.m.Name = "";
 		this.m.Description = "";
 		this.m.Icon = "skills/placeholder_circle.png";
@@ -40,7 +40,7 @@ this.legend_named_shamshir_effect <- this.inherit("scripts/skills/skill", {
 
 	function onAnySkillUsed( _skill, _targetEntity, _properties )
 	{
-		if (_skill.m.IsWeaponSkill)
+		if (_skill.isAttack() && _skill.getItem() != null && _skill.getItem().getID() == this.getItem().getID())
 			_properties.ThresholdToInflictInjuryMult *= 1 - (this.m.Bonus * 0.01);
 	}
 });

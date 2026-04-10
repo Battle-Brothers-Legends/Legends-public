@@ -124,7 +124,7 @@
 		this.m.HairColors = this.Const.HairColors.All;
 		this.m.Beards = null;
 		this.m.BeardChance = 0;
-		this.m.Bodies = this.Const.Bodies.AllFemale;
+		this.m.Bodies = this.Const.Bodies.NorthernFemale;
 		this.addBackgroundType(this.Const.BackgroundType.Female);
 	}
 
@@ -179,7 +179,9 @@
 
 	o.onAddEquipment = function ()
 	{
-		local items = this.getContainer().getActor().getItems();
+		local actor = this.getContainer().getActor();
+		actor.setVeteranPerks(3);
+		local items = actor.getItems();
 		local r;
 
 		r = this.Math.rand(0, 1);

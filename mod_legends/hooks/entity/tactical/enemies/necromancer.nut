@@ -55,7 +55,7 @@
 		{
 			this.m.Faces = this.Const.Faces.NecromancerFemale;
 			this.m.Beards = null;
-			this.m.Bodies = this.Const.Bodies.AllFemale;
+			this.m.Bodies = this.Const.Bodies.NorthernFemale;
 			this.m.BeardChance = 0;
 			this.m.Hairs = this.Const.Hair.AllFemale;
 

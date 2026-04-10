@@ -2,6 +2,7 @@
 	local create = o.create;
 	o.create = function() {
 		create();
+		this.m.Cooldown = 60.0 * this.World.getTime().SecondsPerDay;
 		::Legends.Screens.hook(this, "A", function (_screen) {
 			_screen.Text = "%townImage%Entering %townname%, it isn\'t long until %troublemaker% is bothering the locals. %They_troublemaker%\'s slapping buckets out of their hands and kicking women into the mud. When an old man confronts %them_troublemaker%, the sellsword draws out %their_troublemaker% weapon. Other peasants beg that you put a stop to this at once.";
 			_screen.start <- function ( _event )

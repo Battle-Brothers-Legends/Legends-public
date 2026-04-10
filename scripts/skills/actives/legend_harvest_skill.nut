@@ -82,16 +82,17 @@ this.legend_harvest_skill <- this.inherit("scripts/skills/skill", {
 		local success = false;
 		local ownTile = _user.getTile();
 		local dir = ownTile.getDirectionTo(_targetTile);
-		local hp = _targetTile.getEntity();
-		success = this.attackEntity(_user, _targetTile.getEntity());
+		local target = _targetTile.getEntity();
+		local hp = target.getHitpoints();
+		success = this.attackEntity(_user, target);
 
 		if (::Legends.S.isEntityNullOrDead(_user))
 			return success;
 		
 		if (success)
-			::Legends.S.applyBleed(_targetTile.getEntity(), _user, hp, this.m.SoundsA, this.m.SoundsB);
+			::Legends.S.applyBleed(target, _user, hp, this.m.SoundsA, this.m.SoundsB);
 
-		if (::Legends.S.isEntityNullOrDead(_targetTile.getEntity()))
+		if (::Legends.S.isEntityNullOrDead(target))
 			return success;
 
 		local nextDir = dir - 1 >= 0 ? dir - 1 : this.Const.Direction.COUNT - 1;
@@ -100,16 +101,15 @@ this.legend_harvest_skill <- this.inherit("scripts/skills/skill", {
 			local nextTile = ownTile.getNextTile(nextDir);
 
 			if (nextTile.IsOccupiedByActor && nextTile.getEntity().isAttackable() && this.Math.abs(nextTile.Level - ownTile.Level) <= 1) {
+				target = nextTile.getEntity();
 				hp = nextTile.getEntity().getHitpoints();
-				success = this.attackEntity(_user, nextTile.getEntity()) || success;
+				success = this.attackEntity(_user, target) || success;
 
 				if (::Legends.S.isEntityNullOrDead(_user))
 					return success;
-					
-				::Legends.S.applyBleed(_targetTile.getEntity(), _user, hp, this.m.SoundsA, this.m.SoundsB);
 
-				if (::Legends.S.isEntityNullOrDead(_targetTile.getEntity()))
-					return success;
+				if (success)
+					::Legends.S.applyBleed(target, _user, hp, this.m.SoundsA, this.m.SoundsB);
 			}
 		}
 

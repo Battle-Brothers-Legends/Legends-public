@@ -9,8 +9,7 @@
 		create();
 		this.m.WeaponType = ::Const.Items.WeaponType.Sword;
 		this.m.Variants = [1, 2, 3];
-		this.m.Variant = this.m.Variants[this.Math.rand(0, this.m.Variants.len() - 1)];
-		this.updateVariant();
+		this.setVariant(this.m.Variants[::Math.rand(0, this.m.Variants.len() - 1)]);
 	}
 
 	o.randomizeValues <- function ()

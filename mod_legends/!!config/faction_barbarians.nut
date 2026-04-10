@@ -41,7 +41,7 @@
 ::Const.Tactical.Actor.LegendBarbarianRunechosen <- {
 	XP = 800,
 	ActionPoints = 10,
-	Hitpoints = 250,
+	Hitpoints = 200,
 	Bravery = 130,
 	Stamina = 200,
 	MeleeSkill = 90,

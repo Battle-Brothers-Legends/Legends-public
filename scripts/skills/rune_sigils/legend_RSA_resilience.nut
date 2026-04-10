@@ -1,7 +1,6 @@
 this.legend_RSA_resilience <- this.inherit("scripts/skills/skill", {
 	m = {},
-	function create()
-	{
+	function create() {
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendRsaResilience);
 		this.m.Description = "Rune Sigil: Resilience";
 		this.m.Icon = "ui/rune_sigils/legend_rune_sigil.png";
@@ -12,8 +11,7 @@ this.legend_RSA_resilience <- this.inherit("scripts/skills/skill", {
 		this.m.IsHidden = true;
 	}
 
-	function onUpdate (_properties)
-	{
+	function onUpdate (_properties) {
 		_properties.IsImmuneToStun = true;
 		_properties.IsImmuneToKnockBackAndGrab = true;
 	}

@@ -252,7 +252,7 @@
 			else if (r == 2)
 			{
 				items.equip(this.new("scripts/items/weapons/rondel_dagger"));
-				items.equip(this.new("scripts/items/weapons/legend_parrying_dagger"));
+				items.equip(this.new("scripts/items/shields/buckler_shield"));
 			}
 
 			items.equip(this.Const.World.Common.pickArmor([

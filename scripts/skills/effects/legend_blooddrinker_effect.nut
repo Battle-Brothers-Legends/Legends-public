@@ -4,7 +4,6 @@ this.legend_blooddrinker_effect <- this.inherit("scripts/skills/skill", {
 	},
 	function create() {
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendBlooddrinker);
-		this.m.ID = "effects.legend_blooddrinker";
 		this.m.Name = "";
 		this.m.Description = "";
 		this.m.Icon = "skills/placeholder_circle.png";

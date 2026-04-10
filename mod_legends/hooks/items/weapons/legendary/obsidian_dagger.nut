@@ -5,9 +5,10 @@
 		create();
 		this.m.Condition = 95.0;
 		this.m.ConditionMax = 95.0;
-		this.m.RegularDamage = 35;
-		this.m.RegularDamageMax = 50;
+		this.m.RegularDamage = 45;
+		this.m.RegularDamageMax = 60;
 		this.m.ArmorDamageMult = 1.15;
+		this.m.DirectDamageAdd = 0.1;
 	}
 
 	local onEquip = o.onEquip;

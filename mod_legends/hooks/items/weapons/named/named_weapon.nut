@@ -106,7 +106,7 @@
 			});
 		}
 
-		if (this.m.AmmoMax > 0)
+		if (this.m.AmmoMax > 0 && this.isItemType(this.Const.Items.ItemType.Ammo))
 		{
 			available.push(function ( _i )
 			{

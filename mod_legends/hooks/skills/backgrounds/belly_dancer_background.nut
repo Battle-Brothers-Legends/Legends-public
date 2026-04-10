@@ -142,7 +142,9 @@
 
 	o.onAddEquipment = function ()
 	{
-		local items = this.getContainer().getActor().getItems();
+		local actor = this.getContainer().getActor();
+		actor.setVeteranPerks(3);
+		local items = actor.getItems();
 		items.equip(this.Const.World.Common.pickArmor([
 			[3, ::Legends.Armor.Southern.cloth_sash],
 			[1, ::Legends.Armor.None]

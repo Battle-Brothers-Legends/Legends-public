@@ -83,6 +83,20 @@
 ::Const.Tattoos.All.extend([
 	
 ]);
+::Const.Tattoos.Head <- [
+	"",
+	"scar_02",
+	"tattoo_01",
+    "tattoo_02",
+	"tattoo_03",
+	"tattoo_04",
+	"tattoo_05",
+	"tattoo_06",
+    "warpaint_01",
+    "warpaint_02",
+	"warpaint_03"
+];
+
 
 //this is a dummy for dlc
 ::Const.Bodies.Barber = [

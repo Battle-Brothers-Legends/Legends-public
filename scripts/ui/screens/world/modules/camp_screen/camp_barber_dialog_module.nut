@@ -57,7 +57,8 @@ this.camp_barber_dialog_module <- this.inherit("scripts/ui/screens/ui_module", {
 			"beard",
 			"hair",
 			"tattoo_body",
-			"beard_top"
+			"beard_top",
+			"tattoo_head"
 		]);
 		temp.setDirty(true);
 		return temp.getImagePath();
@@ -162,36 +163,29 @@ this.camp_barber_dialog_module <- this.inherit("scripts/ui/screens/ui_module", {
 				if (ethnicity == 1)
 				{
 					this.changeIndex(this.Const.Bodies.BarberSouthernFemale, temp.getSprite("body"), _change);
-					this.changeIndexEx(this.Const.Tattoos.All, temp.getSprite("tattoo_body"), 0, "", "", temp.getSprite("body").getBrush().Name);
 				}
 				else if (ethnicity == 2)
 				{
 					this.changeIndex(this.Const.Bodies.AfricanFemale, temp.getSprite("body"), _change);
-					this.changeIndexEx(this.Const.Tattoos.All, temp.getSprite("tattoo_body"), 0, "", "", temp.getSprite("body").getBrush().Name);
 				}
 				else
 				{
 					this.changeIndex(this.Const.Bodies.BarberNorthernFemale, temp.getSprite("body"), _change);
-					this.changeIndexEx(this.Const.Tattoos.All, temp.getSprite("tattoo_body"), 0, "", "", temp.getSprite("body").getBrush().Name);
 				}
-
 			}
 			else
 			{
 				if (ethnicity == 1)
 				{
 					this.changeIndex(this.Const.Bodies.BarberSouthernMale, temp.getSprite("body"), _change);
-					this.changeIndexEx(this.Const.Tattoos.All, temp.getSprite("tattoo_body"), 0, "", "", temp.getSprite("body").getBrush().Name);
 				}
 				else if (ethnicity == 2)
 				{
 					this.changeIndex(this.Const.Bodies.AfricanMale, temp.getSprite("body"), _change);
-					this.changeIndexEx(this.Const.Tattoos.All, temp.getSprite("tattoo_body"), 0, "", "", temp.getSprite("body").getBrush().Name);
 				}
 				else
 				{
 					this.changeIndex(this.Const.Bodies.BarberNorthernMale, temp.getSprite("body"), _change);
-					this.changeIndexEx(this.Const.Tattoos.All, temp.getSprite("tattoo_body"), 0, "", "", temp.getSprite("body").getBrush().Name);
 				}
 			}
 		}
@@ -273,6 +267,10 @@ this.camp_barber_dialog_module <- this.inherit("scripts/ui/screens/ui_module", {
 		{
 			this.changeIndexEx(this.Const.Tattoos.All, temp.getSprite("tattoo_body"), _change, "", "", temp.getSprite("body").getBrush().Name);
 		}
+		else if (_layerID == "tattoo_head")
+		{
+			this.changeIndexEx(this.Const.Tattoos.Head, temp.getSprite("tattoo_head"), _change, "", "", "head");
+		}
 
 		temp.setDirty(true);
 		return temp.getImagePath();
@@ -288,7 +286,8 @@ this.camp_barber_dialog_module <- this.inherit("scripts/ui/screens/ui_module", {
 			"beard",
 			"hair",
 			"tattoo_body",
-			"beard_top"
+			"beard_top",
+			"tattoo_head",
 		]);
 		bro.setDirty(true);
 		this.Sound.play(this.Const.Sound.Barber[this.Math.rand(0, this.Const.Sound.Barber.len() - 1)], 1.0);
@@ -335,30 +334,17 @@ this.camp_barber_dialog_module <- this.inherit("scripts/ui/screens/ui_module", {
 		local currentBrush = _sprite.HasBrush ? _sprite.getBrush().Name : "";
 		local index = 0;
 
-		if (_prefix != "")
-		{
-			currentBrush = this.String.remove(currentBrush, _prefix + "_");
-		}
-
-		currentBrush = this.String.remove(currentBrush, "red_");
-		currentBrush = this.String.remove(currentBrush, "grey_");
-		currentBrush = this.String.remove(currentBrush, "black_");
-		currentBrush = this.String.remove(currentBrush, "brown_");
-		currentBrush = this.String.remove(currentBrush, "blonde_");
-
-		if (_suffix != "")
-		{
-			currentBrush = this.String.remove(currentBrush, "_" + _suffix);
-		}
-
-		foreach( i, s in _list )
-		{
-			if (s == currentBrush)
-			{
-				index = i;
-				break;
-			}
-		}
+		if (currentBrush != "")
+    {
+        foreach( i, s in _list )
+        {
+            if (s != "" && currentBrush.find(s) != null) 
+            {
+                index = i;
+                break;
+            }
+        }
+    }
 
 		index = index + _change;
 

@@ -114,11 +114,6 @@
 				S = "weapons/arming_sword"
 			},
 			{
-				R = 90,
-				P = 1.0,
-				S = "weapons/legend_parrying_dagger"
-			},
-			{
 				R = 50,
 				P = 1.0,
 				S = "weapons/arming_sword"

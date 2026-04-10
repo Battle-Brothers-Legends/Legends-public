@@ -39,7 +39,7 @@ this.legend_preserver_background <- this.inherit("scripts/skills/backgrounds/cha
 		this.m.Beards = null;
 		this.m.BeardChance = 0;
 		this.m.Ethnicity = 0;
-		this.m.Bodies = this.Const.Bodies.AllFemale;
+		this.m.Bodies = this.Const.Bodies.NorthernFemale;
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Kind;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Saintly;
 		this.m.BackgroundType = this.Const.BackgroundType.OffendedByViolence | this.Const.BackgroundType.Ranger | this.Const.BackgroundType.Druid | this.Const.BackgroundType.Female;

@@ -1,7 +1,6 @@
 this.legend_RSS_radiance <- this.inherit("scripts/skills/skill", {
 	m = {},
-	function create()
-	{
+	function create() {
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendRssRadiance);
 		this.m.Description = "Rune Sigil: Radiance";
 		this.m.Icon = "ui/rune_sigils/legend_rune_sigil.png";
@@ -13,8 +12,7 @@ this.legend_RSS_radiance <- this.inherit("scripts/skills/skill", {
 	}
 
 
-	function onMovementFinished()
-	{
+	function onMovementFinished() {
 		local actor = this.getContainer().getActor();
 		
 		if (::Legends.S.isEntityNullOrDead(actor)) //In case actor dies to spearwall
@@ -23,15 +21,11 @@ this.legend_RSS_radiance <- this.inherit("scripts/skills/skill", {
 		local myTile = actor.getTile();
 
 		if (this.getItem() == null)
-		{
 			return;
-		}
 		local targets = this.Tactical.Entities.getAllInstances();
 
-		foreach (tar in targets)
-		{
-			foreach (t in tar)
-			{
+		foreach (tar in targets) {
+			foreach (t in tar) {
 				if (!t.isAlliedWith(actor) && t.getSkills().hasEffect(::Legends.Effect.LegendRssRadianceEffect) && t.getTile().getDistanceTo(actor.getTile()) == 1 &&  this.Math.abs(t.getTile().Level - myTile.Level))
 				{
 					local NewMalus = ::Legends.Effects.get(t, ::Legends.Effect.LegendRssRadianceEffect);
@@ -44,25 +38,17 @@ this.legend_RSS_radiance <- this.inherit("scripts/skills/skill", {
 	}
 
 
-	function applyRadianceFoundation()
-	{
+	function applyRadianceFoundation() {
 		if (this.getItem() == null)
-		{
 			return;
-		}
 		local actor = this.getContainer().getActor();
 		if (actor == null)
-		{
 			return;
-		}
 		local targets = this.Tactical.Entities.getAllInstances();
 
-		foreach (tar in targets)
-		{
-			foreach (t in tar)
-			{
-				if (!t.isAlliedWith(actor) && !t.getSkills().hasEffect(::Legends.Effect.LegendRssRadianceEffect))
-				{
+		foreach (tar in targets) {
+			foreach (t in tar) {
+				if (!t.isAlliedWith(actor) && !t.getSkills().hasEffect(::Legends.Effect.LegendRssRadianceEffect)) {
 					::Legends.Effects.grant(t, ::Legends.Effect.LegendRssRadianceEffect, function(_effect) {
 						_effect.setMalus(this.getItem().getRuneBonus1(), this.getItem().getRuneBonus2());
 					}.bindenv(this));
@@ -72,14 +58,12 @@ this.legend_RSS_radiance <- this.inherit("scripts/skills/skill", {
 	}
 
 
-	function onTurnStart()
-	{
+	function onTurnStart() {
 		this.applyRadianceFoundation();
 	}
 
 
-	function onCombatStarted()
-	{
+	function onCombatStarted() {
 		this.applyRadianceFoundation();
 	}
 

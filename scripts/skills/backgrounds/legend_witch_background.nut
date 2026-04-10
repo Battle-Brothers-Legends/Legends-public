@@ -37,7 +37,7 @@ this.legend_witch_background <- this.inherit("scripts/skills/backgrounds/charact
 		this.m.Hairs = this.Const.Hair.AllFemale;
 		this.m.HairColors = this.Const.HairColors.All;
 		this.m.Beards = null;
-		this.m.Bodies = this.Const.Bodies.AllFemale;
+		this.m.Bodies = this.Const.Bodies.NorthernFemale;
 
 		this.m.BackgroundType = this.Const.BackgroundType.Female | this.Const.BackgroundType.Educated | this.Const.BackgroundType.Untalented;
 		this.m.Level = 1;

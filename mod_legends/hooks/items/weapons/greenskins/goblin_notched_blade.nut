@@ -7,7 +7,6 @@
 		this.m.Ammo = 8;
 		this.m.AmmoMax = 8;
 		this.m.AmmoCost = 1;
-		this.m.ItemType = this.m.ItemType | ::Const.Items.ItemType.Ammo;
 	}
 
 	o.updateVariant <- function() {
@@ -15,6 +14,14 @@
 		this.m.Icon = "weapons/melee/goblin_weapon_01" + v + "_70x70.png";
 		this.m.IconLarge = "weapons/melee/goblin_weapon_01" + v + ".png";
 		this.m.ArmamentIcon = "icon_goblin_weapon_01" + v;
+	}
+
+	o.getAmmo <- function() {
+		return this.m.Ammo;
+	}
+
+	o.getAmmoMax <- function() {
+		return this.m.AmmoMax;
 	}
 
 	local onEquip = o.onEquip;

@@ -39,7 +39,7 @@ this.legend_bleed_prepared_effect <- this.inherit("scripts/skills/skill", {
 			this.spawnIcon("bleed", actor.getTile());
 		}
 
-		this.m.Stacks = ::Legends.Weapons.isDualWieldingWeaponType(actor, ::Const.WeaponType.Flail)
+		this.m.Stacks = ::Legends.Weapons.isDualWieldingWeaponType(actor, ::Const.Items.WeaponType.Cleaver | ::Const.Items.WeaponType.Whip)
 			? 2
 			: 1;
 	}
@@ -56,7 +56,8 @@ this.legend_bleed_prepared_effect <- this.inherit("scripts/skills/skill", {
 
 		if (_targetEntity.getCurrentProperties().IsImmuneToPoison
 			|| _damageInflictedHitpoints <= this.Const.Combat.MinDamageToApplyBleeding
-			|| _targetEntity.getHitpoints() <= 0) {
+			|| _targetEntity.getHitpoints() <= 0)
+		{
 			return;
 		}
 
@@ -72,8 +73,7 @@ this.legend_bleed_prepared_effect <- this.inherit("scripts/skills/skill", {
 				_effect.setActor(this.getContainer().getActor());
 			}
 			_effect.setDamage(5);
-		}
-		.bindenv(this));
+		}.bindenv(this));
 		this.m.Stacks -= 1;
 	}
 

@@ -254,7 +254,7 @@ this.legend_scroll_item <- ::inherit("scripts/items/item", {
 	function getValue()
 	{
 		if (m.Selection == null || m.Selection == 0)
-			return 500;
+			return 800;
 
 		return this.item.getValue();
 	}

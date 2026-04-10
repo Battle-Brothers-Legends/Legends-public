@@ -54,7 +54,8 @@ this.legend_vala_threads_effect <- this.inherit("scripts/skills/skill", {
 			this.m.Threads = 5;
 		}
 
-		_properties.HitpointsMult *= 1.0 - (this.m.Threads / 10.0);
+		if (this.getContainer().getActor().getHitpointsMax() > 1)
+			_properties.HitpointsMult *= 1.0 - (this.m.Threads / 10.0);
 		_properties.DamageReceivedTotalMult *= 1.0 + (this.m.Threads / 10.0);
 	}
 

@@ -241,11 +241,11 @@
 ::Legends.Compat.SoftIncompat.add("mod_streamlined_ui", "1.0.3");
 ::Legends.Compat.SoftIncompat.add("mod_URUI", "1.2.0"); // Unrecognized UI
 ::Legends.Compat.SoftIncompat.add("mod_persistent_characters", "0.1.8", "Bro wages keep growing on reload");
-::Legends.Compat.SoftIncompat.add("mod_bbforge", "0.4.3", "The equivalent of Breditor, if you are using bbforge do not report bug reports to the Legends Mod Team")
+::Legends.Compat.SoftIncompat.add("mod_bbforge", "0.4.3", "The equivalent of Breditor, if you are using bbforge do not report bug reports to the Legends Mod Team");
 //endregion
 
 //region IncompatButPatched
-::Legends.Compat.IncompatButPatched.add("mod_breditor", "on Legends Discord (pinned message in #battle_brothers_chat), replace one from nexus. If you have it already, ignore this message.");
+::Legends.Compat.IncompatButPatched.add("mod_breditor", "on Legends Discord (Breditor Containment Chamber in #submod_files), replace one from nexus. If you have it already, ignore this message.");
 //endregion
 
 //region OtherVersionCompat

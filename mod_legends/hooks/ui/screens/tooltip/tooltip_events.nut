@@ -337,6 +337,20 @@
 							icon = "ui/icons/mouse_right_button.png",
 							text = "Equip item"
 						});
+
+						if (_item.getSlotType() == this.Const.ItemSlot.Mainhand
+							&& _item.getBlockedSlotType() == null
+							&& _entity.getItems().getItemAtSlot(this.Const.ItemSlot.Mainhand) != null
+							&& !_entity.getItems().hasBlockedSlot(this.Const.ItemSlot.Offhand)
+							&& _entity.getItems().canDualWield(_entity, _item))
+						{
+							tooltip.push({
+								id = 1,
+								type = "hint",
+								icon = "ui/icons/mouse_right_button_shift.png",
+								text = "Equip item in offhand"
+							});
+						}
 					}
 
 					tooltip.push({
@@ -444,6 +458,21 @@
 					icon = "ui/icons/mouse_right_button.png",
 					text = "Equip item"
 				});
+
+				if (_item.getSlotType() == this.Const.ItemSlot.Mainhand
+					&& _item.getBlockedSlotType() == null
+					&& _entity != null
+					&& _entity.getItems().getItemAtSlot(this.Const.ItemSlot.Mainhand) != null
+					&& !_entity.getItems().hasBlockedSlot(this.Const.ItemSlot.Offhand)
+					&& _entity.getItems().canDualWield(_entity, _item))
+				{
+					tooltip.push({
+						id = 1,
+						type = "hint",
+						icon = "ui/icons/mouse_right_button_shift.png",
+						text = "Equip item in offhand"
+					});
+				}
 			}
 
 			if (_item.isChangeableInBattle() == true && _item.isAllowedInBag())
@@ -622,8 +651,16 @@
 		case "character-screen-inventory-list-module.stash":
 			local result = this.Stash.getItemByInstanceID(_itemId);
 
-			if (result != null)
-			{
+			if (result != null) {
+				if (entity == null) {
+					try {
+						local broID = this.World.State.m.CharacterScreen.m.SelectedBrotherID;
+						if (broID != null) {
+							entity = this.Tactical.getEntityByID(broID);
+						}
+					} catch (_e) {
+					}
+				}
 				return this.tactical_helper_addHintsToTooltip(null, entity, result.item, _itemOwner);
 			}
 

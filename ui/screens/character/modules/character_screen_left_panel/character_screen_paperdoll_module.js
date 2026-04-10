@@ -613,12 +613,16 @@ CharacterScreenPaperdollModule.prototype.createBagSlot = function (
 		var itemId = data !== null && "itemId" in data ? data.itemId : null;
 		var itemIdx = (data !== null && 'index' in data) ? data.index : null;
 		var entityId = data !== null && "entityId" in data ? data.entityId : null;
+		var sourceSlotType = data !== null && "slotType" in data ? data.slotType : null;
 		var dropIntoInventory =
 			KeyModiferConstants.CtrlKey in _event &&
 			_event[KeyModiferConstants.CtrlKey] === true;
 		var repairItem =
 			KeyModiferConstants.AltKey in _event &&
 			_event[KeyModiferConstants.AltKey] === true;
+		var shift =
+			KeyModiferConstants.ShiftKey in _event &&
+			_event[KeyModiferConstants.ShiftKey] === true;
 
 
 		if (
@@ -640,7 +644,8 @@ CharacterScreenPaperdollModule.prototype.createBagSlot = function (
 			}
 			else {
 				//console.info('equip item: ' + itemId);
-				self.mDataSource.equipBagItem(entityId, itemId, itemIdx, null);
+				var targetSlot = (shift && sourceSlotType === CharacterScreenIdentifier.ItemSlot.Mainhand) ? CharacterScreenIdentifier.ItemSlot.Offhand : null;
+				self.mDataSource.equipBagItem(entityId, itemId, itemIdx, targetSlot);
 
 				// Force refresh after equip, in theory equipBagItem should already handle
 				// this via updateBrother, but somehow the visual refresh doesn't seem to

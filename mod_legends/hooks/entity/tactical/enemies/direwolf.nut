@@ -18,7 +18,7 @@
 		this.m.Items.getAppearance().Armor = "bust_wolf_02_armor_01";
 
 		local body = this.getSprite("body");
-		body.setBrush("bust_direwolf_0" + _v + "_body");
+		body.setBrush("bust_direwolf_0" + _v);
 		body.Color = _c;
 		body.Saturation = _s;
 

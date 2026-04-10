@@ -2,11 +2,12 @@
 	local create = o.create;
 	o.create = function() {
 		create();
-		this.setVariant(this.Math.rand(0, 2));
+		this.m.Variants = [0, 1, 2];
+		this.setVariant(this.m.Variants[this.Math.rand(0, this.m.Variants.len() - 1)]);
 		this.m.Ammo = 8;
 		this.m.AmmoMax = 8;
 		this.m.AmmoCost = 1;
-		this.m.ItemType = this.m.ItemType | ::Const.Items.ItemType.Ammo;
+		this.m.WeaponType = this.Const.Items.WeaponType.Dagger;
 	}
 
 	o.updateVariant <- function() {
@@ -14,6 +15,14 @@
 		this.m.Icon = "weapons/melee/dagger_01" + v + "_70x70.png";
 		this.m.IconLarge = "weapons/melee/dagger_01" + v + ".png";
 		this.m.ArmamentIcon = "icon_dagger_01" + v;
+	}
+
+	o.getAmmo <- function() {
+		return this.m.Ammo;
+	}
+
+	o.getAmmoMax <- function() {
+		return this.m.AmmoMax;
 	}
 
 	local onEquip = o.onEquip;

@@ -52,9 +52,7 @@ this.legend_obliterate_skill <- this.inherit("scripts/skills/skill", {
 	}
 
 	function onAfterUpdate(_properties) {
-		this.m.FatigueCostMult = _properties.IsSpecializedInHammers
-			? this.Const.Combat.WeaponSpecFatigueMult
-			: 1.0;
+		this.m.FatigueCostMult = _properties.IsSpecializedInHammers ? this.Const.Combat.WeaponSpecFatigueMult : 1.0;
 	}
 
 	function onUse( _user, _targetTile ) {
@@ -83,21 +81,28 @@ this.legend_obliterate_skill <- this.inherit("scripts/skills/skill", {
 			return;
 		}
 		local stagger = ::Legends.Effects.grant(_targetEntity, ::Legends.Effect.Staggered);
-		if (!_targetEntity.isHiddenToPlayer() && targetTile.IsVisibleForPlayer) {
+		if (!_targetEntity.isHiddenToPlayer() && targetTile.IsVisibleForPlayer && !_targetEntity.getFlags().has("tail")) {
 			this.Tactical.EventLog.log(stagger.getLogEntryOnAdded(this.Const.UI.getColorizedEntityName(user), this.Const.UI.getColorizedEntityName(_targetEntity)));
 		}
 	}
 
+	function adjustHitchance (_targetEntity, _properties) {
+		local mod = 0;
+		if (_targetEntity != null && (_targetEntity.getCurrentProperties().IsRooted || ::Legends.Effects.has(_targetEntity, ::Legends.Effect.Stunned))) {
+				mod += 50;
+			}
+		if (_properties.IsSpecializedInHammers) {
+			mod += 25;
+		}
+		return mod;
+	}
+
 	function onAnySkillUsed(_skill, _targetEntity, _properties) {
 		if (_skill == this) {
-			this.m.HitChanceBonus += _properties.IsSpecializedInHammers ? 25 : 0;
-			_properties.MeleeSkill += _properties.IsSpecializedInHammers ? 25 : 0;
+			this.m.HitChanceBonus += this.adjustHitchance(_targetEntity, _properties);
+			_properties.MeleeSkill += this.m.HitChanceBonus
 			_properties.DamageTotalMult *= 1.5;
 			_properties.ThresholdToInflictInjuryMult *= 0.66;
-			if (_targetEntity != null && (_targetEntity.getCurrentProperties().IsRooted || ::Legends.Effects.has(_targetEntity, ::Legends.Effect.Stunned))) {
-				this.m.HitChanceBonus += 50;
-				_properties.MeleeSkill += 50;
-			}
 		}
 	}
 

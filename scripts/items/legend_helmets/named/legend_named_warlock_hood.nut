@@ -7,7 +7,7 @@ this.legend_named_warlock_hood <- this.inherit("scripts/items/legend_helmets/leg
 		this.m.Type = this.Const.Items.HelmetUpgrades.Vanity;
 		this.m.Name = "Warlock Hood";
 		this.m.Description = "An ominous hood crafted from witch hair to hide evil intentions.";
-		this.m.ArmorDescription = "Includes a hood crafted from witch hair."
+		this.m.ArmorDescription = "Includes a hood crafted from witch hair.";
 		this.m.Variants = [1,2,3,4];
         this.m.Variant = this.m.Variants[this.Math.rand(0, this.m.Variants.len() - 1)];
 		this.updateVariant();

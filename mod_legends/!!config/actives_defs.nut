@@ -3170,7 +3170,7 @@ activesDefs.push({
 activesDefs.push({
 	ID = "actives.legend_command_legion",
 	Script = "scripts/skills/actives/legend_command_legion_skill",
-	Const = "CommandLegionary",
+	Const = "LegendCommandLegion",
 	Name = "Command Legionary",
 });
 

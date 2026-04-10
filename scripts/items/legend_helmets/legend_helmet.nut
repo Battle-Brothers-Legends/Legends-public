@@ -32,14 +32,14 @@ this.legend_helmet <- this.inherit("scripts/items/helmets/helmet", {
 
 	function getHideHair()
 	{
-		if (this.m.HideHair)
+		if (this.m.HideHair && this.getArmor() != 0)
 		{
 			return true;
 		}
 
 		foreach (u in this.m.Upgrades)
 		{
-			if (u != null && u.m.HideHair && u.isVisible())
+			if (u != null && u.m.HideHair && u.isVisible() && u.getCondition() != 0)
 			{
 				return true;
 			}
@@ -50,14 +50,14 @@ this.legend_helmet <- this.inherit("scripts/items/helmets/helmet", {
 
 	function getHideBeard()
 	{
-		if (this.m.HideBeard)
+		if (this.m.HideBeard && this.getArmor() != 0)
 		{
 			return true;
 		}
 
 		foreach (u in this.m.Upgrades)
 		{
-			if (u != null && u.m.HideBeard && u.isVisible())
+			if (u != null && u.m.HideBeard && u.isVisible() && u.getCondition() != 0)
 			{
 				return true;
 			}

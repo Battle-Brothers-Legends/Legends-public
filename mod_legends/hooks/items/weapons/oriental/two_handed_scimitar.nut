@@ -12,7 +12,8 @@
 		this.m.RegularDamageMax = 105;
 		this.m.DirectDamageMult = 0.35;
 		this.m.ShieldDamage = 0;
-		this.setVariant(this.Math.rand(0, 2));
+		this.m.Variants = [0, 1, 2];
+		this.setVariant(this.m.Variants[this.Math.rand(0, this.m.Variants.len() - 1)]);
 	}
 
 	o.updateVariant <- function() {

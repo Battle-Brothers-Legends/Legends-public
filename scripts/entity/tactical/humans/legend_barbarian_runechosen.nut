@@ -85,6 +85,8 @@ this.legend_barbarian_runechosen <- this.inherit("scripts/entity/tactical/human"
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecUnarmed);
 			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
 		}
+		this.m.Hitpoints = b.Hitpoints * 1.25;
+		::Legends.S.scaleBaseProperties(b);
 	}
 
 	function generateName()
@@ -94,6 +96,83 @@ this.legend_barbarian_runechosen <- this.inherit("scripts/entity/tactical/human"
 
 	function assignRandomEquipment()
 	{
+		local wepr = this.Math.rand(1, 100);
+		local weapons;
+		if (wepr <= 1) {
+			weapons = this.Const.Items.NamedBarbarianWeaponsHigh;
+		}
+		else if (wepr <= 6) {
+			weapons = this.Const.Items.NamedBarbarianWeapons;
+		}
+		else {
+			weapons = [
+				"weapons/barbarians/skull_hammer",
+				"weapons/barbarians/two_handed_spiked_mace",
+				"weapons/barbarians/rusty_warblade",
+				"weapons/barbarians/heavy_rusty_axe"
+			];
+		}
+
+		this.m.Items.equip(this.new("scripts/items/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
+
+		this.m.Items.equip(this.Const.World.Common.pickArmor([
+			[1, ::Legends.Armor.Barbarian.heavy_iron_armor],
+			[1, ::Legends.Armor.Barbarian.thick_plated_barbarian_armor],
+			[1, ::Legends.Armor.Barbarian.reinforced_heavy_iron_armor],
+			[1, ::Legends.Armor.Standard.barbarian_chosen_armor_00],
+			[1, ::Legends.Armor.Standard.barbarian_chosen_armor_01],
+		]));
+
+		this.m.Items.equip(this.Const.World.Common.pickHelmet([
+			[1, ::Legends.Helmet.Barbarian.closed_scrap_metal_helmet],
+			[1, ::Legends.Helmet.Barbarian.heavy_horned_plate_helmet],
+			[1, ::Legends.Helmet.Barbarian.barbarian_ritual_helmet],
+			[1, ::Legends.Helmet.Standard.barbarian_chosen_helmet_00],
+			[1, ::Legends.Helmet.Standard.barbarian_chosen_helmet_01],
+			[1, ::Legends.Helmet.Standard.barbarian_chosen_helmet_02],
+		]));
+		local r = this.Math.rand(1, 3);
+		local runeSelection = [];
+		if (r == 1 || wepr <= 6) {
+			runeSelection = [
+				::Legends.Rune.LegendRswBleeding,
+				::Legends.Rune.LegendRswPoison,
+				::Legends.Rune.LegendRswAccuracy,
+				::Legends.Rune.LegendRswPower
+			];
+		}
+		else if (r == 2) {
+			runeSelection = [
+				::Legends.Rune.LegendRshBravery,
+				::Legends.Rune.LegendRsaEndurance,
+				::Legends.Rune.LegendRsaSafety
+			];
+		}
+		else {
+			runeSelection = [
+				::Legends.Rune.LegendRshClarity,
+				::Legends.Rune.LegendRshBravery,
+				::Legends.Rune.LegendRshLuck
+			];
+		}
+
+		local selected = runeSelection[this.Math.rand(0, runeSelection.len() - 1)];
+		local rune = ::new(::Legends.Runes.get(selected).Script);
+		rune.setRuneVariant(selected);
+		rune.setRuneBonus(this.m.IsMiniboss);
+		rune.updateRuneSigilToken();
+		rune.onUse(this, null, false);
+	}
+
+	function makeMiniboss()
+	{
+		if (!this.actor.makeMiniboss())
+		{
+			return false;
+		}
+
+		this.getSprite("miniboss").setBrush("bust_miniboss");
+		::Legends.Perks.grant(this, ::Legends.Perk.Fearsome);
 		local weapons = [
 			"weapons/named/legend_named_rusty_serrated_axe",
 			"weapons/named/legend_named_rusty_warcleaver",
@@ -135,80 +214,13 @@ this.legend_barbarian_runechosen <- this.inherit("scripts/entity/tactical/human"
 			];
 		}
 
-		if (this.m.Items.hasEmptySlot(this.Const.ItemSlot.Mainhand))
-		{
-			local weapons = [
-				"weapons/barbarians/skull_hammer",
-				"weapons/barbarians/two_handed_spiked_mace",
-				"weapons/barbarians/rusty_warblade",
-				"weapons/barbarians/heavy_rusty_axe"
-			];
-			this.m.Items.equip(this.new("scripts/items/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
-		}
-
-		if (this.m.Items.hasEmptySlot(this.Const.ItemSlot.Body) && this.m.Items.hasEmptySlot(this.Const.ItemSlot.Head))
-		{
-			local armor = [
-				[1, ::Legends.Armor.Barbarian.thick_plated_barbarian_armor],
-				[1, ::Legends.Armor.Barbarian.reinforced_heavy_iron_armor],
-			];
-
-			local helmet = [
-				[1, ::Legends.Helmet.Barbarian.heavy_horned_plate_helmet],
-				[1, ::Legends.Helmet.Standard.barbarian_chosen_helmet_00],
-				[1, ::Legends.Helmet.Standard.barbarian_chosen_helmet_01],
-				[1, ::Legends.Helmet.Standard.barbarian_chosen_helmet_02],
-			];
-
-			local outfits = [
-				[1, ::Legends.Outfit.barbarian_chosen_outfit_00],
-				[1, ::Legends.Outfit.barbarian_chosen_outfit_01],
-				[1, ::Legends.Outfit.barbarian_chosen_outfit_02]
-			];
-
-			foreach( item in this.Const.World.Common.pickOutfit(outfits, armor, helmet) )
-			{
-				this.m.Items.equip(item);
-			}
-		}
-
-		if (this.m.Items.hasEmptySlot(this.Const.ItemSlot.Body))
-		{
-			local armor = [
-				[1, ::Legends.Armor.Barbarian.thick_plated_barbarian_armor],
-				[1, ::Legends.Armor.Barbarian.reinforced_heavy_iron_armor],
-				[1, ::Legends.Armor.Standard.barbarian_chosen_armor_00],
-				[1, ::Legends.Armor.Standard.barbarian_chosen_armor_01]
-			];
-			this.m.Items.equip(this.Const.World.Common.pickArmor(armor));
-		}
-		if (this.m.Items.hasEmptySlot(this.Const.ItemSlot.Head))
-		{
-			local helmet = [
-				[1, ::Legends.Helmet.Barbarian.heavy_horned_plate_helmet],
-				[1, ::Legends.Helmet.Standard.barbarian_chosen_helmet_00],
-				[1, ::Legends.Helmet.Standard.barbarian_chosen_helmet_01],
-				[1, ::Legends.Helmet.Standard.barbarian_chosen_helmet_02],
-			];
-			this.m.Items.equip(this.Const.World.Common.pickHelmet(helmet));
-		}
 		local selected = runeSelection[this.Math.rand(0, runeSelection.len() - 1)];
 		local rune = ::new(::Legends.Runes.get(selected).Script);
 		rune.setRuneVariant(selected);
 		rune.setRuneBonus(this.m.IsMiniboss);
 		rune.updateRuneSigilToken();
 		rune.onUse(this, null, false);
-	}
 
-	function makeMiniboss()
-	{
-		if (!this.actor.makeMiniboss())
-		{
-			return false;
-		}
-
-		this.getSprite("miniboss").setBrush("bust_miniboss");
-		::Legends.Perks.grant(this, ::Legends.Perk.Fearsome);
 		return true;
 	}
 

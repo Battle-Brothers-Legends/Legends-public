@@ -118,10 +118,6 @@ foreach (i in garbage)
 	"helmets/named/legend_helm_swan_named",
 ]);
 
-::Const.Items.NamedBanditShields.extend([
-	"weapons/named/legend_named_parrying_dagger"
-]);
-
 ::Const.Items.NamedSouthernShields <- [
 	"shields/named/named_sipar_shield"
 ];
@@ -131,10 +127,12 @@ foreach (i in garbage)
 	"weapons/named/legend_named_orc_flail_2h"
 ]);
 
-::Const.Items.NamedBarbarianWeapons.extend([
+::Const.Items.NamedBarbarianWeaponsHigh <- [
 	"weapons/named/legend_named_rusty_serrated_axe",
+	"weapons/named/legend_named_rusty_warcleaver",
+	"weapons/named/legend_named_horn_decorated_mace",
 	"weapons/named/legend_named_rusty_greatsword"
-]);
+];
 
 ::Const.Items.NamedGoblinWeapons.extend([
 	"weapons/named/legend_named_goblin_axe_2h",
@@ -158,8 +156,7 @@ foreach (i in garbage)
 	"weapons/named/legend_named_infantry_axe",
 	"weapons/named/legend_named_warhammer",
 	"weapons/named/legend_named_military_goedendag",
-	"weapons/named/legend_named_military_warscythe",
-	"weapons/named/legend_named_parrying_dagger",
+	"weapons/named/legend_named_military_warscythe"
 ]);
 
 ::Const.Items.NamedRangedWeapons.extend([

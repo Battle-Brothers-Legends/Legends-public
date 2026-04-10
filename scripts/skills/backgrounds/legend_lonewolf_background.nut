@@ -131,7 +131,7 @@ this.legend_lonewolf_background <- this.inherit("scripts/skills/backgrounds/char
 			this.m.Faces = this.Const.Faces.AllWhiteFemale;
 			this.m.Hairs = this.Const.Hair.AllFemale;
 			this.m.HairColors = this.Const.HairColors.All;
-			this.m.Bodies = this.Const.Bodies.AllFemale;
+			this.m.Bodies = this.Const.Bodies.NorthernFemale;
 			this.m.Names = this.Const.Strings.CharacterNamesFemale;
 		}
 		else if (this.m.Ethnicity == 1)

@@ -189,20 +189,19 @@ this.legend_white_warwolf <- this.inherit("scripts/entity/tactical/actor", {
 
 	function setVariant(_v, _c, _s, _hp = 1.0)
 	{
-		this.m.Items.getAppearance().Body = "bust_direwolf_white_tame_0" + _v;
+		this.m.Items.getAppearance().Body = "bust_direwolf_white_tame_0" + _v + "_body";
 		this.m.Items.getAppearance().Armor = "bust_wolf_02_armor_01";
 
 		local body = getSprite("body");
 		local head = getSprite("head");
-		if(_v != "bust_direwolf_white_tame_01") {
-			body.setBrush("bust_direwolf_white_0" + _v + "_body");
-			head.setBrush("bust_direwolf_white_0" + _v + "_head");
-		}
-		else {
+
+		if(_hp != 1.0) { //goblin riders still spawn regular ones
 			body.setBrush("bust_direwolf_white_01_body");
 			head.setBrush("bust_direwolf_white_01_head");
-			//body.setBrush("bust_direwolf_white_tame_01_body");
-			//head.setBrush("bust_direwolf_white_tame_01_head");
+		}
+		else {
+			body.setBrush("bust_direwolf_white_tame_0" + _v + "_body");
+			head.setBrush("bust_direwolf_white_tame_0" + _v + "_head");
 		}
 		body.Color = _c;
 		body.Saturation = _s;

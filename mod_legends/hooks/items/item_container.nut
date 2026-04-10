@@ -256,6 +256,9 @@
 		if (oh.getCurrentSlotType() != ::Const.ItemSlot.Offhand) {
 			return false;
 		}
+		if (!this.canDualWield(this.m.Actor, mh)) {
+			return false;
+		}
 
 		// Clear skills for both weapons
 		mh.onUnequip();
@@ -274,6 +277,8 @@
 
 		this.m.Actor.getSkills().update();
 		this.updateDualWield();
+
+		oh.playInventorySound(::Const.Items.InventoryEventType.Equipped);
 
 		return true;
 	}

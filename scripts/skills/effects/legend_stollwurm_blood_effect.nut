@@ -1,6 +1,6 @@
 this.legend_stollwurm_blood_effect <- this.inherit("scripts/skills/skill", {
 	m = {
-	TurnsLeft = 3
+		TurnsLeft = 3
 	},
 	function create()
 	{

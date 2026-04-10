@@ -27,6 +27,10 @@ this.legend_white_wolf_item <- this.inherit("scripts/items/accessory/legend_acce
 		this.m.Value = 6000;
 	}
 
+	function updateVariant() {
+		this.setEntity(this.m.Entity);
+	}
+
 	function getName()
 	{
 		if (this.m.Entity == null)
@@ -65,11 +69,11 @@ this.legend_white_wolf_item <- this.inherit("scripts/items/accessory/legend_acce
 
 		if (this.m.Entity != null)
 		{
-			this.m.Icon = "tools/legend_white_wolf_leash_70x70.png";
+			this.m.Icon = "tools/legend_direwolf_white_tame_leash_70x70.png";
 		}
 		else
 		{
-			this.m.Icon = "tools/legend_white_wolf_01_70x70.png";
+			this.m.Icon = "tools/legend_direwolf_white_tame_0" + this.m.Variant + "_70x70.png";
 		}
 	}
 

@@ -668,7 +668,7 @@ this.legend_deliver_money_contract <- this.inherit("scripts/contracts/contract",
 						local contractValue = this.Contract.m.Payment.getOnCompletion() + this.Contract.m.Payment.getInAdvance();
 						this.World.Assets.addMoney(contractValue * -1);
 						local playerRoster = this.World.getPlayerRoster().getAll();
-						local xp = this.Contract.m.Payment.getOnCompletion() * 0.25;
+						local xp = this.Math.round(this.Contract.m.Payment.getOnCompletion() * 0.25 * this.Const.Combat.GlobalXPMult);
 
 						foreach( bro in playerRoster )
 						{

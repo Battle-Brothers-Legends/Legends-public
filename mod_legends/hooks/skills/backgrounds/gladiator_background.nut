@@ -303,16 +303,10 @@
 				"weapons/oriental/polemace",
 				"weapons/fighting_axe",
 				"weapons/fighting_spear"
+				"weapons/two_handed_flail",
+				"weapons/two_handed_flanged_mace",
+				"weapons/bardiche"
 			];
-
-			if (this.Const.DLC.Wildmen)
-			{
-				weapons.extend([
-					"weapons/two_handed_flail",
-					"weapons/two_handed_flanged_mace",
-					"weapons/bardiche"
-				]);
-			}
 
 			items.equip(this.new("scripts/items/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
 		}

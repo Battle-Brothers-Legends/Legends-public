@@ -65,7 +65,7 @@
 		{
 			_properties.MeleeSkill += 10;
 
-			if (this.getContainer().getActor().getCurrentProperties().IsSpecializedInSwords)
+			if (::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem()))
 			{
 				_properties.MeleeSkill += 5;
 				this.m.HitChanceBonus += 5;

@@ -2,8 +2,7 @@ this.legend_RSH_patience <- this.inherit("scripts/skills/skill", {
 	m = {
 		Bonus = 0
 	},
-	function create()
-	{
+	function create() {
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendRshPatience);
 		this.m.Description = "Rune Sigil: Patience";
 		this.m.Icon = "ui/rune_sigils/legend_rune_sigil.png";

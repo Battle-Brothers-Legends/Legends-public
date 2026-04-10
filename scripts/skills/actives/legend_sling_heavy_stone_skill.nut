@@ -187,7 +187,7 @@ this.legend_sling_heavy_stone_skill <- this.inherit("scripts/skills/skill", {
 
 		local actor = this.getContainer().getActor();
 		local stagger = ::Legends.Effects.grant(_targetEntity, ::Legends.Effect.Staggered);
-		if (!actor.isHiddenToPlayer() && _targetEntity.getTile().IsVisibleForPlayer) {
+		if (!actor.isHiddenToPlayer() && _targetEntity.getTile().IsVisibleForPlayer && !_targetEntity.getFlags().has("tail")) {
 			this.Tactical.EventLog.log(stagger.getLogEntryOnAdded(this.Const.UI.getColorizedEntityName(actor), this.Const.UI.getColorizedEntityName(_targetEntity)));
 		}
 

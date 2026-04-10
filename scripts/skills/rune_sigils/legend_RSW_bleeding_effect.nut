@@ -5,23 +5,19 @@ this.legend_RSW_bleeding_effect <- this.inherit("scripts/skills/skill", {
 		LastRoundApplied = 0,
 		Actor = null
 	},
-	function setStats(_s1, _s2)
-	{
+	function setStats(_s1, _s2) {
 		this.m.Damage = _s1;
 		this.m.TurnsLeft = _s2;
 	}
-	function getDamage()
-	{
+	function getDamage() {
 		return this.m.Damage;
 	}
 
-	function setActor( _a )
-	{
+	function setActor( _a ) {
 		this.m.Actor = ::MSU.asWeakTableRef(_a);
 	}
 
-	function create()
-	{
+	function create() {
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendRswBleedingEffect);
 		this.m.KilledString = "Bled to death";
 		this.m.Icon = "skills/status_effect_01.png";
@@ -32,27 +28,19 @@ this.legend_RSW_bleeding_effect <- this.inherit("scripts/skills/skill", {
 		this.m.IsStacking = true;
 	}
 
-	function getDescription()
-	{
+	function getDescription() {
 		return "This character is bleeding profusely from a recently received wound and will lose [color=%negative%]" + this.m.Damage + "[/color] hitpoints each turn for [color=%negative%]" + this.m.TurnsLeft + "[/color] more turn(s).";
 	}
 
-	function getAttacker()
-	{
+	function getAttacker() {
 		if (!::Legends.Mod.ModSettings.getSetting("BleedKiller").getValue())
-		{
 			return this.getContainer().getActor();
-		}
 
 		if (::MSU.isNull(this.m.Actor))
-		{
 			return this.getContainer().getActor();
-		}
 
-		if (this.m.Actor.getID() != this.getContainer().getActor().getID())
-		{
-			if (this.m.Actor.isAlive() && this.m.Actor.isPlacedOnMap())
-			{
+		if (this.m.Actor.getID() != this.getContainer().getActor().getID()) {
+			if (this.m.Actor.isAlive() && this.m.Actor.isPlacedOnMap()) {
 				return this.m.Actor;
 			}
 		}
@@ -60,10 +48,8 @@ this.legend_RSW_bleeding_effect <- this.inherit("scripts/skills/skill", {
 		return this.getContainer().getActor();
 	}
 
-	function applyDamage()
-	{
-		if (this.m.LastRoundApplied != this.Time.getRound())
-		{
+	function applyDamage() {
+		if (this.m.LastRoundApplied != this.Time.getRound()) {
 			this.m.LastRoundApplied = this.Time.getRound();
 			this.spawnIcon("status_effect_01", this.getContainer().getActor().getTile());
 			local hitInfo = clone this.Const.Tactical.HitInfo;
@@ -75,39 +61,32 @@ this.legend_RSW_bleeding_effect <- this.inherit("scripts/skills/skill", {
 			this.getContainer().getActor().onDamageReceived(this.getAttacker(), this, hitInfo);
 
 
-			if (--this.m.TurnsLeft <= 0)
-			{
+			if (--this.m.TurnsLeft <= 0) {
 				this.removeSelf();
 			}
 		}
 	}
 
-	function onAdded()
-	{
+	function onAdded() {
 		this.m.TurnsLeft = this.Math.max(1, this.m.TurnsLeft + this.getContainer().getActor().getCurrentProperties().NegativeStatusEffectDuration);
 
-		if (this.getContainer().hasTrait(::Legends.Trait.Bleeder))
-		{
+		if (this.getContainer().hasTrait(::Legends.Trait.Bleeder)) {
 			++this.m.TurnsLeft;
 		}
 	}
 
-	function onUpdate( _properties )
-	{
+	function onUpdate( _properties ) {
 	}
 
-	function onTurnEnd()
-	{
+	function onTurnEnd() {
 		this.applyDamage();
 	}
 
-	function onWaitTurn()
-	{
+	function onWaitTurn() {
 		this.applyDamage();
 	}
 
-	function onCombatFinished()
-	{
+	function onCombatFinished() {
 		this.removeSelf();
 	}
 });

@@ -189,9 +189,35 @@
 
 	o.onAddEquipment = function ()
 	{
-		local items = this.getContainer().getActor().getItems();
-		local r;
-		items.equip(this.new("scripts/items/weapons/legend_zweihander"));
+		local actor = this.getContainer().getActor();
+		actor.setVeteranPerks(3);
+		local items = actor.getItems();
+
+		local weapons = [
+			"scripts/items/weapons/longsword",
+			"scripts/items/weapons/legend_zweihander",
+			"scripts/items/weapons/greatsword",
+			"scripts/items/weapons/two_handed_hammer",
+			"scripts/items/weapons/two_handed_flail",
+			"scripts/items/weapons/two_handed_flanged_mace",
+			"scripts/items/weapons/arming_sword",
+			"scripts/items/weapons/winged_mace",
+			"scripts/items/weapons/warhammer",
+			"scripts/items/weapons/flail",
+			"scripts/items/weapons/three_headed_flail"
+		];
+		items.equip(this.new("scripts/items/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
+
+		if (items.hasEmptySlot(this.Const.ItemSlot.Offhand))
+		{
+			local offhand = [
+				"shields/kite_shield",
+				"shields/heater_shield",
+				"shields/legend_tower_shield",
+			];
+			items.equip(this.new("scripts/items/" + offhand[this.Math.rand(0, offhand.len() - 1)]));
+		}
+
 		items.equip(this.Const.World.Common.pickArmor([
 			[1, ::Legends.Armor.Standard.mail_hauberk],
 			[2, ::Legends.Armor.Standard.reinforced_mail_hauberk],

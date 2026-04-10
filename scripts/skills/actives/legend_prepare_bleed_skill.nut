@@ -2,13 +2,12 @@ this.legend_prepare_bleed_skill <- this.inherit("scripts/skills/skill", {
 	m = {
 		Item = null
 	},
-	function setItem( _i )
-	{
+
+	function setItem(_i) {
 		this.m.Item = this.WeakTableRef(_i);
 	}
 
-	function create()
-	{
+	function create() {
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendPrepareBleed);
 		this.m.Description = "Evaluate your enemy, preparing your next attack to leave them bleeding.";
 		this.m.Icon = "skills/bleed_square.png";
@@ -34,8 +33,7 @@ this.legend_prepare_bleed_skill <- this.inherit("scripts/skills/skill", {
 		this.m.MaxRange = 0;
 	}
 
-	function getTooltip()
-	{
+	function getTooltip() {
 		local ret = [
 			{
 				id = 1,
@@ -60,32 +58,29 @@ this.legend_prepare_bleed_skill <- this.inherit("scripts/skills/skill", {
 			}
 		];
 
-
 		return ret;
 	}
 
-	function isUsable()
-	{
-		local poison = ::Legends.Effects.get(this, ::Legends.Effect.LegendBleedPrepared);
+	function isUsable() {
+		local effect = ::Legends.Effects.get(this, ::Legends.Effect.LegendBleedPrepared);
 
-		return !this.Tactical.isActive() || this.skill.isUsable() && !this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions()) && poison == null;
+		return !this.Tactical.isActive()
+			|| this.skill.isUsable()
+			&& !this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions())
+			&& effect == null;
 	}
 
-	function onUse( _user, _targetTile )
-	{
-		local poison = ::Legends.Effects.get(_user, ::Legends.Effect.LegendBleedPrepared);
+	function onUse(_user, _targetTile) {
+		local effect = ::Legends.Effects.get(_user, ::Legends.Effect.LegendBleedPrepared);
 
-		if (poison != null)
-		{
-			poison.resetTime();
-		}
-		else
-		{
+		if (effect == null) {
 			::Legends.Effects.grant(this, ::Legends.Effect.LegendBleedPrepared);
+			effect = ::Legends.Effects.get(_user, ::Legends.Effect.LegendBleedPrepared);
 		}
 
-		if (this.m.Item != null && !this.m.Item.isNull())
-		{
+		effect.resetTime();
+
+		if (this.m.Item != null && !this.m.Item.isNull()) {
 			this.m.Item.removeSelf();
 		}
 
@@ -93,4 +88,3 @@ this.legend_prepare_bleed_skill <- this.inherit("scripts/skills/skill", {
 	}
 
 });
-

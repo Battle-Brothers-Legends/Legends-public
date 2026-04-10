@@ -11,7 +11,7 @@ this.legend_scroll_blueprint <- this.inherit("scripts/crafting/blueprint", {
 		local ingredients = [
 			{
 				Script = "scripts/items/trade/cloth_rolls_item",
-				Num = 2
+				Num = 1
 			},
 			{
 				Script = "scripts/items/trade/dies_item",

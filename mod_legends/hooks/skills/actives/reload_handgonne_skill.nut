@@ -1,5 +1,13 @@
 ::mods_hookExactClass("skills/actives/reload_handgonne_skill", function(o)
 {
+	local create = o.create;
+	o.create = function()
+	{
+		create();
+		this.m.IsRemovedAfterBattle = false;
+		this.m.IsHidden = true;
+	}
+
 	local onAfterUpdate = o.onAfterUpdate;
 	o.onAfterUpdate = function ( _properties )
 	{

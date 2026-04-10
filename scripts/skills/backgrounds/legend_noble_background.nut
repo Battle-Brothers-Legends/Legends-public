@@ -202,12 +202,12 @@ this.legend_noble_background <- this.inherit("scripts/skills/backgrounds/charact
 		if (r <= 1)
 		{
 			items.equip(this.new("scripts/items/weapons/dagger"));
-			items.equip(this.new("scripts/items/weapons/legend_parrying_dagger"));
+			items.equip(this.new("scripts/items/shields/buckler_shield"));
 		}
 		else if (r == 2)
 		{
 			items.equip(this.new("scripts/items/weapons/fencing_sword"));
-			items.equip(this.new("scripts/items/weapons/legend_parrying_dagger"));
+			items.equip(this.new("scripts/items/shields/buckler_shield"));
 		}
 		else if (r == 3)
 		{

@@ -109,14 +109,33 @@
 		this.refillAmmo();
 	}
 
-	local refillAmmo = o.refillAmmo;
 	o.refillAmmo = function()
 	{
 		if (m.Ammo == 0)
 			return;
 
+		local roster = this.World.getPlayerRoster().getAll();
+
+		foreach( bro in roster ) {
+			local items = bro.getItems().getAllItems();
+			foreach( item in items ) {
+				if ((item.isItemType(this.Const.Items.ItemType.Ammo) || ("getAmmo" in item && "getAmmoMax" in item)) && (item.getAmmo() < item.getAmmoMax())) {
+					local a = this.Math.min(this.m.Ammo, this.Math.ceil(item.getAmmoMax() - item.getAmmo()) * item.getAmmoCost());
+
+					if (this.m.Ammo >= a) {
+						item.setAmmo(item.getAmmo() + this.Math.ceil(a / item.getAmmoCost()));
+						this.m.Ammo -= a;
+					}
+				}
+
+				if (this.m.Ammo == 0) {
+					break;
+				}
+			}
+		}
+
 		local repairNet = false;
-		foreach( bro in ::World.getPlayerRoster().getAll() )
+		foreach( bro in roster )
 		{
 			if (bro.getFlags().get("LegendsCanRepairNet")) {
 				::World.Statistics.getFlags().set("LegendsCanRepairNet", true);
@@ -149,7 +168,9 @@
 				break;
 		}
 
-		refillAmmo();
+		if (this.World.State.getCurrentTown() != null) {
+			this.World.State.getTownScreen().updateAssets();
+		}
 	}
 
 	o.setArmorParts = function( _f )

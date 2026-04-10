@@ -6,6 +6,11 @@
 		create();
 		this.m.Variants = [1,2];
 		this.m.Value = 4100;
+		this.m.Categories = "Cleaver, Two-Handed";
+	}
+
+	o.randomizeValues <- function ()
+	{
 		this.m.Condition = 68.0;
 		this.m.ConditionMax = 68.0;
 		this.m.StaminaModifier = -14;
@@ -13,7 +18,7 @@
 		this.m.RegularDamageMax = 105;
 		this.m.DirectDamageMult = 0.35;
 		this.m.ShieldDamage = 0;
-		this.m.Categories = "Cleaver, Two-Handed";
+		named_weapon.randomizeValues();
 	}
 
 	o.onEquip = function ()

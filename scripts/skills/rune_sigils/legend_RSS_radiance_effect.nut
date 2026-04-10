@@ -3,15 +3,13 @@ this.legend_RSS_radiance_effect <- this.inherit("scripts/skills/skill", {
 		MalusOne = 0,
 		MalusTwo = 0,
 	},
-	function setMalus(_m1, _m2)
-	{
+	function setMalus(_m1, _m2) {
 		this.m.MalusOne = _m1;
 		this.m.MalusTwo = _m2;
 	}
 
 
-	function create()
-	{
+	function create() {
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendRssRadianceEffect);
 		this.m.Icon = "";
 		this.m.IconMini = "";
@@ -65,8 +63,7 @@ this.legend_RSS_radiance_effect <- this.inherit("scripts/skills/skill", {
 	// }
 
 
-	function getTooltip()
-	{
+	function getTooltip() {
 		if (!this.isHidden())
 		{
 
@@ -91,20 +88,15 @@ this.legend_RSS_radiance_effect <- this.inherit("scripts/skills/skill", {
 	}
 
 
-	function updateEffect()
-	{
+	function updateEffect() {
 		local actor = this.getContainer().getActor();
 		if (actor == null)
-		{
 			return;
-		}
 		local targets = this.Tactical.Entities.getAllInstances();
 		local BlindAdjacent = false;
 
-		foreach (tar in targets)
-		{
-			foreach (t in tar)
-			{
+		foreach (tar in targets) {
+			foreach (t in tar) {
 				if (!t.isAlliedWith(actor) && t.getSkills().hasEffect(::Legends.Effect.LegendRssRadiance) && t.getTile().getDistanceTo(actor.getTile()) == 1)
 				{
 					BlindAdjacent = true;
@@ -113,15 +105,13 @@ this.legend_RSS_radiance_effect <- this.inherit("scripts/skills/skill", {
 			}
 		}
 
-		if (BlindAdjacent)
-		{
+		if (BlindAdjacent) {
 			this.m.Name = "Blinded";
 			this.m.Icon = "skills/status_effect_52.png";
 			this.m.IconMini = "status_effect_52_mini";
 			this.m.Overlay = "status_effect_52";
 		}
-		else
-		{
+		else {
 			this.m.Name = "";
 			this.m.Icon = "";
 			this.m.IconMini = "";
@@ -130,21 +120,15 @@ this.legend_RSS_radiance_effect <- this.inherit("scripts/skills/skill", {
 	}
 
 
-	function onMovementFinished()
-	{
+	function onMovementFinished() {
 		local actor = this.getContainer().getActor();
 		if (actor == null)
-		{
 			return;
-		}
 		local targets = this.Tactical.Entities.getAllInstances();
 
-		foreach (tar in targets)
-		{
-			foreach (t in tar)
-			{
-				if (!t.isAlliedWith(actor) && t.getSkills().hasEffect(::Legends.Effect.LegendRssRadiance) && t.getTile().getDistanceTo(actor.getTile()) == 1)
-				{
+		foreach (tar in targets) {
+			foreach (t in tar) {
+				if (!t.isAlliedWith(actor) && t.getSkills().hasEffect(::Legends.Effect.LegendRssRadiance) && t.getTile().getDistanceTo(actor.getTile()) == 1) {
 					local BlinderValues = ::Legends.Effects.get(t, ::Legends.Effect.LegendRssRadiance);
 					this.m.MalusOne = BlinderValues.getItem().getRuneBonus1();
 					this.m.MalusTwo = BlinderValues.getItem().getRuneBonus2();
@@ -157,22 +141,17 @@ this.legend_RSS_radiance_effect <- this.inherit("scripts/skills/skill", {
 		this.updateEffect();
 	}
 
-	function onUpdate(_properties)
-	{
+	function onUpdate(_properties) {
 		this.m.IsHidden = true;
 		local actor = this.getContainer().getActor();
 		if (actor == null)
-		{
 			return;
-		}
 
 		local targets = this.Tactical.Entities.getAllInstances();
 		local BlindAdjacent = false;
 
-		foreach (tar in targets)
-		{
-			foreach (t in tar)
-			{
+		foreach (tar in targets) {
+			foreach (t in tar) {
 				if (!t.isAlliedWith(actor) && t.getSkills().hasEffect(::Legends.Effect.LegendRssRadiance) && t.getTile().getDistanceTo(actor.getTile()) == 1)
 				{
 					BlindAdjacent = true;
@@ -181,8 +160,7 @@ this.legend_RSS_radiance_effect <- this.inherit("scripts/skills/skill", {
 			}
 		}
 
-		if (BlindAdjacent)
-		{
+		if (BlindAdjacent) {
 			this.m.IsHidden = false;
 			_properties.MeleeSkillMult *= (1.0 - ((this.m.MalusOne * 1.0) / 100.0));
 			_properties.MeleeDefenseMult *= (1.0 - ((this.m.MalusTwo * 1.0) / 100.0));
@@ -192,14 +170,12 @@ this.legend_RSS_radiance_effect <- this.inherit("scripts/skills/skill", {
 	}
 
 
-	function onDeath( _fatalityType )
-	{
+	function onDeath( _fatalityType ) {
 		this.removeSelf();
 	}
 
 
-	function onCombatFinished()
-	{
+	function onCombatFinished() {
 		this.removeSelf();
 	}
 });

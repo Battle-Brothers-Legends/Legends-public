@@ -2,8 +2,7 @@ this.legend_named_axe_effect <- this.inherit("scripts/skills/skill", {
 	m = {
 		Bonus = 0
 	},
-	function create()
-	{
+	function create() {
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendNamedAxe);
 		this.m.Description = "";
 		this.m.Icon = "skills/placeholder_circle.png";
@@ -16,8 +15,7 @@ this.legend_named_axe_effect <- this.inherit("scripts/skills/skill", {
         this.m.IsHidden = true;
 	}
 
-	function getTooltip()
-	{
+	function getTooltip() {
 		return [
 			{
 				id = 1,
@@ -32,14 +30,12 @@ this.legend_named_axe_effect <- this.inherit("scripts/skills/skill", {
 		];
 	}
 
-    function setBonus( _bonus )
-    {
+    function setBonus( _bonus ) {
         this.m.Bonus = _bonus;
     }
 
-    function onAnySkillUsed( _skill, _targetEntity, _properties )
-	{
-		if (_skill == this)
+    function onAnySkillUsed( _skill, _targetEntity, _properties ) {
+		if (_skill.isAttack() && _skill.getItem() != null && _skill.getItem().getID() == this.getItem().getID())
 		{
 			_properties.DamageAgainstMult[this.Const.BodyPart.Head] *= 1 + (this.m.Bonus * 0.01);
 		}

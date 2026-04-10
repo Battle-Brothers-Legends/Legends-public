@@ -10,45 +10,21 @@ import shutil
 import argparse
 from pathlib import Path
 import platform
-from buildscript.lib import VersionExtractor, BuildError
-
-
-def load_config():
-    """Load configuration from .build_config.py if it exists"""
-    config = {"REPO_DIR": "Legends-public", "BB_DIR": None, "BUILD_DIR": "./build"}
-
-    try:
-        config_path = Path(__file__).parent / ".build_config.py"
-        if config_path.exists():
-            import importlib.util
-
-            spec = importlib.util.spec_from_file_location("config", config_path)
-            config_module = importlib.util.module_from_spec(spec)
-            spec.loader.exec_module(config_module)
-
-            # Update config with values from the file
-            for key in config:
-                if hasattr(config_module, key):
-                    config[key] = getattr(config_module, key)
-    except Exception:
-        pass  # Use defaults if config loading fails
-
-    return config
-
+from buildscript.lib import VersionExtractor, BuildError, load_config
 
 
 class LegendsModBuilder:
     def __init__(self, bb_dir=None, repo_dir=None, build_dir=None):
         # Load config first
-        config = load_config()
+        config = load_config(Path(__file__).parent / ".build_config.py")
 
         # Use provided values, fall back to config, then to defaults
         if repo_dir is None:
-            repo_dir = config["REPO_DIR"]
+            repo_dir = config.REPO_DIR
         if build_dir is None:
-            build_dir = config["BUILD_DIR"]
+            build_dir = config.BUILD_DIR
         if bb_dir is None:
-            bb_dir = config["BB_DIR"]
+            bb_dir = config.BB_DIR
 
         # Set default paths based on OS if still None
         if bb_dir is None:

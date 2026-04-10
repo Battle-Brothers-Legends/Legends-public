@@ -19,6 +19,9 @@
 
 	o.onAnySkillUsed = function ( _skill, _targetEntity, _properties )
 	{
+		if (!_skill.isAttack())
+			return;
+
 		if (_targetEntity == null || !_targetEntity.isAttackable())
 			return;
 

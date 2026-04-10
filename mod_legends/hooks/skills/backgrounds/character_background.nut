@@ -1200,206 +1200,43 @@
 
 	o.buildAttributes = function (_tag = null, _attrs = null)
 	{
-		local a = [];
-
-		if (_tag == "zombie")
-		{
-			a = {
-				Hitpoints = [
-					75,
-					75
-				],
-				Bravery = [
-					100,
-					100
-				],
-				Stamina = [
-					100,
-					100
-				],
-				MeleeSkill = [
-					40,
-					40
-				],
-				RangedSkill = [
-					20,
-					20
-				],
-				MeleeDefense = [
-					-5,
-					-5
-				],
-				RangedDefense = [
-					-6,
-					-6
-				],
-				Initiative = [
-					65,
-					65
-				]
-			};
-		}
-		else if (_tag == "skeleton")
-		{
-			a = {
-				Hitpoints = [
-					50,
-					50
-				],
-				Bravery = [
-					100,
-					100
-				],
-				Stamina = [
-					40,
-					40
-				],
-				MeleeSkill = [
-					50,
-					50
-				],
-				RangedSkill = [
-					40,
-					40
-				],
-				MeleeDefense = [
-					3,
-					3
-				],
-				RangedDefense = [
-					5,
-					5
-				],
-				Initiative = [
-					95,
-					95
-				]
-			};
-		}
-		else //human bro
-		{
-			a = {
-				Hitpoints = [
-					60,
-					60
-				],
-				Bravery = [
-					40,
-					40
-				],
-				Stamina = [
-					100,
-					100
-				],
-				MeleeSkill = [
-					50,
-					50
-				],
-				RangedSkill = [
-					40,
-					40
-				],
-				MeleeDefense = [
-					0,
-					0
-				],
-				RangedDefense = [
-					0,
-					0
-				],
-				Initiative = [
-					100,
-					100
-				]
-			};
+		// helper function to sum all keys in the table, that ensures [min, max], regardless the input
+		local sum = function (_a, _b) {
+			local ret = {};
+			foreach(k, v in _a) {
+				local aMin = ::Math.min(v[0], v[1]);
+				local aMax = ::Math.max(v[0], v[1]);
+				if (k in _b) {
+					local bv = _b[k];
+					ret[k] <- [
+						aMin + ::Math.min(bv[0], bv[1]),
+						aMax + ::Math.max(bv[0], bv[1])
+					];
+				} else { // key doesn't exist in _b, so just use what's in _a
+					ret[k] <- [aMin, aMax];
+				}
+			}
+			return ret;
 		}
 
+		local a = clone ::Legends.Backgrounds.BaseAttr.resolve(_tag);
 		// Modify the stats if being female carries a gameplay effect
-		if (::Legends.Mod.ModSettings.getSetting("GenderEquality").getValue() == "Enabled")
-		{
-			if (this.getContainer().getActor().getGender()==1)
-			{
-				// Female characters trade HP for Fatigue compared to male characters
-				a.Hitpoints[0] -= 10;
-				a.Hitpoints[1] -= 10;
-				a.Stamina[0] += 10;
-				a.Stamina[1] += 10;
+		if (::Legends.Mod.ModSettings.getSetting("GenderEquality").getValue() == "Enabled") {
+			if (this.getContainer().getActor().getGender() == 1) {
+				a = sum(a, ::Legends.Backgrounds.BaseAttr.Female);
 			}
 		}
 
-		local c = this.onChangeAttributes();
-		a.Hitpoints[0] += c.Hitpoints[0];
-		a.Hitpoints[1] += c.Hitpoints[1];
-		a.Bravery[0] += c.Bravery[0];
-		a.Bravery[1] += c.Bravery[1];
-		a.Stamina[0] += c.Stamina[0];
-		a.Stamina[1] += c.Stamina[1];
-		a.MeleeSkill[0] += c.MeleeSkill[0];
-		a.MeleeSkill[1] += c.MeleeSkill[1];
-		a.MeleeDefense[0] += c.MeleeDefense[0];
-		a.MeleeDefense[1] += c.MeleeDefense[1];
-		a.RangedSkill[0] += c.RangedSkill[0];
-		a.RangedSkill[1] += c.RangedSkill[1];
-		a.RangedDefense[0] += c.RangedDefense[0];
-		a.RangedDefense[1] += c.RangedDefense[1];
-		a.Initiative[0] += c.Initiative[0];
-		a.Initiative[1] += c.Initiative[1];
-
+		a = sum(a, this.onChangeAttributes());
 		if (_attrs != null)
-		{
-			a.Hitpoints[0] += _attrs.Hitpoints[0];
-			a.Hitpoints[1] += _attrs.Hitpoints[1];
-			a.Bravery[0] += _attrs.Bravery[0];
-			a.Bravery[1] += _attrs.Bravery[1];
-			a.Stamina[0] += _attrs.Stamina[0];
-			a.Stamina[1] += _attrs.Stamina[1];
-			a.MeleeSkill[0] += _attrs.MeleeSkill[0];
-			a.MeleeSkill[1] += _attrs.MeleeSkill[1];
-			a.MeleeDefense[0] += _attrs.MeleeDefense[0];
-			a.MeleeDefense[1] += _attrs.MeleeDefense[1];
-			a.RangedSkill[0] += _attrs.RangedSkill[0];
-			a.RangedSkill[1] += _attrs.RangedSkill[1];
-			a.RangedDefense[0] += _attrs.RangedDefense[0];
-			a.RangedDefense[1] += _attrs.RangedDefense[1];
-			a.Initiative[0] += _attrs.Initiative[0];
-			a.Initiative[1] += _attrs.Initiative[1];
-		}
+			a = sum(a, _attrs);
+
 		local b = this.getContainer().getActor().getBaseProperties();
 		b.ActionPoints = 9;
-		local Hitpoints1 = this.Math.rand(a.Hitpoints[0], a.Hitpoints[1]);
-		local Bravery1 = this.Math.rand(a.Bravery[0], a.Bravery[1]);
-		local Stamina1 = this.Math.rand(a.Stamina[0], a.Stamina[1]);
-		local MeleeSkill1 = this.Math.rand(a.MeleeSkill[0], a.MeleeSkill[1]);
-		local RangedSkill1 = this.Math.rand(a.RangedSkill[0], a.RangedSkill[1]);
-		local MeleeDefense1 = this.Math.rand(a.MeleeDefense[0], a.MeleeDefense[1]);
-		local RangedDefense1 = this.Math.rand(a.RangedDefense[0], a.RangedDefense[1]);
-		local Initiative1 = this.Math.rand(a.Initiative[0], a.Initiative[1]);
-		local Hitpoints2 = this.Math.rand(a.Hitpoints[0], a.Hitpoints[1]);
-		local Bravery2 = this.Math.rand(a.Bravery[0], a.Bravery[1]);
-		local Stamina2 = this.Math.rand(a.Stamina[0], a.Stamina[1]);
-		local MeleeSkill2 = this.Math.rand(a.MeleeSkill[0], a.MeleeSkill[1]);
-		local RangedSkill2 = this.Math.rand(a.RangedSkill[0], a.RangedSkill[1]);
-		local MeleeDefense2 = this.Math.rand(a.MeleeDefense[0], a.MeleeDefense[1]);
-		local RangedDefense2 = this.Math.rand(a.RangedDefense[0], a.RangedDefense[1]);
-		local Initiative2 = this.Math.rand(a.Initiative[0], a.Initiative[1]);
-		local HitpointsAvg = this.Math.round((Hitpoints1 + Hitpoints2) / 2);
-		local BraveryAvg  = this.Math.round((Bravery1 + Bravery2) / 2);
-		local StaminaAvg  = this.Math.round((Stamina1 + Stamina2) / 2);
-		local MeleeSkillAvg  = this.Math.round((MeleeSkill1 + MeleeSkill2) / 2);
-		local RangedSkillAvg  = this.Math.round((RangedSkill1 + RangedSkill2) / 2);
-		local MeleeDefenseAvg  = this.Math.round((MeleeDefense1 + MeleeDefense2) / 2);
-		local RangedDefenseAvg  = this.Math.round((RangedDefense1 + RangedDefense2) / 2);
-		local InitiativeAvg  = this.Math.round((Initiative1 + Initiative2) / 2);
+		foreach(k, v in a) { // set avg of 2 rolls to `b`
+			b[k] = ::Math.round((::Math.rand(v[0], v[1]) + ::Math.rand(v[0], v[1])) / 2);
+		}
 
-
-		b.Hitpoints = HitpointsAvg;
-		b.Bravery = BraveryAvg;
-		b.Stamina = StaminaAvg;
-		b.MeleeSkill = MeleeSkillAvg;
-		b.RangedSkill = RangedSkillAvg;
-		b.MeleeDefense = MeleeDefenseAvg;
-		b.RangedDefense = RangedDefenseAvg;
-		b.Initiative = InitiativeAvg;
 		this.getContainer().getActor().m.CurrentProperties = clone b;
 		this.getContainer().getActor().setHitpoints(b.Hitpoints);
 
@@ -1413,6 +1250,7 @@
 				return 50;
 			return weight;
 		}
+
 		local weighted = [
 			calc(a, b, "Hitpoints"),
 			calc(a, b, "Bravery"),

@@ -89,7 +89,7 @@
 	}
 
 	local onUpdate = o.onUpdate;
-	o.onUpdate <- function ( _properties )
+	o.onUpdate = function ( _properties )
 	{
 		onUpdate(_properties);
 		if (this.canDoubleGrip())

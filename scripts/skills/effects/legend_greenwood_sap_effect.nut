@@ -1,6 +1,6 @@
 this.legend_greenwood_sap_effect <- this.inherit("scripts/skills/skill", {
 	m = {
-	TurnsLeft = 3
+		TurnsLeft = 3
 	},
 	function create()
 	{
@@ -25,11 +25,6 @@ this.legend_greenwood_sap_effect <- this.inherit("scripts/skills/skill", {
 		{
 			_properties.IsSkillUseHalfCost = true;
 		}
-	}
-
-	function onTurnStart()
-	{
-		this.removeSelf();
 	}
 
 	function onTurnEnd()

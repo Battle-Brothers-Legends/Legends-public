@@ -39,5 +39,6 @@ this.perk_legend_bone_breaker <- this.inherit("scripts/skills/skill", {
 
 		// --- Apply only our intended modification to the real hit info ---
 		_hitInfo.DamageRegular += armorDamage * 0.1;
+		_hitInfo.DamageMinimum += this.Math.round(armorDamage * 0.1);
 	}
 });

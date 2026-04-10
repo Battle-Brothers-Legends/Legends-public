@@ -1,7 +1,6 @@
 this.legend_RSS_durability <- this.inherit("scripts/skills/skill", {
 	m = {},
-	function create()
-	{
+	function create() {
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendRssDurability);
 		this.m.Description = "Rune Sigil: Durability";
 		this.m.Icon = "ui/rune_sigils/legend_rune_sigil.png";

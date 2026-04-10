@@ -16,7 +16,7 @@ this.legend_battle_glaive <- this.inherit("scripts/items/weapons/weapon", {
 		this.m.AddGenericSkill = true;
 		this.m.ShowQuiver = false;
 		this.m.ShowArmamentIcon = true;
-		this.m.Value = 950;
+		this.m.Value = 1800;
 		this.m.StaminaModifier = -14;
 		this.m.RangeMin = 1;
 		this.m.RangeMax = 2;
@@ -41,6 +41,10 @@ this.legend_battle_glaive <- this.inherit("scripts/items/weapons/weapon", {
 		this.weapon.onEquip();
 		::Legends.Actives.grant(this, ::Legends.Active.Strike, function (_skill) {
 			_skill.m.IsGlaiveStrike = true;
+		}.bindenv(this));
+		::Legends.Actives.grant(this, ::Legends.Active.Rupture, function (_skill) {
+			_skill.m.InjuriesOnBody = this.Const.Injury.CuttingAndPiercingBody;
+			_skill.m.InjuriesOnHead = this.Const.Injury.CuttingAndPiercingHead;
 		}.bindenv(this));
 		::Legends.Actives.grant(this, ::Legends.Active.LegendSkewer);
 	}

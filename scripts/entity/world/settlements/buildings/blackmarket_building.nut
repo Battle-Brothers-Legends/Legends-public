@@ -401,6 +401,11 @@ this.blackmarket_building <- this.inherit("scripts/entity/world/settlements/buil
 				S = "misc/legend_skin_ghoul_skin_item"
 			},
 			{
+				R = 70,
+				P = 6.0,
+				S = "misc/potion_of_oblivion_item"
+			},
+			{
 				R = 90,
 				P = 6.0,
 				S = "misc/legend_demon_third_eye_item"

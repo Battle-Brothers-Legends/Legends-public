@@ -4,6 +4,12 @@
 	o.create = function() {
 		create();
 		this.m.Description = "A long two-handed greatsword as good for crushing as for cutting, it has a good balance between the lighter longsword and heavier zweihander.";
+		this.m.Variants = [1,2,3,4,5,6];
+		this.setVariant(this.m.Variants[this.Math.rand(0, this.m.Variants.len() - 1)]);
+	}
+
+	o.randomizeValues <- function ()
+	{
 		this.m.Value = 3800;
 		this.m.ShieldDamage = 0;
 		this.m.Condition = 64.0;
@@ -14,9 +20,7 @@
 		this.m.ArmorDamageMult = 1.0;
 		this.m.DirectDamageMult = 0.25;
 		this.m.ChanceToHitHead = 10;
-		this.m.Variants = [1,2,3,4,5,6];
-		this.setVariant(this.m.Variants[this.Math.rand(0, this.m.Variants.len() - 1)]);
-		this.randomizeValues();
+		named_weapon.randomizeValues();
 	}
 
 	o.updateVariant <- function() {

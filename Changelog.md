@@ -25,7 +25,7 @@ This activates Dual Wield:
 - `Sword Mastery` -  Riposte can trigger from both weapons when dual wielding swords
 - `Axe Mastery` - Split Shield uses combined shield damage from both weapons when dual wielding axes
 - `Flail Mastery` - Both attacks apply Bleed when dual wielding flails
-- `Dagger Mastery` - Offhand successful hits grant -1 AP and +10% damage on next mainhand attack when dual wielding daggers
+- `Double Strike` - Offhand successful hits grant -1 AP and +10% damage on next mainhand attack when dual wielding daggers
 - `Ambidextrous` - Now also reduces weight penalty by 33% when dual wielding other weapons
 - `Onslaught` - now increases melee damage by your 2% for every 100 armor you have
 - `Immovable Object` now also counts accessory slot
@@ -94,14 +94,15 @@ Favoured Enemy - Sword Master
 > Fallen Hero 7 to 9;
 > players turned Wiederganger 6 to 8;
 - Nomad Slingers will now more likely to spawn with a Sturdy Sling before day 30 and gain a chance for more armor after day 40
-> Lindwurm and Stollwurms
+- Lindwurm and Stollwurms
 > health decreased to 950 and 1500 respectively
 > lose resilient so they are more succeptable to bleeding
 > gain 25% damage reduction from cutting and blunt attacks but damage is increased by 30% from piercing
 > Stollwurm tail now spends AP on head's long moves
 > fixed stagger effect desynchronizing head and tail turn order
-> wurms no longer get Baffled, Dazed or Staggered when an appropriate attack hits the tail
-> Both parts of the wurm now get Baffled, Dazed or Staggered when an appropriate attack hits the head
+> wurms no longer get Baffled, Dazed, Withered, Stupefied, Swarm of Insects and Staggered when an appropriate attack hits the tail
+> both parts of the wurm now get Baffled, Dazed, Withered, Stupefied, Swarm of Insects and Staggered when an appropriate attack hits the head
+> tails cannot be Choked anymore
 
 ## New Runes
 
@@ -127,6 +128,8 @@ Favoured Enemy - Sword Master
 - fixed beard/hair hiding while covering items are set to invisible
 - modified layering so some L2's go under L1
 - all tail items moved to lower vanity
+- allowed layering and unlayering on combat result and town shop screens
+- added sound effect while removing layers
 
 ### Shields
 - added a few missing shield paints
@@ -139,6 +142,8 @@ Favoured Enemy - Sword Master
 - named items naming fixes and changes
 - hyena fur, white wolf pelt, direwolf pelt upgrades reformed into cloaks
 - regular cloaks now displayed over upgrades
+- allowed layering and unlayering on combat result and town shop screens
+- added sound effect while removing layers
 
 ### Weapons
 
@@ -178,7 +183,7 @@ Favoured Enemy - Sword Master
 * `Halfsword` - puncture
 > 5 ap cost and requires double grip to be usable
 * `Mordhau` - batter (hammer)
-> 5 ap cost, 50% more armor damage with this skill and always deals at least 10 hp, hits to the head will daze
+> 5 ap cost, more armor piercing damage, 50% more armor damage with this skill and always deals at least 10 hp, hits to the head will daze
 
 **Longsword**
 - `Slash` - unchanged
@@ -243,10 +248,27 @@ Favoured Enemy - Sword Master
 > `Constrained` - additional 2 ap and 5 fatigue per tile traveled (we know you think goblins are easy)
 
 **Firelance**
-* Thrust
-* Heartseeker
-* Ignite Firelance
-* Spearwall
+* `Thrust`
+* `Heartseeker`
+* `Ignite Firelance`
+* `Spearwall`
+
+**Goblin Pike**
+* `Rupture`
+* `Repel`
+* `Skewer`
+
+**Goblin Spear**
+* `Breach`
+* `Rupture`
+> 1 tile range, 5 ap - can be reduced to 4 ap with mastery, 13 fatigue cost, 25% armor penetration
+* `Skewer`
+
+**Glaives (not militia)**
+* `Great Slash`
+* `Rupture`
+> 1 tile range, 5 ap - can be reduced to 4 ap with mastery, 13 fatigue cost, 25% armor penetration
+* `Skewer`
 
 ### New recipes
 
@@ -274,6 +296,8 @@ Favoured Enemy - Sword Master
 - fixed bandit army contract incorrectly assuming raiding party on load
 - fixed bandit army contract reveal on killing instead of sparing
 - fixed vala fury incorrectly affecting brothers at distance of over 3 with full effect of fury chant
+- fixed shop named item sell warning dialog (icon layering, runed items)
+- fixed female bodies generating with non-matching combinations of body and head colors
 
 ### For modders:
 

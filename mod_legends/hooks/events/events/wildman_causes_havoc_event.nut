@@ -5,6 +5,7 @@
 	local create = o.create;
 	o.create = function() {
 		create();
+		this.m.Cooldown = 60.0 * this.World.getTime().SecondsPerDay;
 		::Legends.Screens.hook(this, "A", function (_screen) {
 			if (this.m.Wildman != null && this.m.Berserker == null)
 			{

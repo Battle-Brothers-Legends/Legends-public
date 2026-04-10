@@ -772,9 +772,9 @@ CampScreenPainterDialogModule.prototype.UpdateCost = function () {
 		totalcost = totalcost + data.Shield.Shield['Value'];
 	}
 
-	self.mDetailsPanel.TotalCostText.html("" + totalcost);
+	//self.mDetailsPanel.TotalCostText.html("" + totalcost); don't show cost since painting is free
 	var currentMoney = this.mAssets.getValues().Money;
-	if (totalcost == 0 || totalcost > currentMoney) {
+	if (totalcost == 0) { // || totalcost > currentMoney) { don't disable confirm since painting is free
 		self.mDetailsPanel.ConfirmButton.enableButton(false);
 	}
 	else {

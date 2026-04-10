@@ -5,11 +5,24 @@
 		create();
 		this.m.Variants = [1,2,3,4];
 		this.m.Variant = this.m.Variants[this.Math.rand(0, this.m.Variants.len() -1)];
+		this.m.AmmoCost = 1;
+		this.m.WeaponType = this.Const.Items.WeaponType.Dagger;
+		this.setVariant(this.m.Variants[::Math.rand(0, this.m.Variants.len() - 1)]);
+	}
+
+	o.randomizeValues <- function ()
+	{
 		this.m.Ammo = 8;
 		this.m.AmmoMax = 8;
-		this.m.AmmoCost = 1;
-		this.m.ItemType = this.m.ItemType | ::Const.Items.ItemType.Ammo;
-		this.updateVariant();
+		named_weapon.randomizeValues();
+	}
+
+	o.getAmmo <- function() {
+		return this.m.Ammo;
+	}
+
+	o.getAmmoMax <- function() {
+		return this.m.AmmoMax;
 	}
 
 	local onEquip = o.onEquip;

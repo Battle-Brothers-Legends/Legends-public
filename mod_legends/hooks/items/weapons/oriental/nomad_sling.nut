@@ -18,7 +18,8 @@
 		this.m.StaminaModifier = -10;
 		this.m.Condition = 80.0;
 		this.m.ConditionMax = 80.0;
-		this.setVariant(this.Math.rand(0, 2));
+		this.m.Variants = [0, 1, 2];
+		this.setVariant(this.m.Variants[this.Math.rand(0, this.m.Variants.len() - 1)]);
 	}
 
 	o.updateVariant <- function() {

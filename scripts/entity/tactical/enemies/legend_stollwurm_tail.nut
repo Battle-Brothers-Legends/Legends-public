@@ -579,7 +579,7 @@ this.legend_stollwurm_tail <- this.inherit("scripts/entity/tactical/actor", {
 		local skills = this.getSkills();
 		local skills_add = skills.add;
 		skills.add = function( _skill, _order = 0 )	{
-			if ((_skill.getID() in this.getActor().m.Body.m.EffectsSharedWithTail || _skill.getID() == "effects.legends_choked") && (!("IsFromHead" in _skill.m) || !_skill.m.IsFromHead)) {
+			if ((_skill.getID() in this.getActor().m.Body.m.EffectsSharedWithTailLookup || _skill.getID() == ::Legends.Effects.getID(::Legends.Effect.LegendChoked)) && (!("IsFromHead" in _skill.m) || !_skill.m.IsFromHead)) {
 				return;
         	}
         	skills_add(_skill, _order);

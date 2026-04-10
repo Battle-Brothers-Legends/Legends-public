@@ -213,11 +213,13 @@ this.legend_druid_background <- this.inherit("scripts/skills/backgrounds/charact
 
 	function onAddEquipment()
 	{
+		local actor = this.getContainer().getActor();
+		actor.setVeteranPerks(3);
+		local items = actor.getItems();
 		local talents = this.getContainer().getActor().getTalents();
 		talents.resize(this.Const.Attributes.COUNT, 0);
 		talents[this.Const.Attributes.Fatigue] = 2;
 		this.getContainer().getActor().fillTalentValues(2, true);
-		local items = this.getContainer().getActor().getItems();
 		items.equip(this.Const.World.Common.pickArmor([
 			[1, ::Legends.Armor.Barbarian.hide_and_bone_armor]
 		]));

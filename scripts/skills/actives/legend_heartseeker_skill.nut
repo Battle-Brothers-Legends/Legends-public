@@ -68,7 +68,7 @@ this.legend_heartseeker_skill <- this.inherit("scripts/skills/skill", {
 	function getTooltip()
 	{
 		local ret = this.getDefaultTooltip();
-		local properties = this.getContainer().getActor().getCurrentProperties()
+		local properties = this.getContainer().getActor().getCurrentProperties();
 		if ((this.m.IsPolearm && !properties.IsSpecializedInPolearms) || (this.m.IsTwoHanded && !properties.IsSpecializedInSpears)) {
 			ret.push({
 				id = 6,
@@ -79,7 +79,7 @@ this.legend_heartseeker_skill <- this.inherit("scripts/skills/skill", {
 		}
 		return ret;
 	}
-	
+
 	function onAfterUpdate( _properties ) {
 		if (this.m.IsPolearm) {
 			this.m.FatigueCostMult = _properties.IsSpecializedInPolearms ? this.Const.Combat.WeaponSpecFatigueMult : 1.0;

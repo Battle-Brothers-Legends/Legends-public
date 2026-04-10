@@ -395,7 +395,7 @@ this.legend_barbarian_prisoner_contract <- this.inherit("scripts/contracts/contr
 						local money = this.Contract.m.Payment.getOnCompletion();
 						this.World.Assets.addBusinessReputation(this.Const.World.Assets.ReputationOnContractSuccess);
 						this.World.Assets.addMoney(money);
-						local xp = money * 0.50;
+						local xp = this.Math.round(money * 0.1 * this.Const.Combat.GlobalXPMult);
 						local playerRoster = this.World.getPlayerRoster().getAll();
 
 						foreach( bro in playerRoster )
@@ -414,7 +414,7 @@ this.legend_barbarian_prisoner_contract <- this.inherit("scripts/contracts/contr
 			function start()
 			{
 				local money = this.Contract.m.Payment.getOnCompletion();
-				local xpGained = this.Math.round(money * 0.5 * this.Const.Combat.GlobalXPMult);
+				local xpGained = this.Math.round(money * 0.1 * this.Const.Combat.GlobalXPMult);
 				this.List.push({
 					id = 10,
 					icon = "ui/icons/asset_money.png",

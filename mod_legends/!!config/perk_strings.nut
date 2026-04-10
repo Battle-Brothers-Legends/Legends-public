@@ -374,7 +374,7 @@ Ankles, hands, elbows and knees, you've learned how to fight dirty to secure vic
 [color=%active%][u]Active:[/u][/color]
 • Unlocks the [color=%skill%]Debilitate[/color] skill which can prime your next attack to [color=%status%]Cripple[/color] a target for three turns, reducing their ability to inflict damage by [color=%negative%]-25%[/color] and increasing the damage they take by [color=%positive%]+15%[/color].
 
-• Costs [color=%negative%]3[/color] AP and [color=%negative%]10[/color] Fatigue.
+• Costs [color=%negative%]3[/color] AP and [color=%negative%]10[/color] Fatigue. Works on enemy targets hit.
 ";
 
 ::Const.Strings.PerkDescription.LegendReturnFavor <- @"
@@ -908,7 +908,7 @@ Real berserkers don't need pants.
 Put your full weight into every blow!
 
 [color=%passive%][u]Passive:[/u][/color]
-• When using Melee Weapons, Unarmed, Throwing and Bows inflict additional damage, scaling based on [color=%positive%]10%[/color] of your current Hitpoints and [color=%positive%]15%[/color] of your current Fatigue.
+• When using Melee Weapons, Unarmed, Throwing and Bows inflict additional damage, scaling based on [color=%positive%]10%[/color] of your current Hitpoints and [color=%positive%]15%[/color] of your currently available Fatigue (Maximum Fatigue - currently accumulated Fatigue).
 
 • Fatigue calculations are done after gear and values might change in combat.
 ";
@@ -2319,7 +2319,7 @@ Use your size and strength to dominate the battlefield, combining the best of bo
 
 [color=%active%][u]Active:[/u][/color]
 • Unlocks the [color=%skill%]Wind Up[/color] skill which allows you to knock back and [color=%status%]Baffle[/color] an opponent on your next swing.
-• [color=%status%]Baffled[/color] enemies suffer [color=%negative%]-15%[/color] Damage, Fatigue, and Initiative.
+• [color=%status%]Baffled[/color] enemies suffer [color=%negative%]-15%[/color] Damage, Max Fatigue, and Initiative.
 • Costs [color=%negative%]2[/color] AP and [color=%negative%]15[/color] Fatigue.
 • When wielding a two-handed weapon, reduces AP cost to [color=%negative%]1[/color]. Works only with melee weapons, unarmed attacks and one handed slings. With one handed slings it will grant the [color=%skill%]Prepare Bullet[/color] effect.
 ";
@@ -2328,7 +2328,7 @@ Use your size and strength to dominate the battlefield, combining the best of bo
 Even if your strikes don't penetrate the opponent's armor, you'll make sure they feel it.
 
 [color=%passive%][u]Passive:[/u][/color]
-• Increases hitpoint damage by [color=%positive%]10%[/color] of the armor damage done to the target. Attacks that don't deal armor damage or fully penetrate the target's armor will not receive any bonuses, and the bonus damage is subject to damage reductions from the target.
+• Increases hitpoint damage and always inflict a minimum amount of damage to hitpoints equal to [color=%positive%]10%[/color] of the armor damage done to the target. Attacks that don't deal armor damage or fully penetrate the target's armor will not receive any bonuses, and the bonus damage is subject to damage reductions from the target.
 ";
 
 ::Const.Strings.PerkDescription.LegendClarity <- @"
@@ -2382,7 +2382,7 @@ Don't slow down!
 [color=%passive%][u]Passive:[/u][/color]
 • Grants a [color=%positive%]50%[/color] chance to apply [color=%status%]Baffled[/color] on every hit with any weapon, when your Initiative is higher than that of your opponent.
 
-• [color=%status%]Baffled[/color] enemies have [color=%negative%]-15%[/color] damage, Fatigue, and Initiative.
+• [color=%status%]Baffled[/color] enemies suffer [color=%negative%]-15%[/color] Damage, Max Fatigue, and Initiative.
 
 • Increase melee damage by [color=%positive%]2%[/color] for every 100 points of armor.
 ";
@@ -2481,7 +2481,7 @@ Time spent assessing an enemy, finding the arteries, will pay off in blood shed 
 
 • Costs [color=%negative%]2[/color] AP and [color=%negative%]15[/color] Fatigue.
 
-• When [color=%status%]Dual Wielding[/color] flails, both attacks apply [color=%status%]Bleed[/color].
+• When [color=%status%]Dual Wielding[/color] cleavers or whips, both attacks apply [color=%status%]Bleed[/color].
 ";
 
 ::Const.Strings.PerkDescription.LegendPrepareGraze <- @"
@@ -2503,6 +2503,8 @@ If it bleeds, we can kill it.
 • Unlocks the [color=%skill%]Prepare to Bleed[/color] skill which primes your next strike to inflict [color=%damage%]5[/color] [color=%status%]Bleed[/color] damage for the next two turns.
 
 • Costs [color=%negative%]2[/color] AP and [color=%negative%]15[/color] Fatigue.
+
+• When [color=%status%]Dual Wielding[/color] cleavers or whips, both attacks apply [color=%status%]Bleed[/color].
 
 [color=%active%][u]Active:[/u][/color]
 • Unlocks the [color=%skill%]Prepare to Graze[/color] skill which primes your next strike to inflict [color=%damage%]2[/color] [color=%status%]Bleed[/color] damage for the next five turns.
@@ -2879,7 +2881,7 @@ A prayer of devotion grants strength to your allies and baffles the undead.
 
 • Adjacent cultists and undead are [color=%status%]Baffled[/color].
 
-• [color=%status%]Baffled[/color] enemies have their Melee Defense, Initiative, and Max Fatigue reduced by [color=%negative%]15%[/color].
+• [color=%status%]Baffled[/color] enemies suffer [color=%negative%]-15%[/color] Damage, Max Fatigue, and Initiative.
 
 •  Costs [color=%negative%]6[/color] AP and [color=%negative%]30[/color] Fatigue.
 ";
@@ -3023,7 +3025,11 @@ Control the elements, calling down the rain.
 All those years of studying ancient languages finally has a use.
 
 [color=%passive%][u]Passive:[/u][/color]
-• Allows the user to create Ancient Scrolls when given Cloth and Dyes.
+• Allows the user to create Scrolls when given Cloth and Dyes.
+
+• Created scrolls can randomly be one of the following: 'Scroll of .Nut'in', 'Scroll of Natural Talent', 'Battle Scroll', 'Scroll of Experience', 'Scroll of Training'. They will be a trade item, gain the user a Gifted level up, gain [color=%positive%]50%[/color] additional experience for 3 battles, instantly gain [color=%positive%]100-150[/color] experience or instantly gain [color=%positive%]1[/color] training point, respectively.
+
+• These scrolls will make the user [color=%status%]Irritable[/color] but with a significantly lower day cooldown than reading a book or scroll. They also do not negatively impact how many books or scrolls you can read.
 ";
 
 ::Const.Strings.PerkDescription.LegendScholar <- @"
@@ -3064,6 +3070,8 @@ The ability to cut and shape wood is a craft few master.
 
 [color=%passive%][u]Passive:[/u][/color]
 • Allows the creation of fine wood from rough wood in the crafting tent.
+
+• Allows this character to harvest wood while in camp.
 ";
 
 ::Const.Strings.PerkDescription.LegendOreHunter <- @"

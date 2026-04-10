@@ -4,15 +4,15 @@
 	o.m.EffectBounds <- [ [100, 100] ];
 
 	local create = o.create;
-	o.create = function ()
-	{
+	o.create = function () {
 		create();
+		this.m.StaminaModifier = -14;
 		this.m.Variants = [1, 2];
+		this.setVariant(this.m.Variants[::Math.rand(0, this.m.Variants.len() - 1)]);
 		this.m.Description = "An very rare weapon built from valuable and strong materials. Despite its ceremonial look it makes for a terrifying tool of destruction.";
 	}
 
-	o.getTooltip <- function ()
-	{
+	o.getTooltip <- function () {
 		local result = this.named_weapon.getTooltip();
 		if (this.m.PossibleEffectIdx == 0)
 		{

@@ -32,7 +32,10 @@
 	{
 		this.named_weapon.onEquip();
 		::Legends.Actives.grant(this, ::Legends.Active.Slash, function (_skill) {
-			_skill.m.IsGreatSlash = true;
+			_skill.m.IsGreatBreachSlash = true;
+		}.bindenv(this));
+		::Legends.Actives.grant(this, ::Legends.Active.Rupture, function (_skill) {
+			_skill.m.IsMeleeRupture = true;
 		}.bindenv(this));
 		::Legends.Actives.grant(this.weapon, ::Legends.Active.LegendSkewer, function (_skill)
 		{

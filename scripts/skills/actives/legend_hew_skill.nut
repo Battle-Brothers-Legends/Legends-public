@@ -92,7 +92,7 @@ this.legend_hew_skill <- this.inherit("scripts/skills/skill", {
 		this.m.ApplyHead = false;
 		if (success)
 		{
-			hp = target.getHitpoints()
+			hp = target.getHitpoints();
 			local p = this.getContainer().buildPropertiesForUse(this, target);
 			local hitInfo = clone this.Const.Tactical.HitInfo;
 			local damageMult = p.MeleeDamageMult * p.DamageTotalMult;

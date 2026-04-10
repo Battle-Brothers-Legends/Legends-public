@@ -294,7 +294,7 @@ this.camp_painter_dialog_module <- this.inherit("scripts/ui/screens/ui_module", 
 					}
 				}
 
-				this.World.Assets.addMoney(-_result.Cost);
+				//this.World.Assets.addMoney(-_result.Cost); //remove the painting cost
 				result = this.queryRosterInformation();
 				break;
 			}

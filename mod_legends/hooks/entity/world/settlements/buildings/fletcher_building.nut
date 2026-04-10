@@ -84,6 +84,16 @@
 				S = "weapons/heavy_crossbow"
 			},
 			{
+				R = 50,
+				P = 1.0,
+				S = "weapons/legend_hand_crossbow"
+			},
+			{
+				R = 50,
+				P = 1.0,
+				S = "weapons/legend_hand_crossbow"
+			},
+			{
 				R = 10,
 				P = 1.0,
 				S = "weapons/javelin"

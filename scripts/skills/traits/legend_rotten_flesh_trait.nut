@@ -106,7 +106,7 @@ this.legend_rotten_flesh_trait <- this.inherit("scripts/skills/traits/character_
 			this.setDirty(true);
 		};
 
-		actor.m.ExcludedInjuries = ::Legends.Necromancer.excludedTraits();
+		actor.m.ExcludedInjuries = ::Legends.Necromancer.ExcludedInjures;
 
 		local sw_onFactionChanged = actor.onFactionChanged;
 		actor.onFactionChanged = function () {
@@ -141,7 +141,7 @@ this.legend_rotten_flesh_trait <- this.inherit("scripts/skills/traits/character_
 		_properties.IsAffectedByFleeingAllies = false;
 		_properties.IsAffectedByDyingAllies = false;
 		_properties.IsAffectedByFreshInjuries = true;
-		_properties.MoraleEffectMult *= 0.1;
+		_properties.MoraleEffectMult *= 0.0;
 		_properties.FatigueEffectMult *= 0.0;
 		_properties.HitpointsRecoveryRateMult *= 0.1;
 		_properties.MovementFatigueCostMult *= 0.0;

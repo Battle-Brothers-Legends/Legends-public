@@ -172,6 +172,9 @@ this.legend_vala_background <- this.inherit("scripts/skills/backgrounds/characte
 
 	function onAddEquipment()
 	{
+		local actor = this.getContainer().getActor();
+		actor.setVeteranPerks(3);
+		local items = actor.getItems();
 		local talents = this.getContainer().getActor().getTalents();
 		talents.resize(this.Const.Attributes.COUNT, 0);
 		talents[this.Const.Attributes.Bravery] = this.Math.rand(2, 3);

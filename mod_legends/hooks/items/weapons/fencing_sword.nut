@@ -6,7 +6,8 @@
 		this.m.WeaponType = ::Const.Items.WeaponType.Sword;
 		this.m.Condition = 56.0;
 		this.m.ConditionMax = 56.0;
-		this.setVariant(this.Math.rand(0, 2));
+		this.m.Variants = [0, 1, 2];
+		this.setVariant(this.m.Variants[this.Math.rand(0, this.m.Variants.len() - 1)]);
 	}
 
 	o.updateVariant <- function() {

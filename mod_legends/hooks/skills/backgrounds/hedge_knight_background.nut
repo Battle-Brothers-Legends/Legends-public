@@ -74,7 +74,7 @@
 		this.m.Modifiers.Training = this.Const.LegendMod.ResourceModifiers.Training[1];
 		this.m.PerkTreeDynamic = {
 			Weapon = [
-				::Const.Perks.PolearmTree,
+				::Const.Perks.SwordTree,
 				::Const.Perks.AxeTree,
 				::Const.Perks.MaceTree,
 				::Const.Perks.FlailTree,
@@ -123,7 +123,7 @@
 		this.m.HairColors = this.Const.HairColors.Young;
 		this.m.Beards = null;
 		this.m.BeardChance = 0;
-		this.m.Bodies = this.Const.Bodies.AllFemale;
+		this.m.Bodies = this.Const.Bodies.NorthernFemale;
 		this.addBackgroundType(this.Const.BackgroundType.Female);
 	}
 
@@ -255,18 +255,17 @@
 		local actor = this.getContainer().getActor();
 		actor.setVeteranPerks(3);
 		local items = actor.getItems();
-		local r;
 
-		r = this.Math.rand(0, 1);
-
-		if (r == 0)
-		{
-			items.equip(this.new("scripts/items/weapons/greataxe"));
-		}
-		else if (r == 1)
-		{
-			items.equip(this.new("scripts/items/weapons/legend_zweihander"));
-		}
+		local weapons = [
+			"scripts/items/weapons/greataxe",
+			"scripts/items/weapons/longsword",
+			"scripts/items/weapons/legend_zweihander",
+			"scripts/items/weapons/greatsword",
+			"scripts/items/weapons/two_handed_hammer",
+			"scripts/items/weapons/two_handed_flail",
+			"scripts/items/weapons/two_handed_flanged_mace"
+		];
+		items.equip(this.new("scripts/items/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
 
 		items.equip(this.Const.World.Common.pickArmor([
 			[1, ::Legends.Armor.Standard.mail_hauberk],

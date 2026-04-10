@@ -48,6 +48,7 @@ this.legend_named_goblin_axe_2h <- this.inherit("scripts/items/weapons/named/nam
 			_skill.setApplyAxeMastery(true);
 			_skill.setFatigueCost(_skill.getFatigueCostRaw() + 5);
 		}.bindenv(this));
+		::Legends.Actives.grant(this, ::Legends.Active.LegendHaftstrike);
 	}
 
 });

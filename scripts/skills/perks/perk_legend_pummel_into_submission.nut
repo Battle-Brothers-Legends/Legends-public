@@ -12,9 +12,11 @@ this.perk_legend_pummel_into_submission <- this.inherit("scripts/skills/skill", 
 			return;
 		}
 
+		local hitCopy = clone _hitInfo;
+
 		local actor = this.getContainer().getActor();
-		local p = _targetEntity.getSkills().buildPropertiesForBeingHit(actor, _skill, _hitInfo);
-		local fatDamage = this.Math.round(_hitInfo.DamageFatigue * p.FatigueEffectMult * p.FatigueReceivedPerHitMult * p.FatigueLossOnAnyAttackMult);
+		local p = _targetEntity.getSkills().buildPropertiesForBeingHit(actor, _skill, hitCopy);
+		local fatDamage = this.Math.round(hitCopy.DamageFatigue * p.FatigueEffectMult * p.FatigueReceivedPerHitMult * p.FatigueLossOnAnyAttackMult);
 		local overflow = _targetEntity.getFatigue() + fatDamage - _targetEntity.getFatigueMax();
 		if (overflow > 0)
 		{

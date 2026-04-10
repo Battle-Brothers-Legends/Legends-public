@@ -163,10 +163,14 @@ this.legend_legion_legate_background <- this.inherit("scripts/skills/backgrounds
 	function onAdded()
 	{
 		if (this.m.IsNew) {
-			::Legends.Perks.grant(this, ::Legends.Active.LegendCommandLegion);
 			::Legends.Traits.grant(this, ::Legends.Trait.LegendFleshless);
 		}
 		this.character_background.onAdded();
+
+		if (!this.m.Container.hasActive(::Legends.Active.LegendCommandLegion))
+		{
+			::Legends.Actives.grant(this, ::Legends.Active.LegendCommandLegion);
+		}
 
 		local actor = this.getContainer().getActor();
 		actor.m.ExcludedInjuries = ::Legends.Legion.ExcludedInjures;

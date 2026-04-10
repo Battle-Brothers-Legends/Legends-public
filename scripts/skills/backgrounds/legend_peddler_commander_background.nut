@@ -135,7 +135,7 @@ this.legend_peddler_commander_background <- this.inherit("scripts/skills/backgro
 			this.m.Faces = this.Const.Faces.AllWhiteFemale;
 			this.m.Hairs = this.Const.Hair.AllFemale;
 			this.m.HairColors = this.Const.HairColors.All;
-			this.m.Bodies = this.Const.Bodies.AllFemale;
+			this.m.Bodies = this.Const.Bodies.NorthernFemale;
 		}
 		else if (this.m.Ethnicity == 1)
 		{

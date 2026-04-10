@@ -32,11 +32,19 @@ this.legend_redback_dagger <- this.inherit("scripts/items/weapons/weapon", {
 		this.m.Ammo = 8;
 		this.m.AmmoMax = 8;
 		this.m.AmmoCost = 1;
-		this.m.ItemType = this.m.ItemType | ::Const.Items.ItemType.Ammo;
+		this.m.ItemType = this.m.ItemType;
 		this.m.RegularDamage = 26;
 		this.m.RegularDamageMax = 52;
 		this.m.ArmorDamageMult = 0.7;
 		this.m.DirectDamageMult = 0.2;
+	}
+
+	function getAmmo() {
+		return this.m.Ammo;
+	}
+
+	function getAmmoMax() {
+		return this.m.AmmoMax;
 	}
 
 	function getTooltip()

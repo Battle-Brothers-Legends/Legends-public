@@ -161,9 +161,7 @@
 			local troop = ::Const.World.Common.deserializeTroop(_in);
 			troop.Party = this.WeakTableRef(this);
 			troop.Faction = this.getFaction();
-			if (troop.Script != "scripts/entity/tactical/enemies/alp_illusion") {
-				this.m.Troops.push(troop);
-			}
+			this.m.Troops.push(troop);
 		}
 
 		// Temp fix for corrupted saves: a previous bug wrote all troops

@@ -117,7 +117,7 @@ this.legend_accessory_dog <- this.inherit("scripts/items/accessory/accessory", {
 				entity.setVariant(this.getVariant());
 			}
 			else { //white wolf
-				entity.setVariant("bust_direwolf_white_tame_01", entity.getSprite("body").Color, entity.getSprite("head").Saturation);
+				entity.setVariant(this.getVariant(), entity.getSprite("body").Color, entity.getSprite("body").Saturation);
 			}
 
 			if (this.getContainer().getActor().getSkills().hasPerk(::Legends.Perk.LegendDogWhisperer))

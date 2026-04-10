@@ -529,8 +529,9 @@ CharacterScreenInventoryListModule.prototype.createItemSlot = function (_owner, 
 		var sourceItemIdx = (data !== null && 'index' in data) ? data.index : null;
 		var dropIntoBag = (KeyModiferConstants.CtrlKey in _event && _event[KeyModiferConstants.CtrlKey] === true);
 		var repairItem = (KeyModiferConstants.AltKey in _event && _event[KeyModiferConstants.AltKey] === true);
-		var removeUpgrades = (KeyModiferConstants.ShiftKey in _event && _event[KeyModiferConstants.ShiftKey] === true && ("isUsable" in data && data.isUsable === false));
+		var shift = (KeyModiferConstants.ShiftKey in _event && _event[KeyModiferConstants.ShiftKey] === true);
 		var sourceSlotType = (data !== null && 'slotType' in data) ? data.slotType : null;
+		var removeUpgrades = (shift && sourceSlotType !== CharacterScreenIdentifier.ItemSlot.Mainhand && ("isUsable" in data && data.isUsable === false));
 
 		if (isEmpty === false && /*owner !== null &&*/ itemId !== null /*&& itemIdx !== null*/)
 		{
@@ -563,7 +564,8 @@ CharacterScreenInventoryListModule.prototype.createItemSlot = function (_owner, 
 				}
 				else
 				{
-					self.mDataSource.equipInventoryItem(entityId, itemId, null, null);
+					var targetSlot = (shift && sourceSlotType === CharacterScreenIdentifier.ItemSlot.Mainhand) ? CharacterScreenIdentifier.ItemSlot.Offhand : null;
+					self.mDataSource.equipInventoryItem(entityId, itemId, null, targetSlot);
 				}
 			}
 		}

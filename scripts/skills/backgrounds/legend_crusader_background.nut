@@ -89,7 +89,8 @@ this.legend_crusader_background <- this.inherit("scripts/skills/backgrounds/char
 			],
 			Enemy = [
 				::Const.Perks.OccultTree,
-				::Const.Perks.BeastTree
+				::Const.Perks.BeastTree,
+				::Const.Perks.UndeadTree
 			],
 			Class = [
 				::Const.Perks.FaithClassTree
@@ -113,9 +114,7 @@ this.legend_crusader_background <- this.inherit("scripts/skills/backgrounds/char
 				::Legends.Perk.RallyTheTroops,
 				::Legends.Perk.LegendTrueBeliever,
 			],
-			[
-				::Legends.Perk.LegendFavouredEnemyUndead
-			],
+			[],
 			[],
 			[
 				::Legends.Perk.LegendTacticalManeuvers,
@@ -149,7 +148,7 @@ this.legend_crusader_background <- this.inherit("scripts/skills/backgrounds/char
 		this.m.HairColors = this.Const.HairColors.Young;
 		this.m.Beards = null;
 		this.m.BeardChance = 0;
-		this.m.Bodies = this.Const.Bodies.AllFemale;
+		this.m.Bodies = this.Const.Bodies.NorthernFemale;
 		this.addBackgroundType(this.Const.BackgroundType.Female);
 	}
 

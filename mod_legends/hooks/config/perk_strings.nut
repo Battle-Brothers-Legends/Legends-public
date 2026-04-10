@@ -10,7 +10,7 @@
 What could stand before you now?
 
 [color=%passive%][u]Passive:[/u][/color]
-• All damage inflicted is increased by [color=%positive%]+10%[/color] for any weapon used, including fists.
+• All damage inflicted is increased by [color=%positive%]10%[/color].
 ";
 ::Const.Perks.PerkDefObjects[::Legends.Perk.DevastatingStrikes].Tooltip = ::Const.Strings.PerkDescription.DevastatingStrikes;
 ::Const.Strings.PerkDescription.FortifiedMind <- @"
@@ -141,7 +141,7 @@ Master combat with axes and destroying shields.
 [color=%passive%][u]Passive:[/u][/color]
 • Skills build up [color=%negative%]25%[/color] less Fatigue.
 
-• [color=%skill%]Split Shield[/color] damage is increased by [color=%positive%]50%[/color] when used with axes.
+• [color=%skill%]Split Shield[/color] damage is increased by [color=%positive%]50%[/color] when used with axes. When [color=%status%]Dual Wielding[/color] axes, [color=%skill%]Split Shield[/color] damage is combined.
 
 • [color=%skill%]Round Swing[/color] gains [color=%positive%]+5%[/color] chance to hit.
 
@@ -410,7 +410,7 @@ Honor doesn't win you fights, stabbing the enemy where it hurts does.
 I work best alone.
 
 [color=%passive%][u]Passive:[/u][/color]
-• With no ally within two tiles, gain a [color=%positive%]15%[/color] bonus to Melee Skill, Ranged Skill, Melee Defense, Ranged Defense, and Resolve.
+• With no ally within two tiles, gain a [color=%positive%]15%[/color] bonus to Melee Skill, Ranged Skill, Melee Defense, Ranged Defense, and Resolve. Additionally AP cost of moving accross all terrain is reduced by [color=%positive%]1[/color]
 ";
 ::Const.Perks.PerkDefObjects[::Legends.Perk.LoneWolf].Tooltip = ::Const.Strings.PerkDescription.LoneWolf;
 ::Const.Strings.PerkDescription.Recover <- @"

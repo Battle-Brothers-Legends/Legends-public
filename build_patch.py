@@ -11,32 +11,7 @@ import shutil
 import argparse
 import platform
 from pathlib import Path
-from buildscript.lib import VersionExtractor, BuildError
-
-
-def load_config():
-    """Load configuration from .build_config.py if it exists"""
-    config = {"REPO_DIR": "Legends-public", "BB_DIR": None, "BUILD_DIR": "./build"}
-
-    try:
-        config_path = Path(__file__).parent / ".build_config.py"
-        if config_path.exists():
-            import importlib.util
-
-            spec = importlib.util.spec_from_file_location("config", config_path)
-            config_module = importlib.util.module_from_spec(spec)
-            spec.loader.exec_module(config_module)
-
-            # Update config with values from the file
-            for key in config:
-                if hasattr(config_module, key):
-                    config[key] = getattr(config_module, key)
-    except Exception:
-        pass  # Use defaults if config loading fails
-
-    return config
-
-
+from buildscript.lib import VersionExtractor, BuildError, load_config
 
 
 class PatchBuilder:
@@ -44,13 +19,13 @@ class PatchBuilder:
         self.current_dir = Path.cwd()
 
         # Load config first
-        config = load_config()
+        config = load_config(Path(__file__).parent / ".build_config.py")
 
         # Use provided values, fall back to config, then to defaults
         if build_dir is None:
-            build_dir = config["BUILD_DIR"]
+            build_dir = config.BUILD_DIR
         if bb_dir is None:
-            bb_dir = config["BB_DIR"]
+            bb_dir = config.BB_DIR
 
         # Set default paths based on OS if still None
         if bb_dir is None:
@@ -103,12 +78,6 @@ class PatchBuilder:
         except FileNotFoundError:
             print("Warning: git not found")
             return ""
-
-
-    def artifact_name_mod(self):
-        """Generate mod artifact name"""
-        version = self.version_extractor.extract_version()
-        return f"mod_legends-{version}.zip"
 
     def build_helmets(self):
         """Build helmet scripts"""
@@ -200,7 +169,7 @@ class PatchBuilder:
         """Create initial zip archive"""
         import zipfile
 
-        zip_archive = self.artifact_name_mod()
+        zip_archive = self.version_extractor.artifact_name_mod()
         zip_path = self.build_dir / zip_archive
 
         # Change to build directory

@@ -509,25 +509,17 @@ this.healer_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 		return points;
 	}
 
-	function getRequiredTime()
-	{
+	function getRequiredTime(){
 		local points = 0;
-		this.init();
-		if (this.m.Queue == null)
-		{
-			return 0;
-		}
-
-		foreach (r in this.m.Queue)
-		{
-			if (r != null)
-			{
-				points += this.getCost(r.Injury);
+		if (this.m.Queue != null) {
+			foreach (r in this.m.Queue)	{
+				if (r != null) {
+					points += this.getCost(r.Injury);
+				}
 			}
 		}
 		local modifiers = this.getModifiers();
-		if (modifiers.Craft <= 0)
-		{
+		if (modifiers.Craft <= 0) {
 			return 0;
 		}
 		return this.Math.ceil(points / modifiers.Craft);
@@ -547,7 +539,8 @@ this.healer_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 
 	function getResourceCount()
 	{
-		return this.getRequiredTime();
+		this.init();
+		return this.Math.max(this.getRequiredTime(), this.Math.ceil(this.m.PointsNeeded / this.getRate()));
 	}
 
 	function onAdd( _entityID, _injuryID  )

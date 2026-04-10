@@ -14,9 +14,7 @@ this.legend_named_heavy_throwing_axe <- inherit("scripts/items/weapons/named/nam
 	{
 		this.named_weapon.create();
 		this.m.ID = "weapon.legend_named_heavy_throwing_axe";
-		this.m.Variant = 1;
 		this.m.Variants = [1];
-		this.updateVariant();
 		this.m.PrefixList = this.Const.Strings.BarbarianPrefix;
 		this.m.SuffixList = this.Const.Strings.BarbarianPrefix;
 		this.m.NameList = this.Const.Strings.ThrowingAxeNames;
@@ -42,6 +40,7 @@ this.legend_named_heavy_throwing_axe <- inherit("scripts/items/weapons/named/nam
 		this.m.ChanceToHitHead = 5;
 		this.m.IsDroppedAsLoot = true;
 		this.m.AdditionalAccuracy = -5;
+		this.setVariant(this.m.Variants[::Math.rand(0, this.m.Variants.len() - 1)]);
 		this.randomizeValues();
 	}
 

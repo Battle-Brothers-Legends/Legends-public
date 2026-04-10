@@ -1,7 +1,8 @@
 this.legend_RSW_blazing <- this.inherit("scripts/skills/skill", {
-	m = {},
-	function create()
-	{
+	m = {
+		TargetTile = null,
+	},
+	function create() {
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendRswBlazing);
 		this.m.Description = "Rune Sigil: Blazing";
 		this.m.Icon = "ui/rune_sigils/legend_rune_sigil.png";
@@ -12,9 +13,25 @@ this.legend_RSW_blazing <- this.inherit("scripts/skills/skill", {
 		this.m.IsHidden = true;
 	}
 
-	function onTargetHit( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor )
-	{
-		if (this.getItem() == null)
+	function onAnySkillUsed ( _skill, _targetEntity, _properties ) {
+		if (_skill.getItem() != null && _skill.getItem().getID() == this.getID() && _targetEntity != null)
+			this.m.TargetTile = _targetEntity.getTile();
+	}
+
+	function onTargetHit( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor ) {
+		if ( _skill == null || _skill.m.IsWeaponSkill == false )
+			return;
+
+		if (!_skill.isAttack())
+			return;
+
+		if (_skill.getItem() == null)
+			return;
+
+		if (_skill.getItem().getID() != this.getItem().getID())
+			return;
+
+		if (::Legends.S.isEntityNullOrDead(_targetEntity))
 			return;
 
 		local p = {
@@ -32,7 +49,10 @@ this.legend_RSW_blazing <- this.inherit("scripts/skills/skill", {
 			Applicable = @(_a) true
 		};
 
-		local tile = _targetEntity.getTile();
+		local tile = this.m.TargetTile != null ? this.m.TargetTile : _target.getTile();
+		if (tile == null)
+			return;
+
 		if (
 			tile.Subtype != ::Const.Tactical.TerrainSubtype.Snow &&
 			tile.Subtype != ::Const.Tactical.TerrainSubtype.LightSnow &&

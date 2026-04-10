@@ -35,7 +35,7 @@ this.legend_battle_sister_background <- this.inherit("scripts/skills/backgrounds
 		this.m.HairColors = this.Const.HairColors.Old;
 		this.m.Beards = null;
 		this.m.BeardChance = 0;
-		this.m.Bodies = this.Const.Bodies.AllFemale;
+		this.m.Bodies = this.Const.Bodies.NorthernFemale;
 		this.m.Level = this.Math.rand(1, 3);
 		this.m.BackgroundType = this.Const.BackgroundType.OffendedByViolence | this.Const.BackgroundType.Crusader | this.Const.BackgroundType.Female;
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Good;

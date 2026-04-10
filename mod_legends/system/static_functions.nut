@@ -298,14 +298,7 @@
 	if (upgrade[2] == null) { upgText.push("\"\""); }
 		else {upgText.push("\"tabard/" + split(upgrade[2], ".")[2] + "\", " + _armor.getUpgradeVariant(2))}
 	if (upgrade[4] == null) { upgText.push("\"\""); }
-	else {
-		// local vv = "\"armor_upgrades/legend_" + split(upgrade[4], ".")[2] + "_upgrade\", " + this.getUpgradeVariant(4)
-		// if (split(vv, "_")[2] == "legend")
-		// {
-		//     vv =
-		// }
-		upgText.push("\"armor_upgrades/" + split(upgrade[4], ".")[2] + "_upgrade\", " + _armor.getUpgradeVariant(4))
-	}
+		else {upgText.push("\"armor_upgrades/" + split(upgrade[2], ".")[2] + "\", " + _armor.getUpgradeVariant(2))}
 
 	local toPrint = "{"       +
 					"\n\tID = \"CHANGEME\"," +

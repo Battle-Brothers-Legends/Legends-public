@@ -1,5 +1,16 @@
 ::mods_hookExactClass("entity/tactical/enemies/zombie_betrayer", function(o)
 {
+	local create = o.create;
+	o.create = function ()
+	{
+		create();
+		this.m.OnDeathLootTable.extend([
+			[1.0, "scripts/items/misc/legend_masterwork_fabric"],
+			[1.5, "scripts/items/misc/legend_masterwork_metal"],
+			[2.5, "scripts/items/misc/legend_masterwork_tools"]
+		]);
+	}
+
 	local onInit = o.onInit;
 	o.onInit = function ()
 	{

@@ -69,7 +69,7 @@ this.legend_line_them_up_skill <- this.inherit("scripts/skills/skill", {
 				id = 8,
 				type = "text",
 				icon = "ui/icons/ammo.png",
-				text = "Has [color=%positive%]" + ammo + "[/color] charge left"
+				text = "Has [color=%positive%]" + ammo + "[/color] shots left"
 			});
 		}
 		else
@@ -78,7 +78,27 @@ this.legend_line_them_up_skill <- this.inherit("scripts/skills/skill", {
 				id = 8,
 				type = "text",
 				icon = "ui/tooltips/warning.png",
-				text = "[color=%negative%]No charges left[/color]"
+				text = "[color=%negative%]Needs a non-empty powder bag equipped[/color]"
+			});
+		}
+
+		if (!this.getItem().isLoaded())
+		{
+			tooltip.push({
+				id = 9,
+				type = "text",
+				icon = "ui/tooltips/warning.png",
+				text = "[color=%negative%]Must be reloaded before firing again[/color]"
+			});
+		}
+
+		if (this.Tactical.isActive() && this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions()))
+		{
+			tooltip.push({
+				id = 9,
+				type = "text",
+				icon = "ui/tooltips/warning.png",
+				text = "[color=%negative%]Can not be used because this character is engaged in melee[/color]"
 			});
 		}
 
@@ -87,7 +107,7 @@ this.legend_line_them_up_skill <- this.inherit("scripts/skills/skill", {
 
 	function isUsable()
 	{
-		return !this.Tactical.isActive() || this.skill.isUsable() && this.getAmmo() > 0;
+		return this.skill.isUsable() && this.getItem().isLoaded() && !this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions());
 	}
 
 	function getAmmo()
@@ -139,9 +159,9 @@ this.legend_line_them_up_skill <- this.inherit("scripts/skills/skill", {
 			}
 
 			local target = t.getEntity();
-			local success = this.attackEntity(user, target, false);
-			if (::Legends.S.isEntityNullOrDead(t))
+			if (::Legends.S.isEntityNullOrDead(target))
 				continue;
+			local success = this.attackEntity(user, target, false);
 
 			if (success && t.IsVisibleForPlayer)
 			{
