@@ -5,6 +5,12 @@
 		onInitUI();
 		local mainMenuModule = this.m.WorldMenuScreen.getMainMenuModule();
 		mainMenuModule.setOnModOptionsPressedListener(this.main_menu_module_onModOptionsPressed.bindenv(this));
+		mainMenuModule.setOnUploadCompanyPressedListener(this.main_menu_module_onUploadCompanyPressed.bindenv(this));
+	}
+
+	o.main_menu_module_onUploadCompanyPressed <- function()
+	{
+		::FU.UploadCompany.upload();
 	}
 
 	o.main_menu_module_onModOptionsPressed <- function()

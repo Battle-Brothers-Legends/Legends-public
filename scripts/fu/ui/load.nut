@@ -15,6 +15,7 @@
 
 ::mods_registerJS("fu/backend_connection.js");
 ::mods_registerJS("fu/fu_connection.js");
+::mods_registerJS("fu/upload_company.js");
 ::mods_registerJS("fu/ui_screen.js");
 
 local _modSettingsFiles = ::IO.enumerateFiles("ui/mods/fu/mod_settings/");

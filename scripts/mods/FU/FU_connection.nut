@@ -56,4 +56,38 @@ this.FU_connection <- ::inherit("scripts/mods/FU/js_connection", {
 	{
 		::FU.System.Registry.checkIfModVersionsAreNew(_modVersions);
 	}
+
+	function uploadCompanyData( _data )
+	{
+		if (this.m.JSHandle != null)
+		{
+			this.m.JSHandle.asyncCall("uploadCompanyData", _data);
+		}
+	}
+
+	function onUploadCompanyResult( _result )
+	{
+		::FU.UploadCompany.onResult(_result);
+	}
+
+	function fetchCompanyById( _data )
+	{
+		if (this.m.JSHandle != null)
+		{
+			this.m.JSHandle.asyncCall("fetchCompanyById", _data);
+		}
+	}
+
+	function fetchRandomCompany( _data )
+	{
+		if (this.m.JSHandle != null)
+		{
+			this.m.JSHandle.asyncCall("fetchRandomCompany", _data);
+		}
+	}
+
+	function onFetchCompanyResult( _result )
+	{
+		::FU.UploadCompany.onFetchResult(_result);
+	}
 });
