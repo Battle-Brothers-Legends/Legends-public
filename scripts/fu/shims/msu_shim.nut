@@ -37,14 +37,13 @@ if ("Utils" in ::FU) ::MSU.Utils <- ::FU.Utils;
 if ("AI" in ::FU) ::MSU.AI <- ::FU.AI;
 if ("Skills" in ::FU) ::MSU.Skills <- ::FU.Skills;
 if ("Key" in ::FU) ::MSU.Key <- ::FU.Key;
-if ("Tile" in ::FU) ::MSU.Tile <- ::FU.Tile;
 if ("Log" in ::FU) ::MSU.Log <- ::FU.Log;
 if ("Globals" in ::FU) ::MSU.Globals <- ::FU.Globals;
 
 // Common require/checker aliases
 foreach (k, v in ::FU)
 {
-    if (typeof v == "function" && ::FU.String.startsWith(k, "require")) ::MSU[k] <- v;
+    if (typeof v == "function" && ("String" in ::FU) && ::FU.String.startsWith(k, "require")) ::MSU[k] <- v;
 }
 
 // Provide minimal MSU.Serialization API via FU for drop-in compatibility

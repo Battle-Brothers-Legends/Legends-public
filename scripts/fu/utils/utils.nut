@@ -10,7 +10,7 @@
 		Instance = 7,
 		Null = 8
 	},
-	Timers = {}
+	Timers = {},
 	States = {},
 
 	function getDataType( _var )
@@ -189,7 +189,7 @@
 				if ([">", ">="].find(_operator) != null) return true;
 				return false;
 		}
-		throw ::FU.InvalidValue(_compareResult);
+		throw ::FU.Exception.InvalidValue(_compareResult);
 	}
 
 	function getActiveState()

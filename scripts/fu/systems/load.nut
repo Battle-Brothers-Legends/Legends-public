@@ -16,7 +16,7 @@ local function includeLoad( _folder )
 
 local function includeFile( _file )
 {
-	::FU.includeFile("scripts/fu/systems/", _file + ".nut")
+	::FU.includeFile("scripts/fu/systems/", _file + ".nut");
 }
 
 includeFile("system");

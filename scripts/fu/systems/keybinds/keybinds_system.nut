@@ -80,7 +80,8 @@
 		{
 			foreach (key in keybind.getRawKeyCombinations())
 			{
-				this.KeybindsByKey[key].remove(this.KeybindsByKey[key].find(keybind));
+				local idx = this.KeybindsByKey[key].find(keybind);
+				if (idx != null) this.KeybindsByKey[key].remove(idx);
 				if (this.KeybindsByKey[key].len() == 0)
 				{
 					this.KeybindsByKey.rawdelete(key);
@@ -167,7 +168,7 @@
 		}
 		else
 		{
-			keyState = ::FU.Key.getKeyState(_key.getState())
+			keyState = ::FU.Key.getKeyState(_key.getState());
 		}
 		return this.onInput(_key, _environment, _state, keyAsString, keyState);
 	}

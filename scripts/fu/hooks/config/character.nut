@@ -65,7 +65,7 @@
 			Body = _injuriesOnBody
 		});
 
-		if (_damageTypeName = "") _damageTypeName = _damageType;
+		if (_damageTypeName == "") _damageTypeName = _damageType;
 
 		this.DamageTypeName.push(_damageTypeName);
 	}

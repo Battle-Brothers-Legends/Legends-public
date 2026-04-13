@@ -20,7 +20,7 @@ if (!("Safe" in ::FU)) ::FU.Safe <- {};
     try {
         local s = ::World.Assets.getStash();
         return s != null && s.hasEmptySlot();
-    } catch (e) { return true; }
+    } catch (e) { return false; }
 }
 
 ::FU.Safe.InTown <- function()
