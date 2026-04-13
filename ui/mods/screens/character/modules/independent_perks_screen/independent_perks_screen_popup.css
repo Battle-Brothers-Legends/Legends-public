@@ -1,0 +1,22 @@
+/*
+    Independent Perks Popup Dialog
+*/
+.ui-control.popup-dialog.independent-perks-popup-800x720-dialog
+{
+    width: 80.0rem;
+    height: 72.0rem;
+
+    background-image: url("coui://gfx/ui/skin/dialog_background_03.png");
+    background-size: 80.0rem 72.0rem;
+    background-repeat: no-repeat;
+}
+
+.independent-perks-popup-800x720-dialog-content-container
+{
+    width: 100%;
+    height: 58.0rem;
+    position: relative;
+
+    top: 1rem;
+    bottom: 1rem;
+}

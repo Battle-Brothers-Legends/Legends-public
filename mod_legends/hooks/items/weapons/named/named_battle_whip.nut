@@ -7,7 +7,9 @@
 	o.create = function ()
 	{
 		create();
-		this.m.Categories = "Cleaver, Whip, One-Handed";
+		this.m.Variants = [1,2,3];
+		this.setVariant(this.m.Variants[::Math.rand(0, this.m.Variants.len() - 1)]);
+		this.m.Categories = "Cleaver/Whip, One-Handed";
 		this.m.ItemType = this.m.ItemType | this.Const.Items.ItemType.Cultist;
 	}
 
@@ -20,7 +22,7 @@
 				id = 12,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+" + this.m.EffectChanceOrBonus + "%[/color] to Bleed Target on Hit"
+				text = "[color=%positive%]+" + this.m.EffectChanceOrBonus + "%[/color] to Bleed Target on Hit"
 			});
 		}
 		if (this.m.PossibleEffectIdx == 1)
@@ -29,7 +31,7 @@
 				id = 12,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+" + this.m.EffectChanceOrBonus + "%[/color] to Feint Target on Hit"
+				text = "[color=%positive%]+" + this.m.EffectChanceOrBonus + "%[/color] to Feint Target on Hit"
 			});
 		}
 		return result;

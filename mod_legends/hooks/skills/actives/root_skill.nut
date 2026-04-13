@@ -18,7 +18,7 @@
 			id = 5,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "All enemies in an area of [color=" + this.Const.UI.Color.DamageValue + "]7[/color] tiles will become [color=#731f39]Trapped in Vines[/color]"
+			text = "All enemies in an area of [color=%damage%]7[/color] tiles will become [color=#731f39]Trapped in Vines[/color]"
 		});
 
 		if (this.Tactical.isActive() && this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions()))
@@ -27,7 +27,7 @@
 				id = 5,
 				type = "text",
 				icon = "ui/tooltips/warning.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]Can not be used because this character is engaged in melee[/color]"
+				text = "[color=%negative%]Can not be used because this character is engaged in melee[/color]"
 			});
 		}
 
@@ -103,7 +103,9 @@
 			::Legends.Effects.grant(target, ::Legends.Effect.Rooted, function(_effect) {
 				_effect.setDamage(10, 20);
 			}.bindenv(this));
-			::Legends.Actives.grant(this, ::Legends.Active.BreakFree, function (_skill) {
+			if (::Legends.S.skillEntityAliveCheck(target))
+				continue;
+			::Legends.Actives.grant(target, ::Legends.Active.BreakFree, function (_skill) {
 				_skill.setDecal("roots_destroyed");
 				_skill.m.Icon = "skills/active_75.png";
 				_skill.m.IconDisabled = "skills/active_75_sw.png";

@@ -60,31 +60,30 @@
 		this.m.Modifiers.Training = this.Const.LegendMod.ResourceModifiers.Training[1];
 		this.m.PerkTreeDynamic = {
 			Weapon = [
-				this.Const.Perks.SwordTree,
-				this.Const.Perks.DaggerTree,
-				this.Const.Perks.PolearmTree,
-				this.Const.Perks.CrossbowTree,
-				this.Const.Perks.ThrowingTree
+				::Const.Perks.SwordTree,
+				::Const.Perks.DaggerTree,
+				::Const.Perks.CrossbowTree,
+				::Const.Perks.ThrowingTree,
 			],
 			Defense = [
-				this.Const.Perks.LightArmorTree,
-				this.Const.Perks.ClothArmorTree
+				::Const.Perks.LightArmorTree,
+				::Const.Perks.ClothArmorTree
 			],
 			Traits = [
-				this.Const.Perks.FitTree,
-				this.Const.Perks.CalmTree,
-				this.Const.Perks.AgileTree,
-				this.Const.Perks.ViciousTree
+				::Const.Perks.FitTree,
+				::Const.Perks.CalmTree,
+				::Const.Perks.AgileTree,
+				::Const.Perks.ViciousTree
 			],
 			Enemy = [
-				this.Const.Perks.SwordmastersTree,
-				this.Const.Perks.NoblesTree,
-				this.Const.Perks.MercenaryTree
+				::Const.Perks.SwordmastersTree,
+				::Const.Perks.CivilizationTree,
+				::Const.Perks.OutlawTree
 			],
 			Class = [],
 			Profession = [],
 			Magic = [
-				this.Const.Perks.AssassinMagicTree
+				::Const.Perks.AssassinMagicTree
 			]
 		}
 	}
@@ -113,7 +112,7 @@
 				id = 11,
 				type = "text",
 				icon = "ui/icons/chance_to_hit_head.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+10%[/color] Chance To Hit Head"
+				text = "[color=%positive%]+10%[/color] Chance To Hit Head"
 			}
 		);
 		return ret;
@@ -191,9 +190,10 @@
 	}
 
 	o.onAdded <- function ()
-	{
+	{	
+		if (this.m.IsNew)
+			::Legends.Traits.grant(this, ::Legends.Trait.Quick);
 		this.character_background.onAdded();
-		::Legends.Traits.grant(this, ::Legends.Trait.Quick);
 	}
 
 	o.onAddEquipment = function ()

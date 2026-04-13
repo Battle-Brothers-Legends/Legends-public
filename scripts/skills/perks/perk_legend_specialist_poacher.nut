@@ -17,7 +17,7 @@ this.perk_legend_specialist_poacher <- this.inherit("scripts/skills/legend_speci
 	function create()
 	{
 		this.legend_specialist_abstract.create();
-		::Const.Perks.setup(this.m, ::Legends.Perk.LegendSpecialistPoacher);
+		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendSpecialistPoacher);
 		this.m.IconMini = "perk_spec_shortbow_mini";
 		this.m.SoundOnHitHitpoints = [
 			"sounds/combat/cleave_hit_hitpoints_01.wav",

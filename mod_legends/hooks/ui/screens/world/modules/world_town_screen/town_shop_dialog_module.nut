@@ -35,12 +35,86 @@
 		return result;
 	}
 
+	o.general_onUpgradeInventoryItem <- function (_data) {
+		local data = this.helper_queryStashItemDataByIndex(_data[0], _data[2]);
+		if ("error" in data) {
+			return data;
+		}
+		local upgrade = data.stash.upgrade(data.sourceIndex, data.targetIndex);
+		
+		if (upgrade) {
+			//only remove item if it wasn't switched out for another upgrade
+			if (typeof upgrade == "table") {
+				data.stash.removeByIndex(upgrade.index);
+				if (upgrade.item != null) {
+					this.World.Assets.getStash().insert(upgrade.item, upgrade.index);
+				}
+			} else {
+				data.stash.removeByIndex(data.sourceIndex);
+			}			
+		} else {
+			return this.helper_convertErrorToUIData(this.Const.CharacterScreen.ErrorCode.FailedToAcquireStash);
+		}
+		local result = {
+				Result = 0,
+				Assets = this.m.Parent.queryAssetsInformation(),
+				Shop = [],
+				Stash = this.UIDataHelper.convertStashToUIData(false, this.m.InventoryFilter),
+				StashSpaceUsed = data.stash.getNumberOfFilledSlots(),
+				StashSpaceMax = data.stash.getCapacity(),
+				IsRepairOffered = this.m.Shop.isRepairOffered()
+			};
+			this.UIDataHelper.convertItemsToUIData(this.m.Shop.getStash().getItems(), result.Shop, this.Const.UI.ItemOwner.Shop);
+		return result;
+	}
+
+	o.removeInventoryItemUpgrades <- function (_data) {
+		local armor = this.Stash.getItemAtIndex(_data[0]).item;
+		return this.removeAllUpgradesFromItem(armor)
+	}
+
+	o.removeAllUpgradesFromItem <- function (_item, _entity = null) {
+		if (_item != null) {
+			local toRemove = [];
+			foreach (idx, value in _item.getUpgrades()) {
+				if (value != 1 && value != 2 && value != 3) {
+					continue;
+				}
+				toRemove.push(idx);
+			}
+			if (this.Stash.getNumberOfEmptySlots() < toRemove.len()) {
+				return {
+					error = this.Const.UI.Error.NotEnoughStashSpace,
+					code = this.Const.UI.Error.NotEnoughStashSpace
+				};
+			}
+			if(toRemove.len() > 0) {
+				_item.playInventorySound(this.Const.Items.InventoryEventType.Equipped);
+			}
+			foreach (idx in toRemove) {
+				local upgrade = _item.getUpgrade(idx);
+				if (upgrade.isDestroyedOnRemove()) {
+					continue;
+				}
+				this.Stash.add(_item.removeUpgrade(idx));
+			}
+		}
+		return this.UIDataHelper.convertStashAndEntityToUIData(_entity, null, false, this.m.InventoryFilter);
+	}
+
+
 	o.onSwapItem = function ( _data )
 	{
 		local sourceItemIdx = _data[0];
 		local sourceItemOwner = _data[1];
 		local targetItemIdx = _data[2];
 		local targetItemOwner = _data[3];
+		local ownerPlayer = "world-town-screen-shop-dialog-module.stash";
+		local ownerShop = "world-town-screen-shop-dialog-module.shop";
+
+		if (_data[4] && sourceItemOwner == ownerPlayer && targetItemOwner == ownerPlayer) {
+			return this.general_onUpgradeInventoryItem(_data);
+		}
 
 		if (targetItemOwner == null)
 		{
@@ -53,7 +127,7 @@
 
 		switch(sourceItemOwner)
 		{
-		case "world-town-screen-shop-dialog-module.stash":
+		case ownerPlayer:
 			local sourceItem = this.Stash.getItemAtIndex(sourceItemIdx);
 
 			if (sourceItem == null)
@@ -150,7 +224,7 @@
 
 			return result;
 
-		case "world-town-screen-shop-dialog-module.shop":
+		case ownerShop:
 			local sourceItem = shopStash.getItemAtIndex(sourceItemIdx);
 
 			if (sourceItem == null)
@@ -252,18 +326,23 @@
 
 	local onCanSwapItem = o.onCanSwapItem;
 	o.onCanSwapItem = function (_data) {
-		// if checked, use vanilla
-		if (::Legends.Mod.ModSettings.getSetting("SellDialogNamed").getValue())
-			return onCanSwapItem(_data);
-
 		// if not town shop, use vanilla
 		if (_data[1] != "world-town-screen-shop-dialog-module.stash")
 			return onCanSwapItem(_data);
 
-		// if item null, use vanilla
 		local itemWrapper = this.Stash.getItemAtIndex(_data[0]);
+		// if item null, use vanilla
 		if (itemWrapper == null)
 			return onCanSwapItem(_data);
+
+		local ret = onCanSwapItem(_data);
+		// if checked, add overlay data to draw a proper icon
+		if (::Legends.Mod.ModSettings.getSetting("SellDialogNamed").getValue() && ret.Item != null) {
+			ret.Item.slot <- itemWrapper.item.getSlotType();
+			ret.Item.imageOverlayPath <- itemWrapper.item.getIconOverlay();
+			ret.Item.upgrades <- itemWrapper.item.getUpgrades();
+			return ret;
+		}
 
 		// little switcheroo to suppress named items in dialog checks
 		local orgIsPrecious = itemWrapper.item.isPrecious;
@@ -272,11 +351,55 @@
 		itemWrapper.item.isPrecious = @() this.isItemType(this.Const.Items.ItemType.Legendary) || this.isItemType(this.Const.Items.ItemType.Quest) || this.m.IsPrecious;
 		itemWrapper.item.isUnique = @() this.isItemType(this.Const.Items.ItemType.Legendary) || this.isItemType(this.Const.Items.ItemType.Quest) || this.m.IsUnique;
 
-		local ret = onCanSwapItem(_data);
-
 		itemWrapper.item.isPrecious = orgIsPrecious;
 		itemWrapper.item.isUnique = orgIsUnique;
 
 		return ret;
+	}
+
+	function helper_queryStashItemDataByIndex( _sourceIndex, _targetIndex )	{
+		local stash = this.World.Assets.getStash();
+		if (stash == null) {
+			return this.helper_convertErrorToUIData(this.Const.CharacterScreen.ErrorCode.FailedToAcquireStash);
+		}
+
+		local sourceItem = stash.getItemAtIndex(_sourceIndex);
+
+		if (sourceItem == null) {
+			return this.helper_convertErrorToUIData(this.Const.CharacterScreen.ErrorCode.FailedToEquipStashItem);
+		}
+
+		local targetItem;
+
+		if (_targetIndex != null) {
+			targetItem = stash.getItemAtIndex(_targetIndex);
+		}
+
+		return {
+			stash = stash,
+			sourceItem = sourceItem.item,
+			sourceIndex = _sourceIndex,
+			targetItem = targetItem,
+			targetIndex = _targetIndex
+		};
+	}
+
+	function helper_convertErrorToUIData( _errorCode ) {
+		local errorString = "Undefined error.";
+
+		switch(_errorCode) {
+		case this.Const.CharacterScreen.ErrorCode.FailedToAcquireStash:
+			errorString = "Failed to acquire stash.";
+			break;
+
+		case this.Const.CharacterScreen.ErrorCode.FailedToEquipStashItem:
+			errorString = "Failed to equip stash item.";
+			break;
+		}
+
+		return {
+			error = errorString,
+			code = _errorCode
+		};
 	}
 });

@@ -5,10 +5,11 @@
 	o.m.IsForPerkTooltip <- false; // Indicate whether the Perk is a dummy that is being used only to generate unactivated perk tooltip hints
 	o.m.Sound <- [];
 	o.m.AdditionalTooltip <- [];
+	o.m.MinRangeForPerTile <- 2; // to fix HitChanceAdditionalWithEachTile in cases where the min range is higher than 2
+	o.m.IsExecutingOffhand <- false;
 
 	o.getDescription = function()
 	{
-		local gender = -1;
 		local vars = [];
 		if (this.getContainer() == null || (typeof this.getContainer() == "instance" && this.getContainer().isNull()) || this.getContainer().getActor() == null)
 		{
@@ -18,7 +19,6 @@
 		else
 		{
 			local actor = this.getContainer().getActor();
-			gender = actor.getGender();
 			vars.extend([
 				[
 					"name",
@@ -33,42 +33,69 @@
 					actor.getTitle()
 				]
 			]);
+			::Const.LegendMod.extendVarsWithPronouns(vars, actor);
 		}
-		this.Const.LegendMod.extendVarsWithPronouns(vars, gender);
 		return this.buildTextFromTemplate(this.m.Description, vars);
 	}
 
 	local getFatigueCost = o.getFatigueCost;
 	o.getFatigueCost = function()
 	{
-		if (this.m.Container != null && this.m.IsWeaponSkill && this.getItem() != null)
+		local item = this.getItem();
+		if (this.m.Container != null && this.m.IsWeaponSkill && item != null)
 		{
 			local containerProperties = this.m.Container.getActor().getCurrentProperties();
-			this.m.FatigueCostMult = ::Legends.S.isCharacterWeaponSpecialized(containerProperties, this.getItem()) ? this.Const.Combat.WeaponSpecFatigueMult : 1.0;
+			this.m.FatigueCostMult = ::Math.minf(this.m.FatigueCostMult, (item.isItemType(::Const.Items.ItemType.Weapon) && ::Legends.S.isCharacterWeaponSpecialized(containerProperties, this.getItem())) ? this.Const.Combat.WeaponSpecFatigueMult : 1.0);
 		}
 		return getFatigueCost();
 	}
 
+	local getActionPointCost = o.getActionPointCost;
 	o.getActionPointCost = function()
 	{
-		if (this.m.Container.getActor().getCurrentProperties().IsSkillUseFree)
-		{
+		if (this.m.ActionPointCost == 0)
 			return 0;
-		}
-		else if (this.m.Container.getActor().getCurrentProperties().IsSkillUseHalfCost && this.m.ActionPointCost != 0)
-		{
-			return this.Math.max(1, this.Math.floor(this.m.ActionPointCost / 2));
-		}
-		else
-		{
-			return this.m.ActionPointCost;
-		}
+		return this.Math.floor(getActionPointCost());
 	}
 
 	// Allow Perks to push Tooltip elements that will be displayed when the user views the Tooltips of unactivated Perks in the Perk screen
 	o.getUnactivatedPerkTooltipHints <- function()
 	{
 		return [];
+	}
+
+	local getDefaultUtilityTooltip = o.getDefaultUtilityTooltip;
+	o.getDefaultUtilityTooltip = function ()
+	{
+		local ret = getDefaultUtilityTooltip();
+		if (!this.m.IsAttack && this.m.IsTargetingActor)
+		{
+			ret.push({
+				id = 4,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = "Is not considered an attack"
+			});
+		}
+		if (this.m.MaxRange > 1)
+		{
+			ret.push({
+				id = 7,
+				type = "text",
+				icon = "ui/icons/vision.png",
+				text = "Has a range of [color=%positive%]" + this.m.MaxRange + "[/color] tiles"
+			});
+		}
+		if (this.m.MaxLevelDifference > 0)
+		{
+			ret.push({
+				id = 4,
+				type = "text",
+				icon = "ui/icons/vision.png",
+				text = "Has [color=%positive%]" + this.m.MaxLevelDifference + "[/color] max terrain level difference"
+			});
+		}
+		return ret;
 	}
 
 	o.getDefaultTooltip = function()
@@ -98,13 +125,23 @@
 		local damage_armor_min = this.Math.floor(p.DamageRegularMin * p.DamageArmorMult * p.DamageTotalMult * (this.m.IsRanged ? p.RangedDamageMult : p.MeleeDamageMult) * p.DamageTooltipMinMult);
 		local damage_armor_max = this.Math.floor(p.DamageRegularMax * p.DamageArmorMult * p.DamageTotalMult * (this.m.IsRanged ? p.RangedDamageMult : p.MeleeDamageMult) * p.DamageTooltipMaxMult);
 
+		local damageParams = [
+			["regular_min", damage_regular_min],
+			["regular_max", damage_regular_max],
+			["direct_min", damage_direct_min],
+			["direct_max", damage_direct_max],
+			["armor_min", damage_armor_min],
+			["armor_max", damage_armor_max]
+		];
+
 		if (this.m.DirectDamageMult == 1.0)
 		{
 			ret.push({
 				id = 4,
 				type = "text",
 				icon = "ui/icons/regular_damage.png",
-				text = "Inflicts [color=" + this.Const.UI.Color.DamageValue + "]" + damage_direct_min + "[/color] - [color=" + this.Const.UI.Color.DamageValue + "]" + damage_direct_max + "[/color] damage that ignores armor"
+				text = "Inflicts [color=%damage%]%direct_min%[/color] - [color=%damage%]%direct_max%[/color] damage that ignores armor",
+				param = damageParams
 			});
 		}
 		else if (this.m.DirectDamageMult > 0.0)
@@ -113,7 +150,8 @@
 				id = 4,
 				type = "text",
 				icon = "ui/icons/regular_damage.png",
-				text = "Inflicts [color=" + this.Const.UI.Color.DamageValue + "]" + damage_regular_min + "[/color] - [color=" + this.Const.UI.Color.DamageValue + "]" + damage_regular_max + "[/color] damage to hitpoints, of which [color=" + this.Const.UI.Color.DamageValue + "]0[/color] - [color=" + this.Const.UI.Color.DamageValue + "]" + damage_direct_max + "[/color] can ignore armor"
+				text = "Inflicts [color=%damage%]%regular_min%[/color] - [color=%damage%]%regular_max%[/color] damage to hitpoints, of which [color=%damage%]0[/color] - [color=%damage%]%direct_max%[/color] can ignore armor",
+				param = damageParams
 			});
 		}
 		else
@@ -122,7 +160,8 @@
 				id = 4,
 				type = "text",
 				icon = "ui/icons/regular_damage.png",
-				text = "Inflicts [color=" + this.Const.UI.Color.DamageValue + "]" + damage_regular_min + "[/color] - [color=" + this.Const.UI.Color.DamageValue + "]" + damage_regular_max + "[/color] damage to hitpoints"
+				text = "Inflicts [color=%damage%]%regular_min%[/color] - [color=%damage%]%regular_max%[/color] damage to hitpoints",
+				param = damageParams
 			});
 		}
 
@@ -132,25 +171,20 @@
 				id = 5,
 				type = "text",
 				icon = "ui/icons/armor_damage.png",
-				text = "Inflicts [color=" + this.Const.UI.Color.DamageValue + "]" + damage_armor_min + "[/color] - [color=" + this.Const.UI.Color.DamageValue + "]" + damage_armor_max + "[/color] damage to armor"
+				text = "Inflicts [color=%damage%]%armor_min%[/color] - [color=%damage%]%armor_max%[/color] damage to armor",
+				param = damageParams
 			});
 		}
 
-		local accuText = "";
 		if (this.m.HitChanceBonus != 0 && !this.m.IsRanged)
-		{
-			local color = this.m.HitChanceBonus > 0 ? ::Const.UI.Color.PositiveValue : ::Const.UI.Color.NegativeValue;
-			local sign = this.m.HitChanceBonus > 0 ? "+" : "";
-			accuText = "Has [color=" + color + "]" + sign + this.m.HitChanceBonus + "%[/color] chance to hit";
-		}
-
-		if (accuText.len() != 0)
 		{
 			ret.push({
 				id = 7,
 				type = "text",
 				icon = "ui/icons/hitchance.png",
-				text = accuText
+				text = this.m.HitChanceBonus > 0 ?
+					"Has [color=%positive%]+" + this.m.HitChanceBonus + "%[/color] chance to hit" :
+					"Has [color=%negative%]" + this.m.HitChanceBonus + "%[/color] chance to hit"
 			});
 		}
 
@@ -165,7 +199,7 @@
 				id = 10,
 				type = "text",
 				icon = "ui/icons/injury.png",
-				text = "Has a [color=" + this.Const.UI.Color.NegativeValue + "]" + this.Math.floor((1.0 - p.ThresholdToInflictInjuryMult) * 100) + "%[/color] lower threshold to inflict injuries"
+				text = "Has a [color=%negative%]" + this.Math.floor((1.0 - p.ThresholdToInflictInjuryMult) * 100) + "%[/color] lower threshold to inflict injuries"
 			});
 		}
 
@@ -185,7 +219,7 @@
 				id = 7,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "Always inflicts at least [color=" + this.Const.UI.Color.DamageValue + "]" + p.DamageMinimum + "[/color] damage to hitpoints, regardless of armor"
+				text = "Always inflicts at least [color=%damage%]" + p.DamageMinimum + "[/color] damage to hitpoints, regardless of armor"
 			});
 		}
 
@@ -195,7 +229,7 @@
 				id = 7,
 				type = "text",
 				icon = "ui/icons/chance_to_hit_head.png",
-				text = "Has a combined total [color=" + this.Const.UI.Color.PositiveValue + "]" + this.Math.min(100, p.HitChance[this.Const.BodyPart.Head]) + "%[/color] chance to hit the head"
+				text = "Has a combined total [color=%positive%]" + this.Math.min(100, p.HitChance[this.Const.BodyPart.Head]) + "%[/color] chance to hit the head"
 			});
 		}
 
@@ -205,7 +239,7 @@
 				id = 9,
 				type = "hint",
 				icon = "ui/tooltips/warning.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]Can not be used because this character has taken an oath precluding the use of ranged weapons or tools[/color]"
+				text = "[color=%negative%]Can not be used because this character has taken an oath precluding the use of ranged weapons or tools[/color]"
 			});
 		}
 		if (this.m.ChanceSmash > 0)
@@ -214,7 +248,7 @@
 				id = 10,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]" + this.Math.min(100, this.m.ChanceSmash * p.FatalityChanceMult) + "%[/color] chance to smash the target on hits to the head that are killing blows"
+				text = "[color=%positive%]" + this.Math.min(100, this.m.ChanceSmash * p.FatalityChanceMult) + "%[/color] chance to smash the target on hits to the head that are killing blows"
 			});
 		}
 		if (this.m.ChanceDecapitate > 0)
@@ -223,7 +257,7 @@
 				id = 10,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]" + this.Math.min(100, this.m.ChanceDecapitate * p.FatalityChanceMult) + "%[/color] chance to decapitate the target on hits to the head that are killing blows"
+				text = "[color=%positive%]" + this.Math.min(100, this.m.ChanceDecapitate * p.FatalityChanceMult) + "%[/color] chance to decapitate the target on hits to the head that are killing blows"
 			});
 		}
 		if (this.m.ChanceDisembowel > 0)
@@ -232,7 +266,7 @@
 				id = 10,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]" + this.Math.min(100, this.m.ChanceDisembowel * p.FatalityChanceMult) + "%[/color] chance to disembowel the target on hits to the body that are killing blows"
+				text = "[color=%positive%]" + this.Math.min(100, this.m.ChanceDisembowel * p.FatalityChanceMult) + "%[/color] chance to disembowel the target on hits to the body that are killing blows"
 			});
 		}
 
@@ -479,7 +513,7 @@
 		}
 
 		// if (this.m.IsRanged && myTile.getDistanceTo(_targetTile) > 1)
-		if (this.m.IsRanged && myTile.getDistanceTo(_targetTile) > this.m.MinRange)
+		if (this.m.IsRanged && myTile.getDistanceTo(_targetTile) > this.Math.min(this.m.MinRange, this.m.MinRangeForPerTile))
 		{
 			if (_targetTile.IsOccupiedByActor && ("AdditionalHitChance" in this.m))
 			{
@@ -512,16 +546,16 @@
 					text = "Resistance against ranged weapons"
 				});
 			}
-			else if (
-				this.getID() == ::Legends.Actives.getID(::Legends.Active.Puncture) ||
-				this.getID() == ::Legends.Actives.getID(::Legends.Active.Thrust) ||
-				this.getID() == ::Legends.Actives.getID(::Legends.Active.Stab) ||
-				this.getID() == ::Legends.Actives.getID(::Legends.Active.Deathblow) ||
-				this.getID() == ::Legends.Actives.getID(::Legends.Active.Impale) ||
-				this.getID() == ::Legends.Actives.getID(::Legends.Active.Rupture) ||
-				this.getID() == ::Legends.Actives.getID(::Legends.Active.Prong) ||
-				this.getID() == ::Legends.Actives.getID(::Legends.Active.Lunge)
-			)
+			else if (::Legends.S.oneOf(this.getID(),
+				::Legends.Actives.getID(::Legends.Active.Puncture),
+				::Legends.Actives.getID(::Legends.Active.Thrust),
+				::Legends.Actives.getID(::Legends.Active.Stab),
+				::Legends.Actives.getID(::Legends.Active.Deathblow),
+				::Legends.Actives.getID(::Legends.Active.Impale),
+				::Legends.Actives.getID(::Legends.Active.Rupture),
+				::Legends.Actives.getID(::Legends.Active.Prong),
+				::Legends.Actives.getID(::Legends.Active.Lunge)
+			))
 			{
 				ret.push({
 					icon = "ui/tooltips/negative.png",
@@ -588,7 +622,7 @@
 				return "";
 			}
 
-			return "[color=" + this.Const.UI.Color.PositiveValue + "]" + text + "[/color]";
+			return "[color=%positive%]" + text + "[/color]";
 		};
 		local red = function ( text )
 		{
@@ -597,7 +631,7 @@
 				return "";
 			}
 
-			return "[color=" + this.Const.UI.Color.NegativeValue + "]" + text + "[/color]";
+			return "[color=%negative%]" + text + "[/color]";
 		};
 		local isIn = function ( pattern, text )
 		{
@@ -747,7 +781,7 @@
 		local isRangedRelevant = function ()
 		{
 			// return thisSkill.m.IsRanged && myTile.getDistanceTo(_targetTile) > 1 && _targetTile.IsOccupiedByActor;
-			return thisSkill.m.IsRanged && myTile.getDistanceTo(_targetTile) > this.m.MinRange && _targetTile.IsOccupiedByActor;
+			return thisSkill.m.IsRanged && myTile.getDistanceTo(_targetTile) > this.Math.min(this.m.MinRange, this.m.MinRangeForPerTile) && _targetTile.IsOccupiedByActor;
 		};
 
 		if (isRangedRelevant())
@@ -756,7 +790,7 @@
 			local propertiesWithSkill = this.factoringOffhand(thisSkill.m.Container.buildPropertiesForUse(thisSkill, targetEntity));
 			modifier["Distance of " + distanceToTarget] <- function ( row, description )
 			{
-				local hitDistancePenalty = (distanceToTarget - thisSkill.m.MinRange) * propertiesWithSkill.HitChanceAdditionalWithEachTile * propertiesWithSkill.HitChanceWithEachTileMult;
+				local hitDistancePenalty = (distanceToTarget - this.Math.min(thisSkill.m.MinRange, thisSkill.m.MinRangeForPerTile)) * propertiesWithSkill.HitChanceAdditionalWithEachTile * propertiesWithSkill.HitChanceWithEachTileMult;
 				row.text = (hitDistancePenalty > 0 ? green(hitDistancePenalty + "%") : red(-hitDistancePenalty + "%")) + " " + description;
 			};
 			modifier["Line of fire blocked"] <- function ( row, description )
@@ -986,7 +1020,7 @@
 
 		if (this.m.IsRanged)
 		{
-			toHit = toHit + (distanceToTarget - this.m.MinRange) * properties.HitChanceAdditionalWithEachTile * properties.HitChanceWithEachTileMult;
+			toHit = toHit + (distanceToTarget - this.Math.min(this.m.MinRange, this.m.MinRangeForPerTile)) * properties.HitChanceAdditionalWithEachTile * properties.HitChanceWithEachTileMult;
 		}
 
 		if (levelDifference < 0)
@@ -1148,7 +1182,7 @@
 			}
 			if (r == 15)
 			{
-				local loot = this.new("scripts/items/supplies/bandage_item");
+				local loot = this.new("scripts/items/accessory/bandage_item");
 				loot.drop(_targetEntity.getTile());
 			}
 			if (this.m.SoundOnHit.len() != 0)
@@ -1264,7 +1298,7 @@
 
 		if (this.m.IsRanged)
 		{
-			toHit = toHit + (distanceToTarget - this.m.MinRange) * properties.HitChanceAdditionalWithEachTile * properties.HitChanceWithEachTileMult;
+			toHit = toHit + (distanceToTarget - this.Math.min(this.m.MinRange, this.m.MinRangeForPerTile)) * properties.HitChanceAdditionalWithEachTile * properties.HitChanceWithEachTileMult;
 		}
 
 		if (levelDifference < 0)
@@ -1469,6 +1503,7 @@
 			local distanceToTarget = _user.getTile().getDistanceTo(_targetEntity.getTile());
 			_targetEntity.onMissed(_user, this, this.m.IsShieldRelevant && shield != null && r <= toHit + shieldBonus * 2);
 			this.m.Container.onTargetMissed(this, _targetEntity);
+			this.m.IsExecutingOffhand = false;
 			local prohibitDiversion = false;
 
 			if (_allowDiversion && this.m.IsRanged && !_user.isPlayerControlled() && this.Math.rand(1, 100) <= 25 && distanceToTarget > 2)

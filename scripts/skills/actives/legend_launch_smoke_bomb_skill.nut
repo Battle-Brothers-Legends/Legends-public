@@ -1,7 +1,5 @@
 this.legend_launch_smoke_bomb_skill <- this.inherit("scripts/skills/actives/throw_smoke_bomb_skill", {
-	m = {
-		Item = null
-		},
+	m = {},
 	function create()
 	{
 		this.throw_smoke_bomb_skill.create();
@@ -33,13 +31,13 @@ this.legend_launch_smoke_bomb_skill <- this.inherit("scripts/skills/actives/thro
 			id = 5,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "Covers [color=" + this.Const.UI.Color.DamageValue + "]7[/color] tiles in smoke for one round, allowing anyone inside to move freely and ignore zones of control"
+			text = "Covers [color=%damage%]7[/color] tiles in smoke for one round, allowing anyone inside to move freely and ignore zones of control"
 		},
 		{
 			id = 5,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "Increases Ranged Defense by [color=" + this.Const.UI.Color.PositiveValue + "]+100%[/color], but lowers Ranged Skill by [color=" + this.Const.UI.Color.NegativeValue + "]-50%[/color] for anyone inside"
+			text = "Increases Ranged Defense by [color=%positive%]+100%[/color], but lowers Ranged Skill by [color=%negative%]-50%[/color] for anyone inside"
 		},
 		{
 			id = 6,
@@ -66,7 +64,7 @@ this.legend_launch_smoke_bomb_skill <- this.inherit("scripts/skills/actives/thro
 				id = 8,
 				type = "text",
 				icon = "ui/icons/ammo.png",
-				text = "Has [color=" + this.Const.UI.Color.PositiveValue + "]" + ammo + "[/color] use left"
+				text = "Has [color=%positive%]" + ammo + "[/color] use left"
 			});
 		}
 		else
@@ -75,42 +73,25 @@ this.legend_launch_smoke_bomb_skill <- this.inherit("scripts/skills/actives/thro
 				id = 8,
 				type = "text",
 				icon = "ui/tooltips/warning.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]No ammo left in backpack[/color]"
+				text = "[color=%negative%]No ammo left in backpack[/color]"
 			});
 		}
 
 		return ret;
 	}
 
-	function setItem( _i )
-	{
-		this.m.Item = this.WeakTableRef(_i);
-	}
-
 	function isHidden()
 	{
-		if (!::Legends.Perks.get(this, ::Legends.Perk.LegendSlingerSpins))
+		local actor = this.getContainer().getActor();
+		if (actor == null)
+			return true;
+		if (actor.getCurrentProperties() == null)
+			return true;
+		if (!actor.getCurrentProperties().IsSpecializedInSlings)
 			return true;
 		if (this.m.Item != null && !this.m.Item.isNull() && this.m.Item.getAmmo() != 0)
-		{
 			return false;
-		}
-
 		return this.skill.isHidden();
-	}
-
-	function getAmmo()
-	{
-		if (this.m.Item != null && !this.m.Item.isNull())
-			return this.m.Item.getAmmo();
-
-		return 0;
-	}
-
-	function consumeAmmo()
-	{
-		if (this.m.Item != null && !this.m.Item.isNull())
-			this.m.Item.consumeAmmo();
 	}
 
 	function onAnySkillUsed( _skill, _targetEntity, _properties )

@@ -13,19 +13,19 @@
 			id = 6,
 			type = "text",
 			icon = "ui/icons/health.png",
-			text = "Heals [color=" + this.Const.UI.Color.PositiveValue + "]10[/color] hitpoints of the wearer each turn" //was 10
+			text = "Heals [color=%positive%]10[/color] hitpoints of the wearer each turn" //was 10
 		});
 		result.push({
 			id = 7,
 			type = "text",
 			icon = "ui/icons/armor_damage.png",
-			text = "Gain [color=" + this.Const.UI.Color.PositiveValue + "]25%[/color] damage resistance from ranged and thrown attacks"
+			text = "Gain [color=%positive%]25%[/color] damage resistance from ranged and thrown attacks"
 		});
 		result.push({
 			id = 7,
 			type = "text",
 			icon = "ui/icons/armor_damage.png",
-			text = "Receive [color=" + this.Const.UI.Color.NegativeValue + "]50%[/color] more damage from burning attacks"
+			text = "Receive [color=%negative%]50%[/color] more damage from burning attacks"
 		});
 		return result;
 	}

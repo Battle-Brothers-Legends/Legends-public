@@ -86,7 +86,7 @@ local VanillaTree = [
 		local rowL = [];
 		for( local i = 0; i < VanillaTree[row].len(); i = ++i )
 		{
-			local perk = clone this.Const.Perks.PerkDefObjects[VanillaTree[row][i]];
+			local perk = clone ::Const.Perks.PerkDefObjects[VanillaTree[row][i]];
 			perk.Row <- row;
 			perk.Unlocks <- row;
 			rowL.push(perk);
@@ -95,7 +95,7 @@ local VanillaTree = [
 
 		for( local i = 0; i < _custom[row].len(); i = ++i )
 		{
-			local perk = clone this.Const.Perks.PerkDefObjects[_custom[row][i]];
+			local perk = clone ::Const.Perks.PerkDefObjects[_custom[row][i]];
 			perk.Row <- row;
 			perk.Unlocks <- row;
 			rowL.push(perk);
@@ -119,7 +119,7 @@ local VanillaTree = [
 	}
 	pT.addPerk <- function (_perk, _row=0)
 	{
-		local perk = clone this.Const.Perks.PerkDefObjects[_perk];
+		local perk = clone ::Const.Perks.PerkDefObjects[_perk];
 		//Dont add dupes
 		if (perk.ID in this.Map)
 		{
@@ -159,7 +159,7 @@ local VanillaTree = [
 };
 
 
-::Const.Perks.GetDynamicPerkTree <- function (_mins, _map)
+::Const.Perks.GetDynamicPerkTree <- function (_mins, _map, _allowRearrangement = true)
 {
 	// _mins = {
 	// 	WeaponTrees = 6,
@@ -177,7 +177,7 @@ local VanillaTree = [
 	// }
 	//this.logInfo("Getting dynamic perk tree")
 	local tree = [ [], [], [], [], [], [], [], [], [], [], [] ];
-	local attributes = this.Const.Perks.TraitsTrees.getBaseAttributes();
+	local attributes = ::Const.Perks.TraitsTrees.getBaseAttributes();
 
 	local _localMap = {
 		Weapon = [],
@@ -221,9 +221,9 @@ local VanillaTree = [
 		}
 	}
 	if ("Profession" in _map) {
-		foreach (p in _map.Class)
+		foreach (p in _map.Profession)
 		{
-			_localMap.Class.push(p);
+			_localMap.Profession.push(p);
 		}
 	}
 	if ("Magic" in _map) {
@@ -242,7 +242,7 @@ local VanillaTree = [
 		{
 			_exclude.push(tt.ID);
 		}
-		local t = this.Const.Perks.WeaponTrees.getRandom(_exclude);
+		local t = ::Const.Perks.WeaponTrees.getRandom(_exclude);
 		//this.logInfo("Adding weapon perk tree " + t.ID);
 		_localMap.Weapon.push(t);
 
@@ -257,7 +257,7 @@ local VanillaTree = [
 		{
 			_exclude.push(tt.ID);
 		}
-		local t = this.Const.Perks.DefenseTrees.getRandom(_exclude);
+		local t = ::Const.Perks.DefenseTrees.getRandom(_exclude);
 		//this.logInfo("Adding Defense perk tree " + t.ID);
 		_localMap.Defense.push(t);
 	}
@@ -271,7 +271,7 @@ local VanillaTree = [
 		{
 			_exclude.push(tt.ID);
 		}
-		local t = this.Const.Perks.TraitsTrees.getRandom(_exclude);
+		local t = ::Const.Perks.TraitsTrees.getRandom(_exclude);
 		//this.logInfo("Adding Traits perk tree " + t.ID);
 		_localMap.Traits.push(t);
 	}
@@ -290,7 +290,7 @@ local VanillaTree = [
 		{
 			_exclude.push(tt.ID);
 		}
-		local t = this.Const.Perks.EnemyTrees.getRandom(_exclude);
+		local t = ::Const.Perks.EnemyTrees.getRandom(_exclude);
 		//this.logInfo("Adding Enemy perk tree " + t.ID);
 		_localMap.Enemy.push(t);
 	}
@@ -340,7 +340,7 @@ local VanillaTree = [
 		{
 			_exclude.push(tt.ID);
 		}
-		local t = this.Const.Perks.ClassTrees.getRandom(_exclude);
+		local t = ::Const.Perks.ClassTrees.getRandom(_exclude);
 		//this.logInfo("Adding Class perk tree " + t.ID);
 		_localMap.Class.push(t);
 	}
@@ -359,7 +359,7 @@ local VanillaTree = [
 		{
 			_exclude.push(tt.ID);
 		}
-		local t = this.Const.Perks.ProfessionTrees.getRandom(_exclude);
+		local t = ::Const.Perks.ProfessionTrees.getRandom(_exclude);
 		//this.logInfo("Adding Profession perk tree " + t.ID);
 		_localMap.Profession.push(t);
 	}
@@ -395,7 +395,7 @@ local VanillaTree = [
 
 				foreach(j, p in row)
 				{
-					if (_totals[i] >= 13)
+					if (_totals[i] >= 13 && _allowRearrangement)
 					{
 						_overflows[i].push(p);
 						continue;
@@ -498,7 +498,7 @@ local VanillaTree = [
 			{
 				foreach(p in row)
 				{
-					if (this.Const.Perks.isInTree(_tree, p))
+					if (::Const.Perks.isInTree(_tree, p))
 					{
 						continue
 					}

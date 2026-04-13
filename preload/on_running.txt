@@ -6,6 +6,8 @@ gfx/legend_armor_4.png
 gfx/legend_characters.png
 gfx/legend_helmets_0.png
 gfx/legend_helmets_1.png
+gfx/legend_helmets_2.png
+gfx/legend_helmets_3.png
 gfx/legend_weapons.png
 gfx/legend_world.png
 gfx/legend_ui.png

@@ -47,6 +47,7 @@ this.legend_two_handed_club <- this.inherit("scripts/items/weapons/weapon", {
 		::Legends.Actives.grant(this, ::Legends.Active.SplitShield, function (_skill) {
 			_skill.setFatigueCost(_skill.getFatigueCostRaw() + 5);
 		}.bindenv(this));
+		::Legends.Actives.grant(this, ::Legends.Active.LegendHaftstrike);
 	}
 
 });

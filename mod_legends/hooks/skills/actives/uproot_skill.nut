@@ -30,13 +30,13 @@
 			{
 				id = 4,
 				type = "text",
-				icon = "ui/icons/health.png", // removed the /ui here, caught by Necro 6/14/23
-				text = "Inflicts [color=" + this.Const.UI.Color.DamageValue + "]" + p.DamageRegularMin + "[/color] - [color=" + this.Const.UI.Color.DamageValue + "]" + p.DamageRegularMax + "[/color] damage"
+				icon = "ui/icons/health.png",
+				text = "Inflicts [color=%damage%]" + p.DamageRegularMin + "[/color] - [color=%damage%]" + p.DamageRegularMax + "[/color] damage"
 			},
 			{
 				id = 5,
 				type = "text",
-				icon = "ui/icons/special.png", // removed the /ui here, caught by Necro 6/14/23
+				icon = "ui/icons/special.png",
 				text = "Uproot can target the ground and hits up to 3 tiles in a line"
 			}
 		];

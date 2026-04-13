@@ -15,7 +15,7 @@ this.legend_graze_prepared_effect<- this.inherit("scripts/skills/skill", {
 
 	function getDescription()
 	{
-		return "This character is preparing an attack to inflict slow bleeding by grazing the flesh. The next hit will infict [color=" + this.Const.UI.Color.NegativeValue + "]2[/color] bleed damage for the next five turns.";
+		return "This character is preparing an attack to inflict slow bleeding by grazing the flesh. The next hit will infict [color=%negative%]2[/color] bleed damage for the next five turns.";
 	}
 
 	function getTooltip()
@@ -51,12 +51,18 @@ this.legend_graze_prepared_effect<- this.inherit("scripts/skills/skill", {
 		if (this.m.AttacksLeft <= 0)
 			this.removeSelf();
 
+		if (!::Legends.S.isEntityNullOrDead(_targetEntity)) {
+			return;
+		}
+
+		if (_targetEntity.getCurrentProperties().IsImmuneToPoison
+			|| _damageInflictedHitpoints <= this.Const.Combat.MinDamageToApplyBleeding
+			|| _targetEntity.getHitpoints() <= 0) {
+			return;
+		}
+
 		if (_targetEntity.getCurrentProperties().IsImmuneToBleeding || _damageInflictedHitpoints <= this.Const.Combat.MinDamageToApplyBleeding || _targetEntity.getHitpoints() <= 0)
 			return;
-
-		if (!_targetEntity.isAlive())
-			return;
-
 
 		if (!_targetEntity.isHiddenToPlayer())
 		{

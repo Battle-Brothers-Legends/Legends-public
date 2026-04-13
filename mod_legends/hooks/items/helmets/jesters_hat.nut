@@ -26,7 +26,7 @@
 			id = 7,
 			type = "text",
 			icon = "ui/icons/melee_defense.png",
-			text = "[color=" + this.Const.UI.Color.NegativeValue + "]-3[/color] Melee Defense per surrounding enemy"
+			text = "[color=%negative%]-3[/color] Melee Defense per surrounding enemy"
 		});
 
 		return result;

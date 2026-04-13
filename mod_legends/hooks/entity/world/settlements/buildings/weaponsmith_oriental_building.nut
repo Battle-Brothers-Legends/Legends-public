@@ -131,7 +131,7 @@
 			{
 				R = 90,
 				P = 1.0,
-				S = "weapons/greatsword"
+				S = "weapons/legend_zweihander"
 			},
 			{
 				R = 90,
@@ -157,6 +157,11 @@
 				R = 70,
 				P = 1.0,
 				S = "accessory/gloves/legend_cestus_item"
+			},
+			{
+				R = 99,
+				P = 2.0,
+				S = "accessory/gloves/legend_cestus_item_named"
 			},
 			{
 				R = 99,

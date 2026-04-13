@@ -32,7 +32,7 @@ this.legend_eat_porridge_skill <- this.inherit("scripts/skills/actives/base/lege
 				id = 11,
 				type = "text",
 				icon = "ui/icons/health.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+10[/color] Hitpoints per turn for 15 turns"
+				text = "[color=%positive%]+10[/color] Hitpoints per turn for 15 turns"
 			}
 		];
 
@@ -42,7 +42,7 @@ this.legend_eat_porridge_skill <- this.inherit("scripts/skills/actives/base/lege
 				id = 5,
 				type = "text",
 				icon = "ui/tooltips/warning.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]Can not be used because this character is engaged in melee[/color]"
+				text = "[color=%negative%]Can not be used because this character is engaged in melee[/color]"
 			});
 		}
 

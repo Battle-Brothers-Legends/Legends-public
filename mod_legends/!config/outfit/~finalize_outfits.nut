@@ -1,19 +1,6 @@
-::Const.LegendMod.Armors <- {};
-::Const.LegendMod.Helmets <- {};
-
-foreach( i, v in ::Const.LegendMod.ArmorObjs)
-	::Const.LegendMod.Armors[v.ID] <- v;
-
-foreach (i, v in ::Const.LegendMod.HelmObjs)
-	::Const.LegendMod.Helmets[v.ID] <- v;
-
-foreach (i, v in ::Const.LegendMod.OutfitObjs)
-	::Const.LegendMod.Outfits[v.ID] <- v;
-
-
 /**
 * Picks one of legends armors
-* @param _list in form of weighted list [[1, "relative/patch/to/script"]]
+* @param _list in form of weighted list [[1, "relative/path/to/script"]]
 */
 ::Const.World.Common.pickLegendArmor <- function (_list) {
 	return ::Const.World.Common.pickItem(_list, "scripts/items/legend_armor/");
@@ -21,7 +8,7 @@ foreach (i, v in ::Const.LegendMod.OutfitObjs)
 
 /**
 * Picks one of legends helmets
-* @param _list in form of weighted list [[1, "relative/patch/to/script"]]
+* @param _list in form of weighted list [[1, "relative/path/to/script"]]
 */
 ::Const.World.Common.pickLegendHelmet <- function (_list) {
 	return ::Const.World.Common.pickItem(_list, "scripts/items/legend_helmets/");
@@ -29,8 +16,10 @@ foreach (i, v in ::Const.LegendMod.OutfitObjs)
 
 /**
 * Picks one from the list of items
-* @param _list in form of weighted list [[1, "relative/patch/to/script"]]
-* @param _script base path to script
+* @param _list in form of weighted list     [[1, "relative/path/to/script"]]
+* or nested with lambdas:                   [[1, @() [[1, "relative/path/to/script"]]]]
+* or a function that returns item           [[1, @() ::new("path/to/script")]
+* @param _script base path to script or a function that returns item object
 */
 ::Const.World.Common.pickItem <- function (_list, _script = "")
 {
@@ -46,6 +35,15 @@ foreach (i, v in ::Const.LegendMod.OutfitObjs)
 		return null;
 	selected = selected[0];
 
+	if (typeof(selected[1]) == "function") {
+		local result = selected[1]();
+		if (typeof(result) == "array")
+			return this.pickItem(result, _script);
+		if (selected.len() == 3)
+			result.setVariant((typeof(selected[2]) == "array") ? selected[2][::Math.rand(0, selected[2].len() - 1)] : selected[2]);
+		return result;
+	}
+
 	if (_script == "")
 		return selected[1];
 
@@ -54,7 +52,7 @@ foreach (i, v in ::Const.LegendMod.OutfitObjs)
 
 	local ret = ::new(_script + selected[1]);
 	if (selected.len() == 3)
-		ret.setVariant(selected[2]);
+		ret.setVariant((typeof(selected[2]) == "array") ? selected[2][::Math.rand(0, selected[2].len() - 1)] : selected[2]);
 	return ret;
 }
 
@@ -63,8 +61,9 @@ foreach (i, v in ::Const.LegendMod.OutfitObjs)
 * @param _list in form of weighted list, can be either of:
 * - [[1, "helmetID"]]
 * - [[1, ::Legends.Helmet.X]]
-* there are also optional paramters
-* - [[<weighh>, <helmetID|const>, <variant>]]
+* there are also optional parameters
+* - [[<weight>, <helmetID|const>, <variant>]]
+* Variant can be an array, in this case a random variant will be picked out of the array.
 */
 ::Const.World.Common.pickHelmet <- function (_helms)
 {
@@ -79,9 +78,11 @@ foreach (i, v in ::Const.LegendMod.OutfitObjs)
 	selected = selected[0];
 
 	local helm = selected[1];
-	local variant = selected.len() == 3 ? selected[2] : null;
+	
+	local v = (selected.len() == 3) ? selected[2] : null;
+	local variant = (typeof(v) == "array") ? v[::Math.rand(0, v.len() - 1)] : v;
 
-	//Disabling helmet layers temporariliy
+	//Disabling helmet layers temporarily
 	if (helm == "")
 		return null;
 	// return this.new("scripts/items/helmets/" + helm);
@@ -144,7 +145,7 @@ foreach (i, v in ::Const.LegendMod.OutfitObjs)
 * - [[1, "armorID"]]
 * - [[1, ::Legends.Armor.X]]
 * there are also optional paramters
-* - [[<weighh>, <armorID|const>, <variant>, <faction>]]
+* - [[<weight>, <armorID|const>, <variant>, <faction>]]
 * TODO <variant> seems to be unused?
 */
 ::Const.World.Common.pickArmor <- function (_armors)

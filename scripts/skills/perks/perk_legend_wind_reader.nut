@@ -2,12 +2,8 @@ this.perk_legend_wind_reader <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		::Const.Perks.setup(this.m, ::Legends.Perk.LegendWindReader);
+		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendWindReader);
 		this.m.Type = this.Const.SkillType.Perk | this.Const.SkillType.StatusEffect;
-		this.m.Order = this.Const.SkillOrder.Perk;
-		this.m.IsActive = false;
-		this.m.IsStacking = false;
-		this.m.IsHidden = false;
 	}
 
 	function getBonus()
@@ -39,7 +35,7 @@ this.perk_legend_wind_reader <- this.inherit("scripts/skills/skill", {
 				id = 6,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "You are gaining [color=" + this.Const.UI.Color.PositiveValue + "]" + bonus + "[/color] ranged skill due to wind reading"
+				text = "You are gaining [color=%positive%]" + bonus + "[/color] ranged skill due to wind reading"
 			});
 
 
@@ -53,6 +49,20 @@ this.perk_legend_wind_reader <- this.inherit("scripts/skills/skill", {
 
 	}
 
-
+	function onAnySkillUsed( _skill, _targetEntity, _properties )
+	{
+		if (_targetEntity != null)
+		{
+			local targetTile = _targetEntity.getTile();
+			local actor = this.getContainer().getActor();
+			local myTile = actor.getTile();
+			local difference = myTile.Level - targetTile.Level;
+			if (difference >= 1)
+			{
+				local weapon = actor.getItems().getItemAtSlot(::Const.ItemSlot.Mainhand);
+				local bonus = 0.05 * difference;
+				_properties.RangedDamageMult *= 1.0 + bonus;
+			}
+		}
+	}
 });
-

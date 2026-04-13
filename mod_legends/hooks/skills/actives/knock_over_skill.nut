@@ -8,13 +8,13 @@
 			id = 7,
 			type = "text",
 			icon = "ui/icons/vision.png",
-			text = "Has a range of [color=" + this.Const.UI.Color.PositiveValue + "]2" + "[/color] tiles"
+			text = "Has a range of [color=%positive%]2" + "[/color] tiles"
 		});
 		ret.push({
 			id = 6,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "Inflicts [color=" + this.Const.UI.Color.DamageValue + "]" + fatPerHit + "[/color] extra fatigue"
+			text = "Inflicts [color=%damage%]" + fatPerHit + "[/color] extra fatigue"
 		});
 
 		if (this.getContainer().getActor().getCurrentProperties().IsSpecializedInMaces)
@@ -23,7 +23,7 @@
 				id = 7,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "Has a [color=" + this.Const.UI.Color.PositiveValue + "]100%[/color] chance to stun on a hit"
+				text = "Has a [color=%positive%]100%[/color] chance to stun on a hit"
 			});
 		}
 		else
@@ -32,7 +32,7 @@
 				id = 7,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "Has a [color=" + this.Const.UI.Color.PositiveValue + "]" + this.m.StunChance + "%[/color] chance to stun on a hit"
+				text = "Has a [color=%positive%]" + this.m.StunChance + "%[/color] chance to stun on a hit"
 			});
 		}
 
@@ -42,7 +42,7 @@
 				id = 6,
 				type = "text",
 				icon = "ui/icons/hitchance.png",
-				text = "Has [color=" + this.Const.UI.Color.NegativeValue + "]-15%[/color] chance to hit targets directly adjacent because the weapon is too unwieldy"
+				text = "Has [color=%negative%]-15%[/color] chance to hit targets directly adjacent because the weapon is too unwieldy"
 			});
 		}
 		return ret;

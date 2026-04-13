@@ -170,11 +170,6 @@ this.legend_enter_wizard_tower_event <- this.inherit("scripts/events/event", {
 		]);
 	}
 
-	function onDetermineStartScreen()
-	{
-		return "A";
-	}
-
 	function onClear()
 	{
 		this.m.Observer = null;

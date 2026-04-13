@@ -187,6 +187,46 @@ this.legend_white_warwolf <- this.inherit("scripts/entity/tactical/actor", {
 		}
 	}
 
+	function setVariant(_v, _c, _s, _hp = 1.0)
+	{
+		this.m.Items.getAppearance().Body = "bust_direwolf_white_tame_0" + _v + "_body";
+		this.m.Items.getAppearance().Armor = "bust_wolf_02_armor_01";
+
+		local body = getSprite("body");
+		local head = getSprite("head");
+
+		if(_hp != 1.0) { //goblin riders still spawn regular ones
+			body.setBrush("bust_direwolf_white_01_body");
+			head.setBrush("bust_direwolf_white_01_head");
+		}
+		else {
+			body.setBrush("bust_direwolf_white_tame_0" + _v + "_body");
+			head.setBrush("bust_direwolf_white_tame_0" + _v + "_head");
+		}
+		body.Color = _c;
+		body.Saturation = _s;
+
+		head.Color = _c;
+		head.Saturation = _s;
+
+		local armor = this.addSprite("armor");
+		armor.setBrush("bust_wolf_02_armor_01");
+		armor.Visible = false;
+
+		if(_hp != 1.0)
+		{
+			local c = this.m.CurrentProperties;
+			this.m.Hitpoints = this.getHitpointsMax() * _hp;
+			c.Armor[this.Const.BodyPart.Body] = c.Armor[this.Const.BodyPart.Body] * _hp;
+			c.Armor[this.Const.BodyPart.Head] = c.Armor[this.Const.BodyPart.Head] * _hp;
+			this.onUpdateInjuryLayer();
+		}
+		else
+		{
+			this.setDirty(true);
+		}
+	}
+
 	function onInit()
 	{
 		this.actor.onInit();

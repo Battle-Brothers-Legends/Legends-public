@@ -32,13 +32,13 @@ this.legend_eat_pie_skill <- this.inherit("scripts/skills/actives/base/legend_ea
 				id = 11,
 				type = "text",
 				icon = "ui/icons/health.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+1[/color] Hitpoints per turn for 10 turns"
+				text = "[color=%positive%]+1[/color] Hitpoints per turn for 10 turns"
 			},
 			{
 				id = 12,
 				type = "text",
 				icon = "ui/icons/fatigue.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+1[/color] Fatigue per turn for 10 turns"
+				text = "[color=%positive%]+1[/color] Fatigue per turn for 10 turns"
 			}
 		];
 
@@ -48,7 +48,7 @@ this.legend_eat_pie_skill <- this.inherit("scripts/skills/actives/base/legend_ea
 				id = 5,
 				type = "text",
 				icon = "ui/tooltips/warning.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]Can not be used because this character is engaged in melee[/color]"
+				text = "[color=%negative%]Can not be used because this character is engaged in melee[/color]"
 			});
 		}
 

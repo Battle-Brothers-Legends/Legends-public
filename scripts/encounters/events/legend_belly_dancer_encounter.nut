@@ -3,8 +3,8 @@ this.legend_belly_dancer_encounter <- this.inherit("scripts/encounters/encounter
 		Dude = null
     },
     function create() {
-        this.createScreens();
-        this.m.Type = "encounter.legend_belly_dancer_encounter";
+	    this.encounter.create();
+	    this.m.Type = "encounter.legend_belly_dancer_encounter";
         this.m.Name = ::Const.Strings.randomCityEncounterName();
 		this.m.Cooldown = 99999.0 * ::World.getTime().SecondsPerDay;
 	}
@@ -116,9 +116,9 @@ this.legend_belly_dancer_encounter <- this.inherit("scripts/encounters/encounter
 				local armor = items.getItemAtSlot(::Const.ItemSlot.Body);
 				if (armor != null)
 					items.unequip(armor);
-				armor = ::new("scripts/items/legend_armor/cloth/legend_ancient_cloth");
+				armor = ::new("scripts/items/legend_armor/cloth/legend_armor_ancient_cloth");
 				armor.setVariant(4);
-				armor.setUpgrade(::new("scripts/items/legend_armor/plate/legend_southern_arm_guards"));
+				armor.setUpgrade(::new("scripts/items/legend_armor/plate/legend_armor_southern_arm_guards"));
 				items.equip(armor);
 				local helmet = items.getItemAtSlot(::Const.ItemSlot.Head);
 				if (helmet != null)
@@ -222,6 +222,9 @@ this.legend_belly_dancer_encounter <- this.inherit("scripts/encounters/encounter
     }
 
     function isValid(_settlement) {
+	    if (::World.Assets.getOrigin().getID() == "scenario.legend_risen_legion")
+		    return false;
+
 	    if (!_settlement.isSouthern())
 		    return false;
 

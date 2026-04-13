@@ -9,31 +9,32 @@ this.mods_hookExactClass("skills/injury_permanent/missing_hand_injury", function
 
 	o.onRemoved <- function ()
 	{
-		this.getContainer().getActor().getItems().getData()[this.Const.ItemSlot.Offhand][0] = null;
+		this.getContainer().getActor().getItems().getData()[::Const.ItemSlot.Offhand][0] = null;
 	}
 
 	o.onAdded = function ()
 	{
 		local items = this.getContainer().getActor().getItems();
-		
-		if (!this.m.IsNew)
-		{
+
+		if (!this.m.IsNew) {
 			items.getData()[this.Const.ItemSlot.Offhand][0] = -1;
 			return;
 		}
 		local actor = this.getContainer().getActor();
-		local main = actor.getMainhandItem();
-		local off = actor.getOffhandItem();
-		local item;
-		if (main && main.getBlockedSlotType() == this.Const.ItemSlot.Offhand)
-			item = main;
-		else if (off)
-			item = off;
+		local item = actor.getOffhandItem();
+		if (item == null)
+			item = actor.getMainhandItem();
+
+		if (item == null)
+			return; // no weps case
+
+		if (!(item.getBlockedSlotType() == ::Const.ItemSlot.Offhand || item.getCurrentSlotType() == ::Const.ItemSlot.Offhand))
+			return; // some items do not have offhand as blocked even when they're offhand like shields
 
 		if (item && (!actor.isPlacedOnMap() || ::FU.HasTacticalState() && ::FU.IsBattleEnded()))
-		{
+		{   // in case outside battle
 			items.unequip(item);
-			if (items.hasEmptySlot(this.Const.ItemSlot.Bag))
+			if (items.hasEmptySlot(::Const.ItemSlot.Bag))
 			{
 				items.addToBag(item);
 			}
@@ -48,12 +49,14 @@ this.mods_hookExactClass("skills/injury_permanent/missing_hand_injury", function
 			}
 		}
 		else if (item)
-		{
+		{   // during battle
 			items.unequip(item);
-			item.drop();
+			item.drop(actor.getTile());
 		}
 
-		items.getData()[this.Const.ItemSlot.Offhand][0] = -1;
+		items.getData()[::Const.ItemSlot.Offhand][0] = -1;
+
+		actor.setDirty(true);
 		this.m.IsNew = false;
 	}
 

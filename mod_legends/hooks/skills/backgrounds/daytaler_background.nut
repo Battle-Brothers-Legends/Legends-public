@@ -54,25 +54,25 @@
 		this.m.PerkTreeDynamicMins.ClassChance += 0.20;
 		this.m.PerkTreeDynamic = {
 			Weapon = [
-				this.Const.Perks.HammerTree,
-				this.Const.Perks.AxeTree,
-				this.Const.Perks.MaceTree,
-				this.Const.Perks.SlingTree,
-				this.Const.Perks.ShieldTree,
-				this.Const.Perks.ThrowingTree
+				::Const.Perks.HammerTree,
+				::Const.Perks.AxeTree,
+				::Const.Perks.MaceTree,
+				::Const.Perks.SlingTree,
+				::Const.Perks.ShieldTree,
+				::Const.Perks.ThrowingTree
 			],
 			Defense = [
-				this.Const.Perks.MediumArmorTree
+				::Const.Perks.MediumArmorTree
 			],
 			Traits = [
-				this.Const.Perks.FitTree,
-				this.Const.Perks.SturdyTree,
-				this.Const.Perks.LargeTree,
-				this.Const.Perks.IndestructibleTree
+				::Const.Perks.FitTree,
+				::Const.Perks.SturdyTree,
+				::Const.Perks.LargeTree,
+				::Const.Perks.IndestructibleTree
 			],
 			Enemy = [],
 			Class = [],
-			Profession = [], 
+			Profession = [],
 			Magic = []
 		}
 	}

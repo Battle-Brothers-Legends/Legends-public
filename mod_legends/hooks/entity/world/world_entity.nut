@@ -105,14 +105,19 @@
 		this.m.Resources = this.Math.max(0, this.Math.round(_v));
 	}
 
-	o.onSerialize = function ( _out )
-	{
+	o.onSerialize = function (_out) {
 		_out.writeString(this.m.Name);
 		_out.writeString(this.m.Description);
-		_out.writeU8(this.Math.min(255, this.m.Troops.len()));
+		if (this.m.Troops.len() > 255) {
+			::logError("world_entity.onSerialize: " + this.m.Name + " has " + this.m.Troops.len() + " troops, truncating to 255");
+		}
+		local numTroops = this.Math.min(255, this.m.Troops.len());
+		_out.writeU8(numTroops);
 
-		foreach( t in this.m.Troops ) {
-			::Const.World.Common.serializeTroop(_out, t)
+		// CRITICAL SAVE CORRUPTION BUG: Do not serialize more troops than numTroops !!!!
+		// DONT DO THIS ----> foreach( t in this.m.Troops ) { <---- DONT DO THIS
+		for (local i = 0; i < numTroops; i = ++i) {
+			::Const.World.Common.serializeTroop(_out, this.m.Troops[i])
 		}
 
 		_out.writeI32(this.m.CombatID);
@@ -122,8 +127,7 @@
 		local numInventoryItems = this.Math.min(255, this.m.Inventory.len());
 		_out.writeU8(numInventoryItems);
 
-		for( local i = 0; i < numInventoryItems; i = ++i )
-		{
+		for (local i = 0; i < numInventoryItems; i = ++i) {
 			_out.writeString(this.m.Inventory[i]);
 		}
 
@@ -138,8 +142,7 @@
 		this.m.Flags.onSerialize(_out);
 	}
 
-	o.onDeserialize = function ( _in )
-	{
+	o.onDeserialize = function (_in) {
 		this.getSprite("selection").Visible = false;
 		this.setSpriteOffset("selection", this.createVec(-30, 30));
 		this.m.Troops = [];
@@ -148,32 +151,63 @@
 		this.m.Name = _in.readString();
 		this.m.Description = _in.readString();
 
-		if (this.hasLabel("name"))
-		{
+		if (this.hasLabel("name")) {
 			this.getLabel("name").Text = this.getName();
 		}
 
 		local numTroops = _in.readU8();
 
-		for( local i = 0; i < numTroops; i = ++i )
-		{
+		for (local i = 0; i < numTroops; i = ++i) {
 			local troop = ::Const.World.Common.deserializeTroop(_in);
 			troop.Party = this.WeakTableRef(this);
 			troop.Faction = this.getFaction();
-			if (troop.Script != "scripts/entity/tactical/enemies/alp_illusion") {
-				this.m.Troops.push(troop);
-			}
+			this.m.Troops.push(troop);
 		}
 
+		// Temp fix for corrupted saves: a previous bug wrote all troops
+		// but capped the count at 255, leaving extra troop data unread.
+		// This tries to detect and skip extra troops by peeking at the next U16.
+		// CombatID (I32) is either 0 or a large entity ID (>100000 normally),
+		// so its low U16 is never a valid troop type ID (1-999).
+		// Can be removed later.
+		local combatIDLow = _in.readU16();
+		while (numTroops == 255 && combatIDLow > 0 && combatIDLow < 1000) {
+			// This U16 is a troop type ID, not part of CombatID.
+			// Consume the rest of the troop fields to skip it.
+			::logWarning("world_entity.onDeserialize: skipping extra troop (typeID=" + combatIDLow + ") for " + this.m.Name);
+			_in.readU8();  // Variant
+			_in.readF32(); // Strength
+			_in.readI8();  // Row
+			_in.readString(); // Name
+			if (_in.readBool()) { // hasOutfits
+				local outfitCount = _in.readU8();
+				for (local j = 0; j < outfitCount; j = ++j) {
+					if (_in.readU8() == 2) {
+						_in.readU8();
+						_in.readString();
+					} else {
+						_in.readU8();
+						_in.readString();
+						_in.readString();
+					}
+				}
+			}
+			_in.readI32(); // ScriptHash
+			_in.readI16(); // Credits
+			_in.readI8();  // DieRoll
+			combatIDLow = _in.readU16();
+		}
+		// Reconstruct CombatID from the two U16 halves
+		local combatIDHigh = _in.readU16();
+		this.m.CombatID = combatIDLow | (combatIDHigh << 16);
+
 		this.updateStrength();
-		this.m.CombatID = _in.readI32();
 		this.m.CombatSeed = _in.readI32();
 		this.m.VisionRadius = _in.readF32();
 		this.m.VisibilityMult = _in.readF32();
 		local numInventoryItems = _in.readU8();
 
-		for( local i = 0; i != numInventoryItems; i = ++i )
-		{
+		for (local i = 0; i != numInventoryItems; i = ++i) {
 			this.m.Inventory.push(_in.readString());
 		}
 
@@ -186,8 +220,7 @@
 		this.m.IsDroppingLoot = _in.readBool();
 		this.m.Resources = _in.readU16();
 
-		if (this.hasLabel("name"))
-		{
+		if (this.hasLabel("name")) {
 			this.getLabel("name").Visible = true;
 		}
 

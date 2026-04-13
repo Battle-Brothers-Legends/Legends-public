@@ -43,7 +43,7 @@ this.legend_porridge_effect <- this.inherit("scripts/skills/skill", {
 
 	function getDescription()
 	{
-		return "Thanks to eating a hearty porridge, this character regains health for [color=" + this.Const.UI.Color.NegativeValue + "]" + this.m.TurnsLeft + "[/color] turn(s).";
+		return "Thanks to eating a hearty porridge, this character regains health for [color=%negative%]" + this.m.TurnsLeft + "[/color] turn(s).";
 	}
 
 	function getTooltip()
@@ -65,7 +65,7 @@ this.legend_porridge_effect <- this.inherit("scripts/skills/skill", {
 				id = 11,
 				type = "text",
 				icon = "ui/icons/health.png",
-				text = "Heals [color=" + this.Const.UI.Color.PositiveValue + "]+" + rate + "[/color] Hitpoints per turn for " + turns + " turns "
+				text = "Heals [color=%positive%]+" + rate + "[/color] Hitpoints per turn for " + turns + " turns "
 			}
 		];
 		return ret;

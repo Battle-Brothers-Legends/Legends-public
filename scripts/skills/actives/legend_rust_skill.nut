@@ -55,20 +55,20 @@ this.legend_rust_skill <- this.inherit("scripts/skills/legend_magic_skill", {
 			id = 5,
 			type = "text",
 			icon = "ui/icons/armor_damage.png",
-			text = "Inflicts [color=" + this.Const.UI.Color.DamageValue + "]" + damage_armor_min + "[/color] - [color=" + this.Const.UI.Color.DamageValue + "]" + damage_armor_max + "[/color] damage to armor"
+			text = "Inflicts [color=%damage%]" + damage_armor_min + "[/color] - [color=%damage%]" + damage_armor_max + "[/color] damage to armor"
 		});
 
 		ret.push({
 			id = 7,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "Inflicts [color=" + this.Const.UI.Color.DamageValue + "]" + 10 + "[/color] damage to hitpoints that ignores armor"
+			text = "Inflicts [color=%damage%]" + 10 + "[/color] damage to hitpoints that ignores armor"
 		});
 		ret.push({
 			id = 7,
 			type = "text",
 			icon = "ui/icons/vision.png",
-			text = "Has a range of [color=" + this.Const.UI.Color.PositiveValue + "]3[/color] tiles"
+			text = "Has a range of [color=%positive%]3[/color] tiles"
 		});
 
 		// if (!this.getContainer().getActor().getCurrentProperties().IsSpecializedInStaves)
@@ -77,7 +77,7 @@ this.legend_rust_skill <- this.inherit("scripts/skills/legend_magic_skill", {
 		// 		id = 6,
 		// 		type = "text",
 		// 		icon = "ui/icons/hitchance.png",
-		// 		text = "Has [color=" + this.Const.UI.Color.NegativeValue + "]-15%[/color] chance to spread and hit targets directly adjacent because of the corrosive nature of the spell"
+		// 		text = "Has [color=%negative%]-15%[/color] chance to spread and hit targets directly adjacent because of the corrosive nature of the spell"
 		// 	});
 		// }
 

@@ -15,7 +15,7 @@
 			id = 7,
 			type = "text",
 			icon = "ui/icons/fatigue.png",
-			text = "[color=" + this.Const.UI.Color.NegativeValue + "]" + this.m.StaminaModifier + "[/color] fatigue"
+			text = "[color=%negative%]" + this.m.StaminaModifier + "[/color] fatigue"
 		});
 		return result;
 	}

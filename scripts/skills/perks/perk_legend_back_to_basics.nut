@@ -4,7 +4,7 @@ this.perk_legend_back_to_basics <- this.inherit("scripts/skills/skill", {
 	},
 	function create()
 	{
-		::Const.Perks.setup(this.m, ::Legends.Perk.LegendBackToBasics);
+		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendBackToBasics);
 		this.m.Description = "Years of practice lead this character to fall back to %their% instincts and basic training under extreme stress.";
 		this.m.Type = this.Const.SkillType.Perk | this.Const.SkillType.StatusEffect;
 		this.m.Order = this.Const.SkillOrder.Last;
@@ -19,7 +19,7 @@ this.perk_legend_back_to_basics <- this.inherit("scripts/skills/skill", {
 				id = 6,
 				type = "text",
 				icon = "ui/icons/melee_defense.png",
-				text = "Gaining an additional [color=" + this.Const.UI.Color.PositiveValue + "]" + this.m.BasicsStacks * 5 + "[/color] melee defense."
+				text = "Gaining an additional [color=%positive%]" + this.m.BasicsStacks * 5 + "[/color] melee defense."
 			});
 		}
 		if (this.getContainer().getActor().getMoraleState() == this.Const.MoraleState.Fleeing)

@@ -50,7 +50,7 @@ this.legend_violent_decomposition_skill <- this.inherit("scripts/skills/skill", 
 			id = 7,
 			type = "text",
 			icon = "ui/icons/vision.png",
-			text = "Has a range of [color=" + this.Const.UI.Color.PositiveValue + "]" + this.getMaxRange() + "[/color] tiles"
+			text = "Has a range of [color=%positive%]" + this.getMaxRange() + "[/color] tiles"
 		});
 
 		return ret;

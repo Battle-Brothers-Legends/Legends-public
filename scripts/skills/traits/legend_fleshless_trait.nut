@@ -82,6 +82,7 @@ this.legend_fleshless_trait <- this.inherit("scripts/skills/traits/character_tra
 
 		actor.m.MoraleState = this.Const.MoraleState.Ignore;
 		actor.m.ExcludedInjuries = [
+			"injury.collapsed_lung_part",
 			"injury.cut_artery",
 			"injury.cut_throat",
 			"injury.deep_abdominal_cut",
@@ -221,20 +222,19 @@ this.legend_fleshless_trait <- this.inherit("scripts/skills/traits/character_tra
 		local actor = this.getContainer().getActor();
 		actor.m.BloodType = this.Const.BloodType.Bones;
 		actor.m.MoraleState = this.Const.MoraleState.Steady;
+		::Legends.Traits.remove(actor, ::Legends.Trait.RacialSkeleton);
 		actor.getFlags().remove("undead");
 		actor.getFlags().remove("skeleton");
 		actor.getFlags().remove("PlayerSkeleton");
+		// Clear excluded injuries list
+		actor.m.ExcludedInjuries = [];
+		// Restore appearance
+		local background = actor.getBackground();
+		if (background != null) {
+			background.setAppearance();
+		}
+		actor.getItems().updateAppearance();
+		actor.setDirty(true);
 	}
 
-	function onSerialize( _out )
-	{
-		this.skill.onSerialize(_out);
-		_out.writeU8(this.m.InjuryType);
-	}
-
-	function onDeserialize( _in )
-	{
-		this.skill.onDeserialize(_in);
-		this.m.InjuryType = _in.readU8();
-	}
 });

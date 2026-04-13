@@ -51,8 +51,8 @@
 				local roster = this.World.getTemporaryRoster();
 				_event.m.Dude = roster.create("scripts/entity/tactical/player");
 				_event.m.Dude.setStartValuesEx([
-					"female_slave_southern_background"
-				]);
+					"slave_southern_background"
+				], true, 1);
 				_event.m.Dude.setTitle("of the dance");
 				_event.m.Dude.getBackground().m.RawDescription = "You rescued %name% from a life in slavery after she was forced into the vizier\'s harem. She seeks revenge on the vizier.";
 				_event.m.Dude.getBackground().buildDescription(true);
@@ -64,7 +64,7 @@
 				talents[this.Const.Attributes.MeleeSkill] = 3;
 				talents[this.Const.Attributes.Bravery] = 3;
 				::Legends.Perks.grant(_event.m.Dude, ::Legends.Perk.CoupDeGrace);
-				::Legends.Perks.grant(_event.m.Dude, ::Legends.Perk.LegendFavouredEnemySoutherner);
+				::Legends.Perks.grant(_event.m.Dude, ::Legends.Perk.LegendFavouredEnemyCivilization);
 				::Legends.Traits.grant(_event.m.Dude, ::Legends.Trait.LegendTalented);
 				::Legends.Traits.grant(_event.m.Dude, ::Legends.Trait.LegendPragmatic);
 				_event.m.Dude.worsenMood(1.0, "Got taken captive by manhunters");

@@ -6,8 +6,7 @@ this.legend_prayer_of_life_effect <- this.inherit("scripts/skills/skill", {
 	},
 	function create()
 	{
-		this.m.ID = "effects.legend_prayer_of_life";
-		this.m.Name = "Prayer of Hope";
+		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendPrayerOfLife);
 		this.m.Description = "This character has had their vitality restored by a holy chant";
 		this.m.Icon = "ui/perks/prayer_green.png";
 		this.m.Overlay = "prayer_green";
@@ -19,7 +18,7 @@ this.legend_prayer_of_life_effect <- this.inherit("scripts/skills/skill", {
 
 	function getDescription()
 	{
-		return "This character has been blessed by a prayer of hope and will heal [color=" + this.Const.UI.Color.PositiveValue + "]" + this.m.Heal + "[/color] hitpoints each turn for [color=" + this.Const.UI.Color.PositiveValue + "]" + this.m.TurnsLeft + "[/color] more turn(s).";
+		return "This character has been blessed by a prayer of hope and will heal [color=%positive%]" + this.m.Heal + "[/color] hitpoints over [color=%positive%]" + this.m.TurnsLeft + "[/color] more turn(s).";
 	}
 
 	function setHeal(_v)

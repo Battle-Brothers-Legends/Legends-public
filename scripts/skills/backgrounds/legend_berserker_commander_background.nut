@@ -42,7 +42,9 @@ this.legend_berserker_commander_background <- this.inherit("scripts/skills/backg
 			::Legends.Traits.getID(::Legends.Trait.Dastard),
 			::Legends.Traits.getID(::Legends.Trait.Drunkard),
 			::Legends.Traits.getID(::Legends.Trait.Disloyal),
-			::Legends.Traits.getID(::Legends.Trait.Loyal)
+			::Legends.Traits.getID(::Legends.Trait.Loyal),
+			::Legends.Traits.getID(::Legends.Trait.LegendSureshot),
+			::Legends.Traits.getID(::Legends.Trait.LegendSteadyHands),
 		];
 		this.m.Titles = [
 			"the Savage",
@@ -90,36 +92,35 @@ this.legend_berserker_commander_background <- this.inherit("scripts/skills/backg
 		];
 		this.m.PerkTreeDynamic = {
 			Weapon = [
-				this.Const.Perks.MaceTree,
-				this.Const.Perks.FlailTree,
-				this.Const.Perks.HammerTree,
-				this.Const.Perks.AxeTree,
-				this.Const.Perks.CleaverTree,
-				this.Const.Perks.SwordTree,
-				this.Const.Perks.ThrowingTree,
-				this.Const.Perks.TwoHandedTree,
-				this.Const.Perks.FistsTree
+				::Const.Perks.MaceTree,
+				::Const.Perks.FlailTree,
+				::Const.Perks.HammerTree,
+				::Const.Perks.AxeTree,
+				::Const.Perks.CleaverTree,
+				::Const.Perks.SwordTree,
+				::Const.Perks.ThrowingTree,
+				::Const.Perks.FistsTree
 			],
 			Defense = [
-				this.Const.Perks.LightArmorTree,
-				this.Const.Perks.HeavyArmorTree
+				::Const.Perks.LightArmorTree,
+				::Const.Perks.HeavyArmorTree
 			],
 			Traits = [
-				this.Const.Perks.SturdyTree,
-				this.Const.Perks.IndestructibleTree,
-				this.Const.Perks.ViciousTree,
-				this.Const.Perks.LargeTree,
-				this.Const.Perks.MartyrTree,
-				this.Const.Perks.AgileTree,
-				this.Const.Perks.FitTree
+				::Const.Perks.SturdyTree,
+				::Const.Perks.IndestructibleTree,
+				::Const.Perks.ViciousTree,
+				::Const.Perks.LargeTree,
+				::Const.Perks.MartyrTree,
+				::Const.Perks.AgileTree,
+				::Const.Perks.FitTree
 			],
 			Enemy = [
-				this.Const.Perks.OrcsTree,
-				this.Const.Perks.DirewolfTree
+				::Const.Perks.GreenskinTree,
+				::Const.Perks.BeastTree
 			],
 			Class = [],
 			Magic = [
-				this.Const.Perks.BerserkerMagicTree
+				::Const.Perks.BerserkerMagicTree
 			]
 		};
 		this.m.CustomPerkTree = [
@@ -132,7 +133,7 @@ this.legend_berserker_commander_background <- this.inherit("scripts/skills/backg
 				::Legends.Perk.CoupDeGrace,
 			],
 			[
-				::Legends.Perk.Rotation,
+				::Legends.Perk.LegendTacticalManeuvers,
 				::Legends.Perk.Anticipation,
 				::Legends.Perk.LegendTrueBeliever,
 
@@ -166,7 +167,7 @@ this.legend_berserker_commander_background <- this.inherit("scripts/skills/backg
 		this.m.HairColors = this.Const.HairColors.Young;
 		this.m.Beards = null;
 		this.m.BeardChance = 0;
-		this.m.Bodies = this.Const.Bodies.AllFemale;
+		this.m.Bodies = this.Const.Bodies.NorthernFemale;
 		this.addBackgroundType(this.Const.BackgroundType.Female);
 	}
 
@@ -230,7 +231,7 @@ this.legend_berserker_commander_background <- this.inherit("scripts/skills/backg
 			id = 12,
 			type = "text",
 			icon = "ui/icons/regular_damage.png",
-			text = "[color=" + this.Const.UI.Color.PositiveValue + "]5%[/color] bonus damage to [color=#400080]Hand to Hand[/color] and [color=#400080]Choke[/color]"
+			text = "[color=%positive%]5%[/color] bonus damage to [color=#400080]Hand to Hand[/color] and [color=#400080]Choke[/color]"
 		});
 		return ret;
 	}

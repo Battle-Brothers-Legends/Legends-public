@@ -2,8 +2,8 @@ this.legend_rotten_flesh_trait <- this.inherit("scripts/skills/traits/character_
 	m = {
 		InjuryType = this.Math.rand(1, 4)
 	},
-	function create()
-	{
+
+	function create() {
 		this.character_trait.create();
 		this.m.ID = ::Legends.Traits.getID(::Legends.Trait.LegendRottenFlesh);
 		this.m.Name = "Rotting Flesh";
@@ -11,8 +11,7 @@ this.legend_rotten_flesh_trait <- this.inherit("scripts/skills/traits/character_
 		this.m.Icon = "ui/traits/rotting_flesh_trait.png";
 	}
 
-	function getTooltip()
-	{
+	function getTooltip() {
 		return [
 			{
 				id = 1,
@@ -57,8 +56,7 @@ this.legend_rotten_flesh_trait <- this.inherit("scripts/skills/traits/character_
 		];
 	}
 
-	function onAdded()
-	{
+	function onAdded() {
 		local actor = this.getContainer().getActor().get();
 		actor.m.rawset("InjuryType", this.m.InjuryType);
 		actor.m.BloodType = this.Const.BloodType.Dark;
@@ -77,40 +75,29 @@ this.legend_rotten_flesh_trait <- this.inherit("scripts/skills/traits/character_
 		rage.setBrush("mind_control");
 		rage.Visible = false;
 
-		if (::MSU.isKindOf(actor, "player"))
-		{
-			actor.improveMood = function ( _change, _text = "" )
-			{
-			};
-			actor.worsenMood = function ( _change, _text = "" )
-			{
-			};
+		if (::MSU.isKindOf(actor, "player")) {
+			actor.improveMood = function (_change, _text = "") {};
+			actor.worsenMood = function (_change, _text = "") {};
 		}
 
-		actor.onUpdateInjuryLayer = function ()
-		{
+		actor.onUpdateInjuryLayer = function () {
 			local injury = this.getSprite("injury");
 			local injury_body = this.getSprite("injury_body");
 			local p = this.m.Hitpoints / this.getHitpointsMax();
 
-			if (p > 0.5)
-			{
-				if (!injury.HasBrush || injury.getBrush().Name != "zombify_0" + this.m.InjuryType)
-				{
+			if (p > 0.5) {
+				if (!injury.HasBrush || injury.getBrush().Name != "zombify_0" + this.m.InjuryType) {
 					injury.setBrush("zombify_0" + this.m.InjuryType);
 				}
-			}
-			else if (!injury.HasBrush || injury.getBrush().Name != "zombify_0" + this.m.InjuryType + "_injured")
+			} else if (!injury.HasBrush
+				|| injury.getBrush().Name != "zombify_0" + this.m.InjuryType + "_injured")
 			{
 				injury.setBrush("zombify_0" + this.m.InjuryType + "_injured");
 			}
 
-			if (p > 0.5)
-			{
+			if (p > 0.5) {
 				injury_body.setBrush("zombify_body_01");
-			}
-			else
-			{
+			} else {
 				injury_body.setBrush("zombify_body_02");
 			}
 
@@ -119,30 +106,10 @@ this.legend_rotten_flesh_trait <- this.inherit("scripts/skills/traits/character_
 			this.setDirty(true);
 		};
 
-		actor.m.ExcludedInjuries = [
-			"injury.cut_artery",
-			"injury.cut_throat",
-			"injury.deep_abdominal_cut",
-			"injury.deep_chest_cut",
-			"injury.exposed_ribs",
-			"injury.grazed_kidney",
-			"injury.grazed_neck",
-			"injury.infected_wound",
-			"injury.sickness",
-			"injury.stabbed_guts",
-			"injury.broken_nose",
-			"injury.broken_ribs",
-			"injury.crushed_windpipe",
-			"injury.fractured_ribs",
-			"injury.inhaled_flames",
-			"injury.pierced_chest",
-			"injury.pierced_lung",
-			"injury.pierced_side"
-		];
+		actor.m.ExcludedInjuries = ::Legends.Necromancer.ExcludedInjures;
 
 		local sw_onFactionChanged = actor.onFactionChanged;
-		actor.onFactionChanged = function ()
-		{
+		actor.onFactionChanged = function () {
 			sw_onFactionChanged();
 			local flip = !this.isAlliedWithPlayer();
 			this.getSprite("injury_body").setHorizontalFlipping(!flip);
@@ -151,6 +118,14 @@ this.legend_rotten_flesh_trait <- this.inherit("scripts/skills/traits/character_
 
 		if (this.m.IsNew)
 		{
+			foreach (trait in ::Legends.Necromancer.excludedTraits())
+			{
+				if (this.getContainer().getSkillByID(trait))
+				{
+					this.getContainer().removeByID(trait);
+				}
+			}
+
 			this.onApplyAppearance();
 			actor.m.Flags.add("undead");
 			actor.m.Flags.add("zombie");
@@ -159,15 +134,14 @@ this.legend_rotten_flesh_trait <- this.inherit("scripts/skills/traits/character_
 		}
 	}
 
-	function onUpdate( _properties )
-	{
+	function onUpdate(_properties) {
 		_properties.IsImmuneToBleeding = true;
 		_properties.IsImmuneToPoison = true;
 		_properties.IsAffectedByNight = true;
 		_properties.IsAffectedByFleeingAllies = false;
 		_properties.IsAffectedByDyingAllies = false;
 		_properties.IsAffectedByFreshInjuries = true;
-		_properties.MoraleEffectMult *= 0.1;
+		_properties.MoraleEffectMult *= 0.0;
 		_properties.FatigueEffectMult *= 0.0;
 		_properties.HitpointsRecoveryRateMult *= 0.1;
 		_properties.MovementFatigueCostMult *= 0.0;
@@ -177,8 +151,7 @@ this.legend_rotten_flesh_trait <- this.inherit("scripts/skills/traits/character_
 		_properties.ActionPoints -= 3;
 	}
 
-	function onApplyAppearance()
-	{
+	function onApplyAppearance() {
 		local actor = this.getContainer().getActor();
 		local hairColor = this.Const.HairColors.Zombie[this.Math.rand(0, this.Const.HairColors.Zombie.len() - 1)];
 		local sprite = actor.getSprite("head");
@@ -192,49 +165,37 @@ this.legend_rotten_flesh_trait <- this.inherit("scripts/skills/traits/character_
 		local beard = actor.getSprite("beard");
 		local hair = actor.getSprite("hair");
 
-		if (this.Math.rand(1, 100) <= 50)
-		{
-			if (this.m.InjuryType == 4)
-			{
+		if (this.Math.rand(1, 100) <= 50) {
+			if (this.m.InjuryType == 4) {
 				beard.setBrush("beard_" + hairColor + "_" + this.Const.Beards.ZombieExtended[this.Math.rand(0, this.Const.Beards.ZombieExtended.len() - 1)]);
 				beard.setBrightness(0.9);
-			}
-			else
-			{
+			} else {
 				beard.setBrush("beard_" + hairColor + "_" + this.Const.Beards.Zombie[this.Math.rand(0, this.Const.Beards.Zombie.len() - 1)]);
 			}
 
-			if (this.Math.rand(0, this.Const.Hair.Zombie.len()) != this.Const.Hair.Zombie.len())
-			{
+			if (this.Math.rand(0, this.Const.Hair.Zombie.len()) != this.Const.Hair.Zombie.len()) {
 				hair.setBrush("hair_" + hairColor + "_" + this.Const.Hair.Zombie[this.Math.rand(0, this.Const.Hair.Zombie.len() - 1)]);
-			}
-			else
-			{
+			} else {
 				hair.resetBrush();
 			}
 		}
 
-		if (hairColor != "grey")
-		{
+		if (hairColor != "grey") {
 			beard.varyColor(0.1, 0.1, 0.1);
 			hair.Color = beard.Color;
-		}
-		else
-		{
+		} else {
 			beard.varyBrightness(0.1);
 		}
 
 		local beard_top = actor.getSprite("beard_top");
 
-		if (beard.HasBrush && this.doesBrushExist(beard.getBrush().Name + "_top"))
-		{
+		if (beard.HasBrush && this.doesBrushExist(beard.getBrush().Name + "_top")) {
 			beard_top.setBrush(beard.getBrush().Name + "_top");
 			beard_top.Color = beard.Color;
 		}
 	}
 
-	function onCombatStarted()
-	{
+	function onCombatStarted() {
 		local actor = this.getContainer().getActor();
 		actor.m.MoraleState = this.Const.MoraleState.Ignore;
 		actor.m.BloodType = this.Const.BloodType.Dark;
@@ -292,27 +253,32 @@ this.legend_rotten_flesh_trait <- this.inherit("scripts/skills/traits/character_
 		];
 	}
 
-	function onRemoved()
-	{
+	function onRemoved() {
 		local actor = this.getContainer().getActor();
 		actor.m.BloodType = this.Const.BloodType.Red;
 		actor.m.MoraleState = this.Const.MoraleState.Steady;
 		actor.getFlags().remove("undead");
 		actor.getFlags().remove("zombie");
 		actor.getFlags().remove("zombie_minion");
+		// Clear excluded injuries list
+		actor.m.ExcludedInjuries = [];
+		// Restore appearance
+		local background = actor.getBackground();
+		if (background != null) {
+			background.setAppearance();
+		}
+		actor.getItems().updateAppearance();
+		actor.setDirty(true);
 	}
 
-	function onSerialize( _out )
-	{
+	function onSerialize(_out) {
 		this.skill.onSerialize(_out);
 		_out.writeU8(this.m.InjuryType);
 	}
 
-	function onDeserialize( _in )
-	{
+	function onDeserialize(_in) {
 		this.skill.onDeserialize(_in);
 		this.m.InjuryType = _in.readU8();
 	}
 
 });
-

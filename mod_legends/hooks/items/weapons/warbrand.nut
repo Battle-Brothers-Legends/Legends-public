@@ -4,24 +4,29 @@
 	o.create = function() {
 		create();
 		this.m.Value = 1700;
-		this.m.Variant = this.Math.rand(0, 2);
-		this.updateVariant();
+		this.m.Variants = [0, 1, 2];
+		this.setVariant(this.m.Variants[this.Math.rand(0, this.m.Variants.len() - 1)]);
 	}
 
 	o.updateVariant <- function() {
-		if (this.m.Variant == 0) {
-			return;
-		}
-		this.m.Icon = "weapons/melee/warbrand_01_" + this.m.Variant + "_70x70.png";
-		this.m.IconLarge = "weapons/melee/warbrand_01_" + this.m.Variant + ".png";
-		this.m.ArmamentIcon = "icon_scythe_01_" + this.m.Variant;
+		local v = this.getVariant() == 0 ? "" : "_" + this.getVariant();
+		this.m.Icon = "weapons/melee/warbrand_01" + v + "_70x70.png";
+		this.m.IconLarge = "weapons/melee/warbrand_01" + v + ".png";
+		this.m.ArmamentIcon = "icon_scythe_01" + v;
 	}
 
 	o.addSkill <- function( _skill )
 	{
 		if (_skill.getID() == ::Legends.Actives.getID(::Legends.Active.Slash))
-			_skill.m.IsGreatSlash = true;
+			_skill.m.IsGreatBreachSlash = true;
 
 		this.weapon.addSkill(_skill);
+	}
+
+	local onEquip = o.onEquip;
+	o.onEquip = function ()
+	{
+		onEquip();
+		::Legends.Actives.grant(this, ::Legends.Active.LegendIntoTheFray);
 	}
 });

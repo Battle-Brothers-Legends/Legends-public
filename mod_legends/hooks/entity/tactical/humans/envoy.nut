@@ -1,10 +1,7 @@
 ::mods_hookExactClass("entity/tactical/humans/envoy", function(o)
 {
-	local onInit = o.onInit;
-	o.onInit = function ()
-	{
-		onInit();
-		this.setPlaceInFormation(21);
+	o.getPlaceInFormation = function() {
+		return this.m.PlaceInFormation;
 	}
 
 	o.assignRandomEquipment = function ()

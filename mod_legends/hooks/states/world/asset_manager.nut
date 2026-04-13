@@ -10,8 +10,12 @@
 	o.m.FormationIndex <- 0;
 	o.m.FormationNames <- [];
 	o.m.LastRosterSize <- 0;
+
 	o.m.IsArenaTooled <- false;
-	o.m.LastArenaVictory <- 0;
+
+	o.m.HasDrillSergeant <- 0;
+	o.m.HasScholars <- 0;
+	o.m.HasVeterinarian <- 0;
 
 	o.getArmorPartsF <- function()
 	{
@@ -50,7 +54,7 @@
 		local original = this.m.BusinessReputationRate;
 		if (::World.Retinue.hasFollower("follower.minstrel"))
 			this.m.BusinessReputationRate *= 1.25; // should be taken into account (blacksmith influence)
-		addBusinessReputation(_f)
+		addBusinessReputation(_f);
 		this.m.BusinessReputationRate = original;
 	}
 
@@ -105,45 +109,68 @@
 		this.refillAmmo();
 	}
 
-	local refillAmmo = o.refillAmmo;
 	o.refillAmmo = function()
 	{
 		if (m.Ammo == 0)
 			return;
 
+		local roster = this.World.getPlayerRoster().getAll();
+
+		foreach( bro in roster ) {
+			local items = bro.getItems().getAllItems();
+			foreach( item in items ) {
+				if ((item.isItemType(this.Const.Items.ItemType.Ammo) || ("getAmmo" in item && "getAmmoMax" in item)) && (item.getAmmo() < item.getAmmoMax())) {
+					local a = this.Math.min(this.m.Ammo, this.Math.ceil(item.getAmmoMax() - item.getAmmo()) * item.getAmmoCost());
+
+					if (this.m.Ammo >= a) {
+						item.setAmmo(item.getAmmo() + this.Math.ceil(a / item.getAmmoCost()));
+						this.m.Ammo -= a;
+					}
+				}
+
+				if (this.m.Ammo == 0) {
+					break;
+				}
+			}
+		}
+
 		local repairNet = false;
-		foreach( bro in ::World.getPlayerRoster().getAll() )
+		foreach( bro in roster )
 		{
 			if (bro.getFlags().get("LegendsCanRepairNet")) {
-				repairNet = true;
+				::World.Statistics.getFlags().set("LegendsCanRepairNet", true);
 				break;
 			}
 		}
 
-		if (repairNet) { // repairing net in stash too
-			::World.Statistics.getFlags().set("LegendsCanRepairNet", true);
-			foreach (item in getStash().getItems())
+		foreach (item in getStash().getItems())
+		{
+			if (item == null)
+				continue;
+
+			if (!item.isItemType(::Const.Items.ItemType.Net) || !item.isItemType(::Const.Items.ItemType.Ammo) || item.getAmmo() >= item.getAmmoMax())
+				continue;
+
+			local ammoCost = item.getAmmoCost();
+			if (item.isItemType(::Const.Items.ItemType.Net) && ::World.Statistics.getFlags().get("LegendsCanRepairNet"))
 			{
-				if (item == null)
-					continue;
-
-				if (!item.isItemType(::Const.Items.ItemType.Net) || !item.isItemType(::Const.Items.ItemType.Ammo) || item.getAmmo() >= item.getAmmoMax())
-					continue;
-
-				local a = ::Math.min(this.m.Ammo, ::Math.ceil(item.getAmmoMax() - item.getAmmo()) * item.getAmmoCost());
-
-				if (this.m.Ammo >= a) {
-					item.setAmmo(item.getAmmo() + ::Math.ceil(a / item.getAmmoCost()));
-					this.m.Ammo -= a;
-				}
-
-				if (this.m.Ammo == 0)
-					break;
+				ammoCost -= 5;
 			}
-		}
-		else { ::World.Statistics.getFlags().remove("LegendsCanRepairNet"); }
+			local a = ::Math.min(this.m.Ammo, ::Math.ceil(item.getAmmoMax() - item.getAmmo()) * ammoCost);
 
-		refillAmmo();
+			if (this.m.Ammo >= a) {
+
+				item.setAmmo(item.getAmmo() + ::Math.ceil(a / ammoCost));
+				this.m.Ammo -= a;
+			}
+
+			if (this.m.Ammo == 0)
+				break;
+		}
+
+		if (this.World.State.getCurrentTown() != null) {
+			this.World.State.getTownScreen().updateAssets();
+		}
 	}
 
 	o.setArmorParts = function( _f )
@@ -191,13 +218,13 @@
 	local setCampaignSettings = o.setCampaignSettings;
 	o.setCampaignSettings = function ( _settings )
 	{
-		getStash().setResizable(true); // to make sure all starting item to be added without issue
+		this.getStash().setResizable(true); // to make sure all starting item to be added without issue
 
 		if (!("IsExplorationMode" in _settings))
 			_settings.IsExplorationMode <- false;
 
 		setCampaignSettings(_settings);
-		calculateStartingStashSize(_settings);
+		this.calculateStartingStashSize(_settings);
 
 		/* probably don't need this as legendary economic makes all starting resources to be 0 afterall
 		if (_settings.BudgetDifficulty == this.Const.Difficulty.Legendary &&
@@ -218,10 +245,10 @@
 	o.calculateStartingStashSize <- function( _settings )
 	{
 		local size = ::Const.LegendMod.MaxResources[_settings.EconomicDifficulty].Stash + ::World.Assets.getOrigin().getStashModifier();
-		getStash().setResizable(false); // turn off the infinite stash size
-		getStash().sort();
-		getStash().resize(size);
-		::World.Flags.set("LegendStartingStash", size);
+		this.getStash().setResizable(false); // turn off the infinite stash size
+		this.getStash().sort();
+		this.getStash().resize(size);
+		::Legends.Stash.setStartingSize(size);
 	}
 
 	o.getHealingRequired = function ()
@@ -613,7 +640,7 @@
 			 local items = this.m.Stash.getItems();
 			 local stashmaxrepairpotential = this.Math.ceil(roster.len() * this.Const.Difficulty.RepairMult[this.World.Assets.getEconomicDifficulty()] * this.m.RepairSpeedMult * this.Const.World.Assets.ArmorPerHour); //otherwise fixed version will be too good
 			 if (::World.Retinue.hasFollower("follower.blacksmith"))
-				stashmaxrepairpotential *= 1.33 // should be taken into account (blacksmith influence)
+				stashmaxrepairpotential *= 1.33; // should be taken into account (blacksmith influence)
 			 foreach( item in items )
 			 {
 				if (this.isCamping()) //disable in camp, otherwise mess
@@ -1096,7 +1123,7 @@
 			]
 		];
 
-		this.Const.LegendMod.extendVarsWithPronouns(vars, bro.Bro.getGender());
+		::Const.LegendMod.extendVarsWithPronouns(vars, bro.Bro);
 
 		if (_isPositive)
 		{
@@ -1222,16 +1249,6 @@
 			this.setFormationName(i, _in.readString())
 		}
 		this.m.LastDayResourcesUpdated = _in.readU16();
-
-		local current = getStash().getCapacity();
-		local s = 0;
-
-		foreach( bro in ::World.getPlayerRoster().getAll())
-		{
-			s += bro.getStashModifier();
-		}
-
-		::World.Flags.set("LegendStartingStash", ::Math.max(0, current - s)); // switch to the new way to calculate stash modifier
 	}
 
 });

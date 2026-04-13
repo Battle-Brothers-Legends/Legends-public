@@ -57,14 +57,14 @@ this.legend_demon_banshee_trophy_item <- this.inherit("scripts/items/accessory/a
 			id = 10,
 			type = "text",
 			icon = "ui/icons/initiative.png",
-			text = "[color=" + this.Const.UI.Color.PositiveValue + "]+10[/color] Initiative"
+			text = "[color=%positive%]+10[/color] Initiative"
 		});
-		
+
 		result.push({
 			id = 10,
 			type = "text",
 			icon = "ui/icons/fatigue.png",
-			text = "[color=" + this.Const.UI.Color.PositiveValue + "]+2[/color] Fatigue Recovery Rate"
+			text = "[color=%positive%]+2[/color] Fatigue Recovery Rate"
 		});
 		return result;
 	}

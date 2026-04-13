@@ -21,26 +21,28 @@
 		this.m.Modifiers.Training = this.Const.LegendMod.ResourceModifiers.Training[1];
 		this.m.PerkTreeDynamic = {
 			Weapon = [
-				this.Const.Perks.TwoHandedTree,
-				this.Const.Perks.PolearmTree,
-				this.Const.Perks.AxeTree,
-				this.Const.Perks.CrossbowTree
+				::Const.Perks.SwordTree,
+				::Const.Perks.PolearmTree,
+				::Const.Perks.AxeTree,
+				::Const.Perks.CrossbowTree
 			],
 			Defense = [
-				this.Const.Perks.HeavyArmorTree
+				::Const.Perks.HeavyArmorTree
 			],
 			Traits = [
-				this.Const.Perks.TrainedTree,
-				this.Const.Perks.ViciousTree,
-				this.Const.Perks.LargeTree,
-				this.Const.Perks.FitTree
+				::Const.Perks.TrainedTree,
+				::Const.Perks.ViciousTree,
+				::Const.Perks.LargeTree,
+				::Const.Perks.FitTree
 			],
 			Enemy = [
-				this.Const.Perks.SwordmastersTree
+				::Const.Perks.SwordmastersTree
 			],
 			Class = [],
 			Profession = [], 
-			Magic = []
+			Magic = [
+				this.Const.Perks.ImmortalMagicTree
+			]
 		}
 	}
 
@@ -56,5 +58,10 @@
 		actor.setTitle("the Kingsguard");
 		::Legends.Traits.grant(this, ::Legends.Trait.Loyal);
 		::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
+	}
+
+	o.onAddEquipment <- function() {
+		local actor = this.getContainer().getActor();
+		actor.setVeteranPerks(3);
 	}
 });

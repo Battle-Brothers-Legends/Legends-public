@@ -60,9 +60,6 @@ this.legend_mummy <- this.inherit("scripts/entity/tactical/actor", {
 		local sprite_body = this.getSprite("body");
 		local sprite_head = this.getSprite("head");
 		local sprite_face = this.getSprite("face");
-		local sprite_hair = this.getSprite("hair");
-		local sprite_beard = this.getSprite("beard");
-		local sprite_beard_top = this.getSprite("beard_top");
 		local corpse = clone this.Const.Corpse;
 
 		if (_tile != null)
@@ -99,35 +96,11 @@ this.legend_mummy <- this.inherit("scripts/entity/tactical/actor", {
 					decal.Scale = 0.9;
 				}
 
-				if (!appearance.HideBeard && !appearance.HideCorpseHead && sprite_beard.HasBrush)
-				{
-					local decal = _tile.spawnDetail(sprite_beard.getBrush().Name + "_dead", this.Const.Tactical.DetailFlag.Corpse, flip, false, this.Const.Combat.HumanCorpseOffset);
-					decal.Color = sprite_beard.Color;
-					decal.Saturation = sprite_beard.Saturation;
-					decal.Scale = 0.9;
-
-					if (sprite_beard_top.HasBrush)
-					{
-						local decal = _tile.spawnDetail(sprite_beard_top.getBrush().Name + "_dead", this.Const.Tactical.DetailFlag.Corpse, flip, false, this.Const.Combat.HumanCorpseOffset);
-						decal.Color = sprite_beard.Color;
-						decal.Saturation = sprite_beard.Saturation;
-						decal.Scale = 0.9;
-					}
-				}
-
 				if (!appearance.HideCorpseHead)
 				{
 					local decal = _tile.spawnDetail(sprite_face.getBrush().Name + "_dead", this.Const.Tactical.DetailFlag.Corpse, flip, false, this.Const.Combat.HumanCorpseOffset);
 					decal.Color = sprite_face.Color;
 					decal.Saturation = sprite_face.Saturation;
-					decal.Scale = 0.9;
-				}
-
-				if (!appearance.HideHair && !appearance.HideCorpseHead && sprite_hair.HasBrush)
-				{
-					local decal = _tile.spawnDetail(sprite_hair.getBrush().Name + "_dead", this.Const.Tactical.DetailFlag.Corpse, flip, false, this.Const.Combat.HumanCorpseOffset);
-					decal.Color = sprite_hair.Color;
-					decal.Saturation = sprite_hair.Saturation;
 					decal.Scale = 0.9;
 				}
 
@@ -150,19 +123,9 @@ this.legend_mummy <- this.inherit("scripts/entity/tactical/actor", {
 					layers.push(sprite_head.getBrush().Name + "_dead");
 				}
 
-				if (!appearance.HideBeard && sprite_beard.HasBrush)
-				{
-					layers.push(sprite_beard.getBrush().Name + "_dead");
-				}
-
 				if (!appearance.HideCorpseHead)
 				{
 					layers.push(sprite_face.getBrush().Name + "_dead");
-				}
-
-				if (!appearance.HideHair && sprite_hair.HasBrush)
-				{
-					layers.push(sprite_hair.getBrush().Name + "_dead");
 				}
 
 				if (appearance.HelmetCorpse.len() != 0)
@@ -170,61 +133,20 @@ this.legend_mummy <- this.inherit("scripts/entity/tactical/actor", {
 					layers.push(appearance.HelmetCorpse);
 				}
 
-				if (!appearance.HideBeard && sprite_beard_top.HasBrush)
-				{
-					layers.push(sprite_beard_top.getBrush().Name + "_dead");
-				}
-
 				local decap = this.Tactical.spawnHeadEffect(this.getTile(), layers, this.createVec(-20, 15), -90.0, "");
-				local idx = 0;
 
 				if (!appearance.HideCorpseHead)
 				{
-					decap[idx].Color = sprite_head.Color;
-					decap[idx].Saturation = sprite_head.Saturation;
-					decap[idx].Scale = 0.9;
-					decap[idx].setHorizontalFlipping(true);
-					idx = ++idx;
-				}
-
-				if (!appearance.HideBeard && sprite_beard.HasBrush)
-				{
-					decap[idx].Color = sprite_beard.Color;
-					decap[idx].Saturation = sprite_beard.Saturation;
-					decap[idx].Scale = 0.9;
-					decap[idx].setHorizontalFlipping(true);
-					idx = ++idx;
-				}
-
-				if (!appearance.HideCorpseHead)
-				{
-					decap[idx].Scale = 0.9;
-					decap[idx].setHorizontalFlipping(true);
-					idx = ++idx;
-				}
-
-				if (!appearance.HideHair && sprite_hair.HasBrush)
-				{
-					decap[idx].Color = sprite_hair.Color;
-					decap[idx].Saturation = sprite_hair.Saturation;
-					decap[idx].Scale = 0.9;
-					decap[idx].setHorizontalFlipping(true);
-					idx = ++idx;
+					decap[0].Color = sprite_head.Color;
+					decap[0].Saturation = sprite_head.Saturation;
+					decap[0].Scale = 0.9;
+					decap[0].setHorizontalFlipping(true);
 				}
 
 				if (appearance.HelmetCorpse.len() != 0)
 				{
-					decap[idx].Scale = 0.9;
-					decap[idx].setHorizontalFlipping(true);
-					idx = ++idx;
-				}
-
-				if (!appearance.HideBeard && sprite_beard_top.HasBrush)
-				{
-					decap[idx].Color = sprite_beard.Color;
-					decap[idx].Saturation = sprite_beard.Saturation;
-					decap[idx].Scale = 0.9;
-					decap[idx].setHorizontalFlipping(true);
+					decap[1].Scale = 0.9;
+					decap[1].setHorizontalFlipping(true);
 				}
 			}
 
@@ -279,10 +201,6 @@ this.legend_mummy <- this.inherit("scripts/entity/tactical/actor", {
 			local custom = {
 				Face = sprite_face.getBrush().Name,
 				Body = sprite_body.getBrush().Name,
-				Hair = sprite_hair.HasBrush ? sprite_hair.getBrush().Name : null,
-				HairColor = sprite_hair.Color,
-				HairSaturation = sprite_hair.Saturation,
-				Beard = sprite_beard.HasBrush ? sprite_beard.getBrush().Name : null,
 				BodyColor = sprite_body.Color,
 				BodySaturation = sprite_body.Saturation
 			};
@@ -327,46 +245,11 @@ this.legend_mummy <- this.inherit("scripts/entity/tactical/actor", {
 		if (_info.Custom != null)
 		{
 			local face = this.getSprite("face");
-			local hair = this.getSprite("hair");
-			local beard = this.getSprite("beard");
-			local beard_top = this.getSprite("beard_top");
 			local body = this.getSprite("body");
 			face.setBrush(_info.Custom.Face);
 			body.setBrush(_info.Custom.Body);
 			body.Color = _info.Custom.BodyColor;
 			body.Saturation = _info.Custom.BodySaturation;
-
-			if (_info.Custom.Hair != null)
-			{
-				hair.setBrush(_info.Custom.Hair);
-				hair.Color = _info.Custom.HairColor;
-				hair.Saturation = _info.Custom.HairSaturation;
-			}
-			else
-			{
-				hair.resetBrush();
-			}
-
-			if (_info.Custom.Beard != null)
-			{
-				beard.setBrush(_info.Custom.Beard);
-				beard.Color = _info.Custom.HairColor;
-				beard.Saturation = _info.Custom.HairSaturation;
-				beard.setBrightness(0.9);
-
-				if (this.doesBrushExist(_info.Custom.Beard + "_top"))
-				{
-					beard_top.setBrush(_info.Custom.Beard + "_top");
-					beard_top.Color = _info.Custom.HairColor;
-					beard_top.Saturation = _info.Custom.HairSaturation;
-					beard_top.setBrightness(0.9);
-				}
-			}
-			else
-			{
-				beard.resetBrush();
-				beard_top.resetBrush();
-			}
 		}
 
 		this.actor.onResurrected(_info);
@@ -418,8 +301,6 @@ this.legend_mummy <- this.inherit("scripts/entity/tactical/actor", {
 		this.getSprite("head").setHorizontalFlipping(flip);
 		this.getSprite("face").setHorizontalFlipping(flip);
 		this.getSprite("injury").setHorizontalFlipping(flip);
-		this.getSprite("beard").setHorizontalFlipping(flip);
-		this.getSprite("hair").setHorizontalFlipping(flip);
 		foreach (a in this.Const.CharacterSprites.Helmets)
 		{
 			if (!this.hasSprite(a))
@@ -429,7 +310,6 @@ this.legend_mummy <- this.inherit("scripts/entity/tactical/actor", {
 			this.getSprite(a).setHorizontalFlipping(flip);
 		}
 
-		this.getSprite("beard_top").setHorizontalFlipping(flip);
 		this.getSprite("body_blood").setHorizontalFlipping(flip);
 		this.getSprite("dirt").setHorizontalFlipping(flip);
 	}
@@ -437,7 +317,6 @@ this.legend_mummy <- this.inherit("scripts/entity/tactical/actor", {
 	function onInit()
 	{
 		this.actor.onInit();
-		local hairColor = this.Const.HairColors.Zombie[this.Math.rand(0, this.Const.HairColors.Zombie.len() - 1)];
 		this.addSprite("socket").setBrush("bust_base_undead");
 		local body = this.addSprite("body");
 		body.setBrush("mummy_body_01");
@@ -470,36 +349,13 @@ this.legend_mummy <- this.inherit("scripts/entity/tactical/actor", {
 		head.Saturation = body.Saturation;
 		local injury = this.addSprite("injury");
 		injury.setBrush("bust_skeleton_head_injured");
-		local beard = this.addSprite("beard");
-		beard.varyColor(0.02, 0.02, 0.02);
-
-		if (this.Math.rand(1, 100) <= 25)
-		{
-			beard.setBrush("beard_" + hairColor + "_" + this.Const.Beards.ZombieOnly[this.Math.rand(0, this.Const.Beards.ZombieOnly.len() - 1)]);
-		}
 
 		local face = this.addSprite("face");
 		face.setBrush("mummy_head_0" + this.Math.rand(1, 4));
-		local hair = this.addSprite("hair");
-		hair.setHorizontalFlipping(true);
-		hair.Color = beard.Color;
 
-		if (this.Math.rand(1, 100) <= 50)
-		{
-			hair.setBrush("hair_" + hairColor + "_" + this.Const.Hair.ZombieOnly[this.Math.rand(0, this.Const.Hair.ZombieOnly.len() - 1)]);
-		}
-
-		this.setSpriteOffset("hair", this.createVec(0, -3));
 		foreach (a in this.Const.CharacterSprites.Helmets)
 		{
 			this.addSprite(a)
-		}
-		local beard_top = this.addSprite("beard_top");
-
-		if (beard.HasBrush && this.doesBrushExist(beard.getBrush().Name + "_top"))
-		{
-			beard_top.setBrush(beard.getBrush().Name + "_top");
-			beard_top.Color = beard.Color;
 		}
 
 		local body_blood = this.addSprite("body_blood");

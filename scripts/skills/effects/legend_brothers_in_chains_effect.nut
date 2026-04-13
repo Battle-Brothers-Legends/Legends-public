@@ -36,31 +36,31 @@ this.legend_brothers_in_chains_effect <- this.inherit("scripts/skills/skill", {
 				id = 10,
 				type = "text",
 				icon = "ui/icons/bravery.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+" + this.m.ResolveBonus + "[/color] Resolve"
+				text = "[color=%positive%]+" + this.m.ResolveBonus + "[/color] Resolve"
 			},
 			{
 				id = 10,
 				type = "text",
 				icon = "ui/icons/melee_skill.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+" + this.m.AttackBonus + "[/color] Melee Skill"
+				text = "[color=%positive%]+" + this.m.AttackBonus + "[/color] Melee Skill"
 			},
 			{
 				id = 10,
 				type = "text",
 				icon = "ui/icons/ranged_skill.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+" + this.m.AttackBonus + "[/color] Ranged Skill"
+				text = "[color=%positive%]+" + this.m.AttackBonus + "[/color] Ranged Skill"
 			},
 			{
 				id = 10,
 				type = "text",
 				icon = "ui/icons/melee_defense.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+" + this.m.DefenseBonus + "[/color] Melee Defense"
+				text = "[color=%positive%]+" + this.m.DefenseBonus + "[/color] Melee Defense"
 			},
 			{
 				id = 10,
 				type = "text",
 				icon = "ui/icons/ranged_defense.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+" + this.m.DefenseBonus + "[/color] Ranged Defense"
+				text = "[color=%positive%]+" + this.m.DefenseBonus + "[/color] Ranged Defense"
 			}
 		];
 	}

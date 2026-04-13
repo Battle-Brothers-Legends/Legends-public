@@ -41,19 +41,19 @@ this.legend_slack_trait <- this.inherit("scripts/skills/traits/character_trait",
 				id = 11,
 				type = "text",
 				icon = "ui/icons/initiative.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]-3[/color] Initiative"
+				text = "[color=%negative%]-3[/color] Initiative"
 			},
 			{
 				id = 12,
 				type = "text",
 				icon = "ui/icons/bravery.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]-3[/color] Resolve"
+				text = "[color=%negative%]-3[/color] Resolve"
 			},
 			{
 				id = 13,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]-5%[/color] Experience Gain"
+				text = "[color=%negative%]-5%[/color] Experience Gain"
 			},
 			{
 				id = 14,

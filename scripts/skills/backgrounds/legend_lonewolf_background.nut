@@ -33,8 +33,7 @@ this.legend_lonewolf_background <- this.inherit("scripts/skills/backgrounds/char
 			::Legends.Traits.getID(::Legends.Trait.Dastard),
 			::Legends.Traits.getID(::Legends.Trait.Insecure),
 			::Legends.Traits.getID(::Legends.Trait.Asthmatic),
-			::Legends.Traits.getID(::Legends.Trait.LegendLight),
-			::Legends.Traits.getID(::Legends.Trait.LegendFrail)
+			::Legends.Traits.getID(::Legends.Trait.LegendLight)
 		];
 		this.m.Titles = [ //More
 			"the Lone Wolf",
@@ -89,33 +88,33 @@ this.legend_lonewolf_background <- this.inherit("scripts/skills/backgrounds/char
 
 		this.m.PerkTreeDynamic = {
 			Weapon = [
-				this.Const.Perks.TwoHandedTree,
-				this.Const.Perks.MaceTree,
-				this.Const.Perks.FlailTree,
-				this.Const.Perks.HammerTree,
-				this.Const.Perks.AxeTree,
-				this.Const.Perks.HammerTree,
-				this.Const.Perks.ThrowingTree,
-				this.Const.Perks.FistsTree
+				::Const.Perks.SwordTree,
+				::Const.Perks.MaceTree,
+				::Const.Perks.FlailTree,
+				::Const.Perks.HammerTree,
+				::Const.Perks.AxeTree,
+				::Const.Perks.HammerTree,
+				::Const.Perks.ThrowingTree,
+				::Const.Perks.FistsTree
 			],
 			Defense = [
-				this.Const.Perks.HeavyArmorTree
+				::Const.Perks.HeavyArmorTree
 			],
 			Traits = [
-				this.Const.Perks.TrainedTree,
-				this.Const.Perks.ViciousTree,
-				this.Const.Perks.LargeTree,
-				this.Const.Perks.IndestructibleTree,
-				this.Const.Perks.MartyrTree,
-				this.Const.Perks.FitTree
+				::Const.Perks.TrainedTree,
+				::Const.Perks.ViciousTree,
+				::Const.Perks.LargeTree,
+				::Const.Perks.IndestructibleTree,
+				::Const.Perks.MartyrTree,
+				::Const.Perks.FitTree
 			],
 			Enemy = [
-				this.Const.Perks.SwordmastersTree
+				::Const.Perks.SwordmastersTree
 			],
 			Class = [],
 			Profession = [],
 			Magic = [
-				this.Const.Perks.ImmortalMagicTree
+				::Const.Perks.ImmortalMagicTree
 			]
 		}
 	}
@@ -132,7 +131,7 @@ this.legend_lonewolf_background <- this.inherit("scripts/skills/backgrounds/char
 			this.m.Faces = this.Const.Faces.AllWhiteFemale;
 			this.m.Hairs = this.Const.Hair.AllFemale;
 			this.m.HairColors = this.Const.HairColors.All;
-			this.m.Bodies = this.Const.Bodies.AllFemale;
+			this.m.Bodies = this.Const.Bodies.NorthernFemale;
 			this.m.Names = this.Const.Strings.CharacterNamesFemale;
 		}
 		else if (this.m.Ethnicity == 1)
@@ -246,7 +245,7 @@ this.legend_lonewolf_background <- this.inherit("scripts/skills/backgrounds/char
 
 		// // if (r == 0)
 		// // {
-		// // 	items.equip(this.new("scripts/items/weapons/legend_longsword"));
+		// // 	items.equip(this.new("scripts/items/weapons/legend_zweihander"));
 		// // }
 		// // else if (r == 1)
 		// // {

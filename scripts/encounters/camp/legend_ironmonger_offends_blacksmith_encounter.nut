@@ -4,9 +4,12 @@ this.legend_ironmonger_offends_blacksmith_encounter <- this.inherit("scripts/enc
 		Blacksmith = null
 	},
 	function create() {
-		this.m.ID = "event.legends.ironmonger_offends_blacksmith";
+		this.encounter.create();
+		this.m.Type = "event.legends.ironmonger_offends_blacksmith";
 		this.m.Name = ::Const.Strings.randomCampEncounterName();
-		this.m.Cooldown = 30 * this.World.getTime().SecondsPerDay;
+		this.m.Cooldown = 60 * this.World.getTime().SecondsPerDay;
+	}
+	function createScreens(){
 		this.m.Screens.push({
 			ID = "Start",
 			Text = "[img]gfx/ui/events/event_82.png[/img]{The singing of an anvil\'s steel within camp is nothing new, but its sudden stop, followed by shouting and sounds of a commotion steals your attention away from your maps and ledgers. Joined together like a fine piece of chain mail, %blacksmith% and %ironmonger% grapple and struggle amidst the camp\'s makeshift smithy. A few ineffective jabs and the occasional good hook later, %blacksmith% leaves %their_blacksmith% quarry in the dirt and lurches to %their_blacksmith% feet in such an awkward movement you half expect them to crash back down. A tinge of shame makes itself known as they notice you and the rest of the company judging their handiwork.%SPEECH_ON%They - %they_ironmonger% - look at what they\'ve done, captain!%SPEECH_OFF%They gesture to the now thoroughly wrecked workshop: anvil overturned, equipment strewn across the floor, bags of tools now empty and strewn about this corpse of a smithy. It\'s apparently only the latter which concerns %blacksmith%, as they limply grab and thrust a bag before the company, seemingly pleading to the impromptu court before them. They stammer: %SPEECH_ON%These were full not even an hour ago! This, this BUTCHER has broken tongs, shredded steel, dented hammers, and for what? I\'ve had one of those pliers for years!%SPEECH_OFF%. You cast your eyes to the littered remains of metal strewn across the floor, in %blacksmith%\'s defence, you cant tell the remains apart, whether they used to belong to tong or chisel. Spitting and rising with a groan, %ironmonger% defends the metal massacre around %them_ironmonger%. %SPEECH_ON%You had already written these pieces off as junk! You didn\'t listen when I told you there were viable pieces in here, just insisted they\'d make scrap and slag. But look, look at what your stubbornness couldn\'t see-%SPEECH_OFF%They invite the crowd to look upon the assortment of gear they\'d mended. Indeed, you remember recording some of these items as nothing more than mangled junk when you first acquired them- now they looked sturdy enough to save a life, and sharp enough to take one. The company\'s apparent bewilderment at the state of the armaments swings some of the men in the ironmonger\'s favour, and %blacksmith% looks as though they\'re ready to begin their fight anew before %ironmonger% continues. %SPEECH_ON%Your tools are made to be used, you old fool. Not hoarded like some dragon of old.%SPEECH_OFF%Murmurs amongst the company, and eventual eyes upon you force your hand as the final judge of this bizarre tool trial.}",
@@ -57,7 +60,6 @@ this.legend_ironmonger_offends_blacksmith_encounter <- this.inherit("scripts/enc
 			}
 		});
 
-
 		this.m.Screens.push({
 			ID = "2",
 			Text = "[img]gfx/ui/events/event_82.png[/img]{The company ironmonger has a point, and by admiring a piece of their restored work, you make your favour known. Tools are but a means to an end of keeping the company ready for action; if %ironmonger% can see what the trained blacksmith cannot, then perhaps it\'s better to have them look over more of our stores. %blacksmith% protests, but your word is final, and you order %them_blacksmith% to clean up the mess left in the wake of their fight. The rest of the company disperses, and you can almost see a spring in %ironmonger%\'s step, although that might just be a fresh limp.}",
@@ -85,7 +87,6 @@ this.legend_ironmonger_offends_blacksmith_encounter <- this.inherit("scripts/enc
 				_event.repairItems(this);
 			}
 		});
-
 
 		this.m.Screens.push({
 			ID = "3",
@@ -141,6 +142,8 @@ this.legend_ironmonger_offends_blacksmith_encounter <- this.inherit("scripts/enc
 	}
 
 	function isValid(_camp) {
+		if (::World.Assets.getOrigin().getID() == "scenario.legend_risen_legion")
+			return false;
 		if (::World.Assets.getArmorParts() < 20)
 			return false;
 
@@ -161,10 +164,8 @@ this.legend_ironmonger_offends_blacksmith_encounter <- this.inherit("scripts/enc
 	}
 
 	function onPrepareVariables(_vars) {
-		_vars.push(["blacksmith", this.m.Blacksmith.getNameOnly()]);
-		_vars.push(["ironmonger", this.m.Ironmonger.getNameOnly()]);
-		::Const.LegendMod.extendVarsWithPronouns(_vars, this.m.Blacksmith.getGender(), "blacksmith");
-		::Const.LegendMod.extendVarsWithPronouns(_vars, this.m.Ironmonger.getGender(), "ironmonger");
+		_vars.push(["blacksmith", this.m.Blacksmith.getName()]);
+		_vars.push(["ironmonger", this.m.Ironmonger.getName()]);
 	}
 
 	function onClear() {

@@ -178,7 +178,9 @@ class BrushBuilder:
                 str(unpacked_dir),
             ]
 
-            result = subprocess.run(cmd, capture_output=True, text=True, encoding='utf-8', errors='replace')
+            result = subprocess.run(
+                cmd, capture_output=True, text=True, encoding="utf-8", errors="replace"
+            )
 
             # Change back to original directory
             os.chdir(original_cwd)
@@ -226,9 +228,10 @@ class BrushBuilder:
             "world_tiles",
             "legend_horses",
             "legend_detail",
-            "legend_terrain",
+            "terrain",
             "legend_ui",
             "legend_objects",
+            "legend_effects",
         ]
 
         # Add dynamic helmet brushes

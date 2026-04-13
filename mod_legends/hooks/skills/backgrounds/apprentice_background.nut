@@ -49,23 +49,23 @@
 		this.m.Modifiers.Repair = this.Const.LegendMod.ResourceModifiers.Repair[2];
 		this.m.PerkTreeDynamic = {
 			Weapon = [
-				this.Const.Perks.SwordTree,
-				this.Const.Perks.HammerTree,
-				this.Const.Perks.CrossbowTree,
-				this.Const.Perks.AxeTree
+				::Const.Perks.SwordTree,
+				::Const.Perks.HammerTree,
+				::Const.Perks.CrossbowTree,
+				::Const.Perks.AxeTree,
 			],
 			Defense = [
-				this.Const.Perks.MediumArmorTree
+				::Const.Perks.MediumArmorTree
 			],
 			Traits = [
-				this.Const.Perks.IndestructibleTree,
-				this.Const.Perks.IntelligentTree,
-				this.Const.Perks.TrainedTree,
-				this.Const.Perks.FastTree
+				::Const.Perks.IndestructibleTree,
+				::Const.Perks.IntelligentTree,
+				::Const.Perks.TrainedTree,
+				::Const.Perks.FastTree
 			],
 			Enemy = [],
 			Class = [],
-			Profession = [], 
+			Profession = [],
 			Magic = []
 		}
 	}
@@ -94,7 +94,7 @@
 				id = 13,
 				type = "text",
 				icon = "ui/icons/xp_received.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+10%[/color] Experience Gain"
+				text = "[color=%positive%]+10%[/color] Experience Gain"
 			}
 		);
 		return ret;

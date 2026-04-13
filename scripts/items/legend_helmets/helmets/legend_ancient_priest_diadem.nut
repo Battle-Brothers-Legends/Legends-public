@@ -13,10 +13,10 @@ this.legend_ancient_priest_diadem <- this.inherit("scripts/items/helmets/ancient
 		switch (this.m.Variant)
 		{
 			case 79:
-				L.push(this.new("scripts/items/legend_helmets/vanity_lower/legend_helmet_wings"));
+				L.push(this.new("scripts/items/legend_helmets/vanity/legend_helmet_wings"));
 				break;
 			case 80:
-				L.push(this.new("scripts/items/legend_helmets/vanity_lower/legend_helmet_feather_crest"));
+				L.push(this.new("scripts/items/legend_helmets/vanity/legend_helmet_feather_crest"));
 				break;
 			case 81:
 				L.push(this.new("scripts/items/legend_helmets/vanity/legend_helmet_metal_bird"));

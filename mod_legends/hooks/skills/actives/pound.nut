@@ -9,7 +9,7 @@
 				id = 5,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "Hits to the head ignore an additional [color=" + this.Const.UI.Color.PositiveValue + "]20%[/color] of armor"
+				text = "Hits to the head ignore an additional [color=%positive%]20%[/color] of armor"
 			});
 		}
 		else
@@ -18,7 +18,7 @@
 				id = 5,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "Hits to the head ignore an additional [color=" + this.Const.UI.Color.PositiveValue + "]10%[/color] of armor"
+				text = "Hits to the head ignore an additional [color=%positive%]10%[/color] of armor"
 			});
 		}
 
@@ -26,7 +26,7 @@
 			id = 7,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "Has a [color=" + this.Const.UI.Color.PositiveValue + "]" + this.m.StunChance + "%[/color] chance to stun on a hit"
+			text = "Has a [color=%positive%]" + this.m.StunChance + "%[/color] chance to stun on a hit"
 		});
 		return ret;
 	}

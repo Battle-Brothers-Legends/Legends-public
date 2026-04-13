@@ -16,7 +16,6 @@
 			this.removeSelf();
 			return;
 		}
-
 		this.m.Overlay = "status_effect_65";
 		this.spawnIcon(this.m.Overlay, actor.getTile());
 		onAdded();

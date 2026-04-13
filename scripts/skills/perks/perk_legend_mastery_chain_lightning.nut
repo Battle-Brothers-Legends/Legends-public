@@ -4,12 +4,7 @@ this.perk_legend_mastery_chain_lightning <- this.inherit("scripts/skills/skill",
 	m = {},
 	function create()
 	{
-		::Const.Perks.setup(this.m, ::Legends.Perk.LegendMasteryChainLightning);
-		this.m.Type = this.Const.SkillType.Perk;
-		this.m.Order = this.Const.SkillOrder.Perk;
-		this.m.IsActive = false;
-		this.m.IsStacking = false;
-		this.m.IsHidden = false;
+		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendMasteryChainLightning);
 	}
 
 });

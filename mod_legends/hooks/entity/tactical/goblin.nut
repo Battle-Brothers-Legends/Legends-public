@@ -4,6 +4,6 @@
 	o.onInit = function ()
 	{
 		onInit();
-		::Legends.Perks.grant(this, ::Legends.Perk.LegendTumble);
+		// ::Legends.Perks.grant(this, ::Legends.Perk.LegendTumble);
 	}
 });

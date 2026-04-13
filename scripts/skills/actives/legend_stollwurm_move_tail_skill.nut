@@ -82,6 +82,8 @@ this.legend_stollwurm_move_tail_skill <- this.inherit("scripts/skills/skill", {
 			this.onTeleportStart(tag);
 		}
 
+		_user.setActionPoints(this.Math.max(0, _user.getActionPoints() - this.Math.max(0, _user.m.Body.m.MovementAPSpent - this.m.ActionPointCost)));
+		_user.m.Body.m.MovementAPSpent = 0;
 		return true;
 	}
 

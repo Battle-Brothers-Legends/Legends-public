@@ -1,7 +1,5 @@
 this.legend_launch_holy_water_skill <- this.inherit("scripts/skills/actives/throw_holy_water", {
-	m = {
-		Item = null
-		},
+	m = {},
 	function create()
 	{
 		this.throw_holy_water.create();
@@ -32,13 +30,13 @@ this.legend_launch_holy_water_skill <- this.inherit("scripts/skills/actives/thro
 			id = 6,
 			type = "text",
 			icon = "ui/icons/regular_damage.png",
-			text = "Inflicts [color=" + this.Const.UI.Color.DamageValue + "]20[/color] damage to hitpoints for [color=" + this.Const.UI.Color.DamageValue + "]3[/color] turns, all of which ignores armor"
+			text = "Inflicts [color=%damage%]20[/color] damage to hitpoints for [color=%damage%]3[/color] turns, all of which ignores armor"
 		},
 		{
 			id = 6,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "Has a [color=" + this.Const.UI.Color.DamageValue + "]33%[/color] chance to hit bystanders at the same or lower height level as well."
+			text = "Has a [color=%damage%]33%[/color] chance to hit bystanders at the same or lower height level as well."
 		},
 		{
 			id = 6,
@@ -65,7 +63,7 @@ this.legend_launch_holy_water_skill <- this.inherit("scripts/skills/actives/thro
 				id = 8,
 				type = "text",
 				icon = "ui/icons/ammo.png",
-				text = "Has [color=" + this.Const.UI.Color.PositiveValue + "]" + ammo + "[/color] use left"
+				text = "Has [color=%positive%]" + ammo + "[/color] use left"
 			});
 		}
 		else
@@ -74,47 +72,25 @@ this.legend_launch_holy_water_skill <- this.inherit("scripts/skills/actives/thro
 				id = 8,
 				type = "text",
 				icon = "ui/tooltips/warning.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]No ammo left in backpack[/color]"
+				text = "[color=%negative%]No ammo left in backpack[/color]"
 			});
 		}
 
 		return ret;
 	}
 
-	function setItem( _i )
-	{
-		this.m.Item = this.WeakTableRef(_i);
-	}
-
 	function isHidden()
 	{
-		if (!::Legends.Perks.get(this, ::Legends.Perk.LegendSlingerSpins))
+		local actor = this.getContainer().getActor();
+		if (actor == null)
+			return true;
+		if (actor.getCurrentProperties() == null)
+			return true;
+		if (!actor.getCurrentProperties().IsSpecializedInSlings)
 			return true;
 		if (this.m.Item != null && !this.m.Item.isNull() && this.m.Item.getAmmo() != 0)
-		{
 			return false;
-		}
-
 		return this.skill.isHidden();
-	}
-
-	function isUsable()
-	{
-		return !this.Tactical.isActive() || this.skill.isUsable() && this.getAmmo() > 0 && !this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions());
-	}
-
-	function getAmmo()
-	{
-		if (this.m.Item != null && !this.m.Item.isNull())
-			return this.m.Item.getAmmo();
-
-		return 0;
-	}
-
-	function consumeAmmo()
-	{
-		if (this.m.Item != null && !this.m.Item.isNull())
-			this.m.Item.consumeAmmo();
 	}
 
 	function onAnySkillUsed( _skill, _targetEntity, _properties )
@@ -154,28 +130,6 @@ this.legend_launch_holy_water_skill <- this.inherit("scripts/skills/actives/thro
 		}
 
 		return true;
-	}
-
-	function onUse( _user, _targetTile )
-	{
-		local targetEntity = _targetTile.getEntity();
-
-		if (this.m.IsShowingProjectile && this.m.ProjectileType != 0)
-		{
-			local flip = !this.m.IsProjectileRotated && targetEntity.getPos().X > _user.getPos().X;
-
-			if (_user.getTile().getDistanceTo(targetEntity.getTile()) >= this.Const.Combat.SpawnProjectileMinDist)
-			{
-				this.Tactical.spawnProjectileEffect(this.Const.ProjectileSprite[this.m.ProjectileType], _user.getTile(), targetEntity.getTile(), 1.0, this.m.ProjectileTimeScale, this.m.IsProjectileRotated, flip);
-			}
-		}
-
-		this.consumeAmmo();
-
-		this.Time.scheduleEvent(this.TimeUnit.Real, 200, this.onApplyEffect.bindenv(this), {
-			Skill = this,
-			TargetTile = _targetTile
-		});
 	}
 
 	function onApplyEffect( _data )

@@ -4,32 +4,33 @@ this.legend_gladiator_prizefighter_background <- this.inherit("scripts/skills/ba
 	{
 		this.gladiator_background.create();
 		this.m.Name = "Gladiator Prizefighter";
+		this.m.Icon = "ui/backgrounds/background_gladiator_prizefighter.png";
 		this.m.BackgroundDescription = "Gladiator Prizefighters cost a lot of coin, but their time exchanging punches in the arena has made them tough as nails and fit as a butcher\'s dog.";
 		this.m.HiringCost = 550; // higher to offset the cheaper gear
 
 		this.m.PerkTreeDynamic = {
 			Weapon = [
-				this.Const.Perks.SwordTree,
-				this.Const.Perks.MaceTree,
-				this.Const.Perks.DaggerTree,
-				this.Const.Perks.ThrowingTree,
-				this.Const.Perks.FistsTree
+				::Const.Perks.SwordTree,
+				::Const.Perks.MaceTree,
+				::Const.Perks.DaggerTree,
+				::Const.Perks.ThrowingTree,
+				::Const.Perks.FistsTree
 			],
 			Defense = [
-				this.Const.Perks.LightArmorTree,
-				this.Const.Perks.MediumArmorTree
+				::Const.Perks.LightArmorTree,
+				::Const.Perks.MediumArmorTree
 			],
 			Traits = [
-				this.Const.Perks.ViciousTree,
-				this.Const.Perks.IndestructibleTree,
-				this.Const.Perks.AgileTree,
-				this.Const.Perks.LargeTree,
-				this.Const.Perks.FitTree,
-				this.Const.Perks.SturdyTree
+				::Const.Perks.ViciousTree,
+				::Const.Perks.IndestructibleTree,
+				::Const.Perks.AgileTree,
+				::Const.Perks.LargeTree,
+				::Const.Perks.FitTree,
+				::Const.Perks.MartyrTree
 			],
 			Enemy = [],
 			Class = [
-				this.Const.Perks.BeastClassTree
+				::Const.Perks.BeastClassTree
 			],
 			Profession = [],
 			Magic = []
@@ -82,7 +83,7 @@ this.legend_gladiator_prizefighter_background <- this.inherit("scripts/skills/ba
 			id = 12,
 			type = "text",
 			icon = "ui/icons/regular_damage.png",
-			text = "[color=" + this.Const.UI.Color.PositiveValue + "]5%[/color] bonus damage to [color=#400080]Hand to Hand[/color] and [color=#400080]Choke[/color]"
+			text = "[color=%positive%]5%[/color] bonus damage to [color=#400080]Hand to Hand[/color] and [color=#400080]Choke[/color]"
 		});
 		return ret;
 	}
@@ -97,7 +98,9 @@ this.legend_gladiator_prizefighter_background <- this.inherit("scripts/skills/ba
 
 	function onAddEquipment()
 	{
-		local items = this.getContainer().getActor().getItems();
+		local actor = this.getContainer().getActor();
+		actor.setVeteranPerks(3);
+		local items = actor.getItems();
 		local r;
 
 		local a = this.Const.World.Common.pickArmor([

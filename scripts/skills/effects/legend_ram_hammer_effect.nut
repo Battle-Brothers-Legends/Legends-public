@@ -16,7 +16,7 @@ this.legend_ram_hammer_effect <- this.inherit("scripts/skills/skill", {
 	}
 
 	function getDescription()
-	{ 
+	{
 		return "This character is being bolstered by the Ram Hammer upon successful hits. If an attack misses, the benefits are lost.";
 	}
 
@@ -37,19 +37,19 @@ this.legend_ram_hammer_effect <- this.inherit("scripts/skills/skill", {
 				id = 11,
 				type = "text",
 				icon = "ui/icons/regular_damage.png",
-				text = "Grants[color=" + this.Const.UI.Color.PositiveValue + "]+50%[/color] damage for each successful attack made this turn."
+				text = "Grants[color=%positive%]+50%[/color] damage for each successful attack made this turn."
 			},
 			{
 				id = 12,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "Grants[color=" + this.Const.UI.Color.PositiveValue + "]Hammer Specialisation[/color] when equipped."
+				text = "Grants[color=%positive%]Hammer Specialisation[/color] when equipped."
 			},
 			{
 				id = 12,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "Grants[color=" + this.Const.UI.Color.PositiveValue + "]Disarm immunity[/color] when equipped."
+				text = "Grants[color=%positive%]Disarm immunity[/color] when equipped."
 			}
 		];
 	}
@@ -102,7 +102,7 @@ this.legend_ram_hammer_effect <- this.inherit("scripts/skills/skill", {
     function onUpdate( _properties )
     {
         _properties.IsSpecializedInHammers = true;
-        _properties.IsImmuneToDisarm = true  
+        _properties.IsImmuneToDisarm = true
     }
 });
 

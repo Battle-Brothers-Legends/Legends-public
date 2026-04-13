@@ -8,6 +8,7 @@ if (!("Perks" in ::Const))
 ::Const.Perks.ForcefulTree <- {
 	ID = "ForcefulTree",
 	Name =  "Forceful",
+	Icon = "ui/perks/fullforce_circle.png",
 	Attributes = {
 		Hitpoints = [
 			0,

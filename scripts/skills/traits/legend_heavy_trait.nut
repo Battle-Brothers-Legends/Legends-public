@@ -19,7 +19,6 @@ this.legend_heavy_trait <- this.inherit("scripts/skills/traits/character_trait",
 		this.m.Excluded = [
 			::Legends.Traits.getID(::Legends.Trait.Tiny),
 			::Legends.Traits.getID(::Legends.Trait.Quick),
-			::Legends.Traits.getID(::Legends.Trait.LegendFrail),
 			::Legends.Traits.getID(::Legends.Trait.Fragile),
 			::Legends.Traits.getID(::Legends.Trait.LegendLight)
 		];
@@ -42,13 +41,13 @@ this.legend_heavy_trait <- this.inherit("scripts/skills/traits/character_trait",
 				id = 11,
 				type = "text",
 				icon = "ui/icons/regular_damage.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+10%[/color] Melee Damage"
+				text = "[color=%positive%]+10%[/color] Melee Damage"
 			},
 			{
 				id = 12,
 				type = "text",
 				icon = "ui/icons/initiative.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]-20[/color] Initiative"
+				text = "[color=%negative%]-20[/color] Initiative"
 			}
 		];
 	}

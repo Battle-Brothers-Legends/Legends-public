@@ -1,6 +1,6 @@
 ::mods_hookExactClass("skills/actives/break_free_skill", function(o)
-{   
-	o.m.DropNet <- false; 
+{
+	o.m.DropNet <- false;
 	o.m.IsReinforcedNet <- false;
 	o.m.IsByNetSpecialist <- false;
 	//Not used by the new net drop, flags are applied in actives.throw_net
@@ -27,7 +27,7 @@
 				id = 4,
 				type = "text",
 				icon = "ui/icons/melee_skill.png",
-				text = "Has a [color=" + this.Const.UI.Color.PositiveValue + "]" + this.getChance() + "%[/color] chance to succeed, based on Melee Skill. Each failed attempt will increase the chance to succeed for subsequent attempts."
+				text = "Has a [color=%positive%]" + this.getChance() + "%[/color] chance to succeed, based on Melee Skill. Each failed attempt will increase the chance to succeed for subsequent attempts."
 			}
 		];
 
@@ -148,18 +148,18 @@
 
 					// 50% chance the reinforced net is still reusable in battle with netcasting
 					if (::Math.rand(1,2) != 1){
-						net.m.Ammo = 0; 
+						net.m.Ammo = 0;
 						net.updateAmmo();
 					}
 				}
 				else if (_user.getFlags().get("IsReinforcedNet")) { //Reinforced Net without NetCasting
 					net = this.new("scripts/items/tools/reinforced_throwing_net");
-					net.m.Ammo = 0; 
-					net.updateAmmo();		
+					net.m.Ammo = 0;
+					net.updateAmmo();
 			    }
 				else if (_user.getFlags().get("IsByNetCasting")) { //Normal Net w/ NetCasting
 					net = this.new("scripts/items/tools/throwing_net");
-					
+
 					// 25% chance the net is still reusable in battle with netcasting
 					if (::Math.rand(1,4) != 1){
 						net.m.Ammo = 0;
@@ -223,9 +223,9 @@
 	o.onCombatFinished <- function ()
 	{
 		local actor = this.getContainer().getActor();
-		if (actor.getSprite("status_rooted").getBrush().Name == "bust_web2")
+		if (actor.getSprite("status_rooted").getBrush() != null && actor.getSprite("status_rooted").getBrush().Name == "bust_web2")
 			actor.getSprite("status_rooted").Visible = false;
-		if (actor.getSprite("status_rooted_back").getBrush().Name == "bust_web2_back")
+		if (actor.getSprite("status_rooted_back").getBrush() != null && actor.getSprite("status_rooted_back").getBrush().Name == "bust_web2_back")
 			actor.getSprite("status_rooted_back").Visible = false;
 		this.skill.onCombatFinished();
 	}

@@ -5,12 +5,7 @@ this.perk_legend_grappler <- this.inherit("scripts/skills/skill", {
 	},
 	function create()
 	{
-		::Const.Perks.setup(this.m, ::Legends.Perk.LegendGrappler);
-		this.m.Type = this.Const.SkillType.Perk;
-		this.m.Order = this.Const.SkillOrder.Perk;
-		this.m.IsActive = false;
-		this.m.IsStacking = false;
-		this.m.IsHidden = false;
+		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendGrappler);
 	}
 
 	function onAdded()
@@ -31,21 +26,23 @@ this.perk_legend_grappler <- this.inherit("scripts/skills/skill", {
 		if (_skill.getID() != ::Legends.Actives.getID(::Legends.Active.HandToHand))
 			return;
 
-		if (this.Math.rand(1, 100) <= this.m.GrappleChance)
-		{
-			if (_targetEntity.isAlive() && !_targetEntity.isDying())
-			{
-				::Legends.Effects.grant(_targetEntity, ::Legends.Effect.LegendGrappled);
-				if (!_user.isHiddenToPlayer() && _targetTile.IsVisibleForPlayer)
-				{
-					this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(_user) + " has grappled " + this.Const.UI.getColorizedEntityName(_targetEntity) + " for two turns");
-				}
-				if ((this.Math.rand(1, 100) > this.m.DisarmChance || _user.getCurrentProperties().IsSpecializedInFists) && !_targetEntity.getCurrentProperties().IsImmuneToDisarm)
-				{
-					::Legends.Effects.grant(_targetEntity, ::Legends.Effect.Disarmed);
-				}
-			}
+		if (this.Math.rand(1, 100) > this.m.GrappleChance) {
+			return
+		}
+
+		if (::Legends.S.skillEntityAliveCheck(_targetEntity)) {
+			return;
+		}
+
+		::Legends.Effects.grant(_targetEntity, ::Legends.Effect.LegendGrappled);
+
+		local actor = this.getContainer().getActor();
+		if (!_targetEntity.isHiddenToPlayer() && _targetTile.IsVisibleForPlayer) {
+			this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(actor) + " has grappled " + this.Const.UI.getColorizedEntityName(_targetEntity) + " for two turns");
+		}
+
+		if ((this.Math.rand(1, 100) > this.m.DisarmChance || actor.getCurrentProperties().IsSpecializedInFists) && !_targetEntity.getCurrentProperties().IsImmuneToDisarm) {
+			::Legends.Effects.grant(_targetEntity, ::Legends.Effect.Disarmed);
 		}
 	}
 });
-

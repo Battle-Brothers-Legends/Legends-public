@@ -28,21 +28,21 @@ this.legend_philosopher_background <- this.inherit("scripts/skills/backgrounds/c
 		this.m.Modifiers.MedConsumption = this.Const.LegendMod.ResourceModifiers.MedConsumption[1];
 		this.m.PerkTreeDynamic = {
 			Weapon = [
-				this.Const.Perks.DaggerTree,
-				this.Const.Perks.PolearmTree
+				::Const.Perks.DaggerTree,
+				::Const.Perks.PolearmTree
 			],
 			Defense = [
-				this.Const.Perks.ClothArmorTree
+				::Const.Perks.ClothArmorTree
 			],
 			Traits = [
-				this.Const.Perks.IntelligentTree,
-				this.Const.Perks.CalmTree
+				::Const.Perks.IntelligentTree,
+				::Const.Perks.CalmTree
 			],
 			Enemy = [],
 			Class = [],
 			Profession = [],
 			Magic = [
-				this.Const.Perks.PhilosophyMagicTree
+				::Const.Perks.PhilosophyMagicTree
 			]
 		}
 	}

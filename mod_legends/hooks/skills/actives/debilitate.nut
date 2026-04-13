@@ -11,6 +11,6 @@
 
 	o.getDescription = function ()
 	{
-		return "Prepare your next attack to debilitate a target for one turn, reducing their ability to inflict damage by [color=" + this.Const.UI.Color.NegativeValue + "]-25%[/color] and increasing the damage they take by [color=" + this.Const.UI.Color.PositiveValue + "]-15%[/color]. Missing the target will waste the effect.";
+		return "Prepare your next attack to debilitate a target for one turn, reducing their ability to inflict damage by [color=%negative%]-25%[/color] and increasing the damage they take by [color=%positive%]-15%[/color]. Missing the target will waste the effect.";
 	}
 });

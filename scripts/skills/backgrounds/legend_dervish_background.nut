@@ -16,7 +16,6 @@ this.legend_dervish_background <- this.inherit("scripts/skills/backgrounds/chara
 			::Legends.Traits.getID(::Legends.Trait.Ailing),
 			::Legends.Traits.getID(::Legends.Trait.Fragile),
 			::Legends.Traits.getID(::Legends.Trait.Gluttonous),
-			::Legends.Traits.getID(::Legends.Trait.LegendFrail),
 			::Legends.Traits.getID(::Legends.Trait.LegendLight),
 			::Legends.Traits.getID(::Legends.Trait.Dumb),
 			::Legends.Traits.getID(::Legends.Trait.LegendSeductive)
@@ -35,25 +34,26 @@ this.legend_dervish_background <- this.inherit("scripts/skills/backgrounds/chara
 		this.m.Modifiers.Injury = this.Const.LegendMod.ResourceModifiers.Injury[3];
 		this.m.PerkTreeDynamic = {
 			Weapon = [
-				this.Const.Perks.SwordTree,
-				this.Const.Perks.TwoHandedTree,
-				this.Const.Perks.CleaverTree
+				::Const.Perks.SwordTree,
+				::Const.Perks.PolearmTree,
+				::Const.Perks.CleaverTree,
 			],
 			Defense = [
-				this.Const.Perks.LightArmorTree,
-				this.Const.Perks.ClothArmorTree
+				::Const.Perks.LightArmorTree,
+				::Const.Perks.ClothArmorTree
 			],
 			Traits = [ //lf 5
-				this.Const.Perks.IndestructibleTree,
-				this.Const.Perks.InspirationalTree,
-				this.Const.Perks.IntelligentTree
+				::Const.Perks.IndestructibleTree,
+				::Const.Perks.InspirationalTree,
+				::Const.Perks.IntelligentTree
 			],
 			Enemy = [],
 			Class = [
-				this.Const.Perks.FaithClassTree
+				::Const.Perks.FaithClassTree,
+				::Const.Perks.HealerClassTree
 			],
 			Profession = [
-				this.Const.Perks.HealerProfessionTree,
+				::Const.Perks.HealerProfessionTree,
 			],
 			Magic = []
 		}
@@ -107,7 +107,7 @@ this.legend_dervish_background <- this.inherit("scripts/skills/backgrounds/chara
 
 	function onBuildDescription()
 	{
-		return "{%name% is a mixed character - you have never seen someone so violent yet so calm at the same time. | %name% says it is down to years of training and prayer that steadies the commitment of a person - however you suspect that the reason is more animalistic and simple than they let on.}{The dedication and aggression from %name% dwarfs that of the monks in the north. | %name% sleeps under the overhang of a market stall and walks the city during the daytime, often in bare feet and dressed in little more than rags. | This spartan martial lifestyle has left %name% with a strong body and a stronger mind. | Their sanity is still up for debate however. }{When you first heard of %name% they sounded like your typical mercenary - loud, strong and an unhealthy interest in all things that could kill a man. | Upon closer inspection they seem more alike a zealous beggar than anything else - dressed in shabby clothing and preaching wherever they go. }{%name% speaks, acts, eats, sleeps and a manner of other things as any religious southerner would do. | However their demeanour changes significantly whenever you put a weapon in their hand, showing a combination of ornate flourishes that seem more like a dance than a practical combat style. | While it would take the eye out of any man or creature close enough, their resolve is above and beyond their peers.}";
+		return "{%name% is a mixed character - you have never seen someone so violent yet so calm at the same time. | %name% says it is down to years of training and prayer that steadies the commitment of a person - however you suspect that the reason is more animalistic and simple than %they% let on.} {The dedication and aggression from %name% dwarfs that of the monks in the north. | %name% sleeps under the overhang of a market stall and walks the city during the daytime, often in bare feet and dressed in little more than rags. | This spartan martial lifestyle has left %name% with a strong body and a stronger mind. | %Their% sanity is still up for debate however. } {When you first heard of %name% %they% sounded like your typical mercenary - loud, strong and with an unhealthy interest in all things that could kill a man. | Upon closer inspection %they% seem more alike a zealous beggar than anything else - dressed in shabby clothing and preaching wherever they go. } {%name% speaks, acts, eats, sleeps and a manner of other things as any religious southerner would do. | However %their% demeanour changes significantly whenever you put a weapon in %their% hand, showing a combination of ornate flourishes that seem more like a dance than a practical combat style. | While it would take the eye out of any man or creature close enough, %their% resolve is above and beyond %their% peers.}";
 	}
 
 	function onAddEquipment()

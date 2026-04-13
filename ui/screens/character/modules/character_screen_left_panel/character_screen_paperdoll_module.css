@@ -83,6 +83,12 @@
 	background-size: 7.4rem 14.0rem;*/
 }
 
+/* fixes the body armor position */
+.character-screen-container .paperdoll-module .is-middle .l-slot-container.is-big  {
+	top: 0.45rem;
+	left: 0.15rem;
+}
+
 .character-screen-container .paperdoll-module .l-slot-container.is-top-small-offset {
 	margin-top: 1.0rem;
 }

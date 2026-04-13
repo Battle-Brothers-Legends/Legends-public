@@ -19,7 +19,7 @@ this.legend_goblin_harrier <- this.inherit("scripts/entity/tactical/enemies/gobl
 		::Legends.Perks.grant(this, ::Legends.Perk.CripplingStrikes);
 		if(::Legends.isLegendaryDifficulty())
 		{
-			::Legends.Perks.grant(this, ::Legends.Perk.Nimble);
+			::Legends.Effects.grant(this, ::Legends.Effect.LegendFreedomOfMovement);
 			::Legends.Perks.grant(this, ::Legends.Perk.Dodge);
 			::Legends.Perks.grant(this, ::Legends.Perk.BattleForged);
 			::Legends.Perks.grant(this, ::Legends.Perk.CoupDeGrace);
@@ -83,7 +83,6 @@ this.legend_goblin_harrier <- this.inherit("scripts/entity/tactical/enemies/gobl
 		];
 		this.m.Items.equip(this.new("scripts/items/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
 		::Legends.Perks.grant(this, ::Legends.Perk.Nimble);
-		::Legends.Perks.grant(this, ::Legends.Perk.Dodge);
 		::Legends.Perks.grant(this, ::Legends.Perk.Relentless);
 		return true;
 	}

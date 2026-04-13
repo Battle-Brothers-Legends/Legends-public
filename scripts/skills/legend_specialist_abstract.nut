@@ -109,30 +109,31 @@ this.legend_specialist_abstract <- this.inherit("scripts/skills/skill", {
 		{
 			return _stat;
 		}
+		local daysCompany = this.Math.floor(actor.getDaysWithCompany() / 7);
+		return this.Math.floor(0.01 * this.Math.min(5 * daysCompany + 25, 100) * _stat);
+		// if (::Legends.Mod.ModSettings.getSetting("SpecialistSkillsSetting").getValue() == "Week in company")
+		// {
+		// 	local daysCompany = this.Math.floor(actor.getDaysWithCompany() / 7);
+		// 	return this.Math.floor(0.01 * this.Math.min(5 * daysCompany + 25, 100) * _stat);
+		// }
+		// else if (::Legends.Mod.ModSettings.getSetting("SpecialistSkillsSetting").getValue() == "Level")
+		// {
+		// 	return this.Math.floor(0.01 * this.Math.min(5 * actor.getLevel() + 25, 100) * _stat);
+		// }
+		// else if (::Legends.Mod.ModSettings.getSetting("SpecialistSkillsSetting").getValue() == "Training")
+		// {
+		// 	local training = ::Legends.Traits.get(actor, ::Legends.Trait.LegendIntensiveTraining);
+		// 	if (training == null)
+		// 	{
+		// 		return 0;
+		// 	}
 
-		if (::Legends.Mod.ModSettings.getSetting("SpecialistSkillsSetting").getValue() == "Week in company")
-		{
-			local daysCompany = this.Math.floor(actor.getDaysWithCompany() / 7);
-			return this.Math.floor(0.01 * this.Math.min(5 * daysCompany + 25, 100) * _stat);
-		}
-		else if (::Legends.Mod.ModSettings.getSetting("SpecialistSkillsSetting").getValue() == "Level")
-		{
-			return this.Math.floor(0.01 * this.Math.min(5 * actor.getLevel() + 25, 100) * _stat);
-		}
-		else if (::Legends.Mod.ModSettings.getSetting("SpecialistSkillsSetting").getValue() == "Training")
-		{
-			local training = ::Legends.Traits.get(actor, ::Legends.Trait.LegendIntensiveTraining);
-			if (training == null)
-			{
-				return 0;
-			}
-
-			return this.Math.floor(0.01 * this.Math.min(5 * training.getStatsIncreased() + 25, 100) * _stat);
-		}
-		else
-		{
-			return 0;
-		}
+		// 	return this.Math.floor(0.01 * this.Math.min(5 * training.getStatsIncreased() + 25, 100) * _stat);
+		// }
+		// else
+		// {
+		// 	return 0;
+		// }
 	}
 
 	// valid target to double bonuses vs certain entities
@@ -162,7 +163,7 @@ this.legend_specialist_abstract <- this.inherit("scripts/skills/skill", {
 
 		local item = _skill.getItem();
 
-		if (item == null)
+		if (item == null || !("isItemType" in item))
 			return false;
 
 		if (!item.isItemType(this.Const.Items.ItemType.Weapon))

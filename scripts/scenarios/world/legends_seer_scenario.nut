@@ -24,9 +24,9 @@ this.legends_seer_scenario <- this.inherit("scripts/scenarios/world/starting_sce
 			"legend_witch_commander_background"
 		]);
 		::Legends.Traits.grant(bro, ::Legends.Trait.Player);
-		this.addScenarioPerk(bro.getBackground(), this.Const.Perks.PerkDefs.LegendMagicDaze);
-		this.addScenarioPerk(bro.getBackground(), this.Const.Perks.PerkDefs.Student);
-		this.addScenarioPerk(bro.getBackground(), this.Const.Perks.PerkDefs.LegendMagicMissile);
+		this.addScenarioPerk(bro.getBackground(), ::Const.Perks.PerkDefs.LegendMagicDaze);
+		this.addScenarioPerk(bro.getBackground(), ::Const.Perks.PerkDefs.Student);
+		this.addScenarioPerk(bro.getBackground(), ::Const.Perks.PerkDefs.LegendMagicMissile);
 		bro.m.PerkPointsSpent += 3;
 
 		bro.setPlaceInFormation(4);
@@ -173,7 +173,7 @@ this.legends_seer_scenario <- this.inherit("scripts/scenarios/world/starting_sce
 
 	function onBuildPerkTree( _background )
 	{
-		this.addScenarioPerk(_background, this.Const.Perks.PerkDefs.Student);
+		this.addScenarioPerk(_background, ::Const.Perks.PerkDefs.Student);
 	}
 });
 

@@ -33,19 +33,19 @@ this.legend_apothecary_mushrooms_skill <- this.inherit("scripts/skills/actives/b
 				id = 11,
 				type = "text",
 				icon = "ui/icons/regular_damage.png",
-				text = "Grants [color=" + this.Const.UI.Color.NegativeValue + "]-40%[/color] Damage in Melee"
+				text = "Grants [color=%negative%]-40%[/color] Damage in Melee"
 			},
 			{
 				id = 11,
 				type = "text",
 				icon = "ui/icons/melee_defense.png",
-				text = "Grants [color=" + this.Const.UI.Color.PositiveValue + "]+40%[/color] Melee Defense"
+				text = "Grants [color=%positive%]+40%[/color] Melee Defense"
 			},
 			{
 				id = 11,
 				type = "text",
 				icon = "ui/icons/ranged_defense.png",
-				text = "Grants [color=" + this.Const.UI.Color.PositiveValue + "]+40%[/color] Ranged Defense"
+				text = "Grants [color=%positive%]+40%[/color] Ranged Defense"
 			},
 			{
 				id = 10,
@@ -61,7 +61,7 @@ this.legend_apothecary_mushrooms_skill <- this.inherit("scripts/skills/actives/b
 				id = 5,
 				type = "text",
 				icon = "ui/tooltips/warning.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]Can not be used because this character is engaged in melee[/color]"
+				text = "[color=%negative%]Can not be used because this character is engaged in melee[/color]"
 			});
 		}
 

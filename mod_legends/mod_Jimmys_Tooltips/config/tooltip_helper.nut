@@ -118,7 +118,7 @@
 
 			if (stackInOneLine && stacks[name] > 1)
 			{
-				text = text + (" [color=" + this.Const.UI.Color.NegativeValue + "]" + "x" + stacks[name] + "[/color]");
+				text = text + (" [color=%negative%]" + "x" + stacks[name] + "[/color]");
 			}
 
 			if(title == "Ammo" && this.isKindOf(_entity, "player")){
@@ -172,7 +172,7 @@
 	patchedPerkIcons[this.Const.Strings.PerkName.BatteringRam] <- "ui/settlement_status/settlement_effect_13.png";
 	local getRealPerkIcon = function ( perk )
 	{
-		local realPerk = this.Const.Perks.findById(perk.getID());
+		local realPerk = ::Const.Perks.findById(perk.getID());
 
 		if (realPerk)
 		{
@@ -318,7 +318,7 @@
 					}
 					else
 					{
-						injuryRow.text += "[color=" + this.Const.UI.Color.PositiveValue + "]" + " (Iron Will)[/color]";
+						injuryRow.text += "[color=%positive%]" + " (Iron Will)[/color]";
 					}
 
 					tooltip.push(injuryRow);
@@ -347,7 +347,7 @@
 		activePerks = removeDuplicates(activePerks);
 		pushSection(activePerks, "Usable perks", 200, 1);
 		local thresholdToCompact = 0;
-		local perks = _entity.getSkills().query(this.Const.SkillType.Perk, false, true);
+		local perks = _entity.getSkills().query(this.Const.SkillType.Perk, true, true);
 		perks = removeDuplicates(perks);
 		pushSectionName(perks, "Perks", 300);
 
@@ -359,7 +359,7 @@
 					id = 301 + i,
 					type = "text",
 					icon = getRealPerkIcon(perk),
-					text = perk.getName()
+					text = perk.m.Name
 				});
 			}
 		}
@@ -369,11 +369,11 @@
 
 			foreach( _, perk in perks )
 			{
-				local name = perk.getName();
+				local name = perk.m.Name;
 
 				if (name && name.len() > 1)
 				{
-					texts = texts + ("[color=" + this.Const.UI.Color.NegativeValue + "]" + name.slice(0, 1) + "[/color]" + name.slice(1) + ", ");
+					texts = texts + ("[color=%negative%]" + name.slice(0, 1) + "[/color]" + name.slice(1) + ", ");
 				}
 			}
 
@@ -497,37 +497,37 @@
 			id = 600,
 			type = "hint",
 			icon = "ui/icons/melee_skill.png",
-			text = "[color=" + this.Const.UI.Color.PositiveValue + "]"+properties.getMeleeSkill()+"[/color] Melee Skill"
+			text = "[color=%positive%]"+properties.getMeleeSkill()+"[/color] Melee Skill"
 		});
 		tooltip.push({
 			id = 601,
 			type = "hint",
 			icon = "ui/icons/melee_defense.png",
-			text = "[color=" + this.Const.UI.Color.PositiveValue + "]"+properties.getMeleeDefense()+"[/color] Melee Defense"
+			text = "[color=%positive%]"+properties.getMeleeDefense()+"[/color] Melee Defense"
 		});
 		tooltip.push({
 			id = 602,
 			type = "hint",
 			icon = "ui/icons/ranged_skill.png",
-			text = "[color=" + this.Const.UI.Color.PositiveValue + "]"+properties.getRangedSkill()+"[/color] Ranged Skill"
+			text = "[color=%positive%]"+properties.getRangedSkill()+"[/color] Ranged Skill"
 		});
 		tooltip.push({
 			id = 603,
 			type = "hint",
 			icon = "ui/icons/ranged_defense.png",
-			text = "[color=" + this.Const.UI.Color.PositiveValue + "]"+properties.getRangedDefense()+"[/color] Ranged Defense"
+			text = "[color=%positive%]"+properties.getRangedDefense()+"[/color] Ranged Defense"
 		});
 		tooltip.push({
 			id = 604,
 			type = "hint",
 			icon = "ui/icons/initiative.png",
-			text = "[color=" + this.Const.UI.Color.PositiveValue + "]"+_entity.getInitiative()+"[/color] Initiative"
+			text = "[color=%positive%]"+_entity.getInitiative()+"[/color] Initiative"
 		});
 		tooltip.push({
 			id = 605,
 			type = "hint",
 			icon = "ui/icons/bravery.png",
-			text = "[color=" + this.Const.UI.Color.PositiveValue + "]"+_entity.getBravery()+"[/color] Resolve"
+			text = "[color=%positive%]"+_entity.getBravery()+"[/color] Resolve"
 			divider = "bottom" // add a diviver
 		});
 	}
@@ -556,11 +556,11 @@
 
 local function colorizeInRed( _text )
 {
-	return "[color=" + ::Const.UI.Color.NegativeValue + "]" + _text + "[/color]"
+	return "[color=%negative%]" + _text + "[/color]"
 };
 local function colorizeInGreen( _text )
 {
-	return "[color=" + ::Const.UI.Color.PositiveValue + "]" + _text + "[/color]"
+	return "[color=%positive%]" + _text + "[/color]"
 }
 
 ::ModJimmysTooltips.modGetEquipmentLootChance <- function( _entity, _targetedWithSkill = null, _startID = 0 )

@@ -24,7 +24,6 @@
 			::Legends.Traits.getID(::Legends.Trait.LegendDoubleTongued),
 			::Legends.Traits.getID(::Legends.Trait.Fainthearted),
 			::Legends.Traits.getID(::Legends.Trait.Fragile),
-			::Legends.Traits.getID(::Legends.Trait.LegendFrail),
 			::Legends.Traits.getID(::Legends.Trait.FearBeasts),
 			::Legends.Traits.getID(::Legends.Trait.Greedy),
 			::Legends.Traits.getID(::Legends.Trait.HateGreenskins),
@@ -79,31 +78,30 @@
 
 		this.m.PerkTreeDynamic = {
 			Weapon = [
-				this.Const.Perks.TwoHandedTree,
-				this.Const.Perks.PolearmTree,
-				this.Const.Perks.SpearTree,
-				this.Const.Perks.AxeTree,
-				this.Const.Perks.ThrowingTree,
-				this.Const.Perks.BowTree
+				::Const.Perks.PolearmTree,
+				::Const.Perks.SpearTree,
+				::Const.Perks.AxeTree,
+				::Const.Perks.ThrowingTree,
+				::Const.Perks.BowTree
 			],
 			Defense = [
-				this.Const.Perks.LightArmorTree,
-				this.Const.Perks.MediumArmorTree
+				::Const.Perks.LightArmorTree,
+				::Const.Perks.MediumArmorTree
 			],
 			Traits = [
-				this.Const.Perks.DeviousTree,
-				this.Const.Perks.AgileTree,
-				this.Const.Perks.TrainedTree,
-				this.Const.Perks.ViciousTree,
-				this.Const.Perks.LargeTree,
-				this.Const.Perks.IndestructibleTree,
-				this.Const.Perks.FitTree
+				::Const.Perks.DeviousTree,
+				::Const.Perks.AgileTree,
+				::Const.Perks.TrainedTree,
+				::Const.Perks.ViciousTree,
+				::Const.Perks.LargeTree,
+				::Const.Perks.IndestructibleTree,
+				::Const.Perks.FitTree
 			],
 			Enemy = [
-				this.Const.Perks.LindwurmTree
+				::Const.Perks.BeastTree
 			],
 			Class = [
-				this.Const.Perks.BeastClassTree
+				::Const.Perks.BeastClassTree
 			],
 			Profession = [],
 			Magic = []
@@ -125,8 +123,8 @@
 		this.m.Hairs = this.Const.Hair.AllFemale;
 		this.m.HairColors = this.Const.HairColors.All;
 		this.m.Beards = null;
-		this.m.BeardChance = 1;
-		this.m.Bodies = this.Const.Bodies.AllFemale;
+		this.m.BeardChance = 0;
+		this.m.Bodies = this.Const.Bodies.NorthernFemale;
 		this.addBackgroundType(this.Const.BackgroundType.Female);
 	}
 
@@ -181,7 +179,9 @@
 
 	o.onAddEquipment = function ()
 	{
-		local items = this.getContainer().getActor().getItems();
+		local actor = this.getContainer().getActor();
+		actor.setVeteranPerks(3);
+		local items = actor.getItems();
 		local r;
 
 		r = this.Math.rand(0, 1);
@@ -200,7 +200,7 @@
 		}
 
 		items.equip(this.Const.World.Common.pickArmor([
-			[1, ::Legends.Armor.Standard.lindwurm_armor]
+			[1, ::Legends.Armor.Named.lindwurm_armor]
 		]));
 
 		items.equip(this.Const.World.Common.pickHelmet([

@@ -39,13 +39,13 @@
 			}
 		];
 
-		if (this.Tactical.isActive() && this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions()))
+		if (!::Legends.Perks.has(this.getContainer(), ::Legends.Perk.LegendSpecBandage) && this.Tactical.isActive() && this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions()))
 		{
 			tooltip.push({
 				id = 5,
 				type = "text",
 				icon = "ui/tooltips/warning.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]Can not be used because this character is engaged in melee[/color]"
+				text = "[color=%negative%]Can not be used because this character is engaged in melee[/color]"
 			});
 		}
 
@@ -58,11 +58,13 @@
 			return false;
 
 		local actor = this.getContainer().getActor();
+		if (::Legends.S.isEntityNullOrDead(actor))
+			return false;
 		if (actor.getBackground().getID() == "background.legend_donkey")
 			return false;
 
 		local tile = actor.getTile();
-		return this.skill.isUsable() && (!tile.hasZoneOfControlOtherThan(actor.getAlliedFactions()) || this.m.Container.hasPerk(::Legends.Perk.LegendSpecBandage));
+		return this.skill.isUsable() && (!tile.hasZoneOfControlOtherThan(actor.getAlliedFactions()) || this.getContainer().hasPerk(::Legends.Perk.LegendSpecBandage));
 	}
 
 	o.onVerifyTarget = function( _originTile, _targetTile )

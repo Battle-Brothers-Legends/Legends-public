@@ -41,7 +41,7 @@ this.legend_named_rusty_serrated_axe <- this.inherit("scripts/items/weapons/name
 			id = 6,
 			type = "text",
 			icon = "ui/icons/hitchance.png",
-			text = "Has a [color=" + this.Const.UI.Color.NegativeValue + "]33%[/color] lower threshold to inflict injuries"
+			text = "Has a [color=%negative%]33%[/color] lower threshold to inflict injuries"
 		});
 		return result;
 	}
@@ -55,7 +55,7 @@ this.legend_named_rusty_serrated_axe <- this.inherit("scripts/items/weapons/name
 
 	function onAnySkillUsed( _skill, _targetEntity, _properties )
 	{
-		if (_skill != null && _skill.IsWeaponSkill)
+		if (_skill != null && _skill.isAttack() && _skill.m.IsWeaponSkill)
 		{
 			_properties.ThresholdToInflictInjuryMult *= 0.66;
 		}
@@ -65,7 +65,7 @@ this.legend_named_rusty_serrated_axe <- this.inherit("scripts/items/weapons/name
 	{
 		this.named_weapon.onEquip();
 		::Legends.Actives.grant(this, ::Legends.Active.Chop, function (_skill) {
-			_skill.m.FatigueCost = 15;
+			_skill.m.IsHack = true;
 		}.bindenv(this));
 		::Legends.Actives.grant(this, ::Legends.Active.Decapitate, function (_skill) {
 			_skill.m.ApplyAxeMastery = true;

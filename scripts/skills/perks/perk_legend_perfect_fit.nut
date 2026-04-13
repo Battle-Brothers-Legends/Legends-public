@@ -5,13 +5,10 @@ this.perk_legend_perfect_fit <- this.inherit("scripts/skills/skill", {
 	},
 	function create()
 	{
-		::Const.Perks.setup(this.m, ::Legends.Perk.LegendPerfectFit);
+		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendPerfectFit);
 		this.m.Description = "Leveraging the superior fit of %their% armor, %name% is gaining increased speed and endurance.";
 		this.m.Type = this.Const.SkillType.Perk | this.Const.SkillType.StatusEffect;
 		this.m.Order = this.Const.SkillOrder.VeryLast;
-		this.m.IsActive = false;
-		this.m.IsStacking = false;
-		this.m.IsHidden = false;
 	}
 
 	function getBonus()
@@ -63,13 +60,13 @@ this.perk_legend_perfect_fit <- this.inherit("scripts/skills/skill", {
 					id = 6,
 					type = "text",
 					icon = "ui/icons/initiative.png",
-					text = "[color=" + this.Const.UI.Color.PositiveValue + "]+" + this.getInitiativeBonus(bonus) + "%[/color] Initiative"
+					text = "[color=%positive%]+" + this.getInitiativeBonus(bonus) + "%[/color] Initiative"
 				},
 				{
 					id = 6,
 					type = "text",
 					icon = "ui/icons/fatigue.png",
-					text = "Fatigue cost of skills reduced by [color=" + this.Const.UI.Color.PositiveValue + "]" + this.getFatCostReductionBonus(bonus) + "%[/color]"
+					text = "Fatigue cost of skills reduced by [color=%positive%]" + this.getFatCostReductionBonus(bonus) + "%[/color]"
 				}
 			]);
 		}
@@ -99,13 +96,13 @@ this.perk_legend_perfect_fit <- this.inherit("scripts/skills/skill", {
 					id = 6,
 					type = "text",
 					icon = "ui/icons/initiative.png",
-					text = "[color=" + this.Const.UI.Color.PositiveValue + "]+" + this.getInitiativeBonus(bonus) + "%[/color] Initiative"
+					text = "[color=%positive%]+" + this.getInitiativeBonus(bonus) + "%[/color] Initiative"
 				},
 				{
 					id = 6,
 					type = "text",
 					icon = "ui/icons/fatigue.png",
-					text = "Fatigue cost of skills reduced by [color=" + this.Const.UI.Color.PositiveValue + "]" + this.getFatCostReductionBonus(bonus) + "%[/color]"
+					text = "Fatigue cost of skills reduced by [color=%positive%]" + this.getFatCostReductionBonus(bonus) + "%[/color]"
 				}
 			]);
 		}

@@ -170,6 +170,24 @@
 		});
 	}
 
+	o.getEligibleItems <- function () {
+		return ::World.Assets.getStash().getItems().filter(function (_, _item) {
+			if (_item == null)
+				return false;
+			if (_item.isNamed() || _item.isIndestructible()) //rap I love you but i do not like how sadistic you can be.
+				return false;
+			if (_item.isItemType(::Const.Items.ItemType.Weapon))
+				return true;
+			if (_item.isItemType(::Const.Items.ItemType.Shield))
+				return true;
+			if (_item.isItemType(::Const.Items.ItemType.Armor))
+				return true;
+			if (_item.isItemType(::Const.Items.ItemType.Helmet))
+				return true;
+			return false;
+		});
+	}
+
 	o.onUpdateScore = function () {
 		local brothers = this.World.getPlayerRoster().getAll();
 
@@ -185,23 +203,7 @@
 		if (candidates.len() == 0)
 			return;
 
-		local items = this.World.Assets.getStash().getItems();
-		local hasItem = false;
-
-		foreach( item in items ) {
-			if (item == null)
-				continue;
-
-			if (item.isItemType(this.Const.Items.ItemType.Legendary))
-				continue;
-
-			if (item.isItemType(this.Const.Items.ItemType.Weapon) || item.isItemType(this.Const.Items.ItemType.Shield) || item.isItemType(this.Const.Items.ItemType.Armor) || item.isItemType(this.Const.Items.ItemType.Helmet)) {
-				hasItem = true;
-				break;
-			}
-		}
-
-		if (!hasItem)
+		if (this.getEligibleItems().len() == 0)
 			return;
 
 		this.m.Drunkard = candidates[this.Math.rand(0, candidates.len() - 1)];
@@ -219,20 +221,7 @@
 	}
 
 	o.onPrepare = function () {
-		local items = this.World.Assets.getStash().getItems();
-		local candidates = [];
-
-		foreach( item in items ) {
-			if (item == null)
-				continue;
-
-			if (item.isNamed() || item.isIndestructible()) //rap I love you but i do not like how sadistic you can be.
-				continue;
-
-			if (item.isItemType(this.Const.Items.ItemType.Weapon) || item.isItemType(this.Const.Items.ItemType.Shield) || item.isItemType(this.Const.Items.ItemType.Armor) || item.isItemType(this.Const.Items.ItemType.Helmet))
-				candidates.push(item);
-		}
-
+		local candidates = this.getEligibleItems();
 		this.m.Item = candidates[this.Math.rand(0, candidates.len() - 1)];
 		this.World.Assets.getStash().remove(this.m.Item);
 	}

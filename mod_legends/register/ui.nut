@@ -1,5 +1,6 @@
 ::mods_registerJS("legends_assets.js");
 ::mods_registerJS("legends/hooks/!container.js");
+::mods_registerJS("legends/hooks/xbbcode.js");
 ::mods_registerJS("legends/hooks/character_screen.js");
 ::mods_registerCSS("legends/hooks/character_screen.css");
 ::mods_registerJS("legends/hooks/screens/loading/loading_screen.js");
@@ -22,6 +23,12 @@
 ::mods_registerCSS("legends/hooks/screens/tactical/modules/tactical_screen_topbar/topbar_event_log_module.css");
 ::mods_registerJS("legends/hooks/screens/tactical/tactical_combat_result_screen.js");
 ::mods_registerCSS("legends/hooks/screens/tactical/tactical_combat_result_screen.css");
+// character
+::mods_registerJS("legends/hooks/screens/character/character_screen_datasource.js");
+::mods_registerJS("screens/character/modules/independent_perks_screen/independent_perks_screen_module.js");
+::mods_registerCSS("screens/character/modules/independent_perks_screen/independent_perks_screen_module.css");
+::mods_registerJS("screens/character/modules/independent_perks_screen/independent_perks_screen_popup.js");
+::mods_registerCSS("screens/character/modules/independent_perks_screen/independent_perks_screen_popup.css");
 
 // formations
 ::mods_registerJS("screens/character/modules/character_screen_right_panel/character_screen_formations_module.js");
@@ -64,3 +71,9 @@
 
 ::mods_registerJS("legends/hooks/encounters.js");
 ::mods_registerCSS("legends/hooks/encounters.css");
+
+// please make sure these two to be last
+::mods_registerJS("legends/hooks/armor_filter.js");
+::mods_registerCSS("legends/hooks/armor_filter.css");
+//---------------------------------------------------
+

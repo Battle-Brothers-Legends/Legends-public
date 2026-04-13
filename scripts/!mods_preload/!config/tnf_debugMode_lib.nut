@@ -239,7 +239,7 @@ gt.tnf_debug.actors <- {
     "BanditVermes",
     "BanditRabblePoacher",
     "BanditOutrider",
-    "BanditWarlord",
+    "LegendRobberBaron",
     "BanditVeteran",
   ],
   Barbarians = [

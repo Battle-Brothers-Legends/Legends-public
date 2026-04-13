@@ -975,6 +975,11 @@ TooltipModule.prototype.buildFromData = function(_data, _shouldBeUpdated, _conte
 	var headerLastText    = null;
 	var atmosphericImageContainer = null;
 
+	var dualColumnGroupID = null;
+	var dualColumnContainer = null;
+	var dualColumnContainerLeft = null;
+	var dualColumnContainerRight = null;
+
 	// fill container
 	for (var i = 0; i < _data.length; ++i)
 	{
@@ -1091,6 +1096,66 @@ TooltipModule.prototype.buildFromData = function(_data, _shouldBeUpdated, _conte
 				else
 				{
 					element = this.updateContentTextDiv(rightContentContainer, data);
+				}
+
+				if (element !== null)
+				{
+					hasContent = true;
+				}
+			} break;
+
+			// Display text across 2 columns
+			// Content intended to be spread across the 2 columns must be grouped together and share the same `data.id` value, and have different `data.listCount` values
+			// For example, the data entries {id: 1, listCount: 1}, {id: 1, listCount: 2} form a group,
+			// whereas the data entries {id: 2, listCount: 1}, {id: 2, listCount 2} form a separate group
+			// The input array of data MUST be in the order [{id: 1, listCount: 1}, {id: 1, listCount: 2}, {id: 2, listCount: 1}, {id: 2, listCount 2}]
+			case 'textDualColumn':
+			{
+				if (!("listCount" in data))
+				{
+					console.error("Missing 'listCount' in data for textDualColumn tooltip");
+					break;
+				}
+
+				if (!("listLength" in data))
+				{
+					console.error("Missing 'listLength' in data for textDualColumn tooltip");
+					break;
+				}
+
+				var element = null;
+				// console.error("[textDualColumn] id: " + data.id + " | listCount: " + data.listCount + " | listLength: " + data.listLength + " | text: " + data.text);
+
+				if (!shouldBeUpdated)
+				{
+					if (data.id !== dualColumnGroupID)
+					{
+						// Create new dualColumnContainer
+						dualColumnGroupID = data.id;
+						dualColumnContainer = $('<div class="row content-dual-column-container"></div>');
+						dualColumnContainer.attr('id', 'tooltip-module-content-text-dual-column-container-' + data.id);
+
+						rightContentContainer.append(dualColumnContainer);
+
+						dualColumnContainerLeft = $('<div class="row content-dual-column-container-child"></div>');
+						dualColumnContainerRight = $('<div class="row content-dual-column-container-child"></div>');
+
+						dualColumnContainer.append(dualColumnContainerLeft, dualColumnContainerRight);
+					}
+					
+					// Add data from left to right (as opposed to top to bottom in the left column first)
+					if (data.listCount % 2 === 1)
+					{
+						element = this.addContentDualColumnTextDiv(dualColumnContainerLeft, data);
+					}
+					else
+					{
+						element = this.addContentDualColumnTextDiv(dualColumnContainerRight, data);
+					}
+				}
+				else
+				{
+					element = this.updateContentDualColumnTextDiv(rightContentContainer, data);
 				}
 
 				if (element !== null)
@@ -1862,6 +1927,152 @@ TooltipModule.prototype.updateContentTextDiv = function(_parentDIV, _data, _isCh
 	}
 };
 
+/**
+ * Similar to addContentTextDiv, but uses different CSS configurations.
+ * Meant to be called when adding text to dual columns (i.e. when _data.type === 'textDualColumn')
+ * 
+ * @param {jQuery} _parentDIV The parent div to append the content created
+ * @param {Object} _data The data content
+ * @returns {jQuery} A container containing the populated data
+ */
+TooltipModule.prototype.addContentDualColumnTextDiv = function(_parentDIV, _data)
+{
+	if (!('text' in _data) || typeof(_data.text) !== 'string' || _data.text.length === 0)
+	{
+		return null;
+	}
+
+	var container = null;
+	container = $('<div class="dual-column-row"></div>');
+	container.attr('id', 'tooltip-module-content-dual-column-row-' + _data.id + '-' + _data.listCount);
+
+	_parentDIV.append(container);
+
+	var hasIcon = ('icon' in _data);
+	var hasLabel = ('label' in _data);
+	var labelSection = null;
+
+	if (hasIcon || hasLabel)
+	{
+		labelSection = $('<div class="dual-column-row-label-section"></div>');
+		container.append(labelSection);
+
+		var label = $('<div class="label text-font-small font-color-ink"></div>');
+		label.attr('id', 'tooltip-module-content-dual-column-label-' + _data.id + '-' + _data.listCount);
+		labelSection.append(label);
+
+		// prefer icon over label
+		if (hasIcon)
+		{
+			var image = $('<img/>');
+			image.attr('src', Path.GFX + _data.icon);
+			label.append(image);
+		}
+		else if (hasLabel)
+		{
+			if (typeof(_data.label) == 'string')
+			{
+				var parsedLabel = XBBCODE.process({
+					text: _data.label,
+					removeMisalignedTags: false,
+					addInLineBreaks: true
+				});
+			
+				label.html(parsedLabel.html);
+			}
+		}
+	}
+
+	// add text
+	var textSection = $('<div class="dual-column-row-text-section"></div>');
+	container.append(textSection);
+
+	var text = $('<div class="text text-font-small font-color-ink"></div>');
+	text.attr('id', 'tooltip-module-content-dual-column-text-' + _data.id + '-' + _data.listCount);
+	textSection.append(text);
+
+	if (typeof(_data.text) == 'string')
+	{
+		var parsedText = XBBCODE.process({
+			text: _data.text,
+			removeMisalignedTags: false,
+			addInLineBreaks: true
+		});
+	
+		text.html(parsedText.html);
+	}
+
+	// add children rows (untested lol)
+	if ('children' in _data)
+	{
+		for (var i = 0; i < _data.children.length; ++i)
+		{
+			this.addContentDualColumnTextDiv(container, _data.children[i]);
+		}
+	}
+
+	return container;
+};
+
+/**
+ * Similar to updateContentTextDiv, but uses different CSS configurations.
+ * Meant to be called when adding text to dual columns (i.e. when _data.type === 'textDualColumn')
+ * 
+ * @param {jQuery} _parentDIV The parent div containing the content to be updated
+ * @param {Object} _data The data content
+ * @returns {jQuery} A container containing the populated data
+ */
+TooltipModule.prototype.updateContentDualColumnTextDiv = function(_parentDIV, _data)
+{
+	var container = _parentDIV.find('#tooltip-module-content-dual-column-row-' + _data.id + '-' + _data.listCount + ':first');
+
+	
+	var flags = this.extractDataFlags(_data);
+	if (this.flagsContain(flags, 'remove'))
+	{
+		if (container.length > 0)
+		{
+			container.remove();
+		}
+		return null;
+	}
+	else
+	{
+		if (container.length === 0)
+		{
+			return this.addContentDualColumnTextDiv(_parentDIV, _data);
+		}
+
+		// TODO: update label - if needed by the game
+
+		// update text
+		if ('text' in _data)
+		{
+			var text = container.find('#tooltip-module-content-dual-column-text-' + _data.id + '-' + _data.listCount + ':first');
+
+			if (text.length === 0)
+			{
+				console.error('ERROR: Failed to find "tooltip-module-content-dual-column-text-' + _data.id + '-' + _data.listCount + '" element while interpreting tooltip data.');
+				return null;
+			}
+
+			if (typeof(_data.text) == 'string')
+			{
+				var parsedText = XBBCODE.process({
+					text: _data.text,
+					removeMisalignedTags: false,
+					addInLineBreaks: true
+				});
+			
+				text.html(parsedText.html);
+			}
+		}
+
+		// TODO: update children - if needed by the game
+
+		return container;
+	}
+};
 
 TooltipModule.prototype.addContentProgressbarDiv = function(_parentDIV, _data)
 {

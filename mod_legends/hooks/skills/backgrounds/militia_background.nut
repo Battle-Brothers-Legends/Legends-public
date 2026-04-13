@@ -34,29 +34,28 @@
 		this.m.Modifiers.Training = this.Const.LegendMod.ResourceModifiers.Training[1];
 		this.m.PerkTreeDynamic = {
 			Weapon = [
-				this.Const.Perks.SpearTree,
-				this.Const.Perks.SlingTree,
-				this.Const.Perks.ShieldTree,
-				this.Const.Perks.ThrowingTree
+				::Const.Perks.SpearTree,
+				::Const.Perks.SlingTree,
+				::Const.Perks.ShieldTree,
+				::Const.Perks.ThrowingTree
 			],
 			Defense = [
-				this.Const.Perks.LightArmorTree,
-				this.Const.Perks.HeavyArmorTree
+				::Const.Perks.LightArmorTree,
+				::Const.Perks.HeavyArmorTree
 			],
 			Traits = [
-				this.Const.Perks.TrainedTree,
-				this.Const.Perks.ViciousTree,
-				this.Const.Perks.FitTree,
-				this.Const.Perks.AgileTree
+				::Const.Perks.TrainedTree,
+				::Const.Perks.ViciousTree,
+				::Const.Perks.FitTree,
+				::Const.Perks.AgileTree
 			],
 			Enemy = [
-				this.Const.Perks.BanditTree,
-				this.Const.Perks.BarbarianTree
+				::Const.Perks.OutlawTree
 			],
 			Class = [
-				this.Const.Perks.MilitiaClassTree
+				// ::Const.Perks.MilitiaClassTree
 			],
-			Profession = [], 
+			Profession = [],
 			Magic = []
 		}
 	}
@@ -71,7 +70,7 @@
 		this.m.Beards = null;
 		this.m.Hairs = this.Const.Hair.AllFemale;
 		this.m.BeardChance = 0;
-		this.m.Bodies = this.Const.Bodies.AllFemale;
+		this.m.Bodies = this.Const.Bodies.NorthernFemale;
 		this.addBackgroundType(this.Const.BackgroundType.Female);
 	}
 

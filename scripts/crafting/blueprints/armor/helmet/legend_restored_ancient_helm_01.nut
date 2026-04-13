@@ -5,7 +5,7 @@ this.legend_restored_ancient_helm_01 <- this.inherit("scripts/crafting/blueprint
 		this.blueprint.create();
 		this.m.ID = "blueprint.legend_restored_ancient_helm_01";
 		this.m.Type = this.Const.Items.ItemType.Helmet;
-		this.m.PreviewCraftable = this.new("scripts/items/legend_helmets/helm/legend_helmet_legend_ancient_legionaire_restored");
+		this.m.PreviewCraftable = this.new("scripts/items/legend_helmets/helm/legend_helmet_ancient_legionary_helm_restored");
 		this.m.Cost = 500;
 		local ingredients = [
 			{
@@ -19,7 +19,7 @@ this.legend_restored_ancient_helm_01 <- this.inherit("scripts/crafting/blueprint
 				LegendsArmor = true
 			},
 			{
-				Script = "scripts/items/legend_helmets/helm/legend_helmet_ancient_legionaire",
+				Script = "scripts/items/legend_helmets/helm/legend_helmet_ancient_legionary_helm",
 				Num = 1,
 				LegendsArmor = true
 			}
@@ -34,7 +34,7 @@ this.legend_restored_ancient_helm_01 <- this.inherit("scripts/crafting/blueprint
 
 	function onCraft( _stash )
 	{
-		_stash.add(this.new("scripts/items/legend_helmets/helm/legend_helmet_legend_ancient_legionaire_restored"));
+		_stash.add(this.new("scripts/items/legend_helmets/helm/legend_helmet_ancient_legionary_helm_restored"));
 	}
 
 });

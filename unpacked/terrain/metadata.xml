@@ -1,0 +1,122 @@
+<brush name="gfx/terrain.png" version="17" b1="6" b6="1" b9="0" b11="1" i0="4">
+	<sprite id="socket_earth" b6="1" ic="FF1E2935" img="terrain\socket_earth.png" />
+	<sprite id="tile_inside" b6="1" ic="FF12171C" img="terrain\tile_inside.png" />
+	<sprite id="tile_road" b6="1" ic="FF41515A" img="terrain\tile_road.png" />
+	<sprite id="zone_of_control_overlay" b6="1" img="terrain\zone_of_control_overlay.png" />
+	<sprite id="zone_range_overlay" b6="1" ic="FF2E2ED9" img="terrain\zone_range_overlay.png" />
+	<sprite id="zone_target_overlay" offsetY="3" b6="1" img="terrain\zone_target_overlay.png" />
+	<sprite id="zone_selection_overlay" b6="1" img="terrain\zone_selection_overlay.png" />
+	<sprite id="tile_forest_light" b6="1" ic="FF2C3447" img="terrain\tile_forest_light.png" />
+	<sprite id="socket_steppe" b6="1" ic="FF405561" img="tactical_tiles\socket_steppe.png" />
+	<sprite id="tile_steppe_01" b6="1" ic="FF396A84" img="tactical_tiles\steppe_01.png" />
+	<sprite id="tile_steppe_02" b6="1" ic="FF447A91" img="tactical_tiles\steppe_02.png" />
+	<sprite id="tile_steppe_03" b6="1" ic="FF577C8F" img="tactical_tiles\steppe_03.png" />
+	<sprite id="tile_road_dirt" b6="1" ic="FF3C5A74" img="tactical_tiles\tile_road_dirt.png" />
+	<sprite id="tile_earth_01" b6="1" ic="FF2A3945" img="tactical_tiles\earth_01.png" />
+	<sprite id="tile_grass_01" b6="1" ic="FF2A5F5E" img="tactical_tiles\grass_01.png" />
+	<sprite id="tile_grass_02" b6="1" ic="FF285257" img="tactical_tiles\grass_02.png" />
+	<sprite id="tile_tundra_01" b6="1" ic="FF29555F" img="tactical_tiles\tundra_01.png" />
+	<sprite id="tile_tundra_02" b6="1" ic="FF35505C" img="tactical_tiles\tundra_02.png" />
+	<sprite id="tile_tundra_03" b6="1" ic="FF2B4E61" img="tactical_tiles\tundra_03.png" />
+	<sprite id="tile_tundra_04" b6="1" ic="FF28485A" img="tactical_tiles\tundra_04.png" />
+	<sprite id="tile_forest_01" b6="1" ic="FF263A48" img="tactical_tiles\tile_forest_01.png" />
+	<sprite id="tile_forest_02" b6="1" ic="FF264450" img="tactical_tiles\tile_forest_02.png" />
+	<sprite id="tile_moss_01" b6="1" ic="FF235256" img="tactical_tiles\moss_01.png" />
+	<sprite id="tile_moss_02" b6="1" ic="FF214750" img="tactical_tiles\moss_02.png" />
+	<sprite id="tile_snow_01" b6="1" ic="FFD7D2CE" img="tactical_tiles\snow_01.png" />
+	<sprite id="tile_snow_02" b6="1" ic="FFD8D2CE" img="tactical_tiles\snow_02.png" />
+	<sprite id="tile_snow_03" b6="1" ic="FFA6A6A8" img="tactical_tiles\snow_03.png" />
+	<sprite id="tile_earth_02" b6="1" ic="FF323E4F" img="tactical_tiles\snow_04.png" />
+	<sprite id="socket_snow" b6="1" ic="FFB4AEA9" img="tactical_tiles\socket_snow.png" />
+	<sprite id="tile_autumn_01" b6="1" ic="FF30485E" img="tactical_tiles\autumn_01.png" />
+	<sprite id="tile_autumn_02" b6="1" ic="FF2D4456" img="tactical_tiles\autumn_02.png" />
+	<sprite id="tile_autumn_03" b6="1" ic="FF2F556A" img="tactical_tiles\autumn_03.png" />
+	<sprite id="tile_autumn_04" b6="1" ic="FF414B52" img="tactical_tiles\autumn_04.png" />
+	<sprite id="socket_stone" b6="1" ic="FF353D44" img="tactical_tiles\socket_stone.png" />
+	<sprite id="tile_swamp_01" b6="1" ic="FF26464E" img="tactical_tiles\swamp_01.png" />
+	<sprite id="tile_swamp_02" b6="1" ic="FF2B404A" img="tactical_tiles\swamp_02.png" />
+	<sprite id="tile_swamp_03" b6="1" ic="FF2A4851" img="tactical_tiles\swamp_03.png" />
+	<sprite id="tile_swamp_04" b6="1" ic="FF466161" img="tactical_tiles\swamp_04.png" />
+	<sprite id="tile_swamp_05" b6="1" ic="FF344F56" img="tactical_tiles\swamp_05.png" />
+	<sprite id="tile_swamp_green_01" b6="1" ic="FF26464E" img="tactical_tiles\swamp_green_01.png" />
+	<sprite id="tile_swamp_green_02" b6="1" ic="FF2B404A" img="tactical_tiles\swamp_green_02.png" />
+	<sprite id="tile_swamp_green_03" b6="1" ic="FF2A4851" img="tactical_tiles\swamp_green_03.png" />
+	<sprite id="tile_swamp_green_04" b6="1" ic="FF466161" img="tactical_tiles\swamp_green_04.png" />
+	<sprite id="tile_swamp_green_05" b6="1" ic="FF344F56" img="tactical_tiles\swamp_green_05.png" />
+	<sprite id="tile_steppe_04" b6="1" ic="FF4A6576" img="tactical_tiles\steppe_04.png" />
+	<sprite id="tile_stone_02" b6="1" ic="FF38444E" img="tactical_tiles\autumn_05.png" />
+	<sprite id="tile_steppe_05" b6="1" ic="FF4B697A" img="tactical_tiles\steppe_05.png" />
+	<sprite id="tile_tundra_05" b6="1" ic="FF384851" img="tactical_tiles\tundra_05.png" />
+	<sprite id="tile_desert_01" b6="1" ic="FF3B7C9B" img="tactical_tiles\desert_01.png" />
+	<sprite id="tile_desert_02" b6="1" ic="FF3A7B9A" img="tactical_tiles\desert_02.png" />
+	<sprite id="tile_desert_03" b6="1" ic="FF3C647A" img="tactical_tiles\desert_03.png" />
+	<sprite id="tile_desert_04" b6="1" ic="FF216367" img="tactical_tiles\desert_04.png" />
+	<sprite id="tile_desert_05" b6="1" ic="FF355A71" img="tactical_tiles\desert_05.png" />
+	<sprite id="tile_desert_06" b6="1" ic="FF3D695C" img="tactical_tiles\desert_06.png" />
+	<sprite id="socket_desert" b6="1" ic="FF2C4B5D" img="tactical_tiles\socket_desert.png" />
+	<sprite id="tile_desert_07" b6="1" ic="FF3B7C9B" img="tactical_tiles\desert_07.png" />
+	<sprite id="tile_legend_snow_01" b6="1" ic="FF3B7C9B" img="tactical_tiles\legend_snow_01.png" />
+	<sprite id="tile_legend_snow_02" b6="1" ic="FF3B7C9B" img="tactical_tiles\legend_snow_02.png" />
+	<sprite id="tile_legend_snow_03" b6="1" ic="FF3B7C9B" img="tactical_tiles\legend_snow_03.png" />
+	<sprite id="tile_legend_snow_04" b6="1" ic="FF3B7C9B" img="tactical_tiles\legend_snow_04.png" />
+	<sprite id="tile_legend_snow_05" b6="1" ic="FF3B7C9B" img="tactical_tiles\legend_snow_05.png" />
+ 	<sprite id="tile_legend_snow_06" b6="1" ic="FF3B7C9B" img="tactical_tiles\legend_snow_06.png" />
+	<sprite id="tile_legend_snow_07" b6="1" ic="FF3B7C9B" img="tactical_tiles\legend_snow_07.png" />
+	<sprite id="tile_legend_snow_08" b6="1" ic="FF3B7C9B" img="tactical_tiles\legend_snow_08.png" />
+	<sprite id="tile_legend_snow_09" b6="1" ic="FF3B7C9B" img="tactical_tiles\legend_snow_09.png" />
+	<sprite id="tile_legend_snow_10" b6="1" ic="FF3B7C9B" img="tactical_tiles\legend_snow_10.png" />
+	<sprite id="tile_legend_snow_11" b6="1" ic="FF3B7C9B" img="tactical_tiles\legend_snow_11.png" />
+	<sprite id="tile_legend_snow_12" b6="1" ic="FF3B7C9B" img="tactical_tiles\legend_snow_12.png" />
+	<sprite id="tile_legend_snow_13" b6="1" ic="FF3B7C9B" img="tactical_tiles\legend_snow_13.png" />
+	<sprite id="tile_legend_desert_01" b6="1" ic="FF3B7C9B" img="tactical_tiles\legend_desert_01.png" />
+	<sprite id="tile_legend_desert_02" b6="1" ic="FF3B7C9B" img="tactical_tiles\legend_desert_02.png" />
+	<sprite id="tile_legend_desert_03" b6="1" ic="FF3B7C9B" img="tactical_tiles\legend_desert_03.png" />
+	<sprite id="tile_legend_desert_04" b6="1" ic="FF3B7C9B" img="tactical_tiles\legend_desert_04.png" />
+	<sprite id="tile_legend_desert_05" b6="1" ic="FF3B7C9B" img="tactical_tiles\legend_desert_05.png" />
+	<sprite id="tile_legend_desert_06" b6="1" ic="FF3B7C9B" img="tactical_tiles\legend_desert_06.png" />
+	<sprite id="tile_legend_desert_07" b6="1" ic="FF3B7C9B" img="tactical_tiles\legend_desert_07.png" />
+	<sprite id="tile_legend_desert_08" b6="1" ic="FF3B7C9B" img="tactical_tiles\legend_desert_08.png" />
+	<sprite id="tile_legend_desert_09" b6="1" ic="FF3B7C9B" img="tactical_tiles\legend_desert_09.png" />
+	<sprite id="tile_legend_desert_10" b6="1" ic="FF3B7C9B" img="tactical_tiles\legend_desert_10.png" />
+	<sprite id="tile_legend_desert_11" b6="1" ic="FF3B7C9B" img="tactical_tiles\legend_desert_11.png" />
+	<sprite id="tile_legend_desert_12" b6="1" ic="FF3B7C9B" img="tactical_tiles\legend_desert_12.png" />
+	<sprite id="tile_legend_desert_13" b6="1" ic="FF3B7C9B" img="tactical_tiles\legend_desert_13.png" />
+	<sprite id="tile_legend_desert_14" b6="1" ic="FF3B7C9B" img="tactical_tiles\legend_desert_14.png" />
+	<sprite id="tile_legend_desert_15" b6="1" ic="FF3B7C9B" img="tactical_tiles\legend_desert_15.png" />
+	<sprite id="tile_legend_desert_16" b6="1" ic="FF3B7C9B" img="tactical_tiles\legend_desert_16.png" />
+	<sprite id="tile_legend_desert_17" b6="1" ic="FF3B7C9B" img="tactical_tiles\legend_desert_17.png" />
+	<sprite id="tile_legend_desert_18" b6="1" ic="FF3B7C9B" img="tactical_tiles\legend_desert_18.png" />
+	<sprite id="tile_legend_desert_19" b6="1" ic="FF3B7C9B" img="tactical_tiles\legend_desert_19.png" />
+	<sprite id="tile_legend_desert_20" b6="1" ic="FF3B7C9B" img="tactical_tiles\legend_desert_20.png" />
+	<sprite id="tile_legend_desert_21" b6="1" ic="FF3B7C9B" img="tactical_tiles\legend_desert_21.png" />
+	<sprite id="tile_legend_desert_22" b6="1" ic="FF3B7C9B" img="tactical_tiles\legend_desert_22.png" />
+	<sprite id="tile_legend_desert_23" b6="1" ic="FF3B7C9B" img="tactical_tiles\legend_desert_23.png" />
+	<sprite id="tile_legend_desert_24" b6="1" ic="FF3B7C9B" img="tactical_tiles\legend_desert_24.png" />
+	<sprite id="tile_legend_desert_25" b6="1" ic="FF3B7C9B" img="tactical_tiles\legend_desert_25.png" />
+	<sprite id="transition_swamp_green_01_N" ic="FF26444D" width="160" height="120" img="tactical_transitions\transition_swamp_green_01_N.png" top="21" bottom="43" />
+	<sprite id="transition_swamp_green_01_NE" ic="FF26434D" width="160" height="120" img="tactical_transitions\transition_swamp_green_01_NE.png" left="8" right="80" top="-10" bottom="38" />
+  <sprite id="transition_swamp_green_01_NW" ic="FF26434D" width="160" height="120" img="tactical_transitions\transition_swamp_green_01_NW.png" left="-80" right="-10" top="-11" bottom="37" />
+  <sprite id="transition_swamp_green_01_S" ic="FF284750" width="160" height="120" img="tactical_transitions\transition_swamp_green_01_S.png" left="-57" right="53" top="-59" bottom="-33" />
+  <sprite id="transition_swamp_green_01_SE" ic="FF27464E" width="170" height="110" img="tactical_transitions\transition_swamp_green_01_SE.png" left="25" right="85" top="-41" bottom="3" />
+  <sprite id="transition_swamp_green_01_SW" ic="FF27464E" width="170" height="110" img="tactical_transitions\transition_swamp_green_01_SW.png" left="-83" right="-23" top="-43" bottom="1" />
+  <sprite id="transition_swamp_green_02_N" ic="FF2D434D" width="160" height="120" img="tactical_transitions\transition_swamp_green_02_N.png" top="7" bottom="45" />
+  <sprite id="transition_swamp_green_02_NE" ic="FF2C434D" width="160" height="120" img="tactical_transitions\transition_swamp_green_02_NE.png" left="16" right="80" top="-10" bottom="38" />
+  <sprite id="transition_swamp_green_02_NW" ic="FF2C434C" width="160" height="120" img="tactical_transitions\transition_swamp_green_02_NW.png" left="-80" right="-22" top="-15" bottom="37" />
+  <sprite id="transition_swamp_green_02_S" ic="FF2B4049" width="160" height="120" img="tactical_transitions\transition_swamp_green_02_S.png" left="-57" right="53" top="-59" bottom="-33" />
+  <sprite id="transition_swamp_green_02_SE" ic="FF2B414A" width="170" height="110" img="tactical_transitions\transition_swamp_green_02_SE.png" left="25" right="83" top="-43" bottom="9" />
+  <sprite id="transition_swamp_green_02_SW" ic="FF2B414A" width="170" height="110" img="tactical_transitions\transition_swamp_green_02_SW.png" left="-82" right="-24" top="-47" bottom="5" />
+  <sprite id="transition_swamp_green_03_N" ic="FF2C4B54" width="160" height="120" img="tactical_transitions\transition_swamp_green_03_N.png" top="-3" bottom="47" />
+  <sprite id="transition_swamp_green_03_NE" ic="FF28464F" width="160" height="120" img="tactical_transitions\transition_swamp_green_03_NE.png" left="24" right="80" top="-17" bottom="45" />
+  <sprite id="transition_swamp_green_03_NW" ic="FF28464F" width="160" height="120" img="tactical_transitions\transition_swamp_green_03_NW.png" left="-80" right="-24" top="-17" bottom="45" />
+  <sprite id="transition_swamp_green_03_S" ic="FF294750" width="160" height="120" img="tactical_transitions\transition_swamp_green_03_S.png" left="-47" right="45" top="-60" bottom="-26" />
+  <sprite id="transition_swamp_green_03_SE" ic="FF294750" width="170" height="110" img="tactical_transitions\transition_swamp_green_03_SE.png" left="-25" right="83" top="-49" bottom="15" />
+  <sprite id="transition_swamp_green_03_SW" ic="FF294750" width="170" height="110" img="tactical_transitions\transition_swamp_green_03_SW.png" left="-83" right="-25" top="-49" bottom="15" />
+  <sprite id="transition_swamp_green_05_N" ic="FF344F56" width="160" height="120" img="tactical_transitions\transition_swamp_green_05_N.png" top="12" bottom="44" />
+  <sprite id="transition_swamp_green_05_NE" ic="FF334F55" width="160" height="120" img="tactical_transitions\transition_swamp_green_05_NE.png" left="20" right="80" top="-13" bottom="37" />
+  <sprite id="transition_swamp_green_05_NW" ic="FF334F56" width="160" height="120" img="tactical_transitions\transition_swamp_green_05_NW.png" left="-80" right="-20" top="-15" bottom="37" />
+  <sprite id="transition_swamp_green_05_S" ic="FF365057" width="160" height="120" img="tactical_transitions\transition_swamp_green_05_S.png" top="-58" bottom="-32" />
+  <sprite id="transition_swamp_green_05_SE" ic="FF364F54" width="170" height="110" img="tactical_transitions\transition_swamp_green_05_SE.png" left="22" right="82" top="-42" bottom="2" />
+  <sprite id="transition_swamp_green_05_SW" ic="FF364F54" width="170" height="110" img="tactical_transitions\transition_swamp_green_05_SW.png" left="-83" right="-23" top="-43" bottom="1" />
+
+
+</brush>

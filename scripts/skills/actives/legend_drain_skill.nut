@@ -56,7 +56,7 @@ this.legend_drain_skill <- this.inherit("scripts/skills/skill", {
 				id = 4,
 				type = "text",
 				icon = "ui/icons/health.png", // fix from /ui to ui/ Abyss 6/17/23
-				text = "Inflicts initiative -100 as damage. Does [color=" + this.Const.UI.Color.DamageValue + "]" + MinDam + "[/color] - [color=" + this.Const.UI.Color.DamageValue + "]" + MaxDam + "[/color] damage. Heals for" + heal + " as 10% of your max health"
+				text = "Inflicts initiative -100 as damage. Does [color=%damage%]" + MinDam + "[/color] - [color=%damage%]" + MaxDam + "[/color] damage. Heals for" + heal + " as 10% of your max health"
 			}
 		];
 	}

@@ -140,7 +140,7 @@ $.fn.assignListItemImage = function(_imagePath)
 	}
 };
 
-$.fn.assignListItemOverlayImage = function(_imagePaths)
+$.fn.assignListItemOverlayImage = function(_imagePaths, _item)
 {
 	var itemData = this.data('item');
 	var imageLayer = itemData.imageLayer;
@@ -157,16 +157,25 @@ $.fn.assignListItemOverlayImage = function(_imagePaths)
 		return;
 	}
 
-	_imagePaths.forEach(function (imagePath) {
-		if (imagePath === '') 
-		{
+	var drawOrder = [];
+	if (_item && (_item.slot === "head" || _item.slot === "body") && _item.upgrades[0]) {
+		drawOrder = Helper.getLayerUpgradeDrawOrder(_item.upgrades, _imagePaths, _item.slot, true);
+	}
+	else {
+		for (var i = 0; i < _imagePaths.length; i++)
+			drawOrder.push(i);
+	}
+
+	drawOrder.forEach(function (i) {
+		var imagePath = _imagePaths[i];
+		if (imagePath === '') {
 			return;
 		}
 		var overlayImage = $('<img/>');
 		overlayImage.attr('src', Path.ITEMS + imagePath);
 		overlayImage.addClass('display-block');
 		imageLayer.append(overlayImage);
-		overlays.push(overlayImage)
+		overlays.push(overlayImage);
 	});
 };
 

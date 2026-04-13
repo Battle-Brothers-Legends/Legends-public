@@ -175,9 +175,9 @@ this.enchanter_building <- this.inherit("scripts/entity/world/camp/camp_building
 		local desc = "";
 		desc += "Tha Vala emporium of mystical (and maybe even magical) mischief. While encamped, the Vala can retreat into her books and experiments. ";
 		desc += "Rune requests can be queued up for the Vala to try her hand at. What comes of them, you'll just have to wait and see what she inscribes. ";
-		desc += "Only the Vala can be assigned to the Enchanting tent. Vala's ability to inscribe runes is determined by learning the correct inscriptions via her perks.";
+		desc += "Only the Vala can be assigned to the Enchanting tent. The Vala can innately enchant runes, but the enchanting speed will increase by 30% if she is over level 12.";
 		desc += "\n\n";
-		desc += "The Enchanting tent can be upgraded by purchasing a crafting cart from a settlement merchant. An upgraded tent has a 15% increase in enchanting speed. ";
+		desc += "The Enchanting tent can be upgraded by purchasing a crafting cart from a settlement merchant. An upgraded tent has a 15% increase in enchanting speed.";
 		desc += "Additionally, the upgraded tools and equipment from the cart allows the Vala to produce potentially more powerful Runes.";
 		return desc;
 	}
@@ -191,19 +191,19 @@ this.enchanter_building <- this.inherit("scripts/entity/world/camp/camp_building
 				id = 3,
 				type = "text",
 				icon = "ui/icons/plus.png",
-				text = "There are [color=" + this.Const.UI.Color.PositiveValue + "]" + this.m.Queue.len() + "[/color] rune inscriptions in the queue."
+				text = "There are [color=%positive%]" + this.m.Queue.len() + "[/color] rune inscriptions in the queue."
 			},
 			{
 				id = 4,
 				type = "text",
 				icon = "ui/buttons/icon_time.png",
-				text = "It will take [color=" + this.Const.UI.Color.PositiveValue + "]" + this.getRequiredTime() + "[/color] hours to inscribe all runes."
+				text = "It will take [color=%positive%]" + this.getRequiredTime() + "[/color] hours to inscribe all runes."
 			},
 			{
 				id = 5,
 				type = "text",
 				icon = "ui/icons/repair_item.png",
-				text = "Total enchanting modifier is [color=" + this.Const.UI.Color.PositiveValue + "]" + mod.Craft + "[/color] units per hour."
+				text = "Total enchanting modifier is [color=%positive%]" + mod.Craft + "[/color] units per hour."
 			}
 		];
 		local id = 6;
@@ -213,7 +213,7 @@ this.enchanter_building <- this.inherit("scripts/entity/world/camp/camp_building
 				id = id,
 				type = "hint",
 				icon = "ui/icons/special.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]" + bro[0] + "[/color] units/hour " + bro[1] + " (" + bro[2] + ")"
+				text = "[color=%positive%]" + bro[0] + "[/color] units/hour " + bro[1] + " (" + bro[2] + ")"
 			});
 			++id;
 		}
@@ -313,7 +313,7 @@ this.enchanter_building <- this.inherit("scripts/entity/world/camp/camp_building
 
 	function getUpgraded()
 	{
-		return this.Stash.hasItem("tent.enchant_tent");
+		return this.Stash.hasItem(::Legends.Camp.Tent.Enchant);
 	}
 
 	function getLevel()
@@ -384,7 +384,8 @@ this.enchanter_building <- this.inherit("scripts/entity/world/camp/camp_building
 
 			if (r.Points >= r.Blueprint.getCost())
 			{
-				r.Blueprint.enchant(this.getUpgraded());
+				r.Blueprint.enchant(this.getUpgraded()); // will do nothing if it's a craft item like uncut gems
+				r.Blueprint.onCraft(this.Stash); // will do nothing if it's a rune
 				this.m.ItemsCrafted.push(r.Blueprint);
 				this.m.Queue[i] = null;
 			}
@@ -429,6 +430,7 @@ this.enchanter_building <- this.inherit("scripts/entity/world/camp/camp_building
 	function getRequiredTime()
 	{
 		local points = 0;
+		this.init();
 		if (this.m.Queue == null)
 		{
 			return 0;

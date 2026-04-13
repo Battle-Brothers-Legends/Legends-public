@@ -3,28 +3,38 @@ this.legend_helmet_mountain_helm <- this.inherit("scripts/items/legend_helmets/l
 	function create()
 	{
 		this.legend_helmet_upgrade.create();
-		this.m.Type = this.Const.Items.HelmetUpgrades.Vanity;
 		this.m.ID = "armor.head.legend_helmet_mountain_helm";
+		this.m.Type = this.Const.Items.HelmetUpgrades.Vanity;
 		this.m.Name = "Mountain Helm";
-		// this.m.NameList = [
-		// 	"Helmet of the Mountain"
-		// ];
-		// this.m.Name = this.m.NameList[this.Math.rand(0, this.m.NameList.len())];
-		this.m.Description = "A helmet crafted from the skin and skull of a mighty rock unhold, the beast may be dead, but it continues to mend itself even after death";
-		this.m.ArmorDescription = this.m.Description;
-		this.m.Variants = [1, 2];
+		this.m.Description = "A helmet crafted from the skin and skull of a mighty rock unhold, which continues to mend itself even after the beast's death.";
+		this.m.ArmorDescription = "Includes a heavy, stone-like helmet.";
+		this.m.Variants = [1,2];
 		this.m.Variant = 1;
 		this.updateVariant();
-		this.m.ImpactSound = this.Const.Sound.ArmorChainmailImpact;
-		this.m.InventorySound = this.Const.Sound.ArmorChainmailImpact;
+		this.m.ImpactSound = this.Const.Sound.ArmorHalfplateImpact;
+		this.m.InventorySound = this.Const.Sound.ArmorHalfplateImpact;
 		this.m.Value = 2000;
 		this.m.Condition = 30;
 		this.m.ConditionMax = 30;
 		this.m.StaminaModifier = -2;
 		this.m.Vision = 0;
-		this.m.IsLowerVanity = false;
+		this.m.Lower = false;
 		this.m.HideHair = true;
 		this.m.HideBeard = false;
+		// this.m.NameList = ["Helmet of the Mountain"];
+		// this.m.Name = this.m.NameList[this.Math.rand(0, this.m.NameList.len())];
+	}
+
+	function updateVariant()
+	{
+		local variant = this.m.Variant > 9 ? this.m.Variant : "0" + this.m.Variant;
+		this.m.Sprite = "legendhelms_mountain_helm_" + variant;
+		this.m.SpriteDamaged = "legendhelms_mountain_helm_" + variant + "_damaged";
+		this.m.SpriteCorpse = "legendhelms_mountain_helm_" + variant + "_dead";
+		this.m.Icon = "legend_helmets/inventory_mountain_helm_" + variant + ".png";
+		this.m.IconLarge = this.m.Icon;
+		this.m.OverlayIcon = this.m.Icon;
+		this.m.OverlayIconLarge = this.m.OverlayIcon;
 	}
 
 	function getTooltip()
@@ -74,17 +84,5 @@ this.legend_helmet_mountain_helm <- this.inherit("scripts/items/legend_helmets/l
 			this.Sound.play("sounds/enemies/unhold_regenerate_02.wav", this.Const.Sound.Volume.RacialEffect * 1.25, actor.getPos());
 			this.Tactical.EventLog.log(this.Const.UI.getColorized(this.m.Name, "#1e468f") + " heals for " + helmAdded + " points");
 		}
-	}
-
-	function updateVariant()
-	{
-		local variant = this.m.Variant > 9 ? this.m.Variant : "0" + this.m.Variant;
-		this.m.Sprite = "legendhelms_mountain_helm" + "_" + variant;
-		this.m.SpriteDamaged = "legendhelms_mountain_helm" + "_" + variant + "_damaged";
-		this.m.SpriteCorpse = "legendhelms_mountain_helm" + "_" + variant + "_dead";
-		this.m.Icon = "legend_helmets/inventory_mountain_helm" + "_" + variant + ".png";
-		this.m.IconLarge = this.m.Icon;
-		this.m.OverlayIcon = this.m.Icon;
-		this.m.OverlayIconLarge = this.m.OverlayIcon;
 	}
 });

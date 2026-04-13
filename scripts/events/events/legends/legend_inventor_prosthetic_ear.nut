@@ -181,11 +181,6 @@ this.legend_inventor_prosthetic_ear <- this.inherit("scripts/events/event", {
 		]);
 	}
 
-	function onDetermineStartScreen()
-	{
-		return "A";
-	}
-
 	function onClear()
 	{
 		this.m.Inventor = null;

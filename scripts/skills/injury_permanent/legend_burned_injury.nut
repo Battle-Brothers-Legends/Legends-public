@@ -26,37 +26,37 @@ this.legend_burned_injury <- this.inherit("scripts/skills/injury_permanent/perma
 				id = 7,
 				type = "text",
 				icon = "ui/icons/melee_skill.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]-10%[/color] Melee Skill"
+				text = "[color=%negative%]-10%[/color] Melee Skill"
 			},
 			{
 				id = 7,
 				type = "text",
 				icon = "ui/icons/ranged_skill.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]-10%[/color] Ranged Skill"
+				text = "[color=%negative%]-10%[/color] Ranged Skill"
 			},
 			{
 				id = 7,
 				type = "text",
 				icon = "ui/icons/melee_skill.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]-10%[/color] Melee Defense"
+				text = "[color=%negative%]-10%[/color] Melee Defense"
 			},
 			{
 				id = 7,
 				type = "text",
 				icon = "ui/icons/ranged_skill.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]-10%[/color] Ranged Defense"
+				text = "[color=%negative%]-10%[/color] Ranged Defense"
 			},
 			{
 				id = 7,
 				type = "text",
 				icon = "ui/icons/vision.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]-1[/color] Vision"
+				text = "[color=%negative%]-1[/color] Vision"
 			},
 			{
 				id = 8,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "Reduces the Resolve of any opponent engaged in melee by [color=" + this.Const.UI.Color.NegativeValue + "]-10[/color]"
+				text = "Reduces the Resolve of any opponent engaged in melee by [color=%negative%]-10[/color]"
 			}
 		];
 		this.addTooltipHint(ret);
@@ -80,6 +80,10 @@ this.legend_burned_injury <- this.inherit("scripts/skills/injury_permanent/perma
 		if (this.getContainer().getActor().getEthnicity() == 1)
 		{
 			sprite.setBrush("permanent_injury_burned_southern");
+		}
+		else if (this.getContainer().getActor().getEthnicity() == 2)
+		{
+			sprite.setBrush("permanent_injury_burned_african");
 		}
 		else
 		{

@@ -1,4 +1,4 @@
-::mods_hookExactClass("skills/actives/throw_daze_bomb_skill", function(o) 
+::mods_hookExactClass("skills/actives/throw_daze_bomb_skill", function(o)
 {
 	o.m.Item <- null;
 	o.setItem <- function( _i )
@@ -18,7 +18,7 @@
 				id = 8,
 				type = "text",
 				icon = "ui/icons/ammo.png",
-				text = "Has [color=" + this.Const.UI.Color.PositiveValue + "]" + ammo + "[/color] use left"
+				text = "Has [color=%positive%]" + ammo + "[/color] use left"
 			});
 		}
 		else
@@ -27,7 +27,7 @@
 				id = 8,
 				type = "text",
 				icon = "ui/tooltips/warning.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]Has been used[/color]"
+				text = "[color=%negative%]Has been used[/color]"
 			});
 		}
 
@@ -41,18 +41,16 @@
 
 	o.getAmmo <- function()
 	{
-		if (this.m.Item == null && this.m.Item.isNull())
-			return 0;
+		if (this.m.Item != null && !this.m.Item.isNull())
+			return this.m.Item.getAmmo();
 
-		return this.m.Item.getAmmo();
+		return 0;
 	}
 
 	o.consumeAmmo <- function()
 	{
 		if (this.m.Item != null && !this.m.Item.isNull())
-		{
 			this.m.Item.consumeAmmo();
-		}
 	}
 
 	o.onUse = function( _user, _targetTile )
@@ -68,7 +66,7 @@
 		}
 
 		this.consumeAmmo();
-		
+
 		this.Time.scheduleEvent(this.TimeUnit.Real, 250, this.onApply.bindenv(this), {
 			Skill = this,
 			User = _user,
@@ -80,7 +78,7 @@
 
 	o.onAfterUpdate = function( _properties )
 	{
-		this.m.FatigueCostMult = (_properties.IsSpecializedInThrowing || _properties.IsSpecializedInNets) ? this.Const.Combat.WeaponSpecFatigueMult : 1.0;
-		this.m.MaxRange = _properties.IsSpecializedInNets ? 4 : 3;
+		this.m.FatigueCostMult = (_properties.IsSpecializedInThrowing || _properties.IsSpecializedInNetCasting) ? this.Const.Combat.WeaponSpecFatigueMult : 1.0;
+		this.m.MaxRange = _properties.IsSpecializedInNetCasting ? 4 : 3;
 	}
 });

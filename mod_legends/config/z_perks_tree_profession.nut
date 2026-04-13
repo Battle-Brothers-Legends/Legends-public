@@ -5,24 +5,26 @@ if (!("Perks" in ::Const))
 
 ::Const.Perks.HealerProfessionTree <- {
 	ID = "HealerProfessionTree",
-	Name = "Healing",
+	Name = "Apothecary",
+	Icon = "ui/perks/MaxMedsT2.png",
 	Descriptions = [
-		"healing"
+		"medical ingredients"
 	],
 	Tree = [
 		[::Legends.Perk.LegendMedIngredients],
 		[],
 		[],
-		[::Legends.Perk.LegendSpecBandage],
 		[],
+		[::Legends.Perk.LegendMedPackages],
 		[],
-		[::Legends.Perk.LegendFieldTriage]
+		[]
 	]
 };
 
 ::Const.Perks.ChefProfessionTree <- {
 	ID = "ChefProfessionTree",
 	Name = "Chef",
+	Icon = "ui/perks/meal_prep_circle.png",
 	Descriptions = [
 		"cooking"
 	],
@@ -40,6 +42,7 @@ if (!("Perks" in ::Const))
 ::Const.Perks.RepairProfessionTree <- {
 	ID = "RepairProfessionTree",
 	Name = "Repair",
+	Icon = "ui/perks/MaxToolsT1.png",
 	Descriptions = [
 		"repairs"
 	],
@@ -57,6 +60,7 @@ if (!("Perks" in ::Const))
 ::Const.Perks.BarterProfessionTree <- {
 	ID = "BarterProfessionTree",
 	Name = "Barter",
+	Icon = "ui/perks/BarterT1.png",
 	Descriptions = [
 		"bartering"
 	],
@@ -84,6 +88,7 @@ if (!("Perks" in ::Const))
 ::Const.Perks.DogBreederProfessionTree <- {
 	ID = "DogBreederProfessionTree",
 	Name = "Dog Breeder",
+	Icon = "ui/perks/perk_dogs.png",
 	Descriptions = [
 		"breeding dogs"
 	],
@@ -101,6 +106,7 @@ if (!("Perks" in ::Const))
 ::Const.Perks.MinerProfessionTree <- {
 	ID = "MinerProfessionTree",
 	Name = "Mining",
+	Icon = "ui/perks/pickaxe_02.png",
 	Descriptions = [
 		"mining"
 	],
@@ -118,6 +124,7 @@ if (!("Perks" in ::Const))
 ::Const.Perks.WoodworkingProfessionTree <- {
 	ID = "WoodworkingProfessionTree",
 	Name = "Woodworking",
+	Icon = "ui/perks/woodworking.png",
 	Descriptions = [
 		"woodworking"
 	],
@@ -134,9 +141,10 @@ if (!("Perks" in ::Const))
 
 ::Const.Perks.CaravaneerProfessionTree <- {
 	ID = "CaravaneerProfessionTree",
-	Name = "Caraveneering",
+	Name = "Caravaneering",
+	Icon = "ui/perks/wheel_maintenance.png",
 	Descriptions = [
-		"woodworking"
+		"caravaneering"
 	],
 	Tree = [
 		[],
@@ -159,6 +167,7 @@ if (!("Perks" in ::Const))
 ::Const.Perks.HerbalistProfessionTree <- {
 	ID = "HerbalistProfessionTree",
 	Name = "Herbalism",
+	Icon = "ui/perks/herbs_circle.png",
 	Descriptions = [
 		"herbalism"
 	],
@@ -175,9 +184,10 @@ if (!("Perks" in ::Const))
 
 ::Const.Perks.FencingTeacherProfessionTree <- {
 	ID = "FencingTeacherProfessionTree",
-	Name = "Fencing",
+	Name = "Master Trainer",
+	Icon = "ui/perks/perk_training_01.png",
 	Descriptions = [
-		"fencing"
+		"training"
 	],
 	Tree = [
 		[],
@@ -194,6 +204,7 @@ if (!("Perks" in ::Const))
 };
 
 ::Const.Perks.ProfessionTrees <- {
+	GroupsCategory = "Profession",
 	Tree = [
 		::Const.Perks.BarterProfessionTree,
 		::Const.Perks.CaravaneerProfessionTree,

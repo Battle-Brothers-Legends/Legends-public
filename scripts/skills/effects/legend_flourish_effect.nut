@@ -8,8 +8,8 @@ this.legend_flourish_effect <- this.inherit("scripts/skills/skill", {
 	function create()
 	{
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendFlourish);
-		this.m.Icon = "skills/perk_41.png";
-		this.m.IconMini = "perk_41";
+		this.m.Icon = "ui/perks/perk_41.png";
+		this.m.IconMini = "legend_flourish_effect_mini";
 		this.m.Type = this.Const.SkillType.StatusEffect;
 		this.m.IsActive = false;
 		this.m.IsStacking = false;
@@ -38,19 +38,19 @@ this.legend_flourish_effect <- this.inherit("scripts/skills/skill", {
 				id = 7,
 				type = "text",
 				icon = "ui/icons/fatigue.png",
-				text = "Increases fatigue use of all skills by [color=" + this.Const.UI.Color.PositiveValue + "]50%[/color]"
+				text = "Increases fatigue use of all skills by [color=%positive%]50%[/color]"
 			},
 			{
 				id = 8,
 				type = "text",
 				icon = "ui/icons/direct_damage.png",
-				text = "Chance on each attack to ignore armor completely, the chance is [color=" + this.Const.UI.Color.PositiveValue + "]50%[/color] of the Initiative difference between you and the target as long as you are faster"
+				text = "Chance on each attack to ignore armor completely, the chance is [color=%positive%]50%[/color] of the Initiative difference between you and the target as long as you are faster"
 			},
 			{
 				id = 9,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "As long as you are faster than the target, any attack that inflicts at least [color=" + this.Const.UI.Color.PositiveValue + "]1[/color] point of damage to Hitpoints triggers a morale check for the opponent with a penalty equal to [color=" + this.Const.UI.Color.NegativeValue + "]20%[/color] of the Initiative difference between you and the target"
+				text = "As long as you are faster than the target, any attack that inflicts at least [color=%positive%]1[/color] point of damage to Hitpoints triggers a morale check for the opponent with a penalty equal to [color=%negative%]20%[/color] of the Initiative difference between you and the target"
 			}
 		];
 	}
@@ -63,7 +63,7 @@ this.legend_flourish_effect <- this.inherit("scripts/skills/skill", {
 		if(_targetEntity.getMoraleState() == Const.MoraleState.Ignore || !_targetEntity.getCurrentProperties().IsAffectedByLosingHitpoints)
 			return;
 		local actor = this.getContainer().getActor();
-		local bonus = this.getIniDifference(actor, _targetEntity)
+		local bonus = this.getIniDifference(actor, _targetEntity);
 
 		if (bonus == 0)
 			return;
@@ -85,7 +85,7 @@ this.legend_flourish_effect <- this.inherit("scripts/skills/skill", {
 
 		if(_damageInflictedHitpoints >= 1 && _damageInflictedHitpoints < Const.Morale.OnHitMinDamage)
 		{
-			local threatOnHit = actor.getCurrentProperties().ThreatOnHit
+			local threatOnHit = actor.getCurrentProperties().ThreatOnHit;
 			threatOnHit += this.Math.min(20, Math.max(0, (bonus - 10) * 0.2));
 			_targetEntity.checkMorale(-1, Const.Morale.OnHitBaseDifficulty * (1.0 - (_targetEntity.getHitpoints() / _targetEntity.getHitpointsMax())) - threatOnHit);
 		}
@@ -96,15 +96,15 @@ this.legend_flourish_effect <- this.inherit("scripts/skills/skill", {
 		if (_targetEntity == null || !_targetEntity.isAlive())
 			return;
 
-		local bonus = getIniDifference(this.getContainer().getActor(), _targetEntity)
+		local actor = this.getContainer().getActor();
+		local bonus = getIniDifference(actor, _targetEntity);
 		if (bonus == 0)
-			return
+			return;
 
 		local r = this.Math.rand(1, 100);
 		local chance = this.Math.min(100, this.Math.floor(bonus * 0.5));
-		if (r <= chance)
-		{
-			this.Tactical.EventLog.logEx(this.Const.UI.getColorizedEntityName(_user) + "\'s " + this.getName() + " completely bypasseses " + this.Const.UI.getColorizedEntityName(_targetEntity) + "\'s defenses with great flourish (Chance: " + chance + ", Rolled: " + r + ")");
+		if (r <= chance) {
+			this.Tactical.EventLog.logEx(this.Const.UI.getColorizedEntityName(actor) + "\'s " + this.getName() + " completely bypasseses " + this.Const.UI.getColorizedEntityName(_targetEntity) + "\'s defenses with great flourish (Chance: " + chance + ", Rolled: " + r + ")");
 			_hitInfo.DamageDirect = 1.0;
 		}
 	}
@@ -145,7 +145,7 @@ this.legend_flourish_effect <- this.inherit("scripts/skills/skill", {
 	}
 
 	function onTurnStart()
-	{	
+	{
 		if (this.m.IsRemoved)
 			this.removeSelf();
 	}

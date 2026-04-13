@@ -10,10 +10,9 @@
 		this.m.IsRanged = true;
 	}
 
-	local getTooltip = o.getTooltip;
 	o.getTooltip = function ()
 	{
-		local tooltip = getTooltip();
+		local tooltip = this.getDefaultUtilityTooltip();
 		if (this.m.IsUnholdNet) {
 			tooltip.push({
 				id = 6,
@@ -44,6 +43,10 @@
 
 		if (_properties.IsSpecializedInNetCasting)
 			this.m.MaxRange = 5;
+
+		local skill = ::Legends.Perks.get(this, ::Legends.Perk.LegendSpecialistSpearfisher);
+		if (skill != null && skill.m.FreeNet)
+			this.m.ActionPointCost = 0;
 	}
 
 	local onUse = o.onUse;
@@ -53,21 +56,41 @@
 		local net = _user.getItems().getItemAtSlot(::Const.ItemSlot.Offhand);
 		local target = _targetTile.getEntity();
 
-		if (net != null && target != null && !target.getCurrentProperties().IsImmuneToRoot && isPlayer) { //prevent player from looting enemy nets
-			target.getFlags().set("DropNet", true);
-			target.getFlags().set("IsByNetCasting", false);
-			target.getFlags().set("IsReinforcedNet", false);
-
-			if(_user.getCurrentProperties().IsSpecializedInNetCasting) //Net casting flag
-				target.getFlags().set("IsByNetCasting", true);
-			if (net.getID().find("reinforced_throwing_net") != null) //Reinforced net flag
-				target.getFlags().set("IsReinforcedNet", true);
-		}
-
 		if (this.m.IsUnholdNet)
 			target.isAlliedWithPlayer = @() false;
 
+		this.m.Item.consumeAmmo();
 		local ret = onUse(_user, _targetTile); // this returns `null` or `false`, bruh
+		this.m.Item.drop(_targetTile); // just drop the spent net there
+		if (_user.getCurrentProperties().IsSpecializedInNetCasting && ret != false)
+		{
+			local targetTiles = [];
+			local chance = _user.getCurrentProperties().getRangedSkill() + _user.getCurrentProperties().getRangedDefense();
+			local successes = 1.0;
+			local newRet;
+			for( local i = 0; i != 6; i = ++i )
+			{
+				for( local i = 0; i != 6; i = ++i )
+				{
+					if (_targetTile.hasNextTile(i))
+					{
+						local next = _targetTile.getNextTile(i);
+
+						if (next.IsOccupiedByActor && this.Math.abs(next.Level - _targetTile.Level) <= 1 && !next.getEntity().isAlliedWithPlayer())
+						{
+							if (this.Math.rand(1, 100) < this.Math.floor(chance / successes + 1.0))
+							{
+								newRet = onUse(_user, next);
+								if (newRet != false)
+								{
+									successes += 1.0;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
 
 		if (this.m.IsUnholdNet && ret != false) {
 			::Legends.Effects.grant(target, ::Legends.Effect.Sleeping);
@@ -84,7 +107,7 @@
 	}
 
 	o.makeUnholdNet <- function () {
-		this.m.Description = "Throw a net on [color=" + ::Const.UI.Color.NegativeValue + "]dazed[/color], [color=" + ::Const.UI.Color.NegativeValue + "]baffled[/color] or with less than 25% Healthpoints Unhold to disable them effectively.";
+		this.m.Description = "Throw a net on [color=%negative%]Dazed[/color], [color=%negative%]Baffled[/color] or with less than [color=%negative%]25%[/color] Healthpoints Unhold to disable them effectively.";
 		this.m.IsUnholdNet = true;
 	}
 

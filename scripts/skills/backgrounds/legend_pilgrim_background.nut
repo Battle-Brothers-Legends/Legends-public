@@ -5,7 +5,7 @@ this.legend_pilgrim_background <- this.inherit("scripts/skills/backgrounds/chara
 		this.character_background.create();
 		this.m.ID = "background.legend_pilgrim";
 		this.m.Name = "Pilgrim";
-		this.m.Icon = "ui/backgrounds/background_54.png"; //needs changing
+		this.m.Icon = "ui/backgrounds/background_pilgrim.png";
 		this.m.BackgroundDescription = "Dirty and tired, these disciples of the old gods look for clarity and power in %their% teachings.";
 		this.m.GoodEnding = "%name% began %their% journey with you as a victim or circamstance, at oods with the rest of the world in %their% newfound predicament. Although they were not paid much %name% continued to spread your teachings to all who would listen. Seasons from then %they% would join the same holy order after it\'s monastary was burned down, setting out with like minded companions as a crusader.";
 		this.m.BadEnding = "With your retirement from the company, %name% set out to spread the word of your teachings. Many did not take kindly to %their% words and often found %themselves% driven out of towns and into the wilderness. After one such instance %name% took shelter in an abandoned crypt, which quickly turned out to not be abandoned at all...";
@@ -78,27 +78,26 @@ this.legend_pilgrim_background <- this.inherit("scripts/skills/backgrounds/chara
 			];
 		this.m.PerkTreeDynamic = {
 			Weapon = [
-				this.Const.Perks.HammerTree,
-				this.Const.Perks.MaceTree,
-				this.Const.Perks.ShieldTree,
-				this.Const.Perks.SlingTree
+				::Const.Perks.HammerTree,
+				::Const.Perks.MaceTree,
+				::Const.Perks.ShieldTree,
+				::Const.Perks.SlingTree
 			],
 			Defense = [
-				this.Const.Perks.LightArmorTree,
-				this.Const.Perks.HeavyArmorTree
+				::Const.Perks.LightArmorTree,
+				::Const.Perks.HeavyArmorTree
 			],
 			Traits = [
-				this.Const.Perks.FitTree,
-				this.Const.Perks.SturdyTree,
-				this.Const.Perks.LargeTree,
-				this.Const.Perks.IndestructibleTree
+				::Const.Perks.FitTree,
+				::Const.Perks.SturdyTree,
+				::Const.Perks.LargeTree,
+				::Const.Perks.IndestructibleTree
 			],
 			Enemy = [
-				this.Const.Perks.ZombieTree,
-				this.Const.Perks.SkeletonTree
+				::Const.Perks.UndeadTree
 			],
 			Class = [
-				this.Const.Perks.FaithClassTree
+				::Const.Perks.FaithClassTree
 			],
 			Profession = [],
 			Magic = []
@@ -147,7 +146,7 @@ this.legend_pilgrim_background <- this.inherit("scripts/skills/backgrounds/chara
 		this.m.HairColors = this.Const.HairColors.Young;
 		this.m.Beards = null;
 		this.m.BeardChance = 0;
-		this.m.Bodies = this.Const.Bodies.AllFemale;
+		this.m.Bodies = this.Const.Bodies.NorthernFemale;
 		this.addBackgroundType(this.Const.BackgroundType.Female);
 	}
 

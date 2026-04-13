@@ -295,7 +295,7 @@ this.legend_mummy_enter_event <- this.inherit("scripts/events/event", {
 				}
 
 				this.World.Assets.getStash().makeEmptySlots(1);
-				local item = this.new("scripts/items/weapons/legendary/legend_mage_swordstaff");
+				local item = this.new("scripts/items/weapons/legendary/legend_blooddrinker");
 				this.World.Assets.getStash().add(item);
 				this.List.push({
 					id = 10,

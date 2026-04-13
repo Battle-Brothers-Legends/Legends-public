@@ -54,8 +54,9 @@ this.legend_sling_heavy_stone_skill <- this.inherit("scripts/skills/skill", {
 		this.m.InjuriesOnBody = this.Const.Injury.BluntBody;
 		this.m.InjuriesOnHead = this.Const.Injury.BluntHead;
 		this.m.DirectDamageMult = 0.75;
-		this.m.ActionPointCost = 5;
-		this.m.FatigueCost = 17;
+		this.m.ActionPointCost = 7;
+		this.m.FatigueCost = 25;
+		this.m.MinRangeForPerTile = 1;
 		this.m.MinRange = 4;
 		this.m.MaxRange = 9;
 		this.m.MaxLevelDifference = 8;
@@ -64,7 +65,7 @@ this.legend_sling_heavy_stone_skill <- this.inherit("scripts/skills/skill", {
 		this.m.IsProjectileRotated = true;
 		this.m.ChanceDecapitate = 0;
 		this.m.ChanceDisembowel = 0;
-		this.m.ChanceSmash = 25;
+		this.m.ChanceSmash = 50;
 	}
 
 	function getTooltip()
@@ -77,15 +78,15 @@ this.legend_sling_heavy_stone_skill <- this.inherit("scripts/skills/skill", {
 			id = 6,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "Inflicts [color=" + this.Const.UI.Color.DamageValue + "]" + fatPerHit + "[/color] extra fatigue"
+			text = "Inflicts [color=%damage%]" + fatPerHit + "[/color] extra fatigue"
 		});
-		if (this.getContainer().getActor().getCurrentProperties().IsSpecializedInStaffStun)
+		if (this.getContainer().hasPerk(::Legends.Perk.LegendBarrage))
 		{
 			ret.push({
 				id = 7,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "Has a [color=" + this.Const.UI.Color.NegativeValue + "]100%[/color] chance to stun and daze target on a hit to the head if not immune and always staggers the target"
+				text = "Has a [color=%negative%]100%[/color] chance to stun and daze target on a hit to the head if not immune and always staggers the target"
 			});
 		}
 		else
@@ -94,7 +95,7 @@ this.legend_sling_heavy_stone_skill <- this.inherit("scripts/skills/skill", {
 				id = 7,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "Has a [color=" + this.Const.UI.Color.NegativeValue + "]100%[/color] chance to daze a target on a hit to the head and always staggers the target"
+				text = "Has a [color=%negative%]100%[/color] chance to daze a target on a hit to the head and always staggers the target"
 			});
 		}
 
@@ -104,7 +105,7 @@ this.legend_sling_heavy_stone_skill <- this.inherit("scripts/skills/skill", {
 				id = 9,
 				type = "text",
 				icon = "ui/tooltips/warning.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]Can not be used because this character is engaged in melee[/color]"
+				text = "[color=%negative%]Can not be used because this character is engaged in melee[/color]"
 			});
 		}
 
@@ -123,19 +124,7 @@ this.legend_sling_heavy_stone_skill <- this.inherit("scripts/skills/skill", {
 		if (_properties.IsSpecializedInSlings)
 		{
 			this.m.MaxRange = this.m.Item.getRangeMax() + 1;
-			this.m.AdditionalAccuracy += 5;
-			this.m.AdditionalHitChance += 2;
 			this.m.FatigueCostMult = this.Const.Combat.WeaponSpecFatigueMult;
-		}
-		if (_properties.IsSpecializedInSlings && this.getContainer().hasPerk(::Legends.Perk.LegendBarrage))
-		{
-			this.m.ActionPointCost = 7;
-			this.m.FatigueCost = 25;
-		}
-		else if (_properties.IsSpecializedInSlings || this.getContainer().hasPerk(::Legends.Perk.LegendBarrage))
-		{
-			this.m.ActionPointCost = 6;
-			this.m.FatigueCost = 21;
 		}
 	}
 
@@ -174,19 +163,17 @@ this.legend_sling_heavy_stone_skill <- this.inherit("scripts/skills/skill", {
 	{
 		if (_skill == this)
 		{
+			if (_properties.IsSpecializedInSlings)
+			{
+				this.m.AdditionalAccuracy += 5;
+				this.m.AdditionalHitChance += 2;
+			}
+			if (_properties.IsSharpshooter)
+				_properties.DamageDirectMult += 0.05;
+
 			_properties.RangedSkill += this.m.AdditionalAccuracy;
 			_properties.HitChanceAdditionalWithEachTile += this.m.AdditionalHitChance;
 			_properties.FatigueDealtPerHitMult += 3.0;
-			if (this.getContainer().hasPerk(::Legends.Perk.LegendBarrage))
-			{
-				_properties.DamageRegularMin += 15;
-				_properties.DamageRegularMax += 30;
-				//_properties.DamageDirectAdd += 0.2;
-			}
-			if (this.getContainer().hasPerk(::Legends.Perk.LegendMasterySlings))
-			{
-				_properties.DamageArmorMult *= 1.5;
-			}
 		}
 	}
 
@@ -198,7 +185,11 @@ this.legend_sling_heavy_stone_skill <- this.inherit("scripts/skills/skill", {
 		if (::Legends.S.skillEntityAliveCheck(_targetEntity))
 			return;
 
-		::Legends.Effects.grant(_targetEntity, ::Legends.Effect.Staggered);
+		local actor = this.getContainer().getActor();
+		local stagger = ::Legends.Effects.grant(_targetEntity, ::Legends.Effect.Staggered);
+		if (!actor.isHiddenToPlayer() && _targetEntity.getTile().IsVisibleForPlayer && !_targetEntity.getFlags().has("tail")) {
+			this.Tactical.EventLog.log(stagger.getLogEntryOnAdded(this.Const.UI.getColorizedEntityName(actor), this.Const.UI.getColorizedEntityName(_targetEntity)));
+		}
 
 		if (_targetEntity.getCurrentProperties().IsImmuneToDaze)
 			return;
@@ -208,15 +199,6 @@ this.legend_sling_heavy_stone_skill <- this.inherit("scripts/skills/skill", {
 
 		if (_bodyPart == this.Const.BodyPart.Head) {
 			::Legends.Effects.grant(_targetEntity, ::Legends.Effect.Dazed);
-
-			if (user.getCurrentProperties().IsSpecializedInStaffStun && !_targetEntity.getCurrentProperties().IsImmuneToStun) {
-				::Legends.Effects.grant(_targetEntity, ::Legends.Effect.Stunned);
-
-				if (!user.isHiddenToPlayer() && targetTile.IsVisibleForPlayer) {
-					this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(user) + " struck a hit that leaves " + this.Const.UI.getColorizedEntityName(_targetEntity) + " stunned and dazed");
-					return;
-				}
-			}
 
 			if (!user.isHiddenToPlayer() && targetTile.IsVisibleForPlayer)
 				this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(user) + " struck a hit that leaves " + this.Const.UI.getColorizedEntityName(_targetEntity) + " dazed");

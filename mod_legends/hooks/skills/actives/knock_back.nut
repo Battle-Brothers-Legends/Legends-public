@@ -28,33 +28,15 @@
 
 	o.getTooltip = function ()
 	{
-		local ret = this.getContainer().hasPerk(::Legends.Perk.ShieldBash) ? this.getDefaultTooltip() : this.getDefaultUtilityTooltip();
-		if (this.getContainer().getActor().getCurrentProperties().IsSpecializedInShields)
-		{
-			ret.push({
-				id = 6,
-				type = "text",
-				icon = "ui/icons/hitchance.png",
-				text = "Has [color=" + this.Const.UI.Color.PositiveValue + "]+40%[/color] chance to hit"
-			});
-		}
-		else
-		{
-			ret.push({
-				id = 6,
-				type = "text",
-				icon = "ui/icons/hitchance.png",
-				text = "Has [color=" + this.Const.UI.Color.PositiveValue + "]+25%[/color] chance to hit"
-			});
-		}
+		local ret = ::Legends.Perks.has(this, ::Legends.Perk.ShieldBash) ? this.getDefaultTooltip() : this.getDefaultUtilityTooltip();
 
-		if (this.getContainer().hasSkill("trait.oath_of_fortification"))
+		if (this.getContainer().hasTrait(::Legends.Trait.OathOfFortification))
 		{
 			ret.push({
 				id = 7,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "Has a [color=" + this.Const.UI.Color.PositiveValue + "]100%[/color] chance to stagger on a hit"
+				text = "Has a [color=%positive%]100%[/color] chance to stagger on a hit"
 			});
 		}
 		return ret;
@@ -73,9 +55,9 @@
 	o.onUse = function ( _user, _targetTile )
 	{
 		local target = _targetTile.getEntity();
-		local shouldNotHarmAlly = getContainer().hasTrait(::Legends.Trait.Teamplayer) && target.isAlliedWith(_user);
+		local shouldNotHarmAlly = (::Legends.Traits.has(this, ::Legends.Trait.Teamplayer) || ::Legends.Perks.has(this, ::Legends.Perk.Taunt)) && target.isAlliedWith(_user);
 
-		if (!getContainer().hasPerk(::Legends.Perk.ShieldBash) || shouldNotHarmAlly) {
+		if (!::Legends.Perks.has(this, ::Legends.Perk.ShieldBash) || shouldNotHarmAlly) {
 			if (shouldNotHarmAlly)
 				target.getFlags().set("CanNotBeStaggered", true);
 
@@ -100,14 +82,14 @@
 		onUse(_user, _targetTile); // let the onUse to handle the knock back
 		m.IsUsingHitchance = true;
 		m.SoundOnUse.extend(current);
-		return success; 
+		return success;
 	}
 
 	o.onAfterUpdate <- function ( _properties )
 	{
 		this.m.FatigueCostMult = _properties.IsSpecializedInShields ? this.Const.Combat.WeaponSpecFatigueMult : 1.0;
 
-		if (this.getContainer().hasPerk(::Legends.Perk.ShieldBash))
+		if (::Legends.Perks.has(this, ::Legends.Perk.ShieldBash))
 		{
 			this.m.FatigueCostMult = this.m.FatigueCostMult *= 0.75;
 			this.m.ActionPointCost = 3
@@ -116,7 +98,7 @@
 
 	local onAnySkillUsed = o.onAnySkillUsed;
 	o.onAnySkillUsed = function ( _skill, _targetEntity, _properties )
-	{	
+	{
 		onAnySkillUsed( _skill, _targetEntity, _properties );
 
 		if (_skill != this)
@@ -125,7 +107,7 @@
 		if (_properties.IsSpecializedInShields)
 			this.m.HitChanceBonus += 15;
 
-		if (this.getContainer().hasPerk(::Legends.Perk.ShieldBash))
+		if (::Legends.Perks.has(this, ::Legends.Perk.ShieldBash))
 		{
 			local item = this.getContainer().getActor().getOffhandItem();
 			local shieldBonus = this.Math.min(10, item == null ? 0 : this.Math.floor(item.m.ConditionMax * 0.05));
@@ -134,6 +116,23 @@
 			_properties.DamageArmorMult = 0.5;
 			_properties.FatigueDealtPerHitMult += 1.0;
 		}
+	}
+
+	o.onTargetHit <- function(_skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor)
+	{
+		if (_skill != this)
+			return;
+
+		if (::Legends.S.skillEntityAliveCheck(_targetEntity))
+			return;
+
+		local actor = this.getContainer().getActor();
+		if (actor.isAlliedWith(_targetEntity))
+			return false;
+
+		local skill = ::Legends.Actives.get(actor, ::Legends.Active.Taunt);
+		if (skill != null && ::Legends.Perks.has(actor, ::Legends.Perk.Taunt))
+			skill.onUse(actor, _targetEntity.getTile());
 	}
 
 	o.onTargetSelected <- function ( _targetTile )
@@ -148,7 +147,7 @@
 
 	o.getHitchance <- function ( _targetEntity )
 	{
-		if (this.getContainer().hasTrait(::Legends.Trait.Teamplayer) && _targetEntity.isAlliedWith(getContainer().getActor()))
+		if ((::Legends.Traits.has(this, ::Legends.Trait.Teamplayer) || ::Legends.Perks.has(this, ::Legends.Perk.Taunt)) && _targetEntity.isAlliedWith(getContainer().getActor()))
 			return 100;
 
 		if (!isUsingHitchance())

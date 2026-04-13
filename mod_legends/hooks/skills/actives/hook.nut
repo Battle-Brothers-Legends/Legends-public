@@ -2,6 +2,13 @@
 {
 	o.m.IsChain <- false;
 
+	local create = o.create;
+	o.create = function()
+	{
+		create();
+		this.m.HitChanceBonus = 10;
+	}
+
 	o.setItem <- function (_item)
 	{
 		this.skill.setItem(_item);
@@ -27,7 +34,7 @@
 	{
 		local target = _targetTile.getEntity();
 
-		if (getContainer().hasTrait(::Legends.Trait.Teamplayer) && target.isAlliedWith(_user))
+		if ((::Legends.Traits.has(this, ::Legends.Trait.Teamplayer) || ::Legends.Perks.has(this, ::Legends.Perk.Taunt)) && target.isAlliedWith(_user))
 			target.getFlags().set("CanNotBeStaggered", true);
 
 		local ret = onUse(_user, _targetTile);
@@ -64,7 +71,7 @@
 
 	o.getHitchance <- function ( _targetEntity )
 	{
-		if (this.getContainer().hasTrait(::Legends.Trait.Teamplayer) && _targetEntity.isAlliedWith(getContainer().getActor()))
+		if ((::Legends.Traits.has(this, ::Legends.Trait.Teamplayer) || ::Legends.Perks.has(this, ::Legends.Perk.Taunt)) && _targetEntity.isAlliedWith(getContainer().getActor()))
 			return 100;
 
 		return this.skill.getHitchance(_targetEntity);

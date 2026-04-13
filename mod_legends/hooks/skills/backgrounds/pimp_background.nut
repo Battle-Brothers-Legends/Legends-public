@@ -45,26 +45,26 @@
 		this.m.Modifiers.Scout = this.Const.LegendMod.ResourceModifiers.Scout[2];
 		this.m.PerkTreeDynamic = {
 			Weapon = [
-				this.Const.Perks.PolearmTree,
-				this.Const.Perks.ThrowingTree,
-				this.Const.Perks.DaggerTree
+				::Const.Perks.PolearmTree,
+				::Const.Perks.ThrowingTree,
+				::Const.Perks.DaggerTree
 			],
 			Defense = [
-				this.Const.Perks.LightArmorTree
+				::Const.Perks.LightArmorTree
 			],
 			Traits = [
-				this.Const.Perks.ViciousTree,
-				this.Const.Perks.InspirationalTree,
-				this.Const.Perks.DeviousTree
+				::Const.Perks.ViciousTree,
+				::Const.Perks.InspirationalTree,
+				::Const.Perks.DeviousTree
 			],
 			Enemy = [
-				this.Const.Perks.NoblesTree,
-				this.Const.Perks.BanditTree
+				::Const.Perks.CivilizationTree,
+				::Const.Perks.OutlawTree
 					],
 			Class = [],
 			Profession = [
-				this.Const.Perks.BarterProfessionTree
-			], 
+				::Const.Perks.BarterProfessionTree
+			],
 			Magic = []
 		}
 		this.m.Bodies = this.Const.Bodies.Thick;

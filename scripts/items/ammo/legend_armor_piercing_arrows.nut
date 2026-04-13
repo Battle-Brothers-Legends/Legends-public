@@ -5,7 +5,7 @@ this.legend_armor_piercing_arrows <- this.inherit("scripts/items/ammo/ammo", {
 		this.ammo.create();
 		this.m.ID = "ammo.arrows";
 		this.m.Name = "Armor Piercing Arrows";
-		this.m.Description = "A quiver of arrows with piercing tips, designed for punching through thick armor. Is automatically refilled after each battle if you have enough ammunition. Grants +30% (multiplicative) armor piercing and -10% damage while wielding a bow.";
+		this.m.Description = "A quiver of arrows with piercing tips, designed for punching through thick armor. Is automatically refilled after each battle if you have enough ammunition. Grants 30% more armor piercing, but 10% less damage while wielding a bow.";
 		this.m.Icon = "ammo/quiver_01_dark.png";
 		this.m.IconEmpty = "ammo/quiver_01_empty.png";
 		this.m.SlotType = this.Const.ItemSlot.Ammo;
@@ -66,7 +66,7 @@ this.legend_armor_piercing_arrows <- this.inherit("scripts/items/ammo/ammo", {
 				id = 6,
 				type = "text",
 				icon = "ui/icons/ranged_skill.png",
-				text = "Contains [color=" + this.Const.UI.Color.PositiveValue + "]" + this.m.Ammo + "[/color] arrows"
+				text = "Contains [color=%positive%]" + this.m.Ammo + "[/color] arrows"
 			});
 		}
 		else
@@ -75,7 +75,7 @@ this.legend_armor_piercing_arrows <- this.inherit("scripts/items/ammo/ammo", {
 				id = 6,
 				type = "text",
 				icon = "ui/tooltips/warning.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]Is empty and useless[/color]"
+				text = "[color=%negative%]Is empty and useless[/color]"
 			});
 		}
 

@@ -37,20 +37,20 @@ this.legend_field_triage_skill <- this.inherit("scripts/skills/skill", {
 			id = 6,
 			type = "text",
 			icon = "ui/icons/vision.png",
-			text = "Has a range of [color=" + this.Const.UI.Color.PositiveValue + "]" + this.m.MaxRange + "[/color], can only target damaged units."
+			text = "Has a range of [color=%positive%]" + this.m.MaxRange + "[/color], can only target damaged units."
 		});
 		ret.push({
 			id = 7,
 			type = "text",
 			icon = "ui/icons/asset_medicine.png",
-			text = "You have [color=" + this.Const.UI.Color.PositiveValue +"]" + this.World.Assets.getMedicine() + "[/color] medicine."
+			text = "You have [color=%positive%]" + this.World.Assets.getMedicine() + "[/color] medicine."
 		});
 		local hp = this.World.Assets.getMedicine() * 2 ;
 		ret.push({
 			id = 8,
 			type = "text",
 			icon = "ui/icons/health.png",
-			text = "You can heal up to [color=" + this.Const.UI.Color.PositiveValue +"]" + this.Math.floor(hp) +  "[/color] Hitpoints."
+			text = "You can heal up to [color=%positive%]" + this.Math.floor(hp) +  "[/color] Hitpoints."
 		});
 		return ret;
 	}

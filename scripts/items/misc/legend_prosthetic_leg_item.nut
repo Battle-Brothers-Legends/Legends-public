@@ -58,19 +58,19 @@ this.legend_prosthetic_leg_item <- this.inherit("scripts/items/item", {
 				id = 7,
 				type = "text",
 				icon = "ui/icons/melee_defense.png",
-				text = "Reduces the penalty of Broken Knee to [color=" + this.Const.UI.Color.NegativeValue + "]-15%[/color] Melee Skill"
+				text = "Reduces the penalty of Broken Knee to [color=%negative%]-15%[/color] Melee Skill"
 			},
 			{
 				id = 8,
 				type = "text",
 				icon = "ui/icons/ranged_defense.png",
-				text = "Reduces the penalty of Broken Knee to [color=" + this.Const.UI.Color.NegativeValue + "]-15%[/color] Ranged Skill"
+				text = "Reduces the penalty of Broken Knee to [color=%negative%]-15%[/color] Ranged Skill"
 			},
 			{
 				id = 9,
 				type = "text",
 				icon = "ui/icons/initiative.png",
-				text = "Reduces the penalty of Broken Knee to [color=" + this.Const.UI.Color.NegativeValue + "]-20%[/color] Initiative"
+				text = "Reduces the penalty of Broken Knee to [color=%negative%]-20%[/color] Initiative"
 			},
 			{
 				id = 65,

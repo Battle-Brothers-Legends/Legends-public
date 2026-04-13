@@ -64,7 +64,7 @@ this.legend_spawn_skill <- this.inherit("scripts/skills/skill", {
 
 	function getCostString()
 	{
-		return "[i]Costs " + (this.isAffordableBasedOnAPPreview() ? "[b][color=" + this.Const.UI.Color.PositiveValue + "]" + this.getActionPointCost() : "[b][color=" + this.Const.UI.Color.NegativeValue + "]" + this.getActionPointCost()) + " AP[/color][/b] and [b][color=" + this.Const.UI.Color.NegativeValue + "]" + this.m.HPCost + " HP[/color][/b] to use and builds up " + (this.isAffordableBasedOnFatiguePreview() ? "[b][color=" + this.Const.UI.Color.PositiveValue + "]" + this.getFatigueCost() : "[b][color=" + this.Const.UI.Color.NegativeValue + "]" + this.getFatigueCost()) + " Fatigue[/color][/b][/i]\n";
+		return "[i]Costs " + (this.isAffordableBasedOnAPPreview() ? "[b][color=%positive%]" + this.getActionPointCost() : "[b][color=%negative%]" + this.getActionPointCost()) + " AP[/color][/b] and [b][color=%negative%]" + this.m.HPCost + " HP[/color][/b] to use and builds up " + (this.isAffordableBasedOnFatiguePreview() ? "[b][color=%positive%]" + this.getFatigueCost() : "[b][color=%negative%]" + this.getFatigueCost()) + " Fatigue[/color][/b][/i]\n";
 	}
 
 	function getTooltip()

@@ -4,9 +4,13 @@ this.legend_monk_admires_dervish_encounter <- ::inherit("scripts/encounters/enco
 		Monk = null
 	},
 	function create() {
-		this.m.ID = "encounter.legend_monk_admires_dervish";
+		this.encounter.create();
+		this.m.Type = "encounter.legend_monk_admires_dervish";
 		this.m.Name = ::Const.Strings.randomCampEncounterName();
 		this.m.Cooldown = 30 * this.World.getTime().SecondsPerDay;
+	}
+
+	function createScreens() {
 		this.m.Screens.push({
 			ID = "Start",
 			Text = "[img]gfx/ui/events/event_80.png[/img]{As you move through camp, you notice the resident holy %person_monk% and the southern ascetic sat together away from the rest of the company, their legs crossed and open palms resting on their laps. The northern %person_monk% is studying the dervish\'s posture and expression as though it was one of %them_monk% many holy tomes, scribbling mental notes whilst trying to emulate %their_dervish% peer\'s technique. %SPEECH_ON%I don\'t know how %they_dervish% does it, captain.%SPEECH_OFF% %monk% whispers. %SPEECH_ON%I\'ve been watching this ritual of theirs for a while now, and it\'s completely unlike anything from my monastery\'s archives.%SPEECH_OFF% %monk% squirms uncomfortably, as though they\'re sat on an ant hill or thorn bush. Across from %them_monk%, the statue of a %person_dervish% sat stoic yet firm, eyes and ears gently sealed against the increasing disturbance across from %them_monk%, while a fist sized spider creeps its way up %them_dervish% leg.\n\nWith a grimace, %monk% stumbles to %their_monk% feet and backs away, dusting their legs down of loose earth and twigs, but no spindly stowaways, much to their apparent relief. %They_monk% approaches you, clearly impressed by the dervish\'s resolve. %SPEECH_ON%Every day, captain. Every day %they_dervish% does this, for hours at a time. I\'ve seen %them_dervish% do it in rain and snow, in blistering heat and, uh, crippling cold. If %they_dervish% can withstand such torments in the name of %them_dervish% Gilder, then surely I can suffer what the Gods have deigned necessary for me to endure.%SPEECH_OFF%You nod, though suspect there\'s something much more personal at play you could never truly understand. With a faint smile and hopeful strut, %they_monk% returns to camp, their day a little brighter.\n\nAs you glance back at the dervish deep in trance, the spider clambers across his face, then crawls out of view onto %them_dervish% back.}",
@@ -35,6 +39,9 @@ this.legend_monk_admires_dervish_encounter <- ::inherit("scripts/encounters/enco
 	}
 
 	function isValid(_camp) {
+		if (::World.Assets.getOrigin().getID() == "scenario.legend_risen_legion")
+			return false;
+
 		local brothers = ::World.getPlayerRoster().getAll();
 
 		local candidates_dervish = brothers.filter(@(idx, bro) bro.getBackground().getID() == "background.legend_dervish");
@@ -59,8 +66,6 @@ this.legend_monk_admires_dervish_encounter <- ::inherit("scripts/encounters/enco
 	function onPrepareVariables(_vars) {
 		_vars.push(["dervish", this.m.Dervish.m.Name]);
 		_vars.push(["monk", this.m.Monk.m.Name]);
-		::Const.LegendMod.extendVarsWithPronouns(_vars, this.m.Monk.getGender(), "monk");
-		::Const.LegendMod.extendVarsWithPronouns(_vars, this.m.Dervish.getGender(), "dervish");
 	}
 
 	function onClear() {

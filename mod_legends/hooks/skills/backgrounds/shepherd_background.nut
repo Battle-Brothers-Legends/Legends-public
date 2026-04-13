@@ -50,24 +50,24 @@
 		this.m.Modifiers.Gathering = this.Const.LegendMod.ResourceModifiers.Gather[1];
 		this.m.PerkTreeDynamic = {
 			Weapon = [
-				this.Const.Perks.SlingTree,
-				this.Const.Perks.PolearmTree,
-				this.Const.Perks.ThrowingTree,
-				this.Const.Perks.CleaverTree
+				::Const.Perks.SlingTree,
+				::Const.Perks.PolearmTree,
+				::Const.Perks.ThrowingTree,
+				::Const.Perks.CleaverTree
 			],
 			Defense = [
-				this.Const.Perks.ClothArmorTree,
-				this.Const.Perks.LightArmorTree
+				::Const.Perks.ClothArmorTree,
+				::Const.Perks.LightArmorTree
 			],
 			Traits = [
-				this.Const.Perks.FitTree,
-				this.Const.Perks.CalmTree,
-				this.Const.Perks.FastTree,
-				this.Const.Perks.AgileTree
+				::Const.Perks.FitTree,
+				::Const.Perks.CalmTree,
+				::Const.Perks.FastTree,
+				::Const.Perks.AgileTree
 			],
-			Enemy = [this.Const.Perks.DirewolfTree],
-			Class = [this.Const.Perks.SlingClassTree],
-			Profession = [], 
+			Enemy = [::Const.Perks.BeastTree],
+			Class = [],
+			Profession = [],
 			Magic = []
 		}
 	}
@@ -119,14 +119,19 @@
 	o.onAddEquipment = function ()
 	{
 		local items = this.getContainer().getActor().getItems();
-		local r;
+		local r = this.Math.rand(1, 100);
 
-		if (this.Const.DLC.Wildmen)
+		if (r <= 25)
 		{
-			if (this.Math.rand(1, 100) <= 66)
-			{
-				items.equip(this.new("scripts/items/weapons/legend_sling"));
-			}
+			items.equip(this.new("scripts/items/weapons/legend_dilapitated_sling"));
+		}
+		else if (r <= 40)
+		{
+			items.equip(this.new("scripts/items/weapons/legend_sturdy_sling"));
+		}
+		else if (r <= 60)
+		{
+			items.equip(this.new("scripts/items/weapons/legend_staff"));
 		}
 
 		items.equip(this.Const.World.Common.pickArmor([
@@ -134,18 +139,6 @@
 			[1, ::Legends.Armor.Standard.leather_tunic],
 			[1, ::Legends.Armor.Standard.linen_tunic, this.Math.rand(6, 7)]
 		]));
-
-		r = this.Math.rand(0, 4);
-
-		if (r <= 3)
-		{
-			items.equip(this.new("scripts/items/weapons/legend_sling"));
-		}
-		else if (r == 4)
-		{
-			items.equip(this.new("scripts/items/weapons/legend_staff"));
-		}
-
 		items.equip(this.Const.World.Common.pickHelmet([
 			[1, ::Legends.Helmet.Standard.straw_hat],
 		]));

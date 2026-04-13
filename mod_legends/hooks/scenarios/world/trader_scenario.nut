@@ -41,7 +41,7 @@
 		bros[0].getFlags().set("IsPlayerCharacter", true);
 		bros[0].getSprite("socket").setBrush("bust_base_caravan");
 		bros[0].getSprite("miniboss").setBrush("bust_miniboss_trader");
-		this.addScenarioPerk(bros[0].getBackground(), this.Const.Perks.PerkDefs.LegendPeaceful);
+		this.addScenarioPerk(bros[0].getBackground(), ::Const.Perks.PerkDefs.LegendPeaceful);
 		bros[0].m.PerkPointsSpent += 1;
 
 		bros[1].setStartValuesEx([
@@ -249,7 +249,7 @@
 
 	o.onBuildPerkTree <- function ( _background )
 	{
-		this.addScenarioPerk(_background, this.Const.Perks.PerkDefs.LegendPeaceful, 0, !_background.isBackgroundType(this.Const.BackgroundType.Combat));
+		this.addScenarioPerk(_background, ::Const.Perks.PerkDefs.LegendPeaceful, 0, !_background.isBackgroundType(this.Const.BackgroundType.Combat));
 	}
 });
 

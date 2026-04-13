@@ -1,13 +1,8 @@
 this.perk_legend_sleight_of_hand <- this.inherit("scripts/skills/skill", {
-	m = {},	
+	m = {},
 	function create()
 	{
-		::Const.Perks.setup(this.m, ::Legends.Perk.LegendSleightOfHand);
-		this.m.Type = ::Const.SkillType.Perk;
-		this.m.Order = ::Const.SkillOrder.Perk;
-		this.m.IsActive = false;
-		this.m.IsStacking = false;
-		this.m.IsHidden = false;
+		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendSleightOfHand);
 	}
 
 	function onNewRound()
@@ -21,5 +16,5 @@ this.perk_legend_sleight_of_hand <- this.inherit("scripts/skills/skill", {
 			this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(this.getContainer().getActor()) + " gains one extra ammo for " + weapon.getName() + ".");
 			return;
 		}
-	} 
+	}
 });

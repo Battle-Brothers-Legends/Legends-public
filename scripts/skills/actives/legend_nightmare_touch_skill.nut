@@ -49,6 +49,13 @@ this.legend_nightmare_touch_skill <- this.inherit("scripts/skills/skill", {
 		return true;
 	}
 
+	function onUpdate( _properties )
+	{
+		_properties.DamageRegularMin += 10;
+		_properties.DamageRegularMax += 20;
+		_properties.IsIgnoringArmorOnAttack = true;
+	}
+
 	function onDelayedEffect( _tag )
 	{
 		local _targetTile = _tag.TargetTile;
@@ -61,7 +68,7 @@ this.legend_nightmare_touch_skill <- this.inherit("scripts/skills/skill", {
 		if (_skill == this)
 		{
 			_properties.DamageRegularMin += this.getDamage(_targetEntity);
-			_properties.DamageRegularMax += this.getDamage(_targetEntity) + 3;
+			_properties.DamageRegularMax += this.getDamage(_targetEntity);
 			_properties.HitChanceMult[this.Const.BodyPart.Head] = 0.0;
 		}
 	}

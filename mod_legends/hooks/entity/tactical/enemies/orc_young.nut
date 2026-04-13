@@ -5,6 +5,8 @@
 		this.actor.onFactionChanged();
 		local flip = this.isAlliedWithPlayer();
 		flip = !flip;
+		local v = -3;
+		local v2 = -3;
 		foreach (a in this.Const.CharacterSprites.Helmets)
 		{
 			if (!this.hasSprite(a))
@@ -12,6 +14,7 @@
 				continue;
 			}
 			this.getSprite(a).setHorizontalFlipping(flip);
+			this.setSpriteOffset(a, this.createVec(flip ? v2 : -v2, v));
 		}
 	}
 

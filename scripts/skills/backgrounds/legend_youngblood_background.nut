@@ -75,33 +75,32 @@ this.legend_youngblood_background <- this.inherit("scripts/skills/backgrounds/ch
 
 		this.m.PerkTreeDynamic = {
 			Weapon = [
-				this.Const.Perks.CrossbowTree,
-				this.Const.Perks.CleaverTree,
-				this.Const.Perks.SwordTree,
-				this.Const.Perks.DaggerTree
+				::Const.Perks.CrossbowTree,
+				::Const.Perks.CleaverTree,
+				::Const.Perks.SwordTree,
+				::Const.Perks.DaggerTree
 			],
 			Defense = [
-				this.Const.Perks.ClothArmorTree,
-				this.Const.Perks.LightArmorTree
+				::Const.Perks.ClothArmorTree,
+				::Const.Perks.LightArmorTree
 			],
 			Traits = [
-				this.Const.Perks.AgileTree,
-				this.Const.Perks.InspirationalTree,
-				this.Const.Perks.IntelligentTree,
-				this.Const.Perks.CalmTree,
-				this.Const.Perks.ViciousTree
+				::Const.Perks.AgileTree,
+				::Const.Perks.InspirationalTree,
+				::Const.Perks.IntelligentTree,
+				::Const.Perks.CalmTree,
+				::Const.Perks.ViciousTree
 			],
 			Enemy = [
-				this.Const.Perks.VampireTree,
-				this.Const.Perks.HexenTree,
-				this.Const.Perks.AlpTree
+				::Const.Perks.UndeadTree,
+				::Const.Perks.OccultTree
 			],
 			Class = [
-				this.Const.Perks.FaithClassTree,
-				this.Const.Perks.InquisitionClassTree
+				::Const.Perks.FaithClassTree,
+				// ::Const.Perks.InquisitionClassTree
 			],
 			Profession = [
-				this.Const.Perks.ChefProfessionTree,
+				::Const.Perks.ChefProfessionTree,
 			],
 			Magic = []
 		}
@@ -131,7 +130,7 @@ this.legend_youngblood_background <- this.inherit("scripts/skills/backgrounds/ch
 				id = 14,
 				type = "text",
 				icon = "ui/icons/bravery.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+10[/color] Resolve at morale checks against fear, panic or mind control effects and can craft wooden stakes for use against vampires"
+				text = "[color=%positive%]+10[/color] Resolve at morale checks against fear, panic or mind control effects and can craft wooden stakes for use against vampires"
 			}
 		);
 		ret.push(
@@ -139,7 +138,7 @@ this.legend_youngblood_background <- this.inherit("scripts/skills/backgrounds/ch
 				id = 14,
 				type = "text",
 				icon = "ui/icons/xp_received.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+5%[/color] Experience Gain"
+				text = "[color=%positive%]+5%[/color] Experience Gain"
 			}
 		);
 		return ret;

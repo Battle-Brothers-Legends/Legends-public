@@ -24,12 +24,12 @@ this.encounter <- {
 
     function getTitle()
     {
-        return this.buildText(this.m.Name);
+        return this.getName()
     }
 
     function getName()
     {
-        return this.buildText(this.m.Name);
+        return this.buildText(this.m.Name, false);
     }
 
     function getActiveScreen()
@@ -52,8 +52,7 @@ this.encounter <- {
         this.m.IsActive = _f;
     }
 
-    function create()
-    {
+    function create() {
         this.createScreens();
     }
 
@@ -116,6 +115,7 @@ this.encounter <- {
     {
         if (_screen == null)
         {
+	        ::logInfo("yo, what the fuck?");
             this.m.ActiveScreen = null;
             return;
         }
@@ -133,13 +133,9 @@ this.encounter <- {
         }
 
         this.m.ActiveScreen = clone _screen;
-        this.m.ActiveScreen.Contract <- this;
-//        this.m.ActiveScreen.Flags <- this.m.Flags;
-//        this.m.ActiveScreen.TempFlags <- this.m.TempFlags;
         this.m.ActiveScreen.Options = [];
 
-        foreach( o in _screen.Options )
-        {
+        foreach( o in _screen.Options ) {
             local option = {
                 Text = o.Text,
                 getResult = o.getResult
@@ -166,8 +162,12 @@ this.encounter <- {
 		    this.m.ActiveScreen.Title <- "";
 	    }
 
+
         this.m.ActiveScreen.Title = this.getUITitle();
         this.m.ActiveScreen.Text = this.buildText(this.m.ActiveScreen.Text);
+
+	    ::logInfo("title is: " + this.m.ActiveScreen.Title);
+	    ::logInfo("text is: " + this.m.ActiveScreen.Text);
 
         foreach( option in this.m.ActiveScreen.Options )
         {
@@ -175,7 +175,7 @@ this.encounter <- {
         }
     }
 
-    function buildText( _text )
+    function buildText( _text, _full = true )
     {
         local brothers = this.World.getPlayerRoster().getAll();
         local brother1;
@@ -200,34 +200,19 @@ this.encounter <- {
         }
 
         local r = this.Math.rand(0, brothers.len() - 1);
-        brother1 = brothers[r].getName();
+        brother1 = brothers[r];
         brothers.remove(r);
 
         if (brothers.len() != 0)
-            brother2 = brothers[::Math.rand(0, brothers.len() - 1)].getName();
+            brother2 = brothers[::Math.rand(0, brothers.len() - 1)];
         else if (slaves.len() != 0)
-            brother2 = slaves[::Math.rand(0, slaves.len() - 1)].getName();
+            brother2 = slaves[::Math.rand(0, slaves.len() - 1)];
         else if (notnagel != null)
-			brother2 = notnagel.getName();
+			brother2 = notnagel;
 		else
 			brother2 = brother1;
 
-		local towns = this.World.EntityManager.getSettlements();
-		local nearestTown;
-		local nearestDist = 9999;
-		foreach (t in towns)
-		{
-			local d = t.getTile().getDistanceTo(::World.State.getPlayer().getTile());
-			if (d < nearestDist && t.isAlliedWithPlayer() && ::World.FactionManager.getFaction(t.getFaction()).getContracts().len() != 0)
-			{
-				nearestTown = t;
-				nearestDist = d;
-			}
-		}
-		if (nearestTown == null)
-			return;
-
-        local text;
+		local nearestTown = ::Legends.S.getClosestSettlement();
         local vars = [
 			["SPEECH_ON", "\n\n[color=#bcad8c]\""],
 			["SPEECH_START", "[color=#bcad8c]\""],
@@ -235,11 +220,28 @@ this.encounter <- {
 			["companyname", ::World.Assets.getName()],
 			["randomname", ::Const.Strings.CharacterNames[::Math.rand(0, ::Const.Strings.CharacterNames.len() - 1)]],
 			["randomnoble", ::Const.Strings.KnightNames[::Math.rand(0, ::Const.Strings.KnightNames.len() - 1)]],
-			["randombrother", brother1],
-			["randombrother2", brother2],
-        	["settlement", nearestTown.getName()]
+			["randombrother", brother1.getName()],
+			["randombrother2", brother2.getName()],
+        	["settlement", nearestTown == null ? "" : nearestTown.getName()]
         ];
-        this.onPrepareVariables(vars);
+
+	    ::Const.LegendMod.extendVarsWithPronouns(vars, brother1, "randombrother");
+	    ::Const.LegendMod.extendVarsWithPronouns(vars, brother2, "randombrother2");
+        // Dynamically handle pronouns for any additional actors in an encounter
+        // For this to work, any encounter text using the placeholder pronoun must refer to the actor in the lowercase form of the actor's variable name
+        // For example, the placeholder "%they_somebody%" will get the pronoun for this.m.Somebody
+        foreach (key, value in this.m) {
+            if (::MSU.isKindOf(value, "actor")) {
+                ::Const.LegendMod.extendVarsWithPronouns(vars, value, key.tolower());
+            }
+        }
+
+	    if (_full) {
+		    this.onPrepareVariables(vars);
+	    } else {
+			try { this.onPrepareVariables(vars); } catch(e) {}
+	    }
+
         return this.buildTextFromTemplate(_text, vars);
     }
 
@@ -268,6 +270,7 @@ this.encounter <- {
 
     function getUIContent()
     {
+	    local type = this.getType(); // this is for error catching only, not used
         local result = [];
         result.push({
             id = 1,
@@ -279,6 +282,7 @@ this.encounter <- {
 
     function getUIList()
     {
+	    local type = this.getType(); // this is for error catching only, not used
         local ret = [];
 
         if (this.m.ActiveScreen.List.len() != 0)
@@ -295,25 +299,26 @@ this.encounter <- {
 
     function getUIImage()
     {
+	    local type = this.getType(); // this is for error catching only, not used
         return this.m.ActiveScreen.Image;
     }
 
     function getUICharacterImage( _index = 0 )
     {
+	    local type = this.getType(); // this is for error catching only, not used
         if (("Characters" in this.m.ActiveScreen) && this.m.ActiveScreen.Characters.len() > _index)
-        {
             return {
                 Image = this.m.ActiveScreen.Characters[_index],
                 IsProcedural = true
             };
-        }
-        else if (("Banner" in this.m.ActiveScreen) && _index > 0)
-        {
+
+        if (("Banner" in this.m.ActiveScreen) && _index > 0)
             return {
                 Image = this.m.ActiveScreen.Banner,
                 IsProcedural = false
             };
-        }
+
+	    return null;
     }
 
     function getUIMiddleOverlay()

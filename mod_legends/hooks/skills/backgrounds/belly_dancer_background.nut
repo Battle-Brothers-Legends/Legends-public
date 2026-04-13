@@ -37,46 +37,55 @@
 		this.m.Faces = this.Const.Faces.SouthernFemale;
 		this.m.Hairs = this.Const.Hair.SouthernFemale;
 		this.m.HairColors = this.Const.HairColors.SouthernYoung;
-		this.m.BeardChance = 1;
+		this.m.BeardChance = 0;
 		this.m.Ethnicity = 1;
 		this.m.BackgroundType = this.Const.BackgroundType.Female | this.Const.BackgroundType.Performing;
 		this.m.Modifiers.Barter = this.Const.LegendMod.ResourceModifiers.Barter[1];
+		this.m.Modifiers.Scout = this.Const.LegendMod.ResourceModifiers.Scout[3];
 		this.m.PerkTreeDynamic = {
 			Weapon = [
-				this.Const.Perks.SwordTree,
-				this.Const.Perks.TwoHandedTree,
-				this.Const.Perks.PolearmTree,
-				this.Const.Perks.DaggerTree,
-				this.Const.Perks.ThrowingTree
+				::Const.Perks.SwordTree,
+				::Const.Perks.PolearmTree,
+				::Const.Perks.DaggerTree,
+				::Const.Perks.ThrowingTree
 			],
 			Defense = [
-				this.Const.Perks.ClothArmorTree,
-				this.Const.Perks.LightArmorTree
+				::Const.Perks.ClothArmorTree,
+				::Const.Perks.LightArmorTree
 			],
 			Traits = [
-				this.Const.Perks.TrainedTree,
-				this.Const.Perks.FitTree,
-				this.Const.Perks.FastTree,
-				this.Const.Perks.AgileTree,
-				this.Const.Perks.DeviousTree,
-				this.Const.Perks.IntelligentTree
+				::Const.Perks.TrainedTree,
+				::Const.Perks.FitTree,
+				::Const.Perks.FastTree,
+				::Const.Perks.AgileTree,
+				::Const.Perks.DeviousTree,
+				::Const.Perks.IntelligentTree
 			],
 			Enemy = [
-				this.Const.Perks.SwordmastersTree
+				::Const.Perks.SwordmastersTree
 			],
 			Class = [
-				this.Const.Perks.JugglerClassTree
+				::Const.Perks.JugglerClassTree
 			],
 			Profession = [],
 			Magic = [
-				this.Const.Perks.AssassinMagicTree
+				::Const.Perks.AssassinMagicTree
 			]
 		}
 	}
 
 	o.getTooltip = function ()
 	{
-		return this.character_background.getTooltip();
+		local ret = this.character_background.getTooltip();
+		ret.push(
+			{
+				id = 11,
+				type = "text",
+				icon = "ui/icons/chance_to_hit_head.png",
+				text = "[color=%positive%]+10%[/color] Chance To Hit Head"
+			}
+		);
+		return ret;
 	}
 
 	o.onChangeAttributes = function ()
@@ -118,6 +127,12 @@
 		return c;
 	}
 
+	o.onUpdate <- function ( _properties )
+	{
+		this.character_background.onUpdate(_properties);
+		_properties.HitChance[this.Const.BodyPart.Head] += 10;
+	}
+
 	o.onAdded <- function ()
 	{
 		this.character_background.onAdded();
@@ -127,7 +142,9 @@
 
 	o.onAddEquipment = function ()
 	{
-		local items = this.getContainer().getActor().getItems();
+		local actor = this.getContainer().getActor();
+		actor.setVeteranPerks(3);
+		local items = actor.getItems();
 		items.equip(this.Const.World.Common.pickArmor([
 			[3, ::Legends.Armor.Southern.cloth_sash],
 			[1, ::Legends.Armor.None]

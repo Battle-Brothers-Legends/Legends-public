@@ -10,7 +10,7 @@ this.legend_wooden_spear <- this.inherit("scripts/items/weapons/weapon", {
 		this.m.Icon = "weapons/melee/legend_wooden_spear_01_70x70.png";
 		this.m.WeaponType = this.Const.Items.WeaponType.Spear;
 		this.m.SlotType = this.Const.ItemSlot.Mainhand;
-		this.m.ItemType = this.Const.Items.ItemType.Weapon | this.Const.Items.ItemType.MeleeWeapon | this.Const.Items.ItemType.OneHanded | this.Const.Items.ItemType.Defensive;
+		this.m.ItemType = this.Const.Items.ItemType.Weapon | this.Const.Items.ItemType.MeleeWeapon | this.Const.Items.ItemType.OneHanded | this.Const.Items.ItemType.Defensive | this.Const.Items.ItemType.Ammo;
 		this.m.IsDoubleGrippable = true;
 		this.m.AddGenericSkill = true;
 		this.m.ShowQuiver = false;
@@ -20,6 +20,9 @@ this.legend_wooden_spear <- this.inherit("scripts/items/weapons/weapon", {
 		this.m.Condition = 16.0;
 		this.m.ConditionMax = 16.0;
 		this.m.StaminaModifier = -6;
+		this.m.Ammo = 1;
+		this.m.AmmoMax = 1;
+		this.m.AmmoCost = 5;
 		this.m.RegularDamage = 15;
 		this.m.RegularDamageMax = 25;
 		this.m.ArmorDamageMult = 0.45;
@@ -31,7 +34,11 @@ this.legend_wooden_spear <- this.inherit("scripts/items/weapons/weapon", {
 	{
 		this.weapon.onEquip();
 		::Legends.Actives.grant(this, ::Legends.Active.Thrust);
+		::Legends.Actives.grant(this, ::Legends.Active.LegendHeartseeker);
 		::Legends.Actives.grant(this, ::Legends.Active.Spearwall);
+		::Legends.Actives.grant(this.weapon, ::Legends.Active.ThrowJavelin, function (_skill) {
+			_skill.m.IsBackupSpear = true;
+		}.bindenv(this));
 	}
 
 	function onUpdateProperties( _properties )

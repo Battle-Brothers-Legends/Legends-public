@@ -72,17 +72,17 @@
 	};
 	o.m.PerkTreeDynamicBase <- { // this is a base perk tree so even if you don't add custom or dynamic perk tree it will default to this and build an average bro
 		Weapon = [
-			this.Const.Perks.SwordTree,
-			this.Const.Perks.SpearTree,
-			this.Const.Perks.MaceTree
+			::Const.Perks.SwordTree,
+			::Const.Perks.SpearTree,
+			::Const.Perks.MaceTree
 		],
 		Defense = [
-			this.Const.Perks.MediumArmorTree
+			::Const.Perks.MediumArmorTree
 		],
 		Traits = [
-			this.Const.Perks.FitTree,
-			this.Const.Perks.FastTree,
-			this.Const.Perks.AgileTree
+			::Const.Perks.FitTree,
+			::Const.Perks.FastTree,
+			::Const.Perks.AgileTree
 		],
 		Enemy = [],
 		Class = [],
@@ -641,7 +641,7 @@
 				id = 10,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "Gain a perk point every [color=" + this.Const.UI.Color.PositiveValue + "]" + this.getContainer().getActor().getVeteranPerks() + "[/color] Levels"
+				text = "Gain a perk point every [color=%positive%]" + this.getContainer().getActor().getVeteranPerks() + "[/color] Levels"
 			});
 		}
 		if (this.getContainer() != null) ret.extend(this.getAttributesTooltip());
@@ -836,7 +836,7 @@
 			return this.m.PerkTree;
 		}
 
-		local pT = this.Const.Perks.PerksTreeTemplate;
+		local pT = ::Const.Perks.PerksTreeTemplate;
 		if (pT == null)
 		{
 			return [];
@@ -852,12 +852,12 @@
 		if (typeof _perk == "string")
 		{
 			id = _perk;
-			local basePerkDefObject = this.Const.Perks.findById(_perk);
+			local basePerkDefObject = ::Const.Perks.findById(_perk);
 			perkDef = ::Legends.Perk[basePerkDefObject.Const];
 		}
 		else
 		{
-			id = this.Const.Perks.PerkDefObjects[_perk].ID;
+			id = ::Const.Perks.PerkDefObjects[_perk].ID;
 			perkDef = _perk;
 		}
 
@@ -871,7 +871,7 @@
 
     o.addPerk <- function ( _perk, _preferredRow = 0, _isRefundable = true )
     {
-        local perkDefObject = clone this.Const.Perks.PerkDefObjects[_perk];
+        local perkDefObject = clone ::Const.Perks.PerkDefObjects[_perk];
 
         // Don't add duplicates
         if (this.m.PerkTreeMap == null || perkDefObject.ID in this.m.PerkTreeMap)
@@ -940,7 +940,7 @@
 
 	o.removePerk <- function ( _perk )
 	{
-		local perkDefObject = this.Const.Perks.PerkDefObjects[_perk];
+		local perkDefObject = ::Const.Perks.PerkDefObjects[_perk];
 		if (!(perkDefObject.ID in this.m.PerkTreeMap))
 		{
 			return false;
@@ -998,7 +998,116 @@
 
 	o.hasPerk <- function ( _perk )
 	{
-		return this.Const.Perks.PerkDefObjects[_perk].ID in this.m.PerkTreeMap;
+		return ::Const.Perks.PerkDefObjects[_perk].ID in this.m.PerkTreeMap;
+	}
+
+	/**
+	 * Gets information on how many complete perk groups the character has,
+	 * as well as any additional perks that are not part of a complete set
+	 *
+	 * @return A table containing the following:
+	 * 	- CompleteGroupsIDs: Table whose keys are perk group categories; values are arrays containing IDs of complete perk groups
+	 * 	- RemainingPerkDefs: Array of perkDefs (numbers representing indeces in ::Const.Perks.PerkDefObjects) that do not belong to any complete perk group
+	 */
+	o.getPerkGroups <- function ()
+	{
+		local tmp = {};
+		local nonStrayPerks = {};
+		local possibleStrayPerks = [];
+		local ret = {
+			CompleteGroupsIDs = ::Legends.Perks.buildPerkGroupCategoriesTableOfArrays(),
+			RemainingPerkDefs = [] // Array of perkDefs that do not belong to any complete perk group
+		}
+
+		foreach (perk in this.m.PerkTreeMap)
+		{
+			// 1. Find out which perk groups are possible
+			// 2. Check if each perk group is fully represented
+			// 3. List out all fully represented perk groups, and the remaining number of ungrouped perks
+			foreach (entry in perk.PerkGroups)
+			{
+				if (!(entry.ID in tmp))
+				{
+					tmp[entry.ID] <- {
+						Category = entry.Category,
+						PerkDefs = {}
+					}
+				}
+
+				tmp[entry.ID].PerkDefs[Legends.Perk[perk.Const]] <- true;
+			}
+		}
+
+		foreach (id, entry in tmp)
+		{
+			if (::Legends.Perks.isPerkGroupFullyRepresented(id, entry.PerkDefs))
+			{
+				ret.CompleteGroupsIDs[entry.Category].push(id);
+				foreach (key, v in entry.PerkDefs)
+				{
+					if (!(key in nonStrayPerks))
+					{
+						nonStrayPerks[key] <- true;
+					}
+				}
+			}
+			else
+			{
+				foreach (key, v in entry.PerkDefs)
+				{
+					possibleStrayPerks.push(key);
+				}
+			}
+		}
+
+		foreach (perkDef in possibleStrayPerks)
+		{
+			if (!(perkDef in nonStrayPerks))
+			{
+				ret.RemainingPerkDefs.push(perkDef);
+			}
+		}
+
+		return ret;
+	}
+
+	/**
+	 * Update tooltip data to add a list of all perk groups this character has, organised by categories
+	 *
+	 * @param arr An array of tables to hold the tooltip data, as seen in tooltip_events.nut
+	 */
+	o.extendKnownPerksTooltip <- function(arr)
+	{
+		local data = this.getPerkGroups();
+		local last = arr[arr.len() - 1];
+		local iter = "id" in last ? last.id : 3;
+		foreach (category in ::Legends.Perks.PerkGroupCategoriesOrder)
+		{
+			iter++;
+			if (data.CompleteGroupsIDs[category].len() > 0)
+			{
+				arr.push({
+					id = iter,
+					type = "text",
+					text = "\n[u]" + category + "[/u]"
+				});
+			}
+
+			local counter = 0;
+
+			foreach (index, group in data.CompleteGroupsIDs[category])
+			{
+				counter++;
+				arr.push({
+					id = iter,
+					type = "textDualColumn",
+					listCount = counter,
+					listLength = data.CompleteGroupsIDs[category].len(),
+					icon = "Icon" in ::Const.Perks[group] ? ::Const.Perks[group].Icon : "ui/perks/legend_vala_days.png",
+					text = ::Const.Perks[group].Name
+				});
+			}
+		}
 	}
 
 	o.buildDescription = function( _isFinal = false )
@@ -1084,213 +1193,50 @@
 			this.getContainer().getActor().getTitle()
 		]);
 
-		this.Const.LegendMod.extendVarsWithPronouns(vars, this.getContainer().getActor().getGender());
+		::Const.LegendMod.extendVarsWithPronouns(vars, this.getContainer().getActor());
 
 		this.m.Description = this.buildTextFromTemplate(this.m.RawDescription, vars);
 	}
 
 	o.buildAttributes = function (_tag = null, _attrs = null)
 	{
-		local a = [];
-
-		if (_tag == "zombie")
-		{
-			a = {
-				Hitpoints = [
-					75,
-					75
-				],
-				Bravery = [
-					100,
-					100
-				],
-				Stamina = [
-					100,
-					100
-				],
-				MeleeSkill = [
-					40,
-					40
-				],
-				RangedSkill = [
-					20,
-					20
-				],
-				MeleeDefense = [
-					-5,
-					-5
-				],
-				RangedDefense = [
-					-6,
-					-6
-				],
-				Initiative = [
-					65,
-					65
-				]
-			};
-		}
-		else if (_tag == "skeleton")
-		{
-			a = {
-				Hitpoints = [
-					50,
-					50
-				],
-				Bravery = [
-					100,
-					100
-				],
-				Stamina = [
-					40,
-					40
-				],
-				MeleeSkill = [
-					50,
-					50
-				],
-				RangedSkill = [
-					40,
-					40
-				],
-				MeleeDefense = [
-					3,
-					3
-				],
-				RangedDefense = [
-					5,
-					5
-				],
-				Initiative = [
-					95,
-					95
-				]
-			};
-		}
-		else //human bro
-		{
-			a = {
-				Hitpoints = [
-					60,
-					60
-				],
-				Bravery = [
-					40,
-					40
-				],
-				Stamina = [
-					100,
-					100
-				],
-				MeleeSkill = [
-					50,
-					50
-				],
-				RangedSkill = [
-					40,
-					40
-				],
-				MeleeDefense = [
-					0,
-					0
-				],
-				RangedDefense = [
-					0,
-					0
-				],
-				Initiative = [
-					85,
-					85
-				]
-			};
+		// helper function to sum all keys in the table, that ensures [min, max], regardless the input
+		local sum = function (_a, _b) {
+			local ret = {};
+			foreach(k, v in _a) {
+				local aMin = ::Math.min(v[0], v[1]);
+				local aMax = ::Math.max(v[0], v[1]);
+				if (k in _b) {
+					local bv = _b[k];
+					ret[k] <- [
+						aMin + ::Math.min(bv[0], bv[1]),
+						aMax + ::Math.max(bv[0], bv[1])
+					];
+				} else { // key doesn't exist in _b, so just use what's in _a
+					ret[k] <- [aMin, aMax];
+				}
+			}
+			return ret;
 		}
 
+		local a = clone ::Legends.Backgrounds.BaseAttr.resolve(_tag);
 		// Modify the stats if being female carries a gameplay effect
-		if (::Legends.Mod.ModSettings.getSetting("GenderEquality").getValue() == "Enabled")
-		{
-			if (this.getContainer().getActor().getGender()==1)
-			{
-				// Female characters trade HP for Fatigue compared to male characters
-				a.Hitpoints[0] -= 10;
-				a.Hitpoints[1] -= 10;
-				a.Stamina[0] += 10;
-				a.Stamina[1] += 10;
+		if (::Legends.Mod.ModSettings.getSetting("GenderEquality").getValue() == "Enabled") {
+			if (this.getContainer().getActor().getGender() == 1) {
+				a = sum(a, ::Legends.Backgrounds.BaseAttr.Female);
 			}
 		}
 
-		local c = this.onChangeAttributes();
-		a.Hitpoints[0] += c.Hitpoints[0];
-		a.Hitpoints[1] += c.Hitpoints[1];
-		a.Bravery[0] += c.Bravery[0];
-		a.Bravery[1] += c.Bravery[1];
-		a.Stamina[0] += c.Stamina[0];
-		a.Stamina[1] += c.Stamina[1];
-		a.MeleeSkill[0] += c.MeleeSkill[0];
-		a.MeleeSkill[1] += c.MeleeSkill[1];
-		a.MeleeDefense[0] += c.MeleeDefense[0];
-		a.MeleeDefense[1] += c.MeleeDefense[1];
-		a.RangedSkill[0] += c.RangedSkill[0];
-		a.RangedSkill[1] += c.RangedSkill[1];
-		a.RangedDefense[0] += c.RangedDefense[0];
-		a.RangedDefense[1] += c.RangedDefense[1];
-		a.Initiative[0] += c.Initiative[0];
-		a.Initiative[1] += c.Initiative[1];
-
+		a = sum(a, this.onChangeAttributes());
 		if (_attrs != null)
-		{
-			a.Hitpoints[0] += _attrs.Hitpoints[0];
-			a.Hitpoints[1] += _attrs.Hitpoints[1];
-			a.Bravery[0] += _attrs.Bravery[0];
-			a.Bravery[1] += _attrs.Bravery[1];
-			a.Stamina[0] += _attrs.Stamina[0];
-			a.Stamina[1] += _attrs.Stamina[1];
-			a.MeleeSkill[0] += _attrs.MeleeSkill[0];
-			a.MeleeSkill[1] += _attrs.MeleeSkill[1];
-			a.MeleeDefense[0] += _attrs.MeleeDefense[0];
-			a.MeleeDefense[1] += _attrs.MeleeDefense[1];
-			a.RangedSkill[0] += _attrs.RangedSkill[0];
-			a.RangedSkill[1] += _attrs.RangedSkill[1];
-			a.RangedDefense[0] += _attrs.RangedDefense[0];
-			a.RangedDefense[1] += _attrs.RangedDefense[1];
-			a.Initiative[0] += _attrs.Initiative[0];
-			a.Initiative[1] += _attrs.Initiative[1];
-		}
+			a = sum(a, _attrs);
+
 		local b = this.getContainer().getActor().getBaseProperties();
 		b.ActionPoints = 9;
-		local Hitpoints1 = this.Math.rand(a.Hitpoints[0], a.Hitpoints[1]);
-		local Bravery1 = this.Math.rand(a.Bravery[0], a.Bravery[1]);
-		local Stamina1 = this.Math.rand(a.Stamina[0], a.Stamina[1]);
-		local MeleeSkill1 = this.Math.rand(a.MeleeSkill[0], a.MeleeSkill[1]);
-		local RangedSkill1 = this.Math.rand(a.RangedSkill[0], a.RangedSkill[1]);
-		local MeleeDefense1 = this.Math.rand(a.MeleeDefense[0], a.MeleeDefense[1]);
-		local RangedDefense1 = this.Math.rand(a.RangedDefense[0], a.RangedDefense[1]);
-		local Initiative1 = this.Math.rand(a.Initiative[0], a.Initiative[1]);
-		local Hitpoints2 = this.Math.rand(a.Hitpoints[0], a.Hitpoints[1]);
-		local Bravery2 = this.Math.rand(a.Bravery[0], a.Bravery[1]);
-		local Stamina2 = this.Math.rand(a.Stamina[0], a.Stamina[1]);
-		local MeleeSkill2 = this.Math.rand(a.MeleeSkill[0], a.MeleeSkill[1]);
-		local RangedSkill2 = this.Math.rand(a.RangedSkill[0], a.RangedSkill[1]);
-		local MeleeDefense2 = this.Math.rand(a.MeleeDefense[0], a.MeleeDefense[1]);
-		local RangedDefense2 = this.Math.rand(a.RangedDefense[0], a.RangedDefense[1]);
-		local Initiative2 = this.Math.rand(a.Initiative[0], a.Initiative[1]);
-		local HitpointsAvg = this.Math.round((Hitpoints1 + Hitpoints2) / 2);
-		local BraveryAvg  = this.Math.round((Bravery1 + Bravery2) / 2);
-		local StaminaAvg  = this.Math.round((Stamina1 + Stamina2) / 2);
-		local MeleeSkillAvg  = this.Math.round((MeleeSkill1 + MeleeSkill2) / 2);
-		local RangedSkillAvg  = this.Math.round((RangedSkill1 + RangedSkill2) / 2);
-		local MeleeDefenseAvg  = this.Math.round((MeleeDefense1 + MeleeDefense2) / 2);
-		local RangedDefenseAvg  = this.Math.round((RangedDefense1 + RangedDefense2) / 2);
-		local InitiativeAvg  = this.Math.round((Initiative1 + Initiative2) / 2);
+		foreach(k, v in a) { // set avg of 2 rolls to `b`
+			b[k] = ::Math.round((::Math.rand(v[0], v[1]) + ::Math.rand(v[0], v[1])) / 2);
+		}
 
-
-		b.Hitpoints = HitpointsAvg;
-		b.Bravery = BraveryAvg;
-		b.Stamina = StaminaAvg;
-		b.MeleeSkill = MeleeSkillAvg;
-		b.RangedSkill = RangedSkillAvg;
-		b.MeleeDefense = MeleeDefenseAvg;
-		b.RangedDefense = RangedDefenseAvg;
-		b.Initiative = InitiativeAvg;
 		this.getContainer().getActor().m.CurrentProperties = clone b;
 		this.getContainer().getActor().setHitpoints(b.Hitpoints);
 
@@ -1304,6 +1250,7 @@
 				return 50;
 			return weight;
 		}
+
 		local weighted = [
 			calc(a, b, "Hitpoints"),
 			calc(a, b, "Bravery"),
@@ -1320,8 +1267,8 @@
 	o.rebuildPerkTree <- function ( _tree )
 	{
 		this.m.CustomPerkTree = _tree;
-		this.m.CustomPerkTree = this.Const.Perks.MergeDynamicPerkTree(_tree, this.m.PerkTreeDynamic);
-		local pT = this.Const.Perks.BuildCustomPerkTree(this.m.CustomPerkTree);
+		this.m.CustomPerkTree = ::Const.Perks.MergeDynamicPerkTree(_tree, this.m.PerkTreeDynamic);
+		local pT = ::Const.Perks.BuildCustomPerkTree(this.m.CustomPerkTree);
 		this.m.PerkTree = pT.Tree;
 		this.m.PerkTreeMap = pT.Map;
 	}
@@ -1383,12 +1330,12 @@
 			local tree = this.m.PerkTreeDynamic == null ? this.m.PerkTreeDynamicBase : this.m.PerkTreeDynamic;
 			local mins = this.getPerkTreeDynamicMins();
 
-			local result  = this.Const.Perks.GetDynamicPerkTree(mins, tree);
+			local result  = ::Const.Perks.GetDynamicPerkTree(mins, tree, false);
 			this.m.CustomPerkTree = result.Tree;
 			a = result.Attributes;
 		}
 
-		local pT = this.Const.Perks.BuildCustomPerkTree(this.m.CustomPerkTree);
+		local pT = ::Const.Perks.BuildCustomPerkTree(this.m.CustomPerkTree);
 		this.m.PerkTree = pT.Tree;
 		this.m.PerkTreeMap = pT.Map;
 
@@ -1420,10 +1367,6 @@
 		}
 		else
 		{
-			if(this.isBackgroundType(this.Const.BackgroundType.ConvertedCultist))
-			{
-				this.m.DailyCost = 4; // Converted cultists only cost 4, this is instead of saving the value for all bros.
-			}
 			local level = this.getContainer().getActor().getLevel();
 			local wage = this.Math.round(this.m.DailyCost * this.m.DailyCostMult);
 			_properties.DailyWage += wage * this.Math.pow(1.1, this.Math.min(10, level - 1));
@@ -1471,7 +1414,7 @@
 			hair.setBrush("hair_" + hairColor + "_" + this.Const.Hair.Zombie[this.Math.rand(0, this.Const.Hair.Zombie.len() - 1)]);
 			hair.varyColor(0.02, 0.02, 0.02);
 
-			if (this.Math.rand(1, 100) <= this.m.BeardChance)
+			if (this.m.Beards != null && this.Math.rand(1, 100) <= this.m.BeardChance)
 			{
 				local beard = actor.getSprite("beard");
 				beard.setBrush("beard_" + hairColor + "_" + this.Const.Beards.Zombie[this.Math.rand(0, this.Const.Beards.Zombie.len() - 1)]);
@@ -1506,7 +1449,7 @@
 			hair.setBrush("hair_" + hairColor + "_" + this.Const.Hair.ZombieOnly[this.Math.rand(0, this.Const.Hair.ZombieOnly.len() - 1)]);
 			hair.varyColor(0.02, 0.02, 0.02);
 
-			if (this.Math.rand(1, 100) <= this.m.BeardChance)
+			if (this.m.Beards != null && this.Math.rand(1, 100) <= this.m.BeardChance)
 			{
 				local beard = actor.getSprite("beard");
 				beard.setBrush("beard_" + hairColor + "_" + this.Const.Beards.ZombieOnly[this.Math.rand(0, this.Const.Beards.ZombieOnly.len() - 1)]);
@@ -1774,7 +1717,7 @@
 
 		if (ret.len() == 0) return "";
 
-		return "[color=" + this.Const.UI.Color.NegativeValue + "]Background Type: " + ret.slice(0, ret.len() - 2) + "[/color]";
+		return "[color=%negative%]Background Type: " + ret.slice(0, ret.len() - 2) + "[/color]";
 	}
 
 	//0 = Male, 1 = Female, -1 = Either
@@ -1785,17 +1728,7 @@
 	o.Convert <- function()
 	{
 		this.addBackgroundType(this.Const.BackgroundType.ConvertedCultist);
-		local cultistGroup = [
-						[::Legends.Perk.LegendSpecialistCultist],
-						[::Legends.Perk.LegendSpecCultHood],
-						[],
-						[],
-						[::Legends.Perk.LegendPrepareGraze],
-						[::Legends.Perk.LegendSpecCultArmor],
-						[::Legends.Perk.LegendLacerate]
-					];
-
-		this.addPerkGroup(cultistGroup);
+		this.addPerkGroup(this.Const.Perks.NinetailsClassTree.Tree);
 		this.getContainer().getActor().getFlags().add("cultist");
 	}
 

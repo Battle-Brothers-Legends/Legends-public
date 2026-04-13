@@ -6,40 +6,44 @@ this.legend_bone_platings_upgrade <- this.inherit("scripts/items/legend_armor/le
 		this.m.ID = "legend_armor_upgrade.body.legend_bone_platings";
 		this.m.Type = this.Const.Items.ArmorUpgrades.Attachment;
 		this.m.Name = "Bone Plating";
-		this.m.Description = "Crafted from strong but surprisingly light bones, these ornate platings make for an ablative armor to be worn ontop of regular armor.";
-		this.m.ArmorDescription = "A layer of ornate bone plates is attached to this armor.";
-		this.m.Icon = "armor_upgrades/upgrade_06.png";
-		this.m.IconLarge = this.m.Icon;
-		this.m.OverlayIcon = "armor_upgrades/icon_upgrade_06.png";
-		this.m.OverlayIconLarge = "armor_upgrades/inventory_upgrade_06.png";
-		this.m.SpriteBack = "upgrade_06_back";
-		this.m.SpriteDamagedBack = "upgrade_06_back_damaged";
-		this.m.SpriteCorpseBack = "upgrade_06_back_dead";
-
+		this.m.Description = "An ablative armor made of ornate bone platings, crafted from strong but surprisingly light bones. Worn on top of regular armor.";
+		this.m.ArmorDescription = "Includes an armor made of ornate bone plates.";
+		this.m.Variants = [1];
+		this.m.Variant = this.m.Variants[this.Math.rand(0, this.m.Variants.len() - 1)];
+		this.updateVariant();
+		this.m.ImpactSound = this.Const.Sound.ArmorBoneImpact;
+		this.m.InventorySound = this.Const.Sound.ArmorBoneImpact;
 		this.m.Value = 850;
 		this.m.StaminaModifier = -2;
 	}
 
-	function getTooltip()
-	{
-		local result = this.legend_armor_upgrade.getTooltip();
-		result.push({
-			id = 14,
-			type = "text",
-			icon = "ui/icons/special.png",
-			text = "Completely absorbs the first hit of every combat encounter which doesn\'t ignore armor"
-		});
-		return result;
+	function updateVariant() {
+		local variant = this.m.Variant > 9 ? this.m.Variant : "0" + this.m.Variant;
+		this.m.SpriteBack = "pauldrons_bone_platings_" + variant + "";
+		this.m.SpriteDamagedBack = "pauldrons_bone_platings_" + variant + "_damaged";
+		this.m.SpriteCorpseBack = "pauldrons_bone_platings_" + variant + "_dead";
+		this.m.Icon = "legend_armor/upgrades/pauldrons_bone_platings_" + variant + "_upgrade.png";
+		this.m.IconLarge = this.m.Icon;
+		this.m.OverlayIcon = "legend_armor/icon_pauldrons_bone_platings_" + variant + ".png";
+		this.m.OverlayIconLarge = "legend_armor/inventory_pauldrons_bone_platings_"  + variant + ".png";
 	}
 
-	function onArmorTooltip( _result )
-	{
-		_result.push({
+	function updateTooltip( _tooltip )	{
+		_tooltip.push({
 			id = 14,
 			type = "text",
 			icon = "ui/icons/special.png",
 			text = "Completely absorbs the first hit of every combat encounter which doesn\'t ignore armor"
 		});
+		return _tooltip;
+	}
+
+	function getTooltip()	{
+		return updateTooltip(this.legend_armor_upgrade.getTooltip());
+	}
+
+	function onArmorTooltip( _result )	{
+		this.legend_armor_upgrade.onArmorTooltip(updateTooltip(_result));
 	}
 
 	function onCombatStarted()

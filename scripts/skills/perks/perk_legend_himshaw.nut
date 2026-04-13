@@ -4,17 +4,12 @@ this.perk_legend_himshaw <- this.inherit("scripts/skills/skill", {
 	},
 	function create()
 	{
-		::Const.Perks.setup(this.m, ::Legends.Perk.LegendHimshaw);
-		this.m.Type = this.Const.SkillType.Perk;
-		this.m.Order = this.Const.SkillOrder.Perk;
-		this.m.IsActive = false;
-		this.m.IsStacking = false;
-		this.m.IsHidden = false;
+		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendHimshaw);
 	}
 
 	function onCombatFinished()
 	{
-		if (repair(20))
+		if (repair(0.2))
 			this.m.RepairedToday = true;
 	}
 
@@ -28,7 +23,7 @@ this.perk_legend_himshaw <- this.inherit("scripts/skills/skill", {
 		if (body)
 		{
 			bodyMissing = body.getArmorMax() - body.getArmor();
-			bodyAdded = this.Math.min(bodyMissing, this.Math.min(_toRepair, this.Math.floor(body.getArmorMax() * 0.1)));
+			bodyAdded = this.Math.min(bodyMissing, this.Math.max(0, this.Math.floor(body.getArmorMax() * _toRepair)));
 
 			if (bodyAdded > 0)
 			{
@@ -42,7 +37,7 @@ this.perk_legend_himshaw <- this.inherit("scripts/skills/skill", {
 		if (body)
 		{
 			bodyMissing = body.getArmorMax() - body.getArmor();
-			bodyAdded = this.Math.min(bodyMissing, this.Math.min(_toRepair / 2, this.Math.floor(body.getArmorMax() * 0.1)));
+			bodyAdded = this.Math.min(bodyMissing, this.Math.max(0, this.Math.floor(body.getArmorMax() * _toRepair)));
 
 			if (bodyAdded > 0)
 			{
@@ -58,7 +53,7 @@ this.perk_legend_himshaw <- this.inherit("scripts/skills/skill", {
 
 	function onNewDay()
 	{
-		repair(10);
+		repair(0.1);
 		this.m.RepairedToday = false;
 	}
 

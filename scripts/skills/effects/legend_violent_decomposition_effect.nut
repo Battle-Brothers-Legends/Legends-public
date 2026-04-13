@@ -47,7 +47,7 @@ this.legend_violent_decomposition_effect <- this.inherit("scripts/skills/skill",
 
 	function getDescription()
 	{
-		return "This summon is set to explode in [color=" + this.Const.UI.Color.NegativeValue + "]" + this.m.TurnsLeft + "[/color] turn(s).";
+		return "This summon is set to explode in [color=%negative%]" + this.m.TurnsLeft + "[/color] turn(s).";
 	}
 
 	function getTooltip()

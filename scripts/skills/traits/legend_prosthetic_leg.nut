@@ -33,7 +33,7 @@ this.legend_prosthetic_leg <- this.inherit("scripts/skills/traits/character_trai
 				id = 7,
 				type = "text",
 				icon = "ui/icons/initiative.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]-20%[/color] Initiative"
+				text = "[color=%negative%]-20%[/color] Initiative"
 			}
 		];
 		if (!this.m.IsUpgraded)
@@ -43,13 +43,13 @@ this.legend_prosthetic_leg <- this.inherit("scripts/skills/traits/character_trai
 					id = 7,
 					type = "text",
 					icon = "ui/icons/melee_defense.png",
-					text = "[color=" + this.Const.UI.Color.NegativeValue + "]-15%[/color] Melee Defense"
+					text = "[color=%negative%]-15%[/color] Melee Defense"
 				},
 				{
 					id = 7,
 					type = "text",
 					icon = "ui/icons/ranged_defense.png",
-					text = "[color=" + this.Const.UI.Color.NegativeValue + "]-15%[/color] Ranged Defense"
+					text = "[color=%negative%]-15%[/color] Ranged Defense"
 				}
 			]);
 		}

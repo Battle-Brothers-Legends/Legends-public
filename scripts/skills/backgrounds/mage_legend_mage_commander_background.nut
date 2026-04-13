@@ -1,4 +1,3 @@
-// TODO a lot
 this.mage_legend_mage_commander_background <- this.inherit("scripts/skills/backgrounds/character_background", {
 	m = {},
 
@@ -82,7 +81,7 @@ this.mage_legend_mage_commander_background <- this.inherit("scripts/skills/backg
 				::Legends.Perk.LegendPush,
 				::Legends.Perk.Backstabber,
 				::Legends.Perk.Anticipation,
-				::Legends.Perk.Rotation,
+				::Legends.Perk.LegendTacticalManeuvers,
 				::Legends.Perk.RallyTheTroops,
 				::Legends.Perk.LegendSpecialistSelfdefense
 			],
@@ -101,7 +100,6 @@ this.mage_legend_mage_commander_background <- this.inherit("scripts/skills/backg
 				::Legends.Perk.LegendMagicWebBolt,
 				::Legends.Perk.LoneWolf,
 				::Legends.Perk.Overwhelm,
-				::Legends.Perk.Footwork,
 				::Legends.Perk.LegendMedIngredients,
 				::Legends.Perk.LegendSpecStaffStun,
 			],
@@ -128,7 +126,7 @@ this.mage_legend_mage_commander_background <- this.inherit("scripts/skills/backg
 				::Legends.Perk.LegendMagicTeleport,
 				::Legends.Perk.LegendMagicMissileMastery,
 				::Legends.Perk.LegendPerfectFocus,
-				::Legends.Perk.LegendFavouredEnemyHexen,
+				::Legends.Perk.LegendFavouredEnemyOccult,
 				::Legends.Perk.LegendFreedomOfMovement,
 				::Legends.Perk.LegendFieldTriage,
 			],
@@ -200,8 +198,9 @@ this.mage_legend_mage_commander_background <- this.inherit("scripts/skills/backg
 
 	function onAdded()
 	{
+		if (this.m.IsNew)
+			::Legends.Traits.grant(this, ::Legends.Trait.Bright);
 		this.character_background.onAdded();
-		::Legends.Traits.grant(this, ::Legends.Trait.Bright);
 	}
 
 	function onAddEquipment()

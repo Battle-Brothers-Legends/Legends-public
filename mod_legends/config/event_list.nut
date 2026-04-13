@@ -4,6 +4,16 @@
 	LightWound = "%s suffers light wounds",
 	HeavyWound = "%s suffers heavy wounds",
 	Injury = "%s suffers %s",
+	RenownGain = "You gain [color=%s]%s[/color] of Renown",
+	RenownLose = "You lose [color=%s]%s[/color] of Renown",
+	GoldGain = "You gain [color=%s]%d[/color] Crowns",
+	GoldLose = "You lose [color=%s]%d[/color] Crowns",
+	Amount = [
+		"a small amount",
+		"a decent amount",
+		"a large amount",
+		"a considerable amount"
+	]
 }
 
 ::Legends.EventList.changeStat <- function (_name, _value, _icon, _skill) {
@@ -67,7 +77,15 @@
 		text = _bro.getName() + ::Const.MoodStateEvent[_bro.getMoodState()]
 	}
 }
-
+::Legends.EventList.changeBroExperience <- function (_bro, _value) {
+	_bro.addXP(_value);
+	_bro.updateLevel();
+	return {
+		id = 10,
+		icon = "ui/icons/xp_received.png",
+		text = _bro.getName() + " gains [color=" + this.Const.UI.Color.PositiveEventValue + "]" + _value + "[/color] Experience"
+	};
+}
 
 ::Legends.EventList.addInjury <- function (_bro, _injuryConst) {
 	local injury = _bro.addInjury(_injuryConst);
@@ -93,6 +111,45 @@
 		icon = "ui/icons/days_wounded.png",
 		text = ::format(::Legends.EventList.HeavyWound, _bro.getName())
 	};
+}
+
+::Legends.EventList.changeRenown <- function (_renown) {
+	::World.Assets.addBusinessReputation(_renown);
+	return {
+		id = 10,
+		icon = "ui/icons/special.png",
+		text = (_renown > 0) ?
+			::format(::Legends.EventList.RenownGain, this.Const.UI.Color.PositiveEventValue, function(_amount) {
+				if (_amount <= 50)
+					return ::Legends.EventList.Amount[0];
+				if (_amount <= 75)
+					return ::Legends.EventList.Amount[1];
+				if (_amount <= 100)
+					return ::Legends.EventList.Amount[2];
+				return ::Legends.EventList.Amount[3];
+			} (_renown))
+			:
+			::format(::Legends.EventList.RenownLose, this.Const.UI.Color.NegativeEventValue, function(_amount) {
+				if (_amount <= 50)
+					return ::Legends.EventList.Amount[0];
+				if (_amount <= 75)
+					return ::Legends.EventList.Amount[1];
+				if (_amount <= 100)
+					return ::Legends.EventList.Amount[2];
+				return ::Legends.EventList.Amount[3];
+			} (::Math.abs(_renown)))
+	};
+}
+
+::Legends.EventList.changeMoney <- function (_amount) {
+	::World.Assets.addMoney(_amount);
+	return {
+		id = 10,
+		icon = "ui/icons/asset_money.png",
+		text = (_amount > 0) ?
+			::format(::Legends.EventList.GoldGain, ::Const.UI.Color.PositiveEventValue, ::Math.abs(_amount)):
+			::format(::Legends.EventList.GoldLose, ::Const.UI.Color.NegativeEventValue, ::Math.abs(_amount))
+	}
 }
 
 ::Legends.EventList.addItems <- function (_itemList, _stash = null,  _prefix = "You gain ") {

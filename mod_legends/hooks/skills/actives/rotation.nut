@@ -1,5 +1,5 @@
 ::mods_hookExactClass("skills/actives/rotation", function(o)
-{	
+{
 	local create = o.create;
 	o.create = function ()
 	{
@@ -48,5 +48,13 @@
 		}
 
 		return this.skill.onVerifyTarget(_originTile, _targetTile);
+	}
+
+	o.onAfterUpdate = function(_properties) {
+		_properties.SkillCostAdjustments.push({
+			ID = this.m.ID,
+			APAdjust = ::Legends.Effects.has(this.getContainer(), ::Legends.Effect.GoblinGruntPotion) ? -1 : 0,
+			FatigueMultAdjust = _properties.IsFleetfooted ? 0.5 : 1.0
+		});
 	}
 });

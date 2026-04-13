@@ -6,6 +6,7 @@ if (!("Perks" in ::Const))
 ::Const.Perks.ShadyTree <- {
 	ID = "ShadyTree",
 	Name =  "Shady",
+	Icon = "ui/perks/feint_circle.png",
 	Attributes = {
 		Hitpoints = [
 			0,
@@ -58,6 +59,7 @@ if (!("Perks" in ::Const))
 ::Const.Perks.AggressiveTree <- {
 	ID = "AggressiveTree",
 	Name =  "Aggressive",
+	Icon = "ui/perks/perk_27.png",
 	Attributes = {
 		Hitpoints = [
 			0,
@@ -110,6 +112,7 @@ if (!("Perks" in ::Const))
 ::Const.Perks.SparringTree <- {
 	ID = "SparringTree",
 	Name =  "Sparring",
+	Icon = "ui/perks/back_to_basics_circle.png",
 	Attributes = {
 		Hitpoints = [
 			0,
@@ -162,6 +165,7 @@ if (!("Perks" in ::Const))
 ::Const.Perks.RangerTree <- {
 	ID = "RangerTree",
 	Name =  "Ranger",
+	Icon = "ui/perks/lookout_circle.png",
 	Attributes = {
 		Hitpoints = [
 			0,
@@ -216,6 +220,7 @@ if (!("Perks" in ::Const))
 ::Const.Perks.GiantTree <- {
 	ID = "GiantTree",
 	Name =  "Giant",
+	Icon = "ui/perks/perk_06.png",
 	Attributes = {
 		Hitpoints = [
 			0,

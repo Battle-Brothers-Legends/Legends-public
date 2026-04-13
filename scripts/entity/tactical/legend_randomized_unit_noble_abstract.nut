@@ -60,12 +60,10 @@ this.legend_randomized_unit_noble_abstract <- this.inherit("scripts/entity/tacti
 					case "armor.head.legend_helmet_nordic_helm":
 					case "armor.head.legend_helmet_conic_helm":
 					case "armor.head.legend_helmet_kettle_helm_high":
-					case "armor.head.legend_helmet_kettle_helm_med":
-					case "armor.head.legend_helmet_flat_top_helm_polished":
 					case "armor.head.legend_helmet_flat_top_face_plate":
 						helmLayer.setVariant(::Const.FacColors.EliteHelm[banner]);
 						break;
-					case "armor.head.legend_helmet_kettle_helm_med":
+					case "armor.head.legend_helmet_kettle_helm":
 					case "armor.head.legend_helmet_flat_top_helm":
 						helmLayer.setVariant(::Const.FacColors.BasicHelm[banner]);
 						break;

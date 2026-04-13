@@ -76,6 +76,7 @@ this.legends_necro_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 		bros[3].getBackground().m.RawDescription = "Once a proud necromancer, %name% took three pupils under their wing to train the next generation of great necromancers. What %name% did not seeing coming is a heart attack - one that left them like a corpse like they used to command. With this macabre irony in mind, they now serve their students in unlife as little more than fodder.";
 		bros[3].setPlaceInFormation(12);
 		bros[3].setVeteranPerks(2);
+		::Legends.Perks.grant(bros[3], ::Legends.Perk.LegendZombieBite);
 
 		//Starting stash
 		this.World.Assets.m.Money = this.World.Assets.m.Money / 1;
@@ -261,7 +262,7 @@ this.legends_necro_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 				id = 16,
 				type = "text",
 				icon = "ui/icons/melee_skill.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+10[/color] Melee Skill from being in a necromancer\'s employ"
+				text = "[color=%positive%]+10[/color] Melee Skill from being in a necromancer\'s employ"
 			});
 		}
 	}
@@ -276,7 +277,7 @@ this.legends_necro_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 	{
 		if (_background.getID() == "background.gravedigger" || _background.getID() == "background.graverobber")
 		{
-			this.addScenarioPerk(_background, this.Const.Perks.PerkDefs.LegendResurrectionist);
+			this.addScenarioPerk(_background, ::Const.Perks.PerkDefs.LegendResurrectionist);
 		}
 	}
 });

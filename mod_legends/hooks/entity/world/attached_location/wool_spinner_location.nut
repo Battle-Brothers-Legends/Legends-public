@@ -41,67 +41,67 @@
 			_list.push({
 				R = 10,
 				P = 1.0,
-				S = "legend_armor/cloth/legend_tunic_collar_thin"
+				S = "legend_armor/cloth/legend_armor_tunic_collar_thin"
 			});
 			_list.push({
 				R = 10,
 				P = 1.0,
-				S = "legend_armor/cloth/legend_tunic_wrap"
+				S = "legend_armor/cloth/legend_armor_tunic_wrap"
 			});
 			_list.push({
 				R = 10,
 				P = 1.0,
-				S = "legend_armor/cloth/legend_tunic_collar_deep"
+				S = "legend_armor/cloth/legend_armor_tunic_collar_deep"
 			});
 			_list.push({
 				R = 10,
 				P = 1.0,
-				S = "legend_armor/cloth/legend_peasant_dress"
+				S = "legend_armor/cloth/legend_armor_peasant_dress"
 			});
 			_list.push({
 				R = 10,
 				P = 1.0,
-				S = "legend_armor/cloth/legend_robes"
+				S = "legend_armor/cloth/legend_armor_robes"
 			});
 			_list.push({
 				R = 10,
 				P = 1.0,
-				S = "legend_armor/cloth/legend_ancient_cloth_restored"
+				S = "legend_armor/cloth/legend_armor_ancient_cloth_restored"
 			});
 			_list.push({
 				R = 20,
 				P = 1.0,
-				S = "legend_armor/cloth/legend_thick_tunic"
+				S = "legend_armor/cloth/legend_armor_thick_tunic"
 			});
 			_list.push({
 				R = 40,
 				P = 1.0,
-				S = "legend_armor/cloth/legend_robes_nun"
+				S = "legend_armor/cloth/legend_armor_robes_nun"
 			});
 			_list.push({
 				R = 30,
 				P = 1.0,
-				S = "legend_armor/cloth/legend_gambeson"
+				S = "legend_armor/cloth/legend_armor_gambeson"
 			});
 			_list.push({
 				R = 90,
 				P = 1.0,
-				S = "legend_armor/cloth/legend_robes_magic"
+				S = "legend_armor/cloth/legend_armor_robes_magic"
 			});
 			_list.push({
 				R = 50,
 				P = 1.0,
-				S = "legend_armor/cloak/legend_armor_cloak_common"
+				S = "legend_armor/cloak/legend_armor_cloak"
 			});
 			_list.push({
 				R = 45,
 				P = 1.0,
-				S = "legend_armor/cloak/legend_sash"
+				S = "legend_armor/cloak/legend_armor_sash"
 			});
 			_list.push({
 				R = 45,
 				P = 1.0,
-				S = "legend_armor/tabard/legend_common_tabard"
+				S = "legend_armor/tabard/legend_armor_tabard"
 			});
 		}
 		else if (_id == "building.armorsmith")
@@ -109,7 +109,7 @@
 			_list.push({
 				R = 50,
 				P = 1.0,
-				S = "legend_armor/cloak/legend_armor_cloak_common"
+				S = "legend_armor/cloak/legend_armor_cloak"
 			});
 			_list.push({
 				R = 95,
@@ -129,12 +129,12 @@
 			_list.push({
 				R = 45,
 				P = 1.0,
-				S = "legend_armor/cloak/legend_sash"
+				S = "legend_armor/cloak/legend_armor_sash"
 			});
 			_list.push({
 				R = 45,
 				P = 1.0,
-				S = "legend_armor/tabard/legend_common_tabard"
+				S = "legend_armor/tabard/legend_armor_tabard"
 			});
 			_list.push({
 				R = 99,

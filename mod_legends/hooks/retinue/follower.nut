@@ -183,4 +183,6 @@
 		return 0;
 	}
 
+	o.onDismiss <- function() {}
+
 });

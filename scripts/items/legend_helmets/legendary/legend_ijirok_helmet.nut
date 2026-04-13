@@ -3,24 +3,22 @@ this.legend_ijirok_helmet <- this.inherit("scripts/items/legend_helmets/legend_h
 	function create()
 	{
 		this.legend_helmet_upgrade.create();
-		this.m.Type = this.Const.Items.HelmetUpgrades.Helm;
 		this.m.ID = "armor.head.legend_ijirok_helmet";
+		this.m.Type = this.Const.Items.HelmetUpgrades.Helm;
 		this.m.Name = "Helmet of the Ijirok";
 		this.m.Description = "Once a barbarian helmet broken in battle, this piece has been bathed in the blood of the legendary Ijirok. Powers beyond your understanding mended it whole again, and will likewise mend any wounds of the wearer as well.";
-		this.m.ArmorDescription = this.m.Description;
-		this.m.Variants = [
-			1
-		];
+		this.m.ArmorDescription = "Includes a barbarian helmet bathed in the blood of the legendary Ijirok.";
+		this.m.Variants = [1];
 		this.m.Variant = this.m.Variants[this.Math.rand(0, this.m.Variants.len() - 1)];
 		this.updateVariant();
-		this.m.ImpactSound = this.Const.Sound.ArmorChainmailImpact;
-		this.m.InventorySound = this.Const.Sound.ArmorChainmailImpact;
+		this.m.ImpactSound = this.Const.Sound.ArmorHalfplateImpact;
+		this.m.InventorySound = this.Const.Sound.ArmorHalfplateImpact;
 		this.m.Value = 12000;
 		this.m.Condition = 220;
 		this.m.ConditionMax = 220;
 		this.m.StaminaModifier = -12;
 		this.m.Vision = -1;
-		this.m.IsLowerVanity = false;
+		this.m.Lower = true;
 		this.m.HideHair = true;
 		this.m.HideBeard = true;
 		this.m.ItemType = this.m.ItemType | this.Const.Items.ItemType.Legendary;
@@ -43,16 +41,16 @@ this.legend_ijirok_helmet <- this.inherit("scripts/items/legend_helmets/legend_h
 		this.onArmorTooltip(result);
 		return result;
 	}
-	
+
 	function onArmorTooltip( _result )
 	{
 		_result.push({
 			id = 6,
 			type = "text",
 			icon = "ui/icons/health.png",
-			text = "Heals [color=" + this.Const.UI.Color.PositiveValue + "]10[/color] hitpoints of the wearer each turn"
+			text = "Heals [color=%positive%]10[/color] hitpoints of the wearer each turn"
 		});
-	}	
+	}
 
 	function onCombatFinished()
 	{

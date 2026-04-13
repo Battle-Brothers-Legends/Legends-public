@@ -15,14 +15,6 @@
 		}
 	}
 
-	local onPrepareVariables = o.onPrepareVariables;
-	o.onPrepareVariables = function ( _vars )
-	{
-		onPrepareVariables(_vars);
-		if (this.m.Observer != null)
-			::Const.LegendMod.extendVarsWithPronouns(_vars, this.m.Observer.getGender(), "observer");
-	}
-
 	o.onPrepare = function () {
 		local brothers = this.World.getPlayerRoster().getAll();
 		local candidates = [];

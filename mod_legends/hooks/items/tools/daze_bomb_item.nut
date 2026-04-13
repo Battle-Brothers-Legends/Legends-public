@@ -65,13 +65,13 @@
 			id = 7,
 			type = "text",
 			icon = "ui/icons/vision.png",
-			text = "Range of [color=" + this.Const.UI.Color.PositiveValue + "]" + this.m.RangeMax + "[/color] tiles"
+			text = "Range of [color=%positive%]" + this.m.RangeMax + "[/color] tiles"
 		},
 		{
 			id = 5,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "Will give up to [color=" + this.Const.UI.Color.DamageValue + "]7[/color] targets the Dazed status effect for 2 turns"
+			text = "Will give up to [color=%damage%]7[/color] targets the Dazed status effect for 2 turns"
 		}]);
 		if (!this.World.Retinue.hasFollower("follower.alchemist"))
 		{
@@ -136,7 +136,7 @@
 	o.onPutIntoBag <- function ()
 	{
 		local skill = ::Legends.Actives.get(this, ::Legends.Active.LegendLaunchDazeBomb);
-		if (skill != null)
+		if (skill != null && this.getAmmo() > 0)
 			skill.setItem(this);
 	}
 

@@ -31,31 +31,31 @@
 				id = 10,
 				type = "text",
 				icon = "ui/icons/melee_skill.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]-50%[/color] Melee Skill"
+				text = "[color=%negative%]-50%[/color] Melee Skill"
 			},
 			{
 				id = 11,
 				type = "text",
 				icon = "ui/icons/ranged_skill.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]-50%[/color] Ranged Skill"
+				text = "[color=%negative%]-50%[/color] Ranged Skill"
 			},
 			{
 				id = 12,
 				type = "text",
 				icon = "ui/icons/melee_defense.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]-50%[/color] Melee Defense"
+				text = "[color=%negative%]-50%[/color] Melee Defense"
 			},
 			{
 				id = 13,
 				type = "text",
 				icon = "ui/icons/ranged_defense.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]-50%[/color] Ranged Defense"
+				text = "[color=%negative%]-50%[/color] Ranged Defense"
 			},
 			{
 				id = 14,
 				type = "text",
 				icon = "ui/icons/initiative.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]-50%[/color] Initiative"
+				text = "[color=%negative%]-50%[/color] Initiative"
 			}
 		];
 	}

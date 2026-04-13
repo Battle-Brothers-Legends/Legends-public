@@ -36,7 +36,7 @@ this.legend_magic_circle_of_protection_effect <- this.inherit("scripts/skills/sk
 				id = 6,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "Gain [color=" + this.Const.UI.Color.PositiveValue + "]+" + this.m.Circle.getDefBonus() + "[/color] Melee and Ranged defense and [color=" + this.Const.UI.Color.PositiveValue + "]+" + this.m.Circle.getResolveBonus() + "[/color] resolve."
+				text = "Gain [color=%positive%]+" + this.m.Circle.getDefBonus() + "[/color] Melee and Ranged defense and [color=%positive%]+" + this.m.Circle.getResolveBonus() + "[/color] resolve."
 			}
 		];
 		return ret;

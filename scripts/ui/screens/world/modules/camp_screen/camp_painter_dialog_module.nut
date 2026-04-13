@@ -289,11 +289,12 @@ this.camp_painter_dialog_module <- this.inherit("scripts/ui/screens/ui_module", 
 							}
 							shield.updateVariant();
 							shield.updateAppearance();
+							this.updateAchievement("AColorfulBand", 1, 1);
 						}
 					}
 				}
 
-				this.World.Assets.addMoney(-_result.Cost);
+				//this.World.Assets.addMoney(-_result.Cost); //remove the painting cost
 				result = this.queryRosterInformation();
 				break;
 			}

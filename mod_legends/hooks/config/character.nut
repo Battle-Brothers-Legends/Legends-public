@@ -38,6 +38,8 @@ for( local i = 1; i < 88; i = ++i )
 	"armor_layer_cloak",
 ]);
 ::Const.ShakeCharacterLayers[1].extend([
+	"helmet_helm_lower",
+	"helmet_top_lower",
 	"helmet_vanity_lower",
 	"helmet_vanity_lower_2",
 	"helmet_helm",
@@ -51,6 +53,8 @@ for( local i = 1; i < 88; i = ++i )
 	"armor_layer_tabbard",
 	"armor_layer_cloak_front",
 	"armor_layer_cloak",
+	"helmet_helm_lower",
+	"helmet_top_lower",
 	"helmet_vanity_lower",
 	"helmet_vanity_lower_2",
 	"helmet_helm",

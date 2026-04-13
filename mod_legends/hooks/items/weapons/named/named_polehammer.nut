@@ -8,8 +8,7 @@
 	{
 		create();
 		this.m.Variants = [1, 2, 3];
-		this.m.Variant = this.m.Variants[this.Math.rand(0, this.m.Variants.len() - 1)];
-		this.updateVariant();
+		this.setVariant(this.m.Variants[::Math.rand(0, this.m.Variants.len() - 1)]);
 	}
 
 	o.getTooltip <- function ()
@@ -21,7 +20,7 @@
 				id = 12,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+" + this.m.EffectChanceOrBonus + "%[/color] Stun Chance"
+				text = "[color=%positive%]+" + this.m.EffectChanceOrBonus + "%[/color] Stun Chance"
 			});
 		}
 		return result;
@@ -34,6 +33,7 @@
 		::Legends.Actives.grant(this, ::Legends.Active.LegendPryArmor, function (_skill) {
 			_skill.m.FatigueCost = 35;
 			_skill.m.ActionPointCost = 6;
+			_skill.m.MaxRange = 2;
 			_skill.m.Icon = "skills/legend_active_pry_armor_polehammer.png";
 			_skill.m.IconDisabled = "skills/legend_active_pry_armor_polehammer_bw.png";
 			_skill.m.Overlay = "active_legend_pry_armor_polehammer";

@@ -1,5 +1,5 @@
 ::mods_hookExactClass("skills/traits/fear_undead_trait", function(o)
-{	
+{
 	local create = o.create;
 	o.create = function ()
 	{
@@ -21,15 +21,15 @@
 			id = 10,
 			type = "text",
 			icon = "ui/icons/melee_skill.png",
-			text = "[color=" + this.Const.UI.Color.NegativeValue + "]-5%[/color] Melee Skill when in battle with undead"
+			text = "[color=%negative%]-5%[/color] Melee Skill when in battle with undead"
 		},
 		{
 			id = 10,
 			type = "text",
 			icon = "ui/icons/ranged_skill.png",
-			text = "[color=" + this.Const.UI.Color.NegativeValue + "]-5%[/color] Ranged Skill when in battle with undead"
+			text = "[color=%negative%]-5%[/color] Ranged Skill when in battle with undead"
 		}]);
-		
+
 		return ret;
 	}
 

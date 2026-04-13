@@ -6,7 +6,7 @@ this.legend_tabard_noble_blueprint <- this.inherit("scripts/crafting/blueprint",
 		this.blueprint.create();
 		this.m.ID = "blueprint.legend_tabard_noble_blueprint";
 		this.m.Type = this.Const.Items.ItemType.Armor;
-		this.m.PreviewCraftable = this.new("scripts/items/legend_armor/tabard/legend_noble_tabard");
+		this.m.PreviewCraftable = this.new("scripts/items/legend_armor/tabard/legend_armor_tabard_noble");
 		this.m.Cost = 1000;
 		local ingredients = [
 			{
@@ -29,7 +29,7 @@ this.legend_tabard_noble_blueprint <- this.inherit("scripts/crafting/blueprint",
 
 	function onCraft( _stash )
 	{
-		local item = this.new("scripts/items/legend_armor/tabard/legend_noble_tabard");
+		local item = this.new("scripts/items/legend_armor/tabard/legend_armor_tabard_noble");
 		item.setVariant(this.m.PreviewCraftable.m.Variant);
 		_stash.add(item);
 	}

@@ -5,9 +5,9 @@
 		this.m.ID = "background.paladin";
 		this.m.Name = "Oathtaker";
 		this.m.Icon = "ui/backgrounds/background_69.png";
-		this.m.BackgroundDescription = "Oathtakers are brave warriors sworn to uphold a strict code, and are no strangers to combat.";
-		this.m.GoodEnding = "%name% the Oathtaker stayed with the %companyname%, wielding Young Anselm\'s skull to proselytize knightly virtues unto the world. Most see him as something of an annoyance, but there is also some charm in a man who believes fully in matters of honor and pride and doing good. Last you heard, he singlehandedly saved a lord\'s princess from a gang of alley thieves. In celebration, he was wed to the damsel, though rumors abound that she is unhappy in bed, proclaiming that the Oathtaker insists on Young Anselm\'s skull watching from the corner. Whatever\'s going on, you\'re happy that the man is still doing his thing to the fullest.";
-		this.m.BadEnding = "Once an Oathtaker to the bone, %name% grew disenchanted with his fellow believers and one night had a dream that they were, in fact, the true heretics. He slew every Oathtaker in reach and then fled out, eventually joining the Oathbringers of all people. Last that was heard of him, he reclaimed Young Anselm\'s skull and smashed it with a hammer. Enraged, his new Oathbringer brothers promptly slew him down. %name%\'s corpse was found stabbed over a hundred times, ashy skull fragments powdering a bloodied, madly grinning face.";
+		this.m.BackgroundDescription = "Oathtakers are brave warriors sworn to uphold a strict code, and are no strangers to combat. The faith in their cause might seem foolhardy for the nonbeliever, but for them it\'s a driving force which increases their health and initiative.";
+		this.m.GoodEnding = "%name% the Oathtaker stayed with the %companyname%, wielding Young Anselm\'s skull to proselytize knightly virtues unto the world. Most see %them% as something of an annoyance, but there is also some charm in a %person% who believes fully in matters of honor and pride and doing good. Last you heard, %they% singlehandedly saved a lord\'s princess from a gang of alley thieves. In celebration, he was wed to the damsel, though rumors abound that she is unhappy in bed, proclaiming that the Oathtaker insists on Young Anselm\'s skull watching from the corner. Whatever\'s going on, you\'re happy that the %person% is still doing %their% thing to the fullest.";
+		this.m.BadEnding = "Once an Oathtaker to the bone, %name% grew disenchanted with %their% fellow believers and one night had a dream that they were, in fact, the true heretics. %They% slew every Oathtaker in reach and then fled out, eventually joining the Oathbringers of all people. Last that was heard of %them%, %they% reclaimed Young Anselm\'s skull and smashed it with a hammer. Enraged, %their% new Oathbringer brethren promptly slew %them% down. %name%\'s corpse was found stabbed over a hundred times, ashy skull fragments powdering a bloodied, madly grinning face.";
 		this.m.HiringCost = 350;
 		this.m.DailyCost = 34;
 		this.m.Titles = [
@@ -38,7 +38,6 @@
 			::Legends.Traits.getID(::Legends.Trait.FearGreenskins),
 			::Legends.Traits.getID(::Legends.Trait.FearUndead),
 			::Legends.Traits.getID(::Legends.Trait.Fragile),
-			::Legends.Traits.getID(::Legends.Trait.LegendFrail),
 			::Legends.Traits.getID(::Legends.Trait.Greedy),
 			::Legends.Traits.getID(::Legends.Trait.Hesistant),
 			::Legends.Traits.getID(::Legends.Trait.Insecure),
@@ -94,29 +93,23 @@
 
 		this.m.PerkTreeDynamic = {
 			Weapon = [
-				this.Const.Perks.TwoHandedTree,
-				this.Const.Perks.AxeTree,
-				this.Const.Perks.PolearmTree,
-				this.Const.Perks.ShieldTree,
-				this.Const.Perks.MaceTree,
-				this.Const.Perks.FlailTree,
-				this.Const.Perks.HammerTree,
-				this.Const.Perks.CrossbowTree
+				::Const.Perks.PolearmTree,
+				::Const.Perks.ShieldTree,
+				::Const.Perks.MaceTree,
+				::Const.Perks.HammerTree,
+				::Const.Perks.SwordTree
 			],
 			Defense = [
-				this.Const.Perks.HeavyArmorTree,
-				this.Const.Perks.LightArmorTree
+				::Const.Perks.HeavyArmorTree
 			],
 			Traits = [
-				this.Const.Perks.TrainedTree,
-				this.Const.Perks.ViciousTree,
-				this.Const.Perks.LargeTree,
-				this.Const.Perks.MartyrTree,
-				this.Const.Perks.FitTree
+				::Const.Perks.TrainedTree,
+				::Const.Perks.LargeTree,
+				::Const.Perks.MartyrTree,
+				::Const.Perks.FitTree
 			],
 			Enemy = [
-				this.Const.Perks.ZombieTree,
-				this.Const.Perks.SkeletonTree
+				::Const.Perks.UndeadTree
 			],
 			Class = [],
 			Profession = [],
@@ -126,7 +119,16 @@
 
 	o.getTooltip = function ()
 	{
-		return this.character_background.getTooltip();
+		local ret = this.character_background.getTooltip();
+		local bonus = this.Math.round(this.getContainer().getActor().getBaseProperties().Bravery * 0.10);
+		ret.push({
+			id = 13,
+			type = "text",
+			icon = "ui/icons/special.png",
+			text = "[color=%positive%]%_bonus%[/color] bonus to Hitpoints, Fatigue and Initiative from your base Resolve",
+			param = [["_bonus", bonus]]
+		});
+		return ret;
 	}
 
 	//Default Male
@@ -139,25 +141,23 @@
 		this.m.Hairs = this.Const.Hair.AllFemale;
 		this.m.HairColors = this.Const.HairColors.Young;
 		this.m.Beards = null;
-		this.m.BeardChance = 1;
+		this.m.BeardChance = 0;
 		this.m.Bodies = this.Const.Bodies.FemaleMuscular;
 		this.addBackgroundType(this.Const.BackgroundType.Female);
-		this.m.BackgroundDescription = "Oathtakers are brave warriors sworn to uphold a strict code, and are no strangers to combat.";
-		this.m.GoodEnding = "%name% the Oathtaker stayed with the %companyname%, wielding Young Anselm\'s skull to proselytize knightly virtues unto the world. Most see her as something of an annoyance, but there is also some charm in a woman who believes fully in matters of honor and pride and doing good. Last you heard, she singlehandedly saved a lord\'s prince from a gang of alley thieves. In celebration, she was wed to the man, though rumors abound that he is unhappy in bed, proclaiming that the Oathtaker insists on Young Anselm\'s skull watching from the corner. Whatever\'s going on, you\'re happy that the woman is still doing her thing to the fullest.";
-		this.m.BadEnding = "Once an Oathtaker to the bone, %name% grew disenchanted with her fellow believers and one night had a dream that they were, in fact, the true heretics. She slew every Oathtaker in reach and then fled out, eventually joining the Oathbringers of all people. Last that was heard of her, she reclaimed Young Anselm\'s skull and smashed it with a hammer. Enraged, her new Oathbringer brothers promptly slew her down. %name%\'s corpse was found stabbed over a hundred times, ashy skull fragments powdering a bloodied, madly grinning face.";
-
 	}
 
 	o.onBuildDescription <- function ()
 	{
-		if(this.isBackgroundType(this.Const.BackgroundType.Female))
-		{
-			return "{Oathbringers. Oathbringers. Oathbringers. Oathbringers. Oathbringers. Oathbringers. Oathbringers. Oathbringers. Oathbringers. Oathbringers. Oathbringers. Oathbringers!\n\nOathbringers Oathbringers Oathbringers Oathbringers Oathbringers Oathbringers!!!\n\nOATHBRINGERS OATHBRINGERS OATHBRINGERS!!! | %name% is a diligent follower of the famed founder of the Oathtakers, Young Anselm. She believes herself blessed to be in the company of likeminded warriors who, though not without fault, will try and do right in the world. | Some say %name% was an Oathtaker the moment she was born. It is the woman herself who says this most often, though, which leads to some speculation that she was almost assuredly a terrible degenerate and she\'s just now making up for a horrific past. | When you think of an Oathtaker, %name% is about as clean as they come. Keeps her uniform and armor nice and tidy. Respects her superiors but is never mawkish. And she\'s absolutely excellent at directing steel through an Oathbringer\'s face. An outstanding Oathtaker if there ever was one. | Living in a faraway land, chasing honor and bringing death to Oathbringers, %name% heard of the %companyname%\'s prestigious past and just had to find it and join up. She is a woman of incredible resolve and most importantly she does not truck with Oathbringers. | Young Anselm\'s spirit has brought %name% to the %companyname%. Or so she says. Whatever brought her into the company, she is no doubt a talented fighter and will serve the outfit well. | The majesty of Young Anselm\'s spirit cannot be taken for granted. At least that is what %name% believes. She states that she fights on behalf of the dead Oathtaker. Young Anselm must have been a spirited fellow indeed for this woman is a wicked talent with any steel.  | Like many Oathtakers, %name% knows three divine elements: Young Anselm\'s spirit is to be cherished, Oaths are to be taken seriously, and all Oathbringers must die. Earning some coin on the side is also nice, which is why she has made her \'fourth\' element fighting for outfits like the %companyname%. | It is a little peculiar for an Oathtaker to earn a sellsword\'s coin fighting, but %name% states that it was never forbidden by Young Anselm\'s teachings. Instead, it is the personal responsibility of the individual Oathtakers to maintain their oaths, which she can readily do cleaving enemies for the %companyname%. | %name% carries a ledger dedicated to only one kind of inventory: how many Oathbringers she\'s killed. She even has a list of when and where she did the deed, and of course how. The \"how\" entries even get a little extra dedication, with lines and lines meticulously describing how she dispatched her hated foes. Frankly, you like the woman\'s enthusiasm. | %name%, a Oathtaker, is of such a singular mind it has you almost worried what she\'d do without Young Anselm\'s directives. Now, that said, a part of you is curious how she\'d fare dedicating herself to another craft. With her resolve and drive, she could probably weave an unbelievable basket, possibly even do it underwater like those learned experts. | %name% is everything one would want in an honorable woman: smart, fit, and quite good swinging some steel. Her dedication to the Oaths is only matched by her ability to absolutely demolish those who stand in her way. A perfect fit for the %companyname%, truly. | With the %companyname% gaining renown, it is becoming one of the more notable outfits in the land. Naturally, a talented and honorable woman like %name% would seek to join up, albeit at a cost. Her services to Young Anselm\'s cause mean her attention is no doubt split, but even being consumed by righteousness she is still an indefatigable fighter worth having in the %companyname%.}";
-		}
-		else
-		{
-			return "{Oathbringers. Oathbringers. Oathbringers. Oathbringers. Oathbringers. Oathbringers. Oathbringers. Oathbringers. Oathbringers. Oathbringers. Oathbringers. Oathbringers!\n\nOathbringers Oathbringers Oathbringers Oathbringers Oathbringers Oathbringers!!!\n\nOATHBRINGERS OATHBRINGERS OATHBRINGERS!!! | %name% is a diligent follower of the famed founder of the Oathtakers, Young Anselm. He believes himself blessed to be in the company of likeminded warriors who, though not without fault, will try and do right in the world. | Some say %name% was an Oathtaker the moment he was born. It is the man himself who says this most often, though, which leads to some speculation that he was almost assuredly a terrible degenerate and he\'s just now making up for a horrific past. | When you think of an Oathtaker, %name% is about as clean as they come. Keeps his uniform and armor nice and tidy. Respects his superiors but is never mawkish. And he\'s absolutely excellent at directing steel through an Oathbringer\'s face. An outstanding Oathtaker if there ever was one. | Living in a faraway land, chasing honor and bringing death to Oathbringers, %name% heard of the %companyname%\'s prestigious past and just had to find it and join up. He is a man of incredible resolve and most importantly he does not truck with Oathbringers. | Young Anselm\'s spirit has brought %name% to the %companyname%. Or so he says. Whatever brought him into the company, he is no doubt a talented fighter and will serve the outfit well. | The majesty of Young Anselm\'s spirit cannot be taken for granted. At least that is what %name% believes. He states that he fights on behalf of the dead Oathtaker. Young Anselm must have been a spirited fellow indeed for this man is a wicked talent with any steel.  | Like many Oathtakers, %name% knows three divine elements: Young Anselm\'s spirit is to be cherished, Oaths are to be taken seriously, and all Oathbringers must die. Earning some coin on the side is also nice, which is why he has made his \'fourth\' element fighting for outfits like the %companyname%. | It is a little peculiar for an Oathtaker to earn a sellsword\'s coin fighting, but %name% states that it was never forbidden by Young Anselm\'s teachings. Instead, it is the personal responsibility of the individual Oathtakers to maintain their oaths, which he can readily do cleaving enemies for the %companyname%. | %name% carries a ledger dedicated to only one kind of inventory: how many Oathbringers he\'s killed. He even has a list of when and where he did the deed, and of course how. The \"how\" entries even get a little extra dedication, with lines and lines meticulously describing how he dispatched his hated foes. Frankly, you like the man\'s enthusiasm. | %name%, a Oathtaker, is of such a singular mind it has you almost worried what he\'d do without Young Anselm\'s directives. Now, that said, a part of you is curious how he\'d fare dedicating himself to another craft. With his resolve and drive, he could probably weave an unbelievable basket, possibly even do it underwater like those learned experts. | %name% is everything one would want in an honorable man: smart, fit, and quite good swinging some steel. His dedication to the Oaths is only matched by his ability to absolutely demolish those who stand in his way. A perfect fit for the %companyname%, truly. | With the %companyname% gaining renown, it is becoming one of the more notable outfits in the land. Naturally, a talented and honorable man like %name% would seek to join up, albeit at a cost. His services to Young Anselm\'s cause mean his attention is no doubt split, but even being consumed by righteousness he is still an indefatigable fighter worth having in the %companyname%.}";
-		}
+		return "{Oathbringers. Oathbringers. Oathbringers. Oathbringers. Oathbringers. Oathbringers. Oathbringers. Oathbringers. Oathbringers. Oathbringers. Oathbringers. Oathbringers!\n\nOathbringers Oathbringers Oathbringers Oathbringers Oathbringers Oathbringers!!!\n\nOATHBRINGERS OATHBRINGERS OATHBRINGERS!!! | %name% is a diligent follower of the famed founder of the Oathtakers, Young Anselm. %They% believes %themselves% blessed to be in the company of likeminded warriors who, though not without fault, will try and do right in the world. | Some say %name% was an Oathtaker the moment %they% was born. It is the %person% %themselves% who says this most often, though, which leads to some speculation that %they% was almost assuredly a terrible degenerate and %they%\'s just now making up for a horrific past. | When you think of an Oathtaker, %name% is about as clean as they come. Keeps %their% uniform and armor nice and tidy. Respects %their% superiors but is never mawkish. And %they%\'s absolutely excellent at directing steel through an Oathbringer\'s face. An outstanding Oathtaker if there ever was one. | Living in a faraway land, chasing honor and bringing death to Oathbringers, %name% heard of the %companyname%\'s prestigious past and just had to find it and join up. %They% is a %person% of incredible resolve and most importantly %they% does not truck with Oathbringers. | Young Anselm\'s spirit has brought %name% to the %companyname%. Or so %they% says. Whatever brought %them% into the company, %they% is no doubt a talented fighter and will serve the outfit well. | The majesty of Young Anselm\'s spirit cannot be taken for granted. At least that is what %name% believes. %they% states that %they% fights on behalf of the dead Oathtaker. Young Anselm must have been a spirited fellow indeed for this %person% is a wicked talent with any steel.  | Like many Oathtakers, %name% knows three divine elements: Young Anselm\'s spirit is to be cherished, Oaths are to be taken seriously, and all Oathbringers must die. Earning some coin on the side is also nice, which is why %they% has made %their% \'fourth\' element fighting for outfits like the %companyname%. | It is a little peculiar for an Oathtaker to earn a sellsword\'s coin fighting, but %name% states that it was never forbidden by Young Anselm\'s teachings. Instead, it is the personal responsibility of the individual Oathtakers to maintain their oaths, which %they% can readily do cleaving enemies for the %companyname%. | %name% carries a ledger dedicated to only one kind of inventory: how many Oathbringers %they%\'s killed. %They% even has a list of when and where %they% did the deed, and of course how. The \"how\" entries even get a little extra dedication, with lines and lines meticulously describing how %they% dispatched %their% hated foes. Frankly, you like the %person%\'s enthusiasm. | %name%, a Oathtaker, is of such a singular mind it has you almost worried what %they%\'d do without Young Anselm\'s directives. Now, that said, a part of you is curious how %they%\'d fare dedicating %themselves% to another craft. With %their% resolve and drive, %they% could probably weave an unbelievable basket, possibly even do it underwater like those learned experts. | %name% is everything one would want in an honorable %person%: smart, fit, and quite good swinging some steel. %Their% dedication to the Oaths is only matched by %their% ability to absolutely demolish those who stand in %their% way. A perfect fit for the %companyname%, truly. | With the %companyname% gaining renown, it is becoming one of the more notable outfits in the land. Naturally, a talented and honorable %person% like %name% would seek to join up, albeit at a cost. %Their% services to Young Anselm\'s cause mean %their% attention is no doubt split, but even being consumed by righteousness %they% is still an indefatigable fighter worth having in the %companyname%.}";
+	}
+
+	o.onUpdate <- function ( _properties )
+	{
+		this.character_background.onUpdate(_properties);
+		local bonus = this.Math.round(this.getContainer().getActor().getBaseProperties().Bravery * 0.10);
+		_properties.Initiative += bonus;
+		_properties.Hitpoints += bonus;
+		_properties.Stamina += bonus;
 	}
 
 	o.onSetAppearance = function ()
@@ -233,7 +233,9 @@
 
 	o.onAddEquipment = function ()
 	{
-		local items = this.getContainer().getActor().getItems();
+		local actor = this.getContainer().getActor();
+		actor.setVeteranPerks(3);
+		local items = actor.getItems();
 		local r;
 
 		if (items.hasEmptySlot(this.Const.ItemSlot.Mainhand))
@@ -247,25 +249,14 @@
 				"weapons/longaxe",
 				"weapons/billhook",
 				"weapons/greataxe",
-				"weapons/greatsword"
+				"weapons/greatsword",
+				"weapons/legend_zweihander",
+				"weapons/longsword",
+				"weapons/polehammer",
+				"weapons/two_handed_flail",
+				"weapons/two_handed_flanged_mace",
+				"weapons/bardiche"
 			];
-
-			if (this.Const.DLC.Unhold)
-			{
-				weapons.extend([
-					"weapons/longsword",
-					"weapons/polehammer",
-					"weapons/two_handed_flail",
-					"weapons/two_handed_flanged_mace"
-				]);
-			}
-
-			if (this.Const.DLC.Wildmen)
-			{
-				weapons.extend([
-					"weapons/bardiche"
-				]);
-			}
 
 			items.equip(this.new("scripts/items/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
 		}

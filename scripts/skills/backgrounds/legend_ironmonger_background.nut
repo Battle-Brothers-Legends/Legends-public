@@ -41,25 +41,26 @@ this.legend_ironmonger_background <- this.inherit("scripts/skills/backgrounds/ch
 		this.m.Modifiers.ToolConsumption = this.Const.LegendMod.ResourceModifiers.ToolConsumption[2];
 		this.m.PerkTreeDynamic = {
 			Weapon = [
-				this.Const.Perks.HammerTree,
-				this.Const.Perks.SwordTree,
-				this.Const.Perks.ThrowingTree
+				::Const.Perks.HammerTree,
+				::Const.Perks.SwordTree,
+				::Const.Perks.ThrowingTree,
+				::Const.Perks.AxeTree
 			],
 			Defense = [
-				this.Const.Perks.HeavyArmorTree
+				::Const.Perks.HeavyArmorTree
 			],
 			Traits = [
-				this.Const.Perks.IndestructibleTree,
-				this.Const.Perks.FastTree,
-				this.Const.Perks.LargeTree,
-				this.Const.Perks.FitTree
+				::Const.Perks.IndestructibleTree,
+				::Const.Perks.FastTree,
+				::Const.Perks.LargeTree,
+				::Const.Perks.FitTree
 			],
 			Enemy = [],
 			Class = [
-				this.Const.Perks.HammerClassTree
+				// ::Const.Perks.HammerClassTree
 			],
 			Profession = [
-				this.Const.Perks.RepairProfessionTree
+				::Const.Perks.RepairProfessionTree
 			],
 			Magic = []
 		}
@@ -76,7 +77,7 @@ this.legend_ironmonger_background <- this.inherit("scripts/skills/backgrounds/ch
 		this.m.HairColors = this.Const.HairColors.All;
 		this.m.Beards = null;
 		this.m.BeardChance = 0;
-		this.m.Bodies = this.Const.Bodies.AllFemale;
+		this.m.Bodies = this.Const.Bodies.NorthernFemale;
 		this.addBackgroundType(this.Const.BackgroundType.Female);
 	}
 

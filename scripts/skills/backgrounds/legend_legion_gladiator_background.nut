@@ -7,72 +7,13 @@ this.legend_legion_gladiator_background <- this.inherit("scripts/skills/backgrou
 		this.m.Name = "Gladiator";
 		this.m.Icon = "ui/backgrounds/background_puppet.png"; //to do
 		this.m.BackgroundDescription = "A leader to few, a slave of many.";
-		// this.m.GoodEnding = ""; //to do
-		// this.m.BadEnding = ""; //to do
+		this.m.GoodEnding = "";
+		this.m.BadEnding = "";
 		this.m.HiringCost = 0;
 		this.m.DailyCost = 0;
-		this.m.Excluded = [ //can roll; brute, clubfooted, clumsy, fragile, huge, hesitant, strong, sure footing, survivor, tough, bright, lucky, shortsighted, aggressive, martial, predictable, lumbering, quick, swift, team player, hate nobles, frail, etc (see commented out below)
-			::Legends.Traits.getID(::Legends.Trait.Ailing), //only including naturally occouring or obtainable traits.
-			::Legends.Traits.getID(::Legends.Trait.Asthmatic),
-			::Legends.Traits.getID(::Legends.Trait.Bleeder),
-			// ::Legends.Traits.getID(::Legends.Trait.Bloodthirsty),
-			::Legends.Traits.getID(::Legends.Trait.Brave),
-			// ::Legends.Traits.getID(::Legends.Trait.Tiny),
-			::Legends.Traits.getID(::Legends.Trait.Gluttonous),
-			// ::Legends.Traits.getID(::Legends.Trait.Cocky),
-			::Legends.Traits.getID(::Legends.Trait.Craven),
-			::Legends.Traits.getID(::Legends.Trait.Dastard),
-			::Legends.Traits.getID(::Legends.Trait.Deathwish),
-			::Legends.Traits.getID(::Legends.Trait.Determined),
-			// ::Legends.Traits.getID(::Legends.Trait.Dexterous),
-			::Legends.Traits.getID(::Legends.Trait.Disloyal),
-			::Legends.Traits.getID(::Legends.Trait.Drunkard),
-			// ::Legends.Traits.getID(::Legends.Trait.Dumb),
-			::Legends.Traits.getID(::Legends.Trait.Fainthearted),
-			::Legends.Traits.getID(::Legends.Trait.Fat),
-			::Legends.Traits.getID(::Legends.Trait.FearUndead),
-			::Legends.Traits.getID(::Legends.Trait.FearGreenskins),
-			::Legends.Traits.getID(::Legends.Trait.FearBeasts),
-			::Legends.Traits.getID(::Legends.Trait.Fearless),
-			// ::Legends.Traits.getID(::Legends.Trait.EagleEyes),
-			::Legends.Traits.getID(::Legends.Trait.Greedy),
-			::Legends.Traits.getID(::Legends.Trait.HateUndead),
-			// ::Legends.Traits.getID(::Legends.Trait.HateBeasts),
-			// ::Legends.Traits.getID(::Legends.Trait.HateGreenskins),
-			// ::Legends.Traits.getID(::Legends.Trait.Impatient),
-			::Legends.Traits.getID(::Legends.Trait.Insecure),
-			::Legends.Traits.getID(::Legends.Trait.IronLungs),
-			// ::Legends.Traits.getID(::Legends.Trait.IronJaw),
-			::Legends.Traits.getID(::Legends.Trait.Irrational),
-			::Legends.Traits.getID(::Legends.Trait.Loyal),
-			::Legends.Traits.getID(::Legends.Trait.NightOwl),
-			::Legends.Traits.getID(::Legends.Trait.NightBlind),
-			::Legends.Traits.getID(::Legends.Trait.Optimist),
-			// ::Legends.Traits.getID(::Legends.Trait.Paranoid),
-			::Legends.Traits.getID(::Legends.Trait.Pessimist),
-			::Legends.Traits.getID(::Legends.Trait.Spartan),
-			::Legends.Traits.getID(::Legends.Trait.Superstitious),
-			::Legends.Traits.getID(::Legends.Trait.Weasel),
-
-			//legend traits
-			// ::Legends.Traits.getID(::Legends.Trait.LegendAmbitious),
-			::Legends.Traits.getID(::Legends.Trait.LegendFearNobles),
-			// ::Legends.Traits.getID(::Legends.Trait.LegendHateNobles),
-			// ::Legends.Traits.getID(::Legends.Trait.LegendFrail),
-			//::Legends.Traits.getID(::Legends.Trait.LegendCannibalistic),
-			// ::Legends.Traits.getID(::Legends.Trait.LegendSteadyHands),
-			// ::Legends.Traits.getID(::Legends.Trait.LegendPragmatic),
-			// ::Legends.Traits.getID(::Legends.Trait.LegendUnpredictable),
-			::Legends.Traits.getID(::Legends.Trait.LegendSlack),
-			// ::Legends.Traits.getID(::Legends.Trait.LegendSureshot),
-			::Legends.Traits.getID(::Legends.Trait.LegendDoubleTongued),
-			::Legends.Traits.getID(::Legends.Trait.LegendGiftOfPeople),
-			::Legends.Traits.getID(::Legends.Trait.LegendSeductive),
-			// ::Legends.Traits.getID(::Legends.Trait.LegendTalented),
-		];
+		this.m.Excluded = ::Legends.Legion.excludedTraits();
 
 		this.m.ExcludedTalents = [
-
 			this.Const.Attributes.Bravery
 		];
 
@@ -83,7 +24,7 @@ this.legend_legion_gladiator_background <- this.inherit("scripts/skills/backgrou
 		this.m.Beards = this.Const.Beards.All;
 		this.m.Bodies = this.Const.Bodies.Muscular;
 		//---
-		this.m.BackgroundType = this.Const.BackgroundType.Untalented;
+		// this.m.BackgroundType = this.Const.BackgroundType.Untalented;
 		this.m.Names = this.Const.Strings.AncientDeadNames;
 		this.m.LastNames = this.Const.Strings.AncientDeadTitles;
 		this.m.Level = this.Math.rand(4, 5);
@@ -116,30 +57,30 @@ this.legend_legion_gladiator_background <- this.inherit("scripts/skills/backgrou
 			];
 		this.m.PerkTreeDynamic = {
 			Weapon = [
-				this.Const.Perks.DaggerTree,
-				this.Const.Perks.SpearTree,
-				this.Const.Perks.ShieldTree,
-				this.Const.Perks.PolearmTree,
-				this.Const.Perks.SwordTree,
-				this.Const.Perks.ThrowingTree,
-				this.Const.Perks.CleaverTree
+				::Const.Perks.DaggerTree,
+				::Const.Perks.SpearTree,
+				::Const.Perks.ShieldTree,
+				::Const.Perks.PolearmTree,
+				::Const.Perks.SwordTree,
+				::Const.Perks.ThrowingTree,
+				::Const.Perks.CleaverTree
 			],
 			Defense = [
-				this.Const.Perks.LightArmorTree,
-				this.Const.Perks.MediumArmorTree
+				::Const.Perks.LightArmorTree,
+				::Const.Perks.MediumArmorTree
 			],
 			Traits = [
-				this.Const.Perks.TrainedTree,
-				this.Const.Perks.DeviousTree,
-				this.Const.Perks.MartyrTree,
-				this.Const.Perks.ViciousTree
+				::Const.Perks.TrainedTree,
+				::Const.Perks.DeviousTree,
+				::Const.Perks.MartyrTree,
+				::Const.Perks.ViciousTree
 			],
 			Enemy = [],
 			Class = [
-				this.Const.Perks.ButcherClassTree,
-				this.Const.Perks.BeastClassTree,
-				this.Const.Perks.JugglerClassTree,
-				this.Const.Perks.LegendSpecialistSpearfisher
+				// ::Const.Perks.ButcherClassTree,
+				::Const.Perks.BeastClassTree,
+				::Const.Perks.JugglerClassTree,
+				// ::Const.Perks.SpearfisherClassTree
 			],
 			Profession = [],
 			Magic = []
@@ -159,13 +100,13 @@ this.legend_legion_gladiator_background <- this.inherit("scripts/skills/backgrou
 		this.m.HairColors = this.Const.HairColors.All;
 		this.m.Bodies = this.Const.Bodies.Muscular;
 		this.m.Beards = null;
-		this.m.BeardChance = 1;
+		this.m.BeardChance = 0;
 		this.addBackgroundType(this.Const.BackgroundType.Female);
 	}
 
-	function onBuildDescription() //to do
+	function onBuildDescription()
 	{
-		return "{ TODO | TODO }";
+		return "{Although scarred and worn, %name% frequently stands out of place in the wider display of the legion. | After completing their contract at their gladiator school, %name% sought to apply their skills to the Legion. Eagerly accepted, they now seek to carve their name into the minds of their foes as well as fans. | Having been defeated in the arena, %name% believed their career to be over. After being found by the Legion however, a new opportunity for redemption and glory presents itself, one that will not be ignored. | %name% comes from one of the many imperial fighting pits, a slave-made-soldier in the blood sport industry. When the Legion came through, they saw the perfect opportunity to make a better name for themselves. | Killing can be made art in the right hands. %name% commanded the respect and admiration of much of the Empire at their zenith; now they serve the Legion, another faceless agent of carnage. | %name% led a once prestigious gladiator school, but time has since erased both from the world's memory. Now, they practice their trade of vicious combat in the rugged Legion, a far cry from days past. | The experience of fighting both man and beast has given %name% unique talents on the battlefield — preferring to trap their targets rather than forming shieldwalls or pike lines. | Despite the unusual methods of %name%, they fit well into the legion. | While different from the rest of the legion, %name% provides a skillset that many of the other legionaries could not hold a candle to.} {They prefer to wear a lighter set of armour, still dodging with uncanny speed despite their appearance. | Excelling at brutal and flashy bouts of violence, this gladiator is at home in the fighting pits. In the Legion, they will have to adapt their theatrical skills of arms if they hope to survive the harsher reality of real war. | Laying waste to beasts, slaves, and the condemned criminals of the empire, this gladiator boasts impressive martial skills, albeit with limited experience in larger scale combat. |  Better suited to dramatic and performative combat than rigid formation warfare, this gladiator promises a strong martial foundation, if they can adapt to life outside the pits. | Skilled in nets, lassos, whips, tridents, and other unconventional weapons of war, this gladiator presents a remarkable proficiency in adaptable combat. Whether they can transfer these skills to the Legion remains to be seen. | This imperial gladiator boasts intimate experience in slaying the myriad monsters of the world with ceremonial flair. Time will tell if their pit knowledge transfers well against human prey. | As the rest of the camp sharpens weapons, %they% fixes their nets for beasts and soldiers alike. | Often opting for unconventional weapons, %name% managed to fill a role within the legion that few can match, which is to say, working alone. | They have a habit of pacing around the camp\'s edge, watching for trespassers on two legs or more. | %name% has a supernatural amount in finesse about them, often outperforming their fellow fights in speed and precision.} {Years of training and hardship endure in what remains of them, even in death they are still little more than a slave. | On the whole, they are not far detached from the camp slaves or auxiliaries — often spending more time in quiet communion with them than the other groups. | Despite their clear strength, the years have taken a toll on them, showing confusion when claws of beasts do not draw blood, or jaws that would rip their skin merely clamp on their bones. | Boastful and loud, %name% practically demands attention at every moment. Perhaps forgetting their position in the Legion, they are quick to suffer reprimands from their superiors. | %name%'s hollow face shows a clear mourning for their old position in the fighting pits. When the order comes to fight, they put their old experience to use, perhaps remembering better days. | %name% spends much of their time in confused sparring matches against vanquished foes centuries past. Whether they believe themself still in the arena, or seeking a desperate attempt to relive old glories is uncertain. | Not all gladiators miss their old trade, and %name% seems to one of them. Eager to work with their new brothers in arms in collaboration instead of contest, they now fight and die for the Legion. | Perhaps lamenting the new chain of command they're beholden to, %name% appears crestfallen and underappreciated. While killing might be celebrated in the arena, in the Legion, it's just part of the job.}";
 	}
 
 	function onChangeAttributes() //uses Character_background.nut template (Skeleton)
@@ -209,39 +150,14 @@ this.legend_legion_gladiator_background <- this.inherit("scripts/skills/backgrou
 
 	function onAdded()
 	{
-		if (this.m.IsNew)
-		{
+		if (this.m.IsNew) {
 			::Legends.Traits.grant(this, ::Legends.Trait.LegendFleshless);
 		}
+		this.character_background.onAdded();
 
 		local actor = this.getContainer().getActor();
-		actor.m.ExcludedInjuries = [ //all injuries associated with stamina regen, health or resolve
-		//perma injuries must be managed in actor.nut, NOT here!
-		//	"injury.traumatized",
-		//	"injury.brain_damage",
-		//	"injury.missing_nose",
-		//	"injury.weakened_heart",
-		//	"injury.collapsed_lung_part",
-		//temp
-			"injury.cut_artery",
-			"injury.cut_throat",
-			"injury.deep_abdominal_cut",
-			"injury.deep_chest_cut",
-			"injury.exposed_ribs",
-			"injury.grazed_kidney",
-			"injury.grazed_neck",
-			"injury.infected_wound",
-			"injury.sickness",
-			"injury.stabbed_guts",
-			"injury.broken_nose",
-			"injury.crushed_windpipe",
-			"injury.fractured_ribs",
-			"injury.inhaled_flames",
-			"injury.pierced_chest",
-			"injury.pierced_lung",
-			"injury.pierced_side"
-		];
-		this.getContainer().getActor().getFlags().add("legion_can_command");  //justfies if this background is subject to the legion command skill
+		actor.m.ExcludedInjuries = ::Legends.Legion.ExcludedInjures;
+		actor.getFlags().add("legion_can_command");  //justfies if this background is subject to the legion command skill
 	}
 
 	function adjustHiringCostBasedOnEquipment() //reduces cost for equipment worn on skeletons to zero for recruiting purposes.
@@ -253,36 +169,19 @@ this.legend_legion_gladiator_background <- this.inherit("scripts/skills/backgrou
 	function onAddEquipment()
 	{
 		local items = this.getContainer().getActor().getItems();
-		local r;
-		r = this.Math.rand(1, 4);
 
-		if (r == 1)
-		{
-			items.equip(this.new("scripts/items/weapons/ancient/ancient_spear"));
-		}
-		else if (r == 2)
-		{
-			items.equip(this.new("scripts/items/weapons/throwing_spear"));
-		}
-		else if (r == 3)
-		{
-			items.equip(this.new("scripts/items/weapons/ancient/legend_gladius"));
-		}
-		else if (r == 4)
-		{
-			items.equip(this.new("scripts/items/weapons/ancient/legend_kopis"));
-		}
+		items.equip(::Const.World.Common.pickItem([
+			[1, "weapons/ancient/ancient_spear"],
+			[1, "weapons/throwing_spear"],
+			[1, "weapons/ancient/legend_gladius"],
+			[1, "weapons/ancient/legend_kopis"]
+		], "scripts/items/"));
 
-		if (items.getItemAtSlot(this.Const.ItemSlot.Offhand) == null)
-		{
-			if (this.Math.rand(1, 100) <= 66)
-			{
-				items.equip(this.new("scripts/items/tools/throwing_net"));
-			}
-			else
-			{
-				items.equip(this.new("scripts/items/shields/ancient/tower_shield"));
-			}
+		if (items.getItemAtSlot(this.Const.ItemSlot.Offhand) == null) {
+			items.equip(::Const.World.Common.pickItem([
+				[2, "tools/throwing_net"],
+				[1, "shields/ancient/tower_shield"]
+			], "scripts/items/"));
 		}
 
 		items.equip(this.Const.World.Common.pickArmor([

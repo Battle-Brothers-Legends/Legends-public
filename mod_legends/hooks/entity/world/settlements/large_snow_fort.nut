@@ -44,6 +44,8 @@
 			"legend_blacksmith_background",
 			"legend_shieldmaiden_background",
 			"legend_shieldmaiden_background",
+			"legend_shieldmaiden_background",
+			"legend_shieldmaiden_background",
 			"beast_hunter_background"
 		];
 		this.m.StablesList = [

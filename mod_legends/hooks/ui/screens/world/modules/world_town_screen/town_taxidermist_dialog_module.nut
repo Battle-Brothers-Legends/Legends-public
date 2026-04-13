@@ -133,16 +133,6 @@
 		this.World.Statistics.getFlags().increment("ItemsCrafted");
 		this.World.Ambitions.updateUI();
 
-		if (blueprint.isCraftable())
-		{
-			return {
-				Blueprints = null,
-				Assets = this.m.Parent.queryAssetsInformation()
-			};
-		}
-		else
-		{
-			return this.queryBlueprints();
-		}
+		return this.queryBlueprints();
 	}
 });

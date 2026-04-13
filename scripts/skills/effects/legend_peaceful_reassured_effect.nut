@@ -35,13 +35,13 @@ this.legend_peaceful_reassured_effect <- this.inherit("scripts/skills/skill", {
 				id = 11,
 				type = "text",
 				icon = "ui/icons/bravery.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+" + peaceBravery + "[/color] Resolve"
+				text = "[color=%positive%]+" + peaceBravery + "[/color] Resolve"
 			},
 			{
 				id = 7,
 				type = "hint",
 				icon = "ui/icons/xp_received.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+" + peacefuls + "%[/color] Experience Gain"
+				text = "[color=%positive%]+" + peacefuls + "%[/color] Experience Gain"
 			}
 		];
 		return ret;

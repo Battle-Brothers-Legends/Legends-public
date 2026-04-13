@@ -68,7 +68,7 @@ this.legend_trader_commander_background <- this.inherit("scripts/skills/backgrou
 			[
 				::Legends.Perk.Backstabber,
 				::Legends.Perk.Anticipation,
-				::Legends.Perk.Rotation,
+				::Legends.Perk.LegendTacticalManeuvers,
 				::Legends.Perk.Taunt,
 				::Legends.Perk.LegendAthlete,
 				::Legends.Perk.LegendBarterConvincing
@@ -88,7 +88,6 @@ this.legend_trader_commander_background <- this.inherit("scripts/skills/backgrou
 				::Legends.Perk.Overwhelm,
 				::Legends.Perk.ReachAdvantage,
 				::Legends.Perk.LoneWolf,
-				::Legends.Perk.Footwork,
 				::Legends.Perk.Underdog,
 				::Legends.Perk.LegendBarterTrustworthy,
 			],
@@ -126,7 +125,7 @@ this.legend_trader_commander_background <- this.inherit("scripts/skills/backgrou
 		this.m.HairColors = this.Const.HairColors.Young;
 		this.m.Beards = null;
 		this.m.BeardChance = 0;
-		this.m.Bodies = this.Const.Bodies.AllFemale;
+		this.m.Bodies = this.Const.Bodies.NorthernFemale;
 		this.addBackgroundType(this.Const.BackgroundType.Female);
 	}
 
@@ -178,15 +177,13 @@ this.legend_trader_commander_background <- this.inherit("scripts/skills/backgrou
 
 	function onAdded()
 	{
+		if (this.m.IsNew)
+			::Legends.Traits.grant(this, ::Legends.Trait.Fat);
 		this.character_background.onAdded();
 		local actor = this.getContainer().getActor();
 		actor.setTitle(this.Const.Strings.PeddlerTitles[this.Math.rand(0, this.Const.Strings.PeddlerTitles.len() - 1)]);
-		::Legends.Traits.grant(this, ::Legends.Trait.Fat);
 		//this.m.Container.add(this.new("scripts/skills/traits/loyal_trait"));
 		//this.m.Container.add(this.new("scripts/skills/perks/perk_legend_bribe"));
-		//this.m.Container.add(this.new("scripts/skills/perks/perk_legend_roster_2"));
-		//this.m.Container.add(this.new("scripts/skills/perks/perk_legend_roster_4"));
-
 	}
 
 	function onAddEquipment()

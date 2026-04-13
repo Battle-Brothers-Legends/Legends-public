@@ -21,6 +21,11 @@ this.legend_spider_abductions_action <- this.inherit("scripts/factions/faction_a
 			return;
 		}
 
+		if (this.World.Assets.getBusinessReputation() < 350)
+		{
+			return;
+		}
+
 		// Check contract exclusivity
 		if (_faction.hasContractExclusion("contract.legend_spider_abductions"))
 		{

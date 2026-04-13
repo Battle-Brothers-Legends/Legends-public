@@ -803,6 +803,13 @@
 	left: 25.2rem;
 }
 
+.camp-screen > .l-barber-dialog-container .content .details-container .tattoo-head-control
+{
+	position: absolute;
+	top: 42.0rem;
+	left: 2.9rem;
+}
+
 .camp-screen > .l-barber-dialog-container .content .details-container .appearance-control .text
 {
 	margin-top: 0.2rem;

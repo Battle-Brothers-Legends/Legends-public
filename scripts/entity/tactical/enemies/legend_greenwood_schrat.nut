@@ -85,6 +85,7 @@ this.legend_greenwood_schrat <- this.inherit("scripts/entity/tactical/actor", {
 					local rune = ::new(::Legends.Runes.get(selected).Script);
 					rune.setRuneVariant(selected);
 					rune.setRuneBonus(true);
+					rune.updateRuneSigilToken();
 					return rune;
 				}.bindenv(this)],
 			]);

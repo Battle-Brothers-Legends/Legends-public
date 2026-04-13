@@ -64,25 +64,25 @@ this.legend_bladedancer_background <- this.inherit("scripts/skills/backgrounds/c
 		this.m.Modifiers.Training = this.Const.LegendMod.ResourceModifiers.Training[3];
 		this.m.PerkTreeDynamic = {
 			Weapon = [
-				this.Const.Perks.SwordTree,
-				this.Const.Perks.PolearmTree,
-				this.Const.Perks.CleaverTree,
-				this.Const.Perks.DaggerTree,
-				this.Const.Perks.MaceTree
+				::Const.Perks.SwordTree,
+				::Const.Perks.PolearmTree,
+				::Const.Perks.CleaverTree,
+				::Const.Perks.DaggerTree,
+				::Const.Perks.MaceTree
 			],
 			Defense = [
-				this.Const.Perks.LightArmorTree,
-				this.Const.Perks.ClothArmorTree
+				::Const.Perks.LightArmorTree,
+				::Const.Perks.ClothArmorTree
 			],
 			Traits = [
-				this.Const.Perks.TrainedTree,
-				this.Const.Perks.FitTree,
-				this.Const.Perks.CalmTree,
-				this.Const.Perks.ViciousTree
+				::Const.Perks.TrainedTree,
+				::Const.Perks.FitTree,
+				::Const.Perks.CalmTree,
+				::Const.Perks.ViciousTree
 			],
 			Enemy = [
-				this.Const.Perks.SwordmastersTree,
-				this.Const.Perks.MercenaryTree
+				::Const.Perks.SwordmastersTree,
+				::Const.Perks.OutlawTree
 			],
 			Class = [],
 			Profession = [],

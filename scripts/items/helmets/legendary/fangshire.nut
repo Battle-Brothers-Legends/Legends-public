@@ -19,7 +19,7 @@ this.fangshire <- this.inherit("scripts/items/legend_helmets/legend_helmet_upgra
 		this.m.Condition = 40;
 		this.m.ConditionMax = 40;
 		this.m.StaminaModifier = -2;
-		this.m.IsLowerVanity = false;
+		this.m.Lower = false;
 		this.m.HideHair = true;
 		this.m.HideBeard = false;
 	}

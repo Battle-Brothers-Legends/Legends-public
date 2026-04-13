@@ -5,26 +5,14 @@ this.legend_armor_cloak_rich <- this.inherit("scripts/items/legend_armor/legend_
 	function create()
 	{
 		this.legend_named_armor_upgrade.create();
-		this.m.Type = this.Const.Items.ArmorUpgrades.Cloak;
 		this.m.ID = "legend_armor.cloak_rich";
+		this.m.Type = this.Const.Items.ArmorUpgrades.Cloak;
 		this.m.Name = "";
-		this.m.NameList = [
-			"Kingly",
-			"Splendor",
-			"Pageantry",
-			"Swank",
-			"Noble",
-			"Undead"
-		];
-		this.m.Description = "A silk embroidered cloak made with the finest clothes. Those who wear it feel as if a king";
-		this.m.ArmorDescription = "Has a flowing embroidered cloak";
-		this.m.Variants = [
-			1,
-			2,
-			3,
-			4,
-			5
-		];
+		this.m.Description = "An embroidered silk cloak made with the finest materials affordable only for those in positions of great power.";
+		this.m.ArmorDescription = "Includes an embroidered silk cloak.";
+		this.m.ImpactSound = this.Const.Sound.ArmorLeatherImpact;
+		this.m.InventorySound = this.Const.Sound.ClothEquip;
+		this.m.Variants = [1,2,3,4,5];
 		this.m.Variant = this.m.Variants[this.Math.rand(0, this.m.Variants.len() - 1)];
 		this.updateVariant();
 		this.m.Value = 10000;
@@ -32,6 +20,7 @@ this.legend_armor_cloak_rich <- this.inherit("scripts/items/legend_armor/legend_
 		this.m.ConditionMax = 35;
 		this.m.StaminaModifier = -2;
 		this.randomizeValues();
+		this.m.NameList = ["Majesty","Splendor","Pageantry","Swank","Nobility","Elegance","Opulence","Excess","Resplendence","Glory"];
 	}
 
 	function randomizeValues()
@@ -43,10 +32,10 @@ this.legend_armor_cloak_rich <- this.inherit("scripts/items/legend_armor/legend_
 
 	function updateVariant()
 	{
-		local variant = this.m.Variant < 10 ? "0" + this.m.Variant : this.m.Variant;
-		this.m.SpriteBack = "bust_cloak_rich_" + variant + "";
-		this.m.SpriteDamagedBack = "bust_cloak_rich_" + variant + "_damaged";
-		this.m.SpriteCorpseBack = "bust_cloak_rich_" + variant + "_dead";
+		local variant = this.m.Variant > 9 ? this.m.Variant : "0" + this.m.Variant;
+		this.m.SpriteBack = "cloak_rich_" + variant + "";
+		this.m.SpriteDamagedBack = "cloak_rich_" + variant + "_damaged";
+		this.m.SpriteCorpseBack = "cloak_rich_" + variant + "_dead";
 		this.m.Icon = "legend_armor/icon_cloak_rich_" + variant + ".png";
 		this.m.IconLarge = this.m.Icon;
 		this.m.OverlayIcon = "legend_armor/icon_cloak_rich_" + variant + ".png";
@@ -61,7 +50,7 @@ this.legend_armor_cloak_rich <- this.inherit("scripts/items/legend_armor/legend_
 			id = 15,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "Increase the Resolve of the wearer by [color=" + this.Const.UI.Color.PositiveValue + "]+" + val + "%[/color]"
+			text = "Increase the Resolve of the wearer by [color=%positive%]+" + val + "%[/color]"
 		});
 		return result;
 	}
@@ -73,7 +62,7 @@ this.legend_armor_cloak_rich <- this.inherit("scripts/items/legend_armor/legend_
 			id = 15,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "Increase the Resolve of the wearer by [color=" + this.Const.UI.Color.PositiveValue + "]+" + val + "%[/color]"
+			text = "Increase the Resolve of the wearer by [color=%positive%]+" + val + "%[/color]"
 		});
 	}
 

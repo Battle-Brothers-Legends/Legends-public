@@ -28,7 +28,7 @@ this.legend_mummy_curse_effect <- this.inherit("scripts/skills/skill", {
 				id = 6,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "Receive [color=" + this.Const.UI.Color.NegativeValue + "]+" + this.getBonus() + "[/color] damage from any source"
+				text = "Receive [color=%negative%]+" + this.getBonus() + "[/color] damage from any source"
 			},
 			{
 				id = 6,

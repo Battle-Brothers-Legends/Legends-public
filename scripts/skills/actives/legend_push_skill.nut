@@ -34,27 +34,7 @@ this.legend_push_skill <- this.inherit("scripts/skills/skill", {
 
 	function getTooltip()
 	{
-		local p = this.getContainer().getActor().getCurrentProperties();
-		local ret = [
-			{
-				id = 1,
-				type = "title",
-				text = this.getName()
-			},
-			{
-				id = 2,
-				type = "description",
-				text = this.getDescription()
-			},
-			{
-				id = 3,
-				type = "text",
-				text = this.getCostString()
-			}
-		];
-
-
-		return ret;
+		return this.getDefaultUtilityTooltip();
 	}
 
 	function findTileToKnockBackTo( _userTile, _targetTile )

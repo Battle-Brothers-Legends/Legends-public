@@ -32,7 +32,7 @@
 	{
 		ID = ::Const.LegendMod.Debug.Flags.ContractCategoriesVerbose,
 		Name = "Contract Categories (Verbose)",
-		Description = "Addtional logs related to Contract Categories\n\n[color=" + this.Const.UI.Color.NegativeValue + "]WARNING: Known to cause crashes due to excessive logging[/color]",
+		Description = "Addtional logs related to Contract Categories\n\n[color=%negative%]WARNING: Known to cause crashes due to excessive logging[/color]",
 		Value = false
 	},
 	{

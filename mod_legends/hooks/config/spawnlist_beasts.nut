@@ -669,7 +669,6 @@
 	]
 }
 
-
 ::Const.World.Spawn.Hyenas =
 {
 	Name = "Hyenas",
@@ -681,7 +680,17 @@
 	MaxR = 650,
 	Troops = [
 		{
-			Weight = 100,
+			Weight = 20,
+			Types = [
+				{
+					Type = this.Const.World.Spawn.Troops.LegendEnragedHyena,
+					MinR = 800,
+					Cost = 200
+				}
+			]
+		},
+		{
+			Weight = 80,
 			Types = [
 				{
 					Type = this.Const.World.Spawn.Troops.Hyena,
@@ -691,11 +700,6 @@
 					Type = this.Const.World.Spawn.Troops.HyenaHIGH,
 					MinR = 400,
 					Cost = 20
-				},
-				{
-					Type = this.Const.World.Spawn.Troops.LegendEnragedHyena,
-					MinR = 500,
-					Cost = 25
 				}
 			]
 		}
@@ -750,3 +754,98 @@
 		}
 	]
 }
+
+::Const.World.Spawn.RandomHexenBeastsNoSpiders <-
+	{
+		Name = "RandomHexenBeastsNoSpiders",
+		IsDynamic = true,
+		MovementSpeedMult = 1.0,
+		VisibilityMult = 1.0,
+		VisionMult = 1.0,
+		Body = "figure_hexe_01",
+		MinR = 100,
+		MaxR = 500,
+		Fixed = [],
+		Troops = [
+			{
+				Weight = 35,
+				Types = [
+					{
+						Type = this.Const.World.Spawn.Troops.Direwolf,
+						Cost = 21
+					},
+					{
+						Type = this.Const.World.Spawn.Troops.DirewolfHIGH,
+						MinR = 0.3 * 500,
+						Cost = 25
+					}
+				]
+			},
+			{
+				Weight = 5,
+				Types = [
+					{
+						Type = this.Const.World.Spawn.Troops.LegendBear,
+						MinR = 0.3 * 100,
+						Cost = 30
+					}
+				]
+			},
+			{
+				Weight = 15,
+				Types = [
+					{
+						Type = this.Const.World.Spawn.Troops.BanditMarksman,
+						Cost = 15
+					},
+					{
+						Type = this.Const.World.Spawn.Troops.BanditRaider,
+						Cost = 20
+					}
+				]
+			},
+			{
+				Weight = 15,
+				Types = [
+					{
+						Type = this.Const.World.Spawn.Troops.GhoulLOW,
+						Cost = 9
+					},
+					{
+						Type = this.Const.World.Spawn.Troops.Ghoul,
+						Cost = 19
+					},
+					{
+						Type = this.Const.World.Spawn.Troops.GhoulHIGH,
+						MinR = 0.6 * 500,
+						Cost = 35,
+						Roll = true
+					}
+				]
+			},
+			{
+				Weight = 10,
+				MinR = 0.75 * 500,
+				Types = [
+					{
+						Type = this.Const.World.Spawn.Troops.Unhold,
+						Cost = 50
+					},
+					{
+						Type = this.Const.World.Spawn.Troops.UnholdBog,
+						Cost = 50
+					}
+				]
+			},
+			{
+				Weight = 5,
+				MinR = 0.75 * 500,
+				Types = [
+					{
+						Type = this.Const.World.Spawn.Troops.Schrat,
+						Cost = 70
+					}
+				]
+			}
+		]
+	}

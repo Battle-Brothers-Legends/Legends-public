@@ -46,7 +46,7 @@ this.legend_named_ranged_flail <- this.inherit("scripts/items/weapons/named/name
 				id = 12,
 				type = "text",
 				icon = "ui/icons/armor_head.png",
-				text = "Applies [color=" + this.Const.UI.Color.PositiveValue + "]Daze[/color] to Targets Hit"
+				text = "Applies [color=%positive%]Daze[/color] to Targets Hit"
 			});
 		}
 		return result;

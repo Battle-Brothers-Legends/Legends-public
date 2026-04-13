@@ -522,15 +522,16 @@ CharacterScreenInventoryListModule.prototype.createItemSlot = function (_owner, 
 		var data = _item.data('item');
 
 
-		var isEmpty = (data !== null && 'isEmpty' in data) ? data.isEmpty : ytrue;
+		var isEmpty = (data !== null && 'isEmpty' in data) ? data.isEmpty : true;
 		//var owner = (data !== null && 'owner' in data) ? data.owner : null;
 		var itemId = (data !== null && 'itemId' in data) ? data.itemId : null;
 		var entityId = (data !== null && 'entityId' in data) ? data.entityId : null;
 		var sourceItemIdx = (data !== null && 'index' in data) ? data.index : null;
 		var dropIntoBag = (KeyModiferConstants.CtrlKey in _event && _event[KeyModiferConstants.CtrlKey] === true);
 		var repairItem = (KeyModiferConstants.AltKey in _event && _event[KeyModiferConstants.AltKey] === true);
-		var removeUpgrades = (KeyModiferConstants.ShiftKey in _event && _event[KeyModiferConstants.ShiftKey] === true && ("isUsable" in data && data.isUsable === false));
+		var shift = (KeyModiferConstants.ShiftKey in _event && _event[KeyModiferConstants.ShiftKey] === true);
 		var sourceSlotType = (data !== null && 'slotType' in data) ? data.slotType : null;
+		var removeUpgrades = (shift && sourceSlotType !== CharacterScreenIdentifier.ItemSlot.Mainhand && ("isUsable" in data && data.isUsable === false));
 
 		if (isEmpty === false && /*owner !== null &&*/ itemId !== null /*&& itemIdx !== null*/)
 		{
@@ -563,7 +564,8 @@ CharacterScreenInventoryListModule.prototype.createItemSlot = function (_owner, 
 				}
 				else
 				{
-					self.mDataSource.equipInventoryItem(entityId, itemId, null);
+					var targetSlot = (shift && sourceSlotType === CharacterScreenIdentifier.ItemSlot.Mainhand) ? CharacterScreenIdentifier.ItemSlot.Offhand : null;
+					self.mDataSource.equipInventoryItem(entityId, itemId, null, targetSlot);
 				}
 			}
 		}
@@ -631,7 +633,7 @@ CharacterScreenInventoryListModule.prototype.assignItemToSlot = function(_entity
 
 		// assign image
 		_slot.assignListItemImage(Path.ITEMS + _item[CharacterScreenIdentifier.Item.ImagePath]);
-		_slot.assignListItemOverlayImage(_item['imageOverlayPath']);
+		_slot.assignListItemOverlayImage(_item['imageOverlayPath'], _item);
 
 		// show repair icon?
 		itemData.repair = _item['repair'];

@@ -34,7 +34,7 @@ this.legend_entrancer_background <- this.inherit("scripts/skills/backgrounds/cha
 		this.m.Hairs = this.Const.Hair.AllFemale;
 		this.m.HairColors = this.Const.HairColors.All;
 		this.m.Beards = null;
-		this.m.Bodies = this.Const.Bodies.AllFemale;
+		this.m.Bodies = this.Const.Bodies.NorthernFemale;
 		this.m.BackgroundType = this.Const.BackgroundType.Female | this.Const.BackgroundType.Performing | this.Const.BackgroundType.Druid;
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Merciless;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Good;
@@ -57,26 +57,26 @@ this.legend_entrancer_background <- this.inherit("scripts/skills/backgrounds/cha
 		this.m.Modifiers.Training = this.Const.LegendMod.ResourceModifiers.Training[0];
 		this.m.PerkTreeDynamic = {
 			Weapon = [
-				this.Const.Perks.HammerTree,
-				this.Const.Perks.PolearmTree,
-				this.Const.Perks.ThrowingTree,
-				this.Const.Perks.FlailTree
+				::Const.Perks.HammerTree,
+				::Const.Perks.PolearmTree,
+				::Const.Perks.ThrowingTree,
+				::Const.Perks.FlailTree
 			],
 			Defense = [
-				this.Const.Perks.ClothArmorTree
+				::Const.Perks.ClothArmorTree
 			],
 			Traits = [
-				this.Const.Perks.IntelligentTree,
-				this.Const.Perks.MartyrTree,
-				this.Const.Perks.InspirationalTree,
-				this.Const.Perks.CalmTree
+				::Const.Perks.IntelligentTree,
+				::Const.Perks.MartyrTree,
+				::Const.Perks.InspirationalTree,
+				::Const.Perks.CalmTree
 			],
 			Enemy = [],
 			Class = [],
 			Profession = [],
 			Magic = [
-				this.Const.Perks.ValaTranceMagicTree,
-				this.Const.Perks.StavesMagicTree
+				::Const.Perks.ValaTranceMagicTree,
+				::Const.Perks.StavesMagicTree
 			]
 		}
 	}

@@ -33,7 +33,6 @@
 			::Legends.Traits.getID(::Legends.Trait.Dastard),
 			::Legends.Traits.getID(::Legends.Trait.Insecure),
 			::Legends.Traits.getID(::Legends.Trait.LegendSlack),
-			::Legends.Traits.getID(::Legends.Trait.LegendFrail),
 			::Legends.Traits.getID(::Legends.Trait.LegendGiftOfPeople),
 			::Legends.Traits.getID(::Legends.Trait.LegendSeductive)
 		];
@@ -74,27 +73,25 @@
 		];
 		this.m.PerkTreeDynamic = {
 			Weapon = [
-				this.Const.Perks.TwoHandedTree,
-				this.Const.Perks.AxeTree,
-				this.Const.Perks.HammerTree,
-				this.Const.Perks.MaceTree,
-				this.Const.Perks.CleaverTree,
-				this.Const.Perks.ThrowingTree
+				::Const.Perks.AxeTree,
+				::Const.Perks.HammerTree,
+				::Const.Perks.MaceTree,
+				::Const.Perks.CleaverTree,
+				::Const.Perks.ThrowingTree
 			],
 			Defense = [
-				this.Const.Perks.HeavyArmorTree,
-				this.Const.Perks.LightArmorTree
+				::Const.Perks.HeavyArmorTree,
+				::Const.Perks.LightArmorTree
 			],
 			Traits = [
-				this.Const.Perks.ViciousTree,
-				this.Const.Perks.TrainedTree,
-				this.Const.Perks.LargeTree,
-				this.Const.Perks.SturdyTree,
-				this.Const.Perks.FitTree
+				::Const.Perks.ViciousTree,
+				::Const.Perks.TrainedTree,
+				::Const.Perks.LargeTree,
+				::Const.Perks.SturdyTree,
+				::Const.Perks.FitTree
 			],
 			Enemy = [
-				this.Const.Perks.CaravanTree,
-				this.Const.Perks.NoblesTree
+				::Const.Perks.CivilizationTree
 				],
 			Class = [],
 			Profession = [],
@@ -118,7 +115,7 @@
 		this.m.HairColors = this.Const.HairColors.All;
 		this.m.Beards = null;
 		this.m.BeardChance = 0;
-		this.m.Bodies = this.Const.Bodies.AllFemale;
+		this.m.Bodies = this.Const.Bodies.NorthernFemale;
 		this.addBackgroundType(this.Const.BackgroundType.Female);
 		this.m.GoodEnding = "%name% the barbarian took all the coin she earned with the company and ventured north. With her money, she gathered a band of warriors and conquered so many tribes that, last you heard, she had been ordained \'queen of the north\'.";
 		this.m.BadEnding = "With things the way they were, %name% departed. Last you heard she was traveling north. Penniless with little to her name but an axe, and not looking anything like the natives or speaking their tongue, you figure the barbarian did not get far. Based upon what you\'ve seen happen to her ilk, she\'s either been killed already or captured as a slave.";

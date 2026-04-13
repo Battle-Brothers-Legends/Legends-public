@@ -2,7 +2,34 @@
 ::Const.World.Spawn.Troops.Zombie.Cost = 5;
 
 ::Const.World.Spawn.Troops.OrcWarrior.TitleList = this.Const.Strings.GoblinTitles;
+
 ::Const.World.Spawn.Troops.OrcWarlord.TitleList = this.Const.Strings.GoblinTitles;
+
+::Const.World.Spawn.Troops.OrcBerserker.TitleList <- this.Const.Strings.GoblinTitles;
+::Const.World.Spawn.Troops.OrcBerserker.NameList <- this.Const.Strings.OrcWarlordNames;
+::Const.World.Spawn.Troops.OrcBerserker.Variant = 1;
+
+::Const.World.Spawn.Troops.Greatsword.TitleList <- this.Const.Strings.NobleGreatswordTitles;
+::Const.World.Spawn.Troops.Greatsword.NameList <- this.Const.Strings.KnightNames;
+::Const.World.Spawn.Troops.Greatsword.Variant = 1;
+
+::Const.World.Spawn.Troops.SkeletonHeavyPolearm.NameList <- this.Const.Strings.AncientDeadNames;
+::Const.World.Spawn.Troops.SkeletonHeavyPolearm.TitleList <- null;
+::Const.World.Spawn.Troops.SkeletonHeavyPolearm.Variant = 1;
+
+::Const.World.Spawn.Troops.SkeletonHeavyBodyguard.NameList <- this.Const.Strings.AncientDeadNames;
+::Const.World.Spawn.Troops.SkeletonHeavyBodyguard.TitleList <- null;
+::Const.World.Spawn.Troops.SkeletonHeavyBodyguard.Variant = 1;
+
+::Const.World.Spawn.Troops.ZombieBetrayer.NameList <- this.Const.Strings.KnightNames;
+::Const.World.Spawn.Troops.ZombieBetrayer.TitleList <- this.Const.Strings.FallenHeroTitles;
+::Const.World.Spawn.Troops.ZombieBetrayer.Strength = 50;
+::Const.World.Spawn.Troops.ZombieBetrayer.Cost = 50;
+::Const.World.Spawn.Troops.ZombieBetrayer.Variant = 2;
+
+::Const.World.Spawn.Troops.Vampire.NameList <- this.Const.Strings.VampireLordNames;
+::Const.World.Spawn.Troops.Vampire.TitleList <- this.Const.Strings.FallenHeroTitles;
+::Const.World.Spawn.Troops.Vampire.Variant = 1;
 
 ::Const.World.Spawn.Troops.Peasant.Script = "scripts/entity/tactical/humans/legend_peasant";
 

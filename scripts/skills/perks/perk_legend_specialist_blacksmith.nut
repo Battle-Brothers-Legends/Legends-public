@@ -16,7 +16,7 @@ this.perk_legend_specialist_blacksmith <- this.inherit("scripts/skills/legend_sp
 	function create()
 	{
 		this.legend_specialist_abstract.create();
-		::Const.Perks.setup(this.m, ::Legends.Perk.LegendSpecialistBlacksmith);
+		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendSpecialistBlacksmith);
 		this.m.IconMini = "perk_spec_blacksmith_mini";
 	}
 

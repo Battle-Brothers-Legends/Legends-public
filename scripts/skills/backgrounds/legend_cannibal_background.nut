@@ -29,27 +29,27 @@ this.legend_cannibal_background <- this.inherit("scripts/skills/backgrounds/char
 		this.m.Modifiers.Hunting = this.Const.LegendMod.ResourceModifiers.Hunting[1];
 		this.m.PerkTreeDynamic = {
 			Weapon = [
-				this.Const.Perks.CleaverTree,
-				this.Const.Perks.SwordTree,
-				this.Const.Perks.ThrowingTree
+				::Const.Perks.CleaverTree,
+				::Const.Perks.SwordTree,
+				::Const.Perks.ThrowingTree
 			],
 			Defense = [
-				this.Const.Perks.MediumArmorTree
+				::Const.Perks.MediumArmorTree
 			],
 			Traits = [
-				this.Const.Perks.ViciousTree,
-				this.Const.Perks.LargeTree,
-				this.Const.Perks.MartyrTree,
-				this.Const.Perks.DeviousTree
+				::Const.Perks.ViciousTree,
+				::Const.Perks.LargeTree,
+				::Const.Perks.MartyrTree,
+				::Const.Perks.DeviousTree
 			],
 			Enemy = [
-				this.Const.Perks.CaravanTree
+				::Const.Perks.CivilizationTree
 			],
 			Class = [
-				this.Const.Perks.ButcherClassTree
+				// ::Const.Perks.ButcherClassTree
 			],
 			Profession = [
-				this.Const.Perks.ChefProfessionTree
+				::Const.Perks.ChefProfessionTree
 			],
 			Magic = []
 		}

@@ -51,6 +51,7 @@ this.legend_trader_recruitment <- this.inherit("scripts/events/event", {
 
 	function onUpdateScore()
 	{
+		return; // old bg that needs to be refactored
 		if (this.World.getPlayerRoster().getSize() >= this.World.Assets.getBrothersMax())
 		{
 			return;

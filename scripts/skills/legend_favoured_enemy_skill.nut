@@ -87,19 +87,19 @@ this.legend_favoured_enemy_skill <- this.inherit("scripts/skills/skill", {
 				id = 10,
 				type = "text",
 				icon = "ui/icons/melee_skill.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+" + stats.HitChance + "%[/color] Melee Skill due to being a favored enemy"
+				text = "[color=%positive%]+" + stats.HitChance + "%[/color] Melee Skill due to being a favored enemy"
 			},
 			{
 				id = 11,
 				type = "text",
 				icon = "ui/icons/ranged_skill.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+" + stats.HitChance + "%[/color] Ranged Skill due to being a favored enemy"
+				text = "[color=%positive%]+" + stats.HitChance + "%[/color] Ranged Skill due to being a favored enemy"
 			},
 			{
 				id = 11,
 				type = "text",
 				icon = "ui/icons/damage_dealt.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+" + stats.HitChance + "%[/color] Max Damage due to being a favored enemy"
+				text = "[color=%positive%]+" + stats.HitChance + "%[/color] Max Damage due to being a favored enemy"
 			}
 		];
 		if (this.m.BraveryMult > 1)
@@ -108,11 +108,11 @@ this.legend_favoured_enemy_skill <- this.inherit("scripts/skills/skill", {
 				id = 15,
 				type = "text",
 				icon = "ui/icons/bravery.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+" + this.Math.floor((this.m.BraveryMult - 1.0) * 100.0) + "%[/color] Resolve due to being a favored enemy"
+				text = "[color=%positive%]+" + this.Math.floor((this.m.BraveryMult - 1.0) * 100.0) + "%[/color] Resolve due to being a favored enemy"
 			})
 		}
 		resp.push({
-			id = 15,
+			id = 16,
 			type = "hint",
 			icon = "ui/icons/special.png",
 			text = ::Const.UI.getColorized(stats.Kills,::Const.UI.Color.getHighlightLightBackgroundValue()) + " favored enemy kills"
@@ -145,7 +145,7 @@ this.legend_favoured_enemy_skill <- this.inherit("scripts/skills/skill", {
 				id = 3,
 				type = "hint",
 				icon = "ui/tooltips/positive.png"
-				text = format("Activating this perk will grant a %s bonus to the relevant stats", ::Const.UI.getColorized("+" + stats.HitChance + "%",::Const.UI.Color.PositiveValue))
+				text = format("Activating this perk will grant a %s bonus to the relevant stats", ::Const.UI.getColorized("+" + stats.HitChance + "%", ::Const.UI.Color.PositiveValue))
 			}
 		];
 

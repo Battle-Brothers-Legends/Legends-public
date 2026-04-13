@@ -40,25 +40,25 @@ this.legend_arena_invictus_trait <- this.inherit("scripts/skills/traits/characte
 				id = 10,
 				type = "text",
 				icon = "ui/icons/bravery.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+18[/color] Resolve"
+				text = "[color=%positive%]+18[/color] Resolve"
 			},
 			{
 				id = 10,
 				type = "text",
 				icon = "ui/icons/health.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+10[/color] Hitpoints"
+				text = "[color=%positive%]+10[/color] Hitpoints"
 			},
 			{
 				id = 10,
 				type = "text",
 				icon = "ui/icons/regular_damage.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+5%[/color] Damage"
+				text = "[color=%positive%]+5%[/color] Damage"
 			},
 			{
 				id = 11,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "Has a [color=" + this.Const.UI.Color.PositiveValue + "]75%[/color] chance to survive if struck down and not killed by a fatality"
+				text = "Has a [color=%positive%]75%[/color] chance to survive if struck down and not killed by a fatality"
 			}
 		];
 
@@ -68,7 +68,7 @@ this.legend_arena_invictus_trait <- this.inherit("scripts/skills/traits/characte
 				id = 12,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "Increases the penalty to the morale check from fearsome by [color=" + this.Const.UI.Color.PositiveValue + "]10%[/color] of your arena wins"
+				text = "Increases the penalty to the morale check from fearsome by [color=%positive%]10%[/color] of your arena wins"
 			});
 		}
 		else
@@ -77,7 +77,7 @@ this.legend_arena_invictus_trait <- this.inherit("scripts/skills/traits/characte
 				id = 12,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "Any attack that inflicts at least 1 point of damage to hitpoints triggers a morale check for the opponent with a penalty equal to [color=" + this.Const.UI.Color.PositiveValue + "]10%[/color] of your arena wins"
+				text = "Any attack that inflicts at least 1 point of damage to hitpoints triggers a morale check for the opponent with a penalty equal to [color=%positive%]10%[/color] of your arena wins"
 			});
 		}
 

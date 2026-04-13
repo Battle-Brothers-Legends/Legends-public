@@ -7,7 +7,7 @@
 			id = 15,
 			type = "text",
 			icon = "ui/icons/bravery.png",
-			text = "Reduces the Resolve of any opponent engaged in melee by [color=" + this.Const.UI.Color.NegativeValue + "]-3[/color]"
+			text = "Reduces the Resolve of any opponent engaged in melee by [color=%negative%]-3[/color]"
 		});
 		return result;
 	}

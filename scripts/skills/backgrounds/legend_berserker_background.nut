@@ -42,7 +42,9 @@ this.legend_berserker_background <- this.inherit("scripts/skills/backgrounds/cha
 			::Legends.Traits.getID(::Legends.Trait.Dastard),
 			::Legends.Traits.getID(::Legends.Trait.Drunkard),
 			::Legends.Traits.getID(::Legends.Trait.Disloyal),
-			::Legends.Traits.getID(::Legends.Trait.Loyal)
+			::Legends.Traits.getID(::Legends.Trait.Loyal),
+			::Legends.Traits.getID(::Legends.Trait.LegendSureshot),
+			::Legends.Traits.getID(::Legends.Trait.LegendSteadyHands),
 		];
 		this.m.Titles = [
 			"the Savage",
@@ -92,28 +94,27 @@ this.legend_berserker_background <- this.inherit("scripts/skills/backgrounds/cha
 		];
 		this.m.PerkTreeDynamic = {
 			Weapon = [
-				this.Const.Perks.MaceTree,
-				this.Const.Perks.AxeTree,
-				this.Const.Perks.ThrowingTree,
-				this.Const.Perks.FistsTree
+				::Const.Perks.MaceTree,
+				::Const.Perks.AxeTree,
+				::Const.Perks.ThrowingTree,
+				::Const.Perks.FistsTree
 			],
 			Defense = [
-				this.Const.Perks.LightArmorTree
+				::Const.Perks.LightArmorTree
 			],
 			Traits = [
-				this.Const.Perks.SturdyTree,
-				this.Const.Perks.IndestructibleTree,
-				this.Const.Perks.LargeTree,
-				this.Const.Perks.FitTree
+				::Const.Perks.SturdyTree,
+				::Const.Perks.IndestructibleTree,
+				::Const.Perks.LargeTree,
+				::Const.Perks.FitTree
 			],
 			Enemy = [
-				this.Const.Perks.OrcTree,
-				this.Const.Perks.GoblinTree
+				::Const.Perks.GreenskinTree
 			],
 			Class = [],
 			Profession = [],
 			Magic = [
-				this.Const.Perks.BerserkerMagicTree
+				::Const.Perks.BerserkerMagicTree
 			]
 		}
 	}
@@ -125,7 +126,7 @@ this.legend_berserker_background <- this.inherit("scripts/skills/backgrounds/cha
 			id = 12,
 			type = "text",
 			icon = "ui/icons/regular_damage.png",
-			text = "[color=" + this.Const.UI.Color.PositiveValue + "]5%[/color] bonus damage to [color=#400080]Hand to Hand[/color] and [color=#400080]Choke[/color]"
+			text = "[color=%positive%]5%[/color] bonus damage to [color=#400080]Hand to Hand[/color] and [color=#400080]Choke[/color]"
 		});
 		return ret;
 	}
@@ -150,7 +151,7 @@ this.legend_berserker_background <- this.inherit("scripts/skills/backgrounds/cha
 		this.m.HairColors = this.Const.HairColors.Young;
 		this.m.Beards = null;
 		this.m.BeardChance = 0;
-		this.m.Bodies = this.Const.Bodies.AllFemale;
+		this.m.Bodies = this.Const.Bodies.NorthernFemale;
 		this.addBackgroundType(this.Const.BackgroundType.Female);
 
 	}
@@ -276,7 +277,7 @@ this.legend_berserker_background <- this.inherit("scripts/skills/backgrounds/cha
 
 		else if (r == 3)
 		{
-			items.equip(this.new("scripts/items/weapons/legend_longsword"));
+			items.equip(this.new("scripts/items/weapons/legend_zweihander"));
 		}
 		else if (r == 4)
 		{

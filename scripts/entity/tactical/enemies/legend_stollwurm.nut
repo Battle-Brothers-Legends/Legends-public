@@ -5,20 +5,28 @@ this.legend_stollwurm <- this.inherit("scripts/entity/tactical/actor", {
 		DroppableRunes = [
 			::Legends.Rune.LegendRsaEndurance,
 			::Legends.Rune.LegendRsaSafety
-		]
+		],
+		MovementAPSpent = 0,
+		EffectsSharedWithTail = [
+			::Legends.Effect.Staggered,
+			::Legends.Effect.Dazed,
+			::Legends.Effect.LegendDazed,
+			::Legends.Effect.LegendBaffled,
+			::Legends.Effect.Withered,
+			::Legends.Effect.InsectSwarm
+		],
+		EffectsSharedWithTailLookup = {}
 	},
-	function getIdealRange()
-	{
+
+	function getIdealRange() {
 		return 2;
 	}
 
-	function getMode()
-	{
+	function getMode() {
 		return this.m.Mode;
 	}
 
-	function setMode( _m )
-	{
+	function setMode( _m ) {
 		this.m.Mode = _m;
 
 		if (this.isPlacedOnMap())
@@ -33,13 +41,11 @@ this.legend_stollwurm <- this.inherit("scripts/entity/tactical/actor", {
 		}
 	}
 
-	function getImageOffsetY()
-	{
+	function getImageOffsetY() {
 		return 20;
 	}
 
-	function create()
-	{
+	function create() {
 		this.m.Type = this.Const.EntityType.LegendStollwurm;
 		this.m.BloodType = this.Const.BloodType.Red;
 		this.m.XP = this.Const.Tactical.Actor.LegendStollwurm.XP;
@@ -109,14 +115,17 @@ this.legend_stollwurm <- this.inherit("scripts/entity/tactical/actor", {
 					local rune = ::new(::Legends.Runes.get(selected).Script);
 					rune.setRuneVariant(selected);
 					rune.setRuneBonus(true);
+					rune.updateRuneSigilToken();
 					return rune;
 				}.bindenv(this)],
 			]);
 		}
+		foreach(def in this.m.EffectsSharedWithTail) { // you have id:def mapping here
+			this.m.EffectsSharedWithTailLookup[::Legends.Effects.getID(def)] <- def
+		}
 	}
 
-	function playSound( _type, _volume, _pitch = 0.5 )
-	{
+	function playSound( _type, _volume, _pitch = 0.5 ) {
 		if (_type == this.Const.Sound.ActorEvent.Move && this.Math.rand(1, 100) <= 50)
 		{
 			return;
@@ -125,8 +134,12 @@ this.legend_stollwurm <- this.inherit("scripts/entity/tactical/actor", {
 		this.actor.playSound(_type, _volume, _pitch);
 	}
 
-	function onDeath( _killer, _skill, _tile, _fatalityType )
-	{
+	function onTurnStart() {
+		this.actor.onTurnStart();
+		this.m.MovementAPSpent = 0;
+	}
+
+	function onDeath( _killer, _skill, _tile, _fatalityType ) {
 		local flip = this.Math.rand(0, 100) < 50;
 		if (_tile != null)
 		{
@@ -301,7 +314,7 @@ this.legend_stollwurm <- this.inherit("scripts/entity/tactical/actor", {
 		this.setSpriteOffset("arrow", this.createVec(-5, 30));
 		::Legends.Actives.grant(this, ::Legends.Active.Gorge);
 		::Legends.Perks.grant(this, ::Legends.Perk.Pathfinder);
-		::Legends.Perks.grant(this, ::Legends.Perk.HoldOut);
+		// ::Legends.Perks.grant(this, ::Legends.Perk.HoldOut);
 		::Legends.Traits.grant(this, ::Legends.Trait.RacialLindwurm);
 		::Legends.Perks.grant(this, ::Legends.Perk.ReachAdvantage);
 		::Legends.Perks.grant(this, ::Legends.Perk.Fearsome);
@@ -362,6 +375,29 @@ this.legend_stollwurm <- this.inherit("scripts/entity/tactical/actor", {
 				this.m.Tail.getSprite("body").Saturation = body.Saturation;
 			}
 		}
+
+		local skills = this.getSkills();
+		local skills_add = skills.add;
+		skills.add = function( _skill, _order = 0 ) {
+			skills_add(_skill, _order);
+
+			local actor = this.getActor();
+			if (::Legends.S.isEntityNullOrDead(actor.m.Tail))
+				return;
+			if (_skill.getID() in actor.m.EffectsSharedWithTailLookup) {
+				::Legends.Effects.grant(actor.m.Tail, actor.m.EffectsSharedWithTailLookup[_skill.getID()], function(_effect) {
+					_effect.m.IsFromHead <- true;
+				});
+			}
+		}.bindenv(skills);
+	}
+
+	function onMovementStep( _tile, _levelDifference ) {
+		local result = actor.onMovementStep( _tile, _levelDifference );
+		if(result) {
+			this.m.MovementAPSpent += this.Math.max(1, (this.m.ActionPointCosts[_tile.Type] + this.m.CurrentProperties.MovementAPCostAdditional) * this.m.CurrentProperties.MovementAPCostMult) + (_levelDifference != 0 ? this.m.LevelActionPointCost : 0);
+		}
+		return result;
 	}
 
 	function onMovementFinish(_tile)

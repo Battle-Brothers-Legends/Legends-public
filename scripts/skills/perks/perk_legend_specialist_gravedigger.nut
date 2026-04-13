@@ -16,7 +16,7 @@ this.perk_legend_specialist_gravedigger <- this.inherit("scripts/skills/legend_s
 	function create()
 	{
 		this.legend_specialist_abstract.create();
-		::Const.Perks.setup(this.m, ::Legends.Perk.LegendSpecialistGravedigger);
+		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendSpecialistGravedigger);
 		this.m.IconMini = "perk_spec_shovel_mini";
 	}
 

@@ -5,8 +5,7 @@
 	{
 		create();
 		this.m.Variants = [1, 2, 3, 4, 5];
-		this.m.Variant = this.m.Variants[this.Math.rand(0, this.m.Variants.len() - 1)];
-		this.updateVariant();
+		this.setVariant(this.m.Variants[::Math.rand(0, this.m.Variants.len() - 1)]);
 	}
 
 	o.addSkill <- function( _skill )
@@ -16,10 +15,20 @@
 			::Legends.Actives.grant(this.weapon, ::Legends.Active.Swing, function (_skill) {
 				_skill.setApplyAxeMastery(true);
 			}.bindenv(this));
-			::Legends.Actives.grant(this.weapon, ::Legends.Active.SplitShield);
+			::Legends.Actives.grant(this.weapon, ::Legends.Active.SplitShield, function (_skill) {
+				_skill.setApplyAxeMastery(true);
+				_skill.setFatigueCost(_skill.getFatigueCostRaw() + 5);
+			}.bindenv(this));
 			return;
 		}
 
-		weapon.addSkill(_skill);
+		this.weapon.addSkill(_skill);
+	}
+
+	local onEquip = o.onEquip;
+	o.onEquip = function ()
+	{
+		onEquip();
+		::Legends.Actives.grant(this, ::Legends.Active.LegendHaftstrike);
 	}
 });

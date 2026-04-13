@@ -1,12 +1,14 @@
 this.legend_pry_armor_skill <- this.inherit("scripts/skills/skill", {
-	m = {},
+	m = {
+		IsPolearm = false,
+	},
 	function create()
 	{
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendPryArmor);
-		this.m.Description = "Tear a weak spot in your opponent\'s armor to reveal a weakspot. Will apply Compromised Armor on every successful hit.";
+		this.m.Description = "Tear a weak spot in your opponent\'s armor to reveal a weakspot. Will apply Compromised Armor on every successful hit, which increases damage ignoring armor and armor damage by 20%.";
 		this.m.KilledString = "Torn Apart";
 		this.m.Icon = "skills/legend_active_pry_armor_warhammer.png";
-		this.m.IconDisabled = "skills/active_legend_pry_armor_warhammer_bw.png";
+		this.m.IconDisabled = "skills/legend_active_pry_armor_warhammer_bw.png";
 		this.m.Overlay = "active_legend_pry_armor_warhammer";
 		this.m.SoundOnUse = [
 			"sounds/combat/crush_armor_01.wav",
@@ -25,6 +27,7 @@ this.legend_pry_armor_skill <- this.inherit("scripts/skills/skill", {
 		this.m.IsTargeted = true;
 		this.m.IsStacking = false;
 		this.m.IsAttack = true;
+		this.m.IsIgnoredAsAOO = true;
 		this.m.IsWeaponSkill = true;
 		this.m.InjuriesOnBody = this.Const.Injury.BluntBody;
 		this.m.InjuriesOnHead = this.Const.Injury.BluntHead;
@@ -42,12 +45,21 @@ this.legend_pry_armor_skill <- this.inherit("scripts/skills/skill", {
 	function getTooltip()
 	{
 		local ret = this.getDefaultTooltip();
+		if (this.m.MaxRange == 2)
+		{
+			ret.push({
+				id = 7,
+				type = "text",
+				icon = "ui/icons/vision.png",
+				text = "Has a range of [color=%positive%]2[/color] tiles"
+			});
+		}
 		ret.extend([
 			{
 				id = 6,
 				type = "text",
 				icon = "ui/icons/hitchance.png",
-				text = "Applies Compromised Armor on successful hits"
+				text = "Applies [color=%status%]Compromised Armor[/color] on successful hits"
 			}
 		]);
 		return ret;
@@ -80,6 +92,11 @@ this.legend_pry_armor_skill <- this.inherit("scripts/skills/skill", {
 		if (_skill == this)
 		{
 			_properties.DamageTotalMult *= 0.1;
+			if (_targetEntity != null && !this.getContainer().getActor().getCurrentProperties().IsSpecializedInHammers && this.getContainer().getActor().getTile().getDistanceTo(_targetEntity.getTile()) == 1)
+			{
+				_properties.MeleeSkill -= 15;
+				this.m.HitChanceBonus -= -15;
+			}
 		}
 	}
 

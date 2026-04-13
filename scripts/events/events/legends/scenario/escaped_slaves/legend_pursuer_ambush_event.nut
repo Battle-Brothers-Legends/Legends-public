@@ -293,21 +293,12 @@ this.legend_pursuer_ambush_event <- this.inherit("scripts/events/event", {
 		local eventRoll = this.Math.rand(1, 100);
 
 		if (eventRoll >= 80 && canBeAssassins)
-		{
 			return "Assassins";
-		}
-		else if (eventRoll >= 67 && canBeBountyHunters)
-		{
+		if (eventRoll >= 67 && canBeBountyHunters)
 			return "BountyHunters";
-		}
-		else if (eventRoll >= 50 && canBeBribed)
-		{
+		if (eventRoll >= 50 && canBeBribed)
 			return "ManhuntersBribe";
-		}
-		else
-		{
-			return "Manhunters";
-		}
+		return "Manhunters";
 	}
 
 	function onPrepare()

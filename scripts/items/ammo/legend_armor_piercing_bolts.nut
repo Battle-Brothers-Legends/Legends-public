@@ -5,7 +5,7 @@ this.legend_armor_piercing_bolts <- this.inherit("scripts/items/ammo/ammo", {
 		this.ammo.create();
 		this.m.ID = "ammo.bolts";
 		this.m.Name = "Armor Piercing Bolts";
-		this.m.Description = "A large quiver of bolts with thin piercing tips, designed for piercing armor, but doing less damage to flesh. Is automatically refilled after each battle if you have enough global ammunition. Grants +20% (multiplicative) armor piercing damage, but -10% damage, while wielding a crossbow.";
+		this.m.Description = "A large quiver of bolts with thin piercing tips, designed for piercing armor, but doing less damage to flesh. Is automatically refilled after each battle if you have enough global ammunition. Grants 20% more armor piercing damage, but 10% less damage, while wielding a crossbow.";
 		this.m.Icon = "ammo/quiver_02_dark.png";
 		this.m.IconEmpty = "ammo/quiver_02_empty.png";
 		this.m.SlotType = this.Const.ItemSlot.Ammo;
@@ -66,7 +66,7 @@ this.legend_armor_piercing_bolts <- this.inherit("scripts/items/ammo/ammo", {
 				id = 6,
 				type = "text",
 				icon = "ui/icons/ranged_skill.png",
-				text = "Contains [color=" + this.Const.UI.Color.PositiveValue + "]" + this.m.Ammo + "[/color] bolts"
+				text = "Contains [color=%positive%]" + this.m.Ammo + "[/color] bolts"
 			});
 		}
 		else
@@ -75,7 +75,7 @@ this.legend_armor_piercing_bolts <- this.inherit("scripts/items/ammo/ammo", {
 				id = 6,
 				type = "text",
 				icon = "ui/tooltips/warning.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]Is empty and useless[/color]"
+				text = "[color=%negative%]Is empty and useless[/color]"
 			});
 		}
 

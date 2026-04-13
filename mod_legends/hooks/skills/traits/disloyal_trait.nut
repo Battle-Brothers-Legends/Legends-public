@@ -8,7 +8,7 @@
 			id = 17,
 			type = "text",
 			icon = "ui/icons/melee_defense.png",
-			text = "[color=" + this.Const.UI.Color.PositiveValue + "]+10[/color] Melee Defense while retreating"
+			text = "[color=%positive%]+10[/color] Melee Defense while retreating"
 		});
 		return ret;
 	}

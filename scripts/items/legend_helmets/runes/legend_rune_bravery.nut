@@ -6,8 +6,8 @@ this.legend_rune_bravery <- this.inherit("scripts/items/legend_helmets/legend_he
 		this.m.ID = "legend_helmet_upgrade.legend_rune_bravery";
 		this.m.Type = this.Const.Items.HelmetUpgrades.Rune;
 		this.m.Name = "Helmet Rune Sigil: Bravery";
-		this.m.Description = "An inscribed rock that can be attached to a character\'s helmet.";
-		this.m.ArmorDescription = "Includes An inscribed rock that grants additional bravery bonuses.";
+		this.m.Description = "An inscribed rock that can be attached to a character\'s helmet to increase the wearer's bravery.";
+		this.m.ArmorDescription = "Includes a bravery rune.";
 		this.m.Icon = "rune_sigils/rune_stone_2.png";
 		this.m.IconLarge = this.m.Icon;
 		this.m.OverlayIcon = "layers/glow_runed_icon.png";
@@ -22,26 +22,5 @@ this.legend_rune_bravery <- this.inherit("scripts/items/legend_helmets/legend_he
 	{
 	}
 
-	function getTooltip()
-	{
-		local result = this.legend_helmet_upgrade.getTooltip();
-		result.push({
-			id = 7,
-			type = "text",
-			icon = "ui/icons/special.png",
-			text = "This item has the power of the rune sigil of Bravery:\n[color=" + this.Const.UI.Color.PositiveValue + "]+" + this.getRuneBonus1() + "%[/color] Resolve.\n[color=" + this.Const.UI.Color.PositiveValue + "]+" + this.getRuneBonus2() + "[/color] Resolve at all morale checks."
-		});
-		return result;
-	}
-
-	function onArmorTooltip( _result )
-	{
-		_result.push({
-			id = 7,
-			type = "text",
-			icon = "ui/icons/special.png",
-			text = "This item has the power of the rune sigil of Bravery:\n[color=" + this.Const.UI.Color.PositiveValue + "]+" + this.getRuneBonus1() + "%[/color] Resolve.\n[color=" + this.Const.UI.Color.PositiveValue + "]+" + this.getRuneBonus2() + "[/color] Resolve at all morale checks."
-		});
-	}
 });
 

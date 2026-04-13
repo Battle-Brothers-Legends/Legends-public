@@ -1,13 +1,7 @@
 ::mods_hookExactClass("scenarios/world/beast_hunters_scenario", function (o) {
 	o.m.FavouredEnemyPerks <- [
-		::Legends.Perk.LegendFavouredEnemyGhoul,
-		::Legends.Perk.LegendFavouredEnemyHexen,
-		::Legends.Perk.LegendFavouredEnemyAlps,
-		::Legends.Perk.LegendFavouredEnemyUnhold,
-		::Legends.Perk.LegendFavouredEnemyLindwurm,
-		::Legends.Perk.LegendFavouredEnemyDirewolf,
-		::Legends.Perk.LegendFavouredEnemySpider,
-		::Legends.Perk.LegendFavouredEnemySchrat,
+		::Legends.Perk.LegendFavouredEnemyOccult,
+		::Legends.Perk.LegendFavouredEnemyBeast,
 	];
 
 	o.create <- function ()
@@ -130,7 +124,7 @@
 		this.World.Assets.getStash().add(this.new("scripts/items/supplies/bread_item"));
 		this.World.Assets.getStash().add(this.new("scripts/items/misc/witch_hair_item"));
 		this.World.Assets.getStash().add(this.new("scripts/items/misc/spider_silk_item"));
-		this.World.Assets.getStash().add(this.new("scripts/items/legend_armor/armor_upgrades/legend_direwolf_pelt_upgrade"));
+		this.World.Assets.getStash().add(this.new("scripts/items/legend_armor/cloak/legend_direwolf_pelt_cloak"));
 		this.World.Assets.getStash().add(this.new("scripts/items/tools/legend_broken_throwing_net"));
 		this.World.Assets.getStash().add(this.new("scripts/items/accessory/night_vision_elixir_item"));
 		this.World.Assets.m.Money = this.Math.round(this.World.Assets.m.Money * 0.75);

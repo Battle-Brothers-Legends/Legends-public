@@ -1,7 +1,6 @@
 this.legend_skewer_skill <- this.inherit("scripts/skills/skill", {
 	m = {
 		IsSpearSkewer = false,
-		IsSecondAttack = false
 	},
 	function create()
 	{
@@ -59,6 +58,7 @@ this.legend_skewer_skill <- this.inherit("scripts/skills/skill", {
 		if (this.m.IsSpearSkewer)
 		{
 			this.m.FatigueCostMult = _properties.IsSpecializedInSpears ? this.Const.Combat.WeaponSpecFatigueMult : 1.0;
+			this.m.ActionPointCost = _properties.IsSpecializedInSpears ? 5 : 6;
 		}
 		else
 		{
@@ -70,18 +70,18 @@ this.legend_skewer_skill <- this.inherit("scripts/skills/skill", {
 	function onUse( _user, _targetTile )
 	{
 		this.spawnAttackEffect(_targetTile, this.Const.Tactical.AttackEffectSplit);
+
 		local ret = false;
+		if (::Legends.S.skillEntityAliveCheck(_user)) {
+			return ret;
+		}
+
+		local ownTile = _user.getTile();
 		if (_targetTile.IsOccupiedByActor && _targetTile.getEntity().isAttackable() && this.Math.abs(_targetTile.Level - ownTile.Level) <= 1)
 		{
 			ret = this.attackEntity(_user, _targetTile.getEntity());
 		}
 
-		if (!_user.isAlive() || _user.isDying())
-		{
-			return ret;
-		}
-
-		local ownTile = _user.getTile();
 		local dir = ownTile.getDirectionTo(_targetTile);
 
 		if (_targetTile.hasNextTile(dir))

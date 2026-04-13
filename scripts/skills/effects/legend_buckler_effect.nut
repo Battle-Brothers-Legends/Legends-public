@@ -18,7 +18,7 @@ this.legend_buckler_effect <- this.inherit("scripts/skills/skill", {
 
 	function getDescription()
 	{
-		return "Bucklers work best against a single opponent. Gain [color=" + this.Const.UI.Color.PositiveValue + "]+" + this.m.DefenseSingleEnemy + "[/color] Melee Defense when facing one enemy, [color=" + this.Const.UI.Color.PositiveValue + "]+" + this.m.DefenseTwoEnemies + "[/color] when facing two, or [color=" + this.Const.UI.Color.PositiveValue + "]+" + this.m.DefenseThreeEnemies + "[/color] when facing three, and half as much Ranged Defense.";
+		return "Bucklers work best against a single opponent. Gain [color=%positive%]+" + this.m.DefenseSingleEnemy + "[/color] Melee Defense when facing one enemy, [color=%positive%]+" + this.m.DefenseTwoEnemies + "[/color] when facing two, or [color=%positive%]+" + this.m.DefenseThreeEnemies + "[/color] when facing three, and half as much Ranged Defense.";
 	}
 
 	function isHidden()
@@ -137,13 +137,13 @@ this.legend_buckler_effect <- this.inherit("scripts/skills/skill", {
 				id = 10,
 				type = "text",
 				icon = "ui/icons/melee_defense.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+" + bonus + "[/color] Melee Defense"
+				text = "[color=%positive%]+" + bonus + "[/color] Melee Defense"
 			},
 			{
 				id = 10,
 				type = "text",
 				icon = "ui/icons/ranged_defense.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+" + bonus / 2 + "[/color]  Ranged Defense"
+				text = "[color=%positive%]+" + bonus / 2 + "[/color]  Ranged Defense"
 			}])
 		}
 		return tooltip;

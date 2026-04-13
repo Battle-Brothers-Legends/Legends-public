@@ -51,18 +51,19 @@ this.legend_named_flamberge <- this.inherit("scripts/items/weapons/named/named_w
 			id = 8,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "Inflicts additional stacking [color=" + this.Const.UI.Color.DamageValue + "]2[/color] bleeding damage per turn, for 2 turns"
+			text = "Inflicts additional stacking [color=%damage%]2[/color] bleeding damage per turn, for 2 turns"
 		});
 		return result;
 	}
 
 	function onDamageDealt( _target, _skill, _hitInfo )
 	{
+		this.named_weapon.onDamageDealt(_target, _skill, _hitInfo);
 		local actor = this.getContainer().getActor();
 		if (!_target.isAlive() || _target.isDying())
 			return;
 
-		this.spawnAttackEffect(_target.getTile(), this.Const.Tactical.AttackEffectChop);
+		_skill.spawnAttackEffect(_target.getTile(), this.Const.Tactical.AttackEffectChop);
 		if (!actor.isAlive() || actor.isDying())
 			return;
 
@@ -77,7 +78,7 @@ this.legend_named_flamberge <- this.inherit("scripts/items/weapons/named/named_w
 				this.Sound.play(this.m.SoundsB[this.Math.rand(0, this.m.SoundsB.len() - 1)], this.Const.Sound.Volume.Skill, actor.getPos());
 			}
 		}
-		else if (!_target.getCurrentProperties().IsImmuneToBleeding && hp - _target.getHitpoints() >= this.Const.Combat.MinDamageToApplyBleeding )
+		else if (!_target.getCurrentProperties().IsImmuneToBleeding)
 		{
 			::Legends.Effects.grant(_target, ::Legends.Effect.Bleeding, function(_effect) {
 				if (actor.getFaction() == this.Const.Faction.Player )

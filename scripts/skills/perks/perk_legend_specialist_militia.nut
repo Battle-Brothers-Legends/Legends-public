@@ -17,7 +17,7 @@ this.perk_legend_specialist_militia <- this.inherit("scripts/skills/legend_speci
 	function create()
 	{
 		this.legend_specialist_abstract.create();
-		::Const.Perks.setup(this.m, ::Legends.Perk.LegendSpecialistMilitia);
+		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendSpecialistMilitia);
 		this.m.IconMini = "perk_spec_militia_mini";
 	}
 
@@ -30,7 +30,7 @@ this.perk_legend_specialist_militia <- this.inherit("scripts/skills/legend_speci
 	// 		id = 7,
 	// 		type = "text",
 	// 		icon = "ui/icons/hitchance.png",
-	// 		text = "[color=" + this.Const.UI.Color.PositiveValue + "]+" + this.calculateSpecialistBonus(this.m.BonusMelee, _item) + "[/color] chance to hit"
+	// 		text = "[color=%positive%]+" + this.calculateSpecialistBonus(this.m.BonusMelee, _item) + "[/color] chance to hit"
 	// 	});
 
 	// 	if (!_isRanged)
@@ -39,7 +39,7 @@ this.perk_legend_specialist_militia <- this.inherit("scripts/skills/legend_speci
 	// 			id = 8,
 	// 			type = "text",
 	// 			icon = "ui/icons/melee_defense.png",
-	// 			text = "[color=" + this.Const.UI.Color.PositiveValue + "]+" + this.calculateSpecialistBonus(6, _item) + "[/color] Melee Defense"
+	// 			text = "[color=%positive%]+" + this.calculateSpecialistBonus(6, _item) + "[/color] Melee Defense"
 	// 		});
 	// 	}
 	// 	if (::Legends.S.isCharacterWeaponSpecialized(properties, _item))
@@ -48,7 +48,7 @@ this.perk_legend_specialist_militia <- this.inherit("scripts/skills/legend_speci
 	// 			id = 7,
 	// 			type = "text",
 	// 			icon = "ui/icons/damage_dealt.png",
-	// 			text = "[color=" + this.Const.UI.Color.PositiveValue + "]+" + this.calculateSpecialistBonus(this.m.BonusDamage, _item) + "%[/color] Damage"
+	// 			text = "[color=%positive%]+" + this.calculateSpecialistBonus(this.m.BonusDamage, _item) + "%[/color] Damage"
 	// 		});
 	// 	}
 	// 	return tooltip;

@@ -8,13 +8,4 @@
 			}
 		}
 	}
-
-	local onPrepareVariables = o.onPrepareVariables;
-	o.onPrepareVariables = function ( _vars ) {
-		_vars.push([
-			"teamplayer",
-			this.m.Teamplayer.getName()
-		]);
-		::Const.LegendMod.extendVarsWithPronouns(_vars, this.m.Teamplayer.getGender(), "teamplayer")
-	}
 });

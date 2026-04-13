@@ -62,13 +62,13 @@ this.legend_glove_item <- this.inherit("scripts/items/accessory/accessory", {
 				id = 4,
 				type = "text",
 				icon = "ui/icons/damage_dealt.png",
-				text = "Deal [color=" + this.Const.UI.Color.DamageValue + "]+" + this.m.RegularDamage + "-" + this.m.RegularDamageMax + "[/color] more damage with Hand to Hand"
+				text = "Deal [color=%damage%]+" + this.m.RegularDamage + "-" + this.m.RegularDamageMax + "[/color] more damage with Hand to Hand"
 			},
 			{
 				id = 5,
 				type = "text",
 				icon = "ui/icons/damage_dealt.png",
-				text = "Deal [color=" + this.Const.UI.Color.DamageValue + "]+" + this.m.ChokeMin + "-" + this.m.ChokeMax + "[/color] more damage with Choke"
+				text = "Deal [color=%damage%]+" + this.m.ChokeMin + "-" + this.m.ChokeMax + "[/color] more damage with Choke"
 			}
 		]);
 
@@ -78,7 +78,7 @@ this.legend_glove_item <- this.inherit("scripts/items/accessory/accessory", {
 				id = 6,
 				type = "text",
 				icon = "ui/icons/armor_damage.png",
-				text = "[color=#400080]Hand to Hand[/color] is [color=" + this.Const.UI.Color.DamageValue + "]" + this.Math.floor((this.m.ArmorDamageMult + 0.5) * 100) + "%[/color] effective against armor"
+				text = "[color=#400080]Hand to Hand[/color] is [color=%damage%]" + this.Math.floor((this.m.ArmorDamageMult + 0.5) * 100) + "%[/color] effective against armor"
 			});
 		}
 
@@ -88,17 +88,17 @@ this.legend_glove_item <- this.inherit("scripts/items/accessory/accessory", {
 				id = 6,
 				type = "text",
 				icon = "ui/icons/direct_damage.png",
-				text = "[color=#400080]Hand to Hand[/color] has [color=" + this.Const.UI.Color.DamageValue + "]" + this.Math.floor((this.m.DirectDamageMult + 0.1) * 100) + "%[/color] armor ignore"
+				text = "[color=#400080]Hand to Hand[/color] has [color=%damage%]" + this.Math.floor((this.m.DirectDamageMult + 0.1) * 100) + "%[/color] armor ignore"
 			});
 		}
 
-		if (this.m.StaminaModifier < 0) 
+		if (this.m.StaminaModifier < 0)
 		{
 			result.push({
 				id = 15,
 				type = "text",
 				icon = "ui/icons/fatigue.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]" + this.m.StaminaModifier + "[/color] Fatigue."
+				text = "[color=%negative%]" + this.m.StaminaModifier + "[/color] Fatigue."
 			});
 		}
 		return result;
@@ -107,5 +107,27 @@ this.legend_glove_item <- this.inherit("scripts/items/accessory/accessory", {
 	function playInventorySound( _eventType )
 	{
 		this.Sound.play(this.m.InventorySound, this.Const.Sound.Volume.Inventory);
+	}
+
+	function getIconOverlay()
+	{
+		local L = [];
+
+		if (this.isNamed())
+		{
+			if (this.isItemType(::Const.Items.ItemType.Legendary))
+				L.push("layers/legendary_icon_glow.png");
+			else
+				L.push("layers/named_icon_glow.png");
+		}
+
+		L.push(this.m.Icon);
+
+		if (L.len() == 0)
+		{
+			return [""];
+		}
+
+		return L;
 	}
 });

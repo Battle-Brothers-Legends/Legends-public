@@ -1,75 +1,14 @@
 if (!("LegendMod" in ::Const))
 	::Const.LegendMod <- {};
 
-::Const.LegendMod.FavoriteZombies <- [
+::Const.LegendMod.FavoriteUndead <- [
 	::Const.EntityType.ZombieYeoman,
 	::Const.EntityType.Zombie,
 	::Const.EntityType.ZombieBetrayer,
 	::Const.EntityType.ZombieBoss,
 	::Const.EntityType.ZombieKnight,
 	::Const.EntityType.Necromancer,
-	::Const.EntityType.ZombieTreasureHunter
-];
-
-::Const.LegendMod.FavoriteAlps <- [
-	::Const.EntityType.Alp,
-	::Const.EntityType.AlpShadow,
-	::Const.EntityType.LegendDemonAlp
-];
-
-::Const.LegendMod.FavoriteDirewolf <- [
-	::Const.EntityType.Hyena,
-	::Const.EntityType.Direwolf,
-	// ::Const.EntityType.Wolf,
-	// ::Const.EntityType.GoblinWolfrider,
-	// ::Const.EntityType.KoboldWolfrider, //Not used currently
-	::Const.EntityType.LegendWhiteDirewolf
-];
-
-::Const.LegendMod.FavoriteGhoul <- [
-	::Const.EntityType.Ghoul,
-	::Const.EntityType.LegendSkinGhoul
-];
-
-::Const.LegendMod.FavoriteGoblin <- [
-	::Const.EntityType.GoblinFighter,
-	::Const.EntityType.GoblinAmbusher,
-	::Const.EntityType.GoblinLeader,
-	::Const.EntityType.GoblinShaman,
-	::Const.EntityType.GoblinWolfrider,
-//	::Const.EntityType.KoboldWolfrider, //Not used currently
-//	::Const.EntityType.KoboldFighter //Not used currently
-];
-
-::Const.LegendMod.FavoriteHexe <- [
-	::Const.EntityType.Hexe,
-	::Const.EntityType.LegendHexeLeader
-];
-
-::Const.LegendMod.FavoriteLindwurm <- [
-	::Const.EntityType.Serpent,
-	::Const.EntityType.Lindwurm,
-	::Const.EntityType.LegendStollwurm
-];
-
-::Const.LegendMod.FavoriteOrc <- [
-	::Const.EntityType.OrcBerserker,
-	::Const.EntityType.OrcYoung,
-	::Const.EntityType.OrcWarrior,
-	::Const.EntityType.OrcWarlord,
-	::Const.EntityType.LegendOrcBehemoth,
-	::Const.EntityType.LegendOrcElite
-];
-
-::Const.LegendMod.FavoriteSchrat <- [
-	::Const.EntityType.SandGolem,
-	::Const.EntityType.Schrat,
-	::Const.EntityType.SchratSmall,
-	::Const.EntityType.LegendGreenwoodSchrat,
-	::Const.EntityType.LegendGreenwoodSchratSmall
-];
-
-::Const.LegendMod.FavoriteSkeleton <- [
+	::Const.EntityType.ZombieTreasureHunter,
 	::Const.EntityType.SkeletonLight,
 	::Const.EntityType.SkeletonMedium,
 	::Const.EntityType.SkeletonHeavy,
@@ -79,35 +18,89 @@ if (!("LegendMod" in ::Const))
 	::Const.EntityType.SkeletonLichMirrorImage,
 	::Const.EntityType.SkeletonPhylactery,
 	::Const.EntityType.SkeletonGladiator,
-	::Const.EntityType.FlyingSkull
-];
-::Const.LegendMod.FavoriteSpider <- [
-	this.Const.EntityType.Spider,
-	this.Const.EntityType.LegendSpiderCluster,
-	//this.Const.EntityType.SpiderBodyguard,
-	this.Const.EntityType.SpiderEggs,
-	this.Const.EntityType.LegendRedbackSpider
-];
-::Const.LegendMod.FavoriteUnhold <- [
-	::Const.EntityType.Unhold,
-	::Const.EntityType.UnholdBog,
-	::Const.EntityType.UnholdFrost,
-	::Const.EntityType.BarbarianUnhold,
-	::Const.EntityType.BarbarianUnholdFrost,
-	::Const.EntityType.LegendRockUnhold
-];
-::Const.LegendMod.FavoriteVampire <- [
+	::Const.EntityType.FlyingSkull,
 	::Const.EntityType.Vampire,
-	::Const.EntityType.Ghost,
-	::Const.EntityType.LegendDemonHound,
 	::Const.EntityType.LegendVampireLord,
-	::Const.EntityType.LegendBanshee,
 	::Const.EntityType.LegendMummyLight,
 	::Const.EntityType.LegendMummyMedium,
 	::Const.EntityType.LegendMummyHeavy,
 	::Const.EntityType.LegendMummyQueen,
 	::Const.EntityType.LegendMummyPriest
 ];
+
+::Const.LegendMod.FavoriteOccult <- [
+	::Const.EntityType.Alp,
+	::Const.EntityType.AlpShadow,
+	::Const.EntityType.LegendDemonAlp,
+	::Const.EntityType.Hexe,
+	::Const.EntityType.LegendHexeLeader,
+	::Const.EntityType.LegendBanshee,
+	::Const.EntityType.LegendDemonHound,
+	::Const.EntityType.Ghost,
+	::Const.EntityType.SandGolem,
+	::Const.EntityType.Schrat,
+	::Const.EntityType.SchratSmall,
+	::Const.EntityType.LegendGreenwoodSchrat,
+	::Const.EntityType.LegendGreenwoodSchratSmall,
+	::Const.EntityType.LegendWicht,
+	::Const.EntityType.Necromancer,
+	::Const.EntityType.GoblinShaman,
+	::Const.EntityType.LegendGoblinWitchDoctor
+];
+
+::Const.LegendMod.FavoriteBeast <- [
+	::Const.EntityType.LegendBasiliskDrone,
+	::Const.EntityType.LegendBasiliskSentry,
+	::Const.EntityType.Hyena,
+	::Const.EntityType.LegendEnragedHyena,
+	::Const.EntityType.Direwolf,
+	// ::Const.EntityType.Wolf, // i guess not beast
+	// ::Const.EntityType.KoboldWolfrider, //Not used currently
+	::Const.EntityType.LegendWhiteDirewolf,
+	::Const.EntityType.Ghoul,
+	::Const.EntityType.LegendSkinGhoul,
+	::Const.EntityType.Serpent,
+	::Const.EntityType.Lindwurm,
+	::Const.EntityType.LegendStollwurm,
+	::Const.EntityType.Spider,
+	::Const.EntityType.LegendSpiderCluster,
+	//::Const.EntityType.SpiderBodyguard,
+	::Const.EntityType.SpiderEggs,
+	::Const.EntityType.LegendRedbackSpider,
+	::Const.EntityType.Unhold,
+	::Const.EntityType.UnholdBog,
+	::Const.EntityType.UnholdFrost,
+	::Const.EntityType.BarbarianUnhold,
+	::Const.EntityType.BarbarianUnholdFrost,
+	::Const.EntityType.LegendRockUnhold,
+	::Const.EntityType.LegendBear
+];
+
+::Const.LegendMod.FavoriteGreenSkins <- [
+	::Const.EntityType.GoblinFighter,
+	::Const.EntityType.LegendGoblinPlunderer, //
+	::Const.EntityType.LegendGoblinHarrier, // these 2 inherit from the goblin fighter but just in case?
+	::Const.EntityType.LegendGoblinBerserker,
+	::Const.EntityType.GoblinAmbusher,
+	::Const.EntityType.LegendGoblinTribeDefender,
+	::Const.EntityType.GoblinLeader,
+	::Const.EntityType.GoblinShaman,
+	::Const.EntityType.LegendGoblinWitchDoctor,
+	::Const.EntityType.GoblinWolfrider,
+	::Const.EntityType.LegendGoblinDirewolfRider,
+	::Const.EntityType.LegendGoblinWhiteDirewolfRider,
+	::Const.EntityType.OrcBerserker,
+	::Const.EntityType.OrcYoung,
+	::Const.EntityType.OrcWarrior,
+	::Const.EntityType.OrcWarlord,
+	::Const.EntityType.LegendOrcBehemoth,
+	::Const.EntityType.LegendOrcElite,
+	::Const.EntityType.LegendOrcMadBerserker,
+	::Const.EntityType.LegendOrcTyrant,
+	//	::Const.EntityType.KoboldWolfrider, //Not used currently
+	//	::Const.EntityType.KoboldFighter //Not used currently
+];
+
 ::Const.LegendMod.FavoriteSwordmaster <- [
 	::Const.EntityType.HedgeKnight,
 	::Const.EntityType.Knight,
@@ -115,9 +108,10 @@ if (!("LegendMod" in ::Const))
 	::Const.EntityType.Swordmaster,
 	::Const.EntityType.BanditLeader,
 	// ::Const.EntityType.BanditVeteran,
-	::Const.EntityType.BanditWarlord,
+	::Const.EntityType.LegendRobberBaron,
+	::Const.EntityType.LegendBarbarianRunechosen,
 	::Const.EntityType.BarbarianChampion,
-	::Const.EntityType.BarbarianChosen, //King
+	::Const.EntityType.BarbarianChosen,
 	::Const.EntityType.Sergeant,
 	::Const.EntityType.Officer,
 	::Const.EntityType.Gladiator,
@@ -125,32 +119,21 @@ if (!("LegendMod" in ::Const))
 	::Const.EntityType.NomadLeader,
 	::Const.EntityType.Executioner,
 	::Const.EntityType.DesertDevil,
+	::Const.EntityType.DesertStalker,
 	::Const.EntityType.LegendFencer
 ];
-::Const.LegendMod.FavoriteArcher <- [
-	::Const.EntityType.MasterArcher,
-	::Const.EntityType.BanditMarksman,
-	::Const.EntityType.BanditRabblePoacher,
-	::Const.EntityType.BanditPoacher,
-	::Const.EntityType.MilitiaRanged,
-	::Const.EntityType.Arbalester,
-	::Const.EntityType.LegendSlinger,
-	::Const.EntityType.GoblinAmbusher,
-	::Const.EntityType.NomadSlinger,
-	::Const.EntityType.NomadArcher,
-	::Const.EntityType.Gunner,
-	::Const.EntityType.DesertStalker
-];
-::Const.LegendMod.FavoriteBarbarian <- [
+
+::Const.LegendMod.FavoriteOutlaw <- [
 	::Const.EntityType.Warhound,
 	::Const.EntityType.BarbarianThrall,
-	::Const.EntityType.BarbarianMarauder,
-	::Const.EntityType.BarbarianChampion,
-	::Const.EntityType.BarbarianChosen,
+	::Const.EntityType.BarbarianMarauder, //Reaver
+	::Const.EntityType.BarbarianChampion, //Chosen
+	::Const.EntityType.BarbarianChosen, //King
 	::Const.EntityType.BarbarianDrummer,
-	::Const.EntityType.BarbarianBeastmaster
-];
-::Const.LegendMod.FavoriteBandit <- [
+	::Const.EntityType.BarbarianBeastmaster,
+	::Const.EntityType.LegendBarbarianMarauder,
+	::Const.EntityType.LegendBarbarianPillager,
+	::Const.EntityType.LegendBarbarianRunechosen,
 	::Const.EntityType.BanditRabble,
 	::Const.EntityType.BanditRabblePoacher,
 	::Const.EntityType.BanditThug,
@@ -158,10 +141,22 @@ if (!("LegendMod" in ::Const))
 	::Const.EntityType.BanditMarksman,
 	::Const.EntityType.BanditRaider,
 	::Const.EntityType.BanditVeteran,
-	::Const.EntityType.BanditWarlord,
-	::Const.EntityType.BanditLeader
+	::Const.EntityType.LegendRobberBaron,
+	::Const.EntityType.BanditLeader,
+	::Const.EntityType.Slave,
+	::Const.EntityType.NomadCutthroat,
+	::Const.EntityType.NomadOutlaw,
+	::Const.EntityType.NomadSlinger,
+	::Const.EntityType.NomadArcher,
+	::Const.EntityType.NomadLeader,
+	::Const.EntityType.LegendSighthound,
+	// I see sellswords as more civilized outlaws
+	::Const.EntityType.Mercenary, //Contains LOW varient
+	::Const.EntityType.MercenaryRanged,
+	::Const.EntityType.BountyHunter,
 ];
-::Const.LegendMod.FavoriteCaravan <- [
+
+::Const.LegendMod.FavoriteCivilization <- [
 	::Const.EntityType.Peasant,
 	::Const.EntityType.LegendPeasantButcher,
 	::Const.EntityType.LegendPeasantBlacksmith,
@@ -171,6 +166,7 @@ if (!("LegendMod" in ::Const))
 	::Const.EntityType.LegendPeasantPoacher,
 	::Const.EntityType.LegendPeasantMiner,
 	::Const.EntityType.LegendPeasantSquire,
+	::Const.EntityType.LegendPeasantWoodsman,
 	::Const.EntityType.LegendPeasantWitchHunter,
 	::Const.EntityType.CaravanHand,
 	::Const.EntityType.CaravanGuard,
@@ -179,11 +175,7 @@ if (!("LegendMod" in ::Const))
 	::Const.EntityType.MilitiaVeteran,
 	::Const.EntityType.MilitiaCaptain,
 	::Const.EntityType.MilitiaRanged,
-	// ::Const.EntityType.Slave,
-	// ::Const.EntityType.Engineer,
-	::Const.EntityType.PeasantSouthern
-];
-::Const.LegendMod.FavoriteNoble <- [
+	::Const.EntityType.PeasantSouthern,
 	::Const.EntityType.Footman,
 	::Const.EntityType.LegendNobleGuard,
 	::Const.EntityType.LegendManAtArms,
@@ -198,50 +190,18 @@ if (!("LegendMod" in ::Const))
 	::Const.EntityType.NobleEliteFootman,
 	::Const.EntityType.NoblePollax,
 	::Const.EntityType.NobleSureshot,
-	::Const.EntityType.Knight
-];
-::Const.LegendMod.FavoriteMercenary <- [
+	::Const.EntityType.Knight,
 	::Const.EntityType.Wardog,
 	::Const.EntityType.ArmoredWardog,
-	::Const.EntityType.Mercenary, //Contains LOW varient
-	::Const.EntityType.MercenaryRanged,
-	::Const.EntityType.BountyHunter,
-	// ::Const.EntityType.Swordmaster,
-	// ::Const.EntityType.HedgeKnight,
-	// ::Const.EntityType.MasterArcher,
-	::Const.EntityType.FreeCompanyArcher, //Not used
-	::Const.EntityType.FreeCompanyCrossbow, //Not used
-	::Const.EntityType.FreeCompanyLongbow, //Not used
-	::Const.EntityType.FreeCompanyBillman, //Not used
-	::Const.EntityType.FreeCompanyPikeman, //Not used
-	::Const.EntityType.FreeCompanyInfantry, //Not used
-	::Const.EntityType.FreeCompanyLeader, //Not used
-	::Const.EntityType.FreeCompanyLeaderLow //Not used
-];
-::Const.LegendMod.FavoriteSoutherners <- [
-	::Const.EntityType.Slave,
 	::Const.EntityType.Conscript,
 	::Const.EntityType.Gunner,
 	::Const.EntityType.Officer,
 	::Const.EntityType.Engineer,
 	::Const.EntityType.Assassin,
 	::Const.EntityType.LegendManhunter,
-	::Const.EntityType.LegendManhunterVeteran
-	// ::Const.EntityType.Gladiator,
-	// ::Const.EntityType.PeasantSouthern
-];
-::Const.LegendMod.FavoriteNomad <- [
-	::Const.EntityType.Slave,
-	// ::Const.EntityType.Gladiator,
-	::Const.EntityType.NomadCutthroat,
-	::Const.EntityType.NomadOutlaw,
-	::Const.EntityType.NomadSlinger,
-	::Const.EntityType.NomadArcher,
-	::Const.EntityType.NomadLeader
-	// ::Const.EntityType.DesertStalker,
-	// ::Const.EntityType.Executioner,
-	// ::Const.EntityType.DesertDevil
-	// ::Const.EntityType.PeasantSouthern
+	::Const.EntityType.LegendManhunterRanged,
+	::Const.EntityType.LegendManhunterVeteran,
+	::Const.EntityType.LegendManhunterVeteranRanged
 ];
 
 ::Const.LegendMod.GetFavoriteEnemyValue <- function ( _type ) //Number = how many you need to kill to attain 1% towards a fav. enemy multiplier. | EG, 1 = 1%, 4 = 0.25%, etc. | 1 / <return number> = how many needed to gain 1%.
@@ -259,6 +219,9 @@ if (!("LegendMod" in ::Const))
 
 	case ::Const.EntityType.Alp :
 		return 4;
+
+	case ::Const.EntityType.AlpShadow :
+		return 20;
 
 	case ::Const.EntityType.LegendDemonAlp :
 		return 1;
@@ -299,6 +262,9 @@ if (!("LegendMod" in ::Const))
 	case ::Const.EntityType.Spider :
 		return 8;
 
+	case ::Const.EntityType.LegendSpiderCluster :
+		return 8;
+
 	// case ::Const.EntityType.SpiderBodyguard :
 	// 	return 8;
 
@@ -314,8 +280,17 @@ if (!("LegendMod" in ::Const))
 	case ::Const.EntityType.LegendSkinGhoul :
 		return 2;
 
+	case ::Const.EntityType.LegendBasiliskDrone :
+		return 5;
+
+	case ::Const.EntityType.LegendBasiliskSentry :
+		return 4;
+
 	case ::Const.EntityType.Hyena :
 		return 5;
+
+	case ::Const.EntityType.LegendEnragedHyena :
+		return 0.5;
 
 	case ::Const.EntityType.Direwolf :
 		return 5;
@@ -366,6 +341,9 @@ if (!("LegendMod" in ::Const))
 		return 8;
 
 	case ::Const.EntityType.LegendBanshee :
+		return 2;
+
+	case ::Const.EntityType.LegendWicht :
 		return 4;
 
 	case ::Const.EntityType.ZombieBoss :
@@ -389,17 +367,30 @@ if (!("LegendMod" in ::Const))
 	case ::Const.EntityType.GoblinWolfrider :
 		return 5;
 
+	case ::Const.EntityType.LegendGoblinDirewolfRider :
+		return 5;
+
+	case ::Const.EntityType.LegendGoblinWhiteDirewolfRider :
+		return 2;
+
 	case ::Const.EntityType.GoblinShaman :
 		return 4;
+
+	case ::Const.EntityType.LegendGoblinWitchDoctor :
+		return 2;
 
 	case ::Const.EntityType.GoblinLeader :
 		return 4;
 
 	case ::Const.EntityType.GoblinFighter :
-		return 8;
-
+	case ::Const.EntityType.LegendGoblinPlunderer :
+	case ::Const.EntityType.LegendGoblinHarrier :
 	case ::Const.EntityType.GoblinAmbusher :
 		return 8;
+
+	case ::Const.EntityType.LegendGoblinBerserker :
+	case ::Const.EntityType.LegendGoblinTribeDefender :
+		return 4;
 
 	case ::Const.EntityType.OrcYoung :
 		return 6;
@@ -409,6 +400,12 @@ if (!("LegendMod" in ::Const))
 
 	case ::Const.EntityType.LegendOrcElite :
 		return 4;
+
+	case ::Const.EntityType.LegendOrcMadBerserker :
+		return 1;
+
+	case ::Const.EntityType.LegendOrcTyrant :
+		return 1;
 
 	case ::Const.EntityType.OrcWarlord :
 		return 1;
@@ -442,6 +439,7 @@ if (!("LegendMod" in ::Const))
 	case ::Const.EntityType.LegendPeasantPoacher :
 	case ::Const.EntityType.LegendPeasantMiner :
 	case ::Const.EntityType.LegendPeasantSquire :
+	case ::Const.EntityType.LegendPeasantWoodsman :
 	case ::Const.EntityType.LegendPeasantWitchHunter :
 	case ::Const.EntityType.Peasant :
 		return 25; //Just using this for now, they are all pretty much the same in strength aside from the witchunter and squire anyway.
@@ -455,6 +453,7 @@ if (!("LegendMod" in ::Const))
 
 	case ::Const.EntityType.Wardog :
 	case ::Const.EntityType.ArmoredWardog :
+	case ::Const.EntityType.LegendSighthound :
 		return 16;
 
 	case ::Const.EntityType.Mercenary :
@@ -471,6 +470,8 @@ if (!("LegendMod" in ::Const))
 	case ::Const.EntityType.NobleEliteFootman :
 	case ::Const.EntityType.NoblePollax :
 	case ::Const.EntityType.NobleSureshot :
+	case ::Const.EntityType.LegendNobleGuard :
+	case ::Const.EntityType.LegendManAtArms :
 		return 8;
 
 	case ::Const.EntityType.Greatsword :
@@ -525,7 +526,7 @@ if (!("LegendMod" in ::Const))
 	case ::Const.EntityType.BanditLeader :
 		return 4;
 
-	case ::Const.EntityType.BanditWarlord :
+	case ::Const.EntityType.LegendRobberBaron :
 		return 1;
 
 	case ::Const.EntityType.Warhound :
@@ -537,9 +538,16 @@ if (!("LegendMod" in ::Const))
 	case ::Const.EntityType.BarbarianMarauder :
 		return 8;
 
+	case ::Const.EntityType.LegendBarbarianRunechosen:
 	case ::Const.EntityType.BarbarianChosen: //Barbarian King
-	case ::Const.EntityType.BarbarianChampion:
 		return 1;
+
+	case ::Const.EntityType.LegendBarbarianMarauder:
+	case ::Const.EntityType.LegendBarbarianPillager:
+		return 2;
+
+	case ::Const.EntityType.BarbarianChampion:
+		return 2;
 
 	case ::Const.EntityType.BarbarianDrummer :
 		return 4;
@@ -548,6 +556,9 @@ if (!("LegendMod" in ::Const))
 		return 2;
 
 	case ::Const.EntityType.BarbarianUnholdFrost :
+		return 2;
+
+	case ::Const.EntityType.LegendBear :
 		return 2;
 
 	case ::Const.EntityType.BarbarianBeastmaster :
@@ -616,7 +627,7 @@ if (!("LegendMod" in ::Const))
 		return 1;
 
 	case ::Const.EntityType.SkeletonLichMirrorImage :
-		return 0.5;
+		return 5;
 
 	case ::Const.EntityType.SkeletonPhylactery :
 		return 1;

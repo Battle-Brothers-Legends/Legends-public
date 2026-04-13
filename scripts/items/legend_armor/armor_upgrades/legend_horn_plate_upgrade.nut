@@ -8,6 +8,8 @@ this.legend_horn_plate_upgrade <- this.inherit("scripts/items/legend_armor/legen
 		this.m.Name = "Horn Plate";
 		this.m.Description = "These segments of horn plate are made from one of the hardest yet flexible materials nature has to offer. Worn over common armor, they can help to deflect incoming blows.";
 		this.m.ArmorDescription = "Segments of horn plate provide additional protection.";
+		this.m.ImpactSound = this.Const.Sound.ArmorHalfplateImpact;
+		this.m.InventorySound = this.Const.Sound.ArmorHalfplateImpact;
 		this.m.Icon = "armor_upgrades/upgrade_22.png";
 		this.m.IconLarge = this.m.Icon;
 		this.m.OverlayIcon = "armor_upgrades/icon_upgrade_22.png";

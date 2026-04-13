@@ -48,24 +48,24 @@ this.legend_necrosavant_background <- this.inherit("scripts/skills/backgrounds/c
 		this.m.Modifiers.MedConsumption = this.Const.LegendMod.ResourceModifiers.MedConsumption[3];
 		this.m.PerkTreeDynamic = {
 			Weapon = [
-				this.Const.Perks.DaggerTree,
-				this.Const.Perks.SwordTree,
-				this.Const.Perks.ThrowingTree,
-				this.Const.Perks.CleaverTree
+				::Const.Perks.DaggerTree,
+				::Const.Perks.SwordTree,
+				::Const.Perks.ThrowingTree,
+				::Const.Perks.CleaverTree
 			],
 			Defense = [
-				this.Const.Perks.LightArmorTree
+				::Const.Perks.LightArmorTree
 			],
 			Traits = [
-				this.Const.Perks.IntelligentTree,
-				this.Const.Perks.CalmTree,
-				this.Const.Perks.DeviousTree,
-				this.Const.Perks.ViciousTree
+				::Const.Perks.IntelligentTree,
+				::Const.Perks.CalmTree,
+				::Const.Perks.DeviousTree,
+				::Const.Perks.ViciousTree
 			],
 			Enemy = [],
 			Class = [],
 			Magic = [
-				this.Const.Perks.VampireMagicTree
+				::Const.Perks.VampireMagicTree
 			]
 		}
 	}

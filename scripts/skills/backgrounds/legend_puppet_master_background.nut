@@ -97,7 +97,7 @@ this.legend_puppet_master_background <- this.inherit("scripts/skills/backgrounds
 			[
 				::Legends.Perk.Backstabber,
 				::Legends.Perk.LegendDebilitate,
-				::Legends.Perk.LegendFavouredEnemyCaravan,
+				::Legends.Perk.LegendFavouredEnemyCivilization,
 				::Legends.Perk.Brawny,
 				::Legends.Perk.LegendRust,
 				::Legends.Perk.LegendSpecialistSelfdefense,
@@ -116,14 +116,14 @@ this.legend_puppet_master_background <- this.inherit("scripts/skills/backgrounds
 				::Legends.Perk.Underdog,
 				::Legends.Perk.LegendLithe,
 				::Legends.Perk.LegendSpecStaffStun,
-				::Legends.Perk.LegendFavouredEnemyGhoul,
+				::Legends.Perk.LegendFavouredEnemyBeast,
 				::Legends.Perk.LegendBlendIn,
 				::Legends.Perk.LegendInsects,
 				::Legends.Perk.LegendCarnage
 			],
 			[
 				::Legends.Perk.LegendClarity,
-				::Legends.Perk.LegendFavouredEnemyAlps,
+				::Legends.Perk.LegendFavouredEnemyOccult,
 				::Legends.Perk.Taunt,
 				::Legends.Perk.LegendViolentDecomposition,
 				::Legends.Perk.LegendSiphon,

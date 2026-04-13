@@ -6,68 +6,12 @@ this.legend_legion_auxiliary_background <- this.inherit("scripts/skills/backgrou
 		this.m.ID = "background.legend_legion_auxiliary";
 		this.m.Name = "Auxiliary";
 		this.m.Icon = "ui/backgrounds/background_puppet.png"; //to do
-		this.m.BackgroundDescription = "Pressed onto service by some means or another, the Auxiliary serves their masters in exchange for a promise of a better life.";
-		// this.m.GoodEnding = ""; //to do
-		// this.m.BadEnding = ""; //to do
+		this.m.BackgroundDescription = "Pressed onto service by some means or another, the Auxiliary serves their masters in exchange of a promise for a better life.";
+		this.m.GoodEnding = "";
+		this.m.BadEnding = "";
 		this.m.HiringCost = 0;
 		this.m.DailyCost = 0;
-		this.m.Excluded = [ //can roll; brute, clubfooted, clumsy, fragile, huge, hesitant, strong, sure footing, survivor, tiny, tough, bright, lucky, shortsighted, aggressive, martial, predictable, lumbering, quick, swift, team player, hate nobles, frail, etc (see commented out below)
-			::Legends.Traits.getID(::Legends.Trait.Ailing), //only including naturally occouring or obtainable traits.
-			::Legends.Traits.getID(::Legends.Trait.Asthmatic),
-			::Legends.Traits.getID(::Legends.Trait.Bleeder),
-			// ::Legends.Traits.getID(::Legends.Trait.Bloodthirsty),
-			::Legends.Traits.getID(::Legends.Trait.Brave),
-			::Legends.Traits.getID(::Legends.Trait.Gluttonous),
-			// ::Legends.Traits.getID(::Legends.Trait.Cocky),
-			::Legends.Traits.getID(::Legends.Trait.Craven),
-			::Legends.Traits.getID(::Legends.Trait.Dastard),
-			::Legends.Traits.getID(::Legends.Trait.Deathwish),
-			::Legends.Traits.getID(::Legends.Trait.Determined),
-			// ::Legends.Traits.getID(::Legends.Trait.Dexterous),
-			::Legends.Traits.getID(::Legends.Trait.Disloyal),
-			::Legends.Traits.getID(::Legends.Trait.Drunkard),
-			// ::Legends.Traits.getID(::Legends.Trait.Dumb),
-			::Legends.Traits.getID(::Legends.Trait.Fainthearted),
-			::Legends.Traits.getID(::Legends.Trait.Fat),
-			::Legends.Traits.getID(::Legends.Trait.FearUndead),
-			::Legends.Traits.getID(::Legends.Trait.FearGreenskins),
-			::Legends.Traits.getID(::Legends.Trait.FearBeasts),
-			::Legends.Traits.getID(::Legends.Trait.Fearless),
-			::Legends.Traits.getID(::Legends.Trait.EagleEyes),
-			::Legends.Traits.getID(::Legends.Trait.Greedy),
-			::Legends.Traits.getID(::Legends.Trait.HateUndead),
-			// ::Legends.Traits.getID(::Legends.Trait.HateBeasts),
-			// ::Legends.Traits.getID(::Legends.Trait.HateGreenskins),
-			// ::Legends.Traits.getID(::Legends.Trait.Impatient),
-			::Legends.Traits.getID(::Legends.Trait.Insecure),
-			::Legends.Traits.getID(::Legends.Trait.IronLungs),
-			// ::Legends.Traits.getID(::Legends.Trait.IronJaw),
-			::Legends.Traits.getID(::Legends.Trait.Irrational),
-			::Legends.Traits.getID(::Legends.Trait.Loyal),
-			::Legends.Traits.getID(::Legends.Trait.NightOwl),
-			::Legends.Traits.getID(::Legends.Trait.NightBlind),
-			::Legends.Traits.getID(::Legends.Trait.Optimist),
-			::Legends.Traits.getID(::Legends.Trait.Paranoid),
-			::Legends.Traits.getID(::Legends.Trait.Pessimist),
-			::Legends.Traits.getID(::Legends.Trait.Spartan),
-			::Legends.Traits.getID(::Legends.Trait.Superstitious),
-			::Legends.Traits.getID(::Legends.Trait.Weasel),
-			//legend traits
-			// ::Legends.Traits.getID(::Legends.Trait.LegendAmbitious),
-			::Legends.Traits.getID(::Legends.Trait.LegendFearNobles),
-			// ::Legends.Traits.getID(::Legends.Trait.LegendHateNobles),
-			// ::Legends.Traits.getID(::Legends.Trait.LegendFrail),
-			//::Legends.Traits.getID(::Legends.Trait.LegendCannibalistic),
-			// ::Legends.Traits.getID(::Legends.Trait.LegendSteadyHands),
-			// ::Legends.Traits.getID(::Legends.Trait.LegendPragmatic),
-			// ::Legends.Traits.getID(::Legends.Trait.LegendUnpredictable),
-			::Legends.Traits.getID(::Legends.Trait.LegendSlack),
-			// ::Legends.Traits.getID(::Legends.Trait.LegendSureshot),
-			::Legends.Traits.getID(::Legends.Trait.LegendDoubleTongued),
-			::Legends.Traits.getID(::Legends.Trait.LegendGiftOfPeople),
-			::Legends.Traits.getID(::Legends.Trait.LegendSeductive),
-			// ::Legends.Traits.getID(::Legends.Trait.LegendTalented),
-		];
+		this.m.Excluded = ::Legends.Legion.excludedTraits();
 
 		this.m.ExcludedTalents = [
 			// this.Const.Attributes.RangedSkill,
@@ -83,7 +27,7 @@ this.legend_legion_auxiliary_background <- this.inherit("scripts/skills/backgrou
 		this.m.Beards = this.Const.Beards.All;
 		this.m.Bodies = this.Const.Bodies.Muscular;
 		//---
-		this.m.BackgroundType = this.Const.BackgroundType.Untalented;
+		// this.m.BackgroundType = this.Const.BackgroundType.Untalented;
 		this.m.Names = this.Const.Strings.AncientDeadNames;
 		// this.m.LastNames = this.Const.Strings.AncientDeadTitles;
 		this.m.Level = this.Math.rand(1, 2);
@@ -115,27 +59,27 @@ this.legend_legion_auxiliary_background <- this.inherit("scripts/skills/backgrou
 			];
 		this.m.PerkTreeDynamic = {
 			Weapon = [
-				this.Const.Perks.DaggerTree,
-				this.Const.Perks.SpearTree,
-				this.Const.Perks.ShieldTree,
-				this.Const.Perks.SwordTree,
-				this.Const.Perks.ThrowingTree,
-				this.Const.Perks.CleaverTree
+				::Const.Perks.DaggerTree,
+				::Const.Perks.SpearTree,
+				::Const.Perks.ShieldTree,
+				::Const.Perks.SwordTree,
+				::Const.Perks.ThrowingTree,
+				::Const.Perks.CleaverTree
 			],
 			Defense = [
-				this.Const.Perks.LightArmorTree,
-				this.Const.Perks.MediumArmorTree
+				::Const.Perks.LightArmorTree,
+				::Const.Perks.MediumArmorTree
 			],
 			Traits = [
-				this.Const.Perks.TrainedTree,
-				this.Const.Perks.DeviousTree,
-				this.Const.Perks.FastTree,
-				this.Const.Perks.ViciousTree
+				::Const.Perks.TrainedTree,
+				::Const.Perks.DeviousTree,
+				::Const.Perks.FastTree,
+				::Const.Perks.ViciousTree
 			],
 			Enemy = [],
 			Class = [
-				this.Const.Perks.BeastClassTree,
-				this.Const.Perks.SpearfisherClassTree
+				::Const.Perks.BeastClassTree,
+				// ::Const.Perks.SpearfisherClassTree
 			],
 			Profession = [],
 			Magic = []
@@ -155,13 +99,15 @@ this.legend_legion_auxiliary_background <- this.inherit("scripts/skills/backgrou
 		this.m.HairColors = this.Const.HairColors.All;
 		this.m.Bodies = this.Const.Bodies.Muscular;
 		this.m.Beards = null;
-		this.m.BeardChance = 1;
+		this.m.BeardChance = 0;
 		this.addBackgroundType(this.Const.BackgroundType.Female);
 	}
 
-	function onBuildDescription() //to do
+	function onBuildDescription()
 	{
-		return "{ TODO | TODO }";
+		// return "{%name%} {hails from a far-off land, | comes from a distant place, | visits from not far way, | arrived from the far south, | journeyed from the east, | found themselves here from the north,} {a land surrounded by lakes and mountains as far as the eye could see | a land potted with bogs and trees | an area marked with tall trees and dense thickets | a land marked with scarred landscapes | a place considered to be a green paradise | a land filled with strife and war.} {Taken at a young age, | Taken at an old age,} {they were conscripted into a legion and made to fight. | they took to being a slave and later a legionary when their master died.} {Much was promised to them, including a way to escape their servitude. | Promises were made that given a few harvests more, they could return home.} {Much time has passed as a blur. %name% quietly wonders what their home looks like now, you wonder if it ever existed at all. | Some time has passed since this all transpired, much has changed. %name% has not, outside of the obvious.}";
+
+		return "{Having been recruited by the Legion after falling to a plague, %name% believed their fighting days were soundly finished. Now, new battles await, and this call to violence cannot be refused. | %name% is no stranger to battle considering the myriad cuts, crushes, and fractures that dot their husked frame. While death may grant reprieve for some, in the Legion, it merely ensures your everlasting service. | Death in battle is no excuse to rest, and %name% knows this all too well. Being pressed into the Legion\'s auxiliary ranks, a violent destruction is all but assured unless their knowledge of wars past guides them through another day. | Brought in under the illusion of imperial citizenship and the promise of steady work, %name% know finds themselves an agent of the Legion\'s restless war machine, the completion of their service always one more campaign away | Dragged from their restful death, %name% fills the unenviable role of a front line skirmisher in the resurgent legion. Now a new lifetime of war and carnage await, with them tossed into the maelstrom at the Emperor\'s command.} {Skilled in various forms of combat, this auxiliary is pressed to bolster the legion\'s ranks through skirmishes and mixed support. Whether they \'survive\' to fight another day is frankly optional. | Primed to fill gaps in the frontlines, the role of an auxiliary is often short-lived and underappreciated, if they make it out intact, a new battle is always on the horizon. | Scouting, mapping, trapping, and killing- the work of an imperial auxiliary is one of constant peril and exertion. Should one survive an ordeal, a fresh danger always lingers behind every tree and over every hill, for the empire\'s enemies are plentiful and relentless. | Often sent in waves of bone and bronze to buy opportunities for more valuable troops, auxiliaries can depend on receiving the most dangerous orders, with little interest as to their success or destruction. If they kill a foe or two, even better, if not, there are always more bodies. | The first to fight and often to fall, auxiliaries are routinely used to probe enemy formations to find weaknesses for more important soldiers, often boasting strong skirmishing skills. While some find success on the frontlines, most are expected to soften the enemy before their inevitable destruction.} {Though they have heard little of this legion or the emperor it serves, %name% now serves through a confused mix of fear and admiration for their work, and hopes to carve out a better status within it. The horrors of their doomed station have not yet dawned on them, or perhaps they are simply wilfully blind to them. | Seemingly undisturbed by their station or the perils it entails, %name% wields a drive and thoroughness that would undoubtedly secure advancement anywhere else in the legion. At the front however, they might be lucky to last half a campaign... | If %name% still had flesh to plaster their cracked skull, it would undoubtedly paint a face of terror for all to see. The prospect of death in battle or at the hands of disappointed superiors disturbs this auxiliary on the regular, driving them to more reckless fights in hopes of escaping this cycle of horror. | An ardent believer in the empire and legion\'s mission, %auxiliary% hopes that their brief stint in the auxiliary troop will ensure their recognition and swift promotion to a station that befits their loyalty. Whether they make it that far remains to be seen... | Nervous and ever paranoid that they are being judged by their peers, %auxiliary% makes up for a lifetime of indecision through reckless abandon for their new unlife, seeking to prove themself and make the best of their peculiar new position within the legion.}";
 	}
 
 	function onChangeAttributes() //uses Character_background.nut template (Skeleton)
@@ -205,39 +151,14 @@ this.legend_legion_auxiliary_background <- this.inherit("scripts/skills/backgrou
 
 	function onAdded()
 	{
-		if (this.m.IsNew)
-		{
+		if (this.m.IsNew) {
 			::Legends.Traits.grant(this, ::Legends.Trait.LegendFleshless);
 		}
+		this.character_background.onAdded();
 
 		local actor = this.getContainer().getActor();
-		actor.m.ExcludedInjuries = [ //all injuries associated with stamina regen, health or resolve
-		//perma injuries must be managed in actor.nut, NOT here!
-		//	"injury.traumatized",
-		//	"injury.brain_damage",
-		//	"injury.missing_nose",
-		//	"injury.weakened_heart",
-		//	"injury.collapsed_lung_part",
-		//temp
-			"injury.cut_artery",
-			"injury.cut_throat",
-			"injury.deep_abdominal_cut",
-			"injury.deep_chest_cut",
-			"injury.exposed_ribs",
-			"injury.grazed_kidney",
-			"injury.grazed_neck",
-			"injury.infected_wound",
-			"injury.sickness",
-			"injury.stabbed_guts",
-			"injury.broken_nose",
-			"injury.crushed_windpipe",
-			"injury.fractured_ribs",
-			"injury.inhaled_flames",
-			"injury.pierced_chest",
-			"injury.pierced_lung",
-			"injury.pierced_side"
-		];
-		this.getContainer().getActor().getFlags().add("legion_can_command");  //justfies if this background is subject to the legion command skill
+		actor.m.ExcludedInjuries = ::Legends.Legion.ExcludedInjures;
+		actor.getFlags().add("legion_can_command");  //justfies if this background is subject to the legion command skill
 	}
 
 	function adjustHiringCostBasedOnEquipment() //reduces cost for equipment worn on skeletons to zero for recruiting purposes.
@@ -249,33 +170,19 @@ this.legend_legion_auxiliary_background <- this.inherit("scripts/skills/backgrou
 	function onAddEquipment()
 	{
 		local items = this.getContainer().getActor().getItems();
-		local r;
-		r = this.Math.rand(1, 5);
 
-		if (r == 1)
-		{
-			items.equip(this.new("scripts/items/weapons/throwing_spear"));
-		}
-		else if (r == 2)
-		{
-			items.equip(this.new("scripts/items/weapons/ancient/falx"));
-		}
-		else if (r == 3)
-		{
-			items.equip(this.new("scripts/items/weapons/ancient/ancient_spear"));
-		}
-		else if (r == 4)
-		{
-			items.equip(this.new("scripts/items/weapons/ancient/ancient_sword"));
-		}
-		else if (r == 5)
-		{
-			items.equip(this.new("scripts/items/weapons/ancient/broken_ancient_sword"));
-		}
+		items.equip(::Const.World.Common.pickItem([
+			[1, "weapons/throwing_spear"],
+			[1, "weapons/ancient/falx"],
+			[1, "weapons/ancient/ancient_spear"],
+			[1, "weapons/ancient/ancient_sword"],
+			[1, "weapons/ancient/broken_ancient_sword"]
+		], "scripts/items/"));
 
-		if (this.Math.rand(1, 100) <= 50)
-		{
-			items.equip(this.new("scripts/items/shields/ancient/auxiliary_shield"));
+		if (items.getItemAtSlot(this.Const.ItemSlot.Offhand) == null) {
+			if (this.Math.rand(1, 100) <= 50) {
+				items.equip(this.new("scripts/items/shields/ancient/auxiliary_shield"));
+			}
 		}
 
 		items.equip(this.Const.World.Common.pickArmor([

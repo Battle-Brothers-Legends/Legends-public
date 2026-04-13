@@ -36,7 +36,7 @@ this.$name <- this.inherit("scripts/items/legend_armor/legend_named_armor_upgrad
 
 	function randomizeValues()
 	{
-		this.m.StaminaModifier = this.Math.rand($rminStam, $rmaxStam) * -1;
+		this.m.StaminaModifier = this.Math.rand($rmaxStam, $rminStam) * -1;
 		this.m.Condition = this.Math.rand($rminCond, $rmaxCond);
 		this.m.ConditionMax = this.m.Condition;
 	}

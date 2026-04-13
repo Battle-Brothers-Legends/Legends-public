@@ -15,17 +15,17 @@
 			Types = [
 				{
 					Type = this.Const.World.Spawn.Troops.Slave,
-					MaxR = 110,
+					MaxR = 75,
 					Cost = 5
 				},
 				{
 					Type = this.Const.World.Spawn.Troops.NomadCutthroat,
-					MinR = 200,
+					MinR = 120,
 					Cost = 14
 				},
 				{
 					Type = this.Const.World.Spawn.Troops.NomadOutlaw,
-					MinR = 400,
+					MinR = 225,
 					Cost = 20
 				}
 			]
@@ -65,7 +65,7 @@
 			Types = [
 				{
 					Type = this.Const.World.Spawn.Troops.Slave,
-					MaxR = 130,
+					MaxR = 75,
 					Cost = 5
 				},
 				{

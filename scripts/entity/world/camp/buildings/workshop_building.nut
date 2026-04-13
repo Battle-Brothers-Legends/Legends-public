@@ -114,25 +114,31 @@ this.workshop_building <- this.inherit("scripts/entity/world/camp/camp_building"
 	function getModifierToolip()
 	{
 		this.init();
+		local nonNullEntries = 0;
+		foreach (key, value in this.m.Salvage) {
+		    if (value != null) {
+        		nonNullEntries++;
+			}
+		}
 		local mod = this.getModifiers();
 		local ret = [
 			{
 				id = 3,
 				type = "text",
 				icon = "ui/icons/plus.png",
-				text = "There are [color=" + this.Const.UI.Color.PositiveValue + "]" + this.m.Salvage.len() + "[/color] items in the salvage queue."
+				text = "There are [color=%positive%]" + nonNullEntries + "[/color] items in the salvage queue."
 			},
 			{
 				id = 4,
 				type = "text",
 				icon = "ui/buttons/icon_time.png",
-				text = "It will take [color=" + this.Const.UI.Color.PositiveValue + "]" + this.getRequiredTime() + "[/color] hours to salvage all items in the queue."
+				text = "It will take [color=%positive%]" + this.getRequiredTime() + "[/color] hours to salvage all items in the queue."
 			},
 			{
 				id = 5,
 				type = "text",
 				icon = "ui/icons/asset_supplies.png",
-				text = "Total salvage modifier is [color=" + this.Const.UI.Color.PositiveValue + "]" + mod.Craft + "[/color] units per hour."
+				text = "Total salvage modifier is [color=%positive%]" + mod.Craft + "[/color] units per hour."
 			}
 		];
 		local id = 6;
@@ -143,7 +149,7 @@ this.workshop_building <- this.inherit("scripts/entity/world/camp/camp_building"
 				id = id,
 				type = "hint",
 				icon = "ui/icons/special.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]" + bro[0] + "[/color] units/hour " + bro[1] + " (" + bro[2] + ")"
+				text = "[color=%positive%]" + bro[0] + "[/color] units/hour " + bro[1] + " (" + bro[2] + ")"
 			});
 			id = ++id;
 			id = id;
@@ -154,7 +160,7 @@ this.workshop_building <- this.inherit("scripts/entity/world/camp/camp_building"
 
 	function isHidden()
 	{
-		if (::Legends.Mod.ModSettings.getSetting("SkipCamp").getValue())
+		if (::Legends.Settings.skipCamp())
 		{
 			return false;
 		}
@@ -164,7 +170,7 @@ this.workshop_building <- this.inherit("scripts/entity/world/camp/camp_building"
 
 	function getUpgraded()
 	{
-		return this.Stash.hasItem("tent.scrap_tent");
+		return this.Stash.hasItem(::Legends.Camp.Tent.Scrap);
 	}
 
 	function getLevel()
@@ -295,7 +301,7 @@ this.workshop_building <- this.inherit("scripts/entity/world/camp/camp_building"
 	function getRequiredTime()
 	{
 		local points = 0;
-
+		this.init();
 		if (this.m.Salvage == null)
 		{
 			return 0;
@@ -407,19 +413,18 @@ this.workshop_building <- this.inherit("scripts/entity/world/camp/camp_building"
 			if (r.Item.getRepair() <= 0)
 			{
 				this.m.ItemsDestroyed += 1;
-				local myItem = this.World.Assets.getStash().getItemByInstanceID(r.Item.getInstanceID()).item;
-
-				if (myItem.getRuneVariant() > 0)
-				{
+				local myItem = ::World.Assets.getStash().getItemByInstanceID(r.Item.getInstanceID());
+				if (myItem == null)
+					continue;
+				myItem = myItem.item;
+				if (myItem.getRuneVariant() > 0) {
 					local def = ::Legends.Runes.get(myItem.getRuneVariant());
-					if (def.ItemType == ::Legends.Runes.Target.Armor || def.ItemType == ::Legends.Runes.Target.Helmet)
-					{
-						local rune = ::new(def.Script);
-						rune.setRuneVariant(myItem.getRuneVariant());
-						rune.setRuneBonus1(myItem.getRuneBonus1());
-						rune.setRuneBonus2(myItem.getRuneBonus2());
-						this.World.Assets.getStash().add(rune);
-					}
+					local rune = ::new(def.Script);
+					rune.setRuneVariant(myItem.getRuneVariant());
+					rune.setRuneBonus1(myItem.getRuneBonus1());
+					rune.setRuneBonus2(myItem.getRuneBonus2());
+					rune.updateRuneSigilToken();
+					this.World.Assets.getStash().add(rune);
 				}
 
 				this.World.Assets.getStash().remove(r.Item);

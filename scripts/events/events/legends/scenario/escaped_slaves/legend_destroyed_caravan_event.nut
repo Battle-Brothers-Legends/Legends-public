@@ -39,9 +39,9 @@ this.legend_destroyed_caravan_event <- this.inherit("scripts/events/event", {
 
 				items.push(this.new("scripts/items/weapons/oriental/nomad_mace"));
 
-				
-				
-				
+
+
+
 
 
 				local r = this.Math.rand(1, 2);
@@ -211,19 +211,11 @@ this.legend_destroyed_caravan_event <- this.inherit("scripts/events/event", {
 	function onDetermineStartScreen()
 	{
 		local currentTile = this.World.State.getPlayer().getTile();
-
 		if (currentTile.SquareCoords.Y < this.World.getMapSize().Y * 0.33)
-		{
 			return "South";
-		}
-		else if (currentTile.SquareCoords.Y < this.World.getMapSize().Y * 0.66)
-		{
+		if (currentTile.SquareCoords.Y < this.World.getMapSize().Y * 0.66)
 			return "Midland";
-		}
-		else
-		{
-			return "North";
-		}
+		return "North";
 	}
 
 });

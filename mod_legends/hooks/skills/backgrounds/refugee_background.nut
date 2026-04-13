@@ -64,24 +64,24 @@
 		this.m.PerkTreeDynamicMins.ClassChance += 0.20;
 		this.m.PerkTreeDynamic = {
 			Weapon = [
-				this.Const.Perks.PolearmTree,
-				this.Const.Perks.SlingTree,
-				this.Const.Perks.ThrowingTree
+				::Const.Perks.PolearmTree,
+				::Const.Perks.SlingTree,
+				::Const.Perks.ThrowingTree
 			],
 			Defense = [
-				this.Const.Perks.ClothArmorTree
+				::Const.Perks.ClothArmorTree
 			],
 			Traits = [
-				this.Const.Perks.MartyrTree,
-				this.Const.Perks.SturdyTree,
-				this.Const.Perks.FastTree,
-				this.Const.Perks.IndestructibleTree
+				::Const.Perks.MartyrTree,
+				::Const.Perks.SturdyTree,
+				::Const.Perks.FastTree,
+				::Const.Perks.IndestructibleTree
 			],
 			Enemy = [],
 			Class = [
-				this.Const.Perks.StaffClassTree
+				::Const.Perks.StaffClassTree
 			],
-			Profession = [], 
+			Profession = [],
 			Magic = []
 		}
 	}
@@ -108,7 +108,7 @@
 	o.onBuildDescription <- function ()
 	{
 		//gender neutral description
-		return "{Catastrophes are cheap. | Disease, the ultimate invisible hand. | Win or lose a war, everything is as it has been.} %name% hails from a tiny village that {is now only remembered by spoken word, a generation away from being forgotten. | was destroyed, to put it succinctly. | now stands as a mere footnote, wasting little of the historian\'s ink. | suffered the world\'s wrath.} But %name% is a survivor. {%name% fled the disaster with only clothes. | With home ablaze, %name% saved what little could be saved, and fled. | After stumbling upon their dead family, %name% gathered what could be saved and ran. | War, famine, disease. It\'s all a blur now.} {%name% is merely anxious to look ahead rather than behind. | %name% carries little more than a sense of steeled determination, but that is something worth having. | A horrific history scars %name%\'s body and glazes their eyes, but the mercenary is easily motivated to never experience that past again. | Whatever befell the %name%\'s town didn\'t get %name% and, judging by the rumors you hear, that\'s saying something. | %name% isn\'t skilled in martial arts, but is damn sure determined to survive. | Whatever vocation %name% had in the past is now lost. Like many others, seeking mercenary work to get by in this increasingly bloody world. | One of many refugees you\'ve seen, this victim has decided to stop running and start fighting.}";
+		return "{Catastrophes are cheap. | Disease, the ultimate invisible hand. | Win or lose a war, everything is as it has been.} %name% hails from a tiny village that {is now only remembered by spoken word, a generation away from being forgotten. | was destroyed, to put it succinctly. | now stands as a mere footnote, wasting little of the historian\'s ink. | suffered the world\'s wrath.} But %name% is a survivor. {%name% fled the disaster with only clothes. | With home ablaze, %name% saved what little could be saved, and fled. | After stumbling upon %their% dead family, %name% gathered what could be saved and ran. | War, famine, disease. It\'s all a blur now.} {%name% is merely anxious to look ahead rather than behind. | %name% carries little more than a sense of steeled determination, but that is something worth having. | A horrific history scars %name%\'s body and glazes %their% eyes, but the mercenary is easily motivated to never experience that past again. | Whatever befell the %name%\'s town didn\'t get %name% and, judging by the rumors you hear, that\'s saying something. | %name% isn\'t skilled in martial arts, but is damn sure determined to survive. | Whatever vocation %name% had in the past is now lost. Like many others, seeking mercenary work to get by in this increasingly bloody world. | One of many refugees you\'ve seen, this victim has decided to stop running and start fighting.}";
 	}
 
 	o.onChangeAttributes = function ()

@@ -32,7 +32,7 @@ this.legend_leaderbanner_effect <- this.inherit("scripts/skills/skill", {
 				id = 10,
 				type = "text",
 				icon = "ui/icons/bravery.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+" + bonus + "[/color] Resolve"
+				text = "[color=%positive%]+" + bonus + "[/color] Resolve"
 			}
 		];
 	}

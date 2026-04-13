@@ -19,13 +19,13 @@ this.legend_coordinating_volleys <- this.inherit("scripts/skills/effects/legend_
 				id = 11,
 				type = "text",
 				icon = "ui/icons/ranged_skill.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+10[/color] Ranged Skill"
+				text = "[color=%positive%]+10[/color] Ranged Skill"
 			},
 			{
 				id = 11,
 				type = "text",
 				icon = "ui/icons/regular_damage.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+5%[/color] Ranged Damage"
+				text = "[color=%positive%]+5%[/color] Ranged Damage"
 			}
 		]);
 

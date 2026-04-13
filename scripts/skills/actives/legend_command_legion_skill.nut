@@ -50,43 +50,43 @@ this.legend_command_legion_skill <- this.inherit("scripts/skills/skill", {
 				id = 7,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "Grants the target Grants the target [color=" + this.Const.UI.Color.PositiveValue + "]+4[/color] additional Action Points for their next turn."
+				text = "Grants the target Grants the target [color=%positive%]+4[/color] additional Action Points for their next turn."
 			},
 			{
 				id = 7,
 				type = "text",
 				icon = "ui/icons/initiative.png",
-				text = "Grants the target an additional [color=" + this.Const.UI.Color.PositiveValue + "]+50[/color] Initiative for their next turn."
+				text = "Grants the target an additional [color=%positive%]+50[/color] Initiative for their next turn."
 			},
 			{
 				id = 7,
 				type = "text",
 				icon = "ui/icons/melee_skill.png",
-				text = "Grants the target an additional [color=" + this.Const.UI.Color.PositiveValue + "]+10[/color] Melee Skill for their next turn"
+				text = "Grants the target an additional [color=%positive%]+10[/color] Melee Skill for their next turn"
 			},
 			{
 				id = 7,
 				type = "text",
 				icon = "ui/icons/melee_defense.png",
-				text = "Grants the target an additional [color=" + this.Const.UI.Color.PositiveValue + "]+5[/color] Melee Defense for their next turn"
+				text = "Grants the target an additional [color=%positive%]+5[/color] Melee Defense for their next turn"
 			},
 			{
 				id = 7,
 				type = "text",
 				icon = "ui/icons/ranged_skill.png",
-				text = "Grants the target an additional [color=" + this.Const.UI.Color.PositiveValue + "]+15[/color] Ranged Skill for their next turn"
+				text = "Grants the target an additional [color=%positive%]+15[/color] Ranged Skill for their next turn"
 			},
 			{
 				id = 7,
 				type = "text",
 				icon = "ui/icons/ranged_defense.png",
-				text = "Grants the target an additional [color=" + this.Const.UI.Color.PositiveValue + "]+5[/color] Ranged Defense for their next turn"
+				text = "Grants the target an additional [color=%positive%]+5[/color] Ranged Defense for their next turn"
 			},
 			{
 				id = 7,
 				type = "text",
 				icon = "ui/icons/direct_damage.png",
-				text = "Reduces damage received by [color=" + this.Const.UI.Color.PositiveValue + "]50%[/color] for their next turn"
+				text = "Reduces damage received by [color=%positive%]50%[/color] for their next turn"
 			}
 		];
 		return ret;

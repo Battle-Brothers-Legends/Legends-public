@@ -10,7 +10,7 @@
 		return this.State;
 	}
 	nextState = function () {
-		this.State = (1664525 * this.State + 1013904223) % 2147483648;
+		this.State = ::Math.abs((1664525 * this.State + 1013904223) % 2147483648);
 		return this.State;
 	}
 }

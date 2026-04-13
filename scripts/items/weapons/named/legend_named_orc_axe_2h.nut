@@ -47,6 +47,7 @@ this.legend_named_orc_axe_2h <- this.inherit("scripts/items/weapons/named/named_
 			_skill.setApplyAxeMastery(true);
 			_skill.setFatigueCost(_skill.getFatigueCostRaw() + 5);
 		}.bindenv(this));
+		::Legends.Actives.grant(this, ::Legends.Active.LegendHaftstrike);
 	}
 
 });

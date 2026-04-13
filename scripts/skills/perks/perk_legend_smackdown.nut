@@ -4,12 +4,7 @@ this.perk_legend_smackdown <- this.inherit("scripts/skills/skill", {
 	},
 	function create()
 	{
-		::Const.Perks.setup(this.m, ::Legends.Perk.LegendSmackdown);
-		this.m.Type = this.Const.SkillType.Perk;
-		this.m.Order = this.Const.SkillOrder.Perk;
-		this.m.IsActive = false;
-		this.m.IsStacking = false;
-		this.m.IsHidden = false;
+		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendSmackdown);
 		this.m.SoundOnUse = [
 			"sounds/combat/shatter_01.wav",
 			"sounds/combat/shatter_02.wav",
@@ -24,15 +19,15 @@ this.perk_legend_smackdown <- this.inherit("scripts/skills/skill", {
 
 	function onAdded()
 	{
-		if (!this.m.Container.hasActive(::Legends.Active.LegendPrepareKnockdown))
+		if (!this.m.Container.hasActive(::Legends.Active.LegendWindUp))
 		{
-			::Legends.Actives.grant(this, ::Legends.Active.LegendPrepareKnockdown);
+			::Legends.Actives.grant(this, ::Legends.Active.LegendWindUp);
 		}
 	}
 
 	function onRemoved()
 	{
-		::Legends.Actives.remove(this, ::Legends.Active.LegendPrepareKnockdown);
+		::Legends.Actives.remove(this, ::Legends.Active.LegendWindUp);
 	}
 
 	function findTileToKnockBackTo( _userTile, _targetTile )

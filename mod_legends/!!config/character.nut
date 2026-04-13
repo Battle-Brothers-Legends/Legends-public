@@ -62,18 +62,38 @@
 ::Const.ProjectileType.COUNT += 1;
 ::Const.ProjectileType.Dart <- ::Const.ProjectileType.COUNT;
 ::Const.ProjectileType.COUNT += 1;
+::Const.ProjectileType.Dagger <- ::Const.ProjectileType.COUNT;
+::Const.ProjectileType.COUNT += 1;
 
 ::Const.ProjectileDecals.extend([
 	[],
 	[],
-	[]
+	[],
+	[
+		"dagger_missed_01",
+		"dagger_missed_02",
+		"dagger_missed_03"
+	]
 ]);
 
 ::Const.ProjectileSprite.extend([
 	"projectile_missile",
 	"projectile_blood",
-	"projectile_dart"
+	"projectile_dart",
+	"projectile_dagger"
 ]);
+
+::Const.ZombieMovementAPCost <- [
+	0,		// none
+	3,		// paved ground
+	3,		// flat ground
+	4,		// rough ground
+	4,		// forest
+	5,		// rocks
+	5,		// swamp
+	3,		// sand
+	5		// shallow water
+];
 
 ::Const.HorseMovementAPCost <- [
 	0,

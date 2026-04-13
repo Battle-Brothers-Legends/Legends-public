@@ -1,24 +1,19 @@
-::mods_hookExactClass("scenarios/world/raiders_scenario", function (o) {
-	o.create = function ()
-	{
+::mods_hookExactClass("scenarios/world/raiders_scenario", function(o) {
+	o.create = function() {
 		this.m.ID = "scenario.raiders";
 		this.m.Name = "Northern Raiders";
-		this.m.Description = "[p=c][img]gfx/ui/events/event_135.png[/img][/p][p]For all your adult life you have been raiding and pillaging in these lands. But with the local peasantry poor as mice, you may want to finally expand into the profitable field of mercenary work - that is, if your potential employers are willing to forgive your past transgressions.\n[color=#bcad8c]Warband:[/color] Start with three experienced barbarians, and increased chance of finding [color=#c90000]bloodthirsty brutes, barbarians, killers and assassins[/color].\n[color=#bcad8c]Pillagers:[/color] [color=" + this.Const.UI.Color.PositiveValue + "]15%[/color] chance to get any items from slain enemies, that might not otherwise be available to loot.\n[color=#bcad8c]Outlaws:[/color] Start with [color=#c90000]perks for hunting civilians[/color], bad relations to most human factions, only other outlaws are keen to work for you.[/p]";
+		this.m.Description = "[p=c][img]gfx/ui/events/event_135.png[/img][/p][p]For all your adult life you have been raiding and pillaging in these lands. But with the local peasantry poor as mice, you may want to finally expand into the profitable field of mercenary work - that is, if your potential employers are willing to forgive your past transgressions.\n[color=#bcad8c]Warband:[/color] Start with three experienced barbarians, and increased chance of finding [color=#c90000]bloodthirsty brutes, barbarians, killers and assassins[/color].\n[color=#bcad8c]Pillagers:[/color] [color=%positive%]15%[/color] chance to get any items from slain enemies, that might not otherwise be available to loot.\n[color=#bcad8c]Outlaws:[/color] Start with [color=#c90000]perks for hunting civilians[/color], bad relations to most human factions, only other outlaws are keen to work for you.[/p]";
 		this.m.Difficulty = 2;
 		this.m.Order = 180;
 		this.m.StartingBusinessReputation = -50; // Still use default reputation tiers even if starting at negative reputation
 	}
 
-	o.onSpawnAssets = function ()
-	{
+	o.onSpawnAssets = function() {
 		local roster = this.World.getPlayerRoster();
 
-		for( local i = 0; i < 4; i = i )
-		{
-			local bro;
-			bro = roster.create("scripts/entity/tactical/player");
+		for (local i = 0; i < 4; i++) {
+			local bro = roster.create("scripts/entity/tactical/player");
 			bro.m.HireTime = this.Time.getVirtualTimeF();
-			i = ++i;
 		}
 
 		local bros = roster.getAll();
@@ -44,8 +39,8 @@
 		local warhound = this.new("scripts/items/accessory/legend_warhound_item");
 		warhound.m.Name = "Fenrir the Warhound";
 		items.equip(warhound);
-		local armor = this.new("scripts/items/legend_armor/cloth/legend_sackcloth");
-		local plate = this.new("scripts/items/legend_armor/plate/legend_reinforced_animal_hide_armor");
+		local armor = this.new("scripts/items/legend_armor/cloth/legend_armor_sackcloth");
+		local plate = this.new("scripts/items/legend_armor/plate/legend_armor_animal_hide_armor_reinforced");
 		armor.setUpgrade(plate);
 		items.equip(armor);
 		items.equip(this.Const.World.Common.pickHelmet([
@@ -70,8 +65,8 @@
 		local items = bros[1].getItems();
 		items.unequip(items.getItemAtSlot(this.Const.ItemSlot.Body));
 		items.unequip(items.getItemAtSlot(this.Const.ItemSlot.Head));
-		local armor = this.new("scripts/items/legend_armor/cloth/legend_sackcloth");
-		local plate = this.new("scripts/items/legend_armor/plate/legend_scrap_metal_armor");
+		local armor = this.new("scripts/items/legend_armor/cloth/legend_armor_sackcloth");
+		local plate = this.new("scripts/items/legend_armor/plate/legend_armor_scrap_metal_armor");
 		armor.setUpgrade(plate);
 		items.equip(armor);
 
@@ -97,8 +92,8 @@
 		local items = bros[2].getItems();
 		items.unequip(items.getItemAtSlot(this.Const.ItemSlot.Body));
 		items.unequip(items.getItemAtSlot(this.Const.ItemSlot.Head));
-		local armor = this.new("scripts/items/legend_armor/cloth/legend_sackcloth_patched");
-		local plate = this.new("scripts/items/legend_armor/plate/legend_hide_and_bone_armor");
+		local armor = this.new("scripts/items/legend_armor/cloth/legend_armor_sackcloth_patched");
+		local plate = this.new("scripts/items/legend_armor/plate/legend_armor_hide_and_bone_armor");
 		armor.setUpgrade(plate);
 		items.equip(armor);
 		items.equip(this.Const.World.Common.pickHelmet([
@@ -125,17 +120,14 @@
 		this.World.Assets.m.Ammo = this.World.Assets.m.Ammo / 2;
 	}
 
-	o.onSpawnPlayer = function ()
-	{
+	o.onSpawnPlayer = function() {
 		local randomVillage;
 		local northernmostY = 0;
 
-		for( local i = 0; i != this.World.EntityManager.getSettlements().len(); i = i )
-		{
+		for (local i = 0; i != this.World.EntityManager.getSettlements().len(); i = i) {
 			local v = this.World.EntityManager.getSettlements()[i];
 
-			if (v.getTile().SquareCoords.Y > northernmostY && !v.isMilitary() && !v.isIsolatedFromRoads() && v.getSize() <= 2)
-			{
+			if (v.getTile().SquareCoords.Y > northernmostY && !v.isMilitary() && !v.isIsolatedFromRoads() && v.getSize() <= 2) {
 				northernmostY = v.getTile().SquareCoords.Y;
 				randomVillage = v;
 			}
@@ -148,53 +140,39 @@
 		local navSettings = this.World.getNavigator().createSettings();
 		navSettings.ActionPointCosts = this.Const.World.TerrainTypeNavCost_Flat;
 
-		do
-		{
+		do {
 			local x = this.Math.rand(this.Math.max(2, randomVillageTile.SquareCoords.X - 2), this.Math.min(this.Const.World.Settings.SizeX - 2, randomVillageTile.SquareCoords.X + 2));
 			local y = this.Math.rand(this.Math.max(2, randomVillageTile.SquareCoords.Y - 2), this.Math.min(this.Const.World.Settings.SizeY - 2, randomVillageTile.SquareCoords.Y + 2));
 
-			if (!this.World.isValidTileSquare(x, y))
-			{
-			}
-			else
-			{
+			if (!this.World.isValidTileSquare(x, y)) {
+			} else {
 				local tile = this.World.getTileSquare(x, y);
 
-				if (tile.Type == this.Const.World.TerrainType.Ocean || tile.Type == this.Const.World.TerrainType.Shore || tile.IsOccupied)
-				{
-				}
-				else if (tile.getDistanceTo(randomVillageTile) <= 1)
-				{
-				}
-				else
-				{
+				if (tile.Type == this.Const.World.TerrainType.Ocean || tile.Type == this.Const.World.TerrainType.Shore || tile.IsOccupied) {
+				} else if (tile.getDistanceTo(randomVillageTile) <= 1) {
+				} else {
 					local path = this.World.getNavigator().findPath(tile, randomVillageTile, navSettings, 0);
 
-					if (!path.isEmpty())
-					{
+					if (!path.isEmpty()) {
 						randomVillageTile = tile;
 						break;
 					}
 				}
 			}
-		}
-		while (1);
+		} while (1);
 
 		local attachedLocations = randomVillage.getAttachedLocations();
 		local closest;
 		local dist = 99999;
 
-		foreach( a in attachedLocations )
-		{
-			if (a.getTile().getDistanceTo(randomVillageTile) < dist)
-			{
+		foreach (a in attachedLocations) {
+			if (a.getTile().getDistanceTo(randomVillageTile) < dist) {
 				dist = a.getTile().getDistanceTo(randomVillageTile);
 				closest = a;
 			}
 		}
 
-		if (closest != null)
-		{
+		if (closest != null) {
 			closest.setActive(false);
 			closest.spawnFireAndSmoke();
 		}
@@ -205,17 +183,14 @@
 		local nobles = this.World.FactionManager.getFactionsOfType(this.Const.FactionType.NobleHouse);
 		local houses = [];
 
-		foreach( n in nobles )
-		{
+		foreach (n in nobles) {
 			local closest;
 			local dist = 9999;
 
-			foreach( s in n.getSettlements() )
-			{
+			foreach (s in n.getSettlements()) {
 				local d = s.getTile().getDistanceTo(randomVillageTile);
 
-				if (d < dist)
-				{
+				if (d < dist) {
 					dist = d;
 					closest = s;
 				}
@@ -227,32 +202,23 @@
 			});
 		}
 
-		houses.sort(function ( _a, _b )
-		{
+		houses.sort(function(_a, _b) {
 			if (_a.Dist > _b.Dist)
-			{
 				return 1;
-			}
-			else if (_a.Dist < _b.Dist)
-			{
+			if (_a.Dist < _b.Dist)
 				return -1;
-			}
-
 			return 0;
 		});
 
-		for( local i = 0; i < 2; i = i )
-		{
+		for (local i = 0; i < 2; i++) {
 			houses[i].Faction.addPlayerRelation(-200.0, "You are considered outlaws and barbarians");
-			i = ++i;
 		}
 
 		houses[1].Faction.addPlayerRelation(18.0);
 		this.World.State.m.Player = this.World.spawnEntity("scripts/entity/world/player_party", randomVillageTile.Coords.X, randomVillageTile.Coords.Y);
 		this.World.Assets.updateLook(5);
 		this.World.getCamera().setPos(this.World.State.m.Player.getPos());
-		this.Time.scheduleEvent(this.TimeUnit.Real, 1000, function ( _tag )
-		{
+		this.Time.scheduleEvent(this.TimeUnit.Real, 1000, function(_tag) {
 			this.Music.setTrackList([
 				"music/barbarians_02.ogg"
 			], this.Const.Music.CrossFadeTime);
@@ -260,8 +226,7 @@
 		}, null);
 	}
 
-	o.isDroppedAsLoot = function ( _item )
-	{
+	o.isDroppedAsLoot = function(_item) {
 		// local chanceIsLucky = 15;
 		// local brothers = this.World.getPlayerRoster().getAll();
 		// foreach (bro in brothers)
@@ -279,70 +244,40 @@
 		return false; // produces a lot of bugs with unlayered armors
 	}
 
-	o.onHiredByScenario <- function ( bro )
-	{
-			if (!bro.getBackground().isBackgroundType(this.Const.BackgroundType.Outlaw))
-			{
-				bro.worsenMood(0.5, "Is uncomfortable with joining raiders");
-			}
-			else
-			{
-				bro.improveMood(1.5, "Is excited at becoming a raider");
-			}
+	o.onHiredByScenario <- function(bro) {
+		if (!bro.getBackground().isBackgroundType(::Const.BackgroundType.Outlaw)) {
+			bro.worsenMood(0.5, "Is uncomfortable with joining raiders");
+		} else {
+			bro.improveMood(1.5, "Is excited at becoming a raider");
+		}
 	}
 
-
-	o.onUpdateHiringRoster <- function ( _roster )
-	{
+	o.onUpdateHiringRoster <- function(_roster) {
 		this.addBroToRoster(_roster, "thief_background", 4);
 		this.addBroToRoster(_roster, "barbarian_background", 5);
 		this.addBroToRoster(_roster, "assassin_background", 7);
 		this.addBroToRoster(_roster, "killer_on_the_run_background", 4);
 	}
 
-	o.onGenerateBro <- function (bro)
-	{
-		if (!bro.getBackground().isBackgroundType(this.Const.BackgroundType.Outlaw))
-		{
-			bro.m.HiringCost = this.Math.floor(bro.m.HiringCost * 1.5);
+	o.onGenerateBro <- function(bro) {
+		if (!bro.getBackground().isBackgroundType(::Const.BackgroundType.Outlaw)) {
+			bro.m.HiringCost = ::Math.floor(bro.m.HiringCost * 1.5);
 			bro.getBaseProperties().DailyWageMult *= 1.5;
-			bro.getSkills().update();
-			bro.worsenMood(0.5, "Is uncomfortable with joining raiders");
-		}
-		else
-		{
-			bro.m.HiringCost = this.Math.floor(bro.m.HiringCost * 0.9);
+		} else {
+			bro.m.HiringCost = ::Math.floor(bro.m.HiringCost * 0.9);
 			bro.getBaseProperties().DailyWageMult *= 0.9;
-			bro.getSkills().update();
-			bro.improveMood(1.5, "Is excited at becoming a raider");
-			local r;
-			r = this.Math.rand(0, 9);
-
-			if (r == 0)
-			{
-				::Legends.Traits.grant(bro, ::Legends.Trait.Bloodthirsty);
-			}
-
-			if (r == 1)
-			{
-				::Legends.Traits.grant(bro, ::Legends.Trait.Deathwish);
-			}
-
-			if (r == 2)
-			{
-				::Legends.Traits.grant(bro, ::Legends.Trait.Drunkard);
-			}
-
-			if (r == 3)
-			{
-				::Legends.Traits.grant(bro, ::Legends.Trait.Cocky);
-			}
-
-			if (r == 4)
-			{
-				::Legends.Traits.grant(bro, ::Legends.Trait.Brute);
+			local traits = [
+				::Legends.Trait.Bloodthirsty,
+				::Legends.Trait.Deathwish,
+				::Legends.Trait.Drunkard,
+				::Legends.Trait.Cocky,
+				::Legends.Trait.Brute
+			];
+			if (::Math.rand(0, 1)) {
+				::Legends.Traits.grant(bro, traits[::Math.rand(0, traits.len() - 1)]);
 			}
 		}
+		bro.getSkills().update();
 	}
 
 });

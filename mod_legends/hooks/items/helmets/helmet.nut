@@ -67,7 +67,7 @@
 				id = 5,
 				type = "text",
 				icon = "ui/icons/fatigue.png",
-				text = "Maximum Fatigue [color=" + this.Const.UI.Color.NegativeValue + "]" + this.m.StaminaModifier + "[/color]"
+				text = "Maximum Fatigue [color=%negative%]" + this.m.StaminaModifier + "[/color]"
 			});
 		}
 
@@ -77,7 +77,7 @@
 				id = 6,
 				type = "text",
 				icon = "ui/icons/vision.png",
-				text = "Vision [color=" + this.Const.UI.Color.NegativeValue + "]" + this.m.Vision + "[/color]"
+				text = "Vision [color=%negative%]" + this.m.Vision + "[/color]"
 			});
 		}
 		else if (this.m.Vision > 0)
@@ -86,7 +86,7 @@
 				id = 6,
 				type = "text",
 				icon = "ui/icons/vision.png",
-				text = "Vision [color=" + this.Const.UI.Color.PositiveValue + "]" + this.m.Vision + "[/color]"
+				text = "Vision [color=%positive%]" + this.m.Vision + "[/color]"
 			});
 		}
 

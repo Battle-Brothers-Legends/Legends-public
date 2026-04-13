@@ -64,7 +64,7 @@ this.legend_blacksmith_craft_armor <- this.inherit("scripts/events/event", {
 		});
 		this.m.Screens.push({
 			ID = "B",
-			Text = "[img]gfx/ui/events/event_31.png[/img]{You give him the money and %blacksmith% in no time gets up and sets off to seek the best metal and begin working. As he finishes his work, he tells a story of a blacksmith who was called by a king. The king had summoned all of the guild masters. Calling them to the throne one at a time, he questioned each, then sent them to the opposite side of the hall from those who had not yet been questioned. The first craftsman that he spoke with was a carpenter. The king asked what he made. %SPEECH_ON% I make all things of wood. Houses, wagons, wheels, looms and so on. %SPEECH_OFF% The king asked where he got his tools, and the carpenter answered that he got them from the blacksmith. The second craftsman was a weaver. The king asked the weaver where he got his tools, the weaver said that he got them from the blacksmith. The third craftsman was a potter. When the king questioned him, he admitted that he too got his tools from the blacksmith. Finally, the king called the %blacksmith% to the throne. When he asked the blacksmith where he got His tools, the %blacksmith% answered %SPEECH_ON%I made them myself, for no one else could make tools for the working of iron.%SPEECH_OFF% The king announced that he had made his decision. Since the blacksmith was the only craftsman who did not have to obtain his tools from someone else but made them for himself, that henceforth and forever more, the Blacksmith would be known as the King of Craftsmen",
+			Text = "[img]gfx/ui/events/event_31.png[/img]You give him the money and %blacksmith% in no time gets up and sets off to seek the best metal and begin working. As he finishes his work, he tells a story of a blacksmith who was called by a king. The king had summoned all of the guild masters. Calling them to the throne one at a time, he questioned each, then sent them to the opposite side of the hall from those who had not yet been questioned. The first craftsman that he spoke with was a carpenter. The king asked what he made. %SPEECH_ON% I make all things of wood. Houses, wagons, wheels, looms and so on. %SPEECH_OFF% The king asked where he got his tools, and the carpenter answered that he got them from the blacksmith. The second craftsman was a weaver. The king asked the weaver where he got his tools, the weaver said that he got them from the blacksmith. The third craftsman was a potter. When the king questioned him, he admitted that he too got his tools from the blacksmith. Finally, the king called the %blacksmith% to the throne. When he asked the blacksmith where he got His tools, the %blacksmith% answered %SPEECH_ON%I made them myself, for no one else could make tools for the working of iron.%SPEECH_OFF% The king announced that he had made his decision. Since the blacksmith was the only craftsman who did not have to obtain his tools from someone else but made them for himself, that henceforth and forever more, the Blacksmith would be known as the King of Craftsmen",
 			Image = "",
 			List = [],
 			Characters = [],
@@ -102,13 +102,13 @@ this.legend_blacksmith_craft_armor <- this.inherit("scripts/events/event", {
 		});
 		this.m.Screens.push({
 			ID = "C",
-			Text = "[img]gfx/ui/events/event_31.png[/img]{You give him the money and %blacksmith% in no time gets up and sets off to seek the best metal and begin working. As he finishes his work, he tells a story of a blacksmith who was called by a king. The king had summoned all of the guild masters. Calling them to the throne one at a time, he questioned each, then sent them to the opposite side of the hall from those who had not yet been questioned. The first craftsman that he spoke with was a carpenter. The king asked what he made. %SPEECH_ON% I make all things of wood. Houses, wagons, wheels, looms and so on. %SPEECH_OFF% The king asked where he got his tools, and the carpenter answered that he got them from the blacksmith. The second craftsman was a weaver. The king asked the weaver where he got his tools, the weaver said that he got them from the blacksmith. The third craftsman was a potter. When the king questioned him, he admitted that he too got his tools from the blacksmith. Finally, the king called the %blacksmith% to the throne. When he asked the blacksmith where he got His tools, the %blacksmith% answered %SPEECH_ON%I made them myself, for no one else could make tools for the working of iron.%SPEECH_OFF% The king announced that he had made his decision. Since the blacksmith was the only craftsman who did not have to obtain his tools from someone else but made them for himself, that henceforth and forever more, the Blacksmith would be known as the King of Craftsmen",
+			Text = "[img]gfx/ui/events/event_31.png[/img]You give him the money and %blacksmith% in no time gets up and sets off to seek the best metal and begin working. As he finishes, he wipes the soot from his brown and sits down, defeated. You look at the freshly forged armor - a sturdy and functional suit, yet lacking the masterwork sheen",
 			Image = "",
 			List = [],
 			Characters = [],
 			Options = [
 				{
-					Text = "A masterwork!",
+					Text = "Failure...",
 					function getResult( _event )
 					{
 						return 0;
@@ -139,7 +139,7 @@ this.legend_blacksmith_craft_armor <- this.inherit("scripts/events/event", {
 		});
 		this.m.Screens.push({
 			ID = "D",
-			Text = "[img]gfx/ui/events/event_31.png[/img]{You give him the money and %blacksmith% in no time gets up and sets off to seek the best metal and begin working. As he finishes his work, he tells a story of a blacksmith who was called by a king. The king had summoned all of the guild masters. Calling them to the throne one at a time, he questioned each, then sent them to the opposite side of the hall from those who had not yet been questioned. The first craftsman that he spoke with was a carpenter. The king asked what he made. %SPEECH_ON% I make all things of wood. Houses, wagons, wheels, looms and so on. %SPEECH_OFF% The king asked where he got his tools, and the carpenter answered that he got them from the blacksmith. The second craftsman was a weaver. The king asked the weaver where he got his tools, the weaver said that he got them from the blacksmith. The third craftsman was a potter. When the king questioned him, he admitted that he too got his tools from the blacksmith. Finally, the king called the %blacksmith% to the throne. When he asked the blacksmith where he got His tools, the %blacksmith% answered %SPEECH_ON%I made them myself, for no one else could make tools for the working of iron.%SPEECH_OFF% The king announced that he had made his decision. Since the blacksmith was the only craftsman who did not have to obtain his tools from someone else but made them for himself, that henceforth and forever more, the Blacksmith would be known as the King of Craftsmen",
+			Text = "[img]gfx/ui/events/event_31.png[/img]You give him the money and %blacksmith% in no time gets up and sets off to seek the best metal and begin working. As he finishes his work, he tells a story of a blacksmith who was called by a king. The king had summoned all of the guild masters. Calling them to the throne one at a time, he questioned each, then sent them to the opposite side of the hall from those who had not yet been questioned. The first craftsman that he spoke with was a carpenter. The king asked what he made. %SPEECH_ON% I make all things of wood. Houses, wagons, wheels, looms and so on. %SPEECH_OFF% The king asked where he got his tools, and the carpenter answered that he got them from the blacksmith. The second craftsman was a weaver. The king asked the weaver where he got his tools, the weaver said that he got them from the blacksmith. The third craftsman was a potter. When the king questioned him, he admitted that he too got his tools from the blacksmith. Finally, the king called the %blacksmith% to the throne. When he asked the blacksmith where he got His tools, the %blacksmith% answered %SPEECH_ON%I made them myself, for no one else could make tools for the working of iron.%SPEECH_OFF% The king announced that he had made his decision. Since the blacksmith was the only craftsman who did not have to obtain his tools from someone else but made them for himself, that henceforth and forever more, the Blacksmith would be known as the King of Craftsmen",
 			Image = "",
 			List = [],
 			Characters = [],
@@ -199,13 +199,13 @@ this.legend_blacksmith_craft_armor <- this.inherit("scripts/events/event", {
 		});
 		this.m.Screens.push({
 			ID = "E",
-			Text = "[img]gfx/ui/events/event_31.png[/img]{You give him the money and %blacksmith% in no time gets up and sets off to seek the best metal and begin working. As he finishes his work, he tells a story of a blacksmith who was called by a king. The king had summoned all of the guild masters. Calling them to the throne one at a time, he questioned each, then sent them to the opposite side of the hall from those who had not yet been questioned. The first craftsman that he spoke with was a carpenter. The king asked what he made. %SPEECH_ON% I make all things of wood. Houses, wagons, wheels, looms and so on. %SPEECH_OFF% The king asked where he got his tools, and the carpenter answered that he got them from the blacksmith. The second craftsman was a weaver. The king asked the weaver where he got his tools, the weaver said that he got them from the blacksmith. The third craftsman was a potter. When the king questioned him, he admitted that he too got his tools from the blacksmith. Finally, the king called the %blacksmith% to the throne. When he asked the blacksmith where he got His tools, the %blacksmith% answered %SPEECH_ON%I made them myself, for no one else could make tools for the working of iron.%SPEECH_OFF% The king announced that he had made his decision. Since the blacksmith was the only craftsman who did not have to obtain his tools from someone else but made them for himself, that henceforth and forever more, the Blacksmith would be known as the King of Craftsmen",
+			Text = "[img]gfx/ui/events/event_31.png[/img]You give him the money and %blacksmith% in no time gets up and sets off to seek the best metal and begin working. As he finishes, he wipes the soot from his brown and sits down, defeated. You look at the freshly forged armor - a sturdy and functional suit, yet lacking the masterwork sheen",
 			Image = "",
 			List = [],
 			Characters = [],
 			Options = [
 				{
-					Text = "A masterwork!",
+					Text = "Failure...",
 					function getResult( _event )
 					{
 						return 0;
@@ -339,11 +339,6 @@ this.legend_blacksmith_craft_armor <- this.inherit("scripts/events/event", {
 			"townname",
 			this.m.Town.getName()
 		]);
-	}
-
-	function onDetermineStartScreen()
-	{
-		return "A";
 	}
 
 	function onClear()

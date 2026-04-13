@@ -49,19 +49,19 @@ this.legend_ambitious_trait <- this.inherit("scripts/skills/traits/character_tra
 				id = 11,
 				type = "text",
 				icon = "ui/icons/initiative.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+3[/color] Initiative"
+				text = "[color=%positive%]+3[/color] Initiative"
 			},
 			{
 				id = 12,
 				type = "text",
 				icon = "ui/icons/bravery.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+3[/color] Resolve"
+				text = "[color=%positive%]+3[/color] Resolve"
 			},
 			{
 				id = 10,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+5%[/color] Experience Gain"
+				text = "[color=%positive%]+5%[/color] Experience Gain"
 			}
 		];
 	}

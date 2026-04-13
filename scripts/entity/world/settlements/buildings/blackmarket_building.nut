@@ -52,7 +52,7 @@ this.blackmarket_building <- this.inherit("scripts/entity/world/settlements/buil
 		this.m.UIImageNight = "ui/settlements/blackmarket_night";
 		this.m.Tooltip = "world-town-screen.main-dialog-module.Blackmarket";
 		this.m.TooltipIcon = "ui/icons/buildings/blackmarket.png";
-		this.m.IsClosedAtDay = true;
+		this.m.IsClosedAtDay = false;
 		this.m.IsClosedAtNight = false;
 		this.m.Stash = this.new("scripts/items/stash_container");
 		this.m.Stash.setID("shop");
@@ -401,6 +401,11 @@ this.blackmarket_building <- this.inherit("scripts/entity/world/settlements/buil
 				S = "misc/legend_skin_ghoul_skin_item"
 			},
 			{
+				R = 70,
+				P = 6.0,
+				S = "misc/potion_of_oblivion_item"
+			},
+			{
 				R = 90,
 				P = 6.0,
 				S = "misc/legend_demon_third_eye_item"
@@ -553,12 +558,12 @@ this.blackmarket_building <- this.inherit("scripts/entity/world/settlements/buil
 			{
 				R = 30,
 				P = 3.0,
-				S = "legend_armor/cloak/legend_animal_pelt"
+				S = "legend_armor/cloak/legend_armor_animal_pelt"
 			},
 			{
 				R = 60,
 				P = 5.0,
-				S = "legend_armor/cloak/fur_cloak"
+				S = "legend_armor/cloak/legend_armor_cloak_fur"
 			},
 			{
 				R = 70,
@@ -568,7 +573,7 @@ this.blackmarket_building <- this.inherit("scripts/entity/world/settlements/buil
 			{
 				R = 80,
 				P = 5.0,
-				S = "legend_armor/cloak/cursed_cloak"
+				S = "legend_armor/cloak/legend_armor_cloak_cursed"
 			},
 			{
 				R = 80,
@@ -653,12 +658,12 @@ this.blackmarket_building <- this.inherit("scripts/entity/world/settlements/buil
 			{
 				R = 70,
 				P = 2.0,
-				S = "legend_armor/cloth/legend_robes_wizard"
+				S = "legend_armor/cloth/legend_armor_robes_wizard"
 			},
 			{
 				R = 70,
 				P = 2.0,
-				S = "legend_armor/cloth/legend_robes_magic"
+				S = "legend_armor/cloth/legend_armor_robes_magic"
 			},
 			{
 				R = 70,

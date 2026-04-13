@@ -37,15 +37,14 @@ this.legends_rangers_scenario <- this.inherit("scripts/scenarios/world/starting_
 			i = ++i;
 		}
 
-		local bros = roster.getAll(); //starting party
-		local talents;
+		local bros = roster.getAll(); //starting party	
 		bros[0].setStartValuesEx([
 			"legend_ranger_commander_background"
 		]);
 		bros[0].getBackground().m.RawDescription = "{%name% grew up in the rangers and was taught the ways of the forest by veteran foresters. Running through the woods for a lifetime has made %name% particularly good at tracking enemies, or tumbling into the homes of wild druids trying to escape from the modern world}";
 		::Legends.Traits.grant(bros[0], ::Legends.Trait.Player);
-		this.addScenarioPerk(bros[0].getBackground(), this.Const.Perks.PerkDefs.Pathfinder);
-		this.addScenarioPerk(bros[0].getBackground(), this.Const.Perks.PerkDefs.Footwork);
+		this.addScenarioPerk(bros[0].getBackground(), ::Const.Perks.PerkDefs.Pathfinder);
+		this.addScenarioPerk(bros[0].getBackground(), ::Const.Perks.PerkDefs.LegendTacticalManeuvers);
 		bros[0].improveMood(1.5, "Narrowly escaped a bear");
 		bros[0].addLightInjury();
 		bros[0].getFlags().set("IsPlayerCharacter", true);
@@ -53,17 +52,22 @@ this.legends_rangers_scenario <- this.inherit("scripts/scenarios/world/starting_
 		bros[0].setVeteranPerks(2);
 
 		bros[1].setStartValuesEx([
-			"legend_druid_commander_background"
+			"legend_druid_background"
 		]);
 		bros[1].getBackground().m.RawDescription = "{%name% was the bastard of a noblewoman who left them in a ditch at the edge of the forest to be taken by wolves. It worked, but instead left %name% being cared for by a wolfmother with no cubs of her own. When the she-wolf was slain by vengeful poachers %name% took it upon themselves to be as far away from society as possible. Right up until a certain ranger fell headfirst into their hovel}";
 
 		::Legends.Traits.grant(bros[1], ::Legends.Trait.Player);
-		this.addScenarioPerk(bros[1].getBackground(), this.Const.Perks.PerkDefs.Pathfinder);
-		this.addScenarioPerk(bros[1].getBackground(), this.Const.Perks.PerkDefs.Footwork);
+		this.addScenarioPerk(bros[1].getBackground(), ::Const.Perks.PerkDefs.Pathfinder);
+		this.addScenarioPerk(bros[1].getBackground(), ::Const.Perks.PerkDefs.LegendTacticalManeuvers);
 		bros[1].worsenMood(1.5, "Had my home destroyed by an idiot");
 		bros[1].getFlags().set("IsPlayerCharacter", true);
 		bros[1].setPlaceInFormation(4);
 		bros[1].setVeteranPerks(2);
+		bros[1].getBaseProperties().MeleeSkill += 10;
+		local talents = bros[1].getTalents();
+		talents.resize(this.Const.Attributes.COUNT, 0);
+		talents[this.Const.Attributes.MeleeSkill] = 2;
+		talents[this.Const.Attributes.Hitpoints] = 2;
 		this.World.Assets.addBusinessReputation(this.m.StartingBusinessReputation);
 		this.World.Assets.getStash().add(this.new("scripts/items/supplies/cured_venison_item"));
 		this.World.Assets.getStash().add(this.new("scripts/items/trade/furs_item"));
@@ -226,7 +230,7 @@ this.legends_rangers_scenario <- this.inherit("scripts/scenarios/world/starting_
 
 	function onBuildPerkTree( _background )
 	{
-		this.addScenarioPerk(_background, this.Const.Perks.PerkDefs.Pathfinder, 0, _background.isBackgroundType(this.Const.BackgroundType.Druid) || _background.isBackgroundType(this.Const.BackgroundType.Ranger));
+		this.addScenarioPerk(_background, ::Const.Perks.PerkDefs.Pathfinder, 0, _background.isBackgroundType(this.Const.BackgroundType.Druid) || _background.isBackgroundType(this.Const.BackgroundType.Ranger));
 	}
 });
 

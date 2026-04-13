@@ -41,7 +41,7 @@ this.legend_bribe_skill <- this.inherit("scripts/skills/skill", {
 			id = 6,
 			type = "text",
 			icon = "ui/icons/vision.png",
-			text = "Has a range of [color=" + this.Const.UI.Color.PositiveValue + "]" + this.m.MaxRange + "[/color], can only target humans."
+			text = "Has a range of [color=%positive%]" + this.m.MaxRange + "[/color], can only target humans."
 		});
 
 		if (this.m.Cost != null)
@@ -50,7 +50,7 @@ this.legend_bribe_skill <- this.inherit("scripts/skills/skill", {
 				id = 8,
 				type = "text",
 				icon = "ui/icons/asset_money.png",
-				text = "Bribing " + this.m.EntityName + " will cost [color=" + this.Const.UI.Color.PositiveValue +"]" + this.m.Cost + "[/color] crowns out of " + this.World.Assets.getMoney() + " total."
+				text = "Bribing " + this.m.EntityName + " will cost [color=%positive%]" + this.m.Cost + "[/color] crowns out of " + this.World.Assets.getMoney() + " total."
 			});
 		}
 		else

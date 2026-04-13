@@ -2,13 +2,9 @@ this.perk_legend_specialist_cult_armor <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		::Const.Perks.setup(this.m, ::Legends.Perk.LegendSpecCultArmor);
+		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendSpecCultArmor);
 		this.m.Description = "This character is gaining increased Maximum Damage because of adjacent opponents.";
 		this.m.Type = this.Const.SkillType.Perk | this.Const.SkillType.StatusEffect;
-		this.m.Order = this.Const.SkillOrder.Perk;
-		this.m.IsActive = false;
-		this.m.IsStacking = false;
-		this.m.IsHidden = false;
 	}
 
 	function isHidden()
@@ -30,7 +26,7 @@ this.perk_legend_specialist_cult_armor <- this.inherit("scripts/skills/skill", {
 				id = 10,
 				type = "text",
 				icon = "ui/icons/damage_dealt.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]" + (damageBonus * 100) + "%[/color] of equipped weapon's Maximum Damage as additional Maximum Damage"
+				text = "[color=%positive%]" + (damageBonus * 100) + "%[/color] of equipped weapon's Maximum Damage as additional Maximum Damage"
 			});
 		}
 
@@ -41,7 +37,7 @@ this.perk_legend_specialist_cult_armor <- this.inherit("scripts/skills/skill", {
 				id = 10,
 				type = "text",
 				icon = "ui/icons/bravery.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+" + resolveBonus + "[/color] Resolve due to missing health and wearing cultist items"
+				text = "[color=%positive%]+" + resolveBonus + "[/color] Resolve due to missing health and wearing cultist items"
 			});
 		}
 
@@ -64,7 +60,6 @@ this.perk_legend_specialist_cult_armor <- this.inherit("scripts/skills/skill", {
 			if (item.isItemType(this.Const.Items.ItemType.Cultist)) {
 				cultItems.push(item);
 			}
-
 			foreach (upgrade in item.m.Upgrades)
 			{
 				if (upgrade != null && upgrade.isItemType(this.Const.Items.ItemType.Cultist)) cultItems.push(upgrade);

@@ -50,7 +50,7 @@ this.legend_ranged_lash_skill <- this.inherit("scripts/skills/skill", {
 				id = 6,
 				type = "text",
 				icon = "ui/icons/hitchance.png",
-				text = "Has [color=" + this.Const.UI.Color.NegativeValue + "]-15%[/color] chance to hit targets directly adjacent because the weapon is too unwieldy"
+				text = "Has [color=%negative%]-15%[/color] chance to hit targets directly adjacent because the weapon is too unwieldy"
 			});
 		}
 
@@ -60,7 +60,7 @@ this.legend_ranged_lash_skill <- this.inherit("scripts/skills/skill", {
 	function onAfterUpdate( _properties )
 	{
 		this.m.FatigueCostMult = _properties.IsSpecializedInFlails ? this.Const.Combat.WeaponSpecFatigueMult : 1.0;
-		this.m.ActionPointCost = _properties.IsSpecializedInPolearms ? 5 : 6;
+		this.m.ActionPointCost = _properties.IsSpecializedInPolearms ? 4 : 5;
 		this.m.IsShieldRelevant = !_properties.IsSpecializedInFlails;
 	}
 

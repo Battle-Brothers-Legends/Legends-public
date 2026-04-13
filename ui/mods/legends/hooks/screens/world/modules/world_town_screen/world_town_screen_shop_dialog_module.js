@@ -20,7 +20,7 @@ WorldTownScreenShopDialogModule.prototype.assignItemToSlot = function(_owner, _s
 
 		// assign image
 		_slot.assignListItemImage(Path.ITEMS + _item.imagePath);
-		_slot.assignListItemOverlayImage(_item['imageOverlayPath']);
+		_slot.assignListItemOverlayImage(_item['imageOverlayPath'], _item);
 
 		// show amount
 		if(_item.showAmount === true && _item.amount != '')

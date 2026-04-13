@@ -51,7 +51,7 @@ this.legend_oms_amphora_skill <- ::inherit("scripts/skills/skill", {
 				id = 10,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "You aren\'t sure what it does. You\'ve heard of an ancient witch living in a hut in the forest who might know more about this"
+				text = "You aren\'t sure what it does. You\'ve heard of an ancient witch living in a hut in the forest and an Oracle somewhere in the south who might know more about this"
 			});
 			return result;
 		}

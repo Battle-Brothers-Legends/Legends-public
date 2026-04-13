@@ -2,7 +2,7 @@ this.legend_sprint_skill_5 <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		::Legends.Actives.onCreate(this, ::Legends.Active.LegendSprint);
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendStrafingRun);
 		this.m.Description = "Quickly sprint over a short distance in a straight line. Can not be used on difficult terrain, across different height levels or through enemy Zones of Control.";
 		this.m.Icon = "ui/perks/perk_sprint.png";
 		this.m.IconDisabled = "ui/perks/perk_sprint_sw.png";
@@ -53,7 +53,7 @@ this.legend_sprint_skill_5 <- this.inherit("scripts/skills/skill", {
 				id = 7,
 				type = "text",
 				icon = "ui/tooltips/warning.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]Can not be used because this character is engaged in melee[/color]"
+				text = "[color=%negative%]Can not be used because this character is engaged in melee[/color]"
 			});
 		}
 
@@ -63,7 +63,7 @@ this.legend_sprint_skill_5 <- this.inherit("scripts/skills/skill", {
 				id = 7,
 				type = "text",
 				icon = "ui/tooltips/warning.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]Can not be used on difficult terrain[/color]"
+				text = "[color=%negative%]Can not be used on difficult terrain[/color]"
 			});
 		}
 

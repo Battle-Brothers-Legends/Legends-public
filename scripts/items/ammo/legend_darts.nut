@@ -65,7 +65,7 @@ this.legend_darts <- this.inherit("scripts/items/ammo/ammo", {
 				id = 6,
 				type = "text",
 				icon = "ui/icons/ammo.png",
-				text = "Contains [color=" + this.Const.UI.Color.PositiveValue + "]" + this.m.Ammo + "[/color] darts"
+				text = "Contains [color=%positive%]" + this.m.Ammo + "[/color] darts"
 			});
 		}
 		else
@@ -74,7 +74,7 @@ this.legend_darts <- this.inherit("scripts/items/ammo/ammo", {
 				id = 6,
 				type = "text",
 				icon = "ui/tooltips/warning.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]Is empty and useless[/color]"
+				text = "[color=%negative%]Is empty and useless[/color]"
 			});
 		}
 

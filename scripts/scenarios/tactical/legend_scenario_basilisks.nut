@@ -69,7 +69,7 @@ this.legend_scenario_basilisks <- this.inherit("scripts/scenarios/tactical/scena
 		items = entity.getItems();
 		items.equip(this.Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Standard.full_helm]]));
 		items.equip(this.new("scripts/items/armor/coat_of_plates"));
-		items.equip(this.new("scripts/items/weapons/greatsword"));
+		items.equip(this.new("scripts/items/weapons/legend_zweihander"));
 		entity = this.spawnEntity("scripts/entity/tactical/player", 14, 16, 14, 16);
 		this.World.getPlayerRoster().add(entity);
 		entity.setFaction(this.Const.Faction.Player);
@@ -127,7 +127,7 @@ this.legend_scenario_basilisks <- this.inherit("scripts/scenarios/tactical/scena
 		entity.setScenarioValues();
 		items = entity.getItems();
 		items.equip(this.Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Standard.hood]]));
-		items.equip(this.new("scripts/items/armor/padded_surcoat"));
+		items.equip(this.new("scripts/items/legend_armor/cloth/legend_armor_quilted_aketon"));
 		items.equip(this.new("scripts/items/weapons/hunting_bow"));
 		items.equip(this.new("scripts/items/ammo/quiver_of_arrows"));
 		items.addToBag(this.new("scripts/items/weapons/hatchet"));
@@ -191,8 +191,8 @@ this.legend_scenario_basilisks <- this.inherit("scripts/scenarios/tactical/scena
 		this.Stash.add(this.new("scripts/items/weapons/noble_sword"));
 		this.Stash.add(this.new("scripts/items/weapons/military_cleaver"));
 		this.Stash.add(this.new("scripts/items/weapons/military_cleaver"));
-		this.Stash.add(this.new("scripts/items/weapons/greatsword"));
-		this.Stash.add(this.new("scripts/items/weapons/greatsword"));
+		this.Stash.add(this.new("scripts/items/weapons/legend_zweihander"));
+		this.Stash.add(this.new("scripts/items/weapons/legend_zweihander"));
 		this.Stash.add(this.new("scripts/items/weapons/billhook"));
 		this.Stash.add(this.new("scripts/items/weapons/billhook"));
 		this.Stash.add(this.new("scripts/items/weapons/winged_mace"));
@@ -217,7 +217,7 @@ this.legend_scenario_basilisks <- this.inherit("scripts/scenarios/tactical/scena
 		this.Stash.add(this.Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Standard.flat_top_helmet]]));
 		this.Stash.add(this.Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Standard.full_helm]]));
 		this.Stash.add(this.new("scripts/items/armor/gambeson"));
-		this.Stash.add(this.new("scripts/items/armor/padded_surcoat"));
+		this.Stash.add(this.new("scripts/items/legend_armor/cloth/legend_armor_quilted_aketon"));
 		this.Stash.add(this.new("scripts/items/armor/padded_leather"));
 		this.Stash.add(this.new("scripts/items/armor/mail_shirt"));
 		this.Stash.add(this.new("scripts/items/armor/lamellar_harness"));

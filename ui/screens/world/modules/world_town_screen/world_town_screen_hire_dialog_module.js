@@ -46,6 +46,9 @@ var WorldTownScreenHireDialogModule = function(_parent)
 
 	// selected entry
 	this.mSelectedEntry = null;
+
+	// popup dialog to view known perks of a selected recruit
+	this.mKnownPerksPopupModule = null;
 };
 
 
@@ -269,6 +272,7 @@ WorldTownScreenHireDialogModule.prototype.destroyDIV = function ()
 	this.mAssets.destroyDIV();
 
 	this.mSelectedEntry = null;
+	this.mKnownPerksPopupModule = null;
 
 	this.mDetailsPanel.HireButton.remove();
 	this.mDetailsPanel.HireButton = null;
@@ -487,6 +491,11 @@ WorldTownScreenHireDialogModule.prototype.updateDetailsPanel = function(_element
 		{
 			var icon = $('<img src="' + Path.GFX + 'ui/icons/known_perks.png' + '"/>');
 			icon.bindTooltip({ contentType: 'ui-element', elementId: TooltipIdentifier.WorldTownScreen.HireDialogModule.KnownPerks, entityId: data.ID });
+			var self = this;
+			icon.on('click', function(event) {
+				// Open perks panel popup
+				self.notifyBackendKnownPerksIconClicked();
+			});
 			this.mDetailsPanel.CharacterTraitsContainer.append(icon);
 
 			for(var i = 0; i < data.Traits.length; ++i)
@@ -613,6 +622,7 @@ WorldTownScreenHireDialogModule.prototype.updateDetailsPanel = function(_element
 
 WorldTownScreenHireDialogModule.prototype.updateListEntryValues = function()
 {
+	var self = this;
 	var currentMoney = this.mAssets.getValues().Money;
 	var container = this.mListContainer.findListScrollContainer();
 	container.find('.list-entry').each(function(index, element)
@@ -637,6 +647,10 @@ WorldTownScreenHireDialogModule.prototype.updateListEntryValues = function()
 		{
 			var icon = $('<img src="' + Path.GFX + 'ui/icons/known_perks.png' + '"/>');
 			icon.bindTooltip({ contentType: 'ui-element', elementId: TooltipIdentifier.WorldTownScreen.HireDialogModule.KnownPerks, entityId: data.ID});
+			icon.on('click', function(event) {
+				// Open perks panel popup
+				self.notifyBackendKnownPerksIconClicked();
+			});
 			traitsContainer.append(icon);
 
 			for(var i = 0; i < data.Traits.length; ++i)
@@ -657,6 +671,56 @@ WorldTownScreenHireDialogModule.prototype.updateListEntryValues = function()
 			traitsContainer.append(icon);
 		}
 	});
+};
+
+
+// This will be called by backend after the frontend calls `notifyBackendKnownPerksIconClicked`
+WorldTownScreenHireDialogModule.prototype.showKnownPerksPopupDialog = function()
+{
+	this.mKnownPerksPopupModule = null;
+	var self = this;
+	var bro = null;
+	var perkTree = null;
+
+	if (self.mSelectedEntry !== null)
+	{
+		bro = self.mSelectedEntry.data('entry');
+		if(CharacterScreenIdentifier.Perk.Tree in bro && bro[CharacterScreenIdentifier.Perk.Tree] !== null)
+        {
+            perkTree = bro[CharacterScreenIdentifier.Perk.Tree];
+        }
+        else
+        {
+        	console.error("Unable to open Known Perks popup dialog: no perkTree in selected entry");
+        	return;
+        }
+	}
+	else
+	{
+		console.error("Unable to open Known Perks popup dialog: no selected entry");
+		return;
+	}
+
+	// console.error("Selected brother ID: " + bro['ID']);
+	this.mKnownPerksPopupModule = new IndependentPerksScreenPopup($('.world-town-screen'), perkTree, bro['ID']);
+	this.mKnownPerksPopupModule.createPopupDialog($('.world-town-screen'),
+		function() {
+			self.notifyBackendPopupDialogIsVisible(true);
+		},
+		function() {
+			self.notifyBackendPopupDialogIsVisible(false);
+		}
+	);
+}
+
+WorldTownScreenHireDialogModule.prototype.notifyBackendKnownPerksIconClicked = function ()
+{
+	SQ.call(this.mSQHandle, 'onKnownPerksIconClicked');
+};
+
+WorldTownScreenHireDialogModule.prototype.notifyBackendPopupDialogIsVisible = function (_isVisible)
+{
+	SQ.call(this.mSQHandle, 'onPopupDialogIsVisible', _isVisible);
 };
 
 WorldTownScreenHireDialogModule.prototype.bindTooltips = function ()

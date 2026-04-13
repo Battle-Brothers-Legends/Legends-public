@@ -6,7 +6,7 @@ this.legend_brothers_in_chains_trait <- this.inherit("scripts/skills/traits/char
 		this.m.ID = ::Legends.Traits.getID(::Legends.Trait.LegendBrothersInChains);
 		this.m.Name = "United in Chains";
 		this.m.Icon = "ui/settlement_status/settlement_effect_40.png";
-		this.m.Description = "This character has formed a bond with other former slaves. For every other Indebted on the field, this character gets [color=" + this.Const.UI.Color.PositiveValue + "]+1[/color] Melee Skill, Ranged Skill, Melee Defense, Ranged Defense, and Resolve.";
+		this.m.Description = "This character has formed a bond with other former slaves. For every other Indebted on the field, this character gets [color=%positive%]+1[/color] Melee Skill, Ranged Skill, Melee Defense, Ranged Defense, and Resolve.";
 		this.m.Order = this.Const.SkillOrder.Trait - 1;
 	}
 

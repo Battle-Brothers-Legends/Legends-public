@@ -75,20 +75,15 @@ this.legend_prayer_of_life_skill <- this.inherit("scripts/skills/skill", {
 
 			if (a.getFaction() == _user.getFaction())
 			{
-				if (!a.getFlags().has("cultist") && !a.getSkills().hasSkill("effects.legend_prayer_of_life"))
+				if (!a.getFlags().has("cultist") && !::Legends.Effects.has(a, ::Legends.Effect.LegendPrayerOfLife))
 				{
-					local effect = this.new("scripts/skills/effects/legend_prayer_of_life_effect");
-					effect.setHeal(bonus);
-					a.getSkills().add(effect);
+					::Legends.Effects.grant(a, ::Legends.Effect.LegendPrayerOfLife, @(_effect) _effect.setHeal(bonus));
 				}
 			}
 
 			if (a.getFlags().has("undead") && !a.getFlags().has("ghoul"))
 			{
-				if (!a.getSkills().hasSkill("effects.disintegrating"))
-				{
-					a.getSkills().add(this.new("scripts/skills/effects/legend_disintegrating_effect"));
-				}
+				::Legends.Effects.grant(a, ::Legends.Effect.LegendDisintegrating);
 			}
 		}
 

@@ -6,6 +6,7 @@ if (!("Perks" in ::Const))
 ::Const.Perks.AgileTree <- {
 	ID = "AgileTree",
 	Name = "Agile",
+	Icon = "ui/perks/perk_23.png",
 	Descriptions = [
 		"is agile",
 		"moves gracefully",
@@ -54,9 +55,7 @@ if (!("Perks" in ::Const))
 			::Legends.Perk.Pathfinder
 		],
 		[],
-		[
-			::Legends.Perk.LegendAthlete
-		],
+		[],
 		[],
 		[
 			::Legends.Perk.LegendTacticalManeuvers 
@@ -70,6 +69,7 @@ if (!("Perks" in ::Const))
 ::Const.Perks.IndestructibleTree <- {
 	ID = "IndestructibleTree",
 	Name = "Tenacious",
+	Icon = "ui/perks/perk_30.png",
 	Descriptions = [
 		"is practicaly indestructible",
 		"is stubbornly relentless",
@@ -115,7 +115,8 @@ if (!("Perks" in ::Const))
 	},
 	Tree = [
 		[
-			::Legends.Perk.NineLives
+			::Legends.Perk.NineLives,
+			::Legends.Perk.LegendRecuperation
 		],
 		[],
 		[
@@ -132,6 +133,7 @@ if (!("Perks" in ::Const))
 ::Const.Perks.MartyrTree <- {
 	ID = "MartyrTree",
 	Name = "Martyr",
+	Icon = "ui/perks/vengeance_circle.png",
 	Descriptions = [
 		"has martyr complex",
 		"strictly penatant ",
@@ -196,6 +198,7 @@ if (!("Perks" in ::Const))
 ::Const.Perks.ViciousTree <- {
 	ID = "ViciousTree",
 	Name = "Vicious",
+	Icon = "ui/perks/perk_57.png",
 	Descriptions = [
 		"is vicious",
 		"seems fiendishly barbarous",
@@ -260,6 +263,7 @@ if (!("Perks" in ::Const))
 ::Const.Perks.DeviousTree <- {
 	ID = "DeviousTree",
 	Name = "Devious",
+	Icon = "ui/perks/perk_59.png",
 	Descriptions = [
 		"is devious",
 		"strikes you as shifty",
@@ -324,6 +328,7 @@ if (!("Perks" in ::Const))
 ::Const.Perks.InspirationalTree <- {
 	ID = "InspirationalTree",
 	Name = "Inspirational",
+	Icon = "ui/perks/perk_42.png",
 	Descriptions = [
 		"is inspirational",
 		"arouses loyalty in people",
@@ -388,6 +393,7 @@ if (!("Perks" in ::Const))
 ::Const.Perks.IntelligentTree <- {
 	ID = "IntelligentTree",
 	Name = "Intelligent",
+	Icon = "ui/perks/perk_21.png",
 	Descriptions = [
 		"is intelligent",
 		"is strikingly astute",
@@ -451,6 +457,7 @@ if (!("Perks" in ::Const))
 ::Const.Perks.CalmTree <- {
 	ID = "CalmTree",
 	Name = "Calm",
+	Icon = "ui/perks/clarity_circle.png",
 	Descriptions = [
 		"is calm",
 		"is soothingly relaxed",
@@ -514,6 +521,7 @@ if (!("Perks" in ::Const))
 ::Const.Perks.FastTree <- {
 	ID = "FastTree",
 	Name =  "Fast",
+	Icon = "ui/perks/unarmed_lunge.png",
 	Descriptions = [
 		"is fast",
 		"runs quickly",
@@ -576,6 +584,7 @@ if (!("Perks" in ::Const))
 ::Const.Perks.LargeTree <- {
 	ID = "LargeTree",
 	Name = "Large",
+	Icon = "ui/perks/perk_06.png",
 	Descriptions = [
 		"is large",
 		"has a hulking form",
@@ -624,7 +633,9 @@ if (!("Perks" in ::Const))
 			::Legends.Perk.Colossus
 		],
 		[],
-		[],
+		[
+			::Legends.Perk.LegendOnslaught
+		],
 		[],
 		[
 			::Legends.Perk.LegendSecondWind
@@ -638,6 +649,7 @@ if (!("Perks" in ::Const))
 ::Const.Perks.OrganisedTree <- {
 	ID = "OrganisedTree",
 	Name = "Organized",
+	Icon = "ui/perks/perk_20.png",
 	Descriptions = [
 		"is organized",
 		"coordinates activities effectively",
@@ -703,6 +715,7 @@ if (!("Perks" in ::Const))
 ::Const.Perks.SturdyTree <- {
 	ID = "SturdyTree",
 	Name = "Sturdy",
+	Icon = "ui/perks/steadfast_circle.png",
 	Descriptions = [
 		"is sturdy",
 		"is built to last",
@@ -747,9 +760,7 @@ if (!("Perks" in ::Const))
 		]
 	},
 	Tree = [
-		[
-			::Legends.Perk.LegendRecuperation
-		],
+		[],
 		[
 			::Legends.Perk.FortifiedMind
 		],
@@ -767,6 +778,7 @@ if (!("Perks" in ::Const))
 ::Const.Perks.FitTree <- {
 	ID = "FitTree",
 	Name = "Fit",
+	Icon = "ui/perks/perk_54.png",
 	Descriptions = [
 		"can run all day",
 		"lifts weight for hours",
@@ -812,10 +824,11 @@ if (!("Perks" in ::Const))
 	Tree = [
 		[
 			::Legends.Perk.Recover,
-			::Legends.Perk.LegendRecuperation
 		],
 		[],
-		[],
+		[
+			::Legends.Perk.LegendAthlete
+		],
 		[],
 		[],
 		[
@@ -829,6 +842,7 @@ if (!("Perks" in ::Const))
 ::Const.Perks.TrainedTree <- {
 	ID = "TrainedTree",
 	Name = "Trained",
+	Icon = "ui/perks/back_to_basics_circle.png",
 	Descriptions = [
 		"is well trained",
 		"has great qualifications",
@@ -878,17 +892,17 @@ if (!("Perks" in ::Const))
 		],
 		[],
 		[
-			::Legends.Perk.LegendTacticalManeuvers
-		],
-		[],
-		[
+			::Legends.Perk.LegendTacticalManeuvers,
 			::Legends.Perk.Underdog
 		],
+		[],
+		[],
 		[],
 		[]
 	]
 };
 ::Const.Perks.TraitsTrees <- {
+	GroupsCategory = "Traits",
 	Tree = [
 		::Const.Perks.AgileTree,
 		::Const.Perks.IndestructibleTree,

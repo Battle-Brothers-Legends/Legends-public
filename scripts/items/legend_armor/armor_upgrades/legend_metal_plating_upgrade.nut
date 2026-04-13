@@ -6,16 +6,13 @@ this.legend_metal_plating_upgrade <- this.inherit("scripts/items/legend_armor/le
 		this.m.ID = "legend_armor_upgrade.body.legend_metal_plating";
 		this.m.Type = this.Const.Items.ArmorUpgrades.Attachment;
 		this.m.Name = "Metal Plates and Rivets";
-		this.m.Description = "Thick metal plates that are rivetted to the underlying armor. Very crude, but an easy way to quickly add protection.";
-		this.m.ArmorDescription = "This armor has a layer of crudely riveted metal plates for additional protection.";
-		this.m.Icon = "armor_upgrades/upgrade_12.png";
-		this.m.IconLarge = this.m.Icon;
-		this.m.OverlayIcon = "armor_upgrades/icon_upgrade_12.png";
-		this.m.OverlayIconLarge = "armor_upgrades/inventory_upgrade_12.png";
-		this.m.SpriteBack = "upgrade_12_back";
-		this.m.SpriteDamagedBack = "upgrade_12_back_damaged";
-		this.m.SpriteCorpseBack = "upgrade_12_back_dead";
-
+		this.m.Description = "Thick metal plates riveted to the underlying armor. Crude, but simple way to add protection.";
+		this.m.ArmorDescription = "Includes a set of riveted metal plates.";
+		this.m.Variants = [1];
+		this.m.Variant = this.m.Variants[this.Math.rand(0, this.m.Variants.len() - 1)];
+		this.updateVariant();
+		this.m.ImpactSound = this.Const.Sound.ArmorHalfplateImpact;
+		this.m.InventorySound = this.Const.Sound.ArmorHalfplateImpact;
 		this.m.Value = 800;
 		this.m.Condition = 10;
 		this.m.ConditionMax = 10;
@@ -23,5 +20,16 @@ this.legend_metal_plating_upgrade <- this.inherit("scripts/items/legend_armor/le
 		this.m.DamageReceivedArmorMult = -15.0;
 		this.m.FatiguePenaltyMultiplier = 25.0;
 	}
+		
+	function updateVariant()
+	{
+		local variant = this.m.Variant > 9 ? this.m.Variant : "0" + this.m.Variant;
+		this.m.SpriteBack = "pauldrons_metal_plates_" + variant + "";
+		this.m.SpriteDamagedBack = "pauldrons_metal_plates_" + variant + "_damaged";
+		this.m.SpriteCorpseBack = "pauldrons_metal_plates_" + variant + "_dead";
+		this.m.Icon = "legend_armor/upgrades/pauldrons_metal_plates_" + variant + "_upgrade.png";
+		this.m.IconLarge = this.m.Icon;
+		this.m.OverlayIcon = "legend_armor/icon_pauldrons_metal_plates_" + variant + ".png";
+		this.m.OverlayIconLarge = "legend_armor/inventory_pauldrons_metal_plates_"  + variant + ".png";
+	}
 });
-

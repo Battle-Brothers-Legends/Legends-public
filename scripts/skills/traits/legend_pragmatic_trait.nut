@@ -42,19 +42,19 @@ this.legend_pragmatic_trait <- this.inherit("scripts/skills/traits/character_tra
 				id = 10,
 				type = "text",
 				icon = "ui/icons/melee_skill.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+5%[/color] Melee Skill"
+				text = "[color=%positive%]+5%[/color] Melee Skill"
 			},
 			{
 				id = 10,
 				type = "text",
 				icon = "ui/icons/ranged_skill.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+5%[/color] Ranged Skill"
+				text = "[color=%positive%]+5%[/color] Ranged Skill"
 			},
 			{
 				id = 11,
 				type = "text",
 				icon = "ui/icons/chance_to_hit_head.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]-10%[/color] Chance To Hit Head"
+				text = "[color=%negative%]-10%[/color] Chance To Hit Head"
 			}
 		];
 	}

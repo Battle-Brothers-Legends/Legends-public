@@ -36,28 +36,28 @@
 		this.m.Modifiers.Stash = this.Const.LegendMod.ResourceModifiers.Stash[1];
 		this.m.PerkTreeDynamic = {
 			Weapon = [
-				this.Const.Perks.PolearmTree,
-				this.Const.Perks.ThrowingTree,
-				this.Const.Perks.SpearTree,
-				this.Const.Perks.DaggerTree
+				::Const.Perks.PolearmTree,
+				::Const.Perks.ThrowingTree,
+				::Const.Perks.SpearTree,
+				::Const.Perks.DaggerTree
 			],
 			Defense = [
-				this.Const.Perks.MediumArmorTree
+				::Const.Perks.MediumArmorTree
 			],
 			Traits = [
-				this.Const.Perks.FitTree,
-				this.Const.Perks.LargeTree,
-				this.Const.Perks.ViciousTree,
-				this.Const.Perks.FastTree
+				::Const.Perks.FitTree,
+				::Const.Perks.LargeTree,
+				::Const.Perks.ViciousTree,
+				::Const.Perks.FastTree
 			],
 			Enemy = [
-				this.Const.Perks.LindwurmTree
+				::Const.Perks.BeastTree
 			],
 			Class = [
-				this.Const.Perks.BeastClassTree,
-				this.Const.Perks.SpearfisherClassTree
+				::Const.Perks.BeastClassTree,
+				// ::Const.Perks.SpearfisherClassTree
 			],
-			Profession = [], 
+			Profession = [],
 			Magic = []
 		}
 	}

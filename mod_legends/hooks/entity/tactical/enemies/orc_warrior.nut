@@ -5,6 +5,8 @@
 		this.actor.onFactionChanged();
 		local flip = this.isAlliedWithPlayer();
 		flip = !flip;
+		local v = 1;
+		local v2 = -6;
 		foreach (a in this.Const.CharacterSprites.Helmets)
 		{
 			if (!this.hasSprite(a))
@@ -12,6 +14,7 @@
 				continue;
 			}
 			this.getSprite(a).setHorizontalFlipping(flip);
+			this.setSpriteOffset(a, this.createVec(flip ? v2 : -v2, v));
 		}
 	}
 
@@ -142,7 +145,7 @@
 			"shields/named/named_orc_heavy_shield"
 		];
 
-		if (this.Math.rand(1, 100) <= 50)
+		if (this.Math.rand(1, 100) <= 80)
 		{
 			this.m.Items.unequip(this.m.Items.getItemAtSlot(this.Const.ItemSlot.Mainhand));
 			this.m.Items.equip(this.new("scripts/items/" + weapons[this.Math.rand(0, weapons.len() - 1)]));

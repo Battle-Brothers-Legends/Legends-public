@@ -37,6 +37,7 @@ this.legend_ram_hammer <- this.inherit("scripts/items/weapons/weapon", {
 		::Legends.Actives.grant(this, ::Legends.Active.Smite);
 		::Legends.Actives.grant(this, ::Legends.Active.Shatter);
 		::Legends.Actives.grant(this, ::Legends.Active.SplitShield, function (_skill) {
+			_skill.m.IsHammer = true;
 			_skill.setFatigueCost(_skill.getFatigueCostRaw() + 5); // 10 because 2h weapons should get +5 on split shield (see 2h mace), and then +5 because of being orc weapon.
 		}.bindenv(this));
 		::Legends.Effects.get(_target, ::Legends.Effect.LegendRamHammer); //grants special effect

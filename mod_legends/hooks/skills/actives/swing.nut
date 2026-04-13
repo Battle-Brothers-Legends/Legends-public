@@ -9,6 +9,18 @@
 		this.m.HitChanceBonus = -5;
 	}
 
+	o.getTooltip = function ()
+	{
+		local ret = this.getDefaultTooltip();
+		ret.push({
+			id = 6,
+			type = "text",
+			icon = "ui/icons/special.png",
+			text = "Can hit up to 3 targets"
+		});
+		return ret;
+	}
+
 	o.isAxeMasteryApplied <- function ()
 	{
 		return this.m.ApplyAxeMastery;

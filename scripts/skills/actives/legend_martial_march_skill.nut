@@ -52,7 +52,7 @@ this.legend_martial_march_skill <- this.inherit("scripts/skills/skill", {
 				id = 7,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "Grants all allied units within 8 tiles [color=" + this.Const.UI.Color.PositiveValue + "]1[/color] additional Action Point for their next turn."
+				text = "Grants all allied units within 8 tiles [color=%positive%]1[/color] additional Action Point for their next turn."
 			}
 		];
 
@@ -62,11 +62,17 @@ this.legend_martial_march_skill <- this.inherit("scripts/skills/skill", {
 				id = 5,
 				type = "text",
 				icon = "ui/tooltips/warning.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]Can not be used because this character is engaged in melee[/color]"
+				text = "[color=%negative%]Can not be used because this character is engaged in melee[/color]"
 			});
 		}
 
 		return ret;
+	}
+
+	function isHidden() {
+		if (this.getContainer != null && !::Legends.Perks.has(this.getContainer(), ::Legends.Perk.LegendMeistersanger))
+			return true;
+		return this.skill.isHidden();
 	}
 
 	function isUsable()
@@ -78,16 +84,6 @@ this.legend_martial_march_skill <- this.inherit("scripts/skills/skill", {
 
 		local tile = this.getContainer().getActor().getTile();
 		return this.skill.isUsable() && !tile.hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions());
-	}
-
-	function onAfterUpdate( _properties )
-	{
-		this.m.FatigueCostMult = 1.0;
-		if (_properties.IsSpecializedInMusic)
-		{
-			this.m.FatigueCostMult = this.Const.Combat.WeaponSpecFatigueMult;
-			this.m.ActionPointCost -= 1;
-		}
 	}
 
 	function onUse( _user, _targetTile )

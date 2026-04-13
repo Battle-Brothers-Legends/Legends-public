@@ -38,20 +38,20 @@ this.legend_field_repairs_skill <- this.inherit("scripts/skills/skill", {
 			id = 6,
 			type = "text",
 			icon = "ui/icons/vision.png",
-			text = "Has a range of [color=" + this.Const.UI.Color.PositiveValue + "]" + this.m.MaxRange + "[/color]."
+			text = "Has a range of [color=%positive%]" + this.m.MaxRange + "[/color]."
 		});
 		ret.push({
 			id = 7,
 			type = "text",
 			icon = "ui/icons/asset_money.png",
-			text = "You have [color=" + this.Const.UI.Color.PositiveValue +"]" + this.Math.floor(this.World.Assets.getArmorParts()) + "[/color] tools."
+			text = "You have [color=%positive%]" + this.Math.floor(this.World.Assets.getArmorParts()) + "[/color] tools."
 		});
 		local repairs = this.World.Assets.getArmorParts() * 5 ;
 		ret.push({
 			id = 8,
 			type = "text",
 			icon = "ui/icons/asset_money.png",
-			text = "You can repair max [color=" + this.Const.UI.Color.PositiveValue +"]" + this.Math.floor(repairs) +  "[/color] points of armor."
+			text = "You can repair max [color=%positive%]" + this.Math.floor(repairs) +  "[/color] points of armor."
 		});
 		return ret;
 	}

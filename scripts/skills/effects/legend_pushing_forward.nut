@@ -19,19 +19,19 @@ this.legend_pushing_forward <- this.inherit("scripts/skills/effects/legend_comma
 				id = 11,
 				type = "text",
 				icon = "ui/icons/melee_skill.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+10[/color] Melee Skill"
+				text = "[color=%positive%]+10[/color] Melee Skill"
 			},
 			{
 				id = 11,
 				type = "text",
 				icon = "ui/icons/bravery.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+5[/color] Resolve"
+				text = "[color=%positive%]+5[/color] Resolve"
 			},
 			{
 				id = 11,
 				type = "text",
 				icon = "ui/icons/melee_defense.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+3[/color] Melee Defence"
+				text = "[color=%positive%]+3[/color] Melee Defence"
 			}
 		]);
 		return tooltip;

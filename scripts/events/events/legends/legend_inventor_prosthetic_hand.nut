@@ -184,11 +184,6 @@ this.legend_inventor_prosthetic_hand <- this.inherit("scripts/events/event", {
 		]);
 	}
 
-	function onDetermineStartScreen()
-	{
-		return "A";
-	}
-
 	function onClear()
 	{
 		this.m.Inventor = null;

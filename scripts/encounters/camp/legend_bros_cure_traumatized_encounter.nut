@@ -1,22 +1,22 @@
 this.legend_bros_cure_traumatized_encounter <- this.inherit("scripts/encounters/encounter", {
-    m = {
+	m = {
 		Monk = null,
 		Drunkard = null,
 		Dervish = null,
 		Traumatized = null
-    },
+	},
 
-    function create() {
-        this.m.Type = "encounter.legend_bros_cure_traumatized";
-        this.m.Name = ::Const.Strings.randomCampEncounterName();
+	function create() {
+		this.encounter.create();
+		this.m.Type = "encounter.legend_bros_cure_traumatized";
+		this.m.Name = ::Const.Strings.randomCampEncounterName();
 		this.m.Cooldown = 30 * ::World.getTime().SecondsPerDay;
-	    this.createScreens();
 	}
 
-    function createScreens() {
-        this.m.Screens.push({
-            ID = "Start",
-            Title = "In camp...",
+	function createScreens() {
+		this.m.Screens.push({
+			ID = "Start",
+			Title = "In camp...",
 			Text = "[img]gfx/ui/events/event_12.png[/img]{%traumatized% is hesitant in combat with a violent outburst each time someone points it out. It\'s quickly becoming impossible to talk to %them_traumatized% without walking on eggshells. | Feet always pointing towards the exit and a weak point in the shield wall, %traumatized% is becoming a liability in a fight. | The sellswords pretend not to hear, but %traumatized% is often found quietly sobbing in a far off corner in camp. Daily life becoming a burden for the damaged mercenary. | %traumatized% can barely hold a weapon, the shakes appearing each time %their_traumatized% sword arm needs to strike. Your mercenaries quickly fill the gaps, but you can tell they\'re becoming annoyed. | Skipping meals and waning physically, %traumatized% is a shell of the %person_traumatized% %they_traumatized% used to be.}",
 			Image = "",
 			List = [],
@@ -29,7 +29,7 @@ this.legend_bros_cure_traumatized_encounter <- this.inherit("scripts/encounters/
 						return 0;
 					}
 				}
-			]
+			],
 			function start( _event )
 			{
 				if (_event.m.Drunkard != null)
@@ -97,7 +97,7 @@ this.legend_bros_cure_traumatized_encounter <- this.inherit("scripts/encounters/
 		});
 		this.m.Screens.push({
 			ID = "Monk",
-			Text = "[img]gfx/ui/events/event_40.png[/img]You leave to tend to your tasks while the holy %person_monk% talks to %traumatized%. When you return to check on them the camp fire is already ablaze and the two are deep in conversation. Well more like a monologue because it\'s just %monk% listening with sympathy and fear. The crackle of the fire masks the whispered words while %person_monk%\'s tired eyes keep intently on the victim. You\'re curiosity almost gets the better of you and you want to listen in, but ultimately decide it\'s better to not interfere. Over the next few days %traumatized% is looking chipper, a spring to their step that was there before the incident. On the other hand the holy %person_monk% seems drained and devoid of life. It\'s almost as if the positions are exchanged.",
+			Text = "[img]gfx/ui/events/event_40.png[/img]You leave to tend to your tasks while the holy %person_monk% talks to %traumatized%. When you return to check on them the camp fire is already ablaze and the two are deep in conversation. Well more like a monologue because it\'s just %monk% listening with sympathy and fear. The crackle of the fire masks the whispered words while %person_monk%\'s tired eyes keep intently on the victim. Your curiosity almost gets the better of you and you want to listen in, but ultimately decide it\'s better to not interfere. Over the next few days %traumatized% is looking chipper, a spring to their step that was there before the incident. On the other hand the holy %person_monk% seems drained and devoid of life. It\'s almost as if the positions are exchanged.",
 			Image = "",
 			List = [],
 			Characters = [],
@@ -114,12 +114,12 @@ this.legend_bros_cure_traumatized_encounter <- this.inherit("scripts/encounters/
 			{
 				this.Characters.push(_event.m.Monk.getImagePath());
 				this.Characters.push(_event.m.Traumatized.getImagePath());
-				::Legends.Effects.grant(_event.m.Monk, ::Legends.Effect.Afraid, function(_effect) {
+				local afraidEffect = ::Legends.Effects.grant(_event.m.Monk, ::Legends.Effect.Afraid, function(_effect) {
 					_effect.setHealChance(10);
 				}.bindenv(this));
 				local traumatized = this.new("scripts/skills/injury_permanent/traumatized_injury");
 
-				_event.m.Trautmatized.improveMood(2.0, "Is no longer traumatized");
+				_event.m.Traumatized.improveMood(2.0, "Is no longer traumatized");
 				_event.m.Monk.worsenMood(2.0, "Has heard terrible things and left with shaken faith");
 				_event.m.Traumatized.getSkills().removeByID(traumatized.getID());
 				this.List.push({
@@ -129,7 +129,7 @@ this.legend_bros_cure_traumatized_encounter <- this.inherit("scripts/encounters/
 				});
 				this.List.push({
 					id = 10,
-					icon = effect.getIcon(),
+					icon = afraidEffect.getIcon(),
 					text = _event.m.Monk.getName() + " is afraid"
 				});
 				if (_event.m.Traumatized.getMoodState() > this.Const.MoodState.Neutral)
@@ -170,13 +170,17 @@ this.legend_bros_cure_traumatized_encounter <- this.inherit("scripts/encounters/
 				this.Characters.push(_event.m.Dervish.getImagePath());
 				this.Characters.push(_event.m.Traumatized.getImagePath());
 
-				this.Characters.push(_event.m.Traumatized.getImagePath());
 				local bg = this.new("scripts/skills/backgrounds/beggar_background");
 				bg.m.IsNew = false;
-				_event.m.Dude.getSkills().removeByID(_event.m.Traumatized.getBackground().getID());
-				_event.m.Dude.getSkills().add(bg);
-				_event.m.Dude.getBackground().m.RawDescription = "%name% has taken a vow of austerity and become a beggar willingly.";
-				_event.m.Dude.getBackground().buildDescription(true);
+				local dude = _event.m.Traumatized;
+				local oldPerkTree = dude.getBackground().m.CustomPerkTree;
+				dude.getSkills().removeByID(dude.getBackground().getID());
+				dude.getSkills().removeByID("injury.traumatized");
+				dude.getSkills().add(bg);
+				dude.getBackground().m.RawDescription = "%name% has taken a vow of austerity and become a beggar willingly.";
+				dude.getBackground().buildDescription(true);
+				dude.getBackground().rebuildPerkTree(oldPerkTree);
+				dude.resetPerks();
 			}
 		});
 	}
@@ -184,54 +188,58 @@ this.legend_bros_cure_traumatized_encounter <- this.inherit("scripts/encounters/
 	function onPrepareVariables (_vars) {
 		_vars.push([
 			"monk",
-			this.m.Monk.getName()
+			this.m.Monk != null ? this.m.Monk.getName() : ""
+		]);
+		// Not used at the moment
+		// _vars.push([
+		// 	"monktitle",
+		// 	this.m.Monk != null ? ( this.m.Monk.getGender() == 0 ? "the Monk" : "the Nun") : ""
+		// ]);
+		_vars.push([
+			"dervish",
+			this.m.Dervish != null ? this.m.Dervish.getName() : ""
 		]);
 		_vars.push([
 			"drunkard",
-			this.m.Monk.getName()
-		]);
-		local title = this.m.Monk.getGender() == 0 ? "the Monk" : "the Nun";
-		_vars.push([
-			"monktitle",
-			title
+			this.m.Drunkard != null ? this.m.Drunkard.getName() : ""
 		]);
 		_vars.push([
 			"traumatized",
 			this.m.Traumatized.getName()
 		]);
-		this.Const.LegendMod.extendVarsWithPronouns(_vars, this.m.Traumatized.getGender(), "traumatized");
-		this.Const.LegendMod.extendVarsWithPronouns(_vars, this.m.Monk.getGender(), "monk");
-		this.Const.LegendMod.extendVarsWithPronouns(_vars, this.m.Drunkard.getGender(), "drunkard");
-		this.Const.LegendMod.extendVarsWithPronouns(_vars, this.m.Dervish.getGender(), "dervish");
 	}
 
 	function isValid(_camp) {
-		if (::World.getPlayerRoster().getSize() >= 3)
+		if (::World.Assets.getOrigin().getID() == "scenario.legend_risen_legion")
 			return false;
-
+		if (::World.getPlayerRoster().getSize() < 3)
+			return false;
 
 		local bros = this.World.getPlayerRoster().getAll();
 		local randomBros = [];
-		foreach (bro in bros)
-		{
-			if (bro.getSkills().hasSkill("injury.traumatized"))
-			{
+		foreach (bro in bros) {
+			if (bro.getSkills().hasSkill("injury.traumatized")) {
 				this.m.Traumatized = bro;
-			}
-			else if (bro.getBackground().getID() == "background.monk")
-			{
+			} else if (bro.getBackground().getID() == "background.monk") {
 				this.m.Monk = bro;
-			}
-			else if (bro.getSkills().hasTrait(::Legends.Trait.Drunkard))
-			{
+			} else if (bro.getBackground().getID() == "background.legend_dervish") {
+				this.m.Dervish = bro;
+			} else if (bro.getSkills().hasTrait(::Legends.Trait.Drunkard)) {
 				this.m.Drunkard = bro;
 			}
 		}
-		if (this.m.Traumatized == null)
+		if (this.m.Traumatized == null) {
 			return false;
+		}
 
-		if ((this.m.Drunkard == null && !this.m.Traumatized.getSkills().hasTrait(::Legends.Trait.Drunkard)) || this.m.Monk == null)
+		// Needs either:
+		// - an existing drunkard AND target not already a drunkard
+		// - a monk OR a dervish
+		local hasDrunkardHelper = this.m.Drunkard != null && !this.m.Traumatized.getSkills().hasTrait(::Legends.Trait.Drunkard);
+		local hasSpiritualHelper = this.m.Monk != null || this.m.Dervish != null;
+		if (!hasDrunkardHelper && !hasSpiritualHelper) {
 			return false;
+		}
 
 		return !this.isOnCooldown();
 	}
@@ -241,5 +249,6 @@ this.legend_bros_cure_traumatized_encounter <- this.inherit("scripts/encounters/
 		this.m.Monk = null;
 		this.m.Drunkard = null;
 		this.m.Traumatized = null;
+		this.m.Dervish = null;
 	}
 });

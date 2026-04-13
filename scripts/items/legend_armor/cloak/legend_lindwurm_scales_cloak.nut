@@ -7,23 +7,30 @@ this.legend_lindwurm_scales_cloak <- this.inherit("scripts/items/legend_armor/le
 		this.m.Type = this.Const.Items.ArmorUpgrades.Cloak;
 		this.m.Name = "Lindwurm Scale Cloak";
 		this.m.Description = "A cloak made out of the scales of a Lindwurm. Not only is it a rare and impressive trophy, it also offers additional protection and is untouchable by corroding Lindwurm blood.";
-		this.m.ArmorDescription = "A cloak made out of Lindwurm scales is worn over this armor for additional protection, including from the corrosive effects of Lindwurm blood.";
-		this.m.Icon = "armor_upgrades/upgrade_04.png";
-		this.m.IconLarge = this.m.Icon;
-		this.m.OverlayIcon = "armor_upgrades/icon_upgrade_04.png";
-		this.m.OverlayIconLarge = "armor_upgrades/inventory_upgrade_04.png";
-		this.m.SpriteFront = null;
-		this.m.SpriteBack = "upgrade_04_back";
-		this.m.SpriteDamagedFront = null;
-		this.m.SpriteDamagedBack = "upgrade_04_back_damaged";
-		this.m.SpriteCorpseFront = null;
-		this.m.SpriteCorpseBack = "upgrade_04_back_dead";
-
+		this.m.ArmorDescription = "Includes a cloak made out of Lindwurm scales.";
+		this.m.Variants = [1];
+		this.m.Variant = this.m.Variants[this.Math.rand(0, this.m.Variants.len() - 1)];
+		this.updateVariant();
+		this.m.ImpactSound = this.Const.Sound.ArmorChainmailImpact;
+		this.m.InventorySound = this.Const.Sound.ArmorChainmailImpact;
 		this.m.Value = 1800;
 		this.m.Condition = 25;
 		this.m.ConditionMax = 25;
 		this.m.StaminaModifier = -2;
 	}
+
+	function updateVariant()
+	{
+		local variant = this.m.Variant > 9 ? this.m.Variant : "0" + this.m.Variant;
+		this.m.SpriteBack = "cloak_lindwurm_" + variant + "";
+		this.m.SpriteDamagedBack = "cloak_lindwurm_" + variant + "_damaged";
+		this.m.SpriteCorpseBack = "cloak_lindwurm_" + variant + "_dead";
+		this.m.Icon = "legend_armor/icon_cloak_lindwurm_" + variant + ".png";
+		this.m.IconLarge = this.m.Icon;
+		this.m.OverlayIcon = "legend_armor/icon_cloak_lindwurm_" + variant + ".png";
+		this.m.OverlayIconLarge = "legend_armor/inventory_cloak_lindwurm_"  + variant + ".png";
+	}
+
 
 	function getTooltip()
 	{
@@ -67,9 +74,5 @@ this.legend_lindwurm_scales_cloak <- this.inherit("scripts/items/legend_armor/le
 		{
 			c.getActor().getFlags().remove("body_immune_to_acid");
 		}
-	}
-
-	function updateVariant()	// Needs to overwrite the base function which would otherwise overwrite Icon and Graphic of this Cloak
-	{
 	}
 });

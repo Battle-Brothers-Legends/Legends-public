@@ -5,15 +5,21 @@
 	{
 		create();
 		this.m.Variants = [1, 2, 3, 4, 5];
-		this.m.Variant = this.m.Variants[this.Math.rand(0, this.m.Variants.len() - 1)];
-		this.updateVariant();
+		this.setVariant(this.m.Variants[::Math.rand(0, this.m.Variants.len() - 1)]);
 	}
 
 	o.addSkill <- function( _skill )
 	{
 		if (_skill.getID() == ::Legends.Actives.getID(::Legends.Active.Slash))
-			_skill.m.IsGreatSlash = true;
+			_skill.m.IsGreatBreachSlash = true;
 
-		this.named_weapon.addSkill(_skill);
+		this.weapon.addSkill(_skill);
+	}
+
+	local onEquip = o.onEquip;
+	o.onEquip = function ()
+	{
+		onEquip();
+		::Legends.Actives.grant(this, ::Legends.Active.LegendIntoTheFray);
 	}
 });

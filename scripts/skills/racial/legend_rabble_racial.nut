@@ -23,7 +23,7 @@ this.legend_rabble_racial <- this.inherit("scripts/skills/skill", {
 		foreach( i in actors )
 		{
 
-			if (i.getType() == this.Const.EntityType.BanditThug || i.getType() == this.Const.EntityType.BanditPoacher || i.getType() == this.Const.EntityType.BanditMarksman || i.getType() == this.Const.EntityType.BanditRaider || i.getType() == this.Const.EntityType.BanditVeteran || i.getType() == this.Const.EntityType.BanditWarlord)
+			if (i.getType() == this.Const.EntityType.BanditThug || i.getType() == this.Const.EntityType.BanditPoacher || i.getType() == this.Const.EntityType.BanditMarksman || i.getType() == this.Const.EntityType.BanditRaider || i.getType() == this.Const.EntityType.BanditVeteran || i.getType() == this.Const.EntityType.LegendRobberBaron)
 			{
 				bandits += 1;
 

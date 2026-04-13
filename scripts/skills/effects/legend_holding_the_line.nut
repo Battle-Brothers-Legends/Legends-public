@@ -19,19 +19,19 @@ this.legend_holding_the_line <- this.inherit("scripts/skills/effects/legend_comm
 				id = 11,
 				type = "text",
 				icon = "ui/icons/melee_defense.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+10[/color] Melee Defense"
+				text = "[color=%positive%]+10[/color] Melee Defense"
 			},
 			{
 				id = 11,
 				type = "text",
 				icon = "ui/icons/ranged_defense.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+10[/color] Ranged Defense"
+				text = "[color=%positive%]+10[/color] Ranged Defense"
 			},
 			{
 				id = 11,
 				type = "text",
 				icon = "ui/icons/regular_damage.png",
-				text = "Receive only [color=" + this.Const.UI.Color.PositiveValue + "]90%[/color] of any damage"
+				text = "Receive only [color=%positive%]90%[/color] of any damage"
 			}
 		]);
 

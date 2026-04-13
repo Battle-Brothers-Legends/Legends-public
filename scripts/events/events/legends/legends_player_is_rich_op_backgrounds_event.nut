@@ -216,14 +216,14 @@ this.legends_player_is_rich_op_backgrounds_event <- this.inherit("scripts/events
 
 		foreach( bro in brothers )
 		{
-			if (bro.getSkills().hasTrait(::Legends.Trait.Player) && bro.getBackground().getID() != "background.legend_trader_commander")
+			if (bro.getSkills().hasTrait(::Legends.Trait.Player) && bro.getBackground().getID() != "background.legend_commander_trader")
 			{
 				continue;
 			}
 			switch (bro.getBackground().getID())
 			{
 
-				case "background.legend_trader_commander":
+				case "background.legend_commander_trader":
 					thetrader.push(bro);
 					break;
 				case "background.assassin":

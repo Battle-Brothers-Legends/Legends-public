@@ -53,6 +53,6 @@ TacticalCombatResultScreenDatasource.prototype.notifyBackendSortButtonClicked = 
 	var self = this;
 	SQ.call(this.mSQHandle, 'onSortButtonClicked', null, function(_data) {
 		// i have no clue how to trigger ui update from here, but this seems to work
-		self.swapItem(0, 'tactical-combat-result-screen.stash', 0, 'tactical-combat-result-screen.stash');
+		self.swapItem(0, 'tactical-combat-result-screen.stash', 0, 'tactical-combat-result-screen.stash', false);
 	});
 };

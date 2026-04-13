@@ -2,29 +2,12 @@ this.perk_legend_athlete <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		::Const.Perks.setup(this.m, ::Legends.Perk.LegendAthlete);
-		this.m.Type = this.Const.SkillType.Perk;
-		this.m.Order = this.Const.SkillOrder.Perk;
-		this.m.IsActive = false;
-		this.m.IsStacking = false;
-		this.m.IsHidden = false;
+		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendAthlete);
 	}
 
-	function onAdded()
+	function onUpdate(_properties)
 	{
-		if (!this.m.Container.hasActive(::Legends.Active.LegendClimb))
-		{
-			::Legends.Actives.grant(this, ::Legends.Active.LegendClimb);
-		}
-		if (!this.m.Container.hasActive(::Legends.Active.LegendSprint))
-		{
-			this.m.Container.add(this.new("scripts/skills/actives/legend_sprint_skill_5"));
-		}
-	}
-
-	function onRemoved()
-	{
-		::Legends.Actives.remove(this, ::Legends.Active.LegendClimb);
+		_properties.FatigueEffectMult *= 1.0 - 0.002 * this.getContainer().getActor().getFatigueMax();
 	}
 
 });

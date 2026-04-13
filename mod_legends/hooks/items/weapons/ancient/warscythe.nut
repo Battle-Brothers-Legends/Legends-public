@@ -21,4 +21,13 @@
 
 		weapon.addSkill(_skill);
 	}
+
+	local onEquip = o.onEquip;
+	o.onEquip = function ()
+	{
+		onEquip();
+		::Legends.Actives.grant(this, ::Legends.Active.Decapitate, function (_skill) {
+			_skill.m.IsScytheDecapitate = true;
+		}.bindenv(this));
+	}
 });

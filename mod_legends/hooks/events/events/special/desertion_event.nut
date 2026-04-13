@@ -8,7 +8,7 @@
 					Text = "{I can hardly force any of them to remain with the company... | Bad news, indeed. | A momentary setback. | I can not let something like this happen again. | This will impact the bottom line.}",
 					function getResult( _event )
 					{
-						if (this.World.Assets.getEconomicDifficulty() != this.Const.Difficulty.Hard || this.World.Assets.getEconomicDifficulty() != this.Const.Difficulty.Legendary)
+						if (this.World.Assets.getEconomicDifficulty() != this.Const.Difficulty.Hard && this.World.Assets.getEconomicDifficulty() != this.Const.Difficulty.Legendary)
 							_event.m.Deserter.getItems().transferToStash(this.World.Assets.getStash());
 
 						_event.m.Deserter.getSkills().onDeath(this.Const.FatalityType.None);

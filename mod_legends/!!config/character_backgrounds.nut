@@ -1,3 +1,53 @@
+::Legends.Backgrounds <- {};
+::Legends.Backgrounds.Tag <- {
+	Skeleton = "skeleton",
+	Zombie = "zombie"
+}
+::Legends.Backgrounds.BaseAttr <- {
+	Female = { // Female characters trade HP for Fatigue compared to male characters
+		Hitpoints = [-10, -10],
+		Stamina = [10, 10]
+	},
+	Default = {
+		Hitpoints = [60, 60],
+		Bravery = [40, 40],
+		Stamina = [100, 100],
+		MeleeSkill = [50, 50],
+		RangedSkill = [40, 40],
+		MeleeDefense = [0, 0],
+		RangedDefense = [0, 0],
+		Initiative = [100, 100]
+	},
+	Skeleton = {
+		Hitpoints = [50, 50],
+		Bravery = [100, 100],
+		Stamina = [40, 40],
+		MeleeSkill = [50, 50],
+		RangedSkill = [40, 40],
+		MeleeDefense = [3, 3],
+		RangedDefense = [5, 5],
+		Initiative = [95, 95]
+	},
+	Zombie = {
+		Hitpoints = [75, 75],
+		Bravery = [100, 100],
+		Stamina = [100, 100],
+		MeleeSkill = [40, 40],
+		RangedSkill = [20, 20],
+		MeleeDefense = [-5, -5],
+		RangedDefense = [-6, -6],
+		Initiative = [65, 65]
+	},
+
+	resolve = function (_tag) {
+		if (_tag == ::Legends.Backgrounds.Tag.Zombie)
+			return ::Legends.Backgrounds.BaseAttr.Zombie;
+		if (_tag == ::Legends.Backgrounds.Tag.Skeleton)
+			return ::Legends.Backgrounds.BaseAttr.Skeleton;
+		return ::Legends.Backgrounds.BaseAttr.Default;
+	},
+};
+
 ::Const.CharacterCombatBackgrounds <- [
 	"disowned_noble_background",
 	// "female_disowned_noble_background",
@@ -36,7 +86,7 @@
 ];
 ::Const.CharacterLegionBackgroundsHIGH <- [
 	"legend_legion_legionary_background",
-	"legend_legion_gladiator_background", 
+	"legend_legion_gladiator_background",
 	"legend_legion_honour_guard_background",
 	"legend_legion_centurion_background",
 	"legend_legion_prefect_background",

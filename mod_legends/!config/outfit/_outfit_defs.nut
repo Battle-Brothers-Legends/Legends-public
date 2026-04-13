@@ -6,9 +6,11 @@ if (!("LegendMod" in ::Const))
 ::Legends.Outfit <- {};
 
 ::Const.LegendMod.ArmorObjs <- [];
+::Const.LegendMod.Armors <- {};
 ::Legends.Armor <- {};
 ::Legends.Armor.None <- "";
 
 ::Const.LegendMod.HelmObjs <- [];
+::Const.LegendMod.Helmets <- {};
 ::Legends.Helmet <- {};
 ::Legends.Helmet.None <- "";

@@ -11,6 +11,7 @@
 	// Follows the [% chance, script|function] convention
 	o.m.OnDeathLootTable <- [];
 	o.m.HitInfo <- null;
+	o.m.IsOffhandFlipped <- false;
 
 	o.getGender <- function()
 	{
@@ -148,7 +149,7 @@
 		foreach(i, actor in otherActors) {
 			isAliedPtrs.push(actor.isAlliedWith);
 			actor.isAlliedWith = function(_other) {
-				if (this == null)
+				if (this == null || actor == null)
 					return false;
 				if (_other == null)
 					return false;
@@ -181,6 +182,12 @@
 	{
 		local item = this.getMainhandItem();
 		return item != null && item.isWeaponType(this.Const.Items.WeaponType.MagicStaff);
+	}
+
+	o.isArmedWithPoleWeapon <- function ()
+	{
+		local item = this.m.Items.getItemAtSlot(this.Const.ItemSlot.Mainhand);
+		return item != null && item.isItemType(this.Const.Items.ItemType.MeleeWeapon) && item.m.RangeMax > 1;
 	}
 
 	o.equipItem <- function( _item)
@@ -285,19 +292,43 @@
 		{
 			local skill = this.m.Skills.getAttackOfOpportunity();
 
-			if (skill != null)
-			{
+			if (skill != null) {
 				local info = {
 					User = this,
 					Skill = skill,
 					TargetTile = _attacker.getTile()
 				};
 				this.Time.scheduleEvent(this.TimeUnit.Virtual, ::Const.Combat.RiposteDelay * _delayMultiplier, this.onRiposte.bindenv(this), info);
+
+				if (::Legends.Perks.has(this, ::Legends.Perk.SpecSword)
+					&& ::Legends.Weapons.isDualWieldingWeaponType(this, ::Const.Items.WeaponType.Sword))
+				{
+					local oh = this.getItems().getItemAtSlot(::Const.ItemSlot.Offhand);
+					if (oh != null) {
+						local ohSkill = ::Legends.Weapons.findPrimaryAttackSkill(this, oh);
+						if (ohSkill != null) {
+							local ohInfo = {
+								User = this,
+								Skill = ohSkill,
+								TargetTile = _attacker.getTile()
+							};
+							this.Time.scheduleEvent(this.TimeUnit.Virtual, ::Const.Combat.RiposteDelay * _delayMultiplier, this.onOffhandRiposte.bindenv(this), ohInfo);
+						}
+					}
+				}
 			}
 
 			this.getFlags().set("PerformedRiposte", true);
 		}
 	}
+	
+	o.onOffhandRiposte <- function (_info) {
+		if (!_info.User.isAlive()) {
+			return;
+		}
+		_info.Skill.useForFree(_info.TargetTile);
+	}
+
 
 	o.resetPerks <- function ()
 	{
@@ -441,6 +472,73 @@
 			getSprite("permanent_injury_burned").Visible = !_appearance.HideHead;
 
 		onAppearanceChanged(_appearance, _setDirty);
+
+		if (this.hasSprite("armor_upgrade_back_top"))
+		{
+			local pauldronBackTop = this.getSprite("armor_upgrade_back_top");
+			if (_appearance.ArmorUpgradeFront.len() != 0) { // if has front-back upgrade - draw back upgrade over cloak and hide the regular upgrade
+				pauldronBackTop.setBrush(_appearance.ArmorUpgradeBack);
+				pauldronBackTop.Visible = true;
+				this.getSprite("armor_upgrade_back").Visible = false;
+			}
+			else {
+				pauldronBackTop.Visible = false;
+			}
+		}
+
+		// Flip the offhand weapon sprite when dual wielding
+		if (hasSprite("shield_icon") && _appearance.Shield.len() != 0) 
+		{
+			if (::Legends.Weapons.isDualWielding(this)) 
+			{
+				this.setAlwaysApplySpriteOffset(true);
+				local flip = !this.isAlliedWithPlayer();
+				local oh = this.getItems().getItemAtSlot(::Const.ItemSlot.Offhand);
+				local ohSprite = getSprite("shield_icon");
+				ohSprite.setHorizontalFlipping(!flip);
+				if (oh != null && oh.isItemType(this.Const.Items.ItemType.TwoHanded)) 
+				{
+					// WIP, not sure if dual-wielding two handed weapons will stay
+					ohSprite.Scale = 0.80;
+					setSpriteOffset("shield_icon", this.createVec(flip ? -10 : 10, 0));
+				} 
+				else 
+				{
+					ohSprite.Scale = 1.0;
+					setSpriteOffset("shield_icon", this.createVec(flip ? -40 : 40, 0));
+				}
+				this.m.IsOffhandFlipped = true;
+			} 
+			else if (this.m.IsOffhandFlipped) //We only want to reset sprite position when it's actually needed
+			{
+				this.m.IsOffhandFlipped = false;
+				local ohSprite = getSprite("shield_icon");
+				ohSprite.setHorizontalFlipping(!this.isAlliedWithPlayer());
+				ohSprite.Scale = 1.0;
+				this.setAlwaysApplySpriteOffset(false);
+				setSpriteOffset("shield_icon", this.createVec(0, 0));
+			}
+		}
+	}
+
+	local onFactionChanged = o.onFactionChanged;
+	o.onFactionChanged = function () {
+		onFactionChanged();
+		if (hasSprite("shield_icon") && ::Legends.Weapons.isDualWielding(this)) {
+			this.setAlwaysApplySpriteOffset(true);
+			local flip = !this.isAlliedWithPlayer();
+			local oh = this.getItems().getItemAtSlot(::Const.ItemSlot.Offhand);
+			local ohSprite = getSprite("shield_icon");
+			ohSprite.setHorizontalFlipping(!flip);
+			if (oh != null && oh.isItemType(this.Const.Items.ItemType.TwoHanded)) {
+				// WIP, not sure if dual-wielding two handed weapons will stay
+				ohSprite.Scale = 0.80;
+				setSpriteOffset("shield_icon", this.createVec(flip ? -10 : 10, 0));
+			} else {
+				ohSprite.Scale = 1.0;
+				setSpriteOffset("shield_icon", this.createVec(flip ? -40 : 40, 0));
+			}
+		}
 	}
 
 	local setHitpoints = o.setHitpoints;
@@ -534,9 +632,9 @@
 	local onDamageReceived = o.onDamageReceived;
 	o.onDamageReceived = function( _attacker, _skill, _hitInfo )
 	{
+		this.m.HitInfo <- _hitInfo; // live reference hitinfo so the correct value is retrieved when vanilla onDamageReceived calls kill
 		_hitInfo.BodyDamageMultBeforeSteelBrow = _hitInfo.BodyDamageMult;
 		local ret = onDamageReceived(_attacker, _skill, _hitInfo);
-		this.m.HitInfo = _hitInfo; // save hitInfo for later use
 		return ret;
 	}
 
@@ -546,6 +644,7 @@
 			return getLootForTile(_killer, _loot);
 
 		foreach (entry in this.m.OnDeathLootTable) {
+			if (entry == null) continue;
 			if (entry[0] == 0) { // no division by zero!
 				::logError("division by zero, skipping " + entry[1]);
 				continue;
@@ -595,7 +694,7 @@
 	o.kill = function (_killer = null, _skill = null, _fatalityType = this.Const.FatalityType.None, _silent = false) {
 		if (!this.isHiddenToPlayer() && this.m.HitInfo)
 			this.Tactical.EventLog.logEx(this.Const.UI.getColorizedEntityName(this) + "\'s " + this.Const.Strings.BodyPartName[this.m.HitInfo.BodyPart] + " is hit for [b]" + this.Math.floor(this.m.HitInfo.DamageInflictedHitpoints) + "[/b] damage");
-		
+
 		this.m.HitInfo = null; // yeet hit info that was saved earlier
 		if (this.getFlags().has("tail")) // ignore killer when is tail
 			kill(null, _skill, _fatalityType, _silent);
@@ -609,47 +708,5 @@
 			onDeath(null, _skill, _tile, _fatalityType);
 		else
 			onDeath(_killer, _skill, _tile, _fatalityType);
-
-
-		// Drops net if net flags are met. It should be used in dropLoot to free space here
-		if (this.getFlags().get("DropNet")){
-			local net;
-
-			if (this.getFlags().get("IsReinforcedNet"))
-				net = this.new("scripts/items/tools/reinforced_throwing_net");
-			else
-				net = this.new("scripts/items/tools/throwing_net");
-
-			if (!this.getFlags().get("IsByNetCasting")){
-				net.m.Ammo = 0;
-				net.updateAmmo();
-			}
-
-			if (net != null){
-				if (net.drop(this.getTile())) {// drops the net on the tile
-					::Tactical.Entities.addNetTiles(this.getTile());
-				}
-			}
-
-			this.getFlags().remove("DropNet");
-   			this.getFlags().remove("IsReinforcedNet");
-    		this.getFlags().remove("IsByNetCasting");
-		}
-	}
-
-	// todo same as vanilla, i've added it because vanilla line numbers are off, trying to catch turn_sequence_bar bug - chopeks
-	o.updateVisibilityForFaction = function()
-	{
-		if (!this.isAlive())
-			return;
-
-		if (this.m.CurrentProperties == null)
-			::logInfo("wtf, this.m.CurrentProperties == null?");
-
-		this.updateVisibility(this.getTile(), this.m.CurrentProperties.getVision(), this.getFaction());
-
-		if (this.getFaction() == this.Const.Faction.PlayerAnimals) {
-			this.updateVisibility(this.getTile(), this.m.CurrentProperties.getVision(), this.Const.Faction.Player);
-		}
 	}
 });

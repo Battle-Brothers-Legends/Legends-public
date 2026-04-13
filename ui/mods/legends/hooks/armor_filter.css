@@ -1,0 +1,102 @@
+.character-screen-container .inventory-list-module .filter-panel .armor-filter-panel
+{
+	top 				: 4.1rem;
+	left 				: 15.0rem;
+	width 				: 26.0rem;
+	height 				: 21.0rem;
+	position 			: absolute;
+	background-image 	: url("coui://gfx/ui/skin/tooltip_255_bottom.png");
+	background-size 	: 100% 30.0rem;
+	background-repeat	: no-repeat;
+}
+
+.character-screen-container .inventory-list-module .filter-panel .armor-filter-panel .filter-column
+{
+	width				: 50%;
+	height 				: 21.0rem;
+	float				: left;
+	position 			: relative;
+}
+
+.character-screen-container .inventory-list-module .filter-panel .armor-filter-panel .row
+{
+	width				: 10.0rem;
+	padding-top 		: 0.5rem;
+	padding-left 		: 1.0rem;
+	float				: left;
+	position			: relative;
+}
+
+.character-screen-container .inventory-list-module .filter-panel .armor-filter-panel .row .title
+{
+	width 				: 10.0rem;
+	height 				: 2.0rem;
+	margin-bottom 		: 0.5rem;
+	line-height 		: 2.0rem;
+	float				: left;
+	border-image		: url("coui://gfx/ui/skin/line_metal.png") 0% 0% 100% 0%;
+	border-image-outset : 0 0 0.5rem 0;
+}
+
+.character-screen-container .inventory-list-module .filter-panel .armor-filter-panel .row .control
+{
+	float 				: left;
+	clear 				: left;
+	position 			: relative;
+	margin-left 		: 1.0rem;
+}
+
+.character-screen-container .inventory-list-module .filter-panel .armor-filter-panel .row .control label
+{
+	top 				: 0;
+	bottom 				: 0;
+	height 				: 2.0rem;
+	position 			: absolute;
+	margin 				: auto;
+	margin-left 		: 1.4rem;
+	white-space 		: nowrap;
+	line-height 		: 2.0rem;
+}
+
+
+.character-screen-container .inventory-list-module .filter-panel .armor-filter-panel .flexbox-button-row
+{
+	right 				: 0;
+	bottom 				: 0;
+    width 				: 70%;
+    height 				: 3.0rem;
+    margin-right 		: 0.5rem;
+    margin-bottom 		: 0.3rem;
+    display 			: flex;
+    justify-content 	: flex-end;
+    position 			: absolute;
+}
+
+.character-screen-container .inventory-list-module .filter-panel .armor-filter-panel .flex-image-button
+{
+	width 				: 3.0rem;
+	height 				: 100%;
+	margin-left 		: 0.4rem;
+	line-height 		: 3.0rem;
+	text-align 			: center;
+	flex 				: 0 0 auto;
+
+	border 				: 1px solid black;
+}
+
+.character-screen-container .inventory-list-module .filter-panel .armor-filter-panel .flex-image-button img
+{
+    width 				: 100%;
+    height 				: 100%;
+}
+
+.character-screen-container .inventory-list-module .filter-panel .armor-filter-panel .flex-select-all-button
+{
+	width 				: 4.0rem;
+	height 				: 100%;
+	line-height 		: 3.0rem;
+	text-align 			: center;
+	flex 				: 0 0 auto;
+
+	border 				: 1px solid black;
+}

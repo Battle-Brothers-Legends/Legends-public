@@ -16,6 +16,7 @@
 					_event.m.Uneducated.getBackground().m.RawDescription += " " + _event.m.Cultist.getName() + " helped " + _event.m.Uneducated.getName() + " see the darkness.";
 					_event.m.Uneducated.getBackground().buildDescription(true);
 					_event.m.Uneducated.getBaseProperties().DailyWage -= _event.m.Uneducated.getDailyCost() / 2;
+					_event.m.Uneducated.getBaseProperties().MeleeSkill += 10;
 					_event.m.Uneducated.getSkills().update();
 
 					this.List = [{
@@ -25,7 +26,6 @@
 					}];
 
 					_event.m.Cultist.getBaseProperties().Bravery += 2;
-					_event.m.Uneducated.getBaseProperties().MeleeSkill += 10;
 					_event.m.Cultist.getSkills().update();
 					this.List.push({
 						id = 16,

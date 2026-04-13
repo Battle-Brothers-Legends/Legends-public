@@ -81,28 +81,28 @@ this.legend_master_archer_background <- this.inherit("scripts/skills/backgrounds
 
 		this.m.PerkTreeDynamic = {
 			Weapon = [
-				this.Const.Perks.BowTree,
-				this.Const.Perks.CrossbowTree,
-				this.Const.Perks.SwordTree,
-				this.Const.Perks.ThrowingTree
+				::Const.Perks.BowTree,
+				::Const.Perks.CrossbowTree,
+				::Const.Perks.SwordTree,
+				::Const.Perks.ThrowingTree
 			],
 			Defense = [
-				this.Const.Perks.LightArmorTree
+				::Const.Perks.LightArmorTree
 			],
 			Traits = [
-				this.Const.Perks.AgileTree,
-				this.Const.Perks.FastTree,
-				this.Const.Perks.ViciousTree,
-				this.Const.Perks.FitTree,
-				this.Const.Perks.DeviousTree
+				::Const.Perks.AgileTree,
+				::Const.Perks.FastTree,
+				::Const.Perks.ViciousTree,
+				::Const.Perks.FitTree,
+				::Const.Perks.DeviousTree
 			],
 			Enemy = [
-				this.Const.Perks.ArcherTree
+
 			],
 			Class = [],
 			Profession = [],
 			Magic = [
-				this.Const.Perks.RangerHuntMagicTree
+				::Const.Perks.RangerHuntMagicTree
 			]
 		}
 	}
@@ -117,8 +117,8 @@ this.legend_master_archer_background <- this.inherit("scripts/skills/backgrounds
 		this.m.Hairs = this.Const.Hair.AllFemale;
 		this.m.HairColors = this.Const.HairColors.All;
 		this.m.Beards = null;
-		this.m.BeardChance = 1;
-		this.m.Bodies = this.Const.Bodies.AllFemale;
+		this.m.BeardChance = 0;
+		this.m.Bodies = this.Const.Bodies.NorthernFemale;
 		this.addBackgroundType(this.Const.BackgroundType.Female);
 	}
 
@@ -168,7 +168,9 @@ this.legend_master_archer_background <- this.inherit("scripts/skills/backgrounds
 
 	function onAddEquipment()
 	{
-		local items = this.getContainer().getActor().getItems();
+		local actor = this.getContainer().getActor();
+		actor.setVeteranPerks(3);
+		local items = actor.getItems();
 		local r;
 		items.equip(this.new("scripts/items/weapons/war_bow"));
 		items.equip(this.new("scripts/items/ammo/quiver_of_arrows"));

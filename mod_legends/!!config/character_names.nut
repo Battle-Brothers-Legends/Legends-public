@@ -1,7 +1,15 @@
 ::Const.Strings.AncientSouthernNames <- ["Aahotepre","Achillas","Addaya","Agathocies","Ebana","Ahmose","Amenmose","Amenemhat","Ankhkherednefer","Ankhmakis","Ankherfenedjef","Ankhreshet","Amenemhatankh","Ahmose","Sapair","Amenemhat","Amenemopet","Amenhotep","Amunherkhepeshef","Ankhhaf","Meritamon","Nebetta","Tumerisy","Henutemipet","Sitamun","Tasherit","Anen","Pairy","Huy","Aperei","Amethu","Bay Irsu","Bakenkhonsu","Baqet","Babaef","Bebi","Bakenrenef","Charmian","Duaenre","Djau","Dagi","Djaty","Djedefhor","Djedi","Duaenhor","Djediufankh","Dedi","Djehuty","Gemenefkhonsbak","Harkhebi","Harwa","Hui","Hannu","Herihor","Harkhuf","Hapuseneb","Haremakhet","Harsiese","Hori","Hsekiu","Horbaef","Hornakht","Hakor","Hunefer","Hepu","Hewernef","Ineni","Intef","Isesi","Iuput","Ini Menkhepere","Inkaef","Isu","Itisen","Iunre","Iynefer","Ibiaw","Ibi","Iunmin","Iuty","Iymeru","Kaaper","Kagemni","Khabash","Khabekhnet","Mentuherkhopshef","Mentuhotep","Menna","Merneptah","Minmose","Nahkt","Nakhtmin","Nakhtpaaten",];
 
 ::Const.Strings.EmbalmedNobleNames <- ::Const.Strings.AncientSouthernNames;
-::Const.Strings.EmbalmedNobleNames.push("Von Krolock");
+
+::Const.Strings.GhostArmorNames <- [
+	"Alleberg",
+	"Momon",
+	"Sleepy Hollow",
+	"Kopfloser Reiter",
+	"Gespenster",
+	"Glen of Mull"
+];
 
 ::Const.Strings.DesertStalkerChampionTitles <- [
 	"the Scorpion",
@@ -22,6 +30,28 @@
 	"the Serpent",
 	"the Stinger",
 	"the Heartseeker"
+];
+
+::Const.Strings.NobleGreatswordTitles <- [
+	"the Greatsword",
+	"the Zweihander",
+	"the Blade",
+	"the Longblade",
+	"the Slayer",
+	"the Vanquisher",
+	"the Beheader",
+	"the Executioner",
+	"the Defender",
+	"the Orcslayer",
+	"the Honor",
+	"the Claymore",
+	"the Thug\'s Bane",
+	"the Long Reach",
+	"the Splitter",
+	"the Warsword",
+	"the Bidenhander",
+	"the Gassenhauer",
+	"the Landsknecht"
 ];
 
 ::Const.Strings.NoblewomanTitles <- [
@@ -389,6 +419,7 @@
 	"Findscop",
 	"Maelmuire",
 	"Lonceta",
+	"Vigga"
 ];
 ::Const.Strings.InventorTitles <- [
 	"the Inventor",

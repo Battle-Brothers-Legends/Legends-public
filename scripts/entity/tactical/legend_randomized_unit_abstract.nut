@@ -120,7 +120,7 @@ this.legend_randomized_unit_abstract <- this.inherit("scripts/entity/tactical/hu
 			if ( row.len() != 0 && _purchaseLimit >= row.len() && this.m.PerkPower >= row.len() ) {
 				foreach (perkDefNum in row) //Purchases every perk in the row, if there are multiple
 				{
-					local fullDef = clone this.Const.Perks.PerkDefObjects[perkDefNum];
+					local fullDef = clone ::Const.Perks.PerkDefObjects[perkDefNum];
 					local toAdd = this.new(fullDef.Script);
 					if (!this.m.Skills.hasSkill(toAdd.getID()))
 					{

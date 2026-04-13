@@ -2,6 +2,13 @@
 {
 	o.m.IsChain <- false;
 
+	local create = o.create;
+	o.create = function()
+	{
+		create();
+		this.m.HitChanceBonus = -15;
+	}
+
 	o.setItem <- function (_item)
 	{
 		if (this.m.IsChain)
@@ -26,7 +33,7 @@
 			{
 				if (tooltip.id == 8)
 				{
-					tooltip.text = "Has a [color=" + this.Const.UI.Color.PositiveValue + "]" + this.m.StunChance + "%[/color] chance to daze on a hit"
+					tooltip.text = "Has a [color=%positive%]" + this.m.StunChance + "%[/color] chance to daze on a hit"
 				}
 			}
 		}
@@ -38,7 +45,7 @@
 		local ret = false;
 		local ownTile = this.m.Container.getActor().getTile();
 		local soundBackup = [];
-		local skillToApply = this.m.IsChain ? "dazed_effect" : "stunned_effect";
+		local skillToApply = this.m.IsChain ? ::Legends.Effect.Dazed : ::Legends.Effect.Stunned;
 		this.spawnAttackEffect(ownTile, this.Const.Tactical.AttackEffectThresh);
 
 		for( local i = 0; i != 6; i = ++i )
@@ -63,22 +70,13 @@
 
 					if (_user.isAlive() && !_user.isDying())
 					{
-						if (this.m.IsChain && success && tile.IsOccupiedByActor && this.Math.rand(1, 100) <= this.m.StunChance && !tile.getEntity().getCurrentProperties().IsImmuneToBleeding && !tile.getEntity().getSkills().hasEffect(::Legends.Effect.Dazed))
+						if (success && tile.IsOccupiedByActor && this.Math.rand(1, 100) <= this.m.StunChance && !tile.getEntity().getCurrentProperties().IsImmuneToBleeding && !tile.getEntity().getSkills().hasEffect(skillToApply))
 						{
-							::Legends.Effects.grant(tile.getEntity(), ::Legends.Effect.Dazed);
+							local effect = ::Legends.Effects.grant(tile.getEntity(), ::Legends.Effect.Dazed);
 
 							if (!_user.isHiddenToPlayer() && tile.IsVisibleForPlayer)
 							{
-								this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(_user) + " has grazed " + this.Const.UI.getColorizedEntityName(tile.getEntity()));
-							}
-						}
-						else if (success && tile.IsOccupiedByActor && this.Math.rand(1, 100) <= this.m.StunChance && !tile.getEntity().getCurrentProperties().IsImmuneToStun && !tile.getEntity().getSkills().hasEffect(::Legends.Effect.Stunned))
-						{
-							::Legends.Effects.grant(tile.getEntity(), ::Legends.Effect.Stunned);
-
-							if (!_user.isHiddenToPlayer() && tile.IsVisibleForPlayer)
-							{
-								this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(_user) + " has stunned " + this.Const.UI.getColorizedEntityName(tile.getEntity()) + " for one turn");
+								this.Tactical.EventLog.log(effect.getLogEntryOnAdded(this.Const.UI.getColorizedEntityName(_user), this.Const.UI.getColorizedEntityName(_targetTile.getEntity())));
 							}
 						}
 					}

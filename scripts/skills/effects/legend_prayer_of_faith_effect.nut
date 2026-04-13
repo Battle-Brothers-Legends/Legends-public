@@ -41,7 +41,7 @@ this.legend_prayer_of_faith_effect <- this.inherit("scripts/skills/skill", {
 				id = 10,
 				type = "text",
 				icon = "ui/icons/health.png",
-				text = "Melee and Ranged Defense increased by [color=" + this.Const.UI.Color.PositiveValue + "]+" + bonus + "[/color]"
+				text = "Melee and Ranged Defense increased by [color=%positive%]+" + bonus + "[/color]"
 			}
 		];
 	}

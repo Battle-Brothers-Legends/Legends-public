@@ -4,12 +4,8 @@ this.perk_legend_specialist_shield_skill <- this.inherit("scripts/skills/skill",
 		},
 	function create()
 	{
-		::Const.Perks.setup(this.m, ::Legends.Perk.LegendSpecialistShieldSkill);
+		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendSpecialistShieldSkill);
 		this.m.Type = this.Const.SkillType.Perk | this.Const.SkillType.StatusEffect;
-		this.m.Order = this.Const.SkillOrder.Perk;
-		this.m.IsActive = false;
-		this.m.IsStacking = false;
-		this.m.IsHidden = false;
 	}
 
 	function isHidden()
@@ -32,13 +28,13 @@ this.perk_legend_specialist_shield_skill <- this.inherit("scripts/skills/skill",
 					id = 3,
 					type = "text",
 					icon = "ui/icons/special.png",
-					text = "[color=" + this.Const.UI.Color.PositiveValue + "]"+ this.m.TurnsLeft + "[/color] instances of auto shieldwall on turn end left"
+					text = "[color=%positive%]"+ this.m.TurnsLeft + "[/color] instances of auto shieldwall on turn end left"
 		});
 		ret.push({
 					id = 4,
 					type = "text",
 					icon = "ui/icons/special.png",
-					text = "[color=" + this.Const.UI.Color.PositiveValue + "]+10%[/color] damage reduction while using a shield"
+					text = "[color=%positive%]+10%[/color] damage reduction while using a shield"
 		});
 		return ret;
 	}

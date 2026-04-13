@@ -7,22 +7,28 @@ this.legend_serpent_skin_cloak <- this.inherit("scripts/items/legend_armor/legen
 		this.m.Type = this.Const.Items.ArmorUpgrades.Cloak;
 		this.m.Name = "Serpent Skin Mantle";
 		this.m.Description = "A mantle crafted from the thin and shimmering scales of desert serpents, especially resistant to heat and flames.";
-		this.m.ArmorDescription = "A mantle of serpent skin has been attached to this armor, which makes it more resistant to heat and flames.";
-		this.m.Icon = "armor_upgrades/upgrade_27.png";
-		this.m.IconLarge = this.m.Icon;
-		this.m.OverlayIcon = "armor_upgrades/icon_upgrade_27.png";
-		this.m.OverlayIconLarge = "armor_upgrades/inventory_upgrade_27.png";
-		this.m.SpriteFront = null;
-		this.m.SpriteBack = "upgrade_27_back";
-		this.m.SpriteDamagedFront = null;
-		this.m.SpriteDamagedBack = "upgrade_27_back_damaged";
-		this.m.SpriteCorpseFront = null;
-		this.m.SpriteCorpseBack = "upgrade_27_back_dead";
-
+		this.m.ArmorDescription = "Includes a mantle of serpent skin.";
+		this.m.Variants = [1];
+		this.m.Variant = this.m.Variants[this.Math.rand(0, this.m.Variants.len() - 1)];
+		this.updateVariant();
+		this.m.ImpactSound = this.Const.Sound.ArmorChainmailImpact;
+		this.m.InventorySound = this.Const.Sound.ArmorChainmailImpact;
 		this.m.Value = 800;
 		this.m.Condition = 25;
 		this.m.ConditionMax = 25;
 		this.m.StaminaModifier = -2;
+	}
+
+	function updateVariant()
+	{
+		local variant = this.m.Variant > 9 ? this.m.Variant : "0" + this.m.Variant;
+		this.m.SpriteBack = "cloak_serpent_" + variant + "";
+		this.m.SpriteDamagedBack = "cloak_serpent_" + variant + "_damaged";
+		this.m.SpriteCorpseBack = "cloak_serpent_" + variant + "_dead";
+		this.m.Icon = "legend_armor/icon_cloak_serpent_" + variant + ".png";
+		this.m.IconLarge = this.m.Icon;
+		this.m.OverlayIcon = "legend_armor/icon_cloak_serpent_" + variant + ".png";
+		this.m.OverlayIconLarge = "legend_armor/inventory_cloak_serpent_"  + variant + ".png";
 	}
 
 	function getTooltip()
@@ -32,7 +38,7 @@ this.legend_serpent_skin_cloak <- this.inherit("scripts/items/legend_armor/legen
 			id = 15,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "Reduces damage from fire and firearms by [color=" + this.Const.UI.Color.NegativeValue + "]-33%[/color]"
+			text = "Reduces damage from fire and firearms by [color=%negative%]-33%[/color]"
 		});
 		return result;
 	}
@@ -43,7 +49,7 @@ this.legend_serpent_skin_cloak <- this.inherit("scripts/items/legend_armor/legen
 			id = 6,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "Reduces damage from fire and firearms by [color=" + this.Const.UI.Color.NegativeValue + "]-33%[/color]"
+			text = "Reduces damage from fire and firearms by [color=%negative%]-33%[/color]"
 		});
 	}
 
@@ -68,9 +74,4 @@ this.legend_serpent_skin_cloak <- this.inherit("scripts/items/legend_armor/legen
 			c.getActor().getSkills().removeByID("items.firearms_resistance");
 		}
 	}
-
-	function updateVariant()	// Needs to overwrite the base function which would otherwise overwrite Icon and Graphic of this Cloak
-	{
-	}
 });
-

@@ -56,7 +56,7 @@ this.legend_magic_soothing_wind_skill <- this.inherit("scripts/skills/actives/le
 			{
 				id = 4,
 				type = "text",
-				text = "Restores [color=" + this.Const.UI.Color.PositiveValue + "]" + this.getRestoreAmount() + "[/color] fatigue. Restore amount is based on resolve."
+				text = "Restores [color=%positive%]" + this.getRestoreAmount() + "[/color] fatigue. Restore amount is based on resolve."
 			}
 		];
 		return ret;

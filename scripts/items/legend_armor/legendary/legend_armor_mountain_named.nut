@@ -3,20 +3,11 @@ this.legend_armor_mountain_named <- this.inherit("scripts/items/legend_armor/leg
 	function create()
 	{
 		this.legend_named_armor_upgrade.create();
-		this.m.Type = this.Const.Items.ArmorUpgrades.Plate;
 		this.m.ID = "legend_armor.body.legend_mountain_armor_named";
+		this.m.Type = this.Const.Items.ArmorUpgrades.Plate;
 		this.m.Name = "";
-		this.m.NameList = [
-			"Titan Coat",
-			"Mountain Hide",
-			"Giant\'s Coat",
-			"Earthquake Harness",
-			"Landslide Coat",
-			"Boulder Plates",
-			"Coat of the Mountain"
-		];
-		this.m.Description = "Armor crafted from the skin and bones of a mighty rock unhold, the beast may be dead, but it continues to mend itself even after death.";
-		this.m.ArmorDescription = "Has a mighty rock unhold plate.";
+		this.m.Description = "An armor crafted from the skin and bones of a mighty rock unhold. It continues to mend itself even after the beast's death.";
+		this.m.ArmorDescription = "Includes a mighty rock unhold plate.";
 		this.m.Variants = [1, 2];
 		this.m.Variant = 1;
 		this.updateVariant();
@@ -26,6 +17,19 @@ this.legend_armor_mountain_named <- this.inherit("scripts/items/legend_armor/leg
 		this.m.ItemType = this.m.ItemType | this.Const.Items.ItemType.Legendary;
 		this.randomizeValues();
 		this.resetStats();
+		this.m.NameList = ["Titan Coat","Mountain Hide","Giant\'s Coat","Earthquake Harness","Landslide Coat","Boulder Plates","Coat of the Mountain"];
+	}
+
+	function updateVariant()
+	{
+		local variant = this.m.Variant > 9 ? this.m.Variant : "0" + this.m.Variant;
+		this.m.SpriteBack = "mountain_armor_" + variant + "";
+		this.m.SpriteDamagedBack = "mountain_armor_" + variant + "_damaged";
+		this.m.SpriteCorpseBack = "mountain_armor_" + variant + "_dead";
+		this.m.Icon = "legend_armor/icon_mountain_armor_" + variant + ".png";
+		this.m.IconLarge = this.m.Icon;
+		this.m.OverlayIcon = "legend_armor/icon_mountain_armor_" + variant + ".png";
+		this.m.OverlayIconLarge = "legend_armor/inventory_mountain_armor_"  + variant + ".png";
 	}
 
 	function resetStats() {
@@ -40,7 +44,7 @@ this.legend_armor_mountain_named <- this.inherit("scripts/items/legend_armor/leg
 			id = 6,
 			type = "text",
 			icon = "ui/icons/health.png",
-			text = "Repairs [color=" + this.Const.UI.Color.PositiveValue + "]10%[/color] of its armor each turn"
+			text = "Repairs [color=%positive%]10%[/color] of its armor each turn"
 		});
 	}
 
@@ -51,7 +55,7 @@ this.legend_armor_mountain_named <- this.inherit("scripts/items/legend_armor/leg
 			id = 6,
 			type = "text",
 			icon = "ui/icons/health.png",
-			text = "Repairs [color=" + this.Const.UI.Color.PositiveValue + "]10%[/color] of its armor each turn"
+			text = "Repairs [color=%positive%]10%[/color] of its armor each turn"
 		});
 		return result;
 	}
@@ -84,18 +88,6 @@ this.legend_armor_mountain_named <- this.inherit("scripts/items/legend_armor/leg
 			this.Sound.play("sounds/enemies/unhold_regenerate_01.wav", this.Const.Sound.Volume.RacialEffect * 1.25, actor.getPos());
 			this.Tactical.EventLog.log(this.Const.UI.getColorized(this.m.Name, "#1e468f") + " heals for " + bodyAdded + " points");
 		}
-	}
-
-	function updateVariant()
-	{
-		local variant = this.m.Variant > 9 ? this.m.Variant : "0" + this.m.Variant;
-		this.m.SpriteBack = "bust_mountain_armor" + "_" + variant;
-		this.m.SpriteDamagedBack = "bust_mountain_armor" + "_" + variant + "_damaged";
-		this.m.SpriteCorpseBack = "bust_mountain_armor" + "_" + variant + "_dead";
-		this.m.Icon = "legend_armor/icon_mountain_armor" + "_" + variant + ".png";
-		this.m.IconLarge = this.m.Icon;
-		this.m.OverlayIcon = "legend_armor/icon_mountain_armor" + "_" + variant + ".png";
-		this.m.OverlayIconLarge = "legend_armor/inventory_mountain_armor" + "_" + variant + ".png";
 	}
 });
 

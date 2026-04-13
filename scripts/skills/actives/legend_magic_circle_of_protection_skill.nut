@@ -55,7 +55,7 @@ this.legend_magic_circle_of_protection_skill <- this.inherit("scripts/skills/act
 			id = 7,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "All allies currently within range [color=" + this.Const.UI.Color.PositiveValue + "]" + this.m.Range + "[/color] gain [color=" + this.Const.UI.Color.PositiveValue + "]" + this.getDefBonus() + "[/color] melee/ranged defense and [color=" + this.Const.UI.Color.PositiveValue + "]" + this.getResolveBonus() + "[/color] resolve for 2 turns or until they leave the circle."
+			text = "All allies currently within range [color=%positive%]" + this.m.Range + "[/color] gain [color=%positive%]" + this.getDefBonus() + "[/color] melee/ranged defense and [color=%positive%]" + this.getResolveBonus() + "[/color] resolve for 2 turns or until they leave the circle."
 		});
 		return ret;
 	}

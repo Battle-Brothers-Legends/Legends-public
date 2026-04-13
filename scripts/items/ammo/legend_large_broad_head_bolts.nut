@@ -5,7 +5,7 @@ this.legend_large_broad_head_bolts <- this.inherit("scripts/items/ammo/ammo", {
 		this.ammo.create();
 		this.m.ID = "ammo.bolts";
 		this.m.Name = "Large Quiver of Broad Head Bolts";
-		this.m.Description = "A large quiver of bolts with broad tips, designed for tearing flesh, but easily stopped by armor. Is automatically refilled after each battle if you have enough global ammunition. Grants +10% damage but -10% armor piercing damage while wielding a crossbow.";
+		this.m.Description = "A large quiver of bolts with broad tips, designed for tearing flesh, but easily stopped by armor. Is automatically refilled after each battle if you have enough global ammunition. Grants 10% more damage, but 10% less armor piercing damage while wielding a crossbow.";
 		this.m.Icon = "ammo/quiver_04_light.png";
 		this.m.IconEmpty = "ammo/quiver_04_empty.png";
 		this.m.SlotType = this.Const.ItemSlot.Ammo;
@@ -67,7 +67,7 @@ this.legend_large_broad_head_bolts <- this.inherit("scripts/items/ammo/ammo", {
 				id = 6,
 				type = "text",
 				icon = "ui/icons/ranged_skill.png",
-				text = "Contains [color=" + this.Const.UI.Color.PositiveValue + "]" + this.m.Ammo + "[/color] bolts"
+				text = "Contains [color=%positive%]" + this.m.Ammo + "[/color] bolts"
 			});
 		}
 		else
@@ -76,7 +76,7 @@ this.legend_large_broad_head_bolts <- this.inherit("scripts/items/ammo/ammo", {
 				id = 6,
 				type = "text",
 				icon = "ui/tooltips/warning.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]Is empty and useless[/color]"
+				text = "[color=%negative%]Is empty and useless[/color]"
 			});
 		}
 
@@ -84,7 +84,7 @@ this.legend_large_broad_head_bolts <- this.inherit("scripts/items/ammo/ammo", {
 			id = 7,
 			type = "text",
 			icon = "ui/icons/fatigue.png",
-			text = "[color=" + this.Const.UI.Color.NegativeValue + "]" + this.m.StaminaModifier + "[/color] fatigue"
+			text = "[color=%negative%]" + this.m.StaminaModifier + "[/color] fatigue"
 		});
 
 		return result;

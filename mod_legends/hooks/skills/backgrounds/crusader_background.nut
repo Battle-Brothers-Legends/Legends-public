@@ -70,34 +70,32 @@
 		this.m.Modifiers.Training = this.Const.LegendMod.ResourceModifiers.Training[2];
 		this.m.PerkTreeDynamic = {
 			Weapon = [
-				this.Const.Perks.SwordTree,
-				this.Const.Perks.ShieldTree,
-				this.Const.Perks.TwoHandedTree,
-				this.Const.Perks.FlailTree,
-				this.Const.Perks.HammerTree,
-				this.Const.Perks.MaceTree,
-				this.Const.Perks.CrossbowTree
+				::Const.Perks.SwordTree,
+				::Const.Perks.ShieldTree,
+				::Const.Perks.FlailTree,
+				::Const.Perks.HammerTree,
+				::Const.Perks.MaceTree,
+				::Const.Perks.CrossbowTree
 			],
 			Defense = [
-				this.Const.Perks.HeavyArmorTree
+				::Const.Perks.HeavyArmorTree
 			],
 			Traits = [
-				this.Const.Perks.TrainedTree,
-				this.Const.Perks.LargeTree,
-				this.Const.Perks.IndestructibleTree,
-				this.Const.Perks.MartyrTree,
-				this.Const.Perks.IntelligentTree,
-				this.Const.Perks.InspirationalTree,
-				this.Const.Perks.FitTree
+				::Const.Perks.TrainedTree,
+				::Const.Perks.LargeTree,
+				::Const.Perks.IndestructibleTree,
+				::Const.Perks.MartyrTree,
+				::Const.Perks.IntelligentTree,
+				::Const.Perks.InspirationalTree,
+				::Const.Perks.FitTree
 			],
 			Enemy = [
-				this.Const.Perks.ZombieTree,
-				this.Const.Perks.SkeletonTree
+				::Const.Perks.UndeadTree
 			],
 			Class = [],
 			Profession = [],
 			Magic = [
-				this.Const.Perks.FaithClassTree
+				::Const.Perks.FaithClassTree
 			]
 		}
 	}
@@ -191,9 +189,35 @@
 
 	o.onAddEquipment = function ()
 	{
-		local items = this.getContainer().getActor().getItems();
-		local r;
-		items.equip(this.new("scripts/items/weapons/greatsword"));
+		local actor = this.getContainer().getActor();
+		actor.setVeteranPerks(3);
+		local items = actor.getItems();
+
+		local weapons = [
+			"weapons/longsword",
+			"weapons/legend_zweihander",
+			"weapons/greatsword",
+			"weapons/two_handed_hammer",
+			"weapons/two_handed_flail",
+			"weapons/two_handed_flanged_mace",
+			"weapons/arming_sword",
+			"weapons/winged_mace",
+			"weapons/warhammer",
+			"weapons/flail",
+			"weapons/three_headed_flail"
+		];
+		items.equip(this.new("scripts/items/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
+
+		if (items.hasEmptySlot(this.Const.ItemSlot.Offhand))
+		{
+			local offhand = [
+				"shields/kite_shield",
+				"shields/heater_shield",
+				"shields/legend_tower_shield",
+			];
+			items.equip(this.new("scripts/items/" + offhand[this.Math.rand(0, offhand.len() - 1)]));
+		}
+
 		items.equip(this.Const.World.Common.pickArmor([
 			[1, ::Legends.Armor.Standard.mail_hauberk],
 			[2, ::Legends.Armor.Standard.reinforced_mail_hauberk],

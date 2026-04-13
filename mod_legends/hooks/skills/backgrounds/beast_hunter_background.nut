@@ -74,37 +74,31 @@
 			];
 		this.m.PerkTreeDynamic = {
 			Weapon = [
-				this.Const.Perks.SpearTree,
-				this.Const.Perks.PolearmTree,
-				this.Const.Perks.ThrowingTree,
-				this.Const.Perks.BowTree,
-				this.Const.Perks.AxeTree
+				::Const.Perks.SpearTree,
+				::Const.Perks.PolearmTree,
+				::Const.Perks.ThrowingTree,
+				::Const.Perks.BowTree,
+				::Const.Perks.AxeTree,
 			],
 			Defense = [
-				this.Const.Perks.MediumArmorTree,
-				this.Const.Perks.LightArmorTree
+				::Const.Perks.MediumArmorTree,
+				::Const.Perks.LightArmorTree
 			],
 			Traits = [
-				this.Const.Perks.ViciousTree,
-				this.Const.Perks.DeviousTree,
-				this.Const.Perks.AgileTree,
-				this.Const.Perks.CalmTree,
-				this.Const.Perks.FitTree
+				::Const.Perks.ViciousTree,
+				::Const.Perks.DeviousTree,
+				::Const.Perks.AgileTree,
+				::Const.Perks.CalmTree,
+				::Const.Perks.FitTree
 			],
 			Enemy = [
-				this.Const.Perks.SchratTree,
-				this.Const.Perks.LindwurmTree,
-				this.Const.Perks.AlpTree,
-				this.Const.Perks.HexenTree,
-				this.Const.Perks.DirewolfTree,
-				this.Const.Perks.SpiderTree,
-				this.Const.Perks.GhoulTree,
-				this.Const.Perks.UnholdTree
+				::Const.Perks.OccultTree,
+				::Const.Perks.BeastTree,
 			],
 			Class = [
-				this.Const.Perks.BeastClassTree
+				::Const.Perks.BeastClassTree
 			],
-			Profession = [], 
+			Profession = [],
 			Magic = []
 		}
 	}
@@ -125,7 +119,7 @@
 		this.m.HairColors = this.Const.HairColors.All;
 		this.m.Beards = null;
 		this.m.BeardChance = 0;
-		this.m.Bodies = this.Const.Bodies.AllFemale;
+		this.m.Bodies = this.Const.Bodies.NorthernFemale;
 		this.addBackgroundType(this.Const.BackgroundType.Female);
 		this.m.GoodEnding = "%name% retired from the company and bought the deed to an abandoned castle. There she commands a troop of fellow beast slayers who journey the land protecting it from monsters. Last you spoke to her she had a raven-haired lady friend who did not take kindly to your presence, nor the presence of anyone else for that matter. You\'re sure she\'s happy.";
 		this.m.BadEnding = "After leaving the %companyname%, %name% retired from beast slaying altogether and last you heard she was mother of an albino daughter. Unfortunately, rumors spread quickly about the girl having supernatural powers and her father was executed by fire. The mother and child were never caught nor seen again.";

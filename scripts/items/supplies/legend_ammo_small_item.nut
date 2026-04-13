@@ -62,7 +62,7 @@ this.legend_ammo_small_item <- this.inherit("scripts/items/item", {
 			{
 				id = 2,
 				type = "description",
-				text = "A good [color=" + this.Const.UI.Color.PositiveValue + "]" + this.m.Amount + "[/color] units of assorted ammunition - arrows, bolts and javelins. Used to automatically refill your quivers after battle. Will be added to your global stock once you\'re back on the worldmap."
+				text = "A good [color=%positive%]" + this.m.Amount + "[/color] units of assorted ammunition - arrows, bolts and javelins. Used to automatically refill your quivers after battle. Will be added to your global stock once you\'re back on the worldmap."
 			}
 		];
 

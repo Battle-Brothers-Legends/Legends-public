@@ -58,19 +58,19 @@ this.legend_prosthetic_foot_item <- this.inherit("scripts/items/item", {
 				id = 7,
 				type = "text",
 				icon = "ui/icons/action_points.png",
-				text = "Removes the [color=" + this.Const.UI.Color.NegativeValue + "]1[/color] Additional Action Point per tile moved penalty from Maimed Foot Injury"
+				text = "Removes the [color=%negative%]1[/color] Additional Action Point per tile moved penalty from Maimed Foot Injury"
 			},
 			{
 				id = 8,
 				type = "text",
 				icon = "ui/icons/initiative.png",
-				text = "Reduces the penalty of Missing Foot to [color=" + this.Const.UI.Color.NegativeValue + "]-10%[/color] Initiative"
+				text = "Reduces the penalty of Missing Foot to [color=%negative%]-10%[/color] Initiative"
 			},
 			{
 				id = 9,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "Builds up [color=" + this.Const.UI.Color.NegativeValue + "]3[/color] more fatigue for each tile travelled"
+				text = "Builds up [color=%negative%]3[/color] more fatigue for each tile travelled"
 			},
 			{
 				id = 65,

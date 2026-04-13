@@ -10,7 +10,7 @@ The Legends mod uses a cross-platform Python-based build system that replaces th
 
 1. Download adam's [modkit](http://www.adammil.net/blog/v133_Battle_Brothers_mod_kit.html#modkit) and unpack it at the same level that legends project is (see screenshot). The tools should be placed in a `bin/` directory at the workspace level, one directory up from the `Legends-public` project folder.
 
-![dir_structure.webp](dir_structure.webp)
+![dir_structure.webp](img/build/dir_structure.webp)
 
 **Expected Directory Structure:**
 
@@ -148,7 +148,7 @@ these should all be phased out and bigrated into the defintions as they are turn
 - offsets, width, heigh, left and right all define the image size and offsets. There is an image guide on the discord for these
 - img is the actual image of the helmet which needs to be in the unpacked directory
 
-checkForIcon function verifies that each item defined above has a icon and inventory image file saved into gfx/ui/items/legend_helmets.
+checkForIcon function verifies that each item defined above has an icon and inventory image file saved into gfx/ui/items/legend_helmets.
 
 makeSheet function creates the .XML files which store the metadata for the brush files Battle Brothers uses to store spritesheets.
 

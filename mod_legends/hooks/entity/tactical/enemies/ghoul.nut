@@ -4,6 +4,7 @@
 	o.onInit = function ()
 	{
 		onInit();
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendPoisonImmunity);
 		if (::Legends.isLegendaryDifficulty())
 		{
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendMuscularity);

@@ -258,7 +258,6 @@
 	"Nasty %randomname%",
 	"The Pig",
 	"Prince %randomname% Murderhand",
-	"%randomname% the Citrene",
 	"%randomname% Ubermensch",
 	"Furious %randomname%"
 ]);

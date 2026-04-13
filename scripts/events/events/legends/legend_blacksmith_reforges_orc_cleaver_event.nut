@@ -192,7 +192,6 @@ this.legend_blacksmith_reforges_orc_cleaver_event <- this.inherit("scripts/event
 			"blacksmith",
 			this.m.Blacksmith.getNameOnly()
 		]);
-		::Const.LegendMod.extendVarsWithPronouns(_vars, this.m.Blacksmith.getGender(), "blacksmith");
 	}
 
 	function onClear()

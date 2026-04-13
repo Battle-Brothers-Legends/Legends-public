@@ -113,8 +113,11 @@ this.legend_accessory_dog <- this.inherit("scripts/items/accessory/accessory", {
 			local entity = this.Tactical.spawnEntity(this.getScript(), _onTile.Coords.X, _onTile.Coords.Y);
 			entity.setItem(this);
 			entity.setName(this.getName());
-			if ("setVariant" in entity) { // white wolf has no variant
+			if (entity.setVariant.getinfos().parameters.len()-1 == 1) { // regular pet
 				entity.setVariant(this.getVariant());
+			}
+			else { //white wolf
+				entity.setVariant(this.getVariant(), entity.getSprite("body").Color, entity.getSprite("body").Saturation);
 			}
 
 			if (this.getContainer().getActor().getSkills().hasPerk(::Legends.Perk.LegendDogWhisperer))

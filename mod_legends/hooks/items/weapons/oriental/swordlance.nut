@@ -3,19 +3,18 @@
 	local create = o.create;
 	o.create = function() {
 		create();
+		this.m.Categories = "Cleaver/Polearm, Two-Handed";
 		this.m.WeaponType = this.Const.Items.WeaponType.Cleaver | this.Const.Items.WeaponType.Polearm;
 		this.m.Value = 1700;
-		this.m.Variant = this.Math.rand(0, 2);
-		this.updateVariant();
+		this.m.Variants = [0, 1, 2];
+		this.setVariant(this.m.Variants[this.Math.rand(0, this.m.Variants.len() - 1)]);
 	}
 
 	o.updateVariant <- function() {
-		if (this.m.Variant == 0) {
-			return;
-		}
-		this.m.Icon = "weapons/melee/swordlance_01_" + this.m.Variant + "_70x70.png";
-		this.m.IconLarge = "weapons/melee/swordlance_01_" + this.m.Variant + ".png";
-		this.m.ArmamentIcon = "icon_swordlance_01_" + this.m.Variant;
+		local v = this.getVariant() == 0 ? "" : "_" + this.getVariant();
+		this.m.Icon = "weapons/melee/swordlance_01" + v + "_70x70.png";
+		this.m.IconLarge = "weapons/melee/swordlance_01" + v + ".png";
+		this.m.ArmamentIcon = "icon_swordlance_01" + v;
 	}
 
 	o.addSkill <- function( _skill )
@@ -33,5 +32,14 @@
 		}
 
 		weapon.addSkill(_skill);
+	}
+
+	local onEquip = o.onEquip;
+	o.onEquip = function ()
+	{
+		onEquip();
+		::Legends.Actives.grant(this, ::Legends.Active.Decapitate, function (_skill) {
+			_skill.m.IsScytheDecapitate = true;
+		}.bindenv(this));
 	}
 });

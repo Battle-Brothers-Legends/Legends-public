@@ -14,7 +14,7 @@
 			id = 15,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "Generates [color=" + this.Const.UI.Color.PositiveValue + "]50[/color] crowns daily."
+			text = "Generates [color=%positive%]50[/color] crowns daily."
 		};
 		return result;
 	}

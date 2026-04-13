@@ -3,7 +3,7 @@ this.legend_tent_hunter <- this.inherit("scripts/items/trade/trading_good_item",
 	function create()
 	{
 		this.trading_good_item.create();
-		this.m.ID = "tent.hunter_tent";
+		this.m.ID = ::Legends.Camp.Tent.Hunter;
 		this.m.Name = "Kitchen Tent";
 		this.m.Description = "A collection of tools and equipment for hunting and cooking. Having this in your stash upgrades your camp, allowing skilled backgrounds to produce food, alcohol and treats";
 		this.m.Icon = "tents/tent_hunt_70x70.png";

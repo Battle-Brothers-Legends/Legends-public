@@ -6,7 +6,7 @@ this.legend_unhold_throwing_net <- this.inherit("scripts/items/weapons/weapon", 
 		this.weapon.create();
 		this.m.ID = "tool.legend_unhold_throwing_net";
 		this.m.Name = "Unhold bindings";
-		this.m.Description = "A net provided by barbarian tribe, used to bind unholds. Tainted with secret poison, it makes [color=" + ::Const.UI.Color.NegativeValue + "]dazed[/color], [color=" + ::Const.UI.Color.NegativeValue + "]baffled[/color] or with less than 25% Healthpoints Unholds docile when trapped.";
+		this.m.Description = "A net provided by barbarian tribe, used to bind unholds. Tainted with secret poison, it makes [color=%negative%]dazed[/color], [color=%negative%]baffled[/color] or with less than 25% Healthpoints Unholds docile when trapped.";
 		this.m.IconLarge = "tools/inventory_throwing_net_unhold.png";
 		this.m.Icon = "tools/throwing_net_unhold_70x70.png";
 		this.m.ArmamentIcon = "icon_throwing_net_02";
@@ -69,7 +69,7 @@ this.legend_unhold_throwing_net <- this.inherit("scripts/items/weapons/weapon", 
 			id = 7,
 			type = "text",
 			icon = "ui/icons/vision.png",
-			text = "Range of [color=" + this.Const.UI.Color.PositiveValue + "]" + this.m.RangeMax + "[/color] tiles"
+			text = "Range of [color=%positive%]" + this.m.RangeMax + "[/color] tiles"
 		});
 		if (this.m.StaminaModifier < 0)
 		{
@@ -77,14 +77,14 @@ this.legend_unhold_throwing_net <- this.inherit("scripts/items/weapons/weapon", 
 				id = 8,
 				type = "text",
 				icon = "ui/icons/fatigue.png",
-				text = "Maximum Fatigue [color=" + this.Const.UI.Color.NegativeValue + "]" + this.m.StaminaModifier + "[/color]"
+				text = "Maximum Fatigue [color=%negative%]" + this.m.StaminaModifier + "[/color]"
 			});
 		}
 		result.push({
 			id = 4,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "Will root a [color=" + ::Const.UI.Color.NegativeValue + "]dazed[/color], [color=" + ::Const.UI.Color.NegativeValue + "]baffled[/color] or with less than 25% Healthpoints Unhold in place and make it docile"
+			text = "Will root a [color=%negative%]dazed[/color], [color=%negative%]baffled[/color] or with less than 25% Healthpoints Unhold in place and make it docile"
 		});
 		result.push({
 			id = 4,

@@ -9,7 +9,7 @@ this.legend_drink_heartwood_sap_skill <- this.inherit("scripts/skills/actives/ba
 		this.m.IconDisabled = "skills/blood_potion_square_bw.png";
 		this.m.Overlay = "active_144";
 		this.m.StatusEffect = "status_effect_93";
-		this.m.Effects = ["legend_heartwood_sap_effect"];
+		this.m.Effects = ["legend_greenwood_sap_effect"];
 	}
 
 	function getTooltip()
@@ -44,7 +44,7 @@ this.legend_drink_heartwood_sap_skill <- this.inherit("scripts/skills/actives/ba
 				id = 5,
 				type = "text",
 				icon = "ui/tooltips/warning.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]Can not be used because this character is engaged in melee[/color]"
+				text = "[color=%negative%]Can not be used because this character is engaged in melee[/color]"
 			});
 		}
 

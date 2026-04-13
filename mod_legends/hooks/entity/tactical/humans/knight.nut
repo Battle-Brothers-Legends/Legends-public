@@ -102,6 +102,7 @@
 				[5, ::Legends.Helmet.Standard.legend_helm_wings],
 				[5, ::Legends.Helmet.Standard.legend_helm_short],
 				[5, ::Legends.Helmet.Standard.legend_helm_curved],
+				[5, ::Legends.Helmet.Standard.legend_helm_sharp],
 				[2, ::Legends.Helmet.Standard.legend_enclave_vanilla_great_helm_01],
 				[2, ::Legends.Helmet.Standard.legend_enclave_vanilla_great_bascinet_01],
 				[2, ::Legends.Helmet.Standard.legend_enclave_vanilla_great_bascinet_02],
@@ -123,8 +124,8 @@
 		this.getSprite("miniboss").setBrush("bust_miniboss");
 		local weapons = [
 			"weapons/named/named_axe",
-			"weapons/named/named_greatsword",
-			"weapons/named/legend_named_flamberge_sword",
+			"weapons/named/legend_named_zweihander",
+			"weapons/named/legend_named_flamberge",
 			"weapons/named/named_mace",
 			"weapons/named/named_sword",
 			"weapons/named/legend_named_longsword"
@@ -160,7 +161,7 @@
 			[3, ::Legends.Helmet.Named.legend_frogmouth_helm_crested_painted],
 			[3, ::Legends.Helmet.Named.bascinet_named],
 			[3, ::Legends.Helmet.Named.kettle_helm_named],
-			[3, ::Legends.Helmet.Named.deep_sallet_named],
+			[3, ::Legends.Helmet.Named.deep_cervelliere_named],
 			[3, ::Legends.Helmet.Named.barbute_named],
 			[3, ::Legends.Helmet.Named.italo_norman_helm_named],
 			[1, ::Legends.Helmet.Named.legend_helm_full_named]

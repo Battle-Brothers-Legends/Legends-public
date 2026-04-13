@@ -114,17 +114,10 @@ this.legend_armor_upgrade <- this.inherit("scripts/items/item", {
 		if (this.getContainer().getActor() == null)
 			return this.m.StaminaModifier;
 
-		local skill = ::Legends.Perks.get(this, ::Legends.Perk.LegendFashionable);
-		if (skill)
-		{
-			foreach (slot in skill.m.FreeSlotTypes)
-			{
-				if (this.m.SlotType == slot)
-				{
-					return 0;
-				}
-			}
-		}
+		local perk = ::Legends.Perks.get(this, ::Legends.Perk.LegendFashionable);
+		if (perk != null && ::Legends.S.oneOf(this.m.Type, perk.m.FreeSlotTypes))
+			return 0;
+
 		return this.m.StaminaModifier;
 	}
 
@@ -169,12 +162,12 @@ this.legend_armor_upgrade <- this.inherit("scripts/items/item", {
 
 	function getIconOverlay()
 	{
-
 		local L = [];
-
-		if (this.isNamed())
-		{
-			L.push("layers/named_icon_glow.png");
+		if (this.isNamed()) {
+			if (this.isItemType(::Const.Items.ItemType.Legendary))
+				L.push("layers/legendary_icon_glow.png");
+			else
+				L.push("layers/named_icon_glow.png");
 		}
 
 		L.push(this.m.Icon);
@@ -199,11 +192,7 @@ this.legend_armor_upgrade <- this.inherit("scripts/items/item", {
 		}
 
 		if (L.len() == 0)
-		{
-			return [
-				""
-			];
-		}
+			return [""];
 
 		return L;
 	}
@@ -303,6 +292,16 @@ this.legend_armor_upgrade <- this.inherit("scripts/items/item", {
 			text = "Hold Left-Shift and Left-Click this layer square to toggle it hidden on this character (stats & other benefits will not be affected)."
 		});
 
+		local rune = ::Legends.Runes.get(this.getRuneVariant());
+		if (rune != null) {
+			result.push({
+				id = 77,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = rune.getTooltip(this)
+			});
+		}
+
 		return result;
 	}
 
@@ -311,15 +310,16 @@ this.legend_armor_upgrade <- this.inherit("scripts/items/item", {
 		_result.push({	// An empty line is put in to improve formatting
 			id = 10,
 			type = "text",
-			icon = "ui/icons/blank.png",
-			text = " "
+			text = "&nbsp;"
 		});
+
 		_result.push({
 			id = 10,
 			type = "text",
-			icon = "ui/icons/armor_body.png",	// ui/icons/armor_body.png
-			text = "[u]" + this.getName() + "[/u]"
+			text = "[leg_img](gfx/ui/items/%icon%,height=28px,width=28px)[/leg_img] [b][u]%name%[/u][/b]",
+			param = [["name", this.getName()], ["icon", this.m.Icon]]
 		});
+
 		if ( ::Legends.Mod.ModSettings.getSetting("ShowExpandedArmorLayerTooltip").getValue() )
 		{
 			_result.push({
@@ -328,6 +328,7 @@ this.legend_armor_upgrade <- this.inherit("scripts/items/item", {
 				icon = "ui/icons/armor_body.png",
 				text = "Armor: " + this.getConditionMax()
 			});
+
 			if ( this.getStaminaModifier() != 0 ) {
 				_result.push({
 					id = 10,
@@ -337,13 +338,22 @@ this.legend_armor_upgrade <- this.inherit("scripts/items/item", {
 				});
 			}
 
+			local rune = ::Legends.Runes.get(this.getRuneVariant());
+			if (rune != null) {
+				_result.push({
+					id = 77,
+					type = "text",
+					icon = "ui/icons/special.png",
+					text = rune.getTooltip(this)
+				});
+			}
 		}
 		this.onArmorTooltip(_result);
 	}
 
 	function playInventorySound( _eventType )
 	{
-		this.Sound.play(this.m.ImpactSound[0], this.Const.Sound.Volume.Inventory);
+		this.Sound.play(this.m.InventorySound[this.Math.rand(0, this.m.InventorySound.len() - 1)], this.Const.Sound.Volume.Inventory);
 	}
 
 	function addArmor( _a)
@@ -354,8 +364,9 @@ this.legend_armor_upgrade <- this.inherit("scripts/items/item", {
 			return 0
 		}
 
+		local ret = _a - (this.m.ConditionMax - this.m.Condition);
 		this.m.Condition = this.m.ConditionMax;
-		return _a - (this.m.ConditionMax - this.m.Condition);
+		return ret;
 	}
 
 	function removeArmor( _a)
@@ -439,10 +450,14 @@ this.legend_armor_upgrade <- this.inherit("scripts/items/item", {
 	{
 		local frontSprite = "";
 		local backSprite = "";
+		local frontSpriteCorpse = this.m.SpriteCorpseFront != null ? this.m.SpriteCorpseFront : "";
+		local backSpriteCorpse = this.m.SpriteCorpseBack != null ? this.m.SpriteCorpseBack : "";
 		if (this.isVisible() == false)
 		{
 			frontSprite = "";
 			backSprite = "";
+			frontSpriteCorpse = "";
+			backSpriteCorpse = "";
 		}
 		else if (this.m.Condition / this.m.ConditionMax <= this.Const.Combat.ShowDamagedArmorThreshold)
 		{
@@ -460,36 +475,29 @@ this.legend_armor_upgrade <- this.inherit("scripts/items/item", {
 			return;
 		}
 
-		switch(this.m.Type)
-		{
-			case this.Const.Items.ArmorUpgrades.Chain:
-				_app.ArmorLayerChain = backSprite;
-				_app.CorpseArmorLayerChain = this.m.SpriteCorpseBack != null ? this.m.SpriteCorpseBack : "";
-				break;
+		local key = "";
+		local prefix = "ArmorLayer";
+		
+		switch(this.m.Type) {
+			case this.Const.Items.ArmorUpgrades.Chain:      key = "Chain"; break;
+			case this.Const.Items.ArmorUpgrades.Plate:      key = "Plate"; break;
+			case this.Const.Items.ArmorUpgrades.Tabbard:    key = "Tabbard"; break;
+			case this.Const.Items.ArmorUpgrades.Cloak:      key = "Cloak"; break;
+			case this.Const.Items.ArmorUpgrades.Attachment: key = "Upgrade"; prefix = "Armor"; break; 
+		}
 
-			case this.Const.Items.ArmorUpgrades.Plate:
-				_app.ArmorLayerPlate = backSprite;
-				_app.CorpseArmorLayerPlate = this.m.SpriteCorpseBack != null ? this.m.SpriteCorpseBack : "";
-				break;
+		if (key != "") {
+			local hasFrontSprite = (key == "Cloak" || key == "Upgrade");
+			local p = prefix + key;
+			local s = hasFrontSprite ? "Back" : "";
 
-			case this.Const.Items.ArmorUpgrades.Tabbard:
-				_app.ArmorLayerTabbard = backSprite;
-				_app.CorpseArmorLayerTabbard = this.m.SpriteCorpseBack != null ? this.m.SpriteCorpseBack : "";
-				break;
+			if (hasFrontSprite) {
+				_app[p + "Front"] = frontSprite;
+				_app["Corpse" + p + "Front"] = frontSpriteCorpse;
+			}
 
-			case this.Const.Items.ArmorUpgrades.Cloak:
-				_app.ArmorLayerCloakFront = frontSprite;
-				_app.ArmorLayerCloakBack = backSprite;
-				_app.CorpseArmorLayerCloakFront = this.m.SpriteCorpseFront != null ? this.m.SpriteCorpseFront : "";
-				_app.CorpseArmorLayerCloakBack = this.m.SpriteCorpseBack != null ? this.m.SpriteCorpseBack : "";
-				break;
-
-			case this.Const.Items.ArmorUpgrades.Attachment:
-				_app.ArmorUpgradeFront = frontSprite;
-				_app.ArmorUpgradeBack = backSprite;
-				_app.CorpseArmorUpgradeFront = this.m.SpriteCorpseFront != null ? this.m.SpriteCorpseFront : "";
-				_app.CorpseArmorUpgradeBack = this.m.SpriteCorpseBack ? this.m.SpriteCorpseBack : "";
-				break;
+			_app[p + s] = backSprite;
+			_app["Corpse" + p + s] = backSpriteCorpse;
 		}
 	}
 
@@ -506,7 +514,7 @@ this.legend_armor_upgrade <- this.inherit("scripts/items/item", {
 		this.setCurrentSlotType(this.Const.ItemSlot.None);
 	}
 
-	function onUse( _actor, _item = null )
+	function onUse( _actor, _item = null, _playSound = true )
 	{
 		if (this.isUsed()) return false;
 
@@ -516,7 +524,7 @@ this.legend_armor_upgrade <- this.inherit("scripts/items/item", {
 
 		local success = armor.setUpgrade(this);
 
-		if (success)
+		if (success && _playSound)
 		{
 			// If no world stash exists, remove the consumed item from the bag now
 			local hasStash = false;

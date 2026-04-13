@@ -4,17 +4,22 @@
 	o.create = function() {
 		create();
 		this.m.Value = 1000;
-		this.m.Variant = this.Math.rand(0, 2);
-		this.updateVariant();
+		this.m.Variants = [0, 1, 2];
+		this.setVariant(this.m.Variants[this.Math.rand(0, this.m.Variants.len() - 1)]);
 	}
 
 	o.updateVariant <- function() {
-		if (this.m.Variant == 0) {
-			return;
-		}
-		this.m.Icon = "weapons/melee/mace_two_handed_01_" + this.m.Variant + "_70x70.png";
-		this.m.IconLarge = "weapons/melee/mace_two_handed_01_" + this.m.Variant + ".png";
-		this.m.ArmamentIcon = "icon_mace_two_handed_01_" + this.m.Variant;
+		local v = this.getVariant() == 0 ? "" : "_" + this.getVariant();
+		this.m.Icon = "weapons/melee/mace_two_handed_01" + v + "_70x70.png";
+		this.m.IconLarge = "weapons/melee/mace_two_handed_01" + v + ".png";
+		this.m.ArmamentIcon = "icon_mace_two_handed_01" + v;
+	}
+
+	local onEquip = o.onEquip;
+	o.onEquip = function ()
+	{
+		onEquip();
+		::Legends.Actives.grant(this, ::Legends.Active.LegendHaftstrike);
 	}
 
 });

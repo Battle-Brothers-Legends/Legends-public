@@ -104,11 +104,4 @@
 	<sprite id="bust_spider_01_injured" offsetY="35" ic="FF3B675E" width="174" height="214" img="entity\beasts\bust_spider_01_injured.png" left="-38" right="44" top="-52" bottom="34" />
 	<sprite id="bust_spider_gut" offsetY="30" f="6402" ic="FF376760" width="169" height="139" img="entity\beasts\bust_spider_gut.png" left="-50" right="24" top="4" bottom="52" />
 	<sprite id="bust_spider_skull" offsetY="30" f="6401" ic="FF486264" width="169" height="139" img="entity\beasts\bust_spider_skull.png" left="-1" right="45" top="-60" bottom="-10" />
-	<sprite id="effect_sanctify_01" ic="FFEFEEEF" img="effects\effect_sanctify_01.png" left="-15" right="16" />
-	<sprite id="effect_sanctify_02" ic="FFEFEEEF" img="effects\effect_sanctify_02.png" left="-15" right="16" />
-	<sprite id="effect_sanctify_03" ic="FFEFEEEF" img="effects\effect_sanctify_03.png" left="-15" right="16" />
-	<sprite id="effect_transform_01" width="80" height="80" img="effects\effect_transform_01.png" left="-39" right="37" top="-34" bottom="36" />
-	<sprite id="effect_transform_02" width="80" height="80" img="effects\effect_transform_02.png" left="-39" right="37" top="-34" bottom="36" />
-	<sprite id="effect_transform_03" width="80" height="80" img="effects\effect_transform_03.png" left="-39" right="37" top="-34" bottom="36" />
-
 </brush>

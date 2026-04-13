@@ -2,12 +2,8 @@ this.perk_legend_hex <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		::Const.Perks.setup(this.m, ::Legends.Perk.LegendHex);
-		this.m.Type = this.Const.SkillType.Perk;
-		this.m.Order = this.Const.SkillOrder.Perk;
+		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendHex);
 		this.m.IsActive = true;
-		this.m.IsStacking = false;
-		this.m.IsHidden = false;
 	}
 
 	function onAdded()

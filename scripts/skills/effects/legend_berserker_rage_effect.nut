@@ -47,25 +47,25 @@ this.legend_berserker_rage_effect <- this.inherit("scripts/skills/skill", {
 				id = 10,
 				type = "text",
 				icon = "ui/icons/regular_damage.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+" + this.m.RageStacks + "[/color] Damage"
+				text = "[color=%positive%]" + this.m.RageStacks + "%[/color] Damage increase"
 			},
 			{
 				id = 11,
 				type = "text",
 				icon = "ui/icons/melee_defense.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+" + this.Math.minf(70, 2 * this.m.RageStacks) + "%[/color] Damage Reduction"
+				text = "[color=%positive%]+" + this.Math.minf(70, 2 * this.m.RageStacks) + "%[/color] Damage Reduction"
 			},
 			{
 				id = 12,
 				type = "text",
 				icon = "ui/icons/bravery.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+" + this.m.RageStacks + "[/color] Bravery"
+				text = "[color=%positive%]+" + this.m.RageStacks + "[/color] Resolve"
 			},
 			{
 				id = 13,
 				type = "text",
 				icon = "ui/icons/initiative.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+" + this.m.RageStacks + "[/color] Initiative"
+				text = "[color=%positive%]+" + this.m.RageStacks + "[/color] Initiative"
 			}
 		];
 	}

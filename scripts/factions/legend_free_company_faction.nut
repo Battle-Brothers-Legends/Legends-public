@@ -34,6 +34,12 @@ this.legend_free_company_faction <- this.inherit("scripts/factions/faction", {
 		return this.faction.getRandomCharacter();
 	}
 
+	function getBanner() {
+		if (::World.Contracts.getActiveContract() != null && ::World.Contracts.getActiveContract().m.Flags.has("EmulateNobleFaction"))
+			return ::World.FactionManager.getFaction(::World.Contracts.getActiveContract().m.Flags.getAsInt("EmulateNobleFaction")).getBanner();
+		return this.faction.getBanner();
+	}
+
 	function addPlayerRelation( _r, _reason = "" )
 	{
 	}

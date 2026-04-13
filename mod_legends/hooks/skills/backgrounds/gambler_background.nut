@@ -7,8 +7,8 @@
 		this.m.Name = "Gambler";
 		this.m.Icon = "ui/backgrounds/background_20.png";
 		this.m.BackgroundDescription = "Gamblers tend to have quick reflexes and a higher resolve than their opponents at the card table.";
-		this.m.GoodEnding = "It was perhaps a risk to take a gambler like %name% into your ranks. Now, many days later it\'s obvious you made the right choice. Last you heard, he was still with the company and uses his earnings to enrich his habits. Rumor has it that, through all his winnings, he\'s secretly become one of the richest men in all the land. You think it\'s a bunch of hogwash, but a surprising number of mayors have become suddenly lax on gaming...";
-		this.m.BadEnding = "%name% the gambler retired from the declining company and returned to his gambling ways. He quickly acquired great debts he could not pay. You saw him begging on a street corner with one of his hands missing and gaps in his teeth. You dropped a few crowns into his tin and said a few words, but he did not recognize you.";
+		this.m.GoodEnding = "It was perhaps a risk to take a gambler like %name% into your ranks. Now, many days later it\'s obvious you made the right choice. Last you heard, %they% was still with the company and uses %their% earnings to enrich %their% habits. Rumor has it that, through all %their% winnings, %they%\'s secretly become one of the richest men in all the land. You think it\'s a bunch of hogwash, but a surprising number of mayors have become suddenly lax on gaming...";
+		this.m.BadEnding = "%name% the gambler retired from the declining company and returned to %their% gambling ways. %They% quickly acquired great debts %they% could not pay. You saw %them% begging on a street corner with one of %their% hands missing and gaps in %their% teeth. You dropped a few crowns into %their% tin and said a few words, but %they% did not recognize you.";
 		this.m.HiringCost = 60;
 		this.m.DailyCost = 6;
 		this.m.Excluded = [
@@ -54,24 +54,24 @@
 		this.m.Modifiers.Barter = this.Const.LegendMod.ResourceModifiers.Barter[1];
 		this.m.PerkTreeDynamic = {
 			Weapon = [
-				this.Const.Perks.DaggerTree,
-				this.Const.Perks.ThrowingTree,
-				this.Const.Perks.PolearmTree
+				::Const.Perks.DaggerTree,
+				::Const.Perks.ThrowingTree,
+				::Const.Perks.PolearmTree
 			],
 			Defense = [
-				this.Const.Perks.LightArmorTree
+				::Const.Perks.LightArmorTree
 			],
 			Traits = [
-				this.Const.Perks.DeviousTree,
-				this.Const.Perks.IntelligentTree,
-				this.Const.Perks.CalmTree,
-				this.Const.Perks.FastTree
+				::Const.Perks.DeviousTree,
+				::Const.Perks.IntelligentTree,
+				::Const.Perks.CalmTree,
+				::Const.Perks.FastTree
 			],
 			Enemy = [],
 			Class = [
-				this.Const.Perks.ConArtistTree
+				::Const.Perks.ConArtistTree
 			],
-			Profession = [], 
+			Profession = [],
 			Magic = []
 		}
 	}
@@ -88,7 +88,6 @@
 
 		if (_gender != 1) return;
 
-		this.m.Name = "Gambler";
 		this.m.Faces = this.Const.Faces.AllWhiteFemale;
 		this.m.Hairs = this.Const.Hair.AllFemale;
 		this.m.HairColors = this.Const.HairColors.Young;
@@ -96,20 +95,11 @@
 		this.m.BeardChance = 0;
 		this.m.Bodies = this.Const.Bodies.FemaleThick;
 		this.addBackgroundType(this.Const.BackgroundType.Female);
-		this.m.GoodEnding = "It was perhaps a risk to take a gambler like %name% into your ranks. Now, many days later it\'s obvious you made the right choice. Last you heard, she was still with the company and uses her earnings to enrich her habits. Rumor has it that, through all her winnings, she\'s secretly become one of the richest women in all the land. You think it\'s a bunch of hogwash, but a surprising number of mayors have become suddenly lax on gaming...";
-		this.m.BadEnding = "%name% the gambler retired from the declining company and returned to her gambling ways. She quickly acquired great debts she could not pay. You saw her begging on a street corner with one of her hands missing and gaps in her teeth. You dropped a few crowns into her tin and said a few words, but she did not recognize you.";
 	}
 
 	o.onBuildDescription <- function ()
 	{
-		if (this.isBackgroundType(this.Const.BackgroundType.Female))
-		{
-			return "{They say luck is the devil, so just how long can a gambler like %name% play with it? | Everyone gambles, so %name% figured why not do it for money? | Dice, cards, marbles - there are a lot of ways to take a man\'s money, and %name% knows all of them. | %name%\'s got the eyes of a desert snake - and shaping cards is her rattle. | In a world of life or death, taking risks is %name%\'s game. | A woman like %name% sees everything coming, especially the next card in the deck.} {She supported herself by playing cards from town to town, only leaving after she\'d cleaned out their pockets. | But it is a mystery as to how a woman decides to take up cards as a lifestyle. | The constant coming and going of mercenaries made for easy targets - until one sore loser ran her off with a bastard sword. | Orphaned by her own birth, she\'s always scrounged up a living by gambling with others. | When she was a kid, a trickster\'s cup-game showed her the value in hustling. | When her father fell into gambling debts, she figured the best way to pay them back was to become an even better hustler herself. | After taking all their crowns, towns across the land banned %name% from hustling in a fit of so-called \'religious revival.\'} {Now, the gambler seeks to throw her dice into the wind - as well as the mud, taking rank with any outfit that pays. | One has to wonder what a cardplayer is doing not playing cards. Then again, maybe it\'s good that she sees your group as a smart gamble. | Perhaps years of scamming mercenaries has given her the notion that she could just as easily be one. | Clever and quick-thinking, the cardshaper survives by moving before anyone else does, a skill as useful as any other in this world. | Ironically, a bad play put her into enormous debt with a baron. Now she has to find another way to pay it back. | Wars have sapped most of the fish from her cards games. Instead of waiting around she figured she\'d just go ahead and follow them.}";
-		}
-		else
-		{
-			return "{They say luck is the devil, so just how long can a gambler like %name% play with it? | Everyone gambles, so %name% figured why not do it for money? | Dice, cards, marbles - there are a lot of ways to take a man\'s money, and %name% knows all of them. | %name%\'s got the eyes of a desert snake - and shaping cards is his rattle. | In a world of life or death, taking risks is %name%\'s game. | A man like %name% sees everything coming, especially the next card in the deck.} {He supported himself by playing cards from town to town, only leaving after he\'d cleaned out their pockets. | But it is a mystery as to how a man decides to take up cards as a lifestyle. | The constant coming and going of mercenaries made for easy targets - until one sore loser ran him off with a bastard sword. | Orphaned by his own birth, he\'s always scrounged up a living by gambling with others. | When he was a kid, a trickster\'s cup-game showed him the value in hustling. | When his father fell into gambling debts, he figured the best way to pay them back was to become an even better hustler himself. | After taking all their crowns, towns across the land banned %name% from hustling in a fit of so-called \'religious revival.\'} {Now, the gambler seeks to throw his dice into the wind - as well as the mud, taking rank with any outfit that pays. | One has to wonder what a cardplayer is doing not playing cards. Then again, maybe it\'s good that he sees your group as a smart gamble. | Perhaps years of scamming mercenaries has given him the notion that he could just as easily be one. | Clever and quick-thinking, the cardshaper survives by moving before anyone else does, a skill as useful as any other in this world. | Ironically, a bad play put him into enormous debt with a baron. Now he has to find another way to pay it back. | Wars have sapped most of the fish from his cards games. Instead of waiting around he figured he\'d just go ahead and follow them.}";
-		}
+		return "{They say luck is the devil, so just how long can a gambler like %name% play with it? | Everyone gambles, so %name% figured why not do it for money? | Dice, cards, marbles - there are a lot of ways to take a man\'s money, and %name% knows all of them. | %name%\'s got the eyes of a desert snake - and shaping cards is %their% rattle. | In a world of life or death, taking risks is %name%\'s game. | A %person% like %name% sees everything coming, especially the next card in the deck.} {%They% supported %themselves% by playing cards from town to town, only leaving after %they%\'d cleaned out their pockets. | But it is a mystery as to how a %person% decides to take up cards as a lifestyle. | The constant coming and going of mercenaries made for easy targets - until one sore loser ran %them% off with a bastard sword. | Orphaned by %their% own birth, %they%\'s always scrounged up a living by gambling with others. | When %they% was a kid, a trickster\'s cup-game showed %them% the value in hustling. | When %their% father fell into gambling debts, %they% figured the best way to pay them back was to become an even better hustler %themselves%. | After taking all their crowns, towns across the land banned %name% from hustling in a fit of so-called \'religious revival.\'} {Now, the gambler seeks to throw %their% dice into the wind - as well as the mud, taking rank with any outfit that pays. | One has to wonder what a cardplayer is doing not playing cards. Then again, maybe it\'s good that %they% sees your group as a smart gamble. | Perhaps years of scamming mercenaries has given %them% the notion that %they% could just as easily be one. | Clever and quick-thinking, the cardshaper survives by moving before anyone else does, a skill as useful as any other in this world. | Ironically, a bad play put %them% into enormous debt with a baron. Now %they% has to find another way to pay it back. | Wars have sapped most of the fish from %their% cards games. Instead of waiting around %they% figured %they%\'d just go ahead and follow them.}";
 	}
 
 	o.onChangeAttributes = function ()

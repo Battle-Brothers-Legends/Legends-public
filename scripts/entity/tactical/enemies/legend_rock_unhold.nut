@@ -56,8 +56,8 @@ this.legend_rock_unhold <- this.inherit("scripts/entity/tactical/actor", {
 		local rolls = ::Legends.S.extraLootChance(1);
 		for(local i = 0; i < rolls; i++) {
 			this.m.OnDeathLootTable.extend([
-				[30, "scripts/items/misc/legend_rock_unhold_bones_item"],
-				[70, "scripts/items/misc/legend_rock_unhold_hide_item"],
+				[50, "scripts/items/misc/legend_rock_unhold_bones_item"],
+				[50, "scripts/items/misc/legend_rock_unhold_hide_item"],
 				[50, "scripts/items/misc/unhold_heart_item"],
 				[50, "scripts/items/misc/unhold_hide_item"],
 				[50, "scripts/items/misc/unhold_bones_item"],

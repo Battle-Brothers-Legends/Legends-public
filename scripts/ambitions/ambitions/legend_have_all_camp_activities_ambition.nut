@@ -153,13 +153,7 @@ this.legend_have_all_camp_activities_ambition <- this.inherit("scripts/ambitions
 	function onUpdateScore()
 	{
 
-		if (::Legends.Mod.ModSettings.getSetting("SkipCamp").getValue())
-		{
-			this.m.IsDone = true;
-			return;
-		}
-
-		if (this.World.Assets.getOrigin().getID() == "scenario.legend_risen_legion")
+		if (::Legends.Settings.skipCamp())
 		{
 			this.m.IsDone = true;
 			return;

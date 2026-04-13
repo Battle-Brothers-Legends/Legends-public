@@ -14,6 +14,7 @@
 			local rune = ::new(::Legends.Runes.get(selected).Script);
 			rune.setRuneVariant(selected);
 			rune.setRuneBonus(true);
+			rune.updateRuneSigilToken();
 			return rune;
 		}.bindenv(this)]);
 		local rolls = ::Legends.S.extraLootChance(1);

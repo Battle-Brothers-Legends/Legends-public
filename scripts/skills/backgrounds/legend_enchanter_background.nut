@@ -58,26 +58,26 @@ this.legend_enchanter_background <- this.inherit("scripts/skills/backgrounds/cha
 		this.m.Modifiers.Enchanting = 1.0;
 		this.m.PerkTreeDynamic = {
 			Weapon = [
-				this.Const.Perks.DaggerTree,
-				this.Const.Perks.PolearmTree,
-				this.Const.Perks.ThrowingTree,
-				this.Const.Perks.SpearTree
+				::Const.Perks.DaggerTree,
+				::Const.Perks.PolearmTree,
+				::Const.Perks.ThrowingTree,
+				::Const.Perks.SpearTree
 			],
 			Defense = [
-				this.Const.Perks.ClothArmorTree
+				::Const.Perks.ClothArmorTree
 			],
 			Traits = [
-				this.Const.Perks.IntelligentTree,
-				this.Const.Perks.CalmTree,
-				this.Const.Perks.IndestructibleTree,
-				this.Const.Perks.InspirationalTree
+				::Const.Perks.IntelligentTree,
+				::Const.Perks.CalmTree,
+				::Const.Perks.IndestructibleTree,
+				::Const.Perks.InspirationalTree
 			],
 			Enemy = [],
 			Class = [],
 			Profession = [],
 			Magic = [
-				this.Const.Perks.ValaChantMagicTree,
-				this.Const.Perks.StavesMagicTree
+				::Const.Perks.ValaChantMagicTree,
+				::Const.Perks.StavesMagicTree
 			]
 		}
 	}

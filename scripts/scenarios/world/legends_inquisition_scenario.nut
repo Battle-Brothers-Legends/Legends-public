@@ -32,7 +32,7 @@ this.legends_inquisition_scenario <- this.inherit("scripts/scenarios/world/start
 		bros[0].getBaseProperties().Hitpoints += 10;
 		bros[0].getBaseProperties().MeleeSkill += 10;
 		::Legends.Traits.grant(bros[0], ::Legends.Trait.LegendInquisitionDisciple);
-		this.addScenarioPerk(bros[0].getBackground(), this.Const.Perks.PerkDefs.LegendMindOverBody);
+		this.addScenarioPerk(bros[0].getBackground(), ::Const.Perks.PerkDefs.LegendMindOverBody);
 		local items = bros[0].getItems();
 		items.unequip(items.getItemAtSlot(this.Const.ItemSlot.Head));
 		items.equip(this.Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Barbarian.leather_helmet]]));
@@ -63,7 +63,7 @@ this.legends_inquisition_scenario <- this.inherit("scripts/scenarios/world/start
 		bros[1].m.LevelUps = 1;
 		bros[1].m.Level = 2;
 		::Legends.Traits.grant(bros[1], ::Legends.Trait.LegendUndeadKiller);
-		this.addScenarioPerk(bros[1].getBackground(), this.Const.Perks.PerkDefs.LegendMindOverBody);
+		this.addScenarioPerk(bros[1].getBackground(), ::Const.Perks.PerkDefs.LegendMindOverBody);
 
 		bros[2].setStartValuesEx([
 			"monk_background"
@@ -84,7 +84,7 @@ this.legends_inquisition_scenario <- this.inherit("scripts/scenarios/world/start
 			foreach(skill in _trait.m.Excluded)
 				bros[2].getSkills().removeByID(skill);
 		}.bindenv(this));
-		this.addScenarioPerk(bros[2].getBackground(), this.Const.Perks.PerkDefs.LegendMindOverBody);
+		this.addScenarioPerk(bros[2].getBackground(), ::Const.Perks.PerkDefs.LegendMindOverBody);
 		local items = bros[2].getItems();
 		items.unequip(items.getItemAtSlot(this.Const.ItemSlot.Body));
 		items.unequip(items.getItemAtSlot(this.Const.ItemSlot.Mainhand));
@@ -93,7 +93,7 @@ this.legends_inquisition_scenario <- this.inherit("scripts/scenarios/world/start
 		shield.onPaintSpecificColor(23);
 		items.equip(shield);
 		local cloths = [
-			[1, "cloth/legend_robes_nun"]
+			[1, "cloth/legend_armor_robes_nun"]
 		];
 		local armor = this.Const.World.Common.pickLegendArmor(cloths);
 
@@ -120,13 +120,11 @@ this.legends_inquisition_scenario <- this.inherit("scripts/scenarios/world/start
 				armor.setUpgrade(plate)
 			}
 			local tabards = [
-						[0, ""],
-						[1, "tabard/legend_common_tabard"]
+						[1, "tabard/legend_armor_tabard", [2,13]]
 					];
 			local tabard = this.Const.World.Common.pickLegendArmor(tabards);
 			if (tabard != null && armor != null)
 			{
-				tabard.setVariant(113);
 				armor.setUpgrade(tabard);
 			}
 			items.equip(armor);
@@ -137,13 +135,11 @@ this.legends_inquisition_scenario <- this.inherit("scripts/scenarios/world/start
 			local items = bro.getItems();
 			local armor = items.getItemAtSlot(this.Const.ItemSlot.Body);
 			local tabards = [
-					[0, ""],
-					[1, "tabard/legend_noble_tabard"]
+					[1, "tabard/legend_armor_tabard", [2,13]]
 				];
 				local tabard = this.Const.World.Common.pickLegendArmor(tabards);
 				if (tabard != null && armor != null)
 				{
-					tabard.setVariant(102);
 					armor.setUpgrade(tabard);
 				}
 		}
@@ -293,7 +289,7 @@ this.legends_inquisition_scenario <- this.inherit("scripts/scenarios/world/start
 
 	function onBuildPerkTree( _background )
 	{
-		this.addScenarioPerk(_background, this.Const.Perks.PerkDefs.LegendMindOverBody);
+		this.addScenarioPerk(_background, ::Const.Perks.PerkDefs.LegendMindOverBody);
 	}
 
 });

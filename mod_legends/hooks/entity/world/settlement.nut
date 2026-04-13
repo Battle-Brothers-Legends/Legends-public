@@ -51,16 +51,40 @@
 		}
 	}
 
-	o.changeSupportedOrAbandonedAttachedLocations <- function ()
-	{
+	o.changeSupportedOrAbandonedAttachedLocations <- function () {
 		local attachedLocations = this.getAttachedLocations();
 		local limit = this.getAttachedLocationsMax();
 		// The settlement is shrinking and will have to abandon attached locations that exceed the Tier limit
-		while (this.getActiveAttachedLocations().len() > limit)
-			this.getActiveAttachedLocations().top().setAbandoned(true);
+		local active = this.getActiveAttachedLocations().len();
+		local activeNonAbandoned = this.getActiveNonAbandonedAttachedLocations().len();
+		while (activeNonAbandoned > limit) {
+			foreach (location in attachedLocations) {
+				if (!location.isAbandoned()) {
+					location.setAbandoned(true);
+					break;
+				}
+			}
+			local newActiveNonAbandoned = this.getActiveNonAbandonedAttachedLocations().len();
+			if (newActiveNonAbandoned == activeNonAbandoned) {
+				::logError("Failed to abandon an attached location for settlement " + this.getName() + " when reducing its size to " + limit);
+				break;
+			}
+			activeNonAbandoned = newActiveNonAbandoned;
+		}
 		// Check if we can repopulate attached locations that were previously abandoned
-		for (local i = 0; i < ::Math.min(attachedLocations.len(), limit); i++)
+		for (local i = 0; i < ::Math.min(attachedLocations.len(), limit); i++) {
 			attachedLocations[i].setAbandoned(false);
+		}
+	}
+
+	o.getActiveNonAbandonedAttachedLocations <- function () {
+		local ret = [];
+		foreach (loc in this.getAttachedLocations()) {
+			if (loc.isActive() && !loc.isAbandoned()) {
+				ret.push(loc);
+			}
+		}
+		return ret;
 	}
 
 	o.changeSize <- function ( _v )
@@ -578,7 +602,7 @@
 				::World.Assets.m.RosterSizeAdditionalMin += 2;
 				::World.Assets.m.RosterSizeAdditionalMax += 4;
 			}
-			
+
 			updateRoster(_force); // run the original function
 
 			::World.Assets.m.RosterSizeAdditionalMin = originalRosterMin;
@@ -809,71 +833,18 @@
 		{
 			this.updateAchievement("MasterTrader", 1, 1);
 		}
-
-		if (::Legends.Mod.ModSettings.getSetting("SkipCamp").getValue())
-		{
-			return;
-		}
-
-		local eventID = "";
-
-		if (!this.World.Flags.get("HasLegendCampTraining") && this.hasBuilding("building.training_hall"))
-		{
-			eventID = "event.legend_camp_unlock_training";
-		}
-		else if (!this.World.Flags.get("HasLegendCampBarber") && this.hasBuilding("building.barber"))
-		{
-			eventID = "event.legend_camp_unlock_barber";
-		}
-		else if (!this.World.Flags.get("HasLegendCampCrafting") && (this.hasBuilding("building.taxidermist") || this.hasBuilding("building.taxidermist_oriental")))
-		{
-			eventID = "event.legend_camp_unlock_crafting";
-		}
-		else if (!this.World.Flags.get("HasLegendCampFletching") && (this.hasAttachedLocation("attached_location.fletchers_hut") || this.hasBuilding("building.weaponsmith") || this.hasBuilding("building.weaponsmith_oriental")))
-		{
-			eventID = "event.legend_camp_unlock_fletching";
-		}
-		else if (!this.World.Flags.get("HasLegendCampGathering") && (this.hasAttachedLocation("attached_location.gatherers_hut") || this.hasAttachedLocation("attached_location.herbalists_grove") || this.hasAttachedLocation("attached_location.plantation")))
-		{
-			eventID = "event.legend_camp_unlock_gather";
-		}
-		else if (!this.World.Flags.get("HasLegendCampHunting") && (this.hasAttachedLocation("attached_location.trapper") || this.hasAttachedLocation("attached_location.hunters_cabin")))
-		{
-			eventID = "event.legend_camp_unlock_hunt";
-		}
-		else if (!this.World.Flags.get("HasLegendCampScraping") && (this.hasAttachedLocation("attached_location.workshop") || this.hasBuilding("building.armorsmith") || this.hasBuilding("building.armorsmith_oriental")))
-		{
-			eventID = "event.legend_camp_unlock_scrap";
-		}
-		else if (!this.World.Flags.get("HasLegendCampPainter") && (this.hasAttachedLocation("attached_location.workshop") || this.hasBuilding("building.armorsmith") || this.hasBuilding("building.armorsmith_oriental"))) //PaintingTent
-		{
-			eventID = "event.legend_camp_unlock_painter";
-		}
-		else if (!this.World.Flags.get("HasLegendCampScouting") && (this.hasAttachedLocation("attached_location.wooden_watchtower") || this.hasAttachedLocation("attached_location.stone_watchtower") || this.hasAttachedLocation("attached_location.fortified_outpost")))
-		{
-			eventID = "event.legend_camp_unlock_scouting";
-		}
-
-		if (eventID == "")
-		{
-			return;
-		}
-
-		this.World.Camp.fireEvent(eventID, this.getName());
 	}
 
 	o.isBuilding <- function ()
 	{
 		foreach( s in this.getSituations() )
 		{
-			switch(s.getID())
-			{
-			case "situation.rebuilding_effort":
-			case "situation.legend_degrading_effort":
-			case "situation.legend_upgrading_effort":
-			case "situation.legend_upgrading_locations_effort":
-				return true;
-			}
+			if(::Legends.S.oneOf(s.getID(),
+				"situation.rebuilding_effort",
+				"situation.legend_degrading_effort",
+				"situation.legend_upgrading_effort",
+				"situation.legend_upgrading_locations_effort"
+			)) return true;
 		}
 
 		return false;
@@ -1139,6 +1110,9 @@
 	o.onEnter = function () {
 		local ret = onEnter();
 		this.updateEncounters();
+		if (this.hasBuilding("building.arena")) {
+			this.getBuilding("building.arena").refreshTooltip();
+		}
 		return ret;
 	}
 
@@ -1156,7 +1130,6 @@
 //				::logInfo("encounter became non valid " + e.getType());
 				::MSU.Array.removeByValue(this.m.SettlementEncounters, e);
 			}
-//			::logInfo("cooldown still on, skipping the creation");
 			return;
 		}
 
@@ -1167,7 +1140,7 @@
 			}
 		}
 
-		local count = this.Math.rand(3, 5);
+		local count = this.Math.rand(::Legends.Encounters.SettlementMin, ::Legends.Encounters.SettlementMax);
 		while(list.len() > count) {
 			local r = this.Math.rand(0, list.len() - 1);
 			list.remove(r);
@@ -1176,7 +1149,7 @@
 		foreach (e in list) {
 			this.m.SettlementEncounters.push(e);
 		}
-		this.m.SettlementEncountersCooldownUntil = this.Time.getVirtualTimeF() + (5 * this.World.getTime().SecondsPerDay);
+		this.m.SettlementEncountersCooldownUntil = this.Time.getVirtualTimeF() + (::Legends.Encounters.SettlementCooldown * this.World.getTime().SecondsPerDay);
 	}
 
 	local onSerialize = o.onSerialize;

@@ -67,7 +67,7 @@ var CharacterScreenPaperdollModule = function (_parent, _dataSource) {
 			ContainerIsBig: true,
 			ContainerClasses: "is-big is-in-between-offset",
 			SlotType: CharacterScreenIdentifier.ItemSlot.Offhand,
-			BackgroundImage: Path.GFX + Asset.SLOT_BACKGROUND_OFFHAND
+			BackgroundImage: Path.GFX + 'ui/items/slots/inventory_slot_offhand_dw.png'
 		}
 	};
 
@@ -261,10 +261,17 @@ CharacterScreenPaperdollModule.prototype.createBagSlot = function (
 			sourceData !== null && "slotType" in sourceData ?
 				sourceData.slotType :
 				null;
-		var targetSlotType =
-			targetData !== null && "slotType" in targetData ?
-				targetData.slotType :
-				null;
+
+		// Use the container's permanent slot type, not the item's slot type
+		// (a mainhand weapon in offhand slot should report Offhand as the container type)
+		// For bag slots, containerSlotType is NOT set, so targetSlotType will be undefined
+		var targetSlotType = _target.data("containerSlotType");
+		if (targetSlotType === undefined || targetSlotType === null) {
+			if (targetData !== null && "containerSlotType" in targetData) {
+				targetSlotType = targetData.containerSlotType;
+			}
+		}
+
 		var sourceIsBlockingOffhand =
 			sourceData !== null && "isBlockingOffhand" in sourceData ?
 				sourceData.isBlockingOffhand :
@@ -396,8 +403,18 @@ CharacterScreenPaperdollModule.prototype.createBagSlot = function (
 				ignoreSlotType = true;
 			}
 
+			if (
+				sourceSlotType === CharacterScreenIdentifier.ItemSlot.Mainhand &&
+				!sourceIsBlockingOffhand &&
+				targetSlotType === CharacterScreenIdentifier.ItemSlot.Offhand
+			) {
+				ignoreSlotType = true;
+			}
+
 			// Same Slot type ?
-			if (ignoreSlotType === false && targetSlotType !== null) {
+			// Only validate slot type if targetSlotType is actually set (not null/undefined)
+			// Bags don't have containerSlotType set, so targetSlotType will be undefined
+			if (ignoreSlotType === false && targetSlotType) {
 				if (sourceSlotType !== targetSlotType) {
 					console.info(
 						"Backpack::dropHandler: Item must be the same slot type!"
@@ -418,6 +435,48 @@ CharacterScreenPaperdollModule.prototype.createBagSlot = function (
 				sourceItemId,
 				targetItemIdx
 			);
+			return;
+		}
+
+		// Paperdoll -> Paperdoll (swap equipped items)
+		if (
+			sourceOwner === CharacterScreenIdentifier.ItemOwner.Paperdoll &&
+			targetOwner === CharacterScreenIdentifier.ItemOwner.Paperdoll
+		) {
+			var ignoreSlotType = false;
+			var targetSlotOverride = null;
+
+			// Allow 2-handed weapons to swap with shields/offhand items
+			if (
+				sourceSlotType === CharacterScreenIdentifier.ItemSlot.Mainhand &&
+				sourceIsBlockingOffhand &&
+				targetSlotType === CharacterScreenIdentifier.ItemSlot.Offhand
+			) {
+				ignoreSlotType = true;
+			}
+
+			if (
+				sourceSlotType === CharacterScreenIdentifier.ItemSlot.Mainhand &&
+				!sourceIsBlockingOffhand &&
+				targetSlotType === CharacterScreenIdentifier.ItemSlot.Offhand
+			) {
+				ignoreSlotType = true;
+				targetSlotOverride = CharacterScreenIdentifier.ItemSlot.Offhand;
+			}
+
+			// Same slot type check
+			if (ignoreSlotType === false) {
+				if (sourceSlotType !== targetSlotType) {
+					return;
+				}
+			}
+
+			// allow drop animation
+			sourceData.isAllowedToDrop = true;
+			_proxy.data("item", sourceData);
+
+			self.mDataSource.equipBagItem(entityId, sourceItemId, null, targetSlotOverride);
+			return;
 		}
 	};
 
@@ -481,6 +540,14 @@ CharacterScreenPaperdollModule.prototype.createBagSlot = function (
 					".ui-control.paperdoll-item.has-slot-frame.is-big:first"
 				);
 				mainhandContainer.addClass("is-equipable");
+
+				if (sourceData.isBlockingOffhand === false) {
+					var rightColumn = paperdollModule.find(".equipment-column:eq(2)");
+					var offhandContainer = rightColumn.find(
+						".ui-control.paperdoll-item.has-slot-frame.is-big:first"
+					);
+					offhandContainer.addClass("is-equipable");
+				}
 				break;
 			case CharacterScreenIdentifier.ItemSlot.Head:
 				var middleColumn = paperdollModule.find(".equipment-column:eq(1)");
@@ -544,20 +611,24 @@ CharacterScreenPaperdollModule.prototype.createBagSlot = function (
 
 		var isEmpty = data !== null && "isEmpty" in data ? data.isEmpty : true;
 		var itemId = data !== null && "itemId" in data ? data.itemId : null;
-		//var itemIdx = (data !== null && 'index' in data) ? data.index : null;
+		var itemIdx = (data !== null && 'index' in data) ? data.index : null;
 		var entityId = data !== null && "entityId" in data ? data.entityId : null;
+		var sourceSlotType = data !== null && "slotType" in data ? data.slotType : null;
 		var dropIntoInventory =
 			KeyModiferConstants.CtrlKey in _event &&
 			_event[KeyModiferConstants.CtrlKey] === true;
 		var repairItem =
 			KeyModiferConstants.AltKey in _event &&
 			_event[KeyModiferConstants.AltKey] === true;
+		var shift =
+			KeyModiferConstants.ShiftKey in _event &&
+			_event[KeyModiferConstants.ShiftKey] === true;
 
 
 		if (
 			isEmpty === false &&
 			itemId !== null &&
-			entityId !== null /*&& itemIdx !== null*/
+			entityId !== null
 		) {
 			// equip or drop into inventory
 			if (repairItem === true) {
@@ -573,7 +644,18 @@ CharacterScreenPaperdollModule.prototype.createBagSlot = function (
 			}
 			else {
 				//console.info('equip item: ' + itemId);
-				self.mDataSource.equipBagItem(entityId, itemId, null);
+				var targetSlot = (shift && sourceSlotType === CharacterScreenIdentifier.ItemSlot.Mainhand) ? CharacterScreenIdentifier.ItemSlot.Offhand : null;
+				self.mDataSource.equipBagItem(entityId, itemId, itemIdx, targetSlot);
+
+				// Force refresh after equip, in theory equipBagItem should already handle
+				// this via updateBrother, but somehow the visual refresh doesn't seem to
+				// work for right click?
+				setTimeout(function() {
+					var bro = self.mDataSource.getSelectedBrother();
+					if (bro) {
+						self.onBrotherSelected(self.mDataSource, bro);
+					}
+				}, 100);
 			}
 
 			self.mDataSource.getInventoryModule().updateSlotsLabel();
@@ -605,6 +687,10 @@ CharacterScreenPaperdollModule.prototype.createEquipmentSlot = function (
 	itemData.owner = CharacterScreenIdentifier.ItemOwner.Paperdoll;
 	itemData.slotType = _slot.SlotType;
 
+	// Store the container's permanent slot type (won't change when items are added)
+	itemData.containerSlotType = _slot.SlotType;
+	_slot.Container.data("containerSlotType", _slot.SlotType);
+
 	// add event handler
 	var dropHandler = function (_source, _target, _proxy) {
 		//var sourceData = _source.data('item');
@@ -625,9 +711,36 @@ CharacterScreenPaperdollModule.prototype.createEquipmentSlot = function (
 			return;
 		}
 
-		// we don't allow swapping within the paperdoll
+		// we don't allow swapping within the paperdoll (except for dual wield)
 		if (sourceOwner === targetOwner) {
-			//console.error('Failed to drop item. Owners are equal.');
+			if (sourceOwner === CharacterScreenIdentifier.ItemOwner.Paperdoll) {
+				var srcSlot = sourceData !== null && 'containerSlotType' in sourceData ? sourceData.containerSlotType : null;
+				var tgtSlot = _target.data('containerSlotType');
+				if (tgtSlot === undefined || tgtSlot === null) {
+					tgtSlot = targetData !== null && 'containerSlotType' in targetData ? targetData.containerSlotType : null;
+				}
+				var isMhToOh = srcSlot === CharacterScreenIdentifier.ItemSlot.Mainhand && tgtSlot === CharacterScreenIdentifier.ItemSlot.Offhand;
+				var isOhToMh = srcSlot === CharacterScreenIdentifier.ItemSlot.Offhand && tgtSlot === CharacterScreenIdentifier.ItemSlot.Mainhand;
+				if (isMhToOh || isOhToMh) {
+					var swapEntityId = sourceData !== null && 'entityId' in sourceData ? sourceData.entityId : null;
+					if (swapEntityId !== null) {
+						sourceData.isAllowedToDrop = true;
+						_proxy.data('item', sourceData);
+
+						SQ.call(self.mDataSource.mSQHandle, 'onSwapDualWieldSlots', [swapEntityId], function (data) {
+							if (data !== null && typeof data === 'object') {
+								if (CharacterScreenIdentifier.QueryResult.Brother in data) {
+									var brotherData = data[CharacterScreenIdentifier.QueryResult.Brother];
+									if (CharacterScreenIdentifier.Entity.Id in brotherData) {
+										self.mDataSource.updateBrother(brotherData);
+									}
+								}
+							}
+						});
+						return;
+					}
+				}
+			}
 			return;
 		}
 
@@ -650,10 +763,16 @@ CharacterScreenPaperdollModule.prototype.createEquipmentSlot = function (
 			sourceData !== null && "slotType" in sourceData ?
 				sourceData.slotType :
 				null;
-		var targetSlotType =
-			targetData !== null && "slotType" in targetData ?
-				targetData.slotType :
-				null;
+
+		// Use the container's permanent slot type, not the item's slot type
+		// (a mainhand weapon in offhand slot should report Offhand as the container type)
+		var targetSlotType = _target.data("containerSlotType");
+		if (targetSlotType === undefined || targetSlotType === null) {
+			if (targetData !== null && "containerSlotType" in targetData) {
+				targetSlotType = targetData.containerSlotType;
+			}
+		}
+
 		var sourceItemId =
 			sourceData !== null && "itemId" in sourceData ? sourceData.itemId : null;
 		var sourceItemIdx =
@@ -694,6 +813,7 @@ CharacterScreenPaperdollModule.prototype.createEquipmentSlot = function (
 
 			// check conditions
 			var ignoreSlotType = false;
+			var targetSlotOverride = null;
 
 			// Special Case: Source = Twohander and Target = Offhand and Inventory = Stash and Main & Offhand are filled with Item and Stash = full
 			if (
@@ -717,9 +837,18 @@ CharacterScreenPaperdollModule.prototype.createEquipmentSlot = function (
 
 				ignoreSlotType = true;
 			}
+			if (
+				sourceSlotType === CharacterScreenIdentifier.ItemSlot.Mainhand &&
+				!sourceIsBlockingOffhand &&
+				targetSlotType === CharacterScreenIdentifier.ItemSlot.Offhand
+			) {
+				ignoreSlotType = true;
+				targetSlotOverride = CharacterScreenIdentifier.ItemSlot.Offhand;
+			}
 
 			// Same Slot type ?
-			if (ignoreSlotType === false && targetSlotType !== null) {
+			// Only validate slot type if targetSlotType is actually set (not null/undefined)
+			if (ignoreSlotType === false && targetSlotType) {
 				if (sourceSlotType !== targetSlotType) {
 					console.info(
 						"Paperdoll::dropHandler: Item must be the same slot type!"
@@ -741,7 +870,7 @@ CharacterScreenPaperdollModule.prototype.createEquipmentSlot = function (
 			console.info(
 				"Backpack -> Paperdoll (sourceItemIdx: " + sourceItemIdx + ")"
 			);
-			self.mDataSource.equipBagItem(entityId, sourceItemId, sourceItemIdx);
+			self.mDataSource.equipBagItem(entityId, sourceItemId, sourceItemIdx, targetSlotOverride);
 
 			return;
 		}
@@ -753,6 +882,7 @@ CharacterScreenPaperdollModule.prototype.createEquipmentSlot = function (
 		) {
 			// NOTE: (js) check conditions
 			var ignoreSlotType = false;
+			var targetSlotOverride = null;
 
 			// Special Case: Source = Twohander and Target = Offhand and Inventory = Stash and Main & Offhand are filled with Item and Stash = full
 			if (
@@ -778,8 +908,18 @@ CharacterScreenPaperdollModule.prototype.createEquipmentSlot = function (
 				ignoreSlotType = true;
 			}
 
+			if (
+				sourceSlotType === CharacterScreenIdentifier.ItemSlot.Mainhand &&
+				!sourceIsBlockingOffhand &&
+				targetSlotType === CharacterScreenIdentifier.ItemSlot.Offhand
+			) {
+				ignoreSlotType = true;
+				targetSlotOverride = CharacterScreenIdentifier.ItemSlot.Offhand;
+			}
+
 			// Same Slot type ?
-			if (ignoreSlotType === false && targetSlotType !== null) {
+			// Only validate slot type if targetSlotType is actually set (not null/undefined)
+			if (ignoreSlotType === false && targetSlotType) {
 				if (sourceSlotType !== targetSlotType && !isUsable) {
 					console.info("isUsable = " + isUsable);
 					console.info(
@@ -811,7 +951,7 @@ CharacterScreenPaperdollModule.prototype.createEquipmentSlot = function (
 
 			// all fine - drop this shit
 			//console.info('Stash | Ground -> Paperdoll');
-			self.mDataSource.equipInventoryItem(entityId, itemId, sourceItemIdx);
+			self.mDataSource.equipInventoryItem(entityId, itemId, sourceItemIdx, targetSlotOverride);
 		}
 	};
 
@@ -975,6 +1115,14 @@ CharacterScreenPaperdollModule.prototype.createEquipmentSlot = function (
 					".ui-control.paperdoll-item.has-slot-frame.is-big:first"
 				);
 				mainhandContainer.addClass("is-equipable");
+
+				if (sourceData.isBlockingOffhand === false) {
+					var rightColumn = paperdollModule.find(".equipment-column:eq(2)");
+					var offhandContainer = rightColumn.find(
+						".ui-control.paperdoll-item.has-slot-frame.is-big:first"
+					);
+					offhandContainer.addClass("is-equipable");
+				}
 				break;
 			case CharacterScreenIdentifier.ItemSlot.Head:
 				var middleColumn = paperdollModule.find(".equipment-column:eq(1)");
@@ -1136,12 +1284,14 @@ CharacterScreenPaperdollModule.prototype.assignItemToSlot = function (
 
 		// update item data
 		var itemData = _slot.Container.data("item") || {};
+		var preservedContainerSlotType = itemData.containerSlotType;
 		itemData.itemId = null;
 		itemData.slotType = null;
 		itemData.entityId = null;
 		itemData.isChangeableInBattle = null;
 		itemData.isBlockingOffhand = null;
 		itemData.isAllowedInBag = null;
+		itemData.containerSlotType = preservedContainerSlotType;
 		_slot.Container.data("item", itemData);
 		_slot.Container.setPaperdollRepairImageVisible(false);
 	} else {
@@ -1149,6 +1299,7 @@ CharacterScreenPaperdollModule.prototype.assignItemToSlot = function (
 
 		// update item data
 		var itemData = _slot.Container.data("item") || {};
+		var preservedContainerSlotType = itemData.containerSlotType;
 		itemData.itemId = _item[CharacterScreenIdentifier.Item.Id];
 
 		// set slot type correctly to offhand if the mainhand is a twohander
@@ -1168,6 +1319,7 @@ CharacterScreenPaperdollModule.prototype.assignItemToSlot = function (
 				false;
 		itemData.isAllowedInBag = _item.isAllowedInBag;
 		itemData.isUsable = _item.isUsable;
+		itemData.containerSlotType = preservedContainerSlotType;
 		_slot.Container.data("item", itemData);
 
 		// check size
@@ -1192,7 +1344,8 @@ CharacterScreenPaperdollModule.prototype.assignItemToSlot = function (
 		_slot.Container.assignPaperdollItemOverlayImage(
 			_item["imageOverlayPath"],
 			isSmall,
-			isSlotBlocked
+			isSlotBlocked,
+			_item
 		);
 
 		// show amount

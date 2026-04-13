@@ -18,14 +18,14 @@ this.legend_named_great_khopesh <- this.inherit("scripts/items/weapons/named/nam
 		this.m.AddGenericSkill = true;
 		this.m.ShowQuiver = false;
 		this.m.ShowArmamentIcon = true;
-		this.m.Value = 3500;
-		this.m.Condition = 50.0;
-		this.m.ConditionMax = 50.0;
+		this.m.Value = 4200;
+		this.m.Condition = 54.0;
+		this.m.ConditionMax = 54.0;
 		this.m.StaminaModifier = -18;
-		this.m.RegularDamage = 75;
-		this.m.RegularDamageMax = 95;
+		this.m.RegularDamage = 80;
+		this.m.RegularDamageMax = 115;
 		this.m.ArmorDamageMult = 1.2;
-		this.m.DirectDamageMult = 0.25;
+		this.m.DirectDamageMult = 0.35;
 		this.m.FatigueOnSkillUse = 5;
 		this.randomizeValues();
 	}
@@ -40,11 +40,11 @@ this.legend_named_great_khopesh <- this.inherit("scripts/items/weapons/named/nam
 	function onEquip()
 	{
 		this.named_weapon.onEquip();
-		::Legends.Actives.grant(this, ::Legends.Active.Cleave, function (_skill) {
-			_skill.m.FatigueCost = 15;
+		::Legends.Actives.grant(this, ::Legends.Active.LegendHew);
+		::Legends.Actives.grant(this, ::Legends.Active.LegendHarvest);
+		::Legends.Actives.grant(this, ::Legends.Active.Decapitate, function (_skill) {
+			_skill.m.IsTwoHand = true;
 		}.bindenv(this));
-		::Legends.Actives.grant(this, ::Legends.Active.Decapitate);
-		::Legends.Actives.grant(this, ::Legends.Active.Swing);
 	}
 
 });

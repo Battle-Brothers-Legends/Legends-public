@@ -9,8 +9,7 @@ this.legend_mummy_bandages <- this.inherit("scripts/items/armor/armor", {
 		this.m.IsDroppedAsLoot = false;
 		this.m.ShowOnCharacter = true;
 		local variants = [
-			1,
-			2
+			1
 		];
 		this.m.Variant = variants[this.Math.rand(0, variants.len() - 1)];
 		this.updateVariant();
@@ -33,4 +32,3 @@ this.legend_mummy_bandages <- this.inherit("scripts/items/armor/armor", {
 	}
 
 });
-

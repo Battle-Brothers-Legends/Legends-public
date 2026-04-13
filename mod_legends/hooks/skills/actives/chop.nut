@@ -1,14 +1,29 @@
 ::mods_hookExactClass("skills/actives/chop", function(o)
 {
-	o.m.IsOrcWeapon <- false;
+	o.m.IsHack <- false;
+	o.m.ApplicableSkills <- [
+		::Legends.Effect.LegendGrappled,
+		::Legends.Effect.LegendTackled,
+		::Legends.Effect.Stunned,
+	];
 
-	o.setApplyOrcWeapon <- function ( _f )
-	{
-		this.m.IsOrcWeapon = _f;
+	o.setItem <- function (_item) {
+		if (this.m.IsHack) {
+			this.m.Name = "Hack";
+			this.m.Description = "A powerful hacking attack that bears full force on any target.";
+			this.m.KilledString = "Hacked up";
+			this.m.FatigueCost = 15;
+			this.m.DirectDamageMult = 0.4;
+			this.m.ChanceDecapitate = 50;
+			this.m.ChanceDisembowel = 50;
+		}
+		this.skill.setItem(_item);
 	}
 
-	o.isHidden <- function()
-	{
-		return this.m.IsOrcWeapon && this.getContainer().getActor().getSkills().getSkillByID("special.double_grip").canDoubleGrip();
+	local onAnySkillUsed = o.onAnySkillUsed;
+	o.onAnySkillUsed = function ( _skill, _targetEntity, _properties ) {
+		if (_skill == this && this.m.IsHack)
+			_properties.HitChance[this.Const.BodyPart.Head] += 25;
+		onAnySkillUsed( _skill, _targetEntity, _properties );
 	}
 });

@@ -15,7 +15,7 @@ this.legend_zombie_poison_effect <- this.inherit("scripts/skills/skill", {
 
 	function getDescription()
 	{
-		return "This character has zombie infection running through their veins. Their vision is blurred, their speech is slurred, and it takes a great deal of effort for them to move in a coordinated fashion. The effect will slowly get worse over [color=" + this.Const.UI.Color.NegativeValue + "]" + this.m.TurnsLeft + "[/color] more turn(s).";
+		return "This character has zombie infection running through their veins. Their vision is blurred, their speech is slurred, and it takes a great deal of effort for them to move in a coordinated fashion. The effect will slowly get worse over [color=%negative%]" + this.m.TurnsLeft + "[/color] more turn(s).";
 	}
 
 	function getTooltip()
@@ -38,19 +38,19 @@ this.legend_zombie_poison_effect <- this.inherit("scripts/skills/skill", {
 				id = 10,
 				type = "text",
 				icon = "ui/icons/action_points.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]-" + 1 * remaining + "[/color] Action Points"
+				text = "[color=%negative%]-" + 1 * remaining + "[/color] Action Points"
 			},
 			{
 				id = 11,
 				type = "text",
 				icon = "ui/icons/vision.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]-" + 1 * remaining + "[/color] Vision"
+				text = "[color=%negative%]-" + 1 * remaining + "[/color] Vision"
 			},
 			{
 				id = 12,
 				type = "text",
 				icon = "ui/icons/initiative.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]-" + 10 * remaining + "[/color] Initiative"
+				text = "[color=%negative%]-" + 10 * remaining + "[/color] Initiative"
 			}
 		];
 	}

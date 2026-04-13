@@ -71,7 +71,7 @@
 	Salvage = [0.0, 0.10, 0.30, 0.50],
 	Crafting = [0.0, 0.50, 0.75, 1.0],
 	Barter = [0.0, 0.005, 0.01, 0.02, 0.03],
-	ToolConsumption = [0.0, 0.05, 0.10, 0.20],
+	ToolConsumption = [0.0, 0.01, 0.03, 0.05],
 	MedConsumption = [0.0, 0.05, 0.10, 0.20],
 	Hunting = [0.0, 0.1, 0.2, 0.3], // = BasePoints + BasePoints * Modifier
 	Fletching = [0.0, 0.1, 0.2, 0.3], // = BasePoints + BasePoints * Modifier

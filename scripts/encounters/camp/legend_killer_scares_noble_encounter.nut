@@ -5,17 +5,17 @@ this.legend_killer_scares_noble_encounter <- ::inherit("scripts/encounters/encou
 	},
 
 	function create() {
-		this.m.ID = "encounter.legend_killer_scares_noble";
+		this.encounter.create();
+		this.m.Type = "encounter.legend_killer_scares_noble";
 		this.m.Name = ::Const.Strings.randomCampEncounterName();
-		this.m.Cooldown = 30 * this.World.getTime().SecondsPerDay;
-		this.createScreens();
+		this.m.Cooldown = 60 * this.World.getTime().SecondsPerDay;
 	}
 
 	function createScreens() {
 		this.m.Screens.push({
 			ID = "Start",
 			Title = "In camp...",
-			Text = "[img]gfx/ui/events/event_33.png[/img]{Leaving your tent, you spy %noble% making a poor attempt of hiding by the wagon. You meet their gaze and are about to call out to them, when they gasp, spin on their heels, and bolt. Amused at the sight, you hardly hear %killer% approach until they\'ve firmly clasped their hand on your shoulder.%SPEECH_ON%They\'re an imaginative sort, that one.%SPEECH_OFF%They gesture, the blue-blooded mercenary now a scrambling mess, slipping on a patch of mud in some vain attempt to flee.%SPEECH_ON%Has it in their head I\'m some dangerous fella' out to get them [as revenge for some misdeed in their past] [as part of some long contract for one noble house or other.]%SPEECH_OFF%You detect the faintest smirk slipping through the careful facade before they continue.%SPEECH_ON%But I\'m not, captain, don\'t you worry. I kill on your word only, but it doesn\'t hurt to keep up one\'s professional reputation amongst the highborn, does it?%SPEECH_OFF%You shrug and tell them not to scare the noble too bad. %SPEECH_ON%Of course, captain.%SPEECH_OFF%They pat your shoulder again as they follow the fresh and frantic footsteps of a man marked.%SPEECH_ON%Come here, little rabbit.%SPEECH_OFF%}",
+			Text = "[img]gfx/ui/events/event_33.png[/img]Leaving your tent, you spy %noble% making a poor attempt of hiding by the wagon. You meet their gaze and are about to call out to them, when they gasp, spin on their heels, and bolt. Amused at the sight, you hardly hear %killer% approach until they\'ve firmly clasped their hand on your shoulder.%SPEECH_ON%They\'re an imaginative sort, that one.%SPEECH_OFF%They gesture, the blue-blooded mercenary now a scrambling mess, slipping on a patch of mud in some vain attempt to flee.%SPEECH_ON%Has it in their head I\'m some dangerous fella\' out to get them { as revenge for some misdeed in their past. | as part of some long contract for one noble house or other. }%SPEECH_OFF%You detect the faintest smirk slipping through the careful facade before they continue.%SPEECH_ON%But I\'m not, captain, don\'t you worry. I kill on your word only, but it doesn\'t hurt to keep up one\'s professional reputation amongst the highborn, does it?%SPEECH_OFF%You shrug and tell them not to scare the noble too bad. %SPEECH_ON%Of course, captain.%SPEECH_OFF%They pat your shoulder again as they follow the fresh and frantic footsteps of a man marked.%SPEECH_ON%Come here, little rabbit.%SPEECH_OFF%",
 			Image = "",
 			List = [],
 			Characters = [],
@@ -47,8 +47,10 @@ this.legend_killer_scares_noble_encounter <- ::inherit("scripts/encounters/encou
 	}
 
 	function isValid(_camp) {
-		local brothers = ::World.getPlayerRoster().getAll();
+		if (::World.Assets.getOrigin().getID() == "scenario.legend_risen_legion")
+			return false;
 
+		local brothers = ::World.getPlayerRoster().getAll();
 		local candidates_noble = brothers.filter(@(idx, bro) bro.getBackground().isNoble());
 		if (candidates_noble.len() == 0)
 			return false;
@@ -68,8 +70,6 @@ this.legend_killer_scares_noble_encounter <- ::inherit("scripts/encounters/encou
 	function onPrepareVariables(_vars) {
 		_vars.push(["killer", this.m.Killer.m.Name]);
 		_vars.push(["noble", this.m.Noble.m.Name]);
-		::Const.LegendMod.extendVarsWithPronouns(_vars, this.m.Killer.getGender(), "killer");
-		::Const.LegendMod.extendVarsWithPronouns(_vars, this.m.Noble.getGender(), "noble");
 	}
 
 	function onClear() {

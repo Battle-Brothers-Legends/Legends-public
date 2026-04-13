@@ -5,15 +5,15 @@ this.legend_armor_cloak_emperors <- this.inherit("scripts/items/legend_armor/leg
 	function create()
 	{
 		this.legend_named_armor_upgrade.create();
-		this.m.Type = this.Const.Items.ArmorUpgrades.Cloak;
 		this.m.ID = "legend_armor.cloak_emperor";
+		this.m.Type = this.Const.Items.ArmorUpgrades.Cloak;
 		this.m.Name = "The Emperor\'s Cloak";
-		this.m.Description = "A cloak of the finest material that was rumored to have been worn by the last emperor";
-		this.m.ArmorDescription = "Has a flowing embroidered cloak";
-		this.m.Variants = [
-			1,
-		];
-		this.m.Variant = this.m.Variants[this.Math.rand(0, this.m.Variants.len() - 1)];
+		this.m.Description = "A cloak of the finest material that was rumored to have been worn by the last emperor.";
+		this.m.ArmorDescription = "Has a flowing embroidered cloak of the finest material.";
+		this.m.ImpactSound = this.Const.Sound.ArmorLeatherImpact;
+		this.m.InventorySound = this.Const.Sound.ClothEquip;
+		this.m.Variants = [1, 2, 3, 4];
+		this.m.Variant = 1;
 		this.updateVariant();
 		this.m.Value = 15000;
 		this.m.Condition = 40;
@@ -31,14 +31,14 @@ this.legend_armor_cloak_emperors <- this.inherit("scripts/items/legend_armor/leg
 
 	function updateVariant()
 	{
-		local variant = this.m.Variant < 10 ? "0" + this.m.Variant : this.m.Variant;
-		this.m.SpriteBack = "bust_named_emperors_cloak_" + variant + "";
-		this.m.SpriteDamagedBack = "bust_named_emperors_cloak_" + variant + "_damaged";
-		this.m.SpriteCorpseBack = "bust_named_emperors_cloak_" + variant + "_dead";
-		this.m.Icon = "legend_armor/icon_named_emporers_cloak_" + variant + ".png";
+		local variant = this.m.Variant > 9 ? this.m.Variant : "0" + this.m.Variant;
+		this.m.SpriteBack = "cloak_emperors_named_" + variant + "";
+		this.m.SpriteDamagedBack = "cloak_emperors_named_" + variant + "_damaged";
+		this.m.SpriteCorpseBack = "cloak_emperors_named_" + variant + "_dead";
+		this.m.Icon = "legend_armor/icon_cloak_emperors_named_" + variant + ".png";
 		this.m.IconLarge = this.m.Icon;
-		this.m.OverlayIcon = "legend_armor/icon_named_emporers_cloak_" + variant + ".png";
-		this.m.OverlayIconLarge = "legend_armor/inventory_named_emporers_cloak_" + variant + ".png";
+		this.m.OverlayIcon = "legend_armor/icon_cloak_emperors_named_" + variant + ".png";
+		this.m.OverlayIconLarge = "legend_armor/inventory_cloak_emperors_named_" + variant + ".png";
 	}
 
 	function getTooltip()
@@ -49,7 +49,7 @@ this.legend_armor_cloak_emperors <- this.inherit("scripts/items/legend_armor/leg
 			id = 15,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "Increase the Resolve of the wearer by [color=" + this.Const.UI.Color.PositiveValue + "]+" + val + "%[/color]"
+			text = "Increase the Resolve of the wearer by [color=%positive%]+" + val + "%[/color]"
 		});
 		return result;
 	}
@@ -61,7 +61,7 @@ this.legend_armor_cloak_emperors <- this.inherit("scripts/items/legend_armor/leg
 			id = 15,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "Increase the Resolve of the wearer by [color=" + this.Const.UI.Color.PositiveValue + "]+" + val + "%[/color]"
+			text = "Increase the Resolve of the wearer by [color=%positive%]+" + val + "%[/color]"
 		});
 	}
 

@@ -17,7 +17,7 @@ this.legend_baffled_effect <- this.inherit("scripts/skills/skill", {
 
 	function getDescription()
 	{
-		return "This character is confused. Will wear off in [color=" + this.Const.UI.Color.NegativeValue + "]" + this.m.TurnsLeft + "[/color] turn(s).";
+		return "This character is confused. Will wear off in [color=%negative%]" + this.m.TurnsLeft + "[/color] turn(s).";
 	}
 
 	function getTooltip()
@@ -37,19 +37,19 @@ this.legend_baffled_effect <- this.inherit("scripts/skills/skill", {
 				id = 11,
 				type = "text",
 				icon = "ui/icons/regular_damage.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]-15%[/color] Damage"
+				text = "[color=%negative%]-15%[/color] Damage"
 			},
 			{
 				id = 12,
 				type = "text",
 				icon = "ui/icons/fatigue.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]-15%[/color] Max Fatigue"
+				text = "[color=%negative%]-15%[/color] Max Fatigue"
 			},
 			{
 				id = 12,
 				type = "text",
 				icon = "ui/icons/initiative.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]-15%[/color] Initiative"
+				text = "[color=%negative%]-15%[/color] Initiative"
 			}
 		];
 	}

@@ -67,7 +67,7 @@ this.legend_grapple_skill <- this.inherit("scripts/skills/skill", {
 			id = 5,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "Has a [color=" + this.Const.UI.Color.PositiveValue + "]100%[/color] chance to grapple on a hit"
+			text = "Has a [color=%positive%]100%[/color] chance to grapple on a hit"
 		});
 
 		if (!::Legends.Perks.has(this, ::Legends.Perk.LegendGrappler))
@@ -76,7 +76,7 @@ this.legend_grapple_skill <- this.inherit("scripts/skills/skill", {
 				id = 6,
 				type = "text",
 				icon = "ui/icons/hitchance.png",
-				text = "Has a [color=" + this.Const.UI.Color.NegativeValue + "]-20%[/color] chance to hit"
+				text = "Has a [color=%negative%]-20%[/color] chance to hit"
 			});
 		}
 		if (this.m.Container.getActor().getCurrentProperties().IsSpecializedInFists)
@@ -85,13 +85,13 @@ this.legend_grapple_skill <- this.inherit("scripts/skills/skill", {
 				id = 6,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "Has a [color=" + this.Const.UI.Color.PositiveValue + "]100%[/color] chance to disarm on a hit due to unarmed mastery"
+				text = "Has a [color=%positive%]100%[/color] chance to disarm on a hit due to unarmed mastery"
 			});
 			ret.push({
 				id = 7,
 				type = "text",
 				icon = "ui/icons/hitchance.png",
-				text = "Has [color=" + this.Const.UI.Color.PositiveValue + "]+10%[/color] chance to hit due to unarmed mastery"
+				text = "Has [color=%positive%]+10%[/color] chance to hit due to unarmed mastery"
 			});
 
 		}
@@ -100,7 +100,7 @@ this.legend_grapple_skill <- this.inherit("scripts/skills/skill", {
 				id = 6,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "Has a [color=" + this.Const.UI.Color.PositiveValue + "]50%[/color] chance to disarm"
+				text = "Has a [color=%positive%]50%[/color] chance to disarm"
 			});
 		}
 		return ret;
@@ -143,15 +143,24 @@ this.legend_grapple_skill <- this.inherit("scripts/skills/skill", {
 
 	function isUsable()
 	{
+		local actor = this.getContainer().getActor();
 		local mainhand = this.m.Container.getActor().getItems().getItemAtSlot(this.Const.ItemSlot.Mainhand);
 		local offhand = this.m.Container.getActor().getItems().getItemAtSlot(this.Const.ItemSlot.Offhand);
+		local hasNet = actor.getCurrentProperties().IsSpecializedInNets && offhand != null && offhand.getID().find("throwing_net") != null;
+		if (hasNet)
+			return true;
 		return ((offhand == null || mainhand == null) || this.getContainer().hasEffect(::Legends.Effect.Disarmed)) && this.skill.isUsable();
 	}
 
 	function isHidden()
 	{
+		local actor = this.getContainer().getActor();
 		local mainhand = this.m.Container.getActor().getItems().getItemAtSlot(this.Const.ItemSlot.Mainhand);
 		local offhand = this.m.Container.getActor().getItems().getItemAtSlot(this.Const.ItemSlot.Offhand);
+		local hasNet = actor.getCurrentProperties().IsSpecializedInNets && offhand != null && offhand.getID().find("throwing_net") != null;
+		if (hasNet)
+			return false;
+
 		return mainhand != null && offhand != null && !this.getContainer().hasEffect(::Legends.Effect.Disarmed) || this.getContainer().getActor().getItems().hasBlockedSlot(this.Const.ItemSlot.Offhand) || this.skill.isHidden() || this.m.Container.getActor().isStabled();
 	}
 

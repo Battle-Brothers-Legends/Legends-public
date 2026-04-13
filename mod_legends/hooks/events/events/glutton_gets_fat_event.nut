@@ -40,11 +40,4 @@
 		this.m.Glutton = candidates[this.Math.rand(0, candidates.len() - 1)];
 		this.m.Score = candidates.len() * 5;
 	}
-
-	local onPrepareVariables = o.onPrepareVariables;
-	o.onPrepareVariables = function ( _vars )
-	{
-		onPrepareVariables(_vars);
-		::Const.LegendMod.extendVarsWithPronouns(_vars, this.m.Glutton.getGender(), "glutton");
-	}
 })

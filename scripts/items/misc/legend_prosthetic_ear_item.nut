@@ -57,7 +57,7 @@ this.legend_prosthetic_ear_item <- this.inherit("scripts/items/item", {
 			{
 				id = 64,
 				type = "text",
-				text = "Reduces the penalty of Missing Ear to [color=" + this.Const.UI.Color.NegativeValue + "]-5%[/color] Initiative"
+				text = "Reduces the penalty of Missing Ear to [color=%negative%]-5%[/color] Initiative"
 			},
 			{
 				id = 65,

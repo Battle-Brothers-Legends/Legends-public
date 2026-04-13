@@ -39,28 +39,29 @@ this.legend_alchemist_background <- this.inherit("scripts/skills/backgrounds/cha
 		this.m.Modifiers.Crafting = this.Const.LegendMod.ResourceModifiers.Crafting[3];
 		this.m.PerkTreeDynamic = {
 			Weapon = [
-				this.Const.Perks.SwordTree,
-				this.Const.Perks.DaggerTree,
-				this.Const.Perks.ThrowingTree
+				::Const.Perks.SwordTree,
+				::Const.Perks.DaggerTree,
+				::Const.Perks.ThrowingTree
 			],
 			Defense = [
-				this.Const.Perks.ClothArmorTree
+				::Const.Perks.ClothArmorTree
 			],
 			Traits = [ //lf 5
-				this.Const.Perks.TrainedTree,
-				this.Const.Perks.DeviousTree,
-				this.Const.Perks.IntelligentTree,
-				this.Const.Perks.CalmTree,
-				this.Const.Perks.OrganisedTree
+				::Const.Perks.TrainedTree,
+				::Const.Perks.DeviousTree,
+				::Const.Perks.IntelligentTree,
+				::Const.Perks.CalmTree,
+				::Const.Perks.OrganisedTree
 			],
 			Enemy = [],
 			Class = [
-				this.Const.Perks.SickleClassTree
+				// ::Const.Perks.SickleClassTree,
+				::Const.Perks.PoisonClassTree
 			]
 			Profession = [
-				this.Const.Perks.BarterProfessionTree,
-				this.Const.Perks.HerbalistProfessionTree
-			], 
+				::Const.Perks.BarterProfessionTree,
+				::Const.Perks.HerbalistProfessionTree
+			],
 			Magic = []
 		}
 	}

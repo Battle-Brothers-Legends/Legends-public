@@ -6,6 +6,7 @@ if (!("Perks" in ::Const))
 ::Const.Perks.HeavyArmorTree <- {
 	ID = "HeavyArmorTree",
 	Name = "Heavy Armor",
+	Icon = "ui/perks/perk_03.png",
 	Descriptions = [
 		"heavy armor"
 	],
@@ -23,6 +24,7 @@ if (!("Perks" in ::Const))
 ::Const.Perks.MediumArmorTree <- {
 	ID = "MediumArmorTree",
 	Name = "Medium Armor",
+	Icon = "ui/perks/lithe.png",
 	Descriptions = [
 		"medium armor"
 	],
@@ -48,6 +50,7 @@ if (!("Perks" in ::Const))
 ::Const.Perks.LightArmorTree <- {
 	ID = "LightArmorTree",
 	Name = "Light Armor",
+	Icon = "ui/perks/perk_29.png",
 	Descriptions = [
 		"light armor"
 	],
@@ -57,7 +60,7 @@ if (!("Perks" in ::Const))
 			::Legends.Perk.Dodge
 		],
 		[
-			::Legends.Perk.LegendOnslaught,
+			::Legends.Perk.Relentless,
 			::Legends.Perk.SteelBrow
 		],
 		[],
@@ -72,22 +75,22 @@ if (!("Perks" in ::Const))
 ::Const.Perks.ClothArmorTree <- {
 	ID = "ClothArmorTree",
 	Name = "Cloth Armor",
+	Icon = "ui/perks/himshaw.png",
 	Descriptions = [
 		"cloth armor"
 	],
 	Tree = [
 		[],
 		[
-			::Legends.Perk.LegendHimshaw
+			::Legends.Perk.LegendHimshaw,
+			::Legends.Perk.LegendRecuperation
 		],
 		[
 			::Legends.Perk.LegendEvasion
 		],
 		[],
 		[],
-		[
-			::Legends.Perk.LegendFashionable
-		],
+		[],
 		[
 			::Legends.Perk.LegendFreedomOfMovement
 		]
@@ -112,6 +115,7 @@ if (!("Perks" in ::Const))
 //};
 
 ::Const.Perks.DefenseTrees <- {
+	GroupsCategory = "Defense",
 	Tree = [
 		//::Const.Perks.ShieldTree,
 		::Const.Perks.HeavyArmorTree,

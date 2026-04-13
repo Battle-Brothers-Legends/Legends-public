@@ -25,7 +25,6 @@ this.legend_bounty_hunter_background <- this.inherit("scripts/skills/backgrounds
 			::Legends.Traits.getID(::Legends.Trait.Fainthearted),
 			::Legends.Traits.getID(::Legends.Trait.Craven),
 			::Legends.Traits.getID(::Legends.Trait.Insecure),
-			::Legends.Traits.getID(::Legends.Trait.LegendFrail),
 			::Legends.Traits.getID(::Legends.Trait.LegendSeductive),
 			::Legends.Traits.getID(::Legends.Trait.Fainthearted),
 			::Legends.Traits.getID(::Legends.Trait.Optimist),
@@ -86,33 +85,33 @@ this.legend_bounty_hunter_background <- this.inherit("scripts/skills/backgrounds
 		];
 		this.m.PerkTreeDynamic = {
 			Weapon = [
-				this.Const.Perks.MaceTree,
-				this.Const.Perks.DaggerTree,
-				this.Const.Perks.SwordTree,
-				this.Const.Perks.AxeTree,
-				this.Const.Perks.CleaverTree,
-				this.Const.Perks.PolearmTree,
-				this.Const.Perks.ThrowingTree
+				::Const.Perks.MaceTree,
+				::Const.Perks.DaggerTree,
+				::Const.Perks.SwordTree,
+				::Const.Perks.AxeTree,
+				::Const.Perks.CleaverTree,
+				::Const.Perks.PolearmTree,
+				::Const.Perks.ThrowingTree
 			],
 			Defense = [
-				this.Const.Perks.HeavyArmorTree,
-				this.Const.Perks.MediumArmorTree
+				::Const.Perks.HeavyArmorTree,
+				::Const.Perks.MediumArmorTree
 			],
 			Traits = [
-				this.Const.Perks.ViciousTree,
-				this.Const.Perks.DeviousTree,
-				this.Const.Perks.CalmTree,
-				this.Const.Perks.AgileTree
+				::Const.Perks.ViciousTree,
+				::Const.Perks.DeviousTree,
+				::Const.Perks.CalmTree,
+				::Const.Perks.AgileTree
 			],
 			Enemy = [
-				this.Const.Perks.NomadsTree,
-				this.Const.Perks.SwordmastersTree,
-				this.Const.Perks.MercenaryTree
+				::Const.Perks.CivilizationTree,
+				::Const.Perks.SwordmastersTree,
+				::Const.Perks.OutlawTree
 			],
 			Class = [],
 			Profession = [],
 			Magic = [
-				this.Const.Perks.AssassinMagicTree
+				::Const.Perks.AssassinMagicTree
 			]
 		}
 	}
@@ -140,7 +139,7 @@ this.legend_bounty_hunter_background <- this.inherit("scripts/skills/backgrounds
 				id = 11,
 				type = "text",
 				icon = "ui/icons/chance_to_hit_head.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+10%[/color] Chance To Hit Head"
+				text = "[color=%positive%]+10%[/color] Chance To Hit Head"
 			}
 		);
 		return ret;

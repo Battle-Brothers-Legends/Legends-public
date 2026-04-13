@@ -15,26 +15,26 @@
     ],
     ClassPerkList = [],
     DefensePerkList = [
-        this.Const.Perks.HeavyArmorTree,
-        this.Const.Perks.MediumArmorTree,
-        this.Const.Perks.LightArmorTree,
-        // this.Const.Perks.ClothArmorTree
+        ::Const.Perks.HeavyArmorTree,
+        ::Const.Perks.MediumArmorTree,
+        ::Const.Perks.LightArmorTree,
+        // ::Const.Perks.ClothArmorTree
     ],
     TraitsPerkList = [
-        this.Const.Perks.AgileTree,
-        this.Const.Perks.IndestructibleTree,
-        this.Const.Perks.MartyrTree,
-        this.Const.Perks.ViciousTree,
-        // this.Const.Perks.DeviousTree,
-        // this.Const.Perks.InspirationalTree,
-        // this.Const.Perks.IntelligentTree,
-        this.Const.Perks.CalmTree,
-        this.Const.Perks.FastTree,
-        this.Const.Perks.LargeTree,
-        this.Const.Perks.OrganisedTree,
-        this.Const.Perks.SturdyTree,
-        this.Const.Perks.FitTree,
-        this.Const.Perks.TrainedTree
+        ::Const.Perks.AgileTree,
+        ::Const.Perks.IndestructibleTree,
+        ::Const.Perks.MartyrTree,
+        ::Const.Perks.ViciousTree,
+        // ::Const.Perks.DeviousTree,
+        // ::Const.Perks.InspirationalTree,
+        // ::Const.Perks.IntelligentTree,
+        ::Const.Perks.CalmTree,
+        ::Const.Perks.FastTree,
+        ::Const.Perks.LargeTree,
+        ::Const.Perks.OrganisedTree,
+        ::Const.Perks.SturdyTree,
+        ::Const.Perks.FitTree,
+        ::Const.Perks.TrainedTree
     ],
     GuaranteedPerks = [],
     LegendaryPerks = [],
@@ -66,14 +66,14 @@
         [2, ["legend_wooden_spear", 100, 80]]
     ],
     TraitsPerkList = [
-        this.Const.Perks.AgileTree,
-        this.Const.Perks.IndestructibleTree,
-        this.Const.Perks.CalmTree,
-        this.Const.Perks.LargeTree,
-        this.Const.Perks.OrganisedTree,
-        this.Const.Perks.SturdyTree,
-        this.Const.Perks.FitTree,
-        this.Const.Perks.TrainedTree
+        ::Const.Perks.AgileTree,
+        ::Const.Perks.IndestructibleTree,
+        ::Const.Perks.CalmTree,
+        ::Const.Perks.LargeTree,
+        ::Const.Perks.OrganisedTree,
+        ::Const.Perks.SturdyTree,
+        ::Const.Perks.FitTree,
+        ::Const.Perks.TrainedTree
     ],
     LegendaryPerks = [
 		::Legends.Perk.Nimble
@@ -100,14 +100,14 @@
         [2, ["legend_militia_glaive", 100]]
     ],
     TraitsPerkList = [
-        this.Const.Perks.AgileTree,
-        this.Const.Perks.IndestructibleTree,
-        this.Const.Perks.CalmTree,
-        this.Const.Perks.LargeTree,
-        this.Const.Perks.OrganisedTree,
-        this.Const.Perks.SturdyTree,
-        this.Const.Perks.FitTree,
-        this.Const.Perks.TrainedTree
+        ::Const.Perks.AgileTree,
+        ::Const.Perks.IndestructibleTree,
+        ::Const.Perks.CalmTree,
+        ::Const.Perks.LargeTree,
+        ::Const.Perks.OrganisedTree,
+        ::Const.Perks.SturdyTree,
+        ::Const.Perks.FitTree,
+        ::Const.Perks.TrainedTree
     ],
     Shields = [
         [1, "buckler_shield"],
@@ -134,10 +134,10 @@
         [1, ::Legends.Outfit.caravan_guard_outfit_00]
     ],
      DefensePerkList = [
-        this.Const.Perks.HeavyArmorTree,
-        this.Const.Perks.MediumArmorTree,
-        this.Const.Perks.LightArmorTree,
-        this.Const.Perks.ClothArmorTree
+        ::Const.Perks.HeavyArmorTree,
+        ::Const.Perks.MediumArmorTree,
+        ::Const.Perks.LightArmorTree,
+        ::Const.Perks.ClothArmorTree
     ],
     WeaponsAndTrees = [
         [1, ["hand_axe", 100]],
@@ -174,13 +174,13 @@
         [1, ::Legends.Outfit.bandit_rabble_outfit_00]
     ],
     TraitsPerkList = [
-        this.Const.Perks.AgileTree,
-        this.Const.Perks.IndestructibleTree,
-        this.Const.Perks.CalmTree,
-        this.Const.Perks.FastTree,
-        this.Const.Perks.LargeTree,
-        this.Const.Perks.FitTree,
-        this.Const.Perks.ShadyTree
+        ::Const.Perks.AgileTree,
+        ::Const.Perks.IndestructibleTree,
+        ::Const.Perks.CalmTree,
+        ::Const.Perks.FastTree,
+        ::Const.Perks.LargeTree,
+        ::Const.Perks.FitTree,
+        ::Const.Perks.ShadyTree
     ],
     WeaponsAndTrees = [
         [1, ["legend_wooden_pitchfork", 35], [::Legends.Perk.CoupDeGrace, ::Legends.Perk.LegendSpecialistFarmhand]],
@@ -216,16 +216,17 @@
         [1, ::Legends.Outfit.bandit_rabble_poacher_outfit_00]
     ],
     TraitsPerkList = [
-        this.Const.Perks.AgileTree,
-        this.Const.Perks.CalmTree,
-        this.Const.Perks.FastTree,
-        this.Const.Perks.FitTree,
-        this.Const.Perks.TrainedTree,
-        this.Const.Perks.BowTree
+        ::Const.Perks.AgileTree,
+        ::Const.Perks.CalmTree,
+        ::Const.Perks.FastTree,
+        ::Const.Perks.FitTree,
+        ::Const.Perks.TrainedTree,
+        ::Const.Perks.BowTree
     ],
     WeaponsAndTrees = [
         [1, ["wonky_bow", 50]],
-        [2, ["legend_sling", 50]]
+        [2, ["legend_dilapitated_sling", 50]],
+        [1, ["legend_slingshot", 50]],
     ],
     LegendaryPerks = [
 		::Legends.Perk.Dodge,
@@ -267,16 +268,16 @@
         [6, ""]
     ],
     TraitsPerkList = [
-        this.Const.Perks.AgileTree,
-        this.Const.Perks.IndestructibleTree,
-        this.Const.Perks.ViciousTree,
-        this.Const.Perks.CalmTree,
-        this.Const.Perks.FastTree,
-        this.Const.Perks.LargeTree,
-        this.Const.Perks.SturdyTree,
-        this.Const.Perks.FitTree,
-        this.Const.Perks.TrainedTree,
-        this.Const.Perks.ShadyTree
+        ::Const.Perks.AgileTree,
+        ::Const.Perks.IndestructibleTree,
+        ::Const.Perks.ViciousTree,
+        ::Const.Perks.CalmTree,
+        ::Const.Perks.FastTree,
+        ::Const.Perks.LargeTree,
+        ::Const.Perks.SturdyTree,
+        ::Const.Perks.FitTree,
+        ::Const.Perks.TrainedTree,
+        ::Const.Perks.ShadyTree
     ],
     LegendaryPerks = [
 		::Legends.Perk.Relentless,
@@ -297,16 +298,19 @@
     WeaponsAndTrees = [
         [3, ["wonky_bow", 65]],
         [1, ["short_bow", 65]],
-        [3, ["legend_sling", 65]]
+        [1, ["legend_sturdy_sling", 65]],
+        [1, ["legend_slingshot", 65]],
+        [1, ["short_bow", 65]],
+        [3, ["legend_dilapitated_sling", 65]]
     ],
     TraitsPerkList = [
-        this.Const.Perks.AgileTree,
-        this.Const.Perks.CalmTree,
-        this.Const.Perks.FastTree,
-        this.Const.Perks.SturdyTree,
-        this.Const.Perks.FitTree,
-        this.Const.Perks.TrainedTree,
-        this.Const.Perks.BowTree
+        ::Const.Perks.AgileTree,
+        ::Const.Perks.CalmTree,
+        ::Const.Perks.FastTree,
+        ::Const.Perks.SturdyTree,
+        ::Const.Perks.FitTree,
+        ::Const.Perks.TrainedTree,
+        ::Const.Perks.BowTree
     ],
     LegendaryPerks = [
 		::Legends.Perk.Dodge,
@@ -328,9 +332,9 @@
         [19, ::Legends.Outfit.bandit_raider_outfit_00]
     ],
      DefensePerkList = [
-        this.Const.Perks.HeavyArmorTree,
-        this.Const.Perks.MediumArmorTree,
-        this.Const.Perks.LightArmorTree,
+        ::Const.Perks.HeavyArmorTree,
+        ::Const.Perks.MediumArmorTree,
+        ::Const.Perks.LightArmorTree,
     ],
     WeaponsAndTrees = [ // Author's Note: These are a substantially higher chance to purchase 2handers than current raiders, because of this (eventually) these will get weighted
         [1, ["legend_infantry_axe", 70], [::Legends.Perk.LegendSmashingShields]],
@@ -343,8 +347,8 @@
         [1, ["legend_ranged_flail", 70], [::Legends.Perk.Colossus]],
         [1, ["legend_reinforced_flail", 70], [::Legends.Perk.LegendVengeance]],
         [1, ["two_handed_mace", 70], [::Legends.Perk.LegendForcefulSwing]],
-        [1, ["longsword", 70], [::Legends.Perk.Colossus]],
-        [1, ["legend_longsword",  70], [::Legends.Perk.Duelist]],
+        [1, ["greatsword", 70], [::Legends.Perk.Colossus]],
+        [1, ["longsword",  70], [::Legends.Perk.Duelist]],
         [1, ["legend_two_handed_club", 70], [::Legends.Perk.LegendSmashingShields]],
         [5, ["shortsword", 70, 30], [::Legends.Perk.Overwhelm]],
         [5, ["hand_axe", 70], [::Legends.Perk.LegendOnslaught]],
@@ -362,16 +366,16 @@
         [2, "kite_shield"]
     ]
     TraitsPerkList = [
-        this.Const.Perks.AgileTree,
-        this.Const.Perks.IndestructibleTree,
-        this.Const.Perks.MartyrTree,
-        this.Const.Perks.ViciousTree,
-        this.Const.Perks.FastTree,
-        this.Const.Perks.LargeTree,
-        this.Const.Perks.SturdyTree,
-        this.Const.Perks.FitTree,
-        this.Const.Perks.TrainedTree,
-        this.Const.Perks.ShadyTree
+        ::Const.Perks.AgileTree,
+        ::Const.Perks.IndestructibleTree,
+        ::Const.Perks.MartyrTree,
+        ::Const.Perks.ViciousTree,
+        ::Const.Perks.FastTree,
+        ::Const.Perks.LargeTree,
+        ::Const.Perks.SturdyTree,
+        ::Const.Perks.FitTree,
+        ::Const.Perks.TrainedTree,
+        ::Const.Perks.ShadyTree
     ],
     LegendaryPerks = [
 		::Legends.Perk.Relentless,
@@ -427,17 +431,17 @@
         [1, ["warfork", 50, 0]]
     ],
     TraitsPerkList = [
-        this.Const.Perks.AgileTree,
-        this.Const.Perks.CalmTree,
-        this.Const.Perks.FastTree,
-        this.Const.Perks.LargeTree,
-        this.Const.Perks.OrganisedTree,
-        this.Const.Perks.SturdyTree,
-        this.Const.Perks.FitTree
+        ::Const.Perks.AgileTree,
+        ::Const.Perks.CalmTree,
+        ::Const.Perks.FastTree,
+        ::Const.Perks.LargeTree,
+        ::Const.Perks.OrganisedTree,
+        ::Const.Perks.SturdyTree,
+        ::Const.Perks.FitTree
     ],
     DefensePerkList = [
-        this.Const.Perks.LightArmorTree,
-        this.Const.Perks.MediumArmorTree
+        ::Const.Perks.LightArmorTree,
+        ::Const.Perks.MediumArmorTree
     ],
     GuaranteedPerks = [
 		::Legends.Perk.BagsAndBelts
@@ -467,17 +471,17 @@
         [3, ["winged_mace", 100]]
     ],
     DefensePerkList = [
-        this.Const.Perks.HeavyArmorTree,
-        this.Const.Perks.ForcefulTree
+        ::Const.Perks.HeavyArmorTree,
+        ::Const.Perks.ForcefulTree
     ],
     TraitsPerkList = [
-        this.Const.Perks.SparringTree,
-        this.Const.Perks.GiantTree,
-        this.Const.Perks.IndestructibleTree,
-        this.Const.Perks.LargeTree,
-        this.Const.Perks.SturdyTree,
-        this.Const.Perks.FitTree,
-        this.Const.Perks.TrainedTree
+        ::Const.Perks.SparringTree,
+        ::Const.Perks.GiantTree,
+        ::Const.Perks.IndestructibleTree,
+        ::Const.Perks.LargeTree,
+        ::Const.Perks.SturdyTree,
+        ::Const.Perks.FitTree,
+        ::Const.Perks.TrainedTree
     ],
     Shields = [
         [1, "faction_kite_shield"],
@@ -510,17 +514,17 @@
         [2, ["longaxe", 100]]
     ],
     DefensePerkList = [
-        this.Const.Perks.HeavyArmorTree,
-        this.Const.Perks.ForcefulTree
+        ::Const.Perks.HeavyArmorTree,
+        ::Const.Perks.ForcefulTree
     ],
     TraitsPerkList = [
-        this.Const.Perks.GiantTree,
-        this.Const.Perks.AggressiveTree,
-        this.Const.Perks.LargeTree,
-        this.Const.Perks.SturdyTree,
-        this.Const.Perks.FitTree,
-        this.Const.Perks.FastTree,
-        this.Const.Perks.TrainedTree
+        ::Const.Perks.GiantTree,
+        ::Const.Perks.AggressiveTree,
+        ::Const.Perks.LargeTree,
+        ::Const.Perks.SturdyTree,
+        ::Const.Perks.FitTree,
+        ::Const.Perks.FastTree,
+        ::Const.Perks.TrainedTree
     ],
     GuaranteedPerks = [ //Testing to see if they ever actually use indom, given no guaranteed perks right now these might vary wildly in power levels
 		::Legends.Perk.Indomitable
@@ -547,15 +551,15 @@
         [2, ["heavy_crossbow",  100]]
     ],
     DefensePerkList = [
-        this.Const.Perks.LightArmorTree
+        ::Const.Perks.LightArmorTree
     ],
     TraitsPerkList = [
-        this.Const.Perks.FastTree,
-        this.Const.Perks.FitTree,
-        this.Const.Perks.BowTree,
-        this.Const.Perks.CrossbowTree,
-        this.Const.Perks.RangerTree,
-        this.Const.Perks.TrainedTree
+        ::Const.Perks.FastTree,
+        ::Const.Perks.FitTree,
+        ::Const.Perks.BowTree,
+        ::Const.Perks.CrossbowTree,
+        ::Const.Perks.RangerTree,
+        ::Const.Perks.TrainedTree
     ],
     GuaranteedPerks = [
 		::Legends.Perk.LegendBallistics,
@@ -585,16 +589,16 @@
         [1, ["morning_star", 100]]
     ],
     DefensePerkList = [
-        this.Const.Perks.HeavyArmorTree,
-        this.Const.Perks.ForcefulTree
+        ::Const.Perks.HeavyArmorTree,
+        ::Const.Perks.ForcefulTree
     ],
     TraitsPerkList = [
-        this.Const.Perks.SparringTree,
-        this.Const.Perks.GiantTree,
-        this.Const.Perks.IndestructibleTree,
-        this.Const.Perks.LargeTree,
-        this.Const.Perks.SturdyTree,
-        this.Const.Perks.FitTree
+        ::Const.Perks.SparringTree,
+        ::Const.Perks.GiantTree,
+        ::Const.Perks.IndestructibleTree,
+        ::Const.Perks.LargeTree,
+        ::Const.Perks.SturdyTree,
+        ::Const.Perks.FitTree
     ],
     Shields = [
         [1, "legend_faction_tower_shield"]
@@ -736,71 +740,71 @@
     switch(true) {
     //Shovel
         case _item.getID() == "weapon.legend_shovel" || _item.getID() == "weapon.legend_named_shovel":
-            return this.Const.Perks.ShovelClassTree;
+            return ::Const.Perks.ShovelClassTree;
 
     //Sickle
         case _item.getID() == "weapon.sickle" || _item.getID() == "weapon.goblin_notched_blade" || _item.getID() == "weapon.legend_named_sickle":
-            return this.Const.Perks.SickleClassTree;
+            return ::Const.Perks.SickleClassTree;
 
     //Wood Axe
         case _item.getID() == "weapon.woodcutters_axe" || _item.getID() == "weapon.legend_saw":
-            return this.Const.Perks.WoodaxeClassTree;
+            return ::Const.Perks.WoodaxeClassTree;
 
     //Blacksmith
         case _item.getID() == "weapon.legend_hammer" || _item.getID() == "weapon.legend_named_blacksmith_hammer":
-            return this.Const.Perks.HammerClassTree;
+            return ::Const.Perks.HammerClassTree;
 
     //Pickaxe
         case _item.getID() == "weapon.pickaxe" || _item.getID() == "weapon.heavy_mining_pick":
-            return this.Const.Perks.PickaxeClassTree;
+            return ::Const.Perks.PickaxeClassTree;
 
     //Butcher
         case _item.getID() == "weapon.butchers_cleaver" || _item.getID() == "weapon.legend_named_butchers_cleaver":
-            return this.Const.Perks.ButcherClassTree;
+            return ::Const.Perks.ButcherClassTree;
 
     //Ninetails
         case _item.getID() == "weapon.legend_cat_o_nine_tails":
-            return this.Const.Perks.NinetailsClassTree;
+            return ::Const.Perks.NinetailsClassTree;
 
     //Knife
         case _item.getID() == "weapon.knife" || _item.getID() == "weapon.legend_shiv":
-            return this.Const.Perks.KnifeClassTree;
+            return ::Const.Perks.KnifeClassTree;
 
     //Inventor
         case _item.isWeaponType(this.Const.Items.WeaponType.Firearm):
-            return this.Const.Perks.InventorClassTree;
+            return ::Const.Perks.InventorClassTree;
 
     //Bodyguard
-        case _item.getID() == "weapon.legend_longsword" || _item.getID() == "weapon.longsword":
-            return this.Const.Perks.LongswordClassTree;
+        case _item.getID() == "weapon.greatsword" || _item.getID() == "weapon.longsword":
+            return ::Const.Perks.LongswordClassTree;
 
     //Slings
-        case _item.getID() == "weapon.legend_sling":
-            return this.Const.Perks.SlingClassTree;
+        case _item.getID() == "weapon.legend_dilapitated_sling" || _item.getID() == "weapon.legend_sturdy_sling" || _item.getID() == "weapon.legend_slingshot":
+            return ::Const.Perks.SlingClassTree;
 
     //Staves
         case _item.getID() == "weapon.legend_staff":
-            return this.Const.Perks.StaffClassTree;
+            return ::Const.Perks.StaffClassTree;
 
     //Inquisition
         case _item.getID() == "weapon.legend_wooden_stake":
-            return this.Const.Perks.InquisitionClassTree;
+            return ::Const.Perks.InquisitionClassTree;
 
     //Club
         case _item.getID() == "weapon.wooden_stick":
-            return this.Const.Perks.ClubClassTree;
+            return ::Const.Perks.ClubClassTree;
 
     //Pitchfork
         case _item.isItemType(this.Const.Items.ItemType.Pitchfork):
-            return this.Const.Perks.PitchforkClassTree;
+            return ::Const.Perks.PitchforkClassTree;
 
     //Shortbow
         case _item.isItemType(this.Const.Items.ItemType.Shortbow):
-            return this.Const.Perks.ShortbowClassTree;
+            return ::Const.Perks.ShortbowClassTree;
 
     //Militia
         case _item.getID() == "weapon.militia_spear" || _item.getID() == "weapon.legend_wooden_spear" || _item.getID() == "weapon.ancient_spear":
-            return this.Const.Perks.MilitiaClassTree;
+            return ::Const.Perks.MilitiaClassTree;
     }
 
     return null;
@@ -809,30 +813,25 @@
 // Greatswords are special in that they're the only 2-Handed weapon that also isn't it's own weapon type (I guess like contrary to Staves, but Staves have no 1-Handed equivalent)
 // Otherwise, we just return the actual weapon tree(s) applicable, sometimes a weapon is multiple so it returns both
 ::Const.GetWeaponPerkTree <- function ( _item ) {
-
-    //Greatsword
-    if (_item.isWeaponType(this.Const.Items.WeaponType.Sword) && _item.isItemType(this.Const.Items.ItemType.TwoHanded))
-    {
-        return [this.Const.Perks.TwoHandedTree];
-    }
-
     // WeaponTypes
     local ret = []; // Push all applicable WeaponTypes into array (supports Hybrid weapons)
     local weaponToPerkMap = {
-        Axe = this.Const.Perks.AxeTree,
-        Bow = this.Const.Perks.BowTree,
-        Cleaver = this.Const.Perks.CleaverTree,
-        Crossbow = this.Const.Perks.CrossbowTree,
-        Dagger = this.Const.Perks.DaggerTree,
-        Firearm = this.Const.Perks.CrossbowTree,
-        Flail = this.Const.Perks.FlailTree,
-        Hammer = this.Const.Perks.HammerTree,
-        Mace = this.Const.Perks.MaceTree,
-        Polearm = this.Const.Perks.PolearmTree,
-        Sling = this.Const.Perks.SlingTree,
-        Spear = this.Const.Perks.SpearTree,
-        Sword = this.Const.Perks.SwordTree,
-        Throwing = this.Const.Perks.ThrowingTree
+        Axe = ::Const.Perks.AxeTree,
+        Bow = ::Const.Perks.BowTree,
+        Cleaver = ::Const.Perks.CleaverTree,
+        Crossbow = ::Const.Perks.CrossbowTree,
+        Dagger = ::Const.Perks.DaggerTree,
+        Firearm = ::Const.Perks.CrossbowTree,
+        Flail = ::Const.Perks.FlailTree,
+        Hammer = ::Const.Perks.HammerTree,
+        Mace = ::Const.Perks.MaceTree,
+        Polearm = ::Const.Perks.PolearmTree,
+        Staff = ::Const.Perks.PolearmTree,
+        Sling = ::Const.Perks.SlingTree,
+        Spear = ::Const.Perks.SpearTree,
+        Sword = ::Const.Perks.SwordTree,
+        Throwing = ::Const.Perks.ThrowingTree,
+        Musical = ::Const.Perks.BardMagicTree
     }
     foreach (weapon, tree in weaponToPerkMap)
     {

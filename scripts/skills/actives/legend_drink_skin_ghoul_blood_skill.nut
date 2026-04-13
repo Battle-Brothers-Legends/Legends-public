@@ -39,7 +39,7 @@ this.legend_drink_skin_ghoul_blood_skill <- this.inherit("scripts/skills/actives
 				id = 11,
 				type = "text",
 				icon = "ui/icons/days_wounded.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+ " + healthAdded + "[/color] this turn"
+				text = "[color=%positive%]+ " + healthAdded + "[/color] this turn"
 			}
 		];
 
@@ -49,7 +49,7 @@ this.legend_drink_skin_ghoul_blood_skill <- this.inherit("scripts/skills/actives
 				id = 5,
 				type = "text",
 				icon = "ui/tooltips/warning.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]Can not be used because this character is engaged in melee[/color]"
+				text = "[color=%negative%]Can not be used because this character is engaged in melee[/color]"
 			});
 		}
 

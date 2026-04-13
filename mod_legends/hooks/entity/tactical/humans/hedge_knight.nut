@@ -39,7 +39,7 @@
 		if (this.m.Items.hasEmptySlot(this.Const.ItemSlot.Offhand))
 		{
 			local weapons = [
-				"weapons/greatsword",
+				"weapons/legend_zweihander",
 				"weapons/greataxe",
 				"weapons/two_handed_hammer",
 				"weapons/two_handed_flanged_mace",	// Moved all weapons into one array because Legends requires all DLCs anyways
@@ -48,49 +48,6 @@
 			];
 
 			this.m.Items.equip(this.new("scripts/items/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
-		}
-
-		if (this.m.Items.hasEmptySlot(this.Const.ItemSlot.Body) && this.m.Items.hasEmptySlot(this.Const.ItemSlot.Head))
-		{
-			local armor = [
-				[1, ::Legends.Armor.Standard.coat_of_plates],
-				[1, ::Legends.Armor.Standard.coat_of_scales],
-				[1, ::Legends.Armor.Standard.heavy_lamellar_armor]
-			];
-
-			local helmet = [
-				[30, ::Legends.Helmet.Standard.full_helm],
-				[10, ::Legends.Helmet.Standard.closed_flat_top_with_mail],
-				[5, ::Legends.Helmet.Standard.legend_helm_breathed],
-				[5, ::Legends.Helmet.Standard.legend_helm_full],
-				[5, ::Legends.Helmet.Standard.legend_helm_bearded],
-				[5, ::Legends.Helmet.Standard.legend_helm_point],
-				[5, ::Legends.Helmet.Standard.legend_helm_snub],
-				[5, ::Legends.Helmet.Standard.legend_helm_short],
-				[5, ::Legends.Helmet.Standard.legend_helm_curved],
-				//[2, ::Legends.Helmet.Standard.wallace_sallet],
-				//[2, ::Legends.Helmet.Standard.deep_sallet],
-				//[2, ::Legends.Helmet.Standard.italo_norman_helm],
-				[2, ::Legends.Helmet.Standard.legend_enclave_vanilla_great_helm_01],
-				[2, ::Legends.Helmet.Standard.legend_enclave_vanilla_armet_01],
-				[2, ::Legends.Helmet.Standard.legend_enclave_vanilla_armet_02],
-				[2, ::Legends.Helmet.Standard.legend_enclave_vanilla_great_bascinet_01],
-				[2, ::Legends.Helmet.Standard.legend_enclave_vanilla_great_bascinet_02],
-				[2, ::Legends.Helmet.Standard.legend_enclave_vanilla_great_bascinet_03],
-				[2, ::Legends.Helmet.Standard.legend_enclave_vanilla_kettle_sallet_01],
-				[2, ::Legends.Helmet.Standard.legend_enclave_vanilla_kettle_sallet_02],
-				//[2, ::Legends.Helmet.Standard.legend_enclave_vanilla_kettle_sallet_03]
-			];
-
-			local outfits = [
-				[1, ::Legends.Outfit.brown_hedgeknight_outfit_00]
-			];
-
-			foreach( item in this.Const.World.Common.pickOutfit(outfits, armor, helmet) )
-			{
-				this.m.Items.equip(item)
-			}
-			return;
 		}
 
 		if (this.m.Items.hasEmptySlot(this.Const.ItemSlot.Body))
@@ -121,8 +78,9 @@
 				[5, ::Legends.Helmet.Standard.legend_helm_snub],
 				[5, ::Legends.Helmet.Standard.legend_helm_short],
 				[5, ::Legends.Helmet.Standard.legend_helm_curved],
-				//[2, ::Legends.Helmet.Standard.wallace_sallet],
-				//[2, ::Legends.Helmet.Standard.deep_sallet],
+				[5, ::Legends.Helmet.Standard.legend_helm_sharp],
+				//[2, ::Legends.Helmet.Standard.cervelliere],
+				//[2, ::Legends.Helmet.Standard.deep_cervelliere],
 				//[2, ::Legends.Helmet.Standard.italo_norman_helm],
 				[2, ::Legends.Helmet.Standard.legend_enclave_vanilla_great_helm_01],
 				[2, ::Legends.Helmet.Standard.legend_enclave_vanilla_armet_01],
@@ -151,8 +109,8 @@
 		this.getSprite("miniboss").setBrush("bust_miniboss");
 		local weapons = [
 			"weapons/named/named_greataxe",
-			"weapons/named/named_greatsword",
-			"weapons/named/legend_named_flamberge_sword",
+			"weapons/named/legend_named_zweihander",
+			"weapons/named/legend_named_flamberge",
 			"weapons/named/named_bardiche",
 			"weapons/named/named_two_handed_hammer",
 			"weapons/named/named_two_handed_mace",
@@ -174,10 +132,10 @@
 			this.m.Items.equip(this.Const.World.Common.pickHelmet([
 				[3, ::Legends.Helmet.Named.bascinet_named],
 				[3, ::Legends.Helmet.Named.kettle_helm_named],
-				[3, ::Legends.Helmet.Named.deep_sallet_named],
+				[3, ::Legends.Helmet.Named.deep_cervelliere_named],
 				[3, ::Legends.Helmet.Named.barbute_named],
 				[3, ::Legends.Helmet.Named.italo_norman_helm_named],
-				[3, ::Legends.Helmet.Named.wallace_sallet_named],
+				[3, ::Legends.Helmet.Named.cervelliere_named],
 				[3, ::Legends.Helmet.Named.named_helm_with_lion_pelt]
 			]));
 		}

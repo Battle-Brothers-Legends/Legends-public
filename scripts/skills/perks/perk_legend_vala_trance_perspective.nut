@@ -11,7 +11,7 @@ this.perk_legend_vala_trance_perspective <- this.inherit("scripts/skills/skill",
 	}
 	function create()
 	{
-		::Const.Perks.setup(this.m, ::Legends.Perk.LegendValaTrancePerspective);
+		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendValaTrancePerspective);
 		this.m.Icon = "ui/perks/legend_vala_trance_perspective_active.png";
 		this.m.IconDisabled = "ui/perks/legend_vala_trance_perspective_active_sw.png";
 		this.m.Type = this.Const.SkillType.Active | this.Const.SkillType.Perk;
@@ -19,8 +19,6 @@ this.perk_legend_vala_trance_perspective <- this.inherit("scripts/skills/skill",
 		this.m.IsSerialized = true;
 		this.m.IsActive = true;
 		this.m.IsTargeted = false;
-		this.m.IsStacking = false;
-		this.m.IsHidden = false;
 		this.m.IsAttack = false;
 		this.m.IsIgnoredAsAOO = true;
 		this.m.IsVisibleTileNeeded = false;
@@ -34,39 +32,22 @@ this.perk_legend_vala_trance_perspective <- this.inherit("scripts/skills/skill",
 		local actor = this.getContainer().getActor();
 
 		if (!this.Tactical.isActive())
-		{
 			return false;
-		}
 
 		if (actor.getTile().hasZoneOfControlOtherThan(actor.getAlliedFactions()))
-		{
 			return false;
-		}
 
 		if (!this.skill.isUsable())
-		{
 			return false;
-		}
 
 		if (this.m.TranceIsActive)
-		{
 			return false;
-		}
 
 		if (actor.getSkills().hasEffect(::Legends.Effect.LegendValaCurrentlyChanting) || actor.getSkills().hasEffect(::Legends.Effect.LegendValaInTrance))
-		{
 			return false;
-		}
 
-		if (actor.getMainhandItem() == null)
-		{
+		if (!::Legends.S.hasItemFlag(actor.getMainhandItem(), "vala_staff"))
 			return false;
-		}
-
-		if (actor.getMainhandItem().getID() != "weapon.legend_staff_vala")
-		{
-			return false;
-		}
 
 		return true;
 	}
@@ -74,7 +55,7 @@ this.perk_legend_vala_trance_perspective <- this.inherit("scripts/skills/skill",
 
 	function getCostString()
 	{
-		return "[i]Costs [b][color=" + this.Const.UI.Color.NegativeValue + "]all (at least 6) AP[/color][/b] to use and builds up " + (this.isAffordableBasedOnFatiguePreview() ? "[b][color=" + this.Const.UI.Color.PositiveValue + "]" + this.getFatigueCost() : "[b][color=" + this.Const.UI.Color.NegativeValue + "]" + this.getFatigueCost()) + " Fatigue[/color][/b][/i]\n";
+		return "[i]Costs [b][color=%negative%]all (at least 6) AP[/color][/b] to use and builds up " + (this.isAffordableBasedOnFatiguePreview() ? "[b][color=%positive%]" + this.getFatigueCost() : "[b][color=%negative%]" + this.getFatigueCost()) + " Fatigue[/color][/b][/i]\n";
 	}
 
 
@@ -89,13 +70,13 @@ this.perk_legend_vala_trance_perspective <- this.inherit("scripts/skills/skill",
 			text = "Enter a trance and bla bla bla."
 		});
 
-		if (actor.getMainhandItem() == null || (actor.getMainhandItem() != null && actor.getMainhandItem().getID() != "weapon.legend_staff_vala"))
+		if (!::Legends.S.hasItemFlag(actor.getMainhandItem(), "vala_staff"))
 		{
 			ret.push({
 				id = 9,
 				type = "text",
 				icon = "ui/tooltips/warning.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]Requires the Vala's staff.[/color]"
+				text = "[color=%negative%]Requires the Vala's staff.[/color]"
 			});
 		}
 
@@ -105,7 +86,7 @@ this.perk_legend_vala_trance_perspective <- this.inherit("scripts/skills/skill",
 				id = 10,
 				type = "text",
 				icon = "ui/tooltips/warning.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]Cannot enter a trance while chanting.[/color]"
+				text = "[color=%negative%]Cannot enter a trance while chanting.[/color]"
 			});
 		}
 
@@ -115,7 +96,7 @@ this.perk_legend_vala_trance_perspective <- this.inherit("scripts/skills/skill",
 				id = 11,
 				type = "text",
 				icon = "ui/tooltips/warning.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]Cannot enter a trance while engaged in melee.[/color]"
+				text = "[color=%negative%]Cannot enter a trance while engaged in melee.[/color]"
 			});
 		}
 

@@ -46,19 +46,19 @@
 		this.m.Modifiers.Stash = this.Const.LegendMod.ResourceModifiers.Ammo[1];
 		this.m.PerkTreeDynamic = {
 			Weapon = [
-				this.Const.Perks.DaggerTree,
-				this.Const.Perks.MaceTree,
-				this.Const.Perks.ThrowingTree,
-				this.Const.Perks.FistsTree
+				::Const.Perks.DaggerTree,
+				::Const.Perks.MaceTree,
+				::Const.Perks.ThrowingTree,
+				::Const.Perks.FistsTree
 			],
 			Defense = [
-				this.Const.Perks.LightArmorTree
+				::Const.Perks.LightArmorTree
 			],
 			Traits = [
-				this.Const.Perks.LargeTree,
-				this.Const.Perks.FitTree,
-				this.Const.Perks.FastTree,
-				this.Const.Perks.IndestructibleTree
+				::Const.Perks.LargeTree,
+				::Const.Perks.FitTree,
+				::Const.Perks.FastTree,
+				::Const.Perks.IndestructibleTree
 			],
 			Enemy = [],
 			Class = [],
@@ -118,7 +118,7 @@
 			id = 12,
 			type = "text",
 			icon = "ui/icons/regular_damage.png",
-			text = "[color=" + this.Const.UI.Color.PositiveValue + "]5%[/color] bonus damage to [color=#400080]Hand to Hand[/color] and [color=#400080]Choke[/color]"
+			text = "[color=%positive%]5%[/color] bonus damage to [color=#400080]Hand to Hand[/color] and [color=#400080]Choke[/color]"
 		});
 		return ret;
 	}

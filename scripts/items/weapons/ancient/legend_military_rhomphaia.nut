@@ -5,9 +5,9 @@ this.legend_military_rhomphaia <- this.inherit("scripts/items/weapons/weapon", {
 		this.weapon.create();
 		this.m.ID = "weapon.legend_military_rhomphaia";
 		this.m.Name = "Decorated Rhomphaia";
-		this.m.Description = "A straighter, heavier than usual Rhomphaia that appears to be specially constructed and refined for duelling. This weapon lacks a reaping edge but is significantly easier to handle, despite it\'s weight.";
-		this.m.IconLarge = "weapons/melee/rhomphaia_01_2.png";
-		this.m.Icon = "weapons/melee/rhomphaia_01_2_70x70.png";
+		this.m.Description = "A straighter, heavier than usual Rhomphaia that appears to be specially constructed and refined for dueling. This weapon lacks a reaping edge but is significantly easier to handle, despite it\'s weight.";
+		this.m.IconLarge = "weapons/melee/legend_military_rhompaia_01.png";
+		this.m.Icon = "weapons/melee/legend_military_rhompaia_01_70x70.png";
 		this.m.WeaponType = this.Const.Items.WeaponType.Sword;
 		this.m.SlotType = this.Const.ItemSlot.Mainhand;
 		this.m.BlockedSlotType = this.Const.ItemSlot.Offhand;
@@ -16,7 +16,7 @@ this.legend_military_rhomphaia <- this.inherit("scripts/items/weapons/weapon", {
 		this.m.AddGenericSkill = true;
 		this.m.ShowQuiver = false;
 		this.m.ShowArmamentIcon = true;
-		this.m.ArmamentIcon = "icon_rhomphaia_01_2";
+		this.m.ArmamentIcon = "icon_legend_military_rhompaia_01";
 		this.m.Value = 2000;
 		this.m.ShieldDamage = 5;
 		this.m.Condition = 48.0;
@@ -25,7 +25,8 @@ this.legend_military_rhomphaia <- this.inherit("scripts/items/weapons/weapon", {
 		this.m.RegularDamage = 60;
 		this.m.RegularDamageMax = 70;
 		this.m.ArmorDamageMult = 1.1;
-		this.m.DirectDamageMult = 0.1;
+		this.m.DirectDamageMult = 0.2;
+		this.m.DirectDamageAdd = 0.1;
 		this.m.ChanceToHitHead = 10;
 	}
 
@@ -33,9 +34,10 @@ this.legend_military_rhomphaia <- this.inherit("scripts/items/weapons/weapon", {
 	{
 		this.weapon.onEquip();
 		::Legends.Actives.grant(this, ::Legends.Active.Slash, function (_skill) {
-			_skill.m.IsGreatSlash = true;
+			_skill.m.IsGreatBreachSlash = true;
 		}.bindenv(this));
 		::Legends.Actives.grant(this, ::Legends.Active.Split);
 		::Legends.Actives.grant(this, ::Legends.Active.Riposte);
+		::Legends.Actives.grant(this, ::Legends.Active.LegendIntoTheFray);
 	}
 });

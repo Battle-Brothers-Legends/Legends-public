@@ -173,10 +173,13 @@ this.legends_tundra_fort <- this.inherit("scripts/entity/world/settlements/legen
 
 		this.m.FemaleDraftLists = [[
 			"legend_shieldmaiden_background",
+			"legend_shieldmaiden_background",
 		],[
+			"legend_shieldmaiden_background",
 			"legend_shieldmaiden_background",
 			"witchhunter_background",
 		],[
+			"legend_shieldmaiden_background",
 			"legend_shieldmaiden_background",
 			"witchhunter_background",
 		]];

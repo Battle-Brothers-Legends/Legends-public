@@ -97,15 +97,4 @@
 			}
 		}
 	}
-
-	local onPrepareVariables = o.onPrepareVariables;
-	o.onPrepareVariables = function ( _vars )
-	{
-		onPrepareVariables(_vars);
-		::Const.LegendMod.extendVarsWithPronouns(_vars, this.m.Anatomist.getGender(), "anatomist");
-		if (this.m.Thief != null)
-			::Const.LegendMod.extendVarsWithPronouns(_vars, this.m.Thief.getGender(), "thief");
-		if (this.m.Wildman != null)
-			::Const.LegendMod.extendVarsWithPronouns(_vars, this.m.Wildman.getGender(), "wildman");
-	}
 })

@@ -30,19 +30,19 @@ this.legend_marked_target_effect <- this.inherit("scripts/skills/skill", {
 				id = 10,
 				type = "text",
 				icon = "ui/icons/melee_defense.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]-10[/color] Melee Defense"
+				text = "[color=%negative%]-10[/color] Melee Defense"
 			},
 			{
 				id = 10,
 				type = "text",
 				icon = "ui/icons/ranged_defense.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]-10[/color] Ranged Defense"
+				text = "[color=%negative%]-10[/color] Ranged Defense"
 			},
 			{
 				id = 10,
 				type = "text",
 				icon = "ui/icons/warning.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]" + getBonus() * 100 + "%[/color] Damage Received from all sources"
+				text = "[color=%positive%]" + getBonus() * 100 + "%[/color] Damage Received from all sources"
 			}
 		];
 	}

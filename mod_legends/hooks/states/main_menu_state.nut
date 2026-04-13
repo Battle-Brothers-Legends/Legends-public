@@ -135,7 +135,7 @@
 					break;
 
 				case 42:
-					tacticalState.setScenario(this.new("scripts/scenarios/tactical/legend_scenario_test_map"));
+					tacticalState.setScenario(this.new("scripts/scenarios/tactical/legend_scenario_enraged_hyena"));
 					break;
 
 				default:
@@ -168,6 +168,11 @@
 	{
 
 		local result = [
+			{
+				id = 42,
+				name = "Enraged Hyenas (Legendary)",
+				description = "[p=c][img]gfx/ui/events/legend_enraged_hyena.png[/img][/p]\n[p=c]Face a dozen raging hyenas.[/p]"
+			},
 			{
 				id = 41,
 				name = "Basilisks",
@@ -282,11 +287,6 @@
 				id = 40,
 				name = "Camp battle (Experiment)",
 				description = "[p=c][img]gfx/ui/events/event_05.png[/img][/p]\n[p=c]Taking the fight to an enemy may come with disadvantages, trial of wall combat[/p]"
-			},
-			{
-				id = 42,
-				name = "Test Map",
-				description = "[p=c][img]gfx/ui/events/event_28.png[/img][/p]\n[p=c]Custom test map.[/p]"
 			}
 		];
 

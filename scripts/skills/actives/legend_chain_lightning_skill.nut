@@ -74,13 +74,13 @@ this.legend_chain_lightning_skill <- this.inherit("scripts/skills/skill", {
 				id = 4,
 				type = "text",
 				icon = "ui/icons/regular_damage.png",
-				text = "Inflicts [color=" + ::Const.UI.Color.DamageValue + "]" + m.MinBaseDamage + "[/color] - [color=" + ::Const.UI.Color.DamageValue + "]" + m.MaxBaseDamage + "[/color] damage that ignores armor"
+				text = "Inflicts [color=%damage%]" + m.MinBaseDamage + "[/color] - [color=%damage%]" + m.MaxBaseDamage + "[/color] damage that ignores armor"
 			},
 			{
 				id = 6,
 				type = "text",
 				icon = "ui/icons/vision.png",
-				text = "Has a range of [color=" + ::Const.UI.Color.PositiveValue + "]" + getMaxRange() + "[/color] tiles on even ground" + rangeBonus + " if shooting downhill"
+				text = "Has a range of [color=%positive%]" + getMaxRange() + "[/color] tiles on even ground" + rangeBonus + " if shooting downhill"
 			},
 			{
 				id = 6,
@@ -96,7 +96,7 @@ this.legend_chain_lightning_skill <- this.inherit("scripts/skills/skill", {
 				id = 10,
 				type = "text",
 				icon = "ui/tooltips/warning.png",
-				text = "[color=" + ::Const.UI.Color.NegativeValue + "]This character must be equipped with a magic staff[/color]"
+				text = "[color=%negative%]This character must be equipped with a magic staff[/color]"
 			});
 		}
 		else if (::Tactical.isActive() && getContainer().getActor().isEngagedInMelee())
@@ -105,7 +105,7 @@ this.legend_chain_lightning_skill <- this.inherit("scripts/skills/skill", {
 				id = 10,
 				type = "text",
 				icon = "ui/tooltips/warning.png",
-				text = "[color=" + ::Const.UI.Color.NegativeValue + "]Can not be used because this character is engaged in melee[/color]"
+				text = "[color=%negative%]Can not be used because this character is engaged in melee[/color]"
 			});
 		}
 

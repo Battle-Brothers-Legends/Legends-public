@@ -43,7 +43,9 @@
 		{
 			local sourceItem = this.m.Items[_sourceIndex];
 			local targetItem = this.m.Items[_targetIndex];
-			return sourceItem.onUse(null, targetItem)
+						
+			if ((sourceItem.SuperName.find("upgrade") != null || sourceItem[sourceItem.SuperName].SuperName.find("upgrade") != null) && targetItem.SuperName.find("upgrade") == null) //prevent trying to equip bases on upgrades or other bases and upgrades on upgrades
+				return sourceItem.onUse(null, targetItem, true)
 		}
 		return false;
 	}

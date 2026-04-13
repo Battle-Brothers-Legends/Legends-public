@@ -19,7 +19,7 @@
 
 		this.Sound.play("sounds/combat/armor_leather_impact_03.wav", this.Const.Sound.Volume.Inventory);
 
-		local new_dog = this.new(scripts[0]);
+		local newDog = this.new(scripts[0]);
 
 		if (newDog == null) {
 			return false;

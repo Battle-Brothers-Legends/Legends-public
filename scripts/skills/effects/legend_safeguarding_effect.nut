@@ -76,13 +76,13 @@ this.legend_safeguarding_effect <- this.inherit("scripts/skills/skill", {
 				id = 10,
 				type = "text",
 				icon = "ui/icons/melee_defense.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]-10[/color] Melee Defense"
+				text = "[color=%negative%]-10[/color] Melee Defense"
 			},
 			{
 				id = 11,
 				type = "text",
 				icon = "ui/icons/ranged_defense.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]-10[/color] Ranged Defense"
+				text = "[color=%negative%]-10[/color] Ranged Defense"
 			}
 		];
 		if (this.m.Ward)

@@ -3,11 +3,13 @@ this.legend_davkul_armor <- this.inherit("scripts/items/legend_armor/legend_armo
 	function create()
 	{
 		this.legend_armor_upgrade.create();
-		this.m.Type = this.Const.Items.ArmorUpgrades.Plate;
 		this.m.ID = "armor.body.legend_davkul_armor";
+		this.m.Type = this.Const.Items.ArmorUpgrades.Plate;
 		this.m.Name = "Aspect of Davkul";
 		this.m.Description = "A grisly aspect of Davkul, an ancient power not from this world, and the last remnants of %sacrifice% from whose body it has been fashioned. It shall never break, but instead keep regrowing its scarred skin on the spot.";
-		this.m.Variant = 81;
+		this.m.ArmorDescription = "Includes a grisly aspect of Davkul.";
+		this.m.Variants = [1];
+		this.m.Variant = this.m.Variants[this.Math.rand(0, this.m.Variants.len() - 1)];
 		this.updateVariant();
 		this.m.ImpactSound = [
 			"sounds/combat/cleave_hit_hitpoints_01.wav",
@@ -24,13 +26,14 @@ this.legend_davkul_armor <- this.inherit("scripts/items/legend_armor/legend_armo
 
 	function updateVariant()
 	{
-		this.m.SpriteBack = "bust_body_81";
-		this.m.SpriteDamagedBack = "bust_body_81_damaged";
-		this.m.SpriteCorpseBack = "bust_body_81_dead";
-		this.m.Icon = "legend_armor/icon_named_davkul_armor_01.png";
+		local variant = this.m.Variant > 9 ? this.m.Variant : "0" + this.m.Variant;
+		this.m.SpriteBack = "armor_davkul_named_" + variant + "";
+		this.m.SpriteDamagedBack = "armor_davkul_named_" + variant + "_damaged";
+		this.m.SpriteCorpseBack = "armor_davkul_named_" + variant + "_dead";
+		this.m.Icon = "legend_armor/icon_armor_davkul_named_" + variant + ".png";
 		this.m.IconLarge = this.m.Icon;
-		this.m.OverlayIcon = "legend_armor/inventory_named_davkul_armor_01.png";
-		this.m.OverlayIconLarge = "legend_armor/inventory_named_davkul_armor_01.png";
+		this.m.OverlayIcon = "legend_armor/icon_armor_davkul_named_" + variant + ".png";
+		this.m.OverlayIconLarge = "legend_armor/inventory_armor_davkul_named_"  + variant + ".png";
 	}
 
 	function getTooltip()
@@ -40,7 +43,7 @@ this.legend_davkul_armor <- this.inherit("scripts/items/legend_armor/legend_armo
 			id = 6,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "Regenerates itself by [color=" + this.Const.UI.Color.PositiveValue + "]90[/color] points of durability each turn."
+			text = "Regenerates itself by [color=%positive%]90[/color] points of durability each turn."
 		});
 		return result;
 	}
@@ -51,7 +54,7 @@ this.legend_davkul_armor <- this.inherit("scripts/items/legend_armor/legend_armo
 			id = 6,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "Regenerates itself by [color=" + this.Const.UI.Color.PositiveValue + "]90[/color] points of durability each turn."
+			text = "Regenerates itself by [color=%positive%]90[/color] points of durability each turn."
 		});
 	}
 
@@ -73,7 +76,7 @@ this.legend_davkul_armor <- this.inherit("scripts/items/legend_armor/legend_armo
 		if (!actor.isHiddenToPlayer())
 		{
 			this.Tactical.spawnIconEffect("status_effect_79", actor.getTile(), this.Const.Tactical.Settings.SkillIconOffsetX, this.Const.Tactical.Settings.SkillIconOffsetY, this.Const.Tactical.Settings.SkillIconScale, this.Const.Tactical.Settings.SkillIconFadeInDuration, this.Const.Tactical.Settings.SkillIconStayDuration, this.Const.Tactical.Settings.SkillIconFadeOutDuration, this.Const.Tactical.Settings.SkillIconMovement);
-			this.Sound.play(this.m.ImpactSound[this.Math.rand(0, len(this.m.ImpactSound)) - 1], this.Const.Sound.Volume.RacialEffect * 1.25, actor.getPos());
+			this.Sound.play(this.m.ImpactSound[this.Math.rand(0, this.m.ImpactSound.len() -1)], this.Const.Sound.Volume.RacialEffect * 1.25, actor.getPos());
 			this.Tactical.EventLog.log(this.Const.UI.getColorized(this.m.Name, "#1e468f") + " heals for " + bodyAdded + " points");
 		}
 	}
@@ -81,7 +84,8 @@ this.legend_davkul_armor <- this.inherit("scripts/items/legend_armor/legend_armo
 	function onCombatFinished()
 	{
 		this.m.Condition = this.m.ConditionMax;
-		this.updateAppearance();
+		local app = this.m.Armor.getContainer().getAppearance();
+		this.updateAppearance(app);
 	}
 
 	function onSerialize( _out )

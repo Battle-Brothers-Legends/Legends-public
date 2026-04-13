@@ -1,7 +1,6 @@
 this.legend_RSW_poison <- this.inherit("scripts/skills/skill", {
 	m = {},
-	function create()
-	{
+	function create() {
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendRswPoison);
 		this.m.Description = "Rune Sigil: Poison";
 		this.m.Icon = "ui/rune_sigils/legend_rune_sigil.png";
@@ -12,9 +11,17 @@ this.legend_RSW_poison <- this.inherit("scripts/skills/skill", {
 		this.m.IsHidden = true;
 	}
 
-	function onTargetHit( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor )
-	{
-		if (this.getItem() == null)
+	function onTargetHit( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor ) {
+		if ( _skill == null || _skill.m.IsWeaponSkill == false )
+			return;
+
+		if (!_skill.isAttack())
+			return;
+
+		if (_skill.getItem() == null)
+			return;
+
+		if (_skill.getItem().getID() != this.getItem().getID())
 			return;
 
 		if (::Legends.S.skillEntityAliveCheck(this.getContainer().getActor(), _targetEntity))
@@ -26,8 +33,7 @@ this.legend_RSW_poison <- this.inherit("scripts/skills/skill", {
 		if (_targetEntity.getCurrentProperties().IsImmuneToPoison || _targetEntity.getHitpoints() <= 0)
 			return;
 
-		if (!_targetEntity.isHiddenToPlayer())
-		{
+		if (!_targetEntity.isHiddenToPlayer()) {
 			local poisonSound = [
 				"sounds/combat/poison_applied_01.wav",
 				"sounds/combat/poison_applied_02.wav"

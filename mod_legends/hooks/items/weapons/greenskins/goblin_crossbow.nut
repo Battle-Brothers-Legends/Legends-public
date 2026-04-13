@@ -4,15 +4,32 @@
 	{
 		create();
 		this.m.Description = "A large and heavy crossbow with menacing spikes in front. More like a minitature ballista, it shoots stakes with enough force to knock back a target hit. Deals +100 damage to vampires.";
-		this.m.Variant = this.Math.rand(1, 2);
-		this.updateVariant();
+		this.setVariant(this.Math.rand(0, 1));
 	}
 
-	o.updateVariant <- function()
+	o.updateVariant <- function() {
+		local v = this.getVariant() == 0 ? "" : "_" + this.getVariant();
+		this.m.Icon = "weapons/ranged/crossbow_goblin_01" + v + "_70x70.png";
+		this.m.IconLarge = "weapons/ranged/crossbow_goblin_01" + v + ".png";
+		if (this.getVariant() == 0) {
+			this.m.ArmamentIcon = "icon_goblin_crossbow_01";
+		} else {
+			this.m.ArmamentIcon = "icon_crossbow_goblin_01" + v;
+		}
+	}
+
+	o.addSkill <- function( _skill )
 	{
-		this.m.Icon = "weapons/ranged/crossbow_goblin_0" + this.m.Variant + "_70x70.png";
-		this.m.IconLarge = "weapons/ranged/crossbow_goblin_0" + this.m.Variant + ".png";
-		this.m.ArmamentIcon = "icon_crossbow_goblin_0" + this.m.Variant;
+		if (_skill.getID() == ::Legends.Actives.getID(::Legends.Active.ShootStake))
+		{
+			::Legends.Actives.grant(this.weapon, ::Legends.Active.ShootStake, function (_skill)
+			{
+				_skill.m.Name = "Shoot Stake";
+			}.bindenv(this));
+			return;
+		}
+
+		weapon.addSkill(_skill);
 	}
 
 	local onEquip = o.onEquip;
@@ -20,11 +37,38 @@
 	{
 		onEquip();
 		::Legends.Actives.grant(this, ::Legends.Active.LegendPiercingBolt);
+		::Legends.Actives.grant(this, ::Legends.Active.KnockOut, function (_skill) {
+			_skill.m.IsRangedKnockOut = true;
+		}.bindenv(this));
+		::Legends.Actives.grant(this, ::Legends.Active.ReloadBolt);
 	}
 
 	o.onCombatFinished = function ()
 	{
 		this.weapon.onCombatFinished();
 		this.setLoaded(true);
+	}
+
+	o.onAnySkillUsed <- function ( _skill, _targetEntity, _properties )
+	{
+		local item = _skill.getItem();
+
+		if (!_skill.isAttack())
+			return;
+
+		if (!_skill.isRanged())
+			return;
+
+		if (item == null)
+			return;
+
+		if (item.getID() != this.getID())
+			return;
+
+		if (_targetEntity != null && (_targetEntity.getType() == this.Const.EntityType.Vampire || _targetEntity.getType() == this.Const.EntityType.LegendVampireLord))
+		{
+			_properties.DamageRegularMin += 100;
+			_properties.DamageRegularMax += 100;
+		}
 	}
 });

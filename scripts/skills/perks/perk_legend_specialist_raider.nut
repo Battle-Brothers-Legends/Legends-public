@@ -17,7 +17,7 @@ this.perk_legend_specialist_raider <- this.inherit("scripts/skills/legend_specia
 	function create()
 	{
 		this.legend_specialist_abstract.create();
-		::Const.Perks.setup(this.m, ::Legends.Perk.LegendSpecialistRaider);
+		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendSpecialistRaider);
 		this.m.IconMini = "perk_spec_raider_mini";
 	}
 });

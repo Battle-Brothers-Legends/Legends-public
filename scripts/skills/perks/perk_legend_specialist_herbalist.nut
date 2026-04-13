@@ -17,7 +17,7 @@ this.perk_legend_specialist_herbalist <- this.inherit("scripts/skills/legend_spe
 	function create()
 	{
 		this.legend_specialist_abstract.create();
-		::Const.Perks.setup(this.m, ::Legends.Perk.LegendSpecialistHerbalist);
+		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendSpecialistHerbalist);
 		this.m.IconMini = "perk_spec_sickle_mini";
 	}
 

@@ -33,7 +33,7 @@ this.legend_parrying_effect <- this.inherit("scripts/skills/skill", {
 				id = 10,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "Inflict [color=" + this.Const.UI.Color.NegativeValue + "]Vulnerable[/color] ([color=" + this.Const.UI.Color.DamageValue + "]-10[/color] melee and ranged defense) on adjacent attackers who miss a melee attack with a weapon against this character. Enemies who are immune to being disarmed cannot be Parried"
+				text = "Inflict [color=%negative%]Vulnerable[/color] ([color=%damage%]-10[/color] melee and ranged defense) on adjacent attackers who miss a melee attack with a weapon against this character. Enemies who are immune to being disarmed cannot be Parried"
 			}
 		];
 	}

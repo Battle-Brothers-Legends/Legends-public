@@ -3,17 +3,18 @@
 	o.m.AdditionalAccuracy <- 40;
 	o.m.AdditionalHitChance <- 0;
 
+	local create = o.create;
+	o.create = function()
+	{
+		create();
+		this.m.HitChanceBonus = 40;
+	}
+
 	o.getTooltip = function ()
 	{
 		local tooltip = this.getRangedTooltip(this.getDefaultTooltip());
 
-		ret.push({
-			id = 6,
-			type = "text",
-			icon = "ui/icons/hitchance.png",
-			text = "Has [color=" + this.Const.UI.Color.PositiveValue + "]+40%[/color] chance to hit"
-		});
-		ret.push({
+		tooltip.push({
 			id = 10,
 			type = "text",
 			icon = "ui/icons/special.png",
@@ -23,24 +24,24 @@
 
 		if (ammo > 0)
 		{
-			ret.push({
+			tooltip.push({
 				id = 8,
 				type = "text",
 				icon = "ui/icons/ammo.png",
-				text = "Has [color=" + this.Const.UI.Color.PositiveValue + "]" + ammo + "[/color] charge left"
+				text = "Has [color=%positive%]" + ammo + "[/color] charge left"
 			});
 		}
 		else
 		{
-			ret.push({
+			tooltip.push({
 				id = 8,
 				type = "text",
 				icon = "ui/tooltips/warning.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]No charges left[/color]"
+				text = "[color=%negative%]No charges left[/color]"
 			});
 		}
 
-		return ret;
+		return tooltip;
 	}
 
 	o.onAnySkillUsed = function ( _skill, _targetEntity, _properties )

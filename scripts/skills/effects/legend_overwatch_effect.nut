@@ -19,7 +19,7 @@ this.legend_overwatch_effect <- ::inherit("scripts/skills/skill", {
 		this.m.IsActive = false;
 		this.m.IsRemovedAfterBattle = true;
 	}
-	
+
 	function getDescription()
 	{
 		return this.m.Description;
@@ -42,7 +42,7 @@ this.legend_overwatch_effect <- ::inherit("scripts/skills/skill", {
 				id = 12,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "Automatically performs ranged attack against any enemy walks into your overwatch zone but that attack deals [color=" + ::Const.UI.Color.NegativeValue + "]25%[/color] less Damage"
+				text = "Automatically performs ranged attack against any enemy walks into your overwatch zone but that attack deals [color=%negative%]25%[/color] less Damage"
 			},
 		];
 	}

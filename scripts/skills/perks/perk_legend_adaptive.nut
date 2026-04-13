@@ -2,12 +2,7 @@ this.perk_legend_adaptive <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		::Const.Perks.setup(this.m, ::Legends.Perk.LegendAdaptive);
-		this.m.Type = this.Const.SkillType.Perk;
-		this.m.Order = this.Const.SkillOrder.Perk;
-		this.m.IsActive = false;
-		this.m.IsStacking = false;
-		this.m.IsHidden = false;
+		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendAdaptive);
 	}
 
 	function onAdded()
@@ -95,7 +90,7 @@ this.perk_legend_adaptive <- this.inherit("scripts/skills/skill", {
 		if (actor.getItems().getItemAtSlot(this.Const.ItemSlot.Mainhand) == null && actor.getItems().getItemAtSlot(this.Const.ItemSlot.Offhand) == null)
 		{
 			// Attempt to give Unarmed if no weapons are equipped
-			newTree = this.getOnlyNonExistingTrees(this.Const.Perks.FistsTree);
+			newTree = this.getOnlyNonExistingTrees(::Const.Perks.FistsTree);
 			if (newTree != null && newTree.len() > 0)
 				return newTree;
 		}
@@ -108,19 +103,19 @@ this.perk_legend_adaptive <- this.inherit("scripts/skills/skill", {
 		if (newTree == null || newTree.len() < 1)
 		{
 			newTree = [
-				this.Const.Perks.AgileTree,
-				this.Const.Perks.IndestructibleTree,
-				this.Const.Perks.MartyrTree,
-				this.Const.Perks.ViciousTree,
-				this.Const.Perks.DeviousTree,
-				this.Const.Perks.IntelligentTree,
-				this.Const.Perks.CalmTree,
-				this.Const.Perks.FastTree,
-				this.Const.Perks.LargeTree,
-				this.Const.Perks.OrganisedTree,
-				this.Const.Perks.SturdyTree,
-				this.Const.Perks.FitTree,
-				this.Const.Perks.TrainedTree
+				::Const.Perks.AgileTree,
+				::Const.Perks.IndestructibleTree,
+				::Const.Perks.MartyrTree,
+				::Const.Perks.ViciousTree,
+				::Const.Perks.DeviousTree,
+				::Const.Perks.IntelligentTree,
+				::Const.Perks.CalmTree,
+				::Const.Perks.FastTree,
+				::Const.Perks.LargeTree,
+				::Const.Perks.OrganisedTree,
+				::Const.Perks.SturdyTree,
+				::Const.Perks.FitTree,
+				::Const.Perks.TrainedTree
 			];
 		}
 
@@ -128,7 +123,7 @@ this.perk_legend_adaptive <- this.inherit("scripts/skills/skill", {
 
 		// Give PhilosophyMagicTree if there are still no possible Trees
 		if (newTree == null || newTree.len() < 1)
-			newTree = this.Const.Perks.PhilosophyMagicTree.Tree;
+			newTree = ::Const.Perks.PhilosophyMagicTree.Tree;
 
 		return newTree;
 	}
@@ -190,7 +185,7 @@ this.perk_legend_adaptive <- this.inherit("scripts/skills/skill", {
 
 	function getShieldPerkTree( _item )
 	{
-		return this.Const.Perks.ShieldTree;
+		return ::Const.Perks.ShieldTree;
 	}
 
 	function getMiscPerkTree(_item)
@@ -199,23 +194,23 @@ this.perk_legend_adaptive <- this.inherit("scripts/skills/skill", {
 		{
 			//Faith
 			case "weapon.holy_water":
-				return this.Const.Perks.FaithClassTree;
+				return ::Const.Perks.FaithClassTree;
 
 			//Juggler
 			case "weapon.daze_bomb":
-				return this.Const.Perks.JugglerClassTree;
+				return ::Const.Perks.JugglerClassTree;
 
 			//Repair
 			case "weapon.fire_bomb":
-				return this.Const.Perks.RepairClassTree;
+				return ::Const.Perks.RepairClassTree;
 
 			//Net
 			case "tool.throwing_net":
-				return this.Const.Perks.BeastClassTree;
+				return ::Const.Perks.BeastClassTree;
 
 			//Healer
 			case "weapon.acid_flask":
-				return this.Const.Perks.HealerClassTree;
+				return ::Const.Perks.HealerClassTree;
 		}
 
 		return null;
@@ -226,92 +221,92 @@ this.perk_legend_adaptive <- this.inherit("scripts/skills/skill", {
 		switch(true) {
 		//Banner
 			case _item.getID() == "weapon.player_banner":
-				return this.Const.Perks.InspirationalTree;
+				return ::Const.Perks.InspirationalTree;
 	    //Shovel
 	        case _item.getID() == "weapon.legend_shovel" || _item.getID() == "weapon.legend_named_shovel":
-	            return this.Const.Perks.ShovelClassTree;
+	            return ::Const.Perks.ShovelClassTree;
 
 	    //Sickle
 	        case _item.getID() == "weapon.sickle" || _item.getID() == "weapon.goblin_notched_blade" || _item.getID() == "weapon.legend_named_sickle":
-	            return this.Const.Perks.SickleClassTree;
+	            return ::Const.Perks.SickleClassTree;
 
 	    //Wood Axe
 	        case _item.getID() == "weapon.woodcutters_axe" || _item.getID() == "weapon.legend_saw":
-	            return this.Const.Perks.WoodaxeClassTree;
+	            return ::Const.Perks.WoodaxeClassTree;
 
 	    //Blacksmith
 	        case _item.getID() == "weapon.legend_hammer" || _item.getID() == "weapon.legend_named_blacksmith_hammer":
-	            return this.Const.Perks.HammerClassTree;
+	            return ::Const.Perks.HammerClassTree;
 
 	    //Pickaxe
 	        case _item.getID() == "weapon.pickaxe" || _item.getID() == "weapon.heavy_mining_pick":
-	            return this.Const.Perks.PickaxeClassTree;
+	            return ::Const.Perks.PickaxeClassTree;
 
 	    //Butcher
 	        case _item.getID() == "weapon.butchers_cleaver" || _item.getID() == "weapon.legend_named_butchers_cleaver":
-	            return this.Const.Perks.ButcherClassTree;
+	            return ::Const.Perks.ButcherClassTree;
 
 	    //Ninetails
 	        case _item.getID() == "weapon.legend_cat_o_nine_tails":
-	            return this.Const.Perks.NinetailsClassTree;
+	            return ::Const.Perks.NinetailsClassTree;
 
 	    //Knife
 	        case _item.getID() == "weapon.knife" || _item.getID() == "weapon.legend_shiv":
-	            return this.Const.Perks.KnifeClassTree;
+	            return ::Const.Perks.KnifeClassTree;
 
 	    //Inventor
 	        case _item.isWeaponType(this.Const.Items.WeaponType.Firearm):
-	            return this.Const.Perks.InventorClassTree;
+	            return ::Const.Perks.InventorClassTree;
 
 	    //Bodyguard
-	        case _item.getID() == "weapon.legend_longsword" || _item.getID() == "weapon.longsword":
-	            return this.Const.Perks.LongswordClassTree;
+	        case _item.getID() == "weapon.longsword" || _item.getID() == "weapon.longsword":
+	            return ::Const.Perks.LongswordClassTree;
 
 	    //Slings
-	        case _item.getID() == "weapon.legend_sling":
-	            return this.Const.Perks.SlingClassTree;
+	        case _item.getID() == "weapon.legend_dilapitated_sling":
+	            return ::Const.Perks.SlingClassTree;
 
 	    //Staves
 	        case _item.getID() == "weapon.legend_staff":
-	            return this.Const.Perks.StaffClassTree;
+	            return ::Const.Perks.StaffClassTree;
 
 	    //Inquisition
 	        case _item.getID() == "weapon.legend_wooden_stake":
-	            return this.Const.Perks.InquisitionClassTree;
+	            return ::Const.Perks.InquisitionClassTree;
 
 	    //Club
 	        case _item.getID() == "weapon.wooden_stick":
-	            return this.Const.Perks.ClubClassTree;
+	            return ::Const.Perks.ClubClassTree;
 
 	    //Pitchfork
 	        case _item.isItemType(this.Const.Items.ItemType.Pitchfork):
-	            return this.Const.Perks.PitchforkClassTree;
+	            return ::Const.Perks.PitchforkClassTree;
 
 	    //Shortbow
 	        case _item.isItemType(this.Const.Items.ItemType.Shortbow):
-	            return this.Const.Perks.ShortbowClassTree;
+	            return ::Const.Perks.ShortbowClassTree;
 
 	    //Militia
 	        case _item.getID() == "weapon.militia_spear" || _item.getID() == "weapon.legend_wooden_spear" || _item.getID() == "weapon.ancient_spear":
-	            return this.Const.Perks.MilitiaClassTree;
+	            return ::Const.Perks.MilitiaClassTree;
 		// WeaponTypes
 			default:
 				local ret = []; // Push all applicable WeaponTypes into array (supports Hybrid weapons)
 				local weaponToPerkMap = {
-					Axe = this.Const.Perks.AxeTree,
-					Bow = this.Const.Perks.BowTree,
-					Cleaver = this.Const.Perks.CleaverTree,
-					Crossbow = this.Const.Perks.CrossbowTree,
-					Dagger = this.Const.Perks.DaggerTree,
-					Firearm = this.Const.Perks.CrossbowTree,
-					Flail = this.Const.Perks.FlailTree,
-					Hammer = this.Const.Perks.HammerTree,
-					Mace = this.Const.Perks.MaceTree,
-					Polearm = this.Const.Perks.PolearmTree,
-					Sling = this.Const.Perks.SlingTree,
-					Spear = this.Const.Perks.SpearTree,
-					Sword = this.Const.Perks.SwordTree,
-					Throwing = this.Const.Perks.ThrowingTree
+					Axe = ::Const.Perks.AxeTree,
+					Bow = ::Const.Perks.BowTree,
+					Cleaver = ::Const.Perks.CleaverTree,
+					Crossbow = ::Const.Perks.CrossbowTree,
+					Dagger = ::Const.Perks.DaggerTree,
+					Firearm = ::Const.Perks.CrossbowTree,
+					Flail = ::Const.Perks.FlailTree,
+					Hammer = ::Const.Perks.HammerTree,
+					Mace = ::Const.Perks.MaceTree,
+					Polearm = ::Const.Perks.PolearmTree,
+					Sling = ::Const.Perks.SlingTree,
+					Spear = ::Const.Perks.SpearTree,
+					Sword = ::Const.Perks.SwordTree,
+					Throwing = ::Const.Perks.ThrowingTree
 				}
 				foreach (weapon, tree in weaponToPerkMap)
 				{
@@ -340,28 +335,28 @@ this.perk_legend_adaptive <- this.inherit("scripts/skills/skill", {
 
 		if (armor_weight == 0)
 		{
-			newTree = this.getOnlyNonExistingTrees(this.Const.Perks.ClothArmorTree);
+			newTree = this.getOnlyNonExistingTrees(::Const.Perks.ClothArmorTree);
 			if (newTree != null && newTree.len()>0) return newTree;
 		}
 
 		if (armor_weight >= -15 && armor_weight <= -1)
 		{
 			// Attempt to give light armor tree if in range or naked
-			newTree = this.getOnlyNonExistingTrees(this.Const.Perks.LightArmorTree);
+			newTree = this.getOnlyNonExistingTrees(::Const.Perks.LightArmorTree);
 			if (newTree != null && newTree.len()>0) return newTree;
 		}
 
 		if (armor_weight >= -35 && armor_weight < -15)
 		{
 			// Attempt to give medium armor tree
-			newTree = this.getOnlyNonExistingTrees(this.Const.Perks.MediumArmorTree);
+			newTree = this.getOnlyNonExistingTrees(::Const.Perks.MediumArmorTree);
 			if (newTree != null && newTree.len()>0) return newTree;
 		}
 
 		if (armor_weight < -35)
 		{
 			// Attempt to give heavy armor tree
-			newTree = this.getOnlyNonExistingTrees(this.Const.Perks.HeavyArmorTree);
+			newTree = this.getOnlyNonExistingTrees(::Const.Perks.HeavyArmorTree);
 			if (newTree != null && newTree.len()>0) return newTree;
 		}
 	}

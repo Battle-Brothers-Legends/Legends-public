@@ -2,6 +2,11 @@
 {
 	while(!("ID" in o.m)) o=o[o.SuperName];
 
+	local isSpecial = o.isSpecial;
+	o.isSpecial = function () {
+		return "isValidForEncounter" in this.m || isSpecial();
+	}
+
 	o.setScreen = function ( _screen )
 	{
 		if (_screen == null)
@@ -50,6 +55,7 @@
 			option.Event <- this;
 		}
 	}
+
 	o.buildText = function ( _text )
 	{
 		local brothers = this.World.getPlayerRoster().getAll();
@@ -271,8 +277,16 @@
 			]
 		];
 
-		::Const.LegendMod.extendVarsWithPronouns(vars, bro1.getGender(), "randombrother");
-		::Const.LegendMod.extendVarsWithPronouns(vars, bro2.getGender(), "randombrother2");
+		::Const.LegendMod.extendVarsWithPronouns(vars, bro1, "randombrother");
+		::Const.LegendMod.extendVarsWithPronouns(vars, bro2, "randombrother2");
+		// Dynamically handle pronouns for any additional actors in an event
+		// For this to work, any event text using the placeholder pronoun must refer to the actor in the lowercase form of the actor's variable name
+		// For example, the placeholder "%they_somebody%" will get the pronoun for this.m.Somebody
+		foreach (key, value in this.m) {
+			if (::MSU.isKindOf(value, "actor")) {
+				::Const.LegendMod.extendVarsWithPronouns(vars, value, key.tolower());
+			}
+		}
 		this.onPrepareVariables(vars);
 		return this.buildTextFromTemplate(_text, vars);
 	}
@@ -330,8 +344,17 @@
 			]
 		]);
 	}
+
 	o.canFire <- function ()
 	{
 		return true;
+	}
+
+	local fire = o.fire;
+	o.fire = function () {
+		fire();
+		if("isValidForEncounter" in this.m) {
+			::World.Events.removeSpecialEvent(this.m.ID);
+		}
 	}
 });

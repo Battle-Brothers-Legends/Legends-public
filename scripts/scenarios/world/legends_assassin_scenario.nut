@@ -21,8 +21,8 @@ this.legends_assassin_scenario <- this.inherit("scripts/scenarios/world/starting
 			"legend_assassin_commander_background"
 		]);
 		::Legends.Traits.grant(bro, ::Legends.Trait.Player);
-		this.addScenarioPerk(bro.getBackground(), this.Const.Perks.PerkDefs.Backstabber);
-		this.addScenarioPerk(bro.getBackground(), this.Const.Perks.PerkDefs.LoneWolf);
+		this.addScenarioPerk(bro.getBackground(), ::Const.Perks.PerkDefs.Backstabber);
+		this.addScenarioPerk(bro.getBackground(), ::Const.Perks.PerkDefs.LoneWolf);
 		bro.m.PerkPointsSpent += 2;
 		bro.setPlaceInFormation(4);
 		bro.setVeteranPerks(2);
@@ -169,7 +169,7 @@ this.legends_assassin_scenario <- this.inherit("scripts/scenarios/world/starting
 
 	function onBuildPerkTree( _background )
 	{
-		this.addScenarioPerk(_background, this.Const.Perks.PerkDefs.Backstabber);
+		this.addScenarioPerk(_background, ::Const.Perks.PerkDefs.Backstabber);
 	}
 
 });

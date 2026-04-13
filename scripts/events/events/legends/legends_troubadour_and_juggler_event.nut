@@ -199,11 +199,6 @@ this.legends_troubadour_and_juggler_event <- this.inherit("scripts/events/event"
 		]);
 	}
 
-	function onDetermineStartScreen()
-	{
-		return "A";
-	}
-
 	function onClear()
 	{
 		this.m.Troubadour = null;

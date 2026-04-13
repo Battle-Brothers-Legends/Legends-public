@@ -7,68 +7,11 @@ this.legend_legion_honour_guard_background <- this.inherit("scripts/skills/backg
 		this.m.Name = "Honour Guard";
 		this.m.Icon = "ui/backgrounds/background_puppet.png"; //to do
 		this.m.BackgroundDescription = "A veteran of hundreds of battles, the honour guard is rewarded for their prowess with ever increasing danger.";
-		// this.m.GoodEnding = ""; //to do
-		// this.m.BadEnding = ""; //to do
+		this.m.GoodEnding = "";
+		this.m.BadEnding = "";
 		this.m.HiringCost = 0;
 		this.m.DailyCost = 0;
-		this.m.Excluded = [ //can roll; brute, clubfooted, clumsy, fragile, huge, hesitant, strong, sure footing, survivor, tough, bright, lucky, shortsighted, aggressive, martial, predictable, lumbering, quick, swift, team player, hate nobles, frail, etc (see commented out below)
-			::Legends.Traits.getID(::Legends.Trait.Ailing), //only including naturally occouring or obtainable traits.
-			::Legends.Traits.getID(::Legends.Trait.Asthmatic),
-			::Legends.Traits.getID(::Legends.Trait.Bleeder),
-			// ::Legends.Traits.getID(::Legends.Trait.Bloodthirsty),
-			::Legends.Traits.getID(::Legends.Trait.Brave),
-			::Legends.Traits.getID(::Legends.Trait.Tiny),
-			::Legends.Traits.getID(::Legends.Trait.Gluttonous),
-			// ::Legends.Traits.getID(::Legends.Trait.Cocky),
-			::Legends.Traits.getID(::Legends.Trait.Craven),
-			::Legends.Traits.getID(::Legends.Trait.Dastard),
-			::Legends.Traits.getID(::Legends.Trait.Deathwish),
-			::Legends.Traits.getID(::Legends.Trait.Determined),
-			// ::Legends.Traits.getID(::Legends.Trait.Dexterous),
-			::Legends.Traits.getID(::Legends.Trait.Disloyal),
-			::Legends.Traits.getID(::Legends.Trait.Drunkard),
-			// ::Legends.Traits.getID(::Legends.Trait.Dumb),
-			::Legends.Traits.getID(::Legends.Trait.Fainthearted),
-			::Legends.Traits.getID(::Legends.Trait.Fat),
-			::Legends.Traits.getID(::Legends.Trait.FearUndead),
-			::Legends.Traits.getID(::Legends.Trait.FearGreenskins),
-			::Legends.Traits.getID(::Legends.Trait.FearBeasts),
-			::Legends.Traits.getID(::Legends.Trait.Fearless),
-			// ::Legends.Traits.getID(::Legends.Trait.EagleEyes),
-			::Legends.Traits.getID(::Legends.Trait.Greedy),
-			::Legends.Traits.getID(::Legends.Trait.HateUndead),
-			// ::Legends.Traits.getID(::Legends.Trait.HateBeasts),
-			// ::Legends.Traits.getID(::Legends.Trait.HateGreenskins),
-			// ::Legends.Traits.getID(::Legends.Trait.Impatient),
-			::Legends.Traits.getID(::Legends.Trait.Insecure),
-			::Legends.Traits.getID(::Legends.Trait.IronLungs),
-			// ::Legends.Traits.getID(::Legends.Trait.IronJaw),
-			::Legends.Traits.getID(::Legends.Trait.Irrational),
-			::Legends.Traits.getID(::Legends.Trait.Loyal),
-			::Legends.Traits.getID(::Legends.Trait.NightOwl),
-			::Legends.Traits.getID(::Legends.Trait.NightBlind),
-			::Legends.Traits.getID(::Legends.Trait.Optimist),
-			// ::Legends.Traits.getID(::Legends.Trait.Paranoid),
-			::Legends.Traits.getID(::Legends.Trait.Pessimist),
-			::Legends.Traits.getID(::Legends.Trait.Spartan),
-			::Legends.Traits.getID(::Legends.Trait.Superstitious),
-			::Legends.Traits.getID(::Legends.Trait.Weasel),
-			//legend traits
-			// ::Legends.Traits.getID(::Legends.Trait.LegendAmbitious),
-			::Legends.Traits.getID(::Legends.Trait.LegendFearNobles),
-			// ::Legends.Traits.getID(::Legends.Trait.LegendHateNobles),
-			// ::Legends.Traits.getID(::Legends.Trait.LegendFrail),
-			//::Legends.Traits.getID(::Legends.Trait.LegendCannibalistic),
-			// ::Legends.Traits.getID(::Legends.Trait.LegendSteadyHands),
-			// ::Legends.Traits.getID(::Legends.Trait.LegendPragmatic),
-			// ::Legends.Traits.getID(::Legends.Trait.LegendUnpredictable),
-			::Legends.Traits.getID(::Legends.Trait.LegendSlack),
-			// ::Legends.Traits.getID(::Legends.Trait.LegendSureshot),
-			::Legends.Traits.getID(::Legends.Trait.LegendDoubleTongued),
-			::Legends.Traits.getID(::Legends.Trait.LegendGiftOfPeople),
-			::Legends.Traits.getID(::Legends.Trait.LegendSeductive),
-			// ::Legends.Traits.getID(::Legends.Trait.LegendTalented),
-		];
+		this.m.Excluded = ::Legends.Legion.excludedTraits();
 
 		this.m.ExcludedTalents = [
 			// this.Const.Attributes.RangedSkill,
@@ -84,7 +27,7 @@ this.legend_legion_honour_guard_background <- this.inherit("scripts/skills/backg
 		this.m.Beards = this.Const.Beards.All;
 		this.m.Bodies = this.Const.Bodies.Muscular;
 		//---
-		this.m.BackgroundType = this.Const.BackgroundType.Untalented;
+		// this.m.BackgroundType = this.Const.BackgroundType.Untalented;
 		this.m.Names = this.Const.Strings.AncientDeadNames;
 		// this.m.LastNames = this.Const.Strings.AncientDeadTitles;
 		this.m.Level = this.Math.rand(2, 4);
@@ -118,29 +61,28 @@ this.legend_legion_honour_guard_background <- this.inherit("scripts/skills/backg
 			];
 		this.m.PerkTreeDynamic = {
 			Weapon = [
-				this.Const.Perks.DaggerTree,
-				this.Const.Perks.SpearTree,
-				this.Const.Perks.TwoHandedTree,
-				this.Const.Perks.ShieldTree,
-				this.Const.Perks.PolearmTree,
-				this.Const.Perks.SwordTree,
-				this.Const.Perks.ThrowingTree,
-				this.Const.Perks.CleaverTree
+				::Const.Perks.DaggerTree,
+				::Const.Perks.SpearTree,
+				::Const.Perks.ShieldTree,
+				::Const.Perks.PolearmTree,
+				::Const.Perks.SwordTree,
+				::Const.Perks.ThrowingTree,
+				::Const.Perks.CleaverTree
 			],
 			Defense = [
-				this.Const.Perks.HeavyArmorTree
+				::Const.Perks.HeavyArmorTree
 			],
 			Traits = [
-				this.Const.Perks.TrainedTree,
-				this.Const.Perks.DeviousTree,
-				this.Const.Perks.LargeTree,
-				this.Const.Perks.FastTree,
-				this.Const.Perks.ViciousTree
+				::Const.Perks.TrainedTree,
+				::Const.Perks.DeviousTree,
+				::Const.Perks.LargeTree,
+				::Const.Perks.FastTree,
+				::Const.Perks.ViciousTree
 			],
 			Enemy = [],
 			Class = [
-				this.Const.Perks.LongswordClassTree,
-				this.Const.Perks.ScytheClassTree
+				// ::Const.Perks.LongswordClassTree,
+				// ::Const.Perks.ScytheClassTree
 			],
 			Profession = [],
 			Magic = []
@@ -160,13 +102,13 @@ this.legend_legion_honour_guard_background <- this.inherit("scripts/skills/backg
 		this.m.HairColors = this.Const.HairColors.All;
 		this.m.Bodies = this.Const.Bodies.Muscular;
 		this.m.Beards = null;
-		this.m.BeardChance = 1;
+		this.m.BeardChance = 0;
 		this.addBackgroundType(this.Const.BackgroundType.Female);
 	}
 
-	function onBuildDescription() //to do
+	function onBuildDescription()
 	{
-		return "{ TODO | TODO }";
+		return "{Decades of campaigning and violence have only cemented %name%'s reputation in the Legion as an avatar of war. Their very presence instils confidence in their troop's fighting odds. | Some %name% are born to grant others death. %name% answered this calling alongside his duty to the Emperor, and has carved a path through their many enemies, with little sign of stopping. | %name%'s war never ended. Found amongst a battlefield surrounded by felled foes, they were only too eager to take up arms again in service of the Emperor and his Legion. | %name% sought the Legion out on their own, having felt the call to serve the Emperor through honourable combat. Offered a prestigious position as one of the Legion's best, they stand as both shield and sword against the Empire's many enemies. | Few can compare to %name%'s martial prowess and imposing presence, even in death. Quickly proving their knack for violence, they secured a place in the Legion's honour guard.} {When the lines break, it inevitably falls to this honour guard to hold the line and salvage the day. Unmatched in close combat, they can be trusted to make any enemy pay in rivers of blood. | Perfectly suited to breaking enemy lines and reforming allied ones, this honour guard stands stalwart as a decisive actor on the battlefield. Enemies and allies alike fear their skill of arms. | When the day seems lost, it falls to an honour guard to turn the tide and achieve glory for the Empire. Masterfully applied violence and a feverish loyalty to the mission bolster the Legion's capabilities on and off the battlefield. | The perfect weapon in the Legion, this honour guard is the solution to throw at almost any problem that stands against the Emperor's will. Single-minded in violence, the Empire's enemies tremble at the very sight of this paragon of imperial martial excellence. | Violence made art. Killing made a science. This honour guard is no stranger to war, and can be relied upon to demonstrate the ancient mastery of imperial war to those in the Legion, and those who dare oppose it.} {Cold, reserved and unmistakably absent-minded in camp, %name%'s mind clearly lives on the battlefield. The lulls between battle seem only to send this agent of war into a placated stasis, awaiting the next call to action... | Death comes easy for some. %name% appears aware of their undeath, occasionally spotted admiring their skeletal form. Despite what some might consider horrific, they relish the opportunity to relive the art of killing. Again, and again, and again. | %name% relishes their new undead station in the Legion, eagerly flexing their status against their inferiors, and often failing to hide their glee for their curse of unlife. At least someone is having fun in death. | Bouts of confused stupors quickly give way to an unquestionable discipline practised and perfected over countless years. Though %name% is sometimes spotted pensive and disturbed by their undead company, the order to form ranks quickly sweeps such self-awareness away... | %name% lived and died and now lives again for the Legion. Eagerly taking up the opportunity to serve the Emperor once more, they vow never to never again fall in battle.}";
 	}
 
 	function onChangeAttributes() //uses Character_background.nut template (Skeleton)
@@ -210,39 +152,14 @@ this.legend_legion_honour_guard_background <- this.inherit("scripts/skills/backg
 
 	function onAdded()
 	{
-		if (this.m.IsNew)
-		{
+		if (this.m.IsNew) {
 			::Legends.Traits.grant(this, ::Legends.Trait.LegendFleshless);
 		}
+		this.character_background.onAdded();
 
 		local actor = this.getContainer().getActor();
-		actor.m.ExcludedInjuries = [ //all injuries associated with stamina regen, health or resolve
-		//perma injuries must be managed in actor.nut, NOT here!
-		//	"injury.traumatized",
-		//	"injury.brain_damage",
-		//	"injury.missing_nose",
-		//	"injury.weakened_heart",
-		//	"injury.collapsed_lung_part",
-		//temp
-			"injury.cut_artery",
-			"injury.cut_throat",
-			"injury.deep_abdominal_cut",
-			"injury.deep_chest_cut",
-			"injury.exposed_ribs",
-			"injury.grazed_kidney",
-			"injury.grazed_neck",
-			"injury.infected_wound",
-			"injury.sickness",
-			"injury.stabbed_guts",
-			"injury.broken_nose",
-			"injury.crushed_windpipe",
-			"injury.fractured_ribs",
-			"injury.inhaled_flames",
-			"injury.pierced_chest",
-			"injury.pierced_lung",
-			"injury.pierced_side"
-		];
-		this.getContainer().getActor().getFlags().add("legion_can_command");  //justfies if this background is subject to the legion command skill
+		actor.m.ExcludedInjuries = ::Legends.Legion.ExcludedInjures;
+		actor.getFlags().add("legion_can_command"); //justfies if this background is subject to the legion command skill
 	}
 
 	function adjustHiringCostBasedOnEquipment() //reduces cost for equipment worn on skeletons to zero for recruiting purposes.
@@ -254,40 +171,20 @@ this.legend_legion_honour_guard_background <- this.inherit("scripts/skills/backg
 	function onAddEquipment()
 	{
 		local items = this.getContainer().getActor().getItems();
-		local r;
-		r = this.Math.rand(1, 5);
 
-		if (r == 1)
-		{
-			items.equip(this.new("scripts/items/weapons/ancient/bladed_pike"));
-		}
-		else if (r == 2)
-		{
-			items.equip(this.new("scripts/items/weapons/ancient/warscythe"));
-		}
-		else if (r == 3)
-		{
-			items.equip(this.new("scripts/items/weapons/ancient/rhomphaia"));
-		}
-		else if (r == 4)
-		{
-			items.equip(this.new("scripts/items/weapons/ancient/ancient_sword"));
-		}
-		else if (r == 5)
-		{
-			items.equip(this.new("scripts/items/weapons/ancient/crypt_cleaver"));
-		}
+		items.equip(::Const.World.Common.pickItem([
+			[1, "weapons/ancient/bladed_pike"],
+			[1, "weapons/ancient/warscythe"],
+			[1, "weapons/ancient/rhomphaia"],
+			[1, "weapons/ancient/ancient_sword"],
+			[1, "weapons/ancient/crypt_cleaver"]
+		], "scripts/items/"));
 
-		if (items.getItemAtSlot(this.Const.ItemSlot.Offhand) == null)
-		{
-			if (this.Math.rand(1, 100) <= 66)
-			{
-				items.equip(this.new("scripts/items/shields/ancient/coffin_shield"));
-			}
-			else
-			{
-				items.equip(this.new("scripts/items/shields/ancient/tower_shield"));
-			}
+		if (items.getItemAtSlot(this.Const.ItemSlot.Offhand) == null) {
+			items.equip(::Const.World.Common.pickItem([
+				[2, "shields/ancient/coffin_shield"],
+				[1, "shields/ancient/tower_shield"]
+			], "scripts/items/"));
 		}
 
 		items.equip(this.Const.World.Common.pickArmor([

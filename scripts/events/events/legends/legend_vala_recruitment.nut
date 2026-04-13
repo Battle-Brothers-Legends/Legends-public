@@ -102,8 +102,6 @@ this.legend_vala_recruitment <- this.inherit("scripts/events/event", {
 		{
 			if (bro.getBackground().getID() == "background.legend_vala")
 				return;
-			if (bro.getBackground().getID() == "background.legend_commander_vala")
-				return;
 			totalbrothers += 1;
 			brotherlevels += bro.getLevel();
 		}

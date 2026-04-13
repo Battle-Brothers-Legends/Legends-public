@@ -90,12 +90,13 @@
 	"mod_make_lindwurms_great_again",
 	"mod_MINA", // More Indefinite Numeral Adjectives - a similar feature is implemented in legends
 	"mod_tooltip_extension", // Rygar's perk tooltip
-	"mod_turn_it_in"
+	"mod_turn_it_in",
+	"mod_find_legendary_maps"
 ];
 
 //region HardIncompat
 ::Legends.Compat.HardIncompat.add("mod_18bros", null, "Legends has more anyway.");
-::Legends.Compat.HardIncompat.add("mod_AC", "1.30.33"); // Accessory Companions
+::Legends.Compat.HardIncompat.add("mod_AC", "1.30.33", "Instead use the newer ACU found in the AC Submod channel Pins"); // Accessory Companions
 ::Legends.Compat.HardIncompat.add("mod_allCripplesBecomeTheKingsGuard", "1.0");
 ::Legends.Compat.HardIncompat.add("and_justice_for_all", "1.4.0");
 ::Legends.Compat.HardIncompat.add("mod_autopilot", "23", "Instead use Hackflow's Autopilot New mod");
@@ -117,7 +118,7 @@
 ::Legends.Compat.HardIncompat.add("CampaignTweakster", "6");
 ::Legends.Compat.HardIncompat.add("mod_cartupgrade", "1.0");
 ::Legends.Compat.HardIncompat.add("mod_challengeScenarioPack", "1.0");
-::Legends.Compat.HardIncompat.add("mod_champion_beasts", "1.2.0"); // Necro's Vanila champ beasts.
+::Legends.Compat.HardIncompat.add("mod_champion_beasts", "1.2.0", "Instead use Magic Concepts which is the Legends version of this"); // Necro's Vanila champ beasts.
 ::Legends.Compat.HardIncompat.add("mod_Chirutiru_enemies", "1", "Sellswords not compaible, there's Legends version of this mod (SSU) on Legends Discord"); // This entry should cover old Sellswords
 ::Legends.Compat.HardIncompat.add("sarisofoi_company_tabards"); // Company Tabards
 ::Legends.Compat.HardIncompat.add("comrades_mod", "4.3.0");
@@ -162,6 +163,7 @@
 ::Legends.Compat.HardIncompat.add("mod_more_champions_x10");
 ::Legends.Compat.HardIncompat.add("mod_more_champions_x25");
 ::Legends.Compat.HardIncompat.add("mod_more_followers", "1.1");
+::Legends.Compat.HardIncompat.add("mod_more_followers_fixed", "1.3", "Think twice before installing mods written ai slop mods mid run"); // we're not supporting ai slop mods
 ::Legends.Compat.HardIncompat.add("mod_moreRecruits", "2", "For more recruits a safe alternative seems to be Necro's World Editor");
 ::Legends.Compat.HardIncompat.add("mod_more_weapon_skins", "0.8.0"); // Many of Karl's skins are being integ into Legends
 ::Legends.Compat.HardIncompat.add("mod_namedShieldsInShops", "1.0");
@@ -231,17 +233,19 @@
 ::Legends.Compat.SoftIncompat.add("mod_camps_and_artifacts", "3.4");
 ::Legends.Compat.SoftIncompat.add("mod_cultists", "1.04"); // Davkul Rising
 ::Legends.Compat.SoftIncompat.add("mod_fantasybro", "1.0"); // Yorik's "Legends patches are poorly built, yes even into FB V5"
-::Legends.Compat.SoftIncompat.add("mod_find_legendary_locations", "1", "Use Chopek's Find Legendary Maps instead, at Nexus or Legends Discord (#submod_files/Find Legendary Maps)");
+::Legends.Compat.SoftIncompat.add("mod_find_legendary_locations", "1", "Legends has maps, that do the same");
 ::Legends.Compat.SoftIncompat.add("mod_necropolis", "1.0");
 ::Legends.Compat.SoftIncompat.add("mod_PLHO", "0.1.1"); // Darx's Player Hideout
 ::Legends.Compat.SoftIncompat.add("mod_retinue_ups", "1.2.1"); // Hackflow's Retinue Promotions
 ::Legends.Compat.SoftIncompat.add("mod_SAF", "1.0.0"); // Darx's Stackable Arena Fights
 ::Legends.Compat.SoftIncompat.add("mod_streamlined_ui", "1.0.3");
 ::Legends.Compat.SoftIncompat.add("mod_URUI", "1.2.0"); // Unrecognized UI
+::Legends.Compat.SoftIncompat.add("mod_persistent_characters", "0.1.8", "Bro wages keep growing on reload");
+::Legends.Compat.SoftIncompat.add("mod_bbforge", "0.4.3", "The equivalent of Breditor, if you are using bbforge do not report bug reports to the Legends Mod Team");
 //endregion
 
 //region IncompatButPatched
-::Legends.Compat.IncompatButPatched.add("mod_breditor", "on Legends Discord (#submod_files/Breaky's Battle Brothers Bargain Bin (BBBBB))");
+::Legends.Compat.IncompatButPatched.add("mod_breditor", "on Legends Discord (Breditor Containment Chamber in #submod_files), replace one from nexus. If you have it already, ignore this message.");
 //endregion
 
 //region OtherVersionCompat

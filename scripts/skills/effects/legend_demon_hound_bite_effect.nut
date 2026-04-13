@@ -21,7 +21,7 @@ this.legend_demon_hound_bite_effect <- this.inherit("scripts/skills/skill", {
 
 	function getDescription()
 	{
-		return "This character has been bitten by a Höllenhund and has [color=" + this.Const.UI.Color.NegativeValue + "] -30% [/color]Fatigue recovery for [color=" + this.Const.UI.Color.NegativeValue + "]" + this.m.TurnsLeft + "[/color] more turn(s).";
+		return "This character has been bitten by a Höllenhund and has [color=%negative%] -30% [/color]Fatigue recovery for [color=%negative%]" + this.m.TurnsLeft + "[/color] more turn(s).";
 	}
 
 	function onUpdate( _properties )

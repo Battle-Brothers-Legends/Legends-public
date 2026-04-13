@@ -23,7 +23,7 @@
 				id = 4,
 				type = "text",
 				icon = "ui/icons/health.png", // fix from /ui to ui/ ty for pointing this out Necro, Abyss 6/17/23
-				text = "Inflicts [color=" + this.Const.UI.Color.DamageValue + "]" + p.DamageRegularMin + "[/color] - [color=" + this.Const.UI.Color.DamageValue + "]" + p.DamageRegularMax + "[/color] damage"
+				text = "Inflicts [color=%damage%]" + p.DamageRegularMin + "[/color] - [color=%damage%]" + p.DamageRegularMax + "[/color] damage"
 			}
 		];
 	}

@@ -2,12 +2,8 @@ this.perk_legend_last_stand <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		::Const.Perks.setup(this.m, ::Legends.Perk.LegendLastStand);
+		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendLastStand);
 		this.m.Type = this.Const.SkillType.Perk | this.Const.SkillType.StatusEffect;
-		this.m.Order = this.Const.SkillOrder.Perk;
-		this.m.IsActive = false;
-		this.m.IsStacking = false;
-		this.m.IsHidden = false;
 	}
 
 	function isHidden()
@@ -27,7 +23,7 @@ this.perk_legend_last_stand <- this.inherit("scripts/skills/skill", {
 				id = 6,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "Your melee and ranged defense are increased by [color=" + this.Const.UI.Color.PositiveValue + "]" + bonus + "[/color]."
+				text = "Your melee and ranged defense are increased by [color=%positive%]" + bonus + "[/color]."
 			});
 
 			if (currentPercent < 0.33)

@@ -5,7 +5,10 @@ this.legend_skin_armor_blueprint <- this.inherit("scripts/crafting/blueprint", {
 		this.blueprint.create();
 		this.m.ID = "blueprint.legend_skin_armor";
 		this.m.Type = this.Const.Items.ItemType.Armor;
-		this.m.PreviewCraftable = this.new("scripts/items/legend_armor/legendary/legend_skin_armor");
+		local preview = this.new("scripts/items/legend_armor/legendary/legend_skin_armor");
+		preview.resetValues();
+		preview.m.Name = "Skinghoul Armor";
+		this.m.PreviewCraftable = preview;
 		this.m.Cost = 2500;
 		local ingredients = [
 			{

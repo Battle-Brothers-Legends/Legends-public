@@ -726,14 +726,6 @@ traitDefs.push({
 	Random = true
 });
 
-::Legends.Trait.LegendFrail <- null;
-traitDefs.push({
-	ID = "trait.legend_frail",
-	Script = "scripts/skills/traits/legend_frail_trait",
-	Const = "LegendFrail",
-	Random = true
-});
-
 ::Legends.Trait.LegendTalented <- null;
 traitDefs.push({
 	ID = "trait.legend_natural",
@@ -1035,13 +1027,6 @@ traitDefs.push({
 	Const = "LegendBrothersInChains"
 });
 
-::Legends.Trait.LegendPeaceful <- null;
-traitDefs.push({
-	ID = "trait.legend_peaceful",
-	Script = "scripts/skills/traits/legend_peaceful_trait",
-	Const = "LegendPeaceful"
-});
-
 ::Legends.Trait.RacialSkeleton <- null;
 traitDefs.push({
 	ID = "racial.skeleton",
@@ -1232,6 +1217,22 @@ traitDefs.push({
 	Script = "scripts/skills/racial/legend_werewolf_racial",
 	Const = "RacialLegendWerewolf",
 	Name = "Blind Rage",
+});
+
+::Legends.Trait.RacialFleshGolem <- null;
+traitDefs.push({
+	ID = "racial.flesh_golem",
+	Script = "scripts/skills/racial/flesh_golem_racial",
+	Const = "RacialFleshGolem",
+	Name = "Flesh Golem Racial",
+});
+
+::Legends.Trait.RacialGrandDiviner <- null;
+traitDefs.push({
+	ID = "racial.grand_diviner",
+	Script = "scripts/skills/racial/grand_diviner_racial",
+	Const = "RacialGrandDiviner",
+	Name = "Diviner\'s Fury",
 });
 
 

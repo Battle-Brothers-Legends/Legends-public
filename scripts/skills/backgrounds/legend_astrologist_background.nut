@@ -25,22 +25,22 @@ this.legend_astrologist_background <- this.inherit("scripts/skills/backgrounds/c
 		this.m.Modifiers.Injury = this.Const.LegendMod.ResourceModifiers.Repair[1];
 		this.m.PerkTreeDynamic = {
 			Weapon = [
-				this.Const.Perks.DaggerTree,
-				this.Const.Perks.PolearmTree
+				::Const.Perks.DaggerTree,
+				::Const.Perks.PolearmTree
 			],
 			Defense = [
-				this.Const.Perks.LightArmorTree
+				::Const.Perks.LightArmorTree
 			],
 			Traits = [
-				this.Const.Perks.IntelligentTree,
-				this.Const.Perks.CalmTree
+				::Const.Perks.IntelligentTree,
+				::Const.Perks.CalmTree
 			],
 			Enemy = [],
 			Class = [],
 			Profession = [],
 			Magic = [
-				this.Const.Perks.PremonitionMagicTree,
-				this.Const.Perks.StavesMagicTree
+				::Const.Perks.PremonitionMagicTree,
+				::Const.Perks.StavesMagicTree
 			]
 		}
 	}

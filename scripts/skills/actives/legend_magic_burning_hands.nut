@@ -320,7 +320,7 @@ this.legend_magic_burning_hands <- this.inherit("scripts/skills/actives/legend_m
 			id = 4,
 			type = "text",
 			icon = "ui/icons/regular_damage.png",
-			text = "Inflicts [color=" + this.Const.UI.Color.DamageValue + "]" + damages[0] + "[/color] - [color=" + this.Const.UI.Color.DamageValue + "]" + damages[1] + "[/color] damage, up to [color=" + this.Const.UI.Color.DamageValue + "]" + damages[4] + "[/color] damage can ignore armor"
+			text = "Inflicts [color=%damage%]" + damages[0] + "[/color] - [color=%damage%]" + damages[1] + "[/color] damage, up to [color=%damage%]" + damages[4] + "[/color] damage can ignore armor"
 		});
 
 		if (damages[3] > 0)
@@ -329,7 +329,7 @@ this.legend_magic_burning_hands <- this.inherit("scripts/skills/actives/legend_m
 				id = 5,
 				type = "text",
 				icon = "ui/icons/armor_damage.png",
-				text = "Inflicts [color=" + this.Const.UI.Color.DamageValue + "]" + damages[2] + "[/color] - [color=" + this.Const.UI.Color.DamageValue + "]" + damages[3] + "[/color] armor damage"
+				text = "Inflicts [color=%damage%]" + damages[2] + "[/color] - [color=%damage%]" + damages[3] + "[/color] armor damage"
 			});
 		}
 

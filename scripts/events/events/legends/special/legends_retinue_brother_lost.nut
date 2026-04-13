@@ -67,7 +67,7 @@ this.legends_retinue_brother_lost <- this.inherit("scripts/events/event", {
 			followers += " (" + follower.getName() + ")\n"
 		}
 
-		this.Const.LegendMod.extendVarsWithPronouns(_vars, lostFollowers.len() == 1 ? (lostFollowers[0].getLinkedBro() == null ? -1 : lostFollowers[0].getLinkedBro().getGender()) : -1);
+		::Const.LegendMod.extendVarsWithPronouns(_vars, lostFollowers.len() == 1 ? (lostFollowers[0].getLinkedBro() == null ? -1 : lostFollowers[0].getLinkedBro().getGender()) : -1);
 
 		_vars.push([
 			"bronames",

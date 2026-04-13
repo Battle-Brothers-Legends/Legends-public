@@ -311,9 +311,29 @@ WorldTownScreenTaxidermistDialogModule.prototype.createDIV = function (_parentDi
 				{
 					self.mAssets.loadFromData(_result.Assets);
 
-					if (_result != null)
-					{
-						self.loadFromData(_result);
+					if (_result != null) {						
+						var fullReload = false;
+						for (var i = 0; i < self.mBlueprints.length; i++) {
+							var oldBlueprint = self.mBlueprints[i];
+							var newBlueprint = _result.Blueprints[i];
+							if (oldBlueprint.ID !== newBlueprint.ID || oldBlueprint.IsCraftable !== newBlueprint.IsCraftable) {
+								fullReload = true;
+								break;
+							}
+						}
+
+						if (fullReload) {
+							self.loadFromData(_result);
+						}
+						else {
+							self.updateListEntryValues(_result);
+                        	for (var k = 0; k < _result.Blueprints.length; k++) {
+								if (_result.Blueprints[k].ID === self.mSelectedEntry.data('entry').ID) {
+									self.mSelectedEntry.data('entry', _result.Blueprints[k]);
+									break;
+                            	}
+                        	}
+						}
 						var curvariant = self.mVariant;
 						var curmage = self.mDetailsPanel.CharacterImage.attr('src');
 						self.updateDetailsPanel(self.mSelectedEntry);
@@ -921,4 +941,25 @@ WorldTownScreenTaxidermistDialogModule.prototype.notifyBackendFilterUsableButton
 
 WorldTownScreenTaxidermistDialogModule.prototype.notifyBackendPageChanged = function (_pageID) {
 	SQ.call(this.mSQHandle, 'onPageChange', _pageID, null);
+};
+
+WorldTownScreenTaxidermistDialogModule.prototype.updateListEntryValues = function (_data)
+{
+    if(_data === undefined || _data === null || _data.Blueprints == null) {
+        return;
+    }
+
+    for (var i = 0; i < _data.Blueprints.length; i++)
+    {
+        var blueprint = _data.Blueprints[i];
+        var ingredientIcons = $(this.mListContainer.find('.list-entry')[i]).find('.is-bottom .icons-container');
+		
+		if (blueprint.Ingredients !== undefined && blueprint.Ingredients !== null)
+        {
+            for (var j = 0; j < blueprint.Ingredients.length; j++) {
+                var ingredient = blueprint.Ingredients[j];
+                $(ingredientIcons[j]).find('.label').html(ingredient.InvTotal + '/' + ingredient.Num);
+			}
+		}
+    }
 };

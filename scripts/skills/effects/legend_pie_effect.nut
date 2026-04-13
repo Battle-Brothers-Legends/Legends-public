@@ -44,7 +44,7 @@ this.legend_pie_effect <- this.inherit("scripts/skills/skill", {
 
 	function getDescription()
 	{
-		return "Thanks to eating pie, this character regains Health and Fatigue for [color=" + this.Const.UI.Color.NegativeValue + "]" + this.m.TurnsLeft + "[/color] turn(s). ";
+		return "Thanks to eating pie, this character regains Health and Fatigue for [color=%negative%]" + this.m.TurnsLeft + "[/color] turn(s). ";
 	}
 
 	function getTooltip()
@@ -66,19 +66,19 @@ this.legend_pie_effect <- this.inherit("scripts/skills/skill", {
 				id = 11,
 				type = "text",
 				icon = "ui/icons/health.png",
-				text = "Heals [color=" + this.Const.UI.Color.PositiveValue + "] +" + rate + "[/color] Hitpoints per turn for " + turns + " more turns"
+				text = "Heals [color=%positive%] +" + rate + "[/color] Hitpoints per turn for " + turns + " more turns"
 			},
 			{
 				id = 11,
 				type = "text",
 				icon = "ui/icons/fatigue.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "] +" + rate + "[/color] Fatigue Recovery per turn for " + turns + " more turns"
+				text = "[color=%positive%] +" + rate + "[/color] Fatigue Recovery per turn for " + turns + " more turns"
 			},
 			{
 				id = 11,
 				type = "text",
 				icon = "ui/icons/bravery.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "] +10 [/color] to morale checks for " + turns + " more turns"
+				text = "[color=%positive%] +10 [/color] to morale checks for " + turns + " more turns"
 			}
 		];
 		return ret;

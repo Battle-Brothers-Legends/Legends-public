@@ -42,29 +42,32 @@ this.legend_taxidermist_background <- this.inherit("scripts/skills/backgrounds/c
 		this.m.Modifiers.MedConsumption = this.Const.LegendMod.ResourceModifiers.MedConsumption[2];
 		this.m.PerkTreeDynamic = {
 			Weapon = [
-				this.Const.Perks.DaggerTree,
-				this.Const.Perks.SwordTree,
-				this.Const.Perks.CleaverTree,
-				this.Const.Perks.ThrowingTree
+				::Const.Perks.DaggerTree,
+				::Const.Perks.SwordTree,
+				::Const.Perks.CleaverTree,
+				::Const.Perks.ThrowingTree
 			],
 			Defense = [
-				this.Const.Perks.ClothArmorTree,
-				this.Const.Perks.MediumArmorTree
+				::Const.Perks.ClothArmorTree,
+				::Const.Perks.MediumArmorTree
 			],
 			Traits = [
-				this.Const.Perks.OrganisedTree,
-				this.Const.Perks.IntelligentTree,
-				this.Const.Perks.FastTree,
-				this.Const.Perks.ViciousTree
+				::Const.Perks.OrganisedTree,
+				::Const.Perks.IntelligentTree,
+				::Const.Perks.FastTree,
+				::Const.Perks.ViciousTree
 			],
 			Enemy = [
-				this.Const.Perks.GhoulTree,
-				this.Const.Perks.DirewolfTree,
-				this.Const.Perks.UnholdTree,
-				this.Const.Perks.AlpTree
+				::Const.Perks.BeastTree,
+				::Const.Perks.OccultTree
 			],
-			Profession = [],
-			Class = [],
+			Profession = [
+				::Const.Perks.WoodworkingProfessionTree,
+				::Const.Perks.RepairProfessionTree
+			],
+			Class = [
+				::Const.Perks.TailorClassTree
+			],
 			Magic = []
 		}
 	}
@@ -72,14 +75,6 @@ this.legend_taxidermist_background <- this.inherit("scripts/skills/backgrounds/c
 	function getTooltip()
 	{
 		local ret = this.character_background.getTooltip();
-		ret.push(
-			{
-				id = 13,
-				type = "text",
-				icon = "ui/icons/special.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+100%[/color] crafting rate in the crafting tent, [color=" + this.Const.UI.Color.PositiveValue + "]-10%[/color] medicine usage, [color=" + this.Const.UI.Color.PositiveValue + "]+10[/color] maximum medicine capacity,  [color=" + this.Const.UI.Color.PositiveValue + "]+10%[/color] faster healing while in the heal tent. "
-			}
-		);
 		return ret;
 	}
 	function onBuildDescription()

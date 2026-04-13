@@ -10,7 +10,6 @@
 	o.onEquip = function ()
 	{
 		onEquip();
-		::Legends.Actives.grant(this, ::Legends.Active.LegendPiercingShot);
 		::Legends.Actives.grant(this, ::Legends.Active.LegendCascade);
 	}
 });

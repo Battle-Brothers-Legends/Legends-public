@@ -3,11 +3,11 @@ this.legend_ijirok_armor <- this.inherit("scripts/items/legend_armor/legend_armo
 	function create()
 	{
 		this.legend_armor_upgrade.create();
-		this.m.Type = this.Const.Items.ArmorUpgrades.Plate;
 		this.m.ID = "armor.body.legend_ijirok_armor";
+		this.m.Type = this.Const.Items.ArmorUpgrades.Plate;
 		this.m.Name = "Armor of the Ijirok";
 		this.m.Description = "Once a barbarian armor broken in battle, this piece has been bathed in the blood of the legendary Ijirok. Powers beyond your understanding mended it whole again, and will likewise mend any wounds of the wearer as well.";
-		this.m.ArmorDescription = "Once a barbarian armor broken in battle, this piece has been bathed in the blood of the legendary Ijirok. Powers beyond your understanding mended it whole again, and will likewise mend any wounds of the wearer as well.";
+		this.m.ArmorDescription = "Includes a barbarian armor bathed in the blood of the legendary Ijirok.";
 		this.m.Variant = 101;
 		this.updateVariant();
 		this.m.ImpactSound = this.Const.Sound.ArmorHalfplateImpact;
@@ -37,7 +37,7 @@ this.legend_ijirok_armor <- this.inherit("scripts/items/legend_armor/legend_armo
 			id = 6,
 			type = "text",
 			icon = "ui/icons/health.png",
-			text = "Heals [color=" + this.Const.UI.Color.PositiveValue + "]10[/color] hitpoints of the wearer each turn"
+			text = "Heals [color=%positive%]10[/color] hitpoints of the wearer each turn"
 		});
 		return result;
 	}
@@ -48,7 +48,7 @@ this.legend_ijirok_armor <- this.inherit("scripts/items/legend_armor/legend_armo
 			id = 6,
 			type = "text",
 			icon = "ui/icons/health.png",
-			text = "Heals [color=" + this.Const.UI.Color.PositiveValue + "]10[/color] hitpoints of the wearer each turn"
+			text = "Heals [color=%positive%]10[/color] hitpoints of the wearer each turn"
 		});
 	}
 

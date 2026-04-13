@@ -47,13 +47,13 @@ this.legend_aggressive_trait <- this.inherit("scripts/skills/traits/character_tr
 				id = 10,
 				type = "text",
 				icon = "ui/icons/regular_damage.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+15%[/color] Melee Damage"
+				text = "[color=%positive%]+15%[/color] Melee Damage"
 			},
 			{
 				id = 11,
 				type = "text",
 				icon = "ui/icons/melee_defense.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]-5[/color] Defense from each surrounding enemy"
+				text = "[color=%negative%]-5[/color] Defense from each surrounding enemy"
 			},
 			{
 				id = 12,

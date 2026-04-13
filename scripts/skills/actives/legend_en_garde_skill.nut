@@ -50,7 +50,7 @@ this.legend_en_garde_skill <- this.inherit("scripts/skills/skill", {
 			id = 6,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "On successful Parry, inflicts [color=" + this.Const.UI.Color.NegativeValue + "]Vulnerable[/color] ([color=" + this.Const.UI.Color.DamageValue + "]-10[/color] melee and ranged defense)"
+			text = "On successful Parry, inflicts [color=%negative%]Vulnerable[/color] ([color=%damage%]-10[/color] melee and ranged defense)"
 		});
 
 		if (this.getContainer().getActor().getCurrentProperties().IsSpecializedInDaggers)
@@ -59,7 +59,7 @@ this.legend_en_garde_skill <- this.inherit("scripts/skills/skill", {
 				id = 7,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "Has a [color=" + this.Const.UI.Color.PositiveValue + "]100%[/color] chance to Parry on a hit thanks to Dagger Mastery. Enemies who are immune to being disarmed cannot be Parried"
+				text = "Has a [color=%positive%]100%[/color] chance to Parry on a hit thanks to Dagger Mastery. Enemies who are immune to being disarmed cannot be Parried"
 			});
 		}
 		else
@@ -68,7 +68,7 @@ this.legend_en_garde_skill <- this.inherit("scripts/skills/skill", {
 				id = 7,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "Has a [color=" + this.Const.UI.Color.PositiveValue + "]" + this.m.StunChance + "%[/color] chance to Parry on a hit due to not having Dagger Mastery. Enemies who are immune to being disarmed cannot be Parried"
+				text = "Has a [color=%positive%]" + this.m.StunChance + "%[/color] chance to Parry on a hit due to not having Dagger Mastery. Enemies who are immune to being disarmed cannot be Parried"
 			});
 		}
 

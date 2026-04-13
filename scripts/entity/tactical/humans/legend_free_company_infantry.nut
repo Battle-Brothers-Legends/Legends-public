@@ -52,7 +52,7 @@ this.legend_free_company_infantry <- this.inherit("scripts/entity/tactical/legen
 	{
 		this.getItems().equip(::Const.World.Common.pickItem([
 			[5, "weapons/bardiche"],
-			[25, "weapons/greatsword"],
+			[25, "weapons/legend_zweihander"],
 			[25, "weapons/two_handed_hammer"],
 			[25, "weapons/two_handed_mace"],
 			[20, "weapons/warbrand"],

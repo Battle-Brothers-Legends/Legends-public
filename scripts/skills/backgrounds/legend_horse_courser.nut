@@ -48,7 +48,7 @@ this.legend_horse_courser <- this.inherit("scripts/skills/backgrounds/legend_hor
 			[
 				::Legends.Perk.Anticipation,
 				::Legends.Perk.Steadfast,
-				::Legends.Perk.LegendSprint,
+				// ::Legends.Perk.LegendSprint,
 				::Legends.Perk.LegendOnslaught,
 				::Legends.Perk.LegendHorseCollection,
 				::Legends.Perk.LegendBackToBasics,
@@ -66,7 +66,6 @@ this.legend_horse_courser <- this.inherit("scripts/skills/backgrounds/legend_hor
 			[
 				::Legends.Perk.LoneWolf,
 				::Legends.Perk.Underdog,
-				::Legends.Perk.Footwork,
 				::Legends.Perk.LegendHorseLegControl,
 				::Legends.Perk.LegendHorseLeadChange,
 				::Legends.Perk.LegendHorseParthianShot
@@ -75,7 +74,7 @@ this.legend_horse_courser <- this.inherit("scripts/skills/backgrounds/legend_hor
 				::Legends.Perk.Nimble,
 				::Legends.Perk.LegendLastStand,
 				::Legends.Perk.LegendRebound,
-				::Legends.Perk.Rotation,
+				::Legends.Perk.LegendTacticalManeuvers,
 				::Legends.Perk.LegendMuscularity,
 				::Legends.Perk.LegendHorsePiaffe,
 				::Legends.Perk.LegendHorseTempiChange,

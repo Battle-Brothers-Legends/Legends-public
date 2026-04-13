@@ -29,8 +29,8 @@
 		items.unequip(items.getItemAtSlot(this.Const.ItemSlot.Head));
 		items.unequip(items.getItemAtSlot(this.Const.ItemSlot.Mainhand));
 		items.unequip(items.getItemAtSlot(this.Const.ItemSlot.Offhand));
-		local armor = this.new("scripts/items/legend_armor/cloth/legend_tunic");
-		local plate = this.new("scripts/items/legend_armor/plate/undertakers_apron");
+		local armor = this.new("scripts/items/legend_armor/cloth/legend_armor_tunic");
+		local plate = this.new("scripts/items/legend_armor/plate/legend_armor_apron_undertakers");
 		armor.setUpgrade(plate);
 		items.equip(armor);
 		local hood = this.new("scripts/items/legend_helmets/hood/legend_helmet_cloth_scarf");
@@ -58,8 +58,8 @@
 		items.unequip(items.getItemAtSlot(this.Const.ItemSlot.Mainhand));
 		items.unequip(items.getItemAtSlot(this.Const.ItemSlot.Offhand));
 
-		local armor = this.new("scripts/items/legend_armor/cloth/wanderers_coat");
-		local cloak = this.new("scripts/items/legend_armor/cloak/legend_religious_scarf");
+		local armor = this.new("scripts/items/legend_armor/cloth/legend_armor_wanderers_coat");
+		local cloak = this.new("scripts/items/legend_armor/cloak/legend_armor_religious_scarf");
 		armor.setUpgrade(cloak);
 		items.equip(armor);
 
@@ -91,8 +91,8 @@
 		items.unequip(items.getItemAtSlot(this.Const.ItemSlot.Mainhand));
 		items.unequip(items.getItemAtSlot(this.Const.ItemSlot.Offhand));
 
-		local armor = this.new("scripts/items/legend_armor/cloth/anatomist_robe");
-		local cloak = this.new("scripts/items/legend_armor/cloak/anatomist_hood");
+		local armor = this.new("scripts/items/legend_armor/cloth/legend_armor_robes_anatomist");
+		local cloak = this.new("scripts/items/legend_armor/cloak/legend_armor_anatomist_hood");
 		armor.setUpgrade(cloak);
 		items.equip(armor);
 

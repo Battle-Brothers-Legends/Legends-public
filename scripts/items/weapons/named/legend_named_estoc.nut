@@ -8,7 +8,7 @@ this.legend_named_estoc <- this.inherit("scripts/items/weapons/named/named_weapo
 		this.named_weapon.create();
 		this.m.ID = "weapon.legend_named_estoc";
 		this.m.NameList = this.Const.Strings.EstocNames;
-		this.m.Description = "To craft a wellmade Estoc is difficult, requiring both a stiff blade for the thrust, and an elegant blade suitable for a swift and mobile fencer. Yet, the smith that crafted this did more than craft a wellmade one, he crafted a masterpiece.";
+		this.m.Description = "To craft a wellmade Estoc is difficult, requiring both a stiff and elegant for the thrust of a swift and mobile fencer. Yet, the smith that crafted this did more than craft a wellmade one, he crafted a masterpiece.";
 		this.m.IconLarge = "weapons/melee/legend_estoc_01_named_01.png";
 		this.m.Icon = "weapons/melee/legend_estoc_01_named_01_70x70.png";
 		this.m.WeaponType = this.Const.Items.WeaponType.Sword;
@@ -21,7 +21,7 @@ this.legend_named_estoc <- this.inherit("scripts/items/weapons/named/named_weapo
 		this.m.ArmamentIcon = "icon_legend_named_estoc_01";
 		this.m.Condition = 56.0;
 		this.m.ConditionMax = 56.0;
-		this.m.StaminaModifier = -14;
+		this.m.StaminaModifier = -8;
 		this.m.Value = 4200;
 		this.m.RegularDamage = 45;
 		this.m.RegularDamageMax = 60;
@@ -41,7 +41,7 @@ this.legend_named_estoc <- this.inherit("scripts/items/weapons/named/named_weapo
 				id = 12,
 				type = "text",
 				icon = "ui/icons/melee_defense.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+" + this.m.EffectChanceOrBonus + "[/color] Melee Defense"
+				text = "[color=%positive%]+" + this.m.EffectChanceOrBonus + "[/color] Melee Defense"
 			});
 		}
 		return result;
@@ -49,12 +49,15 @@ this.legend_named_estoc <- this.inherit("scripts/items/weapons/named/named_weapo
 
 	function onEquip()
 	{
-		this.named_weapon.onEquip();
-		::Legends.Actives.grant(this, ::Legends.Active.Slash, function (_skill) {
-			_skill.m.IsGreatSlash = true;
+		this.weapon.onEquip();
+		::Legends.Actives.grant(this, ::Legends.Active.Stab, function (_skill) {
+			_skill.m.IsEstocStab = true;
 		}.bindenv(this));
 		::Legends.Actives.grant(this, ::Legends.Active.Lunge, function (_skill) {
 			_skill.m.isGreatLunge = true;
+		}.bindenv(this));
+		::Legends.Actives.grant(this, ::Legends.Active.Puncture, function (_skill) {
+			_skill.m.IsHalfsword = true;
 		}.bindenv(this));
 	}
 });

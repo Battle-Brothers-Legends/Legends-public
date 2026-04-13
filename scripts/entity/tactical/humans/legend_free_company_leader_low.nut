@@ -51,7 +51,7 @@ this.legend_free_company_leader_low <- this.inherit("scripts/entity/tactical/hum
 	{
 		this.getItems().equip(::Const.World.Common.pickItem([
 			[1, "weapons/warfork"],
-			[1, "weapons/legend_longsword"],
+			[1, "weapons/legend_zweihander"],
 			[1, "weapons/legend_katar"],
 		], "scripts/items/"));
 

@@ -22,7 +22,7 @@
 			id = 10,
 			type = "text",
 			icon = "ui/icons/ranged_defense.png",
-			text = "[color=" + this.Const.UI.Color.PositiveValue + "]+5[/color] Ranged Defense"
+			text = "[color=%positive%]+5[/color] Ranged Defense"
 		});
 
 		return ret;

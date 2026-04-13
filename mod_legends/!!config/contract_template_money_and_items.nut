@@ -4,6 +4,7 @@
 * Monetary compensation will be converted to items defined in that list.
 * It does not support both money and items at once.
 */
+// TODO, doesn't work, to be fixed
 ::Const.Contracts.NegotiationMoneyAndItems <- @(_count) [{
 	ID = "Negotiation",
 	Title = "Negotiations",

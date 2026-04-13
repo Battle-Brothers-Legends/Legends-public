@@ -3,8 +3,8 @@
 ]);
 
 ::Const.Items.LegendNamedClothLayers <- [
-	"legend_armor/cloth/legend_gambeson_named",
-	"legend_armor/cloth/legend_tunic_noble_named"
+	"legend_armor/cloth/legend_armor_gambeson_named",
+	"legend_armor/cloth/legend_armor_tunic_noble_named"
 ];
 
 ::Const.Items.LegendNamedChainLayers <- [
@@ -19,10 +19,10 @@
 	"legend_armor/plate/legend_armor_leather_lamellar_heavy_named",
 	"legend_armor/plate/legend_armor_leather_brigandine_named",
 	"legend_armor/plate/legend_armor_scale_coat_named",
-	"legend_armor/plate/legend_southern_named_golden_plates",
-	"legend_armor/plate/legend_southern_named_plates",
-	// "legend_armor/plate/legend_thick_plated_barbarian_armor_named",
-	// "legend_armor/plate/legend_bronze_armor_named"
+	//"legend_armor/plate/legend_armor_southern_named_golden_plates",
+	"legend_armor/plate/legend_armor_southern_named_plate",
+	// "legend_armor/plate/legend_armor_thick_plated_barbarian_armor_named",
+	// "legend_armor/plate/legend_armor_bronze_armor_named"
 ];
 
 ::Const.Items.LegendNamedTabardLayers <- [
@@ -35,16 +35,22 @@
 ];
 
 ::Const.Items.LegendNamedSouthernArmorLayers <- [
-	"legend_armor/plate/legend_southern_named_golden_plates",
-	"legend_armor/plate/legend_southern_named_plates"
+	//"legend_armor/plate/legend_armor_southern_named_golden_plates",
+	"legend_armor/plate/legend_armor_southern_named_plate"
 ];
 
 ::Const.Items.LegendNamedBarbarianArmorLayers <- [
-	"legend_armor/plate/legend_southern_named_golden_plates",
-	"legend_armor/plate/legend_southern_named_plates"
+	//"legend_armor/plate/legend_armor_southern_named_golden_plates",
+	"legend_armor/plate/legend_armor_southern_named_plate"
+];
+
+::Const.Items.LegendNamedArmorUpgrades <- [
+	"legend_armor/armor_upgrades/legend_pauldron_named_upgrade"
 ];
 
 ::Const.Items.LegendNamedHoodLayers <- [
+	"legend_helmets/hood/legend_helmet_aventail_named",
+	"legend_helmets/hood/legend_helmet_chain_hood_full_named",
 ];
 
 ::Const.Items.LegendNamedHelmLayers <- [
@@ -53,8 +59,8 @@
 	"legend_helmets/helm/legend_helmet_barbute_two_piece_named",
 	"legend_helmets/helm/legend_helmet_bascinet_named",
 	"legend_helmets/helm/legend_helmet_kettle_helm_named",
-	"legend_helmets/helm/legend_helmet_wallace_sallet_named",
-	"legend_helmets/helm/legend_helmet_deep_sallet_named",
+	"legend_helmets/helm/legend_helmet_cervelliere_named",
+	"legend_helmets/helm/legend_helmet_deep_cervelliere_named",
 	"legend_helmets/helm/legend_helmet_stag_helm",
 	"legend_helmets/helm/legend_helmet_swan_helm"
 ];
@@ -103,17 +109,13 @@ foreach (i in garbage)
 ::Const.Items.NamedHelmets.extend([
 	"helmets/named/legend_frogmouth_helm_crested_painted",
 	"helmets/named/legend_frogmouth_helm_decorated",
-	"helmets/named/wallace_sallet_named",
+	"helmets/named/cervelliere_named",
 	"helmets/named/barbute_named",
 	"helmets/named/bascinet_named",
 	"helmets/named/kettle_helm_named",
 	"helmets/named/italo_norman_helm_named",
 	"helmets/named/legend_helm_stag_named",
 	"helmets/named/legend_helm_swan_named",
-]);
-
-::Const.Items.NamedBanditShields.extend([
-	"weapons/named/legend_named_parrying_dagger"
 ]);
 
 ::Const.Items.NamedSouthernShields <- [
@@ -125,10 +127,12 @@ foreach (i in garbage)
 	"weapons/named/legend_named_orc_flail_2h"
 ]);
 
-::Const.Items.NamedBarbarianWeapons.extend([
+::Const.Items.NamedBarbarianWeaponsHigh <- [
 	"weapons/named/legend_named_rusty_serrated_axe",
+	"weapons/named/legend_named_rusty_warcleaver",
+	"weapons/named/legend_named_horn_decorated_mace",
 	"weapons/named/legend_named_rusty_greatsword"
-]);
+];
 
 ::Const.Items.NamedGoblinWeapons.extend([
 	"weapons/named/legend_named_goblin_axe_2h",
@@ -151,16 +155,14 @@ foreach (i in garbage)
 	"weapons/named/legend_named_ranged_flail",
 	"weapons/named/legend_named_infantry_axe",
 	"weapons/named/legend_named_warhammer",
-	"weapons/named/legend_named_gladius",
 	"weapons/named/legend_named_military_goedendag",
-	"weapons/named/legend_named_military_warscythe",
-	"weapons/named/legend_named_parrying_dagger",
-	"weapons/named/legend_named_royal_lance"
+	"weapons/named/legend_named_military_warscythe"
 ]);
 
 ::Const.Items.NamedRangedWeapons.extend([
 	"weapons/named/legend_named_northern_sling",
 	"weapons/named/legend_named_nomad_sling",
+	"weapons/named/legend_named_sling",
 	"weapons/named/legend_named_heavy_javelin",
 	"weapons/named/legend_named_heavy_throwing_axe"
 ]);
@@ -168,11 +170,13 @@ foreach (i in garbage)
 ::Const.Items.NamedWeapons.extend(::Const.Items.NamedRangedWeapons);
 
 ::Const.Items.NamedSouthernWeapons.extend([
-	"weapons/named/named_heavy_southern_mace"
+	"weapons/named/legend_named_heavy_southern_mace"
 ]);
 
 ::Const.Items.NamedUndeadWeapons.extend([
-	"weapons/named/legend_named_great_khopesh"
+	"weapons/named/legend_named_great_khopesh",
+	"weapons/named/legend_named_gladius",
+	"weapons/named/legend_named_royal_lance"
 ]);
 
 ::Const.Items.ArmorUpgrades <- {

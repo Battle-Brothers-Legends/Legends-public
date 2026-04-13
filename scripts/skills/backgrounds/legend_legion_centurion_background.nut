@@ -3,73 +3,15 @@ this.legend_legion_centurion_background <- this.inherit("scripts/skills/backgrou
 	function create()
 	{
 		this.character_background.create();
-		this.m.ID = "background.legend_legion_centurion"; //I don't care who they send, im not spelling it 'honor'.
+		this.m.ID = "background.legend_legion_centurion";
 		this.m.Name = "Centurion";
 		this.m.Icon = "ui/backgrounds/background_puppet.png"; //to do
 		this.m.BackgroundDescription = "A leader of many, a slave to a few.";
-		// this.m.GoodEnding = ""; //to do
-		// this.m.BadEnding = ""; //to do
+		this.m.GoodEnding = "";
+		this.m.BadEnding = "";
 		this.m.HiringCost = 0;
 		this.m.DailyCost = 0;
-		this.m.Excluded = [ //can roll; brute, clubfooted, clumsy, fragile, huge, hesitant, strong, sure footing, survivor, tough, bright, lucky, shortsighted, aggressive, martial, predictable, lumbering, quick, swift, team player, hate nobles, frail, etc (see commented out below)
-			::Legends.Traits.getID(::Legends.Trait.Ailing), //only including naturally occouring or obtainable traits.
-			::Legends.Traits.getID(::Legends.Trait.Asthmatic),
-			::Legends.Traits.getID(::Legends.Trait.Bleeder),
-			// ::Legends.Traits.getID(::Legends.Trait.Bloodthirsty),
-			::Legends.Traits.getID(::Legends.Trait.Brave),
-			::Legends.Traits.getID(::Legends.Trait.Tiny),
-			::Legends.Traits.getID(::Legends.Trait.Gluttonous),
-			// ::Legends.Traits.getID(::Legends.Trait.Cocky),
-			::Legends.Traits.getID(::Legends.Trait.Craven),
-			::Legends.Traits.getID(::Legends.Trait.Dastard),
-			::Legends.Traits.getID(::Legends.Trait.Deathwish),
-			::Legends.Traits.getID(::Legends.Trait.Determined),
-			// ::Legends.Traits.getID(::Legends.Trait.Dexterous),
-			::Legends.Traits.getID(::Legends.Trait.Disloyal),
-			::Legends.Traits.getID(::Legends.Trait.Drunkard),
-			// ::Legends.Traits.getID(::Legends.Trait.Dumb),
-			::Legends.Traits.getID(::Legends.Trait.Fainthearted),
-			::Legends.Traits.getID(::Legends.Trait.Fat),
-			::Legends.Traits.getID(::Legends.Trait.FearUndead),
-			::Legends.Traits.getID(::Legends.Trait.FearGreenskins),
-			::Legends.Traits.getID(::Legends.Trait.FearBeasts),
-			::Legends.Traits.getID(::Legends.Trait.Fearless),
-			// ::Legends.Traits.getID(::Legends.Trait.EagleEyes),
-			::Legends.Traits.getID(::Legends.Trait.Greedy),
-			::Legends.Traits.getID(::Legends.Trait.HateUndead),
-			// ::Legends.Traits.getID(::Legends.Trait.HateBeasts),
-			// ::Legends.Traits.getID(::Legends.Trait.HateGreenskins),
-			// ::Legends.Traits.getID(::Legends.Trait.Impatient),
-			::Legends.Traits.getID(::Legends.Trait.Insecure),
-			::Legends.Traits.getID(::Legends.Trait.IronLungs),
-			// ::Legends.Traits.getID(::Legends.Trait.IronJaw),
-			::Legends.Traits.getID(::Legends.Trait.Irrational),
-			::Legends.Traits.getID(::Legends.Trait.Loyal),
-			::Legends.Traits.getID(::Legends.Trait.NightOwl),
-			::Legends.Traits.getID(::Legends.Trait.NightBlind),
-			::Legends.Traits.getID(::Legends.Trait.Optimist),
-			// ::Legends.Traits.getID(::Legends.Trait.Paranoid),
-			::Legends.Traits.getID(::Legends.Trait.Pessimist),
-			::Legends.Traits.getID(::Legends.Trait.Spartan),
-			::Legends.Traits.getID(::Legends.Trait.Superstitious),
-			::Legends.Traits.getID(::Legends.Trait.Weasel),
-
-			//legend traits
-			// ::Legends.Traits.getID(::Legends.Trait.LegendAmbitious),
-			::Legends.Traits.getID(::Legends.Trait.LegendFearNobles),
-			// ::Legends.Traits.getID(::Legends.Trait.LegendHateNobles),
-			// ::Legends.Traits.getID(::Legends.Trait.LegendFrail),
-			//::Legends.Traits.getID(::Legends.Trait.LegendCannibalistic),
-			// ::Legends.Traits.getID(::Legends.Trait.LegendSteadyHands),
-			// ::Legends.Traits.getID(::Legends.Trait.LegendPragmatic),
-			// ::Legends.Traits.getID(::Legends.Trait.LegendUnpredictable),
-			::Legends.Traits.getID(::Legends.Trait.LegendSlack),
-			// ::Legends.Traits.getID(::Legends.Trait.LegendSureshot),
-			::Legends.Traits.getID(::Legends.Trait.LegendDoubleTongued),
-			::Legends.Traits.getID(::Legends.Trait.LegendGiftOfPeople),
-			::Legends.Traits.getID(::Legends.Trait.LegendSeductive),
-			// ::Legends.Traits.getID(::Legends.Trait.LegendTalented),
-		];
+		this.m.Excluded = ::Legends.Legion.excludedTraits();
 
 		this.m.ExcludedTalents = [
 			// this.Const.Attributes.RangedSkill,
@@ -85,7 +27,7 @@ this.legend_legion_centurion_background <- this.inherit("scripts/skills/backgrou
 		this.m.Beards = this.Const.Beards.All;
 		this.m.Bodies = this.Const.Bodies.Muscular;
 		//---
-		this.m.BackgroundType = this.Const.BackgroundType.Untalented;
+		// this.m.BackgroundType = this.Const.BackgroundType.Untalented;
 		this.m.Names = this.Const.Strings.AncientDeadNames;
 		this.m.LastNames = this.Const.Strings.AncientDeadTitles;
 		this.m.Level = this.Math.rand(3, 5);
@@ -119,30 +61,29 @@ this.legend_legion_centurion_background <- this.inherit("scripts/skills/backgrou
 			];
 		this.m.PerkTreeDynamic = {
 			Weapon = [
-				this.Const.Perks.DaggerTree,
-				this.Const.Perks.SpearTree,
-				this.Const.Perks.TwoHandedTree,
-				this.Const.Perks.ShieldTree,
-				this.Const.Perks.PolearmTree,
-				this.Const.Perks.SwordTree,
-				this.Const.Perks.ThrowingTree,
-				this.Const.Perks.CleaverTree
+				::Const.Perks.DaggerTree,
+				::Const.Perks.SpearTree,
+				::Const.Perks.ShieldTree,
+				::Const.Perks.PolearmTree,
+				::Const.Perks.SwordTree,
+				::Const.Perks.ThrowingTree,
+				::Const.Perks.CleaverTree
 			],
 			Defense = [
-				this.Const.Perks.HeavyArmorTree,
-				this.Const.Perks.ClothArmorTree
+				::Const.Perks.HeavyArmorTree,
+				::Const.Perks.ClothArmorTree
 			],
 			Traits = [
-				this.Const.Perks.TrainedTree,
-				this.Const.Perks.DeviousTree,
-				this.Const.Perks.LargeTree,
-				this.Const.Perks.InspirationalTree,
-				this.Const.Perks.ViciousTree
+				::Const.Perks.TrainedTree,
+				::Const.Perks.DeviousTree,
+				::Const.Perks.LargeTree,
+				::Const.Perks.InspirationalTree,
+				::Const.Perks.ViciousTree
 			],
 			Enemy = [],
 			Class = [
-				this.Const.Perks.ButcherClassTree,
-				this.Const.Perks.ScytheClassTree
+				// ::Const.Perks.ButcherClassTree,
+				// ::Const.Perks.ScytheClassTree
 			],
 			Profession = [],
 			Magic = []
@@ -162,13 +103,13 @@ this.legend_legion_centurion_background <- this.inherit("scripts/skills/backgrou
 		this.m.HairColors = this.Const.HairColors.All;
 		this.m.Bodies = this.Const.Bodies.Muscular;
 		this.m.Beards = null;
-		this.m.BeardChance = 1;
+		this.m.BeardChance = 0;
 		this.addBackgroundType(this.Const.BackgroundType.Female);
 	}
 
-	function onBuildDescription() //to do
+	function onBuildDescription()
 	{
-		return "{ TODO | TODO }";
+		return "{%name% had once given a lifetime of service to the Empire. In this new life, and new Legion, they pledge their undying loyalty to the Emperor as one of the finest military leaders of their time. | Hailing from the finest noble stock, %name% rose through the Legion's leadership and achieved senior command. Back from beyond, the mission has changed, but their zeal to serve persists. | Few would suspect %name%'s humble roots given their status as one of the finest commanders in the Empire. What life they had before however is long gone, and now, only the Legion remains. | Few would suspect %name%'s humble roots given their status as one of the finest commanders in the Empire. What life they had before however is long gone, and now, only the Legion remains. | Death could not stop %name%. As one of the Empire's most decorated commanders, in ages past their reputation would precede them. Now, they seek to restore their fearsome title as both a leader and killer of men. | To plan, execute, adapt, and triumph in the face of great adversity is %name%'s speciality. Having whet their teeth against some of the Empire's toughest foes, they answer the call for one final mission.} {Even in undeath, %name% wears numerous scars down to the bone. | %name% wears their armour as if it were a second skin. | %name% has an aura of authority about them. | %name% has a commanding presence, even when not on the battlefield. | %name% has witnessed many battles with the scars to prove it.} {Leading from the front, this centurion stands as an inspiring beacon to the Legion, and a terrible demon to its foes. Leading groups of soldiers in extended combats, they can be trusted to fight to the end, and beyond. | Centurions are responsible for commanding troops in battle. Seasoned, grizzled, and beyond loyal, they represent the best of the Empire's fighting troops. Death has little chance of stopping them. | The life of a centurion is one of mixed administration and combat leadership. From directing work around camp, to launching a raid on the enemy's, a centurion's work is dynamic and vital to the Legion's success. | Few men have the mettle for what being a Legion centurion entails. An artist on the battlefield, they paint with troop movements and battle tactics, creating masterpieces of imperial ingenuity, signed with a swathe of enemy dead. | Soldiers need orders. The centurion provides direction and determination to the ranks, leading battles and facing the enemy head-on. | They keep a keen view on who exists and enters camp, even in death where spies would be obvious, they still act as if any newcomer could be an infiltrator. | They always keep several legionaries perpetually building fortifications. Many of which are pointless given the situation — from latrines to irrigation wells.} {They are always pacing around camp, ordering legionaries in charge of logistics to buy more grain. The legonaries pile the grain in the tent, but none touch it thereafter. | Upbeat even in spite of their skeletal form, %name% clearly relishes the opportunity to lead their troops once more. When moods sour and times get tough, they're the first to rally the men into a beaming fervour. | One can tell that %name% worked their way through the Legion's ranks, even if a lifetime ago. They aren't afraid to help with the donkey's work around camp or reminisce with old brothers in arms, sharing tales of their lives and deaths. | A mean streak to boot, and a taste for order that would give the Emperor pause, %name% manifests the rugged discipline of the Legion's finest. They strive for absolute excellence, and expect nothing less from their men. | %name%'s death was a mercy for both their men and the enemy. %name%\'s cruel genius exacted a heavy toll from all who dared to stand against them. Now, with a new life and mission, all will find death's mercy was but a temporary reprieve. | Fear is as alien a concept to %name% as defeat is. Their unsettlingly calm demeanour against seemingly insurmountable odds betrays them as one of the Legion's most dauntless leaders.}";
 	}
 
 	function onChangeAttributes() //uses Character_background.nut template (Skeleton)
@@ -212,39 +153,14 @@ this.legend_legion_centurion_background <- this.inherit("scripts/skills/backgrou
 
 	function onAdded()
 	{
-		if (this.m.IsNew)
-		{
+		if (this.m.IsNew) {
 			::Legends.Traits.grant(this, ::Legends.Trait.LegendFleshless);
 		}
+		this.character_background.onAdded();
 
 		local actor = this.getContainer().getActor();
-		actor.m.ExcludedInjuries = [ //all injuries associated with stamina regen, health or resolve
-		//perma injuries must be managed in actor.nut, NOT here!
-		//	"injury.traumatized",
-		//	"injury.brain_damage",
-		//	"injury.missing_nose",
-		//	"injury.weakened_heart",
-		//	"injury.collapsed_lung_part",
-		//temp
-			"injury.cut_artery",
-			"injury.cut_throat",
-			"injury.deep_abdominal_cut",
-			"injury.deep_chest_cut",
-			"injury.exposed_ribs",
-			"injury.grazed_kidney",
-			"injury.grazed_neck",
-			"injury.infected_wound",
-			"injury.sickness",
-			"injury.stabbed_guts",
-			"injury.broken_nose",
-			"injury.crushed_windpipe",
-			"injury.fractured_ribs",
-			"injury.inhaled_flames",
-			"injury.pierced_chest",
-			"injury.pierced_lung",
-			"injury.pierced_side"
-		];
-		this.getContainer().getActor().getFlags().add("legion_can_command");  //justfies if this background is subject to the legion command skill
+		actor.m.ExcludedInjuries = ::Legends.Legion.ExcludedInjures;
+		actor.getFlags().add("legion_can_command");  //justfies if this background is subject to the legion command skill
 	}
 
 	function adjustHiringCostBasedOnEquipment() //reduces cost for equipment worn on skeletons to zero for recruiting purposes.
@@ -256,29 +172,14 @@ this.legend_legion_centurion_background <- this.inherit("scripts/skills/backgrou
 	function onAddEquipment()
 	{
 		local items = this.getContainer().getActor().getItems();
-		local r;
-		r = this.Math.rand(1, 5);
 
-		if (r == 1)
-		{
-			items.equip(this.new("scripts/items/weapons/ancient/bladed_pike"));
-		}
-		else if (r == 2)
-		{
-			items.equip(this.new("scripts/items/weapons/ancient/warscythe"));
-		}
-		else if (r == 3)
-		{
-			items.equip(this.new("scripts/items/weapons/ancient/legend_gladius"));
-		}
-		else if (r == 4)
-		{
-			items.equip(this.new("scripts/items/weapons/ancient/legend_kopis"));
-		}
-		else if (r == 5)
-		{
-			items.equip(this.new("scripts/items/weapons/ancient/crypt_cleaver"));
-		}
+		items.equip(::Const.World.Common.pickItem([
+			[1, "weapons/ancient/bladed_pike"],
+			[1, "weapons/ancient/warscythe"],
+			[1, "weapons/ancient/legend_gladius"],
+			[1, "weapons/ancient/legend_kopis"],
+			[1, "weapons/ancient/crypt_cleaver"]
+		], "scripts/items/"));
 
 		items.equip(this.Const.World.Common.pickArmor([
 			[2, ::Legends.Armor.Ancient.ancient_plated_scale_hauberk],

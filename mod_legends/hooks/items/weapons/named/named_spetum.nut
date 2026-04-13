@@ -4,7 +4,8 @@
 	o.create = function ()
 	{
 		create();
-		this.m.Variants = [1,2]
+		this.m.Variants = [1,2,3];
+		this.setVariant(this.m.Variants[::Math.rand(0, this.m.Variants.len() - 1)]);
 	}
 
 	o.onEquip = function ()
@@ -17,8 +18,9 @@
 		::Legends.Actives.grant(this.weapon, ::Legends.Active.LegendSkewer, function (_skill)
 		{
 			_skill.m.Icon = "skills/skewer_spetum.png";
-			_skill.m.IconDisabled = "skills/skewer_spetum_sw.png";
+			_skill.m.IconDisabled = "skills/skewer_spetum_bw.png";
 			_skill.m.Overlay = "skewer_spetum";
+			_skill.m.IsSpearSkewer = true;
 		}.bindenv(this));
 		::Legends.Actives.grant(this.weapon, ::Legends.Active.Spearwall, function (_skill) {
 			_skill.m.Icon = "skills/active_124.png";

@@ -49,13 +49,13 @@ this.legend_nigredo_skill <- this.inherit("scripts/skills/skill", {
 			id = 6,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "Reduces the target\'s armor by [color=" + this.Const.UI.Color.DamageValue + "]20%[/color] each turn for 3 turns."
+			text = "Reduces the target\'s armor by [color=%damage%]20%[/color] each turn for 3 turns."
 		});
 		ret.push({
 			id = 6,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "Has a [color=" + this.Const.UI.Color.DamageValue + "]33%[/color] chance to hit bystanders at the same or lower height level as well."
+			text = "Has a [color=%damage%]33%[/color] chance to hit bystanders at the same or lower height level as well."
 		});
 		return ret;
 	}

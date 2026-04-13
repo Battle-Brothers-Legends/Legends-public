@@ -142,17 +142,22 @@
 		local bestTile;
 		local bestScore = 1.0;
 
-		foreach( ally in allies )
-		{
-			if (!this.m.Skill.onVerifyTarget(myTile, ally.getTile()))
-			{
+		foreach (ally in allies) {
+			if (!ally.isAlive() || !ally.isPlacedOnMap()) {
 				continue;
 			}
 
-			if (this.isAllottedTimeReached(time))
-			{
+			if (!this.m.Skill.onVerifyTarget(myTile, ally.getTile())) {
+				continue;
+			}
+
+			if (this.isAllottedTimeReached(time)) {
 				yield null;
 				time = this.Time.getExactTime();
+			}
+
+			if (!ally.isAlive() || !ally.isPlacedOnMap()) {
+				continue;
 			}
 
 			local score = 1.0;
@@ -420,7 +425,7 @@
 		{
 			this.logInfo("* " + _entity.getName() + ": Using Rotation!");
 		}
-		
+
 		if (this.m.TargetTile == null || this.m.Skill == null)
 		{
 			return true;

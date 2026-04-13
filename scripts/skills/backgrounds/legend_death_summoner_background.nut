@@ -48,28 +48,28 @@ this.legend_death_summoner_background <- this.inherit("scripts/skills/background
 		this.m.Modifiers.MedConsumption = this.Const.LegendMod.ResourceModifiers.MedConsumption[3];
 		this.m.PerkTreeDynamic = {
 			Weapon = [
-				this.Const.Perks.DaggerTree,
-				this.Const.Perks.PolearmTree,
-				this.Const.Perks.ThrowingTree,
-				this.Const.Perks.CleaverTree
+				::Const.Perks.DaggerTree,
+				::Const.Perks.PolearmTree,
+				::Const.Perks.ThrowingTree,
+				::Const.Perks.CleaverTree
 			],
 			Defense = [
-				this.Const.Perks.LightArmorTree
+				::Const.Perks.LightArmorTree
 			],
 			Traits = [
-				this.Const.Perks.IntelligentTree,
-				this.Const.Perks.CalmTree,
-				this.Const.Perks.OrganisedTree,
-				this.Const.Perks.ViciousTree
+				::Const.Perks.IntelligentTree,
+				::Const.Perks.CalmTree,
+				::Const.Perks.OrganisedTree,
+				::Const.Perks.ViciousTree
 			],
 			Enemy = [],
 			Profession = [],
 			Class = [
-				this.Const.Perks.NinetailsClassTree
+				::Const.Perks.NinetailsClassTree
 			],
 			Magic = [
-				this.Const.Perks.ZombieMagicTree,
-				this.Const.Perks.StavesMagicTree
+				::Const.Perks.ZombieMagicTree,
+				::Const.Perks.StavesMagicTree
 			]
 		}
 	}

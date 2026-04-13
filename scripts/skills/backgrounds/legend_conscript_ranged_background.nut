@@ -11,27 +11,25 @@ this.legend_conscript_ranged_background <- this.inherit("scripts/skills/backgrou
 
 		this.m.PerkTreeDynamic = {
 			Weapon = [
-				this.Const.Perks.SwordTree,
-				this.Const.Perks.MaceTree,
-				this.Const.Perks.CrossbowTree,
-				this.Const.Perks.SpearTree,
-				this.Const.Perks.ShieldTree,
-				this.Const.Perks.CleaverTree,
-				this.Const.Perks.SlingTree
+				::Const.Perks.SwordTree,
+				::Const.Perks.MaceTree,
+				::Const.Perks.CrossbowTree,
+				::Const.Perks.SpearTree,
+				::Const.Perks.ShieldTree,
+				::Const.Perks.CleaverTree,
+				::Const.Perks.SlingTree
 			],
 			Defense = [
-				this.Const.Perks.LightArmorTree
+				::Const.Perks.LightArmorTree
 			],
 			Traits = [
-				this.Const.Perks.ViciousTree,
-				this.Const.Perks.AgileTree,
-				this.Const.Perks.FitTree,
-				this.Const.Perks.DeviousTree,
-				this.Const.Perks.TrainedTree
+				::Const.Perks.ViciousTree,
+				::Const.Perks.AgileTree,
+				::Const.Perks.FitTree,
+				::Const.Perks.DeviousTree,
+				::Const.Perks.TrainedTree
 			],
-			Enemy = [
-				this.Const.Perks.ArcherTree
-			],
+			Enemy = [],
 			Class = [],
 			Profession = [],
 			Magic = []

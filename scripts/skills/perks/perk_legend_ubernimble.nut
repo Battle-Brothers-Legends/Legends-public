@@ -2,12 +2,8 @@ this.perk_legend_ubernimble <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		::Const.Perks.setup(this.m, ::Legends.Perk.LegendUberNimble);
+		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendUberNimble);
 		this.m.Type = this.Const.SkillType.Perk | this.Const.SkillType.StatusEffect;
-		this.m.Order = this.Const.SkillOrder.Perk;
-		this.m.IsActive = false;
-		this.m.IsStacking = false;
-		this.m.IsHidden = false;
 	}
 
 	function isHidden()
@@ -34,7 +30,7 @@ this.perk_legend_ubernimble <- this.inherit("scripts/skills/skill", {
 				id = 6,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "Only receive [color=" + this.Const.UI.Color.PositiveValue + "]" + fm + "%[/color] of any damage to hitpoints from attacks"
+				text = "Only receive [color=%positive%]" + fm + "%[/color] of any damage to hitpoints from attacks"
 			});
 		}
 		else
@@ -43,7 +39,7 @@ this.perk_legend_ubernimble <- this.inherit("scripts/skills/skill", {
 				id = 6,
 				type = "text",
 				icon = "ui/tooltips/warning.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]This character isn\'t nude.[/color]"
+				text = "[color=%negative%]This character isn\'t nude.[/color]"
 			});
 		}
 

@@ -2,29 +2,33 @@ this.legend_basilisk_cloak <- this.inherit("scripts/items/legend_armor/legend_ar
 	m = {},
 	function create()
 	{
-		this.legend_armor_cloak.create(); //attachment gives poison immunity and extra durability
+		this.legend_armor_cloak.create();
 		this.m.ID = "legend_armor.body.legend_basilisk_cloak";
 		this.m.Type = this.Const.Items.ArmorUpgrades.Cloak;
-		
 		this.m.Name = "Basilisk Cloak";
-		this.m.Description = "A cloak made from feathers of a Basilisk. The weave offers exceptional padding and protects the midsection and mouth from poison.";
-		this.m.ArmorDescription = "A cloak made from feathers of a Basilisk. The weave offers exceptional padding and protects the midsection and mouth from poison.";
-		
-		this.m.Icon = "legend_armor/upgrades/upgrade_basilisk.png";
-		this.m.IconLarge = this.m.Icon;
-		this.m.OverlayIcon = this.m.Icon; 
-		this.m.OverlayIconLarge = "legend_armor/upgrades/inventory_upgrade_basilisk.png"; 
-		this.m.SpriteFront = null;
-		this.m.SpriteBack = "upgrade_basilisk_back";
-		this.m.SpriteDamagedFront = null;
-		this.m.SpriteDamagedBack = "upgrade_basilisk_back_damaged";
-		this.m.SpriteCorpseFront = null;
-		this.m.SpriteCorpseBack = "upgrade_basilisk_back_dead";
-
+		this.m.Description = "A cloak made from the feathers of a basilisk. The weave offers additional padding and protects the wearer from poison.";
+		this.m.ArmorDescription = "Includes a cloak made from the feathers of a Basilisk.";
+		this.m.Variants = [1];
+		this.m.Variant = this.m.Variants[this.Math.rand(0, this.m.Variants.len() - 1)];
+		this.updateVariant();
+		this.m.ImpactSound = this.Const.Sound.ArmorLeatherImpact;
+		this.m.InventorySound = this.Const.Sound.ClothEquip;
 		this.m.Value = 2800;
-		this.m.Condition = 30; //normal would be around 20 to 25
+		this.m.Condition = 30;
 		this.m.ConditionMax = 30;
 		this.m.StaminaModifier = -3;
+	}
+
+	function updateVariant()
+	{
+		local variant = this.m.Variant > 9 ? this.m.Variant : "0" + this.m.Variant;
+		this.m.SpriteBack = "cloak_basilisk_" + variant + "";
+		this.m.SpriteDamagedBack = "cloak_basilisk_" + variant + "_damaged";
+		this.m.SpriteCorpseBack = "cloak_basilisk_" + variant + "_dead";
+		this.m.Icon = "legend_armor/icon_cloak_basilisk_" + variant + ".png";
+		this.m.IconLarge = this.m.Icon;
+		this.m.OverlayIcon = "legend_armor/icon_cloak_basilisk_" + variant + ".png";
+		this.m.OverlayIconLarge = "legend_armor/inventory_cloak_basilisk_"  + variant + ".png";
 	}
 
 	function getTooltip()
@@ -53,9 +57,5 @@ this.legend_basilisk_cloak <- this.inherit("scripts/items/legend_armor/legend_ar
 	{
 		this.legend_armor_cloak.onUpdateProperties(_properties);
 		_properties.IsImmuneToPoison = true;
-	}
-
-	function updateVariant()	// Needs to overwrite the base function which would otherwise overwrite Icon and Graphic of this Cloak
-	{
 	}
 });

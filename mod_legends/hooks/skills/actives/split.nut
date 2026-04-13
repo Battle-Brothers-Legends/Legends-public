@@ -23,7 +23,7 @@
 				id = 6,
 				type = "text",
 				icon = "ui/icons/hitchance.png",
-				text = "Has [color=" + this.Const.UI.Color.NegativeValue + "]-5%[/color] chance to hit"
+				text = "Has [color=%negative%]-5%[/color] chance to hit"
 			});
 		}
 		else
@@ -32,7 +32,7 @@
 				id = 6,
 				type = "text",
 				icon = "ui/icons/hitchance.png",
-				text = "Has [color=" + this.Const.UI.Color.PositiveValue + "]+5%[/color] chance to hit"
+				text = "Has [color=%positive%]+5%[/color] chance to hit"
 			});
 		}
 
@@ -42,18 +42,18 @@
 	o.onUse = function ( _user, _targetTile )
 	{
 		this.spawnAttackEffect(_targetTile, this.Const.Tactical.AttackEffectSplit);
+
 		local ret = false;
+		if (::Legends.S.skillEntityAliveCheck(_user)) {
+			return ret;
+		}
+
+		local ownTile = _user.getTile();
 		if (_targetTile.IsOccupiedByActor && _targetTile.getEntity().isAttackable() && this.Math.abs(_targetTile.Level - ownTile.Level) <= 1)
 		{
 			ret = this.attackEntity(_user, _targetTile.getEntity());
 		}
 
-		if (!_user.isAlive() || _user.isDying())
-		{
-			return ret;
-		}
-
-		local ownTile = _user.getTile();
 		local dir = ownTile.getDirectionTo(_targetTile);
 
 		if (_targetTile.hasNextTile(dir))

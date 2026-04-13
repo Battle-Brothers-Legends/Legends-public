@@ -4,17 +4,15 @@
 	o.create = function() {
 		create();
 		this.m.ItemType = this.Const.Items.ItemType.Weapon | this.Const.Items.ItemType.MeleeWeapon | this.Const.Items.ItemType.TwoHanded | this.Const.Items.ItemType.Defensive;
-		this.m.Variant = this.Math.rand(0, 2);
-		this.updateVariant();
+		this.m.Variants = [0, 1, 2];
+		this.setVariant(this.m.Variants[this.Math.rand(0, this.m.Variants.len() - 1)]);
 	}
 
 	o.updateVariant <- function() {
-		if (this.m.Variant == 0) {
-			return;
-		}
-		this.m.Icon = "weapons/melee/warfork_01_" + this.m.Variant + "_70x70.png";
-		this.m.IconLarge = "weapons/melee/warfork_01_" + this.m.Variant + ".png";
-		this.m.ArmamentIcon = "icon_warfork_01_" + this.m.Variant;
+		local v = this.getVariant() == 0 ? "" : "_" + this.getVariant();
+		this.m.Icon = "weapons/melee/warfork_01" + v + "_70x70.png";
+		this.m.IconLarge = "weapons/melee/warfork_01" + v + ".png";
+		this.m.ArmamentIcon = "icon_warfork_01" + v;
 	}
 
 	o.onEquip = function ()
@@ -29,8 +27,9 @@
 		::Legends.Actives.grant(this.weapon, ::Legends.Active.LegendSkewer, function (_skill)
 		{
 			_skill.m.Icon = "skills/skewer_warfork.png";
-			_skill.m.IconDisabled = "skills/skewer_warfork_sw.png";
+			_skill.m.IconDisabled = "skills/skewer_warfork_bw.png";
 			_skill.m.Overlay = "skewer_warfork";
+			_skill.m.IsSpearSkewer = true;
 		}.bindenv(this));
 		::Legends.Actives.grant(this.weapon, ::Legends.Active.LegendWarforkDisarm);
 		::Legends.Actives.grant(this.weapon, ::Legends.Active.Spearwall, function (_skill)

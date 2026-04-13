@@ -25,7 +25,7 @@ this.legend_warlock_cloak_blueprint <- this.inherit("scripts/crafting/blueprint"
 			}
 		];
 		ingredients.push({
-			Script = "scripts/items/legend_armor/cloth/legend_tunic",
+			Script = "scripts/items/legend_armor/cloth/legend_armor_tunic",
 			Num = 1,
 			LegendsArmor = true
 		});

@@ -37,7 +37,7 @@ this.legend_transmuter_background <- this.inherit("scripts/skills/backgrounds/ch
 		this.m.Hairs = this.Const.Hair.AllFemale;
 		this.m.HairColors = this.Const.HairColors.All;
 		this.m.Beards = null;
-		this.m.Bodies = this.Const.Bodies.AllFemale;
+		this.m.Bodies = this.Const.Bodies.NorthernFemale;
 		this.m.BackgroundType = this.Const.BackgroundType.Female | this.Const.BackgroundType.Educated | this.Const.BackgroundType.Untalented;
 
 		this.m.Level = 1;
@@ -52,27 +52,27 @@ this.legend_transmuter_background <- this.inherit("scripts/skills/backgrounds/ch
 
 		this.m.PerkTreeDynamic = {
 			Weapon = [
-				this.Const.Perks.DaggerTree,
-				this.Const.Perks.PolearmTree,
-				this.Const.Perks.ThrowingTree,
-				this.Const.Perks.CrossbowTree
+				::Const.Perks.DaggerTree,
+				::Const.Perks.PolearmTree,
+				::Const.Perks.ThrowingTree,
+				::Const.Perks.CrossbowTree
 			],
 			Defense = [
-				this.Const.Perks.ClothArmorTree
+				::Const.Perks.ClothArmorTree
 			],
 			Traits = [
-				this.Const.Perks.IntelligentTree,
-				this.Const.Perks.DeviousTree,
-				this.Const.Perks.OrganisedTree,
-				this.Const.Perks.InspirationalTree
+				::Const.Perks.IntelligentTree,
+				::Const.Perks.DeviousTree,
+				::Const.Perks.OrganisedTree,
+				::Const.Perks.InspirationalTree
 			],
 			Enemy = [],
 			Class = [],
 			Profession = [],
 			Magic = [
-				this.Const.Perks.TransmutationMagicTree,
-				this.Const.Perks.PremonitionMagicTree,
-				this.Const.Perks.StavesMagicTree
+				::Const.Perks.TransmutationMagicTree,
+				::Const.Perks.PremonitionMagicTree,
+				::Const.Perks.StavesMagicTree
 			]
 		}
 

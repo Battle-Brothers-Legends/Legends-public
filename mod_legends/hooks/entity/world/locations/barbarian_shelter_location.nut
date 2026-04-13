@@ -1,5 +1,14 @@
 ::mods_hookExactClass("entity/world/locations/barbarian_shelter_location", function(o) 
 {
+	local create = o.create;
+	o.create = function() {
+		create();
+		this.m.NamedWeaponsList.extend([
+			"weapons/named/legend_named_heavy_javelin",
+			"weapons/named/legend_named_heavy_throwing_axe"
+		]);
+	}
+	
 	o.onDropLootForPlayer = function ( _lootTable )
 	{
 		this.location.onDropLootForPlayer(_lootTable);

@@ -3,6 +3,14 @@
 	o.m.AdditionalAccuracy <- 20;
 	o.m.AdditionalHitChance <- -10;
 
+	local create = o.create;
+	o.create = function ()
+	{
+		create();
+		this.m.MinRange = 1;
+		this.m.Delay = 150;
+	}
+
 	o.getTooltip = function ()
 	{
 		local tooltip = this.getRangedTooltip(this.getDefaultTooltip());
@@ -15,7 +23,7 @@
 				id = 8,
 				type = "text",
 				icon = "ui/icons/ammo.png",
-				text = "Has [color=" + this.Const.UI.Color.PositiveValue + "]" + ammo + "[/color] throwing spears left"
+				text = "Has [color=%positive%]" + ammo + "[/color] throwing spears left"
 			});
 		}
 		else
@@ -24,7 +32,7 @@
 				id = 8,
 				type = "text",
 				icon = "ui/tooltips/warning.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]No throwing spears left[/color]"
+				text = "[color=%negative%]No throwing spears left[/color]"
 			});
 		}
 
@@ -33,25 +41,25 @@
 			id = 7,
 			type = "text",
 			icon = "ui/icons/shield_damage.png",
-			text = "Inflicts [color=" + this.Const.UI.Color.DamageValue + "]" + damage + "[/color] damage to shields"
+			text = "Inflicts [color=%damage%]" + damage + "[/color] damage to shields"
 		});
 
-		if (this.Tactical.isActive() && actor.getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions()) && !::Legends.Perks.has(this, ::Legends.Perk.LegendCloseCombatArcher))
+		if (this.Tactical.isActive() && actor.getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions()) && !::Legends.Perks.has(this, ::Legends.Perk.LegendPointBlank))
 		{
 			tooltip.push({
 				id = 9,
 				type = "text",
 				icon = "ui/tooltips/warning.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]Can not be used because this character is engaged in melee[/color]"
+				text = "[color=%negative%]Can not be used because this character is engaged in melee[/color]"
 			});
 		}
 
 		return tooltip;
 	}
 
-	o.getAmmo <- function ()
+	o.getAmmo = function ()
 	{
-		local item = this.getContainer().getActor().getItems().getItemAtSlot(this.Const.ItemSlot.Mainhand);
+		local item = this.getItem();
 
 		if (item == null)
 		{
@@ -61,9 +69,9 @@
 		return item.getAmmo();
 	}
 
-	o.consumeAmmo <- function ()
+	o.consumeAmmo = function ()
 	{
-		local item = this.getContainer().getActor().getItems().getItemAtSlot(this.Const.ItemSlot.Mainhand);
+		local item = this.getItem();
 
 		if (item != null)
 		{
@@ -75,7 +83,7 @@
 	{
 
 		local isUsable = !this.Tactical.isActive() || this.skill.isUsable() && this.getAmmo() > 0;
-		if (this.getContainer().hasPerk(::Legends.Perk.LegendCloseCombatArcher))
+		if (this.getContainer().hasPerk(::Legends.Perk.LegendPointBlank))
 			return isUsable;
 
 		return isUsable && !this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions());
@@ -85,7 +93,7 @@
 	o.onAfterUpdate = function ( _properties )
 	{
 		onAfterUpdate(_properties);
-		if (this.getContainer().hasPerk(::Legends.Perk.LegendCloseCombatArcher))
+		if (this.getContainer().hasPerk(::Legends.Perk.LegendPointBlank))
 		{
 			this.m.MinRange = 1;
 			this.m.MaxRange = 3;
@@ -181,7 +189,7 @@
 				_tag.User.setActionPoints(this.Math.min(_tag.User.getActionPointsMax(), _tag.User.getActionPoints() + 4));
 				this.Tactical.EventLog.log(logMessage + " and recovered 4 Action Points");
 				if (overflowDamage > 0)
-				{	
+				{
 					local rand = this.Math.rand(1, 100);
 					if (rand <= this.getHitchance(target))
 					{

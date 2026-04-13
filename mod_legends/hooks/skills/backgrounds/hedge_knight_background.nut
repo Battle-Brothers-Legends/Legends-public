@@ -1,14 +1,17 @@
 ::mods_hookExactClass("skills/backgrounds/hedge_knight_background", function(o)
 {
+	o.m.AlreadyUsed <- false;
+	o.m.ExecutingAttack <- false;
+
 	o.create = function ()
 	{
 		this.character_background.create();
 		this.m.ID = "background.hedge_knight";
 		this.m.Name = "Hedge Knight";
 		this.m.Icon = "ui/backgrounds/background_33.png";
-		this.m.BackgroundDescription = "Hedge Knights are competitive individuals that excel in fighting man against man with brute strength and heavy armor, but less so in cooperating with others or in swiftness.";
-		this.m.GoodEnding = "A man like %name% would always find a way. The hedge knight eventually, if not inevitably, left the company and set out on his own. Unlike many other brothers, he did not spend his crowns on land or ladders with which to climb the noble life. Instead, he bought himself the finest war horses and the talents of armorers. The behemoth of a man rode from one jousting tournament to the next, winning them all with ease. He\'s still at it to this day, and you think he won\'t stop until he\'s dead. The hedge knight simply knows no other life.";
-		this.m.BadEnding = "%name% the hedge knight eventually left the company. He traveled the lands, returning to his favorite past time of jousting, which was really a cover for his real favorite past time of lancing men off horses in a shower of splinters and glory. At some point, he was ordered to \'throw\' a match against a pitiful and gangly prince to earn the nobleman some prestige. Instead, the hedge knight drove his lance through the man\'s skull. Furious, the lord of the land ordered the hedge knight killed. They say over a hundred soldiers took to his home and only half returned alive.";
+		this.m.BackgroundDescription = "Hedge Knights are competitive individuals that excel in fighting man against man with brute strength and heavy armor, but less so in cooperating with others or in swiftness. Hedge Knights strike with such strength that they might cleave a secondary enemy.";
+		this.m.GoodEnding = "A %person% like %name% would always find a way. The hedge knight eventually, if not inevitably, left the company and set out on %their% own. Unlike many other mercenaries, %they% did not spend %their% crowns on land or ladders with which to climb the noble life. Instead, %they% bought %themselves% the finest war horses and the talents of armorers. The behemoth of a %person% rode from one jousting tournament to the next, winning them all with ease. %They%\'s still at it to this day, and you think %they% won\'t stop until %they%\'s dead. The hedge knight simply knows no other life.";
+		this.m.BadEnding = "%name% the hedge knight eventually left the company. %They% traveled the lands, returning to %their% favorite past time of jousting, which was really a cover for %their% real favorite past time of lancing men off horses in a shower of splinters and glory. At some point, %they% was ordered to \'throw\' a match against a pitiful and gangly prince to earn the nobleman some prestige. Instead, the hedge knight drove %their% lance through the %person%\'s skull. Furious, the lord of the land ordered the hedge knight killed. They say over a hundred soldiers took to %their% home and only half returned alive.";
 		this.m.HiringCost = 500;
 		this.m.DailyCost = 50;
 		this.m.Excluded = [
@@ -34,7 +37,6 @@
 			::Legends.Traits.getID(::Legends.Trait.Insecure),
 			::Legends.Traits.getID(::Legends.Trait.Asthmatic),
 			::Legends.Traits.getID(::Legends.Trait.LegendLight),
-			::Legends.Traits.getID(::Legends.Trait.LegendFrail),
 			::Legends.Traits.getID(::Legends.Trait.LegendSeductive)
 		];
 		this.m.ExcludedTalents = [
@@ -72,26 +74,25 @@
 		this.m.Modifiers.Training = this.Const.LegendMod.ResourceModifiers.Training[1];
 		this.m.PerkTreeDynamic = {
 			Weapon = [
-				this.Const.Perks.TwoHandedTree,
-				this.Const.Perks.PolearmTree,
-				this.Const.Perks.AxeTree,
-				this.Const.Perks.MaceTree,
-				this.Const.Perks.FlailTree,
-				this.Const.Perks.HammerTree
+				::Const.Perks.SwordTree,
+				::Const.Perks.AxeTree,
+				::Const.Perks.MaceTree,
+				::Const.Perks.FlailTree,
+				::Const.Perks.HammerTree
 			],
 			Defense = [
-				this.Const.Perks.HeavyArmorTree
+				::Const.Perks.HeavyArmorTree
 			],
 			Traits = [
-				this.Const.Perks.TrainedTree,
-				this.Const.Perks.ViciousTree,
-				this.Const.Perks.LargeTree,
-				this.Const.Perks.IndestructibleTree,
-				this.Const.Perks.MartyrTree,
-				this.Const.Perks.FitTree
+				::Const.Perks.TrainedTree,
+				::Const.Perks.ViciousTree,
+				::Const.Perks.LargeTree,
+				::Const.Perks.IndestructibleTree,
+				::Const.Perks.MartyrTree,
+				::Const.Perks.FitTree
 			],
 			Enemy = [
-				this.Const.Perks.SwordmastersTree
+				::Const.Perks.SwordmastersTree
 			],
 			Class = [],
 			Profession = [],
@@ -101,7 +102,14 @@
 
 	o.getTooltip = function ()
 	{
-		return this.character_background.getTooltip();
+		local ret = this.character_background.getTooltip();
+		ret.push({
+			id = 13,
+			type = "text",
+			icon = "ui/icons/special.png",
+			text = "Once per turn upon killing an enemy execute an attack of opportunity on an enemy on an adjacent tile for [color=%negative%]50%[/color] damage"
+		});
+		return ret;
 	}
 
 	o.setGender <- function (_gender = -1)
@@ -114,27 +122,59 @@
 		this.m.Hairs = this.Const.Hair.AllFemale;
 		this.m.HairColors = this.Const.HairColors.Young;
 		this.m.Beards = null;
-		this.m.BeardChance = 1;
-		this.m.Bodies = this.Const.Bodies.AllFemale;
+		this.m.BeardChance = 0;
+		this.m.Bodies = this.Const.Bodies.NorthernFemale;
 		this.addBackgroundType(this.Const.BackgroundType.Female);
-		this.m.BackgroundDescription = "Hedge Knights are competitive individuals that excel in fighting head to head with brute strength and heavy armor, but less so in cooperating with others or in swiftness.";
-		this.m.GoodEnding = "A woman like %name% would always find a way. The hedge knight eventually, if not inevitably, left the company and set out on her own. Unlike many other comrades, she did not spend her crowns on land or ladders with which to climb the noble life. Instead, she bought herself the finest war horses and the talents of armorers. The behemoth of a woman rode from one jousting tournament to the next, winning them all with ease. She\'s still at it to this day, and you think she won\'t stop until she\'s dead. The hedge knight simply knows no other life.";
-		this.m.BadEnding = "%name% the hedge knight eventually left the company. She traveled the lands, returning to her favorite past time of jousting, which was really a cover for her real favorite past time of lancing men off horses in a shower of splinters and glory. At some point, she was ordered to \'throw\' a match against a pitiful and gangly prince to earn the nobleman some prestige. Instead, the hedge knight drove her lance through the man\'s skull. Furious, the lord of the land ordered the hedge knight killed. They say over a hundred soldiers took to her home and only half returned alive.";
-
 	}
 
+	o.onTargetKilled <- function( _targetEntity, _skill )
+	{
+		if (this.m.AlreadyUsed || _skill.isRanged())
+			return;
 
+		this.m.AlreadyUsed = true;
+		this.m.ExecutingAttack = true;
+		local tile = _targetEntity.getTile();
+		local targetTiles = [];
+
+		for( local i = 0; i != 6; i = ++i )
+		{
+			if (tile.hasNextTile(i))
+			{
+				local next = tile.getNextTile(i);
+
+				if (next.IsOccupiedByActor && this.Math.abs(next.Level - tile.Level) <= 1 && !next.getEntity().isAlliedWithPlayer())
+				{
+					targetTiles.push(next);
+				}
+			}
+		}
+		if (targetTiles.len() == 0)
+		{
+			this.m.ExecutingAttack = false;
+			return; 
+		}
+
+		this.getContainer().getAttackOfOpportunity().useForFree(targetTiles[this.Math.rand(0, targetTiles.len() - 1)]);
+		this.m.ExecutingAttack = false;
+	}
+
+	o.onAnySkillUsed <- function ( _skill, _targetEntity, _properties )
+	{
+		if (this.m.ExecutingAttack)
+		{
+			_properties.DamageTotalMult *= 0.5;
+		}
+	}
+
+	o.onTurnStart <- function()
+	{
+		this.m.AlreadyUsed = false;
+	}
 
 	o.onBuildDescription <- function ()
 	{
-		if (this.isBackgroundType(this.Const.BackgroundType.Female))
-		{
-			return "{Some women are born to be feared. Well over six feet tall, %name%\'s stature alone is a threatening one. | %name%\'s shadow casts over smaller people - and they seem to only further shrink when she walks by. | Standing amongst people like a bear in a suit of armor, %name% earns plenty of double-takes. | Years of brutal combat with her equally huge siblings left %name% a scarred and scary figure.} {The hedge knight has spent many seasons taking her prized horse to jousting tournaments. Unfortunately, a polearm crowned her mount, leaving her without a ride. | A mercenary in the company of herself, the hedge knight wandered for years, doing battle for those who offered the most crowns. | When she cleaved five men with one swing, three of which were on her side, the hedge knight was banned from service in every army in the land. | Ordered to kill a lord\'s enemies, the hedge knight kicked in the door of a family and slaughtered them all with her bare hands. When the lord refused to pay, %name% killed him, too. | The hedge knight has spent many nights sleeping peacefully beneath a pale moon - and just as many days killing ruthlessly beneath a shining sun.} {Always on the hunt for more crowns, the company of sellswords seemed like a good fit. | Too terrifying to be employed for long, %name% seeks the company of men who will not piss themselves when she grabs a weapon. | Tired of killing jousters and lords, as well as women and children, %name% sees mercenary work as something of a vacation. | War has apparently gotten in the way of %name%\'s jousting career. She seeks to amend that problem.}";
-		}
-		else
-		{
-			return "{Some men are born to be feared. Well over six feet tall, %name%\'s stature alone is a threatening one. | %name%\'s shadow casts over smaller men - and they seem to only further shrink when he walks by. | Standing amongst men like a bear in a suit of armor, %name% earns plenty of double-takes. | Years of brutal combat with his equally huge brothers left %name% a scarred and scary figure.} {The hedge knight has spent many seasons taking his prized horse to jousting tournaments. Unfortunately, a polearm crowned his mount, leaving him without a ride. | A mercenary in the company of himself, the hedge knight wandered for years, doing battle for those who offered the most crowns. | When he cleaved five men with one swing, three of which were on his side, the hedge knight was banned from service in every army in the land. | Ordered to kill a lord\'s enemies, the hedge knight kicked in the door of a family and slaughtered them all with his bare hands. When the lord refused to pay, %name% killed him, too. | The hedge knight has spent many nights sleeping peacefully beneath a pale moon - and just as many days killing ruthlessly beneath a shining sun.} {Always on the hunt for more crowns, the company of sellswords seemed like a good fit. | Too terrifying to be employed for long, %name% seeks the company of men who will not piss themselves when he grabs a weapon. | Tired of killing jousters and lords, as well as women and children, %name% sees mercenary work as something of a vacation. | War has apparently gotten in the way of %name%\'s jousting career. He seeks to amend that problem.}";
-		}
+		return "{Some people are born to be feared. Well over six feet tall, %name%\'s stature alone is a threatening one. | %name%\'s shadow casts over smaller men - and they seem to only further shrink when %they% walks by. | Standing amongst men like a bear in a suit of armor, %name% earns plenty of double-takes. | Years of brutal combat with %their% equally huge brothers left %name% a scarred and scary figure.} {The hedge knight has spent many seasons taking %their% prized horse to jousting tournaments. Unfortunately, a polearm crowned %their% mount, leaving %them% without a ride. | A mercenary in the company of %themselves%, the hedge knight wandered for years, doing battle for those who offered the most crowns. | When %they% cleaved five men with one swing, three of which were on %their% side, the hedge knight was banned from service in every army in the land. | Ordered to kill a lord\'s enemies, the hedge knight kicked in the door of a family and slaughtered them all with %their% bare hands. When the lord refused to pay, %name% killed %them%, too. | The hedge knight has spent many nights sleeping peacefully beneath a pale moon - and just as many days killing ruthlessly beneath a shining sun.} {Always on the hunt for more crowns, the company of sellswords seemed like a good fit. | Too terrifying to be employed for long, %name% seeks the company of men who will not piss themselves when %they% grabs a weapon. | Tired of killing jousters and lords, as well as women and children, %name% sees mercenary work as something of a vacation. | War has apparently gotten in the way of %name%\'s jousting career. He seeks to amend that problem.}";
 
 	}
 
@@ -212,19 +252,20 @@
 
 	o.onAddEquipment = function ()
 	{
-		local items = this.getContainer().getActor().getItems();
-		local r;
+		local actor = this.getContainer().getActor();
+		actor.setVeteranPerks(3);
+		local items = actor.getItems();
 
-		r = this.Math.rand(0, 1);
-
-		if (r == 0)
-		{
-			items.equip(this.new("scripts/items/weapons/greataxe"));
-		}
-		else if (r == 1)
-		{
-			items.equip(this.new("scripts/items/weapons/greatsword"));
-		}
+		local weapons = [
+			"weapons/greataxe",
+			"weapons/longsword",
+			"weapons/legend_zweihander",
+			"weapons/greatsword",
+			"weapons/two_handed_hammer",
+			"weapons/two_handed_flail",
+			"weapons/two_handed_flanged_mace"
+		];
+		items.equip(this.new("scripts/items/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
 
 		items.equip(this.Const.World.Common.pickArmor([
 			[1, ::Legends.Armor.Standard.mail_hauberk],

@@ -23,7 +23,7 @@ this.legend_revolt_skill <- this.inherit("scripts/skills/skill", {
 		this.m.IsActive = true;
 		this.m.IsTargeted = true;
 		this.m.IsStacking = false;
-		this.m.IsAttack = true;
+		this.m.IsAttack = false;
 		this.m.IsRanged = true;
 		this.m.IsIgnoredAsAOO = true;
 		this.m.IsTooCloseShown = true;
@@ -40,20 +40,14 @@ this.legend_revolt_skill <- this.inherit("scripts/skills/skill", {
 		ret.push({
 			id = 7,
 			type = "text",
-			icon = "ui/icons/vision.png",
-			text = "Has a range of [color=" + this.Const.UI.Color.PositiveValue + "]6[/color] tiles"
-		});
-		ret.push({
-			id = 7,
-			type = "text",
 			icon = "ui/icons/special.png",
-			text = "Has a [color=" + this.Const.UI.Color.PositiveValue + "]100%[/color] chance to stagger on a hit"
+			text = "Has a [color=%positive%]100%[/color] chance to stagger on a hit"
 		});
 		ret.push({
 			id = 6,
 			type = "text",
 			icon = "ui/icons/hitchance.png",
-			text = "Has [color=" + this.Const.UI.Color.PositiveValue + "]+10%[/color] chance to hit"
+			text = "Has [color=%positive%]+10%[/color] chance to hit"
 		});
 
 		if (!this.getContainer().getActor().getCurrentProperties().IsSpecializedInMusic)
@@ -62,7 +56,7 @@ this.legend_revolt_skill <- this.inherit("scripts/skills/skill", {
 				id = 6,
 				type = "text",
 				icon = "ui/icons/hitchance.png",
-				text = "Has [color=" + this.Const.UI.Color.NegativeValue + "]-15%[/color] chance to hit targets directly adjacent, unless specialised in staves"
+				text = "Has [color=%negative%]-15%[/color] chance to hit targets directly adjacent, unless specialised in staves"
 			});
 		}
 

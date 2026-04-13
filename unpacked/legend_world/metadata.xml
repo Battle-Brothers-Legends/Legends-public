@@ -64,9 +64,8 @@
 	<sprite id="Battlesite_Undead_Orcs" ic="FF293742" img="world_entity\location\Battlesite_Undead_Orcs.png" />
 	<sprite id="Battlesite_Undead_Orcs2" ic="FF293742" img="world_entity\location\Battlesite_Undead_Orcs2.png" />
 	<sprite id="Battlesite_Undead_Undead" ic="FF293742" img="world_entity\location\Battlesite_Undead_Undead.png" />
-		<sprite id="figure_mummy_01" offsetY="20" ic="FF7687A4" width="68" height="106" img="world_entity\party\figure_mummy_01.png" left="-21" right="25" top="-43" bottom="5" />
+	<sprite id="figure_mummy_01" offsetY="20" ic="FF7687A4" width="68" height="106" img="world_entity\party\figure_mummy_01.png" left="-21" right="25" top="-43" bottom="5" />
 	<sprite id="figure_demonalp_01" offsetY="20" ic="FF7687A4" width="68" height="106" img="world_entity\party\figure_demonalp_01.png" left="-21" right="25" top="-43" bottom="5" />
-	<sprite id="figure_hexe_leader_01" offsetY="20" ic="FF384556" width="68" height="106" img="world_entity\party\figure_hexe_leader_01.png" left="-18" right="22" top="-40" bottom="4" />
 	<sprite id="figure_rock_unhold_01" offsetY="20" ic="FF13384A" width="68" height="106" img="world_entity\party\figure_rock_unhold_01.png" left="-28" right="30" top="-50" bottom="12" />
 	<sprite id="figure_redback_spider_01" offsetY="20" ic="FF222E38" width="68" height="106" img="world_entity\party\figure_redback_spider_01.png" left="-22" right="26" top="-43" bottom="1" />
 	<sprite id="figure_hexe_leader_01" offsetY="20" ic="FF384556" width="68" height="106" img="world_entity\party\figure_hexe_leader_01.png" left="-18" right="22" top="-40" bottom="4" />
@@ -306,12 +305,12 @@
 	<sprite id="legend_world_southern_watchtower" ic="FF2C4D62" img="world_settlement\southern_watchtower.png" left="-108" right="109" />
 	<sprite id="legend_world_southern_watchtower_lights" ic="FF52C5E3" width="217" height="178" img="world_settlement\southern_watchtower_lights.png" left="-103" right="61" top="-48" bottom="60" />
 	<sprite id="legend_world_southern_watchtower_ruins" ic="FF234153" img="world_settlement\southern_watchtower_ruins.png" left="-108" right="109" />
-  <sprite id="world_grass_07" ic="FF386261" width="400" height="200" img="world_detail\grass\world_grass_07.png" left="-130" right="118" top="-79" bottom="53" />
-   <sprite id="world_grass_08" ic="FF386261" width="400" height="200" img="world_detail\grass\world_grass_08.png" left="-130" right="118" top="-79" bottom="53" />
-   <sprite id="world_grass_09" ic="FF386261" width="400" height="200" img="world_detail\grass\world_grass_09.png" left="-130" right="118" top="-79" bottom="53" />
-   <sprite id="world_grass_10" ic="FF386261" width="400" height="200" img="world_detail\grass\world_grass_10.png" left="-130" right="118" top="-79" bottom="53" />
-   <sprite id="world_grass_11" ic="FF386261" width="400" height="200" img="world_detail\grass\world_grass_11.png" left="-130" right="118" top="-79" bottom="53" />
-    <sprite id="world_grass_12" ic="FF386261" width="400" height="200" img="world_detail\grass\world_grass_12.png" left="-130" right="118" top="-79" bottom="53" />
+	<sprite id="world_grass_07" ic="FF386261" width="400" height="200" img="world_detail\grass\world_grass_07.png" left="-130" right="118" top="-79" bottom="53" />
+	<sprite id="world_grass_08" ic="FF386261" width="400" height="200" img="world_detail\grass\world_grass_08.png" left="-130" right="118" top="-79" bottom="53" />
+	<sprite id="world_grass_09" ic="FF386261" width="400" height="200" img="world_detail\grass\world_grass_09.png" left="-130" right="118" top="-79" bottom="53" />
+	<sprite id="world_grass_10" ic="FF386261" width="400" height="200" img="world_detail\grass\world_grass_10.png" left="-130" right="118" top="-79" bottom="53" />
+	<sprite id="world_grass_11" ic="FF386261" width="400" height="200" img="world_detail\grass\world_grass_11.png" left="-130" right="118" top="-79" bottom="53" />
+	<sprite id="world_grass_12" ic="FF386261" width="400" height="200" img="world_detail\grass\world_grass_12.png" left="-130" right="118" top="-79" bottom="53" />
 	<sprite id="legend_world_grass_hill_01" ic="FF315856" width="550" height="350" img="world_detail\grass\legend_world_grass_hill_01.png" left="-151" right="149" top="-117" bottom="65" />
 	<sprite id="legend_world_grass_hill_02" ic="FF315856" width="550" height="350" img="world_detail\grass\legend_world_grass_hill_02.png" left="-151" right="149" top="-117" bottom="65" />
 	<sprite id="legend_world_grass_hill_03" ic="FF315856" width="550" height="350" img="world_detail\grass\legend_world_grass_hill_03.png" left="-151" right="149" top="-117" bottom="65" />
@@ -321,12 +320,12 @@
 	<sprite id="legend_world_grass_hill_07" ic="FF315856" width="550" height="350" img="world_detail\grass\legend_world_grass_hill_07.png" left="-151" right="149" top="-117" bottom="65" />
 	<sprite id="world_grass_hill_07" ic="FF315856" width="550" height="350" img="world_detail\grass\world_grass_hill_07.png" left="-151" right="149" top="-117" bottom="65" />
 	<sprite id="world_detail_flowers_07" ic="FF6EA4AA" width="400" height="200" img="world_detail\world_detail_flowers_07.png" left="-45" right="33" top="-55" bottom="5" />
-	<sprite id="world_detail_flowers_08" ic="FF6EA4AA" width="400" height="200" img="world_detail\world_detail_flowers_08.png" left="-45" right="33" top="-55" bottom="5" />	
-	<sprite id="world_detail_flowers_09" ic="FF6EA4AA" width="400" height="200" img="world_detail\world_detail_flowers_09.png" left="-45" right="33" top="-55" bottom="5" />	
-	<sprite id="world_detail_flowers_10" ic="FF6EA4AA" width="400" height="200" img="world_detail\world_detail_flowers_10.png" left="-45" right="33" top="-55" bottom="5" />		
-	<sprite id="world_detail_flowers_11" ic="FF6EA4AA" width="400" height="200" img="world_detail\world_detail_flowers_11.png" left="-45" right="33" top="-55" bottom="5" />		
+	<sprite id="world_detail_flowers_08" ic="FF6EA4AA" width="400" height="200" img="world_detail\world_detail_flowers_08.png" left="-45" right="33" top="-55" bottom="5" />
+	<sprite id="world_detail_flowers_09" ic="FF6EA4AA" width="400" height="200" img="world_detail\world_detail_flowers_09.png" left="-45" right="33" top="-55" bottom="5" />
+	<sprite id="world_detail_flowers_10" ic="FF6EA4AA" width="400" height="200" img="world_detail\world_detail_flowers_10.png" left="-45" right="33" top="-55" bottom="5" />
+	<sprite id="world_detail_flowers_11" ic="FF6EA4AA" width="400" height="200" img="world_detail\world_detail_flowers_11.png" left="-45" right="33" top="-55" bottom="5" />
 	<sprite id="world_detail_flowers_12" ic="FF6EA4AA" width="400" height="200" img="world_detail\world_detail_flowers_12.png" left="-45" right="33" top="-55" bottom="5" />
-	<sprite id="world_detail_flowers_13" ic="FF6EA4AA" width="400" height="200" img="world_detail\world_detail_flowers_13.png" left="-45" right="33" top="-55" bottom="5" />	
+	<sprite id="world_detail_flowers_13" ic="FF6EA4AA" width="400" height="200" img="world_detail\world_detail_flowers_13.png" left="-45" right="33" top="-55" bottom="5" />
 	<sprite id="world_detail_forest_04" offsetY="20" ic="FF19231D" width="400" height="220" img="world_detail\forest\world_detail_forest_04.png" left="-133" right="137" top="-110" bottom="84" />
 	<sprite id="world_detail_forest_05" offsetY="20" ic="FF19231D" width="400" height="220" img="world_detail\forest\world_detail_forest_05.png" left="-133" right="137" top="-110" bottom="84" />
 	<sprite id="world_detail_forest_06" offsetY="20" ic="FF19231D" width="400" height="220" img="world_detail\forest\world_detail_forest_06.png" left="-133" right="137" top="-110" bottom="84" />
@@ -338,10 +337,9 @@
 	<sprite id="world_detail_forest_green_06" offsetY="20" ic="FF19231D" width="400" height="220" img="world_detail\forest\world_detail_forest_green_06.png" left="-133" right="137" top="-110" bottom="84" />
 	<sprite id="world_detail_forest_light_06" offsetY="20" ic="FF19241D" width="400" height="220" img="world_detail\forest\world_detail_forest_light_06.png" left="-142" right="120" top="-110" bottom="96" />
 	<sprite id="world_detail_forest_light_07" offsetY="20" ic="FF19241D" width="400" height="220" img="world_detail\forest\world_detail_forest_light_07.png" left="-142" right="120" top="-110" bottom="96" />
-	<sprite id="world_detail_forest_light_07" offsetY="20" ic="FF19241D" width="400" height="220" img="world_detail\forest\world_detail_forest_light_07.png" left="-142" right="120" top="-110" bottom="96" />
 	<sprite id="world_detail_forest_light_08" offsetY="20" ic="FF19241D" width="400" height="220" img="world_detail\forest\world_detail_forest_light_08.png" left="-142" right="120" top="-110" bottom="96" />
-	<sprite id="world_detail_forest_light_09" offsetY="20" ic="FF19241D" width="400" height="220" img="world_detail\forest\world_detail_forest_light_09.png" left="-142" right="120" top="-110" bottom="96" />	
-	<sprite id="world_detail_forest_light_10" offsetY="20" ic="FF19241D" width="400" height="220" img="world_detail\forest\world_detail_forest_light_10.png" left="-142" right="120" top="-110" bottom="96" />	
+	<sprite id="world_detail_forest_light_09" offsetY="20" ic="FF19241D" width="400" height="220" img="world_detail\forest\world_detail_forest_light_09.png" left="-142" right="120" top="-110" bottom="96" />
+	<sprite id="world_detail_forest_light_10" offsetY="20" ic="FF19241D" width="400" height="220" img="world_detail\forest\world_detail_forest_light_10.png" left="-142" right="120" top="-110" bottom="96" />
 	<sprite id="world_detail_forest_light_11" offsetY="20" ic="FF19241D" width="400" height="220" img="world_detail\forest\world_detail_forest_light_11.png" left="-142" right="120" top="-110" bottom="96" />
 	<sprite id="world_detail_forest_light_12" offsetY="20" ic="FF19241D" width="400" height="220" img="world_detail\forest\world_detail_forest_light_12.png" left="-142" right="120" top="-110" bottom="96" />
 	<sprite id="world_detail_forest_light_13" offsetY="20" ic="FF19241D" width="400" height="220" img="world_detail\forest\world_detail_forest_light_13.png" left="-142" right="120" top="-110" bottom="96" />
@@ -364,15 +362,15 @@
 	<sprite id="world_detail_forest_leaves_light_07" offsetX="10" offsetY="25" ic="FF1F3F37" width="400" height="220" img="world_detail\leave_forest\world_detail_forest_leaves_light_07.png" left="-135" right="113" top="-107" bottom="89" />
 	<sprite id="world_detail_forest_leaves_light_08" offsetX="10" offsetY="25" ic="FF1F3F37" width="400" height="220" img="world_detail\leave_forest\world_detail_forest_leaves_light_08.png" left="-135" right="113" top="-107" bottom="89" />
 	<sprite id="world_detail_forest_leaves_light_09" offsetX="10" offsetY="25" ic="FF1F3F37" width="400" height="220" img="world_detail\leave_forest\world_detail_forest_leaves_light_09.png" left="-135" right="113" top="-107" bottom="89" />
-	<sprite id="world_detail_forest_leaves_light_10" offsetX="10" offsetY="25" ic="FF1F3F37" width="400" height="220" img="world_detail\leave_forest\world_detail_forest_leaves_light_10.png" left="-135" right="113" top="-107" bottom="89" />	
-	<sprite id="world_detail_forest_leaves_light_11" offsetX="10" offsetY="25" ic="FF1F3F37" width="400" height="220" img="world_detail\leave_forest\world_detail_forest_leaves_light_11.png" left="-135" right="113" top="-107" bottom="89" />	
-	<sprite id="world_detail_forest_leaves_light_12" offsetX="10" offsetY="25" ic="FF1F3F37" width="400" height="220" img="world_detail\leave_forest\world_detail_forest_leaves_light_12.png" left="-135" right="113" top="-107" bottom="89" />	
-	<sprite id="world_detail_forest_leaves_light_13" offsetX="10" offsetY="25" ic="FF1F3F37" width="400" height="220" img="world_detail\leave_forest\world_detail_forest_leaves_light_13.png" left="-135" right="113" top="-107" bottom="89" />		
-	<sprite id="world_detail_forest_leaves_light_14" offsetX="10" offsetY="25" ic="FF1F3F37" width="400" height="220" img="world_detail\leave_forest\world_detail_forest_leaves_light_14.png" left="-135" right="113" top="-107" bottom="89" />	
-	<sprite id="world_detail_forest_leaves_light_15" offsetX="10" offsetY="25" ic="FF1F3F37" width="400" height="220" img="world_detail\leave_forest\world_detail_forest_leaves_light_15.png" left="-135" right="113" top="-107" bottom="89" />	
-	<sprite id="world_detail_forest_leaves_light_16" offsetX="10" offsetY="25" ic="FF1F3F37" width="400" height="220" img="world_detail\leave_forest\world_detail_forest_leaves_light_16.png" left="-135" right="113" top="-107" bottom="89" />	
-	<sprite id="world_detail_forest_leaves_light_17" offsetX="10" offsetY="25" ic="FF1F3F37" width="400" height="220" img="world_detail\leave_forest\world_detail_forest_leaves_light_17.png" left="-135" right="113" top="-107" bottom="89" />	
-	<sprite id="world_detail_forest_leaves_light_18" offsetX="10" offsetY="25" ic="FF1F3F37" width="400" height="220" img="world_detail\leave_forest\world_detail_forest_leaves_light_18.png" left="-135" right="113" top="-107" bottom="89" />	
+	<sprite id="world_detail_forest_leaves_light_10" offsetX="10" offsetY="25" ic="FF1F3F37" width="400" height="220" img="world_detail\leave_forest\world_detail_forest_leaves_light_10.png" left="-135" right="113" top="-107" bottom="89" />
+	<sprite id="world_detail_forest_leaves_light_11" offsetX="10" offsetY="25" ic="FF1F3F37" width="400" height="220" img="world_detail\leave_forest\world_detail_forest_leaves_light_11.png" left="-135" right="113" top="-107" bottom="89" />
+	<sprite id="world_detail_forest_leaves_light_12" offsetX="10" offsetY="25" ic="FF1F3F37" width="400" height="220" img="world_detail\leave_forest\world_detail_forest_leaves_light_12.png" left="-135" right="113" top="-107" bottom="89" />
+	<sprite id="world_detail_forest_leaves_light_13" offsetX="10" offsetY="25" ic="FF1F3F37" width="400" height="220" img="world_detail\leave_forest\world_detail_forest_leaves_light_13.png" left="-135" right="113" top="-107" bottom="89" />
+	<sprite id="world_detail_forest_leaves_light_14" offsetX="10" offsetY="25" ic="FF1F3F37" width="400" height="220" img="world_detail\leave_forest\world_detail_forest_leaves_light_14.png" left="-135" right="113" top="-107" bottom="89" />
+	<sprite id="world_detail_forest_leaves_light_15" offsetX="10" offsetY="25" ic="FF1F3F37" width="400" height="220" img="world_detail\leave_forest\world_detail_forest_leaves_light_15.png" left="-135" right="113" top="-107" bottom="89" />
+	<sprite id="world_detail_forest_leaves_light_16" offsetX="10" offsetY="25" ic="FF1F3F37" width="400" height="220" img="world_detail\leave_forest\world_detail_forest_leaves_light_16.png" left="-135" right="113" top="-107" bottom="89" />
+	<sprite id="world_detail_forest_leaves_light_17" offsetX="10" offsetY="25" ic="FF1F3F37" width="400" height="220" img="world_detail\leave_forest\world_detail_forest_leaves_light_17.png" left="-135" right="113" top="-107" bottom="89" />
+	<sprite id="world_detail_forest_leaves_light_18" offsetX="10" offsetY="25" ic="FF1F3F37" width="400" height="220" img="world_detail\leave_forest\world_detail_forest_leaves_light_18.png" left="-135" right="113" top="-107" bottom="89" />
 	<sprite id="world_detail_autumn_07" ic="FF0F3E64" width="400" height="200" img="world_detail\forest_autumn\world_detail_autumn_07.png" left="-127" right="117" top="-100" bottom="80" />
 	<sprite id="world_detail_autumn_08" ic="FF0F3E64" width="400" height="200" img="world_detail\forest_autumn\world_detail_autumn_08.png" left="-127" right="117" top="-100" bottom="80" />
 	<sprite id="world_detail_autumn_09" ic="FF0F3E64" width="400" height="200" img="world_detail\forest_autumn\world_detail_autumn_09.png" left="-127" right="117" top="-100" bottom="80" />
@@ -391,16 +389,16 @@
 	<sprite id="world_detail_autumn_leaves_03" ic="FF0F3E64" width="400" height="200" img="world_detail\forest_autumn\world_detail_autumn_leaves_03.png" left="-127" right="117" top="-100" bottom="80" />
 	<sprite id="world_detail_autumn_leaves_04" ic="FF0F3E64" width="400" height="200" img="world_detail\forest_autumn\world_detail_autumn_leaves_04.png" left="-127" right="117" top="-100" bottom="80" />
 	<sprite id="world_detail_autumn_leaves_05" ic="FF0F3E64" width="400" height="200" img="world_detail\forest_autumn\world_detail_autumn_leaves_05.png" left="-127" right="117" top="-100" bottom="80" />
-	<sprite id="world_detail_autumn_light_11" ic="FF0F3E64" width="400" height="200" img="world_detail\forest_autumn\world_detail_autumn_light_11.png" left="-127" right="117" top="-100" bottom="80" />	
-	<sprite id="world_detail_autumn_light_12" ic="FF0F3E64" width="400" height="200" img="world_detail\forest_autumn\world_detail_autumn_light_12.png" left="-127" right="117" top="-100" bottom="80" />	
-	<sprite id="world_detail_autumn_light_13" ic="FF0F3E64" width="400" height="200" img="world_detail\forest_autumn\world_detail_autumn_light_13.png" left="-127" right="117" top="-100" bottom="80" />	
-	<sprite id="world_detail_autumn_light_14" ic="FF0F3E64" width="400" height="200" img="world_detail\forest_autumn\world_detail_autumn_light_14.png" left="-127" right="117" top="-100" bottom="80" />	
-	<sprite id="world_detail_autumn_light_15" ic="FF0F3E64" width="400" height="200" img="world_detail\forest_autumn\world_detail_autumn_light_15.png" left="-127" right="117" top="-100" bottom="80" />	
+	<sprite id="world_detail_autumn_light_11" ic="FF0F3E64" width="400" height="200" img="world_detail\forest_autumn\world_detail_autumn_light_11.png" left="-127" right="117" top="-100" bottom="80" />
+	<sprite id="world_detail_autumn_light_12" ic="FF0F3E64" width="400" height="200" img="world_detail\forest_autumn\world_detail_autumn_light_12.png" left="-127" right="117" top="-100" bottom="80" />
+	<sprite id="world_detail_autumn_light_13" ic="FF0F3E64" width="400" height="200" img="world_detail\forest_autumn\world_detail_autumn_light_13.png" left="-127" right="117" top="-100" bottom="80" />
+	<sprite id="world_detail_autumn_light_14" ic="FF0F3E64" width="400" height="200" img="world_detail\forest_autumn\world_detail_autumn_light_14.png" left="-127" right="117" top="-100" bottom="80" />
+	<sprite id="world_detail_autumn_light_15" ic="FF0F3E64" width="400" height="200" img="world_detail\forest_autumn\world_detail_autumn_light_15.png" left="-127" right="117" top="-100" bottom="80" />
 	<sprite id="world_detail_autumn_light_16" ic="FF0F3E64" width="400" height="200" img="world_detail\forest_autumn\world_detail_autumn_light_16.png" left="-127" right="117" top="-100" bottom="80" />
-	<sprite id="world_detail_autumn_light_17" ic="FF0F3E64" width="400" height="200" img="world_detail\forest_autumn\world_detail_autumn_light_17.png" left="-127" right="117" top="-100" bottom="80" />	
-	<sprite id="world_detail_autumn_light_18" ic="FF0F3E64" width="400" height="200" img="world_detail\forest_autumn\world_detail_autumn_light_18.png" left="-127" right="117" top="-100" bottom="80" />	
+	<sprite id="world_detail_autumn_light_17" ic="FF0F3E64" width="400" height="200" img="world_detail\forest_autumn\world_detail_autumn_light_17.png" left="-127" right="117" top="-100" bottom="80" />
+	<sprite id="world_detail_autumn_light_18" ic="FF0F3E64" width="400" height="200" img="world_detail\forest_autumn\world_detail_autumn_light_18.png" left="-127" right="117" top="-100" bottom="80" />
 	<sprite id="world_detail_autumn_light_19" ic="FF0F3E64" width="400" height="200" img="world_detail\forest_autumn\world_detail_autumn_light_19.png" left="-127" right="117" top="-100" bottom="80" />
-	<sprite id="world_detail_autumn_light_20" ic="FF0F3E64" width="400" height="200" img="world_detail\forest_autumn\world_detail_autumn_light_20.png" left="-127" right="117" top="-100" bottom="80" />	
+	<sprite id="world_detail_autumn_light_20" ic="FF0F3E64" width="400" height="200" img="world_detail\forest_autumn\world_detail_autumn_light_20.png" left="-127" right="117" top="-100" bottom="80" />
 	<sprite id="world_detail_green_autumn_01" ic="FF0F3E64" width="400" height="200" img="world_detail\forest_autumn\world_detail_green_autumn_01.png" left="-127" right="117" top="-100" bottom="80" />
 	<sprite id="world_detail_green_autumn_02" ic="FF0F3E64" width="400" height="200" img="world_detail\forest_autumn\world_detail_green_autumn_02.png" left="-127" right="117" top="-100" bottom="80" />
 	<sprite id="world_detail_green_autumn_03" ic="FF0F3E64" width="400" height="200" img="world_detail\forest_autumn\world_detail_green_autumn_03.png" left="-127" right="117" top="-100" bottom="80" />
@@ -413,21 +411,21 @@
 	<sprite id="world_detail_green_autumn_light_04" ic="FF0F3E64" width="400" height="200" img="world_detail\forest_autumn\world_detail_green_autumn_light_04.png" left="-127" right="117" top="-100" bottom="80" />
 	<sprite id="world_detail_swamp_green_01" offsetY="10" ic="FF364D58" width="400" height="200" img="world_detail\swamp\world_detail_swamp_green_01.png" left="-115" right="117" top="-100" bottom="80" />
 	<sprite id="world_detail_swamp_green_02" offsetY="10" b7="0" ic="FF435C63" width="400" height="200" img="world_detail\swamp\world_detail_swamp_green_02.png" left="-127" right="113" top="-100" bottom="68" />
-	<sprite id="world_detail_swamp_green_03" offsetY="10" b7="0" ic="FF415A61" width="400" height="200" img="world_detail\swamp\world_detail_swamp_green_03.png" left="-137" right="157" top="-93" bottom="75" />	<sprite id="world_detail_swamp_green_04" offsetY="10" ic="FF364D58" width="400" height="200" img="world_detail\swamp\world_detail_swamp_green_04.png" left="-115" right="117" top="-100" bottom="80" />
+	<sprite id="world_detail_swamp_green_03" offsetY="10" b7="0" ic="FF415A61" width="400" height="200" img="world_detail\swamp\world_detail_swamp_green_03.png" left="-137" right="157" top="-93" bottom="75" />
+	<sprite id="world_detail_swamp_green_04" offsetY="10" ic="FF364D58" width="400" height="200" img="world_detail\swamp\world_detail_swamp_green_04.png" left="-115" right="117" top="-100" bottom="80" />
 	<sprite id="world_detail_swamp_green_05" offsetY="10" ic="FF364D58" width="400" height="200" img="world_detail\swamp\world_detail_swamp_green_05.png" left="-115" right="117" top="-100" bottom="80" />
 	<sprite id="world_detail_swamp_green_06" offsetY="10" b7="0" ic="FF435C63" width="400" height="200" img="world_detail\swamp\world_detail_swamp_green_06.png" left="-127" right="113" top="-100" bottom="68" />
 	<sprite id="world_detail_swamp_green_forest_01" offsetY="10" ic="FF364D58" width="400" height="200" img="world_detail\swamp\world_detail_swamp_green_forest_01.png" left="-115" right="117" top="-100" bottom="80" />
 	<sprite id="world_detail_swamp_green_forest_02" offsetY="10" b7="0" ic="FF435C63" width="400" height="200" img="world_detail\swamp\world_detail_swamp_green_forest_02.png" left="-127" right="113" top="-100" bottom="68" />
-	<sprite id="world_detail_swamp_green_forest_03" offsetY="10" b7="0" ic="FF415A61" width="400" height="200" img="world_detail\swamp\world_detail_swamp_green_forest_03.png" left="-137" right="157" top="-93" bottom="75" />	<sprite id="world_detail_swamp_green_04" offsetY="10" ic="FF364D58" width="400" height="200" img="world_detail\swamp\world_detail_swamp_green_04.png" left="-115" right="117" top="-100" bottom="80" />
+	<sprite id="world_detail_swamp_green_forest_03" offsetY="10" b7="0" ic="FF415A61" width="400" height="200" img="world_detail\swamp\world_detail_swamp_green_forest_03.png" left="-137" right="157" top="-93" bottom="75" />
 	<sprite id="world_detail_swamp_green_leaves_01" offsetY="10" b7="0" ic="FF435C63" width="400" height="200" img="world_detail\swamp\world_detail_swamp_green_leaves_01.png" left="-127" right="113" top="-100" bottom="68" />
-	<sprite id="world_detail_swamp_green_leaves_02" offsetY="10" b7="0" ic="FF415A61" width="400" height="200" img="world_detail\swamp\world_detail_swamp_green_leaves_02.png" left="-137" right="157" top="-93" bottom="75" />	<sprite id="world_detail_swamp_green_04" offsetY="10" ic="FF364D58" width="400" height="200" img="world_detail\swamp\world_detail_swamp_green_04.png" left="-115" right="117" top="-100" bottom="80" />
+	<sprite id="world_detail_swamp_green_leaves_02" offsetY="10" b7="0" ic="FF415A61" width="400" height="200" img="world_detail\swamp\world_detail_swamp_green_leaves_02.png" left="-137" right="157" top="-93" bottom="75" />
 	<sprite id="world_detail_swamp_green_leaves_03" offsetY="10" ic="FF364D58" width="400" height="200" img="world_detail\swamp\world_detail_swamp_green_leaves_03.png" left="-115" right="117" top="-100" bottom="80" />
 	<sprite id="world_detail_swamp_green_leaves_04" offsetY="10" ic="FF364D58" width="400" height="200" img="world_detail\swamp\world_detail_swamp_green_leaves_04.png" left="-115" right="117" top="-100" bottom="80" />
-   <sprite id="world_detail_swamp_green_light_01" ic="FF394D54" width="400" height="200" img="world_detail\swamp\world_detail_swamp_green_light_01.png" left="-100" right="80" top="-67" bottom="33" />
-   <sprite id="world_detail_swamp_green_light_02" ic="FF405B65" width="400" height="200" img="world_detail\swamp\world_detail_swamp_green_light_02.png" left="-27" right="109" top="-74" bottom="-16" />
-   <sprite id="world_detail_swamp_green_light_03" ic="FF41585D" width="400" height="200" img="world_detail\swamp\world_detail_swamp_green_light_03.png" left="-108" right="72" top="-69" bottom="7" />
-   <sprite id="world_detail_swamp_green_light_04" ic="FF3B4A49" width="400" height="200" img="world_detail\swamp\world_detail_swamp_green_light_04.png" left="-100" right="80" top="-25" bottom="73" />
-   <sprite id="world_detail_swamp_green_light_05" ic="FF3C535C" width="400" height="200" img="world_detail\swamp\world_detail_swamp_green_light_05.png" left="-92" right="110" top="-67" bottom="57" />
-   <sprite id="world_detail_swamp_green_light_05" ic="FF3C535C" width="400" height="200" img="world_detail\swamp\world_detail_swamp_green_light_05.png" left="-92" right="110" top="-67" bottom="57" />
-   <sprite id="world_detail_swamp_green_light_06" ic="FF4A5B56" width="400" height="200" img="world_detail\swamp\world_detail_swamp_green_light_06.png" left="-104" right="82" top="-29" bottom="37" />
+	<sprite id="world_detail_swamp_green_light_01" ic="FF394D54" width="400" height="200" img="world_detail\swamp\world_detail_swamp_green_light_01.png" left="-100" right="80" top="-67" bottom="33" />
+	<sprite id="world_detail_swamp_green_light_02" ic="FF405B65" width="400" height="200" img="world_detail\swamp\world_detail_swamp_green_light_02.png" left="-27" right="109" top="-74" bottom="-16" />
+	<sprite id="world_detail_swamp_green_light_03" ic="FF41585D" width="400" height="200" img="world_detail\swamp\world_detail_swamp_green_light_03.png" left="-108" right="72" top="-69" bottom="7" />
+	<sprite id="world_detail_swamp_green_light_04" ic="FF3B4A49" width="400" height="200" img="world_detail\swamp\world_detail_swamp_green_light_04.png" left="-100" right="80" top="-25" bottom="73" />
+	<sprite id="world_detail_swamp_green_light_05" ic="FF3C535C" width="400" height="200" img="world_detail\swamp\world_detail_swamp_green_light_05.png" left="-92" right="110" top="-67" bottom="57" />
+	<sprite id="world_detail_swamp_green_light_06" ic="FF4A5B56" width="400" height="200" img="world_detail\swamp\world_detail_swamp_green_light_06.png" left="-104" right="82" top="-29" bottom="37" />
 </brush>

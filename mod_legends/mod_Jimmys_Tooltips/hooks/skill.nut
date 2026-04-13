@@ -3,7 +3,7 @@
 ::MSU.Skills.addEvent("onOtherActorTooltip", function(_tooltip, _targetActor){}, true, true);
 
 ::ModJimmysTooltips.ModHook.hook("scripts/skills/skill", function(q){
-	
+
 	q.noDescriptionDefaultTooltip <- function( startID ){
 		local ret = [], p = this.factoringOffhand(this.m.Container.buildPropertiesForUse(this, null));
 		local damage_regular_min = this.Math.floor(p.DamageRegularMin * p.DamageRegularMult * p.DamageTotalMult * (this.m.IsRanged ? p.RangedDamageMult : p.MeleeDamageMult) * p.DamageTooltipMinMult);
@@ -20,7 +20,7 @@
 				id = startID + 4,
 				type = "hint",
 				icon = "ui/tooltips/warning.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]Can not be used because this character has taken an oath precluding the use of ranged weapons or tools[/color]"
+				text = "[color=%negative%]Can not be used because this character has taken an oath precluding the use of ranged weapons or tools[/color]"
 			});
 			return ret;
 		}
@@ -31,7 +31,7 @@
 				id = startID,
 				type = "text",
 				icon = "ui/icons/regular_damage.png",
-				text = "Inflicts [color=" + this.Const.UI.Color.DamageValue + "]" + damage_direct_min + "[/color] - [color=" + this.Const.UI.Color.DamageValue + "]" + damage_direct_max + "[/color] damage that ignores armor"
+				text = "Inflicts [color=%damage%]" + damage_direct_min + "[/color] - [color=%damage%]" + damage_direct_max + "[/color] damage that ignores armor"
 			});
 		}
 		else if (this.m.DirectDamageMult > 0.0)
@@ -40,7 +40,7 @@
 				id = startID + 1,
 				type = "text",
 				icon = "ui/icons/regular_damage.png",
-				text = "Inflicts [color=" + this.Const.UI.Color.DamageValue + "]" + damage_regular_min + "[/color] - [color=" + this.Const.UI.Color.DamageValue + "]" + damage_regular_max + "[/color] damage to hitpoints, of which [color=" + this.Const.UI.Color.DamageValue + "]0[/color] - [color=" + this.Const.UI.Color.DamageValue + "]" + damage_direct_max + "[/color] can ignore armor"
+				text = "Inflicts [color=%damage%]" + damage_regular_min + "[/color] - [color=%damage%]" + damage_regular_max + "[/color] damage to hitpoints, of which [color=%damage%]0[/color] - [color=%damage%]" + damage_direct_max + "[/color] can ignore armor"
 			});
 		}
 		else
@@ -49,7 +49,7 @@
 				id = startID + 2,
 				type = "text",
 				icon = "ui/icons/regular_damage.png",
-				text = "Inflicts [color=" + this.Const.UI.Color.DamageValue + "]" + damage_regular_min + "[/color] - [color=" + this.Const.UI.Color.DamageValue + "]" + damage_regular_max + "[/color] damage to hitpoints"
+				text = "Inflicts [color=%damage%]" + damage_regular_min + "[/color] - [color=%damage%]" + damage_regular_max + "[/color] damage to hitpoints"
 			});
 		}
 
@@ -59,7 +59,7 @@
 				id = startID + 3,
 				type = "text",
 				icon = "ui/icons/armor_damage.png",
-				text = "Inflicts [color=" + this.Const.UI.Color.DamageValue + "]" + damage_armor_min + "[/color] - [color=" + this.Const.UI.Color.DamageValue + "]" + damage_armor_max + "[/color] damage to armor"
+				text = "Inflicts [color=%damage%]" + damage_armor_min + "[/color] - [color=%damage%]" + damage_armor_max + "[/color] damage to armor"
 			});
 		}
 

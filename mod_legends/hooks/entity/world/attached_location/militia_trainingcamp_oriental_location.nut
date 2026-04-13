@@ -50,12 +50,12 @@
 			_list.push({
 				R = 60,
 				P = 1.0,
-				S = "legend_armor/cloak/legend_armor_cloak_common"
+				S = "legend_armor/cloak/legend_armor_cloak"
 			});
 			_list.push({
 				R = 40,
 				P = 1.0,
-				S = "legend_armor/tabard/legend_southern_tabard"
+				S = "legend_armor/tabard/legend_armor_southern_tabard"
 			});
 		}
 	}

@@ -38,6 +38,13 @@ this.legend_nightmare_touch_zoc_skill <- this.inherit("scripts/skills/skill", {
 		return this.Math.max(5, 24 - this.Math.floor(_actor.getCurrentProperties().getBravery() * 0.25));
 	}
 
+	function onUpdate( _properties )
+	{
+		_properties.DamageRegularMin += 10;
+		_properties.DamageRegularMax += 20;
+		_properties.IsIgnoringArmorOnAttack = true;
+	}
+
 	function onUse( _user, _targetTile )
 	{
 		return this.attackEntity(_user, _targetTile.getEntity());
@@ -48,7 +55,7 @@ this.legend_nightmare_touch_zoc_skill <- this.inherit("scripts/skills/skill", {
 		if (_skill == this)
 		{
 			_properties.DamageRegularMin += this.getDamage(_targetEntity);
-			_properties.DamageRegularMax += this.getDamage(_targetEntity) + 3;
+			_properties.DamageRegularMax += this.getDamage(_targetEntity);
 			_properties.HitChanceMult[this.Const.BodyPart.Head] = 0.0;
 		}
 	}

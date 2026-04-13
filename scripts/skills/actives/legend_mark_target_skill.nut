@@ -45,19 +45,19 @@ this.legend_mark_target_skill <- this.inherit("scripts/skills/skill", {
 				id = 10,
 				type = "text",
 				icon = "ui/icons/melee_defense.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]-10[/color] Melee Defense"
+				text = "[color=%negative%]-10[/color] Melee Defense"
 			},
 			{
 				id = 10,
 				type = "text",
 				icon = "ui/icons/ranged_defense.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]-10[/color] Ranged Defense"
+				text = "[color=%negative%]-10[/color] Ranged Defense"
 			},
 			{
 				id = 10,
 				type = "text",
 				icon = "ui/icons/warning.png",
-				text = "Up to [color=" + this.Const.UI.Color.PositiveValue + "]20%[/color] Damage Received from all sources, scaling on Hitpoints"
+				text = "Up to [color=%positive%]20%[/color] Damage Received from all sources, scaling on Hitpoints"
 			}
 		]);
 		return ret;

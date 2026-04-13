@@ -115,12 +115,4 @@
 			}
 		}
 	}
-
-	local onPrepareVariables = o.onPrepareVariables;
-	o.onPrepareVariables = function ( _vars )
-	{
-		onPrepareVariables(_vars);
-		if (this.m.Disowned != null)
-			::Const.LegendMod.extendVarsWithPronouns(_vars, this.m.Disowned.getGender(), "disowned");
-	}
 })

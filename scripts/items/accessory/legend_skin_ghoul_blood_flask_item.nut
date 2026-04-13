@@ -23,7 +23,7 @@ this.legend_skin_ghoul_blood_flask_item <- this.inherit("scripts/items/accessory
 				id = 11,
 				type = "text",
 				icon = "ui/icons/days_wounded.png",
-				text = "Restores up to [color=" + this.Const.UI.Color.PositiveValue + "]+10%[/color] of max health"
+				text = "Restores up to [color=%positive%]+10%[/color] of max health"
 		});
 		return result;
 	}

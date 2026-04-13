@@ -51,13 +51,13 @@ this.legend_eat_rations_skill <- this.inherit("scripts/skills/actives/base/legen
 				id = 11,
 				type = "text",
 				icon = "ui/icons/health.png",
-				text = "On self, will restore [color=" + this.Const.UI.Color.PositiveValue + "]+" + rate + "[/color] Hitpoints per turn for ten turns"
+				text = "On self, will restore [color=%positive%]+" + rate + "[/color] Hitpoints per turn for ten turns"
 			},
 			{
 				id = 11,
 				type = "text",
 				icon = "ui/icons/fatigue.png",
-				text = "On self, recovers fatigue by [color=" + this.Const.UI.Color.NegativeValue + "]-" + rate + "[/color] per turn for ten turns"
+				text = "On self, recovers fatigue by [color=%negative%]-" + rate + "[/color] per turn for ten turns"
 			}
 		];
 
@@ -67,7 +67,7 @@ this.legend_eat_rations_skill <- this.inherit("scripts/skills/actives/base/legen
 				id = 5,
 				type = "text",
 				icon = "ui/tooltips/warning.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]Can not be used because this character is engaged in melee[/color]"
+				text = "[color=%negative%]Can not be used because this character is engaged in melee[/color]"
 			});
 		}
 

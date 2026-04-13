@@ -21,5 +21,6 @@
 		onEquip();
 		::Legends.Actives.grant(this, ::Legends.Active.LegendDrumsOfWar);
 		::Legends.Actives.grant(this, ::Legends.Active.LegendDrumsOfLife);
+		::Legends.Actives.grant(this, ::Legends.Active.LegendMartialMarch);
 	}
 });

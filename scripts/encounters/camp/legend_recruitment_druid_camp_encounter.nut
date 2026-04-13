@@ -3,10 +3,10 @@ this.legend_recruitment_druid_camp_encounter <- this.inherit("scripts/encounters
 		Druid = null
     },
     function create() {
+	    this.encounter.create();
         this.m.Type = "encounter.legend_recruitment_druid_camp";
-        this.m.Name = "A burning forest";
+        this.m.Name = ::Const.Strings.randomCampEncounterName();
 		this.m.Cooldown = 60 * ::World.getTime().SecondsPerDay;
-	    this.createScreens();
 	}
 
     function createScreens() {
@@ -45,7 +45,7 @@ this.legend_recruitment_druid_camp_encounter <- this.inherit("scripts/encounters
 		this.m.Screens.push({
 			ID = "recruit",
 			Title = "Paying Respects",
-			Text = "[img]gfx/ui/events/event_76.png[/img]{The flames are truly blinding. So blinding you barely can see the spectre approaching from a small copse of not-yet-burned wood. The spectre lowers %their_Druid% hood, revealing an ashen face slick with tears. In a croaky voice, as if unused to the difficulty of the task, the %person_Druid% speaks. %SPEECH_ON%More witnesses to my failure.%SPEECH_OFF% You frown, and ask if the inferno is %their_Druid% fault. The sentence is hardly finished before a snap of vines lurch towards you before falling drunkenly to the ground. A poor display of magic, but still a display. Drawing your sword, you approach the mysterious figure. %SPEECH_ON%I started this?! How dare you, you... you-%SPEECH_OFF% The witch collapses and begins to heave %their_Druid% stomach onto the ground. Having finished, %they_Druid% rise into a kneeling position and stare at the flames. %SPEECH_ON%I am a druid. For generations, we have protected this sacred wood. Until me. A band of raiders were passing through, trying to hide from pursuers, and demanded I conceal them. When I refused, they torched my cabin. One thing led to another...%SPEECH_OFF% %they_Druid%give a weak gesture towards the conflagration before you. %SPEECH_ON%I have failed the cause of centuries. All but a trickle of my magic has deserted me, the space it once resided now nigh consumed by irrational, all-consuming hate. I am nothing now. I have a request, warrior with steel. Kill me. Let me be one with the forest I have so grossly failed, one final time.%SPEECH_OFF% You shake your head slowly. This is a broken soul before you. Frankly, you\'re not sure if %they_Druid% won\'t just kill themselves right here and now. Perhaps a druid could be useful to a mercenary company? Or perhaps it would be better to leave someone so well attuned to nature to take their calling up once again.}",
+			Text = "[img]gfx/ui/events/event_76.png[/img]{The flames are truly blinding. So blinding you barely can see the spectre approaching from a small copse of not-yet-burned wood. The spectre lowers %their_druid% hood, revealing an ashen face slick with tears. In a croaky voice, as if unused to the difficulty of the task, the %person_druid% speaks. %SPEECH_ON%More witnesses to my failure.%SPEECH_OFF% You frown, and ask if the inferno is %their_druid% fault. The sentence is hardly finished before a snap of vines lurch towards you before falling drunkenly to the ground. A poor display of magic, but still a display. Drawing your sword, you approach the mysterious figure. %SPEECH_ON%I started this?! How dare you, you... you-%SPEECH_OFF% The witch collapses and begins to heave %their_druid% stomach onto the ground. Having finished, %they_druid% rise into a kneeling position and stare at the flames. %SPEECH_ON%I am a druid. For generations, we have protected this sacred wood. Until me. A band of raiders were passing through, trying to hide from pursuers, and demanded I conceal them. When I refused, they torched my cabin. One thing led to another...%SPEECH_OFF% %they_druid%give a weak gesture towards the conflagration before you. %SPEECH_ON%I have failed the cause of centuries. All but a trickle of my magic has deserted me, the space it once resided now nigh consumed by irrational, all-consuming hate. I am nothing now. I have a request, warrior with steel. Kill me. Let me be one with the forest I have so grossly failed, one final time.%SPEECH_OFF% You shake your head slowly. This is a broken soul before you. Frankly, you\'re not sure if %they_druid% won\'t just kill themselves right here and now. Perhaps a druid could be useful to a mercenary company? Or perhaps it would be better to leave someone so well attuned to nature to take their calling up once again.}",
 			Image = "",
 			List = [],
 			Characters = [],
@@ -82,19 +82,23 @@ this.legend_recruitment_druid_camp_encounter <- this.inherit("scripts/encounters
 	}
 
 	function onPrepareVariables (_vars) {
-		this.Const.LegendMod.extendVarsWithPronouns(_vars, this.m.Druid.getGender(), "Druid");
 	}
 
 	function isVisible() {
+		local currentTile = this.World.State.getPlayer().getTile();
 		local towns = this.World.EntityManager.getSettlements();
-		foreach(t in towns){
-			if (t.getTile().getDistanceTo(currentTile) <= 7)
+		foreach (t in towns) {
+			if (t.getTile().getDistanceTo(currentTile) <= 7) {
 				return false; //if too close to town, hide
+			}
 		}
 		return true;
 	}
 
 	function isValid(_camp) {
+		if (::World.Assets.getOrigin().getID() == "scenario.legend_risen_legion")
+			return false;
+
 		if (::World.getPlayerRoster().getSize() >= ::World.Assets.getBrothersMax())
 			return false;
 
@@ -109,6 +113,12 @@ this.legend_recruitment_druid_camp_encounter <- this.inherit("scripts/encounters
 		local totalbrothers = 0;
 		local brotherlevels = 0;
 
+		local towns = this.World.EntityManager.getSettlements();
+		foreach(t in towns){
+			if (t.getTile().getDistanceTo(currentTile) <= 7)
+				return false //if too close to town, disable
+		}
+
 		foreach (bro in ::World.getPlayerRoster().getAll()) {
 			if ((bro.getBackground().getID() == "background.legend_druid") || (bro.getBackground().getID() == "background.legend_commander_druid"))
 				return false;
@@ -120,7 +130,7 @@ this.legend_recruitment_druid_camp_encounter <- this.inherit("scripts/encounters
 		if (totalbrothers < 1 || brotherlevels < 30)
 			return false;
 
-		return !this.isOnCooldown();
+		return !isOnCooldown();
 	}
 
 	function onClear() {

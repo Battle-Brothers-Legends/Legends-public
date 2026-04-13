@@ -20,6 +20,11 @@
 		this.m.LastEventTime = this.Time.getVirtualTimeF();
 	}
 
+	o.addSpecialEvent = function ( _e ) {
+		if (this.m.SpecialEvents.find(_e) == null)
+			this.m.SpecialEvents.push(_e);
+	}
+
 	o.updateSpecialEvents = function ()
 	{
 		foreach( e in this.m.SpecialEvents )
@@ -34,8 +39,7 @@
 				{
 					this.Time.scheduleEvent(this.TimeUnit.Real, 4000, function ( _tag )
 					{
-						if (this.World.Events.canFireEvent(true, true) && this.World.Events.getEvent(e).canFire())
-						{
+						if (this.World.Events.canFireEvent(true, true) && this.World.Events.getEvent(e).canFire()) {
 							this.World.Events.fire(e);
 						}
 					}, null);
@@ -44,9 +48,16 @@
 				return true;
 			}
 		}
-
-		  // [037]  OP_CLOSE          0      1    0    0
 		return false;
+	}
+
+	o.removeSpecialEvent <- function (_id) {
+		foreach(i, e in this.m.SpecialEvents) {
+			if (e == _id) {
+				this.m.SpecialEvents.remove(i);
+				break;
+			}
+		}
 	}
 
 	o.selectEvent = function ()

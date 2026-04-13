@@ -33,9 +33,13 @@ this.legend_hoe <- this.inherit("scripts/items/weapons/weapon", {
 	function onEquip()
 	{
 		this.weapon.onEquip();
-		::Legends.Actives.grant(this, ::Legends.Active.Chop);
+		::Legends.Actives.grant(this, ::Legends.Active.Chop, function (_skill) {
+			_skill.m.IsHack = true;
+		}.bindenv(this));
 		::Legends.Actives.grant(this, ::Legends.Active.SplitShield, function (_skill) {
 			_skill.setApplyAxeMastery(true);
+			_skill.m.ActionPointCost = 4;
+			_skill.setFatigueCost(_skill.getFatigueCostRaw() + 5);
 		}.bindenv(this));
 	}
 

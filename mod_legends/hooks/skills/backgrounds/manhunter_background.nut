@@ -57,31 +57,29 @@
 		this.m.Modifiers.Injury = this.Const.LegendMod.ResourceModifiers.Injury[1];
 		this.m.PerkTreeDynamic = {
 			Weapon = [
-				this.Const.Perks.MaceTree,
-				this.Const.Perks.PolearmTree,
-				this.Const.Perks.CleaverTree,
-				this.Const.Perks.SwordTree,
-				this.Const.Perks.BowTree,
-				this.Const.Perks.ThrowingTree
+				::Const.Perks.MaceTree,
+				::Const.Perks.PolearmTree,
+				::Const.Perks.CleaverTree,
+				::Const.Perks.SwordTree,
+				::Const.Perks.BowTree,
+				::Const.Perks.ThrowingTree
 			],
 			Defense = [
-				this.Const.Perks.LightArmorTree,
-				this.Const.Perks.ClothArmorTree
+				::Const.Perks.LightArmorTree,
+				::Const.Perks.ClothArmorTree
 			],
 			Traits = [
-				this.Const.Perks.ViciousTree,
-				this.Const.Perks.DeviousTree,
-				this.Const.Perks.AgileTree,
-				this.Const.Perks.FastTree
+				::Const.Perks.ViciousTree,
+				::Const.Perks.DeviousTree,
+				::Const.Perks.AgileTree,
+				::Const.Perks.FastTree
 			],
 			Enemy = [
-				this.Const.Perks.NomadsTree,
-				this.Const.Perks.SouthernersTree,
-				this.Const.Perks.BanditTree,
-				this.Const.Perks.BarbarianTree
+				::Const.Perks.CivilizationTree,
+				::Const.Perks.OutlawTree
 			],
 			Class = [
-				this.Const.Perks.BeastClassTree
+				::Const.Perks.BeastClassTree
 			],
 			Profession = [],
 			Magic = []

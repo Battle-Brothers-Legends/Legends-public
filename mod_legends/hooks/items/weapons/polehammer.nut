@@ -4,17 +4,15 @@
 	o.create = function() {
 		create();
 		this.m.Value = 1600;
-		this.m.Variant = this.Math.rand(0, 2);
-		this.updateVariant();
+		this.m.Variants = [0, 1, 2];
+		this.setVariant(this.m.Variants[this.Math.rand(0, this.m.Variants.len() - 1)]);
 	}
 
 	o.updateVariant <- function() {
-		if (this.m.Variant == 0) {
-			return;
-		}
-		this.m.Icon = "weapons/melee/polehammer_01_" + this.m.Variant + "_70x70.png";
-		this.m.IconLarge = "weapons/melee/polehammer_01_" + this.m.Variant + ".png";
-		this.m.ArmamentIcon = "icon_polehammer_01_" + this.m.Variant;
+		local v = this.getVariant() == 0 ? "" : "_" + this.getVariant();
+		this.m.Icon = "weapons/melee/polehammer_01" + v + "_70x70.png";
+		this.m.IconLarge = "weapons/melee/polehammer_01" + v + ".png";
+		this.m.ArmamentIcon = "icon_polehammer_01" + v;
 	}
 
 	local onEquip = o.onEquip;
@@ -24,6 +22,7 @@
 		::Legends.Actives.grant(this, ::Legends.Active.LegendPryArmor, function (_skill) {
 			_skill.m.FatigueCost = 35;
 			_skill.m.ActionPointCost = 6;
+			_skill.m.MaxRange = 2;
 			_skill.m.Icon = "skills/legend_active_pry_armor_polehammer.png";
 			_skill.m.IconDisabled = "skills/legend_active_pry_armor_polehammer_bw.png";
 			_skill.m.Overlay = "active_legend_pry_armor_polehammer";

@@ -4,9 +4,24 @@ this.legend_helmet_demon_alp_helm <- this.inherit("scripts/items/legend_helmets/
 	function create()
 	{
 		this.legend_helmet_upgrade.create();
-		this.m.Type = this.Const.Items.HelmetUpgrades.Vanity;
 		this.m.ID = "armor.head.legend_helmet_demon_alp_helm";
+		this.m.Type = this.Const.Items.HelmetUpgrades.Vanity;
 		this.m.Name = "Demon Alp Helm";
+		this.m.Description = "A trophy made from the visage of a demon that hunts in the night.";
+		this.m.ArmorDescription = "Includes a terrifying mask.";
+		this.m.Variants = [1];
+		this.m.Variant = this.m.Variants[this.Math.rand(0, this.m.Variants.len() - 1)];
+		this.updateVariant();
+		this.m.ImpactSound = this.Const.Sound.ArmorLeatherImpact;
+		this.m.InventorySound = this.Const.Sound.ClothEquip;
+		this.m.Value = 200;
+		this.m.Condition = 10;
+		this.m.ConditionMax = 10;
+		this.m.StaminaModifier = -1;
+		this.m.Vision = 0;
+		this.m.Lower = false;
+		this.m.HideHair = true;
+		this.m.HideBeard = false;
 		// this.m.NameList = [
 		// 	"Nightmare visage",
 		// 	"Helm of the demon",
@@ -16,21 +31,18 @@ this.legend_helmet_demon_alp_helm <- this.inherit("scripts/items/legend_helmets/
 		// 	"Sleepless Crown"
 		// ];
 		// this.m.Name = this.m.NameList[this.Math.rand(0, this.m.NameList.len())];
-		this.m.Description = "A trophy made from the face of a demon";
-		this.m.ArmorDescription = this.m.Description;
-		this.m.Variants = [1];
-		this.m.Variant = this.m.Variants[this.Math.rand(0, this.m.Variants.len() - 1)];
-		this.updateVariant();
-		this.m.ImpactSound = this.Const.Sound.ArmorChainmailImpact;
-		this.m.InventorySound = this.Const.Sound.ArmorChainmailImpact;
-		this.m.Value = 200;
-		this.m.Condition = 10;
-		this.m.ConditionMax = 10;
-		this.m.StaminaModifier = -1;
-		this.m.Vision = 0;
-		this.m.IsLowerVanity = false;
-		this.m.HideHair = true;
-		this.m.HideBeard = false;
+	}
+
+	function updateVariant()
+	{
+		local variant = this.m.Variant > 9 ? this.m.Variant : "0" + this.m.Variant;
+		this.m.Sprite = "legendhelms_demon_alp_helm_" + variant;
+		this.m.SpriteDamaged = "legendhelms_demon_alp_helm_" + variant + "_damaged";
+		this.m.SpriteCorpse = "legendhelms_demon_alp_helm_" + variant + "_dead";
+		this.m.Icon = "legend_helmets/inventory_demon_alp_helm_" + variant + ".png";
+		this.m.IconLarge = this.m.Icon;
+		this.m.OverlayIcon = this.m.Icon;
+		this.m.OverlayIconLarge = this.m.OverlayIcon;
 	}
 
 	function getTooltip()
@@ -58,17 +70,5 @@ this.legend_helmet_demon_alp_helm <- this.inherit("scripts/items/legend_helmets/
 		{
 			::Legends.Actives.grant(this, ::Legends.Active.LegendHorrificScream)
 		}
-	}
-
-	function updateVariant()
-	{
-		local variant = this.m.Variant > 9 ? this.m.Variant : "0" + this.m.Variant;
-		this.m.Sprite = "legendhelms_demon_alp_helm" + "_" + variant;
-		this.m.SpriteDamaged = "legendhelms_demon_alp_helm" + "_" + variant + "_damaged";
-		this.m.SpriteCorpse = "legendhelms_demon_alp_helm" + "_" + variant + "_dead";
-		this.m.Icon = "legend_helmets/inventory_demon_alp_helm" + "_" + variant + ".png";
-		this.m.IconLarge = this.m.Icon;
-		this.m.OverlayIcon = this.m.Icon;
-		this.m.OverlayIconLarge = this.m.OverlayIcon;
 	}
 });

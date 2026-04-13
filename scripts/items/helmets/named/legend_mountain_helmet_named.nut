@@ -40,7 +40,7 @@ this.legend_mountain_helmet_named <- this.inherit("scripts/items/helmets/named/n
 			id = 6,
 			type = "text",
 			icon = "ui/icons/health.png",
-			text = "Repairs [color=" + this.Const.UI.Color.PositiveValue + "]10%[/color] of its armor each turn"
+			text = "Repairs [color=%positive%]10%[/color] of its armor each turn"
 		});
 		return result;
 	}

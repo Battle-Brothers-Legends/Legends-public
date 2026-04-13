@@ -202,6 +202,8 @@ this.legend_orc_behemoth <- this.inherit("scripts/entity/tactical/actor", {
 		this.actor.onFactionChanged();
 		local flip = this.isAlliedWithPlayer();
 		flip = !flip;
+		local v = 15;
+		local v2 = -5;
 		foreach (a in this.Const.CharacterSprites.Helmets)
 		{
 			if (!this.hasSprite(a))
@@ -209,8 +211,8 @@ this.legend_orc_behemoth <- this.inherit("scripts/entity/tactical/actor", {
 				continue;
 			}
 			this.getSprite(a).setHorizontalFlipping(flip);
+			this.setSpriteOffset(a, this.createVec(flip ? v2 : -v2, v));
 		}
-
 	}
 
 	function onInit()

@@ -305,7 +305,7 @@ if (!("Spawn" in ::Const.World))
 					Cost = 80,
 				},
 				{
-					Type = this.Const.World.Spawn.Troops.BanditWarlord,
+					Type = this.Const.World.Spawn.Troops.LegendRobberBaron,
 					Cost = 80,
 				}
 			]
@@ -659,7 +659,7 @@ if (!("Spawn" in ::Const.World))
 				{
 					Type = this.Const.World.Spawn.Troops.LegendDemonHound,
 					MinR = 800,
-					Cost = 40
+					Cost = 25
 				},
 				{
 					Type = this.Const.World.Spawn.Troops.GoblinWolfrider,
@@ -921,7 +921,7 @@ if (!("Spawn" in ::Const.World))
 					Cost = 80,
 				},
 				{
-					Type = this.Const.World.Spawn.Troops.BanditWarlord,
+					Type = this.Const.World.Spawn.Troops.LegendRobberBaron,
 					Cost = 80,
 				},
 				{

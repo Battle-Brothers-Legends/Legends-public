@@ -57,10 +57,8 @@ this.legend_merc_company_disbands_situation <- this.inherit("scripts/entity/worl
 			_draftList.push("legend_noble_2h");
 			_draftList.push("legend_noble_shield");
 			_draftList.push("legend_noble_ranged");
-			_draftList.push("adventurous_noble_background");	
-			_draftList.push("adventurous_noble_background");			
-			// _draftList.push("female_adventurous_noble_background");
-			// _draftList.push("female_adventurous_noble_background");
+			_draftList.push("adventurous_noble_background");
+			_draftList.push("adventurous_noble_background");
 			_draftList.push("hedge_knight_background");
 		}
 	}

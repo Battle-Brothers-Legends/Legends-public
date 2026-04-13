@@ -39,7 +39,7 @@ this.legend_druid_background <- this.inherit("scripts/skills/backgrounds/charact
 			"the Feral",
 			"the Wild",
 			"the Barbarian",
-			"The Green thumb",
+			"the Green thumb",
 			"Oakheart",
 			"Treebeard",
 			"the flower",
@@ -86,32 +86,32 @@ this.legend_druid_background <- this.inherit("scripts/skills/backgrounds/charact
 		];
 	this.m.PerkTreeDynamic = {
 			Weapon = [
-				this.Const.Perks.SwordTree,
-				this.Const.Perks.FistsTree,
-				this.Const.Perks.PolearmTree,
-				this.Const.Perks.ThrowingTree
+				::Const.Perks.SwordTree,
+				::Const.Perks.FistsTree,
+				::Const.Perks.PolearmTree,
+				::Const.Perks.ThrowingTree
 			],
 			Defense = [
-				this.Const.Perks.LightArmorTree
+				::Const.Perks.LightArmorTree
 			],
 			Traits = [
-				this.Const.Perks.SturdyTree,
-				this.Const.Perks.IntelligentTree,
-				this.Const.Perks.LargeTree,
-				this.Const.Perks.FitTree
+				::Const.Perks.SturdyTree,
+				::Const.Perks.IntelligentTree,
+				::Const.Perks.LargeTree,
+				::Const.Perks.FitTree
 			],
 			Enemy = [],
 			Class = [
-				this.Const.Perks.HealerClassTree,
-				this.Const.Perks.SickleClassTree
+				::Const.Perks.HealerClassTree,
+				// ::Const.Perks.SickleClassTree
 			],
 			Profession = [
-				this.Const.Perks.HealerProfessionTree,
-				this.Const.Perks.HerbalistProfessionTree
+				::Const.Perks.HealerProfessionTree,
+				::Const.Perks.HerbalistProfessionTree
 			]
 			Magic = [
-				this.Const.Perks.DruidMagicTree,
-				this.Const.Perks.StavesMagicTree
+				::Const.Perks.DruidMagicTree,
+				::Const.Perks.StavesMagicTree
 			]
 		}
 	}
@@ -213,11 +213,13 @@ this.legend_druid_background <- this.inherit("scripts/skills/backgrounds/charact
 
 	function onAddEquipment()
 	{
+		local actor = this.getContainer().getActor();
+		actor.setVeteranPerks(3);
+		local items = actor.getItems();
 		local talents = this.getContainer().getActor().getTalents();
 		talents.resize(this.Const.Attributes.COUNT, 0);
 		talents[this.Const.Attributes.Fatigue] = 2;
 		this.getContainer().getActor().fillTalentValues(2, true);
-		local items = this.getContainer().getActor().getItems();
 		items.equip(this.Const.World.Common.pickArmor([
 			[1, ::Legends.Armor.Barbarian.hide_and_bone_armor]
 		]));

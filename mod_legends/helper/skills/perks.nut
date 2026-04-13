@@ -76,3 +76,17 @@ if (!("Perks" in ::Legends))
 ::Legends.Perks.blueprint <- function (_def) {
 	return { Scripts = [::Const.Perks.PerkDefObjects[_def].Script] };
 }
+
+::Legends.Perks.onCreate <- function (_perk, _perkDef) {
+	local def = ::Const.Perks.PerkDefObjects[_perkDef];
+	_perk.m.ID = def.ID;
+	_perk.m.Name = ::Const.Strings.PerkName[def.Const];
+	_perk.m.Description = ::Const.Strings.PerkDescription[def.Const];
+	_perk.m.Icon = def.Icon;
+	_perk.m.IconDisabled = def.IconDisabled;
+	_perk.m.Type = ::Const.SkillType.Perk;
+	_perk.m.Order = ::Const.SkillOrder.Perk;
+	_perk.m.IsActive = false;
+	_perk.m.IsStacking = false;
+	_perk.m.IsHidden = false;
+}

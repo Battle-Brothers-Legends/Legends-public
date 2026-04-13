@@ -1,7 +1,7 @@
 this.perk_legend_specialist_shepherd <- this.inherit("scripts/skills/legend_specialist_abstract", {
 	m = {
 		SpecialistWeaponIds = [
-			"weapon.legend_sling",
+			"weapon.legend_dilapitated_sling",
 			"weapon.legend_slingshot"
 		],
 		ApplicableWeaponTypes = [
@@ -13,7 +13,7 @@ this.perk_legend_specialist_shepherd <- this.inherit("scripts/skills/legend_spec
 	function create()
 	{
 		this.legend_specialist_abstract.create();
-		::Const.Perks.setup(this.m, ::Legends.Perk.LegendSpecialistShepherd);
+		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendSpecialistShepherd);
 		this.m.IconMini = "perk_spec_sling_mini";
 	}
 
@@ -26,13 +26,13 @@ this.perk_legend_specialist_shepherd <- this.inherit("scripts/skills/legend_spec
 	// 		id = 7,
 	// 		type = "text",
 	// 		icon = "ui/icons/hitchance.png",
-	// 		text = "[color=" + this.Const.UI.Color.PositiveValue + "]+" + this.calculateSpecialistBonus(this.m.BonusMelee, _item) + "[/color] chance to hit"
+	// 		text = "[color=%positive%]+" + this.calculateSpecialistBonus(this.m.BonusMelee, _item) + "[/color] chance to hit"
 	// 	},
 	// 	{
 	// 		id = 8,
 	// 		type = "text",
 	// 		icon = "ui/icons/armor_damage.png",
-	// 		text = "[color=" + this.Const.UI.Color.PositiveValue + "]+" + this.calculateSpecialistBonus(25, _item) + "[/color] Chance to hit Head"
+	// 		text = "[color=%positive%]+" + this.calculateSpecialistBonus(25, _item) + "[/color] Chance to hit Head"
 	// 	}]);
 	// 	if (::Legends.S.isCharacterWeaponSpecialized(properties, _item))
 	// 	{
@@ -40,7 +40,7 @@ this.perk_legend_specialist_shepherd <- this.inherit("scripts/skills/legend_spec
 	// 			id = 7,
 	// 			type = "text",
 	// 			icon = "ui/icons/damage_dealt.png",
-	// 			text = "[color=" + this.Const.UI.Color.PositiveValue + "]+" + this.calculateSpecialistBonus(this.m.BonusDamage, _item) + "%[/color] Damage"
+	// 			text = "[color=%positive%]+" + this.calculateSpecialistBonus(this.m.BonusDamage, _item) + "%[/color] Damage"
 	// 		});
 	// 	}
 	// 	return tooltip;

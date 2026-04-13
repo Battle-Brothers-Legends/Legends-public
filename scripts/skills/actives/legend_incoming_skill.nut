@@ -47,19 +47,19 @@ this.legend_incoming_skill <- this.inherit("scripts/skills/skill", {
 				id = 6,
 				type = "text",
 				icon = "ui/icons/ranged_skill.png",
-				text =  "[color=" + this.Const.UI.Color.PositiveValue + "]+5[/color] ranged skill to all allies within [color=" + this.Const.UI.Color.PositiveValue + "]4[/color] tiles for one turn"
+				text =  "[color=%positive%]+5[/color] ranged skill to all allies within [color=%positive%]4[/color] tiles for one turn"
 			},
 			{
 				id = 6,
 				type = "text",
 				icon = "ui/icons/bravery.png",
-				text =  "[color=" + this.Const.UI.Color.PositiveValue + "]+5[/color] resolve to all allies within [color=" + this.Const.UI.Color.PositiveValue + "]4[/color] tiles for one turn"
+				text =  "[color=%positive%]+5[/color] resolve to all allies within [color=%positive%]4[/color] tiles for one turn"
 			},
 			{
 				id = 6,
 				type = "text",
 				icon = "ui/icons/ranged_defense.png",
-				text =  "[color=" + this.Const.UI.Color.PositiveValue + "]+10[/color] ranged defence to all allies within [color=" + this.Const.UI.Color.PositiveValue + "]4[/color] tiles for one turn"
+				text =  "[color=%positive%]+10[/color] ranged defence to all allies within [color=%positive%]4[/color] tiles for one turn"
 			}
 		];
 	}

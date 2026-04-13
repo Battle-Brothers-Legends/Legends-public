@@ -1,14 +1,14 @@
 this.legend_sighthound <- this.inherit("scripts/entity/tactical/wardog", {
 
 	m = {
-		Item = null
+		Item = null,
 		Name = "Sighthound"
 	}
 
 	function create() {
 		this.wardog.create();
-		this.m.Type = this.Const.EntityType.Wardog;
-		this.m.XP = this.Const.Tactical.Actor.Wardog.XP;
+		this.m.Type = this.Const.EntityType.LegendSighthound;
+		this.m.XP = this.Const.Tactical.Actor.LegendSighthound.XP;
 		this.m.SoundPitch = this.Math.rand(85, 105) * 0.01;
 	}
 
@@ -16,7 +16,7 @@ this.legend_sighthound <- this.inherit("scripts/entity/tactical/wardog", {
 		this.m.Items.getAppearance().Body = "bust_dawg_01_body_0" + _variant;
 		getSprite("body").setBrush("bust_dawg_01_body_0" + _variant);
 		getSprite("head").setBrush("bust_dawg_01_head_0" + _variant);
-		getSprite("closed_eyes").setBrush("bust_dawg_01_body_0" + _variant + "_eyes_closed");
+		getSprite("closed_eyes").setBrush("bust_dawg_01_body_01_eyes_closed");
 		setDirty(true);
 	}
 
@@ -25,7 +25,7 @@ this.legend_sighthound <- this.inherit("scripts/entity/tactical/wardog", {
 
 		// stats
 		local b = m.BaseProperties;
-		b.setValues(Const.Tactical.Actor.Wardog);
+		b.setValues(::Const.Tactical.Actor.LegendSighthound);
 		b.TargetAttractionMult = 0.1;
 		b.IsAffectedByInjuries = false;
 		b.IsImmuneToDisarm = true;

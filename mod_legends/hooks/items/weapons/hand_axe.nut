@@ -1,20 +1,38 @@
 ::mods_hookExactClass("items/weapons/hand_axe", function(o) {
-
 	local create = o.create;
 	o.create = function() {
 		create();
 		this.m.Value = 900;
-		this.m.Variant = this.Math.rand(0, 2);
-		this.updateVariant();
+		this.m.Variants = [0, 1, 2];
+		this.setVariant(this.m.Variants[this.Math.rand(0, this.m.Variants.len() - 1)]);
+		this.m.Ammo = 1;
+		this.m.AmmoMax = 1;
+		this.m.AmmoCost = 5;
+		this.m.WeaponType = this.Const.Items.WeaponType.Axe;
 	}
 
 	o.updateVariant <- function() {
-		if (this.m.Variant == 0) {
-			return;
-		}
-		this.m.Icon = "weapons/melee/axe_02_" + this.m.Variant + "_70x70.png";
-		this.m.IconLarge = "weapons/melee/axe_02_" + this.m.Variant + ".png";
-		this.m.ArmamentIcon = "icon_axe_02_" + this.m.Variant;
+		local v = this.getVariant() == 0 ? "" : "_" + this.getVariant();
+		this.m.Icon = "weapons/melee/axe_02" + v + "_70x70.png";
+		this.m.IconLarge = "weapons/melee/axe_02" + v + ".png";
+		this.m.ArmamentIcon = "icon_axe_02" + v;
+	}
+
+	o.getAmmo <- function() {
+		return this.m.Ammo;
+	}
+
+	o.getAmmoMax <- function() {
+		return this.m.AmmoMax;
+	}
+
+	local onEquip = o.onEquip;
+	o.onEquip = function()
+	{
+		onEquip();
+		::Legends.Actives.grant(this.weapon, ::Legends.Active.ThrowAxe, function (_skill) {
+			_skill.m.IsBackupAxe = true;
+		}.bindenv(this));
 	}
 
 });

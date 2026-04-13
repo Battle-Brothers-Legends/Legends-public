@@ -12,6 +12,7 @@ this.$name <- this.inherit("scripts/items/legend_armor/legend_cloth_named", {
 		this.updateVariant();
 		this.m.ImpactSound = $impactSound;
 		this.m.InventorySound = $invSound;
+		this.m.BaseInventorySound = $invSound;
 		this.m.Value = $value;
 		this.m.Condition = $condition;
 		this.m.ConditionMax = $condition;
@@ -32,7 +33,7 @@ this.$name <- this.inherit("scripts/items/legend_armor/legend_cloth_named", {
 
 	function randomizeValues()
 	{
-		this.m.StaminaModifier = this.Math.rand($rminStam, $rmaxStam) * -1;
+		this.m.StaminaModifier = this.Math.rand($rmaxStam, $rminStam) * -1;
 		this.m.Condition = this.Math.rand($rminCond, $rmaxCond);
 		this.m.ConditionMax = this.m.Condition;
 	}

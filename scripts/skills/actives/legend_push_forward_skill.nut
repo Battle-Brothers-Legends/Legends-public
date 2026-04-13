@@ -47,19 +47,19 @@ this.legend_push_forward_skill <- this.inherit("scripts/skills/skill", {
 				id = 6,
 				type = "text",
 				icon = "ui/icons/melee_skill.png",
-				text =  "[color=" + this.Const.UI.Color.PositiveValue + "]+10[/color] melee skill to all allies within [color=" + this.Const.UI.Color.PositiveValue + "]4[/color] tiles for one turn"
+				text =  "[color=%positive%]+10[/color] melee skill to all allies within [color=%positive%]4[/color] tiles for one turn"
 			},
 			{
 				id = 6,
 				type = "text",
 				icon = "ui/icons/bravery.png",
-				text =  "[color=" + this.Const.UI.Color.PositiveValue + "]+5[/color] resolve to all allies within [color=" + this.Const.UI.Color.PositiveValue + "]4[/color] tiles for one turn"
+				text =  "[color=%positive%]+5[/color] resolve to all allies within [color=%positive%]4[/color] tiles for one turn"
 			},
 			{
 				id = 6,
 				type = "text",
 				icon = "ui/icons/melee_defense.png",
-				text =  "[color=" + this.Const.UI.Color.PositiveValue + "]+3[/color] melee defence to all allies within [color=" + this.Const.UI.Color.PositiveValue + "]4[/color] tiles for one turn"
+				text =  "[color=%positive%]+3[/color] melee defence to all allies within [color=%positive%]4[/color] tiles for one turn"
 			}
 		];
 	}

@@ -2,22 +2,19 @@ this.perk_legend_hippology <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		::Const.Perks.setup(this.m, ::Legends.Perk.LegendHippology);
-		this.m.Type = this.Const.SkillType.Perk;
-		this.m.Order = this.Const.SkillOrder.Perk;
-		this.m.IsActive = false;
-		this.m.IsStacking = false;
-		this.m.IsHidden = false;
+		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendHippology);
 	}
 
-	function onAdded()
-	{
-		getContainer().getActor().getFlags().set("HasVeterinarian", true);
+	function onAdded() {
+		::World.Assets.m.HasVeterinarian++;
 	}
 
-	function onRemoved()
-	{
-		getContainer().getActor().getFlags().remove("HasVeterinarian");
+	function onRemoved() {
+		::World.Assets.m.HasVeterinarian--;
+	}
+
+	function onDeath(_fatalityType) {
+		::World.Assets.m.HasVeterinarian--;
 	}
 
 });

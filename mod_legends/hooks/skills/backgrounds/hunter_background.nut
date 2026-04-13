@@ -74,31 +74,29 @@
 		];
 		this.m.PerkTreeDynamic = {
 			Weapon = [
-				this.Const.Perks.BowTree,
-				this.Const.Perks.CrossbowTree,
-				this.Const.Perks.SwordTree,
-				this.Const.Perks.ThrowingTree
+				::Const.Perks.BowTree,
+				::Const.Perks.CrossbowTree,
+				::Const.Perks.SwordTree,
+				::Const.Perks.ThrowingTree
 			],
 			Defense = [
-				this.Const.Perks.LightArmorTree
+				::Const.Perks.LightArmorTree
 			],
 			Traits = [
-				this.Const.Perks.AgileTree,
-				this.Const.Perks.FastTree,
-				this.Const.Perks.ViciousTree,
-				this.Const.Perks.FitTree,
-				this.Const.Perks.DeviousTree
+				::Const.Perks.AgileTree,
+				::Const.Perks.FastTree,
+				::Const.Perks.ViciousTree,
+				::Const.Perks.FitTree,
+				::Const.Perks.DeviousTree
 			],
 			Enemy = [
-				this.Const.Perks.DirewolfTree,
-				this.Const.Perks.SpiderTree,
-				this.Const.Perks.SchratTree,
-				this.Const.Perks.ArcherTree
+				::Const.Perks.BeastTree,
+				::Const.Perks.OccultTree,
 			],
 			Class = [
-				this.Const.Perks.SharpshooterClassTree
+				// ::Const.Perks.SharpshooterClassTree
 			],
-			Profession = [], 
+			Profession = [],
 			Magic = []
 		}
 	}
@@ -120,7 +118,7 @@
 		this.m.HairColors = this.Const.HairColors.Young;
 		this.m.Beards = null;
 		this.m.BeardChance = 0;
-		this.m.Bodies = this.Const.Bodies.AllFemale;
+		this.m.Bodies = this.Const.Bodies.NorthernFemale;
 		this.addBackgroundType(this.Const.BackgroundType.Female);
 		this.m.GoodEnding = "While the %companyname% continued on with great success, %name% the hunter eventually saw fit to leave it all behind. She returned to the forests and fields, hunting deer and small game. She rarely showed the grim reality of hunting humans, but you have to imagine she\'d just rather stop doing it. As far as you know, she\'s doing well for herself these days. She purchased a bit of land and helps guide nobles on pricy hunting trips.";
 		this.m.BadEnding = "With the decline of the %companyname% readily obvious, %name% the hunter departed from the company and returned to game hunting. Unfortunately, a hunting trip with a nobleman went awry when the lord was gored through both cheeks by a boar. The hunter, feeling she\'d be blamed, shot by the nobleman and his guard and fled through the forests on her own. She has not been seen since.";
@@ -128,7 +126,7 @@
 
 	o.onBuildDescription <- function ()
 	{
-		return "{Without his father around, %name%\'s mother taught them how to shoot a bow, and how to feed the rest of his family. | Born in the hinterlands of %randomtown%, %name% has spent much of his life stalking the beasts amongst the trees. | %name% once took a bet to shoot an apple off a pig\'s head. They missed. With a belly full of bacon, they became determined to never miss again - unless it meant more bacon, of course. | Early in his life, %name% liked to traipse about the forests. When a rabid fox attacked them, they learned to take a bow. When a devilish eagle clawed his face, they learned to shoot it.} {Once employed by local royalty, a disastrous boar hunt ended with a gored baron and all the blame - and blood - on %name%\'s hands. | The hunter hid the thought well, but for the longest time they wondered what it would be like to hunt the ultimate game: man. | Sadly, a bad game of peasant-roulette forced the deer hunter into seeking other means of income. | Unfortunately, they are not nearly as good at cooking deer as  is at shooting them. A dinner consisting of undercooked meats poisoned his entire family. His desperation for a new life is understandable. | After an arduous trip to town to sell meats and leathers, they followed the call of mercenary work. | War drove the game out of the forests, and the hunt out of %name%. Now they seek another line of work. | When his wife fell ill, they could not heal her with hunted meat. Needing to earn crowns to pay for treatment, they took up the vocation of sellswords - or sellbows, as it were.} {Any outfit could use a deadeye such as this man. | Not entirely without faults, %name% is a professional bowman nonetheless. | A quick demonstration is offered: %name% shoots one arrow high into the sky, and with another they knock it out. Impressive. | %name% looks like they have something to prove - just make sure they do it at range. When first given a sword, they grabbed it at the wrong end. Yes, that end. | The hunter wields his bow like another limb, and shoots his arrows like a preacher does words.}";
+		return "{Without his father around, %name%\'s mother taught %them% how to shoot a bow, and how to feed the rest of his family. | Born in the hinterlands of %randomtown%, %name% has spent much of %their% life stalking the beasts amongst the trees. | %name% once took a bet to shoot an apple off a pig\'s head. %They% missed. With a belly full of bacon, %they% became determined to never miss again - unless it meant more bacon, of course. | Early in %their% life, %name% liked to traipse about the forests. When a rabid fox attacked them, %they% learned to take a bow. When a devilish eagle clawed %their% face, %they% learned to shoot it.} {Once employed by local royalty, a disastrous boar hunt ended with a gored baron and all the blame - and blood - on %name%\'s hands. | The hunter hid the thought well, but for the longest time %they% wondered what it would be like to hunt the ultimate game: man. | Sadly, a bad game of peasant-roulette forced the deer hunter into seeking other means of income. | Unfortunately, they are not nearly as good at cooking deer as  is at shooting them. A dinner consisting of undercooked meats poisoned his entire family. %their% desperation for a new life is understandable. | After an arduous trip to town to sell meats and leathers, %they% followed the call of mercenary work. | War drove the game out of the forests, and the hunt out of %name%. Now %they% seek another line of work. | When %their% wife fell ill, %they% could not heal her with hunted meat. Needing to earn crowns to pay for treatment, %they% took up the vocation of sellswords - or sellbows, as it were.} {Any outfit could use a deadeye such as this one. | Not entirely without faults, %name% is a professional bowman nonetheless. | A quick demonstration is offered: %name% shoots one arrow high into the sky, and with another %they% knock it out. Impressive. | %name% looks like %they% have something to prove - just make sure %they% do it at range. When first given a sword, %they% grabbed it at the wrong end. Yes, that end. | The hunter wields %their% bow like another limb, and shoots %their% arrows like a preacher does words.}";
 	}
 
 	o.onChangeAttributes = function ()

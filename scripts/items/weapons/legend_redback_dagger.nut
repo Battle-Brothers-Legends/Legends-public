@@ -20,7 +20,7 @@ this.legend_redback_dagger <- this.inherit("scripts/items/weapons/weapon", {
 		this.m.Icon = "weapons/melee/legend_redback_dagger_70x70.png";
 		this.m.WeaponType = this.Const.Items.WeaponType.Dagger;
 		this.m.SlotType = this.Const.ItemSlot.Mainhand;
-		this.m.ItemType = this.Const.Items.ItemType.Weapon | this.Const.Items.ItemType.MeleeWeapon | this.Const.Items.ItemType.OneHanded;
+		this.m.ItemType = this.Const.Items.ItemType.Weapon | this.Const.Items.ItemType.MeleeWeapon | this.Const.Items.ItemType.OneHanded | this.Const.Items.ItemType.Ammo;
 		this.m.IsDoubleGrippable = true;
 		this.m.AddGenericSkill = true;
 		this.m.ShowQuiver = false;
@@ -29,10 +29,22 @@ this.legend_redback_dagger <- this.inherit("scripts/items/weapons/weapon", {
 		this.m.Condition = 70.0;
 		this.m.ConditionMax = 70.0;
 		this.m.Value = 3800;
+		this.m.Ammo = 8;
+		this.m.AmmoMax = 8;
+		this.m.AmmoCost = 1;
+		this.m.ItemType = this.m.ItemType;
 		this.m.RegularDamage = 26;
 		this.m.RegularDamageMax = 52;
 		this.m.ArmorDamageMult = 0.7;
-		this.m.DirectDamageMult = 0.36;
+		this.m.DirectDamageMult = 0.2;
+	}
+
+	function getAmmo() {
+		return this.m.Ammo;
+	}
+
+	function getAmmoMax() {
+		return this.m.AmmoMax;
 	}
 
 	function getTooltip()
@@ -42,13 +54,13 @@ this.legend_redback_dagger <- this.inherit("scripts/items/weapons/weapon", {
 			id = 6,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "Applies redback poison to the target on any successful attack, dealing [color=" + this.Const.UI.Color.DamageValue + "]55[/color] damage over [color=" + this.Const.UI.Color.DamageValue + "]10[/color] turns."
+			text = "Applies redback poison to the target on any successful attack, dealing [color=%damage%]55[/color] damage over [color=%damage%]10[/color] turns."
 		});
 		result.push({
 			id = 7,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "Puncture damage is increased by [color=" + this.Const.UI.Color.PositiveValue + "]33%[/color] vs rooted targets"
+			text = "Puncture damage is increased by [color=%positive%]33%[/color] vs rooted targets"
 		});
 		return result;
 	}
@@ -60,6 +72,7 @@ this.legend_redback_dagger <- this.inherit("scripts/items/weapons/weapon", {
 		::Legends.Actives.grant(this, ::Legends.Active.Stab);
 		::Legends.Actives.grant(this, ::Legends.Active.Puncture);
 		::Legends.Actives.grant(this, ::Legends.Active.Deathblow);
+		::Legends.Actives.grant(this.weapon, ::Legends.Active.LegendThrowKnife);
 	}
 
 	function onUpdateProperties( _properties )
@@ -87,6 +100,7 @@ this.legend_redback_dagger <- this.inherit("scripts/items/weapons/weapon", {
 
 	function onDamageDealt( _target, _skill, _hitInfo )
 	{
+		this.weapon.onDamageDealt(_target, _skill, _hitInfo);
 		if (_target.getCurrentProperties().IsImmuneToPoison || _hitInfo.DamageInflictedHitpoints <= this.Const.Combat.PoisonEffectMinDamage || _target.getHitpoints() <= 0)
 			return;
 

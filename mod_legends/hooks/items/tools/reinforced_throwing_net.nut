@@ -14,11 +14,6 @@
 		return m.Ammo + "/" + m.AmmoMax;
 	}
 
-	o.getAmmo <- function() // prevent net from being refilled without the perk
-	{
-		return m.Ammo == 0 && !::World.Statistics.getFlags().get("LegendsCanRepairNet") ? m.AmmoMax + 1 : m.Ammo;
-	}
-
 	o.isDroppedAsLoot <- function()
 	{
 		return item.isDroppedAsLoot();
@@ -31,7 +26,7 @@
 		m.OriginalValue = m.Value;
 		m.OriginalDescription = m.Description;
 		m.ItemType = m.ItemType | ::Const.Items.ItemType.Ammo | ::Const.Items.ItemType.Net;
-		m.OriginalAmmoCost = 20;
+		m.OriginalAmmoCost = 15;
 		m.AmmoCost = m.OriginalAmmoCost;
 		m.AmmoMax = 1;
 		m.Ammo = 1;
@@ -55,7 +50,7 @@
 				id = 10,
 				type = "text",
 				icon = "ui/tooltips/warning.png",
-				text = "[color=" + ::Const.UI.Color.NegativeValue + "]Is broken and useless[/color]"
+				text = "[color=%negative%]Is broken and useless[/color]"
 			});
 		}
 		return result;

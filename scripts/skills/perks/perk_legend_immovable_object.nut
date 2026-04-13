@@ -4,29 +4,25 @@ this.perk_legend_immovable_object <- this.inherit("scripts/skills/skill", {
 	},
 	function create()
 	{
-		::Const.Perks.setup(this.m, ::Legends.Perk.LegendImmovableObject);
-		this.m.Type = this.Const.SkillType.Perk;
-		this.m.Order = this.Const.SkillOrder.Perk;
-		this.m.IsActive = false;
-		this.m.IsStacking = false;
-		this.m.IsHidden = false;
+		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendImmovableObject);
 	}
 
 	function onUpdate( _properties )
 	{
-		local fat = this.getContainer.getActor().getItems().getStaminaModifier(
+		local fat = this.getContainer().getActor().getItems().getStaminaModifier(
 			[
 				::Const.ItemSlot.Body,
 				::Const.ItemSlot.Head,
 				::Const.ItemSlot.Mainhand,
 				::Const.ItemSlot.Offhand,
-				::Const.ItemSlot.Bag
+				::Const.ItemSlot.Bag,
+				::Const.ItemSlot.Accessory
 			]
 		);
 		fat *= -1;
-		local bonus = this.Math.abs(fat / 10);
+		local bonus = fat / 10;
 		_properties.Bravery += this.Math.floor(bonus);
-		_properties.DamageReceivedDirectMult += 0.01 * bonus;
+		_properties.DamageReceivedDirectMult *= 1.0 - 0.01 * bonus;
 		if (fat > 50)
 			this.m.SteelBrow = true;
 		else

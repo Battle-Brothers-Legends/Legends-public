@@ -35,13 +35,13 @@ this.legend_field_treats_skill <- this.inherit("scripts/skills/skill", {
 			id = 8,
 			type = "text",
 			icon = "ui/icons/asset_money.png",
-			text = "You have [color=" + this.Const.UI.Color.PositiveValue +"]" + this.World.Assets.getFood() + "[/color] food."
+			text = "You have [color=%positive%]" + this.World.Assets.getFood() + "[/color] food."
 		});
 		ret.push({
 			id = 7,
 			type = "text",
 			icon = "ui/icons/asset_money.png",
-			text = "Spend [color=" + this.Const.UI.Color.NegativeValue + "]-20[/color] food to raise moral state of adjacent ally from wavering to steady."
+			text = "Spend [color=%negative%]-20[/color] food to raise moral state of adjacent ally from wavering to steady."
 		});
 		return ret;
 	}

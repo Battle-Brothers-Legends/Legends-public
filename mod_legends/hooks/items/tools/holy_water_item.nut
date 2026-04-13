@@ -65,25 +65,25 @@
 			id = 7,
 			type = "text",
 			icon = "ui/icons/vision.png",
-			text = "Range of [color=" + this.Const.UI.Color.PositiveValue + "]" + this.m.RangeMax + "[/color] tiles"
+			text = "Range of [color=%positive%]" + this.m.RangeMax + "[/color] tiles"
 		},
 		{
 			id = 4,
 			type = "text",
 			icon = "ui/icons/regular_damage.png",
-			text = "Damage of [color=" + this.Const.UI.Color.DamageValue + "]20[/color] for [color=" + this.Const.UI.Color.DamageValue + "]3[/color] turns to any undead target hit"
+			text = "Damage of [color=%damage%]20[/color] for [color=%damage%]3[/color] turns to any undead target hit"
 		},
 		{
 			id = 5,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "Has a [color=" + this.Const.UI.Color.DamageValue + "]33%[/color] chance to hit bystanders at the same or lower height level as well."
+			text = "Has a [color=%damage%]33%[/color] chance to hit bystanders at the same or lower height level as well."
 		},
 		{
 			id = 9,
 			type = "text",
 			icon = "ui/icons/direct_damage.png",
-			text = "[color=" + this.Const.UI.Color.DamageValue + "]100%[/color] of damage ignores armor"
+			text = "[color=%damage%]100%[/color] of damage ignores armor"
 		}]);
 		if (!this.World.Retinue.hasFollower("follower.alchemist"))
 		{
@@ -148,7 +148,7 @@
 	o.onPutIntoBag <- function ()
 	{
 		local skill = ::Legends.Actives.get(this, ::Legends.Active.LegendLaunchHolyWater);
-		if (skill != null)
+		if (skill != null && this.getAmmo() > 0)
 			skill.setItem(this);
 	}
 

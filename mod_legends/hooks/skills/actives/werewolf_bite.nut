@@ -39,23 +39,19 @@
 				id = 4,
 				type = "text",
 				icon = "ui/icons/health.png", // fix from /ui to ui/, Abyss 6/17/23
-				text = "Inflicts [color=" + this.Const.UI.Color.DamageValue + "]" + p.DamageRegularMin + "[/color] - [color=" + this.Const.UI.Color.DamageValue + "]" + p.DamageRegularMax + "[/color] damage"
+				text = "Inflicts [color=%damage%]" + p.DamageRegularMin + "[/color] - [color=%damage%]" + p.DamageRegularMax + "[/color] damage"
 			}
 		];
 	}
 
-	o.onAnySkillUsed <- function ( _skill, _targetEntity, _properties )
+	o.onUpdate = function (_properties)
 	{
-		if (_skill == this)
+		if (isUsable())
 		{
-			_properties.DamageRegularMin += 20;
-			_properties.DamageRegularMax += 40;
-			_properties.DamageArmorMult *= 0.7;
+			_properties.DamageRegularMin += 30;
+			_properties.DamageRegularMax += 50;
+			_properties.DamageArmorMult	*= 0.7;
 		}
-	}
-
-	o.onUpdate = function( _properties )
-	{
 	}
 
 	local onUse = o.onUse;

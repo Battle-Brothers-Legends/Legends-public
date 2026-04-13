@@ -47,6 +47,5 @@
 			"formerbeggar",
 			beggar
 		]);
-		::Const.LegendMod.extendVarsWithPronouns(_vars, this.m.Beggar.getGender(), "beggar");
 	}
 })

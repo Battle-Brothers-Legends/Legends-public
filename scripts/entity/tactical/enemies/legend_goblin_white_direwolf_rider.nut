@@ -6,7 +6,7 @@ this.legend_goblin_white_direwolf_rider <- this.inherit("scripts/entity/tactical
 		AssignAIAgent = "scripts/ai/tactical/agents/goblin_wolfrider_agent",
 		AssignEntityType = this.Const.EntityType.LegendGoblinWhiteDirewolfRider,
 		AssignActor = this.Const.Tactical.Actor.LegendGoblinWhiteDirewolfRider,
-		WolfScript = "scripts/entity/tactical/enemies/legend_white_warwolf",
+		WolfScript = "scripts/entity/tactical/legend_white_warwolf",
 		GoblinScript = "scripts/entity/tactical/enemies/legend_goblin_harrier"
 	},
 	function create()
@@ -25,7 +25,7 @@ this.legend_goblin_white_direwolf_rider <- this.inherit("scripts/entity/tactical
 		::Legends.Perks.grant(this, ::Legends.Perk.CripplingStrikes);
 		if(::Legends.isLegendaryDifficulty())
 		{
-			::Legends.Perks.grant(this, ::Legends.Perk.Nimble);
+			::Legends.Effects.grant(this, ::Legends.Effect.LegendFreedomOfMovement);
 			::Legends.Perks.grant(this, ::Legends.Perk.Dodge);
 		}
 		::Legends.Actives.grant(this, ::Legends.Active.WerewolfBite, function (_skill) {
@@ -163,7 +163,6 @@ this.legend_goblin_white_direwolf_rider <- this.inherit("scripts/entity/tactical
 		];
 		this.m.Items.equip(this.new("scripts/items/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
 		::Legends.Perks.grant(this, ::Legends.Perk.Nimble);
-		::Legends.Perks.grant(this, ::Legends.Perk.Dodge);
 		::Legends.Perks.grant(this, ::Legends.Perk.Relentless);
 		return true;
 	}

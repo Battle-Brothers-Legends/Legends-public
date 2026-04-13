@@ -65,13 +65,13 @@ this.legend_flagellate_skill <- this.inherit("scripts/skills/skill", {
 			id = 7,
 			type = "text",
 			icon = "ui/icons/vision.png",
-			text = "Has a range of [color=" + this.Const.UI.Color.PositiveValue + "]1" + "[/color] tile"
+			text = "Has a range of [color=%positive%]1" + "[/color] tile"
 		});
 		ret.push({
 			id = 8,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "Inflicts 3 bleeds each dealing a stacking [color=" + this.Const.UI.Color.DamageValue + "]" + dmg + "[/color] bleeding damage per turn, for 2 turns"
+			text = "Inflicts 3 bleeds each dealing a stacking [color=%damage%]" + dmg + "[/color] bleeding damage per turn, for 2 turns"
 		});
 		return ret;
 	}

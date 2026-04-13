@@ -75,7 +75,7 @@
 					{
 						id = 3,
 						type = "text",
-						text = "Costs [b][color=" + ::Const.UI.Color.PositiveValue + "] " + entity.getItems().getActionCost(currentItem != null ? [
+						text = "Costs [b][color=%positive%] " + entity.getItems().getActionCost(currentItem != null ? [
 							currentItem,
 							item
 						] : [
@@ -289,7 +289,7 @@
 					id = 1,
 					type = "hint",
 					icon = "ui/tooltips/warning.png",
-					text = "Not enough Action Points to change items ([b][color=" + this.Const.UI.Color.NegativeValue + "]" + _activeEntity.getItems().getActionCost([
+					text = "Not enough Action Points to change items ([b][color=%negative%]" + _activeEntity.getItems().getActionCost([
 						_item
 					]) + "[/color][/b] required)"
 				});
@@ -310,7 +310,7 @@
 							id = 1,
 							type = "hint",
 							icon = "ui/icons/mouse_right_button.png",
-							text = "Equip item ([b][color=" + this.Const.UI.Color.PositiveValue + "]" + _activeEntity.getItems().getActionCost([
+							text = "Equip item ([b][color=%positive%]" + _activeEntity.getItems().getActionCost([
 								_item,
 								_entity.getItems().getItemAtSlot(_item.getSlotType()),
 								_entity.getItems().getItemAtSlot(_item.getBlockedSlotType())
@@ -322,7 +322,7 @@
 						id = 2,
 						type = "hint",
 						icon = "ui/icons/mouse_right_button_ctrl.png",
-						text = "Drop item on ground ([b][color=" + this.Const.UI.Color.PositiveValue + "]" + _activeEntity.getItems().getActionCost([
+						text = "Drop item on ground ([b][color=%positive%]" + _activeEntity.getItems().getActionCost([
 							_item
 						]) + "[/color][/b] AP)"
 					});
@@ -337,6 +337,20 @@
 							icon = "ui/icons/mouse_right_button.png",
 							text = "Equip item"
 						});
+
+						if (_item.getSlotType() == this.Const.ItemSlot.Mainhand
+							&& _item.getBlockedSlotType() == null
+							&& _entity.getItems().getItemAtSlot(this.Const.ItemSlot.Mainhand) != null
+							&& !_entity.getItems().hasBlockedSlot(this.Const.ItemSlot.Offhand)
+							&& _entity.getItems().canDualWield(_entity, _item))
+						{
+							tooltip.push({
+								id = 1,
+								type = "hint",
+								icon = "ui/icons/mouse_right_button_shift.png",
+								text = "Equip item in offhand"
+							});
+						}
 					}
 
 					tooltip.push({
@@ -355,7 +369,7 @@
 						id = 1,
 						type = "hint",
 						icon = "ui/icons/mouse_right_button.png",
-						text = "Place item in bag ([b][color=" + this.Const.UI.Color.PositiveValue + "]" + _activeEntity.getItems().getActionCost([
+						text = "Place item in bag ([b][color=%positive%]" + _activeEntity.getItems().getActionCost([
 							_item
 						]) + "[/color][/b] AP)"
 					});
@@ -365,7 +379,7 @@
 					id = 2,
 					type = "hint",
 					icon = "ui/icons/mouse_right_button_ctrl.png",
-					text = "Drop item on ground ([b][color=" + this.Const.UI.Color.PositiveValue + "]" + _activeEntity.getItems().getActionCost([
+					text = "Drop item on ground ([b][color=%positive%]" + _activeEntity.getItems().getActionCost([
 						_item
 					]) + "[/color][/b] AP)"
 				});
@@ -402,7 +416,7 @@
 						id = 1,
 						type = "hint",
 						icon = "ui/icons/mouse_right_button.png",
-						text = "Equip item ([b][color=" + this.Const.UI.Color.PositiveValue + "]" + _activeEntity.getItems().getActionCost([
+						text = "Equip item ([b][color=%positive%]" + _activeEntity.getItems().getActionCost([
 							_item,
 							_entity.getItems().getItemAtSlot(_item.getSlotType()),
 							_entity.getItems().getItemAtSlot(_item.getBlockedSlotType())
@@ -416,7 +430,7 @@
 						id = 2,
 						type = "hint",
 						icon = "ui/icons/mouse_right_button_ctrl.png",
-						text = "Place item in bag ([b][color=" + this.Const.UI.Color.PositiveValue + "]" + _activeEntity.getItems().getActionCost([
+						text = "Place item in bag ([b][color=%positive%]" + _activeEntity.getItems().getActionCost([
 							_item
 						]) + "[/color][/b] AP)"
 					});
@@ -444,6 +458,21 @@
 					icon = "ui/icons/mouse_right_button.png",
 					text = "Equip item"
 				});
+
+				if (_item.getSlotType() == this.Const.ItemSlot.Mainhand
+					&& _item.getBlockedSlotType() == null
+					&& _entity != null
+					&& _entity.getItems().getItemAtSlot(this.Const.ItemSlot.Mainhand) != null
+					&& !_entity.getItems().hasBlockedSlot(this.Const.ItemSlot.Offhand)
+					&& _entity.getItems().canDualWield(_entity, _item))
+				{
+					tooltip.push({
+						id = 1,
+						type = "hint",
+						icon = "ui/icons/mouse_right_button_shift.png",
+						text = "Equip item in offhand"
+					});
+				}
 			}
 
 			if (_item.isChangeableInBattle() == true && _item.isAllowedInBag())
@@ -622,8 +651,16 @@
 		case "character-screen-inventory-list-module.stash":
 			local result = this.Stash.getItemByInstanceID(_itemId);
 
-			if (result != null)
-			{
+			if (result != null) {
+				if (entity == null) {
+					try {
+						local broID = this.World.State.m.CharacterScreen.m.SelectedBrotherID;
+						if (broID != null) {
+							entity = this.Tactical.getEntityByID(broID);
+						}
+					} catch (_e) {
+					}
+				}
 				return this.tactical_helper_addHintsToTooltip(null, entity, result.item, _itemOwner);
 			}
 
@@ -708,7 +745,7 @@
 				player.getTitle()
 			]
 		];
-		this.Const.LegendMod.extendVarsWithPronouns(vars, player.getGender());
+		::Const.LegendMod.extendVarsWithPronouns(vars, player);
 		local tooltip = this.buildTextFromTemplate(perk.Tooltip, vars);
 
 		if (perk != null)
@@ -878,7 +915,7 @@
 				if (bm > 0)
 				{
 					barterMult = barterMult + bm;
-					L[2] = L[2] + " [color=" + this.Const.UI.Color.PositiveValue + "]" + bm + "%[/color] Barter";
+					L[2] = L[2] + " [color=%positive%]" + bm + "%[/color] Barter";
 				}
 
 				brolist.push(L);
@@ -913,7 +950,7 @@
 					{
 						id = 2,
 						type = "description",
-						text = "The amount of coin your mercenary company has. Used to pay every mercenary daily at noon, as well as to hire new people and purchase equipment.\n\nYou pay out [color=" + this.Const.UI.Color.NegativeValue + "]" + dailyMoney + "[/color] crowns per day. Your [color=" + this.Const.UI.Color.PositiveValue + "]" + money + "[/color] crowns will last you for [color=" + this.Const.UI.Color.PositiveValue + "]" + time + "[/color] more days."
+						text = "The amount of coin your mercenary company has. Used to pay every mercenary daily at noon, as well as to hire new people and purchase equipment.\n\nYou pay out [color=%negative%]" + dailyMoney + "[/color] crowns per day. Your [color=%positive%]" + money + "[/color] crowns will last you for [color=%positive%]" + time + "[/color] more days."
 					}
 				];
 			}
@@ -928,7 +965,7 @@
 					{
 						id = 2,
 						type = "description",
-						text = "The amount of coin your mercenary company has. Used to pay every mercenary daily, as well as to hire new people and purchase equipment.\n\nYou pay out [color=" + this.Const.UI.Color.PositiveValue + "]" + dailyMoney + "[/color] crowns per day.\n\n[color=" + this.Const.UI.Color.NegativeValue + "]You have no more crowns to pay your fighters with! Earn some crowns fast or let some people go before they desert you one by one.[/color]"
+						text = "The amount of coin your mercenary company has. Used to pay every mercenary daily, as well as to hire new people and purchase equipment.\n\nYou pay out [color=%positive%]" + dailyMoney + "[/color] crowns per day.\n\n[color=%negative%]You have no more crowns to pay your fighters with! Earn some crowns fast or let some people go before they desert you one by one.[/color]"
 					}
 				];
 			}
@@ -956,7 +993,7 @@
 					id = id,
 					type = "hint",
 					icon = "ui/tooltips/money.png",
-					text = "[color=" + this.Const.UI.Color.NegativeValue + "]" + bro[0] + "[/color] " + bro[1] + " (" + bro[2] + ")"
+					text = "[color=%negative%]" + bro[0] + "[/color] " + bro[1] + " (" + bro[2] + ")"
 				});
 				id = ++id;
 			}
@@ -965,7 +1002,7 @@
 				id = id,
 				type = "text",
 				icon = "ui/icons/asset_moral_reputation.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+" + barterMult + "[/color]% Barter Multiplier"
+				text = "[color=%positive%]+" + barterMult + "[/color]% Barter Multiplier"
 			});
 			id = ++id;
 			return ret;
@@ -1054,7 +1091,7 @@
 					{
 						id = 2,
 						type = "description",
-						text = "The total amount of provisions you carry. The average mercenary requires 2 provisions per day, more on difficult terrain or when in reserve. Your mercenaries will eat the provisions closest to expiring first. Running out of provisions will lower morale and will eventually lead to your people deserting you before dying of starvation.\n\nYou use [color=" + this.Const.UI.Color.PositiveValue + "]" + dailyFood + "[/color] provisions per day. Your [color=" + this.Const.UI.Color.PositiveValue + "]" + food + "[/color] provisions will last you for [color=" + this.Const.UI.Color.PositiveValue + "]" + time + "[/color] more days at most. Keep in mind that individual provisions will eventually turn bad!"
+						text = "The total amount of provisions you carry. The average mercenary requires 2 provisions per day, more on difficult terrain or when in reserve. Your mercenaries will eat the provisions closest to expiring first. Running out of provisions will lower morale and will eventually lead to your people deserting you before dying of starvation.\n\nYou use [color=%positive%]" + dailyFood + "[/color] provisions per day. Your [color=%positive%]" + food + "[/color] provisions will last you for [color=%positive%]" + time + "[/color] more days at most. Keep in mind that individual provisions will eventually turn bad!"
 					}
 				];
 			}
@@ -1069,7 +1106,7 @@
 					{
 						id = 2,
 						type = "description",
-						text = "The total amount of provisions you carry. The average mercenary requires 2 provisions per day and more on difficult terrain. Your mercenaries will eat the provisions closest to expiring first. Running out of provisions will lower morale and will eventually lead to your people deserting you before dying of starvation.\n\nYou use [color=" + this.Const.UI.Color.PositiveValue + "]" + dailyFood + "[/color] provisions per day.\n\n[color=" + this.Const.UI.Color.NegativeValue + "]You are almost out of provisions to feed your company! Buy new provisions as fast as possible or your mercenaries will desert you one by one before they starve![/color]"
+						text = "The total amount of provisions you carry. The average mercenary requires 2 provisions per day and more on difficult terrain. Your mercenaries will eat the provisions closest to expiring first. Running out of provisions will lower morale and will eventually lead to your people deserting you before dying of starvation.\n\nYou use [color=%positive%]" + dailyFood + "[/color] provisions per day.\n\n[color=%negative%]You are almost out of provisions to feed your company! Buy new provisions as fast as possible or your mercenaries will desert you one by one before they starve![/color]"
 					}
 				];
 			}
@@ -1084,7 +1121,7 @@
 					{
 						id = 2,
 						type = "description",
-						text = "The total amount of provisions you carry. The average mercenary requires 2 provisions per day, more on difficult terrain or when in reserve. Your mercenaries will eat the provisions closest to expiring first. Running out of provisions will lower morale and will eventually lead to your people deserting you before dying of starvation.\n\nYou use [color=" + this.Const.UI.Color.PositiveValue + "]" + dailyFood + "[/color] provisions per day.\n\n[color=" + this.Const.UI.Color.NegativeValue + "]You have no more provisions to feed your company! Buy new provisions as fast as possible or your mercenaries will desert you one by one before they starve![/color]"
+						text = "The total amount of provisions you carry. The average mercenary requires 2 provisions per day, more on difficult terrain or when in reserve. Your mercenaries will eat the provisions closest to expiring first. Running out of provisions will lower morale and will eventually lead to your people deserting you before dying of starvation.\n\nYou use [color=%positive%]" + dailyFood + "[/color] provisions per day.\n\n[color=%negative%]You have no more provisions to feed your company! Buy new provisions as fast as possible or your mercenaries will desert you one by one before they starve![/color]"
 					}
 				];
 			}
@@ -1112,7 +1149,7 @@
 					id = id,
 					type = "text",
 					icon = "ui/icons/asset_daily_food.png",
-					text = "[color=" + this.Const.UI.Color.NegativeValue + "]" + bro[0] + "[/color] " + bro[1]
+					text = "[color=%negative%]" + bro[0] + "[/color] " + bro[1]
 				});
 				id = ++id;
 			}
@@ -1149,9 +1186,9 @@
 
 		case "assets.Supplies":
 			local desc = "Assorted tools and supplies to keep your weapons, armor, helmets, and shields in good condition. Running out of supplies may result in weapons breaking during combat and will leave your armor damaged and useless. More tools can be purchased in town or salvaged from equipment while camping.";
-			desc += "\nItems can be repaired while camping or out in the open. However, in that case, only one item can be repaired at a time per bro."
-			desc += "\nYou can carry [color=" + this.Const.UI.Color.PositiveValue + "]" + this.World.Assets.getMaxArmorParts() + "[/color] units at most.";
-			desc += "\nTool efficiency when repairing damaged items may be increased by recruiting specialized backgrounds. Tool efficiency is capped at [color=" + this.Const.UI.Color.NegativeValue + "]50%[/color].";
+			desc += "\nItems can be repaired while camping or out in the open. However, in that case, only one item can be repaired at a time per bro.";
+			desc += "\nYou can carry [color=%positive%]" + this.World.Assets.getMaxArmorParts() + "[/color] units at most.";
+			desc += "\nTool efficiency when repairing damaged items may be increased by recruiting specialized backgrounds. Tool efficiency is capped at [color=%negative%]50%[/color].";
 			local ret = [
 				{
 					id = 1,
@@ -1172,7 +1209,7 @@
 						id = 3,
 						type = "hint",
 						icon = "ui/icons/asset_supplies.png",
-						text = "[color=" + this.Const.UI.Color.PositiveValue + "]+" + broToolEfficiencyModifier + "%[/color] " + bro.getName()
+						text = "[color=%positive%]+" + broToolEfficiencyModifier + "%[/color] " + bro.getName()
 					});
 				}
 			}
@@ -1183,13 +1220,13 @@
 				id = 3,
 				type = "hint",
 				icon = "ui/icons/asset_supplies.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]"+ this.Math.round((1 - toolEfficiency) * 100) + "%[/color] Tool Efficiency"
+				text = "[color=%positive%]"+ this.Math.round((1 - toolEfficiency) * 100) + "%[/color] Tool Efficiency"
 			});
 			ret.push({
 				id = 4,
 				type = "hint",
 				icon = "ui/icons/asset_supplies.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]" + this.Math.round(toolEfficiency * 100) + "%[/color] Tool usage percent out"
+				text = "[color=%positive%]" + this.Math.round(toolEfficiency * 100) + "%[/color] Tool usage percent out"
 			});
 
 			return ret;
@@ -1248,7 +1285,7 @@
 					id = 3,
 					type = "text",
 					icon = "ui/icons/repair_item.png",
-					text = "Total repair modifier is [color=" + this.Const.UI.Color.PositiveValue + "]" + repair.Craft + " units per hour[/color]"
+					text = "Total repair modifier is [color=%positive%]" + repair.Craft + " units per hour[/color]"
 				}
 			];
 			local id = 4;
@@ -1259,7 +1296,7 @@
 					id = id,
 					type = "text",
 					icon = "ui/icons/special.png",
-					text = "[color=" + this.Const.UI.Color.PositiveValue + "]" + bro[0] + " units/hour [/color] " + bro[1] + " (" + bro[2] + ")"
+					text = "[color=%positive%]" + bro[0] + " units/hour [/color] " + bro[1] + " (" + bro[2] + ")"
 				});
 				id = ++id;
 			}
@@ -1288,26 +1325,26 @@
 
 			if (heal.MedicineMin > 0)
 			{
-				desc = desc + ("\n\nHealing up all your fighters will take between [color=" + this.Const.UI.Color.PositiveValue + "]" + heal.DaysMin + "[/color] and [color=" + this.Const.UI.Color.PositiveValue + "]" + heal.DaysMax + "[/color] days and requires between ");
+				desc = desc + ("\n\nHealing up all your fighters will take between [color=%positive%]" + heal.DaysMin + "[/color] and [color=%positive%]" + heal.DaysMax + "[/color] days and requires between ");
 
 				if (heal.MedicineMin <= this.World.Assets.getMedicine())
 				{
-					desc = desc + ("[color=" + this.Const.UI.Color.PositiveValue + "]");
+					desc = desc + ("[color=%positive%]");
 				}
 				else
 				{
-					desc = desc + ("[color=" + this.Const.UI.Color.NegativeValue + "]");
+					desc = desc + ("[color=%negative%]");
 				}
 
 				desc = desc + (heal.MedicineMin + "[/color] and ");
 
 				if (heal.MedicineMax <= this.World.Assets.getMedicine())
 				{
-					desc = desc + ("[color=" + this.Const.UI.Color.PositiveValue + "]");
+					desc = desc + ("[color=%positive%]");
 				}
 				else
 				{
-					desc = desc + ("[color=" + this.Const.UI.Color.NegativeValue + "]");
+					desc = desc + ("[color=%negative%]");
 				}
 
 				desc = desc + (heal.MedicineMax + "[/color] Medical Supplies.");
@@ -1328,7 +1365,7 @@
 
 			if (meds > 0)
 			{
-				desc = desc + (" You need [color=" + this.Const.UI.Color.NegativeValue + "]" + meds + "[/color] units each day to maintain your supply of flesh and bones for summoning.");
+				desc = desc + (" You need [color=%negative%]" + meds + "[/color] units each day to maintain your supply of flesh and bones for summoning.");
 			}
 
 			desc = desc + ("\n\nYou can carry " + this.World.Assets.getMaxMedicine() + " units at most.");
@@ -1362,7 +1399,7 @@
 					id = id,
 					type = "hint",
 					icon = "ui/icons/days_wounded.png",
-					text = bro[2] + " [color=" + this.Const.UI.Color.NegativeValue + "]" + bro[0] + "[/color] to [color=" + this.Const.UI.Color.NegativeValue + "]" + bro[1] + "[/color] days"
+					text = bro[2] + " [color=%negative%]" + bro[0] + "[/color] to [color=%negative%]" + bro[1] + "[/color] days"
 				});
 				id = ++id;
 			}
@@ -1400,58 +1437,52 @@
 				}
 
 				ret.push({
-					id = id,
+					id = id++,
 					type = "description",
-					text = "Next Roster Size increase at Renown: " + nextRenown
+					text = ::format("Next Roster Size increase at %d Renown, current: %d", nextRenown, ::World.Assets.getBusinessReputation())
 				});
-				id = ++id;
 			}
 			else
 			{
 				ret.push({
-					id = id,
+					id = id++,
 					type = "description",
-					text = "Maximum Roster Size achieved!"
+					text = ::format("Maximum Roster Size achieved! Current Renown: %d", ::World.Assets.getBusinessReputation())
 				});
-				id = ++id;
 			}
 
 			ret.push({
-				id = id,
+				id = id++,
 				type = "text",
 				text = "Terrain Movement Modifiers:"
 			});
-			id = ++id;
 
 			foreach( bro in data.TerrainModifiers )
 			{
 				if (bro[1] == 0) continue;
 				ret.push({
-					id = id,
+					id = id++,
 					type = "text",
-					text = bro[0] + " [color=" + this.Const.UI.Color.PositiveValue + "]" + bro[1] + "%[/color]"
+					text = bro[0] + " [color=%positive%]" + bro[1] + "%[/color]"
 				});
-				id = ++id;
 			}
 
 			ret.push({
-				id = id,
+				id = id++,
 				type = "hint",
 				text = "Company Strength: " + this.World.State.getPlayer().getStrength()
 			});
-			id = ++id;
 
 			local brothersLimit = 12;
 			local i = 0;
 			foreach( bro in data.Brothers )
 			{
 				ret.push({
-					id = id,
+					id = id++,
 					type = "hint",
 					icon = bro.Mood,
 					text = "L" + bro.Level + "  " + bro.Name + " (" + bro.Background + ")"
 				});
-				id = ++id;
 				i++;
 				if (i == brothersLimit) break;
 			}
@@ -1908,7 +1939,7 @@
 				{
 					id = 2,
 					type = "description",
-					text = "[color=" + this.Const.UI.Color.NegativeValue + "]WARNING:[/color] Deletes the selected campaign without any further warning."
+					text = "[color=%negative%]WARNING:[/color] Deletes the selected campaign without any further warning."
 				}
 			];
 
@@ -1950,7 +1981,7 @@
 				{
 					id = 2,
 					type = "description",
-					text = "[color=" + this.Const.UI.Color.NegativeValue + "]WARNING:[/color] Deletes the selected campaign without any further warning."
+					text = "[color=%negative%]WARNING:[/color] Deletes the selected campaign without any further warning."
 				}
 			];
 
@@ -2844,7 +2875,7 @@
 						id = 1,
 						type = "text",
 						icon = "ui/icons/days_wounded.png",
-						text = "Will heal in [color=" + this.Const.UI.Color.NegativeValue + "]" + entity.getDaysWounded() + "[/color] days"
+						text = "Will heal in [color=%negative%]" + entity.getDaysWounded() + "[/color] days"
 					});
 				}
 			}
@@ -2900,13 +2931,13 @@
 					id = 1,
 					type = "text",
 					icon = "ui/icons/regular_damage.png",
-					text = "Dealt [color=" + this.Const.UI.Color.PositiveValue + "]" + combatStats.DamageDealtHitpoints + "[/color] damage to hitpoints"
+					text = "Dealt [color=%positive%]" + combatStats.DamageDealtHitpoints + "[/color] damage to hitpoints"
 				});
 				result.push({
 					id = 2,
 					type = "text",
 					icon = "ui/icons/shield_damage.png",
-					text = "Dealt [color=" + this.Const.UI.Color.PositiveValue + "]" + combatStats.DamageDealtArmor + "[/color] damage to armor"
+					text = "Dealt [color=%positive%]" + combatStats.DamageDealtArmor + "[/color] damage to armor"
 				});
 			}
 
@@ -2933,13 +2964,13 @@
 					id = 1,
 					type = "text",
 					icon = "ui/icons/regular_damage.png",
-					text = "Received [color=" + this.Const.UI.Color.NegativeValue + "]" + combatStats.DamageReceivedHitpoints + "[/color] hitpoint damage"
+					text = "Received [color=%negative%]" + combatStats.DamageReceivedHitpoints + "[/color] hitpoint damage"
 				});
 				result.push({
 					id = 2,
 					type = "text",
 					icon = "ui/icons/shield_damage.png",
-					text = "Received [color=" + this.Const.UI.Color.NegativeValue + "]" + combatStats.DamageReceivedArmor + "[/color] armor damage"
+					text = "Received [color=%negative%]" + combatStats.DamageReceivedArmor + "[/color] armor damage"
 				});
 			}
 
@@ -3160,7 +3191,19 @@
 					id = 2,
 					type = "description",
 					text = "Show only armor, helmets and shields."
-				}
+				},
+				{
+					id = 3,
+					type = "hint",
+					icon = "ui/icons/mouse_left_button.png",
+					text = "Toggle this filter"
+				},
+				{
+					id = 4,
+					type = "hint",
+					icon = "ui/icons/mouse_right_button.png",
+					text = "Show advanced filter settings"
+				},
 			];
 
 		case "character-screen.right-panel-header-module.FilterMiscButton":
@@ -3421,7 +3464,7 @@
 					id = 9,
 					type = "text",
 					icon = "ui/tooltips/warning.png",
-					text = "[color=" + this.Const.UI.Color.NegativeValue + "]Unable to camp while travelling with other parties[/color]"
+					text = "[color=%negative%]Unable to camp while travelling with other parties[/color]"
 				});
 			}
 
@@ -3589,7 +3632,7 @@
 					{
 						id = 4,
 						type = "hint",
-						text = "Contract Category: [color=" + this.Const.UI.Color.PositiveValue + "]" + contract.getCategory() + "[/color]"
+						text = "Contract Category: [color=%positive%]" + contract.getCategory() + "[/color]"
 					}
 				);
 			}
@@ -3623,7 +3666,7 @@
 						id = 4,
 						type = "hint",
 						divider = "top", // the options are: "top" / "bottom" / "both". Works only for type = "hint"
-						text = "Contract Category: [color=" + this.Const.UI.Color.PositiveValue + "]" + contract.getCategory() + "[/color]"
+						text = "Contract Category: [color=%positive%]" + contract.getCategory() + "[/color]"
 					}
 				);
 			}
@@ -3648,7 +3691,7 @@
 				{
 					id = 3,
 					type = "hint",
-					text = "[color=" + this.Const.UI.Color.NegativeValue + "]You already have a contract![/color]"
+					text = "[color=%negative%]You already have a contract![/color]"
 				},
 				{
 					id = 4,
@@ -3663,7 +3706,7 @@
 						id = 5,
 						type = "hint",
 						divider = "top",
-						text = "Contract Category: [color=" + this.Const.UI.Color.PositiveValue + "]" + contract.getCategory() + "[/color]"
+						text = "Contract Category: [color=%positive%]" + contract.getCategory() + "[/color]"
 					}
 				);
 			}
@@ -4052,18 +4095,21 @@
 			];
 
 		case "world-town-screen.hire-dialog-module.KnownPerks":
-			return [
+			local ret = [
 				{
 					id = 1,
 					type = "title",
-					text = "Character Perks"
+					text = "Character Perk Groups"
 				},
 				{
 					id = 2,
 					type = "description",
-					text = entity.getBackground().getPerkTreeDescription()
+					text = "[color=%negative%]Click to view all perks[/color]"
 				}
 			];
+
+			entity.getBackground().extendKnownPerksTooltip(ret);
+			return ret;
 
 		case "world-town-screen.taxidermist-dialog-module.CraftButton":
 			return [
@@ -4131,7 +4177,7 @@
 				{
 					id = 2,
 					type = "description",
-					text = "Have your mercenary participate in a sparring fight with experienced opponents and various fighting styles. The bruises collected and lessons learned will result in [color=" + this.Const.UI.Color.PositiveValue + "]+50%[/color] Experience Gain for the next battle."
+					text = "Have your mercenary participate in a sparring fight with experienced opponents and various fighting styles. The bruises collected and lessons learned will result in [color=%positive%]+50%[/color] Experience Gain for the next battle."
 				}
 			];
 
@@ -4145,7 +4191,7 @@
 				{
 					id = 2,
 					type = "description",
-					text = "Have your mercenary learn valuable lessons and insights from a true veteran of the trade. The knowledge imparted will result in [color=" + this.Const.UI.Color.PositiveValue + "]+35%[/color] Experience Gain for the duration of three battles."
+					text = "Have your mercenary learn valuable lessons and insights from a true veteran of the trade. The knowledge imparted will result in [color=%positive%]+35%[/color] Experience Gain for the duration of three battles."
 				}
 			];
 
@@ -4159,7 +4205,7 @@
 				{
 					id = 2,
 					type = "description",
-					text = "Have your mercenary undergo a rigorous training regimen to shape them into a skilled fighter. The blood and sweat spent today will benefit your mercenary in the long run with [color=" + this.Const.UI.Color.PositiveValue + "]+20%[/color] Experience Gain for the duration of five battles."
+					text = "Have your mercenary undergo a rigorous training regimen to shape them into a skilled fighter. The blood and sweat spent today will benefit your mercenary in the long run with [color=%positive%]+20%[/color] Experience Gain for the duration of five battles."
 				}
 			];
 
@@ -4173,7 +4219,7 @@
 				{
 					id = 2,
 					type = "description",
-					text = "Utilize settlement facilities to train faster. The bruises collected and lessons learned will result in [color=" + this.Const.UI.Color.PositiveValue + "]1[/color] point towards training progress. Requires participating in 2 battles to be ready for next training."
+					text = "Utilize settlement facilities to train faster. The bruises collected and lessons learned will result in [color=%positive%]1[/color] point towards training progress. Requires participating in 2 battles to be ready for next training."
 				}
 			];
 		case "world-town-screen.training-dialog-module.Train101":
@@ -4186,7 +4232,7 @@
 				{
 					id = 2,
 					type = "description",
-					text = "Fence with a Freifechter to train faster. The bruises collected and lessons learned will result in up to [color=" + this.Const.UI.Color.PositiveValue + "]3[/color] points towards training progress. Requires participating in 5 battles to be ready for next training."
+					text = "Fence with a Freifechter to train faster. The bruises collected and lessons learned will result in up to [color=%positive%]3[/color] points towards training progress. Requires participating in 5 battles to be ready for next training."
 				}
 			];
 		case "world-town-screen.training-dialog-module.Train102":
@@ -4298,11 +4344,11 @@
 
 			if (this.Const.DLC.Lindwurm == true)
 			{
-				ret[1].text += "\n\n[color=" + this.Const.UI.Color.PositiveValue + "]This DLC has been installed.[/color]";
+				ret[1].text += "\n\n[color=%positive%]This DLC has been installed.[/color]";
 			}
 			else
 			{
-				ret[1].text += "\n\n[color=" + this.Const.UI.Color.NegativeValue + "]This DLC is missing. It\'s available for free on Steam and GOG! ALL DLC IS NEEDED TO PLAY LEGENDS![/color]";
+				ret[1].text += "\n\n[color=%negative%]This DLC is missing. It\'s available for free on Steam and GOG! ALL DLC IS NEEDED TO PLAY LEGENDS![/color]";
 			}
 
 			ret.push({
@@ -4329,11 +4375,11 @@
 
 			if (this.Const.DLC.Unhold == true)
 			{
-				ret[1].text += "\n\n[color=" + this.Const.UI.Color.PositiveValue + "]This DLC has been installed.[/color]";
+				ret[1].text += "\n\n[color=%positive%]This DLC has been installed.[/color]";
 			}
 			else
 			{
-				ret[1].text += "\n\n[color=" + this.Const.UI.Color.NegativeValue + "]This DLC is missing. It\'s available for purchase on Steam and GOG! ALL DLC IS NEEDED TO PLAY LEGENDS![/color]";
+				ret[1].text += "\n\n[color=%negative%]This DLC is missing. It\'s available for purchase on Steam and GOG! ALL DLC IS NEEDED TO PLAY LEGENDS![/color]";
 			}
 
 			ret.push({
@@ -4476,7 +4522,7 @@
 					id = id,
 					type = "text",
 					icon = "ui/icons/special.png",
-					text = "[color=" + this.Const.UI.Color.PositiveValue + "]" + bro[0] + " units/hour [/color] " + bro[1] + " (" + bro[2] + ")"
+					text = "[color=%positive%]" + bro[0] + " units/hour [/color] " + bro[1] + " (" + bro[2] + ")"
 				});
 				id = ++id;
 			}
@@ -4528,7 +4574,7 @@
 					id = id,
 					type = "text",
 					icon = "ui/icons/special.png",
-					text = "[color=" + this.Const.UI.Color.PositiveValue + "]" + bro[0] + " units/hour [/color] " + bro[1] + " (" + bro[2] + ")"
+					text = "[color=%positive%]" + bro[0] + " units/hour [/color] " + bro[1] + " (" + bro[2] + ")"
 				});
 				id = ++id;
 			}
@@ -4618,7 +4664,7 @@
 					id = 3,
 					type = "text",
 					icon = "ui/icons/asset_medicine.png",
-					text = "Total treatment modifier is [color=" + this.Const.UI.Color.PositiveValue + "]" + repair.Craft + " units per hour[/color]"
+					text = "Total treatment modifier is [color=%positive%]" + repair.Craft + " units per hour[/color]"
 				}
 			];
 			return ret;
@@ -4669,11 +4715,11 @@
 
 			if (this.Const.DLC.Wildmen == true)
 			{
-				ret[1].text += "\n\n[color=" + this.Const.UI.Color.PositiveValue + "]This DLC has been installed.[/color]";
+				ret[1].text += "\n\n[color=%positive%]This DLC has been installed.[/color]";
 			}
 			else
 			{
-				ret[1].text += "\n\n[color=" + this.Const.UI.Color.NegativeValue + "]This DLC is missing. It\'s available for purchase on Steam and GOG! ALL DLC IS NEEDED TO PLAY LEGENDS![/color]";
+				ret[1].text += "\n\n[color=%negative%]This DLC is missing. It\'s available for purchase on Steam and GOG! ALL DLC IS NEEDED TO PLAY LEGENDS![/color]";
 			}
 
 			ret.push({
@@ -4700,11 +4746,11 @@
 
 			if (this.Const.DLC.Desert == true)
 			{
-				ret[1].text += "\n\n[color=" + this.Const.UI.Color.PositiveValue + "]This DLC has been installed.[/color]";
+				ret[1].text += "\n\n[color=%positive%]This DLC has been installed.[/color]";
 			}
 			else
 			{
-				ret[1].text += "\n\n[color=" + this.Const.UI.Color.NegativeValue + "]This DLC is missing. It\'s available for purchase on Steam and GOG! ALL DLC IS NEEDED TO PLAY LEGENDS![/color]";
+				ret[1].text += "\n\n[color=%negative%]This DLC is missing. It\'s available for purchase on Steam and GOG! ALL DLC IS NEEDED TO PLAY LEGENDS![/color]";
 			}
 
 			ret.push({
@@ -4731,11 +4777,11 @@
 
 			if (this.Const.DLC.Paladins == true)
 			{
-				ret[1].text += "\n\n[color=" + this.Const.UI.Color.PositiveValue + "]This DLC has been installed.[/color]";
+				ret[1].text += "\n\n[color=%positive%]This DLC has been installed.[/color]";
 			}
 			else
 			{
-				ret[1].text += "\n\n[color=" + this.Const.UI.Color.NegativeValue + "]This DLC is missing. It\'s available for free on Steam and GOG! ALL DLC IS NEEDED TO PLAY LEGENDS![/color]";
+				ret[1].text += "\n\n[color=%negative%]This DLC is missing. It\'s available for free on Steam and GOG! ALL DLC IS NEEDED TO PLAY LEGENDS![/color]";
 			}
 
 			ret.push({

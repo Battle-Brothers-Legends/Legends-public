@@ -5,21 +5,13 @@ this.legend_armor_named_tabard <- this.inherit("scripts/items/legend_armor/legen
 	function create()
 	{
 		this.legend_named_armor_upgrade.create();
-		this.m.Type = this.Const.Items.ArmorUpgrades.Tabbard;
 		this.m.ID = "legend_armor.named_tabard";
+		this.m.Type = this.Const.Items.ArmorUpgrades.Tabbard;
 		this.m.Name = "";
-		this.m.NameList = [
-			"Kingly",
-			"Splendorous",
-			"Pageantry",
-			"Swanky",
-			"Noble",
-			"Elegance",
-			"Opulence",
-			"Excess",
-			"Resplendence",
-			"Glorious"
-		];
+		this.m.Description = "A luxurious striped tabard made of a sturdy material, reinforced at seams with pure gold.";
+		this.m.ArmorDescription = "Includes a luxurious striped tabard.";
+		this.m.ImpactSound = this.Const.Sound.ArmorLeatherImpact;
+		this.m.InventorySound = this.Const.Sound.ClothEquip;
 		this.m.Variants = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26];
 		this.m.Variant = this.m.Variants[this.Math.rand(0, this.m.Variants.len() - 1)];
 		this.updateVariant();
@@ -28,6 +20,7 @@ this.legend_armor_named_tabard <- this.inherit("scripts/items/legend_armor/legen
 		this.m.ConditionMax = 10;
 		this.m.StaminaModifier = 0;
 		this.randomizeValues();
+		this.m.NameList = ["Majesty","Splendor","Pageantry","Swank","Nobility","Elegance","Opulence","Excess","Resplendence","Glory"];
 	}
 
 	function randomizeValues()
@@ -39,10 +32,10 @@ this.legend_armor_named_tabard <- this.inherit("scripts/items/legend_armor/legen
 
 	function updateVariant()
 	{
-		local variant = this.m.Variant < 10 ? "0" + this.m.Variant : this.m.Variant;
-		this.m.SpriteBack = "bust_tabard_named_" + variant;
-		this.m.SpriteDamagedBack = "bust_tabard_named_" + variant + "_damaged";
-		this.m.SpriteCorpseBack = "bust_tabard_named_" + variant + "_dead";
+		local variant = this.m.Variant > 9 ? this.m.Variant : "0" + this.m.Variant;
+		this.m.SpriteBack = "tabard_named_" + variant;
+		this.m.SpriteDamagedBack = "tabard_named_" + variant + "_damaged";
+		this.m.SpriteCorpseBack = "tabard_named_" + variant + "_dead";
 		this.m.Icon = "legend_armor/icon_tabard_named_" + variant + ".png";
 		this.m.IconLarge = this.m.Icon;
 		this.m.OverlayIcon = "legend_armor/icon_tabard_named_" + variant + ".png";
@@ -57,7 +50,7 @@ this.legend_armor_named_tabard <- this.inherit("scripts/items/legend_armor/legen
 			id = 15,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "Increase the Resolve of the wearer by [color=" + this.Const.UI.Color.PositiveValue + "]+" + val + "%[/color]"
+			text = "Increase the Resolve of the wearer by [color=%positive%]+" + val + "%[/color]"
 		});
 		return result;
 	}
@@ -69,7 +62,7 @@ this.legend_armor_named_tabard <- this.inherit("scripts/items/legend_armor/legen
 			id = 15,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "Increase the Resolve of the wearer by [color=" + this.Const.UI.Color.PositiveValue + "]+" + val + "%[/color]"
+			text = "Increase the Resolve of the wearer by [color=%positive%]+" + val + "%[/color]"
 		});
 	}
 

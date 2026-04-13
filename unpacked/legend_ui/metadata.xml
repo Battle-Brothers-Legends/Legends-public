@@ -1,4 +1,10 @@
 <brush name="gfx/legend_ui.png" version="17" b1="2" b5="0">
+	<sprite id="effect_sanctify_01" ic="FFEFEEEF" img="effects\effect_sanctify_01.png" left="-15" right="16" />
+	<sprite id="effect_sanctify_02" ic="FFEFEEEF" img="effects\effect_sanctify_02.png" left="-15" right="16" />
+	<sprite id="effect_sanctify_03" ic="FFEFEEEF" img="effects\effect_sanctify_03.png" left="-15" right="16" />
+	<sprite id="effect_transform_01" width="80" height="80" img="effects\effect_transform_01.png" left="-39" right="37" top="-34" bottom="36" />
+	<sprite id="effect_transform_02" width="80" height="80" img="effects\effect_transform_02.png" left="-39" right="37" top="-34" bottom="36" />
+	<sprite id="effect_transform_03" width="80" height="80" img="effects\effect_transform_03.png" left="-39" right="37" top="-34" bottom="36" />
 	<sprite id="band_of_brothers_mini" ic="FF4C4B4D" img="skills\mini\band_of_brothers_mini.png" />
 	<sprite id="drums_of_war_mini" offsetY="35" ic="FF374B50" img="skills/mini/drums_of_war_mini.png" />
 	<sprite id="martial_march_mini" offsetY="35" ic="FF374B50" img="skills/mini/martial_march_mini.png" />
@@ -11,9 +17,9 @@
 	<sprite id="perk_spec_cultist_mini" offsetY="35" ic="FF374B50" img="skills/mini/perk_spec_cultist_mini.png" />
 	<sprite id="perk_spec_dagger_mini" offsetY="35" ic="FF374B50" img="skills/mini/perk_spec_dagger_mini.png" />
 	<sprite id="perk_spec_firearm_mini" offsetY="35" ic="FF374B50" img="skills/mini/perk_spec_firearm_mini.png" />
-	<sprite id="perk_spec_cultist_mini" offsetY="35" ic="FF374B50" img="skills/mini/perk_spec_longbow_mini.png" />
-	<sprite id="perk_spec_dagger_mini" offsetY="35" ic="FF374B50" img="skills/mini/perk_spec_raider_mini.png" />
-	<sprite id="perk_spec_firearm_mini" offsetY="35" ic="FF374B50" img="skills/mini/perk_spec_javelin_mini.png" />
+	<sprite id="perk_spec_longbow_mini" offsetY="35" ic="FF374B50" img="skills/mini/perk_spec_longbow_mini.png" />
+	<sprite id="perk_spec_raider_mini" offsetY="35" ic="FF374B50" img="skills/mini/perk_spec_raider_mini.png" />
+	<sprite id="perk_spec_javelin_mini" offsetY="35" ic="FF374B50" img="skills/mini/perk_spec_javelin_mini.png" />
 	<sprite id="perk_spec_instrument_staff_mini" offsetY="35" ic="FF374B50" img="skills/mini/perk_spec_instrument_staff_mini.png" />
 	<sprite id="perk_spec_mace_mini" offsetY="35" ic="FF374B50" img="skills/mini/perk_spec_mace_mini.png" />
 	<sprite id="perk_spec_militia_mini" offsetY="35" ic="FF374B50" img="skills/mini/perk_spec_militia_mini.png" />
@@ -28,12 +34,15 @@
 	<sprite id="perk_spec_woodsman_mini" offsetY="35" ic="FF374B50" img="skills/mini/perk_spec_woodsman_mini.png" />
 	<sprite id="perk_spec_xbow_mini" offsetY="35" ic="FF374B50" img="skills/mini/perk_spec_xbow_mini.png" />
 	<sprite id="legend_compromised_armor_mini" offsetY="35" ic="FF374B50" img="skills/mini/legend_compromised_armor_mini.png" />
+	<sprite id="perk_anchor_mini" offsetY="35" ic="FF374B50" img="skills/mini/perk_anchor_mini.png" />
 	<sprite id="shovel_01_mini" offsetY="35" ic="FF374B50" img="skills/mini/shovel_01_mini.png" />
 	<sprite id="slinger_spins_mini" offsetY="35" ic="FF374B50" img="skills/mini/slinger_spins_mini.png" />
+	<sprite id="patient_hunter_mini" offsetY="35" ic="FF374B50" img="skills/mini/patient_hunter_mini.png" />
 	<sprite id="legend_halberd_impale" ic="FF23165B" img="skills\legend_halberd_impale.png" />
 	<sprite id="legend_halberd_smite" ic="FF23165B" img="skills\legend_halberd_smite.png" />
 	<sprite id="cat_bite" ic="FF23165B" img="skills\cat_bite.png" />
 	<sprite id="stone_aim_square" ic="FF23165B" img="skills\stone_aim_square.png" />
+	<sprite id="stone_square" ic="FF23165B" img="skills\stone_square.png" />
 	<sprite id="coordinated_volleys_square" ic="FF23165B" img="skills\coordinated_volleys_square.png" />
 	<sprite id="mini_coordinated_volleys_circle" offsetY="35" ic="FF344955" img="skills\mini\mini_coordinated_volleys_circle.png" />
 	<sprite id="mini_mark_target" offsetY="35" ic="FF344955" img="skills\mini\mini_mark_target.png" />
@@ -161,7 +170,6 @@
 	<sprite id="active_kick" ic="FF2B206C" img="skills\kick_square.png" />
 	<sprite id="active_choke" ic="FF2B206C" img="skills\choke_square.png" />
 	<sprite id="active_grapple" ic="FF2B206C" img="skills\grapple_square.png" />
-	<sprite id="active_heartseeker" ic="FF2B206C" img="skills\active_heartseeker.png" />
 	<sprite id="mini_vengeance" ic ="322E2DFF" img="skills\mini\mini_vengeance.png" />
 	<sprite id="basilisk_peck" ic="60312BFF" img="skills\basilisk_peck.png" />
 	<sprite id="mini_second_wind" ic="4D3315FF" img="skills\mini\mini_second_wind.png" />
@@ -170,7 +178,7 @@
 	<sprite id="tackle_circle" ic="3E2929FF" img="skills\tackle_circle.png" />
 	<sprite id="holybluefire_square" ic="2E343FFF" img="skills\holybluefire_square.png" />
 	<sprite id="placeholder_circle" ic="2E343FFF" img="skills\placeholder_circle.png" />
-	<sprite id="placeholder_circle" ic="2E343FFF" img="skills\mini\mini_placeholder_circle.png" />
+	<sprite id="mini_placeholder_circle" ic="2E343FFF" img="skills\mini\mini_placeholder_circle.png" />
 	<sprite id="lightning_square" ic="2E343FFF" img="skills\lightning_square.png" />
 	<sprite id="dawg_circle" ic="2E343FFF" img="skills\dawg_circle.png" />
 	<sprite id="mini_dawg_circle" ic="2E343FFF" img="skills\mini\mini_dawg_circle.png" />
@@ -187,6 +195,25 @@
 	<sprite id="active_legend_heartseeker" ic="FF1B293C" img="skills\active_legend_heartseeker.png" />
 	<sprite id="active_legend_pry_armor_warhammer" ic="FF1B293C" img="skills\legend_active_pry_armor_warhammer.png" />
 	<sprite id="active_legend_pry_armor_polehammer" ic="FF1B293C" img="skills\legend_active_pry_armor_polehammer.png" />
+	<sprite id="active_throw_knife" ic="FF1B293C" img="skills\active_throw_knife.png" />
+	<sprite id="legend_enraged_hyena_bite_effect" ic="FF1B293C" img="skills\legend_enraged_hyena_bite_effect.png" />
+	<sprite id="legend_enraged_hyena_bite_effect_mini" ic="FF1B293C" img="skills\mini\legend_enraged_hyena_bite_effect_mini.png" />
+	<sprite id="feint" ic="FF1B293C" img="skills\feint.png" />
+	<sprite id="active_halfsword" ic="FF1B293C" img="skills\active_halfsword.png" />
+	<sprite id="active_mordhau" ic="FF1B293C" img="skills\active_mordhau.png" />
+	<sprite id="active_haftstrike" ic="FF1B293C" img="skills\active_haftstrike.png" />
+	<sprite id="active_ribcracker_woodmace" ic="FF1B293C" img="skills\active_ribcracker_woodmace.png" />
+	<sprite id="active_ribcracker_1hmace" ic="FF1B293C" img="skills\active_ribcracker_1hmace.png" />
+	<sprite id="active_ribcracker_2hmace" ic="FF1B293C" img="skills\active_ribcracker_2hmace.png" />
+	<sprite id="active_ribcracker_bonemace" ic="FF1B293C" img="skills\active_ribcracker_bonemace.png" />
+	<sprite id="active_ribcracker_polemace" ic="FF1B293C" img="skills\active_ribcracker_polemace.png" />
+	<sprite id="active_strafing_run" ic="FF1B293C" img="skills\active_strafing_run.png" />
+	<sprite id="unarmed_lunge_square" ic="FF1B293C" img="skills\unarmed_lunge_square.png" />
+	<sprite id="feint_mini" ic="FF1B293C" img="skills\mini\feint_mini.png" />
+	<sprite id="freedom_of_movement_circle_mini" ic="FF1B293C" img="skills\mini\freedom_of_movement_circle_mini.png" />
+	<sprite id="legend_flourish_effect_mini" ic="FF1B293C" img="skills\mini\legend_flourish_effect_mini.png" />
+	<sprite id="legend_double_swing" ic="FF1B293C" img="skills\legend_double_swing.png" />
+	<sprite id="sentry_inject" ic="FF1B293C" img="skills\sentry_inject.png" />
 	<!-- Orientation below -->
 
 
@@ -200,6 +227,7 @@
 	<sprite id="greenwood_schrat_small_orientation"  ic="FF22200A" img="orientation\greenwood_schrat_small_orientation.png" />
 	<sprite id="hexen_leader_orientation"  ic="FF22200A" img="orientation\hexen_leader_orientation.png" />
 	<sprite id="redback_spider_orientation"  ic="FF22200A" img="orientation\redback_spider_orientation.png" />
+	<sprite id="spider_cluster_orientation"  ic="FF22200A" img="orientation\spider_cluster_orientation.png" />
 	<sprite id="rock_unhold_orientation"  ic="FF22200A" img="orientation\rock_unhold_orientation.png" />
 	<sprite id="skin_ghoul_orientation"  ic="FF22200A" img="orientation\skin_ghoul_orientation.png" />
 	<sprite id="stollwurm_orientation"  ic="FF22200A" img="orientation\stollwurm_orientation.png" />
@@ -229,20 +257,21 @@
 	<sprite id="halberdier_orientation"  ic="FF22200A" img="orientation\halberdier_orientation.png" />
 	<sprite id="mummy_light_orientation"  ic="FF22200A" img="orientation\mummy_light_orientation.png" />
 	<sprite id="mummy_medium_orientation"  ic="FF22200A" img="orientation\mummy_medium_orientation.png" />
-	<sprite id="mummy_priest_orientation"  ic="FF22200A" img="orientation\mummy_medium_orientation.png" />
+	<sprite id="mummy_priest_orientation"  ic="FF22200A" img="orientation\mummy_priest_orientation.png" />
 	<sprite id="mummy_heavy_orientation" ic="FF22200A" img="orientation\mummy_heavy_orientation.png" />
 	<sprite id="mummy_queen_orientation"  ic="FF22200A" img="orientation\mummy_queen_orientation.png" />
-	<sprite id="mummy_queen_orientation" ic="FF22200A" img="orientation\mummy_medium_orientation.png" />
 	<sprite id="basilisk_drone_orientation" ic="FF22200A" img="orientation\basilisk_drone_orientation.png" />
 	<sprite id="dawg_orientation" ic="FF22200A" img="orientation\dawg_orientation.png" />
 	<sprite id="barbarian_pillager_orientation" ic="FF22200A" img="orientation\barbarian_pillager_orientation.png" />
 	<sprite id="barbarian_marauder_orientation" ic="FF22200A" img="orientation\barbarian_marauder_orientation.png" />
 	<sprite id="barbarian_runechosen_orientation" ic="FF22200A" img="orientation\barbarian_runechosen_orientation.png" />
+	<sprite id="goblin_berserker_orientation" ic="FF22200A" img="orientation\goblin_berserker_orientation.png" />
 	<sprite id="goblin_harrier_orientation" ic="FF22200A" img="orientation\goblin_harrier_orientation.png" />
 	<sprite id="goblin_plunderer_orientation" ic="FF22200A" img="orientation\goblin_plunderer_orientation.png" />
 	<sprite id="goblin_witchdoctor_orientation" ic="FF22200A" img="orientation\goblin_witchdoctor_orientation.png" />
 	<sprite id="goblin_tribe_defender_orientation" ic="FF22200A" img="orientation\goblin_tribe_defender_orientation.png" />
-	<sprite id="goblin_direwolf_rider" ic="FF22200A" img="orientation\goblin_direwolf_rider_orientation.png" />
-	<sprite id="goblin_whitedirewolf_rider" ic="FF22200A" img="orientation\goblin_whitedirewolf_rider_orientation.png" />
+	<sprite id="goblin_direwolf_rider_orientation" ic="FF22200A" img="orientation\goblin_direwolf_rider_orientation.png" />
+	<sprite id="goblin_white_direwolf_rider_orientation" ic="FF22200A" img="orientation\goblin_white_direwolf_rider_orientation.png" />
 	<sprite id="enraged_hyena_orientation" ic="FF22200A" img="orientation\enraged_hyena_orientation.png" />
+	<sprite id="fault_finder_orientation" ic="FF22200A" img="orientation\fault_finder_orientation.png" />
 </brush>

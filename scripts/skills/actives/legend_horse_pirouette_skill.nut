@@ -55,7 +55,7 @@ this.legend_horse_pirouette_skill <- this.inherit("scripts/skills/skill", {
 				id = 9,
 				type = "text",
 				icon = "ui/tooltips/warning.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]Can only be used when in an opponent\'s Zone of Control[/color]"
+				text = "[color=%negative%]Can only be used when in an opponent\'s Zone of Control[/color]"
 			});
 		}
 
@@ -65,7 +65,7 @@ this.legend_horse_pirouette_skill <- this.inherit("scripts/skills/skill", {
 				id = 9,
 				type = "text",
 				icon = "ui/tooltips/warning.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]Can not be used while rooted[/color]"
+				text = "[color=%negative%]Can not be used while rooted[/color]"
 			});
 		}
 

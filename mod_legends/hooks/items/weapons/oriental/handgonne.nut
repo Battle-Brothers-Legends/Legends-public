@@ -4,31 +4,35 @@
 	o.create = function() {
 		create();
 		this.m.ItemType = this.Const.Items.ItemType.Weapon | this.Const.Items.ItemType.RangedWeapon | this.Const.Items.ItemType.Defensive | this.Const.Items.ItemType.TwoHanded;
-		this.m.Variant = this.Math.rand(0, 2);
-		this.updateVariant();
+		this.m.Variants = [0, 1, 2];
+		this.setVariant(this.m.Variants[this.Math.rand(0, this.m.Variants.len() - 1)]);
 	}
 
 	o.updateVariant <- function() {
-		if (this.m.Variant == 0) {
-			return;
-		}
-		this.m.Icon = "weapons/ranged/handgonne_01_" + this.m.Variant + "_70x70.png";
-		this.m.IconLarge = "weapons/ranged/handgonne_01_" + this.m.Variant + ".png";
-		this.m.ArmamentIcon = "icon_handgonne_01_" + this.m.Variant + "_loaded";
+		local v = this.getVariant() == 0 ? "" : "_" + this.getVariant();
+		this.m.Icon = "weapons/ranged/handgonne_01" + v + "_70x70.png";
+		this.m.IconLarge = "weapons/ranged/handgonne_01" + v + ".png";
+		this.m.ArmamentIcon = "icon_handgonne_01" + v + "_loaded";
 	}
 
 	local setLoaded = o.setLoaded;
 	o.setLoaded = function (_l) {
 		setLoaded(_l);
-		if (this.m.Variant == 0) {
-			return;
-		}
+		local v = this.getVariant() == 0 ? "" : "_" + this.getVariant();
 		if (_l) {
-			this.m.ArmamentIcon = "icon_handgonne_01_" + this.m.Variant + "_loaded";
+			this.m.ArmamentIcon = "icon_handgonne_01" + v + "_loaded";
 		} else {
-			this.m.ArmamentIcon = "icon_handgonne_01_" + this.m.Variant + "_empty";
+			this.m.ArmamentIcon = "icon_handgonne_01" + v + "_empty";
 		}
 		this.updateAppearance();
+	}
+
+	local onEquip = o.onEquip;
+	o.onEquip = function ()
+	{
+		onEquip();
+		::Legends.Actives.grant(this, ::Legends.Active.LegendLineThemUp);
+		::Legends.Actives.grant(this, ::Legends.Active.ReloadHandgonne);
 	}
 
 	o.onCombatFinished = function ()

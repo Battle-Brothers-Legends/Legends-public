@@ -36,6 +36,9 @@ this.legend_grisly_scythe <- this.inherit("scripts/items/weapons/weapon", {
 			_skill.m.IsScytheCleave = true;
 		}.bindenv(this));
 		::Legends.Actives.grant(this, ::Legends.Active.Reap);
+		::Legends.Actives.grant(this, ::Legends.Active.Decapitate, function (_skill) {
+			_skill.m.IsScytheDecapitate = true;
+		}.bindenv(this));
 	}
 
 	function onDamageDealt( _target, _skill, _hitInfo )

@@ -66,55 +66,55 @@ this.legend_donkey_background <- this.inherit("scripts/skills/backgrounds/charac
 		];
 		this.m.CustomPerkTree = [
 			[
-				::Legends.Perk.Colossus,
-				::Legends.Perk.NineLives,
-				::Legends.Perk.Pathfinder,
-				::Legends.Perk.Steadfast,
-				::Legends.Perk.BagsAndBelts,
-				::Legends.Perk.Recover
+				this.Legends.Perk.Colossus,
+				this.Legends.Perk.NineLives,
+				this.Legends.Perk.Pathfinder,
+				this.Legends.Perk.Steadfast,
+				this.Legends.Perk.BagsAndBelts,
+				this.Legends.Perk.Recover
 			],
 			[
-				::Legends.Perk.Dodge,
-				::Legends.Perk.HoldOut,
-				// ::Legends.Perk.LegendComposure,
-				::Legends.Perk.LegendAlert,
-				::Legends.Perk.LegendOnslaught,
-				::Legends.Perk.SteelBrow
+				this.Legends.Perk.Dodge,
+				this.Legends.Perk.HoldOut,
+				// this.Legends.Perk.LegendComposure,
+				this.Legends.Perk.LegendAlert,
+				this.Legends.Perk.LegendOnslaught,
+				this.Legends.Perk.SteelBrow,
+				this.Legends.Perk.LegendRecuperation
 			],
 			[
-				::Legends.Perk.Anticipation,
-				::Legends.Perk.Rotation,
-				::Legends.Perk.LegendPeaceful,
-				::Legends.Perk.Taunt,
-				::Legends.Perk.LegendSprint
+				this.Legends.Perk.Anticipation,
+				this.Legends.Perk.Rotation,
+				this.Legends.Perk.LegendPeaceful,
+				this.Legends.Perk.Taunt,
+				// this.Legends.Perk.LegendSprint
 			],
 			[
-				::Legends.Perk.LegendEfficientPacking,
-				::Legends.Perk.LegendAmmoBinding,
-				::Legends.Perk.LegendMedPackages,
-				::Legends.Perk.LegendToolsDrawers
-
+				this.Legends.Perk.LegendEfficientPacking,
+				this.Legends.Perk.LegendAmmoBinding,
+				this.Legends.Perk.LegendMedPackages,
+				this.Legends.Perk.LegendToolsDrawers
 			],
 			[
-				::Legends.Perk.LoneWolf,
-				::Legends.Perk.Footwork,
-				::Legends.Perk.LegendLastStand,
-				::Legends.Perk.LegendBlendIn,
-				::Legends.Perk.Underdog
+				this.Legends.Perk.LoneWolf,
+				this.Legends.Perk.Footwork,
+				this.Legends.Perk.LegendLastStand,
+				this.Legends.Perk.LegendBlendIn,
+				this.Legends.Perk.Underdog
 			],
 			[
-				::Legends.Perk.Nimble,
-				::Legends.Perk.LegendRebound,
-				::Legends.Perk.LegendPacifist,
-				::Legends.Perk.LegendSkillfulStacking,
-				::Legends.Perk.LegendMuscularity,
+				this.Legends.Perk.Nimble,
+				this.Legends.Perk.LegendRebound,
+				this.Legends.Perk.LegendPacifist,
+				this.Legends.Perk.LegendSkillfulStacking,
+				this.Legends.Perk.LegendMuscularity,
 			],
 			[
-				::Legends.Perk.Fearsome,
-				// ::Legends.Perk.Stalwart,
-				::Legends.Perk.LegendAmmoBundles,
-				::Legends.Perk.LegendMedIngredients,
-				::Legends.Perk.LegendToolsSpares,
+				this.Legends.Perk.Fearsome,
+				// this.Legends.Perk.Stalwart,
+				this.Legends.Perk.LegendAmmoBundles,
+				this.Legends.Perk.LegendMedIngredients,
+				this.Legends.Perk.LegendToolsSpares,
 			],
 			[],
 			[],
@@ -136,12 +136,14 @@ this.legend_donkey_background <- this.inherit("scripts/skills/backgrounds/charac
 	function getTooltip()
 	{
 		local ret = this.character_background.getTooltip();
+		local stashModifier = this.m.Modifiers.Stash + this.getModifier();
+
 		ret.push(
 			{
 				id = 13,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "Donkeys provide [color=" + this.Const.UI.Color.PositiveValue + "]+" + this.m.Modifiers.Stash + "[/color] stash space, [color=" + this.Const.UI.Color.PositiveValue + "]+" + this.m.Modifiers.Ammo + "[/color] maximum ammunition storage, [color=" + this.Const.UI.Color.PositiveValue + "]+" + this.m.Modifiers.Meds + "[/color] maximum medicine capacity,  [color=" + this.Const.UI.Color.PositiveValue + "]+" + this.m.Modifiers.ArmorParts + "[/color] maximum armor parts. These can be increased with perks (may take a moment for the increases to register). "
+				text = "Donkeys provide [color=%positive%]+" + stashModifier + "[/color] stash space, [color=%positive%]+" + this.m.Modifiers.Ammo + "[/color] maximum ammunition storage, [color=%positive%]+" + this.m.Modifiers.Meds + "[/color] maximum medicine capacity,  [color=%positive%]+" + this.m.Modifiers.ArmorParts + "[/color] maximum armor parts. These can be increased with perks (may take a moment for the increases to register). "
 			}
 		);
 		return ret;
@@ -193,7 +195,7 @@ this.legend_donkey_background <- this.inherit("scripts/skills/backgrounds/charac
 
 	function onUpdate(_properties)
 	{
-		if (::World.Statistics.getFlags().get("HasVeterinarian"))
+		if (::World.Assets.m.HasVeterinarian > 0)
 		{
 			_properties.HitpointsMult *= 1.25;
 		}
@@ -201,18 +203,21 @@ this.legend_donkey_background <- this.inherit("scripts/skills/backgrounds/charac
 
 	function getModifier()
 	{
-		return ::World.Statistics.getFlags().get("HasVeterinarian") ? 12 : 0;
+		return ::World.Assets.m.HasVeterinarian > 0 ? 12 : 0;
 	}
 
 	function onAdded()
 	{
-		if (m.IsNew)
-			getContainer().getActor().getFlags().set("donkey", true);
-
+		if (this.m.IsNew) {
+			this.getContainer().getActor().getFlags().set("donkey", true);
+			this.m.Container.add(this.new("scripts/skills/injury_permanent/legend_donkey_injury"));
+			::Legends.Traits.grant(this, ::Legends.Trait.LegendDonkeyAppetite);
+		}
+		if (!this.m.Container.hasActive(::Legends.Active.LegendDonkeyKick))
+		{
+			::Legends.Actives.grant(this, ::Legends.Active.LegendDonkeyKick);
+		}
 		this.character_background.onAdded();
-		this.m.Container.add(this.new("scripts/skills/injury_permanent/legend_donkey_injury"));
-		::Legends.Actives.grant(this, ::Legends.Active.LegendDonkeyKick);
-		::Legends.Traits.grant(this, ::Legends.Trait.LegendDonkeyAppetite);
 	}
 
 

@@ -6,8 +6,8 @@ this.legend_broken_spatha <- this.inherit("scripts/items/weapons/weapon", {
 		this.m.ID = "weapon.legend_broken_spatha";
 		this.m.Name = "Broken Ancient Royal Sword";
 		this.m.Description = "A broken and heavy sword that has snapped despite it\'s durability. The damage of this blade has only converted it into a killing tool of a different form.";
-		this.m.IconLarge = "weapons/melee/ancient_broken_sword_01_2.png";
-		this.m.Icon = "weapons/melee/ancient_broken_sword_01_2_70x70.png";
+		this.m.IconLarge = "weapons/melee/legend_broken_spatha_01.png";
+		this.m.Icon = "weapons/melee/legend_broken_spatha_01_70x70.png";
 		this.m.WeaponType = this.Const.Items.WeaponType.Dagger;
 		this.m.SlotType = this.Const.ItemSlot.Mainhand;
 		this.m.ItemType = this.Const.Items.ItemType.Weapon | this.Const.Items.ItemType.MeleeWeapon | this.Const.Items.ItemType.OneHanded;
@@ -15,7 +15,7 @@ this.legend_broken_spatha <- this.inherit("scripts/items/weapons/weapon", {
 		this.m.AddGenericSkill = true;
 		this.m.ShowQuiver = false;
 		this.m.ShowArmamentIcon = true;
-		this.m.ArmamentIcon = "icon_ancient_sword_02_2";
+		this.m.ArmamentIcon = "icon_legend_broken_spatha";
 		this.m.Value = 800;
 		this.m.Condition = 42.0;
 		this.m.ConditionMax = 42.0;
@@ -23,8 +23,7 @@ this.legend_broken_spatha <- this.inherit("scripts/items/weapons/weapon", {
 		this.m.RegularDamage = 35;
 		this.m.RegularDamageMax = 45;
 		this.m.ArmorDamageMult = 0.7;
-		this.m.DirectDamageMult = 0.0;
-		this.m.ShieldDamage = 5;
+		this.m.DirectDamageMult = 0.2;
 	}
 
 	function onEquip()

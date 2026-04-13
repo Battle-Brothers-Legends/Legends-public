@@ -55,29 +55,29 @@
 		this.m.Modifiers.Scout = this.Const.LegendMod.ResourceModifiers.Scout[2];
 		this.m.PerkTreeDynamic = {
 			Weapon = [
-				this.Const.Perks.DaggerTree,
-				this.Const.Perks.SwordTree,
-				this.Const.Perks.PolearmTree,
-				this.Const.Perks.CrossbowTree
+				::Const.Perks.DaggerTree,
+				::Const.Perks.SwordTree,
+				::Const.Perks.PolearmTree,
+				::Const.Perks.CrossbowTree
 			],
 			Defense = [
-				this.Const.Perks.ClothArmorTree,
-				this.Const.Perks.LightArmorTree
+				::Const.Perks.ClothArmorTree,
+				::Const.Perks.LightArmorTree
 			],
 			Traits = [
-				this.Const.Perks.ViciousTree,
-				this.Const.Perks.DeviousTree,
-				this.Const.Perks.LargeTree,
-				this.Const.Perks.FastTree
+				::Const.Perks.ViciousTree,
+				::Const.Perks.DeviousTree,
+				::Const.Perks.LargeTree,
+				::Const.Perks.FastTree
 			],
 			Enemy = [
-				this.Const.Perks.NoblesTree,
-				this.Const.Perks.MercenaryTree
+				::Const.Perks.CivilizationTree,
+				::Const.Perks.OutlawTree
 			],
 			Profession = [],
 			Class = [],
 			Magic = [
-				this.Const.Perks.AssassinMagicTree
+				::Const.Perks.AssassinMagicTree
 			]
 		}
 	}
@@ -98,7 +98,7 @@
 		this.m.HairColors = this.Const.HairColors.Young;
 		this.m.Beards = null;
 		this.m.BeardChance = 0;
-		this.m.Bodies = this.Const.Bodies.AllFemale;
+		this.m.Bodies = this.Const.Bodies.NorthernFemale;
 		this.addBackgroundType(this.Const.BackgroundType.Female);
 		this.m.GoodEnding = "Always a risk taker, you accepted %name% into the %companyname%\'s ranks despite her being a killer on the run. It worked in your favor as she proved herself an able and brave sellsword. As far as you know, she is still with the company, thoroughly enjoying every \'business\' opportunity it affords her.";
 		this.m.BadEnding = "While many doubted the risk of hiring a killer on the run such as %name%, the woman did prove herself a very capable sellsword. Unfortunately, an old life never trails far behind and bounty hunters kidnapped her in the night. You can find her skeleton squatting in a gibbet fifty feet in the air.";
@@ -113,7 +113,7 @@
 				id = 11,
 				type = "text",
 				icon = "ui/icons/chance_to_hit_head.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+10%[/color] Chance To Hit Head"
+				text = "[color=%positive%]+10%[/color] Chance To Hit Head"
 			}
 		);
 		return ret;

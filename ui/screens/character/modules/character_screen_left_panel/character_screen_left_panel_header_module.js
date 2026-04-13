@@ -477,6 +477,40 @@ CharacterScreenLeftPanelHeaderModule.prototype.createDismissDialogContent = func
 	{
 		self.mPayDismissalWage = checkbox.prop('checked') === true;
 	});
+	
+	// --- 
+	
+	var HideDismissOption = MSU.getSettingValue("mod_legends", "HideDismissOption");
+	if (!HideDismissOption)
+	{
+		var obituaryPackage = $('<div class="retirement-package"/>');
+		result.append(obituaryPackage);
+
+		var obituaryCheckbox = $('<input type="checkbox" class="obituary-checkbox" id="obituary" name="obituary"/>');
+		obituaryPackage.append(obituaryCheckbox);
+
+		var obituaryLabel = $('<label class="blub text-font-medium font-color-subtitle font-style-normal" for="obituary">Add to obituary?</label>');
+		obituaryPackage.append(obituaryLabel);
+
+		obituaryLabel.bindTooltip({
+			contentType: 'ui-element',
+			elementId: "AddToObituary"
+		});
+
+		obituaryCheckbox.iCheck({
+			checkboxClass: 'icheckbox_flat-orange',
+			radioClass: 'iradio_flat-orange',
+			increaseArea: '0%'
+		});
+
+		obituaryCheckbox.on('ifChecked ifUnchecked', null, this, function ()
+		{
+			self.mAddToObituary = obituaryCheckbox.prop('checked') === true;
+		});
+
+		// Layout shift so button doesn't get pushed down too far
+		obituaryPackage.css('margin-bottom', '-2.5rem');
+	}
 
 	return result;
 };

@@ -3,7 +3,7 @@ this.legend_disbanded_troops_situation_encounter <- this.inherit("scripts/encoun
 
     },
     function create() {
-        this.createScreens();
+	    this.encounter.create();
         this.m.Type = "encounter.legend_disbanded_troops_situation";
         this.m.Name = ::Const.Strings.randomCityEncounterName();
     }
@@ -28,8 +28,12 @@ this.legend_disbanded_troops_situation_encounter <- this.inherit("scripts/encoun
     }
 
     function isValid(_settlement) {
+	    if (::World.Assets.getOrigin().getID() == "scenario.legend_risen_legion")
+		    return false;
+
         if (!_settlement.hasSituation("situation.disbanded_troops"))
             return false;
+
         return !this.isOnCooldown();
     }
 })

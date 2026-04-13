@@ -2,20 +2,51 @@ this.perk_legend_barrage <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		::Const.Perks.setup(this.m, ::Legends.Perk.LegendBarrage);
-		this.m.Type = this.Const.SkillType.Perk;
-		this.m.Order = this.Const.SkillOrder.Perk;
-		this.m.IsActive = false;
-		this.m.IsStacking = false;
-		this.m.IsHidden = false;
+		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendBarrage);
 	}
 
-	function onUpdate(_properties)
+	function onTargetHit( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor )
 	{
-		local item = this.getContainer().getActor().getItems().getItemAtSlot(this.Const.ItemSlot.Mainhand);
-		if (item != null && item.isWeaponType(this.Const.Items.WeaponType.Sling))
+		if (_skill == null)
+			return;
+
+		if (::Legends.S.skillEntityAliveCheck(_targetEntity))
+			return false;
+
+		if (_targetEntity.isNonCombatant())
+			return false;
+
+		local headshot = _bodyPart == this.Const.BodyPart.Head;
+		local user = this.getContainer().getActor();
+
+		if (_skill.getID() == ::Legends.Actives.getID(::Legends.Active.SlingStone))
 		{
-			_properties.HitChanceAdditionalWithEachTile += 2;
+			if (headshot)
+				this.grantEffect(::Legends.Effect.Debilitated, "debilitated", _targetEntity, user)
+			else
+				this.grantEffect(::Legends.Effect.LegendBaffled, "baffled", _targetEntity, user)
+
 		}
+
+		if (!headshot)
+			return;
+
+		if (_skill.getID() == ::Legends.Actives.getID(::Legends.Active.LegendSlingHeavyStone) && !_targetEntity.getCurrentProperties().IsImmuneToStun)
+		{
+			this.grantEffect(::Legends.Effect.Stunned, "stunned", _targetEntity, user)
+		}
+
+		if (_skill.getID() == ::Legends.Actives.getID(::Legends.Active.FireHandgonne))
+		{
+			this.grantEffect(::Legends.Effect.Shellshocked, "shellshocked", _targetEntity, user)
+		}
+	}
+
+	function grantEffect(_effect, _string, _targetEntity, _user)
+	{
+		local targetTile = _targetEntity.getTile();
+		::Legends.Effects.grant(_targetEntity, _effect);
+		if (!_user.isHiddenToPlayer() && targetTile.IsVisibleForPlayer)
+			this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(_user) + " struck a hit that leaves " + this.Const.UI.getColorizedEntityName(_targetEntity) + " " + _string);
 	}
 });

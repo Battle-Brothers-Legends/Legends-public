@@ -7,9 +7,9 @@
 	o.create = function ()
 	{
 		create();
+		this.m.WeaponType = ::Const.Items.WeaponType.Sword;
 		this.m.Variants = [1, 2, 3, 4];
-		this.m.Variant = this.m.Variants[this.Math.rand(0, this.m.Variants.len() - 1)];
-		this.updateVariant();
+		this.setVariant(this.m.Variants[::Math.rand(0, this.m.Variants.len() - 1)]);
 	}
 
 	o.getTooltip <- function ()
@@ -21,7 +21,7 @@
 				id = 12,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "Lowered Injury Threshold by [color=" + this.Const.UI.Color.PositiveValue + "]" + this.m.EffectChanceOrBonus + "%[/color]"
+				text = "Lowered Injury Threshold by [color=%positive%]" + this.m.EffectChanceOrBonus + "%[/color]"
 			});
 		}
 		return result;

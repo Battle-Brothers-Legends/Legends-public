@@ -50,8 +50,9 @@ this.legend_free_company_archer <- this.inherit("scripts/entity/tactical/legend_
 	function assignRandomEquipment()
 	{
 		this.getItems().equip(::Const.World.Common.pickItem([
-			[19, "weapons/short_bow"],
-			[1, "weapons/hunting_bow"]
+			[9, "weapons/short_bow"],
+			[9, "weapons/legend_sturdy_sling"],
+			[2, "weapons/hunting_bow"]
 		], "scripts/items/"));
 
 		this.getItems().equip(this.new("scripts/items/ammo/quiver_of_arrows"));

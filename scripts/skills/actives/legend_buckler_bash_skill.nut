@@ -49,13 +49,13 @@ this.legend_buckler_bash_skill <- this.inherit("scripts/skills/skill", {
 			id = 6,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "Inflicts [color=" + this.Const.UI.Color.DamageValue + "]" + fatPerHit + "[/color] extra fatigue"
+			text = "Inflicts [color=%damage%]" + fatPerHit + "[/color] extra fatigue"
 		});
 		ret.push({
 			id = 7,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "Has a [color=" + this.Const.UI.Color.PositiveValue + "]100%[/color] chance to baffle on a hit"
+			text = "Has a [color=%positive%]100%[/color] chance to baffle on a hit"
 		});
 		return ret;
 	}

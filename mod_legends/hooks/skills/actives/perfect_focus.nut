@@ -31,7 +31,13 @@
 				id = 7,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "The Action Point cost for using skills is reduced by half for the remainder of this round, but at +75% fatigue cost"
+				text = "All skills cost [color=%positive%]50%[/color] less Action Points, rounded down"
+			},
+			{
+				id = 8,
+				type = "text",
+				icon = "ui/icons/fatigue.png",
+				text = "All skills cost [color=%positive%]75%[/color] more fatigue"
 			}
 		];
 		return ret;

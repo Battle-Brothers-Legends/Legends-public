@@ -11,9 +11,9 @@
 
 	local create = o.create;
 	o.create = function()
-	{	
+	{
 		create();
-		this.m.Description = "With the second hand free, this character can get a firm double grip on his weapon and inflicts additional damage and penetration. Armor penetration will scale by [color=" + this.Const.UI.Color.PositiveValue + "]25%[/color] of Melee Skill and Hand Crossbows allow double gripping";
+		this.m.Description = "With the second hand free, this character can get a firm double grip on his weapon and inflicts additional damage and penetration. Armor penetration will scale by [color=%positive%]25%[/color] of Melee Skill and Hand Crossbows allow double gripping";
 	}
 
 	local getTooltip = o.getTooltip;
@@ -25,7 +25,7 @@
 			id = 6,
 			type = "text",
 			icon = "ui/icons/direct_damage.png",
-			text = "[color=" + this.Const.UI.Color.PositiveValue + "]"+ bonus + "%[/color] of any damage ignores armor"
+			text = "[color=%positive%]"+ bonus + "%[/color] of any damage ignores armor"
 		});
 
 		return tooltip;
@@ -78,21 +78,23 @@
 
 	o.canDoubleGrip = function ()
 	{
+		local actor = this.getContainer().getActor();
 		local missinghand = this.m.Container.getSkillByID("injury.missing_hand");
 		local newhand = ::Legends.Traits.get(this, ::Legends.Trait.LegendProstheticHand);
-		local main = this.getContainer().getActor().getItems().getItemAtSlot(this.Const.ItemSlot.Mainhand);
-		local off = this.getContainer().getActor().getItems().getItemAtSlot(this.Const.ItemSlot.Offhand);
+		local main = actor.getItems().getItemAtSlot(this.Const.ItemSlot.Mainhand);
+		local off = actor.getItems().getItemAtSlot(this.Const.ItemSlot.Offhand);
 		local hasXbow = off != null && ::MSU.String.endsWith(off.getID(), "_hand_crossbow");
-		return (missinghand == null || newhand != null) && main != null && (off == null || hasXbow) && main.isDoubleGrippable();
+		local hasNet = off != null && ::MSU.String.endsWith(off.getID(), "_net") && actor.getCurrentProperties().IsSpecializedInNets;
+		return (missinghand == null || newhand != null) && main != null && (off == null || hasXbow || hasNet) && main.isDoubleGrippable();
 	}
 
 	local onUpdate = o.onUpdate;
-	o.onUpdate <- function ( _properties )
+	o.onUpdate = function ( _properties )
 	{
 		onUpdate(_properties);
 		if (this.canDoubleGrip())
 		{
-			_properties.DamageDirectAdd += this.Math.floor(_properties.MeleeSkill * 0.25);
+			_properties.DamageDirectAdd += this.Math.floor(_properties.MeleeSkill * 0.25) * 0.01;
 		}
 	}
 });

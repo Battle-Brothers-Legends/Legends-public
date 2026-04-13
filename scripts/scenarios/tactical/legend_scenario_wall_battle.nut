@@ -63,7 +63,7 @@ this.legend_scenario_wall_battle <- this.inherit("scripts/scenarios/tactical/sce
 		entity.setScenarioValues();
 		items = entity.getItems();
 		items.equip(this.Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Standard.nasal_helmet]]));
-		items.equip(this.new("scripts/items/armor/padded_surcoat"));
+		items.equip(this.new("scripts/items/legend_armor/cloth/legend_armor_quilted_aketon"));
 		items.equip(this.new("scripts/items/weapons/boar_spear"));
 		items.equip(this.new("scripts/items/shields/wooden_shield"));
 		entity = this.spawnEntity("scripts/entity/tactical/player", 3, 7, 4, 7);
@@ -83,7 +83,7 @@ this.legend_scenario_wall_battle <- this.inherit("scripts/scenarios/tactical/sce
 		entity.setScenarioValues();
 		items = entity.getItems();
 		items.equip(this.Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Standard.hood]]));
-		items.equip(this.new("scripts/items/armor/padded_surcoat"));
+		items.equip(this.new("scripts/items/legend_armor/cloth/legend_armor_quilted_aketon"));
 		items.equip(this.new("scripts/items/weapons/boar_spear"));
 		entity = this.spawnEntity("scripts/entity/tactical/player", 3, 7, 4, 7);
 		this.World.getPlayerRoster().add(entity);

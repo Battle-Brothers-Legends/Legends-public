@@ -39,7 +39,6 @@
 			::Legends.Traits.getID(::Legends.Trait.Cocky),
 			::Legends.Traits.getID(::Legends.Trait.Dastard),
 			::Legends.Traits.getID(::Legends.Trait.Drunkard),
-			::Legends.Traits.getID(::Legends.Trait.LegendFrail),
 			::Legends.Traits.getID(::Legends.Trait.LegendPredictable)
 		];
 		this.m.Titles = [
@@ -88,26 +87,25 @@
 		];
 		this.m.PerkTreeDynamic = {
 			Weapon = [
-				this.Const.Perks.MaceTree,
-				this.Const.Perks.AxeTree,
-				this.Const.Perks.ThrowingTree,
-				this.Const.Perks.FistsTree
+				::Const.Perks.MaceTree,
+				::Const.Perks.AxeTree,
+				::Const.Perks.ThrowingTree,
+				::Const.Perks.FistsTree
 			],
 			Defense = [
-				this.Const.Perks.LightArmorTree
+				::Const.Perks.LightArmorTree
 			],
 			Traits = [
-				this.Const.Perks.SturdyTree,
-				this.Const.Perks.IndestructibleTree,
-				this.Const.Perks.LargeTree,
-				this.Const.Perks.FitTree
+				::Const.Perks.SturdyTree,
+				::Const.Perks.IndestructibleTree,
+				::Const.Perks.LargeTree,
+				::Const.Perks.FitTree
 			],
 			Enemy = [
-				this.Const.Perks.OrcTree,
-				this.Const.Perks.GoblinTree
+				::Const.Perks.GreenskinTree
 			],
 			Class = [
-				this.Const.Perks.ClubClassTree
+				// ::Const.Perks.ClubClassTree
 			],
 			Profession = [],
 			Magic = []
@@ -122,7 +120,7 @@
 				id = 15,
 				type = "text",
 				icon = "ui/icons/xp_received.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]-15%[/color] Experience Gain"
+				text = "[color=%negative%]-15%[/color] Experience Gain"
 			}
 		);
 		return ret

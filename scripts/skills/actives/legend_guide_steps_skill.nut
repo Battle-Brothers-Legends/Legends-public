@@ -47,7 +47,7 @@ this.legend_guide_steps_skill <- this.inherit("scripts/skills/skill", {
 				id = 6,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text =  "Grants pathfinder to all allies within [color=" + this.Const.UI.Color.PositiveValue + "]40[/color] tiles"
+				text =  "Grants pathfinder to all allies within [color=%positive%]40[/color] tiles"
 			}
 		];
 	}

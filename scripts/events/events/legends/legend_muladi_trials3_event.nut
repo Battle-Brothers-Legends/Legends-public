@@ -129,7 +129,6 @@ this.legend_muladi_trials3_event <- this.inherit("scripts/events/event", {
 
 	function onPrepareVariables(_vars) {
 		_vars.push(["muladi", this.m.Muladi.getNameOnly()]);
-		::Const.LegendMod.extendVarsWithPronouns(_vars, this.m.Muladi.getGender(), "muladi");
 	}
 
 	function onClear() {

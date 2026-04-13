@@ -56,23 +56,23 @@
 		this.m.Modifiers.Barter = this.Const.LegendMod.ResourceModifiers.Barter[2];
 		this.m.PerkTreeDynamic = {
 			Weapon = [
-				this.Const.Perks.DaggerTree,
-				this.Const.Perks.SlingTree,
-				this.Const.Perks.PolearmTree,
-				this.Const.Perks.FistsTree
+				::Const.Perks.DaggerTree,
+				::Const.Perks.SlingTree,
+				::Const.Perks.PolearmTree,
+				::Const.Perks.FistsTree
 			],
 			Defense = [
-				this.Const.Perks.ClothArmorTree
+				::Const.Perks.ClothArmorTree
 			],
 			Traits = [
-				this.Const.Perks.MartyrTree,
-				this.Const.Perks.IndestructibleTree,
-				this.Const.Perks.DeviousTree,
-				this.Const.Perks.CalmTree
+				::Const.Perks.MartyrTree,
+				::Const.Perks.IndestructibleTree,
+				::Const.Perks.DeviousTree,
+				::Const.Perks.CalmTree
 			],
 			Enemy = [],
 			Class = [],
-			Profession = [], 
+			Profession = [],
 			Magic = []
 		}
 	}
@@ -106,7 +106,7 @@
 				id = 13,
 				type = "text",
 				icon = "ui/icons/xp_received.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]50% less likely[/color] to be targeted by an enemy."
+				text = "[color=%positive%]50% less likely[/color] to be targeted by an enemy."
 			}
 		);
 		return ret;

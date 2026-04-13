@@ -45,6 +45,14 @@
 	character.setName(::Const.World.Common.generateName(unit.NameList) + (unit.TitleList != null ? " " + unit.TitleList[::Math.rand(0, unit.TitleList.len() - 1)] : ""));
 });
 
+::Legends.CampContracts.EmployerFaction.Legion <- ::Legends.CampContracts.addFaction("ui/banners/factions/banner_legend_legion_s.png", function (_factionID, _roster) { //needs new banner art for legion ideally. this is a placeholder.
+	local unit = ::Const.World.Spawn.Troops.SkeletonHeavy; //may change to priest later
+	local character = _roster.create("scripts/entity/tactical/employer/legend_legion_employer"); //need to refine this - clothes and style
+	character.setFaction(_factionID);
+	character.assignRandomEquipment();
+	character.setName(::Const.World.Common.generateName(unit.NameList) + (unit.TitleList != null ? " " + unit.TitleList[::Math.rand(0, unit.TitleList.len() - 1)] : "")); //double check
+});
+
 
 ::Legends.CampContracts.IntroBarbarians <- [{
 	ID = "Intro",
@@ -84,6 +92,24 @@
 	ID = "Intro",
 	Title = "Negotiations",
 	Text = "[img]gfx/ui/events/legend_camp_hunt.png[/img]{Your fire dims without warning. Flames hiss, shrinking to embers. Then you see a %person_employer% made of shadow and silk, gliding closer. %SPEECH_ON%Don\'t be alarmed. I need help… not a heart.%SPEECH_OFF% A ritual has gone wrong. Something is feeding on the dead, but it\'s not %them_employer% doing. %SPEECH_ON%Not everything that reeks of death is mine.%SPEECH_OFF%%They_employer% offers more gold than sense.}",
+	Image = "",
+	List = [],
+	ShowEmployer = false,
+	ShowDifficulty = true,
+	Options = [
+		{
+			Text = "Let\'s talk business.",
+			function getResult() {
+				return "Task";
+			}
+		}
+	]
+}];
+
+::Legends.CampContracts.IntroLegion <- [{
+	ID = "Intro",
+	Title = "An Envoy",
+	Text = "[img]gfx/ui/events/legend_camp_hunt.png[/img]{The camp is punctuated with the sharpening of blades and the creaking of bones. Little other noise is made outside of preparation for the next battle, only accented by quiet servitude. With little ceremony, announcement or forewarning, you find an %person_employer% stepping into the camp. Without a word, they hand you a sealed scroll...}",
 	Image = "",
 	List = [],
 	ShowEmployer = false,

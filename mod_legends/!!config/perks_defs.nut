@@ -13,7 +13,7 @@
  *	});
  *
  *	In perk implementation create() method it's encouraged to use helper function to set defined fields automatically by using
- *  ::Const.Perks.setup(this.m, ::Legends.Perk.LegendBallistics);
+ *  ::Legends.Perks.onCreate(this, ::Legends.Perk.LegendBallistics);
  *  Use your name, this will ensure there's not mismatch or typos in ID, Icons etc.
  *  If your perk is an effect or requires to show different icons when used as a skill or whatever other reason, you can still set values you need regardless what helper sets.
  *
@@ -24,41 +24,34 @@
  *  	bro.getSkills().hasPerk(::Legends.Perk.LegendBallistics)
  */
 
-if (!("Perks" in ::Const))
+if (!("Perks" in ::Const)) {
 	::Const.Perks <- {};
+}
 
-if (!("Perk" in ::Legends))
+if (!("Perk" in ::Legends)) {
 	::Legends.Perk <- {};
+}
 
 ::Const.Perks.PerkDefObjects <- [];
 ::Const.Perks.PerkDefs <- {};
 
-::Const.Perks.addPerkDefObjects <- function( _perkDefObjects )
-{
+/**
+ * @param _perkDefObjects is an array of perk definitions
+ * @param _container is namespace where ids will reside, you can use your own in submods
+ */
+
+::Const.Perks.addPerkDefObjects <- function (_perkDefObjects, _container = ::Legends.Perk) {
 	local size = ::Const.Perks.PerkDefObjects.len();
 	::Const.Perks.PerkDefObjects.extend(_perkDefObjects);
-	foreach (i, perkDefObject in _perkDefObjects)
-	{
-		if (perkDefObject.Const in ::Legends.Perk)
-			::Legends.Perk[perkDefObject.Const] = size + i;
-		else
-			::Legends.Perk[perkDefObject.Const] <- size + i;
+	foreach (i, perkDefObject in _perkDefObjects) {
+		if (perkDefObject.Const in _container) {
+			_container[perkDefObject.Const] = size + i;
+		} else {
+			_container[perkDefObject.Const] <- size + i;
+		}
 		::Const.Perks.PerkDefs[perkDefObject.Const] <- size + i;
 		::Const.Perks.LookupMap[perkDefObject.ID] <- perkDefObject;
 	}
-}
-
-::Const.Perks.updatePerkGroupTooltips <- function( _perkDef = null, _groups = [] ) {
-	// deprecated, will be removed in 19.2.0
-}
-
-::Const.Perks.setup <- function (_m, _perkDef) {
-	local def = ::Const.Perks.PerkDefObjects[_perkDef];
-	_m.ID = def.ID;
-	_m.Name = ::Const.Strings.PerkName[def.Const];
-	_m.Description = ::Const.Strings.PerkDescription[def.Const];
-	_m.Icon = def.Icon;
-	_m.IconDisabled = def.IconDisabled;
 }
 
 local perkDefObjects = [];
@@ -735,83 +728,6 @@ perkDefObjects.push({
 	Const = "LegendDaze"
 });
 
-::Legends.Perk.LegendRoster1 <- null;
-perkDefObjects.push({
-	ID = "perk.legend_roster_1",
-	Script = "scripts/skills/perks/perk_legend_roster_1",
-	Name = ::Const.Strings.PerkName.LegendRoster1,
-	Tooltip = ::Const.Strings.PerkDescription.LegendRoster1,
-	Icon = "ui/perks/recruit1.png",
-	IconDisabled = "ui/perks/recruit1_bw.png",
-	Const = "LegendRoster1"
-});
-
-::Legends.Perk.LegendRoster2 <- null;
-perkDefObjects.push({
-	ID = "perk.legend_roster_2",
-	Script = "scripts/skills/perks/perk_legend_roster_2",
-	Name = ::Const.Strings.PerkName.LegendRoster2,
-	Tooltip = ::Const.Strings.PerkDescription.LegendRoster2,
-	Icon = "ui/perks/recruit2.png",
-	IconDisabled = "ui/perks/recruit2_bw.png",
-	Const = "LegendRoster2"
-});
-
-::Legends.Perk.LegendRoster3 <- null;
-perkDefObjects.push({
-	ID = "perk.legend_roster_3",
-	Script = "scripts/skills/perks/perk_legend_roster_3",
-	Name = ::Const.Strings.PerkName.LegendRoster3,
-	Tooltip = ::Const.Strings.PerkDescription.LegendRoster3,
-	Icon = "ui/perks/recruit3.png",
-	IconDisabled = "ui/perks/recruit3_bw.png",
-	Const = "LegendRoster3"
-});
-
-::Legends.Perk.LegendRoster4 <- null;
-perkDefObjects.push({
-	ID = "perk.legend_roster_4",
-	Script = "scripts/skills/perks/perk_legend_roster_4",
-	Name = ::Const.Strings.PerkName.LegendRoster4,
-	Tooltip = ::Const.Strings.PerkDescription.LegendRoster4,
-	Icon = "ui/perks/recruit4.png",
-	IconDisabled = "ui/perks/recruit4_bw.png",
-	Const = "LegendRoster4"
-});
-
-::Legends.Perk.LegendRoster5 <- null;
-perkDefObjects.push({
-	ID = "perk.legend_roster_5",
-	Script = "scripts/skills/perks/perk_legend_roster_5",
-	Name = ::Const.Strings.PerkName.LegendRoster5,
-	Tooltip = ::Const.Strings.PerkDescription.LegendRoster5,
-	Icon = "ui/perks/recruit5.png",
-	IconDisabled = "ui/perks/recruit5_bw.png",
-	Const = "LegendRoster5"
-});
-
-::Legends.Perk.LegendRoster6 <- null;
-perkDefObjects.push({
-	ID = "perk.legend_roster_6",
-	Script = "scripts/skills/perks/perk_legend_roster_6",
-	Name = ::Const.Strings.PerkName.LegendRoster6,
-	Tooltip = ::Const.Strings.PerkDescription.LegendRoster6,
-	Icon = "ui/perks/recruit6.png",
-	IconDisabled = "ui/perks/recruit6_bw.png",
-	Const = "LegendRoster6"
-});
-
-::Legends.Perk.LegendRoster7 <- null;
-perkDefObjects.push({
-	ID = "perk.legend_roster_7",
-	Script = "scripts/skills/perks/perk_legend_roster_7",
-	Name = ::Const.Strings.PerkName.LegendRoster7,
-	Tooltip = ::Const.Strings.PerkDescription.LegendRoster7,
-	Icon = "ui/perks/recruit7.png",
-	IconDisabled = "ui/perks/recruit7_bw.png",
-	Const = "LegendRoster7"
-});
-
 ::Legends.Perk.LegendStun <- null;
 perkDefObjects.push({
 	ID = "perk.legend_stun",
@@ -966,26 +882,15 @@ perkDefObjects.push({
 	Const = "LegendSpecPoison"
 });
 
-::Legends.Perk.LegendCloseCombatArcher <- null;
+::Legends.Perk.LegendPointBlank <- null;
 perkDefObjects.push({
-	ID = "perk.legend_close_combat_archer",
-	Script = "scripts/skills/perks/perk_legend_close_combat_archer",
-	Name = ::Const.Strings.PerkName.LegendCloseCombatArcher,
-	Tooltip = ::Const.Strings.PerkDescription.LegendCloseCombatArcher,
+	ID = "perk.legend_point_blank",
+	Script = "scripts/skills/perks/perk_legend_point_blank",
+	Name = ::Const.Strings.PerkName.LegendPointBlank,
+	Tooltip = ::Const.Strings.PerkDescription.LegendPointBlank,
 	Icon = "ui/perks/closecombat56.png",
 	IconDisabled = "ui/perks/closecombat56_bw.png",
-	Const = "LegendCloseCombatArcher"
-});
-
-::Legends.Perk.LegendCascade <- null;
-perkDefObjects.push({
-	ID = "perk.legend_cascade",
-	Script = "scripts/skills/perks/perk_legend_cascade",
-	Name = ::Const.Strings.PerkName.LegendCascade,
-	Tooltip = ::Const.Strings.PerkDescription.LegendCascade,
-	Icon = "ui/perks/triplestrike56.png",
-	IconDisabled = "ui/perks/triplestrike56_bw.png",
-	Const = "LegendCascade"
+	Const = "LegendPointBlank"
 });
 
 ::Legends.Perk.LegendEvasion <- null;
@@ -1666,8 +1571,8 @@ perkDefObjects.push({
 	Script = "scripts/skills/perks/perk_legend_bribe",
 	Name = ::Const.Strings.PerkName.LegendBribe,
 	Tooltip = ::Const.Strings.PerkDescription.LegendBribe,
-	Icon = "ui/perks/coins_circle.png",
-	IconDisabled = "ui/perks/coins_circle_bw.png",
+	Icon = "ui/perks/bribe_circle.png",
+	IconDisabled = "ui/perks/bribe_circle_bw.png",
 	Const = "LegendBribe"
 });
 
@@ -1677,8 +1582,8 @@ perkDefObjects.push({
 	Script = "scripts/skills/perks/perk_legend_off_book_deal",
 	Name = ::Const.Strings.PerkName.LegendOffBookDeal,
 	Tooltip = ::Const.Strings.PerkDescription.LegendOffBookDeal,
-	Icon = "ui/perks/coins_circle.png",
-	IconDisabled = "ui/perks/coins_circle_bw.png",
+	Icon = "ui/perks/off_book_deal.png",
+	IconDisabled = "ui/perks/off_book_deal_bw.png",
 	Const = "LegendOffBookDeal"
 });
 
@@ -1849,46 +1754,46 @@ perkDefObjects.push({
 
 ::Legends.Perk.LegendSpecialistInventor <- null;
 perkDefObjects.push({
-		ID = "perk.legend_specialist_inventor",
-		Script = "scripts/skills/perks/perk_legend_specialist_inventor",
-		Name = this.Const.Strings.PerkName.LegendSpecialistInventor,
-		Tooltip = this.Const.Strings.PerkDescription.LegendSpecialistInventor,
-		Icon = "ui/perks/perk_spec_firearm.png",
-		IconDisabled = "ui/perks/perk_spec_firearm_bw.png",
-		Const = "LegendSpecialistInventor"
+	ID = "perk.legend_specialist_inventor",
+	Script = "scripts/skills/perks/perk_legend_specialist_inventor",
+	Name = this.Const.Strings.PerkName.LegendSpecialistInventor,
+	Tooltip = this.Const.Strings.PerkDescription.LegendSpecialistInventor,
+	Icon = "ui/perks/perk_spec_firearm.png",
+	IconDisabled = "ui/perks/perk_spec_firearm_bw.png",
+	Const = "LegendSpecialistInventor"
 });
 
 ::Legends.Perk.LegendSpecialistBodyguard <- null;
 perkDefObjects.push({
-		ID = "perk.legend_specialist_bodyguard",
-		Script = "scripts/skills/perks/perk_legend_specialist_bodyguard",
-		Name = this.Const.Strings.PerkName.LegendSpecialistBodyguard,
-		Tooltip = this.Const.Strings.PerkDescription.LegendSpecialistBodyguard,
-		Icon = "ui/perks/perk_spec_2hsword.png",
-		IconDisabled = "ui/perks/perk_spec_2hsword_bw.png",
-		Const = "LegendSpecialistBodyguard"
+	ID = "perk.legend_specialist_bodyguard",
+	Script = "scripts/skills/perks/perk_legend_specialist_bodyguard",
+	Name = this.Const.Strings.PerkName.LegendSpecialistBodyguard,
+	Tooltip = this.Const.Strings.PerkDescription.LegendSpecialistBodyguard,
+	Icon = "ui/perks/perk_spec_2hsword.png",
+	IconDisabled = "ui/perks/perk_spec_2hsword_bw.png",
+	Const = "LegendSpecialistBodyguard"
 });
 
 ::Legends.Perk.LegendSpecialistInquisition <- null;
 perkDefObjects.push({
-		ID = "perk.legend_specialist_inquisition",
-		Script = "scripts/skills/perks/perk_legend_specialist_inquisition",
-		Name = this.Const.Strings.PerkName.LegendSpecialistInquisition,
-		Tooltip = this.Const.Strings.PerkDescription.LegendSpecialistInquisition,
-		Icon = "ui/perks/perk_spec_xbow.png",
-		IconDisabled = "ui/perks/perk_spec_xbow_bw.png",
-		Const = "LegendSpecialistInquisition"
+	ID = "perk.legend_specialist_inquisition",
+	Script = "scripts/skills/perks/perk_legend_specialist_inquisition",
+	Name = this.Const.Strings.PerkName.LegendSpecialistInquisition,
+	Tooltip = this.Const.Strings.PerkDescription.LegendSpecialistInquisition,
+	Icon = "ui/perks/perk_spec_xbow.png",
+	IconDisabled = "ui/perks/perk_spec_xbow_bw.png",
+	Const = "LegendSpecialistInquisition"
 });
 
 ::Legends.Perk.LegendSpecialistClub <- null;
 perkDefObjects.push({
-		ID = "perk.legend_specialist_club",
-		Script = "scripts/skills/perks/perk_legend_specialist_club",
-		Name = this.Const.Strings.PerkName.LegendSpecialistClub,
-		Tooltip = this.Const.Strings.PerkDescription.LegendSpecialistClub,
-		Icon = "ui/perks/perk_spec_mace.png",
-		IconDisabled = "ui/perks/perk_spec_mace_bw.png",
-		Const = "LegendSpecialistClub"
+	ID = "perk.legend_specialist_club",
+	Script = "scripts/skills/perks/perk_legend_specialist_club",
+	Name = this.Const.Strings.PerkName.LegendSpecialistClub,
+	Tooltip = this.Const.Strings.PerkDescription.LegendSpecialistClub,
+	Icon = "ui/perks/perk_spec_mace.png",
+	IconDisabled = "ui/perks/perk_spec_mace_bw.png",
+	Const = "LegendSpecialistClub"
 });
 
 ::Legends.Perk.LegendBigGameHunter <- null;
@@ -1952,8 +1857,8 @@ perkDefObjects.push({
 	Script = "scripts/skills/perks/perk_legend_danger_pay",
 	Name = ::Const.Strings.PerkName.LegendDangerPay,
 	Tooltip = ::Const.Strings.PerkDescription.LegendDangerPay,
-	Icon = "ui/perks/coins_circle.png",
-	IconDisabled = "ui/perks/coins_circle_bw.png",
+	Icon = "ui/perks/danger_pay.png",
+	IconDisabled = "ui/perks/danger_pay_bw.png",
 	Const = "LegendDangerPay"
 });
 
@@ -2133,17 +2038,6 @@ perkDefObjects.push({
 	Const = "LegendScry"
 });
 
-::Legends.Perk.LegendPiercingShot <- null;
-perkDefObjects.push({
-	ID = "perk.legend_piercing_shot",
-	Script = "scripts/skills/perks/perk_legend_piercing_shot",
-	Name = ::Const.Strings.PerkName.LegendPiercingShot,
-	Tooltip = ::Const.Strings.PerkDescription.LegendPiercingShot,
-	Icon = "ui/perks/PiercingBoltPerk.png",
-	IconDisabled = "ui/perks/PiercingBoltPerk_bw.png",
-	Const = "LegendPiercingShot"
-});
-
 ::Legends.Perk.LegendLevitate <- null;
 perkDefObjects.push({
 	ID = "perk.legend_levitation",
@@ -2243,240 +2137,97 @@ perkDefObjects.push({
 	Const = "LegendMasterySlings"
 });
 
-::Legends.Perk.LegendSlingerSpins <- null;
-perkDefObjects.push({
-		ID = "perk.legend_slinger_spins",
-		Script = "scripts/skills/perks/perk_legend_slinger_spins",
-		Name = this.Const.Strings.PerkName.LegendSlingerSpins,
-		Tooltip = this.Const.Strings.PerkDescription.LegendSlingerSpins,
-		Icon = "ui/perks/perk_slinger_spins.png",
-		IconDisabled = "ui/perks/perk_slinger_spins_bw.png",
-		Const = "LegendSlingerSpins"
-});
-
 ::Legends.Perk.LegendBarrage <- null;
 perkDefObjects.push({
-		ID = "perk.legend_barrage",
-		Script = "scripts/skills/perks/perk_legend_barrage",
-		Name = this.Const.Strings.PerkName.LegendBarrage,
-		Tooltip = this.Const.Strings.PerkDescription.LegendBarrage,
-		Icon = "ui/perks/perk_barrage.png",
-		IconDisabled = "ui/perks/perk_barrage_bw.png",
-		Const = "LegendBarrage"
+	ID = "perk.legend_barrage",
+	Script = "scripts/skills/perks/perk_legend_barrage",
+	Name = this.Const.Strings.PerkName.LegendBarrage,
+	Tooltip = this.Const.Strings.PerkDescription.LegendBarrage,
+	Icon = "ui/perks/perk_barrage.png",
+	IconDisabled = "ui/perks/perk_barrage_bw.png",
+	Const = "LegendBarrage"
 });
 
 ::Legends.Perk.LegendStaffBlock <- null;
 perkDefObjects.push({
-		ID = "perk.legend_staff_block",
-		Script = "scripts/skills/perks/perk_legend_staff_block",
-		Name = this.Const.Strings.PerkName.LegendStaffBlock,
-		Tooltip = this.Const.Strings.PerkDescription.LegendStaffBlock,
-		Icon = "ui/perks/staff_skill_circle.png",
-		IconDisabled = "ui/perks/staff_skill_circle_bw.png",
-		Const = "LegendStaffBlock"
+	ID = "perk.legend_staff_block",
+	Script = "scripts/skills/perks/perk_legend_staff_block",
+	Name = this.Const.Strings.PerkName.LegendStaffBlock,
+	Tooltip = this.Const.Strings.PerkDescription.LegendStaffBlock,
+	Icon = "ui/perks/staff_skill_circle.png",
+	IconDisabled = "ui/perks/staff_skill_circle_bw.png",
+	Const = "LegendStaffBlock"
 });
 
-::Legends.Perk.LegendFavouredEnemyGhoul <- null;
+::Legends.Perk.LegendFavouredEnemyBeast <- null;
 perkDefObjects.push({
-	ID = "perk.legend_favoured_enemy_ghoul",
-	Script = "scripts/skills/perks/perk_legend_favoured_enemy_ghoul",
-	Name = ::Const.Strings.PerkName.LegendFavouredEnemyGhoul,
-	Tooltip = ::Const.Strings.PerkDescription.LegendFavouredEnemyGhoul,
+	ID = "perk.legend_favoured_enemy_beast",
+	Script = "scripts/skills/perks/perk_legend_favoured_enemy_beast",
+	Name = ::Const.Strings.PerkName.LegendFavouredEnemyBeast,
+	Tooltip = ::Const.Strings.PerkDescription.LegendFavouredEnemyBeast,
 	Icon = "ui/perks/favoured_ghoul_01.png",
 	IconDisabled = "ui/perks/favoured_ghoul_bw.png",
-	Const = "LegendFavouredEnemyGhoul",
+	Const = "LegendFavouredEnemyBeast",
 	HasUnactivatedPerkTooltipHints = true // Inform general_queryUIPerkTooltipData() in tooltip_events.nut that the Perk has additional hints from getUnactivatedPerkTooltipHints()
 });
 
-::Legends.Perk.LegendFavouredEnemyHexen <- null;
+::Legends.Perk.LegendFavouredEnemyOccult <- null;
 perkDefObjects.push({
-	ID = "perk.legend_favoured_enemy_hexen",
-	Script = "scripts/skills/perks/perk_legend_favoured_enemy_hexen",
-	Name = ::Const.Strings.PerkName.LegendFavouredEnemyHexen,
-	Tooltip = ::Const.Strings.PerkDescription.LegendFavouredEnemyHexen,
+	ID = "perk.legend_favoured_enemy_occult",
+	Script = "scripts/skills/perks/perk_legend_favoured_enemy_occult",
+	Name = ::Const.Strings.PerkName.LegendFavouredEnemyOccult,
+	Tooltip = ::Const.Strings.PerkDescription.LegendFavouredEnemyOccult,
 	Icon = "ui/perks/favoured_hexen_01.png",
 	IconDisabled = "ui/perks/favoured_hexen_bw.png",
-	Const = "LegendFavouredEnemyHexen",
+	Const = "LegendFavouredEnemyOccult",
 	HasUnactivatedPerkTooltipHints = true // Inform general_queryUIPerkTooltipData() in tooltip_events.nut that the Perk has additional hints from getUnactivatedPerkTooltipHints()
 });
 
-::Legends.Perk.LegendFavouredEnemyAlps <- null;
+::Legends.Perk.LegendFavouredEnemyGreenskin <- null;
 perkDefObjects.push({
-	ID = "perk.legend_favoured_enemy_alps",
-	Script = "scripts/skills/perks/perk_legend_favoured_enemy_alps",
-	Name = ::Const.Strings.PerkName.LegendFavouredEnemyAlps,
-	Tooltip = ::Const.Strings.PerkDescription.LegendFavouredEnemyAlps,
-	Icon = "ui/perks/favoured_alps_01.png",
-	IconDisabled = "ui/perks/favoured_alps_bw.png",
-	Const = "LegendFavouredEnemyAlps",
-	HasUnactivatedPerkTooltipHints = true // Inform general_queryUIPerkTooltipData() in tooltip_events.nut that the Perk has additional hints from getUnactivatedPerkTooltipHints()
-});
-
-::Legends.Perk.LegendFavouredEnemyUnhold <- null;
-perkDefObjects.push({
-	ID = "perk.legend_favoured_enemy_unhold",
-	Script = "scripts/skills/perks/perk_legend_favoured_enemy_unhold",
-	Name = ::Const.Strings.PerkName.LegendFavouredEnemyUnhold,
-	Tooltip = ::Const.Strings.PerkDescription.LegendFavouredEnemyUnhold,
-	Icon = "ui/perks/favoured_unhold_01.png",
-	IconDisabled = "ui/perks/favoured_unhold_bw.png",
-	Const = "LegendFavouredEnemyUnhold",
-	HasUnactivatedPerkTooltipHints = true // Inform general_queryUIPerkTooltipData() in tooltip_events.nut that the Perk has additional hints from getUnactivatedPerkTooltipHints()
-});
-
-::Legends.Perk.LegendFavouredEnemyLindwurm <- null;
-perkDefObjects.push({
-	ID = "perk.legend_favoured_enemy_lindwurm",
-	Script = "scripts/skills/perks/perk_legend_favoured_enemy_lindwurm",
-	Name = ::Const.Strings.PerkName.LegendFavouredEnemyLindwurm,
-	Tooltip = ::Const.Strings.PerkDescription.LegendFavouredEnemyLindwurm,
-	Icon = "ui/perks/favoured_lindwurm_01.png",
-	IconDisabled = "ui/perks/favoured_lindwurm_bw.png",
-	Const = "LegendFavouredEnemyLindwurm",
-	HasUnactivatedPerkTooltipHints = true // Inform general_queryUIPerkTooltipData() in tooltip_events.nut that the Perk has additional hints from getUnactivatedPerkTooltipHints()
-});
-
-::Legends.Perk.LegendFavouredEnemyDirewolf <- null;
-perkDefObjects.push({
-	ID = "perk.legend_favoured_enemy_direwolf",
-	Script = "scripts/skills/perks/perk_legend_favoured_enemy_direwolf",
-	Name = ::Const.Strings.PerkName.LegendFavouredEnemyDirewolf,
-	Tooltip = ::Const.Strings.PerkDescription.LegendFavouredEnemyDirewolf,
-	Icon = "ui/perks/favoured_direwolf_01.png",
-	IconDisabled = "ui/perks/favoured_direwolf_bw.png",
-	Const = "LegendFavouredEnemyDirewolf",
-	HasUnactivatedPerkTooltipHints = true // Inform general_queryUIPerkTooltipData() in tooltip_events.nut that the Perk has additional hints from getUnactivatedPerkTooltipHints()
-});
-
-::Legends.Perk.LegendFavouredEnemySpider <- null;
-perkDefObjects.push({
-	ID = "perk.legend_favoured_enemy_spider",
-	Script = "scripts/skills/perks/perk_legend_favoured_enemy_spider",
-	Name = ::Const.Strings.PerkName.LegendFavouredEnemySpider,
-	Tooltip = ::Const.Strings.PerkDescription.LegendFavouredEnemySpider,
-	Icon = "ui/perks/favoured_spider_01.png",
-	IconDisabled = "ui/perks/favoured_spider_bw.png",
-	Const = "LegendFavouredEnemySpider",
-	HasUnactivatedPerkTooltipHints = true // Inform general_queryUIPerkTooltipData() in tooltip_events.nut that the Perk has additional hints from getUnactivatedPerkTooltipHints()
-});
-
-::Legends.Perk.LegendFavouredEnemySchrat <- null;
-perkDefObjects.push({
-	ID = "perk.legend_favoured_enemy_schrat",
-	Script = "scripts/skills/perks/perk_legend_favoured_enemy_schrat",
-	Name = ::Const.Strings.PerkName.LegendFavouredEnemySchrat,
-	Tooltip = ::Const.Strings.PerkDescription.LegendFavouredEnemySchrat,
-	Icon = "ui/perks/favoured_schrat_01.png",
-	IconDisabled = "ui/perks/favoured_schrat_bw.png",
-	Const = "LegendFavouredEnemySchrat",
-	HasUnactivatedPerkTooltipHints = true // Inform general_queryUIPerkTooltipData() in tooltip_events.nut that the Perk has additional hints from getUnactivatedPerkTooltipHints()
-});
-
-::Legends.Perk.LegendFavouredEnemyOrk <- null;
-perkDefObjects.push({
-	ID = "perk.legend_favoured_enemy_ork",
-	Script = "scripts/skills/perks/perk_legend_favoured_enemy_ork",
-	Name = ::Const.Strings.PerkName.LegendFavouredEnemyOrk,
-	Tooltip = ::Const.Strings.PerkDescription.LegendFavouredEnemyOrk,
+	ID = "perk.legend_favoured_enemy_greenskin",
+	Script = "scripts/skills/perks/perk_legend_favoured_enemy_greenskin",
+	Name = ::Const.Strings.PerkName.LegendFavouredEnemyGreenskin,
+	Tooltip = ::Const.Strings.PerkDescription.LegendFavouredEnemyGreenskin,
 	Icon = "ui/perks/favoured_ork_01.png",
 	IconDisabled = "ui/perks/favoured_ork_bw.png",
-	Const = "LegendFavouredEnemyOrk",
+	Const = "LegendFavouredEnemyGreenskin",
 	HasUnactivatedPerkTooltipHints = true // Inform general_queryUIPerkTooltipData() in tooltip_events.nut that the Perk has additional hints from getUnactivatedPerkTooltipHints()
 });
 
-::Legends.Perk.LegendFavouredEnemyGoblin <- null;
+::Legends.Perk.LegendFavouredEnemyUndead <- null;
 perkDefObjects.push({
-	ID = "perk.legend_favoured_enemy_goblin",
-	Script = "scripts/skills/perks/perk_legend_favoured_enemy_goblin",
-	Name = ::Const.Strings.PerkName.LegendFavouredEnemyGoblin,
-	Tooltip = ::Const.Strings.PerkDescription.LegendFavouredEnemyGoblin,
-	Icon = "ui/perks/favoured_goblin_01.png",
-	IconDisabled = "ui/perks/favoured_goblin_bw.png",
-	Const = "LegendFavouredEnemyGoblin",
-	HasUnactivatedPerkTooltipHints = true // Inform general_queryUIPerkTooltipData() in tooltip_events.nut that the Perk has additional hints from getUnactivatedPerkTooltipHints()
-});
-
-::Legends.Perk.LegendFavouredEnemyVampire <- null;
-perkDefObjects.push({
-	ID = "perk.legend_favoured_enemy_vampire",
-	Script = "scripts/skills/perks/perk_legend_favoured_enemy_vampire",
-	Name = ::Const.Strings.PerkName.LegendFavouredEnemyVampire,
-	Tooltip = ::Const.Strings.PerkDescription.LegendFavouredEnemyVampire,
-	Icon = "ui/perks/favoured_vampire_01.png",
-	IconDisabled = "ui/perks/favoured_vampire_bw.png",
-	Const = "LegendFavouredEnemyVampire",
-	HasUnactivatedPerkTooltipHints = true // Inform general_queryUIPerkTooltipData() in tooltip_events.nut that the Perk has additional hints from getUnactivatedPerkTooltipHints()
-});
-
-::Legends.Perk.LegendFavouredEnemySkeleton <- null;
-perkDefObjects.push({
-	ID = "perk.legend_favoured_enemy_skeleton",
-	Script = "scripts/skills/perks/perk_legend_favoured_enemy_skeleton",
-	Name = ::Const.Strings.PerkName.LegendFavouredEnemySkeleton,
-	Tooltip = ::Const.Strings.PerkDescription.LegendFavouredEnemySkeleton,
-	Icon = "ui/perks/favoured_skeleton_01.png",
-	IconDisabled = "ui/perks/favoured_skeleton_bw.png",
-	Const = "LegendFavouredEnemySkeleton",
-	HasUnactivatedPerkTooltipHints = true // Inform general_queryUIPerkTooltipData() in tooltip_events.nut that the Perk has additional hints from getUnactivatedPerkTooltipHints()
-});
-
-::Legends.Perk.LegendFavouredEnemyZombie <- null;
-perkDefObjects.push({
-	ID = "perk.legend_favoured_enemy_zombie",
-	Script = "scripts/skills/perks/perk_legend_favoured_enemy_zombie",
-	Name = ::Const.Strings.PerkName.LegendFavouredEnemyZombie,
-	Tooltip = ::Const.Strings.PerkDescription.LegendFavouredEnemyZombie,
+	ID = "perk.legend_favoured_enemy_undead",
+	Script = "scripts/skills/perks/perk_legend_favoured_enemy_undead",
+	Name = ::Const.Strings.PerkName.LegendFavouredEnemyUndead,
+	Tooltip = ::Const.Strings.PerkDescription.LegendFavouredEnemyUndead,
 	Icon = "ui/perks/favoured_zombie_01.png",
 	IconDisabled = "ui/perks/favoured_zombie_bw.png",
-	Const = "LegendFavouredEnemyZombie",
+	Const = "LegendFavouredEnemyUndead",
 	HasUnactivatedPerkTooltipHints = true // Inform general_queryUIPerkTooltipData() in tooltip_events.nut that the Perk has additional hints from getUnactivatedPerkTooltipHints()
 });
 
-::Legends.Perk.LegendFavouredEnemyNoble <- null;
+::Legends.Perk.LegendFavouredEnemyCivilization <- null;
 perkDefObjects.push({
-	ID = "perk.legend_favoured_enemy_noble",
-	Script = "scripts/skills/perks/perk_legend_favoured_enemy_noble",
-	Name = ::Const.Strings.PerkName.LegendFavouredEnemyNoble,
-	Tooltip = ::Const.Strings.PerkDescription.LegendFavouredEnemyNoble,
+	ID = "perk.legend_favoured_enemy_civilization",
+	Script = "scripts/skills/perks/perk_legend_favoured_enemy_civilization",
+	Name = ::Const.Strings.PerkName.LegendFavouredEnemyCivilization,
+	Tooltip = ::Const.Strings.PerkDescription.LegendFavouredEnemyCivilization,
 	Icon = "ui/perks/favoured_noble_01.png",
 	IconDisabled = "ui/perks/favoured_noble_bw.png",
-	Const = "LegendFavouredEnemyNoble",
+	Const = "LegendFavouredEnemyCivilization",
 	HasUnactivatedPerkTooltipHints = true // Inform general_queryUIPerkTooltipData() in tooltip_events.nut that the Perk has additional hints from getUnactivatedPerkTooltipHints()
 });
 
-::Legends.Perk.LegendFavouredEnemyBarbarian <- null;
+::Legends.Perk.LegendFavouredEnemyOutlaw <- null;
 perkDefObjects.push({
-	ID = "perk.legend_favoured_enemy_barbarian",
-	Script = "scripts/skills/perks/perk_legend_favoured_enemy_barbarian",
-	Name = ::Const.Strings.PerkName.LegendFavouredEnemyBarbarian,
-	Tooltip = ::Const.Strings.PerkDescription.LegendFavouredEnemyBarbarian,
-	Icon = "ui/perks/favoured_barbarian_01.png",
-	IconDisabled = "ui/perks/favoured_barbarian_bw.png",
-	Const = "LegendFavouredEnemyBarbarian",
-	HasUnactivatedPerkTooltipHints = true // Inform general_queryUIPerkTooltipData() in tooltip_events.nut that the Perk has additional hints from getUnactivatedPerkTooltipHints()
-});
-
-::Legends.Perk.LegendFavouredEnemyBandit <- null;
-perkDefObjects.push({
-	ID = "perk.legend_favoured_enemy_bandit",
-	Script = "scripts/skills/perks/perk_legend_favoured_enemy_bandit",
-	Name = ::Const.Strings.PerkName.LegendFavouredEnemyBandit,
-	Tooltip = ::Const.Strings.PerkDescription.LegendFavouredEnemyBandit,
+	ID = "perk.legend_favoured_enemy_outlaw",
+	Script = "scripts/skills/perks/perk_legend_favoured_enemy_outlaw",
+	Name = ::Const.Strings.PerkName.LegendFavouredEnemyOutlaw,
+	Tooltip = ::Const.Strings.PerkDescription.LegendFavouredEnemyOutlaw,
 	Icon = "ui/perks/favoured_bandit_01.png",
 	IconDisabled = "ui/perks/favoured_bandit_bw.png",
-	Const = "LegendFavouredEnemyBandit",
-	HasUnactivatedPerkTooltipHints = true // Inform general_queryUIPerkTooltipData() in tooltip_events.nut that the Perk has additional hints from getUnactivatedPerkTooltipHints()
-});
-
-::Legends.Perk.LegendFavouredEnemyArcher <- null;
-perkDefObjects.push({
-	ID = "perk.legend_favoured_enemy_master_archer",
-	Script = "scripts/skills/perks/perk_legend_favoured_enemy_master_archer",
-	Name = ::Const.Strings.PerkName.LegendFavouredEnemyArcher,
-	Tooltip = ::Const.Strings.PerkDescription.LegendFavouredEnemyArcher,
-	Icon = "ui/perks/favoured_archer_01.png",
-	IconDisabled = "ui/perks/favoured_archer_bw.png",
-	Const = "LegendFavouredEnemyArcher",
+	Const = "LegendFavouredEnemyOutlaw",
 	HasUnactivatedPerkTooltipHints = true // Inform general_queryUIPerkTooltipData() in tooltip_events.nut that the Perk has additional hints from getUnactivatedPerkTooltipHints()
 });
 
@@ -2489,54 +2240,6 @@ perkDefObjects.push({
 	Icon = "ui/perks/favoured_swordmaster_01.png",
 	IconDisabled = "ui/perks/favoured_swordmaster_bw.png",
 	Const = "LegendFavouredEnemySwordmaster",
-	HasUnactivatedPerkTooltipHints = true // Inform general_queryUIPerkTooltipData() in tooltip_events.nut that the Perk has additional hints from getUnactivatedPerkTooltipHints()
-});
-
-::Legends.Perk.LegendFavouredEnemyMercenary <- null;
-perkDefObjects.push({
-	ID = "perk.legend_favoured_enemy_mercenary",
-	Script = "scripts/skills/perks/perk_legend_favoured_enemy_mercenary",
-	Name = ::Const.Strings.PerkName.LegendFavouredEnemyMercenary,
-	Tooltip = ::Const.Strings.PerkDescription.LegendFavouredEnemyMercenary,
-	Icon = "ui/perks/favoured_mercenary_01.png",
-	IconDisabled = "ui/perks/favoured_mercenary_bw.png",
-	Const = "LegendFavouredEnemyMercenary",
-	HasUnactivatedPerkTooltipHints = true // Inform general_queryUIPerkTooltipData() in tooltip_events.nut that the Perk has additional hints from getUnactivatedPerkTooltipHints()
-});
-
-::Legends.Perk.LegendFavouredEnemyCaravan <- null;
-perkDefObjects.push({
-	ID = "perk.legend_favoured_enemy_caravan",
-	Script = "scripts/skills/perks/perk_legend_favoured_enemy_caravan",
-	Name = ::Const.Strings.PerkName.LegendFavouredEnemyCaravan,
-	Tooltip = ::Const.Strings.PerkDescription.LegendFavouredEnemyCaravan,
-	Icon = "ui/perks/favoured_caravan_01.png",
-	IconDisabled = "ui/perks/favoured_caravan_bw.png",
-	Const = "LegendFavouredEnemyCaravan",
-	HasUnactivatedPerkTooltipHints = true // Inform general_queryUIPerkTooltipData() in tooltip_events.nut that the Perk has additional hints from getUnactivatedPerkTooltipHints()
-});
-
-::Legends.Perk.LegendFavouredEnemySoutherner <- null;
-perkDefObjects.push({
-	ID = "perk.legend_favoured_enemy_southerner",
-	Script = "scripts/skills/perks/perk_legend_favoured_enemy_southerner",
-	Name = ::Const.Strings.PerkName.LegendFavouredEnemySoutherner,
-	Tooltip = ::Const.Strings.PerkDescription.LegendFavouredEnemySoutherner,
-	Icon = "ui/perks/favoured_southerner_01.png",
-	IconDisabled = "ui/perks/favoured_southerner_bw.png",
-	Const = "LegendFavouredEnemySoutherner",
-	HasUnactivatedPerkTooltipHints = true // Inform general_queryUIPerkTooltipData() in tooltip_events.nut that the Perk has additional hints from getUnactivatedPerkTooltipHints()
-});
-
-::Legends.Perk.LegendFavouredEnemyNomad <- null;
-perkDefObjects.push({
-	ID = "perk.legend_favoured_enemy_nomad",
-	Script = "scripts/skills/perks/perk_legend_favoured_enemy_nomad",
-	Name = ::Const.Strings.PerkName.LegendFavouredEnemyNomad,
-	Tooltip = ::Const.Strings.PerkDescription.LegendFavouredEnemyNomad,
-	Icon = "ui/perks/favoured_nomad_01.png",
-	IconDisabled = "ui/perks/favoured_nomad_bw.png",
-	Const = "LegendFavouredEnemyNomad",
 	HasUnactivatedPerkTooltipHints = true // Inform general_queryUIPerkTooltipData() in tooltip_events.nut that the Perk has additional hints from getUnactivatedPerkTooltipHints()
 });
 
@@ -2844,8 +2547,8 @@ perkDefObjects.push({
 	Script = "scripts/skills/perks/perk_legend_onslaught",
 	Name = ::Const.Strings.PerkName.LegendOnslaught,
 	Tooltip = ::Const.Strings.PerkDescription.LegendOnslaught,
-	Icon = "ui/perks/perk_26.png",
-	IconDisabled = "ui/perks/perk_26_sw.png",
+	Icon = "ui/perks/onslaught_circle.png",
+	IconDisabled = "ui/perks/onslaught_circle_bw.png",
 	Const = "LegendOnslaught"
 });
 
@@ -2869,17 +2572,6 @@ perkDefObjects.push({
 	Icon = "ui/perks/perk_32.png", // todo is that correct icon?
 	IconDisabled = "ui/perks/perk_32_sw.png",
 	Const = "LegendPushTheAdvantage"
-});
-
-::Legends.Perk.LegendTrophyHunter <- null;
-perkDefObjects.push({
-	ID = "perk.legend_trophy_hunter",
-	Script = "scripts/skills/perks/perk_legend_trophy_hunter",
-	Name = ::Const.Strings.PerkName.LegendTrophyHunter,
-	Tooltip = ::Const.Strings.PerkDescription.LegendTrophyHunter,
-	Icon = "ui/perks/slaughterer_circle.png",
-	IconDisabled = "ui/perks/slaughterer_circle_bw.png",
-	Const = "LegendTrophyHunter"
 });
 
 ::Legends.Perk.LegendBruiser <- null;
@@ -3002,17 +2694,6 @@ perkDefObjects.push({
 	Icon = "ui/perks/untouchable_circle.png",
 	IconDisabled = "ui/perks/untouchable_circle_bw.png",
 	Const = "LegendUntouchable"
-});
-
-::Legends.Perk.LegendKnifeplay <- null;
-perkDefObjects.push({
-	ID = "perk.legend_knifeplay",
-	Script = "scripts/skills/perks/perk_legend_knifeplay",
-	Name = ::Const.Strings.PerkName.LegendKnifeplay,
-	Tooltip = ::Const.Strings.PerkDescription.LegendKnifeplay,
-	Icon = "ui/perks/knifeplay.png",
-	IconDisabled = "ui/perks/knifeplay_bw.png",
-	Const = "LegendKnifeplay"
 });
 
 ::Legends.Perk.LegendOpportunist <- null;
@@ -3544,17 +3225,6 @@ perkDefObjects.push({
 	Const = "LegendWindReader"
 });
 
-::Legends.Perk.LegendChoke <- null;
-perkDefObjects.push({
-	ID = "perk.legend_choke",
-	Script = "scripts/skills/perks/perk_legend_choke",
-	Name = ::Const.Strings.PerkName.LegendChoke,
-	Tooltip = ::Const.Strings.PerkDescription.LegendChoke,
-	Icon = "ui/perks/choke_circle.png",
-	IconDisabled = "ui/perks/choke_circle_bw.png",
-	Const = "LegendChoke"
-});
-
 ::Legends.Perk.LegendPaymaster <- null;
 perkDefObjects.push({
 	ID = "perk.legend_barter_paymaster",
@@ -3595,7 +3265,7 @@ perkDefObjects.push({
 	Name = ::Const.Strings.PerkName.LegendPrayerOfLife,
 	Tooltip = ::Const.Strings.PerkDescription.LegendPrayerOfLife,
 	Icon = "ui/perks/prayer_green.png",
-	IconDisabled = "ui/perks/prayer_green_bw.png",
+	IconDisabled = "ui/perks/prayer_bw.png",
 	Const = "LegendPrayerOfLife"
 });
 
@@ -3606,7 +3276,7 @@ perkDefObjects.push({
 	Name = ::Const.Strings.PerkName.LegendPrayerOfFaith,
 	Tooltip = ::Const.Strings.PerkDescription.LegendPrayerOfFaith,
 	Icon = "ui/perks/prayer_purple.png",
-	IconDisabled = "ui/perks/prayer_purple_bw.png",
+	IconDisabled = "ui/perks/prayer_bw.png",
 	Const = "LegendPrayerOfFaith"
 });
 
@@ -4309,8 +3979,8 @@ perkDefObjects.push({
 	Script = "scripts/skills/perks/perk_battering_ram",
 	Name = ::Const.Strings.PerkName.BatteringRam,
 	Tooltip = ::Const.Strings.PerkDescription.BatteringRam,
-	Icon = "ui/perks/passive_03.png",
-	IconDisabled = "ui/perks/passive_03_sw.png",
+	Icon = "skills/passive_03.png",
+	IconDisabled = "skills/passive_03_sw.png",
 	Const = "BatteringRam"
 });
 
@@ -4388,7 +4058,8 @@ perkDefObjects.push({
 	Tooltip = ::Const.Strings.PerkDescription.LegendSwagger,
 	Icon = "ui/perks/meek.png",
 	IconDisabled = "ui/perks/meek_bw.png",
-	Const = "LegendSwagger"
+	Const = "LegendSwagger",
+	HasUnactivatedPerkTooltipHints = true
 });
 
 ::Legends.Perk.LegendKeenEyesight <- null;
@@ -4442,7 +4113,7 @@ perkDefObjects.push({
 	Name = ::Const.Strings.PerkName.LegendMasterTrainer,
 	Tooltip = ::Const.Strings.PerkDescription.LegendMasterTrainer,
 	Icon = "ui/perks/perk_training_01.png",
-	IconDisabled = "ui/perks/Quiltain_tilting_perk_bw.png",
+	IconDisabled = "ui/perks/perk_training_bw.png",
 	Const = "LegendMasterTrainer"
 });
 
@@ -4453,7 +4124,7 @@ perkDefObjects.push({
 	Name = ::Const.Strings.PerkName.LegendWhipThemInShape,
 	Tooltip = ::Const.Strings.PerkDescription.LegendWhipThemInShape,
 	Icon = "ui/perks/perk_training_02.png",
-	IconDisabled = "ui/perks/Quiltain_tilting_perk_bw.png",
+	IconDisabled = "ui/perks/perk_training_bw.png",
 	Const = "LegendWhipThemInShape"
 });
 
@@ -4477,6 +4148,50 @@ perkDefObjects.push({
 	Icon = "ui/perks/jack_of_all_trades.png",
 	IconDisabled = "ui/perks/jack_of_all_trades_bw.png",
 	Const = "LegendVersatile"
+});
+
+::Legends.Perk.LegendAnchor <- null;
+perkDefObjects.push({
+	ID = "perk.legend_anchor",
+	Script = "scripts/skills/perks/perk_legend_anchor",
+	Name = ::Const.Strings.PerkName.LegendAnchor,
+	Tooltip = ::Const.Strings.PerkDescription.LegendAnchor,
+	Icon = "ui/perks/anchor.png",
+	IconDisabled = "ui/perks/anchor_bw.png",
+	Const = "LegendAnchor"
+});
+
+::Legends.Perk.LegendFirstBlood <- null;
+perkDefObjects.push({
+	ID = "perk.legend_first_blood",
+	Script = "scripts/skills/perks/perk_legend_first_blood",
+	Name = ::Const.Strings.PerkName.LegendFirstBlood,
+	Tooltip = ::Const.Strings.PerkDescription.LegendFirstBlood,
+	Icon = "ui/perks/first_blood.png",
+	IconDisabled = "ui/perks/first_blood_bw.png",
+	Const = "LegendFirstBlood"
+});
+
+::Legends.Perk.LegendPatientHunter <- null;
+perkDefObjects.push({
+	ID = "perk.legend_patient_hunter",
+	Script = "scripts/skills/perks/perk_legend_patient_hunter",
+	Name = ::Const.Strings.PerkName.LegendPatientHunter,
+	Tooltip = ::Const.Strings.PerkDescription.LegendPatientHunter,
+	Icon = "ui/perks/patient_hunter.png",
+	IconDisabled = "ui/perks/patient_hunter_bw.png",
+	Const = "LegendPatientHunter"
+});
+
+::Legends.Perk.LegendSpecDualWield <- null;
+perkDefObjects.push({
+	ID = "perk.legend_mastery_dual_wield",
+	Script = "scripts/skills/perks/perk_legend_mastery_dual_wield",
+	Name = ::Const.Strings.PerkName.LegendSpecDualWield,
+	Tooltip = ::Const.Strings.PerkDescription.LegendSpecDualWield,
+	Icon = "ui/perks/dual_wield_mastery_circle.png",
+	IconDisabled = "ui/perks/dual_wield_mastery_circle_bw.png",
+	Const = "LegendSpecDualWield"
 });
 
 ::Const.Perks.addPerkDefObjects(perkDefObjects);

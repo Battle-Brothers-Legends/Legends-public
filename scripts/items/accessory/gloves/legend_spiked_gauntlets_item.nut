@@ -23,14 +23,14 @@ this.legend_spiked_gauntlets_item <- this.inherit("scripts/items/accessory/glove
 	function getTooltip()
 	{
 		local result = this.legend_glove_item.getTooltip();
-		
+
 		result.extend(
 		[
 			{
 				id = 15,
 				type = "text",
 				icon = "ui/icons/melee_defense.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+2[/color] Melee Defense."
+				text = "[color=%positive%]+2[/color] Melee Defense."
 			}
 		]);
 		return result;

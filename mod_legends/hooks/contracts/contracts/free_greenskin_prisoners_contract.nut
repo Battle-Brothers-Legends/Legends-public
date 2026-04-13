@@ -173,7 +173,7 @@
 
 					if (r == 1)
 					{
-						item = this.new("scripts/items/weapons/greatsword");
+						item = this.new("scripts/items/weapons/legend_zweihander");
 					}
 					else if (r == 2)
 					{

@@ -26,19 +26,19 @@ this.legend_scarred_injury <- this.inherit("scripts/skills/injury_permanent/perm
 				id = 7,
 				type = "text",
 				icon = "ui/icons/health.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]-10%[/color] Hitpoints"
+				text = "[color=%negative%]-10%[/color] Hitpoints"
 			},
 			{
 				id = 7,
 				type = "text",
 				icon = "ui/icons/fatigue.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]-10%[/color] Max Fatigue"
+				text = "[color=%negative%]-10%[/color] Max Fatigue"
 			},
 			{
 				id = 11,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "Has a [color=" + this.Const.UI.Color.PositiveValue + "]75%[/color] chance to survive if struck down and not killed by a fatality"
+				text = "Has a [color=%positive%]75%[/color] chance to survive if struck down and not killed by a fatality"
 			}
 		];
 		this.addTooltipHint(ret);
@@ -58,6 +58,10 @@ this.legend_scarred_injury <- this.inherit("scripts/skills/injury_permanent/perm
 		if (this.getContainer().getActor().getEthnicity() == 1)
 		{
 			sprite.setBrush("permanent_injury_scarred_southern");
+		}
+		else if (this.getContainer().getActor().getEthnicity() == 2)
+		{
+			sprite.setBrush("permanent_injury_scarred_african");
 		}
 		else
 		{

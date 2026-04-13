@@ -35,7 +35,7 @@ this.legend_emperors_armor_fake <- this.inherit("scripts/items/legend_armor/lege
 			id = 6,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "Reflects [color=" + this.Const.UI.Color.PositiveValue + "]25%[/color] of damage taken in melee back to the attacker"
+			text = "Reflects [color=%positive%]25%[/color] of damage taken in melee back to the attacker"
 		});
 		return result;
 	}
@@ -72,7 +72,7 @@ this.legend_emperors_armor_fake <- this.inherit("scripts/items/legend_armor/lege
 	// 	if (this.Tactical.State.getStrategicProperties() != null && this.Tactical.State.getStrategicProperties().IsArenaMode)
 	// 		return false;
 
-	// 	if (_tile == null) 
+	// 	if (_tile == null)
 	// 	{
 	// 		if (this.Tactical.State.getStrategicProperties() == null)
 	// 		{

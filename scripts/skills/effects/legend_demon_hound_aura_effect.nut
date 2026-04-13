@@ -31,7 +31,7 @@ this.legend_demon_hound_aura_effect <- this.inherit("scripts/skills/skill", {
 				id = 10,
 				type = "text",
 				icon = "ui/icons/initiative.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]-" + penalty * 100 + "%[/color] Initative"
+				text = "[color=%negative%]-" + penalty * 100 + "%[/color] Initative"
 			}
 		];
 	}

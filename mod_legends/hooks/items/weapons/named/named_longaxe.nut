@@ -4,7 +4,8 @@
 	o.create = function ()
 	{
 		create();
-		this.m.Variants = [1,2,3]
+		this.m.Variants = [1,2,3,4,5];
+		this.setVariant(this.m.Variants[::Math.rand(0, this.m.Variants.len() - 1)]);
 	}
 
 	local onEquip = o.onEquip;

@@ -1,7 +1,8 @@
 this.legend_kick_skill <- this.inherit("scripts/skills/skill", {
 	m = {
 		DazeChance = 25,
-		HasLeg = false
+		HasLeg = false,
+		FatigueDamage = 5
 	},
 	function create()
 	{
@@ -33,7 +34,6 @@ this.legend_kick_skill <- this.inherit("scripts/skills/skill", {
 		this.m.FatigueCost = 14;
 		this.m.MinRange = 1;
 		this.m.MaxRange = 1;
-		this.m.IsHidden = true;
 	}
 
 	function getTooltip()
@@ -51,7 +51,7 @@ this.legend_kick_skill <- this.inherit("scripts/skills/skill", {
 			// 		id = 6,
 			// 		type = "text",
 			// 		icon = "ui/icons/hitchance.png",
-			// 		text = "Has [color=" + this.Const.UI.Color.PositiveValue + "]+40%[/color] chance to hit"
+			// 		text = "Has [color=%positive%]+40%[/color] chance to hit"
 			// 	});
 			// }
 			// New
@@ -59,13 +59,13 @@ this.legend_kick_skill <- this.inherit("scripts/skills/skill", {
 				id = 7,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "Has a [color=" + this.Const.UI.Color.PositiveValue + "]100%[/color] chance to stagger on a hit"
+				text = "Has a [color=%positive%]100%[/color] chance to stagger on a hit"
 			});
 			ret.push({
 				id = 8,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "Has a [color=" + this.Const.UI.Color.PositiveValue + "]50%[/color] chance to daze on a hit"
+				text = "Has a [color=%positive%]50%[/color] chance to daze on a hit"
 			});
 		}
 		else
@@ -76,7 +76,7 @@ this.legend_kick_skill <- this.inherit("scripts/skills/skill", {
 			// 		id = 6,
 			// 		type = "text",
 			// 		icon = "ui/icons/hitchance.png",
-			// 		text = "Has [color=" + this.Const.UI.Color.PositiveValue + "]+25%[/color] chance to hit"
+			// 		text = "Has [color=%positive%]+25%[/color] chance to hit"
 			// 	});
 			// }
 			// New
@@ -84,42 +84,46 @@ this.legend_kick_skill <- this.inherit("scripts/skills/skill", {
 				id = 7,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "Has a [color=" + this.Const.UI.Color.PositiveValue + "]100%[/color] chance to stagger on a hit"
+				text = "Has a [color=%positive%]100%[/color] chance to stagger on a hit"
 			});
 			ret.push({
 				id = 8,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "Has a [color=" + this.Const.UI.Color.PositiveValue + "]25%[/color] chance to daze on a hit"
+				text = "Has a [color=%positive%]25%[/color] chance to daze on a hit"
 			});
 		}
 		ret.push({
 			id = 9,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "Inflicts [color=" + this.Const.UI.Color.DamageValue + "]" + this.Const.Combat.FatigueReceivedPerHit * 2 + "[/color] fatigue on hit"
+			text = "Inflicts [color=%damage%]" + this.m.FatigueDamage + "[/color] fatigue on hit"
 		});
 		return ret;
+	}
+
+	function isUsable()
+	{
+		if (::Legends.Perks.has(this, ::Legends.Perk.LegendPugilist))
+			return true;
+		local mainhand = this.m.Container.getActor().getItems().getItemAtSlot(this.Const.ItemSlot.Mainhand);
+		local offhand = this.m.Container.getActor().getItems().getItemAtSlot(this.Const.ItemSlot.Offhand);
+		return ((offhand == null || mainhand == null) || this.getContainer().hasEffect(::Legends.Effect.Disarmed)) && this.skill.isUsable();
 	}
 
 	function isHidden()
 	{
 		if (::Legends.Perks.has(this, ::Legends.Perk.LegendPugilist))
 			return false;
-
-		local skill = ::Legends.Effects.get(this, ::Legends.Effect.DoubleGrip);
-		if (skill.canDoubleGrip())
-			return false;
-		local items = this.getContainer().getActor().getItems();
-		local main = items.getItemAtSlot(this.Const.ItemSlot.Mainhand);
-		return (main != null && !this.getContainer().hasEffect(::Legends.Effect.Disarmed)) || this.m.Container.getActor().isStabled();
+		local mainhand = this.m.Container.getActor().getItems().getItemAtSlot(this.Const.ItemSlot.Mainhand);
+		local offhand = this.m.Container.getActor().getItems().getItemAtSlot(this.Const.ItemSlot.Offhand);
+		return mainhand != null && offhand != null && !this.getContainer().hasEffect(::Legends.Effect.Disarmed) || this.getContainer().getActor().getItems().hasBlockedSlot(this.Const.ItemSlot.Offhand) || this.skill.isHidden() || this.m.Container.getActor().isStabled();
 	}
 
 
 	function onUse( _user, _targetTile )
 	{
 		local target = _targetTile.getEntity();
-		local hasFistMastery = _user.getSkills().hasPerk(::Legends.Perk.LegendSpecUnarmed);
 		local skills = target.getSkills();
 
 		if (this.m.SoundOnUse.len() != 0)
@@ -127,11 +131,15 @@ this.legend_kick_skill <- this.inherit("scripts/skills/skill", {
 			this.Sound.play(this.m.SoundOnUse[this.Math.rand(0, this.m.SoundOnUse.len() - 1)], this.Const.Sound.Volume.Skill, _user.getPos());
 		}
 
-		local success = attackEntity(_user, target);
+		local success = this.attackEntity(_user, target);
 
-		if (!success || !_user.isAlive() || _user.isDying()) return false;
+		if (::Legends.S.skillEntityAliveCheck(_user, target))
+			return success;
 
-		if (!target.isAlive() || target.isDying()) return success;
+		if (!success)
+			return success;
+
+		this.applyFatigueDamage(target, this.m.FatigueDamage);
 
 		// Remove enemy stances
 		::Const.Tactical.Common.removeStances(target);
@@ -150,6 +158,7 @@ this.legend_kick_skill <- this.inherit("scripts/skills/skill", {
 	{
 		this.m.FatigueCostMult = _properties.IsSpecializedInFists ? this.Const.Combat.WeaponSpecFatigueMult : 1.0;
 		this.m.DazeChance = _properties.IsSpecializedInFists ? 50 : 25;
+		this.m.FatigueDamage = _properties.IsSpecializedInFists ? 10 : 5;
 	}
 
 	function onAnySkillUsed( _skill, _targetEntity, _properties )
@@ -157,7 +166,6 @@ this.legend_kick_skill <- this.inherit("scripts/skills/skill", {
 		if (_skill == this)
 		{
 			_properties.MeleeSkill += 25;
-			_properties.FatigueDealtPerHitMult += 1.0;
 			_properties.DamageRegularMin = 0;
 			_properties.DamageRegularMax = 0;
 			_properties.DamageArmorMult = 0.0;
@@ -174,8 +182,6 @@ this.legend_kick_skill <- this.inherit("scripts/skills/skill", {
 				_properties.DamageRegularMin = 10;
 				_properties.DamageRegularMax = 15;
 				_properties.DamageArmorMult = 0.6;
-
-				_properties.FatigueDealtPerHitMult += 1.0; // Increase fatigue damage from 5 to 10
 			}
 		}
 	}

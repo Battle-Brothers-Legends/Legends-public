@@ -2,40 +2,39 @@ this.perk_legend_bloodbath <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		::Const.Perks.setup(this.m, ::Legends.Perk.LegendBloodbath);
+		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendBloodbath);
 		this.m.Type = this.Const.SkillType.Perk | this.Const.SkillType.StatusEffect;
-		this.m.Order = this.Const.SkillOrder.Perk;
-		this.m.IsActive = false;
-		this.m.IsStacking = false;
-		this.m.IsHidden = false;
 	}
 
 	function isHidden()
 	{
-		local bleeders = this.getBleeders();
-		return bleeders == 0;
+		return this.getBleeders() == 0;
 	}
 
 	function getTooltip()
 	{
-		local bleeders = this.getBleeders();
-		local resolveBonus = bleeders * 100;
-		local fatigueRegen = this.getFatigueRegen();
+		local count = this.getBleeders();
 		local tooltip = this.skill.getTooltip();
-		if (bleeders > 0)
+		if (count > 0)
 		{
 			tooltip.extend([
 			{
 				id = 6,
 				type = "text",
-				icon = "ui/icons/bravery.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+" + resolveBonus + "%[/color] to resolve"
+				icon = "ui/icons/melee_skill.png",
+				text = "Gain an additional [color=%positive%]+" + count + "%[/color] Melee Skill"
 			},
 			{
 				id = 7,
 				type = "text",
+				icon = "ui/icons/ranged_skill.png",
+				text = "Gain an additional [color=%positive%]+" + count + "%[/color] Ranged Skill"
+			},
+			{
+				id = 8,
+				type = "text",
 				icon = "ui/icons/fatigue.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+" + fatigueRegen + "%[/color] Fatigue Recovery per turn"
+				text = "[color=%positive%]+" + ::Math.min(count, 5) + "%[/color] Fatigue Recovery per turn"
 			}]);
 		}
 
@@ -45,45 +44,62 @@ this.perk_legend_bloodbath <- this.inherit("scripts/skills/skill", {
 	function getBleeders()
 	{
 		if (!::FU.HasTacticalEntities())
-		{
 			return 0;
-		}
-		if (!::FU.HasTacticalEntities())
-		{
+
+		if (::FU.HasTacticalState() && ::FU.IsBattleEnded())
 			return 0;
-		}
 
-		if (!this.Tactical.isActive())
-		{
+		if (!("Entities" in ::Tactical))
 			return 0;
+
+		if (::Tactical.Entities == null)
+			return 0;
+
+		local myself = this.getContainer().getActor();
+		if (::Legends.S.skillEntityAliveCheck(myself))
+			return 0;
+
+		if (!myself.isPlacedOnMap())
+			return 0;
+
+		local myTile = myself.getTile();
+		if (myTile == null)
+			return 0;
+
+		local bleedingEnemies = ::Tactical.Entities.getAllInstancesAsArray()
+			.filter(function (_, _actor) {
+				if (!::MSU.isKindOf(_actor, "actor"))
+					return false;
+				if (::Legends.S.skillEntityAliveCheck(_actor))
+					return false;
+				if (!_actor.isPlacedOnMap())
+					return false;
+				if (_actor.isAlliedWith(myself))
+					return false;
+				if (_actor.getTile() == null)
+					return false;
+				if (_actor.getSkills() == null)
+					return false;
+
+				return _actor.getSkills().hasEffect(::Legends.Effect.Bleeding) ||
+					_actor.getSkills().hasEffect(::Legends.Effect.LegendGrazedEffect) ||
+					_actor.getSkills().hasSkillOfType(::Const.SkillType.TemporaryInjury);
+			});
+
+		local bonus = 0;
+		foreach (enemy in bleedingEnemies) {
+			bonus += enemy.getTile().getDistanceTo(myTile) > 1 ? 1 : 2;
 		}
-		local count = 0.0;
-		local bleeders = 0.0;
-
-		local actors = this.Tactical.Entities.getAllInstancesAsArray();
-
-		foreach( a in actors )
-		{
-			if (a.getSkills().hasEffect(::Legends.Effect.Bleeding) || a.getSkills().hasEffect(::Legends.Effect.LegendGrazedEffect)  || a.getSkills().hasSkillOfType(this.Const.SkillType.TemporaryInjury))
-			{
-				bleeders += 1.0;
-
-			}
-			count += 1.0;
-		}
-
-		return (count == 0) ? 0 : bleeders / count;
-	}
-
-	function getFatigueRegen()
-	{
-		return this.Math.max(5, this.Math.floor(this.getBleeders() * 20));
+		return bonus;
 	}
 
 	function onUpdate( _properties )
 	{
-		_properties.BraveryMult += this.getBleeders();
-		_properties.FatigueRecoveryRate += this.getFatigueRegen(); // up to 5 extra fatigue regen, can be achieved if at least 1/4 of all characters on the map are bleeding or have temp injuries
+		local count = this.getBleeders();
+		_properties.Bravery += count;
+		_properties.FatigueRecoveryRate += ::Math.min(5, count);
+		_properties.MeleeSkill += count;
+		_properties.RangedSkill += count;
 	}
 
 });

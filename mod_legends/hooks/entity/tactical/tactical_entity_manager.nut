@@ -545,7 +545,7 @@
 		{
 			if (!_tile.hasNextTile(i))
 			{
-				continue
+				continue;
 			}
 
 			if (_tile.getNextTile(i).IsEmpty && this.Math.abs(_tile.Level - _tile.getNextTile(i).Level) <= 1)
@@ -630,6 +630,26 @@
 		return onResurrect(_info, _force);
 	}
 
+	o.isAllowedToDualWield <- function (_entity) {
+		local faction = _entity.getFaction();
+		if (faction == ::Const.Faction.Player
+			|| faction == ::Const.Faction.PlayerAnimals
+			|| this.World.FactionManager.isAlliedWithPlayer(faction)) {
+			return false;
+		}
+		local barredEntities = [
+			::Const.EntityType.Zombie,
+			::Const.EntityType.ZombieYeoman,
+			::Const.EntityType.ZombieKnight,
+			::Const.EntityType.ZombieBetrayer,
+			::Const.EntityType.ZombieBoss
+		]; // should move this to a config or smth
+
+		if (::Legends.S.oneOf(_entity.getType(), barredEntities))
+			return false;
+		return true;
+	}
+
 	local setupEntity = o.setupEntity;
 	o.setupEntity = function( _e, _t )
 	{
@@ -638,6 +658,34 @@
 			_e.m.Outfits = _t.Outfits;
 		}
 		::Legends.Scaling.scaleEnemy(_e, _t);
+
+		// Small chance for enemies with a 1H weapon and free offhand to dual wield
+		if (!this.isAllowedToDualWield(_e)) {
+			return;
+		}
+
+		if (::Legends.Effects.has(_e, ::Legends.Effect.LegendDualWield)) {
+			return;
+		}
+
+		local items = _e.getItems();
+		local mh = items.getItemAtSlot(::Const.ItemSlot.Mainhand);
+		local oh = items.getItemAtSlot(::Const.ItemSlot.Offhand);
+		if (mh == null || oh != null) {
+			return;
+		}
+		if (!mh.isItemType(::Const.Items.ItemType.Weapon)) {
+			return;
+		}
+		if (!items.canDualWield(_e, mh)) {
+			return;
+		}
+
+		if (::Math.rand(1, 100) <= 10) {
+			local copy = this.new(::IO.scriptFilenameByHash(mh.ClassNameHash));
+			items.equip(copy);
+			items.updateDualWield();
+		}
 	}
 
 	local getHostilesNum = o.getHostilesNum;

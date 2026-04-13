@@ -40,23 +40,24 @@
 		this.m.Modifiers.MedConsumption = this.Const.LegendMod.ResourceModifiers.MedConsumption[1];
 		this.m.PerkTreeDynamic = {
 			Weapon = [
-				this.Const.Perks.FlailTree,
-				this.Const.Perks.CleaverTree,
-				this.Const.Perks.SlingTree
+				::Const.Perks.FlailTree,
+				::Const.Perks.CleaverTree,
+				::Const.Perks.SlingTree
 			],
 			Defense = [
-				this.Const.Perks.LightArmorTree
+				::Const.Perks.LightArmorTree
 			],
 			Traits = [
-				this.Const.Perks.MartyrTree,
-				this.Const.Perks.IndestructibleTree,
-				this.Const.Perks.ViciousTree,
-				this.Const.Perks.SturdyTree
+				::Const.Perks.MartyrTree,
+				::Const.Perks.IndestructibleTree,
+				::Const.Perks.ViciousTree,
+				::Const.Perks.SturdyTree
 			],
 			Enemy = [],
 			Class = [
-				this.Const.Perks.NinetailsClassTree,
-				this.Const.Perks.FaithClassTree
+				::Const.Perks.NinetailsClassTree,
+				::Const.Perks.FaithClassTree,
+				::Const.Perks.HealerClassTree
 			],
 			Profession = [],
 			Magic = []
@@ -124,7 +125,7 @@
 		this.m.HairColors = this.Const.HairColors.Old;
 		this.m.Beards = null;
 		this.m.BeardChance = 0;
-		this.m.Bodies = this.Const.Bodies.AllFemale;
+		this.m.Bodies = this.Const.Bodies.NorthernFemale;
 		this.addBackgroundType(this.Const.BackgroundType.Female);
 	}
 

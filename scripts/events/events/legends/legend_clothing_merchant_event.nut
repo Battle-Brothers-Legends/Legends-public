@@ -104,10 +104,10 @@ this.legend_clothing_merchant_event <- this.inherit("scripts/events/event", {
 						[1, "scripts/items/legend_helmets/vanity/legend_helmet_warlock_hood"],
 						[1, "scripts/items/legend_helmets/vanity/legend_helmet_royal_hood"],
 						[1, "scripts/items/legend_helmets/vanity/legend_helmet_lion_pelt"],
-						[1, "scripts/items/legend_armor/tabard/legend_noble_vest"],
+						[1, "scripts/items/legend_armor/tabard/legend_armor_noble_vest"],
 						[1, "scripts/items/legend_helmets/vanity/legend_helmet_noble_buckle"],
-						[1, "scripts/items/legend_armor/cloak/legend_noble_shawl"],
-						[1, "scripts/items/legend_armor/cloth/legend_southern_noble_surcoat"],
+						[1, "scripts/items/legend_armor/cloak/legend_armor_noble_shawl"],
+						[1, "scripts/items/legend_armor/cloth/legend_armor_southern_noble_aketon"],
 						[1, "scripts/items/legend_helmets/vanity/legend_helmet_ponytail"],
 						[1, "scripts/items/legend_helmets/vanity/legend_helmet_royal_hood"],
 						[1, "scripts/items/legend_helmets/vanity/legend_helmet_southern_silk_headscarf"]

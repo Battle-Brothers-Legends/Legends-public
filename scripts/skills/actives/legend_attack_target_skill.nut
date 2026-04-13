@@ -61,7 +61,7 @@ this.legend_attack_target_skill <- this.inherit("scripts/skills/skill", {
 				id = 9,
 				type = "text",
 				icon = "ui/tooltips/warning.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]Pet(s) still on guarding will ignore this command[/color]"
+				text = "[color=%negative%]Pet(s) still on guarding will ignore this command[/color]"
 			},
 		];
 

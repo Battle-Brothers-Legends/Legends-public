@@ -48,7 +48,7 @@ this.legend_nightvision_skill <- this.inherit("scripts/skills/skill", {
 				id = 6,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text =  "Removes night penalties from all allies within [color=" + this.Const.UI.Color.PositiveValue + "]4[/color] tiles"
+				text =  "Removes night penalties from all allies within [color=%positive%]4[/color] tiles"
 			}
 		];
 	}

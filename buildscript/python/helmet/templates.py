@@ -34,20 +34,21 @@ class Templates:
             return template_content
         except FileNotFoundError:
             raise FileNotFoundError(f"Error: Template file '{file_name}' not found.")
-
+        
     Cardinals = [
         [-67, 68, -40, 108],
         [-67, 68, -40, 108],
-        [-57, 59, -53, 55]
+        [-80, 81, -48, 129] #dead sprites are ~1.2 times bigger than regular ones
     ]
 
     BLayer = [
         '<sprite id="${name}" offsetY="35" f="64F0" ic="FF4E5053" img="${name_path}" ${name_cardinals} />\n',
         '<sprite id="${name}_damaged" offsetY="35" f="64F0" ic="FF4B4D51" img="${damaged_path}" ${damaged_cardinals} />\n',
-        '<sprite id="${name}_dead" offsetX="6" offsetY="10" f="64F0" ic="FF222933" img="${dead_path}" ${dead_cardinals} />\n'
+        '<sprite id="${name}_dead" offsetY="-82" offsetX="-21" f="64F0" ic="FF222933" img="${dead_path}" ${dead_cardinals} />\n'
     ]
 
     BaseLayer = load_template("templates/BaseLayer.template")
+    BaseNamedLayer = load_template("templates/BaseNamedLayer.template")
     Layer = load_template("templates/Layer.template")
     NamedLayer = load_template("templates/NamedLayer.template")
 

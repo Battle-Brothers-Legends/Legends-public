@@ -16,7 +16,7 @@ this.legend_skin_ghoul_blood_effect <- this.inherit("scripts/skills/skill", {
 
 	function getDescription()
 	{
-		return "This character has consumed the blood of a skin ghoul, and their flesh is knitting together internally. The effect will heal [color=" + this.Const.UI.Color.PositiveValue + "]10%[/color] of their life each turn, and persist for [color=" + this.Const.UI.Color.NegativeValue + "]" + this.m.TurnsLeft + "[/color] more turn(s).";
+		return "This character has consumed the blood of a skin ghoul, and their flesh is knitting together internally. The effect will heal [color=%positive%]10%[/color] of their life each turn, and persist for [color=%negative%]" + this.m.TurnsLeft + "[/color] more turn(s).";
 	}
 
 	function getTooltip()
@@ -40,7 +40,7 @@ this.legend_skin_ghoul_blood_effect <- this.inherit("scripts/skills/skill", {
 				id = 11,
 				type = "text",
 				icon = "ui/icons/days_wounded.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+ " + healthAdded + "[/color] this turn"
+				text = "[color=%positive%]+ " + healthAdded + "[/color] this turn"
 			}
 		];
 		return ret;

@@ -43,7 +43,7 @@ this.legend_magic_imbue_skill <- this.inherit("scripts/skills/actives/legend_mag
 			id = 7,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "Increase hit chance and damage by [color=" + this.Const.UI.Color.PositiveValue + "]" + this.getImbueAmount() + "[/color]%."
+			text = "Increase hit chance and damage by [color=%positive%]" + this.getImbueAmount() + "[/color]%."
 		});
 		return ret;
 	}

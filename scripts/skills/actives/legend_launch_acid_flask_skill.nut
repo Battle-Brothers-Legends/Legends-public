@@ -1,7 +1,5 @@
 this.legend_launch_acid_flask_skill <- this.inherit("scripts/skills/actives/throw_acid_flask", {
-	m = {
-		ammoCount = 0
-	},
+	m = {},
 	function create()
 	{
 		this.throw_acid_flask.create();
@@ -32,13 +30,13 @@ this.legend_launch_acid_flask_skill <- this.inherit("scripts/skills/actives/thro
 			id = 6,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "Reduces the target\'s armor by [color=" + this.Const.UI.Color.DamageValue + "]20%[/color] each turn for 3 turns."
+			text = "Reduces the target\'s armor by [color=%damage%]20%[/color] each turn for 3 turns."
 		});
 		ret.push({
 			id = 6,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "Has a [color=" + this.Const.UI.Color.DamageValue + "]33%[/color] chance to hit bystanders at the same or lower height level as well."
+			text = "Has a [color=%damage%]33%[/color] chance to hit bystanders at the same or lower height level as well."
 		});
 
 		local ammo = 0;
@@ -59,7 +57,7 @@ this.legend_launch_acid_flask_skill <- this.inherit("scripts/skills/actives/thro
 				id = 8,
 				type = "text",
 				icon = "ui/icons/ammo.png",
-				text = "Has [color=" + this.Const.UI.Color.PositiveValue + "]" + ammo + "[/color] use left"
+				text = "Has [color=%positive%]" + ammo + "[/color] use left"
 			});
 		}
 		else
@@ -68,42 +66,25 @@ this.legend_launch_acid_flask_skill <- this.inherit("scripts/skills/actives/thro
 				id = 8,
 				type = "text",
 				icon = "ui/tooltips/warning.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]No ammo left in backpack[/color]"
+				text = "[color=%negative%]No ammo left in backpack[/color]"
 			});
 		}
 
 		return ret;
 	}
 
-	function setItem( _i )
-	{
-		this.m.Item = this.WeakTableRef(_i);
-	}
-
 	function isHidden()
 	{
-		if (!::Legends.Perks.get(this, ::Legends.Perk.LegendSlingerSpins))
+		local actor = this.getContainer().getActor();
+		if (actor == null)
+			return true;
+		if (actor.getCurrentProperties() == null)
+			return true;
+		if (!actor.getCurrentProperties().IsSpecializedInSlings)
 			return true;
 		if (this.m.Item != null && !this.m.Item.isNull() && this.m.Item.getAmmo() != 0)
-		{
 			return false;
-		}
-
 		return this.skill.isHidden();
-	}
-
-	function getAmmo()
-	{
-		if (this.m.Item != null && !this.m.Item.isNull())
-			return this.m.Item.getAmmo();
-
-		return 0;
-	}
-
-	function consumeAmmo()
-	{
-		if (this.m.Item != null && !this.m.Item.isNull())
-			this.m.Item.consumeAmmo();
 	}
 
 	function onAnySkillUsed( _skill, _targetEntity, _properties )

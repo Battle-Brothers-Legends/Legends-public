@@ -390,7 +390,7 @@ this.camp_manager <- {
 			}
 		}
 
-		local count = this.Math.rand(3, 5);
+		local count = this.Math.rand(::Legends.Encounters.CampMin, ::Legends.Encounters.CampMax);
 		while(list.len() > count + 1) {
 			local r = this.Math.rand(1, list.len() - 1);
 			list.remove(r);
@@ -399,7 +399,7 @@ this.camp_manager <- {
 		foreach (e in list) {
 			this.m.CampEncounters.push(e);
 		}
-		this.m.CampEncountersCooldownUntil = this.Time.getVirtualTimeF() + (5 * ::World.getTime().SecondsPerDay);
+		this.m.CampEncountersCooldownUntil = this.Time.getVirtualTimeF() + (::Legends.Encounters.CampCooldown * ::World.getTime().SecondsPerDay);
 	}
 
 	function getContracts() {

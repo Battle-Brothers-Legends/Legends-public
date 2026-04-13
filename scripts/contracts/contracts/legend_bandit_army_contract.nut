@@ -11,8 +11,8 @@ this.legend_bandit_army_contract <- this.inherit("scripts/contracts/contract", {
 		OriginalReward = 0,
 		MinStrength = 10, // player needs to earn 10% of bonus (not including base 5% bonus) for this contract to be valid
 		BribeMoney = 1000,
-		Perk = ::Legends.Perk.LegendFavouredEnemyBandit,
-		ValidTypes = this.Const.LegendMod.FavoriteBandit,
+		Perk = ::Legends.Perk.LegendFavouredEnemyOutlaw,
+		ValidTypes = this.Const.LegendMod.FavoriteOutlaw,
 		LevelSumRequiredForRandomSpawn = 50,
 		IsRandomlyAdded = null,
 	},
@@ -316,7 +316,7 @@ this.legend_bandit_army_contract <- this.inherit("scripts/contracts/contract", {
 
 					foreach( bro in bros )
 					{
-						if (bro.getBackground().getID() == "background.thief" || bro.getBackground().getID() == "background.sellsword" || bro.getBackground().getID() == "background.legend_trader_commander" || bro.getBackground().getID() == "background.legend_assassin_commander" || bro.getSkills().hasPerk(::Legends.Perk.LegendBribe))
+						if (bro.getBackground().getID() == "background.thief" || bro.getBackground().getID() == "background.sellsword" || bro.getBackground().getID() == "background.legend_commander_trader" || bro.getBackground().getID() == "background.legend_commander_assassin" || bro.getBackground().getID() == "background.assassin" || bro.getSkills().hasPerk(::Legends.Perk.LegendBribe))
 						{
 							candidates.push(bro);
 						}
@@ -372,7 +372,7 @@ this.legend_bandit_army_contract <- this.inherit("scripts/contracts/contract", {
 		this.m.Screens.push({
 			ID = "Task",
 			Title = "Negotiations",
-			Text = "[img]gfx/ui/events/event_20.png[/img]{%employer% looks on as you fumble for somewhere to sit.%SPEECH_ON%Mercenary, how long has it been since you\'ve slaked your sword with the blood of evil, cruel men?%SPEECH_OFF% He theatrically raises his fist, shaking it ever so slightly as if he was centre stage of a stage performance. By the time you have parsed this, you realise that you have been simply standing there, dumbfounded, looking for a reply. After a moment their face reverts to a more natural state, it looks like you\'ll be standing from now on.%SPEECH_ON%We are having a bit of a problem with some local brigands — local to us, that is.\n\n They must be somewhere not far from here — they come frequently and grow in number by the day. The Smallfolk bother me every day about this, they panic as if there were a whole army of these troublemakers! Can you believe it?\n Obviously, I think the answer to this issue is to hire some of my own brigands, such as your little company of good folk. So, does that pique your interest, mercenary? Or do I need to find sturdier types for the task?%SPEECH_OFF%}",
+			Text = "[img]gfx/ui/events/event_20.png[/img]%employer% looks on as you fumble for somewhere to sit.%SPEECH_ON%Mercenary, how long has it been since you\'ve slaked your sword with the blood of evil, cruel men?%SPEECH_OFF% He theatrically raises his fist, shaking it ever so slightly as if he was centre stage of a stage performance. By the time you have parsed this, you realise that you have been simply standing there, dumbfounded, looking for a reply. After a moment their face reverts to a more natural state, it looks like you\'ll be standing from now on.%SPEECH_ON%We are having a bit of a problem with some local brigands — local to us, that is.\n\n They must be somewhere not far from here — they come frequently and grow in number by the day. The Smallfolk bother me every day about this, they panic as if there were a whole army of these troublemakers! Can you believe it?\n Obviously, I think the answer to this issue is to hire some of my own brigands, such as your little company of good folk. So, does that pique your interest, mercenary? Or do I need to find sturdier types for the task?%SPEECH_OFF%",
 			Image = "",
 			List = [],
 			ShowEmployer = true,
@@ -404,7 +404,7 @@ this.legend_bandit_army_contract <- this.inherit("scripts/contracts/contract", {
 		this.m.Screens.push({
 			ID = "AttackDest",
 			Title = "Before the attack...",
-			Text = "[img]gfx/ui/events/event_54.png[/img] Diplomacy has failed; the bandits arm themselves and are organised as well as a proper army. They seem well drilled and come from a mix of backgrounds — some professional, others less so.",
+			Text = "[img]gfx/ui/events/event_54.png[/img]Diplomacy has failed; the bandits arm themselves and are organised as well as a proper army. They seem well drilled and come from a mix of backgrounds — some professional, others less so.",
 			Image = "",
 			List = [],
 			Options = [
@@ -423,7 +423,7 @@ this.legend_bandit_army_contract <- this.inherit("scripts/contracts/contract", {
 		this.m.Screens.push({
 			ID = "Bribe",
 			Title = "As you approach...",
-			Text = "[img]gfx/ui/events/event_54.png[/img] As you approach bandit encampment you notice they do not seem like any raiders you\'ve encountered. You expected to be attacked instantly, but they hesitate — some belligerents, even though well equipped, do not seem eager for a fight.\n\n %shouter% notices some familiar faces, folk not built for combat but are instead malnourished and desperate. Before any hostilities starts, %shouter% approaches you with a risky idea, if you\'re willing to try.",
+			Text = "[img]gfx/ui/events/event_54.png[/img]As you approach bandit encampment you notice they do not seem like any raiders you\'ve encountered. You expected to be attacked instantly, but they hesitate — some belligerents, even though well equipped, do not seem eager for a fight.\n\n %shouter% notices some familiar faces, folk not built for combat but are instead malnourished and desperate. Before any hostilities starts, %shouter% approaches you with a risky idea, if you\'re willing to try.",
 			Image = "",
 			List = [],
 			Characters = [],
@@ -551,7 +551,7 @@ this.legend_bandit_army_contract <- this.inherit("scripts/contracts/contract", {
 		this.m.Screens.push({
 			ID = "LootTime",
 			Title = "After the battle...",
-			Text = "[img]gfx/ui/events/event_22.png[/img] The silence rolls in after the battle gradually concludes, those who are not dead are writhing in pain or struggling to crawl to safety, out of the corner of your eye you can see Nachzehrers skulking around in the brush, presumably waiting until you depart to begin their meal.\n\n Before you have looted what remains, nature is already descending to clean the battlefield - crows start to finish off those alive who can't defend themselves, stray dogs pull away corpses at the edges of the battle before the more dangerous predators can arrive. A robed man, unknown to either party involved, begins taking what trinkets he can from the dead, no doubt to be sold in a market you will end up visiting later.\n With as many spoils as your company can carry, it is time to get paid at %Home%.",
+			Text = "[img]gfx/ui/events/event_22.png[/img]The silence rolls in after the battle gradually concludes, those who are not dead are writhing in pain or struggling to crawl to safety, out of the corner of your eye you can see Nachzehrers skulking around in the brush, presumably waiting until you depart to begin their meal.\n\n Before you have looted what remains, nature is already descending to clean the battlefield - crows start to finish off those alive who can't defend themselves, stray dogs pull away corpses at the edges of the battle before the more dangerous predators can arrive. A robed man, unknown to either party involved, begins taking what trinkets he can from the dead, no doubt to be sold in a market you will end up visiting later.\n With as many spoils as your company can carry, it is time to get paid at %Home%.",
 			Image = "",
 			List = [],
 			Options = [
@@ -622,7 +622,7 @@ this.legend_bandit_army_contract <- this.inherit("scripts/contracts/contract", {
 		this.m.Screens.push({
 			ID = "ISEEYOU",
 			Title = "At %Home%...",
-			Text = "[img]gfx/ui/events/event_45.png[/img]{Not long after you enter %Home%, your employer summons you. This time you enter meeting that is more war council than a social visit — All local militia captains are present, discussing the defensive capabilities of %Home% and outlying farms in case of a siege. With the rumours you gathered and information from other agents, the location of the bandit army is finally determined to be not far from here.\n\n You begin to wonder if this job is worth the risk, but so close to the end and with the threat confirmed, there is no turning back now. Your hesitance clearly terrifies your employer greatly, they assure you that coin promised will be paid to the last crown if threat is eliminated. Food, wine and company are offered if you succeed; anything to convince you to stop the bandits or die trying, or at least to slow it down.\n Preparing to move out from %Home% you notice unusual mobilization of the locals.}",
+			Text = "[img]gfx/ui/events/event_45.png[/img]Not long after you enter %Home%, your employer summons you. This time you enter meeting that is more war council than a social visit — All local militia captains are present, discussing the defensive capabilities of %Home% and outlying farms in case of a siege. With the rumours you gathered and information from other agents, the location of the bandit army is finally determined to be not far from here.\n\n You begin to wonder if this job is worth the risk, but so close to the end and with the threat confirmed, there is no turning back now. Your hesitance clearly terrifies your employer greatly, they assure you that coin promised will be paid to the last crown if threat is eliminated. Food, wine and company are offered if you succeed; anything to convince you to stop the bandits or die trying, or at least to slow it down.\n Preparing to move out from %Home% you notice unusual mobilization of the locals.",
 			Image = "",
 			Characters = [],
 			List = [],
@@ -649,7 +649,7 @@ this.legend_bandit_army_contract <- this.inherit("scripts/contracts/contract", {
 		this.m.Screens.push({
 			ID = "Shortcut",
 			Title = "The violence settles...",
-			Text = "[img]gfx/ui/events/event_22.png[/img] With the patrol destroyed %randombrother% collects weapons from those unable to fight back while %randombrother2% waltzes between corpses, poking at each body with a stick in one hand and a sword in the other, occasionally plunging the blade into the ribcage of a squirming corpse who failed to play dead.\n When everyone has reported in and spoils are organised and the surviving bandits get a little attention. %randombrother% approaches you. %SPEECH_ON% These scum bleeding out might know something — what if we convince \'em to speak up? I would rather torture these bastards until they share their little secrets rather than running around asking peasants for goddamn directions. %SPEECH_OFF%}",
+			Text = "[img]gfx/ui/events/event_22.png[/img]With the patrol destroyed %randombrother% collects weapons from those unable to fight back while %randombrother2% waltzes between corpses, poking at each body with a stick in one hand and a sword in the other, occasionally plunging the blade into the ribcage of a squirming corpse who failed to play dead.\n When everyone has reported in and spoils are organised and the surviving bandits get a little attention. %randombrother% approaches you. %SPEECH_ON% These scum bleeding out might know something — what if we convince \'em to speak up? I would rather torture these bastards until they share their little secrets rather than running around asking peasants for goddamn directions. %SPEECH_OFF%",
 			Image = "",
 			Characters = [],
 			List = [],
@@ -659,6 +659,7 @@ this.legend_bandit_army_contract <- this.inherit("scripts/contracts/contract", {
 					function getResult()
 					{
 						this.World.Assets.addMoralReputation(10);
+						this.Contract.setState("TOBATTLE");
 						return 0;
 					}
 				},
@@ -667,7 +668,6 @@ this.legend_bandit_army_contract <- this.inherit("scripts/contracts/contract", {
 					function getResult()
 					{
 						this.World.Assets.addMoralReputation(-10);
-						this.Contract.setState("TOBATTLE");
 						return 0;
 					}
 
@@ -843,8 +843,7 @@ this.legend_bandit_army_contract <- this.inherit("scripts/contracts/contract", {
 	}
 
 	function spawnRaidingParty() {
-		local tile = this.m.Destination.getTile();
-		local party = this.World.FactionManager.getFactionOfType(this.Const.FactionType.Bandits).spawnEntity(tile, "Raiding party", false, this.Const.World.Spawn.BanditRoamers, 80 * this.getDifficultyMult() * this.getScaledDifficultyMult(), this.getMinibossModifier());
+		local party = this.World.FactionManager.getFactionOfType(this.Const.FactionType.Bandits).spawnEntity(this.m.Destination.getTile(), "Raiding party", false, this.Const.World.Spawn.BanditRoamers, 80 * this.getDifficultyMult() * this.getScaledDifficultyMult(), this.getMinibossModifier());
 		party.getSprite("banner").setBrush(this.m.Destination.getBanner());
 		party.setAttackableByAI(false);
 		this.m.Target = this.WeakTableRef(party);
@@ -897,6 +896,15 @@ this.legend_bandit_army_contract <- this.inherit("scripts/contracts/contract", {
 		{
 			_out.writeU32(0);
 		}
+
+		if (this.m.Target != null && !this.m.Target.isNull())
+		{
+			_out.writeU32(this.m.Target.getID());
+		}
+		else
+		{
+			_out.writeU32(0);
+		}
 		_out.writeBool(this.m.IsRandomlyAdded);
 		this.contract.onSerialize(_out);
 	}
@@ -919,6 +927,12 @@ this.legend_bandit_army_contract <- this.inherit("scripts/contracts/contract", {
 		if (location2 != 0)
 		{
 			this.m.Location2 = this.WeakTableRef(this.World.getEntityByID(location2));
+		}
+
+		local target = _in.readU32();
+		if (target != 0)
+		{
+			this.m.Target = this.WeakTableRef(this.World.getEntityByID(target));
 		}
 		this.m.IsRandomlyAdded = _in.readBool();
 		this.contract.onDeserialize(_in);

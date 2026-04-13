@@ -8,7 +8,7 @@
 	RangedSkill = 40,
 	MeleeDefense = 10,
 	RangedDefense = -10,
-	Initiative = 120,
+	Initiative = 100,
 	FatigueEffectMult = 1.0,
 	MoraleEffectMult = 1.0,
 	Armor = [
@@ -17,6 +17,46 @@
 	],
 	FatigueRecoveryRate = 40,
 	DamageTotalMult = 1.25
+};
+::Const.Tactical.Actor.LegendOrcTyrant <- {
+	XP = 1000,
+	ActionPoints = 10,
+	Hitpoints = 520,
+	Bravery = 150,
+	Stamina = 470,
+	MeleeSkill = 100,
+	RangedSkill = 50,
+	MeleeDefense = 10,
+	RangedDefense = -10,
+	Initiative = 120,
+	FatigueEffectMult = 1.0,
+	MoraleEffectMult = 1.0,
+	Armor = [
+		100,
+		0
+	],
+	FatigueRecoveryRate = 40,
+	DamageTotalMult = 1.25
+};
+::Const.Tactical.Actor.LegendOrcMadBerserker <- {
+	XP = 700,
+	ActionPoints = 12,
+	Hitpoints = 250,
+	Bravery = 120,
+	Stamina = 360,
+	MeleeSkill = 85,
+	RangedSkill = 40,
+	MeleeDefense = -10,
+	RangedDefense = -10,
+	Initiative = 150,
+	FatigueEffectMult = 1.0,
+	MoraleEffectMult = 1.0,
+	Armor = [
+		100,
+		50
+	],
+	FatigueRecoveryRate = 35,
+	DamageTotalMult = 1.2
 };
 ::Const.Tactical.Actor.LegendOrcBehemoth <- {
 	XP = 400,

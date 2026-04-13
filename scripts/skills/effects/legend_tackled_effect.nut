@@ -16,7 +16,7 @@ this.legend_tackled_effect <- this.inherit("scripts/skills/skill", {
 
 	function getDescription()
 	{
-		return "This character has been tackled and knocked over. They will get back on their feet in [color=" + this.Const.UI.Color.NegativeValue + "]" + this.m.TurnsLeft + "[/color] turn(s).";
+		return "This character has been tackled and knocked over. They will get back on their feet in [color=%negative%]" + this.m.TurnsLeft + "[/color] turn(s).";
 	}
 
 	function getTooltip()
@@ -36,19 +36,19 @@ this.legend_tackled_effect <- this.inherit("scripts/skills/skill", {
 				id = 11,
 				type = "text",
 				icon = "ui/icons/fatigue.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]-50%[/color] melee defense"
+				text = "[color=%negative%]-50%[/color] melee defense"
 			},
 			{
 				id = 12,
 				type = "text",
 				icon = "ui/icons/fatigue.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]-70%[/color] Initiative"
+				text = "[color=%negative%]-70%[/color] Initiative"
 			},
 			{
 				id = 12,
 				type = "text",
 				icon = "ui/icons/fatigue.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]+25%[/color] damage taken"
+				text = "[color=%negative%]+25%[/color] damage taken"
 			}
 		];
 	}

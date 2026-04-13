@@ -54,26 +54,26 @@
 		this.m.PerkTreeDynamicMins.Defense = 3;
 		this.m.PerkTreeDynamic = {
 			Weapon = [
-				this.Const.Perks.SpearTree,
-				this.Const.Perks.MaceTree,
-				this.Const.Perks.ShieldTree,
-				this.Const.Perks.CrossbowTree
+				::Const.Perks.SpearTree,
+				::Const.Perks.MaceTree,
+				::Const.Perks.ShieldTree,
+				::Const.Perks.CrossbowTree
 			],
 			Defense = [
-				this.Const.Perks.HeavyArmorTree,
+				::Const.Perks.HeavyArmorTree,
 			],
 			Traits = [
-				this.Const.Perks.FitTree,
-				this.Const.Perks.LargeTree,
-				this.Const.Perks.TrainedTree,
-				this.Const.Perks.DeviousTree
+				::Const.Perks.FitTree,
+				::Const.Perks.LargeTree,
+				::Const.Perks.TrainedTree,
+				::Const.Perks.DeviousTree
 			],
 			Enemy = [
-				this.Const.Perks.BanditTree,
-				this.Const.Perks.NoblesTree
+				::Const.Perks.OutlawTree,
+				::Const.Perks.CivilizationTree
 			],
 			Class = [],
-			Profession = [], 
+			Profession = [],
 			Magic = []
 		}
 	}
@@ -94,7 +94,7 @@
 		this.m.HairColors = this.Const.HairColors.Young;
 		this.m.Beards = null;
 		this.m.BeardChance = 0;
-		this.m.Bodies = this.Const.Bodies.AllFemale;
+		this.m.Bodies = this.Const.Bodies.NorthernFemale;
 		this.addBackgroundType(this.Const.BackgroundType.Female);
 		this.m.GoodEnding = "%name% the deserter continued fighting for the %companyname%, ever striving to redeem her name. Word has it that during a brutal fight with orcs, she dove headfirst into a crowd of greenskins, surfing across the top of their shocked heads. Her heroism rallied the mercenaries to an incredible victory and she lives out her days getting toasted in every bar she enters.";
 		this.m.BadEnding = "You heard %name% the deserter actually renewed her title and fled a battle the %companyname% had with some greenskins. Goblins caught her out in the woods and turned her head into a goblet for an orc warlord.";
@@ -170,7 +170,7 @@
 	{
 		local items = this.getContainer().getActor().getItems();
 		local r;
-		r = this.Math.rand(1, 4);
+		r = this.Math.rand(1, 5);
 
 		if (r == 1)
 		{
@@ -188,6 +188,10 @@
 		{
 			items.equip(this.new("scripts/items/weapons/short_bow"));
 			items.equip(this.new("scripts/items/ammo/quiver_of_arrows"));
+		}
+		else
+		{
+			items.equip(this.new("scripts/items/weapons/legend_sturdy_sling"));
 		}
 
 		r = this.Math.rand(0, 3);

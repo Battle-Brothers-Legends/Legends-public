@@ -10,8 +10,6 @@
   <sprite id="world_plains_06" b6="1" ic="FF286757" img="world_tiles\world_plains_06.png" />
   <sprite id="world_plains_07" b6="1" ic="FF276454" img="world_tiles\world_plains_07.png" />
   <sprite id="world_snow_03" b6="1" ic="FFD6D1CD" img="world_tiles\world_snow_03.png" />
-  <sprite id="world_forest_needle_01" b6="1" ic="FF2C3347" img="world_tiles\world_forest_needle_01.png" />
-  <sprite id="world_forest_needle_02" b6="1" ic="FF2C3F4A" img="world_tiles\world_forest_needle_02.png" />
   <sprite id="world_highlands_01" b6="1" ic="FF2E5764" img="world_tiles\world_highlands_01.png" />
   <sprite id="world_highlands_02" b6="1" ic="FF315461" img="world_tiles\world_highlands_02.png" />
   <sprite id="world_plains_08" b6="1" ic="FF2B6560" img="world_tiles\world_plains_08.png" />

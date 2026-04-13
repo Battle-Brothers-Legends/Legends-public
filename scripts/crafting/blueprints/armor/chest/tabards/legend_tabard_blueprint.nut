@@ -8,7 +8,7 @@ this.legend_tabard_blueprint <- this.inherit("scripts/crafting/blueprint", {
 		this.blueprint.create();
 		this.m.ID = "blueprint.legend_tabard_blueprint";
 		this.m.Type = this.Const.Items.ItemType.Armor;
-		this.m.PreviewCraftable = this.new("scripts/items/legend_armor/tabard/legend_common_tabard");
+		this.m.PreviewCraftable = this.new("scripts/items/legend_armor/tabard/legend_armor_tabard");
 		this.m.Variants = this.m.PreviewCraftable.m.Variants.len();
 		this.m.PreviewCraftable.setVariant(this.m.PreviewCraftable.m.Variants[0]);
 		this.m.Cost = 10;
@@ -38,7 +38,7 @@ this.legend_tabard_blueprint <- this.inherit("scripts/crafting/blueprint", {
 
 	function onCraft( _stash )
 	{
-		local item = this.new("scripts/items/legend_armor/tabard/legend_common_tabard");
+		local item = this.new("scripts/items/legend_armor/tabard/legend_armor_tabard");
 		item.setVariant(item.m.Variants[this.m.Variant-1]);
 		_stash.add(item);
 	}

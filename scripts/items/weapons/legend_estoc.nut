@@ -18,7 +18,7 @@ this.legend_estoc <- this.inherit("scripts/items/weapons/weapon", {
 		this.m.ShowArmamentIcon = true;
 		this.m.Condition = 56.0;
 		this.m.ConditionMax = 56.0;
-		this.m.StaminaModifier = -14;
+		this.m.StaminaModifier = -8;
 		this.m.Value = 3200;
 		this.m.RegularDamage = 45;
 		this.m.RegularDamageMax = 60;
@@ -38,11 +38,14 @@ this.legend_estoc <- this.inherit("scripts/items/weapons/weapon", {
 	function onEquip()
 	{
 		this.weapon.onEquip();
-		::Legends.Actives.grant(this, ::Legends.Active.Slash, function (_skill) {
-			_skill.m.IsGreatSlash = true;
+		::Legends.Actives.grant(this, ::Legends.Active.Stab, function (_skill) {
+			_skill.m.IsEstocStab = true;
 		}.bindenv(this));
 		::Legends.Actives.grant(this, ::Legends.Active.Lunge, function (_skill) {
 			_skill.m.isGreatLunge = true;
+		}.bindenv(this));
+		::Legends.Actives.grant(this, ::Legends.Active.Puncture, function (_skill) {
+			_skill.m.IsHalfsword = true;
 		}.bindenv(this));
 	}
 

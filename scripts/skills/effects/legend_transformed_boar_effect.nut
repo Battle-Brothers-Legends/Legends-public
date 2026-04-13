@@ -24,7 +24,7 @@ this.legend_transformed_boar_effect <- this.inherit("scripts/skills/effects/lege
 					id = 10,
 					type = "text",
 					icon = "ui/icons/health.png",
-					text = "[color=" + this.Const.UI.Color.PositiveValue + "]+100%[/color] Fatigue Recovery per turn"
+					text = "[color=%positive%]+100%[/color] Fatigue Recovery per turn"
 				}
 			]);
 		}

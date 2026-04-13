@@ -36,19 +36,19 @@ this.legend_dodging_incoming <- this.inherit("scripts/skills/effects/legend_comm
 			id = 11,
 			type = "text",
 			icon = "ui/icons/ranged_skill.png",
-			text = "[color=" + this.Const.UI.Color.PositiveValue + "]+5[/color] Ranged Skill"
+			text = "[color=%positive%]+5[/color] Ranged Skill"
 		});
 		ret.push({
 			id = 11,
 			type = "text",
 			icon = "ui/icons/bravery.png",
-			text = "[color=" + this.Const.UI.Color.PositiveValue + "]+5[/color] Resolve"
+			text = "[color=%positive%]+5[/color] Resolve"
 		});
 		ret.push({
 			id = 11,
 			type = "text",
 			icon = "ui/icons/ranged_defense.png",
-			text = "[color=" + this.Const.UI.Color.PositiveValue + "]+10[/color] Ranged Defence"
+			text = "[color=%positive%]+10[/color] Ranged Defence"
 		});
 		return ret;
 	}

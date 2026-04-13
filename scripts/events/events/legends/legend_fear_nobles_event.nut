@@ -6,7 +6,6 @@ this.legend_fear_nobles_event <- this.inherit("scripts/events/event", {
 			"disowned_noble",
 			"female_disowned_noble",
 			"adventurous_noble",
-			"female_adventurous_noble",
 			"hedge_knight",
 			"legend_noble_2h",
 			"legend_noble",

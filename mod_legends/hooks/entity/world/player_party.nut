@@ -29,9 +29,8 @@
 		}
 		if (roster.len() < this.World.Assets.getBrothersScaleMin())
 		{
-			this.m.Strength += 10.0 * (this.World.Assets.getBrothersScaleMin() - roster.len());
+			this.m.Strength += 10.0 * roster.len();
 		}
-
 
 		if (this.World.Assets.getOrigin() == null)
 		{
@@ -39,16 +38,8 @@
 			return;
 		}
 
-		local broScale = 1.0;
-		if (this.World.Assets.getOrigin().getID() == "scenario.militia")
-		{
-			broScale = 0.66;
-		}
-
-		if (this.World.Assets.getOrigin().getID() == "scenario.lone_wolf")
-		{
-			broScale = 1.66;
-		}
+		local broScale = this.World.Assets.getOrigin().getBrotherScaling();
+		
 
 		local zombieSummonLevel = 0;
 		local skeletonSummonLevel = 0;
@@ -111,37 +102,13 @@
 				this.m.Strength += (count + (brolevel + (pow(brolevel,1.2)))) * broScale;
 			}
 
-			// item scaling
-			local mainhand = bro.getItems().getItemAtSlot(this.Const.ItemSlot.Mainhand);
-			local offhand = bro.getItems().getItemAtSlot(this.Const.ItemSlot.Offhand);
-			local body = bro.getItems().getItemAtSlot(this.Const.ItemSlot.Body);
-			local head = bro.getItems().getItemAtSlot(this.Const.ItemSlot.Head);
-			local mainhandvalue = 0;
-			local offhandvalue = 0;
-			local bodyvalue = 0;
-			local headvalue = 0;
-
-			if (mainhand != null)
+			local gearvalue = 0;
+			foreach (item in bro.getItems().getAllItems())
 			{
-				mainhandvalue += (mainhand.getSellPrice())  / 1000;
-			}
+				if (item != null)
+					gearvalue += item.getValue() / 1000;
+			} 
 
-			if (offhand != null)
-			{
-				offhandvalue += (offhand.getSellPrice()) / 1000;
-			}
-
-			if (body != null)
-			{
-				bodyvalue += (body.getSellPrice()) / 1000;
-			}
-
-			if (head != null)
-			{
-				headvalue += (head.getSellPrice()) / 1000;
-			}
-
-			local gearvalue = mainhandvalue + offhandvalue + bodyvalue + headvalue;
 			this.m.Strength += gearvalue;
 			// item scaling end
 
@@ -351,7 +318,7 @@
 
 	o.calculateModifiers <- function ()
 	{
-		if (this.World.State.m.AppropriateTimeToRecalc == 1)	//Leonion's fix
+		if (this.World.State.m.AppropriateTimeToRecalc == 1) //Leonion's fix
 		{
 			this.calculateBarterMult();
 			this.calculateWageModifier();
@@ -451,29 +418,12 @@
 		this.m.MedsMultiplier = s;
 	}
 
-	o.calculateStashModifier <- function (resize = true)
+	o.calculateStashModifier <- function (_resize = true)
 	{
-		if (::World.State.m.AppropriateTimeToRecalc == 1)	////Leonion's fix
-		{
-			local s = ::World.Flags.getAsInt("LegendStartingStash");
-
-			foreach( bro in ::World.getPlayerRoster().getAll())
-			{
-				s += bro.getStashModifier();
-			}
-
-			if (this.World.Retinue.hasFollower("follower.quartermaster"))
-			{
-				s += 27;
-			}
-
-			if (resize && s != ::Stash.getCapacity())
-				::Stash.resize(s);
-
-			return s;
+		if (_resize && ::World.State.m.AppropriateTimeToRecalc == 1) {	//Leonion's fix
+			::Legends.Stash.resize();
 		}
-
-		return ::Stash.getCapacity();
+		return ::Legends.Stash.getSize();
 	}
 
 	local onInit = o.onInit;

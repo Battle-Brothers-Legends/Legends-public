@@ -9,6 +9,28 @@
 	Script = "scripts/entity/tactical/enemies/legend_orc_elite"
 };
 
+::Const.World.Spawn.Troops.LegendOrcTyrant <- {
+	ID = this.Const.EntityType.LegendOrcTyrant,
+	Variant = 10,
+	Strength = 90,
+	Cost = 90,
+	Row = 1,
+	NameList = this.Const.Strings.OrcWarlordNames,
+	TitleList = this.Const.Strings.GoblinTitles,
+	Script = "scripts/entity/tactical/enemies/legend_orc_tyrant"
+};
+
+::Const.World.Spawn.Troops.LegendOrcMadBerserker <- {
+	ID = this.Const.EntityType.LegendOrcMadBerserker,
+	Variant = 1,
+	Strength = 90,
+	Cost = 90,
+	Row = 1,
+	NameList = this.Const.Strings.OrcWarlordNames,
+	TitleList = this.Const.Strings.GoblinTitles,
+	Script = "scripts/entity/tactical/enemies/legend_orc_mad_berserker"
+};
+
 ::Const.World.Spawn.Troops.LegendOrcBehemoth <- {
 	ID = this.Const.EntityType.LegendOrcBehemoth,
 	Variant = 1,
@@ -70,7 +92,7 @@
 	Strength = 85,
 	Cost = 90,
 	Row = 1,
-	Script = "scripts/entity/tactical/enemies/legend_white_goblin_direwolf_rider",
+	Script = "scripts/entity/tactical/enemies/legend_goblin_white_direwolf_rider",
 	NameList = this.Const.Strings.GoblinNames,
 	TitleList = this.Const.Strings.GoblinTitles
 };
@@ -186,13 +208,13 @@
 	Script = "scripts/entity/tactical/enemies/legend_bandit_veteran"
 };
 
-::Const.World.Spawn.Troops.BanditWarlord <- {
-	ID = this.Const.EntityType.BanditWarlord,
+::Const.World.Spawn.Troops.LegendRobberBaron <- {
+	ID = this.Const.EntityType.LegendRobberBaron,
 	Variant = 1,
 	Strength = 60,
 	Cost = 50,
 	Row = 2,
-	Script = "scripts/entity/tactical/enemies/legend_bandit_warlord",
+	Script = "scripts/entity/tactical/enemies/legend_robber_baron",
 	NameList = this.Const.Strings.BanditLeaderNames,
 	TitleList = null
 };
@@ -526,6 +548,17 @@
 // 	Row = 1,
 // 	Script = "scripts/entity/tactical/enemies/legend_kobold_wolfrider"
 // };
+
+::Const.World.Spawn.Troops.LegendWicht <- {
+	ID = this.Const.EntityType.LegendWicht,
+	Variant = 2,
+	Strength = 40,
+	Cost = 40,
+	Row = 0,
+	NameList = this.Const.Strings.GhostArmorNames,
+	TitleList = null,
+	Script = "scripts/entity/tactical/enemies/legend_wicht"
+};
 
 ::Const.World.Spawn.Troops.LegendMummyLight <- {
 	ID = this.Const.EntityType.LegendMummyLight,

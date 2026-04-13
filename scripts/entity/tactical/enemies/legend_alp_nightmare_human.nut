@@ -188,7 +188,7 @@ this.legend_alp_nightmare_human <- this.inherit("scripts/entity/tactical/enemies
 				}
 				else if (r == 9)
 				{
-					this.m.Items.equip(this.new("scripts/items/weapons/legend_longsword"));
+					this.m.Items.equip(this.new("scripts/items/weapons/legend_zweihander"));
 					::Legends.Perks.grant(this, ::Legends.Perk.LegendForcefulSwing);
 
 					if (::Legends.isLegendaryDifficulty())

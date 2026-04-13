@@ -36,7 +36,7 @@ this.legend_prosthetic_nose <- this.inherit("scripts/skills/traits/character_tra
 				id = 7,
 				type = "text",
 				icon = "ui/icons/fatigue.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]-5%[/color] Max Fatigue"
+				text = "[color=%negative%]-5%[/color] Max Fatigue"
 			});
 		}
 		else
@@ -46,19 +46,19 @@ this.legend_prosthetic_nose <- this.inherit("scripts/skills/traits/character_tra
 				id = 10,
 				type = "text",
 				icon = "ui/icons/regular_damage.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+10%[/color] Damage in Melee"
+				text = "[color=%positive%]+10%[/color] Damage in Melee"
 			},
 			{
 				id = 11,
 				type = "text",
 				icon = "ui/icons/melee_defense.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]-5[/color] Melee Defense"
+				text = "[color=%negative%]-5[/color] Melee Defense"
 			},
 			{
 				id = 12,
 				type = "text",
 				icon = "ui/icons/ranged_defense.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]-5[/color] Ranged Defense"
+				text = "[color=%negative%]-5[/color] Ranged Defense"
 			},
 			{
 				id = 13,

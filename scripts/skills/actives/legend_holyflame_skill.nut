@@ -3,7 +3,7 @@ this.legend_holyflame_skill <- this.inherit("scripts/skills/skill", {
 	function create()
 	{
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendHolyflame);
-		this.m.Description = "Bless an area. The holy shall be sanctified when entering, the damned shall be consecrated.";
+		this.m.Description = "Bless an area and apply hallowed ground over a 1-tile radius for " + ::Const.UI.getColorized("2", ::Const.UI.Color.PositiveValue) + " turns. The holy shall be sanctified when entering, the damned shall be consecrated.";
 		this.m.Icon = "skills/holybluefire_square.png";
 		this.m.IconDisabled = "skills/holyfire_square_bw.png";
 		this.m.Overlay = "holybluefire_square";
@@ -41,12 +41,6 @@ this.legend_holyflame_skill <- this.inherit("scripts/skills/skill", {
 	{
 		local ret = this.getDefaultUtilityTooltip();
 		ret.extend([
-		{
-			id = 6,
-			type = "text",
-			icon = "ui/icons/special.png",
-			text = "Apply hallowed ground over a 1-tile radius for " + ::Const.UI.getColorized("2", ::Const.UI.Color.PositiveValue) + " turns.\n\nAllies gain the Sanctified effect, becoming immune to injuries, bleeding, poison, and morale checks when taking damage.\n\nUndead and Cultists gain the Consecrated effect, dealing damage to them each turn and removing their immunity to injuries, bleeding, and being poisoned.\n\nAdditionally, Undead are unable to resurrect in the area while the flame is active."
-		},
 		{
 			id = 7,
 			type = "text",

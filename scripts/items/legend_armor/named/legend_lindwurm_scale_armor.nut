@@ -3,13 +3,13 @@ this.legend_lindwurm_scale_armor <- this.inherit("scripts/items/legend_armor/leg
 	function create()
 	{
 		this.legend_named_armor_upgrade.create();
-		this.m.Type = this.Const.Items.ArmorUpgrades.Plate;
 		this.m.ID = "legend_armor.body.legend_lindwurm_scale_armor";
-		this.m.Name = "";
-		this.m.NameList = ["Wild Scale", "Wurm Skin", "Dragon Cloak", "Snakeskin", "Wyvern Scale", "Drakenguard"];
+		this.m.Type = this.Const.Items.ArmorUpgrades.Plate;
+		this.m.Name = "";		
 		this.m.Description = "A masterwork leather armor made from overlapping lindwurm scales. Not only do the scales deflect blows and hits, but they also remain unscathed by the acidic Lindwurm blood.";
 		this.m.ArmorDescription = "Includes a masterwork leather armor made from overlapping lindwurm scales. Not only do the scales deflect blows and hits, but they also remain unscathed by the acidic Lindwurm blood.";
-		this.m.SlotType = this.Const.ItemSlot.Body;
+		this.m.Variants = [1];
+		this.m.Variant = this.m.Variants[this.Math.rand(0, this.m.Variants.len() - 1)];
 		this.updateVariant();
 		this.m.ImpactSound = this.Const.Sound.ArmorChainmailImpact;
 		this.m.InventorySound = this.Const.Sound.ArmorChainmailImpact;
@@ -19,6 +19,19 @@ this.legend_lindwurm_scale_armor <- this.inherit("scripts/items/legend_armor/leg
 		this.m.StaminaModifier = -6;
 		this.randomizeValues();
 		this.resetStats();
+		this.m.NameList = ["Wild Scale", "Wurm Skin", "Dragon Cloak", "Snakeskin", "Wyvern Scale", "Drakenguard"];
+	}
+
+	function updateVariant()
+	{
+		local variant = this.m.Variant > 9 ? this.m.Variant : "0" + this.m.Variant;
+		this.m.SpriteBack = "wild_scale_" + variant;
+		this.m.SpriteDamagedBack = "wild_scale_" + variant + "_damaged";
+		this.m.SpriteCorpseBack = "wild_scale_" + variant + "_dead";
+		this.m.Icon = "legend_armor/icon_wild_scale_" + variant + ".png";
+		this.m.IconLarge = this.m.Icon;
+		this.m.OverlayIcon = "legend_armor/icon_wild_scale_" + variant + ".png";
+		this.m.OverlayIconLarge = "legend_armor/inventory_wild_scale_" + variant + ".png";
 	}
 
 	function resetStats()
@@ -57,7 +70,7 @@ this.legend_lindwurm_scale_armor <- this.inherit("scripts/items/legend_armor/leg
 
 		if (c != null && c.getActor() != null && !c.getActor().isNull())
 		{
-			c.getActor().getFlags().add("head_immune_to_acid");
+			c.getActor().getFlags().add("body_immune_to_acid");
 		}
 	}
 
@@ -67,20 +80,8 @@ this.legend_lindwurm_scale_armor <- this.inherit("scripts/items/legend_armor/leg
 
 		if (c != null && c.getActor() != null && !c.getActor().isNull())
 		{
-			c.getActor().getFlags().remove("head_immune_to_acid");
+			c.getActor().getFlags().remove("body_immune_to_acid");
 		}
 		this.legend_named_armor_upgrade.onUnequip();
 	}
-
-	function updateVariant()
-	{
-		this.m.SpriteBack = "bust_wild_scale_01";
-		this.m.SpriteDamagedBack = "bust_wild_scale_01_damaged";
-		this.m.SpriteCorpseBack = "bust_wild_scale_01_dead";
-		this.m.Icon = "legend_armor/icon_wild_scale_01.png";
-		this.m.IconLarge = "legend_armor/inventory_wild_scale_01.png";
-		this.m.OverlayIcon = "legend_armor/icon_wild_scale_01.png";
-		this.m.OverlayIconLarge = "legend_armor/inventory_wild_scale_01.png";
-	}
-
 });

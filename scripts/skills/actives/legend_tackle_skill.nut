@@ -56,14 +56,14 @@ this.legend_tackle_skill <- this.inherit("scripts/skills/skill", {
 				id = 4,
 				type = "text",
 				icon = "ui/icons/hitchance.png",
-				text = "Has [color=" + this.Const.UI.Color.PositiveValue + "]+10%[/color] chance to hit due to unarmed mastery"
+				text = "Has [color=%positive%]+10%[/color] chance to hit due to unarmed mastery"
 			});
 		}
 		ret.push({
 			id = 5,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "Has a [color=" + this.Const.UI.Color.PositiveValue + "]100%[/color] chance to knock the opponent over"
+			text = "Has a [color=%positive%]100%[/color] chance to knock the opponent over"
 		});
 
 		return ret;

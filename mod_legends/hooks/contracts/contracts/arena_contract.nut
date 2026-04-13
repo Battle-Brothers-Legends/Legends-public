@@ -104,11 +104,7 @@
 			}
 		}
 
-		local paymentMult = 1.0;
-		if(this.World.Assets.m.IsArenaTooled){
-			paymentMult = 1.25
-		}
-
+		local paymentMult = ::World.Assets.m.IsArenaTooled ? 1.25 : 1.0;
 		this.m.Payment.Pool = pay * this.getPaymentMult() * this.getReputationToPaymentMult() * paymentMult;
 		this.m.Payment.Completion = 1.0;
 	}
@@ -126,8 +122,10 @@
 					Text = "{This isn\'t what I had in mind. | I\'ll sit this one out. | I\'ll wait for the next fight.}",
 					function getResult()
 					{
+						this.Contract.getHome().getBuilding("building.arena").registerAttempt();
 						this.Contract.getHome().getBuilding("building.arena").refreshCooldown();
-						this.World.State.getTownScreen().getMainDialogModule().reload();
+						::World.Contracts.removeContract(this.Contract);
+						::World.State.getTownScreen().getMainDialogModule().reload();
 						return 0;
 					}
 				});
@@ -135,13 +133,9 @@
 
 			if (s.ID == "Start")
 			{
-				s.Options.push(
-				{
+				s.Options.push({
 					Text = "I\'ll have to think it over.",
-					function getResult()
-					{
-						return 0;
-					}
+					getResult = @() 0
 				});
 
 				s.start <- function ()
@@ -154,6 +148,15 @@
 			{
 				s.start <- function ()
 				{
+					this.Text = "[img]gfx/ui/events/event_147.png[/img]{The arena master talks as if he doesn\'t even remember your face, then again he probably doesn\'t.%SPEECH_ON%Here\'s your pay, please come again.%SPEECH_OFF% | Without even raising his head from a rag of papyrus, the arena master throws you a purse of coin.%SPEECH_ON%I heard the crowds, and so here are your crowns. May you come visit the pits again.%SPEECH_OFF% | The arena master is waiting for you.%SPEECH_ON%That was a mighty fine show, Crownling. Would not mind it in the slightest if you come back again.%SPEECH_OFF%}";
+
+					local arena = this.Contract.getHome().getBuilding("building.arena");
+					if (arena.getCurrentAttempts() == arena.getMaxAttempts() - 1) {
+						this.Text += "The arena will be closed for the day, but you could return as early as tomorrow.";
+					} else {
+						this.Text += "You can continue fighting today if you want.";
+					}
+
 					foreach( bro in ::Legends.Arena.getCollaredBros()) {
 						bro.getFlags().increment("ArenaFightsWon", 1);
 						bro.getFlags().increment("ArenaFights", 1);
@@ -277,6 +280,7 @@
 	o.onClear = function ()
 	{
 		if(this.m.Home != null && this.m.IsActive) {
+			this.m.Home.getBuilding("building.arena").registerAttempt();
 			foreach (bro in this.m.WasInReserves) {
 				bro.setInReserves(true);
 			}
@@ -285,12 +289,7 @@
 		foreach (bro in ::World.getPlayerRoster().getAll()) {
 			::Legends.Arena.removeCollar(bro);
 		}
-
-		local building = this.m.Home.getBuilding("building.arena");
-		local original = building.refreshCooldown;
-		building.refreshCooldown = function () {};
 		onClear();
-		building.refreshCooldown = original;
 	}
 
 	local onPrepareVariables = o.onPrepareVariables;

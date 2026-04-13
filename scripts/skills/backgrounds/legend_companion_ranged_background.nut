@@ -24,7 +24,6 @@ this.legend_companion_ranged_background <- this.inherit("scripts/skills/backgrou
 			::Legends.Traits.getID(::Legends.Trait.Greedy),
 			::Legends.Traits.getID(::Legends.Trait.Weasel),
 			::Legends.Traits.getID(::Legends.Trait.LegendFearNobles),
-			::Legends.Traits.getID(::Legends.Trait.LegendFrail),
 			::Legends.Traits.getID(::Legends.Trait.LegendSlack),
 			::Legends.Traits.getID(::Legends.Trait.LegendDoubleTongued),
 			::Legends.Traits.getID(::Legends.Trait.Clumsy)
@@ -79,31 +78,29 @@ this.legend_companion_ranged_background <- this.inherit("scripts/skills/backgrou
 
 		this.m.PerkTreeDynamic = {
 			Weapon = [
-				this.Const.Perks.SwordTree,
-				this.Const.Perks.SpearTree,
-				this.Const.Perks.DaggerTree,
-				this.Const.Perks.BowTree,
-				this.Const.Perks.ThrowingTree,
-				this.Const.Perks.CrossbowTree,
-				this.Const.Perks.AxeTree
+				::Const.Perks.SwordTree,
+				::Const.Perks.SpearTree,
+				::Const.Perks.DaggerTree,
+				::Const.Perks.BowTree,
+				::Const.Perks.ThrowingTree,
+				::Const.Perks.CrossbowTree,
+				::Const.Perks.AxeTree
 			],
 			Defense = [
-				this.Const.Perks.MediumArmorTree,
-				this.Const.Perks.LightArmorTree
+				::Const.Perks.MediumArmorTree,
+				::Const.Perks.LightArmorTree
 			],
 			Traits = [
-				this.Const.Perks.AgileTree,
-				this.Const.Perks.FastTree,
-				this.Const.Perks.ViciousTree,
-				this.Const.Perks.FitTree,
-				this.Const.Perks.DeviousTree,
-				this.Const.Perks.TrainedTree
+				::Const.Perks.AgileTree,
+				::Const.Perks.FastTree,
+				::Const.Perks.ViciousTree,
+				::Const.Perks.FitTree,
+				::Const.Perks.DeviousTree,
+				::Const.Perks.TrainedTree
 			],
-			Enemy = [
-				this.Const.Perks.ArcherTree
-			],
+			Enemy = [],
 			Class = [
-				this.Const.Perks.BeastClassTree
+				::Const.Perks.BeastClassTree
 			],
 			Profession = [],
 			Magic = []
@@ -122,7 +119,7 @@ this.legend_companion_ranged_background <- this.inherit("scripts/skills/backgrou
 			this.m.Faces = this.Const.Faces.AllWhiteFemale;
 			this.m.Hairs = this.Const.Hair.AllFemale;
 			this.m.HairColors = this.Const.HairColors.All;
-			this.m.Bodies = this.Const.Bodies.AllFemale;
+			this.m.Bodies = this.Const.Bodies.NorthernFemale;
 		}
 		else if (this.m.Ethnicity == 1)
 		{
@@ -193,9 +190,10 @@ this.legend_companion_ranged_background <- this.inherit("scripts/skills/backgrou
 	}
 
 	function onAdded() // enables relationships
-	{
+	{	
+		if (this.m.IsNew)
+			::Legends.Traits.grant(this, ::Legends.Trait.LegendLWRelationship);
 		this.character_background.onAdded();
-		::Legends.Traits.grant(this, ::Legends.Trait.LegendLWRelationship);
 	}
 
 	function onSetAppearance()
@@ -240,7 +238,7 @@ this.legend_companion_ranged_background <- this.inherit("scripts/skills/backgrou
 		}
 		else if (r == 1)
 		{
-			items.equip(this.new("scripts/items/weapons/legend_sling"));
+			items.equip(this.new("scripts/items/weapons/legend_dilapitated_sling"));
 			items.addToBag(this.new("scripts/items/weapons/boar_spear"));
 		}
 		else if (r == 2)
@@ -285,7 +283,7 @@ this.legend_companion_ranged_background <- this.inherit("scripts/skills/backgrou
 		}
 		else if (r == 9)
 		{
-			items.equip(this.new("scripts/items/weapons/legend_sling"));
+			items.equip(this.new("scripts/items/weapons/legend_dilapitated_sling"));
 			items.equip(this.new("scripts/items/shields/legend_tower_shield"));
 			items.addToBag(this.new("scripts/items/weapons/falchion"));
 		}

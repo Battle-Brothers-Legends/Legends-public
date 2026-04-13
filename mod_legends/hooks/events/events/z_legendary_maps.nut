@@ -1,6 +1,5 @@
 foreach(entry in [
 	["events/events/location/abandoned_village_enter_event", "Victory", ::Legends.Map.AbandonedVillage],
-	["events/events/location/artifact_reliquary_enter_event", "Victory", ::Legends.Map.ArtifactReliquary],
 	["events/events/dlc2/location/ancient_statue_event", "A", ::Legends.Map.AncientStatue],
 	["events/events/dlc2/location/ancient_watchtower_event", "A", ::Legends.Map.AncientSpire],
 	["events/events/dlc2/location/fountain_of_youth_event", "C", ::Legends.Map.GrotequeTree],

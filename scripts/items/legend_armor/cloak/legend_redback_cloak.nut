@@ -8,23 +8,29 @@ this.legend_redback_cloak <- this.inherit("scripts/items/legend_armor/legend_arm
 		this.m.ID = "legend_armor.body.legend_redback_cloak";
 		this.m.Type = this.Const.Items.ArmorUpgrades.Cloak;
 		this.m.Name = "Redback Silk Cloak";
-		this.m.Description = "This lightweight, flowing cloak is made from spider web. It offers excellent protection against poison and ranged attacks.";
-		this.m.ArmorDescription = "A cloak of spider silk offers protection against ranged attacks and poisons";
-		this.m.Icon = "armor_upgrades/upgrade_cloak_black.png";
-		this.m.IconLarge = this.m.Icon;
-		this.m.OverlayIcon = "armor_upgrades/icon_upgrade_cloak_black.png";
-		this.m.OverlayIconLarge = "armor_upgrades/inventory_upgrade_cloak_black.png";
-		this.m.SpriteFront = null;
-		this.m.SpriteBack = "cloak_black";
-		this.m.SpriteDamagedFront = null;
-		this.m.SpriteDamagedBack = "cloak_black_damaged";
-		this.m.SpriteCorpseFront = null;
-		this.m.SpriteCorpseBack = "cloak_black_dead";
-
+		this.m.Description = "A lightweight, flowing cloak of spider silk. It offers excellent protection against poison and ranged attacks.";
+		this.m.ArmorDescription = "Includes a lightweight cloak of spider silk.";
+		this.m.Variants = [1, 2, 3, 4];
+		this.m.Variant = this.m.Variants[this.Math.rand(0, this.m.Variants.len() - 1)];
+		this.updateVariant();
+		this.m.ImpactSound = this.Const.Sound.ArmorLeatherImpact;
+		this.m.InventorySound = this.Const.Sound.ClothEquip;
 		this.m.Value = 6000;
 		this.m.Condition = 10;
 		this.m.ConditionMax = 10;
 		this.m.StaminaModifier = -1;
+	}
+
+	function updateVariant()
+	{
+		local variant = this.m.Variant > 9 ? this.m.Variant : "0" + this.m.Variant;
+		this.m.SpriteBack = "cloak_redback_" + variant + "";
+		this.m.SpriteDamagedBack = "cloak_redback_" + variant + "_damaged";
+		this.m.SpriteCorpseBack = "cloak_redback_" + variant + "_dead";
+		this.m.Icon = "legend_armor/icon_cloak_redback_" + variant + ".png";
+		this.m.IconLarge = this.m.Icon;
+		this.m.OverlayIcon = "legend_armor/icon_cloak_redback_" + variant + ".png";
+		this.m.OverlayIconLarge = "legend_armor/inventory_cloak_redback_"  + variant + ".png";
 	}
 
 	function getTooltip()
@@ -34,7 +40,7 @@ this.legend_redback_cloak <- this.inherit("scripts/items/legend_armor/legend_arm
 			id = 7,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "Reduces any ranged damage to the body by [color=" + this.Const.UI.Color.NegativeValue + "]" + this.m.RangedDamageModifier + "%[/color]"
+			text = "Reduces any ranged damage to the body by [color=%negative%]" + this.m.RangedDamageModifier + "%[/color]"
 		});
 		result.push({
 			id = 8,
@@ -51,7 +57,7 @@ this.legend_redback_cloak <- this.inherit("scripts/items/legend_armor/legend_arm
 			id = 7,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "Reduces any ranged damage to the body by [color=" + this.Const.UI.Color.NegativeValue + "]" + this.m.RangedDamageModifier + "%[/color]"
+			text = "Reduces any ranged damage to the body by [color=%negative%]" + this.m.RangedDamageModifier + "%[/color]"
 		});
 		_result.push({
 			id = 8,
@@ -68,9 +74,5 @@ this.legend_redback_cloak <- this.inherit("scripts/items/legend_armor/legend_arm
 			_properties.IsImmuneToPoison = true;
 			_properties.DamageReceivedRangedMult *= 1.0 + (this.m.RangedDamageModifier / 100);
 		}
-	}
-
-	function updateVariant()	// Needs to overwrite the base function which would otherwise overwrite Icon and Graphic of this Cloak
-	{
 	}
 });

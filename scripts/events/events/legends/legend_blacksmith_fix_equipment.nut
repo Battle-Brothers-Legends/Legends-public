@@ -168,11 +168,6 @@ this.legend_blacksmith_fix_equipment <- this.inherit("scripts/events/event", {
 		]);
 	}
 
-	function onDetermineStartScreen()
-	{
-		return "A";
-	}
-
 	function onClear()
 	{
 		this.m.Blacksmith = null;

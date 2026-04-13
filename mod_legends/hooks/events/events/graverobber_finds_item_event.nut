@@ -42,14 +42,4 @@
 
 		this.m.Score = 5;
 	}
-
-	local onPrepareVariables = o.onPrepareVariables;
-	o.onPrepareVariables = function ( _vars )
-	{
-		onPrepareVariables(_vars);
-		::Const.LegendMod.extendVarsWithPronouns(_vars, this.m.Graverobber.getGender(), "graverobber");
-		if (this.m.Historian != null)
-			::Const.LegendMod.extendVarsWithPronouns(_vars, this.m.Historian.getGender(), "historian");
-	}
-
 })

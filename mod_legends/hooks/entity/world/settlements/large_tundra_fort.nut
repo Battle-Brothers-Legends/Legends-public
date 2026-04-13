@@ -6,6 +6,7 @@
 		create();
 		this.m.DraftList = [
 			"legend_shieldmaiden_background",
+			"legend_shieldmaiden_background",
 			"apprentice_background",
 			"female_beggar_background",
 			"female_bowyer_background",
@@ -48,6 +49,7 @@
 			"hedge_knight_background",
 			"paladin_background",
 			"legend_blacksmith_background",
+			"legend_shieldmaiden_background",
 			"legend_shieldmaiden_background",
 			"legend_noble_2h"
 		];

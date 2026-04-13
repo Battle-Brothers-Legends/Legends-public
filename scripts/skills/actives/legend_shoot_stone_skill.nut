@@ -62,6 +62,8 @@ this.legend_shoot_stone_skill <- this.inherit("scripts/skills/skill", {
 		this.m.ProjectileType = this.Const.ProjectileType.Stone;
 		this.m.ProjectileTimeScale = 1.2;
 		this.m.IsProjectileRotated = true;
+		this.m.ChanceDecapitate = 0;
+		this.m.ChanceDisembowel = 0;
 		this.m.ChanceSmash = 25;
 	}
 
@@ -75,13 +77,13 @@ this.legend_shoot_stone_skill <- this.inherit("scripts/skills/skill", {
 				id = 6,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "Inflicts [color=" + this.Const.UI.Color.DamageValue + "]" + fatPerHit + "[/color] extra fatigue"
+				text = "Inflicts [color=%damage%]" + fatPerHit + "[/color] extra fatigue"
 			},
 			{
 				id = 7,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "Has a [color=" + this.Const.UI.Color.NegativeValue + "]100%[/color] chance to baffle a target on a hit to the head"
+				text = "Has a [color=%negative%]100%[/color] chance to baffle a target on a hit to the head"
 			}
 		]);
 
@@ -91,7 +93,7 @@ this.legend_shoot_stone_skill <- this.inherit("scripts/skills/skill", {
 				id = 9,
 				type = "text",
 				icon = "ui/tooltips/warning.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]Can not be used because this character is engaged in melee[/color]"
+				text = "[color=%negative%]Can not be used because this character is engaged in melee[/color]"
 			});
 		}
 
@@ -100,7 +102,7 @@ this.legend_shoot_stone_skill <- this.inherit("scripts/skills/skill", {
 
 	function isUsable()
 	{
-		return this.skill.isUsable() && (!this.Tactical.isActive() || !this.getContainer().getActor().isEngagedInMelee());
+		return !this.Tactical.isActive() || (this.skill.isUsable() && !this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions()));
 	}
 
 	function onAfterUpdate( _properties )

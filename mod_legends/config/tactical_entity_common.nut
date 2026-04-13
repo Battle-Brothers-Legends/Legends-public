@@ -89,3 +89,73 @@
 		}
 	}
 };
+
+::Const.Tactical.Common.getFireDamageMultiplier <- function (_entity) {
+	if (::Legends.S.oneOf(_entity.getType(), ::Const.EntityType.Schrat, ::Const.EntityType.LegendGreenwoodSchrat, ::Const.EntityType.SchratSmall, ::Const.EntityType.LegendGreenwoodSchratSmall))
+		return 3.0;
+
+	if (_entity.getSkills().hasSkill("racial.skeleton"))
+		return 0.33;
+
+	if (_entity.getSkills().hasSkill("items.firearms_resistance") || _entity.getSkills().hasSkill("racial.serpent"))
+		return 0.66;
+	return 1.0;
+}
+
+local originalOnApplyFire = ::Const.Tactical.Common.onApplyFire;
+::Const.Tactical.Common.onApplyFire = function (_tile, _entity) {
+	local __original = _entity.onDamageReceived;
+
+	_entity.onDamageReceived = function ( _attacker, _skill, _hitInfo ) {
+		local damage = ::Math.rand(15, 30);
+		_hitInfo.DamageRegular = damage * ::Const.Tactical.Common.getFireDamageMultiplier(this);
+		_hitInfo.DamageArmor = damage;
+		return __original(_attacker, _skill, _hitInfo);
+	};
+
+	originalOnApplyFire(_tile, _entity);
+
+	if (::Legends.S.isEntityNullOrDead(_entity))
+		return;
+
+	_entity.onDamageReceived = __original;
+};
+
+
+::Const.Tactical.Common.onApplyFireRune <- function (_tile, _entity) {
+	if (_entity.getCurrentProperties().IsImmuneToFire)
+		return;
+
+	local damage = _tile.Properties.Effect.Damage;
+
+	::Tactical.spawnIconEffect("status_effect_116", _tile,
+		::Const.Tactical.Settings.SkillIconOffsetX,
+		::Const.Tactical.Settings.SkillIconOffsetY,
+		::Const.Tactical.Settings.SkillIconScale,
+		::Const.Tactical.Settings.SkillIconFadeInDuration,
+		::Const.Tactical.Settings.SkillIconStayDuration,
+		::Const.Tactical.Settings.SkillIconFadeOutDuration,
+		::Const.Tactical.Settings.SkillIconMovement
+	);
+	local sounds = [
+		"sounds/combat/dlc6/status_on_fire_01.wav",
+		"sounds/combat/dlc6/status_on_fire_02.wav",
+		"sounds/combat/dlc6/status_on_fire_03.wav"
+	];
+	::Sound.play(sounds[::Math.rand(0, sounds.len() - 1)], ::Const.Sound.Volume.Actor, _entity.getPos());
+
+	local hitInfo = clone ::Const.Tactical.HitInfo;
+	hitInfo.DamageRegular = damage * ::Const.Tactical.Common.getFireDamageMultiplier(_entity);
+	hitInfo.DamageArmor = damage;
+	hitInfo.DamageDirect = 0.1;
+	hitInfo.BodyPart = ::Const.BodyPart.Body;
+	hitInfo.BodyDamageMult = 1.0;
+	hitInfo.FatalityChanceMult = 0.0;
+	hitInfo.Injuries = ::Const.Injury.Burning;
+	hitInfo.IsPlayingArmorSound = false;
+	_entity.onDamageReceived(_entity, null, hitInfo);
+
+	if ((!_entity.isAlive() || _entity.isDying()) && !_entity.isPlayerControlled() && (_tile.Properties.Effect == null || _tile.Properties.Effect.IsByPlayer)) {
+		::updateAchievement("BurnThemAll", 1, 1);
+	}
+}

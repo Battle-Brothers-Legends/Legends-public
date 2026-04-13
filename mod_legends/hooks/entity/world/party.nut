@@ -48,7 +48,7 @@
 				ret.push({
 					id = 51,
 					type = "text",
-					text = "[color=" + this.Const.UI.Color.NegativeValue + "][u]Inventory is empty[/u][/color]"
+					text = "[color=%negative%][u]Inventory is empty[/u][/color]"
 				});
 			}
 			else

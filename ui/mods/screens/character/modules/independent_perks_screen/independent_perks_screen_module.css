@@ -1,0 +1,95 @@
+/*
+ *  Adapted from character screen perks module
+ *  To be used in any screen that wants to independently display perks of a player unit
+ */
+
+.independent-perks-module
+{
+    top: 3.5rem;
+	left: 1.0rem;
+	right: 1.5rem;
+	bottom: -0.8rem;
+	position: absolute;
+
+    overflow: hidden;
+}
+
+.independent-perks-module .scroll-container
+{
+    margin-top: 0.4rem;
+    margin-bottom: 0.4rem;
+}
+
+.independent-perks-module .scroll-container .column
+{
+    position: absolute;
+
+    top: 2.0rem;
+	bottom: 1.0rem;
+	left: 1.0rem;
+	right: 0.0rem;
+
+	width: 100%;
+	height: 100%;
+}
+
+.independent-perks-module .scroll-container .column .row
+{
+	width: 100%;
+    height: 5.0rem;
+    position: absolute;
+}
+
+.independent-perks-module .scroll-container .column .row .center
+{
+   position: absolute;
+
+   margin: auto;
+   display: block;
+}
+
+.independent-perks-module .scroll-container .is-unlocked
+{
+	opacity: 1;
+}
+
+.independent-perks-module .scroll-container .is-locked
+{
+	opacity: 0.33;
+}
+
+
+.independent-perks-module .scroll-container .row .l-perk-container
+{
+    width: 5.0rem;
+    height: 5.0rem;
+    position: relative;
+    float: left;
+}
+
+.independent-perks-module .scroll-container .l-perk-container .selection-image-layer
+{
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 4.7rem;
+    height: 4.7rem;
+    position: absolute;
+    margin: auto;
+    padding-bottom: 0.1rem;
+    z-index: 1;
+}
+
+.independent-perks-module .scroll-container .l-perk-container .perk-image-layer
+{
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 4.5rem;
+    height: 4.5rem;
+    position: absolute;
+    margin: auto;
+    z-index: 2;
+}

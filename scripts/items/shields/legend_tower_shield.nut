@@ -42,18 +42,32 @@ this.legend_tower_shield <- this.inherit("scripts/items/shields/shield", {
 			31,
 			32,
 			33,
-			34,
+			// 34,
 			35,
 			36,
-			37,
+			// 37,
 			38,
 			39,
 			40,
 			41,
-			42,
+			// 42,
+			43,
+			44,
+			45,
+			101,
+			102,
+			103,
 			104,
-			105
+			105,
+			106
 		];
+		if (this.Const.DLC.UnholdSupporter)
+			this.m.Variants.push(34);
+		if (this.Const.DLC.WildmenSupporter)
+			this.m.Variants.push(37);
+		if (this.Const.DLC.DesertSupporter)
+			this.m.Variants.push(42);
+		this.addVariants();
 		this.m.Variant = this.Math.rand(1, 21); //random one is only 1-21 though
 		this.updateVariant();
 		this.m.Value = 1000;
@@ -62,6 +76,18 @@ this.legend_tower_shield <- this.inherit("scripts/items/shields/shield", {
 		this.m.StaminaModifier = -30;
 		this.m.Condition = 96;
 		this.m.ConditionMax = 96;
+	}
+
+	function addVariants()
+	{
+		local bannerID = 0;
+		foreach (banner in ::Const.PlayerBanners)
+		{
+			bannerID = banner.slice("banner_".len()).tointeger();
+			if (bannerID != 102 && bannerID != 103 && bannerID != 101 && this.m.Variants.find(bannerID) == null)
+				this.m.Variants.push(bannerID);
+		}
+		this.m.Variants.sort();
 	}
 
 	function updateVariant()

@@ -869,6 +869,9 @@ if (!("World" in ::Const))
 			break;
 	}
 
+	if (::Legends.Mod.ModSettings.getSetting("DynamicDayToSkip").getValue() < 150)
+		dateToSkip = ::Legends.Mod.ModSettings.getSetting("DynamicDayToSkip").getValue();
+
 	//Go through each Item in the spawn list (which are structures defining enemies)
 	foreach (t in _list)
 	{
@@ -1291,12 +1294,13 @@ if (!("World" in ::Const))
 //You could modify this too by changing the perk name to be an array of perks (which is what trees are), and add that for a cost instead + iterate thru that tree
 //This has no "smart" selecting meaning you could theoretically get wildly random perks, but because I'm using this currently for themed units it's not an issue in that scenario
 //THIS CANNOT AND WILL NOT CHECK IF THE PERK ALREADY EXISTS ON THE ENTITY YOU SHOULD PROBABLY NOT THROW IN RANDOMIZED PERKS THAT THE UNIT ALREADY HAS BE ETHICAL PLEASE
-::Const.World.Common.pickPerks <- function (_perks, _power)
-{
-	if (_perks.len() == 0)
+::Const.World.Common.pickPerks <- function (_perks, _power) {
+	if (_perks.len() == 0) {
 		return [];
-	if (_power == 0)
+	}
+	if (_power == 0) {
 		return [];
+	}
 
 	local candidates = _perks.filter(@(idx, t) t[0] != 0 && t[2] <= _power);
 	local totalWeight = candidates.map(@(t) t[0]).reduce(@(p, c) p + c);
@@ -1304,18 +1308,19 @@ if (!("World" in ::Const))
 	local ret = [];
 	while (_power > 0 && candidates.len() > 0) {
 		local r = ::Math.rand(0, totalWeight);
-		local selected = candidates.filter(@(idx, t) (r -= t[0]) <= 0);
-		if (!selected.len())
+		local selected = candidates.filter(@(idx, t)(r -= t[0]) <= 0);
+		if (!selected.len()) {
 			break;
+		}
 		local t = selected[0];
 
-		local skill = null;
-		if (typeof t[1] == "number")
+		if (typeof t[1] == "integer") {
 			ret.push(t[1]);
-		else if (typeof t[1] == "array")
+		} else if (typeof t[1] == "array") {
 			ret.extend(t[1]);
-		else
-			::logWarning("Attempted to select perks from something that isn't a number or an array");
+		} else {
+			::logWarning("Attempted to select perks from something that isn't a number or an array: typeof=" + typeof t[1] + " value=" + t[1]);
+		}
 
 		totalWeight -= t[0];
 		_power -= t[2];

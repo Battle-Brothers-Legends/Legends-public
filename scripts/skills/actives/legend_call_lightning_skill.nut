@@ -61,7 +61,7 @@ this.legend_call_lightning_skill <- this.inherit("scripts/skills/skill", {
 				id = 6,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text =  "[color=" + this.Const.UI.Color.PositiveValue + "]10%[/color] chance to call lightning on each unit within [color=" + this.Const.UI.Color.PositiveValue + "]4[/color] tiles"
+				text =  "[color=%positive%]10%[/color] chance to call lightning on each unit within [color=%positive%]4[/color] tiles"
 			}
 		];
 	}

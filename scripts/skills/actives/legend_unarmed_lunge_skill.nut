@@ -77,7 +77,7 @@ this.legend_unarmed_lunge_skill <- this.inherit("scripts/skills/skill", {
 				id = 7,
 				type = "text",
 				icon = "ui/icons/regular_damage.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+25%[/color] Damage (from background)"
+				text = "[color=%positive%]+25%[/color] Damage (from background)"
 			});
 		}
 
@@ -96,7 +96,7 @@ this.legend_unarmed_lunge_skill <- this.inherit("scripts/skills/skill", {
 				id = 9,
 				type = "text",
 				icon = "ui/tooltips/warning.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]Can not be used while rooted[/color]"
+				text = "[color=%negative%]Can not be used while rooted[/color]"
 			});
 		}
 
@@ -106,7 +106,7 @@ this.legend_unarmed_lunge_skill <- this.inherit("scripts/skills/skill", {
 				id = 6,
 				type = "text",
 				icon = "ui/icons/hitchance.png",
-				text = "Costs [color=" + this.Const.UI.Color.PositiveValue + "]-1[/color] Action Point due to unarmed training"
+				text = "Costs [color=%positive%]-1[/color] Action Point due to unarmed training"
 			});
 		}
 
@@ -116,7 +116,7 @@ this.legend_unarmed_lunge_skill <- this.inherit("scripts/skills/skill", {
 				id = 6,
 				type = "text",
 				icon = "ui/icons/hitchance.png",
-				text = "Costs [color=" + this.Const.UI.Color.PositiveValue + "]-1[/color] Action Point due to Tumble"
+				text = "Costs [color=%positive%]-1[/color] Action Point due to Tumble"
 			});
 		}
 

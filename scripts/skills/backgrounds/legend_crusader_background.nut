@@ -64,39 +64,39 @@ this.legend_crusader_background <- this.inherit("scripts/skills/backgrounds/char
 		this.m.Modifiers.Training = this.Const.LegendMod.ResourceModifiers.Training[2];
 		this.m.PerkTreeDynamic = {
 			Weapon = [
-				this.Const.Perks.MaceTree,
-				this.Const.Perks.FlailTree,
-				this.Const.Perks.HammerTree,
-				this.Const.Perks.AxeTree,
-				this.Const.Perks.SwordTree,
-				this.Const.Perks.TwoHandedTree,
-				this.Const.Perks.PolearmTree,
-				this.Const.Perks.ThrowingTree,
-				this.Const.Perks.ShieldTree
+				::Const.Perks.MaceTree,
+				::Const.Perks.FlailTree,
+				::Const.Perks.HammerTree,
+				::Const.Perks.AxeTree,
+				::Const.Perks.SwordTree,
+				::Const.Perks.PolearmTree,
+				::Const.Perks.ThrowingTree,
+				::Const.Perks.ShieldTree
 			],
 			Defense = [
-				this.Const.Perks.MediumArmorTree,
-				this.Const.Perks.HeavyArmorTree
+				::Const.Perks.MediumArmorTree,
+				::Const.Perks.HeavyArmorTree
 			],
 			Traits = [
-				this.Const.Perks.SturdyTree,
-				this.Const.Perks.IndestructibleTree,
-				this.Const.Perks.ViciousTree,
-				this.Const.Perks.LargeTree,
-				this.Const.Perks.MartyrTree,
-				this.Const.Perks.FitTree,
-				this.Const.Perks.TrainedTree,
-				this.Const.Perks.InspirationalTree
+				::Const.Perks.SturdyTree,
+				::Const.Perks.IndestructibleTree,
+				::Const.Perks.ViciousTree,
+				::Const.Perks.LargeTree,
+				::Const.Perks.MartyrTree,
+				::Const.Perks.FitTree,
+				::Const.Perks.TrainedTree,
+				::Const.Perks.InspirationalTree
 			],
 			Enemy = [
-				this.Const.Perks.HexenTree,
-				this.Const.Perks.GhoulTree
+				::Const.Perks.OccultTree,
+				::Const.Perks.BeastTree,
+				::Const.Perks.UndeadTree
 			],
 			Class = [
-				this.Const.Perks.FaithClassTree
+				::Const.Perks.FaithClassTree
 			],
 			Profession = [
-				this.Const.Perks.RepairProfessionTree
+				::Const.Perks.RepairProfessionTree
 			],
 			Magic = []
 		};
@@ -114,14 +114,10 @@ this.legend_crusader_background <- this.inherit("scripts/skills/backgrounds/char
 				::Legends.Perk.RallyTheTroops,
 				::Legends.Perk.LegendTrueBeliever,
 			],
-			[
-				::Legends.Perk.LegendFavouredEnemySkeleton,
-				::Legends.Perk.LegendFavouredEnemyZombie,
-				::Legends.Perk.LegendFavouredEnemyVampire
-			],
+			[],
 			[],
 			[
-				::Legends.Perk.Footwork,
+				::Legends.Perk.LegendTacticalManeuvers,
 				::Legends.Perk.LegendBattleheart,
 				::Legends.Perk.LegendLionheart
 			],
@@ -152,7 +148,7 @@ this.legend_crusader_background <- this.inherit("scripts/skills/backgrounds/char
 		this.m.HairColors = this.Const.HairColors.Young;
 		this.m.Beards = null;
 		this.m.BeardChance = 0;
-		this.m.Bodies = this.Const.Bodies.AllFemale;
+		this.m.Bodies = this.Const.Bodies.NorthernFemale;
 		this.addBackgroundType(this.Const.BackgroundType.Female);
 	}
 
@@ -237,9 +233,6 @@ this.legend_crusader_background <- this.inherit("scripts/skills/backgrounds/char
 		this.character_background.onAdded();
 		local actor = this.getContainer().getActor();
 		actor.setTitle("the Holy Avenger");
-		::Legends.Traits.grant(this, ::Legends.Trait.Loyal);
-		::Legends.Traits.grant(this, ::Legends.Trait.LegendUndeadKiller);
-
 	}
 
 function onAddEquipment()
@@ -251,7 +244,7 @@ function onAddEquipment()
 		this.getContainer().getActor().fillTalentValues(2, true);
 		local items = this.getContainer().getActor().getItems();
 
-		items.equip(this.new("scripts/items/weapons/legend_longsword"));
+		items.equip(this.new("scripts/items/weapons/legend_zweihander"));
 
 		items.equip(this.Const.World.Common.pickArmor([
 			[1, ::Legends.Armor.Standard.mail_hauberk],

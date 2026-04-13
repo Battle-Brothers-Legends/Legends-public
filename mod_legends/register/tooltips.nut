@@ -3,10 +3,12 @@
 // Setup custom tooltips to bind to UI elements
 ::Legends.getEncounterUIData <- function(_data) {
 	local encounterType = _data.encounterType;
-	local title = "Error";
-	local encounter = this.World.Encounters.getEncounter(_data.encounterType);
+	local encounter = ::World.Encounters.getEncounter(_data.encounterType);
+	local title;
 	if (encounter != null)
 		title = encounter.getName();
+	if (title == null)
+		title = "Error";
 	return [{
 		id = 1,
 		type = "title",
@@ -26,21 +28,13 @@
 		ButtonLoadPreset = ::MSU.Class.BasicTooltip("Load Preset","Load the camping assignments from the currently selected numbered preset slot"),
 		ButtonPresetName = ::MSU.Class.BasicTooltip("Customize Preset Name","Give a custom name to the currently selected numbered preset slot"),
 		ButtonPresetSlot = ::MSU.Class.BasicTooltip(
-			function(_data)
-			{
-				return "Preset Slot " + (_data.index + 1);
-			},
+			@(_data) "Preset Slot " + (_data.index + 1),
 			function(_data)
 			{
 				local name = ::World.Camp.getPresetName(_data.index);
 				if (name)
-				{
 					return name;
-				}
-				else
-				{
-					return "";
-				}
+				return "";
 			}
 		),
 		PresetNameDialog = {
@@ -141,9 +135,7 @@
 		Sort = ::MSU.Class.BasicTooltip("Sort Items", "Sort items by type.")
 	},
 	Encounters = {
-		Element = ::MSU.Class.CustomTooltip(function(_data) {
-			return ::Legends.getEncounterUIData(_data);
-		})
+		Element = ::MSU.Class.CustomTooltip(@(_data) ::Legends.getEncounterUIData(_data))
 	},
 
 	Placeholder = ::MSU.Class.BasicTooltip("Placeholder","Under development"),

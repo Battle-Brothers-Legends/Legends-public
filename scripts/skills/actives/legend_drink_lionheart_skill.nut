@@ -34,7 +34,7 @@ this.legend_drink_lionheart_skill <- this.inherit("scripts/skills/actives/base/l
 				id = 11,
 				type = "text",
 				icon = "ui/icons/bravery.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+40[/color] Resolve"
+				text = "[color=%positive%]+40[/color] Resolve"
 			}
 		];
 
@@ -44,7 +44,7 @@ this.legend_drink_lionheart_skill <- this.inherit("scripts/skills/actives/base/l
 				id = 5,
 				type = "text",
 				icon = "ui/tooltips/warning.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]Can not be used because this character is engaged in melee[/color]"
+				text = "[color=%negative%]Can not be used because this character is engaged in melee[/color]"
 			});
 		}
 

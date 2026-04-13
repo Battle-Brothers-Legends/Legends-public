@@ -29,7 +29,7 @@ this.legend_return_favor_effect <- this.inherit("scripts/skills/skill", {
 				id = 7,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "Has a [color=" + this.Const.UI.Color.PositiveValue + "]75%[/color] chance to stun and stagger any opponent missing with a melee attack (resistances and immunities still apply)."
+				text = "Has a [color=%positive%]75%[/color] chance to stun and stagger any opponent missing with a melee attack (resistances and immunities still apply)."
 			}
 		];
 	}

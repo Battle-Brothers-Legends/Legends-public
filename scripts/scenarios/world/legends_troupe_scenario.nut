@@ -173,7 +173,7 @@ this.legends_troupe_scenario <- this.inherit("scripts/scenarios/world/starting_s
 		{
 			return;
 		}
-		_background.m.CustomPerkTree[0].push(this.Const.Perks.PerkDefs.LegendLeap);
+		_background.m.CustomPerkTree[0].push(::Const.Perks.PerkDefs.LegendLeap);
 	}
 
 	function onUpdateHiringRoster( _roster )

@@ -1,4 +1,4 @@
-::mods_hookExactClass("ambitions/ambitions/weapon_mastery_ambition", function(o) 
+::mods_hookExactClass("ambitions/ambitions/weapon_mastery_ambition", function(o)
 {
 	o.getBrosWithMastery = function ()
 	{
@@ -24,8 +24,9 @@
 				case p.IsSpecializedInSpears:
 				case p.IsSpecializedInPolearms:
 				case p.IsSpecializedInDaggers:
-					count += 1;					
-					continue;					
+				case p.IsSpecializedInFists:
+					count += 1;
+					continue;
 			}
 		}
 

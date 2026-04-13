@@ -39,25 +39,25 @@ this.legend_motivated_effect <- this.inherit("scripts/skills/skill", {
 				id = 10,
 				type = "text",
 				icon = "ui/icons/regular_damage.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+10%[/color] Melee Damage"
+				text = "[color=%positive%]+10%[/color] Melee Damage"
 			},
 			{
 				id = 10,
 				type = "text",
 				icon = "ui/icons/melee_skill.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+5%[/color] Melee Skill"
+				text = "[color=%positive%]+5%[/color] Melee Skill"
 			},
 			{
 				id = 10,
 				type = "text",
 				icon = "ui/icons/ranged_skill.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+5%[/color] Ranged Skill"
+				text = "[color=%positive%]+5%[/color] Ranged Skill"
 			},
 			{
 				id = 10,
 				type = "text",
 				icon = "ui/icons/bravery.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+15%[/color] Resolve"
+				text = "[color=%positive%]+15%[/color] Resolve"
 			}
 		];
 	}

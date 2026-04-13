@@ -88,7 +88,7 @@
 		foreach( bro in brothers ) {
 			if (bro.getLevel() >= 6 && bro.getBackground().getID() == "background.bastard")
 				candidates.push(bro);
-			else if (bro.getBackground().getID() == "background.assassin" || bro.getBackground().getID() == "background.legend_assassin_commander")
+			else if (bro.getBackground().getID() == "background.assassin" || bro.getBackground().getID() == "background.legend_commander_assassin")
 				cantidates_assassins.push(bro);
 			else if (!bro.getSkills().hasTrait(::Legends.Trait.Player))
 				candidates_other.push(bro);

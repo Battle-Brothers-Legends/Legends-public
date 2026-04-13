@@ -44,7 +44,7 @@ this.legend_rations_effect <- this.inherit("scripts/skills/skill", {
 
 	function getDescription()
 	{
-		return "Thanks to eating food, this character regains Health and loses Fatigue for [color=" + this.Const.UI.Color.NegativeValue + "]" + this.m.TurnsLeft + "[/color] turn(s). ";
+		return "Thanks to eating food, this character regains Health and loses Fatigue for [color=%negative%]" + this.m.TurnsLeft + "[/color] turn(s). ";
 	}
 
 	function getTooltip()
@@ -83,13 +83,13 @@ this.legend_rations_effect <- this.inherit("scripts/skills/skill", {
 				id = 11,
 				type = "text",
 				icon = "ui/icons/health.png",
-				text = "Heals [color=" + this.Const.UI.Color.PositiveValue + "] +" + rate + "[/color] Hitpoints per turn for " + turns + " turns "
+				text = "Heals [color=%positive%] +" + rate + "[/color] Hitpoints per turn for " + turns + " turns "
 			},
 			{
 				id = 11,
 				type = "text",
 				icon = "ui/icons/fatigue.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "] -" + rate + "[/color] Fatigue Recovery per turn for " + turns + " turns"
+				text = "[color=%negative%] -" + rate + "[/color] Fatigue Recovery per turn for " + turns + " turns"
 			}
 		];
 		return ret;

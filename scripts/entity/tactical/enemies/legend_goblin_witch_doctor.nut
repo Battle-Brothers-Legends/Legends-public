@@ -8,6 +8,7 @@ this.legend_goblin_witch_doctor <- this.inherit("scripts/entity/tactical/goblin"
 		this.m.SoundPitch = this.Math.rand(90, 100) * 0.01;
 		this.m.AIAgent = this.new("scripts/ai/tactical/agents/goblin_shaman_agent");
 		this.m.AIAgent.setActor(this);
+		local rolls = ::Legends.S.extraLootChance(1);
 		for(local i = 0; i < rolls; i++)
 			this.m.OnDeathLootTable.push([5, "scripts/items/misc/legend_ancient_scroll_item"]);
 	}
@@ -35,7 +36,6 @@ this.legend_goblin_witch_doctor <- this.inherit("scripts/entity/tactical/goblin"
 		::Legends.Actives.grant(this, ::Legends.Active.GrantNightVision);
 		if(::Legends.isLegendaryDifficulty())
 		{
-			::Legends.Perks.grant(this, ::Legends.Perk.Nimble);
 			::Legends.Perks.grant(this, ::Legends.Perk.Pathfinder);
 			::Legends.Perks.grant(this, ::Legends.Perk.Anticipation);
 			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
@@ -74,7 +74,8 @@ this.legend_goblin_witch_doctor <- this.inherit("scripts/entity/tactical/goblin"
 		}
 
 		this.getSprite("miniboss").setBrush("bust_miniboss");
-		this.m.Items.equip(this.new("scripts/items/weapons/greenskins/legend_named_goblin_staff"));
+		this.m.Items.equip(this.new("scripts/items/weapons/named/legend_named_goblin_staff"));
+		::Legends.Perks.grant(this, ::Legends.Perk.Nimble);
 		::Legends.Perks.grant(this, ::Legends.Perk.Dodge);
 		::Legends.Perks.grant(this, ::Legends.Perk.Relentless);
 		return true;

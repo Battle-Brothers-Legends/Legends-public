@@ -12,7 +12,7 @@ this.perk_legend_vala_trance_malevolent <- this.inherit("scripts/skills/skill", 
 
 	function create()
 	{
-		::Const.Perks.setup(this.m, ::Legends.Perk.LegendValaTranceMalevolent);
+		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendValaTranceMalevolent);
 		this.m.Icon = "ui/perks/legend_vala_trance_malevolent_active.png";
 		this.m.IconDisabled = "ui/perks/legend_vala_trance_malevolent_active_sw.png";
 		this.m.Type = this.Const.SkillType.Active | this.Const.SkillType.Perk;
@@ -20,8 +20,6 @@ this.perk_legend_vala_trance_malevolent <- this.inherit("scripts/skills/skill", 
 		this.m.IsSerialized = true;
 		this.m.IsActive = true;
 		this.m.IsTargeted = true;
-		this.m.IsStacking = false;
-		this.m.IsHidden = false;
 		this.m.IsAttack = true;
 		this.m.IsIgnoredAsAOO = true;
 		this.m.IsShowingProjectile = false;
@@ -40,43 +38,29 @@ this.perk_legend_vala_trance_malevolent <- this.inherit("scripts/skills/skill", 
 		local actor = this.getContainer().getActor();
 
 		if (!this.Tactical.isActive())
-		{
 			return false;
-		}
 
 		if (actor.getTile().hasZoneOfControlOtherThan(actor.getAlliedFactions()))
-		{
 			return false;
-		}
 
 		if (!this.skill.isUsable())
-		{
 			return false;
-		}
 
 		if (this.m.TranceIsActive)
-		{
 			return false;
-		}
 
 		if (actor.getSkills().hasEffect(::Legends.Effect.LegendValaCurrentlyChanting) || actor.getSkills().hasEffect(::Legends.Effect.LegendValaInTrance))
-		{
 			return false;
-		}
 
-		local weapon = actor.getMainhandItem();
-
-		if (weapon == null || weapon.getID() != "weapon.legend_staff_vala")
-		{
+		if (!::Legends.S.hasItemFlag(actor.getMainhandItem(), "vala_staff"))
 			return false;
-		}
 
 		return true;
 	}
 
 	function getCostString()
 	{
-		return "[i]Costs [b][color=" + this.Const.UI.Color.NegativeValue + "]all (at least 6) AP[/color][/b] to use and builds up " + (this.isAffordableBasedOnFatiguePreview() ? "[b][color=" + this.Const.UI.Color.PositiveValue + "]" + this.getFatigueCost() : "[b][color=" + this.Const.UI.Color.NegativeValue + "]" + this.getFatigueCost()) + " Fatigue[/color][/b][/i]\n";
+		return "[i]Costs [b][color=%negative%]all (at least 6) AP[/color][/b] to use and builds up " + (this.isAffordableBasedOnFatiguePreview() ? "[b][color=%positive%]" + this.getFatigueCost() : "[b][color=%negative%]" + this.getFatigueCost()) + " Fatigue[/color][/b][/i]\n";
 	}
 
 	function getTooltip()
@@ -89,15 +73,14 @@ this.perk_legend_vala_trance_malevolent <- this.inherit("scripts/skills/skill", 
 			icon = "ui/icons/special.png",
 			text = "If the Vala is successful in her dealings with these harmful spirits, they will haunt and weaken her opponents. Lowers damage, lowers maximum fatigue, increases fatigue cost for skills."
 		});
-		local weapon = actor.getMainhandItem();
 
-		if (weapon == null || weapon.getID() != "weapon.legend_staff_vala")
+		if (!::Legends.S.hasItemFlag(actor.getMainhandItem(), "vala_staff"))
 		{
 			ret.push({
 				id = 9,
 				type = "text",
 				icon = "ui/tooltips/warning.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]Requires the Vala\'s staff.[/color]"
+				text = "[color=%negative%]Requires the Vala\'s staff.[/color]"
 			});
 		}
 
@@ -107,7 +90,7 @@ this.perk_legend_vala_trance_malevolent <- this.inherit("scripts/skills/skill", 
 				id = 10,
 				type = "text",
 				icon = "ui/tooltips/warning.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]Cannot enter a trance while chanting.[/color]"
+				text = "[color=%negative%]Cannot enter a trance while chanting.[/color]"
 			});
 		}
 
@@ -117,7 +100,7 @@ this.perk_legend_vala_trance_malevolent <- this.inherit("scripts/skills/skill", 
 				id = 11,
 				type = "text",
 				icon = "ui/tooltips/warning.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]Cannot enter a trance while engaged in melee.[/color]"
+				text = "[color=%negative%]Cannot enter a trance while engaged in melee.[/color]"
 			});
 		}
 

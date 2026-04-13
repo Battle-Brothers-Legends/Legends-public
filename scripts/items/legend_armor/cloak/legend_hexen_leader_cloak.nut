@@ -8,9 +8,13 @@ this.legend_hexen_leader_cloak <- this.inherit("scripts/items/legend_armor/legen
 		this.m.ID = "legend_armor.body.legend_hexe_leader_cloak";
 		this.m.Type = this.Const.Items.ArmorUpgrades.Cloak;
 		this.m.Name = "Hexen Leader Silk Cloak";
-		this.m.Description = "This elegant cloak is made from spider web that bolsters its users resolve";
-		this.m.ArmorDescription = "A Hexen cloak able to increase its users resolve";
-
+		this.m.Description = "An elegant cloak made of gossamer and powerful witch's hair shielding the wearer's mind against adversity and foul magic alike.";
+		this.m.ArmorDescription = "Includes an elegant cloak.";
+		this.m.Variants = [1, 2, 3, 4, 5];
+		this.m.Variant = this.m.Variants[this.Math.rand(0, this.m.Variants.len() - 1)];
+		this.updateVariant();
+		this.m.ImpactSound = this.Const.Sound.ArmorLeatherImpact;
+		this.m.InventorySound = this.Const.Sound.ClothEquip;
 		this.m.Value = 7500;
 		this.m.Condition = 25;
 		this.m.ConditionMax = 25;
@@ -19,13 +23,14 @@ this.legend_hexen_leader_cloak <- this.inherit("scripts/items/legend_armor/legen
 
 	function updateVariant()
 	{
-		this.m.SpriteBack = "bust_cloak_hexe";
-		this.m.SpriteDamagedBack = "bust_cloak_hexe_damaged";
-		this.m.SpriteCorpseBack = "bust_cloak_hexe_dead";
-		this.m.Icon = "legend_armor/icon_cloak_hexe.png";
+		local variant = this.m.Variant > 9 ? this.m.Variant : "0" + this.m.Variant;
+		this.m.SpriteBack = "cloak_hexe_" + variant + "";
+		this.m.SpriteDamagedBack = "cloak_hexe_" + variant + "_damaged";
+		this.m.SpriteCorpseBack = "cloak_hexe_" + variant + "_dead";
+		this.m.Icon = "legend_armor/icon_cloak_hexe_" + variant + ".png";
 		this.m.IconLarge = this.m.Icon;
-		this.m.OverlayIcon = "legend_armor/inventory_cloak_hexe.png";
-		this.m.OverlayIconLarge = this.m.OverlayIcon;
+		this.m.OverlayIcon = "legend_armor/icon_cloak_hexe_" + variant + ".png";
+		this.m.OverlayIconLarge = "legend_armor/inventory_cloak_hexe_"  + variant + ".png";
 	}
 
 	function getTooltip()
@@ -35,7 +40,7 @@ this.legend_hexen_leader_cloak <- this.inherit("scripts/items/legend_armor/legen
 			id = 7,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "Increases resolve by [color=" + this.Const.UI.Color.PositiveValue + "]+10%[/color] and provides [color=" + this.Const.UI.Color.PositiveValue + "]+40[/color] resolve at morale checks against fear, panic or mind control effects"
+			text = "Increases resolve by [color=%positive%]+10%[/color] and provides [color=%positive%]+40[/color] resolve at morale checks against fear, panic or mind control effects"
 		});
 		return result;
 	}
@@ -46,7 +51,7 @@ this.legend_hexen_leader_cloak <- this.inherit("scripts/items/legend_armor/legen
 			id = 7,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "Increases resolve by [color=" + this.Const.UI.Color.PositiveValue + "]+10%[/color] and provides [color=" + this.Const.UI.Color.PositiveValue + "]+40[/color] resolve at morale checks against fear, panic or mind control effects"
+			text = "Increases resolve by [color=%positive%]+10%[/color] and provides [color=%positive%]+40[/color] resolve at morale checks against fear, panic or mind control effects"
 		});
 	}
 
@@ -64,7 +69,7 @@ this.legend_hexen_leader_cloak <- this.inherit("scripts/items/legend_armor/legen
 	// 		id = 7,
 	// 		type = "text",
 	// 		icon = "ui/icons/special.png",
-	// 		text = "Grants the perk [color=" + this.Const.UI.Color.PositiveValue + "]Fortified Mind[/color] to its user while equipped"
+	// 		text = "Grants the perk [color=%positive%]Fortified Mind[/color] to its user while equipped"
 	// 	});
 	// 	return result;
 	// }
@@ -75,7 +80,7 @@ this.legend_hexen_leader_cloak <- this.inherit("scripts/items/legend_armor/legen
 	// 		id = 7,
 	// 		type = "text",
 	// 		icon = "ui/icons/special.png",
-	// 		text = "Grants the perk [color=" + this.Const.UI.Color.PositiveValue + "]Fortified Mind[/color] to its user while equipped"
+	// 		text = "Grants the perk [color=%positive%]Fortified Mind[/color] to its user while equipped"
 	// 	});
 	// }
 

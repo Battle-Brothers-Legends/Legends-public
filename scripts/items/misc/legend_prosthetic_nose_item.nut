@@ -58,7 +58,7 @@ this.legend_prosthetic_nose_item <- this.inherit("scripts/items/item", {
 				id = 7,
 				type = "text",
 				icon = "ui/icons/fatigue.png",
-				text = "Reduces the penalty of Missing Nose to [color=" + this.Const.UI.Color.NegativeValue + "]-5%[/color] Max Fatigue"
+				text = "Reduces the penalty of Missing Nose to [color=%negative%]-5%[/color] Max Fatigue"
 			},
 			{
 				id = 65,
@@ -70,7 +70,7 @@ this.legend_prosthetic_nose_item <- this.inherit("scripts/items/item", {
 				id = 65,
 				type = "text",
 				icon = "ui/icons/warning.png",
-				text = "Can only be used if this character has a missing hand"
+				text = "Can only be used if this character has a missing nose"
 			}
 		]);
 

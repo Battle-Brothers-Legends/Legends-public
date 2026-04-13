@@ -137,7 +137,7 @@ this.legend_blacksmith_crafts_crusadersword <- this.inherit("scripts/events/even
 		// 			}
 		// 		}
 
-		// 		local item = this.new("scripts/items/weapons/legend_longsword"); //lmao get fucked
+		// 		local item = this.new("scripts/items/weapons/legend_zweihander"); //lmao get fucked
 		// 		item.m.Name = _event.m.Blacksmith.getNameOnly() + "\'s " + item.m.Name;
 		// 		this.World.Assets.getStash().add(item);
 		// 		this.List.push({

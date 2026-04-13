@@ -5,9 +5,9 @@
 		this.m.ID = "background.swordmaster";
 		this.m.Name = "Swordmaster";
 		this.m.Icon = "ui/backgrounds/background_30.png";
-		this.m.BackgroundDescription = "A swordmaster excels in melee combat like no other, but may be vulnerable at range. Age may have taken a toll on his physical attributes and may continue to do so.";
-		this.m.GoodEnding = "The finest swordsman you\'d ever seen, %name% the old swordmaster was a natural addition to the %companyname%. But a man can\'t fight forever. Despite the company\'s growing success, it was becoming readily obvious that the swordmaster just could not physically do it anymore. He retired to a nice plot of land and is enjoying some time to himself. Or so you thought. You went out to go see the man and found him secretly training a nobleman\'s daughter. You promised to keep it a secret.";
-		this.m.BadEnding = "A shame that %name% the swordmaster had to spend his twilight years in a declining mercenary company. He retired, stating he just could not physically do it anymore. You think he was just letting the %companyname% down easy, because a week later he slew ten would-be brigands on the side of a road without breaking a sweat. Last you heard, he was training ungrateful princes in the art of swordfighting.";
+		this.m.BackgroundDescription = "A swordmaster excels in melee combat like no other, but may be vulnerable at range. Age may have taken a toll on his physical attributes and may continue to do so. Swordmasters fight smart and conserve their strength which allows them to have a reduced impact on initiative due to fatigue.";
+		this.m.GoodEnding = "The finest swordsman you\'d ever seen, %name% the old swordmaster was a natural addition to the %companyname%. But a man can\'t fight forever. Despite the company\'s growing success, it was becoming readily obvious that the swordmaster just could not physically do it anymore. %They% retired to a nice plot of land and is enjoying some time to %themselves%. Or so you thought. You went out to go see the %person% and found %them% secretly training a nobleman\'s daughter. You promised to keep it a secret.";
+		this.m.BadEnding = "A shame that %name% the swordmaster had to spend %their% twilight years in a declining mercenary company. %They% retired, stating %they% just could not physically do it anymore. You think %they% was just letting the %companyname% down easy, because a week later %they% slew ten would-be brigands on the side of a road without breaking a sweat. Last you heard, %they% was training ungrateful princes in the art of swordfighting.";
 		this.m.HiringCost = 400;
 		this.m.DailyCost = 35;
 		this.m.Excluded = [
@@ -66,41 +66,70 @@
 		this.m.Modifiers.Training = this.Const.LegendMod.ResourceModifiers.Training[3];
 		this.m.PerkTreeDynamic = {
 			Weapon = [
-				this.Const.Perks.SwordTree,
-				this.Const.Perks.TwoHandedTree,
-				this.Const.Perks.PolearmTree,
-				this.Const.Perks.CleaverTree,
-				this.Const.Perks.DaggerTree,
-				this.Const.Perks.ThrowingTree
+				::Const.Perks.SwordTree,
+				::Const.Perks.PolearmTree,
+				::Const.Perks.DaggerTree,
+				::Const.Perks.ThrowingTree,
+				::Const.Perks.FistsTree
 			],
 			Defense = [
-				this.Const.Perks.LightArmorTree
+				::Const.Perks.LightArmorTree
 			],
 			Traits = [
-				this.Const.Perks.TrainedTree,
-				this.Const.Perks.LargeTree,
-				this.Const.Perks.SturdyTree,
-				this.Const.Perks.ViciousTree
+				::Const.Perks.TrainedTree,
+				::Const.Perks.CalmTree,
+				::Const.Perks.LargeTree,
+				::Const.Perks.ViciousTree,
+				::Const.Perks.AgileTree
 			],
 			Enemy = [
-				this.Const.Perks.SwordmastersTree
+				::Const.Perks.SwordmastersTree
 			],
 			Class = [],
 			Profession = [
-				this.Const.Perks.FencingTeacherProfessionTree
+				::Const.Perks.FencingTeacherProfessionTree
 			],
 			Magic = []
 		}
 	}
 
+	o.setGender <- function (_gender = -1)
+	{
+		if (_gender == -1) _gender = ::Legends.Mod.ModSettings.getSetting("GenderEquality").getValue() == "Disabled" ? 0 : ::Math.rand(0, 1);
+
+		if (_gender != 1) return;
+		this.m.Faces = this.Const.Faces.OldFemale;
+		this.m.Hairs = this.Const.Hair.AllFemale;
+		this.m.HairColors = this.Const.HairColors.Old;
+		this.m.Beards = null;
+		this.m.BeardChance = 0;
+		this.m.Bodies = this.Const.Bodies.FemaleMuscular;
+		this.m.Names = this.Const.Strings.LadyNames;
+		this.addBackgroundType(this.Const.BackgroundType.Female);
+	}
+
+
 	o.getTooltip = function ()
 	{
-		return this.character_background.getTooltip();
+		local ret = this.character_background.getTooltip();
+		ret.push({
+			id = 13,
+			type = "text",
+			icon = "ui/icons/regular_damage.png",
+			text = "At all times your Initiative is reduced only by [color=%negative%]50%[/color] of your accumulated Fatigue, instead of all of it. Stacks with [color=%perk%]Relentless[/color]"
+		});
+		return ret;
+	}
+
+	o.onUpdate <- function ( _properties )
+	{
+		this.character_background.onUpdate(_properties);
+		_properties.FatigueToInitiativeRate *= 0.5;
 	}
 
 	o.onBuildDescription <- function ()
 	{
-		return "{%name% fights like a fish practices swimming. | %name% isn\'t just a man\'s handle, it\'s a myth. A name used in place of words like war, combat, and death. | To say, \'You move like %name%\' is, perhaps, the greatest honor a man can bestow upon a fellow warrior. | %name% is considered to be one of the most dangerous swordsmen to have ever walked the earth.} {Much of his life is founded in myth: stories like how he dismantled a realm by challenging a king and all his guardsmen to a duel - and besting them with one hand. | Supposedly, he fought twenty men in his own garden, slowly picking and pruning his tomatoes with the same blade he was using to kill. | Some say he was left to sea for three-hundred days and there he learned - balancing on a piece of flotsam - how to move, how to fight, and how to survive. | A story goes that his family was murdered and he knew not by whom. Wanting to be ready if he came across those responsible, he taught himself to be good enough with a blade to kill anyone. | Raised by a one-armed father, he first learned how to fight with limitations. By the time he started using both hands he could already kill anybody with just one.} {Unfortunately, time and age have withered %name% into a shell of his former self. | During the orc invasions, %name% managed to kill a dozen greenskins singlehandedly. Sadly, an impossible feat does not come without a price: his sword-hand lost three fingers and his lead foot\'s achilles was severed. | Sadly, a horde of drunks fell upon his home, each hoping to become infamous by killing the famous swordsman. He slew them all, but not before taking irreversible injuries. | Legend has it that he quarreled with a foul beast of monstrous proportions. He waves the notion away with a fingerless hand and a scarred wink. | While teaching royalty how to fight, a coup that swept the entire realm had him running for his life. | Hired to teach noble heirs fighting skills, it wasn\'t long until he was embroiled in a web of intrigue and backstabbing, and had to leave as long as he still could.} {Now the old swordsman just looks to spend the rest of his fighting knowledge on the field. | While he\'s lost his edge, the man is still plenty dangerous and some say he\'s looking to find a student before he dies. | A master in the martial arts he may be, every movement he makes is echoed by the cracking of old bones. | Depressed and without purpose, %name% now finds meaning in simply blending in with the very men he used to teach. | The man makes it impossible to get through his defense, countering everything offered, but he no longer has the jump in his step to attack back. Admirable, but sad. | Given a sword, the old guard spins and twirls it in an impressive demonstration. When he plants it in the ground, he leans on the pommel to catch his breath. Not so impressive. | The man has been robbed of his athleticism, but his knowledge has turned swordfighting into mathematics.}";
+		return "{%name% fights like a fish practices swimming. | %name% isn\'t just a person\'s handle, it\'s a myth. A name used in place of words like war, combat, and death. | To say, \'You move like %name%\' is, perhaps, the greatest honor someone can bestow upon a fellow warrior. | %name% is considered to be one of the most dangerous swords%person% to have ever walked the earth.} {Much of %their% life is founded in myth: stories like how %they% dismantled a realm by challenging a king and all %their% guardsmen to a duel - and besting them with one hand. | Supposedly, %they% fought twenty men in %their% own garden, slowly picking and pruning %their% tomatoes with the same blade %they% was using to kill. | Some say %they% was left to sea for three-hundred days and there %they% learned - balancing on a piece of flotsam - how to move, how to fight, and how to survive. | A story goes that %their% family was murdered and %they% knew not by whom. Wanting to be ready if %they% came across those responsible, %they% taught %themselves% to be good enough with a blade to kill anyone. | Raised by a one-armed father, %they% first learned how to fight with limitations. By the time %they% started using both hands %they% could already kill anybody with just one.} {Unfortunately, time and age have withered %name% into a shell of %their% former self. | During the orc invasions, %name% managed to kill a dozen greenskins singlehandedly. Sadly, an impossible feat does not come without a price: %their% sword-hand lost three fingers and %their% lead foot\'s achilles was severed. | Sadly, a horde of drunks fell upon %their% home, each hoping to become infamous by killing the famous swordsman. He slew them all, but not before taking irreversible injuries. | Legend has it that %they% quarreled with a foul beast of monstrous proportions. He waves the notion away with a fingerless hand and a scarred wink. | While teaching royalty how to fight, a coup that swept the entire realm had %them% running for %their% life. | Hired to teach noble heirs fighting skills, it wasn\'t long until %they% was embroiled in a web of intrigue and backstabbing, and had to leave as long as %they% still could.} {Now the old swordsman just looks to spend the rest of %their% fighting knowledge on the field. | While %they%\'s lost %their% edge, the man is still plenty dangerous and some say %they%\'s looking to find a student before %they% dies. | A master in the martial arts %they% may be, every movement %they% makes is echoed by the cracking of old bones. | Depressed and without purpose, %name% now finds meaning in simply blending in with the very men %they% used to teach. | The man makes it impossible to get through %their% defense, countering everything offered, but %they% no longer has the jump in %their% step to attack back. Admirable, but sad. | Given a sword, the old guard spins and twirls it in an impressive demonstration. When %they% plants it in the ground, %they% leans on the pommel to catch %their% breath. Not so impressive. | The man has been robbed of %their% athleticism, but %their% knowledge has turned swordfighting into mathematics.}";
 	}
 
 	o.onChangeAttributes = function ()

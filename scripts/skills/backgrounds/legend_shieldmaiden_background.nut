@@ -44,25 +44,25 @@ this.legend_shieldmaiden_background <- this.inherit("scripts/skills/backgrounds/
 		// this.m.PerkTreeDynamicMins.Defense = 3;
 		this.m.PerkTreeDynamic = {
 			Weapon = [
-				this.Const.Perks.SpearTree,
-				this.Const.Perks.AxeTree,
-				this.Const.Perks.SwordTree,
-				this.Const.Perks.ShieldTree,
-				this.Const.Perks.ThrowingTree
+				::Const.Perks.SpearTree,
+				::Const.Perks.AxeTree,
+				::Const.Perks.SwordTree,
+				::Const.Perks.ShieldTree,
+				::Const.Perks.ThrowingTree,
 			],
-			Defense = [	
-				this.Const.Perks.HeavyArmorTree,
+			Defense = [
+				::Const.Perks.HeavyArmorTree,
 			],
 			Traits = [
-				this.Const.Perks.SturdyTree,
-				this.Const.Perks.TrainedTree,
-				this.Const.Perks.FitTree,
-				this.Const.Perks.IndestructibleTree,
-				this.Const.Perks.LargeTree,
-				this.Const.Perks.FastTree
+				::Const.Perks.SturdyTree,
+				::Const.Perks.TrainedTree,
+				::Const.Perks.FitTree,
+				::Const.Perks.IndestructibleTree,
+				::Const.Perks.LargeTree,
+				::Const.Perks.FastTree
 			],
 			Enemy = [
-				this.Const.Perks.BarbarianTree
+				::Const.Perks.OutlawTree
 			],
 			Profession = [],
 			Class = [],

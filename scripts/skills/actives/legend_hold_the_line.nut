@@ -32,19 +32,19 @@ this.legend_hold_the_line <- this.inherit("scripts/skills/skill", {
 				id = 6,
 				type = "text",
 				icon = "ui/icons/melee_defense.png",
-				text = "Gain [color=" + this.Const.UI.Color.PositiveValue + "]+10[/color] Melee Defense"
+				text = "Gain [color=%positive%]+10[/color] Melee Defense"
 			},
 			{
 				id = 6,
 				type = "text",
 				icon = "ui/icons/ranged_defense.png",
-				text = "Gain [color=" + this.Const.UI.Color.PositiveValue + "]+10[/color] Ranged Defense"
+				text = "Gain [color=%positive%]+10[/color] Ranged Defense"
 			},
 			{
 				id = 6,
 				type = "text",
 				icon = "ui/icons/regular_damage.png",
-				text = "Receive only [color=" + this.Const.UI.Color.PositiveValue + "]90%[/color] of any damage"
+				text = "Receive only [color=%positive%]90%[/color] of any damage"
 			}
 		]);
 

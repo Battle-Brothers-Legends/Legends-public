@@ -67,7 +67,7 @@ this.legend_unleash_sighthound_skill <- this.inherit("scripts/skills/actives/leg
 		this.m.IsStacking = false;
 		this.m.IsAttack = false;
 		this.m.IsTargetingActor = false;
-		this.m.ActionPointCost = 5;
+		this.m.ActionPointCost = 3;
 		this.m.FatigueCost = 15;
 		this.m.MinRange = 1;
 		this.m.MaxRange = 1;
@@ -130,7 +130,8 @@ this.legend_unleash_sighthound_skill <- this.inherit("scripts/skills/actives/leg
 
 	function onVerifyTarget(_originTile, _targetTile) {
 		local actor = this.getContainer().getActor();
-		return this.legend_unleash_animal_skill.onVerifyTarget(_originTile, _targetTile) && _targetTile.IsEmpty;
+		return this.legend_unleash_animal_skill.onVerifyTarget(_originTile, _targetTile)
+			&& _targetTile.IsEmpty;
 	}
 
 	function onUse(_user, _targetTile) {

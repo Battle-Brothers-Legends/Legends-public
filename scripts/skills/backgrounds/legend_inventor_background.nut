@@ -44,30 +44,28 @@ this.legend_inventor_background <- this.inherit("scripts/skills/backgrounds/char
 		this.m.Modifiers.Crafting = this.Const.LegendMod.ResourceModifiers.Crafting[1];
 		this.m.PerkTreeDynamic = {
 			Weapon = [
-				this.Const.Perks.HammerTree,
-				this.Const.Perks.PolearmTree,
-				this.Const.Perks.DaggerTree,
-				this.Const.Perks.CrossbowTree
+				::Const.Perks.HammerTree,
+				::Const.Perks.PolearmTree,
+				::Const.Perks.DaggerTree,
+				::Const.Perks.CrossbowTree
 			],
 			Defense = [
-				this.Const.Perks.ClothArmorTree
+				::Const.Perks.ClothArmorTree
 			],
 			Traits = [
-				this.Const.Perks.IntelligentTree,
-				this.Const.Perks.CalmTree,
-				this.Const.Perks.IndestructibleTree,
-				this.Const.Perks.OrganisedTree
+				::Const.Perks.IntelligentTree,
+				::Const.Perks.CalmTree,
+				::Const.Perks.IndestructibleTree,
+				::Const.Perks.OrganisedTree
 			],
 			Enemy = [],
-			Class = [
-				this.Const.Perks.InventorClassTree
-			],
+			Class = [],
 			Profession = [
-				this.Const.Perks.RepairProfessionTree
+				::Const.Perks.RepairProfessionTree
 			],
 			Magic = [
-				this.Const.Perks.PhilosophyMagicTree,
-				this.Const.Perks.InventorMagicTree
+				::Const.Perks.PhilosophyMagicTree,
+				::Const.Perks.InventorMagicTree
 			]
 		}
 	}
@@ -80,7 +78,7 @@ this.legend_inventor_background <- this.inherit("scripts/skills/backgrounds/char
 				id = 13,
 				type = "text",
 				icon = "ui/icons/xp_received.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+20%[/color] Experience Gain"
+				text = "[color=%positive%]+20%[/color] Experience Gain"
 			}
 		);
 		return ret;

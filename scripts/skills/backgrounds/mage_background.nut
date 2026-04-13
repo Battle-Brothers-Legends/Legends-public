@@ -74,23 +74,23 @@ this.mage_background <- this.inherit("scripts/skills/backgrounds/character_backg
 		this.m.Modifiers.Training = this.Const.LegendMod.ResourceModifiers.Training[0];
 		this.m.PerkTreeDynamic = {
 			Weapon = [
-				this.Const.Perks.HammerTree,
-				this.Const.Perks.MaceTree,
-				this.Const.Perks.PolearmTree
+				::Const.Perks.HammerTree,
+				::Const.Perks.MaceTree,
+				::Const.Perks.PolearmTree
 			],
 			Defense = [
-				this.Const.Perks.ClothArmorTree
+				::Const.Perks.ClothArmorTree
 			],
 			Traits = [
-				this.Const.Perks.AgileTree,
-				this.Const.Perks.LargeTree,
-				this.Const.Perks.FastTree,
-				this.Const.Perks.FitTree
+				::Const.Perks.AgileTree,
+				::Const.Perks.LargeTree,
+				::Const.Perks.FastTree,
+				::Const.Perks.FitTree
 			],
 			Enemy = [],
 			Class = [],
 			Profession = [
-				this.Const.Perks.StavesMagicTree
+				::Const.Perks.StavesMagicTree
 			],
 			Magic = []
 		}

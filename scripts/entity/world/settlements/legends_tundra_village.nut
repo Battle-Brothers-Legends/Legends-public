@@ -168,6 +168,8 @@ this.legends_tundra_village <- this.inherit("scripts/entity/world/settlements/le
 			"wildman_background"
 		],[
 			"legend_shieldmaiden_background",
+			"legend_shieldmaiden_background",
+"legend_shieldmaiden_background",
 			"apprentice_background",
 			"brawler_background",
 			"brawler_background",
@@ -204,6 +206,8 @@ this.legends_tundra_village <- this.inherit("scripts/entity/world/settlements/le
 			// nothing at lvl 2
 		],[
 			"legend_shieldmaiden_background",
+			"legend_shieldmaiden_background",
+"legend_shieldmaiden_background",
 		]];
 		this.m.StablesLists = [[],[],[]];
 		this.m.Culture = this.Const.World.Culture.Northern;

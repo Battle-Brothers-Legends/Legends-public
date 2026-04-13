@@ -48,27 +48,27 @@ this.legend_qiyan_background <- this.inherit("scripts/skills/backgrounds/charact
 		this.m.Modifiers.Scout = this.Const.LegendMod.ResourceModifiers.Scout[1];
 		this.m.PerkTreeDynamic = {
 			Weapon = [
-				this.Const.Perks.DaggerTree,
-				this.Const.Perks.SwordTree,
-				this.Const.Perks.ThrowingTree
+				::Const.Perks.DaggerTree,
+				::Const.Perks.SwordTree,
+				::Const.Perks.ThrowingTree,
 			],
 			Defense = [
-				this.Const.Perks.ClothArmorTree,
-				this.Const.Perks.LightArmorTree
+				::Const.Perks.ClothArmorTree,
+				::Const.Perks.LightArmorTree
 			],
 			Traits = [ //lf 5
-				this.Const.Perks.AgileTree,
-				this.Const.Perks.InspirationalTree,
-				this.Const.Perks.FastTree,
-				this.Const.Perks.IntelligentTree
+				::Const.Perks.AgileTree,
+				::Const.Perks.InspirationalTree,
+				::Const.Perks.FastTree,
+				::Const.Perks.IntelligentTree
 			],
 			Enemy = [],
 			Class = [
-				this.Const.Perks.KnifeClassTree
+				// ::Const.Perks.KnifeClassTree
 			],
 			Profession = [],
 			Magic = [
-				this.Const.Perks.BardMagicTree
+				::Const.Perks.BardMagicTree
 			]
 		}
 	}

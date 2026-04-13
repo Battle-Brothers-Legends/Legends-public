@@ -110,7 +110,7 @@ this.legend_named_parrying_dagger <- this.inherit("scripts/items/shields/named/n
 					id = 4,
 					type = "text",
 					icon = "ui/icons/regular_damage.png",
-					text = "Damage of [color=" + this.Const.UI.Color.DamageValue + "]" + this.m.RegularDamage + "[/color] - [color=" + this.Const.UI.Color.DamageValue + "]" + this.m.RegularDamageMax + "[/color]"
+					text = "Damage of [color=%damage%]" + this.m.RegularDamage + "[/color] - [color=%damage%]" + this.m.RegularDamageMax + "[/color]"
 				});
 			}
 
@@ -120,7 +120,7 @@ this.legend_named_parrying_dagger <- this.inherit("scripts/items/shields/named/n
 					id = 64,
 					type = "text",
 					icon = "ui/icons/direct_damage.png",
-					text = "[color=" + this.Const.UI.Color.DamageValue + "]" + this.Math.floor((this.m.DirectDamageMult + this.m.DirectDamageAdd) * 100) + "%[/color] of damage ignores armor"
+					text = "[color=%damage%]" + this.Math.floor((this.m.DirectDamageMult + this.m.DirectDamageAdd) * 100) + "%[/color] of damage ignores armor"
 				});
 			}
 
@@ -130,7 +130,7 @@ this.legend_named_parrying_dagger <- this.inherit("scripts/items/shields/named/n
 					id = 5,
 					type = "text",
 					icon = "ui/icons/armor_damage.png",
-					text = "[color=" + this.Const.UI.Color.DamageValue + "]" + this.Math.floor(this.m.ArmorDamageMult * 100) + "%[/color] effective against armor"
+					text = "[color=%damage%]" + this.Math.floor(this.m.ArmorDamageMult * 100) + "%[/color] effective against armor"
 				});
 			}
 
@@ -140,7 +140,7 @@ this.legend_named_parrying_dagger <- this.inherit("scripts/items/shields/named/n
 					id = 9,
 					type = "text",
 					icon = "ui/icons/chance_to_hit_head.png",
-					text = "Chance to hit head [color=" + this.Const.UI.Color.PositiveValue + "]+" + this.m.ChanceToHitHead + "%[/color]"
+					text = "Chance to hit head [color=%positive%]+" + this.m.ChanceToHitHead + "%[/color]"
 				});
 			}
 		}
@@ -149,7 +149,7 @@ this.legend_named_parrying_dagger <- this.inherit("scripts/items/shields/named/n
 			id = 4,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "Grants [color=" + ::Const.UI.Color.PositiveValue + "]+10%[/color] melee damage if having a dagger on your mainhand"
+			text = "Grants [color=%positive%]+10%[/color] melee damage if having a dagger on your mainhand"
 		});
 
 		return result;

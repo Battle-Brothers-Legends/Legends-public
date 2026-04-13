@@ -27,9 +27,9 @@ this.legends_mage_scenario <- this.inherit("scripts/scenarios/world/starting_sce
 			"mage_legend_mage_commander_background"
 		]);
 		::Legends.Traits.grant(bro, ::Legends.Trait.Player);
-		this.addScenarioPerk(bro.getBackground(), this.Const.Perks.PerkDefs.Student);
-		this.addScenarioPerk(bro.getBackground(), this.Const.Perks.PerkDefs.LegendMindOverBody);
-		this.addScenarioPerk(bro.getBackground(), this.Const.Perks.PerkDefs.LegendMagicMissile);
+		this.addScenarioPerk(bro.getBackground(), ::Const.Perks.PerkDefs.Student);
+		this.addScenarioPerk(bro.getBackground(), ::Const.Perks.PerkDefs.LegendMindOverBody);
+		this.addScenarioPerk(bro.getBackground(), ::Const.Perks.PerkDefs.LegendMagicMissile);
 		bro.setPlaceInFormation(4);
 		bro.setVeteranPerks(2);
 		bro.getFlags().set("IsPlayerCharacter", true);
@@ -177,7 +177,7 @@ this.legends_mage_scenario <- this.inherit("scripts/scenarios/world/starting_sce
 
 	function onBuildPerkTree( _background )
 	{
-		this.addScenarioPerk(_background, this.Const.Perks.PerkDefs.Student);
+		this.addScenarioPerk(_background, ::Const.Perks.PerkDefs.Student);
 	}
 });
 

@@ -4,7 +4,7 @@ this.legends_noble_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 	{
 		this.m.ID = "scenario.legends_noble";
 		this.m.Name = "Noble";
-		this.m.Description = "[p=c][img]gfx/ui/events/event_96.png[/img][/p][p] You are a noble on the run from your house with your retainers. \n\n[color=#bcad8c]Usurper:[/color] Can unlock noble contracts from the start.\n[color=#bcad8c]Highborn:[/color] Nobles will cost 25% less, lowborns will cost 50% more, can\'t hire outlaws\n[color=#bcad8c]Trained leader:[/color] Your studies at the academy gave tactical skills, everyone begins with Rotation.\n[color=#bcad8c]Avatar:[/color] if your character dies, it is game over.[/p]";
+		this.m.Description = "[p=c][img]gfx/ui/events/event_96.png[/img][/p][p] You are a noble on the run from your house with your retainers. \n\n[color=#bcad8c]Usurper:[/color] Can unlock noble contracts from the start.\n[color=#bcad8c]Highborn:[/color] Nobles will cost 25% less, lowborns will cost 50% more, can\'t hire outlaws\n[color=#bcad8c]Trained leader:[/color] Your studies at the academy gave tactical skills, everyone begins with Tactical Maneuvers and future hires have Tactical Maneuvers as well.\n[color=#bcad8c]Avatar:[/color] if your character dies, it is game over.[/p]";
 		this.m.Difficulty = 2;
 		this.m.Order = 170;
 		this.m.IsFixedLook = true;
@@ -39,8 +39,8 @@ this.legends_noble_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 		::Legends.Traits.grant(bros[0], ::Legends.Trait.Drunkard);
 		::Legends.Traits.grant(bros[0], ::Legends.Trait.LegendNobleKiller);
 		::Legends.Effects.grant(bros[0], ::Legends.Effect.Drunk);
-		this.addScenarioPerk(bros[0].getBackground(), this.Const.Perks.PerkDefs.Rotation);
-		this.addScenarioPerk(bros[0].getBackground(), this.Const.Perks.PerkDefs.RallyTheTroops);
+		this.addScenarioPerk(bros[0].getBackground(), ::Legends.Perk.LegendTacticalManeuvers);
+		this.addScenarioPerk(bros[0].getBackground(), ::Const.Perks.PerkDefs.RallyTheTroops);
 
 		// End Noble Commander Create
 		// Noble Shield 1 Create
@@ -67,7 +67,7 @@ this.legends_noble_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 		::Legends.Traits.grant(bros[1], ::Legends.Trait.Optimist);
 		::Legends.Traits.grant(bros[1], ::Legends.Trait.Determined);
 		::Legends.Traits.grant(bros[1], ::Legends.Trait.Greedy);
-		this.addScenarioPerk(bros[1].getBackground(), this.Const.Perks.PerkDefs.Rotation);
+		this.addScenarioPerk(bros[1].getBackground(), ::Legends.Perk.LegendTacticalManeuvers);
 		bros[1].setPlaceInFormation(3);
 
 		// End Noble Shield 1 Create
@@ -82,7 +82,7 @@ this.legends_noble_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 		::Legends.Traits.grant(bros[2], ::Legends.Trait.Huge);
 		::Legends.Traits.grant(bros[2], ::Legends.Trait.Fat);
 		::Legends.Traits.grant(bros[2], ::Legends.Trait.Gluttonous);
-		this.addScenarioPerk(bros[2].getBackground(), this.Const.Perks.PerkDefs.Rotation);
+		this.addScenarioPerk(bros[2].getBackground(), ::Legends.Perk.LegendTacticalManeuvers);
 		bros[2].setPlaceInFormation(4);
 
 		// End Noble 2h Create
@@ -110,7 +110,7 @@ this.legends_noble_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 		::Legends.Traits.grant(bros[3], ::Legends.Trait.LegendPragmatic);
 		::Legends.Traits.grant(bros[3], ::Legends.Trait.Loyal);
 		::Legends.Traits.grant(bros[3], ::Legends.Trait.LegendSlack);
-		this.addScenarioPerk(bros[3].getBackground(), this.Const.Perks.PerkDefs.Rotation);
+		this.addScenarioPerk(bros[3].getBackground(), ::Legends.Perk.LegendTacticalManeuvers);
 		bros[3].setPlaceInFormation(5);
 
 		// End Noble Shield 2 Create
@@ -125,7 +125,7 @@ this.legends_noble_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 		::Legends.Traits.grant(bros[4], ::Legends.Trait.Loyal);
 		::Legends.Traits.grant(bros[4], ::Legends.Trait.Lucky);
 		::Legends.Traits.grant(bros[4], ::Legends.Trait.Survivor);
-		this.addScenarioPerk(bros[4].getBackground(), this.Const.Perks.PerkDefs.Rotation);
+		this.addScenarioPerk(bros[4].getBackground(), ::Legends.Perk.LegendTacticalManeuvers);
 		bros[4].setPlaceInFormation(12);
 		local items = bros[4].getItems();
 		items.equip(this.Const.World.Common.pickArmor([
@@ -148,7 +148,7 @@ this.legends_noble_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 		::Legends.Traits.grant(bros[5], ::Legends.Trait.LegendSureshot);
 		::Legends.Traits.grant(bros[5], ::Legends.Trait.Teamplayer);
 		::Legends.Traits.grant(bros[5], ::Legends.Trait.LegendPredictable);
-		this.addScenarioPerk(bros[5].getBackground(), this.Const.Perks.PerkDefs.Rotation);
+		this.addScenarioPerk(bros[5].getBackground(), ::Legends.Perk.LegendTacticalManeuvers);
 		if (bros[5].getBaseProperties().RangedSkill  <= 60) {
 			bros[5].getBaseProperties().RangedSkill  += 5;
 		}
@@ -240,7 +240,7 @@ this.legends_noble_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 			local armor = items.getItemAtSlot(this.Const.ItemSlot.Body);
 			local tabards = [
 					[0, ""],
-					[1, "tabard/legend_noble_tabard"]
+					[1, "tabard/legend_armor_tabard_noble"]
 				];
 				local tabard = this.Const.World.Common.pickLegendArmor(tabards);
 				if (tabard != null && armor != null)
@@ -308,9 +308,7 @@ this.legends_noble_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 		this.addBroToRoster(_roster, "legend_noble_shield", 4);
 		this.addBroToRoster(_roster, "legend_noble_ranged", 4);
 		this.addBroToRoster(_roster, "adventurous_noble_background", 8);
-		// this.addBroToRoster(_roster, "female_adventurous_noble_background", 6);
 		this.addBroToRoster(_roster, "disowned_noble_background", 8);
-		// this.addBroToRoster(_roster, "female_disowned_noble_background", 6);
 
 		foreach( i, bro in bros )
 		{
@@ -346,6 +344,6 @@ this.legends_noble_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 
 	function onBuildPerkTree( _background )
 	{
-		this.addScenarioPerk(_background, this.Const.Perks.PerkDefs.Rotation);
+		this.addScenarioPerk(_background, ::Legends.Perk.LegendTacticalManeuvers);
 	}
 });

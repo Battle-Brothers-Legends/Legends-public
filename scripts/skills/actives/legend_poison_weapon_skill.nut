@@ -54,7 +54,7 @@ this.legend_poison_weapon_skill <- this.inherit("scripts/skills/skill", {
 				id = 7,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "The next [color=" + this.Const.UI.Color.PositiveValue + "]4[/color] attacks will apply the Poisoned status effect."
+				text = "The next [color=%positive%]4[/color] attacks will apply the Poisoned status effect."
 			}
 		];
 
@@ -64,7 +64,7 @@ this.legend_poison_weapon_skill <- this.inherit("scripts/skills/skill", {
 				id = 5,
 				type = "text",
 				icon = "ui/tooltips/warning.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]Can not be used because this character is engaged in melee[/color]"
+				text = "[color=%negative%]Can not be used because this character is engaged in melee[/color]"
 			});
 		}
 

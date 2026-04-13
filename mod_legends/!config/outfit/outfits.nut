@@ -34,7 +34,8 @@
 ::Legends.Outfit.barbarian_chosen_outfit_00 <- {
 	ID = "barbarian_chosen_outfit_00",
 	Body = [
-		[1, ::Legends.Armor.Standard.barbarian_chosen_armor_00]
+		[1, ::Legends.Armor.Standard.barbarian_chosen_armor_00],
+		[1, ::Legends.Armor.Standard.barbarian_chosen_armor_01]
 	],
 	Helmet = [
 		[1, ::Legends.Helmet.Standard.barbarian_chosen_helmet_00]
@@ -45,7 +46,8 @@
 ::Legends.Outfit.barbarian_chosen_outfit_01 <- {
 	ID = "barbarian_chosen_outfit_01",
 	Body = [
-		[1, ::Legends.Armor.Standard.barbarian_chosen_armor_01]
+		[1, ::Legends.Armor.Standard.barbarian_chosen_armor_02],
+		[1, ::Legends.Armor.Standard.barbarian_chosen_armor_03]
 	],
 	Helmet = [
 		[1, ::Legends.Helmet.Standard.barbarian_chosen_helmet_01]
@@ -422,7 +424,6 @@
 		[15, ::Legends.Armor.Standard.leather_wraps],
 		[15, ::Legends.Armor.Standard.thick_tunic],
 		[15, ::Legends.Armor.Standard.monk_robe],
-		[15, ::Legends.Armor.Standard.bandit_armor_light],
 		[15, ::Legends.Armor.Standard.tattered_sackcloth],
 		[10, ::Legends.Armor.Standard.leather_tunic],
 		[10, ::Legends.Armor.Standard.blotched_gambeson],

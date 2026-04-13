@@ -23,12 +23,12 @@
 
 	o.applyDamage <- function ()
 	{
-		if (this.m.DamageMin == 0 || this.DamageMax == 0)
+		if (this.m.DamageMin == 0 || this.m.DamageMax == 0)
 			return;
 
 		local actor = this.getContainer().getActor();
 		local hp = actor.getHitpoints();
-
+		local damage = this.Math.rand(this.m.DamageMin, this.m.DamageMax);
 		local hitInfo = clone this.Const.Tactical.HitInfo;
 		hitInfo.DamageRegular = damage;
 		hitInfo.DamageArmor = damage;
@@ -83,7 +83,7 @@
 		this.applyDamage();
 	}
 
-	o.onTurnStart <- function()
+	o.onTurnEnd <- function()
 	{
 		this.applyDamage();
 	}

@@ -35,13 +35,13 @@ this.legend_prosthetic_foot <- this.inherit("scripts/skills/traits/character_tra
 				id = 10,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "Builds up [color=" + this.Const.UI.Color.NegativeValue + "]"+ malusFat + "[/color] more fatigue for each tile travelled"
+				text = "Builds up [color=%negative%]"+ malusFat + "[/color] more fatigue for each tile travelled"
 			},
 			{
 				id = 11,
 				type = "text",
 				icon = "ui/icons/initiative.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]-"+ malusIni + "%[/color] Initiative"
+				text = "[color=%negative%]-"+ malusIni + "%[/color] Initiative"
 			}
 		];
 	}

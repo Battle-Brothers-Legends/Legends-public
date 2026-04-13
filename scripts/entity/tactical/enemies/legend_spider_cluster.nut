@@ -83,6 +83,13 @@ this.legend_spider_cluster <- this.inherit("scripts/entity/tactical/actor", {
 		this.m.SoundPitch = this.Math.rand(95, 105) * 0.01;
 		this.m.AIAgent = this.new("scripts/ai/tactical/agents/spider_agent");
 		this.m.AIAgent.setActor(this);
+
+		local rolls = ::Legends.S.extraLootChance(1);
+		for(local i = 0; i < rolls; i++) {
+			this.m.OnDeathLootTable.extend([
+				[60, "scripts/items/misc/poison_gland_item"]
+			]);
+		}
 	}
 
 	function playSound( _type, _volume, _pitch = 1.0 )
@@ -113,9 +120,8 @@ this.legend_spider_cluster <- this.inherit("scripts/entity/tactical/actor", {
 
 	function onDeath( _killer, _skill, _tile, _fatalityType )
 	{
-		if (_tile != null)
-		{
-			local flip = this.Math.rand(0, 100) < 50;
+		local flip = this.Math.rand(0, 100) < 50;
+		if (_tile != null) {
 			local decal;
 			local body_decal;
 			this.m.IsCorpseFlipped = flip;
@@ -128,32 +134,32 @@ this.legend_spider_cluster <- this.inherit("scripts/entity/tactical/actor", {
 
 			this.spawnTerrainDropdownEffect(_tile);
 			this.spawnFlies(_tile);
-			local corpse = clone this.Const.Corpse;
-			corpse.CorpseName = "A dead cluster of Hatchlings";
-			corpse.IsConsumable = false;
+		}
+
+		local deathLoot = this.getItems().getDroppableLoot(_killer);
+		local tileLoot = this.getLootForTile(_killer, deathLoot);
+		local corpse = this.generateCorpse(_tile, _fatalityType, _killer);
+		this.dropLoot(_tile, tileLoot, !flip);
+
+		if (_tile == null) {
+			this.Tactical.Entities.addUnplacedCorpse(corpse);
+		} else {
 			_tile.Properties.set("Corpse", corpse);
 			this.Tactical.Entities.addCorpse(_tile);
-
-			if ((_killer == null || _killer.getFaction() == this.Const.Faction.Player || _killer.getFaction() == this.Const.Faction.PlayerAnimals) && this.m.Size > 0.75 && this.Math.rand(1, 100) <= 60)
-			{
-				local n = 1 + (!::FU.InScenario() && this.Math.rand(1, 100) <= this.World.Assets.getExtraLootChance() ? 1 : 0);
-
-				for( local i = 0; i < n; i = ++i )
-				{
-					local r = this.Math.rand(1, 100);
-					local loot;
-
-					if (r <= 60)
-					{
-						loot = this.new("scripts/items/misc/poison_gland_item");
-					}
-
-					loot.drop(_tile);
-				}
-			}
 		}
 
 		this.actor.onDeath(_killer, _skill, _tile, _fatalityType);
+	}
+
+	function generateCorpse( _tile, _fatalityType, _killer )
+	{
+		local corpse = clone this.Const.Corpse;
+		corpse.CorpseName = "A dead cluster of Hatchlings";
+		corpse.IsHeadAttached = _fatalityType != this.Const.FatalityType.Decapitated;
+		corpse.IsConsumable = false;
+		corpse.Tile = _tile;
+		corpse.Items = this.getItems().prepareItemsForCorpse(_killer);
+		return corpse;
 	}
 
 	function onDamageReceived( _attacker, _skill, _hitInfo ) //effectively, this is an entity with only a body, like the kraken tentacle
@@ -173,7 +179,7 @@ this.legend_spider_cluster <- this.inherit("scripts/entity/tactical/actor", {
 		b.IsImmuneToDisarm = true;
 		b.IsAffectedByFreshInjuries = false;
 
-		if (!::FU.InScenario() && this.World.getTime().Days >= 25) //review
+		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= 25) //review
 		{
 			b.DamageDirectAdd += 0.05;
 
@@ -229,6 +235,7 @@ this.legend_spider_cluster <- this.inherit("scripts/entity/tactical/actor", {
 		::Legends.Traits.grant(this, ::Legends.Trait.RacialLegendClusterSpider);
 		if(::Legends.isLegendaryDifficulty())
 		{
+			b.MeleeSkill += 10;
 			::Legends.Perks.grant(this, ::Legends.Perk.Dodge);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendMuscularity);
 			::Legends.Perks.grant(this, ::Legends.Perk.CripplingStrikes);
@@ -251,3 +258,4 @@ this.legend_spider_cluster <- this.inherit("scripts/entity/tactical/actor", {
 	}
 
 });
+

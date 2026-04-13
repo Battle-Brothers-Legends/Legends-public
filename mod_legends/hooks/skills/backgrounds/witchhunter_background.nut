@@ -65,29 +65,28 @@
 			];
 		this.m.PerkTreeDynamic = {
 			Weapon = [
-				this.Const.Perks.CrossbowTree,
-				this.Const.Perks.CleaverTree,
-				this.Const.Perks.SwordTree,
-				this.Const.Perks.DaggerTree
+				::Const.Perks.CrossbowTree,
+				::Const.Perks.CleaverTree,
+				::Const.Perks.SwordTree,
+				::Const.Perks.DaggerTree
 			],
 			Defense = [
-				this.Const.Perks.LightArmorTree
+				::Const.Perks.LightArmorTree
 			],
 			Traits = [
-				this.Const.Perks.AgileTree,
-				this.Const.Perks.InspirationalTree,
-				this.Const.Perks.IntelligentTree,
-				this.Const.Perks.CalmTree,
-				this.Const.Perks.ViciousTree
+				::Const.Perks.AgileTree,
+				::Const.Perks.InspirationalTree,
+				::Const.Perks.IntelligentTree,
+				::Const.Perks.CalmTree,
+				::Const.Perks.ViciousTree
 			],
 			Enemy = [
-				this.Const.Perks.VampireTree,
-				this.Const.Perks.HexenTree,
-				this.Const.Perks.AlpTree
+				::Const.Perks.UndeadTree,
+				::Const.Perks.OccultTree
 			],
 			Class = [
-				this.Const.Perks.FaithClassTree,
-				this.Const.Perks.InquisitionClassTree
+				// ::Const.Perks.InquisitionClassTree,
+				::Const.Perks.PoisonClassTree
 			],
 			Profession = [],
 			Magic = []
@@ -102,7 +101,7 @@
 				id = 14,
 				type = "text",
 				icon = "ui/icons/bravery.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+20[/color] Resolve at morale checks against fear, panic or mind control effects. Also knows how to craft wooden stakes for use against vampires."
+				text = "[color=%positive%]+20[/color] Resolve at morale checks against fear, panic or mind control effects. Also knows how to craft wooden stakes for use against vampires."
 			}
 		);
 		return ret;
@@ -124,7 +123,7 @@
 		this.m.HairColors = this.Const.HairColors.Old;
 		this.m.Beards = null;
 		this.m.BeardChance = 0;
-		this.m.Bodies = this.Const.Bodies.AllFemale;
+		this.m.Bodies = this.Const.Bodies.NorthernFemale;
 		this.addBackgroundType(this.Const.BackgroundType.Female);
 	}
 

@@ -1,21 +1,22 @@
-if (!("Effects" in ::Legends))
+if (!("Effects" in ::Legends)) {
 	::Legends.Effects <- {};
+}
 
-if (!("Effect" in ::Legends))
+if (!("Effect" in ::Legends)) {
 	::Legends.Effect <- {};
+}
 
 ::Legends.Effects.EffectDefObjects <- [];
 
-::Legends.Effects.addEffectDefObjects <- function( _effectDefObjects )
-{
+::Legends.Effects.addEffectDefObjects <- function (_effectDefObjects) {
 	local size = ::Legends.Effects.EffectDefObjects.len();
 	::Legends.Effects.EffectDefObjects.extend(_effectDefObjects);
-	foreach (i, effectDefObjects in _effectDefObjects)
-	{
-		if (effectDefObjects.Const in ::Legends.Effect)
+	foreach (i, effectDefObjects in _effectDefObjects) {
+		if (effectDefObjects.Const in ::Legends.Effect) {
 			::Legends.Effect[effectDefObjects.Const] = size + i;
-		else
+		} else {
 			::Legends.Effect[effectDefObjects.Const] <- size + i;
+		}
 	}
 }
 
@@ -1501,12 +1502,68 @@ effectsDefs.push({
 	Const = "LegendNamedFencingSword"
 });
 
+::Legends.Effect.LegendNamedFlail <- null;
+effectsDefs.push({
+	ID = "effects.legend_named_flail",
+	Script = "scripts/skills/effects/legend_named_flail_effect",
+	Name = "Named Flail",
+	Const = "LegendNamedFlail"
+});
+
+::Legends.Effect.LegendNamedHammerStun <- null;
+effectsDefs.push({
+	ID = "effects.legend_named_hammer_stun",
+	Script = "scripts/skills/effects/legend_named_hammer_stun_effect",
+	Name = "Named Hammer Stun",
+	Const = "LegendNamedHammerStun"
+});
+
+::Legends.Effect.LegendNamedMaceStagger <- null;
+effectsDefs.push({
+	ID = "effects.legend_named_mace_stagger",
+	Script = "scripts/skills/effects/legend_named_mace_stagger_effect",
+	Name = "Named Mace Stagger",
+	Const = "LegendNamedMaceStagger"
+});
+
+::Legends.Effect.LegendNamedShamshir <- null;
+effectsDefs.push({
+	ID = "effects.legend_named_shamshir",
+	Script = "scripts/skills/effects/legend_named_shamshir_effect",
+	Name = "Named Shamshir",
+	Const = "LegendNamedShamshir"
+});
+
+::Legends.Effect.LegendNamedWhipBleed <- null;
+effectsDefs.push({
+	ID = "effects.legend_whip_bleed_effect",
+	Script = "scripts/skills/effects/legend_named_whip_bleed_effect",
+	Name = "Named Whip Bleed",
+	Const = "LegendNamedWhipBleed"
+});
+
+::Legends.Effect.LegendWhipFeint <- null;
+effectsDefs.push({
+	ID = "effects.legend_whip_feint_effect",
+	Script = "scripts/skills/effects/legend_named_whip_feint_effect",
+	Name = "Named Whip Feint",
+	Const = "LegendWhipFeint"
+});
+
 ::Legends.Effect.LegendParryingDagger <- null;
 effectsDefs.push({
 	ID = "effects.legend_parrying_dagger",
 	Script = "scripts/skills/effects/legend_parrying_dagger_effect",
 	Name = "Parrying Dagger Defense",
 	Const = "LegendParryingDagger"
+});
+
+::Legends.Effect.LegendBlooddrinker <- null;
+effectsDefs.push({
+	ID = "effects.legend_blooddrinker",
+	Script = "scripts/skills/effects/legend_blooddrinker_effect",
+	Name = "Blooddrinker",
+	Const = "LegendBlooddrinker"
 });
 
 ::Legends.Effect.LegendParrying <- null;
@@ -1877,6 +1934,14 @@ effectsDefs.push({
 	Name = "Rune Sigil: Luck",
 });
 
+::Legends.Effect.LegendRshPatience <- null;
+effectsDefs.push({
+	ID = "special.Legend_Rsh_patience",
+	Script = "scripts/skills/rune_sigils/legend_RSH_patience",
+	Const = "LegendRshPatience",
+	Name = "Rune Sigil: Patience",
+});
+
 ::Legends.Effect.LegendRssDefense <- null;
 effectsDefs.push({
 	ID = "special.legend_RSS_defense",
@@ -1891,6 +1956,14 @@ effectsDefs.push({
 	Script = "scripts/skills/rune_sigils/legend_RSS_radiance",
 	Const = "LegendRssRadiance",
 	Name = "Rune Sigil: Radiance",
+});
+
+::Legends.Effect.LegendRssDurability <- null;
+effectsDefs.push({
+	ID = "special.legend_RSS_durability",
+	Script = "scripts/skills/rune_sigils/legend_RSS_durability",
+	Const = "LegendRssDurability",
+	Name = "Rune Sigil: Durability",
 });
 
 ::Legends.Effect.LegendRswAccuracy <- null;
@@ -1915,6 +1988,14 @@ effectsDefs.push({
 	Script = "scripts/skills/rune_sigils/legend_RSW_feeding",
 	Const = "LegendRswFeeding",
 	Name = "Rune Sigil: Feeding",
+});
+
+::Legends.Effect.LegendRswBlazing <- null;
+effectsDefs.push({
+	ID = "special.legend_RSW_blazing",
+	Script = "scripts/skills/rune_sigils/legend_RSW_blazing",
+	Const = "LegendRswBlazing",
+	Name = "Rune Sigil: Blazing",
 });
 
 ::Legends.Effect.LegendRswPoison <- null;
@@ -2027,6 +2108,54 @@ effectsDefs.push({
 	Script = "scripts/skills/effects/legend_freedom_of_movement_effect",
 	Const = "LegendFreedomOfMovement",
 	Name = "Freedom of Movement",
+});
+
+::Legends.Effect.LegendEnragedHyenaBite <- null;
+effectsDefs.push({
+	ID = "effects.legend_enraged_hyena_bite",
+	Script = "scripts/skills/effects/legend_enraged_hyena_bite_effect",
+	Const = "LegendEnragedHyenaBite",
+	Name = "Locked in Jaws",
+});
+
+::Legends.Effect.LegendEnragedHyenaGrip <- null;
+effectsDefs.push({
+	ID = "effects.legend_enraged_hyena_grip",
+	Script = "scripts/skills/effects/legend_enraged_hyena_grip_effect",
+	Const = "LegendEnragedHyenaGrip",
+	Name = "Predatory Grip",
+});
+
+::Legends.Effect.LegendPatientHunter <- null;
+effectsDefs.push({
+	ID = "effects.legend_patient_hunter",
+	Script = "scripts/skills/effects/legend_patient_hunter_effect",
+	Const = "LegendPatientHunter",
+	Name = "Patient Hunter",
+});
+
+::Legends.Effect.LegendArmorTracking <- null;
+effectsDefs.push({
+	ID = "effects.legend_armor_tracking",
+	Script = "scripts/skills/effects/legend_armor_tracking_effect",
+	Const = "LegendArmorTracking",
+	Name = "LegendArmorTracking",
+});
+
+::Legends.Effect.LegendDualWield <- null;
+effectsDefs.push({
+	ID = "effects.legend_dual_wield",
+	Script = "scripts/skills/effects/legend_dual_wield_effect",
+	Name = "Dual Wielding",
+	Const = "LegendDualWield"
+});
+
+::Legends.Effect.LegendConstrained <- null;
+effectsDefs.push({
+	ID = "effects.legend_constrained",
+	Script = "scripts/skills/effects/legend_constrained_effect",
+	Name = "Constrained",
+	Const = "LegendConstrained"
 });
 
 ::Legends.Effects.addEffectDefObjects(effectsDefs);

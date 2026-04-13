@@ -49,19 +49,19 @@ this.legend_alp_realm_of_shadow_effect <- ::inherit("scripts/skills/skill", {
 					id = 9,
 					type = "text",
 					icon = "ui/icons/bravery.png",
-					text = "[color=" + ::Const.UI.Color.PositiveValue + "]+33%[/color] Resolve"
+					text = "[color=%positive%]+33%[/color] Resolve"
 				},
 				{
 					id = 10,
 					type = "text",
 					icon = "ui/icons/melee_defense.png",
-					text = "[color=" + this.Const.UI.Color.PositiveValue + "]+10[/color] Melee Defense"
+					text = "[color=%positive%]+10[/color] Melee Defense"
 				},
 				{
 					id = 12,
 					type = "text",
 					icon = "ui/icons/ranged_defense.png",
-					text = "[color=" + this.Const.UI.Color.PositiveValue + "]+100%[/color] Ranged Defense"
+					text = "[color=%positive%]+100%[/color] Ranged Defense"
 				},
 				{
 					id = 10,
@@ -78,25 +78,25 @@ this.legend_alp_realm_of_shadow_effect <- ::inherit("scripts/skills/skill", {
 				id = 9,
 				type = "text",
 				icon = "ui/icons/vision.png",
-				text = "[color=" + ::Const.UI.Color.NegativeValue + "]-1[/color] Vision"
+				text = "[color=%negative%]-1[/color] Vision"
 			},
 			{
 				id = 9,
 				type = "text",
 				icon = "ui/icons/bravery.png",
-				text = "[color=" + ::Const.UI.Color.NegativeValue + "]-33%[/color] Resolve"
+				text = "[color=%negative%]-33%[/color] Resolve"
 			},
 			{
 				id = 9,
 				type = "text",
 				icon = "ui/icons/initiative.png",
-				text = "[color=" + ::Const.UI.Color.NegativeValue + "]-10%[/color] Initiative"
+				text = "[color=%negative%]-10%[/color] Initiative"
 			},
 			{
 				id = 9,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "Takes [color=" + ::Const.UI.Color.NegativeValue + "]33%[/color] more damage from [color=" + ::Const.UI.Color.NegativeValue + "]Nightmare[/color]"
+				text = "Takes [color=%negative%]33%[/color] more damage from [color=%negative%]Nightmare[/color]"
 			}
 		]);
 

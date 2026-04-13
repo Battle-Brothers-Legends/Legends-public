@@ -9,7 +9,7 @@ this.legends_zombie_high_xbow <- this.inherit("scripts/entity/tactical/legend_zo
 		::Legends.Perks.grant(this, ::Legends.Perk.CripplingStrikes);
 		::Legends.Perks.grant(this, ::Legends.Perk.BattleForged);
 		::Legends.Actives.grant(this, ::Legends.Active.ZombieBite);
-		this.m.Skills.add(this.new("scripts/skills/injury_permanent/legend_rotten_flesh"));
+		::Legends.Traits.grant(this, ::Legends.Trait.LegendRottenFlesh);
 		if(::Legends.isLegendaryDifficulty())
 		{
 			this.m.BaseProperties.Hitpoints *= 1.5;

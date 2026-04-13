@@ -57,19 +57,19 @@ this.legend_prosthetic_forearm_item <- this.inherit("scripts/items/item", {
 				id = 7,
 				type = "text",
 				icon = "ui/icons/melee_skill.png",
-				text = "Reduces the penalty of Broken Elbow Joint to [color=" + this.Const.UI.Color.NegativeValue + "]-10%[/color] Melee Skill"
+				text = "Reduces the penalty of Broken Elbow Joint to [color=%negative%]-10%[/color] Melee Skill"
 			},
 			{
 				id = 7,
 				type = "text",
 				icon = "ui/icons/ranged_skill.png",
-				text = "Reduces the penalty of Broken Elbow Joint to [color=" + this.Const.UI.Color.NegativeValue + "]-10%[/color] Ranged Skill"
+				text = "Reduces the penalty of Broken Elbow Joint to [color=%negative%]-10%[/color] Ranged Skill"
 			},
 			{
 				id = 7,
 				type = "text",
 				icon = "ui/icons/melee_defense.png",
-				text = "Reduces the penalty of Broken Elbow Joint to [color=" + this.Const.UI.Color.NegativeValue + "]-15%[/color] Melee Defense"
+				text = "Reduces the penalty of Broken Elbow Joint to [color=%negative%]-15%[/color] Melee Defense"
 			},
 			{
 				id = 65,

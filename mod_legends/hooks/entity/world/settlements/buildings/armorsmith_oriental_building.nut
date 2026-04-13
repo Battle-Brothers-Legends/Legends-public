@@ -173,6 +173,18 @@
 			}
 		}
 
+		foreach( i in this.Const.Items.LegendNamedArmorUpgrades )
+		{
+			if (this.Math.rand(1, 100) <= 33)
+			{
+				list.push({
+					R = 99,
+					P = 2.0,
+					S = i
+				});
+			}
+		}
+
 		list.push({
 			R = 85,
 			P = 1.25,

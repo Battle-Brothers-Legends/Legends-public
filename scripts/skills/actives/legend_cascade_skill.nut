@@ -3,8 +3,7 @@ this.legend_cascade_skill <- this.inherit("scripts/skills/skill", {
 		AdditionalAccuracy = 0,
 		AdditionalHitChance = -4
 	},
-	function create()
-	{
+	function create() {
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendCascade);
 		this.m.Description = "Let loose a cascade of three striking shots on your opponent. Will strike over or around shield cover.";
 		this.m.KilledString = "Pin cushioned";
@@ -43,7 +42,7 @@ this.legend_cascade_skill <- this.inherit("scripts/skills/skill", {
 		this.m.InjuriesOnBody = this.Const.Injury.PiercingBody;
 		this.m.InjuriesOnHead = this.Const.Injury.PiercingHead;
 		this.m.DirectDamageMult = 0.3;
-		this.m.ActionPointCost = 5;
+		this.m.ActionPointCost = 6;
 		this.m.FatigueCost = 25;
 		this.m.MinRange = 1;
 		this.m.MaxRange = 6;
@@ -51,46 +50,40 @@ this.legend_cascade_skill <- this.inherit("scripts/skills/skill", {
 		this.m.ChanceDisembowel = 0;
 		this.m.MaxLevelDifference = 4;
 		this.m.ProjectileType = this.Const.ProjectileType.Arrow;
-		this.m.IsShieldRelevant = false;
 	}
 
-	function getTooltip()
-	{
+	function getTooltip() {
 		local ret = this.getRangedTooltip(this.getDefaultTooltip());
 
 		local ammo = this.getAmmo();
 
-		if (ammo > 0)
-		{
+		if (ammo > 0) {
 			ret.push({
 				id = 8,
 				type = "text",
 				icon = "ui/icons/ranged_skill.png",
-				text = "Has [color=" + this.Const.UI.Color.PositiveValue + "]" + ammo + "[/color] arrows left"
+				text = "Has [color=%positive%]" + ammo + "[/color] arrows left"
 			});
 		}
-		else
-		{
+		else {
 			ret.push({
 				id = 8,
 				type = "text",
 				icon = "ui/tooltips/warning.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]Needs a non-empty quiver of arrows equipped[/color]"
+				text = "[color=%negative%]Needs a non-empty quiver of arrows equipped[/color]"
 			});
 		}
 
-		if (this.Tactical.isActive() && this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions()))
-		{
+		if (this.Tactical.isActive() && this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions())) {
 			ret.push({
 				id = 9,
 				type = "text",
 				icon = "ui/tooltips/warning.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]Can not be used because this character is engaged in melee[/color]"
+				text = "[color=%negative%]Can not be used because this character is engaged in melee[/color]"
 			});
 		}
 
-		ret.extend([
-			{
+		ret.extend([{
 				id = 7,
 				type = "text",
 				icon = "ui/icons/special.png",
@@ -99,56 +92,34 @@ this.legend_cascade_skill <- this.inherit("scripts/skills/skill", {
 			{
 				id = 8,
 				type = "text",
-				icon = "ui/icons/special.png",
-				text = "Ignores the bonus to Defense granted by shields"
+				icon = "ui/icons/damage_dealt.png",
+				text = "Increases damage by [color=%negative%]+10%[/color] of the Initiative difference between you and the target"
 			}
 		]);
 		return ret;
 	}
 
-	function isHidden()
-	{
-		local actor = this.getContainer().getActor();
-		if (actor == null)
-		{
-			return true;
-		}
-
-		if (!actor.getSkills().hasPerk(::Legends.Perk.LegendCascade))
-		{
-			return true;
-		}
-
-		return false;
-	}
-
-	function getAmmo()
-	{
+	function getAmmo() {
 		local item = this.getContainer().getActor().getItems().getItemAtSlot(this.Const.ItemSlot.Ammo);
 
-		if (item == null)
-		{
+		if (item == null) {
 			return 0;
 		}
 
-		if (item.getAmmoType() == this.Const.Items.AmmoType.Arrows)
-		{
+		if (item.getAmmoType() == this.Const.Items.AmmoType.Arrows) {
 			return item.getAmmo();
 		}
 	}
 
-	function isUsable()
-	{
-		if (!this.getContainer().getActor().isArmedWithRangedWeapon())
-		{
+	function isUsable() {
+		if (!this.getContainer().getActor().isArmedWithRangedWeapon()) {
 			return false
 		}
 		return (!this.Tactical.isActive() || this.skill.isUsable()) && this.getAmmo() > 2 && !this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions());
 	}
 
 
-	function consumeAmmo()
-	{
+	function consumeAmmo() {
 		local item = this.getContainer().getActor().getItems().getItemAtSlot(this.Const.ItemSlot.Ammo);
 		if (item == null)
 		{
@@ -159,33 +130,27 @@ this.legend_cascade_skill <- this.inherit("scripts/skills/skill", {
 		item.consumeAmmo();
 	}
 
-	function onAfterUpdate( _properties )
-	{
+	function onAfterUpdate( _properties ) {
 		local bonusRange = (_properties.IsSpecializedInBows ? 1 : 0) + (this.getContainer().hasPerk(::Legends.Perk.LegendSpecialistSharpshooter) ? 1 : 0);
 		this.m.MaxRange = this.m.Item.getRangeMax() + bonusRange - 1;
 		this.m.AdditionalAccuracy = this.m.Item.getAdditionalAccuracy();
 		this.m.FatigueCostMult = _properties.IsSpecializedInBows ? this.Const.Combat.WeaponSpecFatigueMult : 1.0;
 	}
 
-	function onUse( _user, _targetTile )
-	{
+	function onUse( _user, _targetTile ) {
 		this.consumeAmmo();
 		local target = _targetTile.getEntity();
 		this.attackEntity(_user, target);
 		this.m.IsDoingAttackMove = false;
 		this.getContainer().setBusy(true);
-		this.Time.scheduleEvent(this.TimeUnit.Virtual, 100, function ( _skill )
-		{
-			if (target.isAlive())
-			{
+		this.Time.scheduleEvent(this.TimeUnit.Virtual, 100, function ( _skill ) {
+			if (target.isAlive()) {
 				_skill.attackEntity(_user, target);
 			}
 		}.bindenv(this), this);
 
-		this.Time.scheduleEvent(this.TimeUnit.Virtual, 200, function ( _skill )
-		{
-			if (target.isAlive())
-			{
+		this.Time.scheduleEvent(this.TimeUnit.Virtual, 200, function ( _skill ) {
+			if (target.isAlive()) {
 				_skill.attackEntity(_user, target);
 			}
 
@@ -195,14 +160,21 @@ this.legend_cascade_skill <- this.inherit("scripts/skills/skill", {
 		return true;
 	}
 
-	function onAnySkillUsed( _skill, _targetEntity, _properties )
-	{
-		if (_skill == this)
-		{
+	function onAnySkillUsed( _skill, _targetEntity, _properties ) {
+		if (_skill == this) {
 			_properties.RangedSkill += this.m.AdditionalAccuracy;
 			_properties.HitChanceAdditionalWithEachTile += this.m.AdditionalHitChance;
-			_properties.DamageTotalMult *= 0.5;
+			_properties.DamageTotalMult *= 0.33333334;
 			_properties.DamageTooltipMaxMult *= 3.0;
+			if (_targetEntity != null) {
+				local defenderCurrentInitiative = _targetEntity.getInitiative();
+				local attackerCurrentInitiative = this.getContainer().getActor().getInitiative();
+				local diff = defenderCurrentInitiative - attackerCurrentInitiative;
+				if (diff > 0) {
+					_properties.DamageRegularMin += this.Math.floor(0.1 * diff);
+					_properties.DamageRegularMin += this.Math.floor(0.1 * diff); 
+				}
+			}
 		}
 	}
 

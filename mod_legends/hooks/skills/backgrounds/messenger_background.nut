@@ -64,23 +64,23 @@
 		];
 		this.m.PerkTreeDynamic = {
 			Weapon = [
-				this.Const.Perks.DaggerTree,
-				this.Const.Perks.ThrowingTree,
-				this.Const.Perks.PolearmTree,
-				this.Const.Perks.SpearTree
+				::Const.Perks.DaggerTree,
+				::Const.Perks.ThrowingTree,
+				::Const.Perks.PolearmTree,
+				::Const.Perks.SpearTree
 			],
 			Defense = [
-				this.Const.Perks.LightArmorTree
+				::Const.Perks.LightArmorTree
 			],
 			Traits = [
-				this.Const.Perks.AgileTree,
-				this.Const.Perks.OrganisedTree,
-				this.Const.Perks.FastTree,
-				this.Const.Perks.FitTree
+				::Const.Perks.AgileTree,
+				::Const.Perks.OrganisedTree,
+				::Const.Perks.FastTree,
+				::Const.Perks.FitTree
 			],
 			Enemy = [],
 			Class = [],
-			Profession = [], 
+			Profession = [],
 			Magic = []
 		}
 		this.m.Bodies = this.Const.Bodies.Skinny;
@@ -101,7 +101,7 @@
 		this.m.HairColors = this.Const.HairColors.All;
 		this.m.Beards = null;
 		this.m.BeardChance = 0;
-		this.m.Bodies = this.Const.Bodies.AllFemale;
+		this.m.Bodies = this.Const.Bodies.NorthernFemale;
 		this.addBackgroundType(this.Const.BackgroundType.Female);
 	}
 

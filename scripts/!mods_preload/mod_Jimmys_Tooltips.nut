@@ -40,3 +40,40 @@ if (!("MSU" in getroottable()))
 		::include(file);
 });
 
+::ModJimmysTooltips.ModHook.queue(">mod_legends", function() {
+	::ModJimmysTooltips.ModHook.hook("scripts/ui/screens/tooltip/tooltip_events", function (q) {
+		function patchTooltip (_tooltip) {
+			if (_tooltip == null)
+				return _tooltip;
+			foreach (entry in _tooltip) {
+				if (entry == null)
+					continue;
+				if ("text" in entry)
+					entry.text = ::Legends.tooltip(entry.text, "param" in entry ? entry.param : []);
+			}
+			return _tooltip;
+		}
+
+		q.onQueryTileTooltipData =
+			@(__original) @() patchTooltip(__original());
+		q.onQueryEntityTooltipData =
+			@(__original) @(_entityId, _isTileEntity) patchTooltip(__original(_entityId, _isTileEntity));
+		q.onQueryRosterEntityTooltipData =
+			@(__original) @(_entityId) patchTooltip(__original(_entityId));
+		q.onQuerySkillTooltipData =
+			@(__original) @(_entityId, _skillId) patchTooltip(__original(_entityId, _skillId));
+		q.onQueryStatusEffectTooltipData =
+			@(__original) @(_entityId, _statusEffectId) patchTooltip(__original(_entityId, _statusEffectId));
+		q.onQuerySettlementStatusEffectTooltipData =
+			@(__original) @(_statusEffectId) patchTooltip(__original(_statusEffectId));
+		q.onQueryUIItemTooltipData =
+			@(__original) @(_entityId, _itemId, _itemOwner) patchTooltip(__original(_entityId, _itemId, _itemOwner));
+		q.onQueryUIPerkTooltipData =
+			@(__original) @(_entityId, _perkId) patchTooltip(__original(_entityId, _perkId));
+		q.onQueryUIElementTooltipData =
+			@(__original) @(_entityId, _elementId, _elementOwner) patchTooltip(__original(_entityId, _elementId, _elementOwner));
+		q.onQueryFollowerTooltipData =
+			@(__original) @(_followerID) patchTooltip(__original(_followerID));
+	});
+}, ::Hooks.QueueBucket.VeryLate);
+

@@ -114,11 +114,6 @@
 				S = "weapons/arming_sword"
 			},
 			{
-				R = 90,
-				P = 1.0,
-				S = "weapons/legend_parrying_dagger"
-			},
-			{
 				R = 50,
 				P = 1.0,
 				S = "weapons/arming_sword"
@@ -161,7 +156,7 @@
 			{
 				R = 60,
 				P = 1.0,
-				S = "weapons/greatsword"
+				S = "weapons/legend_zweihander"
 			},
 			{
 				R = 60,
@@ -221,7 +216,7 @@
 				{
 					R = 50,
 					P = 1.0,
-					S = "weapons/legend_longsword"
+					S = "weapons/legend_zweihander"
 				},
 				{
 					R = 80,

@@ -5,11 +5,11 @@
 	{
 		create();
 		this.m.Type = this.Const.Items.ItemType.Armor;
-		this.m.PreviewCraftable = this.new("scripts/items/legend_armor/armor_upgrades/legend_direwolf_pelt_upgrade");
+		this.m.PreviewCraftable = this.new("scripts/items/legend_armor/cloak/legend_direwolf_pelt_cloak");
 	}
 
 	o.onCraft = function ( _stash )
 	{
-		_stash.add(this.new("scripts/items/legend_armor/armor_upgrades/legend_direwolf_pelt_upgrade"));
+		_stash.add(this.new("scripts/items/legend_armor/cloak/legend_direwolf_pelt_cloak"));
 	}
 });

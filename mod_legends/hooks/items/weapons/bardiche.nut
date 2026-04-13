@@ -4,17 +4,15 @@
 	{
 		create();
 		this.m.IsAoE = true;
-		this.m.Variant = this.Math.rand(0, 3);
-		this.updateVariant();
+		this.m.Variants = [0, 1, 2];
+		this.setVariant(this.m.Variants[this.Math.rand(0, this.m.Variants.len() - 1)]);
 	}
 
 	o.updateVariant <- function() {
-		if (this.m.Variant == 0) {
-			return;
-		}
-		this.m.Icon = "weapons/melee/bardiche_01_" + this.m.Variant + "_70x70.png";
-		this.m.IconLarge = "weapons/melee/bardiche_01_" + this.m.Variant + ".png";
-		this.m.ArmamentIcon = "icon_bardiche_01_" + this.m.Variant;
+		local v = this.getVariant() == 0 ? "" : "_" + this.getVariant();
+		this.m.Icon = "weapons/melee/bardiche_01" + v + "_70x70.png";
+		this.m.IconLarge = "weapons/melee/bardiche_01" + v + ".png";
+		this.m.ArmamentIcon = "icon_bardiche_01" + v;
 	}
 
 	o.addSkill <- function( _skill )
@@ -24,10 +22,20 @@
 			::Legends.Actives.grant(this.weapon, ::Legends.Active.Swing, function (_skill) {
 				_skill.setApplyAxeMastery(true);
 			}.bindenv(this));
-			::Legends.Actives.grant(this.weapon, ::Legends.Active.SplitShield);
+			::Legends.Actives.grant(this.weapon, ::Legends.Active.SplitShield, function (_skill) {
+				_skill.setApplyAxeMastery(true);
+				_skill.setFatigueCost(_skill.getFatigueCostRaw() + 5);
+			}.bindenv(this));
 			return;
 		}
 
-		weapon.addSkill(_skill);
+		this.weapon.addSkill(_skill);
+	}
+
+	local onEquip = o.onEquip;
+	o.onEquip = function ()
+	{
+		onEquip();
+		::Legends.Actives.grant(this, ::Legends.Active.LegendHaftstrike);
 	}
 });

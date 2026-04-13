@@ -121,7 +121,7 @@ this.legend_necro_commander_background <- this.inherit("scripts/skills/backgroun
 				[
 					::Legends.Perk.LegendMiasma,
 					::Legends.Perk.LegendDebilitate,
-					::Legends.Perk.LegendFavouredEnemyCaravan,
+					::Legends.Perk.LegendFavouredEnemyCivilization,
 					::Legends.Perk.LegendSpawnZombieMed,
 					::Legends.Perk.LegendChanneledPower,
 					::Legends.Perk.LegendSpecialistSelfdefense,
@@ -142,7 +142,7 @@ this.legend_necro_commander_background <- this.inherit("scripts/skills/backgroun
 					::Legends.Perk.LegendLacerate,
 					::Legends.Perk.LegendLithe,
 					::Legends.Perk.LegendSpecStaffStun,
-					::Legends.Perk.LegendFavouredEnemyGhoul,
+					::Legends.Perk.LegendFavouredEnemyBeast,
 					::Legends.Perk.LegendViolentDecomposition,
 					::Legends.Perk.LegendMedIngredients,
 					::Legends.Perk.LegendConservation,
@@ -150,8 +150,7 @@ this.legend_necro_commander_background <- this.inherit("scripts/skills/backgroun
 					::Legends.Perk.LegendSpawnZombieHigh
 				],
 				[
-					::Legends.Perk.LegendFavouredEnemyHexen,
-					::Legends.Perk.LegendFavouredEnemyAlps,
+					::Legends.Perk.LegendFavouredEnemyOccult,
 					::Legends.Perk.LegendGruesomeFeast,
 					::Legends.Perk.LegendHerbcraft,
 					::Legends.Perk.LegendRebound,
@@ -161,7 +160,7 @@ this.legend_necro_commander_background <- this.inherit("scripts/skills/backgroun
 				],
 				[
 					::Legends.Perk.Fearsome,
-					::Legends.Perk.Footwork,
+					::Legends.Perk.LegendTacticalManeuvers,
 					::Legends.Perk.Nimble,
 					::Legends.Perk.LegendPerfectFocus,
 					::Legends.Perk.LegendFreedomOfMovement,
@@ -186,7 +185,7 @@ this.legend_necro_commander_background <- this.inherit("scripts/skills/backgroun
 		this.m.HairColors = this.Const.HairColors.Zombie;
 		this.m.Beards = null;
 		this.m.BeardChance = 0;
-		this.m.Bodies = this.Const.Bodies.AllFemale;
+		this.m.Bodies = this.Const.Bodies.NorthernFemale;
 		this.addBackgroundType(this.Const.BackgroundType.Female);
 	}
 
@@ -198,7 +197,7 @@ this.legend_necro_commander_background <- this.inherit("scripts/skills/backgroun
 				id = 13,
 				type = "text",
 				icon = "ui/icons/xp_received.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+15%[/color] Experience Gain"
+				text = "[color=%positive%]+15%[/color] Experience Gain"
 			}
 		);
 		return ret;
@@ -250,9 +249,11 @@ this.legend_necro_commander_background <- this.inherit("scripts/skills/backgroun
 
 	function onAdded()
 	{
+		if (this.m.IsNew) {
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendSiphon);
+			::Legends.Traits.grant(this, ::Legends.Trait.Old);
+		}
 		this.character_background.onAdded();
-		::Legends.Perks.grant(this, ::Legends.Perk.LegendSiphon);
-		::Legends.Traits.grant(this, ::Legends.Trait.Old);
 	}
 
 	function onAddEquipment()

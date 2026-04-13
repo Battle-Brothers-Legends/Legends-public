@@ -9,7 +9,7 @@ this.perk_legend_vala_chant_senses <- this.inherit("scripts/skills/skill", {
 
 	function create()
 	{
-		::Const.Perks.setup(this.m, ::Legends.Perk.LegendValaChantSenses);
+		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendValaChantSenses);
 		this.m.Icon = "ui/perks/legend_vala_chant_senses_active.png";
 		this.m.IconDisabled = "ui/perks/legend_vala_chant_senses_active_sw.png";
 		this.m.Type = this.Const.SkillType.Active | this.Const.SkillType.Perk;
@@ -17,8 +17,6 @@ this.perk_legend_vala_chant_senses <- this.inherit("scripts/skills/skill", {
 		this.m.IsSerialized = true;
 		this.m.IsActive = true;
 		this.m.IsTargeted = false;
-		this.m.IsStacking = false;
-		this.m.IsHidden = false;
 		this.m.IsAttack = false;
 		this.m.IsIgnoredAsAOO = true;
 		this.m.IsVisibleTileNeeded = false;
@@ -31,29 +29,16 @@ this.perk_legend_vala_chant_senses <- this.inherit("scripts/skills/skill", {
 		local actor = this.getContainer().getActor();
 
 		if (!this.skill.isUsable())
-		{
 			return false;
-		}
 
 		if (this.m.ChantIsActive)
-		{
 			return false;
-		}
 
 		if (actor.getSkills().hasEffect(::Legends.Effect.LegendValaCurrentlyChanting))
-		{
 			return false;
-		}
 
-		if (actor.getMainhandItem() == null)
-		{
+		if (!::Legends.S.hasItemFlag(actor.getMainhandItem(), "vala_staff"))
 			return false;
-		}
-
-		if (actor.getMainhandItem().getID() != "weapon.legend_staff_vala")
-		{
-			return false;
-		}
 
 		return true;
 	}
@@ -69,13 +54,13 @@ this.perk_legend_vala_chant_senses <- this.inherit("scripts/skills/skill", {
 			text = "Until the start of her next turn all allies within 3 tiles of the Vala receive a bonus to their melee and ranged defenses. Being closer to the Vala increases the bonus amount"
 		});
 
-		if (actor.getMainhandItem() == null || actor.getMainhandItem() != "weapon.legend_staff_vala")
+		if (!::Legends.S.hasItemFlag(actor.getMainhandItem(), "vala_staff"))
 		{
 			ret.push({
 				id = 9,
 				type = "text",
 				icon = "ui/tooltips/warning.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]Requires the Vala\'s staff.[/color]"
+				text = "[color=%negative%]Requires the Vala\'s staff.[/color]"
 			});
 		}
 
@@ -85,7 +70,7 @@ this.perk_legend_vala_chant_senses <- this.inherit("scripts/skills/skill", {
 				id = 10,
 				type = "text",
 				icon = "ui/tooltips/warning.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]Already chanting.[/color]"
+				text = "[color=%negative%]Already chanting.[/color]"
 			});
 		}
 

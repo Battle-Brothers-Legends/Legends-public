@@ -76,30 +76,29 @@ this.legend_herbalist_background <- this.inherit("scripts/skills/backgrounds/cha
 			];
 		this.m.PerkTreeDynamic = {
 			Weapon = [
-				this.Const.Perks.SwordTree,
-				this.Const.Perks.AxeTree,
-				this.Const.Perks.PolearmTree,
-				this.Const.Perks.BowTree
+				::Const.Perks.SwordTree,
+				::Const.Perks.AxeTree,
+				::Const.Perks.PolearmTree,
+				::Const.Perks.BowTree
 			],
 			Defense = [
-				this.Const.Perks.ClothArmorTree
+				::Const.Perks.ClothArmorTree
 			],
 			Traits = [
-				this.Const.Perks.IntelligentTree,
-				this.Const.Perks.OrganisedTree,
-				this.Const.Perks.AgileTree,
-				this.Const.Perks.CalmTree
+				::Const.Perks.IntelligentTree,
+				::Const.Perks.OrganisedTree,
+				::Const.Perks.AgileTree,
+				::Const.Perks.CalmTree
 			],
-			Enemy = [
-				this.Const.Perks.SchratTree,
-				this.Const.Perks.HexenTree
-					],
+			Enemy = [::Const.Perks.OccultTree],
 			Class = [
-				this.Const.Perks.SickleClassTree
+				// ::Const.Perks.SickleClassTree,
+				::Const.Perks.PoisonClassTree,
+				::Const.Perks.HealerClassTree
 			],
 			Profession = [
-				this.Const.Perks.HealerProfessionTree,
-				this.Const.Perks.HerbalistProfessionTree
+				::Const.Perks.HealerProfessionTree,
+				::Const.Perks.HerbalistProfessionTree
 			],
 			Magic = []
 		}
@@ -116,7 +115,7 @@ this.legend_herbalist_background <- this.inherit("scripts/skills/backgrounds/cha
 		this.m.HairColors = this.Const.HairColors.Young;
 		this.m.Beards = null;
 		this.m.BeardChance = 0;
-		this.m.Bodies = this.Const.Bodies.AllFemale;
+		this.m.Bodies = this.Const.Bodies.NorthernFemale;
 		this.addBackgroundType(this.Const.BackgroundType.Female);
 	}
 

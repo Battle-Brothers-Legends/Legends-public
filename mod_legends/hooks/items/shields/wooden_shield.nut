@@ -3,7 +3,7 @@
 	o.create = function ()
 	{
 		create();
-		this.m.Variants = [
+				this.m.Variants = [
 			1,
 			2,
 			3,
@@ -48,8 +48,12 @@
 			42,
 			43,
 			44,
+			101,
+			102,
+			103,
 			104,
-			105
+			105,
+			106
 		];
 		if (this.Const.DLC.UnholdSupporter)
 			this.m.Variants.push(33);
@@ -57,7 +61,21 @@
 			this.m.Variants.push(36);
 		if (this.Const.DLC.DesertSupporter)
 			this.m.Variants.push(41);
+		this.addVariants();
 		this.m.Variant = this.Math.rand(0, 9); //random one is only 1-9 though
+		this.updateVariant();
+	}
+
+	o.addVariants <- function ()
+	{
+		local bannerID = 0;
+		foreach (banner in ::Const.PlayerBanners)
+		{
+			bannerID = banner.slice("banner_".len()).tointeger();
+			if (bannerID != 102 && bannerID != 103 && bannerID != 101 && this.m.Variants.find(bannerID) == null)
+				this.m.Variants.push(bannerID);
+		}
+		this.m.Variants.sort();
 	}
 
 	o.onPaintSpecificColor <- function ( _color )
@@ -68,7 +86,7 @@
 
 	o.onPaintInCompanyColors = function ()
 	{
-		local bannerID = this.World.Assets.getBannerID() > 100 ? this.World.Assets.getBannerID() : this.World.Assets.getBannerID() + 11;
+		local bannerID = this.World.Assets.getBannerID() >= 50 ? this.World.Assets.getBannerID() : this.World.Assets.getBannerID() + 10;
 		this.setVariant(bannerID);
 		this.updateAppearance();
 	}

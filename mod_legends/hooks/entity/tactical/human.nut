@@ -101,19 +101,86 @@
 	}
 
 	local onDeath = o.onDeath;
-	o.onDeath = function ( _killer, _skill, _tile, _fatalityType )
-	{
+	o.onDeath = function (_killer, _skill, _tile, _fatalityType) {
 		local originalFunc = null;
 		local needToCheese = getFlags().get("donkey");
 
-		if (_tile != null && needToCheese) { // a cheese to stop donkey background from being raised back as zombie during undead crisis
+		if (_tile != null && needToCheese) {
+			// a cheese to stop donkey background from being raised back as zombie during undead crisis
 			originalFunc = ::World.FactionManager.get().isUndeadScourge;
-			::World.FactionManager.get().isUndeadScourge = function() { return false };
+			::World.FactionManager.get().isUndeadScourge = function () {
+				return false
+			};
 		}
-
+		local appearance = this.getItems().getAppearance();
+		local tempCorpseArmorUpgradeBack = appearance.CorpseArmorUpgradeBack;
+		local tempCorpseArmorUpgradeFront = appearance.CorpseArmorUpgradeFront;
+		appearance.CorpseArmorUpgradeBack = "";
+		appearance.CorpseArmorUpgradeFront = "";
 		onDeath(_killer, _skill, _tile, _fatalityType);
+		appearance.CorpseArmorUpgradeBack = tempCorpseArmorUpgradeBack;
+		appearance.CorpseArmorUpgradeFront = tempCorpseArmorUpgradeFront;
 
 		if (_tile != null) {
+			local flip = this.m.IsCorpseFlipped;
+
+			local armorLayers = [
+				"CorpseArmorLayerChain",
+				"CorpseArmorLayerPlate",
+				"CorpseArmorLayerTabbard",
+				"CorpseArmorLayerCloakBack",
+				"CorpseArmorLayerCloakFront"
+			];
+
+			if (tempCorpseArmorUpgradeFront != "") {
+		    	armorLayers.push("CorpseArmorUpgradeBack");
+			} 
+			else {
+    			armorLayers.insert(3, "CorpseArmorUpgradeBack");
+			}
+
+			foreach (layer in armorLayers) {
+				if (appearance[layer] != "") {
+					local decal = _tile.spawnDetail(appearance[layer], this.Const.Tactical.DetailFlag.Corpse, flip, false, this.Const.Combat.HumanCorpseOffset);
+					if (decal != null) {
+						decal.Scale = 0.9;
+						decal.setBrightness(0.9);
+					}
+				}
+			}
+
+			if (!appearance.HideCorpseHead
+				&& _fatalityType != this.Const.FatalityType.Decapitated)
+			{
+				local helmetLayers = [
+					"HelmetLayerVanityLowerCorpse",
+					"HelmetLayerVanity2LowerCorpse",
+					"HelmetCorpse",
+					"HelmetLayerHelmLowerCorpse",
+					"HelmetLayerTopLowerCorpse",
+					"HelmetLayerHelmCorpse",
+					"HelmetLayerTopCorpse",
+					"HelmetLayerVanityCorpse",
+					"HelmetLayerVanity2Corpse"
+				];
+				foreach (layer in helmetLayers) {
+					if (appearance[layer] != "") {
+						local decal = _tile.spawnDetail(appearance[layer], this.Const.Tactical.DetailFlag.Corpse, flip, false, this.Const.Combat.HumanCorpseOffset);
+						if (decal != null) {
+							decal.Scale = 0.9;
+							decal.setBrightness(0.9);
+						}
+					}
+				}
+
+				if(tempCorpseArmorUpgradeFront != "") {
+					local decal = _tile.spawnDetail(tempCorpseArmorUpgradeFront, this.Const.Tactical.DetailFlag.Corpse, flip, false, this.Const.Combat.HumanCorpseOffset);
+					if (decal != null) {
+						decal.Scale = 0.9;
+						decal.setBrightness(0.9);
+					}
+				}
+			}
 			_tile.Properties.get("Corpse").isHuman = 1;
 
 			if (needToCheese) {
@@ -136,6 +203,8 @@
 		this.getSprite("armor_layer_cloak_front").setHorizontalFlipping(flip);
 		this.getSprite("armor_layer_cloak").setHorizontalFlipping(flip);
 
+		this.getSprite("helmet_helm_lower").setHorizontalFlipping(flip);
+		this.getSprite("helmet_top_lower").setHorizontalFlipping(flip);
 		this.getSprite("helmet_vanity_lower").setHorizontalFlipping(flip);
 		this.getSprite("helmet_vanity_lower_2").setHorizontalFlipping(flip);
 		this.getSprite("helmet_helm").setHorizontalFlipping(flip);
@@ -154,7 +223,7 @@
 		local original_addSprite = self.addSprite;
 		self.addSprite = function( _id )
 		{
-			if (_id == "accessory" || _id == "accessory_special")
+			if (_id == "accessory" || _id == "accessory_special" || _id == "armor_upgrade_back" || _id == "armor_upgrade_front")
 				return null;
 			else if (_id == "surcoat") {
 				original_addSprite("armor_layer_chain");
@@ -170,9 +239,15 @@
 
 			local layer = original_addSprite(_id);
 
-			if (_id == "surcoat") {
+			if (_id == "helmet") {
+				original_addSprite("helmet_helm_lower");
+				original_addSprite("helmet_top_lower");
+			}
+			else if (_id == "surcoat") {
+				original_addSprite("armor_upgrade_back");
 				original_addSprite("armor_layer_cloak");
 				original_addSprite("armor_layer_cloak_front");
+				original_addSprite("armor_upgrade_back_top");
 			}
 			else if (_id == "permanent_injury_2") {
 				original_addSprite("permanent_injury_scarred");
@@ -183,6 +258,7 @@
 				original_addSprite("helmet_top");
 				original_addSprite("helmet_vanity");
 				original_addSprite("helmet_vanity_2");
+				original_addSprite("armor_upgrade_front");
 			}
 
 			return layer;

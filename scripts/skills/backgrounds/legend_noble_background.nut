@@ -73,14 +73,12 @@ this.legend_noble_background <- this.inherit("scripts/skills/backgrounds/charact
 			[
 				::Legends.Perk.Brawny,
 				::Legends.Perk.Anticipation,
-				::Legends.Perk.Rotation,
 				::Legends.Perk.Taunt,
 				::Legends.Perk.LegendFeint,
 				::Legends.Perk.RallyTheTroops,
 				::Legends.Perk.InspiringPresence,
 				::Legends.Perk.LegendToolsDrawers,
 				::Legends.Perk.LegendTrueBeliever,
-				::Legends.Perk.LegendFavouredEnemyCaravan,
 				::Legends.Perk.LegendOnslaught
 			],
 			[
@@ -98,10 +96,10 @@ this.legend_noble_background <- this.inherit("scripts/skills/backgrounds/charact
 				::Legends.Perk.ReachAdvantage,
 				::Legends.Perk.Overwhelm,
 				::Legends.Perk.Underdog,
-				::Legends.Perk.Footwork,
+				::Legends.Perk.LegendTacticalManeuvers,
 				::Legends.Perk.LegendLithe,
-				::Legends.Perk.LegendFavouredEnemyBandit,
-				::Legends.Perk.LegendFavouredEnemyBarbarian,
+				::Legends.Perk.LegendFavouredEnemyOutlaw,
+				::Legends.Perk.LegendFavouredEnemyCivilization,
 				::Legends.Perk.LegendHoldTheLine
 			],
 			[
@@ -111,7 +109,6 @@ this.legend_noble_background <- this.inherit("scripts/skills/backgrounds/charact
 				::Legends.Perk.BattleForged,
 				::Legends.Perk.Nimble,
 				::Legends.Perk.LegendPerfectFit,
-				::Legends.Perk.LegendFavouredEnemyMercenary,
 				::Legends.Perk.LegendForwardPush,
 				::Legends.Perk.LegendCoordinatedVolleys
 			],
@@ -126,7 +123,6 @@ this.legend_noble_background <- this.inherit("scripts/skills/backgrounds/charact
 				::Legends.Perk.LegendFieldTriage,
 				::Legends.Perk.LegendRelax,
 				::Legends.Perk.LegendFieldRepairs,
-				::Legends.Perk.LegendFavouredEnemyNoble
 			],
 			[],
 			[],
@@ -206,12 +202,12 @@ this.legend_noble_background <- this.inherit("scripts/skills/backgrounds/charact
 		if (r <= 1)
 		{
 			items.equip(this.new("scripts/items/weapons/dagger"));
-			items.equip(this.new("scripts/items/weapons/legend_parrying_dagger"));
+			items.equip(this.new("scripts/items/shields/buckler_shield"));
 		}
 		else if (r == 2)
 		{
 			items.equip(this.new("scripts/items/weapons/fencing_sword"));
-			items.equip(this.new("scripts/items/weapons/legend_parrying_dagger"));
+			items.equip(this.new("scripts/items/shields/buckler_shield"));
 		}
 		else if (r == 3)
 		{

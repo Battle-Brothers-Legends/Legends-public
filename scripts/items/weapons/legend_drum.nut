@@ -11,7 +11,7 @@ this.legend_drum <- this.inherit("scripts/items/weapons/weapon", {
 		this.m.IconLarge = "weapons/melee/drum_01.png";
 		this.m.Icon = "weapons/melee/drum_01_70x70.png";
 		this.m.BreakingSound = "sounds/combat/bash_hit_03.wav";
-		this.m.WeaponType = this.Const.Items.WeaponType.Musical | this.Const.Items.WeaponType.Staff;
+		this.m.WeaponType = this.Const.Items.WeaponType.Musical;
 		this.m.SlotType = this.Const.ItemSlot.Mainhand;
 		this.m.ItemType = this.Const.Items.ItemType.Weapon | this.Const.Items.ItemType.MeleeWeapon | this.Const.Items.ItemType.TwoHanded;
 		this.m.BlockedSlotType = this.Const.ItemSlot.Offhand;
@@ -40,6 +40,7 @@ this.legend_drum <- this.inherit("scripts/items/weapons/weapon", {
 		::Legends.Actives.grant(this, ::Legends.Active.KnockOut);
 		::Legends.Actives.grant(this, ::Legends.Active.LegendDrumsOfWar);
 		::Legends.Actives.grant(this, ::Legends.Active.LegendDrumsOfLife);
+		::Legends.Actives.grant(this, ::Legends.Active.LegendMartialMarch);
 	}
 
 	function onUpdateProperties( _properties )

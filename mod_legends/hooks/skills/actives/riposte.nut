@@ -1,5 +1,12 @@
 ::mods_hookExactClass("skills/actives/riposte", function(o)
 {
+	local create = o.create;
+	o.create <- function ()
+	{
+		create();
+		this.m.Order = this.Const.SkillOrder.OffensiveTargeted+1;
+	}
+
 	o.getDescription <- function ()
 	{
 		return this.m.Description + " Attacks from this ability are considered attacks of opportunity."

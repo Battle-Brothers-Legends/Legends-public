@@ -357,7 +357,7 @@
 						this.World.Assets.addBusinessReputation(this.Const.World.Assets.ReputationOnContractSuccess);
 						this.World.Assets.addMoney(money);
 
-						local xp = money * 0.50;
+						local xp = this.Math.round(money * 0.5 * this.Const.Combat.GlobalXPMult);
 						local playerRoster = this.World.getPlayerRoster().getAll();
 						foreach( bro in playerRoster )
 						{

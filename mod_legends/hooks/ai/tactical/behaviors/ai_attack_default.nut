@@ -1,8 +1,6 @@
-::mods_hookExactClass("ai/tactical/behaviors/ai_attack_default", function(o)
-{
+::mods_hookExactClass("ai/tactical/behaviors/ai_attack_default", function (o) {
 	o.m.PossibleSkills.extend([
 		::Legends.Actives.getID(::Legends.Active.LegendCatBite),
-		::Legends.Actives.getID(::Legends.Active.LegendSkinGhoulClaws),
 		::Legends.Actives.getID(::Legends.Active.LegendWhiteWolfBite),
 		::Legends.Actives.getID(::Legends.Active.LegendRedbackSpiderBite),
 		::Legends.Actives.getID(::Legends.Active.LegendDemonHoundBite),
@@ -10,18 +8,22 @@
 		::Legends.Actives.getID(::Legends.Active.LegendHorseKick),
 		::Legends.Actives.getID(::Legends.Active.LegendDonkeyKick),
 		::Legends.Actives.getID(::Legends.Active.LegendBearBite),
-		::Legends.Actives.getID(::Legends.Active.LegendBearClaws),
 		::Legends.Actives.getID(::Legends.Active.LegendFlagellate),
 		::Legends.Actives.getID(::Legends.Active.LegendBoarGore),
 		::Legends.Actives.getID(::Legends.Active.LegendRatClaws),
 		::Legends.Actives.getID(::Legends.Active.LegendRatBite),
 		::Legends.Actives.getID(::Legends.Active.LegendEnGarde),
 		::Legends.Actives.getID(::Legends.Active.Lunge),
+		::Legends.Actives.getID(::Legends.Active.LegendIntoTheFray),
 		::Legends.Actives.getID(::Legends.Active.LegendNightmareTouch),
 		::Legends.Actives.getID(::Legends.Active.LegendBasiliskPeck),
 		::Legends.Actives.getID(::Legends.Active.LegendBasiliskSentryInject),
 		::Legends.Actives.getID(::Legends.Active.LegendBasiliskSentryFowleye),
 		::Legends.Actives.getID(::Legends.Active.LegendSighthoundBite),
 		::Legends.Actives.getID(::Legends.Active.LegendHeartseeker),
+		::Legends.Actives.getID(::Legends.Active.LegendBucklerBash),
+		::Legends.Actives.getID(::Legends.Active.LegendThrowKnife),
+		// ::Legends.Actives.getID(::Legends.Active.LegendHaftstrike), // this bad boy makes the enemies attack with weak attacks for no reason
+		::Legends.Actives.getID(::Legends.Active.LegendHew),
 	]);
 });

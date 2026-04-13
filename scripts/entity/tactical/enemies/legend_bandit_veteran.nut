@@ -177,7 +177,7 @@ this.legend_bandit_veteran <- this.inherit("scripts/entity/tactical/human", {
 			}
 			else if (r == 9)
 			{
-				this.m.Items.equip(this.new("scripts/items/weapons/legend_longsword"));
+				this.m.Items.equip(this.new("scripts/items/weapons/legend_zweihander"));
 				::Legends.Perks.grant(this, ::Legends.Perk.LegendForcefulSwing);
 
 				if (::Legends.isLegendaryDifficulty())
@@ -336,7 +336,7 @@ this.legend_bandit_veteran <- this.inherit("scripts/entity/tactical/human", {
 				[1, ::Legends.Helmet.Standard.legend_enclave_vanilla_skullcap_01],
 				[1, ::Legends.Helmet.Standard.legend_enclave_vanilla_kettle_sallet_01],
 				[1, ::Legends.Helmet.Standard.scale_helm],
-				[1, ::Legends.Helmet.Standard.deep_sallet],
+				[1, ::Legends.Helmet.Standard.deep_cervelliere],
 				[1, ::Legends.Helmet.Standard.dented_nasal_helmet],
 				[1, ::Legends.Helmet.Standard.nasal_helmet_with_rusty_mail],
 				[1, ::Legends.Helmet.Standard.rusty_mail_coif],

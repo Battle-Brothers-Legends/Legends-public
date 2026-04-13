@@ -1,18 +1,21 @@
 this.perk_legend_ballistics <- this.inherit("scripts/skills/skill", {
-	m = {},
-	function create()
-	{
-		::Const.Perks.setup(this.m, ::Legends.Perk.LegendBallistics);
-		this.m.Type = this.Const.SkillType.Perk;
-		this.m.Order = this.Const.SkillOrder.Perk;
-		this.m.IsActive = false;
-		this.m.IsStacking = false;
-		this.m.IsHidden = false;
+	m = {
+		BonusRange = 1,
+	},
+	function create() {
+		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendBallistics);
 	}
 
-	function onUpdate( _properties )
-	{
+	function onUpdate( _properties ) {
 		_properties.HitChanceAdditionalWithEachTile += 2;
+	}
+
+	function onAfterUpdate( _properties ) {
+		local s = ::Legends.Actives.get(this, ::Legends.Active.FireHandgonne);
+		if (s != null) {
+			s.m.MaxRange += this.m.BonusRange;
+			// The getTooltip() function in fire_handgonne_skill has logic to display this bonus
+		}
 	}
 
 });

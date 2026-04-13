@@ -8,7 +8,7 @@
 		this.m.Image = "ui/campfire/legend_drill_01";
 		this.m.Cost = 1750;
 		this.m.Effects = [
-			"Makes your mercenaries gain 20% more experience at level 1, with 2% less at each further level",
+			"Makes your mercenaries gain 20% more experience if they are under level 12",
 			"Makes mercenaries in reserve never lose mood from not taking part in battles"
 		];
 

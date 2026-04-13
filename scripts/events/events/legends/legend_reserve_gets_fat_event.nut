@@ -40,6 +40,7 @@ this.legend_reserve_gets_fat_event <- this.inherit("scripts/events/event", {
 
 	function onUpdateScore()
 	{
+		return;
 		if (this.World.Assets.getOrigin().getID() == "scenario.legend_risen_legion")
 		{
 			return;
@@ -84,12 +85,6 @@ this.legend_reserve_gets_fat_event <- this.inherit("scripts/events/event", {
 			"fatguy",
 			this.m.FatGuy.getName()
 		]);
-		this.Const.LegendMod.extendVarsWithPronouns(_vars, this.m.FatGuy.getGender(), "fatguy");
-	}
-
-	function onDetermineStartScreen()
-	{
-		return "A";
 	}
 
 	function onClear()

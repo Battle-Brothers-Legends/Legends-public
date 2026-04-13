@@ -61,25 +61,25 @@ this.legend_muladi_background <- this.inherit("scripts/skills/backgrounds/charac
 			];
 		this.m.PerkTreeDynamic = {
 			Weapon = [
-				this.Const.Perks.BowTree,
-				this.Const.Perks.SlingTree,
-				this.Const.Perks.DaggerTree
+				::Const.Perks.BowTree,
+				::Const.Perks.SlingTree,
+				::Const.Perks.DaggerTree
 			],
 			Defense = [
-				this.Const.Perks.LightArmorTree
+				::Const.Perks.LightArmorTree
 			],
 			Traits = [
-				this.Const.Perks.CalmTree,
-				this.Const.Perks.FastTree,
-				this.Const.Perks.DeviousTree,
-				this.Const.Perks.AgileTree
+				::Const.Perks.CalmTree,
+				::Const.Perks.FastTree,
+				::Const.Perks.DeviousTree,
+				::Const.Perks.AgileTree
 			],
 			Enemy = [
-				this.Const.Perks.NomadsTree
+				::Const.Perks.CivilizationTree
 			],
 			Class = [
-				this.Const.Perks.ShortbowClassTree,
-				this.Const.Perks.HoundmasterClassTree
+				// ::Const.Perks.ShortbowClassTree,
+				::Const.Perks.HoundmasterClassTree
 			],
 			Profession = [],
 			Magic = []
@@ -152,7 +152,7 @@ this.legend_muladi_background <- this.inherit("scripts/skills/backgrounds/charac
 
 	function onBuildDescription()
 	{
-		return "{Despite the clothing and language of the south, %name% has always been regarded with contempt by their fellow southerners who prefer to name them \'outsider\' than anything else. | Life on the edge of society taught %name% about a lot of things - self reliance, animal kinship, and how to effectively fell a man at 30 paces with an arrow. }{Once a northerner, %name% dresses, speaks and acts in all southern customs. Much to the irritation of some of the local inhabitants. | %name%'s presence is seen as a threat by some and an abomination by others. | %name% assures you that this way of life is not as painful as it may seem, despite the occasional insults from the locals. }{%name% stands out to everyone around them - at a glance they appear to be your typical nomad wandering the streets or moving across the dunes, but on closer inspection many will recognise their face has not been gilded by the sun and is missing the darker hair common in this region.  | %name% is a self appointed outcast, or perhaps a victim of shifting territories and warring cultures. }{%name%'s existence is quite simple - life at the rim of society allows them to appreciate the more natural things in life. Nature, landscapes and the occasional holy war far off on the horizon. | The aggression and violence of humanity is what led %name% to adopt more of the southern customs, perhaps feeling that trading multiple tyrants for a singular one would be a favourable transaction. | %name% remarks they moved only for the food, but you suspect they came for a little bit more than that.}"
+		return "{Despite the clothing and language of the south, %name% has always been regarded with contempt by %their% fellow southerners who prefer to name them \'outsider\' than anything else. | Life on the edge of society taught %name% about a lot of things - self reliance, animal kinship, and how to effectively fell a man at 30 paces with an arrow. } {Once a northerner, %name% dresses, speaks and acts in all southern customs. Much to the irritation of some of the local inhabitants. | %name%'s presence is seen as a threat by some and an abomination by others. | %name% assures you that this way of life is not as painful as it may seem, despite the occasional insults from the locals. } {%name% stands out to everyone around them - at a glance %they% appears to be your typical nomad wandering the streets or moving across the dunes, but on closer inspection many will recognise %their% face has not been gilded by the sun and is missing the darker hair common in this region.  | %name% is a self appointed outcast, or perhaps a victim of shifting territories and warring cultures. } {%name%'s existence is quite simple - life at the rim of society allows %them% to appreciate the more natural things in life. Nature, landscapes and the occasional holy war far off on the horizon. | The aggression and violence of humanity is what led %name% to adopt more of the southern customs, perhaps feeling that trading multiple tyrants for a singular one would be a favourable transaction. | %name% remarks %they% moved only for the food, but you suspect %they% came for a little bit more than that.}"
 	}
 
 
@@ -172,7 +172,7 @@ this.legend_muladi_background <- this.inherit("scripts/skills/backgrounds/charac
 			}
 			else if (r <= 80)
 			{
-				items.equip(this.new("scripts/items/weapons/legend_sling"));
+				items.equip(this.new("scripts/items/weapons/legend_dilapitated_sling"));
 			}
 			else
 			{

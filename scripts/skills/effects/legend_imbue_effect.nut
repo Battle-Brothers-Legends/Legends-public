@@ -18,7 +18,7 @@ this.legend_imbue_effect <- this.inherit("scripts/skills/skill", {
 
 	function getDescription()
 	{
-		return "This character has been imbued with magical strength. Hit chance and damage are increased by [color=" + this.Const.UI.Color.PositiveValue + "]" + this.m.ImbueAmount + "%[/color] for [color=" + this.Const.UI.Color.NegativeValue + "]" + this.m.TurnsLeft + "[/color] more turn(s).";
+		return "This character has been imbued with magical strength. Hit chance and damage are increased by [color=%positive%]" + this.m.ImbueAmount + "%[/color] for [color=%negative%]" + this.m.TurnsLeft + "[/color] more turn(s).";
 	}
 
 	function setImbueAmount( _amount )

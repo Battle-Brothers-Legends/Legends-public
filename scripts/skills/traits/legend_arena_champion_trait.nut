@@ -35,25 +35,25 @@ this.legend_arena_champion_trait <- this.inherit("scripts/skills/traits/characte
 				id = 10,
 				type = "text",
 				icon = "ui/icons/bravery.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+15[/color] Resolve"
+				text = "[color=%positive%]+15[/color] Resolve"
 			},
 			{
 				id = 10,
 				type = "text",
 				icon = "ui/icons/health.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+5[/color] Hitpoints"
+				text = "[color=%positive%]+5[/color] Hitpoints"
 			},
 			{
 				id = 10,
 				type = "text",
 				icon = "ui/icons/regular_damage.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+5%[/color] Damage"
+				text = "[color=%positive%]+5%[/color] Damage"
 			},
 			{
 				id = 11,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "Has a [color=" + this.Const.UI.Color.PositiveValue + "]50%[/color] chance to survive if struck down and not killed by a fatality"
+				text = "Has a [color=%positive%]50%[/color] chance to survive if struck down and not killed by a fatality"
 			}
 		];
 	}

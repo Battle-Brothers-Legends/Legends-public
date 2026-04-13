@@ -9,7 +9,7 @@
 		items = entity.getItems();
 		items.equip(this.Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Standard.kettle_hat]]));
 		items.equip(this.new("scripts/items/armor/mail_shirt"));
-		items.equip(this.new("scripts/items/weapons/greatsword"));
+		items.equip(this.new("scripts/items/weapons/legend_zweihander"));
 		entity = this.spawnEntity("scripts/entity/tactical/player", 13, 13, 12, 12);
 		entity.setName(this.getRandomPlayerName());
 		items = entity.getItems();
@@ -28,7 +28,7 @@
 		entity.setName(this.getRandomPlayerName());
 		items = entity.getItems();
 		items.equip(this.Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Standard.hood]]));
-		items.equip(this.new("scripts/items/armor/padded_surcoat"));
+		items.equip(this.new("scripts/items/legend_armor/cloth/legend_armor_quilted_aketon"));
 		items.equip(this.new("scripts/items/weapons/hunting_bow"));
 		entity = this.spawnEntity("scripts/entity/tactical/player", 16, 16, 16, 16);
 		entity.setName(this.getRandomPlayerName());
@@ -75,10 +75,10 @@
 		this.Stash.add(this.new("scripts/items/weapons/arming_sword"));
 		this.Stash.add(this.new("scripts/items/weapons/military_cleaver"));
 		this.Stash.add(this.new("scripts/items/weapons/military_cleaver"));
-		this.Stash.add(this.new("scripts/items/weapons/greatsword"));
-		this.Stash.add(this.new("scripts/items/weapons/greatsword"));
-		this.Stash.add(this.new("scripts/items/weapons/greatsword"));
-		this.Stash.add(this.new("scripts/items/weapons/greatsword"));
+		this.Stash.add(this.new("scripts/items/weapons/legend_zweihander"));
+		this.Stash.add(this.new("scripts/items/weapons/legend_zweihander"));
+		this.Stash.add(this.new("scripts/items/weapons/legend_zweihander"));
+		this.Stash.add(this.new("scripts/items/weapons/legend_zweihander"));
 		this.Stash.add(this.new("scripts/items/weapons/billhook"));
 		this.Stash.add(this.new("scripts/items/weapons/billhook"));
 		this.Stash.add(this.new("scripts/items/weapons/billhook"));
@@ -123,8 +123,8 @@
 		this.Stash.add(this.Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Standard.flat_top_helmet]]));
 		this.Stash.add(this.Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Standard.full_helm]]));
 		this.Stash.add(this.Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Standard.full_helm]]));
-		this.Stash.add(this.new("scripts/items/armor/padded_surcoat"));
-		this.Stash.add(this.new("scripts/items/armor/padded_surcoat"));
+		this.Stash.add(this.new("scripts/items/legend_armor/cloth/legend_armor_quilted_aketon"));
+		this.Stash.add(this.new("scripts/items/legend_armor/cloth/legend_armor_quilted_aketon"));
 		this.Stash.add(this.new("scripts/items/armor/gambeson"));
 		this.Stash.add(this.new("scripts/items/armor/gambeson"));
 		this.Stash.add(this.new("scripts/items/armor/padded_leather"));

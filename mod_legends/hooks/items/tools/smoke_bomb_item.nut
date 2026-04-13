@@ -65,13 +65,13 @@
 			id = 7,
 			type = "text",
 			icon = "ui/icons/vision.png",
-			text = "Range of [color=" + this.Const.UI.Color.PositiveValue + "]" + this.m.RangeMax + "[/color] tiles"
+			text = "Range of [color=%positive%]" + this.m.RangeMax + "[/color] tiles"
 		},
 		{
 			id = 5,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "Covers [color=" + this.Const.UI.Color.DamageValue + "]7[/color] tiles in smoke for one round, allowing anyone inside to move freely and ignore zones of control"
+			text = "Covers [color=%damage%]7[/color] tiles in smoke for one round, allowing anyone inside to move freely and ignore zones of control"
 		}]);
 		if (!this.World.Retinue.hasFollower("follower.alchemist"))
 		{
@@ -136,7 +136,7 @@
 	o.onPutIntoBag <- function ()
 	{
 		local skill = ::Legends.Actives.get(this, ::Legends.Active.LegendLaunchSmokeBomb);
-		if (skill != null)
+		if (skill != null && this.getAmmo() > 0)
 			skill.setItem(this);
 	}
 

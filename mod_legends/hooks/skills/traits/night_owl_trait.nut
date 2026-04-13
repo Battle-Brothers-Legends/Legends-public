@@ -24,19 +24,19 @@
 				id = 10,
 				type = "text",
 				icon = "ui/icons/vision.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+1[/color] Vision during Night time"
+				text = "[color=%positive%]+1[/color] Vision during Night time"
 			},
 			{
 				id = 10,
 				type = "text",
 				icon = "ui/icons/ranged_skill.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+15%[/color] Ranged Skill during Night time"
+				text = "[color=%positive%]+15%[/color] Ranged Skill during Night time"
 			},
 			{
 				id = 10,
 				type = "text",
 				icon = "ui/icons/ranged_defense.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+15%[/color] Ranged Defense during Night time"
+				text = "[color=%positive%]+15%[/color] Ranged Defense during Night time"
 			}
 		];
 	}

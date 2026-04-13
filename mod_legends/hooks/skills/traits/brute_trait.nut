@@ -5,8 +5,7 @@
 	{
 		create();
 		this.m.Excluded.extend([
-			::Legends.Traits.getID(::Legends.Trait.LegendLight),
-			::Legends.Traits.getID(::Legends.Trait.LegendFrail)
+			::Legends.Traits.getID(::Legends.Trait.LegendLight)
 		]);
 	}
 });

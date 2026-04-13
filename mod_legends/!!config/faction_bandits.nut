@@ -37,7 +37,7 @@
 	],
 	FatigueRecoveryRate = 20
 };
-::Const.Tactical.Actor.BanditWarlord <- { // You contracted in the wrong neighbourhood
+::Const.Tactical.Actor.LegendRobberBaron <- { // You contracted in the wrong neighbourhood
 	XP = 700,
 	ActionPoints = 11,
 	Hitpoints = 225,
@@ -86,6 +86,26 @@
 	MeleeDefense = 0,
 	RangedDefense = 0,
 	Initiative = 95,
+	FatigueEffectMult = 1.0,
+	MoraleEffectMult = 1.0,
+	Armor = [
+		0,
+		0
+	],
+	FatigueRecoveryRate = 15
+};
+
+::Const.Tactical.Actor.LegendSighthound <- {
+	XP = 75,
+	ActionPoints = 13,
+	Hitpoints = 45,
+	Bravery = 40,
+	Stamina = 130,
+	MeleeSkill = 45,
+	RangedSkill = 0,
+	MeleeDefense = 25,
+	RangedDefense = 25,
+	Initiative = 130,
 	FatigueEffectMult = 1.0,
 	MoraleEffectMult = 1.0,
 	Armor = [

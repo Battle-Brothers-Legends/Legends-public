@@ -20,7 +20,7 @@ this.legend_apothecary_mushrooms_effect <- this.inherit("scripts/skills/skill", 
 
 	function getDescription()
 	{
-		return "I can see infinity! This character is in a mushroom-induced trance and seems to barely be tied to reality. They move gracefully, avoiding attacks and barely feeling pain, but seem hesitant to hurt anything or anyone. The effect will slowly wear off over [color=" + this.Const.UI.Color.NegativeValue + "]" + this.m.TurnsLeft + "[/color] more turn(s).";
+		return "I can see infinity! This character is in a mushroom-induced trance and seems to barely be tied to reality. They move gracefully, avoiding attacks and barely feeling pain, but seem hesitant to hurt anything or anyone. The effect will slowly wear off over [color=%negative%]" + this.m.TurnsLeft + "[/color] more turn(s).";
 	}
 
 	function getTooltip()
@@ -40,19 +40,19 @@ this.legend_apothecary_mushrooms_effect <- this.inherit("scripts/skills/skill", 
 				id = 10,
 				type = "text",
 				icon = "ui/icons/regular_damage.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]-" + 10 * this.m.TurnsLeft + "%[/color] Damage in Melee"
+				text = "[color=%negative%]-" + 10 * this.m.TurnsLeft + "%[/color] Damage in Melee"
 			},
 			{
 				id = 11,
 				type = "text",
 				icon = "ui/icons/melee_defense.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+" + 10 * this.m.TurnsLeft + "%[/color] Melee Defense"
+				text = "[color=%positive%]+" + 10 * this.m.TurnsLeft + "%[/color] Melee Defense"
 			},
 			{
 				id = 12,
 				type = "text",
 				icon = "ui/icons/ranged_defense.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+" + 10 * this.m.TurnsLeft + "%[/color] Ranged Defense"
+				text = "[color=%positive%]+" + 10 * this.m.TurnsLeft + "%[/color] Ranged Defense"
 			},
 			{
 				id = 13,

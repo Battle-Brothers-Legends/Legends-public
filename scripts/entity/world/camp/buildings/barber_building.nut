@@ -90,6 +90,12 @@ this.barber_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 		return "dude_full";
 	}
 
+	function isHidden() {
+		if (::Legends.Settings.skipCamp())
+			return false;
+		return !::World.Flags.get("HasLegendCampBarber");
+	}
+
 	function onClicked( _campScreen )
 	{
 		_campScreen.showBarberDialog();

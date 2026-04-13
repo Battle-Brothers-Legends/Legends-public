@@ -11,7 +11,7 @@
 					local stash = this.World.Assets.getStash().getItems();
 
 					foreach( i, item in stash ) {
-						if (item != null && (item.getID() == "armor.body.padded_leather" || item.getID() == "armor.body.padded_surcoat" || item.getID() == "armor.body.rugged_surcoat" || item.getID() == "armor.body.thick_tunic" || item.getID() == "armor.body.blotched_gambeson")) {
+						if (item != null && (item.getID() == "armor.body.padded_leather" || item.getID() == "armor.body.quilted_aketon" || item.getID() == "armor.body.rugged_surcoat" || item.getID() == "armor.body.thick_tunic" || item.getID() == "armor.body.blotched_gambeson")) {
 							stash[i] = null;
 							this.List.push({
 								id = 10,
@@ -56,7 +56,7 @@
 		local numItems = 0;
 
 		foreach( item in stash )
-			if (item != null && (item.getID() == "armor.body.padded_leather" || item.getID() == "armor.body.padded_surcoat" || item.getID() == "armor.body.rugged_surcoat" || item.getID() == "armor.body.thick_tunic" || item.getID() == "armor.body.blotched_gambeson"))
+			if (item != null && (item.getID() == "armor.body.padded_leather" || item.getID() == "armor.body.quilted_aketon" || item.getID() == "armor.body.rugged_surcoat" || item.getID() == "armor.body.thick_tunic" || item.getID() == "armor.body.blotched_gambeson"))
 				numItems++;
 
 		if (numItems == 0)

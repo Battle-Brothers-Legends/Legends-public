@@ -1,7 +1,7 @@
 this.legend_named_gladius <- this.inherit("scripts/items/weapons/named/named_weapon", {
 	m = {
-		PossibleEffects = ["scripts/skills/effects/legend_named_sword_riposte_effect"],
-		EffectBounds = [ [8, 13] ]
+		// PossibleEffects = ["scripts/skills/effects/legend_named_sword_riposte_effect"],
+		// EffectBounds = [ [8, 13] ]
 	},
 	function create()
 	{
@@ -30,26 +30,32 @@ this.legend_named_gladius <- this.inherit("scripts/items/weapons/named/named_wea
 		this.randomizeValues();
 	}
 
-	function getTooltip()
-	{
-		local result = this.named_weapon.getTooltip();
-		if (this.m.PossibleEffectIdx == 0)
-		{
-			result.push({
-				id = 12,
-				type = "text",
-				icon = "ui/icons/melee_skill.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+" + this.m.EffectChanceOrBonus + "%[/color] Chance to Riposte on Turn Start"
-			});
-		}
-		return result;
-	}
+	// function getTooltip()
+	// {
+	// 	local result = this.named_weapon.getTooltip();
+	// 	if (this.m.PossibleEffectIdx == 0)
+	// 	{
+	// 		result.push({
+	// 			id = 12,
+	// 			type = "text",
+	// 			icon = "ui/icons/melee_skill.png",
+	// 			text = "[color=%positive%]+" + this.m.EffectChanceOrBonus + "%[/color] Chance to Riposte on Turn Start"
+	// 		});
+	// 	}
+	// 	return result;
+	// }
 
 	function onEquip()
 	{
 		this.named_weapon.onEquip();
 		::Legends.Actives.grant(this, ::Legends.Active.Slash);
 		::Legends.Actives.grant(this, ::Legends.Active.Riposte);
+		::Legends.Actives.grant(this, ::Legends.Active.Puncture, function (_skill) {
+			_skill.m.IsHalfsword = true;
+		}.bindenv(this));
+		::Legends.Actives.grant(this, ::Legends.Active.Hammer, function (_skill) {
+			_skill.m.IsMordhau = true;
+		}.bindenv(this));
 	}
 
 	function onUpdateProperties( _properties )

@@ -67,7 +67,7 @@ this.legend_protect_target_skill <- this.inherit("scripts/skills/skill", {
 				id = 10,
 				type = "text",
 				icon = "ui/tooltips/warning.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]This character does not have any unleashed pets[/color]"
+				text = "[color=%negative%]This character does not have any unleashed pets[/color]"
 			});
 		}
 
@@ -173,10 +173,8 @@ this.legend_protect_target_skill <- this.inherit("scripts/skills/skill", {
 				continue;
 			}
 
-			if (skill == null)
-			{
-				::Legends.Effects.grant(pet, ::Legends.Effect.LegendGuard);
-				skill = ::Legends.Effects.get(pet, ::Legends.Effect.LegendGuard);
+			if (skill == null) {
+				skill = ::Legends.Effects.grant(pet, ::Legends.Effect.LegendGuard);
 			}
 
 			skill.setTarget(_t);

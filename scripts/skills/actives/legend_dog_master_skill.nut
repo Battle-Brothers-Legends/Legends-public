@@ -37,7 +37,7 @@ this.legend_dog_master_skill <- this.inherit("scripts/skills/skill", {
 				id = 6,
 				type = "text",
 				icon = "ui/icons/vision.png",
-				text = "Has a range of [color=" + this.Const.UI.Color.PositiveValue + "]" + this.m.MaxRange + "[/color], can only target dogs and hounds."
+				text = "Has a range of [color=%positive%]" + this.m.MaxRange + "[/color], can only target dogs and hounds."
 			}
 		]);
 			ret.push({

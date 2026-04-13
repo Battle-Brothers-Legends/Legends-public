@@ -257,7 +257,7 @@ this.camp_commander_dialog_module <- this.inherit("scripts/ui/screens/ui_module"
 		this.m.Parent.onModuleClosed();
 	}
 
-	function onTentBuldingClicked( _id )
+	function onTentBuildingClicked( _id )
 	{
 		this.m.Parent.onShowTentBuilding( _id );
 	}

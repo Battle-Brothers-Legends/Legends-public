@@ -1,5 +1,3 @@
-::Const.Tactical.Actor.Lindwurm.XP = 1600; // compensate for exp lost by making tail not giving exp
-
 ::Const.Tactical.Actor.LegendSkinGhoul <- {
 	XP = 250,
 	ActionPoints = 12,
@@ -81,7 +79,7 @@
 	Hitpoints = 80,
 	Bravery = 30,
 	Stamina = 120,
-	MeleeSkill = 20,
+	MeleeSkill = 40,
 	RangedSkill = 0,
 	MeleeDefense = 0, //inbuilt dodge compensates for this
 	RangedDefense = 40,
@@ -137,7 +135,7 @@
 ::Const.Tactical.Actor.LegendStollwurm <- {
 	XP = 4000,
 	ActionPoints = 15,
-	Hitpoints = 1800,
+	Hitpoints = 1500,
 	Bravery = 240,
 	Stamina = 400,
 	MeleeSkill = 75,
@@ -334,3 +332,23 @@
 		0
 	]
 }
+
+::Const.Tactical.Actor.LegendEnragedHyena <- {
+	XP = 400,
+	ActionPoints = 14,
+	Hitpoints = 240,
+	Bravery = 80,
+	Stamina = 200,
+	MeleeSkill = 95,
+	RangedSkill = 0,
+	MeleeDefense = 20,
+	RangedDefense = 20,
+	Initiative = 160,
+	FatigueEffectMult = 1.0,
+	MoraleEffectMult = 1.0,
+	FatigueRecoveryRate = 25,
+	Armor = [
+		80,
+		80
+	]
+};

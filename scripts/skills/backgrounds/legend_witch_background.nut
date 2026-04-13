@@ -37,7 +37,7 @@ this.legend_witch_background <- this.inherit("scripts/skills/backgrounds/charact
 		this.m.Hairs = this.Const.Hair.AllFemale;
 		this.m.HairColors = this.Const.HairColors.All;
 		this.m.Beards = null;
-		this.m.Bodies = this.Const.Bodies.AllFemale;
+		this.m.Bodies = this.Const.Bodies.NorthernFemale;
 
 		this.m.BackgroundType = this.Const.BackgroundType.Female | this.Const.BackgroundType.Educated | this.Const.BackgroundType.Untalented;
 		this.m.Level = 1;
@@ -51,30 +51,30 @@ this.legend_witch_background <- this.inherit("scripts/skills/backgrounds/charact
 
 		this.m.PerkTreeDynamic = {
 			Weapon = [
-				this.Const.Perks.DaggerTree,
-				this.Const.Perks.PolearmTree,
-				this.Const.Perks.ThrowingTree,
-				this.Const.Perks.CrossbowTree
+				::Const.Perks.DaggerTree,
+				::Const.Perks.PolearmTree,
+				::Const.Perks.ThrowingTree,
+				::Const.Perks.CrossbowTree
 			],
 			Defense = [
-				this.Const.Perks.ClothArmorTree
+				::Const.Perks.ClothArmorTree
 			],
 			Traits = [
-				this.Const.Perks.IntelligentTree,
-				this.Const.Perks.CalmTree,
-				this.Const.Perks.OrganisedTree,
-				this.Const.Perks.InspirationalTree
+				::Const.Perks.IntelligentTree,
+				::Const.Perks.CalmTree,
+				::Const.Perks.OrganisedTree,
+				::Const.Perks.InspirationalTree
 			],
 			Enemy = [],
 			Class = [],
 			Profession = [
-				this.Const.Perks.HealerProfessionTree
+				::Const.Perks.HealerProfessionTree
 			],
 			Magic = [
-				this.Const.Perks.PremonitionMagicTree,
-				this.Const.Perks.PhilosophyMagicTree,
-				this.Const.Perks.InventorMagicTree,
-				this.Const.Perks.StavesMagicTree
+				::Const.Perks.PremonitionMagicTree,
+				::Const.Perks.PhilosophyMagicTree,
+				::Const.Perks.InventorMagicTree,
+				::Const.Perks.StavesMagicTree
 			]
 		}
 	}
@@ -150,8 +150,9 @@ this.legend_witch_background <- this.inherit("scripts/skills/backgrounds/charact
 
 	function onAdded()
 	{
+		if (this.m.IsNew)
+			::Legends.Traits.grant(this, ::Legends.Trait.Loyal);
 		this.character_background.onAdded();
-		::Legends.Traits.grant(this, ::Legends.Trait.Loyal);
 	}
 
 	function onAddEquipment()

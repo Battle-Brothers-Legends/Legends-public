@@ -2,7 +2,8 @@ this.mods_hookExactClass("skills/injury/injured_knee_cap_injury", function(o) {
 	o.m.Cooldown <- 0;
 	o.onAdded <- function ()
 	{
-		this.m.Cooldown += 1;
+		if (this.m.IsNew)
+			this.m.Cooldown += 1;
 	}
 
 	o.onTurnEnd <- function()
@@ -15,7 +16,7 @@ this.mods_hookExactClass("skills/injury/injured_knee_cap_injury", function(o) {
 	o.onUpdate = function( _properties )
 	{
 		onUpdate(_properties);
-		if (this.m.Cooldown == 0 || !_properties.IsAffectedByInjuries || this.m.IsFresh && !_properties.IsAffectedByFreshInjuries)
+		if (!this.m.IsNew || this.m.Cooldown == 0 || !_properties.IsAffectedByInjuries || this.m.IsFresh && !_properties.IsAffectedByFreshInjuries)
 			return;
 
 		_properties.IsRooted = true;

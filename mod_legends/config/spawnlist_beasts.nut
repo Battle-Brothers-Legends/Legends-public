@@ -7,11 +7,11 @@
 	VisionMult = 1.0,
 	Body = "figure_hexe_01",
 	MinR = 100,
-	MaxR = 500,
 	Fixed = [
 		{
 			Type = this.Const.World.Spawn.Troops.LegendHexeLeader,
-			Cost = 300,
+			Cost = 50,
+			MaxCount = 2,
 			MinGuards = 2,
 			MaxGuards = 3,
 			MaxGuardsWeight = 50,
@@ -19,7 +19,7 @@
 			Guards = [
 				{
 					Type = this.Const.World.Spawn.Troops.LegendRedbackSpiderBodyguard,
-					Cost = 250,
+					Cost = 200,
 					function Weight(scale) {
 						return 50;
 					}
@@ -106,7 +106,7 @@
 				},
 				{
 					MinR = 600,
-					Type = this.Const.World.Spawn.Troops.BanditWarlord,
+					Type = this.Const.World.Spawn.Troops.LegendRobberBaron,
 					Cost = 125,
 					Roll = true
 				}
@@ -586,6 +586,47 @@
 					Type = this.Const.World.Spawn.Troops.LegendBasiliskSentry,
 					MinR = 200,
 					Cost = 40
+				}
+			]
+		}
+	]
+}
+
+::Const.World.Spawn.LegendEnragedHyena <- {
+	Name = "LegendEnragedHyena",
+	IsDynamic = true,
+	MovementSpeedMult = 1.0,
+	VisibilityMult = 1.0,
+	VisionMult = 1.0,
+	Body = "figure_hyena_01",
+	MaxR = 800,
+	Fixed = [
+		{
+			Type = this.Const.World.Spawn.Troops.LegendEnragedHyena,
+			Cost = 200,
+			Weight = 0
+		}
+	],
+	Troops = [
+		{
+			Weight = 90
+			Types = [
+				{
+					Type = this.Const.World.Spawn.Troops.LegendEnragedHyena,
+					Cost = 200
+				}
+			]
+		},
+		{
+			Weight = 10
+			Types = [
+				{
+					Type = this.Const.World.Spawn.Troops.Hyena,
+					Cost = 15
+				},
+				{
+					Type = this.Const.World.Spawn.Troops.HyenaHIGH,
+					Cost = 20
 				}
 			]
 		}

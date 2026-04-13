@@ -1,0 +1,8 @@
+<brush name="gfx/legend_effects.png" version="17">
+  <sprite id="legend_dust_03" width="50" height="50" img="effects\legend_dust_03.png" top="-26" bottom="23" />
+  <sprite id="projectile_dagger" rotSpeed="800" ic="FF56616C" width="35" height="100" img="effects\projectile_dagger.png" left="-33" right="33" top="-33" bottom="33" />
+  <sprite id="projectile_blood" ic="FF445660" width="32" height="64" img="effects\projectile_blood.png" left="-8" right="14" top="-31" bottom="29" />
+  <sprite id="projectile_dart" ic="FF445660" width="32" height="64" img="effects\projectile_dart.png" left="-8" right="14" top="-31" bottom="29" />
+  <sprite id="projectile_missile" ic="FF445660" width="32" height="64" img="effects\projectile_missile.png" left="-8" right="14" top="-31" bottom="29" />
+  <sprite id="projectile_pebble" ic="FF445660" width="32" height="64" img="effects\projectile_pebble.png" left="-8" right="14" top="-31" bottom="29" />
+</brush>

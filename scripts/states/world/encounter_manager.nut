@@ -23,12 +23,12 @@ this.encounter_manager <- {
     }
 
     function clear() {
-        this.m.ActiveEvent = null;
+	    this.clearActiveEvent();
         foreach(e in this.m.SettlementEncounters) {
-            e.reset();
+            e.clear();
         }
         foreach(e in this.m.CampEncounters) {
-            e.reset();
+            e.clear();
         }
     }
 
@@ -174,11 +174,15 @@ this.encounter_manager <- {
 
     function onSerialize( _out )
     {
-        _out.writeU32(this.m.SettlementEncounters.len());
+        _out.writeU32(this.m.SettlementEncounters.len() + this.m.CampEncounters.len());
         foreach(e in this.m.SettlementEncounters) {
             _out.writeString(e.getType());
             e.onSerialize(_out);
         }
+	    foreach(e in this.m.CampEncounters) {
+		    _out.writeString(e.getType());
+		    e.onSerialize(_out);
+	    }
     }
 
     function onDeserialize( _in )

@@ -6,13 +6,9 @@ this.perk_legend_small_target <- this.inherit("scripts/skills/skill", {
 	},
 	function create()
 	{
-		::Const.Perks.setup(this.m, ::Legends.Perk.LegendSmallTarget);
+		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendSmallTarget);
 		this.m.Description = "Use your physique to minimize your hit profile.";
 		this.m.Type = this.Const.SkillType.Perk | this.Const.SkillType.StatusEffect;
-		this.m.Order = this.Const.SkillOrder.Perk;
-		this.m.IsActive = false;
-		this.m.IsStacking = false;
-		this.m.IsHidden = false;
 	}
 
 	function getTooltip()
@@ -38,13 +34,13 @@ this.perk_legend_small_target <- this.inherit("scripts/skills/skill", {
 				id = 6,
 				type = "text",
 				icon = "ui/icons/melee_defense.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+" + currentBonus + "[/color] Melee Defense"
+				text = "[color=%positive%]+" + currentBonus + "[/color] Melee Defense"
 			});
 			tooltip.push({
 				id = 6,
 				type = "text",
 				icon = "ui/icons/ranged_defense.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+" + currentBonus + "[/color] Ranged Defense"
+				text = "[color=%positive%]+" + currentBonus + "[/color] Ranged Defense"
 			});
 		}
 		else
@@ -65,7 +61,7 @@ this.perk_legend_small_target <- this.inherit("scripts/skills/skill", {
 				id = 6,
 				type = "hint",
 				icon = "ui/icons/special.png",
-				text = "Increases the character\'s action points by [color=" + this.Const.UI.Color.PositiveValue + "]1[/color]."
+				text = "Increases the character\'s action points by [color=%positive%]1[/color]."
 			});
 		}
 

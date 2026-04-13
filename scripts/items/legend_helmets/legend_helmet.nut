@@ -3,7 +3,8 @@ this.legend_helmet <- this.inherit("scripts/items/helmets/helmet", {
 		Upgrades = null,
 		Blocked = [],
 		Variants = [],
-		Type = -1
+		Type = -1,
+		BaseInventorySound = ::Const.Sound.ClothEquip
 	},
 
 	function create()
@@ -20,20 +21,25 @@ this.legend_helmet <- this.inherit("scripts/items/helmets/helmet", {
 		}
 	}
 
+	function getUpgradeVariant ( _idx )
+	{
+		return this.m.Upgrades[_idx].getVariant();
+	}
+
 	function onPaint(_variant)
 	{
 	}
 
 	function getHideHair()
 	{
-		if (this.m.HideHair)
+		if (this.m.HideHair && this.getArmor() != 0)
 		{
 			return true;
 		}
 
 		foreach (u in this.m.Upgrades)
 		{
-			if (u != null && u.m.HideHair)
+			if (u != null && u.m.HideHair && u.isVisible() && u.getCondition() != 0)
 			{
 				return true;
 			}
@@ -44,14 +50,14 @@ this.legend_helmet <- this.inherit("scripts/items/helmets/helmet", {
 
 	function getHideBeard()
 	{
-		if (this.m.HideBeard)
+		if (this.m.HideBeard && this.getArmor() != 0)
 		{
 			return true;
 		}
 
 		foreach (u in this.m.Upgrades)
 		{
-			if (u != null && u.m.HideBeard)
+			if (u != null && u.m.HideBeard && u.isVisible() && u.getCondition() != 0)
 			{
 				return true;
 			}
@@ -62,19 +68,24 @@ this.legend_helmet <- this.inherit("scripts/items/helmets/helmet", {
 
 	function isArmorNamed()
 	{
-		if (this.isNamed()) {
+		if (this.isNamed())
 			return true;
-		}
-
-		foreach (u in this.m.Upgrades)
-		{
+		foreach (u in this.m.Upgrades) {
 			if (u != null && u.isNamed())
-			{
 				return true;
-			}
 		}
-
 		return false;
+	}
+
+	function isArmorLegendary()
+	{
+		if (this.isItemType(::Const.Items.ItemType.Legendary))
+			return true;
+		foreach (u in this.m.Upgrades) {
+			if (u != null && u.isItemType(::Const.Items.ItemType.Legendary))
+				return true;
+		}
+		return false
 	}
 
 	function isBought()
@@ -92,10 +103,10 @@ this.legend_helmet <- this.inherit("scripts/items/helmets/helmet", {
 
 	function getIcon()
 	{
+		if (this.isArmorLegendary())
+			return "layers/legendary_icon_glow.png";
 		if (this.isArmorNamed())
-		{
 			return "layers/named_icon_glow.png";
-		}
 		return this.m.Icon;
 	}
 
@@ -128,10 +139,8 @@ this.legend_helmet <- this.inherit("scripts/items/helmets/helmet", {
 
 	function getIconLarge()
 	{
-		if (this.isArmorNamed()) {
-			return "layers/named_icon_glow.png"
-		}
-
+		if (this.isArmorNamed())
+			return this.getIcon();
 		return this.m.IconLarge != "" ? this.m.IconLarge : null;
 	}
 
@@ -318,8 +327,8 @@ this.legend_helmet <- this.inherit("scripts/items/helmets/helmet", {
 			return;
 		}
 
-		this.m.Condition = this.m.ConditionMax;
 		local delta = _a - (this.m.ConditionMax - this.m.Condition);
+		this.m.Condition = this.m.ConditionMax;
 
 		for (local i = 0; i < this.m.Upgrades.len(); ++i)
 		{
@@ -435,6 +444,10 @@ this.legend_helmet <- this.inherit("scripts/items/helmets/helmet", {
 			{
 				slots.push(2);
 			}
+			else if (u.isLower())
+			{
+				slots.push(3);
+			}
 			else
 			{
 				slots.push(1);
@@ -463,16 +476,21 @@ this.legend_helmet <- this.inherit("scripts/items/helmets/helmet", {
 	}
 
 	function getUpgradesNamed() {
-
+		local upgradePrice = 0;
+		local name = "";
 		foreach(u in this.m.Upgrades)
 		{
 			if (u != null && u.isNamed())
 			{
-				return u.getName()
+				if(u.getValue()>upgradePrice)
+				{
+					upgradePrice = u.getValue();
+					name = u.getName();
+				}
 			}
 		}
 
-		return ""
+		return name;
 	}
 
 	function setUpgrade( _upgrade )
@@ -552,7 +570,7 @@ this.legend_helmet <- this.inherit("scripts/items/helmets/helmet", {
 		local uname = this.getUpgradesNamed();
 
 		if (uname != "") {
-			NAME = uname + " " + this.getName();
+			NAME = uname + " on " + this.getName();
 		}
 		else if (this.getUpgrade(1) != null)
 		{
@@ -578,6 +596,8 @@ this.legend_helmet <- this.inherit("scripts/items/helmets/helmet", {
 
 	function getTooltip()
 	{
+		if (::Legends.Mod.ModSettings.getSetting("LogOutfits").getValue())
+			::Legends.S.logHelmet(this);
 
 		local description = this.getDescription();
 
@@ -685,21 +705,23 @@ this.legend_helmet <- this.inherit("scripts/items/helmets/helmet", {
 			result.push({	// An empty line is put in to improve formatting
 				id = 10,
 				type = "text",
-				icon = "ui/icons/blank.png",
-				text = " "
+				text = "&nbsp;"
 			});
+
 			result.push({
 				id = 10,
 				type = "text",
-				icon = "ui/icons/armor_head.png",
-				text = "[u]" + this.getName() + "[/u]"
+				text = "[leg_img](gfx/ui/items/%icon%,height=28px,width=28px)[/leg_img] [b][u]%name%[/u][/b]",
+				param = [["name", this.getName()], ["icon", this.m.Icon]]
 			});
+
 			result.push({
 				id = 10,
 				type = "text",
 				icon = "ui/icons/armor_head.png",
 				text = "Armor: " + this.m.ConditionMax
 			});
+
 			if ( this.m.StaminaModifier != 0 )
 			{
 				result.push({
@@ -805,12 +827,17 @@ this.legend_helmet <- this.inherit("scripts/items/helmets/helmet", {
 
 	function updateAppearance()
 	{
-		if (this.getContainer() == null || !this.isEquipped())
+
+		if (this.m.Upgrades[this.Const.Items.HelmetUpgrades.Helm] != null)
 		{
-			return;
+			this.m.InventorySound = this.m.Upgrades[this.Const.Items.HelmetUpgrades.Helm].m.InventorySound;
+		}
+		else
+		{
+			this.m.InventorySound = this.m.BaseInventorySound;
 		}
 
-		if (!this.m.ShowOnCharacter)
+		if (this.getContainer() == null || !this.isEquipped() || !this.m.ShowOnCharacter)
 		{
 			return;
 		}
@@ -856,20 +883,25 @@ this.legend_helmet <- this.inherit("scripts/items/helmets/helmet", {
 		local app = this.getContainer().getAppearance();
 		app.HelmetColor = this.createColor("#ffffff");
 		app.HelmetDamage = "";
-		app.HelmetLayerVanityLower = "";
-		app.HelmetLayerVanity2Lower = "";
+		
 		app.Helmet = "";
 		app.HelmetLayerHelm = "";
+		app.HelmetLayerHelmLower = "";
 		app.HelmetLayerTop = "";
+		app.HelmetLayerTopLower = "";
 		app.HelmetLayerVanity = "";
 		app.HelmetLayerVanity2 = "";
-		app.HelmetLayerVanityLowerCorpse = "";
-		app.HelmetLayerVanity2LowerCorpse = "";
+		app.HelmetLayerVanityLower = "";
+		app.HelmetLayerVanity2Lower = "";
 		app.HelmetCorpse = "";
 		app.HelmetLayerHelmCorpse = "";
+		app.HelmetLayerHelmLowerCorpse = "";
 		app.HelmetLayerTopCorpse = "";
+		app.HelmetLayerTopLowerCorpse = "";
 		app.HelmetLayerVanityCorpse = "";
 		app.HelmetLayerVanity2Corpse = "";
+		app.HelmetLayerVanityLowerCorpse = "";
+		app.HelmetLayerVanity2LowerCorpse = "";
 		app.HideHead = false;
 		app.HideCorpseHead = false;
 		app.HideHair = false;
@@ -957,10 +989,11 @@ this.legend_helmet <- this.inherit("scripts/items/helmets/helmet", {
 
 		local staminaMult = 1.0;
 
-		if (this.getContainer().getActor().getSkills().hasPerk(::Legends.Perk.Brawny))
-		{
-			staminaMult = 0.70;
-		}
+		// if (this.getContainer().getActor().getSkills().hasPerk(::Legends.Perk.Brawny))
+		// {
+		// 	staminaMult = 0.70;
+		// }
+		// 19.2 changes to Brawny
 
 		_properties.Armor[this.Const.BodyPart.Head] += this.getArmor();
 		_properties.ArmorMax[this.Const.BodyPart.Head] += this.getArmorMax();

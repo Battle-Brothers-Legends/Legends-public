@@ -1,4 +1,4 @@
-this.legend_spitter_spider <- this.inherit("scripts/entity/tactical/enemies/spider.nut", {
+this.legend_spitter_spider <- this.inherit("scripts/entity/tactical/enemies/spider", {
 	m = {
 		Size = 1.0,
 		DistortTargetA = null,

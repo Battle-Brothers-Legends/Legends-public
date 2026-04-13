@@ -44,31 +44,31 @@
 
 	o.setFollower = function ( _slot, _follower )
 	{
+		local oldFollower = this.m.Slots[_slot];
+
 		this.m.Slots[_slot] = _follower;
-		if (this.m.OwnedFollowerIDs.find(_follower.getID()) == null)
-		{
+		if (this.m.OwnedFollowerIDs.find(_follower.getID()) == null) {
 			this.m.OwnedFollowerIDs.push(_follower.getID());
 		}
 		_follower.setOwned();
 		this.update();
 
+		if (oldFollower != null) {
+			oldFollower.onDismiss();
+		}
+
 		if (this.getNumberOfCurrentFollowers() == this.m.Slots.len())
-		{
 			this.updateAchievement("FullHouse", 1, 1);
-		}
 		else
-		{
 			this.updateAchievement("CampfireCompany", 1, 1);
-		}
 	}
 
 	local upgradeInventory = o.upgradeInventory;
 	o.upgradeInventory = function()
 	{
-		local before = ::World.Assets.getStash().getCapacity();
 		upgradeInventory();
-		local diff = ::World.Assets.getStash().getCapacity() - before;
-		::World.Flags.increment("LegendStartingStash", diff);
+		::Legends.Stash.upgradeCart();
+		::Legends.Stash.resize();
 	}
 
 	o.hasFollowersToRemove <- function ()

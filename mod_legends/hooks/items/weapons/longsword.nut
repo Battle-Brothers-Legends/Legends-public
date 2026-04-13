@@ -3,25 +3,41 @@
 	local create = o.create;
 	o.create = function() {
 		create();
-		this.m.Name = "Greatsword";
-		this.m.Description = "A long two-handed greatsword as good for crushing as for cutting, it has a good balance between the lighter longsword and heavier zweihander.";
-		this.m.Value = 2300;
-		this.m.ConditionMax = 64.0;
-		this.m.ChanceToHitHead = 10;
-		this.m.Variant = this.Math.rand(0, 1);
-		this.updateVariant();
+		this.m.Description = "A long two-handed blade that makes for a versatile weapon, this longsword is the smaller and lighter of it\'s town cousins but is much more versatile.";
+		this.m.IsAgainstShields = false;
+		this.m.IsAoE = false;
+		this.m.Value = 1700;
+		this.m.ShieldDamage = 0;
+		this.m.Condition = 60.0;
+		this.m.ConditionMax = 60.0;
+		this.m.StaminaModifier = -8;
+		this.m.RegularDamage = 50;
+		this.m.RegularDamageMax = 75;
+		this.m.ArmorDamageMult = 0.8;
+		this.m.DirectDamageMult = 0.25;
+		this.m.ChanceToHitHead = 5;
+		this.m.Variants = [1,2,3];
+		this.setVariant(this.m.Variants[this.Math.rand(0, this.m.Variants.len() - 1)]);
 	}
 
 	o.updateVariant <- function() {
-		if (this.m.Variant == 0) {
-			this.m.Icon = "weapons/melee/sword_two_hand_01_70x70.png";
-			this.m.IconLarge = "weapons/melee/sword_two_hand_01.png";
-			this.m.ArmamentIcon = "icon_sword_two_handed_01";
-		} else {
-			this.m.Icon = "weapons/melee/sword_two_hand_01_" + this.m.Variant + "_70x70.png";
-			this.m.IconLarge = "weapons/melee/sword_two_hand_01_" + this.m.Variant + ".png";
-			this.m.ArmamentIcon = "icon_sword_two_handed_01_" + this.m.Variant;
-		}
+		this.m.Icon = "weapons/melee/longsword_0" + this.m.Variant + "_70x70.png";
+		this.m.IconLarge = "weapons/melee/longsword_0" + this.m.Variant + ".png";
+		this.m.ArmamentIcon = "icon_longsword_0" + this.m.Variant;
+	}
+
+	o.onEquip = function () {
+		this.weapon.onEquip();
+		::Legends.Actives.grant(this, ::Legends.Active.Slash, function (_skill) {
+			_skill.m.IsGreatSlash = true;
+		}.bindenv(this));
+		::Legends.Actives.grant(this, ::Legends.Active.Riposte);
+		::Legends.Actives.grant(this, ::Legends.Active.Puncture, function (_skill) {
+			_skill.m.IsHalfsword = true;
+		}.bindenv(this));
+		::Legends.Actives.grant(this, ::Legends.Active.Hammer, function (_skill) {
+			_skill.m.IsMordhau = true;
+		}.bindenv(this));
 	}
 
 });

@@ -1,7 +1,6 @@
 this.legend_RSW_unbreaking <- this.inherit("scripts/skills/skill", {
 	m = {},
-	function create()
-	{
+	function create() {
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendRswUnbreaking);
 		this.m.Description = "Rune Sigil: Unbreaking";
 		this.m.Icon = "ui/rune_sigils/legend_rune_sigil.png";
@@ -13,12 +12,9 @@ this.legend_RSW_unbreaking <- this.inherit("scripts/skills/skill", {
 	}
 
 
-	function onTargetKilled( _targetEntity, _skill )
-	{
+	function onTargetKilled( _targetEntity, _skill ) {
 		if (this.getItem() == null)
-		{
 			return;
-		}
 		local item = this.getItem();
 		local condition = item.getCondition();
 		local conditionMax = item.getConditionMax();
@@ -26,13 +22,11 @@ this.legend_RSW_unbreaking <- this.inherit("scripts/skills/skill", {
 		local bonusMax = item.getRuneBonus2();
 		local repair = this.Math.rand(bonusMin, bonusMax);
 
-		if ((conditionMax - condition) > repair )
-		{
-		item.setCondition(condition + repair)
+		if ((conditionMax - condition) > repair ) {
+			item.setCondition(condition + repair)
 		}
-		else
-		{
-		item.setCondition(conditionMax);
+		else {
+			item.setCondition(conditionMax);
 		}
 	}
 

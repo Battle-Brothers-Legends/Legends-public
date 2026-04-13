@@ -23,22 +23,33 @@ this.legend_ancient_scroll_item <- ::inherit("scripts/items/misc/legend_skill_bo
 	function isAbleToUseScroll( _actor )
 	{
 		local effect = ::Legends.Effects.get(_actor, ::Legends.Effect.LegendIrritable);
+		local injury = ::Legends.Effects.get(_actor, ::Legends.Effect.LegendHeadache);
+		if (injury != null)
+			return "Failed to use this item as the user will be recovering from the last reading for another [color=%negative%]" + injury.m.HealingTimeMin + "-" + injury.m.HealingTimeMax +"[/color] days because of [color=%status%]" + injury.getName() + "[/color].";
 		if (effect != null)
-			return "Failed to use this item as the user will be recovering from the last reading for another [color=" + ::Const.UI.Color.NegativeValue + "]" + effect.m.HealingTimeMin + "-" + effect.m.HealingTimeMax +"[/color] days.";
+			return "Failed to use this item as the user will be recovering from the last reading for another [color=%negative%]" + effect.m.HealingTime + "[/color] days because of [color=%status%]" + effect.getName() + "[/color].";
 
 		if (_actor.getSkills().hasTrait(::Legends.Trait.Dumb))
-			return "Failed to use this item as the user has [color=" + ::Const.UI.Color.NegativeValue + "]Dumb[/color] trait.";
+			return "Failed to use this item as the user has [color=%negative%]Dumb[/color] trait.";
 
 		if (_actor.getSkills().hasSkill("injury.brain_damage"))
-			return "Failed to use this item as the user has [color=" + ::Const.UI.Color.NegativeValue + "]Brain Damage[/color] injury.";
+			return "Failed to use this item as the user has [color=%negative%]Brain Damage[/color] injury.";
 
-		if (_actor.getFlags().getAsInt("LegendsScrollCount") <= 0)
+		if (_actor.isStabled())
+			return "Are you trying to make an animal read?";
+
+		if (_actor.getFlags().getAsInt("LegendsScrollCount") < 1)
 			return true;
 
-		if (!_actor.getSkills().hasTrait(::Legends.Trait.Bright) || _actor.getFlags().getAsInt("LegendsScrollCount") >= 2)
-			return "This character has already reached their maximum item usage limit. Please use this item on a different character.";
+		if (_actor.getSkills().hasTrait(::Legends.Trait.Bright) && _actor.getFlags().getAsInt("LegendsScrollCount") < 2)
+			return true;
 
-		return true;
+		return "This character cannot potentially learn anything from this.";
+	}
+
+
+	function addScrollCounter( _actor ) {
+		_actor.getFlags().increment("LegendsScrollCount");
 	}
 });
 

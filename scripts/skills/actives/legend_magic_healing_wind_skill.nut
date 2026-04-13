@@ -56,7 +56,7 @@ this.legend_magic_healing_wind_skill <- this.inherit("scripts/skills/actives/leg
 			{
 				id = 4,
 				type = "text",
-				text = "Heals [color=" + this.Const.UI.Color.PositiveValue + "]" + this.getHealAmount() + "[/color]. Heal amount is based on resolve."
+				text = "Heals [color=%positive%]" + this.getHealAmount() + "[/color]. Heal amount is based on resolve."
 			}
 		];
 		return ret;

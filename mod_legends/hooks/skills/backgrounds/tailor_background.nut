@@ -53,25 +53,27 @@
 		this.m.Modifiers.ToolConsumption = this.Const.LegendMod.ResourceModifiers.ToolConsumption[1];
 		this.m.PerkTreeDynamic = {
 			Weapon = [
-				this.Const.Perks.DaggerTree,
-				this.Const.Perks.SwordTree,
-				this.Const.Perks.SpearTree,
-				this.Const.Perks.ThrowingTree
+				::Const.Perks.DaggerTree,
+				::Const.Perks.SwordTree,
+				::Const.Perks.SpearTree,
+				::Const.Perks.ThrowingTree
 			],
 			Defense = [
-				this.Const.Perks.ClothArmorTree
+				::Const.Perks.ClothArmorTree
 			],
 			Traits = [
-				this.Const.Perks.CalmTree,
-				this.Const.Perks.OrganisedTree,
-				this.Const.Perks.FastTree,
-				this.Const.Perks.ViciousTree
+				::Const.Perks.CalmTree,
+				::Const.Perks.OrganisedTree,
+				::Const.Perks.FastTree,
+				::Const.Perks.ViciousTree
 			],
 			Enemy = [],
-			Class = [],
+			Class = [
+				::Const.Perks.TailorClassTree
+			],
 			Profession = [
-				this.Const.Perks.RepairProfessionTree
-			], 
+				::Const.Perks.RepairProfessionTree
+			],
 			Magic = []
 		}
 	}
@@ -91,7 +93,7 @@
 		this.m.HairColors = this.Const.HairColors.All;
 		this.m.Beards = null;
 		this.m.BeardChance = 0;
-		this.m.Bodies = this.Const.Bodies.AllFemale;
+		this.m.Bodies = this.Const.Bodies.NorthernFemale;
 		this.addBackgroundType(this.Const.BackgroundType.Female);
 		this.m.GoodEnding = "What was a Seamstress doing in a mercenary company? A good question, but %name% certainly answered it well by killing so many enemies they could\'ve made an epic tapestry out of story. After a few good years in the company, she eventually left to start up a business creating clothes for nobility. Her name is world-renowned, well, the known-world-renowned, and she gets so much business she\'s making a very different killing these days.";
 		this.m.BadEnding = "A tailor at heart, it didn\'t take much to compel %name% to bail from the quickly sinking company. She left to go start a business, but was kidnapped along the way by a group of brigands. When they threatened to kill her, she pretended to be a simple and weak tailor and showed her talents in creating clothes. Impressed, the raggedly dressed outlaws took her into their band. A few days later they were all dead and this \'meek\' woman walked out of their camp with a bit of red on her. She started his business a week later and is doing well to this day.";

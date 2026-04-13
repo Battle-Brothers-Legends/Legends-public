@@ -34,7 +34,7 @@ this.gatherer_building <- this.inherit("scripts/entity/world/camp/camp_building"
 		desc = desc + "People assigned to this task will go out get supplies, like herbs and plants of medicinal quality. The more people assigned, the more is gathered. ";
 		desc = desc + "The more people assigned, the more medicine is gathered. Skilled backgrounds increase the amount further.";
 		desc = desc + "\n\n";
-		desc = desc + "Assigning Woodsmen with the Woodsman\'s Cuts perk can return wood for trade, while Miners with the Ore Hunters perk can find gems. ";
+		desc = desc + "Assigning Woodsmen with the Woodsman\'s Cuts perk can return wood for trade, while Miners with the Ore Hunter perk can find gems. ";
 		desc = desc + "Assigning skilled apocatheries like Herbalists, Vala, Alchemists and Druids can return more advanced medicines and bandages.";
 		desc = desc + "\n\n";
 		desc = desc + "Buying an upgraded tent will increase gathering speed by 15% and produce more kinds of medicine. ";
@@ -50,7 +50,7 @@ this.gatherer_building <- this.inherit("scripts/entity/world/camp/camp_building"
 				id = 5,
 				type = "text",
 				icon = "ui/buttons/asset_medicine_up.png",
-				text = "Produces [color=" + this.Const.UI.Color.PositiveValue + "]" + mod.Craft / 3.0 + "[/color] units of medicine per hour."
+				text = "Produces [color=%positive%]" + mod.Craft / 3.0 + "[/color] units of medicine per hour."
 			}
 		];
 		local id = 6;
@@ -61,7 +61,7 @@ this.gatherer_building <- this.inherit("scripts/entity/world/camp/camp_building"
 				id = id,
 				type = "hint",
 				icon = "ui/icons/special.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]" + bro[0] / 3.0 + "[/color] units/hour " + bro[1] + " (" + bro[2] + ")"
+				text = "[color=%positive%]" + bro[0] / 3.0 + "[/color] units/hour " + bro[1] + " (" + bro[2] + ")"
 			});
 			id = ++id;
 		}
@@ -71,7 +71,7 @@ this.gatherer_building <- this.inherit("scripts/entity/world/camp/camp_building"
 
 	function isHidden()
 	{
-		if (::Legends.Mod.ModSettings.getSetting("SkipCamp").getValue())
+		if (::Legends.Settings.skipCamp())
 		{
 			return false;
 		}
@@ -81,7 +81,7 @@ this.gatherer_building <- this.inherit("scripts/entity/world/camp/camp_building"
 
 	function getUpgraded()
 	{
-		return this.Stash.hasItem("tent.gather_tent");
+		return this.Stash.hasItem(::Legends.Camp.Tent.Gather);
 	}
 
 	function getLevel()
@@ -388,12 +388,12 @@ this.gatherer_building <- this.inherit("scripts/entity/world/camp/camp_building"
 				map.Brewer += bro.getLevel();
 			}
 
-			if (bro.getSkills().hasPerk(::Legends.Perk.LegendSpecialistWoodsman))
+			if (bro.getSkills().hasPerk(::Legends.Perk.LegendWoodworking))
 			{
 				map.Woodsman += bro.getLevel();
 			}
 
-			if (bro.getSkills().hasPerk(::Legends.Perk.LegendSpecialistMiner))
+			if (bro.getSkills().hasPerk(::Legends.Perk.LegendOreHunter))
 			{
 				map.Miner += bro.getLevel();
 			}
@@ -404,7 +404,7 @@ this.gatherer_building <- this.inherit("scripts/entity/world/camp/camp_building"
 				case "background.legend_herbalist":
 				case "background.legend_alchemist":
 				case "background.legend_druid":
-				case "background.legend_druid_commander":
+				case "background.legend_commander_druid":
 					map.Apothecary += bro.getLevel();
 			}
 
@@ -444,4 +444,5 @@ this.gatherer_building <- this.inherit("scripts/entity/world/camp/camp_building"
 	}
 
 });
+
 

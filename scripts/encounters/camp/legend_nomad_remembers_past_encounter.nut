@@ -6,10 +6,10 @@ this.legend_nomad_remembers_past_encounter <- ::inherit("scripts/encounters/enco
 	},
 
 	function create() {
-		this.m.ID = "encounter.legend_nomad_remembers_past";
+		this.encounter.create();
+		this.m.Type = "encounter.legend_nomad_remembers_past";
 		this.m.Name = ::Const.Strings.randomCampEncounterName();
 		this.m.Cooldown = 20 * this.World.getTime().SecondsPerDay;
-		this.createScreens();
 	}
 
 	function createScreens() {
@@ -28,14 +28,13 @@ this.legend_nomad_remembers_past_encounter <- ::inherit("scripts/encounters/enco
 				this.Characters.push(_event.m.Nomad.getImagePath());
 
 				this.List.push(::Legends.EventList.changeResolve(_event.m.Nomad, 2));
-				this.List.push(::Legends.EventList.changeMood(_event.m.Nomad, 1.0, this.buildText("{Reflected on %their_nomad% survival against the city states}")));
+				this.List.push(::Legends.EventList.changeMood(_event.m.Nomad, 1.0, _event.buildText("{Reflected on %their_nomad% survival against the city states}")));
 			}
 		});
 	}
 
 	function onPrepareVariables (_vars) {
 		_vars.push(["nomad", this.m.Nomad.getName()]);
-		::Const.LegendMod.extendVarsWithPronouns(_vars, this.m.Nomad.getGender(), "nomad");
 	}
 
 	function isVisible() {
@@ -52,25 +51,25 @@ this.legend_nomad_remembers_past_encounter <- ::inherit("scripts/encounters/enco
 	}
 
 	function isValid(_camp) {
-		local bros = ::World.getPlayerRoster().getAll();
-		local candidateNomad = [];
-		foreach (bro in bros) {
-			if (bro.getBackground().getID() != "background.nomad") {
-				candidateNomad.push(bro);
-			}
-		}
-
-		this.m.Nomad = candidateNomad[::Math.rand(0, candidateNomad.len() - 1)];
-		if (this.m.Nomad == null)
+		if (::World.Assets.getOrigin().getID() == "scenario.legend_risen_legion")
 			return false;
 
-		return !this.isOnCooldown();
+		local bros = ::World.getPlayerRoster().getAll();
+		local candidates = [];
+		foreach (bro in bros) {
+			if (bro.getBackground().getID() == "background.nomad") {
+				candidates.push(bro);
+			}
+		}
+		if (candidates.len() == 0) {
+			return false;
+		}
+		this.m.Nomad = candidates[::Math.rand(0, candidates.len() - 1)];
+		return this.m.Nomad != null && !this.isOnCooldown();
 	}
 
 	function onClear()
 	{
 		this.m.Nomad = null;
-		this.m.RandomBrother = null;
-		this.m.RandomBrother2 = null;
 	}
 });

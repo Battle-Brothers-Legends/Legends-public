@@ -1,15 +1,8 @@
 this.perk_legend_onslaught <- this.inherit("scripts/skills/skill", {
-	m = {
-		TilesUsed = []
-	},
+	m = {},
 	function create()
 	{
-		::Const.Perks.setup(this.m, ::Legends.Perk.LegendOnslaught);
-		this.m.Type = this.Const.SkillType.Perk;
-		this.m.Order = this.Const.SkillOrder.Perk;
-		this.m.IsActive = false;
-		this.m.IsStacking = false;
-		this.m.IsHidden = false;
+		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendOnslaught);
 		this.m.SoundOnUse = [
 			"sounds/combat/bash_01.wav",
 			"sounds/combat/bash_02.wav",
@@ -20,17 +13,44 @@ this.perk_legend_onslaught <- this.inherit("scripts/skills/skill", {
 			"sounds/combat/bash_hit_02.wav",
 			"sounds/combat/bash_hit_03.wav"
 		];
+		this.m.Type = this.Const.SkillType.Perk | this.Const.SkillType.StatusEffect;
+	}
+
+	function getTooltip()
+	{
+		local tooltip = this.skill.getTooltip();
+		local fat = getBonus();
+
+		tooltip.push({
+			id = 10,
+			type = "text",
+			icon = "ui/icons/regular_damage.png",
+			text = "Current melee damage bonus is [color=%positive%]+" + fat + "%" + "[/color]"
+
+		});
+
+		return tooltip;
+	}
+
+	function isHidden()
+	{
+		this.getBonus() == 0;
+	}
+
+	function getBonus()
+	{
+		local actor = this.getContainer().getActor();
+		return 0.02 * (actor.getArmor(Const.BodyPart.Head) + actor.getArmor(Const.BodyPart.Body));
 	}
 
 	function onUpdate( _properties )
 	{
-		_properties.FatigueToInitiativeRate *= 0.5;
-		_properties.InitiativeAfterWaitMult = 1.0;
+		local bonus = this.getBonus();
+		_properties.MeleeDamageMult *= 1 + bonus * 0.01;
 	}
 
 	function onTargetHit( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor )
 	{
-		this.m.TilesUsed = [];
 		if (::Legends.S.skillEntityAliveCheck(_targetEntity))
 			return false;
 
@@ -52,7 +72,7 @@ this.perk_legend_onslaught <- this.inherit("scripts/skills/skill", {
 		if ( this.Math.rand(1, 100) > 50)
 			return false;
 
-		if (!_targetEntity.getSkills().hasEffect(::Legends.Effect.Stunned)) {
+		if (!_targetEntity.getSkills().hasEffect(::Legends.Effect.LegendBaffled)) {
 			::Legends.Effects.grant(_targetEntity, ::Legends.Effect.LegendBaffled);
 
 			if (!user.isHiddenToPlayer() && _targetEntity.getTile().IsVisibleForPlayer) {

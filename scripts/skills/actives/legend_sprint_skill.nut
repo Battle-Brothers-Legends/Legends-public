@@ -2,7 +2,7 @@ this.legend_sprint_skill <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		::Legends.Actives.onCreate(this, ::Legends.Active.LegendSprint);
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendStrafingRun);
 		this.m.Description = "For the remainder of this turn, the Action Point cost for movement is reduced by 1 for each tile, but the Fatigue cost is doubled.";
 		this.m.Icon = "ui/perks/perk_sprint.png";
 		this.m.IconDisabled = "ui/perks/perk_sprint_sw.png";
@@ -43,7 +43,7 @@ this.legend_sprint_skill <- this.inherit("scripts/skills/skill", {
 				id = 7,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "For the remainder of this turn, the Action Point cost for movement is reduced by [color=" + this.Const.UI.Color.PositiveValue + "]1[/color] for each tile, but the Fatigue cost is doubled."
+				text = "For the remainder of this turn, the Action Point cost for movement is reduced by [color=%positive%]1[/color] for each tile, but the Fatigue cost is doubled."
 			}
 		];
 		return ret;

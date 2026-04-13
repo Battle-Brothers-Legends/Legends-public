@@ -22,10 +22,10 @@ this.legend_basilisk_sentry_fowleye_skill <- this.inherit("scripts/skills/skill"
 		this.m.IsTargeted = true;
 		this.m.IsStacking = false;
 		this.m.IsAttack = true;
-		this.m.IsRanged = true;
+		this.m.IsRanged = false;
 		this.m.IsIgnoredAsAOO = true;
         this.m.IsShowingProjectile = false;
-        this.m.IsUsingHitchance = true;
+        this.m.IsUsingHitchance = false;
         this.m.IsDoingForwardMove = false;
         this.m.IsVisibleTileNeeded = false;
         this.m.ActionPointCost = 6;

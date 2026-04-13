@@ -20,7 +20,7 @@ this.legend_named_military_goedendag <- this.inherit("scripts/items/weapons/name
 		this.m.ShowQuiver = false;
 		this.m.ShowArmamentIcon = true;
 		this.m.Value = 5400;
-		this.m.ShieldDamage = 0;
+		this.m.ShieldDamage = 32;
 		this.m.StaminaModifier = -18;
 		this.m.Condition = 90.0;
 		this.m.ConditionMax = 90.0;
@@ -41,7 +41,7 @@ this.legend_named_military_goedendag <- this.inherit("scripts/items/weapons/name
 				id = 12,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+" + this.m.EffectChanceOrBonus + "%[/color] Stagger Chance"
+				text = "[color=%positive%]+" + this.m.EffectChanceOrBonus + "%[/color] Stagger Chance"
 			});
 		}
 		return result;
@@ -65,6 +65,10 @@ this.legend_named_military_goedendag <- this.inherit("scripts/items/weapons/name
 			_skill.m.Icon = "skills/active_132.png";
 			_skill.m.IconDisabled = "skills/active_132_sw.png";
 			_skill.m.Overlay = "active_132";
+			_skill.setFatigueCost(_skill.getFatigueCostRaw() + 5);
+		}.bindenv(this));
+		::Legends.Actives.grant(this, ::Legends.Active.SplitShield, function (_skill) {
+			_skill.m.IsHammer = true;
 			_skill.setFatigueCost(_skill.getFatigueCostRaw() + 5);
 		}.bindenv(this));
 	}

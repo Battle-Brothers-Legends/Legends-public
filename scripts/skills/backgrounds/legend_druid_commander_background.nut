@@ -116,7 +116,6 @@ this.legend_druid_commander_background <- this.inherit("scripts/skills/backgroun
 				::Legends.Perk.LegendGatherer,
 				::Legends.Perk.FortifiedMind,
 				::Legends.Perk.CoupDeGrace,
-				::Legends.Perk.LegendChoke,
 				::Legends.Perk.Dodge,
 				::Legends.Perk.HoldOut,
 				// ::Legends.Perk.LegendComposure,
@@ -127,9 +126,9 @@ this.legend_druid_commander_background <- this.inherit("scripts/skills/backgroun
 				::Legends.Perk.LegendRoots,
 				::Legends.Perk.LegendHerbcraft,
 				::Legends.Perk.LegendPrayerOfLife,
-				::Legends.Perk.LegendGrapple,
+				::Legends.Perk.LegendGrappler,
 				::Legends.Perk.LegendSpecStaffStun,
-				::Legends.Perk.Rotation,
+				::Legends.Perk.LegendTacticalManeuvers,
 				::Legends.Perk.Taunt,
 				::Legends.Perk.LegendFeint,
 				::Legends.Perk.LegendOnslaught,
@@ -143,19 +142,17 @@ this.legend_druid_commander_background <- this.inherit("scripts/skills/backgroun
 				::Legends.Perk.SpecSword,
 				::Legends.Perk.SpecThrowing,
 				::Legends.Perk.LegendMasteryStaves,
-				::Legends.Perk.LegendFavouredEnemyGoblin,
-				::Legends.Perk.LegendFavouredEnemyBandit
+				::Legends.Perk.LegendFavouredEnemyGreenskin,
+				::Legends.Perk.LegendFavouredEnemyOutlaw
 			],
 			[
 				::Legends.Perk.LegendPotionBrewer,
 				::Legends.Perk.LegendReadOmensTrance,
 				::Legends.Perk.LegendInsects,
 				::Legends.Perk.LoneWolf,
-				::Legends.Perk.Footwork,
 				::Legends.Perk.LegendVengeance,
 				::Legends.Perk.LegendBattleheart,
-				::Legends.Perk.LegendFavouredEnemyOrk,
-				::Legends.Perk.LegendFavouredEnemyNoble
+				::Legends.Perk.LegendFavouredEnemyCivilization
 			],
 			[
 				::Legends.Perk.LegendMinnesanger,
@@ -170,7 +167,7 @@ this.legend_druid_commander_background <- this.inherit("scripts/skills/backgroun
 				::Legends.Perk.LegendRebound
 			],
 			[
-				::Legends.Perk.LegendUnarmedTraining,
+				::Legends.Perk.LegendPummelIntoSubmission,
 				::Legends.Perk.LegendMiasma,
 				::Legends.Perk.LegendFieldTriage,
 				::Legends.Perk.LegendTumble,

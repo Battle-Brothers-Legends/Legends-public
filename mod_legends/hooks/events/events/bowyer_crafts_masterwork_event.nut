@@ -71,7 +71,7 @@
 
 		this.m.Screens.push({
 			ID = "BA",
-			Text = "[img]gfx/ui/events/event_05.png[/img]{This isn\'t the bow you expected, but it is an amazing creation. Your bowyer and inventor collaborated to make a minaturised crossbow that can be held in one hand. It is light and easy to carry along side your main weapon, but it has less damage than a regular crossbow. A curious invention that may enable some interesting tactics, and if nothing else will net a fair price in the market. You congratulate the bowyer.}",
+			Text = "[img]gfx/ui/events/event_05.png[/img]{This isn\'t the bow you expected, but it is an amazing creation. Your bowyer and inventor collaborated to make a minaturised crossbow that is attached to the wrist. It is light and easy to carry along side your main weapon without impeding weapon usage, but it has less damage than a regular crossbow. A curious invention that may enable some interesting tactics, and if nothing else will net a fair price in the market. You congratulate the bowyer.}",
 			Image = "",
 			List = [],
 			Characters = [],

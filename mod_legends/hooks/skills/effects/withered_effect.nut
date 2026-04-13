@@ -1,10 +1,10 @@
 ::mods_hookExactClass("skills/effects/withered_effect", function(o) {
-	
+
 	o.m.TurnsLeft = 3;
 
 	o.getDescription = function ()
 	{
-		return "By means of rotten magic, this character has withered to have the physique of an old man. Will slowly wear off over [color=" + this.Const.UI.Color.NegativeValue + "]" + this.m.TurnsLeft + "[/color] more turn(s).";
+		return "By means of rotten magic, this character has withered to have the physique of an old man. Will slowly wear off over [color=%negative%]" + this.m.TurnsLeft + "[/color] more turn(s).";
 	}
 
 	o.getTooltip = function ()
@@ -24,25 +24,25 @@
 				id = 11,
 				type = "text",
 				icon = "ui/icons/regular_damage.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]-" + this.m.TurnsLeft * 10 + "%[/color] Damage"
+				text = "[color=%negative%]-" + this.m.TurnsLeft * 10 + "%[/color] Damage"
 			},
 			{
 				id = 12,
 				type = "text",
 				icon = "ui/icons/initiative.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]-" + this.m.TurnsLeft * 10 + "%[/color] Initiative"
+				text = "[color=%negative%]-" + this.m.TurnsLeft * 10 + "%[/color] Initiative"
 			},
 			{
 				id = 12,
 				type = "text",
 				icon = "ui/icons/fatigue.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]-" + this.m.TurnsLeft * 10 + "%[/color] Max Fatigue"
+				text = "[color=%negative%]-" + this.m.TurnsLeft * 10 + "%[/color] Max Fatigue"
 			},
 			{
 				id = 11,
 				type = "text",
 				icon = "ui/icons/fatigue.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]-" + this.m.TurnsLeft * 5 + "[/color] Fatigue Recovery per turn"
+				text = "[color=%negative%]-" + this.m.TurnsLeft * 5 + "[/color] Fatigue Recovery per turn"
 			}
 		];
 	}

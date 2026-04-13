@@ -17,7 +17,7 @@
 				id = 7,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "Has a [color=" + this.Const.UI.Color.PositiveValue + "]" + this.m.StunChance + "%[/color] chance to stun on a hit"
+				text = "Has a [color=%positive%]" + this.m.StunChance + "%[/color] chance to stun on a hit"
 			});
 		}
 

@@ -65,19 +65,19 @@
 			id = 7,
 			type = "text",
 			icon = "ui/icons/vision.png",
-			text = "Range of [color=" + this.Const.UI.Color.PositiveValue + "]" + this.m.RangeMax + "[/color] tiles"
+			text = "Range of [color=%positive%]" + this.m.RangeMax + "[/color] tiles"
 		},
 		{
 			id = 4,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "Reduces the target\'s armor by [color=" + this.Const.UI.Color.DamageValue + "]20%[/color] each turn for 3 turns"
+			text = "Reduces the target\'s armor by [color=%damage%]20%[/color] each turn for 3 turns"
 		},
 		{
 			id = 5,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "Has a [color=" + this.Const.UI.Color.DamageValue + "]33%[/color] chance to hit bystanders at the same or lower height level as well"
+			text = "Has a [color=%damage%]33%[/color] chance to hit bystanders at the same or lower height level as well"
 		}]);
 		if (!this.World.Retinue.hasFollower("follower.alchemist"))
 		{
@@ -142,7 +142,7 @@
 	o.onPutIntoBag <- function ()
 	{
 		local skill = ::Legends.Actives.get(this, ::Legends.Active.LegendLaunchAcidFlask);
-		if (skill != null)
+		if (skill != null && this.getAmmo() > 0)
 			skill.setItem(this);
 	}
 

@@ -4,7 +4,7 @@ this.legend_choke_skill <- this.inherit("scripts/skills/skill", {
 	function create()
 	{
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendChoke);
-		this.m.Description = "A well-placed attack at an opponent\'s neck. Ignores all armor but is harder to hit with. Hit chance is based on target's fatigue. Damage is based on the difference in fatigue. Deals 50% damage against grappled or choked enemies. Hit chance is increased against grappled, stunned, netted, dazed, parried or sleeping enemies.";
+		this.m.Description = "A well-placed attack at an opponent\'s neck. Ignores all armor but is harder to hit with. Hit chance is based on target's fatigue. Damage is based on the difference in fatigue. Deals 50% damage against grappled or choked enemies. Hit chance is increased against grappled, stunned, netted, dazed, parried or sleeping enemies. Requires both hands to be free.";
 		this.m.KilledString = "Choked";
 		this.m.Icon = "skills/choke_square.png";
 		this.m.IconDisabled = "skills/choke_square_bw.png";
@@ -48,25 +48,13 @@ this.legend_choke_skill <- this.inherit("scripts/skills/skill", {
 				id = 6,
 				type = "text",
 				icon = "ui/icons/regular_damage.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+50%[/color] damage to Choked, Tackled or Grappled enemies"
-			},
-			{
-				id = 7,
-				type = "text",
-				icon = "ui/icons/special.png",
-				text = "Has a [color=" + this.Const.UI.Color.PositiveValue + "]100%[/color] chance to hit the head"
-			},
-			{
-				id = 8,
-				type = "text",
-				icon = "ui/icons/special.png",
-				text = "Completely ignores armor"
+				text = "[color=%positive%]+50%[/color] damage to Choked, Tackled or Grappled enemies"
 			},
 			{
 				id = 9,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "Adds the Choked effect which reduces enemy fatigue recovery by [color=" + this.Const.UI.Color.NegativeValue + "]15[/color]"
+				text = "Adds the Choked effect which reduces enemy fatigue recovery by [color=%negative%]15[/color]"
 			}
 		]);
 		return tooltip;
@@ -74,15 +62,23 @@ this.legend_choke_skill <- this.inherit("scripts/skills/skill", {
 
 	function isUsable()
 	{
-		local mainhand = this.m.Container.getActor().getItems().getItemAtSlot(this.Const.ItemSlot.Mainhand);
-		local offhand = this.m.Container.getActor().getItems().getItemAtSlot(this.Const.ItemSlot.Offhand);
+		local actor = this.getContainer().getActor();
+		local mainhand = actor.getItems().getItemAtSlot(this.Const.ItemSlot.Mainhand);
+		local offhand = actor.getItems().getItemAtSlot(this.Const.ItemSlot.Offhand);
+		local hasNet = offhand != null && ::MSU.String.endsWith(offhand.getID(), "_net") && actor.getCurrentProperties().IsSpecializedInNets;
+		if (hasNet && mainhand == null && this.skill.isUsable())
+			return true;
 		return ((offhand == null && mainhand == null) || this.getContainer().hasEffect(::Legends.Effect.Disarmed)) && this.skill.isUsable();
 	}
 
 	function isHidden()
 	{
-		local mainhand = this.m.Container.getActor().getItems().getItemAtSlot(this.Const.ItemSlot.Mainhand);
-		local offhand = this.m.Container.getActor().getItems().getItemAtSlot(this.Const.ItemSlot.Offhand);
+		local actor = this.getContainer().getActor();
+		local mainhand = actor.getItems().getItemAtSlot(this.Const.ItemSlot.Mainhand);
+		local offhand = actor.getItems().getItemAtSlot(this.Const.ItemSlot.Offhand);
+		local hasNet = offhand != null && ::MSU.String.endsWith(offhand.getID(), "_net") && actor.getCurrentProperties().IsSpecializedInNets;
+		if (hasNet && mainhand == null)
+			return true;
 		return mainhand != null || offhand != null && !this.getContainer().hasEffect(::Legends.Effect.Disarmed) || this.skill.isHidden() || this.m.Container.getActor().isStabled();
 	}
 
@@ -98,7 +94,7 @@ this.legend_choke_skill <- this.inherit("scripts/skills/skill", {
 				this.logInfo(bonus);
 				_tooltip.push({
 					icon = "ui/tooltips/positive.png",
-					text = "[color=" + this.Const.UI.Color.PositiveValue + "]" + bonus + "%[/color] damage due to the difference in fatigue"
+					text = "[color=%positive%]" + bonus + "%[/color] damage due to the difference in fatigue"
 				});
 			}
 		}

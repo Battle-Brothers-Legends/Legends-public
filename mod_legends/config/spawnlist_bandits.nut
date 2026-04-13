@@ -10,7 +10,7 @@
 	MaxR = 600,
 	Fixed = [
 		{
-			Type = this.Const.World.Spawn.Troops.BanditWarlord,
+			Type = this.Const.World.Spawn.Troops.LegendRobberBaron,
 			Weight = 100, //100 Weight guarentees this will be added
 			Cost = 1, //dictates cost taken from minR
 			Roll = true

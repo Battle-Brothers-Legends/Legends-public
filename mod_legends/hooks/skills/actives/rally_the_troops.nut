@@ -23,19 +23,19 @@
 				id = 7,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "Triggers a morale check to rally fleeing allies within 4 tiles distance, with a bonus to Resolve of [color=" + this.Const.UI.Color.PositiveValue + "]+" + bravery + "[/color] based on this character\'s Resolve"
+				text = "Triggers a morale check to rally fleeing allies within 4 tiles distance, with a bonus to Resolve of [color=%positive%]+" + bravery + "[/color] based on this character\'s Resolve"
 			},
 			{
 				id = 7,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "Triggers a morale check to raise the morale of anyone wavering or worse within 4 tiles distance, with a bonus to Resolve of [color=" + this.Const.UI.Color.PositiveValue + "]+" + bravery + "[/color] based on this character\'s Resolve, but lowered by [color=" + this.Const.UI.Color.NegativeValue + "]-10[/color] per tile distance"
+				text = "Triggers a morale check to raise the morale of anyone wavering or worse within 4 tiles distance, with a bonus to Resolve of [color=%positive%]+" + bravery + "[/color] based on this character\'s Resolve, but lowered by [color=%negative%]-10[/color] per tile distance"
 			},
 			{
 				id = 7,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "Has a [color=" + this.Const.UI.Color.PositiveValue + "]" + bravery + "%[/color] chance to remove [color=#731f39]Charmed[/color], [color=#731f39]Sleeping[/color] or [color=#731f39]Infatuated[/color] from affected targets on cast."
+				text = "Has a [color=%positive%]" + bravery + "%[/color] chance to remove [color=#731f39]Charmed[/color], [color=#731f39]Sleeping[/color] or [color=#731f39]Infatuated[/color] from affected targets on cast."
 			}
 		];
 
@@ -45,7 +45,7 @@
 				id = 9,
 				type = "text",
 				icon = "ui/tooltips/warning.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]Can not rally others the same turn as being rallied themself[/color]"
+				text = "[color=%negative%]Can not rally others the same turn as being rallied themself[/color]"
 			});
 		}
 
@@ -62,7 +62,7 @@
 		local myTile = _user.getTile();
 		local bravery = this.getBonus();
 		local actors = this.Tactical.Entities.getAllInstancesAsArray(); //Take all actors instead of ones belonging to the user's faction
-		
+
 		foreach( a in actors )
 		{
 			if (a.getID() == _user.getID())
@@ -97,12 +97,12 @@
 						::Legends.Effects.remove(a, ::Legends.Effect.LegendIntenselyCharmed);
 						}
 				}
-			
+
 				if ( a.getMoraleState() >= this.Const.MoraleState.Steady )
 				{
 					continue;
 				}
-			
+
 				this.logInfo("finding rally difficulty");
 				local difficulty = bravery;
 					this.logInfo("getting distance");
@@ -125,7 +125,7 @@
 			{
 				local rand = this.Math.rand(1, 100);
 				if( bravery > rand )
-				{						
+				{
 					::Legends.Effects.remove(a, ::Legends.Effect.Charmed);
 					::Legends.Effects.remove(a, ::Legends.Effect.Sleeping);
 					::Legends.Effects.remove(a, ::Legends.Effect.LegendIntenselyCharmed);
@@ -141,7 +141,7 @@
 			{
 				continue;
 			}
-			
+
 			if ( a.getMoraleState() >= this.Const.MoraleState.Steady )
 			{
 				continue;

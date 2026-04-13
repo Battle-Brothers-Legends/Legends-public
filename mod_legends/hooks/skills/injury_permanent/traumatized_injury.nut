@@ -32,13 +32,13 @@ this.mods_hookExactClass("skills/injury_permanent/traumatized_injury", function(
 					id = 7,
 					type = "text",
 					icon = "ui/icons/bravery.png",
-					text = "[color=" + this.Const.UI.Color.NegativeValue + "]" + resolveMalus + "%[/color] Resolve"
+					text = "[color=%negative%]" + resolveMalus + "%[/color] Resolve"
 				},
 				{
 					id = 7,
 					type = "text",
 					icon = "ui/icons/initiative.png",
-					text = "[color=" + this.Const.UI.Color.NegativeValue + "]" + iniMalus + "%[/color] Initiative"
+					text = "[color=%negative%]" + iniMalus + "%[/color] Initiative"
 				},
 				{
 					id = 16,
@@ -48,7 +48,7 @@ this.mods_hookExactClass("skills/injury_permanent/traumatized_injury", function(
 				}
 			]);
 		}
-			
+
 		this.addTooltipHint(ret);
 		return ret;
 	}

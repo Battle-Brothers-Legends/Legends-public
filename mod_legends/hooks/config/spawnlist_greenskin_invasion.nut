@@ -18,6 +18,16 @@
 				{
 					Type = this.Const.World.Spawn.Troops.GoblinSkirmisher,
 					Cost = 15
+				},
+				{
+					Type = ::Const.World.Spawn.Troops.LegendGoblinPlunderer,
+					MinR = 800,
+					Cost = 40
+				},
+				{
+					Type = ::Const.World.Spawn.Troops.LegendGoblinHarrier,
+					MinR = 1200,
+					Cost = 50
 				}
 			]
 		},
@@ -44,6 +54,16 @@
 				{
 					Type = this.Const.World.Spawn.Troops.GoblinWolfrider,
 					Cost = 40
+				},
+				{
+					Type = this.Const.World.Spawn.Troops.LegendGoblinDirewolfRider,
+					MinR = 1200,
+					Cost = 60
+				},
+				{
+					Type = this.Const.World.Spawn.Troops.LegendGoblinWhiteDirewolfRider,
+					MinR = 1600,
+					Cost = 80
 				}
 			]
 		},
@@ -62,6 +82,21 @@
 				{
 					Type = this.Const.World.Spawn.Troops.GoblinShaman,
 					Cost = 35
+				},
+				{
+					Type = this.Const.World.Spawn.Troops.LegendGoblinWitchDoctor,
+					MinR = 1600,
+					Cost = 60
+				}
+			]
+		},
+		{
+			Weight = 5,
+			Types = [
+				{
+					Type = ::Const.World.Spawn.Troops.LegendGoblinTribeDefender,
+					MinR = 450,
+					Cost = 40
 				}
 			]
 		},
@@ -79,7 +114,7 @@
 			]
 		},
 		{
-			Weight = 20,
+			Weight = 30,
 			Types = [
 				{
 					Type = this.Const.World.Spawn.Troops.OrcWarriorLOW,
@@ -98,11 +133,22 @@
 				{
 					Type = this.Const.World.Spawn.Troops.OrcBerserker,
 					Cost = 25
+				},
+				{
+					Type = ::Const.World.Spawn.Troops.LegendGoblinBerserker,
+					MinR = 900,
+					Cost = 50
+				},
+				{
+					Type = ::Const.World.Spawn.Troops.LegendOrcMadBerserker,
+					MinR = 1200,
+					Cost = 60,
+					Roll = true
 				}
 			]
 		},
 		{
-			Weight = 3,
+			Weight = 5,
 			Types = [
 				{
 					Type = this.Const.World.Spawn.Troops.OrcWarlord,
@@ -112,11 +158,16 @@
 					Type = this.Const.World.Spawn.Troops.LegendOrcElite,
 					MinR = 0.75 * 1115,
 					Cost = 60
+				},
+				{
+					Type = this.Const.World.Spawn.Troops.LegendOrcTyrant,
+					MinR = 1300,
+					Cost = 70
 				}
 			]
 		},
 		{
-			Weight = 3,
+			Weight = 5,
 			Types = [
 				{
 					Type = this.Const.World.Spawn.Troops.LegendOrcBehemoth,

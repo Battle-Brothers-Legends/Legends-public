@@ -6,8 +6,8 @@ this.legend_rune_clarity <- this.inherit("scripts/items/legend_helmets/legend_he
 		this.m.ID = "legend_helmet_upgrade.legend_rune_clarity";
 		this.m.Type = this.Const.Items.HelmetUpgrades.Rune;
 		this.m.Name = "Helmet Rune Sigil: Clarity";
-		this.m.Description = "An inscribed rock that can be attached to a character\'s helmet.";
-		this.m.ArmorDescription = "Includes An inscribed rock that grants additional vision and XP bonuses.";
+		this.m.Description = "An inscribed rock that can be attached to a character\'s helmet to increase the wearer's clarity.";
+		this.m.ArmorDescription = "Includes a clarity rune.";
 		this.m.Icon = "rune_sigils/rune_stone_2.png";
 		this.m.IconLarge = this.m.Icon;
 		this.m.OverlayIcon = "layers/glow_runed_icon.png";
@@ -22,26 +22,5 @@ this.legend_rune_clarity <- this.inherit("scripts/items/legend_helmets/legend_he
 	{
 	}
 
-	function getTooltip()
-	{
-		local result = this.legend_helmet_upgrade.getTooltip();
-		result.push({
-			id = 7,
-			type = "text",
-			icon = "ui/icons/special.png",
-			text = "This item has the power of the rune sigil of Clarity:\n[color=" + this.Const.UI.Color.PositiveValue + "]+" + this.getRuneBonus1() + "[/color] Vision.\n[color=" + this.Const.UI.Color.PositiveValue + "]+" + this.getRuneBonus2() + "%[/color] Experience gain."
-		});
-		return result;
-	}
-
-	function onArmorTooltip( _result )
-	{
-		_result.push({
-			id = 7,
-			type = "text",
-			icon = "ui/icons/special.png",
-			text = "This item has the power of the rune sigil of Clarity:\n[color=" + this.Const.UI.Color.PositiveValue + "]+" + this.getRuneBonus1() + "[/color] Vision.\n[color=" + this.Const.UI.Color.PositiveValue + "]+" + this.getRuneBonus2() + "%[/color] Experience gain."
-		});
-	}
 });
 

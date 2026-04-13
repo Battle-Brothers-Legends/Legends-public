@@ -51,11 +51,6 @@ this.legend_piercing_bolt_skill <- ::inherit("scripts/skills/actives/shoot_bolt"
 		return ret;
 	}
 
-	function isHidden()
-	{
-		return !getContainer().hasPerk(::Legends.Perk.LegendPiercingShot);
-	}
-
 	function onUse( _user, _targetTile )
 	{
 		this.m.OriginalDirection = _user.getTile().getDirectionTo(_targetTile);

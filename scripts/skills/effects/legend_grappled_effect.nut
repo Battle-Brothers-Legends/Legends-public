@@ -16,7 +16,7 @@ this.legend_grappled_effect <- this.inherit("scripts/skills/skill", {
 
 	function getDescription()
 	{
-		return "This character has been grappled to the ground and exhausted in the clinch. They will catch their breath in [color=" + this.Const.UI.Color.NegativeValue + "]" + this.m.TurnsLeft + "[/color] turn(s).";
+		return "This character has been grappled to the ground and exhausted in the clinch. They will catch their breath in [color=%negative%]" + this.m.TurnsLeft + "[/color] turn(s).";
 	}
 
 	function getTooltip()
@@ -37,15 +37,15 @@ this.legend_grappled_effect <- this.inherit("scripts/skills/skill", {
 				type = "text",
 				icon = "ui/icons/fatigue.png",
 				// Changed from fatigue to MD. Surprisingly the original didn't mention MD even though it had a whopping 50% MD debuff.
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]-12[/color] melee defense"
+				text = "[color=%negative%]-12[/color] melee defense"
 			},
 			{
 				id = 12,
 				type = "text",
 				icon = "ui/icons/fatigue.png",
 				// Changed from fatigue to init
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]-30%[/color] Initiative"
-				//text = "[color=" + this.Const.UI.Color.NegativeValue + "]-50%[/color] Maximum Fatigue"
+				text = "[color=%negative%]-30%[/color] Initiative"
+				//text = "[color=%negative%]-50%[/color] Maximum Fatigue"
 			}
 		];
 	}

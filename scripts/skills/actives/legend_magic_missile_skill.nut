@@ -65,7 +65,7 @@ this.legend_magic_missile_skill <- this.inherit("scripts/skills/legend_magic_ski
 				id = 6,
 				type = "text",
 				icon = "ui/icons/vision.png",
-				text = "Has a range of [color=" + this.Const.UI.Color.PositiveValue + "]" + this.m.MaxRange + "[/color] tiles on even ground, more if shooting downhill. Damage based on current initiative."
+				text = "Has a range of [color=%positive%]" + this.m.MaxRange + "[/color] tiles on even ground, more if shooting downhill. Damage based on current initiative."
 			}
 		]);
 			ret.push({

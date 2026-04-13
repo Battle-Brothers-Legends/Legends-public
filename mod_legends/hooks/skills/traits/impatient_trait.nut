@@ -1,36 +1,47 @@
-::mods_hookExactClass("skills/traits/impatient_trait", function(o)
-{
+::mods_hookExactClass("skills/traits/impatient_trait", function (o) {
 	local create = o.create;
-	o.create = function ()
-	{
+	o.create = function () {
 		create();
-		this.m.Excluded.extend(
-		[
+		this.m.Excluded.extend([
 			::Legends.Traits.getID(::Legends.Trait.LegendSureshot),
 			::Legends.Traits.getID(::Legends.Trait.LegendSlack)
 		]);
 	}
 
-	local getTooltip = o.getTooltip;
-	o.getTooltip = function ()
-	{
-		local ret = getTooltip();
-		ret.push({
-			id = 12,
-			type = "text",
-			icon = "ui/icons/melee_defense.png",
-			text = "[color=" + this.Const.UI.Color.NegativeValue + "]-5%[/color] Melee Defense"
-		});
-
-		return ret;
+	o.getTooltip = function () {
+		return [
+			{
+				id = 1,
+				type = "title",
+				text = this.getName()
+			},
+			{
+				id = 2,
+				type = "description",
+				text = this.getDescription()
+			},
+			{
+				id = 10,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = "Acts first in turn order, but slower than characters under the effect of [color=%status%]Adrenaline[/color]"
+			},
+			{
+				id = 11,
+				type = "text",
+				icon = "ui/icons/warning.png",
+				text = "Is unable to use wait in combat"
+			}
+		];
 	}
 
-	o.onUpdate = function ( _properties )
-	{
-		if (this.getContainer().getActor().isPlacedOnMap() && this.Time.getRound() <= 1)
-		{
+	o.onUpdate = function (_properties) {
+		if (this.getContainer().getActor().isPlacedOnMap()) {
 			_properties.InitiativeForTurnOrderAdditional += 1000;
-			_properties.MeleeDefenseMult *= 0.95;
 		}
+	}
+
+	o.onTurnStart <- function () {
+		this.getContainer().getActor().setWaitActionSpent(true);
 	}
 });

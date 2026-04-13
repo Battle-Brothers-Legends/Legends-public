@@ -15,7 +15,7 @@ this.legend_choked_effect <- this.inherit("scripts/skills/skill", {
 	}
 	function getDescription()
 	{ // changed the  description slightly
-		return "This character has recently been choked out and is exhausted. They will catch their breath in [color=" + this.Const.UI.Color.NegativeValue + "]" + this.m.TurnsLeft + "[/color] turn(s).";
+		return "This character has recently been choked out and is exhausted. They will catch their breath in [color=%negative%]" + this.m.TurnsLeft + "[/color] turn(s).";
 	}
 
 	function getTooltip()
@@ -35,7 +35,7 @@ this.legend_choked_effect <- this.inherit("scripts/skills/skill", {
 				id = 11,
 				type = "text",
 				icon = "ui/icons/fatigue.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]-15[/color] Fatigue recovered per turn"
+				text = "[color=%negative%]-15[/color] Fatigue recovered per turn"
 			}
 		];
 	}

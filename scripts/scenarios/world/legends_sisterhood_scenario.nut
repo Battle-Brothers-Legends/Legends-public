@@ -50,7 +50,7 @@ this.legends_sisterhood_scenario <- this.inherit("scripts/scenarios/world/starti
 			"legend_vala_background"
 		], true, 1);
 		::Legends.Traits.grant(bros[4], ::Legends.Trait.Player);
-		this.addScenarioPerk(bros[4].getBackground(), this.Const.Perks.PerkDefs.LegendValaWarden);
+		this.addScenarioPerk(bros[4].getBackground(), ::Const.Perks.PerkDefs.LegendValaWarden);
 		bros[4].m.PerkPointsSpent += 1;
 		bros[4].getFlags().set("IsPlayerCharacter", true);
 		bros[4].setPlaceInFormation(13);
@@ -185,7 +185,7 @@ this.legends_sisterhood_scenario <- this.inherit("scripts/scenarios/world/starti
 
 	function onBuildPerkTree( _background )
 	{
-		this.addScenarioPerk(_background, this.Const.Perks.PerkDefs.HoldOut, 0, _background.isBackgroundType(this.Const.BackgroundType.Female));
+		this.addScenarioPerk(_background, ::Const.Perks.PerkDefs.HoldOut, 0, _background.isBackgroundType(this.Const.BackgroundType.Female));
 	}
 
 });

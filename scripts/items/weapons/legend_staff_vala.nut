@@ -28,6 +28,7 @@ this.legend_staff_vala <- this.inherit("scripts/items/weapons/weapon", {
 		this.m.RegularDamageMax = 30;
 		this.m.ArmorDamageMult = 0.6;
 		this.m.DirectDamageMult = 0.4;
+		this.m.Flags.add("vala_staff");
 //		this.m.IsChangeableInBattle = false;
 	}
 

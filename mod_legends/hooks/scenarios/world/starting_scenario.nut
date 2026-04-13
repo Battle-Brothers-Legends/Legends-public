@@ -12,6 +12,8 @@
 	//Something defined here won't have relations normalized over time in faction_manager
 	//I think this would be better if we instead automatically set the size to be faction_manager's update()
 	//Useful for when you set the relations and want them to be permanent e.g. legion scenario
+	o.m.ExcludedAmbitions <- []; // set in onInit, it's not serialized and doesn't need to be
+	o.m.BrotherScaling <- 1.0;
 
 	o.isDroppedAsLoot = function (_item)
 	{
@@ -35,6 +37,11 @@
 		if (this.m.Difficulty == 4)
 			return "difficulty_legend";
 		return getDifficultyForUI();
+	}
+
+	o.getBrotherScaling <- function ()
+	{
+		return this.m.BrotherScaling;
 	}
 
 	o.getStaticRelations <- function ()
@@ -120,16 +127,15 @@
 			return;
 		}
 
-		local isRefundable = true;
+		local isRefundable = false;
 
 		if (_addSkill && _background.getContainer() != null)
 		{
-			_background.getContainer().add(this.new(this.Const.Perks.PerkDefObjects[_perk].Script));
+			_background.getContainer().add(this.new(::Const.Perks.PerkDefObjects[_perk].Script));
 			isRefundable = false;
 		}
 
 		_background.addPerk(_perk, _row, isRefundable);
-		if (!isRefundable) _background.getPerk(_perk).IsRefundable = false;
 	}
 
 	o.onGenerateBro <- function (_bro)
@@ -155,5 +161,9 @@
 	o.setCurrentSettlement <- function ( _settlement )
 	{
 		this.m.CurrentSettlement = ::MSU.asWeakTableRef(_settlement);
+	}
+
+	o.getExcludedAmbitions <- function () {
+		return this.m.ExcludedAmbitions;
 	}
 });

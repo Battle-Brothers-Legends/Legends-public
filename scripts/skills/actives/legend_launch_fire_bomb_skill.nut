@@ -1,7 +1,5 @@
 this.legend_launch_fire_bomb_skill <- this.inherit("scripts/skills/actives/throw_fire_bomb_skill", {
-	m = {
-		Item = null
-		},
+	m = {},
 	function create()
 	{
 		this.throw_fire_bomb_skill.create();
@@ -33,7 +31,7 @@ this.legend_launch_fire_bomb_skill <- this.inherit("scripts/skills/actives/throw
 			id = 6,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "Set an area of [color=" + this.Const.UI.Color.DamageValue + "]7[/color] tiles ablaze with fire for 2 rounds. Water and snow can not burn."
+			text = "Set an area of [color=%damage%]7[/color] tiles ablaze with fire for 2 rounds. Water and snow can not burn."
 		},
 		{
 			id = 6,
@@ -66,7 +64,7 @@ this.legend_launch_fire_bomb_skill <- this.inherit("scripts/skills/actives/throw
 				id = 8,
 				type = "text",
 				icon = "ui/icons/ammo.png",
-				text = "Has [color=" + this.Const.UI.Color.PositiveValue + "]" + ammo + "[/color] use left"
+				text = "Has [color=%positive%]" + ammo + "[/color] use left"
 			});
 		}
 		else
@@ -75,47 +73,31 @@ this.legend_launch_fire_bomb_skill <- this.inherit("scripts/skills/actives/throw
 				id = 8,
 				type = "text",
 				icon = "ui/tooltips/warning.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]No ammo left in backpack[/color]"
+				text = "[color=%negative%]No ammo left in backpack[/color]"
 			});
 		}
 
 		return ret;
 	}
 
-	function setItem( _i )
-	{
-		this.m.Item = this.WeakTableRef(_i);
-	}
-
 	function isHidden()
 	{
-		if (!::Legends.Perks.get(this, ::Legends.Perk.LegendSlingerSpins))
+		local actor = this.getContainer().getActor();
+		if (actor == null)
+			return true;
+		if (actor.getCurrentProperties() == null)
+			return true;
+		if (!actor.getCurrentProperties().IsSpecializedInSlings)
 			return true;
 		if (this.m.Item != null && !this.m.Item.isNull() && this.m.Item.getAmmo() != 0)
-		{
 			return false;
-		}
-
 		return this.skill.isHidden();
 	}
+
 
 	function isUsable()
 	{
 		return !this.Tactical.isActive() || this.skill.isUsable() && this.getAmmo() > 0 && !this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions());
-	}
-
-	function getAmmo()
-	{
-		if (this.m.Item != null && !this.m.Item.isNull())
-			return this.m.Item.getAmmo();
-
-		return 0;
-	}
-
-	function consumeAmmo()
-	{
-		if (this.m.Item != null && !this.m.Item.isNull())
-			this.m.Item.consumeAmmo();
 	}
 
 	function onAnySkillUsed( _skill, _targetEntity, _properties )

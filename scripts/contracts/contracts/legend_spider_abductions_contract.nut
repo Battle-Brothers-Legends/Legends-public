@@ -164,12 +164,12 @@ this.legend_spider_abductions_contract <- this.inherit("scripts/contracts/contra
 						local abductees = ::Math.rand(3,6);
 						this.Flags.set("NumAbductees", abductees);
 
-						for (local i=0; i < abductees; i++)
-						{
+						local freeSlots = ::Legends.S.getEmptySlotsInFormation();
+						for (local i=0; i < abductees; i++) {
 							local villager = ::World.getGuestRoster().create("scripts/entity/tactical/humans/envoy");
 							villager.setName("Abducted Villager");
 							villager.setFaction(1);
-							villager.setPlaceInFormation(19 + i);
+							villager.setPlaceInFormation(freeSlots.pop());
 							::Legends.Effects.grant(villager, ::Legends.Effect.LegendWebAtStart);
 							villager.getFlags().add("IsSpiderAbductee", true);
 							entities.push(villager);

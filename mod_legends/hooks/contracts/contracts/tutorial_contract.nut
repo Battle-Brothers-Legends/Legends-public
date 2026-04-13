@@ -19,6 +19,7 @@
 					e.assignRandomEquipment();
 					::Legends.Perks.remove(e, ::Legends.Perk.Overwhelm);
 					::Legends.Perks.remove(e, ::Legends.Perk.Nimble);
+					::Legends.Perks.remove(e, ::Legends.Perk.Dodge);
 					e.getItems().getItemAtSlot(this.Const.ItemSlot.Body).setArmor(0);
 
 					if (e.getItems().getItemAtSlot(this.Const.ItemSlot.Head) != null)
@@ -44,6 +45,7 @@
 					e.getSprite("socket").setBrush("bust_base_player");
 					::Legends.Perks.remove(e, ::Legends.Perk.Overwhelm);
 					::Legends.Perks.remove(e, ::Legends.Perk.Nimble);
+					::Legends.Perks.remove(e, ::Legends.Perk.Dodge);
 					local armor = this.Const.World.Common.pickArmor([
 						[1, ::Legends.Armor.Standard.mail_hauberk, 32],
 					]);
@@ -64,6 +66,9 @@
 					e.getAIAgent().getProperties().BehaviorMult[this.Const.AI.Behavior.ID.Retreat] = 0.0;
 					e.assignRandomEquipment();
 					e.getBaseProperties().Initiative = 300;
+					::Legends.Perks.remove(e, ::Legends.Perk.Overwhelm);
+					::Legends.Perks.remove(e, ::Legends.Perk.Nimble);
+					::Legends.Perks.remove(e, ::Legends.Perk.Dodge);
 					e.getSkills().update();
 					e = this.Tactical.spawnEntity("scripts/entity/tactical/enemies/legend_bandit_thug", 17, 18 - 17 / 2);
 					e.setFaction(this.Const.Faction.Enemy);
@@ -71,6 +76,9 @@
 					e.getAIAgent().getProperties().BehaviorMult[this.Const.AI.Behavior.ID.Retreat] = 0.0;
 					e.assignRandomEquipment();
 					e.getBaseProperties().Initiative = 200;
+					::Legends.Perks.remove(e, ::Legends.Perk.Overwhelm);
+					::Legends.Perks.remove(e, ::Legends.Perk.Nimble);
+					::Legends.Perks.remove(e, ::Legends.Perk.Dodge);
 					e.getSkills().update();
 					e = this.Tactical.spawnEntity("scripts/entity/tactical/enemies/legend_bandit_raider_low", 19, 17 - 19 / 2);
 					e.setFaction(this.Const.Faction.Enemy);
@@ -87,6 +95,9 @@
 					this.Flags.set("BossBeardTop", e.getSprite("beard_top").HasBrush ? e.getSprite("beard_top").getBrush().Name : "");
 					this.Flags.set("BossHair", e.getSprite("hair").HasBrush ? e.getSprite("hair").getBrush().Name : "");
 					e.getBaseProperties().Hitpoints = 300;
+					::Legends.Perks.remove(e, ::Legends.Perk.Overwhelm);
+					::Legends.Perks.remove(e, ::Legends.Perk.Nimble);
+					::Legends.Perks.remove(e, ::Legends.Perk.Dodge);
 					e.getSkills().update();
 					e.setHitpoints(180);
 					e.setMoraleState(this.Const.MoraleState.Wavering);

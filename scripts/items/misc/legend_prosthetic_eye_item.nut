@@ -58,7 +58,7 @@ this.legend_prosthetic_eye_item <- this.inherit("scripts/items/item", {
 				id = 64,
 				type = "text",
 				icon = "ui/icons/bravery.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+7[/color] Resolve"
+				text = "[color=%positive%]+7[/color] Resolve"
 			},
 			{
 				id = 65,

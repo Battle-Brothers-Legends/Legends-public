@@ -1,6 +1,6 @@
 this.legend_stollwurm_blood_effect <- this.inherit("scripts/skills/skill", {
 	m = {
-	TurnsLeft = 3
+		TurnsLeft = 3
 	},
 	function create()
 	{
@@ -35,7 +35,7 @@ this.legend_stollwurm_blood_effect <- this.inherit("scripts/skills/skill", {
 				id = 6,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "Only receive [color=" + this.Const.UI.Color.PositiveValue + "]50%[/color] of any damage"
+				text = "Only receive [color=%positive%]50%[/color] of any damage"
 			},
 			{
 				id = 6,

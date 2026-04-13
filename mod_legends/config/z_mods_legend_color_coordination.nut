@@ -5,45 +5,45 @@
 	Gambeson - 
 		1 plain, 
 		2 black, 
-		3 black-v, 
-		4 blue, 
-		5 green+gold stripe, 
-		6 red+blue halves, 
-		7 red, 
-		8 white+blue, 
-		9 white, 
-		10 green shoulder+white, 
-		11 gold, 
-		12 blue/green/gold sash, 
-		13 gold/red halves
-		14 white buckled
-		15 olive
-		16 lavendar?
-		17 magenta?
-		18 full red
-		19 red white stripe
-		20 red white checked
-		21 red sleeve
-		22 red sleeve 2
-		23 red quarter
-		24 green white stripe
-		25 green white checked
-		26 green sleeve
-		27 green sleeve 2
-		28 green quarter
-		29 full green
-		30 blue white stripe
-		31 blue white checked
-		32 blue sleeve
-		33 blue sleeve 2
-		34 full blue
-		35 full black
-		36 black stripe
-		37 black check
-		38 black sleeve
-		39 black sleeve 2
-		40 black quarter
-	Surcoat  - 
+		3 white, 
+		4 green+gold stripe, 
+		5 red+blue halves, 
+		6 red, 
+		7 white+blue, 
+		8 black-v, 
+		9 green shoulder+white, 
+		10 gold, 
+		11 blue/green/gold sash, 
+		12 gold/red halves
+		13 white buckled
+		14 olive
+		15 lavender?
+		16 magenta?
+		17 full red
+		18 red white stripe
+		19 red white checked
+		20 red sleeve
+		21 red sleeve 2
+		22 red quarter
+		23 green white stripe
+		24 green white checked
+		25 green sleeve
+		26 green sleeve 2
+		27 green quarter
+		28 full green
+		29 blue white stripe
+		30 blue white checked
+		31 blue sleeve
+		32 blue sleeve 2
+		33 full blue
+		34 full black
+		35 black stripe
+		36 black check
+		37 black sleeve
+		38 black sleeve 2
+		39 black quarter
+		40 blue, 
+	Aketon  - 
 		1 plain, 
 		2 red, 
 		3 red under white, 

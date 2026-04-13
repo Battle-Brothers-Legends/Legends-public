@@ -114,11 +114,6 @@ this.legends_minstrel_and_troubador_event <- this.inherit("scripts/events/event"
 		]);
 	}
 
-	function onDetermineStartScreen()
-	{
-		return "A";
-	}
-
 	function onClear()
 	{
 		this.m.Minstrel = null;

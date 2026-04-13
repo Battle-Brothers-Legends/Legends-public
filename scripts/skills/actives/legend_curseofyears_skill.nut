@@ -60,19 +60,19 @@ this.legend_curseofyears_skill <- this.inherit("scripts/skills/skill", {
 				id = 6,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "The damage being applied in next turn has a [color=" + this.Const.UI.Color.PositiveValue + "]17%[/color] chance to cause a wound. An additional stack is added in each turn, to a maximum of [color=" + this.Const.UI.Color.PositiveValue + "]83%[/color]. The damage pierces armor."
+				text = "The damage being applied in next turn has a [color=%positive%]17%[/color] chance to cause a wound. An additional stack is added in each turn, to a maximum of [color=%positive%]83%[/color]. The damage pierces armor."
 			},
 			{
 				id = 6,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "Before damage is applied, the target has a [color=" + this.Const.UI.Color.DamageValue + "]30%[/color] chance to break the effect."
+				text = "Before damage is applied, the target has a [color=%damage%]30%[/color] chance to break the effect."
 			},
 			{
 				id = 6,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "Decrepify has a cooldown of [color=" + this.Const.UI.Color.DamageValue + "]4[/color] turns."
+				text = "Decrepify has a cooldown of [color=%damage%]4[/color] turns."
 			}
 		];
 		return ret;

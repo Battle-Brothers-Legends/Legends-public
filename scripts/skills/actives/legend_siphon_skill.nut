@@ -56,7 +56,7 @@ this.legend_siphon_skill <- this.inherit("scripts/skills/skill", {
 				id = 4,
 				type = "text",
 				icon = "ui/icons/health.png", // fix from /ui to ui/, Abyss 6/17/23
-				text = "Siphons up to [color=" + this.Const.UI.Color.DamageValue + "]30%[/color] of targets health to you. Drops by [color=" + this.Const.UI.Color.NegativeValue + "]5%[/color] for each tile distance."
+				text = "Siphons up to [color=%damage%]30%[/color] of targets health to you. Drops by [color=%negative%]5%[/color] for each tile distance."
 			}
 		];
 	}

@@ -34,7 +34,7 @@ this.legend_drink_recovery_potion_skill <- this.inherit("scripts/skills/actives/
 				id = 11,
 				type = "text",
 				icon = "ui/icons/fatigue.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+10[/color] Fatigue Recovery per turn"
+				text = "[color=%positive%]+10[/color] Fatigue Recovery per turn"
 			}
 		];
 
@@ -44,7 +44,7 @@ this.legend_drink_recovery_potion_skill <- this.inherit("scripts/skills/actives/
 				id = 5,
 				type = "text",
 				icon = "ui/tooltips/warning.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]Can not be used because this character is engaged in melee[/color]"
+				text = "[color=%negative%]Can not be used because this character is engaged in melee[/color]"
 			});
 		}
 

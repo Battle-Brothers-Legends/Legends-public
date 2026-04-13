@@ -16,7 +16,7 @@ this.legend_liquor_burn_effect <- this.inherit("scripts/skills/skill", {
 
 	function getDescription()
 	{
-		return "Having just consumed liquor, this character has [color=" + this.Const.UI.Color.PositiveValue + "]+12[/color] Resolve, Melee and Ranged Skill, [color=" + this.Const.UI.Color.NegativeValue + "]-12[/color] Defenses and [color=" + this.Const.UI.Color.NegativeValue + "]-24[/color] Initiative for [color=" + this.Const.UI.Color.NegativeValue + "]" + this.m.TurnsLeft + "[/color] turn(s).";
+		return "Having just consumed liquor, this character has [color=%positive%]+12[/color] Resolve, Melee and Ranged Skill, [color=%negative%]-12[/color] Defenses and [color=%negative%]-24[/color] Initiative for [color=%negative%]" + this.m.TurnsLeft + "[/color] turn(s).";
 	}
 
 	function getTooltip()
@@ -36,37 +36,37 @@ this.legend_liquor_burn_effect <- this.inherit("scripts/skills/skill", {
 				id = 11,
 				type = "text",
 				icon = "ui/icons/bravery.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+12[/color] Resolve"
+				text = "[color=%positive%]+12[/color] Resolve"
 			},
 			{
 				id = 11,
 				type = "text",
 				icon = "ui/icons/melee_skill.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+12[/color] Melee Skill"
+				text = "[color=%positive%]+12[/color] Melee Skill"
 			},
 			{
 				id = 11,
 				type = "text",
 				icon = "ui/icons/ranged_skill.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+12[/color] Ranged Skill"
+				text = "[color=%positive%]+12[/color] Ranged Skill"
 			},
 			{
 				id = 11,
 				type = "text",
 				icon = "ui/icons/melee_defense.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]-12[/color] Melee Defense"
+				text = "[color=%negative%]-12[/color] Melee Defense"
 			},
 			{
 				id = 11,
 				type = "text",
 				icon = "ui/icons/ranged_defense.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]-12[/color] Ranged Defense"
+				text = "[color=%negative%]-12[/color] Ranged Defense"
 			},
 			{
 				id = 11,
 				type = "text",
 				icon = "ui/icons/ranged_defense.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]-24[/color] Initiative"
+				text = "[color=%negative%]-24[/color] Initiative"
 			}
 		];
 		return ret;

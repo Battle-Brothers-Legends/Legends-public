@@ -1,23 +1,29 @@
-if (!("Actives" in ::Legends))
+if (!("Actives" in ::Legends)) {
 	::Legends.Actives <- {};
+}
 
 ::Legends.Actives.getContainer <- function (_target, _onError = "") {
 	local container = null;
 	if (_target == null) {
-		::logError( "_target == null " + _onError);
+		::logError("_target == null " + _onError);
 		throw "_target == null";
 	}
-	if (::MSU.isKindOf(_target, "skill"))
+	if (::MSU.isKindOf(_target, "skill")) {
 		return _target.getContainer();
-	if (::MSU.isKindOf(_target, "skill_container"))
+	}
+	if (::MSU.isKindOf(_target, "skill_container")) {
 		return _target;
-	if (::MSU.isKindOf(_target, "actor"))
+	}
+	if (::MSU.isKindOf(_target, "actor")) {
 		return _target.getSkills();
-	if (::MSU.isKindOf(_target, "character_background"))
+	}
+	if (::MSU.isKindOf(_target, "character_background")) {
 		return _target.getContainer();
-	if (::MSU.isKindOf(_target, "item"))
+	}
+	if (::MSU.isKindOf(_target, "item")) {
 		return ::Legends.Actives.getContainer(_target.getContainer().getActor());
-	::logError( "Unsupported _target class " + _onError);
+	}
+	::logError("Unsupported _target class " + _onError);
 	throw "Unsupported _target class";
 }
 
@@ -42,19 +48,37 @@ if (!("Actives" in ::Legends))
 
 	local skill = null;
 	local hasSkill = container.hasSkill(skillDef.ID);
+
+	// When granting to an item, always create a new skill instance so each weapon
+	// has its own skill in m.SkillPtrs. This handles dual wielding (both identical
+	// weapons and different weapons that share skills).
+	if (::MSU.isKindOf(_target, "item")) {
+		skill = ::new(skillDef.Script);
+		if (skill == null) {
+			return null;
+		}
+		if (_applyFn != null) {
+			_applyFn(skill);
+		}
+		_target.addSkill(skill);
+		skill.setContainer(container);
+		return skill;
+	}
+
 	if (hasSkill) {
 		skill = container.getSkillByID(skillDef.ID);
 	} else {
 		skill = ::new(skillDef.Script);
 	}
-	if (_applyFn != null)
+	// Prevents an issue when deserializing dual wield weapons and having ambidextrous
+	// which grants double swing active - not sure how to fix it properly yet
+	if (skill == null) {
+		return null;
+	}
+	if (_applyFn != null) {
 		_applyFn(skill);
-	// actives by default should be tied to items if _target is an item
-	if (::MSU.isKindOf(_target, "item")) {
-		if (!hasSkill)
-			_target.addSkill(skill);
-	} else
-		container.add(skill);
+	}
+	container.add(skill);
 	return skill;
 }
 
@@ -65,8 +89,9 @@ if (!("Actives" in ::Legends))
 ::Legends.Actives.get <- function (_target, _def) {
 	local container = ::Legends.Actives.getContainer(_target, "on get");
 	local id = ::Legends.Actives.getID(_def);
-	if (container.hasSkill(id))
+	if (container.hasSkill(id)) {
 		return container.getSkillByID(id);
+	}
 	return null;
 }
 
@@ -79,11 +104,11 @@ if (!("Actives" in ::Legends))
 	container.removeByID(::Legends.Actives.getID(_def));
 }
 
-::Legends.Actives.new <- function(_def) {
+::Legends.Actives.new <- function (_def) {
 	return ::new(::Legends.Actives.ActiveDefObjects[_def].Script);
 }
 
-::Legends.Actives.onCreate <- function(_target, _def) {
+::Legends.Actives.onCreate <- function (_target, _def) {
 	local defs = ::Legends.Actives.ActiveDefObjects[_def];
 	_target.m.ID = defs.ID;
 	_target.m.Name = defs.Name;

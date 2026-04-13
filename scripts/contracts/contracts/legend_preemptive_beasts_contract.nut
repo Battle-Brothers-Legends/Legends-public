@@ -402,7 +402,7 @@ this.legend_preemptive_beasts_contract <- this.inherit("scripts/contracts/contra
 		this.m.Screens.push({
 			ID = "TrackingBeastsExpert",
 			Title = "Along the way...",
-			Text = "[img]gfx/ui/events/event_126.png[/img]{%expert% springs forward, and before you can stop %them_expert%, %they_expert% is already on all fours examining the tracks.%SPEECH_ON%Hmmm...%SPEECH_OFF%Wait a minute, is %they_expert% licking a piece of dirt from the tracks?%SPEECH_ON%Ah, yes. These must be %beasts% indeed.%SPEECH_OFF%Before you are able to ask %them_expert% how %they_expert% knows, %they_expert% gets up and points to the %direction%.%SPEECH_ON%They went that way. If we hurry, we can catch them before they hurt anyone.%SPEECH_OFF% | %expert% taps you on the shoulder from behind.%SPEECH_ON%It\'s %beasts%, boss. I saw them while I was scouting ahead.%SPEECH_OFF%You are about to ask when did %they_expert% even leave in the first place, but %they_expert% interrupts you.%SPEECH_ON%There\'s no time to waste. We should head towards the %direction% immediately if we want to make sure they don\'t cause any trouble.%SPEECH_OFF% | %SPEECH_ON%Those are definitely the tracks of %beasts% if I have ever seen them.%SPEECH_OFF%%expert% saunters over to your side and appears to be measuring the tracks with a stick. %They_expert% sniffs the air uncomfortably loudly.%SPEECH_ON%We should head %direction%. They can\'t be far now.%SPEECH_OFF%}",
+			Text = "[img]gfx/ui/events/event_126.png[/img]{%experthunter% springs forward, and before you can stop %them_experthunter%, %they_experthunter% is already on all fours examining the tracks.%SPEECH_ON%Hmmm...%SPEECH_OFF%Wait a minute, is %they_experthunter% licking a piece of dirt from the tracks?%SPEECH_ON%Ah, yes. These must be %beasts% indeed.%SPEECH_OFF%Before you are able to ask %them_experthunter% how %they_experthunter% knows, %they_experthunter% gets up and points to the %direction%.%SPEECH_ON%They went that way. If we hurry, we can catch them before they hurt anyone.%SPEECH_OFF% | %experthunter% taps you on the shoulder from behind.%SPEECH_ON%It\'s %beasts%, boss. I saw them while I was scouting ahead.%SPEECH_OFF%You are about to ask when did %they_experthunter% even leave in the first place, but %they_experthunter% interrupts you.%SPEECH_ON%There\'s no time to waste. We should head towards the %direction% immediately if we want to make sure they don\'t cause any trouble.%SPEECH_OFF% | %SPEECH_ON%Those are definitely the tracks of %beasts% if I have ever seen them.%SPEECH_OFF%%experthunter% saunters over to your side and appears to be measuring the tracks with a stick. %They_experthunter% sniffs the air uncomfortably loudly.%SPEECH_ON%We should head %direction%. They can\'t be far now.%SPEECH_OFF%}",
 			Image = "",
 			List = [],
 			Characters = [],
@@ -696,11 +696,12 @@ this.legend_preemptive_beasts_contract <- this.inherit("scripts/contracts/contra
 
 				// Add 2 poachers to the guest roster
 				local numPoachers = 2;
+				local freeSlots = ::Legends.S.getEmptySlotsInFormation();
 				for( local i = 0; i != numPoachers; i = ++i )
 				{
 					local poacher = this.World.getGuestRoster().create("scripts/entity/tactical/humans/legend_poacher_guest"); // Test character based off of legend_peasant_poacher stats & perks
 					poacher.setFaction(1);
-					poacher.setPlaceInFormation(19 + i);
+					poacher.setPlaceInFormation(freeSlots.pop());
 					poacher.assignRandomEquipment();
 					this.Flags.set("Poacher" + i, poacher.getID());
 				}
@@ -865,11 +866,12 @@ this.legend_preemptive_beasts_contract <- this.inherit("scripts/contracts/contra
 
 				// Add 2 poachers to the guest roster
 				local numPoachers = 2;
+				local freeSlots = ::Legends.S.getEmptySlotsInFormation();
 				for( local i = 0; i != numPoachers; i = ++i )
 				{
 					local poacher = this.World.getGuestRoster().create("scripts/entity/tactical/humans/legend_poacher_guest"); // Test character based off of legend_peasant_poacher stats & perks
 					poacher.setFaction(1);
-					poacher.setPlaceInFormation(19 + i);
+					poacher.setPlaceInFormation(freeSlots.pop());
 					poacher.assignRandomEquipment();
 					this.Flags.set("Poacher" + i, poacher.getID());
 				}
@@ -1144,7 +1146,6 @@ this.legend_preemptive_beasts_contract <- this.inherit("scripts/contracts/contra
 				"peddler",
 				::Const.UI.getColorized(this.m.Peddler.getName(), ::Const.UI.Color.getHighlightDarkBackgroundValue()),
 			]);
-			::Const.LegendMod.extendVarsWithPronouns(_vars, this.m.Peddler.getGender(), "peddler");
 		}
 
 		if (!::MSU.isNull(this.m.Poacher))
@@ -1153,16 +1154,14 @@ this.legend_preemptive_beasts_contract <- this.inherit("scripts/contracts/contra
 				"poacher",
 				::Const.UI.getColorized(this.m.Poacher.getName(), ::Const.UI.Color.getHighlightDarkBackgroundValue()),
 			]);
-			::Const.LegendMod.extendVarsWithPronouns(_vars, this.m.Poacher.getGender(), "poacher");
 		}
 
 		if (!::MSU.isNull(this.m.ExpertHunter))
 		{
 			_vars.push([
-				"expert",
+				"experthunter",
 				::Const.UI.getColorized(this.m.ExpertHunter.getName(), ::Const.UI.Color.getHighlightDarkBackgroundValue()),
 			]);
-			::Const.LegendMod.extendVarsWithPronouns(_vars, this.m.ExpertHunter.getGender(), "expert");
 		}
 
 		local beasts;

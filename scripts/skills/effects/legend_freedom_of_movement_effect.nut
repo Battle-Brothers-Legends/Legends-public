@@ -4,8 +4,8 @@ this.legend_freedom_of_movement_effect <- this.inherit("scripts/skills/skill", {
 	{
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendFreedomOfMovement);
 		this.m.Description = "You are moving with freedom.";
-		this.m.Icon = "skills/freedom_of_movement_circle.png";
-		this.m.IconMini = "freedom_of_movement_circle";
+		this.m.Icon = "ui/perks/freedom_of_movement_circle.png";
+		this.m.IconMini = "freedom_of_movement_circle_mini";
 		this.m.Type = this.Const.SkillType.StatusEffect;
 		this.m.IsActive = false;
 		this.m.IsStacking = false;
@@ -57,8 +57,7 @@ this.legend_freedom_of_movement_effect <- this.inherit("scripts/skills/skill", {
 	// MSU custom-added event
 	function onOtherActorTooltip( _tooltip, _targetActor )
 	{
-		if (::MSU.isNull(_targetActor) || _targetActor.isPlayerControlled())
-		{
+		if (::MSU.isNull(_targetActor) || !_targetActor.isPlayerControlled()) {
 			return;
 		}
 

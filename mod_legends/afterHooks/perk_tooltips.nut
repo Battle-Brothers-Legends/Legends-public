@@ -22,7 +22,7 @@
 	}
 
 	foreach (perk, table in map) {
-		local desc = ::Const.Strings.PerkDescription[::Const.Perks.PerkDefObjects[perk].Const];
+		local desc = ::Legends.tooltip(::Const.Strings.PerkDescription[::Const.Perks.PerkDefObjects[perk].Const]);
 
 		local pre = "[color=#0b0084]From the ";
 		local mid = "";
@@ -40,9 +40,9 @@
 		}
 
 		if (desc.find(pre) == null) {
-			local text = "\n\n" + pre + mid + ap;
-			::Const.Strings.PerkDescription[::Const.Perks.PerkDefObjects[perk].Const] += text;
-			::Const.Perks.PerkDefObjects[table.Const].Tooltip += text;
+			local text = "\n" + pre + mid + ap;
+			::Const.Strings.PerkDescription[::Const.Perks.PerkDefObjects[perk].Const] = desc + text;
+			::Const.Perks.PerkDefObjects[table.Const].Tooltip = desc + text;
 		} else {
 			local strArray = split(desc, "[");
 
@@ -64,6 +64,8 @@
 				local prefix = ret.find("\n" + pre) == null ? "\n\n" : "\n";
 				ret = this.MSU.String.replace(ret, pre, prefix + pre);
 			}
+
+			::logInfo("saving " + ret);
 
 			::Const.Strings.PerkDescription[::Const.Perks.PerkDefObjects[perk].Const] = ret;
 			::Const.Perks.PerkDefObjects[table.Const].Tooltip = ret;

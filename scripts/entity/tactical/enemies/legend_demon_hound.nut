@@ -192,6 +192,8 @@ this.legend_demon_hound <- this.inherit("scripts/entity/tactical/actor", {
 
 	function onTeleportStart( _tag )
 	{
+		if (::Legends.S.skillEntityAliveCheck(_tag.User))
+			return;
 		this.Tactical.getNavigator().teleport(_tag.User, _tag.TargetTile, _tag.OnDone, _tag, false, 0.0);
 	}
 
@@ -647,6 +649,16 @@ this.legend_demon_hound <- this.inherit("scripts/entity/tactical/actor", {
 			this.m.DistortTargetPrevC = this.m.DistortTargetC;
 			this.m.DistortTargetC = this.createVec(this.Math.rand(0, 8) - 4, this.Math.rand(0, 8) - 4);
 		}
+	}
+
+	function onFactionChanged() {
+		this.actor.onFactionChanged();
+		local flip = isAlliedWithPlayer();
+		getSprite("body").setHorizontalFlipping(flip);
+		getSprite("head").setHorizontalFlipping(flip);
+		getSprite("injury").setHorizontalFlipping(flip);
+		getSprite("blur_1").setHorizontalFlipping(flip);
+		getSprite("blur_2").setHorizontalFlipping(flip);
 	}
 
 });

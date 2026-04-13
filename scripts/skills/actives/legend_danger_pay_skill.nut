@@ -42,13 +42,13 @@ this.legend_danger_pay_skill <- this.inherit("scripts/skills/skill", {
 			id = 6,
 			type = "text",
 			icon = "ui/icons/vision.png",
-			text = "Has a range of [color=" + this.Const.UI.Color.PositiveValue + "]" + this.m.MaxRange + "[/color]."
+			text = "Has a range of [color=%positive%]" + this.m.MaxRange + "[/color]."
 		});
 		ret.push({
 			id = 8,
 			type = "text",
 			icon = "ui/icons/asset_money.png",
-			text = "This will cost between [color=" + this.Const.UI.Color.PositiveValue +"]" + this.m.MinCost + "[/color] and [color=" + this.Const.UI.Color.PositiveValue +"]" + this.m.MaxCost + "[/color]"
+			text = "This will cost between [color=%positive%]" + this.m.MinCost + "[/color] and [color=%positive%]" + this.m.MaxCost + "[/color]"
 		});
 		ret.push({
 			id = 9,

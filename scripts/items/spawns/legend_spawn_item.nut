@@ -28,7 +28,7 @@ this.legend_spawn_item <- this.inherit("scripts/items/item", {
 
 	function getTooltip()
 	{
-		local desc = this.getDescription() + " Requires [color=" + this.Const.UI.Color.NegativeValue + "]" + this.getMedicinePerDay() + "[/color] units of medicine per day to maintain.";
+		local desc = this.getDescription() + " Requires [color=%negative%]" + this.getMedicinePerDay() + "[/color] units of medicine per day to maintain.";
 		local result = [
 			{
 				id = 1,
@@ -76,7 +76,7 @@ this.legend_spawn_item <- this.inherit("scripts/items/item", {
 				id = 8,
 				type = "text",
 				icon = "ui/icons/fatigue.png",
-				text = "Maximum Fatigue [color=" + this.Const.UI.Color.NegativeValue + "]" + this.m.StaminaModifier + "[/color]"
+				text = "Maximum Fatigue [color=%negative%]" + this.m.StaminaModifier + "[/color]"
 			});
 		}
 
@@ -85,7 +85,7 @@ this.legend_spawn_item <- this.inherit("scripts/items/item", {
 			result.push({
 				id = 67,
 				type = "text",
-				text = "Decayed [color=" + this.Const.UI.Color.NegativeValue + "]" + (100 - this.m.Condition * 100) + "%[/color] due to lack of medical parts"
+				text = "Decayed [color=%negative%]" + (100 - this.m.Condition * 100) + "%[/color] due to lack of medical parts"
 			});
 		}
 

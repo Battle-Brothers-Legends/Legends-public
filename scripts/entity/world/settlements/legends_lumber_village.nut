@@ -208,6 +208,7 @@ this.legends_lumber_village <- this.inherit("scripts/entity/world/settlements/le
 		// 	nothing at lvl 1
 		 ],[
 			"legend_shieldmaiden_background",
+			"legend_shieldmaiden_background",
 		]];
 
 		this.m.StablesLists = [[

@@ -5,6 +5,7 @@
 	{
 		create();
 		this.m.Variants = [1,2];
+		this.setVariant(this.m.Variants[::Math.rand(0, this.m.Variants.len() - 1)]);
 		this.m.ItemType = this.m.ItemType | this.Const.Items.ItemType.TwoHanded;
 	}
 
@@ -18,11 +19,19 @@
 				id = 10,
 				type = "text",
 				icon = "ui/tooltips/warning.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]Must be reloaded before firing again[/color]"
+				text = "[color=%negative%]Must be reloaded before firing again[/color]"
 			});
 		}
 
 		return result;
+	}
+
+	local onEquip = o.onEquip;
+	o.onEquip = function ()
+	{
+		onEquip();
+		::Legends.Actives.grant(this, ::Legends.Active.LegendLineThemUp);
+		::Legends.Actives.grant(this, ::Legends.Active.ReloadHandgonne);
 	}
 
 	o.onCombatFinished = function ()

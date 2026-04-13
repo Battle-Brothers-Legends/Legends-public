@@ -1,12 +1,13 @@
 ::mods_hookExactClass("skills/backgrounds/gladiator_background", function(o)
 {
+	o.m.LoneWolfHidden <- true;
 	o.create = function ()
 	{
 		this.character_background.create();
 		this.m.ID = "background.gladiator";
 		this.m.Name = "Gladiator";
 		this.m.Icon = "ui/backgrounds/background_61.png";
-		this.m.BackgroundDescription = "Gladiators are expensive, but a life in the arena has forged them into skilled fighters.";
+		this.m.BackgroundDescription = "Gladiators are expensive, but a life in the arena has forged them into skilled fighters. Always a show off, gladiators fight better if there are no allies nearby.";
 		this.m.GoodEnding = "You thought that %name% the gladiator would return to the arenas as you thought he might. However, news from the south speaks of an uprising of indebted and gladiators alike. Unlike previous revolts, this one has viziers swinging from rooftops and slavers being lynched in the streets. The general upheaval is apparently about to sit the once-ringfighter as a legitimate powerbroker in the region.";
 		this.m.BadEnding = "The call of the crowd was too loud for the gladiator %name%. After your quick retirement from the unsuccessful %companyname%, the fighter returned to the southern kingdoms\' fighting arenas. Unfortunately, the wear and tear of his time with mercenaries slowed him a step and he was mortally slain by a half-starved slave wielding a pitchfork and a net.";
 		this.m.HiringCost = 200;
@@ -86,26 +87,27 @@
 			];
 		this.m.PerkTreeDynamic = {
 			Weapon = [
-				this.Const.Perks.PolearmTree,
-				this.Const.Perks.SwordTree,
-				this.Const.Perks.ShieldTree,
-				this.Const.Perks.DaggerTree,
-				this.Const.Perks.ThrowingTree
+				::Const.Perks.PolearmTree,
+				::Const.Perks.SwordTree,
+				::Const.Perks.ShieldTree,
+				::Const.Perks.DaggerTree,
+				::Const.Perks.ThrowingTree
 			],
 			Defense = [
-				this.Const.Perks.MediumArmorTree,
-				this.Const.Perks.HeavyArmorTree
+				::Const.Perks.MediumArmorTree,
+				::Const.Perks.HeavyArmorTree
 			],
 			Traits = [
-				this.Const.Perks.ViciousTree,
-				this.Const.Perks.IndestructibleTree,
-				this.Const.Perks.AgileTree,
-				this.Const.Perks.LargeTree,
-				this.Const.Perks.FitTree
+				::Const.Perks.ViciousTree,
+				::Const.Perks.IndestructibleTree,
+				::Const.Perks.AgileTree,
+				::Const.Perks.LargeTree,
+				::Const.Perks.FitTree,
+				::Const.Perks.MartyrTree
 			],
 			Enemy = [],
 			Class = [
-				this.Const.Perks.BeastClassTree
+				::Const.Perks.BeastClassTree
 			],
 			Profession = [],
 			Magic = []
@@ -114,7 +116,19 @@
 
 	o.getTooltip = function ()
 	{
-		return this.character_background.getTooltip();
+		local ret =  this.character_background.getTooltip();
+		if (!this.m.LoneWolfHidden)
+		{
+			ret.push(
+				{
+					id = 13,
+					type = "text",
+					icon = "ui/icons/regular_damage.png",
+					text = "[color=%positive%]10%[/color] damage increase"
+				}
+			);
+		}
+		return ret;
 	}
 
 	//Default Male
@@ -145,7 +159,7 @@
 
 	o.onBuildDescription <- function ()
 	{
-		return "{The South is littered with slaves of all sorts, called the indebted for their debt to the Gilder. While most find themselves in the fields, a select few are taken to the fighting pits to battle it out. | While northerners do partake in combat tournaments, nothing gets close to the violence and gore of a southern gladiatorial pit. | In the South, rich and poor alike enjoy cheering on the gladiators of the fighting pits. | Southern gladiatorial pits are filled with indebted and voluntary killers alike. | A bloody house of combat and betting, a gladiatorial pit is the one place in the South one may find rich and poor crowded together.} {It was from these ranks %name% came. %they% rapidly grew through the ranks and managed to buy %their% way out of the pits and into whatever \'freedom\' one could find after such a life. | A crowd-favorite, %name%\'s time as a gladiator ended after a \'pardon\' by %their% wealthy sponsors. But in early retirement %they% found %their% life unfulfilled. | Successful killers such as %name% can buy their way to freedom, though the bloodlust has yet to leave the woman. | %name% was involved in a \'diving\' incident and received a year long ban from the pits. | But gladiators like %name% are not just popular with the public, but particularly with lusty folk . A raunchy tryst with a noble led to the fighter being spirited away under the cover of night lest %they% be mutilated. | A pit\'s most popular fighter is usually a blend of murderous handsomeness, and a woman such as %name% was only the former. Dispirited by the lack of fame %they% thought %they% had earned, %they% purchased %their% freedom and departed the blood sport.} {Gladiators usually cross from fighting pit to fighting pit, so a sturdy, well skilled fighter such as %name% is rare to find in the wild. Yet here %they% stands, albeit with enough scars to make a flagellant blush. | You\'ve met many a warrior, but rarely one with the particular skillsets of a pit fighter such as %name%. All the clashing in the arenas has made %their% a clever warrior indeed, and also one with many a scar and injury to match %their% time there. | There\'s many pairings in this world, and a gladiator with an untouched body is not one of them. %name% is a skilled fighter, but %they% earned those experiences with %their% own blood and body. | An impressive gladiatorial resume such as the one %name% brings hints at a woman well versed in killing. The many scars, however, flatly state that %their% time in the pits came with an irreversible price of their own. | Gladiators such as %name% could be the most skilled fighters in all the land, but the fighting pits are full of games and are designed to bring harm to all who partake. The woman is a talented warrior, but %they% wears the scars and wounds of a career in the arena.}";
+		return "{The South is littered with slaves of all sorts, called the indebted for their debt to the Gilder. While most find themselves in the fields, a select few are taken to the fighting pits to battle it out. | While northerners do partake in combat tournaments, nothing gets close to the violence and gore of a southern gladiatorial pit. | In the South, rich and poor alike enjoy cheering on the gladiators of the fighting pits. | Southern gladiatorial pits are filled with indebted and voluntary killers alike. | A bloody house of combat and betting, a gladiatorial pit is the one place in the South one may find rich and poor crowded together.} {It was from these ranks %name% came. %They% rapidly grew through the ranks and managed to buy %their% way out of the pits and into whatever \'freedom\' one could find after such a life. | A crowd-favorite, %name%\'s time as a gladiator ended after a \'pardon\' by %their% wealthy sponsors. But in early retirement %they% found %their% life unfulfilled. | Successful killers such as %name% can buy their way to freedom, though the bloodlust has yet to leave the woman. | %name% was involved in a \'diving\' incident and received a year long ban from the pits. | But gladiators like %name% are not just popular with the public, but particularly with lusty folk . A raunchy tryst with a noble led to the fighter being spirited away under the cover of night lest %they% be mutilated. | A pit\'s most popular fighter is usually a blend of murderous handsomeness, and a woman such as %name% was only the former. Dispirited by the lack of fame %they% thought %they% had earned, %they% purchased %their% freedom and departed the blood sport.} {Gladiators usually cross from fighting pit to fighting pit, so a sturdy, well skilled fighter such as %name% is rare to find in the wild. Yet here %they% stands, albeit with enough scars to make a flagellant blush. | You\'ve met many a warrior, but rarely one with the particular skillsets of a pit fighter such as %name%. All the clashing in the arenas has made %their% a clever warrior indeed, and also one with many a scar and injury to match %their% time there. | There\'s many pairings in this world, and a gladiator with an untouched body is not one of them. %name% is a skilled fighter, but %they% earned those experiences with %their% own blood and body. | An impressive gladiatorial resume such as the one %name% brings hints at a woman well versed in killing. The many scars, however, flatly state that %their% time in the pits came with an irreversible price of their own. | Gladiators such as %name% could be the most skilled fighters in all the land, but the fighting pits are full of games and are designed to bring harm to all who partake. The woman is a talented warrior, but %they% wears the scars and wounds of a career in the arena.}";
 	}
 
 	o.onSetAppearance = function ()
@@ -179,6 +193,46 @@
 			tattoo_body.setBrush("scar_02_" + body.getBrush().Name);
 		}
 	}
+
+	o.onUpdate <- function ( _properties )
+	{
+		this.character_background.onUpdate(_properties);
+		if (!this.getContainer().getActor().isPlacedOnMap())
+		{
+			this.m.LoneWolfHidden = true;
+			return;
+		}
+
+		local actor = this.getContainer().getActor();
+		local myTile = actor.getTile();
+		local allies = this.Tactical.Entities.getInstancesOfFaction(actor.getFaction());
+		local isAlone = true;
+
+		foreach( ally in allies )
+		{
+			if (ally.getID() == actor.getID() || !ally.isPlacedOnMap())
+			{
+				continue;
+			}
+
+			if (ally.getTile().getDistanceTo(myTile) <= 2)
+			{
+				isAlone = false;
+				break;
+			}
+		}
+
+		if (isAlone)
+		{
+			this.m.LoneWolfHidden = false;
+			_properties.DamageTotalMult *= 1.10;
+		}
+		else
+		{
+			this.m.LoneWolfHidden = true;
+		}
+	}
+
 
 	o.onChangeAttributes = function ()
 	{
@@ -232,7 +286,9 @@
 
 	o.onAddEquipment = function ()
 	{
-		local items = this.getContainer().getActor().getItems();
+		local actor = this.getContainer().getActor();
+		actor.setVeteranPerks(3);
+		local items = actor.getItems();
 		local r;
 
 		if (items.hasEmptySlot(this.Const.ItemSlot.Mainhand))
@@ -247,16 +303,10 @@
 				"weapons/oriental/polemace",
 				"weapons/fighting_axe",
 				"weapons/fighting_spear"
+				"weapons/two_handed_flail",
+				"weapons/two_handed_flanged_mace",
+				"weapons/bardiche"
 			];
-
-			if (this.Const.DLC.Wildmen)
-			{
-				weapons.extend([
-					"weapons/two_handed_flail",
-					"weapons/two_handed_flanged_mace",
-					"weapons/bardiche"
-				]);
-			}
 
 			items.equip(this.new("scripts/items/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
 		}

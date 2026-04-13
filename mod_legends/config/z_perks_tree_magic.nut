@@ -6,26 +6,40 @@ if (!("Perks" in ::Const))
 ::Const.Perks.BardMagicTree <- {
 	ID = "BardMagicTree",
 	Name = "Bard",
+	Icon = "ui/perks/perk_music_mastery.png",
 	Descriptions = [
 		"entertaining"
 	],
 	Tree = [
 		[
-		::Legends.Perk.LegendCheerOn,
-		::Legends.Perk.LegendSpecialistMusician
+			::Legends.Perk.LegendCheerOn,
+			::Legends.Perk.LegendSpecialistMusician
 		],
-		[::Legends.Perk.LegendDaze],
-		[],
-		[::Legends.Perk.LegendEntice],
-		[::Legends.Perk.LegendPush],
-		[::Legends.Perk.LegendMinnesanger],
-		[::Legends.Perk.LegendMeistersanger]
+		[
+			::Legends.Perk.LegendDaze
+		],
+		[
+			::Legends.Perk.LegendEntice
+		],
+		[
+			::Legends.Perk.LegendMasteryMusic
+		],
+		[
+			::Legends.Perk.LegendPush
+		],
+		[
+			::Legends.Perk.LegendMinnesanger
+		],
+		[
+			::Legends.Perk.LegendMeistersanger
+		]
 	]
 };
 
 ::Const.Perks.StavesMagicTree <- {
 	ID = "StavesMagicTree",
 	Name = "Staves",
+	Icon = "ui/perks/staffmastery.png",
 	Descriptions = [
 		"staves"
 	],
@@ -43,6 +57,7 @@ if (!("Perks" in ::Const))
 ::Const.Perks.ImmortalMagicTree <- {
 	ID = "ImmortalMagicTree",
 	Name = "Immortal",
+	Icon = "ui/perks/lionheart.png",
 	Descriptions = [
 		"combat"
 	],
@@ -63,6 +78,7 @@ if (!("Perks" in ::Const))
 ::Const.Perks.ValaChantMagicTree <- {
 	ID = "ValaChantMagicTree",
 	Name = "Vala Chant",
+	Icon = "ui/perks/legend_vala_chanting_mastery.png",
 	Descriptions = [
 		"chants"
 	],
@@ -83,6 +99,7 @@ if (!("Perks" in ::Const))
 ::Const.Perks.ValaTranceMagicTree <- {
 	ID = "ValaTranceMagicTree",
 	Name = "Vala Trance",
+	Icon = "ui/perks/legend_vala_trance_mastery.png",
 	Descriptions = [
 		"trances"
 	],
@@ -117,6 +134,7 @@ if (!("Perks" in ::Const))
 ::Const.Perks.ValaSpiritMagicTree <- {
 	ID = "ValaSpiritMagicTree",
 	Name = "Vala Spirits",
+	Icon = "ui/perks/legend_vala_spiritual_bond.png",
 	Descriptions = [
 		"spirits"
 	],
@@ -134,6 +152,7 @@ if (!("Perks" in ::Const))
 ::Const.Perks.InventorMagicTree <- {
 	ID = "InventorMagicTree",
 	Name = "Inventor",
+	Icon = "ui/perks/legend_inventor_anatomy.png",
 	Descriptions = [
 		"inventor"
 	],
@@ -152,13 +171,15 @@ if (!("Perks" in ::Const))
 ::Const.Perks.RangerHuntMagicTree <- {
 	ID = "RangerHuntMagicTree",
 	Name = "Ranger",
+	Icon = "ui/perks/lookout_circle.png",
 	Descriptions = [
 		"hunting big game"
 	],
 	Tree = [
-		[],
 		[
-			::Legends.Perk.LegendSummonHound,
+			::Legends.Perk.LegendSummonHound
+		],
+		[
 			::Legends.Perk.LegendNightvision
 		],
 		[
@@ -181,6 +202,7 @@ if (!("Perks" in ::Const))
 ::Const.Perks.ArcherCommandTree <- {
 	ID = "ArcherCommandTree",
 	Name = "ArcherCommand",
+	Icon = "ui/perks/coordinated_volleys_circle.png",
 	Descriptions = [
 		"archer command"
 	],
@@ -205,7 +227,8 @@ if (!("Perks" in ::Const))
 
 ::Const.Perks.MasterArcherTree <- {
 	ID = "MasterArcherTree",
-	Name = "MasterArcher",
+	Name = "Deadeye",
+	Icon = "ui/perks/triplestrike56.png",
 	Descriptions = [
 		"archery"
 	],
@@ -218,9 +241,7 @@ if (!("Perks" in ::Const))
 			::Legends.Perk.BagsAndBelts,
 		],
 		[],
-		[
-			::Legends.Perk.LegendCascade
-		],
+		[],
 		[],
 		[
 			::Legends.Perk.LegendEvasion
@@ -232,9 +253,40 @@ if (!("Perks" in ::Const))
 	]
 };
 
+::Const.Perks.AssassinLeftoverTree <- {
+	ID = "AssassinLeftoverTree",
+	Name = "Cutthroat",
+	Icon = "ui/perks/perk_04.png",
+	Descriptions = [
+		"Sneaky"
+	],
+	Tree = [
+		[
+			::Legends.Perk.Pathfinder,
+			::Legends.Perk.BagsAndBelts,
+			::Legends.Perk.DevastatingStrikes
+		],
+		[],
+		[
+			::Legends.Perk.HoldOut,
+			::Legends.Perk.LegendFavouredEnemyOutlaw
+		],
+		[],
+		[],
+		[
+			::Legends.Perk.LegendWindReader
+		],
+		[
+			::Legends.Perk.KillingFrenzy,
+			::Legends.Perk.LegendFavouredEnemySwordmaster
+		]
+	]
+};
+
 ::Const.Perks.BasicNecroMagicTree <- {
 	ID = "BasicNecroMagicTree",
 	Name = "Necromancy",
+	Icon = "ui/perks/raisedead2_circle.png",
 	Descriptions = [
 		"necromancy"
 	],
@@ -252,6 +304,7 @@ if (!("Perks" in ::Const))
 ::Const.Perks.WarlockMagicTree <- {
 	ID = "WarlockMagicTree",
 	Name = "Sorcery",
+	Icon = "ui/perks/siphon_circle.png",
 	Descriptions = [
 		"sorcery"
 	],
@@ -269,6 +322,7 @@ if (!("Perks" in ::Const))
 ::Const.Perks.VampireMagicTree <- {
 	ID = "VampireMagicTree",
 	Name = "Vampire",
+	Icon = "ui/perks/darkflight_circle.png",
 	Descriptions = [
 		"undeath"
 	],
@@ -286,6 +340,7 @@ if (!("Perks" in ::Const))
 ::Const.Perks.ZombieMagicTree <- {
 	ID = "ZombieMagicTree",
 	Name = "Zombie",
+	Icon = "ui/perks/remake_man_circle.png",
 	Descriptions = [
 		"weidergangers"
 	],
@@ -307,6 +362,7 @@ if (!("Perks" in ::Const))
 ::Const.Perks.SkeletonMagicTree <- {
 	ID = "SkeletonMagicTree",
 	Name = "Skeleton",
+	Icon = "ui/perks/rebuild_skeleton_circle.png",
 	Descriptions = [
 		"ancient undead"
 	],
@@ -327,6 +383,7 @@ if (!("Perks" in ::Const))
 ::Const.Perks.BerserkerMagicTree <- {
 	ID = "BerserkerMagicTree",
 	Name = "Berserker",
+	Icon = "ui/perks/perk_35.png",
 	Descriptions = [
 		"berserking"
 	],
@@ -347,6 +404,7 @@ if (!("Perks" in ::Const))
 ::Const.Perks.CaptainMagicTree <- {
 	ID = "CaptainMagicTree",
 	Name = "Leadership",
+	Icon = "ui/perks/perk_28.png",
 	Descriptions = [
 		"leading"
 	],
@@ -366,6 +424,7 @@ if (!("Perks" in ::Const))
 ::Const.Perks.IllusionistMagicTree <- {
 	ID = "IllusionistMagicTree",
 	Name = "Illusion",
+	Icon = "ui/perks/entice_circle_56.png",
 	Descriptions = [
 		"illusion"
 	],
@@ -386,6 +445,7 @@ if (!("Perks" in ::Const))
 ::Const.Perks.DivinationMagicTree <- {
 	ID = "DivinationMagicTree",
 	Name = "Divination",
+	Icon = "ui/perks/scry_perk.png",
 	Descriptions = [
 		"divination"
 	],
@@ -403,6 +463,7 @@ if (!("Perks" in ::Const))
 ::Const.Perks.ConjurationMagicTree <- {
 	ID = "ConjurationMagicTree",
 	Name = "Conjuration",
+	Icon = "ui/perks/cat_circle.png",
 	Descriptions = [
 		"conjuration"
 	],
@@ -420,6 +481,7 @@ if (!("Perks" in ::Const))
 ::Const.Perks.DruidMagicTree <- {
 	ID = "DruidMagicTree",
 	Name = "Druidic Arts",
+	Icon = "ui/perks/roots_circle.png",
 	Descriptions = [
 		"druidic arts"
 	],
@@ -437,6 +499,7 @@ if (!("Perks" in ::Const))
 ::Const.Perks.DruidTransformTree <- {
 	ID = "DruidTransformTree",
 	Name = "Druidic transformation",
+	Icon = "ui/perks/bear2_circle.png",
 	Descriptions = [
 		"druidic transformation"
 	],
@@ -455,6 +518,7 @@ if (!("Perks" in ::Const))
 ::Const.Perks.TransmutationMagicTree <- {
 	ID = "TransmutationMagicTree",
 	Name = "Transmutation",
+	Icon = "ui/perks/potion_circle.png",
 	Descriptions = [
 		"transmutation"
 	],
@@ -472,6 +536,7 @@ if (!("Perks" in ::Const))
 ::Const.Perks.EvocationMagicTree <- {
 	ID = "EvocationMagicTree",
 	Name = "Evocation",
+	Icon = "ui/perks/storm_circle.png",
 	Descriptions = [
 		"evocation"
 	],
@@ -506,6 +571,7 @@ if (!("Perks" in ::Const))
 ::Const.Perks.SeerMagicTree <- {
 	ID = "SeerMagicTree",
 	Name = "Seer",
+	Icon = "ui/perks/levitate.png",
 	Descriptions = [
 		"seer"
 	],
@@ -536,11 +602,12 @@ if (!("Perks" in ::Const))
 ::Const.Perks.AssassinMagicTree <- {
 	ID = "AssassinMagicTree",
 	Name = "Assassin",
+	Icon = "ui/perks/assassinate_circle.png",
 	Descriptions = [
 		"assassination"
 	],
 	Tree = [
-		[::Legends.Perk.LegendKnifeplay],
+		[],
 		[::Legends.Perk.LegendOpportunist],
 		[::Legends.Perk.LegendPrepared],
 		[],
@@ -553,6 +620,7 @@ if (!("Perks" in ::Const))
 ::Const.Perks.PremonitionMagicTree <- {
 	ID = "PremonitionMagicTree",
 	Name = "Premonition",
+	Icon = "ui/perks/scry_trance_circle.png",
 	Descriptions = [
 		"premonition"
 	],
@@ -570,6 +638,7 @@ if (!("Perks" in ::Const))
 ::Const.Perks.PhilosophyMagicTree <- {
 	ID = "PhilosophyMagicTree",
 	Name = "Philosophy",
+	Icon = "ui/perks/scholar_circle.png",
 	Descriptions = [
 		"philosophy"
 	],
@@ -586,6 +655,7 @@ if (!("Perks" in ::Const))
 ::Const.Perks.AlchemyMagicTree <- {
 	ID = "AlchemyMagicTree"
 	Name = "Alchemy",
+	Icon = "ui/perks/perk_34.png",
 	Descriptions = [
 		"alchemy"
 	],
@@ -602,9 +672,10 @@ if (!("Perks" in ::Const))
 	]
 }
 
-::Const.Perks.TherianthropyTree <- {
+::Const.Perks.TherianthropyMagicTree <- {
 	ID = "TherianthropyMagicTree",
 	Name = "Therianthropy",
+	Icon = "ui/perks/true_form_circle.png",
 	Descriptions = [
 		"therianthropy"
 	],
@@ -620,6 +691,7 @@ if (!("Perks" in ::Const))
 };
 
 ::Const.Perks.MagicTrees <- {
+	GroupsCategory = "Magic",
 	Tree = [
 		::Const.Perks.ValaChantMagicTree,
 		::Const.Perks.ValaTranceMagicTree,

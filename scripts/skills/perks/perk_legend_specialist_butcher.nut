@@ -26,7 +26,7 @@ this.perk_legend_specialist_butcher <- this.inherit("scripts/skills/legend_speci
 	function create()
 	{
 		this.legend_specialist_abstract.create();
-		::Const.Perks.setup(this.m, ::Legends.Perk.LegendSpecialistButcher);
+		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendSpecialistButcher);
 		this.m.IconMini = "perk_spec_butcher_mini";
 	}
 
@@ -36,7 +36,7 @@ this.perk_legend_specialist_butcher <- this.inherit("scripts/skills/legend_speci
 			id = 6,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "Inflicts additional stacking [color=" + this.Const.UI.Color.PositiveValue + "]2[/color] graze bleeding damage per turn, for 5 turns"
+			text = "Inflicts additional stacking [color=%positive%]2[/color] graze bleeding damage per turn, for 5 turns"
 		}];
 	}
 

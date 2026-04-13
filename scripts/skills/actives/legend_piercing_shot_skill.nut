@@ -53,11 +53,6 @@ this.legend_piercing_shot_skill <- ::inherit("scripts/skills/actives/aimed_shot"
 		return ret;
 	}
 
-	function isHidden()
-	{
-		return !getContainer().hasPerk(::Legends.Perk.LegendPiercingShot);
-	}
-
 	function onAfterUpdate( _properties )
 	{
 		this.aimed_shot.onAfterUpdate(_properties);

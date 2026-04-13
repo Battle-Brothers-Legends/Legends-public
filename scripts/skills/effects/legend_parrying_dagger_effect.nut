@@ -5,7 +5,7 @@ this.legend_parrying_dagger_effect <- this.inherit("scripts/skills/skill", {
 	function create()
 	{
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendParryingDagger);
-		this.m.Description = "Parrying Daggers work best against a single opponent, giving [color=" + this.Const.UI.Color.PositiveValue + "]+20[/color] Melee Defense when adjacent to only a single enemy. This effect diminishes when facing more than one enemy at a time.";
+		this.m.Description = "Parrying Daggers work best against a single opponent, giving [color=%positive%]+20[/color] Melee Defense when adjacent to only a single enemy. This effect diminishes when facing more than one enemy at a time.";
 		this.m.Icon = "ui/perks/parrying_circle.png";
 		this.m.IconMini = "mini_parrying_circle";
 		this.m.Type = this.Const.SkillType.StatusEffect;
@@ -34,7 +34,7 @@ this.legend_parrying_dagger_effect <- this.inherit("scripts/skills/skill", {
 				id = 10,
 				type = "text",
 				icon = "ui/icons/melee_defense.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]" + this.m.Bonus + "[/color] Melee Defense"
+				text = "[color=%positive%]" + this.m.Bonus + "[/color] Melee Defense"
 			}
 		];
 	}

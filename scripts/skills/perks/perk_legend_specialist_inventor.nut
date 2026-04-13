@@ -10,7 +10,7 @@ this.perk_legend_specialist_inventor <- this.inherit("scripts/skills/legend_spec
 	function create()
 	{
 		this.legend_specialist_abstract.create();
-		::Const.Perks.setup(this.m, ::Legends.Perk.LegendSpecialistInventor);
+		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendSpecialistInventor);
 		this.m.IconMini = "perk_spec_firearm_mini";
 	}
 });

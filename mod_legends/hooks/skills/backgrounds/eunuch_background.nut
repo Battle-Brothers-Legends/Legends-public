@@ -45,30 +45,30 @@
 		this.m.Modifiers.Gathering = this.Const.LegendMod.ResourceModifiers.Gather[1];
 		this.m.PerkTreeDynamic = {
 			Weapon = [
-				this.Const.Perks.CleaverTree,
-				this.Const.Perks.DaggerTree,
-				this.Const.Perks.SlingTree,
-				this.Const.Perks.MaceTree
+				::Const.Perks.CleaverTree,
+				::Const.Perks.DaggerTree,
+				::Const.Perks.SlingTree,
+				::Const.Perks.MaceTree
 			],
 			Defense = [
-				this.Const.Perks.ClothArmorTree
+				::Const.Perks.ClothArmorTree
 			],
 			Traits = [
-				this.Const.Perks.IntelligentTree,
-				this.Const.Perks.DeviousTree,
-				this.Const.Perks.CalmTree,
-				this.Const.Perks.MartyrTree
+				::Const.Perks.IntelligentTree,
+				::Const.Perks.DeviousTree,
+				::Const.Perks.CalmTree,
+				::Const.Perks.MartyrTree
 			],
 			Enemy = [],
 			Class = [],
 			Profession = [
-				this.Const.Perks.BarterProfessionTree
-			], 
+				::Const.Perks.BarterProfessionTree
+			],
 			Magic = []
 		}
 
 	}
-	
+
 	o.getTooltip = function ()
 	{
 		return this.character_background.getTooltip();

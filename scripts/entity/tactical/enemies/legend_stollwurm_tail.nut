@@ -201,12 +201,6 @@ this.legend_stollwurm_tail <- this.inherit("scripts/entity/tactical/actor", {
 		this.getFlags().add("lindwurm");
 		this.getFlags().add("tail");
 		this.m.AIAgent = this.new("scripts/ai/tactical/agents/lindwurm_tail_agent");
-
-		this.logInfo("AIAGENT STOLLWURM TAIL = " + this.m.AIAgent);
-		foreach(k,v in this.m.AIAgent)
-		{
-			this.logInfo("key = " + k + " : " + v)
-		}
 		this.m.AIAgent.setActor(this);
 	}
 
@@ -562,6 +556,7 @@ this.legend_stollwurm_tail <- this.inherit("scripts/entity/tactical/actor", {
 		::Legends.Actives.grant(this, ::Legends.Active.TailSlam);
 		::Legends.Actives.grant(this, ::Legends.Active.TailSlamBig);
 		::Legends.Actives.grant(this, ::Legends.Active.TailSlamSplit);
+		::Legends.Actives.grant(this, ::Legends.Active.TailSlamZoc);
 		::Legends.Perks.grant(this, ::Legends.Perk.HoldOut);
 		::Legends.Perks.grant(this, ::Legends.Perk.ReachAdvantage);
 		::Legends.Perks.grant(this, ::Legends.Perk.Fearsome);
@@ -580,7 +575,14 @@ this.legend_stollwurm_tail <- this.inherit("scripts/entity/tactical/actor", {
 		}
 
 		::Legends.S.scaleBaseProperties(b);
+
+		local skills = this.getSkills();
+		local skills_add = skills.add;
+		skills.add = function( _skill, _order = 0 )	{
+			if ((_skill.getID() in this.getActor().m.Body.m.EffectsSharedWithTailLookup || _skill.getID() == ::Legends.Effects.getID(::Legends.Effect.LegendChoked)) && (!("IsFromHead" in _skill.m) || !_skill.m.IsFromHead)) {
+				return;
+        	}
+        	skills_add(_skill, _order);
+		}.bindenv(skills);
 	}
-
-
 });

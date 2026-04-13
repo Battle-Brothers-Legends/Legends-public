@@ -34,19 +34,19 @@ this.legend_drink_hexe_ichor_potion_skill <- this.inherit("scripts/skills/active
 				id = 11,
 				type = "text",
 				icon = "ui/icons/fatigue.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+20[/color] Fatigue Recovery per turn"
+				text = "[color=%positive%]+20[/color] Fatigue Recovery per turn"
 			},
 			{
 				id = 12,
 				type = "text",
 				icon = "ui/icons/days_wounded.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+20[/color] Health Recovery per turn"
+				text = "[color=%positive%]+20[/color] Health Recovery per turn"
 			},
 			{
 				id = 13,
 				type = "text",
 				icon = "ui/icons/warning.png",
-				text = "Become [color=" + this.Const.UI.Color.NegativeValue + "]poisoned[/color]"
+				text = "Become [color=%negative%]poisoned[/color]"
 			}
 		];
 
@@ -56,7 +56,7 @@ this.legend_drink_hexe_ichor_potion_skill <- this.inherit("scripts/skills/active
 				id = 5,
 				type = "text",
 				icon = "ui/tooltips/warning.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]Can not be used because this character is engaged in melee[/color]"
+				text = "[color=%negative%]Can not be used because this character is engaged in melee[/color]"
 			});
 		}
 

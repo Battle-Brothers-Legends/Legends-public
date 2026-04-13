@@ -152,11 +152,6 @@ this.legends_minstrel_and_juggler_event <- this.inherit("scripts/events/event", 
 		]);
 	}
 
-	function onDetermineStartScreen()
-	{
-		return "A";
-	}
-
 	function onClear()
 	{
 		this.m.Minstrel = null;

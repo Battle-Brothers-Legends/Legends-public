@@ -3,7 +3,8 @@
 	local create = o.create;
 	o.create = function() {
 		create();
-		this.m.Categories = "Throwing Weapon, Spear, One-Handed";
+		this.m.Categories = "Throwing Weapon/Spear, One-Handed";
+		this.m.WeaponType = this.Const.Items.WeaponType.Throwing | this.Const.Items.WeaponType.Spear;
 		this.m.Description = "Lighter than a common spear, but heavier than a javelin, this weapon is intended to be thrown over short distances. The tip will bend on impact, potentially rendering shields unusable. Can be used against unshielded opponents as well for great effect.";
 		this.m.ItemType = this.Const.Items.ItemType.Weapon | this.Const.Items.ItemType.RangedWeapon | this.Const.Items.ItemType.Ammo | this.Const.Items.ItemType.Defensive | this.Const.Items.ItemType.OneHanded;
 		this.m.Value = 400;
@@ -11,20 +12,15 @@
 		this.m.Ammo = 1;
 		this.m.AmmoMax = 1;
 		this.m.AmmoCost = 6;
-		this.m.Variant = this.Math.rand(0, 2);
-		this.updateVariant();
+		this.m.Variants = [0, 1, 2];
+		this.setVariant(this.m.Variants[this.Math.rand(0, this.m.Variants.len() - 1)]);
 	}
 
 	o.updateVariant <- function() {
-		if (this.m.Variant == 0) {
-			this.m.Icon = "weapons/ranged/throwing_spear_01_70x70.png";
-			this.m.IconLarge = "weapons/ranged/throwing_spear_01.png";
-			this.m.ArmamentIcon = "icon_throwing_spear_01";
-		} else {
-			this.m.Icon = "weapons/ranged/throwing_spear_01_" + this.m.Variant + "_70x70.png";
-			this.m.IconLarge = "weapons/ranged/throwing_spear_01_" + this.m.Variant + ".png";
-			this.m.ArmamentIcon = "icon_throwing_spear_01_" + this.m.Variant;
-		}
+		local v = this.getVariant() == 0 ? "" : "_" + this.getVariant();
+		this.m.Icon = "weapons/ranged/throwing_spear_01" + v + "_70x70.png";
+		this.m.IconLarge = "weapons/ranged/throwing_spear_01" + v + ".png";
+		this.m.ArmamentIcon = "icon_throwing_spear_01" + v;
 	}
 
 	o.getTooltip = function ()

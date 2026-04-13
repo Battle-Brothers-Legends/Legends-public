@@ -87,11 +87,6 @@ this.legend_cannibal_corrupts_butcher <- this.inherit("scripts/events/event", {
 		]);
 	}
 
-	function onDetermineStartScreen()
-	{
-		return "A";
-	}
-
 	function onClear()
 	{
 		this.m.Cannibal = null;

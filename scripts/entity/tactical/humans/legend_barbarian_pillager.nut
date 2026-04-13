@@ -65,6 +65,7 @@ this.legend_barbarian_pillager <- this.inherit("scripts/entity/tactical/human", 
 		::Legends.Perks.grant(this, ::Legends.Perk.Bullseye);
 		::Legends.Perks.grant(this, ::Legends.Perk.QuickHands);
 		::Legends.Perks.grant(this, ::Legends.Perk.Pathfinder);
+		::Legends.Perks.grant(this, ::Legends.Perk.BagsAndBelts);
 		::Legends.Actives.grant(this, ::Legends.Active.BarbarianFury);
 
 		if(::Legends.isLegendaryDifficulty())
@@ -79,7 +80,7 @@ this.legend_barbarian_pillager <- this.inherit("scripts/entity/tactical/human", 
 
 		if (!::FU.InScenario() && this.World.getTime().Days >= 60)
 		{
-			::Legends.Perks.grant(this, ::Legends.Perk.LegendCloseCombatArcher);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendPointBlank);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendOnslaught);
 		}
 	}
@@ -91,7 +92,9 @@ this.legend_barbarian_pillager <- this.inherit("scripts/entity/tactical/human", 
 			"scripts/items/weapons/barbarians/heavy_javelin",
 			"scripts/items/weapons/barbarians/heavy_throwing_axe",
 			"scripts/items/weapons/barbarians/heavy_javelin",
-			"scripts/items/weapons/throwing_spear",
+			"scripts/items/weapons/barbarians/legend_barbarian_sling",
+			"scripts/items/weapons/barbarians/legend_barbarian_sling",
+			"scripts/items/weapons/javelin",
 			"scripts/items/weapons/throwing_axe"
 		];
 
@@ -109,6 +112,8 @@ this.legend_barbarian_pillager <- this.inherit("scripts/entity/tactical/human", 
 		];
 
 		this.m.Items.addToBag(this.new(items[this.Math.rand(0, items.len() - 1)]));
+		this.m.Items.addToBag(this.new("scripts/items/weapons/javelin"));
+		this.m.Items.addToBag(this.new("scripts/items/weapons/throwing_axe"));
 
 		local armor = [
 			[33, ::Legends.Armor.Barbarian.scrap_metal_armor],

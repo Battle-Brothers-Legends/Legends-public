@@ -78,36 +78,35 @@ this.legend_ranger_background <- this.inherit("scripts/skills/backgrounds/charac
 		];
 		this.m.PerkTreeDynamic = {
 			Weapon = [
-				this.Const.Perks.CrossbowTree,
-				this.Const.Perks.BowTree,
-				this.Const.Perks.SlingTree,
-				this.Const.Perks.ThrowingTree,
-				this.Const.Perks.DaggerTree
+				::Const.Perks.CrossbowTree,
+				::Const.Perks.BowTree,
+				::Const.Perks.SlingTree,
+				::Const.Perks.ThrowingTree,
+				::Const.Perks.DaggerTree
 			],
 			Defense = [
-				this.Const.Perks.LightArmorTree,
-				this.Const.Perks.MediumArmorTree
+				::Const.Perks.LightArmorTree,
+				::Const.Perks.MediumArmorTree
 			],
 			Traits = [
-				this.Const.Perks.ViciousTree,
-				this.Const.Perks.FastTree,
-				this.Const.Perks.IntelligentTree,
-				this.Const.Perks.FitTree,
-				this.Const.Perks.AgileTree
+				::Const.Perks.ViciousTree,
+				::Const.Perks.FastTree,
+				::Const.Perks.IntelligentTree,
+				::Const.Perks.FitTree,
+				::Const.Perks.AgileTree
 			],
 			Enemy = [
-				this.Const.Perks.BeastsTree,
-				this.Const.Perks.UnholdTree,
-				this.Const.Perks.SchratTree,
-				this.Const.Perks.ArchersTree
+				::Const.Perks.BeastTree,
+				::Const.Perks.OccultTree,
 			],
 			Class = [
-				this.Const.Perks.BeastClassTree
+				::Const.Perks.BeastClassTree,
+				// ::Const.Perks.SharpshooterClassTree
 			],
 			Profession = [],
 			Magic = [
-				this.Const.Perks.RangerHuntMagicTree,
-				this.Const.Perks.MasterArcherTree
+				::Const.Perks.RangerHuntMagicTree,
+				::Const.Perks.MasterArcherTree
 			]
 		};
 	}
@@ -123,7 +122,7 @@ this.legend_ranger_background <- this.inherit("scripts/skills/backgrounds/charac
 		this.m.HairColors = this.Const.HairColors.Young;
 		this.m.Beards = null;
 		this.m.BeardChance = 0;
-		this.m.Bodies = this.Const.Bodies.AllFemale;
+		this.m.Bodies = this.Const.Bodies.NorthernFemale;
 		this.addBackgroundType(this.Const.BackgroundType.Female);
 
 	}
@@ -178,11 +177,9 @@ this.legend_ranger_background <- this.inherit("scripts/skills/backgrounds/charac
 
 	function onAdded()
 	{
+		if (this.m.IsNew)
+			::Legends.Traits.grant(this, ::Legends.Trait.Loyal);
 		this.character_background.onAdded();
-		local actor = this.getContainer().getActor();
-		//this.m.Container.add(this.new("scripts/skills/perks/perk_pathfinder"));
-		//this.m.Container.add(this.new("scripts/skills/perks/perk_footwork"));
-		::Legends.Traits.grant(this, ::Legends.Trait.Loyal);
 
 	}
 

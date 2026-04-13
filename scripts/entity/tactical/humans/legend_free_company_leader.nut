@@ -53,7 +53,7 @@ this.legend_free_company_leader <- this.inherit("scripts/entity/tactical/legend_
 		this.getItems().equip(::Const.World.Common.pickItem([
 			[1, "weapons/bardiche"],
 			[1, "weapons/greataxe"],
-			[1, "weapons/greatsword"],
+			[1, "weapons/legend_zweihander"],
 			[1, "weapons/two_handed_flanged_mace"],
 			[1, "weapons/fighting_axe"],
 			[1, "weapons/legend_military_goedendag"],

@@ -29,7 +29,7 @@ this.legends_berserker_scenario <- this.inherit("scripts/scenarios/world/startin
 			"legend_berserker_commander_background"
 		]);
 		::Legends.Traits.grant(bros[0], ::Legends.Trait.Player);
-		this.addScenarioPerk(bros[0].getBackground(), this.Const.Perks.PerkDefs.Berserk);
+		this.addScenarioPerk(bros[0].getBackground(), ::Const.Perks.PerkDefs.Berserk);
 		bros[0].getFlags().set("IsPlayerCharacter", true);
 		bros[0].setVeteranPerks(2);
 		local stash = this.World.Assets.getStash();
@@ -239,7 +239,7 @@ this.legends_berserker_scenario <- this.inherit("scripts/scenarios/world/startin
 
 	function onBuildPerkTree( _background )
 	{
-		this.addScenarioPerk(_background, this.Const.Perks.PerkDefs.Berserk);
+		this.addScenarioPerk(_background, ::Const.Perks.PerkDefs.Berserk);
 	}
 
 });

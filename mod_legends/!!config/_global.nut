@@ -122,8 +122,12 @@ for (local i = -1; i < ::Const.EntityIcon.len(); i++) {
 	::Const.EntityType.addNew("cat_orientation", "Cat", "Cats");
 ::Const.EntityType.LegendOrcElite <-
 	::Const.EntityType.addNew("orc_elite_orientation", "Orc Elite", "Orc Elites", this.Const.FactionType.Orcs);
+::Const.EntityType.LegendOrcTyrant <-
+	::Const.EntityType.addNew("orc_elite_orientation", "Orc Tyrant", "Orc Tyrant", this.Const.FactionType.Orcs);
 ::Const.EntityType.LegendOrcBehemoth <-
 	::Const.EntityType.addNew("orc_behemoth_orientation", "Orc Behemoth", "Orc Behemoths", this.Const.FactionType.Orcs);
+::Const.EntityType.LegendOrcMadBerserker <-
+	::Const.EntityType.addNew("orc_03_orientation", "Orc Mad Berserker", "Orc Mad Berserkers", this.Const.FactionType.Orcs);
 ::Const.EntityType.LegendWhiteDirewolf <-
 	::Const.EntityType.addNew("white_direwolf_orientation", "White Direwolf", "White Direwolves", this.Const.FactionType.Beasts);
 ::Const.EntityType.LegendSkinGhoul <-
@@ -154,8 +158,8 @@ for (local i = -1; i < ::Const.EntityIcon.len(); i++) {
 	::Const.EntityType.addNew("vampire_lord_orientation", "Necrosavant Lord", "Necrosavant Lords", this.Const.FactionType.Undead);
 ::Const.EntityType.BanditVeteran <-
 	::Const.EntityType.addNew("banditveteran_orientation", "Bandit Veteran", "Bandit Veterans", this.Const.FactionType.Bandits);
-::Const.EntityType.BanditWarlord <-
-	::Const.EntityType.addNew("banditwarlord_orientation", "Bandit Warlord", "Bandit Warlords", this.Const.FactionType.Bandits);
+::Const.EntityType.LegendRobberBaron <-
+	::Const.EntityType.addNew("banditwarlord_orientation", "Robber Baron", "Robber Barons", this.Const.FactionType.Bandits);
 ::Const.EntityType.LegendPeasantButcher <-
 	::Const.EntityType.addNew("butcher_orientation", "Butcher", "Butchers");
 ::Const.EntityType.LegendPeasantBlacksmith <-
@@ -257,7 +261,7 @@ for (local i = -1; i < ::Const.EntityIcon.len(); i++) {
 ::Const.EntityType.NobleSureshot <-
 	::Const.EntityType.addNew("arbalester_orientation", "Sureshot", "Sureshots");
 ::Const.EntityType.LegendBasiliskSentry <-
-	::Const.EntityType.addNew("basilisk_drone_orientation", "Basilisk Sentries", "Basilisk Sentries", this.Const.FactionType.Beasts);
+	::Const.EntityType.addNew("basilisk_drone_orientation", "Basilisk Sentry", "Basilisk Sentries", this.Const.FactionType.Beasts);
 ::Const.EntityType.LegendSighthound <-
 	::Const.EntityType.addNew("dawg_orientation", "Sighthound", "Sighthounds");
 ::Const.EntityType.LegendArmoredSighthound <-
@@ -271,9 +275,9 @@ for (local i = -1; i < ::Const.EntityIcon.len(); i++) {
 ::Const.EntityType.LegendGoblinTribeDefender <-
 	::Const.EntityType.addNew("goblin_tribe_defender_orientation", "Goblin Tribe Defender", "Goblin Tribe Defenders", ::Const.FactionType.Goblins);
 ::Const.EntityType.LegendGoblinDirewolfRider <-
-	::Const.EntityType.addNew("goblin_direwolf_orientation", "Direwolf Rider", "Direwolf Riders", this.Const.FactionType.Goblins);
+	::Const.EntityType.addNew("goblin_direwolf_rider_orientation", "Direwolf Rider", "Direwolf Riders", this.Const.FactionType.Goblins);
 ::Const.EntityType.LegendGoblinWhiteDirewolfRider <-
-	::Const.EntityType.addNew("goblin_whitedirewolf_orientation", "White Direwolf Rider", "White Direwolf Riders", this.Const.FactionType.Goblins);
+	::Const.EntityType.addNew("goblin_white_direwolf_rider_orientation", "White Direwolf Rider", "White Direwolf Riders", this.Const.FactionType.Goblins);
 ::Const.EntityType.LegendGoblinWitchDoctor <-
 	::Const.EntityType.addNew("goblin_witchdoctor_orientation", "Goblin Witchdoctor", "Goblin Witchdoctors", this.Const.FactionType.Goblins);
 ::Const.EntityType.LegendGoblinPlunderer <-
@@ -284,3 +288,5 @@ for (local i = -1; i < ::Const.EntityIcon.len(); i++) {
 	::Const.EntityType.addNew("barbarian_marauder_orientation", "Barbarian Marauder", "Barbarian Marauders", this.Const.FactionType.Barbarians);
 ::Const.EntityType.LegendBarbarianRunechosen <-
 	::Const.EntityType.addNew("barbarian_runechosen_orientation", "Barbarian Runechosen", "Barbarian Runechosen", this.Const.FactionType.Barbarians);
+::Const.EntityType.LegendWicht <-
+	::Const.EntityType.addNew("barbarian_runechosen_orientation", "Wicht", "Wichts", this.Const.FactionType.Undead);

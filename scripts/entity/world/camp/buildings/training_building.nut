@@ -82,7 +82,7 @@ this.training_building <- this.inherit("scripts/entity/world/camp/camp_building"
 				id = 6,
 				type = "text",
 				icon = "ui/buttons/asset_vision_up.png",
-				text = "Total training modifier is [color=" + this.Const.UI.Color.PositiveValue + "]" + mod.Craft * 100.0 + "%[/color]."
+				text = "Total training modifier is [color=%positive%]" + mod.Craft * 100.0 + "%[/color]."
 			}
 		];
 		local id = 7;
@@ -90,11 +90,11 @@ this.training_building <- this.inherit("scripts/entity/world/camp/camp_building"
 		foreach( bro in mod.Modifiers )
 		{
 			++id;
-			local tooltip_text = "[color=" + this.Const.UI.Color.PositiveValue + "]" + bro[0] * 100.0 + "%[/color] " + bro[1] + " (" + bro[2] + ")";
+			local tooltip_text = "[color=%positive%]" + bro[0] * 100.0 + "%[/color] " + bro[1] + " (" + bro[2] + ")";
 
 			if (bro[3])
 			{
-				tooltip_text = "[color=" + this.Const.UI.Color.PositiveValue + "]" + bro[0] * 100.0 + "%[/color] " + bro[1] + " (" + bro[2] + ") [color=" + this.Const.UI.Color.NegativeValue + "] Training fulfilled[/color]"
+				tooltip_text = "[color=%positive%]" + bro[0] * 100.0 + "%[/color] " + bro[1] + " (" + bro[2] + ") [color=%negative%] Training fulfilled[/color]"
 			}
 			ret.push({
 				id = id,
@@ -109,7 +109,7 @@ this.training_building <- this.inherit("scripts/entity/world/camp/camp_building"
 
 	function isHidden()
 	{
-		if (::Legends.Mod.ModSettings.getSetting("SkipCamp").getValue())
+		if (::Legends.Settings.skipCamp())
 		{
 			return false;
 		}
@@ -119,7 +119,7 @@ this.training_building <- this.inherit("scripts/entity/world/camp/camp_building"
 
 	function getUpgraded()
 	{
-		return this.Stash.hasItem("tent.training_tent");
+		return this.Stash.hasItem(::Legends.Camp.Tent.Training);
 	}
 
 	function getLevel()

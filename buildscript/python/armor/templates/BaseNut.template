@@ -11,6 +11,7 @@ this.$name <- this.inherit("scripts/items/legend_armor/legend_armor", {
 		this.updateVariant();
 		this.m.ImpactSound = $impactSound;
 		this.m.InventorySound = $invSound;
+		this.m.BaseInventorySound = $invSound;
 		this.m.Value = $value;
 		this.m.Condition = $condition;
 		this.m.ConditionMax = $condition;

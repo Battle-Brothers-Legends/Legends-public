@@ -4,6 +4,7 @@
 	o.create = function ()
 	{
 		create();
+		this.m.ButtonText = "The company lacks competent archers, limiting our tactical options.\nWe shall train three men to master bow, crossbow or sling and be deadly from afar!";
 		this.m.UIText = "Have 3 men with the bow, sling, or crossbow mastery perk";
 	}
 

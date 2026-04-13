@@ -104,7 +104,7 @@ this.legend_magic_chain_lightning_skill <- this.inherit("scripts/skills/actives/
 			id = 4,
 			type = "text",
 			icon = "ui/icons/regular_damage.png",
-			text = "Inflicts [color=" + this.Const.UI.Color.DamageValue + "]" + damages[0] + "[/color] - [color=" + this.Const.UI.Color.DamageValue + "]" + damages[1] + "[/color] damage, up to [color=" + this.Const.UI.Color.DamageValue + "]" + damages[4] + "[/color] damage can ignore armor"
+			text = "Inflicts [color=%damage%]" + damages[0] + "[/color] - [color=%damage%]" + damages[1] + "[/color] damage, up to [color=%damage%]" + damages[4] + "[/color] damage can ignore armor"
 		});
 
 		if (damages[3] > 0)
@@ -113,7 +113,7 @@ this.legend_magic_chain_lightning_skill <- this.inherit("scripts/skills/actives/
 				id = 5,
 				type = "text",
 				icon = "ui/icons/armor_damage.png",
-				text = "Inflicts [color=" + this.Const.UI.Color.DamageValue + "]" + damages[2] + "[/color] - [color=" + this.Const.UI.Color.DamageValue + "]" + damages[3] + "[/color] armor damage"
+				text = "Inflicts [color=%damage%]" + damages[2] + "[/color] - [color=%damage%]" + damages[3] + "[/color] armor damage"
 			});
 		}
 
@@ -121,7 +121,7 @@ this.legend_magic_chain_lightning_skill <- this.inherit("scripts/skills/actives/
 			id = 6,
 			type = "text",
 			icon = "ui/icons/hitchance.png",
-			text = "Has [color=" + this.Const.UI.Color.PositiveValue + "] " + this.m.AdditionalAccuracy + "% [/color] chance to hit."
+			text = "Has [color=%positive%] " + this.m.AdditionalAccuracy + "% [/color] chance to hit."
 		});
 
 		ret.extend([
@@ -129,7 +129,7 @@ this.legend_magic_chain_lightning_skill <- this.inherit("scripts/skills/actives/
 				id = 7,
 				type = "text",
 				icon = "ui/icons/vision.png",
-				text = "Has a range of [color=" + this.Const.UI.Color.PositiveValue + "]" + this.m.MaxRange + "[/color] tiles on even ground, more if shooting downhill. Can hit up to three targets, doing less damage to each additional target beyond the first."
+				text = "Has a range of [color=%positive%]" + this.m.MaxRange + "[/color] tiles on even ground, more if shooting downhill. Can hit up to three targets, doing less damage to each additional target beyond the first."
 			}
 		]);
 		ret.push({

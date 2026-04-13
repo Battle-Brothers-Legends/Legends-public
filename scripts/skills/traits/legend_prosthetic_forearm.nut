@@ -26,19 +26,19 @@ this.legend_prosthetic_forearm <- this.inherit("scripts/skills/traits/character_
 				id = 7,
 				type = "text",
 				icon = "ui/icons/melee_skill.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]-10%[/color] Melee Skill"
+				text = "[color=%negative%]-10%[/color] Melee Skill"
 			},
 			{
 				id = 7,
 				type = "text",
 				icon = "ui/icons/ranged_skill.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]-10%[/color] Ranged Skill"
+				text = "[color=%negative%]-10%[/color] Ranged Skill"
 			},
 			{
 				id = 7,
 				type = "text",
 				icon = "ui/icons/melee_defense.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]-15%[/color] Melee Defense"
+				text = "[color=%negative%]-15%[/color] Melee Defense"
 			},
 			{
 				id = 16,

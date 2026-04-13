@@ -26,7 +26,7 @@ this.legend_infantry_axe <- this.inherit("scripts/items/weapons/weapon", {
 		this.m.RegularDamage = 50;
 		this.m.RegularDamageMax = 70;
 		this.m.ArmorDamageMult = 1.25;
-		this.m.DirectDamageMult = 0.35;
+		this.m.DirectDamageMult = 0.4;
 		this.m.ChanceToHitHead = 0;
 	}
 
@@ -35,11 +35,9 @@ this.legend_infantry_axe <- this.inherit("scripts/items/weapons/weapon", {
 
 		this.weapon.onEquip();
 		::Legends.Actives.grant(this, ::Legends.Active.Chop, function (_skill) {
-			_skill.m.DirectDamageMult = this.m.DirectDamageMult; //Sets Chop's Direct Damage Mult to Infantry Axes's Direct Damage Mult
+			_skill.m.IsHack = true;
 		}.bindenv(this));
-		::Legends.Actives.grant(this, ::Legends.Active.SplitMan, function (_skill) {
-			_skill.m.DirectDamageMult = this.m.DirectDamageMult; //Sets Split Man's Direct Damage Mult to Infantry Axes's Direct Damage Mult
-		}.bindenv(this));
+		::Legends.Actives.grant(this, ::Legends.Active.LegendHaftstrike);
 		::Legends.Actives.grant(this, ::Legends.Active.SplitShield, function (_skill) {
 			_skill.setApplyAxeMastery(true);
 			_skill.m.ActionPointCost = 4;

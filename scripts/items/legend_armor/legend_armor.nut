@@ -4,13 +4,13 @@ this.legend_armor <- this.inherit("scripts/items/armor/armor", {
 		Variants = [],
 		Blocked = [],
 		Type = -1
+		BaseInventorySound = ::Const.Sound.ClothEquip
 	},
 	function create()
 	{
 		this.armor.create();
 		this.m.SlotType = this.Const.ItemSlot.Body;
 		this.m.Upgrades = [];
-
 		for (local i = 0; i < this.Const.Items.ArmorUpgrades.COUNT; i = ++i)
 		{
 			this.m.Upgrades.push(null);
@@ -18,20 +18,29 @@ this.legend_armor <- this.inherit("scripts/items/armor/armor", {
 		}
 	}
 
+	function getUpgradeVariant ( _idx )
+	{
+		return this.m.Upgrades[_idx].getVariant();
+	}
+
 	function isArmorNamed()
 	{
-		if (this.isNamed()) {
+		if (this.isNamed())
 			return true;
-		}
-
-		foreach (u in this.m.Upgrades)
-		{
+		foreach (u in this.m.Upgrades) {
 			if (u != null && u.isNamed())
-			{
 				return true;
-			}
 		}
+		return false
+	}
 
+	function isArmorLegendary() {
+		if (this.isItemType(::Const.Items.ItemType.Legendary))
+			return true;
+		foreach (u in this.m.Upgrades) {
+			if (u != null && u.isItemType(::Const.Items.ItemType.Legendary))
+				return true;
+		}
 		return false
 	}
 
@@ -50,10 +59,10 @@ this.legend_armor <- this.inherit("scripts/items/armor/armor", {
 
 	function getIcon()
 	{
+		if (this.isArmorLegendary())
+			return "layers/legendary_icon_glow.png";
 		if (this.isArmorNamed())
-		{
-			return "layers/named_icon_glow.png"
-		}
+			return "layers/named_icon_glow.png";
 		return this.m.Icon;
 	}
 
@@ -87,10 +96,10 @@ this.legend_armor <- this.inherit("scripts/items/armor/armor", {
 
 	function getIconLarge()
 	{
-		if (this.isArmorNamed()) {
-			return "layers/named_inventory_glow.png"
-		}
-
+		if (this.isArmorLegendary())
+			return "layers/legendary_inventory_glow.png";
+		if (this.isArmorNamed())
+			return "layers/named_inventory_glow.png";
 		return this.m.IconLarge != "" ? this.m.IconLarge : null;
 	}
 
@@ -165,8 +174,16 @@ this.legend_armor <- this.inherit("scripts/items/armor/armor", {
 	}
 
 	function getStaminaModifier()
-	{	
-		return this.getAddedValue("getStaminaModifier", this.m.StaminaModifier);
+	{
+		local upgradeMultiplier = 1;
+		foreach( i, upgrade in this.m.Upgrades )
+		{
+			if (upgrade != null && upgrade.m.FatiguePenaltyMultiplier != null)
+			{
+				upgradeMultiplier *= 0.01 * (100 + upgrade.m.FatiguePenaltyMultiplier);
+			}
+		}
+		return this.Math.floor(upgradeMultiplier * this.getAddedValue("getStaminaModifier", this.m.StaminaModifier));
 	}
 
 	function getValue()
@@ -261,8 +278,8 @@ this.legend_armor <- this.inherit("scripts/items/armor/armor", {
 			return;
 		}
 
-		this.m.Condition = this.m.ConditionMax;
 		local delta = _a - (this.m.ConditionMax - this.m.Condition);
+		this.m.Condition = this.m.ConditionMax;
 
 		foreach (u in this.m.Upgrades)
 		{
@@ -404,16 +421,21 @@ this.legend_armor <- this.inherit("scripts/items/armor/armor", {
 	}
 
 	function getUpgradesNamed() {
-
+		local upgradePrice = 0;
+		local name = "";
 		foreach(u in this.m.Upgrades)
 		{
 			if (u != null && u.isNamed())
 			{
-				return u.getName();
+				if(u.getValue()>upgradePrice)
+				{
+					upgradePrice = u.getValue();
+					name = u.getName();
+				}
 			}
 		}
 
-		return ""
+		return name;
 	}
 
 	function setUpgrade( _upgrade )
@@ -487,7 +509,7 @@ this.legend_armor <- this.inherit("scripts/items/armor/armor", {
 		local uname = this.getUpgradesNamed();
 
 		if (uname != "") {
-			NAME = uname + " " + this.getName();
+			NAME = uname + " on " + this.getName();
 		}
 		else if (this.getUpgrade(1) != null)
 		{
@@ -513,6 +535,9 @@ this.legend_armor <- this.inherit("scripts/items/armor/armor", {
 
 	function getTooltip()
 	{
+		if (::Legends.Mod.ModSettings.getSetting("LogOutfits").getValue())
+			::Legends.S.logArmor(this);
+
 		local description = this.getDescription();
 
 		foreach( u in this.m.Upgrades )
@@ -609,15 +634,16 @@ this.legend_armor <- this.inherit("scripts/items/armor/armor", {
 			result.push({	// An empty line is put in to improve formatting
 				id = 10,
 				type = "text",
-				icon = "ui/icons/blank.png",
-				text = " "
+				text = "&nbsp;"
 			});
+
 			result.push({
 				id = 10,
 				type = "text",
-				icon = "ui/icons/armor_body.png",
-				text = "[u]" + this.getName() + "[/u]"
+				text = "[leg_img](gfx/ui/items/%icon%,height=28px,width=28px)[/leg_img] [b][u]%name%[/u][/b]",
+				param = [["name", this.getName()], ["icon", this.m.Icon]]
 			});
+
 			result.push({
 				id = 10,
 				type = "text",
@@ -723,12 +749,20 @@ this.legend_armor <- this.inherit("scripts/items/armor/armor", {
 
 	function updateAppearance()
 	{
-		if (this.getContainer() == null || !this.isEquipped())
+		if (this.m.Upgrades[this.Const.Items.ArmorUpgrades.Plate] != null)
 		{
-			return;
+			this.m.InventorySound = this.m.Upgrades[this.Const.Items.ArmorUpgrades.Plate].m.InventorySound;
+		}
+		else if (this.m.Upgrades[this.Const.Items.ArmorUpgrades.Chain] != null)
+		{
+			this.m.InventorySound = this.m.Upgrades[this.Const.Items.ArmorUpgrades.Chain].m.InventorySound;
+		}
+		else
+		{
+			this.m.InventorySound = this.m.BaseInventorySound;
 		}
 
-		if (!this.m.ShowOnCharacter)
+		if (this.getContainer() == null || !this.isEquipped() || !this.m.ShowOnCharacter)
 		{
 			return;
 		}
@@ -882,10 +916,11 @@ this.legend_armor <- this.inherit("scripts/items/armor/armor", {
 
 		local staminaMult = 1.0;
 
-		if (this.getContainer().getActor().getSkills().hasPerk(::Legends.Perk.Brawny))
-		{
-			staminaMult = 0.70;
-		}
+		// if (this.getContainer().getActor().getSkills().hasPerk(::Legends.Perk.Brawny))
+		// {
+		// 	staminaMult = 0.70;
+		// }
+		// 19.2 changes to Brawny
 
 		_properties.Armor[this.Const.BodyPart.Body] += this.getArmor();
 		_properties.ArmorMax[this.Const.BodyPart.Body] += this.getArmorMax();

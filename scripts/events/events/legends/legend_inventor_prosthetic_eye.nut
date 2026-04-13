@@ -261,13 +261,8 @@ this.legend_inventor_prosthetic_eye <- this.inherit("scripts/events/event", {
 	function onDetermineStartScreen()
 	{
 		if (this.m.Noeye.getSkills().hasSkill("injury.brain_damage"))
-		{
 			return "B";
-		}
-		else
-		{
-			return "A";
-		}
+		return "A";
 	}
 
 	function onClear()

@@ -32,19 +32,19 @@ this.legend_eat_pudding_skill <- this.inherit("scripts/skills/actives/base/legen
 				id = 11,
 				type = "text",
 				icon = "ui/icons/health.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+5[/color] Hitpoints per turn for 10 turns"
+				text = "[color=%positive%]+5[/color] Hitpoints per turn for 10 turns"
 			},
 			{
 				id = 12,
 				type = "text",
 				icon = "ui/icons/fatigue.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]-5[/color] Fatigue per turn for 10 turns"
+				text = "[color=%negative%]-5[/color] Fatigue per turn for 10 turns"
 			},
 			{
 				id = 13,
 				type = "text",
 				icon = "ui/icons/bravery.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+20[/color] Resolve to morale checks for 10 turns"
+				text = "[color=%positive%]+20[/color] Resolve to morale checks for 10 turns"
 			}
 		];
 
@@ -54,7 +54,7 @@ this.legend_eat_pudding_skill <- this.inherit("scripts/skills/actives/base/legen
 				id = 5,
 				type = "text",
 				icon = "ui/tooltips/warning.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]Can not be used because this character is engaged in melee[/color]"
+				text = "[color=%negative%]Can not be used because this character is engaged in melee[/color]"
 			});
 		}
 

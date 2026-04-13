@@ -33,6 +33,7 @@ this.legend_limb_lopper <- this.inherit("scripts/items/weapons/weapon", {
 	{
 		this.weapon.onEquip();
 		::Legends.Actives.grant(this, ::Legends.Active.Cleave);
+		::Legends.Actives.grant(this, ::Legends.Active.LegendHarvest);
 		::Legends.Actives.grant(this, ::Legends.Active.Decapitate);
 		::Legends.Actives.grant(this, ::Legends.Active.SplitShield, function (_skill) {
 			_skill.setApplyAxeMastery(true);

@@ -1,6 +1,8 @@
 ::Const.LegendOnAppearanceChangedSprites <- {
 	Helmet = 
 	{
+		HelmetLayerHelmLower = "helmet_helm_lower",
+		HelmetLayerTopLower = "helmet_top_lower",
 		HelmetLayerVanityLower = "helmet_vanity_lower",
 		HelmetLayerVanity2Lower = "helmet_vanity_lower_2",
 		HelmetLayerHelm = "helmet_helm",
@@ -33,6 +35,8 @@
 		"helmet_vanity_lower",
 		"helmet_vanity_lower_2",
 		"helmet",
+		"helmet_helm_lower",
+		"helmet_top_lower",
 		"helmet_damage",
 		"helmet_helm",
 		"helmet_top",
@@ -44,6 +48,8 @@
 		"helmet_vanity_lower",
 		"helmet_vanity_lower_2",
 		"helmet",
+		"helmet_helm_lower",
+		"helmet_top_lower",
 		"helmet_damage",
 		"helmet_helm",
 		"helmet_top",

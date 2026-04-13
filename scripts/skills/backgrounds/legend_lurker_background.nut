@@ -93,31 +93,30 @@ this.legend_lurker_background <- this.inherit("scripts/skills/backgrounds/charac
 			];
 		this.m.PerkTreeDynamic = {
 			Weapon = [
-				this.Const.Perks.CleaverTree,
-				this.Const.Perks.FlailTree,
-				this.Const.Perks.BowTree,
-				this.Const.Perks.ThrowingTree,
-				this.Const.Perks.CrossbowTree,
-				this.Const.Perks.SlingTree
+				::Const.Perks.CleaverTree,
+				::Const.Perks.FlailTree,
+				::Const.Perks.BowTree,
+				::Const.Perks.ThrowingTree,
+				::Const.Perks.CrossbowTree,
+				::Const.Perks.SlingTree
 			],
 			Defense = [
-				this.Const.Perks.ClothArmorTree,
-				this.Const.Perks.MediumArmorTree
+				::Const.Perks.ClothArmorTree,
+				::Const.Perks.MediumArmorTree
 			],
 			Traits = [
-				this.Const.Perks.AgileTree,
-				this.Const.Perks.FastTree,
-				this.Const.Perks.MartyrTree
+				::Const.Perks.AgileTree,
+				::Const.Perks.FastTree,
+				::Const.Perks.MartyrTree
 			],
 			Enemy = [
-				this.Const.Perks.CaravanTree,
-				this.Const.Perks.NoblesTree,
-				this.Const.Perks.ArcherTree
+				::Const.Perks.CivilizationTree,
+
 			],
 			Class = [
-				this.Const.Perks.BeastClassTree,
-				this.Const.Perks.NinetailsClassTree,
-				this.Const.Perks.ShortbowClassTree
+				::Const.Perks.BeastClassTree,
+				::Const.Perks.NinetailsClassTree,
+				// ::Const.Perks.ShortbowClassTree
 			],
 			Profession = [],
 			Magic = []
@@ -136,7 +135,7 @@ this.legend_lurker_background <- this.inherit("scripts/skills/backgrounds/charac
 		this.m.HairColors = this.Const.HairColors.Old;
 		this.m.Beards = null;
 		this.m.BeardChance = 0;
-		this.m.Bodies = this.Const.Bodies.AllFemale;
+		this.m.Bodies = this.Const.Bodies.NorthernFemale;
 		this.addBackgroundType(this.Const.BackgroundType.Female);
 	}
 
@@ -244,7 +243,7 @@ this.legend_lurker_background <- this.inherit("scripts/skills/backgrounds/charac
 			}
 			else if (r <= 80)
 			{
-				items.equip(this.new("scripts/items/weapons/legend_sling"));
+				items.equip(this.new("scripts/items/weapons/legend_dilapitated_sling"));
 			}
 			else
 			{

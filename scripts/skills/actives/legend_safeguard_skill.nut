@@ -45,7 +45,7 @@ this.legend_safeguard_skill <- this.inherit("scripts/skills/skill", {
 			id = 7,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "Reduces your own defenses by [color=" + this.Const.UI.Color.NegativeValue + "]-10[/color]"
+			text = "Reduces your own defenses by [color=%negative%]-10[/color]"
 		});
 		return ret;
 	}

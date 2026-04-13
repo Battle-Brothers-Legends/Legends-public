@@ -1,18 +1,18 @@
 ::Legends.Armor.Ancient <- {};
 
 ::Legends.Armor.Ancient.ancient_breastplate <- {
-	ID = "ancient/ancient_breastplate", // 135
+	ID = "ancient/ancient_breastplate", // 135-145 -19-23 770-1540
 	Script = "",
 	Sets = [{
 		Cloth = [
-			[1, "cloth/legend_ancient_cloth"], // 30
-			[1, "cloth/legend_ancient_cloth_restored"], // 35
+			[1, "cloth/legend_armor_ancient_cloth"], // 30 -5 20
+			[1, "cloth/legend_armor_ancient_cloth_restored"], // 35 -4 40
 		],
 		Chain = [
 		],
 		Plate = [
-			[1, "plate/legend_armor_plate_ancient_chest"], // 105
-			[1, "plate/legend_armor_plate_ancient_chest_restored"], // 110
+			[1, "plate/legend_armor_plate_ancient_chest"], // 105 -18 750
+			[1, "plate/legend_armor_plate_ancient_chest_restored"], // 110 -15 1500
 		],
 		Cloak = [
 		],
@@ -25,15 +25,15 @@
 ::Const.LegendMod.ArmorObjs.push(::Legends.Armor.Ancient.ancient_breastplate);
 
 ::Legends.Armor.Ancient.ancient_double_layer_mail <- {
-	ID = "ancient/ancient_double_layer_mail", // 120
+	ID = "ancient/ancient_double_layer_mail", // 110-115 -18-19 770-790
 	Script = "",
 	Sets = [{
 		Cloth = [
-			[1, "cloth/legend_ancient_cloth"], // 30
-			[1, "cloth/legend_ancient_cloth_restored"], // 35
+			[1, "cloth/legend_armor_ancient_cloth"], // 30 -5 20
+			[1, "cloth/legend_armor_ancient_cloth_restored"], // 35 -4 40
 		],
 		Chain = [
-			[1, "chain/legend_armor_ancient_double_mail"], // 80
+			[1, "chain/legend_armor_ancient_double_mail"], // 80 -14 750
 		],
 		Plate = [
 		],
@@ -69,18 +69,18 @@
 ::Const.LegendMod.ArmorObjs.push(::Legends.Armor.Ancient.ancient_lich_attire);
 
 ::Legends.Armor.Ancient.ancient_mail <- {
-	ID = "ancient/ancient_mail", // 100
+	ID = "ancient/ancient_mail", // 110-115 -17-18 620-640
 	Script = "",
 	Sets = [{
 		Cloth = [
-			[1, "cloth/legend_ancient_cloth"], // 30
-			[1, "cloth/legend_ancient_cloth_restored"], // 35
+			[1, "cloth/legend_armor_ancient_cloth"], // 30 -5 20
+			[1, "cloth/legend_armor_ancient_cloth_restored"], // 35 -4 40
 		],
 		Chain = [
-			[1, "chain/legend_armor_ancient_mail"], // 35
+			[1, "chain/legend_armor_ancient_mail"], // 35 -6 300
 		],
 		Plate = [
-			[1, "plate/legend_armor_plate_ancient_mail"], // 45
+			[1, "plate/legend_armor_plate_ancient_mail"], // 45 -7 300
 		],
 		Cloak = [
 		],
@@ -93,20 +93,20 @@
 ::Const.LegendMod.ArmorObjs.push(::Legends.Armor.Ancient.ancient_mail);
 
 ::Legends.Armor.Ancient.ancient_plated_mail_hauberk <- {
-	ID = "ancient/ancient_plated_mail_hauberk", // 180
+	ID = "ancient/ancient_plated_mail_hauberk", // 170-180 -25-29 1070-1840
 	Script = "",
 	Sets = [{
 		Cloth = [
-			[1, "cloth/legend_ancient_cloth"], // 30
-			[1, "cloth/legend_ancient_cloth_restored"], // 35
+			[1, "cloth/legend_armor_ancient_cloth"], // 30 -5 20
+			[1, "cloth/legend_armor_ancient_cloth_restored"], // 35 -4 40
 		],
 		Chain = [
-			[1, "chain/legend_armor_ancient_mail"], // 35
+			[1, "chain/legend_armor_ancient_mail"], // 35 -6 300
 		],
 		Plate = [
-			[1, "plate/legend_armor_plate_ancient_chest"], // 105
-			[1, "plate/legend_armor_plate_ancient_chest_restored"], // 110
-			[1, "plate/legend_armor_plate_ancient_scale"], // 105
+			[1, "plate/legend_armor_plate_ancient_chest"], // 105 -18 750
+			[1, "plate/legend_armor_plate_ancient_chest_restored"], // 110 -15 1500
+			[1, "plate/legend_armor_plate_ancient_scale"], // 105 -17 1000
 		],
 		Cloak = [
 		],
@@ -119,18 +119,18 @@
 ::Const.LegendMod.ArmorObjs.push(::Legends.Armor.Ancient.ancient_plated_mail_hauberk);
 
 ::Legends.Armor.Ancient.ancient_plated_scale_hauberk <- {
-	ID = "ancient/ancient_plated_scale_hauberk", // 210
+	ID = "ancient/ancient_plated_scale_hauberk", // 205-210 -34-35 2320-2340
 	Script = "",
 	Sets = [{
 		Cloth = [
-			[1, "cloth/legend_ancient_cloth"], // 30
-			[1, "cloth/legend_ancient_cloth_restored"], // 35
+			[1, "cloth/legend_armor_ancient_cloth"], // 30 -5 20
+			[1, "cloth/legend_armor_ancient_cloth_restored"], // 35 -4 40
 		],
 		Chain = [
-			[1, "chain/legend_armor_ancient_mail"], // 35
+			[1, "chain/legend_armor_ancient_mail"], // 35 -6 300
 		],
 		Plate = [
-			[1, "plate/legend_armor_plate_ancient_scale_coat"], // 140
+			[1, "plate/legend_armor_plate_ancient_scale_coat"], // 140 -24 2000
 
 		],
 		Cloak = [
@@ -144,20 +144,20 @@
 ::Const.LegendMod.ArmorObjs.push(::Legends.Armor.Ancient.ancient_plated_scale_hauberk);
 
 ::Legends.Armor.Ancient.ancient_plate_harness <- {
-	ID = "ancient/ancient_plate_harness", // 200
+	ID = "ancient/ancient_plate_harness", // 140-230 -22-38 820-2290
 	Script = "",
 	Sets = [{
 		Cloth = [
-			[1, "cloth/legend_ancient_cloth"], // 30
-			[1, "cloth/legend_ancient_cloth_restored"], // 35
+			[1, "cloth/legend_armor_ancient_cloth"], // 30 -5 20
+			[1, "cloth/legend_armor_ancient_cloth_restored"], // 35 -4 40
 		],
 		Chain = [
-			[1, "chain/legend_armor_ancient_double_mail"], // 80
-			[1, "chain/legend_armor_ancient_mail"], // 35
+			[1, "chain/legend_armor_ancient_double_mail"], // 80 -14 750
+			[1, "chain/legend_armor_ancient_mail"], // 35 -6 300
 		],
 		Plate = [
-			[1, "plate/legend_armor_plate_ancient_harness"], // 115
-			[1, "plate/legend_armor_plate_ancient_scale_harness"], // 75
+			[1, "plate/legend_armor_plate_ancient_harness"], // 115 -19 1500
+			[1, "plate/legend_armor_plate_ancient_scale_harness"], // 75 -12 500
 		],
 		Cloak = [
 		],
@@ -190,12 +190,12 @@
 ::Const.LegendMod.ArmorObjs.push(::Legends.Armor.Ancient.ancient_priest_attire);
 
 ::Legends.Armor.Ancient.ancient_ripped_cloth <- {
-	ID = "ancient/ancient_ripped_cloth", // 25
+	ID = "ancient/ancient_ripped_cloth", // 30-35 -4-5 20-40
 	Script = "",
 	Sets = [{
 		Cloth = [
-			[1, "cloth/legend_ancient_cloth"], // 30
-			[1, "cloth/legend_ancient_cloth_restored"], // 35
+			[1, "cloth/legend_armor_ancient_cloth"], // 30 -5 20
+			[1, "cloth/legend_armor_ancient_cloth_restored"], // 35 -4 40
 		],
 		Chain = [
 		],
@@ -212,21 +212,21 @@
 ::Const.LegendMod.ArmorObjs.push(::Legends.Armor.Ancient.ancient_ripped_cloth);
 
 ::Legends.Armor.Ancient.ancient_scale_coat <- {
-	ID = "ancient/ancient_scale_coat", // 190
+	ID = "ancient/ancient_scale_coat", // 170-185 -25-30 1070-1840
 	Script = "",
 	Sets = [{
 		Cloth = [
-			[1, "cloth/legend_ancient_cloth"], // 30
-			[1, "cloth/legend_ancient_cloth_restored"], // 35
+			[1, "cloth/legend_armor_ancient_cloth"], // 30 -5 20
+			[1, "cloth/legend_armor_ancient_cloth_restored"], // 35 -4 40
 		],
 		Chain = [
-			[1, "chain/legend_armor_ancient_mail"], // 35
+			[1, "chain/legend_armor_ancient_mail"], // 35 -6 300
 		],
 		Plate = [
-			[1, "plate/legend_armor_plate_ancient_chest"], // 105
-			[1, "plate/legend_armor_plate_ancient_chest_restored"], // 110
-			[1, "plate/legend_armor_plate_ancient_harness"], // 115
-			[1, "plate/legend_armor_plate_ancient_scale"], // 105
+			[1, "plate/legend_armor_plate_ancient_chest"], // 105 -18 750
+			[1, "plate/legend_armor_plate_ancient_chest_restored"], // 110 -15 1500
+			[1, "plate/legend_armor_plate_ancient_harness"], // 115 -19 1500
+			[1, "plate/legend_armor_plate_ancient_scale"], // 105 -17 1000
 		],
 		Cloak = [
 		],
@@ -239,18 +239,18 @@
 ::Const.LegendMod.ArmorObjs.push(::Legends.Armor.Ancient.ancient_scale_coat);
 
 ::Legends.Armor.Ancient.ancient_scale_harness <- {
-	ID = "ancient/ancient_scale_harness", // 125
+	ID = "ancient/ancient_scale_harness", // 140-145 -22-23 820-840
 	Script = "",
 	Sets = [{
 		Cloth = [
-			[1, "cloth/legend_ancient_cloth"], // 30
-			[1, "cloth/legend_ancient_cloth_restored"], // 35
+			[1, "cloth/legend_armor_ancient_cloth"], // 30 -5 20
+			[1, "cloth/legend_armor_ancient_cloth_restored"], // 35 -4 40
 		],
 		Chain = [
-			[1, "chain/legend_armor_ancient_mail"], // 35
+			[1, "chain/legend_armor_ancient_mail"], // 35 -6 300
 		],
 		Plate = [
-			[1, "plate/legend_armor_plate_ancient_scale_harness"], // 75
+			[1, "plate/legend_armor_plate_ancient_scale_harness"], // 75 -12 500
 		],
 		Cloak = [
 		],
@@ -342,9 +342,9 @@
 };
 ::Const.LegendMod.ArmorObjs.push(::Legends.Armor.Ancient.legend_mummy_plate);
 
-::Legends.Armor.Ancient.legend_armor_plate_ancient_scale_coat_restored <- {
-	ID = "legend_armor_plate_ancient_scale_coat_restored", // 10
-	Script = "scripts/items/armor/ancient/legend_armor_plate_ancient_scale_coat_restored",
+::Legends.Armor.Ancient.plate_ancient_scale_coat_restored <- {
+	ID = "plate_ancient_scale_coat_restored", // 10
+	Script = "scripts/items/armor/ancient/plate_ancient_scale_coat_restored",
 	Sets = [{
 		Cloth = [
 		],
@@ -360,11 +360,11 @@
 		]
 	}]
 };
-::Const.LegendMod.ArmorObjs.push(::Legends.Armor.Ancient.legend_armor_plate_ancient_scale_coat_restored);
+::Const.LegendMod.ArmorObjs.push(::Legends.Armor.Ancient.plate_ancient_scale_coat_restored);
 
-::Legends.Armor.Ancient.legend_armor_plate_ancient_scale_harness_restored <- {
-	ID = "legend_armor_plate_ancient_scale_harness_restored", // 10
-	Script = "scripts/items/armor/ancient/legend_armor_plate_ancient_scale_harness_restored",
+::Legends.Armor.Ancient.plate_ancient_scale_harness_restored <- {
+	ID = "plate_ancient_scale_harness_restored", // 10
+	Script = "scripts/items/armor/ancient/plate_ancient_scale_harness_restored",
 	Sets = [{
 		Cloth = [
 		],
@@ -380,7 +380,7 @@
 		]
 	}]
 };
-::Const.LegendMod.ArmorObjs.push(::Legends.Armor.Ancient.legend_armor_plate_ancient_scale_harness_restored);
+::Const.LegendMod.ArmorObjs.push(::Legends.Armor.Ancient.plate_ancient_scale_harness_restored);
 
 ::Legends.Armor.Ancient.legend_mummy_royal_plate <- {
 	ID = "ancient/legend_mummy_royal_plate", // 10
@@ -402,3 +402,28 @@
 };
 ::Const.LegendMod.ArmorObjs.push(::Legends.Armor.Ancient.legend_mummy_royal_plate);
 
+::Legends.Armor.Ancient.ancient_heavy_restored_armor <- {
+	ID = "ancient/ancient_heavy_restored_armor", // 220-285 -33-42 2270-3790
+	Script = "",
+	Sets = [{
+		Cloth = [
+			[1, "cloth/legend_armor_ancient_cloth"], // 30 -5 20
+			[1, "cloth/legend_armor_ancient_cloth_restored"], // 35 -4 40
+		],
+		Chain = [
+			[1, "chain/legend_armor_ancient_double_mail"], // 80 -14 750
+		],
+		Plate = [
+			[1, "plate/legend_armor_plate_ancient_chest_restored"], // 110 -15 1500
+			[1, "plate/legend_armor_plate_ancient_chest_restored"], // 110 -15 1500
+			[1, "plate/legend_armor_plate_ancient_scale_coat_restored"] // 170 -23 3000
+		],
+		Cloak = [
+		],
+		Tabard = [
+		],
+		Attachments =[
+		]
+	}]
+};
+::Const.LegendMod.ArmorObjs.push(::Legends.Armor.Ancient.ancient_heavy_restored_armor);

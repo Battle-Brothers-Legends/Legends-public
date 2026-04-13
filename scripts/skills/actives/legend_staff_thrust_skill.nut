@@ -44,7 +44,7 @@ this.legend_staff_thrust_skill <- this.inherit("scripts/skills/skill", {
 				id = 6,
 				type = "text",
 				icon = "ui/icons/hitchance.png",
-				text = "Has [color=" + this.Const.UI.Color.PositiveValue + "]+20%[/color] chance to hit"
+				text = "Has [color=%positive%]+20%[/color] chance to hit"
 			}
 		]);
 		return ret;

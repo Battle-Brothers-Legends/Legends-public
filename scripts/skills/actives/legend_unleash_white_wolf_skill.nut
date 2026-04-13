@@ -143,6 +143,7 @@ this.legend_unleash_white_wolf_skill <- this.inherit("scripts/skills/actives/leg
 		entity.setFaction(this.Const.Faction.PlayerAnimals);
 		entity.setItem(this.m.Item);
 		entity.setName(this.m.Item.getName());
+		entity.setVariant(this.m.Item.getVariant(), entity.getSprite("body").Color, entity.getSprite("body").Saturation);
 		this.m.Item.setEntity(entity);
 
 		if (this.getContainer().hasSkill("background.houndmaster"))
@@ -162,4 +163,3 @@ this.legend_unleash_white_wolf_skill <- this.inherit("scripts/skills/actives/leg
 	}
 
 });
-

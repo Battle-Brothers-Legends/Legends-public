@@ -17,6 +17,25 @@
 	]
 };
 
+::Const.Tactical.Actor.LegendWicht <- {
+	XP = 350,
+	ActionPoints = 9,
+	Hitpoints = 1,
+	Bravery = 100,
+	Stamina = 130,
+	MeleeSkill = 75,
+	RangedSkill = 0,
+	MeleeDefense = 10,
+	RangedDefense = 5,
+	Initiative = 120,
+	FatigueEffectMult = 0.0,
+	MoraleEffectMult = 0.0,
+	Armor = [
+		0,
+		0
+	]
+};
+
 ::Const.Tactical.Actor.LegendVampireLord <- {
 	XP = 600,
 	ActionPoints = 9,
@@ -99,7 +118,7 @@
 	Bravery = 80,
 	Stamina = 100,
 	MeleeSkill = 65,
-	RangedSkill = 0,
+	RangedSkill = 65,
 	MeleeDefense = 20,
 	RangedDefense = 10,
 	Initiative = 65,
@@ -117,7 +136,7 @@
 	Bravery = 100,
 	Stamina = 100,
 	MeleeSkill = 75,
-	RangedSkill = 0,
+	RangedSkill = 75,
 	MeleeDefense = 40,
 	RangedDefense = 20,
 	Initiative = 70,
@@ -135,7 +154,7 @@
 	Bravery = 130,
 	Stamina = 100,
 	MeleeSkill = 90,
-	RangedSkill = 0,
+	RangedSkill = 90,
 	MeleeDefense = 40,
 	RangedDefense = 20,
 	Initiative = 90,
@@ -155,7 +174,7 @@
 	Bravery = 100,
 	Stamina = 100,
 	MeleeSkill = 75,
-	RangedSkill = 0,
+	RangedSkill = 75,
 	MeleeDefense = 25,
 	RangedDefense = 10,
 	Initiative = 85,

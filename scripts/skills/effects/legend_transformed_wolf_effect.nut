@@ -21,7 +21,7 @@ this.legend_transformed_wolf_effect <- this.inherit("scripts/skills/effects/lege
 				id = 10,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]-1[/color] Action Point per tile moved"
+				text = "[color=%positive%]-1[/color] Action Point per tile moved"
 			}
 		]);
 

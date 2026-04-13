@@ -334,7 +334,7 @@ this.legend_northmen_forest_ambush_event <- this.inherit("scripts/events/event",
 			{
 				candidates_barbarian.push(b);
 			}
-			else if (b.getBackground().getID() == "background.wildman" || b.getBackground().getID() == "background.wildwoman" || b.getBackground().getID() == "background.legend_berserker")
+			else if (b.getBackground().getID() == "background.wildman" || b.getBackground().getID() == "background.legend_berserker")
 			{
 				candidates_wildman.push(b);
 			}

@@ -30,8 +30,8 @@ this.legend_named_warhammer <- this.inherit("scripts/items/weapons/named/named_w
 	function updateVariant()
 	{
 		this.m.IconLarge = "weapons/melee/legend_named_warhammer_0" + this.m.Variant + ".png";
-		this.m.Icon = "weapons/melee/legend_named_warhammer_" + this.m.Variant + "_70x70.png";
-		this.m.ArmamentIcon = "icon_legend_named_warhammer_" + this.m.Variant;
+		this.m.Icon = "weapons/melee/legend_named_warhammer_0" + this.m.Variant + "_70x70.png";
+		this.m.ArmamentIcon = "icon_legend_named_warhammer_0" + this.m.Variant;
 	}
 
 	function onEquip()

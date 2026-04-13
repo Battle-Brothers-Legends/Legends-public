@@ -2,12 +2,7 @@ this.perk_legend_muscularity <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		::Const.Perks.setup(this.m, ::Legends.Perk.LegendMuscularity);
-		this.m.Type = this.Const.SkillType.Perk;
-		this.m.Order = this.Const.SkillOrder.Perk;
-		this.m.IsActive = false;
-		this.m.IsStacking = false;
-		this.m.IsHidden = false;
+		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendMuscularity);
 	}
 
 	function onAnySkillUsed( _skill, _targetEntity, _properties )
@@ -27,8 +22,8 @@ this.perk_legend_muscularity <- this.inherit("scripts/skills/skill", {
 	function getBonus()
 	{
 		local actor = this.getContainer().getActor();
-		local damageBonus = this.Math.maxf(actor.getHitpoints(), actor.getHitpointsMax() / 2.0) * 0.001; // either half of the max hitpoints or hitpoints so there's a lower bound
-		damageBonus += this.Math.maxf(actor.getFatigueMax() - actor.getFatigue(), (actor.getFatigueMax() - actor.getFatigue()) / 2.0) * 0.0015;
+		local damageBonus = actor.getHitpoints() * 0.001;
+		damageBonus += (actor.getFatigueMax() - actor.getFatigue()) * 0.0015;
 		return this.Math.minf(0.5, damageBonus);
 	}
 
@@ -39,7 +34,7 @@ this.perk_legend_muscularity <- this.inherit("scripts/skills/skill", {
 				id = 3,
 				type = "hint",
 				icon = "ui/icons/damage_dealt.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]" + this.Math.round(this.getBonus() * 100) + "%[/color] Damage based on current Hitpoints and Fatigue"
+				text = "[color=%positive%]" + this.Math.round(this.getBonus() * 100) + "%[/color] Damage based on current Hitpoints and Fatigue"
 			}
 		];
 	}

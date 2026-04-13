@@ -5,6 +5,7 @@
 	{
 		create();
 		this.m.DraftList = [
+			"legend_shieldmaiden_background",
 			"legend_shieldmaiden_background", // added missing (,) here. Abyss 5/15/23
 			"apprentice_background",
 			"beggar_background",

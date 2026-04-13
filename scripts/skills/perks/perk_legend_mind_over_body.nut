@@ -2,12 +2,9 @@ this.perk_legend_mind_over_body <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		::Const.Perks.setup(this.m, ::Legends.Perk.LegendMindOverBody);
+		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendMindOverBody);
 		this.m.Type = this.Const.SkillType.Perk | this.Const.SkillType.StatusEffect;
 		this.m.Order = this.Const.SkillOrder.Last;
-		this.m.IsActive = false;
-		this.m.IsStacking = false;
-		this.m.IsHidden = false;
 	}
 
 	function getBonus( unactivated )
@@ -53,7 +50,7 @@ this.perk_legend_mind_over_body <- this.inherit("scripts/skills/skill", {
 				id = 6,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "All your fatigue costs are reduced by [color=" + this.Const.UI.Color.PositiveValue + "]" + reduction + "%[/color]"
+				text = "All your fatigue costs are reduced by [color=%positive%]" + reduction + "%[/color]"
 			});
 		}
 		else
@@ -84,7 +81,7 @@ this.perk_legend_mind_over_body <- this.inherit("scripts/skills/skill", {
 				id = 6,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "All your fatigue costs are reduced by [color=" + this.Const.UI.Color.PositiveValue + "]" + reduction + "%[/color]"
+				text = "All your fatigue costs are reduced by [color=%positive%]" + reduction + "%[/color]"
 			});
 		}
 		else

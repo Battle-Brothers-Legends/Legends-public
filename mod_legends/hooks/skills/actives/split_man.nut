@@ -7,9 +7,10 @@
 		this.m.IsOrcWeapon = _f;
 	}
 
-	o.isHidden <- function()
-	{
-		return this.m.IsOrcWeapon && !this.getContainer().getActor().getSkills().getSkillByID("special.double_grip").canDoubleGrip();
+	o.isHidden <- function() {
+		local dg = this.getContainer().getActor().getSkills().getSkillByID("special.double_grip");
+		local canDoubleGrip = dg != null && ("canDoubleGrip" in dg) && dg.canDoubleGrip();
+		return this.m.IsOrcWeapon && !canDoubleGrip;
 	}
 
 	o.getTooltip = function ()

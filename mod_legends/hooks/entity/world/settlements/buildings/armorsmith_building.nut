@@ -227,13 +227,13 @@
 
 				R = 80,
 				P = 1.0,
-				S = "helmets/wallace_sallet"
+				S = "helmets/cervelliere"
 			},
 			{
 
 				R = 80,
 				P = 1.0,
-				S = "helmets/deep_sallet"
+				S = "helmets/deep_cervelliere"
 			},
 			{
 
@@ -364,13 +364,13 @@
 
 				R = 80,
 				P = 1.0,
-				S = "helmets/wallace_sallet"
+				S = "helmets/cervelliere"
 			},
 			{
 
 				R = 80,
 				P = 1.0,
-				S = "helmets/deep_sallet"
+				S = "helmets/deep_cervelliere"
 			},
 			{
 
@@ -553,12 +553,12 @@
 			{
 				R = 90,
 				P = 1.0,
-				S = "legend_armor/cloth/legend_knightly_robe"
+				S = "legend_armor/cloth/legend_armor_knightly_robe"
 			},
 			{
 				R = 60,
 				P = 1.0,
-				S = "legend_armor/cloth/wanderers_coat"
+				S = "legend_armor/cloth/legend_armor_wanderers_coat"
 			},
 			{
 				R = 70,
@@ -631,6 +631,18 @@
 		}
 
 		foreach( i in this.Const.Items.NamedShields )
+		{
+			if (this.Math.rand(1, 100) <= 33)
+			{
+				list.push({
+					R = 99,
+					P = 2.0,
+					S = i
+				});
+			}
+		}
+
+		foreach( i in this.Const.Items.LegendNamedArmorUpgrades )
 		{
 			if (this.Math.rand(1, 100) <= 33)
 			{

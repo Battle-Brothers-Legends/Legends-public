@@ -9,11 +9,4 @@
 			s.Options[0].Text = "If only %they_anatomist% was this happy about mercenary work, too.";
 		}
 	}
-
-	local onPrepareVariables = o.onPrepareVariables;
-	o.onPrepareVariables = function ( _vars )
-	{
-		onPrepareVariables(_vars);
-		::Const.LegendMod.extendVarsWithPronouns(_vars, this.m.Anatomist.getGender(), "anatomist");
-	}
 });

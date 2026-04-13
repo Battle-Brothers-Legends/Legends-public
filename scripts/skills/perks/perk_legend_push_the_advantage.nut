@@ -22,52 +22,50 @@ this.perk_legend_push_the_advantage <- this.inherit("scripts/skills/skill", {
 	},
 	function create()
 	{
-		::Const.Perks.setup(this.m, ::Legends.Perk.LegendPushTheAdvantage);
+		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendPushTheAdvantage);
 		this.m.Icon = "ui/perks/onslaught_circle.png";
 		this.m.IconDisabled = "ui/perks/onslaught_circle_bw.png";
-		this.m.Type = this.Const.SkillType.Perk;
-		this.m.Order = this.Const.SkillOrder.Perk;
-		this.m.IsActive = false;
-		this.m.IsStacking = false;
-		this.m.IsHidden = false;
 	}
 
 	function onBeforeTargetHit( _skill, _targetEntity, _hitInfo )
 	{
-		if ( _targetEntity != null && (this.isBonusEligible(_skill, _targetEntity) || this.isLowerBonusEligible(_skill, _targetEntity)))
+		if ( _targetEntity != null && this.calculateBonus(_targetEntity) != 0)
 		{
 			this.spawnIcon("perk_16", this.getContainer().getActor().getTile());
 		}
 	}
 
-	function calculateBonus ( _skill, _targetEntity )
+	function calculateBonus ( _targetEntity )
 	{
-		
+
 		local bonus = 0;
 
-		foreach (effect in this.m.HighBonus)
+		if (_targetEntity.getSkills().hasSkillOfType(this.Const.SkillType.TemporaryInjury))
 		{
-			if (_targetEntity.getSkills().hasEffect(effect))
+			bonus += 20;
+		}
+		else
+		{
+			foreach (effect in this.m.HighBonus)
 			{
-				bonus += 20;
+				if (_targetEntity.getSkills().hasEffect(effect))
+				{
+					bonus += 20;
+					break;
+				}
 			}
 		}
+
 		foreach (effect in this.m.LowBonus)
 		{
 			if (_targetEntity.getSkills().hasEffect(effect))
 			{
 				bonus += 10;
+				break;
 			}
 		}
 
 		return bonus;
-	}
-
-	function onBeforeTargetHit ( _skill, _targetEntity, _hitInfo )
-	{
-		if (_targetEntity != null && this.calculateBonus(_targetEntity) != 0) {
-			this.spawnIcon("perk_16", this.getContainer().getActor().getTile());
-		}
 	}
 
 	function onAnySkillUsed( _skill, _targetEntity, _properties )

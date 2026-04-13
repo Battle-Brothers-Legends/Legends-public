@@ -43,26 +43,26 @@ this.legend_runesmith_background <- this.inherit("scripts/skills/backgrounds/cha
 		this.m.Modifiers.Enchanting = 1.0;
 		this.m.PerkTreeDynamic = {
 			Weapon = [
-				this.Const.Perks.HammerTree,
-				this.Const.Perks.PolearmTree,
-				this.Const.Perks.ThrowingTree,
+				::Const.Perks.HammerTree,
+				::Const.Perks.PolearmTree,
+				::Const.Perks.ThrowingTree,
 			],
 			Defense = [
-				this.Const.Perks.HeavyArmorTree
+				::Const.Perks.HeavyArmorTree
 			],
 			Traits = [
-				this.Const.Perks.OrganisedTree,
-				this.Const.Perks.IndestructibleTree,
-				this.Const.Perks.LargeTree,
-				this.Const.Perks.CalmTree
+				::Const.Perks.OrganisedTree,
+				::Const.Perks.IndestructibleTree,
+				::Const.Perks.LargeTree,
+				::Const.Perks.CalmTree
 			],
 			Enemy = [],
 			Class = [],
 			Profession = [
-				this.Const.Perks.RepairProfessionTree
+				::Const.Perks.RepairProfessionTree
 			],
 			Magic = [
-				this.Const.Perks.ValaRuneMagicTree
+				::Const.Perks.ValaRuneMagicTree
 			]
 		}
 	}

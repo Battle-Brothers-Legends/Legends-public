@@ -11,6 +11,7 @@
 		this.m.RosterTierMax = this.Const.Roster.getTierForSize(12);
 		this.m.StartingBusinessReputation = 1250;
 		this.setRosterReputationTiers(this.Const.Roster.createReputationTiers(this.m.StartingBusinessReputation));
+		this.m.BrotherScaling = 1.66;
 	}
 
 	o.onSpawnAssets = function ()
@@ -137,121 +138,81 @@
 		return false;
 	}
 
-	o.onUpdateHiringRoster <- function ( _roster ) //dump all hires to start, except donkey
+	o.onUpdateHiringRoster <- function ( _roster )
 	{
 		local garbage = [];
 		local bros = _roster.getAll();
 
-		foreach( i, bro in bros )
+		local renown = this.World.Assets.getBusinessReputation();
+
+		// Define tier thresholds of allowed backgrounds
+		local tier1 = [ // >1500
+			"brawler", "squire", "butcher", "cripple", "daytaler", "miner", "minstrel",
+			"poacher", "legend_ironmonger", "wildman", "lumberjack", "apprentice",
+			"farmhand", "thief", "fisherman", "flagellant", "gambler", "gravedigger",
+			"graverobber", "beggar", "ratcatcher", "refugee", "shepherd", "bowyer", "vagabond", "monk"
+		];
+
+		local tier2 = [ // >2000
+			"militia", "deserter", "retired_soldier", "cultist", "houndmaster",
+			"hunter", "juggler", "killer_on_the_run", "barbarian", "bastard", "legend_blacksmith"
+		];
+
+		local tier3 = [ // >2650
+			"adventurous_noble", "disowned_noble", "beast_hunter", "witchhunter",
+			"legend_shieldmaiden", "raider", "legend_conscript", "legend_inventor"
+		];
+
+		local tier4 = [ // >3500
+			"hedge_knight", "sellsword", "swordmaster", "legend_bladedancer",
+			"legend_master_archer", "assassin_southern", "gladiator"
+		];
+
+		local tier5 = [ // >4500
+			"legend_noble_2h", "legend_noble_shield", "legend_noble_ranged",
+			"assassin", "legend_man_at_arms", "paladin", "legend_berserker"
+		];
+
+		// Combine tiers based on current renown
+		local allowed = [];
+		if (renown > 1500) allowed.extend(tier1);
+		if (renown > 2000) allowed.extend(tier2);
+		if (renown > 2650) allowed.extend(tier3);
+		if (renown > 3500) allowed.extend(tier4);
+		if (renown > 4500) allowed.extend(tier5);
+
+		// Now process roster
+		foreach (i, bro in bros)
 		{
-			if (bro.getBackground().getID() != "background.legend_donkey")
+			local bgID = bro.getBackground().getID();
+
+			// Always keep donkey
+			if (bgID == "background.legend_donkey")
+			{
+				bro.m.HiringCost = this.Math.floor(bro.m.HiringCost * 1.0);
+				bro.getBaseProperties().DailyWageMult *= 1.0;
+				bro.getSkills().update();
+				continue;
+			}
+
+			// Strip the "background." prefix to match our allowed list
+			local short = bgID.find("background.") == 0 ? bgID.slice("background.".len()) : bgID;
+
+			// If not allowed by renown threshold, remove
+			if (allowed.find(short) == null)
 			{
 				garbage.push(bro);
 			}
-	        else if (bro.getSkills().hasSkill("background.legend_donkey"))
-	        {
-				bro.m.HiringCost = this.Math.floor(bro.m.HiringCost * 1.0); //1.0 = default
-				bro.getBaseProperties().DailyWageMult *= 1.0; //1.0 = default
-				bro.getSkills().update();
-	        }
 			else
 			{
 				this.setupBro(bro);
 			}
 		}
 
-		foreach( g in garbage )
+		// Remove unqualified hires
+		foreach (g in garbage)
 		{
 			_roster.remove(g);
-		}
-	}
-
-	o.onUpdateDraftList <- function ( _draftList ) //insert specfic backgrounds at x renown level(s). *most* crafting/support backgrounds ahve been removed from this master list - companions from events cover any gaps re: retinue/camp tasks.
-	{
-		if (this.World.Assets.getBusinessReputation() > 750) { //peasant/lowborn + Squires
-			_draftList.push("brawler_background");
-			_draftList.push("squire_background");
-			_draftList.push("butcher_background");
-			// _draftList.push("caravan_hand_background");
-			_draftList.push("cripple_background");
-			_draftList.push("daytaler_background");
-			// _draftList.push("miller_background");
-			_draftList.push("miner_background");
-			_draftList.push("minstrel_background");
-			// _draftList.push("monk_background");
-			// _draftList.push("peddler_background");
-			_draftList.push("poacher_background");
-			_draftList.push("legend_ironmonger_background");
-			_draftList.push("wildman_background");
-			_draftList.push("lumberjack_background");
-			// _draftList.push("mason_background");
-			_draftList.push("apprentice_background");
-			// _draftList.push("messenger_background");
-			// _draftList.push("eunuch_background");
-			_draftList.push("farmhand_background");
-			_draftList.push("thief_background");
-			_draftList.push("fisherman_background");
-			_draftList.push("flagellant_background");
-			_draftList.push("gambler_background");
-			_draftList.push("gravedigger_background");
-			_draftList.push("graverobber_background");
-			_draftList.push("beggar_background");
-			// _draftList.push("historian_background");
-			_draftList.push("ratcatcher_background");
-			_draftList.push("refugee_background");
-			// _draftList.push("servant_background");
-			_draftList.push("shepard_background");
-			_draftList.push("bowyer_background");
-			// _draftList.push("tailor_background");
-			_draftList.push("vagabond_background");
-			// _draftList.push("legend_herbalist_background");
-		}
-
-		if (this.World.Assets.getBusinessReputation() > 1500) { //basic fighters
-			_draftList.push("militia_background");
-			_draftList.push("deserter_background");
-			_draftList.push("retired_soldier_background");
-			_draftList.push("cultist_background");
-			_draftList.push("houndmaster_background");
-			_draftList.push("hunter_background");
-			_draftList.push("juggler_background");
-			_draftList.push("killer_on_the_run_background");
-			// _draftList.push("taxidermist_background");
-			_draftList.push("juggler_background");
-			_draftList.push("barbarian_background");
-			_draftList.push("bastard_background");
-			_draftList.push("blacksmith_background");	
-		}
-
-		if (this.World.Assets.getBusinessReputation() > 2500) { //high tier
-			_draftList.push("adventurous_noble_background");
-			_draftList.push("disowned_noble_background");
-			_draftList.push("beast_hunter_background");	
-			_draftList.push("witchhunter_background");
-			_draftList.push("legend_shieldmaiden_background");	
-			_draftList.push("raider_background");
-		}
-
-		if (this.World.Assets.getBusinessReputation() > 3500) { //elite
-			_draftList.push("hedge_knight_background");
-			_draftList.push("sellsword_background");
-			_draftList.push("swordmaster_background");
-			_draftList.push("legend_bladedancer_background");
-			_draftList.push("legend_master_archer_background");
-			_draftList.push("assassin_southern_background");
-			_draftList.push("gladiator_background");
-		}
-
-		if (this.World.Assets.getBusinessReputation() > 4500) { //special
-			_draftList.push("legend_noble_2h");
-			_draftList.push("legend_noble_shield");
-			_draftList.push("legend_noble_ranged");
-			_draftList.push("assassin_background");
-			_draftList.push("legend_man_at_arms_background");
-			_draftList.push("legend_conscript_background");
-			_draftList.push("paladin_background");
-			_draftList.push("legend_inventor_background");
-			_draftList.push("legend_berserker_background");	
 		}
 	}
 
@@ -260,10 +221,26 @@
 		this.setupBro(_bro);
 	}
 
+	o.onGenerateBro <- function (bro) //companions free everyone else normal.
+	{
+		if (bro.getBackground().getID() == "background.companion")
+		{
+			bro.m.HiringCost = this.Math.floor(bro.m.HiringCost * 0.0); //1.0 = default
+			bro.getBaseProperties().DailyWageMult *= 0.0; //1.0 = default
+			bro.getSkills().update();
+		}
+		else
+		{
+			bro.m.HiringCost = this.Math.floor(bro.m.HiringCost * 1.0);
+			bro.getBaseProperties().DailyWageMult *= 1.0;
+			bro.getSkills().update();
+		}
+	}
+
 	o.setupBro <- function ( _bro )
 	{
-		_bro.m.HiringCost = 0;
-		_bro.getBaseProperties().DailyWage = 0;
+		// _bro.m.HiringCost = 0;
+		// _bro.getBaseProperties().DailyWage = 0;
 		::Legends.Traits.grant(_bro, ::Legends.Trait.LegendLWRelationship);
 	}
 });

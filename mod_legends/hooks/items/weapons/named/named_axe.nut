@@ -7,8 +7,16 @@
 	{
 		create();
 		this.m.Variants = [1,2,3,4,5,6];
-		this.m.Variant = this.m.Variants[this.Math.rand(0, this.m.Variants.len() -1)];
-		this.updateVariant();
+		this.setVariant(this.m.Variants[::Math.rand(0, this.m.Variants.len() - 1)]);
+		this.m.AmmoCost = 5;
+		this.m.WeaponType = this.Const.Items.WeaponType.Axe;
+	}
+
+	o.randomizeValues <- function ()
+	{
+		this.m.Ammo = 1;
+		this.m.AmmoMax = 1;
+		named_weapon.randomizeValues();
 	}
 
 	o.getTooltip <- function ()
@@ -20,16 +28,26 @@
 				id = 12,
 				type = "text",
 				icon = "ui/icons/armor_head.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+" + this.m.EffectChanceOrBonus + "%[/color] Damage to Head"
+				text = "[color=%positive%]+" + this.m.EffectChanceOrBonus + "%[/color] Damage to Head"
 			});
 		}
 		return result;
 	}
 
+	o.getAmmo <- function() {
+		return this.m.Ammo;
+	}
+
+	o.getAmmoMax <- function() {
+		return this.m.AmmoMax;
+	}
+
 	local onEquip = o.onEquip;
-	o.onEquip = function ()
+	o.onEquip = function()
 	{
 		onEquip();
-		//::Legends.Actives.grant(this, ::Legends.Active.LegendHarvestTree);
+		::Legends.Actives.grant(this.weapon, ::Legends.Active.ThrowAxe, function (_skill) {
+			_skill.m.IsBackupAxe = true;
+		}.bindenv(this));
 	}
 });

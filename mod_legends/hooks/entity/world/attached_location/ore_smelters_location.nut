@@ -12,6 +12,7 @@
 		this.attached_location.onUpdateProduce(_list);
 		_list.push("trade/copper_ingots_item");
 		_list.push("trade/legend_tin_ingots_item");
+		_list.push("trade/legend_silver_ingots_item");
 	}
 
 	local onUpdateDraftList = o.onUpdateDraftList;
@@ -47,6 +48,11 @@
 				R = 80,
 				P = 1.0,
 				S = "trade/legend_gold_nugget_item"
+			});
+			_list.push({
+				R = 85,
+				P = 1.0,
+				S = "trade/legend_silver_ingots_item"
 			});
 			_list.push({
 				R = 10,

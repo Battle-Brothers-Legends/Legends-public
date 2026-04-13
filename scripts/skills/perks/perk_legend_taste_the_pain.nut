@@ -1,18 +1,16 @@
 this.perk_legend_taste_the_pain <- this.inherit("scripts/skills/skill", {
-	m = {},
+	m = {
+		StackCount = 0
+	},
 	function create()
 	{
-		::Const.Perks.setup(this.m, ::Legends.Perk.LegendTasteThePain);
-		this.m.Type = this.Const.SkillType.Perk;
-		this.m.Order = this.Const.SkillOrder.Perk;
-		this.m.IsActive = false;
-		this.m.IsStacking = false;
-		this.m.IsHidden = false;
+		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendTasteThePain);
 	}
 
 	function onUpdate( _properties )
 	{
 		_properties.IsAffectedByLosingHitpoints = false;
+		_properties.Bravery += this.m.StackCount * 4;
 	}
 
 	function onDamageReceived( _attacker, _damageHitpoints, _damageArmor )
@@ -37,10 +35,11 @@ this.perk_legend_taste_the_pain <- this.inherit("scripts/skills/skill", {
 			return;
 		}
 
-		this.getContainer().getActor().getCurrentProperties().MoraleCheckBravery[0] += 10;
-		this.getContainer().getActor().getCurrentProperties().MoraleCheckBravery[1] += 10;
-		this.getContainer().getActor().getCurrentProperties().MoraleCheckBravery[2] += 10;
+		++this.m.StackCount;
 	}
 
-
+	function onCombatFinished()
+	{
+		this.m.StackCount = 0;
+	}
 });

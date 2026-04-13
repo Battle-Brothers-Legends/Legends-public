@@ -44,33 +44,34 @@ this.legend_vala_background <- this.inherit("scripts/skills/backgrounds/characte
 		this.m.Level = 2;
 		this.m.PerkTreeDynamic = {
 			Weapon = [
-				this.Const.Perks.PolearmTree
+				::Const.Perks.PolearmTree
 			],
 			Defense = [
-				this.Const.Perks.LightArmorTree,
-				this.Const.Perks.ClothArmorTree
+				::Const.Perks.LightArmorTree,
+				::Const.Perks.ClothArmorTree
 			],
 			Traits = [
-				this.Const.Perks.SturdyTree,
-				this.Const.Perks.InspirationalTree,
-				this.Const.Perks.IntelligentTree,
-				this.Const.Perks.CalmTree,
-				this.Const.Perks.IndestructibleTree
+				::Const.Perks.SturdyTree,
+				::Const.Perks.InspirationalTree,
+				::Const.Perks.IntelligentTree,
+				::Const.Perks.CalmTree,
+				::Const.Perks.IndestructibleTree
 			],
 			Enemy = [],
 			Class = [
-				this.Const.Perks.StaffClassTree
+				::Const.Perks.StaffClassTree,
+				::Const.Perks.HealerClassTree
 			],
 			Profession = [
-				this.Const.Perks.HealerProfessionTree,
-				this.Const.Perks.ChefProfessionTree,
-				this.Const.Perks.HerbalistProfessionTree
+				::Const.Perks.HealerProfessionTree,
+				::Const.Perks.ChefProfessionTree,
+				::Const.Perks.HerbalistProfessionTree
 			],
 			Magic = [
-				this.Const.Perks.ValaChantMagicTree,
-				this.Const.Perks.ValaTranceMagicTree,
-				this.Const.Perks.ValaSpiritMagicTree,
-				this.Const.Perks.StavesMagicTree
+				::Const.Perks.ValaChantMagicTree,
+				::Const.Perks.ValaTranceMagicTree,
+				::Const.Perks.ValaSpiritMagicTree,
+				::Const.Perks.StavesMagicTree
 			]
 		};
 		this.m.CustomPerkTree = [
@@ -110,7 +111,7 @@ this.legend_vala_background <- this.inherit("scripts/skills/backgrounds/characte
 			id = 14,
 			type = "text",
 			icon = "ui/icons/xp_received.png",
-			text = "[color=" + this.Const.UI.Color.PositiveValue + "]+15%[/color] Experience Gain"
+			text = "[color=%positive%]+15%[/color] Experience Gain"
 		}]);
 		if (this.getContainer().getActor().getLevel() >= 12)
 		{
@@ -118,7 +119,7 @@ this.legend_vala_background <- this.inherit("scripts/skills/backgrounds/characte
 				id = 13,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "The Vala has become a master of the intricate and lost art of inscribing signs and sigils. Increases the speed at which she can craft runes by [color=" + this.Const.UI.Color.PositiveValue + "]30%[/color]"
+				text = "The Vala has become a master of the intricate and lost art of inscribing signs and sigils. Increases the speed at which she can craft runes by [color=%positive%]30%[/color]"
 			});
 		}
 
@@ -171,6 +172,9 @@ this.legend_vala_background <- this.inherit("scripts/skills/backgrounds/characte
 
 	function onAddEquipment()
 	{
+		local actor = this.getContainer().getActor();
+		actor.setVeteranPerks(3);
+		local items = actor.getItems();
 		local talents = this.getContainer().getActor().getTalents();
 		talents.resize(this.Const.Attributes.COUNT, 0);
 		talents[this.Const.Attributes.Bravery] = this.Math.rand(2, 3);
@@ -181,7 +185,7 @@ this.legend_vala_background <- this.inherit("scripts/skills/backgrounds/characte
 
 		items.equip(this.Const.World.Common.pickArmor([
 			[1, ::Legends.Armor.Standard.legend_vala_cloak],
-			[1, ::Legends.Armor.Standard.legend_vala_dress]
+			[1, ::Legends.Armor.Standard.vala_dress]
 		]));
 	}
 

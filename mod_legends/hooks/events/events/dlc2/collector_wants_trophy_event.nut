@@ -81,7 +81,7 @@
 		local brothers = this.World.getPlayerRoster().getAll();
 		local candidates_merchant = [];
 		foreach( bro in brothers )
-			if (bro.getBackground().getID() == "background.legend_peddler_commander_background")
+			if (bro.getBackground().getID() == "background.legend_peddler_commander")
 				candidates_merchant.push(bro);
 
 		if (candidates_merchant.len() != 0)

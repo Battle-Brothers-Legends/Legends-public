@@ -1,5 +1,12 @@
 ::mods_hookExactClass("entity/tactical/enemies/necromancer", function(o)
 {
+	local create = o.create;
+	o.create = function()
+	{
+		create();
+		setGender(this.m.Gender);
+	}
+
 	local onInit = o.onInit;
 	o.onInit = function ()
 	{
@@ -17,25 +24,13 @@
 
 	o.assignRandomEquipment = function ()
 	{
-		local r = this.Math.rand(0, 4);
-
-		if (r == 1)
-		{
-			this.m.Items.equip(this.new("scripts/items/weapons/dagger"));
-		}
-		else if (r == 2)
-		{
-			this.m.Items.equip(this.new("scripts/items/weapons/knife"));
-		}
-		else if (r == 3)
-		{
-			this.m.Items.equip(this.new("scripts/items/weapons/butchers_cleaver"));
-		}
-		else if (r == 4)
-		{
-			this.m.Items.equip(this.new("scripts/items/weapons/scramasax"));
-		}
-
+		local weapons = [
+			"dagger",
+			"knife",
+			"butchers_cleaver",
+			"scramasax"
+		];
+		this.m.Items.equip(this.new("scripts/items/weapons/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
 		local item = this.Const.World.Common.pickArmor([
 			[1, ::Legends.Armor.Standard.ragged_dark_surcoat],
 			[1, ::Legends.Armor.Standard.thick_dark_tunic]
@@ -48,6 +43,35 @@
 			[1, ::Legends.Helmet.Standard.hood, 63]
 		]);
 		this.m.Items.equip(item);
+	}
+
+	o.setGender <- function (_gender = -1, _reroll = true)
+	{
+		if ("LegendMod" in this.World && ::Legends.Mod.ModSettings.getSetting("GenderEquality").getValue() == "Disabled")
+			_gender = 0;
+
+		this.m.Gender = _gender;
+		if(this.m.Gender == 1)
+		{
+			this.m.Faces = this.Const.Faces.NecromancerFemale;
+			this.m.Beards = null;
+			this.m.Bodies = this.Const.Bodies.NorthernFemale;
+			this.m.BeardChance = 0;
+			this.m.Hairs = this.Const.Hair.AllFemale;
+
+			if (_reroll)
+			{
+				this.m.VoiceSet = this.Math.rand(0, this.Const.WomanSounds.len() - 1);
+				this.m.Body = this.Math.rand(0, this.m.Bodies.len() - 1);
+			}
+
+			this.m.Sound[this.Const.Sound.ActorEvent.NoDamageReceived] = this.Const.WomanSounds[this.m.VoiceSet].NoDamageReceived;
+			this.m.Sound[this.Const.Sound.ActorEvent.DamageReceived] = this.Const.WomanSounds[this.m.VoiceSet].DamageReceived;
+			this.m.Sound[this.Const.Sound.ActorEvent.Death] = this.Const.WomanSounds[this.m.VoiceSet].Death;
+			this.m.Sound[this.Const.Sound.ActorEvent.Flee] = this.Const.WomanSounds[this.m.VoiceSet].Flee;
+			this.m.Sound[this.Const.Sound.ActorEvent.Fatigue] = this.Const.WomanSounds[this.m.VoiceSet].Fatigue;
+			this.m.SoundPitch = this.Math.rand(105, 115) * 0.01;
+		}
 	}
 
 	o.makeMiniboss = function ()
@@ -67,13 +91,10 @@
 		]);
 		this.m.Items.equip(item);
 
-		if (this.Const.DLC.Desert)
-		{
-			weapons.extend([
-				"weapons/named/named_dagger",
-				"weapons/named/named_qatal_dagger"
-			]);
-		}
+		weapons.extend([
+			"weapons/named/named_dagger",
+			"weapons/named/named_qatal_dagger"
+		]);
 
 		this.m.Items.equip(this.new("scripts/items/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
 		this.m.ActionPoints = 9;

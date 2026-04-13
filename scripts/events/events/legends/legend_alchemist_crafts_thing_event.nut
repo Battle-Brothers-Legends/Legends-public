@@ -127,11 +127,6 @@ this.legend_alchemist_crafts_thing_event <- this.inherit("scripts/events/event",
 		]);
 	}
 
-	function onDetermineStartScreen()
-	{
-		return "A";
-	}
-
 	function onClear()
 	{
 		this.m.Alchemist = null;

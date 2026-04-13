@@ -14,6 +14,20 @@
 	{
 		local ret = this.getRangedTooltip(this.getDefaultTooltip());
 		local ammo = this.getAmmo();
+		ret.extend([
+			{
+				id = 5,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = "Apply Constrained on a hit to the body for a turn"
+			},
+			{
+				id = 6,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = "Constrained increases the fatigue and AP cost of moving"
+			}
+		]);
 
 		if (ammo > 0)
 		{
@@ -21,7 +35,7 @@
 				id = 8,
 				type = "text",
 				icon = "ui/icons/ammo.png",
-				text = "Has [color=" + this.Const.UI.Color.PositiveValue + "]" + ammo + "[/color] spiked balls left"
+				text = "Has [color=%positive%]" + ammo + "[/color] spiked balls left"
 			});
 		}
 		else
@@ -30,7 +44,7 @@
 				id = 8,
 				type = "text",
 				icon = "ui/tooltips/warning.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]No spiked balls left[/color]"
+				text = "[color=%negative%]No spiked balls left[/color]"
 			});
 		}
 
@@ -40,7 +54,7 @@
 				id = 9,
 				type = "text",
 				icon = "ui/tooltips/warning.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]Can not be used because this character is engaged in melee[/color]"
+				text = "[color=%negative%]Can not be used because this character is engaged in melee[/color]"
 			});
 		}
 
@@ -50,15 +64,29 @@
 	o.isUsable = function ()
 	{
 		local isUsable = !this.Tactical.isActive() || this.skill.isUsable() && this.getAmmo() > 0;
-		if (this.getContainer().hasPerk(::Legends.Perk.LegendCloseCombatArcher))
+		if (this.getContainer().hasPerk(::Legends.Perk.LegendPointBlank))
 			return isUsable;
 
 		return isUsable && !this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions());
 	}
+	
+	o.onTargetHit <- function( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor )
+	{
+		if (_skill != this)
+			return;
+
+		if (::Legends.S.skillEntityAliveCheck(this.getContainer().getActor(), _targetEntity))
+			return;
+			
+		if (_bodyPart != ::Const.BodyPart.Body)
+			return;
+
+		::Legends.Effects.grant(_targetEntity, ::Legends.Effect.LegendConstrained);
+	}
 
 	o.onAfterUpdate = function ( _properties )
 	{
-		if (this.getContainer().hasPerk(::Legends.Perk.LegendCloseCombatArcher))
+		if (this.getContainer().hasPerk(::Legends.Perk.LegendPointBlank))
 		{
 			this.m.MinRange = 1;
 			this.m.MaxRange = 3;

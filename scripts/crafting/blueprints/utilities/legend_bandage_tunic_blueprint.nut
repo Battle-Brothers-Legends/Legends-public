@@ -18,7 +18,7 @@ this.legend_bandage_tunic_blueprint <- this.inherit("scripts/crafting/blueprint"
 				LegendsArmor = false
 			},
 			{
-				Script = "scripts/items/legend_armor/cloth/legend_tunic",
+				Script = "scripts/items/legend_armor/cloth/legend_armor_tunic",
 				Num = 1,
 				LegendsArmor = true
 			}
