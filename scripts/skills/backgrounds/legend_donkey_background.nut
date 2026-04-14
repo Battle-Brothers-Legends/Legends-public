@@ -6,9 +6,9 @@ this.legend_donkey_background <- this.inherit("scripts/skills/backgrounds/charac
 		this.m.ID = "background.legend_donkey";
 		this.m.Name = "Donkey";
 		this.m.Icon = "ui/backgrounds/donkey.png";
-		this.m.BackgroundDescription = "Caravan hands are used to long and exhausting travels.";
-		this.m.GoodEnding = "%name% the donkey was retired to a lovely paddock and spent the days eating and carousing with other donkeys.";
-		this.m.BadEnding = "%name% the donkey was sold to a trader, their caravan was attacked by orcs and the remains of %name% were never found";
+		this.m.BackgroundDescription = "Donkeys are generally patient and deliberate in their actions.";
+		this.m.GoodEnding = "%name% the donkey retired to a lovely green paddock. They spend their days loafing about and eating carrots fed to them by local children.";
+		this.m.BadEnding = "%name% the donkey was sold to a foul-tempered trader who did not spare the rod. Their caravan was attacked by orcs and the remains of %name% were never found.";
 		this.m.HiringCost = 5000;
 		this.m.DailyCost = 0;
 		this.m.Excluded = [
