@@ -1,5 +1,7 @@
 ::mods_hookExactClass("states/tactical_state", function(o)
 {
+	o.m.AlternativeAttack <- false;
+
 	o.swapToItem <- function ( _activeEntity, _item )
 	{
 		if (this.m.CurrentActionState != null)

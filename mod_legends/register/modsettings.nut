@@ -78,6 +78,15 @@ misc.addElement(::MSU.Class.EnumSetting("AiRotation", "Default", ["Default", "Li
 misc.addElement(::MSU.Class.BooleanSetting("SellDialogNamed", true, "Sell Famed Dialog", "Should confirmation dialog appear when selling famed items?"));
 misc.addElement(::MSU.Class.BooleanSetting("LogOutfits", false, "Log Outfits", "An option for fashion submissions which will log the entire outfit someone is wearing when you hover it, used to add custom outfits in Legends."));
 
+::Legends.Mod.Keybinds.addSQKeybind("alternativeAttack", "ctrl", ::MSU.Key.State.Tactical, function() {
+	::Tactical.State.m.AlternativeAttack = !::Tactical.State.m.AlternativeAttack;
+	if (::Tactical.State.m.SelectedSkillID != null) {
+		::Tactical.State.m.CurrentActionState = null;
+		::Tactical.State.setActionStateBySkillId(::Tactical.State.m.SelectedSkillID);
+	}
+}, "Toggle to change attack direction", null, "Press this keybind to change attack direction.");
+
+
 local betterobituary = ::Legends.Mod.ModSettings.addPage("Obituary");
 betterobituary.addBooleanSetting("SwapPerks",    false, "Show Perks", "Swaps the trait/permanent injuries columns for perks.");
 betterobituary.addBooleanSetting("SwapStats", 	 false, "Swap Stat Order", "Swaps the position of first 4 stats (hp, fatigue, initiative, bravery) with the last 4 (attack / defense).");

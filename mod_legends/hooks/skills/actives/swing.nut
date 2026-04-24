@@ -56,4 +56,5 @@
 		}
 	}
 
+	o.onTargetSelected = @(_targetTile) ::Legends.AttackPattern.Swing.onTargetSelected(this, _targetTile);
 });
