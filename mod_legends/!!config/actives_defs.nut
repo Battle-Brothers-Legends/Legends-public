@@ -2590,12 +2590,12 @@ activesDefs.push({
 	Name = "Pass Item",
 });
 
-::Legends.Active.LegendPiercingBolt <- null;
+::Legends.Active.LegendPiercingJavelin <- null;
 activesDefs.push({
-	ID = "actives.legend_piercing_bolt",
-	Script = "scripts/skills/actives/legend_piercing_bolt_skill",
-	Const = "LegendPiercingBolt",
-	Name = "Piercing Bolt",
+	ID = "actives.legend_piercing_javelin",
+	Script = "scripts/skills/actives/legend_piercing_javelin_skill",
+	Const = "LegendPiercingJavelin",
+	Name = "Piercing Javelin",
 });
 
 ::Legends.Active.LegendPiercingShot <- null;

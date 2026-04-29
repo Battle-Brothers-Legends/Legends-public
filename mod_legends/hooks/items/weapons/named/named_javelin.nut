@@ -18,6 +18,13 @@
 		named_weapon.randomizeValues();
 	}
 
+	local onEquip = o.onEquip;
+	o.onEquip = function ()
+	{
+		onEquip();
+		::Legends.Actives.grant(this, ::Legends.Active.LegendPiercingJavelin);
+	}
+
 	// o.setAmmo = function ()
 	// {
 	// 	this.named_weapon.setAmmo(_a);

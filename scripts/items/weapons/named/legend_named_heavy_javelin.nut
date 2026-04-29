@@ -65,7 +65,8 @@ this.legend_named_heavy_javelin <- inherit("scripts/items/weapons/named/named_we
 	function onEquip()
 	{
 		this.named_weapon.onEquip();
-		this.addSkill(this.new("scripts/skills/actives/throw_javelin"));
+		::Legends.Actives.grant(this, ::Legends.Active.ThrowJavelin);
+		::Legends.Actives.grant(this, ::Legends.Active.LegendPiercingJavelin);
 	}
 
 	function setAmmo(_a)

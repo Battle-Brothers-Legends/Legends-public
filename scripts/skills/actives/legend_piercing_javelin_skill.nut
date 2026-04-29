@@ -1,13 +1,13 @@
-this.legend_piercing_shot_skill <- ::inherit("scripts/skills/actives/aimed_shot", {
+this.legend_piercing_javelin_skill <- ::inherit("scripts/skills/actives/throw_javelin", {
 	m = {
-		IsDoingPiercingShot = false,
+		IsDoingPiercingJavelin = false,
 		OriginalDirection = null
 	},
 	function create()
 	{
-		this.aimed_shot.create();
-		::Legends.Actives.onCreate(this, ::Legends.Active.LegendPiercingShot);
-		this.m.Description = "A shot with so much force that it passes straight through the target to whoever is behind them.";
+		this.throw_javelin.create();
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendPiercingJavelin);
+		this.m.Description = "A throw with so much force that it passes straight through the target to whoever is behind them.";
 		this.m.KilledString = "Pierced";
 		this.m.Icon = "skills/PiercingBoltSkill.png";
 		this.m.IconDisabled = "skills/PiercingBoltSkill_bw.png";
@@ -18,18 +18,17 @@ this.legend_piercing_shot_skill <- ::inherit("scripts/skills/actives/aimed_shot"
 			"sounds/combat/split_hit_03.wav"
 		];
 		this.m.IsAOE = true;
-		this.m.DirectDamageMult = 0.3;
+		this.m.DirectDamageMult = 0.4;
 		this.m.ActionPointCost = 5;
+		this.m.FatigueCost = 20;
 		this.m.ChanceDecapitate = 5;
 		this.m.ChanceDisembowel = 25;
-		this.m.AdditionalAccuracy = 0;
-		this.m.AdditionalHitChance = -4;
 	}
 
 	function getTooltip()
 	{
 		local find;
-		local ret = this.aimed_shot.getTooltip();
+		local ret = this.throw_javelin.getTooltip();
 
 		for (local i = ret.len() - 1; i >= 0; --i)
 		{
@@ -47,7 +46,7 @@ this.legend_piercing_shot_skill <- ::inherit("scripts/skills/actives/aimed_shot"
 			id = 5,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "If the arrow hits its target, it will continue through and damage any target behind, dealing 50% damage."
+			text = "If the javelin hits its target, it will continue through and damage any target behind, dealing 75% damage."
 		});
 
 		return ret;
@@ -55,16 +54,14 @@ this.legend_piercing_shot_skill <- ::inherit("scripts/skills/actives/aimed_shot"
 
 	function onAfterUpdate( _properties )
 	{
-		this.aimed_shot.onAfterUpdate(_properties);
+		this.throw_javelin.onAfterUpdate(_properties);
 		m.AdditionalAccuracy = m.Item.getAdditionalAccuracy();
-		local bonusRange = (_properties.IsSpecializedInBows ? 1 : 0) + (this.getContainer().hasPerk(::Legends.Perk.LegendSpecialistSharpshooter) ? 1 : 0);
-		this.m.MaxRange = this.m.Item.getRangeMax() + bonusRange;
 	}
 
 	function onUse( _user, _targetTile )
 	{
 		m.OriginalDirection = _user.getTile().getDirectionTo(_targetTile);
-		return aimed_shot.onUse(_user, _targetTile);
+		return this.throw_javelin.onUse(_user, _targetTile);
 	}
 
 	function onScheduledTargetHit( _info )
@@ -72,9 +69,9 @@ this.legend_piercing_shot_skill <- ::inherit("scripts/skills/actives/aimed_shot"
 		// save this first lol
 		local targetName = ::Const.UI.getColorizedEntityName(_info.TargetEntity), targetTile = _info.TargetEntity.getTile();
 		// proceed as normal
-		_info.Skill.aimed_shot.onScheduledTargetHit(_info);
+		_info.Skill.throw_javelin.onScheduledTargetHit(_info);
 
-		if (_info.Skill.m.IsDoingPiercingShot || ::MSU.isNull(_info.User) || !_info.User.isAlive() || _info.User.isDying())
+		if (_info.Skill.m.IsDoingPiercingJavelin || ::MSU.isNull(_info.User) || !_info.User.isAlive() || _info.User.isDying())
 			return;
 
 		local forwardTile = _info.Skill.getAffectedTiles(targetTile, _info.Skill.m.OriginalDirection);
@@ -89,7 +86,7 @@ this.legend_piercing_shot_skill <- ::inherit("scripts/skills/actives/aimed_shot"
 
 		// change these
 		_info.Skill.m.IsUsingHitchance = false;
-		_info.Skill.m.IsDoingPiercingShot = true;
+		_info.Skill.m.IsDoingPiercingJavelin = true;
 		_info.Skill.m.IsShowingProjectile = false;
 
 		if (::Legends.Traits.has(forwardTile.getEntity(), ::Legends.Trait.RacialGhost))
@@ -107,7 +104,7 @@ this.legend_piercing_shot_skill <- ::inherit("scripts/skills/actives/aimed_shot"
 
 		// reset back to normal lol
 		_info.Skill.m.IsUsingHitchance = true;
-		_info.Skill.m.IsDoingPiercingShot = false;
+		_info.Skill.m.IsDoingPiercingJavelin = false;
 		_info.Skill.m.IsShowingProjectile = true;
 	}
 
@@ -145,10 +142,10 @@ this.legend_piercing_shot_skill <- ::inherit("scripts/skills/actives/aimed_shot"
 
 	function onAnySkillUsed( _skill, _targetEntity, _properties )
 	{
-		this.aimed_shot.onAnySkillUsed(_skill, _targetEntity, _properties);
+		this.throw_javelin.onAnySkillUsed(_skill, _targetEntity, _properties);
 
-		if (_skill == this && m.IsDoingPiercingShot)
-			_properties.RangedDamageMult *= 0.5;
+		if (_skill == this && m.IsDoingPiercingJavelin)
+			_properties.RangedDamageMult *= 0.75;
 	}
 
 	function getAffectedTiles( _targetTile, _direction = null )
