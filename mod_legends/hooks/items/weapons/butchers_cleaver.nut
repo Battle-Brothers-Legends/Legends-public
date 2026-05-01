@@ -14,4 +14,10 @@
 		this.m.ArmamentIcon = "icon_cleaver_02" + v;
 	}
 
+	local onEquip = o.onEquip;
+	o.onEquip = function () {
+		onEquip();
+		::Legends.Actives.grant(this, ::Legends.Active.LegendDebilitate);
+	}
+
 });

@@ -14,4 +14,9 @@
 		this.m.ArmamentIcon = "icon_wildmen_01" + v;
 	}
 
+	local onEquip = o.onEquip;
+	o.onEquip = function () {
+		onEquip();
+		::Legends.Actives.grant(this, ::Legends.Active.LegendDebilitate);
+	}
 });

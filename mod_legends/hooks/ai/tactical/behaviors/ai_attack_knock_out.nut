@@ -4,7 +4,9 @@
 		::Legends.Actives.getID(::Legends.Active.LegendGrapple),
 		::Legends.Actives.getID(::Legends.Active.LegendBucklerBash),
 		::Legends.Actives.getID(::Legends.Active.LegendNinetailsDisarm),
-		::Legends.Actives.getID(::Legends.Active.LegendWarforkDisarm)
+		::Legends.Actives.getID(::Legends.Active.LegendWarforkDisarm),
+		::Legends.Actives.getID(::Legends.Active.LegendDebilitate),
+		::Legends.Actives.getID(::Legends.Active.LegendWhipDebilitate)
 	]);
 
 	local getBestTarget = o.getBestTarget;

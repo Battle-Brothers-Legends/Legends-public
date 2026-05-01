@@ -1270,11 +1270,27 @@ activesDefs.push({
 	Name = "Use Poisoned Oil",
 });
 
-::Legends.Active.Debilitate <- null;
+::Legends.Active.Debilitate <- null; // vanilla implementation - activate and next strike debilitates / shelved
 activesDefs.push({
 	ID = "actives.debilitate",
 	Script = "scripts/skills/actives/debilitate",
 	Const = "Debilitate",
+	Name = "Debilitate",
+});
+
+::Legends.Active.LegendDebilitate <- null; // active debilitate
+activesDefs.push({
+	ID = "actives.legend_debilitate",
+	Script = "scripts/skills/actives/legend_whip_debilitate_skill", 
+	Const = "LegendDebilitate",
+	Name = "Debilitate",
+});
+
+::Legends.Active.LegendWhipDebilitate <- null; // active debilitate
+activesDefs.push({
+	ID = "actives.legend_debilitate",
+	Script = "scripts/skills/actives/legend_debilitate_skill", 
+	Const = "LegendWhipDebilitate",
 	Name = "Debilitate",
 });
 
