@@ -1,3 +1,25 @@
+# 19.4.0 - Name Pending
+
+### Weapons
+
+**Throwing**
+- `Piercing Javelin` - if the attack is successful also attack the target behind them for 75% damage
+> 5 ap, 20 fat
+
+**Daggers**
+- `Backstab` - replaces `Stab` on puncture daggers
+> additional 5% damage and 3% armor penetration based on surround count
+
+**Cleavers**
+* `Debilitate` - a successful strike will apply `Debilitated`
+> 4 ap, 20 fat, 50% damage
+
+**Whips**
+* `Debilitate` - a successful strike will apply `Debilitated`
+> 4 ap, 20 fat, 50% damage, 3 range
+
+#### New Weapon Abilities
+
 # 19.3.0 - Left & Right
 
 ## Dual Wielding

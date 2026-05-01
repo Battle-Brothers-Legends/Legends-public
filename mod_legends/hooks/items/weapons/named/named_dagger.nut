@@ -10,6 +10,17 @@
 		this.setVariant(this.m.Variants[::Math.rand(0, this.m.Variants.len() - 1)]);
 	}
 
+	o.addSkill <- function( _skill ) {
+		if (_skill.getID() == ::Legends.Actives.getID(::Legends.Active.Stab)) {
+			::Legends.Actives.grant(this.weapon, ::Legends.Active.Stab, function (_skill) {
+				_skill.m.IsBackstab = true;
+			}.bindenv(this));
+			return;
+		}
+
+		weapon.addSkill(_skill);
+	}
+
 	o.randomizeValues <- function ()
 	{
 		this.m.Ammo = 8;
