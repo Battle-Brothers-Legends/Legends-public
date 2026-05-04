@@ -11,10 +11,14 @@
 > additional 5% damage and 3% armor penetration based on surround count
 
 **Cleavers**
+* `Cleave` - unchanged
+* `Decapitate` - unchanged
 * `Debilitate` - a successful strike will apply `Debilitated`
 > 4 ap, 20 fat, 50% damage
 
 **Whips**
+* `Whip` - ap cost is reduced to 3
+* `Disarm` - unchanged
 * `Debilitate` - a successful strike will apply `Debilitated`
 > 4 ap, 20 fat, 50% damage, 3 range
 
