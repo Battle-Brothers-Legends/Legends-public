@@ -1,9 +1,8 @@
 ::mods_hookExactClass("skills/actives/whip_skill", function(o)
 {
-	local create = o.create;
-	o.create = function() {
-		create();
-		this.m.ActionPointCost = 3;
+	local onAfterUpdate = o.onAfterUpdate;
+	o.onAfterUpdate = function ( _properties ) {
+		this.m.ActionPointCost = _properties.IsSpecializedInCleavers ? 3 : 4;
 	}
 
 	o.onUse = function ( _user, _targetTile ) {
