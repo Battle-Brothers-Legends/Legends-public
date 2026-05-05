@@ -6,25 +6,31 @@
 - `Piercing Javelin` - if the attack is successful also attack the target behind them for 75% damage
 > 5 ap, 20 fat
 
-**Daggers**
+**Puncture Daggers**
 - `Backstab` - replaces `Stab` on puncture daggers
 > additional 5% damage and 3% armor penetration based on surround count
+- `Puncture` - unchanged
+- `Throw Dagger` - unchanged
+
+**Qatal Daggers**
+- `Stab` - will attack an additional time if under the effect of smoke
+- `Deathblow` - unchanged
 
 **2h Swordcleavers**
-* `Hew` - 60% base for each attack, +20% if the target is bleeding or injured
-* `Harvest` - 10% bonus damage down from 20% with mastery when target is bleeding
-* `Decapitate` - additionally increases head hit chance depending on how wounded the target is
+- `Hew` - 60% base for each attack, +20% if the target is bleeding or injured
+- `Harvest` - 10% bonus damage down from 20% with mastery when target is bleeding
+- `Decapitate` - additionally increases head hit chance depending on how wounded the target is
 
 **1h Cleavers**
-* `Cleave` - unchanged
-* `Decapitate` - unchanged
-* `Debilitate` - a successful strike will apply `Debilitated`
+- `Cleave` - unchanged
+- `Decapitate` - unchanged
+- `Debilitate` - a successful strike will apply `Debilitated`
 > 4 ap, 20 fat, 50% damage
 
 **Whips**
-* `Whip` - ap cost is reduced to 3
-* `Disarm` - unchanged
-* `Debilitate` - a successful strike will apply `Debilitated`
+- `Whip` - ap cost is reduced to 3
+- `Disarm` - unchanged
+- `Debilitate` - a successful strike will apply `Debilitated`
 > 4 ap, 20 fat, 50% damage, 3 range
 
 #### New Weapon Abilities

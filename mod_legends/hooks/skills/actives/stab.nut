@@ -2,6 +2,7 @@
 {
 	o.m.IsEstocStab <- false;
 	o.m.IsBackstab <- false;
+	o.m.IsQatalStab <- false;
 
 	o.setItem <- function(_item) {
 		this.skill.setItem(_item);
@@ -19,37 +20,63 @@
 			this.m.Name = "Backstab";
 			this.m.Description = "A quick and fast stab that takes advantage of a distracted target. Deals an additional 5% damage and 3% penetration per target surrounding the target.";
 		}
+		if (this.m.IsQatalStab) {
+			this.m.Description = "A quick and fast stab. If you are within a smoke cloud you will attack an additional time.";
+		}
 	}
 
 	local onUse = o.onUse;
-	o.onUse = function(_user, _targetTile)
-	{
+	o.onUse = function(_user, _targetTile) {
 		if (this.m.IsEstocStab)
 			this.spawnAttackEffect(_targetTile, this.Const.Tactical.AttackEffectThrust);
-		return onUse(_user, _targetTile);
+		local ret = onUse(_user, _targetTile);
+		if (!this.m.IsQatalStab)
+			return ret;
+
+		if (!this.getContainer().hasEffect(::Legends.Effect.Smoke))
+			return ret;
+
+		if (::Legends.S.isEntityNullOrDead(_user))
+			return ret;
+
+		local target = _targetEntity.getEntity();
+
+		if (::Legends.S.isEntityNullOrDead(target))
+			return ret;
+
+		if (this.Tactical.TurnSequenceBar.getActiveEntity().getID() == _user.getID() && (!_user.isHiddenToPlayer() || _targetTile.IsVisibleForPlayer)) {
+			this.m.IsDoingAttackMove = false;
+			this.getContainer().setBusy(true);
+			this.Time.scheduleEvent(this.TimeUnit.Virtual, 100, function ( _skill ) {
+				if (target.isAlive()) {
+					_skill.attackEntity(_user, target);
+					_skill.m.IsDoingAttackMove = true;
+				}
+			}.bindenv(this), this);
+			return true;
+		}
+		else {
+			return this.attackEntity(_user, target) || ret;
+		}
+
 	}
 
-	o.onAfterUpdate = function ( _properties )
-	{
-		if (this.m.IsEstocStab)
-		{
+	o.onAfterUpdate = function ( _properties ) {
+		if (this.m.IsEstocStab) {
 			this.m.FatigueCostMult = _properties.IsSpecializedInSwords ? this.Const.Combat.WeaponSpecFatigueMult : 1.0;
 			return;
 		}
 
-		if (_properties.IsSpecializedInDaggers)
-		{
+		if (_properties.IsSpecializedInDaggers) {
 			this.m.FatigueCostMult = this.Const.Combat.WeaponSpecFatigueMult;
 			this.m.ActionPointCost = 3;
 		}
-		else
-		{
+		else {
 			this.m.FatigueCostMult = 1.0;
 		}
 	}
 
-	o.onAnySkillUsed <- function ( _skill, _targetEntity, _properties )
-	{
+	o.onAnySkillUsed <- function ( _skill, _targetEntity, _properties ) {
 		if (_skill != this)
 			return;
 
@@ -60,8 +87,7 @@
 			return;
 
 		local surroundedCount = _targetEntity.getSurroundedCount();
-		if (surroundedCount > 0)
-		{
+		if (surroundedCount > 0) {
 			_properties.DamageRegularMult *= 1.0 + surroundedCount * 0.05;
 			_properties.DamageDirectMult *= 1.0 + surroundedCount * 0.03;
 		}
