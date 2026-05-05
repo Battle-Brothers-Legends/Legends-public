@@ -30,6 +30,7 @@ this.legend_broken_spatha <- this.inherit("scripts/items/weapons/weapon", {
 	{
 		this.weapon.onEquip();
 		::Legends.Actives.grant(this, ::Legends.Active.Stab, function (_skill) {
+			_skill.m.IsQatalStab = true;
 			_skill.m.Icon = "skills/active_198.png";
 			_skill.m.IconDisabled = "skills/active_198_sw.png";
 			_skill.m.Overlay = "active_198";

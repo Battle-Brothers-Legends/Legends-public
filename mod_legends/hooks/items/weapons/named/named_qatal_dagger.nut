@@ -10,10 +10,22 @@
 
 	o.addSkill <- function( _skill )
 	{
-		if (_skill.getID() == "actives.deathblow")
+		if (_skill.getID() == ::Legends.Actives.getID(::Legends.Active.Deathblow))
 		{
-			_skill = ::new("scripts/skills/actives/deathblow_skill"); // replace strike with scythe cleave
-			_skill.m.DeathblowBonus = true;
+			::Legends.Actives.grant(this.weapon, ::Legends.Active.Deathblow, function (_skill)
+			{
+				_skill.m.DeathblowBonus = true;
+			}.bindenv(this));
+			return;
+		}
+
+		if (_skill.getID() == ::Legends.Actives.getID(::Legends.Active.Stab))
+		{
+			::Legends.Actives.grant(this.weapon, ::Legends.Active.Stab, function (_skill)
+			{
+				_skill.m.IsQatalStab = true;
+			}.bindenv(this));
+			return;
 		}
 
 		weapon.addSkill(_skill);

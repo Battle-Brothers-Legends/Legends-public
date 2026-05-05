@@ -11,6 +11,20 @@
 		this.m.DirectDamageAdd = 0.1;
 	}
 
+	o.addSkill <- function( _skill )
+	{
+		if (_skill.getID() == ::Legends.Actives.getID(::Legends.Active.Stab))
+		{
+			::Legends.Actives.grant(this.weapon, ::Legends.Active.Stab, function (_skill)
+			{
+				_skill.m.IsQatalStab = true;
+			}.bindenv(this));
+			return;
+		}
+
+		weapon.addSkill(_skill);
+	}
+
 	local onEquip = o.onEquip;
 	o.onEquip = function ()
 	{
