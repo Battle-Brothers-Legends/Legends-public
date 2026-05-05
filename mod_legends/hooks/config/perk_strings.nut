@@ -156,6 +156,10 @@ Master cleavers to inflict gruesome wounds.
 
 • [color=%status%]Bleeding[/color] damage inflicted by cleavers and whips is doubled to [color=%positive%]10[/color] and [color=%positive%]20[/color] per turn, respectively.
 
+• Reduces the AP cost of [color=%skill%]Whip[/color] by [color=%negative%]1[/color].
+
+• [color=%skill%]Hew[/color] does an additional [color=%positive%]20%[/color] damage for each body part if the target is [color=%status%]Bleeding[/color] or [color=%status%]Injured[/color]. [color=%skill%]Harvest[/color] does an additional [color=%positive%]10%[/color] bonus damage if the target is [color=%status%]Bleeding[/color].
+
 • [color=%skill%]Disarm[/color] only has half the penalty to hit.
 ";
 ::Const.Perks.PerkDefObjects[::Legends.Perk.SpecCleaver].Tooltip = ::Const.Strings.PerkDescription.SpecCleaver;

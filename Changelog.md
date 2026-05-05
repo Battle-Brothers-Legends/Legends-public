@@ -10,7 +10,12 @@
 - `Backstab` - replaces `Stab` on puncture daggers
 > additional 5% damage and 3% armor penetration based on surround count
 
-**Cleavers**
+**2h Swordcleavers**
+* `Hew` - 60% base for each attack, +20% if the target is bleeding or injured
+* `Harvest` - 10% bonus damage down from 20% with mastery when target is bleeding
+* `Decapitate` - additionally increases head hit chance depending on how wounded the target is
+
+**1h Cleavers**
 * `Cleave` - unchanged
 * `Decapitate` - unchanged
 * `Debilitate` - a successful strike will apply `Debilitated`

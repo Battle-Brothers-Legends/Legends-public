@@ -53,19 +53,28 @@ this.legend_hew_skill <- this.inherit("scripts/skills/skill", {
 	function getTooltip () {
 		local tooltip = this.getDefaultTooltip();
 
-		local dmg = this.getContainer().getActor().getCurrentProperties().IsSpecializedInCleavers ? 20 : 10;
+		local specialized = this.getContainer().getActor().getCurrentProperties().IsSpecializedInCleavers;
+		local dmg = specialized ? 20 : 10;
 		tooltip.push({
 			id = 8,
 			type = "text",
 			icon = "ui/icons/special.png",
 			text = "Inflicts additional stacking [color=%damage%]" + dmg + "[/color] bleeding damage per turn, for 2 turns"
 		});
-		tooltip.push({
-			id = 6,
-			type = "text",
-			icon = "ui/icons/special.png",
-			text = "Hits both head and body for [color=%damage%]50%[/color] each"
-		});
+		if (specialized)
+			tooltip.push({
+				id = 6,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = "Hits both head and body for [color=%damage%]60%[/color] or [color=%damage%]80%[/color] each if the target is wounded or bleeding"
+			});
+		else
+			tooltip.push({
+				id = 6,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = "Hits both head and body for [color=%damage%]60%[/color]"
+			});
 		return tooltip;
 	}
 
@@ -118,9 +127,12 @@ this.legend_hew_skill <- this.inherit("scripts/skills/skill", {
 
 		if (this.m.ApplyHead)
 			_properties.HitChance[this.Const.BodyPart.Head] = 100;
-
-		_properties.DamageTotalMult *= 0.5;
 		_properties.DamageTooltipMaxMult *= 2.0;
+
+		if (_targetEntity != null && (_targetEntity.getSkills().hasSkillOfType(this.Const.SkillType.TemporaryInjury) || ::Legends.Effects.has(_targetEntity, ::Legends.Effect.Bleeding)) && _properties.IsSpecializedInCleavers)
+			_properties.DamageTotalMult *= 0.8;
+		else
+			_properties.DamageTotalMult *= 0.6;
 	}
 });
 

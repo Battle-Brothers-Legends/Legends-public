@@ -69,4 +69,12 @@
 			onAfterUpdate(_properties);
 		}
 	}
+
+	local onAnySkillUsed = o.onAnySkillUsed;
+	o.onAnySkillUsed = function ( _skill, _targetEntity, _properties )
+	{
+		onAnySkillUsed(_skill, _targetEntity, _properties);
+		if (_targetEntity != null && _skill == this && this.m.IsTwoHand)
+			_properties.HitChance[this.Const.BodyPart.Head] += this.Math.floor((1.0 - _targetEntity.getHitpoints() / (_targetEntity.getHitpointsMax() * 1.0)) * 100);
+	}
 });
