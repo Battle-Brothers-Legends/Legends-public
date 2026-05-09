@@ -503,3 +503,8 @@
 		Script = "injury/pierced_arm_muscles_injury"
 	}
 ];
+
+::Const.Injury.CuttingAndBluntBody <- clone ::Const.Injury.CuttingBody;
+::Const.Injury.CuttingAndBluntBody.extend(::Const.Injury.BluntBody);
+::Const.Injury.CuttingAndBluntHead <- clone ::Const.Injury.CuttingHead;
+::Const.Injury.CuttingAndBluntHead.extend(::Const.Injury.BluntHead);

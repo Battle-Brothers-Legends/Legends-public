@@ -10,6 +10,8 @@
 		create();
 		this.m.MinRange = 1;
 		this.m.Delay = 150;
+		this.m.InjuriesOnBody = this.Const.Injury.CuttingAndBluntBody;
+		this.m.InjuriesOnHead = this.Const.Injury.CuttingAndBluntHead;
 	}
 
 	o.setItem <- function(_item) {
