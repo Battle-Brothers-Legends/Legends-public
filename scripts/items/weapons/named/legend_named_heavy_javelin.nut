@@ -66,6 +66,7 @@ this.legend_named_heavy_javelin <- inherit("scripts/items/weapons/named/named_we
 	{
 		this.named_weapon.onEquip();
 		::Legends.Actives.grant(this, ::Legends.Active.ThrowJavelin);
+		::Legends.Actives.grant(this, ::Legends.Active.LegendHeartseekerJavelin);
 		::Legends.Actives.grant(this, ::Legends.Active.LegendPiercingJavelin);
 	}
 
