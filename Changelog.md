@@ -2,6 +2,9 @@
 
 ### Weapons
 
+**Daze Bomb**
+- will now stun if the target is already dazed
+
 **Throwing**
 - `Piercing Javelin` - if the attack is successful also attack the target behind them for 75% damage
 > 5 ap, 20 fat
