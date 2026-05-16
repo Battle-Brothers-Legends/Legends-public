@@ -15,7 +15,7 @@ this.legend_stollwurm <- this.inherit("scripts/entity/tactical/actor", {
 			::Legends.Effect.Withered,
 			::Legends.Effect.InsectSwarm
 		],
-		EffectsSharedWithTailLookup = {}
+		EffectsSharedWithTailLookup = {} 
 	},
 
 	function getIdealRange() {
