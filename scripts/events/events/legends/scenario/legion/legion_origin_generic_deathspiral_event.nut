@@ -1,7 +1,6 @@
 this.legion_origin_generic_deathspiral_event <- this.inherit("scripts/events/event", {
-	m = {
-		Dude = null
-	},
+	m = {},
+
 	function create()
 	{
 		this.m.ID = "event.legion_origin_generic_deathspiral";
@@ -33,12 +32,28 @@ this.legion_origin_generic_deathspiral_event <- this.inherit("scripts/events/eve
 	{
 		local currentTile = this.World.State.getPlayer().getTile();
 
-		if (!currentTile.HasRoad)
+		if (this.World.Assets.getOrigin().getID() != "scenario.legend_risen_legion")
 		{
 			return;
 		}
 
-		this.m.Score = 2;
+		local locations = this.World.EntityManager.getLocations();
+		local nearSite = false;
+		foreach( v in locations )
+		{
+			if (v.getTile().getDistanceTo(currentTile) < 14)
+			{
+				nearSite = true;
+				break;
+			}
+		}
+
+		if (!nearSite)
+		{
+		 return;
+		}
+
+		this.m.Score = 3;
 	}
 
 	function onPrepare()
