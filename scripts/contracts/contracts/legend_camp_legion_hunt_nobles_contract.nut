@@ -227,7 +227,7 @@ this.legend_camp_legion_hunt_nobles_contract <- this.inherit("scripts/contracts/
 		this.m.Screens.push({
 			ID = "Task",
 			Title = "Negotiations",
-			Text = "[img]gfx/ui/events/legend_camp_hunt.png[/img]{%employer% approaches you in camp. %SPEECH_ON%A patrol is nearby. It has been getting closer and closer to one of our larger camps. Destroy the patrol and place this shield at the battlefield to misdirect the enemy into fighting one another.%SPEECH_OFF% The messenger pauses as both of your hands at at the brim of the shield. An important message follows. %SPEECH_ON%Do not allow any to escape.%SPEECH_OFF%}",
+			Text = "[img]gfx/ui/events/legend_camp_hunt.png[/img]{%employer% approaches you in camp. %SPEECH_ON%A patrol is nearby. It has been getting closer and closer to one of our larger camps. Destroy the patrol and place this shield at the battlefield to misdirect the enemy into fighting one another.%SPEECH_OFF% The messenger pauses and places their hand at the brim of the shield. An important message follows. %SPEECH_ON%Do not allow any to escape.%SPEECH_OFF%}",
 			Image = "",
 			List = [],
 			ShowEmployer = true,
