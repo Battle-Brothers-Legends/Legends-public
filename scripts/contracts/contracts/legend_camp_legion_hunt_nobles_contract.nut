@@ -327,15 +327,15 @@ this.legend_camp_legion_hunt_nobles_contract <- this.inherit("scripts/contracts/
 					return 0;
 				}
 			}],
-			function start() { //to do
+			function start() {
 				this.List.extend(::Legends.EventList.addItems(this.Contract.m.Payment.Items, ::World.Assets.getStash()));
 			}
 		});
 
-		this.m.Screens.push({ //to do
+		this.m.Screens.push({
 			ID = "Failure",
 			Title = "After battle...",
-			Text = "[img]gfx/ui/events/legend_rock_unhold.png[/img]{Some memmbers of the patrol escaped. You sense there will be repercussions for this.}",
+			Text = "[img]gfx/ui/events/event_86.png[/img]{Some members of the patrol escaped. You sense there will be repercussions for this.}",
 			Image = "",
 			List = [],
 			Options = [{
