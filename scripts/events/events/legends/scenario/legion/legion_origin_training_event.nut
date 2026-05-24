@@ -65,7 +65,6 @@ this.legion_origin_training_event <- this.inherit("scripts/events/event", {
 
 	function onClear()
 	{
-		this.m.Gladiator = null;
 	}
 
 });
