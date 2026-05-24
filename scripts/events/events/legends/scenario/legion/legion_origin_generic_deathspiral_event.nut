@@ -8,7 +8,7 @@ this.legion_origin_generic_deathspiral_event <- this.inherit("scripts/events/eve
 		this.m.Cooldown = 80.0 * this.World.getTime().SecondsPerDay;
 		this.m.Screens.push({ //—
 			ID = "A",
-			Text = "[img]gfx/ui/events/event_101.png[/img]As you approach a slope, a strange sight unfolds — hundreds of muddle around a black monolith much smaller than the one you are already familiar with. Crowds of auxiliaries, labourers and unidentifiable legionaries circle the monument like ants in a deathspiral./n/n Many are physically broken, hobbling along after what must be years of walking in circles. The less fortunate are crushed underfoot, still attempting to crawl in the hypnotic pattern. Given time, the rest of the structure may be uncovered purely by the unknowning toil of those it has drawn in./n/n For the briefest of moments, you are drawn to it — even at this distance. The hum is quiet, yet soothing.",
+			Text = "[img]gfx/ui/events/event_101.png[/img]As you approach a slope, a strange sight unfolds — hundreds of muddle around a black monolith much smaller than the one you are already familiar with. Crowds of auxiliaries, labourers and unidentifiable legionaries circle the monument like ants in a deathspiral.\n Many are physically broken, hobbling along after what must be years of walking in circles. The less fortunate are crushed underfoot, still attempting to crawl in the hypnotic pattern. Given time, the rest of the structure may be uncovered purely by the unknowning toil of those it has drawn in.\n\n For the briefest of moments, you are drawn to it — even at this distance. The hum is quiet, yet soothing.",
 			Image = "",
 			List = [],
 			Characters = [],
