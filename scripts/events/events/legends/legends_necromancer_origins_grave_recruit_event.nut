@@ -9,7 +9,7 @@ this.legends_necromancer_origins_grave_recruit_event <- this.inherit("scripts/ev
 		this.m.Cooldown = 20.0 * this.World.getTime().SecondsPerDay;
 		this.m.Screens.push({ //— \n |
 			ID = "A",
-			Text = "[img]gfx/ui/events/event_73.png[/img]{While on the road, you notice a corpse face first in the dirt. After some time another appears. Then another — and another. The decaying human breadcrumbs culminate into a large battlefield boasting a hasily dug pit filled with corpses, presumably not the victor\'s... \n\n...if indeed there was one. \n\nCircling the site the battle appeared to be recent, some corpses are remarkably fresh in what appears to be a mix between an ambush, a counter ambush and a third party that was in the wrong place at the wrong time.}",
+			Text = "[img]gfx/ui/events/event_132.png[/img]{While on the road, you notice a corpse face first in the dirt. After some time another appears. Then another — and another. The decaying human breadcrumbs culminate into a large battlefield boasting a hasily dug pit filled with corpses, presumably not the victor\'s... \n\n...if indeed there was one. \n\nCircling the site the battle appeared to be recent, some corpses are remarkably fresh in what appears to be a mix between an ambush, a counter ambush and a third party that was in the wrong place at the wrong time.}",
 			Image = "",
 			List = [],
 			Characters = [],
@@ -36,7 +36,7 @@ this.legends_necromancer_origins_grave_recruit_event <- this.inherit("scripts/ev
 		});
 		this.m.Screens.push({
 			ID = "B",
-			Text = "[img]gfx/ui/events/event_98.png[/img]{Seeing oppertunity, a ritual is performed — and you manage to pull a new recruit from the grip of death before they became a mindless thrall to another. You looked deep into them, and name them %joiner%.}",
+			Text = "[img]gfx/ui/events/event_29.png[/img]{Seeing oppertunity, a ritual is performed — and you manage to pull a new recruit from the grip of death before they became a mindless thrall to another. You looked deep into them, and name them %joiner%.}",
 			Image = "",
 			List = [],
 			Characters = [],
@@ -102,7 +102,7 @@ this.legends_necromancer_origins_grave_recruit_event <- this.inherit("scripts/ev
 		});
 		this.m.Screens.push({
 			ID = "C",
-			Text = "[img]gfx/ui/events/event_158.png[/img]{You move on, but not without alleviating the dead of their worldly possessions...}",
+			Text = "[img]gfx/ui/events/event_22.png[/img]{You move on, but not without alleviating the dead of their worldly possessions...}",
 			Image = "",
 			List = [],
 			Characters = [],
