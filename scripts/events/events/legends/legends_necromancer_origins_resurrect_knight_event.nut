@@ -9,7 +9,7 @@ this.legends_necromancer_origins_resurrect_knight_event <- this.inherit("scripts
 		this.m.Cooldown = 125.0 * this.World.getTime().SecondsPerDay;
 		this.m.Screens.push({ //— \n |
 			ID = "A",
-			Text = "[img]gfx/ui/events/event_73.png[/img]{As you trapse through the woods, something catches your eye — a freshly fallen knight. It has no particular livery you would recognise, and lies in a crumpled mess between two trees. \nThis lone wolf now lies silent, but you sense a feeling coming from this corpse. A feeling that this would be a powerful minion indeed. \n\nHowever, the knight has been here for some time, and coaxing that vigor out of it would be very difficult. \n\nIn these woods it would be unwise to stay for long.}",
+			Text = "[img]gfx/ui/events/event_28.png[/img]{As you trapse through the woods, something catches your eye — a freshly fallen knight. It has no particular livery you would recognise, and lies in a crumpled mess between two trees. \nThis lone wolf now lies silent, but you sense a feeling coming from this corpse. A feeling that this would be a powerful minion indeed. \n\nHowever, the knight has been here for some time, and coaxing that vigor out of it would be very difficult. \n\nIn these woods it would be unwise to stay for long.}",
 			Image = "",
 			List = [],
 			Characters = [],
@@ -43,7 +43,7 @@ this.legends_necromancer_origins_resurrect_knight_event <- this.inherit("scripts
 		});
 		this.m.Screens.push({
 			ID = "B",
-			Text = "[img]gfx/ui/events/event_98.png[/img]{Taking every precaution you can, a ritual circle is formed and the process begins. Even in death, the knight fights you — attempting to twist away from your control. \n\nEventually, it\'s strength gives out and relents. It is now bound to itself once more, with much stronger energy than those currently with you.}",
+			Text = "[img]gfx/ui/events/event_25.png[/img]{Taking every precaution you can, a ritual circle is formed and the process begins. Even in death, the knight fights you — attempting to twist away from your control. \n\nEventually, it\'s strength gives out and relents. It is now bound to itself once more, with much stronger energy than those currently with you.}",
 			Image = "",
 			List = [],
 			Characters = [],
@@ -119,7 +119,7 @@ this.legends_necromancer_origins_resurrect_knight_event <- this.inherit("scripts
 		});
 		this.m.Screens.push({
 			ID = "C",
-			Text = "[img]gfx/ui/events/event_98.png[/img]{Taking every precaution you can, a ritual circle is formed and the process begins. Even in death, the knight fights you — attempting to twist away from your control. \n\nEventually, your hold gives out, but not before you pull a fragment of itself back into the corpse. It is now bound to itself once more, but much duller than you hoped.}",
+			Text = "[img]gfx/ui/events/event_25.png[/img]{Taking every precaution you can, a ritual circle is formed and the process begins. Even in death, the knight fights you — attempting to twist away from your control. \n\nEventually, your hold gives out, but not before you pull a fragment of itself back into the corpse. It is now bound to itself once more, but much duller than you hoped.}",
 			Image = "",
 			List = [],
 			Characters = [],
@@ -187,7 +187,7 @@ this.legends_necromancer_origins_resurrect_knight_event <- this.inherit("scripts
 		});
 		this.m.Screens.push({
 			ID = "D",
-			Text = "[img]gfx/ui/events/event_158.png[/img]{You ignore the possibility, instead opting to turn out what remains in their mouldy knapsack.}",
+			Text = "[img]gfx/ui/events/event_04.png[/img]{You ignore the possibility, instead opting to turn out what remains in their mouldy knapsack.}",
 			Image = "",
 			List = [],
 			Characters = [],
