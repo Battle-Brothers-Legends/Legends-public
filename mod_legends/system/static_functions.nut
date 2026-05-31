@@ -369,3 +369,14 @@
 
 	::logWarning(toPrint);
 }
+
+::Legends.S.humansOnly <- function (_bro) //excludes the following flags from ALL events unless specified. The reason for this is that none of owners of these flags 'talk' at all or as normal brothers do.
+{
+    if (_bro.getFlags().get("donkey"))
+        return false;
+    if (_bro.getFlags().get("PlayerZombie"))
+        return false;
+    if (_bro.getFlags().get("PlayerSkeleton"))
+        return false;
+    return true
+}
