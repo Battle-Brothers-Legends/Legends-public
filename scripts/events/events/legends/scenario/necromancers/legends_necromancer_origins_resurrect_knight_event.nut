@@ -216,7 +216,8 @@ this.legends_necromancer_origins_resurrect_knight_event <- this.inherit("scripts
 
 	function onUpdateScore()
 	{
-		if (this.World.Assets.getOrigin().getID() != "scenario.legends_solo_necro" && this.World.Assets.getOrigin().getID() != "scenario.legends_necro") //if not either of these origin, skip event
+		//see 'static_functions' ::Legends.S.humansOnly for more details.
+		if (this.World.Assets.getOrigin().getID() != "scenario.legends_solo_necro" && this.World.Assets.getOrigin().getID() != "scenario.legends_necro" && bro.getFlags().has("PlayerZombie")) //if not either of these origin, skip event
 		{
 			return;
 		}
