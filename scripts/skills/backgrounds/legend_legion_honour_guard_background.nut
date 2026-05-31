@@ -5,8 +5,8 @@ this.legend_legion_honour_guard_background <- this.inherit("scripts/skills/backg
 		this.character_background.create();
 		this.m.ID = "background.legend_legion_honour_guard"; //I don't care who they send, im not spelling it 'honor'.
 		this.m.Name = "Honour Guard";
-		this.m.Icon = "ui/backgrounds/background_puppet.png"; //to do
-		this.m.BackgroundDescription = "A veteran of hundreds of battles, the honour guard is rewarded for their prowess with ever increasing danger.";
+		this.m.Icon = "ui/backgrounds/background_legion_honourguard.png";
+		this.m.BackgroundDescription = "A veteran of hundreds of battles, the honour guard is rewarded for their luck and prowess with ever increasing danger.";
 		this.m.GoodEnding = "";
 		this.m.BadEnding = "";
 		this.m.HiringCost = 0;

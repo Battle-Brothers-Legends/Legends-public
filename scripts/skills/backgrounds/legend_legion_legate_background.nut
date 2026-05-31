@@ -5,8 +5,8 @@ this.legend_legion_legate_background <- this.inherit("scripts/skills/backgrounds
 		this.character_background.create();
 		this.m.ID = "background.legend_legion_legate";
 		this.m.Name = "Legate";
-		this.m.Icon = "ui/backgrounds/background_puppet.png"; //to do
-		this.m.BackgroundDescription = "A military figure of great experience and prowess";
+		this.m.Icon = "ui/backgrounds/background_legion_legate.png";
+		this.m.BackgroundDescription = "A military figure of great experience and prowess, the legate has risen through the ranks with bloody blade in hand.";
 		// this.m.GoodEnding = ""; //to do
 		// this.m.BadEnding = ""; //to do
 		this.m.HiringCost = 0;

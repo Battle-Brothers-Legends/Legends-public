@@ -5,7 +5,7 @@ this.legend_legion_prefect_background <- this.inherit("scripts/skills/background
 		this.character_background.create();
 		this.m.ID = "background.legend_legion_prefect";
 		this.m.Name = "Prefect";
-		this.m.Icon = "ui/backgrounds/background_puppet.png"; //to do
+		this.m.Icon = "ui/backgrounds/background_legion_prefect.png"; 
 		this.m.BackgroundDescription = "An official or administrator with some standing to someone who\'s name and title is unknown to you.";
 		this.m.GoodEnding = ""; //to do
 		this.m.BadEnding = ""; //to do

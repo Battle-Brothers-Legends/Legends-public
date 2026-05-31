@@ -5,8 +5,8 @@ this.legend_legion_slave_background <- this.inherit("scripts/skills/backgrounds/
 		this.character_background.create();
 		this.m.ID = "background.legend_legion_slave";
 		this.m.Name = "Servus";
-		this.m.Icon = "ui/backgrounds/background_puppet.png"; //to do
-		this.m.BackgroundDescription = "Taken from a distant land lost to time, this slave still fights for their household.";
+		this.m.Icon = "ui/backgrounds/background_legion_slave.png";
+		this.m.BackgroundDescription = "Taken from a distant land lost to time, this slave still fights for their master.";
 		this.m.GoodEnding = "";
 		this.m.BadEnding = "";
 		this.m.HiringCost = 0;

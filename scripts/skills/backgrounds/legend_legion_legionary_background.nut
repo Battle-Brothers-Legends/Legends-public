@@ -4,9 +4,9 @@ this.legend_legion_legionary_background <- this.inherit("scripts/skills/backgrou
 	{
 		this.character_background.create();
 		this.m.ID = "background.legend_legion_legionary";
-		this.m.Name = "Legionary";
-		this.m.Icon = "ui/backgrounds/background_puppet.png"; //to do
-		this.m.BackgroundDescription = "The backbone of the Empire, the Legionary has seen horrors far and wide — and now travels those lands as one.";
+		this.m.Name = "Legionaire";
+		this.m.Icon = "ui/backgrounds/background_legion_legionaire";
+		this.m.BackgroundDescription = "The backbone of the Empire, the legionaire sees horrors far and wide — and now travels those lands as one.";
 		// this.m.GoodEnding = ""; //to do
 		// this.m.BadEnding = ""; //to do
 		this.m.HiringCost = 0;

@@ -5,8 +5,8 @@ this.legend_legion_auxiliary_background <- this.inherit("scripts/skills/backgrou
 		this.character_background.create();
 		this.m.ID = "background.legend_legion_auxiliary";
 		this.m.Name = "Auxiliary";
-		this.m.Icon = "ui/backgrounds/background_puppet.png"; //to do
-		this.m.BackgroundDescription = "Pressed onto service by some means or another, the Auxiliary serves their masters in exchange of a promise for a better life.";
+		this.m.Icon = "ui/backgrounds/background_legion_auxiliary.png";
+		this.m.BackgroundDescription = "Pressed onto service by some means or another, the Auxiliary serves their masters in exchange for a promise of a better life.";
 		this.m.GoodEnding = "";
 		this.m.BadEnding = "";
 		this.m.HiringCost = 0;
