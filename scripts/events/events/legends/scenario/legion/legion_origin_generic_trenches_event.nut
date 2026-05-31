@@ -32,7 +32,8 @@ this.legion_origin_generic_trenches_event <- this.inherit("scripts/events/event"
 	{
 		local currentTile = this.World.State.getPlayer().getTile();
 
-		if (this.World.Assets.getOrigin().getID() != "scenario.legend_risen_legion")
+		//see 'static_fucntions' ::Legends.S.humansOnly for more details.
+		if (this.World.Assets.getOrigin().getID() != "scenario.legend_risen_legion" && bro.getFlags().has("PlayerSkeleton"))
 		{
 			return;
 		}

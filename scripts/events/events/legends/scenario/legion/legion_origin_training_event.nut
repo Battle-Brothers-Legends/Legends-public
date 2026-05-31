@@ -47,6 +47,12 @@ this.legion_origin_training_event <- this.inherit("scripts/events/event", {
 	{
 		local brothers = this.World.getPlayerRoster().getAll();
 
+		//see 'static_fucntions' ::Legends.S.humansOnly for more details.
+		if (this.World.Assets.getOrigin().getID() != "scenario.legend_risen_legion" && bro.getFlags().has("PlayerSkeleton"))
+		{
+			return;
+		}
+
 		if (brothers.len() < 14) //must have at least 14 fighters or more
 		{
 			return;
