@@ -3198,14 +3198,6 @@ activesDefs.push({
 	Name = "Heartseeker",
 });
 
-::Legends.Active.LegendHeartseekerJavelin <- null;
-activesDefs.push({
-	ID = "actives.legend_heartseeker_javelin",
-	Script = "scripts/skills/actives/legend_heartseeker_javelin_skill",
-	Const = "LegendHeartseekerJavelin",
-	Name = "Heartseeker",
-});
-
 ::Legends.Active.LegendWarforkDisarm <- null;
 activesDefs.push({
 	ID = "actives.legend_warfork_disarm",

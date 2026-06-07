@@ -37,7 +37,6 @@
 	o.onEquip = function ()
 	{
 		onEquip();
-		::Legends.Actives.grant(this, ::Legends.Active.LegendHeartseekerJavelin);
 		::Legends.Actives.grant(this, ::Legends.Active.LegendPiercingJavelin);
 	}
 
