@@ -76,7 +76,7 @@
 		0
 	],
 	FatigueRecoveryRate = 30,
-	DamageTotalMult = 1.00
+	DamageTotalMult = 1.1
 };
 // fighter medium
 ::Const.Tactical.Actor.LegendGoblinPlunderer <- {

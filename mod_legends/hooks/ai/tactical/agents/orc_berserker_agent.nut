@@ -3,5 +3,6 @@
 	o.onAddBehaviors = function () {
 		onAddBehaviors();
 		this.addBehavior(this.new("scripts/ai/tactical/behaviors/ai_attack_swing"));
+		this.addBehavior(this.new("scripts/ai/tactical/behaviors/ai_adrenaline"));
 	}
 });

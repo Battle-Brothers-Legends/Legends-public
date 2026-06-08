@@ -188,6 +188,7 @@ this.legend_orc_elite <- this.inherit("scripts/entity/tactical/legend_orc", {
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendPerfectFocus);
 		::Legends.Perks.grant(this, ::Legends.Perk.BattleForged);
 		::Legends.Perks.grant(this, ::Legends.Perk.Recover);
+		::Legends.Effects.grant(this, ::Legends.Effect.BerserkerRage);
 		if(::Legends.isLegendaryDifficulty())
 		{
 			this.m.Hitpoints = 1.5 * b.Hitpoints;

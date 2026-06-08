@@ -100,6 +100,7 @@
 		::Legends.Perks.grant(this, ::Legends.Perk.ShieldBash);
 		::Legends.Perks.grant(this, ::Legends.Perk.Fearsome);
 		::Legends.Effects.grant(this, ::Legends.Effect.Captain);
+		::Legends.Effects.grant(this, ::Legends.Effect.BerserkerRage);
 		if(::Legends.isLegendaryDifficulty())
 		{
 			::Legends.Perks.grant(this, ::Legends.Perk.BattleForged);

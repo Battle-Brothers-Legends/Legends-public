@@ -79,16 +79,19 @@
 		::Legends.Effects.grant(this, ::Legends.Effect.DoubleGrip);
 		this.m.Skills.add(this.new("scripts/skills/actives/hand_to_hand_orc"));
 		::Legends.Actives.grant(this, ::Legends.Active.Charge);
-		::Legends.Effects.grant(this, ::Legends.Effect.BerserkerRage);
+		::Legends.Effects.grant(this, ::Legends.Effect.BerserkerRage, function (_skill) {
+			_skill.m.IsBerserker = true;
+		}.bindenv(this));
 		::Legends.Perks.grant(this, ::Legends.Perk.BatteringRam);
 		::Legends.Perks.grant(this, ::Legends.Perk.Berserk);
 		::Legends.Perks.grant(this, ::Legends.Perk.BattleFlow);
 		::Legends.Perks.grant(this, ::Legends.Perk.Pathfinder);
 		::Legends.Perks.grant(this, ::Legends.Perk.HoldOut);
+		::Legends.Perks.grant(this, ::Legends.Perk.Colossus);
 		if (::Legends.isLegendaryDifficulty()) {
 			b.MeleeSkill += 10;
+			::Legends.Perks.grant(this, ::Legends.Perk.Nimble);
 			::Legends.Perks.grant(this, ::Legends.Perk.Brawny);
-			::Legends.Perks.grant(this, ::Legends.Perk.Colossus);
 			::Legends.Perks.grant(this, ::Legends.Perk.CoupDeGrace);
 			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
 		}
@@ -157,9 +160,6 @@
 		}
 
 		::Legends.Perks.grant(this, ::Legends.Perk.CripplingStrikes);
-		if (::Legends.isLegendaryDifficulty()) {
-			::Legends.Perks.grant(this, ::Legends.Perk.Nimble);
-		}
 		return true;
 	}
 });

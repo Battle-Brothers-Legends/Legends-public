@@ -27,6 +27,17 @@
 ### Dodge on Enemies
 - `Dodge` now doesn't scale with hitpoints on enemies so the overall values will be reduced
 
+## Enemies
+
+### Greenskins
+- `Rage` - now applied to all orcs with reduced effects
+> gain 1 stack when they get hit and when hitting a target, gain 2 stacks when killing someone
+> Berserkers gain 3 stacks when hit and hitting a target, 5 stacks when killing someone
+> stacks are capped at 50
+- `Warcry` - each warcry now applies 5 stacks of rage
+- `Orc Berserker` - Base HP dropped to 200, gain `Colossus` and 10% damage that they had in vanilla, gain `Nimble` on Legendary Difficulty
+- `Orc Mad Berserker` - lose `Nudist`, gain 10% damage, gain the ability to use `Adrenaline`
+
 # 19.3.0 - Left & Right
 
 ## Dual Wielding

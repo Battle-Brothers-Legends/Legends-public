@@ -20,17 +20,14 @@ this.legend_orc_mad_berserker <- this.inherit("scripts/entity/tactical/enemies/o
 		tattooHead.setBrush("bust_orc_02_head_paint_0" + this.Math.rand(4, 6));
 		::Legends.Perks.grant(this, ::Legends.Perk.CripplingStrikes);
 		::Legends.Perks.grant(this, ::Legends.Perk.Brawny);
-		::Legends.Perks.grant(this, ::Legends.Perk.Colossus);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendHeightenedReflexes);
 		::Legends.Perks.grant(this, ::Legends.Perk.Adrenaline);
 		::Legends.Perks.grant(this, ::Legends.Perk.Nimble);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendAmbidextrous);
 		::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
 		if (::Legends.isLegendaryDifficulty()) {
-			::Legends.Perks.grant(this, ::Legends.Perk.LegendUberNimble);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendTasteThePain);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendMuscularity);
-			// ::Legends.Perks.grant(this, ::Legends.Perk.LegendVengeance);
 		}
 	}
 
