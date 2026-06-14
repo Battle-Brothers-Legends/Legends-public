@@ -22,6 +22,11 @@
 - `legend_estoc` -> deleted
 - `legend_named_sickle` -> deleted
 
+## Enemies
+
+### Dodge on Enemies
+- `Dodge` now doesn't scale with hitpoints on enemies so the overall values will be reduced
+
 # 19.3.0 - Left & Right
 
 ## Dual Wielding

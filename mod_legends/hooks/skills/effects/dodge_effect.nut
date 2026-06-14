@@ -1,4 +1,5 @@
 ::mods_hookExactClass("skills/effects/dodge_effect", function(o) {
+	o.m.NormalBonus <- false;
 	local create = o.create;
 	o.create = function()
 	{
@@ -36,8 +37,12 @@
 		];
 	}
 
+	local onAfterUpdate = o.onAfterUpdate;
 	o.onAfterUpdate = function( _properties )
 	{
+		if (this.m.NormalBonus) {
+			return onAfterUpdate( _properties );
+		}
 		_properties.MeleeDefense += this.getBonus();
 		_properties.RangedDefense += this.getBonus();
 	}
