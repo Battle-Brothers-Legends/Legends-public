@@ -303,7 +303,7 @@ this.legion_origin_raid_farmstead_event <- this.inherit("scripts/events/event", 
 
 		foreach( bro in brothers )
 		{
-			if (bro.getSkills().hasSkill("trait.LegendFleshless"))
+			if (bro.getSkills().hasSkill("trait.legend_fleshless"))
 			{
 				candidates.push(bro);
 			}
