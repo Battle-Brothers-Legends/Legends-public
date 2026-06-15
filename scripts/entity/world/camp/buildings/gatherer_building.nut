@@ -164,202 +164,116 @@ this.gatherer_building <- this.inherit("scripts/entity/world/camp/camp_building"
 		return "Gathered ... " + this.Math.floor(this.m.MedsAdded) + " meds and " + this.m.Items.len() + " items";
 	}
 
-	function update()
-	{
-		if (this.m.NumBros == 0)
-		{
+	function update() {
+		if (this.m.NumBros == 0) {
 			return null;
 		}
 
 		local levels = this.getAllLevels();
 		local emptySlots = this.Stash.getNumberOfEmptySlots();
 
-		if (emptySlots == 0)
-		{
+		if (emptySlots == 0) {
 			return this.getUpdateText();
 		}
 
-		local item;
-		local dropLoot = -3.0 / (this.m.Craft + 0.4) + 7.5 > this.Math.rand(1, 100);
-
-		if (dropLoot && this.getUpgraded())
-		{
-			local r = this.Math.rand(1, 2);
-
-			if (r == 1)
-			{
-				item = this.new("scripts/items/supplies/roots_and_berries_item");
+		function gatherItem ( _script ) {
+			if (_script == null) {
+				return false;
 			}
-			else
-			{
-				item = this.new("scripts/items/supplies/legend_medicine_small_item");
-			}
+            local item = this.new(_script);
+            this.m.Items.push(item);
+            this.Stash.add(item);
+            emptySlots = --emptySlots;
+            return emptySlots == 0;
+        }
 
-			this.m.Items.push(item);
-			this.Stash.add(item);
-			emptySlots = --emptySlots;
-
-			if (emptySlots == 0)
-			{
-				return this.getUpdateText();
+		if (this.getUpgraded()) {
+			if (-3.0 / (this.m.Craft + 0.4) + 7.5 > ::Math.rand(1, 100)) {
+            	local script = this.Math.rand(1, 2) == 1 ? "scripts/items/supplies/roots_and_berries_item" : "scripts/items/supplies/legend_medicine_small_item";
+            	if (gatherItem(script)) return this.getUpdateText();
 			}
+        }
+
+		if (levels.Woodsman > 0) {
+			if (-500.0 / (levels.Woodsman + 60) + 10 > ::Math.rand(1, 100)) {
+				local script = null;
+                local r = levels.Woodsman <= 10 ? 1 : ::Math.rand(1, 10);
+
+                if (r >= 6) script = "scripts/items/trade/legend_raw_wood_item";
+                else if (r == 3) script = "scripts/items/trade/quality_wood_item";
+
+                if (gatherItem(script)) return this.getUpdateText();
+            }
+
+			if (-300.0 / (levels.Woodsman + 60) + 10 > this.Math.rand(1, 100)) {
+				local r = levels.Woodsman > 5 ? 1 : this.Math.rand(1, 3);
+                local script = r == 1 ? "scripts/items/trade/legend_raw_wood_item" : null;
+                if (gatherItem(script)) return this.getUpdateText();
+            }
 		}
 
-		dropLoot = -500.0 / (levels.Woodsman + 60) + 10 > this.Math.rand(1, 100);
+		if (levels.Miner > 0) {
+			if (-500.0 / (levels.Miner + 60) + 10 > this.Math.rand(1, 100)) {
+				local r = levels.Miner <= 10 ? 1 : this.Math.rand(1, 10);
+                local script = null;
 
-		if (dropLoot && levels.Woodsman > 0)
-		{
-			local r = levels.Woodsman <= 10 ? 1 : this.Math.rand(1, 10);
+                if (r > 7) script = "scripts/items/trade/legend_gem_shards_item";
+                else if (r == 3) script = "scripts/items/trade/uncut_gems_item";
+                else if (r < 2) script = "scripts/items/trade/salt_item";
 
-			if (r >= 6)
-			{
-				item = this.new("scripts/items/trade/legend_raw_wood_item");
+                if (gatherItem(script)) return this.getUpdateText();
 			}
 
-			if (r == 3)
-			{
-				item = this.new("scripts/items/trade/quality_wood_item");
-			}
+			if (-300.0 / (levels.Miner + 60) + 10 > this.Math.rand(1, 100))
+            {
+                local r = levels.Miner > 5 ? 1 : this.Math.rand(1, 3);
+                local script = r == 1 ? "scripts/items/trade/legend_gem_shards_item" : null;
 
-			this.m.Items.push(item);
-			this.Stash.add(item);
-			emptySlots = --emptySlots;
-
-			if (emptySlots == 0)
-			{
-				return this.getUpdateText();
-			}
+                if (gatherItem(script)) return this.getUpdateText();
+            }
 		}
 
-		dropLoot = -300.0 / (levels.Woodsman + 60) + 10 > this.Math.rand(1, 100);
-
-		if (dropLoot && levels.Woodsman > 0)
-		{
-			local r = levels.Woodsman > 5 ? 1 : this.Math.rand(1, 3);
-
-			if (r == 1)
-			{
-				item = this.new("scripts/items/trade/legend_raw_wood_item");
-			}
-
-			this.m.Items.push(item);
-			this.Stash.add(item);
-			emptySlots = --emptySlots;
-
-			if (emptySlots == 0)
-			{
-				return this.getUpdateText();
-			}
-		}
-
-		dropLoot = -500.0 / (levels.Miner + 60) + 10 > this.Math.rand(1, 100);
-
-		if (dropLoot && levels.Miner > 0)
-		{
-			local r = levels.Miner <= 10 ? 1 : this.Math.rand(1, 10);
-
-			if (r > 7)
-			{
-				item = this.new("scripts/items/trade/legend_gem_shards_item");
-			}
-
-			if (r == 3)
-			{
-				item = this.new("scripts/items/trade/uncut_gems_item");
-			}
-
-			if (r < 2)
-			{
-				item = this.new("scripts/items/trade/salt_item");
-			}
-
-			this.m.Items.push(item);
-			this.Stash.add(item);
-			emptySlots = --emptySlots;
-
-			if (emptySlots == 0)
-			{
-				return this.getUpdateText();
-			}
-		}
-
-		dropLoot = -300.0 / (levels.Miner + 60) + 10 > this.Math.rand(1, 100);
-
-		if (dropLoot && levels.Miner > 0)
-		{
-			local r = levels.Miner > 5 ? 1 : this.Math.rand(1, 3);
-
-			if (r == 1)
-			{
-				item = this.new("scripts/items/trade/legend_gem_shards_item");
-			}
-
-			this.m.Items.push(item);
-			this.Stash.add(item);
-			emptySlots = --emptySlots;
-
-			if (emptySlots == 0)
-			{
-				return this.getUpdateText();
-			}
-		}
-
-		dropLoot = levels.Apothecary > 0 ? -600.0 / (levels.Apothecary + levels.Brewer + 60) + 10 > this.Math.rand(1, 100) : false;
-
-		if (dropLoot)
-		{
-			local loot = this.new("scripts/mods/script_container");
-			loot.extend([
-				"scripts/items/accessory/berserker_mushrooms_item",
-				"scripts/items/accessory/antidote_item",
-				"scripts/items/accessory/poison_item",
-				"scripts/items/misc/mysterious_herbs_item",
-				"scripts/items/misc/legend_mistletoe_item",
-				"scripts/items/supplies/medicine_item"
-			]);
-
-			if (this.getUpgraded() && levels.Apothecary >= 0)
-			{
+		if (levels.Apothecary > 0){
+			if (-600.0 / (levels.Apothecary + levels.Brewer + 60) + 10 > this.Math.rand(1, 100)) {
+				local loot = this.new("scripts/mods/script_container");
 				loot.extend([
-					"scripts/items/accessory/legend_apothecary_mushrooms_item",
-					"scripts/items/misc/happy_powder_item"
+					"scripts/items/accessory/berserker_mushrooms_item",
+					"scripts/items/accessory/antidote_item",
+					"scripts/items/accessory/poison_item",
+					"scripts/items/misc/mysterious_herbs_item",
+					"scripts/items/misc/legend_mistletoe_item",
+					"scripts/items/supplies/medicine_item"
 				]);
 
-				if (levels.Apothecary >= 10)
-				{
+				if (this.getUpgraded()) {
 					loot.extend([
-						"scripts/items/accessory/lionheart_potion_item",
-						"scripts/items/accessory/iron_will_potion_item",
-						"scripts/items/accessory/recovery_potion_item",
-						"scripts/items/accessory/cat_potion_item"
+						"scripts/items/accessory/legend_apothecary_mushrooms_item",
+						"scripts/items/misc/happy_powder_item"
 					]);
-
-					if (levels.Apothecary >= 20)
-					{
-						loot.extend([
-							"scripts/items/misc/miracle_drug_item",
-							"scripts/items/accessory/spider_poison_item"
-						]);
-
-						if (levels.Brewer >= 35 && levels.Apothecary >= 45)
-						{
-							loot.extend([
-								"scripts/items/misc/potion_of_knowledge_item"
-							]);
-						}
-					}
 				}
-			}
+				if (levels.Apothecary >= 10) {
+                    loot.extend([
+                        "scripts/items/accessory/lionheart_potion_item",
+                        "scripts/items/accessory/iron_will_potion_item",
+                        "scripts/items/accessory/recovery_potion_item",
+                        "scripts/items/accessory/cat_potion_item"
+                    ]);
 
+                    if (levels.Apothecary >= 20) {
+                        loot.extend([
+                            "scripts/items/misc/miracle_drug_item",
+                            "scripts/items/accessory/spider_poison_item"
+                        ]);
 
-			item = this.new(loot.roll());
-			this.m.Items.push(item);
-			this.Stash.add(item);
-			emptySlots = --emptySlots;
-
-			if (emptySlots == 0)
-			{
-				return this.getUpdateText();
+                        if (levels.Brewer >= 35 && levels.Apothecary >= 45)
+                        {
+                            loot.push("scripts/items/misc/potion_of_knowledge_item");
+                        }
+                    }
+                }
+				if (gatherItem(loot.roll())) {
+					return this.getUpdateText();
+				}
 			}
 		}
 
