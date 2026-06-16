@@ -16,10 +16,8 @@
 		_draftList.push(::Legends.Background.Beggar);
 		_draftList.push(::Legends.Background.Beggar);
 		_draftList.push(::Legends.Background.Monk);
-
-		if (::Legends.Mod.ModSettings.getSetting("GenderEquality").getValue() != "Disabled")
-			_draftList.push(::Legends.Background.LegendHerbalist);
-
+		_draftList.push(::Legends.Background.LegendHerbalist);
+		
 		if (this.World.Assets.getOrigin().getID() == "scenario.legends_necro" || this.World.Assets.getOrigin().getID() == "scenario.legends_solo_necro") {
 			_draftList.push(::Legends.Background.LegendPuppet);
 			_draftList.push(::Legends.Background.LegendPuppet);

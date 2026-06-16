@@ -110,13 +110,8 @@
 	}
 
 	o.setGender <- function (_gender = -1) {
-		if (_gender == -1) {
-			_gender = ::Legends.Mod.ModSettings.getSetting("GenderEquality").getValue() == "Disabled" ? 0 : ::Math.rand(0, 1);
-		}
-
-		if (_gender != 1) {
-			return;
-		}
+		if (_gender == -1) _gender = this.randomizeHumanGender();
+		if (_gender != 1) return;
 
 		this.m.Faces = this.Const.Faces.AllWhiteFemale;
 		this.m.Hairs = this.Const.Hair.AllFemale;

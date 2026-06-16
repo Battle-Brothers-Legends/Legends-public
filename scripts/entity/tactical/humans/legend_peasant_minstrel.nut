@@ -13,7 +13,7 @@ this.legend_peasant_minstrel <- this.inherit("scripts/entity/tactical/human", {
 		this.getFlags().add("peasant");
 		this.m.AIAgent = this.new("scripts/ai/tactical/agents/legend_minstrel_agent");
 		this.m.AIAgent.setActor(this);
-		if (this.Math.rand(1, 100) <= 50)
+		if (this.randomizeHumanGender() == 1) 
 		{
 			this.setGender(1);
 		}

@@ -22,7 +22,7 @@
 
 	o.setGender <- function ( _v, _reroll = true)
 	{
-		if ("LegendMod" in this.World && ::Legends.Mod.ModSettings.getSetting("GenderEquality").getValue() == "Disabled")
+		if ("LegendMod" in this.World && ::Legends.Mod.ModSettings.getSetting("FemaleGenderPercent").getValue() == 0)
 			_v = 0;
 
 		this.m.Gender = _v;

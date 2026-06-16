@@ -45,10 +45,8 @@
 		this.m.Items.equip(item);
 	}
 
-	o.setGender <- function (_gender = -1, _reroll = true)
-	{
-		if ("LegendMod" in this.World && ::Legends.Mod.ModSettings.getSetting("GenderEquality").getValue() == "Disabled")
-			_gender = 0;
+	o.setGender <- function (_gender = -1, _reroll = true) {
+		if (_gender == -1) _gender = this.randomizeHumanGender();
 
 		this.m.Gender = _gender;
 		if(this.m.Gender == 1)

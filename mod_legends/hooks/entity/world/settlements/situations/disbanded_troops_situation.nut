@@ -48,7 +48,7 @@
 		_draftList.push(::Legends.Background.LegendMasterArcher);
 		_draftList.push(::Legends.Background.LegendMasterArcher);
 
-		if (::Legends.Mod.ModSettings.getSetting("GenderEquality").getValue() != "Disabled") {
+		if (::Legends.Mod.ModSettings.getSetting("FemaleGenderPercent").getValue() > 0) {
 			_draftList.push(::Legends.Background.LegendShieldmaiden);
 			_draftList.push(::Legends.Background.LegendShieldmaiden);
 			_draftList.push(::Legends.Background.LegendShieldmaiden);

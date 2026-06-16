@@ -108,8 +108,8 @@ this.legend_youngblood_background <- this.inherit("scripts/skills/backgrounds/ch
 	//Default Male
 	function setGender(_gender = -1)
 	{
-		if (_gender == -1) _gender = ::Legends.Mod.ModSettings.getSetting("GenderEquality").getValue() == "Disabled" ? 0 : ::Math.rand(0, 1);
-
+		if (_gender == -1) _gender = this.randomizeHumanGender();
+::Math.rand(1, 100) <= ::Legends.Mod.ModSettings.getSetting("FemaleGenderPercent").getValue()
 		if (_gender != 1) return;
 
 		this.m.Faces = this.Const.Faces.AllWhiteFemale;

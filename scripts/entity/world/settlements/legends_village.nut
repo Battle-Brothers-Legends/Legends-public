@@ -143,7 +143,7 @@ this.legends_village <- this.inherit("scripts/entity/world/settlement", {
 	function getDraftList()
 	{
 		local L = clone this.m.DraftLists[this.m.Size - 1];
-		if (::Legends.Mod.ModSettings.getSetting("GenderEquality").getValue() != "Disabled" && this.m.FemaleDraftLists.len() != 0)
+		if (::Legends.Mod.ModSettings.getSetting("FemaleGenderPercent").getValue() > 0 && this.m.FemaleDraftLists.len() != 0)
 		{
 			L.extend(clone this.m.FemaleDraftLists[this.m.Size - 1])
 		}

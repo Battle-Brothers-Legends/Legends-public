@@ -76,7 +76,7 @@
 		//Default Male
 	o.setGender <- function (_gender = -1)
 	{
-		if (_gender == -1) _gender = ::Legends.Mod.ModSettings.getSetting("GenderEquality").getValue() == "Disabled" ? 0 : ::Math.rand(0, 1);
+		if (_gender == -1) _gender = this.randomizeHumanGender();
 
 		if (_gender != 1) return;
 		this.m.GoodEnding = "%name% the ratcatcher came from stranger stocks, and to stranger stocks she returned. After retiring from the %companyname%, she started a ratcatching company. She was doing wonderful business until it came out that she hadn\'t been killing any of the rats, but instead stowing thousands of them in a storehouse just outside town. Last you heard, the woman was quite content with her new and numerous friends.";

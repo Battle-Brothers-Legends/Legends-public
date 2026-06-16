@@ -39,7 +39,7 @@
 			"helmet_desert_noble_03"
 		];
 
-		if (::Legends.Mod.ModSettings.getSetting("GenderEquality").getValue() != "Disabled" && this.Math.rand(1, 100) >= 50)
+		if (::Legends.Mod.ModSettings.getSetting("FemaleGenderPercent").getValue() > 0 && this.Math.rand(1, 100) >= 50)
 		{
 			bodies = this.Const.Bodies.SouthernFemale;
 			heads = this.Const.Faces.SouthernFemale;

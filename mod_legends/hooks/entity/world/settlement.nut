@@ -99,8 +99,7 @@
 	{
 		local L = clone this.m.DraftList;
 
-		if (::Legends.Mod.ModSettings.getSetting("GenderEquality").getValue() != "Disabled")
-		{
+		if (::Legends.Mod.ModSettings.getSetting("FemaleGenderPercent").getValue() > 0) {
 			L.extend(this.m.FemaleDraftList);
 		}
 

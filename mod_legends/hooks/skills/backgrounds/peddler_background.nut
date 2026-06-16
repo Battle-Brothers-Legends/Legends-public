@@ -78,7 +78,7 @@
 	//Default Male
 	o.setGender <- function (_gender = -1)
 	{
-		if (_gender == -1) _gender = ::Legends.Mod.ModSettings.getSetting("GenderEquality").getValue() == "Disabled" ? 0 : ::Math.rand(0, 1);
+		if (_gender == -1) _gender = this.randomizeHumanGender();
 
 		if (_gender != 1) return;
 		this.m.GoodEnding = "A lover of the sale, %name% the peddler couldn\'t stay fighting for long. She eventually left the %companyname% to go out and start her own business. Recently, you got word that she was selling trinkets with the company\'s sigil on them. You specifically told her to do whatever they wanted except just this one thing, but apparently your warning merely fostered the idea. When you went to tell her to stop, she slammed a crown-bulging satchel on a rather ornate table, saying it was your \'cut.\' She sells those trinkets to this day.";

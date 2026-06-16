@@ -152,7 +152,7 @@ this.legend_tournament_spectator <- this.inherit("scripts/entity/tactical/entity
 			"faction_helmet_11"
 		];
 
-		if (::Legends.Mod.ModSettings.getSetting("GenderEquality").getValue() != "Disabled" && this.Math.rand(1, 100) >= 50)
+		if (::Legends.Mod.ModSettings.getSetting("FemaleGenderPercent").getValue() > 0 && this.Math.rand(1, 100) >= 50)
 		{
 			beards = null;
 		}

@@ -50,9 +50,11 @@
 
 ### Armors
 - added Segmented Breastplate
+- added Nomad Mail
 - separated Horn Plate Upgrade (L5) into Kraken Shoulderplates (L5) and Horn Plate (L1)
 - fixes and recolors of existing armor
 - plate_full_greaves_named and plate_full_greaves_painted merged into a single item
+- Vala Cloak changed into L4, Vala now always starts with Vala Dress and Vala Cloak equipped
 
 ### Weapons
 
@@ -124,6 +126,10 @@
 - added a new town encounter during drought
 - added a new event requiring a well read person
 
+## Gender settings
+- added a mod setting allowing the player to choose the gender of the commander
+- added a mod setting allowing the player to choose % of female characters
+
 ## Bug Fixes
 - black market in town screens can now be highlighted on mouseover
 - painter tent allows painting the shoulder layer
@@ -135,6 +141,7 @@
 - defs created for backgrounds
 - changed background.legend_peddler_commander -> background.legend_commander_peddler
 - legend_mage_background and legend_mage_commander_mage removed
+- human gender now randomized using randomizeHumanGender, which respects the new mod setting
 
 # 19.3.0 - Left & Right
 
