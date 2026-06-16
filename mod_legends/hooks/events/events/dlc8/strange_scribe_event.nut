@@ -6,7 +6,7 @@
 			_screen.Text = "[img]gfx/ui/events/event_31.png[/img]{While in %townname%, you are approached by a person you had seen around one of the noblemen in the area. %They_dude% is wearing a black cloak and %they_dude% keeps %their_dude% face deep in the cowl. %They_dude% is the definition of suspicious. Naturally, %anatomist% the anatomist sets %their_anatomist% eyes on %them_dude% as though %they_dude% were one of %their_anatomist% objects of scientific observation. The %person_dude% bows.%SPEECH_ON%I have come with great respect for the work you do, %anatomist%. We have read many of your texts.%SPEECH_OFF%You put a hand on your sword and wait to see where this is going. The %person_dude% continues.%SPEECH_ON%We would like to invite you for a meal and to discuss matters of bodily import a little more...deeply.%SPEECH_OFF%Stepping between them, you ask who this \'we\' is. The %person_dude% states that %they_dude% is with a group of scribes and scholars who study matters of the human body, as well as the bodies who have comported themselves well to the nature of their bestial tasks, which is to say they study the world\'s monsters.%SPEECH_ON%We, of course, have a particular interest in the beasts which are man himself...after he has lost what he himself is.%SPEECH_OFF%With so much intrigue flitting about, you\'re not surprised that the anatomist wishes to go with the strange scribe.}";
 			local start = _screen.start;
 			_screen.start = function (_event) {
-				start();
+				start(_event);
 				local roster = this.World.getTemporaryRoster();
 				_event.m.Dude = roster.create("scripts/entity/tactical/player");
 				_event.m.Dude.setStartValuesEx([::Legends.Background.Minstrel]);
