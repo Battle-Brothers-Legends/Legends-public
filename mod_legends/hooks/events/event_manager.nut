@@ -1,5 +1,6 @@
-::mods_hookExactClass("events/event_manager", function(o)
-{
+::mods_hookExactClass("events/event_manager", function(o) {
+	o.m.AllowNewsOnly <- false;
+	o.m.LastNewsEventTime <- 0.0;
 	o.create = function ()
 	{
 		local scriptFiles = this.IO.enumerateFiles("scripts/events/events/");
@@ -96,33 +97,32 @@
 			return;
 		}
 
+		local timeF = this.Time.getVirtualTimeF();
+		local newsDelay = ::World.getTime().SecondsPerHour * 0.25;
+
 		if (this.m.Thread != null) {
 			if (resume this.m.Thread != false) {
 				this.m.Thread = null;
+				if (this.m.ActiveEvent == null) {
+            		this.m.LastNewsEventTime = timeF + newsDelay;
+        		}
 			}
-
 			return;
 		}
 
-		local timeF = this.Time.getVirtualTimeF();
 		if (timeF - this.m.LastBattleTime < 2.0) {
 			return;
 		}
 
-		
+		this.m.AllowNewsOnly = false;
 		local isNewsReady = this.World.Statistics.isNewsReady();
 		if (isNewsReady) {
 			isNewsReady = false;
 			local checkFrequency = this.Math.max(1, this.World.getSpeedMult()) * 3;
-			if (timeF - this.m.LastCheckTime > this.World.getTime().SecondsPerHour * 2 / checkFrequency)	{
-				for (local i = 0; i < this.m.Events.len(); i = ++i) {
-					this.m.Events[i].update();
-					if (this.m.Events[i].getScore() >= 2000) {
-						isNewsReady = true;
-						this.m.LastCheckTime = this.Time.getVirtualTimeF();
-						break;
-					}
-				}
+			if (timeF - this.m.LastNewsEventTime > this.World.getTime().SecondsPerHour * 2 / checkFrequency) {
+				this.m.AllowNewsOnly = true;
+            	isNewsReady = true;
+				this.m.LastNewsEventTime = timeF;
 			}
 		}
 		if (!isNewsReady) {
@@ -154,6 +154,9 @@
 
 		if (resume this.m.Thread != false) {
 			this.m.Thread = null;
+			if (this.m.ActiveEvent == null) {
+        		this.m.LastNewsEventTime = timeF + newsDelay;
+    		}
 		}
 	}
 
@@ -163,7 +166,7 @@
 		local eventToFire;
 		local timeF = this.Time.getVirtualTimeF();
 		local limit = this.Math.max(1, this.World.getSpeedMult()) * 3;
-		local allowNewsOnly = (timeF - this.m.LastEventTime < this.Const.Events.GlobalMinDelay);
+		local allowNewsOnly = this.m.AllowNewsOnly || (timeF - this.m.LastEventTime < this.Const.Events.GlobalMinDelay);
 		local recentBattleCheck = timeF - this.m.LastBattleTime < 5.0;
 
 		for (local i = 0; i < this.m.Events.len(); i = ++i) {
