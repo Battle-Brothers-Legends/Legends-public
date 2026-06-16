@@ -2,19 +2,20 @@ this.legend_wildman <- this.inherit("scripts/entity/tactical/human", {
 	m = {},
 	function create()
 	{
-		this.m.Type = this.Const.EntityType.Wildman;
-		this.m.BloodType = this.Const.BloodType.Red;
-		this.m.XP = this.Const.Tactical.Actor.Wildman.XP;
+		this.m.Type = ::Const.EntityType.Wildman;
+		this.m.BloodType = ::Const.BloodType.Red;
+		this.m.XP = ::Const.Tactical.Actor.Wildman.XP;
 		this.human.create();
-		this.m.Faces = this.Const.Faces.AllMale;
-		this.m.Hairs = this.Const.Hair.AllMale;
-		this.m.HairColors = this.Const.HairColors.All;
-		this.m.Beards = this.Const.Beards.All;
-		this.m.AIAgent = this.new("scripts/ai/tactical/agents/bandit_melee_agent");
+		this.m.Bodies = ::Const.Bodies.AllMale;
+		this.m.Faces = ::Const.Faces.AllMale;
+		this.m.Hairs = ::Const.Hair.AllMale;
+		this.m.HairColors = ::Const.HairColors.All;
+		this.m.Beards = ::Const.Beards.All;
+		this.m.AIAgent = ::new("scripts/ai/tactical/agents/bandit_melee_agent");
 		this.m.AIAgent.setActor(this);
 		if (this.randomizeHumanGender() == 1) {
 			this.setGender(1);
-			this.m.Faces = this.Const.Faces.WildFemale;
+			this.m.Faces = ::Const.Faces.WildFemale;
 		}
 	}
 

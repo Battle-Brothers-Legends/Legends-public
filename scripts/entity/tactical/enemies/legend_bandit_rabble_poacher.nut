@@ -2,15 +2,16 @@ this.legend_bandit_rabble_poacher <- this.inherit("scripts/entity/tactical/legen
 	m = {},
 	function create()
 	{
-		this.m.Type = this.Const.EntityType.BanditRabblePoacher;
-		this.m.BloodType = this.Const.BloodType.Red;
-		this.m.XP = this.Const.Tactical.Actor.BanditRabble.XP;
+		this.m.Type = ::Const.EntityType.BanditRabblePoacher;
+		this.m.BloodType = ::Const.BloodType.Red;
+		this.m.XP = ::Const.Tactical.Actor.BanditRabble.XP;
 		this.legend_randomized_unit_abstract.create();
-		this.m.Faces = this.Const.Faces.AllMale;
-		this.m.Hairs = this.Const.Hair.UntidyMale;
-		this.m.HairColors = this.Const.HairColors.All;
-		this.m.Beards = this.Const.Beards.Raider;
-		this.m.AIAgent = this.new("scripts/ai/tactical/agents/bandit_ranged_agent");
+		this.m.Bodies = ::Const.Bodies.AllMale;
+		this.m.Faces = ::Const.Faces.AllMale;
+		this.m.Hairs = ::Const.Hair.UntidyMale;
+		this.m.HairColors = ::Const.HairColors.All;
+		this.m.Beards = ::Const.Beards.Raider;
+		this.m.AIAgent = ::new("scripts/ai/tactical/agents/bandit_ranged_agent");
 		this.m.AIAgent.setActor(this);
 		if (this.randomizeHumanGender() == 1) 
 		{

@@ -2,16 +2,17 @@ this.legend_peasant_minstrel <- this.inherit("scripts/entity/tactical/human", {
 	m = {},
 	function create()
 	{
-		this.m.Type = this.Const.EntityType.LegendPeasantMinstrel;
-		this.m.BloodType = this.Const.BloodType.Red;
-		this.m.XP = this.Const.Tactical.Actor.LegendPeasantMinstrel.XP;
+		this.m.Type = ::Const.EntityType.LegendPeasantMinstrel;
+		this.m.BloodType = ::Const.BloodType.Red;
+		this.m.XP = ::Const.Tactical.Actor.LegendPeasantMinstrel.XP;
 		this.human.create();
-		this.m.Faces = this.Const.Faces.AllMale;
-		this.m.Hairs = this.Const.Hair.AllMale;
-		this.m.HairColors = this.Const.HairColors.All;
-		this.m.Beards = this.Const.Beards.All;
+		this.m.Bodies = ::Const.Bodies.AllMale;
+		this.m.Faces = ::Const.Faces.AllMale;
+		this.m.Hairs = ::Const.Hair.AllMale;
+		this.m.HairColors = ::Const.HairColors.All;
+		this.m.Beards = ::Const.Beards.All;
 		this.getFlags().add("peasant");
-		this.m.AIAgent = this.new("scripts/ai/tactical/agents/legend_minstrel_agent");
+		this.m.AIAgent = ::new("scripts/ai/tactical/agents/legend_minstrel_agent");
 		this.m.AIAgent.setActor(this);
 		if (this.randomizeHumanGender() == 1) 
 		{
