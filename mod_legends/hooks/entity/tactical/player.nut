@@ -71,6 +71,11 @@
 		return this.Math.maxf(0.0, food);
 	}
 
+	o.isLeveled <- function () {
+		return (this.m.PerkPoints != 0 || this.m.ProfessionPoints != 0 || this.m.LevelUps != 0) && !this.m.IsGuest;
+	}
+
+
 	o.setCommander <- function ( _f )
 	{
 		this.m.IsCommander = _f;
