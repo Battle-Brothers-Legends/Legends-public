@@ -351,12 +351,17 @@ class Defs:
 },
 {"name": "rusty_mail_shirt",                 "layer": "chain", "min": 1, "max": 11, "value" : 125, "con" : 20, "stam" : -4, "impactSound" : "chain", "invSound" : "chain",
  "title" :  "Patched Mail Shirt",
- "desc" :  "This light mail shirt has seen better times, but still grants decent protection.",
+ "desc" :  "A light mail shirt which has seen better times, but still grants decent protection.",
  "adesc" : "Includes a rusty and patched mail shirt."
 },
 {"name": "short_mail",                       "layer": "chain", "min": 1, "max": 4, "value" : 500, "con" : 60, "stam" : -8, "impactSound" : "chain", "invSound" : "chain",
  "title" :  "Short Mail",
  "desc" :  "Short chain mail that offers good protection, but is fatiguing to wear.",
+ "adesc" : "Includes a set of short chain mail."
+},
+{"name": "nomad_mail",                       "layer": "chain", "min": 1, "max": 4, "value" : 1300, "con" : 75, "stam" : -9, "impactSound" : "chain", "invSound" : "chain",
+ "title" :  "Nomad Mail",
+ "desc" :  "A set of short chain mail worn by nomads, adapted to serve in hotter climates.",
  "adesc" : "Includes a set of short chain mail."
 },
 #{"name": "noble_mail",                  "layer": "chain", "min": 1, "max": 14, "value" : 1300, "con" : 60, "stam" : -7, "impactSound" : "chain", "invSound" : "leather", "brush" : "heavy_mail",
