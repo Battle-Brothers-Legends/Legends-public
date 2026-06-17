@@ -13,7 +13,7 @@ this.legend_bandit_poacher <- this.inherit("scripts/entity/tactical/legend_rando
 		this.m.Beards = ::Const.Beards.Raider;
 		this.m.AIAgent = ::new("scripts/ai/tactical/agents/bandit_ranged_agent");
 		this.m.AIAgent.setActor(this);
-		if (this.randomizeHumanGender() == 1) 
+		if (this.randomizeEnemyGender() == 1) 
 		{
 			this.setGender(1);
 		}

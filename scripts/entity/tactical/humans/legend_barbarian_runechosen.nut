@@ -18,6 +18,9 @@ this.legend_barbarian_runechosen <- this.inherit("scripts/entity/tactical/human"
 			[5, "scripts/items/misc/legend_masterwork_metal"],
 			[5, "scripts/items/misc/legend_masterwork_tools"]
 		]);
+		if (this.randomizeEnemyGender() == 1) {
+			this.setGender(1);
+		}
 	}
 
 	function onInit()

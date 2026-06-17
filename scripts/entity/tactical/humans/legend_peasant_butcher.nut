@@ -13,6 +13,9 @@ this.legend_peasant_butcher <- this.inherit("scripts/entity/tactical/human", {
 		this.getFlags().add("peasant");
 		this.m.AIAgent = this.new("scripts/ai/tactical/agents/legend_butcher_agent");
 		this.m.AIAgent.setActor(this);
+		if (this.randomizeEnemyGender() == 1) {
+			this.setGender(1);
+		}
 	}
 
 	function onInit()

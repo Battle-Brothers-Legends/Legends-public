@@ -122,7 +122,7 @@ this.legend_lonewolf_background <- this.inherit("scripts/skills/backgrounds/char
 	//Default Male
 	function setGender(_gender = -1)
 	{
-		if (_gender == -1) _gender = this.randomizeHumanGender();
+		if (_gender == -1) _gender = this.setCommanderGender();
 
 		if (_gender != 1) return;
 		this.m.Ethnicity = this.Math.rand(0, 2);

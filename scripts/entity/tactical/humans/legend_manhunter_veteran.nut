@@ -15,6 +15,9 @@ this.legend_manhunter_veteran <- this.inherit("scripts/entity/tactical/human", {
 		this.m.Ethnicity = 1;
 		this.m.AIAgent = this.new("scripts/ai/tactical/agents/legend_manhunter_melee_agent");
 		this.m.AIAgent.setActor(this);
+		if (this.randomizeEnemyGender() == 1) {
+			this.setGender(1);
+		}
 	}
 
 	function onInit()

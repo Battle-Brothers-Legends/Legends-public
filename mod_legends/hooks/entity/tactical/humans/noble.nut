@@ -4,6 +4,9 @@
 	o.create = function(){
 		create();
 		this.m.Name = this.generateName();
+		if (this.randomizeHumanGender() == 1) { // these are the nobles in faction screen, employers etc.
+			this.setGender(1);
+		}
 	}
 
 	o.generateName = function()	{

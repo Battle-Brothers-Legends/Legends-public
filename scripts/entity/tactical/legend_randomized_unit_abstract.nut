@@ -38,9 +38,9 @@ this.legend_randomized_unit_abstract <- this.inherit("scripts/entity/tactical/hu
 	function onInit()
 	{
 		this.human.onInit();
-		if (this.randomizeHumanGender() == 1) { this.setFemale(); }
-		else { this.setMale(); }
-		this.setAppearance();
+		//if (this.randomizeEnemyGender() == 1) { this.setFemale(); }
+		//else { this.setMale(); }
+		//this.setAppearance();
 	}
 
 

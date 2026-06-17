@@ -17,4 +17,12 @@
 			return 0;
 		}
 	}
+
+	o.randomizeEnemyGender <- function () {
+		if (::Math.rand(1, 100) <= ::Legends.Mod.ModSettings.getSetting("EnemyFemaleGenderPercent").getValue()) {
+			return 1;
+		} else {
+			return 0;
+		}
+	}
 })

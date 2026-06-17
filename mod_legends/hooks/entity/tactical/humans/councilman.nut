@@ -1,5 +1,12 @@
-::mods_hookExactClass("entity/tactical/humans/councilman", function(o)
-{
+::mods_hookExactClass("entity/tactical/humans/councilman", function(o) {
+	local create = o.create;
+	o.create = function() {
+		create();
+		if (this.randomizeHumanGender() == 1) { // this is the town councilman
+			this.setGender(1);
+		}
+	}
+	
 	o.assignRandomEquipment = function ()
 	{
 		local r;

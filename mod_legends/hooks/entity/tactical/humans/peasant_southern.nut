@@ -1,5 +1,13 @@
 ::mods_hookExactClass("entity/tactical/humans/peasant_southern", function(o)
 {
+	local create = o.create;
+	o.create = function () {
+		create();
+		if (this.randomizeEnemyGender() == 1) {
+			this.setGender(1);
+		}
+	}
+
 	o.assignRandomEquipment = function ()
 	{
 		local r;

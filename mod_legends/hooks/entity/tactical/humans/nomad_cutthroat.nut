@@ -1,5 +1,12 @@
-::mods_hookExactClass("entity/tactical/humans/nomad_cutthroat", function(o)
-{
+::mods_hookExactClass("entity/tactical/humans/nomad_cutthroat", function(o) {
+	local create = o.create;
+	o.create = function(){
+		create();
+		if (this.randomizeEnemyGender() == 1) {
+			this.setGender(1);
+		}
+	}
+
 	local onInit = o.onInit;
 	o.onInit = function ()
 	{

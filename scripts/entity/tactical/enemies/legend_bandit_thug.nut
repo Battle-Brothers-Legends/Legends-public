@@ -12,6 +12,9 @@ this.legend_bandit_thug <- this.inherit("scripts/entity/tactical/legend_randomiz
 		this.m.Beards = this.Const.Beards.Raider;
 		this.m.AIAgent = this.new("scripts/ai/tactical/agents/bandit_melee_agent");
 		this.m.AIAgent.setActor(this);
+		if (this.randomizeEnemyGender() == 1) {
+			this.setGender(1);
+		}
 	}
 
 	function onInit()

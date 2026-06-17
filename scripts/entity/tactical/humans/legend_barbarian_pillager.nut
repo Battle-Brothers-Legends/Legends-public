@@ -13,6 +13,9 @@ this.legend_barbarian_pillager <- this.inherit("scripts/entity/tactical/human", 
 		this.m.SoundPitch = 0.95;
 		this.m.AIAgent = this.new("scripts/ai/tactical/agents/bounty_hunter_ranged_agent");
 		this.m.AIAgent.setActor(this);
+		if (this.randomizeEnemyGender() == 1) {
+			this.setGender(1);
+		}
 	}
 
 	function onInit()

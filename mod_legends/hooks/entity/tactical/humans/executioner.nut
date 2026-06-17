@@ -9,6 +9,9 @@
 			[1.0, "scripts/items/misc/legend_masterwork_metal"],
 			[0.5, "scripts/items/misc/legend_masterwork_tools"]
 		]);
+		if (this.randomizeEnemyGender() == 1) {
+			this.setGender(1);
+		}	
 	}
 
 	local onInit = o.onInit;

@@ -4,7 +4,9 @@
 	o.create = function()
 	{
 		create();
-		setGender(this.m.Gender);
+		if (this.randomizeEnemyGender() == 1) {
+			this.setGender(1);
+		}
 	}
 
 	local onInit = o.onInit;
@@ -46,7 +48,7 @@
 	}
 
 	o.setGender <- function (_gender = -1, _reroll = true) {
-		if (_gender == -1) _gender = this.randomizeHumanGender();
+		if (_gender == -1) _gender = this.randomizeEnemyGender();
 
 		this.m.Gender = _gender;
 		if(this.m.Gender == 1)

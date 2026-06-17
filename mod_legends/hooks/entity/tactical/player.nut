@@ -1299,7 +1299,7 @@
 		local r = _backgrounds[this.Math.rand(0, _backgrounds.len() - 1)];
 		local background = typeof r == "integer" ? ::Legends.Backgrounds.new(r) : this.new("scripts/skills/backgrounds/" + r);
 
-		if (::Legends.Mod.ModSettings.getSetting("GenderEquality").getValue() != "Disabled") {
+		if (::Legends.Mod.ModSettings.getSetting("FemaleGenderPercent").getValue() > 0) {
 			background.setGender(_gender);
 		}
 		this.m.Skills.add(background);

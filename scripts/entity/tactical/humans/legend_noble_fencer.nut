@@ -12,6 +12,9 @@ this.legend_noble_fencer <- this.inherit("scripts/entity/tactical/human", {
 		this.m.Beards = this.Const.Beards.Tidy;
 		this.m.AIAgent = this.new("scripts/ai/tactical/agents/legend_fencer_agent");
 		this.m.AIAgent.setActor(this);
+		if (this.randomizeEnemyGender() == 1) {
+			this.setGender(1);
+		}
 	}
 
 	function onInit()

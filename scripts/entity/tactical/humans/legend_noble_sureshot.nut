@@ -8,6 +8,11 @@ this.legend_noble_sureshot <- this.inherit("scripts/entity/tactical/legend_rando
 		this.legend_randomized_unit_noble_abstract.create();
 		this.m.AIAgent = this.new("scripts/ai/tactical/agents/military_ranged_agent");
 		this.m.AIAgent.setActor(this);
+		if (this.randomizeEnemyGender() == 1) {
+			this.setFemale();
+		} else {
+			this.setMale();
+		}
 	}
 
 	function onInit()

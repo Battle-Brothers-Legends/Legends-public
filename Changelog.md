@@ -45,6 +45,7 @@
 - `Strength in Numbers`
 > The bonus to hitchance in melee is doubled to +10% for each ally surrounding and distracting your target.
 > Grants 2 Melee and Ranged Defense for each ally surrounding you.
+- `Backswing` - new gfx to differentiate from feint
 
 ## Item Changes
 
@@ -126,9 +127,11 @@
 - added a new town encounter during drought
 - added a new event requiring a well read person
 
-## Gender settings
-- added a mod setting allowing the player to choose the gender of the commander
+## Gender settings and changes
+- added a mod setting allowing the player to choose the gender of the commander avatar
 - added a mod setting allowing the player to choose % of female characters
+- added a mod setting allowing the player to choose % of enemy female characters
+- some backgrounds received female counterparts: Fisher, Shepherd, Vagabond, Inventor, Brawler
 
 ## Bug Fixes
 - black market in town screens can now be highlighted on mouseover
@@ -141,7 +144,8 @@
 - defs created for backgrounds
 - changed background.legend_peddler_commander -> background.legend_commander_peddler
 - legend_mage_background and legend_mage_commander_mage removed
-- human gender now randomized using randomizeHumanGender, which respects the new mod setting
+- human gender now randomized using randomizeHumanGender (separately on bgs and humans), which respects the new mod setting
+- enemy gender now randomized using randomizeEnemyGender, which respects the new mod setting
 
 # 19.3.0 - Left & Right
 

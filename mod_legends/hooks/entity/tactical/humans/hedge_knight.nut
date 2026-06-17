@@ -1,5 +1,12 @@
-::mods_hookExactClass("entity/tactical/humans/hedge_knight", function(o)
-{
+::mods_hookExactClass("entity/tactical/humans/hedge_knight", function(o) {
+	local create = o.create;
+	o.create = function(){
+		create();
+		if (this.randomizeEnemyGender() == 1) {
+			this.setGender(1);
+		}
+	}
+	
 	local create = o.create;
 	o.create = function ()
 	{
