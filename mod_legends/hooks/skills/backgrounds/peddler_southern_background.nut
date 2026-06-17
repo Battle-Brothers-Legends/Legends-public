@@ -32,30 +32,20 @@
 		this.m.LastNames = this.Const.Strings.SouthernNamesLast;
 	}
 
-
-	//Default Male
-	o.setGender <- function (_gender = -1)
-	{
+	o.setGender <- function (_gender = -1) {
 		if (_gender == -1) _gender = this.randomizeHumanGender();
-
 		if (_gender != 1) return;
-		this.m.GoodEnding = "A lover of the sale, %name% the peddler couldn\'t stay fighting for long. She eventually left the %companyname% to go out and start her own business. Recently, you got word that she was selling trinkets with the company\'s sigil on them. You specifically told her to do whatever they wanted except just this one thing, but apparently your warning merely fostered the idea. When you went to tell her to stop, she slammed a crown-bulging satchel on a rather ornate table, saying it was your \'cut.\' She sells those trinkets to this day.";
-		this.m.BadEnding = "With hard times hitting the %companyname%, many brothers saw fit to return to their old lives. %name% the peddler was no different. Last you heard she got the tar beaten out of her trying to sell stolen wares that \'fell off the wagon\' to the very merchant which they originally belonged.";
-
-		this.m.Bodies = this.Const.Bodies.SouthernFemale;
-		this.m.Faces = this.Const.Faces.SouthernFemale;
-		this.m.Hairs = this.Const.Hair.SouthernFemale;
-		this.m.HairColors = this.Const.HairColors.Southern;
+		this.m.Bodies = ::Const.Bodies.SouthernFemaleThick;
+		this.m.Faces = ::Const.Faces.SouthernFemale;
+		this.m.Hairs = ::Const.Hair.SouthernFemale;
+		this.m.HairColors = ::Const.HairColors.Southern;
 		this.m.Beards = null;
 		this.m.BeardChance = 0;
-		this.m.Bodies = this.Const.Bodies.FemaleThick;
-		this.addBackgroundType(this.Const.BackgroundType.Female);
-
+		this.addBackgroundType(::Const.BackgroundType.Female);
 	}
 
-	o.onBuildDescription <- function ()
-	{
-		return "{House to house, | Once a proud merchant, now | An annoyance to most, | In tough times, everyone has to scrape by somehow, hence why | Not of the trades, but instead of trade itself,} %name% is a mere peddler. {dancing, singing, boasting and acting like a king, anything to make that sale. | Pushy and unrelenting, that tenacity is admirable. | %name%\'ll try to sell off a rusty bucket for a helm once worn by kings. This peddler will sell anything. | This peddler will make you crave things you never knew you wanted. No refunds, though. | %name% used to make a decent living selling {used carts | pots, pans and jars}, until fierce competition drove down business - by breaking arms.} {Marketing is what this frail peddler does best, though few believe the pitch about having \'Great swordsmanship and resolute bravery\'. | %name% supposedly handed out \'coupons\' for services, whatever those are. %name%\'s chippy, though, and any outfit these days could use a warm body no matter its real value. | If hired, %name% promises, you\'ll get a special discount on a virility enhancing potion. | The merchant lowers their voice and tells you the\'ve got a great deal on rusted arrow tips, just for you. %name% looks disappointed at your lack of interest. | This merchant knows a man who knows a man who knows a man. All three strangers potentially better at fighting. | A shame a war can\'t be fought with words these days. %name% would be unstoppable.}";
+	o.onBuildDescription <- function ()	{
+		return "{House to house, | Once a proud merchant, now | An annoyance to most, | In tough times, everyone has to scrape by somehow, hence why | Not a %person% of the trades, but instead of trade itself,} %name% is a mere peddler. {%They%\'ll dance, %they%\'ll sing, %they%\'ll boast and %they%\'ll act a king, anything to make that sale. | Pushy and unrelenting, %their% tenacity is admirable. | %They%\'ll try to sell off a rusty bucket for a helm once worn by kings. This %person% will sell anything. | This %person% will make you crave things you never knew you wanted. No refunds, though. | %They% used to make a decent living selling {used carts | pots, pans and jars}, until fierce competition drove %them% out of business - by breaking %their% arm.} {Marketing %themselves% is what this frail %person% does best, though few believe %their% pitch about having \'Great swordsmanship and resolute bravery\'. | %They% supposedly handed out \'coupons\' for %their% services, whatever those are. %They're% chippy, though, and any outfit these days could use a warm body no matter its real value. | If hired, %they% promises, you\'ll get a special discount on a virility enhancing potion. | The %person% lowers his voice and tells you %they're% got a great deal on rusted arrow tips, just for you. %They% looks disappointed at your lack of interest. | This %person% knows a %person% who knows a %person% who knows a %person%. All three strangers potentially better at fighting than %them%. | A shame a %person% can\'t fight with %their% words these days. %name% would be unstoppable.}"
 	}
 
 	o.onAddEquipment = function ()
