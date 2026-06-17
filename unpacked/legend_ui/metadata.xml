@@ -6,6 +6,7 @@
 	<sprite id="effect_transform_02" width="80" height="80" img="effects\effect_transform_02.png" left="-39" right="37" top="-34" bottom="36" />
 	<sprite id="effect_transform_03" width="80" height="80" img="effects\effect_transform_03.png" left="-39" right="37" top="-34" bottom="36" />
 	<sprite id="band_of_brothers_mini" ic="FF4C4B4D" img="skills\mini\band_of_brothers_mini.png" />
+	<sprite id="backswing_mini" ic="FF4C4B4D" img="skills\mini\backswing_mini.png" />
 	<sprite id="drums_of_war_mini" offsetY="35" ic="FF374B50" img="skills/mini/drums_of_war_mini.png" />
 	<sprite id="martial_march_mini" offsetY="35" ic="FF374B50" img="skills/mini/martial_march_mini.png" />
 	<sprite id="perfectfocus_active" ic="FF374B50" img="skills/perfectfocus_square.png" />

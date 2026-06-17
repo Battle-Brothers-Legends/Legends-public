@@ -6,9 +6,9 @@ this.legend_backswing_effect <- this.inherit("scripts/skills/skill", {
 	{
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendBackswing);
 		this.m.Description = "Another swing will remove the rest of the reeds.";
-		this.m.Icon = "ui/perks/feint_circle.png";
-		this.m.IconMini = "feint_circle_mini";
-		this.m.Overlay = "feint_circle_mini";
+		this.m.Icon = "ui/perks/backswing.png";
+		this.m.IconMini = "backswing_mini";
+		this.m.Overlay = "backswing_mini";
 		this.m.Type = this.Const.SkillType.StatusEffect;
 		this.m.IsActive = false;
 		this.m.IsHidden = false;
