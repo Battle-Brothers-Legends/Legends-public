@@ -1,14 +1,13 @@
 ::mods_hookExactClass("skills/backgrounds/fisherman_background", function(o)
 {
-	o.create = function ()
-	{
+	o.create = function () {
 		this.character_background.create();
 		this.m.ID = ::Legends.Backgrounds.getID(::Legends.Background.Fisherman);
-		this.m.Name = "Fisherman";
+		this.m.Name = "Fisher";
 		this.m.Icon = "ui/backgrounds/background_15.png";
-		this.m.BackgroundDescription = "Fishermen are used to physical labor.";
-		this.m.GoodEnding = "%name% retired from fighting and returned to his fishing ventures. A huge storm ran up the shores, destroying every skiff and drifter - except that wily fisherman\'s! The only boat afloat, %name%\'s business boomed. He lives a comfortable life waking up to a nice beachfront view every morning.";
-		this.m.BadEnding = "With the fighting career going so poorly, %name% decided to retire from the field and return to fishing. He went missing at sea after an enormous storm wrecked the shorelines.";
+		this.m.BackgroundDescription = "Fishers are used to physical labor.";
+		this.m.GoodEnding = "%name% retired from fighting and returned to %their% fishing ventures. A huge storm ran up the shores, destroying every skiff and drifter - except that wily fisher\'s! The only boat afloat, %name%\'s business boomed. %They% lives a comfortable life waking up to a nice beachfront view every morning.";
+		this.m.BadEnding = "With the fighting career going so poorly, %name% decided to retire from the field and return to fishing. %They% went missing at sea after an enormous storm wrecked the shorelines.";
 		this.m.HiringCost = 78;
 		this.m.DailyCost = 9;
 		this.m.Excluded = [
@@ -21,7 +20,7 @@
 			::Legends.Traits.getID(::Legends.Trait.Fat)
 		];
 		this.m.Titles = [
-			"the Fisherman",
+			"the Angler",
 			"the Fisher"
 		];
 		this.m.Faces = this.Const.Faces.AllWhiteMale;
@@ -61,9 +60,22 @@
 		}
 	}
 
+	o.setGender <- function (_gender = -1) {
+		if (_gender == -1) _gender = this.randomizeHumanGender();
+		if (_gender != 1) return;
+
+		this.m.Bodies = ::Const.Bodies.FemaleSkinny;
+		this.m.Faces = ::Const.Faces.AllWhiteFemale;
+		this.m.Hairs = ::Const.Hair.AllFemale;
+		this.m.Beards = null;
+		this.m.BeardChance = 0;
+		
+		this.addBackgroundType(::Const.BackgroundType.Female);
+	}
+
 	o.onBuildDescription <- function ()
 	{
-		return "{%name% loved the sea and the serenity of fishing alone on the water | Ironically, %name% always hated the water, but became a fisherman after his father and his father\'s father | %name% was a strong and able fisherman | %name% was content with being a fisherman | %name% always had a lucky hand in finding the best fishing grounds and catching the fattest fish}. As long as there was no storm, he was out there, fishing, day in and out. {Sadly, his fishing cabin burned to the ground while he was out at sea. | But disaster struck as he lost his best friend at sea when a storm suddenly came up, leaving him with a badly damaged boat and no one to sail out with. | But disaster struck when his wife died during childbirth, shattering all what he held dear. | After being unable pay his debts for some time, however, his boat was taken from him by a merciless loan shark. | It was after he strangled his wife in a fit of rage that he lost all interest in the fishing trade. | Much to his dismay, for almost a whole summer most of the fish he caught was already dead and rotten inside. | It was after a priest of the gods told %name% that the life of a fisherman was not what they desired of him, but that they wished for him to spill blood in their name, that he would set his eyes on another trade.} Visiting the tavern one evening, a new opportunity presented itself with the promise of coin for dangerous work.";
+		return "{%name% loved the sea and the serenity of fishing alone on the water | Ironically, %name% always hated the water, but became a fisher after %their% father and %their% father\'s father | %name% was a strong and able fisher | %name% was content with being a fisher | %name% always had a lucky hand in finding the best fishing grounds and catching the fattest fish}. As long as there was no storm, %they% was out there, fishing, day in and out. {Sadly, %their% fishing cabin burned to the ground while %they% was out at sea. | But disaster struck as %they% lost %their% best friend at sea when a storm suddenly came up, leaving %them% with a badly damaged boat and no one to sail out with. | But disaster struck when %their% wife died during childbirth, shattering all what %they% held dear. | After being unable pay %their% debts for some time, however, %their% boat was taken from %them% by a merciless loan shark. | It was after %they% strangled %their% %partner% in a fit of rage that %they% lost all interest in the fishing trade. | Much to %their% dismay, for almost a whole summer most of the fish %they% caught was already dead and rotten inside. | It was after a priest of the gods told %name% that the life of a fisher was not what they desired of %them%, but that they wished for %them% to spill blood in their name, that %they% would set %their% eyes on another trade.} Visiting the tavern one evening, a new opportunity presented itself with the promise of coin for dangerous work.";
 	}
 
 	o.onChangeAttributes = function ()
