@@ -65,7 +65,7 @@
 		if (_gender == -1) _gender = this.randomizeHumanGender();
 		if (_gender != 1) return;
 
-		this.m.Bodies = ::Const.Bodies.NorthernFemale;
+		this.m.Bodies = ::Const.Bodies.FemaleSkinny;
 		this.m.Faces = ::Const.Faces.AllWhiteFemale;
 		this.m.Hairs = ::Const.Hair.AllFemale;
 		this.m.Beards = null;
