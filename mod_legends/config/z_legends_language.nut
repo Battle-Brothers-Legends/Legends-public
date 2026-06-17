@@ -47,7 +47,8 @@ if (!("LegendMod" in ::Const))
 	sibling = ["sibling", "brother", "sister"],
 	sib = ["sib", "bro", "sis"],
 	child = ["child", "boy", "girl"],
-	offspring = ["child", "son", "daughter"]
+	offspring = ["child", "son", "daughter"],
+	partner = ["partner", "wife", "husband"]
 }
 
 // _gender = -1 for neuter, 0 for male, 1 for female
