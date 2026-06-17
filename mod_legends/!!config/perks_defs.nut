@@ -2757,8 +2757,8 @@ perkDefObjects.push({
 	Script = "scripts/skills/perks/perk_legend_near_death_experience",
 	Name = ::Const.Strings.PerkName.LegendNearDeathExperience,
 	Tooltip = ::Const.Strings.PerkDescription.LegendNearDeathExperience,
-	Icon = "ui/perks/perk_near_death_experience.png",
-	IconDisabled = "ui/perks/perk_near_death_experience_bw.png",
+	Icon = "ui/perks/near_death_experience.png",
+	IconDisabled = "ui/perks/near_death_experience_bw.png",
 	Const = "LegendNearDeathExperience"
 });
 
@@ -4034,8 +4034,8 @@ perkDefObjects.push({
 	Script = "scripts/skills/perks/perk_legend_backswing",
 	Name = ::Const.Strings.PerkName.LegendBackswing,
 	Tooltip = ::Const.Strings.PerkDescription.LegendBackswing,
-	Icon = "ui/perks/feint_circle.png",
-	IconDisabled = "ui/perks/feint_circle_bw.png",
+	Icon = "ui/perks/backswing.png",
+	IconDisabled = "ui/perks/backswing_bw.png",
 	Const = "LegendBackswing"
 });
 
