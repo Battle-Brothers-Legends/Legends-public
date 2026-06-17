@@ -24,9 +24,24 @@
 		this.m.LastNames = this.Const.Strings.SouthernNamesLast;
 	}
 
-	o.onBuildDescription <- function ()
+	//Default Male
+	o.setGender <- function (_gender = -1)
 	{
-		return "{%name% loved the sea and the serenity of fishing alone on the water | Ironically, %name% always hated the water, but became a fisherman after his father and his father\'s father | %name% was a strong and able fisherman | %name% was content with being a fisherman | %name% always had a lucky hand in finding the best fishing grounds and catching the fattest fish}. As long as there was no storm, he was out there, fishing, day in and out. {Sadly, his fishing cabin burned to the ground while he was out at sea. | But disaster struck as he lost his best friend at sea when a storm suddenly came up, leaving him with a badly damaged boat and no one to sail out with. | But disaster struck when his wife died during childbirth, shattering all what he held dear. | After being unable pay his debts for some time, however, his boat was taken from him by a merciless loan shark. | It was after he strangled his wife in a fit of rage that he lost all interest in the fishing trade. | Much to his dismay, for almost a whole summer most of the fish he caught was already dead and rotten inside. | It was after a priest of the gods told %name% that the life of a fisherman was not what they desired of him, but that they wished for him to spill blood in their name, that he would set his eyes on another trade.} Visiting the tavern one evening, a new opportunity presented itself with the promise of coin for dangerous work.";
+		if (_gender == -1) _gender = ::Legends.Mod.ModSettings.getSetting("GenderEquality").getValue() == "Disabled" ? 0 : ::Math.rand(0, 1);
+
+		if (_gender != 1) return;
+
+		this.m.Faces = this.Const.Faces.AllWhiteFemale;
+		this.m.Hairs = this.Const.Hair.AllFemale;
+		this.m.HairColors = this.Const.HairColors.All;
+		this.m.Beards = null;
+		this.m.BeardChance = 0;
+		this.m.Bodies = this.Const.Bodies.NorthernFemale;
+		this.addBackgroundType(this.Const.BackgroundType.Female);
+	}
+
+	o.onBuildDescription <- function () {
+		return "{%name% loved the sea and the serenity of fishing alone on the water | Ironically, %name% always hated the water, but became a fisher after %their% father and %their% father\'s father | %name% was a strong and able fisher | %name% was content with being a fisher | %name% always had a lucky hand in finding the best fishing grounds and catching the fattest fish}. As long as there was no storm, %they% was out there, fishing, day in and out. {Sadly, %their% fishing cabin burned to the ground while %they% was out at sea. | But disaster struck as %they% lost %their% best friend at sea when a storm suddenly came up, leaving %them% with a badly damaged boat and no one to sail out with. | But disaster struck when %their% %spouse% died during in an accident, shattering all what %they% held dear. | After being unable pay %their% debts for some time, however, %their% boat was taken from %them% by a merciless loan shark. | It was after %they% strangled %their% %spouse% in a fit of rage that %they% lost all interest in the fishing trade. | Much to %their% dismay, for almost a whole summer most of the fish %they% caught was already dead and rotten inside. | It was after a priest of the gods told %name% that the life of a fisher was not what they desired of %them%, but that they wished for %them% to spill blood in their name, that %they% would set %their% eyes on another trade.} Visiting the tavern one evening, a new opportunity presented itself with the promise of coin for dangerous work.";
 	}
 
 	o.onAddEquipment = function ()

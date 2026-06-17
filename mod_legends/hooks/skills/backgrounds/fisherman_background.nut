@@ -21,7 +21,8 @@
 		];
 		this.m.Titles = [
 			"the Angler",
-			"the Fisher"
+			"the Fisher",
+			"the Net Caster"
 		];
 		this.m.Faces = this.Const.Faces.AllWhiteMale;
 		this.m.Hairs = this.Const.Hair.CommonMale;
@@ -73,9 +74,8 @@
 		this.addBackgroundType(::Const.BackgroundType.Female);
 	}
 
-	o.onBuildDescription <- function ()
-	{
-		return "{%name% loved the sea and the serenity of fishing alone on the water | Ironically, %name% always hated the water, but became a fisher after %their% father and %their% father\'s father | %name% was a strong and able fisher | %name% was content with being a fisher | %name% always had a lucky hand in finding the best fishing grounds and catching the fattest fish}. As long as there was no storm, %they% was out there, fishing, day in and out. {Sadly, %their% fishing cabin burned to the ground while %they% was out at sea. | But disaster struck as %they% lost %their% best friend at sea when a storm suddenly came up, leaving %them% with a badly damaged boat and no one to sail out with. | But disaster struck when %their% wife died during childbirth, shattering all what %they% held dear. | After being unable pay %their% debts for some time, however, %their% boat was taken from %them% by a merciless loan shark. | It was after %they% strangled %their% %partner% in a fit of rage that %they% lost all interest in the fishing trade. | Much to %their% dismay, for almost a whole summer most of the fish %they% caught was already dead and rotten inside. | It was after a priest of the gods told %name% that the life of a fisher was not what they desired of %them%, but that they wished for %them% to spill blood in their name, that %they% would set %their% eyes on another trade.} Visiting the tavern one evening, a new opportunity presented itself with the promise of coin for dangerous work.";
+	o.onBuildDescription <- function () {
+		return "{%name% loved the sea and the serenity of fishing alone on the water | Ironically, %name% always hated the water, but became a fisher after %their% father and %their% father\'s father | %name% was a strong and able fisher | %name% was content with being a fisher | %name% always had a lucky hand in finding the best fishing grounds and catching the fattest fish}. As long as there was no storm, %they% was out there, fishing, day in and out. {Sadly, %their% fishing cabin burned to the ground while %they% was out at sea. | But disaster struck as %they% lost %their% best friend at sea when a storm suddenly came up, leaving %them% with a badly damaged boat and no one to sail out with. | But disaster struck when %their% %partner% died during in an accident, shattering all what %they% held dear. | After being unable pay %their% debts for some time, however, %their% boat was taken from %them% by a merciless loan shark. | It was after %they% strangled %their% %partner% in a fit of rage that %they% lost all interest in the fishing trade. | Much to %their% dismay, for almost a whole summer most of the fish %they% caught was already dead and rotten inside. | It was after a priest of the gods told %name% that the life of a fisher was not what they desired of %them%, but that they wished for %them% to spill blood in their name, that %they% would set %their% eyes on another trade.} Visiting the tavern one evening, a new opportunity presented itself with the promise of coin for dangerous work.";
 	}
 
 	o.onChangeAttributes = function ()
