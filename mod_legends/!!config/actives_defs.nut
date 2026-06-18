@@ -3286,4 +3286,52 @@ activesDefs.push({
 	Name = "Smack",
 });
 
+::Legends.Active.Assault <- null;
+activesDefs.push({
+	ID = "actives.assault",
+	Script = "scripts/skills/actives/assault_skill",
+	Const = "Assault",
+	Name = "Assault",
+});
+
+::Legends.Active.EstocStab <- null;
+activesDefs.push({
+	ID = "actives.estoc_stab",
+	Script = "scripts/skills/actives/estoc_stab_skill",
+	Const = "EstocStab",
+	Name = "Stab",
+});
+
+::Legends.Active.Execute <- null;
+activesDefs.push({
+	ID = "actives.execute",
+	Script = "scripts/skills/actives/execute_skill",
+	Const = "Execute",
+	Name = "Execute",
+});
+
+::Legends.Active.ExeSwordDecapitate <- null;
+activesDefs.push({
+	ID = "actives.exesword_decapitate",
+	Script = "scripts/skills/actives/exesword_decapitate",
+	Const = "ExeSwordDecapitate",
+	Name = "Decapitate",
+});
+
+::Legends.Active.Perforate <- null;
+activesDefs.push({
+	ID = "actives.perforate",
+	Script = "scripts/skills/actives/perforate_skill",
+	Const = "Perforate",
+	Name = "Perforate",
+});
+
+::Legends.Active.Skewer <- null;
+activesDefs.push({
+	ID = "actives.skewer",
+	Script = "scripts/skills/actives/skewer_skill",
+	Const = "Skewer",
+	Name = "Skewer",
+});
+
 ::Legends.Actives.addActiveDefObjects(activesDefs);
