@@ -221,6 +221,7 @@ var TooltipIdentifier =
 			TimePauseButton: 'world-screen.topbar.TimePauseButton',
 			TimeNormalButton: 'world-screen.topbar.TimeNormalButton',
 			TimeFastButton: 'world-screen.topbar.TimeFastButton',
+			TimeVeryFastButton: 'world-screen.topbar.TimeVeryFastButton',
 
 			OptionsModule:
 			{
