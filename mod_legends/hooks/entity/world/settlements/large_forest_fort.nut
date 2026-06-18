@@ -1,4 +1,4 @@
-::mods_hookExactClass("entity/world/settlements/large_forest_fort", function(o) 
+::mods_hookExactClass("entity/world/settlements/large_forest_fort", function(o)
 {
 	local create = o.create;
 	o.create = function()
@@ -80,7 +80,8 @@
 			"legend_noble_ranged",
 			"legend_blacksmith_background",
 			"beast_hunter_background",
-			"beast_hunter_background"
+			"beast_hunter_background",
+			"executioner_background"
 		];
 		this.m.StablesList = [
 			"legend_donkey_background",

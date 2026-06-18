@@ -1,12 +1,10 @@
-::mods_hookExactClass("entity/world/settlements/large_lumber_village", function(o) 
-{
+::mods_hookExactClass("entity/world/settlements/large_lumber_village", function(o) {
 	local create = o.create;
-	o.create = function()
-	{
+	o.create = function() {
 		create();
 		this.m.DraftList = [
 			"legend_shieldmaiden_background",
-			"legend_shieldmaiden_background", // added missing (,) here. Abyss 5/15/23
+			"legend_shieldmaiden_background",
 			"apprentice_background",
 			"beggar_background",
 			"female_bowyer_background",
@@ -48,8 +46,8 @@
 			"legend_inventor_background",
 			"anatomist_background",
 			"beast_hunter_background",
-			"beast_hunter_background"
+			"beast_hunter_background",
+			"executioner_background"
 		];
 	}
-
 });

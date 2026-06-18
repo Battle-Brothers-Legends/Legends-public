@@ -1,8 +1,6 @@
-::mods_hookExactClass("entity/world/settlements/medium_swamp_fort", function(o) 
-{
+::mods_hookExactClass("entity/world/settlements/medium_swamp_fort", function(o) {
 	local create = o.create;
-	o.create = function()
-	{
+	o.create = function() {
 		create();
 		this.m.DraftList = [
 			"apprentice_background",
@@ -47,7 +45,8 @@
 			"bastard_background",
 			"deserter_background",
 			"raider_background",
-			"retired_soldier_background"
+			"retired_soldier_background",
+			"executioner_background"
 		];
 		this.m.StablesList = [
 			"legend_donkey_background",
@@ -55,41 +54,29 @@
 		];
 	}
 
-	o.onBuild = function ( )
-	{
+	o.onBuild = function() {
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/crowd_building"), 5);
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/marketplace_building"), 2);
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/armorsmith_building"));
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/weaponsmith_building"));
 
-		if (this.Const.World.Buildings.Kennels == 0)
-		{
+		if (this.Const.World.Buildings.Kennels == 0) {
 			this.addBuilding(this.new("scripts/entity/world/settlements/buildings/kennel_building"));
-		}
-		else
-		{
+		} else {
 			local r = this.Math.rand(1, 4);
 
-			if (r == 1 || this.Const.World.Buildings.Kennels == 0)
-			{
+			if (r == 1 || this.Const.World.Buildings.Kennels == 0) {
 				this.addBuilding(this.new("scripts/entity/world/settlements/buildings/kennel_building"));
-			}
-			else if (r == 2)
-			{
+			} else if (r == 2) {
 				this.addBuilding(this.new("scripts/entity/world/settlements/buildings/tavern_building"));
-			}
-			else if (r == 3)
-			{
+			} else if (r == 3) {
 				this.addBuilding(this.new("scripts/entity/world/settlements/buildings/temple_building"));
-			}
-			else if (r == 4)
-			{
+			} else if (r == 4) {
 				this.addBuilding(this.new("scripts/entity/world/settlements/buildings/stables_building"));
 			}
 		}
 
-		if (this.Math.rand(1, 100) <= 40)
-		{
+		if (this.Math.rand(1, 100) <= 40) {
 			this.buildAttachedLocation(1, "scripts/entity/world/attached_location/mushroom_grove_location", [
 				this.Const.World.TerrainType.Swamp
 			], [], 1);
@@ -100,9 +87,7 @@
 			], [
 				this.Const.World.TerrainType.Swamp
 			]);
-		}
-		else
-		{
+		} else {
 			this.buildAttachedLocation(this.Math.rand(0, 1), "scripts/entity/world/attached_location/mushroom_grove_location", [
 				this.Const.World.TerrainType.Swamp
 			], [], 1);
@@ -115,8 +100,7 @@
 			]);
 		}
 
-		if (this.Math.rand(1, 100) <= 70)
-		{
+		if (this.Math.rand(1, 100) <= 70) {
 			this.buildAttachedLocation(1, "scripts/entity/world/attached_location/stone_watchtower_location", [
 				this.Const.World.TerrainType.Plains,
 				this.Const.World.TerrainType.Steppe,
@@ -128,9 +112,7 @@
 				this.Const.World.TerrainType.Tundra,
 				this.Const.World.TerrainType.Hills
 			], [], 2, true);
-		}
-		else
-		{
+		} else {
 			this.buildAttachedLocation(this.Math.rand(0, 1), "scripts/entity/world/attached_location/stone_watchtower_location", [
 				this.Const.World.TerrainType.Plains,
 				this.Const.World.TerrainType.Steppe,

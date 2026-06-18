@@ -1,8 +1,6 @@
-::mods_hookExactClass("entity/world/settlements/medium_tundra_fort", function(o) 
-{
+::mods_hookExactClass("entity/world/settlements/medium_tundra_fort", function(o) {
 	local create = o.create;
-	o.create = function()
-	{
+	o.create = function() {
 		create();
 		this.m.DraftList = [
 			"beggar_background",
@@ -46,57 +44,41 @@
 			"female_tailor_background",
 			"female_thief_background",
 			"vagabond_background",
-			"wildman_background"
+			"wildman_background",
+			"executioner_background"
 		];
 	}
 
-	o.onBuild = function ( )
-	{
+	o.onBuild = function() {
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/crowd_building"), 5);
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/marketplace_building"), 2);
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/tavern_building"));
 
-		if (this.Const.DLC.Unhold)
-		{
+		if (this.Const.DLC.Unhold) {
 			local r = this.Math.rand(1, 4);
 
-			if (r == 1 || this.Const.World.Buildings.Taxidermists == 0)
-			{
+			if (r == 1 || this.Const.World.Buildings.Taxidermists == 0) {
 				this.addBuilding(this.new("scripts/entity/world/settlements/buildings/taxidermist_building"));
-			}
-			else if (r == 2)
-			{
+			} else if (r == 2) {
 				this.addBuilding(this.new("scripts/entity/world/settlements/buildings/temple_building"));
-			}
-			else if (r == 3)
-			{
+			} else if (r == 3) {
 				this.addBuilding(this.new("scripts/entity/world/settlements/buildings/armorsmith_building"));
-			}
-			else if (r == 4)
-			{
+			} else if (r == 4) {
 				this.addBuilding(this.new("scripts/entity/world/settlements/buildings/barber_building"));
 			}
-		}
-		else
-		{
+		} else {
 			local r = this.Math.rand(1, 4);
 
-			if (r <= 2)
-			{
+			if (r <= 2) {
 				this.addBuilding(this.new("scripts/entity/world/settlements/buildings/temple_building"));
-			}
-			else if (r == 3)
-			{
+			} else if (r == 3) {
 				this.addBuilding(this.new("scripts/entity/world/settlements/buildings/armorsmith_building"));
-			}
-			else if (r == 4)
-			{
+			} else if (r == 4) {
 				this.addBuilding(this.new("scripts/entity/world/settlements/buildings/barber_building"));
 			}
 		}
 
-		if (this.Math.rand(1, 100) <= 70)
-		{
+		if (this.Math.rand(1, 100) <= 70) {
 			this.buildAttachedLocation(1, "scripts/entity/world/attached_location/trapper_location", [
 				this.Const.World.TerrainType.Plains,
 				this.Const.World.TerrainType.Hills,
@@ -109,9 +91,7 @@
 				this.Const.World.TerrainType.Plains,
 				this.Const.World.TerrainType.Tundra
 			], [], 1);
-		}
-		else
-		{
+		} else {
 			this.buildAttachedLocation(this.Math.rand(0, 1), "scripts/entity/world/attached_location/trapper_location", [
 				this.Const.World.TerrainType.Plains,
 				this.Const.World.TerrainType.Hills,
@@ -126,8 +106,7 @@
 			], [], 1);
 		}
 
-		if (this.Math.rand(1, 100) <= 70)
-		{
+		if (this.Math.rand(1, 100) <= 70) {
 			this.buildAttachedLocation(1, "scripts/entity/world/attached_location/pig_farm_location", [
 				this.Const.World.TerrainType.Plains,
 				this.Const.World.TerrainType.Hills,
@@ -145,9 +124,7 @@
 				this.Const.World.TerrainType.Hills,
 				this.Const.World.TerrainType.Tundra
 			], [], 1, false, true);
-		}
-		else
-		{
+		} else {
 			this.buildAttachedLocation(this.Math.rand(0, 1), "scripts/entity/world/attached_location/pig_farm_location", [
 				this.Const.World.TerrainType.Plains,
 				this.Const.World.TerrainType.Hills,

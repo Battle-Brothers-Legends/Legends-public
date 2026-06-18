@@ -1,8 +1,6 @@
-::mods_hookExactClass("entity/world/settlements/small_coast_fort", function(o) 
-{
+::mods_hookExactClass("entity/world/settlements/small_coast_fort", function(o) {
 	local create = o.create;
-	o.create = function()
-	{
+	o.create = function() {
 		create();
 		this.m.DraftList = [
 			"fisherman_background",
@@ -32,7 +30,8 @@
 			"deserter_background",
 			"raider_background",
 			"raider_background",
-			"retired_soldier_background"
+			"retired_soldier_background",
+			"executioner_background"
 		];
 		this.m.StablesList = [
 			"legend_donkey_background",
@@ -40,38 +39,25 @@
 		];
 	}
 
-	o.onBuild = function ( )
-	{
+	o.onBuild = function() {
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/crowd_building"), 5);
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/marketplace_building"), 2);
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/port_building"), 3);
 
-		if (this.Const.World.Buildings.Kennels == 0)
-		{
+		if (this.Const.World.Buildings.Kennels == 0) {
 			this.addBuilding(this.new("scripts/entity/world/settlements/buildings/kennel_building"));
-		}
-		else if (this.Const.World.Buildings.Stables == 0)
-		{
+		} else if (this.Const.World.Buildings.Stables == 0) {
 			this.addBuilding(this.new("scripts/entity/world/settlements/buildings/stables_building"));
-		}
-		else
-		{
+		} else {
 			local r = this.Math.rand(1, 4);
 
-			if (r == 1)
-			{
+			if (r == 1) {
 				this.addBuilding(this.new("scripts/entity/world/settlements/buildings/armorsmith_building"));
-			}
-			else if (r == 2)
-			{
+			} else if (r == 2) {
 				this.addBuilding(this.new("scripts/entity/world/settlements/buildings/weaponsmith_building"));
-			}
-			else if (r == 3)
-			{
+			} else if (r == 3) {
 				this.addBuilding(this.new("scripts/entity/world/settlements/buildings/kennel_building"));
-			}
-			else if (r == 4)
-			{
+			} else if (r == 4) {
 				this.addBuilding(this.new("scripts/entity/world/settlements/buildings/stables_building"));
 			}
 		}

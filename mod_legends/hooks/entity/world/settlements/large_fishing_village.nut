@@ -1,8 +1,6 @@
-::mods_hookExactClass("entity/world/settlements/large_fishing_village", function(o) 
-{
+::mods_hookExactClass("entity/world/settlements/large_fishing_village", function(o) {
 	local create = o.create;
-	o.create = function()
-	{
+	o.create = function() {
 		create();
 		this.m.DraftList = [
 			"apprentice_background",
@@ -51,31 +49,27 @@
 			"sellsword_background",
 			"swordmaster_background",
 			"anatomist_background",
-			"legend_inventor_background"
+			"legend_inventor_background",
+			"executioner_background"
 		];
 		this.m.HousesMin = 4;
 		this.m.HousesMax = 6;
 	}
 
-	o.onBuild = function ()
-	{
+	o.onBuild = function() {
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/crowd_building"), 5);
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/marketplace_building"), 2);
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/port_building"), 3);
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/temple_building"));
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/tavern_building"));
 
-		if (this.Math.rand(1, 100) <= 60 || this.Const.World.Buildings.Blackmarket == 0)
-		{
+		if (this.Math.rand(1, 100) <= 60 || this.Const.World.Buildings.Blackmarket == 0) {
 			this.addBuilding(this.new("scripts/entity/world/settlements/buildings/blackmarket_building"));
-		}
-		else
-		{
+		} else {
 			this.addBuilding(this.new("scripts/entity/world/settlements/buildings/training_hall_building"));
 		}
 
-		if (this.Math.rand(1, 100) <= 50)
-		{
+		if (this.Math.rand(1, 100) <= 50) {
 			this.buildAttachedLocation(1, "scripts/entity/world/attached_location/wooden_watchtower_location", [
 				this.Const.World.TerrainType.Plains,
 				this.Const.World.TerrainType.Steppe,
@@ -90,9 +84,7 @@
 				this.Const.World.TerrainType.Hills,
 				this.Const.World.TerrainType.Tundra
 			], [], 1, true);
-		}
-		else
-		{
+		} else {
 			this.buildAttachedLocation(this.Math.rand(0, 1), "scripts/entity/world/attached_location/wooden_watchtower_location", [
 				this.Const.World.TerrainType.Plains,
 				this.Const.World.TerrainType.Steppe,
@@ -109,8 +101,7 @@
 			], [], 1, true);
 		}
 
-		if (this.Math.rand(1, 100) <= 70)
-		{
+		if (this.Math.rand(1, 100) <= 70) {
 			this.buildAttachedLocation(1, "scripts/entity/world/attached_location/amber_collector_location", [
 				this.Const.World.TerrainType.Plains,
 				this.Const.World.TerrainType.Steppe,
@@ -124,9 +115,7 @@
 				this.Const.World.TerrainType.Hills,
 				this.Const.World.TerrainType.Tundra
 			], [], 1, true);
-		}
-		else
-		{
+		} else {
 			this.buildAttachedLocation(this.Math.rand(0, 1), "scripts/entity/world/attached_location/amber_collector_location", [
 				this.Const.World.TerrainType.Plains,
 				this.Const.World.TerrainType.Steppe,
