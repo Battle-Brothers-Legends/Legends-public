@@ -75,6 +75,7 @@
 		});
 
 		this.m.Item.drop(_targetTile);
+		return true;
 	}
 
 	o.onAfterUpdate = function( _properties )
