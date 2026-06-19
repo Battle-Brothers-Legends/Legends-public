@@ -55,6 +55,7 @@
 			Weapon = [
 				::Const.Perks.CleaverTree,
 				::Const.Perks.SwordTree,
+				::Const.Perks.AxeTree,
 				::Const.Perks.PolearmTree
 			],
 			Defense = [
