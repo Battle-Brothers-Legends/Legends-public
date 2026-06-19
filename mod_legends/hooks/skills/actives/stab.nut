@@ -1,6 +1,5 @@
-::mods_hookExactClass("skills/actives/stab", function(o)
-{
-	o.m.IsEstocStab <- false;
+::mods_hookExactClass("skills/actives/stab", function(o) {
+	/*o.m.IsEstocStab <- false;
 
 	o.setItem <- function(_item) {
 		this.skill.setItem(_item);
@@ -21,10 +20,10 @@
 		if (this.m.IsEstocStab)
 			this.spawnAttackEffect(_targetTile, this.Const.Tactical.AttackEffectThrust);
 		return onUse(_user, _targetTile);
-	}
+	}*/
 
 	o.onAfterUpdate = function ( _properties ) {
-		if (!this.m.IsEstocStab && ::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem())) {
+		if (::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem())) { //!this.m.IsEstocStab && 
 			this.m.ActionPointCost -= 1;
 		}
 		this.m.FatigueCostMult = ::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem()) ? this.Const.Combat.WeaponSpecFatigueMult : 1.0;
