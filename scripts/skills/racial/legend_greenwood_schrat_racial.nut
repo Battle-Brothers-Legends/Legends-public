@@ -28,6 +28,8 @@ this.legend_greenwood_schrat_racial <- this.inherit("scripts/skills/skill", {
 		{
 			_properties.DamageReceivedTotalMult *= 0.3;
 		}
+
+		_properties.DamageReceivedFireMult *= 1.5;
 	}
 
 	function onBeforeDamageReceived( _attacker, _skill, _hitInfo, _properties )
@@ -42,12 +44,12 @@ this.legend_greenwood_schrat_racial <- this.inherit("scripts/skills/skill", {
 			case this.Const.Damage.DamageType.Piercing:
 				if (_skill == null)
 				{
-					_properties.DamageReceivedRegularMult *= 0.25; 
+					_properties.DamageReceivedRegularMult *= 0.25;
 				}
 				else
-				{					
+				{
 					if (_skill.isRanged())
-					{				
+					{
 						local weapon = _skill.getItem();
 						if (weapon != null && weapon.isItemType(this.Const.Items.ItemType.Weapon))
 						{

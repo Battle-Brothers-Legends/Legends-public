@@ -91,19 +91,18 @@
 };
 
 ::Const.Tactical.Common.getFireDamageMultiplier <- function (_entity) {
-	if (::Legends.S.oneOf(_entity.getType(), ::Const.EntityType.Schrat, ::Const.EntityType.LegendGreenwoodSchrat, ::Const.EntityType.SchratSmall, ::Const.EntityType.LegendGreenwoodSchratSmall))
-		return 3.0;
-
-	if (_entity.getSkills().hasSkill("racial.skeleton"))
-		return 0.33;
-
-	if (_entity.getSkills().hasSkill("items.firearms_resistance") || _entity.getSkills().hasSkill("racial.serpent"))
-		return 0.66;
-	return 1.0;
+	if (::Legends.S.oneOf(_entity.getType(), ::Const.EntityType.SchratSmall))
+		return 3.0; // TODO Ideally moved to new property
+	if (::Legends.S.oneOf(_entity.getType(), ::Const.EntityType.LegendGreenwoodSchratSmall))
+		return 1.5; // TODO Ideally moved to new property
+	return _entity.getCurrentProperties().DamageReceivedFireMult;
 }
 
 local originalOnApplyFire = ::Const.Tactical.Common.onApplyFire;
 ::Const.Tactical.Common.onApplyFire = function (_tile, _entity) {
+	if (_entity.getCurrentProperties().IsImmuneToFire)
+		return;
+
 	local __original = _entity.onDamageReceived;
 
 	_entity.onDamageReceived = function ( _attacker, _skill, _hitInfo ) {
