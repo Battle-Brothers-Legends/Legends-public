@@ -257,7 +257,7 @@ this.legend_basilisk_sentry <- this.inherit("scripts/entity/tactical/actor", {
 		::Legends.Perks.grant(this, ::Legends.Perk.CoupDeGrace);
 		b.Threat += 5; //remove
 
-		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= 35)
+		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= ::Const.World.Scaling.Beasts.LegendsBasiliskHeadhunterDay)
 		{
 			::Legends.Perks.grant(this, ::Legends.Perk.HeadHunter);
 		}

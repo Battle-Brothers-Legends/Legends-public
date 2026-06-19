@@ -140,7 +140,7 @@ this.legend_manhunter_veteran <- this.inherit("scripts/entity/tactical/human", {
 				]);
 			}
 
-			if (this.World.getTime().Days <= 50) {
+			if (this.World.getTime().Days <= ::Const.World.Scaling.Nomads.LegendsManhunterVeteranBetterArmorDay) {
 				armors.extend([
 					[1, ::Legends.Armor.Southern.southern_long_mail_with_padding]
 				]);
@@ -161,7 +161,7 @@ this.legend_manhunter_veteran <- this.inherit("scripts/entity/tactical/human", {
 				[2, ::Legends.Helmet.Southern.southern_helmet_with_coif]
 			];
 
-			if (this.World.getTime().Days > 50) {
+			if (this.World.getTime().Days > ::Const.World.Scaling.Nomads.LegendsManhunterVeteranBetterArmorDay) {
 				helmets.extend([
 					[1, ::Legends.Helmet.Southern.heavy_lamellar_helmet],
 					[1, ::Legends.Helmet.Southern.turban_helmet]

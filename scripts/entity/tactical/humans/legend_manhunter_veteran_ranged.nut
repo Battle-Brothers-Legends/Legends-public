@@ -157,7 +157,7 @@ this.legend_manhunter_veteran_ranged <- this.inherit("scripts/entity/tactical/hu
 				[1, ::Legends.Helmet.Southern.southern_helmet_with_coif]
 			];
 
-			if (this.World.getTime().Days > 50) {
+			if (this.World.getTime().Days > ::Const.World.Scaling.Nomads.LegendsManhunterVeteranBetterArmorDay) {
 				helmets.extend([
 					[1, ::Legends.Helmet.Southern.heavy_lamellar_helmet]
 				]);

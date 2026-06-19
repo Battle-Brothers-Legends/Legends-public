@@ -65,7 +65,7 @@ this.legend_enraged_hyena <- this.inherit("scripts/entity/tactical/enemies/hyena
 			::Legends.Perks.grant(this, ::Legends.Perk.CripplingStrikes);
 			::Legends.Perks.grant(this, ::Legends.Perk.KillingFrenzy);
 			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
-			if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= 100) {
+			if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= ::Const.World.Scaling.Beasts.LegendsHyenaEnragedDodgeDay) {
 				::Legends.Perks.grant(this, ::Legends.Perk.Dodge);
 			}
 		}
@@ -310,7 +310,7 @@ this.legend_enraged_hyena <- this.inherit("scripts/entity/tactical/enemies/hyena
 			}
 		}
 
-		actor.onDeath(_killer, _skill, _tile, _fatalityType);
+		this.actor.onDeath(_killer, _skill, _tile, _fatalityType);
 	}
 
 });

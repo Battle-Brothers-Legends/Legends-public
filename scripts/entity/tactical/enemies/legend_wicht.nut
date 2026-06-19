@@ -273,7 +273,7 @@ this.legend_wicht <- this.inherit("scripts/entity/tactical/actor", {
 		b.IsAffectedByNight = false;
 		b.IsAffectedByInjuries = false;
 
-		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= 140) {
+		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= ::Const.World.Scaling.Undead.LegendsUndeadHighMDefIncreaseDay) {
 			b.MeleeDefense += 5;
 		}
 
