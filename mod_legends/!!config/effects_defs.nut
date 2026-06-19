@@ -1486,13 +1486,13 @@ effectsDefs.push({
 	Const = "LegendNamedAxe"
 });
 
-::Legends.Effect.LegendNamedEstoc <- null;
+/*::Legends.Effect.LegendNamedEstoc <- null;
 effectsDefs.push({
 	ID = "effects.legend_named_estoc",
 	Script = "scripts/skills/effects/legend_named_estoc_effect",
 	Name = "Named Estoc",
 	Const = "LegendNamedEstoc"
-});
+});*/
 
 ::Legends.Effect.LegendNamedFencingSword <- null;
 effectsDefs.push({

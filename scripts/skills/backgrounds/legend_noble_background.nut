@@ -215,7 +215,7 @@ this.legend_noble_background <- this.inherit("scripts/skills/backgrounds/charact
 		}
 		else if (r == 4)
 		{
-			items.equip(this.new("scripts/items/weapons/legend_estoc"));
+			items.equip(this.new("scripts/items/weapons/estoc"));
 		}
 	}
 });

@@ -1,4 +1,5 @@
-this.legend_estoc <- this.inherit("scripts/items/weapons/weapon", {
+//// as of 15.2.2 replaced by vanilla version
+/*this.legend_estoc <- this.inherit("scripts/items/weapons/weapon", {
 	m = {},
 	function create()
 	{
@@ -56,3 +57,4 @@ this.legend_estoc <- this.inherit("scripts/items/weapons/weapon", {
 
 });
 
+*/

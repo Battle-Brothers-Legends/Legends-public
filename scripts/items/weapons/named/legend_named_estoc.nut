@@ -1,4 +1,5 @@
-this.legend_named_estoc <- this.inherit("scripts/items/weapons/named/named_weapon", {
+// as of 15.2.2 replaced by vanilla version
+/*this.legend_named_estoc <- this.inherit("scripts/items/weapons/named/named_weapon", {
 	m = {
 		PossibleEffects = ["scripts/skills/effects/legend_named_estoc_effect"],
 		EffectBounds = [ [2, 7] ]
@@ -61,3 +62,4 @@ this.legend_named_estoc <- this.inherit("scripts/items/weapons/named/named_weapo
 		}.bindenv(this));
 	}
 });
+*/

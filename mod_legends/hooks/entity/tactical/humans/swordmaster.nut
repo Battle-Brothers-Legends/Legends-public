@@ -38,7 +38,7 @@
 			local weapons = [
 				"weapons/noble_sword",
 				"weapons/arming_sword",
-				"weapons/legend_estoc"
+				"weapons/estoc"
 			];
 
 			if (this.Const.DLC.Wildmen || this.Const.DLC.Desert) {
@@ -90,7 +90,7 @@
 		this.getSprite("miniboss").setBrush("bust_miniboss");
 		local weapons = [
 			"weapons/named/named_sword",
-			"weapons/named/legend_named_estoc",
+			"weapons/named/named_estoc",
 			"weapons/named/named_sword",
 			"weapons/named/named_shamshir",
 			"weapons/named/named_fencing_sword"

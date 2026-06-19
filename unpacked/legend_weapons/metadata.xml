@@ -235,14 +235,14 @@
   <sprite id="icon_legend_chain_01" offsetY="35" f1="20" f2="-45" ic="FF4E5159" width="130" height="142" img="icons\icon_legend_chain_01.png" left="-9" right="49" top="-62" bottom="12" />
   <sprite id="icon_legend_crusader_sword_01_bloodied" offsetY="35" ic="FF3D4758" width="130" height="142" img="icons\icon_legend_crusader_sword_01_bloodied.png" left="-52" right="12" top="-64" bottom="52" />
   <sprite id="icon_legend_crusader_sword_01" offsetY="35" ic="FF4E5860" width="104" height="142" img="icons\icon_legend_crusader_sword_01.png" left="-52" right="12" top="-64" bottom="54" />
-  <sprite id="icon_legend_estoc_01_bloodied" offsetY="35" ic="FF3D4758" width="130" height="142" img="icons\icon_legend_estoc_01_bloodied.png" left="-52" right="12" top="-64" bottom="52" />
-  <sprite id="icon_legend_estoc_01" offsetY="35" ic="FF4E5860" width="104" height="142" img="icons\icon_legend_estoc_01.png" left="-52" right="12" top="-64" bottom="54" />
-  <sprite id="icon_legend_estoc_02_bloodied" offsetY="35" ic="FF4E4E54" width="130" height="142" img="icons\icon_legend_estoc_02_bloodied.png" left="-64" right="32" top="-61" bottom="49" />
-  <sprite id="icon_legend_estoc_02" offsetY="35" ic="FF575759" width="130" height="142" img="icons\icon_legend_estoc_02.png" left="-64" right="32" top="-61" bottom="49" />
-  <sprite id="icon_legend_estoc_03_bloodied" offsetY="35" ic="FF3D4758" width="130" height="142" img="icons\icon_legend_estoc_03_bloodied.png" left="-52" right="12" top="-64" bottom="52" />
-  <sprite id="icon_legend_estoc_03" offsetY="35" ic="FF4E5860" width="104" height="142" img="icons\icon_legend_estoc_03.png" left="-52" right="12" top="-64" bottom="54" />
-  <sprite id="icon_legend_estoc_04_bloodied" offsetY="35" ic="FF4E4E54" width="130" height="142" img="icons\icon_legend_estoc_04_bloodied.png" left="-64" right="32" top="-61" bottom="49" />
-  <sprite id="icon_legend_estoc_04" offsetY="35" ic="FF575759" width="130" height="142" img="icons\icon_legend_estoc_04.png" left="-64" right="32" top="-61" bottom="49" />
+  <sprite id="icon_estoc_02_bloodied" offsetY="35" ic="FF3D4758" width="130" height="142" img="icons\icon_legend_estoc_02_bloodied.png" left="-52" right="12" top="-64" bottom="52" />
+  <sprite id="icon_estoc_02" offsetY="35" ic="FF4E5860" width="104" height="142" img="icons\icon_legend_estoc_02.png" left="-52" right="12" top="-64" bottom="54" />
+  <sprite id="icon_estoc_03_bloodied" offsetY="35" ic="FF4E4E54" width="130" height="142" img="icons\icon_legend_estoc_03_bloodied.png" left="-64" right="32" top="-61" bottom="49" />
+  <sprite id="icon_estoc_03" offsetY="35" ic="FF575759" width="130" height="142" img="icons\icon_legend_estoc_03.png" left="-64" right="32" top="-61" bottom="49" />
+  <sprite id="icon_estoc_04_bloodied" offsetY="35" ic="FF3D4758" width="130" height="142" img="icons\icon_legend_estoc_04_bloodied.png" left="-52" right="12" top="-64" bottom="52" />
+  <sprite id="icon_estoc_04" offsetY="35" ic="FF4E5860" width="104" height="142" img="icons\icon_legend_estoc_04.png" left="-52" right="12" top="-64" bottom="54" />
+  <sprite id="icon_estoc_05_bloodied" offsetY="35" ic="FF4E4E54" width="130" height="142" img="icons\icon_legend_estoc_05_bloodied.png" left="-64" right="32" top="-61" bottom="49" />
+  <sprite id="icon_estoc_05" offsetY="35" ic="FF575759" width="130" height="142" img="icons\icon_legend_estoc_05.png" left="-64" right="32" top="-61" bottom="49" />
   <sprite id="icon_legend_fan_axe_01_bloodied" offsetY="35" ic="FF303547" width="150" height="160" img="icons\icon_legend_fan_axe_01_bloodied.png" left="-68" right="20" top="-56" bottom="48" />
   <sprite id="icon_legend_fan_axe_01" offsetY="35" ic="FF3B404A" width="150" height="160" img="icons\icon_legend_fan_axe_01.png" left="-68" right="20" top="-56" bottom="48" />
   <sprite id="icon_legend_flail_ranged_01_bloodied" offsetY="35" ic="FF343B4F" width="124" height="142" img="icons\icon_legend_flail_ranged_01_bloodied.png" left="-62" right="22" />
@@ -307,8 +307,8 @@
   <sprite id="icon_legend_military_goedendag_named_01" offsetY="35" ic="FF323941" width="130" height="142" img="icons\icon_legend_military_goedendag_01_named_01.png" left="-64" right="18" top="-55" bottom="41" />
   <sprite id="icon_legend_militia_glaive_01_bloodied" offsetY="35" f1="20" f2="-45" ic="FF4D535A" width="130" height="142" img="icons\icon_legend_militia_glaive_01_bloodied.png" left="-53" right="15" top="-55" bottom="49" />
   <sprite id="icon_legend_militia_glaive_01" offsetY="35" f1="20" f2="-45" ic="FF4D535A" width="130" height="142" img="icons\icon_legend_militia_glaive_01.png" left="-53" right="15" top="-55" bottom="49" />
-  <sprite id="icon_legend_named_estoc_01_bloodied" offsetY="35" ic="FF3D4758" width="130" height="142" img="icons\icon_legend_named_estoc_01_bloodied.png" left="-52" right="38" top="-66" bottom="40" />
-  <sprite id="icon_legend_named_estoc_01" offsetY="35" ic="FF4E5860" width="104" height="142" img="icons\icon_legend_named_estoc_01.png" left="-52" right="38" top="-66" bottom="40" />
+  <sprite id="icon_named_estoc_03_bloodied" offsetY="35" ic="FF3D4758" width="130" height="142" img="icons\icon_legend_named_estoc_03_bloodied.png" left="-52" right="38" top="-66" bottom="40" />
+  <sprite id="icon_named_estoc_03" offsetY="35" ic="FF4E5860" width="104" height="142" img="icons\icon_legend_named_estoc_03.png" left="-52" right="38" top="-66" bottom="40" />
   <sprite id="icon_legend_named_glaive_01_bloodied" offsetY="35" f1="20" f2="-45" ic="FF56616F" width="130" height="142" img="icons\icon_legend_named_glaive_01_bloodied.png" left="-53" right="15" top="-55" bottom="49" />
   <sprite id="icon_legend_named_glaive_01" offsetY="35" f1="20" f2="-45" ic="FF586572" width="130" height="142" img="icons\icon_legend_named_glaive_01.png" left="-53" right="15" top="-55" bottom="49" />
   <sprite id="icon_legend_named_glaive_02_bloodied" offsetY="35" ic="FF3B404A" width="96" height="146" img="icons\icon_legend_named_glaive_02_bloodied.png" left="-60" right="14" top="-58" bottom="54" />

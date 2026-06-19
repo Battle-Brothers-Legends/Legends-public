@@ -90,7 +90,7 @@
 					"weapons/legend_swordstaff",
 					"weapons/legend_zweihander",
 					"weapons/warbrand",
-					"weapons/legend_estoc",
+					"weapons/estoc",
 					"weapons/legend_battle_glaive",
 				]);
 			}

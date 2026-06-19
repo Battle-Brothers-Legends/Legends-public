@@ -136,7 +136,7 @@ this.legend_robber_baron <- this.inherit("scripts/entity/tactical/human", {
 					"weapons/legend_swordstaff",
 					"weapons/greatsword",
 					"weapons/warbrand",
-					"weapons/legend_estoc",
+					"weapons/estoc",
 					"weapons/legend_battle_glaive"
 				]);
 			}

@@ -19,7 +19,6 @@
 			item(65, 1.0, "weapons/legend_reinforced_flail"),
 			item(90, 1.0, "weapons/legend_military_goedendag"),
 			item(90, 1.0, "weapons/legend_military_warscythe"),
-			item(90, 1.0, "weapons/legend_estoc"),
 			item(40, 1.0, "weapons/legend_two_handed_club"),
 			item(80, 1.0, "weapons/battle_whip"),
 			item(70, 1.0, "weapons/legend_cat_o_nine_tails"),

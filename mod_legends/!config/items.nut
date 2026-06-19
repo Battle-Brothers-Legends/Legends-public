@@ -145,7 +145,6 @@ foreach (i in garbage)
 	"weapons/named/named_fencing_sword",
 	"weapons/named/legend_named_flamberge",
 	"weapons/named/legend_named_longsword",
-	"weapons/named/legend_named_estoc",
 	"weapons/named/legend_named_glaive",
 	"weapons/named/legend_named_swordstaff",
 	"weapons/named/legend_named_halberd",
