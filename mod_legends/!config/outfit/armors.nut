@@ -2989,3 +2989,24 @@
 };
 ::Const.LegendMod.ArmorObjs.push(::Legends.Armor.Standard.fault_finder_robes);
 
+::Legends.Armor.Standard.executioner_tunic <- {
+	ID = "executioner_tunic",
+	Script = "",
+	Sets = [{
+		Cloth = [
+			[1, "cloth/legend_armor_sackcloth_tattered"]
+		],
+		Chain = [
+		],
+		Plate = [
+			[1, "plate/legend_armor_leather_tunic_bloodstained"]
+		],
+		Cloak = [
+		],
+		Tabard = [
+		],
+		Attachments = [
+		]
+	}]
+};
+::Const.LegendMod.ArmorObjs.push(::Legends.Armor.Standard.executioner_tunic);

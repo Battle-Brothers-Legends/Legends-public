@@ -199,7 +199,7 @@
 
 		items.equip(::Const.World.Common.pickArmor([
 			[1, ::Legends.Armor.Standard.leather_wraps],
-			//[1, ::Legends.Armor.Standard.executioner_tunic],
+			[1, ::Legends.Armor.Standard.executioner_tunic]
 		]));
 
 		/*items.equip(::Const.World.Common.pickHelmet([
