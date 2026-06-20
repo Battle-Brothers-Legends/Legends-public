@@ -304,6 +304,11 @@ class Defs:
  "desc" :  "Long and heavy chain mail that offers good protection, but is very fatiguing to wear.",
  "adesc" : "Includes a set of long and heavy chain mail."
 },
+{"name": "hauberk_full_rusted",                     "layer": "chain", "min": 1, "max": 1, "value" : 1750, "con" : 110, "stam" : -16, "impactSound" : "chain", "invSound" : "chain",
+ "title" :  "Rusty Full Hauberk",
+ "desc" :  "Long chain mail, eaten by rust and very heavy.",
+ "adesc" : "Includes a set of long, rusty and very heavy chain mail."
+},
 {"name": "hauberk_full_named",               "layer": "chain", "min": 1, "max": 1, "value" : 5000, "con" : 120, "stam" : -15, "impactSound" : "chain", "invSound" : "chain",
  "title" :  "",
  "desc" :  "Truly fit for a knight, this mail hauberk is made from the highest quality materials and boasts precious decorations and ornaments.",
@@ -787,6 +792,11 @@ class Defs:
  "title" :  "Simple Cloak",
  "desc" :  "A rustic cloak of strong, warm wool that provides protection from the weather if nothing else.",
  "adesc" : "Includes a rustic wool cloak."
+},
+{"name": "cloak_cowl_ragged",           "layer": "cloak", "min": 1, "max": 4, "value" : 20, "con" : 10, "stam" : -1, "bravery" : 0, "impactSound" : "leather", "invSound" : "cloth",
+ "title" :  "Ragged Cowl",
+ "desc" :  "A ragged cowl weathered by the elements throughout the years.",
+ "adesc" : "Includes a ragged cowl."
 },
 {"name": "cloak_heavy",           "layer": "cloak", "min": 1, "max": 17, "value" : 500, "con" : 30, "stam" : -4, "bravery" : 2, "impactSound" : "leather", "invSound" : "cloth",
  "title" :  "Heavy Cloak",

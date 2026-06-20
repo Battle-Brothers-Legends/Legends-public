@@ -1,9 +1,9 @@
-this.legend_rusted_mail_patch_upgrade <- this.inherit("scripts/items/legend_armor/legend_armor_upgrade", {
+this.legend_armor_rusted_mail_patch_upgrade <- this.inherit("scripts/items/legend_armor/legend_armor_upgrade", {
 	m = {},
 	function create()
 	{
 		this.legend_armor_upgrade.create();
-		this.m.ID = "legend_armor_upgrade.body.legend_rusted_mail_patch";
+		this.m.ID = "legend_armor_upgrade.body.legend_armor_rusted_mail_patch";
 		this.m.Type = this.Const.Items.ArmorUpgrades.Attachment;
 		this.m.Name = "Rusted Mail Patch";
 		this.m.Description = "A large rusty patch of mail that can be added to any armor to protect the arms and the shoulders.";
