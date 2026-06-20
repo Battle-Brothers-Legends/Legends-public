@@ -3320,3 +3320,23 @@
 	}]
 };
 ::Const.LegendMod.HelmObjs.push(::Legends.Helmet.Standard.marauder_helmet_with_closed_mail);
+
+::Legends.Helmet.Standard.executioner_hood <- {
+	ID = "executioner_hood", // 40 -2 -1 140
+	Script = "",
+	Sets = [{
+		Hoods = [
+			[1, "hood/legend_helmet_cloth_bandana"], // 15 -0 -0 20
+		],
+		Helms = [
+			[1, ""]
+		],
+		Tops = [
+			[1, "hood/legend_helmet_executioner_hood_full"] // 25 -2 -1 120
+		],
+		Vanity = [
+			[1, ""]
+		],
+	}]
+};
+::Const.LegendMod.HelmObjs.push(::Legends.Helmet.Standard.executioner_hood);

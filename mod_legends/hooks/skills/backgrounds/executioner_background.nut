@@ -202,9 +202,9 @@
 			[1, ::Legends.Armor.Standard.executioner_tunic]
 		]));
 
-		/*items.equip(::Const.World.Common.pickHelmet([
+		items.equip(::Const.World.Common.pickHelmet([
 			[1, ::Legends.Helmet.Standard.executioner_hood]
-		]));*/
+		]));
 	}
 
 	o.onUpdate = function ( _properties ) {
