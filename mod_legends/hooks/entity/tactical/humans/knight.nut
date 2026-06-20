@@ -35,18 +35,17 @@
 		}
 	}
 
-	o.assignRandomEquipment = function ()
-	{
-		local r;
-		local banner = 4;
+	o.assignRandomEquipment = function () {
+		local banner = 6;
 
-		if (("State" in this.Tactical) && this.Tactical.State != null && !this.Tactical.State.isScenarioMode())
-		{
+		if (("State" in this.Tactical) && this.Tactical.State != null && !this.Tactical.State.isScenarioMode())	{
 			banner = this.World.FactionManager.getFaction(this.getFaction()).getBanner();
-		}
-		else
-		{
+		} else {
 			banner = this.getFaction();
+		}
+
+		if (this.Tactical.State.isScenarioMode()) {
+			banner = 9;
 		}
 
 		this.m.Surcoat = banner;
@@ -69,26 +68,42 @@
 
 		if (this.m.Items.hasEmptySlot(this.Const.ItemSlot.Offhand))
 		{
-			r = this.Math.rand(1, 2);
-			local shield;
-
-			if (r == 1)
-			{
-				shield = this.new("scripts/items/shields/faction_heater_shield");
-			}
-			else if (r == 2)
-			{
-				shield = this.new("scripts/items/shields/faction_kite_shield");
-			}
-
+			local shields = [
+				"shields/faction_heater_shield",
+				"shields/faction_kite_shield"
+			];
+			
+			local shield = this.new("scripts/items/" + shields[this.Math.rand(0, shields.len() - 1)])
 			shield.setFaction(banner);
 			this.m.Items.equip(shield);
 		}
 
-		this.m.Items.equip(this.Const.World.Common.pickArmor([
+		local armor = this.Const.World.Common.pickArmor([
 			[1, ::Legends.Armor.Standard.coat_of_plates],
 			[1, ::Legends.Armor.Standard.coat_of_scales]
-		]));
+		]);
+
+		if (::Math.rand(1, 100) <= 40 && ::Const.DLC.Unhold) {
+			local pauldrons = ::new("scripts/items/legend_armor/armor_upgrades/legend_armor_pauldrons_shoulderplates_heraldic");
+
+			local bannerVariants = {
+				[3] = 4,
+				[4] = 3,
+				[6] = 1,
+				[7] = 5,
+				[9] = 3,
+				[10] = 5
+			};
+
+			if (banner in bannerVariants) {
+				pauldrons.setVariant(bannerVariants[banner]);
+				pauldrons.updateVariant();
+			}
+
+			armor.setUpgrade(pauldrons);
+		}
+
+		this.m.Items.equip(armor);
 
 		if (this.m.Items.hasEmptySlot(this.Const.ItemSlot.Head))
 		{
@@ -116,9 +131,20 @@
 
 	o.makeMiniboss = function ()
 	{
-		if (!this.actor.makeMiniboss())
-		{
+		if (!this.actor.makeMiniboss())	{
 			return false;
+		}
+
+		local banner = 9;
+
+		if (("State" in this.Tactical) && this.Tactical.State != null && !this.Tactical.State.isScenarioMode())	{
+			banner = this.World.FactionManager.getFaction(this.getFaction()).getBanner();
+		} else {
+			banner = this.getFaction();
+		}
+
+		if (this.Tactical.State.isScenarioMode()) {
+			banner = 9;
 		}
 
 		this.getSprite("miniboss").setBrush("bust_miniboss");
@@ -128,7 +154,8 @@
 			"weapons/named/legend_named_flamberge",
 			"weapons/named/named_mace",
 			"weapons/named/named_sword",
-			"weapons/named/legend_named_longsword"
+			"weapons/named/legend_named_longsword",
+			"weapons/named/named_poleaxe"
 		];
 		local shields = clone this.Const.Items.NamedShields;
 		local armor = [
@@ -155,6 +182,33 @@
 					armor
 				)
 			);
+
+			if (::Math.rand(1, 100) <= 75 && ::Const.DLC.Unhold) {
+				local upgrades = [
+					"armor_upgrades/legend_armor_pauldrons_shoulderplates_heraldic",
+					"armor_upgrades/legend_joint_cover_upgrade",
+					"armor_upgrades/legend_mail_patch_upgrade"
+				];
+				local r = ::Math.rand(0, upgrades.len() - 1);
+				local pauldrons = ::new("scripts/items/legend_armor/" + upgrades[r]);
+
+				if(r == 0) {
+					local bannerVariants = {
+						[3] = 4,
+						[4] = 3,
+						[6] = 1,
+						[7] = 5,
+						[9] = 3,
+						[10] = 5
+					};
+					if (banner in bannerVariants) {
+						pauldrons.setVariant(bannerVariants[banner]);
+						pauldrons.updateVariant();
+					}
+					armor.setUpgrade(pauldrons)
+				}
+			}
+			
 			this.m.Items.equip(h);
 		}
 		this.m.Items.equip(this.Const.World.Common.pickHelmet([
