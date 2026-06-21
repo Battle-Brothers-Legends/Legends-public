@@ -775,21 +775,14 @@
 				if ( (::World.State.isInCharacterScreen() || (::Tactical.isActive() && ::Tactical.State.isInCharacterScreen())) && "HasUnactivatedPerkTooltipHints" in perk && perk.HasUnactivatedPerkTooltipHints)
 				{
 					// Allow Perks to push Tooltip elements that will be displayed when the user views the Tooltips of unactivated Perks in the Perk screen
-					local tempContainer = this.new("scripts/skills/skill_container");
 					local tempPerk = this.new(perk.Script); // Need to instantiate a dummy perk because the player character's perk tree doesn't hold actual perks
-					local playerClone = clone player;
 					tempPerk.m.IsForPerkTooltip=true; // onAdded() can check for this so it doesn't do anything when the dummy perk is added to the dummy skill container
-					tempContainer.setActor(playerClone); // Associate a clone of the player character to the dummy container so that the dummy perk can read the character's data
-					tempContainer.add(tempPerk);
-					local perkHints = tempPerk.getUnactivatedPerkTooltipHints(); // get the additional hints (these will be capable of using the character's data)
-					if (perkHints != null && perkHints.len()>0)
-					{
+					local perkHints = tempPerk.getUnactivatedPerkTooltipHints(clone player); // get the additional hints (these will be capable of using the character's data)
+					if (perkHints != null && perkHints.len()>0)	{
 						ret.extend(perkHints);
 					}
 					// Clean up
 					tempPerk = null;
-					tempContainer = null;
-					playerClone = null;
 				}
 
 				if (player.getPerkPointsSpent() >= perk.Unlocks)

@@ -42,8 +42,7 @@
 	}
 
 	// Allow Perks to push Tooltip elements that will be displayed when the user views the Tooltips of unactivated Perks in the Perk screen
-	o.getUnactivatedPerkTooltipHints <- function()
-	{
+	o.getUnactivatedPerkTooltipHints <- function(_actor = null) {
 		return [];
 	}
 
