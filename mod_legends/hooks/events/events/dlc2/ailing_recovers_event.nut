@@ -2,11 +2,20 @@
 	local create = o.create;
 	o.create = function() {
 		create();
-		foreach (s in this.m.Screens) {
-			if (s.ID == "") {
-				s.Text = "[img]gfx/ui/events/event_05.png[/img]{%ailing% is walking around camp with hands out and fingers stretched as though balancing across a rope. Nodding and turns around, foot placed before foot, marching back across.%SPEECH_ON%For the first time in a long time I actually feel quite alright. Thanks, %healer%!%SPEECH_OFF%It seems %healer% knew of a couple means to rid what ailed %ailing%.}";
+		::Legends.Screens.hook(this, "A", function (_screen) {
+			_screen.Text = "[img]gfx/ui/events/event_05.png[/img]{%ailing% is walking around camp with %their_ailing% hands out and %their_ailing% fingers stretched as though %they_ailing% was balancing across a rope. %They_ailing% nods to %themselves_ailing% as %they_ailing% turns around, foot placed before foot, marching %their_ailing% way back across.%SPEECH_ON%For the first time in a long time I actually feel quite alright. Thanks, %healer%!%SPEECH_OFF%It seems %healer% knew of a couple means to rid what ailed %ailing%.}";
+			_screen.start = function (_event) {
+				this.Characters.push(_event.m.Ailing.getImagePath());
+				this.Characters.push(_event.m.Healer.getImagePath());
+				::Legends.EventList.changeMood(_event.m.Ailing, 1.5, "Feels the best %they_ailing% did in a long time")
+				::Legends.Traits.remove(_event.m.Ailing, ::Legends.Trait.Ailing);
+				this.List.push({
+					id = 10,
+					icon = "ui/traits/trait_icon_59.png",
+					text = _event.m.Ailing.getName() + " is no longer ailing"
+				});
 			}
-		}
+		});
 	}
 
 	o.onUpdateScore = function () {

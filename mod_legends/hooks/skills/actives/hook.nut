@@ -9,6 +9,23 @@
 		this.m.HitChanceBonus = 10;
 	}
 
+	o.getTooltip = function() {
+		local ret = this.getDefaultUtilityTooltip();
+		ret.push({
+			id = 7,
+			type = "text",
+			icon = "ui/icons/special.png",
+			text = "Has a [color=" + this.Const.UI.Color.PositiveValue + "]100%[/color] chance to stagger on a hit"
+		});
+		ret.push({
+			id = 6,
+			type = "text",
+			icon = "ui/icons/hitchance.png",
+			text = "Has [color=" + this.Const.UI.Color.PositiveValue + "]+10%[/color] chance to hit"
+		});
+		return ret;
+	}
+
 	o.setItem <- function (_item)
 	{
 		this.skill.setItem(_item);

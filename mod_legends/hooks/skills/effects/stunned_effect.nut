@@ -72,7 +72,7 @@
 
 		if (statusResisted) {
 			if (!this.getContainer().getActor().isHiddenToPlayer()) {
-				this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(this.getContainer().getActor()) + " shook off being stunned thanks to his unnatural physiology.");
+				this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(this.getContainer().getActor()) + " shook off being stunned thanks to unnatural physiology.");
 			}
 
 			this.removeSelf();

@@ -1690,7 +1690,7 @@ Mastering the art of leaning against a wall with a big stick has it's benefits.
 Twist and thrust with your staff to deflect blows and intercept strikes.
 
 [color=%passive%][u]Passive:[/u][/color]
-• Gain [color=%positive%]+16[/color] Melee Skill and [color=%positive%]+16[/color] Defense while wielding a staves or magic staves.
+• Gain [color=%positive%]+16[/color] Melee Skill and [color=%positive%]+16[/color] Defense while wielding a staff or a magic staff.
 
 • When wielding slingstaves, musical instruments and other hybrid staves the bonus is only [color=%positive%]+8[/color].
 ";
@@ -1710,7 +1710,7 @@ An axe to the back of the head solves many issues, you even get to keep the loot
 Throwing a spear and throwing a net is just muscle memory at this point.
 
 [color=%passive%][u]Specialist Weapon Perk:[/u][/color]
-• Gain [color=%positive%]+12[/color] chance to hit while using a Javelins.
+• Gain [color=%positive%]+12[/color] chance to hit while using a Javelin.
 
 • When taking [color=%perk%]Throwing Specialization[/color] gain [color=%positive%]10%[/color] damage.
 
