@@ -3280,12 +3280,12 @@
 };
 ::Const.LegendMod.HelmObjs.push(::Legends.Helmet.Standard.marauder_helmet_with_rusty_mail);
 
-::Legends.Helmet.Standard.marauder_helmet_with_rusty_mail_cloth <- { // should have a L2 cloth scarf
-	ID = "marauder_helmet_with_rusty_mail_cloth", // 190 -11 -2 1225
+::Legends.Helmet.Standard.marauder_helmet_with_rusty_mail_cloth <- {
+	ID = "marauder_helmet_with_rusty_mail_cloth", // 205 -11 -3 1225
 	Script = "",
 	Sets = [{
 		Hoods = [
-			[1, "hood/legend_helmet_open_chain_hood"] // 65 -3 -0 225
+			[1, "hood/legend_helmet_chain_hood_masked"] // 80 -3 -1 225
 		],
 		Helms = [
 			[1, "helm/legend_helmet_nordic_helm"] // 125 -8 -2 1000
