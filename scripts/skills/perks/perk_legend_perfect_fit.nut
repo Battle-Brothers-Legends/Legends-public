@@ -107,7 +107,9 @@ this.perk_legend_perfect_fit <- this.inherit("scripts/skills/skill", {
 			]);
 		}
 
-		if (this.getContainer().getActor().getBodyItem() == null)
+		local actor = _actor != null ? _actor : this.getContainer().getActor();
+
+		if (actor.getBodyItem() == null)
 		{
 			tooltip.push({
 				id = 6,
