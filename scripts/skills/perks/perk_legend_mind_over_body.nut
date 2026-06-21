@@ -9,7 +9,7 @@ this.perk_legend_mind_over_body <- this.inherit("scripts/skills/skill", {
 
 	function getBonus( _actor = null )
 	{
-		if (this.getContainer() == null)
+		if (_actor == null && this.getContainer() == null)
 		{
 			return 0;
 		}
@@ -31,7 +31,7 @@ this.perk_legend_mind_over_body <- this.inherit("scripts/skills/skill", {
 
 	function getTooltip()
 	{
-		local bonus = this.getBonus(false);
+		local bonus = this.getBonus();
 		if (bonus > 1)
 		{
 			bonus = this.Math.pow(bonus, 0.5);
@@ -63,7 +63,7 @@ this.perk_legend_mind_over_body <- this.inherit("scripts/skills/skill", {
 
 	function getUnactivatedPerkTooltipHints(_actor = null)
 	{
-		local bonus = this.getBonus(true);
+		local bonus = this.getBonus(_actor);
 		if (bonus > 1)
 		{
 			bonus = this.Math.pow(bonus, 0.5);
@@ -94,7 +94,7 @@ this.perk_legend_mind_over_body <- this.inherit("scripts/skills/skill", {
 
 	function onUpdate( _properties )
 	{
-		local bonus = this.getBonus(false);
+		local bonus = this.getBonus();
 		if (bonus > 1)
 		{
 			bonus = this.Math.pow(bonus, 0.5);

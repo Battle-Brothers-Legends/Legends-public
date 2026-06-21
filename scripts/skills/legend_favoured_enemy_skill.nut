@@ -133,7 +133,7 @@ this.legend_favoured_enemy_skill <- this.inherit("scripts/skills/skill", {
 	// When the Perk is yet to be activated, show in the Tooltip what the current bonus is
 	function getUnactivatedPerkTooltipHints(_actor = null)
 	{
-		local stats = this.getTotalKillStats();
+		local stats = this.getTotalKillStats(_actor);
 		local killsText = "";
 		if (stats.Kills > 0)
 		{
@@ -182,9 +182,9 @@ this.legend_favoured_enemy_skill <- this.inherit("scripts/skills/skill", {
 		return false;
 	}
 
-	function getTotalKillStats()
-	{
-		return this.Const.LegendMod.GetFavoriteEnemyStats(this.getContainer().getActor(), this.m.ValidTypes);
+	function getTotalKillStats(_actor = null) {
+		local actor = _actor != null ? _actor : this.getContainer().getActor();
+		return this.Const.LegendMod.GetFavoriteEnemyStats(actor, this.m.ValidTypes);
 	}
 
 	function onAnySkillUsed( _skill, _targetEntity, _properties )
