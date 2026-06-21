@@ -16,7 +16,7 @@ this.perk_legend_adaptive <- this.inherit("scripts/skills/skill", {
 	}
 
 	// When the Perk is yet to be activated, show in the Tooltip which Perk Group will be awarded
-	function getUnactivatedPerkTooltipHints()
+	function getUnactivatedPerkTooltipHints(_actor = null)
 	{
 		local possibleTrees = this.getPossibleTrees();
 		local descText = "";

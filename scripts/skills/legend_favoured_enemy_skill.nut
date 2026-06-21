@@ -131,7 +131,7 @@ this.legend_favoured_enemy_skill <- this.inherit("scripts/skills/skill", {
 	}
 
 	// When the Perk is yet to be activated, show in the Tooltip what the current bonus is
-	function getUnactivatedPerkTooltipHints()
+	function getUnactivatedPerkTooltipHints(_actor = null)
 	{
 		local stats = this.getTotalKillStats();
 		local killsText = "";

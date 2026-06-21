@@ -52,9 +52,9 @@ this.perk_legend_swagger <- this.inherit("scripts/skills/skill", {
 		return ret;
 	}
 
-	function getUnactivatedPerkTooltipHints()
+	function getUnactivatedPerkTooltipHints(_actor = null)
 	{
-		local bonus = this.getBonus();
+		local bonus = this.getBonus(_actor);
 		local ret = [];
 		if (this.Math.floor(bonus) > 0)
 		{
@@ -107,9 +107,9 @@ this.perk_legend_swagger <- this.inherit("scripts/skills/skill", {
 		this.m.HelmetAdded = 0;
 	}
 
-	function getBonus ()
+	function getBonus (_actor = null)
 	{
-		local actor = this.getContainer().getActor();
+		local actor = _actor != null ? _actor : this.getContainer().getActor();
 		local body = actor.getItems().getItemAtSlot(this.Const.ItemSlot.Body);
 		local head = actor.getItems().getItemAtSlot(this.Const.ItemSlot.Head);
 		local gearValue = 0;

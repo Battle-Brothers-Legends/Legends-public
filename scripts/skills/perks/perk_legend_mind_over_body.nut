@@ -7,14 +7,14 @@ this.perk_legend_mind_over_body <- this.inherit("scripts/skills/skill", {
 		this.m.Order = this.Const.SkillOrder.Last;
 	}
 
-	function getBonus( unactivated )
+	function getBonus( _actor = null )
 	{
 		if (this.getContainer() == null)
 		{
 			return 0;
 		}
 
-		local actor = this.getContainer().getActor();
+		local actor = _actor != null ? _actor : this.getContainer().getActor();
 
 		if (actor == null)
 		{
@@ -22,11 +22,6 @@ this.perk_legend_mind_over_body <- this.inherit("scripts/skills/skill", {
 		}
 
 		local resolve = actor.getCurrentProperties().getBravery();
-		if(unactivated)
-		{
-			if(actor.getSkills().hasSkill("perk.fortified_mind"));
-			resolve *= 1.25
-		}
 		local fraction = resolve / 60.0;
 		local normal = this.Math.floor(fraction * 100);
 		local bonus = normal * 0.01;
@@ -66,7 +61,7 @@ this.perk_legend_mind_over_body <- this.inherit("scripts/skills/skill", {
 		return tooltip;
 	}
 
-	function getUnactivatedPerkTooltipHints()
+	function getUnactivatedPerkTooltipHints(_actor = null)
 	{
 		local bonus = this.getBonus(true);
 		if (bonus > 1)

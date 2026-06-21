@@ -11,9 +11,9 @@ this.perk_legend_perfect_fit <- this.inherit("scripts/skills/skill", {
 		this.m.Order = this.Const.SkillOrder.VeryLast;
 	}
 
-	function getBonus()
+	function getBonus(_actor = null)
 	{
-		local actor = this.getContainer().getActor();
+		local actor = _actor != null ? _actor : this.getContainer().getActor();
 
 		local bodyitem = actor.getBodyItem();
 
@@ -84,9 +84,9 @@ this.perk_legend_perfect_fit <- this.inherit("scripts/skills/skill", {
 		return tooltip;
 	}
 
-	function getUnactivatedPerkTooltipHints()
+	function getUnactivatedPerkTooltipHints(_actor = null)
 	{
-		local bonus = this.getBonus();
+		local bonus = this.getBonus(_actor);
 		local tooltip = [];
 
 		if (bonus > this.m.BonusMin)

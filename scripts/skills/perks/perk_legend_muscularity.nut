@@ -19,19 +19,19 @@ this.perk_legend_muscularity <- this.inherit("scripts/skills/skill", {
 		}
 	}
 
-	function getBonus() {
-		local actor = this.getContainer().getActor();
+	function getBonus(_actor = null) {
+		local actor = _actor != null ? _actor : this.getContainer().getActor();
 		local damageBonus = actor.getHitpoints() * 0.001;
 		damageBonus += (actor.getFatigueMax() - actor.getFatigue()) * 0.0015;
 		return this.Math.minf(0.5, damageBonus);
 	}
 
-	function getUnactivatedPerkTooltipHints() {
+	function getUnactivatedPerkTooltipHints(_actor = null) {
 		return [{
 			id = 3,
 			type = "hint",
 			icon = "ui/icons/damage_dealt.png",
-			text = "[color=%positive%]" + this.Math.round(this.getBonus() * 100) + "%[/color] Damage based on current Hitpoints and Fatigue"
+			text = "[color=%positive%]" + this.Math.round(this.getBonus(_actor) * 100) + "%[/color] Damage based on current Hitpoints and Fatigue"
 		}];
 	}
 });
