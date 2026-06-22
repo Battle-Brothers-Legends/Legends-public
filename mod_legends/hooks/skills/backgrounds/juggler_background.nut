@@ -7,8 +7,8 @@
 		this.m.Name = "Juggler";
 		this.m.Icon = "ui/backgrounds/background_14.png";
 		this.m.BackgroundDescription = "Jugglers need to have good reflexes and hand-eye-coordination for their profession.";
-		this.m.GoodEnding = "%name% the juggler took all his mercenary money and started a traveling troupe of performers. Last you heard, he started an entire theater and puts on a new play a month!";
-		this.m.BadEnding = "%name% the juggler retired from fighting. He was performing for a gaudy nobleman in the {south | north | east | west} when an act went horribly wrong. Word has it he was thrown off a tower for his mistake, but you prefer to not believe that.";
+		this.m.GoodEnding = "%name% the juggler took all %their% mercenary money and started a traveling troupe of performers. Last you heard, %they% started an entire theater and puts on a new play a month!";
+		this.m.BadEnding = "%name% the juggler retired from fighting. %They% was performing for a gaudy nobleman in the {south | north | east | west} when an act went horribly wrong. Word has it %they% was thrown off a tower for %their% mistake, but you prefer to not believe that.";
 		this.m.HiringCost = 100;
 		this.m.DailyCost = 8;
 		this.m.Excluded = [
@@ -84,9 +84,20 @@
 		return ret;
 	}
 
-	o.onBuildDescription <- function ()
-	{
-		return "{Taught by his step-brother, %name% took up juggling like a sailor to his oars. | Although sneered at by his peers, %name% always loved juggling. | Visited by a troupe of jesters, %name% was most enamored - and eventually taught - by one particularly interesting man: a juggler. | Son to a local lord, %name%\'s embarrassing obsession with juggling and entertaining had him exiled from the family line. | %name% didn\'t juggle just for the sake of it, but to earn the laughter and applause of an audience.} {Unfortunately, there\'s not many folks to entertain when war is ravaging the land. | But crowds and crowns are sparse in a land of misery and suffering. | But a juggling accident involving adzes and a royal infant had the entertainer running for his life. | So good at flipping swords and daggers, it wasn\'t long until he was accused of sorcery and driven from his passion. | Sadly, %name%\'s skill in juggling led to much jealousy amongst his fellow jesters. They conspired against him - and his poor wrists. | When an assassin killed the lord he was entertaining, the juggler was the first to be accused. He barely escaped with his life.} {Now, %name% seeks a new path, even if death itself has become his audience. | Now, %name% finds respite in the company of equally down-on-their-luck men. | With fast hands and quick reactions, %name% should have no problem hitting his targets. | Juggling knives with his eyes closed, %name% knows exactly where to throw each blade. | There is far more coin in killing than juggling, a sad reality %name% has come to accept.}";
+	o.setGender <- function (_gender = -1) {
+		if (_gender == -1) _gender = this.randomizeHumanGender();
+		if (_gender != 1) return;
+
+		this.m.Bodies = this.Const.Bodies.NorthernFemale;
+		this.m.Faces = this.Const.Faces.AllWhiteFemale;
+		this.m.Hairs = this.Const.Hair.AllFemale;
+		this.m.Beards = null;
+		this.m.BeardChance = 0;
+		this.addBackgroundType(this.Const.BackgroundType.Female);
+	}
+
+	o.onBuildDescription <- function () {
+		return "{Taught by %their% step-brother, %name% took up juggling like a sailor to %their% oars. | Although sneered at by %their% peers, %name% always loved juggling. | Visited by a troupe of jesters, %name% was most enamored - and eventually taught - by one particularly interesting man: a juggler. | %Offspring% to a local lord, %name%\'s embarrassing obsession with juggling and entertaining had %them% exiled from the family line. | %name% didn\'t juggle just for the sake of it, but to earn the laughter and applause of an audience.} {Unfortunately, there\'s not many folks to entertain when war is ravaging the land. | But crowds and crowns are sparse in a land of misery and suffering. | But a juggling accident involving adzes and a royal infant had the entertainer running for %their% life. | So good at flipping swords and daggers, it wasn\'t long until %they% was accused of sorcery and driven from %their% passion. | Sadly, %name%\'s skill in juggling led to much jealousy amongst %their% fellow jesters. They conspired against %them% - and %their% poor wrists. | When an assassin killed the lord %they% was entertaining, the juggler was the first to be accused. %They% barely escaped with %their% life.} {Now, %name% seeks a new path, even if death itself has become %their% audience. | Now, %name% finds respite in the company of equally down-on-their-luck men. | With fast hands and quick reactions, %name% should have no problem hitting %their% targets. | Juggling knives with %their% eyes closed, %name% knows exactly where to throw each blade. | There is far more coin in killing than juggling, a sad reality %name% has come to accept.}";
 	}
 
 	o.onChangeAttributes = function ()
