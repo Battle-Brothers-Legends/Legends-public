@@ -87,7 +87,7 @@
 				"weapons/military_pick"
 			]);
 
-			if (this.Math.rand(1, 100) <= 75)
+			if (this.Math.rand(1, 100) <= 50)
 			{
 				this.getItems().equip(::Const.World.Common.pickItem([
 					[3, "shields/kite_shield"],
