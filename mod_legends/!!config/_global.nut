@@ -156,8 +156,6 @@ for (local i = -1; i < ::Const.EntityIcon.len(); i++) {
 	::Const.EntityType.addNew("hollenhound_orientation", "Höllenhund", "Höllenhunds", this.Const.FactionType.Undead);
 ::Const.EntityType.LegendVampireLord <-
 	::Const.EntityType.addNew("vampire_lord_orientation", "Necrosavant Lord", "Necrosavant Lords", this.Const.FactionType.Undead);
-::Const.EntityType.BanditVeteran <-
-	::Const.EntityType.addNew("banditveteran_orientation", "Bandit Veteran", "Bandit Veterans", this.Const.FactionType.Bandits);
 ::Const.EntityType.LegendRobberBaron <-
 	::Const.EntityType.addNew("banditwarlord_orientation", "Robber Baron", "Robber Barons", this.Const.FactionType.Bandits);
 ::Const.EntityType.LegendPeasantButcher <-

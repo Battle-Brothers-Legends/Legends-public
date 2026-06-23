@@ -3066,10 +3066,9 @@
 		Cloth = [
 			[1, "cloth/legend_armor_gambeson_wolf"], // 70 -9 300
 		],
-		Chain = [
-			[1, "plate/legend_armor_scale"], // 100 -12 2250
-		],
+		Chain = [],
 		Plate = [
+			[1, "plate/legend_armor_scale"], // 100 -12 2250
 		],
 		Cloak = [
 			[1, "cloak/legend_armor_cloak_cowl_ragged"], // 10 -1 20
@@ -3077,7 +3076,7 @@
 		Tabard = [
 		],
 		Attachments = [
-			[1, "armor_upgrades/legend_metal_pauldrons_upgrade"]
+			[1, "armor_upgrades/legend_metal_pauldrons_upgrade"] // 60 -6 800 
 		]
 	}]
 };

@@ -107,7 +107,6 @@ if (!("LegendMod" in ::Const))
 	::Const.EntityType.Greatsword,
 	::Const.EntityType.Swordmaster,
 	::Const.EntityType.BanditLeader,
-	// ::Const.EntityType.BanditVeteran,
 	::Const.EntityType.LegendRobberBaron,
 	::Const.EntityType.LegendBarbarianRunechosen,
 	::Const.EntityType.BarbarianChampion,
@@ -140,7 +139,7 @@ if (!("LegendMod" in ::Const))
 	::Const.EntityType.BanditPoacher,
 	::Const.EntityType.BanditMarksman,
 	::Const.EntityType.BanditRaider,
-	::Const.EntityType.BanditVeteran,
+	::Const.EntityType.BanditMarauder,
 	::Const.EntityType.LegendRobberBaron,
 	::Const.EntityType.BanditLeader,
 	::Const.EntityType.Slave,
@@ -520,7 +519,7 @@ if (!("LegendMod" in ::Const))
 	case ::Const.EntityType.BanditRaider :
 		return 8;
 
-	case ::Const.EntityType.BanditVeteran :
+	case ::Const.EntityType.BanditMarauder :
 		return 5;
 
 	case ::Const.EntityType.BanditLeader :

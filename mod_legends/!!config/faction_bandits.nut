@@ -18,25 +18,6 @@
 	FatigueRecoveryRate = 15
 };
 
-::Const.Tactical.Actor.BanditVeteran <- {
-	XP = 400,
-	ActionPoints = 9,
-	Hitpoints = 100,
-	Bravery = 65,
-	Stamina = 140,
-	MeleeSkill = 75,
-	RangedSkill = 55,
-	MeleeDefense = 20,
-	RangedDefense = 20,
-	Initiative = 95,
-	FatigueEffectMult = 1.0,
-	MoraleEffectMult = 1.0,
-	Armor = [
-		0,
-		0
-	],
-	FatigueRecoveryRate = 20
-};
 ::Const.Tactical.Actor.LegendRobberBaron <- { // You contracted in the wrong neighbourhood
 	XP = 700,
 	ActionPoints = 11,

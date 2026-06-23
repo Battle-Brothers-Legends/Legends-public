@@ -250,7 +250,6 @@
 	<sprite id="miner_orientation"  ic="FF22200A" img="orientation\miner_orientation.png" />
 	<sprite id="squire_orientation" ic="FF22200A" img="orientation\squire_orientation.png" />
 	<sprite id="witchhunter_orientation"  ic="FF22200A" img="orientation\witchhunter_orientation.png" />
-	<sprite id="banditveteran_orientation" ic="FF22200A" img="orientation\banditveteran_orientation.png" />
 	<sprite id="banditwarlord_orientation" ic="FF22200A" img="orientation\banditwarlord_orientation.png" />
 	<sprite id="banditoutrider_orientation" ic="FF22200A" img="orientation\banditoutrider_orientation.png" />
 	<sprite id="bear_orientation"  ic="FF22200A" img="orientation\bear_orientation.png" />

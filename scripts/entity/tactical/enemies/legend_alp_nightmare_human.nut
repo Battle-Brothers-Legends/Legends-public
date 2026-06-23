@@ -26,7 +26,7 @@ this.legend_alp_nightmare_human <- this.inherit("scripts/entity/tactical/enemies
 		this.legend_alp_shadow.onInit();
 		local b = this.m.BaseProperties;
 		b.setValues(this.World.getTime().Days >= ::Const.World.Scaling.Beasts.LegendsAlpNightmareScaleDay5
-			? this.Const.Tactical.Actor.BanditVeteran
+			? this.Const.Tactical.Actor.BanditMarauder
 			: this.Const.Tactical.Actor.BanditRaider);
 
 		b.IsSpecializedInSwords = true;

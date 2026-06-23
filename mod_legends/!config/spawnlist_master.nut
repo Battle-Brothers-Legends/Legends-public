@@ -199,15 +199,6 @@
 	Script = "scripts/entity/tactical/enemies/legend_bandit_rabble_poacher"
 };
 
-::Const.World.Spawn.Troops.BanditVeteran <- {
-	ID = this.Const.EntityType.BanditVeteran,
-	Variant = 0,
-	Strength = 30,
-	Cost = 35,
-	Row = 0,
-	Script = "scripts/entity/tactical/enemies/legend_bandit_veteran"
-};
-
 ::Const.World.Spawn.Troops.LegendRobberBaron <- {
 	ID = this.Const.EntityType.LegendRobberBaron,
 	Variant = 1,
