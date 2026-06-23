@@ -276,5 +276,5 @@
 	<sprite id="goblin_direwolf_rider_orientation" ic="FF22200A" img="orientation\goblin_direwolf_rider_orientation.png" />
 	<sprite id="goblin_white_direwolf_rider_orientation" ic="FF22200A" img="orientation\goblin_white_direwolf_rider_orientation.png" />
 	<sprite id="enraged_hyena_orientation" ic="FF22200A" img="orientation\enraged_hyena_orientation.png" />
-	<sprite id="fault_finder_orientation" ic="FF22200A" img="orientation\fault_finder_orientation.png" />
+	<sprite id="wicht_orientation" ic="FF22200A" img="orientation\wicht_orientation.png" />
 </brush>

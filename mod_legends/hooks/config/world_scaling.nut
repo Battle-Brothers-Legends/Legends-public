@@ -5,6 +5,7 @@
 ::Const.World.Scaling.AI.LegendsCorruptionAdvancedAIDay <- 100;
 
 ::Const.World.Scaling.LegendaryLocations <- {};
+::Const.World.Scaling.LegendaryLocations.GoblinCity <- {};
 ::Const.World.Scaling.LegendaryLocations.GoblinCity.Easy <- 400;
 ::Const.World.Scaling.LegendaryLocations.GoblinCity.Normal <- 300;
 ::Const.World.Scaling.LegendaryLocations.GoblinCity.Hard <- 200;

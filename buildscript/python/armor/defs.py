@@ -439,7 +439,7 @@ class Defs:
  "adesc" : "Includes a well-crafted studded leather jacket.",
  "named" : { "con": { "min" : 35, "max" : 45 }, "fat": { "min" : 2, "max" : 1 }, "names" : ["Leather Cuirass", "Leather Armor", "Skin", "Peel", "Guard", "Coat", "Nightcloak", "Black Leather", "Dark Omen", "Toadskin", "Ogreskin"]  }
 },
-{"name": "leather_tunic_bloodstained",                   "layer": "plate", "min": 1, "max": 10, "value" : 20, "con" : 20, "stam" : -2, "impactSound" : "leather", "invSound" : "leather",
+{"name": "leather_tunic_bloodstained",                   "layer": "plate", "min": 1, "max": 1, "value" : 20, "con" : 20, "stam" : -2, "impactSound" : "leather", "invSound" : "leather",
  "title" :  "Bloodstained Tunic",
  "desc" :  "A leather tunic caked and crusted with dried remnants of past executions.",
  "adesc" : "Includes a bloodstained leather tunic."

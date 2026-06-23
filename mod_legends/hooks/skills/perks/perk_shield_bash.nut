@@ -1,5 +1,5 @@
 ::mods_hookExactClass("skills/perks/perk_shield_bash", function(o) {
-	o.m.PossibleSkills = [
+	o.m.PossibleSkills <- [
 		::Legends.Actives.getID(::Legends.Active.KnockBack),
 		::Legends.Actives.getID(::Legends.Active.LegendPush),
 	];

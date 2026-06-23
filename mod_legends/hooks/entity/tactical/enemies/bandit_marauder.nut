@@ -1,5 +1,4 @@
-::mods_hookExactClass("entity/tactical/enemies/bandit_marauder", function(o)
-{
+::mods_hookExactClass("entity/tactical/enemies/bandit_marauder", function(o) {
 	local create = o.create;
 	o.create = function () {
 		create();
@@ -87,8 +86,7 @@
 				"weapons/military_pick"
 			]);
 
-			if (this.Math.rand(1, 100) <= 50)
-			{
+			if (this.Math.rand(1, 100) <= 50) {
 				this.getItems().equip(::Const.World.Common.pickItem([
 					[3, "shields/kite_shield"],
 					[1, "shields/legend_tower_shield"],
@@ -124,7 +122,7 @@
 		this.getItems().equip(::Const.World.Common.pickArmor(armorList));
 
 
-		local helmetList = []
+		local helmetList = [];
 		if (this.Math.rand(1, 100) <= 90) {
 			helmetList.extend([
 				[10, ::Legends.Helmet.Standard.marauder_helmet_with_rusty_mail],
@@ -157,6 +155,5 @@
 			::Legends.Perks.grant(this, ::Legends.Perk.SteelBrow);
 		}
 		this.getItems().equip(::Const.World.Common.pickHelmet(helmetList));
-
 	}
-}
+});
