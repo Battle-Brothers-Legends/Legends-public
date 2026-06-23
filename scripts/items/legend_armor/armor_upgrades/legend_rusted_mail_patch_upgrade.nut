@@ -1,4 +1,4 @@
-this.legend_armor_rusted_mail_patch_upgrade <- this.inherit("scripts/items/legend_armor/legend_armor_upgrade", {
+this.legend_rusted_mail_patch_upgrade <- this.inherit("scripts/items/legend_armor/legend_armor_upgrade", {
 	m = {},
 	function create()
 	{
@@ -19,7 +19,7 @@ this.legend_armor_rusted_mail_patch_upgrade <- this.inherit("scripts/items/legen
 		this.m.StaminaModifier = -4;
 		this.m.DirectDamageModifier = -15.0;
 	}
-		
+
 	function updateVariant()
 	{
 		local variant = this.m.Variant > 9 ? this.m.Variant : "0" + this.m.Variant;
