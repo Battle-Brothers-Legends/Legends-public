@@ -437,22 +437,16 @@
 	}
 
 	local getBuyPriceMult = o.getBuyPriceMult;
-	o.getBuyPriceMult = function()
-	{
+	o.getBuyPriceMult = function() {
 		local p = getBuyPriceMult();
-		local barterMult = ::World.State.getPlayer().getBarterMult();
-
-		if (this.m.Modifiers.BuyPriceMult - barterMult >= 0.01)
-			p *= this.m.Modifiers.BuyPriceMult - barterMult;
-
+		p *= ::Math.maxf(0.01, (this.m.Modifiers.BuyPriceMult - ::World.State.getPlayer().getBarterMult()) / this.m.Modifiers.BuyPriceMult);
 		return p;
 	}
 
 	local getSellPriceMult = o.getSellPriceMult;
-	o.getSellPriceMult = function ()
-	{
+	o.getSellPriceMult = function () {
 		local p = getSellPriceMult();
-		p *= this.m.Modifiers.SellPriceMult + this.World.State.getPlayer().getBarterMult();
+		p *= (this.m.Modifiers.SellPriceMult + this.World.State.getPlayer().getBarterMult()) / this.m.Modifiers.SellPriceMult;
 		return p;
 	}
 
