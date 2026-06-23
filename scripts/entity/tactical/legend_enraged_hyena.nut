@@ -47,7 +47,7 @@ this.legend_enraged_hyena <- this.inherit("scripts/entity/tactical/enemies/hyena
 			body.varyColor(0.05, 0.05, 0.05);
 		}
 
-		::Legends.Actives.grant(this, ::Legends.Active.LegendEnragedHyenaBite);
+		::Legends.Actives.grant(this, ::Legends.Active.LegendEnragedHyenaBite); // both this and hyena bite add damage and it ends up at 45-75 like white direwolf bite
 		::Legends.Perks.grant(this, ::Legends.Perk.Berserk);
 		::Legends.Perks.grant(this, ::Legends.Perk.FastAdaption);
 		::Legends.Perks.grant(this, ::Legends.Perk.Fearsome);
