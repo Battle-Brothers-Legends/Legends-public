@@ -131,7 +131,7 @@ if (!("LegendMod" in ::Const))
 	::Const.EntityType.BarbarianChosen, //King
 	::Const.EntityType.BarbarianDrummer,
 	::Const.EntityType.BarbarianBeastmaster,
-	::Const.EntityType.LegendBarbarianMarauder,
+	::Const.EntityType.LegendBarbarianBloodletter,
 	::Const.EntityType.LegendBarbarianPillager,
 	::Const.EntityType.LegendBarbarianRunechosen,
 	::Const.EntityType.BanditRabble,
@@ -542,7 +542,7 @@ if (!("LegendMod" in ::Const))
 	case ::Const.EntityType.BarbarianChosen: //Barbarian King
 		return 1;
 
-	case ::Const.EntityType.LegendBarbarianMarauder:
+	case ::Const.EntityType.LegendBarbarianBloodletter:
 	case ::Const.EntityType.LegendBarbarianPillager:
 		return 2;
 

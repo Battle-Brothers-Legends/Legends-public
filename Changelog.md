@@ -3,9 +3,14 @@
 # Skills
 - `Skewer` renamed to `Run Through`
 
+# Enemies
+- `Barbarian Marauder` renamed to `Barbarian Bloodletter`
+
 # For modders
 - `LegendSkewer` -> `LegendRunThrough`
 - `legend_skewer_skill` -> `legend_run_through_skill`
+- `LegendBarbarianMarauder` -> `LegendBarbarianBloodletter`
+- `legend_barbarian_marauder` -> `legend_barbarian_bloodletter`
 
 # 19.3.0 - Left & Right
 

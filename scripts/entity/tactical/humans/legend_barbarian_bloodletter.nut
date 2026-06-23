@@ -1,10 +1,10 @@
-this.legend_barbarian_marauder <- this.inherit("scripts/entity/tactical/human", {
+this.legend_barbarian_bloodletter <- this.inherit("scripts/entity/tactical/human", {
 	m = {},
 	function create()
 	{
-		this.m.Type = this.Const.EntityType.LegendBarbarianMarauder;
+		this.m.Type = this.Const.EntityType.LegendBarbarianBloodletter;
 		this.m.BloodType = this.Const.BloodType.Red;
-		this.m.XP = this.Const.Tactical.Actor.LegendBarbarianMarauder.XP;
+		this.m.XP = this.Const.Tactical.Actor.LegendBarbarianBloodletter.XP;
 		this.human.create();
 		this.m.Faces = this.Const.Faces.WildMale;
 		this.m.Hairs = this.Const.Hair.WildMale;
@@ -41,7 +41,7 @@ this.legend_barbarian_marauder <- this.inherit("scripts/entity/tactical/human", 
 		}
 
 		local b = this.m.BaseProperties;
-		b.setValues(this.Const.Tactical.Actor.LegendBarbarianMarauder);
+		b.setValues(this.Const.Tactical.Actor.LegendBarbarianBloodletter);
 		this.m.ActionPoints = b.ActionPoints;
 		this.m.Hitpoints = b.Hitpoints;
 		this.m.CurrentProperties = clone b;
