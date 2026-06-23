@@ -1,4 +1,4 @@
-# 19.4.0 - Vanilla update
+# 19.4.0 - Bandits & Greenskins
 
 ## Skills
 - `Skewer` renamed to `Run Through`
