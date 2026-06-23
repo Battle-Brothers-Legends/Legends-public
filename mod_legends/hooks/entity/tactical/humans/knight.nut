@@ -72,8 +72,8 @@
 				"shields/faction_heater_shield",
 				"shields/faction_kite_shield"
 			];
-			
-			local shield = this.new("scripts/items/" + shields[this.Math.rand(0, shields.len() - 1)])
+
+			local shield = this.new("scripts/items/" + shields[this.Math.rand(0, shields.len() - 1)]);
 			shield.setFaction(banner);
 			this.m.Items.equip(shield);
 		}
@@ -208,7 +208,7 @@
 					armor.setUpgrade(pauldrons)
 				}
 			}
-			
+
 			this.m.Items.equip(h);
 		}
 		this.m.Items.equip(this.Const.World.Common.pickHelmet([

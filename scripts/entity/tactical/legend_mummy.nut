@@ -84,7 +84,7 @@ this.legend_mummy <- this.inherit("scripts/entity/tactical/actor", {
 				local decal = _tile.spawnDetail(armorDecal, this.Const.Tactical.DetailFlag.Corpse, flip, false, this.Const.Combat.HumanCorpseOffset);
 				decal.Scale = targetScale;
 			}
-			
+
 			local helmetLowerLayers = [
 					"HelmetLayerVanityLowerCorpse",
 					"HelmetLayerVanity2LowerCorpse"
@@ -183,7 +183,7 @@ this.legend_mummy <- this.inherit("scripts/entity/tactical/actor", {
 				//		idx = ++idx;
 				//	}
 				//}
-					
+
 			}
 
 			if (_skill && _skill.getProjectileType() == this.Const.ProjectileType.Arrow)
@@ -384,7 +384,7 @@ this.legend_mummy <- this.inherit("scripts/entity/tactical/actor", {
 
 		local head = this.addSprite("head");
 		//head.setBrush("bust_skeleton_head_03");
-		head.setBrush("mummy_head_0" + this.Math.rand(1, 4))
+		head.setBrush("mummy_head_0" + this.Math.rand(1, 4));
 		head.Color = body.Color;
 		head.Saturation = body.Saturation;
 		local injury = this.addSprite("injury");
@@ -393,9 +393,8 @@ this.legend_mummy <- this.inherit("scripts/entity/tactical/actor", {
 		//local face = this.addSprite("face");
 		//face.setBrush("mummy_head_0" + this.Math.rand(1, 4));
 
-		foreach (a in this.Const.CharacterSprites.Helmets)
-		{
-			this.addSprite(a)
+		foreach (a in this.Const.CharacterSprites.Helmets) {
+			this.addSprite(a);
 		}
 
 		local body_blood = this.addSprite("body_blood");

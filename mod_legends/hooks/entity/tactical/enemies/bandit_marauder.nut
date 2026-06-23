@@ -1,6 +1,6 @@
 ::mods_hookExactClass("entity/tactical/enemies/bandit_marauder", function(o) {
 	local create = o.create;
-	o.create = function () {
+	o.create = function() {
 		create();
 		this.m.AIAgent = this.new("scripts/ai/tactical/agents/legend_bandit_melee_agent_less_flanking");
 		this.m.AIAgent.setActor(this);
@@ -57,7 +57,7 @@
 		}
 	}
 
-	o.assignRandomEquipment = function () {
+	o.assignRandomEquipment = function() {
 		local r;
 		local weapons = [];
 
@@ -75,8 +75,7 @@
 				"weapons/legend_battle_glaive",
 				"weapons/legend_infantry_axe"
 			]);
-		}
-		else {
+		} else {
 			weapons.extend([
 				"weapons/hand_axe",
 				"weapons/flail",
@@ -115,7 +114,7 @@
 			armorList.extend([
 				[10, ::Legends.Armor.Standard.pillaged_heavy_lamellar_armor],
 				[3, ::Legends.Armor.Standard.bandit_armor_heavy],
-				[3, ::Legends.Armor.Standard.bandit_armor_ultraheavy]	
+				[3, ::Legends.Armor.Standard.bandit_armor_ultraheavy]
 			]);
 		}
 
@@ -146,8 +145,7 @@
 					[5, ::Legends.Helmet.Standard.flat_top_with_rusty_mail]
 				]);
 			}
-		}
-		else {
+		} else {
 			helmetList.extend([
 				[2, ::Legends.Helmet.Standard.headscarf],
 				[1, ::Legends.Helmet.Standard.rusty_mail_coif]

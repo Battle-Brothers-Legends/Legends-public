@@ -7,7 +7,7 @@ this.perk_legend_muscularity <- this.inherit("scripts/skills/skill", {
 	function onAnySkillUsed( _skill, _targetEntity, _properties )
 	{
 		local item = _skill.getItem();
-		local isHandToHand = _skill.getID() == ::Legends.Actives.getID(::Legends.Active.LegendChoke) || _skill.getID() == ::Legends.Actives.getID(::Legends.Active.HandToHand)
+		local isHandToHand = _skill.getID() == ::Legends.Actives.getID(::Legends.Active.LegendChoke) || _skill.getID() == ::Legends.Actives.getID(::Legends.Active.HandToHand);
 
 		if (!isHandToHand && item != null && item.isItemType(this.Const.Items.ItemType.Defensive) && !item.isItemType(this.Const.Items.ItemType.Weapon)) {
 			return;

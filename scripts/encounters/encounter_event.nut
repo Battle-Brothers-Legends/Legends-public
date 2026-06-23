@@ -11,7 +11,7 @@ this.encounter_event <- this.inherit("scripts/encounters/encounter", {
 		if (!::World.Events.canFireEvent()) {
 			return false;
 		}
-		return ::World.Ambitions.hasActiveAmbition() || ::World.getTime().Time >= ::World.getTime().SecondsPerDay * 5
+		return ::World.Ambitions.hasActiveAmbition() || ::World.getTime().Time >= ::World.getTime().SecondsPerDay * 5;
 	}
 
 	function isValid(_settlement) {
@@ -23,7 +23,7 @@ this.encounter_event <- this.inherit("scripts/encounters/encounter", {
 		if (event == null) {
 			return false;
 		}
-		event.clear()
+		event.clear();
 		event.onUpdateScore();
 		return event.m.isValidForEncounter;
 	}
@@ -34,8 +34,8 @@ this.encounter_event <- this.inherit("scripts/encounters/encounter", {
 			this.m.OldEvent = this.m.Event;
 			this.m.Event = "event.legend_missed_opportunity";
 			return;
-		} 
-		
+		}
+
 		this.encounter.fire();
 	}
 });
