@@ -5,6 +5,7 @@
 	{
 		onInit();
 		local b = this.m.BaseProperties;
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendTumble);
 		if (!this.m.IsLow && this.World.getTime().Days >= ::Const.World.Scaling.Goblin.LegendsFighterMeleeSkillIncreaseDay)
 		{
 			b.MeleeSkill += 10;

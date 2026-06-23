@@ -78,37 +78,17 @@
 	FatigueRecoveryRate = 30,
 	DamageTotalMult = 1.1
 };
-// fighter medium
-::Const.Tactical.Actor.LegendGoblinPlunderer <- {
-	XP = 300,
-	ActionPoints = 10,
-	Hitpoints = 80,
-	Bravery = 65,
-	Stamina = 110,
-	MeleeSkill = 80,
-	RangedSkill = 65,
-	MeleeDefense = 25,
-	RangedDefense = 15,
-	Initiative = 140,
-	FatigueEffectMult = 1.0,
-	MoraleEffectMult = 1.0,
-	Armor = [
-		40,
-		20
-	],
-	FatigueRecoveryRate = 20
-};
 // fighter high
 ::Const.Tactical.Actor.LegendGoblinHarrier <- {
 	XP = 400,
 	ActionPoints = 10,
-	Hitpoints = 120,
-	Bravery = 85,
+	Hitpoints = 80,
+	Bravery = 65,
 	Stamina = 140,
 	MeleeSkill = 90,
 	RangedSkill = 65,
-	MeleeDefense = 45,
-	RangedDefense = 25,
+	MeleeDefense = 30,
+	RangedDefense = 15,
 	Initiative = 150,
 	FatigueEffectMult = 1.0,
 	MoraleEffectMult = 1.0,
@@ -122,14 +102,14 @@
 ::Const.Tactical.Actor.LegendGoblinBerserker <- {
 	XP = 600,
 	ActionPoints = 12,
-	Hitpoints = 140,
+	Hitpoints = 120,
 	Bravery = 125,
 	Stamina = 140,
 	MeleeSkill = 80,
 	RangedSkill = 50,
 	MeleeDefense = 5,
 	RangedDefense = 35,
-	Initiative = 110,
+	Initiative = 130,
 	FatigueEffectMult = 1.0,
 	MoraleEffectMult = 1.0,
 	Armor = [
@@ -163,12 +143,12 @@
 ::Const.Tactical.Actor.LegendGoblinDirewolfRider <- {
 	XP = 250,
 	ActionPoints = 13,
-	Hitpoints = 180,
-	Bravery = 100,
+	Hitpoints = 160,
+	Bravery = 80,
 	Stamina = 140,
-	MeleeSkill = 80,
+	MeleeSkill = 75,
 	RangedSkill = 50,
-	MeleeDefense = 30,
+	MeleeDefense = 25,
 	RangedDefense = 15,
 	Initiative = 150,
 	FatigueEffectMult = 1.0,
@@ -182,16 +162,16 @@
 
 // fighter high + white warwolf
 ::Const.Tactical.Actor.LegendGoblinWhiteDirewolfRider <- {
-	XP = 500, // 400 + 600 / 2
+	XP = 400, // 400 + 600 / 2
 	ActionPoints = 15,
-	Hitpoints = 240, // 120 + 200 + 25%
-	Bravery = 120,
+	Hitpoints = 200,
+	Bravery = 100,
 	Stamina = 150,
 	MeleeSkill = 90,
 	RangedSkill = 50,
 	MeleeDefense = 35,
 	RangedDefense = 20,
-	Initiative = 150,
+	Initiative = 160,
 	FatigueEffectMult = 1.0,
 	MoraleEffectMult = 1.0,
 	Armor = [

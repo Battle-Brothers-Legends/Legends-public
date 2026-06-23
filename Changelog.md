@@ -1,12 +1,51 @@
 # 19.4.0 - Vanilla update
 
-# Skills
+## Skills
 - `Skewer` renamed to `Run Through`
 
-# Enemies
-- `Barbarian Marauder` renamed to `Barbarian Bloodletter`
+## Enemies
+
+### Dodge on Enemies
+- `Dodge` now doesn't scale with hitpoints on enemies so the overall values will be reduced
+
+### Bandits
 - `Bandit Veteran` -> renamed to `Bandit Marauder` as per vanilla changes and added to spawnlists
 > the entity has been reworked to include the new vanilla armors
+
+### Orcs
+- `Rage` - now applied to all orcs with reduced effects
+> gain 1 stack when they get hit and when hitting a target, gain 2 stacks when killing someone
+> Berserkers gain 3 stacks when hit and hitting a target, 5 stacks when killing someone
+> stacks are capped at 50
+- `Warcry` - each warcry now applies 5 stacks of rage
+- `Orc Berserker` - Base HP dropped to 200, gain `Colossus` and 10% damage that they had in vanilla, gain `Nimble` on Legendary Difficulty
+- `Orc Mad Berserker` - lose `Nudist`, gain 10% damage, gain the ability to use `Adrenaline`
+- `Barbarian Marauder` renamed to `Barbarian Bloodletter`
+
+### Goblins
+- `Goblin Harrier`
+> hitpoints down to 80 from 120
+> resolve down to 65 from 85
+> melee defense down to 30 from 45
+> ranged defense down to 15 from 25
+> gains `Tumble`
+- `Goblin Berserker`
+> hitpoints down to 120 from 140
+> initiative up to 130 from 110
+> will now appear much less likely
+- `Goblin Direwolfrider`
+> hitpoints down to 160 from 180
+> resolve down to 80 from 100
+> melee skill down to 75 from 80
+> melee defense down to 25 from 30
+> now spawns `Goblin Skirmisher` instead of `Goblin Plunderer`
+> after 80 days will start spawning with `Goblin Harrier` and gain extra stats
+- `Goblin White Warwolfrider`
+> hitpoints down to 200 from 240
+> resolve down to 100 from 120
+- `Goblin Witchdoctor`
+> loses schrat racial
+- overall cost in spawnlists has been reduced to account for these changes so you'll get to fight more, but weaker goblins
 
 # For modders
 - `LegendSkewer` -> `LegendRunThrough`
@@ -21,20 +60,8 @@
 - `legend_named_estoc` -> deleted
 - `legend_estoc` -> deleted
 - `legend_named_sickle` -> deleted
-
-## Enemies
-
-### Dodge on Enemies
-- `Dodge` now doesn't scale with hitpoints on enemies so the overall values will be reduced
-
-### Greenskins
-- `Rage` - now applied to all orcs with reduced effects
-> gain 1 stack when they get hit and when hitting a target, gain 2 stacks when killing someone
-> Berserkers gain 3 stacks when hit and hitting a target, 5 stacks when killing someone
-> stacks are capped at 50
-- `Warcry` - each warcry now applies 5 stacks of rage
-- `Orc Berserker` - Base HP dropped to 200, gain `Colossus` and 10% damage that they had in vanilla, gain `Nimble` on Legendary Difficulty
-- `Orc Mad Berserker` - lose `Nudist`, gain 10% damage, gain the ability to use `Adrenaline`
+- `LegendGoblinPlunderer` -> deleted
+- `legend_goblin_plunderer` -> deleted
 
 # 19.3.0 - Left & Right
 

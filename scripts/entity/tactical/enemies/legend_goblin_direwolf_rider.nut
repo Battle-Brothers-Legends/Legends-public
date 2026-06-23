@@ -7,7 +7,7 @@ this.legend_goblin_direwolf_rider <- this.inherit("scripts/entity/tactical/enemi
 		AssignEntityType = this.Const.EntityType.LegendGoblinDirewolfRider,
 		AssignActor = this.Const.Tactical.Actor.LegendGoblinDirewolfRider,
 		WolfScript = "scripts/entity/tactical/enemies/direwolf",
-		GoblinScript = "scripts/entity/tactical/enemies/legend_goblin_plunderer"
+		GoblinScript = "scripts/entity/tactical/enemies/goblin_fighter"
 	},
 	function create()
 	{
@@ -17,6 +17,14 @@ this.legend_goblin_direwolf_rider <- this.inherit("scripts/entity/tactical/enemi
 	function onInit()
 	{
 		this.legend_goblin_rider_abstract.onInit();
+		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= this.Const.World.Scaling.Nomads.LegendDirewolfRiderHarrierDay)
+		{
+			this.m.GoblinScript = "scripts/entity/tactical/enemies/legend_goblin_harrier";
+			local b = this.m.BaseProperties;
+			b.Hitpoints += 40;
+			b.MeleeSkill += 10;
+			b.Bravery += 10;
+		}
 	}
 
 	function assignSkills()

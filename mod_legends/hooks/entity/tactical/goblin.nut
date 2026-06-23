@@ -2,7 +2,9 @@
 	local onInit = o.onInit;
 	o.onInit = function () {
 		onInit();
-		// ::Legends.Perks.grant(this, ::Legends.Perk.LegendTumble);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendBackstabber);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendStrengthInNumbers);
+		::Legends.Perks.grant(this, ::Legends.Perk.Overwhelm);
 	}
 
 	o.onDeath = function (_killer, _skill, _tile, _fatalityType) {
