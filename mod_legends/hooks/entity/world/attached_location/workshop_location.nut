@@ -60,13 +60,5 @@
 				S = "supplies/armor_parts_item"
 			});
 		}
-		else if (_id == "building.weaponsmith")
-		{
-			_list.push({
-				R = 95,
-				P = 1.0,
-				S = "weapons/named/legend_named_blacksmith_hammer"
-			});
-		}
 	}
 });

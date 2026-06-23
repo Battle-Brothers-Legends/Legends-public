@@ -1,5 +1,8 @@
 ::mods_hookExactClass("items/weapons/named/named_estoc", function (o) {
-
+	m = {
+			PossibleEffects = ["scripts/skills/effects/legend_named_estoc_effect"],
+			EffectBounds = [ [2, 7] ]
+	},
 	local create = o.create;
 	o.create = function () {
 		create();

@@ -1,8 +1,7 @@
 this.perk_legend_specialist_gravedigger <- this.inherit("scripts/skills/legend_specialist_abstract", {
 	m = {
 		SpecialistWeaponIds = [
-			"weapon.legend_shovel",
-			"weapon.legend_named_shovel"
+			"weapon.legend_shovel"
 		],
 		ApplicableItemTypes = [
 			this.Const.Items.ItemType.TwoHanded

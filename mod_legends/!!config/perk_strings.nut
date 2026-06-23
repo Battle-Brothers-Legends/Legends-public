@@ -1588,7 +1588,7 @@ Call an 'erbalist...But not for me!
 [color=%passive%][u]Passive:[/u][/color]
 • Gain [color=%positive%]+12[/color] chance to hit and [color=%positive%]30%[/color] of lowered threshold to inflict injuries as additional damage to hitpoints while using a Sickle.
 
-• When taking [color=%perk%]Sword Mastery[/color] you will also gain [color=%positive%]10%[/color] bonus damage. Additionally reduces the Action Point cost of [color=%skill%]Slash[/color] by [color=%negative%]1[/color] when using a Sickle.
+• When taking [color=%perk%]Sword Mastery[/color] you will also gain [color=%positive%]10%[/color] bonus damage.
 
 • For other weapons classified as One Handed Swords, you can get a scaling percentage of these bonuses, starting from 25% and increasing gradually to 100% by 5% for each level with the maximum bonus gained at level 15.
 ";

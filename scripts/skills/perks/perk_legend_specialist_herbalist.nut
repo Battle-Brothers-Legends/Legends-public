@@ -2,8 +2,7 @@ this.perk_legend_specialist_herbalist <- this.inherit("scripts/skills/legend_spe
 	m = {
 		SpecialistWeaponIds = [
 			"weapon.sickle",
-			"weapon.goblin_notched_blade",
-			"weapon.legend_named_sickle"
+			"weapon.goblin_notched_blade"
 		],
 		ApplicableItemTypes = [
 			this.Const.Items.ItemType.OneHanded

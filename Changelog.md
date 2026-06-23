@@ -15,6 +15,12 @@
 - `legend_barbarian_marauder` -> `legend_barbarian_bloodletter`
 - `legend_bandit_veteran` -> deleted
 - `BanditVeteran` -> deleted
+- `legend_named_blacksmith_hammer` -> deleted
+- `legend_named_sickle` -> deleted
+- `legend_named_butchers_cleaver` -> deleted
+- `legend_named_estoc` -> deleted
+- `legend_estoc` -> deleted
+- `legend_named_sickle` -> deleted
 
 # 19.3.0 - Left & Right
 
