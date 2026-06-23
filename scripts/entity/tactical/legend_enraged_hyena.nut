@@ -47,7 +47,7 @@ this.legend_enraged_hyena <- this.inherit("scripts/entity/tactical/enemies/hyena
 			body.varyColor(0.05, 0.05, 0.05);
 		}
 
-		::Legends.Actives.grant(this, ::Legends.Active.LegendEnragedHyenaBite);
+		::Legends.Actives.grant(this, ::Legends.Active.LegendEnragedHyenaBite); // both this and hyena bite add damage and it ends up at 45-75 like white direwolf bite
 		::Legends.Perks.grant(this, ::Legends.Perk.Berserk);
 		::Legends.Perks.grant(this, ::Legends.Perk.FastAdaption);
 		::Legends.Perks.grant(this, ::Legends.Perk.Fearsome);
@@ -65,7 +65,7 @@ this.legend_enraged_hyena <- this.inherit("scripts/entity/tactical/enemies/hyena
 			::Legends.Perks.grant(this, ::Legends.Perk.CripplingStrikes);
 			::Legends.Perks.grant(this, ::Legends.Perk.KillingFrenzy);
 			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
-			if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= 100) {
+			if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= ::Const.World.Scaling.Beasts.LegendsHyenaEnragedDodgeDay) {
 				::Legends.Perks.grant(this, ::Legends.Perk.Dodge);
 			}
 		}
@@ -310,7 +310,7 @@ this.legend_enraged_hyena <- this.inherit("scripts/entity/tactical/enemies/hyena
 			}
 		}
 
-		actor.onDeath(_killer, _skill, _tile, _fatalityType);
+		this.actor.onDeath(_killer, _skill, _tile, _fatalityType);
 	}
 
 });

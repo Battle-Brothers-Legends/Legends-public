@@ -156,8 +156,6 @@ for (local i = -1; i < ::Const.EntityIcon.len(); i++) {
 	::Const.EntityType.addNew("hollenhound_orientation", "Höllenhund", "Höllenhunds", this.Const.FactionType.Undead);
 ::Const.EntityType.LegendVampireLord <-
 	::Const.EntityType.addNew("vampire_lord_orientation", "Necrosavant Lord", "Necrosavant Lords", this.Const.FactionType.Undead);
-::Const.EntityType.BanditVeteran <-
-	::Const.EntityType.addNew("banditveteran_orientation", "Bandit Veteran", "Bandit Veterans", this.Const.FactionType.Bandits);
 ::Const.EntityType.LegendRobberBaron <-
 	::Const.EntityType.addNew("banditwarlord_orientation", "Robber Baron", "Robber Barons", this.Const.FactionType.Bandits);
 ::Const.EntityType.LegendPeasantButcher <-
@@ -284,9 +282,9 @@ for (local i = -1; i < ::Const.EntityIcon.len(); i++) {
 	::Const.EntityType.addNew("goblin_plunderer_orientation", "Goblin Plunderer", "Goblin Plunderers", this.Const.FactionType.Goblins);
 ::Const.EntityType.LegendBarbarianPillager <-
 	::Const.EntityType.addNew("barbarian_pillager_orientation", "Barbarian Pillager", "Barbarian Pillagers", this.Const.FactionType.Barbarians);
-::Const.EntityType.LegendBarbarianMarauder <-
-	::Const.EntityType.addNew("barbarian_marauder_orientation", "Barbarian Marauder", "Barbarian Marauders", this.Const.FactionType.Barbarians);
+::Const.EntityType.LegendBarbarianBloodletter <-
+	::Const.EntityType.addNew("barbarian_marauder_orientation", "Barbarian Bloodletter", "Barbarian Bloodletters", this.Const.FactionType.Barbarians);
 ::Const.EntityType.LegendBarbarianRunechosen <-
 	::Const.EntityType.addNew("barbarian_runechosen_orientation", "Barbarian Runechosen", "Barbarian Runechosen", this.Const.FactionType.Barbarians);
 ::Const.EntityType.LegendWicht <-
-	::Const.EntityType.addNew("barbarian_runechosen_orientation", "Wicht", "Wichts", this.Const.FactionType.Undead);
+	::Const.EntityType.addNew("wicht_orientation", "Wicht", "Wichts", this.Const.FactionType.Undead);

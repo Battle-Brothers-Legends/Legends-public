@@ -3480,6 +3480,20 @@
 				}
 			];
 
+		case "world-screen.topbar.TimeVeryFastButton":
+			return [
+				{
+					id = 1,
+					type = "title",
+					text = "Very Fast Speed (3)"
+				},
+				{
+					id = 2,
+					type = "description",
+					text = "Set time to pass even faster than normal. Use judiciously."
+				}
+			];
+
 		case "world-screen.topbar.options-module.ActiveContractButton":
 			return [
 				{

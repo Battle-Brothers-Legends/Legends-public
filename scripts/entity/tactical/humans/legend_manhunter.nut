@@ -97,7 +97,7 @@ this.legend_manhunter <- this.inherit("scripts/entity/tactical/human", {
 			[1, ::Legends.Armor.Southern.southern_mail_shirt]
 		];
 
-		if (this.World.getTime().Days > 18)
+		if (this.World.getTime().Days > ::Const.World.Scaling.Nomads.LegendsManhunterBetterArmorDay)
 		{
 			armor.extend([
 				[1, ::Legends.Armor.Standard.mail_shirt],
@@ -114,7 +114,7 @@ this.legend_manhunter <- this.inherit("scripts/entity/tactical/human", {
 			[1, ::Legends.Helmet.Southern.spiked_skull_cap_with_mail]
 		];
 
-		if (this.World.getTime().Days <= 18)
+		if (this.World.getTime().Days <= ::Const.World.Scaling.Nomads.LegendsManhunterBetterArmorDay)
 		{
 			helmet.extend([
 				[1, ::Legends.Helmet.Southern.southern_head_wrap]

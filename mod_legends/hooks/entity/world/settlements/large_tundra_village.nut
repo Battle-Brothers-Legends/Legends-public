@@ -1,8 +1,6 @@
-::mods_hookExactClass("entity/world/settlements/large_tundra_village", function(o) 
-{
+::mods_hookExactClass("entity/world/settlements/large_tundra_village", function(o) {
 	local create = o.create;
-	o.create = function()
-	{
+	o.create = function() {
 		create();
 		this.m.DraftList = [
 			::Legends.Background.LegendShieldmaiden,
@@ -41,41 +39,32 @@
 			::Legends.Background.Sellsword,
 			::Legends.Background.Swordmaster,
 			::Legends.Background.Anatomist,
-			::Legends.Background.LegendInventor
+			::Legends.Background.LegendInventor,
+			"executioner_background"
 		];
 	}
 
-	o.onBuild = function ( )
-	{
+	o.onBuild = function() {
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/crowd_building"), 5);
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/marketplace_building"), 2);
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/temple_building"));
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/tavern_building"));
 
-		if (this.Const.DLC.Unhold && this.Const.World.Buildings.Taxidermists == 0)
-		{
+		if (this.Const.DLC.Unhold && this.Const.World.Buildings.Taxidermists == 0) {
 			this.addBuilding(this.new("scripts/entity/world/settlements/buildings/taxidermist_building"));
-		}
-		else if (this.Math.rand(1, 100) <= 75)
-		{
+		} else if (this.Math.rand(1, 100) <= 75) {
 			this.addBuilding(this.new("scripts/entity/world/settlements/buildings/blackmarket_building"));
-		}
-		else
-		{
+		} else {
 			this.addBuilding(this.new("scripts/entity/world/settlements/buildings/training_hall_building"));
 		}
 
-		if (this.Math.rand(1, 100) <= 50)
-		{
+		if (this.Math.rand(1, 100) <= 50) {
 			this.addBuilding(this.new("scripts/entity/world/settlements/buildings/armorsmith_building"));
-		}
-		else
-		{
+		} else {
 			this.addBuilding(this.new("scripts/entity/world/settlements/buildings/weaponsmith_building"));
 		}
 
-		if (this.Math.rand(1, 100) <= 70)
-		{
+		if (this.Math.rand(1, 100) <= 70) {
 			this.buildAttachedLocation(1, "scripts/entity/world/attached_location/trapper_location", [
 				this.Const.World.TerrainType.Plains,
 				this.Const.World.TerrainType.Hills,
@@ -88,9 +77,7 @@
 				this.Const.World.TerrainType.Plains,
 				this.Const.World.TerrainType.Tundra
 			], [], 1);
-		}
-		else
-		{
+		} else {
 			this.buildAttachedLocation(this.Math.rand(0, 1), "scripts/entity/world/attached_location/trapper_location", [
 				this.Const.World.TerrainType.Plains,
 				this.Const.World.TerrainType.Hills,
@@ -105,8 +92,7 @@
 			], [], 1);
 		}
 
-		if (this.Math.rand(1, 100) <= 70)
-		{
+		if (this.Math.rand(1, 100) <= 70) {
 			this.buildAttachedLocation(1, "scripts/entity/world/attached_location/pig_farm_location", [
 				this.Const.World.TerrainType.Plains,
 				this.Const.World.TerrainType.Hills,
@@ -124,9 +110,7 @@
 				this.Const.World.TerrainType.Hills,
 				this.Const.World.TerrainType.Tundra
 			], [], 1);
-		}
-		else
-		{
+		} else {
 			this.buildAttachedLocation(this.Math.rand(0, 1), "scripts/entity/world/attached_location/pig_farm_location", [
 				this.Const.World.TerrainType.Plains,
 				this.Const.World.TerrainType.Hills,
@@ -146,8 +130,7 @@
 			], [], 1, false, true);
 		}
 
-		if (this.Math.rand(1, 100) <= 40)
-		{
+		if (this.Math.rand(1, 100) <= 40) {
 			this.buildAttachedLocation(1, "scripts/entity/world/attached_location/wooden_watchtower_location", [
 				this.Const.World.TerrainType.Plains,
 				this.Const.World.TerrainType.Steppe,
@@ -158,9 +141,7 @@
 			this.buildAttachedLocation(this.Math.rand(0, 1), "scripts/entity/world/attached_location/militia_trainingcamp_location", [
 				this.Const.World.TerrainType.Tundra
 			], [], 1, true);
-		}
-		else
-		{
+		} else {
 			this.buildAttachedLocation(this.Math.rand(0, 1), "scripts/entity/world/attached_location/wooden_watchtower_location", [
 				this.Const.World.TerrainType.Plains,
 				this.Const.World.TerrainType.Steppe,

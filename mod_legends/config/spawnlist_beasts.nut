@@ -101,7 +101,7 @@
 				},
 				{
 					MinR = 400,
-					Type = this.Const.World.Spawn.Troops.BanditVeteran,
+					Type = this.Const.World.Spawn.Troops.BanditMarauder,
 					Cost = 30
 				},
 				{

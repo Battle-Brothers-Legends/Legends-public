@@ -22,7 +22,7 @@
 			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
 		}
 
-		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= 60)
+		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= this.Const.World.Scaling.Barbarians.ReaverRelentlessDay)
 		{
 			::Legends.Perks.grant(this, ::Legends.Perk.Relentless);
 		}

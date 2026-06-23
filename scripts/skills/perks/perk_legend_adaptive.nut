@@ -223,11 +223,11 @@ this.perk_legend_adaptive <- this.inherit("scripts/skills/skill", {
 			case _item.getID() == "weapon.player_banner":
 				return ::Const.Perks.InspirationalTree;
 	    //Shovel
-	        case _item.getID() == "weapon.legend_shovel" || _item.getID() == "weapon.legend_named_shovel":
+	        case _item.getID() == "weapon.legend_shovel":
 	            return ::Const.Perks.ShovelClassTree;
 
 	    //Sickle
-	        case _item.getID() == "weapon.sickle" || _item.getID() == "weapon.goblin_notched_blade" || _item.getID() == "weapon.legend_named_sickle":
+	        case _item.getID() == "weapon.sickle" || _item.getID() == "weapon.goblin_notched_blade":
 	            return ::Const.Perks.SickleClassTree;
 
 	    //Wood Axe
@@ -235,7 +235,7 @@ this.perk_legend_adaptive <- this.inherit("scripts/skills/skill", {
 	            return ::Const.Perks.WoodaxeClassTree;
 
 	    //Blacksmith
-	        case _item.getID() == "weapon.legend_hammer" || _item.getID() == "weapon.legend_named_blacksmith_hammer":
+	        case _item.getID() == "weapon.legend_hammer":
 	            return ::Const.Perks.HammerClassTree;
 
 	    //Pickaxe

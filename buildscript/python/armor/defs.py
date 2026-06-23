@@ -49,6 +49,7 @@ class Defs:
         {"name": "pauldrons_padding_fur", "min" : 1, "max" : 1, "layer": "attachment", "impactSound" : "leather", "invSound" : "cloth", "front_back": { "front" : [-56,4,-57,21], "front_dead" : [-2,50,-69,13], "back": [15,55,-54,16], "back_dead": [-58,-12,-48,26] }},
         {"name": "pauldrons_padding_light", "min" : 1, "max" : 5, "layer": "attachment", "impactSound" : "leather", "invSound" : "cloth"},
         {"name": "pauldrons_protective_runes", "min" : 1, "max" : 1, "layer": "attachment", "impactSound" : "leather", "invSound" : "leather"},
+        {"name": "pauldrons_rusted_mail_patch", "min" : 1, "max" : 1, "layer": "attachment", "impactSound" : "chain", "invSound" : "chain"},
         {"name": "pauldrons_shoulderplates_heraldic", "min" : 1, "max" : 5, "layer": "attachment", "impactSound" : "leather", "invSound" : "leather", "front_back": { "front" : [-47,-9,-39,3], "front_dead" : [2,44,-47,-5], "back": [23,49,-31,3], "back_dead": [-53,-31,-36,-2] }},
         {"name": "pauldrons_skull_chain", "min" : 1, "max" : 5, "layer": "attachment", "impactSound" : "chain", "invSound" : "chain"},
         {"name": "pauldrons_spiked_chain", "min" : 1, "max" : 4, "layer": "attachment", "impactSound" : "chain", "invSound" : "chain"},
@@ -303,6 +304,11 @@ class Defs:
  "desc" :  "Long and heavy chain mail that offers good protection, but is very fatiguing to wear.",
  "adesc" : "Includes a set of long and heavy chain mail."
 },
+{"name": "hauberk_full_rusted",                     "layer": "chain", "min": 1, "max": 1, "value" : 1750, "con" : 110, "stam" : -16, "impactSound" : "chain", "invSound" : "chain",
+ "title" :  "Rusty Full Hauberk",
+ "desc" :  "Long chain mail, eaten by rust and very heavy.",
+ "adesc" : "Includes a set of long, rusty and very heavy chain mail."
+},
 {"name": "hauberk_full_named",               "layer": "chain", "min": 1, "max": 5, "value" : 5000, "con" : 120, "stam" : -15, "impactSound" : "chain", "invSound" : "chain",
  "title" :  "",
  "desc" :  "Truly fit for a knight, this mail hauberk is made from the highest quality materials and boasts precious decorations and ornaments.",
@@ -437,6 +443,11 @@ class Defs:
  "desc" :  "A well-crafted, studded leather jacket with reinforced padding. Light to wear, but very sturdy.",
  "adesc" : "Includes a well-crafted studded leather jacket.",
  "named" : { "con": { "min" : 35, "max" : 45 }, "fat": { "min" : 2, "max" : 1 }, "names" : ["Leather Cuirass", "Leather Armor", "Skin", "Peel", "Guard", "Coat", "Nightcloak", "Black Leather", "Dark Omen", "Toadskin", "Ogreskin"]  }
+},
+{"name": "leather_tunic_bloodstained",                   "layer": "plate", "min": 1, "max": 1, "value" : 20, "con" : 20, "stam" : -2, "impactSound" : "leather", "invSound" : "leather",
+ "title" :  "Bloodstained Tunic",
+ "desc" :  "A leather tunic caked and crusted with dried remnants of past executions.",
+ "adesc" : "Includes a bloodstained leather tunic."
 },
 {"name": "apron_undertakers",                                  "layer": "plate", "min": 1, "max": 10, "value" : 60, "con" : 35, "stam" : -4, "impactSound" : "leather", "invSound" : "leather",
  "title" :  "Undertaker's Apron",
@@ -798,6 +809,11 @@ class Defs:
  "title" :  "Simple Cloak",
  "desc" :  "A rustic cloak of strong, warm wool that provides protection from the weather if nothing else.",
  "adesc" : "Includes a rustic wool cloak."
+},
+{"name": "cloak_cowl_ragged",           "layer": "cloak", "min": 1, "max": 4, "value" : 20, "con" : 10, "stam" : -1, "bravery" : 0, "impactSound" : "leather", "invSound" : "cloth",
+ "title" :  "Ragged Cowl",
+ "desc" :  "A ragged cowl weathered by the elements throughout the years.",
+ "adesc" : "Includes a ragged cowl."
 },
 {"name": "cloak_heavy",           "layer": "cloak", "min": 1, "max": 17, "value" : 500, "con" : 30, "stam" : -4, "bravery" : 2, "impactSound" : "leather", "invSound" : "cloth",
  "title" :  "Heavy Cloak",

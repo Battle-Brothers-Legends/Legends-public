@@ -1,8 +1,6 @@
-::mods_hookExactClass("entity/world/settlements/medium_farm_fort", function(o) 
-{
+::mods_hookExactClass("entity/world/settlements/medium_farm_fort", function(o) {
 	local create = o.create;
-	o.create = function()
-	{
+	o.create = function() {
 		create();
 		this.m.DraftList = [
 			::Legends.Background.Gambler,
@@ -45,7 +43,8 @@
 			::Legends.Background.Sellsword,
 			::Legends.Background.Squire,
 			::Legends.Background.Squire,
-			::Legends.Background.Cripple
+			::Legends.Background.Cripple,
+			"executioner_background"
 		];
 		this.m.StablesList = [
 			::Legends.Background.LegendDonkey,
@@ -54,33 +53,24 @@
 		];
 	}
 
-	o.onBuild = function ( )
-	{
+	o.onBuild = function() {
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/crowd_building"), 5);
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/marketplace_building"), 2);
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/armorsmith_building"));
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/weaponsmith_building"));
 		local r = this.Math.rand(1, 4);
 
-		if (r == 1 || this.Const.World.Buildings.Kennels == 0)
-		{
+		if (r == 1 || this.Const.World.Buildings.Kennels == 0) {
 			this.addBuilding(this.new("scripts/entity/world/settlements/buildings/kennel_building"));
-		}
-		else if (r == 2 || this.Const.World.Buildings.Stables == 0)
-		{
+		} else if (r == 2 || this.Const.World.Buildings.Stables == 0) {
 			this.addBuilding(this.new("scripts/entity/world/settlements/buildings/stables_building"));
-		}
-		else if (r == 3)
-		{
+		} else if (r == 3) {
 			this.addBuilding(this.new("scripts/entity/world/settlements/buildings/temple_building"));
-		}
-		else if (r == 4)
-		{
+		} else if (r == 4) {
 			this.addBuilding(this.new("scripts/entity/world/settlements/buildings/tavern_building"));
 		}
 
-		if (this.Math.rand(1, 100) <= 40)
-		{
+		if (this.Math.rand(1, 100) <= 40) {
 			this.buildAttachedLocation(1, "scripts/entity/world/attached_location/stone_watchtower_location", [
 				this.Const.World.TerrainType.Plains,
 				this.Const.World.TerrainType.Steppe,
@@ -92,9 +82,7 @@
 				this.Const.World.TerrainType.Tundra,
 				this.Const.World.TerrainType.Hills
 			], [], 2, true);
-		}
-		else
-		{
+		} else {
 			this.buildAttachedLocation(this.Math.rand(0, 1), "scripts/entity/world/attached_location/stone_watchtower_location", [
 				this.Const.World.TerrainType.Plains,
 				this.Const.World.TerrainType.Steppe,
@@ -108,8 +96,7 @@
 			], [], 2, true);
 		}
 
-		if (this.Math.rand(1, 100) <= 60)
-		{
+		if (this.Math.rand(1, 100) <= 60) {
 			this.buildAttachedLocation(1, "scripts/entity/world/attached_location/wheat_fields_location", [
 				this.Const.World.TerrainType.Plains
 			], [
@@ -120,9 +107,7 @@
 			], [
 				this.Const.World.TerrainType.Plains
 			], 1);
-		}
-		else
-		{
+		} else {
 			this.buildAttachedLocation(this.Math.rand(0, 1), "scripts/entity/world/attached_location/wheat_fields_location", [
 				this.Const.World.TerrainType.Plains
 			], [

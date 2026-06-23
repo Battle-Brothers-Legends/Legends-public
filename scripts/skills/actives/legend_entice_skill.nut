@@ -1,7 +1,6 @@
 this.legend_entice_skill <- this.inherit("scripts/skills/skill", {
 	m = {},
-	function create()
-	{
+	function create() {
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendEntice);
 		this.m.Description = "With a trick of the light, captivate your target in such a way that they can\'t help but approach you.";
 		this.m.Icon = "skills/entice.png";
@@ -33,8 +32,7 @@ this.legend_entice_skill <- this.inherit("scripts/skills/skill", {
 		this.m.MaxRange = 9;
 	}
 
-	function getTooltip()
-	{
+	function getTooltip() {
 		local ret = this.getDefaultUtilityTooltip();
 		ret.push({
 			id = 7,
@@ -57,33 +55,27 @@ this.legend_entice_skill <- this.inherit("scripts/skills/skill", {
 		return ret;
 	}
 
-	function findTileToKnockBackTo( _userTile, _targetTile )
-	{
+	function findTileToKnockBackTo(_userTile, _targetTile) {
 		return this.getPulledToTile(_userTile, _targetTile);
 	}
 
-	function getPulledToTile( _userTile, _targetTile )
-	{
+	function getPulledToTile(_userTile, _targetTile) {
 		local dir = _targetTile.getDirectionTo(_userTile);
 
-		if (_targetTile.hasNextTile(dir))
-		{
+		if (_targetTile.hasNextTile(dir)) {
 			local tile = _targetTile.getNextTile(dir);
 
-			if (tile.Level <= _userTile.Level && tile.IsEmpty)
-			{
+			if (tile.Level <= _userTile.Level && tile.IsEmpty) {
 				return tile;
 			}
 		}
 
 		dir = dir - 1 >= 0 ? dir - 1 : 5;
 
-		if (_targetTile.hasNextTile(dir))
-		{
+		if (_targetTile.hasNextTile(dir)) {
 			local tile = _targetTile.getNextTile(dir);
 
-			if (tile.getDistanceTo(_userTile) == 1 && tile.Level <= _userTile.Level && tile.IsEmpty)
-			{
+			if (tile.getDistanceTo(_userTile) == 1 && tile.Level <= _userTile.Level && tile.IsEmpty) {
 				return tile;
 			}
 		}
@@ -91,12 +83,10 @@ this.legend_entice_skill <- this.inherit("scripts/skills/skill", {
 		dir = _targetTile.getDirectionTo(_userTile);
 		dir = dir + 1 <= 5 ? dir + 1 : 0;
 
-		if (_targetTile.hasNextTile(dir))
-		{
+		if (_targetTile.hasNextTile(dir)) {
 			local tile = _targetTile.getNextTile(dir);
 
-			if (tile.getDistanceTo(_userTile) == 1 && tile.Level <= _userTile.Level && tile.IsEmpty)
-			{
+			if (tile.getDistanceTo(_userTile) == 1 && tile.Level <= _userTile.Level && tile.IsEmpty) {
 				return tile;
 			}
 		}
@@ -104,105 +94,67 @@ this.legend_entice_skill <- this.inherit("scripts/skills/skill", {
 		return null;
 	}
 
-	function onAfterUpdate( _properties )
-	{
+	function onAfterUpdate(_properties) {
 		this.m.FatigueCostMult = _properties.IsSpecializedInMusic ? this.Const.Combat.WeaponSpecFatigueMult : 1.0;
 		this.m.ActionPointCost = _properties.IsSpecializedInMusic ? 5 : 6;
 	}
 
-	function onVerifyTarget( _originTile, _targetTile )
-	{
-		if (!this.skill.onVerifyTarget(_originTile, _targetTile))
-		{
+	function onVerifyTarget(_originTile, _targetTile) {
+		if (!this.skill.onVerifyTarget(_originTile, _targetTile)) {
 			return false;
 		}
 
-		if (_targetTile.getEntity().getCurrentProperties().IsRooted)
-		{
+		if (_targetTile.getEntity().getCurrentProperties().IsRooted) {
 			return false;
 		}
 
 		local pulledTo = this.getPulledToTile(_originTile, _targetTile);
 
-		if (pulledTo == null)
-		{
+		if (pulledTo == null) {
 			return false;
 		}
 
 		return true;
 	}
 
-	function onUse( _user, _targetTile )
-	{
+	function onUse(_user, _targetTile) {
 		local target = _targetTile.getEntity();
 
-		if (this.Math.rand(1, 100) > _user.getBravery())
-		{
+		if (this.Math.rand(1, 100) > _user.getBravery()) {
 			return false;
 		}
 
 		local pullToTile = this.getPulledToTile(_user.getTile(), _targetTile);
 
-		if (pullToTile == null)
-		{
+		if (pullToTile == null) {
 			return false;
 		}
 
-		if (target.getCurrentProperties().IsImmuneToKnockBackAndGrab)
-		{
+		if (target.getCurrentProperties().IsImmuneToKnockBackAndGrab) {
 			return false;
 		}
 
-		if (!_user.isHiddenToPlayer() && pullToTile.IsVisibleForPlayer)
-		{
+		if (!_user.isHiddenToPlayer() && pullToTile.IsVisibleForPlayer) {
 			this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(_user) + " hooks in " + this.Const.UI.getColorizedEntityName(target));
 		}
 
 		::Legends.Effects.grant(target, ::Legends.Effect.Staggered);
 
-		if (!_user.isHiddenToPlayer() && _targetTile.IsVisibleForPlayer)
-		{
+		if (!_user.isHiddenToPlayer() && _targetTile.IsVisibleForPlayer) {
 			this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(_user) + " has staggered " + this.Const.UI.getColorizedEntityName(target) + " for one turn");
 		}
 
-		target.setCurrentMovementType(this.Const.Tactical.MovementType.Involuntary);
-		local damage = this.Math.max(0, this.Math.abs(pullToTile.Level - _targetTile.Level) - 1) * this.Const.Combat.FallingDamage;
-
-		if (damage == 0)
-		{
-			this.Tactical.getNavigator().teleport(target, pullToTile, null, null, true);
-		}
-		else
-		{
-			local tag = {
-				Attacker = _user,
-				Skill = this,
-				HitInfo = clone this.Const.Tactical.HitInfo
-			};
-			tag.HitInfo.DamageRegular = damage;
-			tag.HitInfo.DamageFatigue = this.Const.Combat.FatigueReceivedPerHit;
-			tag.HitInfo.DamageDirect = 1.0;
-			tag.HitInfo.BodyPart = this.Const.BodyPart.Body;
-			this.Tactical.getNavigator().teleport(target, pullToTile, this.onPulledDown, tag, true);
-		}
+		this.Tactical.State.handleInvoluntaryMovement(target, _user, _targetTile, pullToTile, this, null, null);
 
 		return true;
 	}
-	function isUsable()
-	{
+	function isUsable() {
 		return !this.Tactical.isActive() || this.skill.isUsable() && !this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions());
 	}
-	function onAnySkillUsed( _skill, _targetEntity, _properties )
-	{
-		if (_skill == this)
-		{
+	function onAnySkillUsed(_skill, _targetEntity, _properties) {
+		if (_skill == this) {
 			_properties.RangedSkill += 10;
 		}
-	}
-
-	function onPulledDown( _entity, _tag )
-	{
-		_entity.onDamageReceived(_tag.Attacker, _tag.Skill, _tag.HitInfo);
 	}
 
 });

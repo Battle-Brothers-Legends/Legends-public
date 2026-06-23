@@ -18,16 +18,16 @@
 		switch (this.World.Assets.getCombatDifficulty())
 		{
 			case this.Const.Difficulty.Easy:
-				dateToSkip = 400;
+				dateToSkip = ::Const.World.Scaling.LegendaryLocations.GoblinCity.Easy;
 				break;
 			case this.Const.Difficulty.Normal:
-				dateToSkip = 300;
+				dateToSkip = ::Const.World.Scaling.LegendaryLocations.GoblinCity.Normal;
 				break;
 			case this.Const.Difficulty.Hard:
-				dateToSkip = 200;
+				dateToSkip = ::Const.World.Scaling.LegendaryLocations.GoblinCity.Hard;
 				break;
 			case this.Const.Difficulty.Legendary:
-				dateToSkip = 100;
+				dateToSkip = ::Const.World.Scaling.LegendaryLocations.GoblinCity.Legendary;
 				break;
 		}
 

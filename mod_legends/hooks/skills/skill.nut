@@ -540,7 +540,10 @@
 				::Legends.Actives.getID(::Legends.Active.Impale),
 				::Legends.Actives.getID(::Legends.Active.Rupture),
 				::Legends.Actives.getID(::Legends.Active.Prong),
-				::Legends.Actives.getID(::Legends.Active.Lunge)
+				::Legends.Actives.getID(::Legends.Active.Lunge),
+				::Legends.Actives.getID(::Legends.Active.EstocStab),
+				::Legends.Actives.getID(::Legends.Active.Perforate),
+				::Legends.Actives.getID(::Legends.Active.Skewer)
 			))
 			{
 				ret.push({
@@ -1323,8 +1326,8 @@
 
 		if (this.m.IsRanged && !_allowDiversion && this.m.IsShowingProjectile)
 		{
-			toHit = toHit - 15;
-			properties.DamageTotalMult *= 0.75;
+			toHit = toHit + properties.HitChanceOnDiversion;
+			properties.DamageTotalMult *= properties.DamageTotalOnDiversionMult;
 		}
 
 		if (defense > -100 && skill > -100)

@@ -1,4 +1,4 @@
-# 19.4.0 - Name Pending
+# 19.5.0 - Name Pending
 
 ## Noble House Changes
 - introduced 40 new traits into the noble house trait system
@@ -146,6 +146,45 @@
 - legend_mage_background and legend_mage_commander_mage removed
 - human gender now randomized using randomizeHumanGender (separately on bgs and humans), which respects the new mod setting
 - enemy gender now randomized using randomizeEnemyGender, which respects the new mod setting
+
+
+# 19.4.0 - Vanilla update
+
+# Skills
+- `Skewer` renamed to `Run Through`
+
+# Enemies
+- `Barbarian Marauder` renamed to `Barbarian Bloodletter`
+- `Bandit Veteran` -> renamed to `Bandit Marauder` as per vanilla changes and added to spawnlists
+> the entity has been reworked to include the new vanilla armors
+
+# For modders
+- `LegendSkewer` -> `LegendRunThrough`
+- `legend_skewer_skill` -> `legend_run_through_skill`
+- `LegendBarbarianMarauder` -> `LegendBarbarianBloodletter`
+- `legend_barbarian_marauder` -> `legend_barbarian_bloodletter`
+- `legend_bandit_veteran` -> deleted
+- `BanditVeteran` -> deleted
+- `legend_named_blacksmith_hammer` -> deleted
+- `legend_named_sickle` -> deleted
+- `legend_named_butchers_cleaver` -> deleted
+- `legend_named_estoc` -> deleted
+- `legend_estoc` -> deleted
+- `legend_named_sickle` -> deleted
+
+## Enemies
+
+### Dodge on Enemies
+- `Dodge` now doesn't scale with hitpoints on enemies so the overall values will be reduced
+
+### Greenskins
+- `Rage` - now applied to all orcs with reduced effects
+> gain 1 stack when they get hit and when hitting a target, gain 2 stacks when killing someone
+> Berserkers gain 3 stacks when hit and hitting a target, 5 stacks when killing someone
+> stacks are capped at 50
+- `Warcry` - each warcry now applies 5 stacks of rage
+- `Orc Berserker` - Base HP dropped to 200, gain `Colossus` and 10% damage that they had in vanilla, gain `Nimble` on Legendary Difficulty
+- `Orc Mad Berserker` - lose `Nudist`, gain 10% damage, gain the ability to use `Adrenaline`
 
 # 19.3.0 - Left & Right
 

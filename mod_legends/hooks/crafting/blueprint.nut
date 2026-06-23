@@ -48,7 +48,7 @@
 							id = 2,
 							type = "description",
 							text = "Requires a " + tooltip[0].text.slice(tooltip[0].text.find("Background:") + 12) + " to craft."
-						})
+						});
 					return tooltip;
 				}
 			}

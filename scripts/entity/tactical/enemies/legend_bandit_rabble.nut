@@ -53,7 +53,7 @@ this.legend_bandit_rabble <- this.inherit("scripts/entity/tactical/legend_random
 			this.getSprite("eye_rings").Visible = true;
 		}
 
-		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= 40)
+		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= ::Const.World.Scaling.Brigands.LegendsRabbleDefIncreaseDay)
 		{
 			b.MeleeDefense += 5;
 		}
@@ -80,13 +80,5 @@ this.legend_bandit_rabble <- this.inherit("scripts/entity/tactical/legend_random
 	{
 		if (!this.actor.makeMiniboss())
 			return false;
-
-		this.getItems().unequip(this.getItems().getItemAtSlot(this.Const.ItemSlot.Mainhand));
-		this.getItems().equip(::Const.World.Common.pickItem([
-			[1, "weapons/named/legend_named_blacksmith_hammer"],
-			[1, "weapons/named/legend_named_butchers_cleaver"],
-			[1, "weapons/named/legend_named_shovel"],
-			[1, "weapons/named/legend_named_sickle"],
-		], "scripts/items/"));
 	}
 });

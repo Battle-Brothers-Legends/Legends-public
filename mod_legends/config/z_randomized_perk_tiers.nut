@@ -739,11 +739,11 @@
 
     switch(true) {
     //Shovel
-        case _item.getID() == "weapon.legend_shovel" || _item.getID() == "weapon.legend_named_shovel":
+        case _item.getID() == "weapon.legend_shovel":
             return ::Const.Perks.ShovelClassTree;
 
     //Sickle
-        case _item.getID() == "weapon.sickle" || _item.getID() == "weapon.goblin_notched_blade" || _item.getID() == "weapon.legend_named_sickle":
+        case _item.getID() == "weapon.sickle" || _item.getID() == "weapon.goblin_notched_blade":
             return ::Const.Perks.SickleClassTree;
 
     //Wood Axe
@@ -751,7 +751,7 @@
             return ::Const.Perks.WoodaxeClassTree;
 
     //Blacksmith
-        case _item.getID() == "weapon.legend_hammer" || _item.getID() == "weapon.legend_named_blacksmith_hammer":
+        case _item.getID() == "weapon.legend_hammer":
             return ::Const.Perks.HammerClassTree;
 
     //Pickaxe
@@ -759,7 +759,7 @@
             return ::Const.Perks.PickaxeClassTree;
 
     //Butcher
-        case _item.getID() == "weapon.butchers_cleaver" || _item.getID() == "weapon.legend_named_butchers_cleaver":
+        case _item.getID() == "weapon.butchers_cleaver":
             return ::Const.Perks.ButcherClassTree;
 
     //Ninetails

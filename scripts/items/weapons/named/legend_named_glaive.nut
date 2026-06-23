@@ -49,7 +49,7 @@ this.legend_named_glaive <- this.inherit("scripts/items/weapons/named/named_weap
 			_skill.m.InjuriesOnHead = this.Const.Injury.CuttingAndPiercingHead;
 			_skill.m.IsIgnoredAsAOO = true;
 		}.bindenv(this));
-		::Legends.Actives.grant(this, ::Legends.Active.LegendSkewer);
+		::Legends.Actives.grant(this, ::Legends.Active.LegendRunThrough);
 	}
 });
 

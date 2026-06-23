@@ -3260,3 +3260,83 @@
 };
 ::Const.LegendMod.HelmObjs.push(::Legends.Helmet.Standard.fault_finder_mask_02);
 
+::Legends.Helmet.Standard.marauder_helmet_with_rusty_mail <- {
+	ID = "marauder_helmet_with_rusty_mail", // 190 -11 -2 1225
+	Script = "",
+	Sets = [{
+		Hoods = [
+			[31, "hood/legend_helmet_open_chain_hood"] // 65 -3 -0 225
+		],
+		Helms = [
+			[1, "helm/legend_helmet_nordic_helm"] // 125 -8 -2 1000
+		],
+		Tops = [
+			[1, ""]
+		],
+		Vanity = [
+			[1, ""]
+		],
+	}]
+};
+::Const.LegendMod.HelmObjs.push(::Legends.Helmet.Standard.marauder_helmet_with_rusty_mail);
+
+::Legends.Helmet.Standard.marauder_helmet_with_rusty_mail_cloth <- {
+	ID = "marauder_helmet_with_rusty_mail_cloth", // 205 -11 -3 1225
+	Script = "",
+	Sets = [{
+		Hoods = [
+			[1, "hood/legend_helmet_chain_hood_masked"] // 80 -3 -1 225
+		],
+		Helms = [
+			[1, "helm/legend_helmet_nordic_helm"] // 125 -8 -2 1000
+		],
+		Tops = [
+			[1, ""]
+		],
+		Vanity = [
+			[1, ""]
+		],
+	}]
+};
+::Const.LegendMod.HelmObjs.push(::Legends.Helmet.Standard.marauder_helmet_with_rusty_mail_cloth);
+
+::Legends.Helmet.Standard.marauder_helmet_with_closed_mail <- { // we kinda have this already as nordic_helmet_with_closed_mail
+	ID = "marauder_helmet_with_closed_mail", // 220 -12 -2 2150
+	Script = "",
+	Sets = [{
+		Hoods = [
+			[1, "hood/legend_helmet_chain_hood_full"], // 80 -4 -0 400
+		],
+		Helms = [
+			[1, "helm/legend_helmet_nordic_helm_high"] // 135 -8 -2 1750
+		],
+		Tops = [
+			[1, ""]
+		],
+		Vanity = [
+			[1, "vanity/legend_helmet_headband"], // 5 -0 -0 20
+			[1, ""]
+		],
+	}]
+};
+::Const.LegendMod.HelmObjs.push(::Legends.Helmet.Standard.marauder_helmet_with_closed_mail);
+
+::Legends.Helmet.Standard.executioner_hood <- {
+	ID = "executioner_hood", // 40 -2 -1 140
+	Script = "",
+	Sets = [{
+		Hoods = [
+			[1, "hood/legend_helmet_cloth_bandana"], // 15 -0 -0 20
+		],
+		Helms = [
+			[1, ""]
+		],
+		Tops = [
+			[1, "hood/legend_helmet_executioner_hood_full"] // 25 -2 -1 120
+		],
+		Vanity = [
+			[1, ""]
+		],
+	}]
+};
+::Const.LegendMod.HelmObjs.push(::Legends.Helmet.Standard.executioner_hood);

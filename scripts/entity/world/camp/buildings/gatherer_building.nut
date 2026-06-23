@@ -220,7 +220,7 @@ this.gatherer_building <- this.inherit("scripts/entity/world/camp/camp_building"
         		{ script = "scripts/items/trade/legend_raw_wood_item", chance = levels.Woodsman <= 10 ? 0 : 5 },
         		{ script = "scripts/items/trade/quality_wood_item", chance = levels.Woodsman <= 10 ? 0 : 1 },
 				{ script = null, chance = 4 }
-    		]
+    		];
 			if (gatherItem(-500.0 / (levels.Woodsman + 60) + 10, lootTable)) {
 				return this.getUpdateText()
 			}
@@ -228,7 +228,7 @@ this.gatherer_building <- this.inherit("scripts/entity/world/camp/camp_building"
 			lootTable = [
 				{ script = "scripts/items/trade/legend_raw_wood_item", chance = 1 },
 				{ script = null, chance = levels.Woodsman > 5 ? 0 : 2 }
-			]
+			];
 			if (gatherItem(-300.0 / (levels.Woodsman + 60) + 10, lootTable)) {
 				return this.getUpdateText()
 			}
@@ -240,7 +240,7 @@ this.gatherer_building <- this.inherit("scripts/entity/world/camp/camp_building"
 				{ script = "scripts/items/trade/uncut_gems_item", chance = levels.Miner <= 10 ? 0 : 1 },
 				{ script = "scripts/items/trade/salt_item", chance = 1 },
 				{ script = null, chance = levels.Miner <= 10 ? 0 : 5 }
-			]
+			];
 			if (gatherItem(-500.0 / (levels.Miner + 60) + 10, lootTable)) {
 				return this.getUpdateText()
 			}
@@ -291,7 +291,7 @@ this.gatherer_building <- this.inherit("scripts/entity/world/camp/camp_building"
                     }
                 }
             }
-			
+
 			if (gatherItem(-600.0 / (levels.Apothecary + levels.Brewer + 60) + 10, lootTable)) {
 				return this.getUpdateText();
 			}

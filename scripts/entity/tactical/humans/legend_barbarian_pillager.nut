@@ -81,7 +81,7 @@ this.legend_barbarian_pillager <- this.inherit("scripts/entity/tactical/human", 
 			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
 		}
 
-		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= 60)
+		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= ::Const.World.Scaling.Barbarians.LegendsMarauderPillagerNewPerksDay)
 		{
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendPointBlank);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendOnslaught);

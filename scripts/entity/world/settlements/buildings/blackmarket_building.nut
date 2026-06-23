@@ -2,13 +2,11 @@ this.blackmarket_building <- this.inherit("scripts/entity/world/settlements/buil
 	m = {
 		Stash = null
 	},
-	function getStash()
-	{
+	function getStash() {
 		return this.m.Stash;
 	}
 
-	function create()
-	{
+	function create() {
 		this.building.create();
 		this.m.ID = "building.blackmarket";
 		this.m.Name = ::MSU.Array.rand([
@@ -209,8 +207,8 @@ this.blackmarket_building <- this.inherit("scripts/entity/world/settlements/buil
 				Pitch = 1.0
 			}
 		];
-		this.m.SoundsAtNight = [ //change these sounds at some point
-			{
+		this.m.SoundsAtNight = [//change these sounds at some point
+				{
 				File = "ambience/blackmarket/blackmarket_01.ogg",
 				Volume = 0.2,
 				Pitch = 1.0
@@ -363,411 +361,137 @@ this.blackmarket_building <- this.inherit("scripts/entity/world/settlements/buil
 		];
 	}
 
-	function onClicked( _townScreen )
-	{
+	function onClicked(_townScreen) {
 		_townScreen.getShopDialogModule().setShop(this);
 		_townScreen.showShopDialog();
 		this.pushUIMenuStack();
 	}
 
-	function onSettlementEntered()
-	{
-		foreach( item in this.m.Stash.getItems() )
-		{
-			if (item != null)
-			{
+	function onSettlementEntered() {
+		foreach (item in this.m.Stash.getItems()) {
+			if (item != null) {
 				item.setSold(false);
 				item.setTransactionPrice(null);
 			}
 		}
 	}
 
-	function onUpdateShopList() //R = rarity (higher = more rare out of 1-99%) || P = price modifier (1.0 = normal price) || S = script of the item that will appear
-	{
-		local list = [
-			{
-				R = 50,
-				P = 1.5,
-				S = "loot/white_pearls_item"
-			},
-			{
-				R = 50,
-				P = 1.0,
-				S = "loot/gemstones_item"
-			},
-			{
-				R = 70,
-				P = 6.0,
-				S = "misc/legend_skin_ghoul_skin_item"
-			},
-			{
-				R = 70,
-				P = 6.0,
-				S = "misc/potion_of_oblivion_item"
-			},
-			{
-				R = 90,
-				P = 6.0,
-				S = "misc/legend_demon_third_eye_item"
-			},
-			{
-				R = 99,
-				P = 15.0,
-				S = "misc/legend_ancient_scroll_item"
-			},
-			{
-				R = 50,
-				P = 6.0,
-				S = "misc/legend_banshee_essence_item"
-			},
-			{
-				R = 90,
-				P = 6.0,
-				S = "misc/legend_demon_alp_skin_item"
-			},
-			{
-				R = 30,
-				P = 5.0,
-				S = "misc/legend_mistletoe_item"
-			},
-			{
-				R = 95,
-				P = 6.0,
-				S = "misc/legend_redback_poison_gland_item"
-			},
-			{
-				R = 50,
-				P = 6.0,
-				S = "misc/legend_demon_hound_bones_item"
-			},
-			{
-				R = 99,
-				P = 6.0,
-				S = "misc/legend_rock_unhold_bones_item"
-			},
-			{
-				R = 99,
-				P = 6.0,
-				S = "misc/legend_rock_unhold_hide_item"
-			},
-				{
-				R = 99,
-				P = 10.0,
-				S = "misc/legend_stollwurm_blood_item"
-			},
-			{
-				R = 99,
-				P = 10.0,
-				S = "misc/legend_stollwurm_scales_item"
-			},
-			{
-				R = 75,
-				P = 8.0,
-				S = "misc/legend_white_wolf_pelt_item"
-			},
-			{
-				R = 40,
-				P = 4.0,
-				S = "misc/lindwurm_blood_item"
-			},
-			{
-				R = 40,
-				P = 4.0,
-				S = "misc/witch_hair_item"
-			},
-			{
-				R = 35,
-				P = 4.0,
-				S = "misc/lindwurm_bones_item"
-			},
-			{
-				R = 25,
-				P = 4.0,
-				S = "misc/lindwurm_scales_item"
-			},
-			{
-				R = 15,
-				P = 3.0,
-				S = "misc/miracle_drug_item"
-			},
-			{
-				R = 20,
-				P = 4.0,
-				S = "misc/petrified_scream_item"
-			},
-			{
-				R = 10,
-				P = 4.0,
-				S = "misc/poison_gland_item"
-			},
-			{
-				R = 10,
-				P = 2.0,
-				S = "misc/snake_oil_item"
-			},
-			{
-				R = 35,
-				P = 4.0,
-				S = "misc/poisoned_apple_item"
-			},
-			{
-				R = 70,
-				P = 2.0,
-				S = "supplies/fermented_unhold_heart_item"
-			},
-			{
-				R = 10,
-				P = 2.0,
-				S = "supplies/strange_meat_item"
-			},
-			{
-				R = 99,
-				P = 20.0,
-				S = "special/spiritual_reward_item"
-			},
-			{
-				R = 99,
-				P = 20.0,
-				S = "special/bodily_reward_item"
-			},
-			{
-				R = 90,
-				P = 20.0,
-				S = "legend_armor/runes/legend_rune_safety"
-			},
-			{
-				R = 90,
-				P = 20.0,
-				S = "legend_armor/runes/legend_rune_endurance"
-			},
-			{
-				R = 90,
-				P = 20.0,
-				S = "legend_helmets/runes/legend_rune_luck"
-			},
-			{
-				R = 90,
-				P = 20.0,
-				S = "legend_helmets/runes/legend_rune_bravery"
-			},
-			{
-				R = 90,
-				P = 20.0,
-				S = "legend_helmets/runes/legend_rune_clarity"
-			},
-			{
-				R = 30,
-				P = 3.0,
-				S = "legend_armor/cloak/legend_armor_animal_pelt"
-			},
-			{
-				R = 60,
-				P = 5.0,
-				S = "legend_armor/cloak/legend_armor_cloak_fur"
-			},
-			{
-				R = 70,
-				P = 3.0,
-				S = "helmets/oriental/engineer_hat"
-			},
-			{
-				R = 80,
-				P = 5.0,
-				S = "legend_armor/cloak/legend_armor_cloak_cursed"
-			},
-			{
-				R = 80,
-				P = 3.0,
-				S = "legend_helmets/vanity/legend_helmet_warlock_hood"
-			},
-			{
-				R = 80,
-				P = 3.0,
-				S = "legend_helmets/vanity/legend_helmet_wizard_cowl"
-			},
-			{
-				R = 70,
-				P = 3.0,
-				S = "legend_helmets/vanity/legend_helmet_physicians_hood"
-			},
-			{
-				R = 70,
-				P = 3.0,
-				S = "legend_helmets/vanity/legend_helmet_undertakers_hat"
-			},
-			{
-				R = 60,
-				P = 3.0,
-				S = "legend_helmets/vanity/legend_helmet_impaled_head"
-			},
-			{
-				R = 60,
-				P = 3.0,
-				S = "legend_helmets/vanity/legend_helmet_impaled_head"
-			},
-			{
-				R = 60,
-				P = 3.0,
-				S = "legend_helmets/vanity/legend_helmet_beret"
-			},
-			{
-				R = 60,
-				P = 2.0,
-				S = "legend_helmets/vanity/legend_helmet_sack"
-			},
-			{
-				R = 60,
-				P = 3.0,
-				S = "legend_helmets/top/legend_helmet_cult_hood"
-			},
-			{
-				R = 80,
-				P = 3.0,
-				S = "legend_helmets/top/legend_helmet_mask_beak"
-			},
-			{
-				R = 50,
-				P = 3.0,
-				S = "legend_helmets/vanity/legend_helmet_crown"
-			},
-			{
-				R = 60,
-				P = 3.0,
-				S = "legend_helmets/vanity/legend_helmet_antler"
-			},
-			{
-				R = 30,
-				P = 1.0,
-				S = "weapons/lute"
-			},
-			{
-				R = 30,
-				P = 2.0,
-				S = "weapons/legend_drum"
-			},
-			{
-				R = 30,
-				P = 5.0,
-				S = "misc/happy_powder_item"
-			},
-			{
-				R = 45,
-				P = 2.0,
-				S = "weapons/legend_staff_vala"
-			},
-			{
-				R = 70,
-				P = 2.0,
-				S = "legend_armor/cloth/legend_armor_robes_wizard"
-			},
-			{
-				R = 70,
-				P = 2.0,
-				S = "legend_armor/cloth/legend_armor_robes_magic"
-			},
-			{
-				R = 70,
-				P = 3.0,
-				S = "weapons/legend_mystic_staff"
-			},
-			{
-				R = 95,
-				P = 3.0,
-				S = "weapons/legend_hand_crossbow"
-			},
-			{
-				R = 95,
-				P = 3.0,
-				S = "weapons/legend_crusader_sword"
-			},
-			{
-				R = 80,
-				P = 2.0,
-				S = "shields/ancient/legend_mummy_tower_shield"
-			},
-			{
-				R = 60,
-				P = 2.0,
-				S = "tools/holy_water_item"
-			},
-			{
-				R = 30,
-				P = 1.0,
-				S = "supplies/legend_liquor_item"
-			},
-			{
-				R = 30,
-				P = 2.0,
-				S = "tools/reinforced_throwing_net"
-			},
-			{
-				R = 25,
-				P = 2.0,
-				S = "accessory/legend_pack_small"
-			},
-			{
-				R = 40,
-				P = 2.0,
-				S = "accessory/legend_pack_large"
-			},
-			{
-				R = 80,
-				P = 3.0,
-				S = "accessory/gloves/legend_cestus_item"
-			},
-			{
-				R = 80,
-				P = 3.0,
-				S = "accessory/gloves/legend_spiked_gauntlets_item"
-			},
-			{
-				R = 5,
-				P = 40.0,
-				S = "misc/legend_map_legendary_item"
-			},
-			{
-				R = 5,
-				P = 4.0,
-				S = "misc/legend_map_named_item"
-			}
-		];
+	function getDefaultShopList() { //R = rarity (higher = more rare out of 1-99%) || P = price modifier (1.0 = normal price) || S = script of the item that will appear
+		local item = @(r, p, s) {
+			R = r,
+			P = p,
+			S = s
+		}
+		local list = [];
+		list.extend([
+			item(50, 1.0, "loot/white_pearls_item"),
+			item(50, 1.0, "loot/gemstones_item"),
+		]);
+		list.extend([
+			item(70, 6.0, "misc/legend_skin_ghoul_skin_item"),
+			item(70, 6.0, "misc/potion_of_oblivion_item"),
+			item(90, 6.0, "misc/legend_demon_third_eye_item"),
+			item(90, 6.0, "misc/legend_demon_alp_skin_item"),
+			item(50, 6.0, "misc/legend_banshee_essence_item"),
+			item(50, 6.0, "misc/legend_demon_hound_bones_item"),
+			item(99, 15.0, "misc/legend_ancient_scroll_item"),
+			item(30, 5.0, "misc/legend_mistletoe_item"),
+			item(95, 6.0, "misc/legend_redback_poison_gland_item"),
+			item(99, 6.0, "misc/legend_rock_unhold_bones_item"),
+			item(99, 6.0, "misc/legend_rock_unhold_hide_item"),
+			item(99, 10.0, "misc/legend_stollwurm_blood_item"),
+			item(99, 10.0, "misc/legend_stollwurm_scales_item"),
+			item(75, 8.0, "misc/legend_white_wolf_pelt_item"),
+			item(40, 4.0, "misc/lindwurm_blood_item"),
+			item(40, 4.0, "misc/witch_hair_item"),
+			item(35, 4.0, "misc/lindwurm_bones_item"),
+			item(25, 4.0, "misc/lindwurm_scales_item"),
+			item(15, 3.0, "misc/miracle_drug_item"),
+			item(20, 4.0, "misc/petrified_scream_item"),
+			item(10, 4.0, "misc/poison_gland_item"),
+			item(35, 4.0, "misc/poisoned_apple_item"),
+			item(10, 2.0, "misc/snake_oil_item"),
+			item(30, 5.0, "misc/happy_powder_item"),
+		]);
+		list.extend([
+			item(70, 2.0, "supplies/fermented_unhold_heart_item"),
+			item(10, 2.0, "supplies/strange_meat_item"),
+			item(30, 1.0, "supplies/legend_liquor_item"),
+		]);
+		list.extend([
+			item(99, 20.0, "special/spiritual_reward_item"),
+			item(99, 20.0, "special/bodily_reward_item"),
+			item(5, 40.0, "misc/legend_map_legendary_item"),
+			item(5, 4.0, "misc/legend_map_named_item"),
+		]);
+		list.extend([
+			item(90, 20.0, "legend_armor/runes/legend_rune_safety"),
+			item(90, 20.0, "legend_armor/runes/legend_rune_endurance"),
+			item(90, 20.0, "legend_helmets/runes/legend_rune_luck"),
+			item(90, 20.0, "legend_helmets/runes/legend_rune_bravery"),
+			item(90, 20.0, "legend_helmets/runes/legend_rune_clarity"),
+		]);
+		list.extend([
+			item(30, 3.0, "legend_armor/cloak/legend_armor_animal_pelt"),
+			item(60, 5.0, "legend_armor/cloak/legend_armor_cloak_fur"),
+			item(80, 5.0, "legend_armor/cloak/legend_armor_cloak_cursed"),
+			item(70, 2.0, "legend_armor/cloth/legend_armor_robes_wizard"),
+			item(70, 2.0, "legend_armor/cloth/legend_armor_robes_magic"),
+			item(80, 3.0, "legend_helmets/vanity/legend_helmet_warlock_hood"),
+			item(80, 3.0, "legend_helmets/vanity/legend_helmet_wizard_cowl"),
+			item(70, 3.0, "legend_helmets/vanity/legend_helmet_physicians_hood"),
+			item(70, 3.0, "legend_helmets/vanity/legend_helmet_undertakers_hat"),
+			item(60, 3.0, "legend_helmets/vanity/legend_helmet_impaled_head"),
+			item(60, 3.0, "legend_helmets/vanity/legend_helmet_impaled_head"),
+			item(60, 3.0, "legend_helmets/vanity/legend_helmet_beret"),
+			item(70, 5.0, "helmets/oriental/engineer_hat"),
+			item(60, 2.0, "legend_helmets/vanity/legend_helmet_sack"),
+			item(60, 3.0, "legend_helmets/top/legend_helmet_cult_hood"),
+			item(80, 3.0, "legend_helmets/top/legend_helmet_mask_beak"),
+			item(50, 3.0, "legend_helmets/vanity/legend_helmet_crown"),
+			item(60, 3.0, "legend_helmets/vanity/legend_helmet_antler"),
+		]);
+		list.extend([
+			item(30, 1.0, "weapons/lute"),
+			item(30, 2.0, "weapons/legend_drum"),
+			item(45, 2.0, "weapons/legend_staff_vala"),
+			item(70, 3.0, "weapons/legend_mystic_staff"),
+			item(95, 3.0, "weapons/legend_hand_crossbow"),
+			item(95, 3.0, "weapons/legend_crusader_sword"),
+			item(80, 2.0, "shields/ancient/legend_mummy_tower_shield"),
+		]);
+		list.extend([
+			item(60, 2.0, "tools/holy_water_item"),
+			item(30, 2.0, "tools/reinforced_throwing_net"),
+		]);
+		list.extend([
+			item(25, 2.0, "accessory/legend_pack_small"),
+			item(40, 2.0, "accessory/legend_pack_large"),
+			item(80, 3.0, "accessory/gloves/legend_cestus_item"),
+			item(80, 3.0, "accessory/gloves/legend_spiked_gauntlets_item"),
+		]);
 
-		foreach( i in this.Const.Items.NamedMeleeWeapons )
-		{
-			if (this.Math.rand(1, 100) <= 50)
-			{
-				list.push({
-					R = 60,
-					P = 3.0,
-					S = i
-				});
+
+		foreach (i in ::Const.Items.NamedMeleeWeapons) {
+			if (::Math.rand(1, 100) <= 50) {
+				list.push(item(99, 2.0, i));
 			}
 		}
 
-		foreach( i in this.Const.Items.NamedRangedWeapons )
-		{
-			if (this.Math.rand(1, 100) <= 50)
-			{
-				list.push({
-					R = 60,
-					P = 3.0,
-					S = i
-				});
+		foreach (i in ::Const.Items.NamedRangedWeapons) {
+			if (::Math.rand(1, 100) <= 50) {
+				list.push(item(99, 2.0, i));
 			}
 		}
-
-		this.m.Settlement.onUpdateShopList(this.m.ID, list);
-		this.fillStash(list, this.m.Stash, 1.25, false);
+		return list;
 	}
 
-	function onSerialize( _out )
-	{
+	function onSerialize(_out) {
 		this.building.onSerialize(_out);
 		this.m.Stash.onSerialize(_out);
 	}
 
-	function onDeserialize( _in )
-	{
+	function onDeserialize(_in) {
 		this.building.onDeserialize(_in);
 		this.m.Stash.onDeserialize(_in);
 	}

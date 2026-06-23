@@ -106,8 +106,8 @@
 	Script = "scripts/entity/tactical/humans/legend_barbarian_pillager"
 };
 
-::Const.World.Spawn.Troops.LegendBarbarianMarauder <- {
-	ID = this.Const.EntityType.LegendBarbarianMarauder,
+::Const.World.Spawn.Troops.LegendBarbarianBloodletter <- {
+	ID = this.Const.EntityType.LegendBarbarianBloodletter,
 	Variant = 0,
 	Strength = 35,
 	Cost = 35,
@@ -197,15 +197,6 @@
 	Cost = 5,
 	Row = 1,
 	Script = "scripts/entity/tactical/enemies/legend_bandit_rabble_poacher"
-};
-
-::Const.World.Spawn.Troops.BanditVeteran <- {
-	ID = this.Const.EntityType.BanditVeteran,
-	Variant = 0,
-	Strength = 30,
-	Cost = 35,
-	Row = 0,
-	Script = "scripts/entity/tactical/enemies/legend_bandit_veteran"
 };
 
 ::Const.World.Spawn.Troops.LegendRobberBaron <- {

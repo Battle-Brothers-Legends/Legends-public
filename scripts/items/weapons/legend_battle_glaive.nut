@@ -47,6 +47,6 @@ this.legend_battle_glaive <- this.inherit("scripts/items/weapons/weapon", {
 			_skill.m.InjuriesOnHead = this.Const.Injury.CuttingAndPiercingHead;
 			_skill.m.IsIgnoredAsAOO = true;
 		}.bindenv(this));
-		::Legends.Actives.grant(this, ::Legends.Active.LegendSkewer);
+		::Legends.Actives.grant(this, ::Legends.Active.LegendRunThrough);
 	}
 });

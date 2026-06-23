@@ -1,8 +1,6 @@
-::mods_hookExactClass("entity/world/settlements/large_snow_fort", function(o) 
-{
+::mods_hookExactClass("entity/world/settlements/large_snow_fort", function(o) {
 	local create = o.create;
-	o.create = function()
-	{
+	o.create = function() {
 		create();
 		this.m.DraftList = [
 			::Legends.Background.Apprentice,
@@ -46,7 +44,8 @@
 			::Legends.Background.LegendShieldmaiden,
 			::Legends.Background.LegendShieldmaiden,
 			::Legends.Background.LegendShieldmaiden,
-			::Legends.Background.BeastSlayer
+			::Legends.Background.BeastSlayer,
+			"executioner_background"
 		];
 		this.m.StablesList = [
 			::Legends.Background.LegendDonkey,
@@ -56,13 +55,11 @@
 		];
 	}
 
-	o.onBuild = function ()
-	{
+	o.onBuild = function() {
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/crowd_building"), 5);
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/marketplace_building"), 2);
 
-		if (::Legends.Mod.ModSettings.getSetting("StackCitadels").getValue())
-		{
+		if (::Legends.Mod.ModSettings.getSetting("StackCitadels").getValue()) {
 			local ALL = [
 				this.Const.World.TerrainType.Plains,
 				this.Const.World.TerrainType.Steppe,
@@ -94,17 +91,13 @@
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/weaponsmith_building"));
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/training_hall_building"));
 
-		if (this.Math.rand(1, 100) <= 60)
-		{
+		if (this.Math.rand(1, 100) <= 60) {
 			this.addBuilding(this.new("scripts/entity/world/settlements/buildings/tavern_building"));
-		}
-		else
-		{
+		} else {
 			this.addBuilding(this.new("scripts/entity/world/settlements/buildings/temple_building"));
 		}
 
-		if (this.Math.rand(1, 100) <= 40)
-		{
+		if (this.Math.rand(1, 100) <= 40) {
 			this.buildAttachedLocation(1, "scripts/entity/world/attached_location/stone_watchtower_location", [
 				this.Const.World.TerrainType.Plains,
 				this.Const.World.TerrainType.Steppe,
@@ -116,9 +109,7 @@
 				this.Const.World.TerrainType.Tundra,
 				this.Const.World.TerrainType.Hills
 			], [], 2, true);
-		}
-		else
-		{
+		} else {
 			this.buildAttachedLocation(this.Math.rand(0, 1), "scripts/entity/world/attached_location/stone_watchtower_location", [
 				this.Const.World.TerrainType.Plains,
 				this.Const.World.TerrainType.Steppe,
@@ -132,8 +123,7 @@
 			], [], 2, true);
 		}
 
-		if (this.Math.rand(1, 100) <= 40)
-		{
+		if (this.Math.rand(1, 100) <= 40) {
 			this.buildAttachedLocation(1, "scripts/entity/world/attached_location/trapper_location", [
 				this.Const.World.TerrainType.Snow,
 				this.Const.World.TerrainType.Hills
@@ -142,9 +132,7 @@
 				this.Const.World.TerrainType.Snow,
 				this.Const.World.TerrainType.Hills
 			], [], 1);
-		}
-		else
-		{
+		} else {
 			this.buildAttachedLocation(this.Math.rand(0, 1), "scripts/entity/world/attached_location/trapper_location", [
 				this.Const.World.TerrainType.Snow,
 				this.Const.World.TerrainType.Hills

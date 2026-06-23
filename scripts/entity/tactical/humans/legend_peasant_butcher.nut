@@ -79,7 +79,6 @@ this.legend_peasant_butcher <- this.inherit("scripts/entity/tactical/human", {
 			return false;
 		}
 
-		this.m.Items.equip(this.new("scripts/items/weapons/named/legend_named_butchers_cleaver"));
 		::Legends.Perks.grant(this, ::Legends.Perk.Colossus);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendLacerate);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendCarnage);

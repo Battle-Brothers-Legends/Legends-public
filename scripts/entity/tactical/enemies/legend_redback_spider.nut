@@ -241,7 +241,7 @@ this.legend_redback_spider <- this.inherit("scripts/entity/tactical/actor", {
 		b.IsAffectedByNight = false;
 		b.IsImmuneToDisarm = true;
 
-		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= 30)
+		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= ::Const.World.Scaling.Beasts.LegendsSpiderDamageIncreaseDay)
 		{
 			b.DamageDirectAdd += 0.05;
 		}

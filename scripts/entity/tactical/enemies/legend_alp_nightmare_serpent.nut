@@ -42,14 +42,14 @@ this.legend_alp_nightmare_serpent <- this.inherit("scripts/entity/tactical/enemi
 		b.IsAffectedByNight = false;
 		b.IsImmuneToDisarm = true;
 
-		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= 20)
+		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= ::Const.World.Scaling.Beasts.LegendsAlpNightmareScaleDay1)
 		{
 			b.MeleeDefense += 5;
 
-			if (this.World.getTime().Days >= 50)
+			if (this.World.getTime().Days >= ::Const.World.Scaling.Beasts.LegendsAlpNightmareScaleDay3)
 				b.DamageDirectMult += 0.15;
 
-			if (this.World.getTime().Days >= 75)
+			if (this.World.getTime().Days >= ::Const.World.Scaling.Beasts.LegendsAlpNightmareScaleDay4)
 				b.MeleeSkill += 10;
 		}
 

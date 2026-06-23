@@ -114,6 +114,11 @@ class Defs:
  "desc" :  "A hood made of chain mail with a leather brim. Offers good protection and while leaving the face unobstructed.",
  "adesc" : "Includes a chain mail hood."
  },
+ {"name" : "chain_hood_masked"                     , "itemType" : "this.Const.Items.ItemType.Cultist", "layer" : "hood", "min" : 1, "max" : 3, "base" : True, "value" : 400, "con" : 80, "stam" : -3, "vis" : -1, "hair" : "true", "beard" : "false", "impactSound" : "chain", "invSound" : "chain",
+ "title" :  "Masked Chain Mail Hood",
+ "desc" :  "A hood made of chain mail with a leather brim and a cloth mask. Keeps the wearer's face obstructed while being surprisingly comfortable to wear.",
+ "adesc" : "Includes a masked chain mail hood."
+ },
 {"name" : "aventail"                     , "layer" : "hood", "min" : 1, "max" : 5, "base" : True, "value" : 150, "con" : 60, "stam" : -3, "vis" : 0, "hair" : "false", "beard" : "true", "impactSound" : "chain", "invSound" : "chain",
  "title" :  "Aventail",
  "desc" :  "A mail aventail that extends from below the eyeline to cover the neck and lower face.",
@@ -812,10 +817,15 @@ class Defs:
  "desc" :  "A compact iron jaw guard that doesn't obstruct the user's field of vision.",
  "adesc" : "Includes a compact iron jaw guard."
  },
-{"name" : "cult_hood"                     , "itemType" : "this.Const.Items.ItemType.Cultist", "layer" : "top", "min" : 1, "max" : 11, "value" : 60, "con" : 15, "stam" : -1, "vis" : -1, "hair" : "true", "beard" : "false", "impactSound" : "leather", "invSound" : "leather",
+{"name" : "cult_hood"                     , "itemType" : "this.Const.Items.ItemType.Cultist", "layer" : "top", "min" : 1, "max" : 12, "value" : 60, "con" : 15, "stam" : -1, "vis" : -1, "hair" : "true", "beard" : "false", "impactSound" : "leather", "invSound" : "leather",
  "title" :  "Cult Leather Hood",
  "desc" :  "A rough leather hood commonly used in cultist ceremonies. Counts as a cultist item.",
  "adesc" : "Includes a rough leather hood."
+ },
+ {"name" : "executioner_hood_full"                     , "itemType" : "this.Const.Items.ItemType.Cultist", "layer" : "top", "min" : 1, "max" : 6, "value" : 120, "con" : 25, "stam" : -1, "vis" : -1, "hair" : "true", "beard" : "false", "impactSound" : "leather", "invSound" : "leather",
+ "title" :  "Executioner\'s Hood",
+ "desc" :  "A hood worn by executioners to protect their identity and prevent retaliation. Counts as a cultist item.",
+ "adesc" : "Includes a tall leather hood."
  },
 {"name" : "faceplate_long"                     , "layer" : "top", "lower": True, "min" : 1, "max" : 6, "value" : 180, "con" : 35, "stam" : -3, "vis" : 0, "hair" : "false", "beard" : "true", "impactSound" : "plate", "invSound" : "plate",
  "title" :  "Long Faceplate",
@@ -986,8 +996,8 @@ class Defs:
  "adesc" : "Includes a long cloth hood."
  },
 {"name" : "executioner_hood"                     , "itemType" : "this.Const.Items.ItemType.Cultist", "layer" : "top", "min" : 1, "max" : 1, "value" : 100, "con" : 10, "stam" : -1, "vis" : 0, "hair" : "true", "beard" : "false", "impactSound" : "leather", "invSound" : "cloth",
- "title" :  "Executioner's Hood",
- "desc" :  "A heavy hood designed to hide the identity of the executioner from the vengeance of those sympathetic to the condemned. Counts as a cultist item.",
+ "title" :  "Executioner's Cowl",
+ "desc" :  "A heavy, deep cowl designed to hide the identity of the executioner from the vengeance of those sympathetic to the condemned. Counts as a cultist item.",
  "adesc" : "Includes a heavy cloth hood."
  },
 {"name" : "southern_noble_crown"                     , "layer" : "vanity", "min" : 1, "max" : 12, "value" : 100, "con" : 5, "stam" : 0, "vis" : 0, "hair" : "true", "beard" : "false", "impactSound" : "leather", "invSound" : "cloth",

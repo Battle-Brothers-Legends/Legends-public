@@ -742,3 +742,23 @@
 	}]
 };
 ::Const.LegendMod.HelmObjs.push(::Legends.Helmet.Named.ghost_helmet_named);
+
+::Legends.Helmet.Named.ghost_knight_helmet <- { // can we have double vanity? if so [1, "vanity/legend_helmet_ hood_cloth_wide", 3], // 10 -0 -0 100
+	ID = "ghost_knight_helmet",
+	Script = "",
+	Sets = [{
+		Hoods = [
+			[1, "hood/legend_helmet_barb_chain_scarf"], // 55 -3 -0 125
+			[1, "hood/legend_helmet_rotten_chain_scarf"], // 50 -3 -0 80
+			[1, "hood/legend_helmet_rusty_chain_hood"], // 70 -4 -0 150
+		],
+		Helms = [
+			[1, "helm/legend_helmet_rotten_great_helm_named"]
+		],
+		Tops = [],
+		Vanity = [
+			[1, "vanity/legend_helmet_rotten_faction_helmet", 8], // 10 -0 -0 100
+		]
+	}]
+};
+::Const.LegendMod.HelmObjs.push(::Legends.Helmet.Named.ghost_knight_helmet);

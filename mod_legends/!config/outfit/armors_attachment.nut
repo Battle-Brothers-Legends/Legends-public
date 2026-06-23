@@ -460,6 +460,26 @@
 };
 ::Const.LegendMod.ArmorObjs.push(::Legends.Armor.Attachment.mail_patch_upgrade);
 
+::Legends.Armor.Attachment.rusted_mail_patch_upgrade <- {
+	ID = "rusted_mail_patch_upgrade", // 85
+	Script = "scripts/items/legend_armor/armor_upgrades/legend_armor_rusted_mail_patch_upgrade",
+	Sets = [{
+		Cloth = [
+		],
+		Chain = [
+		],
+		Plate = [
+		],
+		Cloak = [
+		],
+		Tabard = [
+		],
+		Attachments =[
+		]
+	}]
+};
+::Const.LegendMod.ArmorObjs.push(::Legends.Armor.Attachment.rusted_mail_patch_upgrade);
+
 ::Legends.Armor.Attachment.metal_pauldrons_upgrade <- {
 	ID = "metal_pauldrons_upgrade", // 85
 	Script = "scripts/items/legend_armor/armor_upgrades/legend_metal_pauldrons_upgrade",

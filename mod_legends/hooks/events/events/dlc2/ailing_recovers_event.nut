@@ -7,7 +7,7 @@
 			_screen.start = function (_event) {
 				this.Characters.push(_event.m.Ailing.getImagePath());
 				this.Characters.push(_event.m.Healer.getImagePath());
-				::Legends.EventList.changeMood(_event.m.Ailing, 1.5, "Feels the best %they_ailing% did in a long time")
+				::Legends.EventList.changeMood(_event.m.Ailing, 1.5, "Feels the best %they_ailing% did in a long time");
 				::Legends.Traits.remove(_event.m.Ailing, ::Legends.Trait.Ailing);
 				this.List.push({
 					id = 10,

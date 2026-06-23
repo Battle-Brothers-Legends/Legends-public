@@ -23,6 +23,6 @@
 	o.onUse = function ( _user, _targetTile )
 	{
 		::Legends.Effects.grant(_user, ::Legends.Effect.LegendThrewSandEffect);
-		onUse( _user, _targetTile );
+		return onUse( _user, _targetTile );
 	}
 });

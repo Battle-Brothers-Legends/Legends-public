@@ -179,11 +179,11 @@ this.legend_spider_cluster <- this.inherit("scripts/entity/tactical/actor", {
 		b.IsImmuneToDisarm = true;
 		b.IsAffectedByFreshInjuries = false;
 
-		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= 25) //review
+		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= ::Const.World.Scaling.Beasts.LegendsSpiderClusterDamageIncreaseDay) //review
 		{
 			b.DamageDirectAdd += 0.05;
 
-			if (this.World.getTime().Days >= 50)
+			if (this.World.getTime().Days >= ::Const.World.Scaling.Beasts.LegendsSpiderClusterStatIncreaseDay2)
 			{
 				b.DamageDirectAdd += 0.05;
 				b.MeleeDefense += 5;

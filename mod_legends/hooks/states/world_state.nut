@@ -212,7 +212,7 @@
 				continue;
 			}
 
-			if (!party.isAttackable() || party.getFaction() == 0 || party.getVisibilityMult() == 0)
+			if (!party.isAttackable() || party.getFaction() == 0 || party.getVisibilityMult() == 0.0)
 			{
 				continue;
 			}
@@ -237,7 +237,7 @@
 				continue;
 			}
 
-			if (!party.isAttackable() || party.getFaction() == 0 || party.getVisibilityMult() == 0)
+			if (!party.isAttackable() || party.getFaction() == 0 || party.getVisibilityMult() == 0.0)
 			{
 				continue;
 			}
@@ -497,6 +497,7 @@
 				break;
 			}
 
+			this.setLastWorldSpeedMult(3.0);
 			::World.setSpeedMult(3.0);
 			this.logDebug("World Speed set to x3.0");
 			return true;
@@ -512,6 +513,7 @@
 				break;
 			}
 
+			this.setLastWorldSpeedMult(4.0);
 			::World.setSpeedMult(4.0);
 			this.logDebug("World Speed set to x4.0");
 			return true;
@@ -527,6 +529,7 @@
 				break;
 			}
 
+			this.setLastWorldSpeedMult(5.0);
 			::World.setSpeedMult(5.0);
 			this.logDebug("World Speed set to x5.0");
 			return true;
@@ -542,6 +545,7 @@
 				break;
 			}
 
+			this.setLastWorldSpeedMult(6.0);
 			::World.setSpeedMult(6.0);
 			this.logDebug("World Speed set to x6.0");
 			return true;
@@ -557,6 +561,7 @@
 				break;
 			}
 
+			this.setLastWorldSpeedMult(7.0);
 			::World.setSpeedMult(7.0);
 			this.logDebug("World Speed set to x7.0");
 			return true;
@@ -572,6 +577,7 @@
 				break;
 			}
 
+			this.setLastWorldSpeedMult(8.0);
 			::World.setSpeedMult(8.0);
 			this.logDebug("World Speed set to x8.0");
 			return true;
@@ -587,6 +593,7 @@
 				break;
 			}
 
+			this.setLastWorldSpeedMult(9.0);
 			::World.setSpeedMult(9.0);
 			this.logDebug("World Speed set to x9.0");
 			return true;
@@ -1019,6 +1026,12 @@
 				return true;
 
 			case 3:
+				if (!this.m.MenuStack.hasBacksteps())
+				{
+					this.setVeryFastTime();
+					break;
+				}
+
 				if (!this.m.EventScreen.isVisible() || this.m.EventScreen.isAnimating())
 				{
 					break;
@@ -1337,7 +1350,7 @@
 					continue;
 				}
 
-				if (!party.isAttackable() || party.getFaction() == 0 || party.getVisibilityMult() == 0)
+				if (!party.isAttackable() || party.getFaction() == 0 || party.getVisibilityMult() == 0.0)
 				{
 					continue;
 				}
@@ -1371,7 +1384,7 @@
 					continue;
 				}
 
-				if (!party.isAttackable() || party.getFaction() == 0 || party.getVisibilityMult() == 0)
+				if (!party.isAttackable() || party.getFaction() == 0 || party.getVisibilityMult() == 0.0)
 				{
 					continue;
 				}

@@ -385,7 +385,7 @@ this.legend_scenario_vampire_lord <- this.inherit("scripts/scenarios/tactical/sc
 		this.Stash.add(this.new("scripts/items/ammo/quiver_of_bolts"));
 		this.Stash.add(this.new("scripts/items/ammo/quiver_of_bolts"));
 		this.Stash.add(this.new("scripts/items/ammo/quiver_of_bolts"));
-		this.Stash.add(this.new("scripts/items/weapons/legend_estoc"));
+		this.Stash.add(this.new("scripts/items/weapons/estoc"));
 		this.Stash.add(this.new("scripts/items/weapons/legend_wooden_stake"));
 		this.Stash.add(this.new("scripts/items/weapons/legend_wooden_stake"));
 		this.Stash.add(this.new("scripts/items/weapons/legend_wooden_stake"));

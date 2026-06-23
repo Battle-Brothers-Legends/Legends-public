@@ -106,7 +106,7 @@ this.legend_orc_behemoth <- this.inherit("scripts/entity/tactical/legend_orc", {
 		local b = this.m.BaseProperties;
 		b.setValues(this.Const.Tactical.Actor.LegendOrcBehemoth);
 
-		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= 200) {
+		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= ::Const.World.Scaling.Orcs.LegendsOrcHighStatIncreaseDay) {
 			b.MeleeSkill += 10;
 			b.DamageTotalMult += 0.2;
 		}

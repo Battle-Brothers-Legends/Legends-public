@@ -1,7 +1,6 @@
 this.legend_boar_charge_skill <- this.inherit("scripts/skills/skill", {
 	m = {},
-	function create()
-	{
+	function create() {
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendBoarCharge);
 		this.m.Description = "";
 		this.m.Icon = "skills/boar_charge.png";
@@ -30,40 +29,33 @@ this.legend_boar_charge_skill <- this.inherit("scripts/skills/skill", {
 		this.m.MaxRange = 1;
 	}
 
-	function findTileToKnockBackTo( _userTile, _targetTile )
-	{
+	function findTileToKnockBackTo(_userTile, _targetTile) {
 		local dir = _userTile.getDirectionTo(_targetTile);
 
-		if (_targetTile.hasNextTile(dir))
-		{
+		if (_targetTile.hasNextTile(dir)) {
 			local knockToTile = _targetTile.getNextTile(dir);
 
-			if (knockToTile.IsEmpty && this.Math.abs(knockToTile.Level - _userTile.Level) <= 1)
-			{
+			if (knockToTile.IsEmpty && this.Math.abs(knockToTile.Level - _userTile.Level) <= 1) {
 				return knockToTile;
 			}
 		}
 
 		local altdir = dir - 1 >= 0 ? dir - 1 : 5;
 
-		if (_targetTile.hasNextTile(altdir))
-		{
+		if (_targetTile.hasNextTile(altdir)) {
 			local knockToTile = _targetTile.getNextTile(altdir);
 
-			if (knockToTile.IsEmpty && this.Math.abs(knockToTile.Level - _userTile.Level) <= 1)
-			{
+			if (knockToTile.IsEmpty && this.Math.abs(knockToTile.Level - _userTile.Level) <= 1) {
 				return knockToTile;
 			}
 		}
 
 		altdir = dir + 1 <= 5 ? dir + 1 : 0;
 
-		if (_targetTile.hasNextTile(altdir))
-		{
+		if (_targetTile.hasNextTile(altdir)) {
 			local knockToTile = _targetTile.getNextTile(altdir);
 
-			if (knockToTile.IsEmpty && this.Math.abs(knockToTile.Level - _userTile.Level) <= 1)
-			{
+			if (knockToTile.IsEmpty && this.Math.abs(knockToTile.Level - _userTile.Level) <= 1) {
 				return knockToTile;
 			}
 		}
@@ -71,134 +63,81 @@ this.legend_boar_charge_skill <- this.inherit("scripts/skills/skill", {
 		return null;
 	}
 
-	function onVerifyTarget( _originTile, _targetTile )
-	{
+	function onVerifyTarget(_originTile, _targetTile) {
 		return this.skill.onVerifyTarget(_originTile, _targetTile) && !_targetTile.getEntity().getCurrentProperties().IsRooted && this.findTileToKnockBackTo(_originTile, _targetTile) != null;
 	}
 
-	function onUse( _user, _targetTile )
-	{
+	function onUse(_user, _targetTile) {
 		local target = _targetTile.getEntity();
 		local success = this.attackEntity(_user, target);
-		if (this.m.SoundOnUse.len() != 0)
-		{
+		if (this.m.SoundOnUse.len() != 0) {
 			this.Sound.play(this.m.SoundOnUse[this.Math.rand(0, this.m.SoundOnUse.len() - 1)], this.Const.Sound.Volume.Skill, _user.getPos());
 		}
 
 		local knockToTile = this.findTileToKnockBackTo(_user.getTile(), _targetTile);
 
-		if (knockToTile == null)
-		{
+		if (knockToTile == null) {
 			return false;
 		}
 
 		this.applyFatigueDamage(target, 10);
 
-		if (target.getCurrentProperties().IsImmuneToKnockBackAndGrab)
-		{
+		if (target.getCurrentProperties().IsImmuneToKnockBackAndGrab) {
 			return false;
 		}
 
-		if (!_user.isHiddenToPlayer() && (_targetTile.IsVisibleForPlayer || knockToTile.IsVisibleForPlayer))
-		{
+		if (!_user.isHiddenToPlayer() && (_targetTile.IsVisibleForPlayer || knockToTile.IsVisibleForPlayer)) {
 			this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(_user) + " pushes through " + this.Const.UI.getColorizedEntityName(target));
 		}
 
-		if (this.m.SoundOnHit.len() != 0)
-		{
+		if (this.m.SoundOnHit.len() != 0) {
 			this.Sound.play(this.m.SoundOnHit[this.Math.rand(0, this.m.SoundOnHit.len() - 1)], this.Const.Sound.Volume.Skill, _user.getPos());
 		}
 
-		target.setCurrentMovementType(this.Const.Tactical.MovementType.Involuntary);
-		local damage = this.Math.max(0, this.Math.abs(knockToTile.Level - _targetTile.Level) - 1) * this.Const.Combat.FallingDamage;
-
-		if (damage == 0)
-		{
-			this.Tactical.getNavigator().teleport(target, knockToTile, null, null, true);
-		}
-		else
-		{
-			local p = this.getContainer().getActor().getCurrentProperties();
-			local tag = {
-				Attacker = _user,
-				Skill = this,
-				HitInfo = clone this.Const.Tactical.HitInfo
-			};
-			tag.HitInfo.DamageRegular = damage;
-			tag.HitInfo.DamageFatigue = this.Const.Combat.FatigueReceivedPerHit;
-			tag.HitInfo.DamageDirect = 1.0;
-			tag.HitInfo.BodyPart = this.Const.BodyPart.Body;
-			tag.HitInfo.BodyDamageMult = 1.0;
-			tag.HitInfo.FatalityChanceMult = 1.0;
-			this.Tactical.getNavigator().teleport(target, knockToTile, this.onKnockedDown, tag, true);
-		}
-
-		local tag = {
-			TargetTile = _targetTile,
-			Actor = _user
-		};
-		this.Time.scheduleEvent(this.TimeUnit.Virtual, 250, this.onFollow, tag);
+		this.Tactical.State.handleInvoluntaryMovement(target, _user, _targetTile, knockToTile, this, null, this.onFollow);
 		return true;
 	}
 
-	function onFollow( _tag )
-	{
-		if (_tag.TargetTile.IsEmpty)
-		{
+	function onFollow(_tag) {
+		if (_tag.TargetTile.IsEmpty) {
 			_tag.Actor.setCurrentMovementType(this.Const.Tactical.MovementType.Default);
 			this.Tactical.getNavigator().teleport(_tag.Actor, _tag.TargetTile, null, null, false);
 		}
 	}
 
-	function onKnockedDown( _entity, _tag )
-	{
-		if (_tag.HitInfo.DamageRegular != 0)
-		{
-			_entity.onDamageReceived(_tag.Attacker, _tag.Skill, _tag.HitInfo);
-		}
-	}
-	function onAnySkillUsed( _skill, _targetEntity, _properties )
-	{
-		if (_skill == this)
-		{
+	function onAnySkillUsed(_skill, _targetEntity, _properties) {
+		if (_skill == this) {
 			local actor = this.getContainer().getActor();
 			local bodyHealth = actor.getHitpointsMax();
-			local average = (actor.getInitiative() +  bodyHealth) / 4;
+			local average = (actor.getInitiative() + bodyHealth) / 4;
 			local damageMin = 5;
 			local damageMax = 10;
 			local avgMin = average - 100;
 			local avgMax = average - 90;
 
-			if ((average - 100) > 0)
-			{
+			if ((average - 100) > 0) {
 				damageMin += avgMin;
 			}
 
-			if ((average - 90) > 0)
-			{
+			if ((average - 90) > 0) {
 				damageMax += avgMax;
 			}
 
 
-			if (damageMin > 50)
-			{
-			local minMod = (damageMin - 50);
-			local minFalloff = this.Math.pow(minMod, 0.5);
-			damageMin = 50 + minFalloff;
+			if (damageMin > 50) {
+				local minMod = (damageMin - 50);
+				local minFalloff = this.Math.pow(minMod, 0.5);
+				damageMin = 50 + minFalloff;
 			}
 
-			if (damageMax > 50)
-			{
-			local maxMod = (damageMax - 50);
-			local maxFalloff = this.Math.pow(maxMod, 0.5);
-			damageMax = 50 + maxFalloff;
+			if (damageMax > 50) {
+				local maxMod = (damageMax - 50);
+				local maxFalloff = this.Math.pow(maxMod, 0.5);
+				damageMax = 50 + maxFalloff;
 			}
 
 
-
-
-			if (this.getContainer().getActor().getSkills().hasPerk(::Legends.Perk.LegendMuscularity))
-			{
+			if (this.getContainer().getActor().getSkills().hasPerk(::Legends.Perk.LegendMuscularity)) {
 				local muscularity = this.Math.floor(bodyHealth * 0.1);
 				damageMax += muscularity;
 			}

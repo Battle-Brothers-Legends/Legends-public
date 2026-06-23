@@ -90,7 +90,7 @@
 					"weapons/legend_swordstaff",
 					"weapons/legend_zweihander",
 					"weapons/warbrand",
-					"weapons/legend_estoc",
+					"weapons/estoc",
 					"weapons/legend_battle_glaive",
 				]);
 			}
@@ -210,8 +210,6 @@
 		{
 			local namedWeaponArray = clone ::Const.Items.NamedMeleeWeapons;		// Temporary solution to prevent these minibosses from spawning with bad or incombatible weapons
 			::MSU.Array.remove(namedWeaponArray, "weapons/named/named_dagger");
-			::MSU.Array.remove(namedWeaponArray, "weapons/named/legend_named_shovel");
-			::MSU.Array.remove(namedWeaponArray, "weapons/named/legend_named_sickle");
 			::MSU.Array.remove(namedWeaponArray, "weapons/named/named_battle_whip");
 			this.getItems().equip(this.Const.World.Common.pickItem(namedWeaponArray.map(@(_it) [1, _it]), "scripts/items/"));
 		}

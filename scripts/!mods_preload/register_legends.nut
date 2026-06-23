@@ -1,6 +1,6 @@
 ::Legends <- {
 	ID = "mod_legends",
-	Version = "19.4.0-alpha1",
+	Version = "19.5.0-alpha1",
 	Name = "Legends Mod",
 	BuildName = "Left & Right",
 	IsStartingNewCampaign = false
@@ -8,10 +8,10 @@
 
 ::mods_registerMod(::Legends.ID, ::Legends.Version, ::Legends.Name);
 ::mods_queue(::Legends.ID, [
-	"mod_legends_assets(>=19.4.0-alpha1)",
-	"mod_msu(>=1.7.0)",
-	"vanilla(>=1.5.1-8)",
-	"vanilla(<1.5.2)",
+	"mod_legends_assets(>=19.5.0-alpha1)",
+	"mod_msu(>=1.9.0)",
+	"vanilla(>=1.5.2-2)",
+	"vanilla(<1.5.3)",
 	"dlc_lindwurm",
 	"dlc_unhold",
 	"dlc_wildmen",

@@ -1,6 +1,4 @@
-::mods_hookExactClass("skills/actives/stab", function(o)
-{
-	o.m.IsEstocStab <- false;
+::mods_hookExactClass("skills/actives/stab", function(o) {
 	o.m.IsBackstab <- false;
 	o.m.IsQatalStab <- false;
 
@@ -131,7 +129,7 @@
 	}
 
 	o.onAfterUpdate = function ( _properties ) {
-		if (!this.m.IsEstocStab && ::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem())) {
+		if (::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem())) { //!this.m.IsEstocStab &&
 			this.m.ActionPointCost -= 1;
 		}
 		this.m.FatigueCostMult = ::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem()) ? this.Const.Combat.WeaponSpecFatigueMult : 1.0;

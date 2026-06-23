@@ -105,43 +105,8 @@ this.legend_miasma_skill <- this.inherit("scripts/skills/skill", {
 			i = ++i;
 		}
 
-		local p = {
-			Type = "legend_miasma",
-			Tooltip = "Miasma lingers here, harmful to any living being",
-			IsPositive = false,
-			IsAppliedAtRoundStart = false,
-			IsAppliedAtTurnEnd = true,
-			IsAppliedOnMovement = false,
-			IsAppliedOnEnter = false,
-			Timeout = this.Time.getRound() + 3,
-			IsByPlayer = _user.isPlayerControlled(),
-			Callback = this.Const.Tactical.Common.onApplyMiasma,
-			function Applicable( _a )
-			{
-				return !_a.getFlags().has("undead");
-			}
-
-		};
-
-		foreach( tile in targets )
-		{
-			if (tile.Properties.Effect != null && tile.Properties.Effect.Type == "legend_miasma")
-			{
-				tile.Properties.Effect.Timeout = this.Time.getRound() + 2;
-			}
-			else
-			{
-				tile.Properties.Effect = clone p;
-				local particles = [];
-
-				for( local i = 0; i < this.Const.Tactical.MiasmaParticles.len(); i = i )
-				{
-					particles.push(this.Tactical.spawnParticleEffect(true, this.Const.Tactical.MiasmaParticles[i].Brushes, tile, this.Const.Tactical.MiasmaParticles[i].Delay, this.Const.Tactical.MiasmaParticles[i].Quantity, this.Const.Tactical.MiasmaParticles[i].LifeTimeQuantity, this.Const.Tactical.MiasmaParticles[i].SpawnRate, this.Const.Tactical.MiasmaParticles[i].Stages));
-					i = ++i;
-				}
-
-				this.Tactical.Entities.addTileEffect(tile, tile.Properties.Effect, particles);
-			}
+		foreach( tile in targets ) {
+			this.Tactical.State.spawnMiasmaOnTile(tile, true);
 		}
 
 		return true;

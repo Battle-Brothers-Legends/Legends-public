@@ -1,8 +1,7 @@
 this.perk_legend_specialist_blacksmith <- this.inherit("scripts/skills/legend_specialist_abstract", {
 	m = {
 		SpecialistWeaponIds = [
-			"weapon.legend_hammer",
-			"weapon.legend_named_blacksmith_hammer"
+			"weapon.legend_hammer"
 		],
 		ApplicableItemTypes = [
 			this.Const.Items.ItemType.OneHanded

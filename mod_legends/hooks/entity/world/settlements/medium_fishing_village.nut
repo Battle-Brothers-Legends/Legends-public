@@ -1,8 +1,6 @@
-::mods_hookExactClass("entity/world/settlements/medium_fishing_village", function(o) 
-{
+::mods_hookExactClass("entity/world/settlements/medium_fishing_village", function(o) {
 	local create = o.create;
-	o.create = function()
-	{
+	o.create = function() {
 		create();
 		this.m.DraftList = [
 			::Legends.Background.Apprentice,
@@ -66,27 +64,23 @@
 			::Legends.Background.Vagabond,
 			::Legends.Background.Cripple,
 			::Legends.Background.Eunuch,
-			::Legends.Background.Sellsword
+			::Legends.Background.Sellsword,
+			"executioner_background"
 		];
 	}
 
-	o.onBuild = function ( )
-	{
+	o.onBuild = function() {
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/crowd_building"), 5);
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/marketplace_building"), 2);
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/port_building"), 3);
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/tavern_building"));
 
-		if (this.Math.rand(1, 100) <= 66)
-		{
+		if (this.Math.rand(1, 100) <= 66) {
 			local r = this.Math.rand(1, 2);
 
-			if (r == 1 || this.Const.World.Buildings.Blackmarket == 0)
-			{
+			if (r == 1 || this.Const.World.Buildings.Blackmarket == 0) {
 				this.addBuilding(this.new("scripts/entity/world/settlements/buildings/blackmarket_building"));
-			}
-			else if (r <= 2)
-			{
+			} else if (r <= 2) {
 				this.addBuilding(this.new("scripts/entity/world/settlements/buildings/temple_building"));
 			}
 		}

@@ -25,8 +25,8 @@ this.legend_alp_nightmare_human <- this.inherit("scripts/entity/tactical/enemies
 	{
 		this.legend_alp_shadow.onInit();
 		local b = this.m.BaseProperties;
-		b.setValues(this.World.getTime().Days >= 100
-			? this.Const.Tactical.Actor.BanditVeteran
+		b.setValues(this.World.getTime().Days >= ::Const.World.Scaling.Beasts.LegendsAlpNightmareScaleDay5
+			? this.Const.Tactical.Actor.BanditMarauder
 			: this.Const.Tactical.Actor.BanditRaider);
 
 		b.IsSpecializedInSwords = true;
@@ -39,7 +39,7 @@ this.legend_alp_nightmare_human <- this.inherit("scripts/entity/tactical/enemies
 		b.IsSpecializedInSpears = true;
 		b.IsSpecializedInCleavers = true;
 
-		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= 50)
+		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= ::Const.World.Scaling.Beasts.LegendsAlpNightmareScaleDay3)
 		{
 			b.MeleeSkill += 5;
 			b.RangedSkill += 5;

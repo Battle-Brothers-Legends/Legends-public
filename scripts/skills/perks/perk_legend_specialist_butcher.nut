@@ -11,8 +11,7 @@ this.perk_legend_specialist_butcher <- this.inherit("scripts/skills/legend_speci
 			"sounds/combat/chop_hit_03.wav"
 		],
 		SpecialistWeaponIds = [
-			"weapon.butchers_cleaver",
-			"weapon.legend_named_butchers_cleaver"
+			"weapon.butchers_cleaver"
 		],
 		ExcludedWeaponTypes = [
 			this.Const.Items.WeaponType.Whip

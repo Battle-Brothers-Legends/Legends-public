@@ -14,7 +14,7 @@
 		::Legends.Perks.grant(this, ::Legends.Perk.Rotation);
 		::Legends.Perks.grant(this, ::Legends.Perk.Recover);
 
-		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= 40)
+		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= this.Const.World.Scaling.Nomads.LegendsOutlawDodgeDay)
 		{
 			::Legends.Perks.grant(this, ::Legends.Perk.Dodge);
 		}
@@ -33,8 +33,13 @@
 			"weapons/two_handed_wooden_hammer",
 			"weapons/woodcutters_axe",
 			"weapons/battle_whip",
-			"weapons/three_headed_flail"
 		];
+
+		if (::Const.DLC.Unhold) {
+			if (!::Tactical.State.isScenarioMode() && this.World.getTime().Days > this.Const.World.Scaling.Nomads.OutlawThreeHeadedFlailDay) {
+				weapons.push("weapons/three_headed_flail");
+			}
+		}
 
 		this.m.Items.equip(this.new("scripts/items/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
 

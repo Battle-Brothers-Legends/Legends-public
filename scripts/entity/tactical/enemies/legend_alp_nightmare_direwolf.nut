@@ -78,7 +78,7 @@ this.legend_alp_nightmare_direwolf <- this.inherit("scripts/entity/tactical/enem
 		b.IsImmuneToDisarm = true;
 		b.DamageTotalMult = 1.25;
 
-		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= 40)
+		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= ::Const.World.Scaling.Beasts.LegendsAlpNightmareScaleDay2)
 		{
 			b.MeleeSkill += 5;
 			b.MeleeDefense += 5;
