@@ -8,7 +8,6 @@
 
 ::mods_registerMod(::Legends.ID, ::Legends.Version, ::Legends.Name);
 ::mods_queue(::Legends.ID, [
-<<<<<<< HEAD
 	"mod_legends_assets(>=19.3.40)",
 	"mod_msu(>=1.9.0)",
 	"vanilla(>=1.5.2-2)",
