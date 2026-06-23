@@ -5,12 +5,16 @@
 
 # Enemies
 - `Barbarian Marauder` renamed to `Barbarian Bloodletter`
+- `Bandit Veteran` -> renamed to `Bandit Marauder` as per vanilla changes and added to spawnlists
+> the entity has been reworked to include the new vanilla armors
 
 # For modders
 - `LegendSkewer` -> `LegendRunThrough`
 - `legend_skewer_skill` -> `legend_run_through_skill`
 - `LegendBarbarianMarauder` -> `LegendBarbarianBloodletter`
 - `legend_barbarian_marauder` -> `legend_barbarian_bloodletter`
+- `legend_bandit_veteran` -> deleted
+- `BanditVeteran` -> deleted
 
 # 19.3.0 - Left & Right
 
