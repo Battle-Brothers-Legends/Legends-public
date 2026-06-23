@@ -9,9 +9,9 @@
 ::mods_registerMod(::Legends.ID, ::Legends.Version, ::Legends.Name);
 ::mods_queue(::Legends.ID, [
 	"mod_legends_assets(>=19.3.28)",
-	"mod_msu(>=1.7.0)",
-	"vanilla(>=1.5.1-8)",
-	"vanilla(<1.5.2)",
+	"mod_msu(>=1.9.0)",
+	"vanilla(>=1.5.2-2)",
+	"vanilla(<1.5.3)",
 	"dlc_lindwurm",
 	"dlc_unhold",
 	"dlc_wildmen",
