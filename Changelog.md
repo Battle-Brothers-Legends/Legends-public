@@ -27,8 +27,6 @@
 ### Dodge on Enemies
 - `Dodge` now doesn't scale with hitpoints on enemies so the overall values will be reduced
 
-## Enemies
-
 ### Greenskins
 - `Rage` - now applied to all orcs with reduced effects
 > gain 1 stack when they get hit and when hitting a target, gain 2 stacks when killing someone
