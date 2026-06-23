@@ -39,7 +39,7 @@ this.legend_named_swordstaff <- this.inherit("scripts/items/weapons/named/named_
 			_skill.m.IsGreatSlash = true;
 			_skill.m.IsStaffSlash = true;
 		}.bindenv(this));
-		::Legends.Actives.grant(this, ::Legends.Active.LegendSkewer);
+		::Legends.Actives.grant(this, ::Legends.Active.LegendRunThrough);
 		::Legends.Actives.grant(this, ::Legends.Active.Strike, function (_skill) {
 			_skill.m.IsStaffStrike = true;
 		}.bindenv(this));

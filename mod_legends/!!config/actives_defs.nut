@@ -1438,12 +1438,12 @@ activesDefs.push({
 	Name = "Smite",
 });
 
-::Legends.Active.LegendSkewer <- null;
+::Legends.Active.LegendRunThrough <- null;
 activesDefs.push({
-	ID = "actives.legend_skewer",
-	Script = "scripts/skills/actives/legend_skewer_skill",
-	Const = "LegendSkewer",
-	Name = "Skewer",
+	ID = "actives.legend_run_through",
+	Script = "scripts/skills/actives/legend_run_through_skill",
+	Const = "LegendRunThrough",
+	Name = "Run Through",
 });
 
 ::Legends.Active.LegendCatBite <- null;

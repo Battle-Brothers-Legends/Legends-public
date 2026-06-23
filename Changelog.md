@@ -1,3 +1,12 @@
+# 19.4.0 - Vanilla update
+
+# Skills
+- `Skewer` renamed to `Run Through`
+
+# For modders
+- `LegendSkewer` -> `LegendRunThrough`
+- `legend_skewer_skill` -> `legend_run_through_skill`
+
 # 19.3.0 - Left & Right
 
 ## Dual Wielding

@@ -24,12 +24,11 @@
 			_skill.m.IconDisabled = "skills/active_174_sw.png";
 			_skill.m.Overlay = "active_174";
 		}.bindenv(this));
-		::Legends.Actives.grant(this.weapon, ::Legends.Active.LegendSkewer, function (_skill)
+		::Legends.Actives.grant(this.weapon, ::Legends.Active.LegendRunThrough, function (_skill)
 		{
 			_skill.m.Icon = "skills/skewer_warfork.png";
 			_skill.m.IconDisabled = "skills/skewer_warfork_bw.png";
 			_skill.m.Overlay = "skewer_warfork";
-			_skill.m.IsSpearSkewer = true;
 		}.bindenv(this));
 		::Legends.Actives.grant(this.weapon, ::Legends.Active.LegendWarforkDisarm);
 		::Legends.Actives.grant(this.weapon, ::Legends.Active.Spearwall, function (_skill)
