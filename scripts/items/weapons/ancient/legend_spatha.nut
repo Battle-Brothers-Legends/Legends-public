@@ -32,7 +32,7 @@ this.legend_spatha <- this.inherit("scripts/items/weapons/weapon", {
 	{
 		this.weapon.onEquip();
 		::Legends.Actives.grant(this, ::Legends.Active.Slash);
-		::Legends.Actives.grant(this, ::Legends.Active.Riposte);
+		::Legends.Actives.grant(this, ::Legends.Active.LegendGut);
 		::Legends.Actives.grant(this, ::Legends.Active.Puncture, function (_skill) {
 			_skill.m.IsHalfsword = true;
 		}.bindenv(this));

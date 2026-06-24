@@ -1462,6 +1462,14 @@ activesDefs.push({
 	Name = "Run Through",
 });
 
+::Legends.Active.LegendGut <- null;
+activesDefs.push({
+	ID = "actives.legend_gut",
+	Script = "scripts/skills/actives/legend_gut_skill",
+	Const = "LegendGut",
+	Name = "Gut",
+});
+
 ::Legends.Active.LegendCatBite <- null;
 activesDefs.push({
 	ID = "actives.legend_cat_bite",

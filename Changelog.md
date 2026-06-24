@@ -109,6 +109,14 @@
 - `Gash` - unchanged
 - `Debilitate`
 
+**1h ancient swords**
+- `Slash`
+- `Gut` - replaces riposte
+> attacks repeatedly the body of the enemy depending on how many injuries they have
+- `Halfsword`
+- `Mordhau`
+
+
 ## Enemies
 
 ### Dodge on Enemies

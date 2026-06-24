@@ -16,4 +16,15 @@
 		this.m.WeaponType = ::Const.Items.WeaponType.Sword;
 	}
 
+	o.addSkill <- function( _skill )
+	{
+		if (_skill.getID() == ::Legends.Actives.getID(::Legends.Active.Riposte))
+		{
+			::Legends.Actives.grant(this.weapon, ::Legends.Active.LegendGut);
+			return;
+		}
+
+		weapon.addSkill(_skill);
+	}
+
 });
