@@ -19,7 +19,7 @@
 	}
 
 	o.onUpdateScore = function () {
-		if (!this.Const.DLC.Unhold)
+		if (this.World.Assets.getOrigin().getID() == "scenario.legend_risen_legion")
 			return;
 
 		if (this.Time.getVirtualTimeF() - this.World.Events.getLastBattleTime() > 30.0) //from 5
