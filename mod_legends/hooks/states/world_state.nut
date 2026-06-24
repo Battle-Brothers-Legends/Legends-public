@@ -97,28 +97,28 @@
 	local loadCampaign = o.loadCampaign;
 	o.loadCampaign = function( _campaignFileName )
 	{
-		if (::Time.getRealTimeF() - m.CampaignLoadTime < 4.0)
+		if (::Time.getRealTimeF() - this.m.CampaignLoadTime < 4.0)
 			return;
 
-		m.AppropriateTimeToRecalc = 0;
+		this.m.AppropriateTimeToRecalc = 0;
 		loadCampaign(_campaignFileName);
 	}
 
 	o.onCalculatePlayerPartyModifiers <- function()
 	{
-		m.AppropriateTimeToRecalc = 1;
-		getPlayer().calculateModifiers(); //Leonion's fix
+		this.m.AppropriateTimeToRecalc = 1;
+		this.getPlayer().calculateModifiers(); //Leonion's fix
 	}
 
 	local startNewCampaign = o.startNewCampaign;
 	o.startNewCampaign = function()
 	{
-		m.AppropriateTimeToRecalc = 0; // set to 0 as you don't want it to update those modifiers
+		this.m.AppropriateTimeToRecalc = 0; // set to 0 as you don't want it to update those modifiers
 		::Legends.IsStartingNewCampaign = true;
 		startNewCampaign();
 		::World.setFogOfWar(!::Legends.Mod.ModSettings.getSetting("DebugMap").getValue()); //
 		::World.Crafting.resetAllBlueprints(); //
-		onCalculatePlayerPartyModifiers();
+		this.onCalculatePlayerPartyModifiers();
 		::Legends.IsStartingNewCampaign = false;
 	}
 
@@ -158,13 +158,13 @@
 	{
 		local friendlyCaravanParties = [];
 
-		foreach( party in m.PartiesInCombat )
+		foreach( party in this.m.PartiesInCombat )
 		{
 			if (party.getTroops().len() > 0
 				&& party.isAlive()
 				&& party.isAlliedWithPlayer()
 				&& party.getFlags().get("IsCaravan")
-				&& m.EscortedEntity == null
+				&& this.m.EscortedEntity == null
 			) {
 				friendlyCaravanParties.push(party);
 				party.getFlags().set("IsCaravan", false); // set to false so the check in the original 'onCombatFinished' will fail
@@ -1500,7 +1500,7 @@
 				else
 				{
 					entities.push({
-						Name =  getEngageNumberNames(entityTypes[i]) + " " + this.Const.Strings.EntityNamePlural[i],
+						Name = this.getEngageNumberNames(entityTypes[i]) + " " + this.Const.Strings.EntityNamePlural[i],
 						Icon = this.Const.EntityIcon[i],
 						Overlay = null
 					});
@@ -1599,6 +1599,6 @@
 
 		::World.Camp.clear();
 		::World.Camp.onDeserialize(_in);
-		onCalculatePlayerPartyModifiers();
+		this.onCalculatePlayerPartyModifiers();
 	}
 });
