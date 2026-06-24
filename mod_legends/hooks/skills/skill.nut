@@ -556,7 +556,7 @@
 			});
 		}
 
-		if (_targetTile.IsOccupiedByActor && targetEntity.getCurrentProperties().IsImmuneToRoot && this.getID() == ::Legends.Actives.getID(::Legends.Active.ThrowNet))
+		if (_targetTile.IsOccupiedByActor && targetEntity.getCurrentProperties().IsImmuneToRoot && (this.getID() == ::Legends.Actives.getID(::Legends.Active.ThrowNet) || this.getID() == ::Legends.Actives.getID(::Legends.Active.Root) || this.getID() == ::Legends.Actives.getID(::Legends.Active.LegendRoot)))
 		{
 			ret.push({
 				icon = "ui/tooltips/negative.png",
