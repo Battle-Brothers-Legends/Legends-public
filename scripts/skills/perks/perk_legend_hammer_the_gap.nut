@@ -13,6 +13,10 @@ this.perk_legend_hammer_the_gap <- this.inherit("scripts/skills/skill", {
 			return;
 		}
 
+		if (!_skill.isAOE()) {
+			return;
+		}
+
 		if (_targetEntity == null) {
 			return;
 		}

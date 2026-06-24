@@ -3365,6 +3365,8 @@ Onward unto death die like a nail hammered into a coffin.
 
 [color=%passive%][u]Passive:[/u][/color]
 • Grants a stacking [color=%positive%]+5%[/color] to hit as long as you attack the same tile. The bonus is capped at [color=%positive%]10%[/color].
+
+• The bonus only works on attacks that are not AOE.
 ";
 
 ::Const.Strings.PerkDescription.LegendKeenEyesight <- @"
