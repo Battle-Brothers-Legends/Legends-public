@@ -1,6 +1,6 @@
 ::Legends <- {
 	ID = "mod_legends",
-	Version = "19.4.0",
+	Version = "19.4.1",
 	Name = "Legends Mod",
 	BuildName = "Bandits & Greenskins",
 	IsStartingNewCampaign = false
@@ -8,7 +8,7 @@
 
 ::mods_registerMod(::Legends.ID, ::Legends.Version, ::Legends.Name);
 ::mods_queue(::Legends.ID, [
-	"mod_legends_assets(>=19.4.0)",
+	"mod_legends_assets(>=19.4.1)",
 	"mod_msu(>=1.9.0)",
 	"vanilla(>=1.5.2-2)",
 	"vanilla(<1.5.3)",
