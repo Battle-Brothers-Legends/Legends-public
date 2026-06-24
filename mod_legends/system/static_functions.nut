@@ -2,9 +2,8 @@
 
 ::Legends.S.isNull <- ::MSU.isNull;
 
-::Legends.S.colorize <- function(_valueString, _value)
-{
-    local color = (_value >= 0) ? this.Const.UI.Color.PositiveValue : this.Const.UI.Color.NegativeValue;
+::Legends.S.colorize <- function(_valueString, _value, _threshold = 0) {
+    local color = (_value >= _threshold) ? ::Const.UI.Color.PositiveValue : ::Const.UI.Color.NegativeValue;
     return "[color=" + color + "]" + _valueString + "[/color]";
 }
 

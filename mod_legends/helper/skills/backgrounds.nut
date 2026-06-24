@@ -90,6 +90,10 @@ if (!("Backgrounds" in ::Legends)) {
 	return null;
 }
 
+::Legends.Backgrounds.getName <- function (_def) {
+	return ::Legends.Backgrounds.BackgroundDefObjects[_def].Name;
+}
+
 ::Legends.Backgrounds.has <- function (_target, _def) {
 	return ::Legends.Backgrounds.getContainer(_target, "on has").hasSkill(::Legends.Backgrounds.getID(_def));
 }
