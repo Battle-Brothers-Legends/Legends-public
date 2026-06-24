@@ -607,13 +607,6 @@ class Defs:
  "adesc" : "Includes a masterfully crafted set of painted, solid plated steel with matching greaves.",
  "named" : { "con": { "min" : 185, "max" : 225 }, "fat": { "min" : 25, "max" : 23 }, "names" : ["Glory", "Triumph", "Victory", "Joy"]  }
 },
-#REMOVE THIS LATER
-{"name": "plate_full_greaves_painted",       "layer": "plate", "min": 1, "max": 1, "value" : 10000, "con" : 170, "stam" : -26, "impactSound" : "plate", "invSound" : "plate",
- "title" :  "",
- "desc" :  "A masterfully crafted harness of solid, plated steel, finished with a layer of decorative paint.",
- "adesc" : "Includes a masterfully crafted set of painted, solid plated steel with matching greaves.",
- "named" : { "con": { "min" : 185, "max" : 225 }, "fat": { "min" : 25, "max" : 23 }, "names" : ["Ward", "Death", "Barrier", "Plate Armor", "Dark Plated Armor", "Life Stealer"]  }
-},
 {"name": "scale",                            "layer": "plate", "min": 1, "max": 6, "value" : 2250, "con" : 100, "stam" : -12, "impactSound" : "chain", "invSound" : "chain",
  "title" :  "Scale Armor",
  "desc" :  "A sturdy body vest made of overlapping metal scales.",
