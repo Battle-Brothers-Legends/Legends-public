@@ -44,7 +44,7 @@
 			::Legends.Background.Squire,
 			::Legends.Background.Squire,
 			::Legends.Background.Cripple,
-			"executioner_background"
+			::Legends.Background.Executioner
 		];
 		this.m.StablesList = [
 			::Legends.Background.LegendDonkey,

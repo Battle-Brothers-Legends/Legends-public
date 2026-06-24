@@ -48,10 +48,10 @@
 			::Legends.Background.BeastSlayer,
 			::Legends.Background.Nomad,
 			::Legends.Background.CaravanHandSouthern,
-			"peddler_southern_background",
-			"beggar_southern_background",
-			"cripple_southern_background",
-			"executioner_background"
+			::Legends.Background.PeddlerSouthern,
+			::Legends.Background.BeggarSouthern,
+			::Legends.Background.CrippleSouthern,
+			::Legends.Background.Executioner
 		];
 		this.m.StablesList = [
 			::Legends.Background.LegendDonkey,

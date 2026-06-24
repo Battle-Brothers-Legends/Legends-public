@@ -31,7 +31,7 @@
 			::Legends.Background.Deserter,
 			::Legends.Background.RetiredSoldier,
 			::Legends.Background.RetiredSoldier,
-			"executioner_background"
+			::Legends.Background.Executioner
 		];
 
 		if (this.World.Assets.getOrigin().getID() == "scenario.legends_nomad") {

@@ -99,6 +99,14 @@ backgroundDefs.push({
     Name = "Beggar"
 });
 
+::Legends.Background.BeggarSouthern <- null;
+backgroundDefs.push({
+    ID = "background.beggar",
+    Script = "scripts/skills/backgrounds/beggar_southern_background",
+    Const = "BeggarSouthern",
+    Name = "Beggar"
+});
+
 ::Legends.Background.BellyDancer <- null;
 backgroundDefs.push({
     ID = "background.belly_dancer",
@@ -211,6 +219,14 @@ backgroundDefs.push({
     Name = "Cripple"
 });
 
+::Legends.Background.CrippleSouthern <- null;
+backgroundDefs.push({
+    ID = "background.cripple",
+    Script = "scripts/skills/backgrounds/cripple_southern_background",
+    Const = "CrippleSouthern",
+    Name = "Cripple"
+});
+
 ::Legends.Background.Crucified <- null;
 backgroundDefs.push({
     ID = "background.crucified",
@@ -273,6 +289,30 @@ backgroundDefs.push({
     Script = "scripts/skills/backgrounds/eunuch_background",
     Const = "Eunuch",
     Name = "Eunuch"
+});
+
+::Legends.Background.EunuchSouthern <- null;
+backgroundDefs.push({
+    ID = "background.eunuch",
+    Script = "scripts/skills/backgrounds/eunuch_southern_background",
+    Const = "EunuchSouthern",
+    Name = "Eunuch"
+});
+
+::Legends.Background.Executioner <- null;
+backgroundDefs.push({
+    ID = "background.executioner",
+    Script = "scripts/skills/backgrounds/executioner_background",
+    Const = "Executioner",
+    Name = "Executioner"
+});
+
+::Legends.Background.ExecutionerSouthern <- null;
+backgroundDefs.push({
+    ID = "background.executioner",
+    Script = "scripts/skills/backgrounds/executioner_southern_background",
+    Const = "ExecutionerSouthern",
+    Name = "Executioner"
 });
 
 ::Legends.Background.Farmhand <- null;
@@ -552,6 +592,14 @@ backgroundDefs.push({
     ID = "background.peddler",
     Script = "scripts/skills/backgrounds/peddler_background",
     Const = "Peddler",
+    Name = "Peddler"
+});
+
+::Legends.Background.PeddlerSouthern <- null;
+backgroundDefs.push({
+    ID = "background.peddler",
+    Script = "scripts/skills/backgrounds/peddler_southern_background",
+    Const = "PeddlerSouthern",
     Name = "Peddler"
 });
 

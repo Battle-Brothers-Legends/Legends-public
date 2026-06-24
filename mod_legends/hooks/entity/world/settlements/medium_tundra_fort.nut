@@ -45,7 +45,7 @@
 			"female_thief_background",
 			::Legends.Background.Vagabond,
 			::Legends.Background.Wildman,
-			"executioner_background"
+			::Legends.Background.Executioner
 		];
 	}
 

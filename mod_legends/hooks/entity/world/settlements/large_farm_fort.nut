@@ -31,7 +31,7 @@
 			::Legends.Background.Swordmaster,
 			::Legends.Background.LegendIronmonger,
 			::Legends.Background.LegendNobleShield,
-			"executioner_background"
+			::Legends.Background.Executioner
 		]);
 		this.m.StablesList = [
 			::Legends.Background.LegendDonkey,

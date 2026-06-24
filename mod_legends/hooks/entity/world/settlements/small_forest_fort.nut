@@ -22,7 +22,7 @@
 			::Legends.Background.RetiredSoldier,
 			::Legends.Background.RetiredSoldier,
 			::Legends.Background.BeastSlayer,
-			"executioner_background"
+			::Legends.Background.Executioner
 		];
 		this.m.StablesList = [
 			::Legends.Background.LegendDonkey,

@@ -56,7 +56,7 @@
 			::Legends.Background.RetiredSoldier,
 			::Legends.Background.Sellsword,
 			::Legends.Background.Swordmaster,
-			"executioner_background"
+			::Legends.Background.Executioner
 		];
 		this.m.StablesList = [
 			::Legends.Background.LegendDonkey,

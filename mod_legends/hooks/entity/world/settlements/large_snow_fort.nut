@@ -45,7 +45,7 @@
 			::Legends.Background.LegendShieldmaiden,
 			::Legends.Background.LegendShieldmaiden,
 			::Legends.Background.BeastSlayer,
-			"executioner_background"
+			::Legends.Background.Executioner
 		];
 		this.m.StablesList = [
 			::Legends.Background.LegendDonkey,

@@ -39,7 +39,7 @@
 			::Legends.Background.Swordmaster,
 			::Legends.Background.Anatomist,
 			::Legends.Background.LegendInventor,
-			"executioner_background"
+			::Legends.Background.Executioner
 		];
 		this.m.StablesList = [
 			::Legends.Background.LegendDonkey,

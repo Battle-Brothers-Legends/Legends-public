@@ -40,7 +40,7 @@
 			::Legends.Background.LegendTaxidermist,
 			::Legends.Background.LegendBlacksmith,
 			::Legends.Background.LegendNobleRanged,
-			"executioner_background"
+			::Legends.Background.Executioner
 		]);
 		this.m.StablesList = [
 			::Legends.Background.LegendHorseDestrier,

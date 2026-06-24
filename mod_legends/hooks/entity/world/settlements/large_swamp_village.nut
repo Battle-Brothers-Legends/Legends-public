@@ -51,7 +51,7 @@
 			::Legends.Background.LegendInventor,
 			::Legends.Background.BeastSlayer,
 			::Legends.Background.BeastSlayer,
-			"executioner_background"
+			::Legends.Background.Executioner
 		];
 	}
 

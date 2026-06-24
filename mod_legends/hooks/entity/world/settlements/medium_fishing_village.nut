@@ -65,7 +65,7 @@
 			::Legends.Background.Cripple,
 			::Legends.Background.Eunuch,
 			::Legends.Background.Sellsword,
-			"executioner_background"
+			::Legends.Background.Executioner
 		];
 	}
 

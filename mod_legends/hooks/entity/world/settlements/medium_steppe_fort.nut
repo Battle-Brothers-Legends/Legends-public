@@ -49,7 +49,7 @@
 			::Legends.Background.RetiredSoldier,
 			::Legends.Background.RetiredSoldier,
 			::Legends.Background.Sellsword,
-			"executioner_background"
+			::Legends.Background.Executioner
 		];
 		this.m.StablesList = [
 			::Legends.Background.LegendHorseRouncey,

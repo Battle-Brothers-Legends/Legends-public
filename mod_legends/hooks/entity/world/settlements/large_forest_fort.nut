@@ -81,7 +81,7 @@
 			::Legends.Background.LegendBlacksmith,
 			::Legends.Background.BeastSlayer,
 			::Legends.Background.BeastSlayer,
-			"executioner_background"
+			::Legends.Background.Executioner
 		];
 		this.m.StablesList = [
 			::Legends.Background.LegendDonkey,

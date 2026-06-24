@@ -49,7 +49,7 @@
 			::Legends.Background.AdventurousNoble,
 			::Legends.Background.DisownedNoble,
 			::Legends.Background.Cripple,
-			"executioner_background"
+			::Legends.Background.Executioner
 		];
 	}
 

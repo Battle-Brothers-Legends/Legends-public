@@ -2,7 +2,7 @@
 {
 	o.create = function () {
 		this.character_background.create();
-		this.m.ID = "background.executioner";
+		this.m.ID = ::Legends.Backgrounds.getID(::Legends.Background.Executioner);
 		this.m.Name = "Executioner";
 		this.m.Icon = "ui/backgrounds/background_72.png";
 		this.m.BackgroundDescription = "Executioners are dour and used to violence, although they have little experience in true warfare.";
@@ -90,11 +90,10 @@
 		return ret;
 	}
 
-	o.setGender <- function (_gender = -1)
-	{
-		if (_gender == -1) _gender = ::Legends.Mod.ModSettings.getSetting("GenderEquality").getValue() == "Disabled" ? 0 : ::Math.rand(0, 1);
-
+	o.setGender <- function (_gender = -1) {
+		if (_gender == -1) _gender = this.randomizeHumanGender();
 		if (_gender != 1) return;
+		
 		this.m.Bodies = this.Const.Bodies.NorthernFemale;
 		this.m.Faces = this.Const.Faces.AllWhiteFemale;
 		this.m.Hairs = this.Const.Hair.AllFemale;

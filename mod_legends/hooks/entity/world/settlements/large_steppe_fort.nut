@@ -44,8 +44,8 @@
 			::Legends.Background.HedgeKnight,
 			::Legends.Background.LegendIronmonger,
 			::Legends.Background.LegendNoble2h,
-			"eunuch_southern_background",
-			"executioner_background"
+			::Legends.Background.EunuchSouthern,
+			::Legends.Background.Executioner
 		]);
 		this.m.StablesList = [
 			::Legends.Background.LegendHorseDestrier,

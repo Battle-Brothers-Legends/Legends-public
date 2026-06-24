@@ -50,7 +50,7 @@
 			::Legends.Background.Swordmaster,
 			::Legends.Background.Anatomist,
 			::Legends.Background.LegendInventor,
-			"executioner_background"
+			::Legends.Background.Executioner
 		];
 		this.m.HousesMin = 4;
 		this.m.HousesMax = 6;

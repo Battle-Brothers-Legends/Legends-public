@@ -28,7 +28,7 @@
 			::Legends.Background.Deserter,
 			::Legends.Background.Raider,
 			::Legends.Background.RetiredSoldier,
-			"executioner_background"
+			::Legends.Background.Executioner
 		];
 		this.m.StablesList = [
 			::Legends.Background.LegendDonkey,

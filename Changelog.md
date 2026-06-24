@@ -131,13 +131,14 @@
 - added a mod setting allowing the player to choose the gender of the commander avatar
 - added a mod setting allowing the player to choose % of female characters
 - added a mod setting allowing the player to choose % of enemy female characters
-- some backgrounds received female counterparts: Fisher, Shepherd, Vagabond, Inventor, Brawler
+- some backgrounds received female counterparts: Fisher, Shepherd, Vagabond, Inventor, Brawler, Widow, Caravan Hand, Miner, Servant (southern), Juggler
 
 ## Bug Fixes
 - black market in town screens can now be highlighted on mouseover
 - painter tent allows painting the shoulder layer
 - text fixes
 - bros can now use the basic training options until level 12 in town training halls instead of 11
+- fixed settlement situations applying twice
 
 ### For modders:
 - it is now possible to use [i][/i] and [size=18px][/size] to customize ui text size easily with xbbcode

@@ -31,7 +31,7 @@
 			::Legends.Background.Deserter,
 			::Legends.Background.RetiredSoldier,
 			::Legends.Background.BeastSlayer,
-			"executioner_background"
+			::Legends.Background.Executioner
 		];
 
 		this.m.StablesList = [

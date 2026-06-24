@@ -47,7 +47,7 @@
 			::Legends.Background.Anatomist,
 			::Legends.Background.BeastSlayer,
 			::Legends.Background.BeastSlayer,
-			"executioner_background"
+			::Legends.Background.Executioner
 		];
 	}
 });

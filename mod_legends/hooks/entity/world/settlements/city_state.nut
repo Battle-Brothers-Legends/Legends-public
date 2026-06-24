@@ -8,7 +8,6 @@
 		];
 		this.m.DraftList.extend([
 			::Legends.Background.JugglerSouthern,
-			::Legends.Background.AssassinSouthern,
 			::Legends.Background.LegendMuladi,
 			::Legends.Background.LegendDervish,
 			::Legends.Background.BeastSlayer
