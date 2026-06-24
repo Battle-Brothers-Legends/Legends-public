@@ -64,7 +64,7 @@
 			if (::Legends.S.isEntityNullOrDead(_user))
 				return ret;
 
-			local target = _targetEntity.getEntity();
+			local target = _targetTile.getEntity();
 
 			if (::Legends.S.isEntityNullOrDead(target)) {
 				return ret;
@@ -106,7 +106,7 @@
 		if (::Legends.S.isEntityNullOrDead(_user))
 			return ret;
 
-		local target = _targetEntity.getEntity();
+		local target = _targetTile.getEntity();
 
 		if (::Legends.S.isEntityNullOrDead(target))
 			return ret;
