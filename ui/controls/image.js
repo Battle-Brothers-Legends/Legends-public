@@ -81,6 +81,10 @@ $.fn.createImage = function (_imagePath, _loadCallback, _resizeCallback, _classe
  * Center Image within its parent
  */
 $.fn.centerImageWithinParent = function (_offsetX, _offsetY, _scale, _fitImage) {
+    if (this.length === 0 || !this[0]) {
+        return this;
+    }
+
     var offsetX = _offsetX || 0;
     var offsetY = _offsetY || 0;
     var scale = _scale || 1.0;
