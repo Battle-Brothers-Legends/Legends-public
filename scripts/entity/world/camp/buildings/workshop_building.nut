@@ -165,7 +165,7 @@ this.workshop_building <- this.inherit("scripts/entity/world/camp/camp_building"
 			return false;
 		}
 
-		return !this.World.Flags.get("HasLegendCampScraping");
+		return !this.World.Flags.get("HasLegendCampScrapping");
 	}
 
 	function getUpgraded()
