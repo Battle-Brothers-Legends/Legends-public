@@ -157,3 +157,23 @@
 	line-height: 2.2rem;
 	text-align: center;
 }
+
+.tactical-screen .topbar-round-information-module .tactical-speed-controls-container
+{
+    top: 8.0rem; 
+    left: 7.8rem;
+    width: 18.0rem;
+    height: 3.9rem;
+    position: absolute;
+    z-index: 10;
+    
+    display: flex;
+    gap: 0.4rem; 
+}
+
+.tactical-screen .topbar-round-information-module .tactical-speed-controls-container .l-speed-btn
+{
+    width: 3.9rem;
+    height: 3.9rem;
+    position: relative;
+}

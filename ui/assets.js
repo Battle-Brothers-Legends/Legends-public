@@ -185,5 +185,15 @@ var Asset =
 	HEADER_COMBAT_RESULT_DIALOG:			'ui/header/world_town_screen_main_dialog.png',
     HEADER_WORLD_TOWN_SCREEN_MAIN_DIALOG:   'ui/header/world_town_screen_main_dialog.png',
 	HEADER_EVENT_POPUP:						'ui/header/brothers_marching.png',
-	HEADER_EVENT_POPUP_LARGE:				'ui/header/brothers_marching_large.png'
+	HEADER_EVENT_POPUP_LARGE:				'ui/header/brothers_marching_large.png',
+
+	// Tactical speed buttons
+	BUTTON_SPEED_NORMAL_TACTICAL:				'ui/buttons/speed_normal_tactical.png',
+	BUTTON_SPEED_NORMAL_TACTICAL_DISABLED:		'ui/buttons/speed_normal_tactical_bw.png',
+	BUTTON_SPEED_FAST_TACTICAL:					'ui/buttons/speed_fast_tactical.png',
+	BUTTON_SPEED_FAST_TACTICAL_DISABLED:		'ui/buttons/speed_fast_tactical_bw.png',
+	BUTTON_SPEED_VERY_FAST_TACTICAL:			'ui/buttons/speed_very_fast_tactical.png',
+	BUTTON_SPEED_VERY_FAST_TACTICAL_DISABLED:	'ui/buttons/speed_very_fast_tactical_bw.png',
+	BUTTON_SPEED_SUPER_FAST_TACTICAL:			'ui/buttons/speed_super_fast_tactical.png',
+	BUTTON_SPEED_SUPER_FAST_TACTICAL_DISABLED:	'ui/buttons/speed_super_fast_tactical_bw.png'
 };

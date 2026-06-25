@@ -2707,6 +2707,62 @@
 				}
 			];
 
+		case "tactical-screen.topbar.round-information-module.SpeedNormalButton":
+			return [
+				{
+					id = 1,
+					type = "title",
+					text = "Normal Speed (1)"
+				},
+				{
+					id = 2,
+					type = "description",
+					text = "Regular combat speed."
+				}
+			];
+
+		case "tactical-screen.topbar.round-information-module.SpeedFastButton":
+			return [
+				{
+					id = 1,
+					type = "title",
+					text = "Fast Speed (2)"
+				},
+				{
+					id = 2,
+					type = "description",
+					text = "Faster combat speed."
+				}
+			];
+
+		case "tactical-screen.topbar.round-information-module.SpeedVeryFastButton":
+			return [
+				{
+					id = 1,
+					type = "title",
+					text = "Very Fast Speed (3)"
+				},
+				{
+					id = 2,
+					type = "description",
+					text = "Even faster combat speed. Use judiciously."
+				}
+			];
+
+		case "tactical-screen.topbar.round-information-module.SpeedSuperFastButton":
+			return [
+				{
+					id = 1,
+					type = "title",
+					text = "Super Fast Speed (4)"
+				},
+				{
+					id = 2,
+					type = "description",
+					text = "Much faster combat speed. Use judiciously."
+				}
+			];
+
 		case "tactical-screen.topbar.options-bar-module.CenterButton":
 			return [
 				{

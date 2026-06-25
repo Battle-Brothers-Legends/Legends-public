@@ -168,7 +168,11 @@ var TooltipIdentifier =
 			{
 				BrothersCounter: 'tactical-screen.topbar.round-information-module.BrothersCounter',
 				EnemiesCounter: 'tactical-screen.topbar.round-information-module.EnemiesCounter',
-				RoundCounter: 'tactical-screen.topbar.round-information-module.RoundCounter'
+				RoundCounter: 'tactical-screen.topbar.round-information-module.RoundCounter',
+				SpeedNormalButton: 'tactical-screen.topbar.round-information-module.SpeedNormalButton',
+				SpeedFastButton: 'tactical-screen.topbar.round-information-module.SpeedFastButton',
+				SpeedVeryFastButton: 'tactical-screen.topbar.round-information-module.SpeedVeryFastButton',
+				SpeedSuperFastButton: 'tactical-screen.topbar.round-information-module.SpeedSuperFastButton'
 			},
 
 			OptionsBarModule:

@@ -105,6 +105,35 @@ TacticalScreenTopbarRoundInformationModule.prototype.createDIV = function (_pare
 	var rightEntitiesCountImage = $('<img/>');
 	rightEntitiesCountImage.attr('src', Path.GFX + Asset.ICON_ENEMIES);
 	rightEntitiesCountImageContainer.append(rightEntitiesCountImage);
+
+	// create: 4 speed buttons
+	this.mSpeedControlsContainer = $('<div class="tactical-speed-controls-container"/>');
+    this.mContainer.append(this.mSpeedControlsContainer);
+
+	var self = this;
+    var layout = $('<div class="l-speed-btn"/>');
+    this.mSpeedControlsContainer.append(layout);
+    this.mSpeedNormalBtn = layout.createImageButton(Path.GFX + Asset.BUTTON_SPEED_NORMAL_TACTICAL, function () {
+        SQ.call(self.mSQHandle, 'onSpeedButtonClicked', 1.0);
+    }, '', 10);
+
+    var layout = $('<div class="l-speed-btn"/>');
+    this.mSpeedControlsContainer.append(layout);
+    this.mSpeedFastBtn = layout.createImageButton(Path.GFX + Asset.BUTTON_SPEED_FAST_TACTICAL_DISABLED, function () {
+        SQ.call(self.mSQHandle, 'onSpeedButtonClicked', 2.0);
+    }, '', 10);
+
+    var layout = $('<div class="l-speed-btn"/>');
+    this.mSpeedControlsContainer.append(layout);
+    this.mSpeedVeryFastBtn = layout.createImageButton(Path.GFX + Asset.BUTTON_SPEED_VERY_FAST_TACTICAL_DISABLED, function () {
+        SQ.call(self.mSQHandle, 'onSpeedButtonClicked', 3.0);
+    }, '', 10);
+
+    var layout = $('<div class="l-speed-btn"/>');
+    this.mSpeedControlsContainer.append(layout);
+    this.mSpeedSuperFastBtn = layout.createImageButton(Path.GFX + Asset.BUTTON_SPEED_SUPER_FAST_TACTICAL_DISABLED, function () {
+        SQ.call(self.mSQHandle, 'onSpeedButtonClicked', 4.0);
+    }, '', 10);
 };
 
 TacticalScreenTopbarRoundInformationModule.prototype.destroyDIV = function () {
@@ -126,6 +155,13 @@ TacticalScreenTopbarRoundInformationModule.prototype.destroyDIV = function () {
 	this.mEnemiesCountContainer.remove();
 	this.mEnemiesCountContainer = null;
 
+	this.mSpeedNormalBtn.remove();
+    this.mSpeedFastBtn.remove();
+    this.mSpeedVeryFastBtn.remove();
+    this.mSpeedSuperFastBtn.remove();
+    this.mSpeedControlsContainer.empty();
+    this.mSpeedControlsContainer.remove();
+
 	this.mContainer.empty();
 	this.mContainer.remove();
 	this.mContainer = null;
@@ -136,12 +172,20 @@ TacticalScreenTopbarRoundInformationModule.prototype.bindTooltips = function () 
 	this.mBrothersCountContainer.bindTooltip({ contentType: 'ui-element', elementId: TooltipIdentifier.TacticalScreen.Topbar.RoundInformationModule.BrothersCounter });
 	this.mEnemiesCountContainer.bindTooltip({ contentType: 'ui-element', elementId: TooltipIdentifier.TacticalScreen.Topbar.RoundInformationModule.EnemiesCounter });
 	this.mRoundCounterContainer.bindTooltip({ contentType: 'ui-element', elementId: TooltipIdentifier.TacticalScreen.Topbar.RoundInformationModule.RoundCounter });
+	this.mSpeedNormalBtn.bindTooltip({ contentType: 'ui-element', elementId: TooltipIdentifier.TacticalScreen.Topbar.RoundInformationModule.SpeedNormalButton });
+    this.mSpeedFastBtn.bindTooltip({ contentType: 'ui-element', elementId: TooltipIdentifier.TacticalScreen.Topbar.RoundInformationModule.SpeedFastButton });
+    this.mSpeedVeryFastBtn.bindTooltip({ contentType: 'ui-element', elementId: TooltipIdentifier.TacticalScreen.Topbar.RoundInformationModule.SpeedVeryFastButton });
+    this.mSpeedSuperFastBtn.bindTooltip({ contentType: 'ui-element', elementId: TooltipIdentifier.TacticalScreen.Topbar.RoundInformationModule.SpeedSuperFastButton });
 };
 
 TacticalScreenTopbarRoundInformationModule.prototype.unbindTooltips = function () {
 	this.mBrothersCountContainer.unbindTooltip();
 	this.mEnemiesCountContainer.unbindTooltip();
 	this.mRoundCounterContainer.unbindTooltip();
+	this.mSpeedNormalBtn.unbindTooltip();
+    this.mSpeedFastBtn.unbindTooltip();
+    this.mSpeedVeryFastBtn.unbindTooltip();
+    this.mSpeedSuperFastBtn.unbindTooltip();
 };
 
 
@@ -212,4 +256,11 @@ TacticalScreenTopbarRoundInformationModule.prototype.update = function (_data) {
 	if (TacticalScreenIdentifier.Topbar.RoundInformation.RoundNumber in _data) {
 		this.mRoundNumber.html(_data[TacticalScreenIdentifier.Topbar.RoundInformation.RoundNumber]);
 	}
+};
+
+TacticalScreenTopbarRoundInformationModule.prototype.updateSpeedButtons = function (_speed) {
+	this.mSpeedNormalBtn.changeButtonImage(Path.GFX + (_speed === 1.0 ? Asset.BUTTON_SPEED_NORMAL_TACTICAL : Asset.BUTTON_SPEED_NORMAL_TACTICAL_DISABLED));
+    this.mSpeedFastBtn.changeButtonImage(Path.GFX + (_speed === 2.0 ? Asset.BUTTON_SPEED_FAST_TACTICAL : Asset.BUTTON_SPEED_FAST_TACTICAL_DISABLED));
+    this.mSpeedVeryFastBtn.changeButtonImage(Path.GFX + (_speed === 3.0 ? Asset.BUTTON_SPEED_VERY_FAST_TACTICAL : Asset.BUTTON_SPEED_VERY_FAST_TACTICAL_DISABLED));
+    this.mSpeedSuperFastBtn.changeButtonImage(Path.GFX + (_speed === 4.0 ? Asset.BUTTON_SPEED_SUPER_FAST_TACTICAL : Asset.BUTTON_SPEED_SUPER_FAST_TACTICAL_DISABLED));
 };

@@ -943,18 +943,22 @@
 		
 		local key = _key.getKey();
 		if (key >= 71 && key <= 74) {
-			::Const.Tactical.Settings.AnimationSpeed = (key - 70).tofloat();
-			this.m.TacticalScreen.getTurnSequenceBarModule().m.JSHandle.asyncCall("updateAnimationSpeed", ::Math.maxf(1.0, ::Const.Tactical.Settings.AnimationSpeed/2));
-			if (!this.m.IsGamePaused) {
-				if (this.m.IsAutoRetreat) {
-					::Time.setVirtualSpeed(::Const.Tactical.Settings.AnimationSpeed * 1.5);
-				} else {
-					::Time.setVirtualSpeed(::Const.Tactical.Settings.AnimationSpeed);
-				}
-			}
-
+			this.setTacticalSpeed((key - 70).tofloat());
 			return true;
 		}
 		return ret;
+	}
+
+	o.setTacticalSpeed <- function (_speed) {
+		::Const.Tactical.Settings.AnimationSpeed = _speed;
+		this.m.TacticalScreen.getTurnSequenceBarModule().m.JSHandle.asyncCall("updateAnimationSpeed", ::Math.maxf(1.0, ::Const.Tactical.Settings.AnimationSpeed / 2));
+		::Tactical.TopbarRoundInformation.updateSpeedButtons(_speed);
+		if (!this.m.IsGamePaused) {
+			if (this.m.IsAutoRetreat) {
+				::Time.setVirtualSpeed(::Const.Tactical.Settings.AnimationSpeed * 1.5);
+			} else {
+				::Time.setVirtualSpeed(::Const.Tactical.Settings.AnimationSpeed);
+			}
+		}
 	}
 });
