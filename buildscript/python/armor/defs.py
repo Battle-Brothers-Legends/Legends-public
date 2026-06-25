@@ -127,11 +127,6 @@ class Defs:
  "desc" :  "A strong leather dress worn by a vala on her travels.",
  "adesc" :""
 },
-{"name": "vala_robe",                                  "layer": "cloth", "min": 1, "max": 1, "value" : 0, "con" : 60, "stam" : 0, "impactSound" : "leather", "invSound" : "cloth",
- "title" :  "Vala\'s Cloak",
- "desc" :  "A rugged, surprisingly light cloak ideal for a vala\'s journeys through the lands.",
- "adesc" :""
-},
 {"name": "fur_rabble",                            "layer": "cloth", "min": 1, "max": 9, "value" : 100, "con" : 5, "stam" : 0, "impactSound" : "leather", "invSound" : "cloth",
  "title" :  "Fur Armor",
  "desc" :  "Matted fur and rags, torn and filthy.",
