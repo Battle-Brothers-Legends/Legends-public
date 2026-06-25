@@ -3053,7 +3053,7 @@
 		],
 		Attachments = [
 			[1, "armor_upgrades/legend_leather_neckguard_upgrade"],
-			[1, "armor_upgrades/legend_armor_rusted_mail_patch_upgrade"],
+			[1, "armor_upgrades/legend_rusted_mail_patch_upgrade"],
 		]
 	}]
 };
