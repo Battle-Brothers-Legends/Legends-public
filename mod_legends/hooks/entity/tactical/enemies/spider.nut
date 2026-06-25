@@ -23,8 +23,6 @@
 		if(::Legends.isLegendaryDifficulty())
 		{
 			local b = this.m.BaseProperties;
-			b.RangedDefense -= 10;
-			b.MeleeDefense -= 10;
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendLevitate);
 			::Legends.Effects.grant(this, ::Legends.Effect.Dodge);
 			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
