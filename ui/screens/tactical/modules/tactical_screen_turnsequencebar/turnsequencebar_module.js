@@ -478,6 +478,36 @@ TacticalScreenTurnSequenceBarModule.prototype.createEntityDIV = function (_entit
 	return entity;
 };
 
+TacticalScreenTurnSequenceBarModule.prototype.updateAnimationSpeed = function (_divisor) {
+	if (this.mVanillaTimings === undefined) {
+		this.mVanillaTimings = {
+			mFadeInDuration: this.mFadeInDuration,
+			mFadeOutDuration: this.mFadeOutDuration,
+			mFadeOutDurationIfHiddenToPlayer: this.mFadeOutDurationIfHiddenToPlayer,
+			mSlideInDuration: this.mSlideInDuration,
+			mSlideOutDuration: this.mSlideOutDuration,
+			mSlideOutDurationIfHiddenToPlayer: this.mSlideOutDurationIfHiddenToPlayer,
+			mResizeFirstSlotTime: this.mResizeFirstSlotTime,
+			mResizeFirstSlotImageTime: this.mResizeFirstSlotImageTime,
+			mProgressbarMovementDuration: this.mProgressbarMovementDuration,
+			mStatsPanelFadeInTime: this.mStatsPanelFadeInTime,
+			mStatsPanelFadeOutTime: this.mStatsPanelFadeOutTime
+		};
+	}
+
+	this.mFadeInDuration = this.mVanillaTimings.mFadeInDuration / _divisor;
+	this.mFadeOutDuration = this.mVanillaTimings.mFadeOutDuration / _divisor;
+	this.mFadeOutDurationIfHiddenToPlayer = this.mVanillaTimings.mFadeOutDurationIfHiddenToPlayer / _divisor;
+	this.mSlideInDuration = this.mVanillaTimings.mSlideInDuration / _divisor;
+	this.mSlideOutDuration = this.mVanillaTimings.mSlideOutDuration / _divisor;
+	this.mSlideOutDurationIfHiddenToPlayer = this.mVanillaTimings.mSlideOutDurationIfHiddenToPlayer / _divisor;
+	this.mResizeFirstSlotTime = this.mVanillaTimings.mResizeFirstSlotTime / _divisor;
+	this.mResizeFirstSlotImageTime = this.mVanillaTimings.mResizeFirstSlotImageTime / _divisor;
+	this.mProgressbarMovementDuration = this.mVanillaTimings.mProgressbarMovementDuration / _divisor;
+	this.mStatsPanelFadeInTime = this.mVanillaTimings.mStatsPanelFadeInTime / _divisor;
+	this.mStatsPanelFadeOutTime = this.mVanillaTimings.mStatsPanelFadeOutTime / _divisor;
+};
+
 TacticalScreenTurnSequenceBarModule.prototype.addSkillToList = function (_entity, _skill, _label) {
 	var bottom = 0.0 + Math.floor((_label - 0) / 8) * 4.7;
 	var left = 11.0 + ((_label - 0) - Math.floor((_label - 0) / 8) * 7) * 4.2;
@@ -872,7 +902,7 @@ TacticalScreenTurnSequenceBarModule.prototype.selectFirstEntity = function (_ent
 	// +  query entity data from sq backend
 	var self = this;
 	var retryCount = (_retryCount === undefined) ? 0 : _retryCount;
-    var maxRetries = 10;
+	var maxRetries = 10;
 
 	this.notifyBackendEntityEntersFirstSlot(_entity.id, function (entityData) {
 		if (entityData === null || entityData === undefined) {
@@ -880,7 +910,7 @@ TacticalScreenTurnSequenceBarModule.prototype.selectFirstEntity = function (_ent
 				console.error('ERROR: Failed to query entity data for entity (' + _entity.id + '). Reason: Invalid result. Retrying...');
 				setTimeout(function () { self.selectFirstEntity(_entity, _entityDIV, _previousEntityWasHiddenToPlayer, ++retryCount); }, 100);
 			}
-			else{
+			else {
 				console.error('ERROR: Failed to query entity data for entity (' + _entity.id + '). Reason: Invalid result. Removing the entity from the sequence bar and moving to the next one...');
 				self.notifyBackendForceRemoveInvalidEntity(_entity.id);
 			}
