@@ -1,11 +1,9 @@
 ::mods_hookExactClass("states/tactical_state", function(o) {
-	o.m.TacticalSpeed <- 1.0;
-
 	local setPause = o.setPause;
 	o.setPause = function (_f) {
 		setPause(_f);
 		if (!_f) {
-			::Time.setVirtualSpeed(this.m.TacticalSpeed);
+			::Time.setVirtualSpeed(::Const.Tactical.Settings.AnimationSpeed);
 		}
 	}
 
@@ -904,7 +902,7 @@
 			this.Settings.getTempGameplaySettings().FasterPlayerMovement = true;
 			this.Settings.getTempGameplaySettings().FasterAIMovement = true;
 			this.Tactical.getCamera().zoomTo(this.Math.maxf(this.Tactical.getCamera().Zoom, 1.5), 1.0);
-			::Time.setVirtualSpeed(1.5 * this.m.TacticalSpeed);
+			::Time.setVirtualSpeed(1.5 * ::Const.Tactical.Settings.AnimationSpeed);
 			local alive = this.Tactical.Entities.getAllInstancesAsArray();
 
 			foreach (bro in alive) {
@@ -945,13 +943,13 @@
 		
 		local key = _key.getKey();
 		if (key >= 71 && key <= 74) {
-			this.m.TacticalSpeed = (key - 70).tofloat();
-			this.m.TacticalScreen.getTurnSequenceBarModule().m.JSHandle.asyncCall("updateAnimationSpeed", ::Math.maxf(1.0, this.m.TacticalSpeed/2));
+			::Const.Tactical.Settings.AnimationSpeed = (key - 70).tofloat();
+			this.m.TacticalScreen.getTurnSequenceBarModule().m.JSHandle.asyncCall("updateAnimationSpeed", ::Math.maxf(1.0, ::Const.Tactical.Settings.AnimationSpeed/2));
 			if (!this.m.IsGamePaused) {
 				if (this.m.IsAutoRetreat) {
-					::Time.setVirtualSpeed(this.m.TacticalSpeed * 1.5);
+					::Time.setVirtualSpeed(::Const.Tactical.Settings.AnimationSpeed * 1.5);
 				} else {
-					::Time.setVirtualSpeed(this.m.TacticalSpeed);
+					::Time.setVirtualSpeed(::Const.Tactical.Settings.AnimationSpeed);
 				}
 			}
 
