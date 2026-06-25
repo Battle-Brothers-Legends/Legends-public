@@ -45,7 +45,7 @@ runs:
         version: ${{ inputs.tag_name }}
         allow_mod_manager_download: false
         description: |
-          REQUIRES VERSION 1.5.1.8+ OF VANILLA GAME
+          REQUIRES VERSION 1.5.2.2+ OF VANILLA GAME
 
           SAVE COMPATIBLE WITH ${{ steps.versions.outputs.base }}+
 
@@ -67,7 +67,7 @@ runs:
 
     - name: Upload Assets
       if: steps.check_files.outputs.exists == 'true'
-      uses: Nexus-Mods/upload-action@v1.0.0-beta.7
+      uses: Nexus-Mods/upload-action@v1.0.0-beta.8
       with:
         api_key: ${{ inputs.api_key }}
         file_id: ${{ inputs.assets_id }}
