@@ -1,0 +1,159 @@
+/*
+ *  @Project:		Battle Brothers
+ *	@Company:		Overhype Studios
+ *
+ *	@Copyright:		(c) Overhype Studios | 2013 - 2020
+ * 
+ *  @Author:		Overhype Studios
+ *  @Date:			01.03.2017 (refactored: 25.10.2017)
+ *  @Description:	Tactical Screen - Topbar: Round Information Module CSS
+ */
+
+/*
+	Round Information: Module
+*/
+.tactical-screen .topbar-round-information-module {
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	margin: auto;
+}
+
+.tactical-screen .topbar-round-information-module .left-container {
+	top: -1.5rem;
+	left: 0;
+	width: 34%;
+	height: 100%;
+	position: absolute;
+	z-index: 1;
+}
+
+.tactical-screen .topbar-round-information-module .middle-container {
+	top: 0.5rem;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	width: 30%;
+	height: 100%;
+	position: absolute;
+	margin: auto;
+	z-index: 2;
+}
+
+.tactical-screen .topbar-round-information-module .right-container {
+	top: -1.5rem;
+	right: 0;
+	width: 34%;
+	height: 100%;
+	position: absolute;
+	z-index: 1;
+}
+
+.tactical-screen .topbar-round-information-module .l-entities-count-container {
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	width: 100%;
+	height: 3.6rem;
+	position: absolute;
+	margin: auto;
+}
+
+.tactical-screen .topbar-round-information-module .entities-count-image {
+	width: 3.6rem;
+	height: 3.6rem;
+}
+
+.tactical-screen .topbar-round-information-module .entities-count-image.is-right {
+	float: right;
+}
+
+.tactical-screen .topbar-round-information-module .entities-count-image.is-left {
+	float: left;
+}
+
+.tactical-screen .topbar-round-information-module .entities-count-image img {
+	width: 100%;
+	height: 100%;
+}
+
+.tactical-screen .topbar-round-information-module .l-entities-count-text {
+	width: 5.8rem;
+	height: 100%;
+	position: relative;
+}
+
+.tactical-screen .topbar-round-information-module .l-entities-count-text.is-right {
+	float: right;
+}
+
+.tactical-screen .topbar-round-information-module .l-entities-count-text.is-left {
+	float: left;
+}
+
+.tactical-screen .topbar-round-information-module .entities-count-text {
+	top: 0;
+	bottom: 0;
+	width: 100%;
+	height: 2.0rem;
+	position: absolute;
+	margin: auto;
+
+	text-align: center;
+}
+
+.tactical-screen .topbar-round-information-module .l-round-number-container {
+	top: 0.6rem;
+	left: 0;
+	right: 0;
+	width: 7.0rem;
+	height: 7.0rem;
+	position: absolute;
+	margin: auto;
+}
+
+.tactical-screen .topbar-round-information-module .round-number-image-layer {
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	z-index: 1;
+}
+
+/*.tactical-screen .topbar-round-information-module .round-number-image-layer img
+{
+	width: 100%;
+	height: 100%;
+}*/
+
+.tactical-screen .topbar-round-information-module .round-number-text-layer {
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	z-index: 2;
+
+	pointer-events: none;
+	/* Let the Image layer get input to show its tooltip! */
+}
+
+.tactical-screen .topbar-round-information-module .round-number-text {
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	width: 5.0rem;
+	height: 2.2rem;
+	position: absolute;
+	margin: auto;
+
+	line-height: 2.2rem;
+	text-align: center;
+}
