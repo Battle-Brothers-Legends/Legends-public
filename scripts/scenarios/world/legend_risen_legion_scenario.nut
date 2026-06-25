@@ -229,7 +229,7 @@ this.legend_risen_legion_scenario <- this.inherit("scripts/scenarios/world/start
 		this.World.Flags.set("HasLegendCampHealing", false);
 		this.World.Flags.set("HasLegendCampHunting", false);
 		this.World.Flags.set("HasLegendCampScouting", false);
-		this.World.Flags.set("HasLegendCampScraping", false);
+		this.World.Flags.set("HasLegendCampScrapping", false);
 		this.World.Flags.set("HasLegendCampTraining", false);
 	}
 
