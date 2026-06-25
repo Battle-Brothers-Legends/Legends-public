@@ -7,6 +7,11 @@
 - modified the faction window to include traits
 - added short description to noble house traits available upon mouseover in faction window
 
+## Profession system
+- introduced a new system connecting camping system to brothers - profession tree
+- the tree is accessible via character screen, next to the perk tree
+- uses separate points, independent to regular perks
+
 ## Scenarios
 
 ### Anatomists
@@ -14,7 +19,7 @@
 - new demon alp potion
 - new demon hound potion
 - new fallen betrayer potion
-- new greendwood schrat potion
+- new greenwood schrat potion
 - new hexe leader potion
 - new necrosavant lord potion
 - new orc behemoth potion
@@ -130,6 +135,10 @@
 - `Warcry` - each warcry now applies 5 stacks of rage
 - `Orc Berserker` - Base HP dropped to 200, gain `Colossus` and 10% damage that they had in vanilla, gain `Nimble` on Legendary Difficulty
 - `Orc Mad Berserker` - lose `Nudist`, gain 10% damage, gain the ability to use `Adrenaline`
+
+## Quality of life
+- added speed settings to combat and world expanding on vanilla systems
+- expanded settlement situation tooltips to support new situations natively
 
 ## Events
 - added a new town encounter during drought
