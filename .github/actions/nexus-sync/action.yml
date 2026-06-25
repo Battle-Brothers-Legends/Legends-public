@@ -39,7 +39,7 @@ runs:
       uses: Nexus-Mods/upload-action@v1.0.0-beta.7
       with:
         api_key: ${{ inputs.api_key }}
-        file_group_id: ${{ inputs.core_id }}
+        file_id: ${{ inputs.core_id }}
         filename: mod_legends-${{ inputs.tag_name }}.zip
         display_name: mod_legends-${{ inputs.tag_name }}
         version: ${{ inputs.tag_name }}
@@ -70,7 +70,7 @@ runs:
       uses: Nexus-Mods/upload-action@v1.0.0-beta.7
       with:
         api_key: ${{ inputs.api_key }}
-        file_group_id: ${{ inputs.assets_id }}
+        file_id: ${{ inputs.assets_id }}
         filename: mod_legends-assets-${{ inputs.tag_name }}.zip
         display_name: mod_legends-assets-${{ inputs.tag_name }}
         version: ${{ inputs.tag_name }}
