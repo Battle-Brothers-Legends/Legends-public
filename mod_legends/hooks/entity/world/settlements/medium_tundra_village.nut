@@ -1,34 +1,4 @@
-::mods_hookExactClass("entity/world/settlements/medium_tundra_village", function(o) 
-{
-	local create = o.create;
-	o.create = function()
-	{
-		create();
-		this.m.DraftList = [
-			::Legends.Background.Beggar,
-			::Legends.Background.Bowyer,
-			::Legends.Background.Brawler,
-			::Legends.Background.Brawler,
-			::Legends.Background.Butcher,
-			::Legends.Background.Cultist,
-			::Legends.Background.Daytaler,
-			::Legends.Background.Gravedigger,
-			::Legends.Background.Graverobber,
-			::Legends.Background.Hunter,
-			::Legends.Background.KillerOnTheRun,
-			::Legends.Background.Messenger,
-			::Legends.Background.Militia,
-			::Legends.Background.Minstrel,
-			::Legends.Background.Monk,
-			::Legends.Background.Peddler,
-			::Legends.Background.Poacher,
-			::Legends.Background.Tailor,
-			::Legends.Background.Thief,
-			::Legends.Background.Vagabond,
-			::Legends.Background.Wildman
-		];
-	}
-
+::mods_hookExactClass("entity/world/settlements/medium_tundra_village", function(o) {
 	o.onBuild = function ( )
 	{
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/crowd_building"), 5);

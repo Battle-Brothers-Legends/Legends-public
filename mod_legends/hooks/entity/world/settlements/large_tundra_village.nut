@@ -2,46 +2,11 @@
 	local create = o.create;
 	o.create = function() {
 		create();
-		this.m.DraftList = [
+		this.m.DraftList.extend([
 			::Legends.Background.LegendShieldmaiden,
 			::Legends.Background.LegendShieldmaiden,
-			::Legends.Background.Apprentice,
-			"female_beggar_background",
-			::Legends.Background.Brawler,
-			::Legends.Background.Brawler,
-			::Legends.Background.CaravanHand,
-			::Legends.Background.Cultist,
-			::Legends.Background.Cultist,
-			"female_daytaler_background",
-			"female_daytaler_background",
-			::Legends.Background.Gravedigger,
-			::Legends.Background.Graverobber,
-			::Legends.Background.Hunter,
-			::Legends.Background.KillerOnTheRun,
-			::Legends.Background.Messenger,
-			::Legends.Background.Militia,
-			::Legends.Background.Militia,
-			::Legends.Background.Militia,
-			::Legends.Background.Minstrel,
-			::Legends.Background.Monk,
-			::Legends.Background.Peddler,
-			::Legends.Background.Poacher,
-			::Legends.Background.Ratcatcher,
-			::Legends.Background.Shepherd,
-			"female_tailor_background",
-			"female_thief_background",
-			::Legends.Background.Vagabond,
-			::Legends.Background.Wildman,
-			::Legends.Background.Wildman,
-			::Legends.Background.Bastard,
-			::Legends.Background.DisownedNoble,
-			::Legends.Background.Raider,
-			::Legends.Background.Sellsword,
-			::Legends.Background.Swordmaster,
-			::Legends.Background.Anatomist,
-			::Legends.Background.LegendInventor,
-			::Legends.Background.Executioner
-		];
+			::Legends.Background.LegendInventor
+		]);
 	}
 
 	o.onBuild = function() {

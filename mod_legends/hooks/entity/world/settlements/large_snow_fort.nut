@@ -2,51 +2,13 @@
 	local create = o.create;
 	o.create = function() {
 		create();
-		this.m.DraftList = [
-			::Legends.Background.Apprentice,
-			::Legends.Background.Brawler,
-			::Legends.Background.Daytaler,
-			::Legends.Background.Gravedigger,
-			::Legends.Background.Graverobber,
-			::Legends.Background.Mason,
-			::Legends.Background.Messenger,
-			::Legends.Background.Militia,
-			::Legends.Background.Militia,
-			::Legends.Background.Militia,
-			::Legends.Background.Ratcatcher,
-			::Legends.Background.Refugee,
-			::Legends.Background.Servant,
-			::Legends.Background.Vagabond,
-			::Legends.Background.Vagabond,
-			::Legends.Background.Wildman,
-			::Legends.Background.Wildman,
-			::Legends.Background.Wildman,
-			::Legends.Background.Witchhunter,
-			::Legends.Background.Witchhunter,
-			::Legends.Background.AdventurousNoble,
-			::Legends.Background.Deserter,
-			::Legends.Background.Deserter,
-			::Legends.Background.DisownedNoble,
-			::Legends.Background.DisownedNoble,
-			::Legends.Background.HedgeKnight,
-			::Legends.Background.HedgeKnight,
-			::Legends.Background.Raider,
-			::Legends.Background.Raider,
-			::Legends.Background.Raider,
-			::Legends.Background.RetiredSoldier,
-			::Legends.Background.RetiredSoldier,
-			::Legends.Background.Sellsword,
-			::Legends.Background.Squire,
-			::Legends.Background.Cripple,
-			::Legends.Background.Paladin,
+		this.m.DraftList.extend([
 			::Legends.Background.LegendBlacksmith,
 			::Legends.Background.LegendShieldmaiden,
 			::Legends.Background.LegendShieldmaiden,
 			::Legends.Background.LegendShieldmaiden,
 			::Legends.Background.LegendShieldmaiden,
-			::Legends.Background.BeastSlayer,
-			::Legends.Background.Executioner
-		];
+		]);
 		this.m.StablesList = [
 			::Legends.Background.LegendDonkey,
 			::Legends.Background.LegendHorseRouncey,

@@ -11,7 +11,7 @@
 				s.start <- function ( _event ) {
 					this.Characters.push(_event.m.Monk.getImagePath());
 					this.Characters.push(_event.m.Flagellant.getImagePath());
-					local background = this.new("scripts/skills/backgrounds/pacified_flagellant_background");
+					local background = ::Legends.Backgrounds.new(::Legends.Background.PacifiedFlagellant);
 					local oldPerkTree = _event.m.Flagellant.getBackground().m.CustomPerkTree;
 					_event.m.Flagellant.getSkills().removeByID(::Legends.Backgrounds.getID(::Legends.Background.Flagellant));
 					_event.m.Flagellant.getSkills().add(background);
@@ -40,7 +40,7 @@
 				s.start <- function ( _event ) {
 					this.Characters.push(_event.m.Monk.getImagePath());
 					this.Characters.push(_event.m.Flagellant.getImagePath());
-					local background = this.new("scripts/skills/backgrounds/monk_turned_flagellant_background");
+					local background = ::Legends.Backgrounds.new(::Legends.Background.MonkTurnedFlagellant);
 					local oldPerkTree = _event.m.Flagellant.getBackground().m.CustomPerkTree;
 					_event.m.Monk.getSkills().removeByID(::Legends.Backgrounds.getID(::Legends.Background.Monk));
 					_event.m.Monk.getSkills().add(background);

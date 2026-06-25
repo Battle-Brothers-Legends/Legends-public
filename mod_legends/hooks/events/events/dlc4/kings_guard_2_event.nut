@@ -7,7 +7,7 @@
 				s.Text = "[img]gfx/ui/events/event_82.png[/img]{You find %guard% stretching about with surprising limberness. %They_dude% looks nothing at all like the freezing, frigid %person_dude% you found abandoned in the ice by those barbarians. Spotting you, %they_dude% nods and comes over with a quiet voice.%SPEECH_ON%I\'m glad you trusted in me, captain. Perhaps you did it out of the kindness of your heart, but I need to show you something.%SPEECH_OFF%%They_dude% flashes an emblem you have heard referenced many times, but have never seen: it carries the sigil of the King\'s Guard and its pristineness is such that there is no way it could have been a farce. The %person_dude% smiles at you.%SPEECH_ON%I think I am in good health and ready to serve you as I did my liege.%SPEECH_OFF%The kings of these lands have long since fallen, replaced by squabbling lords and nobles. If this %person_dude% can fight for you as well as %they_dude% did for the kings, then the %companyname% has brighter days ahead surely.}";
 				s.start <- function ( _event ) {
 					this.Characters.push(_event.m.Dude.getImagePath());
-					local bg = this.new("scripts/skills/backgrounds/kings_guard_background");
+					local bg = ::Legends.Backgrounds.new(::Legends.Background.KingsGuard);
 					bg.m.IsNew = false;
 					local oldPerkTree = _event.m.Dude.getBackground().m.CustomPerkTree;
 					_event.m.Dude.getSkills().removeByID(::Legends.Backgrounds.getID(::Legends.Background.Cripple));

@@ -1,55 +1,8 @@
 ::mods_hookExactClass("entity/world/settlements/medium_farming_village", function(o) 
 {
 	local create = o.create;
-	o.create = function()
-	{
+	o.create = function() {
 		create();
-		this.m.DraftList = [
-			::Legends.Background.Apprentice,
-			::Legends.Background.Beggar,
-			::Legends.Background.Butcher,
-			::Legends.Background.Gambler,
-			::Legends.Background.Daytaler,
-			::Legends.Background.Daytaler,
-			::Legends.Background.Farmhand,
-			::Legends.Background.Farmhand,
-			::Legends.Background.Farmhand,
-			::Legends.Background.Juggler,
-			::Legends.Background.Messenger,
-			::Legends.Background.Militia,
-			::Legends.Background.Militia,
-			::Legends.Background.Miller,
-			::Legends.Background.Miller,
-			::Legends.Background.Minstrel,
-			::Legends.Background.Ratcatcher,
-			::Legends.Background.Refugee,
-			::Legends.Background.Servant,
-			::Legends.Background.Tailor,
-			::Legends.Background.Vagabond,
-			::Legends.Background.RetiredSoldier,
-			::Legends.Background.Apprentice,
-			"female_beggar_background",
-			::Legends.Background.Butcher,
-			::Legends.Background.Gambler,
-			"female_daytaler_background",
-			"female_daytaler_background",
-			"female_farmhand_background",
-			"female_farmhand_background",
-			"female_farmhand_background",
-			::Legends.Background.Juggler,
-			::Legends.Background.Messenger,
-			::Legends.Background.Militia,
-			::Legends.Background.Militia,
-			"female_miller_background",
-			"female_miller_background",
-			::Legends.Background.Minstrel,
-			::Legends.Background.Ratcatcher,
-			::Legends.Background.Refugee,
-			"female_servant_background",
-			"female_tailor_background",
-			::Legends.Background.Vagabond,
-			::Legends.Background.RetiredSoldier
-		];
 		this.m.StablesList = [
 			::Legends.Background.LegendDonkey,
 			::Legends.Background.LegendDonkey,

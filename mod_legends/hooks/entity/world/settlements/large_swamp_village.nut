@@ -2,57 +2,9 @@
 	local create = o.create;
 	o.create = function() {
 		create();
-		this.m.DraftList = [
-			::Legends.Background.Beggar,
-			::Legends.Background.Beggar,
-			::Legends.Background.Brawler,
-			::Legends.Background.CaravanHand,
-			::Legends.Background.Gambler,
-			::Legends.Background.Cultist,
-			::Legends.Background.Cultist,
-			::Legends.Background.Daytaler,
-			::Legends.Background.Daytaler,
-			::Legends.Background.Flagellant,
-			::Legends.Background.Flagellant,
-			::Legends.Background.Gravedigger,
-			::Legends.Background.Graverobber,
-			::Legends.Background.Historian,
-			::Legends.Background.Juggler,
-			::Legends.Background.KillerOnTheRun,
-			::Legends.Background.Messenger,
-			::Legends.Background.Militia,
-			::Legends.Background.Militia,
-			::Legends.Background.Militia,
-			::Legends.Background.Minstrel,
-			::Legends.Background.Monk,
-			::Legends.Background.Peddler,
-			::Legends.Background.Poacher,
-			::Legends.Background.Ratcatcher,
-			::Legends.Background.Ratcatcher,
-			::Legends.Background.Ratcatcher,
-			::Legends.Background.Refugee,
-			::Legends.Background.Servant,
-			::Legends.Background.Thief,
-			::Legends.Background.Vagabond,
-			::Legends.Background.Wildman,
-			::Legends.Background.Wildman,
-			::Legends.Background.Witchhunter,
-			::Legends.Background.Witchhunter,
-			::Legends.Background.AdventurousNoble,
-			::Legends.Background.Bastard,
-			::Legends.Background.DisownedNoble,
-			::Legends.Background.HedgeKnight,
-			::Legends.Background.RetiredSoldier,
-			::Legends.Background.Sellsword,
-			::Legends.Background.Swordmaster,
-			::Legends.Background.Cripple,
-			::Legends.Background.Eunuch,
-			::Legends.Background.Anatomist,
-			::Legends.Background.LegendInventor,
-			::Legends.Background.BeastSlayer,
-			::Legends.Background.BeastSlayer,
-			::Legends.Background.Executioner
-		];
+		this.m.DraftList.extend([
+			::Legends.Background.LegendInventor
+		]);
 	}
 
 	o.onBuild = function() {

@@ -2,37 +2,6 @@
 	local create = o.create;
 	o.create = function() {
 		create();
-		this.m.DraftList = [
-			::Legends.Background.CaravanHand,
-			::Legends.Background.CaravanHand,
-			::Legends.Background.Houndmaster,
-			::Legends.Background.Daytaler,
-			::Legends.Background.Mason,
-			::Legends.Background.Militia,
-			::Legends.Background.Militia,
-			::Legends.Background.Shepherd,
-			::Legends.Background.Vagabond,
-			::Legends.Background.Bastard,
-			::Legends.Background.Deserter,
-			::Legends.Background.Deserter,
-			::Legends.Background.RetiredSoldier,
-			::Legends.Background.RetiredSoldier,
-			::Legends.Background.CaravanHand,
-			::Legends.Background.CaravanHand,
-			::Legends.Background.Houndmaster,
-			"female_daytaler_background",
-			::Legends.Background.Mason,
-			::Legends.Background.Militia,
-			::Legends.Background.Militia,
-			::Legends.Background.Shepherd,
-			::Legends.Background.Vagabond,
-			::Legends.Background.Bastard,
-			::Legends.Background.Deserter,
-			::Legends.Background.Deserter,
-			::Legends.Background.RetiredSoldier,
-			::Legends.Background.RetiredSoldier,
-			::Legends.Background.Executioner
-		];
 
 		if (this.World.Assets.getOrigin().getID() == "scenario.legends_nomad") {
 			this.m.DraftList.push(::Legends.Background.Nomad);

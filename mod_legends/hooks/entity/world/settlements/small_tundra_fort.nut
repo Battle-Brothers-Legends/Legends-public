@@ -2,24 +2,10 @@
 	local create = o.create;
 	o.create = function() {
 		create();
-		this.m.DraftList = [
+		this.m.DraftList.extend([
 			::Legends.Background.LegendShieldmaiden,
-			::Legends.Background.LegendShieldmaiden,
-			::Legends.Background.Apprentice,
-			::Legends.Background.Houndmaster,
-			"female_daytaler_background",
-			::Legends.Background.Militia,
-			::Legends.Background.Militia,
-			::Legends.Background.Miner,
-			::Legends.Background.Vagabond,
-			::Legends.Background.Wildman,
-			::Legends.Background.Bastard,
-			::Legends.Background.Deserter,
-			::Legends.Background.Deserter,
-			::Legends.Background.RetiredSoldier,
-			::Legends.Background.RetiredSoldier,
-			::Legends.Background.Executioner
-		];
+			::Legends.Background.LegendShieldmaiden
+		]);
 		this.m.StablesList = [
 			::Legends.Background.LegendDonkey,
 			::Legends.Background.LegendHorseRouncey

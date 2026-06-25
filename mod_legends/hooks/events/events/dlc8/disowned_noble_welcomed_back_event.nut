@@ -15,7 +15,7 @@
 				s.start <- function ( _event ) //Uses King's guard format. Could use cultist onconvert function from character_background.nut but this would require a new savegame.
 				{
 					this.Characters.push(_event.m.Disowned.getImagePath());
-					local background = this.new("scripts/skills/backgrounds/regent_in_absentia_background");
+					local background = ::Legends.Backgrounds.new(::Legends.Background.RegentInAbsentia);
 					background.m.IsNew = false;
 					local oldPerkTree = _event.m.Disowned.getBackground().m.CustomPerkTree;
 					_event.m.Disowned.getSkills().removeByID(::Legends.Backgrounds.getID(::Legends.Background.DisownedNoble));

@@ -2,38 +2,6 @@
 	local create = o.create;
 	o.create = function() {
 		create();
-		this.m.DraftList = [
-			::Legends.Background.Cultist,
-			::Legends.Background.Houndmaster,
-			::Legends.Background.Daytaler,
-			::Legends.Background.Hunter,
-			::Legends.Background.Militia,
-			::Legends.Background.Militia,
-			::Legends.Background.Ratcatcher,
-			::Legends.Background.Ratcatcher,
-			::Legends.Background.Wildman,
-			::Legends.Background.Wildman,
-			::Legends.Background.Witchhunter,
-			::Legends.Background.Bastard,
-			::Legends.Background.Deserter,
-			::Legends.Background.RetiredSoldier,
-			::Legends.Background.Cultist,
-			::Legends.Background.Houndmaster,
-			"female_daytaler_background",
-			::Legends.Background.Hunter,
-			::Legends.Background.Militia,
-			::Legends.Background.Militia,
-			::Legends.Background.Ratcatcher,
-			::Legends.Background.Ratcatcher,
-			::Legends.Background.Wildman,
-			::Legends.Background.Witchhunter,
-			::Legends.Background.Bastard,
-			::Legends.Background.Deserter,
-			::Legends.Background.RetiredSoldier,
-			::Legends.Background.BeastSlayer,
-			::Legends.Background.Executioner
-		];
-
 		this.m.StablesList = [
 			::Legends.Background.LegendDonkey,
 			::Legends.Background.LegendHorseRouncey

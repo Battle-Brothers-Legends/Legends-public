@@ -2,54 +2,11 @@
 	local create = o.create;
 	o.create = function() {
 		create();
-		this.m.DraftList = [
+		this.m.DraftList.extend([
 			::Legends.Background.LegendShieldmaiden,
 			::Legends.Background.LegendShieldmaiden,
-			::Legends.Background.Apprentice,
-			::Legends.Background.Beggar,
-			::Legends.Background.Bowyer,
-			::Legends.Background.Brawler,
-			::Legends.Background.Brawler,
-			::Legends.Background.Brawler,
-			::Legends.Background.CaravanHand,
-			::Legends.Background.Gambler,
-			::Legends.Background.Cultist,
-			::Legends.Background.Daytaler,
-			::Legends.Background.Daytaler,
-			::Legends.Background.Farmhand,
-			::Legends.Background.Gravedigger,
-			::Legends.Background.Graverobber,
-			::Legends.Background.KillerOnTheRun,
-			::Legends.Background.Mason,
-			::Legends.Background.Messenger,
-			::Legends.Background.Militia,
-			::Legends.Background.Militia,
-			::Legends.Background.Militia,
-			::Legends.Background.Peddler,
-			::Legends.Background.Flagellant,
-			::Legends.Background.Poacher,
-			::Legends.Background.Poacher,
-			::Legends.Background.Poacher,
-			::Legends.Background.Ratcatcher,
-			::Legends.Background.Tailor,
-			::Legends.Background.Thief,
-			::Legends.Background.Vagabond,
-			::Legends.Background.Wildman,
-			::Legends.Background.Wildman,
-			::Legends.Background.Witchhunter,
-			::Legends.Background.Bastard,
-			::Legends.Background.AdventurousNoble,
-			::Legends.Background.DisownedNoble,
-			::Legends.Background.DisownedNoble,
-			::Legends.Background.Raider,
-			::Legends.Background.Raider,
-			::Legends.Background.Sellsword,
-			::Legends.Background.Swordmaster,
-			::Legends.Background.Anatomist,
-			::Legends.Background.LegendInventor,
-			::Legends.Background.BeastSlayer,
-			::Legends.Background.Executioner
-		];
+			::Legends.Background.LegendInventor
+		]);
 	}
 
 	o.onBuild = function() {

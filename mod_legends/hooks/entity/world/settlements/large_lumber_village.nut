@@ -2,52 +2,10 @@
 	local create = o.create;
 	o.create = function() {
 		create();
-		this.m.DraftList = [
+		this.m.DraftList.extend([
 			::Legends.Background.LegendShieldmaiden,
 			::Legends.Background.LegendShieldmaiden,
-			::Legends.Background.Apprentice,
-			::Legends.Background.Beggar,
-			"female_bowyer_background",
-			"female_bowyer_background",
-			"female_bowyer_background",
-			::Legends.Background.Brawler,
-			"female_butcher_background",
-			::Legends.Background.Cultist,
-			::Legends.Background.Daytaler,
-			::Legends.Background.Hunter,
-			::Legends.Background.Hunter,
-			::Legends.Background.Hunter,
-			::Legends.Background.KillerOnTheRun,
-			::Legends.Background.Lumberjack,
-			::Legends.Background.Lumberjack,
-			::Legends.Background.Lumberjack,
-			::Legends.Background.Militia,
-			::Legends.Background.Militia,
-			::Legends.Background.Minstrel,
-			::Legends.Background.Peddler,
-			::Legends.Background.Poacher,
-			::Legends.Background.Poacher,
-			::Legends.Background.Poacher,
-			::Legends.Background.Ratcatcher,
-			::Legends.Background.Refugee,
-			"female_servant_background",
-			::Legends.Background.Tailor,
-			::Legends.Background.Thief,
-			::Legends.Background.Vagabond,
-			::Legends.Background.Wildman,
-			::Legends.Background.Wildman,
-			::Legends.Background.Witchhunter,
-			::Legends.Background.Bastard,
-			::Legends.Background.DisownedNoble,
-			::Legends.Background.HedgeKnight,
-			::Legends.Background.RetiredSoldier,
-			::Legends.Background.Cripple,
-			::Legends.Background.Eunuch,
-			::Legends.Background.LegendInventor,
-			::Legends.Background.Anatomist,
-			::Legends.Background.BeastSlayer,
-			::Legends.Background.BeastSlayer,
-			::Legends.Background.Executioner
-		];
+			::Legends.Background.LegendInventor
+		]);
 	}
 });

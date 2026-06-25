@@ -4,23 +4,7 @@
 		create();
 		this.m.DraftList = [
 			::Legends.Background.LegendShieldmaiden,
-			::Legends.Background.LegendShieldmaiden,
-			"female_beggar_background",
-			::Legends.Background.Houndmaster,
-			::Legends.Background.Brawler,
-			::Legends.Background.Cultist,
-			::Legends.Background.Mason,
-			::Legends.Background.Militia,
-			::Legends.Background.Militia,
-			::Legends.Background.Vagabond,
-			::Legends.Background.Wildman,
-			::Legends.Background.Witchhunter,
-			::Legends.Background.Deserter,
-			::Legends.Background.Deserter,
-			::Legends.Background.Raider,
-			::Legends.Background.RetiredSoldier,
-			::Legends.Background.RetiredSoldier,
-			::Legends.Background.Executioner
+			::Legends.Background.LegendShieldmaiden
 		];
 		this.m.StablesList = [
 			::Legends.Background.LegendDonkey,
