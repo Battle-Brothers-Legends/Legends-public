@@ -32,6 +32,7 @@ var WorldScreenTopbarDayTimeModule = function (_dataSource) {
 	this.mTimeNormalButton = null;
 	this.mTimeFastButton = null;
 	this.mTimeVeryFastButton = null;
+	this.mTimeSuperFastButton = null;
 
 	this.registerDatasourceListener();
 };
@@ -96,6 +97,7 @@ WorldScreenTopbarDayTimeModule.prototype.createDIV = function (_parentDiv) {
 		self.mTimeNormalButton.changeButtonImage(Path.GFX + Asset.BUTTON_PLAY_DISABLED);
 		self.mTimeFastButton.changeButtonImage(Path.GFX + Asset.BUTTON_FAST_FORWARD_DISABLED);
 		self.mTimeVeryFastButton.changeButtonImage(Path.GFX + Asset.BUTTON_VERY_FAST_FORWARD_DISABLED);
+		self.mTimeSuperFastButton.changeButtonImage(Path.GFX + Asset.BUTTON_SUPER_FAST_FORWARD_DISABLED);
 	}, '', 10);
 
 	var layout = $('<div class="l-normal-time-button"/>');
@@ -107,6 +109,7 @@ WorldScreenTopbarDayTimeModule.prototype.createDIV = function (_parentDiv) {
 		self.mTimeNormalButton.changeButtonImage(Path.GFX + Asset.BUTTON_PLAY);
 		self.mTimeFastButton.changeButtonImage(Path.GFX + Asset.BUTTON_FAST_FORWARD_DISABLED);
 		self.mTimeVeryFastButton.changeButtonImage(Path.GFX + Asset.BUTTON_VERY_FAST_FORWARD_DISABLED);
+		self.mTimeSuperFastButton.changeButtonImage(Path.GFX + Asset.BUTTON_SUPER_FAST_FORWARD_DISABLED);
 	}, '', 10);
 
 	var layout = $('<div class="l-fast-time-button"/>');
@@ -118,6 +121,7 @@ WorldScreenTopbarDayTimeModule.prototype.createDIV = function (_parentDiv) {
 		self.mTimeNormalButton.changeButtonImage(Path.GFX + Asset.BUTTON_PLAY_DISABLED);
 		self.mTimeFastButton.changeButtonImage(Path.GFX + Asset.BUTTON_FAST_FORWARD);
 		self.mTimeVeryFastButton.changeButtonImage(Path.GFX + Asset.BUTTON_VERY_FAST_FORWARD_DISABLED);
+		self.mTimeSuperFastButton.changeButtonImage(Path.GFX + Asset.BUTTON_SUPER_FAST_FORWARD_DISABLED);
 	}, '', 10);
 	var layout = $('<div class="l-very-fast-time-button"/>');
 	this.mContainer.append(layout);
@@ -128,6 +132,19 @@ WorldScreenTopbarDayTimeModule.prototype.createDIV = function (_parentDiv) {
 		self.mTimeNormalButton.changeButtonImage(Path.GFX + Asset.BUTTON_PLAY_DISABLED);
 		self.mTimeFastButton.changeButtonImage(Path.GFX + Asset.BUTTON_FAST_FORWARD_DISABLED);
 		self.mTimeVeryFastButton.changeButtonImage(Path.GFX + Asset.BUTTON_VERY_FAST_FORWARD);
+		self.mTimeSuperFastButton.changeButtonImage(Path.GFX + Asset.BUTTON_SUPER_FAST_FORWARD_DISABLED);
+	}, '', 10);
+
+	var layout = $('<div class="l-super-fast-time-button"/>');
+	this.mContainer.append(layout);
+	this.mTimeSuperFastButton = layout.createImageButton(Path.GFX + Asset.BUTTON_SUPER_FAST_FORWARD_DISABLED, function () {
+		self.notifyBackendTimeSuperFastButtonPressed();
+
+		self.mTimePauseButton.changeButtonImage(Path.GFX + Asset.BUTTON_PAUSE_DISABLED);
+		self.mTimeNormalButton.changeButtonImage(Path.GFX + Asset.BUTTON_PLAY_DISABLED);
+		self.mTimeFastButton.changeButtonImage(Path.GFX + Asset.BUTTON_FAST_FORWARD_DISABLED);
+		self.mTimeVeryFastButton.changeButtonImage(Path.GFX + Asset.BUTTON_VERY_FAST_FORWARD_DISABLED);
+		self.mTimeSuperFastButton.changeButtonImage(Path.GFX + Asset.BUTTON_SUPER_FAST_FORWARD);
 	}, '', 10);
 
 	this.mPausedDiv = $('<div class="display-none title-font-very-big paused-label font-color-title font-shadow-silhouette">PAUSED</div>');
@@ -159,6 +176,7 @@ WorldScreenTopbarDayTimeModule.prototype.bindTooltips = function () {
 	this.mTimeNormalButton.bindTooltip({ contentType: 'ui-element', elementId: TooltipIdentifier.WorldScreen.Topbar.TimeNormalButton });
 	this.mTimeFastButton.bindTooltip({ contentType: 'ui-element', elementId: TooltipIdentifier.WorldScreen.Topbar.TimeFastButton });
 	this.mTimeVeryFastButton.bindTooltip({ contentType: 'ui-element', elementId: TooltipIdentifier.WorldScreen.Topbar.TimeVeryFastButton });
+	this.mTimeSuperFastButton.bindTooltip({ contentType: 'ui-element', elementId: TooltipIdentifier.WorldScreen.Topbar.TimeSuperFastButton });
 };
 
 WorldScreenTopbarDayTimeModule.prototype.unbindTooltips = function () {
@@ -166,6 +184,7 @@ WorldScreenTopbarDayTimeModule.prototype.unbindTooltips = function () {
 	this.mTimeNormalButton.unbindTooltip();
 	this.mTimeFastButton.unbindTooltip();
 	this.mTimeVeryFastButton.unbindTooltip();
+	this.mTimeSuperFastButton.unbindTooltip();
 };
 
 
@@ -256,6 +275,7 @@ WorldScreenTopbarDayTimeModule.prototype.updateButtons = function (_state) {
 	this.mTimeNormalButton.changeButtonImage(Path.GFX + (_state == 1 ? Asset.BUTTON_PLAY : Asset.BUTTON_PLAY_DISABLED));
 	this.mTimeFastButton.changeButtonImage(Path.GFX + (_state == 2 ? Asset.BUTTON_FAST_FORWARD : Asset.BUTTON_FAST_FORWARD_DISABLED));
 	this.mTimeVeryFastButton.changeButtonImage(Path.GFX + (_state == 3 ? Asset.BUTTON_VERY_FAST_FORWARD : Asset.BUTTON_VERY_FAST_FORWARD_DISABLED));
+	this.mTimeSuperFastButton.changeButtonImage(Path.GFX + (_state == 4 ? Asset.BUTTON_SUPER_FAST_FORWARD : Asset.BUTTON_SUPER_FAST_FORWARD_DISABLED));
 };
 
 
@@ -269,6 +289,11 @@ WorldScreenTopbarDayTimeModule.prototype.enableFastTimeButton = function (_enabl
 
 WorldScreenTopbarDayTimeModule.prototype.enableVeryFastTimeButton = function (_enabled) {
 	this.mTimeVeryFastButton.enableButton(_enabled);
+}
+
+WorldScreenTopbarDayTimeModule.prototype.enableSuperFastTimeButton = function (_enabled)
+{
+	this.mTimeSuperFastButton.enableButton(_enabled);
 }
 
 

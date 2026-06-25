@@ -1,5 +1,26 @@
 ::mods_hookExactClass("ui/screens/world/modules/topbar/world_screen_topbar_daytime_module", function(o) {
 	o.m.IsAutoUpdateTimeButtonState <- false;
+	o.m.OnTimeSuperFastPressedListener <- null
+
+	local clearEventListener = o.clearEventListener;
+	o.clearEventListener = function () {
+		clearEventListener();
+		this.m.OnTimeSuperFastPressedListener = null;
+	}
+
+	o.setOnTimeSuperFastPressedListener <- function ( _listener ) {
+		this.m.OnTimeSuperFastPressedListener = _listener;
+	}
+
+	o.enableSuperFastTimeButton <- function( _enabled ) {
+		this.m.JSHandle.asyncCall("enableSuperFastTimeButton", _enabled);
+	}
+
+	o.onTimeSuperFastButtonPressed <- function () {
+		if (this.m.OnTimeSuperFastPressedListener != null) {
+			this.m.OnTimeSuperFastPressedListener();
+		}
+	}
 
 	local showMessage = o.showMessage;
 	o.showMessage = function( _primary, _secondary )
@@ -20,7 +41,7 @@
 	local updateTimeButtons = o.updateTimeButtons;
 	o.updateTimeButtons = function ( _state )
 	{
-		if (m.IsAutoUpdateTimeButtonState) {
+		if (this.m.IsAutoUpdateTimeButtonState) {
 			if (::World.State.m.IsGamePaused)
 				_state = 0;
 			else if (::World.getSpeedMult() == 1.0)

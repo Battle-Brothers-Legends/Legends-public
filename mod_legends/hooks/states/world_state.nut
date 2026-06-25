@@ -64,6 +64,7 @@
 		this.m.CampScreen.setOnModuleClosedListener(this.town_screen_main_dialog_module_onLeaveButtonClicked.bindenv(this));
 		this.m.CampScreen.setOnCampListener(this.onCamp.bindenv(this));
 		onInitUI();
+		this.m.WorldScreen.getTopbarDayTimeModule().setOnTimeVeryFastPressedListener(this.setSuperFastTime.bindenv(this));
 	}
 
 	local onDestroyUI = o.onDestroyUI;
@@ -151,6 +152,17 @@
 
 		if (TopbarDayTimeModuleExist)
 			::World.TopbarDayTimeModule.m.IsAutoUpdateTimeButtonState = false;
+	}
+
+	o.setSuperFastTime <- function (_force = false) {
+		if (!this.m.MenuStack.hasBacksteps()) {
+			if (_force || !::World.Assets.isCamping() && this.m.EscortedEntity == null) {
+				this.m.LastWorldSpeedMult = ::Const.World.SpeedSettings.SuperFastMult;
+			} else if (this.m.MinWorldSpeedMult > ::Const.World.SpeedSettings.SuperFastMult) {
+				this.m.LastWorldSpeedMult = this.m.MinWorldSpeedMult;
+			}
+			this.setPause(false);
+		}
 	}
 
 	local onCombatFinished = o.onCombatFinished;
@@ -419,6 +431,38 @@
 	o.camp_screen_main_dialog_module_onTentButtonClicked <- function ( _id )
 	{
 		this.showTentScreenFromCamp( _id );
+	}
+
+	o.updateTopBarButtonState = function ()	{
+		if (("TopbarDayTimeModule" in ::World) && ::World.TopbarDayTimeModule != null) {
+			if (::World.Assets.isCamping() || this.m.EscortedEntity != null && !this.m.EscortedEntity.isNull() && this.m.EscortedEntity.isAlive()) {
+				::World.TopbarDayTimeModule.enableNormalTimeButton(false);
+				::World.TopbarDayTimeModule.enableFastTimeButton(false);
+				::World.TopbarDayTimeModule.enableSuperFastTimeButton(false);
+
+				if (!this.isPaused()) {
+					::World.TopbarDayTimeModule.updateTimeButtons(3);
+				} else {
+					::World.TopbarDayTimeModule.updateTimeButtons(0);
+				}
+			} else {
+				::World.TopbarDayTimeModule.enableNormalTimeButton(true);
+				::World.TopbarDayTimeModule.enableFastTimeButton(true);
+				::World.TopbarDayTimeModule.enableSuperFastTimeButton(true);
+
+				if (this.isPaused()) {
+					::World.TopbarDayTimeModule.updateTimeButtons(0);
+				} else if (::World.getSpeedMult() == ::Const.World.SpeedSettings.NormalMult) {
+					::World.TopbarDayTimeModule.updateTimeButtons(1);
+				} else if (::World.getSpeedMult() == ::Const.World.SpeedSettings.FastMult) {
+					::World.TopbarDayTimeModule.updateTimeButtons(2);
+				} else if (::World.getSpeedMult() == ::Const.World.SpeedSettings.VeryFastMult) {
+					::World.TopbarDayTimeModule.updateTimeButtons(3);
+				} else if (::World.getSpeedMult() == ::Const.World.SpeedSettings.SuperFastMult) {
+					::World.TopbarDayTimeModule.updateTimeButtons(4);
+				}
+			}
+		}
 	}
 
 	o.isInDevScreen <- function ()
@@ -957,6 +1001,20 @@
 					break;
 				}
 
+			case 3:
+				if (!this.m.MenuStack.hasBacksteps())
+				{
+					this.setVeryFastTime();
+					break;
+				}
+
+			case 4:
+				if (!this.m.MenuStack.hasBacksteps())
+				{
+					this.setSuperFastTime();
+					break;
+				}
+
 			case 16:
 				if (!this.m.MenuStack.hasBacksteps())
 				{
@@ -1026,12 +1084,6 @@
 				return true;
 
 			case 3:
-				if (!this.m.MenuStack.hasBacksteps())
-				{
-					this.setVeryFastTime();
-					break;
-				}
-
 				if (!this.m.EventScreen.isVisible() || this.m.EventScreen.isAnimating())
 				{
 					break;

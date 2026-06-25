@@ -3494,6 +3494,20 @@
 				}
 			];
 
+		case "world-screen.topbar.TimeSuperFastButton":
+			return [
+				{
+					id = 1,
+					type = "title",
+					text = "Super Fast Speed (4)"
+				},
+				{
+					id = 2,
+					type = "description",
+					text = "Set time to pass much faster than normal. Use judiciously."
+				}
+			];
+
 		case "world-screen.topbar.options-module.ActiveContractButton":
 			return [
 				{
