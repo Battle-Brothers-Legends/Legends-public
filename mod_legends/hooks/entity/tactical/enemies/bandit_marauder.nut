@@ -135,8 +135,7 @@
 				[1, ::Legends.Helmet.Standard.deep_cervelliere],
 				[1, ::Legends.Helmet.Standard.dented_nasal_helmet],
 				[1, ::Legends.Helmet.Standard.nasal_helmet_with_rusty_mail],
-				[1, ::Legends.Helmet.Standard.rusty_mail_coif],
-				[1, ::Legends.Helmet.Standard.kettle_hat_with_rusty_mail]
+				[1, ::Legends.Helmet.Standard.rusty_mail_coif]
 			]);
 
 			if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= 60) {
