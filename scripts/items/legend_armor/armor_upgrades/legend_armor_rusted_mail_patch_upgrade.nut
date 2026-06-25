@@ -1,4 +1,4 @@
-this.legend_rusted_mail_patch_upgrade <- this.inherit("scripts/items/legend_armor/legend_armor_upgrade", {
+this.legend_armor_rusted_mail_patch_upgrade <- this.inherit("scripts/items/legend_armor/legend_armor_upgrade", {
 	m = {},
 	function create()
 	{
