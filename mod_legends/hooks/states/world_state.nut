@@ -66,7 +66,7 @@
 		this.m.CampScreen.setOnModuleClosedListener(this.town_screen_main_dialog_module_onLeaveButtonClicked.bindenv(this));
 		this.m.CampScreen.setOnCampListener(this.onCamp.bindenv(this));
 		onInitUI();
-		this.m.WorldScreen.getTopbarDayTimeModule().setOnTimeVeryFastPressedListener(this.setSuperFastTime.bindenv(this));
+		this.m.WorldScreen.getTopbarDayTimeModule().setOnTimeSuperFastPressedListener(this.setSuperFastTime.bindenv(this));
 	}
 
 	local onDestroyUI = o.onDestroyUI;
