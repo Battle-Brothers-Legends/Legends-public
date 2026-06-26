@@ -6,6 +6,7 @@
 		create();
 		this.m.Variants = [1,2];
 		this.m.Value = 4100;
+		this.m.IsAgainstShields = false;
 		this.m.Categories = "Cleaver, Two-Handed";
 	}
 

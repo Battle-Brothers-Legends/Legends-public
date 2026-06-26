@@ -6,8 +6,13 @@
 		this.m.WeaponType = ::Const.Items.WeaponType.Cleaver;
 		this.m.Categories = "Cleaver, Two-Handed";
 		this.m.IsAgainstShields = false;
+		this.m.Value = 3300;
 		this.m.ShieldDamage = 0;
 		this.m.Variants = [1];
+		this.m.StaminaModifier = -18;
+		this.m.ShieldDamage = 0;
+		this.m.DamageArmorMult = 1.2;
+
 		this.setVariant(this.m.Variants[this.Math.rand(0, this.m.Variants.len() - 1)]);
 	}
 
@@ -19,7 +24,11 @@
 
 	o.onEquip = function () {
 		this.weapon.onEquip();
-		::Legends.Actives.grant(this, ::Legends.Active.LegendHew);
+		::Legends.Actives.grant(this, ::Legends.Active.LegendHew, function (_skill) {
+			_skill.m.Icon = "skills/active_239.png";
+			_skill.m.IconDisabled = "skills/active_239_sw.png";
+			_skill.m.Overlay = "active_239";
+		}).bindenv(this);
 		::Legends.Actives.grant(this, ::Legends.Active.LegendHarvest);
 		::Legends.Actives.grant(this, ::Legends.Active.Decapitate, function (_skill) {
 			_skill.m.IsTwoHand = true;

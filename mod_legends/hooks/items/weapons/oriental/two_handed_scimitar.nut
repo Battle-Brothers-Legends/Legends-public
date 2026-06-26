@@ -4,7 +4,8 @@
 	o.create = function() {
 		create();
 		this.m.Categories = "Cleaver, Two-Handed";
-		this.m.Value = 3100;
+		this.m.IsAgainstShields = false;
+		this.m.Value = 2900;
 		this.m.Condition = 68.0;
 		this.m.ConditionMax = 68.0;
 		this.m.StaminaModifier = -14;
