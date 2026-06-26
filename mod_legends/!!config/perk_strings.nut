@@ -2714,12 +2714,12 @@ Perfect the art of casting nets.
 ";
 
 ::Const.Strings.PerkDescription.LegendPacifist <- @"
-Fighting is a brutal thuggish pastime, most folk prefer a life without frequent bouts of extreme violence.
+Not every lesson learned in battle has to be applied to the lethal side of the trade. After all, most folk prefer a life without frequent bouts of extreme violence.
 
 [color=%passive%][u]Passive:[/u][/color]
 • Grants [color=%positive%]+10%[/color] Resolve.
 
-• This character now gains experience from battle while in reserves.
+• Now passively gains experience from battle while in reserves. Does not draw from fighters XP-pool.
 
 • Additionally, this character does not count towards your party strength when determining game difficulty.
 
