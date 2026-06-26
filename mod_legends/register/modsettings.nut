@@ -44,6 +44,22 @@ addNCSetting(config, ::MSU.Class.BooleanSetting("WorldEconomy", true, "World Eco
 
 addNCSetting(config, ::MSU.Class.SettingsDivider("ConfigDivider2"));
 
+local general = ::Legends.Mod.ModSettings.addPage("General");
+myEnumTooltip = "Define how Blueprints are shown: 'All Ingredients Available' is the Vanilla behavior; 'One Ingredient Available' shows recipes when one ingredient is fully satisfied; 'Always' shows all recipes at all time";
+general.addElement(::MSU.Class.EnumSetting("ShowBlueprintsWhen", "All Ingredients Available", ["All Ingredients Available", "One Ingredient Available", "Always"], "Show Blueprints when", myEnumTooltip));
+general.addElement(::MSU.Class.BooleanSetting("AutoRepairLayer", false, "Autorepair Layer", "Any Body or Helmet Layer that you strip from a piece of armor is automatically marked as 'to be repaired'."));
+general.addElement(::MSU.Class.BooleanSetting("ClickPresetToSwitch", false, "Faster Camping Preset Switch", "Clicking on the camping preset slot immediately applies the preset"));
+general.addElement(::MSU.Class.RangeSetting("MinimumChanceToHit", 5, 0, 100, 1, "Minimum hitchance", "Slider for minimum hitchance percentage. Pushing this slider too far will result in no chance to hit for anyone."));
+general.addElement(::MSU.Class.RangeSetting("MaximumChanceToHit", 95, 0, 100, 1, "Maximum hitchance", "Slider for maximum hitchance percentage. Pushing this slider too far back will result in no chance to hit for anyone."));
+myEnumTooltip = "Define AI Rotation rules: 'Default' is the Vanilla behaviour, AI is free to rotate itself and your bros as long as the skill allows; 'Limited' AI can only rotate itself, but not your bros (unless they have the Twirl Perk); 'Disabled' disable AI Rotation entirely";
+general.addElement(::MSU.Class.EnumSetting("AiRotation", "Default", ["Default", "Limited", "Disabled"], "AI Rotation Rules", myEnumTooltip));
+general.addElement(::MSU.Class.BooleanSetting("SellDialogNamed", true, "Sell Famed Dialog", "Should confirmation dialog appear when selling famed items?"));
+general.addTitle("Pause", "Pause");
+general.addElement(::MSU.Class.BooleanSetting("PauseOnEnemySighted", true, "Pause On Enemy Sighted", "Game pause when new enemy group is sighted"));
+general.addElement(::MSU.Class.BooleanSetting("PauseOnEvents", true, "Pause On Events", "Pause on events, encounters, ambitions"));
+general.addElement(::MSU.Class.BooleanSetting("PauseOnMorningCamping", false, "Pause Every Daybreak While Camping", "Pause every daybreak while camping (useful for entering towns)"));
+general.addElement(::MSU.Class.BooleanSetting("PauseOnNewDayCamping", false, "Pause Every Noon While Camping", "Pause every noon while camping (useful for certain mechanics that reset on a new day)."));
+
 local tooltip = ::Legends.Mod.ModSettings.addPage("Tooltips / UI");
 tooltip.addTitle("TooltipCombat", "Tooltips - Combat");
 tooltip.addElement(::MSU.Class.BooleanSetting("EnhancedTooltips", false, "Enhanced Enemy Tooltips", "Enemy tooltips in tactical battles will show more information, like perks and statuses"));
@@ -68,23 +84,6 @@ local cpDark = tooltip.addElement(::MSU.Class.ColorPickerSetting("HighlightDarkB
 local cpFade = tooltip.addElement(::MSU.Class.ColorPickerSetting("FadeDarkBackground", "135,114,81,1", "Faded Text (Dark Background)", "Customize the color of faded text occurring in dark backgrounds, such as in events"));
 ::Const.UI.Color.getFadeDarkBackgroundValue <- @() "#" + cpFade.getValueAsHexString().slice(0,6);
 tooltip.addElement(::MSU.Class.EnumSetting("ContractCategoryIconAlignment", "Middle", ["Left","Middle","Right","Below"], "Contract Category Icon Alignment", "Adjust the position of the Contract Category icon at the bottom of Contracts in the Settlement screen"));
-
-local misc = ::Legends.Mod.ModSettings.addPage("Misc");
-myEnumTooltip = "Define how Blueprints are shown: 'All Ingredients Available' is the Vanilla behavior; 'One Ingredient Available' shows recipes when one ingredient is fully satisfied; 'Always' shows all recipes at all time";
-misc.addElement(::MSU.Class.EnumSetting("ShowBlueprintsWhen", "All Ingredients Available", ["All Ingredients Available", "One Ingredient Available", "Always"], "Show Blueprints when", myEnumTooltip));
-misc.addElement(::MSU.Class.BooleanSetting("AutoRepairLayer", false, "Autorepair Layer", "Any Body or Helmet Layer that you strip from a piece of armor is automatically marked as 'to be repaired'."));
-misc.addElement(::MSU.Class.BooleanSetting("ClickPresetToSwitch", false, "Faster Camping Preset Switch", "Clicking on the camping preset slot immediately applies the preset"));
-misc.addElement(::MSU.Class.RangeSetting("MinimumChanceToHit", 5, 0, 100, 1, "Minimum hitchance", "Slider for minimum hitchance percentage. Pushing this slider too far will result in no chance to hit for anyone."));
-misc.addElement(::MSU.Class.RangeSetting("MaximumChanceToHit", 95, 0, 100, 1, "Maximum hitchance", "Slider for maximum hitchance percentage. Pushing this slider too far back will result in no chance to hit for anyone."));
-myEnumTooltip = "Define AI Rotation rules: 'Default' is the Vanilla behaviour, AI is free to rotate itself and your bros as long as the skill allows; 'Limited' AI can only rotate itself, but not your bros (unless they have the Twirl Perk); 'Disabled' disable AI Rotation entirely";
-misc.addElement(::MSU.Class.EnumSetting("AiRotation", "Default", ["Default", "Limited", "Disabled"], "AI Rotation Rules", myEnumTooltip));
-misc.addElement(::MSU.Class.BooleanSetting("SellDialogNamed", true, "Sell Famed Dialog", "Should confirmation dialog appear when selling famed items?"));
-misc.addElement(::MSU.Class.BooleanSetting("LogOutfits", false, "Log Outfits", "An option for fashion submissions which will log the entire outfit someone is wearing when you hover it, used to add custom outfits in Legends."));
-misc.addTitle("Pause", "Pause");
-misc.addElement(::MSU.Class.BooleanSetting("PauseOnEnemySighted", true, "Pause On Enemy Sighted", "Game pause when new enemy group is sighted"));
-misc.addElement(::MSU.Class.BooleanSetting("PauseOnEvents", true, "Pause On Events", "Pause on events, encounters, ambitions"));
-misc.addElement(::MSU.Class.BooleanSetting("PauseOnMorningCamping", false, "Pause Every Daybreak While Camping", "Pause every daybreak while camping (useful for entering towns)"));
-misc.addElement(::MSU.Class.BooleanSetting("PauseOnNewDayCamping", false, "Pause Every Noon While Camping", "Pause every noon while camping (useful for certain mechanics that reset on a new day)."));
 
 local betterobituary = ::Legends.Mod.ModSettings.addPage("Obituary");
 betterobituary.addBooleanSetting("SwapPerks",    false, "Show Perks", "Swaps the trait/permanent injuries columns for perks.");
@@ -119,3 +118,4 @@ foreach(f in ::Const.LegendMod.Debug.FlagDefs)
 		}
 	);
 }
+logging.addElement(::MSU.Class.BooleanSetting("LogOutfits", false, "Log Outfits", "An option for fashion submissions which will log the entire outfit someone is wearing when you hover it, used to add custom outfits in Legends."));
