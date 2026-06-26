@@ -1,6 +1,7 @@
 ::mods_hookBaseClass("events/event", function (o)
 {
 	while(!("ID" in o.m)) o=o[o.SuperName];
+	o.m.WasEventFired <- false;
 
 	local isSpecial = o.isSpecial;
 	o.isSpecial = function () {
@@ -364,13 +365,14 @@
 	local clear = o.clear;
 	o.clear = function() {
 		clear();
-		if (::Legends.Mod.ModSettings.getSetting("PauseOnEvents").getValue()){
+		if (::Legends.Mod.ModSettings.getSetting("PauseOnEvents").getValue() && !::World.State.isInLoadingScreen() && this.m.WasEventFired){
 			::World.State.setPause(true);
 		}
 	}
 
 	local fire = o.fire;
 	o.fire = function () {
+        this.m.WasEventFired = true;
 		if("isValidForEncounter" in this.m) {
 			this.update(); // force update for a case when game loaded and update didn't happen yet
 			fire();
