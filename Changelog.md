@@ -139,6 +139,7 @@
 ## Quality of life
 - added speed settings to combat and world expanding on vanilla systems
 - expanded settlement situation tooltips to support new situations natively
+- added pause options in Legends misc tab
 
 ## Events
 - added a new town encounter during drought

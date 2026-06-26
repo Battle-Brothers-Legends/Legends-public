@@ -361,6 +361,14 @@
 		return true;
 	}
 
+	local clear = o.clear;
+	o.clear = function() {
+		clear();
+		if (::Legends.Mod.ModSettings.getSetting("PauseOnEvents").getValue()){
+			::World.State.setPause(true);
+		}
+	}
+
 	local fire = o.fire;
 	o.fire = function () {
 		if("isValidForEncounter" in this.m) {
