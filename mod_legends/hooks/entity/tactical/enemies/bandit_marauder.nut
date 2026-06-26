@@ -92,8 +92,8 @@
 				], "scripts/items/"));
 			}
 		}
+		this.m.Items.equip(this.new("scripts/items/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
 		if (this.Math.rand(1, 100) <= 50) {
-			this.m.Items.equip(this.new("scripts/items/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
 			local secondaryWeapons = [
 				"weapons/throwing_axe",
 				"weapons/javelin",
