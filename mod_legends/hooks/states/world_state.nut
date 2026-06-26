@@ -8,6 +8,8 @@
 	o.m.DistantVisionBonus <- false;
 	o.m.AppropriateTimeToRecalc <- 0; //Leonion's fix
 	o.m.Encounters <- null;
+    o.m.LastMorningPauseDay <- -1;
+	o.m.LastNewDayPauseDay <- -1;
 
 	o.getBrothersInReserves <- function ()
 	{
@@ -462,6 +464,32 @@
 					::World.TopbarDayTimeModule.updateTimeButtons(4);
 				}
 			}
+		}
+	}
+
+	local updateDayTime = o.updateDayTime;
+	o.updateDayTime = function () {
+		updateDayTime();
+
+		if (!::World.Assets.isCamping() || this.isPaused()) {
+			return;
+		}
+
+		local time = ::World.getTime();
+		local currentDay = time.Days;
+		if (currentDay >= this.m.LastMorningPauseDay && time.Hours >= 22 && time.Minutes >= 38) {
+			this.m.LastMorningPauseDay = currentDay + 1;
+			if (::Legends.Mod.ModSettings.getSetting("PauseOnMorningCamping").getValue()) {
+				this.setPause(true);
+				return;
+			}
+		}
+
+		if (currentDay > this.m.LastNewDayPauseDay) {
+			if (::Legends.Mod.ModSettings.getSetting("PauseOnNewDayCamping").getValue()	&& this.m.LastNewDayPauseDay != -1)	{
+				this.setPause(true);
+			}
+			this.m.LastNewDayPauseDay = currentDay;
 		}
 	}
 
@@ -1648,7 +1676,8 @@
 			::World.State.getPlayer().setVisible(true);
 			::World.Assets.setUseProvisions(true);
 		}
-
+		o.m.LastMorningPauseDay = -1;
+		o.m.LastNewDayPauseDay = -1;
 		::World.Camp.clear();
 		::World.Camp.onDeserialize(_in);
 		onCalculatePlayerPartyModifiers();

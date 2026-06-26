@@ -356,8 +356,7 @@
 		// local playerRoster = this.World.getPlayerRoster().getAll();
 		// local lookout = 0;
 
-		// if(!World.State.isPaused() && isAttackable() && getFaction() != 0 && !isAlliedWithPlayer() && getTile().getDistanceTo(World.State.getPlayer().getTile()) <= 12)
-		// {
+		 if(::Legends.Mod.ModSettings.getSetting("PauseOnEnemySighted").getValue() && !::World.State.isPaused() && this.isAttackable() && this.getFaction() != 0 && !this.isAlliedWithPlayer() && this.getTile().getDistanceTo(::World.State.getPlayer().getTile()) <= 12) {
 		// 	foreach( bro in playerRoster )
 		// 	{
 		// 		if (bro.getCampAssignment() != this.Const.World.CampBuildings.Scout)
@@ -370,9 +369,9 @@
 		// 	}
 		// 	if (lookout > 0)
 		// 	{
-		// 		World.State.setPause(true);
+		 		::World.State.setPause(true);
 		// 	}
-		// }
+		 }
 	}
 
 	o.addToInventory <- function ( _i )

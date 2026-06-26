@@ -80,6 +80,11 @@ myEnumTooltip = "Define AI Rotation rules: 'Default' is the Vanilla behaviour, A
 misc.addElement(::MSU.Class.EnumSetting("AiRotation", "Default", ["Default", "Limited", "Disabled"], "AI Rotation Rules", myEnumTooltip));
 misc.addElement(::MSU.Class.BooleanSetting("SellDialogNamed", true, "Sell Famed Dialog", "Should confirmation dialog appear when selling famed items?"));
 misc.addElement(::MSU.Class.BooleanSetting("LogOutfits", false, "Log Outfits", "An option for fashion submissions which will log the entire outfit someone is wearing when you hover it, used to add custom outfits in Legends."));
+misc.addTitle("Pause", "Pause");
+misc.addElement(::MSU.Class.BooleanSetting("PauseOnEnemySighted", true, "Pause On Enemy Sighted", "Game pause when new enemy group is sighted"));
+misc.addElement(::MSU.Class.BooleanSetting("PauseOnEvents", true, "Pause On Events", "Pause on events, encounters, ambitions"));
+misc.addElement(::MSU.Class.BooleanSetting("PauseOnMorningCamping", false, "Pause Every Daybreak While Camping", "Pause every daybreak while camping (useful for entering towns)"));
+misc.addElement(::MSU.Class.BooleanSetting("PauseOnNewDayCamping", false, "Pause Every Noon While Camping", "Pause every noon while camping (useful for certain mechanics that reset on a new day)."));
 
 local betterobituary = ::Legends.Mod.ModSettings.addPage("Obituary");
 betterobituary.addBooleanSetting("SwapPerks",    false, "Show Perks", "Swaps the trait/permanent injuries columns for perks.");
