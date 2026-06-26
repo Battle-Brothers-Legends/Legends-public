@@ -21,7 +21,7 @@
 			_skill.m.Icon = "skills/active_239.png";
 			_skill.m.IconDisabled = "skills/active_239_sw.png";
 			_skill.m.Overlay = "active_239";
-		}).bindenv(this);
+		}.bindenv(this));
 		::Legends.Actives.grant(this, ::Legends.Active.LegendHarvest);
 		::Legends.Actives.grant(this, ::Legends.Active.Decapitate, function (_skill) {
 			_skill.m.IsTwoHand = true;
