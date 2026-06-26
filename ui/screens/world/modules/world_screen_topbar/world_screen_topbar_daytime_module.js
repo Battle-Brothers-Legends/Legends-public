@@ -319,3 +319,7 @@ WorldScreenTopbarDayTimeModule.prototype.notifyBackendTimeFastButtonPressed = fu
 WorldScreenTopbarDayTimeModule.prototype.notifyBackendTimeVeryFastButtonPressed = function () {
 	SQ.call(this.mSQHandle, 'onTimeVeryFastButtonPressed');
 };
+
+WorldScreenTopbarDayTimeModule.prototype.notifyBackendTimeSuperFastButtonPressed = function () {
+	SQ.call(this.mSQHandle, 'onTimeSuperFastButtonPressed');
+};
