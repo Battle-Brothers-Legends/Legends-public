@@ -3332,7 +3332,7 @@
 			[1, ""]
 		],
 		Tops = [
-			[1, "hood/legend_helmet_executioner_hood_full"] // 25 -2 -1 120
+			[1, "top/legend_helmet_executioner_hood_full"] // 25 -2 -1 120
 		],
 		Vanity = [
 			[1, ""]
