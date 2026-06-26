@@ -32,7 +32,7 @@
 				s.Text = "[img]gfx/ui/events/event_162.png[/img]{%employer% welcomes you into his throne room. It is filled to the brim with what looks like very important people, yet you are brought in anyway. Pausing briefly because you\'re not sure if the crowd can take it, you shrug and then spill out the nachzehrers\' remains. The froth of blood and guts and heads puddles across the floor, but not a peep comes from the onlookers.\n\nAll you can hear is the soft steps of the Vizier walking over. He stares at the remains, hands clasped before him like some scientist, then he snaps his fingers and a horde of servants come over and clean up the mess. One man with a quill pen and papers makes notations. When all is said and done the Vizier returns to this throne and sits in silence. The only other sound you hear is the chinky-chank of a treasure chest being dragged over. All %reward% crowns are handed to you as promised, then you are quietly urged to leave the room.\n\n Looking back, you see the crowd return their attention to the Vizier who starts into prayers. | A man stops you outside %employer%\'s room. He has with him a few scrawny men with quill pens and ledgers. They descend upon your collection of nachzehrers and make attributions accordingly to their papers. Each one finishes and tears the page away and hands it to the first man who compares his notes. Satisfied, he hands you a purse of %reward% crowns.%SPEECH_ON%May your road be ever gilded, Crownling.%SPEECH_OFF%}";
 				foreach (option in s.Options)
 				{
-					option.Text = "We\'re done here. (Decrease Moral Reputation)";
+					option.Text = "We\'re done here.";
 				}
 			}
 		}
