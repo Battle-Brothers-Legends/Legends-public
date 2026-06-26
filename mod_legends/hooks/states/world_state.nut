@@ -156,7 +156,23 @@
 			::World.TopbarDayTimeModule.m.IsAutoUpdateTimeButtonState = false;
 	}
 
-	o.setSuperFastTime <- function (_force = false) {
+	// these set _force = true to work during camp/escort
+	local setNormalTime = o.setNormalTime;
+	o.setNormalTime = function( _force = false ) {
+		setNormalTime(true);
+	}
+
+	local setFastTime = o.setFastTime;
+	o.setFastTime = function( _force = false ) {
+		setFastTime(true);
+	}
+
+	local setVeryFastTime = o.setVeryFastTime;
+	o.setVeryFastTime = function( _force = false ) {
+		setVeryFastTime(true);
+	}
+
+	o.setSuperFastTime <- function (_force = true) {
 		if (!this.m.MenuStack.hasBacksteps()) {
 			if (_force || !::World.Assets.isCamping() && this.m.EscortedEntity == null) {
 				this.m.LastWorldSpeedMult = ::Const.World.SpeedSettings.SuperFastMult;
@@ -435,34 +451,18 @@
 		this.showTentScreenFromCamp( _id );
 	}
 
-	o.updateTopBarButtonState = function ()	{
+	o.updateTopBarButtonState = function () {
 		if (("TopbarDayTimeModule" in ::World) && ::World.TopbarDayTimeModule != null) {
-			if (::World.Assets.isCamping() || this.m.EscortedEntity != null && !this.m.EscortedEntity.isNull() && this.m.EscortedEntity.isAlive()) {
-				::World.TopbarDayTimeModule.enableNormalTimeButton(false);
-				::World.TopbarDayTimeModule.enableFastTimeButton(false);
-				::World.TopbarDayTimeModule.enableSuperFastTimeButton(false);
-
-				if (!this.isPaused()) {
-					::World.TopbarDayTimeModule.updateTimeButtons(3);
-				} else {
-					::World.TopbarDayTimeModule.updateTimeButtons(0);
-				}
-			} else {
-				::World.TopbarDayTimeModule.enableNormalTimeButton(true);
-				::World.TopbarDayTimeModule.enableFastTimeButton(true);
-				::World.TopbarDayTimeModule.enableSuperFastTimeButton(true);
-
-				if (this.isPaused()) {
-					::World.TopbarDayTimeModule.updateTimeButtons(0);
-				} else if (::World.getSpeedMult() == ::Const.World.SpeedSettings.NormalMult) {
-					::World.TopbarDayTimeModule.updateTimeButtons(1);
-				} else if (::World.getSpeedMult() == ::Const.World.SpeedSettings.FastMult) {
-					::World.TopbarDayTimeModule.updateTimeButtons(2);
-				} else if (::World.getSpeedMult() == ::Const.World.SpeedSettings.VeryFastMult) {
-					::World.TopbarDayTimeModule.updateTimeButtons(3);
-				} else if (::World.getSpeedMult() == ::Const.World.SpeedSettings.SuperFastMult) {
-					::World.TopbarDayTimeModule.updateTimeButtons(4);
-				}
+			if (this.isPaused()) {
+				::World.TopbarDayTimeModule.updateTimeButtons(0);
+			} else if (::World.getSpeedMult() == ::Const.World.SpeedSettings.NormalMult) {
+				::World.TopbarDayTimeModule.updateTimeButtons(1);
+			} else if (::World.getSpeedMult() == ::Const.World.SpeedSettings.FastMult) {
+				::World.TopbarDayTimeModule.updateTimeButtons(2);
+			} else if (::World.getSpeedMult() == ::Const.World.SpeedSettings.VeryFastMult) {
+				::World.TopbarDayTimeModule.updateTimeButtons(3);
+			} else if (::World.getSpeedMult() == ::Const.World.SpeedSettings.SuperFastMult) {
+				::World.TopbarDayTimeModule.updateTimeButtons(4);
 			}
 		}
 	}
