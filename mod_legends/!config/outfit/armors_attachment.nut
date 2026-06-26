@@ -462,7 +462,7 @@
 
 ::Legends.Armor.Attachment.rusted_mail_patch_upgrade <- {
 	ID = "rusted_mail_patch_upgrade", // 85
-	Script = "scripts/items/legend_armor/armor_upgrades/legend_rusted_mail_patch_upgrade",
+	Script = "scripts/items/legend_armor/armor_upgrades/legend_armor_rusted_mail_patch_upgrade",
 	Sets = [{
 		Cloth = [
 		],
