@@ -101,7 +101,7 @@
 	Strength = 35,
 	Cost = 35,
 	Row = 1,
-	Script = "scripts/entity/tactical/humans/legend_barbarian_marauder"
+	Script = "scripts/entity/tactical/humans/legend_barbarian_bloodletter"
 };
 
 ::Const.World.Spawn.Troops.LegendBarbarianRunechosen <- {
