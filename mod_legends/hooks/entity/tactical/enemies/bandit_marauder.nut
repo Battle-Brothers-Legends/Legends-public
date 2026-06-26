@@ -140,8 +140,8 @@
 
 			if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= 60) {
 				helmetList.extend([
-					[10, ::Legends.Helmet.Standard.marauder_helmet_with_closed_mail],
-					[5, ::Legends.Helmet.Standard.flat_top_with_rusty_mail]
+					[10, ::Legends.Helmet.Standard.marauder_helmet_with_closed_mail]
+					//[5, ::Legends.Helmet.Standard.flat_top_with_rusty_mail]
 				]);
 			}
 		} else {
