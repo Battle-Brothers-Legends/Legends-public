@@ -1,5 +1,9 @@
 ::mods_hookExactClass("states/tactical_state", function(o)
 {
+	o.onCancelQuitToMainMenu = function() {
+		::Tactical.State.setPause(false);
+	}
+
 	o.swapToItem <- function ( _activeEntity, _item )
 	{
 		if (this.m.CurrentActionState != null)
