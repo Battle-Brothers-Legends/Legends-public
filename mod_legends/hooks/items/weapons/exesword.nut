@@ -11,7 +11,7 @@
 		this.m.Variants = [1];
 		this.m.StaminaModifier = -18;
 		this.m.ShieldDamage = 0;
-		this.m.DamageArmorMult = 1.2;
+		this.m.ArmorDamageMult = 1.2;
 
 		this.setVariant(this.m.Variants[this.Math.rand(0, this.m.Variants.len() - 1)]);
 	}
