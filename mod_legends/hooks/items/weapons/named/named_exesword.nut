@@ -9,7 +9,7 @@
 		this.m.Value = 4500;
 		this.m.ShieldDamage = 0;
 		this.m.Variants = [1, 2];
-		this.m.DamageArmorMult = 1.2;
+		this.m.ArmorDamageMult = 1.2;
 		this.m.StaminaModifier = -18;
 		this.m.ShieldDamage = 0;
 		this.setVariant(this.m.Variants[::Math.rand(0, this.m.Variants.len() - 1)]);
