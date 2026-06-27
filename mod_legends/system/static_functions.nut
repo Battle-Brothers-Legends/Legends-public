@@ -370,3 +370,46 @@
 
 	::logWarning(toPrint);
 }
+
+::Legends.S.getStatPotential <- function (bro, attribute) {
+	if (bro.getLevel() >= 12) {
+		return "";
+	}
+
+	local baseProp = 0;
+	switch (attribute) {
+		case this.Const.Attributes.Hitpoints:
+			baseProp = bro.getBaseProperties().Hitpoints;
+			break;
+		case this.Const.Attributes.Bravery:
+			baseProp = bro.getBaseProperties().Bravery;
+			break;
+		case this.Const.Attributes.Fatigue:
+			baseProp = bro.getBaseProperties().Stamina;
+			break;
+		case this.Const.Attributes.Initiative:
+			baseProp = bro.getBaseProperties().Initiative;
+			break;
+		case this.Const.Attributes.MeleeSkill:
+			baseProp = bro.getBaseProperties().MeleeSkill;
+			break;
+		case this.Const.Attributes.RangedSkill:
+			baseProp = bro.getBaseProperties().RangedSkill;
+			break;
+		case this.Const.Attributes.MeleeDefense:
+			baseProp = bro.getBaseProperties().MeleeDefense;
+			break;
+		case this.Const.Attributes.RangedDefense:
+			baseProp = bro.getBaseProperties().RangedDefense;
+			break;
+	}
+
+	local attributeMin = ::Const.AttributesLevelUp[attribute].Min + ::Math.min(bro.m.Talents[attribute], 2);
+	local attributeMax = ::Const.AttributesLevelUp[attribute].Max;
+	if (bro.m.Talents[attribute] == 3) {
+		attributeMax += 1;
+	}
+	local levelUps = ::Math.max(12 - bro.getLevel() + bro.getLevelUps(), 0);
+
+	return (baseProp + attributeMin * levelUps) + "-" + (baseProp + attributeMax * levelUps);
+}

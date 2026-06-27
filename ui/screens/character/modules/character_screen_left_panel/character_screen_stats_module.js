@@ -306,6 +306,7 @@ CharacterScreenStatsModule.prototype.setProgressbarValue = function (_progressba
 			_progressbarDiv.changeProgressbarLabel(_data[_labelKey]);
 		}
 		else {
+			var potential = (_data.potentials != null && _data.potentials[_valueKey] != null && _data.potentials[_valueKey] != "" ? " (" + (parseInt(_data.potentials[_valueKey].split("-")[0])+parseInt(_data.potentials[_valueKey].split("-")[1]))/2 + ")" : '')
 			switch (_valueKey) {
 				case ProgressbarValueIdentifier.ArmorHead:
 				case ProgressbarValueIdentifier.ArmorBody:
@@ -314,11 +315,11 @@ CharacterScreenStatsModule.prototype.setProgressbarValue = function (_progressba
 				case ProgressbarValueIdentifier.Fatigue:
 				case ProgressbarValueIdentifier.Morale:
 					{
-						_progressbarDiv.changeProgressbarLabel('' + _data[_valueKey] + ' / ' + _data[_valueMaxKey] + '');
+						_progressbarDiv.changeProgressbarLabel('' + _data[_valueKey] + ' / ' + _data[_valueMaxKey] + potential);
 					} break;
 				default:
 					{
-						_progressbarDiv.changeProgressbarLabel('' + _data[_valueKey]);
+						_progressbarDiv.changeProgressbarLabel('' + _data[_valueKey] + potential);
 					}
 			}
 		}

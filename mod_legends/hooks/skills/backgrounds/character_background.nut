@@ -651,143 +651,31 @@
 		return ret;
 	}
 
-	o.getAttributesTooltip <- function()
-	{
-		if (this.getContainer().getActor().getLevel() >= 12) {
+	o.getAttributesTooltip <- function() {
+		local bro = this.getContainer().getActor();
+
+		if (bro.getLevel() >= 12) {
 			return [];
 		}
 
-		local calculateAttribute = function(attribute, maximum = false)
-		{
-			local bro = this.getContainer().getActor();
-			local attributeMin = this.Const.AttributesLevelUp[attribute].Min + this.Math.min(bro.m.Talents[attribute], 2);
-			local attributeMax = this.Const.AttributesLevelUp[attribute].Max;
-			if (bro.m.Talents[attribute] == 3) attributeMax += 1;
-			local levelUps = this.Math.max(12 - bro.getLevel() + bro.getLevelUps(), 0);
-			local attributeValue = maximum ? attributeMax * levelUps : attributeMin * levelUps;
+		local getStat = function(_attribute, _addDistance = true) {
+			local text = ::String.replace(::Legends.S.getStatPotential(bro, _attribute), "-", " to ");
 
-			switch (attribute)
-			{
-				case this.Const.Attributes.Hitpoints:
-					return attributeValue + bro.getBaseProperties().Hitpoints;
-					break;
-				case this.Const.Attributes.Bravery:
-					return attributeValue + bro.getBaseProperties().Bravery;
-					break;
-				case this.Const.Attributes.Fatigue:
-					return attributeValue + bro.getBaseProperties().Stamina;
-					break;
-				case this.Const.Attributes.Initiative:
-					return attributeValue + bro.getBaseProperties().Initiative;
-					break;
-				case this.Const.Attributes.MeleeSkill:
-					return attributeValue + bro.getBaseProperties().MeleeSkill;
-					break;
-				case this.Const.Attributes.RangedSkill:
-					return attributeValue + bro.getBaseProperties().RangedSkill;
-					break;
-				case this.Const.Attributes.MeleeDefense:
-					return attributeValue + bro.getBaseProperties().MeleeDefense;
-					break;
-				case this.Const.Attributes.RangedDefense:
-					return attributeValue + bro.getBaseProperties().RangedDefense;
-					break;
-				default:
-					return 0;
-					break;
+			if (!_addDistance) {
+				return text;
 			}
-		}
 
-		local a = {
-			Hitpoints = [
-				calculateAttribute(this.Const.Attributes.Hitpoints),
-				calculateAttribute(this.Const.Attributes.Hitpoints, true)
-			],
-			Bravery = [
-				calculateAttribute(this.Const.Attributes.Bravery),
-				calculateAttribute(this.Const.Attributes.Bravery, true)
-			],
-			Fatigue = [
-				calculateAttribute(this.Const.Attributes.Fatigue),
-				calculateAttribute(this.Const.Attributes.Fatigue, true)
-			],
-			Initiative = [
-				calculateAttribute(this.Const.Attributes.Initiative),
-				calculateAttribute(this.Const.Attributes.Initiative, true)
-			],
-			MeleeSkill = [
-				calculateAttribute(this.Const.Attributes.MeleeSkill),
-				calculateAttribute(this.Const.Attributes.MeleeSkill, true)
-			],
-			RangedSkill = [
-				calculateAttribute(this.Const.Attributes.RangedSkill),
-				calculateAttribute(this.Const.Attributes.RangedSkill, true)
-			],
-			MeleeDefense = [
-				calculateAttribute(this.Const.Attributes.MeleeDefense),
-				calculateAttribute(this.Const.Attributes.MeleeDefense, true)
-			],
-			RangedDefense = [
-				calculateAttribute(this.Const.Attributes.RangedDefense),
-				calculateAttribute(this.Const.Attributes.RangedDefense, true)
-			]
+			::logDebug(text.len())
+			local paddingCount = 8 + ::Math.max(0, 12 - text.len()) * 2;
+			local distance = "";
+			for (local i = 0; i < paddingCount; i++) {
+				distance += "&nbsp;";
+			}
+
+			return text + distance;
 		};
 
-		local bufferHealth = "";
-		local bufferFatigue = "";
-		local bufferBravery = "";
-		local bufferInitiative = "";
-
-		if (a.Hitpoints[0] >= 100)
-		{
-			bufferFatigue += "&nbsp;&nbsp;";
-			bufferBravery += "&nbsp;&nbsp;";
-			bufferInitiative += "&nbsp;&nbsp;";
-		}
-		if (a.Hitpoints[1] >= 100)
-		{
-			bufferFatigue += "&nbsp;&nbsp;";
-			bufferBravery += "&nbsp;&nbsp;";
-			bufferInitiative += "&nbsp;&nbsp;";
-		}
-		if (a.Fatigue[0] >= 100)
-		{
-			bufferHealth += "&nbsp;&nbsp;";
-			bufferBravery += "&nbsp;&nbsp;";
-			bufferInitiative += "&nbsp;&nbsp;";
-		}
-		if (a.Fatigue[1] >= 100)
-		{
-			bufferHealth += "&nbsp;&nbsp;";
-			bufferBravery += "&nbsp;&nbsp;";
-			bufferInitiative += "&nbsp;&nbsp;";
-		}
-		if (a.Bravery[0] >= 100)
-		{
-			bufferHealth += "&nbsp;&nbsp;";
-			bufferFatigue += "&nbsp;&nbsp;";
-			bufferInitiative += "&nbsp;&nbsp;";
-		}
-		if (a.Bravery[1] >= 100)
-		{
-			bufferHealth += "&nbsp;&nbsp;";
-			bufferFatigue += "&nbsp;&nbsp;";
-			bufferInitiative += "&nbsp;&nbsp;";
-		}
-		if (a.Initiative[0] >= 100)
-		{
-			bufferHealth += "&nbsp;&nbsp;";
-			bufferFatigue += "&nbsp;&nbsp;";
-			bufferBravery += "&nbsp;&nbsp;";
-		}
-		if (a.Initiative[1] >= 100)
-		{
-			bufferHealth += "&nbsp;&nbsp;";
-			bufferFatigue += "&nbsp;&nbsp;";
-			bufferBravery += "&nbsp;&nbsp;";
-		}
-
-		local tooltip = [
+		return [
 			{
 				id = 103,
 				type = "hint",
@@ -796,26 +684,24 @@
 			{
 				id = 104,
 				type = "hint",
-				text = "[img]gfx/ui/icons/health_va11.png[/img] " + a.Hitpoints[0] + " to " + a.Hitpoints[1] + bufferHealth + "&nbsp;&nbsp;&nbsp;[img]gfx/ui/icons/melee_skill_va11.png[/img] " + a.MeleeSkill[0] + " to " + a.MeleeSkill[1]
+				text = "[img]gfx/ui/icons/health_va11.png[/img] " + getStat(::Const.Attributes.Hitpoints) + "[img]gfx/ui/icons/melee_skill_va11.png[/img] " + getStat(::Const.Attributes.MeleeSkill, false)
 			},
 			{
 				id = 105,
 				type = "hint",
-				text = "[img]gfx/ui/icons/fatigue_va11.png[/img] " + a.Fatigue[0] + " to " + a.Fatigue[1] + bufferFatigue + "&nbsp;&nbsp;&nbsp;[img]gfx/ui/icons/ranged_skill_va11.png[/img] " + a.RangedSkill[0] + " to " + a.RangedSkill[1]
+				text = "[img]gfx/ui/icons/fatigue_va11.png[/img] " + getStat(::Const.Attributes.Fatigue) + "[img]gfx/ui/icons/ranged_skill_va11.png[/img] " + getStat(::Const.Attributes.RangedSkill, false)
 			},
 			{
 				id = 106,
 				type = "hint",
-				text = "[img]gfx/ui/icons/bravery_va11.png[/img] " + a.Bravery[0] + " to " + a.Bravery[1] + bufferBravery + "&nbsp;&nbsp;&nbsp;[img]gfx/ui/icons/melee_defense_va11.png[/img] " + a.MeleeDefense[0] + " to " + a.MeleeDefense[1]
+				text = "[img]gfx/ui/icons/bravery_va11.png[/img] " + getStat(::Const.Attributes.Bravery) + "[img]gfx/ui/icons/melee_defense_va11.png[/img] " + getStat(::Const.Attributes.MeleeDefense, false)
 			},
 			{
 				id = 107,
 				type = "hint",
-				text = "[img]gfx/ui/icons/initiative_va11.png[/img] " + a.Initiative[0] + " to " + a.Initiative[1] + bufferInitiative + "&nbsp;&nbsp;&nbsp;[img]gfx/ui/icons/ranged_defense_va11.png[/img] " + a.RangedDefense[0] + " to " + a.RangedDefense[1]
+				text = "[img]gfx/ui/icons/initiative_va11.png[/img] " + getStat(::Const.Attributes.Initiative) + "[img]gfx/ui/icons/ranged_defense_va11.png[/img] " + getStat(::Const.Attributes.RangedDefense, false)
 			}
 		];
-
-		return tooltip;
 	}
 
 	o.getPerkTreeDescription <- function ()
