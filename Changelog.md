@@ -140,6 +140,7 @@
 - added speed settings to combat and world expanding on vanilla systems
 - expanded settlement situation tooltips to support new situations natively
 - added pause options in Legends misc tab
+- added option to show the average stat potential (for level 12) directly on bars
 
 ## Events
 - added a new town encounter during drought
