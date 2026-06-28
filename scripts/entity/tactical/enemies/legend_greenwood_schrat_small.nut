@@ -128,7 +128,7 @@ this.legend_greenwood_schrat_small <- this.inherit("scripts/entity/tactical/acto
 		this.setSpriteOffset("status_stunned", this.createVec(-10, -10));
 		this.setSpriteOffset("arrow", this.createVec(-10, -10));
 		::Legends.Perks.grant(this, ::Legends.Perk.Pathfinder);
-		::Legends.Traits.grant(this, ::Legends.Trait.RacialLegendGreenwoodSchrat);
+		::Legends.Traits.grant(this, ::Legends.Trait.RacialSchrat);
 		::Legends.Perks.grant(this, ::Legends.Perk.CripplingStrikes);
 		::Legends.Perks.grant(this, ::Legends.Perk.SteelBrow);
 		::Legends.Actives.grant(this, ::Legends.Active.UprootSmall);
