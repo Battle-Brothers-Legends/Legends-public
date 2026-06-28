@@ -22,7 +22,7 @@
 	o.getTooltip = function ()
 	{
 		local tooltip = getTooltip();
-		if (!::Legends.S.isCharacterWeaponSpecialized(this.getContainer().getActor().getCurrentProperties(), this.getItem()))
+		if (::Legends.S.isCharacterWeaponSpecialized(this.getContainer().getActor().getCurrentProperties(), this.getItem()))
 		{
 			tooltip.push({
 				id = 8,

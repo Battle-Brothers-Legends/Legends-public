@@ -320,9 +320,19 @@
 	// Preparation to call onRiposte(). Given its own function so it can be easily reused
 	o.onBeforeRiposte <- function ( _attacker, _skill, _delayMultiplier=1 )
 	{
-		if (this.m.CurrentProperties.IsRiposting && _attacker != null && !_attacker.isAlliedWith(this) && _attacker.getTile().getDistanceTo(this.getTile()) == 1 && this.Tactical.TurnSequenceBar.getActiveEntity() != null && this.Tactical.TurnSequenceBar.getActiveEntity().getID() == _attacker.getID() && _skill != null && !_skill.isIgnoringRiposte())
-		{
+		if (this.m.CurrentProperties.IsRiposting && _attacker != null && !_attacker.isAlliedWith(this) && _attacker.getTile().getDistanceTo(this.getTile()) == 1 && this.Tactical.TurnSequenceBar.getActiveEntity() != null && this.Tactical.TurnSequenceBar.getActiveEntity().getID() == _attacker.getID() && _skill != null && !_skill.isIgnoringRiposte()) {
 			local skill = this.m.Skills.getAttackOfOpportunity();
+
+			// prevents riposte from attacking with h2h if only oh sword equipped; shouldn't need to check for non-weapon ohs since riposte gets removed on unequip
+			local items = this.getItems();
+        	local mh = items.getItemAtSlot(::Const.ItemSlot.Mainhand);
+        	local oh = items.getItemAtSlot(::Const.ItemSlot.Offhand);
+			if (mh == null && oh != null) {
+				local ohSkill = ::Legends.Weapons.findPrimaryAttackSkill(this, oh);
+				if (ohSkill != null) {
+					skill = ohSkill;
+				}
+			}
 
 			if (skill != null) {
 				local info = {

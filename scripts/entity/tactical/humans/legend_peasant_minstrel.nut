@@ -12,9 +12,9 @@ this.legend_peasant_minstrel <- this.inherit("scripts/entity/tactical/human", {
 		this.m.HairColors = ::Const.HairColors.All;
 		this.m.Beards = ::Const.Beards.All;
 		this.getFlags().add("peasant");
-		this.m.AIAgent = ::new("scripts/ai/tactical/agents/legend_minstrel_agent");
+		this.m.AIAgent = ::new("scripts/ai/tactical/agents/barbarian_drummer_agent");
 		this.m.AIAgent.setActor(this);
-		if (this.randomizeEnemyGender() == 1) 
+		if (this.randomizeEnemyGender() == 1)
 		{
 			this.setGender(1);
 		}

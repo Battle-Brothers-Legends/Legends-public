@@ -2,7 +2,7 @@
 	ID = "mod_legends",
 	Version = "19.5.0-alpha1",
 	Name = "Legends Mod",
-	BuildName = "Left & Right",
+	BuildName = "Bandits & Greenskins",
 	IsStartingNewCampaign = false
 };
 

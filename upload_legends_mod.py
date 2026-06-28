@@ -6,6 +6,8 @@ import build_legends_mod
 
 
 def commits(tag: str) -> str:
+	if tag.endswith(".-1"):
+		return "\n"
 	messages = subprocess.check_output(["git", "log", f"{tag}..HEAD", "--no-merges", "--format=%s", "--reverse"], encoding="utf-8").strip()
 	lines = [m.split("     ")[0] for m in messages.split("\n")]
 	return "\n".join([f"- {m}" for m in lines])
@@ -34,7 +36,7 @@ This is an asset library required to play the Legends mod.
 It can be installed by just dropped it into data. DO NOT UNZIP.
 			""".strip())
 			nexus_task.run(file, f"""
-REQUIRES VERSION 1.5.1.0+ OF VANILLA GAME
+REQUIRES VERSION 1.5.2.2+ OF VANILLA GAME
 	
 SAVE COMPATIBLE WITH {base_version}+
 

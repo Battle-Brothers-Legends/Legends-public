@@ -1,4 +1,4 @@
-::mods_hookExactClass("skills/actives/skewer_skill", function (o) {
+::mods_hookExactClass("skills/actives/assault_skill", function (o) {
 	o.onAfterUpdate = function (_properties) {
 		if (::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem())) {
 			this.m.ActionPointCost -= 1;

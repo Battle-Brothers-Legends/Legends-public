@@ -6,8 +6,8 @@ this.legend_goblin_infantry_axe <- this.inherit("scripts/items/weapons/weapon", 
 		this.m.Name = "Goblin Harrier Axe";
 		this.m.Description = "A relatively small blade on a very long shaft used to deliver quick devastating attacks.";
 		this.m.Categories = "Axe, Two-Handed";
-		this.m.IconLarge = "weapons/melee/legend_goblin_longaxe.png";
-		this.m.Icon = "weapons/melee/legend_goblin_longaxe_70x70.png";
+		this.m.IconLarge = "weapons/melee/goblin_weapon_05.png";
+		this.m.Icon = "weapons/melee/goblin_weapon_05_70x70.png";
 		this.m.WeaponType = this.Const.Items.WeaponType.Axe;
 		this.m.SlotType = this.Const.ItemSlot.Mainhand;
 		this.m.BlockedSlotType = this.Const.ItemSlot.Offhand;

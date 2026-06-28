@@ -1,7 +1,7 @@
 ::mods_hookExactClass("skills/effects/berserker_rage_effect", function(o) {
 	o.m.IsBerserker <- false;
 	o.getDescription = function () {
-		return "The smell of blood and death sends you into an uncontrollable rage. Every taste of blood your weapon takes and every kill you make embolderns you and increases your lethality. Once in a rage, you must continuously feed it to keep it going";
+		return "The scent of blood and carnage drives this character into a primal frenzy. The rage demands constant slaughter to maintain. Every blow sustained, strike delivered, and life claimed fuels the growing bloodlust, drastically enhancing combat prowess.";
 	}
 
 	o.onTurnStart = function () {

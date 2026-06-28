@@ -40,7 +40,7 @@
 	local onAfterUpdate = o.onAfterUpdate;
 	o.onAfterUpdate = function( _properties )
 	{
-		if (this.m.NormalBonus) {
+		if (!this.m.NormalBonus) {
 			return onAfterUpdate( _properties );
 		}
 		_properties.MeleeDefense += this.getBonus();

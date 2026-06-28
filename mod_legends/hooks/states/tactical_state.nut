@@ -7,6 +7,10 @@
 		}
 	}
 
+	o.onCancelQuitToMainMenu = function() {
+		::Tactical.State.setPause(false);
+	}
+
 	o.swapToItem <- function ( _activeEntity, _item )
 	{
 		if (this.m.CurrentActionState != null)
@@ -131,7 +135,7 @@
 		if (this.Tactical.getNavigator().findPath(_activeEntity.getTile(), this.m.LastTileSelected, settings, 0)) {
 			targetTileType = this.Tactical.getNavigator().getCostForPath(_activeEntity, settings, 0, 0).First.Type; // mockup movement test only to determine the first tiles' cost
 		}
-		
+
 		if (athletic.skill != null && !athletic.skill.m.HasMoved) {
 			athletic.bonusAP = this.Math.max(0, (_activeEntity.getActionPointCosts()[targetTileType] * properties.MovementAPCostMult));
 			athletic.bonusFat = this.Math.max(0, (_activeEntity.getFatigueCosts()[targetTileType] * properties.MovementFatigueCostMult * properties.FatigueEffectMult));
@@ -240,7 +244,7 @@
 
 		if (activeEntity != null && activeEntity.getAIAgent().isEvaluating()) {
 			if (this.Time.getVirtualTime() < activeEntity.getAIAgent().m.NextEvaluationTime) {
-            	return; 
+            	return;
         	}
 
 			activeEntity.getAIAgent().think(true);
@@ -940,7 +944,7 @@
 		if (_key.getState() != 0 || this.isInLoadingScreen() || this.isBattleEnded() || this.isInCharacterScreen() || this.m.MenuStack.hasBacksteps()) {
 			return ret;
 		}
-		
+
 		local key = _key.getKey();
 		if (key >= 71 && key <= 74) {
 			this.setTacticalSpeed((key - 70).tofloat());

@@ -278,8 +278,6 @@ for (local i = -1; i < ::Const.EntityIcon.len(); i++) {
 	::Const.EntityType.addNew("goblin_white_direwolf_rider_orientation", "White Direwolf Rider", "White Direwolf Riders", this.Const.FactionType.Goblins);
 ::Const.EntityType.LegendGoblinWitchDoctor <-
 	::Const.EntityType.addNew("goblin_witchdoctor_orientation", "Goblin Witchdoctor", "Goblin Witchdoctors", this.Const.FactionType.Goblins);
-::Const.EntityType.LegendGoblinPlunderer <-
-	::Const.EntityType.addNew("goblin_plunderer_orientation", "Goblin Plunderer", "Goblin Plunderers", this.Const.FactionType.Goblins);
 ::Const.EntityType.LegendBarbarianPillager <-
 	::Const.EntityType.addNew("barbarian_pillager_orientation", "Barbarian Pillager", "Barbarian Pillagers", this.Const.FactionType.Barbarians);
 ::Const.EntityType.LegendBarbarianBloodletter <-

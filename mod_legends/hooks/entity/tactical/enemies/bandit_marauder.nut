@@ -92,8 +92,8 @@
 				], "scripts/items/"));
 			}
 		}
+		this.m.Items.equip(this.new("scripts/items/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
 		if (this.Math.rand(1, 100) <= 50) {
-			this.m.Items.equip(this.new("scripts/items/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
 			local secondaryWeapons = [
 				"weapons/throwing_axe",
 				"weapons/javelin",
@@ -135,14 +135,13 @@
 				[1, ::Legends.Helmet.Standard.deep_cervelliere],
 				[1, ::Legends.Helmet.Standard.dented_nasal_helmet],
 				[1, ::Legends.Helmet.Standard.nasal_helmet_with_rusty_mail],
-				[1, ::Legends.Helmet.Standard.rusty_mail_coif],
-				[1, ::Legends.Helmet.Standard.kettle_hat_with_rusty_mail]
+				[1, ::Legends.Helmet.Standard.rusty_mail_coif]
 			]);
 
 			if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= 60) {
 				helmetList.extend([
-					[10, ::Legends.Helmet.Standard.marauder_helmet_with_closed_mail],
-					[5, ::Legends.Helmet.Standard.flat_top_with_rusty_mail]
+					[10, ::Legends.Helmet.Standard.marauder_helmet_with_closed_mail]
+					//[5, ::Legends.Helmet.Standard.flat_top_with_rusty_mail]
 				]);
 			}
 		} else {

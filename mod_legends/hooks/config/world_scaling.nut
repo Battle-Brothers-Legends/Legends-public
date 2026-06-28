@@ -34,6 +34,7 @@
 ::Const.World.Scaling.Barbarians.LegendsMarauderPillagerNewPerksDay <- 60;
 
 ::Const.World.Scaling.Goblins.LegendsAmbusherHeavyBowDay <- 60;
+::Const.World.Scaling.Goblins.LegendDirewolfRiderHarrierDay <- 80;
 ::Const.World.Scaling.Goblins.LegendsFighterMeleeSkillIncreaseDay <- 180;
 
 ::Const.World.Scaling.Nomads.LegendsManhunterBetterArmorDay <- 18;

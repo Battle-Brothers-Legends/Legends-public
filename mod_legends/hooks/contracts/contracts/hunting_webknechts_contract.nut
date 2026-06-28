@@ -42,7 +42,39 @@
 			}
 		});
 		::Legends.Screens.hook(this, "Survivor", function (_screen) {
-			_screen.Text = "[img]gfx/ui/events/event_123.png[/img]{The battle over, you find a %person_dude% dangling by webbing attached to %their_dude% feet. Half of %their_dude% body is bound in the filaments and more dangle from %their_dude% hip like a shredded dress. Seems the spiders deserted %them_dude% upon the %companyname%\'s arrival. %They_dude% smiles at the sight of you.%SPEECH_ON%Hey there. Mercenaries ain\'t ya? Yeah I see it. You\'ve no mind being here lest it was coin that brought ya, and you fought like bastards that\'d been bet on. Absolute savages.%SPEECH_OFF%You ask the %person_dude% what you\'ll get for cutting him down. %They_dude% turns %their_dude% head up, %their_dude% whole body then starting to swing about and at times twist %them_dude% away from you entirely. %They_dude% speaks, either to you or to whichever direction %they're_dude% facing.%SPEECH_ON%Aye, good question! Well, you may not see it here and now, but I\'m a sellsword m\'self, and wouldn\'t you know that my company and its captain all been done stringed up and consumed whole by them spiders! Cut me down and I\'ve nowhere else better to go than your company. That is, if you\'d have me.%SPEECH_OFF%You have the %person_dude% cut free and debate what to do before returning to %employer%.}";
+			_screen.Text = "[img]gfx/ui/events/event_123.png[/img]{The battle over, you find a %person_dude% dangling by webbing attached to %their_dude% feet. Half of %their_dude% body is bound in the filaments and more dangle from %their_dude% hip like a shredded dress. Seems the spiders deserted %them_dude% upon the %companyname%\'s arrival. %They_dude% smiles at the sight of you.%SPEECH_ON%Hey there. Mercenaries ain\'t ya? Yeah I see it. You\'ve no mind being here lest it was coin that brought ya, and you fought like bastards that\'d been bet on. Absolute savages.%SPEECH_OFF%You ask the %person_dude% what you\'ll get for cutting %them_dude% down. %They_dude% turns %their_dude% head up, %their_dude% whole body then starting to swing about and at times twist %them_dude% away from you entirely. %They_dude% speaks, either to you or to whichever direction %they're_dude% facing.%SPEECH_ON%Aye, good question! Well, you may not see it here and now, but I\'m a sellsword m\'self, and wouldn\'t you know that my company and its captain all been done stringed up and consumed whole by them spiders! Cut me down and I\'ve nowhere else better to go than your company. That is, if you\'d have me.%SPEECH_OFF%You have the %person_dude% cut free and debate what to do before returning to %employer%.}";
+			_screen.start = function () {
+				this.Contract.m.Dude = ::World.getTemporaryRoster().create("scripts/entity/tactical/player");
+				this.Contract.m.Dude.setStartValuesEx(["retired_soldier_background"]);
+
+				if (!this.Contract.m.Dude.getSkills().hasTrait(::Legends.Trait.FearBeasts)	&& !this.Contract.m.Dude.getSkills().hasTrait(::Legends.Trait.HateBeasts)) {
+					::Legends.Traits.remove(this.Contract.m.Dude, ::Legends.Trait.Fearless);
+					::Legends.Traits.grant(this.Contract.m.Dude, ::Legends.Trait.FearBeasts);
+				}
+
+				this.Contract.m.Dude.getBackground().m.RawDescription = "You found %name% dangling from a tree, the sellsword the last survivor of a mercenary band sent to kill webknechts. %They% joined the company after you rescued %them%.";
+				this.Contract.m.Dude.getBackground().buildDescription(true);
+				this.Contract.m.Dude.worsenMood(0.5, "Lost %their% previous company to webknechts");
+				this.Contract.m.Dude.worsenMood(0.5, "Almost consumed alive by webknechts");
+
+				if (this.Contract.m.Dude.getItems().getItemAtSlot(this.Const.ItemSlot.Mainhand) != null) {
+					this.Contract.m.Dude.getItems().getItemAtSlot(this.Const.ItemSlot.Mainhand).removeSelf();
+				}
+
+				if (this.Contract.m.Dude.getItems().getItemAtSlot(this.Const.ItemSlot.Offhand) != null) {
+					this.Contract.m.Dude.getItems().getItemAtSlot(this.Const.ItemSlot.Offhand).removeSelf();
+				}
+
+				if (this.Contract.m.Dude.getItems().getItemAtSlot(this.Const.ItemSlot.Head) != null) {
+					this.Contract.m.Dude.getItems().getItemAtSlot(this.Const.ItemSlot.Head).setArmor(this.Contract.m.Dude.getItems().getItemAtSlot(this.Const.ItemSlot.Head).getArmor() * 0.33);
+				}
+
+				if (this.Contract.m.Dude.getItems().getItemAtSlot(this.Const.ItemSlot.Body) != null) {
+					this.Contract.m.Dude.getItems().getItemAtSlot(this.Const.ItemSlot.Body).setArmor(this.Contract.m.Dude.getItems().getItemAtSlot(this.Const.ItemSlot.Body).getArmor() * 0.33);
+				}
+
+				this.Characters.push(this.Contract.m.Dude.getImagePath());
+			}
 		});
 		::Legends.Screens.hook(this, "Success", function (_screen) {
 			_screen.Text = "[img]gfx/ui/events/event_85.png[/img]{%employer% meets you at the town entrance and there\'s a crowd of folks beside %them_employer%. %They_employer% welcomes you warmly, stating %they_employer% had a scout following you who saw the whole battle unfold. After %they_employer% hands you your reward, the townsfolk come forward one by one, many of them reluctant to stare a sellsword in the eyes, but they offer a few gifts as thanks for relieving them of the webknecht horrors. | You have to track down %employer%, ultimately finding the %person_employer% in a stable livery with a peasant girl. %They_employer% saws upward from the hay, startling the horses which whinny and stamp their feet. Half-dressed, the %person_employer% states %they_employer% already has your pay and forks it over. Eyeing you eyeing the girl, %they_employer% then starts to grab whatever\'s in reach, including from the saddlebags of stabled mounts, and hands them over.%SPEECH_ON%The, uh, townsfolk also sought to pitch in. You know, as thanks.%SPEECH_OFF%Right. For further \'thanks\' you ask if %they_employer%\'ll give you whatever\'s in a nearby satchel. | %employer% welcomes you back with a great clap and rub of %their_employer% hands, as though you\'d just brought in a turkey and not the horrifying evidence of your victory. After paying you the agreed reward, you hear some surprising news. The mayor states that the estate of a lost townsman could not be properly divvied up and, as further thanks, you\'re free to take what\'s left of it.}";

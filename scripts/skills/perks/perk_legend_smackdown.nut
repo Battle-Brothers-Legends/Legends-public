@@ -84,20 +84,21 @@ this.perk_legend_smackdown <- this.inherit("scripts/skills/skill", {
 		if (_targetEntity.getCurrentProperties().IsRooted || _targetEntity.getCurrentProperties().IsImmuneToKnockBackAndGrab)
 			return;
 
-		local knockToTile = this.findTileToKnockBackTo(user.getTile(), _targetEntity.getTile());
+		local targetTile = _targetEntity.getTile();
+
+		local knockToTile = this.findTileToKnockBackTo(user.getTile(), targetTile);
 
 		if (knockToTile == null) return;
 
 		this.m.TilesUsed.push(knockToTile.ID);
 
-		if (!user.isHiddenToPlayer() && (_targetEntity.getTile().IsVisibleForPlayer || knockToTile.IsVisibleForPlayer)) {
+		if (!user.isHiddenToPlayer() && (targetTile.IsVisibleForPlayer || knockToTile.IsVisibleForPlayer)) {
 			this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(user) + " has knocked back " + this.Const.UI.getColorizedEntityName(_targetEntity));
 		}
 
-		this.Tactical.State.handleInvoluntaryMovement(_targetEntity, _user, _targetTile, knockToTile, this, this.onKnockedDown, null);
+		this.Tactical.State.handleInvoluntaryMovement(_targetEntity, user, targetTile, knockToTile, this, this.onKnockedDown, null);
 		this.m.TilesUsed = [];
 		return true;
-
 	}
 
 	function onKnockedDown(_entity, _tag) {

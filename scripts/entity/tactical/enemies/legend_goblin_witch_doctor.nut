@@ -30,7 +30,6 @@ this.legend_goblin_witch_doctor <- this.inherit("scripts/entity/tactical/goblin"
 		this.addDefaultStatusSprites();
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendTrueBeliever);
 		::Legends.Traits.grant(this, ::Legends.Trait.RacialGoblinShaman);
-		::Legends.Traits.grant(this, ::Legends.Trait.RacialSchrat);
 		::Legends.Actives.grant(this, ::Legends.Active.Insects);
 		::Legends.Actives.grant(this, ::Legends.Active.Root);
 		::Legends.Actives.grant(this, ::Legends.Active.GrantNightVision);
