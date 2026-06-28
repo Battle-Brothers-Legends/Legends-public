@@ -189,7 +189,7 @@ this.legend_zombie <- this.inherit("scripts/entity/tactical/enemies/zombie", {
 		
 		foreach( bro in brothers )
 		{
-			if (bro.getFlags().has("IsSummoned")) summonedCount += 1;
+			if (bro.getFlags().has("IsSummoned")) summonedCount += 1;	//"Summon the Elector Counts!"
 		}
 		
 		if (brothers.len() == 1)
