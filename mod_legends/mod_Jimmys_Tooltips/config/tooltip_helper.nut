@@ -491,43 +491,49 @@
 		tooltip.extend(::ModJimmysTooltips.modGetEquipmentLootChance(_entity, _targetedWithSkill, 700));
 	}
 
-	if(::ModJimmysTooltips.Mod.ModSettings.getSetting("Stats").getValue()){
+	if(::ModJimmysTooltips.Mod.ModSettings.getSetting("Stats").getValue()) {
 		local properties = _entity.getCurrentProperties();
 		tooltip.push({
 			id = 600,
 			type = "hint",
 			icon = "ui/icons/melee_skill.png",
-			text = "[color=%positive%]"+properties.getMeleeSkill()+"[/color] Melee Skill"
+			text = "[color=%positive%]" + properties.getMeleeSkill() + "[/color] Melee Skill"
 		});
 		tooltip.push({
 			id = 601,
 			type = "hint",
 			icon = "ui/icons/melee_defense.png",
-			text = "[color=%positive%]"+properties.getMeleeDefense()+"[/color] Melee Defense"
+			text = "[color=%positive%]" + properties.getMeleeDefense() + "[/color] Melee Defense"
 		});
 		tooltip.push({
 			id = 602,
 			type = "hint",
 			icon = "ui/icons/ranged_skill.png",
-			text = "[color=%positive%]"+properties.getRangedSkill()+"[/color] Ranged Skill"
+			text = "[color=%positive%]" + properties.getRangedSkill() + "[/color] Ranged Skill"
 		});
 		tooltip.push({
 			id = 603,
 			type = "hint",
 			icon = "ui/icons/ranged_defense.png",
-			text = "[color=%positive%]"+properties.getRangedDefense()+"[/color] Ranged Defense"
+			text = "[color=%positive%]" + properties.getRangedDefense() + "[/color] Ranged Defense"
 		});
 		tooltip.push({
 			id = 604,
 			type = "hint",
 			icon = "ui/icons/initiative.png",
-			text = "[color=%positive%]"+_entity.getInitiative()+"[/color] Initiative"
+			text = "[color=%positive%]" + _entity.getInitiative() + "[/color] Initiative"
 		});
 		tooltip.push({
 			id = 605,
 			type = "hint",
 			icon = "ui/icons/bravery.png",
-			text = "[color=%positive%]"+_entity.getBravery()+"[/color] Resolve"
+			text = "[color=%positive%]" + _entity.getBravery() + "[/color] Resolve"
+		});
+		tooltip.push({
+			id = 606,
+			type = "hint",
+			icon = "ui/icons/fatigue.png",
+			text = "[color=%positive%]" + properties.FatigueRecoveryRate + "[/color] Fatigue Recovery per Turn"
 			divider = "bottom" // add a diviver
 		});
 	}
