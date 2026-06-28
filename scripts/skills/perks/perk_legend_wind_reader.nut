@@ -13,8 +13,7 @@ this.perk_legend_wind_reader <- this.inherit("scripts/skills/skill", {
 	function onAnySkillUsed( _skill, _targetEntity, _properties ) {
 		if (_targetEntity != null) {
 			local actor = this.getContainer().getActor();
-			local distanceToTarget = actor.getTile().getDistanceTo(_targetEntity.getTile());
-			local bonus = 0.05 * difference;
+			local difference = actor.getTile().getDistanceTo(_targetEntity.getTile());
 			_properties.DamageRegularMin += difference * 2;
 			_properties.DamageRegularMax += difference * 2;
 		}
