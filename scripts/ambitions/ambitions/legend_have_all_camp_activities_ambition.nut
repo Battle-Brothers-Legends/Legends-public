@@ -49,7 +49,7 @@ this.legend_have_all_camp_activities_ambition <- this.inherit("scripts/ambitions
 			gathering = true;
 		}
 
-		if (this.World.Flags.get("HasLegendCampScrapping"))
+		if (::World.Flags.get("HasLegendCampScrapping") || ::World.Flags.get("HasLegendCampScraping"))
 		{
 			scrapping = true;
 		}
@@ -132,7 +132,7 @@ this.legend_have_all_camp_activities_ambition <- this.inherit("scripts/ambitions
 			gathering = true;
 		}
 
-		if (this.World.Flags.get("HasLegendCampScrapping"))
+		if (::World.Flags.get("HasLegendCampScrapping") || ::World.Flags.get("HasLegendCampScraping"))
 		{
 			scrapping = true;
 		}
