@@ -52,7 +52,7 @@
 > Grants 2 Melee and Ranged Defense for each ally surrounding you.
 - `Backswing` - new gfx to differentiate from feint
 
-## Item Changes
+## Items
 
 ### Armors
 - added Segmented Breastplate
@@ -106,7 +106,7 @@
 - no longer has `Swing`
 
 **Estoc**
-- `Thrust` - You have a chance to attack up to 1(3 with mastery) additional times based on the initiative difference between you and your target. The chance for each attack to be executed is rolled independently in increments of 100.
+- `Perforate` - You have a chance to attack up to 1(3 with mastery) additional times based on the initiative difference between you and your target. The chance for each attack to be executed is rolled independently in increments of 100.
 
 **1h Shamshir and 1h scimitar**
 - `Slash` is now `Flowing Slash`
@@ -121,6 +121,9 @@
 - `Halfsword`
 - `Mordhau`
 
+### Blueprints
+- new `Sipar Shield` blueprint from 1 iron ingot
+- `Tower Shield` blueprint now costs 2 quality wood and 1 iron ingot
 
 ## Enemies
 

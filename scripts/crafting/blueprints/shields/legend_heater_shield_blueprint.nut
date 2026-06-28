@@ -3,11 +3,11 @@ this.legend_heater_shield_blueprint <- this.inherit("scripts/crafting/blueprint"
 	function create()
 	{
 		this.blueprint.create();
-		this.m.ID = "blueprint.legend_heater_shield_blueprint";
+		this.m.ID = "blueprint.legend_heater_shield";
 		this.m.Type = this.Const.Items.ItemType.Shield;
 		this.m.PreviewCraftable = this.new("scripts/items/shields/heater_shield");
 		this.m.PreviewCraftable.m.Name = "Company Heater Shield";
-		this.m.Cost = 250;
+		this.m.Cost = 200;
 		local ingredients = [
 			{
 				Script = "scripts/items/trade/quality_wood_item",
