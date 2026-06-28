@@ -109,7 +109,7 @@
 	"Elevated terrain like hills and mountains allow you to see farther on the worldmap.",
 	"You can have your items repaired at the smith for a fee by using \'ALT\' + \'Right Click\'.",
 	"You may find powerful named items far away from civilization by exploring or following tavern rumors.",
-	"Blackmarkets will only be open at night.",
+	"Masterwork tools, cloth and metal can be found in the possession of difficult enemies and occasionally in shops.",
 	"When hiring new mercenaries at a settlement, after you try out a recruit, you can open a screen to view their perks by clicking on their Character Perks icon.",
 
 	//Items - anything roughly relating to items like weapons or food
