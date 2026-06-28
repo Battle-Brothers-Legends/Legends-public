@@ -41,6 +41,21 @@
 			]
 		},
 		{
+			Weight = 5,
+			Types =
+			[
+				{
+					Type = this.Const.World.Spawn.Troops.LegendBanditExecutioner,
+					Cost = 25,
+				},
+				{
+					MinR = 600,
+					Type = this.Const.World.Spawn.Troops.LegendBanditExecutionerHigh,
+					Cost = 45,
+				}
+			]
+		},
+		{
 			Weight = 15,
 			Types = [
 				{
@@ -76,45 +91,46 @@
 			Types =
 			[
 				{
-					Type = this.Const.World.Spawn.Troops.LegendPeasantBlacksmith,
-					Cost = 20
-				},
-				{
-					Type = this.Const.World.Spawn.Troops.LegendPeasantButcher,
-					Cost = 20
-				},
-				{
 					Type = this.Const.World.Spawn.Troops.LegendPeasantMinstrel,
-					Cost = 20
-				},
-				{
-					Type = this.Const.World.Spawn.Troops.LegendPeasantWoodsman,
-					Cost = 20
-				},
-				{
-					Type = this.Const.World.Spawn.Troops.LegendPeasantMiner,
 					Cost = 20
 				},
 				{
 					Type = this.Const.World.Spawn.Troops.LegendPeasantMonk,
 					Cost = 20
-				},
-				{
-					Type = this.Const.World.Spawn.Troops.LegendPeasantFarmhand,
-					Cost = 20
-				},
-				{
-					Type = this.Const.World.Spawn.Troops.LegendPeasantPoacher,
-					Cost = 20
-				},
-				{
-					Type = this.Const.World.Spawn.Troops.LegendPeasantSquire,
-					Cost = 20
-				},
-				{
-					Type = this.Const.World.Spawn.Troops.LegendPeasantWitchHunter,
-					Cost = 20
 				}
+				// {
+				// 	Type = this.Const.World.Spawn.Troops.LegendPeasantBlacksmith,
+				// 	Cost = 20
+				// },
+				// {
+				// 	Type = this.Const.World.Spawn.Troops.LegendPeasantButcher,
+				// 	Cost = 20
+				// },
+
+				// {
+				// 	Type = this.Const.World.Spawn.Troops.LegendPeasantWoodsman,
+				// 	Cost = 20
+				// },
+				// {
+				// 	Type = this.Const.World.Spawn.Troops.LegendPeasantMiner,
+				// 	Cost = 20
+				// },
+				// {
+				// 	Type = this.Const.World.Spawn.Troops.LegendPeasantFarmhand,
+				// 	Cost = 20
+				// },
+				// {
+				// 	Type = this.Const.World.Spawn.Troops.LegendPeasantPoacher,
+				// 	Cost = 20
+				// },
+				// {
+				// 	Type = this.Const.World.Spawn.Troops.LegendPeasantSquire,
+				// 	Cost = 20
+				// },
+				// {
+				// 	Type = this.Const.World.Spawn.Troops.LegendPeasantWitchHunter,
+				// 	Cost = 20
+				// }
 			]
 		},
 	]
@@ -163,6 +179,21 @@
 			]
 		},
 		{
+			Weight = 5,
+			Types =
+			[
+				{
+					Type = this.Const.World.Spawn.Troops.LegendBanditExecutioner,
+					Cost = 25,
+				},
+				{
+					MinR = 600,
+					Type = this.Const.World.Spawn.Troops.LegendBanditExecutionerHigh,
+					Cost = 45,
+				}
+			]
+		},
+		{
 			Weight = 10,
 			Types = [
 				{
@@ -204,45 +235,46 @@
 			Types =
 			[
 				{
-					Type = this.Const.World.Spawn.Troops.LegendPeasantBlacksmith,
-					Cost = 20
-				},
-				{
-					Type = this.Const.World.Spawn.Troops.LegendPeasantButcher,
-					Cost = 20
-				},
-				{
 					Type = this.Const.World.Spawn.Troops.LegendPeasantMinstrel,
-					Cost = 20
-				},
-				{
-					Type = this.Const.World.Spawn.Troops.LegendPeasantWoodsman,
-					Cost = 20
-				},
-				{
-					Type = this.Const.World.Spawn.Troops.LegendPeasantMiner,
 					Cost = 20
 				},
 				{
 					Type = this.Const.World.Spawn.Troops.LegendPeasantMonk,
 					Cost = 20
-				},
-				{
-					Type = this.Const.World.Spawn.Troops.LegendPeasantFarmhand,
-					Cost = 20
-				},
-				{
-					Type = this.Const.World.Spawn.Troops.LegendPeasantPoacher,
-					Cost = 20
-				},
-				{
-					Type = this.Const.World.Spawn.Troops.LegendPeasantSquire,
-					Cost = 20
-				},
-				{
-					Type = this.Const.World.Spawn.Troops.LegendPeasantWitchHunter,
-					Cost = 20
 				}
+				// {
+				// 	Type = this.Const.World.Spawn.Troops.LegendPeasantBlacksmith,
+				// 	Cost = 20
+				// },
+				// {
+				// 	Type = this.Const.World.Spawn.Troops.LegendPeasantButcher,
+				// 	Cost = 20
+				// },
+
+				// {
+				// 	Type = this.Const.World.Spawn.Troops.LegendPeasantWoodsman,
+				// 	Cost = 20
+				// },
+				// {
+				// 	Type = this.Const.World.Spawn.Troops.LegendPeasantMiner,
+				// 	Cost = 20
+				// },
+				// {
+				// 	Type = this.Const.World.Spawn.Troops.LegendPeasantFarmhand,
+				// 	Cost = 20
+				// },
+				// {
+				// 	Type = this.Const.World.Spawn.Troops.LegendPeasantPoacher,
+				// 	Cost = 20
+				// },
+				// {
+				// 	Type = this.Const.World.Spawn.Troops.LegendPeasantSquire,
+				// 	Cost = 20
+				// },
+				// {
+				// 	Type = this.Const.World.Spawn.Troops.LegendPeasantWitchHunter,
+				// 	Cost = 20
+				// }
 			]
 		},
 	]
@@ -288,6 +320,21 @@
 					MinR = 500,
 					Type = this.Const.World.Spawn.Troops.BanditMarauder,
 					Cost = 30
+				}
+			]
+		},
+		{
+			Weight = 5,
+			Types =
+			[
+				{
+					Type = this.Const.World.Spawn.Troops.LegendBanditExecutioner,
+					Cost = 25,
+				},
+				{
+					MinR = 600,
+					Type = this.Const.World.Spawn.Troops.LegendBanditExecutionerHigh,
+					Cost = 45,
 				}
 			]
 		},
@@ -374,45 +421,46 @@
 			Types =
 			[
 				{
-					Type = this.Const.World.Spawn.Troops.LegendPeasantBlacksmith,
-					Cost = 20
-				},
-				{
-					Type = this.Const.World.Spawn.Troops.LegendPeasantButcher,
-					Cost = 20
-				},
-				{
 					Type = this.Const.World.Spawn.Troops.LegendPeasantMinstrel,
-					Cost = 20
-				},
-				{
-					Type = this.Const.World.Spawn.Troops.LegendPeasantWoodsman,
-					Cost = 20
-				},
-				{
-					Type = this.Const.World.Spawn.Troops.LegendPeasantMiner,
 					Cost = 20
 				},
 				{
 					Type = this.Const.World.Spawn.Troops.LegendPeasantMonk,
 					Cost = 20
-				},
-				{
-					Type = this.Const.World.Spawn.Troops.LegendPeasantFarmhand,
-					Cost = 20
-				},
-				{
-					Type = this.Const.World.Spawn.Troops.LegendPeasantPoacher,
-					Cost = 20
-				},
-				{
-					Type = this.Const.World.Spawn.Troops.LegendPeasantSquire,
-					Cost = 20
-				},
-				{
-					Type = this.Const.World.Spawn.Troops.LegendPeasantWitchHunter,
-					Cost = 20
 				}
+				// {
+				// 	Type = this.Const.World.Spawn.Troops.LegendPeasantBlacksmith,
+				// 	Cost = 20
+				// },
+				// {
+				// 	Type = this.Const.World.Spawn.Troops.LegendPeasantButcher,
+				// 	Cost = 20
+				// },
+
+				// {
+				// 	Type = this.Const.World.Spawn.Troops.LegendPeasantWoodsman,
+				// 	Cost = 20
+				// },
+				// {
+				// 	Type = this.Const.World.Spawn.Troops.LegendPeasantMiner,
+				// 	Cost = 20
+				// },
+				// {
+				// 	Type = this.Const.World.Spawn.Troops.LegendPeasantFarmhand,
+				// 	Cost = 20
+				// },
+				// {
+				// 	Type = this.Const.World.Spawn.Troops.LegendPeasantPoacher,
+				// 	Cost = 20
+				// },
+				// {
+				// 	Type = this.Const.World.Spawn.Troops.LegendPeasantSquire,
+				// 	Cost = 20
+				// },
+				// {
+				// 	Type = this.Const.World.Spawn.Troops.LegendPeasantWitchHunter,
+				// 	Cost = 20
+				// }
 			]
 		},
 	]
@@ -457,6 +505,21 @@
 					MinR = 500,
 					Type = this.Const.World.Spawn.Troops.BanditMarauder,
 					Cost = 30
+				}
+			]
+		},
+		{
+			Weight = 5,
+			Types =
+			[
+				{
+					Type = this.Const.World.Spawn.Troops.LegendBanditExecutioner,
+					Cost = 25,
+				},
+				{
+					MinR = 600,
+					Type = this.Const.World.Spawn.Troops.LegendBanditExecutionerHigh,
+					Cost = 45,
 				}
 			]
 		},
@@ -520,45 +583,46 @@
 			Types =
 			[
 				{
-					Type = this.Const.World.Spawn.Troops.LegendPeasantBlacksmith,
-					Cost = 20
-				},
-				{
-					Type = this.Const.World.Spawn.Troops.LegendPeasantButcher,
-					Cost = 20
-				},
-				{
 					Type = this.Const.World.Spawn.Troops.LegendPeasantMinstrel,
-					Cost = 20
-				},
-				{
-					Type = this.Const.World.Spawn.Troops.LegendPeasantWoodsman,
-					Cost = 20
-				},
-				{
-					Type = this.Const.World.Spawn.Troops.LegendPeasantMiner,
 					Cost = 20
 				},
 				{
 					Type = this.Const.World.Spawn.Troops.LegendPeasantMonk,
 					Cost = 20
-				},
-				{
-					Type = this.Const.World.Spawn.Troops.LegendPeasantFarmhand,
-					Cost = 20
-				},
-				{
-					Type = this.Const.World.Spawn.Troops.LegendPeasantPoacher,
-					Cost = 20
-				},
-				{
-					Type = this.Const.World.Spawn.Troops.LegendPeasantSquire,
-					Cost = 20
-				},
-				{
-					Type = this.Const.World.Spawn.Troops.LegendPeasantWitchHunter,
-					Cost = 20
 				}
+				// {
+				// 	Type = this.Const.World.Spawn.Troops.LegendPeasantBlacksmith,
+				// 	Cost = 20
+				// },
+				// {
+				// 	Type = this.Const.World.Spawn.Troops.LegendPeasantButcher,
+				// 	Cost = 20
+				// },
+
+				// {
+				// 	Type = this.Const.World.Spawn.Troops.LegendPeasantWoodsman,
+				// 	Cost = 20
+				// },
+				// {
+				// 	Type = this.Const.World.Spawn.Troops.LegendPeasantMiner,
+				// 	Cost = 20
+				// },
+				// {
+				// 	Type = this.Const.World.Spawn.Troops.LegendPeasantFarmhand,
+				// 	Cost = 20
+				// },
+				// {
+				// 	Type = this.Const.World.Spawn.Troops.LegendPeasantPoacher,
+				// 	Cost = 20
+				// },
+				// {
+				// 	Type = this.Const.World.Spawn.Troops.LegendPeasantSquire,
+				// 	Cost = 20
+				// },
+				// {
+				// 	Type = this.Const.World.Spawn.Troops.LegendPeasantWitchHunter,
+				// 	Cost = 20
+				// }
 			]
 		},
 
@@ -637,6 +701,21 @@
 					MinR = 600,
 					Type = this.Const.World.Spawn.Troops.BanditMarauder,
 					Cost = 30
+				}
+			]
+		},
+		{
+			Weight = 5,
+			Types =
+			[
+				{
+					Type = this.Const.World.Spawn.Troops.LegendBanditExecutioner,
+					Cost = 25,
+				},
+				{
+					MinR = 600,
+					Type = this.Const.World.Spawn.Troops.LegendBanditExecutionerHigh,
+					Cost = 45,
 				}
 			]
 		},

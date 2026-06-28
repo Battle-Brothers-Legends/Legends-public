@@ -2991,6 +2991,60 @@
 };
 ::Const.LegendMod.ArmorObjs.push(::Legends.Armor.Standard.executioner_tunic);
 
+::Legends.Armor.Standard.bandit_executioner_tunic <- {
+	ID = "bandit_executioner_tunic",
+	Script = "",
+	Sets = [{
+		Cloth = [
+			[1, "cloth/legend_armor_gambeson"],
+			[1, "cloth/legend_armor_thick_tunic"],
+			[1, "cloth/legend_armor_apron"], // 35 -4 60
+			[1, "cloth/legend_armor_tunic_dark"], // 35 -4 50
+			[1, "cloth/legend_armor_quilted_aketon"], // 55 -6 150
+		],
+		Chain = [
+			[1, "chain/legend_armor_hauberk_sleeveless", 1], // 65 -7 1250
+			[1, "chain/legend_armor_short_mail", 1]], // 60 -8 500
+		Plate = [
+			[1, "plate/legend_armor_leather_tunic_bloodstained"]
+		],
+		Cloak = [
+		],
+		Tabard = [
+		],
+		Attachments = [
+		]
+	}]
+};
+::Const.LegendMod.ArmorObjs.push(::Legends.Armor.Standard.bandit_executioner_tunic);
+
+::Legends.Armor.Standard.bandit_executioner_tunic_high <- {
+	ID = "bandit_executioner_tunic_high",
+	Script = "",
+	Sets = [{
+		Cloth = [
+			[1, "cloth/legend_armor_gambeson"],
+			[1, "cloth/legend_armor_gambeson_wolf"],
+			[1, "cloth/legend_armor_studded_aketon"],
+			[1, "cloth/legend_armor_quilted_aketon"],
+		],
+		Chain = [
+			[1, "chain/legend_armor_hauberk_full"],
+			[1, "chain/legend_armor_reinforced_worn_mail"],
+			[1, "chain/legend_armor_hauberk"]]
+		Plate = [
+			[1, "plate/legend_armor_leather_tunic_bloodstained"]
+		],
+		Cloak = [
+		],
+		Tabard = [
+		],
+		Attachments = [
+		]
+	}]
+};
+::Const.LegendMod.ArmorObjs.push(::Legends.Armor.Standard.bandit_executioner_tunic_high);
+
 ::Legends.Armor.Standard.pillaged_heavy_lamellar_armor <- {
 	ID = "pillaged_heavy_lamellar_armor", // 260-275 -36-37 3540-5790
 	Script = "",

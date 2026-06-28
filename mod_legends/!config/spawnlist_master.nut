@@ -198,6 +198,29 @@
 	NameList = this.Const.Strings.BanditLeaderNames,
 	TitleList = null
 };
+
+::Const.World.Spawn.Troops.LegendBanditExecutioner <- {
+	ID = this.Const.EntityType.LegendBanditExecutioner,
+	Variant = 1,
+	Strength = 25,
+	Cost = 25,
+	Row = -1,
+	NameList = this.Const.Strings.PeasantButcherNames,
+	TitleList = this.Const.Strings.PeasantButcherTitles,
+	Script = "scripts/entity/tactical/humans/legend_bandit_executioner"
+};
+
+::Const.World.Spawn.Troops.LegendBanditExecutionerHigh <- {
+	ID = this.Const.EntityType.LegendBanditExecutionerHigh,
+	Variant = 1,
+	Strength = 45,
+	Cost = 45,
+	Row = -1,
+	NameList = this.Const.Strings.PeasantButcherNames,
+	TitleList = this.Const.Strings.PeasantButcherTitles,
+	Script = "scripts/entity/tactical/humans/legend_bandit_executioner_high"
+};
+
 ::Const.World.Spawn.Troops.BanditOutrider <- {
 	ID = this.Const.EntityType.BanditOutrider,
 	Variant = 0,

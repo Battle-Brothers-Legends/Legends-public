@@ -120,6 +120,21 @@
 			]
 		},
 		{
+			Weight = 5,
+			Types =
+			[
+				{
+					Type = this.Const.World.Spawn.Troops.LegendBanditExecutioner,
+					Cost = 25,
+				},
+				{
+					MinR = 600,
+					Type = this.Const.World.Spawn.Troops.LegendBanditExecutionerHigh,
+					Cost = 45,
+				}
+			]
+		},
+		{
 			Weight = 2,
 			Types =
 			[

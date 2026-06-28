@@ -3326,7 +3326,11 @@
 	Script = "",
 	Sets = [{
 		Hoods = [
+			[1, "hood/legend_helmet_cloth_cap"], // 5 -0 -0 10
+			[1, "hood/legend_helmet_cloth_scarf"], // 15 -0 -0 10
 			[1, "hood/legend_helmet_cloth_bandana"], // 15 -0 -0 20
+			[1, "hood/legend_helmet_patched_hood"], // 25 -1 -0 45
+			[1, "hood/legend_helmet_simple_hood"] // 30 -1 -0 50, // 15 -0 -0 20
 		],
 		Helms = [
 			[1, ""]
@@ -3340,3 +3344,25 @@
 	}]
 };
 ::Const.LegendMod.HelmObjs.push(::Legends.Helmet.Standard.executioner_hood);
+
+::Legends.Helmet.Standard.bandit_executioner_hood <- {
+	ID = "bandit_executioner_hood", // 40 -2 -1 140
+	Script = "",
+	Sets = [{
+		Hoods = [
+			[1, "hood/legend_helmet_chain_hood_full"],
+			[1, "hood/legend_helmet_open_chain_hood"],
+			[1, "hood/legend_helmet_aventail"]
+		],
+		Helms = [
+			[1, ""]
+		],
+		Tops = [
+			[1, "top/legend_helmet_executioner_hood_full"] // 25 -2 -1 120
+		],
+		Vanity = [
+			[1, ""]
+		],
+	}]
+};
+::Const.LegendMod.HelmObjs.push(::Legends.Helmet.Standard.bandit_executioner_hood);

@@ -51,6 +51,8 @@
 > The bonus to hitchance in melee is doubled to +10% for each ally surrounding and distracting your target.
 > Grants 2 Melee and Ranged Defense for each ally surrounding you.
 - `Backswing` - new gfx to differentiate from feint
+- `Anticipation` - removed for now
+- `Wind Reader` - deals an additional 2 damage per tile travelled, gains the vanilla `Anticipation` effect
 
 ## Items
 
@@ -127,17 +129,16 @@
 
 ## Enemies
 
-### Dodge on Enemies
-- `Dodge` now doesn't scale with hitpoints on enemies so the overall values will be reduced
-
-### Greenskins
-- `Rage` - now applied to all orcs with reduced effects
-> gain 1 stack when they get hit and when hitting a target, gain 2 stacks when killing someone
-> Berserkers gain 3 stacks when hit and hitting a target, 5 stacks when killing someone
-> stacks are capped at 50
-- `Warcry` - each warcry now applies 5 stacks of rage
-- `Orc Berserker` - Base HP dropped to 200, gain `Colossus` and 10% damage that they had in vanilla, gain `Nimble` on Legendary Difficulty
-- `Orc Mad Berserker` - lose `Nudist`, gain 10% damage, gain the ability to use `Adrenaline`
+### Bandits
+- `Bandit Executioner` - new enemy that will appear in bandit comps, dressed to impress and armed with cleavers - including the new executioner sword
+- `Peasant Blacksmith` - removed from comps
+- `Peasant Butcher` - removed from comps
+- `Peasant Woodsman` - removed from comps
+- `Peasant Miner` - removed from comps
+- `Peasant Farmhand` - removed from comps
+- `Peasant Poacher` - removed from comps
+- `Peasant Squire` - removed from comps
+- `Peasant Witchhunter` - removed from comps
 
 ## Quality of life
 - added speed settings to combat and world expanding on vanilla systems

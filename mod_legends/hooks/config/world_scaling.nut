@@ -30,6 +30,7 @@
 ::Const.World.Scaling.Beasts.LegendsStollwurmStatIncreaseDay <- 170;
 
 ::Const.World.Scaling.Brigands.LegendsRabbleDefIncreaseDay <- 40; // do they even spawn then?
+::Const.World.Scaling.Brigands.LegendsBanditExecutionerSwordDay <- 40;
 
 ::Const.World.Scaling.Barbarians.LegendsMarauderPillagerNewPerksDay <- 60;
 
