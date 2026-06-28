@@ -171,9 +171,15 @@ Master swift and deadly daggers.
 [color=%passive%][u]Passive:[/u][/color]
 • Skills build up [color=%negative%]25%[/color] less Fatigue.
 
-• [color=%skill%]Stab[/color], [color=%skill%]Puncture[/color], and [color=%skill%]Deathblow[/color] Action Point cost is reduced to [color=%negative%]3[/color], allowing for an additional attack each turn.
+• [color=%skill%]Stab[/color], [color=%skill%]Backstab[/color], [color=%skill%]Puncture[/color], [color=%skill%]Perforate[/color], [color=%skill%]Skewer[/color] and [color=%skill%]Deathblow[/color] Action Point cost is reduced to [color=%negative%]3[/color], allowing for an additional attack each turn.
 
 • [color=%skill%]Throw Knife[/color] chance to distract on head hit is increased by [color=%positive%]25%[/color].
+
+• [color=%skill%]Backstab[/color] deals an additional [color=%positive%]5%[/color] Damage per target surrounding the target up to a maximum of [color=%positive%]25%[/color]. An additional [color=%positive%]3%[/color] of any damage ignores armor per target surrounding the target up to a maximum of [color=%positive%]15%[/color].
+
+• [color=%skill%]Stab[/color] can now attack an additional time if you're standing in smoke.
+
+• [color=%skill%]Perforate[/color] on Estocs now attacks up to [color=%positive%]3[/color] additional times based on Initiative difference between you and the target.
 ";
 ::Const.Perks.PerkDefObjects[::Legends.Perk.SpecDagger].Tooltip = ::Const.Strings.PerkDescription.SpecDagger;
 ::Const.Strings.PerkDescription.SpecSword <- @"
@@ -189,8 +195,6 @@ Master the art of swordfighting and using your opponent's mistakes to your advan
 • [color=%skill%]Gash[/color] has a [color=%negative%]50%[/color] lower threshold to inflict [color=%status%]Injuries[/color].
 
 • [color=%skill%]Flowing Slash[/color] now attacks again on miss.
-
-• [color=%skill%]Thrust[/color] on Estocs now attacks up to [color=%positive%]3[/color] times.
 
 • When [color=%status%]Dual Wielding[/color] swords, [color=%skill%]Riposte[/color] can trigger from both weapons, allowing two counter-attacks per missed enemy attack.
 ";
