@@ -67,6 +67,34 @@
 				P = 1.0,
 				S = "weapons/legend_tipstaff"
 			});
+			_list.push({
+				R = 95,
+				P = 1.0,
+				S = "misc/legend_masterwork_metal"
+			});
+			_list.push({
+				R = 95,
+				P = 1.0,
+				S = "misc/legend_masterwork_metal"
+			});
+		}
+		else if (_id == "building.armorsmith")
+		{
+			_list.push({
+				R = 45,
+				P = 1.0,
+				S = "weapons/legend_tipstaff"
+			});
+			_list.push({
+				R = 95,
+				P = 1.0,
+				S = "misc/legend_masterwork_metal"
+			});
+			_list.push({
+				R = 95,
+				P = 1.0,
+				S = "misc/legend_masterwork_metal"
+			});
 		}
 	}
 });
