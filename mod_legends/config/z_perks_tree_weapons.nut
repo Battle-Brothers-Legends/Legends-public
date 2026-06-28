@@ -670,10 +670,10 @@ if (!("Perks" in ::Const)) {
 	Tree = [
 		[],
 		[::Legends.Perk.LegendLookout],
-		[],
+		[::Legends.Perk.LegendWindReader],
 		[::Legends.Perk.LegendMasterySlings],
 		[],
-		[::Legends.Perk.LegendBarrage, ::Legends.Perk.LegendWindReader],
+		[::Legends.Perk.LegendBarrage],
 		[]
 	]
 };

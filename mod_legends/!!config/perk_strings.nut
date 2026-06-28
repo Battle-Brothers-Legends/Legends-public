@@ -2801,9 +2801,11 @@ Your heightened senses leads your strikes to vitals.
 You have learned to read the wind, estimating the path of arrows in uncertain conditions.
 
 [color=%passive%][u]Passive:[/u][/color]
-• Gain a third of your character's base Ranged Defense as Ranged Skill, with a minimum bonus of [color=%positive%]3[/color].
+• When being attacked with ranged weapons, gain [color=%positive%]1 + 10% [/color] of your base Ranged Defense as additional Ranged Defense per tile of distance between you and your target.
 
-• Gain [color=%positive%]+5%[/color] Ranged Damage for each level difference when you have the high ground.
+• Always gain at least [color=%positive%]+10[/color] to Ranged Defense when attacked from range.
+
+• Gain [color=%positive%]2[/color] Ranged Damage per tile of distance between you and your target.
 ";
 
 ::Const.Strings.PerkDescription.LegendPaymaster <- @"

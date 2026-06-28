@@ -573,7 +573,7 @@ if (!("Perks" in ::Const))
 			::Legends.Perk.Adrenaline
 		],
 		[
-			::Legends.Perk.Anticipation,
+			// ::Legends.Perk.Anticipation,
 			::Legends.Perk.LegendQuickStep
 		],
 		[],
