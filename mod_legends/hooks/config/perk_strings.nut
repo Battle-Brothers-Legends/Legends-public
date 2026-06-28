@@ -167,7 +167,7 @@ Master swift and deadly daggers.
 [color=%passive%][u]Passive:[/u][/color]
 • Skills build up [color=%negative%]25%[/color] less Fatigue.
 
-• [color=%skill%]Stab[/color], [color=%skill%]Puncture[/color], and [color=%skill%]Deathblow[/color] Action Point cost is reduced to [color=%negative%]3[/color], allowing for an additional attack each turn.
+• [color=%skill%]Stab[/color], [color=%skill%]Puncture[/color], [color=%skill%]Perforate[/color], [color=%skill%]Skewer[/color] and [color=%skill%]Deathblow[/color] Action Point cost is reduced to [color=%negative%]3[/color], allowing for an additional attack each turn.
 
 • [color=%skill%]Throw Knife[/color] chance to distract on head hit is increased by [color=%positive%]25%[/color].
 ";
