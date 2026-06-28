@@ -185,7 +185,13 @@ this.legend_zombie <- this.inherit("scripts/entity/tactical/enemies/zombie", {
 		}
 
 		local brothers = this.Tactical.Entities.getInstancesOfFaction(this.Const.Faction.Player);
-
+		local summonedCount = 0;
+		
+		foreach( bro in brothers )
+		{
+			if (bro.getFlags().has("IsSummoned")) summonedCount += 1;	//"Summon the Elector Counts!"
+		}
+		
 		if (brothers.len() == 1)
 		{
 			this.addXP(XPgroup);
@@ -194,7 +200,7 @@ this.legend_zombie <- this.inherit("scripts/entity/tactical/enemies/zombie", {
 		{
 			foreach( bro in brothers )
 			{
-				bro.addXP(this.Math.max(1, this.Math.floor(XPgroup / brothers.len())));
+				bro.addXP(this.Math.max(1, this.Math.floor(XPgroup * 1.0 / (brothers.len() - summonedCount))));
 			}
 		}
 	}
