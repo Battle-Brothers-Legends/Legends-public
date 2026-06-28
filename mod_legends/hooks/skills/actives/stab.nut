@@ -4,16 +4,6 @@
 
 	o.setItem <- function(_item) {
 		this.skill.setItem(_item);
-		if (this.m.IsEstocStab) {
-			this.m.Name = "Thrust";
-			this.m.Description = "A swift stab aiming for the weak points between the armor. You have a chance to attack up to 3 additional times based on the initiative difference between you and your target. The chance for each attack to be executed is rolled independently in increments of 100.";
-			this.m.Icon = "skills/skewer_general.png";
-			this.m.IconDisabled = "skills/skewer_general_bw.png";
-			this.m.Overlay = "skewer_general";
-			this.m.DirectDamageMult = 0.2;
-			this.m.ActionPointCost = 4;
-			this.m.FatigueCost = 10;
-		}
 		if (this.m.IsQatalStab) {
 			this.m.Description = "A quick and fast stab.";
 		}
