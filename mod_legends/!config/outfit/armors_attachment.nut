@@ -380,6 +380,26 @@
 };
 ::Const.LegendMod.ArmorObjs.push(::Legends.Armor.Attachment.leather_neckguard_upgrade);
 
+::Legends.Armor.Attachment.leather_shoulderguards_upgrade <- {
+	ID = "leather_shoulderguards_upgrade", // 85
+	Script = "scripts/items/legend_armor/armor_upgrades/legend_leather_shoulderguards_upgrade",
+	Sets = [{
+		Cloth = [
+		],
+		Chain = [
+		],
+		Plate = [
+		],
+		Cloak = [
+		],
+		Tabard = [
+		],
+		Attachments =[
+		]
+	}]
+};
+::Const.LegendMod.ArmorObjs.push(::Legends.Armor.Attachment.leather_shoulderguards_upgrade);
+
 ::Legends.Armor.Attachment.metal_plating_upgrade <- {
 	ID = "metal_plating_upgrade", // 85
 	Script = "scripts/items/legend_armor/armor_upgrades/legend_metal_plating_upgrade",
