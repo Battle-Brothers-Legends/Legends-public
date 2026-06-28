@@ -153,16 +153,10 @@ this.crafting_building <- this.inherit("scripts/entity/world/camp/camp_building"
 	function isHidden()
 	{
 		if ( !this.Const.DLC.Unhold)
-		{
 			return true;
-		}
-
 		if (::Legends.Settings.skipCamp())
-		{
 			return false;
-		}
-
-		return !this.World.Flags.get("HasLegendCampCrafting");
+		return !::World.Flags.get(::Legends.Camp.Flag.Craft);
 	}
 
 	function getUpgraded()

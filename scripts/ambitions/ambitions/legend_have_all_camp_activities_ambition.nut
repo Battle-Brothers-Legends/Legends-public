@@ -1,10 +1,9 @@
 this.legend_have_all_camp_activities_ambition <- this.inherit("scripts/ambitions/ambition", {
 	m = {},
-	function create()
-	{
+	function create() {
 		this.ambition.create();
 		this.m.ID = "ambition.legend_have_all_camp_activities";
-		this.m.Duration = 45.0 * this.World.getTime().SecondsPerDay;
+		this.m.Duration = 45.0 * ::World.getTime().SecondsPerDay;
 		this.m.ButtonText = "We need to enhance our camping skills. Visit the local towns and learn what you can.";
 		this.m.UIText = "Learn all camping skills";
 		this.m.TooltipText = "Discover all camping skills. Visit settlements across the lands to find buildings that perform the required skills. Having learned all camp skills, you will be able to sustain and maintain the company for longer periods without having to visit settlements.";
@@ -12,180 +11,76 @@ this.legend_have_all_camp_activities_ambition <- this.inherit("scripts/ambitions
 		this.m.SuccessButtonText = "Lets go camping!";
 	}
 
-	function getTooltipText()
-	{
-		if (this.hasAllProvisions())
-		{
+	function getTooltipText() {
+		if (this.hasAllProvisions()) {
 			return this.m.TooltipText;
 		}
 
-		local crafting = false;
-		local training = false;
-		local fletching = false;
-		local hunting = false;
-		local gathering = false;
-		local scrapping = false;
-		local scouting = false;
+		local crafting = ::World.Flags.get(::Legends.Camp.Flag.Craft) == true;
+		local training = ::World.Flags.get(::Legends.Camp.Flag.Training) == true;
+		local fletching = ::World.Flags.get(::Legends.Camp.Flag.Fletcher) == true;
+		local hunting = ::World.Flags.get(::Legends.Camp.Flag.Hunter) == true;
+		local gathering = ::World.Flags.get(::Legends.Camp.Flag.Gather) == true;
+		local scrapping = ::World.Flags.get(::Legends.Camp.Flag.Scrap) == true;
+		local scouting = ::World.Flags.get(::Legends.Camp.Flag.Scout) == true;
 
 		local ret = this.m.TooltipText + "\n\nSkills we still need to learn.\n";
-
-		if (this.World.Flags.get("HasLegendCampCrafting"))
-		{
-			crafting = true;
+		if (!crafting) {
+			ret += "\n- Crafting";
 		}
-
-		if (this.World.Flags.get("HasLegendCampFletching"))
-		{
-			fletching = true;
+		if (!fletching) {
+			ret += "\n- Fletching";
 		}
-
-		if (this.World.Flags.get("HasLegendCampHunting"))
-		{
-			hunting = true;
+		if (!gathering) {
+			ret += "\n- Gathering";
 		}
-
-		if (this.World.Flags.get("HasLegendCampGathering"))
-		{
-			gathering = true;
+		if (!hunting) {
+			ret += "\n- Hunting";
 		}
-
-		if (this.World.Flags.get("HasLegendCampScrapping"))
-		{
-			scrapping = true;
+		if (!scouting) {
+			ret += "\n- Patrolling";
 		}
-
-		if (this.World.Flags.get("HasLegendCampScouting"))
-		{
-			scouting = true;
+		if (!scrapping) {
+			ret += "\n- Scrapping";
 		}
-
-		if (this.World.Flags.get("HasLegendCampTraining"))
-		{
-			training = true;
+		if (!training) {
+			ret += "\n- Training";
 		}
-
-		if (!crafting)
-		{
-			ret = ret + "\n- Crafting";
-		}
-
-		if (!fletching)
-		{
-			ret = ret + "\n- Fletching";
-		}
-
-		if (!gathering)
-		{
-			ret = ret + "\n- Gathering";
-		}
-
-		if (!hunting)
-		{
-			ret = ret + "\n- Hunting";
-		}
-
-		if (!scouting)
-		{
-			ret = ret + "\n- Patrolling";
-		}
-
-		if (!scrapping)
-		{
-			ret = ret + "\n- Scrapping";
-		}
-
-		if (!training)
-		{
-			ret = ret + "\n- Training";
-		}
-
 		return ret;
 	}
 
-	function hasAllProvisions()
-	{
-		local crafting = false;
-		local training = false;
-		local fletching = false;
-		local hunting = false;
-		local gathering = false;
-		local scrapping = false;
-		local scouting = false;
-
-		if (this.World.Flags.get("HasLegendCampCrafting"))
-		{
-			crafting = true;
-		}
-
-		if (this.World.Flags.get("HasLegendCampFletching"))
-		{
-			fletching = true;
-		}
-
-		if (this.World.Flags.get("HasLegendCampHunting"))
-		{
-			hunting = true;
-		}
-
-		if (this.World.Flags.get("HasLegendCampGathering"))
-		{
-			gathering = true;
-		}
-
-		if (this.World.Flags.get("HasLegendCampScrapping"))
-		{
-			scrapping = true;
-		}
-
-		if (this.World.Flags.get("HasLegendCampScouting"))
-		{
-			scouting = true;
-		}
-
-		if (this.World.Flags.get("HasLegendCampTraining"))
-		{
-			training = true;
-		}
-
+	function hasAllProvisions() {
+		local crafting = ::World.Flags.get(::Legends.Camp.Flag.Craft) == true;
+		local training = ::World.Flags.get(::Legends.Camp.Flag.Training) == true;
+		local fletching = ::World.Flags.get(::Legends.Camp.Flag.Fletcher) == true;
+		local hunting = ::World.Flags.get(::Legends.Camp.Flag.Hunter) == true;
+		local gathering = ::World.Flags.get(::Legends.Camp.Flag.Gather) == true;
+		local scrapping = ::World.Flags.get(::Legends.Camp.Flag.Scrap) == true;
+		local scouting = ::World.Flags.get(::Legends.Camp.Flag.Scout) == true;
 		return crafting && training && fletching && hunting && gathering && scrapping && scouting;
 	}
 
-	function onUpdateScore()
-	{
-
-		if (::Legends.Settings.skipCamp())
-		{
+	function onUpdateScore() {
+		if (::Legends.Settings.skipCamp()) {
 			this.m.IsDone = true;
 			return;
 		}
-
-		if (this.hasAllProvisions())
-		{
+		if (this.hasAllProvisions()) {
 			this.m.IsDone = true;
 			return;
 		}
-
 		this.m.Score = 6;
 	}
 
-	function onCheckSuccess()
-	{
-		if (this.hasAllProvisions())
-		{
-			return true;
-		}
-
-		return false;
+	function onCheckSuccess() {
+		return this.hasAllProvisions();
 	}
 
-	function onSerialize( _out )
-	{
+	function onSerialize(_out) {
 		this.ambition.onSerialize(_out);
 	}
 
-	function onDeserialize( _in )
-	{
+	function onDeserialize(_in) {
 		this.ambition.onDeserialize(_in);
 	}
-
 });

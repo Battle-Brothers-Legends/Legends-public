@@ -115,11 +115,8 @@ this.training_building <- this.inherit("scripts/entity/world/camp/camp_building"
 	function isHidden()
 	{
 		if (::Legends.Settings.skipCamp())
-		{
 			return false;
-		}
-
-		return !this.World.Flags.get("HasLegendCampTraining");
+		return !::World.Flags.get(::Legends.Camp.Flag.Training);
 	}
 
 	function getUpgraded()

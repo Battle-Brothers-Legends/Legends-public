@@ -27,7 +27,7 @@ this.legend_camp_unlock_fletching_encounter <- this.inherit("scripts/encounters/
 					icon = "ui/icons/special.png",
 					text = "Fletching unlocked in camp"
 				});
-				::World.Flags.set("HasLegendCampFletching", true)
+				::World.Flags.set(::Legends.Camp.Flag.Fletcher, true)
 			}
 		});
 	}
@@ -36,7 +36,7 @@ this.legend_camp_unlock_fletching_encounter <- this.inherit("scripts/encounters/
 		if (::Legends.Settings.skipCamp())
 			return false;
 
-		if (::World.Flags.get("HasLegendCampFletching"))
+		if (::World.Flags.get(::Legends.Camp.Flag.Fletcher))
 			return false;
 
 		if (!(_settlement.hasAttachedLocation("attached_location.fletchers_hut") || _settlement.hasBuilding("building.weaponsmith") || _settlement.hasBuilding("building.weaponsmith_oriental")))

@@ -101,7 +101,7 @@ this.fletcher_building <- this.inherit("scripts/entity/world/camp/camp_building"
 			return false;
 		}
 
-		return !this.World.Flags.get("HasLegendCampFletching");
+		return !this.World.Flags.get(::Legends.Camp.Flag.Fletcher);
 	}
 
 	function getUpgraded()

@@ -27,7 +27,7 @@ this.legend_camp_unlock_scouting_encounter <- this.inherit("scripts/encounters/e
 					icon = "ui/icons/special.png",
 					text = "Patrol unlocked in camp"
 				});
-				::World.Flags.set("HasLegendCampScouting", true)
+				::World.Flags.set(::Legends.Camp.Flag.Scout, true)
 			}
 		});
 	}
@@ -36,7 +36,7 @@ this.legend_camp_unlock_scouting_encounter <- this.inherit("scripts/encounters/e
 		if (::Legends.Settings.skipCamp())
 			return false;
 
-		if (::World.Flags.get("HasLegendCampScouting"))
+		if (::World.Flags.get(::Legends.Camp.Flag.Scout))
 			return false;
 
 		if (!(_settlement.hasAttachedLocation("attached_location.wooden_watchtower") || _settlement.hasAttachedLocation("attached_location.stone_watchtower") || _settlement.hasAttachedLocation("attached_location.fortified_outpost")))

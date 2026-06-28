@@ -223,14 +223,16 @@ this.legend_risen_legion_scenario <- this.inherit("scripts/scenarios/world/start
 			], this.Const.Music.CrossFadeTime);
 			this.World.Events.fire("event.legend_risen_legion_intro");
 		}, null);
-		this.World.Flags.set("HasLegendCampGathering", false);
-		this.World.Flags.set("HasLegendCampCrafting", false);
-		this.World.Flags.set("HasLegendCampFletching", false);
-		this.World.Flags.set("HasLegendCampHealing", false);
-		this.World.Flags.set("HasLegendCampHunting", false);
-		this.World.Flags.set("HasLegendCampScouting", false);
-		this.World.Flags.set("HasLegendCampScrapping", false);
-		this.World.Flags.set("HasLegendCampTraining", false);
+		::World.Flags.set(::Legends.Camp.Flag.Gather, true);
+		::World.Flags.set(::Legends.Camp.Flag.Craft, true);
+		::World.Flags.set(::Legends.Camp.Flag.Fletcher, true);
+		::World.Flags.set(::Legends.Camp.Flag.Healer, true);
+		::World.Flags.set(::Legends.Camp.Flag.Hunter, true);
+		::World.Flags.set(::Legends.Camp.Flag.Scout, true);
+		::World.Flags.set(::Legends.Camp.Flag.Scrap, true);
+		::World.Flags.set(::Legends.Camp.Flag.Training, true);
+		::World.Flags.set(::Legends.Camp.Flag.Barber, true);
+		::World.Flags.set(::Legends.Camp.Flag.Painter, true);
 	}
 
 	function onUpdateHiringRoster( _roster )

@@ -27,7 +27,7 @@ this.legend_camp_unlock_crafting_encounter <- this.inherit("scripts/encounters/e
 					icon = "ui/icons/special.png",
 					text = "Crafting unlocked in camp"
 				});
-				::World.Flags.set("HasLegendCampCrafting", true)
+				::World.Flags.set(::Legends.Camp.Flag.Craft, true)
 			}
 		});
 	}
@@ -36,7 +36,7 @@ this.legend_camp_unlock_crafting_encounter <- this.inherit("scripts/encounters/e
 		if (::Legends.Settings.skipCamp())
 			return false;
 
-		if (::World.Flags.get("HasLegendCampCrafting"))
+		if (::World.Flags.get(::Legends.Camp.Flag.Craft))
 			return false;
 
 		if (!(_settlement.hasBuilding("building.taxidermist") || _settlement.hasBuilding("building.taxidermist_oriental")))
@@ -51,6 +51,5 @@ this.legend_camp_unlock_crafting_encounter <- this.inherit("scripts/encounters/e
 			::World.Camp.getBuildingByID(::Const.World.CampBuildings.Crafting).getDescription()
 		]);
 	}
-
 });
 

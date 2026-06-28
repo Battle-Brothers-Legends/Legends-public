@@ -23,7 +23,7 @@ this.legend_inquisition_intro_event <- this.inherit("scripts/events/event", {
 			],
 			function start( _event )
 			{
-				this.World.Flags.set("HasLegendCampHealing", true);
+				this.World.Flags.set(::Legends.Camp.Flag.Healer, true);
 			}
 		});
 	}

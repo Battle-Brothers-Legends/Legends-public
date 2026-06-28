@@ -27,7 +27,7 @@ this.legend_camp_unlock_barber_encounter <- this.inherit("scripts/encounters/enc
 					icon = "ui/icons/special.png",
 					text = "Barbering unlocked in camp"
 				});
-				::World.Flags.set("HasLegendCampBarber", true)
+				::World.Flags.set(::Legends.Camp.Flag.Barber, true)
 			}
 		});
 	}
@@ -36,7 +36,7 @@ this.legend_camp_unlock_barber_encounter <- this.inherit("scripts/encounters/enc
 		if (::Legends.Settings.skipCamp())
 			return false;
 
-		if (::World.Flags.get("HasLegendCampBarber"))
+		if (::World.Flags.get(::Legends.Camp.Flag.Barber))
 			return false;
 
 		return !this.isOnCooldown();

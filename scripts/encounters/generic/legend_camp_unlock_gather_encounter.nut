@@ -27,7 +27,7 @@ this.legend_camp_unlock_gather_encounter <- this.inherit("scripts/encounters/enc
 					icon = "ui/icons/special.png",
 					text = "Gathering unlocked in camp"
 				});
-				::World.Flags.set("HasLegendCampGathering", true)
+				::World.Flags.set(::Legends.Camp.Flag.Gather, true)
 			}
 		});
 	}
@@ -36,7 +36,7 @@ this.legend_camp_unlock_gather_encounter <- this.inherit("scripts/encounters/enc
 		if (::Legends.Settings.skipCamp())
 			return false;
 
-		if (::World.Flags.get("HasLegendCampGathering"))
+		if (::World.Flags.get(::Legends.Camp.Flag.Gather))
 			return false;
 
 		if (!(_settlement.hasAttachedLocation("attached_location.gatherers_hut") || _settlement.hasAttachedLocation("attached_location.herbalists_grove") || _settlement.hasAttachedLocation("attached_location.plantation")))

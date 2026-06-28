@@ -70,7 +70,7 @@ this.healer_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 	function isHidden() {
 		if (::Legends.Settings.skipCamp())
 			return false;
-		return !::World.Flags.get("HasLegendCampHealing");
+		return !::World.Flags.get(::Legends.Camp.Flag.Healer);
 	}
 
 	function getRate()
@@ -326,7 +326,7 @@ this.healer_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 			}
 		}
 
-		
+
 		local healedTotal = this.m.InjuriesHealed.len();
 		local injTotal = healedTotal + remainingInjuries;
 

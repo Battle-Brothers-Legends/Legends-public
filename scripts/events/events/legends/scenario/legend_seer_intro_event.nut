@@ -24,9 +24,9 @@ this.legend_seer_intro_event <- this.inherit("scripts/events/event", {
 			function start( _event )
 			{
 				this.logInfo("Unlocking gathering");
-				this.World.Flags.set("HasLegendCampGathering", true);
+				this.World.Flags.set(::Legends.Camp.Flag.Gather, true);
 				this.logInfo("Unlocking training");
-				this.World.Flags.set("HasLegendCampTraining", true);
+				this.World.Flags.set(::Legends.Camp.Flag.Training, true);
 			}
 		});
 	}

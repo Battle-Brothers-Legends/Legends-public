@@ -24,7 +24,7 @@ this.legend_crusader_intro_event <- this.inherit("scripts/events/event", {
 			function start( _event )
 			{
 				this.logInfo("Unlocking scouting");
-				this.World.Flags.set("HasLegendCampScouting", true);
+				this.World.Flags.set(::Legends.Camp.Flag.Scout, true);
 			}
 		});
 	}

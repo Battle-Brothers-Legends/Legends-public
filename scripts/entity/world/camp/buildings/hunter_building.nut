@@ -210,15 +210,10 @@ this.hunter_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 		return ret;
 	}
 
-	function isHidden()
-	{
-
+	function isHidden() {
 		if (::Legends.Settings.skipCamp())
-		{
 			return false;
-		}
-
-		return !this.World.Flags.get("HasLegendCampHunting")
+		return !::World.Flags.get(::Legends.Camp.Flag.Hunter)
 	}
 
 	function getUpgraded()

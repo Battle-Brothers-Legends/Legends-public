@@ -27,7 +27,7 @@ this.legend_camp_unlock_heal_encounter <- this.inherit("scripts/encounters/encou
 					icon = "ui/icons/special.png",
 					text = "Healing unlocked in camp"
 				});
-				::World.Flags.set("HasLegendCampHealing", true)
+				::World.Flags.set(::Legends.Camp.Flag.Healer, true)
 			}
 		});
 	}
@@ -36,7 +36,7 @@ this.legend_camp_unlock_heal_encounter <- this.inherit("scripts/encounters/encou
 		if (::Legends.Settings.skipCamp())
 			return false;
 
-		if (::World.Flags.get("HasLegendCampHealing"))
+		if (::World.Flags.get(::Legends.Camp.Flag.Healer))
 			return false;
 
 		if (!_settlement.hasBuilding("building.temple"))

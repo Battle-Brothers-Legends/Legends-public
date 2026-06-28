@@ -201,7 +201,7 @@
 		items.unequip(items.getItemAtSlot(this.Const.ItemSlot.Ammo));
 		items.equip(this.new("scripts/items/weapons/light_crossbow"));
 		items.equip(this.new("scripts/items/ammo/quiver_of_bolts"));
-		this.World.Flags.set("HasLegendCampScouting", true);
+		this.World.Flags.set(::Legends.Camp.Flag.Scout, true);
 		this.Time.scheduleEvent(this.TimeUnit.Real, 1000, function ( _tag )
 		{
 			this.Music.setTrackList([

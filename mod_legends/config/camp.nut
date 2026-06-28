@@ -1,6 +1,23 @@
 if (!("Camp" in ::Legends))
 	::Legends.Camp <- {};
 
+/*
+	Flags define if tent in camp screen is visible.
+	Used in
+*/
+::Legends.Camp.Flag <- {
+	Barber = "HasLegendCampBarber",
+	Craft = "HasLegendCampCrafting",
+	Fletcher = "HasLegendCampFletching",
+	Gather = "HasLegendCampGathering",
+	Healer = "HasLegendCampHealing",
+	Hunter = "HasLegendCampHunting",
+	Painter = "HasLegendCampPainter",
+	Scout = "HasLegendCampScouting",
+	Scrap = "HasLegendCampScrapping",
+	Training = "HasLegendCampTraining"
+}
+
 ::Legends.Camp.Tent <- {
 	Craft = "tent.craft_tent",
 	Enchant = "tent.enchant_tent",

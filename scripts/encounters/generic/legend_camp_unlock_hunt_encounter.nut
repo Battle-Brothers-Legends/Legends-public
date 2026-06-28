@@ -27,7 +27,7 @@ this.legend_camp_unlock_hunt_encounter <- this.inherit("scripts/encounters/encou
 					icon = "ui/icons/special.png",
 					text = "Hunting unlocked in camp"
 				});
-				::World.Flags.set("HasLegendCampHunting", true)
+				::World.Flags.set(::Legends.Camp.Flag.Hunter, true)
 			}
 		});
 	}
@@ -36,7 +36,7 @@ this.legend_camp_unlock_hunt_encounter <- this.inherit("scripts/encounters/encou
 		if (::Legends.Settings.skipCamp())
 			return false;
 
-		if (::World.Flags.get("HasLegendCampHunting"))
+		if (::World.Flags.get(::Legends.Camp.Flag.Hunter))
 			return false;
 
 		if (!(_settlement.hasAttachedLocation("attached_location.trapper") || _settlement.hasAttachedLocation("attached_location.hunters_cabin")))

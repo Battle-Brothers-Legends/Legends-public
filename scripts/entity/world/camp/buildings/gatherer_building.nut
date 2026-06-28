@@ -76,7 +76,7 @@ this.gatherer_building <- this.inherit("scripts/entity/world/camp/camp_building"
 			return false;
 		}
 
-		return !this.World.Flags.get("HasLegendCampGathering");
+		return !this.World.Flags.get(::Legends.Camp.Flag.Gather);
 	}
 
 	function getUpgraded()

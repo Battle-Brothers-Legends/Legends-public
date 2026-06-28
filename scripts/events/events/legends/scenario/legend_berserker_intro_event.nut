@@ -24,11 +24,11 @@ this.legend_berserker_intro_event <- this.inherit("scripts/events/event", {
 			function start( _event )
 			{
 				this.logInfo("Unlocking hunting");
-				this.World.Flags.set("HasLegendCampHunting", true);
+				this.World.Flags.set(::Legends.Camp.Flag.Hunter, true);
 				this.logInfo("Unlocking scouting");
-				this.World.Flags.set("HasLegendCampScouting", true);
+				this.World.Flags.set(::Legends.Camp.Flag.Scout, true);
 				this.logInfo("Unlocking gathering");
-				this.World.Flags.set("HasLegendCampGathering", true);
+				this.World.Flags.set(::Legends.Camp.Flag.Gather, true);
 			}
 		});
 	}
