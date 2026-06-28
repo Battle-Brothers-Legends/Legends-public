@@ -540,7 +540,7 @@
 
 	if (!::Tactical.Entities.getFlags().get("ModJimmysTooltips_ShowLootChance"))
 		tooltip.push({
-			id = 606,
+			id = 607,
 			type = "hint",
 			icon = "ui/skin/icon_wait.png",
 			text = "Press \""
@@ -549,7 +549,7 @@
 		});
 	else
 		tooltip.push({
-			id = 606,
+			id = 607,
 			type = "hint",
 			icon = "ui/skin/icon_wait.png",
 			text = "Press \""
