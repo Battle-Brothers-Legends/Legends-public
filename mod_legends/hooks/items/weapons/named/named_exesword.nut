@@ -7,12 +7,16 @@
 		this.m.Categories = "Cleaver, Two-Handed";
 		this.m.IsAgainstShields = false;
 		this.m.Value = 4500;
-		this.m.ShieldDamage = 0;
 		this.m.Variants = [1, 2];
-		this.m.ArmorDamageMult = 1.2;
-		this.m.StaminaModifier = -18;
-		this.m.ShieldDamage = 0;
 		this.setVariant(this.m.Variants[::Math.rand(0, this.m.Variants.len() - 1)]);
+	}
+
+	o.randomizeValues <- function ()
+	{
+		this.m.StaminaModifier = -18;
+		this.m.ArmorDamageMult = 1.2;
+		this.m.ShieldDamage = 0;
+		named_weapon.randomizeValues();
 	}
 
 	o.onEquip = function () {
