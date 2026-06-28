@@ -1,0 +1,176 @@
+/*
+ *  @Project:		Battle Brothers
+ *	@Company:		Overhype Studios
+ *
+ *	@Copyright:		(c) Overhype Studios | 2013 - 2020
+ *
+ *  @Author:		Overhype Studios
+ *  @Date:			16.10.2017
+ *  @Description:	Item Control CSS
+ */
+
+
+/*
+	Item
+*/
+.ui-control.item {
+    width: 100%;
+    height: 100%;
+    position: relative;
+
+    overflow: hidden;
+}
+
+.ui-control.item.is-proxy {
+    width: 6.0rem;
+    height: 6.0rem;
+    position: absolute;
+
+    overflow: hidden;
+}
+
+.ui-control.item.is-list-item {
+    width: 7.4rem;
+    height: 7.4rem;
+    /*
+    width: 6.0rem;
+    height: 6.0rem;
+    */
+
+    float: left;
+
+    margin-top: 0.0rem;
+    margin-left: 0.0rem;
+
+    background-image: url("coui://gfx/ui/skin/inventory_slot.png");
+    background-size: 7.4rem 7.4rem;
+    background-repeat: no-repeat;
+    /*background-position: 0.0rem 0.5rem;*/
+}
+
+.ui-control.item.has-slot-frame {
+    /*border: 1px rgba(130, 130, 130, 1) solid;*/
+    /*border-radius: 10px 10px 10px 10px;*/
+    /*box-shadow: inset 0 0 10px rgba(0, 0, 0, 1);*/
+}
+
+.ui-control.item.is-dragged {
+    /* background-color: rgba(100, 20, 10, 0.4); */
+}
+
+.ui-control.item.is-drop-target {
+    /*background-color: rgba(117, 85, 60, 0.7);*/
+    /*-webkit-filter: brightness(125%);*/
+}
+
+.ui-control.item.is-list-item:hover,
+.ui-control.item.is-list-item.is-selected {
+    /*background-color: rgba(117, 85, 60, 0.7);*/
+    /*box-shadow: inset 0 0 20px rgba(100, 20, 20, 0.8);*/
+    /*-webkit-filter: brightness(125%);*/
+}
+
+.ui-control.is-equipable {
+    /*background-color: rgba(117, 85, 60, 0.7);*/
+    /*box-shadow: inset 0 0 20px rgba(100, 20, 20, 0.8);*/
+}
+
+.ui-control.item>.repair-layer {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 2;
+
+    top: 4.5rem;
+    left: 4.5rem;
+
+    pointer-events: none;
+}
+
+.ui-control.item>.image-layer {
+    width: 7.0rem;
+    height: 7.0rem;
+    position: absolute;
+    padding: 0.0rem;
+    z-index: 1;
+
+    left: 0.2rem;
+    top: 0.1rem;
+
+    pointer-events: none;
+}
+
+.ui-control.item.is-dragged>.image-layer {
+    opacity: 0.6;
+}
+
+.ui-control.item>.image-layer img {
+    width: 100%;
+    height: 100%;
+
+    opacity: 1.0;
+
+    position: absolute;
+    pointer-events: none;
+}
+
+.ui-control.item>.amount-layer {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    padding: 0.4rem;
+    z-index: 3;
+
+    pointer-events: none;
+}
+
+.ui-control.item>.amount-layer .label {
+    left: 1.7rem;
+    right: 0;
+    bottom: 1.5rem;
+    height: 1.2rem;
+    position: absolute;
+
+    text-align: left;
+    line-height: 1.2rem;
+
+    pointer-events: none;
+}
+
+.ui-control.item>.amount-layer.no-price-layer .label {
+    left: 0.4rem;
+    bottom: 0.4rem;
+}
+
+
+.ui-control.item>.price-layer {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    padding: 0.4rem;
+    z-index: 3;
+
+    pointer-events: none;
+}
+
+.ui-control.item>.price-layer img {
+    left: 0.4rem;
+    bottom: 0.4rem;
+    width: 1.2rem;
+    height: 1.6rem;
+    position: absolute;
+
+    pointer-events: none;
+}
+
+.ui-control.item>.price-layer .label {
+    left: 1.7rem;
+    bottom: 0.4rem;
+    height: 1.4rem;
+    position: absolute;
+
+    text-align: right;
+    line-height: 1.6rem;
+
+    pointer-events: none;
+}

@@ -269,6 +269,18 @@
 		_target.morale <- _entity.getMoraleState();
 		_target.moraleMax <- this.Const.MoraleState.COUNT - 1;
 		_target.moraleLabel <- this.Const.MoraleStateName[_entity.getMoraleState()];
+		if(::Legends.Mod.ModSettings.getSetting("ShowPotentialOnBars").getValue()){
+			_target.potentials <- {
+                hitpoints = ::Legends.S.getStatPotential(_entity, ::Const.Attributes.Hitpoints),
+                fatigue = ::Legends.S.getStatPotential(_entity, ::Const.Attributes.Fatigue),
+                bravery = ::Legends.S.getStatPotential(_entity, ::Const.Attributes.Bravery),
+                initiative = ::Legends.S.getStatPotential(_entity, ::Const.Attributes.Initiative),
+                meleeSkill = ::Legends.S.getStatPotential(_entity, ::Const.Attributes.MeleeSkill),
+                rangeSkill = ::Legends.S.getStatPotential(_entity, ::Const.Attributes.RangedSkill),
+                meleeDefense = ::Legends.S.getStatPotential(_entity, ::Const.Attributes.MeleeDefense),
+                rangeDefense = ::Legends.S.getStatPotential(_entity, ::Const.Attributes.RangedDefense)
+            };
+		}
 
 		local dm = 1.0;
 		dm *= (_entity.isArmedWithMeleeWeapon() || _entity.getSkills().hasActive(::Legends.Active.HandToHand)) ? properties.MeleeDamageMult : 1.0;

@@ -114,7 +114,7 @@ this.legend_gut_skill <- this.inherit("scripts/skills/skill", {
 		local target = _tag.Target;
 		local isLast = _tag.IsLast;
 
-		if (::Legends.S.isEntityNullOrDead(target) && skill.getContainer() != null)
+		if (!::Legends.S.isEntityNullOrDead(target) && skill.getContainer() != null)
 		{
 			skill.spawnAttackEffect(target.getTile(), this.Const.Tactical.AttackEffectStab);
 			this.Sound.play(skill.m.SoundOnUse[this.Math.rand(0, skill.m.SoundOnUse.len() - 1)], this.Const.Sound.Volume.Skill, user.getPos());

@@ -147,9 +147,9 @@
 ]);
 
 ::Const.World.SpeedSettings.FastMult = 2.5;
-::Const.World.SpeedSettings.EscortMult = 4.0;
 ::Const.World.SpeedSettings.SuperFastMult <- 8.0;
-::Const.World.SpeedSettings.CampMult = 2.5;
+::Const.World.SpeedSettings.EscortMult = 1.0;//4.0; set to 1.0 so all speeds are available while camping/escorting
+::Const.World.SpeedSettings.CampMult = 1.0; //2.5;
 
 local reset = ::Const.World.Buildings.reset;
 ::Const.World.Buildings.reset = function()
