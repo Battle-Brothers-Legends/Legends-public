@@ -527,8 +527,9 @@ CharacterScreenInventoryListModule.prototype.createItemSlot = function (_owner, 
 		var itemId = (data !== null && 'itemId' in data) ? data.itemId : null;
 		var entityId = (data !== null && 'entityId' in data) ? data.entityId : null;
 		var sourceItemIdx = (data !== null && 'index' in data) ? data.index : null;
-		var dropIntoBag = (KeyModiferConstants.CtrlKey in _event && _event[KeyModiferConstants.CtrlKey] === true);
-		var repairItem = (KeyModiferConstants.AltKey in _event && _event[KeyModiferConstants.AltKey] === true);
+		var dropIntoBag = (KeyModiferConstants.CtrlKey in _event && _event[KeyModiferConstants.CtrlKey] === true && (!(KeyModiferConstants.AltKey in _event) || _event[KeyModiferConstants.AltKey] === false));
+		var repairItem = (KeyModiferConstants.AltKey in _event && _event[KeyModiferConstants.AltKey] === true && (!(KeyModiferConstants.CtrlKey in _event) || _event[KeyModiferConstants.CtrlKey] === false));
+		var altCtrl = (KeyModiferConstants.AltKey in _event && _event[KeyModiferConstants.AltKey] === true && KeyModiferConstants.CtrlKey in _event && _event[KeyModiferConstants.CtrlKey] === true);
 		var shift = (KeyModiferConstants.ShiftKey in _event && _event[KeyModiferConstants.ShiftKey] === true);
 		var sourceSlotType = (data !== null && 'slotType' in data) ? data.slotType : null;
 		var removeUpgrades = (shift && sourceSlotType !== CharacterScreenIdentifier.ItemSlot.Mainhand && ("isUsable" in data && data.isUsable === false));
@@ -549,9 +550,33 @@ CharacterScreenInventoryListModule.prototype.createItemSlot = function (_owner, 
 			else if (removeUpgrades === true)
 			{
 				self.mDataSource.notifyBackendRemoveInventoryItemUpgrades(sourceItemIdx);
-			}
-			else
-			{
+			} else if (altCtrl === true) {
+				self.mDataSource.toggleAutomationInventoryItem(itemId, null, function (ret) {
+					if (ret.updatedIDs.length === 0) return;
+					self.mDataSource.getCompositeAutomationDisplayStates(ret.updatedIDs, function(updatedItems) {
+						var stash = self.mDataSource.getStashList();
+						if (stash !== null) {
+							for (var i = 0; i < stash.length; ++i) {
+								var item = stash[i];
+								if (item !== null && CharacterScreenIdentifier.Item.Id in item) {
+									var id = item[CharacterScreenIdentifier.Item.Id].toString();
+									if (id in updatedItems) {
+										itemData = updatedItems[id];
+										item['automationState'] = itemData.state;
+										item['repair'] = itemData.repair && (itemData.state === 1 || itemData.state === 2);
+										item['salvage'] = itemData.salvage && itemData.state === 3;
+										item['updateAutomationOnly'] = true;
+										self.mDataSource.notifyEventListener(
+											CharacterScreenDatasourceIdentifier.Inventory.StashItemUpdated.Key,
+											{ item: item, index: i, flag: CharacterScreenDatasourceIdentifier.Inventory.StashItemUpdated.Flag.Updated }
+										);
+									}
+								}
+							}
+						}
+					});
+				});
+			} else {
 				if (repairItem === true)
 				{
 					self.mDataSource.toggleInventoryItem(itemId, null, function(ret)
@@ -638,12 +663,18 @@ CharacterScreenInventoryListModule.prototype.assignItemToSlot = function(_entity
 		_slot.data('item', itemData);
 
 		// assign image
-		_slot.assignListItemImage(Path.ITEMS + _item[CharacterScreenIdentifier.Item.ImagePath]);
-		_slot.assignListItemOverlayImage(_item['imageOverlayPath'], _item);
+		if(!_item['updateAutomationOnly']) {
+			_slot.assignListItemImage(Path.ITEMS + _item[CharacterScreenIdentifier.Item.ImagePath]);
+			_slot.assignListItemOverlayImage(_item['imageOverlayPath'], _item);
+		} else {
+			_item['updateAutomationOnly'] = undefined;
+		}
 
 		// show repair icon?
+		itemData.automationState = _item['automationState'];
 		itemData.repair = _item['repair'];
 		itemData.salvage = _item['salvage'];
+		_slot.setAutomationImageVisible(_item['automationState']);
 		_slot.setRepairImageVisible(_item['repair'], _item['salvage']);
 
 		// show amount
@@ -671,7 +702,8 @@ CharacterScreenInventoryListModule.prototype.updateSlotItem = function (_entityI
 		case CharacterScreenDatasourceIdentifier.Inventory.StashItemUpdated.Flag.Inserted:
 		case CharacterScreenDatasourceIdentifier.Inventory.StashItemUpdated.Flag.Updated:
 		{
-			this.removeItemFromSlot(slot);
+			if(!_item['updateAutomationOnly']) 
+				this.removeItemFromSlot(slot);
 			this.assignItemToSlot(_entityId, _owner, slot, _item);
 			//this.updateItemPriceLabel(slot, _item, _owner === CharacterScreenIdentifier.ItemOwner.Stash);
 
@@ -701,6 +733,7 @@ CharacterScreenInventoryListModule.prototype.removeItemFromSlot = function(_slot
 	// remove item image
 	_slot.assignListItemImage();
 	_slot.assignListItemOverlayImage();
+	_slot.setAutomationImageVisible(0);
 	_slot.setRepairImageVisible(false, false);
 
 	// update item data

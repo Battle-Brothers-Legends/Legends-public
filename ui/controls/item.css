@@ -87,6 +87,18 @@
     pointer-events: none;
 }
 
+.ui-control.item>.automation-layer {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 2;
+
+    top: 0.2rem;
+    left: 0.2rem;
+
+    pointer-events: none;
+}
+
 .ui-control.item>.image-layer {
     width: 7.0rem;
     height: 7.0rem;

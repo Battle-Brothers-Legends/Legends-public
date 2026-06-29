@@ -991,6 +991,13 @@ CharacterScreenDatasource.prototype.toggleInventoryItem = function(_itemId, _ent
    this.notifyBackendToggleInventoryItem(_itemId, _entityId, _callback);
 };
 
+CharacterScreenDatasource.prototype.toggleAutomationInventoryItem = function(_itemId, _entityId, _callback) {
+   this.notifyBackendToggleAutomationInventoryItem(_itemId, _entityId, _callback);
+};
+
+CharacterScreenDatasource.prototype.getCompositeAutomationDisplayStates = function(_updatedIds, _callback) {
+   this.notifyBackendGetCompositeAutomationDisplayStates(_updatedIds, _callback);
+};
 
 CharacterScreenDatasource.prototype.equipInventoryItem = function(_brotherId, _sourceItemId, _sourceItemIdx, _targetSlot)
 {
@@ -2003,6 +2010,14 @@ CharacterScreenDatasource.prototype.notifyBackendSwapInventoryItem = function (_
 CharacterScreenDatasource.prototype.notifyBackendToggleInventoryItem = function (_sourceItemId, _entityId, _callback)
 {
 	SQ.call(this.mSQHandle, 'onToggleInventoryItem', [_sourceItemId, _entityId], _callback);
+};
+
+CharacterScreenDatasource.prototype.notifyBackendToggleAutomationInventoryItem = function (_sourceItemId, _entityId, _callback) {
+	SQ.call(this.mSQHandle, 'onToggleAutomationInventoryItem', [_sourceItemId, _entityId], _callback);
+};
+
+CharacterScreenDatasource.prototype.notifyBackendGetCompositeAutomationDisplayStates = function (_updatedIds, _callback) {
+	SQ.call(this.mSQHandle, 'onGetCompositeAutomationDisplayStates', _updatedIds, _callback);
 };
 
 CharacterScreenDatasource.prototype.notifyBackendEquipInventoryItem = function (_brotherId, _sourceItemId, _sourceItemIdx, _targetSlot, _callback)

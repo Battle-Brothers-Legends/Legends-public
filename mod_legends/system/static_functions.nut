@@ -413,3 +413,36 @@
 
 	return (baseProp + attributeMin * levelUps) + "-" + (baseProp + attributeMax * levelUps);
 }
+
+::Legends.S.isLayered <- function (_item) {
+	return ::isKindOf(_item, "legend_armor") || ::isKindOf(_item, "legend_helmet");
+}
+
+::Legends.S.applyAutomationStateEffects <- function (_item, _idx, _state) {	// 0 - nothing, 1 - sell, 2 - repair, 3 - salvage
+	if (_state == 1) {
+		_item.setToBeRepaired(true, _idx); //this should be conditional on items value + state alone marks 4 sale
+		_item.setToBeSalvaged(false, 0);
+	} else if (_state == 2) {
+		_item.setToBeRepaired(true, _idx);
+		_item.setToBeSalvaged(false, 0);
+	} else if (_state == 3) {
+		_item.setToBeRepaired(false, 0);
+		_item.setToBeSalvaged(true, _idx);
+	} else {
+		_item.setToBeRepaired(false, 0);
+		_item.setToBeSalvaged(false, 0);
+	}
+}
+
+::Legends.S.getCompositeAutomationState <- function (_item, _state = null) {
+	local state = _state != null ? _state : ::World.Flags.getAsInt("AutoState_" + _item.getID());
+	if (::Legends.S.isLayered(_item)) {
+		foreach (upg in _item.m.Upgrades) {
+			if (upg != null && ::World.Flags.getAsInt("AutoState_" + upg.getID()) != state) {
+				state = 0;
+				break;
+			}
+		}
+	}
+	return state;
+}

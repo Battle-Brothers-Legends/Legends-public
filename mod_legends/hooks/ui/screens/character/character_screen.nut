@@ -286,6 +286,10 @@
 			} else {
 				data.stash.removeByIndex(data.sourceIndex);
 			}
+			local targetItem = data.stash.getItemAtIndex(data.targetIndex).item;
+			if (targetItem != null) {
+				::Legends.S.applyAutomationStateEffects(targetItem, data.targetIndex, ::Legends.S.getCompositeAutomationState(targetItem));
+			}
 			return this.UIDataHelper.convertStashAndEntityToUIData(null, null, false, this.m.InventoryFilter);
 		} else {
 			return this.helper_convertErrorToUIData(this.Const.CharacterScreen.ErrorCode.FailedToAcquireStash);
@@ -294,40 +298,49 @@
 		return this.UIDataHelper.convertStashAndEntityToUIData(null, null, false, this.m.InventoryFilter);
 	}
 
-	o.onToggleInventoryItem <- function (_data) {
-		local result = {
-			repair = false,
-			salvage = false
-		};
-
+	o.getInventoryItemAndIndex <- function (_data) {
 		local itemId = _data[0];
 		local entityId = _data[1];
+		local result = {
+			item = null,
+			index = 0
+		}
 
 		if (this.Tactical.isActive()) {
 			return result;
 		}
 
 		local obj = null;
-		local item = null;
-		local index = 0;
 		if (entityId != null) {
 			obj = this.Tactical.getEntityByID(entityId).getItems().getItemByInstanceID(itemId);
 			if (obj != null) {
-				item = obj;
+				result.item = obj;
 			}
 		} else {
 			obj = this.Stash.getItemByInstanceID(itemId);
 			if (obj != null) {
-				item = obj.item;
-				index = obj.index;
+				result.item = obj.item;
+				result.index = obj.index;
 			}
 		}
+		return result;
+	}
+
+	o.onToggleInventoryItem <- function (_data) {
+		local result = {
+			repair = false,
+			salvage = false
+		};
+
+		local itemData = this.getInventoryItemAndIndex(_data);
+		local item = itemData.item;
+		local index = itemData.index;
 
 		if (item == null) {
 			return result;
 		}
 
-		if (item.isIndestructible() || entityId != null) {
+		if (item.isIndestructible() || _data[1] != null) {
 			item.setToBeRepaired(!item.isToBeRepaired(), index);
 			item.setToBeSalvaged(false, 0);
 		} else if (!item.isToBeRepaired() && !item.isToBeSalvaged()) {
@@ -349,6 +362,101 @@
 			repair = item.isToBeRepaired(),
 			salvage = item.isToBeSalvaged()
 		};
+	}
+
+	o.onToggleAutomationInventoryItem <- function (_data) {
+		local result = {
+			automationState = 0,
+			updatedIDs = []
+		};
+
+		local itemData = this.getInventoryItemAndIndex(_data);
+		local item = itemData.item;
+
+		if (item == null) {
+			return result;
+		}
+		
+		local baseId = item.getID();
+		local currentState = ::World.Flags.getAsInt("AutoState_" + baseId);
+		local nextState = 0;
+		local targetIDs = [baseId];
+
+		if (::Legends.S.isLayered(item)) {
+			local isAligned = true;
+			foreach (upg in item.m.Upgrades) {
+				if (upg != null) {
+					targetIDs.push(upg.getID());
+					if (::World.Flags.getAsInt("AutoState_" + upg.getID()) != currentState) {
+						isAligned = false;
+					}
+				}
+			}
+			nextState = isAligned ? (currentState + 1) % 4 : 1;
+		} else {
+			nextState = (currentState + 1) % 4;
+		}
+
+		if (nextState == 2 && (item.getConditionMax() <= 1 && !::isKindOf(item, "legend_helmet_upgrade") && !::isKindOf(item, "legend_armor_upgrade"))) {
+			nextState = 3;
+		}
+		if (nextState == 3 && !item.canBeSalvaged()) {
+			nextState = 0;
+		}
+
+		foreach (id in targetIDs) {
+        	::World.Flags.set("AutoState_" + id, nextState);
+    	}
+
+		::Legends.S.applyAutomationStateEffects(item, itemData.index, nextState);
+
+		local stashItems = ::Stash.getItems();
+		foreach (i, stashItem in stashItems) {
+			if (stashItem == null) {
+				continue;
+			}
+
+			local itemUpdated = false;
+
+			if (targetIDs.find(stashItem.getID()) != null) {
+				::Legends.S.applyAutomationStateEffects(stashItem, i, ::Legends.S.getCompositeAutomationState(stashItem, nextState));
+				itemUpdated = true;
+			}
+
+			if (::Legends.S.isLayered(stashItem)) {
+				foreach (upg in stashItem.m.Upgrades) {
+					if (upg != null && targetIDs.find(upg.getID()) != null) {
+						::Legends.S.applyAutomationStateEffects(upg, 0, nextState);
+						itemUpdated = true;
+					}
+				}
+			}
+
+			if (itemUpdated) {
+				result.updatedIDs.push(stashItem.getInstanceID());
+			}
+		}
+
+		result.automationState = nextState;
+		return result;
+	}
+
+	o.onGetCompositeAutomationDisplayStates <- function (_ids) {
+		local result = {};
+
+		foreach (id in _ids) {
+			local itemData = ::Stash.getItemByInstanceID(id);
+			if (itemData != null) {
+				local item = itemData.item;
+				result[id.tostring()] <- {
+					state = ::Legends.S.getCompositeAutomationState(item),
+					repair = item.isToBeRepaired(),
+                	salvage = item.isToBeSalvaged()
+				}
+			}
+		}
+
+		return result;
 	}
 
 	o.onRepairInventoryItem = function (_data) {}
@@ -697,6 +805,7 @@
 				}
 				this.Stash.add(_item.removeUpgrade(idx));
 			}
+        	::Legends.S.applyAutomationStateEffects(_item, 0, ::Legends.S.getCompositeAutomationState(_item));
 		}
 		_item.setTransactionPrice(null);
 		return this.UIDataHelper.convertStashAndEntityToUIData(_entity, null, false, this.m.InventoryFilter);

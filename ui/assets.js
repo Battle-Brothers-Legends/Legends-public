@@ -145,6 +145,11 @@ var Asset =
     ICON_PERKS:							    'ui/icons/campfire.png',
 
 	ICON_REPAIR_ITEM:                       'ui/icons/repair_item.png',
+	ICON_SALVAGE_ITEM:                      'ui/icons/salvage_item.png',
+
+	ICON_AUTOMATION_SELL_ITEM:              'ui/icons/automation_sell_item.png',
+	ICON_AUTOMATION_REPAIR_ITEM:            'ui/icons/automation_repair_item.png',
+	ICON_AUTOMATION_SALVAGE_ITEM:           'ui/icons/automation_salvage_item.png',
 
     // UI Perk Images
     PERK_SELECTION_FRAME:                   'ui/perks/selection_frame.png',
