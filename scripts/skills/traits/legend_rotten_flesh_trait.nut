@@ -27,7 +27,7 @@ this.legend_rotten_flesh_trait <- this.inherit("scripts/skills/traits/character_
 				id = 7,
 				type = "text",
 				icon = "ui/icons/days_wounded.png",
-				text = "-3 Action Points. Recovers hitpoints at only 10% of the normal rate. Requires 3 provisions a day."
+				text = "Movement costs +1 Action Points per tile. Recovers hitpoints at only 10% of the normal rate. Requires 3 provisions a day."
 			},
 			{
 				id = 7,
