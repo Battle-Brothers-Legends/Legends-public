@@ -52,9 +52,7 @@ if (!("Backgrounds" in ::Legends)) {
 
 ::Const.CharacterCombatBackgrounds <- [
 	::Legends.Background.DisownedNoble,
-	// "female_disowned_noble_background",
 	::Legends.Background.AdventurousNoble,
-	// "female_adventurous_noble_background",
 	::Legends.Background.RetiredSoldier,
 	::Legends.Background.Swordmaster,
 	::Legends.Background.Sellsword,
@@ -110,8 +108,6 @@ if (!("Backgrounds" in ::Legends)) {
 	::Legends.Background.DisownedNoble,
 	::Legends.Background.Eunuch,
 	::Legends.Background.Farmhand,
-	// "female_adventurous_noble_background",
-	// "female_disowned_noble_background",
 	::Legends.Background.Fisherman,
 	::Legends.Background.Flagellant,
 	::Legends.Background.Gambler,
@@ -126,7 +122,6 @@ if (!("Backgrounds" in ::Legends)) {
 	::Legends.Background.LegendHerbalist,
 	::Legends.Background.LegendInventor,
 	::Legends.Background.LegendIronmonger,
-	// "legend_nun_background",
 	::Legends.Background.LegendTaxidermist,
 	::Legends.Background.Lumberjack,
 	::Legends.Background.Mason,
@@ -156,9 +151,6 @@ if (!("Backgrounds" in ::Legends)) {
 ::Const.CharacterFemaleBackgrounds <- [
 	::Legends.Background.LegendShieldmaiden,
 	::Legends.Background.LegendWitch,
-	// "female_adventurous_noble_background",
-	// "female_disowned_noble_background",
-	// "legend_nun_background"
 ];
 ::Const.SupposedWitchBackgrounds <- [
 	::Legends.Background.LegendShieldmaiden,
@@ -182,7 +174,6 @@ if (!("Backgrounds" in ::Legends)) {
 	::Legends.Background.LegendMasterArcher,
 	::Legends.Background.LegendBerserker,
 	::Legends.Background.LegendNecrosavant,
-	// "legend_nun_background",
 	::Legends.Background.LegendShieldmaiden,
 	::Legends.Background.Assassin,
 	::Legends.Background.LegendCrusader,
@@ -225,8 +216,6 @@ if (!("Backgrounds" in ::Legends)) {
 	::Legends.Background.DisownedNoble,
 	::Legends.Background.Eunuch,
 	::Legends.Background.Farmhand,
-	// "female_adventurous_noble_background",
-	// "female_disowned_noble_background",
 	::Legends.Background.Thief,
 	::Legends.Background.Fisherman,
 	::Legends.Background.FishermanSouthern,
@@ -255,7 +244,6 @@ if (!("Backgrounds" in ::Legends)) {
 	::Legends.Background.LegendHerbalist,
 	::Legends.Background.LegendInventor,
 	::Legends.Background.LegendIronmonger,
-	// "legend_nun_background",
 	::Legends.Background.LegendTaxidermist,
 	// ::Legends.Background.LegendNecro,
 	::Legends.Background.Lumberjack,
@@ -280,7 +268,6 @@ if (!("Backgrounds" in ::Legends)) {
 	::Legends.Background.Tailor,
 	::Legends.Background.Vagabond,
 	::Legends.Background.Wildman,
-	// "wildwoman_background",
 	::Legends.Background.Witchhunter,
 	// ::Legends.Background.LegendDiviner,
 	// ::Legends.Background.LegendIllusionist,
