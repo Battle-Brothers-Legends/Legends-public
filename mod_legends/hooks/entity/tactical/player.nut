@@ -1233,7 +1233,7 @@
 		b.RangedDefense = 10;
 		b.Initiative = 115;
 		this.setName(this.Const.Tactical.Common.getRandomPlayerName());
-		local background = this.new("scripts/skills/backgrounds/" + this.Const.CharacterFemaleBackgrounds[this.Math.rand(0, this.Const.CharacterFemaleBackgrounds.len() - 1)]);
+		local background = this.new("scripts/skills/backgrounds/" + this.Const.CharacterBackgrounds[this.Math.rand(0, this.Const.CharacterBackgrounds.len() - 1)]);
 		background.addBackgroundType(this.Const.BackgroundType.Scenario);
 		this.m.Skills.add(background);
 		background.buildDescription();
