@@ -77,19 +77,10 @@
 		}
 	}
 
-	o.initSkills <- function ( _skills )
-	{
-		foreach( i in _skills )
-		{
-			local C = [];
-
-			foreach( s in i.Scripts )
-			{
-				C.push(this.new(s));
-			}
-
+	o.initSkills <- function (_skills) {
+		foreach (skill in _skills) {
 			this.m.PreviewSkills.push({
-				Instances = C
+				Instances = [skill]
 			});
 		}
 	}

@@ -15,7 +15,7 @@ this.legend_wood_blueprint <- this.inherit("scripts/crafting/blueprint", {
 		];
 		this.init(ingredients);
 		local skills = [
-			::Legends.Perks.blueprint(::Legends.Perk.LegendWoodworking)
+			::Legends.Perks.new(::Legends.Perk.LegendWoodworking)
 		];
 		this.initSkills(skills);
 	}

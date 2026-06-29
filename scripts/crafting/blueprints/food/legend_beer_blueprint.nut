@@ -13,7 +13,7 @@ this.legend_beer_blueprint <- this.inherit("scripts/crafting/legend_food_bluepri
 		];
 		this.init(ingredients);
 		local skills = [
-			::Legends.Perks.blueprint(::Legends.Perk.LegendAlcoholBrewing)
+			::Legends.Perks.new(::Legends.Perk.LegendAlcoholBrewing)
 		];
 		this.initSkills(skills);
 	}

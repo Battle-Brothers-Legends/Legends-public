@@ -15,9 +15,7 @@ this.large_quiver_of_broad_bolts_blueprint <- this.inherit("scripts/crafting/blu
 		];
 		this.init(ingredients);
 		local skills = [
-			{
-				Scripts = ["scripts/skills/backgrounds/bowyer_background"]
-			}
+			::Legends.Backgrounds.new(::Legends.Background.Bowyer)
 		];
 		this.initSkills(skills);
 	}

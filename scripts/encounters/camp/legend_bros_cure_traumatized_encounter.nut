@@ -170,7 +170,7 @@ this.legend_bros_cure_traumatized_encounter <- this.inherit("scripts/encounters/
 				this.Characters.push(_event.m.Dervish.getImagePath());
 				this.Characters.push(_event.m.Traumatized.getImagePath());
 
-				local bg = this.new("scripts/skills/backgrounds/beggar_background");
+				local bg = ::Legends.Backgrounds.new(::Legends.Background.Beggar);
 				bg.m.IsNew = false;
 				local dude = _event.m.Traumatized;
 				local oldPerkTree = dude.getBackground().m.CustomPerkTree;

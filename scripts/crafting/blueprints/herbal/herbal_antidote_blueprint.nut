@@ -15,7 +15,7 @@ this.herbal_antidote_blueprint <- this.inherit("scripts/crafting/blueprint", {
 		];
 		this.init(ingredients);
 		local skills = [
-			::Legends.Perks.blueprint(::Legends.Perk.LegendHerbcraft)
+			::Legends.Perks.new(::Legends.Perk.LegendHerbcraft)
 		];
 		this.initSkills(skills);
 	}

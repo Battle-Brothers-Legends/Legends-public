@@ -73,8 +73,8 @@ if (!("Perks" in ::Legends))
 		container.removeByID(::Legends.Perks.getID(_def));
 }
 
-::Legends.Perks.blueprint <- function (_def) {
-	return { Scripts = [::Const.Perks.PerkDefObjects[_def].Script] };
+::Legends.Perks.new <- function (_def) {
+	return ::new(::Const.Perks.PerkDefObjects[_def].Script);
 }
 
 ::Legends.Perks.onCreate <- function (_perk, _perkDef) {

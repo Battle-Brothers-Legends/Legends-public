@@ -20,9 +20,7 @@ this.legend_tabard_noble_blueprint <- this.inherit("scripts/crafting/blueprint",
 		];
 		this.init(ingredients);
 		local skills = [
-			{
-				Scripts = ["scripts/skills/backgrounds/tailor_background"]
-			}
+			::Legends.Backgrounds.new(::Legends.Background.Tailor)
 		];
 		this.initSkills(skills);
 	}

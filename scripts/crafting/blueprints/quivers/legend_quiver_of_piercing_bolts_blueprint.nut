@@ -15,9 +15,7 @@ this.legend_quiver_of_piercing_bolts_blueprint <- this.inherit("scripts/crafting
 		];
 		this.init(ingredients);
 		local skills = [
-			{
-				Scripts = ["scripts/skills/backgrounds/bowyer_background"]
-			}
+			::Legends.Backgrounds.new(::Legends.Background.Bowyer)
 		];
 		this.initSkills(skills);
 	}

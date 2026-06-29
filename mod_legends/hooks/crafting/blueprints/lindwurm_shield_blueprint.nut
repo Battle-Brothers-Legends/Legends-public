@@ -10,7 +10,7 @@
 		preview.setName("Lindwurm Shield");
 		this.m.PreviewCraftable = preview;
 		local skills = [
-			::Legends.Perks.blueprint(::Legends.Perk.LegendWoodworking)
+			::Legends.Perks.new(::Legends.Perk.LegendWoodworking)
 		];
 		this.initSkills(skills);
 	}

@@ -20,11 +20,7 @@ this.legend_silver_ingot_02_blueprint <- this.inherit("scripts/crafting/blueprin
 		];
 		this.init(ingredients);
 		local skills = [
-			{
-				Scripts = [
-					"scripts/skills/backgrounds/legend_blacksmith_background"
-				]
-			}
+			::Legends.Backgrounds.new(::Legends.Background.LegendBlacksmith)
 		];
 		this.initSkills(skills);
 	}

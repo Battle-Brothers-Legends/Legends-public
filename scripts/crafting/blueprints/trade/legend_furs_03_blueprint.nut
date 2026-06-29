@@ -19,11 +19,7 @@ this.legend_furs_03_blueprint <- this.inherit("scripts/crafting/blueprint", {
 		];
 		this.init(ingredients);
 		local skills = [
-			{
-				Scripts = [
-					"scripts/skills/backgrounds/legend_taxidermist_background"
-				]
-			}
+			::Legends.Backgrounds.new(::Legends.Background.LegendTaxidermist)
 		];
 		this.initSkills(skills);
 	}

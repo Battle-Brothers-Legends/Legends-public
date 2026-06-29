@@ -17,7 +17,7 @@ this.legend_cured_venison_blueprint <- this.inherit("scripts/crafting/legend_foo
 		];
 		this.init(ingredients);
 		local skills = [
-			::Legends.Perks.blueprint(::Legends.Perk.LegendCampCook)
+			::Legends.Perks.new(::Legends.Perk.LegendCampCook)
 		];
 		this.initSkills(skills);
 

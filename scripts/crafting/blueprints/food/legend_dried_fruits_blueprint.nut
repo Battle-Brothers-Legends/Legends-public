@@ -17,7 +17,7 @@ this.legend_dried_fruits_blueprint <- this.inherit("scripts/crafting/legend_food
 		];
 		this.init(ingredients);
 		local skills = [
-			::Legends.Perks.blueprint(::Legends.Perk.LegendCampCook)
+			::Legends.Perks.new(::Legends.Perk.LegendCampCook)
 		];
 		this.initSkills(skills);
 

@@ -20,7 +20,7 @@ this.legend_wolf_blueprint <- this.inherit("scripts/crafting/blueprint", {
 		];
 		this.init(ingredients);
 		local skills = [
-			::Legends.Perks.blueprint(::Legends.Perk.LegendDogBreeder)
+			::Legends.Perks.new(::Legends.Perk.LegendDogBreeder)
 		];
 		this.initSkills(skills);
 	}

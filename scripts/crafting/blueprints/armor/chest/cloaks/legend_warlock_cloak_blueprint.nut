@@ -31,9 +31,7 @@ this.legend_warlock_cloak_blueprint <- this.inherit("scripts/crafting/legend_war
 		});
 		this.init(ingredients);
 		local skills = [
-			{
-				Scripts = ["scripts/skills/backgrounds/tailor_background"]
-			}
+			::Legends.Backgrounds.new(::Legends.Background.Tailor)
 		];
 		this.initSkills(skills);
 	}

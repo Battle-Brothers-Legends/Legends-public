@@ -28,9 +28,7 @@ this.legend_cloak_heavy_blueprint <- this.inherit("scripts/crafting/blueprint", 
 		];
 		this.init(ingredients);
 		local skills = [
-			{
-				Scripts = ["scripts/skills/backgrounds/tailor_background"]
-			}
+			::Legends.Backgrounds.new(::Legends.Background.Tailor)
 		];
 		this.initSkills(skills);
 	}

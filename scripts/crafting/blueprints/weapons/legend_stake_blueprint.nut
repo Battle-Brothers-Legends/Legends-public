@@ -15,12 +15,8 @@ this.legend_stake_blueprint <- this.inherit("scripts/crafting/blueprint", {
 		];
 		this.init(ingredients);
 		local skills = [
-			{
-				Scripts = [
-					"scripts/skills/backgrounds/witchhunter_background",
-					"scripts/skills/backgrounds/legend_youngblood_background"
-				]
-			}
+			::Legends.Backgrounds.new(::Legends.Background.Witchhunter),
+			::Legends.Backgrounds.new(::Legends.Background.LegendYoungblood)
 		];
 		this.initSkills(skills);
 	}

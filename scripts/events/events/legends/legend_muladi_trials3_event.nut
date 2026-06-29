@@ -71,7 +71,7 @@ this.legend_muladi_trials3_event <- this.inherit("scripts/events/event", {
 			function start(_event) {
 				this.Characters.push(_event.m.Muladi.getImagePath());
 
-				local bg = this.new("scripts/skills/backgrounds/legend_companion_ranged_background");
+				local bg = ::Legends.Backgrounds.new(::Legends.Background.LegendCompanionRanged);
 				bg.m.IsNew = false;
 				local oldPerkTree = _event.m.Muladi.getBackground().m.CustomPerkTree;
 				_event.m.Muladi.getSkills().removeByID(::Legends.Backgrounds.getID(::Legends.Background.LegendMuladi));

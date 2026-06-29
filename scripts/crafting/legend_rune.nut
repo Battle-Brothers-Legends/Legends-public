@@ -21,9 +21,7 @@ this.legend_rune <- this.inherit("scripts/crafting/blueprint", {
 		];
 		this.init(ingredients);
 		local skills = [
-			{
-				Scripts = ["scripts/skills/backgrounds/legend_vala_background"]
-			}
+			::Legends.Backgrounds.new(::Legends.Background.LegendVala)
 		];
 		this.initSkills(skills);
 	}

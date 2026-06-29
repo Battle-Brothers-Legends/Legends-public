@@ -27,9 +27,7 @@ this.legend_skin_armor_blueprint <- this.inherit("scripts/crafting/blueprint", {
 
 	    this.init(ingredients); // uncommented this line to fix it showing up in taxidermist with no ingredients needed. Abyss 3/17/23
 		// local skills = [
-		// 	{
-		// 		Scripts = ["scripts/skills/backgrounds/legend_blacksmith_background"]
-		// 	}
+		// 		::Legends.Backgrounds.new(::Legends.Background.LegendBlacksmith)
 		// ]
 		//this.initSkills(skills);
 	}
