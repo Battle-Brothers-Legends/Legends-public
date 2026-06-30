@@ -1,7 +1,7 @@
 this.camp_commander_dialog_module <- this.inherit("scripts/ui/screens/ui_module", {
 	m = {
 		Title = "Commanders Tent",
-		Description = "Select a tent, then click a brother to assign him to the tent. Bros sorted from best to worse",
+		Description = "Select a tent to assign workers from the list. Workers sorted from best to worse.",
 		PopupDialogVisible = false,
 		CurrentTent = null,
 	},
