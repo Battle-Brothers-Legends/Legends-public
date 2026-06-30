@@ -124,6 +124,7 @@
 			Types =
 			[
 				{
+					MinR = 350,
 					Type = this.Const.World.Spawn.Troops.LegendBanditExecutioner,
 					Cost = 25,
 				},

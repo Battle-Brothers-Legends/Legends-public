@@ -18,6 +18,46 @@
 	FatigueRecoveryRate = 15
 };
 
+::Const.Tactical.Actor.LegendBanditExecutioner <- {
+	XP = 275,
+	ActionPoints = 9,
+	Hitpoints = 90,
+	Bravery = 60,
+	Stamina = 125,
+	MeleeSkill = 75,
+	RangedSkill = 55,
+	MeleeDefense = 0,
+	RangedDefense = 0,
+	Initiative = 115,
+	FatigueEffectMult = 1.0,
+	MoraleEffectMult = 1.0,
+	Armor = [
+		0,
+		0
+	],
+	FatigueRecoveryRate = 20
+};
+
+::Const.Tactical.Actor.LegendBanditExecutionerHigh <- {
+	XP = 450,
+	ActionPoints = 9,
+	Hitpoints = 225,
+	Bravery = 90,
+	Stamina = 160,
+	MeleeSkill = 85,
+	RangedSkill = 50,
+	MeleeDefense = 10,
+	RangedDefense = 10,
+	Initiative = 125,
+	FatigueEffectMult = 1.0,
+	MoraleEffectMult = 1.0,
+	Armor = [
+		0,
+		0
+	],
+	FatigueRecoveryRate = 25
+};
+
 ::Const.Tactical.Actor.LegendRobberBaron <- { // You contracted in the wrong neighbourhood
 	XP = 700,
 	ActionPoints = 11,
