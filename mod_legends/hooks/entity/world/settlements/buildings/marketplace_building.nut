@@ -17,17 +17,14 @@
 			item(80, 1.0, "weapons/legend_drum"),
 			item(80, 1.0, "weapons/legend_cat_o_nine_tails"),
 			item(80, 1.0, "weapons/lute"),
-		]);
-		list.extend([
 			item(25, 1.0, "accessory/legend_pack_small"),
 			item(60, 1.0, "accessory/gloves/legend_hand_wraps_item"),
-		]);
-		list.extend([
 			item(40, 1.0, "supplies/legend_fresh_fruit_item"),
 			item(20, 1.0, "supplies/legend_fresh_meat_item"),
 			item(0, 1.0, "supplies/legend_ammo_small_item"),
 			item(10, 1.0, "supplies/legend_armor_parts_small_item"),
 			item(50, 1.0, "supplies/legend_armor_parts_small_item"),
+			item(50, 1.0, "supplies/legend_balanced_rucksack")
 		]);
 
 		if (this.m.Settlement.getSize() >= 2) {

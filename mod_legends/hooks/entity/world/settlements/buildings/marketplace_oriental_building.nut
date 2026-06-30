@@ -13,9 +13,8 @@
 			item(70, 1.0, "helmets/legend_headress_coin"),
 			item(50, 1.0, "helmets/legend_southern_cloth_headress"),
 			item(40, 1.0, "helmets/legend_southern_veil"),
-		]);
-		list.extend([
 			item(60, 1.0, "accessory/legend_sighthound_item"),
+			item(50, 1.0, "supplies/legend_balanced_rucksack")
 		]);
 
 		if (this.m.Settlement.getSize() >= 2) {

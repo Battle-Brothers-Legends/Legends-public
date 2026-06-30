@@ -130,6 +130,9 @@
 - new `Sipar Shield` blueprint from 1 iron ingot
 - `Tower Shield` blueprint now costs 2 quality wood and 1 iron ingot
 
+### Misc
+- `Balanced Rucksack` - usable item sold around marketplaces which adds bags and belts to a mercenary
+
 ## Enemies
 
 ### Bandits
