@@ -42,7 +42,6 @@ this.perk_legend_near_death_experience <- this.inherit("scripts/skills/skill", {
 			return;
 		}
 
-		local chance = this.getChance();
 		_properties.DamageReceivedRegularMult *= (1.0 - this.m.Bonus * 0.05);
 	}
 
