@@ -36,35 +36,27 @@
 	}
 
 	o.general_onUpgradeInventoryItem <- function (_data) {
-		local data = this.helper_queryStashItemDataByIndex(_data[0], _data[2]);
+		local data = ::Legends.Inventory.queryStashItemDataByIndex(_data[0], _data[2]);
+
 		if ("error" in data) {
 			return data;
 		}
-		local upgrade = data.stash.upgrade(data.sourceIndex, data.targetIndex);
-		
-		if (upgrade) {
-			//only remove item if it wasn't switched out for another upgrade
-			if (typeof upgrade == "table") {
-				data.stash.removeByIndex(upgrade.index);
-				if (upgrade.item != null) {
-					this.World.Assets.getStash().insert(upgrade.item, upgrade.index);
-				}
-			} else {
-				data.stash.removeByIndex(data.sourceIndex);
-			}			
-		} else {
-			return this.helper_convertErrorToUIData(this.Const.CharacterScreen.ErrorCode.FailedToAcquireStash);
+
+		local isErrored = ::Legends.Inventory.onUpgradeInventoryItem (data);
+		if (isErrored != null) {
+			return isErrored;
 		}
+
 		local result = {
-				Result = 0,
-				Assets = this.m.Parent.queryAssetsInformation(),
-				Shop = [],
-				Stash = this.UIDataHelper.convertStashToUIData(false, this.m.InventoryFilter),
-				StashSpaceUsed = data.stash.getNumberOfFilledSlots(),
-				StashSpaceMax = data.stash.getCapacity(),
-				IsRepairOffered = this.m.Shop.isRepairOffered()
-			};
-			this.UIDataHelper.convertItemsToUIData(this.m.Shop.getStash().getItems(), result.Shop, this.Const.UI.ItemOwner.Shop);
+			Result = 0,
+			Assets = this.m.Parent.queryAssetsInformation(),
+			Shop = [],
+			Stash = this.UIDataHelper.convertStashToUIData(false, this.m.InventoryFilter),
+			StashSpaceUsed = data.stash.getNumberOfFilledSlots(),
+			StashSpaceMax = data.stash.getCapacity(),
+			IsRepairOffered = this.m.Shop.isRepairOffered()
+		};
+		this.UIDataHelper.convertItemsToUIData(this.m.Shop.getStash().getItems(), result.Shop, this.Const.UI.ItemOwner.Shop);
 		return result;
 	}
 
@@ -74,36 +66,12 @@
 	}
 
 	o.removeAllUpgradesFromItem <- function (_item, _entity = null) {
-		if (_item != null) {
-			local toRemove = [];
-			foreach (idx, value in _item.getUpgrades()) {
-				if (value != 1 && value != 2 && value != 3) {
-					continue;
-				}
-				toRemove.push(idx);
-			}
-			if (this.Stash.getNumberOfEmptySlots() < toRemove.len()) {
-				return {
-					error = this.Const.UI.Error.NotEnoughStashSpace,
-					code = this.Const.UI.Error.NotEnoughStashSpace
-				};
-			}
-			if(toRemove.len() > 0) {
-				_item.playInventorySound(this.Const.Items.InventoryEventType.Equipped);
-			}
-			foreach (idx in toRemove) {
-				local upgrade = _item.getUpgrade(idx);
-				upgrade.setTransactionPrice(null);
-				if (upgrade.isDestroyedOnRemove()) {
-					continue;
-				}
-				this.Stash.add(_item.removeUpgrade(idx));
-			}
+		local isErrored = ::Legends.Inventory.removeAllUpgradesFromItem(_item, _entity);
+		if (isErrored != null) {
+			return isErrored;
 		}
-		_item.setTransactionPrice(null);
 		return this.UIDataHelper.convertStashAndEntityToUIData(_entity, null, false, this.m.InventoryFilter);
 	}
-
 
 	o.onSwapItem = function ( _data )
 	{
@@ -359,49 +327,68 @@
 		return ret;
 	}
 
-	function helper_queryStashItemDataByIndex( _sourceIndex, _targetIndex )	{
-		local stash = this.World.Assets.getStash();
-		if (stash == null) {
-			return this.helper_convertErrorToUIData(this.Const.CharacterScreen.ErrorCode.FailedToAcquireStash);
-		}
+	o.onSellAllButtonClicked <- function (_)
+    {
+        local shopStash = this.m.Shop.getStash();
+        local stashItems = ::Stash.getItems();
+        local itemsSold = 0;
 
-		local sourceItem = stash.getItemAtIndex(_sourceIndex);
+        for (local i = 0; i < stashItems.len(); i++)
+        {
+            local item = stashItems[i];
+            
+            if (item == null) {
+                continue;
+            }
 
-		if (sourceItem == null) {
-			return this.helper_convertErrorToUIData(this.Const.CharacterScreen.ErrorCode.FailedToEquipStashItem);
-		}
+            local state = ::Legends.Inventory.getCompositeAutomationState(item);
 
-		local targetItem;
+            if (state != 1 && state != 2) {
+                continue;
+            }
 
-		if (_targetIndex != null) {
-			targetItem = stash.getItemAtIndex(_targetIndex);
-		}
+            if (state == 1 || (state == 2 && item.getRepair() >= item.getRepairMax())) {
+                local removedItem = ::Stash.removeByIndex(i);
 
-		return {
-			stash = stash,
-			sourceItem = sourceItem.item,
-			sourceIndex = _sourceIndex,
-			targetItem = targetItem,
-			targetIndex = _targetIndex
-		};
-	}
+                if (removedItem != null) {
+                    removedItem.setTransactionPrice(removedItem.getSellPrice());
+                    ::World.Assets.addMoney(removedItem.getSellPrice());
+                    removedItem.addSettlementToTradeHistory(this.m.Shop.getSettlement());
+                    shopStash.add(removedItem);
+                    removedItem.setSold(true);
 
-	function helper_convertErrorToUIData( _errorCode ) {
-		local errorString = "Undefined error.";
+                    if (removedItem.isItemType(::Const.Items.ItemType.TradeGood)) {
+                        ::World.Statistics.getFlags().increment("TradeGoodsSold");
+                    }
+                    
+                    itemsSold++;
+                }
+            }
+        }
 
-		switch(_errorCode) {
-		case this.Const.CharacterScreen.ErrorCode.FailedToAcquireStash:
-			errorString = "Failed to acquire stash.";
-			break;
+        local result = {
+            Result = 0,
+            Assets = this.m.Parent.queryAssetsInformation(),
+            Shop = [],
+            Stash = [],
+            StashSpaceUsed = ::Stash.getNumberOfFilledSlots(),
+            StashSpaceMax = ::Stash.getCapacity(),
+            IsRepairOffered = this.m.Shop.isRepairOffered()
+        };
 
-		case this.Const.CharacterScreen.ErrorCode.FailedToEquipStashItem:
-			errorString = "Failed to equip stash item.";
-			break;
-		}
+        ::UIDataHelper.convertItemsToUIData(shopStash.getItems(), result.Shop, ::Const.UI.ItemOwner.Shop);
+        result.Stash = ::UIDataHelper.convertStashToUIData(false, this.m.InventoryFilter);
 
-		return {
-			error = errorString,
-			code = _errorCode
-		};
-	}
+        if (itemsSold > 0) {
+            if (::World.Statistics.getFlags().has("TradeGoodsSold") && ::World.Statistics.getFlags().get("TradeGoodsSold") >= 10) {
+                this.updateAchievement("Trader", 1, 1);
+            }
+
+            if (::World.Statistics.getFlags().has("TradeGoodsSold") && ::World.Statistics.getFlags().get("TradeGoodsSold") >= 50) {
+                this.updateAchievement("MasterTrader", 1, 1);
+            }
+        }
+
+        return result;
+    }
 });

@@ -479,6 +479,12 @@ TacticalCombatResultScreenLootPanel.prototype.assignItemToInventorySlot = functi
         _slot.assignListItemImage(Path.ITEMS + _item['imagePath']);
         _slot.assignListItemOverlayImage(_item['imageOverlayPath'], _item);
 
+        itemData.automationState = _item['automationState'];
+		itemData.repair = _item['repair'];
+		itemData.salvage = _item['salvage'];
+		_slot.setAutomationImageVisible(_item['automationState']);
+		_slot.setRepairImageVisible(_item['repair'], _item['salvage']);
+
         // show amount
         // show amount
         if (_item['showAmount'] === true && _item[TacticalCombatResultScreenIdentifier.Item.Amount] != '') {
@@ -519,6 +525,8 @@ TacticalCombatResultScreenLootPanel.prototype.removeItemFromSlot = function (_sl
     // remove item image
     _slot.assignListItemImage();
     _slot.assignListItemOverlayImage();
+    _slot.setAutomationImageVisible(0);
+	_slot.setRepairImageVisible(false, false);
 };
 
 TacticalCombatResultScreenLootPanel.prototype.clearItemSlots = function (_itemArray) {

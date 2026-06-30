@@ -127,8 +127,10 @@ $.fn.setAutomationImageVisible = function (_automationState) {
 			if (_automationState === 1) {
 				iconLayer.attr('src', Path.GFX + Asset.ICON_AUTOMATION_SELL_ITEM);
 			} else if (_automationState === 2) {
-				iconLayer.attr('src', Path.GFX + Asset.ICON_AUTOMATION_REPAIR_ITEM);
+				iconLayer.attr('src', Path.GFX + Asset.ICON_AUTOMATION_REPAIR_SELL_ITEM);
 			} else if (_automationState === 3) {
+				iconLayer.attr('src', Path.GFX + Asset.ICON_AUTOMATION_REPAIR_ITEM);
+			} else if (_automationState === 4) {
 				iconLayer.attr('src', Path.GFX + Asset.ICON_AUTOMATION_SALVAGE_ITEM);
 			}
 			imageLayer.removeClass('display-none');

@@ -71,6 +71,7 @@ var WorldTownScreenShopDialogModule = function (_parent) {
     this.mFilterArmorButton = null;
     this.mFilterMiscButton = null;
     this.mFilterUsableButton = null;
+    this.mSellAllButton = null;
 
     this.mIsRepairOffered = false;
 
@@ -208,6 +209,36 @@ WorldTownScreenShopDialogModule.prototype.createDIV = function (_parentDiv) {
         self.mFilterMiscButton.removeClass('is-active');
         self.mFilterUsableButton.addClass('is-active');
         self.notifyBackendFilterUsableButtonClicked();
+    }, '', 3);
+
+    var layout = $('<div class="l-button is-sell-all-button"/>');
+    buttonContainer.append(layout);
+    this.mSellAllButton = layout.createImageButton(Path.GFX + Asset.ICON_ASSET_MONEY, function () {
+        self.notifyBackendSellAllButtonClicked(function (data) {
+            if (data === undefined || data == null || typeof (data) !== 'object' || data.Result != 0) {
+                console.error("ERROR: Failed to sell all items. Reason: Invalid data result.");
+                return;
+            }
+
+            // update assets
+            self.mParent.loadAssetData(data.Assets);
+
+            if ('StashSpaceUsed' in data) {
+                self.mStashSpaceUsed = data.StashSpaceUsed;
+            }
+
+            if ('StashSpaceMax' in data) {
+                self.mStashSpaceMax = data.StashSpaceMax;
+            }
+
+            if ('Stash' in data) {
+                self.updateStashList(data.Stash);
+            }
+
+            if ('Shop' in data) {
+                self.updateShopList(data.Shop);
+            }
+        });
     }, '', 3);
 
     this.mStashSlotSizeContainer = $('<div class="slot-count-container"/>');
@@ -438,6 +469,7 @@ WorldTownScreenShopDialogModule.prototype.bindTooltips = function () {
     this.mFilterArmorButton.bindTooltip({ contentType: 'ui-element', elementId: TooltipIdentifier.CharacterScreen.RightPanelHeaderModule.FilterArmorButton });
     this.mFilterMiscButton.bindTooltip({ contentType: 'ui-element', elementId: TooltipIdentifier.CharacterScreen.RightPanelHeaderModule.FilterMiscButton });
     this.mFilterUsableButton.bindTooltip({ contentType: 'ui-element', elementId: TooltipIdentifier.CharacterScreen.RightPanelHeaderModule.FilterUsableButton });
+    this.mSellAllButton.bindTooltip({ contentType: 'ui-element', elementId: TooltipIdentifier.CharacterScreen.RightPanelHeaderModule.SellAllButton });
 };
 
 WorldTownScreenShopDialogModule.prototype.unbindTooltips = function () {
@@ -451,6 +483,7 @@ WorldTownScreenShopDialogModule.prototype.unbindTooltips = function () {
     this.mFilterArmorButton.unbindTooltip();
     this.mFilterMiscButton.unbindTooltip();
     this.mFilterUsableButton.unbindTooltip();
+    this.mSellAllButton.unbindTooltip();
 };
 
 WorldTownScreenShopDialogModule.prototype.create = function (_parentDiv) {
@@ -739,6 +772,8 @@ WorldTownScreenShopDialogModule.prototype.removeItemFromSlot = function (_slot) 
     // remove item image
     _slot.assignListItemImage();
     _slot.assignListItemOverlayImage();
+    _slot.setAutomationImageVisible(0);
+	_slot.setRepairImageVisible(false, false);
     _slot.assignListItemTooltip();
 };
 
@@ -763,6 +798,12 @@ WorldTownScreenShopDialogModule.prototype.assignItemToInventorySlot = function (
         // assign image
         _slot.assignListItemImage(Path.ITEMS + _item['imagePath']);
         _slot.assignListItemOverlayImage(_item['imageOverlayPath'], _item);
+
+        itemData.automationState = _item['automationState'];
+		itemData.repair = _item['repair'];
+		itemData.salvage = _item['salvage'];
+		_slot.setAutomationImageVisible(_item['automationState']);
+		_slot.setRepairImageVisible(_item['repair'], _item['salvage']);
 
         // show amount
         if (_item.showAmount === true && _item.amount != '') {
@@ -1304,6 +1345,10 @@ WorldTownScreenShopDialogModule.prototype.notifyBackendFilterMiscButtonClicked =
 WorldTownScreenShopDialogModule.prototype.notifyBackendFilterUsableButtonClicked = function () {
     SQ.call(this.mSQHandle, 'onFilterUsable');
 };
+
+WorldTownScreenShopDialogModule.prototype.notifyBackendSellAllButtonClicked = function (_callback) {
+    SQ.call(this.mSQHandle, 'onSellAllButtonClicked', [], _callback);
+}
 
 WorldTownScreenShopDialogModule.prototype.notifyBackendRemoveInventoryItemUpgrades = function (_slot) {
     var self = this;

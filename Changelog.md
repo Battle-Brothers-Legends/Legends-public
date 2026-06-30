@@ -142,9 +142,25 @@
 
 ## Quality of life
 - added speed settings to combat and world expanding on vanilla systems
-- expanded settlement situation tooltips to support new situations natively
-- added pause options in Legends misc tab
-- added option to show the average stat potential (for level 12) directly on bars
+> use 1-4 in the World, F1-F4 in combat to change the speed
+> alternatively use the buttons on the top of the respective screens
+> buttons are fully functional during caravan and camp activities
+- added expanded settlement situation tooltips to support new situations natively
+> settlement situations displayed similarly to a popular mod
+> new modifiers are supported
+- added pause options in Legends General mod settings tab
+> pause on events, ambitions and encounters
+> pause on new dawn while camping (when town buildings become usable after a night)
+> pause on new day (when contracts etc. reset)
+> pause on entity discovered
+- added an option to show the average stat potential directly on statistic bars
+> shows average values at a glance (min/max ranges are still visible on mouseovering the bros background)
+- added inventory management toggle on items
+> allows setting the item type to be marked for sale, autorepair and sale, autorepair, autosalvage
+> the setting is completely optional
+> marked items can be sold with a single click in shops and new items acquired will respect these flags
+> newly acquired items with flags will automatically start be added to repair/salvage queue
+> flags are now visible in shop and loot screens
 
 ## Events
 - added a new town encounter during drought

@@ -522,6 +522,84 @@
 				});
 			}
 
+			if (::Legends.Inventory.getCompositeAutomationState(_item) == 4) {
+				tooltip.push({
+					id = 4,
+					type = "hint",
+					icon = "ui/icons/mouse_right_button_alt_ctrl.png",
+					text = "Clear the automation mark"
+				});
+			} else if (::Legends.Inventory.getCompositeAutomationState(_item) == 3) {
+				if(_item.canBeSalvaged()) {
+					tooltip.push({
+						id = 4,
+						type = "hint",
+						icon = "ui/icons/mouse_right_button_alt_ctrl.png",
+						text = "Mark for autosalvage"
+					});
+				} else {
+					tooltip.push({
+						id = 4,
+						type = "hint",
+						icon = "ui/icons/mouse_right_button_alt_ctrl.png",
+						text = "Clear the automation mark"
+					});
+				}
+			} else if (::Legends.Inventory.getCompositeAutomationState(_item) == 2) {
+				if((_item.getConditionMax() <= 1 && !::isKindOf(_item, "legend_helmet_upgrade") && !::isKindOf(_item, "legend_armor_upgrade") && !_item.canBeSalvaged())){
+					tooltip.push({
+						id = 4,
+						type = "hint",
+						icon = "ui/icons/mouse_right_button_alt_ctrl.png",
+						text = "Clear the automation mark"
+					});
+				} else if (!(_item.getConditionMax() <= 1 && !::isKindOf(_item, "legend_helmet_upgrade") && !::isKindOf(_item, "legend_armor_upgrade"))){
+					tooltip.push({
+						id = 4,
+						type = "hint",
+						icon = "ui/icons/mouse_right_button_alt_ctrl.png",
+						text = "Mark for autorepair"
+					});
+				} else {
+					tooltip.push({
+						id = 4,
+						type = "hint",
+						icon = "ui/icons/mouse_right_button_alt_ctrl.png",
+						text = "Mark for autosalvage"
+					});
+				} 
+			} else if (::Legends.Inventory.getCompositeAutomationState(_item) == 1) {
+				if((_item.getConditionMax() <= 1 && !::isKindOf(_item, "legend_helmet_upgrade") && !::isKindOf(_item, "legend_armor_upgrade") && !_item.canBeSalvaged())){
+					tooltip.push({
+						id = 4,
+						type = "hint",
+						icon = "ui/icons/mouse_right_button_alt_ctrl.png",
+						text = "Clear the automation mark"
+					});
+				} else if (!(_item.getConditionMax() <= 1 && !::isKindOf(_item, "legend_helmet_upgrade") && !::isKindOf(_item, "legend_armor_upgrade"))){
+					tooltip.push({
+						id = 4,
+						type = "hint",
+						icon = "ui/icons/mouse_right_button_alt_ctrl.png",
+						text = "Mark for autorepair and sale"
+					});
+				} else {
+					tooltip.push({
+						id = 4,
+						type = "hint",
+						icon = "ui/icons/mouse_right_button_alt_ctrl.png",
+						text = "Mark for autosalvage"
+					});
+				} 
+			} else {
+				tooltip.push({
+					id = 4,
+					type = "hint",
+					icon = "ui/icons/mouse_right_button_alt_ctrl.png",
+					text = "Mark for sale"
+				});
+			}
+
 			break;
 
 		case "tactical-combat-result-screen.stash":
@@ -3393,6 +3471,20 @@
 					id = 2,
 					type = "description",
 					text = "Show only items usable in inventory mode, like paint or armor upgrades."
+				}
+			];
+
+		case "character-screen.right-panel-header-module.SellAllButton":
+			return [
+				{
+					id = 1,
+					type = "title",
+					text = "Sell Marked For Sale"
+				},
+				{
+					id = 2,
+					type = "description",
+					text = "Sell all items marked for sale and fully repaired items marked for repair and sale."
 				}
 			];
 

@@ -37,6 +37,24 @@
 		return itemsMap;
 	}
 
+	local add = o.add;
+	o.add = function( _item ) {
+		local result = add(_item);
+		if(result != null && _item != null) {
+			::Legends.Inventory.applyAutomationStateEffects(_item, 0, ::Legends.Inventory.getCompositeAutomationState(_item));
+		}
+		return result;
+	}
+
+	local insert = o.insert;
+	o.insert = function( _item, _index ) {
+		local result = insert(_item, _index);
+		if(_item != null) {
+			::Legends.Inventory.applyAutomationStateEffects(_item, _index, ::Legends.Inventory.getCompositeAutomationState(_item));
+		}
+		return result;
+	}
+
 	o.upgrade <- function ( _sourceIndex, _targetIndex )
 	{
 		if (this.isValidSlot(_sourceIndex) && this.isValidSlot(_targetIndex))

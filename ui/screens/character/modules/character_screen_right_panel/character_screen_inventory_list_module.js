@@ -563,8 +563,8 @@ CharacterScreenInventoryListModule.prototype.createItemSlot = function (_owner, 
 									if (id in updatedItems) {
 										itemData = updatedItems[id];
 										item['automationState'] = itemData.state;
-										item['repair'] = itemData.repair && (itemData.state === 1 || itemData.state === 2);
-										item['salvage'] = itemData.salvage && itemData.state === 3;
+										item['repair'] = itemData.repair && (itemData.state === 2 || itemData.state === 3);
+										item['salvage'] = itemData.salvage && itemData.state === 4;
 										item['updateAutomationOnly'] = true;
 										self.mDataSource.notifyEventListener(
 											CharacterScreenDatasourceIdentifier.Inventory.StashItemUpdated.Key,

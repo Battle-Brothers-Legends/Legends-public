@@ -210,6 +210,13 @@
     top: 20.0rem;
 }
 
+.world-town-screen > .l-shop-dialog-container .content .row.is-content .l-button.is-sell-all-button {
+    position: absolute;
+    width: 5.2rem;
+    height: 4.1rem;
+    top: 26.0rem; 
+}
+
 .world-town-screen > .l-shop-dialog-container .content .row.is-content .slot-count-container
 {
     position: absolute;

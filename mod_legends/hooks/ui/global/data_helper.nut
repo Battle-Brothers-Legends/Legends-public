@@ -350,7 +350,7 @@
 			return null;
 
 		result.salvage <- _item.isToBeSalvaged();
-		result.automationState <- ::Legends.S.getCompositeAutomationState(_item);
+		result.automationState <- ::Legends.Inventory.getCompositeAutomationState(_item);
 		result.upgrades <- _item.getUpgrades();
 		if (result.slot == "accessory" && _item.m != null && _item.m.ShowOnCharacter != null) {
 			result.showOnCharacter <- _item.m.ShowOnCharacter;
