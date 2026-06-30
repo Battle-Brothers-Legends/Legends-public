@@ -18,6 +18,7 @@
 			::Legends.Actives.grant(this.weapon, ::Legends.Active.Stab, function (_skill)
 			{
 				_skill.m.IsQatalStab = true;
+				_skill.m.IsBackstab = true;
 			}.bindenv(this));
 			return;
 		}
@@ -32,5 +33,6 @@
 		::Legends.Actives.grant(this, ::Legends.Active.Deathblow, function (_skill) {
 			_skill.m.DeathblowBonus = true;
 		}.bindenv(this));
+		::Legends.Actives.grant(this, ::Legends.Active.LegendGut);
 	}
 });

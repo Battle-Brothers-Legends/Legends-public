@@ -89,6 +89,16 @@
 **Qatal Daggers**
 - `Stab` - will attack an additional time if under the effect of smoke
 - `Deathblow` - unchanged
+- `Gut`
+> attacks repeatedly the body of the enemy depending on how many injuries they have
+
+**Obsidian Dagger**
+- `Backstab`
+> additional 5% damage and 3% armor penetration based on surround count
+> will attack an additional time if under the effect of smoke
+- `Deathblow` - unchanged
+- `Gut`
+> attacks repeatedly the body of the enemy depending on how many injuries they have
 
 **2h Swordcleavers**
 - `Hew` - 60% base for each attack, +20% if the target is bleeding or injured
