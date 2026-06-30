@@ -3232,12 +3232,10 @@ Make the most of the opportunity's presented to you in battle.
 ";
 
 ::Const.Strings.PerkDescription.LegendPrepared <- @"
-Coat your blade with posion.
+Preparation can make or break a battle and you won't be caught with your pants down.
 
 [color=%passive%][u]Passive:[/u][/color]
-• While using a dagger, dealing Hitpoints damage to an enemy has a [color=%positive%]+33%[/color] chance of poisoning them.
-
-• You will also gain [color=%positive%]+12[/color] Melee Skill and [color=%positive%]+3[/color] Fatigue recovery per turn while holding a dagger in your mainhand.
+• Crossbows or Firearms in your bags will be loaded at the start of combat.
 ";
 
 ::Const.Strings.PerkDescription.LegendLurker <- @"

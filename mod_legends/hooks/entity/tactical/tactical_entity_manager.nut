@@ -70,7 +70,7 @@
 
 			foreach( item in items )
 			{
-				if ("setLoaded" in item)
+				if ("setLoaded" in item && !f.getSkills().hasPerk(::Legends.Perk.LegendPrepared))
 				{
 					item.setLoaded(false);
 				}

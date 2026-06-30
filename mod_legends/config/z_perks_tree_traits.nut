@@ -710,6 +710,7 @@ if (!("Perks" in ::Const))
 		],
 		[],
 		[
+			::Legends.Perk.LegendPrepared,
 			::Legends.Perk.LegendSkillfulStacking
 		],
 		[],
@@ -900,7 +901,7 @@ if (!("Perks" in ::Const))
 			::Legends.Perk.Underdog
 		],
 		[],
-		[],
+		[::Legends.Perk.LegendPrepared],
 		[],
 		[]
 	]
