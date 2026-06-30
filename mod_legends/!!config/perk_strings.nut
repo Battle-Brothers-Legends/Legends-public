@@ -2506,11 +2506,11 @@ Staying hidden is about more than just clever disguise, one must be prepared to 
  Striking from the shadows allows you to bypass enemy defenses and strike for their undefended weak points.
 
 [color=%passive%][u]Passive:[/u][/color]
-• Grants [color=%positive%]+20%[/color] maximum and minimum damage while [color=%status%]Hidden[/color] by being within a bush or smoke.
+• Grants [color=%positive%]+20%[/color] damage while [color=%status%]Hidden[/color] within a bush or smoke.
 
-• Assassins who specialize in the art of stealth gain [color=%positive%]+30%[/color] instead.
+• Specialized Assassins gain [color=%positive%]+30%[/color] instead.
 
-• Master assassins more deadly in stealth and killing gain [color=%positive%]+50%[/color].
+• The deadliest Master assassins gain [color=%positive%]+50%[/color].
 ";
 
 ::Const.Strings.PerkDescription.LegendMealPreperation <- @"

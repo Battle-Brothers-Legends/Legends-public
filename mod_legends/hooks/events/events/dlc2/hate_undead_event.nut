@@ -9,13 +9,11 @@
 	];
 
 	local create = o.create;
-	o.create = function() {
+	o.create = function () {
 		create();
-		foreach (s in this.m.Screens) {
-			if (s.ID == "") {
-
-			}
-		}
+		::Legends.Screens.hook(this, "A", function (_screen) {
+			_screen.Text = "%image%{%brother% spits and runs %their_casualty% hand under %their_casualty% nose. %Their_casualty% face scowls and %they_casualty% seems to be talking to %themselves_casualty% as others look on.%SPEECH_ON%The old gods will have our arses if we permit the dead to walk again! You fellas can go to the hereafter thinking you did right in this world, but I ain\'t following the idle road cause by my sum that road goes straight to the hells. I\'ll see to it that I meet a righteous end, and I\'ll see to that by felling every godforsaken undead fark I see!%SPEECH_OFF%}";
+		});
 	}
 
 	o.onUpdateScore = function () {

@@ -28,7 +28,7 @@
 		local talents;
 		bros[0].setStartValuesEx([::Legends.Background.Manhunter]);
 		bros[0].setTitle("the Stoic");
-		bros[0].getBackground().m.RawDescription = "{In a sense, you don\'t particularly care for %name%. He\'s not hateful nor forgiving toward the prisoners of war, criminals, and the like. He just handles his business. But he\'s also this calm, unwavering way with you, and it\'s a bit bothersome. The man has so much potential, which is why you have him onboard for the %companyname%, but you just wished he showed some passion now and again.}";
+		bros[0].getBackground().m.RawDescription = "{In a sense, you don\'t particularly care for %name%. %They%\'s not hateful nor forgiving toward the prisoners of war, criminals, and the like. %They% just handles %their% business. But %they're% also this calm, unwavering way with you, and it\'s a bit bothersome. The %person% has so much potential, which is why you have %them% onboard for the %companyname%, but you just wished %they% showed some passion now and again.}";
 		bros[0].setPlaceInFormation(12);
 		local items = bros[0].getItems();
 		items.unequip(items.getItemAtSlot(this.Const.ItemSlot.Mainhand));
@@ -53,7 +53,7 @@
 
 		bros[1].setStartValuesEx([::Legends.Background.Manhunter]);
 		bros[1].setTitle("the Whip");
-		bros[1].getBackground().m.RawDescription = "{%name% is one of the worst people you have ever come to know. He is relentlessly brutal on the indebted, even by your measure, and is responsible for outright killing a few of your catches. That said, his mean streak will serve the company well. And given that you\'ve already whipped him a time or three for losing inventory, you know he can take a hit as well as he can give it.}";
+		bros[1].getBackground().m.RawDescription = "{%name% is one of the worst people you have ever come to know. %They% is relentlessly brutal on the indebted, even by your measure, and is responsible for outright killing a few of your catches. That said, %their% mean streak will serve the company well. And given that you\'ve already whipped %them% a time or three for losing inventory, you know %they% can take a hit as well as %they% can give it.}";
 		bros[1].setPlaceInFormation(13);
 		local items = bros[1].getItems();
 		items.unequip(items.getItemAtSlot(this.Const.ItemSlot.Mainhand));
@@ -76,7 +76,7 @@
 			::Legends.Background.SlaveSouthern
 		]);
 		bros[2].setTitle("the Learned");
-		bros[2].getBackground().m.RawDescription = "{You found %name% being lawed by city guards. It looked like they were gonna play a game of \'catch the scimitar\' with his wrists until you intervened, opining that he owed the Gilder far before he owed any man. You hoped to offload him to high-paying Viziers, but none would take him as he was too \'learned\' and seemed the exact sort of threat to spur an uprising. Unusual to a man of his standing, he does harbor a fair bit of respect for you.}";
+		bros[2].getBackground().m.RawDescription = "{You found %name% being lawed by city guards. It looked like they were gonna play a game of \'catch the scimitar\' with %their% wrists until you intervened, opining that %they% owed the Gilder far before %they% owed any man. You hoped to offload %them% to high-paying Viziers, but none would take %them% as %they% was too \'learned\' and seemed the exact sort of threat to spur an uprising. Unusual to a %person% of %their% standing, %they% does harbor a fair bit of respect for you.}";
 		bros[2].setPlaceInFormation(2);
 		::Legends.Traits.remove(bros[2], ::Legends.Trait.Dumb);
 		::Legends.Traits.grant(bros[2], ::Legends.Trait.Bright);
@@ -90,20 +90,20 @@
 		bros[2].worsenMood(0.0, "Misses his books");
 		bros[3].setStartValuesEx([::Legends.Background.Slave]);
 		bros[3].setTitle("the Northerner");
-		bros[3].getBackground().m.RawDescription = "{Not a friendly man by any means, but that\'s what the shackles are for. %name% was on the chopping block for a series of crimes when you happened upon him. You paid for his life as an investment, stating that he now owed hard work to find salvation in the Gilder\'s eyes. He\'s not so sure of your earnest beliefs, but you paid a priest to confirm that the man indeed owes his sweat to a higher sublimity.}";
+		bros[3].getBackground().m.RawDescription = "{Not a friendly %person% by any means, but that\'s what the shackles are for. %name% was on the chopping block for a series of crimes when you happened upon %them%. You paid for %their% life as an investment, stating that %they% now owed hard work to find salvation in the Gilder\'s eyes. %They're% not so sure of your earnest beliefs, but you paid a priest to confirm that the %person% indeed owes %their% sweat to a higher sublimity.}";
 		bros[3].setPlaceInFormation(3);
 		bros[3].getSprite("miniboss").setBrush("bust_miniboss_indebted");
 		local items = bros[3].getItems();
 		items.unequip(items.getItemAtSlot(this.Const.ItemSlot.Mainhand));
 		items.equip(this.new("scripts/items/weapons/bludgeon"));
 		bros[3].worsenMood(2.0, "Almost got executed");
-		bros[3].improveMood(2.0, "Relieved that he escaped execution");
-		bros[3].worsenMood(0.0, "Worried about what awaits him next");
+		bros[3].improveMood(2.0, "Relieved that %they% escaped execution");
+		bros[3].worsenMood(0.0, "Worried about what awaits %them% next");
 		bros[4].setStartValuesEx([
 			::Legends.Background.SlaveSouthern
 		]);
 		bros[4].setTitle("the Deserter");
-		bros[4].getBackground().m.RawDescription = "{%name% is an heirloom of heresy, a man gifted to you by one of the Vizier\'s priests. The man was a deserter in the high lord\'s army, but through wealthy connections managed to avoid execution. However, there\'s only one way to avoid the fire of the hells, and that is through indebted gratitude. He will work for you until he finds salvation, and when that happens is entirely up to you.}";
+		bros[4].getBackground().m.RawDescription = "{%name% is an heirloom of heresy, a %person% gifted to you by one of the Vizier\'s priests. The %person% was a deserter in the high lord\'s army, but through wealthy connections managed to avoid execution. However, there\'s only one way to avoid the fire of the hells, and that is through indebted gratitude. %They% will work for you until %they% finds salvation, and when that happens is entirely up to you.}";
 		bros[4].setPlaceInFormation(4);
 		bros[4].getSprite("miniboss").setBrush("bust_miniboss_indebted");
 		local items = bros[4].getItems();
@@ -114,7 +114,7 @@
 			::Legends.Background.SlaveSouthern
 		]);
 		bros[5].setTitle("the Beggar");
-		bros[5].getBackground().m.RawDescription = "{Found on the streets, %name% never stood much of a chance. Being a beggar, it was physically easy to slap the chains on him, and socially no one would care. The Gilder cares not for those who do not work, and every day the man squandered without putting in his sweat he accrued a debt. Now it must be paid lest he taste that desert fire for eternity. He\'s actually healthier looking now than when you found him, though he never seems to thank you for this.}";
+		bros[5].getBackground().m.RawDescription = "{Found on the streets, %name% never stood much of a chance. Being a beggar, it was physically easy to slap the chains on %them%, and socially no one would care. The Gilder cares not for those who do not work, and every day the %person% squandered without putting in %their% sweat %they% accrued a debt. Now it must be paid lest %they% taste that desert fire for eternity. %They're% actually healthier looking now than when you found %them%, though %they% never seems to thank you for this.}";
 		bros[5].setPlaceInFormation(5);
 		bros[5].getSprite("miniboss").setBrush("bust_miniboss_indebted");
 		local items = bros[5].getItems();
