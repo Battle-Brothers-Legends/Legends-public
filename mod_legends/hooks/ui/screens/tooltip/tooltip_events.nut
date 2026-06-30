@@ -1918,7 +1918,7 @@
 				{
 					id = 2,
 					type = "description",
-					text = "A higher melee defense reduces the probability of being hit with a melee attack, such as the thrust of a spear. It can be increased as the character gains experience and by equipping a good shield."
+					text = "A higher melee defense reduces the probability of being hit with a melee attack, such as the thrust of a spear. It can be increased as the character gains experience and by equipping a good shield. Diminishing returns above 50."
 				}
 			];
 
@@ -1932,7 +1932,7 @@
 				{
 					id = 2,
 					type = "description",
-					text = "A higher ranged defense reduces the probability of being hit with a ranged attack, such as an arrow shot from afar. It can be increased as the character gains experience and by equipping a good shield."
+					text = "A higher ranged defense reduces the probability of being hit with a ranged attack, such as an arrow shot from afar. It can be increased as the character gains experience and by equipping a good shield. Diminishing returns above 50."
 				}
 			];
 
