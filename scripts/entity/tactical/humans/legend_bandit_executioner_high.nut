@@ -24,7 +24,7 @@ this.legend_bandit_executioner_high <- this.inherit("scripts/entity/tactical/hum
 	}
 
 	function assignRandomEquipment() {
-		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= this.Const.World.Scaling.Nomads.LegendsBanditExecutionerSwordDay) {
+		if (!::Tactical.State.isScenarioMode() && ::World.getTime().Days >= ::Const.World.Scaling.Brigands.LegendsBanditExecutionerSwordDay) {
 			this.getItems().equip(this.new("scripts/items/weapons/exesword"));
 		}
 		else {

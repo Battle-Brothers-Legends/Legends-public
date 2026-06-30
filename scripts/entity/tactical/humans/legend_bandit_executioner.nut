@@ -28,7 +28,7 @@ this.legend_bandit_executioner <- this.inherit("scripts/entity/tactical/human", 
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendBloodbath);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendPushTheAdvantage);
 		::Legends.Perks.grant(this, ::Legends.Perk.HeadHunter);
-		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= this.Const.World.Scaling.Nomads.LegendsBanditExecutionerSwordDay) {
+		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= ::Const.World.Scaling.Brigands.LegendsBanditExecutionerSwordDay) {
 			::Legends.Perks.grant(this, ::Legends.Perk.Nimble);
 		}
 		if(::Legends.isLegendaryDifficulty()) {
@@ -40,7 +40,7 @@ this.legend_bandit_executioner <- this.inherit("scripts/entity/tactical/human", 
 	}
 
 	function assignRandomEquipment() {
-		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= this.Const.World.Scaling.Nomads.LegendsBanditExecutionerSwordDay) {
+		if (!::Tactical.State.isScenarioMode() && ::World.getTime().Days >= ::Const.World.Scaling.Brigands.LegendsBanditExecutionerSwordDay) {
 			this.getItems().equip(this.new("scripts/items/weapons/exesword"));
 		}
 		else {
