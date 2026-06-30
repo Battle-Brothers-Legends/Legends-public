@@ -78,7 +78,7 @@ this.legend_enraged_hyena <- this.inherit("scripts/entity/tactical/enemies/hyena
 	}
 
 	function onDamageReceived(_attacker, _skill, _hitInfo) {
-		if (_hitInfo.DamageRegular > 0 || _hitInfo.DamageArmor > 0) {
+		if (_hitInfo.DamageRegular > 0 || _hitInfo.DamageArmor > 0 && !_skill.isRanged()) {
 			this.freeAllBittenVictims();
 		}
 
