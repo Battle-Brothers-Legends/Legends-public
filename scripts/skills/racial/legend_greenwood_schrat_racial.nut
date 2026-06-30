@@ -24,7 +24,7 @@ this.legend_greenwood_schrat_racial <- this.inherit("scripts/skills/skill", {
 	function onUpdate(_properties) {
 		local actor = this.getContainer().getActor();
 		if (actor.isArmedWithShield()) {
-			_properties.DamageReceivedTotalMult *= 0.3;
+			_properties.DamageReceivedTotalMult *= 0.3;s
 		}
 		_properties.DamageReceivedFireMult *= 1.5;
 	}
@@ -61,9 +61,6 @@ this.legend_greenwood_schrat_racial <- this.inherit("scripts/skills/skill", {
 	}
 
 	function onDamageReceived(_attacker, _damageHitpoints, _damageArmor) {
-		if (!this.m.SpawnSchratling)
-			return;
-
 		local actor = this.getContainer().getActor();
 		if (_damageHitpoints < actor.getHitpointsMax() * 0.01)
 			return;
@@ -80,7 +77,11 @@ this.legend_greenwood_schrat_racial <- this.inherit("scripts/skills/skill", {
 		}
 		if (candidates.len() != 0) {
 			local spawnTile = candidates[::Math.rand(0, candidates.len() - 1)];
-			local sapling = ::Tactical.spawnEntity("scripts/entity/tactical/enemies/legend_greenwood_schrat_small", spawnTile.Coords);
+			local sapling = null;
+			if (this.m.SpawnSchratling)
+				sapling = ::Tactical.spawnEntity("scripts/entity/tactical/enemies/legend_greenwood_schrat_small", spawnTile.Coords);
+			else
+				sapling = ::Tactical.spawnEntity("scripts/entity/tactical/enemies/schrat_small", spawnTile.Coords);
 			sapling.setFaction(actor.getFaction());
 			sapling.riseFromGround();
 		}
