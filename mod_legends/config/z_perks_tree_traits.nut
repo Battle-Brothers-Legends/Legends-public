@@ -322,7 +322,7 @@ if (!("Perks" in ::Const))
 			::Legends.Perk.LegendEvasion
 		],
 		[
-			::Legends.Perk.Backstabber
+			::Legends.Perk.LegendNightRaider
 		],
 		[]
 	]

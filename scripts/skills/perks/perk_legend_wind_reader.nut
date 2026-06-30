@@ -10,12 +10,7 @@ this.perk_legend_wind_reader <- this.inherit("scripts/skills/skill", {
 		_properties.RangedDefense += this.Math.max(10, this.Math.floor(dist * (1 + this.getContainer().getActor().getBaseProperties().getRangedDefense() * 0.1)));
 	}
 
-	function onAnySkillUsed( _skill, _targetEntity, _properties ) {
-		if (_targetEntity != null) {
-			local actor = this.getContainer().getActor();
-			local difference = actor.getTile().getDistanceTo(_targetEntity.getTile());
-			_properties.DamageRegularMin += difference * 2;
-			_properties.DamageRegularMax += difference * 2;
-		}
+	function onUpdate( _properties ) {
+		_properties.HitChanceAdditionalWithEachTile += 2;
 	}
 });

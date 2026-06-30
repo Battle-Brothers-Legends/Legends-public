@@ -359,7 +359,7 @@ Through familiarity and training with your weapon, you know just how your projec
 [color=%passive%][u]Passive:[/u][/color]
 • Crossbows gain a scaling bonus to armor penetration depending on the distance to the target with the highest bonus in melee and the lowest at maximum range for the relevant skill. [color=%skill%]Shoot Bolt[/color] gains up to 20%, while [color=%skill%]Shoot Heavy Bolt[/color] and [color=%skill%]Shoot Stake[/color] gain up to [color=%positive%]+30%[/color] instead.
 
-• The range penalty to hitchance is reduced by [color=%negative%]-2[/color] per tile for all ranged weapons.
+• Gain [color=%positive%]2[/color] Ranged Damage per tile of distance between you and your target.
 
 • Additionally, Handgonnes gain [color=%positive%]+1[/color] range.
 ";
@@ -2805,7 +2805,7 @@ You have learned to read the wind, estimating the path of arrows in uncertain co
 
 • Always gain at least [color=%positive%]+10[/color] to Ranged Defense when attacked from range.
 
-• Gain [color=%positive%]2[/color] Ranged Damage per tile of distance between you and your target.
+• The range penalty to hitchance is reduced by [color=%negative%]-2[/color] per tile for all ranged weapons.
 ";
 
 ::Const.Strings.PerkDescription.LegendPaymaster <- @"

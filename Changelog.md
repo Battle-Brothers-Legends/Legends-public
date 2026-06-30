@@ -52,7 +52,9 @@
 > Grants 2 Melee and Ranged Defense for each ally surrounding you.
 - `Backswing` - new gfx to differentiate from feint
 - `Anticipation` - removed for now
-- `Wind Reader` - deals an additional 2 damage per tile travelled, gains the vanilla `Anticipation` effect
+- `Ballistics` - no longer reduces hitchance penalty with tile traveled, instead deals an additional 2 damage per tile travelled
+- `Wind Reader` - reduces hitchance penalty with tile traveled by 2%, gains the vanilla `Anticipation` effect, moved to tier 3
+- `Night Raider` - will now also appear in the Devious trait tree
 
 ## Items
 
