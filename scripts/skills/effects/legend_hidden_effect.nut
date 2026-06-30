@@ -2,8 +2,8 @@ this.legend_hidden_effect <- this.inherit("scripts/skills/skill", {
 	m = {
 		TurnsLeft = 4
 	},
-	function create()
-	{
+
+	function create() {
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendHidden);
 		this.m.Description = "This character is hidden in terrain and can not be seen by opponents. Removed upon attacking opponents or directly adjacent to them.";
 		this.m.Icon = "skills/status_effect_08.png";
@@ -15,48 +15,39 @@ this.legend_hidden_effect <- this.inherit("scripts/skills/skill", {
 		this.m.IsRemovedAfterBattle = true;
 	}
 
-	function getTooltip()
-	{
+	function getTooltip() {
 		local ret = this.getDefaultTooltip();
 		local actor = this.getContainer().getActor();
-		if (actor.getSkills().hasPerk(::Legends.Perk.LegendAssassinate))
-		{
-			ret.extend([
-				{
-					id = 11,
-					type = "text",
-					icon = "ui/icons/regular_damage.png",
-					text = "[color=%positive%]+50%[/color] Minimum Damage from the Assassinate perk"
-				},
-				{
-					id = 12,
-					type = "text",
-					icon = "ui/icons/regular_damage.png",
-					text = "[color=%positive%]+50%[/color] Maximum Damage from the Assassinate perk"
-				}
-			]);
-
-			if (actor.getSkills().hasSkill(::Legends.Backgrounds.getID(::Legends.Background.Assassin)) || actor.getSkills().hasSkill(::Legends.Backgrounds.getID(::Legends.Background.AssassinSouthern)))
-			{
-					{
-						id = 13,
-						type = "text",
-						icon = "ui/icons/regular_damage.png",
-						text = "[color=%positive%]+50%[/color] Maximum Damage from being an assassin"
-					}
-			}
-
-			if (actor.getSkills().hasSkill(::Legends.Backgrounds.getID(::Legends.Background.LegendCommanderAssassin)))
-			{
-					{
-						id = 13,
-						type = "text",
-						icon = "ui/icons/regular_damage.png",
-						text = "[color=%positive%]+100%[/color] Maximum Damage from being an assassin"
-					}
+		if (::Legends.Perks.has(actor, ::Legends.Perk.LegendAssassinate)) {
+			if (::Legends.Backgrounds.has(actor, ::Legends.Background.Assassin)	|| ::Legends.Backgrounds.has(actor, ::Legends.Background.AssassinSouthern)) {
+					ret.extend([
+						{
+							id = 11,
+							type = "text",
+							icon = "ui/icons/regular_damage.png",
+							text = "[color=%positive%]+30%[/color] Total Damage"
+						}
+					]);
+				} else if (::Legends.Backgrounds.has(actor, ::Legends.Background.LegendCommanderAssassin)) {
+					ret.extend([
+						{
+							id = 11,
+							type = "text",
+							icon = "ui/icons/regular_damage.png",
+							text = "[color=%positive%]+50%[/color] Total Damage"
+						}
+					]);
+				} else {
+					ret.extend([
+						{
+							id = 11,
+							type = "text",
+							icon = "ui/icons/regular_damage.png",
+							text = "[color=%positive%]+20%[/color] Total Damage"
+						}
+				]);
 			}
 		}
-
 		ret.push({
 			id = 13,
 			type = "text",
@@ -67,11 +58,9 @@ this.legend_hidden_effect <- this.inherit("scripts/skills/skill", {
 
 	}
 
-	function onMovementFinished()
-	{
+	function onMovementFinished() {
 		local tile = this.getContainer().getActor().getTile();
-		if (tile.hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions()))
-		{
+		if (tile.hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions())) {
 			this.getContainer().getActor().setHidden(false);
 			this.removeSelf();
 			return;
@@ -80,27 +69,21 @@ this.legend_hidden_effect <- this.inherit("scripts/skills/skill", {
 		this.getContainer().getActor().setHidden(true);
 	}
 
-	function onTargetHit( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor )
-	{
+	function onTargetHit(_skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor) {
 		this.getContainer().getActor().setHidden(false);
 		this.removeSelf();
 	}
 
-	function onTargetMissed( _skill, _targetEntity )
-	{
+	function onTargetMissed(_skill, _targetEntity) {
 		this.getContainer().getActor().setHidden(false);
 		this.removeSelf();
 	}
 
-	function onAdded()
-	{
+	function onAdded() {
 		local actor = this.getContainer().getActor();
-		if (actor.getTile().IsVisibleForPlayer)
-		{
-			if (this.Const.Tactical.HideParticles.len() != 0)
-			{
-				for( local i = 0; i < this.Const.Tactical.HideParticles.len(); i = ++i )
-				{
+		if (actor.getTile().IsVisibleForPlayer) {
+			if (this.Const.Tactical.HideParticles.len() != 0) {
+				for (local i = 0; i < this.Const.Tactical.HideParticles.len(); i = ++i) {
 					this.Tactical.spawnParticleEffect(false, this.Const.Tactical.HideParticles[i].Brushes, actor.getTile(), this.Const.Tactical.HideParticles[i].Delay, this.Const.Tactical.HideParticles[i].Quantity, this.Const.Tactical.HideParticles[i].LifeTimeQuantity, this.Const.Tactical.HideParticles[i].SpawnRate, this.Const.Tactical.HideParticles[i].Stages);
 				}
 			}
@@ -113,43 +96,34 @@ this.legend_hidden_effect <- this.inherit("scripts/skills/skill", {
 		actor.setDirty(true);
 	}
 
-	function onRemoved()
-	{
+	function onRemoved() {
 		this.getContainer().getActor().setHidden(false);
 		local actor = this.getContainer().getActor();
 		actor.setBrushAlpha(255);
 		actor.getSprite("hair").Visible = true;
 		actor.getSprite("beard").Visible = true;
 		actor.setDirty(true);
-		foreach (i in actor.getItems().getAllItems())
-			i.updateAppearance();
-		if (actor.getTile().IsVisibleForPlayer)
-		{
-			if (this.Const.Tactical.HideParticles.len() != 0)
-			{
-				for( local i = 0; i < this.Const.Tactical.HideParticles.len(); i = ++i )
-				{
+		foreach (i in actor.getItems().getAllItems()) i.updateAppearance();
+		if (actor.getTile().IsVisibleForPlayer) {
+			if (this.Const.Tactical.HideParticles.len() != 0) {
+				for (local i = 0; i < this.Const.Tactical.HideParticles.len(); i = ++i) {
 					this.Tactical.spawnParticleEffect(false, this.Const.Tactical.HideParticles[i].Brushes, actor.getTile(), this.Const.Tactical.HideParticles[i].Delay, this.Const.Tactical.HideParticles[i].Quantity, this.Const.Tactical.HideParticles[i].LifeTimeQuantity, this.Const.Tactical.HideParticles[i].SpawnRate, this.Const.Tactical.HideParticles[i].Stages);
 				}
 			}
 		}
 	}
 
-	function onUpdate( _properties )
-	{
+	function onUpdate(_properties) {
 		local actor = this.getContainer().getActor();
-		if (actor.getSkills().hasPerk(::Legends.Perk.LegendAssassinate))
-		{
-			_properties.DamageRegularMin *= 1.5;
-			_properties.DamageRegularMax *= 1.5;
-
-			if (actor.getSkills().hasSkill(::Legends.Backgrounds.getID(::Legends.Background.Assassin)) || actor.getSkills().hasSkill(::Legends.Backgrounds.getID(::Legends.Background.AssassinSouthern)))
+		if (actor.getSkills().hasPerk(::Legends.Perk.LegendAssassinate)) {
+			if (::Legends.Backgrounds.has(actor, ::Legends.Background.Assassin)
+				|| ::Legends.Backgrounds.has(actor, ::Legends.Background.AssassinSouthern))
 			{
-			_properties.DamageRegularMax *= 1.5;
-			}
-			if (actor.getSkills().hasSkill(::Legends.Backgrounds.getID(::Legends.Background.LegendCommanderAssassin)))
-			{
-			_properties.DamageRegularMax *= 2.0;
+				_properties.DamageTotalMult *= 1.3;
+			} else if (::Legends.Backgrounds.has(actor, ::Legends.Background.LegendCommanderAssassin)) {
+				_properties.DamageTotalMult *= 1.5;
+			} else {
+				_properties.DamageTotalMult *= 1.2;
 			}
 		}
 
@@ -161,14 +135,10 @@ this.legend_hidden_effect <- this.inherit("scripts/skills/skill", {
 		actor.setDirty(true);
 	}
 
-	function onTurnEnd()
-	{
-		if (--this.m.TurnsLeft <= 0)
-		{
+	function onTurnEnd() {
+		if (--this.m.TurnsLeft <= 0) {
 			this.getContainer().getActor().setHidden(false);
 			this.removeSelf();
 		}
 	}
 });
-
-
