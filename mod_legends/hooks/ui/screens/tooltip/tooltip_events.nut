@@ -4512,10 +4512,12 @@
 				{
 					id = 1,
 					type = "title"
+					text = "Tools Produced"
 				},
 				{
 					id = 2,
-					type = "description"
+					type = "description",
+					text = desc
 				}
 			];
 			return ret;

@@ -2,7 +2,7 @@
 this.camp_repair_dialog_module <- this.inherit("scripts/ui/screens/ui_module", {
 	m = {
 		Title = "Repairs",
-		Description = "Items in the queue will be repaired from left to right, top to bottom. Assign workers to repair items in the commanders tent.",
+		Description = "Repair equipment in order left to right, top to bottom. Assign workers in the commanders tent.",
 		InventoryFilter = this.Const.Items.ItemFilter.All
 	},
 	function create()
