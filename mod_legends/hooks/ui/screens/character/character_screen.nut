@@ -1049,6 +1049,21 @@
 		return this.UIDataHelper.convertStashAndEntityToUIData(entity, null, false, this.m.InventoryFilter);
 	}
 
+	local helper_isActionAllowed = o.helper_isActionAllowed;
+	o.helper_isActionAllowed = function (_entity, _items, _putIntoBags){
+		local sourceItem = _items[0];
+    	if (sourceItem != null && !::Legends.S.isWarhoundAllowedIntoBags(sourceItem, _entity) && _putIntoBags) {
+			return this.helper_convertErrorToUIData(this.Const.CharacterScreen.ErrorCode.ItemIsNotChangableInBattle);
+		}
+		if(_items.len() > 1) {
+			local targetItem = _items[1];
+			if (sourceItem != null && targetItem != null && sourceItem.isInBag() && !targetItem.isInBag() && !::Legends.S.isWarhoundAllowedIntoBags(targetItem, _entity) && !_putIntoBags) {
+				return this.helper_convertErrorToUIData(this.Const.CharacterScreen.ErrorCode.ItemIsNotChangableInBattle);
+			}
+		}
+		return helper_isActionAllowed(_entity, _items, _putIntoBags);
+	}
+
 	o.general_onDropPaperdollItemIntoBag = function (_data) {
 		local data = this.helper_queryEntityItemData(_data, true);
 

@@ -321,7 +321,7 @@
 		for (local i = 0; i < this.Const.ItemSlot.COUNT; i = ++i) {
 			for (local j = 0; j < this.m.Items[i].len(); j = ++j) {
 				if (this.m.Items[i][j] == null || this.m.Items[i][j] == -1) {
-					continue
+					continue;
 				}
 
 				local item = this.m.Items[i][j];

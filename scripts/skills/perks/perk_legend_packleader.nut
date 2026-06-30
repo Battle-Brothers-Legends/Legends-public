@@ -4,6 +4,6 @@ this.perk_legend_packleader <- this.inherit("scripts/skills/skill", {
 	{
 		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendPackleader);
 	}
-
+	//handled with ::Legends.S.isWarhoundAllowedIntoBags
 
 });

@@ -413,3 +413,7 @@
 
 	return (baseProp + attributeMin * levelUps) + "-" + (baseProp + attributeMax * levelUps);
 }
+
+::Legends.S.isWarhoundAllowedIntoBags <- function (_item, _entity) {
+	return (_item.getID().find("wardog") == null && _item.getID().find("warhound") == null) || ::Legends.Perks.has(_entity, ::Legends.Perk.LegendPackleader);
+}

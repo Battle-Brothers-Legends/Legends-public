@@ -481,7 +481,7 @@
 				}
 			}
 
-			if (_item.isChangeableInBattle() == true && _item.isAllowedInBag())
+			if (_item.isChangeableInBattle() == true && _item.isAllowedInBag() && ::Legends.S.isWarhoundAllowedIntoBags(_item, ::World.State.m.CharacterScreen.getSelectedActor()))
 			{
 				tooltip.push({
 					id = 2,

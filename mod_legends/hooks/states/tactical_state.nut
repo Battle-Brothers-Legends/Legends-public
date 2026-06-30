@@ -22,6 +22,8 @@
 			_activeEntity.getID(),
 			_item.getInstanceID()
 		]);
+		_activeEntity.getSkills().update();
+		_activeEntity.setDirty(true);
 	}
 
 	local _turnsequencebar_onEntitySkillClicked = o.turnsequencebar_onEntitySkillClicked;
