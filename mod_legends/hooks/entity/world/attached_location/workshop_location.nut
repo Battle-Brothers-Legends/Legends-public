@@ -62,24 +62,24 @@
 		else if (_id == "building.armorsmith") {
 			_list.push({
 				R = 95,
-				P = 1.0,
+				P = 3.0,
 				S = "misc/legend_masterwork_tools"
 			});
 			_list.push({
 				R = 95,
-				P = 1.0,
+				P = 3.0,
 				S = "misc/legend_masterwork_tools"
 			});
 		}
 		else if (_id == "building.weaponsmith") {
 			_list.push({
 				R = 95,
-				P = 1.0,
+				P = 3.0,
 				S = "misc/legend_masterwork_tools"
 			});
 			_list.push({
 				R = 95,
-				P = 1.0,
+				P = 3.0,
 				S = "misc/legend_masterwork_tools"
 			});
 		}
