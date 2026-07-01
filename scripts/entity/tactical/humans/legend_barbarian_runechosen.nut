@@ -66,7 +66,7 @@ this.legend_barbarian_runechosen <- this.inherit("scripts/entity/tactical/human"
 		this.setAppearance();
 		this.getSprite("socket").setBrush("bust_base_wildmen_01");
 		::Legends.Perks.grant(this, ::Legends.Perk.Adrenaline);
-		::Legends.Perks.grant(this, ::Legends.Perk.Anticipation);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendWindReader);
 		::Legends.Perks.grant(this, ::Legends.Perk.HoldOut);
 		::Legends.Perks.grant(this, ::Legends.Perk.Recover);
 		::Legends.Perks.grant(this, ::Legends.Perk.Brawny);

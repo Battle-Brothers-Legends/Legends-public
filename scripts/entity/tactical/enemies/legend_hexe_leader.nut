@@ -266,7 +266,7 @@ this.legend_hexe_leader <- this.inherit("scripts/entity/tactical/actor", {
 		this.getSprite("status_rooted").Scale = 0.55;
 
 		::Legends.Actives.grant(this, ::Legends.Active.LegendIntenselyCharm);
-		::Legends.Perks.grant(this, ::Legends.Perk.Anticipation);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendWindReader);
 		::Legends.Actives.grant(this, ::Legends.Active.Hex);
 		::Legends.Actives.grant(this, ::Legends.Active.LegendWither);
 		::Legends.Actives.grant(this, ::Legends.Active.Sleep);

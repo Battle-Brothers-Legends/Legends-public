@@ -152,7 +152,7 @@
 		{
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendLevitate);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendPushTheAdvantage);
-			::Legends.Perks.grant(this, ::Legends.Perk.Anticipation);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendWindReader);
 			::Legends.Perks.grant(this, ::Legends.Perk.Dodge);
 			::Legends.Perks.grant(this, ::Legends.Perk.Overwhelm);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendReturnFavor);

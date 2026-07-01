@@ -262,7 +262,7 @@ this.legend_vampire_lord <- this.inherit("scripts/entity/tactical/actor", {
 		::Legends.Effects.grant(this, ::Legends.Effect.DoubleGrip);
 		::Legends.Traits.grant(this, ::Legends.Trait.RacialVampire);
 		::Legends.Actives.grant(this, ::Legends.Active.Darkflight);
-		::Legends.Perks.grant(this, ::Legends.Perk.Anticipation);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendWindReader);
 		::Legends.Perks.grant(this, ::Legends.Perk.CripplingStrikes);
 		::Legends.Perks.grant(this, ::Legends.Perk.HeadHunter);
 		::Legends.Perks.grant(this, ::Legends.Perk.NineLives);

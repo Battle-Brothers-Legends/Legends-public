@@ -12,6 +12,8 @@
 	{
 		onInit();
 		::Legends.Effects.remove(this, ::Legends.Effect.Dodge);
+		::Legends.Perks.remove(this, ::Legends.Perk.Anticipation);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendWindReader);
 		if(::Legends.isLegendaryDifficulty())
 		{
 			::Legends.Perks.grant(this, ::Legends.Perk.Overwhelm);

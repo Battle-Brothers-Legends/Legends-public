@@ -265,7 +265,7 @@ this.legend_vala_warden_script <- this.inherit("scripts/entity/tactical/actor", 
 		::Legends.Actives.grant(this, ::Legends.Active.LegendValaWardenPaleTouch);
 		::Legends.Actives.grant(this, ::Legends.Active.LegendValaWardenWail);
 		::Legends.Perks.grant(this, ::Legends.Perk.SteelBrow);
-		::Legends.Perks.grant(this, ::Legends.Perk.Anticipation);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendWindReader);
 		::Legends.Perks.grant(this, ::Legends.Perk.Underdog);
 		::Legends.Perks.grant(this, ::Legends.Perk.Stalwart);
 		::Legends.Traits.grant(this, ::Legends.Trait.Loyal); //Should prevent charm

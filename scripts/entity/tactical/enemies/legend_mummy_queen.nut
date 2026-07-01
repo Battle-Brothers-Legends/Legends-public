@@ -51,7 +51,7 @@ this.legend_mummy_queen <- this.inherit("scripts/entity/tactical/legend_mummy", 
 		::Legends.Traits.grant(this, ::Legends.Trait.RacialVampire);
 		::Legends.Traits.grant(this, ::Legends.Trait.RacialAlp);
 		::Legends.Actives.grant(this, ::Legends.Active.Darkflight);
-		::Legends.Perks.grant(this, ::Legends.Perk.Anticipation);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendWindReader);
 		::Legends.Perks.grant(this, ::Legends.Perk.HeadHunter);
 		::Legends.Perks.grant(this, ::Legends.Perk.NineLives);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendBloodbath);

@@ -55,7 +55,7 @@ this.legend_manhunter <- this.inherit("scripts/entity/tactical/human", {
 		b.IsSpecializedInThrowing = true;
 
 		::Legends.Perks.grant(this, ::Legends.Perk.CripplingStrikes);
-		::Legends.Perks.grant(this, ::Legends.Perk.Anticipation);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendWindReader);
 		::Legends.Perks.grant(this, ::Legends.Perk.QuickHands);
 		::Legends.Perks.grant(this, ::Legends.Perk.Fearsome);
 		::Legends.Perks.grant(this, ::Legends.Perk.Rotation);

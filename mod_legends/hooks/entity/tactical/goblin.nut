@@ -2,6 +2,8 @@
 	local onInit = o.onInit;
 	o.onInit = function () {
 		onInit();
+		::Legends.Perks.remove(this, ::Legends.Perk.Anticipation);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendWindReader);
 	}
 
 	o.onDeath = function (_killer, _skill, _tile, _fatalityType) {

@@ -94,7 +94,7 @@ this.legend_alp_shadow <- this.inherit("scripts/entity/tactical/actor", {
 		{
 			::Legends.Perks.grant(this, ::Legends.Perk.Footwork);
 			::Legends.Perks.grant(this, ::Legends.Perk.Rotation);
-			::Legends.Perks.grant(this, ::Legends.Perk.Anticipation);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendWindReader);
 			::Legends.Perks.grant(this, ::Legends.Perk.Dodge);
 		}
 

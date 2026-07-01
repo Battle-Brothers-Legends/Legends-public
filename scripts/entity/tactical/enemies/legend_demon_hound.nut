@@ -599,7 +599,7 @@ this.legend_demon_hound <- this.inherit("scripts/entity/tactical/actor", {
 		::Legends.Traits.grant(this, ::Legends.Trait.RacialSkeleton);
 		::Legends.Actives.grant(this, ::Legends.Active.LegendDemonHoundBite);
 		::Legends.Perks.grant(this, ::Legends.Perk.Pathfinder);
-		::Legends.Perks.grant(this, ::Legends.Perk.Anticipation);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendWindReader);
 		::Legends.Perks.grant(this, ::Legends.Perk.Fearsome);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendPoisonImmunity);
 		 if (::Legends.isLegendaryDifficulty())
