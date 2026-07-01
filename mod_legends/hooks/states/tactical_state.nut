@@ -601,6 +601,31 @@
 		}
 
 		local loot = [];
+
+		local alive = this.Tactical.Entities.getAllInstancesAsArray();
+		foreach (actor in alive) {
+			if (!::Legends.S.isEntityNullOrDead(actor) && actor.getFaction() == this.Const.Faction.PlayerAnimals && (actor.getType() == this.Const.EntityType.ZombiePlayer || actor.getType() == this.Const.EntityType.Zombie)) {
+				foreach( item in items ) {
+					if (isArena && item.getLastEquippedByFaction() != 1) {
+						continue;
+					}
+
+					item.onCombatFinished();
+					if (!item.isChangeableInBattle() && item.isDroppedAsLoot()) {
+						if (item.getCondition() > 1 && item.getConditionMax() > 1 && item.getCondition() > item.getConditionMax() * 0.66 && this.Math.rand(1, 100) <= 66) {
+							local c = this.Math.minf(item.getCondition(), this.Math.rand(this.Math.maxf(10, item.getConditionMax() * 0.35), item.getConditionMax()));
+							item.setCondition(c);
+						}
+
+						item.removeFromContainer();
+						foreach (i in item.getLootLayers()) {
+							loot.push(i);
+						}
+					}
+				}
+			}
+		}
+
 		local size = this.Tactical.getMapSize();
 
 		for( local x = 0; x < size.X; x = ++x )
@@ -692,7 +717,6 @@
 							{
 								loot.push(i);
 							}
-
 						}
 					}
 				}
