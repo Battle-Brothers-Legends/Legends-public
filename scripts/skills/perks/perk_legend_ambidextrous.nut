@@ -3,9 +3,8 @@ this.perk_legend_ambidextrous <- this.inherit("scripts/skills/skill", {
 		offHandSkill = null,
 		HandToHand = null,
 		ApplicableItems = [
-			"shield.legend_named_parrying_dagger",
-			"shield.legend_parrying_dagger",
 			"shield.buckler",
+			"shield.named_buckler",
 			"shield.legend_mummy_shield"
 		],
 	},
