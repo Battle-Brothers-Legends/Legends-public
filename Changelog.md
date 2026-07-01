@@ -130,11 +130,15 @@
 - `Debilitate`
 
 **1h ancient swords**
-- `Slash`
-- `Gut` - replaces riposte
-> attacks repeatedly the body of the enemy depending on how many injuries they have
-- `Halfsword`
-- `Mordhau`
+- `Bash`
+- `Knock Out`
+- `Return Favor`
+
+**1h maces**
+- `Slash` is now `Flowing Slash`
+> will attack again for 50% damage on a miss with mastery
+- `Gash` - unchanged
+- `Debilitate`
 
 ### Blueprints
 - new `Sipar Shield` blueprint from 1 iron ingot

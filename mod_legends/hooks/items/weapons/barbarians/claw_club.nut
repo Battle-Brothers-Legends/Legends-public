@@ -13,5 +13,11 @@
 		this.m.IconLarge = "weapons/melee/wildmen_02" + v + ".png";
 		this.m.ArmamentIcon = "icon_wildmen_02" + v;
 	}
+	
+	local onEquip = o.onEquip;
+	o.onEquip = function () {
+		onEquip();
+		::Legends.Actives.grant(this, ::Legends.Active.ReturnFavor);
+	}
 
 });

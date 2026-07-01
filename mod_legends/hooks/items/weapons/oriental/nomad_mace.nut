@@ -13,5 +13,11 @@
 		this.m.IconLarge = "weapons/melee/wooden_nomad_mace_01" + v + ".png";
 		this.m.ArmamentIcon = "icon_nomad_mace_01" + v;
 	}
+	
+	local onEquip = o.onEquip;
+	o.onEquip = function () {
+		onEquip();
+		::Legends.Actives.grant(this, ::Legends.Active.ReturnFavor);
+	}
 
 });

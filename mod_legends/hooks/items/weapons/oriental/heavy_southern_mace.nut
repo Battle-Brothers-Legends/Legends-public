@@ -14,5 +14,11 @@
 		this.m.IconLarge = "weapons/melee/heavy_southern_mace_01" + v + ".png";
 		this.m.ArmamentIcon = "icon_heavy_southern_mace_01" + v;
 	}
+	
+	local onEquip = o.onEquip;
+	o.onEquip = function () {
+		onEquip();
+		::Legends.Actives.grant(this, ::Legends.Active.ReturnFavor);
+	}
 
 });
