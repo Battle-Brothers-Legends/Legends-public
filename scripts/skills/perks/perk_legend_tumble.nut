@@ -100,7 +100,7 @@ this.perk_legend_tumble <- this.inherit("scripts/skills/skill", {
 		}
 
 		if (!::Tactical.getNavigator().isTravelling(_user)) {
-			::Tactical.getNavigator().teleport(_user, _targetTile, this.onTeleportDone, tag, false, 2.0);
+			::Tactical.getNavigator().teleport(_user, _targetTile, this.onTeleportDone, tag, false, 2.0 * ::Const.Tactical.Settings.AnimationSpeed);
 		} else{
 			this.m.IsTumbling = false;
 		}
