@@ -367,7 +367,7 @@
 			}
 			else if (stashLocked == true)
 			{
-				if (_item.isChangeableInBattle() && _item.isAllowedInBag() && _entity.getItems().hasEmptySlot(this.Const.ItemSlot.Bag))
+				if (_item.isChangeableInBattle() && _item.isAllowedInBag() && _entity.getItems().hasEmptySlot(::Const.ItemSlot.Bag)  && ::Legends.S.isWarhoundAllowedIntoBags(_item, _entity))
 				{
 					tooltip.push({
 						id = 1,
@@ -390,7 +390,7 @@
 			}
 			else
 			{
-				if (_item.isChangeableInBattle() && _item.isAllowedInBag())
+				if (_item.isChangeableInBattle() && _item.isAllowedInBag() && _entity.getItems().hasEmptySlot(::Const.ItemSlot.Bag) && ::Legends.S.isWarhoundAllowedIntoBags(_item, _entity))
 				{
 					tooltip.push({
 						id = 1,
@@ -428,7 +428,7 @@
 					});
 				}
 
-				if (_item.isAllowedInBag())
+				if (_item.isAllowedInBag() && _entity.getItems().hasEmptySlot(::Const.ItemSlot.Bag)  && ::Legends.S.isWarhoundAllowedIntoBags(_item, _entity))
 				{
 					tooltip.push({
 						id = 2,
@@ -481,7 +481,7 @@
 				}
 			}
 
-			if (_item.isChangeableInBattle() == true && _item.isAllowedInBag() && ::Legends.S.isWarhoundAllowedIntoBags(_item, ::World.State.m.CharacterScreen.getSelectedActor()))
+			if (_item.isChangeableInBattle() == true && _item.isAllowedInBag() && _entity.getItems().hasEmptySlot(::Const.ItemSlot.Bag) && ::Legends.S.isWarhoundAllowedIntoBags(_item, _entity))
 			{
 				tooltip.push({
 					id = 2,
