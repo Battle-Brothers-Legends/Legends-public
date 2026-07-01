@@ -17,7 +17,7 @@
 	o.getTooltip = function() {
 		local ret = getTooltip();
 		if (this.m.IsBackstab) {
-			if (::Legends.S.isCharacterWeaponSpecialized(this.getContainer().getActor().getCurrentProperties, this.getItem())) {
+			if (::Legends.S.isCharacterWeaponSpecialized(this.getContainer().getActor().getCurrentProperties(), this.getItem())) {
 				ret.extend([{
 					id = 7,
 					type = "text",
@@ -33,7 +33,7 @@
 			}
 		}
 		if (this.m.IsQatalStab) {
-			if (::Legends.S.isCharacterWeaponSpecialized(this.getContainer().getActor().getCurrentProperties, this.getItem())) {
+			if (::Legends.S.isCharacterWeaponSpecialized(this.getContainer().getActor().getCurrentProperties(), this.getItem())) {
 				ret.push({
 					id = 7,
 					type = "text",
