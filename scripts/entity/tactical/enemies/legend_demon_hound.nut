@@ -71,10 +71,7 @@ this.legend_demon_hound <- this.inherit("scripts/entity/tactical/actor", {
 
 	function teleport( _tag )
 	{
-		if (this == null || !this.isAlive() || this.isDying())
-			return;
-
-		if (this.getCurrentProperties().IsRooted || this.getCurrentProperties().IsStunned)
+		if (::Legends.S.isEntityNullOrDead(this) || ::Legends.S.isEntityMovementDisabled(this))
 			return;
 
 		if (this.actor.m.CurrentMovementType == this.Const.Tactical.MovementType.Involuntary) {

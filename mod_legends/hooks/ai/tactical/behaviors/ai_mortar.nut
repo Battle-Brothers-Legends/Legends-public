@@ -45,7 +45,7 @@
 				{
 					numTargets = numTargets + 10;
 
-					if (e.getCurrentProperties().IsStunned || e.getCurrentProperties().IsRooted || tile.hasZoneOfControlOtherThan(e.getAlliedFactions()))
+					if (::Legends.S.isEntityMovementDisabled(e) || tile.hasZoneOfControlOtherThan(e.getAlliedFactions()))
 					{
 						numTargets = numTargets + 5;
 					}
@@ -80,7 +80,7 @@
 						{
 							numTargets = numTargets + 10;
 
-							if (e.getCurrentProperties().IsStunned || e.getCurrentProperties().IsRooted || tile.hasZoneOfControlOtherThan(e.getAlliedFactions()))
+							if (::Legends.S.isEntityMovementDisabled(e) || tile.hasZoneOfControlOtherThan(e.getAlliedFactions()))
 							{
 								numTargets = numTargets + 5;
 							}

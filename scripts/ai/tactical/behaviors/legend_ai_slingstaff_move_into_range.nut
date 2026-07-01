@@ -32,7 +32,7 @@ this.legend_ai_slingstaff_move_into_range <- this.inherit("scripts/ai/tactical/b
 			return this.Const.AI.Behavior.Score.Zero;
 		}
 
-		if (_entity.getCurrentProperties().IsStunned || _entity.getCurrentProperties().IsRooted) {
+		if (::Legends.S.isEntityMovementDisabled(_entity)) {
 			return this.Const.AI.Behavior.Score.Zero;
 		}
 

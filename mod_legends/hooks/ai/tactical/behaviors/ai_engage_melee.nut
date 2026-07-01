@@ -1190,7 +1190,7 @@
 						continue;
 					}
 
-					if (ally.getMoraleState() == this.Const.MoraleState.Fleeing || ally.getCurrentProperties().IsRooted || ally.getCurrentProperties().IsStunned)
+					if (ally.getMoraleState() == this.Const.MoraleState.Fleeing || ::Legends.S.isEntityMovementDisabled(ally))
 					{
 						continue;
 					}
