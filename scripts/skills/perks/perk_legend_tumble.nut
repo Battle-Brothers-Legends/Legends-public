@@ -1,59 +1,68 @@
 this.perk_legend_tumble <- this.inherit("scripts/skills/skill", {
 	m = {
-		CanTeleport = true
+		CanTeleport = true,
+		IsTumbling = false,
+		LastSkillCounter = -1,
+		SequenceHit = false
 	},
-	function create()
-	{
+
+	function create() {
 		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendTumble);
-		this.m.Order = this.Const.SkillOrder.Last;
+		this.m.Order = ::Const.SkillOrder.Last;
 	}
 
-	function onBeingAttacked( _attacker, _skill, _properties )
-	{
-		if (this.findFreeTile() == null)
-		{
+	function onBeingAttacked(_attacker, _skill, _properties) {
+		if (::Const.SkillCounter != this.m.LastSkillCounter) {
+            this.m.LastSkillCounter = ::Const.SkillCounter;
+            this.m.SequenceHit = false;
+        }
+
+		local actor = this.getContainer().getActor();
+		if (this.m.IsTumbling || this.m.SequenceHit || ::Legends.S.isEntityNullOrDead(actor) || ::Legends.S.isEntityMovementDisabled(actor) || this.findFreeTile() == null) {
 			this.m.CanTeleport = false;
 			return;
 		}
 
-		if (this.getContainer().getActor().getCurrentProperties().IsStunned)
-			return;
-
-		if (this.getContainer().getActor().getCurrentProperties().IsRooted)
-			return;
-
-		if (_skill.isRanged())
+		if (_skill.isRanged()) {
 			_properties.RerollDefenseChance += _properties.MeleeDefense;
-		else
+		} else {
 			_properties.RerollDefenseChance += _properties.RangedDefense;
+		}
 		this.m.CanTeleport = true;
 	}
 
-	function findFreeTile()
-	{
-		local actor = this.getContainer().getActor();
+	function onBeforeDamageReceived(_attacker, _skill, _hitInfo, _properties) {
+        if (::Const.SkillCounter == this.m.LastSkillCounter) {
+            this.m.SequenceHit = true;
+        }
+    }
+
+	function findFreeTile() {
 		local myTile = this.getContainer().getActor().getTile();
 		local freeTiles = [];
-		for( local i = 0; i < 6; i++ )
-		{
-			if (myTile.hasNextTile(i))
-			{
+		for (local i = 0; i < 6; i++) {
+			if (myTile.hasNextTile(i)) {
 				local nextTile = myTile.getNextTile(i);
 
-				if (!nextTile.IsOccupiedByActor && this.Math.abs(nextTile.Level - myTile.Level) <= 1)
-				{
-					freeTiles.push(nextTile)
+				if (nextTile.IsEmpty && ::Math.abs(nextTile.Level - myTile.Level) <= 1) {
+					freeTiles.push(nextTile);
 				}
 			}
 		}
-		if (freeTiles.len() > 0)
-			return freeTiles[this.Math.rand(0, freeTiles.len() - 1)];
+		if (freeTiles.len() > 0) {
+			return freeTiles[::Math.rand(0, freeTiles.len() - 1)];
+		}
 
 		return null; // tile or null
 	}
 
-	function teleportMe( _user, _targetTile )
-	{
+	function teleportMe(_user, _targetTile) {		
+		if (::Legends.S.isEntityNullOrDead(_user)) {
+			return;
+		}
+		
+		this.m.IsTumbling = true;
+
 		local tag = {
 			Skill = this,
 			User = _user,
@@ -62,8 +71,14 @@ this.perk_legend_tumble <- this.inherit("scripts/skills/skill", {
 			OnRepelled = this.onRepelled
 		};
 
-		if (tag.OldTile.IsVisibleForPlayer || _targetTile.IsVisibleForPlayer)
-		{
+		if (_user.m.CurrentMovementType == ::Const.Tactical.MovementType.Involuntary){
+			::Time.scheduleEvent(::TimeUnit.Virtual, 50, function ( _tag ) {
+                _tag.Skill.teleportMe(_tag.User, _tag.TargetTile);
+            }.bindenv(this), tag);
+			return;
+		}
+
+		if (tag.OldTile.IsVisibleForPlayer || _targetTile.IsVisibleForPlayer) {
 			local myPos = _user.getPos();
 			local targetPos = _targetTile.Pos;
 			local distance = tag.OldTile.getDistanceTo(_targetTile);
@@ -71,172 +86,136 @@ this.perk_legend_tumble <- this.inherit("scripts/skills/skill", {
 			local Dy = (targetPos.Y - myPos.Y) / distance;
 
 			// Add an incremental loop to find the tile
-			for( local i = 0; i < distance; i++ )
-			{
+			for (local i = 0; i < distance; i++) {
 				local x = myPos.X + Dx * i;
 				local y = myPos.Y + Dy * i;
-				local tile = this.Tactical.worldToTile(this.createVec(x, y));
+				local tile = ::Tactical.worldToTile(this.createVec(x, y));
 
-				if (this.Tactical.isValidTile(tile.X, tile.Y) && this.Const.Tactical.DustParticles.len() != 0)
-				{
-					for( local j = 0; j < this.Const.Tactical.DustParticles.len(); j++ )
-					{
-						this.Tactical.spawnParticleEffect(false, this.Const.Tactical.DustParticles[j].Brushes, this.Tactical.getTile(tile), this.Const.Tactical.DustParticles[j].Delay, this.Const.Tactical.DustParticles[j].Quantity * 0.5, this.Const.Tactical.DustParticles[j].LifeTimeQuantity * 0.5, this.Const.Tactical.DustParticles[j].SpawnRate, this.Const.Tactical.DustParticles[j].Stages);
+				if (::Tactical.isValidTile(tile.X, tile.Y) && ::Const.Tactical.DustParticles.len() != 0) {
+					for (local j = 0; j < ::Const.Tactical.DustParticles.len(); j++) {
+						::Tactical.spawnParticleEffect(false, ::Const.Tactical.DustParticles[j].Brushes, ::Tactical.getTile(tile), ::Const.Tactical.DustParticles[j].Delay, ::Const.Tactical.DustParticles[j].Quantity * 0.5, ::Const.Tactical.DustParticles[j].LifeTimeQuantity * 0.5, ::Const.Tactical.DustParticles[j].SpawnRate, ::Const.Tactical.DustParticles[j].Stages);
 					}
 				}
 			}
 		}
 
-		this.Tactical.getNavigator().teleport(_user, _targetTile, this.onTeleportDone, tag, false, 2.0);
-		return true;
+		if (!::Tactical.getNavigator().isTravelling(_user)) {
+			::Tactical.getNavigator().teleport(_user, _targetTile, this.onTeleportDone, tag, false, 2.0);
+		} else{
+			this.m.IsTumbling = false;
+		}
 	}
 
-	function onRepelled( _tag )
-	{
-		this.Tactical.getNavigator().teleport(_tag.User, _tag.TargetTile, null, null, false);
+	function onRepelled(_tag) {
+		if (!::Legends.S.isEntityNullOrDead(_tag.User) && !::Tactical.getNavigator().isTravelling(_tag.User))
+			::Tactical.getNavigator().teleport(_tag.User, _tag.TargetTile, null, null, false);
+		_tag.Skill.m.IsTumbling = false;
 	}
 
-	function onTeleportDone( _entity, _tag )
-	{
+	function onTeleportDone(_entity, _tag) {
+		_tag.Skill.m.IsTumbling = false;
 		local myTile = _entity.getTile();
 		local potentialVictims = [];
-		local betterThanNothing;
+		local betterThanNothing = null;
 		local ZOC = [];
 		local dirToTarget = _tag.OldTile.getDirectionTo(myTile);
 
-		for( local i = 0; i != 6; i = i )
-		{
-			if (!myTile.hasNextTile(i))
-			{
-			}
-			else
-			{
-				local tile = myTile.getNextTile(i);
+		for( local i = 0; i < 6; i++ ) {
+            if (!myTile.hasNextTile(i)) continue;
 
-				if (!tile.IsOccupiedByActor)
-				{
-				}
-				else
-				{
-					local actor = tile.getEntity();
+            local tile = myTile.getNextTile(i);
+            if (!tile.IsOccupiedByActor) continue;
 
-					if (actor.isAlliedWith(_entity) || actor.getCurrentProperties().IsStunned)
-					{
-					}
-					else
-					{
-						ZOC.push(actor);
+            local actor = tile.getEntity();
+            if (actor.isAlliedWith(_entity) || actor.getCurrentProperties().IsStunned) continue;
 
-						if (i != dirToTarget && i + 1 != dirToTarget && i - 1 != dirToTarget)
-						{
-						}
-						else
-						{
-							if (betterThanNothing == null)
-							{
-								betterThanNothing = actor;
-							}
+            ZOC.push(actor);
 
-							if (actor.getCurrentProperties().IsImmuneToStun)
-							{
-							}
-							else
-							{
-								potentialVictims.push(actor);
-							}
-						}
-					}
-				}
-			}
+            local dirLeft = (dirToTarget + 5) % 6;
+            local dirRight = (dirToTarget + 1) % 6;
 
-			i = ++i;
-		}
+            if (i == dirToTarget || i == dirLeft || i == dirRight) {
+                if (betterThanNothing == null) {
+                    betterThanNothing = actor;
+                }
+
+                if (!actor.getCurrentProperties().IsImmuneToStun) {
+                    potentialVictims.push(actor);
+                }
+            }
+        }
 
 		local zoc_fail = false;
 
-		foreach( actor in ZOC )
-		{
-			if (actor.onMovementInZoneOfControl(_entity, true))
-			{
-				if (actor.onAttackOfOpportunity(_entity, true))
-				{
+		foreach (actor in ZOC) {
+			if (actor.onMovementInZoneOfControl(_entity, true)) {
+				if (actor.onAttackOfOpportunity(_entity, true)) {
 					zoc_fail = true;
 					local dir = myTile.getDirectionTo(_tag.OldTile);
 
-					if (myTile.hasNextTile(dir))
-					{
+					if (myTile.hasNextTile(dir)) {
 						local tile = myTile.getNextTile(dir);
 
-						if (tile.IsEmpty && this.Math.abs(tile.Level - myTile.Level) <= 1 && tile.getDistanceTo(actor.getTile()) > 1)
-						{
-							if (_entity.isAlive() && !_entity.isDying())
-							{
+						if (tile.IsEmpty && ::Math.abs(tile.Level - myTile.Level) <= 1 && tile.getDistanceTo(actor.getTile()) > 1) {
+							if (!::Legends.S.isEntityNullOrDead(_entity)) {
 								_tag.TargetTile = tile;
-								this.Time.scheduleEvent(this.TimeUnit.Virtual, 50, _tag.OnRepelled, _tag);
+								_tag.Skill.m.IsTumbling = true;
+								::Time.scheduleEvent(::TimeUnit.Virtual, 50, _tag.OnRepelled, _tag);
 							}
 
-							if (_tag.OldTile.IsVisibleForPlayer || myTile.IsVisibleForPlayer)
-							{
-								this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(_entity) + " tumbles and is repelled");
+							if (_tag.OldTile.IsVisibleForPlayer || myTile.IsVisibleForPlayer) {
+								::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(_entity) + " tumbles and is repelled");
 							}
 
 							return;
 						}
 					}
 
-					for( local i = 0; i != 6; i = i )
-					{
-						if (!myTile.hasNextTile(i))
-						{
-						}
-						else
-						{
-							local tile = myTile.getNextTile(i);
+					for( local i = 0; i < 6; i++ ) {
+                        if (!myTile.hasNextTile(i)) continue;
+                        local tile = myTile.getNextTile(i);
 
-							if (tile.IsEmpty && this.Math.abs(tile.Level - myTile.Level) <= 1)
-							{
-								if (_entity.isAlive() && !_entity.isDying())
-								{
-									_tag.TargetTile = tile;
-									this.Time.scheduleEvent(this.TimeUnit.Virtual, 50, _tag.OnRepelled, _tag);
-								}
+                        if (tile.IsEmpty && ::Math.abs(tile.Level - myTile.Level) <= 1) {
+                            if (!::Legends.S.isEntityNullOrDead(_entity)) {
+                                _tag.TargetTile = tile;
+								_tag.Skill.m.IsTumbling = true;
+                                ::Time.scheduleEvent(::TimeUnit.Virtual, 50, _tag.OnRepelled, _tag);
+                            }
 
-								if (_tag.OldTile.IsVisibleForPlayer || myTile.IsVisibleForPlayer)
-								{
-									this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(_entity) + " tumbles and is repelled");
-								}
-
-								return;
-							}
-						}
-
-						i = ++i;
-					}
+                            if (_tag.OldTile.IsVisibleForPlayer || myTile.IsVisibleForPlayer) {
+                                ::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(_entity) + " tumbles and is repelled");
+                            }
+                            return;
+                        }
+                    }
 				}
 			}
 		}
 
-		if (potentialVictims.len() == 0 && betterThanNothing != null)
-		{
+		if (potentialVictims.len() == 0 && betterThanNothing != null) {
 			potentialVictims.push(betterThanNothing);
 		}
 
-		if (_tag.OldTile.IsVisibleForPlayer || myTile.IsVisibleForPlayer)
-		{
-			this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(_entity) + " tumbles away from danger");
+		if (_tag.OldTile.IsVisibleForPlayer || myTile.IsVisibleForPlayer) {
+			::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(_entity) + " tumbles away from danger");
 		}
 	}
 
-	function onMissed( _attacker, _skill )
-	{
-		if (!this.m.CanTeleport)
+	function onMissed(_attacker, _skill) {
+		if (!this.m.CanTeleport || this.m.IsTumbling) {
 			return;
+		}
+
 		local actor = this.getContainer().getActor();
-
-		if (this.findFreeTile() == null || actor == null || actor.getCurrentProperties().IsStunned || actor.getCurrentProperties().IsRooted)
+		if (::Legends.S.isEntityNullOrDead(actor) || ::Legends.S.isEntityMovementDisabled(actor)) {
 			return;
+		}
 
-		this.teleportMe(actor,this. findFreeTile());
+		local targetTile = this.findFreeTile();
+		if (targetTile == null) {
+			return;
+		}
+
+		this.teleportMe(actor, targetTile);
 	}
 });
-
