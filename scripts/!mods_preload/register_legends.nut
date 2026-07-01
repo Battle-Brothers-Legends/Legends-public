@@ -1,6 +1,6 @@
 ::Legends <- {
 	ID = "mod_legends",
-	Version = "19.4.6",
+	Version = "19.4.7",
 	Name = "Legends Mod",
 	BuildName = "Bandits & Greenskins",
 	IsStartingNewCampaign = false
