@@ -116,7 +116,7 @@ this.legend_throw_knife_skill <- this.inherit("scripts/skills/skill", {
 
 	function onUse( _user, _targetTile ) {
 		local target = _targetTile.getEntity();
-		local success = this.attackEntity(_user, _targetTile.getEntity());
+		local success = this.attackEntity(_user, target);
 		this.consumeAmmo();
 		if (!_user.isHiddenToPlayer() || _targetTile.IsVisibleForPlayer) {
 			this.m.IsDoingAttackMove = false;
@@ -125,14 +125,12 @@ this.legend_throw_knife_skill <- this.inherit("scripts/skills/skill", {
 			if (!this.canDoubleGrip())
 				return success;
 
-			if (::Legends.S.isEntityNullOrDead(target))
-				return success;
-
 			::Time.scheduleEvent(::TimeUnit.Virtual, 150, function ( _skill ) {
-
-				success = this.attackEntity(_user, target) || success;
-				_skill.m.IsDoingAttackMove = true;
-				_skill.getContainer().setBusy(false);
+				if (!::Legends.S.isEntityNullOrDead(target) || ::Legends.Perks.get(target, ::Legends.Perk.LegendTumble).m.IsTumbling) {
+					success = _skill.attackEntity(_user, target) || success;
+					_skill.m.IsDoingAttackMove = true;
+					_skill.getContainer().setBusy(false);
+				}
 			}.bindenv(this), this);		
 		}
 		else if (!::Legends.S.isEntityNullOrDead(target)) {
