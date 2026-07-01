@@ -52,14 +52,15 @@ if (!("Perks" in ::Const))
 	},
 	Tree = [
 		[
-			::Legends.Perk.Pathfinder
+			::Legends.Perk.Pathfinder,
+			::Legends.Perk.Anticipation
 		],
-		[],
-		[],
 		[],
 		[
-			::Legends.Perk.LegendTacticalManeuvers 
+			::Legends.Perk.LegendTacticalManeuvers
 		],
+		[],
+		[],
 		[],
 		[
 			::Legends.Perk.LegendInTheZone

@@ -56,6 +56,7 @@
 - `Wind Reader` - reduces hitchance penalty with tile traveled by 2%, gains the vanilla `Anticipation` effect, moved to tier 3
 - `Night Raider` - will now also appear in the Devious trait tree
 - `Prepared` - crossbows and firearms in your bags will be loaded at combat start
+- `Anticipation` - reduce damage taken by 1% for each point of Ranged Defense you have for the first few hits you take in combat
 
 ## Items
 

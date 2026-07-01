@@ -1,67 +1,42 @@
 ::mods_hookExactClass("skills/perks/perk_anticipation", function(o) {
-	o.m.Skills <- [
-		::Legends.Active.ShootBolt,
-		::Legends.Active.ShootStake,
-		::Legends.Active.QuickShot,
-		::Legends.Active.ThrowJavelin,
-		::Legends.Active.ThrowSpear,
-		::Legends.Active.ThrowBalls,
-		::Legends.Active.ThrowAxe,
-		::Legends.Active.SlingStone,
-		::Legends.Active.LegendShootStone,
-		::Legends.Active.LegendSlingHeavyStone,
-		::Legends.Active.SlingStone,
-	];
+	o.m.Stacks <- 1;
 
-	o.onMissed <- function ( _attacker, _skill )
-	{
-		if (_skill.isGarbage())
-			return;
-		if (!_skill.m.IsWeaponSkill)
-			return;
-		if (!_skill.isUsingHitchance())
-			return;
-		if (!_skill.isRanged())
-			return;
-		local actor = this.getContainer().getActor();
-
-		if (::Legends.S.skillEntityAliveCheck(_attacker))
-			return;
-
-		if (::Legends.S.skillEntityAliveCheck(actor))
-			return;
-
-		local skill = null;
-		foreach (s in this.m.Skills)
-		{
-			if (::Legends.Actives.has(this, s))
-			{
-				skill = ::Legends.Actives.get(this, s);
-				break;
-			}
-		}
-
-		if (skill == null)
-			return;
-		local chance = actor.getCurrentProperties().getRangedDefense();
-		local attackerTile = _attacker.getTile();
-		local myTile = actor.getTile();
-
-		if (skill.isUsable() && skill.onVerifyTarget(myTile, attackerTile) && skill.isUsableOn(attackerTile, myTile) && this.Math.rand(1, 100) < chance)
-		{
-			local info = {
-				User = actor,
-				Skill = skill,
-				TargetTile = _attacker.getTile()
-			};
-			local delay = this.Math.max(this.Const.Combat.RiposteDelay, skill.m.Delay);
-			this.Time.scheduleEvent(this.TimeUnit.Virtual, delay, this.onCounterFire.bindenv(this), info);
-		}
+	local create = o.create;
+	o.create = function () {
+		create();
+		this.m.IsHidden = true;
+		this.m.Type = this.Const.SkillType.Perk | this.Const.SkillType.StatusEffect; 
 	}
 
-	o.onCounterFire <- function(_info)
-	{
-		::Tactical.EventLog.logEx(this.Const.UI.getColorizedEntityName(_info.User) + " has dodged the attack and performing a counter attack.");
-		return skill.onUse(_info.User, _info.TargetTile);
+	o.getDescription <- function () {
+		local reduction = this.Math.min(1.0, 1.0 - this.Math.max(0, _properties.RangedDefense) * 0.01);
+		return "Reduce damage taken by [color=%negative%]" + reduction + "%[/color] for the next [color=%positive%]" + this.m.Stacks + "%[/color] hits you take in combat."
+	}
+
+	o.onUpdate <- function () {
+		if (!::Tactical.isActive())
+			this.m.Stacks = 0;
+
+		if (this.m.Stacks == 0) {
+			this.m.IsHidden = true;
+			return;
+		}
+		this.m.IsHidden = false;
+		_properties.DamageReceivedTotalMult *= this.Math.min(1.0, 1.0 - this.Math.max(0, _properties.RangedDefense) * 0.01);
+	}
+
+	o.onAfterDamageReceived <- function () {
+		this.m.Stacks -= 1;
+	}
+
+	o.onBeingAttacked = function ( _attacker, _skill, _properties ) {
+	}
+
+	o.onCombatStarted <- function () {
+		this.m.Stacks = this.Math.max(1, this.Math.floor(this.getContainer().getActor().getCurrentProperties().Initiative / 100));
+	}
+
+	o.onCombatFinished <- function () {
+		this.m.Stacks = 0;
 	}
 });

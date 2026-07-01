@@ -521,14 +521,14 @@ Mother always said you had a hard head.
 ";
 ::Const.Perks.PerkDefObjects[::Legends.Perk.SteelBrow].Tooltip = ::Const.Strings.PerkDescription.SteelBrow;
 ::Const.Strings.PerkDescription.Anticipation <- @"
-By watching your opponent's aim, you have more time to react.
+Who saw that one com-, uh who saw where that came from?
 
 [color=%passive%][u]Passive:[/u][/color]
-• When being attacked with ranged weapons, gain [color=%positive%]1 + 10% [/color] of your base Ranged Defense as additional Ranged Defense per tile that the attacker is away.
+• Reduce damage taken by [color=%positive%]1%[/color] for each point of Ranged Defense you have for the first few hits you take in combat.
 
-• Always gain at least [color=%positive%]+10[/color] to Ranged Defense when attacked from range.
+• The amount of anticipated attacks is determined by your Initiative at the start of combat, gaining [color=%positive%]1[/color] stack per 100 points of Initiative.
 
-• If you're armed with a ranged weapon and a ranged attack misses you, gain a chance to fire back at your attacker. The chance is based on Ranged Defense.
+• You will always start with at least 1 stack.
 ";
 ::Const.Perks.PerkDefObjects[::Legends.Perk.Anticipation].Tooltip = ::Const.Strings.PerkDescription.Anticipation;
 ::Const.Strings.PerkDescription.HoldOut <- @"
