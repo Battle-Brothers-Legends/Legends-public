@@ -69,12 +69,12 @@
 			});
 			_list.push({
 				R = 95,
-				P = 3.0,
+				P = 2.0,
 				S = "misc/legend_masterwork_metal"
 			});
 			_list.push({
 				R = 95,
-				P = 3.0,
+				P = 2.0,
 				S = "misc/legend_masterwork_metal"
 			});
 		}
@@ -87,12 +87,12 @@
 			});
 			_list.push({
 				R = 95,
-				P = 3.0,
+				P = 2.0,
 				S = "misc/legend_masterwork_metal"
 			});
 			_list.push({
 				R = 95,
-				P = 3.0,
+				P = 2.0,
 				S = "misc/legend_masterwork_metal"
 			});
 		}
