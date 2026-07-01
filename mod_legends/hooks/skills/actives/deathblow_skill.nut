@@ -70,7 +70,7 @@
 			local targetStatus = _targetEntity.getSkills();
 			local bonus = false;
 
-			if (_targetEntity.getCurrentProperties().IsRooted || _targetEntity.getCurrentProperties().IsStunned)
+			if (::Legends.S.isEntityMovementDisabled(_targetEntity))
 				bonus = true;
 
 			foreach ( skill in this.m.ApplicableSkills) {

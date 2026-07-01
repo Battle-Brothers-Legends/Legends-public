@@ -105,7 +105,7 @@
 					target_score = target_score + this.Const.AI.Behavior.MiasmaAlmostDeadBonus;
 				}
 
-				if (target.getCurrentProperties().IsStunned || target.getCurrentProperties().IsRooted)
+				if (::Legends.S.isEntityMovementDisabled(target))
 				{
 					target_score = target_score + this.Const.AI.Behavior.MiasmaStunnedBonus;
 				}
@@ -117,7 +117,7 @@
 					target_score = target_score * this.Const.AI.Behavior.MiasmaOneTurnLeftMult;
 				}
 
-				if (!target.getCurrentProperties().IsStunned && !target.getCurrentProperties().IsRooted && !target.getTile().hasZoneOfControlOtherThan(target.getAlliedFactions()) && !target.isAbleToWait())
+				if (!::Legends.S.isEntityMovementDisabled(target) && !target.getTile().hasZoneOfControlOtherThan(target.getAlliedFactions()) && !target.isAbleToWait())
 				{
 					target_score = target_score * this.Const.AI.Behavior.MiasmaVSWaitMult;
 				}

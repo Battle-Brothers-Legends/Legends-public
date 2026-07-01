@@ -22,10 +22,7 @@
 		if (::Legends.S.isEntityNullOrDead(target))
 			return false;
 
-		if (target.getCurrentProperties().IsStunned)
-			return false;
-
-		if (target.getCurrentProperties().IsRooted)
+		if (::Legends.S.isEntityMovementDisabled(target))
 			return false;
 
 		if (!target.getCurrentProperties().IsMovable)

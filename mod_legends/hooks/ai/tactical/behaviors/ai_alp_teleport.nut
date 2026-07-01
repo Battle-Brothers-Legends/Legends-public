@@ -6,13 +6,7 @@
 		this.m.TargetTile = null;
 		this.m.SelectedSkill = null;
 
-		if (_entity.getCurrentProperties().IsRooted)
-		{
-			return this.Const.AI.Behavior.Score.Zero;
-		}
-
-		if (_entity.getCurrentProperties().IsStunned)
-		{
+		if (::Legends.S.isEntityMovementDisabled(_entity)) {
 			return this.Const.AI.Behavior.Score.Zero;
 		}
 

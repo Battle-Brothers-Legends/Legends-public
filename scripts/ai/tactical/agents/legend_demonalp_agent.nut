@@ -133,10 +133,7 @@ this.legend_demonalp_agent <- this.inherit("scripts/ai/tactical/agent", {
 				continue;
 
 			if ( // must have combat capability
-				t.Actor.getMoraleState() == ::Const.MoraleState.Fleeing
-				|| t.Actor.getCurrentProperties().IsStunned
-				|| t.Actor.getCurrentProperties().IsRooted
-				|| t.Actor.isNonCombatant()
+				t.Actor.getMoraleState() == ::Const.MoraleState.Fleeing || ::Legends.S.isEntityMovementDisabled(t.Actor) || t.Actor.isNonCombatant()
 			)
 				continue;
 

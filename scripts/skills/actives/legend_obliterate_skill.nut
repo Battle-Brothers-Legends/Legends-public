@@ -88,7 +88,7 @@ this.legend_obliterate_skill <- this.inherit("scripts/skills/skill", {
 
 	function adjustHitchance (_targetEntity, _properties) {
 		local mod = 0;
-		if (_targetEntity != null && (_targetEntity.getCurrentProperties().IsRooted || ::Legends.Effects.has(_targetEntity, ::Legends.Effect.Stunned))) {
+		if (_targetEntity != null && ::Legends.S.isEntityMovementDisabled(_targetEntity)) {
 				mod += 50;
 			}
 		if (_properties.IsSpecializedInHammers) {

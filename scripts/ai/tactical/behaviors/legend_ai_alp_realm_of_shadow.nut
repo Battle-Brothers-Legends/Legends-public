@@ -165,18 +165,15 @@ this.legend_ai_alp_realm_of_shadow <- this.inherit("scripts/ai/tactical/behavior
 				local target_score = _skill.getMaxRange() - _myTile.getDistanceTo(target.getTile());
 				target_score += this.Const.AI.Behavior.MiasmaZOCBonus * target.getTile().getZoneOfControlCountOtherThan(target.getAlliedFactions());
 
-				if (target.getCurrentProperties().IsStunned)
+				if (::Legends.S.isEntityMovementDisabled(target))
 					target_score -= this.Const.AI.Behavior.MiasmaStunnedBonus;
-
-				if (target.getCurrentProperties().IsRooted)
-					target_score += this.Const.AI.Behavior.MiasmaStunnedBonus;
 
 				target_score *= target.getCurrentProperties().TargetAttractionMult;
 
 				if (targetTile.Properties.Effect != null && targetTile.Properties.Effect.Type == "shadows" && targetTile.Properties.Effect.Timeout - this.Time.getRound() == 1)
 					target_score *= this.Const.AI.Behavior.MiasmaOneTurnLeftMult;
 
-				if (!target.getCurrentProperties().IsStunned && !target.getCurrentProperties().IsRooted && !target.getTile().hasZoneOfControlOtherThan(target.getAlliedFactions()) && !target.isAbleToWait())
+				if (!::Legends.S.isEntityMovementDisabled(target) && !target.getTile().hasZoneOfControlOtherThan(target.getAlliedFactions()) && !target.isAbleToWait())
 					target_score *= this.Const.AI.Behavior.MiasmaVSWaitMult;
 
 				score += target_score;
