@@ -1611,9 +1611,8 @@
 		bodyPartDamageMult = bodyPartDamageMult * _info.Properties.DamageAgainstMult[bodyPart];
 		local damageMult = this.m.IsRanged ? _info.Properties.RangedDamageMult : _info.Properties.MeleeDamageMult;
 		damageMult = damageMult * _info.Properties.DamageTotalMult;
-		local damageRegular = this.Math.rand(_info.Properties.DamageRegularMin, _info.Properties.DamageRegularMax) * _info.Properties.DamageRegularMult;
-		local damageArmor = this.Math.rand(_info.Properties.DamageRegularMin, _info.Properties.DamageRegularMax) * _info.Properties.DamageArmorMult;
-		damageRegular = this.Math.max(0, damageRegular + _info.DistanceToTarget * _info.Properties.DamageAdditionalWithEachTile);
+		local damageRegular = (this.Math.rand(_info.Properties.DamageRegularMin, _info.Properties.DamageRegularMax) + _info.DistanceToTarget * _info.Properties.DamageAdditionalWithEachTile) * _info.Properties.DamageRegularMult;
+		local damageArmor = (this.Math.rand(_info.Properties.DamageRegularMin, _info.Properties.DamageRegularMax) + _info.DistanceToTarget * _info.Properties.DamageAdditionalWithEachTile) * _info.Properties.DamageArmorMult;
 		damageArmor = this.Math.max(0, damageArmor + _info.DistanceToTarget * _info.Properties.DamageAdditionalWithEachTile);
 		local damageDirect = this.Math.minf(1.0, _info.Properties.DamageDirectMult * (this.m.DirectDamageMult + _info.Properties.DamageDirectAdd + (this.m.IsRanged ? _info.Properties.DamageDirectRangedAdd : _info.Properties.DamageDirectMeleeAdd)));
 		local injuries;
