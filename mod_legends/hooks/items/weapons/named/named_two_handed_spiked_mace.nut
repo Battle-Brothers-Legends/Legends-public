@@ -12,7 +12,7 @@
 				id = 12,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "[color=%positive%]+" + this.m.EffectChanceOrBonus + "%[/color] Stagger Chance" + ::Legends.Weapons.Named.getRangeOfSpecialEffect(this)
+				text = "[color=%positive%]+" + this.m.EffectChanceOrBonus + "%[/color] Stagger Chance" + ::Legends.Items.Named.getRangeOfSpecialEffect(this)
 			});
 		}
 		return result;

@@ -58,7 +58,7 @@ this.legend_craftable_kraken_shield <- this.inherit("scripts/items/shields/named
 			this.m.BaseProperties.RegularDamageMax <- this.m.RegularDamageMax;
 		}
 
-		local ranges = ::Legends.Weapons.Named.randomizeRanges;
+		local ranges = ::Legends.Items.Named.randomizeRanges;
 
 		local available = [];
 		available.push(function (_i) {

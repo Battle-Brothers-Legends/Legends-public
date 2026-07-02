@@ -61,13 +61,13 @@ this.legend_glove_item <- this.inherit("scripts/items/accessory/accessory", {
 			{
 				id = 4,
 				type = "text",
-				icon = "ui/icons/damage_dealt.png",
+				icon = "ui/icons/regular_damage.png",
 				text = "Deal [color=%damage%]+" + this.m.RegularDamage + "-" + this.m.RegularDamageMax + "[/color] more damage with Hand to Hand"
 			},
 			{
 				id = 5,
 				type = "text",
-				icon = "ui/icons/damage_dealt.png",
+				icon = "ui/icons/regular_damage.png",
 				text = "Deal [color=%damage%]+" + this.m.ChokeMin + "-" + this.m.ChokeMax + "[/color] more damage with Choke"
 			}
 		]);
@@ -75,7 +75,7 @@ this.legend_glove_item <- this.inherit("scripts/items/accessory/accessory", {
 		if (this.m.ArmorDamageMult > 0.0)
 		{
 			result.push({
-				id = 6,
+				id = 5,
 				type = "text",
 				icon = "ui/icons/armor_damage.png",
 				text = "[color=#400080]Hand to Hand[/color] is [color=%damage%]" + this.Math.floor((this.m.ArmorDamageMult + 0.5) * 100) + "%[/color] effective against armor"
@@ -85,7 +85,7 @@ this.legend_glove_item <- this.inherit("scripts/items/accessory/accessory", {
 		if (this.m.DirectDamageMult > 0.0)
 		{
 			result.push({
-				id = 6,
+				id = 64,
 				type = "text",
 				icon = "ui/icons/direct_damage.png",
 				text = "[color=#400080]Hand to Hand[/color] has [color=%damage%]" + this.Math.floor((this.m.DirectDamageMult + 0.1) * 100) + "%[/color] armor ignore"

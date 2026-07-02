@@ -29,12 +29,12 @@
 				if (!tooltip.rawin("icon"))
 					continue;
 
-				if (!::Legends.Weapons.Named.HighlightNamedRoll[k].isRightTooltip(tooltip, this.m.BaseProperties))
+				if (!::Legends.Items.Named.HighlightNamedRoll[k].isRightTooltip(tooltip, this.m.BaseProperties, "weapon"))
 					continue;
 
-				tooltip.icon = ::Legends.Weapons.Named.HighlightNamedRoll[k].Icon;
+				tooltip.icon = ::Legends.Items.Named.HighlightNamedRoll[k].Icon;
 				if (::Legends.Mod.ModSettings.getSetting("ShowPotentialOnItems").getValue()) {
-					tooltip.text += ::Legends.Weapons.Named.HighlightNamedRoll[k].Text;
+					tooltip.text += ::Legends.Items.Named.HighlightNamedRoll[k].Text;
 				}
 				break;
 			}
@@ -59,7 +59,7 @@
 			this.m.BaseProperties.FatigueOnSkillUse <- this.m.FatigueOnSkillUse;
 		}
 
-		local ranges = ::Legends.Weapons.Named.randomizeRanges;
+		local ranges = ::Legends.Items.Named.randomizeRanges;
 
 		if (this.m.ConditionMax > 1)
 		{															//Vanilla = 90, 140. I think this is bullshit. - Luft

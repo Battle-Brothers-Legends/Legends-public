@@ -29,7 +29,7 @@
 				id = 12,
 				type = "text",
 				icon = "ui/icons/initiative.png",
-				text = "[color=%positive%]+" + this.m.EffectChanceOrBonus+ "%[/color] Initiative" + ::Legends.Weapons.Named.getRangeOfSpecialEffect(this)
+				text = "[color=%positive%]+" + this.m.EffectChanceOrBonus+ "%[/color] Initiative" + ::Legends.Items.Named.getRangeOfSpecialEffect(this)
 			});
 		}
 		return result;

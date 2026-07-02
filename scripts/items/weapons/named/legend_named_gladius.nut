@@ -39,7 +39,7 @@ this.legend_named_gladius <- this.inherit("scripts/items/weapons/named/named_wea
 	// 			id = 12,
 	// 			type = "text",
 	// 			icon = "ui/icons/melee_skill.png",
-	// 			text = "[color=%positive%]+" + this.m.EffectChanceOrBonus + "%[/color] Chance to Riposte on Turn Start" + ::Legends.Weapons.Named.getRangeOfSpecialEffect(this)
+	// 			text = "[color=%positive%]+" + this.m.EffectChanceOrBonus + "%[/color] Chance to Riposte on Turn Start" + ::Legends.Items.Named.getRangeOfSpecialEffect(this)
 	// 		});
 	// 	}
 	// 	return result;

@@ -27,7 +27,7 @@
 				id = 12,
 				type = "text",
 				icon = "ui/icons/melee_defense.png",
-				text = "[color=%positive%]+" + this.m.EffectChanceOrBonus+ "[/color] Melee Defense" + ::Legends.Weapons.Named.getRangeOfSpecialEffect(this, false)
+				text = "[color=%positive%]+" + this.m.EffectChanceOrBonus+ "[/color] Melee Defense" + ::Legends.Items.Named.getRangeOfSpecialEffect(this, false)
 			});
 		}
 		return result;

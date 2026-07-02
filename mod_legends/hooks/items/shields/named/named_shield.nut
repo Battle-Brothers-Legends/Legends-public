@@ -15,12 +15,12 @@
 				if (!tooltip.rawin("icon"))
 					continue;
 
-				if (!::Legends.Weapons.Named.HighlightNamedRoll[k].isRightTooltip(tooltip, this.m.BaseProperties, true))
+				if (!::Legends.Items.Named.HighlightNamedRoll[k].isRightTooltip(tooltip, this.m.BaseProperties, "shield"))
 					continue;
 
-				tooltip.icon = ::Legends.Weapons.Named.HighlightNamedRoll[k].Icon;
+				tooltip.icon = ::Legends.Items.Named.HighlightNamedRoll[k].Icon;
 				if (::Legends.Mod.ModSettings.getSetting("ShowPotentialOnItems").getValue()) {
-					tooltip.text += ::Legends.Weapons.Named.HighlightNamedRoll[k].Text;
+					tooltip.text += ::Legends.Items.Named.HighlightNamedRoll[k].Text;
 				}
 				break;
 			}
@@ -40,7 +40,7 @@
 			this.m.BaseProperties.FatigueOnSkillUse <- this.m.FatigueOnSkillUse;
 		}
 
-		local ranges = ::Legends.Weapons.Named.randomizeRanges;
+		local ranges = ::Legends.Items.Named.randomizeRanges;
 
 		local available = [];
 		available.push(function ( _i )

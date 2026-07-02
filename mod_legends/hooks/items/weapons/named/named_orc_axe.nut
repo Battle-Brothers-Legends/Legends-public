@@ -36,7 +36,7 @@
 				id = 12,
 				type = "text",
 				icon = "ui/icons/armor_head.png",
-				text = "[color=%positive%]+" + this.m.EffectChanceOrBonus + "%[/color] Damage to Head" + ::Legends.Weapons.Named.getRangeOfSpecialEffect(this)
+				text = "[color=%positive%]+" + this.m.EffectChanceOrBonus + "%[/color] Damage to Head" + ::Legends.Items.Named.getRangeOfSpecialEffect(this)
 			});
 		}
 		return result;

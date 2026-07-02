@@ -22,7 +22,7 @@
 				id = 12,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "[color=%positive%]+" + this.m.EffectChanceOrBonus + "%[/color] to Bleed Target on Hit" + ::Legends.Weapons.Named.getRangeOfSpecialEffect(this)
+				text = "[color=%positive%]+" + this.m.EffectChanceOrBonus + "%[/color] to Bleed Target on Hit" + ::Legends.Items.Named.getRangeOfSpecialEffect(this)
 			});
 		}
 		if (this.m.PossibleEffectIdx == 1)
@@ -31,7 +31,7 @@
 				id = 12,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "[color=%positive%]+" + this.m.EffectChanceOrBonus + "%[/color] to Feint Target on Hit" + ::Legends.Weapons.Named.getRangeOfSpecialEffect(this)
+				text = "[color=%positive%]+" + this.m.EffectChanceOrBonus + "%[/color] to Feint Target on Hit" + ::Legends.Items.Named.getRangeOfSpecialEffect(this)
 			});
 		}
 		return result;
