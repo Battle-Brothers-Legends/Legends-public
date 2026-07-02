@@ -605,7 +605,7 @@
 		local alive = this.Tactical.Entities.getAllInstancesAsArray();
 		foreach (actor in alive) {
 			if (!::Legends.S.isEntityNullOrDead(actor) && actor.getFaction() == this.Const.Faction.PlayerAnimals && actor.getType() == this.Const.EntityType.ZombieYeoman) {
-				foreach( item in items ) {
+				foreach( item in actor.getItems().getAllItems() ) {
 					if (isArena && item.getLastEquippedByFaction() != 1) {
 						continue;
 					}
