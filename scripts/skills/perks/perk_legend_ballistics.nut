@@ -18,8 +18,7 @@ this.perk_legend_ballistics <- this.inherit("scripts/skills/skill", {
 		if (_targetEntity != null) {
 			local actor = this.getContainer().getActor();
 			local difference = actor.getTile().getDistanceTo(_targetEntity.getTile());
-			_properties.DamageRegularMin += difference * 2;
-			_properties.DamageRegularMax += difference * 2;
+			_properties.DamageAdditionalWithEachTile += 2;
 		}
 	}
 
