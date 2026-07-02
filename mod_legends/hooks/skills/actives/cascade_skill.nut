@@ -21,16 +21,18 @@
 			return ret;
 		}
 
+		local tumble = ::Legends.Perks.get(target, ::Legends.Perk.LegendTumble);
+
 		if (::Tactical.TurnSequenceBar.getActiveEntity().getID() == _user.getID() && (!_user.isHiddenToPlayer() || _targetTile.IsVisibleForPlayer)) {
 			this.m.IsDoingAttackMove = false;
 			this.getContainer().setBusy(true);
 			::Time.scheduleEvent(::TimeUnit.Virtual, 50, function (_skill) {
-				if (!::Legends.S.isEntityNullOrDead(target) && _skill.getContainer() != null && !::Legends.Perks.get(target, ::Legends.Perk.LegendTumble).m.IsTumbling) {
+				if (!::Legends.S.isEntityNullOrDead(target) && _skill.getContainer() != null && (tumble == null || !tumble.m.IsTumbling)) {
 					_skill.attackEntity(_user, target);
 				}
 			}.bindenv(this), this);
 			::Time.scheduleEvent(::TimeUnit.Virtual, 100, function (_skill) {
-				if (!::Legends.S.isEntityNullOrDead(target) && _skill.getContainer() != null && !::Legends.Perks.get(target, ::Legends.Perk.LegendTumble).m.IsTumbling) {
+				if (!::Legends.S.isEntityNullOrDead(target) && _skill.getContainer() != null && (tumble == null || !tumble.m.IsTumbling)) {
 					_skill.attackEntity(_user, target);
 				}
 
@@ -39,11 +41,11 @@
 			}.bindenv(this), this);
 			return true;
 		} else {
-			if (!::Legends.S.isEntityNullOrDead(target) && !::Legends.Perks.get(target, ::Legends.Perk.LegendTumble).m.IsTumbling) {
+			if (!::Legends.S.isEntityNullOrDead(target) && (tumble == null || !tumble.m.IsTumbling)) {
 				ret = this.attackEntity(_user, target) || ret;
 			}
 
-			if (!::Legends.S.isEntityNullOrDead(target) && !::Legends.Perks.get(target, ::Legends.Perk.LegendTumble).m.IsTumbling) {
+			if (!::Legends.S.isEntityNullOrDead(target) && (tumble == null || !tumble.m.IsTumbling)) {
 				ret = this.attackEntity(_user, target) || ret;
 			}
 
