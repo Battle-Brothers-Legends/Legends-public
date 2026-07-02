@@ -180,6 +180,14 @@ this.legend_spider_abductions_contract <- this.inherit("scripts/contracts/contra
 						local freeSlots = ::Legends.S.getEmptySlotsInFormation();
 						for (local i=0; i < abductees; i++) {
 							local villager = ::World.getGuestRoster().create("scripts/entity/tactical/humans/envoy");
+							local items = villager.getItems();
+							items.equip(this.Const.World.Common.pickArmor([
+								[1, ::Legends.Armor.Standard.linen_tunic]
+							]));
+							items.equip(this.Const.World.Common.pickHelmet([
+								[1, ::Legends.Helmet.Standard.feathered_hat],
+								[2, ::Legends.Helmet.None]
+							]));
 							villager.setName("Abducted Villager");
 							villager.setFaction(1);
 							villager.setPlaceInFormation(freeSlots.pop());
