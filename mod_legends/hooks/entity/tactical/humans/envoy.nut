@@ -2,8 +2,8 @@
 	local create = o.create;
 	o.create = function () {
 		create();
-		if (this.randomizeHumanGender() == 1) { // this is the envoy used in the contract
-			this.setGender(1);
+		if (this.Math.rand(1, 100) <= 25) {
+            this.setGender(1);
 		}
 	}
 
