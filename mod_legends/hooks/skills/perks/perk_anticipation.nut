@@ -9,11 +9,11 @@
 	}
 
 	o.getDescription <- function () {
-		local reduction = this.Math.min(1.0, 1.0 - this.Math.max(0, _properties.RangedDefense) * 0.01);
-		return "Reduce damage taken by [color=%negative%]" + reduction + "%[/color] for the next [color=%positive%]" + this.m.Stacks + "%[/color] hits you take in combat."
+		local reduction = ::Math.min(100, ::Math.max(0, this.getContainer().getActor().getCurrentProperties().RangedDefense));
+		return "Reduce damage taken by [color=%negative%]" + reduction + "%[/color] for the next [color=%positive%]" + this.m.Stacks + "[/color] hits you take in combat."
 	}
 
-	o.onUpdate <- function () {
+	o.onUpdate <- function (_properties) {
 		if (!::Tactical.isActive())
 			this.m.Stacks = 0;
 
