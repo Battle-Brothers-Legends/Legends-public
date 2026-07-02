@@ -12,6 +12,20 @@ this.legend_roster_of_6_ambition <- this.inherit("scripts/ambitions/ambition", {
 		this.m.SuccessButtonText = "We\'re getting there.";
 	}
 
+		function onReward = function ()
+	{
+		local item;
+		local stash = this.World.Assets.getStash();
+		item = this.new("scripts/items/supplies/wine_item");			
+
+		stash.add(item);
+		this.m.SuccessList.push({
+			id = 10,
+			icon = "ui/items/" + item.getIcon(),
+			text = "You gain " + this.Const.Strings.getArticle(item.getName()) + item.getName()
+		});
+	}
+
 	function onUpdateScore()
 	{
 		if (this.World.Assets.getBrothersMax() < 6 || this.World.Assets.getOrigin().getID() == "scenario.lone_wolf") return;
