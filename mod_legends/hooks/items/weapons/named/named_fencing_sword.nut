@@ -17,7 +17,7 @@
 		this.m.Condition = 56.0;
 		this.m.ConditionMax = 56.0;
 
-		named_weapon.randomizeValues();
+		this.named_weapon.randomizeValues();
 	}
 
 	o.getTooltip <- function ()
@@ -29,7 +29,7 @@
 				id = 12,
 				type = "text",
 				icon = "ui/icons/initiative.png",
-				text = "[color=%positive%]+" + this.m.EffectChanceOrBonus+ "%[/color] Initiative"
+				text = "[color=%positive%]+" + this.m.EffectChanceOrBonus+ "%[/color] Initiative" + ::Legends.Weapons.Named.getRangeOfSpecialEffect(this)
 			});
 		}
 		return result;

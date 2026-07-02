@@ -11,6 +11,7 @@ local colors = [
 	["positiveEvent", ::Const.UI.Color.PositiveEventValue],
 	["negativeEvent", ::Const.UI.Color.NegativeEventValue],
 	["damage", ::Const.UI.Color.DamageValue],
+	["positiveLighter", ::Const.UI.Color.PositiveLighter]
 ];
 
 ::Legends.tooltip <- function (_text, _vars = [])  {

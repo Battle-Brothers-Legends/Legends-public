@@ -176,6 +176,8 @@
 > pause on entity discovered
 - added an option to show the average stat potential directly on statistic bars
 > shows average values at a glance (min/max ranges are still visible on mouseovering the bros background)
+- added an option to show the named item enhanced stat potential on tooltips
+> shows the value range for enhanced rolls only
 - added inventory management toggle on items
 > allows setting the item type to be marked for sale, autorepair and sale, autorepair, autosalvage
 > the setting is completely optional

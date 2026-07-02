@@ -19,4 +19,17 @@
 		::Legends.Actives.grant(this, ::Legends.Active.Perforate);
 		::Legends.Actives.grant(this, ::Legends.Active.Skewer);
 	}
+
+	o.getTooltip <- function ()	{
+		local result = this.named_weapon.getTooltip();
+		if (this.m.PossibleEffectIdx == 0) {
+			result.push({
+				id = 12,
+				type = "text",
+				icon = "ui/icons/melee_defense.png",
+				text = "[color=%positive%]+" + this.m.EffectChanceOrBonus+ "[/color] Melee Defense" + ::Legends.Weapons.Named.getRangeOfSpecialEffect(this, false)
+			});
+		}
+		return result;
+	}
 });

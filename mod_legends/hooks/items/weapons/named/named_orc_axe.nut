@@ -16,7 +16,7 @@
 	{
 		this.m.Ammo = 1;
 		this.m.AmmoMax = 1;
-		named_weapon.randomizeValues();
+		this.named_weapon.randomizeValues();
 	}
 
 	o.getAmmo <- function() {
@@ -36,7 +36,7 @@
 				id = 12,
 				type = "text",
 				icon = "ui/icons/armor_head.png",
-				text = "[color=%positive%]+" + this.m.EffectChanceOrBonus + "%[/color] Damage to Head"
+				text = "[color=%positive%]+" + this.m.EffectChanceOrBonus + "%[/color] Damage to Head" + ::Legends.Weapons.Named.getRangeOfSpecialEffect(this)
 			});
 		}
 		return result;

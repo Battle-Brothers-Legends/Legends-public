@@ -22,7 +22,7 @@
 	// 			id = 12,
 	// 			type = "text",
 	// 			icon = "ui/icons/melee_skill.png",
-	// 			text = "[color=%positive%]+" + this.m.EffectChanceOrBonus + "%[/color] Chance to Riposte on Turn Start"
+	// 			text = "[color=%positive%]+" + this.m.EffectChanceOrBonus + "%[/color] Chance to Riposte on Turn Start" + ::Legends.Weapons.Named.getRangeOfSpecialEffect(this)
 	// 		});
 	// 	}
 	// 	return result;

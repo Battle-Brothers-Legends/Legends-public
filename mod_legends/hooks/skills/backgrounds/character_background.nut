@@ -665,7 +665,6 @@
 				return text;
 			}
 
-			::logDebug(text.len())
 			local paddingCount = 8 + ::Math.max(0, 12 - text.len()) * 2;
 			local distance = "";
 			for (local i = 0; i < paddingCount; i++) {

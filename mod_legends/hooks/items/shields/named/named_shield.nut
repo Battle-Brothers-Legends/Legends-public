@@ -15,10 +15,13 @@
 				if (!tooltip.rawin("icon"))
 					continue;
 
-				if (!::Const.HighlightNamedRoll[k].isRightTooltip(tooltip))
+				if (!::Legends.Weapons.Named.HighlightNamedRoll[k].isRightTooltip(tooltip, this.m.BaseProperties, true))
 					continue;
 
-				tooltip.icon = ::Const.HighlightNamedRoll[k].Icon;
+				tooltip.icon = ::Legends.Weapons.Named.HighlightNamedRoll[k].Icon;
+				if (::Legends.Mod.ModSettings.getSetting("ShowPotentialOnItems").getValue()) {
+					tooltip.text += ::Legends.Weapons.Named.HighlightNamedRoll[k].Text;
+				}
 				break;
 			}
 		}
@@ -37,27 +40,29 @@
 			this.m.BaseProperties.FatigueOnSkillUse <- this.m.FatigueOnSkillUse;
 		}
 
+		local ranges = ::Legends.Weapons.Named.randomizeRanges;
+
 		local available = [];
 		available.push(function ( _i )
 		{
-			_i.m.MeleeDefense = this.Math.round(_i.m.MeleeDefense * this.Math.rand(130, 150) * 0.01);
+			_i.m.MeleeDefense = this.Math.round(_i.m.MeleeDefense * ::Math.rand(ranges.MeleeDefense[0], ranges.StaminaModifier[1]) * 0.01);
 		});
 		available.push(function ( _i )
 		{
-			_i.m.RangedDefense = this.Math.round(_i.m.RangedDefense * this.Math.rand(130, 150) * 0.01);
+			_i.m.RangedDefense = this.Math.round(_i.m.RangedDefense * this.Math.rand(ranges.RangedDefense[0], ranges.RangedDefense[1]) * 0.01);
 		});
 		available.push(function ( _i )
 		{
-			_i.m.FatigueOnSkillUse = _i.m.FatigueOnSkillUse - this.Math.rand(1, 3);
+			_i.m.FatigueOnSkillUse = _i.m.FatigueOnSkillUse - this.Math.rand(ranges.FatigueOnSkillUse[0], ranges.FatigueOnSkillUse[1]);
 		});
 		available.push(function ( _i )
 		{
-			_i.m.Condition = this.Math.round(_i.m.Condition * this.Math.rand(150, 200) * 0.01) * 1.0;
+			_i.m.Condition = this.Math.round(_i.m.Condition * this.Math.rand(ranges.ConditionShield[0], ranges.ConditionShield[1]) * 0.01) * 1.0;
 			_i.m.ConditionMax = _i.m.Condition;
 		});
 		available.push(function ( _i )
 		{
-			_i.m.StaminaModifier = this.Math.round(_i.m.StaminaModifier * this.Math.rand(60, 90) * 0.01);
+			_i.m.StaminaModifier = this.Math.round(_i.m.StaminaModifier * this.Math.rand(ranges.StaminaModifierShield[0], ranges.StaminaModifierShield[1]) * 0.01);
 		});
 
 		for( local n = 2; n != 0 && available.len() != 0; n = --n )

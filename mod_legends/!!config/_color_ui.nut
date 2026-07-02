@@ -6,3 +6,4 @@
 ::Const.UI.Color.Status <- "#731f39";
 ::Const.UI.Color.Skill <- "#400080";
 ::Const.UI.Color.Perk <- "#008060";
+::Const.UI.Color.PositiveLighter <- "#76b976";

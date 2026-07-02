@@ -55,6 +55,7 @@ myEnumTooltip = "Define AI Rotation rules: 'Default' is the Vanilla behaviour, A
 general.addElement(::MSU.Class.EnumSetting("AiRotation", "Default", ["Default", "Limited", "Disabled"], "AI Rotation Rules", myEnumTooltip));
 general.addElement(::MSU.Class.BooleanSetting("SellDialogNamed", true, "Sell Famed Dialog", "Should confirmation dialog appear when selling famed items?"));
 general.addElement(::MSU.Class.BooleanSetting("ShowPotentialOnBars", false, "Show Potential On Bars", "Show brothers potential at level 12 directly on bars."));
+general.addElement(::MSU.Class.BooleanSetting("ShowPotentialOnItems", false, "Show Potential On Items", "Show named items potential on named properties."));
 general.addTitle("Pause", "Pause");
 general.addElement(::MSU.Class.BooleanSetting("PauseOnEnemySighted", true, "Pause On Enemy Sighted", "Game pause when new enemy group is sighted"));
 general.addElement(::MSU.Class.BooleanSetting("PauseOnEvents", true, "Pause On Events", "Pause on events, encounters, ambitions"));

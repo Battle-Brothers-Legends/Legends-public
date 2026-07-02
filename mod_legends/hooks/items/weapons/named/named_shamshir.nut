@@ -22,7 +22,7 @@
 			return;
 		}
 
-		weapon.addSkill(_skill);
+		this.weapon.addSkill(_skill);
 	}
 
 	o.getTooltip <- function ()
@@ -34,7 +34,7 @@
 				id = 12,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "Lowered Injury Threshold by [color=%positive%]" + this.m.EffectChanceOrBonus + "%[/color]"
+				text = "Lowered Injury Threshold by [color=%positive%]" + this.m.EffectChanceOrBonus + "%[/color]" + ::Legends.Weapons.Named.getRangeOfSpecialEffect(this)
 			});
 		}
 		return result;

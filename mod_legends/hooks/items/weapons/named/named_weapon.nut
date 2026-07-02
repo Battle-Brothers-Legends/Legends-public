@@ -18,24 +18,24 @@
 		}
 	}
 
-	o.getTooltip <- function ()
-	{
+	o.getTooltip <- function ()	{
 		local result = this.weapon.getTooltip();
 
-		foreach (k, p in this.m.BaseProperties)
-		{
+		foreach (k, p in this.m.BaseProperties)	{
 			if (this.m[k] == p)
 				continue;
 
-			foreach (tooltip in result)
-			{
+			foreach (tooltip in result) {
 				if (!tooltip.rawin("icon"))
 					continue;
 
-				if (!::Const.HighlightNamedRoll[k].isRightTooltip(tooltip))
+				if (!::Legends.Weapons.Named.HighlightNamedRoll[k].isRightTooltip(tooltip, this.m.BaseProperties))
 					continue;
 
-				tooltip.icon = ::Const.HighlightNamedRoll[k].Icon;
+				tooltip.icon = ::Legends.Weapons.Named.HighlightNamedRoll[k].Icon;
+				if (::Legends.Mod.ModSettings.getSetting("ShowPotentialOnItems").getValue()) {
+					tooltip.text += ::Legends.Weapons.Named.HighlightNamedRoll[k].Text;
+				}
 				break;
 			}
 		}
@@ -43,14 +43,14 @@
 		return result;
 	}
 
-	o.randomizeValues = function ()
-	{
-		if (this.m.BaseProperties.len() == 0)
-		{
+	o.randomizeValues = function ()	{
+		if (this.m.BaseProperties.len() == 0) {
 			this.m.BaseProperties.ConditionMax <- this.m.ConditionMax;
+			this.m.BaseProperties.RegularDamage <- this.m.RegularDamage;
 			this.m.BaseProperties.RegularDamageMax <- this.m.RegularDamageMax;
 			this.m.BaseProperties.ArmorDamageMult <- this.m.ArmorDamageMult;
 			this.m.BaseProperties.ChanceToHitHead <- this.m.ChanceToHitHead;
+			this.m.BaseProperties.DirectDamageMult <- this.m.DirectDamageMult;
 			this.m.BaseProperties.DirectDamageAdd <- this.m.DirectDamageAdd;
 			this.m.BaseProperties.StaminaModifier <- this.m.StaminaModifier;
 			this.m.BaseProperties.ShieldDamage <- this.m.ShieldDamage;
@@ -59,88 +59,72 @@
 			this.m.BaseProperties.FatigueOnSkillUse <- this.m.FatigueOnSkillUse;
 		}
 
+		local ranges = ::Legends.Weapons.Named.randomizeRanges;
+
 		if (this.m.ConditionMax > 1)
 		{															//Vanilla = 90, 140. I think this is bullshit. - Luft
-			this.m.Condition = this.Math.round(this.m.Condition * this.Math.rand(110, 140) * 0.01) * 1.0;
+			this.m.Condition = ::Math.round(this.m.Condition * ::Math.rand(ranges.Condition[0], ranges.Condition[1]) * 0.01) * 1.0;
 			this.m.ConditionMax = this.m.Condition;
 		}
 
 		local available = [];
-		available.push(function ( _i )
-		{
-			local f = this.Math.rand(110, 130) * 0.01;
-			_i.m.RegularDamage = this.Math.round(_i.m.RegularDamage * f);
-			_i.m.RegularDamageMax = this.Math.round(_i.m.RegularDamageMax * f);
+		available.push(function ( _i ) {
+			local f = ::Math.rand(ranges.RegularDamage[0], ranges.RegularDamage[1]) * 0.01;
+			_i.m.RegularDamage = ::Math.round(_i.m.RegularDamage * f);
+			_i.m.RegularDamageMax = ::Math.round(_i.m.RegularDamageMax * f);
 		});
-		available.push(function ( _i )
-		{
-			_i.m.ArmorDamageMult = _i.m.ArmorDamageMult + this.Math.rand(10, 30) * 0.01;
+		available.push(function ( _i ) {
+			_i.m.ArmorDamageMult = _i.m.ArmorDamageMult + ::Math.rand(ranges.ArmorDamageMult[0], ranges.ArmorDamageMult[1]) * 0.01;
 		});
 
-		if (this.m.ChanceToHitHead > 0)
-		{
-			available.push(function ( _i )
-			{
-				_i.m.ChanceToHitHead = _i.m.ChanceToHitHead + this.Math.rand(10, 20);
+		if (this.m.ChanceToHitHead > 0)	{
+			available.push(function ( _i ) {
+				_i.m.ChanceToHitHead = _i.m.ChanceToHitHead + ::Math.rand(ranges.ChanceToHitHead[0], ranges.ChanceToHitHead[1]);
 			});
 		}
 
-		available.push(function ( _i )
-		{
-			_i.m.DirectDamageAdd = _i.m.DirectDamageAdd + this.Math.rand(8, 16) * 0.01;
+		available.push(function ( _i ) {
+			_i.m.DirectDamageAdd = _i.m.DirectDamageAdd + ::Math.rand(ranges.DirectDamageAdd[0], ranges.DirectDamageAdd[1]) * 0.01;
 		});
 
-		if (this.m.StaminaModifier <= -10)
-		{
-			available.push(function ( _i )
-			{
-				_i.m.StaminaModifier = this.Math.round(_i.m.StaminaModifier * this.Math.rand(50, 80) * 0.01);
+		if (this.m.StaminaModifier <= -10) {
+			available.push(function ( _i ) {
+				_i.m.StaminaModifier = ::Math.round(_i.m.StaminaModifier * ::Math.rand(ranges.StaminaModifier[0], ranges.StaminaModifier[1]) * 0.01);
 			});
 		}
 
-		if (this.m.ShieldDamage >= 16)
-		{
-			available.push(function ( _i )
-			{
-				_i.m.ShieldDamage = this.Math.round(_i.m.ShieldDamage * this.Math.rand(150, 200) * 0.01);
+		if (this.m.ShieldDamage >= 16) {
+			available.push(function ( _i ) {
+				_i.m.ShieldDamage = ::Math.round(_i.m.ShieldDamage * ::Math.rand(ranges.ShieldDamage[0], ranges.ShieldDamage[1]) * 0.01);
 			});
 		}
 
-		if (this.m.AmmoMax > 0 && this.isItemType(this.Const.Items.ItemType.Ammo))
-		{
-			available.push(function ( _i )
-			{
-				_i.m.AmmoMax = _i.m.AmmoMax + this.Math.rand(1, 3);
+		if (this.m.AmmoMax > 0 && this.isItemType(::Const.Items.ItemType.Ammo)) {
+			available.push(function (_i) {
+				_i.m.AmmoMax = _i.m.AmmoMax + ::Math.rand(ranges.AmmoMax[0], ranges.AmmoMax[1]);
 				_i.m.Ammo = _i.m.AmmoMax;
 			});
 		}
 
-		if (this.m.AdditionalAccuracy != 0 || this.isItemType(this.Const.Items.ItemType.RangedWeapon))
-		{
-			available.push(function ( _i )
-			{
-				_i.m.AdditionalAccuracy = _i.m.AdditionalAccuracy + this.Math.rand(5, 15);
+		if (this.m.AdditionalAccuracy != 0 || this.isItemType(::Const.Items.ItemType.RangedWeapon))	{
+			available.push(function (_i) {
+				_i.m.AdditionalAccuracy = _i.m.AdditionalAccuracy + ::Math.rand(ranges.AdditionalAccuracy[0], ranges.AdditionalAccuracy[1]);
 			});
 		}
 
-		available.push(function ( _i )
-		{
-			_i.m.FatigueOnSkillUse = _i.m.FatigueOnSkillUse - this.Math.rand(1, 3);
+		available.push(function (_i) {
+			_i.m.FatigueOnSkillUse = _i.m.FatigueOnSkillUse - ::Math.rand(ranges.FatigueOnSkillUse[0], ranges.FatigueOnSkillUse[1]);
 		});
 
-		if ( this.m.PossibleEffects.len() > 0 )
-		{
-			available.push(function ( _i )
-			{
-				_i.m.PossibleEffectIdx = ::Math.rand( 0, _i.m.PossibleEffects.len() - 1 );
-				_i.m.EffectChanceOrBonus = ::Math.rand( _i.m.EffectBounds[_i.m.PossibleEffectIdx][0], _i.m.EffectBounds[_i.m.PossibleEffectIdx][1] );
+		if (this.m.PossibleEffects.len() > 0) {
+			available.push(function (_i) {
+				_i.m.PossibleEffectIdx = ::Math.rand(0, _i.m.PossibleEffects.len() - 1);
+				_i.m.EffectChanceOrBonus = ::Math.rand(_i.m.EffectBounds[_i.m.PossibleEffectIdx][0], _i.m.EffectBounds[_i.m.PossibleEffectIdx][1]);
 			});
 		}
 
-
-		for( local n = 2; n != 0 && available.len() != 0; n = --n )
-		{
-			local r = this.Math.rand(0, available.len() - 1);
+		for (local n = 2; n != 0 && available.len() != 0; n = --n) {
+			local r = ::Math.rand(0, available.len() - 1);
 			available[r](this);
 			available.remove(r);
 		}

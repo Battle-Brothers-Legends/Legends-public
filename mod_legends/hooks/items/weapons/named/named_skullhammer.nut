@@ -9,7 +9,7 @@
 		this.m.RegularDamage = 50;
 		this.m.RegularDamageMax = 70;
 
-		named_weapon.randomizeValues();
+		this.named_weapon.randomizeValues();
 	}
 
 	o.addSkill <- function( _skill )
@@ -24,7 +24,7 @@
 			return;
 		}
 
-		weapon.addSkill(_skill);
+		this.weapon.addSkill(_skill);
 	}
 
 	o.getTooltip <- function ()
@@ -36,7 +36,7 @@
 				id = 12,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "[color=%positive%]+" + this.m.EffectChanceOrBonus + "%[/color] Stun Chance"
+				text = "[color=%positive%]+" + this.m.EffectChanceOrBonus + "%[/color] Stun Chance" + ::Legends.Weapons.Named.getRangeOfSpecialEffect(this)
 			});
 		}
 		return result;

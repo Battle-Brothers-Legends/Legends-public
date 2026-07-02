@@ -17,7 +17,7 @@
 		this.m.Condition = 56.0;
 		this.m.ConditionMax = 56.0;
 
-		named_weapon.randomizeValues();
+		this.named_weapon.randomizeValues();
 	}
 
 	o.getTooltip <- function ()
