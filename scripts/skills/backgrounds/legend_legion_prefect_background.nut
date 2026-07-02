@@ -41,23 +41,23 @@ this.legend_legion_prefect_background <- this.inherit("scripts/skills/background
 		this.m.Modifiers.Terrain = [
 				0.0, // ?
 				0.0, //ocean
-				0.0, //plains
-				0.0, //swamp
-				0.0, //hills
-				0.0, //forest
-				0.0, //forest
-				0.0, //forest_leaves
-				0.0, //autumn_forest
-				0.0, //mountains
+				0.025,//plains
+				0.01, //swamp
+				0.01, //hills
+				0.01, //forest
+				0.01, //forest
+				0.01, //forest_leaves
+				0.01, //autumn_forest
+				0.01, //mountains
 				0.0, // ?
-				0.0, //farmland
-				0.0, //snow
-				0.0, //badlands
-				0.0, //highlands
-				0.0, //stepps
+				0.025, //farmland
+				0.011, // snow
+				0.015, // badlands
+				0.015, //highlands
+				0.025, //stepps
 				0.0, //ocean
-				0.0, //desert
-				0.0 //oasis
+				0.01, //desert
+				0.025 //oasis
 			];
 		this.m.PerkTreeDynamic = {
 			Weapon = [

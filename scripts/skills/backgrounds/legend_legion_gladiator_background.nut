@@ -37,23 +37,23 @@ this.legend_legion_gladiator_background <- this.inherit("scripts/skills/backgrou
 		this.m.Modifiers.Terrain = [
 				0.0, // ?
 				0.0, //ocean
-				0.0, //plains
-				0.0, //swamp
-				0.0, //hills
-				0.0, //forest
-				0.0, //forest
-				0.0, //forest_leaves
-				0.0, //autumn_forest
-				0.0, //mountains
+				0.15, //plains
+				0.15, //swamp
+				0.15, //hills
+				0.15, //forest
+				0.15, //forest
+				0.15, //forest_leaves
+				0.15, //autumn_forest
+				0.01, //mountains
 				0.0, // ?
-				0.0, //farmland
-				0.0, //snow
-				0.0, //badlands
-				0.0, //highlands
-				0.0, //stepps
+				0.15, //farmland
+				0.15, //snow
+				0.15, //badlands
+				0.15, //highlands
+				0.15, //stepps
 				0.0, //ocean
-				1.0, //desert
-				1.0 //oasis
+				0.15, //desert
+				0.15 //oasis
 			];
 		this.m.PerkTreeDynamic = {
 			Weapon = [
