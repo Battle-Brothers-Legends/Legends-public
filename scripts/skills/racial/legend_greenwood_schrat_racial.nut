@@ -24,7 +24,7 @@ this.legend_greenwood_schrat_racial <- this.inherit("scripts/skills/skill", {
 	function onUpdate(_properties) {
 		local actor = this.getContainer().getActor();
 		if (actor.isArmedWithShield()) {
-			_properties.DamageReceivedTotalMult *= 0.3;s
+			_properties.DamageReceivedTotalMult *= 0.3;
 		}
 		_properties.DamageReceivedFireMult *= 1.5;
 	}
