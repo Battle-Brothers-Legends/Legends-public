@@ -1189,9 +1189,9 @@
 
 		case "assets.Supplies":
 			local desc = "Assorted tools and supplies to keep your weapons, armor, helmets, and shields in good condition. Running out of supplies may result in weapons breaking during combat and will leave your armor damaged and useless. More tools can be purchased in town or salvaged from equipment while camping.";
-			desc += "\nItems can be repaired while camping or out in the open. However, in that case, only one item can be repaired at a time per bro.";
-			desc += "\nYou can carry [color=%positive%]" + this.World.Assets.getMaxArmorParts() + "[/color] units at most.";
-			desc += "\nTool efficiency when repairing damaged items may be increased by recruiting specialized backgrounds. Tool efficiency is capped at [color=%negative%]50%[/color].";
+			desc += "\n\nItems can be repaired while camping or out in the open. However, in that case, only one item can be repaired at a time per bro.";
+			desc += "\n\nYou can carry [color=%positive%]" + this.World.Assets.getMaxArmorParts() + "[/color] units at most.";
+			desc += "\n\nTool efficiency when repairing damaged items may be increased by recruiting specialized backgrounds. Tool efficiency is capped at [color=%negative%]50%[/color].";
 			local ret = [
 				{
 					id = 1,
@@ -1229,7 +1229,7 @@
 				id = 4,
 				type = "hint",
 				icon = "ui/icons/asset_supplies.png",
-				text = "[color=%positive%]" + this.Math.round(toolEfficiency * 100) + "%[/color] Tool usage percent out"
+				text = "[color=%positive%]" + this.Math.round(toolEfficiency * 100) + "%[/color] Tools Usage"
 			});
 
 			return ret;
