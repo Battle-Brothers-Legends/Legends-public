@@ -385,12 +385,8 @@ Ankles, hands, elbows and knees, you've learned how to fight dirty to secure vic
 ::Const.Strings.PerkDescription.LegendReturnFavor <- @"
 Strike back with interest!
 
-[color=%active%][u]Active:[/u][/color]
-• Unlocks the [color=%skill%]Return Favor[/color] skill which when activated has a [color=%positive%]75%[/color] chance to [color=%status%]Stun[/color] any opponent missing a melee attack against this character in retaliation.
-
-• Immunities and resistances against being [color=%status%]Stunned[/color] still apply.
-
-• Costs [color=%negative%]3[/color] AP and [color=%negative%]30[/color] Fatigue.
+[color=%passive%][u]Passive:[/u][/color]
+•  If you're armed with a ranged weapon and a ranged attack misses you, gain a chance to fire back at your attacker. The chance is based on Ranged Defense.
 ";
 
 ::Const.Strings.PerkDescription.LegendPerfectFocus <- @"
