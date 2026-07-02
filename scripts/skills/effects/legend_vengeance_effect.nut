@@ -1,11 +1,13 @@
 this.legend_vengeance_effect <- this.inherit("scripts/skills/skill", {
-	m = {},
+	m = {
+		Stacks = 1
+	},
 	function create()
 	{
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendVengeance);
 		this.m.Icon = "ui/perks/vengeance_circle.png";
 		this.m.IconMini = "mini_vengeance";
-		this.m.Type = this.Const.SkillType.StatusEffect;
+		this.m.Type = ::Const.SkillType.StatusEffect;
 		this.m.IsActive = false;
 		this.m.IsStacking = false;
 		this.m.IsRemovedAfterBattle = true;
@@ -13,38 +15,21 @@ this.legend_vengeance_effect <- this.inherit("scripts/skills/skill", {
 
 	function getDescription()
 	{
-		return "Having just received a blow, this character is determined to fight even harder! The next attack will inflict double damage to a single target. If multiple targets are hit, only the first one will receive increased damage. If the attack misses, the effect is wasted.";
+		return "Having just received a blow, this character is determined to fight even harder! The next [color=%positive%]" + this.m.Stacks + "[/color] attacks will inflict [color=%positive%]20%[/color] more damage.";
 	}
 
 	function onUpdate( _properties )
 	{
-		_properties.DamageTotalMult *= 2.0;
+		_properties.DamageTotalMult *= 1.2;
 	}
 
-	function onTargetHit( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor )
-	{
-		if (_targetEntity == null)
-		{
-			return;
+	function onAnySkillExecuted(_skill, _targetTile, _targetEntity, _forFree) {
+		if (_skill.isAttack()) {
+			this.m.Stacks -= 1;
 		}
-
-		local actor = this.getContainer().getActor();
-
-		if (_targetEntity == actor)
-		{
-			return;
-		}
-
-		if (!this.m.IsGarbage && !_targetEntity.isAlliedWith(actor))
-		{
-			this.removeSelf();
+		if (this.m.Stacks <= 0){
+			::Legends.Effects.remove(_skill.getContainer().getActor(), ::Legends.Effect.LegendVengeance)
 		}
 	}
-
-	function onTargetMissed( _skill, _targetEntity )
-	{
-		this.removeSelf();
-	}
-
 });
 
