@@ -3338,7 +3338,9 @@ Enhance your logistical support in battle.
 A lion's heart beats with unyielding strength, facing every challenge with with fearless resolve!
 
 [color=%passive%][u]Passive:[/u][/color]
-• Being surrounded by enemies no longer affects your morale and increases your resolve by [color=%positive%]10%[/color].
+• Increases your resolve by [color=%positive%]10%[/color].
+
+• Being surrounded by enemies no longer affects your morale.
 ";
 
 ::Const.Strings.PerkDescription.LegendStrengthInNumbers <- @"
