@@ -22,6 +22,11 @@ this.$name <- this.inherit("scripts/items/legend_helmets/legend_named_helmet_upg
 		this.m.HideHair = $hair;
 		this.m.HideBeard = $beard;
         this.m.ItemType = $itemType;
+		this.m.Potential <- {
+			Condition = { min = $rminCond, max = $rmaxCond },
+			StaminaModifier = { min = $rminStam, max = $rmaxStam }
+			Vision = { min = $rminViz, max = $rmaxViz }
+		}
         this.randomizeValues();
 	}
 
@@ -39,9 +44,9 @@ this.$name <- this.inherit("scripts/items/legend_helmets/legend_named_helmet_upg
 
 	function randomizeValues()
 	{
-        this.m.Vision = this.Math.rand($rmaxViz, $rminViz) * -1 ;
-		this.m.StaminaModifier = this.Math.rand($rmaxStam, $rminStam) * -1;
-		this.m.Condition = this.Math.rand($rminCond, $rmaxCond);
+        this.m.Vision = ::Math.rand($rmaxViz, $rminViz) * -1 ;
+		this.m.StaminaModifier = ::Math.rand($rmaxStam, $rminStam) * -1;
+		this.m.Condition = ::Math.rand($rminCond, $rmaxCond);
 		this.m.ConditionMax = this.m.Condition;
 	}
 });

@@ -1,5 +1,11 @@
 this.legend_named_warlock_hood <- this.inherit("scripts/items/legend_helmets/legend_named_helmet_upgrade", {
-	m = {},
+	m = {
+		Potential = {
+			Condition = { min = 10, max = 15 },
+			StaminaModifier = { min = 0, max = 0 },
+			Vision = { min = 0, max = 0 }
+		}
+	},
 	function create()
 	{
 		this.legend_named_helmet_upgrade.create();
@@ -14,10 +20,6 @@ this.legend_named_warlock_hood <- this.inherit("scripts/items/legend_helmets/leg
 		this.m.ImpactSound = this.Const.Sound.ArmorLeatherImpact;
 		this.m.InventorySound = this.Const.Sound.ClothEquip;
 		this.m.Value = 100;
-		this.m.Condition = 10;
-		this.m.ConditionMax = 10;
-		this.m.StaminaModifier = 0;
-		this.m.Vision = 0;
 		this.m.Lower = false;
 		this.m.HideHair = true;
 		this.m.HideBeard = false;
@@ -35,18 +37,6 @@ this.legend_named_warlock_hood <- this.inherit("scripts/items/legend_helmets/leg
         this.m.IconLarge = this.m.Icon;
 		this.m.OverlayIcon = this.m.Icon;
 		this.m.OverlayIconLarge = this.m.OverlayIcon;
-	}
-
-	function resetStats()
-	{
-		this.m.Condition = 10;
-		this.m.ConditionMax = 10;
-	}
-
-	function randomizeValues()
-	{
-		this.m.Condition = this.Math.rand(10, 15);
-		this.m.ConditionMax = this.m.Condition;
 	}
 
 	function getTooltip()

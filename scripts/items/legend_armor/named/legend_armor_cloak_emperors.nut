@@ -1,6 +1,11 @@
 this.legend_armor_cloak_emperors <- this.inherit("scripts/items/legend_armor/legend_named_armor_upgrade", {
 	m = {
-		BraveryMult = 1.05
+		BraveryMult = 1.05,
+		Potential = {
+			Condition = { min = 30, max = 40 },
+			StaminaModifier = { min = 3, max = 3 },
+			BraveryMult = { min = 105, max = 110 }
+		}
 	},
 	function create()
 	{
@@ -16,17 +21,7 @@ this.legend_armor_cloak_emperors <- this.inherit("scripts/items/legend_armor/leg
 		this.m.Variant = 1;
 		this.updateVariant();
 		this.m.Value = 15000;
-		this.m.Condition = 40;
-		this.m.ConditionMax = 40;
-		this.m.StaminaModifier = -3;
 		this.randomizeValues();
-	}
-
-	function randomizeValues()
-	{
-		this.m.Condition = this.Math.rand(30, 40);
-		this.m.ConditionMax = this.m.Condition;
-		this.m.BraveryMult = this.Math.rand(105, 110) * 0.01;
 	}
 
 	function updateVariant()

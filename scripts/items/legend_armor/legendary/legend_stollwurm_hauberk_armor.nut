@@ -1,5 +1,10 @@
 this.legend_stollwurm_hauberk_armor <- this.inherit("scripts/items/legend_armor/legend_named_armor_upgrade", {
-	m = {},
+	m = {
+		Potential = {
+			Condition = { min = 60, max = 60 },
+			StaminaModifier = { min = 6, max = 6 },
+		}
+	},
 	function create()
 	{
 		this.legend_named_armor_upgrade.create();
@@ -15,12 +20,8 @@ this.legend_stollwurm_hauberk_armor <- this.inherit("scripts/items/legend_armor/
 		this.m.ImpactSound = this.Const.Sound.ArmorChainmailImpact;
 		this.m.InventorySound = this.Const.Sound.ArmorChainmailImpact;
 		this.m.Value = 10000;
-		this.m.Condition = 120;
-		this.m.ConditionMax = 120;
-		this.m.StaminaModifier = -15;
         this.m.ItemType = this.m.ItemType;
         this.randomizeValues();
-        this.resetStats();
 	}
 
 	function updateVariant()
@@ -33,13 +34,6 @@ this.legend_stollwurm_hauberk_armor <- this.inherit("scripts/items/legend_armor/
 		this.m.IconLarge = "legend_armor/inventory_wurm_hauberk_" + variant + ".png";
 		this.m.OverlayIcon = "legend_armor/icon_wurm_hauberk_" + variant + ".png";
 		this.m.OverlayIconLarge = "legend_armor/inventory_wurm_hauberk_" + variant + ".png";
-	}
-
-	function resetStats()
-	{
-		this.m.Condition = 60;
-		this.m.ConditionMax = 60;
-		this.m.StaminaModifier = -6;
 	}
 
 	function getTooltip()

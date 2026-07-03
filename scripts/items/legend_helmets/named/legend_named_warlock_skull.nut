@@ -1,6 +1,11 @@
 this.legend_named_warlock_skull <- this.inherit("scripts/items/legend_helmets/legend_named_helmet_upgrade", {
 	m = {
-		StackCount = 0
+		StackCount = 0,
+		Potential = {
+			Condition = { min = 90, max = 115 },
+			StaminaModifier = { min = 2, max = 1 },
+			Vision = { min = 1, max = 0 }
+		}
 	},
 	function create()
 	{
@@ -16,10 +21,6 @@ this.legend_named_warlock_skull <- this.inherit("scripts/items/legend_helmets/le
 		this.m.ImpactSound = this.Const.Sound.ArmorBoneImpact;
 		this.m.InventorySound = this.Const.Sound.ArmorBoneImpact;
 		this.m.Value = 2000;
-		this.m.Condition = 90; // rolls 90-115
-		this.m.ConditionMax = 90;
-		this.m.StaminaModifier = -2;
-		this.m.Vision = 0;
 		this.m.Lower = true;
 		this.m.HideHair = false;
 		this.m.HideBeard = true;
@@ -52,14 +53,6 @@ this.legend_named_warlock_skull <- this.inherit("scripts/items/legend_helmets/le
 		return result;
 	}
 
-	function resetStats()
-	{
-		this.m.Condition = 90;
-		this.m.ConditionMax = 90;
-		this.m.StaminaModifier = -2;
-		this.m.Vision = 0;
-	}
-
 	// taste the pain, kinda
 	function onDamageReceived (_damage, _fatalityType, _attacker)
 	{
@@ -90,15 +83,6 @@ this.legend_named_warlock_skull <- this.inherit("scripts/items/legend_helmets/le
 		_properties.MoraleCheckBravery[1] += this.m.StackCount * 10;
 		_properties.MoraleCheckBravery[2] += this.m.StackCount * 10;
 	}
-
-	function randomizeValues()
-	{
-        this.m.Vision = this.Math.rand(0, 1) * -1 ;
-		this.m.StaminaModifier = this.Math.rand(1, 2) * -1;
-		this.m.Condition = this.Math.rand(90, 115);
-		this.m.ConditionMax = this.m.Condition;
-	}
-
 	
 	function onCombatFinished()
 	{

@@ -6,7 +6,6 @@ this.legend_mountain_armor_blueprint <- this.inherit("scripts/crafting/blueprint
 		this.m.ID = "blueprint.legend_mountain_armor";
 		this.m.Type = this.Const.Items.ItemType.Armor;
 		local preview = this.new("scripts/items/legend_armor/legendary/legend_armor_mountain_named");
-		preview.resetStats();
 		preview.m.Name = "Mountain Armor";
 		this.m.PreviewCraftable = preview;
 		this.m.Cost = 2500;
@@ -37,11 +36,8 @@ this.legend_mountain_armor_blueprint <- this.inherit("scripts/crafting/blueprint
 		return this.blueprint.isQualified();
 	}
 
-	function onCraft( _stash )
-	{
-		local item = this.new("scripts/items/legend_armor/legendary/legend_armor_mountain_named");
-		item.resetStats();
-		_stash.add(item);
+	function onCraft( _stash )	{
+		_stash.add(::new("scripts/items/legend_armor/legendary/legend_armor_mountain_named"));
 	}
 
 });

@@ -1,5 +1,10 @@
 this.legend_armor_named_warlock_cloak <- this.inherit("scripts/items/legend_armor/legend_named_armor_upgrade", {
-	m = {},
+	m = {
+		Potential = {
+			Condition = { min = 30, max = 40 },
+			StaminaModifier = { min = 3, max = 2 },
+		}
+	},
 	function create()
 	{
 		this.legend_named_armor_upgrade.create();
@@ -14,7 +19,6 @@ this.legend_armor_named_warlock_cloak <- this.inherit("scripts/items/legend_armo
 		this.m.ImpactSound = this.Const.Sound.ArmorLeatherImpact;
 		this.m.InventorySound = this.Const.Sound.ClothEquip;
 		this.m.Value = 5000;
-		this.resetStats();
 		this.randomizeValues();
 		this.m.NameList = ["Dead Man\'s Skin","Necromancer\'s Robe","Seance\'s Skin","Warlock\'s Cloak","Deathcloak","Sorceror\'s Cloak"];
 	}
@@ -29,12 +33,6 @@ this.legend_armor_named_warlock_cloak <- this.inherit("scripts/items/legend_armo
 		this.m.OverlayIconLarge = "legend_armor/inventory_cloak_cursed_"  + variant + ".png";
 		this.m.OverlayIcon = "legend_armor/icon_cloak_cursed_" + variant + ".png";
 		this.m.OverlayIconLarge = "legend_armor/inventory_cloak_cursed_"  + variant + ".png";
-	}
-
-	function resetStats() {
-		this.m.Condition = 30;
-		this.m.ConditionMax = 30;
-		this.m.StaminaModifier = -2;
 	}
 
 	function getTooltip()

@@ -80,10 +80,9 @@ this.legend_cloth_named <- this.inherit("scripts/items/legend_armor/legend_armor
 		this.m.Name = _prefix + this.m.NameList[this.Math.rand(0, this.m.NameList.len() - 1)];
 	}
 
-	function randomizeValues()
-	{
-		this.m.StaminaModifier = this.Math.min(-8, this.m.StaminaModifier + this.Math.rand(3, 9));
-		this.m.Condition = this.Math.floor(this.m.Condition * this.Math.rand(110, 125) * 0.01) * 1.0;
+	function randomizeValues() {
+		this.m.StaminaModifier = ::Math.rand(this.m.Potential.StaminaModifier.max, this.m.Potential.StaminaModifier.min) * -1;
+		this.m.Condition = ::Math.rand(this.m.Potential.Condition.min, this.m.Potential.Condition.max);
 		this.m.ConditionMax = this.m.Condition;
 	}
 

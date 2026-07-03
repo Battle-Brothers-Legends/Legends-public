@@ -1,5 +1,10 @@
 this.legend_skin_armor <- this.inherit("scripts/items/legend_armor/legend_named_armor_upgrade", {
-	m = {},
+	m = {
+		Potential = {
+			Condition = { min = 130, max = 130 },
+			StaminaModifier = { min = 14, max = 14 },
+		}
+	},
 	function create()
 	{
 		this.legend_named_armor_upgrade.create();
@@ -14,11 +19,7 @@ this.legend_skin_armor <- this.inherit("scripts/items/legend_armor/legend_named_
 		this.m.ImpactSound = this.Const.Sound.ArmorLeatherImpact;
 		this.m.InventorySound = this.Const.Sound.ArmorLeatherImpact;
 		this.m.Value = 5000;
-		this.m.Condition = 130;
-		this.m.ConditionMax = 130;
-		this.m.StaminaModifier = -14;
 		this.randomizeValues();
-		this.resetValues();
 		this.m.NameList = ["Skin Suit","Naked Armor","Ghoulish Bastion","Flayed Bulwark"];
 	}
 
@@ -32,12 +33,6 @@ this.legend_skin_armor <- this.inherit("scripts/items/legend_armor/legend_named_
 		this.m.IconLarge = "legend_armor/inventory_skin_armor_" + variant + ".png";
 		this.m.OverlayIcon = "legend_armor/icon_skin_armor_" + variant + ".png";
 		this.m.OverlayIconLarge = "legend_armor/inventory_skin_armor_" + variant + ".png";
-	}
-
-	function resetValues() {
-		this.m.Condition = 130;
-		this.m.ConditionMax = 130;
-		this.m.StaminaModifier = -14;
 	}
 
 	function onArmorTooltip(_result)

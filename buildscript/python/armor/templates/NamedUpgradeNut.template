@@ -19,6 +19,10 @@ this.$name <- this.inherit("scripts/items/legend_armor/legend_named_armor_upgrad
 		this.m.ConditionMax = $condition;
 		this.m.StaminaModifier = $stamina;
         this.m.ItemType = $itemType;
+		this.m.Potential <- {
+			Condition = { min = $rminCond, max = $rmaxCond },
+			StaminaModifier = { min = $rminStam, max = $rmaxStam }
+		}
         this.randomizeValues();
 	}
 
@@ -36,8 +40,8 @@ this.$name <- this.inherit("scripts/items/legend_armor/legend_named_armor_upgrad
 
 	function randomizeValues()
 	{
-		this.m.StaminaModifier = this.Math.rand($rmaxStam, $rminStam) * -1;
-		this.m.Condition = this.Math.rand($rminCond, $rmaxCond);
+		this.m.StaminaModifier = ::Math.rand($rmaxStam, $rminStam) * -1;
+		this.m.Condition = ::Math.rand($rminCond, $rmaxCond);
 		this.m.ConditionMax = this.m.Condition;
 	}
 });

@@ -1,5 +1,10 @@
 this.legend_armor_mountain_named <- this.inherit("scripts/items/legend_armor/legend_named_armor_upgrade", {
-	m = {},
+	m = {
+		Potential = {
+			Condition = { min = 250, max = 250 },
+			StaminaModifier = { min = 32, max = 32 },
+		}
+	},
 	function create()
 	{
 		this.legend_named_armor_upgrade.create();
@@ -16,7 +21,6 @@ this.legend_armor_mountain_named <- this.inherit("scripts/items/legend_armor/leg
 		this.m.Value = 7500;
 		this.m.ItemType = this.m.ItemType | this.Const.Items.ItemType.Legendary;
 		this.randomizeValues();
-		this.resetStats();
 		this.m.NameList = ["Titan Coat","Mountain Hide","Giant\'s Coat","Earthquake Harness","Landslide Coat","Boulder Plates","Coat of the Mountain"];
 	}
 
@@ -30,12 +34,6 @@ this.legend_armor_mountain_named <- this.inherit("scripts/items/legend_armor/leg
 		this.m.IconLarge = "legend_armor/inventory_mountain_armor_"  + variant + ".png";
 		this.m.OverlayIcon = "legend_armor/icon_mountain_armor_" + variant + ".png";
 		this.m.OverlayIconLarge = "legend_armor/inventory_mountain_armor_"  + variant + ".png";
-	}
-
-	function resetStats() {
-		this.m.Condition = 250;
-		this.m.ConditionMax = 250;
-		this.m.StaminaModifier = -32;
 	}
 
 	function onArmorTooltip( _result )

@@ -1,5 +1,11 @@
 this.legend_pauldron_named_upgrade <- this.inherit("scripts/items/legend_armor/legend_named_armor_upgrade", {
-	m = {},
+	m = {
+		Potential = {
+			Condition = { min = 60, max = 70 },
+			StaminaModifier = { min = -8, max = -4 },
+			DirectDamageModifier = { min = 40, max = 45 }
+		}
+	},
 	function create()
 	{
 		this.legend_named_armor_upgrade.create();
@@ -14,10 +20,6 @@ this.legend_pauldron_named_upgrade <- this.inherit("scripts/items/legend_armor/l
 		this.m.ImpactSound = this.Const.Sound.ArmorHalfplateImpact;
 		this.m.InventorySound = this.Const.Sound.ArmorHalfplateImpact;
 		this.m.Value = 3600;
-		this.m.Condition = 55;
-		this.m.ConditionMax = 55;
-		this.m.StaminaModifier = -8;
-		this.m.DirectDamageModifier = -40.0;
 		this.randomizeValues();
 		this.m.NameList = ["Aurelian Mantle","Midas\' Curse","Tyrant\'s Gilt","Gilded Pauldrons","Gilded Bulwark","Imperial Epaulets","Vanguard\'s Radiance"];
 	}
@@ -32,14 +34,6 @@ this.legend_pauldron_named_upgrade <- this.inherit("scripts/items/legend_armor/l
 		this.m.IconLarge = "legend_armor/inventory_pauldrons_named_"  + variant + ".png";
 		this.m.OverlayIcon = "legend_armor/icon_pauldrons_named_" + variant + ".png";
 		this.m.OverlayIconLarge = "legend_armor/inventory_pauldrons_named_"  + variant + ".png";
-	}
-
-	function randomizeValues()
-	{
-		this.m.StaminaModifier = this.Math.rand(4, 8) * -1;
-		this.m.Condition = this.Math.floor(this.m.Condition * this.Math.rand(110, 125) * 0.01) * 1.0;
-		this.m.DirectDamageModifier = this.Math.rand(40, 45) * -1.0;
-		this.m.ConditionMax = this.m.Condition;
 	}
 
 	function onSerialize( _out )

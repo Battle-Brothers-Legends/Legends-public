@@ -78,11 +78,16 @@ this.legend_named_armor_upgrade <- this.inherit("scripts/items/legend_armor/lege
 		this.m.Name = _prefix + this.m.NameList[this.Math.rand(0, this.m.NameList.len() - 1)];
 	}
 
-	function randomizeValues()
-	{
-		this.m.StaminaModifier = this.Math.min(-8, this.m.StaminaModifier + this.Math.rand(3, 9));
-		this.m.Condition = this.Math.floor(this.m.Condition * this.Math.rand(110, 125) * 0.01) * 1.0;
+	function randomizeValues() {
+		this.m.StaminaModifier = ::Math.rand(this.m.Potential.StaminaModifier.max, this.m.Potential.StaminaModifier.min) * -1;
+		this.m.Condition = ::Math.rand(this.m.Potential.Condition.min, this.m.Potential.Condition.max);
 		this.m.ConditionMax = this.m.Condition;
+		if ("DirectDamageModifier" in this.m.Potential) {
+			this.m.DirectDamageModifier = ::Math.rand(this.m.Potential.DirectDamageModifier.min, this.m.Potential.DirectDamageModifier.max) * -1.0;
+		}
+		if ("BraveryMult" in this.m.Potential) {
+			this.m.BraveryMult = ::Math.rand(this.m.Potential.BraveryMult.min, this.m.Potential.BraveryMult.max) * 0.01;
+		}
 	}
 
 	function onSerialize( _out )

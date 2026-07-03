@@ -1,5 +1,10 @@
 this.legend_lindwurm_scale_armor <- this.inherit("scripts/items/legend_armor/legend_named_armor_upgrade", {
-	m = {},
+	m = {
+		Potential = {
+			Condition = { min = 60, max = 60 },
+			StaminaModifier = { min = 6, max = 6 }
+		}
+	},
 	function create()
 	{
 		this.legend_named_armor_upgrade.create();
@@ -14,11 +19,7 @@ this.legend_lindwurm_scale_armor <- this.inherit("scripts/items/legend_armor/leg
 		this.m.ImpactSound = this.Const.Sound.ArmorChainmailImpact;
 		this.m.InventorySound = this.Const.Sound.ArmorChainmailImpact;
 		this.m.Value = 3000;
-		this.m.Condition = 60;
-		this.m.ConditionMax = 60;
-		this.m.StaminaModifier = -6;
 		this.randomizeValues();
-		this.resetStats();
 		this.m.NameList = ["Wild Scale", "Wurm Skin", "Dragon Cloak", "Snakeskin", "Wyvern Scale", "Drakenguard"];
 	}
 
@@ -32,13 +33,6 @@ this.legend_lindwurm_scale_armor <- this.inherit("scripts/items/legend_armor/leg
 		this.m.IconLarge = "legend_armor/inventory_wild_scale_" + variant + ".png";
 		this.m.OverlayIcon = "legend_armor/icon_wild_scale_" + variant + ".png";
 		this.m.OverlayIconLarge = "legend_armor/inventory_wild_scale_" + variant + ".png";
-	}
-
-	function resetStats()
-	{
-		this.m.Condition = 60;
-		this.m.ConditionMax = 60;
-		this.m.StaminaModifier = -6;
 	}
 
 	function getTooltip()

@@ -6,7 +6,6 @@ this.legend_warlock_skull_blueprint <- this.inherit("scripts/crafting/legend_war
 		this.m.ID = "blueprint.legend_warlock_skull";
 		this.m.Type = this.Const.Items.ItemType.Armor;
 		local preview = this.new("scripts/items/legend_helmets/named/legend_named_warlock_skull");
-		preview.resetStats();
 		preview.m.Name = "Warlock Skull Faceplate";
 		this.m.PreviewCraftable = preview;
 		this.m.Cost = 2000;

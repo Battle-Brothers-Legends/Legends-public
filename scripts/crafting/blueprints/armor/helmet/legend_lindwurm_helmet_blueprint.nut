@@ -6,7 +6,6 @@ this.legend_lindwurm_helmet_blueprint <- this.inherit("scripts/crafting/blueprin
 		this.m.ID = "blueprint.legend_lindwurm_helmet";
 		this.m.Type = this.Const.Items.ItemType.Armor;
 		local preview = this.new("scripts/items/legend_helmets/named/legend_named_lindwurm_helmet");
-		preview.resetStats();
 		preview.m.Name = "Lindwurm\'s Helmet";
 		this.m.PreviewCraftable = preview;
 		this.m.Cost = 1500;
