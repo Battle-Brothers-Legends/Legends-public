@@ -1,6 +1,6 @@
 this.perk_legend_wide_swings <- this.inherit("scripts/skills/skill", {
 	m = {
-		AlreadyUsed = false;	
+		AlreadyUsed = false	
 	},
 	function create()
 	{
