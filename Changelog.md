@@ -53,6 +53,7 @@
 - `Prepared` - crossbows and firearms in your bags will be loaded at combat start
 - `Anticipation` - reduce damage taken by 1% for each point of Ranged Defense you have for the first few hits you take in combat
 - `Return Favor` - If you're armed with a ranged weapon and a ranged attack misses you, gain a chance to fire back at your attacker. The chance is based on Ranged Defense.
+- `Versatile` - now grants stacks which will increase damage by 10% damage for the opposite attack type
 
 
 ## Items

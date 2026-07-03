@@ -36,7 +36,7 @@ this.perk_legend_versatile <- this.inherit("scripts/skills/skill", {
 				id = 10,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "[color=%positive%]+25%[/color] Damage"
+				text = "[color=%positive%]" + (this.m.RangedStacks * 10) + "[/color] Damage"
 			});
 		}
 		else if (this.m.MeleeStacks > 0)
@@ -45,7 +45,7 @@ this.perk_legend_versatile <- this.inherit("scripts/skills/skill", {
 				id = 10,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "[color=%positive%]+25%[/color] Damage"
+				text = "[color=%positive%]" + (this.m.MeleeStacks * 10) + "[/color] Damage"
 			});
 		}
 	}
@@ -76,10 +76,10 @@ this.perk_legend_versatile <- this.inherit("scripts/skills/skill", {
 
 		this.m.IsHidden = this.m.MeleeStacks == 0 || this.m.RangedStacks == 0;
 		if (this.m.MeleeStacks)
-			_properties.MeleeDamageMult *= 1.25;
+			_properties.MeleeDamageMult *= (this.m.MeleeStacks * 0.10 + 1.00);
 
 		if (this.m.RangedStacks)
-			_properties.RangedDamageMult *= 1.25;
+			_properties.RangedDamageMult *= (this.m.RangedStacks * 0.10 + 1.00);
 	}
 
 	function onTargetMissed( _skill, _targetEntity )
@@ -87,9 +87,9 @@ this.perk_legend_versatile <- this.inherit("scripts/skills/skill", {
 		if (this.m.MeleeStacks != 0 && this.m.RangedStacks != 0 && this.m.SkillCount != this.Const.SkillCounter)
 		{
 			this.m.SkillCount = this.Const.SkillCounter;
-			this.m.MeleeStacks = 0;
-			this.m.RangedStacks = 0;
-			if (this.m.MeleeStacks == 1 || this.m.RangedStacks == 1)
+			this.m.MeleeStacks -= 1;
+			this.m.RangedStacks -= 1;
+			if (this.m.MeleeStacks != 0 && this.m.RangedStacks != 0)
 			{
 				this.getContainer().getActor().setDirty(true);
 			}
@@ -106,14 +106,14 @@ this.perk_legend_versatile <- this.inherit("scripts/skills/skill", {
 
 		if (_skill.isRanged() && this.m.MeleeStacks == 0 && this.m.SkillCount != this.Const.SkillCounter)
 		{
-			this.m.MeleeStacks = 1;
-			this.m.RangedStacks = 0;
+			this.m.MeleeStacks = 2;
+			this.m.RangedStacks -= 1;
 			this.m.SkillCount = this.Const.SkillCounter;
 		}
 		else if (!_skill.isRanged() && this.m.RangedStacks == 0 && this.m.SkillCount != this.Const.SkillCounter)
 		{
-			this.m.MeleeStacks = 0;
-			this.m.RangedStacks = 1;
+			this.m.MeleeStacks -= 1;
+			this.m.RangedStacks = 2;
 			this.m.SkillCount = this.Const.SkillCounter;
 		}
 

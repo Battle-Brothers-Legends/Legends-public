@@ -3430,9 +3430,13 @@ Every fight is like a dance, and you have just the right moves.
 Oftentimes better than a master of one.
 
 [color=%passive%][u]Passive:[/u][/color]
-• Confers a [color=%positive%]25%[/color] damage bonus to Ranged Damage on next attack when attacking with a Melee Attack and a [color=%positive%]25%[/color] damage bonus to Melee Damage on next attack when attacking with a Ranged Attack. If the attack misses, the effect is lost.
+• Confers [color=%positive%]2[/color] stacks of Ranged Damage bonus after hitting an enemy with a Melee Attack and [color=%positive%]2[/color] stacks of Melee Damage bonus after hitting an enemy with a Ranged Attack.
 
-• Gain [color=%positive%]10%[/color] of your base Ranged Skill as Melee Skill and [color=%positive%]10%[/color] of your base Melee Skill as Ranged Skill.
+• Each stack will grant [color=%positive%]10%[/color] damage for the relevant attack.
+
+• Attacking a target, hit or miss, will reduce stacks by [color=%negative%]1[/color].
+
+• Passively gain [color=%positive%]10%[/color] of your base Ranged Skill as Melee Skill and [color=%positive%]10%[/color] of your base Melee Skill as Ranged Skill.
 ";
 
 ::Const.Strings.PerkDescription.LegendNearDeathExperience <- @"
