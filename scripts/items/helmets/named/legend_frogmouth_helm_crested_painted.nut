@@ -1,5 +1,5 @@
 this.legend_frogmouth_helm_crested_painted <- this.inherit("scripts/items/helmets/named/named_helmet", {
-	m = {},
+	m = {}, //mfdel
 	function create()
 	{
 		this.named_helmet.create();
