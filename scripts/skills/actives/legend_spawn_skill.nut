@@ -215,12 +215,9 @@ this.legend_spawn_skill <- this.inherit("scripts/skills/skill", {
 		}
 
 		local entity = this.Tactical.spawnEntity(this.getScript(), _targetTile.Coords.X, _targetTile.Coords.Y);
-		if (this.m.IsControlledByPlayer)
-		{
-			entity.setFaction(this.Const.Faction.Player);
-		} else {
-			entity.setFaction(this.Const.Faction.PlayerAnimals);
-		}
+		entity.setFaction(this.Const.Faction.PlayerAnimals);
+		if (this.m.IsControlledByPlayer) entity.m.IsControlledByPlayer = true;	//might not be necessary, skellos and zombos are spawned with true anyways
+		
 		entity.setItem(spawnItem);
 		entity.setName(spawnItem.getName());
 		entity.assignRandomEquipment();
