@@ -5,8 +5,6 @@
 	local create = o.create;
 	o.create = function () {
 		create();
-		this.m.WeaponType = ::Const.Items.WeaponType.Sword;
-		this.m.Categories = "Sword, Two-Handed";
 		this.m.IsAgainstShields = false;
 		this.m.ShieldDamage = 0;
 		this.m.Variants = [1,2,3];
