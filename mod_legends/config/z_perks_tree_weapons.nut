@@ -205,8 +205,8 @@ if (!("Perks" in ::Const)) {
 		[::Legends.Perk.LegendSmashingShields],
 		[],
 		[::Legends.Perk.SpecAxe],
-		[::Legends.Perk.LegendSlaughterer, ::Legends.Perk.LegendBloodyHarvest],
-		[],
+		[::Legends.Perk.LegendSlaughterer],
+		[::Legends.Perk.LegendBloodyHarvest],
 		[::Legends.Perk.KillingFrenzy]
 	]
 };

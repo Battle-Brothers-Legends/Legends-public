@@ -411,14 +411,14 @@ Take a deep breath, then get to work.
 There's wolves, bears, nachzehrers, and you. All beings of vicious slaughter.
 
 [color=%passive%][u]Passive:[/u][/color]
-• [color=%positive%]50%[/color] of the skill's fatigue cost is translated to an additive multiplier increase to Damage. This accounts for any fatigue reduction or increase.
+• [color=%positive%]50%[/color] of the skill's fatigue cost is translated to an additive multiplier increase to Damage and Hitchance. This accounts for any fatigue reduction or increase.
 ";
 
 ::Const.Strings.PerkDescription.LegendWideSwings <- @"
 Broad attacks are hard to avoid and you're using this to your advantage.
 
 [color=%passive%][u]Passive:[/u][/color]
-• [color=%positive%]50%[/color] of the skill's fatigue cost is translated to Chance to hit. This accounts for any fatigue reduction or increase.
+• Gain a [color=%positive%]50%[/color] chance upon missing an attack execute the skill again on the target you missed. The follow up will deal [color=%negative%]50%[/color] less damage and gain [color=%positive%]30%[/color] hitchance.
 ";
 
 ::Const.Strings.PerkDescription.LegendImmovableObject <- @"

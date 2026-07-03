@@ -37,13 +37,11 @@
 > Confers an experience point bonus based on Hitpoints lost and Injuries gained during combat. Gain 1 XP per Hitpoint and 10 per Injuries. Experience gain is reduced by 90% at level 12 and above.
 > Hitpoint damage taken is reduced by 5% and Resolve is increased by 3 for each Injury you have up to a maximum of 30% and [color=%positive%]15 achieved at 6 Injuries. Counts both regular and permanent Injuries.
 - `Wide Swings` - Large Trait Tree
-> 50% of the skill's fatigue cost is translated to Chance to hit. This accounts for any fatigue reduction or increase.
+> Gain a 50% chance upon missing an attack execute the skill again on the target you missed.
+> The follow up will deal 50% less damage and gain 30% hitchance.
 - `Hammer the Gap` - Grants a stacking +5% to hit as long as you attack the same tile. The bonus is capped at 10%.
 
 ### Perk Changes
-- `Bloody Harvest` - 50% of the skill's fatigue cost is translated to Damage. This accounts for any fatigue reduction or increase.
-> used to be damage and chance to hit
-> moved to t5
 > the bonus is now additive multiplier
 - `Heightened Reflexes` - the damage bonus is an additive multiplier
 - `Muscularity` - bonus from fatigue dropped to 10% and the bonus is now an additive multiplier
