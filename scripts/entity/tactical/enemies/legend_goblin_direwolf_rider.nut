@@ -17,7 +17,7 @@ this.legend_goblin_direwolf_rider <- this.inherit("scripts/entity/tactical/enemi
 	function onInit()
 	{
 		this.legend_goblin_rider_abstract.onInit();
-		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= this.Const.World.Scaling.Nomads.LegendDirewolfRiderHarrierDay)
+		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= this.Const.World.Scaling.Goblins.LegendDirewolfRiderHarrierDay)
 		{
 			this.m.GoblinScript = "scripts/entity/tactical/enemies/legend_goblin_harrier";
 			local b = this.m.BaseProperties;
