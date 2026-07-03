@@ -179,7 +179,7 @@ this.legend_zombie <- this.inherit("scripts/entity/tactical/enemies/zombie", {
 		local XPgroup = _actor.getXPValue() * (1.0 - this.Const.XP.XPForKillerPct);
 
 		local summoner = getFlags().get("Summoner");
-		if (summoner != null && "addXP" in summoner)
+		if (summoner != null && ::MSU.isKindOf(summoner, "player"))
 		{
 			summoner.addXP(this.Math.floor(XPkiller * 0.50));
 		}
