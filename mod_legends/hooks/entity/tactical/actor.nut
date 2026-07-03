@@ -19,10 +19,11 @@
 	}
 
 	local isPlayerControlled = o.isPlayerControlled;
-	o.isPlayerControlled = function() {
-		if (this.getFaction() == this.Const.Faction.PlayerAnimals && this.m.IsControlledByPlayer) return true;
+	o.isPlayerControlled  = {function isPlayerControlled(){	
+		if ((this.getFaction() == this.Const.Faction.PlayerAnimals) && this.m.IsControlledByPlayer) return true;
 		return isPlayerControlled();
-	};
+		
+	}}.isPlayerControlled;
 	
 	local setCurrentMovementType = o.setCurrentMovementType;
 	o.setCurrentMovementType = function( _t ) // to trigger the removal of stances skill upon being moved out of will
