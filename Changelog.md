@@ -45,9 +45,6 @@
 > the bonus is now additive multiplier
 - `Heightened Reflexes` - the damage bonus is an additive multiplier
 - `Muscularity` - bonus from fatigue dropped to 10% and the bonus is now an additive multiplier
-- `Strength in Numbers`
-> The bonus to hitchance in melee is doubled to +10% for each ally surrounding and distracting your target.
-> Grants 2 Melee and Ranged Defense for each ally surrounding you.
 - `Backswing` - new gfx to differentiate from feint
 - `Anticipation` - removed for now
 - `Ballistics` - no longer reduces hitchance penalty with tile traveled, instead deals an additional 2 damage per tile travelled

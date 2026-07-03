@@ -3354,8 +3354,6 @@ Surround, distract and strike true.
 
 [color=%passive%][u]Passive:[/u][/color]
 • The bonus to hitchance in melee is doubled to [color=%positive%]+10%[/color] for each ally surrounding and distracting your target.
-
-• Grants [color=%positive%]2[/color] Melee and Ranged Defense for each ally surrounding you.
 ";
 
 ::Const.Strings.PerkDescription.LegendHammerTheGap <- @"
