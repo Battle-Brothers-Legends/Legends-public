@@ -13,6 +13,7 @@ this.legend_light_trait <- this.inherit("scripts/skills/traits/character_trait",
 			"the Lightning"
 		];
 		this.m.Excluded = [
+			::Legends.Traits.getID(::Legends.Trait.Fat),
 			::Legends.Traits.getID(::Legends.Trait.Huge),
 			::Legends.Traits.getID(::Legends.Trait.Strong),
 			::Legends.Traits.getID(::Legends.Trait.Tough),
