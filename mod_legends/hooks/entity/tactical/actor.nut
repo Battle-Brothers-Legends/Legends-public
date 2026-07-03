@@ -21,7 +21,7 @@
 	local isPlayerControlled = o.isPlayerControlled;
 	o.isPlayerControlled = function() {
 		if (this.getFaction() == this.Const.Faction.PlayerAnimals && this.m.IsControlledByPlayer) return true;
-		isPlayerControlled();
+		return isPlayerControlled();
 	};
 	
 	local setCurrentMovementType = o.setCurrentMovementType;
