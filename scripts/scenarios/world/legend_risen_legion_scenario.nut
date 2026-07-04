@@ -28,7 +28,8 @@ this.legend_risen_legion_scenario <- this.inherit("scripts/scenarios/world/start
 			"ambition.make_nobles_aware",
 			"ambition.trade",
 			"ambition.visit_settlements",
-			"ambition.win_x_arena_fights"
+			"ambition.win_x_arena_fights",
+			"ambition.legend_make_city_states_aware"
 		];
 	}
 
