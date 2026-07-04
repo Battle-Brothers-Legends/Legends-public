@@ -12,6 +12,16 @@ this.legends_nomad_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 		this.m.StartingBusinessReputation = -50;
 	}
 
+	function onInit()
+	{
+		this.starting_scenario.onInit();
+		this.m.ExcludedAmbitions = [
+			"ambition.legend_make_city_states_aware",
+			"ambition.defeat_holywar",
+			"ambition.win_x_arena_fights"
+		];
+	}
+
 	function onSpawnAssets()
 	{
 		local roster = this.World.getPlayerRoster();
