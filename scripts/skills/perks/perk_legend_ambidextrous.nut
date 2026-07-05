@@ -134,21 +134,33 @@ this.perk_legend_ambidextrous <- this.inherit("scripts/skills/skill", {
 			return;
 		}
 
-		if (_targetEntity != null && ((off == null && !items.hasBlockedSlot(this.Const.ItemSlot.Offhand)) || hasNet || !::MSU.isNull(this.m.offHandSkill)))
-		{
+		if (_targetEntity != null && ((off == null && !items.hasBlockedSlot(this.Const.ItemSlot.Offhand)) || hasNet || !::MSU.isNull(this.m.offHandSkill)))	{
 			if (!_forFree) {
-				if (_targetTile == null || actor.getTile() == null) {
+				//if (_targetTile == null || actor.getTile() == null) {
 					// Is this necessary?
+				//	return;
+				//}
+				local skillToUse = !::MSU.isNull(this.m.offHandSkill) ? this.m.offHandSkill: this.m.HandToHand;
+				if (actor.getTile().getDistanceTo(_targetEntity.getTile()) > skillToUse.getMaxRange()) {
 					return;
 				}
 
-				// i need to somehow do this more dynamically
-				this.Const.SkillCounter++;
+				// i need to somehow do this more dynamically (think this is it)
+				::Time.scheduleEvent(::TimeUnit.Virtual, ::Const.Combat.RiposteDelay, function (_skill) {
+					if (::Legends.S.isEntityNullOrDead(_targetEntity) || !_targetEntity.isPlacedOnMap() || _targetEntity.getTile() == null) {
+						return;
+					}
+					::Const.SkillCounter++;
+					_skill.executeFollowUpAttack({
+						TargetTile = _targetEntity.getTile(),
+						Skill = skillToUse
+					})
+				}.bindenv(this), this);
+				/*this.Const.SkillCounter++;
 				::Time.scheduleEvent(::TimeUnit.Virtual, ::Const.Combat.RiposteDelay, this.executeFollowUpAttack.bindenv(this), {
 					TargetTile = _targetTile,
-					Skill = !::MSU.isNull(this.m.offHandSkill)
-						? this.m.offHandSkill: this.m.HandToHand
-					});
+					Skill = !::MSU.isNull(this.m.offHandSkill) ? this.m.offHandSkill: this.m.HandToHand
+					});*/
 			}
 		}
 	}

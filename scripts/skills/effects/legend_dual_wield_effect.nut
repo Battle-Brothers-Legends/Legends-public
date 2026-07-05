@@ -193,11 +193,21 @@ this.legend_dual_wield_effect <- this.inherit("scripts/skills/skill", {
 
 			// Schedule follow-up attack
 			if (!_forFree) {
-				this.Const.SkillCounter++;
-				::Time.scheduleEvent(::TimeUnit.Virtual, ::Const.Combat.RiposteDelay, this.executeFollowUpAttack.bindenv(this), {
+				::Time.scheduleEvent(::TimeUnit.Virtual, ::Const.Combat.RiposteDelay, function (_skill) {
+					if (::Legends.S.isEntityNullOrDead(_targetEntity) || !_targetEntity.isPlacedOnMap() || _targetEntity.getTile() == null) {
+						return;
+					}
+					::Const.SkillCounter++;
+					_skill.executeFollowUpAttack({
+						TargetTile = _targetEntity.getTile(),
+						Skill = skillToUse
+					})
+				}.bindenv(this), this);
+				//this.Const.SkillCounter++;
+				/*::Time.scheduleEvent(::TimeUnit.Virtual, ::Const.Combat.RiposteDelay, this.executeFollowUpAttack.bindenv(this), {
 					TargetTile = _targetTile,
 					Skill = skillToUse
-				});
+				});*/
 			}
 		}
 	}
