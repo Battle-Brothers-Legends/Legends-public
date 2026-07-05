@@ -99,6 +99,7 @@
 ::Legends.Compat.HardIncompat.add("mod_AC", "1.30.33", "Instead use the newer ACU found in the AC Submod channel Pins"); // Accessory Companions
 ::Legends.Compat.HardIncompat.add("mod_allCripplesBecomeTheKingsGuard", "1.0");
 ::Legends.Compat.HardIncompat.add("and_justice_for_all", "1.4.0");
+::Legends.Compat.HardIncompat.add("mod_ambition_control", "1.0.1");
 ::Legends.Compat.HardIncompat.add("mod_autopilot", "23", "Instead use Hackflow's Autopilot New mod");
 ::Legends.Compat.HardIncompat.add("mod_auto_level", "1.1.1", "Instead use Hackflow's Bro Studio for something similar");
 ::Legends.Compat.HardIncompat.add("mod_avatar", "1.0.2");
