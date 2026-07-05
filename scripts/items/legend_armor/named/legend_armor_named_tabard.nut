@@ -37,30 +37,6 @@ this.legend_armor_named_tabard <- this.inherit("scripts/items/legend_armor/legen
 		this.m.OverlayIconLarge = "legend_armor/inventory_tabard_named_" + variant + ".png";
 	}
 
-	function getTooltip()
-	{
-		local result = this.legend_named_armor_upgrade.getTooltip();
-		local val = this.Math.floor(this.m.BraveryMult * 100.0 - 100);
-		result.push({
-			id = 15,
-			type = "text",
-			icon = "ui/icons/special.png",
-			text = "Increase the Resolve of the wearer by [color=%positive%]+" + val + "%[/color]"
-		});
-		return result;
-	}
-
-	function onArmorTooltip( _result )
-	{
-		local val = this.Math.floor(this.m.BraveryMult * 100.0 - 100);
-		_result.push({
-			id = 15,
-			type = "text",
-			icon = "ui/icons/special.png",
-			text = "Increase the Resolve of the wearer by [color=%positive%]+" + val + "%[/color]"
-		});
-	}
-
 	function onUpdateProperties( _properties )
 	{
 		_properties.BraveryMult *= this.m.BraveryMult;

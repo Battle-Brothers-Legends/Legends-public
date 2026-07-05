@@ -206,3 +206,31 @@
 ::Legends.Items.Named.getRangeOfSpecialEffect <- function (_item, _includePercent = true){
     return ::Legends.Mod.ModSettings.getSetting("ShowPotentialOnItems").getValue() ? ::Legends.Items.Named.wrapTooltip(_item.m.EffectBounds[_item.m.PossibleEffectIdx][0] + (_includePercent ? "%" : "") + " to " + _item.m.EffectBounds[_item.m.PossibleEffectIdx][1]) : (_includePercent ? "%" : "");
 }
+
+::Legends.Items.Named.ShowArmorPotential <- function (_item, _result) {
+	if (!::Legends.Mod.ModSettings.getSetting("ShowPotentialOnItems").getValue()) {
+		return;
+	}
+
+	foreach (tooltip in _result) {
+		if (!tooltip.rawin("id") || !tooltip.rawin("text") || !tooltip.rawin("icon")) {
+			continue;
+		}
+
+		if (tooltip.id == 4 && (tooltip.icon == "ui/icons/armor_body.png" || tooltip.icon == "ui/icons/armor_head.png")) {
+			tooltip.text += " [" + _item.m.Potential.Condition.min + " to " + _item.m.Potential.Condition.max + "]";
+
+		} else if (tooltip.id == 5 && tooltip.icon == "ui/icons/fatigue.png" && tooltip.text.find("Weight:") != null) {
+			tooltip.text += ::Legends.Items.Named.wrapTooltip(_item.m.Potential.StaminaModifier.min * -1 + " to " + _item.m.Potential.StaminaModifier.max * -1);
+		}
+		else if (tooltip.id == 6 && tooltip.icon == "ui/icons/vision.png") { //&& "Vision" in _item.m.Potential
+			tooltip.text += ::Legends.Items.Named.wrapTooltip(_item.m.Potential.Vision.min * -1 + " to " + _item.m.Potential.Vision.max * -1);
+		}
+		else if (tooltip.id == 15 && tooltip.icon == "ui/icons/direct_damage.png") { //&& "DirectDamageModifier" in _item.m.Potential
+			tooltip.text += ::Legends.Items.Named.wrapTooltip(_item.m.Potential.DirectDamageModifier.max * -1 + "% to " + _item.m.Potential.DirectDamageModifier.min * -1 + "%");
+		}
+		else if (tooltip.id == 15 && tooltip.icon == "ui/icons/special.png" && tooltip.text.find("Resolve") != null && "BraveryMult" in _item.m.Potential) {
+			tooltip.text += ::Legends.Items.Named.wrapTooltip((_item.m.Potential.BraveryMult.min - 100) + "% to " + (_item.m.Potential.BraveryMult.max - 100) + "%");
+		}
+	}
+}

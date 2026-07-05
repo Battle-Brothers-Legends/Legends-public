@@ -50,6 +50,13 @@ this.legend_named_helmet <- this.inherit("scripts/items/legend_helmets/legend_he
 		}
 	}
 
+	function getTooltip(){
+		local result = this.legend_helmet.getTooltip();
+		::Legends.Items.Named.ShowArmorPotential(this, result);
+
+    	return result;
+	}
+
 	function onEquip()
 	{
 		this.legend_helmet.onEquip();

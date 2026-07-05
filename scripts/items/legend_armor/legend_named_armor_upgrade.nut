@@ -25,6 +25,13 @@ this.legend_named_armor_upgrade <- this.inherit("scripts/items/legend_armor/lege
 		return this.buildTextFromTemplate(_list[this.Math.rand(0, _list.len() - 1)], vars);
 	}
 
+	function getTooltip(){
+		local result = this.legend_armor_upgrade.getTooltip();
+		::Legends.Items.Named.ShowArmorPotential(this, result);
+
+    	return result;
+	}
+
 	function createRandomName()
 	{
 		if (!this.m.UseRandomName || this.Math.rand(1, 100) <= 75)

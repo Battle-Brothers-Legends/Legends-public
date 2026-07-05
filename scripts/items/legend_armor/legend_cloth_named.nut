@@ -50,6 +50,13 @@ this.legend_cloth_named <- this.inherit("scripts/items/legend_armor/legend_armor
 		}
 	}
 
+	function getTooltip(){
+		local result = this.legend_armor.getTooltip();
+		::Legends.Items.Named.ShowArmorPotential(this, result);
+
+    	return result;
+	}
+
 	function onEquip()
 	{
 		this.legend_armor.onEquip();

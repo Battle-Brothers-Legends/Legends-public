@@ -615,6 +615,14 @@ this.legend_armor_upgrade <- this.inherit("scripts/items/item", {
 					::Legends.S.colorize("" + ::Legends.S.getSign(this.getDirectDamageModifier()) + this.Math.abs(this.getDirectDamageModifier()) + "%", this.getDirectDamageModifier())
 			});
 		}
+		if ("BraveryMult" in this.m) {
+			_tooltipList.push({
+				id = 15,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = "Increase the Resolve of the wearer by [color=%positive%]+" + ::Math.round(this.m.BraveryMult * 100.0 - 100) + "%[/color]"
+			});
+		}
 		if (this.getDamageReceivedArmorMult() != 0)
 		{
 			_tooltipList.push({

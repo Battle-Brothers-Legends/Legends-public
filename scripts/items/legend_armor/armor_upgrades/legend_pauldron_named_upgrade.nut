@@ -2,7 +2,7 @@ this.legend_pauldron_named_upgrade <- this.inherit("scripts/items/legend_armor/l
 	m = {
 		Potential = {
 			Condition = { min = 60, max = 70 },
-			StaminaModifier = { min = -8, max = -4 },
+			StaminaModifier = { min = 8, max = 4 },
 			DirectDamageModifier = { min = 40, max = 45 }
 		}
 	},

@@ -24,7 +24,7 @@ this.$name <- this.inherit("scripts/items/legend_helmets/legend_named_helmet", {
 			Condition = { min = $rminCond, max = $rmaxCond },
 			StaminaModifier = { min = $rminStam, max = $rmaxStam }
 			Vision = { min = $rminViz, max = $rmaxViz }
-		}
+		};
         this.randomizeValues();
 	}
 

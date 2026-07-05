@@ -43,7 +43,7 @@ this.legend_named_warlock_skull <- this.inherit("scripts/items/legend_helmets/le
 
 	function getTooltip()
 	{
-		local result = this.legend_helmet_upgrade.getTooltip();
+		local result = this.legend_named_helmet_upgrade.getTooltip();
 		result.push({
 			id = 6,
 			type = "text",

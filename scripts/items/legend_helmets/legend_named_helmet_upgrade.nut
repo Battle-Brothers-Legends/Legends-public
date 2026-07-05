@@ -48,6 +48,13 @@ this.legend_named_helmet_upgrade <- this.inherit("scripts/items/legend_helmets/l
 		}
 	}
 
+	function getTooltip(){
+		local result = this.legend_helmet_upgrade.getTooltip();
+		::Legends.Items.Named.ShowArmorPotential(this, result);
+
+    	return result;
+	}
+
 	function onEquip()
 	{
 		this.legend_helmet_upgrade.onEquip();

@@ -43,7 +43,7 @@ this.legend_named_lindwurm_helmet <- this.inherit("scripts/items/legend_helmets/
 
 	function getTooltip()
 	{
-		local result = this.legend_helmet_upgrade.getTooltip();
+		local result = this.legend_named_helmet_upgrade.getTooltip();
 		this.onArmorTooltip(result);
 		return result;
 	}

@@ -22,7 +22,7 @@ this.$name <- this.inherit("scripts/items/legend_armor/legend_named_armor_upgrad
 		this.m.Potential <- {
 			Condition = { min = $rminCond, max = $rmaxCond },
 			StaminaModifier = { min = $rminStam, max = $rmaxStam }
-		}
+		};
         this.randomizeValues();
 	}
 
