@@ -126,7 +126,7 @@ this.legend_throw_knife_skill <- this.inherit("scripts/skills/skill", {
 				return success;
 
 			::Time.scheduleEvent(::TimeUnit.Virtual, 150, function ( _skill ) {
-				if (!::Legends.S.isEntityNullOrDead(target) && (!::Legends.Perks.has(target, ::Legends.Perk.LegendTumble) || !::Legends.Perks.get(target, ::Legends.Perk.LegendTumble).m.IsTumbling)) {
+				if (!::Legends.S.isEntityNullOrDead(target)) {
 					success = _skill.attackEntity(_user, target) || success;
 					_skill.m.IsDoingAttackMove = true;
 					_skill.getContainer().setBusy(false);

@@ -2,7 +2,9 @@ this.perk_legend_tumble <- this.inherit("scripts/skills/skill", {
 	m = {
 		CanTeleport = true,
 		IsTumbling = false,
-		LastSkillCounter = -1,
+		Frame = 0,
+		HitSkillCounter = 0,
+		EvadeSkillCounter = 0,
 		SequenceHit = false
 	},
 
@@ -12,9 +14,19 @@ this.perk_legend_tumble <- this.inherit("scripts/skills/skill", {
 	}
 
 	function onBeingAttacked(_attacker, _skill, _properties) {
-		if (::Const.SkillCounter != this.m.LastSkillCounter) {
-            this.m.LastSkillCounter = ::Const.SkillCounter;
+		if (::Time.getFrame() != this.m.Frame && ::Const.SkillCounter != this.m.HitSkillCounter) {
+			this.m.Frame = this.Time.getFrame();
+            this.m.HitSkillCounter = ::Const.SkillCounter;
             this.m.SequenceHit = false;
+        }
+
+		_properties.IsEvadingAllAttacks = false;
+		::logDebug(::Const.SkillCounter);
+		::logDebug(this.m.EvadeSkillCounter)
+		if (::Const.SkillCounter == this.m.EvadeSkillCounter) {
+            _properties.IsEvadingAllAttacks = true;
+            this.m.CanTeleport = false;
+            return;
         }
 
 		local actor = this.getContainer().getActor();
@@ -32,7 +44,7 @@ this.perk_legend_tumble <- this.inherit("scripts/skills/skill", {
 	}
 
 	function onBeforeDamageReceived(_attacker, _skill, _hitInfo, _properties) {
-        if (::Const.SkillCounter == this.m.LastSkillCounter) {
+        if (::Const.SkillCounter == this.m.HitSkillCounter) {
             this.m.SequenceHit = true;
         }
     }
@@ -216,6 +228,20 @@ this.perk_legend_tumble <- this.inherit("scripts/skills/skill", {
 			return;
 		}
 
+		this.m.EvadeSkillCounter = ::Const.SkillCounter;
 		this.teleportMe(actor, targetTile);
+	}
+
+	function onCombatStarted()	{
+		this.m.Frame = 0;
+		this.m.HitSkillCounter = 0;
+		this.m.EvadeSkillCounter = 0;
+	}
+
+	function onCombatFinished()	{
+		this.skill.onCombatFinished();
+		this.m.Frame = 0;
+		this.m.HitSkillCounter = 0;
+		this.m.EvadeSkillCounter = 0;
 	}
 });
