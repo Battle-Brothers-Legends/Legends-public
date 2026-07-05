@@ -15,14 +15,12 @@ this.perk_legend_tumble <- this.inherit("scripts/skills/skill", {
 
 	function onBeingAttacked(_attacker, _skill, _properties) {
 		if (::Time.getFrame() != this.m.Frame && ::Const.SkillCounter != this.m.HitSkillCounter) {
-			this.m.Frame = this.Time.getFrame();
+			this.m.Frame = ::Time.getFrame();
             this.m.HitSkillCounter = ::Const.SkillCounter;
             this.m.SequenceHit = false;
         }
 
 		_properties.IsEvadingAllAttacks = false;
-		::logDebug(::Const.SkillCounter);
-		::logDebug(this.m.EvadeSkillCounter)
 		if (::Const.SkillCounter == this.m.EvadeSkillCounter) {
             _properties.IsEvadingAllAttacks = true;
             this.m.CanTeleport = false;
