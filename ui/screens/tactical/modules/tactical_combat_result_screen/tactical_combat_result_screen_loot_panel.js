@@ -507,7 +507,7 @@ TacticalCombatResultScreenLootPanel.prototype.assignItems = function (_owner, _i
         }
 
         if (_owner === TacticalCombatResultScreenIdentifier.ItemOwner.Stash) {
-            this.updateStashFreeSlotsLabel();
+            self.updateStashFreeSlotsLabel();
         }
     }
 	
