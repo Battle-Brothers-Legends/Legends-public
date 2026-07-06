@@ -1,0 +1,181 @@
+/*
+ *  @Project:		Battle Brothers
+ *	@Company:		Overhype Studios
+ *
+ *	@Copyright:		(c) Overhype Studios | 2013 - 2020
+ * 
+ *  @Author:		Overhype Studios
+ *  @Date:			15.10.2017
+ *  @Description:	Tactical Combat Result Screen - Loot Panel JS
+ */
+
+.tactical-combat-result-screen .content .loot-panel {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 1;
+}
+
+.tactical-combat-result-screen .content .loot-panel.is-top {
+    z-index: 2;
+}
+
+.tactical-combat-result-screen .loot-panel .column {
+    height: 100%;
+    position: relative;
+    float: left;
+}
+
+.tactical-combat-result-screen .loot-panel .column.is-left {
+    width: 48.0rem;
+    background-image: url("coui://gfx/ui/skin/dialog_panel_02.png");
+    background-size: 48.0rem 56.8rem;
+    background-repeat: no-repeat;
+}
+
+.tactical-combat-result-screen .loot-panel .column.is-middle {
+    width: 6.4rem;
+}
+
+.tactical-combat-result-screen .loot-panel .column.is-right {
+    width: 48.0rem;
+    background-image: url("coui://gfx/ui/skin/dialog_panel_02.png");
+    background-size: 48.0rem 56.8rem;
+    background-repeat: no-repeat;
+}
+
+.tactical-combat-result-screen .loot-panel .row {
+    left: 0;
+    right: 0;
+    position: absolute;
+}
+
+.tactical-combat-result-screen .loot-panel .row.is-header {
+    top: 0;
+    height: 3.0rem;
+
+    line-height: 4.6rem;
+    text-align: center;
+}
+
+.tactical-combat-result-screen .loot-panel .row.is-content {
+    top: 3.4rem;
+    bottom: 3.0rem;
+}
+
+.tactical-combat-result-screen .loot-panel .row.is-footer {
+    bottom: 0;
+    height: 3.0rem;
+}
+
+.tactical-combat-result-screen .loot-panel .slot-count-container {
+    position: absolute;
+
+    width: 12.6rem;
+    height: 2.4rem;
+    top: 54.0rem;
+    left: -0.3rem;
+}
+
+.tactical-combat-result-screen .loot-panel .slot-count-container img {
+    top: -4.0rem;
+    left: 2.3rem;
+    bottom: 0;
+    width: 2.4rem;
+    height: 2.4rem;
+    position: absolute;
+    margin: auto;
+}
+
+.tactical-combat-result-screen .loot-panel .slot-count-container .label {
+    top: 0;
+    left: 0.0rem;
+    bottom: 0;
+    width: 7.2rem;
+    height: 2.0rem;
+    position: absolute;
+    margin: auto;
+
+    line-height: 2.0rem;
+    text-align: center;
+}
+
+
+.tactical-combat-result-screen .loot-panel .l-list-container {
+    top: -0.1rem;
+    bottom: 0;
+    position: absolute;
+    height: 51.8rem;
+}
+
+.tactical-combat-result-screen .loot-panel .l-list-container.is-left {
+    left: 5.0rem;
+    right: 1.8rem;
+}
+
+.tactical-combat-result-screen .loot-panel .l-list-container.is-right {
+    left: 5.0rem;
+    right: 1.8rem;
+}
+
+
+.tactical-combat-result-screen .loot-panel .l-list-container .scroll-container {
+    margin-bottom: 0.0rem;
+}
+
+
+.tactical-combat-result-screen .loot-panel .row .loot-all-button {
+    background-image: url("coui://gfx/ui/skin/button_loot_all_default.png");
+    background-size: 5.2rem 9.1rem;
+}
+
+.tactical-combat-result-screen .loot-panel .row .loot-all-button:hover,
+.tactical-combat-result-screen .loot-panel .row .loot-all-button.is-selected {
+    background-image: url("coui://gfx/ui/skin/button_loot_all_hovered.png");
+    background-size: 5.2rem 9.1rem;
+}
+
+.tactical-combat-result-screen .loot-panel .row .loot-all-button.is-active {
+    background-image: url("coui://gfx/ui/skin/button_loot_all_default.png");
+    background-size: 5.2rem 9.1rem;
+}
+
+
+.tactical-combat-result-screen .loot-panel .row .l-loot-all-items-button {
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 5.2rem;
+    height: 9.1rem;
+    position: absolute;
+    margin: auto;
+}
+
+.tactical-combat-result-screen .loot-panel .row .l-loot-all-items-button .ui-control.button>.label {
+    line-height: 7.0rem;
+}
+
+.tactical-combat-result-screen .loot-panel .row .l-destroy-item-button {
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 4.0rem;
+    height: 4.0rem;
+    position: absolute;
+    margin: auto;
+
+    line-height: 3.0rem;
+}
+
+
+/* Special case for Drag % Drop to stay above this Screen */
+.tactical-combat-result-screen .loot-panel .ui-control.list.is-drop-target {
+    border: 1px #D58D15 solid;
+}
+
+.tactical-combat-result-screen .ui-control.item.is-proxy {
+    z-index: 100;
+}
