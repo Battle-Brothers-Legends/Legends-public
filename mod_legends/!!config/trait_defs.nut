@@ -992,13 +992,6 @@ traitDefs.push({
 	Const = "LegendWitheringAura"
 });
 
-::Legends.Trait.LegendDonkeyAppetite <- null;
-traitDefs.push({
-	ID = "trait.legend_appetite_donkey",
-	Script = "scripts/skills/traits/legend_appetite_donkey",
-	Const = "LegendDonkeyAppetite"
-});
-
 ::Legends.Trait.LegendHorse <- null;
 traitDefs.push({
 	ID = "trait.legend_horse",
