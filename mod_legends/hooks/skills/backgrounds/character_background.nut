@@ -1522,15 +1522,15 @@
 			if (this.m.Hairs != null && this.Math.rand(0, this.m.Hairs.len()) != this.m.Hairs.len())
 			{
 				local sprite = actor.getSprite("hair");
-				sprite.setBrush("hair_" + hairColor + "_" + this.m.Hairs[this.Math.rand(0, this.m.Hairs.len() - 1)]);
+				local hair = this.m.Hairs[::Math.rand(0, this.m.Hairs.len() - 1)];
+				if(hair != "") {
+					sprite.setBrush("hair_" + hairColor + "_" + hair);
 
-				if (hairColor != "grey")
-				{
-					sprite.varyColor(0.1, 0.1, 0.1);
-				}
-				else
-				{
-					sprite.varyBrightness(0.1);
+					if (hairColor != "grey") {
+						sprite.varyColor(0.1, 0.1, 0.1);
+					} else {
+						sprite.varyBrightness(0.1);
+					}
 				}
 			}
 
