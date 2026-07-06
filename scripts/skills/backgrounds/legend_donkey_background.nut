@@ -1,13 +1,13 @@
 this.legend_donkey_background <- this.inherit("scripts/skills/backgrounds/character_background", {
 	m = {},
-	function create()
-	{
+
+	function create() {
 		this.character_background.create();
 		this.m.ID = ::Legends.Backgrounds.getID(::Legends.Background.LegendDonkey);
 		this.m.Name = "Donkey";
 		this.m.Icon = "ui/backgrounds/donkey.png";
-		this.m.BackgroundDescription = "Donkeys are generally patient and deliberate in their actions.";
-		this.m.GoodEnding = "%name% the donkey retired to a lovely green paddock. They spend their days loafing about and eating carrots fed to them by local children.";
+		this.m.BackgroundDescription = "Donkeys are generally patient and deliberate in their actions. Can\'t use weapons, shields, ammunition or armor. The donkey does not seem bothered by these limitations. %They% has a huge appetite and will eat anything. Better bring extra provisions and expect %them% to leave fast if you ever run out of provisions entirely.";
+		this.m.GoodEnding = "%name% the donkey retired to a lovely green paddock. %They% spent their days loafing about and eating carrots fed to %them% by local children.";
 		this.m.BadEnding = "%name% the donkey was sold to a foul-tempered trader who did not spare the rod. Their caravan was attacked by orcs and the remains of %name% were never found.";
 		this.m.HiringCost = 5000;
 		this.m.DailyCost = 0;
@@ -25,7 +25,16 @@ this.legend_donkey_background <- this.inherit("scripts/skills/backgrounds/charac
 			::Legends.Traits.getID(::Legends.Trait.LegendDoubleTongued),
 			::Legends.Traits.getID(::Legends.Trait.LegendDeathlySpectre),
 			::Legends.Traits.getID(::Legends.Trait.LegendSureshot),
-			::Legends.Traits.getID(::Legends.Trait.Superstitious)
+			::Legends.Traits.getID(::Legends.Trait.Superstitious),
+			::Legends.Traits.getID(::Legends.Trait.Athletic),
+			::Legends.Traits.getID(::Legends.Trait.IronLungs),
+			::Legends.Traits.getID(::Legends.Trait.Spartan),
+			::Legends.Traits.getID(::Legends.Trait.Fragile)
+		];
+		this.m.Titles = [
+			"the Ass",
+			"the Donkey",
+			"the Jackass"
 		];
 		this.m.Faces = this.Const.Faces.Donkey;
 		this.m.Hairs = this.Const.Hair.None;
@@ -46,7 +55,7 @@ this.legend_donkey_background <- this.inherit("scripts/skills/backgrounds/charac
 		this.m.Modifiers.Terrain = [
 			0.0, // ?
 			0.0, //ocean
-			0.025,//plains
+			0.025, //plains
 			0.01, //swamp
 			0.01, //hills
 			0.01, //forest
@@ -124,38 +133,53 @@ this.legend_donkey_background <- this.inherit("scripts/skills/backgrounds/charac
 	}
 
 	//Default Male
-	function setGender(_gender = -1)
-	{
-		if (_gender == -1) _gender = this.randomizeHumanGender();
+	function setGender(_gender = -1) {
+		if (_gender == -1) {
+			_gender = this.randomizeHumanGender();
+		}
 
-		if (_gender != 1) return;
+		if (_gender != 1) {
+			return;
+		}
 
 		this.addBackgroundType(this.Const.BackgroundType.Female);
 	}
 
-	function getTooltip()
-	{
+	function getTooltip() {
 		local ret = this.character_background.getTooltip();
 		local stashModifier = this.m.Modifiers.Stash + this.getModifier();
-
-		ret.push(
-			{
-				id = 13,
-				type = "text",
-				icon = "ui/icons/special.png",
-				text = "Donkeys provide [color=%positive%]+" + stashModifier + "[/color] stash space, [color=%positive%]+" + this.m.Modifiers.Ammo + "[/color] maximum ammunition storage, [color=%positive%]+" + this.m.Modifiers.Meds + "[/color] maximum medicine capacity,  [color=%positive%]+" + this.m.Modifiers.ArmorParts + "[/color] maximum armor parts. These can be increased with perks (may take a moment for the increases to register). "
-			}
-		);
+		ret.push({
+			id = 10,
+			type = "text",
+			icon = "ui/icons/special.png",
+			text = "Cannot use any equipment"
+		});
+		ret.push({
+			id = 11,
+			type = "text",
+			icon = "ui/icons/special.png",
+			text = "Eats more than a regular person"
+		});
+		ret.push({
+			id = 12,
+			type = "text",
+			icon = "ui/icons/special.png",
+			text = "Is content for with being in reserve"
+		});
+		ret.push({
+			id = 13,
+			type = "text",
+			icon = "ui/icons/special.png",
+			text = "Donkeys provide [color=%positive%]+" + stashModifier + "[/color] stash space, [color=%positive%]+" + this.m.Modifiers.Ammo + "[/color] maximum ammunition storage, [color=%positive%]+" + this.m.Modifiers.Meds + "[/color] maximum medicine capacity,  [color=%positive%]+" + this.m.Modifiers.ArmorParts + "[/color] maximum armor parts. These can be increased with perks (may take a moment for the increases to register). "
+		});
 		return ret;
 	}
 
-	function onBuildDescription()
-	{
+	function onBuildDescription() {
 		return "{%name% was raised to pull plows on a farm. |  %name% was reared by a traveling merchant. | A donkey's life is tough %name% has been used for many things. | Though the work is dangerous, being a caravan donkey allowed %name% to see the world. | When her former owner died, %name% was put up for sale. | Hardy and resolute, %name% was the pick of the bunch. | Sold from owner to owner %name% has worked for more caravans than most traders.} {But the trader she worked for turned out to be abusive, nary a whip away from being a slave driver. A farmer bought %name% to free her, but eventually the cost got too great and she was sold again. | One day, goods went missing and she was blamed for it, promptly ending her time with the caravan. | But a caravan needs protection for a reason, and an ambush by brigands proved why. %name% barely made it out alive. | Years on the road went without a hitch until a new caravan master died on the road and %name% was left tied to a wagon without food until rescued. | Caravans are frequently attacked, and in one battle as the caravan hands fell %name% ran into the night. | Sadly, with the expanding war the caravan\'s profits were marginal. %name% was let go as the merchants retired their wagons. | After seeing the foul work of beasts on a their caravan, it didn\'t take long for %name% to find a new owner. | But war deprived the caravan of stock and soon its driver took to selling the donkeys.  %name% was among the last to be sold. | Sadly, her caravan began to sell human chattel. While the profits were enormous, it garnered the attention of a local militia - and their pitchforks. One ambush later and %name% was running for her life.} {Now %name% is being sold by a farmer for being too stubborn  | A donkey like %name% is no stranger to danger, making her a good fit for any mercenary group. | With her caravan days behind her, working for a sellsword was just another avenue for oats. | In %name%\'s mind, being a mercenary is a lot like being a caravanner. Just more carrots. | Well versed to traveling, %name% seems like a natural fit to the tasks already befit for a mercenary. | Years of road travel have molded %name% into quite the durable figure. Any group of mercenaries could use more donkeys like her.}";
 	}
 
-	function onChangeAttributes()
-	{
+	function onChangeAttributes() {
 		local c = {
 			Hitpoints = [
 				95,
@@ -193,36 +217,74 @@ this.legend_donkey_background <- this.inherit("scripts/skills/backgrounds/charac
 		return c;
 	}
 
-	function onUpdate(_properties)
-	{
-		if (::World.Assets.m.HasVeterinarian > 0)
-		{
+	function onUpdate(_properties) {
+		if (::World.Assets.m.HasVeterinarian > 0) {
 			_properties.HitpointsMult *= 1.25;
 		}
+		_properties.DailyFood += 4.0;
+		_properties.IsContentWithBeingInReserve = true;
 	}
 
-	function getModifier()
-	{
+	function getModifier() {
 		return ::World.Assets.m.HasVeterinarian > 0 ? 12 : 0;
 	}
 
-	function onAdded()
-	{
+	function onAdded() {
 		if (this.m.IsNew) {
 			this.getContainer().getActor().getFlags().set("donkey", true);
-			this.m.Container.add(this.new("scripts/skills/injury_permanent/legend_donkey_injury"));
-			::Legends.Traits.grant(this, ::Legends.Trait.LegendDonkeyAppetite);
 		}
-		if (!this.m.Container.hasActive(::Legends.Active.LegendDonkeyKick))
-		{
+		if (!this.m.Container.hasActive(::Legends.Active.LegendDonkeyKick)) {
 			::Legends.Actives.grant(this, ::Legends.Active.LegendDonkeyKick);
 		}
+		local items = this.getContainer().getActor().getItems();
+			//ineloquent solution for forcing the item assigned to any of these slots via hotkey to be unassigned and returned to ground or stash. We squish this code later.
+			//Note that 'item.unequip();' does not work.
+		if (items.getItemAtSlot(this.Const.ItemSlot.Offhand))
+		{
+			local item = items.getItemAtSlot(this.Const.ItemSlot.Offhand);
+			item.drop();
+		}
+
+		if (items.getItemAtSlot(this.Const.ItemSlot.Mainhand))
+		{
+			local item = items.getItemAtSlot(this.Const.ItemSlot.Mainhand);
+			item.drop();
+		}
+
+		if (items.getItemAtSlot(this.Const.ItemSlot.Head))
+		{
+			local item = items.getItemAtSlot(this.Const.ItemSlot.Head);
+			item.drop();
+		}
+
+		if (items.getItemAtSlot(this.Const.ItemSlot.Body))
+		{
+			local item = items.getItemAtSlot(this.Const.ItemSlot.Body);
+			item.drop();
+		}
+
+		if (items.getItemAtSlot(this.Const.ItemSlot.Ammo))
+		{
+			local item = items.getItemAtSlot(this.Const.ItemSlot.Ammo);
+			item.drop();
+		}
+
+		if (items.getItemAtSlot(this.Const.ItemSlot.Accessory))
+		{
+			local item = items.getItemAtSlot(this.Const.ItemSlot.Accessory);
+			item.drop();
+		}
+
+		items.getData()[this.Const.ItemSlot.Offhand][0] = -1;
+		items.getData()[this.Const.ItemSlot.Mainhand][0] = -1;
+		items.getData()[this.Const.ItemSlot.Head][0] = -1;
+		items.getData()[this.Const.ItemSlot.Body][0] = -1;
+		items.getData()[this.Const.ItemSlot.Ammo][0] = -1;
+		items.getData()[this.Const.ItemSlot.Accessory][0] = -1;
 		this.character_background.onAdded();
 	}
 
-
-	function onAddEquipment()
-	{
+	function onAddEquipment() {
 		local talents = this.getContainer().getActor().getTalents();
 		talents.resize(this.Const.Attributes.COUNT, 0);
 		talents[this.Const.Attributes.Hitpoints] = 3;
