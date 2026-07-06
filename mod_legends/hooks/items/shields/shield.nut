@@ -34,6 +34,17 @@
 	o.getTooltip = function ()
 	{
 		local result = getTooltip();
+
+		foreach (tooltip in result) {
+			if (!tooltip.rawin("id") || !tooltip.rawin("text") || !tooltip.rawin("icon")) {
+				continue;
+			}
+
+			if (tooltip.id == 7 && tooltip.icon == "ui/icons/fatigue.png") {
+				tooltip.text = "Fatigue Weight Penalty [color=%negative%]" + this.m.StaminaModifier + "[/color]"
+			}
+		}
+
 		if (this.m.RangedDefense > 0)
 		{
 			result.push({

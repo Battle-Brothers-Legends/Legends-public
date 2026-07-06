@@ -59,6 +59,16 @@
 			}
 		}
 
+		foreach (tooltip in result) {
+			if (!tooltip.rawin("id") || !tooltip.rawin("text") || !tooltip.rawin("icon")) {
+				continue;
+			}
+
+			if (tooltip.id == 8 && tooltip.icon == "ui/icons/fatigue.png") {
+				tooltip.text = "Fatigue Weight Penalty [color=%negative%]" + this.m.StaminaModifier + "[/color]"
+			}
+		}
+
 		return result;
 	}
 

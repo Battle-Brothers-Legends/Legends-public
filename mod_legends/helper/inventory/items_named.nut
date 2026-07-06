@@ -220,7 +220,7 @@
 		if (tooltip.id == 4 && (tooltip.icon == "ui/icons/armor_body.png" || tooltip.icon == "ui/icons/armor_head.png")) {
 			tooltip.text += " [" + _item.m.Potential.Condition.min + " to " + _item.m.Potential.Condition.max + "]";
 
-		} else if (tooltip.id == 5 && tooltip.icon == "ui/icons/fatigue.png" && tooltip.text.find("Weight:") != null) {
+		} else if (tooltip.id == 5 && tooltip.icon == "ui/icons/fatigue.png" && tooltip.text.find("Fatigue Weight Penalty:") != null) {
 			tooltip.text += ::Legends.Items.Named.wrapTooltip(_item.m.Potential.StaminaModifier.min * -1 + " to " + _item.m.Potential.StaminaModifier.max * -1);
 		}
 		else if (tooltip.id == 6 && tooltip.icon == "ui/icons/vision.png") { //&& "Vision" in _item.m.Potential

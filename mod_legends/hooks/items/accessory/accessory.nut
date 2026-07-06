@@ -12,13 +12,22 @@
 	o.getTooltip = function ()
 	{
 		local result = getTooltip();
+		foreach (tooltip in result) {
+			if (!tooltip.rawin("id") || !tooltip.rawin("text") || !tooltip.rawin("icon")) {
+				continue;
+			}
+
+			if (tooltip.id == 8 && tooltip.icon == "ui/icons/fatigue.png") {
+				tooltip.text = "Fatigue Weight Penalty [color=%negative%]" + this.m.StaminaModifier + "[/color]"
+			}
+		}
 		if (this.m.StaminaModifier > 0)
 		{
 			result.push({
 				id = 8,
 				type = "text",
 				icon = "ui/icons/fatigue.png",
-				text = "Maximum Fatigue [color=%positive%]" + this.m.StaminaModifier + "[/color]"
+				text = "Fatigue Weight Penalty [color=%positive%]" + this.m.StaminaModifier + "[/color]"
 			});
 		}
 
@@ -77,7 +86,7 @@
 	{
 		if (!this.isInBag()) // if the item is in the bag, the bag_fatigue skill will apply the stamina modifier
 		{
-			_properties.Stamina += getStaminaModifier();
+			_properties.Stamina += this.getStaminaModifier();
 		}
 	}
 

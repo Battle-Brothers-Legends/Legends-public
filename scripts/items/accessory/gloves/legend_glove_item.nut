@@ -98,7 +98,7 @@ this.legend_glove_item <- this.inherit("scripts/items/accessory/accessory", {
 				id = 15,
 				type = "text",
 				icon = "ui/icons/fatigue.png",
-				text = "[color=%negative%]" + this.m.StaminaModifier + "[/color] Fatigue."
+				text = "Fatigue Weight Penalty [color=%negative%]" + this.m.StaminaModifier + "[/color]"
 			});
 		}
 		return result;

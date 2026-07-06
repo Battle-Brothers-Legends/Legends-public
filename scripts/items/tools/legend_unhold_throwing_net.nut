@@ -77,7 +77,7 @@ this.legend_unhold_throwing_net <- this.inherit("scripts/items/weapons/weapon", 
 				id = 8,
 				type = "text",
 				icon = "ui/icons/fatigue.png",
-				text = "Maximum Fatigue [color=%negative%]" + this.m.StaminaModifier + "[/color]"
+				text = "Fatigue Weight Penalty [color=%negative%]" + this.m.StaminaModifier + "[/color]"
 			});
 		}
 		result.push({

@@ -11,25 +11,25 @@
 
 	o.getAmountString <- function()
 	{
-		return m.Ammo + "/" + m.AmmoMax;
+		return this.m.Ammo + "/" + this.m.AmmoMax;
 	}
 
 	o.isDroppedAsLoot <- function()
 	{
-		return item.isDroppedAsLoot();
+		return this.item.isDroppedAsLoot();
 	}
 
 	local create = o.create;
 	o.create = function ()
 	{
 		create();
-		m.OriginalValue = m.Value;
-		m.OriginalDescription = m.Description;
-		m.ItemType = m.ItemType | ::Const.Items.ItemType.Ammo | ::Const.Items.ItemType.Net;
-		m.OriginalAmmoCost = 15;
-		m.AmmoCost = m.OriginalAmmoCost;
-		m.AmmoMax = 1;
-		m.Ammo = 1;
+		this.m.OriginalValue = this.m.Value;
+		this.m.OriginalDescription = this.m.Description;
+		this.m.ItemType = this.m.ItemType | ::Const.Items.ItemType.Ammo | ::Const.Items.ItemType.Net;
+		this.m.OriginalAmmoCost = 15;
+		this.m.AmmoCost = this.m.OriginalAmmoCost;
+		this.m.AmmoMax = 1;
+		this.m.Ammo = 1;
 	}
 
 	local getTooltip = o.getTooltip;
@@ -37,15 +37,17 @@
 	{
 		local result = getTooltip();
 
-		for (local i = result.len() - 1; i >= 0; --i)
-		{
+		for (local i = result.len() - 1; i >= 0; --i) {
+			if (result[i].type == "text" && result[i].id == 8) {
+				result[i].text = "Fatigue Weight Penalty [color=%negative%]" + this.m.StaminaModifier + "[/color]"
+			}
+
 			if (result[i].type == "text" && result[i].text == "Is destroyed on use") {
 				result.remove(i);
-				break;
-			}
+			}			
 		}
 
-		if (m.Ammo <= 0){
+		if (this.m.Ammo <= 0){
 			result.push({
 				id = 10,
 				type = "text",
@@ -58,10 +60,10 @@
 
 	o.addSkill <- function( _skill )
 	{
-		if (::Legends.Actives.getID(::Legends.Active.ThrowNet) && getContainer().getActor().getSkills().hasPerk(::Legends.Perk.LegendNetCasting))
+		if (::Legends.Actives.getID(::Legends.Active.ThrowNet) && this.getContainer().getActor().getSkills().hasPerk(::Legends.Perk.LegendNetCasting))
 			_skill.m.MaxRange = 5;
 
-		weapon.addSkill(_skill);
+		this.weapon.addSkill(_skill);
 	}
 
 	o.onUpdateProperties <- function ( _properties )
@@ -75,7 +77,7 @@
 	// Bag fatigue uses getStaminaModifier
 	o.getStaminaModifier <- function ()
 	{
-		if (!::MSU.isNull(getContainer()) && !::MSU.isNull(getContainer().getActor()) && getContainer().getActor().getSkills().hasPerk(::Legends.Perk.LegendNetRepair))
+		if (!::MSU.isNull(this.getContainer()) && !::MSU.isNull(this.getContainer().getActor()) && this.getContainer().getActor().getSkills().hasPerk(::Legends.Perk.LegendNetRepair))
 		{
 			return 0;
 		}
@@ -87,48 +89,48 @@
 
 	o.setOwnerID <- function( _id )
 	{
-		m.OwnerID = _id;
+		this.m.OwnerID = _id;
 	}
 
 	o.setAmmo <- function( _a )
 	{
-		weapon.setAmmo(_a);
-		updateAmmo();
+		this.weapon.setAmmo(_a);
+		this.updateAmmo();
 	}
 
 	o.consumeAmmo <- function()
 	{
-		m.AmmoCost = 0;
-		weapon.consumeAmmo(); // to prevent scavenger retinue from recover ammo part
-		m.AmmoCost = m.OriginalAmmoCost;
+		this.m.AmmoCost = 0;
+		this.weapon.consumeAmmo(); // to prevent scavenger retinue from recover ammo part
+		this.m.AmmoCost = this.m.OriginalAmmoCost;
 	}
 
 	o.updateAmmo <- function()
 	{
-		if (m.Ammo > 0) {
-			m.Name = "Throwing Net";
-			m.Description = m.OriginalDescription;
-			m.IconLarge = "tools/inventory_throwing_net.png";
-			m.Icon = "tools/throwing_net_70x70.png";
-			m.ShowArmamentIcon = true;
-			m.Value = m.OriginalValue;
+		if (this.m.Ammo > 0) {
+			this.m.Name = "Throwing Net";
+			this.m.Description = this.m.OriginalDescription;
+			this.m.IconLarge = "tools/inventory_throwing_net.png";
+			this.m.Icon = "tools/throwing_net_70x70.png";
+			this.m.ShowArmamentIcon = true;
+			this.m.Value = this.m.OriginalValue;
 		}
 		else {
-			m.Name = "Broken Throwing Net";
-			m.Description = "A broken net that may be repaired if you have the knowledge, or sold for scrap. (requires \"Net Repair\" perk to refill its charge)";
-			m.IconLarge = "tools/inventory_throwing_net_broken.png";
-			m.Icon = "tools/throwing_net_broken_70x70.png";
-			m.ShowArmamentIcon = false;
-			m.Value = 0;
+			this.m.Name = "Broken Throwing Net";
+			this.m.Description = "A broken net that may be repaired if you have the knowledge, or sold for scrap. (requires \"Net Repair\" perk to refill its charge)";
+			this.m.IconLarge = "tools/inventory_throwing_net_broken.png";
+			this.m.Icon = "tools/throwing_net_broken_70x70.png";
+			this.m.ShowArmamentIcon = false;
+			this.m.Value = 0;
 		}
 
-		updateAppearance();
+		this.updateAppearance();
 	}
 
 	o.onDeserialize <- function( _in )
 	{
-		weapon.onDeserialize(_in);
-		updateAmmo();
+		this.weapon.onDeserialize(_in);
+		this.updateAmmo();
 	}
 
 });
