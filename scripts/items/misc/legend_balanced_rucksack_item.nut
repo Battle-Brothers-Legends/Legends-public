@@ -1,7 +1,7 @@
 this.legend_balanced_rucksack_item <- this.inherit("scripts/items/item", {
 	m = {},
-	function create()
-	{
+
+	function create() {
 		this.item.create();
 		this.m.ID = "misc.legend_balanced_rucksack";
 		this.m.Name = "Balanced Rucksack";
@@ -14,8 +14,7 @@ this.legend_balanced_rucksack_item <- this.inherit("scripts/items/item", {
 		this.m.Value = 2000;
 	}
 
-	function getTooltip()
-	{
+	function getTooltip() {
 		local result = [
 			{
 				id = 1,
@@ -37,7 +36,7 @@ this.legend_balanced_rucksack_item <- this.inherit("scripts/items/item", {
 			id = 10,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "Grants the user [color=" + this.Const.UI.Color.PositiveValue + "]+2[/color] bag slots"
+			text = "Grants the user [color=%positive%]+2[/color] bag slots"
 		});
 		result.push({
 			id = 11,
@@ -48,27 +47,29 @@ this.legend_balanced_rucksack_item <- this.inherit("scripts/items/item", {
 
 		return result;
 	}
-	
-	function playInventorySound( _eventType )
-	{
-		this.Sound.play("sounds/combat/armor_leather_impact_01.wav", this.Const.Sound.Volume.Inventory);
+
+	function playInventorySound(_eventType) {
+		::Sound.play("sounds/combat/armor_leather_impact_01.wav", ::Const.Sound.Volume.Inventory);
 	}
-	
-	function onUse( _actor, _item = null )
-	{
-		this.Sound.play("sounds/combat/armor_leather_impact_01.wav", this.Const.Sound.Volume.Inventory);
-		if (!_actor.getSkills().hasPerk(::Legends.Perk.BagsAndBelts)) {
-			::Legends.Perks.grant(this, ::Legends.Perk.BagsAndBelts, function (perk) {
-				if (!this.getBackground().addPerk(::Legends.Perk.BagsAndBelts, 0, false))
-					this.getBackground().m.PerkTreeMap[perk.getID()].IsRefundable = false;
-			}.bindenv(this));
+
+	function onUse(_actor, _item = null) {
+		if(_actor.getItems().getUnlockedBagSlots() == 2) {
+			this.playInventorySound(null);
+			_actor.getItems().setUnlockedBagSlots(4);
 			return true;
-		}
-		else
-		{
+		} else {
+			::World.State.m.CharacterScreen.m.JSHandle.asyncCall("openPopupDialog", ::Legends.tooltip("Failed to use this item as the user already has a rucksack."));
 			return false;
 		}
+
+		/*if (!_actor.getSkills().hasPerk(::Legends.Perk.BagsAndBelts)) {
+			::Legends.Perks.grant(_actor, ::Legends.Perk.BagsAndBelts, function (perk) {
+				if (!_actor.getBackground().addPerk(::Legends.Perk.BagsAndBelts, 0, false))
+					_actor.getBackground().m.PerkTreeMap[perk.getID()].IsRefundable = false;
+			}.bindenv(this));
+			return true;
+		} else {
+			return false;
+		}*/
 	}
-
 });
-

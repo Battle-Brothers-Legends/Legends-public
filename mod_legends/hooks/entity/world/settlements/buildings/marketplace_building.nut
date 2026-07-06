@@ -24,7 +24,7 @@
 			item(0, 1.0, "supplies/legend_ammo_small_item"),
 			item(10, 1.0, "supplies/legend_armor_parts_small_item"),
 			item(50, 1.0, "supplies/legend_armor_parts_small_item"),
-			item(50, 1.0, "supplies/legend_balanced_rucksack")
+			item(50, 1.0, "misc/legend_balanced_rucksack_item")
 		]);
 
 		if (this.m.Settlement.getSize() >= 2) {

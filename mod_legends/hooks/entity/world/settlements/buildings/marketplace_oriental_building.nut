@@ -14,7 +14,7 @@
 			item(50, 1.0, "helmets/legend_southern_cloth_headress"),
 			item(40, 1.0, "helmets/legend_southern_veil"),
 			item(60, 1.0, "accessory/legend_sighthound_item"),
-			item(50, 1.0, "supplies/legend_balanced_rucksack")
+			item(50, 1.0, "misc/legend_balanced_rucksack_item")
 		]);
 
 		if (this.m.Settlement.getSize() >= 2) {
