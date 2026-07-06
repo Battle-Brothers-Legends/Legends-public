@@ -740,7 +740,7 @@ WorldTownScreenShopDialogModule.prototype.loadShopData = function (_data) {
     this.assignItems(WorldTownScreenShop.ItemOwner.Shop, _data, arrayRef.val, containerRef.val);
 };
 
-WorldTownScreenShopDialogModule.prototype.assignItems = function (_owner, _items, _itemArray, _itemContainer) {
+/*WorldTownScreenShopDialogModule.prototype.assignItems = function (_owner, _items, _itemArray, _itemContainer) {
     this.destroyItemSlots(_itemArray, _itemContainer);
 
     if (_items.length > 0) {
@@ -759,6 +759,64 @@ WorldTownScreenShopDialogModule.prototype.assignItems = function (_owner, _items
             this.updateStashFreeSlotsLabel();
         }
     }
+};*/
+
+WorldTownScreenShopDialogModule.prototype.assignItems = function (_owner, _items, _itemArray, _itemContainer) { 
+    if (_items.length === 0) {
+        this.destroyItemSlots(_itemArray, _itemContainer);
+        return;
+    }
+
+    var self = this;
+    var screen = $('.world-town-screen');
+    
+    var currentIndex = 0;
+    var chunkSize = 35;
+
+    function processInventoryBatches() {
+        if (currentIndex < _items.length) {
+            for (; currentIndex < Math.min(currentIndex + chunkSize, _items.length); currentIndex++) {
+                var slot;
+                
+                if (currentIndex < _itemArray.length) {
+                    slot = _itemArray[currentIndex];
+                } else {
+                    slot = self.createItemSlot(_owner, currentIndex, _itemContainer, screen);
+                    _itemArray.push(slot);
+                }
+
+                if (_items[currentIndex] !== undefined && _items[currentIndex] !== null) {
+					slot.assignListItemImage();
+                    self.assignItemToInventorySlot(_owner, slot, _items[currentIndex]);
+                } else {
+                    self.removeItemFromSlot(slot);
+                }
+            }
+            
+            setTimeout(processInventoryBatches, 5);
+            return;
+        }
+
+       if (_itemArray.length > _items.length) {
+            var elementsToRemove = Math.min(chunkSize, _itemArray.length - _items.length);
+            for (var i = 0; i < elementsToRemove; i++) {
+                var surplusSlot = _itemArray.pop();
+                self.removeItemFromSlot(surplusSlot);
+                surplusSlot.unbind();
+                surplusSlot.remove();
+            }
+            setTimeout(processInventoryBatches, 5);
+            return;
+        }
+
+        self.updateItemPriceLabels(_itemArray, _items, _owner === WorldTownScreenShop.ItemOwner.Stash);
+
+        if (_owner === WorldTownScreenShop.ItemOwner.Stash) {
+            self.updateStashFreeSlotsLabel();
+        }
+    }
+	
+    processInventoryBatches();
 };
 
 WorldTownScreenShopDialogModule.prototype.destroyItemSlots = function (_itemArray, _itemContainer) {

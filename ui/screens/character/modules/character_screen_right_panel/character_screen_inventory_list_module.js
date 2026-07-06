@@ -614,7 +614,7 @@ CharacterScreenInventoryListModule.prototype.createItemSlots = function (_owner,
 	}
 };
 
-CharacterScreenInventoryListModule.prototype.assignItems = function (_entityId, _owner, _items, _itemArray, _itemContainer)
+/*CharacterScreenInventoryListModule.prototype.assignItems = function (_entityId, _owner, _items, _itemArray, _itemContainer)
 {
 	this.destroyItemSlots(_itemArray, _itemContainer);
 
@@ -635,6 +635,59 @@ CharacterScreenInventoryListModule.prototype.assignItems = function (_entityId, 
 
 		this.updateSlotsLabel();
 	}
+};*/
+CharacterScreenInventoryListModule.prototype.assignItems = function (_entityId, _owner, _items, _itemArray, _itemContainer) { 
+    if (_items.length === 0) {
+        this.destroyItemSlots(_itemArray, _itemContainer);
+        return;
+    }
+
+    var self = this;
+    var screen = $('.character-screen');
+    
+    var currentIndex = 0;
+    var chunkSize = 54;
+
+    function processInventoryBatches() {
+        if (currentIndex < _items.length) {
+            for (; currentIndex < Math.min(currentIndex + chunkSize, _items.length); currentIndex++) {
+                var slot;
+                
+                if (currentIndex < _itemArray.length) {
+                    slot = _itemArray[currentIndex];
+                } else {
+                    slot = self.createItemSlot(_owner, currentIndex, _itemContainer, screen);
+                    _itemArray.push(slot);
+                }
+
+                if (_items[currentIndex] !== undefined && _items[currentIndex] !== null) {
+					slot.assignListItemImage();
+                    self.assignItemToSlot(_entityId, _owner, slot, _items[currentIndex]);
+                } else {
+                    self.removeItemFromSlot(slot);
+                }
+            }
+            
+            setTimeout(processInventoryBatches, 5);
+            return;
+        }
+
+       if (_itemArray.length > _items.length) {
+            var elementsToRemove = Math.min(chunkSize, _itemArray.length - _items.length);
+            for (var i = 0; i < elementsToRemove; i++) {
+                var surplusSlot = _itemArray.pop();
+                self.removeItemFromSlot(surplusSlot);
+                surplusSlot.unbind();
+                surplusSlot.remove();
+            }
+            setTimeout(processInventoryBatches, 5);
+            return;
+        }
+
+        self.updateSlotsLabel();
+    }
+	
+    processInventoryBatches();
 };
 
 CharacterScreenInventoryListModule.prototype.assignItemToSlot = function(_entityId, _owner, _slot, _item)

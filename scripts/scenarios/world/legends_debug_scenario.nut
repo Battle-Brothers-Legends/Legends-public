@@ -286,9 +286,8 @@ this.legends_debug_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 			"legendary/legend_emperors_armor_fake",
 			"legendary/legend_ijirok_armor",
 			"legendary/legend_armor_named_warlock_cloak",
-			"legendary/legend_lindwurm_armor",
 
-			"named/legend_black_leather_armor",
+/*			"named/legend_black_leather_armor",
 			"named/legend_armor_named_tabard",
 			"named/legend_armor_cloak_rich",
 			"named/legend_armor_cloak_emperors",
@@ -302,7 +301,7 @@ this.legends_debug_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 			"named/legend_named_noble_mail_armor",
 			"named/legend_named_plated_fur_armor",
 			"named/legend_named_sellswords_armor",
-			"named/legend_named_skull_and_chain_armor"
+			"named/legend_named_skull_and_chain_armor"*/
 
 		];
 
@@ -622,7 +621,7 @@ this.legends_debug_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 			"hood/legend_helmet_cloth_cap",
 			"hood/legend_helmet_barb_leather_cap",
 			"hood/legend_helmet_southern_headband_coin",
-			"hood/legend_mummy_bandage",
+			//"hood/legend_mummy_bandage",
 			"hood/legend_helmet_full_mask",
 			"hood/legend_helmet_beak_hood",
 			"hood/legend_helmet_enclave_bevor",
@@ -769,7 +768,7 @@ this.legends_debug_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 			"top/legend_helmet_faceplate_raised",
 			"top/legend_helmet_faceplate_winged_full_named",
 			"top/legend_helmet_golden_mask",
-			"top/legend_helmet_warlock_skull",
+		//	"top/legend_helmet_warlock_skull",
 			"top/legend_helmet_southern_veil",
 			"top/legend_helmet_undertakers_scarf",
 			"top/legend_helmet_helm_adornment",
