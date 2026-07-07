@@ -8,7 +8,7 @@ this.legend_armor_rusted_mail_patch_upgrade <- this.inherit("scripts/items/legen
 		this.m.Name = "Rusted Mail Patch";
 		this.m.Description = "A large rusty patch of mail that can be added to any armor to protect the arms and the shoulders.";
 		this.m.ArmorDescription = "Includes a large rusty patch of mail worn on the shoulders.";
-		this.m.Variants = [1];
+		this.m.Variants = [1,2,3];
 		this.m.Variant = this.m.Variants[this.Math.rand(0, this.m.Variants.len() - 1)];
 		this.updateVariant();
 		this.m.ImpactSound = this.Const.Sound.ArmorChainmailImpact;

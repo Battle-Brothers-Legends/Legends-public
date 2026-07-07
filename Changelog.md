@@ -173,6 +173,8 @@
 > pause on new dawn while camping (when town buildings become usable after a night)
 > pause on new day (when contracts etc. reset)
 > pause on entity discovered
+> pause on movement stop
+> resume on setting new destination / path
 - added an option to show the average stat potential directly on statistic bars
 > shows average values at a glance (min/max ranges are still visible on mouseovering the bros background)
 - added an option to show the named item enhanced stat potential on tooltips
