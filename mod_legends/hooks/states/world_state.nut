@@ -97,6 +97,16 @@
         ::World.setPlayerVisionRadius(this.getPlayer().getVisionRadius());
 	}
 
+	local onUpdate = o.onUpdate;
+    o.onUpdate = function() {
+        local player = this.getPlayer();
+		if (player.m.PauseOnMovementStop) {
+        	player.m.PauseOnMovementStop = false;
+        	this.setPause(true);
+      	}
+        onUpdate(); 
+    }
+
 	local loadCampaign = o.loadCampaign;
 	o.loadCampaign = function( _campaignFileName )
 	{

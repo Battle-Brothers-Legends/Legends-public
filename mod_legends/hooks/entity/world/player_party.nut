@@ -7,15 +7,38 @@
 	o.m.ArmorPartsMultiplier <- 0;
 	o.m.MedsMultiplier <- 0;
 	o.m.StashMultiplier <- 0;
+	o.m.PauseOnMovementStop <- false;
+
+	local onUpdate = o.onUpdate;
+	o.onUpdate = function () {
+		local wasMoving = this.m.Destination != null || this.hasPath();
+		onUpdate();
+		local isMoving = this.m.Destination != null || this.hasPath();
+		if (wasMoving && !isMoving) {
+			if (::Legends.Mod.ModSettings.getSetting("PauseOnMovementStop").getValue()) {
+				this.m.PauseOnMovementStop = true;
+			}
+		}
+	}
 
 	o.setPath <- function( _path )
 	{
-		party.setPath(::World.Camp.isCamping() ? null : _path);
+		this.party.setPath(::World.Camp.isCamping() ? null : _path);
+
+		if (_path != null && ::Legends.Mod.ModSettings.getSetting("ResumeOnMovementStart").getValue()) {
+            if (::World.State.isPaused()) {
+                ::World.State.setPause(false);
+            }
+        }
 	}
 
-	o.setDestination <- function( _destination )
-	{
-		party.setDestination(::World.Camp.isCamping() ? null : _destination);
+	o.setDestination <- function( _destination ) {
+		this.party.setDestination(::World.Camp.isCamping() ? null : _destination);
+		if (_destination != null && ::Legends.Mod.ModSettings.getSetting("ResumeOnMovementStart").getValue()) {
+            if (::World.State.isPaused()) {
+                ::World.State.setPause(false);
+            }
+        }
 	}
 
 	o.updateStrength = function ()
@@ -158,7 +181,7 @@
 				case "spawns.zombie":
 					if (zombieSummonLevel == 0)
 					{
-						continue
+						continue;
 					}
 					++zCount;
 
@@ -166,7 +189,7 @@
 				case "spawns.skeleton":
 					if (skeletonSummonLevel == 0)
 					{
-						continue
+						continue;
 					}
 					++sCount;
 					break;

@@ -55,6 +55,8 @@ general.addElement(::MSU.Class.BooleanSetting("PauseOnEnemySighted", true, "Paus
 general.addElement(::MSU.Class.BooleanSetting("PauseOnEvents", true, "Pause On Events", "Pause on events, encounters, ambitions"));
 general.addElement(::MSU.Class.BooleanSetting("PauseOnMorningCamping", false, "Pause Every Daybreak While Camping", "Pause every daybreak while camping (useful for entering towns)"));
 general.addElement(::MSU.Class.BooleanSetting("PauseOnNewDayCamping", false, "Pause Every Noon While Camping", "Pause every noon while camping (useful for certain mechanics that reset on a new day)."));
+general.addElement(::MSU.Class.BooleanSetting("PauseOnMovementStop", false, "Pause on Movement Stop", "Pause gameplay every time you stop moving"));
+general.addElement(::MSU.Class.BooleanSetting("ResumeOnMovementStart", false, "Resume on Movement Start", "Resume gameplay every time you start moving"));
 general.addTitle("QoL", "Quality of Life");
 myEnumTooltip = "Define how Blueprints are shown: 'All Ingredients Available' is the Vanilla behavior; 'One Ingredient Available' shows recipes when one ingredient is fully satisfied; 'Always' shows all recipes at all time";
 general.addElement(::MSU.Class.EnumSetting("ShowBlueprintsWhen", "All Ingredients Available", ["All Ingredients Available", "One Ingredient Available", "Always"], "Show Blueprints when", myEnumTooltip));
