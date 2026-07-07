@@ -57,6 +57,7 @@
 
 
 ## Items
+- weight and maximum fatigue uniformly renamed as "Fatigue Weight Penalty" across different wearable items; no functional changes
 
 ### Armors
 - added Segmented Breastplate
@@ -144,7 +145,7 @@
 - `Tower Shield` blueprint now costs 2 quality wood and 1 iron ingot
 
 ### Misc
-- `Balanced Rucksack` - usable item sold around marketplaces which adds bags and belts to a mercenary
+- `Balanced Rucksack` - usable item sold around marketplaces which adds 2 extra bag slots to a mercenary
 
 ## Enemies
 
@@ -182,6 +183,8 @@
 > marked items can be sold with a single click in shops and new items acquired will respect these flags
 > newly acquired items with flags will automatically start be added to repair/salvage queue
 > flags are now visible in shop and loot screens
+> quickly loot items based on value (new button; ignores legendary, named, quest, food)
+- sped up inventory load times by loading items in batches
 
 ## Events
 - added a new town encounter during drought
@@ -193,12 +196,19 @@
 - added a mod setting allowing the player to choose % of enemy female characters
 - some backgrounds received female counterparts: Fisher, Shepherd, Vagabond, Inventor, Brawler, Widow, Caravan Hand, Miner, Servant (southern), Juggler
 
+## Other
+- donkey appetite and donkey body integrated into the background
+- painter tent allows painting the shoulder layer
+
 ## Bug Fixes
 - black market in town screens can now be highlighted on mouseover
-- painter tent allows painting the shoulder layer
 - text fixes
+- graphical fixes
 - bros can now use the basic training options until level 12 in town training halls instead of 11
 - fixed settlement situations applying twice
+- improved stability
+- assassinate no longer grants more damage than the tooltip indicates
+- dog and bag item functionality and tooltip fixes
 
 ### For modders:
 - it is now possible to use [i][/i] and [size=18px][/size] to customize ui text size easily with xbbcode
