@@ -4,11 +4,25 @@ this.legend_swordmaster_fav_enemy_event <- this.inherit("scripts/events/event", 
 		MinStrength = 100,
 		Candidates = null,
 		Champion = null,
-		Enemy = null,
-		EnemyScript = "scripts/entity/tactical/humans/swordmaster",
+		Enemy = {
+			ID = 0,
+			Name = "",
+			Gender = -1,
+			Script = "scripts/entity/tactical/humans/swordmaster",
+			Appearance = {},
+			SpriteNames = [
+				"body",
+				"head",
+				"beard",
+				"hair",
+				"tattoo_body",
+				"beard_top",
+				"tattoo_head"
+			]
+		},
 		Flags = null,
 		Perk = ::Legends.Perks.getID(::Legends.Perk.LegendFavouredEnemySwordmaster),
-		ValidTypes = this.Const.LegendMod.FavoriteSwordmaster,
+		ValidTypes = ::Const.LegendMod.FavoriteSwordmaster,
 		WasInReserves = [],
 		isValidForEncounter = false
 	},
@@ -16,7 +30,7 @@ this.legend_swordmaster_fav_enemy_event <- this.inherit("scripts/events/event", 
 	function create() {
 		this.m.ID = "event.legend_swordmaster_fav_enemy";
 		this.m.Title = "While camping...";
-		this.m.Cooldown = 45.0 * this.World.getTime().SecondsPerDay;
+		this.m.Cooldown = 45.0 * ::World.getTime().SecondsPerDay;
 		this.m.Screens.push({
 			ID = "A",
 			Text = "[img]gfx/ui/events/event_134.png[/img]{Your feet are still tired from the strain of the last few days. Your activities are interrupted by a lean, young and eager looking %child_enemy%.%SPEECH_ON%Stop right there, rabble!%SPEECH_OFF% %They_enemy% shouts to you and your company. Slightly confused, your mercenaries throw glances to each other, raising their shoulders. %randombrother% replies, slightly amused.%SPEECH_ON%What in the hells do you think you're doing, you little wanker? Those rabble you\'re talking to will cut your throat just for fun. Didn\'t your parents teach you any common sense?%SPEECH_OFF%Carelessly, the young %child_enemy% proceeds. %SPEECH_ON%My name is %enemy%. Looks like it is I who will have to teach you some common sense. It is I who decides which throats get cut! One more insolent comment like that from any of you, and I\'ll have you all hanged!%SPEECH_OFF% Your mercenaries start to fall in laughter. %randombrother2% replies with an angry voice. %SPEECH_ON% Ha. You? I don\'t see your army. Or is it the high-and-mighty %themselves_enemy%, who wants to do all the dirty work, hm? Come here and try me.%SPEECH_OFF% %enemy% answers. %SPEECH_ON% It is not you I want to fight. It is %chosen%. I heard %they're_champion% a good fighter. I want to beat %them_champion%. In the glory of my name, I demand a fight to life or death!%SPEECH_OFF% The haughty juvenile raises %their_enemy% weapon, pointing it toward %chosen%. \n\n Despite the fact that a couple meters separate %enemy% and %chosen%, you can feel the tension in the air.}",
@@ -38,7 +52,7 @@ this.legend_swordmaster_fav_enemy_event <- this.inherit("scripts/events/event", 
 					return 0;
 				});
 
-				local maxCandidates = this.Math.min(4, _event.m.Candidates.len());
+				local maxCandidates = ::Math.min(4, _event.m.Candidates.len());
 				for (local i = 0; i < maxCandidates; i = ++i) {
 					local bro = _event.m.Candidates[i];
 					this.Options.push({
@@ -58,7 +72,7 @@ this.legend_swordmaster_fav_enemy_event <- this.inherit("scripts/events/event", 
 						return 0;
 					}
 				});
-				_event.m.Champion = _event.m.Candidates[this.Math.rand(0, _event.m.Candidates.len() - 1)]; // for event text so the enemy can point to one of the candidates before you choose one
+				_event.m.Champion = _event.m.Candidates[::Math.rand(0, _event.m.Candidates.len() - 1)]; // for event text so the enemy can point to one of the candidates before you choose one
 			}
 		});
 		this.m.Screens.push({
@@ -70,27 +84,16 @@ this.legend_swordmaster_fav_enemy_event <- this.inherit("scripts/events/event", 
 			Options = [
 				{
 					Text = "You can take %them_enemy%, %chosen%!",function getResult(_event) {
-						local properties = this.World.State.getLocalCombatProperties(this.World.State.getPlayer().getPos());
-						properties.Music = this.Const.Music.NobleTracks;
+						local properties = ::World.State.getLocalCombatProperties(::World.State.getPlayer().getPos());
+						properties.Music = ::Const.Music.NobleTracks;
 						properties.Entities = [{ // this entity unfortunately is generated separately from the one in event, so we need to copy stuff over
-								ID = _event.m.Enemy.getType(),
+								ID = _event.m.Enemy.ID,
 								Variant = 1,
 								Row = 0,
-								Name = _event.m.Enemy.getName(),
-								Script = _event.m.EnemyScript,
-								Faction = this.Const.Faction.Enemy,
-								function Callback( _entity, _tag ) {
-									_entity.setGender(_event.m.Enemy.getGender());
-									_entity.copySpritesFrom(_event.m.Enemy, [ // quickly send the new entity to the barber
-										"body",
-										"head",
-										"beard",
-										"hair",
-										"tattoo_body",
-										"beard_top",
-										"tattoo_head",
-									]);
-								}
+								Name = _event.m.Enemy.Name,
+								Script = _event.m.Enemy.Script,
+								Faction = ::Const.Faction.Enemy,
+								Callback = _event.onActorPlaced.bindenv(_event)
 						}];
 						
 						if (_event.m.Champion.isInReserves()) {
@@ -106,12 +109,12 @@ this.legend_swordmaster_fav_enemy_event <- this.inherit("scripts/events/event", 
 							for (local x = 0; x < size.X; ++x) {
 								for (local y = 0; y < size.Y; ++y) {
 									local tile = this.Tactical.getTileSquare(x, y);
-									tile.Level = this.Math.min(1, tile.Level);
+									tile.Level = ::Math.min(1, tile.Level);
 								}
 							}
 						};
 						_event.registerToShowAfterCombat("Victory", "Defeat");
-						this.World.State.startScriptedCombat(properties, false, false, false);
+						::World.State.startScriptedCombat(properties, false, false, false);
 						return 0;
 					}
 				}
@@ -140,7 +143,7 @@ this.legend_swordmaster_fav_enemy_event <- this.inherit("scripts/events/event", 
 			function start(_event) {
 				_event.m.Title = "After the battle...";
 				this.Characters.push(_event.m.Champion.getImagePath());
-				this.World.Assets.addBusinessReputation(50);
+				::World.Assets.addBusinessReputation(50);
 				this.List = [
 					{
 						id = 10,
@@ -159,19 +162,19 @@ this.legend_swordmaster_fav_enemy_event <- this.inherit("scripts/events/event", 
 					::Legends.EventList.changeMeleeDefense(_event.m.Champion, ::Math.rand(1, 3));
 				}
 
-				if (_event.m.Champion.getMoodState() >= this.Const.MoodState.Neutral) {
+				if (_event.m.Champion.getMoodState() >= ::Const.MoodState.Neutral) {
 					this.List.push(::Legends.EventList.changeMood(_event.m.Champion));
 				}
 
 				_event.m.Champion.getSkills().update();
-				local playerRoster = this.World.getPlayerRoster().getAll();
+				local playerRoster = ::World.getPlayerRoster().getAll();
 
 				foreach (bro in playerRoster) {
-					if (bro.getBackground().isBackgroundType(this.Const.BackgroundType.Combat) && this.Math.rand(1, 100) <= 33) {
+					if (bro.getBackground().isBackgroundType(::Const.BackgroundType.Combat) && ::Math.rand(1, 100) <= 33) {
 						bro.improveMood(0.5, "The company\'s champion won an impressive duel");
 					}
 
-					if (bro.getMoodState() > this.Const.MoodState.Neutral) {
+					if (bro.getMoodState() > ::Const.MoodState.Neutral) {
 						this.List.push(::Legends.EventList.changeMood(bro));
 					}
 				}
@@ -199,7 +202,7 @@ this.legend_swordmaster_fav_enemy_event <- this.inherit("scripts/events/event", 
 					return 0;
 				});
 
-				local maxCandidates = this.Math.min(4, _event.m.Candidates.len());
+				local maxCandidates = ::Math.min(4, _event.m.Candidates.len());
 				for (local i = 0; i < maxCandidates; i = ++i) {
 					local bro = _event.m.Candidates[i];
 					this.Options.push({
@@ -225,9 +228,9 @@ this.legend_swordmaster_fav_enemy_event <- this.inherit("scripts/events/event", 
 	}
 
 	function checkTownProximity() {
-		local towns = this.World.EntityManager.getSettlements();
+		local towns = ::World.EntityManager.getSettlements();
 		local nearTown = false;
-		local playerTile = this.World.State.getPlayer().getTile();
+		local playerTile = ::World.State.getPlayer().getTile();
 
 		foreach (t in towns) {
 			if (t.getTile().getDistanceTo(playerTile) <= 8 && !t.isIsolated()) // WAS 10
@@ -242,7 +245,7 @@ this.legend_swordmaster_fav_enemy_event <- this.inherit("scripts/events/event", 
 	function onUpdateScore() {
 		this.m.isValidForEncounter = false;
 		
-		if (!this.World.getTime().IsDaytime) {
+		if (!::World.getTime().IsDaytime) {
 			return;
 		}
 
@@ -253,7 +256,7 @@ this.legend_swordmaster_fav_enemy_event <- this.inherit("scripts/events/event", 
 		local candidates = [];
 		local maxStrength = 0;
 
-		foreach (bro in this.World.getPlayerRoster().getAll()) {
+		foreach (bro in ::World.getPlayerRoster().getAll()) {
 			if (!bro.getSkills().hasPerk(::Legends.Perk.LegendFavouredEnemySwordmaster)) {
 				continue;
 			}
@@ -262,7 +265,7 @@ this.legend_swordmaster_fav_enemy_event <- this.inherit("scripts/events/event", 
 				continue;
 			}
 
-			local stats = this.Const.LegendMod.GetFavoriteEnemyStats(bro, this.Const.LegendMod.FavoriteSwordmaster);
+			local stats = ::Const.LegendMod.GetFavoriteEnemyStats(bro, ::Const.LegendMod.FavoriteSwordmaster);
 
 			if (stats.Strength > maxStrength) {
 				maxStrength = stats.Strength;
@@ -275,42 +278,77 @@ this.legend_swordmaster_fav_enemy_event <- this.inherit("scripts/events/event", 
 		}
 
 		this.m.Candidates = candidates;
-		this.m.Stats = this.Math.floor(maxStrength);
+		this.m.Stats = ::Math.floor(maxStrength);
 
 		this.m.isValidForEncounter = maxStrength >= 0 && this.Time.getVirtualTimeF() > this.m.CooldownUntil; // set maxStrength threshold higher if necessary
 		this.m.Score = 0; // this disables event from happening normally
 	}
 
-	function onPrepare() {
-		local r = this.Math.rand(0, 2);
+	function onActorPlaced (_entity, _tag) {
+		_entity.setName(this.m.Enemy.Name);
+		_entity.setGender(this.m.Enemy.Gender);
+
+		foreach (s in this.m.Enemy.SpriteNames) {
+			if (!(s in this.m.Enemy.Appearance)) {
+				continue;
+			}
+			local brush = this.m.Enemy.Appearance[s];
+			local sprite = _entity.getSprite(s);
+			if (brush != "") {
+				sprite.setBrush(brush);
+			} else {
+				sprite.resetBrush();
+			}
+		}
+	}
+
+	function generateActors() {
+		local r = ::Math.rand(0, 2);
 		if (r == 1) {
-			this.m.EnemyScript = "scripts/entity/tactical/enemies/bandit_leader";
+			this.m.Enemy.Script = "scripts/entity/tactical/enemies/bandit_leader";
 		} else if (r == 2) {
-			this.m.EnemyScript = "scripts/entity/tactical/humans/hedge_knight";
+			this.m.Enemy.Script = "scripts/entity/tactical/humans/hedge_knight";
 		}
-		this.m.Enemy = this.World.getTemporaryRoster().create(this.m.EnemyScript);
-		local name = this.Const.Strings.KnightNames[this.Math.rand(0, this.Const.Strings.KnightNames.len() - 1)];
-		if (this.m.Enemy.getGender() == 1) {
-			name = ::MSU.String.replace(name, "Sir","Dame");
+		local enemy = ::World.getTemporaryRoster().create(this.m.Enemy.Script);
+		this.m.Enemy.ID = enemy.getType();
+		local name = ::Const.Strings.KnightNames[::Math.rand(0, ::Const.Strings.KnightNames.len() - 1)];
+		if (enemy.getGender() == 1) {
+			name = ::MSU.String.replace(name, "Sir", "Dame");
 		}
-		this.m.Enemy.setName(name);
-		this.m.Enemy.setFaction(this.Const.Faction.Enemy);
+		this.m.Enemy.Name = name;
+		this.m.Enemy.Gender = enemy.getGender();
+		foreach (s in this.m.Enemy.SpriteNames) {
+			this.m.Enemy.Appearance[s] <- "";
+			if (enemy.hasSprite(s)) {
+				local sprite = enemy.getSprite(s);
+				this.m.Enemy.Appearance[s] = sprite.HasBrush ? sprite.getBrush().Name : "";
+			}
+		}
+		::World.getTemporaryRoster().clear();
 	}
 
 	function onPrepareVariables(_vars) {
+		if (this.m.Enemy.Name == "") {
+			this.generateActors();
+		}
+		
 		_vars.push([
 			"chosen",
 			this.m.Champion != null ? this.m.Champion.getName() : ""
 		]);
 		_vars.push([
 			"enemy",
-			this.m.Enemy != null ? this.m.Enemy.getName() : ""
+			this.m.Enemy != null ? this.m.Enemy.Name : ""
 		]);
+
+		if (this.m.Enemy.Gender != -1) {
+			::Const.LegendMod.extendVarsWithPronouns(_vars, this.m.Enemy.Gender, "enemy");
+		}
 	}
 
 	function onDetermineStartScreen() {
-		/*local currentTile = this.World.State.getPlayer().getTile();
-		if (currentTile.SquareCoords.Y > this.World.getMapSize().Y * 0.7) {
+		/*local currentTile = ::World.State.getPlayer().getTile();
+		if (currentTile.SquareCoords.Y > ::World.getMapSize().Y * 0.7) {
 			return "A";
 		}*/
 		return "A";
@@ -319,12 +357,27 @@ this.legend_swordmaster_fav_enemy_event <- this.inherit("scripts/events/event", 
 	function onClear() {
 		this.m.Candidates = [];
 		this.m.Champion = null;
-		this.m.Enemy = null;
+		this.m.Enemy = {
+			ID = 0,
+			Name = "",
+			Gender = -1,
+			Script = "scripts/entity/tactical/humans/swordmaster",
+			Appearance = {},
+			SpriteNames = [
+				"body",
+				"head",
+				"beard",
+				"hair",
+				"tattoo_body",
+				"beard_top",
+				"tattoo_head"
+			]
+		};
 		foreach (bro in this.m.WasInReserves) {
 			bro.setInReserves(true);
 		}
 		this.m.WasInReserves.clear();
-		this.World.getTemporaryRoster().clear();
+		::World.getTemporaryRoster().clear();
 	}
 
 });
