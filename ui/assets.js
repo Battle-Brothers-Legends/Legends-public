@@ -111,6 +111,7 @@ var Asset =
 	ICON_ROUND_NUMBER:						'ui/icons/round_information/round_number_icon.png',
 
     ICON_ASSET_MONEY:                       'ui/icons/asset_money.png',
+	ICON_ASSET_MONEY_UP:                    'ui/buttons/asset_money_up.png',
     ICON_ASSET_DAILY_MONEY:                 'ui/icons/asset_daily_money.png',
     ICON_ASSET_FOOD:                        'ui/icons/asset_food.png',
     ICON_ASSET_DAILY_FOOD:                  'ui/icons/asset_daily_food.png',

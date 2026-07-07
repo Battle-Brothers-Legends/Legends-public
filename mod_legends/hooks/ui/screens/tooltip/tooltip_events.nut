@@ -3216,6 +3216,20 @@
 				}
 			];
 
+		case "tactical-combat-result-screen.loot-panel.ValueLootItemsButton":
+			return [
+				{
+					id = 1,
+					type = "title",
+					text = "Loot Items by Value"
+				},
+				{
+					id = 2,
+					type = "description",
+					text = "Pick the items with the highest value from both current and looted items."
+				}
+			];
+
 		case "character-screen.left-panel-header-module.ChangeNameAndTitle":
 			return [
 				{

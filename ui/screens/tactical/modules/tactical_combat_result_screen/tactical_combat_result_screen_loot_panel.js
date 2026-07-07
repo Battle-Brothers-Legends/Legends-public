@@ -25,6 +25,7 @@ var TacticalCombatResultScreenLootPanel = function (_dataSource) {
 
     // buttons
     this.mLootAllItemsButton = null;
+    this.mValueLootItemsButton = null;
 
     // labels
     this.mStashSlotSizeContainer = null;
@@ -81,6 +82,12 @@ TacticalCombatResultScreenLootPanel.prototype.createDIV = function (_parentDiv) 
         self.mDataSource.notifyBackendLootAllItemsButtonPressed();
     }, 'loot-all-button', 7);
 
+    buttonLayout = $('<div class="l-value-loot-items-button"/>');
+    contentRow.append(buttonLayout);
+    this.mValueLootItemsButton = buttonLayout.createImageButton(Path.GFX + Asset.ICON_ASSET_MONEY_UP, function () {
+        self.mDataSource.notifyBackendValueLootItemsButtonPressed();
+    }, '', 3);
+
     /*
     buttonLayout = $('<div class="l-destroy-item-button"/>');
     contentRow.append(buttonLayout);
@@ -117,6 +124,9 @@ TacticalCombatResultScreenLootPanel.prototype.destroyDIV = function () {
 
     this.mLootAllItemsButton.remove();
     this.mLootAllItemsButton = null;
+
+    this.mValueLootItemsButton.remove();
+    this.mValueLootItemsButton = null;
 
     this.mStashListContainer.destroyList();
     this.mStashListScrollContainer = null;
@@ -204,11 +214,13 @@ TacticalCombatResultScreenLootPanel.prototype.setupEventHandler = function () {
 TacticalCombatResultScreenLootPanel.prototype.bindTooltips = function () {
     this.mStashSlotSizeContainer.bindTooltip({ contentType: 'ui-element', elementId: TooltipIdentifier.Stash.FreeSlots });
     this.mLootAllItemsButton.bindTooltip({ contentType: 'ui-element', elementId: TooltipIdentifier.TacticalCombatResultScreen.LootPanel.LootAllItemsButton });
+    this.mValueLootItemsButton.bindTooltip({ contentType: 'ui-element', elementId: TooltipIdentifier.TacticalCombatResultScreen.LootPanel.ValueLootItemsButton });
 };
 
 TacticalCombatResultScreenLootPanel.prototype.unbindTooltips = function () {
     this.mStashSlotSizeContainer.unbindTooltip();
     this.mLootAllItemsButton.unbindTooltip();
+    this.mValueLootItemsButton.unbindTooltip();
 };
 
 

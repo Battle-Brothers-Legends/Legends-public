@@ -154,6 +154,16 @@
     margin: auto;
 }
 
+.tactical-combat-result-screen .loot-panel .row .l-value-loot-items-button {
+    top: 33.0rem;
+    left: 0;
+    right: 0;
+    width: 5.2rem;
+    height: 4.1rem;
+    position: absolute;
+    margin: auto;
+}
+
 .tactical-combat-result-screen .loot-panel .row .l-loot-all-items-button .ui-control.button>.label {
     line-height: 7.0rem;
 }

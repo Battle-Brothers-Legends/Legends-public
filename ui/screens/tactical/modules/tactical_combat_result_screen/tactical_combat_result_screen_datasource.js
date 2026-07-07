@@ -470,6 +470,13 @@ TacticalCombatResultScreenDatasource.prototype.notifyBackendLootAllItemsButtonPr
     });
 };
 
+TacticalCombatResultScreenDatasource.prototype.notifyBackendValueLootItemsButtonPressed = function (_callback) {
+    var self = this;
+    SQ.call(this.mSQHandle, 'onValueLootItemsButtonPressed', null, function (_data) {
+        self.loadFromData(_data);
+    });
+}
+
 TacticalCombatResultScreenDatasource.prototype.notifyBackendRemoveInventoryItemUpgrades = function (_slot) {
     var self = this;
     SQ.call(this.mSQHandle, 'removeInventoryItemUpgrades', [_slot], function (data) {

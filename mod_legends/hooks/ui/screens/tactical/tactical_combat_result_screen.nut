@@ -89,4 +89,92 @@
 			::Legends.Inventory.applyAutomationStateEffects(item, 0, ::Legends.Inventory.getCompositeAutomationState(item));
 		}
 	}
+
+	o.onValueLootItemsButtonPressed <- function () {
+		::Sound.play("sounds/combat/armor_leather_impact_01.wav", ::Const.Sound.Volume.Inventory);
+
+		local loot = ::Tactical.CombatResultLoot.getItems();
+		local stash = ::Stash.getItems();
+
+		// eat supplies
+		for (local i = 0; i < loot.len(); i++) {
+			local item = loot[i];
+			if (item != null && item.isItemType(::Const.Items.ItemType.Supply))	{
+				item.consume();
+				loot[i] = null;
+			}
+		}
+
+		local stashSlots = [];
+		local pool = [];
+
+		// create the combined loot pool
+		for (local i = 0; i < stash.len(); i++) {
+			local item = stash[i];
+			if (item == null) {
+				stashSlots.push(i);
+			} else if (!item.isItemType(::Const.Items.ItemType.Food) && !item.isNamed()) {
+				stashSlots.push(i);
+				pool.push({
+					item = item,
+					isLoot = false,
+					stashIdx = i,
+					isNamed = false,
+					val = item.getValue()
+				});
+			}
+		}
+
+		for (local i = 0; i < loot.len(); i++) {
+			local item = loot[i];
+			if (item != null && !item.isItemType(::Const.Items.ItemType.Food)) {
+				pool.push({
+					item = item,
+					isLoot = true,
+					lootIdx = i,
+					isNamed = item.isNamed(),
+					val = item.getValue()
+				});
+			}
+		}
+
+		pool.sort(function (a, b) {
+			if (a.isNamed && !b.isNamed) {
+				return -1;
+			}
+			if (!a.isNamed && b.isNamed) {
+				return 1;
+			}
+			if (a.val > b.val) {
+				return -1;
+			}
+			if (a.val < b.val) {
+				return 1;
+			}
+			return 0;
+		});
+
+		// move items
+		for (local i = pool.len() - 1; i >= 0; i--) {
+			local item = pool[i];
+			if (i >= stashSlots.len()) {
+				if (!item.isLoot) {
+					loot.push(item.item);
+					stash[item.stashIdx] = null;
+				}
+			} else {
+				if (item.isLoot) {
+					::Stash.add(item.item);
+					loot[item.lootIdx] = null;
+				}
+			}
+		}
+
+		::Tactical.CombatResultLoot.shrink();
+
+		return {
+			stash = ::UIDataHelper.convertStashToUIData(true),
+			foundLoot = ::UIDataHelper.convertCombatResultLootToUIData()
+		};
+	}
 });
