@@ -113,7 +113,7 @@
 			local item = stash[i];
 			if (item == null) {
 				stashSlots.push(i);
-			} else if (!item.isItemType(::Const.Items.ItemType.Food) && !item.isNamed()) {
+			} else if (!item.isItemType(::Const.Items.ItemType.Food) && !item.isNamed() && !item.isItemType(::Const.Items.ItemType.Quest)) {
 				stashSlots.push(i);
 				pool.push({
 					item = item,
