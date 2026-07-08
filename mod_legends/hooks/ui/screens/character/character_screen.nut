@@ -1145,4 +1145,103 @@
 			return this.UIDataHelper.convertStashAndEntityToUIData(data.entity, null, true, this.m.InventoryFilter);
 		}
 	}
+
+	o.onOrganizeLayeredItems <- function (_stripMismatched) {
+		::Sound.play("sounds/inventory/armor_upgrade_use_01.wav", ::Const.Sound.Volume.Inventory);
+
+		local stash = ::Stash.getItems();
+		local bases = [];
+		local upgrades = [];
+
+		// create pools of bases and upgrades
+		for (local i = 0; i < stash.len(); i++) {
+			local item = stash[i];
+			if (item == null) continue;
+
+			if (::Legends.Inventory.isItemLayered(item)) {
+				bases.push({
+					item = item,
+					state = ::World.Flags.getAsInt("AutoState_" + item.getID())
+				});
+			} else if (::isKindOf(item, "legend_armor_upgrade") || ::isKindOf(item, "legend_helmet_upgrade")) {
+				upgrades.push({
+					item = item,
+					idx = i,
+					state = ::World.Flags.getAsInt("AutoState_" + item.getID())
+				});
+			}
+		}
+
+		// join/switch upgrades
+		local i = 0;
+		while (i < upgrades.len()) {
+			local upgrade = upgrades[i];
+
+			foreach (base_item in bases) {
+				if (base_item.state != upgrade.state) continue;
+
+				if (::isKindOf(base_item.item, "legend_armor") && !::isKindOf(upgrade.item, "legend_armor_upgrade")) continue;
+				if (::isKindOf(base_item.item, "legend_helmet") && !::isKindOf(upgrade.item, "legend_helmet_upgrade")) continue;
+				if (base_item.item.m.Blocked[upgrade.item.getType()]) continue;
+
+				local layer = upgrade.item.getType();
+				if (::isKindOf(base_item.item, "legend_helmet") && layer == ::Const.Items.HelmetUpgrades.Vanity && base_item.item.m.Upgrades[layer] != null) {
+					layer = ::Const.Items.HelmetUpgrades.ExtraVanity;
+				}
+
+				local equippedUpgrade = base_item.item.m.Upgrades[layer];
+				if (equippedUpgrade != null) {
+					if (::World.Flags.getAsInt("AutoState_" + equippedUpgrade.getID()) == base_item.state) {
+						continue;
+					}
+				}
+
+				local result = base_item.item.setUpgrade(upgrade.item);
+				
+				if (typeof result == "table") {
+					::Stash.removeByIndex(upgrade.idx);
+					
+					if (result.item != null) {
+						::Stash.insert(result.item, upgrade.idx);
+						upgrades.push({
+							item = result.item,
+							idx = upgrade.idx,
+							state = ::World.Flags.getAsInt("AutoState_" + result.item.getID())
+						});
+					}
+					break;
+				}
+			}
+			i++;
+		}
+
+		// strip mismatched layers on 2nd button
+		if (_stripMismatched) {
+			foreach (base_item in bases) {
+				foreach (slotIdx, upg in base_item.item.m.Upgrades) {
+					if (upg != null) {
+						local upgState = ::World.Flags.getAsInt("AutoState_" + upg.getID());
+						if (upgState != base_item.state) {
+							local removed = base_item.item.removeUpgrade(slotIdx);
+							if (removed != null) {
+								::Stash.add(removed);
+							}
+						}
+					}
+				}
+			}
+		}
+
+		foreach (item in ::Stash.getItems()) {
+			if (item != null) {
+				::Legends.Inventory.applyAutomationStateEffects(item, 0, ::Legends.Inventory.getCompositeAutomationState(item));
+			}
+		}
+
+		return {
+			stash = ::UIDataHelper.convertStashToUIData(false, this.m.InventoryFilter),
+			stashSpaceUsed = ::Stash.getNumberOfFilledSlots(),
+			stashSpaceMax = ::Stash.getCapacity()
+		};
+	}
 });

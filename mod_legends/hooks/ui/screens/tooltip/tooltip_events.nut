@@ -3516,6 +3516,34 @@
 				}
 			];
 
+		case "character-screen.right-panel-header-module.OrganizeLayersButton":
+			return [
+				{
+					id = 1,
+					type = "title",
+					text = "Organize Layers"
+				},
+				{
+					id = 2,
+					type = "description",
+					text = "Join layered items based on chosen automation flags."
+				}
+			];
+
+		case "character-screen.right-panel-header-module.OrganizeLayersStripButton":
+			return [
+				{
+					id = 1,
+					type = "title",
+					text = "Organize Layers and Unlayer"
+				},
+				{
+					id = 2,
+					type = "description",
+					text = "Join layered items based on chosen automation flags and unlayer the unmatched upgrades."
+				}
+			];
+
 		case "character-screen.right-panel-header-module.ChangeFormation":
 			return [
 				{

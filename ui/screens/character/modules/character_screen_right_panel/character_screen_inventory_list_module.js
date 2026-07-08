@@ -41,6 +41,8 @@ var CharacterScreenInventoryListModule = function(_parent, _dataSource)
 	this.mFilterArmorButton = null;
 	this.mFilterMiscButton = null;
 	this.mFilterUsableButton = null;
+	this.mOrganizeLayersButton = null;
+	this.mOrganizeLayersStripButton = null;
 
 	this.mCurrentPopupDialog = null;
 
@@ -157,6 +159,17 @@ CharacterScreenInventoryListModule.prototype.createDIV = function (_parentDiv)
 		self.mDataSource.notifyBackendFilterUsableButtonClicked();
 	}, '', 3);
 
+	var layout = $('<div class="l-button is-organize-layers"/>');
+	this.mFilterPanel.append(layout);
+	this.mOrganizeLayersButton = layout.createImageButton(Path.GFX + Asset.BUTTON_ORGANIZE_LAYERS, function ()	{
+		self.mDataSource.notifyBackendOrganizeLayeredItemsClicked(false);
+	}, '', 3);
+
+	var layout = $('<div class="l-button is-organize-layers-strip"/>');
+	this.mFilterPanel.append(layout);
+	this.mOrganizeLayersStripButton = layout.createImageButton(Path.GFX + Asset.BUTTON_ORGANIZE_LAYERS_STRIP, function () {
+		self.mDataSource.notifyBackendOrganizeLayeredItemsClicked(true);
+	}, '', 3);
 };
 
 CharacterScreenInventoryListModule.prototype.destroyDIV = function ()
@@ -861,6 +874,8 @@ CharacterScreenInventoryListModule.prototype.bindTooltips = function ()
 	this.mFilterMiscButton.bindTooltip({ contentType: 'ui-element', elementId: TooltipIdentifier.CharacterScreen.RightPanelHeaderModule.FilterMiscButton });
 	this.mFilterUsableButton.bindTooltip({ contentType: 'ui-element', elementId: TooltipIdentifier.CharacterScreen.RightPanelHeaderModule.FilterUsableButton });
 	this.mFilterMoodButton.bindTooltip({ contentType: 'ui-element', elementId: TooltipIdentifier.CharacterScreen.RightPanelHeaderModule.FilterMoodButton });
+	this.mOrganizeLayersButton.bindTooltip({ contentType: 'ui-element', elementId: TooltipIdentifier.CharacterScreen.RightPanelHeaderModule.OrganizeLayersButton });
+	this.mOrganizeLayersStripButton.bindTooltip({ contentType: 'ui-element', elementId: TooltipIdentifier.CharacterScreen.RightPanelHeaderModule.OrganizeLayersStripButton });
 };
 
 CharacterScreenInventoryListModule.prototype.unbindTooltips = function ()
@@ -872,6 +887,8 @@ CharacterScreenInventoryListModule.prototype.unbindTooltips = function ()
 	this.mFilterMiscButton.unbindTooltip();
 	this.mFilterUsableButton.unbindTooltip();
 	this.mFilterMoodButton.unbindTooltip();
+	this.mOrganizeLayersButton.unbindTooltip();
+	this.mOrganizeLayersStripButton.unbindTooltip();
 };
 
 CharacterScreenInventoryListModule.prototype.register = function (_parentDiv)

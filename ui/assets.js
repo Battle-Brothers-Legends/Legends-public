@@ -57,6 +57,8 @@ var Asset =
     BUTTON_USABLE_FILTER:                   'ui/buttons/filter_usable.png',
 	BUTTON_MOOD_FILTER:						'ui/buttons/filter_mood.png',
 	BUTTON_MOOD_FILTER_OFF:					'ui/buttons/filter_mood_sw.png',
+	BUTTON_ORGANIZE_LAYERS:					'ui/buttons/organize_layers_button.png',
+	BUTTON_ORGANIZE_LAYERS_STRIP:			'ui/buttons/organize_layers_strip_button.png',
 	BUTTON_FLEE:                            'ui/skin/icon_retreat.png',
 
     BUTTON_MONEY_ASSET:                     'ui/buttons/money-asset-button.png',

@@ -2118,6 +2118,29 @@ CharacterScreenDatasource.prototype.notifyBackendFilterMiscButtonClicked = funct
 	SQ.call(this.mSQHandle, 'onFilterMisc');
 };
 
+CharacterScreenDatasource.prototype.notifyBackendOrganizeLayeredItemsClicked = function (_stripMismatched) {
+    var self = this;
+    SQ.call(this.mSQHandle, 'onOrganizeLayeredItems', _stripMismatched, function (data) {
+        if (data === undefined || data === null || typeof (data) !== 'object') {
+            return;
+        }
+
+        if ('stashSpaceUsed' in data) {
+            self.mStashSpaceUsed = data.stashSpaceUsed;
+        }
+
+        if ('stashSpaceMax' in data) {
+            self.mStashSpaceMax = data.stashSpaceMax;
+        }
+
+		self.mInventoryModule.updateSlotsLabel();
+
+        if (CharacterScreenIdentifier.QueryResult.Stash in data) {
+			self.loadStashList(data[CharacterScreenIdentifier.QueryResult.Stash]);
+		}
+    });
+};
+
 CharacterScreenDatasource.prototype.notifyBackendFilterUsableButtonClicked = function () {
 	SQ.call(this.mSQHandle, 'onFilterUsable');
 };

@@ -344,6 +344,8 @@ var TooltipIdentifier =
 			FilterMiscButton: 'character-screen.right-panel-header-module.FilterMiscButton',
 			FilterUsableButton: 'character-screen.right-panel-header-module.FilterUsableButton',
 			FilterMoodButton: 'character-screen.right-panel-header-module.FilterMoodButton',
+			OrganizeLayersButton: 'character-screen.right-panel-header-module.OrganizeLayersButton',
+			OrganizeLayersStripButton: 'character-screen.right-panel-header-module.OrganizeLayersStripButton',
 			SellAllButton: 'character-screen.right-panel-header-module.SellAllButton',
 			FormationButton: 'character-screen.right-panel-header-module.FormationButton',
 			ChangeFormationButton: 'character-screen.right-panel-header-module.ChangeFormation',
