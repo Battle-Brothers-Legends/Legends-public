@@ -17,14 +17,11 @@ this.legend_werewolf_racial <- this.inherit("scripts/skills/skill", {
 	{
 		local healthMissing = _properties.Hitpoints - this.getContainer().getActor().getHitpoints();
 		local additionalDamage = this.Math.floor(healthMissing * 0.25);
-		if(::Legends.isLegendaryDifficulty())
-		{
-			local additionalDamage = this.Math.floor(healthMissing * 0.5);
-		}
+		/*if (::Legends.isLegendaryDifficulty()) { // commented out as it didn't work anyway before, to be revisited when actual werewolves come
+			additionalDamage = this.Math.floor(healthMissing * 0.5);
+		}*/
 
-
-		if (additionalDamage > 0)
-		{
+		if (additionalDamage > 0) {
 			_properties.DamageRegularMin += additionalDamage;
 			_properties.DamageRegularMax += additionalDamage;
 		}
