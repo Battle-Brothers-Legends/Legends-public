@@ -381,11 +381,11 @@ this.training_building <- this.inherit("scripts/entity/world/camp/camp_building"
 		});
 	}
 
-	function getBreak( _bro )
+	function getBreak( _bro, cause )
 	{
 		this.m.Results.push({
 			Icon = "ui/icons/days_wounded.png", //Should get an icon for failed training
-			Text = _bro.getName() + " was recovering from an injury so didn't train."
+			Text = _bro.getName() + " was " + cause + " and didn't train."
 		});
 	}
 
@@ -519,9 +519,11 @@ this.training_building <- this.inherit("scripts/entity/world/camp/camp_building"
 				continue;
 			}
 
-			if (bro.getSkills().hasSkillOfType(this.Const.SkillType.TemporaryInjury) || bro.getSkills().hasSkillOfType(this.Const.SkillType.SemiInjury))
-			{
-				this.getBreak(bro);
+			if (bro.getSkills().hasSkillOfType(::Const.SkillType.TemporaryInjury)) {
+				this.getBreak(bro, "recovering from an injury");
+				continue;
+			} else if(bro.getSkills().hasSkillOfType(::Const.SkillType.SemiInjury)) {
+				this.getBreak(bro, bro.getSkills().getAllSkillsOfType(::Const.SkillType.SemiInjury)[0].getName().tolower());
 				continue;
 			}
 
