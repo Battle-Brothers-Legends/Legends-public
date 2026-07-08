@@ -2,8 +2,7 @@
 	skipCamp = @() ::Legends.Mod.ModSettings.getSetting("SkipCamp").getValue() || ::Legends.S.oneOf(::World.Assets.getOrigin().getID(), "scenario.legend_risen_legion", "scenario.legends_solo_necro", "scenario.raiders")
 }
 
-local function addNCSetting( _page, _setting )
-{
+function addNCSetting( _page, _setting ) {
 	_setting.getData().NewCampaign <- true;
 	_setting.getData().NewCampaignOnly <- true;
 	_page.addElement(_setting);
@@ -65,6 +64,9 @@ general.addElement(::MSU.Class.BooleanSetting("ShowPotentialOnBars", false, "Sho
 general.addElement(::MSU.Class.BooleanSetting("ShowPotentialOnItems", false, "Show Stat Potential On Items", "Show named items stat potential on named properties."));
 general.addElement(::MSU.Class.BooleanSetting("ClickPresetToSwitch", false, "Faster Camping Preset Switch", "Clicking on the camping preset slot immediately applies the preset"));
 general.addElement(::MSU.Class.BooleanSetting("SellDialogNamed", true, "Sell Famed Dialog", "Should confirmation dialog appear when selling famed items?"));
+general.addTitle("Saves", "Saves");
+general.addElement(::MSU.Class.RangeSetting("AutosaveSlots", 5, 1, 9, 1, "Autosave Slots", "Number of autosave slots the game cycles through."));
+general.addElement(::MSU.Class.RangeSetting("QuicksaveSlots", 5, 1, 9, 1, "Quicksave Slots", "Number of quicksave slots the game cycles through."));
 
 local tooltip = ::Legends.Mod.ModSettings.addPage("Tooltips / UI");
 tooltip.addTitle("TooltipCombat", "Tooltips - Combat");

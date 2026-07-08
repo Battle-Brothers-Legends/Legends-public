@@ -193,6 +193,30 @@
 		}
 	}
 
+	o.autosave = function () {
+		if (!this.m.IsAutosaving) {
+			return;
+		}
+
+		local pause = !this.m.IsGameAutoPaused;
+
+		if (pause) {
+			this.setAutoPause(true);
+		}
+
+		if (::World.Assets.isIronman()) {
+			this.saveCampaign(this.World.Assets.getName() + "_" + this.World.Assets.getCampaignID(), this.World.Assets.getName());
+		} else {
+			local slot = ::World.Flags.getAsInt("Legends_AutosaveSlot") != 0 ? ::World.Flags.getAsInt("Legends_AutosaveSlot") : 1;
+			::World.Flags.set("Legends_AutosaveSlot", (slot % ::Legends.Mod.ModSettings.getSetting("AutosaveSlots").getValue()) + 1);
+        	this.saveCampaign("autosave_legends_" + slot);
+		}
+
+		if (pause) {
+			this.setAutoPause(false);
+		}
+	}
+
 	local onCombatFinished = o.onCombatFinished;
 	o.onCombatFinished = function()
 	{
@@ -1071,17 +1095,20 @@
 				break;
 
 			case 75:
-				if (!this.m.MenuStack.hasBacksteps() && !::World.Assets.isIronman())
-				{
-					this.saveCampaign("quicksave");
+				if (!this.m.MenuStack.hasBacksteps() && !::World.Assets.isIronman()) {
+					local slot = ::World.Flags.getAsInt("Legends_QuicksaveSlot") != 0 ? ::World.Flags.getAsInt("Legends_QuicksaveSlot") : 1;
+					::World.Flags.set("Legends_QuicksaveSlot", (slot % ::Legends.Mod.ModSettings.getSetting("QuicksaveSlots").getValue()) + 1);
+        			this.saveCampaign("quicksave_legends_" + slot);
 				}
 
 				break;
 
 			case 79:
-				if (!this.m.MenuStack.hasBacksteps() && !::World.Assets.isIronman() && ::World.canLoad("quicksave"))
-				{
-					this.loadCampaign("quicksave");
+				if (!this.m.MenuStack.hasBacksteps()) {
+					local slot = ::World.Flags.getAsInt("Legends_QuicksaveSlot") > 1 ? (::World.Flags.getAsInt("Legends_QuicksaveSlot") - 1) : (::World.Flags.getAsInt("Legends_QuicksaveSlot") == 1 ? ::Legends.Mod.ModSettings.getSetting("QuicksaveSlots").getValue() : 1);
+					if (!::World.Assets.isIronman() && ::World.canLoad("quicksave_legends_" + slot)) {
+						this.loadCampaign("quicksave_legends_" + slot);
+					}
 				}
 
 				break;
