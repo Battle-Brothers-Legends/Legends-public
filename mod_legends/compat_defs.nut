@@ -122,11 +122,12 @@
 ::Legends.Compat.HardIncompat.add("mod_Chirutiru_enemies", "1", "Sellswords not compaible, there's Legends version of this mod (SSU) on Legends Discord"); // This entry should cover old Sellswords
 ::Legends.Compat.HardIncompat.add("sarisofoi_company_tabards"); // Company Tabards
 ::Legends.Compat.HardIncompat.add("comrades_mod", "4.3.0");
+::Legends.Compat.HardIncompat.add("mod_configurable_pause", null, "Use Legends pause options instead");
 ::Legends.Compat.HardIncompat.add("mod_desertswampSliders", "1.0"); // More map sliders
 ::Legends.Compat.HardIncompat.add("mod_effective_hitpoints", "2.0.0");
 ::Legends.Compat.HardIncompat.add("mod_elevation_bindings", "2");
 ::Legends.Compat.HardIncompat.add("Mod_Editable_Retinue_MSU", "3.0.3");
-//::Legends.Compat.HardIncompat.add("mod_EIMO", "10.0.6"); // lately bug reports ceased, fixed?
+::Legends.Compat.HardIncompat.add("mod_EIMO", "10.0.6", "Use Legends inventory management options instead"); // lately bug reports ceased, fixed?
 ::Legends.Compat.HardIncompat.add("TheEliteFewCore", "1.2");
 //::Legends.Compat.HardIncompat.add("mod_elite_few", "2.4.1"); // Hackflow version
 ::Legends.Compat.HardIncompat.add("mod_enemyWithRandomPerks", "1.0");
@@ -135,8 +136,8 @@
 ::Legends.Compat.HardIncompat.add("mod_every_item_drops", "1.1.1"); // Waterplouf version
 ::Legends.Compat.HardIncompat.add("mod_extra_keybinds", "2.1.0"); // a lot of bug reports lately with this mod...
 ::Legends.Compat.HardIncompat.add("fantasyReforgedTrees");
-::Legends.Compat.HardIncompat.add("mod_faster", null, "Use Swifter instead, found on Nexus");
-::Legends.Compat.HardIncompat.add("mod_fastest", null, "Use Swifter instead, found on Nexus");
+::Legends.Compat.HardIncompat.add("mod_faster", null, "Use Legends speed options instead");
+::Legends.Compat.HardIncompat.add("mod_fastest", null, "Use Legends speed options instead");
 ::Legends.Compat.HardIncompat.add("mod_legends_favoured_enemy_refund", "2.0.1");
 ::Legends.Compat.SoftIncompat.add("mod_fun_facts", "0.5.0"); // Seen some reports causing hard crashes with this mod. But new comments suggest issues might be fixed need more feedback vs Legends play
 ::Legends.Compat.HardIncompat.add("graven_passive_shield_damage_bonus", "1.0");
@@ -157,6 +158,7 @@
 ::Legends.Compat.HardIncompat.add("lng_combat_tweak", "1.0");
 ::Legends.Compat.HardIncompat.add("mod_lessgr", "1.3");
 ::Legends.Compat.HardIncompat.add("mod_legendary_kriegsgeist_boss_location", "1.0.5"); // SSU has more updated version of this now
+::Legends.Compat.HardIncompat.add("mod_mbpause", null, "Use Legends pause options instead");
 ::Legends.Compat.HardIncompat.add("mod_menace", "0.03");
 ::Legends.Compat.HardIncompat.add("mod_more_buildings", "0.5");
 ::Legends.Compat.HardIncompat.add("mod_more_champions_x5");
@@ -167,14 +169,16 @@
 ::Legends.Compat.HardIncompat.add("mod_moreRecruits", "2", "For more recruits a safe alternative seems to be Necro's World Editor");
 ::Legends.Compat.HardIncompat.add("mod_more_weapon_skins", "0.8.0"); // Many of Karl's skins are being integ into Legends
 ::Legends.Compat.HardIncompat.add("mod_namedShieldsInShops", "1.0");
+::Legends.Compat.HardIncompat.add("namedItemStats", null, "Use Legends potential options instead");
 ::Legends.Compat.HardIncompat.add("mod_necro", "0.3.0"); // Hackflow's Proper Necromancer
 ::Legends.Compat.HardIncompat.add("mod_no_hitcap", "1.0.0"); // "2022 edition"
 ::Legends.Compat.HardIncompat.add("mod_no_more_trash_named_weapons", "2");
 ::Legends.Compat.HardIncompat.add("mod_north_expansion", "0.7.2"); // Hamen's doing a Legends compat version in future let's fucking gooooo!
 ::Legends.Compat.HardIncompat.add("mod_origin_customizer", "2.2.4");
+::Legends.Compat.HardIncompat.add("mod_pause", null, "Use Legends pause options instead");
 ::Legends.Compat.HardIncompat.add("mod_pauseOnView", "3");
 ::Legends.Compat.HardIncompat.add("mod_legends_PTR", "2.2.2", "PTR ded, hue hue"); // PTR
-::Legends.Compat.HardIncompat.add("quicker", "1.3.1", "Use Swifter instead, found on Nexus");
+::Legends.Compat.HardIncompat.add("quicker", null, "Use Legends speed options instead");
 ::Legends.Compat.HardIncompat.add("quirks", "0.8.0");
 ::Legends.Compat.HardIncompat.add("mod_raided", "1.0");
 ::Legends.Compat.HardIncompat.add("mod_repeatableOguTrophyAmbitions", "1.0");
@@ -196,11 +200,14 @@
 ::Legends.Compat.HardIncompat.add("zmod_rise_of_the_usurper", "1.0.0", "More recent Rotu vers found at Legends / Submods"); // old ass Nexus rotu version
 ::Legends.Compat.HardIncompat.add("mod_rpgr_raids", "4.0.1");
 ::Legends.Compat.HardIncompat.add("mod_save", "1.0.0"); // Enhanced Autosave
+::Legends.Compat.HardIncompat.add("mod_settlement_situations_tooltip", null, "Use Legends settlement situations instead");
+::Legends.Compat.HardIncompat.add("mod_settlement_situations_msu", null, "Use Legends settlement situations instead");
 //::Legends.Compat.HardIncompat.add("mod_sellswords", "8.2.9"); // SSU, now Legends V19+ compatible
 ::Legends.Compat.HardIncompat.add("mod_smart_recruiter_legends", "1.0", "Use Clever Recruiter instead, found on Nexus");
 ::Legends.Compat.HardIncompat.add("mod_solostart", "1.0");
 ::Legends.Compat.HardIncompat.add("mod_southernNomad", "1.0");
 ::Legends.Compat.HardIncompat.add("mod_standout_enemies", "1.2");
+::Legends.Compat.HardIncompat.add("mod_swifter", null, "Use Legends speed options instead");
 ::Legends.Compat.HardIncompat.add("mod_talents_reworked", "1");
 ::Legends.Compat.HardIncompat.add("mod_tavern_arena", "1.0");
 ::Legends.Compat.HardIncompat.add("mod_olto_l_temple_remove_injuries", "1.15");
@@ -215,6 +222,7 @@
 ::Legends.Compat.HardIncompat.add("mod_veteran_attributes", "2.0.0");
 ::Legends.Compat.HardIncompat.add("mod_veteranStamina", "4");
 ::Legends.Compat.HardIncompat.add("mod_veteranXPToRookies", "4"); // Veteran XP to Rookies
+::Legends.Compat.HardIncompat.add("mod_ViewPotential", null, "Use Legends potential options instead");
 ::Legends.Compat.HardIncompat.add("mod_warhammer", "1.0"); // old skaven mod
 ::Legends.Compat.HardIncompat.add("mod_wealth", "1");
 ::Legends.Compat.HardIncompat.add("mod_weapons", "0.27");
@@ -225,6 +233,7 @@
 ::Legends.Compat.HardIncompat.add("sato_corpse_loot_fix"); // Sato's Corpse Loot Fix
 ::Legends.Compat.HardIncompat.add("mod_career_stats", "1.0.2"); // I've seen this mod being the issue in logs as cause of errors
 ::Legends.Compat.HardIncompat.add("mod_black_pyramid", "1.0.2"); // ai slop
+::Legends.Compat.HardIncompat.add("mod_bbforge", "0.4.3", "The ai slop equivalent of Breditor, if you are using bbforge do not report bug reports to the Legends Mod Team"); // ai slop
 //endregion
 
 //region SoftIncompat
@@ -242,7 +251,6 @@
 ::Legends.Compat.SoftIncompat.add("mod_streamlined_ui", "1.0.3");
 ::Legends.Compat.SoftIncompat.add("mod_URUI", "1.2.0"); // Unrecognized UI
 ::Legends.Compat.SoftIncompat.add("mod_persistent_characters", "0.1.8", "Bro wages keep growing on reload");
-::Legends.Compat.SoftIncompat.add("mod_bbforge", "0.4.3", "The equivalent of Breditor, if you are using bbforge do not report bug reports to the Legends Mod Team");
 //endregion
 
 //region IncompatButPatched
