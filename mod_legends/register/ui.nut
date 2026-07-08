@@ -69,6 +69,8 @@
 ::mods_registerCSS("mod_tooltip_extension.css");
 ::mods_registerJS("mod_tooltip_extension.js");
 
+::mods_registerJS("msu_new_campaign_dialog.js");
+
 ::mods_registerJS("legends/hooks/encounters.js");
 ::mods_registerCSS("legends/hooks/encounters.css");
 
