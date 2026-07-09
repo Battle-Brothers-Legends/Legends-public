@@ -162,37 +162,26 @@ this.legend_puppet_background <- this.inherit("scripts/skills/backgrounds/charac
 		local r;
 		r = this.Math.rand(0, 7);
 
-		if (r == 0)
-		{
-		items.equip(this.new("scripts/items/weapons/wooden_stick"));
+		if (r == 0) {
+			items.equip(this.new("scripts/items/weapons/wooden_stick"));
 		}
-		else if (r == 1)
-		{
-		items.equip(this.new("scripts/items/weapons/wooden_flail"));
+		else if (r == 1) {
+			items.equip(this.new("scripts/items/weapons/wooden_flail"));
+		} // 2 is nothing
+		else if (r == 3) {
+			items.equip(this.new("scripts/items/weapons/shortsword"));
 		}
-		else if (r == 2)
-		{
-		items.equip(this.new(""));
+		else if (r == 4) {
+			items.equip(this.new("scripts/items/weapons/hatchet"));
 		}
-		else if (r == 3)
-		{
-		items.equip(this.new("scripts/items/weapons/shortsword"));
+		else if (r == 5) {
+			items.equip(this.new("scripts/items/shields/worn_heater_shield"));
 		}
-		else if (r == 4)
-		{
-		items.equip(this.new("scripts/items/weapons/hatchet"));
+		else if (r == 6) {
+			items.equip(this.new("scripts/items/shields/worn_kite_shield"));
 		}
-		else if (r == 5)
-		{
-		items.equip(this.new("scripts/items/shields/worn_heater_shield"));
-		}
-		else if (r == 6)
-		{
-		items.equip(this.new("scripts/items/shields/worn_kite_shield"));
-		}
-		else if (r == 7)
-		{
-		items.equip(this.new("scripts/items/weapons/boar_spear"));
+		else if (r == 7) {
+			items.equip(this.new("scripts/items/weapons/boar_spear"));
 		}
 
 		items.equip(this.Const.World.Common.pickArmor([ //1 = least likely

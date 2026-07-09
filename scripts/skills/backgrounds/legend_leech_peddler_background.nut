@@ -161,19 +161,13 @@ this.legend_leech_peddler_background <- this.inherit("scripts/skills/backgrounds
 		return c;
 	}
 
-	function onAddEquipment()
-	{
+	function onAddEquipment() {
 		local items = this.getContainer().getActor().getItems();
 		local r;
 		r = this.Math.rand(0, 1);
 
-		if (r == 0)
-		{
-		items.equip(this.new(""));
-		}
-		else if (r == 1)
-		{
-		items.equip(this.new("scripts/items/weapons/wooden_stick"));
+		if (r == 1) {
+			items.equip(this.new("scripts/items/weapons/wooden_stick"));
 		}
 
 		items.equip(this.Const.World.Common.pickArmor([
