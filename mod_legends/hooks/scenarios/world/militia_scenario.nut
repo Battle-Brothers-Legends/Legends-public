@@ -122,8 +122,7 @@
 
 		bros[4].setStartValuesEx([
 			"daytaler_background",
-			"vagabond_background",
-			"legend_leech_peddler_background"
+			"vagabond_background"
 		]);
 		bros[4].getBackground().m.RawDescription = "A daytaler and common laborer, %name% would rather join your outfit than go back to wasting their body building some nobleman\'s new fancy foyer.";
 		bros[4].worsenMood(0.5, "Was involved in a brawl");
@@ -171,7 +170,7 @@
 		bros[10].m.PerkPoints = 0;
 		bros[10].m.LevelUps = 0;
 		bros[10].m.Level = 1;
-		bros[11].setStartValuesEx(this.Const.CharacterVillageBackgrounds);
+		bros[11].setStartValuesEx(["legend_leech_peddler_background"]);
 		bros[11].getBackground().m.RawDescription = "%name% is, ostensibly, running away from their other half. You met them once and approve their escape plan entirely, and not just because it affords you another body on the front line — that wench is genuinely crazy.";
 		bros[11].improveMood(1.0, "Managed to get away from their family");
 
