@@ -21,6 +21,11 @@ this.legend_cannibalistic <- this.inherit("scripts/skills/traits/character_trait
 				id = 2,
 				type = "description",
 				text = this.getDescription()
+			},
+			{
+				id = 3,
+				type = "text",
+				text = "Provides additional recipes at camp crafting"
 			}
 		];
 	}

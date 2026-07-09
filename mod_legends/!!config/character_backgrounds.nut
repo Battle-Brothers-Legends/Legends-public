@@ -238,7 +238,6 @@
 	"hunter_background",
 	"juggler_background",
 	"killer_on_the_run_background",
-	"legend_cannibal_background",
 	"legend_crusader_background",
 	"legend_berserker_background",
 	"legend_blacksmith_background",

@@ -9,13 +9,13 @@ this.legend_cannibal_recruitment <- this.inherit("scripts/events/event", {
 		this.m.Cooldown = 999999.0 * this.World.getTime().SecondsPerDay;
 		this.m.Screens.push({
 			ID = "A",
-			Text = "[img]gfx/ui/events/legend_cannibal_recruitment.png[/img]You halt and turn your nose skyward, a thread of flavour is drifting on the wind — it is not grain or fruit, but instead something more sickly sweet. Following the trail like a hungry pig leads to a ramshackle camp — inhabited by a lonely figure basked in the light of a campfire.\n\n A vast array of utensils are laid out in the same manner as a torturer places his instruments before beginning their work. The figure shuffles slightly, exchanging a ladle for a spoon.\n A branch crunches and the figure twitches somewhat, but does not rise or jump as you would expect.\n\n Their grisly voice rings out towards your hide. %SPEECH_ON%Ther\'s enough fer all of yer\'s %SPEECH_OFF% The figure starts stirring the pot gently with their finger. You emerge into the dim dancing light of the open fire, the smell is stronger now, but there\'s something else in the air that was not there before.\n\n With a hand on your weapon and approaching slowly, you enter the innermost ring of the fire. The fire no longer dances, instead it mopes and tumbles slowly on the stranger\'s face — who is still fixated on the stew mere inches from the tip of their rankling nose. They motion for you to sit down, irritated by you towering over them.\n It\'s best to sit.\n The stranger, now half illuminated by the tired flame, moves from their spot to fix eyes with you. They stare and wait, as if they were mentally dissecting you.\n The thickness of the air starts to become noticeable this close to the ground. You wonder if this is what death feels like. The stranger hangs a crooked grin. %SPEECH_ON%Yer want somethin\' \'ta eat?\n\nOr are ya lookin\' fer a real artist like merself?%SPEECH_OFF% With a smile the grin becomes uncomfortably wide.",
+			Text = "[img]gfx/ui/events/legend_cannibal_recruitment.png[/img]You halt and turn your nose skyward, a thread of flavour is drifting on the wind — not grain or fruit, but instead more sickly sweet. Following the trail like a hungry pig leads to a ramshackle camp — inhabited by a lonely figure basked in the light of a campfire.\n\n A vast array of utensils is laid out in the same manner as a torturer places his instruments before beginning their work. The figure shuffles slightly, exchanging a ladle for a spoon.\n A branch crunches, the figure twitches somewhat, but does not rise or jump as you would expect.\n\n Their grisly voice drags out towards your hide. %SPEECH_ON%Ther\'s enough fer all of yer\'s %SPEECH_OFF% The figure starts stirring the pot gently with their finger. You emerge into the dim dancing light of the open fire, the smell is stronger now, but there\'s something else in the air that was not there before.\n\n With a hand on your weapon and approaching slowly, you enter the innermost ring of the fire. The light no longer dances, instead moping and tumbling on the stranger\'s face — who is still fixated on the stew mere inches from the tip of their rankling nose. They motion for you to sit down. The stranger, now half illuminated by the tired flame, moves from their spot to fix eyes with you. They stare and wait, as if mentally dissecting you.\n The thickness of the air starts to become noticeable. The stranger hangs a crooked grin. %SPEECH_ON%Yer want somethin\' \'ta eat?\n\nOr are ya lookin\' fer a real artist like merself?%SPEECH_OFF% With a smile the grin becomes uncomfortably wide.",
 			Image = "",
 			List = [],
 			Characters = [],
 			Options = [
 				{
-					Text = "Welcome to the %companyname%.",
+					Text = "We could use a good cook in %companyname%.",
 					function getResult( _event )
 					{
 						this.World.getPlayerRoster().add(_event.m.Cannibal);
@@ -26,7 +26,7 @@ this.legend_cannibal_recruitment <- this.inherit("scripts/events/event", {
 
 				},
 				{
-					Text = "We\'d rather not take you in.",
+					Text = "Leave the cook be.",
 					function getResult( _event )
 					{
 						this.World.getTemporaryRoster().clear();
@@ -46,15 +46,17 @@ this.legend_cannibal_recruitment <- this.inherit("scripts/events/event", {
 					_event.m.Cannibal.getFlags().add("undead");
 					_event.m.Cannibal.getFlags().add("skeleton");
 					_event.m.Cannibal.setStartValuesEx([
-						"legend_cannibal_background"
+						"butcher_background"
 					]);
 					::Legends.Traits.grant(_event.m.Cannibal, ::Legends.Trait.RacialSkeleton);
 					::Legends.Traits.grant(_event.m.Cannibal, ::Legends.Trait.LegendFleshless);
 				}
 				else
 				{
+					_event.m.Cannibal.getSkills().add(this.new(::Legends.Trait.LegendCannibalistic));
+					_event.m.Muladi.getBackground().m.RawDescription += this.buildText("{An odd man, %name% looks at your men oddly, as if an animal eyeing its next meal. | While speaking to him, %name% politely offers you some jerky, which you rapidly decline. | %name% is avoided by everyone else in the town, and he licks his lips hungrily as you approach. | %name% is a known name in the world, for they say wherever he goes, children seem to go missing. | Some men are murderers, some are monsters, %name% is a terrifying mix of both. | As you speak to %name%, a passing monk makes the sign of evil and holds his cross tight. | %name% claims to have exquisite tastes, taste in what, however, he does not say. | %name% is perhaps one of the friendliest people you\'ve ever met, yet you almost feel as if he is buttering you up. | You found %name% licking his fingers and pointedly not mentioning what meal was so delicious. | Many killers have excuses, but %name% can not bring up a single one when you realize what he is. | A sad creature, %name% seems perpetually hungry, yet refuses all of your food.} { %name% claims he simply wishes to serve man. | %name% assures you that your company will find no trouble from him. | %name% tells you one of the funniest jokes you\'ve ever heard, but even you find the subject matter too disturbing to justify laughter. | He loudly laughs at the mention of Gods, claiming that no living God would allow something like him to walk this world. | You hear the clattering of bones from within one of his pouch, to which he tells you are for the memories. | His downright pleasant nature disturbs you, for there is nothing pleasant about what this man is. | The other brothers caution you about bringing him into the company, but he assures you that he will never harm his brothers. Unless ordered, at least. | You threaten to skewer him when he mentions how healthy you look, to which he quickly claims was just a passing compliment.} { Despite it all, %name% is good with a sword, and claims he rarely goes hungry. | A butcher like him will no doubt have little trouble carving the living. | %name% has doubtless had some experience butchering the living before. | Desperate times call for desperate measures, but how desperate are you to hire someone like this? | While some of his… skills… may be tempting, you know if you hire him you\'ll never sleep soundly as long as he lives. | The fact that creatures such as this exist makes you want to wretch, but would many not say the same of you? | He eyes you queerly, as if he knows some secret joke that you never will. | When you are done speaking with him, he keeps talking. Quietly. To himself. You do not like what you hear.}");
 					_event.m.Cannibal.setStartValuesEx([
-						"legend_cannibal_background"
+						"butcher_background"
 					]);
 				}
 
@@ -76,29 +78,7 @@ this.legend_cannibal_recruitment <- this.inherit("scripts/events/event", {
 			return;
 		}
 
-		local brothers = this.World.getPlayerRoster().getAll();
-		local totalbrothers = 0;
-		local brotherlevels = 0;
-
-		foreach( bro in brothers )
-		{
-			if (bro.getBackground().getID() == "background.legend_cannibal")
-			{
-				return;
-			}
-
-			totalbrothers = totalbrothers + 1;
-			brotherlevels = brotherlevels + bro.getLevel();
-		}
-
-		if (totalbrothers < 1 || brotherlevels < 1)
-		{
-			return;
-		}
-
-		// this.m.Score = 2.5 + brotherlevels / totalbrothers * 5.0 / this.Const.LevelXP.len();
-		//this.m.Score = 2.0; //people kept complaining they got this event too often with the score above
-		this.m.Score = 1.0; //people kept complaining they got this event too often with the scores above
+		this.m.Score = 1;
 	}
 
 	function onPrepare()
