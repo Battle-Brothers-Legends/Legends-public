@@ -305,7 +305,8 @@
 	"legend_muladi_background",
 	"daytaler_southern_background",
 	"legend_qiyan_background",
-	"shepherd_southern_background"
+	"shepherd_southern_background",
+	"executioner_background"
 ];
 ::Const.HorseBackgrounds <- [
 	"legend_horse_destrier",
