@@ -3,7 +3,7 @@
 	local create = o.create;
 	o.create = function () {
 		this.m.Excluded.extend([
-			::Legends.Traits.getID(::Legends.Trait.Light)
+			::Legends.Traits.getID(::Legends.Trait.LegendLight)
 		]);
 	}
 
