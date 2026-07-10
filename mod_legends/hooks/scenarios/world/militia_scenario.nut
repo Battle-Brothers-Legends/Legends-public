@@ -20,6 +20,27 @@
 		::Legends.Perk.LegendSpecialistSpearfisher,
 		::Legends.Perk.LegendSpecialistPrisoner,
 	];
+
+	local weaponClassMap = [
+		[::Const.Perks.ShovelClassTree, ::Const.Perks.MaceTree],
+		[::Const.Perks.KnifeClassTree, ::Const.Perks.DaggerTree],
+		[::Const.Perks.ButcherClassTree, ::Const.Perks.CleaverTree],
+		[::Const.Perks.HammerClassTree, ::Const.Perks.HammerTree],
+		[::Const.Perks.MilitiaClassTree,  ::Const.Perks.SpearTree],
+		[::Const.Perks.PickaxeClassTree, ::Const.Perks.HammerTree],
+		[::Const.Perks.PitchforkClassTree, ::Const.Perks.PolearmTree],
+		[::Const.Perks.ShortbowClassTree, ::Const.Perks.BowTree],
+		[::Const.Perks.WoodaxeClassTree, ::Const.Perks.AxeTree],
+		[::Const.Perks.SickleClassTree, ::Const.Perks.SwordTree],
+		[::Const.Perks.NinetailsClassTree, ::Const.Perks.FlailTree],
+		[::Const.Perks.ScytheClassTree, ::Const.Perks.PolearmTree],
+		[::Const.Perks.ClubClassTree, ::Const.Perks.MaceTree],
+		[::Const.Perks.InquisitionClassTree, ::Const.Perks.CrossbowTree],
+		[::Const.Perks.LongswordClassTree, ::Const.Perks.SwordTree],
+		[::Const.Perks.InventorClassTree, ::Const.Perks.CrossbowTree],
+		[::Const.Perks.StaffClassTree, ::Const.Perks.PolearmTree],
+		[::Const.Perks.SlingClassTree, ::Const.Perks.SlingTree]
+	];
 	o.create = function ()
 	{
 		this.m.ID = "scenario.militia";
@@ -101,8 +122,7 @@
 
 		bros[4].setStartValuesEx([
 			"daytaler_background",
-			"vagabond_background",
-			"legend_leech_peddler_background"
+			"vagabond_background"
 		]);
 		bros[4].getBackground().m.RawDescription = "A daytaler and common laborer, %name% would rather join your outfit than go back to wasting their body building some nobleman\'s new fancy foyer.";
 		bros[4].worsenMood(0.5, "Was involved in a brawl");
@@ -150,7 +170,7 @@
 		bros[10].m.PerkPoints = 0;
 		bros[10].m.LevelUps = 0;
 		bros[10].m.Level = 1;
-		bros[11].setStartValuesEx(this.Const.CharacterVillageBackgrounds);
+		bros[11].setStartValuesEx(["legend_leech_peddler_background"]);
 		bros[11].getBackground().m.RawDescription = "%name% is, ostensibly, running away from their other half. You met them once and approve their escape plan entirely, and not just because it affords you another body on the front line — that wench is genuinely crazy.";
 		bros[11].improveMood(1.0, "Managed to get away from their family");
 
@@ -175,6 +195,10 @@
 		foreach (bro in _brothers)
 		{
 			bro.getSprite("accessory_special").setBrush("bust_militia_band_01");
+			while (::Legends.Traits.get(bro, ::Legends.Trait.LegendFearNobles) ) {
+				::Legends.Traits.remove(bro, ::Legends.Trait.LegendFearNobles);
+				bro.pickTraits([bro.getBackground()], 1);
+			}
 			::Legends.Traits.grant(bro, ::Legends.Trait.LegendHateNobles);
 		}
 	}
@@ -252,9 +276,7 @@
 	}
 
 
-	o.onHiredByScenario <- function ( _bro )
-	{
-		::Legends.Traits.grant(_bro, ::Legends.Trait.LegendHateNobles);
+	o.onHiredByScenario <- function ( _bro ) {
 		::Legends.Traits.grant(_bro, ::Legends.Trait.LegendPeasant);
 		_bro.getSprite("socket").setBrush("bust_base_militia");
 	}
@@ -289,6 +311,12 @@
 			{
 				bro.getSprite("accessory_special").setBrush("bust_militia_band_01"); //red
 			}
+
+			while (::Legends.Traits.get(bro, ::Legends.Trait.LegendFearNobles) ) {
+				::Legends.Traits.remove(bro, ::Legends.Trait.LegendFearNobles);
+				bro.pickTraits([bro.getBackground()], 1);
+			}
+			::Legends.Traits.grant(bro, ::Legends.Trait.LegendHateNobles);
 		}
 
 		foreach( g in garbage )

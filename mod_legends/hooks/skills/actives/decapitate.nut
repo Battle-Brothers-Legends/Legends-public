@@ -14,7 +14,7 @@
 		}
 		else if (this.m.IsTwoHand) {
 			this.m.ActionPointCost = 6;
-			this.m.DirectDamageMult = 0.30;
+			this.m.DirectDamageMult = 0.35;
 			this.m.FatigueCost = 30;
 		}
 	}
@@ -59,7 +59,7 @@
 		if (::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem()) && this.m.IsScytheDecapitate) {
 			this.m.ActionPointCost -= 1;
 		}
-		this.m.FatigueCostMult = this.Const.Combat.WeaponSpecFatigueMult;
+		this.m.FatigueCostMult = ::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem()) ? this.Const.Combat.WeaponSpecFatigueMult : 1.0;
 	}
 
 	local onAnySkillUsed = o.onAnySkillUsed;
