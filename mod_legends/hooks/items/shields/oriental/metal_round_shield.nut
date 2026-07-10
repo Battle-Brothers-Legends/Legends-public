@@ -2,6 +2,7 @@
 	local create = o.create;
 	o.create = function () {
 		create();
+		this.m.Block = 18;
 		this.m.Variants = [
 			1,
 			2,

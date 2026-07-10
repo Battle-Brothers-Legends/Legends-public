@@ -1,6 +1,8 @@
 ::mods_hookExactClass("items/shields/shield", function(o) {
 	o.m.Variants <- [];
 	o.m.IsIndestructible <- false;
+	o.m.Block <- 0;
+	o.m.Damage <- 0;
 
 	o.getIconOverlay <- function ()
 	{
@@ -124,11 +126,16 @@
 		this.item.updateRuneSigil();
 	}
 
+	o.getBlock <- function () {
+		this.m.getBlock();
+	}
+
 	local onUpdateProperties = o.onUpdateProperties;
 	o.onUpdateProperties = function (_properties)
 	{
 		onUpdateProperties(_properties);
 		_properties.DamageReceivedRangedMult *= 1 - (0.02 * this.m.RangedDefense);
+		_properties.Block = this.getBlock();
 	}
 
 	o.onDeserialize = function ( _in ) {

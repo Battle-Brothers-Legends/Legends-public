@@ -10,6 +10,7 @@
 		this.updateVariant();
 		this.m.Condition = 75;
 		this.m.ConditionMax = 75;
+		this.m.Block = 18;
 		this.named_shield.randomizeValues();
 	}
 });

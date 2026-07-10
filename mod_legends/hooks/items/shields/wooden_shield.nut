@@ -3,6 +3,7 @@
 	o.create = function ()
 	{
 		create();
+		this.m.Block = 15;
 		this.m.Variants = [
 			0,
 			1,

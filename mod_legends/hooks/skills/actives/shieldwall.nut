@@ -1,34 +1,61 @@
 ::mods_hookExactClass("skills/actives/shieldwall", function(o)
 {
-	o.isUsable = function ()
+	o.getTooltip = function ()
 	{
-		if (!this.skill.isUsable())
-		{
-			return false;
+		local actor = this.getContainer().getActor();
+		local p = actor.getCurrentProperties();
+		local item = actor.getItems().getItemAtSlot(this.Const.ItemSlot.Offhand);
+		local mult = 1.0;
+		local proficiencyBonus = 0;
+
+		if (actor.getCurrentProperties().IsSpecializedInShields) {
+			mult = mult * 1.25;
 		}
-		if (this.getContainer().hasEffect(::Legends.Effect.LegendFortify))
-		{
-			return false;
+
+		if (actor.getCurrentProperties().IsProficientWithShieldSkills) {
+			proficiencyBonus = 5;
 		}
-		if (this.getContainer().hasEffect(::Legends.Effect.LegendSafeguarding))
-		{
-			return false;
-		}
-		if (this.getContainer().hasEffect(::Legends.Effect.Shieldwall))
-		{
-			return false;
-		}
-		return true;
+
+		return [{
+				id = 1,
+				type = "title",
+				text = this.getName()
+			},
+			{
+				id = 2,
+				type = "description",
+				text = this.getDescription()
+			},
+			{
+				id = 3,
+				type = "text",
+				text = this.getCostString()
+			},
+			{
+				id = 4,
+				type = "text",
+				icon = "ui/icons/melee_defense.png",
+				text = "Grants an additional [%positive]+" + this.Math.floor(item.getMeleeDefense() * mult + proficiencyBonus) + "[/color] [%status]Block[/color] against attacks"
+			}
+		];
 	}
 
-	o.onVerifyTarget = function ( _originTile, _targetTile )
-	{
-		return true;
+	o.isUsable = function () {
+		return this.skill.isUsable();
 	}
 
-	o.onAfterUpdate = function ( _properties )
-	{
+	o.onAfterUpdate = function ( _properties ) {
 		this.m.FatigueCostMult = _properties.IsSpecializedInShields || _properties.IsProficientWithShieldWall || _properties.IsProficientWithShieldSkills ? this.Const.Combat.WeaponSpecFatigueMult : 1.0;
+	}
+
+	o.onUse = function ( _user, _targetTile )
+	{
+		::Legends.Effects.grant(_entity, ::Legends.Effect.LegendShieldwall);
+
+		if (!_user.isHiddenToPlayer()) {
+			this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(_user) + " uses Shieldwall");
+		}
+		return true;
 	}
 
 });

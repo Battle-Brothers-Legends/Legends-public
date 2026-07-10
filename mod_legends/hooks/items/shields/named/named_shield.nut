@@ -43,9 +43,10 @@
 		local ranges = ::Legends.Items.Named.randomizeRanges;
 
 		local available = [];
+		_i.m.StaminaModifier = this.Math.round(_i.m.StaminaModifier * this.Math.rand(ranges.StaminaModifierShield[0], ranges.StaminaModifierShield[1]) * 0.01);
 		available.push(function ( _i )
 		{
-			_i.m.MeleeDefense = this.Math.round(_i.m.MeleeDefense * ::Math.rand(ranges.MeleeDefense[0], ranges.StaminaModifier[1]) * 0.01);
+			_i.m.MeleeDefense = this.Math.round(_i.m.MeleeDefense * ::Math.rand(ranges.MeleeDefense[0], ranges.MeleeDefense[1]) * 0.01);
 		});
 		available.push(function ( _i )
 		{
@@ -60,10 +61,6 @@
 			_i.m.Condition = this.Math.round(_i.m.Condition * this.Math.rand(ranges.ConditionShield[0], ranges.ConditionShield[1]) * 0.01) * 1.0;
 			_i.m.ConditionMax = _i.m.Condition;
 		});
-		available.push(function ( _i )
-		{
-			_i.m.StaminaModifier = this.Math.round(_i.m.StaminaModifier * this.Math.rand(ranges.StaminaModifierShield[0], ranges.StaminaModifierShield[1]) * 0.01);
-		});
 
 		for( local n = 2; n != 0 && available.len() != 0; n = --n )
 		{
@@ -71,6 +68,14 @@
 			available[r](this);
 			available.remove(r);
 		}
+
+		this.m.Block = this
+	}
+
+	local onSerialize = o.onSerialize;
+	o.onSerialize = function ( _out ) {
+		onSerialize( _out );
+		_out.writeU16(this.m.Block);
 	}
 
 	o.onDeserialize = function ( _in )
@@ -82,5 +87,6 @@
 		this.m.MeleeDefense = _in.readU16();
 		this.m.RangedDefense = _in.readU16();
 		this.m.FatigueOnSkillUse = _in.readI16();
+		this.m.Block = _in.readU16();
 	}
 });

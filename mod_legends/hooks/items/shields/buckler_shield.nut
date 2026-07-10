@@ -7,6 +7,7 @@
 		create();
 		this.m.Description += " Gains defense depending on how many enemies are within 1 tile.";
 		this.m.MeleeDefense = 5;
+		this.m.Block = 10;
 	}
 
 	local onEquip = o.onEquip;
