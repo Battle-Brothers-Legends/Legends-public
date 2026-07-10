@@ -18,7 +18,7 @@ this.legend_commanded_effect <- this.inherit("scripts/skills/skill", {
 
 	function onUpdate( _properties )
 	{
-		_properties.ActionPoints = 4;
+		_properties.ActionPoints += 4;
 		_properties.Initiative += 50;
 		_properties.MeleeSkill += 10;
 		_properties.RangedSkill += 15;
