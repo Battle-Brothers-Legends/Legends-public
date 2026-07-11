@@ -20,6 +20,9 @@ this.legends_nomad_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 			"ambition.defeat_holywar",
 			"ambition.win_x_arena_fights"
 		];
+		if (this.World.State.getPlayer() != null)
+			this.World.State.getPlayer().m.VisionRadius = 670; //500 is default during daytime on normal terrain
+		this.updateFactionActionsDeck();
 	}
 
 	function onSpawnAssets()
@@ -184,17 +187,6 @@ this.legends_nomad_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 			], this.Const.Music.CrossFadeTime);
 			this.World.Events.fire("event.legends_nomad_scenario_intro");
 		}, null);
-	}
-
-	function onInit()
-	{
-		this.starting_scenario.onInit();
-
-		if (this.World.State.getPlayer() != null)
-		{											 //+30%
-			this.World.State.getPlayer().m.VisionRadius = 670; //500 is default during daytime on normal terrain
-		}
-		this.updateFactionActionsDeck();
 	}
 
 	function onHiredByScenario( _bro )

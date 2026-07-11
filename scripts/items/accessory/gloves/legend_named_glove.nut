@@ -3,7 +3,7 @@ this.legend_named_glove <- this.inherit("scripts/items/accessory/gloves/legend_g
 		PrefixList = this.Const.Strings.RandomArmorPrefix,
 		NameList = [],
 		UseRandomName = true,
-		properties = {}
+		Properties = {}
 	},
 
 	function create() {
@@ -66,7 +66,7 @@ this.legend_named_glove <- this.inherit("scripts/items/accessory/gloves/legend_g
 	function getTooltip() {
 		local result = this.legend_glove_item.getTooltip();
 
-		foreach (k, p in this.m.properties)	{
+		foreach (k, p in this.m.Properties)	{
 			if (this.m[k] == p)
 				continue;
 
@@ -89,14 +89,14 @@ this.legend_named_glove <- this.inherit("scripts/items/accessory/gloves/legend_g
 	}
 
 	function randomizeValues() {
-		if (this.m.properties.len() == 0) {
-			this.m.properties.RegularDamage <- this.m.RegularDamage;
-			this.m.properties.RegularDamageMax <- this.m.RegularDamageMax;
-			this.m.properties.ChokeMin <- this.m.ChokeMin;
-			this.m.properties.ChokeMax <- this.m.ChokeMax;
-			this.m.properties.ArmorDamageMult <- this.m.ArmorDamageMult;
-			this.m.properties.DirectDamageMult <- this.m.DirectDamageMult;
-			this.m.properties.StaminaModifier <- this.m.StaminaModifier;
+		if (this.m.Properties.len() == 0) {
+			this.m.Properties.RegularDamage <- this.m.RegularDamage;
+			this.m.Properties.RegularDamageMax <- this.m.RegularDamageMax;
+			this.m.Properties.ChokeMin <- this.m.ChokeMin;
+			this.m.Properties.ChokeMax <- this.m.ChokeMax;
+			this.m.Properties.ArmorDamageMult <- this.m.ArmorDamageMult;
+			this.m.Properties.DirectDamageMult <- this.m.DirectDamageMult;
+			this.m.Properties.StaminaModifier <- this.m.StaminaModifier;
 		}
 
 		local ranges = ::Legends.Items.Named.randomizeRanges;

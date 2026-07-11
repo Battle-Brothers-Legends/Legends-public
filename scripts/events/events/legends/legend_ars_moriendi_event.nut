@@ -16,7 +16,6 @@ this.legend_ars_moriendi_event <- this.inherit("scripts/events/event", {
 			ID = "A",
 			Text = "[img]gfx/ui/events/event_39.png[/img]Ambling through the camp, you hear a raised voice syllabizing words forcibly as to give a lecture. Your pace quickens as you locate the noise.\n\nOnly a few moments later, you spot %scholar% holding court before a flickering fire. In %their_scholar% hands is a crumbling, leather-bound tome, its pages thick with age.%SPEECH_ON%...and so the fourth failing is despair! When the veil tears and the blood runs cold — the mind will try to convince you that your struggles were for naught! You must not let the abyss break your spirit before your heart stops!%SPEECH_OFF%You notice the book is filled with macabre woodcuts: skeletal hands dragging men into the earth, towering greenskins standing over broken bodies...and terrified mercenaries surrounded by creeping, formless shadows.\n\nSpotting you, %scholar% quickly explains the tome as a salvaged text from the days of the Old Empire — a treatise on how to die well, and how to best prepare for it. The company looks uneasy, glancing at the flickering shadows beyond the firelight, acutely aware of their own mortality.",
 			Image = "",
-			Image = "",
 			List = [],
 			Characters = [],
 			Options = [
@@ -295,7 +294,7 @@ this.legend_ars_moriendi_event <- this.inherit("scripts/events/event", {
 		this.m.Score = 0;
 		local brothers = this.World.getPlayerRoster().getAll();
         local candidates_scholar = [];
-        
+
         foreach( bro in brothers ) {
 			local bg = bro.getBackground();
             if (bg.getID() == ::Legends.Backgrounds.getID(::Legends.Background.Monk) || bg.getID() == ::Legends.Backgrounds.getID(::Legends.Background.Historian) || bro.getSkills().hasPerk(::Legends.Perk.LegendScholar)) {
@@ -332,7 +331,7 @@ this.legend_ars_moriendi_event <- this.inherit("scripts/events/event", {
 				candidates_deathwish.push(bro);
 			} else if (bg.getID() == ::Legends.Backgrounds.getID(::Legends.Background.Cultist) || bg.getID() == ::Legends.Backgrounds.getID(::Legends.Background.ConvertedCultist)) {
 				candidates_cultist.push(bro);
-			}		            
+			}
         }
 
 		this.m.Score = 10;

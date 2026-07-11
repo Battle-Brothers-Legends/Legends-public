@@ -13,7 +13,7 @@ this.legend_camp_nomads_raid_caravan_contract <- this.inherit("scripts/contracts
 		this.legend_camp_contract.create();
 		this.m.Type = "contract.legend_camp_nomads_raid_caravan";
 		this.m.Name = "Intercept City State Supplies";
-		this.m.EmployerFaction = ::Legends.CampContracts.EmployerFaction.Bandits;  
+		this.m.EmployerFaction = ::Legends.CampContracts.EmployerFaction.Bandits;
 		this.m.TimeOut = this.Time.getVirtualTimeF() + this.World.getTime().SecondsPerDay * 7.0;
 		this.m.DescriptionTemplates = [
 			"A group of Bandits has contacted us about a southern trade caravan.",
@@ -339,7 +339,7 @@ this.legend_camp_nomads_raid_caravan_contract <- this.inherit("scripts/contracts
 
 		});
 		this.m.Screens.push({
-			ID = "Bribe1", // \' — 
+			ID = "Bribe1", // \' —
 			Title = "As you approach...",
 			Text = "[img]gfx/ui/events/event_158.png[/img]{You rapidly close in on the caravan. However, an officer confidently strolls to your party — helmet cradled in their left arm at rest and their right hand lazily on the pommel of their sword. They motion to their belt and produce a large pouch of coins.%SPEECH_ON%Bandits, yes?%SPEECH_OFF%He studies you quickly, and holds the pouch more aloft.%SPEECH_ON%Let\'s just skip the killing, shall we? I have a very unmodest sum for my soldiers behind me, but if you let us pass you are more than welcome to it. I can deal with their complaining later. It is a long journey after all.%SPEECH_OFF%The man cracks a wry smile. He knows this has worked countless times before, and no doubt keeps a pouch of coains on reserve for these very moments. \n\nStill, is this man more trustworthy than the stranger in your letter?}",
 			Image = "",
@@ -365,7 +365,7 @@ this.legend_camp_nomads_raid_caravan_contract <- this.inherit("scripts/contracts
 			]
 		});
 		this.m.Screens.push({
-			ID = "Bribe2", // \' — 
+			ID = "Bribe2", // \' —
 			Title = "As you approach...",
 			Text = "[img]gfx/ui/events/event_158.png[/img]{As you bein the leave, the officer turns heel and comes back to you. At first you sense a trap, but he speaks before you can consider your options.%SPEECH_ON%Tell, me, how did you find us? Not many know of this caravan, fewers till would dare to think of attacking it.%SPEECH_OFF%His tongue stops wagging, and moves around in his mouth as he considers how much he is risking.%SPEECH_ON%Tell me who told you about this. Names, or ortherwise. I will keep it to my grave and gie you something extra for your troubles...%SPEECH_OFF%The man has paid you once, how much is your honour worth anyway?}",
 			Image = "",
@@ -402,7 +402,7 @@ this.legend_camp_nomads_raid_caravan_contract <- this.inherit("scripts/contracts
 
 		});
 		this.m.Screens.push({
-			ID = "Bribe3", // \' — 
+			ID = "Bribe3", // \' —
 			Title = "As you approach...",
 			Text = "[img]gfx/ui/events/event_04.png[/img]{You take the extra crowns. In the back of your mind you can hear your ancestors getting more tumoltious by the second. You hand over the letter you orginally received and the officer leafs through the pages.%SPEECH_ON%Ah, %employer%. This makes more sense now. May the path be clear to you.%SPEECH_OFF%With that, he turns heel a second time and sits at the front of the caravan. The conscripts keep a close eye on you as they pass.}",
 			Image = "",
@@ -432,8 +432,8 @@ this.legend_camp_nomads_raid_caravan_contract <- this.inherit("scripts/contracts
 
 		});
 		this.m.Screens.push({
-			ID = "Bribe4", // \' — 
-			Title = "As you approach...", 
+			ID = "Bribe4", // \' —
+			Title = "As you approach...",
 			Text = "[img]gfx/ui/events/event_158.png[/img]{You spit a sidewards curse at the man and he takes a half-pace backwards. He silently leaves you be as the caravan rolls past.}",
 			Image = "",
 			List = [],
@@ -450,8 +450,8 @@ this.legend_camp_nomads_raid_caravan_contract <- this.inherit("scripts/contracts
 			]
 		});
 		this.m.Screens.push({
-			ID = "Mortar", // \' — 
-			Title = "As you approach...", 
+			ID = "Mortar", // \' —
+			Title = "As you approach...",
 			Text = "[img]gfx/ui/events/event_177.png[/img]{You approach the caravan at great speed, with your warriors moving fast and low. The silence is broken when %randombrother% points to the middle of the caravan. You know that shape below the cloth draped over the wagon. With a grand unveiling, two engineers dismount and pull the canvas clear of the cart in a well practiced, drilled motiion. \n\nThe swine have a mortar, and the shells to use it!}",
 			Image = "",
 			List = [],
@@ -460,23 +460,24 @@ this.legend_camp_nomads_raid_caravan_contract <- this.inherit("scripts/contracts
 					Text = "To Arms!",
 					function getResult()
 					{
-						this.Const.World.Common.addTroop(this.Contract.m.Target, 
-						{
+						this.Const.World.Common.addTroop(this.Contract.m.Target, {
 							Type = this.Const.World.Spawn.Troops.Mortar
+						}, true, this.Contract.getDifficultyMult() >= 1.1 ? 5 : 0);
+						this.Const.World.Common.addTroop(this.Contract.m.Target, {
 							Type = this.Const.World.Spawn.Troops.Engineer
+						}, true, this.Contract.getDifficultyMult() >= 1.1 ? 5 : 0);
+						this.Const.World.Common.addTroop(this.Contract.m.Target, {
 							Type = this.Const.World.Spawn.Troops.Engineer
-						}, 
-						true, this.Contract.getDifficultyMult() >= 1.1 ? 5 : 0);
+						}, true, this.Contract.getDifficultyMult() >= 1.1 ? 5 : 0);
 						this.Contract.getActiveState().onTargetAttacked(this.Contract.m.Target, true);
 						return 0;
 					}
-
 				}
 			]
 		});
 		this.m.Screens.push({
-			ID = "AssassinSurprise", // \' — 
-			Title = "As you approach...", 
+			ID = "AssassinSurprise", // \' —
+			Title = "As you approach...",
 			Text = "[img]gfx/ui/events/event_165.png[/img]{Ordering the assault, your fighters launch themselves at the caravan. They stop dead as an assassin materialises from behind one of the wagons.%SPEECH_ON%Your path ends here, interloper!%SPEECH_OFF}",
 			Image = "",
 			List = [],
@@ -485,13 +486,15 @@ this.legend_camp_nomads_raid_caravan_contract <- this.inherit("scripts/contracts
 					Text = "To Arms!",
 					function getResult()
 					{
-						this.Const.World.Common.addTroop(this.Contract.m.Target, 
-						{
+						this.Const.World.Common.addTroop(this.Contract.m.Target, {
 							Type = this.Const.World.Spawn.Troops.Assassin
+						}, true, this.Contract.getDifficultyMult() >= 1.1 ? 5 : 0);
+						this.Const.World.Common.addTroop(this.Contract.m.Target, {
 							Type = this.Const.World.Spawn.Troops.Assassin
+						}, true, this.Contract.getDifficultyMult() >= 1.1 ? 5 : 0);
+						this.Const.World.Common.addTroop(this.Contract.m.Target, {
 							Type = this.Const.World.Spawn.Troops.Assassin
-						}, 
-						true, this.Contract.getDifficultyMult() >= 1.1 ? 5 : 0);
+						}, true, this.Contract.getDifficultyMult() >= 1.1 ? 5 : 0);
 						this.Contract.getActiveState().onTargetAttacked(this.Contract.m.Target, true);
 						return 0;
 					}
@@ -500,8 +503,8 @@ this.legend_camp_nomads_raid_caravan_contract <- this.inherit("scripts/contracts
 			]
 		});
 		this.m.Screens.push({
-			ID = "SurvivingSlaves1", // \' — 
-			Title = "After the battle...", 
+			ID = "SurvivingSlaves1", // \' —
+			Title = "After the battle...",
 			Text = "[img]gfx/ui/events/event_166.png[/img]{As your tribe picks over the battlefield, you quickly realise something you strangely missed before — about two dozen sunburnt and whipped slaves are following the wagons. They are chained to one another and witnessed the battle. %randombrother% laughs nervously, and really asks if you are about to do this. The letter said no survivors, but the odds that every one of these slaves never speaks of this again is impossible...}",
 			Image = "",
 			List = [],
@@ -513,7 +516,6 @@ this.legend_camp_nomads_raid_caravan_contract <- this.inherit("scripts/contracts
 						this.World.Assets.addMoralReputation(-20);
 						return "SurvivingSlaves2";
 					}
-
 				},
 				{
 					Text = "To hell with it - let them leave.",
@@ -529,7 +531,7 @@ this.legend_camp_nomads_raid_caravan_contract <- this.inherit("scripts/contracts
 			]
 		});
 		this.m.Screens.push({
-			ID = "SurvivingSlaves2", // \' — 
+			ID = "SurvivingSlaves2", // \' —
 			Title = "After the battle...",
 			Text = "[img]gfx/ui/events/event_168.png[/img]{The task is, mercifully, quick. The only kindess in all of this is you cannot tell the sonscripts from the slaves on the battlefield. Hopefully nobody else will either.}",
 			Image = "",
@@ -547,7 +549,7 @@ this.legend_camp_nomads_raid_caravan_contract <- this.inherit("scripts/contracts
 			]
 		});
 		this.m.Screens.push({
-			ID = "Success1", // \' — 
+			ID = "Success1", // \' —
 			Title = "On your return...",
 			Text = "[img]gfx/ui/events/event_04.png[/img]{You write back to %employer% with news of your success. A letter soon follows the same day, this time by courier and payment. The courier seems none the wiser as to what happened here. You feel a sense of envy.}",
 			Image = "",
@@ -579,7 +581,7 @@ this.legend_camp_nomads_raid_caravan_contract <- this.inherit("scripts/contracts
 
 		});
 		this.m.Screens.push({
-			ID = "Failure1", // \' — 
+			ID = "Failure1", // \' —
 			Title = "On your return...", //to do
 			Text = "[img]gfx/ui/events/event_45.png[/img]{You sit down to write a letter to %employer% of the news, only to find one already in your tent. You open it and read the first few lines and it coveyed what you had expected. You burn the letter, there has been enough disapointment today.}",
 			Image = "",
@@ -611,7 +613,7 @@ this.legend_camp_nomads_raid_caravan_contract <- this.inherit("scripts/contracts
 
 		});
 		this.m.Screens.push({
-			ID = "Failure2", // \' — 
+			ID = "Failure2", // \' —
 			Title = "On your return...",
 			Text = "[img]gfx/ui/events/event_45.png[/img]{You sit down to write a letter to %employer% of the news, only to find one already in your tent. You open it and read the first few lines and it coveyed what you had expected. You burn the letter, there has been enough disapointment today.}",
 			Image = "",
@@ -633,7 +635,7 @@ this.legend_camp_nomads_raid_caravan_contract <- this.inherit("scripts/contracts
 			]
 		});
 		this.m.Screens.push({
-			ID = "Failure3", // \' — 
+			ID = "Failure3", // \' —
 			Title = "Along the way...",
 			Text = "[img]gfx/ui/events/event_167.png[/img]{Awaiting the caravan, a pair of travelers come up from where the convoy should be going. They remark in detail about a cart which is no doubt the one which you were supposed to be hunting down. No point in returning to %employer%. | Word on the road hints that the caravan you were supposed to be hunting down has given you the slip and reached its destination. The company shouldn\'t bother reaching %employer%.}",
 			Image = "",
