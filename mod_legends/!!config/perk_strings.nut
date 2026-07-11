@@ -546,7 +546,7 @@ Learn to find your enemies before they find you.
 ";
 
 ::Const.Strings.PerkDescription.LegendBoondockBlade <- @"
-Catch your enemies by suprise
+Catch your enemies by surprise.
 
 [color=%passive%][u]Passive:[/u][/color]
 • When in a hiding place, such as high grass, gain a bonus of [color=%positive%]+10[/color] to Melee Skill, Ranged Skill, and Melee and Ranged Defense.
@@ -894,7 +894,7 @@ Taste of the forbidden flesh.
 Sooth an ally, halving their Fatigue.
 
 [color=%active%][u]Active:[/u][/color]
-• Unlocks [color=%skill%]Relax[/color] skill which reduces accumlated Fatigue by [color=%negative%]50%[/color] for any ally within three tiles.
+• Unlocks [color=%skill%]Relax[/color] skill which reduces accumulated Fatigue by [color=%negative%]50%[/color] for any ally within three tiles.
 
 • Costs [color=%negative%]9[/color] AP and [color=%negative%]30[/color] Fatigue.
 ";
@@ -2925,7 +2925,7 @@ Use your athletic skill to leap high and far.
 Make use of your acrobatic skill to dodge attacks and move out of trouble.
 
 [color=%passive%][u]Passive:[/u][/color]
-• As long as there's a free tile adjacent to you grant a chance to have any attacker require two successful attack rolls in order to hit. If the attack is ranged you will use your Melee Defense and if the attack is melee you will use your Ranged Defense for the reroll. On a succesful reroll you will be moved to a random tile. 
+• As long as there's a free tile adjacent to you grant a chance to have any attacker require two successful attack rolls in order to hit. If the attack is ranged you will use your Melee Defense and if the attack is melee you will use your Ranged Defense for the reroll. On a successful reroll you will be moved to a random tile. 
 
 • Disabled if you are rooted or stunned.
 
