@@ -68,13 +68,13 @@ this.legends_necromancer_origins_grave_recruit_event <- this.inherit("scripts/ev
 				this.List.push({
 					id = 16,
 					icon = "ui/icons/special.png",
-					text = "[color=" + this.Const.UI.Color.NegativeEventValue + "]"Your reputation with everyone has decreased slightly"[/color]"
+					text = "[color=" + this.Const.UI.Color.NegativeEventValue + "]Your reputation with everyone has decreased slightly[/color]"
 				});
 
 				this.List.push({
 					id = 16,
 					icon = "ui/icons/special.png",
-					text = "[color=" + this.Const.UI.Color.PositiveEventValue + "]"Your reputation with the undead has increased slightly"[/color]"
+					text = "[color=" + this.Const.UI.Color.PositiveEventValue + "]Your reputation with the undead has increased slightly[/color]"
 				});
 
 				local nobles = this.World.FactionManager.getFactionsOfType(this.Const.FactionType.NobleHouse);

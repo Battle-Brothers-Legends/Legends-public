@@ -1,6 +1,6 @@
 ::mods_hookExactClass("ui/screens/world/modules/topbar/world_screen_topbar_daytime_module", function(o) {
 	o.m.IsAutoUpdateTimeButtonState <- false;
-	o.m.OnTimeSuperFastPressedListener <- null
+	o.m.OnTimeSuperFastPressedListener <- null;
 
 	local clearEventListener = o.clearEventListener;
 	o.clearEventListener = function () {

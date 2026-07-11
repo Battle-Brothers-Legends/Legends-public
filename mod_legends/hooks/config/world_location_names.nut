@@ -329,8 +329,8 @@
 	"Geisternebel Keep",
 	"Sturmruine Keep",
 	"Trübsalstein Castle",
-	"Blutstein Keep"
-	"Darkwater Citadel"
+	"Blutstein Keep",
+	"Darkwater Citadel",
 	"Phönix Castle",
 	"Ehrengarde Bastion",
 	"Tugend Castle",

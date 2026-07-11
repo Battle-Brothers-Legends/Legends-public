@@ -95,7 +95,7 @@ this.legion_origin_raid_farmstead_event <- this.inherit("scripts/events/event", 
 				this.World.Assets.getStash().add(this.new("scripts/items/supplies/legend_medicine_small_item"));
 				this.World.Assets.getStash().add(this.new("scripts/items/supplies/legend_armor_parts_small_item"));
 				this.World.Assets.getStash().add(this.new("scripts/items/supplies/legend_ammo_small_item"));
-				
+
 				//food
 				local food;
 				food = this.new("scripts/items/supplies/smoked_ham_item");
@@ -116,7 +116,7 @@ this.legion_origin_raid_farmstead_event <- this.inherit("scripts/events/event", 
 
 				//xp
 				local brothers = this.World.getPlayerRoster().getAll();
-				local xp = this.Math.rand(40, 345) //gain this xp
+				local xp = this.Math.rand(40, 345); //gain this xp
 
 				foreach( bro in brothers )
 				{
@@ -158,7 +158,7 @@ this.legion_origin_raid_farmstead_event <- this.inherit("scripts/events/event", 
 				this.World.Assets.getStash().add(this.new("scripts/items/supplies/legend_ammo_small_item"));
 				this.World.Assets.getStash().add(this.new("scripts/items/supplies/armor_parts_item"));
 				this.World.Assets.getStash().add(this.new("scripts/items/supplies/medicine_item"));
-				
+
 				//food
 				local food;
 				food = this.new("scripts/items/supplies/smoked_ham_item");
@@ -191,10 +191,10 @@ this.legion_origin_raid_farmstead_event <- this.inherit("scripts/events/event", 
 					icon = "ui/items/" + item.getIcon(),
 					text = "You gain " + item.getName()
 				});
-				
+
 				//xp
 				local brothers = this.World.getPlayerRoster().getAll();
-				local xp = this.Math.rand(120, 520) //gain this xp
+				local xp = this.Math.rand(120, 520); //gain this xp
 
 				foreach( bro in brothers )
 				{
@@ -243,7 +243,7 @@ this.legion_origin_raid_farmstead_event <- this.inherit("scripts/events/event", 
 
 				this.World.Assets.getStash().add(this.new("scripts/items/supplies/armor_parts_item"));
 				this.World.Assets.getStash().add(this.new("scripts/items/supplies/armor_parts_item"));
-				
+
 				local item = this.new("scripts/items/misc/legend_masterwork_tools");
 				this.World.Assets.getStash().add(item);
 				this.List.push({
@@ -251,10 +251,10 @@ this.legion_origin_raid_farmstead_event <- this.inherit("scripts/events/event", 
 					icon = "ui/items/" + item.getIcon(),
 					text = "You gain " + item.getName()
 				});
-				
+
 				//xp
 				local brothers = this.World.getPlayerRoster().getAll();
-				local xp = this.Math.rand(352, 967) //gain this xp
+				local xp = this.Math.rand(352, 967); //gain this xp
 
 				foreach( bro in brothers )
 				{

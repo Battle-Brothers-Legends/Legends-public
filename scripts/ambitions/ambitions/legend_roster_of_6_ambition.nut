@@ -1,7 +1,6 @@
 this.legend_roster_of_6_ambition <- this.inherit("scripts/ambitions/ambition", {
 	m = {},
-	function create()
-	{
+	function create() {
 		this.ambition.create();
 		this.m.ID = "ambition.legend_roster_of_6";
 		this.m.Duration = 20.0 * this.World.getTime().SecondsPerDay;
@@ -12,11 +11,10 @@ this.legend_roster_of_6_ambition <- this.inherit("scripts/ambitions/ambition", {
 		this.m.SuccessButtonText = "We\'re getting there.";
 	}
 
-		function onReward = function ()
-	{
+	function onReward() {
 		local item;
 		local stash = this.World.Assets.getStash();
-		item = this.new("scripts/items/supplies/wine_item");			
+		item = this.new("scripts/items/supplies/wine_item");
 
 		stash.add(item);
 		this.m.SuccessList.push({
@@ -26,12 +24,11 @@ this.legend_roster_of_6_ambition <- this.inherit("scripts/ambitions/ambition", {
 		});
 	}
 
-	function onUpdateScore()
-	{
-		if (this.World.Assets.getBrothersMax() < 6 || this.World.Assets.getOrigin().getID() == "scenario.lone_wolf") return;
+	function onUpdateScore() {
+		if (this.World.Assets.getBrothersMax() < 6 || this.World.Assets.getOrigin().getID() == "scenario.lone_wolf")
+			return;
 
-		if (this.World.getPlayerRoster().getSize() >= 6)
-		{
+		if (this.World.getPlayerRoster().getSize() >= 6) {
 			this.m.IsDone = true;
 			return;
 		}
@@ -39,23 +36,19 @@ this.legend_roster_of_6_ambition <- this.inherit("scripts/ambitions/ambition", {
 		this.m.Score = 1 + this.Math.rand(0, 5);
 	}
 
-	function onCheckSuccess()
-	{
-		if (this.World.getPlayerRoster().getSize() >= 6)
-		{
+	function onCheckSuccess() {
+		if (this.World.getPlayerRoster().getSize() >= 6) {
 			return true;
 		}
 
 		return false;
 	}
 
-	function onSerialize( _out )
-	{
+	function onSerialize(_out) {
 		this.ambition.onSerialize(_out);
 	}
 
-	function onDeserialize( _in )
-	{
+	function onDeserialize(_in) {
 		this.ambition.onDeserialize(_in);
 	}
 

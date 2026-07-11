@@ -2,7 +2,7 @@ this.legend_recruitment_nomad_encounter <- this.inherit("scripts/encounters/enco
     m = {
 		Nomad = null
     },
-    function create() 
+    function create()
     {
 	    this.encounter.create();
         this.m.Type = "encounter.legend_recruitment_nomad_encounter";
@@ -10,7 +10,7 @@ this.legend_recruitment_nomad_encounter <- this.inherit("scripts/encounters/enco
 		this.m.Cooldown = 31 * ::World.getTime().SecondsPerDay;
 	}
 
-    function createScreens() 
+    function createScreens()
     {
         this.m.Screens.extend([{ // \' —
             ID = "Start",
@@ -40,7 +40,7 @@ this.legend_recruitment_nomad_encounter <- this.inherit("scripts/encounters/enco
 			}
 			]
 
-            function start(_event) 
+            function start(_event)
 			{
 				local backgrounds = [
 					[1,	"nomad_background"],
@@ -48,7 +48,7 @@ this.legend_recruitment_nomad_encounter <- this.inherit("scripts/encounters/enco
 					[3, "legend_muladi_background"]
 				];
 				local totalWeight = 0;
-				local result = []
+				local result = [];
 				foreach (background in backgrounds)
 				{
 				    totalWeight += background[0];
@@ -59,7 +59,7 @@ this.legend_recruitment_nomad_encounter <- this.inherit("scripts/encounters/enco
 				    r = r - background[0];
 				    if (r <= 0)
 				    {
-				       result.push(background[1])
+				       result.push(background[1]);
 				      break;
 				    }
 				}
@@ -71,7 +71,7 @@ this.legend_recruitment_nomad_encounter <- this.inherit("scripts/encounters/enco
         }]);
     }
 
-    function isValid(_settlement) 
+    function isValid(_settlement)
     {
 	    if (!this.World.getTime().IsDaytime) //must be daytime
 		{
@@ -86,7 +86,7 @@ this.legend_recruitment_nomad_encounter <- this.inherit("scripts/encounters/enco
 
 	    if (::World.Assets.getOrigin().getID() == "scenario.legend_risen_legion")
 		    return false;
-		
+
 		if (this.World.Assets.getOrigin().getID() != "scenario.legends_nomads")
 			return;
 
@@ -100,7 +100,7 @@ this.legend_recruitment_nomad_encounter <- this.inherit("scripts/encounters/enco
 			return false;
     }
 
-	function onClear() 
+	function onClear()
 	{
 		this.m.Nomad = null;
 	}

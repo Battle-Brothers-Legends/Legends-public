@@ -24,7 +24,7 @@ this.legion_origin_training_event <- this.inherit("scripts/events/event", {
 			function start( _event )
 			{
 				local brothers = this.World.getPlayerRoster().getAll();
-				local xp = this.Math.rand(150, 1200)
+				local xp = this.Math.rand(150, 1200);
 
 				foreach( bro in brothers )
 				{

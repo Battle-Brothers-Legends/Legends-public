@@ -357,12 +357,12 @@ this.legend_shuckster_encounter <- this.inherit("scripts/encounters/encounter", 
 				},
 				{
 					Text = "Get out of here before I change my mind.",
-					getResult = @(_event)"ReleaseTheShuckster"
+					getResult = @(_event) "ReleaseTheShuckster"
 				}
 			],
 
 			function start(_event) {
-				this.Options.Text[0] = ::World.Assets.getOrigin().getID() == "scenario.manhunters" ? "Keep %them_dude% chained, lest %they_dude% tries running again." : "We might yet make a %sibling_dude% out of you."
+				this.Options.Text[0] = ::World.Assets.getOrigin().getID() == "scenario.manhunters" ? "Keep %them_dude% chained, lest %they_dude% tries running again." : "We might yet make a %sibling_dude% out of you.";
 				::Legends.S.getClosestSettlement().getFactionOfType(::Const.FactionType.Settlement).addPlayerRelation(::Const.World.Assets.RelationMajorOffense, "You brawled with the local peasantry to protect a scammer");
 
 				//add light wounds and brawl injuries
@@ -398,6 +398,7 @@ this.legend_shuckster_encounter <- this.inherit("scripts/encounters/encounter", 
 				}
 			}
 		});
+
 		this.m.Screens.push({
 			ID = "RecruitTheShuckster",
 			Title = "New Blood",

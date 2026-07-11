@@ -30,7 +30,7 @@ this.legend_cannibal_eats_part_of_brother <- this.inherit("scripts/events/event"
 
 				foreach( inj in injuries )
 				{
-					else if (inj.ID == "injury.maimed_foot" && !_event.m.Dinner.getSkills().hasSkill("injury.maimed_foot") && !_event.m.Dinner.getSkills().hasTrait(::Legends.Trait.LegendProstheticFoot))
+					if (inj.ID == "injury.maimed_foot" && !_event.m.Dinner.getSkills().hasSkill("injury.maimed_foot") && !_event.m.Dinner.getSkills().hasTrait(::Legends.Trait.LegendProstheticFoot))
 					{
 						potential.push(inj);
 					}
@@ -75,7 +75,6 @@ this.legend_cannibal_eats_part_of_brother <- this.inherit("scripts/events/event"
 				}
 				this.Characters.push(_event.m.Dinner.getImagePath());
 			}
-
 		});
 	}
 

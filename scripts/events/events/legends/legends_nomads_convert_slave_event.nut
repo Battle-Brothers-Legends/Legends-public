@@ -6,7 +6,7 @@ this.legends_nomads_convert_slave_event <- this.inherit("scripts/events/event", 
 	{
 		this.m.ID = "event.legends_nomads_convert_slave";
 		this.m.Title = "During camp...";
-		this.m.Cooldown = 28.0 * this.World.getTime().SecondsPerDay; 
+		this.m.Cooldown = 28.0 * this.World.getTime().SecondsPerDay;
 		this.m.Screens.push({
 			ID = "A",
 			Text = "[img]gfx/ui/events/event_166.png[/img]%slave% has been with you for some time — regardless of where they came from, they have fully embraced the path of the interloper in both blood and spirit. The concept of keeping someone of their kind is an uneasy one for you. They have served in the tribe without much graditude or fair treatment. Perhaps it is time to cut the shackles and bring them into the fold?",
@@ -48,38 +48,37 @@ this.legends_nomads_convert_slave_event <- this.inherit("scripts/events/event", 
 					Text = "Ask how they feel about fighting in the line with the other nomads.", //Become Nomad
 					function getResult( _event )
 					{
-						return "C1"; 
+						return "C1";
 					}
 				},
 				{
 					Text = "Test their skill with a sling and bow.", //nomad ranged
 					function getResult( _event )
 					{
-						return "C2"; 
+						return "C2";
 					}
 				},
 				{
 					Text = "Maybe they wish to travel the northern lands?", //Become Muladi
 					function getResult( _event )
 					{
-						return "C3"; 
+						return "C3";
 					}
 				},
 				{
 					Text = "Perhaps they are ready to become a true protector of the tribe?", //Become blade dancer
 					function getResult( _event )
 					{
-						return "C4"; 
+						return "C4";
 					}
 				}
 			],
 			function start( _event )
 			{
 			}
-
 		});
 		this.m.Screens.push({ //—
-			ID = "C1", 
+			ID = "C1",
 			Text = "[img]gfx/ui/events/event_156.png[/img]%slave% has been tested in the frontline more than most, and has found great company with those in the melee. After further consideration, they agree their new family is at the heart of the fighting with their nomad brothers — bloody saif in hand.",
 			Image = "",
 			List = [],
@@ -128,7 +127,7 @@ this.legends_nomads_convert_slave_event <- this.inherit("scripts/events/event", 
 					id = 16,
 					icon = "ui/icons/health.png",
 					text = _event.m.slave.getName() + " gains [color=" + this.Const.UI.Color.PositiveEventValue + "]+5[/color] Hitpoints"
-				});							
+				});
 				this.List.push({
 					id = 16,
 					icon = "ui/icons/bravery.png",
@@ -156,12 +155,9 @@ this.legends_nomads_convert_slave_event <- this.inherit("scripts/events/event", 
 					text = _event.m.slave.getName() + " is now paid a wage as a nomad"
 				});
 			}
-
-		});
-
 		});
 		this.m.Screens.push({ //—
-			ID = "C2", 
+			ID = "C2",
 			Text = "[img]gfx/ui/events/event_170.png[/img]Their cruelty at the hands of their masters has made %slave% seek bloodshed from a distance. What their masters mistook for cowardice you realise is a quiet cunning as they visually dissect their prey before comitting to the killing blow.",
 			Image = "",
 			List = [],
@@ -228,7 +224,7 @@ this.legends_nomads_convert_slave_event <- this.inherit("scripts/events/event", 
 
 		});
 		this.m.Screens.push({
-			ID = "C3", 
+			ID = "C3",
 			Text = "[img]gfx/ui/events/event_170.png[/img]While %slave% has shown committment to the cause, you often catching them drawn to your northern cousins — ever seeking out crownlings and asking them about their work and homes. Perhaps this is what you will all eventually arrive at, a life between the worlds of the cold north and harsh south...",
 			Image = "",
 			List = [],
@@ -275,12 +271,12 @@ this.legends_nomads_convert_slave_event <- this.inherit("scripts/events/event", 
 				_event.m.slave.getBaseProperties().Stamina += 10;
 				_event.m.slave.getBaseProperties().Initiative += 8;
 				_event.m.slave.getSkills().update();
-				
+
 				this.List.push({
 					id = 16,
 					icon = "ui/icons/health.png",
 					text = _event.m.slave.getName() + " gains [color=" + this.Const.UI.Color.PositiveEventValue + "]+5[/color] Hitpoints"
-				});				
+				});
 				this.List.push({
 					id = 16,
 					icon = "ui/icons/bravery.png",
@@ -324,7 +320,7 @@ this.legends_nomads_convert_slave_event <- this.inherit("scripts/events/event", 
 			}
 		});
 		this.m.Screens.push({
-			ID = "C4", 
+			ID = "C4",
 			Text = "[img]gfx/ui/events/event_156.png[/img]%slave% has shown great speed and precision in every battle so far — always been near the heart of battle and being deft enough to avoid danger thus far. Their new charge as a protector of the tribe suits them perfectly.",
 			Image = "",
 			List = [],
@@ -368,7 +364,7 @@ this.legends_nomads_convert_slave_event <- this.inherit("scripts/events/event", 
 				_event.m.slave.getBaseProperties().Stamina += 12;
 				_event.m.slave.getBaseProperties().Initiative += 35;
 				_event.m.slave.getSkills().update();
-						
+
 				this.List.push({
 					id = 16,
 					icon = "ui/icons/bravery.png",

@@ -28,7 +28,7 @@
     }
 
 	local pre = "[color=#0b0084]From the ";
-    
+
     foreach (professionDef, treeNames in professionToTreeMap) {
         if (treeNames.len() == 0) continue;
 

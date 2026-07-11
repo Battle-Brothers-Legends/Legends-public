@@ -14,7 +14,7 @@ this.perk_legend_near_death_experience <- this.inherit("scripts/skills/skill", {
 	}
 
 	function getDescription() {
-		return "Your often and close experience with near death has left you robust and resilient."
+		return "Your often and close experience with near death has left you robust and resilient.";
 	}
 
 	function getTooltip() {
@@ -63,7 +63,7 @@ this.perk_legend_near_death_experience <- this.inherit("scripts/skills/skill", {
 
 	function onCombatStarted() {
 		this.m.HpDamageReceived = 0;
-		this.m.InjuriesCountThisBattle = 0
+		this.m.InjuriesCountThisBattle = 0;
 		this.m.HpBefore = this.getContainer().getActor().getHitpoints();
 	}
 
