@@ -103,6 +103,16 @@
 				P = 1.0,
 				S = "legend_armor/tabard/legend_armor_tabard"
 			});
+			_list.push({
+				R = 95,
+				P = 2.0,
+				S = "misc/legend_masterwork_fabric"
+			});
+			_list.push({
+				R = 95,
+				P = 2.0,
+				S = "misc/legend_masterwork_fabric"
+			});
 		}
 		else if (_id == "building.armorsmith")
 		{
@@ -140,6 +150,16 @@
 				R = 99,
 				P = 2.0,
 				S = "legend_armor/named/legend_armor_named_tabard"
+			});
+			_list.push({
+				R = 95,
+				P = 2.0,
+				S = "misc/legend_masterwork_fabric"
+			});
+			_list.push({
+				R = 95,
+				P = 2.0,
+				S = "misc/legend_masterwork_fabric"
 			});
 		}
 	}

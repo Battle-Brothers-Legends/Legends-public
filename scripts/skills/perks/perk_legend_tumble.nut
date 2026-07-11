@@ -66,11 +66,11 @@ this.perk_legend_tumble <- this.inherit("scripts/skills/skill", {
 		return null; // tile or null
 	}
 
-	function teleportMe(_user, _targetTile) {		
+	function teleportMe(_user, _targetTile) {
 		if (::Legends.S.isEntityNullOrDead(_user)) {
 			return;
 		}
-		
+
 		this.m.IsTumbling = true;
 
 		local tag = {

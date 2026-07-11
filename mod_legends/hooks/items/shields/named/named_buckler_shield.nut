@@ -4,25 +4,28 @@
 	local create = o.create;
 	o.create <- function () {
 		create();
-		this.m.Description = "This buckler has been crafted entirely from metal, vastly enhancing its durability. Though it offers poor protection against ranged attacks, it is far lighter to handle than larger shields. Gains defense depending on how many enemies are within 1 tile.";
-		this.m.MeleeDefense = 5;
+		this.m.Description += " Gains defense depending on how many enemies are within 1 tile.";
 		this.m.Variants = [1];
 		this.m.Variant = this.m.Variants[this.Math.rand(0, this.m.Variants.len() - 1)];
 		this.updateVariant();
 	}
 
-	o.randomizeValues <- function () {
-		this.m.Condition = 60;
-		this.m.ConditionMax = 60;
-		this.named_shield.randomizeValues();
+	o.addSkill <- function( _skill )
+	{
+		if (_skill.getID() == ::Legends.Actives.getID(::Legends.Active.KnockBack))
+		{
+			::Legends.Actives.grant(this, ::Legends.Active.LegendBucklerBash, function (_skill) {
+				this.m.PrimaryOffhandAttack = ::MSU.asWeakTableRef(_skill);
+			}.bindenv(this));
+			return;
+		}
+
+		shield.addSkill(_skill);
 	}
 
 	local onEquip = o.onEquip;
 	o.onEquip = function () {
 		onEquip();
-		::Legends.Actives.grant(this, ::Legends.Active.LegendBucklerBash, function (_skill) {
-			this.m.PrimaryOffhandAttack = ::MSU.asWeakTableRef(_skill);
-		}.bindenv(this));
 		::Legends.Effects.grant(this, ::Legends.Effect.LegendBuckler, function (_effect) {
 			_effect.m.Order = this.Const.SkillOrder.UtilityTargeted + 1;
 			_effect.setItem(this);

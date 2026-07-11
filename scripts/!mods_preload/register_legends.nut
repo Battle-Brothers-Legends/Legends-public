@@ -10,7 +10,7 @@
 ::mods_queue(::Legends.ID, [
 	"mod_legends_assets(>=19.5.0-alpha1)",
 	"mod_msu(>=1.9.0)",
-	"vanilla(>=1.5.2-2)",
+	"vanilla(>=1.5.2-3)",
 	"vanilla(<1.5.3)",
 	"dlc_lindwurm",
 	"dlc_unhold",

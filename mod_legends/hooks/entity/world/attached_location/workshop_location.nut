@@ -29,8 +29,7 @@
 	}
 
 	local onUpdateShopList = o.onUpdateShopList;
-	o.onUpdateShopList = function ( _id, _list )
-	{
+	o.onUpdateShopList = function ( _id, _list ) {
 		onUpdateShopList(_id, _list);
 		if (_id == "building.marketplace")
 		{
@@ -58,6 +57,30 @@
 				R = 20,
 				P = 1.0,
 				S = "supplies/armor_parts_item"
+			});
+		}
+		else if (_id == "building.armorsmith") {
+			_list.push({
+				R = 95,
+				P = 2.0,
+				S = "misc/legend_masterwork_tools"
+			});
+			_list.push({
+				R = 95,
+				P = 2.0,
+				S = "misc/legend_masterwork_tools"
+			});
+		}
+		else if (_id == "building.weaponsmith") {
+			_list.push({
+				R = 95,
+				P = 2.0,
+				S = "misc/legend_masterwork_tools"
+			});
+			_list.push({
+				R = 95,
+				P = 2.0,
+				S = "misc/legend_masterwork_tools"
 			});
 		}
 	}

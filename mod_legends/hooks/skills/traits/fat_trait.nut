@@ -1,13 +1,10 @@
 ::mods_hookExactClass("skills/traits/fat_trait", function(o)
 {
-	local onAdded = o.onAdded;
-	o.onAdded = function ()
-	{
-		local actor = this.getContainer().getActor();
-		if (actor.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.LegendDonkey))
-			return;
-
-		onAdded();
+	local create = o.create;
+	o.create = function () {
+		this.m.Excluded.extend([
+			::Legends.Traits.getID(::Legends.Trait.LegendLight)
+		]);
 	}
 
 	local getTooltip = o.getTooltip;

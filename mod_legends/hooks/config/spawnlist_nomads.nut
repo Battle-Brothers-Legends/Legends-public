@@ -20,7 +20,7 @@
 				},
 				{
 					Type = this.Const.World.Spawn.Troops.NomadCutthroat,
-					MinR = 120,
+					MinR = 60,
 					Cost = 14
 				},
 				{

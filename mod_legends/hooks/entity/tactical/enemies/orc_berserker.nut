@@ -86,7 +86,7 @@
 		::Legends.Perks.grant(this, ::Legends.Perk.Berserk);
 		::Legends.Perks.grant(this, ::Legends.Perk.BattleFlow);
 		::Legends.Perks.grant(this, ::Legends.Perk.Pathfinder);
-		::Legends.Perks.grant(this, ::Legends.Perk.HoldOut);
+		// ::Legends.Perks.grant(this, ::Legends.Perk.HoldOut);
 		::Legends.Perks.grant(this, ::Legends.Perk.Colossus);
 		if (::Legends.isLegendaryDifficulty()) {
 			b.MeleeSkill += 10;

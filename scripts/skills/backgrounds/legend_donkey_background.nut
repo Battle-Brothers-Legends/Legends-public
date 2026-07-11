@@ -12,6 +12,7 @@ this.legend_donkey_background <- this.inherit("scripts/skills/backgrounds/charac
 		this.m.HiringCost = 5000;
 		this.m.DailyCost = 0;
 		this.m.Excluded = [
+			::Legends.Traits.getID(::Legends.Trait.Fat),
 			::Legends.Traits.getID(::Legends.Trait.Tiny),
 			::Legends.Traits.getID(::Legends.Trait.Addict),
 			::Legends.Traits.getID(::Legends.Trait.Drunkard),

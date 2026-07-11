@@ -27,7 +27,7 @@ this.legend_zombie <- this.inherit("scripts/entity/tactical/enemies/zombie", {
 		this.m.ActionPoints = b.ActionPoints;
 		this.m.Hitpoints = b.Hitpoints;
 		this.m.CurrentProperties = clone b;
-		this.m.ActionPointCosts = this.Const.DefaultMovementAPCost;
+		this.m.ActionPointCosts = this.Const.ZombieMovementAPCost;
 		this.m.FatigueCosts = this.Const.DefaultMovementFatigueCost;
 		local app = this.getItems().getAppearance();
 		app.Body = "bust_naked_body_0" + this.Math.rand(0, 2);

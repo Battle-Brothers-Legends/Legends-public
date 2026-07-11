@@ -294,7 +294,8 @@ if (!("Backgrounds" in ::Legends)) {
 	::Legends.Background.LegendMuladi,
 	::Legends.Background.DaytalerSouthern,
 	::Legends.Background.LegendQiyan,
-	::Legends.Background.ShepherdSouthern
+	::Legends.Background.ShepherdSouthern,
+	"executioner_background"
 ];
 ::Const.HorseBackgrounds <- [
 	::Legends.Background.LegendHorseDestrier,
