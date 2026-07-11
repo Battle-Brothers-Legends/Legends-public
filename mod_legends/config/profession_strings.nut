@@ -66,7 +66,7 @@ Mixing volatile ingredients in the makeshift conditions of a field camp usually 
 [color=%passive%][u]Passive:[/u][/color]
 • Craft bolstering potions and deadly poisons while camping.
 
-• Refill spent potion flasks after battle at the cost of ammunition.
+• Refill spent poison flasks after battle at the cost of ammunition.
 
 • Increases the crafting speed of potions and poisons.
 ";

@@ -14,10 +14,7 @@ this.herbal_berserker_mushrooms_blueprint <- this.inherit("scripts/crafting/blue
 			}
 		];
 		this.init(ingredients);
-		local skills = [
-			::Legends.Perks.new(::Legends.Perk.LegendHerbcraft)
-		];
-		this.initSkills(skills);
+		this.initSkills([::Legends.Professions.new(::Legends.Profession.LegendHerbcraft)]);
 	}
 
 	function onCraft( _stash )

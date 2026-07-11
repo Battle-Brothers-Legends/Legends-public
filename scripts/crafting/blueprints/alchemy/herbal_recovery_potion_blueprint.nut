@@ -1,11 +1,11 @@
-this.herbal_iron_will_potion_blueprint <- this.inherit("scripts/crafting/blueprint", {
+this.herbal_recovery_potion_blueprint <- this.inherit("scripts/crafting/blueprint", {
 	m = {},
 	function create()
 	{
 		this.blueprint.create();
-		this.m.ID = "blueprint.herbal_iron_will_potion";
+		this.m.ID = "blueprint.herbal_recovery_potion";
 		this.m.Type = this.Const.Items.ItemType.Usable;
-		this.m.PreviewCraftable = this.new("scripts/items/accessory/iron_will_potion_item");
+		this.m.PreviewCraftable = this.new("scripts/items/accessory/recovery_potion_item");
 		this.m.Cost = 30;
 		local ingredients = [
 			{
@@ -17,20 +17,23 @@ this.herbal_iron_will_potion_blueprint <- this.inherit("scripts/crafting/bluepri
 				Num = 1
 			},
 			{
+				Script = "scripts/items/accessory/berserker_mushrooms_item",
+				Num = 1
+			},
+			{
 				Script = "scripts/items/accessory/antidote_item",
 				Num = 1
 			}
 		];
 		this.init(ingredients);
-		local skills = [
-			::Legends.Perks.new(::Legends.Perk.LegendPotionBrewer)
-		];
-		this.initSkills(skills);
+		this.initSkills([
+			::Legends.Professions.new(::Legends.Profession.LegendAlchemy)
+		]);
 	}
 
 	function onCraft( _stash )
 	{
-		_stash.add(this.new("scripts/items/accessory/iron_will_potion_item"));
+		_stash.add(this.new("scripts/items/accessory/recovery_potion_item"));
 	}
 
 });

@@ -18,6 +18,9 @@ this.legend_heartwood_sap_flask_blueprint <- this.inherit("scripts/crafting/blue
 			}
 		];
 		this.init(ingredients);
+		this.initSkills([
+			::Legends.Professions.new(::Legends.Profession.LegendAlchemy)
+		]);
 	}
 
 

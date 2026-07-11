@@ -72,8 +72,8 @@ if (!("Professions" in ::Legends))
 		container.removeByID(::Legends.Professions.getID(_def));
 }
 
-::Legends.Professions.blueprint <- function (_def) {
-	return { Scripts = [::Const.Professions.ProfessionDefObjects[_def].Script] };
+::Legends.Professions.new <- function (_def) {
+	return ::new(::Const.Professions.ProfessionDefObjects[_def].Script);
 }
 
 ::Legends.Professions.onCreate <- function (_profession, _professionDef) {

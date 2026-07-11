@@ -22,6 +22,9 @@ this.legend_hexen_ichor_potion_blueprint <- this.inherit("scripts/crafting/bluep
 			}
 		];
 		this.init(ingredients);
+		this.initSkills([
+			::Legends.Professions.new(::Legends.Profession.LegendAlchemy)
+		]);
 	}
 
 

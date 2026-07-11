@@ -34,10 +34,9 @@ this.herbal_oblivion_potion_blueprint <- this.inherit("scripts/crafting/blueprin
 			}
 		];
 		this.init(ingredients);
-		local skills = [
-			::Legends.Perks.new(::Legends.Perk.LegendPotionBrewer)
-		];
-		this.initSkills(skills);
+		this.initSkills([
+			::Legends.Professions.new(::Legends.Profession.LegendAlchemy)
+		]);
 	}
 
 	function onCraft( _stash )

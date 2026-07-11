@@ -18,6 +18,9 @@ this.legend_stollwurm_blood_flask_blueprint <- this.inherit("scripts/crafting/bl
 			}
 		];
 		this.init(ingredients);
+		this.initSkills([
+			::Legends.Professions.new(::Legends.Profession.LegendAlchemy)
+		]);
 	}
 
 

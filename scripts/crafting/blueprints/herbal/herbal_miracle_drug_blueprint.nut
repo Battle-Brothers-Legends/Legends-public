@@ -22,10 +22,7 @@ this.herbal_miracle_drug_blueprint <- this.inherit("scripts/crafting/blueprint",
 			}
 		];
 		this.init(ingredients);
-		local skills = [
-			::Legends.Perks.new(::Legends.Perk.LegendHerbcraft)
-		];
-		this.initSkills(skills);
+		this.initSkills([::Legends.Professions.new(::Legends.Profession.LegendHerbcraft)]);
 	}
 
 	function onCraft( _stash )

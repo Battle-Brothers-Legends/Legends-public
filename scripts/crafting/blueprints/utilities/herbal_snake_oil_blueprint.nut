@@ -1,7 +1,7 @@
 this.herbal_snake_oil_blueprint <- this.inherit("scripts/crafting/blueprint", {
 	m = {},
-	function create()
-	{
+
+	function create() {
 		this.blueprint.create();
 		this.m.ID = "blueprint.snake_oil_herbal";
 		this.m.Type = this.Const.Items.ItemType.Usable;
@@ -22,16 +22,11 @@ this.herbal_snake_oil_blueprint <- this.inherit("scripts/crafting/blueprint", {
 			}
 		];
 		this.init(ingredients);
-		local skills = [
-			::Legends.Perks.new(::Legends.Perk.LegendHerbcraft)
-		];
-		this.initSkills(skills);
+		this.initSkills([::Legends.Professions.new(::Legends.Profession.LegendCharlatan)]);
 	}
 
-	function onCraft( _stash )
-	{
+	function onCraft(_stash) {
 		_stash.add(this.new("scripts/items/misc/snake_oil_item"));
 	}
 
 });
-
