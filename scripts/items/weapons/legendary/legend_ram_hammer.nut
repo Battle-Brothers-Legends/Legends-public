@@ -40,7 +40,7 @@ this.legend_ram_hammer <- this.inherit("scripts/items/weapons/weapon", {
 			_skill.m.IsHammer = true;
 			_skill.setFatigueCost(_skill.getFatigueCostRaw() + 5);
 		}.bindenv(this));
-		::Legends.Effects.grant(this, ::Legends.Effect.LegendBuckler) //grants special effect
+		::Legends.Effects.grant(this, ::Legends.Effect.LegendRamHammer) //grants special effect
 	}
 
 });
