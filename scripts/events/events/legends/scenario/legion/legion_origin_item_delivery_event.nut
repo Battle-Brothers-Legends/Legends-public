@@ -54,9 +54,20 @@ this.legion_origin_item_delivery_event <- this.inherit("scripts/events/event", {
 	function onUpdateScore()
 	{
 		//see 'static_fucntions' ::Legends.S.humansOnly for more details.
-		if (this.World.Assets.getOrigin().getID() != "scenario.legend_risen_legion" && bro.getFlags().has("PlayerSkeleton"))
-		{
+		if (::World.Assets.getOrigin().getID() != "scenario.legend_risen_legion") {
 			return;
+		}
+
+		local hasSkeleton = false;
+		foreach (bro in ::World.getPlayerRoster().getAll()) {
+    		if (bro.getFlags().has("PlayerSkeleton")) {
+				hasSkeleton = true;
+				break;
+			}
+		}
+
+		if (!hasSkeleton) {
+    		return; 
 		}
 
 		this.m.Score = 5;

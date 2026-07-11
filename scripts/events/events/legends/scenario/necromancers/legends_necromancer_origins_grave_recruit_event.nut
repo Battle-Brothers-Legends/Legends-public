@@ -128,9 +128,21 @@ this.legends_necromancer_origins_grave_recruit_event <- this.inherit("scripts/ev
 	function onUpdateScore()
 	{
 		//see 'static_functions' ::Legends.S.humansOnly for more details.
-		if (this.World.Assets.getOrigin().getID() != "scenario.legends_solo_necro" && this.World.Assets.getOrigin().getID() != "scenario.legends_necro" && bro.getFlags().has("PlayerZombie")) //if not either of these origin, skip event
-		{
+		local originID = ::World.Assets.getOrigin().getID();
+		if (originID != "scenario.legends_solo_necro" && originID != "scenario.legends_necro") {
 			return;
+		}
+
+		local hasZombie = false;
+		foreach (bro in ::World.getPlayerRoster().getAll()) {
+    		if (bro.getFlags().has("PlayerZombie")) {
+				hasZombie = true;
+				break;
+			}
+		}
+
+		if (!hasZombie) {
+    		return; 
 		}
 
 		if (this.World.getPlayerRoster().getSize() >= this.World.Assets.getBrothersMax())

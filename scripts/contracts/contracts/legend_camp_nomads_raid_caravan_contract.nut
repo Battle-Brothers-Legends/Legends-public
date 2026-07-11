@@ -1,4 +1,4 @@
-this.legend_camp_nomads_raid_caravan_contract <- this.inherit("scripts/contracts/legend_camp_contract", {
+this.legend_camp_nomads_raid_caravan_contract <- ::inherit("scripts/contracts/legend_camp_contract", {
 	m = {
 		Target = null,
 		LastCombatTime = 0.0

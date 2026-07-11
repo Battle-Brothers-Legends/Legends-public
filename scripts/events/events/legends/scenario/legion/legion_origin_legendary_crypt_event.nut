@@ -156,9 +156,20 @@ this.legion_origin_legendary_crypt_event <- this.inherit("scripts/events/event",
 		local currentTile = this.World.State.getPlayer().getTile();
 
 		//see 'static_functions' ::Legends.S.humansOnly for more details.
-		if (this.World.Assets.getOrigin().getID() != "scenario.legend_risen_legion" && bro.getFlags().has("PlayerSkeleton"))
-		{
+		if (::World.Assets.getOrigin().getID() != "scenario.legend_risen_legion") {
 			return;
+		}
+
+		local hasSkeleton = false;
+		foreach (bro in ::World.getPlayerRoster().getAll()) {
+    		if (bro.getFlags().has("PlayerSkeleton")) {
+				hasSkeleton = true;
+				break;
+			}
+		}
+
+		if (!hasSkeleton) {
+    		return; 
 		}
 
 		local locations = this.World.EntityManager.getLocations();

@@ -4,7 +4,7 @@
 	{
 		local item;
 		local stash = this.World.Assets.getStash();
-		local item = this.Math.rand(1, 11); //No shields or daggers. Also no potentially overpowered weapons at this stage in the game like greatswords, 2h cleavers, 2h hammers, throwing weapons, etc.
+		local i = this.Math.rand(1, 11); //No shields or daggers. Also no potentially overpowered weapons at this stage in the game like greatswords, 2h cleavers, 2h hammers, throwing weapons, etc.
 
 		if (i == 1)
 		{

@@ -74,7 +74,7 @@ this.legend_named_glove <- this.inherit("scripts/items/accessory/gloves/legend_g
 				if (!tooltip.rawin("icon"))
 					continue;
 
-				if (!::Legends.Items.Named.HighlightNamedRoll[k].isRightTooltip(tooltip, this.m.properties, "gloves"))
+				if (!::Legends.Items.Named.HighlightNamedRoll[k].isRightTooltip(tooltip, this.m.Properties, "gloves"))
 					continue;
 
 				tooltip.icon = ::Legends.Items.Named.HighlightNamedRoll[k].Icon;

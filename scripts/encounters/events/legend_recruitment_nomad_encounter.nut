@@ -96,7 +96,7 @@ this.legend_recruitment_nomad_encounter <- this.inherit("scripts/encounters/enco
 		if (::World.getPlayerRoster().getSize() >= ::World.Assets.getBrothersMax())
 			return false;
 
-		if (playerTile.SquareCoords.Y < ::World.getMapSize().Y * 0.7)
+		if (::World.State.getPlayer().getTile().SquareCoords.Y < ::World.getMapSize().Y * 0.7)
 			return false;
     }
 
