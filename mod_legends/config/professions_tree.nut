@@ -4,7 +4,9 @@ if (!("Professions" in ::Const)) {
 
 ::Const.Professions.DefaultProfessionTree <- [
 	[
-		::Legends.Profession.LegendHunting
+		::Legends.Profession.LegendCooking,
+		::Legends.Profession.LegendHunting,
+		::Legends.Profession.LegendTraining
 	],
 	[],
 	[],
