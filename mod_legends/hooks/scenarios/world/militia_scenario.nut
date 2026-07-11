@@ -151,7 +151,7 @@
 		bros[10].m.PerkPoints = 0;
 		bros[10].m.LevelUps = 0;
 		bros[10].m.Level = 1;
-		bros[11].setStartValuesEx(["legend_leech_peddler_background"]);
+		bros[11].setStartValuesEx([::Legends.Background.LegendLeechPeddler]);
 		bros[11].getBackground().m.RawDescription = "%name% is, ostensibly, running away from their other half. You met them once and approve their escape plan entirely, and not just because it affords you another body on the front line — that wench is genuinely crazy.";
 		bros[11].improveMood(1.0, "Managed to get away from their family");
 
