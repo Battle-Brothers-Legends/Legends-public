@@ -1,7 +1,7 @@
 this.legend_yummy_sausages_03_blueprint <- this.inherit("scripts/crafting/legend_food_blueprint", {
 	m = {},
-	function create()
-	{
+
+	function create() {
 		this.legend_food_blueprint.create();
 		this.m.ID = "blueprint.yummy_sausages_03";
 		this.m.PreviewCraftable = this.new("scripts/items/supplies/legend_yummy_sausages");
@@ -16,16 +16,12 @@ this.legend_yummy_sausages_03_blueprint <- this.inherit("scripts/crafting/legend
 			}
 		];
 		this.init(ingredients);
-		local skills = [
-			{
-				Scripts = ["scripts/skills/traits/legend_cannibalistic"]
-			}
-		];
-		this.initSkills(skills);
+		this.initSkills([
+			::Legends.Traits.new(::Legends.Trait.LegendCannibalistic)
+		]);
 	}
 
-	function onCraft( _stash )
-	{
+	function onCraft(_stash) {
 		_stash.add(this.new("scripts/items/supplies/legend_yummy_sausages"));
 	}
 

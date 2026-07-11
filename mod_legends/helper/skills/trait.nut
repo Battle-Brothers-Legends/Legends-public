@@ -73,3 +73,7 @@ if (!("Traits" in ::Legends))
 	container.removeByID(::Legends.Traits.getID(_def));
 }
 
+::Legends.Traits.new <- function (_def) {
+	return ::new(::Legends.Traits.TraitDefObjects[_def].Script);
+}
+
