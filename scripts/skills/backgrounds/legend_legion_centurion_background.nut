@@ -5,7 +5,7 @@ this.legend_legion_centurion_background <- this.inherit("scripts/skills/backgrou
 		this.character_background.create();
 		this.m.ID = ::Legends.Backgrounds.getID(::Legends.Background.LegendLegionCenturion);
 		this.m.Name = "Centurion";
-		this.m.Icon = "ui/backgrounds/background_puppet.png"; //to do
+		this.m.Icon = "ui/backgrounds/background_legion_centurion.png";
 		this.m.BackgroundDescription = "A leader of many, a slave to a few.";
 		this.m.GoodEnding = "";
 		this.m.BadEnding = "";
@@ -41,23 +41,23 @@ this.legend_legion_centurion_background <- this.inherit("scripts/skills/backgrou
 		this.m.Modifiers.Terrain = [
 				0.0, // ?
 				0.0, //ocean
-				0.05, //plains
-				0.01, //swamp
+				0.02, //plains
+				0.02, //swamp
 				0.02, //hills
-				0.03, //forest
-				0.03, //forest
-				0.03, //forest_leaves
-				0.03, //autumn_forest
-				3.0, //mountains - hannibal time
+				0.02, //forest
+				0.02, //forest
+				0.02, //forest_leaves
+				0.02, //autumn_forest
+				1.0, //mountains - hannibal time
 				0.0, // ?
-				0.03, //farmland
+				0.02, //farmland
 				0.02, //snow
 				0.02, //badlands
 				0.02, //highlands
 				0.02, //stepps
 				0.0, //ocean
-				0.1, //desert
-				0.1 //oasis
+				0.02, //desert
+				0.02 //oasis
 			];
 		this.m.PerkTreeDynamic = {
 			Weapon = [

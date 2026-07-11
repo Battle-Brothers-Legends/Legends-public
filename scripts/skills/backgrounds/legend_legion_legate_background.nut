@@ -5,8 +5,8 @@ this.legend_legion_legate_background <- this.inherit("scripts/skills/backgrounds
 		this.character_background.create();
 		this.m.ID = ::Legends.Backgrounds.getID(::Legends.Background.LegendLegionLegate);
 		this.m.Name = "Legate";
-		this.m.Icon = "ui/backgrounds/background_puppet.png"; //to do
-		this.m.BackgroundDescription = "A military figure of great experience and prowess";
+		this.m.Icon = "ui/backgrounds/background_legion_legate.png";
+		this.m.BackgroundDescription = "A military figure of great experience and prowess, the legate has risen through the ranks with bloody blade in hand.";
 		// this.m.GoodEnding = ""; //to do
 		// this.m.BadEnding = ""; //to do
 		this.m.HiringCost = 0;
@@ -37,23 +37,23 @@ this.legend_legion_legate_background <- this.inherit("scripts/skills/backgrounds
 		this.m.Modifiers.Terrain = [
 				0.0, // ?
 				0.0, //ocean
-				0.0, //plains
-				1.0, //swamp
-				0.05, //hills
-				0.03, //forest
-				0.03, //forest
-				0.03, //forest_leaves
-				0.03, //autumn_forest
-				1.5, //mountains
+				0.025,//plains
+				0.01, //swamp
+				0.01, //hills
+				0.01, //forest
+				0.01, //forest
+				0.01, //forest_leaves
+				0.01, //autumn_forest
+				0.01, //mountains
 				0.0, // ?
-				0.0, //farmland
-				0.03, //snow
-				0.03, //badlands
-				0.03, //highlands
-				0.03, //stepps
+				0.025, //farmland
+				0.011, // snow
+				0.015, // badlands
+				0.015, //highlands
+				0.025, //stepps
 				0.0, //ocean
-				0.8, //desert
-				0.8 //oasis
+				0.01, //desert
+				0.025 //oasis
 			];
 		this.m.PerkTreeDynamic = {
 			Weapon = [
@@ -113,9 +113,9 @@ this.legend_legion_legate_background <- this.inherit("scripts/skills/backgrounds
 		this.addBackgroundType(this.Const.BackgroundType.Female);
 	}
 
-	function onBuildDescription() //to do
-	{
-		return "{ TODO | TODO }";
+	function onBuildDescription() //— \n { TODO | TODO }
+	{ 
+		return "{%name% was destined for leadership since they were a child — their family marking them out for something greater. | Initially struggling in life, %name% went through several prestigious military schools. | %name% never wished to be in command. A simple legionary in the beginning, they killed their commanding officer and was awarded with their rank after investigations found them to be a traitor. | In the heat of a losing battle, %name% rose to the occasion to become the man of the hour — turning the tide from a crushing defeat into a pyrrhic victory.} {Feeling underwhelmed by their rank, they took to taking a more active role in the field. | Tired with battle reports, meetings and strategy — they frequently absconded from their duties. | Taking the rank in their stride, %name% did what they could to serve the Empire.}";
 	}
 
 	function onChangeAttributes() //uses Character_background.nut template (Skeleton)

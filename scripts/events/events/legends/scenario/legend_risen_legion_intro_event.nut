@@ -20,7 +20,7 @@ this.legend_risen_legion_intro_event <- this.inherit("scripts/events/event", {
 						this.World.uncoverFogOfWar(monolith.getTile().Pos, 700.0);
 						monolith.getFlags().set("IsEventLocation", true);
 						monolith.setDiscovered(true);
-						this.World.getCamera().moveTo(monolith);
+						// this.World.getCamera().moveTo(monolith); //removed for now, as players were being dragged to spectating the monolith on the other side of the map, leading to confusion.
 					}
 					return 0;
 				}

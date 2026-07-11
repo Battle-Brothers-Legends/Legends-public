@@ -16,7 +16,7 @@
 						_event.m.Dude.getFlags().add("PlayerSkeleton");
 						_event.m.Dude.getFlags().add("undead");
 						_event.m.Dude.getFlags().add("skeleton");
-						_event.m.Dude.setStartValuesEx([::Legends.Background.LegendCannibal]);
+						_event.m.Dude.setStartValuesEx([::Legends.Background.Butcher]);
 						::Legends.Traits.grant(_event.m.Dude, ::Legends.Trait.RacialSkeleton);
 						::Legends.Traits.grant(_event.m.Dude, ::Legends.Trait.LegendFleshless);
 					}

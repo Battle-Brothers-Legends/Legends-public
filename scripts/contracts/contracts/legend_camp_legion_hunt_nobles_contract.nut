@@ -57,6 +57,7 @@ this.legend_camp_legion_hunt_nobles_contract <- this.inherit("scripts/contracts/
 		}
 	}
 
+	::logDebug("Legion hunt nobles contract: function create finished");
 	function isVisible()
 	{
 		// exclude bottom half of the map
@@ -65,13 +66,13 @@ this.legend_camp_legion_hunt_nobles_contract <- this.inherit("scripts/contracts/
 			return false;
 		return true;
 	}
-
+	::logDebug("Legion hunt nobles contract: isvisible finished");
 	function start() //payment & rewards
 	{
 		this.m.Payment.Pool = 350 * this.getPaymentMult() * ::Math.pow(this.getDifficultyMult(), this.Const.World.Assets.ContractRewardPOW) * this.getReputationToPaymentMult();
 		this.contract.start();
 	}
-
+	::logDebug("Legion hunt nobles contract: function start finished");
 	function createStates()
 	{
 		this.m.States.push({
@@ -104,6 +105,7 @@ this.legend_camp_legion_hunt_nobles_contract <- this.inherit("scripts/contracts/
 			}
 
 		});
+		::logDebug("Legion hunt nobles contract: create states stage 1");
 		this.m.States.push({
 			ID = "Running",
 			function start()
@@ -114,7 +116,7 @@ this.legend_camp_legion_hunt_nobles_contract <- this.inherit("scripts/contracts/
 					this.Contract.m.Target.setOnCombatWithPlayerCallback(this.onTargetAttacked.bindenv(this));
 				}
 			}
-
+			::logDebug("Legion hunt nobles contract: create states stage 2");
 			function update()
 			{
 				if (this.Flags.has("Survivors") && this.Flags.getAsInt("Survivors") > 0)
@@ -143,7 +145,7 @@ this.legend_camp_legion_hunt_nobles_contract <- this.inherit("scripts/contracts/
 					}
 				}
 			}
-
+			::logDebug("Legion hunt nobles contract: create states stage 3");
 			function onTargetAttacked(_dest, _isPlayerAttacking)
 			{
 				this.Flags.set("Survivors", this.Contract.m.Target.getTroops().len());
@@ -155,13 +157,14 @@ this.legend_camp_legion_hunt_nobles_contract <- this.inherit("scripts/contracts/
 					this.World.Contracts.showCombatDialog(_isPlayerAttacking);
 				}
 			}
-
+			::logDebug("Legion hunt nobles contract: create states stage 4");
 			function onActorKilled( _actor, _killer, _combatID )
 			{
 				if (!::Legends.S.oneOf(_actor.getFaction(), ::Const.Faction.Player, ::Const.Faction.PlayerAnimals)) {
 					this.Flags.increment("Survivors", -1);
 				}
 			}
+		::logDebug("Legion hunt nobles contract: create states stage 5");
 		});
 		this.m.States.push({
 			ID = "Chase",
@@ -176,7 +179,7 @@ this.legend_camp_legion_hunt_nobles_contract <- this.inherit("scripts/contracts/
 					this.Contract.m.Target.setOnCombatWithPlayerCallback(this.onTargetAttacked.bindenv(this));
 				}
 			}
-
+			::logDebug("Legion hunt nobles contract: create states stage 6");
 			function update()
 			{
 				if (this.Contract.m.Target == null || this.Contract.m.Target.isNull() || !this.Contract.m.Target.isAlive())
@@ -185,7 +188,7 @@ this.legend_camp_legion_hunt_nobles_contract <- this.inherit("scripts/contracts/
 					this.World.Contracts.showActiveContract();
 				}
 			}
-
+			::logDebug("Legion hunt nobles contract: create states stage 7");
 			function onTargetAttacked(_dest, _isPlayerAttacking)
 			{
 				if (!this.Flags.get("IsNobleResponseShown"))
@@ -201,6 +204,7 @@ this.legend_camp_legion_hunt_nobles_contract <- this.inherit("scripts/contracts/
 				}
 			}
 		});
+		::logDebug("Legion hunt nobles contract: create states stage 8");
 		this.m.States.push({
 			ID = "Return",
 			function start()
@@ -218,7 +222,7 @@ this.legend_camp_legion_hunt_nobles_contract <- this.inherit("scripts/contracts/
 
 		});
 	}
-
+	::logDebug("Legion hunt nobles contract: create states finished");
 	function createScreens()
 	{
 		this.importScreens(::Const.Contracts.NegotiationItemsOnly()); //for legion, may be better to create new negotiation templates as a hook in 'intro templates'?
@@ -227,7 +231,7 @@ this.legend_camp_legion_hunt_nobles_contract <- this.inherit("scripts/contracts/
 		this.m.Screens.push({
 			ID = "Task",
 			Title = "Negotiations",
-			Text = "[img]gfx/ui/events/legend_camp_hunt.png[/img]{%employer% approaches you in camp. %SPEECH_ON%A patrol is nearby. It has been getting closer and closer to one of our larger camps. Destroy the patrol and place this shield at the battlefield to misdirect the enemy into fighting one another.%SPEECH_OFF% The messenger pauses as both of your hands at at the brim of the shield. An important message follows. %SPEECH_ON%Do not allow any to escape.%SPEECH_OFF%}",
+			Text = "[img]gfx/ui/events/legend_camp_hunt.png[/img]{%employer% approaches you in camp. %SPEECH_ON%A patrol is nearby. It has been getting closer and closer to one of our larger camps. Destroy the patrol and place this shield at the battlefield to misdirect the enemy into fighting one another.%SPEECH_OFF% The messenger pauses and places their hand at the brim of the shield. An important message follows. %SPEECH_ON%Do not allow any to escape.%SPEECH_OFF%}",
 			Image = "",
 			List = [],
 			ShowEmployer = true,
@@ -327,15 +331,15 @@ this.legend_camp_legion_hunt_nobles_contract <- this.inherit("scripts/contracts/
 					return 0;
 				}
 			}],
-			function start() { //to do
+			function start() {
 				this.List.extend(::Legends.EventList.addItems(this.Contract.m.Payment.Items, ::World.Assets.getStash()));
 			}
 		});
 
-		this.m.Screens.push({ //to do
+		this.m.Screens.push({
 			ID = "Failure",
 			Title = "After battle...",
-			Text = "[img]gfx/ui/events/legend_rock_unhold.png[/img]{Some memmbers of the patrol escaped. You sense there will be repercussions for this.}",
+			Text = "[img]gfx/ui/events/event_86.png[/img]{Some members of the patrol escaped. You sense there will be repercussions for this.}",
 			Image = "",
 			List = [],
 			Options = [{
@@ -349,7 +353,7 @@ this.legend_camp_legion_hunt_nobles_contract <- this.inherit("scripts/contracts/
 		});
 
 	}
-
+	::logDebug("Legion hunt nobles contract: spawn enemies starts");
 	function spawnEnemies() {
 		local playerTile = this.World.State.getPlayer().getTile();
 		local tile = this.getTileToSpawnLocation(playerTile, 6, 12, [
@@ -393,7 +397,7 @@ this.legend_camp_legion_hunt_nobles_contract <- this.inherit("scripts/contracts/
 		c.addOrder(roam);
 		return party;
 	}
-
+	::logDebug("Legion hunt nobles contract: spawn enemies finishes");
 	function spawnRevengeEnemies()
 	{
 		local playerTile = ::World.State.getPlayer().getTile();
@@ -424,7 +428,7 @@ this.legend_camp_legion_hunt_nobles_contract <- this.inherit("scripts/contracts/
 		c.addOrder(intercept);
 		return party;
 	}
-
+	::logDebug("Legion hunt nobles contract: spawn revenge enemies finishes");
 	function onPrepareVariables(_vars)
 	{
 	}
@@ -439,7 +443,7 @@ this.legend_camp_legion_hunt_nobles_contract <- this.inherit("scripts/contracts/
 		}
 
 	}
-
+	::logDebug("Legion hunt nobles contract: function onclear ends");
 	function onSerialize(_out) {
 		if (this.m.Target != null && !this.m.Target.isNull()) {
 			_out.writeU32(this.m.Target.getID());
@@ -456,5 +460,5 @@ this.legend_camp_legion_hunt_nobles_contract <- this.inherit("scripts/contracts/
 		}
 		this.contract.onDeserialize(_in);
 	}
-
+	::logDebug("Legion hunt nobles contract: serialisation ends");
 });

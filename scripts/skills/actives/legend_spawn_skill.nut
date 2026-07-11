@@ -215,12 +215,12 @@ this.legend_spawn_skill <- this.inherit("scripts/skills/skill", {
 		}
 
 		local entity = this.Tactical.spawnEntity(this.getScript(), _targetTile.Coords.X, _targetTile.Coords.Y);
-		/*if (this.m.IsControlledByPlayer)
+
+		if (this.m.IsControlledByPlayer)
 		{
-			entity.setFaction(this.Const.Faction.Player);
-		} else*/ {
-			entity.setFaction(this.Const.Faction.PlayerAnimals);
+			entity.setFaction(this.Const.Faction.PlayerAnimals); //summons will always be 'animals' for the purposes of not disabling lone wolf perk or absorbing xp from kills in battle. - Luft 10/7/26.
 		}
+
 		entity.setItem(spawnItem);
 		entity.setName(spawnItem.getName());
 		entity.assignRandomEquipment();

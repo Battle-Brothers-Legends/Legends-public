@@ -56,7 +56,8 @@ this.legion_origin_recruitment_event <- this.inherit("scripts/events/event", {
 			return;
 		}
 
-		if (this.World.Assets.getOrigin().getID() != "scenario.legend_risen_legion")
+		//see 'static_fucntions' ::Legends.S.humansOnly for more details.
+		if (this.World.Assets.getOrigin().getID() != "scenario.legend_risen_legion" && bro.getFlags().has("PlayerSkeleton"))
 		{
 			return;
 		}

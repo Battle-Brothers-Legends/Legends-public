@@ -5,8 +5,8 @@ this.legend_legion_slave_background <- this.inherit("scripts/skills/backgrounds/
 		this.character_background.create();
 		this.m.ID = ::Legends.Backgrounds.getID(::Legends.Background.LegendLegionSlave);
 		this.m.Name = "Servus";
-		this.m.Icon = "ui/backgrounds/background_puppet.png"; //to do
-		this.m.BackgroundDescription = "Taken from a distant land lost to time, this slave still fights for their household.";
+		this.m.Icon = "ui/backgrounds/background_legion_slave.png";
+		this.m.BackgroundDescription = "Taken from a distant land lost to time, this slave still fights for their master.";
 		this.m.GoodEnding = "";
 		this.m.BadEnding = "";
 		this.m.HiringCost = 0;
@@ -37,23 +37,23 @@ this.legend_legion_slave_background <- this.inherit("scripts/skills/backgrounds/
 		this.m.Modifiers.Terrain = [
 				0.0, // ?
 				0.0, //ocean
-				0.05, //plains
-				0.01, //swamp
-				0.02, //hills
-				0.03, //forest
-				0.03, //forest
-				0.03, //forest_leaves
-				0.03, //autumn_forest
+				0.0, //plains
+				0.0, //swamp
+				0.0, //hills
+				0.0, //forest
+				0.0, //forest
+				0.0, //forest_leaves
+				0.0, //autumn_forest
 				0.0, //mountains
 				0.0, // ?
-				0.05, //farmland
-				0.02, //snow
-				0.02, //badlands
-				0.02, //highlands
-				0.02, //stepps
+				0.0, //farmland
+				0.0, //snow
+				0.0, //badlands
+				0.0, //highlands
+				0.0, //stepps
 				0.0, //ocean
-				0.05, //desert
-				0.05 //oasis
+				0.0, //desert
+				0.0 //oasis
 			];
 		this.m.PerkTreeDynamic = {
 			Weapon = [

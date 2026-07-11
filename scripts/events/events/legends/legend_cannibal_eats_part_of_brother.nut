@@ -7,21 +7,20 @@ this.legend_cannibal_eats_part_of_brother <- this.inherit("scripts/events/event"
 	{
 		this.m.ID = "event.legend_cannibal_eats_part_of_brother";
 		this.m.Title = "At night...";
-		this.m.Cooldown = 30 * this.World.getTime().SecondsPerDay;
+		this.m.Cooldown = 55 * this.World.getTime().SecondsPerDay;
 		this.m.Screens.push({
 			ID = "A",
-			Text = "[img]gfx/ui/events/legend_cannibal_eats_part_of_brother.png[/img]%cannibal% eats part of %dinner%.",
+			Text = "[img]gfx/ui/events/event_06.png[/img]A scream pierces the still night. %randombro% hurtles into your tent with news of an attack. By the time you find the problem, you see you are not under attack at all, but instead %cannibal% has helped themselves to a bit of %dinner% for dinner. The happy cannibal gently cooks their haul in a pan over the campfire as their cattle screams in pain. \n\nThey do not move an inch.",
 			Image = "",
 			List = [],
 			Characters = [],
 			Options = [
 				{
-					Text = "Gross!",
+					Text = "Vile.",
 					function getResult( _event )
 					{
 						return 0;
 					}
-
 				}
 			],
 			function start( _event )
@@ -31,14 +30,6 @@ this.legend_cannibal_eats_part_of_brother <- this.inherit("scripts/events/event"
 
 				foreach( inj in injuries )
 				{
-					if (inj.ID == "injury.broken_elbow_joint" && !_event.m.Dinner.getSkills().hasSkill("injury.broken_elbow_joint") && !_event.m.Dinner.getSkills().hasTrait(::Legends.Trait.LegendProstheticForearm))
-					{
-						potential.push(inj);
-					}
-					else if (inj.ID == "injury.broken_knee" && !_event.m.Dinner.getSkills().hasSkill("injury.broken_knee") && !_event.m.Dinner.getSkills().hasTrait(::Legends.Trait.LegendProstheticLeg))
-					{
-						potential.push(inj);
-					}
 					else if (inj.ID == "injury.maimed_foot" && !_event.m.Dinner.getSkills().hasSkill("injury.maimed_foot") && !_event.m.Dinner.getSkills().hasTrait(::Legends.Trait.LegendProstheticFoot))
 					{
 						potential.push(inj);
@@ -55,15 +46,11 @@ this.legend_cannibal_eats_part_of_brother <- this.inherit("scripts/events/event"
 					{
 						potential.push(inj);
 					}
-					else if (inj.ID == "injury.missing_hand" && !_event.m.Dinner.getSkills().hasSkill("injury.missing_hand") && !_event.m.Dinner.getSkills().hasTrait(::Legends.Trait.LegendProstheticHand))
-					{
-						potential.push(inj);
-					}
 					else if (inj.ID == "injury.missing_nose" && !_event.m.Dinner.getSkills().hasSkill("injury.missing_nose") && !_event.m.Dinner.getSkills().hasTrait(::Legends.Trait.LegendProstheticNose))
 					{
 						potential.push(inj);
 					}
-					else if (inj.ID != "injury.broken_elbow_joint" && inj.ID != "injury.broken_knee" && inj.ID != "injury.maimed_foot" && inj.ID != "injury.missing_ear" && inj.ID != "injury.missing_eye" && inj.ID != "injury.missing_finger" && inj.ID != "injury.missing_hand" && inj.ID != "injury.missing_nose" && !_event.m.Dinner.getSkills().hasSkill(inj.ID))
+					else if (inj.ID != "injury.maimed_foot" && inj.ID != "injury.missing_ear" && inj.ID != "injury.missing_eye" && inj.ID != "injury.missing_finger" && inj.ID != "injury.missing_nose" && !_event.m.Dinner.getSkills().hasSkill(inj.ID))
 					{
 						potential.push(inj);
 					}
@@ -107,7 +94,7 @@ this.legend_cannibal_eats_part_of_brother <- this.inherit("scripts/events/event"
 
 		foreach( bro in brothers )
 		{
-			if (bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.LegendCannibal))
+			if (bro.getSkills().hasTrait(::Legends.Trait.LegendCannibalistic))
 			{
 				cannibal_candidates.push(bro);
 			}

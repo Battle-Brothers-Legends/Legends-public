@@ -4,9 +4,9 @@ this.legend_legion_legionary_background <- this.inherit("scripts/skills/backgrou
 	{
 		this.character_background.create();
 		this.m.ID = ::Legends.Backgrounds.getID(::Legends.Background.LegendLegionLegionary);
-		this.m.Name = "Legionary";
-		this.m.Icon = "ui/backgrounds/background_puppet.png"; //to do
-		this.m.BackgroundDescription = "The backbone of the Empire, the Legionary has seen horrors far and wide — and now travels those lands as one.";
+		this.m.Name = "Legionaire";
+		this.m.Icon = "ui/backgrounds/background_legion_legionaire.png";
+		this.m.BackgroundDescription = "The backbone of the Empire, the legionaire sees horrors far and wide — and now travels those lands as one.";
 		// this.m.GoodEnding = ""; //to do
 		// this.m.BadEnding = ""; //to do
 		this.m.HiringCost = 0;
@@ -39,23 +39,23 @@ this.legend_legion_legionary_background <- this.inherit("scripts/skills/backgrou
 		this.m.Modifiers.Terrain = [
 				0.0, // ?
 				0.0, //ocean
-				0.10, //plains
-				0.05, //swamp
-				0.06, //hills
-				0.08, //forest
-				0.08, //forest
-				0.08, //forest_leaves
-				0.08, //autumn_forest
-				0.03, //mountains
+				0.025,//plains
+				0.01, //swamp
+				0.0, //hills
+				0.0, //forest
+				0.0, //forest
+				0.0, //forest_leaves
+				0.0, //autumn_forest
+				0.01, //mountains
 				0.0, // ?
-				0.10, //farmland
-				0.07, //snow
-				0.08, //badlands
-				0.08, //highlands
-				0.08, //stepps
+				0.025, //farmland
+				0.011, // snow
+				0.015, // badlands
+				0.015, //highlands
+				0.025, //stepps
 				0.0, //ocean
-				0.10, //desert
-				0.10 //oasis
+				0.01, //desert
+				0.025 //oasis
 			];
 		this.m.PerkTreeDynamic = {
 			Weapon = [

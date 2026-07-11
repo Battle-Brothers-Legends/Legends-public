@@ -298,6 +298,42 @@ if (!("Backgrounds" in ::Legends)) {
 	::Legends.Background.Executioner,
 	::Legends.Background.ExecutionerSouthern
 ];
+
+::Const.CharacterBackgroundsRandomForUndead <- [ //for necro origins only, added puppet & cultist, removed most of 'support' or lower tier backgrounds that could be exploited via camp.
+	"legend_puppet_background",
+	"cultist_background",
+	"adventurous_noble_background",
+	"barbarian_background",
+	"bastard_background",
+	"beast_hunter_background",
+	"caravan_hand_background",
+	"deserter_background",
+	"disowned_noble_background",
+	"farmhand_background",
+	"thief_background",
+	"fisherman_background",
+	"flagellant_background",
+	"gravedigger_background",
+	"graverobber_background",
+	"hedge_knight_background",
+	"killer_on_the_run_background",
+	"legend_crusader_background",
+	"legend_noble_2h",
+	"legend_noble_shield",
+	"legend_shieldmaiden_background",
+	"lumberjack_background",
+	"militia_background",
+	"raider_background",
+	"sellsword_background",
+	"squire_background",
+	"swordmaster_background",
+	"wildman_background",
+	"slave_background",
+	"slave_southern_background",
+	"nomad_background",
+	"legend_conscript_background"
+];
+
 ::Const.HorseBackgrounds <- [
 	::Legends.Background.LegendHorseDestrier,
 	::Legends.Background.LegendHorseRouncey,

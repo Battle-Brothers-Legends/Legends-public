@@ -48,7 +48,8 @@ this.legend_cabal_puppet_event <- this.inherit("scripts/events/event", {
 
 	function onUpdateScore()
 	{
-		if (this.World.Assets.getOrigin().getID() != "scenario.legends_necro")
+		//see 'static_functions' ::Legends.S.humansOnly for more details.
+		if (this.World.Assets.getOrigin().getID() != "scenario.legends_necro" && bro.getFlags().has("PlayerZombie"))
 		{
 			return;
 		}
