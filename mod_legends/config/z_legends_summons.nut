@@ -119,7 +119,7 @@ if (!("Actor" in ::Const.Tactical))
 
 ::Const.Tactical.Actor.LegendZombieLight <- {
 	XP = 100,
-	ActionPoints = 6,
+	ActionPoints = 8,
 	Hitpoints = 100,
 	Bravery = 100,
 	Stamina = 100,
@@ -155,7 +155,7 @@ if (!("Actor" in ::Const.Tactical))
 };
 ::Const.Tactical.Actor.LegendZombieMedium <- {
 	XP = 150,
-	ActionPoints = 8,
+	ActionPoints = 10,
 	Hitpoints = 130,
 	Bravery = 100,
 	Stamina = 100,
@@ -191,7 +191,7 @@ if (!("Actor" in ::Const.Tactical))
 };
 ::Const.Tactical.Actor.LegendZombieHeavy <- {
 	XP = 250,
-	ActionPoints = 9,
+	ActionPoints = 11,
 	Hitpoints = 180,
 	Bravery = 100,
 	Stamina = 100,
