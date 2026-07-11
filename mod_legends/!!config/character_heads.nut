@@ -390,7 +390,7 @@
 	"bust_naked_body_00",
 	"bust_naked_body_01",
 	"bust_naked_body_02",
-	"bust_naked_body_03",
+	//"bust_naked_body_03", <- this is female
 	"bust_naked_body_southern_00",
 	"bust_naked_body_southern_01",
 	"bust_naked_body_southern_02",
