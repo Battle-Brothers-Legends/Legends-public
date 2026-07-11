@@ -215,10 +215,10 @@ this.legend_spawn_skill <- this.inherit("scripts/skills/skill", {
 		}
 
 		local entity = this.Tactical.spawnEntity(this.getScript(), _targetTile.Coords.X, _targetTile.Coords.Y);
-		if (this.m.IsControlledByPlayer)
+		/*if (this.m.IsControlledByPlayer)
 		{
 			entity.setFaction(this.Const.Faction.Player);
-		} else {
+		} else*/ {
 			entity.setFaction(this.Const.Faction.PlayerAnimals);
 		}
 		entity.setItem(spawnItem);

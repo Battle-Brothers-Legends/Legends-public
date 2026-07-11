@@ -205,6 +205,9 @@ this.legend_zombie <- this.inherit("scripts/entity/tactical/enemies/zombie", {
 		}
 	}
 
+	function isPlayerControlled(){
+		return this.getFaction() == ::Const.Faction.PlayerAnimals && this.m.IsControlledByPlayer;
+	}
 
 	function onDeath( _killer, _skill, _tile, _fatalityType ) {
 		local appearance = this.getItems().getAppearance();

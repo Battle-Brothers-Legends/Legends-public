@@ -179,6 +179,10 @@ this.legend_skeleton <- this.inherit("scripts/entity/tactical/skeleton", {
 		}
 	}
 
+	function isPlayerControlled(){
+		return this.getFaction() == ::Const.Faction.PlayerAnimals && this.m.IsControlledByPlayer;
+	}
+
 	function onDeath( _killer, _skill, _tile, _fatalityType ) {		
 		local appearance = this.getItems().getAppearance();
 		local targetScale = 0.9;
