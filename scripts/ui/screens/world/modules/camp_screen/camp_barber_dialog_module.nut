@@ -72,12 +72,20 @@ this.camp_barber_dialog_module <- this.inherit("scripts/ui/screens/ui_module", {
 		return temp.getImagePath();
 	}
 
-	function getSpriteArray(bro, spriteArray, _gender, _ethnicity) {
+	function getSpriteArray(bro, spriteArray, _gender, _ethnicity, sprite = null) {
+		local standardArray = this.m.Standard[spriteArray][_gender][this.m.Standard[spriteArray][_gender].len() > 1 ? _ethnicity : 0];
+
+		if (sprite != null && sprite.HasBrush) {
+			if (standardArray.find(sprite.getBrush().Name) != null) {
+				return standardArray;
+			}
+		}
+
 		local facesArray = bro.getBackground().m[spriteArray];
 		if(facesArray != null && facesArray.len()!=0)
 			return facesArray;
-		local ethnicity = this.m.Standard[spriteArray][_gender].len() > 1 ? _ethnicity : 0;
-		return this.m.Standard[spriteArray][_gender][ethnicity];
+		
+		return standardArray;
 	}
 
 	function onUpdateAppearance(_data) {
@@ -156,7 +164,7 @@ this.camp_barber_dialog_module <- this.inherit("scripts/ui/screens/ui_module", {
 			}
 		} else if (_layerID == "body" || _layerID == "head") {
 			local sprite = temp.getSprite(_layerID);
-            local arr = this.getSpriteArray(bro, _layerID == "body" ? "Bodies" : "Faces", gender, ethnicity);
+            local arr = this.getSpriteArray(bro, _layerID == "body" ? "Bodies" : "Faces", gender, ethnicity, sprite);
             this.changeIndex(arr, sprite, _change);
 		} else if (_layerID == "hair" || _layerID == "beard") {
 			local sprite = temp.getSprite(_layerID);
