@@ -319,6 +319,7 @@ CharacterScreenProfessionModule.prototype.createProfessionUnlockDialogContent = 
 
 	var descriptionText = _profession.Tooltip.replace(/#135213/gi, "#1e861e"); // positive values
 	descriptionText = descriptionText.replace(/#8f1e1e/gi, "#a22424"); // negative values
+	descriptionText = descriptionText.split("\n")[0];
 
 	var parsedDescriptionText = XBBCODE.process({
 		text: descriptionText,

@@ -81,30 +81,33 @@
 
 /* Unlock Popup Dialog */
 .character-screen .ui-control.popup-dialog.unlock-profession-popup {
-    width: 60.0rem;
-    height: 30.0rem;
+    width: 40.0rem;
+    height: 25.0rem;
 
     background-image: url("coui://gfx/ui/skin/popup_background_600x300.png");
-    background-size: 60.0rem 30.0rem;
+    background-size: 40.0rem 25.0rem;
     background-repeat: no-repeat;
 }
 
 .character-screen .ui-control.popup-dialog .unlock-profession-popup-dialog-content-container {
-    top: -2.0rem;
-    width: 100%;
-    height: 17.7rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    top: -1.0rem;
+	width: 100%;
+    height: 12.0rem;
     padding-top: 0;
-    padding-left: 0.6rem;
-    padding-right: 0.6rem;
+	padding-left: 0.6rem;
+	padding-right: 0.6rem;
     position: relative;
-    float: left;
 }
 
 .character-screen .ui-control.popup-dialog .unlock-profession-popup-dialog-content-container .left-column {
-    width: 6.0rem;
-    height: 4.0rem;
+    width: 8.0rem;
+    height: 8.0rem;
     position: relative;
-    float: left;
+    flex-shrink: 0;
 }
 
 .character-screen .ui-control.popup-dialog .unlock-profession-popup-dialog-content-container .left-column img {
@@ -112,32 +115,33 @@
     left: 0;
     right: 0;
     bottom: 0;
-    width: 4.0rem;
-    height: 4.0rem;
+    width: 6.0rem;
+    height: 6.0rem;
     position: absolute;
     margin: auto;
 }
 
 .character-screen .ui-control.popup-dialog .unlock-profession-popup-dialog-content-container .right-column {
     position: relative;
-    float: none;
-
-    padding-right: 1.0rem;
-
-    overflow: hidden;
+    padding-left: 1.0rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .character-screen .ui-control.popup-dialog .unlock-profession-popup-dialog-content-container .right-column .name {
     width: 100%;
-    height: 3.6rem;
     position: relative;
-    float: left;
-
-    line-height: 4.4rem;
+    font-size: 2.4 rem;
+    line-height: normal;
+    margin-bottom: 0.5rem;
 }
 
 .character-screen .ui-control.popup-dialog .unlock-profession-popup-dialog-content-container .right-column .description {
     width: 100%;
     position: relative;
-    float: left;
+    font-size: 1.6rem;
+    line-height: 1.4;
+    margin-right: 0.6rem;
 }
