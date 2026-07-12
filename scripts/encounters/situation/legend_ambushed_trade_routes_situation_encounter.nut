@@ -16,9 +16,7 @@ this.legend_ambushed_trade_routes_situation_encounter <- this.inherit("scripts/e
             Options = [
                 {
                     Text = "And they say mercenaries are cutthroat.",
-                    function getResult(_event) {
-                        return 0;
-                    }
+	                getResult = @(_event) 0
                 }
             ],
             function start(_event) {}
@@ -31,6 +29,7 @@ this.legend_ambushed_trade_routes_situation_encounter <- this.inherit("scripts/e
 
         if (!_settlement.hasSituation("situation.ambushed_trade_routes"))
             return false;
+
         return !this.isOnCooldown();
     }
 })

@@ -22,13 +22,11 @@ this.legend_shuckster_encounter <- this.inherit("scripts/encounters/encounter", 
 			Options = [
 				{
 					Text = "Let's see if this buffoonery actually works.",
-					function getResult(_event) {
-						return ::Math.rand(1, 100) <= 10 ? "Rain" : "Drought";
-					}
+					getResult = @(_event) ::Math.rand(1, 100) <= 10 ? "Rain" : "Drought"
 				},
 				{
 					Text = "I can already see where this goes. Time to leave.",
-					getResult = @(_event)0
+					getResult = @(_event) 0
 				}
 			],
 
@@ -76,14 +74,12 @@ this.legend_shuckster_encounter <- this.inherit("scripts/encounters/encounter", 
 			Characters = [],
 			Options = [
 				{
-					Text = "After %them_dude%!",function getResult(_event) {
-						return ::Math.rand(1, 100) <= 75 ? "CompanyCatch" : "CompanyFail";
-					}
+					Text = "After %them_dude%!",
+					getResult = @(_event) ::Math.rand(1, 100) <= 75 ? "CompanyCatch" : "CompanyFail"
 				},
 				{
-					Text = "Let's see how the locals handle this.",function getResult(_event) {
-						return ::Math.rand(1, 100) <= 50 ? "LocalsCatch" : "LocalsFail";
-					}
+					Text = "Let's see how the locals handle this.",
+					getResult = @(_event) ::Math.rand(1, 100) <= 50 ? "LocalsCatch" : "LocalsFail"
 				},
 				{
 					Text = "Not our problem. Time to leave.",
@@ -116,7 +112,8 @@ this.legend_shuckster_encounter <- this.inherit("scripts/encounters/encounter", 
 			],
 
 			function start(_event) {
-				::Legends.S.getClosestSettlement().getFactionOfType(::Const.FactionType.Settlement).addPlayerRelation(::Const.World.Assets.RelationMinorOffense, "Blamed their woes during a drought on you");
+				::Legends.S.getClosestSettlement().getFactionOfType(::Const.FactionType.Settlement)
+					.addPlayerRelation(::Const.World.Assets.RelationMinorOffense, "Blamed their woes during a drought on you");
 			}
 		});
 		this.m.Screens.push({
@@ -128,9 +125,8 @@ this.legend_shuckster_encounter <- this.inherit("scripts/encounters/encounter", 
 			Characters = [],
 			Options = [
 				{
-					Text = "A harsh world.",function getResult(_event) {
-						return ::Math.rand(1, 100) <= 25 ? "LocalsCatchRain" : "LocalsCatchDrought";
-					}
+					Text = "A harsh world.",
+					getResult = @(_event) ::Math.rand(1, 100) <= 25 ? "LocalsCatchRain" : "LocalsCatchDrought"
 				}
 			],
 
@@ -146,7 +142,7 @@ this.legend_shuckster_encounter <- this.inherit("scripts/encounters/encounter", 
 			Options = [
 				{
 					Text = "Uncanny.",
-					getResult = @(_event)0
+					getResult = @(_event) 0
 				}
 			],
 
@@ -190,7 +186,7 @@ this.legend_shuckster_encounter <- this.inherit("scripts/encounters/encounter", 
 			Options = [
 				{
 					Text = "Let's get out of here.",
-					getResult = @(_event)0
+					getResult = @(_event) 0
 				}
 			],
 
@@ -208,11 +204,11 @@ this.legend_shuckster_encounter <- this.inherit("scripts/encounters/encounter", 
 			Options = [
 				{
 					Text = "Fall back! We're leaving!",
-					getResult = @(_event)"DroughtRetreat2"
+					getResult = @(_event) "DroughtRetreat2"
 				},
 				{
 					Text = "Let's give the rabble a lesson.",
-					getResult = @(_event)"DroughtFight"
+					getResult = @(_event) "DroughtFight"
 				}
 			],
 
@@ -228,7 +224,7 @@ this.legend_shuckster_encounter <- this.inherit("scripts/encounters/encounter", 
 			Options = [
 				{
 					Text = "I knew it would end up like this.",
-					getResult = @(_event)0
+					getResult = @(_event) 0
 				}
 			],
 
@@ -237,22 +233,22 @@ this.legend_shuckster_encounter <- this.inherit("scripts/encounters/encounter", 
 
 				//add light wounds and brawl injuries
 				foreach (bro in ::World.getPlayerRoster().getAll()) {
-					if (::Math.rand(1, 100) <= 33) {
-						bro.addLightInjury();
+					if (::Math.rand(1, 100) > 33)
+						continue;
+					bro.addLightInjury();
+					this.List.push({
+						id = 10,
+						icon = "ui/icons/days_wounded.png",
+						text = bro.getName() + " suffers light wounds"
+					});
+
+					if (::Math.rand(1, 100) <= 10) {
+						local injury = bro.addInjury(::Const.Injury.Brawl);
 						this.List.push({
 							id = 10,
-							icon = "ui/icons/days_wounded.png",
-							text = bro.getName() + " suffers light wounds"
+							icon = injury.getIcon(),
+							text = bro.getName() + " suffers " + injury.getNameOnly()
 						});
-
-						if (::Math.rand(1, 100) <= 10) {
-							local injury = bro.addInjury(::Const.Injury.Brawl);
-							this.List.push({
-								id = 10,
-								icon = injury.getIcon(),
-								text = bro.getName() + " suffers " + injury.getNameOnly()
-							});
-						}
 					}
 				}
 
@@ -278,11 +274,11 @@ this.legend_shuckster_encounter <- this.inherit("scripts/encounters/encounter", 
 			Options = [
 				{
 					Text = "Hand %them_dude% over to the peasants.",
-					getResult = @(_event)"SurrenderTheShuckster"
+					getResult = @(_event) "SurrenderTheShuckster"
 				},
 				{
 					Text = "Stand your ground. We're keeping %them_dude%.",
-					getResult = @(_event)"DefendTheShuckster"
+					getResult = @(_event) "DefendTheShuckster"
 				}
 			],
 
@@ -298,7 +294,7 @@ this.legend_shuckster_encounter <- this.inherit("scripts/encounters/encounter", 
 			Options = [
 				{
 					Text = "%They're_dude% gone.",
-					getResult = @(_event)0
+					getResult = @(_event) 0
 				}
 			],
 
@@ -313,9 +309,8 @@ this.legend_shuckster_encounter <- this.inherit("scripts/encounters/encounter", 
 			Characters = [],
 			Options = [
 				{
-					Text = "%They_dude% earned that.",function getResult(_event) {
-						return ::Math.rand(1, 100) <= 25 ? "LocalsCatchRain" : "SurrenderDrought";
-					}
+					Text = "%They_dude% earned that.",
+					getResult = @(_event) ::Math.rand(1, 100) <= 25 ? "LocalsCatchRain" : "SurrenderDrought"
 				}
 			],
 
@@ -334,7 +329,7 @@ this.legend_shuckster_encounter <- this.inherit("scripts/encounters/encounter", 
 			Options = [
 				{
 					Text = "Time to move on.",
-					getResult = @(_event)0
+					getResult = @(_event) 0
 				}
 			],
 
@@ -367,22 +362,22 @@ this.legend_shuckster_encounter <- this.inherit("scripts/encounters/encounter", 
 
 				//add light wounds and brawl injuries
 				foreach (bro in ::World.getPlayerRoster().getAll()) {
-					if (::Math.rand(1, 100) <= 33) {
-						bro.addLightInjury();
+					if (::Math.rand(1, 100) > 33)
+						continue;
+					bro.addLightInjury();
+					this.List.push({
+						id = 10,
+						icon = "ui/icons/days_wounded.png",
+						text = bro.getName() + " suffers light wounds"
+					});
+
+					if (::Math.rand(1, 100) <= 10) {
+						local injury = bro.addInjury(::Const.Injury.Brawl);
 						this.List.push({
 							id = 10,
-							icon = "ui/icons/days_wounded.png",
-							text = bro.getName() + " suffers light wounds"
+							icon = injury.getIcon(),
+							text = bro.getName() + " suffers " + injury.getNameOnly()
 						});
-
-						if (::Math.rand(1, 100) <= 10) {
-							local injury = bro.addInjury(::Const.Injury.Brawl);
-							this.List.push({
-								id = 10,
-								icon = injury.getIcon(),
-								text = bro.getName() + " suffers " + injury.getNameOnly()
-							});
-						}
 					}
 				}
 
@@ -408,7 +403,8 @@ this.legend_shuckster_encounter <- this.inherit("scripts/encounters/encounter", 
 			Characters = [],
 			Options = [
 				{
-					Text = "We'll see about that.",function getResult(_event) {
+					Text = "We'll see about that.",
+					function getResult(_event) {
 						::World.getPlayerRoster().add(_event.m.Dude);
 						::World.getTemporaryRoster().clear();
 						_event.m.Dude.onHired();
@@ -445,7 +441,8 @@ this.legend_shuckster_encounter <- this.inherit("scripts/encounters/encounter", 
 			Characters = [],
 			Options = [
 				{
-					Text = "What a curious day.",function getResult(_event) {
+					Text = "What a curious day.",
+					function getResult(_event) {
 						::World.getTemporaryRoster().clear();
 						_event.m.Dude = null;
 						return 0;
@@ -492,27 +489,25 @@ this.legend_shuckster_encounter <- this.inherit("scripts/encounters/encounter", 
     }
 
 	function isValid(_settlement) {
-		if (::World.Assets.getOrigin().getID() == "scenario.legend_risen_legion") {
+		if (::World.Assets.getOrigin().getID() == "scenario.legend_risen_legion")
 			return false;
-		}
 
-		if (_settlement.isSouthern()) {
+		if (_settlement.isSouthern())
 			return false;
-		}
 
-		if (!_settlement.hasSituation("situation.draught")) {
+		if (!_settlement.hasSituation("situation.draught"))
 			return false;
-		}
 
-		if (!::World.getTime().IsDaytime) {
+		if (::World.getPlayerRoster().getSize() >= ::World.Assets.getBrothersMax())
 			return false;
-		}
-
-		if (::World.getPlayerRoster().getSize() >= ::World.Assets.getBrothersMax()) {
-			return false;
-		}
 
 		return !this.isOnCooldown();
+	}
+
+	function isVisible() {
+		if (!::World.getTime().IsDaytime)
+			return false;
+		return true;
 	}
 
 	function onClear() {

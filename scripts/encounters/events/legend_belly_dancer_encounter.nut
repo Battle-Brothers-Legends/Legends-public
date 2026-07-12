@@ -1,18 +1,18 @@
 this.legend_belly_dancer_encounter <- this.inherit("scripts/encounters/encounter", {
-    m = {
+	m = {
 		Dude = null
-    },
-    function create() {
-	    this.encounter.create();
-	    this.m.Type = "encounter.legend_belly_dancer_encounter";
-        this.m.Name = ::Const.Strings.randomCityEncounterName();
+	},
+	function create() {
+		this.encounter.create();
+		this.m.Type = "encounter.legend_belly_dancer_encounter";
+		this.m.Name = ::Const.Strings.randomCityEncounterName();
 		this.m.Cooldown = 99999.0 * ::World.getTime().SecondsPerDay;
 	}
 
-    function createScreens() {
-        this.m.Screens.push({
+	function createScreens() {
+		this.m.Screens.push({
 			ID = "A",
-		 	Title = "A Dancing Woman",
+			Title = "A Dancing Woman",
 			Text = "[img]gfx/ui/events/event_163.png[/img]{A belly dancer magnetizes %settlement%\'s center plaza. Rhythmic movements on their own can coerce a beggar to donating a crown, but with the stage of the whole plaza it is enough to draw crowds and with it heaps of gold. Masked by green silk, nearly see through, and clothed in thin silks with the whole midriff exposed, the dancer is no doubt an expert in her field. She whirls, hips hypnotic, elbows bowed, hands clapping little cymbals, her feet tiptoeing as she spins a spot so tight there very well may be an invisible god above holding her in place as she razzles and dazzles.\n\n Someone throws an apple through the air and the dancer spins around and shoots a tiny dagger through it, plugging it dead center and dropping the fruit to the ground. Another apple soars in and this time a large saber is produced and slashes the stem off and she catches the rest and takes a bite. The crowd claps gently to this.}",
 			Image = "",
 			List = [],
@@ -20,25 +20,15 @@ this.legend_belly_dancer_encounter <- this.inherit("scripts/encounters/encounter
 			Options = [
 				{
 					Text = "Well done, have a crown.",
-					function getResult( _event )
-					{
-						return "B";
-					}
-
+					getResult = @(_event) "B"
 				},
 				{
 					Text = "Time to leave.",
-					function getResult( _event )
-					{
-						return 0;
-					}
-
+					getResult = @(_event) 0
 				}
 			],
-			function start( _event )
-			{
+			function start(_event) {
 			}
-
 		});
 		this.m.Screens.push({
 			ID = "B",
@@ -50,31 +40,20 @@ this.legend_belly_dancer_encounter <- this.inherit("scripts/encounters/encounter
 			Options = [
 				{
 					Text = "Maybe we can make use of this woman?",
-					function getResult( _event )
-					{
-						return "C";
-					}
-
+					getResult = @(_event) "C"
 				},
 				{
 					Text = "Time to leave.",
-					function getResult( _event )
-					{
-						return 0;
-					}
-
+					getResult = @(_event) 0
 				}
 			],
-			function start( _event )
-			{
+			function start(_event) {
 				this.World.Assets.addMoney(-1);
-				this.List = [
-					{
-						id = 10,
-						icon = "ui/icons/asset_money.png",
-						text = "You spend [color=" + this.Const.UI.Color.NegativeEventValue + "]1[/color] Crown"
-					}
-				];
+				this.List = [{
+					id = 10,
+					icon = "ui/icons/asset_money.png",
+					text = "You spend [color=" + this.Const.UI.Color.NegativeEventValue + "]1[/color] Crown"
+				}];
 			}
 
 		});
@@ -88,29 +67,22 @@ this.legend_belly_dancer_encounter <- this.inherit("scripts/encounters/encounter
 			Options = [
 				{
 					Text = "You\'ve talent with the blade like I\'ve never seen before.",
-					function getResult( _event )
-					{
-						return this.Math.rand(1, 100) <= 75 ? "E" : "D";
-					}
-
+					getResult = @(_event) ::Math.rand(1, 100) <= 75 ? "E" : "D"
 				},
 				{
 					Text = "I\'ll pay you 500 crowns right now if you join us.",
-					function getResult( _event )
-					{
-						return "F";
-					}
-
+					getResult = @(_event) "F"
 				}
 			],
-			function start( _event )
-			{
+			function start(_event) {
 				local roster = this.World.getTemporaryRoster();
 				_event.m.Dude = roster.create("scripts/entity/tactical/player");
 				_event.m.Dude.setStartValuesEx([::Legends.Background.BellyDancer]);
 				_event.m.Dude.getBackground().m.RawDescription = "You found %name% in " + ::Legends.S.getClosestSettlement().getName() + ", masked by green silk and drawing crowds with rhythmic movements and impressively precise fruit slicing. The latter skill is a boon to any mercenary company, and so you didn\'t hesitate to recruit them	.";
 				_event.m.Dude.getBackground().buildDescription(true);
+
 				local items = _event.m.Dude.getItems();
+
 				local armor = items.getItemAtSlot(::Const.ItemSlot.Body);
 				if (armor != null)
 					items.unequip(armor);
@@ -118,6 +90,7 @@ this.legend_belly_dancer_encounter <- this.inherit("scripts/encounters/encounter
 				armor.setVariant(4);
 				armor.setUpgrade(::new("scripts/items/legend_armor/plate/legend_armor_southern_arm_guards"));
 				items.equip(armor);
+
 				local helmet = items.getItemAtSlot(::Const.ItemSlot.Head);
 				if (helmet != null)
 					items.unequip(helmet);
@@ -130,7 +103,7 @@ this.legend_belly_dancer_encounter <- this.inherit("scripts/encounters/encounter
 			}
 
 
-    	});
+		});
 		this.m.Screens.push({
 			ID = "D",
 			Title = "The Dancing Woman",
@@ -141,10 +114,9 @@ this.legend_belly_dancer_encounter <- this.inherit("scripts/encounters/encounter
 			Options = [
 				{
 					Text = "Welcome to the company!",
-					function getResult( _event )
-					{
-						this.World.getPlayerRoster().add(_event.m.Dude);
-						this.World.getTemporaryRoster().clear();
+					function getResult(_event) {
+						::World.getPlayerRoster().add(_event.m.Dude);
+						::World.getTemporaryRoster().clear();
 						_event.m.Dude.onHired();
 						_event.m.Dude = null;
 						return 0;
@@ -152,8 +124,7 @@ this.legend_belly_dancer_encounter <- this.inherit("scripts/encounters/encounter
 
 				}
 			],
-			function start( _event )
-			{
+			function start(_event) {
 				this.Characters.push(_event.m.Dude.getImagePath());
 			}
 
@@ -168,17 +139,15 @@ this.legend_belly_dancer_encounter <- this.inherit("scripts/encounters/encounter
 			Options = [
 				{
 					Text = "I had to ask.",
-					function getResult( _event )
-					{
-						this.World.getTemporaryRoster().clear();
+					function getResult(_event) {
+						::World.getTemporaryRoster().clear();
 						_event.m.Dude = null;
 						return 0;
 					}
 
 				}
 			],
-			function start( _event )
-			{
+			function start(_event) {
 				this.Characters.push(_event.m.Dude.getImagePath());
 			}
 
@@ -193,10 +162,9 @@ this.legend_belly_dancer_encounter <- this.inherit("scripts/encounters/encounter
 			Options = [
 				{
 					Text = "Welcome to the company!",
-					function getResult( _event )
-					{
-						this.World.getPlayerRoster().add(_event.m.Dude);
-						this.World.getTemporaryRoster().clear();
+					function getResult(_event) {
+						::World.getPlayerRoster().add(_event.m.Dude);
+						::World.getTemporaryRoster().clear();
 						_event.m.Dude.onHired();
 						_event.m.Dude = null;
 						return 0;
@@ -204,42 +172,39 @@ this.legend_belly_dancer_encounter <- this.inherit("scripts/encounters/encounter
 
 				}
 			],
-			function start( _event )
-			{
+			function start(_event) {
 				this.Characters.push(_event.m.Dude.getImagePath());
-				this.World.Assets.addMoney(-500);
-				this.List = [
-					{
-						id = 10,
-						icon = "ui/icons/asset_money.png",
-						text = "You spend [color=" + this.Const.UI.Color.PositiveEventValue + "]500[/color] Crowns"
-					}
-				];
+				::World.Assets.addMoney(-500);
+				this.List = [{
+					id = 10,
+					icon = "ui/icons/asset_money.png",
+					text = "You spend [color=" + this.Const.UI.Color.PositiveEventValue + "]500[/color] Crowns"
+				}];
 			}
 		});
-    }
+	}
 
-    function isValid(_settlement) {
-	    if (::World.Assets.getOrigin().getID() == "scenario.legend_risen_legion")
-		    return false;
+	function isValid(_settlement) {
+		if (::World.Assets.getOrigin().getID() == "scenario.legend_risen_legion")
+			return false;
 
-	    if (!_settlement.isSouthern())
-		    return false;
+		if (!_settlement.isSouthern())
+			return false;
 
-	    if (::World.Assets.getBusinessReputation() < 1050)
-		    return false;
+		if (::World.Assets.getBusinessReputation() < 1050)
+			return false;
 
 		if (!::World.getTime().IsDaytime)
 			return false;
 
-        if (::World.getPlayerRoster().getSize() >= ::World.Assets.getBrothersMax())
+		if (::World.getPlayerRoster().getSize() >= ::World.Assets.getBrothersMax())
 			return false;
 
 		if (::World.Assets.getMoney() < 750)
 			return false;
 
-	    return !this.isOnCooldown();
-    }
+		return !this.isOnCooldown();
+	}
 
 	function onClear() {
 		this.m.Dude = null;

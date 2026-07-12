@@ -18,9 +18,7 @@ this.legend_greenskins_situation_encounter <- this.inherit("scripts/encounters/e
             Options = [
                 {
                     Text = "Damn.",
-                    function getResult(_event) {
-                        return 0;
-                    }
+                    getResult = @(_event) 0
                 }
             ],
             function start(_event) {}

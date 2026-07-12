@@ -18,9 +18,7 @@ this.legend_disbanded_troops_situation_encounter <- this.inherit("scripts/encoun
             Options = [
                 {
                     Text = "One man\'s refuse is another\'s treasure.",
-                    function getResult(_event) {
-                        return 0;
-                    }
+	                getResult = @(_event) 0
                 }
             ],
             function start(_event) {}
