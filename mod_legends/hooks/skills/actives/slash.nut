@@ -59,27 +59,38 @@
 
 	local onUse = o.onUse;
 	o.onUse = function( _user, _targetTile ) {
-		local ret = onUse(_user, _targetTile);
-		if (ret)
-			return ret;
+		if(!this.m.IsShamshirSlash) {
+			return onUse(_user, _targetTile);
+		} else {
+			local ret = onUse(_user, _targetTile);
+			if (ret) {
+				return ret;
+			}
+			local target = _targetTile.getEntity();
+			if (::Legends.S.isEntityNullOrDead(target)) {
+				return ret;
+			}
 
-		this.m.IsExecutingSecondAttack = true;
-		if (this.Tactical.TurnSequenceBar.getActiveEntity().getID() == _user.getID() && (!_user.isHiddenToPlayer() || _targetTile.IsVisibleForPlayer)) {
-			this.m.IsDoingAttackMove = false;
-			this.getContainer().setBusy(true);
-			this.Time.scheduleEvent(this.TimeUnit.Virtual, 100, function ( _skill ) {
-				if (target.isAlive()) {
-					_skill.attackEntity(_user, target);
-					_skill.m.IsDoingAttackMove = true;
+			
+			this.m.IsExecutingSecondAttack = true;
+			if (::Tactical.TurnSequenceBar.getActiveEntity().getID() == _user.getID() && (!_user.isHiddenToPlayer() || _targetTile.IsVisibleForPlayer))	{
+				this.m.IsDoingAttackMove = false;
+				this.getContainer().setBusy(true);
+				::Time.scheduleEvent(::TimeUnit.Virtual, 100, function (_skill) {
+					if (!::Legends.S.isEntityNullOrDead(target) && _skill.getContainer() != null) {
+						_skill.attackEntity(_user, target);
+						_skill.m.IsDoingAttackMove = true;
+						this.getContainer().setBusy(false);
+						this.m.IsExecutingSecondAttack = false;
+					}
+				}.bindenv(this), this);
+				return true;
+			} else {
+				if (::Legends.S.isEntityNullOrDead(target)) {
+					return this.attackEntity(_user, target) || ret;
 				}
-			}.bindenv(this), this);
-			this.m.IsExecutingSecondAttack = false;
-			return true;
+			}
 		}
-		else {
-			return this.attackEntity(_user, target) || ret;
-		}
-
 	}
 
 	o.onAfterUpdate = function( _properties ) {
