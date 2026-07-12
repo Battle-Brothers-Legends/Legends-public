@@ -19,7 +19,7 @@ this.legend_wolf_blueprint <- this.inherit("scripts/crafting/blueprint", {
 			}
 		];
 		this.init(ingredients);
-		this.m.PreviewComponents[0].Instance.m.Name = "Wolf"
+		this.m.PreviewComponents[0].Instance.m.Name = "Wolf";
 		this.initSkills([::Legends.Professions.new(::Legends.Profession.LegendDogBreeder)]);
 	}
 
@@ -28,5 +28,4 @@ this.legend_wolf_blueprint <- this.inherit("scripts/crafting/blueprint", {
 		_stash.add(this.new("scripts/items/accessory/legend_wolf_item"));
 		_stash.add(this.new("scripts/items/accessory/legend_wolf_item"));
 	}
-
 });

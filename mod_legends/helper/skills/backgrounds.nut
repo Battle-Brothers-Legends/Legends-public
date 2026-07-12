@@ -8,19 +8,19 @@ if (!("Backgrounds" in ::Legends)) {
 		throw "_target == null";
 	}
 	if (::MSU.isKindOf(_target, "skill")) {
-		return _target.getContainer();
+		return _target.getContainer().getActor();
 	}
 	if (::MSU.isKindOf(_target, "skill_container")) {
-		return _target;
+		return _target.getActor();
 	}
 	if (::MSU.isKindOf(_target, "actor")) {
-		return _target.getSkills();
+		return _target;
 	}
 	if (::MSU.isKindOf(_target, "character_background")) {
-		return _target.getContainer();
+		return _target.getContainer().getActor();
 	}
 	if (::MSU.isKindOf(_target, "item")) {
-		return ::Legends.Backgrounds.getContainer(_target.getContainer().getActor());
+		return _target.getContainer().getActor();
 	}
 	::logError("Unsupported _target class " + _onError);
 	throw "Unsupported _target class";
@@ -94,7 +94,7 @@ if (!("Backgrounds" in ::Legends)) {
 	return ::Legends.Backgrounds.BackgroundDefObjects[_def].Name;
 }
 
-::Legends.Backgrounds.has <- function (_target, ...) {
+::Legends.Backgrounds.has <- function (_target, _def) {
 	local container = ::Legends.Backgrounds.getContainer(_target, "on has");
 	if (container.getBackground() == null)
 		return false;
