@@ -1,36 +1,32 @@
 this.legend_wolf_blueprint <- this.inherit("scripts/crafting/blueprint", {
 	m = {},
-	function create()
-	{
+
+	function create() {
 		this.blueprint.create();
 		this.m.ID = "blueprint.legend_wolf";
 		this.m.Type = this.Const.Items.ItemType.Accessory;
 		this.m.PreviewCraftable = this.new("scripts/items/accessory/legend_wolf_item");
+		this.m.PreviewCraftable.m.Name = "Wolf";
 		this.m.Cost = 120;
 		local ingredients = [
 			{
 				Script = "scripts/items/accessory/legend_wolf_item",
 				Num = 2
 			},
-
 			{
 				Script = "scripts/items/supplies/legend_fresh_meat_item",
 				Num = 2
 			}
 		];
 		this.init(ingredients);
-		local skills = [
-			::Legends.Perks.new(::Legends.Perk.LegendDogBreeder)
-		];
-		this.initSkills(skills);
+		this.m.PreviewComponents[0].Instance.m.Name = "Wolf"
+		this.initSkills([::Legends.Professions.new(::Legends.Profession.LegendDogBreeder)]);
 	}
 
-	function onCraft( _stash )
-	{
+	function onCraft(_stash) {
 		_stash.add(this.new("scripts/items/accessory/legend_wolf_item"));
 		_stash.add(this.new("scripts/items/accessory/legend_wolf_item"));
 		_stash.add(this.new("scripts/items/accessory/legend_wolf_item"));
 	}
 
 });
-

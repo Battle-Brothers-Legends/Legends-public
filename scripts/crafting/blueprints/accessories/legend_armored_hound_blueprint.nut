@@ -6,6 +6,7 @@ this.legend_armored_hound_blueprint <- this.inherit("scripts/crafting/blueprint"
 		this.m.ID = "blueprint.legend_armored_hound";
 		this.m.Type = this.Const.Items.ItemType.Accessory;
 		this.m.PreviewCraftable = this.new("scripts/items/accessory/legend_warhound_item");
+		this.m.PreviewCraftable.m.Name = "Warhound";
 		this.m.Cost = 120;
 		local ingredients = [
 			{
@@ -18,10 +19,8 @@ this.legend_armored_hound_blueprint <- this.inherit("scripts/crafting/blueprint"
 			}
 		];
 		this.init(ingredients);
-		local skills = [
-			::Legends.Perks.new(::Legends.Perk.LegendDogBreeder)
-		];
-		this.initSkills(skills);
+		this.m.PreviewComponents[0].Instance.m.Name = "Armored Warhound";
+		this.initSkills([::Legends.Professions.new(::Legends.Profession.LegendDogBreeder)]);
 	}
 
 	function onCraft( _stash )
