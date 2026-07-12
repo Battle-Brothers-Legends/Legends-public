@@ -85,6 +85,13 @@
 		}
 	}
 
+	o.initSkillsOneOf <- function (_skills) {
+		this.m.PreviewSkills.push({
+			Instances = _skills
+		});
+	}
+
+
 	o.requirementsMet <- function ( _ids )
 	{
 		local roster = this.World.getPlayerRoster().getAll();
@@ -242,51 +249,47 @@
 		return ret;
 	}
 
-	o.getIngredients = function ()
-	{
+	o.getIngredients = function () {
 		local ret = [];
 		local itemsMap = {};
 
-		foreach( item in this.World.Assets.getStash().getItems() )
-		{
-			if (item == null)
-			{
+		foreach (item in ::World.Assets.getStash().getItems()) {
+			if (item == null) {
 				continue;
 			}
 
-			if (!(item.getID() in itemsMap))
-			{
+			if (!(item.getID() in itemsMap)) {
 				itemsMap[item.getID()] <- 0;
 			}
-			if ("Uses" in item.m) itemsMap[item.getID()] = itemsMap[item.getID()] + item.m.Uses;
-			else itemsMap[item.getID()] = itemsMap[item.getID()] + 1;
+			if ("Uses" in item.m) {
+				itemsMap[item.getID()] = itemsMap[item.getID()] + item.m.Uses;
+			} else {
+				itemsMap[item.getID()] = itemsMap[item.getID()] + 1;
+			}
 		}
 
-		foreach( c in this.m.PreviewSkills )
-		{
-			foreach( s in c.Instances )
-			{
+		foreach (c in this.m.PreviewSkills) {
+			local groupIDs = [];
+			foreach (s in c.Instances) {
+				groupIDs.push(s.getID());
+			}
+			foreach( s in c.Instances )	{
 				ret.push({
 					InstanceID = s.getID(),
 					ImagePath = s.getIconColored(),
-					IsMissing = !this.requirementsMet([
-						s.getID()
-					]),
+					IsMissing = !this.requirementsMet(groupIDs),
 					IsSkill = 1
 				});
 			}
 		}
 
-		foreach( i, c in this.m.PreviewComponents )
-		{
+		foreach (i, c in this.m.PreviewComponents) {
 			local num = 0;
 
-			if (c.Instance == null)
-			{
+			if (c.Instance == null) {
 				local name = "";
 
-				if (c.Name != null)
-				{
+				if (c.Name != null) {
 					name = c.Name;
 				}
 
@@ -294,8 +297,7 @@
 				continue;
 			}
 
-			if (c.Instance.getID() in itemsMap)
-			{
+			if (c.Instance.getID() in itemsMap) {
 				num = itemsMap[c.Instance.getID()];
 			}
 
