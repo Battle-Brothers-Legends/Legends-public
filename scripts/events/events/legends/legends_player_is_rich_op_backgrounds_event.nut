@@ -212,7 +212,7 @@ this.legends_player_is_rich_op_backgrounds_event <- this.inherit("scripts/events
 		local brothers = this.World.getPlayerRoster().getAll();
 		local candidate_opbackground = [];
 		local candidate_rest = [];
-		local thetrader;
+		local thetrader = null;
 
 		foreach( bro in brothers )
 		{
@@ -226,7 +226,7 @@ this.legends_player_is_rich_op_backgrounds_event <- this.inherit("scripts/events
 			{
 
 				case "background.legend_commander_trader":
-					thetrader.push(bro);
+					thetrader = bro;
 					break;
 				case "background.assassin":
 				case "background.legend_crusader":
