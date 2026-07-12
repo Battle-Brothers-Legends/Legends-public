@@ -4,7 +4,7 @@ this.large_quiver_of_broad_bolts_blueprint <- this.inherit("scripts/crafting/blu
 	{
 		this.blueprint.create();
 		this.m.ID = "blueprint.large_quiver_of_broad_bolts";
-		this.m.Type = this.Const.Items.ItemType.Accessory;
+		this.m.Type = this.Const.Items.ItemType.Ammo;
 		this.m.PreviewCraftable = this.new("scripts/items/ammo/legend_large_broad_head_bolts");
 		this.m.Cost = 250;
 		local ingredients = [
@@ -14,10 +14,7 @@ this.large_quiver_of_broad_bolts_blueprint <- this.inherit("scripts/crafting/blu
 			}
 		];
 		this.init(ingredients);
-		local skills = [
-			::Legends.Backgrounds.new(::Legends.Background.Bowyer)
-		];
-		this.initSkills(skills);
+		this.initSkills([::Legends.Professions.new(::Legends.Profession.LegendWoodworking)]);
 	}
 
 	function onCraft( _stash )

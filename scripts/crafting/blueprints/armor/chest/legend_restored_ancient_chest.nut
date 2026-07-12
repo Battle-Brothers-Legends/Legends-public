@@ -1,7 +1,7 @@
 this.legend_restored_ancient_chest <- this.inherit("scripts/crafting/blueprint", {
 	m = {},
-	function create()
-	{
+
+	function create() {
 		this.blueprint.create();
 		this.m.ID = "blueprint.legend_restored_ancient_chest";
 		this.m.Type = this.Const.Items.ItemType.Armor;
@@ -14,22 +14,18 @@ this.legend_restored_ancient_chest <- this.inherit("scripts/crafting/blueprint",
 			}
 		];
 		this.init(ingredients);
+		this.initSkills([::Legends.Professions.new(::Legends.Profession.LegendMetalworking)]);
 	}
 
-	function isQualified()
-	{
+	function isQualified() {
 		return this.blueprint.isQualified();
 	}
 
-	function onCraft( _stash )
-	{
+	function onCraft(_stash) {
 
 		local item = this.new("scripts/items/legend_armor/plate/legend_armor_plate_ancient_chest_restored");
-
 
 		item.m.Name = ""; //?
 		_stash.add(item);
 	}
-
 });
-

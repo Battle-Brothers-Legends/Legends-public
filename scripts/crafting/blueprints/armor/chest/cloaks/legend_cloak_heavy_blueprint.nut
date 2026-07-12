@@ -3,8 +3,8 @@ this.legend_cloak_heavy_blueprint <- this.inherit("scripts/crafting/blueprint", 
 		Variants = 0,
 		Variant = 1
 	},
-	function create()
-	{
+
+	function create() {
 		this.blueprint.create();
 		this.m.ID = "blueprint.legend_cloak_heavy_blueprint";
 		this.m.Type = this.Const.Items.ItemType.Armor;
@@ -27,22 +27,16 @@ this.legend_cloak_heavy_blueprint <- this.inherit("scripts/crafting/blueprint", 
 			}
 		];
 		this.init(ingredients);
-		local skills = [
-			::Legends.Backgrounds.new(::Legends.Background.Tailor)
-		];
-		this.initSkills(skills);
+		this.initSkills([::Legends.Professions.new(::Legends.Profession.LegendTailoring)]);
 	}
 
-	function onCraft( _stash )
-	{
+	function onCraft(_stash) {
 		local item = this.new("scripts/items/legend_armor/cloak/legend_armor_cloak_heavy");
-		item.setVariant(item.m.Variants[this.m.Variant-1]);
+		item.setVariant(item.m.Variants[this.m.Variant - 1]);
 		_stash.add(item);
 	}
 
-	function setVariant( _variant )
-	{
+	function setVariant(_variant) {
 		this.m.Variant = _variant;
 	}
 });
-

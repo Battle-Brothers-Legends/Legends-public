@@ -20,10 +20,7 @@ this.legend_greenwood_schrat_shield_blueprint <- this.inherit("scripts/crafting/
 			}
 		];
 		this.init(ingredients);
-		local skills = [
-			::Legends.Perks.new(::Legends.Perk.LegendWoodworking)
-		];
-		this.initSkills(skills);
+		this.initSkills([::Legends.Professions.new(::Legends.Profession.LegendWoodworking)]);
 	}
 
 

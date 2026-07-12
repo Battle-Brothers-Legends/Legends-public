@@ -1,5 +1,4 @@
 local alchemyBlueprints = [
-	"acid_flask_blueprint",
 	"antidote_blueprint",
 	"cat_potion_blueprint",
 	"iron_will_potion_blueprint",
@@ -35,7 +34,7 @@ foreach (blueprint in bombBlueprints) {
 		local create = o.create;
 		o.create = function () {
 			create();
-			this.m.Type = this.Const.Items.ItemType.Usable;
+			this.m.Type = this.Const.Items.ItemType.Ammo;
 			this.initSkills([
 				::Legends.Professions.new(::Legends.Profession.LegendSapper)
 			]);
@@ -68,7 +67,7 @@ for (local i = 1; i <= 14; i = ++i) {
 		local create = o.create;
 		o.create = function () {
 			create();
-			this.m.Type = this.Const.Items.ItemType.Usable;
+			this.m.Type = this.Const.Items.ItemType.Misc;
 			this.initSkills([
 				::Legends.Professions.new(::Legends.Profession.LegendCharlatan)
 			]);
@@ -88,6 +87,16 @@ for (local i = 1; i <= 14; i = ++i) {
 	local create = o.create;
 	o.create = function () {
 		create();
-		this.m.Type = this.Const.Items.ItemType.Usable;
+		this.m.Type = this.Const.Items.ItemType.Ammo;
+		this.initSkills([::Legends.Professions.new(::Legends.Profession.LegendTailoring)]);
+	}
+});
+
+::mods_hookExactClass("crafting/blueprints/acid_flask_blueprint", function (o) {
+	local create = o.create;
+	o.create = function () {
+		create();
+		this.m.Type = this.Const.Items.ItemType.Ammo;
+		this.initSkills([::Legends.Professions.new(::Legends.Profession.LegendAlchemy)]);
 	}
 });

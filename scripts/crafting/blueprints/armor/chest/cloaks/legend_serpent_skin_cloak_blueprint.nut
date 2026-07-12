@@ -19,6 +19,7 @@ this.legend_serpent_skin_cloak_blueprint <- this.inherit("scripts/crafting/bluep
 			}
 		];
 		this.init(ingredients);
+		this.initSkills([::Legends.Professions.new(::Legends.Profession.LegendLeatherworking)]);
 	}
 
 	function onCraft( _stash )

@@ -8,7 +8,8 @@
 		preview.resetStats();
 		this.m.PreviewCraftable = preview;
 		this.m.Cost = 1100;
-		this.m.Type = this.Const.Items.ItemType.Shield;
+		this.m.Type = this.Const.Items.ItemType.Armor;
+		this.initSkills([::Legends.Professions.new(::Legends.Profession.LegendMetalworking)]);
 	}
 
 	o.onCraft = function ( _stash )

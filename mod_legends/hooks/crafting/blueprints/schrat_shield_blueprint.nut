@@ -9,10 +9,7 @@
 		this.m.PreviewCraftable = preview;
 		this.m.Cost = 650;
 		this.m.Type = this.Const.Items.ItemType.Shield;
-		local skills = [
-			::Legends.Perks.new(::Legends.Perk.LegendWoodworking)
-		];
-		this.initSkills(skills);
+		this.initSkills([::Legends.Professions.new(::Legends.Profession.LegendWoodworking)]);
 	}
 
 	o.onCraft <- function ( _stash )

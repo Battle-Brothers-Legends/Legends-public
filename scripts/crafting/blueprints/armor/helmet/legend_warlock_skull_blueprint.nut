@@ -1,7 +1,7 @@
 this.legend_warlock_skull_blueprint <- this.inherit("scripts/crafting/legend_warlock_blueprint", {
 	m = {},
-	function create()
-	{
+
+	function create() {
 		this.legend_warlock_blueprint.create();
 		this.m.ID = "blueprint.legend_warlock_skull";
 		this.m.Type = this.Const.Items.ItemType.Armor;
@@ -24,23 +24,17 @@ this.legend_warlock_skull_blueprint <- this.inherit("scripts/crafting/legend_war
 			}
 		];
 		this.init(ingredients);
-		local skills = [
-			::Legends.Backgrounds.new(::Legends.Background.Tailor)
-		];
-		this.initSkills(skills);
+		this.initSkills([::Legends.Professions.new(::Legends.Profession.LegendMetalworking)]);
 	}
 
-	function isQualified()
-	{
+	function isQualified() {
 		return this.blueprint.isQualified();
 	}
 
-	function onCraft( _stash )
-	{
+	function onCraft(_stash) {
 		local item = this.new("scripts/items/legend_helmets/named/legend_named_warlock_skull");
 		item.setVariant(this.m.PreviewCraftable.m.Variant);
 		_stash.add(item);
 	}
 
 });
-

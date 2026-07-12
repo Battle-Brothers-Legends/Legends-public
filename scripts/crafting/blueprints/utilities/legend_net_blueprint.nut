@@ -1,7 +1,7 @@
 this.legend_net_blueprint <- this.inherit("scripts/crafting/blueprint", {
 	m = {},
-	function create()
-	{
+
+	function create() {
 		this.blueprint.create();
 		this.m.ID = "blueprint.legend_net_blueprint";
 		this.m.Type = this.Const.Items.ItemType.Weapon;
@@ -14,17 +14,12 @@ this.legend_net_blueprint <- this.inherit("scripts/crafting/blueprint", {
 			}
 		];
 		this.init(ingredients);
-		local skills = [
-			::Legends.Perks.new(::Legends.Perk.LegendNetRepair)
-		];
-		this.initSkills(skills);
+		this.initSkills([::Legends.Professions.new(::Legends.Profession.LegendTailoring)]);
 	}
 
-	function onCraft( _stash )
-	{
+	function onCraft(_stash) {
 		_stash.add(this.new("scripts/items/tools/throwing_net"));
 		_stash.add(this.new("scripts/items/tools/throwing_net"));
 	}
 
 });
-

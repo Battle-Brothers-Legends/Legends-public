@@ -1,7 +1,7 @@
 this.legend_mountain_armor_blueprint <- this.inherit("scripts/crafting/blueprint", {
 	m = {},
-	function create()
-	{
+
+	function create() {
 		this.blueprint.create();
 		this.m.ID = "blueprint.legend_mountain_armor";
 		this.m.Type = this.Const.Items.ItemType.Armor;
@@ -27,18 +27,16 @@ this.legend_mountain_armor_blueprint <- this.inherit("scripts/crafting/blueprint
 				Num = 1
 			}
 		];
-
 		this.init(ingredients);
+		this.initSkills([::Legends.Professions.new(::Legends.Profession.LegendMetalworking)]);
 	}
 
-	function isQualified()
-	{
+	function isQualified() {
 		return this.blueprint.isQualified();
 	}
 
-	function onCraft( _stash )	{
+	function onCraft(_stash) {
 		_stash.add(::new("scripts/items/legend_armor/legendary/legend_armor_mountain_named"));
 	}
 
 });
-

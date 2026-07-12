@@ -1,10 +1,10 @@
 this.legend_bandage_blueprint <- this.inherit("scripts/crafting/blueprint", {
 	m = {},
-	function create()
-	{
+
+	function create() {
 		this.blueprint.create();
 		this.m.ID = "blueprint.legend_bandage_blueprint";
-		this.m.Type = this.Const.Items.ItemType.Accessory;
+		this.m.Type = this.Const.Items.ItemType.Usable;
 		this.m.PreviewCraftable = this.new("scripts/items/accessory/bandage_item");
 		this.m.Cost = 10;
 		local ingredients = [
@@ -18,14 +18,10 @@ this.legend_bandage_blueprint <- this.inherit("scripts/crafting/blueprint", {
 			}
 		];
 		this.init(ingredients);
-		local skills = [
-			::Legends.Perks.new(::Legends.Perk.LegendMedIngredients)
-		];
-		this.initSkills(skills);
+		this.initSkills([::Legends.Professions.new(::Legends.Profession.LegendHerbcraft)]);
 	}
 
-	function onCraft( _stash )
-	{
+	function onCraft(_stash) {
 		_stash.add(this.new("scripts/items/accessory/bandage_item"));
 		_stash.add(this.new("scripts/items/accessory/bandage_item"));
 		_stash.add(this.new("scripts/items/accessory/bandage_item"));
@@ -37,4 +33,3 @@ this.legend_bandage_blueprint <- this.inherit("scripts/crafting/blueprint", {
 	}
 
 });
-

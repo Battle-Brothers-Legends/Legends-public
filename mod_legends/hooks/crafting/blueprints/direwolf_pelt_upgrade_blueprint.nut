@@ -6,6 +6,7 @@
 		create();
 		this.m.Type = this.Const.Items.ItemType.Armor;
 		this.m.PreviewCraftable = this.new("scripts/items/legend_armor/cloak/legend_direwolf_pelt_cloak");
+		this.initSkills([::Legends.Professions.new(::Legends.Profession.LegendLeatherworking)]);
 	}
 
 	o.onCraft = function ( _stash )

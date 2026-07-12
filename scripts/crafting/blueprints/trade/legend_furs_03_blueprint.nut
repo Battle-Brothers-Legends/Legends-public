@@ -1,10 +1,10 @@
 this.legend_furs_03_blueprint <- this.inherit("scripts/crafting/blueprint", {
 	m = {},
-	function create()
-	{
+
+	function create() {
 		this.blueprint.create();
 		this.m.ID = "blueprint.legend_furs_03";
-		this.m.Type = this.Const.Items.ItemType.Usable;
+		this.m.Type = this.Const.Items.ItemType.Misc;
 		this.m.PreviewCraftable = this.new("scripts/items/trade/furs_item");
 		this.m.Cost = 150;
 		local ingredients = [
@@ -18,16 +18,11 @@ this.legend_furs_03_blueprint <- this.inherit("scripts/crafting/blueprint", {
 			}
 		];
 		this.init(ingredients);
-		local skills = [
-			::Legends.Backgrounds.new(::Legends.Background.LegendTaxidermist)
-		];
-		this.initSkills(skills);
+		this.initSkills([::Legends.Professions.new(::Legends.Profession.LegendLeatherworking)]);
 	}
 
-	function onCraft( _stash )
-	{
+	function onCraft(_stash) {
 		_stash.add(this.new("scripts/items/trade/furs_item"));
 	}
 
 });
-

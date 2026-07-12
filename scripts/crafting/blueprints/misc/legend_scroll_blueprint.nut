@@ -17,10 +17,7 @@ this.legend_scroll_blueprint <- this.inherit("scripts/crafting/blueprint", {
 			}
 		];
 		this.init(ingredients);
-		local skills = [
-			::Legends.Perks.new(::Legends.Perk.LegendScrollIngredients)
-		];
-		this.initSkills(skills);
+		this.initSkills([::Legends.Professions.new(::Legends.Profession.LegendInterpretation)]);
 	}
 
 	function onCraft( _stash ) {

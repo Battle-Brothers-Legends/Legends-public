@@ -1,7 +1,7 @@
 this.legend_lindwurm_scale_armor_blueprint <- this.inherit("scripts/crafting/blueprint", {
 	m = {},
-	function create()
-	{
+
+	function create() {
 		this.blueprint.create();
 		this.m.ID = "blueprint.legend_lindwurm_scale_armor";
 		this.m.Type = this.Const.Items.ItemType.Armor;
@@ -18,21 +18,17 @@ this.legend_lindwurm_scale_armor_blueprint <- this.inherit("scripts/crafting/blu
 				Script = "scripts/items/misc/legend_masterwork_metal",
 				Num = 1
 			}
-
 		];
-
 		this.init(ingredients);
+		this.initSkills([::Legends.Professions.new(::Legends.Profession.LegendLeatherworking)]);
 	}
 
-	function isQualified()
-	{
+	function isQualified() {
 		return this.blueprint.isQualified();
 	}
 
-	function onCraft( _stash )
-	{
+	function onCraft(_stash) {
 		_stash.add(this.new("scripts/items/legend_armor/named/legend_lindwurm_scale_armor"));
 	}
 
 });
-

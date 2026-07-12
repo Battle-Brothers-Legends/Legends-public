@@ -18,6 +18,7 @@ this.legend_pauldrons_kraken_blueprint <- this.inherit("scripts/crafting/bluepri
 			}
 		];
 		this.init(ingredients);
+		this.initSkills([::Legends.Professions.new(::Legends.Profession.LegendMetalworking)]);
 	}
 
 	function onCraft(_stash) {

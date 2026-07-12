@@ -1,7 +1,7 @@
 this.legend_warlock_cloak_blueprint <- this.inherit("scripts/crafting/legend_warlock_blueprint", {
 	m = {},
-	function create()
-	{
+
+	function create() {
 		this.legend_warlock_blueprint.create();
 		this.m.ID = "blueprint.legend_warlock_cloak";
 		this.m.Type = this.Const.Items.ItemType.Armor;
@@ -29,23 +29,17 @@ this.legend_warlock_cloak_blueprint <- this.inherit("scripts/crafting/legend_war
 			LegendsArmor = true
 		});
 		this.init(ingredients);
-		local skills = [
-			::Legends.Backgrounds.new(::Legends.Background.Tailor)
-		];
-		this.initSkills(skills);
+		this.initSkills([::Legends.Professions.new(::Legends.Profession.LegendTailoring)]);
 	}
 
-	function isQualified()
-	{
+	function isQualified() {
 		return this.blueprint.isQualified();
 	}
 
-	function onCraft( _stash )
-	{
+	function onCraft(_stash) {
 		local item = ::new("scripts/items/legend_armor/legendary/legend_armor_named_warlock_cloak");
 		item.m.Name = "";
 		_stash.add(item);
 	}
 
 });
-

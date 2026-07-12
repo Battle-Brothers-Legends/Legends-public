@@ -1,7 +1,7 @@
 this.legend_restored_ancient_helm_01 <- this.inherit("scripts/crafting/blueprint", {
 	m = {},
-	function create()
-	{
+
+	function create() {
 		this.blueprint.create();
 		this.m.ID = "blueprint.legend_restored_ancient_helm_01";
 		this.m.Type = this.Const.Items.ItemType.Helmet;
@@ -25,17 +25,15 @@ this.legend_restored_ancient_helm_01 <- this.inherit("scripts/crafting/blueprint
 			}
 		];
 		this.init(ingredients);
+		this.initSkills([::Legends.Professions.new(::Legends.Profession.LegendMetalworking)]);
 	}
 
-	function isQualified()
-	{
+	function isQualified() {
 		return this.blueprint.isQualified();
 	}
 
-	function onCraft( _stash )
-	{
+	function onCraft(_stash) {
 		_stash.add(this.new("scripts/items/legend_helmets/helm/legend_helmet_ancient_legionary_helm_restored"));
 	}
 
 });
-

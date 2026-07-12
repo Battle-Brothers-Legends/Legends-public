@@ -1,7 +1,7 @@
 this.legend_lindwurm_helmet_blueprint <- this.inherit("scripts/crafting/blueprint", {
 	m = {},
-	function create()
-	{
+
+	function create() {
 		this.blueprint.create();
 		this.m.ID = "blueprint.legend_lindwurm_helmet";
 		this.m.Type = this.Const.Items.ItemType.Armor;
@@ -18,20 +18,16 @@ this.legend_lindwurm_helmet_blueprint <- this.inherit("scripts/crafting/blueprin
 				Script = "scripts/items/misc/legend_masterwork_fabric",
 				Num = 1
 			}
-
 		];
-
 		this.init(ingredients);
+		this.initSkills([::Legends.Professions.new(::Legends.Profession.LegendMetalworking)]);
 	}
 
-	function isQualified()
-	{
+	function isQualified() {
 		return this.blueprint.isQualified();
 	}
 
-	function onCraft( _stash )
-	{
+	function onCraft(_stash) {
 		_stash.add(this.new("scripts/items/legend_helmets/named/legend_named_lindwurm_helmet"));
 	}
-
 });

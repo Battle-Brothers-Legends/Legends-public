@@ -1,7 +1,7 @@
 this.legend_demon_banshee_trophy_blueprint <- this.inherit("scripts/crafting/blueprint", {
 	m = {},
-	function create()
-	{
+
+	function create() {
 		this.blueprint.create();
 		this.m.ID = "blueprint.legend_demon_banshee_trophy";
 		this.m.Type = this.Const.Items.ItemType.Accessory;
@@ -18,17 +18,15 @@ this.legend_demon_banshee_trophy_blueprint <- this.inherit("scripts/crafting/blu
 			}
 		];
 		this.init(ingredients);
+		this.initSkills([::Legends.Professions.new(::Legends.Profession.LegendTrophyCarving)]);
 	}
 
-	function isQualified()
-	{
+	function isQualified() {
 		return this.blueprint.isQualified();
 	}
 
-	function onCraft( _stash )
-	{
+	function onCraft(_stash) {
 		_stash.add(this.new("scripts/items/accessory/legend_demon_banshee_trophy_item"));
 	}
 
 });
-

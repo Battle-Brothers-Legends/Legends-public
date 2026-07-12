@@ -1,7 +1,7 @@
 this.wolfsbane_necklace_blueprint <- this.inherit("scripts/crafting/blueprint", {
 	m = {},
-	function create()
-	{
+
+	function create() {
 		this.blueprint.create();
 		this.m.ID = "blueprint.wolfsbane_necklace";
 		this.m.Type = this.Const.Items.ItemType.Accessory;
@@ -14,15 +14,14 @@ this.wolfsbane_necklace_blueprint <- this.inherit("scripts/crafting/blueprint", 
 			}
 		];
 		this.init(ingredients);
+		this.initSkills([::Legends.Professions.new(::Legends.Profession.LegendTrophyCarving)]);
 	}
 
-	function onCraft( _stash )
-	{
+	function onCraft(_stash) {
 		_stash.add(this.new("scripts/items/accessory/legend_wolfsbane_necklace_item"));
 	}
 
-	function isValid()
-	{
+	function isValid() {
 		return false;
 	}
 

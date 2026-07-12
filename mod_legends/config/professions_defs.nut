@@ -361,6 +361,17 @@ professionDefObjects.push({
     Const = "LegendLayOfTheLand"
 });
 
+::Legends.Profession.LegendLeatherworking <- null;
+professionDefObjects.push({
+    ID = "profession.legend_leatherworking",
+    Script = "scripts/skills/professions/profession_legend_leatherworking",
+    Name = ::Const.Strings.ProfessionName.LegendLeatherworking,
+    Tooltip = ::Const.Strings.ProfessionDescription.LegendLeatherworking,
+    Icon = "ui/professions/leatherworking.png",
+    IconDisabled = "ui/professions/leatherworking_bw.png",
+    Const = "LegendLeatherworking"
+});
+
 ::Legends.Profession.LegendLookout <- null;
 professionDefObjects.push({
     ID = "profession.legend_lookout",
@@ -560,15 +571,15 @@ professionDefObjects.push({
     Const = "LegendSpotTheTells"
 });
 
-::Legends.Profession.LegendTailor <- null;
+::Legends.Profession.LegendTailoring <- null;
 professionDefObjects.push({
-    ID = "profession.legend_tailor",
-    Script = "scripts/skills/professions/profession_legend_tailor",
-    Name = ::Const.Strings.ProfessionName.LegendTailor,
-    Tooltip = ::Const.Strings.ProfessionDescription.LegendTailor,
-    Icon = "ui/professions/tailor.png",
-    IconDisabled = "ui/professions/tailor_bw.png",
-    Const = "LegendTailor"
+    ID = "profession.legend_tailoring",
+    Script = "scripts/skills/professions/profession_legend_tailoring",
+    Name = ::Const.Strings.ProfessionName.LegendTailoring,
+    Tooltip = ::Const.Strings.ProfessionDescription.LegendTailoring,
+    Icon = "ui/professions/tailoring.png",
+    IconDisabled = "ui/professions/tailoring_bw.png",
+    Const = "LegendTailoring"
 });
 
 ::Legends.Profession.LegendThrifty <- null;
@@ -624,6 +635,17 @@ professionDefObjects.push({
     Icon = "ui/professions/training.png",
     IconDisabled = "ui/professions/training_bw.png",
     Const = "LegendTraining"
+});
+
+::Legends.Profession.LegendTrophyCarving <- null;
+professionDefObjects.push({
+    ID = "profession.legend_trophy_carving",
+    Script = "scripts/skills/professions/profession_legend_trophy_carving",
+    Name = ::Const.Strings.ProfessionName.LegendTrophyCarving,
+    Tooltip = ::Const.Strings.ProfessionDescription.LegendTrophyCarving,
+    Icon = "ui/professions/trophy_carving.png",
+    IconDisabled = "ui/professions/trophy_carving_bw.png",
+    Const = "LegendTrophyCarving"
 });
 
 ::Legends.Profession.LegendVulture <- null;

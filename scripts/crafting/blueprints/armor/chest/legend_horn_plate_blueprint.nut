@@ -20,6 +20,7 @@ this.legend_horn_plate_blueprint <- this.inherit("scripts/crafting/blueprint", {
 			}
 		];
 		this.init(ingredients);
+		this.initSkills([::Legends.Professions.new(::Legends.Profession.LegendMetalworking)]);
 	}
 
 	function onCraft(_stash) {

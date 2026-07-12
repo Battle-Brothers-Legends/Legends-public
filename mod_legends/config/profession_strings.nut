@@ -29,6 +29,7 @@
 ::Const.Strings.ProfessionName.LegendHunting <- "Hunting";
 ::Const.Strings.ProfessionName.LegendInterpretation <- "Interpretation";
 ::Const.Strings.ProfessionName.LegendLayOfTheLand <- "Lay Of The Land";
+::Const.Strings.ProfessionName.LegendLeatherworking <- "Leatherworking";
 ::Const.Strings.ProfessionName.LegendLookout <- "Lookout";
 ::Const.Strings.ProfessionName.LegendMaterialist <- "Materialist";
 ::Const.Strings.ProfessionName.LegendMealPreparation <- "Meal Preparation";
@@ -47,12 +48,13 @@
 ::Const.Strings.ProfessionName.LegendSkillfulStacking <- "Skillful Stacking";
 ::Const.Strings.ProfessionName.LegendSpareParts <- "Spare Parts";
 ::Const.Strings.ProfessionName.LegendSpotTheTells <- "Spot The Tells";
-::Const.Strings.ProfessionName.LegendTailor <- "Tailor";
+::Const.Strings.ProfessionName.LegendTailoring <- "Tailoring";
 ::Const.Strings.ProfessionName.LegendThrifty <- "Thrifty";
 ::Const.Strings.ProfessionName.LegendToolsDrawers <- "Tools Drawers";
 ::Const.Strings.ProfessionName.LegendTradesman <- "Tradesman";
 ::Const.Strings.ProfessionName.LegendTrailblazer <- "Trailblazer";
 ::Const.Strings.ProfessionName.LegendTraining <- "Training";
+::Const.Strings.ProfessionName.LegendTrophyCarving <- "Trophy Carving";
 ::Const.Strings.ProfessionName.LegendVulture <- "Vulture";
 ::Const.Strings.ProfessionName.LegendWheelMaintenance <- "Wheel Maintenance";
 ::Const.Strings.ProfessionName.LegendWhipThemIntoShape <- "Whip Them Into Shape";
@@ -192,7 +194,7 @@ A loyal hound asks for nothing but a fair meal and will gladly give its life in 
 Move it, you maggots!
 
 [color=%passive%][u]Passive:[/u][/color]
-• Grant extra experience to mercenaries below the veteran level.
+• Grants extra experience to mercenaries below the veteran level.
 ";
 
 ::Const.Strings.ProfessionDescription.LegendEfficientPacking <- @"
@@ -292,6 +294,15 @@ Rumours of a fabled treasure are only rumours until one learns to connect the do
 
 [color=%passive%][u]Passive:[/u][/color]
 • Receiving a rumour will reveal the location on the map.
+";
+
+::Const.Strings.ProfessionDescription.LegendLeatherworking <- @"
+Skin, the most flexible and durable material known to man.
+
+[color=%passive%][u]Passive:[/u][/color]
+• Craft leather equipment while camping.
+
+•Increases the crafting speed of leather equipment.
 ";
 
 ::Const.Strings.ProfessionDescription.LegendLookout <- @"
@@ -436,13 +447,13 @@ A twitching eye, a sweating brow or a reddened ear - every liar reveals themselv
 • Get more accurate information on the traits of potential recruits.
 ";
 
-::Const.Strings.ProfessionDescription.LegendTailor <- @"
+::Const.Strings.ProfessionDescription.LegendTailoring <- @"
 It is the beautifully stitched cloak that distinguishes a feared professional from just another ragged killer.
 
 [color=%passive%][u]Passive:[/u][/color]
-• Craft light armor while camping.
+• Craft cloth equipment while camping.
 
-• Increases the crafting speed of light armor.
+• Increases the crafting speed of light equipment.
 ";
 
 ::Const.Strings.ProfessionDescription.LegendThrifty <- @"
@@ -480,6 +491,15 @@ My sword is my best friend. It is my life. I must master it as I must master my 
 
 [color=%passive%][u]Passive:[/u][/color]
 • Increases the effectiveness of training in camp.
+";
+
+::Const.Strings.ProfessionDescription.LegendTrophyCarving <- @"
+Some trophies can be more than just a grisly remnant of a past kill.
+
+[color=%passive%][u]Passive:[/u][/color]
+• Craft trophies while camping.
+
+• Increases the crafting speed of trophies.
 ";
 
 ::Const.Strings.ProfessionDescription.LegendVulture <- @"

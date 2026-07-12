@@ -2,9 +2,6 @@ local blueprints = [
 	"alp_trophy_blueprint",
 	"hexen_trophy_blueprint",
 	"ghoul_trophy_blueprint",
-	"large_powder_bag_blueprint",
-	"large_quiver_of_arrows_blueprint",
-	"large_quiver_of_bolts_blueprint"
 ];
 
 foreach (blueprint in blueprints)
@@ -16,6 +13,7 @@ foreach (blueprint in blueprints)
 		{
 			create();
 			this.m.Type = this.Const.Items.ItemType.Accessory;
+			this.initSkills([::Legends.Professions.new(::Legends.Profession.LegendTrophyCarving)]);
 		}
 	});
 };

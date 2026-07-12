@@ -1,7 +1,7 @@
 this.legend_redback_helmet_layered_blueprint <- this.inherit("scripts/crafting/blueprint", {
 	m = {},
-	function create()
-	{
+
+	function create() {
 		this.blueprint.create();
 		this.m.ID = "blueprint.legend_redback_helmet_layered";
 		this.m.Type = this.Const.Items.ItemType.Helmet;
@@ -26,18 +26,16 @@ this.legend_redback_helmet_layered_blueprint <- this.inherit("scripts/crafting/b
 			}
 		];
 		this.init(ingredients);
+		this.initSkills([::Legends.Professions.new(::Legends.Profession.LegendTailoring)]);
 	}
 
-	function isQualified()
-	{
+	function isQualified() {
 		return this.blueprint.isQualified();
 	}
 
-	function onCraft( _stash )
-	{
+	function onCraft(_stash) {
 		local item = this.new("scripts/items/legend_helmets/vanity/legend_helmet_redback_helm");
 		_stash.add(item);
 	}
 
 });
-

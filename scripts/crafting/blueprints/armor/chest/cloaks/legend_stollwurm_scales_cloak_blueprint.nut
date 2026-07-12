@@ -19,6 +19,7 @@ this.legend_stollwurm_scales_cloak_blueprint <- this.inherit("scripts/crafting/b
 			}
 		];
 		this.init(ingredients);
+		this.initSkills([::Legends.Professions.new(::Legends.Profession.LegendLeatherworking)]);
 	}
 
 	function isQualified()

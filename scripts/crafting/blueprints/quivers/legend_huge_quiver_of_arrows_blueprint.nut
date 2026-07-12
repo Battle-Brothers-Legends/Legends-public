@@ -4,7 +4,7 @@ this.legend_huge_quiver_of_arrows_blueprint <- this.inherit("scripts/crafting/bl
 	{
 		this.blueprint.create();
 		this.m.ID = "blueprint.legend_huge_quiver_of_arrows";
-		this.m.Type = this.Const.Items.ItemType.Accessory;
+		this.m.Type = this.Const.Items.ItemType.Ammo;
 		this.m.PreviewCraftable = this.new("scripts/items/ammo/legend_huge_quiver_of_arrows");
 		this.m.Cost = 3000;
 		local ingredients = [
@@ -14,10 +14,7 @@ this.legend_huge_quiver_of_arrows_blueprint <- this.inherit("scripts/crafting/bl
 			}
 		];
 		this.init(ingredients);
-		local skills = [
-			::Legends.Backgrounds.new(::Legends.Background.Bowyer)
-		];
-		this.initSkills(skills);
+		this.initSkills([::Legends.Professions.new(::Legends.Profession.LegendWoodworking)]);
 	}
 
 	function onCraft( _stash )

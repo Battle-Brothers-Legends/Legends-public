@@ -1,7 +1,7 @@
 this.legend_stake_blueprint <- this.inherit("scripts/crafting/blueprint", {
 	m = {},
-	function create()
-	{
+
+	function create() {
 		this.blueprint.create();
 		this.m.ID = "blueprint.legend_stake_blueprint";
 		this.m.Type = this.Const.Items.ItemType.Weapon;
@@ -9,25 +9,22 @@ this.legend_stake_blueprint <- this.inherit("scripts/crafting/blueprint", {
 		this.m.Cost = 10;
 		local ingredients = [
 			{
-				Script = "scripts/items/trade/legend_raw_wood_item", 
+				Script = "scripts/items/trade/legend_raw_wood_item",
 				Num = 1
 			}
 		];
 		this.init(ingredients);
-		local skills = [
+		this.initSkillsOneOf([
 			::Legends.Backgrounds.new(::Legends.Background.Witchhunter),
-			::Legends.Backgrounds.new(::Legends.Background.LegendYoungblood)
-		];
-		this.initSkills(skills);
+			::Legends.Backgrounds.new(::Legends.Background.LegendYoungblood),
+			::Legends.Professions.new(::Legends.Profession.LegendWoodworking)
+		]);
 	}
 
-	function onCraft( _stash )
-	{
+	function onCraft(_stash) {
 		local item = this.new("scripts/items/weapons/legend_wooden_stake");
 		local item = this.new("scripts/items/weapons/legend_wooden_stake");
 		item.setVariant(this.m.PreviewCraftable.m.Variant);
 		_stash.add(item);
 	}
-
 });
-
