@@ -16,7 +16,7 @@ this.crafting_building <- this.inherit("scripts/entity/world/camp/camp_building"
 		this.m.Name = "Craft";
 		this.m.Description = "Craft items";
 		this.m.BannerImage = "ui/buttons/banner_craft.png";
-		this.m.Sounds = [
+		local sounds = [
 			{
 				File = "ambience/camp/camp_taxidermist_01.wav",
 				Volume = 1.0,
@@ -53,43 +53,8 @@ this.crafting_building <- this.inherit("scripts/entity/world/camp/camp_building"
 				Pitch = 1.0
 			}
 		];
-		this.m.SoundsAtNight = [
-			{
-				File = "ambience/camp/camp_taxidermist_01.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/camp/camp_taxidermist_02.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/camp/camp_taxidermist_03.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/camp/camp_taxidermist_04.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/camp/camp_taxidermist_05.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/camp/camp_taxidermist_06.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/camp/camp_taxidermist_07.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			}
-		];
+		this.m.Sounds = sounds;
+		this.m.SoundsAtNight = sounds;
 	}
 
 	function getTitle()
@@ -101,15 +66,9 @@ this.crafting_building <- this.inherit("scripts/entity/world/camp/camp_building"
 		return this.m.Name +  " *Not Upgraded*";
 	}
 
-	function getDescription()
-	{
-		local desc = "";
-		desc += "Come here to craft potions, trophies and other useful items. Recipes added to the crafting queue will be worked on by anyone ";
-		desc += "assigned to this tent. Crafting only occurs while encamped. Progress is saved, so items do not have to be crafted in ";
-		desc += "a single session. The more people assigned to the tent, the quicker items will be crafted.";
-		desc += "\n\n";
-		desc += "The crafting tent can be upgraded by purchasing a crafting cart from a settlement merchant. An upgraded tent has a 15% increase in crafting speed.";
-		return desc;
+	function getDescription() {
+		//"An upgraded tent has a 15% increase in crafting speed.";
+		return "Craft items in selected order when encamped. Partial progress is kept.";
 	}
 
 	function getModifierToolip()
@@ -192,7 +151,7 @@ this.crafting_building <- this.inherit("scripts/entity/world/camp/camp_building"
 	function onInit()
 	{
 		local q = [];
-		for (local i = 0; i < this.m.Queue.len(); i = ++i)
+		for (local i = 0; i < this.m.Queue.len(); ++i)
 		{
 			if (this.m.Queue[i] == null)
 			{
@@ -241,10 +200,10 @@ this.crafting_building <- this.inherit("scripts/entity/world/camp/camp_building"
 		local crafted = this.m.ItemsCrafted.len();
 
 		local progress = this.Math.floor(100 * this.m.CurrentProgress);
+		local ret = "Crafted ..." + crafted + " / ";
+		if (craftableQueue.len() == 0) return ret + crafted;
 
-		if (craftableQueue.len() == 0) return "Crafted ..." + crafted + " / " + crafted;
-
-		return "Crafted ... " + crafted + "/" + numToCraft + " ... " + progress + "% of " + this.m.CurrentCraft;
+		return ret + numToCraft + " ... " + progress + "% of " + this.m.CurrentCraft;
 	}
 
 	function getCraftableQueue()
@@ -425,18 +384,8 @@ this.crafting_building <- this.inherit("scripts/entity/world/camp/camp_building"
 		return true;
 	}
 
-	function onRemove ( _idx )
-	{
-		local q = [];
-		for (local i = 0; i < this.m.Queue.len(); i = ++i)
-		{
-			if (i == _idx)
-			{
-				continue;
-			}
-			q.push(this.m.Queue[i]);
-		}
-		this.m.Queue = q;
+	function onRemove ( _idx ) {
+		this.m.Queue.remove(_idx);
 	}
 
 	function onSwap ( _source, _target)
@@ -474,7 +423,7 @@ this.crafting_building <- this.inherit("scripts/entity/world/camp/camp_building"
 		this.m.Queue = [];
 		this.camp_building.onDeserialize(_in);
 		local num = _in.readU16();
-		for( local i = 0; i < num; i = ++i )
+		for( local i = 0; i < num; ++i )
 		{
 			this.m.Queue.push({
 				Blueprint =  this.World.Crafting.getBlueprint(_in.readString()),
