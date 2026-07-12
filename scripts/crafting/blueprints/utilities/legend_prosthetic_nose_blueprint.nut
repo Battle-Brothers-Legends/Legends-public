@@ -1,7 +1,7 @@
 this.legend_prosthetic_nose_blueprint <- this.inherit("scripts/crafting/blueprint", {
 	m = {},
-	function create()
-	{
+
+	function create() {
 		this.blueprint.create();
 		this.m.ID = "blueprint.legend_prosthetic_nose";
 		this.m.Type = this.Const.Items.ItemType.Usable;
@@ -14,16 +14,11 @@ this.legend_prosthetic_nose_blueprint <- this.inherit("scripts/crafting/blueprin
 			}
 		];
 		this.init(ingredients);
-		local skills = [
-			::Legends.Perks.new(::Legends.Perk.LegendInventorAnatomy)
-		];
-		this.initSkills(skills);
+		this.initSkills([::Legends.Professions.new(::Legends.Profession.LegendProsthetics)]);
 	}
 
-	function onCraft( _stash )
-	{
+	function onCraft(_stash) {
 		_stash.add(this.new("scripts/items/misc/legend_prosthetic_nose_item"));
 	}
 
 });
-

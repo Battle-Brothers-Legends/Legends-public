@@ -14,10 +14,7 @@ this.legend_prosthetic_eye_blueprint <- this.inherit("scripts/crafting/blueprint
 			}
 		];
 		this.init(ingredients);
-		local skills = [
-			::Legends.Perks.new(::Legends.Perk.LegendInventorAnatomy)
-		];
-		this.initSkills(skills);
+		this.initSkills([::Legends.Professions.new(::Legends.Profession.LegendProsthetics)]);
 	}
 
 	function onCraft( _stash )
