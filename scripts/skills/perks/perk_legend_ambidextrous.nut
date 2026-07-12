@@ -9,6 +9,14 @@ this.perk_legend_ambidextrous <- this.inherit("scripts/skills/skill", {
 		],
 	},
 
+	function getHandToHandSkill(){
+		local skill = ::Legends.Actives.get(this, ::Legends.Active.LesserFleshGolemAttack);
+    	if (skill != null) return skill;
+    	skill = ::Legends.Actives.get(this, ::Legends.Active.GreaterFleshGolemAttack);
+    	if (skill != null) return skill;
+    	return ::Legends.Actives.get(this, ::Legends.Active.HandToHand);
+	}
+
 	// takes a weakTableRef
 	function setOffhandSkill(_a) {
 		this.m.offHandSkill = ::MSU.asWeakTableRef(_a);
@@ -59,7 +67,7 @@ this.perk_legend_ambidextrous <- this.inherit("scripts/skills/skill", {
 			}
 		];
 
-		local ohSkill = ::MSU.isNull(this.m.offHandSkill) ? this.m.HandToHand : this.m.offHandSkill;
+		local ohSkill = !::MSU.isNull(this.m.offHandSkill) ? this.m.offHandSkill : this.getHandToHandSkill();
 		local blockedOffhand = items.hasBlockedSlot(this.Const.ItemSlot.Offhand);
 		if (ohSkill != null && !blockedOffhand) {
 			if (::Legends.Weapons.isDualWielding(actor)) {
@@ -140,7 +148,7 @@ this.perk_legend_ambidextrous <- this.inherit("scripts/skills/skill", {
 					// Is this necessary?
 				//	return;
 				//}
-				local skillToUse = !::MSU.isNull(this.m.offHandSkill) ? this.m.offHandSkill: this.m.HandToHand;
+				local skillToUse = !::MSU.isNull(this.m.offHandSkill) ? this.m.offHandSkill : this.getHandToHandSkill();
 				if (actor.getTile().getDistanceTo(_targetEntity.getTile()) > skillToUse.getMaxRange()) {
 					return;
 				}
@@ -195,13 +203,6 @@ this.perk_legend_ambidextrous <- this.inherit("scripts/skills/skill", {
 	}
 
 	function onAdded() {
-		if (::Legends.Actives.get(this, ::Legends.Active.LesserFleshGolemAttack))
-			this.m.HandToHand = ::MSU.asWeakTableRef(::Legends.Actives.get(this, ::Legends.Active.LesserFleshGolemAttack));
-		else if (::Legends.Actives.get(this, ::Legends.Active.GreaterFleshGolemAttack))
-			this.m.HandToHand = ::MSU.asWeakTableRef(::Legends.Actives.get(this, ::Legends.Active.GreaterFleshGolemAttack));
-		else
-			this.m.HandToHand = ::MSU.asWeakTableRef(::Legends.Actives.get(this, ::Legends.Active.HandToHand));
-
 		local off = this.getContainer().getActor().getOffhandItem();
 		if (off != null) {
 			this.onEquip(off);
