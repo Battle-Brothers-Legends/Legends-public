@@ -57,14 +57,15 @@
         local start = desc.find(pre);
         if (start != null) {
             desc = desc.slice(0, start);
-
-            while (desc.len() > 0 && (desc[desc.len()-1] == '\n' || desc[desc.len()-1] == ' ')) {
-                desc = desc.slice(0, desc.len()-1);
-            }
         }
 
-        local description = desc + "\n\n" + pre + mid + ap;
+        local description = ::strip(desc + "\n" + pre + mid + ap);
         ::Const.Strings.ProfessionDescription[defObject.Const] = description;
         defObject.Tooltip = description;
+
+        local profID = "ID" in defObject ? defObject.ID : professionDef; 
+        if (profID in ::Const.Professions.ProfessionsTreeTemplate.Map) {
+            ::Const.Professions.ProfessionsTreeTemplate.Map[profID].Tooltip = description;
+        }
     }
 })();
