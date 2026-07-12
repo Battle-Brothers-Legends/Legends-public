@@ -100,7 +100,7 @@
 	local onUpdate = o.onUpdate;
     o.onUpdate = function() {
         local player = this.getPlayer();
-		if (player.m.PauseOnMovementStop) {
+		if (player.m.PauseOnMovementStop && this.m.AutoAttack == null && this.m.AutoEnterLocation == null) {
         	player.m.PauseOnMovementStop = false;
         	this.setPause(true);
       	}
