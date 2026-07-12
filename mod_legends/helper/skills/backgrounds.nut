@@ -94,8 +94,19 @@ if (!("Backgrounds" in ::Legends)) {
 	return ::Legends.Backgrounds.BackgroundDefObjects[_def].Name;
 }
 
-::Legends.Backgrounds.has <- function (_target, _def) {
-	return ::Legends.Backgrounds.getContainer(_target, "on has").hasSkill(::Legends.Backgrounds.getID(_def));
+::Legends.Backgrounds.has <- function (_target, ...) {
+	local container = ::Legends.Backgrounds.getContainer(_target, "on has");
+	if (container.getBackground() == null)
+		return false;
+	return container.getBackground().getID() == ::Legends.Backgrounds.getID(_def);
+}
+
+::Legends.Backgrounds.hasAny <- function (_target, ...) {
+	local container = ::Legends.Backgrounds.getContainer(_target, "on hasAny");
+	local arr = vargv;
+	if (typeof vargv[0] == "array")
+		arr = vargv[0];
+	return ::Legends.S.any(arr, @(_def) ::Legends.Backgrounds.has(container, _def));
 }
 
 ::Legends.Backgrounds.remove <- function (_target, _def) {

@@ -432,34 +432,24 @@
 			local slaves = 0;
 			local nonSlaves = 0;
 
-			foreach( bro in roster )
-			{
+			foreach (bro in roster) {
 				if (!bro.isPlacedOnMap())
-				{
 					continue;
-				}
 
-				if (bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.Slave))
-				{
-					slaves = ++slaves;
-				}
-				else
-				{
-					nonSlaves = ++nonSlaves;
+				if (::Legends.Backgrounds.has(bro, ::Legends.Background.Slave)) {
+					slaves++;
+				} else {
+					nonSlaves++;
 				}
 			}
 
-			if (slaves <= nonSlaves)
-			{
-				foreach( bro in roster )
-				{
-					if (!bro.isPlacedOnMap())
-					{
+			if (slaves <= nonSlaves) {
+				foreach (bro in roster) {
+					if (!bro.isPlacedOnMap()) {
 						continue;
 					}
 
-					if (bro.getBackground().getID() != ::Legends.Backgrounds.getID(::Legends.Background.Slave))
-					{
+					if (!::Legends.Backgrounds.has(bro, ::Legends.Background.Slave)) {
 						bro.worsenMood(this.Const.MoodChange.TooFewSlavesInBattle, "Too few indebted in battle");
 					}
 				}

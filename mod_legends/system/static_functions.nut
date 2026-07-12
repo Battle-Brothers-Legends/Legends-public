@@ -242,6 +242,30 @@
 	}
 }
 
+/*
+	Returns true if AT LEAST ONE element matches the predicate
+	@param _predicate - lambda, anonymous function or reference to function
+*/
+::Legends.S.any <- function (_array, _predicate) {
+	foreach (item in _array) {
+		if (_predicate(item))
+			return true;
+	}
+	return false;
+}
+
+/*
+	Returns true only if EVERY element matches the predicate
+	@param _predicate - lambda, anonymous function or reference to function
+*/
+::Legends.S.all <- function (_array, _predicate) {
+	foreach (item in _array) {
+		if (!_predicate(item))
+			return false;
+	}
+	return true; // empty array will also be true
+}
+
 ::Legends.S.oneOf <- function (_value, ...) {
 	if (vargv.len() == 0) {
 		::logError("::Legends.S.oneOf used with empty args, returning false");
@@ -250,11 +274,7 @@
 	local arr = vargv;
 	if (typeof vargv[0] == "array")
 		arr = vargv[0];
-	foreach(val in arr) {
-		if (_value == val)
-			return true;
-	}
-	return false;
+	return ::Legends.S.any(_value, @(_val) _val == _value);
 }
 
 ::Legends.S.hasItemFlag <- function (_item, _flag) {

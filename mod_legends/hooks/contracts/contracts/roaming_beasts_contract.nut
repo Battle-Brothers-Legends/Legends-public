@@ -251,19 +251,20 @@
 		local bro1;
 		local bro2;
 
-		foreach( bro in brothers )
-		{
-			if (bro.getBackground().isBackgroundType(this.Const.BackgroundType.Lowborn) && !bro.getBackground().isBackgroundType(this.Const.BackgroundType.OffendedByViolence) && !bro.getSkills().hasTrait(::Legends.Trait.Bright) && bro.getBackground().getID() != ::Legends.Backgrounds.getID(::Legends.Background.Hunter))
-			{
+		foreach (bro in brothers) {
+			if (
+				bro.getBackground().isBackgroundType(this.Const.BackgroundType.Lowborn) &&
+				!bro.getBackground().isBackgroundType(this.Const.BackgroundType.OffendedByViolence) &&
+				!bro.getSkills().hasTrait(::Legends.Trait.Bright) &&
+				!::Legends.Backgrounds.has(bro, ::Legends.Background.Hunter)
+			) {
 				candidates_helpful.push(bro);
 			}
 
-			if (!bro.getSkills().hasTrait(::Legends.Trait.Player))
-			{
+			if (!bro.getSkills().hasTrait(::Legends.Trait.Player)) {
 				candidates_bro1.push(bro);
 
-				if (!bro.getBackground().isBackgroundType(this.Const.BackgroundType.OffendedByViolence) && bro.getBackground().isBackgroundType(this.Const.BackgroundType.Combat))
-				{
+				if (!bro.getBackground().isBackgroundType(this.Const.BackgroundType.OffendedByViolence) && bro.getBackground().isBackgroundType(this.Const.BackgroundType.Combat)) {
 					candidates_bro2.push(bro);
 				}
 			}

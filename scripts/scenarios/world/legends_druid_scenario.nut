@@ -159,22 +159,20 @@ this.legends_druid_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 		}, null);
 	}
 
-	function onInit()
-	{
+	function onInit() {
 		this.starting_scenario.onInit();
 		this.World.Flags.set("IsLegendsDruid", true);
 	}
+
 	function getMovementSpeedMult(){
 		return 1.057;
 	}
-	function onCombatFinished()
-	{
+
+	function onCombatFinished() {
 		local roster = this.World.getPlayerRoster().getAll();
 
-		foreach( bro in roster )
-		{
-			if (bro.getFlags().get("IsPlayerCharacter"))
-			{
+		foreach (bro in roster) {
+			if (bro.getFlags().get("IsPlayerCharacter")) {
 				return true;
 			}
 		}
@@ -187,38 +185,42 @@ this.legends_druid_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 	{
 	}
 
-	function onUpdateHiringRoster( _roster )
-	{
+	function onUpdateHiringRoster(_roster) {
 		this.addBroToRoster(_roster, ::Legends.Background.LegendDruid, 8);
 		local bros = _roster.getAll();
 		local garbage = [];
-		foreach( i, bro in bros )
-		{
+		foreach (i, bro in bros) {
 			local r;
 			r = this.Math.rand(0, 19);
-			if (r == 0)
-			{
+			if (r == 0) {
 				bro.TherianthropeInfectionRandom()
-			}
-			else
-			{
+			} else {
 				garbage.push(bro);
 			}
 
 		}
 
-		foreach( g in garbage )
-		{
+		foreach (g in garbage) {
 			_roster.remove(g);
 		}
 	}
 
-	function onGenerateBro(bro)
-	{
-		if (bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.Wildman) || bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.LegendHerbalist)  || bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.LegendDruid)  || bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.Houndmaster)  || bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.LegendMuladi)  || bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.LegendConjurer)  || bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.LegendEnchanter) || bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.LegendRunesmith)  || bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.LegendEntrancer)  || bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.LegendDonkey)  || bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.LegendSpiritualist))
-		{
-				bro.getBaseProperties().DailyWage = this.Math.floor(bro.getBaseProperties().DailyWage * 0.8);
-				bro.m.HiringCost = this.Math.floor(bro.m.HiringCost * 0.8);
+	function onGenerateBro(bro) {
+		if (::Legends.Backgrounds.hasAny(bro,
+			::Legends.Background.Wildman,
+			::Legends.Background.LegendHerbalist,
+			::Legends.Background.LegendDruid,
+			::Legends.Background.Houndmaster,
+			::Legends.Background.LegendMuladi,
+			::Legends.Background.LegendConjurer,
+			::Legends.Background.LegendEnchanter,
+			::Legends.Background.LegendRunesmith,
+			::Legends.Background.LegendEntrancer,
+			::Legends.Background.LegendDonkey,
+			::Legends.Background.LegendSpiritualist
+		)) {
+			bro.getBaseProperties().DailyWage = this.Math.floor(bro.getBaseProperties().DailyWage * 0.8);
+			bro.m.HiringCost = this.Math.floor(bro.m.HiringCost * 0.8);
 		}
 	}
 

@@ -211,11 +211,11 @@
 		local candidates_shieldmaiden = [];
 
 		foreach( bro in brothers ) {
-			if (bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.Monk))
+			if (::Legends.Backgrounds.has(bro, ::Legends.Background.Monk))
 				candidates_monk.push(bro);
-			else if (bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.Messenger) || bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.Vagabond) || bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.Refugee) || bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.LegendCommanderRanger))
+			else if (::Legends.Backgrounds.hasAny(bro, ::Legends.Background.Messenger, ::Legends.Background.Vagabond, ::Legends.Background.Refugee, ::Legends.Background.LegendCommanderRanger))
 				candidates_traveller.push(bro);
-			else if (bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.LegendShieldmaiden))
+			else if (::Legends.Backgrounds.has(bro, ::Legends.Background.LegendShieldmaiden))
 				candidates_shieldmaiden.push(bro);
 			else if (bro.getSkills().hasTrait(::Legends.Trait.LegendDoubleTongued))
 				candidates_doubter.push(bro);

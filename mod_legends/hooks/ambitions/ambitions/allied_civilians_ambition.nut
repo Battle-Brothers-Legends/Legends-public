@@ -1,4 +1,4 @@
-::mods_hookExactClass("ambitions/ambitions/allied_civilians_ambition", function(o) 
+::mods_hookExactClass("ambitions/ambitions/allied_civilians_ambition", function(o)
 {
 	o.onPrepareVariables = function ( _vars )
 	{
@@ -34,7 +34,7 @@
 
 		foreach( bro in brothers )
 		{
-			if (bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.Brawler))
+			if (::Legends.Backgrounds.has(bro, ::Legends.Background.Brawler))
 			{
 				_vars.push([
 					"brawler",

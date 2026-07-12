@@ -36,12 +36,11 @@
 	local onUpdateScore = o.onUpdateScore;
 	o.onUpdateScore = function () {
 		onUpdateScore();
-		local brothers = this.World.getPlayerRoster().getAll();
-		local candidates = [];
-		foreach (bro in brothers) if (bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.Houndmaster) || bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.LegendMuladi))	{
-			candidates.push(bro);
-		}
-
+		local brothers = ::World.getPlayerRoster().getAll();
+		local candidates = brothers.filter(@(idx, bro) ::Legends.Backgrounds.hasAny(bro,
+			::Legends.Background.Houndmaster,
+			::Legends.Background.LegendMuladi
+		));
 		if (candidates.len() != 0) {
 			this.m.Houndmaster = candidates[this.Math.rand(0, candidates.len() - 1)];
 		}

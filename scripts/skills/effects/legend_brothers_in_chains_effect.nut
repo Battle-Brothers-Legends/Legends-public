@@ -82,14 +82,10 @@ this.legend_brothers_in_chains_effect <- this.inherit("scripts/skills/skill", {
 		foreach( ally in allies )
 		{
 			if (ally.getID() == actor.getID() || !ally.isPlacedOnMap())
-			{
 				continue;
-			}
 
-			if (ally.getBackground() != null && ally.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.Slave))
-			{
+			if (::Legends.Backgrounds.has(ally, ::Legends.Background.Slave))
 				numSlaves += 1;
-			}
 		}
 
 		if (numSlaves < 1)

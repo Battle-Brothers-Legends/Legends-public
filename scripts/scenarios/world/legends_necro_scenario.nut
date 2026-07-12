@@ -193,39 +193,36 @@ this.legends_necro_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 	}
 
 
-	function onHiredByScenario( _bro )
-	{
-		if (_bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.Graverobber) || _bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.Gravedigger) || _bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.Cultist) || _bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.ConvertedCultist))
-		{
+	function onHiredByScenario(_bro) {
+		if (::Legends.Backgrounds.hasAny(_bro,
+			::Legends.Background.Graverobber,
+			::Legends.Background.Gravedigger,
+			::Legends.Background.Cultist,
+			::Legends.Background.ConvertedCultist
+		)) {
 			_bro.improveMood(1.5, "These people really understand me!");
 			_bro.getSprite("socket").setBrush("bust_base_undead");
 			::Legends.Traits.grant(_bro, ::Legends.Trait.LegendDeathlySpectre);
-		}
-		else if (_bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.LegendPuppet))
-		{
+		} else if (::Legends.Backgrounds.has(_bro, ::Legends.Background.LegendPuppet)) {
 			_bro.getSprite("socket").setBrush("bust_base_undead");
-		}
-		else if (!_bro.isStabled())
-		{
+		} else if (!_bro.isStabled()) {
 			::Legends.Traits.grant(_bro, ::Legends.Trait.LegendDeathlySpectre);
 			_bro.worsenMood(2.0, "Something doesn't feel right here...");
 		}
 	}
 
-	function onUpdateHiringRoster( _roster )
-	{
+	function onUpdateHiringRoster(_roster) {
 		local garbage = [];
 		local bros = _roster.getAll();
 		this.addBroToRoster(_roster, ::Legends.Background.Cultist, 4);
 		this.addBroToRoster(_roster, ::Legends.Background.Gravedigger, 4);
 		this.addBroToRoster(_roster, ::Legends.Background.Graverobber, 4);
-		foreach( i, bro in bros )
-		{
-			if (bro.getBackground().isBackgroundType(this.Const.BackgroundType.Crusader)) //delete crusader/pious recruits
+		foreach (i, bro in bros) {
+			if (bro.getBackground().isBackgroundType(this.Const.BackgroundType.Crusader))
+			//delete crusader/pious recruits
 				garbage.push(bro);
 		}
-		foreach (g in garbage)
-			_roster.remove(g);
+		foreach (g in garbage) _roster.remove(g);
 	}
 
 	function onGenerateBro(bro)

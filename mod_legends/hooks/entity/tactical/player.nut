@@ -758,12 +758,12 @@
 		return this.actor.checkMorale(_change, _difficulty, _type, _showIconBeforeMoraleIcon, _noNewLine);
 	}
 
-	// overwriting entire function 
+	// overwriting entire function
 	o.addXP = function ( _xp, _scale = true )
 	{
 		local isScenarioMode = !(("State" in this.World) && this.World.State != null);
 
-		if (this.m.Level >= this.Const.LevelXP.len() || this.isGuest() || !isScenarioMode && this.World.Assets.getOrigin().getID() == "scenario.manhunters" && this.m.Level >= 7 && this.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.Slave))
+		if (this.m.Level >= this.Const.LevelXP.len() || this.isGuest() || !isScenarioMode && this.World.Assets.getOrigin().getID() == "scenario.manhunters" && this.m.Level >= 7 && ::Legends.Backgrounds.has(this, ::Legends.Background.Slave))
 			return;
 
 		if (_scale)
@@ -806,7 +806,7 @@
 			this.m.XP = this.Const.LevelXP[this.Const.LevelXP.len() - 1];
 			return;
 		}
-		else if (!isScenarioMode && this.World.Assets.getOrigin().getID() == "scenario.manhunters" && this.m.XP + _xp * this.m.CurrentProperties.XPGainMult >= this.Const.LevelXP[6] && this.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.Slave))
+		else if (!isScenarioMode && this.World.Assets.getOrigin().getID() == "scenario.manhunters" && this.m.XP + _xp * this.m.CurrentProperties.XPGainMult >= this.Const.LevelXP[6] && ::Legends.Backgrounds.has(this, ::Legends.Background.Slave))
 		{
 			this.m.CombatStats.XPGained += this.Const.LevelXP[6] - this.m.XP;
 			this.m.XP = this.Const.LevelXP[6];

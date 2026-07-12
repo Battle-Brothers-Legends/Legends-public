@@ -104,12 +104,14 @@
 			return;
 		}
 
-		local candidates_shieldmaiden = ::World.getPlayerRoster().getAll().filter(@(idx, _bro) _bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.LegendShieldmaiden));
+		local candidates_shieldmaiden = ::World.getPlayerRoster().getAll()
+			.filter(@(idx, _bro) ::Legends.Backgrounds.has(_bro, ::Legends.Background.LegendShieldmaiden));
 		if (candidates_shieldmaiden.len() != 0) {
 			this.m.Shieldmaiden = candidates_shieldmaiden[this.Math.rand(0, candidates_shieldmaiden.len() - 1)];
 		}
 
-		local candidates_militia = ::World.getPlayerRoster().getAll().filter(@(idx, _bro) _bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.Militia));
+		local candidates_militia = ::World.getPlayerRoster().getAll()
+			.filter(@(idx, _bro) ::Legends.Backgrounds.has(_bro, ::Legends.Background.Militia));
 		if (candidates_militia.len() != 0) {
 			this.m.Militia = candidates_militia[this.Math.rand(0, candidates_militia.len() - 1)];
 		}

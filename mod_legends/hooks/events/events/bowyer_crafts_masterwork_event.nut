@@ -10,7 +10,7 @@
 					function getResult( _event ) {
 						local brothers = this.World.getPlayerRoster().getAll();
 						foreach( bro in brothers ) {
-							if ( bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.LegendInventor))
+							if (::Legends.Backgrounds.has(bro, ::Legends.Background.LegendInventor))
 								return "BA";
 						}
 						local r = this.Math.rand(1, 100);

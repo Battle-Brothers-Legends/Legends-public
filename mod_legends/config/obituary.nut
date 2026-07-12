@@ -6,7 +6,7 @@
 		Kills = _bro.getLifetimeStats().Kills,
 		Battles = _bro.getLifetimeStats().Battles,
 		KilledBy = _cause,
-		Expendable = _bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.Slave)
+		Expendable = ::Legends.Backgrounds.has(_bro, ::Legends.Background.Slave)
 	};
 
 	::World.Statistics.addFallen(_bro.finalizeFallen(fallen));

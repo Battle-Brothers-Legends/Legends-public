@@ -140,7 +140,7 @@
 		local candidates_husk = ::World.getPlayerRoster().getAll().filter(@(_, _bro)
 			_bro.getLevel() >= 10 &&
 			_bro.getHitpointsPct() > 0.6 &&
-			_bro.getSkills().hasSkill(::Legends.Backgrounds.getID(::Legends.Background.LegendHusk)) && (
+			::Legends.Backgrounds.has(_bro, ::Legends.Background.LegendHusk) && (
 				::Legends.Traits.has(_bro, ::Legends.Trait.CultistDisciple) ||
 				::Legends.Traits.has(_bro, ::Legends.Trait.CultistChosen) ||
 				::Legends.Traits.has(_bro, ::Legends.Trait.CultistProphet)

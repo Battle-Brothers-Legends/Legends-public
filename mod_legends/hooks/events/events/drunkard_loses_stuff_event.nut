@@ -1,4 +1,11 @@
 ::mods_hookExactClass("events/events/drunkard_loses_stuff_event", function(o) {
+	o.m.CultistBackgrounds <- [
+		::Legends.Background.Flagellant,
+		::Legends.Background.Cultist,
+		::Legends.Background.ConvertedCultist,
+		::Legends.Background.MonkTurnedFlagellant
+	];
+
 	local create = o.create;
 	o.create = function() {
 		create();
@@ -52,7 +59,7 @@
 						if (bro.getID() == _event.m.Drunkard.getID())
 							continue;
 
-						if (!bro.getBackground().isBackgroundType(this.Const.BackgroundType.OffendedByViolence) || bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.Flagellant)  || bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.Cultist)  || bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.ConvertedCultist) || bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.MonkTurnedFlagellant) )
+						if (!bro.getBackground().isBackgroundType(this.Const.BackgroundType.OffendedByViolence) || ::Legends.Backgrounds.hasAny(bro, _event.m.CultistBackgrounds))
 							continue;
 
 						bro.worsenMood(1.0, "Appalled by your order to have " + _event.m.Drunkard.getName() + " flogged");
@@ -91,7 +98,7 @@
 						if (bro.getID() == _event.m.Drunkard.getID())
 							continue;
 
-						if (!bro.getBackground().isBackgroundType(this.Const.BackgroundType.OffendedByViolence) || bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.Flagellant)  || bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.Cultist)  || bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.ConvertedCultist) || bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.MonkTurnedFlagellant) )
+						if (!bro.getBackground().isBackgroundType(this.Const.BackgroundType.OffendedByViolence) || ::Legends.Backgrounds.hasAny(bro, _event.m.CultistBackgrounds))
 							continue;
 
 						bro.worsenMood(1.0, "Appalled by your order to have " + _event.m.Drunkard.getName() + " flogged");
@@ -197,7 +204,7 @@
 		local candidates = [];
 
 		foreach( bro in brothers )
-			if (bro.getSkills().hasTrait(::Legends.Trait.Drunkard) && bro.getBackground().getID() != ::Legends.Backgrounds.getID(::Legends.Background.LegendCommanderNoble))
+			if (bro.getSkills().hasTrait(::Legends.Trait.Drunkard) && ::Legends.Backgrounds.has(bro, ::Legends.Background.LegendCommanderNoble))
 				candidates.push(bro);
 
 		if (candidates.len() == 0)

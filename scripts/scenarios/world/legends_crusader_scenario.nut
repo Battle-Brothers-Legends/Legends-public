@@ -144,14 +144,14 @@ this.legends_crusader_scenario <- this.inherit("scripts/scenarios/world/starting
 	}
 
 	function onGenerateBro(bro) {
-		if (bro.isStabled()) {
+		if (bro.isStabled())
 			return;
-		}
+
 		if (bro.getBackground().isBackgroundType(this.Const.BackgroundType.Crusader)) {
 			bro.m.HiringCost = this.Math.floor(bro.m.HiringCost * 0.75); //1.0 = default
 			bro.getBaseProperties().DailyWageMult *= 0.75; //1.0 = default
 			bro.getSkills().update();
-		} else if (bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.Squire)) {
+		} else if (::Legends.Backgrounds.has(bro, ::Legends.Background.Squire)) {
 			bro.m.HiringCost = this.Math.floor(bro.m.HiringCost * 0.85); //1.0 = default
 			bro.getBaseProperties().DailyWageMult *= 0.85; //1.0 = default
 			bro.getSkills().update();

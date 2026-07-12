@@ -33,7 +33,11 @@
 			if (bro.getSkills().hasTrait(::Legends.Trait.Bright) || bro.getSkills().hasTrait(::Legends.Trait.Hesistant) || bro.getSkills().hasTrait(::Legends.Trait.Craven) || bro.getSkills().hasTrait(::Legends.Trait.Fainthearted) || bro.getSkills().hasTrait(::Legends.Trait.Insecure))
 				continue;
 
-			if ((bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.Minstrel) || bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.Juggler) || bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.Vagabond)) && !bro.getSkills().hasSkillOfType(this.Const.SkillType.TemporaryInjury))
+			if (::Legends.Backgrounds.hasAny(bro,
+				::Legends.Background.Minstrel,
+				::Legends.Background.Juggler,
+				::Legends.Background.Vagabond
+			) && !bro.getSkills().hasSkillOfType(this.Const.SkillType.TemporaryInjury))
 				clown_candidates.push(bro);
 		}
 
@@ -47,8 +51,15 @@
 			if (bro.getSkills().hasTrait(::Legends.Trait.Bright) || bro.getSkills().hasTrait(::Legends.Trait.Hesistant) || bro.getSkills().hasTrait(::Legends.Trait.Craven) || bro.getSkills().hasTrait(::Legends.Trait.Fainthearted) || bro.getSkills().hasTrait(::Legends.Trait.Insecure))
 				continue;
 
-			if (bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.Hunter) || bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.Poacher) || bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.Sellsword) || bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.Bowyer) || (bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.AdventurousNoble) && bro.getGender() == 1) && !bro.getSkills().hasSkillOfType(this.Const.SkillType.TemporaryInjury))
+			if (::Legends.Backgrounds.hasAny(bro,
+				::Legends.Background.Hunter,
+				::Legends.Background.Poacher,
+				::Legends.Background.Sellsword,
+				::Legends.Background.Bowyer,
+				::Legends.Background.AdventurousNoble
+			) && bro.getGender() == 1 && !bro.getSkills().hasSkillOfType(this.Const.SkillType.TemporaryInjury))  {
 				archer_candidates.push(bro);
+			}
 		}
 
 		if (archer_candidates.len() == 0)
