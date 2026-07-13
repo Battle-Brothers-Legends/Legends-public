@@ -90,32 +90,20 @@ if (!("Professions" in ::Legends))
 	_profession.m.IsHidden = false;
 }
 
-::Legends.Professions.getProfessionEffect <- function (_def) {
-	local roster = ::World.getPlayerRoster().getAll();
-	local count = 0;
-
-	foreach (bro in roster) {
-		if (bro.getSkills().hasSkill(_def.ID)) {
-			count++;
-		}
-	}
+::Legends.Professions.setProfessionEffect <- function (_def) {
+	local count = ::World.getPlayerRoster().getAll().filter(@(_, _bro) _bro.getSkills().hasSkill(_def.ID)).len();
 	local effect = 0.0;
-	if (count > 0 && _def.ScalingArray.len() > 0) {
+	if (count > 0 && "ScalingArray" in _def) {
 		local end = _def.ScalingArray.len() - 1;
-		if (count <= end) {
-			effect = _def.ScalingArray[count];
-		} else {
-			effect = _def.ScalingArray[end] * (1.0 + ((count - end) * _def.ScalingFactor));
-		}
+		effect = count > end ? _def.ScalingArray[end] * (1.0 + ((count - end) * _def.ScalingFactor)) : _def.ScalingArray[count];
 	}
-	return effect;
+	::World.Assets.m.ProfessionEffect[_def.Const] = effect;
 }
 
 ::Legends.Professions.recalculateAllProfessions <- function() {
     foreach (prof in ::Const.Professions.ProfessionDefObjects) {
 		if ("ScalingArray" in prof) {
-        	local effect = ::Legends.Professions.getProfessionEffect(prof);    
-        	::World.Assets.m.ProfessionEffect[prof.Const] = effect;
+        	::Legends.Professions.setProfessionEffect(prof);
 		}
     }
 }

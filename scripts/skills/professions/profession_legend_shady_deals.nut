@@ -1,4 +1,4 @@
-this.profession_legend_shady_deals <- this.inherit("scripts/skills/skill", {
+this.profession_legend_shady_deals <- this.inherit("scripts/skills/legend_profession_skill", {
 	m = {},
 
 	function create() {

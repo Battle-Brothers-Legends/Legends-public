@@ -1,4 +1,4 @@
-this.profession_legend_alcohol_preparation <- this.inherit("scripts/skills/skill", {
+this.profession_legend_alcohol_preparation <- this.inherit("scripts/skills/legend_profession_skill", {
 	m = {},
 
 	function create() {
