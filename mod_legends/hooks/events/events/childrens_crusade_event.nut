@@ -58,11 +58,7 @@
 				local start = s.start;
 				s.start <- function (_event) {
 					start(_event);
-					this.List.push({
-						id = 10,
-						icon = "ui/icons/asset_moral_reputation.png",
-						text = "The company\'s moral reputation increases"
-					});
+					this.List.push(::Legends.EventList.changeMoralReputation(2, false));
 				}
 			}
 			if (s.ID == "Traveller") {
@@ -70,22 +66,14 @@
 				local start = s.start;
 				s.start <- function (_event) {
 					start(_event);
-					this.List.push({
-						id = 10,
-						icon = "ui/icons/asset_moral_reputation.png",
-						text = "The company\'s moral reputation increases"
-					});
+					this.List.push(::Legends.EventList.changeMoralReputation(2, false));
 				}
 			}
 			if (s.ID == "C") {
 				local start = s.start;
 				s.start <- function (_event) {
 					start(_event);
-					this.List.push({
-						id = 10,
-						icon = "ui/icons/asset_moral_reputation.png",
-						text = "The company\'s moral reputation decreases greatly"
-					});
+					this.List.push(::Legends.EventList.changeMoralReputation(-4, false));
 				}
 			}
 		}
@@ -102,12 +90,8 @@
 			}],
 			function start(_event) {
 				this.Characters.push(_event.m.Shieldmaiden.getImagePath());
-				this.World.Assets.addMoralReputation(1);
-				this.List.extend([{
-						id = 10,
-						icon = "ui/icons/asset_moral_reputation.png",
-						text = "The company\'s moral reputation decreases greatly"
-					},
+				this.List.extend([
+					::Legends.EventList.changeMoralReputation(1),
 					::Legends.EventList.changeMeleeSkill(_event.m.Shieldmaiden, 2),
 					::Legends.EventList.changeInitiative(_event.m.Shieldmaiden, ::Math.rand(1, 3)),
 					::Legends.EventList.changeMood(_event.m.Shieldmaiden, 1.0, "Roughhoused kids out of the suicidal crusade")
@@ -128,7 +112,6 @@
 			function start( _event )
 			{
 				this.Characters.push(_event.m.Doubter.getImagePath());
-				this.World.Assets.addMoralReputation(1);
 				local resolve = this.Math.rand(1, 2);
 				_event.m.Doubter.getBaseProperties().Bravery += resolve;
 				_event.m.Doubter.getSkills().update();
@@ -146,11 +129,7 @@
 						text = _event.m.Doubter.getName() + this.Const.MoodStateEvent[_event.m.Doubter.getMoodState()]
 					});
 				}
-				this.List.push({
-					id = 10,
-					icon = "ui/icons/asset_moral_reputation.png",
-					text = "The company\'s moral reputation increases"
-				});
+				this.List.push(::Legends.EventList.changeMoralReputation(1));
 
 				local brothers = this.World.getPlayerRoster().getAll();
 

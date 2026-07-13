@@ -19,12 +19,7 @@
 				getResult = @(_event) 0
 			}];
 			_screen.start <- function ( _event ) {
-				this.World.Assets.addMoralReputation(3);
-				this.List.push({
-					id = 10,
-					icon = "ui/icons/asset_moral_reputation.png",
-					text = "The company\'s moral reputation increases"
-				});
+				this.List.push(::Legends.EventList.changeMoralReputation(3));
 				local brothers = this.World.getPlayerRoster().getAll();
 
 				local roster = this.World.getTemporaryRoster();
@@ -81,11 +76,7 @@
 			}
 		});
 		::Legends.Screens.hook(this, "Bad", function(_screen) {
-			_screen.List.push({
-				id = 10,
-				icon = "ui/icons/asset_moral_reputation.png",
-				text = "The company\'s moral reputation increases"
-			});
+			_screen.List.push(::Legends.EventList.changeMoralReputation(3, false));
 		});
 		::Legends.Screens.hook(this, "Witchhunter", function(_screen) {
 			_screen.start <- function ( _event )

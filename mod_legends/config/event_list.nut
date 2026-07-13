@@ -8,6 +8,13 @@
 	RenownLose = "You lose [color=%s]%s[/color] of Renown",
 	GoldGain = "You gain [color=%s]%d[/color] Crowns",
 	GoldLose = "You lose [color=%s]%d[/color] Crowns",
+	MoralGain = "The company\'s moral reputation increases %s",
+	MoralLose = "The company\'s moral reputation decreases %s",
+	MoralAmount = [
+		"slightly",
+		"",
+		"greatly"
+	]
 	Amount = [
 		"a small amount",
 		"a decent amount",
@@ -86,6 +93,18 @@
 		text = _bro.getName() + " gains [color=" + this.Const.UI.Color.PositiveEventValue + "]" + _value + "[/color] Experience"
 	};
 }
+
+::Legends.EventList.changeMoralReputation <- function (_value, _actually_change_value = true) {
+	local amount = ::Math.min(2, ::Math.abs(_value) / 2); // 1 <- "sligthly", 2,3 <- "", 4+ <- "greatly"
+	if (_actually_change_value)
+		::World.Assets.addMoralReputation(2);
+	return {
+		id = 10,
+		icon = "ui/icons/asset_moral_reputation.png",
+		text = ::format(_value > 0 ? ::Legends.EventList.MoralGain : ::Legends.EventList.MoralLose, ::Legends.EventList.MoralAmount[amount])
+	}
+}
+
 
 ::Legends.EventList.addInjury <- function (_bro, _injuryConst) {
 	local injury = _bro.addInjury(_injuryConst);

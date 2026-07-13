@@ -41,11 +41,7 @@
 		});
 		::Legends.Screens.hook(this, "G", function(_screen) {
 			_screen.Text = "[img]gfx/ui/events/event_33.png[/img]%SPEECH_ON%The punishment for thievery is death.%SPEECH_OFF%You plunge the sword down, cutting off the thief\'s last words with a quick stab into their chest. The body seizes up, speechless save for the scratching of thin hands grabbing the killing implement, and then the face falls back, dead within moment. You retrieve your weapon and clean it off in the nook of your elbow. The dead head turns to a side as blood pools quietly beneath.";
-			_screen.List.push({
-				id = 10,
-				icon = "ui/icons/asset_moral_reputation.png",
-				text = "The company\'s moral reputation decreases slightly"
-			});
+			_screen.List.push(::Legends.EventList.changeMoralReputation(-1, false));
 		});
 		::Legends.Screens.hook(this, "H", function(_screen) {
 			_screen.Text = "[img]gfx/ui/events/event_05.png[/img]You lower your weapon and the theif crawls to you and hugs your legs, kissing your feet until you draw away.\n\nTo get things straight, you give a long list of orders and how it is to work in the company. You also give a contract which is then signed with a jagged \'x\'. A few of the company then spend the rest of the day teaching the ropes and introducing the new sellsword to the rest of the company. By night\'s end, it seems like the new blood is already beginning to fit in. By next morning, you wake to see a great number of supplies are missing and the new recruit is nowhere in sight. It appears that, although you stayed the thief\'s execution, they went on ahead and stole things anyway. Let that be a lesson to you.";

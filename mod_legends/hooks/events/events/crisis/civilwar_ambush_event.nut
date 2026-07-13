@@ -7,12 +7,7 @@
 				s.start <- function (_event) {
 					this.Banner = _event.m.NobleHouse.getUIBannerSmall();
 					_event.m.NobleHouse.addPlayerRelation(this.Const.World.Assets.RelationOffense, "Ambushed some of their men");
-					this.World.Assets.addMoralReputation(-1);
-					this.List.push({
-						id = 10,
-						icon = "ui/icons/asset_moral_reputation.png",
-						text = "The company\'s moral reputation decreases slightly"
-					});
+					this.List.push(::Legends.EventList.changeMoralReputation(-1));
 					_event.m.Town.getFactionOfType(this.Const.FactionType.Settlement).addPlayerRelation(this.Const.World.Assets.RelationFavor, "Helped in an ambush against " + _event.m.NobleHouse.getName());
 					local item;
 					local banner = _event.m.NobleHouse.getBanner();

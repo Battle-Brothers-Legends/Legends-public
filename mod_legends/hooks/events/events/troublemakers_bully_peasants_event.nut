@@ -10,19 +10,10 @@
 				if (_event.m.Peacekeeper != null) {
 					this.Options.push({
 						Text = "%peacekeeperfull%, see if you can calm %troublemaker% with your wisdom.",
-						function getResult( _event ) {
-							return this.Math.rand(1, 100) <= 70 ? "E" : "F";
-						}
+						getResult = @(_event) ::Math.rand(1, 100) <= 70 ? "E" : "F"
 					});
 				}
-
-				this.World.Assets.addMoralReputation(-1);
-
-				this.List.push({
-					id = 10,
-					icon = "ui/icons/asset_moral_reputation.png",
-					text = "The company\'s moral reputation decreases slightly"
-				});
+				this.List.push(::Legends.EventList.changeMoralReputation(-1));
 				local f = _event.m.Town.getFactionOfType(this.Const.FactionType.Settlement);
 				f.addPlayerRelation(this.Const.World.Assets.RelationCivilianContractFail, "One of your company caused havoc in town");
 				this.Characters.push(_event.m.Troublemaker.getImagePath());
@@ -32,13 +23,8 @@
 			_screen.Text = "%townImage%You shrug. %troublemaker% doesn\'t run the old man through, but %they_troublemaker% does threaten to, raising the weapon on high. When the old man cowers, the sellsword delivers a punch that knocks the elderly right out, his teeth peppering the muck like spits of white rain. This brings a few jeers from the villagers, but they know not to contest your presence any further.\n\nA few men drag the elder away while children boo and women hiss. One child even runs up to the sellsword, pointing at him as he yells \'%they_troublemaker%\'s a bad %person_troublemaker%.\' %troublemaker% shrugs as %they_troublemaker% sheathes %their_troublemaker% weapon.%SPEECH_ON%And yet the bad %person_troublemaker% still stands. Would you also like a taste of the mud, little one?%SPEECH_OFF%The kid quickly runs off.";
 			_screen.start <- function ( _event ) {
 				this.Characters.push(_event.m.Troublemaker.getImagePath());
-				this.World.Assets.addMoralReputation(-3);
 
-				this.List.push({
-					id = 10,
-					icon = "ui/icons/asset_moral_reputation.png",
-					text = "The company\'s moral reputation decreases"
-				});
+				this.List.push(::Legends.EventList.changeMoralReputation(-3));
 				local f = _event.m.Town.getFactionOfType(this.Const.FactionType.Settlement);
 				f.addPlayerRelation(this.Const.World.Assets.RelationCivilianContractFail, "One of your company caused havoc in town");
 				_event.m.Troublemaker.improveMood(1.0, "Bullied the peasantfolk");
@@ -59,13 +45,8 @@
 			_screen.start <- function ( _event )
 			{
 				this.Characters.push(_event.m.Troublemaker.getImagePath());
-				this.World.Assets.addMoralReputation(-5);
 
-				this.List.push({
-					id = 10,
-					icon = "ui/icons/asset_moral_reputation.png",
-					text = "The company\'s moral reputation decreases greatly"
-				});
+				this.List.push(::Legends.EventList.changeMoralReputation(-5));
 
 				local f = _event.m.Town.getFactionOfType(this.Const.FactionType.Settlement);
 				f.addPlayerRelation(this.Const.World.Assets.RelationAttacked, "You pillaged the town");

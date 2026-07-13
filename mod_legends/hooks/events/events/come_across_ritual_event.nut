@@ -34,12 +34,9 @@
 			if (s.ID == "Cultist") {
 				s.start <- function (_event) {
 					this.Characters.push(_event.m.Cultist.getImagePath());
-					::World.Assets.addMoralReputation(1);
-					this.List.push({
-						id = 10,
-						icon = "ui/icons/asset_moral_reputation.png",
-						text = "The company\'s moral reputation increases slightly"
-					});
+
+					this.List.push(::Legends.EventList.changeMoralReputation(1));
+
 					::World.Assets.getStash().makeEmptySlots(1);
 					local item = ::new("scripts/items/legend_helmets/helm/legend_helmet_skin_helm");
 					::World.Assets.getStash().add(item);
@@ -69,13 +66,8 @@
 					this.World.State.startScriptedCombat(properties, false, false, true);
 					return 0;
 				}
-				s.start <-	function ( _event ) {
-					this.World.Assets.addMoralReputation(1);
-					this.List.push({
-						id = 10,
-						icon = "ui/icons/asset_moral_reputation.png",
-						text = "The company\'s moral reputation increases slightly"
-					});
+				s.start <- function ( _event ) {
+					this.List.push(::Legends.EventList.changeMoralReputation(1));
 				}
 			}
 
@@ -99,12 +91,7 @@
 					return 0;
 				}
 				s.start <-	function ( _event ) {
-					this.World.Assets.addMoralReputation(1);
-					this.List.push({
-						id = 10,
-						icon = "ui/icons/asset_moral_reputation.png",
-						text = "The company\'s moral reputation increases slightly"
-					});
+					this.List.push(::Legends.EventList.changeMoralReputation(1));
 				}
 			}
 

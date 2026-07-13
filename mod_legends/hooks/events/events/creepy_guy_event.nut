@@ -31,11 +31,7 @@
 			local start = _screen.start;
 			_screen.start <- function (_event) {
 				start(_event);
-				this.List.push({
-					id = 10,
-					icon = "ui/icons/asset_moral_reputation.png",
-					text = "The company\'s moral reputation increases slightly"
-				});
+				this.List.push(::Legends.EventList.changeMoralReputation(1, false));
 			}
 		});
 		::Legends.Screens.hook(this, "Minstrel", function (_screen) {

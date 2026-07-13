@@ -32,11 +32,7 @@
 		});
 		::Legends.Screens.hook(this, "F", function(_screen) {
 			_screen.Text = "[img]gfx/ui/events/event_59.png[/img]Curious as to where these people are going, you open your mouth, but %monk% the holy one steps forward, cutting you off and going to the man in front of the troop and has quiet counsel with him. There is plenty of nodding, hrrumphing, and other gesticulations of those who dwell long on things well beyond the human realm. Eventually, the monk comes back.%SPEECH_ON%They\'re on a pilgrimage and now our name travels with them. Many shall hear of it.%SPEECH_OFF%You thank the monk for a job well done.";
-			_screen.List.push({
-				id = 10,
-				icon = "ui/icons/asset_moral_reputation.png",
-				text = "The company\'s moral reputation increases slightly"
-			})
+			_screen.List.push(::Legends.EventList.changeMoralReputation(1, false));
 		});
 	}
 })

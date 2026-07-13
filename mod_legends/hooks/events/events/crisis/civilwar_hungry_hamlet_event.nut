@@ -16,22 +16,14 @@
 				local startE = s.start;
 				s.start <- function (_event) {
 					startE(_event);
-					this.List.push({
-						id = 10,
-						icon = "ui/icons/asset_moral_reputation.png",
-						text = "The company\'s moral reputation increases"
-					});
+					this.List.push(::Legends.EventList.changeMoralReputation(3, false));
 				}
 			}
 			if (s.ID == "F") {
 				local startF = s.start;
 				s.start <- function (_event) {
 					startF(_event);
-					this.List.push({
-						id = 10,
-						icon = "ui/icons/asset_moral_reputation.png",
-						text = "The company\'s moral reputation increases"
-					});
+					this.List.push(::Legends.EventList.changeMoralReputation(1, false));
 				}
 			}
 		}

@@ -85,20 +85,14 @@
 					this.Characters.push(_event.m.Wildman.getImagePath());
 
 				this.World.FactionManager.getFaction(_event.m.Town.getFactions()[0]).addPlayerRelation(this.Const.World.Assets.RelationCivilianContractFail, "You refused to pay for damages caused by one of your mercenaries");
-				this.List.push({
-					id = 10,
-					icon = "ui/icons/asset_moral_reputation.png",
-					text = "The company\'s moral reputation decreases slightly"
-				});
+
+				this.List.push(::Legends.EventList.changeMoralReputation(-1, false));
 			}
 		});
 		::Legends.Screens.hook(this, "C", function (_screen) {
 			_screen.Options = [{
 				Text = "Charity through destruction?",
-				function getResult( _event ) {
-					this.World.Assets.addMoralReputation(2);
-					return 0;
-				}
+				getResult = @(_event) 0
 			}];
 			_screen.start <- function ( _event ) {
 				if (_event.m.Wildman != null && _event.m.Berserker == null)	{
@@ -119,21 +113,15 @@
 					icon = "ui/icons/asset_money.png",
 					text = "You spend [color=" + this.Const.UI.Color.NegativeEventValue + "]" + _event.m.Compensation + "[/color] Crowns"
 				});
-				this.List.push({
-					id = 10,
-					icon = "ui/icons/asset_moral_reputation.png",
-					text = "The company\'s moral reputation increases"
-				});
+
+				this.List.push(::Legends.EventList.changeMoralReputation(2));
 			}
 		});
 		::Legends.Screens.hook(this, "D", function (_screen) {
 			_screen.Text = "%townImage%Surveying the damage, you agree to compensate the businessman. But this isn\'t your fault, it\'s the wild%person_wildman%\'s. You dock %their_wildman% pay: for some time to come, the mercenary\'s earnings will be halved. Furthermore, you take what earnings %they_wildman%\'s made and hand them over to the shop owner. It doesn\'t even begin to cover the damages, but it\'s a start. One man is left happy, and another quite disgruntled.\n\nYou tell the wild cretin that now %they_wildman%\'ll think twice about smearing shit all over someone else\'s walls. But the wild%person_wildman% doesn\'t seem to understand you. %They_wildman% just understands that the gold %they_wildman% once owned has been given to someone else, and %they_wildman% eyes its departure with sadness and bottled anger.";
 			_screen.Options = [{
 				Text = "Charity through destruction?",
-				function getResult( _event ) {
-					this.World.Assets.addMoralReputation(2);
-					return 0;
-				}
+				getResult = @(_event) 0
 			}];
 			_screen.start <- function ( _event ) {
 				this.World.Assets.addMoney(-_event.m.Compensation);
@@ -161,6 +149,7 @@
 						text = _event.m.Wildman.getName() + this.Const.MoodStateEvent[_event.m.Wildman.getMoodState()]
 					});
 				}
+				this.List.push(::Legends.EventList.changeMoralReputation(2));
 			}
 		});
 		::Legends.Screens.hook(this, "E", function (_screen) {
@@ -180,10 +169,7 @@
 				}
 			}, {
 				Text = "Fine. I did not wake up this morning looking to slaughter innocents.",
-				function getResult( _event ) {
-					this.World.Assets.addMoralReputation(1);
-					return "G";
-				}
+				getResult = @(_event) "G"
 			}];
 			_screen.start <- function ( _event ) {
 				if (_event.m.Berserker != null)
@@ -192,11 +178,7 @@
 				if (_event.m.Wildman != null && _event.m.Berserker == null)
 					this.Characters.push(_event.m.Wildman.getImagePath());
 
-				this.List.push({
-					id = 10,
-					icon = "ui/icons/asset_moral_reputation.png",
-					text = "The company\'s moral reputation decreases"
-				});
+				this.List.push(::Legends.EventList.changeMoralReputation(-1, false));
 			}
 		});
 		::Legends.Screens.hook(this, "G", function (_screen) {
@@ -225,6 +207,8 @@
 							text = bro.getName() + this.Const.MoodStateEvent[bro.getMoodState()]
 						});
 				}
+
+				this.List.push(::Legends.EventList.changeMoralReputation(1));
 			}
 		});
 
@@ -298,10 +282,7 @@
 			Characters = [],
 			Options = [{
 				Text = "Charity through destruction?",
-				function getResult( _event ) {
-					this.World.Assets.addMoralReputation(2);
-					return 0;
-				}
+				getResult = @( _event ) 0
 			}],
 			function start( _event ) {
 				if (_event.m.Berserker != null)
@@ -316,11 +297,7 @@
 					icon = "ui/icons/asset_money.png",
 					text = "You spend [color=" + this.Const.UI.Color.NegativeEventValue + "]" + _event.m.Compensation + "[/color] Crowns"
 				});
-				this.List.push({
-					id = 10,
-					icon = "ui/icons/asset_moral_reputation.png",
-					text = "The company\'s moral reputation increases"
-				});
+				this.List.push(::Legends.EventList.changeMoralReputation(2));
 			}
 		});
 	}

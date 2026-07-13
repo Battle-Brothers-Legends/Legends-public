@@ -40,22 +40,14 @@
 			if (s.ID == "B") {
 				local start = s.start;
 				s.start <- function (_event) {
-					this.List.push({
-						id = 10,
-						icon = "ui/icons/asset_moral_reputation.png",
-						text = "The company\'s moral reputation decreases slightly"
-					});
+					this.List.push(::Legends.EventList.changeMoralReputation(-1, false));
 					start(_event);
 				}
 			}
 			if (s.ID == "C") {
 				local start = s.start;
 				s.start <- function (_event) {
-					this.List.push({
-						id = 10,
-						icon = "ui/icons/asset_moral_reputation.png",
-						text = "The company\'s moral reputation decreases slightly"
-					});
+					this.List.push(::Legends.EventList.changeMoralReputation(-1, false));
 					start(_event);
 				}
 			}

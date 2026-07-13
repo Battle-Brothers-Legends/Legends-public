@@ -23,11 +23,7 @@
 						text = "You gain [color=" + this.Const.UI.Color.PositiveEventValue + "]150[/color] Crowns"
 					}];
 					local brothers = this.World.getPlayerRoster().getAll();
-					this.List.push({
-						id = 10,
-						icon = "ui/icons/asset_moral_reputation.png",
-						text = "The company\'s moral reputation increases slightly"
-					});
+					this.List.push(::Legends.EventList.changeMoralReputation(1, false));
 					foreach( bro in brothers )
 					{
 						local id = bro.getBackground().getID();
@@ -60,11 +56,7 @@
 			}
 			if (s.ID == "C") {
 				s.Text = "[img]gfx/ui/events/event_79.png[/img]You agree to help the man. Unfortunately, it appears as though he didn\'t plan things out too well. The rooftop collapses the second one of your \'laborers\' steps foot on it, sending them through a sinkhole of shingles. Another mercenary hammers a nail into place only for the wooden support to splinter right in two, catching them in the face with shards of wood. Loose bricks find freedom, wet mud has them slipping, and all manner of workplace hazards ends the whole project in disaster.\n\n The local man apologizes profusely in between biting his nails and wondering how he\'s going to deal with the baron. Snapping his fingers, he exclaims that he\'ll just pay him the crowns.";
-				s.List.push({
-					id = 10,
-					icon = "ui/icons/asset_moral_reputation.png",
-					text = "The company\'s moral reputation increases slightly"
-				});
+				s.List.push(::Legends.EventList.changeMoralReputation(1, false));
 			}
 			if (s.ID == "E") {
 				s.start <- function ( _event ) {

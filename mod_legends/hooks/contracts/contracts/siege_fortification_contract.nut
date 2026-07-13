@@ -67,11 +67,7 @@
 						icon = "ui/icons/asset_money.png",
 						text = "You gain [color=" + this.Const.UI.Color.PositiveEventValue + "]250[/color] Crowns"
 					});
-					this.List.push({
-						id = 10,
-						icon = "ui/icons/asset_moral_reputation.png",
-						text = "The company\'s moral reputation decreases slightly"
-					});
+					this.List.push(::Legends.EventList.changeMoralReputation(-1, false));
 				}
 			}
 		}

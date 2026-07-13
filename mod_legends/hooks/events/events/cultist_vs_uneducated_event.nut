@@ -5,14 +5,11 @@
 		foreach (s in this.m.Screens) {
 			if (s.ID == "B") {
 				s.start <- function (_event) {
-					this.World.Assets.addMoralReputation(-1);
-					this.List.push({
-						id = 10,
-						icon = "ui/icons/asset_moral_reputation.png",
-						text = "The company\'s moral reputation decreases slightly"
-					});
 					this.Characters.push(_event.m.Cultist.getImagePath());
 					this.Characters.push(_event.m.Uneducated.getImagePath());
+
+					this.List.push(::Legends.EventList.changeMoralReputation(-1));
+
 					_event.m.Uneducated.getBackground().Convert();
 					_event.m.Uneducated.getBackground().m.RawDescription += " " + _event.m.Cultist.getName() + " helped " + _event.m.Uneducated.getName() + " see the darkness.";
 					_event.m.Uneducated.getBackground().buildDescription(true);
@@ -35,12 +32,7 @@
 			if (s.ID == "C") {
 				local start = s.start;
 				s.start <- function (_event) {
-					this.World.Assets.addMoralReputation(2);
-					this.List.push({
-						id = 10,
-						icon = "ui/icons/asset_moral_reputation.png",
-						text = "The company\'s moral reputation increases"
-					});
+					this.List.push(::Legends.EventList.changeMoralReputation(2));
 					start(_event);
 				}
 			}

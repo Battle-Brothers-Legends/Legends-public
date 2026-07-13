@@ -10,7 +10,6 @@
 		});
 		::Legends.Screens.hook(this, "Robbing", function(_screen) {
 			_screen.start <- function ( _event ) {
-				this.World.Assets.addMoralReputation(-2);
 				local item = this.Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Standard.jesters_hat]]);
 				this.World.Assets.getStash().add(item);
 				this.List.push({
@@ -33,11 +32,8 @@
 					icon = "ui/icons/asset_money.png",
 					text = "You gain [color=" + this.Const.UI.Color.PositiveEventValue + "]" + item + "[/color] Crowns"
 				});
-				this.List.push({
-					id = 10,
-					icon = "ui/icons/asset_moral_reputation.png",
-					text = "The company\'s moral reputation decreases"
-				});
+
+				this.List.push(::Legends.EventList.changeMoralReputation(-2, false));
 
 				local brothers = this.World.getPlayerRoster().getAll();
 

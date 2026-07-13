@@ -6,12 +6,9 @@
 			_screen.Text = "[img]gfx/ui/events/event_97.png[/img]{%other% is fetched to go help the kid. %They_other% helps place the sword\'s handle and steel together and the kid works his magic on his own, easily mending the sword back into one piece. You\'re amazed by his skill and wonder how good the blacksmith himself must be if this is his apprentice. After the work is done, the boy offers to fix some of the weapons for the %companyname% which you happily accept.}";
 			_screen.start <- function (_event) {
 				this.Characters.push(_event.m.Other.getImagePath());
-				this.World.Assets.addMoralReputation(1);
-				this.List.push({
-					id = 10,
-					icon = "ui/icons/asset_moral_reputation.png",
-					text = "The company\'s moral reputation increases slightly"
-				});
+
+				this.List.push(::Legends.EventList.changeMoralReputation(1));
+
 				local stash = this.World.Assets.getStash().getItems();
 				local items = 0;
 
@@ -37,12 +34,7 @@
 			_screen.Text = "[img]gfx/ui/events/event_97.png[/img]{%other% sighs after you ask that %they_other% go help the kid with his duties. %They_other% lazily steps over to the blacksmith\'s anvil which is shaped like a molar as it rests on thin iron stilts. The blacksmith\'s goods are hanging from ad hoc walls manufactured out of old iron fences, the spokes curved outward to help catch the metalworks. The kid claps his hands.%SPEECH_ON%Now don\'t touch nothing else, just help me with this.%SPEECH_OFF% %other% turns \'round with confusion and mid-sentence knocks the anvil\'s leg out. It starts to crumple sideways and the kid rushes to catch it if only to stem the tide of trouble which has beset his day. The insane weight pastes him flat against the cobblestones, his limbs briefly stretched up like a cricket smooshed beneath a thumb. You see this all from a distance and whistle for the mercenary to head back before there\'s trouble. %They_other% makes his escape just as a few passersby start to take notice. %They_other% shrugs.%SPEECH_ON%We didn\'t do nothing, right sir?%SPEECH_OFF%You nod.}";
 			local startBad = _screen.start;
 			_screen.start <- function (_event) {
-				this.World.Assets.addMoralReputation(-1);
-				this.List.push({
-					id = 10,
-					icon = "ui/icons/asset_moral_reputation.png",
-					text = "The company\'s moral reputation decreases slightly"
-				});
+				this.List.push(::Legends.EventList.changeMoralReputation(-1));
 				startBad(_event);
 			}
 		});

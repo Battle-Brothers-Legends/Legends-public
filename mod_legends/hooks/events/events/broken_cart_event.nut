@@ -6,22 +6,14 @@
 			local start = _screen.start;
 			_screen.start <- function (_event) {
 				start(_event);
-				this.List.push({
-					id = 10,
-					icon = "ui/icons/asset_moral_reputation.png",
-					text = "The company\'s moral reputation increases"
-				});
+				this.List.push(::Legends.EventList.changeMoralReputation(2, false));
 			}
 		});
 		::Legends.Screens.hook(this, "C", function (_screen) {
 			local start = _screen.start;
 			_screen.start <- function (_event) {
 				start(_event);
-				this.List.push({
-					id = 10,
-					icon = "ui/icons/asset_moral_reputation.png",
-					text = "The company\'s moral reputation increases"
-				});
+				this.List.push(::Legends.EventList.changeMoralReputation(2, false));
 			}
 		});
 
@@ -31,11 +23,7 @@
 			local start = _screen.start;
 			_screen.start <- function (_event) {
 				start(_event);
-				this.List.push({
-					id = 10,
-					icon = "ui/icons/asset_moral_reputation.png",
-					text = "The company\'s moral reputation decreases"
-				});
+				this.List.push(::Legends.EventList.changeMoralReputation(-2, false));
 			}
 		});
 	}

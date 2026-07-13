@@ -59,7 +59,6 @@
 			if (s.ID == "F") {
 				s.Text = "[img]gfx/ui/events/event_35.png[/img]You set yourself down on a stump and watch the rest of the fight. The two roll around on the ground, smashing each other in the face with punches that would kill a horse. Eventually, %hedgeknight1% squats on %hedgeknight2%\'s shoulders. Seeing a rock nearby, %hedgeknight1% grabs it and cracks it over the opponent\'s skull. A bit of flesh is sheared off, revealing a slop of red and white beneath. The rock is brought down again. The brain pan splinters, shards of bone rupturing into fragments. %hedgeknight2% goes a bit limp, showing only a modicum of fight left in him. %hedgeknight1% punches a fist into the brainbox and rips out the namesake in one big gush of crimson. You gag at the sight, and a few of the company turn and vomit.\n\n%hedgeknight1% gets to his feet and throws the trophy into the tall grass. Wiping the forehead and saying only one word.%SPEECH_ON%Finished.%SPEECH_OFF%";
 				s.start <- function ( _event ) {
-					this.World.Assets.addMoralReputation(-1);
 					this.Characters.push(_event.m.HedgeKnight1.getImagePath());
 					local dead = _event.m.HedgeKnight2;
 					::Legends.addFallen(dead, "Killed in a duel by " + _event.m.HedgeKnight1.getName());
@@ -100,17 +99,13 @@
 					}
 
 					_event.m.HedgeKnight1.getSkills().update();
-					this.List.push({
-						id = 10,
-						icon = "ui/icons/asset_moral_reputation.png",
-						text = "The company\'s moral reputation decreases slightly"
-					});
+
+					this.List.push(::Legends.EventList.changeMoralReputation(-1));
 				}
 			}
 			if (s.ID == "G") {
 				s.start <- function ( _event )
 				{
-					this.World.Assets.addMoralReputation(-1);
 					this.Characters.push(_event.m.HedgeKnight2.getImagePath());
 					local dead = _event.m.HedgeKnight1;
 					::Legends.addFallen(dead,  "Killed in a duel by " + _event.m.HedgeKnight2.getName());
@@ -151,18 +146,14 @@
 					}
 
 					_event.m.HedgeKnight2.getSkills().update();
-					this.List.push({
-						id = 10,
-						icon = "ui/icons/asset_moral_reputation.png",
-						text = "The company\'s moral reputation decreases slightly"
-					});
+
+					this.List.push(::Legends.EventList.changeMoralReputation(-1));
 				}
 			}
 			if (s.ID == "H") {
 				s.Text = "[img]gfx/ui/events/event_05.png[/img]The monk nods, stepping forward and calmly walking between the two fighters. With hands raised, the fingers trailing to and fro as they mimic the shapes of old religious rites. the holy one speaks of the gods and how they judge folks for what they are and what they do. Some gods might find this battle favorable, but most would not. Most of all, though, the holy one says that if they truly wish to fight, then there is plenty of room for that after they die. However, if they kill one another, the loser is given great prestige in the afterlife, and the winner will not, for this violence serves no purpose than to give the victor pride. Surprisingly, this oddity in religious rules calms the fighters down. The monk invites them to talk more and they do so, the three walking off, hands gesticulating, backs arching in bellowing laughter. As for the rest of the company, they just seem happy nobody got killed.";
 				s.start <- function ( _event )
 				{
-					this.World.Assets.addMoralReputation(2);
 					this.Characters.push(_event.m.Monk.getImagePath());
 
 					if (!_event.m.Monk.getFlags().has("resolve_via_hedgeknight"))
@@ -176,11 +167,7 @@
 							text = _event.m.Monk.getName() + " gains [color=" + this.Const.UI.Color.PositiveEventValue + "]+3[/color] Resolve"
 						}];
 					}
-					this.List.push({
-						id = 10,
-						icon = "ui/icons/asset_moral_reputation.png",
-						text = "The company\'s moral reputation increases"
-					});
+					this.List.push(::Legends.EventList.changeMoralReputation(2));
 				}
 			}
 		}

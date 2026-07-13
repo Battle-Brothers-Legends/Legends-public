@@ -69,7 +69,7 @@
 
 				if (::Legends.Backgrounds.hasAny(bro, ::Legends.Background.Thief, ::Legends.Background.LegendCommanderAssassin))
 					candidates_thief.push(bro);
-				else if (::Legends.Backgrounds.has(bro, ::Legends.Background.Vagabond, ::Legends.Background.Refugee, ::Legends.Background.Messenger))
+				else if (::Legends.Backgrounds.hasAny(bro, ::Legends.Background.Vagabond, ::Legends.Background.Refugee, ::Legends.Background.Messenger))
 					candidates_vagabond.push(bro);
 			}
 		}

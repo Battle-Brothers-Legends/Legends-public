@@ -5,27 +5,15 @@
 		foreach (s in this.m.Screens) {
 			if (s.ID == "D") {
 				local start = s.start;
-				s.start <- function ( _event )
-				{
-					this.World.Assets.addMoralReputation(2);
-					this.List.push({
-						id = 10,
-						icon = "ui/icons/asset_moral_reputation.png",
-						text = "The company\'s moral reputation increases"
-					});
+				s.start <- function ( _event ) {
+					this.List.push(::Legends.EventList.changeMoralReputation(2));
 					start(_event);
 				}
 			}
 			if (s.ID == "E") {
 				local start = s.start;
-				s.start <- function ( _event )
-				{
-					this.World.Assets.addMoralReputation(-2);
-					this.List.push({
-						id = 10,
-						icon = "ui/icons/asset_moral_reputation.png",
-						text = "The company\'s moral reputation decreases"
-					});
+				s.start <- function ( _event ) {
+					this.List.push(::Legends.EventList.changeMoralReputation(-2, false));
 					start(_event);
 				}
 			}

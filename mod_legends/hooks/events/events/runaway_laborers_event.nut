@@ -3,11 +3,7 @@
 	o.create = function() {
 		create();
 		::Legends.Screens.hook(this, "B", function(_screen) {
-			_screen.List.push({
-				id = 10,
-				icon = "ui/icons/asset_moral_reputation.png",
-				text = "The company\'s moral reputation decreases slightly"
-			});
+			_screen.List.push(::Legends.EventList.changeMoralReputation(-1, false));
 		});
 		::Legends.Screens.hook(this, "C", function(_screen) {
 			_screen.start <- function ( _event ) {
@@ -25,26 +21,14 @@
 				}
 
 				this.Characters.push(_event.m.Dude.getImagePath());
-				this.List.push({
-					id = 10,
-					icon = "ui/icons/asset_moral_reputation.png",
-					text = "The company\'s moral reputation increases slightly"
-				});
+				this.List.push(::Legends.EventList.changeMoralReputation(1, false));
 			}
 		});
 		::Legends.Screens.hook(this, "D", function(_screen) {
-			_screen.List.push({
-				id = 10,
-				icon = "ui/icons/asset_moral_reputation.png",
-				text = "The company\'s moral reputation increases slightly"
-			});
+			_screen.List.push(::Legends.EventList.changeMoralReputation(1, false));
 		});
 		::Legends.Screens.hook(this, "E", function(_screen) {
-			_screen.List.push({
-				id = 10,
-				icon = "ui/icons/asset_moral_reputation.png",
-				text = "The company\'s moral reputation increases slightly"
-			});
+			_screen.List.push(::Legends.EventList.changeMoralReputation(1, false));
 		});
 	}
 })

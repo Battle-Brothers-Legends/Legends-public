@@ -5,7 +5,6 @@
 		foreach (s in this.m.Screens) {
 			if (s.ID == "C") {
 				s.start <- function ( _event ) {
-					this.World.Assets.addMoralReputation(-10);
 					this.Characters.push(_event.m.Sacrifice.getImagePath());
 					local dead = _event.m.Sacrifice;
 					::Legends.addFallen(dead, "Sacrificed to Davkul");
@@ -14,11 +13,7 @@
 						icon = "ui/icons/kills.png",
 						text = _event.m.Sacrifice.getName() + " has died"
 					});
-					this.List.push({
-						id = 10,
-						icon = "ui/icons/asset_moral_reputation.png",
-						text = "The company\'s moral reputation decreases greatly"
-					});
+					this.List.push(::Legends.EventList.changeMoralReputation(-10));
 					_event.m.Sacrifice.getItems().transferToStash(this.World.Assets.getStash());
 					_event.m.Sacrifice.getSkills().onDeath(this.Const.FatalityType.None);
 					this.World.getPlayerRoster().remove(_event.m.Sacrifice);
