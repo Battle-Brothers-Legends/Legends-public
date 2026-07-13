@@ -104,29 +104,40 @@ this.legend_kick_skill <- this.inherit("scripts/skills/skill", {
 
 	function isUsable()
 	{
-		if (::Legends.Perks.has(this, ::Legends.Perk.LegendPugilist))
+		if (::Legends.Perks.has(this, ::Legends.Perk.LegendPugilist)) {
 			return true;
+		}
+		
 		local actor = this.getContainer().getActor();
 		local mainhand = actor.getItems().getItemAtSlot(this.Const.ItemSlot.Mainhand);
 		local offhand = actor.getItems().getItemAtSlot(this.Const.ItemSlot.Offhand);
 		local hasNet = offhand != null && ::MSU.String.endsWith(offhand.getID(), "_net") && actor.getCurrentProperties().IsSpecializedInNets;
-		if (hasNet && this.skill.isUsable())
+		if (hasNet && this.skill.isUsable()) {
 			return true;
+		}
+
 		return ((offhand == null || mainhand == null) || this.getContainer().hasEffect(::Legends.Effect.Disarmed)) && this.skill.isUsable();
 	}
 
 	function isHidden()
 	{
-		if (::Legends.Perks.has(this, ::Legends.Perk.LegendPugilist))
+		if (::Legends.Perks.has(this, ::Legends.Perk.LegendPugilist)) {
 			return false;
+		}
+
 		local actor = this.getContainer().getActor();
 		local mainhand = actor.getItems().getItemAtSlot(this.Const.ItemSlot.Mainhand);
 		local offhand = actor.getItems().getItemAtSlot(this.Const.ItemSlot.Offhand);
 		local hasNet = actor.getCurrentProperties().IsSpecializedInNets && offhand != null && offhand.getID().find("throwing_net") != null;
-		if (hasNet)
+		if (hasNet) {
 			return false;
+		}
+
+		if ((offhand == null && !actor.getItems().hasBlockedSlot(this.Const.ItemSlot.Offhand)) || mainhand == null) {
+			return false;
+		}
 		
-		return mainhand != null && offhand != null && !this.getContainer().hasEffect(::Legends.Effect.Disarmed) || this.getContainer().getActor().getItems().hasBlockedSlot(this.Const.ItemSlot.Offhand) || this.skill.isHidden() || actor.isStabled();
+		return !this.getContainer().hasEffect(::Legends.Effect.Disarmed) || this.skill.isHidden() || actor.isStabled();
 	}
 
 
