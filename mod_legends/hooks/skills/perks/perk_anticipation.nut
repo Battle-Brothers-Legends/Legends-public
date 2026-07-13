@@ -22,7 +22,7 @@
 			return;
 		}
 		this.m.IsHidden = false;
-		_properties.DamageReceivedTotalMult *= this.Math.min(1.0, 1.0 - this.Math.max(0, _properties.RangedDefense) * 0.01);
+		_properties.DamageReceivedTotalMult *= this.Math.minf(1.0, 1.0 - this.Math.max(0, _properties.RangedDefense) * 0.01);
 	}
 
 	o.onAfterDamageReceived <- function () {
