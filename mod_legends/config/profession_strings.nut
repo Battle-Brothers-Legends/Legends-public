@@ -118,7 +118,7 @@ They say its difficult to let go of some of the more refined tastes once one acq
 ";
 
 ::Const.Strings.ProfessionDescription.LegendBraggart <- @"
-It was ten feet tall, breathed fire and we killed it with a spoon. Obviously.
+It was ten feet tall, breathed fire and I killed it with a spoon. Obviously.
 
 [color=%passive%][u]Passive:[/u][/color]
 • Increases the number of available recruits.
@@ -517,7 +517,7 @@ There is a sickness in the ancient, pitted cobbles of the old imperial roads and
 ";
 
 ::Const.Strings.ProfessionDescription.LegendWhipThemIntoShape <- @"
-There is no quicker school of war than battles themselves.
+There is no quicker school of war than on the battlefield.
 
 [color=%passive%][u]Passive:[/u][/color]
 • Kills made by veterans grant experience to non-veterans.

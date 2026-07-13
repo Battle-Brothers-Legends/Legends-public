@@ -3,7 +3,7 @@ if (!("Professions" in ::Legends))
 
 ::Legends.Professions.getContainer <- function (_target, _onError = "") {
 	if (_target == null) {
-		::logError( "_target == null " + _onError);
+		::logError("_target == null " + _onError);
 		throw "_target == null";
 	}
 	if (::MSU.isKindOf(_target, "skill"))
@@ -16,7 +16,7 @@ if (!("Professions" in ::Legends))
 		return _target.getContainer();
 	if (::MSU.isKindOf(_target, "item"))
 		return ::Legends.Professions.getContainer(_target.getContainer().getActor());
-	::logError( "Unsupported _target class " + _onError);
+	::logError("Unsupported _target class " + _onError);
 	throw "Unsupported _target class";
 }
 
