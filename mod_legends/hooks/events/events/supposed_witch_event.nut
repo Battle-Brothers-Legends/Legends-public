@@ -112,7 +112,7 @@
 
 				foreach( bro in brothers )
 				{
-					if (bro.getID() != _event.m.Witchhunter.getID() && (this.Math.rand(1, 100) <= 25 || ::Legends.Backgrounds.has(bro, ::Legends.Background.Witchhunter) || ::Legends.Backgrounds.has(bro, ::Legends.Background.Monk)  || bro.getSkills().hasTrait(::Legends.Trait.Superstitious)))
+					if (bro.getID() != _event.m.Witchhunter.getID() && (this.Math.rand(1, 100) <= 25 || ::Legends.Backgrounds.hasAny(bro, ::Legends.Background.Witchhunter, ::Legends.Background.Monk)  || bro.getSkills().hasTrait(::Legends.Trait.Superstitious)))
 					{
 						bro.improveMood(1.0, "Saw an evil spirit meet its end");
 
@@ -152,7 +152,7 @@
 				local brothers = this.World.getPlayerRoster().getAll();
 
 				foreach( bro in brothers ) {
-					if (bro.getID() != _event.m.Monk.getID() && (::Legends.Backgrounds.has(bro, ::Legends.Background.Witchhunter) || ::Legends.Backgrounds.has(bro, ::Legends.Background.Monk) || bro.getSkills().hasTrait(::Legends.Trait.Superstitious))) {
+					if (bro.getID() != _event.m.Monk.getID() && (::Legends.Backgrounds.hasAny(bro, ::Legends.Background.Witchhunter, ::Legends.Background.Monk) || bro.getSkills().hasTrait(::Legends.Trait.Superstitious))) {
 						bro.improveMood(1.0, "Saw a witch burning at the stake");
 
 						if (bro.getMoodState() >= this.Const.MoodState.Neutral)
@@ -200,7 +200,7 @@
 								icon = this.Const.MoodStateIcon[bro.getMoodState()],
 								text = bro.getName() + this.Const.MoodStateEvent[bro.getMoodState()]
 							});
-					} else if (::Legends.Backgrounds.has(bro, ::Legends.Background.Witchhunter) || ::Legends.Backgrounds.has(bro, ::Legends.Background.Monk)  || bro.getSkills().hasTrait(::Legends.Trait.Superstitious)) {
+					} else if (::Legends.Backgrounds.hasAny(bro, ::Legends.Background.Witchhunter, ::Legends.Background.Monk)  || bro.getSkills().hasTrait(::Legends.Trait.Superstitious)) {
 						bro.worsenMood(1.0, _event.m.Cultist.getName() + " freed a witch");
 
 						if (bro.getMoodState() < this.Const.MoodState.Neutral)

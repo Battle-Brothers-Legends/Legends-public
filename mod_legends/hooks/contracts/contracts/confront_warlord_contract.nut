@@ -34,7 +34,7 @@
 				local brothers = this.World.getPlayerRoster().getAll();
 
 				foreach (bro in brothers) {
-					if (!::Legends.Backgrounds.has(bro, ::Legends.Background.Houndmaster, ::Legends.Background.LegendMuladi))
+					if (!::Legends.Backgrounds.hasAny(bro, ::Legends.Background.Houndmaster, ::Legends.Background.LegendMuladi))
 						continue;
 
 					local entry = ::Legends.EventList.changeMood(bro, -1.0, "You didn\'t help wardogs being eaten by orcs");

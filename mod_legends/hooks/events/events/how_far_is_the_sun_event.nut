@@ -32,7 +32,12 @@
 					local brothers = this.World.getPlayerRoster().getAll();
 
 					foreach( bro in brothers ) {
-						if (bro.getID() == _event.m.Historian.getID() || ::Legends.Backgrounds.has(bro, ::Legends.Background.Historian)  || ::Legends.Backgrounds.has(bro, ::Legends.Background.LegendInventor) || ::Legends.Backgrounds.has(bro, ::Legends.Background.LegendWitch) || ::Legends.Backgrounds.has(bro, ::Legends.Background.LegendCommanderWitch)|| bro.getSkills().hasTrait(::Legends.Trait.Bright))
+						if (bro.getID() == _event.m.Historian.getID() || ::Legends.Backgrounds.hasAny(bro,
+							::Legends.Background.Historian,
+							::Legends.Background.LegendInventor,
+							::Legends.Background.LegendWitch,
+							::Legends.Background.LegendCommanderWitch
+						) || bro.getSkills().hasTrait(::Legends.Trait.Bright))
 							continue;
 
 						if (this.Math.rand(1, 100) <= 33) {
@@ -54,7 +59,19 @@
 					local brothers = this.World.getPlayerRoster().getAll();
 
 					foreach( bro in brothers ) {
-						if (bro.getEthnicity() == 1 || bro.getID() == _event.m.Monk.getID() || bro.getBackground().isBackgroundType(this.Const.BackgroundType.ConvertedCultist) || bro.getBackground().isBackgroundType(this.Const.BackgroundType.Cultist) || ::Legends.Backgrounds.has(bro, ::Legends.Background.Historian) || ::Legends.Backgrounds.has(bro, ::Legends.Background.Historian) || ::Legends.Backgrounds.has(bro, ::Legends.Background.LegendInventor) || ::Legends.Backgrounds.has(bro, ::Legends.Background.LegendWitch) || ::Legends.Backgrounds.has(bro, ::Legends.Background.LegendCommanderWitch) || ::Legends.Backgrounds.has(bro, ::Legends.Background.LegendNecro) || ::Legends.Backgrounds.has(bro, ::Legends.Background.LegendCommanderNecro))
+						if (bro.getEthnicity() == 1 || bro.getID() == _event.m.Monk.getID())
+							continue;
+						if (bro.getBackground().isBackgroundType(this.Const.BackgroundType.ConvertedCultist) || bro.getBackground().isBackgroundType(this.Const.BackgroundType.Cultist))
+							continue;
+
+						if(::Legends.Backgrounds.hasAny(bro,
+							::Legends.Background.Historian,
+							::Legends.Background.LegendInventor,
+							::Legends.Background.LegendWitch,
+							::Legends.Background.LegendCommanderWitch,
+							::Legends.Background.LegendNecro,
+							::Legends.Background.LegendCommanderNecro
+						))
 							continue;
 
 						if (this.Math.rand(1, 100) <= 33) {
