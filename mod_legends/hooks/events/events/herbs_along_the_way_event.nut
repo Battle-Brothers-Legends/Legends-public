@@ -49,7 +49,7 @@
 	}
 
 	local onUpdateScore = o.onUpdateScore;
-	o.onUpdateScore = function () {
+	o.onUpdateScore = function() {
 		if (this.World.Assets.getOrigin().getID() == "scenario.legend_risen_legion")
 			return;
 
@@ -58,12 +58,9 @@
 			return;
 
 		local herbalists = [];
-		foreach( bro in brothers )
-		{
-			if (bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.LegendHerbalist) || ::Legends.Perks.has(bro, ::Legends.Perk.LegendGatherer))
-			{
+		foreach (bro in brothers) {
+			if (::Legends.Backgrounds.hasAny(bro, ::Legends.Background.LegendHerbalist, ::Legends.Perk.LegendGatherer))
 				herbalists.push(bro);
-			}
 		}
 		if (herbalists.len() > 0)
 			this.m.Herbalist = herbalists[this.Math.rand(0, herbalists.len() - 1)];

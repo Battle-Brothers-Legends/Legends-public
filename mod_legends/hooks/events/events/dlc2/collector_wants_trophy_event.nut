@@ -81,7 +81,7 @@
 		local brothers = this.World.getPlayerRoster().getAll();
 		local candidates_merchant = [];
 		foreach( bro in brothers )
-			if (bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.LegendCommanderPeddler))
+			if (::Legends.Backgrounds.has(bro, ::Legends.Background.LegendCommanderPeddler))
 				candidates_merchant.push(bro);
 
 		if (candidates_merchant.len() != 0)

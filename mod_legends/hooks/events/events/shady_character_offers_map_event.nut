@@ -2,14 +2,12 @@
 	local create = o.create;
 	o.create = function() {
 		create();
-		foreach (s in this.m.Screens) {
-			if (s.ID == "E") {
-				s.Text = "[img]gfx/ui/events/event_41.png[/img]%peddler% the peddler steps forward, hands out just like the traveling merchant\'s had been. Apparently this is a common tactic amongst honest thieves.%SPEECH_ON%Sir, sir, please. Come on. That price is outrageous.%SPEECH_OFF%The merchant\'s face sours.%SPEECH_ON%There is nothing outrageous about it, I promise you.%SPEECH_OFF%But your peddler persists.%SPEECH_ON%Clearly there is something outrageous, because I just said so, did I not?%SPEECH_OFF%The merchant nods. The peddler continues.%SPEECH_ON%So we\'ve decided to not purchase it at your original asking price. That much is clear. So, friend, I think we will purchase it for %newcost%. That is fair to all parties involved, and surely a fine businessman such as yourself can see a deal! We\'re hardly businessmen ourselves, but we know that\'s a good deal!%SPEECH_OFF%The merchant scratches his chin, then nods.%SPEECH_ON%Alright, that price is fair.%SPEECH_OFF%";
-			}
-			if (s.ID == "F") {
-				s.Text = "[img]gfx/ui/events/event_41.png[/img]While you\'re talking to the merchant, %thief% the thief sidles up next to you, appearing rather interested in the conversation. %thief% glances at you. You do a double take. %thief% grins and nods. You quickly eye the salesman then glance back at the thief and nod. The merchant is in the middle of his sales pitch and sees none of this. He keeps talking, but you hear little of it. You just know to keep nodding for a merchant such as he only tells you things you want to hear anyway.\n\n The thief slips around the back and drops a weapon into the mud.%SPEECH_ON%Clumsy me.%SPEECH_OFF% %thief% bends down, pauses, there\'s a motion you can hardly detect, and then %thief%\'s upright again. %thief% gives you a wink. You tell the merchant you appreciate the offer, but you\'ll have to pass. When he\'s gone, %thief% presents you with the map and grins.%SPEECH_ON%They say the best things in life are free.%SPEECH_OFF%";
-			}
-		}
+		::Legends.Screens.hook(this, "E", function(_screen) {
+			_screen.Text = "[img]gfx/ui/events/event_41.png[/img]%peddler% the peddler steps forward, hands out just like the traveling merchant\'s had been. Apparently this is a common tactic amongst honest thieves.%SPEECH_ON%Sir, sir, please. Come on. That price is outrageous.%SPEECH_OFF%The merchant\'s face sours.%SPEECH_ON%There is nothing outrageous about it, I promise you.%SPEECH_OFF%But your peddler persists.%SPEECH_ON%Clearly there is something outrageous, because I just said so, did I not?%SPEECH_OFF%The merchant nods. The peddler continues.%SPEECH_ON%So we\'ve decided to not purchase it at your original asking price. That much is clear. So, friend, I think we will purchase it for %newcost%. That is fair to all parties involved, and surely a fine businessman such as yourself can see a deal! We\'re hardly businessmen ourselves, but we know that\'s a good deal!%SPEECH_OFF%The merchant scratches his chin, then nods.%SPEECH_ON%Alright, that price is fair.%SPEECH_OFF%";
+		});
+		::Legends.Screens.hook(this, "F", function(_screen) {
+			_screen.Text = "[img]gfx/ui/events/event_41.png[/img]While you\'re talking to the merchant, %thief% the thief sidles up next to you, appearing rather interested in the conversation. %thief% glances at you. You do a double take. %thief% grins and nods. You quickly eye the salesman then glance back at the thief and nod. The merchant is in the middle of his sales pitch and sees none of this. He keeps talking, but you hear little of it. You just know to keep nodding for a merchant such as he only tells you things you want to hear anyway.\n\n The thief slips around the back and drops a weapon into the mud.%SPEECH_ON%Clumsy me.%SPEECH_OFF% %thief% bends down, pauses, there\'s a motion you can hardly detect, and then %thief%\'s upright again. %thief% gives you a wink. You tell the merchant you appreciate the offer, but you\'ll have to pass. When he\'s gone, %thief% presents you with the map and grins.%SPEECH_ON%They say the best things in life are free.%SPEECH_OFF%";
+		});
 	}
 
 	o.onUpdateScore = function () {
@@ -26,16 +24,11 @@
 			return;
 
 		local currentTile = this.World.State.getPlayer().getTile();
-
 		if (!currentTile.HasRoad)
 			return;
 
-		local bases = this.World.FactionManager.getFactionOfType(this.Const.FactionType.Undead).getSettlements();
-		local candidates_location = [];
-
-		foreach( b in bases )
-			if (!b.getLoot().isEmpty() && !b.getFlags().get("IsEventLocation"))
-				candidates_location.push(b);
+		local bases = this.World.FactionManager.getFactionOfType(::Const.FactionType.Undead).getSettlements();
+		local candidates_location = bases.filter(@(_, b) !b.getLoot().isEmpty() && !b.getFlags().get("IsEventLocation"));
 
 		if (candidates_location.len() == 0)
 			return;
@@ -46,12 +39,12 @@
 		local candidates_thief = [];
 		local candidates_historian = [];
 
-		foreach( bro in brothers )
-			if (bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.Historian) || bro.getSkills().hasPerk(::Legends.Perk.LegendScholar))
+		foreach(bro in brothers)
+			if (::Legends.Backgrounds.has(bro, ::Legends.Background.Historian) || bro.getSkills().hasPerk(::Legends.Perk.LegendScholar))
 				candidates_historian.push(bro);
-			else if (bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.Thief))
+			else if (::Legends.Backgrounds.has(bro, ::Legends.Background.Thief))
 				candidates_thief.push(bro);
-			else if (bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.Peddler))
+			else if (::Legends.Backgrounds.has(bro, ::Legends.Background.Peddler))
 				candidates_peddler.push(bro);
 
 		if (candidates_historian.len() != 0)

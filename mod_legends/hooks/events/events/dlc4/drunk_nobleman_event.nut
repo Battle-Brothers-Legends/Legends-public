@@ -129,11 +129,11 @@
 			if (bro.getSkills().hasTrait(::Legends.Trait.Player) && bro.getBackground().getID() != ::Legends.Backgrounds.getID(::Legends.Background.LegendCommanderNoble))
 				continue;
 
-			if (bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.Servant) || bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.Slave))
+			if (::Legends.Backgrounds.hasAny(bro, ::Legends.Background.Servant, ::Legends.Background.Slave))
 				candidates_servant.push(bro);
-			else if (bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.Thief))
+			else if (::Legends.Backgrounds.has(bro, ::Legends.Background.Thief))
 				candidates_thief.push(bro);
-			else if (bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.LegendCommanderNoble))
+			else if (::Legends.Backgrounds.has(bro, ::Legends.Background.LegendCommanderNoble))
 				candidates_noble.push(bro);
 			else
 				candidates_other.push(bro);

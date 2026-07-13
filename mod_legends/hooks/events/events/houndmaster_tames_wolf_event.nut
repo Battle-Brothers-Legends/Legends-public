@@ -26,27 +26,30 @@
 
 	o.onUpdateScore = function () {
 		local currentTile = this.World.State.getPlayer().getTile();
-		if (currentTile.Type != this.Const.World.TerrainType.Forest	&& currentTile.Type != this.Const.World.TerrainType.AutumnForest && currentTile.Type != this.Const.World.TerrainType.LeaveForest) {
+		if (currentTile.Type != this.Const.World.TerrainType.Forest	&& currentTile.Type != this.Const.World.TerrainType.AutumnForest && currentTile.Type != this.Const.World.TerrainType.LeaveForest)
 			return;
-		}
 
-		if (!this.World.Assets.getStash().hasEmptySlot()) {
+
+		if (!this.World.Assets.getStash().hasEmptySlot())
 			return;
-		}
+
 
 		local brothers = this.World.getPlayerRoster().getAll();
 		local candidates = [];
 
 		foreach (bro in brothers) {
-			if (bro.getLevel() >= 5	&& (bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.Houndmaster) || bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.LegendDruid) || bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.LegendCommanderDruid) || bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.LegendMuladi)))
-			{
+			if (bro.getLevel() >= 5 && (::Legends.Backgrounds.hasAny(bro,
+				::Legends.Background.Houndmaster,
+				::Legends.Background.LegendDruid,
+				::Legends.Background.LegendCommanderDruid,
+				::Legends.Background.LegendMuladi)
+			)) {
 				candidates.push(bro);
 			}
 		}
 
-		if (candidates.len() == 0) {
+		if (candidates.len() == 0)
 			return;
-		}
 
 		this.m.Houndmaster = candidates[this.Math.rand(0, candidates.len() - 1)];
 		this.m.Score = candidates.len() * 6;

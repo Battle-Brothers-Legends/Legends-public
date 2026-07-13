@@ -15,7 +15,7 @@
 					local brothers = this.World.getPlayerRoster().getAll();
 
 					foreach( bro in brothers ) {
-						if (bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.Cultist) || bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.ConvertedCultist) || bro.getBackground().isBackgroundType(this.Const.BackgroundType.ConvertedCultist))
+						if (::Legends.Backgrounds.hasAny(bro, ::Legends.Background.Cultist, ::Legends.Background.ConvertedCultist) || bro.getBackground().isBackgroundType(this.Const.BackgroundType.ConvertedCultist))
 							continue;
 
 						if (bro.getEthnicity() == 0 && this.Math.rand(1, 100) <= 66) {

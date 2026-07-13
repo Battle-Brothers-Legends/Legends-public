@@ -45,7 +45,7 @@
 		{
 			local roster = this.World.getPlayerRoster().getAll();
 			foreach( bro in roster) {
-				if (bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.LegendCrusader))
+				if (::Legends.Backgrounds.has(bro, ::Legends.Background.LegendCrusader))
 					return;
 			}
 		}

@@ -71,7 +71,7 @@
 		local totalbrothers = 0;
 		local brotherlevels = 0;
 		foreach (bro in brothers) {
-			if (bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.KingsGuard))
+			if (::Legends.Backgrounds.has(bro, ::Legends.Background.KingsGuard))
 				return;
 			totalbrothers += 1;
 			brotherlevels += bro.getLevel();

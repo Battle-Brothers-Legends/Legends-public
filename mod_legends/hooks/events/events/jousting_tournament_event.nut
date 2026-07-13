@@ -78,7 +78,12 @@
 			if (bro.getLevel() < 4)
 				continue;
 
-			if ((bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.AdventurousNoble) || bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.DisownedNoble) || bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.Bastard) || bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.HedgeKnight)) && !bro.getSkills().hasSkillOfType(this.Const.SkillType.TemporaryInjury))
+			if ((::Legends.Backgrounds.hasAny(bro,
+				::Legends.Background.AdventurousNoble,
+				::Legends.Background.DisownedNoble,
+				::Legends.Background.Bastard,
+				::Legends.Background.HedgeKnight)
+			) && !bro.getSkills().hasSkillOfType(this.Const.SkillType.TemporaryInjury))
 				candidates.push(bro);
 		}
 

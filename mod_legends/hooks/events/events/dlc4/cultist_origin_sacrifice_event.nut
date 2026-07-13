@@ -36,7 +36,17 @@
 						if (bro.getSkills().hasEffect(::Legends.Effect.LegendAnimatedPlayerProperties))
 							continue;
 
-						if (bro.getBackground().isBackgroundType(this.Const.BackgroundType.ConvertedCultist | this.Const.BackgroundType.Cultist) || bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.LegendCommanderNecro) || bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.LegendNecro) || bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.LegendVala) || bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.LegendWitch) || bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.LegendCommanderWitch) || bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.LegendCannibal) || bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.LegendDonkey))  {
+						if (bro.getBackground().isBackgroundType(this.Const.BackgroundType.ConvertedCultist | this.Const.BackgroundType.Cultist) ||
+							::Legends.Backgrounds.hasAny(bro,
+								::Legends.Background.LegendCommanderNecro,
+								::Legends.Background.LegendNecro,
+								::Legends.Background.LegendVala,
+								::Legends.Background.LegendWitch,
+								::Legends.Background.LegendCommanderWitch,
+								::Legends.Background.LegendCannibal,
+								::Legends.Background.LegendDonkey
+							)
+						)  {
 							bro.improveMood(3.0, "Appeased Davkul");
 
 							if (bro.getMoodState() >= this.Const.MoodState.Neutral) {
@@ -136,9 +146,8 @@
 
 		local candidates = [];
 		foreach (bro in brothers) {
-			if (bro.getSkills().hasSkill(::Legends.Backgrounds.getID(::Legends.Background.LegendHusk)) || bro.getSkills().hasSkill(::Legends.Backgrounds.getID(::Legends.Background.LegendMagister))) //Will not sacrifice any backgrounds using these IDs
+			if (::Legends.Backgrounds.hasAny(bro, ::Legends.Background.LegendHusk, ::Legends.Background.LegendMagister))
 				continue;
-
 			candidates.push(bro);
 		}
 

@@ -39,7 +39,7 @@
 		local candidates_gravedigger = [];
 
 		foreach( bro in brothers )
-			if (bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.Gravedigger))
+			if (::Legends.Backgrounds.has(bro, ::Legends.Background.Gravedigger))
 				candidates_gravedigger.push(bro);
 
 		this.m.Casualty = f0.Name;

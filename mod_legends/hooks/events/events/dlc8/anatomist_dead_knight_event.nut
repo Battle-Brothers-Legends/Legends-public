@@ -135,7 +135,7 @@
 		local noble_candidates = [];
 
 		foreach( bro in brothers ) {
-			if (bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.Anatomist))
+			if (::Legends.Backgrounds.has(bro, ::Legends.Background.Anatomist))
 				anatomist_candidates.push(bro);
 			else if (bro.getBackground().isBackgroundType(this.Const.BackgroundType.Noble))
 				noble_candidates.push(bro);

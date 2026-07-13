@@ -3,9 +3,12 @@
 		local brothers = this.World.getPlayerRoster().getAll();
 		local candidates = [];
 
-		foreach( bro in brothers )
-			if (bro.getLevel() >= 9 && (bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.Historian) || bro.getSkills().hasPerk(::Legends.Perk.LegendScholar)))
+		foreach( bro in brothers ) {
+			if (bro.getLevel() < 9)
+				continue;
+			if (::Legends.Backgrounds.has(bro, ::Legends.Background.Historian) || bro.getSkills().hasPerk(::Legends.Perk.LegendScholar))
 				candidates.push(bro);
+		}
 
 		if (candidates.len() == 0)
 			return;

@@ -69,11 +69,11 @@
 				case bro.getBackground().isBackgroundType(this.Const.BackgroundType.Cultist):
 					cultist_candidates.push(bro);
 					continue;
-				case bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.Slave):
-				case bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.LegendPuppet):
-				case bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.LegendCommanderBerserker):
-				case bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.LegendBerserker):
-				case bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.LegendDonkey):
+				case ::Legends.Backgrounds.has(bro, ::Legends.Background.Slave):
+				case ::Legends.Backgrounds.has(bro, ::Legends.Background.LegendPuppet):
+				case ::Legends.Backgrounds.has(bro, ::Legends.Background.LegendCommanderBerserker):
+				case ::Legends.Backgrounds.has(bro, ::Legends.Background.LegendBerserker):
+				case ::Legends.Backgrounds.has(bro, ::Legends.Background.LegendDonkey):
 					continue;
 				case bro.getBackground().isBackgroundType(this.Const.BackgroundType.ConvertedCultist):
 				case bro.getBackground().isBackgroundType(this.Const.BackgroundType.Cultist):
