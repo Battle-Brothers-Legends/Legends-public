@@ -215,7 +215,9 @@ professionDefObjects.push({
     Tooltip = ::Const.Strings.ProfessionDescription.LegendDrillSergeant,
     Icon = "ui/professions/drill_sergeant.png",
     IconDisabled = "ui/professions/drill_sergeant_bw.png",
-    Const = "LegendDrillSergeant"
+    Const = "LegendDrillSergeant",
+    ScalingArray = [0, 0.15, 0.25, 0.33],
+    ScalingFactor = 0.05
 });
 
 ::Legends.Profession.LegendEfficientPacking <- null;
@@ -678,7 +680,9 @@ professionDefObjects.push({
     Tooltip = ::Const.Strings.ProfessionDescription.LegendWhipThemIntoShape,
     Icon = "ui/professions/whip_them_into_shape.png",
     IconDisabled = "ui/professions/whip_them_into_shape_bw.png",
-    Const = "LegendWhipThemIntoShape"
+    Const = "LegendWhipThemIntoShape",
+    ScalingArray = [0, 0.75, 1.1, 1.3],
+    ScalingFactor = 0.05
 });
 
 ::Legends.Profession.LegendWoodworking <- null;

@@ -1,11 +1,11 @@
 this.perk_legend_whip_them_in_shape <- this.inherit("scripts/skills/skill", {
-	m = {},
+	m = {}, //mfd
 	function create()
 	{
 		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendWhipThemInShape);
 	}
 
-	function onAdded() {
+	/*function onAdded() {
 		::World.Assets.m.HasDrillSergeant++;
 	}
 
@@ -15,5 +15,5 @@ this.perk_legend_whip_them_in_shape <- this.inherit("scripts/skills/skill", {
 
 	function onDeath(_fatalityType) {
 		::World.Assets.m.HasDrillSergeant--;
-	}
+	}*/
 });

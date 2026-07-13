@@ -700,13 +700,12 @@
 		if (this.Tactical.State.isScenarioMode())
 			return;
 
-		if (("State" in this.World) && this.World.State != null && ::World.Assets.m.HasDrillSergeant && this.getLevel() >= 12)
+		if (("State" in ::World) && ::World.State != null && ::World.Assets.m.ProfessionEffect.LegendWhipThemIntoShape > 0.0 && this.getLevel() >= 12)
 		{
 			foreach( bro in brothers )
 			{
-				if (!bro.getCurrentProperties().IsAllyXPBlocked && bro.getLevel() < 12)
-				{
-					bro.addXP(this.Math.max(1, this.Math.floor(XPgroup / brothers.len())))
+				if (!bro.getCurrentProperties().IsAllyXPBlocked && bro.getLevel() < 12)	{
+					bro.addXP(::Math.max(1, ::Math.floor(::World.Assets.m.ProfessionEffect.LegendWhipThemIntoShape * XPgroup / brothers.len())));
 				}
 			}
 		}
@@ -787,9 +786,8 @@
 			{
 				_xp = _xp * this.World.Assets.m.XPMult;
 
-				if (this.World.Retinue.hasFollower("follower.drill_sergeant") && this.m.Level < 12)
-				{
-					_xp = _xp * 1.2;
+				if (this.m.Level < 12) {
+					_xp = _xp * (1 + ::World.Assets.m.ProfessionEffect.LegendDrillSergeant);
 				}
 			}
 

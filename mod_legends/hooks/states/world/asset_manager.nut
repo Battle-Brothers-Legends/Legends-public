@@ -13,7 +13,7 @@
 
 	o.m.IsArenaTooled <- false;
 
-	o.m.HasDrillSergeant <- 0;
+	o.m.ProfessionEffect <- {}
 	o.m.HasScholars <- 0;
 	o.m.HasVeterinarian <- 0;
 
@@ -328,15 +328,15 @@
 	}
 
 	local create = o.create;
-	o.create = function ()
-	{
+	o.create = function () {
 		create();
-		for( local i = 0; i < this.Const.LegendMod.Formations.Count; i = ++i )
-		{
+		for (local i = 0; i < this.Const.LegendMod.Formations.Count; ++i) {
 			this.m.FormationNames.push(i == 0 ? "Formation 1" : "NULL");
 		}
+		foreach (profession in ::Const.Professions.ProfessionDefObjects) {
+			this.m.ProfessionEffect[profession.Const] <- 0;
+		}
 	}
-
 	o.consumeFood = function ()
 	{
 		local items = this.m.Stash.getItems();

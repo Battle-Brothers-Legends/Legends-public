@@ -1718,5 +1718,6 @@
 		::World.Camp.clear();
 		::World.Camp.onDeserialize(_in);
 		this.onCalculatePlayerPartyModifiers();
+		::Legends.Professions.recalculateAllProfessions();
 	}
 });
