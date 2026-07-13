@@ -139,33 +139,5 @@
 				}
 			}
 		});
-		foreach (s in this.m.Screens) {
-			if (s.ID == "F") {
-				s.start <- function ( _event ) {
-					this.Characters.push(_event.m.Troublemaker.getImagePath());
-					this.Characters.push(_event.m.Peacekeeper.getImagePath());
-					this.List.push({
-						id = 10,
-						icon = "ui/icons/relation.png",
-						text = _event.m.Troublemaker.getName() + " and " + _event.m.Peacekeeper.getName() + " grow distant"
-					});
-					local injury = _event.m.Peacekeeper.addInjury(this.Const.Injury.Knockout);
-					this.List.push({
-						id = 10,
-						icon = injury.getIcon(),
-						text = _event.m.Peacekeeper.getName() + " suffers " + injury.getNameOnly()
-					});
-					_event.m.Peacekeeper.worsenMood(2.0, "Was humiliated in front of the company");
-
-					if (_event.m.Peacekeeper.getMoodState() < this.Const.MoodState.Neutral) {
-						this.List.push({
-							id = 10,
-							icon = this.Const.MoodStateIcon[_event.m.Peacekeeper.getMoodState()],
-							text = _event.m.Peacekeeper.getName() + this.Const.MoodStateEvent[_event.m.Peacekeeper.getMoodState()]
-						});
-					}
-				}
-			}
-		}
 	}
 })

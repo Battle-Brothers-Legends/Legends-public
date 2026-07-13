@@ -9,7 +9,7 @@
 			if (bro.getSkills().hasTrait(::Legends.Trait.Player))
 				continue;
 
-			if (bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.Houndmaster) || bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.LegendMuladi) )
+			if (::Legends.Backgrounds.hasAny(bro, ::Legends.Background.Houndmaster, ::Legends.Background.LegendMuladi))
 				candidates_houndmaster.push(bro);
 			else
 				candidates_other.push(bro);

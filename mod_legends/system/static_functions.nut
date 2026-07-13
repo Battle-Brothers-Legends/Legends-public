@@ -71,7 +71,7 @@
 }
 
 ::Legends.S.extraLootChance <- function (_baseLootAmount = 0) {
-	return _baseLootAmount + (!this.Tactical.State.isScenarioMode() && ::Math.rand(1, 100) <= this.World.Assets.getExtraLootChance() ? 1 : 0)
+	return _baseLootAmount + (!this.Tactical.State.isScenarioMode() && ::Math.rand(1, 100) <= ::World.Assets.getExtraLootChance() ? 1 : 0)
 }
 
 ::Legends.S.getNeighbouringActors <- function (_tile)
@@ -134,7 +134,7 @@
 }
 
 ::Legends.S.getClosestSettlement <- function (_predicate = @(_, _town) true) {
-	local towns = this.World.EntityManager.getSettlements().filter(_predicate);
+	local towns = ::World.EntityManager.getSettlements().filter(_predicate);
 	if (towns.len() == 0)
 		return null;
 	local playerTile = ::World.State.getPlayer().getTile();
@@ -163,7 +163,7 @@
 }
 
 ::Legends.S.getDaysToScaleDifficulty <- function () {
-	switch (this.World.Assets.getCombatDifficulty()) {
+	switch (::World.Assets.getCombatDifficulty()) {
 		case this.Const.Difficulty.Easy:
 			return 120;
 		case this.Const.Difficulty.Normal:
@@ -173,7 +173,7 @@
 		case this.Const.Difficulty.Legendary:
 			return 30;
 		default:
-			::logError("Unknown combat difficulty: " + this.World.Assets.getCombatDifficulty());
+			::logError("Unknown combat difficulty: " + ::World.Assets.getCombatDifficulty());
 			return 0;
 	}
 }
@@ -182,7 +182,7 @@
 	if (this.Tactical.State.isScenarioMode()) {
 		return;
 	}
-	local daysToScale = this.World.getTime().Days - this.getDaysToScaleDifficulty();
+	local daysToScale = ::World.getTime().Days - this.getDaysToScaleDifficulty();
 	if (daysToScale > 0) {
 		local bonus = this.Math.floor(daysToScale / 20.0);
 		_properties.MeleeSkill += bonus;
@@ -201,11 +201,11 @@
 ::Legends.S.getToolEfficiency <- function () {
 	// Sum combined tool efficiency modifier (eg +4 from Tool Drawers) from all brothers
 	local toolEfficiencyModifier = 0;
-	foreach (bro in this.World.getPlayerRoster().getAll()) {
+	foreach (bro in ::World.getPlayerRoster().getAll()) {
 		toolEfficiencyModifier += bro.getToolEfficiencyModifier();
 	}
 	// Repair tent adds ~25% efficiency (yields ~20 dura per tool instead of 15 ie. 33% increase).
-	if (this.World.Assets.getStash().hasItem(::Legends.Camp.Tent.Repair)) {
+	if (::World.Assets.getStash().hasItem(::Legends.Camp.Tent.Repair)) {
 		toolEfficiencyModifier += 25;
 	}
 	// Cap efficiency at 50%

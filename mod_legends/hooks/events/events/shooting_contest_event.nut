@@ -2,17 +2,15 @@
 	local create = o.create;
 	o.create = function() {
 		create();
-		foreach (s in this.m.Screens) {
-			if (s.ID == "B") {
-				s.Text = "[img]gfx/ui/events/event_10.png[/img] You throw your hands up and tell the company to do what they must before retiring back to your tent. Outside comes the twang of released arrows quickly followed by the thwap of them finding their targets. Again and again. The din of mercenaries grows louder as what you can only assume what is a throng of observers grows. Finally, the contest is at some sort of end - indicated by a refreshing silence - and you get back to work.";
-			}
-			if (s.ID == "C") {
-				s.Text = "[img]gfx/ui/events/event_10.png[/img]Feeling as though their arguments will never end, you give them the go-ahead to have their little competition before retiring back to your tent. Soon thereafter you hear the arrows nocking, releasing, and finding targets. Things which go \'thwang\' soon go \'thwap\' and the air is slowly filled with the din of a watching crowd. As you try to focus, you notice that the mercenaries have been shooting fervently for quite some time now. You step back out of your tent to find the two archers bickering some more, each one pointing a finger at the other before picking up an arrow and angrily launching it downrange. Their targets aren\'t even targets anymore, but small bushes of arrow shafts upon which break every other shot that lands upon them.\n\nShaking your head, you order the two to stop at once before they use up every last arrow the company has.";
-			}
-			if (s.ID == "D") {
-				s.Text = "You shake your head no for supplies are far too low to enage in such behavior. The mercenaries sigh and walk away, continuing to argue with one another long and loud into the distance.";
-			}
-		}
+		::Legends.Screens.hook(this, "B", function(_screen) {
+			_screen.Text = "[img]gfx/ui/events/event_10.png[/img] You throw your hands up and tell the company to do what they must before retiring back to your tent. Outside comes the twang of released arrows quickly followed by the thwap of them finding their targets. Again and again. The din of mercenaries grows louder as what you can only assume what is a throng of observers grows. Finally, the contest is at some sort of end - indicated by a refreshing silence - and you get back to work.";
+		});
+		::Legends.Screens.hook(this, "C", function(_screen) {
+			_screen.Text = "[img]gfx/ui/events/event_10.png[/img]Feeling as though their arguments will never end, you give them the go-ahead to have their little competition before retiring back to your tent. Soon thereafter you hear the arrows nocking, releasing, and finding targets. Things which go \'thwang\' soon go \'thwap\' and the air is slowly filled with the din of a watching crowd. As you try to focus, you notice that the mercenaries have been shooting fervently for quite some time now. You step back out of your tent to find the two archers bickering some more, each one pointing a finger at the other before picking up an arrow and angrily launching it downrange. Their targets aren\'t even targets anymore, but small bushes of arrow shafts upon which break every other shot that lands upon them.\n\nShaking your head, you order the two to stop at once before they use up every last arrow the company has.";
+		});
+		::Legends.Screens.hook(this, "D", function(_screen) {
+			_screen.Text = "You shake your head no for supplies are far too low to enage in such behavior. The mercenaries sigh and walk away, continuing to argue with one another long and loud into the distance.";
+		});
 	}
 
 	o.onUpdateScore = function () {
@@ -29,10 +27,18 @@
 
 		local candidates = [];
 
-		foreach( bro in brothers )
-			if (bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.Hunter) || bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.Poacher) || bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.Sellsword) || bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.Bowyer) || (bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.AdventurousNoble) && bro.getGender() == 1) || bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.LegendRanger))
-				if (!bro.getFlags().has("ParticipatedInShootingContests") || bro.getFlags().get("ParticipatedInShootingContests") < 3)
-					candidates.push(bro);
+		foreach (bro in brothers) if (::Legends.Backgrounds.has(bro, ::Legends.Background.LegendRanger) ||
+			(bro.getGender() == 1 && ::Legends.Backgrounds.hasAny(bro,
+				::Legends.Background.Hunter,
+				::Legends.Background.Poacher,
+				::Legends.Background.Sellsword,
+				::Legends.Background.Bowyer,
+				::Legends.Background.AdventurousNoble
+			))
+		) {
+			if (!bro.getFlags().has("ParticipatedInShootingContests") || bro.getFlags().get("ParticipatedInShootingContests") < 3)
+				candidates.push(bro);
+		}
 
 		if (candidates.len() < 2)
 			return;
