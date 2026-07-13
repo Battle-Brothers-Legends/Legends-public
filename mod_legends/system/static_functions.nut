@@ -274,7 +274,7 @@
 	local arr = vargv;
 	if (typeof vargv[0] == "array")
 		arr = vargv[0];
-	return ::Legends.S.any(_value, @(_val) _val == _value);
+	return ::Legends.S.any(arr, @(_val) _val == _value);
 }
 
 ::Legends.S.hasItemFlag <- function (_item, _flag) {
