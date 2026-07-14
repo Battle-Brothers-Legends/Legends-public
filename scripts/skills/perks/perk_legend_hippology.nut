@@ -5,7 +5,7 @@ this.perk_legend_hippology <- this.inherit("scripts/skills/skill", {
 		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendHippology);
 	}
 
-	function onAdded() {
+	/*function onAdded() {
 		::World.Assets.m.HasVeterinarian++;
 	}
 
@@ -15,7 +15,7 @@ this.perk_legend_hippology <- this.inherit("scripts/skills/skill", {
 
 	function onDeath(_fatalityType) {
 		::World.Assets.m.HasVeterinarian--;
-	}
+	}*/
 
 });
 

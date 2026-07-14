@@ -193,8 +193,7 @@
 		party.getFlags().set("IsCaravan", true);
 		party.getFlags().set("IsRandomlySpawned", true);
 
-		if (this.World.Assets.m.IsBrigand && this.m.Start.getTile().getDistanceTo(this.World.State.getPlayer().getTile()) <= 70)
-		{
+		if (this.m.Start.getTile().getDistanceTo(::World.State.getPlayer().getTile()) <= 70 * ::World.Assets.m.ProfessionEffect.LegendHighwayman) {
 			party.setVisibleInFogOfWar(true);
 			party.setImportant(true);
 			party.setDiscovered(true);

@@ -5,7 +5,7 @@ this.perk_legend_scholar <- this.inherit("scripts/skills/skill", {
 		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendScholar);
 	}
 
-	function onAdded() {
+	/*function onAdded() {
 		::World.Assets.m.HasScholars++;
 	}
 
@@ -15,6 +15,6 @@ this.perk_legend_scholar <- this.inherit("scripts/skills/skill", {
 
 	function onDeath(_fatalityType) {
 		::World.Assets.m.HasScholars--;
-	}
+	}*/
 
 });

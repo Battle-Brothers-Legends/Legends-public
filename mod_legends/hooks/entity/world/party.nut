@@ -52,7 +52,7 @@
 			}
 		}
 
-		if (::Legends.Mod.ModSettings.getSetting("WorldEconomy").getValue() && this.World.Assets.m.IsBrigand && this.m.Flags.get("IsCaravan"))
+		if (::Legends.Mod.ModSettings.getSetting("WorldEconomy").getValue() && ::World.Assets.m.ProfessionEffect.LegendGreasedPalms > 0 && this.m.Flags.get("IsCaravan"))
 		{
 			local inv = this.getStashInventory().getItems();
 
@@ -66,7 +66,7 @@
 			}
 			else
 			{
-				local num = ::Math.min(inv.len(), ::Const.World.Common.WorldEconomy.Trade.AmountOfLeakedCaravanInventoryInfo);
+				local num = ::Math.min(inv.len(), ::Math.round(::World.Assets.m.ProfessionEffect.LegendGreasedPalms));
 
 				ret.push({
 					id = 51,
@@ -84,12 +84,12 @@
 					});
 				}
 
-				if (inv.len() > ::Const.World.Common.WorldEconomy.Trade.AmountOfLeakedCaravanInventoryInfo)
+				if (inv.len() > ::Math.round(::World.Assets.m.ProfessionEffect.LegendGreasedPalms))
 				{
 					ret.push({
 						id = 53 + num,
 						type = "text",
-						text = "And " + (inv.len() - ::Const.World.Common.WorldEconomy.Trade.AmountOfLeakedCaravanInventoryInfo) + " more item(s)"
+						text = "And " + (inv.len() - ::Math.round(::World.Assets.m.ProfessionEffect.LegendGreasedPalms)) + " more item(s)"
 					});
 				}
 			}

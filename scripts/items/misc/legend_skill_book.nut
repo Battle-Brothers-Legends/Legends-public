@@ -73,7 +73,7 @@ this.legend_skill_book <- ::inherit("scripts/items/item", {
 			});
 		}
 
-		if (this.m.HasToBeIdentified && ::World.Assets.m.HasScholars > 0 || !this.m.HasToBeIdentified)
+		if (this.m.HasToBeIdentified && ::World.Assets.m.ProfessionEffect.LegendInterpretation > 0 || !this.m.HasToBeIdentified)
 		{
 			local selection = this.m.PerkGroupSelection;
 			result.push({

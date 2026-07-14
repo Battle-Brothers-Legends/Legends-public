@@ -22,9 +22,6 @@ if (!("World" in ::Const))
 	// also net cost 50 so funnily it's not a bad filler goods
 	PriceOfFillerGoods = 55,
 
-	// for brigand_follower.nut retiune
-	AmountOfLeakedCaravanInventoryInfo = 3,
-
 	// don't want a single item to take up a large portion of the budget
 	ExpensiveLimitMult = 0.90,
 

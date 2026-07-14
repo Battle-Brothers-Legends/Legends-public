@@ -219,15 +219,13 @@ this.legend_donkey_background <- this.inherit("scripts/skills/backgrounds/charac
 	}
 
 	function onUpdate(_properties) {
-		if (::World.Assets.m.HasVeterinarian > 0) {
-			_properties.HitpointsMult *= 1.25;
-		}
+		_properties.HitpointsMult *= (1 + ::World.Assets.m.ProfessionEffect.LegendHippology);
 		_properties.DailyFood += 4.0;
 		_properties.IsContentWithBeingInReserve = true;
 	}
 
 	function getModifier() {
-		return ::World.Assets.m.HasVeterinarian > 0 ? 12 : 0;
+		return ::Math.round((1 + ::World.Assets.m.ProfessionEffect.LegendHippology) * 10);
 	}
 
 	function onAdded() {

@@ -182,7 +182,9 @@ professionDefObjects.push({
     Tooltip = ::Const.Strings.ProfessionDescription.LegendCooking,
     Icon = "ui/professions/cooking.png",
     IconDisabled = "ui/professions/cooking_bw.png",
-    Const = "LegendCooking"
+    Const = "LegendCooking",
+    ScalingArray = [0, 1], // core profession
+    ScalingFactor = 0
 });
 
 ::Legends.Profession.LegendCutToTheChase <- null;
@@ -216,7 +218,7 @@ professionDefObjects.push({
     Icon = "ui/professions/drill_sergeant.png",
     IconDisabled = "ui/professions/drill_sergeant_bw.png",
     Const = "LegendDrillSergeant",
-    ScalingArray = [0, 0.15, 0.25, 0.33],
+    ScalingArray = [0, 0.15, 0.25, 0.33], // extra xp for non veterans
     ScalingFactor = 0.05
 });
 
@@ -275,17 +277,6 @@ professionDefObjects.push({
     Const = "LegendFieldSurgery"
 });
 
-::Legends.Profession.LegendHunting <- null;
-professionDefObjects.push({
-	ID = "profession.legend_hunting",
-	Script = "scripts/skills/professions/profession_legend_hunting",
-	Name = ::Const.Strings.ProfessionName.LegendHunting,
-	Tooltip = ::Const.Strings.ProfessionDescription.LegendHunting,
-	Icon = "ui/professions/hunting.png",
-	IconDisabled = "ui/professions/hunting_bw.png",
-	Const = "LegendHunting"
-});
-
 ::Legends.Profession.LegendGathering <- null;
 professionDefObjects.push({
     ID = "profession.legend_gathering",
@@ -305,7 +296,9 @@ professionDefObjects.push({
     Tooltip = ::Const.Strings.ProfessionDescription.LegendGreasedPalms,
     Icon = "ui/professions/greased_palms.png",
     IconDisabled = "ui/professions/greased_palms_bw.png",
-    Const = "LegendGreasedPalms"
+    Const = "LegendGreasedPalms",
+    ScalingArray = [0, 2], // items shown in a caravan's inventory
+    ScalingFactor = 0.5
 });
 
 ::Legends.Profession.LegendHerbcraft <- null;
@@ -327,7 +320,9 @@ professionDefObjects.push({
     Tooltip = ::Const.Strings.ProfessionDescription.LegendHighwayman,
     Icon = "ui/professions/highwayman.png",
     IconDisabled = "ui/professions/highwayman_bw.png",
-    Const = "LegendHighwayman"
+    Const = "LegendHighwayman",
+    ScalingArray = [0, 0.85, 1.1, 1.3], // distance below which caravans are shown 70x
+    ScalingFactor = 0.1
 });
 
 ::Legends.Profession.LegendHippology <- null;
@@ -338,7 +333,22 @@ professionDefObjects.push({
     Tooltip = ::Const.Strings.ProfessionDescription.LegendHippology,
     Icon = "ui/professions/hippology.png",
     IconDisabled = "ui/professions/hippology_bw.png",
-    Const = "LegendHippology"
+    Const = "LegendHippology",
+    ScalingArray = [0, 0.2, 0.3, 0.35], // extra hp% and slots * 10
+    ScalingFactor = 0.05
+});
+
+::Legends.Profession.LegendHunting <- null;
+professionDefObjects.push({
+	ID = "profession.legend_hunting",
+	Script = "scripts/skills/professions/profession_legend_hunting",
+	Name = ::Const.Strings.ProfessionName.LegendHunting,
+	Tooltip = ::Const.Strings.ProfessionDescription.LegendHunting,
+	Icon = "ui/professions/hunting.png",
+	IconDisabled = "ui/professions/hunting_bw.png",
+	Const = "LegendHunting",
+    ScalingArray = [0, 1], // core profession
+    ScalingFactor = 0
 });
 
 ::Legends.Profession.LegendInterpretation <- null;
@@ -349,7 +359,9 @@ professionDefObjects.push({
     Tooltip = ::Const.Strings.ProfessionDescription.LegendInterpretation,
     Icon = "ui/professions/interpretation.png",
     IconDisabled = "ui/professions/interpretation_bw.png",
-    Const = "LegendInterpretation"
+    Const = "LegendInterpretation",
+    ScalingArray = [0, 0.5, 0.75, 0.9, 1], // extra scroll writing speed
+    ScalingFactor = 0.1
 });
 
 ::Legends.Profession.LegendLayOfTheLand <- null;
@@ -636,7 +648,9 @@ professionDefObjects.push({
     Tooltip = ::Const.Strings.ProfessionDescription.LegendTraining,
     Icon = "ui/professions/training.png",
     IconDisabled = "ui/professions/training_bw.png",
-    Const = "LegendTraining"
+    Const = "LegendTraining",
+    ScalingArray = [0, 1], // core profession
+    ScalingFactor = 0
 });
 
 ::Legends.Profession.LegendTrophyCarving <- null;
@@ -681,7 +695,7 @@ professionDefObjects.push({
     Icon = "ui/professions/whip_them_into_shape.png",
     IconDisabled = "ui/professions/whip_them_into_shape_bw.png",
     Const = "LegendWhipThemIntoShape",
-    ScalingArray = [0, 0.75, 1.1, 1.3],
+    ScalingArray = [0, 0.75, 1.1, 1.3], // extra xp for non veterans on veteran kill
     ScalingFactor = 0.05
 });
 
