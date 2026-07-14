@@ -78,7 +78,7 @@ this.legend_sighthoundtracks_event <- this.inherit("scripts/events/event", {
 		});
 		this.m.Screens.push({
 			ID = "C", //runs away
-			Text = "[img]gfx/ui/events/event_64.png[/img]After a short trek into a clearing, the hound senses you are far behind and chooses this as its moment — rapidly clearing distance between you and %houndhandler%, shortly disappearing over the horizon...",
+			Text = "[img]gfx/ui/events/event_36.png[/img]After a short trek into a clearing, the hound senses you are far behind and chooses this as its moment — rapidly clearing distance between you and %houndhandler%, shortly disappearing over the horizon...",
 			Image = "",
 			List = [],
 			Characters = [],
@@ -106,7 +106,7 @@ this.legend_sighthoundtracks_event <- this.inherit("scripts/events/event", {
 		});
 		this.m.Screens.push({
 			ID = "D", //catch rabbit (weaker reward) //\n\n
-			Text = "[img]gfx/ui/events/event_20.png[/img]After the best part of an hour, the sighthound has led you further away from camp. It regularly turns to check you and %houndhandler% are still following, and at times seems quite frustrated with your lack of enthusiasm for the hunt. \nAn hour turns into two, then into two-and-a-half. Finally, the hound picks up something in a mottle of trees. With sudden brutality, it launches into a bush and drags out a sizable rabbit. %houndhandler% is not best pleased you rambled for this long for a single rabbit, but the hound remains overjoyed. ",
+			Text = "[img]gfx/ui/events/event_14.png[/img]After the best part of an hour, the sighthound has led you further away from camp. It regularly turns to check you and %houndhandler% are still following, and at times seems quite frustrated with your lack of enthusiasm for the hunt. \nAn hour turns into two, then into two-and-a-half. Finally, the hound picks up something in a mottle of trees. With sudden brutality, it launches into a bush and drags out a sizable rabbit. %houndhandler% is not best pleased you rambled for this long for a single rabbit, but the hound remains overjoyed. ",
 			Image = "",
 			List = [],
 			Characters = [],
@@ -133,7 +133,7 @@ this.legend_sighthoundtracks_event <- this.inherit("scripts/events/event", {
 		});
 		this.m.Screens.push({
 			ID = "E", //catch thief (moderate reward) //\n\n
-			Text = "[img]gfx/ui/events/event_20.png[/img]Your hound darts this way and that through the coarse underbrush, only stopping for a moment to reacquire its target. You only catch glimpses as you chase, but after a while you realise what you are chasing. The thief hurtles over a rock and the sighthound pins him down. In the melee coins flow from the thief like blood to the point where you question if they are human at all. The man screams out for mercy and tosses what remains of their coin bag to the ground as if that would help at all. \n\n%houndhandler% heels the hound, which obeys begrudgingly. The thief quickly scrambles and escapes, leaving a trail of crowns in their wake. The hound samples one of the coins in curiosity. %SPEECH_ON%Aye there it is, I bet once we get back we\'d find a fair chunk of our crowns missin\'%SPEECH_OFF% With that, all three of you head back to camp. The hound still gnawing on a crown. Taking a count of the lost spoils, there is more here than what is missing. You don\'t seem to be the first to be robbed — nor likely the last...",
+			Text = "[img]gfx/ui/events/event_04.png[/img]Your hound darts this way and that through the coarse underbrush, only stopping for a moment to reacquire its target. You only catch glimpses as you chase, but after a while you realise what you are chasing. The thief hurtles over a rock and the sighthound pins him down. In the melee coins flow from the thief like blood to the point where you question if they are human at all. The man screams out for mercy and tosses what remains of their coin bag to the ground as if that would help at all. \n\n%houndhandler% heels the hound, which obeys begrudgingly. The thief quickly scrambles and escapes, leaving a trail of crowns in their wake. The hound samples one of the coins in curiosity. %SPEECH_ON%Aye there it is, I bet once we get back we\'d find a fair chunk of our crowns missin\'%SPEECH_OFF% With that, all three of you head back to camp. The hound still gnawing on a crown. Taking a count of the lost spoils, there is more here than what is missing. You don\'t seem to be the first to be robbed — nor likely the last...",
 			Image = "",
 			List = [],
 			Characters = [],
@@ -160,7 +160,7 @@ this.legend_sighthoundtracks_event <- this.inherit("scripts/events/event", {
 		});
 		this.m.Screens.push({
 			ID = "F", //find item (best reward) //\n\n —
-			Text = "[img]gfx/ui/events/event_20.png[/img]The hound does not journey far from camp. At times you think the whole task fruitless — the hound seems to constantly second guess itself, doubling back, stalling and going in circles. \n\nAs you consider chaining the beast again, it, without much hesitation, climbs down into a cut in the earth you must have missed several times now. As you descend you feel smooth stone under your boots. The hound pushes a door open and descends into the darkness. You exchange a look with %houndhandler%, causing you both to draw your weapons as you quickly light a torch. \n\nHeld aloft, the flame caresses the squat, flat stone roof of the hovel, ages abandoned and in disarray. Dried blood and makeshift bandages cover the floor, you see two beady glowing eyes sat in a corner, where the sighthound has found the lap of a skeleton to sit in. \n\nAges old, it still grips a eloquently made long spear in a defensive posture. The story here is unknown, but it looks like help never came.",
+			Text = "[img]gfx/ui/events/event_25.png[/img]The hound does not journey far from camp. At times you think the whole task fruitless — the hound seems to constantly second guess itself, doubling back, stalling and going in circles. \n\nAs you consider chaining the beast again, it, without much hesitation, climbs down into a cut in the earth you must have missed several times now. As you descend you feel smooth stone under your boots. The hound pushes a door open and descends into the darkness. You exchange a look with %houndhandler%, causing you both to draw your weapons as you quickly light a torch. \n\nHeld aloft, the flame caresses the squat, flat stone roof of the hovel, ages abandoned and in disarray. Dried blood and makeshift bandages cover the floor, you see two beady glowing eyes sat in a corner, where the sighthound has found the lap of a skeleton to sit in. \n\nAges old, it still grips a eloquently made long spear in a defensive posture. The story here is unknown, but it looks like help never came.",
 			Image = "",
 			List = [],
 			Characters = [],
