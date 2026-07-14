@@ -5,7 +5,7 @@ this.legend_mage_swordstaff <- this.inherit("scripts/items/weapons/weapon", {
 		this.weapon.create();
 		this.m.ID = "weapon.legend_mage_swordstaff";
 		this.m.Name = "Bladed Magestaff";
-		this.m.Description = "While the nature of its construction remains a myth, this unique mage's swordstaff is permeated with magic. The blade almost hums through the air and it can slice through armor like butter.";
+		this.m.Description = "While its origins remain shrouded in mystery, this unique swordstaff is permeated with magic. The blade hums as it slices through flesh and armor alike.";
 		this.m.IconLarge = "weapons/melee/legend_swordstaff_01_legendary_01.png";
 		this.m.Icon = "weapons/melee/legend_swordstaff_01_legendary_01_70x70.png";
 		this.m.WeaponType = this.Const.Items.WeaponType.Sword | this.Const.Items.WeaponType.Polearm | this.Const.Items.WeaponType.MagicStaff;
