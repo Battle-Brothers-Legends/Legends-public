@@ -68,7 +68,7 @@ whatever setting we configure in ::Const.LegendMod.Debug.FlagDefs will always ta
 - First time the save was loaded and the player has not made any changes in Mod Settings since the Battle Brothers game was first booted up
 
 As soon as the player makes any change in Mod Settings to the Debug flag, this change is actually global (since it directly modifies the flag in Legends.Mod.Debug)
-and will take precedence until the player makes another change, or a save is finished loading, at which point the the saved MSU setting will be loaded.
+and will take precedence until the player makes another change, or a save is finished loading, at which point the saved MSU setting will be loaded.
 
 To see how the value configured in this script might be contrasted against the value saved in Settings when loading a save, build and run Legends with the following code un-commented:
 // ::mods_hookExactClass("states/world_state", function(o){

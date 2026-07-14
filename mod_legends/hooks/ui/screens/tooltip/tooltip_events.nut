@@ -2235,7 +2235,7 @@
 				{
 					id = 2,
 					type = "description",
-					text = "Evil lurks in every corner — this is where legends are forged.\n\n All enemies gain new perks, some have new effects entirely. Scaling and mechanics is about that of Expert early game, but will rapidly increase mid-late game. Expect to see more champions earlier and harder enemies much sooner — along with the the experience and equipment they bring... \n\nRecommended for those who enjoy a tactical challenge and can accept losses for a greater good."
+					text = "Evil lurks in every corner — this is where legends are forged.\n\n All enemies gain new perks, some have new effects entirely. Scaling and mechanics is about that of Expert early game, but will rapidly increase mid-late game. Expect to see more champions earlier and harder enemies much sooner — along with the experience and equipment they bring... \n\nRecommended for those who enjoy a tactical challenge and can accept losses for a greater good."
 				}
 			];
 
