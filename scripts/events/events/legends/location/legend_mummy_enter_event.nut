@@ -81,7 +81,7 @@ this.legend_mummy_enter_event <- this.inherit("scripts/events/event", {
 			Characters = [],
 			Options = [
 				{
-					Text = "The dead are upon us",
+					Text = "The dead are upon us!",
 					function getResult( _event )
 					{
 						if (this.World.State.getLastLocation() != null)
