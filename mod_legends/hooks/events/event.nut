@@ -363,7 +363,6 @@
 
 	local fire = o.fire;
 	o.fire = function () {
-		this.m.WasEventFired = true;
 		if ("isValidForEncounter" in this.m) {
 			local self = this;
 			local tryFire;
