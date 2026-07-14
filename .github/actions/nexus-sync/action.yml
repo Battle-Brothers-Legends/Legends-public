@@ -44,8 +44,9 @@ runs:
         display_name: mod_legends-${{ inputs.tag_name }}
         version: ${{ inputs.tag_name }}
         allow_mod_manager_download: false
+        update_mod_version: true
         description: |
-          REQUIRES VERSION 1.5.2.2+ OF VANILLA GAME
+          REQUIRES VERSION 1.5.2.3+ OF VANILLA GAME
 
           SAVE COMPATIBLE WITH ${{ steps.versions.outputs.base }}+
 
