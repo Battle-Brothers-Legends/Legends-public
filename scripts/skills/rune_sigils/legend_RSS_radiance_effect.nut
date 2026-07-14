@@ -1,179 +1,96 @@
 this.legend_RSS_radiance_effect <- this.inherit("scripts/skills/skill", {
 	m = {
-		MalusOne = 0,
-		MalusTwo = 0,
+		MeleeSkillMalus = 0,
+		MeleeDefMalus = 0,
+		WasBlinded = false
 	},
-	function setMalus(_m1, _m2) {
-		this.m.MalusOne = _m1;
-		this.m.MalusTwo = _m2;
-	}
-
 
 	function create() {
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendRssRadianceEffect);
-		this.m.Icon = "";
-		this.m.IconMini = "";
-		this.m.Overlay = "";
-		this.m.Type = this.Const.SkillType.StatusEffect;
-		this.m.Order = this.Const.SkillOrder.Last;
+		this.m.Name = "Blinded";
+		this.m.Description = "This character is blinded by a radiant light.";
+		this.m.Icon = "skills/status_effect_52.png";
+		this.m.IconMini = "status_effect_52_mini";
+		this.m.Overlay = "status_effect_52";
+		this.m.Type = ::Const.SkillType.StatusEffect;
+		this.m.Order = ::Const.SkillOrder.Last;
 		this.m.IsActive = false;
 		this.m.IsStacking = false;
-		this.m.IsHidden = false;
+		this.m.IsHidden = true;
 	}
-
-
-	// function isHidden()
-	// {
-	// 	local actor = this.getContainer().getActor();
-	// 	if (actor == null)
-	// 	{
-	// 		return;
-	// 	}
-	// 	local targets = this.Tactical.Entities.getAllInstances();
-	// 	local BlindAdjacent = false;
-
-	// 	foreach (tar in targets)
-	// 	{
-	// 		foreach (t in tar)
-	// 		{
-	// 			if (!t.isAlliedWith(actor) && t.getSkills().hasSkill("special.legend_RSS_radiance") && t.getTile().getDistanceTo(actor.getTile()) == 1)
-	// 			{
-	// 				BlindAdjacent = true;
-	// 				break;
-	// 			}
-	// 		}
-	// 	}
-
-	// 	if (BlindAdjacent)
-	// 	{
-	// 		this.m.Name = "Blinded";
-	// 		this.m.Icon = "skills/status_effect_52.png";
-	// 		this.m.IconMini = "status_effect_52_mini";
-	// 		this.m.Overlay = "status_effect_52";
-	// 		return false;
-	// 	}
-	// 	else
-	// 	{
-	// 		this.m.Name = "";
-	// 		this.m.Icon = "";
-	// 		this.m.IconMini = "";
-	// 		this.m.Overlay = "";
-	// 		return true;
-	// 	}
-	// }
-
 
 	function getTooltip() {
-		if (!this.isHidden())
-		{
-
-			return [
-				{
-					id = 1,
-					type = "title",
-					text = this.getName()
-				},
-				{
-					id = 10,
-					type = "text",
-					icon = "ui/icons/special.png",
-					text = "[color=%positive%]-" + this.m.MalusOne + "%[/color] Melee skill.\n" + "[color=%positive%]-" + this.m.MalusTwo + "%[/color] Melee defense."
-				}
-			];
-		}
-		else
-		{
-			return;
-		}
-	}
-
-
-	function updateEffect() {
-		local actor = this.getContainer().getActor();
-		if (actor == null)
-			return;
-		local targets = this.Tactical.Entities.getAllInstances();
-		local BlindAdjacent = false;
-
-		foreach (tar in targets) {
-			foreach (t in tar) {
-				if (!t.isAlliedWith(actor) && t.getSkills().hasEffect(::Legends.Effect.LegendRssRadiance) && t.getTile().getDistanceTo(actor.getTile()) == 1)
-				{
-					BlindAdjacent = true;
-					break;
-				}
+		return [
+			{
+				id = 1,
+				type = "title",
+				text = this.getName()
+			},
+			{
+				id = 10,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = "[color=%positive%]-" + this.m.MeleeSkillMalus + "%[/color] Melee skill.\n" + "[color=%positive%]-" + this.m.MeleeDefMalus + "%[/color] Melee defense."
 			}
-		}
-
-		if (BlindAdjacent) {
-			this.m.Name = "Blinded";
-			this.m.Icon = "skills/status_effect_52.png";
-			this.m.IconMini = "status_effect_52_mini";
-			this.m.Overlay = "status_effect_52";
-		}
-		else {
-			this.m.Name = "";
-			this.m.Icon = "";
-			this.m.IconMini = "";
-			this.m.Overlay = "";
-		}
+		];
 	}
-
 
 	function onMovementFinished() {
 		local actor = this.getContainer().getActor();
-		if (actor == null)
-			return;
-		local targets = this.Tactical.Entities.getAllInstances();
-
-		foreach (tar in targets) {
-			foreach (t in tar) {
-				if (!t.isAlliedWith(actor) && t.getSkills().hasEffect(::Legends.Effect.LegendRssRadiance) && t.getTile().getDistanceTo(actor.getTile()) == 1) {
-					local BlinderValues = ::Legends.Effects.get(t, ::Legends.Effect.LegendRssRadiance);
-					this.m.MalusOne = BlinderValues.getItem().getRuneBonus1();
-					this.m.MalusTwo = BlinderValues.getItem().getRuneBonus2();
-					this.spawnIcon("status_effect_52", actor.getTile());
-					break;
-				}
-			}
+		if (!::Legends.S.isEntityNullOrDead(actor) && actor.isPlacedOnMap()) {
+			actor.getSkills().update();
+			actor.setDirty(true);
 		}
-
-		this.updateEffect();
 	}
 
 	function onUpdate(_properties) {
-		this.m.IsHidden = true;
 		local actor = this.getContainer().getActor();
-		if (actor == null)
+		if (::Legends.S.isEntityNullOrDead(actor) || !actor.isPlacedOnMap()) {
 			return;
+		}
 
-		local targets = this.Tactical.Entities.getAllInstances();
-		local BlindAdjacent = false;
+		local myTile = actor.getTile();
+		local isBlindedNow = false;
+		local bestMalus1 = 0;
+		local bestMalus2 = 0;
 
-		foreach (tar in targets) {
-			foreach (t in tar) {
-				if (!t.isAlliedWith(actor) && t.getSkills().hasEffect(::Legends.Effect.LegendRssRadiance) && t.getTile().getDistanceTo(actor.getTile()) == 1)
-				{
-					BlindAdjacent = true;
-					break;
+		for (local i = 0; i < 6; i = ++i) {
+			if (myTile.hasNextTile(i)) {
+				local nextTile = myTile.getNextTile(i);
+				if (nextTile.IsOccupiedByActor) {
+					local entity = nextTile.getEntity();
+					if (!entity.isAlliedWith(actor)	&& ::Legends.Effects.has(entity, ::Legends.Effect.LegendRssRadiance)) {
+						local skill = ::Legends.Effects.get(entity, ::Legends.Effect.LegendRssRadiance);
+						if (skill != null && skill.getItem() != null) {
+							isBlindedNow = true;
+							bestMalus1 = ::Math.max(bestMalus1, skill.getItem().getRuneBonus1());
+							bestMalus2 = ::Math.max(bestMalus2, skill.getItem().getRuneBonus2());
+						}
+					}
 				}
+
 			}
 		}
 
-		if (BlindAdjacent) {
-			this.m.IsHidden = false;
-			_properties.MeleeSkillMult *= (1.0 - ((this.m.MalusOne * 1.0) / 100.0));
-			_properties.MeleeDefenseMult *= (1.0 - ((this.m.MalusTwo * 1.0) / 100.0));
+		if (isBlindedNow != this.m.WasBlinded || bestMalus1 != this.m.MeleeSkillMalus || bestMalus2 != this.m.MeleeDefMalus) {
+			this.m.WasBlinded = isBlindedNow;
+			this.m.MeleeSkillMalus = bestMalus1;
+			this.m.MeleeDefMalus = bestMalus2;
+			this.m.IsHidden = !isBlindedNow;
+
+			actor.getSkills().update();
+			actor.setDirty(true);
 		}
 
-		this.updateEffect();
+		if (this.m.WasBlinded) {
+            _properties.MeleeSkillMult *= (1.0 - (this.m.MeleeSkillMalus / 100.0));
+            _properties.MeleeDefenseMult *= (1.0 - (this.m.MeleeDefMalus / 100.0));
+        }
 	}
 
-
-	function onDeath( _fatalityType ) {
+	function onDeath(_fatalityType) {
 		this.removeSelf();
 	}
-
 
 	function onCombatFinished() {
 		this.removeSelf();
