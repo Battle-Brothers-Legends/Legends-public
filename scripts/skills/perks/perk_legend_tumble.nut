@@ -38,7 +38,6 @@ this.perk_legend_tumble <- this.inherit("scripts/skills/skill", {
 		} else {
 			_properties.RerollDefenseChance += _properties.RangedDefense;
 		}
-		this.m.CanTeleport = true;
 	}
 
 	function onBeforeDamageReceived(_attacker, _skill, _hitInfo, _properties) {
