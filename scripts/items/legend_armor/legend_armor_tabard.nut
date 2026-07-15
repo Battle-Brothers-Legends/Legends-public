@@ -5,7 +5,7 @@ this.legend_armor_tabard <- this.inherit("scripts/items/legend_armor/legend_armo
 	function create()
 	{
 		this.legend_armor_upgrade.create();
-		this.m.Type = this.Const.Items.ArmorUpgrades.Tabbard;
+		this.m.Type = this.Const.Items.ArmorUpgrades.Tabard;
 		this.m.ID = "legend_armor.company_tabard";
 		this.m.Name = "Tabard";
 		this.m.Description = "A flowing cloth covering for armor, to show your allegiance. Offers minimal protection and small boost to morale.";

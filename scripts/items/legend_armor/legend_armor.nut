@@ -577,7 +577,7 @@ this.legend_armor <- this.inherit("scripts/items/armor/armor", {
 			imageOverlayPath = []
 		};
 
-		local upgradeLayerOrder = [this.Const.Items.ArmorUpgrades.Chain, this.Const.Items.ArmorUpgrades.Plate, this.Const.Items.ArmorUpgrades.Tabbard, this.Const.Items.ArmorUpgrades.Attachment, this.Const.Items.ArmorUpgrades.Cloak];
+		local upgradeLayerOrder = [this.Const.Items.ArmorUpgrades.Chain, this.Const.Items.ArmorUpgrades.Plate, this.Const.Items.ArmorUpgrades.Tabard, this.Const.Items.ArmorUpgrades.Attachment, this.Const.Items.ArmorUpgrades.Cloak];
 		foreach( u in upgradeLayerOrder )	{
 			local upgrade = this.m.Upgrades[u];
 			if (upgrade != null)
@@ -825,7 +825,7 @@ this.legend_armor <- this.inherit("scripts/items/armor/armor", {
 		app.Armor = "";
 		app.ArmorLayerChain = "";
 		app.ArmorLayerPlate = "";
-		app.ArmorLayerTabbard = "";
+		app.ArmorLayerTabard = "";
 		app.ArmorLayerCloakFront = "";
 		app.ArmorLayerCloakBack = "";
 		app.ArmorUpgradeFront = "";
@@ -833,7 +833,7 @@ this.legend_armor <- this.inherit("scripts/items/armor/armor", {
 		app.CorpseArmor = "";
 		app.CorpseArmorLayerChain = "";
 		app.CorpseArmorLayerPlate = "";
-		app.CorpseArmorLayerTabbard = "";
+		app.CorpseArmorLayerTabard = "";
 		app.CorpseArmorLayerCloakFront = "";
 		app.CorpseArmorLayerCloakBack = "";
 		app.CorpseArmorUpgradeFront = "";

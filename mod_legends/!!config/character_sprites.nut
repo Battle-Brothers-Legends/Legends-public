@@ -15,7 +15,7 @@
 	{
 		ArmorLayerChain = "armor_layer_chain",
 		ArmorLayerPlate = "armor_layer_plate",
-		ArmorLayerTabbard = "armor_layer_tabbard",
+		ArmorLayerTabard = "armor_layer_tabard",
 		ArmorLayerCloakFront = "armor_layer_cloak_front",
 		ArmorLayerCloakBack = "armor_layer_cloak",
 	}
@@ -27,7 +27,7 @@
 		"armor",
 		"armor_layer_chain",
 		"armor_layer_plate",
-		"armor_layer_tabbard",
+		"armor_layer_tabard",
 		"armor_layer_cloak_front",
 		"armor_layer_cloak",
 		"armor_upgrade_back",

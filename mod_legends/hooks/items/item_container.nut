@@ -1,12 +1,12 @@
 ::mods_hookNewObject("items/item_container", function (o) {
 	o.m.Appearance.ArmorLayerChain <- "";
 	o.m.Appearance.ArmorLayerPlate <- "";
-	o.m.Appearance.ArmorLayerTabbard <- "";
+	o.m.Appearance.ArmorLayerTabard <- "";
 	o.m.Appearance.ArmorLayerCloakFront <- "";
 	o.m.Appearance.ArmorLayerCloakBack <- "";
 	o.m.Appearance.CorpseArmorLayerChain <- "";
 	o.m.Appearance.CorpseArmorLayerPlate <- "";
-	o.m.Appearance.CorpseArmorLayerTabbard <- "";
+	o.m.Appearance.CorpseArmorLayerTabard <- "";
 	o.m.Appearance.CorpseArmorLayerCloakFront <- "";
 	o.m.Appearance.CorpseArmorLayerCloakBack <- "";
 	o.m.Appearance.Helmet <- "";

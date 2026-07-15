@@ -33,7 +33,7 @@ this.camp_painter_dialog_module <- this.inherit("scripts/ui/screens/ui_module", 
 					Cloth = bodyarmorbase,
 					Chain = bodyarmorbase.getUpgrade(this.Const.Items.ArmorUpgrades.Chain),
 					Plate = bodyarmorbase.getUpgrade(this.Const.Items.ArmorUpgrades.Plate),
-					Tabard = bodyarmorbase.getUpgrade(this.Const.Items.ArmorUpgrades.Tabbard),
+					Tabard = bodyarmorbase.getUpgrade(this.Const.Items.ArmorUpgrades.Tabard),
 					Cloak = bodyarmorbase.getUpgrade(this.Const.Items.ArmorUpgrades.Cloak)
 					Attachment = bodyarmorbase.getUpgrade(this.Const.Items.ArmorUpgrades.Attachment),
 				};
@@ -228,7 +228,7 @@ this.camp_painter_dialog_module <- this.inherit("scripts/ui/screens/ui_module", 
 						Cloth = bodyarmorbase,
 						Chain = bodyarmorbase.getUpgrade(this.Const.Items.ArmorUpgrades.Chain),
 						Plate = bodyarmorbase.getUpgrade(this.Const.Items.ArmorUpgrades.Plate),
-						Tabard = bodyarmorbase.getUpgrade(this.Const.Items.ArmorUpgrades.Tabbard),
+						Tabard = bodyarmorbase.getUpgrade(this.Const.Items.ArmorUpgrades.Tabard),
 						Cloak = bodyarmorbase.getUpgrade(this.Const.Items.ArmorUpgrades.Cloak),
 						Attachment = bodyarmorbase.getUpgrade(this.Const.Items.ArmorUpgrades.Attachment)
 					};

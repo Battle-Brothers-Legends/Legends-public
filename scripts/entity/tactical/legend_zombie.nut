@@ -55,7 +55,7 @@ this.legend_zombie <- this.inherit("scripts/entity/tactical/enemies/zombie", {
 		this.addSprite("armor").setHorizontalFlipping(true);
 		this.addSprite("armor_layer_chain").setHorizontalFlipping(true);
 		this.addSprite("armor_layer_plate").setHorizontalFlipping(true);
-		this.addSprite("armor_layer_tabbard").setHorizontalFlipping(true);
+		this.addSprite("armor_layer_tabard").setHorizontalFlipping(true);
 		this.addSprite("armor_layer_cloak").setHorizontalFlipping(true);
 		this.addSprite("armor_upgrade_back").setHorizontalFlipping(true);
 		this.addSprite("armor_upgrade_front").setHorizontalFlipping(true);
@@ -244,7 +244,7 @@ this.legend_zombie <- this.inherit("scripts/entity/tactical/enemies/zombie", {
 				"CorpseArmor",
 				"CorpseArmorLayerChain",
 				"CorpseArmorLayerPlate",
-				"CorpseArmorLayerTabbard",
+				"CorpseArmorLayerTabard",
 				"CorpseArmorLayerCloakBack",
 				"CorpseArmorLayerCloakFront"
 			];

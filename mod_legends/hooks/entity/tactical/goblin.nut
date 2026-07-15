@@ -25,7 +25,7 @@
 				"CorpseArmor",
 				"CorpseArmorLayerChain",
 				"CorpseArmorLayerPlate",
-				"CorpseArmorLayerTabbard",
+				"CorpseArmorLayerTabard",
 				"CorpseArmorLayerCloakBack",
 				"CorpseArmorLayerCloakFront"
 			];

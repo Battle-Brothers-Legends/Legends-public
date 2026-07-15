@@ -147,7 +147,7 @@
 				"CorpseArmor",
 				"CorpseArmorLayerChain",
 				"CorpseArmorLayerPlate",
-				"CorpseArmorLayerTabbard",
+				"CorpseArmorLayerTabard",
 				"CorpseArmorLayerCloakBack",
 				"CorpseArmorLayerCloakFront"
 			];
@@ -458,7 +458,7 @@
 		this.getSprite("permanent_injury_burned").setHorizontalFlipping(flip);
 		this.getSprite("armor_layer_chain").setHorizontalFlipping(flip);
 		this.getSprite("armor_layer_plate").setHorizontalFlipping(flip);
-		this.getSprite("armor_layer_tabbard").setHorizontalFlipping(flip);
+		this.getSprite("armor_layer_tabard").setHorizontalFlipping(flip);
 		this.getSprite("armor_layer_cloak_front").setHorizontalFlipping(flip);
 		this.getSprite("armor_layer_cloak").setHorizontalFlipping(flip);
 
@@ -487,7 +487,7 @@
 			else if (_id == "surcoat") {
 				original_addSprite("armor_layer_chain");
 				original_addSprite("armor_layer_plate");
-				original_addSprite("armor_layer_tabbard");
+				original_addSprite("armor_layer_tabard");
 			}
 			else if (_id == "helmet") {
 				original_addSprite("accessory");

@@ -40,7 +40,7 @@ this.legend_orc <- this.inherit("scripts/entity/tactical/actor", {
 				"CorpseArmor",
 				"CorpseArmorLayerChain",
 				"CorpseArmorLayerPlate",
-				"CorpseArmorLayerTabbard",
+				"CorpseArmorLayerTabard",
 				"CorpseArmorLayerCloakBack",
 				"CorpseArmorLayerCloakFront"
 			];

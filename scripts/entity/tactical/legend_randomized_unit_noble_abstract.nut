@@ -37,7 +37,7 @@ this.legend_randomized_unit_noble_abstract <- this.inherit("scripts/entity/tacti
        	}
 
 		local armor = this.m.Items.getItemAtSlot(this.Const.ItemSlot.Body);
-		local tabard = armor.getUpgrade(this.Const.Items.ArmorUpgrades.Tabbard);
+		local tabard = armor.getUpgrade(this.Const.Items.ArmorUpgrades.Tabard);
 		if (tabard != null)
 		{
 			tabard.setVariant(banner);

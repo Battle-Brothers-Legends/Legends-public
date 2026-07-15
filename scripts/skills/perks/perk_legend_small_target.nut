@@ -85,7 +85,7 @@ this.perk_legend_small_target <- this.inherit("scripts/skills/skill", {
 			headArmor = actor.getArmor(this.Const.BodyPart.Head);
 
 		if (actor.getSkills().hasPerk(::Legends.Perk.LegendFashionable)) {
-			local layer = bodyItem.getUpgrade(this.Const.Items.ArmorUpgrades.Tabbard);
+			local layer = bodyItem.getUpgrade(this.Const.Items.ArmorUpgrades.Tabard);
 			if (layer != null)
 				bodyArmor -= layer.getRepair();
 			layer = bodyItem.getUpgrade(this.Const.Items.ArmorUpgrades.Cloak);

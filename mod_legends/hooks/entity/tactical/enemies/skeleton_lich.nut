@@ -11,7 +11,7 @@
 		onInit();
 		this.addSprite("armor_layer_chain");
 		this.addSprite("armor_layer_plate");
-		this.addSprite("armor_layer_tabbard");
+		this.addSprite("armor_layer_tabard");
 		this.addSprite("armor_layer_cloak");
 		this.addSprite("armor_upgrade_back");
 		foreach (a in this.Const.CharacterSprites.Helmets)

@@ -71,7 +71,7 @@ this.legend_skeleton <- this.inherit("scripts/entity/tactical/skeleton", {
 		this.addSprite("armor");
 		this.addSprite("armor_layer_chain");
 		this.addSprite("armor_layer_plate");
-		this.addSprite("armor_layer_tabbard");
+		this.addSprite("armor_layer_tabard");
 		this.addSprite("armor_layer_cloak");
 		this.addSprite("armor_upgrade_back");
 		local head = this.addSprite("head");

@@ -38,7 +38,7 @@ for( local i = 1; i < 88; i = ++i )
 ::Const.ShakeCharacterLayers[0].extend([
 	"armor_layer_chain",
 	"armor_layer_plate",
-	"armor_layer_tabbard",
+	"armor_layer_tabard",
 	"armor_layer_cloak_front",
 	"armor_layer_cloak",
 ]);
@@ -55,7 +55,7 @@ for( local i = 1; i < 88; i = ++i )
 ::Const.ShakeCharacterLayers[2].extend([
 	"armor_layer_chain",
 	"armor_layer_plate",
-	"armor_layer_tabbard",
+	"armor_layer_tabard",
 	"armor_layer_cloak_front",
 	"armor_layer_cloak",
 	"helmet_helm_lower",

@@ -149,7 +149,7 @@ this.legend_wicht <- this.inherit("scripts/entity/tactical/actor", {
 				"CorpseArmor",
 				"CorpseArmorLayerChain",
 				"CorpseArmorLayerPlate",
-				"CorpseArmorLayerTabbard",
+				"CorpseArmorLayerTabard",
 				"CorpseArmorLayerCloakBack",
 				"CorpseArmorLayerCloakFront",
 			];
@@ -241,7 +241,7 @@ this.legend_wicht <- this.inherit("scripts/entity/tactical/actor", {
 		this.getSprite("accessory_special").setHorizontalFlipping(flip);
 		this.getSprite("armor_layer_chain").setHorizontalFlipping(flip);
 		this.getSprite("armor_layer_plate").setHorizontalFlipping(flip);
-		this.getSprite("armor_layer_tabbard").setHorizontalFlipping(flip);
+		this.getSprite("armor_layer_tabard").setHorizontalFlipping(flip);
 		this.getSprite("armor_layer_cloak_front").setHorizontalFlipping(flip);
 		this.getSprite("armor_layer_cloak").setHorizontalFlipping(flip);
 
@@ -314,7 +314,7 @@ this.legend_wicht <- this.inherit("scripts/entity/tactical/actor", {
 		this.addSprite("dirt");
 		this.addSprite("armor_layer_chain");
 		this.addSprite("armor_layer_plate");
-		this.addSprite("armor_layer_tabbard");
+		this.addSprite("armor_layer_tabard");
 		this.addSprite("accessory");
 		this.addSprite("accessory_special");
 		this.addSprite("armor_upgrade_back");

@@ -334,7 +334,7 @@ this.legend_mummy <- this.inherit("scripts/entity/tactical/actor", {
 		this.getSprite("armor").setHorizontalFlipping(flip);
 		this.getSprite("armor_layer_chain").setHorizontalFlipping(flip);
 		this.getSprite("armor_layer_plate").setHorizontalFlipping(flip);
-		this.getSprite("armor_layer_tabbard").setHorizontalFlipping(flip);
+		this.getSprite("armor_layer_tabard").setHorizontalFlipping(flip);
 		this.getSprite("armor_layer_cloak").setHorizontalFlipping(flip);
 		this.getSprite("armor_upgrade_back").setHorizontalFlipping(flip);
 		this.getSprite("head").setHorizontalFlipping(flip);
@@ -378,7 +378,7 @@ this.legend_mummy <- this.inherit("scripts/entity/tactical/actor", {
 		this.addSprite("armor");
 		this.addSprite("armor_layer_chain");
 		this.addSprite("armor_layer_plate");
-		this.addSprite("armor_layer_tabbard");
+		this.addSprite("armor_layer_tabard");
 		this.addSprite("armor_layer_cloak");
 		this.addSprite("armor_upgrade_back");
 

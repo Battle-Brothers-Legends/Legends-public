@@ -11,7 +11,7 @@ this.legend_armor_named_tabard <- this.inherit("scripts/items/legend_armor/legen
 	{
 		this.legend_named_armor_upgrade.create();
 		this.m.ID = "legend_armor.body.named_tabard";
-		this.m.Type = this.Const.Items.ArmorUpgrades.Tabbard;
+		this.m.Type = this.Const.Items.ArmorUpgrades.Tabard;
 		this.m.Name = "";
 		this.m.Description = "A luxurious striped tabard made of a sturdy material, reinforced at seams with pure gold.";
 		this.m.ArmorDescription = "Includes a luxurious striped tabard.";

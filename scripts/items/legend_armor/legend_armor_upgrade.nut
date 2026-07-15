@@ -180,7 +180,7 @@ this.legend_armor_upgrade <- this.inherit("scripts/items/item", {
 			case this.Const.Items.ArmorUpgrades.Plate:
 				L.push("layers/layer_2.png");
 				break;
-			case this.Const.Items.ArmorUpgrades.Tabbard:
+			case this.Const.Items.ArmorUpgrades.Tabard:
 				L.push("layers/layer_3.png");
 				break;
 			case this.Const.Items.ArmorUpgrades.Cloak:
@@ -491,7 +491,7 @@ this.legend_armor_upgrade <- this.inherit("scripts/items/item", {
 		switch(this.m.Type) {
 			case this.Const.Items.ArmorUpgrades.Chain:      key = "Chain"; break;
 			case this.Const.Items.ArmorUpgrades.Plate:      key = "Plate"; break;
-			case this.Const.Items.ArmorUpgrades.Tabbard:    key = "Tabbard"; break;
+			case this.Const.Items.ArmorUpgrades.Tabard:    key = "Tabard"; break;
 			case this.Const.Items.ArmorUpgrades.Cloak:      key = "Cloak"; break;
 			case this.Const.Items.ArmorUpgrades.Attachment: key = "Upgrade"; prefix = "Armor"; break; 
 		}

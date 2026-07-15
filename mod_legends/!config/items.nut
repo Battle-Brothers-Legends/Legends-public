@@ -178,7 +178,7 @@ foreach (i in garbage)
 ::Const.Items.ArmorUpgrades <- {
 	Chain = 0,
 	Plate = 1,
-	Tabbard = 2,
+	Tabard = 2,
 	Cloak = 3,
 	Attachment = 4,
 	Rune = 5

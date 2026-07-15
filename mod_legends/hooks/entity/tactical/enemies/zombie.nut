@@ -43,7 +43,7 @@
 		this.addSprite("armor").setHorizontalFlipping(true);
 		this.addSprite("armor_layer_chain").setHorizontalFlipping(true);
 		this.addSprite("armor_layer_plate").setHorizontalFlipping(true);
-		this.addSprite("armor_layer_tabbard").setHorizontalFlipping(true);
+		this.addSprite("armor_layer_tabard").setHorizontalFlipping(true);
 		this.addSprite("armor_upgrade_back").setHorizontalFlipping(true);
 		this.addSprite("armor_layer_cloak").setHorizontalFlipping(true);
 		this.addSprite("armor_layer_cloak_front").setHorizontalFlipping(true);
@@ -216,7 +216,7 @@
 				"CorpseArmor",
 				"CorpseArmorLayerChain",
 				"CorpseArmorLayerPlate",
-				"CorpseArmorLayerTabbard",
+				"CorpseArmorLayerTabard",
 				"CorpseArmorLayerCloakBack",
 				"CorpseArmorLayerCloakFront"
 			];
@@ -521,7 +521,7 @@
 		this.getSprite("armor").setHorizontalFlipping(flip);
 		this.getSprite("armor_layer_chain").setHorizontalFlipping(flip);
 		this.getSprite("armor_layer_plate").setHorizontalFlipping(flip);
-		this.getSprite("armor_layer_tabbard").setHorizontalFlipping(flip);
+		this.getSprite("armor_layer_tabard").setHorizontalFlipping(flip);
 		this.getSprite("armor_layer_cloak").setHorizontalFlipping(flip);
 		this.getSprite("armor_upgrade_back").setHorizontalFlipping(flip);
 		this.getSprite("armor_upgrade_front").setHorizontalFlipping(flip);
