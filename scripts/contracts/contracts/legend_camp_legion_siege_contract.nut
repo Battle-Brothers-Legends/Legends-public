@@ -20,7 +20,7 @@ this.legend_camp_legion_siege_contract <- ::inherit("scripts/contracts/legend_ca
 		this.m.Name = "Siege";
 		this.m.TimeOut = this.Time.getVirtualTimeF() + this.World.getTime().SecondsPerDay * 7.0;
 		this.m.MakeAllSpawnsResetOrdersOnContractEnd = false;
-		
+
 		this.m.DescriptionTemplates = [
 			"Lay siege to a noble house fortification.",
 			"Capture and destroy a stronghold.",
@@ -942,7 +942,7 @@ this.legend_camp_legion_siege_contract <- ::inherit("scripts/contracts/legend_ca
 		this.m.Screens.push({
 			ID = "BurnTheCastle",
 			Title = "At the siege...",
-			Text = "[img]gfx/ui/events/event_68.png[/img]{Pushing through the initial line of paid fodder, you are met with a fresh contingent of eager footsoldiers and their commander.}", 
+			Text = "[img]gfx/ui/events/event_68.png[/img]{Pushing through the initial line of paid fodder, you are met with a fresh contingent of eager footsoldiers and their commander.}",
 			Image = "",
 			List = [],
 			Options = [
@@ -1009,7 +1009,7 @@ this.legend_camp_legion_siege_contract <- ::inherit("scripts/contracts/legend_ca
 		this.m.Screens.push({
 			ID = "AssaultTheCourtyard",
 			Title = "At %objective%...",
-			Text = "[img]gfx/ui/events/event_31.png[/img]{%objective%\'s gate has been taken, their commander lies dead in the mud.\n\n However, with the threat of certain death looming, the local milita has rounded up the peasants, who have been further galvanised by a surviving royal guard.\n They come now, farm tools in hand and sheer numbers on their side, ready to fight to the last.}", 
+			Text = "[img]gfx/ui/events/event_31.png[/img]{%objective%\'s gate has been taken, their commander lies dead in the mud.\n\n However, with the threat of certain death looming, the local milita has rounded up the peasants, who have been further galvanised by a surviving royal guard.\n They come now, farm tools in hand and sheer numbers on their side, ready to fight to the last.}",
 			Image = "",
 			List = [],
 			Options = [
@@ -1475,7 +1475,7 @@ this.legend_camp_legion_siege_contract <- ::inherit("scripts/contracts/legend_ca
 		this.m.Screens.push({
 			ID = "Success1",
 			Title = "On your return...",
-			Text = "[img]gfx/ui/events/event_04.png[/img]{Cinder fills the air, the population of %objective% is exterminated with brutal effeciency. Those still in the streets are cut down, as the rest are barricaded in their homes to be set alight.\n\n A desperate few make last stands in chokepoints and alleyways — only to be pushed out and cut down elsewhere. %employer% will be pleased.}", 
+			Text = "[img]gfx/ui/events/event_04.png[/img]{Cinder fills the air, the population of %objective% is exterminated with brutal effeciency. Those still in the streets are cut down, as the rest are barricaded in their homes to be set alight.\n\n A desperate few make last stands in chokepoints and alleyways — only to be pushed out and cut down elsewhere. %employer% will be pleased.}",
 			Image = "",
 			Characters = [],
 			List = [],
@@ -1745,6 +1745,75 @@ this.legend_camp_legion_siege_contract <- ::inherit("scripts/contracts/legend_ca
 		}
 	}
 
+	local targets = [];
+
+	foreach( l in this.m.Origin.getAttachedLocations() )
+	{
+		if (l.isActive() && l.isUsable())
+		{
+			targets.push(l);
+		}
+	}
+
+	if (targets.len() == 0)
+	{
+		foreach( l in this.m.Origin.getAttachedLocations() )
+		{
+			if (l.isUsable())
+			{
+				targets.push(l);
+			}
+		}
+	}
+
+	for( local i = 0; i < numOtherEnemies; i = ++i )
+	{
+		local tile;
+		local tries = 0;
+
+		while (tries++ < 500)
+		{
+			local x = this.Math.rand(originTile.SquareCoords.X - 4, originTile.SquareCoords.X + 4);
+			local y = this.Math.rand(originTile.SquareCoords.Y - 4, originTile.SquareCoords.Y + 4);
+
+			if (!this.World.isValidTileSquare(x, y))
+			{
+				continue;
+			}
+
+			tile = this.World.getTileSquare(x, y);
+
+			if (tile.getDistanceTo(originTile) <= 1)
+			{
+				continue;
+			}
+
+			if (tile.Type == this.Const.World.TerrainType.Ocean)
+			{
+				continue;
+			}
+			break;
+		}
+//check
+		local party = this.World.FactionManager.getFactionOfType(this.Const.FactionType.UndeadArmy).spawnEntity(tile, "Legion Cohort", false, this.Const.World.Spawn.UndeadArmy, this.Math.rand(90, 110) * this.getDifficultyMult() * this.getScaledDifficultyMult(), this.getMinibossModifier());
+		this.m.UnitsSpawned.push(party.getID());
+		party.setDescription("Legionaries marching to war.");
+		party.getSprite("banner").setBrush(orcBase != null ? orcBase.getBanner() : "banner_undead_01");
+		local c = party.getController();
+		local raidTarget = targets[this.Math.rand(0, targets.len() - 1)].getTile();
+		c.getBehavior(this.Const.World.AI.Behavior.ID.Flee).setEnabled(false);
+		local raid = this.new("scripts/ai/world/orders/raid_order");
+		raid.setTime(30.0);
+		raid.setTargetTile(raidTarget);
+		c.addOrder(raid);
+		local destroy = this.new("scripts/ai/world/orders/destroy_order");
+		destroy.setTime(60.0);
+		destroy.setSafetyOverride(true);
+		destroy.setTargetTile(originTile);
+		destroy.setTargetID(this.m.Origin.getID());
+		c.addOrder(destroy);
+	}
+
 	function destroysettlement()
 	{
 		local f = this.World.FactionManager.getFaction(this.getFaction());
@@ -1827,7 +1896,7 @@ this.legend_camp_legion_siege_contract <- ::inherit("scripts/contracts/legend_ca
 								///the bit that destroys the settlement v
 			local c = party.getController();
 			local raidTarget = targets[this.Math.rand(0, targets.len() - 1)].getTile();
-			
+
 			c.getBehavior(this.Const.World.AI.Behavior.ID.Flee).setEnabled(false);
 			c.getBehavior(this.Const.World.AI.Behavior.ID.Attack).setEnabled(false);
 			c.setAttackableByAI(false); //ensures action not interrupted
@@ -1983,6 +2052,5 @@ this.legend_camp_legion_siege_contract <- ::inherit("scripts/contracts/legend_ca
 			this.m.Allies.push(_in.readU32());
 		}
 	}
-
 });
 
