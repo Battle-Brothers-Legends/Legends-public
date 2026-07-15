@@ -31,7 +31,9 @@ if (!("LegendMod" in ::Const))
 	"Child",
 	"child",
 	"Offspring",
-	"offspring"
+	"offspring",
+	"Partner",
+	"partner"
 ];
 
 ::Const.LegendMod.PronounTable <- {
