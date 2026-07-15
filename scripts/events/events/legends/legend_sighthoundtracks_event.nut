@@ -15,29 +15,16 @@ this.legend_sighthoundtracks_event <- this.inherit("scripts/events/event", {
 			Image = "",
 			List = [],
 			Characters = [],
-			Options = [
-				{
-					Text = "Let it loose.",
-					function getResult( _event )
-					{
-						return "B"; //pt.2
-					}
-
-				},
-				{
-					Text = "Leave them to it.",
-					function getResult( _event )
-					{
-						return 0;
-					}
-
-				}
-			],
-			function start( _event )
-			{
+			Options = [{
+				Text = "Let it loose.",
+				getResult = @(_event) "B" //pt.2
+			}, {
+				Text = "Leave them to it.",
+				getResult = @(_event) 0
+			}],
+			function start(_event) {
 				this.Characters.push(_event.m.Houndhandler.getImagePath());
 			}
-
 		});
 		this.m.Screens.push({ //\n\n
 			ID = "B",
@@ -45,36 +32,22 @@ this.legend_sighthoundtracks_event <- this.inherit("scripts/events/event", {
 			Image = "",
 			List = [],
 			Characters = [], //catch rabbit, catch thief, run away, find an item
-			Options = [
-				{
-					Text = "The hunt begins.",
-					function getResult( _event )
-					{
-						local r = this.Math.rand(1, 100);
-						if (r <= 25)
-						{
-							return "C"; //runs away
-						}
-						else if (r <= 40)
-						{
-							return "D"; //catch rabbit (weaker reward)
-						}
-						else if (r <= 20)
-						{
-							return "E"; //catch thief (moderate reward)
-						}
-						else if (r <= 15)
-						{
-							return "F"; //find item (best reward)
-						}
-					}
+			Options = [{
+				Text = "The hunt begins.",
+				function getResult(_event) {
+					local r = ::Math.rand(1, 100);
+					if (r <= 25)
+						return "C"; //runs away
+					if (r <= 40)
+						return "D"; //catch rabbit (weaker reward)
+					if (r <= 80)
+						return "E"; //catch thief (moderate reward)
+					return "F"; //find item (best reward)
 				}
-			],
-			function start( _event )
-			{
+			}],
+			function start(_event) {
 				this.Characters.push(_event.m.Houndhandler.getImagePath());
 			}
-
 		});
 		this.m.Screens.push({
 			ID = "C", //runs away
@@ -82,18 +55,11 @@ this.legend_sighthoundtracks_event <- this.inherit("scripts/events/event", {
 			Image = "",
 			List = [],
 			Characters = [],
-			Options = [
-				{
-					Text = "Fark it.",
-					function getResult( _event )
-					{
-						return 0;
-					}
-
-				}
-			],
-			function start( _event )
-			{
+			Options = [{
+				Text = "Fark it.",
+				getResult = @(_event) 0
+			}],
+			function start(_event) {
 				this.Characters.push(_event.m.Houndhandler.getImagePath());
 				_event.m.Hound.getContainer().unequip(_event.m.Hound);
 				this.List.push({
@@ -102,7 +68,6 @@ this.legend_sighthoundtracks_event <- this.inherit("scripts/events/event", {
 					text = _event.m.Hound.getName() + " bounds away."
 				});
 			}
-
 		});
 		this.m.Screens.push({
 			ID = "D", //catch rabbit (weaker reward) //\n\n
@@ -110,25 +75,15 @@ this.legend_sighthoundtracks_event <- this.inherit("scripts/events/event", {
 			Image = "",
 			List = [],
 			Characters = [],
-			Options = [
-				{
-					Text = "At least that's lunch sorted...",
-					function getResult( _event )
-					{
-						return 0;
-					}
-
-				}
-			],
-			function start( _event )
-			{
+			Options = [{
+				Text = "At least that's lunch sorted...",
+				getResult = @(_event) 0
+			}],
+			function start(_event) {
 				this.Characters.push(_event.m.Houndhandler.getImagePath());
-				this.World.Assets.getStash().add(this.new("scripts/items/supplies/legend_rabbit_meat_item"));
-				this.List.push({
-					id = 10,
-					icon = "ui/items/supplies/legend_rabbit_meat.png",
-					text = "You gained some meat."
-				});
+				this.List.extend(::Legends.EventList.addItems([
+					::new("scripts/items/supplies/legend_rabbit_meat_item")
+				], ::World.Assets.getStash()));
 			}
 		});
 		this.m.Screens.push({
@@ -137,25 +92,13 @@ this.legend_sighthoundtracks_event <- this.inherit("scripts/events/event", {
 			Image = "",
 			List = [],
 			Characters = [],
-			Options = [
-				{
-					Text = "At least someone is earning their keep.",
-					function getResult( _event )
-					{
-						return 0;
-					}
-				}
-			],
-			function start( _event )
-			{
+			Options = [{
+				Text = "At least someone is earning their keep.",
+				getResult = @(_event) 0
+			}],
+			function start( _event ) {
 				this.Characters.push(_event.m.Houndhandler.getImagePath());
-				local money = this.Math.rand(144, 571);
-				this.World.Assets.addMoney(money);
-				this.List.push({
-					id = 10,
-					icon = "ui/icons/asset_money.png",
-					text = "You gained [color=" + this.Const.UI.Color.PositiveEventValue + "]" + money + "[/color] Crowns"
-				});
+				this.List.push(::Legends.EventList.changeMoney(::Math.rand(144, 571)));
 			}
 		});
 		this.m.Screens.push({
@@ -164,86 +107,48 @@ this.legend_sighthoundtracks_event <- this.inherit("scripts/events/event", {
 			Image = "",
 			List = [],
 			Characters = [],
-			Options = [
-				{
-					Text = "We'll put it to good use.",
-					function getResult( _event )
-					{
-						return 0;
-					}
-				}
-			],
-			function start( _event )
-			{
+			Options = [{
+				Text = "We'll put it to good use.",
+				getResult = @(_event) 0
+			}],
+			function start(_event) {
 				this.Characters.push(_event.m.Houndhandler.getImagePath());
-				local item = this.new("scripts/items/weapons/named/named_spetum");
-				this.World.Assets.getStash().add(item);
-				this.List.push({
-					id = 10,
-					icon = "ui/items/" + item.getIcon(),
-					text = "You gain " + item.getName()
-				});
+				this.List.extend(::Legends.EventList.addItems([
+					::new("scripts/items/weapons/named/named_spetum")
+				], ::World.Assets.getStash()));
 			}
 		});
 	}
 
-	function onUpdateScore()
-	{
-		if (!this.World.getTime().IsDaytime)
-		{
+	function onUpdateScore() {
+		if (!::World.getTime().IsDaytime)
 			return;
-		}
 
-		local towns = this.World.EntityManager.getSettlements();
-		local nearTown = false;
-		local town;
-		local playerTile = this.World.State.getPlayer().getTile();
-
-		foreach( t in towns )
-		{
-			if (t.getTile().getDistanceTo(playerTile) <= 4 && t.isAlliedWithPlayer())
-			{
-				nearTown = true;
-				town = t;
-				break;
-			}
-		}
-
-		if (!nearTown)
-		{
+		local playerTile = ::World.State.getPlayer().getTile();
+		local closestTown = ::Legends.S.getClosestSettlement(@(_, t) t.isAlliedWithPlayer());
+		if (closestTown.getTile().getDistanceTo(playerTile) > 4)
 			return;
-		}
 
-		local brothers = this.World.getPlayerRoster().getAll();
+		local brothers = ::World.getPlayerRoster().getAll();
 		local candidates = [];
 
-		foreach( bro in brothers )
-		{
-			local item = bro.getItems().getItemAtSlot(this.Const.ItemSlot.Accessory);
-
-			if (item != null && (item.getID() == "accessory.legend_sighthound"))
-			{
+		foreach (bro in brothers) {
+			local item = bro.getItems().getItemAtSlot(::Const.ItemSlot.Accessory);
+			if (item != null && (item.getID() == "accessory.legend_sighthound")) {
 				candidates.push(bro);
 			}
 		}
 
 		if (candidates.len() == 0)
-		{
 			return;
-		}
 
-		this.m.Houndhandler = candidates[this.Math.rand(0, candidates.len() - 1)];
-		this.m.Hound = this.m.Houndhandler.getItems().getItemAtSlot(this.Const.ItemSlot.Accessory);
-		this.m.Town = town;
+		this.m.Houndhandler = candidates[::Math.rand(0, candidates.len() - 1)];
+		this.m.Hound = this.m.Houndhandler.getItems().getItemAtSlot(::Const.ItemSlot.Accessory);
+		this.m.Town = closestTown;
 		this.m.Score = candidates.len() * 10;
 	}
 
-	function onPrepare()
-	{
-	}
-
-	function onPrepareVariables( _vars )
-	{
+	function onPrepareVariables(_vars) {
 		_vars.push([
 			"houndhandler",
 			this.m.Houndhandler.getNameOnly()
@@ -258,11 +163,9 @@ this.legend_sighthoundtracks_event <- this.inherit("scripts/events/event", {
 		]);
 	}
 
-	function onClear()
-	{
+	function onClear() {
 		this.m.Houndhandler = null;
 		this.m.Hound = null;
 		this.m.Town = null;
 	}
-
 });
