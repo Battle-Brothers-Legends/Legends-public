@@ -16,6 +16,14 @@
 	o.m.ProfessionPoints <- 0;
 	o.m.ProfessionPointsSpent <- 0;
 
+	// recruitment stuff
+	o.m.Hiring <- {};
+	o.m.Hiring.Traits <- {};
+	o.m.Hiring.Talents <- [];
+	o.m.Hiring.AttributeLimits <- {};
+	o.m.Hiring.AttributeBias <- {};
+
+
 	o.getProfessionPoints <- function () {
 		return this.m.ProfessionPoints;
 	}
@@ -116,84 +124,74 @@
 		this.m.LastCampAssignment = _id;
 	}
 
-	o.getHiringTraits = function ()
-	{
+	o.getHiringTraits = function () {
 		local ret = [];
 
-		if (!this.m.IsTryoutDone) return ret;
-
-		foreach( s in this.m.Skills.m.Skills )
-		{
-			if (s.getType() != ::Const.SkillType.Trait) continue;
-			if (s.isHidden()) continue;
-
-			ret.push({
-				id = s.getID(),
-				icon = s.getIconColored()
-			});
+		foreach (s in this.m.Skills.m.Skills) {
+			if (s.getType() == ::Const.SkillType.Trait && !s.isHidden()) {
+				ret.push({
+					id = s.getID(),
+					icon = s.getIconColored(),
+					exact =  this.m.IsTryoutDone || ("VisibleOnRecruitment" in ::Legends.Traits.LookupMap[s.getID()] && ::Legends.Traits.LookupMap[s.getID()].VisibleOnRecruitment) || (::World.Assets.m.ProfessionEffect.LegendSpotTheTells * 100) >= this.m.Hiring.Traits[s.getID()]
+				});
+			}
 		}
 
 		return ret;
 	}
 
-	o.getHiringTalents <- function ()
-	{
+	o.getHiringTalents <- function () {
 		local ret = [];
+	
+		local starsRevealed = 0;
+		local talents = this.getTalents();
+		local attributes = ["Hitpoints", "Bravery", "Stamina", "Initiative", "MeleeSkill", "RangedSkill", "MeleeDefense", "RangedDefense"];
+		local allowedStars = this.m.IsTryoutDone ? 9 : ::Math.max(1, ::World.Assets.m.ProfessionEffect.LegendEyeForTalent)
 
-		if (!this.m.IsTryoutDone)
-		{
-			return ret;
+		foreach (attrIndex in this.m.Hiring.Talents) {
+			local stars = talents[attrIndex];
+			if (stars > 0 && starsRevealed < allowedStars) {
+				local visibleStars = ::Math.min(stars, allowedStars - starsRevealed);
+				starsRevealed += visibleStars;
+				ret.push({
+					talent = attributes[attrIndex],
+					value = visibleStars,
+					exact = visibleStars == stars
+				});
+			}
 		}
 
-		local talents = this.getTalents();
+		return ret;
+	}
 
-		for( local i = 0; i < this.Const.Attributes.COUNT; i = ++i )
-		{
-			if (talents[i] > 0)
-			{
-				local r = {
-					talent = "",
-					value = talents[i]
+	
+	o.getHiringAttributes <- function () {
+		local ret = {};
+
+		foreach (key, _ in ::Legends.Backgrounds.BaseAttr.Default) {
+			local val = this.getBaseProperties()[key];
+			if (this.m.IsTryoutDone || ::World.Assets.m.ProfessionEffect.LegendSizeThemUp >= 1.0) {
+				ret[key] <- {
+					value = val,
+					min = val,
+					max = val,
+					exact = true
 				};
-
-				switch(i)
-				{
-				case 0:
-					r.talent = "HP";
-					break;
-
-				case 1:
-					r.talent = "RES";
-					break;
-
-				case 2:
-					r.talent = "FAT";
-					break;
-
-				case 3:
-					r.talent = "INIT";
-					break;
-
-				case 4:
-					r.talent = "MA";
-					break;
-
-				case 5:
-					r.talent = "RA";
-					break;
-
-				case 6:
-					r.talent = "MD";
-					break;
-
-				case 7:
-					r.talent = "RD";
-					break;
-				}
-
-				ret.push(r);
+			} else {
+				local minBound = this.m.Hiring.AttributeLimits[key][0];
+				local maxBound = this.m.Hiring.AttributeLimits[key][1];
+        		local targetSize = ::Math.round((maxBound - minBound) * (1.0 - ::World.Assets.m.ProfessionEffect.LegendSizeThemUp));
+        		local lowestPossibleMin = ::Math.max(minBound, val - targetSize);
+        		local highestPossibleMin = ::Math.min(val, maxBound - targetSize);
+				local displayMin = ::Math.round(lowestPossibleMin + ((highestPossibleMin - lowestPossibleMin) * this.m.Hiring.AttributeBias[key]));
+        		local displayMax = displayMin + targetSize;
+				ret[key] <- {
+					value = val,
+					min = displayMin,
+					max = displayMax,
+					exact = (displayMin == displayMax)
+				};
 			}
-
 		}
 
 		return ret;
@@ -1388,6 +1386,24 @@
 		{
 			this.fillTalentValues(3);
 			this.fillAttributeLevelUpValues(this.Const.XP.MaxLevelWithPerkpoints - 1);
+		}
+
+		this.m.Hiring.Talents=(function(){ local c=[]; for(local i=0;i<::Const.Attributes.COUNT;i++) c.push(i); return c; })();
+		for (local i = ::Const.Attributes.COUNT - 1; i > 0; i--) {
+			local j = ::Math.rand(0, i);
+			local temp = this.m.Hiring.Talents[i];
+			this.m.Hiring.Talents[i] = this.m.Hiring.Talents[j];
+			this.m.Hiring.Talents[j] = temp;
+		}
+		
+		foreach (s in this.m.Skills.m.Skills) {
+			if (s.getType() == ::Const.SkillType.Trait && !s.isHidden()) {
+					this.m.Hiring.Traits[s.getID()] <- ::Math.rand(1, 100);
+			}
+		}
+
+		foreach (key, _ in ::Legends.Backgrounds.BaseAttr.Default) {
+    		this.m.Hiring.AttributeBias[key] <- ::Math.rand(0, 100) / 100.0;
 		}
 	}
 

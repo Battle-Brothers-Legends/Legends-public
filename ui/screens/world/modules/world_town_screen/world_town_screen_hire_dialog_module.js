@@ -158,6 +158,9 @@ WorldTownScreenHireDialogModule.prototype.createDIV = function (_parentDiv)
 	this.mDetailsPanel.CharacterTraitsContainer = $('<div class="traits-container"/>');
 	backgroundRow.append(this.mDetailsPanel.CharacterTraitsContainer);
 
+	this.mDetailsPanel.CharacterStatsContainer = $('<div class="stats-container"/>');
+	detailsColumn.append(this.mDetailsPanel.CharacterStatsContainer);
+
 	backgroundRow = $('<div class="row is-bottom"/>');
 	detailsColumn.append(backgroundRow);
 	this.mDetailsPanel.CharacterBackgroundTextContainer = backgroundRow.createList(20, 'description-font-medium font-bottom-shadow font-color-description', true);
@@ -290,6 +293,14 @@ WorldTownScreenHireDialogModule.prototype.destroyDIV = function ()
 	this.mDetailsPanel.InitialMoneyCostsText.empty();
 	this.mDetailsPanel.InitialMoneyCostsText.remove();
 	this.mDetailsPanel.InitialMoneyCostsText = null;
+
+	this.mDetailsPanel.CharacterTraitsContainer.empty();
+	this.mDetailsPanel.CharacterTraitsContainer.remove();
+	this.mDetailsPanel.CharacterTraitsContainer = null;
+
+	this.mDetailsPanel.CharacterStatsContainer.empty();
+	this.mDetailsPanel.CharacterStatsContainer.remove();
+	this.mDetailsPanel.CharacterStatsContainer = null;
 
 	this.mDetailsPanel.CharacterBackgroundImage.empty();
 	this.mDetailsPanel.CharacterBackgroundImage.remove();
@@ -486,87 +497,83 @@ WorldTownScreenHireDialogModule.prototype.updateDetailsPanel = function(_element
 		//this.mDetailsPanel.DailyFoodCostsText.html(Helper.numberWithCommas(data['DailyFoodCost']));
 
 		this.mDetailsPanel.CharacterTraitsContainer.empty();
+		this.mDetailsPanel.CharacterStatsContainer.empty();
 
-		if(data['IsTryoutDone'])
-		{
-			var icon = $('<img src="' + Path.GFX + 'ui/icons/known_perks.png' + '"/>');
-			icon.bindTooltip({ contentType: 'ui-element', elementId: TooltipIdentifier.WorldTownScreen.HireDialogModule.KnownPerks, entityId: data.ID });
+		var iconPerks = $('<img src="' + Path.GFX + (data['IsTryoutDone'] ? 'ui/icons/known_perks.png' : 'ui/icons/unknown_perks.png') + '"/>');
+		iconPerks.bindTooltip({ contentType: 'ui-element', elementId: data['IsTryoutDone'] ? TooltipIdentifier.WorldTownScreen.HireDialogModule.KnownPerks : TooltipIdentifier.WorldTownScreen.HireDialogModule.UnknownPerks, entityId: data.ID});
+		if (data['IsTryoutDone']) {
 			var self = this;
-			icon.on('click', function(event) {
+			iconPerks.on('click', function(event) {
 				// Open perks panel popup
 				self.notifyBackendKnownPerksIconClicked();
 			});
-			this.mDetailsPanel.CharacterTraitsContainer.append(icon);
+		}
+		this.mDetailsPanel.CharacterTraitsContainer.append(iconPerks);
 
-			for(var i = 0; i < data.Traits.length; ++i)
-			{
-				var icon = $('<img src="' + Path.GFX + data.Traits[i].icon + '"/>');
-				icon.bindTooltip({ contentType: 'status-effect', entityId: data.ID, statusEffectId: data.Traits[i].id });
-				this.mDetailsPanel.CharacterTraitsContainer.append(icon);
+		for(var i = 0; i < data.Traits.length; ++i)	{
+			var isExact = data.Traits[i].exact !== false;
+			var iconTrait = $('<img src="' + Path.GFX + (isExact ? data.Traits[i].icon : Asset.ICON_UNKNOWN_TRAITS) + '"/>');
+			
+			if (isExact) {
+				iconTrait.bindTooltip({ contentType: 'status-effect', entityId: data.ID, statusEffectId: data.Traits[i].id });
+			} else {
+				iconTrait.bindTooltip({ contentType: 'ui-element', elementId: TooltipIdentifier.WorldTownScreen.HireDialogModule.UnknownTraits });
 			}
+			this.mDetailsPanel.CharacterTraitsContainer.append(iconTrait);
+		}
 
-			for(var i = 0; i < data.Talents.length; ++i)
-			{
-				var stars = $('<img></img>');
-				stars.attr('src', Path.GFX + 'ui/icons/talent_' + data.Talents[i].value.toString() + '.png');
-				stars.css({ 'width': '3.6rem', 'height': '1.8rem', 'margin-bottom': '1.5rem'});
-				var icon = "";
-				var tooltipId = null
-				switch (data.Talents[i].talent) 
-				{
-					case "HP":
-						icon = Asset.ICON_HEALTH;
-						tooltipId = TooltipIdentifier.CharacterStats.Hitpoints;
+		var leftCol = $('<div class="stats-column left"/>');
+		var rightCol = $('<div class="stats-column right"/>');
+		this.mDetailsPanel.CharacterStatsContainer.append(leftCol);
+		this.mDetailsPanel.CharacterStatsContainer.append(rightCol);
+
+		var statKeysLeft = [
+			{ key: 'Hitpoints', icon: Asset.ICON_HEALTH, tooltip: TooltipIdentifier.CharacterStats.Hitpoints, talentKey: 'Hitpoints' },
+			{ key: 'Bravery', icon: Asset.ICON_BRAVERY, tooltip: TooltipIdentifier.CharacterStats.Bravery, talentKey: 'Bravery' },
+			{ key: 'Stamina', icon: Asset.ICON_FATIGUE, tooltip: TooltipIdentifier.CharacterStats.Fatigue, talentKey: 'Stamina' },
+			{ key: 'Initiative', icon: Asset.ICON_INITIATIVE, tooltip: TooltipIdentifier.CharacterStats.Initiative, talentKey: 'Initiative' }
+		];
+		
+		var statKeysRight = [
+			{ key: 'MeleeSkill', icon: Asset.ICON_MELEE_SKILL, tooltip: TooltipIdentifier.CharacterStats.MeleeSkill, talentKey: 'MeleeSkill' },
+			{ key: 'RangedSkill', icon: Asset.ICON_RANGE_SKILL, tooltip: TooltipIdentifier.CharacterStats.RangeSkill, talentKey: 'RangedSkill' },
+			{ key: 'MeleeDefense', icon: Asset.ICON_MELEE_DEFENCE, tooltip: TooltipIdentifier.CharacterStats.MeleeDefense, talentKey: 'MeleeDefense' },
+			{ key: 'RangedDefense', icon: Asset.ICON_RANGE_DEFENCE, tooltip: TooltipIdentifier.CharacterStats.RangeDefense, talentKey: 'RangedDefense' }
+		];
+
+		var buildStatRow = function(col, statDef) {
+			if (!data.Attributes || !(statDef.key in data.Attributes)) return;
+			var attr = data.Attributes[statDef.key];
+
+			var row = $('<div class="stat-row"/>');
+			var icon = $('<img src="' + Path.GFX + statDef.icon + '"/>');
+			icon.bindTooltip({ contentType: 'ui-element', elementId: statDef.tooltip });
+			row.append(icon);
+
+			var text = $('<div class="stat-value text-font-small font-color-assets-positive-value"/>');
+			text.html(attr.exact ? attr.value : attr.min + ' - ' + attr.max);
+			row.append(text);
+
+			var talentData = null;
+			if (data.Talents) {
+				for (var j = 0; j < data.Talents.length; j++) {
+					if (data.Talents[j].talent === statDef.talentKey) {
+						talentData = data.Talents[j];
 						break;
-					case "FAT":
-						icon = Asset.ICON_FATIGUE;
-						tooltipId = TooltipIdentifier.CharacterStats.Fatigue;
-						break;
-					case "RES":
-						icon = Asset.ICON_BRAVERY;
-						tooltipId = TooltipIdentifier.CharacterStats.Bravery;
-						break;
-					case "INIT":
-						icon = Asset.ICON_INITIATIVE;
-						tooltipId = TooltipIdentifier.CharacterStats.Initiative;
-						break;
-					case "MA":
-						icon = Asset.ICON_MELEE_SKILL;
-						tooltipId = TooltipIdentifier.CharacterStats.MeleeSkill;
-						break;
-					case "MD":
-						icon = Asset.ICON_MELEE_DEFENCE;
-						tooltipId = TooltipIdentifier.CharacterStats.MeleeDefense;
-						break;
-					case "RA":
-						icon = Asset.ICON_RANGE_SKILL;
-						tooltipId = TooltipIdentifier.CharacterStats.RangeSkill;
-						break;
-					case "RD":
-						icon = Asset.ICON_RANGE_DEFENCE;
-						tooltipId = TooltipIdentifier.CharacterStats.RangeDefense;
-						break;
+					}
 				}
-				var img = $('<img src="' + Path.GFX + icon + '"/>');
-				img.bindTooltip({ contentType: 'ui-element', elementId: tooltipId });
-			   // img.css({ 'width': '3.6rem', 'height': '1.8rem' });
-			   // + data.Talents[i].talent + '
-				var text = $('<span class="text-font-small font-color-assets-positive-value"></span>');
-				text.append(img)
-				text.append(stars)
-				this.mDetailsPanel.CharacterTraitsContainer.append(text);
 			}
-		}
-		else
-		{
-			var icon = $('<img src="' + Path.GFX + 'ui/icons/unknown_perks.png' + '"/>');
-			icon.bindTooltip({ contentType: 'ui-element', elementId: TooltipIdentifier.WorldTownScreen.HireDialogModule.UnknownPerks, entityId: data.ID });
-			this.mDetailsPanel.CharacterTraitsContainer.append(icon);
 
-			var icon = $('<img src="' + Path.GFX + Asset.ICON_UNKNOWN_TRAITS + '"/>');
-			icon.bindTooltip({ contentType: 'ui-element', elementId: TooltipIdentifier.WorldTownScreen.HireDialogModule.UnknownTraits });
-			this.mDetailsPanel.CharacterTraitsContainer.append(icon);
-		}
+			if (talentData) {
+				var stars = $('<img class="stat-stars" src="' + Path.GFX + (talentData.exact === false ? ('ui/icons/talent_' + talentData.value + '_unknown.png') : ('ui/icons/talent_' + talentData.value + '.png')) + '"/>');
+				row.append(stars);
+			}
+			
+			col.append(row);
+		};
+
+		for (var i = 0; i < statKeysLeft.length; i++) buildStatRow(leftCol, statKeysLeft[i]);
+		for (var i = 0; i < statKeysRight.length; i++) buildStatRow(rightCol, statKeysRight[i]);
 
 		// bin tooltips
 		this.mDetailsPanel.CharacterBackgroundImage.bindTooltip({ contentType: 'ui-element', elementId: TooltipIdentifier.CharacterBackgrounds.Generic, elementOwner: TooltipIdentifier.ElementOwner.HireScreen, entityId: data.ID });
@@ -643,33 +650,27 @@ WorldTownScreenHireDialogModule.prototype.updateListEntryValues = function()
 		}
 
 		traitsContainer.empty();
-		if(data['IsTryoutDone'])
-		{
-			var icon = $('<img src="' + Path.GFX + 'ui/icons/known_perks.png' + '"/>');
-			icon.bindTooltip({ contentType: 'ui-element', elementId: TooltipIdentifier.WorldTownScreen.HireDialogModule.KnownPerks, entityId: data.ID});
-			icon.on('click', function(event) {
+		var iconPerks = $('<img src="' + Path.GFX + (data['IsTryoutDone'] ? 'ui/icons/known_perks.png' : 'ui/icons/unknown_perks.png') + '"/>');
+		iconPerks.bindTooltip({ contentType: 'ui-element', elementId: data['IsTryoutDone'] ? TooltipIdentifier.WorldTownScreen.HireDialogModule.KnownPerks : TooltipIdentifier.WorldTownScreen.HireDialogModule.UnknownPerks, entityId: data.ID});
+		if (data['IsTryoutDone']) {
+			iconPerks.on('click', function(event) {
 				// Open perks panel popup
 				self.notifyBackendKnownPerksIconClicked();
 			});
-			traitsContainer.append(icon);
-
-			for(var i = 0; i < data.Traits.length; ++i)
-			{
-				var icon = $('<img src="' + Path.GFX + data.Traits[i].icon + '"/>');
-				icon.bindTooltip({ contentType: 'status-effect', entityId: data.ID, statusEffectId: data.Traits[i].id });
-				traitsContainer.append(icon);
+		}
+		traitsContainer.append(iconPerks);
+			
+		for(var i = 0; i < data.Traits.length; ++i)	{
+			var isExact = data.Traits[i].exact !== false;
+			var iconTrait = $('<img src="' + Path.GFX + (isExact ? data.Traits[i].icon : Asset.ICON_UNKNOWN_TRAITS) + '"/>');
+			
+			if (isExact) {
+				iconTrait.bindTooltip({ contentType: 'status-effect', entityId: data.ID, statusEffectId: data.Traits[i].id });
+			} else {
+				iconTrait.bindTooltip({ contentType: 'ui-element', elementId: TooltipIdentifier.WorldTownScreen.HireDialogModule.UnknownTraits });
 			}
-		}
-		else
-		{
-			var icon = $('<img src="' + Path.GFX + 'ui/icons/unknown_perks.png' + '"/>');
-			icon.bindTooltip({ contentType: 'ui-element', elementId: TooltipIdentifier.WorldTownScreen.HireDialogModule.UnknownPerks, entityId: data.ID });
-			traitsContainer.append(icon);
-
-			var icon = $('<img src="' + Path.GFX + Asset.ICON_UNKNOWN_TRAITS + '"/>');
-			icon.bindTooltip({ contentType: 'ui-element', elementId: TooltipIdentifier.WorldTownScreen.HireDialogModule.UnknownTraits });
-			traitsContainer.append(icon);
-		}
+			traitsContainer.append(iconTrait);
+		}		
 	});
 };
 
@@ -729,7 +730,7 @@ WorldTownScreenHireDialogModule.prototype.bindTooltips = function ()
 	this.mLeaveButton.bindTooltip({ contentType: 'ui-element', elementId: TooltipIdentifier.WorldTownScreen.HireDialogModule.LeaveButton });
 	this.mDetailsPanel.HireButton.bindTooltip({ contentType: 'ui-element', elementId: TooltipIdentifier.WorldTownScreen.HireDialogModule.HireButton });
 	this.mDetailsPanel.TryoutButton.bindTooltip({ contentType: 'ui-element', elementId: TooltipIdentifier.WorldTownScreen.HireDialogModule.TryoutButton });
-	this.mDetailsPanel.DismissButton.bindTooltip({ contentType: 'ui-element', elementId: "world-town-screen.hire-dialog-module.DismissButton" });
+	this.mDetailsPanel.DismissButton.bindTooltip({ contentType: 'ui-element', elementId: TooltipIdentifier.WorldTownScreen.HireDialogModule.DismissButton });
 };
 
 WorldTownScreenHireDialogModule.prototype.unbindTooltips = function ()

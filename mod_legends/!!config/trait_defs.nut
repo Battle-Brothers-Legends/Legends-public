@@ -5,6 +5,7 @@ if (!("Trait" in ::Legends))
 	::Legends.Trait <- {};
 
 ::Legends.Traits.TraitDefObjects <- [];
+::Legends.Traits.LookupMap <- {};
 
 ::Legends.Traits.pushToCharacterTraits <- function (_obj) {
 	foreach (obj in ::Const.CharacterTraits) {
@@ -27,6 +28,7 @@ if (!("Trait" in ::Legends))
 		if("Random" in traitDefObject && traitDefObject.Random) {
 			::Legends.Traits.pushToCharacterTraits(traitDefObject);
 		}
+			::Legends.Traits.LookupMap[traitDefObject.ID] <- traitDefObject;
 	}
 }
 
@@ -46,7 +48,8 @@ traitDefs.push({
 	ID = "trait.eagle_eyes",
 	Script = "scripts/skills/traits/eagle_eyes_trait",
 	Const = "EagleEyes",
-	Random = true
+	Random = true,
+	VisibleOnRecruitment = false
 });
 
 ::Legends.Trait.ShortSighted <- null;
@@ -54,7 +57,8 @@ traitDefs.push({
 	ID = "trait.short_sighted",
 	Script = "scripts/skills/traits/short_sighted_trait",
 	Const = "ShortSighted",
-	Random = true
+	Random = true,
+	VisibleOnRecruitment = false
 });
 
 ::Legends.Trait.Tough <- null;
@@ -62,7 +66,8 @@ traitDefs.push({
 	ID = "trait.tough",
 	Script = "scripts/skills/traits/tough_trait",
 	Const = "Tough",
-	Random = true
+	Random = true,
+	VisibleOnRecruitment = false
 });
 
 ::Legends.Trait.Strong <- null;
@@ -70,7 +75,8 @@ traitDefs.push({
 	ID = "trait.strong",
 	Script = "scripts/skills/traits/strong_trait",
 	Const = "Strong",
-	Random = true
+	Random = true,
+	VisibleOnRecruitment = false
 });
 
 ::Legends.Trait.Hesitant <- null;
@@ -79,6 +85,7 @@ traitDefs.push({
 	Script = "scripts/skills/traits/hesitant_trait",
 	Const = "Hesitant",
 	Random = true,
+	VisibleOnRecruitment = true
 });
 
 ::Legends.Trait.Quick <- null;
@@ -86,7 +93,8 @@ traitDefs.push({
 	ID = "trait.quick",
 	Script = "scripts/skills/traits/quick_trait",
 	Const = "Quick",
-	Random = true
+	Random = true,
+	VisibleOnRecruitment = false
 });
 
 ::Legends.Trait.Tiny <- null;
@@ -94,7 +102,8 @@ traitDefs.push({
 	ID = "trait.tiny",
 	Script = "scripts/skills/traits/tiny_trait",
 	Const = "Tiny",
-	Random = true
+	Random = true,
+	VisibleOnRecruitment = true
 });
 
 ::Legends.Trait.Cocky <- null;
@@ -102,7 +111,8 @@ traitDefs.push({
 	ID = "trait.cocky",
 	Script = "scripts/skills/traits/cocky_trait",
 	Const = "Cocky",
-	Random = true
+	Random = true,
+	VisibleOnRecruitment = true
 });
 
 ::Legends.Trait.Clumsy <- null;
@@ -110,7 +120,8 @@ traitDefs.push({
 	ID = "trait.clumsy",
 	Script = "scripts/skills/traits/clumsy_trait",
 	Const = "Clumsy",
-	Random = true
+	Random = true,
+	VisibleOnRecruitment = false
 });
 
 ::Legends.Trait.Fearless <- null;
@@ -118,7 +129,8 @@ traitDefs.push({
 	ID = "trait.fearless",
 	Script = "scripts/skills/traits/fearless_trait",
 	Const = "Fearless",
-	Random = true
+	Random = true,
+	VisibleOnRecruitment = false
 });
 
 ::Legends.Trait.Fat <- null;
@@ -126,7 +138,8 @@ traitDefs.push({
 	ID = "trait.fat",
 	Script = "scripts/skills/traits/fat_trait",
 	Const = "Fat",
-	Random = true
+	Random = true,
+	VisibleOnRecruitment = true
 });
 
 ::Legends.Trait.Dumb <- null;
@@ -134,7 +147,8 @@ traitDefs.push({
 	ID = "trait.dumb",
 	Script = "scripts/skills/traits/dumb_trait",
 	Const = "Dumb",
-	Random = true
+	Random = true,
+	VisibleOnRecruitment = false
 });
 
 ::Legends.Trait.Bright <- null;
@@ -142,7 +156,8 @@ traitDefs.push({
 	ID = "trait.bright",
 	Script = "scripts/skills/traits/bright_trait",
 	Const = "Bright",
-	Random = true
+	Random = true,
+	VisibleOnRecruitment = false
 });
 
 ::Legends.Trait.Drunkard <- null;
@@ -150,7 +165,8 @@ traitDefs.push({
 	ID = "trait.drunkard",
 	Script = "scripts/skills/traits/drunkard_trait",
 	Const = "Drunkard",
-	Random = true
+	Random = true,
+	VisibleOnRecruitment = false
 });
 
 ::Legends.Trait.Fainthearted <- null;
@@ -158,7 +174,8 @@ traitDefs.push({
 	ID = "trait.fainthearted",
 	Script = "scripts/skills/traits/fainthearted_trait",
 	Const = "Fainthearted",
-	Random = true
+	Random = true,
+	VisibleOnRecruitment = false
 });
 
 ::Legends.Trait.Bleeder <- null;
@@ -166,7 +183,8 @@ traitDefs.push({
 	ID = "trait.bleeder",
 	Script = "scripts/skills/traits/bleeder_trait",
 	Const = "Bleeder",
-	Random = true
+	Random = true,
+	VisibleOnRecruitment = false
 });
 
 ::Legends.Trait.Ailing <- null;
@@ -174,7 +192,8 @@ traitDefs.push({
 	ID = "trait.ailing",
 	Script = "scripts/skills/traits/ailing_trait",
 	Const = "Ailing",
-	Random = true
+	Random = true,
+	VisibleOnRecruitment = false
 });
 
 ::Legends.Trait.Determined <- null;
@@ -182,7 +201,8 @@ traitDefs.push({
 	ID = "trait.determined",
 	Script = "scripts/skills/traits/determined_trait",
 	Const = "Determined",
-	Random = true
+	Random = true,
+	VisibleOnRecruitment = false
 });
 
 ::Legends.Trait.Dastard <- null;
@@ -190,7 +210,8 @@ traitDefs.push({
 	ID = "trait.dastard",
 	Script = "scripts/skills/traits/dastard_trait",
 	Const = "Dastard",
-	Random = true
+	Random = true,
+	VisibleOnRecruitment = false
 });
 
 ::Legends.Trait.Deathwish <- null;
@@ -198,7 +219,8 @@ traitDefs.push({
 	ID = "trait.deathwish",
 	Script = "scripts/skills/traits/deathwish_trait",
 	Const = "Deathwish",
-	Random = true
+	Random = true,
+	VisibleOnRecruitment = false
 });
 
 ::Legends.Trait.Fragile <- null;
@@ -206,7 +228,8 @@ traitDefs.push({
 	ID = "trait.fragile",
 	Script = "scripts/skills/traits/fragile_trait",
 	Const = "Fragile",
-	Random = true
+	Random = true,
+	VisibleOnRecruitment = false
 });
 
 ::Legends.Trait.Insecure <- null;
@@ -214,7 +237,8 @@ traitDefs.push({
 	ID = "trait.insecure",
 	Script = "scripts/skills/traits/insecure_trait",
 	Const = "Insecure",
-	Random = true
+	Random = true,
+	VisibleOnRecruitment = false
 });
 
 ::Legends.Trait.Optimist <- null;
@@ -222,7 +246,8 @@ traitDefs.push({
 	ID = "trait.optimist",
 	Script = "scripts/skills/traits/optimist_trait",
 	Const = "Optimist",
-	Random = true
+	Random = true,
+	VisibleOnRecruitment = false
 });
 
 ::Legends.Trait.Pessimist <- null;
@@ -230,7 +255,8 @@ traitDefs.push({
 	ID = "trait.pessimist",
 	Script = "scripts/skills/traits/pessimist_trait",
 	Const = "Pessimist",
-	Random = true
+	Random = true,
+	VisibleOnRecruitment = false
 });
 
 ::Legends.Trait.Superstitious <- null;
@@ -238,7 +264,8 @@ traitDefs.push({
 	ID = "trait.superstitious",
 	Script = "scripts/skills/traits/superstitious_trait",
 	Const = "Superstitious",
-	Random = true
+	Random = true,
+	VisibleOnRecruitment = false
 });
 
 ::Legends.Trait.Brave <- null;
@@ -246,7 +273,8 @@ traitDefs.push({
 	ID = "trait.brave",
 	Script = "scripts/skills/traits/brave_trait",
 	Const = "Brave",
-	Random = true
+	Random = true,
+	VisibleOnRecruitment = false
 });
 
 ::Legends.Trait.Dexterous <- null;
@@ -254,7 +282,8 @@ traitDefs.push({
 	ID = "trait.dexterous",
 	Script = "scripts/skills/traits/dexterous_trait",
 	Const = "Dexterous",
-	Random = true
+	Random = true,
+	VisibleOnRecruitment = false
 });
 
 ::Legends.Trait.SureFooting <- null;
@@ -262,7 +291,8 @@ traitDefs.push({
 	ID = "trait.sure_footing",
 	Script = "scripts/skills/traits/sure_footing_trait",
 	Const = "SureFooting",
-	Random = true
+	Random = true,
+	VisibleOnRecruitment = false
 });
 
 ::Legends.Trait.Asthmatic <- null;
@@ -270,7 +300,8 @@ traitDefs.push({
 	ID = "trait.asthmatic",
 	Script = "scripts/skills/traits/asthmatic_trait",
 	Const = "Asthmatic",
-	Random = true
+	Random = true,
+	VisibleOnRecruitment = false
 });
 
 ::Legends.Trait.IronLungs <- null;
@@ -278,7 +309,8 @@ traitDefs.push({
 	ID = "trait.iron_lungs",
 	Script = "scripts/skills/traits/iron_lungs_trait",
 	Const = "IronLungs",
-	Random = true
+	Random = true,
+	VisibleOnRecruitment = false
 });
 
 ::Legends.Trait.Craven <- null;
@@ -286,7 +318,8 @@ traitDefs.push({
 	ID = "trait.craven",
 	Script = "scripts/skills/traits/craven_trait",
 	Const = "Craven",
-	Random = true
+	Random = true,
+	VisibleOnRecruitment = false
 });
 
 ::Legends.Trait.Greedy <- null;
@@ -294,7 +327,8 @@ traitDefs.push({
 	ID = "trait.greedy",
 	Script = "scripts/skills/traits/greedy_trait",
 	Const = "Greedy",
-	Random = true
+	Random = true,
+	VisibleOnRecruitment = false
 });
 
 ::Legends.Trait.Gluttonous <- null;
@@ -302,7 +336,8 @@ traitDefs.push({
 	ID = "trait.gluttonous",
 	Script = "scripts/skills/traits/gluttonous_trait",
 	Const = "Gluttonous",
-	Random = true
+	Random = true,
+	VisibleOnRecruitment = false
 });
 
 ::Legends.Trait.Spartan <- null;
@@ -310,7 +345,8 @@ traitDefs.push({
 	ID = "trait.spartan",
 	Script = "scripts/skills/traits/spartan_trait",
 	Const = "Spartan",
-	Random = true
+	Random = true,
+	VisibleOnRecruitment = false
 });
 
 ::Legends.Trait.Athletic <- null;
@@ -318,7 +354,8 @@ traitDefs.push({
 	ID = "trait.athletic",
 	Script = "scripts/skills/traits/athletic_trait",
 	Const = "Athletic",
-	Random = true
+	Random = true,
+	VisibleOnRecruitment = true
 });
 
 ::Legends.Trait.Brute <- null;
@@ -326,7 +363,8 @@ traitDefs.push({
 	ID = "trait.brute",
 	Script = "scripts/skills/traits/brute_trait",
 	Const = "Brute",
-	Random = true
+	Random = true,
+	VisibleOnRecruitment = false
 });
 
 ::Legends.Trait.Irrational <- null;
@@ -334,7 +372,8 @@ traitDefs.push({
 	ID = "trait.irrational",
 	Script = "scripts/skills/traits/irrational_trait",
 	Const = "Irrational",
-	Random = true
+	Random = true,
+	VisibleOnRecruitment = false
 });
 
 ::Legends.Trait.Clubfooted <- null;
@@ -342,7 +381,8 @@ traitDefs.push({
 	ID = "trait.clubfooted",
 	Script = "scripts/skills/traits/clubfooted_trait",
 	Const = "Clubfooted",
-	Random = true
+	Random = true,
+	VisibleOnRecruitment = false
 });
 
 ::Legends.Trait.Loyal <- null;
@@ -350,7 +390,8 @@ traitDefs.push({
 	ID = "trait.loyal",
 	Script = "scripts/skills/traits/loyal_trait",
 	Const = "Loyal",
-	Random = true
+	Random = true,
+	VisibleOnRecruitment = false
 });
 
 ::Legends.Trait.Disloyal <- null;
@@ -358,7 +399,8 @@ traitDefs.push({
 	ID = "trait.disloyal",
 	Script = "scripts/skills/traits/disloyal_trait",
 	Const = "Disloyal",
-	Random = true
+	Random = true,
+	VisibleOnRecruitment = false
 });
 
 ::Legends.Trait.Bloodthirsty <- null;
@@ -366,7 +408,8 @@ traitDefs.push({
 	ID = "trait.bloodthirsty",
 	Script = "scripts/skills/traits/bloodthirsty_trait",
 	Const = "Bloodthirsty",
-	Random = true
+	Random = true,
+	VisibleOnRecruitment = false
 });
 
 ::Legends.Trait.IronJaw <- null;
@@ -374,7 +417,8 @@ traitDefs.push({
 	ID = "trait.iron_jaw",
 	Script = "scripts/skills/traits/iron_jaw_trait",
 	Const = "IronJaw",
-	Random = true
+	Random = true,
+	VisibleOnRecruitment = false
 });
 
 ::Legends.Trait.Survivor <- null;
@@ -382,7 +426,8 @@ traitDefs.push({
 	ID = "trait.survivor",
 	Script = "scripts/skills/traits/survivor_trait",
 	Const = "Survivor",
-	Random = true
+	Random = true,
+	VisibleOnRecruitment = false
 });
 
 ::Legends.Trait.Impatient <- null;
@@ -390,7 +435,8 @@ traitDefs.push({
 	ID = "trait.impatient",
 	Script = "scripts/skills/traits/impatient_trait",
 	Const = "Impatient",
-	Random = true
+	Random = true,
+	VisibleOnRecruitment = true
 });
 
 ::Legends.Trait.Swift <- null;
@@ -398,7 +444,8 @@ traitDefs.push({
 	ID = "trait.swift",
 	Script = "scripts/skills/traits/swift_trait",
 	Const = "Swift",
-	Random = true
+	Random = true,
+	VisibleOnRecruitment = false
 });
 
 ::Legends.Trait.NightBlind <- null;
@@ -406,7 +453,8 @@ traitDefs.push({
 	ID = "trait.night_blind",
 	Script = "scripts/skills/traits/night_blind_trait",
 	Const = "NightBlind",
-	Random = true
+	Random = true,
+	VisibleOnRecruitment = false
 });
 
 ::Legends.Trait.NightOwl <- null;
@@ -414,7 +462,8 @@ traitDefs.push({
 	ID = "trait.night_owl",
 	Script = "scripts/skills/traits/night_owl_trait",
 	Const = "NightOwl",
-	Random = true
+	Random = true,
+	VisibleOnRecruitment = false
 });
 
 ::Legends.Trait.Paranoid <- null;
@@ -422,7 +471,8 @@ traitDefs.push({
 	ID = "trait.paranoid",
 	Script = "scripts/skills/traits/paranoid_trait",
 	Const = "Paranoid",
-	Random = true
+	Random = true,
+	VisibleOnRecruitment = false
 });
 
 ::Legends.Trait.HateGreenskins <- null;
@@ -430,7 +480,8 @@ traitDefs.push({
 	ID = "trait.hate_greenskins",
 	Script = "scripts/skills/traits/hate_greenskins_trait",
 	Const = "HateGreenskins",
-	Random = true
+	Random = true,
+	VisibleOnRecruitment = false
 });
 
 ::Legends.Trait.HateUndead <- null;
@@ -438,7 +489,8 @@ traitDefs.push({
 	ID = "trait.hate_undead",
 	Script = "scripts/skills/traits/hate_undead_trait",
 	Const = "HateUndead",
-	Random = true
+	Random = true,
+	VisibleOnRecruitment = false
 });
 
 ::Legends.Trait.HateBeasts <- null;
@@ -446,7 +498,8 @@ traitDefs.push({
 	ID = "trait.hate_beasts",
 	Script = "scripts/skills/traits/hate_beasts_trait",
 	Const = "HateBeasts",
-	Random = true
+	Random = true,
+	VisibleOnRecruitment = false
 });
 
 ::Legends.Trait.FearBeasts <- null;
@@ -454,7 +507,8 @@ traitDefs.push({
 	ID = "trait.fear_beasts",
 	Script = "scripts/skills/traits/fear_beasts_trait",
 	Const = "FearBeasts",
-	Random = true
+	Random = true,
+	VisibleOnRecruitment = false
 });
 
 ::Legends.Trait.FearUndead <- null;
@@ -462,7 +516,8 @@ traitDefs.push({
 	ID = "trait.fear_undead",
 	Script = "scripts/skills/traits/fear_undead_trait",
 	Const = "FearUndead",
-	Random = true
+	Random = true,
+	VisibleOnRecruitment = false
 });
 
 ::Legends.Trait.FearGreenskins <- null;
@@ -470,7 +525,8 @@ traitDefs.push({
 	ID = "trait.fear_greenskins",
 	Script = "scripts/skills/traits/fear_greenskins_trait",
 	Const = "FearGreenskins",
-	Random = true
+	Random = true,
+	VisibleOnRecruitment = false
 });
 
 ::Legends.Trait.Teamplayer <- null;
@@ -478,7 +534,8 @@ traitDefs.push({
 	ID = "trait.teamplayer",
 	Script = "scripts/skills/traits/teamplayer_trait",
 	Const = "Teamplayer",
-	Random = true
+	Random = true,
+	VisibleOnRecruitment = false
 });
 
 ::Legends.Trait.Weasel <- null;
@@ -486,7 +543,8 @@ traitDefs.push({
 	ID = "trait.weasel",
 	Script = "scripts/skills/traits/weasel_trait",
 	Const = "Weasel",
-	Random = true
+	Random = true,
+	VisibleOnRecruitment = false
 });
 
 ::Legends.Trait.Huge <- null;
@@ -494,7 +552,8 @@ traitDefs.push({
 	ID = "trait.huge",
 	Script = "scripts/skills/traits/huge_trait",
 	Const = "Huge",
-	Random = true
+	Random = true,
+	VisibleOnRecruitment = true
 });
 
 ::Legends.Trait.Lucky <- null;
@@ -502,7 +561,8 @@ traitDefs.push({
 	ID = "trait.lucky",
 	Script = "scripts/skills/traits/lucky_trait",
 	Const = "Lucky",
-	Random = true
+	Random = true,
+	VisibleOnRecruitment = false
 });
 
 ::Legends.Trait.PitFighter <- null;
@@ -699,7 +759,8 @@ traitDefs.push({
 	ID = "trait.legend_hate_nobles",
 	Script = "scripts/skills/traits/legend_hate_nobles_trait",
 	Const = "LegendHateNobles",
-	Random = true
+	Random = true,
+	VisibleOnRecruitment = false
 });
 
 ::Legends.Trait.LegendFearNobles <- null;
@@ -707,7 +768,8 @@ traitDefs.push({
 	ID = "trait.legend_fear_nobles",
 	Script = "scripts/skills/traits/legend_fear_nobles_trait",
 	Const = "LegendFearNobles",
-	Random = true
+	Random = true,
+	VisibleOnRecruitment = false
 });
 
 ::Legends.Trait.LegendSteadyHands <- null;
@@ -715,7 +777,8 @@ traitDefs.push({
 	ID = "trait.legend_steady_hands",
 	Script = "scripts/skills/traits/legend_steady_hands_trait",
 	Const = "LegendSteadyHands",
-	Random = true
+	Random = true,
+	VisibleOnRecruitment = false
 });
 
 ::Legends.Trait.LegendSlack <- null;
@@ -723,7 +786,8 @@ traitDefs.push({
 	ID = "trait.legend_slack",
 	Script = "scripts/skills/traits/legend_slack_trait",
 	Const = "LegendSlack",
-	Random = true
+	Random = true,
+	VisibleOnRecruitment = false
 });
 
 ::Legends.Trait.LegendTalented <- null;
@@ -731,7 +795,8 @@ traitDefs.push({
 	ID = "trait.legend_natural",
 	Script = "scripts/skills/traits/legend_talented_trait",
 	Const = "LegendTalented",
-	Random = true
+	Random = true,
+	VisibleOnRecruitment = false
 });
 
 ::Legends.Trait.LegendUnpredictable <- null;
@@ -739,7 +804,8 @@ traitDefs.push({
 	ID = "trait.legend_unpredictable",
 	Script = "scripts/skills/traits/legend_unpredictable_trait",
 	Const = "LegendUnpredictable",
-	Random = true
+	Random = true,
+	VisibleOnRecruitment = false
 });
 
 ::Legends.Trait.LegendPredictable <- null;
@@ -747,7 +813,8 @@ traitDefs.push({
 	ID = "trait.legend_predictable",
 	Script = "scripts/skills/traits/legend_predictable_trait",
 	Const = "LegendPredictable",
-	Random = true
+	Random = true,
+	VisibleOnRecruitment = false
 });
 
 ::Legends.Trait.LegendPragmatic <- null;
@@ -755,7 +822,8 @@ traitDefs.push({
 	ID = "trait.legend_pragmatic",
 	Script = "scripts/skills/traits/legend_pragmatic_trait",
 	Const = "LegendPragmatic",
-	Random = true
+	Random = true,
+	VisibleOnRecruitment = false
 });
 
 ::Legends.Trait.LegendLight <- null;
@@ -763,7 +831,8 @@ traitDefs.push({
 	ID = "trait.legend_light",
 	Script = "scripts/skills/traits/legend_light_trait",
 	Const = "LegendLight",
-	Random = true
+	Random = true,
+	VisibleOnRecruitment = true
 });
 
 ::Legends.Trait.LegendHeavy <- null;
@@ -771,7 +840,8 @@ traitDefs.push({
 	ID = "trait.legend_heavy",
 	Script = "scripts/skills/traits/legend_heavy_trait",
 	Const = "LegendHeavy",
-	Random = true
+	Random = true,
+	VisibleOnRecruitment = true
 });
 
 ::Legends.Trait.LegendMartial <- null;
@@ -779,7 +849,8 @@ traitDefs.push({
 	ID = "trait.legend_martial",
 	Script = "scripts/skills/traits/legend_martial_trait",
 	Const = "LegendMartial",
-	Random = true
+	Random = true,
+	VisibleOnRecruitment = false
 });
 
 ::Legends.Trait.LegendAmbitious <- null;
@@ -787,7 +858,8 @@ traitDefs.push({
 	ID = "trait.legend_ambitious",
 	Script = "scripts/skills/traits/legend_ambitious_trait",
 	Const = "LegendAmbitious",
-	Random = true
+	Random = true,
+	VisibleOnRecruitment = false
 });
 
 ::Legends.Trait.LegendAggressive <- null;
@@ -795,7 +867,8 @@ traitDefs.push({
 	ID = "trait.legend_aggressive",
 	Script = "scripts/skills/traits/legend_aggressive_trait",
 	Const = "LegendAggressive",
-	Random = true
+	Random = true,
+	VisibleOnRecruitment = false
 });
 
 ::Legends.Trait.LegendGiftOfPeople <- null;
@@ -803,7 +876,8 @@ traitDefs.push({
 	ID = "trait.legend_gift_of_people",
 	Script = "scripts/skills/traits/legend_gift_of_people_trait",
 	Const = "LegendGiftOfPeople",
-	Random = true
+	Random = true,
+	VisibleOnRecruitment = false
 });
 
 ::Legends.Trait.LegendDoubleTongued <- null;
@@ -811,7 +885,8 @@ traitDefs.push({
 	ID = "trait.legend_double_tongued",
 	Script = "scripts/skills/traits/legend_double_tongued_trait",
 	Const = "LegendDoubleTongued",
-	Random = true
+	Random = true,
+	VisibleOnRecruitment = false
 });
 
 ::Legends.Trait.LegendSeductive <- null;
@@ -819,7 +894,8 @@ traitDefs.push({
 	ID = "trait.legend_seductive",
 	Script = "scripts/skills/traits/legend_seductive_trait",
 	Const = "LegendSeductive",
-	Random = true
+	Random = true,
+	VisibleOnRecruitment = false
 });
 
 ::Legends.Trait.LegendFearDark <- null;
@@ -827,7 +903,8 @@ traitDefs.push({
 	ID = "trait.legend_fear_dark",
 	Script = "scripts/skills/traits/legend_fear_dark_trait",
 	Const = "LegendFearDark",
-	Random = true
+	Random = true,
+	VisibleOnRecruitment = false
 });
 
 ::Legends.Trait.LegendSureshot <- null;
@@ -835,7 +912,8 @@ traitDefs.push({
 	ID = "trait.legend_sureshot",
 	Script = "scripts/skills/traits/legend_sureshot_trait",
 	Const = "LegendSureshot",
-	Random = true
+	Random = true,
+	VisibleOnRecruitment = false
 });
 
 ::Legends.Trait.LegendProstheticEar <- null;
@@ -912,7 +990,8 @@ traitDefs.push({
 traitDefs.push({
 	ID = "trait.legend_rotten_flesh",
 	Script = "scripts/skills/traits/legend_rotten_flesh_trait",
-	Const = "LegendRottenFlesh"
+	Const = "LegendRottenFlesh",
+	VisibleOnRecruitment = true
 });
 
 ::Legends.Trait.LegendIntensiveTraining <- null;
@@ -947,7 +1026,8 @@ traitDefs.push({
 traitDefs.push({
 	ID = "trait.legend_nomad",
 	Script = "scripts/skills/traits/legend_nomad_trait",
-	Const = "LegendNomad"
+	Const = "LegendNomad",
+	VisibleOnRecruitment = false
 });
 
 ::Legends.Trait.LegendUndeadKiller <- null;

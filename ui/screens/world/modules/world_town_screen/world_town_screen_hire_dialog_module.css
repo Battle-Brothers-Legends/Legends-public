@@ -463,8 +463,9 @@
 
 .world-town-screen > .l-hire-dialog-container .content .details-container .column.is-character-background-container .row.is-top .traits-container
 {
-	left: 1.0rem;
+	left: 25.0rem;
 	right: 0.0rem;
+	top: 0.8rem;
 	bottom: -3.2rem;
 	height: 2.6rem;
 	position: absolute;
@@ -487,13 +488,61 @@
 	padding-left: 1.0rem;
 }
 
+.world-town-screen > .l-hire-dialog-container .content .details-container .column.is-character-background-container .stats-container
+{
+	top: 5.5rem;
+	left: 1.0rem;
+	right: 1.0rem;
+	height: 12.0rem;
+	position: absolute;
+}
+
+.world-town-screen > .l-hire-dialog-container .content .details-container .stats-container .stats-column
+{
+	width: 50%;
+	height: 100%;
+	position: relative;
+	float: left;
+}
+
+.world-town-screen > .l-hire-dialog-container .content .details-container .stats-container .stat-row
+{
+	height: 3.0rem;
+	line-height: 3.0rem;
+	position: relative;
+	white-space: nowrap;
+}
+
+.world-town-screen > .l-hire-dialog-container .content .details-container .stats-container .stat-row > img
+{
+	width: 2.6rem;
+	height: 2.6rem;
+	vertical-align: middle;
+	display: inline-block;
+}
+
+.world-town-screen > .l-hire-dialog-container .content .details-container .stats-container .stat-row .stat-value
+{
+	width: 6.5rem;
+	text-align: right;
+	display: inline-block;
+	vertical-align: middle;
+	margin-right: 0.8rem;
+}
+
+.world-town-screen > .l-hire-dialog-container .content .details-container .stats-container .stat-row .stat-stars
+{
+	width: 3.6rem;
+	height: 1.8rem;
+	vertical-align: middle;
+	display: inline-block;
+}
+
 .world-town-screen > .l-hire-dialog-container .content .details-container .column.is-character-background-container .row.is-bottom
 {
-	/*top: 5.5rem;*/
-	top: 8.0rem;
+	top: 19.0rem;
 	left: 1.0rem;
-	height: 32.0rem;
-
+	height: 18.0rem;
 	text-align: left;
 	line-height: 2.6rem;
 }

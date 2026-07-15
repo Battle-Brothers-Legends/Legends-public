@@ -1261,6 +1261,8 @@
 		if (_attrs != null)
 			a = sum(a, _attrs);
 
+		this.getContainer().getActor().m.Hiring.AttributeLimits <- clone a;
+
 		local b = this.getContainer().getActor().getBaseProperties();
 		b.ActionPoints = 9;
 		foreach(k, v in a) { // set avg of 2 rolls to `b`

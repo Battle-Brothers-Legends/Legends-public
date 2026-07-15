@@ -216,6 +216,7 @@
 		result.Talents <- _entity.getHiringTalents();
 		result.perkTree <- _entity.getBackground().getPerkTree();
 		result.professionTree <- _entity.getBackground().getProfessionTree();
+		result.Attributes <- _entity.getHiringAttributes();
 		return result;
 	}
 

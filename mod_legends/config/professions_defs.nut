@@ -252,7 +252,9 @@ professionDefObjects.push({
     Tooltip = ::Const.Strings.ProfessionDescription.LegendEyeForTalent,
     Icon = "ui/professions/eye_for_talent.png",
     IconDisabled = "ui/professions/eye_for_talent_bw.png",
-    Const = "LegendEyeForTalent"
+    Const = "LegendEyeForTalent",
+    ScalingArray = [0, 4], // stars visible
+    ScalingFactor = 0.25
 });
 
 ::Legends.Profession.LegendFerretItOut <- null;
@@ -549,7 +551,9 @@ professionDefObjects.push({
     Tooltip = ::Const.Strings.ProfessionDescription.LegendSizeThemUp,
     Icon = "ui/professions/size_them_up.png",
     IconDisabled = "ui/professions/size_them_up_bw.png",
-    Const = "LegendSizeThemUp"
+    Const = "LegendSizeThemUp",
+    ScalingArray = [0, 0.5], // attribute range clamping
+    ScalingFactor = 0.05
 });
 
 ::Legends.Profession.LegendSkillfulStacking <- null;
@@ -582,7 +586,9 @@ professionDefObjects.push({
     Tooltip = ::Const.Strings.ProfessionDescription.LegendSpotTheTells,
     Icon = "ui/professions/spot_the_tells.png",
     IconDisabled = "ui/professions/spot_the_tells_bw.png",
-    Const = "LegendSpotTheTells"
+    Const = "LegendSpotTheTells",
+    ScalingArray = [0, 0.5, 0.65], // chance to recognize traits
+    ScalingFactor = 0.05
 });
 
 ::Legends.Profession.LegendTailoring <- null;
