@@ -23,7 +23,7 @@ this.legend_battle_sister_background <- this.inherit("scripts/skills/backgrounds
 			::Legends.Traits.getID(::Legends.Trait.Fainthearted),
 			::Legends.Traits.getID(::Legends.Trait.LegendHateNobles),
 			::Legends.Traits.getID(::Legends.Trait.Dastard),
-			::Legends.Traits.getID(::Legends.Trait.Hesistant),
+			::Legends.Traits.getID(::Legends.Trait.Hesitant),
 			::Legends.Traits.getID(::Legends.Trait.LegendLight),
 			::Legends.Traits.getID(::Legends.Trait.Craven)
 		];

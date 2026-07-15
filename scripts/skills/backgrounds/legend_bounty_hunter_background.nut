@@ -17,7 +17,7 @@ this.legend_bounty_hunter_background <- this.inherit("scripts/skills/backgrounds
 			::Legends.Traits.getID(::Legends.Trait.Irrational),
 			::Legends.Traits.getID(::Legends.Trait.LegendFearDark),
 			::Legends.Traits.getID(::Legends.Trait.NightBlind),
-			::Legends.Traits.getID(::Legends.Trait.Hesistant),
+			::Legends.Traits.getID(::Legends.Trait.Hesitant),
 			::Legends.Traits.getID(::Legends.Trait.Loyal),
 			::Legends.Traits.getID(::Legends.Trait.Tiny),
 			::Legends.Traits.getID(::Legends.Trait.Fragile),

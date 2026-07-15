@@ -12,7 +12,7 @@ this.legend_unpredictable_trait <- this.inherit("scripts/skills/traits/character
 		];
 		this.m.Excluded = [
 			::Legends.Traits.getID(::Legends.Trait.Pessimist),
-			::Legends.Traits.getID(::Legends.Trait.Hesistant),
+			::Legends.Traits.getID(::Legends.Trait.Hesitant),
 			::Legends.Traits.getID(::Legends.Trait.Dumb),
 			::Legends.Traits.getID(::Legends.Trait.LegendPredictable)
 		];

@@ -19,7 +19,7 @@ this.legend_light_trait <- this.inherit("scripts/skills/traits/character_trait",
 			::Legends.Traits.getID(::Legends.Trait.Tough),
 			::Legends.Traits.getID(::Legends.Trait.Brute),
 			::Legends.Traits.getID(::Legends.Trait.IronJaw),
-			::Legends.Traits.getID(::Legends.Trait.Hesistant),
+			::Legends.Traits.getID(::Legends.Trait.Hesitant),
 			::Legends.Traits.getID(::Legends.Trait.Gluttonous),
 			::Legends.Traits.getID(::Legends.Trait.LegendHeavy)
 		];

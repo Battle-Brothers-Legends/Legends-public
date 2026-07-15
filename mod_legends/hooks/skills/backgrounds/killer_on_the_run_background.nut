@@ -20,7 +20,7 @@
 			::Legends.Traits.getID(::Legends.Trait.Cocky),
 			::Legends.Traits.getID(::Legends.Trait.Clumsy),
 			::Legends.Traits.getID(::Legends.Trait.Loyal),
-			::Legends.Traits.getID(::Legends.Trait.Hesistant),
+			::Legends.Traits.getID(::Legends.Trait.Hesitant),
 			::Legends.Traits.getID(::Legends.Trait.Bright),
 			::Legends.Traits.getID(::Legends.Trait.Brave),
 			::Legends.Traits.getID(::Legends.Trait.Determined),

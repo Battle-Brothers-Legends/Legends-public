@@ -28,7 +28,7 @@
 			::Legends.Traits.getID(::Legends.Trait.ShortSighted),
 			::Legends.Traits.getID(::Legends.Trait.Spartan),
 			::Legends.Traits.getID(::Legends.Trait.Insecure),
-			::Legends.Traits.getID(::Legends.Trait.Hesistant),
+			::Legends.Traits.getID(::Legends.Trait.Hesitant),
 			::Legends.Traits.getID(::Legends.Trait.Strong),
 			::Legends.Traits.getID(::Legends.Trait.Tough),
 			::Legends.Traits.getID(::Legends.Trait.Bloodthirsty),

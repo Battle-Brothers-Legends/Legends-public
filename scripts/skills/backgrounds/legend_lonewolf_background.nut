@@ -20,7 +20,7 @@ this.legend_lonewolf_background <- this.inherit("scripts/skills/backgrounds/char
 			::Legends.Traits.getID(::Legends.Trait.LegendFearNobles),
 			::Legends.Traits.getID(::Legends.Trait.Ailing),
 			::Legends.Traits.getID(::Legends.Trait.Clubfooted),
-			::Legends.Traits.getID(::Legends.Trait.Hesistant),
+			::Legends.Traits.getID(::Legends.Trait.Hesitant),
 			::Legends.Traits.getID(::Legends.Trait.Loyal),
 			::Legends.Traits.getID(::Legends.Trait.Disloyal),
 			::Legends.Traits.getID(::Legends.Trait.Greedy),

@@ -73,12 +73,12 @@ traitDefs.push({
 	Random = true
 });
 
-::Legends.Trait.Hesistant <- null;
+::Legends.Trait.Hesitant <- null;
 traitDefs.push({
 	ID = "trait.hesitant",
 	Script = "scripts/skills/traits/hesitant_trait",
-	Const = "Hesistant",
-	Random = true
+	Const = "Hesitant",
+	Random = true,
 });
 
 ::Legends.Trait.Quick <- null;

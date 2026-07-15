@@ -30,7 +30,7 @@
 		local clown_candidates = [];
 
 		foreach( bro in brothers ) {
-			if (bro.getSkills().hasTrait(::Legends.Trait.Bright) || bro.getSkills().hasTrait(::Legends.Trait.Hesistant) || bro.getSkills().hasTrait(::Legends.Trait.Craven) || bro.getSkills().hasTrait(::Legends.Trait.Fainthearted) || bro.getSkills().hasTrait(::Legends.Trait.Insecure))
+			if (bro.getSkills().hasTrait(::Legends.Trait.Bright) || bro.getSkills().hasTrait(::Legends.Trait.Hesitant) || bro.getSkills().hasTrait(::Legends.Trait.Craven) || bro.getSkills().hasTrait(::Legends.Trait.Fainthearted) || bro.getSkills().hasTrait(::Legends.Trait.Insecure))
 				continue;
 
 			if (::Legends.Backgrounds.hasAny(bro,
@@ -48,7 +48,7 @@
 
 		foreach( bro in brothers )
 		{
-			if (bro.getSkills().hasTrait(::Legends.Trait.Bright) || bro.getSkills().hasTrait(::Legends.Trait.Hesistant) || bro.getSkills().hasTrait(::Legends.Trait.Craven) || bro.getSkills().hasTrait(::Legends.Trait.Fainthearted) || bro.getSkills().hasTrait(::Legends.Trait.Insecure))
+			if (bro.getSkills().hasTrait(::Legends.Trait.Bright) || bro.getSkills().hasTrait(::Legends.Trait.Hesitant) || bro.getSkills().hasTrait(::Legends.Trait.Craven) || bro.getSkills().hasTrait(::Legends.Trait.Fainthearted) || bro.getSkills().hasTrait(::Legends.Trait.Insecure))
 				continue;
 
 			if (::Legends.Backgrounds.hasAny(bro,

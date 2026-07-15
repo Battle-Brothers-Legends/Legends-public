@@ -36,7 +36,7 @@ this.legend_noble_ranged <- this.inherit("scripts/skills/backgrounds/character_b
 			::Legends.Traits.getID(::Legends.Trait.Craven),
 			::Legends.Traits.getID(::Legends.Trait.Dastard),
 			::Legends.Traits.getID(::Legends.Trait.Insecure),
-			::Legends.Traits.getID(::Legends.Trait.Hesistant),
+			::Legends.Traits.getID(::Legends.Trait.Hesitant),
 			::Legends.Traits.getID(::Legends.Trait.LegendDoubleTongued)
 		];
 		this.m.ExcludedTalents = [

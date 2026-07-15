@@ -35,7 +35,7 @@
 				::Legends.Background.LegendInventor,
 				::Legends.Background.LegendWitch,
 				::Legends.Background.LegendCommanderWitch
-			) && !bro.getSkills().hasTrait(::Legends.Trait.Hesistant) || bro.getSkills().hasPerk(::Legends.Perk.LegendScholar))
+			) && !bro.getSkills().hasTrait(::Legends.Trait.Hesitant) || bro.getSkills().hasPerk(::Legends.Perk.LegendScholar))
 				scholar_candidates.push(bro);
 		}
 

@@ -19,7 +19,7 @@ this.legend_alchemist_background <- this.inherit("scripts/skills/backgrounds/cha
 			::Legends.Traits.getID(::Legends.Trait.Athletic),
 			::Legends.Traits.getID(::Legends.Trait.Spartan),
 			::Legends.Traits.getID(::Legends.Trait.Strong),
-			::Legends.Traits.getID(::Legends.Trait.Hesistant),
+			::Legends.Traits.getID(::Legends.Trait.Hesitant),
 			::Legends.Traits.getID(::Legends.Trait.Dumb)
 		];
 		this.m.ExcludedTalents = [
