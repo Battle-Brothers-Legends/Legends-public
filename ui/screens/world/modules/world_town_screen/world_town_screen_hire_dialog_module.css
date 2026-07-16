@@ -249,13 +249,13 @@
 
 .world-town-screen > .l-hire-dialog-container .content .l-row .row.is-top .l-level-container > .level
 {
-	left: 3.0rem;
+	left: 1.8rem;
 	right: 0;
-	bottom: 0.2rem;
+	bottom: -2.0rem;
 	height: 2.6rem;
 	position: absolute;
 
-	line-height: 3.0rem;
+	line-height: 2.0rem;
 }
 
 .world-town-screen > .l-hire-dialog-container .content .l-row .row.is-bottom
