@@ -3,8 +3,7 @@ this.legends_minstrel_and_troubador_event <- this.inherit("scripts/events/event"
 		Minstrel = null,
 		Troubador = null
 	},
-	function create()
-	{
+	function create() {
 		this.m.ID = "event.legends.minstrel_and_troubador";
 		this.m.Title = "During camp...";
 		this.m.Cooldown = 35.0 * this.World.getTime().SecondsPerDay;
@@ -14,96 +13,65 @@ this.legends_minstrel_and_troubador_event <- this.inherit("scripts/events/event"
 			Image = "",
 			List = [],
 			Characters = [],
-			Options = [
-				{
-					Text = "Bravo!",
-					function getResult( _event )
-					{
-						return 0;
-					}
-
-				}
-			],
-			function start( _event )
-			{
+			Options = [{
+				Text = "Bravo!",
+				getResult = @(_event) 0
+			}],
+			function start(_event) {
 				this.Characters.push(_event.m.Minstrel.getImagePath());
 				this.Characters.push(_event.m.Troubador.getImagePath());
-				local brothers = this.World.getPlayerRoster().getAll();
 
-				foreach( bro in brothers )
-				{
+				local brothers = this.World.getPlayerRoster().getAll();
+				foreach (bro in brothers) {
 					if (bro.getID() == _event.m.Minstrel.getID())
-					{
 						continue;
-					}
 
 					if (bro.getID() == _event.m.Troubador.getID())
-					{
 						continue;
-					}
 
-					if (this.Math.rand(1, 100) <= 33)
-					{
+					if (::Math.rand(1, 100) <= 33)
 						this.List.push(::Legends.EventList.changeMood(bro, 1.0, "Felt entertained"));
-					}
 				}
 			}
-
 		});
 	}
 
-	function onUpdateScore()
-	{
+	function onUpdateScore() {
 		local brothers = this.World.getPlayerRoster().getAll();
 
 		if (brothers.len() < 3)
-		{
 			return;
-		}
 
 		local candidates_minstrel = [];
 		local candidates_troubador = [];
 
-		foreach( bro in brothers )
-		{
+		foreach (bro in brothers) {
 			if (bro.getSkills().hasTrait(::Legends.Trait.Player))
-			{
 				continue;
-			}
 
-			if (bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.Minstrel) && bro.getGender() != 1)
-			{
+			if (::Legends.Backgrounds.has(bro, ::Legends.Background.Minstrel) && bro.getGender() != 1) {
 				candidates_minstrel.push(bro);
 			}
 
-			if (bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.Minstrel) && bro.getGender() == 1)
-			{
+			if (::Legends.Backgrounds.has(bro, ::Legends.Background.Minstrel) && bro.getGender() == 1) {
 				candidates_troubador.push(bro);
 			}
-
 		}
 
 		if (candidates_minstrel.len() == 0)
-		{
 			return;
-		}
 
 		if (candidates_troubador.len() == 0)
-		{
 			return;
-		}
 
-		this.m.Minstrel = candidates_minstrel[this.Math.rand(0, candidates_minstrel.len() - 1)];
-		this.m.Troubador = candidates_troubador[this.Math.rand(0, candidates_troubador.len() - 1)];
-		this.m.Score = (candidates_minstrel.len() + candidates_troubador.len())  * 10 ;
+		this.m.Minstrel = candidates_minstrel[::Math.rand(0, candidates_minstrel.len() - 1)];
+		this.m.Troubador = candidates_troubador[::Math.rand(0, candidates_troubador.len() - 1)];
+		this.m.Score = (candidates_minstrel.len() + candidates_troubador.len()) * 10;
 	}
 
-	function onPrepare()
-	{
-	}
+	function onPrepare() {}
 
-	function onPrepareVariables( _vars )
-	{
+	function onPrepareVariables(_vars) {
 		_vars.push([
 			"minstrel",
 			this.m.Minstrel.getNameOnly()
@@ -114,8 +82,7 @@ this.legends_minstrel_and_troubador_event <- this.inherit("scripts/events/event"
 		]);
 	}
 
-	function onClear()
-	{
+	function onClear() {
 		this.m.Minstrel = null;
 		this.m.Troubador = null;
 	}

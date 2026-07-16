@@ -1,7 +1,6 @@
-this.legend_random_3_intro_event<- this.inherit("scripts/events/event", {
+this.legend_random_3_intro_event <- this.inherit("scripts/events/event", {
 	m = {},
-	function create()
-	{
+	function create() {
 		this.m.ID = "event.legend_random_3_scenario_intro";
 		this.m.IsSpecial = true;
 		this.m.Screens.push({
@@ -11,36 +10,23 @@ this.legend_random_3_intro_event<- this.inherit("scripts/events/event", {
 			Banner = "",
 			List = [],
 			Characters = [],
-			Options = [
-				{
-					Text = "Onwards!",
-					function getResult( _event )
-					{
-						return 0;
-					}
-
-				}
-			],
-			function start( _event )
-			{
+			Options = [{
+				Text = "Onwards!",
+				getResult = @(_event) 0
+			}],
+			function start(_event) {
 				this.Banner = "ui/banners/" + this.World.Assets.getBanner() + "s.png";
 			}
-
 		});
 	}
 
-	function onUpdateScore()
-	{
-		return;
-	}
+	function onUpdateScore() {}
 
-	function onPrepare()
-	{
+	function onPrepare() {
 		this.m.Title = "The " + this.World.Assets.getName();
 	}
 
-	function onPrepareVariables( _vars )
-	{
+	function onPrepareVariables(_vars) {
 		local brothers = this.World.getPlayerRoster().getAll();
 		_vars.push([
 			"bro1",
@@ -56,9 +42,7 @@ this.legend_random_3_intro_event<- this.inherit("scripts/events/event", {
 		]);
 	}
 
-	function onClear()
-	{
-	}
+	function onClear() {}
 
 });
 

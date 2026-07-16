@@ -2,18 +2,16 @@ this.legend_hate_nobles_event <- this.inherit("scripts/events/event", {
 	m = {
 		Image = "",
 		Casualty = null,
-		excludedTraits = [
-			"fear_nobles",
-			"hate_nobles",
-			"legend_hate_nobles",
-			"dastard",
-			"craven",
-			"fainthearted",
-			"weasel"
+		ExcludedTraits = [
+			::Legends.Trait.LegendFearNobles,
+			::Legends.Trait.LegendHateNobles,
+			::Legends.Trait.Dastard,
+			::Legends.Trait.Craven,
+			::Legends.Trait.Fainthearted,
+			::Legends.Trait.Weasel
 		]
 	},
-	function create()
-	{
+	function create() {
 		this.m.ID = "event.legend_hate_nobles";
 		this.m.Title = "After the battle...";
 		this.m.Cooldown = 25.0 * this.World.getTime().SecondsPerDay;
@@ -23,18 +21,11 @@ this.legend_hate_nobles_event <- this.inherit("scripts/events/event", {
 			Image = "",
 			List = [],
 			Characters = [],
-			Options = [
-				{
-					Text = "At least they are motivated.",
-					function getResult( _event )
-					{
-						return 0;
-					}
-
-				}
-			],
-			function start( _event )
-			{
+			Options = [{
+				Text = "At least they are motivated.",
+				getResult = @(_event) 0
+			}],
+			function start(_event) {
 				this.Characters.push(_event.m.Casualty.getImagePath());
 				::Legends.Traits.grant(_event.m.Casualty, ::Legends.Trait.LegendHateNobles, function(_trait) {
 					this.List.push({
@@ -44,77 +35,48 @@ this.legend_hate_nobles_event <- this.inherit("scripts/events/event", {
 					});
 				}.bindenv(this));
 			}
-
 		});
 	}
 
-	function onUpdateScore()
-	{
-		if (!this.Const.DLC.Unhold)
-		{
-			return;
-		}
-
+	function onUpdateScore() {
 		if (this.Time.getVirtualTimeF() - this.World.Events.getLastBattleTime() > 30.0) //from 5
-		{
 			return;
-		}
 
-		local fallen = [];
 		local fallen = this.World.Statistics.getFallen();
 
 		if (fallen.len() < 2)
-		{
 			return;
-		}
 
 		if (fallen[0].Time < this.World.getTime().Days || fallen[1].Time < this.World.getTime().Days)
-		{
 			return;
-		}
 
 		if (this.World.Statistics.getFlags().getAsInt("LastCombatFaction") != this.World.FactionManager.getFactionOfType(this.Const.FactionType.NobleHouse).getID())
-		{
 			return;
-		}
 
 		local brothers = this.World.getPlayerRoster().getAll();
-
 		if (brothers.len() < 2)
-		{
 			return;
-		}
 
-		local candidates = [];
-
-		foreach( bro in brothers )
-		{
-			if (bro.getLevel() < 3)
-				return;
-			foreach (trait in this.m.excludedTraits)
-			{
-				if (bro.getSkills().hasSkill("trait." + trait))
-					continue;
-			}
-			candidates.push(bro);
-		}
+		local candidates = brothers.filter(function (_, _bro) {
+			if (_bro.getLevel() < 3)
+				return false;
+			if (::Legends.S.any(this.m.ExcludedTraits, @(_trait) _bro.getSkills().hasTrait(_trait)))
+				return false;
+			return true;
+		}.bindenv(this));
 
 		if (candidates.len() == 0)
-		{
 			return;
-		}
 
-		this.m.Casualty = candidates[this.Math.rand(0, candidates.len() - 1)];
+		this.m.Casualty = candidates[::Math.rand(0, candidates.len() - 1)];
 		this.m.Score = 500;
 	}
 
-	function onPrepare()
-	{
+	function onPrepare() {
 		this.m.Image = "[img]gfx/ui/events/event_46.png[/img]";
 	}
 
-	function onPrepareVariables( _vars )
-	{
+	function onPrepareVariables(_vars) {
 		_vars.push([
 			"brother",
 			this.m.Casualty.getName()
@@ -125,11 +87,9 @@ this.legend_hate_nobles_event <- this.inherit("scripts/events/event", {
 		]);
 	}
 
-	function onClear()
-	{
+	function onClear() {
 		this.m.Casualty = null;
 		this.m.Image = "";
 	}
-
 });
 

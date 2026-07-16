@@ -3,8 +3,7 @@ this.legends_minstrel_and_juggler_event <- this.inherit("scripts/events/event", 
 		Minstrel = null,
 		Juggler = null
 	},
-	function create()
-	{
+	function create() {
 		this.m.ID = "event.legends.minstrel_and_juggler";
 		this.m.Title = "During camp...";
 		this.m.Cooldown = 50.0 * this.World.getTime().SecondsPerDay;
@@ -14,134 +13,68 @@ this.legends_minstrel_and_juggler_event <- this.inherit("scripts/events/event", 
 			Image = "",
 			List = [],
 			Characters = [],
-			Options = [
-				{
-					Text = "An epic for all the wrong reasons!",
-					function getResult( _event )
-					{
-						return 0;
-					}
-
-				}
-			],
-			function start( _event )
-			{
+			Options = [{
+				Text = "An epic for all the wrong reasons!",
+				getResult = @(_event) 0
+			}],
+			function start(_event) {
 				this.Characters.push(_event.m.Minstrel.getImagePath());
 				this.Characters.push(_event.m.Juggler.getImagePath());
-				local r = this.Math.rand(0, 20);
+
 				local rdef = _event.m.Minstrel.getCurrentProperties().getRangedDefense();
-				if (r > rdef)
-				{
-					local r;
-					r = this.Math.rand(1, 2);
-					if (r == 1)
-					{
+				if (::Math.rand(0, 20) > rdef) {
+					if (::Math.rand(1, 2) == 1) {
 						this.List.push(::Legends.EventList.changeRangedDefense(_event.m.Minstrel, 1));
-						_event.m.Minstrel.getSkills().update();
+					} else {
+						this.List.push(::Legends.EventList.addInjury(_event.m.Minstrel, ::Const.Injury.Archery));
 					}
-					else
-					{
-						local injury = _event.m.Minstrel.addInjury(this.Const.Injury.Archery);
-						this.List.push({
-							id = 10,
-							icon = injury.getIcon(),
-							text = _event.m.Minstrel.getName() + " suffers " + injury.getNameOnly()
-						});
-					}
-				}
-				else
-				{
-					local r;
-					r = this.Math.rand(1, 3);
-					if (r == 1)
-					{
+				} else {
+					if (::Math.rand(1, 3) == 1) {
 						this.List.push(::Legends.EventList.changeRangedSkill(_event.m.Juggler, 1));
-						_event.m.Juggler.getSkills().update();
 					}
-
-					local brothers = this.World.getPlayerRoster().getAll();
-					foreach( bro in brothers )
-					{
-						if (bro.getID() == _event.m.Minstrel.getID() || bro.getID() == _event.m.Juggler.getID())
-						{
+					local brothers = ::World.getPlayerRoster().getAll();
+					foreach (bro in brothers) {
+						if (bro.getID() == _event.m.Minstrel.getID())
 							continue;
-						}
-						local r;
-						r = this.Math.rand(1, 20);
-						if (r == 1)
-						{
+						if (bro.getID() == _event.m.Juggler.getID())
+							continue;
+
+						local r = ::Math.rand(1, 20);
+						if (r == 1) {
 							this.List.push(::Legends.EventList.changeRangedDefense(bro, 1));
-							bro.getSkills().update();
 						}
-						if (r == 2)
-						{
-							local injury = bro.addInjury(this.Const.Injury.Archery);
-							this.List.push({
-								id = 10,
-								icon = injury.getIcon(),
-								text = bro.getName() + " suffers " + injury.getNameOnly()
-							});
+						if (r == 2) {
+							this.List.push(::Legends.EventList.addInjury(bro, ::Const.Injury.Archery));
 						}
 					}
-
 				}
-
-
 			}
 
 		});
 	}
 
-	function onUpdateScore()
-	{
+	function onUpdateScore() {
 		local brothers = this.World.getPlayerRoster().getAll();
 
 		if (brothers.len() < 3)
-		{
 			return;
-		}
 
-		local candidates_minstrel = [];
-
-		foreach( bro in brothers )
-		{
-			if (bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.Minstrel) && bro.getGender() == 0)
-			{
-				candidates_minstrel.push(bro);
-			}
-		}
-
+		local candidates_minstrel = brothers.filter(@(_, bro) ::Legends.Backgrounds.has(bro, ::Legends.Background.Minstrel) && bro.getGender() == 0);
 		if (candidates_minstrel.len() == 0)
-		{
 			return;
-		}
 
-		local candidates_juggler= [];
-
-		foreach( bro in brothers )
-		{
-			if (bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.Juggler))
-			{
-				candidates_juggler.push(bro);
-			}
-		}
-
+		local candidates_juggler = brothers.filter(@(_, bro) ::Legends.Backgrounds.has(bro, ::Legends.Background.Juggler));
 		if (candidates_juggler.len() == 0)
-		{
 			return;
-		}
 
-		this.m.Minstrel = candidates_minstrel[this.Math.rand(0, candidates_minstrel.len() - 1)];
-		this.m.Juggler = candidates_juggler[this.Math.rand(0, candidates_juggler.len() - 1)];
+		this.m.Minstrel = candidates_minstrel[::Math.rand(0, candidates_minstrel.len() - 1)];
+		this.m.Juggler = candidates_juggler[::Math.rand(0, candidates_juggler.len() - 1)];
 		this.m.Score = (candidates_minstrel.len() + candidates_juggler.len()) * 5;
 	}
 
-	function onPrepare()
-	{
-	}
+	function onPrepare() {}
 
-	function onPrepareVariables( _vars )
-	{
+	function onPrepareVariables(_vars) {
 		_vars.push([
 			"minstrel",
 			this.m.Minstrel.getNameOnly()
@@ -152,8 +85,7 @@ this.legends_minstrel_and_juggler_event <- this.inherit("scripts/events/event", 
 		]);
 	}
 
-	function onClear()
-	{
+	function onClear() {
 		this.m.Minstrel = null;
 		this.m.Juggler = null;
 	}

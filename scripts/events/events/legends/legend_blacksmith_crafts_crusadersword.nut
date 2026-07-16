@@ -4,8 +4,7 @@ this.legend_blacksmith_crafts_crusadersword <- this.inherit("scripts/events/even
 		OtherGuy1 = null,
 		OtherGuy2 = null
 	},
-	function create()
-	{
+	function create() {
 		this.m.ID = "event.legend_blacksmith_crafts_crusadersword";
 		this.m.Title = "During camp...";
 		this.m.Cooldown = 999999.0 * this.World.getTime().SecondsPerDay;
@@ -15,29 +14,16 @@ this.legend_blacksmith_crafts_crusadersword <- this.inherit("scripts/events/even
 			Image = "",
 			List = [],
 			Characters = [],
-			Options = [
-				{
-					Text = "You can have 2000 crowns, I\'ll tell you what to do — just swing.",
-					function getResult( _event )
-					{
-						return "B";
-					}
-
-				},
-				{
-					Text = "We don\'t have time for this.",
-					function getResult( _event )
-					{
-						return "D";
-					}
-
-				}
-			],
-			function start( _event )
-			{
+			Options = [{
+				Text = "You can have 2000 crowns, I\'ll tell you what to do — just swing.",
+				getResult = @(_event) "B"
+			}, {
+				Text = "We don\'t have time for this.",
+				getResult = @(_event) "D"
+			}],
+			function start(_event) {
 				this.Characters.push(_event.m.Blacksmith.getImagePath());
 			}
-
 		});
 		this.m.Screens.push({
 			ID = "B",
@@ -45,52 +31,18 @@ this.legend_blacksmith_crafts_crusadersword <- this.inherit("scripts/events/even
 			Image = "",
 			List = [],
 			Characters = [],
-			Options = [
-				{
-					Text = "It will kill.",
-					function getResult( _event )
-					{
-						return 0;
-					}
-
-				}
-			],
-			function start( _event )
-			{
+			Options = [{
+				Text = "It will kill.",
+				getResult = @(_event) 0
+			}],
+			function start(_event) {
 				this.Characters.push(_event.m.Blacksmith.getImagePath());
-				this.World.Assets.addMoney(-2000);
-				this.List.push({
-					id = 10,
-					icon = "ui/icons/asset_money.png",
-					text = "You spend [color=" + this.Const.UI.Color.NegativeEventValue + "]2000[/color] Crowns"
-				});
-				local stash = this.World.Assets.getStash().getItems();
-				local numIngots = ::Math.rand(1, 2);
 
-				foreach( i, item in stash )
-				{
-					if (item != null && item.getID() == "misc.legend_iron_ingots")
-					{
-						stash[i] = null;
-						this.List.push({
-							id = 10,
-							icon = "ui/items/" + item.getIcon(),
-							text = "You lose " + item.getName()
-						});
-						numIngots -= 1;
-
-						if (numIngots == 0)
-							break;
-					}
-				}
-
-				local item = this.new("scripts/items/weapons/legend_crusader_sword");
-				this.World.Assets.getStash().add(item);
-				this.List.push({
-					id = 10,
-					icon = "ui/items/" + item.getIcon(),
-					text = "You gain " + item.getName()
-				});
+				this.List.push(::Legends.EventList.changeMoney(-2000));
+				this.List.extend(_event.removeIngots());
+				this.List.extend(::Legends.EventList.addItems([
+					::new("scripts/items/weapons/legend_crusader_sword")
+				], ::World.Assets.getStash()));
 				this.List.push(::Legends.EventList.changeMood(_event.m.Blacksmith, 2.5, "Created a legendary sword"));
 			}
 		});
@@ -165,120 +117,104 @@ this.legend_blacksmith_crafts_crusadersword <- this.inherit("scripts/events/even
 			Image = "",
 			List = [],
 			Characters = [],
-			Options = [
-				{
-					Text = "The past doesn\'t matter anymore.",
-					function getResult( _event )
-					{
-						return 0;
-					}
-
-				}
-			],
-			function start( _event )
-			{
+			Options = [{
+				Text = "The past doesn\'t matter anymore.",
+				getResult = @(_event) 0
+			}],
+			function start(_event) {
 				this.Characters.push(_event.m.Blacksmith.getImagePath());
 				this.List.push(::Legends.EventList.changeMood(_event.m.Blacksmith, -2.0, "Was denied a request"));
 			}
-
 		});
 	}
 
-	function onUpdateScore()
-	{
-		if (this.World.Assets.getOrigin().getID() != "scenario.legends_crusader")
-		{
-			return;
+	function removeIngots() {
+		local list = [];
+		local stash = ::World.Assets.getStash().getItems();
+		local numIngots = ::Math.rand(1, 2);
+		foreach (i, item in stash) {
+			if (item != null && item.getID() == "misc.legend_iron_ingots") {
+				stash[i] = null;
+				list.push({
+					id = 10,
+					icon = "ui/items/" + item.getIcon(),
+					text = "You lose " + item.getName()
+				});
+				numIngots--;
+			}
+
+			if (numIngots == 0)
+				break;
 		}
+		return list;
+	}
+
+	function onUpdateScore() {
+		if (this.World.Assets.getOrigin().getID() != "scenario.legends_crusader")
+			return;
 
 		if (this.World.Assets.getMoney() < 2500)
-		{
 			return;
-		}
 
 		local brothers = this.World.getPlayerRoster().getAll();
-
 		if (brothers.len() < 3)
-		{
 			return;
-		}
 
 		local candidates = [];
-
-		foreach( bro in brothers )
-		{
-			if (bro.getLevel() >= 9 && bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.LegendBlacksmith))
-			{
+		foreach (bro in brothers) {
+			if (bro.getLevel() >= 9 && ::Legends.Backgrounds.has(bro, ::Legends.Background.LegendBlacksmith)) {
 				candidates.push(bro);
 			}
 		}
 
 		if (candidates.len() == 0)
-		{
 			return;
-		}
 
 		local stash = this.World.Assets.getStash().getItems();
 		local numIngots = 0;
 
-		foreach( item in stash )
-		{
-			if (item != null && item.getID() == "misc.legend_iron_ingots")
-			{
-				numIngots = ++numIngots;
-				numIngots = numIngots;
-
+		foreach (item in stash) {
+			if (item != null && item.getID() == "misc.legend_iron_ingots") {
+				numIngots++;
 				if (numIngots >= 2)
-				{
 					break;
-				}
 			}
 		}
 
 		if (numIngots < 2)
-		{
 			return;
-		}
 
-		this.m.Blacksmith = candidates[this.Math.rand(0, candidates.len() - 1)];
+		this.m.Blacksmith = candidates[::Math.rand(0, candidates.len() - 1)];
 		this.m.Score = candidates.len() * 4;
 	}
 
-	function onPrepare()
-	{
+	function onPrepare() {
 		local brothers = this.World.getPlayerRoster().getAll();
 
-		foreach( bro in brothers )
-		{
-			if (bro.getID() != this.m.Blacksmith.getID())
-			{
+		foreach (bro in brothers) {
+			if (bro.getID() != this.m.Blacksmith.getID()) {
 				this.m.OtherGuy1 = bro;
 				break;
 			}
 		}
 
-		foreach( bro in brothers )
-		{
-			if (bro.getID() != this.m.Blacksmith.getID() && bro.getID() != this.m.OtherGuy1.getID())
-			{
+		foreach (bro in brothers) {
+			if (bro.getID() != this.m.Blacksmith.getID() && bro.getID() != this.m.OtherGuy1.getID()) {
 				this.m.OtherGuy2 = bro;
 				break;
 			}
 		}
 	}
 
-	function onPrepareVariables( _vars )
-	{
+	function onPrepareVariables(_vars) {
 		_vars.push([
 			"blacksmith",
 			this.m.Blacksmith.getNameOnly()
 		]);
 	}
 
-	function onClear()
-	{
+	function onClear() {
 		this.m.Blacksmith = null;
 	}
-
 });
 

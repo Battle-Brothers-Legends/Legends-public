@@ -16,18 +16,11 @@ this.legend_tournament_enter_event <- this.inherit("scripts/events/event", {
 			Image = "",
 			List = [],
 			Characters = [],
-			Options = [
-				{
+			Options = [				{
 					Text = "We must head to the arena.",
-					function getResult( _event )
-					{
-						return 0;
-					}
-
-				}
-			],
-			function start( _event )
-			{
+					getResult = @(_event) 0
+				}			],
+			function start( _event )			{
 				::Legends.Maps.markVisited(::Legends.Map.Tournament);
 				::Legends.Maps.cleanUp();
 			}
@@ -39,19 +32,11 @@ this.legend_tournament_enter_event <- this.inherit("scripts/events/event", {
 			Image = "",
 			List = [],
 			Characters = [],
-			Options = [
-				{
+			Options = [				{
 					Text = "We must return to the arena.",
-					function getResult( _event )
-					{
-						return 0;
-					}
-
-				}
-			],
-			function start( _event )
-			{
-			}
+					getResult = @(_event) 0
+			}			],
+			function start( _event )			{			}
 
 		});
 		this.m.Screens.push({
@@ -60,19 +45,11 @@ this.legend_tournament_enter_event <- this.inherit("scripts/events/event", {
 			Image = "",
 			List = [],
 			Characters = [],
-			Options = [
-				{
+			Options = [				{
 					Text = "The welcome we deserve.",
-					function getResult( _event )
-					{
-						return "D";
-					}
-
-				}
-			],
-			function start( _event )
-			{
-			}
+					getResult = @(_event) "D"
+				}			],
+			function start( _event )			{			}
 
 		});
 		this.m.Screens.push({
@@ -84,10 +61,7 @@ this.legend_tournament_enter_event <- this.inherit("scripts/events/event", {
 			Options = [
 				{
 					Text = "Tell me of the Grand Melee.",
-					function getResult( _event )
-					{
-						return "E";
-					}
+					getResult = @(_event) "E"
 
 				},
 				{
@@ -108,10 +82,7 @@ this.legend_tournament_enter_event <- this.inherit("scripts/events/event", {
 				},
 				{
 					Text = "Actually, I\'m not....",
-					function getResult( _event )
-					{
-						return 0;
-					}
+					getResult = @(_event) 0
 
 				}
 			],
@@ -145,10 +116,7 @@ this.legend_tournament_enter_event <- this.inherit("scripts/events/event", {
 				},
 				{
 					Text = "Sorry, I am looking for the way out.",
-					function getResult( _event )
-					{
-						return 0;
-					}
+					getResult = @(_event) 0
 
 				}
 			],
@@ -193,10 +161,7 @@ this.legend_tournament_enter_event <- this.inherit("scripts/events/event", {
 				},
 				{
 					Text = "Actually, I\'m not...",
-					function getResult( _event )
-					{
-						return 0;
-					}
+					getResult = @(_event) 0
 
 				}
 			],
@@ -278,10 +243,7 @@ this.legend_tournament_enter_event <- this.inherit("scripts/events/event", {
 			Options = [
 				{
 					Text = "Fare well",
-					function getResult( _event )
-					{
-						return 0;
-					}
+					getResult = @(_event) 0
 
 				}
 			],
@@ -309,10 +271,7 @@ this.legend_tournament_enter_event <- this.inherit("scripts/events/event", {
 			Options = [
 				{
 					Text = "Fare well",
-					function getResult( _event )
-					{
-						return 0;
-					}
+					getResult = @(_event) 0
 
 				}
 			],
@@ -340,10 +299,7 @@ this.legend_tournament_enter_event <- this.inherit("scripts/events/event", {
 			Options = [
 				{
 					Text = "Fare well",
-					function getResult( _event )
-					{
-						return 0;
-					}
+					getResult = @(_event) 0
 
 				}
 			],
@@ -399,10 +355,7 @@ this.legend_tournament_enter_event <- this.inherit("scripts/events/event", {
 				},
 				{
 					Text = "Actually, I\'m not...",
-					function getResult( _event )
-					{
-						return 0;
-					}
+					getResult = @(_event) 0
 
 				}
 			],
@@ -444,10 +397,7 @@ this.legend_tournament_enter_event <- this.inherit("scripts/events/event", {
 				},
 				{
 					Text = "I think we might need to leave and prepare.",
-					function getResult( _event )
-					{
-						return 0;
-					}
+					getResult = @(_event) 0
 
 				}
 			],
@@ -506,7 +456,7 @@ this.legend_tournament_enter_event <- this.inherit("scripts/events/event", {
 							this.Const.World.Spawn.BountyHunters,
 							this.Const.World.Spawn.GreenskinHorde
 						];
-						local p = _event.selectFight(_event.getReputationToDifficultyLightMult(), SpawnGroups[this.Math.rand(0, SpawnGroups.len() - 1)], true);
+						local p = _event.selectFight(_event.getReputationToDifficultyLightMult(), SpawnGroups[::Math.rand(0, SpawnGroups.len() - 1)], true);
 						_event.registerToShowAfterCombat("J3", "null");
 						this.World.State.startScriptedCombat(p, false, false, false);
 						return 0;
@@ -630,7 +580,7 @@ this.legend_tournament_enter_event <- this.inherit("scripts/events/event", {
 							this.Const.World.Spawn.BountyHunters,
 							this.Const.World.Spawn.GreenskinHorde
 						];
-						local p = _event.selectFight(_event.getReputationToDifficultyLightMult(), SpawnGroups[this.Math.rand(0, SpawnGroups.len() - 1)], true);
+						local p = _event.selectFight(_event.getReputationToDifficultyLightMult(), SpawnGroups[::Math.rand(0, SpawnGroups.len() - 1)], true);
 						_event.registerToShowAfterCombat("J3", "null");
 						this.World.State.startScriptedCombat(p, false, false, false);
 						return 0;
@@ -891,7 +841,7 @@ this.legend_tournament_enter_event <- this.inherit("scripts/events/event", {
 							this.Const.World.Spawn.Militia,
 							this.Const.World.Spawn.BountyHunters
 						];
-						local p = _event.selectFight(_event.getReputationToDifficultyLightMult(), SpawnGroups[this.Math.rand(0, SpawnGroups.len() - 1)], true);
+						local p = _event.selectFight(_event.getReputationToDifficultyLightMult(), SpawnGroups[::Math.rand(0, SpawnGroups.len() - 1)], true);
 						_event.registerToShowAfterCombat("J3", "null");
 						this.World.State.startScriptedCombat(p, false, false, false);
 						return 0;
@@ -966,7 +916,7 @@ this.legend_tournament_enter_event <- this.inherit("scripts/events/event", {
 							this.Const.World.Spawn.Barbarians,
 							this.Const.World.Spawn.NomadDefenders
 						];
-						local p = _event.selectFight(_event.getReputationToDifficultyLightMult(), SpawnGroups[this.Math.rand(0, SpawnGroups.len() - 1)], true);
+						local p = _event.selectFight(_event.getReputationToDifficultyLightMult(), SpawnGroups[::Math.rand(0, SpawnGroups.len() - 1)], true);
 						_event.registerToShowAfterCombat("J3", "null");
 						this.World.State.startScriptedCombat(p, false, false, false);
 						return 0;
@@ -1036,7 +986,7 @@ this.legend_tournament_enter_event <- this.inherit("scripts/events/event", {
 							this.Const.World.Spawn.Barbarians,
 							this.Const.World.Spawn.NomadDefenders
 						];
-						local p = _event.selectFight(_event.getReputationToDifficultyLightMult(), SpawnGroups[this.Math.rand(0, SpawnGroups.len() - 1)], true);
+						local p = _event.selectFight(_event.getReputationToDifficultyLightMult(), SpawnGroups[::Math.rand(0, SpawnGroups.len() - 1)], true);
 						_event.registerToShowAfterCombat("J3", "null");
 						this.World.State.startScriptedCombat(p, false, false, false);
 						return 0;
@@ -1082,7 +1032,7 @@ this.legend_tournament_enter_event <- this.inherit("scripts/events/event", {
 			this.Const.Music.BarbarianTracks,
 			this.Const.Music.BattleTracks
 		];
-		p.Music = tracks[this.Math.rand(0, tracks.len() - 1)];
+		p.Music = tracks[::Math.rand(0, tracks.len() - 1)];
 		p.PlayerDeploymentType = this.Const.Tactical.DeploymentType.Arena;
 		p.EnemyDeploymentType = this.Const.Tactical.DeploymentType.Arena;
 		p.IsUsingSetPlayers = false;
@@ -1094,7 +1044,7 @@ this.legend_tournament_enter_event <- this.inherit("scripts/events/event", {
 		p.IsAutoAssigningBases = false;
 		p.Players = [];
 		p.Entities = [];
-		this.Const.World.Common.addUnitsToCombat(p.Entities, type, this.Math.pow(scale, roundDifficulty), this.Const.Faction.Enemy);
+		this.Const.World.Common.addUnitsToCombat(p.Entities, type, ::Math.pow(scale, roundDifficulty), this.Const.Faction.Enemy);
 		p.AfterDeploymentCallback = function ()
 		{
 			this.Tactical.getWeather().setAmbientLightingPreset(1);
@@ -1129,7 +1079,7 @@ this.legend_tournament_enter_event <- this.inherit("scripts/events/event", {
 		//	return "A";
 		//}
 
-		//this.m.Veteran = candidate_veteran[this.Math.rand(0, candidate_veteran.len() - 1)];
+		//this.m.Veteran = candidate_veteran[::Math.rand(0, candidate_veteran.len() - 1)];
 
 		//if (candidate_veteran.len() < 3)
 		//{

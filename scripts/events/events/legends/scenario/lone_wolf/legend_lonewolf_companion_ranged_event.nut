@@ -2,8 +2,7 @@ this.legend_lonewolf_companion_ranged_event <- this.inherit("scripts/events/even
 	m = {
 		Dude = null
 	},
-	function create()
-	{
+	function create() {
 		this.m.ID = "event.legend_lonewolf_companion_ranged";
 		this.m.Title = "Like minds and simple hearts";
 		this.m.Cooldown = 20.0 * this.World.getTime().SecondsPerDay;
@@ -13,44 +12,20 @@ this.legend_lonewolf_companion_ranged_event <- this.inherit("scripts/events/even
 			Image = "",
 			List = [],
 			Characters = [],
-			Options = [
-				{
-					Text = "{How good is your aim? | How accurate are you?}",
-					function getResult( _event )
-					{
-						return "B";
-					}
-
-				},
-				{
-					Text = "{Can you dodge an arrow? | How well do you do under pressure?}",
-					function getResult( _event )
-					{
-						return "C";
-					}
-
-				},
-				{
-					Text = "{You don\'t seem very remarkable to me... | You don\'t stand out to me... | You seem rather ordinary...}",
-					function getResult( _event )
-					{
-						return "D";
-					}
-
-				},
-				{
-					Text = "Not interested.",
-					function getResult( _event )
-					{
-						return 0;
-					}
-
-				}
-			],
-			function start( _event )
-			{
-			}
-
+			Options = [{
+				Text = "{How good is your aim? | How accurate are you?}",
+				getResult = @(_event) "B"
+			}, {
+				Text = "{Can you dodge an arrow? | How well do you do under pressure?}",
+				getResult = @(_event) "C"
+			}, {
+				Text = "{You don\'t seem very remarkable to me... | You don\'t stand out to me... | You seem rather ordinary...}",
+				getResult = @(_event) "D"
+			}, {
+				Text = "Not interested.",
+				getResult = @(_event) 0
+			}],
+			function start(_event) {}
 		});
 		this.m.Screens.push({
 			ID = "B",
@@ -58,21 +33,16 @@ this.legend_lonewolf_companion_ranged_event <- this.inherit("scripts/events/even
 			Image = "",
 			List = [],
 			Characters = [],
-			Options = [
-				{
-					Text = "{A good shot, mostly. | A good shot but lacking awareness. | Now we\'ll all be safe when the bottles invade.}",
-					function getResult( _event )
-					{
-						this.World.getPlayerRoster().add(_event.m.Dude);
-						this.World.getTemporaryRoster().clear();
-						_event.m.Dude.onHired();
-						return 0;
-					}
-
+			Options = [{
+				Text = "{A good shot, mostly. | A good shot but lacking awareness. | Now we\'ll all be safe when the bottles invade.}",
+				function getResult(_event) {
+					this.World.getPlayerRoster().add(_event.m.Dude);
+					this.World.getTemporaryRoster().clear();
+					_event.m.Dude.onHired();
+					return 0;
 				}
-			],
-			function start( _event )
-			{
+			}],
+			function start(_event) {
 				this.Characters.push(_event.m.Dude.getImagePath());
 				_event.m.Dude.getSprite("miniboss").setBrush("bust_miniboss");
 				_event.m.Dude.getBaseProperties().Hitpoints += 0;
@@ -92,21 +62,16 @@ this.legend_lonewolf_companion_ranged_event <- this.inherit("scripts/events/even
 			Image = "",
 			List = [],
 			Characters = [],
-			Options = [
-				{
-					Text = "{Get in line. | It was the wind. | I\'d like to see how they fare against more than one arrow.}",
-					function getResult( _event )
-					{
-						this.World.getPlayerRoster().add(_event.m.Dude);
-						this.World.getTemporaryRoster().clear();
-						_event.m.Dude.onHired();
-						return 0;
-					}
-
+			Options = [{
+				Text = "{Get in line. | It was the wind. | I\'d like to see how they fare against more than one arrow.}",
+				function getResult(_event) {
+					this.World.getPlayerRoster().add(_event.m.Dude);
+					this.World.getTemporaryRoster().clear();
+					_event.m.Dude.onHired();
+					return 0;
 				}
-			],
-			function start( _event )
-			{
+			}],
+			function start(_event) {
 				this.Characters.push(_event.m.Dude.getImagePath());
 				_event.m.Dude.getSprite("miniboss").setBrush("bust_miniboss");
 				_event.m.Dude.getBaseProperties().Hitpoints += 5;
@@ -126,21 +91,16 @@ this.legend_lonewolf_companion_ranged_event <- this.inherit("scripts/events/even
 			Image = "",
 			List = [],
 			Characters = [],
-			Options = [
-				{
-					Text = "{Well, you hit it at least... | I hope they don\'t take as long to piss. | Deadly. You almost killed it from boredom.}",
-					function getResult( _event )
-					{
-						this.World.getPlayerRoster().add(_event.m.Dude);
-						this.World.getTemporaryRoster().clear();
-						_event.m.Dude.onHired();
-						return 0;
-					}
-
+			Options = [{
+				Text = "{Well, you hit it at least... | I hope they don\'t take as long to piss. | Deadly. You almost killed it from boredom.}",
+				function getResult(_event) {
+					this.World.getPlayerRoster().add(_event.m.Dude);
+					this.World.getTemporaryRoster().clear();
+					_event.m.Dude.onHired();
+					return 0;
 				}
-			],
-			function start( _event )
-			{
+			}],
+			function start(_event) {
 				this.Characters.push(_event.m.Dude.getImagePath());
 				_event.m.Dude.getSprite("miniboss").setBrush("bust_miniboss");
 				_event.m.Dude.getBaseProperties().Hitpoints += 0;
@@ -161,51 +121,39 @@ this.legend_lonewolf_companion_ranged_event <- this.inherit("scripts/events/even
 			Image = "",
 			List = [],
 			Characters = [],
-			Options = [
-				{
-					Text = "I\'m not recruiting everyone from here to the coast.",
-					function getResult( _event )
-					{
-						this.World.getTemporaryRoster().clear();
-						_event.m.Dude = null;
-						return 0;
-					}
-
+			Options = [{
+				Text = "I\'m not recruiting everyone from here to the coast.",
+				function getResult(_event) {
+					this.World.getTemporaryRoster().clear();
+					_event.m.Dude = null;
+					return 0;
 				}
-			]
+			}]
 		});
 	}
 
-	function onUpdateScore()
-	{
-		if (this.World.Assets.getOrigin().getID() != "scenario.lone_wolf")
-		{
+	function onUpdateScore() {
+		if (this.World.Assets.getOrigin().getID() != "scenario.lone_wolf") {
 			return;
 		}
 
-		if (!this.World.getTime().IsDaytime)
-		{
+		if (!this.World.getTime().IsDaytime) {
 			return;
 		}
 
 		local brothers = this.World.getPlayerRoster().getAll();
 
-		if (this.World.getPlayerRoster().getSize() >= this.World.Assets.getBrothersMax())
-		{
+		if (this.World.getPlayerRoster().getSize() >= this.World.Assets.getBrothersMax()) {
 			return;
 		}
 
 		this.m.Score = 15;
 	}
 
-	function onPrepare()
-	{
-	}
+	function onPrepare() {}
 
-	function onPrepareVariables( _vars )
-	{
-		if (this.m.Dude == null)
-		{
+	function onPrepareVariables(_vars) {
+		if (this.m.Dude == null) {
 			local roster = this.World.getTemporaryRoster();
 			this.m.Dude = roster.create("scripts/entity/tactical/player");
 			this.m.Dude.setStartValuesEx([::Legends.Background.LegendCompanionRanged]);
@@ -218,8 +166,7 @@ this.legend_lonewolf_companion_ranged_event <- this.inherit("scripts/events/even
 		]);
 	}
 
-	function onClear()
-	{
+	function onClear() {
 		this.m.Dude = null;
 	}
 

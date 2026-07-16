@@ -94,7 +94,7 @@ this.legend_muladi_trials2_event <- this.inherit("scripts/events/event", {
 	}
 
 	function onUpdateScore() {
-		local candidatesMuladi = ::World.getPlayerRoster().getAll().filter(@(_, _bro) _bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.LegendMuladi) && !_bro.getFlags().has("MuladiTrials2"));
+		local candidatesMuladi = ::World.getPlayerRoster().getAll().filter(@(_, _bro) ::Legends.Backgrounds.has(_bro, ::Legends.Background.LegendMuladi) && !_bro.getFlags().has("MuladiTrials2"));
 		if (!candidatesMuladi.len())
 			return;
 

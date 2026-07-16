@@ -18,13 +18,10 @@ this.legend_ars_moriendi_event <- this.inherit("scripts/events/event", {
 			Image = "",
 			List = [],
 			Characters = [],
-			Options = [
-				{
-					Text = "A man's true measure is displayed in his final moments.",
-					getResult = @(_event)"B"
-				}
-			],
-
+			Options = [{
+				Text = "A man's true measure is displayed in his final moments.",
+				getResult = @(_event) "B"
+			}],
 			function start(_event) {
 				this.Characters.push(_event.m.Scholar.getImagePath());
 				if (_event.m.Pessimist != null) {
@@ -69,12 +66,10 @@ this.legend_ars_moriendi_event <- this.inherit("scripts/events/event", {
 			Image = "",
 			List = [],
 			Characters = [],
-			Options = [
-				{
-					Text = "Rest now. Tomorrow we march.",
-					getResult = @(_event)0
-				}
-			],
+			Options = [{
+				Text = "Rest now. Tomorrow we march.",
+				getResult = @(_event) 0
+			}],
 
 			function start(_event) {
 				this.Characters.push(_event.m.Scholar.getImagePath());
@@ -85,25 +80,25 @@ this.legend_ars_moriendi_event <- this.inherit("scripts/events/event", {
 				foreach (bro in ::World.getPlayerRoster().getAll()) {
 					local skills = bro.getSkills();
 					if (skills.hasTrait(::Legends.Trait.Pessimist)
-						&& this.Math.rand(1, 100) <= 75)
+						&& ::Math.rand(1, 100) <= 75)
 					{
 						entry = ::Legends.EventList.changeMood(bro, -1.0, "Didn't like the sermon about death");
 						if (bro.getMoodState() < ::Const.MoodState.Neutral) {
 							this.List.push(entry);
 						}
 					} else if (skills.hasTrait(::Legends.Trait.Optimist)
-						&& this.Math.rand(1, 100) <= 75)
+						&& ::Math.rand(1, 100) <= 75)
 					{
 						entry = ::Legends.EventList.changeMood(bro, 1.0, "Felt reassured by captain's words");
 						if (bro.getMoodState() > ::Const.MoodState.Neutral) {
 							this.List.push(entry);
 						}
-					} else if (this.Math.rand(1, 100) <= 25) {
+					} else if (::Math.rand(1, 100) <= 25) {
 						entry = ::Legends.EventList.changeMood(bro, 0.25, "Felt reassured by captain's words");
 						if (bro.getMoodState() > ::Const.MoodState.Neutral) {
 							this.List.push(entry);
 						}
-					} else if (this.Math.rand(1, 100) <= 50) {
+					} else if (::Math.rand(1, 100) <= 50) {
 						entry = ::Legends.EventList.changeMood(bro, -0.5, "Didn't like the sermon about death");
 						if (bro.getMoodState() < ::Const.MoodState.Neutral) {
 							this.List.push(entry);
@@ -133,12 +128,12 @@ this.legend_ars_moriendi_event <- this.inherit("scripts/events/event", {
 				}
 				foreach (bro in ::World.getPlayerRoster().getAll()) {
 					local skills = bro.getSkills();
-					if (skills.hasTrait(::Legends.Trait.Optimist) && this.Math.rand(1, 100) <= 75) {
+					if (skills.hasTrait(::Legends.Trait.Optimist) && ::Math.rand(1, 100) <= 75) {
 						entry = ::Legends.EventList.changeMood(bro, 1.0, "Felt reassured by captain's words");
 						if (bro.getMoodState() > ::Const.MoodState.Neutral) {
 							this.List.push(entry);
 						}
-					} else if (this.Math.rand(1, 100) <= 25) {
+					} else if (::Math.rand(1, 100) <= 25) {
 						entry = ::Legends.EventList.changeMood(bro, 0.25, "Felt reassured by captain's words");
 						if (bro.getMoodState() > ::Const.MoodState.Neutral) {
 							this.List.push(entry);
@@ -153,19 +148,17 @@ this.legend_ars_moriendi_event <- this.inherit("scripts/events/event", {
 			Image = "",
 			List = [],
 			Characters = [],
-			Options = [
-				{
-					Text = "Always a joy to have %pessimist% around.",
-					getResult = @(_event)0
-				}
-			],
+			Options = [{
+				Text = "Always a joy to have %pessimist% around.",
+				getResult = @(_event) 0
+			}],
 
 			function start(_event) {
 				this.Characters.push(_event.m.Scholar.getImagePath());
 				this.Characters.push(_event.m.Pessimist.getImagePath());
 
 				foreach (bro in ::World.getPlayerRoster().getAll()) {
-					if (this.Math.rand(1, 100) <= 50) {
+					if (::Math.rand(1, 100) <= 50) {
 						local entry = ::Legends.EventList.changeMood(bro, -0.75, "Felt troubled by the pessimist's outlook on dying well");
 						if (bro.getMoodState() < ::Const.MoodState.Neutral) {
 							this.List.push(entry);
@@ -180,19 +173,17 @@ this.legend_ars_moriendi_event <- this.inherit("scripts/events/event", {
 			Image = "",
 			List = [],
 			Characters = [],
-			Options = [
-				{
-					Text = "That's the spirit.",
-					getResult = @(_event)0
-				}
-			],
+			Options = [{
+				Text = "That's the spirit.",
+				getResult = @(_event) 0
+			}],
 
 			function start(_event) {
 				this.Characters.push(_event.m.Scholar.getImagePath());
 				this.Characters.push(_event.m.Optimist.getImagePath());
 
 				foreach (bro in ::World.getPlayerRoster().getAll()) {
-					if (this.Math.rand(1, 100) <= 50) {
+					if (::Math.rand(1, 100) <= 50) {
 						local entry = ::Legends.EventList.changeMood(bro, 0.75, "Felt reinvigorated by the optimist's outlook on dying well");
 						if (bro.getMoodState() > ::Const.MoodState.Neutral) {
 							this.List.push(entry);
@@ -207,12 +198,10 @@ this.legend_ars_moriendi_event <- this.inherit("scripts/events/event", {
 			Image = "",
 			List = [],
 			Characters = [],
-			Options = [
-				{
-					Text = "Heh. That should put an end to this.",
-					getResult = @(_event)0
-				}
-			],
+			Options = [{
+				Text = "Heh. That should put an end to this.",
+				getResult = @(_event) 0
+			}],
 
 			function start(_event) {
 				this.Characters.push(_event.m.Scholar.getImagePath());
@@ -236,13 +225,10 @@ this.legend_ars_moriendi_event <- this.inherit("scripts/events/event", {
 			Image = "",
 			List = [],
 			Characters = [],
-			Options = [
-				{
-					Text = "Try to restrain yourself until the battle actually starts.",
-					getResult = @(_event)0
-				}
-			],
-
+			Options = [{
+				Text = "Try to restrain yourself until the battle actually starts.",
+				getResult = @(_event) 0
+			}],
 			function start(_event) {
 				this.Characters.push(_event.m.Scholar.getImagePath());
 				this.Characters.push(_event.m.DeathwishBro.getImagePath());
@@ -258,12 +244,10 @@ this.legend_ars_moriendi_event <- this.inherit("scripts/events/event", {
 			Image = "",
 			List = [],
 			Characters = [],
-			Options = [
-				{
-					Text = "Enough of this macabre.",
-					getResult = @(_event)0
-				}
-			],
+			Options = [{
+				Text = "Enough of this macabre.",
+				getResult = @(_event) 0
+			}],
 
 			function start(_event) {
 				this.Characters.push(_event.m.Scholar.getImagePath());
@@ -271,18 +255,17 @@ this.legend_ars_moriendi_event <- this.inherit("scripts/events/event", {
 
 				local brothers = this.World.getPlayerRoster().getAll();
 				foreach (bro in brothers) {
-					local bg = bro.getBackground();
-					if (this.Math.rand(1, 100) <= 25) {
-						if (bg.getID() == ::Legends.Backgrounds.getID(::Legends.Background.Cultist) || bg.getID() == ::Legends.Backgrounds.getID(::Legends.Background.ConvertedCultist))	{
-							local entry = ::Legends.EventList.changeMood(bro, 0.5, "Felt good about being in the flock");
-							if (bro.getMoodState() > ::Const.MoodState.Neutral) {
-								this.List.push(entry);
-							}
-						} else {
-							local entry = ::Legends.EventList.changeMood(bro, -0.5, "Felt uneasy about the talk of death");
-							if (bro.getMoodState() < ::Const.MoodState.Neutral) {
-								this.List.push(entry);
-							}
+					if (::Math.rand(1, 100) > 25)
+						continue;
+					if (::Legends.Backgrounds.hasAny(bro, ::Legends.Background.Cultist, ::Legends.Background.ConvertedCultist))	{
+						local entry = ::Legends.EventList.changeMood(bro, 0.5, "Felt good about being in the flock");
+						if (bro.getMoodState() > ::Const.MoodState.Neutral) {
+							this.List.push(entry);
+						}
+					} else {
+						local entry = ::Legends.EventList.changeMood(bro, -0.5, "Felt uneasy about the talk of death");
+						if (bro.getMoodState() < ::Const.MoodState.Neutral) {
+							this.List.push(entry);
 						}
 					}
 				}
@@ -295,17 +278,16 @@ this.legend_ars_moriendi_event <- this.inherit("scripts/events/event", {
 		local brothers = this.World.getPlayerRoster().getAll();
         local candidates_scholar = [];
 
-        foreach( bro in brothers ) {
-			local bg = bro.getBackground();
-            if (bg.getID() == ::Legends.Backgrounds.getID(::Legends.Background.Monk) || bg.getID() == ::Legends.Backgrounds.getID(::Legends.Background.Historian) || bro.getSkills().hasPerk(::Legends.Perk.LegendScholar)) {
-                candidates_scholar.push(bro);
-            }
-        }
+		foreach (bro in brothers) {
+			if (::Legends.Backgrounds.hasAny(bro, ::Legends.Background.Monk, ::Legends.Background.Historian) || bro.getSkills().hasPerk(::Legends.Perk.LegendScholar)) {
+				candidates_scholar.push(bro);
+			}
+		}
 
-        if (candidates_scholar.len() == 0) {
+        if (candidates_scholar.len() == 0)
             return;
-        }
-		this.m.Scholar = candidates_scholar[this.Math.rand(0, candidates_scholar.len() - 1)];
+
+		this.m.Scholar = candidates_scholar[::Math.rand(0, candidates_scholar.len() - 1)];
 
 		local candidates_cultist = [];
 		local candidates_deathwish = [];
@@ -329,7 +311,7 @@ this.legend_ars_moriendi_event <- this.inherit("scripts/events/event", {
 				candidates_doubletongued.push(bro);
 			} else if (skills.hasTrait(::Legends.Trait.Deathwish)) {
 				candidates_deathwish.push(bro);
-			} else if (bg.getID() == ::Legends.Backgrounds.getID(::Legends.Background.Cultist) || bg.getID() == ::Legends.Backgrounds.getID(::Legends.Background.ConvertedCultist)) {
+			} else if (::Legends.Backgrounds.hasAny(bro, ::Legends.Background.Cultist, ::Legends.Background.ConvertedCultist)) {
 				candidates_cultist.push(bro);
 			}
         }
@@ -337,23 +319,23 @@ this.legend_ars_moriendi_event <- this.inherit("scripts/events/event", {
 		this.m.Score = 10;
 
         if (candidates_cultist.len() > 0) {
-            this.m.Cultist = candidates_cultist[this.Math.rand(0, candidates_cultist.len() - 1)];
+            this.m.Cultist = candidates_cultist[::Math.rand(0, candidates_cultist.len() - 1)];
 			this.m.Score += 2;
         }
 		if (candidates_deathwish.len() > 0) {
-            this.m.DeathwishBro = candidates_deathwish[this.Math.rand(0, candidates_deathwish.len() - 1)];
+            this.m.DeathwishBro = candidates_deathwish[::Math.rand(0, candidates_deathwish.len() - 1)];
 			this.m.Score += 2;
         }
 		if (candidates_doubletongued.len() > 0) {
-            this.m.DoubleTonguedBro = candidates_doubletongued[this.Math.rand(0, candidates_doubletongued.len() - 1)];
+            this.m.DoubleTonguedBro = candidates_doubletongued[::Math.rand(0, candidates_doubletongued.len() - 1)];
 			this.m.Score += 2;
         }
 		if (candidates_optimist.len() > 0) {
-            this.m.Optimist = candidates_optimist[this.Math.rand(0, candidates_optimist.len() - 1)];
+            this.m.Optimist = candidates_optimist[::Math.rand(0, candidates_optimist.len() - 1)];
 			this.m.Score += 2;
         }
 		if (candidates_pessimist.len() > 0) {
-            this.m.Pessimist = candidates_pessimist[this.Math.rand(0, candidates_pessimist.len() - 1)];
+            this.m.Pessimist = candidates_pessimist[::Math.rand(0, candidates_pessimist.len() - 1)];
 			this.m.Score += 2;
         }
 	}

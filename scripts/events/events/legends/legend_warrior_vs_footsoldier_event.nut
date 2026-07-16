@@ -3,8 +3,7 @@ this.legend_warrior_vs_footsoldier_event <- this.inherit("scripts/events/event",
 		noble1h = null, //shield
 		noble2h = null //2 hander
 	},
-	function create()
-	{
+	function create() {
 		this.m.ID = "event.legend_warrior_vs_footsoldier"; //—
 		this.m.Title = "During camp..."; //footsoldier gets more attack, warrior gets more def
 		this.m.Cooldown = 75.0 * this.World.getTime().SecondsPerDay;
@@ -14,18 +13,11 @@ this.legend_warrior_vs_footsoldier_event <- this.inherit("scripts/events/event",
 			Image = "",
 			List = [],
 			Characters = [],
-			Options = [
-				{
-					Text = "I don\'t think that\'s how that works...",
-					function getResult( _event )
-					{
-						return 0;
-					}
-
-				}
-			],
-			function start( _event )
-			{
+			Options = [{
+				Text = "I don\'t think that\'s how that works...",
+				getResult = @(_event) 0
+			}],
+			function start(_event) {
 				this.Characters.push(_event.m.noble1h.getImagePath());
 				this.Characters.push(_event.m.noble2h.getImagePath());
 
@@ -41,56 +33,44 @@ this.legend_warrior_vs_footsoldier_event <- this.inherit("scripts/events/event",
 		});
 	}
 
-	function onUpdateScore()
-	{
+	function onUpdateScore() {
 		local brothers = this.World.getPlayerRoster().getAll();
 
 		if (brothers.len() < 2)
-		{
 			return;
-		}
 
 		local noble1h_candidates = [];
 
-		foreach( bro in brothers )
-		{
-			if (bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.LegendNobleShield))
-			{
+		foreach (bro in brothers) {
+			if (::Legends.Backgrounds.has(bro, ::Legends.Background.LegendNobleShield)) {
 				noble1h_candidates.push(bro);
 			}
 		}
 
-		if (noble1h_candidates.len() == 0)
-		{
+		if (noble1h_candidates.len() == 0) {
 			return;
 		}
 
 		local noble2h_candidates = [];
 
-		foreach( bro in brothers )
-		{
-			if (bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.LegendNoble2h))
-			{
+		foreach (bro in brothers) {
+			if (::Legends.Backgrounds.has(bro, ::Legends.Background.LegendNoble2h)) {
 				noble2h_candidates.push(bro);
 			}
 		}
 
-		if (noble2h_candidates.len() == 0)
-		{
+		if (noble2h_candidates.len() == 0) {
 			return;
 		}
 
-		this.m.noble1h = noble1h_candidates[this.Math.rand(0, noble1h_candidates.len() - 1)];
-		this.m.noble2h = noble2h_candidates[this.Math.rand(0, noble2h_candidates.len() - 1)];
+		this.m.noble1h = noble1h_candidates[::Math.rand(0, noble1h_candidates.len() - 1)];
+		this.m.noble2h = noble2h_candidates[::Math.rand(0, noble2h_candidates.len() - 1)];
 		this.m.Score = (noble1h_candidates.len() + noble2h_candidates.len()) * 3;
 	}
 
-	function onPrepare()
-	{
-	}
+	function onPrepare() {}
 
-	function onPrepareVariables( _vars )
-	{
+	function onPrepareVariables(_vars) {
 		_vars.push([
 			"noble1h",
 			this.m.noble1h.getNameOnly()
@@ -101,8 +81,7 @@ this.legend_warrior_vs_footsoldier_event <- this.inherit("scripts/events/event",
 		]);
 	}
 
-	function onClear()
-	{
+	function onClear() {
 		this.m.noble1h = null;
 		this.m.noble2h = null;
 	}

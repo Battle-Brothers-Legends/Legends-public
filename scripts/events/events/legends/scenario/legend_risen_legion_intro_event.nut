@@ -1,7 +1,6 @@
 this.legend_risen_legion_intro_event <- this.inherit("scripts/events/event", {
 	m = {},
-	function create()
-	{
+	function create() {
 		this.m.ID = "event.legend_risen_legion_intro";
 		this.m.IsSpecial = true;
 		this.m.Screens.push({
@@ -13,7 +12,7 @@ this.legend_risen_legion_intro_event <- this.inherit("scripts/events/event", {
 			Characters = [],
 			Options = [{
 				Text = "Orders are orders...",
-				function getResult( _event ) {
+				function getResult(_event) {
 					local locations = ::World.EntityManager.getLocations().filter(@(idx, loc) loc.getTypeID() == "location.black_monolith");
 					if (locations.len() > 0) {
 						local monolith = locations[0];
@@ -25,28 +24,20 @@ this.legend_risen_legion_intro_event <- this.inherit("scripts/events/event", {
 					return 0;
 				}
 			}],
-			function start( _event ) {
+			function start(_event) {
 				this.Banner = "ui/banners/" + ::World.Assets.getBanner() + "s.png";
 			}
 
 		});
 	}
 
-	function onUpdateScore()
-	{
-	}
+	function onUpdateScore() {}
 
-	function onPrepare()
-	{
+	function onPrepare() {
 		this.m.Title = "The Endless March";
 	}
 
-	function onPrepareVariables( _vars )
-	{
-	}
-
-	function onClear()
-	{
-	}
+	function onPrepareVariables(_vars) {}
+	function onClear() {}
 
 });

@@ -24,10 +24,7 @@ this.legend_bros_cure_traumatized_encounter <- this.inherit("scripts/encounters/
 			Options = [
 				{
 					Text = "There is nothing I could do for %them_traumatized%",
-					function getResult( _event )
-					{
-						return 0;
-					}
+					getResult = @(_event) 0
 				}
 			],
 			function start( _event )
@@ -73,10 +70,7 @@ this.legend_bros_cure_traumatized_encounter <- this.inherit("scripts/encounters/
 			Options = [
 				{
 					Text = "{Great, there\'s more of them. | I wonder what\'ll happen when the ale runs dry.}",
-					function getResult( _event )
-					{
-						return 0;
-					}
+					getResult = @(_event) 0
 				}
 			],
 			function start( _event )
@@ -104,10 +98,7 @@ this.legend_bros_cure_traumatized_encounter <- this.inherit("scripts/encounters/
 			Options = [
 				{
 					Text = "The old gods still offer guidance, but at what price?",
-					function getResult( _event )
-					{
-						return 0;
-					}
+					getResult = @(_event) 0
 				}
 			],
 			function start( _event )
@@ -159,10 +150,7 @@ this.legend_bros_cure_traumatized_encounter <- this.inherit("scripts/encounters/
 			Options = [
 				{
 					Text = "I wonder what they teach them in that desert.",
-					function getResult( _event )
-					{
-						return 0;
-					}
+					getResult = @(_event) 0
 				}
 			],
 			function start( _event )

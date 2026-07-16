@@ -1,7 +1,6 @@
 this.legend_necro_intro_event <- this.inherit("scripts/events/event", {
 	m = {},
-	function create()
-	{
+	function create() {
 		this.m.ID = "event.legend_necro_intro_event";
 		this.m.IsSpecial = true;
 		this.m.Screens.push({
@@ -11,42 +10,27 @@ this.legend_necro_intro_event <- this.inherit("scripts/events/event", {
 			Banner = "",
 			List = [],
 			Characters = [],
-			Options = [
-				{
-					Text = "A new pet, with many more on the way...",
-					function getResult( _event )
-					{
-						return 0;
-					}
-
-				}
-			],
-			function start( _event )
-			{
-			//	this.logInfo("Making zombies like you");
-			//	this.World.FactionManager.makeZombiesFriendlyToPlayer(); //DOES THIS WORK? - (it does, but removed due to locking player into some contracts they can't complete!)
+			Options = [{
+				Text = "A new pet, with many more on the way...",
+				getResult = @(_event) 0
+			}],
+			function start(_event) {
+				//	this.logInfo("Making zombies like you");
+				//	this.World.FactionManager.makeZombiesFriendlyToPlayer(); //DOES THIS WORK? - (it does, but removed due to locking player into some contracts they can't complete!)
 				this.logInfo("Unlocking gathering");
 				this.World.Flags.set(::Legends.Camp.Flag.Gather, true);
 			}
 		});
 	}
 
-	function onUpdateScore()
-	{
-		return;
-	}
+	function onUpdateScore() {}
 
-	function onPrepare()
-	{
+	function onPrepare() {
 		this.m.Title = "Strangers In A Strange Land";
 	}
 
-	function onPrepareVariables( _vars )
-	{
-	}
+	function onPrepareVariables(_vars) {}
 
-	function onClear()
-	{
-	}
+	function onClear() {}
 
 });

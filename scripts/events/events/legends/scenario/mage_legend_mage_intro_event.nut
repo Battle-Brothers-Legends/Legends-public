@@ -1,7 +1,6 @@
 this.mage_legend_mage_intro_event <- this.inherit("scripts/events/event", {
 	m = {},
-	function create()
-	{
+	function create() {
 		this.m.ID = "event.legend_seer_scenario_intro";
 		this.m.IsSpecial = true;
 		this.m.Screens.push({
@@ -11,18 +10,11 @@ this.mage_legend_mage_intro_event <- this.inherit("scripts/events/event", {
 			Banner = "",
 			List = [],
 			Characters = [],
-			Options = [
-				{
-					Text = "Arise!",
-					function getResult( _event )
-					{
-						return 0;
-					}
-
-				}
-			],
-			function start( _event )
-			{
+			Options = [{
+				Text = "Arise!",
+				getResult = @(_event) 0
+			}],
+			function start(_event) {
 				this.logInfo("Unlocking gathering");
 				this.World.Flags.set(::Legends.Camp.Flag.Gather, true);
 				this.logInfo("Unlocking training");
@@ -32,27 +24,20 @@ this.mage_legend_mage_intro_event <- this.inherit("scripts/events/event", {
 		});
 	}
 
-	function onUpdateScore()
-	{
-		return;
-	}
+	function onUpdateScore() {}
 
-	function onPrepare()
-	{
+	function onPrepare() {
 		this.m.Title = "Legend Mage";
 	}
 
-	function onPrepareVariables( _vars )
-	{
+	function onPrepareVariables(_vars) {
 		_vars.push([
 			"home",
 			this.World.Flags.get("HomeVillage")
 		]);
 	}
 
-	function onClear()
-	{
-	}
+	function onClear() {}
 
 });
 

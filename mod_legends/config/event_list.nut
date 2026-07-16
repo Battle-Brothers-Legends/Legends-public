@@ -35,41 +35,49 @@
 
 ::Legends.EventList.changeHitpoints <- function (_bro, _value) {
 	_bro.getBaseProperties().Hitpoints += _value;
+	_bro.getSkills().update();
 	return ::Legends.EventList.changeStat(_bro.getName(), _value, "ui/icons/health.png", "Hitpoints");
 }
 
 ::Legends.EventList.changeResolve <- function (_bro, _value) {
 	_bro.getBaseProperties().Bravery += _value;
+	_bro.getSkills().update();
 	return ::Legends.EventList.changeStat(_bro.getName(), _value, "ui/icons/bravery.png", "Resolve");
 }
 
 ::Legends.EventList.changeFatigue <- function (_bro, _value) {
 	_bro.getBaseProperties().Stamina += _value;
+	_bro.getSkills().update();
 	return ::Legends.EventList.changeStat(_bro.getName(), _value, "ui/icons/fatigue.png", "Max Fatigue");
 }
 
 ::Legends.EventList.changeMeleeSkill <- function (_bro, _value) {
 	_bro.getBaseProperties().MeleeSkill += _value;
+	_bro.getSkills().update();
 	return ::Legends.EventList.changeStat(_bro.getName(), _value, "ui/icons/melee_skill.png", "Melee Skill");
 }
 
 ::Legends.EventList.changeMeleeDefense <- function (_bro, _value) {
 	_bro.getBaseProperties().MeleeDefense += _value;
+	_bro.getSkills().update();
 	return ::Legends.EventList.changeStat(_bro.getName(), _value, "ui/icons/melee_defense.png", "Melee Defense");
 }
 
 ::Legends.EventList.changeRangedSkill <- function (_bro, _value) {
 	_bro.getBaseProperties().RangedSkill += _value;
+	_bro.getSkills().update();
 	return ::Legends.EventList.changeStat(_bro.getName(), _value, "ui/icons/ranged_skill.png", "Ranged Skill");
 }
 
 ::Legends.EventList.changeRangedDefense <- function (_bro, _value) {
 	_bro.getBaseProperties().RangedDefense += _value;
+	_bro.getSkills().update();
 	return ::Legends.EventList.changeStat(_bro.getName(), _value, "ui/icons/ranged_defense.png", "Ranged Defense");
 }
 
 ::Legends.EventList.changeInitiative <- function (_bro, _value) {
 	_bro.getBaseProperties().Initiative += _value;
+	_bro.getSkills().update();
 	return ::Legends.EventList.changeStat(_bro.getName(), _value, "ui/icons/initiative.png", "Initiative");
 }
 
@@ -84,6 +92,7 @@
 		text = _bro.getName() + ::Const.MoodStateEvent[_bro.getMoodState()]
 	}
 }
+
 ::Legends.EventList.changeBroExperience <- function (_bro, _value) {
 	_bro.addXP(_value);
 	_bro.updateLevel();
@@ -190,11 +199,20 @@
 
 	local list = [];
 	foreach (entry in grouped) {
-		list.push({
-			id = 1,
-			icon = "ui/items/" + entry.item.getIcon(),
-			text = _prefix + (entry.count > 1 ? ::format("%dx ", entry.count) : "") + entry.item.getName()
-		});
+		if (::MSU.isKindOf(entry.item, "weapon") || ::MSU.isKindOf(entry.item, "legend_armor") || ::MSU.isKindOf(entry.item, "legend_helmets")) {
+			list.push({
+				id = 1,
+				icon = "ui/items/" + entry.item.getIcon(),
+				imageOverlayPath = item.getIconOverlay(),
+				text = _prefix + (entry.count > 1 ? ::format("%dx ", entry.count) : ::Const.Strings.getArticle(entry.item.makeName())) + entry.item.makeName()
+			});
+		} else {
+			list.push({
+				id = 1,
+				icon = "ui/items/" + entry.item.getIcon(),
+				text = _prefix + (entry.count > 1 ? ::format("%dx ", entry.count) : ::Const.Strings.getArticle(entry.item.getName())) + entry.item.getName()
+			});
+		}
 	}
 	return list;
 }

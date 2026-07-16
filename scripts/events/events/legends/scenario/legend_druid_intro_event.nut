@@ -1,7 +1,6 @@
 this.legend_druid_intro_event <- this.inherit("scripts/events/event", {
 	m = {},
-	function create()
-	{
+	function create() {
 		this.m.ID = "event.legend_druid_scenario_intro";
 		this.m.IsSpecial = true;
 		this.m.Screens.push({
@@ -11,43 +10,29 @@ this.legend_druid_intro_event <- this.inherit("scripts/events/event", {
 			Banner = "",
 			List = [],
 			Characters = [],
-			Options = [
-				{
-					Text = "Set Forth!",
-					function getResult( _event )
-					{
-						return 0;
-					}
-
-				}
-			],
-			function start( _event )
-			{
+			Options = [{
+				Text = "Set Forth!",
+				getResult = @(_event) 0
+			}],
+			function start(_event) {
 				this.World.Flags.set(::Legends.Camp.Flag.Healer, true);
 			}
 		});
 	}
 
-	function onUpdateScore()
-	{
-		return;
-	}
+	function onUpdateScore() {}
 
-	function onPrepare()
-	{
+	function onPrepare() {
 		this.m.Title = "The Druid";
 	}
 
-	function onPrepareVariables( _vars )
-	{
+	function onPrepareVariables(_vars) {
 		_vars.push([
 			"home",
 			this.World.Flags.get("HomeVillage")
 		]);
 	}
 
-	function onClear()
-	{
-	}
+	function onClear() {}
 
 });

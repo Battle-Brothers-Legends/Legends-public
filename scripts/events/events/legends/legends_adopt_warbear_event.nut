@@ -3,8 +3,7 @@ this.legends_adopt_warbear_event <- this.inherit("scripts/events/event", {
 		Bro = null,
 		BearTamer = null
 	},
-	function create()
-	{
+	function create() {
 		this.m.ID = "event.legends.adopt_warbear";
 		this.m.Title = "Deep in the forest...";
 		this.m.Cooldown = 50.0 * this.World.getTime().SecondsPerDay;
@@ -14,44 +13,18 @@ this.legends_adopt_warbear_event <- this.inherit("scripts/events/event", {
 			Image = "",
 			List = [],
 			Characters = [],
-			Options = [
-				{
-					Text = "This is no circus! A bear is dangerous. Keep well away from that thing",
-					function getResult( _event )
-					{
-						return "B";
-					}
-
-				},
-				{
-					Text = "Better to put it down now before it steals any of our supplies later.",
-					function getResult( _event )
-					{
-						local r = this.Math.rand(1, 100);
-
-						if (r <= 60)
-						{
-							return "C";
-						}
-						else
-						{
-							return "D";
-						}
-					}
-
-				}
-			],
-			function start( _event )
-			{
-				if (_event.m.BearTamer != null)
-				{
+			Options = [{
+				Text = "This is no circus! A bear is dangerous. Keep well away from that thing",
+				getResult = @(_event) "B"
+			}, {
+				Text = "Better to put it down now before it steals any of our supplies later.",
+				getResult = @(_event) ::Math.rand(1, 100) <= 60 ? "C" : "D"
+			}],
+			function start(_event) {
+				if (_event.m.BearTamer != null) {
 					this.Options.push({
 						Text = "%bearTamer%, you\'re trained to handle bears, right?",
-						function getResult( _event )
-						{
-							return "G";
-						}
-
+						getResult = @(_event) "G"
 					});
 				}
 			}
@@ -63,20 +36,11 @@ this.legends_adopt_warbear_event <- this.inherit("scripts/events/event", {
 			Image = "",
 			List = [],
 			Characters = [],
-			Options = [
-				{
-					Text = "And stay away!",
-					function getResult( _event )
-					{
-						return 0;
-					}
-
-				}
-			],
-			function start( _event )
-			{
-			}
-
+			Options = [{
+				Text = "And stay away!",
+				getResult = @(_event) 0
+			}],
+			function start(_event) {}
 		});
 		this.m.Screens.push({
 			ID = "C",
@@ -84,20 +48,11 @@ this.legends_adopt_warbear_event <- this.inherit("scripts/events/event", {
 			Image = "",
 			List = [],
 			Characters = [],
-			Options = [
-				{
-					Text = "I meant to scare it off.",
-					function getResult( _event )
-					{
-						return 0;
-					}
-
-				}
-			],
-			function start( _event )
-			{
-			}
-
+			Options = [{
+				Text = "I meant to scare it off.",
+				getResult = @(_event) 0
+			}],
+			function start(_event) {}
 		});
 		this.m.Screens.push({
 			ID = "D",
@@ -105,19 +60,11 @@ this.legends_adopt_warbear_event <- this.inherit("scripts/events/event", {
 			Image = "",
 			List = [],
 			Characters = [],
-			Options = [
-				{
-					Text = "Poor thing.",
-					function getResult( _event )
-					{
-						return 0;
-					}
-
-				}
-			],
-			function start( _event )
-			{
-			}
+			Options = [{
+				Text = "Poor thing.",
+				getResult = @(_event) 0
+			}],
+			function start(_event) {}
 
 		});
 		this.m.Screens.push({
@@ -126,81 +73,57 @@ this.legends_adopt_warbear_event <- this.inherit("scripts/events/event", {
 			Image = "",
 			List = [],
 			Characters = [],
-			Options = [
-				{
-					Text = "Nice.",
-					function getResult( _event )
-					{
-						return 0;
-					}
-
-				}
-			],
-			function start( _event )
-			{
+			Options = [{
+				Text = "Nice.",
+				getResult = @(_event) 0
+			}],
+			function start(_event) {
 				this.Characters.push(_event.m.BearTamer.getImagePath());
-				local item = this.new("scripts/items/accessory/legend_warbear_item");
-				this.World.Assets.getStash().add(item);
-				this.List.push({
-					id = 10,
-					icon = "ui/items/" + item.getIcon(),
-					text = "You gain " + item.getName()
-				});
+				this.List.extend(::Legends.EventList.addItems([
+					::new("scripts/items/accessory/legend_warbear_item")
+				], ::World.Assets.getStash()));
 			}
-
 		});
 	}
 
-	function onUpdateScore()
-	{
-		if (!this.World.getTime().IsDaytime)
-		{
+	function onUpdateScore() {
+		if (!this.World.getTime().IsDaytime) {
 			return;
 		}
 
 		local currentTile = this.World.State.getPlayer().getTile();
 
-		if (!currentTile.Type == this.Const.World.TerrainType.Forest  && !currentTile.Type == this.Const.World.TerrainType.LeaveForest)
-		{
+		if (!currentTile.Type == this.Const.World.TerrainType.Forest && !currentTile.Type == this.Const.World.TerrainType.LeaveForest) {
 			return;
 		}
 
-		if (!this.World.Assets.getStash().hasEmptySlot())
-		{
+		if (!this.World.Assets.getStash().hasEmptySlot()) {
 			return;
 		}
 
 		local brothers = this.World.getPlayerRoster().getAll();
 		local candidates = [];
 		local bearBros = 0;
-		foreach( bro in brothers )
-		{
-			if (bro.getSkills().hasPerk(::Legends.Perk.LegendSummonBear) || bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.LegendDruid) || bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.LegendCommanderDruid))
-			{
+		foreach (bro in brothers) {
+			if (bro.getSkills().hasPerk(::Legends.Perk.LegendSummonBear) || ::Legends.Backgrounds.hasAny(bro, ::Legends.Background.LegendDruid, ::Legends.Background.LegendCommanderDruid)) {
 				candidates.push(bro);
 				bearBros++
 			}
 		}
 
-		this.m.Bro = brothers[this.Math.rand(0, brothers.len() - 1)];
+		this.m.Bro = brothers[::Math.rand(0, brothers.len() - 1)];
 
-		if (candidates.len() > 0)
-		{
-			this.m.BearTamer = candidates[this.Math.rand(0, candidates.len() - 1)];
+		if (candidates.len() > 0) {
+			this.m.BearTamer = candidates[::Math.rand(0, candidates.len() - 1)];
 			this.m.Score = this.m.BearTamer.getLevel() - 5;
-		}
-		else
-		{
+		} else {
 			return;
 		}
 	}
 
-	function onPrepare()
-	{
-	}
+	function onPrepare() {}
 
-	function onPrepareVariables( _vars )
-	{
+	function onPrepareVariables(_vars) {
 		_vars.push([
 			"bro",
 			this.m.Bro.getName()
@@ -211,11 +134,9 @@ this.legends_adopt_warbear_event <- this.inherit("scripts/events/event", {
 		]);
 	}
 
-	function onClear()
-	{
+	function onClear() {
 		this.m.Bro = null;
 		this.m.BearTamer = null;
 	}
-
 });
 

@@ -2,8 +2,7 @@ this.legend_slave_finds_company_event <- this.inherit("scripts/events/event", {
 	m = {
 		Dude = null
 	},
-	function create()
-	{
+	function create() {
 		this.m.ID = "event.legend_slave_finds_company";
 		this.m.Title = "Along the road...";
 		this.m.Cooldown = 15.0 * this.World.getTime().SecondsPerDay;
@@ -13,82 +12,65 @@ this.legend_slave_finds_company_event <- this.inherit("scripts/events/event", {
 			Image = "",
 			List = [],
 			Characters = [],
-			Options = [
-				{
-					Text = "Yes, join us!",
-					function getResult( _event )
-					{
-						this.World.getPlayerRoster().add(_event.m.Dude);
-						this.World.getTemporaryRoster().clear();
-						_event.m.Dude.onHired();
-						_event.m.Dude = null;
-						return 0;
-					}
-
-				},
-				{
-					Text = "Your place is not with us, friend.",
-					function getResult( _event )
-					{
-						this.World.getTemporaryRoster().clear();
-						_event.m.Dude = null;
-						return 0;
-					}
-
+			Options = [{
+				Text = "Yes, join us!",
+				function getResult(_event) {
+					this.World.getPlayerRoster().add(_event.m.Dude);
+					this.World.getTemporaryRoster().clear();
+					_event.m.Dude.onHired();
+					_event.m.Dude = null;
+					return 0;
 				}
-			],
-			function start( _event )
-			{
+			}, {
+				Text = "Your place is not with us, friend.",
+				function getResult(_event) {
+					this.World.getTemporaryRoster().clear();
+					_event.m.Dude = null;
+					return 0;
+				}
+			}],
+			function start(_event) {
 				local roster = this.World.getTemporaryRoster();
 				_event.m.Dude = roster.create("scripts/entity/tactical/player");
-				_event.m.Dude.setStartValuesEx([::Legends.Background.Slave,::Legends.Background.SlaveSouthern,::Legends.Background.SlaveBarbarian]);
+				_event.m.Dude.setStartValuesEx([::Legends.Background.Slave, ::Legends.Background.SlaveSouthern, ::Legends.Background.SlaveBarbarian]);
 				this.Characters.push(_event.m.Dude.getImagePath());
 			}
 
 		});
 	}
 
-	function onUpdateScore()
-	{
-		if (!this.Const.DLC.Desert)
-		{
+	function onUpdateScore() {
+		if (!this.Const.DLC.Desert) {
 			return;
 		}
 
-		if (this.World.Assets.getOrigin().getID() != "scenario.legend_escaped_slaves")
-		{
+		if (this.World.Assets.getOrigin().getID() != "scenario.legend_escaped_slaves") {
 			return;
 		}
 
-		if (this.World.getPlayerRoster().getSize() >= this.World.Assets.getBrothersMax())
-		{
+		if (this.World.getPlayerRoster().getSize() >= this.World.Assets.getBrothersMax()) {
 			return;
 		}
 
 		local currentTile = this.World.State.getPlayer().getTile();
 
-		if (!currentTile.HasRoad)
-		{
+		if (!currentTile.HasRoad) {
 			return;
 		}
 
 		this.m.Score = 50;
 	}
 
-	function onPrepare()
-	{
-	}
+	function onPrepare() {}
 
-	function onPrepareVariables( _vars )
-	{
+	function onPrepareVariables(_vars) {
 		_vars.push([
 			"joiner",
 			this.m.Dude.getName()
 		]);
 	}
 
-	function onClear()
-	{
+	function onClear() {
 		this.m.Dude = null;
 	}
 

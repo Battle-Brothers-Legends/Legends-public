@@ -6,8 +6,7 @@ this.legend_northmen_forest_ambush_event <- this.inherit("scripts/events/event",
 		Assassin = null
 		// Rewarditems = 0
 	},
-	function create()
-	{
+	function create() {
 		this.m.ID = "event.legend_northmen_forest_ambush";
 		this.m.Title = "In the forest...";
 		this.m.Cooldown = 80.0 * this.World.getTime().SecondsPerDay;
@@ -17,76 +16,36 @@ this.legend_northmen_forest_ambush_event <- this.inherit("scripts/events/event",
 			Image = "",
 			List = [],
 			Characters = [],
-			Options = [
-				{
-					Text = "Form up and be ready!",
-					function getResult( _event )
-					{
-						local r = this.Math.rand(1, 100);
-
-						if (r <= 65)
-						{
-							return "Lightpatrol";
-						}
-						else if (r <= 35)
-						{
-							return "Heavypatrol";
-						}
-					}
-
-				}
-			],
-			function start( _event )
-			{
-				if (_event.m.Barbarian != null)
-				{
+			Options = [{
+				Text = "Form up and be ready!",
+				getResult = @(_event) ::Math.rand(1, 100) <= 65 ? "Lightpatrol" : "Heavypatrol"
+			}],
+			function start(_event) {
+				if (_event.m.Barbarian != null) {
 					this.Options.push({
 						Text = "{Our barbarian, %barbarian% wants to talk to them.}",
-						function getResult( _event )
-						{
-							return "Barbarian";
-						}
-
+						getResult = @(_event) "Barbarian"
 					});
 				}
-
-				if (_event.m.Wildman != null)
-				{
+				if (_event.m.Wildman != null) {
 					this.Options.push({
 						Text = "{%wildman% is about to break into a berserk fury...}",
-						function getResult( _event )
-						{
-							return "Wildman";
-						}
-
+						getResult = @(_event) "Wildman"
 					});
 				}
-
-				if (_event.m.MasterArcher != null)
-				{
+				if (_event.m.MasterArcher != null) {
 					this.Options.push({
 						Text = "{It seems that our master archer, %masterarcher% has a plan.}",
-						function getResult( _event )
-						{
-							return "MasterArcher";
-						}
-
+						getResult = @(_event) "MasterArcher"
 					});
 				}
-
-				if (_event.m.Assassin != null)
-				{
+				if (_event.m.Assassin != null) {
 					this.Options.push({
 						Text = "Our assassin, %assassin% has an idea...",
-						function getResult( _event )
-						{
-							return "Assassin";
-						}
-
+						getResult = @(_event) "Assassin"
 					});
 				}
 			}
-
 		});
 		this.m.Screens.push({
 			ID = "Lightpatrol",
@@ -94,27 +53,21 @@ this.legend_northmen_forest_ambush_event <- this.inherit("scripts/events/event",
 			Image = "",
 			List = [],
 			Characters = [],
-			Options = [
-				{
-					Text = "To arms!",
-					function getResult( _event )
-					{
-						local properties = this.World.State.getLocalCombatProperties(this.World.State.getPlayer().getPos());
-						properties.CombatID = "Event";
-						properties.Music = this.Const.Music.BarbarianTracks;
-						properties.IsAutoAssigningBases = false;
-						properties.Entities = [];
-						this.Const.World.Common.addUnitsToCombat(properties.Entities, this.Const.World.Spawn.Barbarians, this.Math.rand(75, 110) * _event.getReputationToDifficultyLightMult(), this.Const.Faction.Enemy);
-						this.World.State.startScriptedCombat(properties, false, false, true);
-						return 0;
-					}
-
+			Options = [{
+				Text = "To arms!",
+				function getResult(_event) {
+					local properties = this.World.State.getLocalCombatProperties(this.World.State.getPlayer().getPos());
+					properties.CombatID = "Event";
+					properties.Music = this.Const.Music.BarbarianTracks;
+					properties.IsAutoAssigningBases = false;
+					properties.Entities = [];
+					this.Const.World.Common.addUnitsToCombat(properties.Entities, this.Const.World.Spawn.Barbarians, ::Math.rand(75, 110) * _event.getReputationToDifficultyLightMult(), this.Const.Faction.Enemy);
+					this.World.State.startScriptedCombat(properties, false, false, true);
+					return 0;
 				}
-			],
-			function start( _event )
-			{
-			}
 
+			}],
+			function start(_event) {}
 		});
 		this.m.Screens.push({
 			ID = "Heavypatrol",
@@ -122,27 +75,21 @@ this.legend_northmen_forest_ambush_event <- this.inherit("scripts/events/event",
 			Image = "",
 			List = [],
 			Characters = [],
-			Options = [
-				{
-					Text = "Oh fark.",
-					function getResult( _event )
-					{
-						local properties = this.World.State.getLocalCombatProperties(this.World.State.getPlayer().getPos());
-						properties.CombatID = "Event";
-						properties.Music = this.Const.Music.BarbarianTracks;
-						properties.IsAutoAssigningBases = false;
-						properties.Entities = [];
-						this.Const.World.Common.addUnitsToCombat(properties.Entities, this.Const.World.Spawn.Barbarians, this.Math.rand(110, 140) * _event.getReputationToDifficultyLightMult(), this.Const.Faction.Enemy);
-						this.World.State.startScriptedCombat(properties, false, false, true);
-						return 0;
-					}
-
+			Options = [{
+				Text = "Oh fark.",
+				function getResult(_event) {
+					local properties = this.World.State.getLocalCombatProperties(this.World.State.getPlayer().getPos());
+					properties.CombatID = "Event";
+					properties.Music = this.Const.Music.BarbarianTracks;
+					properties.IsAutoAssigningBases = false;
+					properties.Entities = [];
+					this.Const.World.Common.addUnitsToCombat(properties.Entities, this.Const.World.Spawn.Barbarians, ::Math.rand(110, 140) * _event.getReputationToDifficultyLightMult(), this.Const.Faction.Enemy);
+					this.World.State.startScriptedCombat(properties, false, false, true);
+					return 0;
 				}
-			],
-			function start( _event )
-			{
-			}
 
+			}],
+			function start(_event) {}
 		});
 		this.m.Screens.push({
 			ID = "Barbarian",
@@ -150,31 +97,20 @@ this.legend_northmen_forest_ambush_event <- this.inherit("scripts/events/event",
 			Image = "",
 			List = [],
 			Characters = [],
-			Options = [
-				{
+			Options = [				{
 					Text = "Well done.",
-					function getResult( _event )
-					{
+					function getResult(_event) {
 						this.World.Assets.addMoralReputation(1);
 						return 0;
 					}
-
-				}
-			],
-			function start( _event ) //im simplifying this - it is far too complex (yes i know i wrote this months ago shut up)
-			{
+				}			],
+			function start(_event) { //im simplifying this - it is far too complex (yes i know i wrote this months ago shut up)
 				this.Characters.push(_event.m.Barbarian.getImagePath());
-				local item = this.new("scripts/items/loot/looted_valuables_item");
 				this.List.push(::Legends.EventList.changeResolve(_event.m.Barbarian, ::Math.rand(2, 4)));
-				this.List.push(::Legends.EventList.changeMood(_event.m.Barbarian, 1.0, "prevented a bloodbath in the woods"));
-				_event.m.Barbarian.getSkills().update();
-
-				this.World.Assets.getStash().add(item);
-				this.List.push({
-					id = 10,
-					icon = "ui/items/" + item.getIcon(),
-					text = "You gain " + item.getName()
-				});
+				this.List.push(::Legends.EventList.changeMood(_event.m.Barbarian, 1.0, "Prevented a bloodbath in the woods"));
+				this.List.extend(::Legends.EventList.addItems([
+					::new("scripts/items/loot/looted_valuables_item")
+				], ::World.Assets.getStash()));
 
 				// _event.m.Rewarditems.getItems().transferToStash(this.World.Assets.getStash());
 
@@ -204,27 +140,24 @@ this.legend_northmen_forest_ambush_event <- this.inherit("scripts/events/event",
 			Options = [
 				{
 					Text = "We better go help now.",
-					function getResult( _event )
-					{
+					function getResult(_event) {
 						local properties = this.World.State.getLocalCombatProperties(this.World.State.getPlayer().getPos());
 						properties.CombatID = "Event";
 						properties.Music = this.Const.Music.BarbarianTracks;
 						properties.IsAutoAssigningBases = false;
 						properties.Entities = [];
-						this.Const.World.Common.addUnitsToCombat(properties.Entities, this.Const.World.Spawn.Barbarians, this.Math.rand(60, 75) * _event.getReputationToDifficultyLightMult(), this.Const.Faction.Enemy);
+						this.Const.World.Common.addUnitsToCombat(properties.Entities, this.Const.World.Spawn.Barbarians, ::Math.rand(60, 75) * _event.getReputationToDifficultyLightMult(), this.Const.Faction.Enemy);
 						this.World.State.startScriptedCombat(properties, false, false, true);
 						return 0;
 					}
 
 				}
 			],
-			function start( _event )
-			{
+			function start(_event) {
 				this.Characters.push(_event.m.Wildman.getImagePath());
 				this.List.push(::Legends.EventList.changeResolve(_event.m.Wildman, ::Math.rand(4, 6)));
 				this.List.push(::Legends.EventList.addLightInjury(_event.m.Wildman));
 				this.List.push(::Legends.EventList.changeMood(_event.m.Wildman, 2.0, "Had a good time"));
-				_event.m.Wildman.getSkills().update();
 			}
 
 		});
@@ -237,20 +170,15 @@ this.legend_northmen_forest_ambush_event <- this.inherit("scripts/events/event",
 			Options = [
 				{
 					Text = "Nicely done.",
-					function getResult( _event )
-					{
-						return 0;
-					}
+					getResult = @(_event) 0
 
 				}
 			],
-			function start( _event )
-			{
+			function start(_event) {
 				this.Characters.push(_event.m.MasterArcher.getImagePath());
 				this.List.push(::Legends.EventList.changeResolve(_event.m.MasterArcher, ::Math.rand(2, 5)));
 				this.List.push(::Legends.EventList.changeInitiative(_event.m.MasterArcher, ::Math.rand(3, 6)));
 				this.List.push(::Legends.EventList.changeMood(_event.m.MasterArcher, 1.0, "Evaded a patrol"));
-				_event.m.MasterArcher.getSkills().update();
 			}
 
 		});
@@ -263,8 +191,7 @@ this.legend_northmen_forest_ambush_event <- this.inherit("scripts/events/event",
 			Options = [
 				{
 					Text = "To arms!",
-					function getResult( _event )
-					{
+					function getResult(_event) {
 						local properties = this.World.State.getLocalCombatProperties(this.World.State.getPlayer().getPos());
 						properties.CombatID = "Event";
 						properties.Music = this.Const.Music.BarbarianTracks;
@@ -272,54 +199,46 @@ this.legend_northmen_forest_ambush_event <- this.inherit("scripts/events/event",
 						properties.EnemyDeploymentType = this.Const.Tactical.DeploymentType.Center;
 						properties.IsAutoAssigningBases = false;
 						properties.Entities = [];
-						this.Const.World.Common.addUnitsToCombat(properties.Entities, this.Const.World.Spawn.Barbarians, this.Math.rand(60, 70) * _event.getReputationToDifficultyLightMult(), this.Const.Faction.Enemy);
+						this.Const.World.Common.addUnitsToCombat(properties.Entities, this.Const.World.Spawn.Barbarians, ::Math.rand(60, 70) * _event.getReputationToDifficultyLightMult(), this.Const.Faction.Enemy);
 						this.World.State.startScriptedCombat(properties, false, false, true);
 						return 0;
 					}
 
-					function onEntityPlaced( _entity, _tag )
-					{
+					function onEntityPlaced(_entity, _tag) {
 						_entity.setMoraleState(this.Const.MoraleState.Fleeing);
 						_entity.getBaseProperties().Bravery = 50;
 					}
 
 				}
 			],
-			function start( _event )
-			{
+			function start(_event) {
 				this.Characters.push(_event.m.Assassin.getImagePath());
 				this.List.push(::Legends.EventList.changeResolve(_event.m.Assassin, ::Math.rand(4, 7)));
 				this.List.push(::Legends.EventList.changeInitiative(_event.m.Assassin, ::Math.rand(3, 6)));
 				this.List.push(::Legends.EventList.changeMood(_event.m.Assassin, 1.0, "Outsmarted a raiding party"));
-				_event.m.Assassin.getSkills().update();
 			}
 
 		});
 	}
 
-	function onUpdateScore()
-	{
+	function onUpdateScore() {
 		local brothers = this.World.getPlayerRoster().getAll();
 
-		if (brothers.len() < 5)
-		{
+		if (brothers.len() < 5) {
 			return;
 		}
 
-		if (this.World.getTime().Days < 40)
-		{
+		if (this.World.getTime().Days < 40) {
 			return;
 		}
 
 		local currentTile = this.World.State.getPlayer().getTile();
 
-		if (currentTile.Type != this.Const.World.TerrainType.Forest && currentTile.Type != this.Const.World.TerrainType.SnowyForest && currentTile.Type != this.Const.World.TerrainType.LeaveForest && currentTile.Type != this.Const.World.TerrainType.AutumnForest)
-		{
+		if (currentTile.Type != this.Const.World.TerrainType.Forest && currentTile.Type != this.Const.World.TerrainType.SnowyForest && currentTile.Type != this.Const.World.TerrainType.LeaveForest && currentTile.Type != this.Const.World.TerrainType.AutumnForest) {
 			return;
 		}
 
-		if (!this.World.Assets.getStash().hasEmptySlot())
-		{
+		if (!this.World.Assets.getStash().hasEmptySlot()) {
 			return;
 		}
 
@@ -328,55 +247,40 @@ this.legend_northmen_forest_ambush_event <- this.inherit("scripts/events/event",
 		local candidates_masterarcher = [];
 		local candidates_assassin = [];
 
-		foreach( b in brothers )
-		{
-			if (b.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.Barbarian) || b.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.Raider))
-			{
+		foreach (b in brothers) {
+			if (::Legends.Backgrounds.hasAny(b, ::Legends.Background.Barbarian, ::Legends.Background.Raider)) {
 				candidates_barbarian.push(b);
-			}
-			else if (b.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.Wildman) || b.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.LegendBerserker))
-			{
+			} else if (::Legends.Backgrounds.hasAny(b, ::Legends.Background.Wildman, ::Legends.Background.LegendBerserker)) {
 				candidates_wildman.push(b);
-			}
-			else if (b.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.Poacher) || b.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.Hunter) || b.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.LegendMasterArcher))
-			{
+			} else if (::Legends.Backgrounds.hasAny(b, ::Legends.Background.Poacher, ::Legends.Background.Hunter, ::Legends.Background.LegendMasterArcher)) {
 				candidates_masterarcher.push(b);
-			}
-			else if (b.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.Assassin) || b.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.AssassinSouthern))
-			{
+			} else if (::Legends.Backgrounds.hasAny(b, ::Legends.Background.Assassin, ::Legends.Background.AssassinSouthern)) {
 				candidates_assassin.push(b);
 			}
 		}
 
-		if (candidates_barbarian.len() != 0)
-		{
-			this.m.Barbarian = candidates_barbarian[this.Math.rand(0, candidates_barbarian.len() - 1)];
+		if (candidates_barbarian.len() != 0) {
+			this.m.Barbarian = candidates_barbarian[::Math.rand(0, candidates_barbarian.len() - 1)];
 		}
 
-		if (candidates_wildman.len() != 0)
-		{
-			this.m.Wildman = candidates_wildman[this.Math.rand(0, candidates_wildman.len() - 1)];
+		if (candidates_wildman.len() != 0) {
+			this.m.Wildman = candidates_wildman[::Math.rand(0, candidates_wildman.len() - 1)];
 		}
 
-		if (candidates_masterarcher.len() != 0)
-		{
-			this.m.MasterArcher = candidates_masterarcher[this.Math.rand(0, candidates_masterarcher.len() - 1)];
+		if (candidates_masterarcher.len() != 0) {
+			this.m.MasterArcher = candidates_masterarcher[::Math.rand(0, candidates_masterarcher.len() - 1)];
 		}
 
-		if (candidates_assassin.len() != 0)
-		{
-			this.m.Assassin = candidates_assassin[this.Math.rand(0, candidates_assassin.len() - 1)];
+		if (candidates_assassin.len() != 0) {
+			this.m.Assassin = candidates_assassin[::Math.rand(0, candidates_assassin.len() - 1)];
 		}
 
 		this.m.Score = 15;
 	}
 
-	function onPrepare()
-	{
-	}
+	function onPrepare() {}
 
-	function onPrepareVariables( _vars )
-	{
+	function onPrepareVariables(_vars) {
 		_vars.push([
 			"barbarian",
 			this.m.Barbarian != null ? this.m.Barbarian.getName() : ""
@@ -395,13 +299,11 @@ this.legend_northmen_forest_ambush_event <- this.inherit("scripts/events/event",
 		]);
 	}
 
-	function onClear()
-	{
+	function onClear() {
 		this.m.Barbarian = null;
 		this.m.Wildman = null;
 		this.m.MasterArcher = null;
 		this.m.Assassin = null;
-		// this.m.Rewarditems = null;
 	}
 
 });

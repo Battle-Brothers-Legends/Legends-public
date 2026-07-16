@@ -13,7 +13,7 @@ if (!("Backgrounds" in ::Legends)) {
 	if (::MSU.isKindOf(_target, "skill_container")) {
 		return _target.getActor();
 	}
-	if (::MSU.isKindOf(_target, "actor")) {
+	if (::MSU.isKindOf(_target, "actor") || ::MSU.isKindOf(_target, "player")) {
 		return _target;
 	}
 	if (::MSU.isKindOf(_target, "character_background")) {
@@ -102,11 +102,10 @@ if (!("Backgrounds" in ::Legends)) {
 }
 
 ::Legends.Backgrounds.hasAny <- function (_target, ...) {
-	local container = ::Legends.Backgrounds.getContainer(_target, "on hasAny");
 	local arr = vargv;
 	if (typeof vargv[0] == "array")
 		arr = vargv[0];
-	return ::Legends.S.any(arr, @(_def) ::Legends.Backgrounds.has(container, _def));
+	return ::Legends.S.any(arr, @(_def) ::Legends.Backgrounds.has(_target, _def));
 }
 
 ::Legends.Backgrounds.remove <- function (_target, _def) {
@@ -119,6 +118,7 @@ if (!("Backgrounds" in ::Legends)) {
 }
 
 ::Legends.Backgrounds.onCreate <- function (_target, _def) {
+	local fn = "onCreate";
 	local defs = ::Legends.Backgrounds.BackgroundDefObjects[_def];
 	_target.m.ID = defs.ID;
 	_target.m.Name = defs.Name;

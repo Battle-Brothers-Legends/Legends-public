@@ -2,8 +2,7 @@ this.legend_lonewolf_companion_melee_event <- this.inherit("scripts/events/event
 	m = {
 		Dude = null
 	},
-	function create()
-	{
+	function create() {
 		this.m.ID = "event.legend_lonewolf_companion_melee";
 		this.m.Title = "Like minds and simple hearts";
 		this.m.Cooldown = 22.0 * this.World.getTime().SecondsPerDay;
@@ -13,44 +12,20 @@ this.legend_lonewolf_companion_melee_event <- this.inherit("scripts/events/event
 			Image = "",
 			List = [],
 			Characters = [],
-			Options = [
-				{
-					Text = "{Show me your swingin\' arm. | How good is your swing? | Try to hit me.}",
-					function getResult( _event )
-					{
-						return "B";
-					}
-
-				},
-				{
-					Text = "{Can you hold a shield? | How well can you block? | Ever been in a shieldwall?}",
-					function getResult( _event )
-					{
-						return "C";
-					}
-
-				},
-				{
-					Text = "{You don\'t seem very remarkable to me... | You don\'t stand out to me... | You seem rather ordinary...}",
-					function getResult( _event )
-					{
-						return "D";
-					}
-
-				},
-				{
-					Text = "Not interested.",
-					function getResult( _event )
-					{
-						return 0;
-					}
-
-				}
-			],
-			function start( _event )
-			{
-			}
-
+			Options = [{
+				Text = "{Show me your swingin\' arm. | How good is your swing? | Try to hit me.}",
+				getResult = @(_event) "B"
+			}, {
+				Text = "{Can you hold a shield? | How well can you block? | Ever been in a shieldwall?}",
+				getResult = @(_event) "C"
+			}, {
+				Text = "{You don\'t seem very remarkable to me... | You don\'t stand out to me... | You seem rather ordinary...}",
+				getResult = @(_event) "D"
+			}, {
+				Text = "Not interested.",
+				getResult = @(_event) 0
+			}],
+			function start(_event) {}
 		});
 		this.m.Screens.push({
 			ID = "B",
@@ -58,21 +33,16 @@ this.legend_lonewolf_companion_melee_event <- this.inherit("scripts/events/event
 			Image = "",
 			List = [],
 			Characters = [],
-			Options = [
-				{
-					Text = "{More killing power is always a good thing... | A good arm will get you far in this business. | Now for the real thing...}",
-					function getResult( _event )
-					{
-						this.World.getPlayerRoster().add(_event.m.Dude);
-						this.World.getTemporaryRoster().clear();
-						_event.m.Dude.onHired();
-						return 0;
-					}
-
+			Options = [{
+				Text = "{More killing power is always a good thing... | A good arm will get you far in this business. | Now for the real thing...}",
+				function getResult(_event) {
+					this.World.getPlayerRoster().add(_event.m.Dude);
+					this.World.getTemporaryRoster().clear();
+					_event.m.Dude.onHired();
+					return 0;
 				}
-			],
-			function start( _event )
-			{
+			}],
+			function start(_event) {
 				this.Characters.push(_event.m.Dude.getImagePath());
 				_event.m.Dude.getSprite("miniboss").setBrush("bust_miniboss");
 				_event.m.Dude.getBaseProperties().Hitpoints += 0;
@@ -92,21 +62,16 @@ this.legend_lonewolf_companion_melee_event <- this.inherit("scripts/events/event
 			Image = "",
 			List = [],
 			Characters = [],
-			Options = [
-				{
-					Text = "{Fighting in the front is never easy. | At least you can take a few hits. | The real thing will be much different.}",
-					function getResult( _event )
-					{
-						this.World.getPlayerRoster().add(_event.m.Dude);
-						this.World.getTemporaryRoster().clear();
-						_event.m.Dude.onHired();
-						return 0;
-					}
-
+			Options = [{
+				Text = "{Fighting in the front is never easy. | At least you can take a few hits. | The real thing will be much different.}",
+				function getResult(_event) {
+					this.World.getPlayerRoster().add(_event.m.Dude);
+					this.World.getTemporaryRoster().clear();
+					_event.m.Dude.onHired();
+					return 0;
 				}
-			],
-			function start( _event )
-			{
+			}],
+			function start(_event) {
 				this.Characters.push(_event.m.Dude.getImagePath());
 				_event.m.Dude.getSprite("miniboss").setBrush("bust_miniboss");
 				_event.m.Dude.getBaseProperties().Hitpoints += 5;
@@ -126,21 +91,16 @@ this.legend_lonewolf_companion_melee_event <- this.inherit("scripts/events/event
 			Image = "",
 			List = [],
 			Characters = [],
-			Options = [
-				{
-					Text = "{Worth a tryout I guess. | You can improve. | We\'ll make a master out of you yet...}",
-					function getResult( _event )
-					{
-						this.World.getPlayerRoster().add(_event.m.Dude);
-						this.World.getTemporaryRoster().clear();
-						_event.m.Dude.onHired();
-						return 0;
-					}
-
+			Options = [{
+				Text = "{Worth a tryout I guess. | You can improve. | We\'ll make a master out of you yet...}",
+				function getResult(_event) {
+					this.World.getPlayerRoster().add(_event.m.Dude);
+					this.World.getTemporaryRoster().clear();
+					_event.m.Dude.onHired();
+					return 0;
 				}
-			],
-			function start( _event )
-			{
+			}],
+			function start(_event) {
 				this.Characters.push(_event.m.Dude.getImagePath());
 				_event.m.Dude.getSprite("miniboss").setBrush("bust_miniboss");
 				_event.m.Dude.getBaseProperties().Hitpoints += 0;
@@ -161,47 +121,37 @@ this.legend_lonewolf_companion_melee_event <- this.inherit("scripts/events/event
 			Image = "",
 			List = [],
 			Characters = [],
-			Options = [
-				{
-					Text = "I\'m not recruiting everyone from here to the coast.",
-					function getResult( _event )
-					{
-						this.World.getTemporaryRoster().clear();
-						_event.m.Dude = null;
-						return 0;
-					}
-
+			Options = [{
+				Text = "I\'m not recruiting everyone from here to the coast.",
+				function getResult(_event) {
+					this.World.getTemporaryRoster().clear();
+					_event.m.Dude = null;
+					return 0;
 				}
-			]
+			}]
 		});
 	}
 
-	function onUpdateScore()
-	{
-		if (this.World.Assets.getOrigin().getID() != "scenario.lone_wolf")
-		{
+	function onUpdateScore() {
+		if (this.World.Assets.getOrigin().getID() != "scenario.lone_wolf") {
 			return;
 		}
 
-		if (!this.World.getTime().IsDaytime)
-		{
+		if (!this.World.getTime().IsDaytime) {
 			return;
 		}
 
 		local brothers = this.World.getPlayerRoster().getAll();
 
-		if (this.World.getPlayerRoster().getSize() >= this.World.Assets.getBrothersMax())
-		{
+		if (this.World.getPlayerRoster().getSize() >= this.World.Assets.getBrothersMax()) {
 			return;
 		}
 
 		this.m.Score = 15;
 	}
 
-	function onPrepareVariables( _vars )
-	{
-		if (this.m.Dude == null)
-		{
+	function onPrepareVariables(_vars) {
+		if (this.m.Dude == null) {
 			local roster = this.World.getTemporaryRoster();
 			this.m.Dude = roster.create("scripts/entity/tactical/player");
 			this.m.Dude.setStartValuesEx([::Legends.Background.LegendCompanionMelee]);
@@ -214,8 +164,7 @@ this.legend_lonewolf_companion_melee_event <- this.inherit("scripts/events/event
 		]);
 	}
 
-	function onClear()
-	{
+	function onClear() {
 		this.m.Dude = null;
 	}
 

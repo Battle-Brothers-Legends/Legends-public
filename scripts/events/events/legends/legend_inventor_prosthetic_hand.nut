@@ -45,10 +45,7 @@ this.legend_inventor_prosthetic_hand <- this.inherit("scripts/events/event", {
 			Options = [
 				{
 					Text = "Let\'s try it out!",
-					function getResult( _event )
-					{
-						return 0;
-					}
+					getResult = @(_event) 0
 				}
 			],
 			function start( _event )
@@ -101,10 +98,7 @@ this.legend_inventor_prosthetic_hand <- this.inherit("scripts/events/event", {
 			Options = [
 				{
 					Text = "Yes, perhaps another time.",
-					function getResult( _event )
-					{
-						return 0;
-					}
+					getResult = @(_event) 0
 				}
 			],
 			function start( _event )
@@ -144,7 +138,7 @@ this.legend_inventor_prosthetic_hand <- this.inherit("scripts/events/event", {
 		}
 		else
 		{
-			this.m.Inventor = inventor_candidates[this.Math.rand(0, inventor_candidates.len() - 1)];
+			this.m.Inventor = inventor_candidates[::Math.rand(0, inventor_candidates.len() - 1)];
 		}
 
 
@@ -161,7 +155,7 @@ this.legend_inventor_prosthetic_hand <- this.inherit("scripts/events/event", {
 		}
 		else
 		{
-			this.m.Nohand = nohand_candidates[this.Math.rand(0, nohand_candidates.len() - 1)];
+			this.m.Nohand = nohand_candidates[::Math.rand(0, nohand_candidates.len() - 1)];
 		}
 
 

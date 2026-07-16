@@ -2,36 +2,25 @@ this.legends_necromancer_origins_grave_recruit_event <- this.inherit("scripts/ev
 	m = {
 		Dude = null
 	},
-	function create()
-	{
+	function create() {
 		this.m.ID = "event.legends_necromancer_origins_grave_recruit";
 		this.m.Title = "Near the mass grave...";
 		this.m.Cooldown = 20.0 * this.World.getTime().SecondsPerDay;
-		this.m.Screens.push({ //— \n |
+		this.m.Screens.push({
+			//— \n |
 			ID = "A",
 			Text = "[img]gfx/ui/events/event_132.png[/img]{While on the road, you notice a corpse face first in the dirt. After some time another appears. Then another — and another. The decaying human breadcrumbs culminate into a large battlefield boasting a hasily dug pit filled with corpses, presumably not the victor\'s... \n\n...if indeed there was one. \n\nCircling the site the battle appeared to be recent, some corpses are remarkably fresh in what appears to be a mix between an ambush, a counter ambush and a third party that was in the wrong place at the wrong time.}",
 			Image = "",
 			List = [],
 			Characters = [],
-			Options = [
-				{
-					Text = "Try to raise something.",
-					function getResult( _event )
-					{
-						return "B";
-					}
-				},
-				{
-					Text = "Loot the battlefield.",
-					function getResult( _event )
-					{
-						return "C";
-					}
-				}
-			],
-			function start( _event )
-			{
-			}
+			Options = [{
+				Text = "Try to raise something.",
+				getResult = @(_event) "B"
+			}, {
+				Text = "Loot the battlefield.",
+				getResult = @(_event) "C"
+			}],
+			function start(_event) {}
 
 		});
 		this.m.Screens.push({
@@ -40,24 +29,20 @@ this.legends_necromancer_origins_grave_recruit_event <- this.inherit("scripts/ev
 			Image = "",
 			List = [],
 			Characters = [],
-			Options = [
-				{
-					Text = "Time to dress you up nicely!",
-					function getResult( _event )
-					{
-						this.World.getPlayerRoster().add(_event.m.Dude);
-						this.World.getTemporaryRoster().clear();
-						_event.m.Dude.onHired();
-						_event.m.Dude = null;
-						return 0;
-					}
+			Options = [{
+				Text = "Time to dress you up nicely!",
+				function getResult(_event) {
+					this.World.getPlayerRoster().add(_event.m.Dude);
+					this.World.getTemporaryRoster().clear();
+					_event.m.Dude.onHired();
+					_event.m.Dude = null;
+					return 0;
 				}
-			],
-			function start( _event )
-			{
+			}],
+			function start(_event) {
 				local roster = this.World.getTemporaryRoster();
 				_event.m.Dude = roster.create("scripts/entity/tactical/player");
- 				_event.m.Dude.getFlags().add("PlayerZombie");
+				_event.m.Dude.getFlags().add("PlayerZombie");
 				_event.m.Dude.getFlags().add("undead");
 				_event.m.Dude.getFlags().add("zombie_minion");
 				_event.m.RawDescription = "You pulled this minion from a mass grave. You know little about who they once were — nor do you care.";
@@ -82,20 +67,16 @@ this.legends_necromancer_origins_grave_recruit_event <- this.inherit("scripts/ev
 				local oriental = this.World.FactionManager.getFactionsOfType(this.Const.FactionType.OrientalCityState);
 				local undead = this.World.FactionManager.getFactionsOfType(this.Const.FactionType.Undead);
 
-				foreach( n in nobles )
-				{
+				foreach (n in nobles) {
 					n.addPlayerRelation(-5.0, "Became a greater threat");
 				}
-				foreach( n in settlement )
-				{
+				foreach (n in settlement) {
 					n.addPlayerRelation(-10.0, "Became a greater threat");
 				}
-				foreach( n in oriental )
-				{
+				foreach (n in oriental) {
 					n.addPlayerRelation(-5.0, "Became a greater threat");
 				}
-				foreach( n in undead )
-				{
+				foreach (n in undead) {
 					n.addPlayerRelation(20.0, "You should not see this");
 				}
 			}
@@ -106,27 +87,19 @@ this.legends_necromancer_origins_grave_recruit_event <- this.inherit("scripts/ev
 			Image = "",
 			List = [],
 			Characters = [],
-			Options = [
-				{
-					Text = "We shouldn\'t draw attention to ourselves.",
-					function getResult( _event )
-					{
-						return 0;
-					}
-
-				}
-			],
-			function start( _event )
-			{
-				local money = this.Math.rand(18, 628);
+			Options = [{
+				Text = "We shouldn\'t draw attention to ourselves.",
+				getResult = @(_event) 0
+			}],
+			function start(_event) {
+				local money = ::Math.rand(18, 628);
 				this.World.Assets.addMoney(money);
 			}
 
 		});
 	}
 
-	function onUpdateScore()
-	{
+	function onUpdateScore() {
 		//see 'static_functions' ::Legends.S.humansOnly for more details.
 		local originID = ::World.Assets.getOrigin().getID();
 		if (originID != "scenario.legends_solo_necro" && originID != "scenario.legends_necro") {
@@ -135,18 +108,17 @@ this.legends_necromancer_origins_grave_recruit_event <- this.inherit("scripts/ev
 
 		local hasZombie = false;
 		foreach (bro in ::World.getPlayerRoster().getAll()) {
-    		if (bro.getFlags().has("PlayerZombie")) {
+			if (bro.getFlags().has("PlayerZombie")) {
 				hasZombie = true;
 				break;
 			}
 		}
 
 		if (!hasZombie) {
-    		return; 
+			return;
 		}
 
-		if (this.World.getPlayerRoster().getSize() >= this.World.Assets.getBrothersMax())
-		{
+		if (this.World.getPlayerRoster().getSize() >= this.World.Assets.getBrothersMax()) {
 			return;
 		}
 
@@ -154,37 +126,30 @@ this.legends_necromancer_origins_grave_recruit_event <- this.inherit("scripts/ev
 		local nearSite = false;
 		local currentTile = this.World.State.getPlayer().getTile();
 
-		foreach( v in locations )
-		{
-			if (v.getTypeID() == "location.undead_mass_grave" && v.getTile().getDistanceTo(currentTile) < 5)
-			{
+		foreach (v in locations) {
+			if (v.getTypeID() == "location.undead_mass_grave" && v.getTile().getDistanceTo(currentTile) < 5) {
 				nearSite = true;
 				break;
 			}
 		}
 
-		if (!nearSite)
-		{
+		if (!nearSite) {
 			return;
 		}
 
 		this.m.Score = 15;
 	}
 
-	function onPrepare()
-	{
-	}
+	function onPrepare() {}
 
-	function onPrepareVariables( _vars )
-	{
+	function onPrepareVariables(_vars) {
 		_vars.push([
 			"joiner",
 			this.m.Dude.getName()
 		]);
 	}
 
-	function onClear()
-	{
+	function onClear() {
 		this.m.Dude = null;
 	}
 

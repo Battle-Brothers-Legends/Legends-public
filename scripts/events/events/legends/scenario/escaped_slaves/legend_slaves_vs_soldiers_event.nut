@@ -1,7 +1,6 @@
 this.legend_slaves_vs_soldiers_event <- this.inherit("scripts/events/event", {
 	m = {},
-	function create()
-	{
+	function create() {
 		this.m.ID = "event.legend_slaves_vs_soldiers";
 		this.m.Title = "During camp...";
 		this.m.Cooldown = 50.0 * this.World.getTime().SecondsPerDay;
@@ -11,30 +10,22 @@ this.legend_slaves_vs_soldiers_event <- this.inherit("scripts/events/event", {
 			Image = "",
 			List = [],
 			Characters = [],
-			Options = [
-				{
-					Text = "Why can\'t we all just get along?",
-					function getResult( _event )
-					{
-						return 0;
-					}
-
-				}
-			],
-			function start( _event )
-			{
+			Options = [{
+				Text = "Why can\'t we all just get along?",
+				getResult = @(_event) 0
+			}],
+			function start(_event) {
 				local brothers = this.World.getPlayerRoster().getAll();
 
-				foreach( bro in brothers )
-				{
+				foreach (bro in brothers) {
 					if (bro.getSkills().hasTrait(::Legends.Trait.Loyal)) {
 						bro.worsenMood(1.5, "Had his loyalty called into question");
 					} else if (bro.getBackground().isBackgroundType(this.Const.BackgroundType.Combat)) {
-						if (this.Math.rand(1, 100) <= 50) {
+						if (::Math.rand(1, 100) <= 50) {
 							bro.worsenMood(1.0, "Was accused of being too mercenary")
 						}
-					} else if (bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.Slave)) {
-						if (this.Math.rand(1, 100) <= 50) {
+					} else if (::Legends.Backgrounds.has(bro, ::Legends.Background.Slave)) {
+						if (::Math.rand(1, 100) <= 50) {
 							bro.worsenMood(1.0, "Was accused of using the company")
 						}
 					}
@@ -43,14 +34,8 @@ this.legend_slaves_vs_soldiers_event <- this.inherit("scripts/events/event", {
 						this.List.push(::Legends.EventList.changeMood(bro));
 					}
 
-					if (this.Math.rand(1, 100) <= 40)
-					{
-						bro.addLightInjury();
-						this.List.push({
-							id = 10,
-							icon = "ui/icons/days_wounded.png",
-							text = bro.getName() + " suffers light wounds"
-						});
+					if (::Math.rand(1, 100) <= 40) {
+						this.List.push(::Legends.EventList.addLightInjury(bro));
 					}
 				}
 			}
@@ -58,59 +43,37 @@ this.legend_slaves_vs_soldiers_event <- this.inherit("scripts/events/event", {
 		});
 	}
 
-	function onUpdateScore()
-	{
-		if (!this.Const.DLC.Desert)
-		{
-			return;
-		}
-
-		if (this.World.Assets.getOrigin().getID() != "scenario.legend_escaped_slaves")
-		{
+	function onUpdateScore() {
+		if (this.World.Assets.getOrigin().getID() != "scenario.legend_escaped_slaves") {
 			return;
 		}
 
 		local brothers = this.World.getPlayerRoster().getAll();
 
-		if (brothers.len() <= 5)
-		{
+		if (brothers.len() <= 5) {
 			return;
 		}
 
 		local slaves = 0;
 		local soldiers = 0;
 
-		foreach( bro in brothers )
-		{
-			if (bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.Slave))
-			{
-				slaves = ++slaves;
-			}
-			else if (bro.getBackground().isBackgroundType(this.Const.BackgroundType.Combat))
-			{
-				soldiers = ++soldiers;
+		foreach (bro in brothers) {
+			if (::Legends.Backgrounds.has(bro, ::Legends.Background.Slave)) {
+				slaves++;
+			} else if (bro.getBackground().isBackgroundType(this.Const.BackgroundType.Combat)) {
+				soldiers++;
 			}
 		}
 
-		if (slaves <= 3 || soldiers <= 2)
-		{
+		if (slaves <= 3 || soldiers <= 2) {
 			return;
 		}
 
-		this.m.Score = this.Math.min(slaves, soldiers) * 2;
+		this.m.Score = ::Math.min(slaves, soldiers) * 2;
 	}
 
-	function onPrepare()
-	{
-	}
-
-	function onPrepareVariables( _vars )
-	{
-	}
-
-	function onClear()
-	{
-	}
-
+	function onPrepare() {}
+	function onPrepareVariables(_vars) {}
+	function onClear() {}
 });
 

@@ -2,8 +2,7 @@ this.legend_houndmaster_tames_white_wolf_event <- this.inherit("scripts/events/e
 	m = {
 		Houndmaster = null
 	},
-	function create()
-	{
+	function create() {
 		this.m.ID = "event.legend_houndmaster_tames_white_wolf";
 		this.m.Title = "Along the way...";
 		this.m.Cooldown = 99999.0 * this.World.getTime().SecondsPerDay;
@@ -13,18 +12,11 @@ this.legend_houndmaster_tames_white_wolf_event <- this.inherit("scripts/events/e
 			Image = "",
 			List = [],
 			Characters = [],
-			Options = [
-				{
-					Text = "Now or never.",
-					function getResult( _event )
-					{
-						return this.Math.rand(1, 100) <= 60 ? "B" : "C";
-					}
-
-				}
-			],
-			function start( _event )
-			{
+			Options = [{
+				Text = "Now or never.",
+				getResult = @(_event) ::Math.rand(1, 100) <= 60 ? "B" : "C"
+			}],
+			function start(_event) {
 				this.Characters.push(_event.m.Houndmaster.getImagePath());
 			}
 		});
@@ -34,26 +26,16 @@ this.legend_houndmaster_tames_white_wolf_event <- this.inherit("scripts/events/e
 			Image = "",
 			List = [],
 			Characters = [],
-			Options = [
-				{
-					Text = "A noble beast.",
-					function getResult( _event )
-					{
-						return 0;
-					}
-
-				}
-			],
-			function start( _event )
-			{
+			Options = [{
+				Text = "A noble beast.",
+				getResult = @(_event) 0
+			}],
+			function start(_event) {
 				this.Characters.push(_event.m.Houndmaster.getImagePath());
-				local item = this.new("scripts/items/accessory/legend_white_wolf_item");
-				this.World.Assets.getStash().add(item);
-				this.List.push({
-					id = 10,
-					icon = "ui/items/" + item.getIcon(),
-					text = "You gain " + item.getName()
-				});
+
+				this.List.extend(::Legends.EventList.addItems([
+					::new("scripts/items/accessory/legend_white_wolf_item")
+				], ::World.Assets.getStash()));
 				this.List.push(::Legends.EventList.changeMood(_event.m.Houndmaster, 2.0, "Managed to tame a white wolf"));
 			}
 		});
@@ -63,18 +45,11 @@ this.legend_houndmaster_tames_white_wolf_event <- this.inherit("scripts/events/e
 			Image = "",
 			List = [],
 			Characters = [],
-			Options = [
-				{
+			Options = [				{
 					Text = "Damn beast.",
-					function getResult( _event )
-					{
-						return 0;
-					}
-
-				}
-			],
-			function start( _event )
-			{
+					getResult = @(_event) 0
+				}			],
+			function start(_event) {
 				this.Characters.push(_event.m.Houndmaster.getImagePath());
 				this.List.push(::Legends.EventList.changeMood(_event.m.Houndmaster, -1.0, "Failed to tame the white wolf"));
 			}
@@ -82,8 +57,7 @@ this.legend_houndmaster_tames_white_wolf_event <- this.inherit("scripts/events/e
 		});
 	}
 
-	function onUpdateScore()
-	{
+	function onUpdateScore() {
 
 		//if (this.World.Assets.getOrigin().getID() != "scenario.legends_rangers" && this.World.Assets.getOrigin().getID() != "scenario.rangers" && this.World.Assets.getOrigin().getID() != "scenario.legends_druid")
 		//{
@@ -91,53 +65,40 @@ this.legend_houndmaster_tames_white_wolf_event <- this.inherit("scripts/events/e
 		//}
 
 		local currentTile = this.World.State.getPlayer().getTile();
-
-		if (currentTile.Type != this.Const.World.TerrainType.Snow && currentTile.Type != this.Const.World.TerrainType.SnowyForest)
-		{
+		if (!::Legends.S.oneOf(currentTile.Type, ::Const.World.TerrainType.Snow, ::Const.World.TerrainType.SnowyForest))
 			return;
-		}
 
 		if (!this.World.Assets.getStash().hasEmptySlot())
-		{
 			return;
-		}
 
 		local brothers = this.World.getPlayerRoster().getAll();
 		local candidates = [];
-
-		foreach( bro in brothers )
-		{
-			if (bro.getLevel() >= 5 && (bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.LegendCommanderRanger) || bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.LegendCommanderDruid)))
-			{
-				candidates.push(bro);
-			}
+		foreach (bro in brothers) {
+			if (bro.getLevel() < 5)
+				continue;
+			if (!::Legends.Backgrounds.hasAny(bro, ::Legends.Background.LegendCommanderRanger, ::Legends.Background.LegendCommanderDruid))
+				continue;
+			candidates.push(bro);
 		}
 
 		if (candidates.len() == 0)
-		{
 			return;
-		}
 
-		this.m.Houndmaster = candidates[this.Math.rand(0, candidates.len() - 1)];
+		this.m.Houndmaster = candidates[::Math.rand(0, candidates.len() - 1)];
 		this.m.Score = candidates.len() * 6;
 	}
 
-	function onPrepare()
-	{
-	}
+	function onPrepare() {}
 
-	function onPrepareVariables( _vars )
-	{
+	function onPrepareVariables(_vars) {
 		_vars.push([
 			"houndmaster",
 			this.m.Houndmaster.getNameOnly()
 		]);
 	}
 
-	function onClear()
-	{
+	function onClear() {
 		this.m.Houndmaster = null;
 	}
-
 });
 

@@ -1,7 +1,6 @@
 this.legend_party_intro_event <- this.inherit("scripts/events/event", {
 	m = {},
-	function create()
-	{
+	function create() {
 		this.m.ID = "event.legend_party_scenario_intro";
 		this.m.IsSpecial = true;
 		this.m.Screens.push({
@@ -11,36 +10,23 @@ this.legend_party_intro_event <- this.inherit("scripts/events/event", {
 			Banner = "",
 			List = [],
 			Characters = [],
-			Options = [
-				{
-					Text = "For glory!",
-					function getResult( _event )
-					{
-						return 0;
-					}
-
-				}
-			],
-			function start( _event )
-			{
+			Options = [{
+				Text = "For glory!",
+				getResult = @(_event) 0
+			}],
+			function start(_event) {
 				this.Banner = "ui/banners/" + this.World.Assets.getBanner() + "s.png";
 			}
-
 		});
 	}
 
-	function onUpdateScore()
-	{
-		return;
-	}
+	function onUpdateScore() {}
 
-	function onPrepare()
-	{
+	function onPrepare() {
 		this.m.Title = "The " + this.World.Assets.getName();
 	}
 
-	function onPrepareVariables( _vars )
-	{
+	function onPrepareVariables(_vars) {
 		local brothers = this.World.getPlayerRoster().getAll();
 		_vars.push([
 			"bro1",
@@ -54,23 +40,21 @@ this.legend_party_intro_event <- this.inherit("scripts/events/event", {
 			"bro3",
 			brothers[2].getName()
 		]);
-				_vars.push([
+		_vars.push([
 			"bro4",
 			brothers[3].getName()
 		]);
-				_vars.push([
+		_vars.push([
 			"bro5",
 			brothers[4].getName()
 		]);
-				_vars.push([
+		_vars.push([
 			"bro6",
 			brothers[5].getName()
 		]);
 	}
 
-	function onClear()
-	{
-	}
+	function onClear() {}
 
 });
 

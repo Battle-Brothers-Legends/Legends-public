@@ -3,8 +3,7 @@ this.legend_inventor_prosthetic_ear <- this.inherit("scripts/events/event", {
 		Inventor = null,
 		Nofoot = null
 	},
-	function create()
-	{
+	function create() {
 		this.m.ID = "event.legend_inventor_prosthetic_ear";
 		this.m.Title = "During camp...";
 		this.m.Cooldown = 25 * this.World.getTime().SecondsPerDay;
@@ -14,24 +13,14 @@ this.legend_inventor_prosthetic_ear <- this.inherit("scripts/events/event", {
 			Image = "",
 			List = [],
 			Characters = [],
-			Options = [
-				{
-					Text = "Alright. Here\'s 350 crowns — and take 5 tools from the cart.",
-					function getResult( _event )
-					{
-						return "B";
-					}
-				},
-				{
-					Text = "We can\'t spare resources on this right now.",
-					function getResult( _event )
-					{
-						return "C";
-					}
-				}
-			],
-			function start( _event )
-			{
+			Options = [{
+				Text = "Alright. Here\'s 350 crowns — and take 5 tools from the cart.",
+				getResult = @(_event) "B"
+			}, {
+				Text = "We can\'t spare resources on this right now.",
+				getResult = @(_event) "C"
+			}],
+			function start(_event) {
 				this.Characters.push(_event.m.Inventor.getImagePath());
 				this.Characters.push(_event.m.Nofoot.getImagePath());
 			}
@@ -45,14 +34,10 @@ this.legend_inventor_prosthetic_ear <- this.inherit("scripts/events/event", {
 			Options = [
 				{
 					Text = "Let\'s try it out!",
-					function getResult( _event )
-					{
-						return 0;
-					}
+					getResult = @(_event) 0
 				}
 			],
-			function start( _event )
-			{
+			function start(_event) {
 				this.Characters.push(_event.m.Inventor.getImagePath());
 				this.Characters.push(_event.m.Nofoot.getImagePath());
 				this.World.Assets.addMoney(-350);
@@ -69,7 +54,7 @@ this.legend_inventor_prosthetic_ear <- this.inherit("scripts/events/event", {
 					text = "You spend [color=" + this.Const.UI.Color.NegativeEventValue + "]5[/color] Tools and Supplies"
 				});
 
-				local trait = ::Legends.Traits.grant(_event.m.Nofoot, ::Legends.Trait.LegendProstheticEar, function (_trait) {
+				local trait = ::Legends.Traits.grant(_event.m.Nofoot, ::Legends.Trait.LegendProstheticEar, function(_trait) {
 					this.List.push({
 						id = 10,
 						icon = _trait.getIcon(),
@@ -80,9 +65,9 @@ this.legend_inventor_prosthetic_ear <- this.inherit("scripts/events/event", {
 				local maimed_foot_bye = this.new("scripts/skills/injury_permanent/missing_ear_injury");
 				_event.m.Nofoot.getSkills().removeByID("injury.missing_ear");
 				this.List.push({
-						id = 10,
-						icon = maimed_foot_bye.getIcon(),
-						text = _event.m.Nofoot.m.Name + " no longer has a " + maimed_foot_bye.m.Name
+					id = 10,
+					icon = maimed_foot_bye.getIcon(),
+					text = _event.m.Nofoot.m.Name + " no longer has a " + maimed_foot_bye.m.Name
 				});
 
 				_event.m.Inventor.improveMood(2.0, "Created a " + trait.m.Name + " for " + _event.m.Nofoot.m.Name);
@@ -95,25 +80,18 @@ this.legend_inventor_prosthetic_ear <- this.inherit("scripts/events/event", {
 			Image = "",
 			List = [],
 			Characters = [],
-			Options = [
-				{
-					Text = "Perhaps another time.",
-					function getResult( _event )
-					{
-						return 0;
-					}
-				}
-			],
-			function start( _event )
-			{
+			Options = [{
+				Text = "Perhaps another time.",
+				getResult = @(_event) 0
+			}],
+			function start(_event) {
 				this.Characters.push(_event.m.Inventor.getImagePath());
 				this.Characters.push(_event.m.Nofoot.getImagePath());
 			}
 		});
 	}
 
-	function onUpdateScore()
-	{
+	function onUpdateScore() {
 		this.m.Score = 0;
 		return;
 
@@ -122,55 +100,42 @@ this.legend_inventor_prosthetic_ear <- this.inherit("scripts/events/event", {
 		local nofoot_candidates = [];
 
 
-		if (this.World.Assets.getMoney() < 800 || this.World.Assets.getArmorParts() < 20)
-		{
+		if (this.World.Assets.getMoney() < 800 || this.World.Assets.getArmorParts() < 20) {
 			return;
 		}
 
 
-		foreach (bro in brothers)
-		{
-			if (bro.getSkills().hasPerk(::Legends.Perk.LegendInventorAnatomy))
-			{
+		foreach (bro in brothers) {
+			if (bro.getSkills().hasPerk(::Legends.Perk.LegendInventorAnatomy)) {
 				inventor_candidates.push(bro);
 			}
 		}
-		if (inventor_candidates.len() < 1)
-		{
+		if (inventor_candidates.len() < 1) {
 			return;
-		}
-		else
-		{
-			this.m.Inventor = inventor_candidates[this.Math.rand(0, inventor_candidates.len() - 1)];
+		} else {
+			this.m.Inventor = inventor_candidates[::Math.rand(0, inventor_candidates.len() - 1)];
 		}
 
 
-		foreach (bro in brothers)
-		{
-			if (bro.getSkills().hasSkill("injury.missing_ear") && !bro.getSkills().hasTrait(::Legends.Trait.LegendProstheticEar))
-			{
+		foreach (bro in brothers) {
+			if (bro.getSkills().hasSkill("injury.missing_ear") && !bro.getSkills().hasTrait(::Legends.Trait.LegendProstheticEar)) {
 				nofoot_candidates.push(bro);
 			}
 		}
-		if (nofoot_candidates.len() < 1)
-		{
+		if (nofoot_candidates.len() < 1) {
 			return;
-		}
-		else
-		{
-			this.m.Nofoot = nofoot_candidates[this.Math.rand(0, nofoot_candidates.len() - 1)];
+		} else {
+			this.m.Nofoot = nofoot_candidates[::Math.rand(0, nofoot_candidates.len() - 1)];
 		}
 
 
 		this.m.Score = 5.0 + ((this.m.Inventor.getLevel() * 10.0) / this.Const.LevelXP.len());
 	}
 
-	function onPrepare()
-	{
+	function onPrepare() {
 	}
 
-	function onPrepareVariables( _vars )
-	{
+	function onPrepareVariables(_vars) {
 		_vars.push([
 			"inventor",
 			this.m.Inventor.m.Name
@@ -181,8 +146,7 @@ this.legend_inventor_prosthetic_ear <- this.inherit("scripts/events/event", {
 		]);
 	}
 
-	function onClear()
-	{
+	function onClear() {
 		this.m.Inventor = null;
 		this.m.Nofoot = null;
 	}

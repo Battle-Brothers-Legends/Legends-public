@@ -1,20 +1,20 @@
 this.legend_fear_nobles_event <- this.inherit("scripts/events/event", {
 	m = {
 		Casualty = null,
-		excludedBackgrounds = [
-			::Legends.Backgrounds.getID(::Legends.Background.AdventurousNoble),
-			::Legends.Backgrounds.getID(::Legends.Background.Companion),
-			::Legends.Backgrounds.getID(::Legends.Background.DisownedNoble),
-			::Legends.Backgrounds.getID(::Legends.Background.HedgeKnight),
-			::Legends.Backgrounds.getID(::Legends.Background.LegendCommanderNoble),
-			::Legends.Backgrounds.getID(::Legends.Background.LegendCompanionMelee),
-			::Legends.Backgrounds.getID(::Legends.Background.LegendCompanionRanged),
-			::Legends.Backgrounds.getID(::Legends.Background.LegendNoble),
-			::Legends.Backgrounds.getID(::Legends.Background.LegendNoble2h),
-			::Legends.Backgrounds.getID(::Legends.Background.LegendNobleRanged),
-			::Legends.Backgrounds.getID(::Legends.Background.LegendNobleShield)
+		ExcludedBackgrounds = [
+			::Legends.Background.AdventurousNoble,
+			::Legends.Background.Companion,
+			::Legends.Background.DisownedNoble,
+			::Legends.Background.HedgeKnight,
+			::Legends.Background.LegendCommanderNoble,
+			::Legends.Background.LegendCompanionMelee,
+			::Legends.Background.LegendCompanionRanged,
+			::Legends.Background.LegendNoble,
+			::Legends.Background.LegendNoble2h,
+			::Legends.Background.LegendNobleRanged,
+			::Legends.Background.LegendNobleShield
 		],
-		excludedTraits = [
+		ExcludedTraits = [
 			::Legends.Trait.Bloodthirsty,
 			::Legends.Trait.Brave,
 			::Legends.Trait.Determined,
@@ -23,8 +23,7 @@ this.legend_fear_nobles_event <- this.inherit("scripts/events/event", {
 			::Legends.Trait.LegendHateNobles
 		]
 	},
-	function create()
-	{
+	function create() {
 		this.m.ID = "event.legend_fear_nobles";
 		this.m.Title = "During camp...";
 		this.m.Cooldown = 25.0 * this.World.getTime().SecondsPerDay;
@@ -34,18 +33,11 @@ this.legend_fear_nobles_event <- this.inherit("scripts/events/event", {
 			Image = "",
 			List = [],
 			Characters = [],
-			Options = [
-				{
-					Text = "They are still just men, underneath the finery.",
-					function getResult( _event )
-					{
-						return 0;
-					}
-
-				}
-			],
-			function start( _event )
-			{
+			Options = [{
+				Text = "They are still just men, underneath the finery.",
+				getResult = @(_event) 0
+			}],
+			function start(_event) {
 				this.Characters.push(_event.m.Casualty.getImagePath());
 				::Legends.Traits.grant(_event.m.Casualty, ::Legends.Trait.LegendFearNobles, function(_trait) {
 					this.List.push({
@@ -58,81 +50,49 @@ this.legend_fear_nobles_event <- this.inherit("scripts/events/event", {
 		});
 	}
 
-	function onUpdateScore()
-	{
-		if (!this.Const.DLC.Unhold)
-		{
-			return;
-		}
-
-		local fallen = [];
-		local fallen = this.World.Statistics.getFallen();
-
+	function onUpdateScore() {
+		local fallen = ::World.Statistics.getFallen();
 		if (fallen.len() < 2)
-		{
 			return;
-		}
 
-		if (fallen[0].Time < this.World.getTime().Days || fallen[1].Time < this.World.getTime().Days)
-		{
+		if (fallen[0].Time < this.World.getTime().Days || fallen[1].Time < ::World.getTime().Days)
 			return;
-		}
 
 		if (this.World.Statistics.getFlags().getAsInt("LastCombatFaction") != this.World.FactionManager.getFactionOfType(this.Const.FactionType.NobleHouse).getID())
-		{
 			return;
-		}
 
 		local brothers = this.World.getPlayerRoster().getAll();
-
 		if (brothers.len() < 2)
-		{
 			return;
-		}
 
-		local candidates = [];
-
-		foreach( bro in brothers )
-		{
-			foreach (background in this.m.excludedBackgrounds)
-			{
-				if (bro.getBackground().getID() == background)
-					continue;
-			}
-			if (bro.getLevel() > 7)
-				continue;
-
-			foreach (trait in this.m.excludedTraits)
-			{
-				if (bro.getSkills().hasTrait(trait))
-					continue;
-			}
-			candidates.push(bro);
-		}
+		local candidates = brothers.filter(function (_, _bro) {
+			if (_bro.getLevel() > 7)
+				return false;
+			if (::Legends.S.any(this.m.ExcludedBackgrounds, @(_bg) ::Legends.Backgrounds.has(_bro, _bg)))
+				return false;
+			if (::Legends.S.any(this.m.ExcludedTraits, @(_trait) _bro.getSkills().hasTrait(_trait)))
+				return false;
+			return true;
+		}.bindenv(this));
 
 		if (candidates.len() == 0)
-		{
 			return;
-		}
 
-		this.m.Casualty = candidates[this.Math.rand(0, candidates.len() - 1)];
+		this.m.Casualty = candidates[::Math.rand(0, candidates.len() - 1)];
 		this.m.Score = 50;
 	}
 
-	function onPrepare()
-	{
+	function onPrepare() {
 	}
 
-	function onPrepareVariables( _vars )
-	{
+	function onPrepareVariables(_vars) {
 		_vars.push([
 			"brother",
 			this.m.Casualty.getName()
 		]);
 	}
 
-	function onClear()
-	{
+	function onClear() {
 		this.m.Casualty = null;
 	}
 

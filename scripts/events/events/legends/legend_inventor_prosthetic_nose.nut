@@ -45,10 +45,7 @@ this.legend_inventor_prosthetic_nose <- this.inherit("scripts/events/event", {
 			Options = [
 				{
 					Text = "Let\'s try it out!",
-					function getResult( _event )
-					{
-						return 0;
-					}
+					getResult = @(_event) 0
 				}
 			],
 			function start( _event )
@@ -98,10 +95,7 @@ this.legend_inventor_prosthetic_nose <- this.inherit("scripts/events/event", {
 			Options = [
 				{
 					Text = "Perhaps another time.",
-					function getResult( _event )
-					{
-						return 0;
-					}
+					getResult = @(_event) 0
 				}
 			],
 			function start( _event )
@@ -141,7 +135,7 @@ this.legend_inventor_prosthetic_nose <- this.inherit("scripts/events/event", {
 		}
 		else
 		{
-			this.m.Inventor = inventor_candidates[this.Math.rand(0, inventor_candidates.len() - 1)];
+			this.m.Inventor = inventor_candidates[::Math.rand(0, inventor_candidates.len() - 1)];
 		}
 
 
@@ -158,7 +152,7 @@ this.legend_inventor_prosthetic_nose <- this.inherit("scripts/events/event", {
 		}
 		else
 		{
-			this.m.Nofoot = nofoot_candidates[this.Math.rand(0, nofoot_candidates.len() - 1)];
+			this.m.Nofoot = nofoot_candidates[::Math.rand(0, nofoot_candidates.len() - 1)];
 		}
 
 

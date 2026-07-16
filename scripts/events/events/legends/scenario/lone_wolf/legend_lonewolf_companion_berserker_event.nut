@@ -2,8 +2,7 @@ this.legend_lonewolf_companion_berserker_event <- this.inherit("scripts/events/e
 	m = {
 		Dude = null
 	},
-	function create()
-	{
+	function create() {
 		this.m.ID = "event.legend_lonewolf_companion_berserker";
 		this.m.Title = "Sole Survivor";
 		this.m.Cooldown = 66.0 * this.World.getTime().SecondsPerDay;
@@ -13,27 +12,14 @@ this.legend_lonewolf_companion_berserker_event <- this.inherit("scripts/events/e
 			Image = "",
 			List = [],
 			Characters = [],
-			Options = [
-				{
-					Text = "{Someone needs our help! | It\'s worth a look at least... | Approach carefully...}",
-					function getResult( _event )
-					{
-						return "B";
-					}
-
-				},
-				{
-					Text = "Rest and leave.",
-					function getResult( _event )
-					{
-						return 0;
-					}
-
-				}
-			],
-			function start( _event )
-			{
-			}
+			Options = [{
+				Text = "{Someone needs our help! | It\'s worth a look at least... | Approach carefully...}",
+				getResult = @(_event) "B"
+			}, {
+				Text = "Rest and leave.",
+				getResult = @(_event) 0
+			}],
+			function start(_event) {}
 
 		});
 		this.m.Screens.push({
@@ -42,28 +28,14 @@ this.legend_lonewolf_companion_berserker_event <- this.inherit("scripts/events/e
 			Image = "",
 			List = [],
 			Characters = [],
-			Options = [
-				{
-					Text = "{I haven\'t told you who I am yet... | What about me? | I\'d be glad to have a fighter like you.}",
-					function getResult( _event )
-					{
-						return "C";
-					}
-
-				},
-				{
-					Text = "{Not interested. | You\'re too unpredictable for my tastes.}",
-					function getResult( _event )
-					{
-						return "D";
-					}
-
-				}
-			],
-			function start( _event )
-			{
-			}
-
+			Options = [{
+				Text = "{I haven\'t told you who I am yet... | What about me? | I\'d be glad to have a fighter like you.}",
+				getResult = @(_event) "C"
+			}, {
+				Text = "{Not interested. | You\'re too unpredictable for my tastes.}",
+				getResult = @(_event) "D"
+			}],
+			function start(_event) {}
 		});
 		this.m.Screens.push({
 			ID = "C",
@@ -71,21 +43,16 @@ this.legend_lonewolf_companion_berserker_event <- this.inherit("scripts/events/e
 			Image = "",
 			List = [],
 			Characters = [],
-			Options = [
-				{
-					Text = "{Good thing I\'m not one of those bloodsuckers.}",
-					function getResult( _event )
-					{
-						this.World.getPlayerRoster().add(_event.m.Dude);
-						this.World.getTemporaryRoster().clear();
-						_event.m.Dude.onHired();
-						return 0;
-					}
-
+			Options = [{
+				Text = "{Good thing I\'m not one of those bloodsuckers.}",
+				function getResult(_event) {
+					this.World.getPlayerRoster().add(_event.m.Dude);
+					this.World.getTemporaryRoster().clear();
+					_event.m.Dude.onHired();
+					return 0;
 				}
-			],
-			function start( _event )
-			{
+			}],
+			function start(_event) {
 				this.Characters.push(_event.m.Dude.getImagePath());
 			}
 
@@ -96,20 +63,11 @@ this.legend_lonewolf_companion_berserker_event <- this.inherit("scripts/events/e
 			Image = "",
 			List = [],
 			Characters = [],
-			Options = [
-				{
-					Text = "Hopefully it works out okay.",
-					function getResult( _event )
-					{
-						return 0;
-					}
-
-				}
-			],
-			function start( _event )
-			{
-			}
-
+			Options = [{
+				Text = "Hopefully it works out okay.",
+				getResult = @(_event) 0
+			}],
+			function start(_event) {}
 		});
 		this.m.Screens.push({
 			ID = "E",
@@ -117,52 +75,40 @@ this.legend_lonewolf_companion_berserker_event <- this.inherit("scripts/events/e
 			Image = "",
 			List = [],
 			Characters = [],
-			Options = [
-				{
-					Text = "Nothing good could\'ve come of that.",
-					function getResult( _event )
-					{
-						return 0;
-					}
-
-				}
-			]
+			Options = [{
+				Text = "Nothing good could\'ve come of that.",
+				getResult = @(_event) 0
+			}]
+			function start(_event) {}
 		});
 	}
 
-	function onUpdateScore()
-	{
-		if (this.World.Assets.getOrigin().getID() != "scenario.lone_wolf")
-		{
+	function onUpdateScore() {
+		if (this.World.Assets.getOrigin().getID() != "scenario.lone_wolf") {
 			return;
 		}
 
-		if (!this.World.getTime().IsDaytime)
-		{
+		if (!this.World.getTime().IsDaytime) {
 			return;
 		}
 
 		local brothers = this.World.getPlayerRoster().getAll();
 
-		if (this.World.getPlayerRoster().getSize() >= this.World.Assets.getBrothersMax())
-		{
+		if (this.World.getPlayerRoster().getSize() >= this.World.Assets.getBrothersMax()) {
 			return;
 		}
 
 		local currentTile = this.World.State.getPlayer().getTile();
 
-		if (currentTile.Type != this.Const.World.TerrainType.Snow && currentTile.Type != this.Const.World.TerrainType.SnowyForest)
-		{
+		if (currentTile.Type != this.Const.World.TerrainType.Snow && currentTile.Type != this.Const.World.TerrainType.SnowyForest) {
 			return;
 		}
 
 		this.m.Score = 30;
 	}
 
-	function onPrepareVariables( _vars )
-	{
-		if (this.m.Dude == null)
-		{
+	function onPrepareVariables(_vars) {
+		if (this.m.Dude == null) {
 			local roster = this.World.getTemporaryRoster();
 			this.m.Dude = roster.create("scripts/entity/tactical/player");
 			this.m.Dude.setStartValuesEx([::Legends.Background.LegendBerserker]);
@@ -177,8 +123,7 @@ this.legend_lonewolf_companion_berserker_event <- this.inherit("scripts/events/e
 		]);
 	}
 
-	function onClear()
-	{
+	function onClear() {
 		this.m.Dude = null;
 	}
 

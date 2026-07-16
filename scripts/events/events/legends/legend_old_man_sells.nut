@@ -2,8 +2,7 @@ this.legend_old_man_sells <- this.inherit("scripts/events/event", {
 	m = {
 		Bought = 0
 	},
-	function create()
-	{
+	function create() {
 		this.m.ID = "event.legend_old_man_sells";
 		this.m.Title = "The wanderer";
 		this.m.Cooldown = 10000000000.0 * this.World.getTime().SecondsPerDay;
@@ -13,33 +12,19 @@ this.legend_old_man_sells <- this.inherit("scripts/events/event", {
 			Image = "",
 			List = [],
 			Characters = [],
-			Options = [
-				{
-					Text = "A relic for that much? I\'ll bite.",
-					function getResult( _event )
-					{
-						_event.m.Bought = 1;
-						return "B";
-					}
-
-				},
-				{
-					Text = "How about we just take everything you have, old man?",
-					function getResult( _event )
-					{
-						return this.Math.rand(1, 100) <= 60 ? "C" : "D";
-					}
-
-				},
-				{
-					Text = "Not interested in trinkets.",
-					function getResult( _event )
-					{
-						return "E";
-					}
-
+			Options = [{
+				Text = "A relic for that much? I\'ll bite.",
+				function getResult(_event) {
+					_event.m.Bought = 1;
+					return "B";
 				}
-			]
+			}, {
+				Text = "How about we just take everything you have, old man?",
+				getResult = @(_event) ::Math.rand(1, 100) <= 60 ? "C" : "D"
+			}, {
+				Text = "Not interested in trinkets.",
+				getResult = @(_event) "E"
+			}]
 		});
 		this.m.Screens.push({
 			ID = "B",
@@ -47,57 +32,22 @@ this.legend_old_man_sells <- this.inherit("scripts/events/event", {
 			Image = "",
 			List = [],
 			Characters = [],
-			Options = [
-				{
-					Text = "Be seeing you...",
-					function getResult( _event )
-					{
-						return 0;
-					}
-
-				}
-			],
-			function start( _event )
-			{
-				if (_event.m.Bought == 1)
-				{
-					local r = this.Math.rand(1, 5);
-					local item;
-
-					if (r == 1)
-					{
-						item = this.new("scripts/items/accessory/special/legend_oms_rib_item");
-					}
-					else if (r == 2)
-					{
-						item = this.new("scripts/items/accessory/special/legend_oms_amphora_item");
-					}
-					else if (r == 3)
-					{
-						item = this.new("scripts/items/accessory/special/legend_oms_ledger_item");
-					}
-					else if (r == 4)
-					{
-						item = this.new("scripts/items/accessory/special/legend_oms_paw_item");
-					}
-					else if (r == 5)
-					{
-						item = this.new("scripts/items/accessory/special/legend_oms_fate_item");
-					}
-
-					this.World.Assets.getStash().add(item);
-					
-					this.List.push({
-						id = 10,
-						icon = "ui/items/" + item.getIcon(),
-						text = "You gain " + this.Const.Strings.getArticle(item.getName()) + item.getName()
-					});
-					this.World.Assets.addMoney(-2000);
-					this.List.push({
-						id = 10,
-						icon = "ui/icons/asset_money.png",
-						text = "You spend [color=" + this.Const.UI.Color.NegativeEventValue + "]2000[/color] Crowns"
-					});
+			Options = [{
+				Text = "Be seeing you...",
+				getResult = @(_event) 0
+			}],
+			function start(_event) {
+				if (_event.m.Bought == 1) {
+					this.List.extend(::Legends.EventList.addItems([
+						::Const.World.Common.pickItem([
+							[1, "accessory/special/legend_oms_rib_item"],
+							[1, "accessory/special/legend_oms_amphora_item"],
+							[1, "accessory/special/legend_oms_ledger_item"],
+							[1, "accessory/special/legend_oms_paw_item"],
+							[1, "accessory/special/legend_oms_fate_item"]
+						], "scripts/items/")
+					], ::World.Assets.getStash()));
+					this.List.push(::Legends.EventList.changeMoney(-2000));
 				}
 			}
 
@@ -108,50 +58,13 @@ this.legend_old_man_sells <- this.inherit("scripts/events/event", {
 			Image = "",
 			List = [],
 			Characters = [],
-			Options = [
-				{
-					Text = "Where the fark did they all come from!?",
-					function getResult( _event )
-					{
-						return 0;
-					}
-
-				}
-			],
-			function start( _event )
-			{
-				local money = this.Math.rand(982, 2336);
-				this.World.Assets.addMoney(-money);
-				this.List = [
-					{
-						id = 10,
-						icon = "ui/icons/asset_money.png",
-						text = "You lost [color=" + this.Const.UI.Color.NegativeEventValue + "]" + money + "[/color] Crowns"
-					}
-				];
+			Options = [{
+				Text = "Where the fark did they all come from!?",
+				getResult = @(_event) 0
+			}],
+			function start(_event) {
+				this.List.push(::Legends.EventList.changeMoney(::Math.rand(982, 2336) * -1));
 			}
-
-			function giveEffect()
-			{
-				local brothers = this.World.getPlayerRoster().getAll();
-				local result = [];
-				local lowestChance = 9000;
-				local lowestBro;
-				local applied = false;
-
-				foreach( bro in brothers )
-				{
-					for( local chance = bro.addLightInjury(); this.Math.rand(1, 100) < chance;  )
-					{
-						if (chance < lowestChance)
-						{
-							lowestChance = chance;
-							lowestBro = bro;
-						}
-					}
-				}
-			}
-
 		});
 		this.m.Screens.push({
 			ID = "D",
@@ -159,29 +72,13 @@ this.legend_old_man_sells <- this.inherit("scripts/events/event", {
 			Image = "",
 			List = [],
 			Characters = [],
-			Options = [
-				{
-					Text = "Too close.",
-					function getResult( _event )
-					{
-						return 0;
-					}
-
-				}
-			],
-			function start( _event )
-			{
-				local money = this.Math.rand(489, 2582);
-				this.World.Assets.addMoney(money);
-				this.List = [
-					{
-						id = 10,
-						icon = "ui/icons/asset_money.png",
-						text = "You gained [color=" + this.Const.UI.Color.NegativeEventValue + "]" + money + "[/color] Crowns"
-					}
-				];
+			Options = [{
+				Text = "Too close.",
+				getResult = @(_event) 0
+			}],
+			function start(_event) {
+				this.List.push(::Legends.EventList.changeMoney(::Math.rand(489, 2582)));
 			}
-
 		});
 		this.m.Screens.push({
 			ID = "E",
@@ -189,40 +86,29 @@ this.legend_old_man_sells <- this.inherit("scripts/events/event", {
 			Image = "",
 			List = [],
 			Characters = [],
-			Options = [
-				{
-					Text = "Can\'t trust anyone out here.",
-					function getResult( _event )
-					{
-						return 0;
-					}
-
-				}
-			]
+			Options = [{
+				Text = "Can\'t trust anyone out here.",
+				getResult = @(_event) 0
+			}]
 		});
 	}
 
-	function onUpdateScore()
-	{
-		if (this.World.Assets.getMoney() < 2500)
-		{
+	function onUpdateScore() {
+		if (this.World.Assets.getMoney() < 2500) {
 			return;
 		}
 
 		local currentTile = this.World.State.getPlayer().getTile();
 
-		if (currentTile.Type != this.Const.World.TerrainType.Forest && currentTile.Type != this.Const.World.TerrainType.LeaveForest)
-		{
+		if (currentTile.Type != this.Const.World.TerrainType.Forest && currentTile.Type != this.Const.World.TerrainType.LeaveForest) {
 			return;
 		}
 
 		local towns = this.World.EntityManager.getSettlements();
 		local playerTile = this.World.State.getPlayer().getTile();
 
-		foreach( t in towns )
-		{
-			if (t.getTile().getDistanceTo(playerTile) <= 6)
-			{
+		foreach (t in towns) {
+			if (t.getTile().getDistanceTo(playerTile) <= 6) {
 				return false;
 			}
 		}
@@ -230,17 +116,8 @@ this.legend_old_man_sells <- this.inherit("scripts/events/event", {
 		this.m.Score = 25;
 	}
 
-	function onPrepare()
-	{
-	}
-
-	function onPrepareVariables( _vars )
-	{
-	}
-
-	function onClear()
-	{
-	}
-
+	function onPrepare() {}
+	function onPrepareVariables(_vars) {}
+	function onClear() {}
 });
 

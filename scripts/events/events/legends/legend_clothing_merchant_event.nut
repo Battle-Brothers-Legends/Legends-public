@@ -3,8 +3,7 @@ this.legend_clothing_merchant_event <- this.inherit("scripts/events/event", {
 		Bought = 0,
 		Dude = null
 	},
-	function create()
-	{
+	function create() {
 		this.m.ID = "event.legend_clothing_merchant";
 		this.m.Title = "Along the road...";
 		this.m.Cooldown = 50.0 * this.World.getTime().SecondsPerDay;
@@ -14,28 +13,14 @@ this.legend_clothing_merchant_event <- this.inherit("scripts/events/event", {
 			Image = "",
 			List = [],
 			Characters = [],
-			Options = [
-				{
-					Text = "Maybe, what\'s the stake?",
-					function getResult( _event )
-					{
-						return "B";
-					}
-
-				},
-				{
-					Text = "Not interested, thanks.",
-					function getResult( _event )
-					{
-						return "E";
-					}
-
-				}
-			],
-			function start( _event )
-			{
-			}
-
+			Options = [{
+				Text = "Maybe, what\'s the stake?",
+				getResult = @(_event) "B"
+			}, {
+				Text = "Not interested, thanks.",
+				getResult = @(_event) "E"
+			}],
+			function start(_event) {}
 		});
 		this.m.Screens.push({
 			ID = "B",
@@ -43,37 +28,23 @@ this.legend_clothing_merchant_event <- this.inherit("scripts/events/event", {
 			Image = "",
 			List = [],
 			Characters = [],
-			Options = [
-				{
-					Text = "125 crowns? I\'ll take that gamble.",
-					function getResult( _event )
-					{
-						_event.m.Bought = 1;
-						return "C";
-					}
-
-				},
-				{
-					Text = "I'll take the mule instead, lets say for 3000 crowns?",
-					function getResult( _event )
-					{
-						_event.m.Bought = 2;
-						return "C";
-					}
-
-				},
-				{
-					Text = "Not interested.",
-					function getResult( _event )
-					{
-						return "D";
-					}
-
+			Options = [{
+				Text = "125 crowns? I\'ll take that gamble.",
+				function getResult(_event) {
+					_event.m.Bought = 1;
+					return "C";
 				}
-			],
-			function start( _event )
-			{
-			}
+			}, {
+				Text = "I'll take the mule instead, lets say for 3000 crowns?",
+				function getResult(_event) {
+					_event.m.Bought = 2;
+					return "C";
+				}
+			}, {
+				Text = "Not interested.",
+				getResult = @(_event) "D"
+			}],
+			function start(_event) {}
 
 		});
 		this.m.Screens.push({
@@ -82,71 +53,50 @@ this.legend_clothing_merchant_event <- this.inherit("scripts/events/event", {
 			Image = "",
 			List = [],
 			Characters = [],
-			Options = [
-				{
-					Text = "We\'ve got places to be.",
-					function getResult( _event )
-					{
-						return 0;
-					}
+			Options = [{
+				Text = "We\'ve got places to be.",
+				getResult = @(_event) 0
+			}],
+			function start(_event) {
+				switch (_event.m.Bought) {
+					case 1:
+						this.List.extend(::Legends.EventList.addItems([
+							::new(::MSU.Class.WeightedContainer([
+								[1, "scripts/items/legend_helmets/vanity/legend_helmet_southern_top_tail"],
+								[1, "scripts/items/legend_helmets/vanity/legend_helmet_wizard_cowl"],
+								[1, "scripts/items/legend_helmets/vanity/legend_helmet_wreath"],
+								[1, "scripts/items/legend_helmets/vanity/legend_helmet_warlock_hood"],
+								[1, "scripts/items/legend_helmets/vanity/legend_helmet_royal_hood"],
+								[1, "scripts/items/legend_helmets/vanity/legend_helmet_lion_pelt"],
+								[1, "scripts/items/legend_armor/tabard/legend_armor_noble_vest"],
+								[1, "scripts/items/legend_helmets/vanity/legend_helmet_noble_buckle"],
+								[1, "scripts/items/legend_armor/cloak/legend_armor_noble_shawl"],
+								[1, "scripts/items/legend_armor/cloth/legend_armor_southern_noble_aketon"],
+								[1, "scripts/items/legend_helmets/vanity/legend_helmet_ponytail"],
+								[1, "scripts/items/legend_helmets/vanity/legend_helmet_royal_hood"],
+								[1, "scripts/items/legend_helmets/vanity/legend_helmet_southern_silk_headscarf"]
+							]).roll())
+						], ::World.Assets.getStash()));
+						this.List.push(::Legends.EventList.changeMoney(-125));
+						break;
 
-				}
-			],
-			function start( _event )
-			{
-				switch(_event.m.Bought)
-				{
-				case 1:
-					local item = ::new(::MSU.Class.WeightedContainer([
-						[1, "scripts/items/legend_helmets/vanity/legend_helmet_southern_top_tail"],
-						[1, "scripts/items/legend_helmets/vanity/legend_helmet_wizard_cowl"],
-						[1, "scripts/items/legend_helmets/vanity/legend_helmet_wreath"],
-						[1, "scripts/items/legend_helmets/vanity/legend_helmet_warlock_hood"],
-						[1, "scripts/items/legend_helmets/vanity/legend_helmet_royal_hood"],
-						[1, "scripts/items/legend_helmets/vanity/legend_helmet_lion_pelt"],
-						[1, "scripts/items/legend_armor/tabard/legend_armor_noble_vest"],
-						[1, "scripts/items/legend_helmets/vanity/legend_helmet_noble_buckle"],
-						[1, "scripts/items/legend_armor/cloak/legend_armor_noble_shawl"],
-						[1, "scripts/items/legend_armor/cloth/legend_armor_southern_noble_aketon"],
-						[1, "scripts/items/legend_helmets/vanity/legend_helmet_ponytail"],
-						[1, "scripts/items/legend_helmets/vanity/legend_helmet_royal_hood"],
-						[1, "scripts/items/legend_helmets/vanity/legend_helmet_southern_silk_headscarf"]
-					]).roll());
+					case 2:
+					//donkey bought and joins
+						local
+						roster = this.World.getTemporaryRoster();
+						_event.m.Dude = roster.create("scripts/entity/tactical/player");
+						_event.m.Dude.setStartValuesEx([::Legends.Background.LegendDonkey]);
 
-					this.World.Assets.getStash().add(item); //add random item from above, take money, capitalism.
-					this.List.push({
-						id = 10,
-						icon = "ui/items/" + item.getIcon(),
-						text = "You gain " + this.Const.Strings.getArticle(item.getName()) + item.getName()
-					});
-					this.World.Assets.addMoney(-125);
-					this.List.push({
-						id = 10,
-						icon = "ui/icons/asset_money.png",
-						text = "You spend [color=" + this.Const.UI.Color.NegativeEventValue + "]125[/color] Crowns"
-					});
-					break;
+						_event.m.Dude.getBaseProperties().Hitpoints -= 35;
+						_event.m.Dude.getBaseProperties().Stamina -= 25;
+						_event.m.Dude.getBaseProperties().Initiative -= 40;
 
-				case 2: //donkey bought and joins
-					local roster = this.World.getTemporaryRoster();
-					_event.m.Dude = roster.create("scripts/entity/tactical/player");
-					_event.m.Dude.setStartValuesEx([::Legends.Background.LegendDonkey]);
+						this.World.getPlayerRoster().add(_event.m.Dude);
+						this.World.getTemporaryRoster().clear();
+						_event.m.Dude.onHired();
 
-					_event.m.Dude.getBaseProperties().Hitpoints -= 35;
-					_event.m.Dude.getBaseProperties().Stamina -= 25;
-					_event.m.Dude.getBaseProperties().Initiative -= 40;
-
-					this.World.getPlayerRoster().add(_event.m.Dude);
-					this.World.getTemporaryRoster().clear();
-					_event.m.Dude.onHired();
-
-					this.World.Assets.addMoney(-2800);
-					this.List.push({
-						id = 10,
-						icon = "ui/icons/asset_money.png",
-						text = "You spend [color=" + this.Const.UI.Color.NegativeEventValue + "]2800[/color] Crowns"
-					});
-					break;
+						this.List.push(::Legends.EventList.changeMoney(-2800));
+						break;
 				}
 			}
 		});
@@ -156,20 +106,11 @@ this.legend_clothing_merchant_event <- this.inherit("scripts/events/event", {
 			Image = "",
 			List = [],
 			Characters = [],
-			Options = [
-				{
-					Text = "Maybe next time.",
-					function getResult( _event )
-					{
-						return 0;
-					}
-
-				}
-			],
-			function start( _event )
-			{
-			}
-
+			Options = [{
+				Text = "Maybe next time.",
+				getResult = @(_event) 0
+			}],
+			function start(_event) {}
 		});
 		this.m.Screens.push({
 			ID = "E",
@@ -177,65 +118,38 @@ this.legend_clothing_merchant_event <- this.inherit("scripts/events/event", {
 			Image = "",
 			List = [],
 			Characters = [],
-			Options = [
-				{
-					Text = "I wish I had that much free time...",
-					function getResult( _event )
-					{
-						return 0;
-					}
-
-				}
-			],
-			function start( _event )
-			{
-			}
-
+			Options = [{
+				Text = "I wish I had that much free time...",
+				getResult = @(_event) 0
+			}],
+			function start(_event) {}
 		});
 	}
 
-	function onUpdateScore()
-	{
+	function onUpdateScore() {
 		local brothers = this.World.getPlayerRoster().getAll();
-
 		if (this.World.getPlayerRoster().getSize() >= this.World.Assets.getBrothersMax())
-		{
 			return;
-		}
 
 		local currentTile = this.World.State.getPlayer().getTile();
-
 		if (!currentTile.HasRoad)
-		{
 			return;
-		}
 
 		if (this.World.Assets.getMoney() < 3500)
-		{
 			return;
-		}
 
 		if (this.World.Assets.getStash().getNumberOfEmptySlots() < 1)
-		{
 			return;
-		}
 
 		this.m.Score = 7;
 	}
 
-	function onPrepare()
-	{
-	}
+	function onPrepare() {}
+	function onPrepareVariables(_vars) {}
 
-	function onPrepareVariables( _vars )
-	{
-	}
-
-	function onClear()
-	{
+	function onClear() {
 		this.m.Bought = 0;
 		this.m.Dude = null;
 	}
-
 });
 

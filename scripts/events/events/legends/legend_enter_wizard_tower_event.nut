@@ -2,8 +2,7 @@ this.legend_enter_wizard_tower_event <- this.inherit("scripts/events/event", {
 	m = {
 		Observer = null
 	},
-	function create()
-	{
+	function create() {
 		this.m.ID = "event.location.legend_enter_wizard_tower";
 		this.m.Title = "As you approach...";
 		this.m.Cooldown = 999999.0 * this.World.getTime().SecondsPerDay;
@@ -13,31 +12,19 @@ this.legend_enter_wizard_tower_event <- this.inherit("scripts/events/event", {
 			Image = "",
 			List = [],
 			Characters = [],
-			Options = [
-				{
-					Text = "Let\'s see what secrets are inside.",
-					function getResult( _event )
-					{
-						return "B";
+			Options = [{
+				Text = "Let\'s see what secrets are inside.",
+				getResult = @(_event) "B"
+			}, {
+				Text = "It\'s not worth investigating now.",
+				function getResult(_event) {
+					if (this.World.State.getLastLocation() != null) {
+						this.World.State.getLastLocation().setVisited(false);
 					}
-
-				},
-				{
-					Text = "It\'s not worth investigating now.",
-					function getResult( _event )
-					{
-						if (this.World.State.getLastLocation() != null)
-						{
-							this.World.State.getLastLocation().setVisited(false);
-						}
-
-						return 0;
-					}
-
+					return 0;
 				}
-			],
-			function start( _event )
-			{
+			}],
+			function start(_event) {
 				this.Characters.push(_event.m.Observer.getImagePath());
 			}
 
@@ -48,31 +35,19 @@ this.legend_enter_wizard_tower_event <- this.inherit("scripts/events/event", {
 			Image = "",
 			List = [],
 			Characters = [],
-			Options = [
-				{
-					Text = "Accept the kid.",
-					function getResult( _event )
-					{
-						return "C";
+			Options = [{
+				Text = "Accept the kid.",
+				getResult = @(_event) "C"
+			}, {
+				Text = "We don\'t buy children",
+				function getResult(_event) {
+					if (this.World.State.getLastLocation() != null) {
+						this.World.State.getLastLocation().setVisited(false);
 					}
-
-				},
-				{
-					Text = "We don\'t buy children",
-					function getResult( _event )
-					{
-						if (this.World.State.getLastLocation() != null)
-						{
-							this.World.State.getLastLocation().setVisited(false);
-						}
-
-						return 0;
-					}
-
+					return 0;
 				}
-			],
-			function start( _event )
-			{
+			}],
+			function start(_event) {
 				this.Characters.push(_event.m.Observer.getImagePath());
 			}
 
@@ -83,18 +58,11 @@ this.legend_enter_wizard_tower_event <- this.inherit("scripts/events/event", {
 			Image = "",
 			List = [],
 			Characters = [],
-			Options = [
-				{
-					Text = "Is this what a wizard looks like?",
-					function getResult( _event )
-					{
-						return "D";
-					}
-
-				}
-			],
-			function start( _event )
-			{
+			Options = [{
+				Text = "Is this what a wizard looks like?",
+				getResult = @(_event) "D"
+			}],
+			function start(_event) {
 				this.Characters.push(_event.m.Observer.getImagePath());
 			}
 
@@ -105,22 +73,18 @@ this.legend_enter_wizard_tower_event <- this.inherit("scripts/events/event", {
 			Image = "",
 			List = [],
 			Characters = [],
-			Options = [
-				{
-					Text = "The journeyman begins",
-					function getResult( _event )
-					{
-						this.World.getPlayerRoster().add(_event.m.Dude);
-						this.World.getTemporaryRoster().clear();
-						_event.m.Dude.onHired();
-						_event.m.Dude = null;
-						return 0;
-					}
-
+			Options = [{
+				Text = "The journeyman begins",
+				function getResult(_event) {
+					this.World.getPlayerRoster().add(_event.m.Dude);
+					this.World.getTemporaryRoster().clear();
+					_event.m.Dude.onHired();
+					_event.m.Dude = null;
+					return 0;
 				}
-			],
-			function start( _event )
-			{
+
+			}],
+			function start(_event) {
 				local roster = this.World.getTemporaryRoster();
 				_event.m.Dude = roster.create("scripts/entity/tactical/player");
 				_event.m.Dude.setStartValuesEx([::Legends.Background.Wildman]);
@@ -129,49 +93,37 @@ this.legend_enter_wizard_tower_event <- this.inherit("scripts/events/event", {
 				_event.m.Dude.getBackground().buildDescription(true);
 				this.Characters.push(_event.m.Dude.getImagePath());
 			}
-
 		});
 	}
 
-	function onUpdateScore()
-	{
-	}
+	function onUpdateScore() {}
 
-	function onPrepare()
-	{
+	function onPrepare() {
 		local brothers = this.World.getPlayerRoster().getAll();
 		local candidates = [];
 
-		foreach( bro in brothers )
-		{
-			if (!bro.getBackground().isBackgroundType(this.Const.BackgroundType.Noble) && !bro.getSkills().hasTrait(::Legends.Trait.Bright) && !bro.getSkills().hasTrait(::Legends.Trait.ShortSighted) && !bro.getSkills().hasTrait(::Legends.Trait.NightBlind))
-			{
+		foreach (bro in brothers) {
+			if (!bro.getBackground().isBackgroundType(::Const.BackgroundType.Noble) && !bro.getSkills().hasTrait(::Legends.Trait.Bright) && !bro.getSkills().hasTrait(::Legends.Trait.ShortSighted) && !bro.getSkills().hasTrait(::Legends.Trait.NightBlind)) {
 				candidates.push(bro);
 			}
 		}
 
-		if (candidates.len() != 0)
-		{
-			this.m.Observer = candidates[this.Math.rand(0, candidates.len() - 1)];
-		}
-		else
-		{
-			this.m.Observer = brothers[this.Math.rand(0, brothers.len() - 1)];
+		if (candidates.len() != 0) {
+			this.m.Observer = candidates[::Math.rand(0, candidates.len() - 1)];
+		} else {
+			this.m.Observer = brothers[::Math.rand(0, brothers.len() - 1)];
 		}
 	}
 
-	function onPrepareVariables( _vars )
-	{
+	function onPrepareVariables(_vars) {
 		_vars.push([
 			"observer",
 			this.m.Observer != null ? this.m.Observer.getNameOnly() : ""
 		]);
 	}
 
-	function onClear()
-	{
+	function onClear() {
 		this.m.Observer = null;
 	}
-
 });
 

@@ -2,8 +2,7 @@ this.legend_blacksmith_reforges_orc_cleaver_event <- this.inherit("scripts/event
 	m = {
 		Blacksmith = null
 	},
-	function create()
-	{
+	function create() {
 		this.m.ID = "event.legend_blacksmith_reforges_orc_cleaver"; //—
 		this.m.Title = "During camp...";
 		this.m.Cooldown = 60.0 * this.World.getTime().SecondsPerDay;
@@ -13,191 +12,108 @@ this.legend_blacksmith_reforges_orc_cleaver_event <- this.inherit("scripts/event
 			Image = "",
 			List = [],
 			Characters = [],
-			Options = [
-				{
-					Text = "It is worth the risk.",
-					function getResult( _event )
-					{
-						return this.Math.rand(1, 100) <= 60 ? "B" : "C"; //B = succeed || C = fail
-					}
-
-				},
-				{
-					Text = "We don\'t have time for this.", //skip
-					function getResult( _event )
-					{
-						return 0;
-					}
-
-				}
-			],
-			function start( _event )
-			{
+			Options = [{
+				Text = "It is worth the risk.",
+				getResult = @(_event) ::Math.rand(1, 100) <= 60 ? "Success" : "Fail"
+			}, {
+				Text = "We don\'t have time for this.",
+				getResult = @(_event) 0
+			}],
+			function start(_event) {
 				this.Characters.push(_event.m.Blacksmith.getImagePath());
 			}
 
 		});
-		this.m.Screens.push({ //succeed
-			ID = "B",
+		this.m.Screens.push({
+			ID = "Success",
 			Text = "[img]gfx/ui/events/event_05.png[/img]%blacksmith% warms up the blade and hammers on it for some time — quickly twisting it this way and that as the blade cycles between hot and cold. %They_blacksmith% fights with the crude weapon until it begins to take a more sleek and finer form, losing some of the bloated mass of metal from both sides.\n %They_blacksmith% takes it to the grindstone and slowly resharpen all the edges from haft to tip, lastly dressing the handle in something more comfortable for human hands.\n\n While not an artistic masterpiece, you can\'t deny that improvements have been made to the performance of the weapon overall.",
 			Image = "",
 			List = [],
 			Characters = [],
-			Options = [
-				{
-					Text = "Much better!",
-					function getResult( _event )
-					{
-						return 0;
-					}
-
-				}
-			],
-			function start( _event )
-			{
-				this.World.Assets.getStash().makeEmptySlots(1);
-				this.World.Assets.addMoney(-1000);
-				this.List.push({
-					id = 10,
-					icon = "ui/icons/asset_money.png",
-					text = "You spend [color=" + this.Const.UI.Color.NegativeEventValue + "]1000[/color] Crowns"
-				});
-				local item;
-				local itemnamed;
-
-				item = this.new("scripts/items/weapons/greenskins/orc_cleaver");
-				this.World.Assets.getStash().remove(item);
-				this.List.push({
-					id = 10,
-					icon = "ui/items/" + item.getIcon(),
-					text = "You lose " + this.Const.Strings.getArticle(item.getName()) + item.getName()
-				});
-
-
-				itemnamed = this.new("scripts/items/weapons/named/named_orc_cleaver");
-				this.World.Assets.getStash().add(itemnamed);
-				this.List.push({
-					id = 10,
-					icon = "ui/items/" + itemnamed.getIcon(),
-					text = "You gain " + this.Const.Strings.getArticle(itemnamed.getName()) + itemnamed.getName()
-				});
+			Options = [{
+				Text = "Much better!",
+				getResult = @(_event) 0
+			}],
+			function start(_event) {
+				this.Characters.push(_event.m.Blacksmith.getImagePath());
+				this.List.push(::Legends.EventList.changeMoney(-1000));
+				this.List.push(_event.loseItem());
+				this.List.extend(::Legends.EventList.addItems([
+					::new("scripts/items/weapons/named/named_orc_cleaver")
+				], ::World.Assets.getStash()));
 				this.List.push(::Legends.EventList.changeMood(_event.m.Blacksmith, 1.5, "Reforged a primitive weapon"));
 			}
 
 		});
-		this.m.Screens.push({ //Fail
-			ID = "C",
+		this.m.Screens.push({
+			//Fail
+			ID = "Fail",
 			Text = "[img]gfx/ui/events/event_05.png[/img]%blacksmith% warms up the blade and hammers on it for some time — quickly twisting it this way and that as the blade cycles between hot and cold. %They_blacksmith% fight with the crude weapon until it begins to take a more sleek and finer form, %blacksmith% begins to curse under %their_blacksmith% breath as %they_blacksmith% puts the weapon back into %their_blacksmith% forge to reheat it. This happens again several times more as %they_blacksmith% fights with the metal more and more.\n\n After the fourth attempt, the blade eventually cracks and snaps in two under the weight of %their_blacksmith% hammer. %blacksmith% gracefully accepts this by whispering insults at the blade before tossing it into the undergrowth with an almighty force.",
 			Image = "",
 			List = [],
 			Characters = [],
-			Options = [
-				{
-					Text = "Shame.",
-					function getResult( _event )
-					{
-						return 0;
-					}
-
-				}
-			],
-			function start( _event )
-			{
-				this.World.Assets.addMoney(-1000);
-				this.List.push({
-					id = 10,
-					icon = "ui/icons/asset_money.png",
-					text = "You spend [color=" + this.Const.UI.Color.NegativeEventValue + "]1000[/color] Crowns"
-				});
-				local item;
-
-				item = this.new("scripts/items/weapons/greenskins/orc_cleaver");
-				this.World.Assets.getStash().remove(item);
-				this.List.push({
-					id = 10,
-					icon = "ui/items/" + item.getIcon(),
-					text = "You lose " + this.Const.Strings.getArticle(item.getName()) + item.getName()
-				});
+			Options = [{
+				Text = "Shame.",
+				getResult = @(_event) 0
+			}],
+			function start(_event) {
+				this.Characters.push(_event.m.Blacksmith.getImagePath());
+				this.List.push(::Legends.EventList.changeMoney(-1000));
+				this.List.push(_event.loseItem());
 				this.List.push(::Legends.EventList.changeMood(_event.m.Blacksmith, -1.0, "Failed to reforge a weapon"));
 			}
 		});
 	}
 
-	function onUpdateScore()
-	{
+	function findItem() {
+		local stash = ::World.Assets.getStash().getItems();
+		foreach (item in stash) {
+			if (item != null && item.getID() == "weapon.orc_cleaver")
+				return item;
+		}
+		return null;
+	}
 
-		// if (!this.World.getTime().IsDaytime)
-		// {
-		// 	return;
-		// }
+	function loseItem() {
+		local item = this.findItem();
+		::World.Assets.getStash().remove(item);
+		return {
+			id = 10,
+			icon = "ui/items/" + item.getIcon(),
+			text = "You lose " + ::Const.Strings.getArticle(item.getName()) + item.getName()
+		};
+	}
 
-		local brothers = this.World.getPlayerRoster().getAll();
+	function onUpdateScore() {
+		local brothers = ::World.getPlayerRoster().getAll();
 		local candidates = [];
 
-		foreach( bro in brothers )
-		{
-			if (bro.getLevel() >= 7 && bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.LegendBlacksmith)) //if this bro level is equal to or greater than the number stated, this event can happen.
-			{
+		foreach (bro in brothers) {
+			if (bro.getLevel() >= 7 && ::Legends.Backgrounds.has(bro, ::Legends.Background.LegendBlacksmith)){
 				candidates.push(bro);
 			}
 		}
-
 		if (candidates.len() == 0)
-		{
 			return;
-		}
 
-		local stash = this.World.Assets.getStash().getItems();
-		local numitem = 0;
-
-		foreach( item in stash )
-		{
-			if (item != null && item.getID() == "weapon.orc_cleaver") //check item is in stash before triggering!
-			{
-				numitem = ++numitem;
-				break;
-			}
-		}
-
-		if (numitem == 0)
-		{
+		if (this.findItem() == null)
 			return;
-		}
 
-		this.m.Blacksmith = candidates[this.Math.rand(0, candidates.len() - 1)];
+		this.m.Blacksmith = candidates[::Math.rand(0, candidates.len() - 1)];
 		this.m.Score = candidates.len() * 4;
 	}
 
-	function onPrepare()
-	{
-		// local items = this.World.Assets.getStash().getItems();
-		// local candidates = [];
+	function onPrepare() {}
 
-		// foreach( item in items )
-		// {
-		// 	if (item == null)
-		// 	{
-		// 		continue;
-		// 	}
-
-		// 	if (item.isItemType("scripts/items/weapons/greenskins/orc_cleaver"))
-		// 	{
-		// 		candidates.push(item);
-		// 	}
-	}
-
-	function onPrepareVariables( _vars )
-	{
+	function onPrepareVariables(_vars) {
 		_vars.push([
 			"blacksmith",
 			this.m.Blacksmith.getNameOnly()
 		]);
 	}
 
-	function onClear()
-	{
+	function onClear() {
 		this.m.Blacksmith = null;
 	}
-
 });
 

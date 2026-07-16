@@ -3,8 +3,7 @@ this.legends_troubadour_and_juggler_event <- this.inherit("scripts/events/event"
 		Troubadour = null,
 		Juggler = null
 	},
-	function create()
-	{
+	function create() {
 		this.m.ID = "event.legends_troubadour_and_juggler";
 		this.m.Title = "During camp...";
 		this.m.Cooldown = 50.0 * this.World.getTime().SecondsPerDay;
@@ -14,181 +13,91 @@ this.legends_troubadour_and_juggler_event <- this.inherit("scripts/events/event"
 			Image = "",
 			List = [],
 			Characters = [],
-			Options = [
-				{
-					Text = "Not standard training, but it will do",
-					function getResult( _event )
-					{
-						return 0;
-					}
-
-				}
-			],
-			function start( _event )
-			{
+			Options = [{
+				Text = "Not standard training, but it will do",
+				getResult = @(_event) 0
+			}],
+			function start(_event) {
 				this.Characters.push(_event.m.Troubadour.getImagePath());
 				this.Characters.push(_event.m.Juggler.getImagePath());
-				local r = this.Math.rand(0, 20);
+				local r = ::Math.rand(0, 20);
 				local tmdef = _event.m.Troubadour.getCurrentProperties().getMeleeDefense();
 				local jmdef = _event.m.Juggler.getCurrentProperties().getMeleeDefense();
-				local avgmdef = this.Math.floor((tmdef + jmdef) / 2);
-				if (r > avgmdef)
-				{
-					r = this.Math.rand(1, 5);
-					if (r == 1)
-					{
+				local avgmdef = ::Math.floor((tmdef + jmdef) / 2);
+				if (r > avgmdef) {
+					r = ::Math.rand(1, 5);
+					if (r == 1) {
 						this.List.push(::Legends.EventList.changeMeleeDefense(_event.m.Troubadour, 1));
-						_event.m.Troubadour.getSkills().update();
-					}
-
-					if (r == 2)
-					{
+					} else if (r == 2) {
 						this.List.push(::Legends.EventList.changeMeleeSkill(_event.m.Troubadour, 1));
-						_event.m.Troubadour.getSkills().update();
+					} else if (r == 3) {
+						this.List.push(::Legends.EventList.addInjury(_event.m.Troubadour, ::Const.Injury.BluntBody));
+					} else {
+						this.List.push(::Legends.EventList.addInjury(_event.m.Troubadour, ::Const.Injury.PiercingBody));
 					}
-
-					if (r == 3)
-					{
-						local injury = _event.m.Troubadour.addInjury(this.Const.Injury.BluntBody);
-						this.List.push({
-							id = 10,
-							icon = injury.getIcon(),
-							text = _event.m.Troubadour.getName() + " suffers " + injury.getNameOnly()
-						});
-					}
-
-					else
-					{
-						local injury = _event.m.Troubadour.addInjury(this.Const.Injury.PiercingBody);
-						this.List.push({
-							id = 10,
-							icon = injury.getIcon(),
-							text = _event.m.Troubadour.getName() + " suffers " + injury.getNameOnly()
-						});
-					}
-				}
-				else
-				{
-					local r;
-					r = this.Math.rand(1, 8);
-
-					if (r == 1)
-					{
+				} else {
+					r = ::Math.rand(1, 8);
+					if (r == 1) {
 						this.List.push(::Legends.EventList.changeRangedDefense(_event.m.Juggler, 1));
-						_event.m.Juggler.getSkills().update();
-					}
-
-					if (r == 2)
-					{
+					} else if (r == 2) {
 						this.List.push(::Legends.EventList.changeRangedSkill(_event.m.Juggler, 1));
-						_event.m.Juggler.getSkills().update();
-					}
-
-					if (r == 3)
-					{
-						local injury = _event.m.Troubadour.addInjury(this.Const.Injury.BluntBody);
-						this.List.push({
-							id = 10,
-							icon = injury.getIcon(),
-							text = _event.m.Troubadour.getName() + " suffers " + injury.getNameOnly()
-						});
-					}
-
-					if (r == 4)
-					{
-						local injury = _event.m.Troubadour.addInjury(this.Const.Injury.PiercingBody);
-						this.List.push({
-							id = 10,
-							icon = injury.getIcon(),
-							text = _event.m.Troubadour.getName() + " suffers " + injury.getNameOnly()
-						});
+					} else if (r == 3) {
+						this.List.push(::Legends.EventList.addInjury(_event.m.Troubadour, ::Const.Injury.BluntBody));
+					} else if (r == 4) {
+						this.List.push(::Legends.EventList.addInjury(_event.m.Troubadour, ::Const.Injury.PiercingBody));
 					}
 
 					local brothers = this.World.getPlayerRoster().getAll();
-					foreach( bro in brothers )
-					{
-						if (bro.getID() == _event.m.Troubadour.getID() || bro.getID() == _event.m.Juggler.getID())
-						{
+					foreach (bro in brothers) {
+						if (bro.getID() == _event.m.Troubadour.getID() || bro.getID() == _event.m.Juggler.getID()) {
 							continue;
 						}
-						local r;
-						r = this.Math.rand(1, 20);
-
-						if (r == 1)
-						{
+						local r = ::Math.rand(1, 20);
+						if (r == 1) {
 							this.List.push(::Legends.EventList.changeRangedDefense(bro, 1));
-							bro.getSkills().update();
-						}
-
-						if (r == 2)
-						{
-							local injury = bro.addInjury(this.Const.Injury.Archery);
-							this.List.push({
-								id = 10,
-								icon = injury.getIcon(),
-								text = bro.getName() + " suffers " + injury.getNameOnly()
-							});
-
+						} else if (r == 2) {
+							this.List.push(::Legends.EventList.addInjury(bro, ::Const.Injury.Archery));
 						}
 					}
-
 				}
-
 			}
 
 		});
 	}
 
-	function onUpdateScore()
-	{
+	function onUpdateScore() {
 		local brothers = this.World.getPlayerRoster().getAll();
 
 		if (brothers.len() < 3)
-		{
 			return;
-		}
 
 		local candidates_troubadour = [];
-
-		foreach( bro in brothers )
-		{
-			if (bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.Minstrel) && bro.getGender() == 1)
-			{
+		foreach (bro in brothers) {
+			if (::Legends.Backgrounds.has(bro, ::Legends.Background.Minstrel) && bro.getGender() == 1) {
 				candidates_troubadour.push(bro);
 			}
 		}
-
 		if (candidates_troubadour.len() == 0)
-		{
 			return;
-		}
 
 		local candidates_juggler = [];
-
-		foreach( bro in brothers )
-		{
-			if (bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.Juggler))
-			{
+		foreach (bro in brothers) {
+			if (::Legends.Backgrounds.has(bro, ::Legends.Background.Juggler)) {
 				candidates_juggler.push(bro);
 			}
 		}
 
 		if (candidates_juggler.len() == 0)
-		{
 			return;
-		}
 
-		this.m.Troubadour = candidates_troubadour[this.Math.rand(0, candidates_troubadour.len() - 1)];
-		this.m.Juggler = candidates_juggler[this.Math.rand(0, candidates_juggler.len() - 1)];
+		this.m.Troubadour = candidates_troubadour[::Math.rand(0, candidates_troubadour.len() - 1)];
+		this.m.Juggler = candidates_juggler[::Math.rand(0, candidates_juggler.len() - 1)];
 		this.m.Score = (candidates_troubadour.len() + candidates_juggler.len()) * 5;
 	}
 
-	function onPrepare()
-	{
-	}
+	function onPrepare() {}
 
-	function onPrepareVariables( _vars )
-	{
+	function onPrepareVariables(_vars) {
 		_vars.push([
 			"troubadour",
 			this.m.Troubadour.getNameOnly()
@@ -199,8 +108,7 @@ this.legends_troubadour_and_juggler_event <- this.inherit("scripts/events/event"
 		]);
 	}
 
-	function onClear()
-	{
+	function onClear() {
 		this.m.Troubadour = null;
 		this.m.Juggler = null;
 	}

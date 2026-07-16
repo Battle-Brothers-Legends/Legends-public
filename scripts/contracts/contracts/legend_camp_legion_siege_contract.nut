@@ -1643,12 +1643,9 @@ this.legend_camp_legion_siege_contract <- ::inherit("scripts/contracts/legend_ca
 		c.addOrder(despawn);
 	}
 
-	function spawnSiege()
-	{
-		foreach( a in this.m.Origin.getActiveAttachedLocations() )
-		{
-			if (this.Math.rand(1, 100) <= 50)
-			{
+	function spawnSiege() {
+		foreach (a in this.m.Origin.getActiveAttachedLocations()) {
+			if (this.Math.rand(1, 100) <= 50) {
 				a.spawnFireAndSmoke();
 				a.setActive(false);
 			}
@@ -1657,55 +1654,45 @@ this.legend_camp_legion_siege_contract <- ::inherit("scripts/contracts/legend_ca
 		local f = this.World.FactionManager.getFaction(this.getFaction());
 		local castles = [];
 
-		foreach( s in f.getSettlements() )
-		{
-			if (s.isMilitary())
-			{
+		foreach (s in f.getSettlements()) {
+			if (s.isMilitary()) {
 				castles.push(s);
 			}
 		}
 
-		if (castles.len() == 0)
-		{
+		if (castles.len() == 0) {
 			castles = clone f.getSettlements();
 		}
 
 		local originTile = this.m.Origin.getTile();
 		local lastTile;
 
-		for( local i = 0; i < 2; i = ++i )
-		{
+		for (local i = 0; i < 2; i = ++i) {
 			local tile;
 
-			while (true)
-			{
+			while (true) {
 				local x = this.Math.rand(originTile.SquareCoords.X - 1, originTile.SquareCoords.X + 1);
 				local y = this.Math.rand(originTile.SquareCoords.Y - 1, originTile.SquareCoords.Y + 1);
 
-				if (!this.World.isValidTileSquare(x, y))
-				{
+				if (!this.World.isValidTileSquare(x, y)) {
 					continue;
 				}
 
 				tile = this.World.getTileSquare(x, y);
 
-				if (tile.getDistanceTo(originTile) == 0)
-				{
+				if (tile.getDistanceTo(originTile) == 0) {
 					continue;
 				}
 
-				if (tile.Type == this.Const.World.TerrainType.Ocean)
-				{
+				if (tile.Type == this.Const.World.TerrainType.Ocean) {
 					continue;
 				}
 
-				if (i == 0 && !tile.HasRoad && !this.m.Origin.isIsolatedFromRoads())
-				{
+				if (i == 0 && !tile.HasRoad && !this.m.Origin.isIsolatedFromRoads()) {
 					continue;
 				}
 
-				if (lastTile != null && tile.ID == lastTile.ID)
-				{
+				if (lastTile != null && tile.ID == lastTile.ID) {
 					continue;
 				}
 
@@ -1722,13 +1709,10 @@ this.legend_camp_legion_siege_contract <- ::inherit("scripts/contracts/legend_ca
 			party.setDescription("An Undead Legion");
 			party.setVisibilityMult(2.5);
 
-			if (i == 0)
-			{
+			if (i == 0) {
 				party.getSprite("body").setBrush("figure_siege_01");
 				party.getSprite("base").Visible = false;
-			}
-			else
-			{
+			} else {
 				party.getSprite("body").setBrush(party.getSprite("body").getBrush().Name + "_" + f.getBannerString());
 			}
 
@@ -1743,75 +1727,65 @@ this.legend_camp_legion_siege_contract <- ::inherit("scripts/contracts/legend_ca
 			wait.setTime(9000.0);
 			c.addOrder(wait);
 		}
-	}
 
-	local targets = [];
+		local targets = [];
 
-	foreach( l in this.m.Origin.getAttachedLocations() )
-	{
-		if (l.isActive() && l.isUsable())
-		{
-			targets.push(l);
-		}
-	}
-
-	if (targets.len() == 0)
-	{
-		foreach( l in this.m.Origin.getAttachedLocations() )
-		{
-			if (l.isUsable())
-			{
+		foreach (l in this.m.Origin.getAttachedLocations()) {
+			if (l.isActive() && l.isUsable()) {
 				targets.push(l);
 			}
 		}
-	}
 
-	for( local i = 0; i < numOtherEnemies; i = ++i )
-	{
-		local tile;
-		local tries = 0;
-
-		while (tries++ < 500)
-		{
-			local x = this.Math.rand(originTile.SquareCoords.X - 4, originTile.SquareCoords.X + 4);
-			local y = this.Math.rand(originTile.SquareCoords.Y - 4, originTile.SquareCoords.Y + 4);
-
-			if (!this.World.isValidTileSquare(x, y))
-			{
-				continue;
+		if (targets.len() == 0) {
+			foreach (l in this.m.Origin.getAttachedLocations()) {
+				if (l.isUsable()) {
+					targets.push(l);
+				}
 			}
-
-			tile = this.World.getTileSquare(x, y);
-
-			if (tile.getDistanceTo(originTile) <= 1)
-			{
-				continue;
-			}
-
-			if (tile.Type == this.Const.World.TerrainType.Ocean)
-			{
-				continue;
-			}
-			break;
 		}
+
+		for (local i = 0; i < numOtherEnemies; i = ++i) {
+			local tile;
+			local tries = 0;
+
+			while (tries++ < 500) {
+				local x = this.Math.rand(originTile.SquareCoords.X - 4, originTile.SquareCoords.X + 4);
+				local y = this.Math.rand(originTile.SquareCoords.Y - 4, originTile.SquareCoords.Y + 4);
+
+				if (!this.World.isValidTileSquare(x, y)) {
+					continue;
+				}
+
+				tile = this.World.getTileSquare(x, y);
+
+				if (tile.getDistanceTo(originTile) <= 1) {
+					continue;
+				}
+
+				if (tile.Type == this.Const.World.TerrainType.Ocean) {
+					continue;
+				}
+				break;
+			}
 //check
-		local party = this.World.FactionManager.getFactionOfType(this.Const.FactionType.UndeadArmy).spawnEntity(tile, "Legion Cohort", false, this.Const.World.Spawn.UndeadArmy, this.Math.rand(90, 110) * this.getDifficultyMult() * this.getScaledDifficultyMult(), this.getMinibossModifier());
-		this.m.UnitsSpawned.push(party.getID());
-		party.setDescription("Legionaries marching to war.");
-		party.getSprite("banner").setBrush(orcBase != null ? orcBase.getBanner() : "banner_undead_01");
-		local c = party.getController();
-		local raidTarget = targets[this.Math.rand(0, targets.len() - 1)].getTile();
-		c.getBehavior(this.Const.World.AI.Behavior.ID.Flee).setEnabled(false);
-		local raid = this.new("scripts/ai/world/orders/raid_order");
-		raid.setTime(30.0);
-		raid.setTargetTile(raidTarget);
-		c.addOrder(raid);
-		local destroy = this.new("scripts/ai/world/orders/destroy_order");
-		destroy.setTime(60.0);
-		destroy.setSafetyOverride(true);
-		destroy.setTargetTile(originTile);
-		destroy.setTargetID(this.m.Origin.getID());
-		c.addOrder(destroy);
+			local party = this.World.FactionManager.getFactionOfType(this.Const.FactionType.UndeadArmy).spawnEntity(tile, "Legion Cohort", false, this.Const.World.Spawn.UndeadArmy, this.Math.rand(90, 110) * this.getDifficultyMult() * this.getScaledDifficultyMult(), this.getMinibossModifier());
+			this.m.UnitsSpawned.push(party.getID());
+			party.setDescription("Legionaries marching to war.");
+			party.getSprite("banner").setBrush(orcBase != null ? orcBase.getBanner() : "banner_undead_01");
+			local c = party.getController();
+			local raidTarget = targets[this.Math.rand(0, targets.len() - 1)].getTile();
+			c.getBehavior(this.Const.World.AI.Behavior.ID.Flee).setEnabled(false);
+			local raid = this.new("scripts/ai/world/orders/raid_order");
+			raid.setTime(30.0);
+			raid.setTargetTile(raidTarget);
+			c.addOrder(raid);
+			local destroy = this.new("scripts/ai/world/orders/destroy_order");
+			destroy.setTime(60.0);
+			destroy.setSafetyOverride(true);
+			destroy.setTargetTile(originTile);
+			destroy.setTargetID(this.m.Origin.getID());
+			c.addOrder(destroy);
+		}
 	}
 
 	function destroysettlement()

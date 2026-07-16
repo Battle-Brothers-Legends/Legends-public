@@ -1,7 +1,6 @@
 this.legend_noble_intro_event <- this.inherit("scripts/events/event", {
 	m = {},
-	function create()
-	{
+	function create() {
 		this.m.ID = "event.legend_noble_scenario_intro";
 		this.m.IsSpecial = true;
 		this.m.Screens.push({
@@ -11,18 +10,11 @@ this.legend_noble_intro_event <- this.inherit("scripts/events/event", {
 			Banner = "",
 			List = [],
 			Characters = [],
-			Options = [
-				{
-					Text = "To arms!",
-					function getResult( _event )
-					{
-						return 0;
-					}
-
-				}
-			],
-			function start( _event )
-			{
+			Options = [{
+				Text = "To arms!",
+				getResult = @(_event) 0
+			}],
+			function start(_event) {
 				// this.logInfo("Making you well known");
 				// this.World.Assets.addBusinessReputation(1000);
 				this.logInfo("Making a noble house like you");
@@ -35,26 +27,19 @@ this.legend_noble_intro_event <- this.inherit("scripts/events/event", {
 		});
 	}
 
-	function onUpdateScore()
-	{
-		return;
-	}
+	function onUpdateScore() {}
 
-	function onPrepare()
-	{
+	function onPrepare() {
 		this.m.Title = "Legend Noble";
 	}
 
-	function onPrepareVariables( _vars )
-	{
+	function onPrepareVariables(_vars) {
 		_vars.push([
 			"home",
 			this.World.Flags.get("HomeVillage")
 		]);
 	}
 
-	function onClear()
-	{
-	}
+	function onClear() {}
 
 });

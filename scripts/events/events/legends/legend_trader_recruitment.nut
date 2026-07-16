@@ -2,8 +2,7 @@ this.legend_trader_recruitment <- this.inherit("scripts/events/event", {
 	m = {
 		Trader = null
 	},
-	function create()
-	{
+	function create() {
 		this.m.ID = "event.legend_trader_recruitment";
 		this.m.Title = "Along the way...";
 		this.m.Cooldown = 120 * this.World.getTime().SecondsPerDay;
@@ -16,8 +15,7 @@ this.legend_trader_recruitment <- this.inherit("scripts/events/event", {
 			Options = [
 				{
 					Text = "Welcome to the %companyname%.",
-					function getResult( _event )
-					{
+					function getResult(_event) {
 						this.World.getPlayerRoster().add(_event.m.Trader);
 						this.World.getTemporaryRoster().clear();
 						_event.m.Trader.onHired();
@@ -27,16 +25,14 @@ this.legend_trader_recruitment <- this.inherit("scripts/events/event", {
 				},
 				{
 					Text = "We\'d rather not take you in.",
-					function getResult( _event )
-					{
+					function getResult(_event) {
 						this.World.getTemporaryRoster().clear();
 						return 0;
 					}
 
 				}
 			],
-			function start( _event )
-			{
+			function start(_event) {
 				local roster = this.World.getTemporaryRoster();
 				_event.m.Trader = roster.create("scripts/entity/tactical/player");
 				_event.m.Trader.setStartValuesEx([::Legends.Background.LegendTrader]);
@@ -47,28 +43,23 @@ this.legend_trader_recruitment <- this.inherit("scripts/events/event", {
 		});
 	}
 
-	function onUpdateScore()
-	{
+	function onUpdateScore() {
 		return; // old bg that needs to be refactored
-		if (this.World.getPlayerRoster().getSize() >= this.World.Assets.getBrothersMax())
-		{
+		if (this.World.getPlayerRoster().getSize() >= this.World.Assets.getBrothersMax()) {
 			return;
 		}
 
-		if (!this.World.Ambitions.getAmbition("ambition.have_z_crowns").isDone())
-		{
+		if (!this.World.Ambitions.getAmbition("ambition.have_z_crowns").isDone()) {
 			return;
 		}
 
-		if (this.World.Assets.getMoney() <= 30000)
-		{
+		if (this.World.Assets.getMoney() <= 30000) {
 			return;
 		}
 
 		local playerTile = this.World.State.getPlayer().getTile();
 
-		if (!playerTile.HasRoad)
-		{
+		if (!playerTile.HasRoad) {
 			return;
 		}
 
@@ -76,37 +67,26 @@ this.legend_trader_recruitment <- this.inherit("scripts/events/event", {
 		local totalbrothers = 0;
 		local brotherlevels = 0;
 
-		foreach( bro in brothers )
-		{
-			switch(bro.getBackground().getID())
-			{
-			case ::Legends.Backgrounds.getID(::Legends.Background.LegendTrader):
-			case ::Legends.Backgrounds.getID(::Legends.Background.LegendCommanderTrader):
+		foreach (bro in brothers) {
+			if (::Legends.Backgrounds.hasAny(bro, ::Legends.Background.LegendTrader, ::Legends.Background.LegendCommanderTrader))
 				return;
-			}
 
-			totalbrothers = totalbrothers + 1;
-			brotherlevels = brotherlevels + bro.getLevel();
+			totalbrothers++;
+			brotherlevels += bro.getLevel();
 		}
 
-		if (totalbrothers < 1 || brotherlevels < 30)
-		{
+		if (totalbrothers < 1 || brotherlevels < 30) {
 			return;
 		}
 
 		this.m.Score = 20.0 + brotherlevels / totalbrothers * 10.0 / this.Const.LevelXP.len();
 	}
 
-	function onPrepare()
-	{
-	}
+	function onPrepare() {}
 
-	function onPrepareVariables( _vars )
-	{
-	}
+	function onPrepareVariables(_vars) {}
 
-	function onClear()
-	{
+	function onClear() {
 		this.m.Trader = null;
 	}
 

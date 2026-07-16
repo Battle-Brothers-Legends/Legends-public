@@ -1,7 +1,6 @@
 this.legends_retinue_brother_lost <- this.inherit("scripts/events/event", {
 	m = {},
-	function create()
-	{
+	function create() {
 		this.m.ID = "event.legends.retinue_brother_lost";
 		this.m.Title = "At camp...";
 		this.m.IsSpecial = true;
@@ -12,36 +11,27 @@ this.legends_retinue_brother_lost <- this.inherit("scripts/events/event", {
 			Banner = "",
 			List = [],
 			Characters = [],
-			Options = [
-				{
-					Text = "{Not everything goes as planned. | Oh well. | The mercs will understand. | This won\'t stop the %companyname%. | The important thing is that we\'re moving forward.}",
-					function getResult( _event )
-					{
-						this.World.Retinue.removeDisabledFollowers();
-						return 0;
-					}
+			Options = [{
+				Text = "{Not everything goes as planned. | Oh well. | The mercs will understand. | This won\'t stop the %companyname%. | The important thing is that we\'re moving forward.}",
+				function getResult(_event) {
+					this.World.Retinue.removeDisabledFollowers();
+					return 0;
 				}
-			],
-			function start( _event )
-			{
-			}
+			}],
+			function start(_event) {}
 		});
 	}
 
-	function isValid()
-	{
+	function isValid() {
 		return this.World.Retinue.hasFollowersToRemove();
 	}
 
-	function canFire()
-	{
+	function canFire() {
 		return this.isValid();
 	}
 
-	function onPrepareVariables( _vars )
-	{
+	function onPrepareVariables(_vars) {
 		local lostFollowers = this.World.Retinue.getFollowersToRemove();
-
 		_vars.push([
 			"s",
 			lostFollowers.len() == 1 ? "" : "s"
@@ -60,8 +50,7 @@ this.legends_retinue_brother_lost <- this.inherit("scripts/events/event", {
 		]);
 
 		local followers = "";
-		foreach (follower in lostFollowers)
-		{
+		foreach (follower in lostFollowers) {
 			followers += " - ";
 			followers += follower.getLinkedBro() == null ? "Unknown" : follower.getLinkedBro().getName();
 			followers += " (" + follower.getName() + ")\n"

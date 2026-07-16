@@ -43,7 +43,7 @@ this.legend_swordmaster_fav_enemy_event <- this.inherit("scripts/events/event", 
 				if (_event.checkTownProximity()) {
 					_event.m.Title = "In town..."
 				}
-				_event.m.Candidates.sort(function (_a, _b) {
+				_event.m.Candidates.sort(function(_a, _b) {
 					if (_a.getXP() > _b.getXP()) {
 						return -1;
 					} else if (_a.getXP() < _b.getXP()) {
@@ -67,10 +67,7 @@ this.legend_swordmaster_fav_enemy_event <- this.inherit("scripts/events/event", 
 
 				this.Options.push({
 					Text = "Leave %them_enemy% alone. Slaughtering a %child_enemy% wont bring us any fame.",
-
-					function getResult(_event) {
-						return 0;
-					}
+					getResult = @(_event) 0
 				});
 				_event.m.Champion = _event.m.Candidates[::Math.rand(0, _event.m.Candidates.len() - 1)]; // for event text so the enemy can point to one of the candidates before you choose one
 			}
@@ -83,19 +80,21 @@ this.legend_swordmaster_fav_enemy_event <- this.inherit("scripts/events/event", 
 			Characters = [],
 			Options = [
 				{
-					Text = "You can take %them_enemy%, %chosen%!",function getResult(_event) {
+					Text = "You can take %them_enemy%, %chosen%!",
+					function getResult(_event) {
 						local properties = ::World.State.getLocalCombatProperties(::World.State.getPlayer().getPos());
 						properties.Music = ::Const.Music.NobleTracks;
-						properties.Entities = [{ // this entity unfortunately is generated separately from the one in event, so we need to copy stuff over
-								ID = _event.m.Enemy.ID,
-								Variant = 1,
-								Row = 0,
-								Name = _event.m.Enemy.Name,
-								Script = _event.m.Enemy.Script,
-								Faction = ::Const.Faction.Enemy,
-								Callback = _event.onActorPlaced.bindenv(_event)
+						properties.Entities = [{
+							// this entity unfortunately is generated separately from the one in event, so we need to copy stuff over
+							ID = _event.m.Enemy.ID,
+							Variant = 1,
+							Row = 0,
+							Name = _event.m.Enemy.Name,
+							Script = _event.m.Enemy.Script,
+							Faction = ::Const.Faction.Enemy,
+							Callback = _event.onActorPlaced.bindenv(_event)
 						}];
-						
+
 						if (_event.m.Champion.isInReserves()) {
 							_event.m.WasInReserves.push(_event.m.Champion);
 							_event.m.Champion.setInReserves(false);
@@ -104,7 +103,7 @@ this.legend_swordmaster_fav_enemy_event <- this.inherit("scripts/events/event", 
 						properties.IsUsingSetPlayers = true;
 						properties.IsFleeingProhibited = true;
 						properties.IsAttackingLocation = true;
-						properties.BeforeDeploymentCallback = function () {
+						properties.BeforeDeploymentCallback = function() {
 							local size = this.Tactical.getMapSize();
 							for (local x = 0; x < size.X; ++x) {
 								for (local y = 0; y < size.Y; ++y) {
@@ -132,25 +131,16 @@ this.legend_swordmaster_fav_enemy_event <- this.inherit("scripts/events/event", 
 			Image = "",
 			List = [],
 			Characters = [],
-			Options = [
-				{
-					Text = "You did well, %chosen%.",function getResult(_event) {
-						return 0;
-					}
-				}
-			],
+			Options = [{
+				Text = "You did well, %chosen%.",
+				getResult = @(_event) 0
+			}],
 
 			function start(_event) {
 				_event.m.Title = "After the battle...";
 				this.Characters.push(_event.m.Champion.getImagePath());
-				::World.Assets.addBusinessReputation(50);
-				this.List = [
-					{
-						id = 10,
-						icon = "ui/icons/special.png",
-						text = "The company gained renown"
-					}
-				];
+
+				this.List = [::Legends.EventList.changeRenown()];
 
 				if (_event.m.Champion.getBaseProperties().MeleeSkill < 100) {
 					_event.m.Champion.improveMood(0.5, "Improved his skills though duel");
@@ -192,7 +182,7 @@ this.legend_swordmaster_fav_enemy_event <- this.inherit("scripts/events/event", 
 			function start(_event) {
 				_event.m.Title = "After the battle...";
 
-				_event.m.Candidates.sort(function (_a, _b) {
+				_event.m.Candidates.sort(function(_a, _b) {
 					if (_a.getXP() > _b.getXP()) {
 						return -1;
 					} else if (_a.getXP() < _b.getXP()) {
@@ -207,21 +197,16 @@ this.legend_swordmaster_fav_enemy_event <- this.inherit("scripts/events/event", 
 					local bro = _event.m.Candidates[i];
 					this.Options.push({
 						Text = "I need you to avenge us, " + bro.getName() + ".",
-
 						function getResult(_event) {
 							_event.m.Champion = bro;
 							return "N";
 						}
-
 					});
 				}
 
 				this.Options.push({
 					Text = "This isn\'t worth it. We should leave.",
-
-					function getResult(_event) {
-						return 0;
-					}
+					getResult = @ (_event) 0
 				});
 			}
 		});
@@ -234,7 +219,7 @@ this.legend_swordmaster_fav_enemy_event <- this.inherit("scripts/events/event", 
 
 		foreach (t in towns) {
 			if (t.getTile().getDistanceTo(playerTile) <= 8 && !t.isIsolated()) // WAS 10
-			{
+				{
 				nearTown = true;
 				break;
 			}
@@ -244,7 +229,7 @@ this.legend_swordmaster_fav_enemy_event <- this.inherit("scripts/events/event", 
 
 	function onUpdateScore() {
 		this.m.isValidForEncounter = false;
-		
+
 		if (!::World.getTime().IsDaytime) {
 			return;
 		}
@@ -284,7 +269,7 @@ this.legend_swordmaster_fav_enemy_event <- this.inherit("scripts/events/event", 
 		this.m.Score = 0; // this disables event from happening normally
 	}
 
-	function onActorPlaced (_entity, _tag) {
+	function onActorPlaced(_entity, _tag) {
 		_entity.setName(this.m.Enemy.Name);
 		_entity.setGender(this.m.Enemy.Gender);
 
@@ -331,7 +316,7 @@ this.legend_swordmaster_fav_enemy_event <- this.inherit("scripts/events/event", 
 		if (this.m.Enemy.Name == "") {
 			this.generateActors();
 		}
-		
+
 		_vars.push([
 			"chosen",
 			this.m.Champion != null ? this.m.Champion.getName() : ""

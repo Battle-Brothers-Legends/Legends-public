@@ -1,7 +1,7 @@
 this.legend_blacksmith_craft_armor <- this.inherit("scripts/events/event", {
 	m = {
 		Blacksmith = null,
-		numIngots = null,
+		NumIngots = null,
 		Town = null
 	},
 	function create()
@@ -14,49 +14,19 @@ this.legend_blacksmith_craft_armor <- this.inherit("scripts/events/event", {
 			Text = "[img]gfx/ui/events/event_01.png[/img]While walking around the town shopping you notice %blacksmith% looks like he has his mind on something else.%SPEECH_ON%What\'s the matter %blacksmith%?%SPEECH_OFF%%SPEECH_ON%Sir I don\'t know how to say this but you see we have this tradition in a craft smith community where we compete in the art of craft to prove who is worthy of a name \"King of Craftsmen\" and are proud to hold that title!%SPEECH_OFF% Is he talking about that legendary contest where smiths from all over the world gather and they craft the best items that are worthy to withstand blows of a behemoth?%SPEECH_ON%What is it that you need from me?%SPEECH_OFF%%SPEECH_ON% I need 10,000 to enter the contest to buy the metal and other supplies.%SPEECH_OFF%",
 			Image = "",
 			List = [],
-			Options = [
-				{
-					Text = "Here it is",
-					function getResult( _event )
-					{
-						if (this.Math.rand(1, 100) <= 50)
-						{
-							return "B";
-						}
-						else
-						{
-							return "C";
-						}
-					}
-
-				},
-				{
-					Text = "We can\'t spare money on this",
-					function getResult( _event )
-					{
-						return;
-					}
-
-				}
-			],
-			function start( _event )
-			{
-				if (_event.m.numIngots != null && _event.m.numIngots >= 3)
-				{
+			Options = [{
+				Text = "Here it is",
+				getResult = @(_event) ::Math.rand(1, 100) <= 50 ? "B" : "C"
+			}, {
+				Text = "We can\'t spare money on this",
+				getResult = @(_event) 0
+			}],
+			function start(_event) {
+				this.Characters.push(_event.m.Blacksmith.getImagePath());
+				if (_event.m.NumIngots != null && _event.m.NumIngots >= 3) {
 					this.Options.push({
 						Text = "Use the Iron we have in stash instead",
-						function getResult( _event )
-						{
-							if (this.Math.rand(1, 100) <= 60)
-							{
-								return "D";
-							}
-							else
-							{
-								return "E";
-							}
-						}
-
+						getResult = @(_event) ::Math.rand(1, 100) <= 60 ? "D" : "E"
 					});
 				}
 			}
@@ -68,38 +38,21 @@ this.legend_blacksmith_craft_armor <- this.inherit("scripts/events/event", {
 			Image = "",
 			List = [],
 			Characters = [],
-			Options = [
-				{
-					Text = "A masterwork!",
-					function getResult( _event )
-					{
-						return 0;
-					}
-
-				}
-			],
-			function start( _event )
-			{
-				this.World.Assets.addMoney(-10000);
-				this.List.push({
-					id = 10,
-					icon = "ui/icons/asset_money.png",
-					text = "You spend [color=" + this.Const.UI.Color.NegativeEventValue + "]10000[/color] Crowns"
-				});
-				local item = this.Const.World.Common.pickArmor([
+			Options = [{
+				Text = "A masterwork!",
+				getResult = @(_event) 0
+			}],
+			function start(_event) {
+				this.Characters.push(_event.m.Blacksmith.getImagePath());
+				local item = ::Const.World.Common.pickArmor([
 					[1, ::Legends.Armor.Named.named_golden_lamellar_armor]
 				]);
-				item.m.Upgrades[this.Const.Items.ArmorUpgrades.Plate].m.Name = _event.m.Blacksmith.getNameOnly() + "\'s Golden Lamellar Armor";
-				this.World.Assets.getStash().add(item);
-				this.List.push({
-					id = 10,
-					icon = "ui/items/" + item.getIcon(),
-					imageOverlayPath = item.getIconOverlay(),
-					text = "You gain " + item.makeName()
-				});
+				item.m.Upgrades[::Const.Items.ArmorUpgrades.Plate].m.Name = _event.m.Blacksmith.getNameOnly() + "\'s Golden Lamellar Armor";
+
+				this.List.push(::Legends.EventList.changeMoney(-10000));
+				this.List.extend(::Legends.EventList.addItems([item], ::World.Assets.getStash()));
 				this.List.push(::Legends.EventList.changeMood(_event.m.Blacksmith, 2.0, "Created a masterwork Armor"));
 			}
-
 		});
 		this.m.Screens.push({
 			ID = "C",
@@ -107,37 +60,20 @@ this.legend_blacksmith_craft_armor <- this.inherit("scripts/events/event", {
 			Image = "",
 			List = [],
 			Characters = [],
-			Options = [
-				{
-					Text = "Failure...",
-					function getResult( _event )
-					{
-						return 0;
-					}
-
-				}
-			],
-			function start( _event )
-			{
-				this.World.Assets.addMoney(-10000);
-				this.List.push({
-					id = 10,
-					icon = "ui/icons/asset_money.png",
-					text = "You spend [color=" + this.Const.UI.Color.NegativeEventValue + "]10000[/color] Crowns"
-				});
+			Options = [{
+				Text = "Failure...",
+				getResult = @(_event) 0
+			}],
+			function start(_event) {
+				this.Characters.push(_event.m.Blacksmith.getImagePath());
 				local item = this.Const.World.Common.pickArmor([
 					[1, ::Legends.Armor.Standard.heavy_lamellar_armor]
 				]);
 				item.m.Name = _event.m.Blacksmith.getNameOnly() + "\'s Failed Masterpiece";
-				this.World.Assets.getStash().add(item);
-				this.List.push({
-					id = 10,
-					icon = "ui/items/" + item.getIcon(),
-					imageOverlayPath = item.getIconOverlay(),
-					text = "You gain " + item.getName()
-				});
-			}
 
+				this.List.push(::Legends.EventList.changeMoney(-10000));
+				this.List.extend(::Legends.EventList.addItems([item], ::World.Assets.getStash()));
+			}
 		});
 		this.m.Screens.push({
 			ID = "D",
@@ -145,60 +81,22 @@ this.legend_blacksmith_craft_armor <- this.inherit("scripts/events/event", {
 			Image = "",
 			List = [],
 			Characters = [],
-			Options = [
-				{
-					Text = "A masterwork!",
-					function getResult( _event )
-					{
-						return 0;
-					}
-
-				}
-			],
-			function start( _event )
-			{
-				this.World.Assets.addMoney(-5000);
-				this.List.push({
-					id = 10,
-					icon = "ui/icons/asset_money.png",
-					text = "You spend [color=" + this.Const.UI.Color.NegativeEventValue + "]5000[/color] Crowns"
-				});
-				local stash = this.World.Assets.getStash().getItems();
-				local numIngots = 0;
-
-				foreach( i, item in stash )
-				{
-					if (item != null && item.getID() == "misc.legend_iron_ingots")
-					{
-						stash[i] = null;
-						this.List.push({
-							id = 10,
-							icon = "ui/items/" + item.getIcon(),
-							text = "You lose " + item.getName()
-						});
-						numIngots = ++numIngots;
-					}
-
-					if (numIngots >= 3)
-					{
-						break;
-					}
-				}
-
-				local item = this.Const.World.Common.pickArmor([
+			Options = [{
+				Text = "A masterwork!",
+				getResult = @(_event) 0
+			}],
+			function start(_event) {
+				this.Characters.push(_event.m.Blacksmith.getImagePath());
+				local item = ::Const.World.Common.pickArmor([
 					[1, ::Legends.Armor.Named.named_golden_lamellar_armor]
 				]);
-				item.m.Upgrades[this.Const.Items.ArmorUpgrades.Plate].m.Name = _event.m.Blacksmith.getNameOnly() + "\'s Golden Lamellar Armor";
-				this.World.Assets.getStash().add(item);
-				this.List.push({
-					id = 10,
-					icon = "ui/items/" + item.getIcon(),
-					imageOverlayPath = item.getIconOverlay(),
-					text = "You gain " + item.makeName()
-				});
+				item.m.Upgrades[::Const.Items.ArmorUpgrades.Plate].m.Name = _event.m.Blacksmith.getNameOnly() + "\'s Golden Lamellar Armor";
+
+				this.List.push(::Legends.EventList.changeMoney(-5000));
+				this.List.extend(_event.removeIngots());
+				this.List.extend(::Legends.EventList.addItems([item], ::World.Assets.getStash()));
 				this.List.push(::Legends.EventList.changeMood(_event.m.Blacksmith, 2.0, "Created a masterwork Armor"));
 			}
-
 		});
 		this.m.Screens.push({
 			ID = "E",
@@ -206,135 +104,79 @@ this.legend_blacksmith_craft_armor <- this.inherit("scripts/events/event", {
 			Image = "",
 			List = [],
 			Characters = [],
-			Options = [
-				{
-					Text = "Failure...",
-					function getResult( _event )
-					{
-						return 0;
-					}
-
-				}
-			],
-			function start( _event )
-			{
-				this.World.Assets.addMoney(-5000);
-				this.List.push({
-					id = 10,
-					icon = "ui/icons/asset_money.png",
-					text = "You spend [color=" + this.Const.UI.Color.NegativeEventValue + "]5000[/color] Crowns"
-				});
-				local stash = this.World.Assets.getStash().getItems();
-				local numIngots = 0;
-
-				foreach( i, item in stash )
-				{
-					if (item != null && item.getID() == "misc.legend_iron_ingots")
-					{
-						stash[i] = null;
-						this.List.push({
-							id = 10,
-							icon = "ui/items/" + item.getIcon(),
-							text = "You lose " + item.getName()
-						});
-						numIngots = ++numIngots;
-					}
-
-					if (numIngots >= 3)
-					{
-						break;
-					}
-				}
-
+			Options = [{
+				Text = "Failure...",
+				getResult = @(_event) 0
+			}],
+			function start(_event) {
+				this.Characters.push(_event.m.Blacksmith.getImagePath());
 				local item = this.Const.World.Common.pickArmor([
 					[1, ::Legends.Armor.Standard.heavy_lamellar_armor]
 				]);
 				item.m.Name = _event.m.Blacksmith.getNameOnly() + "\'s Failed Masterpiece";
-				this.World.Assets.getStash().add(item);
-				this.List.push({
-					id = 10,
-					icon = "ui/items/" + item.getIcon(),
-					imageOverlayPath = item.getIconOverlay(),
-					text = "You gain " + item.getName()
-				});
-			}
 
+				this.List.push(::Legends.EventList.changeMoney(-5000));
+				this.List.extend(_event.removeIngots());
+				this.List.extend(::Legends.EventList.addItems([item], ::World.Assets.getStash()));
+			}
 		});
 	}
 
-	function onUpdateScore()
-	{
-		if (!this.World.getTime().IsDaytime)
-		{
-			return;
+	function removeIngots() {
+		local list = [];
+		local stash = ::World.Assets.getStash().getItems();
+		local numIngots = 0;
+		foreach (i, item in stash) {
+			if (item != null && item.getID() == "misc.legend_iron_ingots") {
+				stash[i] = null;
+				list.push({
+					id = 10,
+					icon = "ui/items/" + item.getIcon(),
+					text = "You lose " + item.getName()
+				});
+				numIngots++;
+			}
+
+			if (numIngots >= 3)
+				break;
 		}
+		return list;
+	}
+
+	function onUpdateScore() {
+		if (!this.World.getTime().IsDaytime)
+			return;
 
 		if (this.World.Assets.getMoney() < 15000)
-		{
 			return;
-		}
 
-		local towns = this.World.EntityManager.getSettlements();
-		local nearTown = false;
-		local town;
-		local playerTile = this.World.State.getPlayer().getTile();
-
-		foreach( t in towns )
-		{
-			if (t.getSize() >= 3 && t.getTile().getDistanceTo(playerTile) <= 3 && t.isAlliedWithPlayer())
-			{
-				nearTown = true;
-				town = t;
-				break;
-			}
-		}
-
-		if (!nearTown)
-		{
+		local towns = ::World.EntityManager.getSettlements();
+		local closestTown = ::Legends.S.getClosestSettlement(@(_, t) t.getSize() >= 3 && t.isAlliedWithPlayer());
+		if (closestTown.getTile().getDistanceTo(::World.State.getPlayer().getTile()) > 3)
 			return;
-		}
 
-		this.m.Town = town;
-		local brothers = this.World.getPlayerRoster().getAll();
+		this.m.Town = closestTown;
+		local brothers = ::World.getPlayerRoster().getAll();
 		local candidates_blacksmith = [];
 
-		foreach( b in brothers )
-		{
-			if (b.getLevel() > 9 && b.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.LegendBlacksmith))
-			{
-				candidates_blacksmith.push(b);
-			}
+		foreach (bro in brothers) {
+			if (bro.getLevel() > 9 && ::Legends.Backgrounds.has(bro, ::Legends.Background.LegendBlacksmith))
+				candidates_blacksmith.push(bro);
 		}
 
 		if (candidates_blacksmith.len() < 1)
-		{
 			return;
-		}
-		else
-		{
-			this.m.Blacksmith = candidates_blacksmith[this.Math.rand(0, candidates_blacksmith.len() - 1)];
-		}
 
-		local stash = this.World.Assets.getStash().getItems();
-		this.m.numIngots = 0;
+		this.m.Blacksmith = candidates_blacksmith[::Math.rand(0, candidates_blacksmith.len() - 1)];
 
-		foreach( item in stash )
-		{
-			if (item != null && item.getID() == "misc.legend_iron_ingots")
-			{
-				this.m.numIngots = ++this.m.numIngots;
-			}
-		}
-
+		local stash = ::World.Assets.getStash().getItems();
+		this.m.NumIngots = stash.filter(@(_, item) item != null && item.getID() == "misc.legend_iron_ingots").len();
 		this.m.Score = 25;
 	}
 
-	function onPrepare()
-	{
-	}
+	function onPrepare() {}
 
-	function onPrepareVariables( _vars )
-	{
+	function onPrepareVariables(_vars) {
 		_vars.push([
 			"blacksmith",
 			this.m.Blacksmith.getName()
@@ -345,12 +187,10 @@ this.legend_blacksmith_craft_armor <- this.inherit("scripts/events/event", {
 		]);
 	}
 
-	function onClear()
-	{
+	function onClear() {
 		this.m.Blacksmith = null;
-		this.m.numIngots = null;
+		this.m.NumIngots = null;
 		this.m.Town = null;
 	}
-
 });
 

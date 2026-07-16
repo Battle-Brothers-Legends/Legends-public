@@ -3,8 +3,7 @@ this.legend_butcher_vs_donkey <- this.inherit("scripts/events/event", {
 		Butcher = null,
 		Donkey = null
 	},
-	function create()
-	{
+	function create() {
 		this.m.ID = "event.legend_butcher_vs_donkey";
 		this.m.Title = "During camp...";
 		this.m.Cooldown = 7.0 * this.World.getTime().SecondsPerDay;
@@ -14,99 +13,47 @@ this.legend_butcher_vs_donkey <- this.inherit("scripts/events/event", {
 			Image = "",
 			List = [],
 			Characters = [],
-			Options = [
-				{
-					Text = "I need to get the men something to eat.",
-					function getResult( _event )
-					{
-						return 0;
-					}
-
-				}
-			],
-			function start( _event )
-			{
-				if (this.Math.rand(1, 100) <= 70)
-				{
-					local injury1 = _event.m.Butcher.addInjury(this.Const.Injury.Accident1);
-					this.List.push({
-						id = 10,
-						icon = injury1.getIcon(),
-						text = _event.m.Butcher.getName() + " suffers " + injury1.getNameOnly()
-					});
-				}
-				else
-				{
-					_event.m.Butcher.addLightInjury();
-					this.List.push({
-						id = 10,
-						icon = "ui/icons/days_wounded.png",
-						text = _event.m.Butcher.getName() + " suffers light wounds"
-					});
+			Options = [{
+				Text = "I need to get the men something to eat.",
+				getResult = @(_event) 0
+			}],
+			function start(_event) {
+				if (::Math.rand(1, 100) <= 70) {
+					this.List.push(::Legends.EventList.addInjury(_event.m.Butcher, ::Const.Injury.Accident1));
+				} else {
+					this.List.push(::Legends.EventList.addLightInjury(_event.m.Butcher));
 				}
 				this.List.push(::Legends.EventList.changeMood(_event.m.Butcher, -0.5, "Kicked by the " + _event.m.Donkey.getName()));
 				this.List.push(::Legends.EventList.changeMood(_event.m.Donkey, -1.0, "Frighten for his death"));
 			}
-
 		});
 	}
 
-	function onUpdateScore()
-	{
-		local brothers = this.World.getPlayerRoster().getAll();
+	function onUpdateScore() {
 
-		if (this.World.Assets.getFood() > 0)
-		{
+		if (::World.Assets.getFood() > 0)
 			return;
-		}
 
+		local brothers = ::World.getPlayerRoster().getAll();
 		if (brothers.len() < 2)
-		{
 			return;
-		}
 
-		local Butcher_candidates = [];
-
-		foreach( bro in brothers )
-		{
-			if (bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.Butcher))
-			{
-				Butcher_candidates.push(bro);
-				break;
-			}
-		}
-
-		if (Butcher_candidates.len() == 0)
-		{
+		local butcher_candidates = brothers.filter(@(_, bro) ::Legends.Backgrounds.has(bro, ::Legends.Background.Butcher));
+		if (butcher_candidates.len() == 0)
 			return;
-		}
 
-		local Donkey_candidates = [];
-
-		foreach( bro in brothers )
-		{
-			if (bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.LegendDonkey))
-			{
-				Donkey_candidates.push(bro);
-			}
-		}
-
-		if (Donkey_candidates.len() == 0)
-		{
+		local donkey_candidates = brothers.filter(@(_, bro) ::Legends.Backgrounds.has(bro, ::Legends.Background.LegendDonkey));
+		if (donkey_candidates.len() == 0)
 			return;
-		}
 
-		this.m.Butcher = Butcher_candidates[this.Math.rand(0, Butcher_candidates.len() - 1)];
-		this.m.Donkey = Donkey_candidates[this.Math.rand(0, Donkey_candidates.len() - 1)];
-		this.m.Score = (Butcher_candidates.len() + Donkey_candidates.len()) * 3;
+		this.m.Butcher = butcher_candidates[::Math.rand(0, butcher_candidates.len() - 1)];
+		this.m.Donkey = donkey_candidates[::Math.rand(0, donkey_candidates.len() - 1)];
+		this.m.Score = (butcher_candidates.len() + donkey_candidates.len()) * 3;
 	}
 
-	function onPrepare()
-	{
-	}
+	function onPrepare() {}
 
-	function onPrepareVariables( _vars )
-	{
+	function onPrepareVariables(_vars) {
 		_vars.push([
 			"donkey",
 			this.m.Donkey.getName()
@@ -117,11 +64,9 @@ this.legend_butcher_vs_donkey <- this.inherit("scripts/events/event", {
 		]);
 	}
 
-	function onClear()
-	{
+	function onClear() {
 		this.m.Donkey = null;
 		this.m.Butcher = null;
 	}
-
 });
 

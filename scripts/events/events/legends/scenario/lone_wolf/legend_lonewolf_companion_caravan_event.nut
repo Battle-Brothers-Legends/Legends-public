@@ -3,8 +3,7 @@ this.legend_lonewolf_companion_caravan_event <- this.inherit("scripts/events/eve
 		Dude = null,
 		Looted = 0
 	},
-	function create()
-	{
+	function create() {
 		this.m.ID = "event.legend_lonewolf_companion_caravan";
 		this.m.Title = "Encircled";
 		this.m.Cooldown = 47.0 * this.World.getTime().SecondsPerDay;
@@ -14,35 +13,17 @@ this.legend_lonewolf_companion_caravan_event <- this.inherit("scripts/events/eve
 			Image = "",
 			List = [],
 			Characters = [],
-			Options = [
-				{
-					Text = "Circle around! Take what you can!",
-					function getResult( _event )
-					{
-						return "B";
-					}
-
-				},
-				{
-					Text = "Push through to the carts!",
-					function getResult( _event )
-					{
-						return "C";
-					}
-
-				},
-				{
-					Text = "Retreat, this isn\'t our fight!",
-					function getResult( _event )
-					{
-						return 0;
-					}
-
-				}
-			],
-			function start( _event )
-			{
-			}
+			Options = [{
+				Text = "Circle around! Take what you can!",
+				getResult = @(_event) "B"
+			}, {
+				Text = "Push through to the carts!",
+				getResult = @(_event) "C"
+			}, {
+				Text = "Retreat, this isn\'t our fight!",
+				getResult = @(_event) 0
+			}],
+			function start(_event) {}
 
 		});
 		this.m.Screens.push({
@@ -51,90 +32,49 @@ this.legend_lonewolf_companion_caravan_event <- this.inherit("scripts/events/eve
 			Image = "",
 			List = [],
 			Characters = [],
-			Options = [
-				{
-					Text = "Not a bad haul...",
-					function getResult( _event )
-					{
-						return 0;
-					}
+			Options = [{
+				Text = "Not a bad haul...",
+				getResult = @(_event) 0
+			}],
+			function start(_event) {
+				this.List.push(::Legends.EventList.changeMoney(::Math.rand(98, 455)));
 
-				}
-			],
-			function start( _event )
-			{
-				local money = this.Math.rand(98, 455);
-				this.World.Assets.addMoney(money);
-
-				if (_event.m.Looted == 1)
-				{
-					local r = this.Math.rand(1, 4);
-					local item;
-
-					if (r == 1)
-					{
-						item = this.new("silk_item");
-						item = this.new("silverware_item");
-						item = this.new("legend_gold_nugget_item");
-						item = this.new("legend_cooking_spices_trade_item");
-					}
-					else if (r == 2)
-					{
-						item = this.new("silverware_item");
-						item = this.new("incense_item");
-						item = this.new("signet_ring_item");
-					}
-					else if (r == 3)
-					{
-						item = this.new("cloth_rolls_item");
-						item = this.new("furs_item");
-						item = this.new("cloth_rolls_item");
-						item = this.new("signet_ring_item");
-					}
-					else if (r == 4)
-					{
-						item = this.new("legend_raw_wood_item");
-						item = this.new("peat_bricks_item");
-						item = this.new("peat_bricks_item");
-					}
-
-					this.World.Assets.getStash().add(item);
-					this.List.push({
-						id = 10,
-						icon = "ui/items/" + item.getIcon(),
-						text = "You gain " + this.Const.Strings.getArticle(item.getName()) + item.getName()
-					});
-					this.World.Assets.addMoney(money);
-					this.List.push({
-						id = 10,
-						icon = "ui/icons/asset_money.png",
-						text = "You gained [color=" + this.Const.UI.Color.PositiveEventValue + "]" + money + "[/color] Crowns"
-					});
+				local r = ::Math.rand(1, 4);
+				if (r == 1) {
+					this.List.extend(::Legends.EventList.addItems([
+						::new("scripts/items/trade/silk_item"),
+						::new("scripts/items/loot/silverware_item"),
+						::new("scripts/items/trade/legend_gold_nugget_item"),
+						::new("scripts/items/trade/legend_cooking_spices_trade_item")
+					], ::World.Assets.getStash()));
+				} else if (r == 2) {
+					this.List.extend(::Legends.EventList.addItems([
+						::new("scripts/items/loot/silverware_item"),
+						::new("scripts/items/trade/incense_item"),
+						::new("scripts/items/loot/signet_ring_item")
+					], ::World.Assets.getStash()));
+				} else if (r == 3) {
+					this.List.extend(::Legends.EventList.addItems([
+						::new("scripts/items/trade/cloth_rolls_item"),
+						::new("scripts/items/trade/furs_item"),
+						::new("scripts/items/trade/cloth_rolls_item"),
+						::new("scripts/items/loot/signet_ring_item")
+					], ::World.Assets.getStash()));
+				} else if (r == 4) {
+					this.List.extend(::Legends.EventList.addItems([
+						::new("scripts/items/trade/legend_raw_wood_item"),
+						::new("scripts/items/trade/peat_bricks_item"),
+						::new("scripts/items/trade/peat_bricks_item")
+					], ::World.Assets.getStash()));
 				}
 
 				local brothers = this.World.getPlayerRoster().getAll();
-
-				foreach( bro in brothers )
-				{
-					if (this.Math.rand(1, 100) <= 25)
-					{
-						if (this.Math.rand(1, 100) <= 66)
-						{
-							local injury = bro.addInjury(this.Const.Injury.Brawl);
-							this.List.push({
-								id = 10,
-								icon = injury.getIcon(),
-								text = bro.getName() + " suffers " + injury.getNameOnly()
-							});
-						}
-						else
-						{
-							bro.addLightInjury();
-							this.List.push({
-								id = 10,
-								icon = "ui/icons/days_wounded.png",
-								text = bro.getName() + " suffers light wounds"
-							});
+				foreach (bro in brothers) {
+					if (::Math.rand(1, 100) <= 25) {
+						if (::Math.rand(1, 100) <= 66) {
+							this.List.push(::Legends.EventList.addInjury(bro, ::Const.Injury.Brawl));
+						} else {
+							this.List.push(::Legends.EventList.addLightInjury(bro));
 						}
 					}
 				}
@@ -147,21 +87,16 @@ this.legend_lonewolf_companion_caravan_event <- this.inherit("scripts/events/eve
 			Image = "",
 			List = [],
 			Characters = [],
-			Options = [
-				{
-					Text = "After all that, they can\'t be that bad of a fighter.",
-					function getResult( _event )
-					{
-						this.World.getPlayerRoster().add(_event.m.Dude);
-						this.World.getTemporaryRoster().clear();
-						_event.m.Dude.onHired();
-						return 0;
-					}
-
+			Options = [{
+				Text = "After all that, they can\'t be that bad of a fighter.",
+				function getResult(_event) {
+					this.World.getPlayerRoster().add(_event.m.Dude);
+					this.World.getTemporaryRoster().clear();
+					_event.m.Dude.onHired();
+					return 0;
 				}
-			],
-			function start( _event )
-			{
+			}],
+			function start(_event) {
 				local roster = this.World.getTemporaryRoster();
 				_event.m.Dude = roster.create("scripts/entity/tactical/player");
 				_event.m.Dude.setStartValuesEx([::Legends.Background.Tailor]);
@@ -177,8 +112,7 @@ this.legend_lonewolf_companion_caravan_event <- this.inherit("scripts/events/eve
 				_event.m.Dude.getBaseProperties().DailyWage = 0;
 				_event.m.Dude.addLightInjury();
 
-				if (_event.m.Dude.getItems().getItemAtSlot(this.Const.ItemSlot.Mainhand) != null)
-				{
+				if (_event.m.Dude.getItems().getItemAtSlot(this.Const.ItemSlot.Mainhand) != null) {
 					_event.m.Dude.getItems().getItemAtSlot(this.Const.ItemSlot.Mainhand).removeSelf();
 				}
 
@@ -188,27 +122,12 @@ this.legend_lonewolf_companion_caravan_event <- this.inherit("scripts/events/eve
 				this.Characters.push(_event.m.Dude.getImagePath());
 				local brothers = this.World.getPlayerRoster().getAll();
 
-				foreach( bro in brothers )
-				{
-					if (this.Math.rand(1, 100) <= 25)
-					{
-						if (this.Math.rand(1, 100) <= 66)
-						{
-							local injury = bro.addInjury(this.Const.Injury.Brawl);
-							this.List.push({
-								id = 10,
-								icon = injury.getIcon(),
-								text = bro.getName() + " suffers " + injury.getNameOnly()
-							});
-						}
-						else
-						{
-							bro.addLightInjury();
-							this.List.push({
-								id = 10,
-								icon = "ui/icons/days_wounded.png",
-								text = bro.getName() + " suffers light wounds"
-							});
+				foreach (bro in brothers) {
+					if (::Math.rand(1, 100) <= 25) {
+						if (::Math.rand(1, 100) <= 66) {
+							this.List.push(::Legends.EventList.addInjury(bro, ::Const.Injury.Brawl));
+						} else {
+							this.List.push(::Legends.EventList.addLightInjury(bro));
 						}
 					}
 				}
@@ -221,62 +140,43 @@ this.legend_lonewolf_companion_caravan_event <- this.inherit("scripts/events/eve
 			Image = "",
 			List = [],
 			Characters = [],
-			Options = [
-				{
-					Text = "These things happen...",
-					function getResult( _event )
-					{
-						return 0;
-					}
-
-				}
-			]
+			Options = [{
+				Text = "These things happen...",
+				getResult = @(_event) 0
+			}]
 		});
 	}
 
-	function onUpdateScore()
-	{
-		if (this.World.Assets.getOrigin().getID() != "scenario.lone_wolf")
-		{
+	function onUpdateScore() {
+		if (this.World.Assets.getOrigin().getID() != "scenario.lone_wolf") {
 			return;
 		}
 
-		if (!this.World.getTime().IsDaytime)
-		{
+		if (!this.World.getTime().IsDaytime) {
 			return;
 		}
 
 		local currentTile = this.World.State.getPlayer().getTile();
-
-		if (!currentTile.HasRoad)
-		{
+		if (!currentTile.HasRoad) {
 			return;
 		}
 
 		local brothers = this.World.getPlayerRoster().getAll();
-
-		if (this.World.getPlayerRoster().getSize() >= this.World.Assets.getBrothersMax())
-		{
+		if (this.World.getPlayerRoster().getSize() >= this.World.Assets.getBrothersMax()) {
 			return;
 		}
 
-		if (brothers.len() > 4)
-		{
+		if (brothers.len() > 4) {
 			return;
 		}
 
 		this.m.Score = 8;
 	}
 
-	function onPrepareVariables( _vars )
-	{
-	}
+	function onPrepareVariables(_vars) {}
 
-	function onClear()
-	{
+	function onClear() {
 		this.m.Dude = null;
-		this.m.Looted = null;
 	}
-
 });
 

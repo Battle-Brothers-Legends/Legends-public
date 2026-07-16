@@ -2,8 +2,7 @@ this.legend_cabal_puppet_event <- this.inherit("scripts/events/event", {
 	m = {
 		Dude = null
 	},
-	function create()
-	{
+	function create() {
 		this.m.ID = "event.legend_cabal_puppet";
 		this.m.Title = "Jumping the fence";
 		this.m.Cooldown = 20.0 * this.World.getTime().SecondsPerDay;
@@ -13,30 +12,22 @@ this.legend_cabal_puppet_event <- this.inherit("scripts/events/event", {
 			Image = "",
 			List = [],
 			Characters = [],
-			Options = [
-				{
-					Text = "I shall call you... %joiner%!",
-					function getResult( _event )
-					{
-						this.World.getPlayerRoster().add(_event.m.Dude);
-						this.World.getTemporaryRoster().clear();
-						_event.m.Dude.onHired();
-						return 0;
-					}
-
-				},
-				{
-					Text = "Leave it to wander.",
-					function getResult( _event )
-					{
-						this.World.getTemporaryRoster().clear();
-						return 0;
-					}
-
+			Options = [{
+				Text = "I shall call you... %joiner%!",
+				function getResult(_event) {
+					this.World.getPlayerRoster().add(_event.m.Dude);
+					this.World.getTemporaryRoster().clear();
+					_event.m.Dude.onHired();
+					return 0;
 				}
-			],
-			function start( _event )
-			{
+			}, {
+				Text = "Leave it to wander.",
+				function getResult(_event) {
+					this.World.getTemporaryRoster().clear();
+					return 0;
+				}
+			}],
+			function start(_event) {
 				local roster = this.World.getTemporaryRoster();
 				_event.m.Dude = roster.create("scripts/entity/tactical/player");
 				_event.m.Dude.setStartValuesEx([::Legends.Background.LegendPuppet]);
@@ -46,8 +37,7 @@ this.legend_cabal_puppet_event <- this.inherit("scripts/events/event", {
 		});
 	}
 
-	function onUpdateScore()
-	{
+	function onUpdateScore() {
 		//see 'static_functions' ::Legends.S.humansOnly for more details.
 		if (::World.Assets.getOrigin().getID() != "scenario.legends_necro") {
 			return;
@@ -55,39 +45,35 @@ this.legend_cabal_puppet_event <- this.inherit("scripts/events/event", {
 
 		local hasZombie = false;
 		foreach (bro in ::World.getPlayerRoster().getAll()) {
-    		if (bro.getFlags().has("PlayerZombie")) {
+			if (bro.getFlags().has("PlayerZombie")) {
 				hasZombie = true;
 				break;
 			}
 		}
 
 		if (!hasZombie) {
-    		return; 
-		}
-
-		if (this.World.getPlayerRoster().getSize() >= this.World.Assets.getBrothersMax())
-		{
 			return;
 		}
 
-		if (!this.World.State.getPlayer().getTile().HasRoad)
-		{
+		if (this.World.getPlayerRoster().getSize() >= this.World.Assets.getBrothersMax()) {
+			return;
+		}
+
+		if (!this.World.State.getPlayer().getTile().HasRoad) {
 			return;
 		}
 
 		this.m.Score = 7;
 	}
 
-	function onPrepareVariables( _vars )
-	{
+	function onPrepareVariables(_vars) {
 		_vars.push([
 			"joiner",
 			this.m.Dude.getName()
 		]);
 	}
 
-	function onClear()
-	{
+	function onClear() {
 		this.m.Dude = null;
 	}
 

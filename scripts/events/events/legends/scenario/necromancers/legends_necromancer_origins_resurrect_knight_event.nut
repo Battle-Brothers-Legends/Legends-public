@@ -2,43 +2,25 @@ this.legends_necromancer_origins_resurrect_knight_event <- this.inherit("scripts
 	m = {
 		Dude = null
 	},
-	function create()
-	{
+	function create() {
 		this.m.ID = "event.legends_necromancer_origins_resurrect_knight";
 		this.m.Title = "A last stand...";
 		this.m.Cooldown = 125.0 * this.World.getTime().SecondsPerDay;
-		this.m.Screens.push({ //— \n |
+		this.m.Screens.push({
+			//— \n |
 			ID = "A",
 			Text = "[img]gfx/ui/events/event_28.png[/img]{As you trapse through the woods, something catches your eye — a freshly fallen knight. It has no particular livery you would recognise, and lies in a crumpled mess between two trees. \nThis lone wolf now lies silent, but you sense a feeling coming from this corpse. A feeling that this would be a powerful minion indeed. \n\nHowever, the knight has been here for some time, and coaxing that vigor out of it would be very difficult. \n\nIn these woods it would be unwise to stay for long.}",
 			Image = "",
 			List = [],
 			Characters = [],
-			Options = [
-				{
-					Text = "Try to raise it.",
-					function getResult( _event )
-					{
-						if (this.Math.rand(1, 100) <= 50)
-						{
-							return "B";
-						}
-						else
-						{
-							return "C";
-						}
-					}
-				},
-				{
-					Text = "Leave it be.",
-					function getResult( _event )
-					{
-						return "D";
-					}
-				}
-			],
-			function start( _event )
-			{
-			}
+			Options = [{
+				Text = "Try to raise it.",
+				getResult = @(_event) ::Math.rand(1, 100) <= 50 ? "B" : "C"
+			}, {
+				Text = "Leave it be.",
+				getResult = @(_event) "D"
+			}],
+			function start(_event) {}
 
 		});
 		this.m.Screens.push({
@@ -47,24 +29,20 @@ this.legends_necromancer_origins_resurrect_knight_event <- this.inherit("scripts
 			Image = "",
 			List = [],
 			Characters = [],
-			Options = [
-				{
-					Text = "You will serve nicely.",
-					function getResult( _event )
-					{
-						this.World.getPlayerRoster().add(_event.m.Dude);
-						this.World.getTemporaryRoster().clear();
-						_event.m.Dude.onHired();
-						_event.m.Dude = null;
-						return 0;
-					}
+			Options = [{
+				Text = "You will serve nicely.",
+				function getResult(_event) {
+					this.World.getPlayerRoster().add(_event.m.Dude);
+					this.World.getTemporaryRoster().clear();
+					_event.m.Dude.onHired();
+					_event.m.Dude = null;
+					return 0;
 				}
-			],
-			function start( _event )
-			{
+			}],
+			function start(_event) {
 				local roster = this.World.getTemporaryRoster();
 				_event.m.Dude = roster.create("scripts/entity/tactical/player");
- 				_event.m.Dude.getFlags().add("PlayerZombie");
+				_event.m.Dude.getFlags().add("PlayerZombie");
 				_event.m.Dude.getFlags().add("undead");
 				_event.m.Dude.getFlags().add("zombie_minion");
 				_event.m.Dude.setStartValuesEx([
@@ -98,20 +76,16 @@ this.legends_necromancer_origins_resurrect_knight_event <- this.inherit("scripts
 				local oriental = this.World.FactionManager.getFactionsOfType(this.Const.FactionType.OrientalCityState);
 				local undead = this.World.FactionManager.getFactionsOfType(this.Const.FactionType.Undead);
 
-				foreach( n in nobles )
-				{
+				foreach (n in nobles) {
 					n.addPlayerRelation(-5.0, "Became a greater threat");
 				}
-				foreach( n in settlement )
-				{
+				foreach (n in settlement) {
 					n.addPlayerRelation(-10.0, "Became a greater threat");
 				}
-				foreach( n in oriental )
-				{
+				foreach (n in oriental) {
 					n.addPlayerRelation(-5.0, "Became a greater threat");
 				}
-				foreach( n in undead )
-				{
+				foreach (n in undead) {
 					n.addPlayerRelation(20.0, "You should not see this");
 				}
 			}
@@ -123,24 +97,20 @@ this.legends_necromancer_origins_resurrect_knight_event <- this.inherit("scripts
 			Image = "",
 			List = [],
 			Characters = [],
-			Options = [
-				{
-					Text = "Fark it.",
-					function getResult( _event )
-					{
-						this.World.getPlayerRoster().add(_event.m.Dude);
-						this.World.getTemporaryRoster().clear();
-						_event.m.Dude.onHired();
-						_event.m.Dude = null;
-						return 0;
-					}
+			Options = [{
+				Text = "Fark it.",
+				function getResult(_event) {
+					this.World.getPlayerRoster().add(_event.m.Dude);
+					this.World.getTemporaryRoster().clear();
+					_event.m.Dude.onHired();
+					_event.m.Dude = null;
+					return 0;
 				}
-			],
-			function start( _event )
-			{
+			}],
+			function start(_event) {
 				local roster = this.World.getTemporaryRoster();
 				_event.m.Dude = roster.create("scripts/entity/tactical/player");
- 				_event.m.Dude.getFlags().add("PlayerZombie");
+				_event.m.Dude.getFlags().add("PlayerZombie");
 				_event.m.Dude.getFlags().add("undead");
 				_event.m.Dude.getFlags().add("zombie_minion");
 				_event.m.Dude.setStartValuesEx([
@@ -167,20 +137,16 @@ this.legends_necromancer_origins_resurrect_knight_event <- this.inherit("scripts
 				local oriental = this.World.FactionManager.getFactionsOfType(this.Const.FactionType.OrientalCityState);
 				local undead = this.World.FactionManager.getFactionsOfType(this.Const.FactionType.Undead);
 
-				foreach( n in nobles )
-				{
+				foreach (n in nobles) {
 					n.addPlayerRelation(-5.0, "Became a greater threat");
 				}
-				foreach( n in settlement )
-				{
+				foreach (n in settlement) {
 					n.addPlayerRelation(-10.0, "Became a greater threat");
 				}
-				foreach( n in oriental )
-				{
+				foreach (n in oriental) {
 					n.addPlayerRelation(-5.0, "Became a greater threat");
 				}
-				foreach( n in undead )
-				{
+				foreach (n in undead) {
 					n.addPlayerRelation(20.0, "You should not see this");
 				}
 			}
@@ -191,21 +157,14 @@ this.legends_necromancer_origins_resurrect_knight_event <- this.inherit("scripts
 			Image = "",
 			List = [],
 			Characters = [],
-			Options = [
-				{
-					Text = "Let\'s go.",
-					function getResult( _event )
-					{
-						return 0;
-					}
-
-				}
-			],
-			function start( _event )
-			{
-				local money = this.Math.rand(311, 718);
+			Options = [{
+				Text = "Let\'s go.",
+				getResult = @(_event) 0
+			}],
+			function start(_event) {
+				local money = ::Math.rand(311, 718);
 				this.World.Assets.addMoney(money);
-				this.World.Assets.getStash().add(this.new("scripts/items/supplies/cured_rations"));
+				this.World.Assets.getStash().add(this.new("scripts/items/supplies/cured_rations_item"));
 				this.World.Assets.getStash().add(this.new("scripts/items/supplies/cured_venison_item"));
 				this.World.Assets.getStash().add(this.new("scripts/items/supplies/medicine_item"));
 				this.World.Assets.getStash().add(this.new("scripts/items/loot/jade_broche_item"));
@@ -223,45 +182,39 @@ this.legends_necromancer_origins_resurrect_knight_event <- this.inherit("scripts
 
 		local hasZombie = false;
 		foreach (bro in ::World.getPlayerRoster().getAll()) {
-    		if (bro.getFlags().has("PlayerZombie")) {
+			if (bro.getFlags().has("PlayerZombie")) {
 				hasZombie = true;
 				break;
 			}
 		}
 
 		if (!hasZombie) {
-    		return; 
+			return;
 		}
 
-		if (this.World.getPlayerRoster().getSize() >= this.World.Assets.getBrothersMax())
-		{
+		if (this.World.getPlayerRoster().getSize() >= this.World.Assets.getBrothersMax()) {
 			return;
 		}
 
 		local currentTile = this.World.State.getPlayer().getTile();
 
-		if (!currentTile.Type == this.Const.World.TerrainType.Forest && !currentTile.Type == this.Const.World.TerrainType.LeaveForest)
-		{
+		if (!currentTile.Type == this.Const.World.TerrainType.Forest && !currentTile.Type == this.Const.World.TerrainType.LeaveForest) {
 			return;
 		}
 
 		this.m.Score = 3;
 	}
 
-	function onPrepare()
-	{
-	}
+	function onPrepare() {}
 
-	function onPrepareVariables( _vars )
-	{
+	function onPrepareVariables(_vars) {
 		_vars.push([
 			"joiner",
 			this.m.Dude.getName()
 		]);
 	}
 
-	function onClear()
-	{
+	function onClear() {
 		this.m.Dude = null;
 	}
 

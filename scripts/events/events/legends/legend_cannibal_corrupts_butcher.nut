@@ -3,8 +3,7 @@ this.legend_cannibal_corrupts_butcher <- this.inherit("scripts/events/event", {
 		Cannibal = null,
 		Butcher = null
 	},
-	function create()
-	{
+	function create() {
 		this.m.ID = "event.legend_cannibal_corrupts_butcher";
 		this.m.Title = "During camp...";
 		this.m.Cooldown = 30 * this.World.getTime().SecondsPerDay;
@@ -14,18 +13,11 @@ this.legend_cannibal_corrupts_butcher <- this.inherit("scripts/events/event", {
 			Image = "",
 			List = [],
 			Characters = [],
-			Options = [
-				{
-					Text = "Just in case.",
-					function getResult( _event )
-					{
-						return 0;
-					}
-
-				}
-			],
-			function start( _event )
-			{
+			Options = [{
+				Text = "Just in case.",
+				getResult = @(_event) 0
+			}],
+			function start(_event) {
 				this.Characters.push(_event.m.Cannibal.getImagePath());
 				::Legends.Traits.grant(_event.m.Butcher, ::Legends.Trait.LegendCannibalistic, function(_trait) {
 					this.List.push({
@@ -37,46 +29,36 @@ this.legend_cannibal_corrupts_butcher <- this.inherit("scripts/events/event", {
 				this.List.push(::Legends.EventList.changeMood(_event.m.Cannibal, 2.0, "Spread the joys of cannibalism"));
 				this.List.push(::Legends.EventList.changeMood(_event.m.Butcher, 2.0, "Started appreciating forbidden meat"));
 			}
-
 		});
 	}
 
-	function onUpdateScore()
-	{
-		local brothers = this.World.getPlayerRoster().getAll();
+	function onUpdateScore() {
+		local brothers = ::World.getPlayerRoster().getAll();
 		local cannibal_candidates = [];
 		local butcher_candidates = [];
 
-		foreach( bro in brothers )
-		{
-			if (bro.getSkills().hasTrait(::Legends.Trait.LegendCannibalistic))
-			{
+		foreach (bro in brothers) {
+			if (bro.getSkills().hasTrait(::Legends.Trait.LegendCannibalistic)) {
 				cannibal_candidates.push(bro);
-			}
-
-			if (bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.Butcher) && !bro.getSkills().hasTrait(::Legends.Trait.LegendCannibalistic))
-			{
+			} else if (::Legends.Backgrounds.has(bro, ::Legends.Background.Butcher)) {
 				butcher_candidates.push(bro);
 			}
-
 		}
 
-		if (cannibal_candidates.len() < 1 || butcher_candidates.len() < 1)
-		{
+		if (cannibal_candidates.len() < 1)
 			return;
-		}
 
-		this.m.Cannibal = cannibal_candidates[this.Math.rand(0, cannibal_candidates.len() - 1)];
-		this.m.Butcher = butcher_candidates[this.Math.rand(0, butcher_candidates.len() - 1)];
-		this.m.Score = 5 + (this.m.Cannibal.getLevel() + this.m.Butcher.getLevel() + 0.0) * 5.0 / this.Const.LevelXP.len();
+		if (butcher_candidates.len() < 1)
+			return;
+
+		this.m.Cannibal = cannibal_candidates[::Math.rand(0, cannibal_candidates.len() - 1)];
+		this.m.Butcher = butcher_candidates[::Math.rand(0, butcher_candidates.len() - 1)];
+		this.m.Score = 5 + (this.m.Cannibal.getLevel() + this.m.Butcher.getLevel()) * 5.0 / ::Const.LevelXP.len();
 	}
 
-	function onPrepare()
-	{
-	}
+	function onPrepare() {}
 
-	function onPrepareVariables( _vars )
-	{
+	function onPrepareVariables(_vars) {
 		_vars.push([
 			"cannibal",
 			this.m.Cannibal.m.Name
@@ -87,8 +69,7 @@ this.legend_cannibal_corrupts_butcher <- this.inherit("scripts/events/event", {
 		]);
 	}
 
-	function onClear()
-	{
+	function onClear() {
 		this.m.Cannibal = null;
 		this.m.Butcher = null;
 	}

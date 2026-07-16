@@ -23,10 +23,7 @@ this.legend_vala_crafts_staff_encounter <- this.inherit("scripts/encounters/enco
 			Options = [
 				{
 					Text = "...",
-					function getResult( _event )
-					{
-						return 0;
-					}
+					getResult = @(_event) 0
 				}
 			],
 			function start( _event )

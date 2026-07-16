@@ -3,8 +3,7 @@ this.legend_find_slave_after_battle_event <- this.inherit("scripts/events/event"
 		LastCombatID = 0,
 		Dude = null
 	},
-	function create()
-	{
+	function create() {
 		this.m.ID = "event.legend_find_slave_after_battle";
 		this.m.Title = "After the battle...";
 		this.m.IsSpecial = true;
@@ -20,8 +19,7 @@ this.legend_find_slave_after_battle_event <- this.inherit("scripts/events/event"
 			Options = [
 				{
 					Text = "Join us!",
-					function getResult( _event )
-					{
+					function getResult(_event) {
 						this.World.getPlayerRoster().add(_event.m.Dude);
 						this.World.getTemporaryRoster().clear();
 						_event.m.Dude.onHired();
@@ -34,8 +32,7 @@ this.legend_find_slave_after_battle_event <- this.inherit("scripts/events/event"
 				},
 				{
 					Text = "Be free, friend.",
-					function getResult( _event )
-					{
+					function getResult(_event) {
 						this.World.getTemporaryRoster().clear();
 						_event.m.Dude = null;
 						return 0;
@@ -43,8 +40,7 @@ this.legend_find_slave_after_battle_event <- this.inherit("scripts/events/event"
 
 				}
 			],
-			function start( _event )
-			{
+			function start(_event) {
 				local roster = this.World.getTemporaryRoster();
 				_event.m.Dude = roster.create("scripts/entity/tactical/player");
 				_event.m.Dude.setStartValuesEx([::Legends.Background.SlaveBarbarian]);
@@ -78,34 +74,26 @@ this.legend_find_slave_after_battle_event <- this.inherit("scripts/events/event"
 			Image = "",
 			List = [],
 			Characters = [],
-			Options = [
-				{
-					Text = "Join us!",
-					function getResult( _event )
-					{
-						this.World.getPlayerRoster().add(_event.m.Dude);
-						this.World.getTemporaryRoster().clear();
-						_event.m.Dude.onHired();
-						_event.m.Dude.m.MoodChanges = [];
-						_event.m.Dude.improveMood(2.0, "Was rescued from captivity");
-						_event.m.Dude = null;
-						return 0;
-					}
-
-				},
-				{
-					Text = "Be free, friend.",
-					function getResult( _event )
-					{
-						this.World.getTemporaryRoster().clear();
-						_event.m.Dude = null;
-						return 0;
-					}
-
+			Options = [{
+				Text = "Join us!",
+				function getResult(_event) {
+					this.World.getPlayerRoster().add(_event.m.Dude);
+					this.World.getTemporaryRoster().clear();
+					_event.m.Dude.onHired();
+					_event.m.Dude.m.MoodChanges = [];
+					_event.m.Dude.improveMood(2.0, "Was rescued from captivity");
+					_event.m.Dude = null;
+					return 0;
 				}
-			],
-			function start( _event )
-			{
+			}, {
+				Text = "Be free, friend.",
+				function getResult(_event) {
+					this.World.getTemporaryRoster().clear();
+					_event.m.Dude = null;
+					return 0;
+				}
+			}],
+			function start(_event) {
 				local roster = this.World.getTemporaryRoster();
 				_event.m.Dude = roster.create("scripts/entity/tactical/player");
 				_event.m.Dude.setStartValuesEx([::Legends.Background.SlaveSouthern]);
@@ -142,8 +130,7 @@ this.legend_find_slave_after_battle_event <- this.inherit("scripts/events/event"
 			Options = [
 				{
 					Text = "Join us!",
-					function getResult( _event )
-					{
+					function getResult(_event) {
 						this.World.getPlayerRoster().add(_event.m.Dude);
 						this.World.getTemporaryRoster().clear();
 						_event.m.Dude.onHired();
@@ -156,8 +143,7 @@ this.legend_find_slave_after_battle_event <- this.inherit("scripts/events/event"
 				},
 				{
 					Text = "Be free, friend.",
-					function getResult( _event )
-					{
+					function getResult(_event) {
 						this.World.getTemporaryRoster().clear();
 						_event.m.Dude = null;
 						return 0;
@@ -165,8 +151,7 @@ this.legend_find_slave_after_battle_event <- this.inherit("scripts/events/event"
 
 				}
 			],
-			function start( _event )
-			{
+			function start(_event) {
 				local roster = this.World.getTemporaryRoster();
 				_event.m.Dude = roster.create("scripts/entity/tactical/player");
 				_event.m.Dude.setStartValuesEx([::Legends.Background.SlaveBarbarian]);
@@ -202,8 +187,7 @@ this.legend_find_slave_after_battle_event <- this.inherit("scripts/events/event"
 			Options = [
 				{
 					Text = "Join us!",
-					function getResult( _event )
-					{
+					function getResult(_event) {
 						this.World.getPlayerRoster().add(_event.m.Dude);
 						this.World.getTemporaryRoster().clear();
 						_event.m.Dude.onHired();
@@ -216,8 +200,7 @@ this.legend_find_slave_after_battle_event <- this.inherit("scripts/events/event"
 				},
 				{
 					Text = "Be free, friend.",
-					function getResult( _event )
-					{
+					function getResult(_event) {
 						this.World.getTemporaryRoster().clear();
 						_event.m.Dude = null;
 						return 0;
@@ -225,8 +208,7 @@ this.legend_find_slave_after_battle_event <- this.inherit("scripts/events/event"
 
 				}
 			],
-			function start( _event )
-			{
+			function start(_event) {
 				local roster = this.World.getTemporaryRoster();
 				_event.m.Dude = roster.create("scripts/entity/tactical/player");
 				_event.m.Dude.setStartValuesEx([::Legends.Background.Slave]);
@@ -263,8 +245,7 @@ this.legend_find_slave_after_battle_event <- this.inherit("scripts/events/event"
 			Options = [
 				{
 					Text = "Join us!",
-					function getResult( _event )
-					{
+					function getResult(_event) {
 						this.World.getPlayerRoster().add(_event.m.Dude);
 						this.World.getTemporaryRoster().clear();
 						_event.m.Dude.onHired();
@@ -277,8 +258,7 @@ this.legend_find_slave_after_battle_event <- this.inherit("scripts/events/event"
 				},
 				{
 					Text = "Be free, friend.",
-					function getResult( _event )
-					{
+					function getResult(_event) {
 						this.World.getTemporaryRoster().clear();
 						_event.m.Dude = null;
 						return 0;
@@ -286,8 +266,7 @@ this.legend_find_slave_after_battle_event <- this.inherit("scripts/events/event"
 
 				}
 			],
-			function start( _event )
-			{
+			function start(_event) {
 				local roster = this.World.getTemporaryRoster();
 				_event.m.Dude = roster.create("scripts/entity/tactical/player");
 				_event.m.Dude.setStartValuesEx([::Legends.Background.SlaveSouthern]);
@@ -326,8 +305,7 @@ this.legend_find_slave_after_battle_event <- this.inherit("scripts/events/event"
 			Options = [
 				{
 					Text = "Join us!",
-					function getResult( _event )
-					{
+					function getResult(_event) {
 						this.World.getPlayerRoster().add(_event.m.Dude);
 						this.World.getTemporaryRoster().clear();
 						_event.m.Dude.onHired();
@@ -340,8 +318,7 @@ this.legend_find_slave_after_battle_event <- this.inherit("scripts/events/event"
 				},
 				{
 					Text = "Be free, friend.",
-					function getResult( _event )
-					{
+					function getResult(_event) {
 						this.World.getTemporaryRoster().clear();
 						_event.m.Dude = null;
 						return 0;
@@ -349,8 +326,7 @@ this.legend_find_slave_after_battle_event <- this.inherit("scripts/events/event"
 
 				}
 			],
-			function start( _event )
-			{
+			function start(_event) {
 				local roster = this.World.getTemporaryRoster();
 				_event.m.Dude = roster.create("scripts/entity/tactical/player");
 				_event.m.Dude.setStartValuesEx([::Legends.Background.Slave]);
@@ -387,46 +363,38 @@ this.legend_find_slave_after_battle_event <- this.inherit("scripts/events/event"
 			Options = [
 				{
 					Text = "Join us!",
-					function getResult( _event )
-					{
+					function getResult(_event) {
 						this.World.getPlayerRoster().add(_event.m.Dude);
 						this.World.getTemporaryRoster().clear();
 						_event.m.Dude.onHired();
 						_event.m.Dude.m.MoodChanges = [];
-						local r = this.Math.rand(0, 99);
+						local r = ::Math.rand(0, 99);
 
-						if (r == 1)
-						{
+						if (r == 1) {
 							::Legends.Perks.grant(_event.m.Dude, ::Legends.Perk.LegendGruesomeFeast);
 						}
 
-						if (r == 2)
-						{
+						if (r == 2) {
 							::Legends.Perks.grant(_event.m.Dude, ::Legends.Perk.LegendInventorAnatomy);
 						}
 
-						if (r == 3)
-						{
+						if (r == 3) {
 							_event.m.Dude.getSkills().add(this.new("scripts/skills/injury_permanent/traumatized_injury"));
 						}
 
-						if (r == 4)
-						{
+						if (r == 4) {
 							::Legends.Traits.grant(_event.m.Dude, ::Legends.Trait.FearUndead);
 						}
 
-						if (r == 5)
-						{
+						if (r == 5) {
 							::Legends.Perks.grant(_event.m.Dude, ::Legends.Perk.LegendRaiseUndead);
 						}
 
-						if (r == 6)
-						{
+						if (r == 6) {
 							::Legends.Traits.grant(_event.m.Dude, ::Legends.Trait.HateUndead);
 						}
 
-						if (r == 7)
-						{
+						if (r == 7) {
 							::Legends.Traits.grant(_event.m.Dude, ::Legends.Trait.CultistFanatic);
 						}
 
@@ -435,38 +403,31 @@ this.legend_find_slave_after_battle_event <- this.inherit("scripts/events/event"
 						// 	_event.m.Dude.getSkills().add(this.new("scripts/skills/traits/legend_deathly_spectre_trait"));
 						// }
 
-						if (r == 8)
-						{
+						if (r == 8) {
 							::Legends.Traits.grant(_event.m.Dude, ::Legends.Trait.Paranoid);
 						}
 
-						if (r == 9)
-						{
+						if (r == 9) {
 							::Legends.Traits.grant(_event.m.Dude, ::Legends.Trait.LegendUndeadKiller);
 						}
 
-						if (r == 10)
-						{
+						if (r == 10) {
 							::Legends.Traits.grant(_event.m.Dude, ::Legends.Trait.Fearless);
 						}
 
-						if (r == 11)
-						{
+						if (r == 11) {
 							::Legends.Traits.grant(_event.m.Dude, ::Legends.Trait.Deathwish);
 						}
 
-						if (r == 12)
-						{
+						if (r == 12) {
 							::Legends.Traits.grant(_event.m.Dude, ::Legends.Trait.Mad);
 						}
 
-						if (r == 13)
-						{
+						if (r == 13) {
 							::Legends.Perks.grant(_event.m.Dude, ::Legends.Perk.LegendSpecBandage);
 						}
 
-						if (r == 14)
-						{
+						if (r == 14) {
 							::Legends.Perks.grant(_event.m.Dude, ::Legends.Perk.LegendFavouredEnemyUndead);
 						}
 
@@ -478,8 +439,7 @@ this.legend_find_slave_after_battle_event <- this.inherit("scripts/events/event"
 				},
 				{
 					Text = "Be free, friend.",
-					function getResult( _event )
-					{
+					function getResult(_event) {
 						this.World.getTemporaryRoster().clear();
 						_event.m.Dude = null;
 						return 0;
@@ -487,11 +447,10 @@ this.legend_find_slave_after_battle_event <- this.inherit("scripts/events/event"
 
 				}
 			],
-			function start( _event )
-			{
+			function start(_event) {
 				local roster = this.World.getTemporaryRoster();
 				_event.m.Dude = roster.create("scripts/entity/tactical/player");
-				local cultureResult = this.Math.rand(1, 4);
+				local cultureResult = ::Math.rand(1, 4);
 				local vars = [
 					[
 						"companyname",
@@ -507,20 +466,15 @@ this.legend_find_slave_after_battle_event <- this.inherit("scripts/events/event"
 				local backgroundText3 = "{%name% was made to assist in the madman\'s depraved experiments. Sometimes this simply meant hauling corpses, but often meant far worse. You recall the terrified glances %name% sometimes gives village girls and decide not to pry further. | A curiosity for their physique, %name% was studied, prodded, poked, sometimes even cut open. | %name% was forced to compete with the madman\'s undead minions in strange, esoteric feats of physical prowess or martial prowess.}";
 				local backgroundText4 = "{One day, however, the opportunity to escape arose, and the captive took it without hesitation. The %companyname% wiped the camp clean, and with nowhere else to go the survivor now fights for you. | It was you who gave the chance for freedom, when you stormed the lair and slew its inhabitants. Seeing it the obvious choice, the slave decided to fight for you.}";
 
-				if (cultureResult == 4)
-				{
+				if (cultureResult == 4) {
 					_event.m.Dude.setStartValuesEx([::Legends.Background.SlaveSouthern]);
 					backgroundText1 = "{%name% claims to have once been an assassin of one of the southern guilds. Tasked with killing a man accused of using foul magic to bring the dead to unnatural life. The assassin tracked the target to his lair and was poised to strike. | A nomad whose tribe was massacred by a necromancer, %name% traveled far and wide in search of revenge. Eventually finding the lair of the man responsible, all that remained was to storm the redoubt and kill its inhabitant. | %name% was originally a manhunter. One day tasked with hunting down a particularly dangerous escapee: a necromancer responsible for the destruction - and subsequent resurrection - of an entire regiment. Undeterred, %name% accepted and tracked the sorcerer to his lair in the wilds.}";
 					backgroundText2 = "{It was a trap. Before the attacker could react, the %name% was surrounded by once-dead men.  The fight was bravely fought, but was eventually overwhelmed by their numbers. When %name% awoke, it was in the necromancer\'s prison. | For all that preparedness, however, the plan failed to notice the hands clawing out of the ground underneath until it was too late. The fleshy automatons that arose bound and tied , and the hunter was soon the necromancer\'s captive. | While charging in, however, the attacker was surprised to find not just the necromancer, but a host of rotting corpses surrounding as well. %name% fought, but their numbers were too great. The greated horror, was not being killed, but instead captured.}";
-				}
-				else if (cultureResult == 3)
-				{
+				} else if (cultureResult == 3) {
 					_event.m.Dude.setStartValuesEx([::Legends.Background.SlaveBarbarian]);
 					backgroundText1 = "{A wildling who abandoned society long ago, %name% was content to live out the rest of life in the forests of the wild. But one day alien creatures began to roam the woods, things that should be dead, things that should not be at all. The wildling searched for the source and found a sorcerer\'s lair on the periphery of the wilds. | Tasked by the elder\'s to purge the Untoward, %name% travelled the lands putting the undead back in the ground. Always hunting for the Source, one day the search yielded fruit - a profane lair where a man in black robbed men of their deaths. | Originally a barbarian from the north, %name%\'s returned from a hunting trip to find the village utterly devastated, victims of an undead incursion. Swearing vengeance, the wildling tracked the cursed creatures down and slew them one by one, until only the mastermind behind them remained.}";
 					backgroundText2 = "{The necromancer acted first - hired ruffians kidnapped %name% in the night, and in the morning awoke a prisoner. | But %name%\'s nemesis took the initiative, and as the wildling approached grasping hands sprung from the ground and restrained. A cloaked figure, glowing red eyes, and then nothingness.  %name% came to, already in chains. | But the necromancer was not caught unaware. As the wildling charged in bravely to slay the foe, dead men in armor appeared from all around and held the wildling down. %name% was chained, rage unspent and mission unfulfilled.}";
-				}
-				else
-				{
+				} else {
 					_event.m.Dude.setStartValuesEx([::Legends.Background.Slave]);
 					backgroundText1 = "{%name% was a witchhunter, known for the singlemindedness of the crusade against the hexen and their dark crafts. Rumors of strange magic and terrorized townspeople saw hunts lead him further and further into the wilderness. | While priests are not usually known for their investigative tendencies, %name% nonetheless was thrust into the inquisitor\'s role when when the village dead began rising from their graves. | A simple farmer, %name%\'s life was an inauspicious one, until one day people from the village started disappearing and %name% left to find them.}";
 					backgroundText2 = "But the search turned up something more sinister than expected - a necromancer performing profane experiments on both living and dead. %name% tried to run, but grasping hands and rotting bodies blocked the path, and %name% was knocked out and taken prisoner.";
@@ -534,47 +488,38 @@ this.legend_find_slave_after_battle_event <- this.inherit("scripts/events/event"
 		});
 	}
 
-	function isValid()
-	{
-		if (!this.Const.DLC.Desert)
-		{
+	function isValid() {
+		if (!this.Const.DLC.Desert) {
 			return false;
 		}
 
-		if (this.World.Assets.getOrigin().getID() != "scenario.legend_escaped_slaves")
-		{
+		if (this.World.Assets.getOrigin().getID() != "scenario.legend_escaped_slaves") {
 			return;
 		}
 
-		if (!this.World.Statistics.getFlags().get("FindCaptivePostBattle"))
-		{
+		if (!this.World.Statistics.getFlags().get("FindCaptivePostBattle")) {
 			return;
 		}
 
-		if (this.World.Statistics.getFlags().getAsInt("LastCombatID") <= this.m.LastCombatID)
-		{
+		if (this.World.Statistics.getFlags().getAsInt("LastCombatID") <= this.m.LastCombatID) {
 			return;
 		}
 
-		if (this.Time.getVirtualTimeF() - this.World.Events.getLastBattleTime() > 5.0 || this.World.Statistics.getFlags().getAsInt("LastCombatResult") != 1)
-		{
+		if (this.Time.getVirtualTimeF() - this.World.Events.getLastBattleTime() > 5.0 || this.World.Statistics.getFlags().getAsInt("LastCombatResult") != 1) {
 			return false;
 		}
 
-		if (this.World.getPlayerRoster().getSize() >= this.World.Assets.getBrothersMax())
-		{
+		if (this.World.getPlayerRoster().getSize() >= this.World.Assets.getBrothersMax()) {
 			return false;
 		}
 
 		local f = this.World.FactionManager.getFaction(this.World.Statistics.getFlags().getAsInt("LastCombatFaction"));
 
-		if (f == null)
-		{
+		if (f == null) {
 			return false;
 		}
 
-		if (f.getType() != this.Const.FactionType.Zombies && f.getType() != this.Const.FactionType.Bandits && f.getType() != this.Const.FactionType.Barbarians && f.getType() != this.Const.FactionType.OrientalCityState && f.getType() != this.Const.FactionType.OrientalBandits)
-		{
+		if (f.getType() != this.Const.FactionType.Zombies && f.getType() != this.Const.FactionType.Bandits && f.getType() != this.Const.FactionType.Barbarians && f.getType() != this.Const.FactionType.OrientalCityState && f.getType() != this.Const.FactionType.OrientalBandits) {
 			return false;
 		}
 
@@ -582,60 +527,42 @@ this.legend_find_slave_after_battle_event <- this.inherit("scripts/events/event"
 		return true;
 	}
 
-	function onUpdateScore()
-	{
-		return;
-	}
+	function onUpdateScore() {}
 
-	function onPrepare()
-	{
-	}
+	function onPrepare() {}
 
-	function onPrepareVariables( _vars )
-	{
-	}
+	function onPrepareVariables(_vars) {}
 
-	function onDetermineStartScreen()
-	{
+	function onDetermineStartScreen() {
 		local f = this.World.FactionManager.getFaction(this.World.Statistics.getFlags().getAsInt("LastCombatFaction"));
 
-		if (f.getType() == this.Const.FactionType.Bandits)
-		{
-			if (this.Math.rand(1, 100) <= 40)
+		if (f.getType() == this.Const.FactionType.Bandits) {
+			if (::Math.rand(1, 100) <= 40)
 				return "Bandits";
 			return "BanditsSoutherner";
-		}
-		else if (f.getType() == this.Const.FactionType.Barbarians)
-		{
-			if (this.Math.rand(1, 100) <= 50)
+		} else if (f.getType() == this.Const.FactionType.Barbarians) {
+			if (::Math.rand(1, 100) <= 50)
 				return "Barbarians";
 			return "BarbariansNortherner";
-		}
-		else if (f.getType() == this.Const.FactionType.OrientalBandits)
-		{
-			if (this.Math.rand(1, 100) <= 60)
+		} else if (f.getType() == this.Const.FactionType.OrientalBandits) {
+			if (::Math.rand(1, 100) <= 60)
 				return "Nomads";
 			return "NomadsNortherner";
-		}
-		else if (f.getType() == this.Const.FactionType.Zombies)
-		{
+		} else if (f.getType() == this.Const.FactionType.Zombies) {
 			return "Undead";
 		}
 	}
 
-	function onClear()
-	{
+	function onClear() {
 		this.m.Dude = null;
 	}
 
-	function onSerialize( _out )
-	{
+	function onSerialize(_out) {
 		this.event.onSerialize(_out);
 		_out.writeU32(this.m.LastCombatID);
 	}
 
-	function onDeserialize( _in )
-	{
+	function onDeserialize(_in) {
 		this.event.onDeserialize(_in);
 		this.m.LastCombatID = _in.readU32();
 	}

@@ -7,8 +7,7 @@ this.legends_player_is_rich_op_backgrounds_event <- this.inherit("scripts/events
 		Regularbros = null,
 		Compensation = null,
 	},
-	function create()
-	{
+	function create() {
 		this.m.ID = "event.legend_player_is_rich_op_backgrounds_event";
 		this.m.Title = "During camp...";
 		this.m.Cooldown = 100.0 * this.World.getTime().SecondsPerDay;
@@ -18,40 +17,28 @@ this.legends_player_is_rich_op_backgrounds_event <- this.inherit("scripts/events
 			Image = "",
 			List = [],
 			Characters = [],
-			Options = [],
-			function start( _event )
-			{
-				this.Options.push({
-					Text = "Aye, it\'s fine time you all get a raise.",
-					function getResult( _event )
-					{
-						return "B";
-					}
-				});
-				this.Options.push ({
-					Text = "You all signed the dotted line and get paid according to it.",
-					function getResult( _event )
-					{
-						return "C";
-					}
-				});
-				if (_event.m.TraderCmr != null && !_event.m.TraderCmr.isNull())
-				{
-					this.Options.push ({
+			Options = [{
+				Text = "Aye, it\'s fine time you all get a raise.",
+				getResult = @(_event) "B"
+			}, {
+				Text = "You all signed the dotted line and get paid according to it.",
+				getResult = @(_event) "C"
+			}],
+			function start(_event) {
+				this.Characters.push(_event.m.OPBro1.getImagePath());
+				this.Characters.push(_event.m.OPBro2.getImagePath());
+
+				if (_event.m.TraderCmr != null && !_event.m.TraderCmr.isNull()) {
+					this.Options.push({
 						Text = "There\'s no need to argue, we can work it out.",
-						function getResult( _event )
-						{
-							this.m.Compensation = this.Math.round(0.04 * UniquebrosNumber * cash);
+						function getResult(_event) {
+							this.m.Compensation = ::Math.round(0.04 * UniquebrosNumber * cash);
 							return "D";
 						}
 					});
 				}
 
-				this.Characters.push(_event.m.OPBro1.getImagePath());
-				this.Characters.push(_event.m.OPBro2.getImagePath());
-
-				foreach( bro in _event.m.Uniquebros )
-				{
+				foreach (bro in _event.m.Uniquebros) {
 					if (bro.getMoodState() >= this.Const.MoodState.Neutral) {
 						this.List.push(::Legends.EventList.changeMood(bro, -2.0, "Rivalry!"));
 					}
@@ -65,36 +52,21 @@ this.legends_player_is_rich_op_backgrounds_event <- this.inherit("scripts/events
 			Image = "",
 			List = [],
 			Characters = [],
-			Options = [
-				{
-					Text = "You\'ve earned it, boys!",
-					function getResult( _event )
-					{
-						return 0;
-					}
-
-				}
-			],
-			function start( _event )
-			{
+			Options = [{
+				Text = "You\'ve earned it, boys!",
+				getResult = @(_event) 0
+			}],
+			function start(_event) {
 				this.Characters.push(_event.m.OPBro1.getImagePath());
 				this.Characters.push(_event.m.OPBro2.getImagePath());
+				this.List.push(::Legends.EventList.changeMoney(-_event.m.Compensation));
 
-				this.World.Assets.addMoney(-_event.m.Compensation);
-				this.List.push({
-					id = 10,
-					icon = "ui/icons/asset_money.png",
-					text = "You spend [color=" + this.Const.UI.Color.NegativeEventValue + "]" + _event.m.Compensation + "[/color] Crowns"
-				});
-
-				foreach( bro in _event.m.Uniquebros )
-				{
+				foreach (bro in _event.m.Uniquebros) {
 					bro.getBaseProperties().DailyWage += 12;
 					this.List.push(::Legends.EventList.changeMood(bro, 2.0, "Got a pay raise"));
 				}
 
-				foreach( bro in _event.m.Regularbros )
-				{
+				foreach (bro in _event.m.Regularbros) {
 					bro.getBaseProperties().DailyWage += 4;
 					this.List.push(::Legends.EventList.changeMood(bro, 2.0, "Got a pay raise"));
 				}
@@ -107,47 +79,32 @@ this.legends_player_is_rich_op_backgrounds_event <- this.inherit("scripts/events
 			Image = "",
 			List = [],
 			Characters = [],
-			Options = [
-				{
-					Text = "That\'s how it works with the %companyname%.",
-					function getResult( _event )
-					{
-						return 0;
-					}
-
-				}
-			],
-			function start( _event )
-			{
+			Options = [{
+				Text = "That\'s how it works with the %companyname%.",
+				getResult = @(_event) 0
+			}],
+			function start(_event) {
 				this.Characters.push(_event.m.OPBro1.getImagePath());
 				this.Characters.push(_event.m.OPBro2.getImagePath());
 				local brothers = this.World.getPlayerRoster().getAll();
 
-				foreach( bro in brothers )
-				{
-					if (bro.getSkills().hasTrait(::Legends.Trait.Player))
-					{
+				foreach (bro in brothers) {
+					if (bro.getSkills().hasTrait(::Legends.Trait.Player)) {
 						continue;
 					}
 
-					if (bro.getSkills().hasTrait(::Legends.Trait.Greedy))
-					{
+					if (bro.getSkills().hasTrait(::Legends.Trait.Greedy)) {
 						this.List.push(::Legends.EventList.changeMood(bro, -2.0, "Was denied a pay raise"));
-					}
-					else if (!bro.getBackground().isExcluded(::Legends.Traits.getID(::Legends.Trait.Greedy)))
-					{
-						if (this.Math.rand(1, 100) <= 20)
-						{
-							::Legends.Traits.grant(bro, ::Legends.Trait.Greedy, function (_trait) {
+					} else if (!bro.getBackground().isExcluded(::Legends.Traits.getID(::Legends.Trait.Greedy))) {
+						if (::Math.rand(1, 100) <= 20) {
+							::Legends.Traits.grant(bro, ::Legends.Trait.Greedy, function(_trait) {
 								this.List.push({
 									id = 10,
 									icon = _trait.getIcon(),
 									text = bro.getName() + " gets greedy"
 								});
 							}.bindenv(this));
-						}
-						else
-						{
+						} else {
 							this.List.push(::Legends.EventList.changeMood(bro, -1.0, "Was denied a pay raise"));
 						}
 					}
@@ -161,30 +118,16 @@ this.legends_player_is_rich_op_backgrounds_event <- this.inherit("scripts/events
 			Image = "",
 			List = [],
 			Characters = [],
-			Options = [
-				{
-					Text = "Keep this between us...",
-					function getResult( _event )
-					{
-						return 0;
-					}
-
-				}
-			],
-			function start( _event )
-			{
+			Options = [{
+				Text = "Keep this between us...",
+				getResult = @(_event) 0
+			}],
+			function start(_event) {
 				this.Characters.push(_event.m.OPBro1.getImagePath());
 				this.Characters.push(_event.m.OPBro2.getImagePath());
 
-				this.World.Assets.addMoney(-_event.m.Compensation);
-				this.List.push({
-					id = 10,
-					icon = "ui/icons/asset_money.png",
-					text = "You spend [color=" + this.Const.UI.Color.NegativeEventValue + "]" + _event.m.Compensation + "[/color] Crowns"
-				});
-
-				foreach( bro in _event.m.Uniquebros )
-				{
+				this.List.push(::Legends.EventList.changeMoney(-_event.m.Compensation));
+				foreach (bro in _event.m.Uniquebros) {
 					bro.getBaseProperties().DailyWage += 8;
 					this.List.push(::Legends.EventList.changeMood(bro, 2.0, "Got a pay raise"));
 				}
@@ -192,20 +135,16 @@ this.legends_player_is_rich_op_backgrounds_event <- this.inherit("scripts/events
 		});
 	}
 
-	function onUpdateScore()
-	{
-		if (this.World.Assets.getMoney() <= 30000)
-		{
+	function onUpdateScore() {
+		if (this.World.Assets.getMoney() <= 30000) {
 			return;
 		}
 
-		if (this.World.getPlayerRoster().getSize() < 3)
-		{
+		if (this.World.getPlayerRoster().getSize() < 3) {
 			return;
 		}
 
-		if (this.World.Retinue.hasFollower("follower.paymaster"))
-		{
+		if (this.World.Retinue.hasFollower("follower.paymaster")) {
 			return;
 		}
 
@@ -214,62 +153,57 @@ this.legends_player_is_rich_op_backgrounds_event <- this.inherit("scripts/events
 		local candidate_rest = [];
 		local thetrader;
 
-		foreach( bro in brothers )
-		{
-			if (bro.getSkills().hasTrait(::Legends.Trait.Player) && bro.getBackground().getID() != ::Legends.Backgrounds.getID(::Legends.Background.LegendCommanderTrader))
+		foreach (bro in brothers) {
+			if (bro.getSkills().hasTrait(::Legends.Trait.Player) && ::Legends.Backgrounds.has(bro, ::Legends.Background.LegendCommanderTrader))
 				continue;
 
-			if (bro.isStabled() || bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.Slave))
+			if (bro.isStabled() || ::Legends.Backgrounds.has(bro, ::Legends.Background.Slave))
 				continue;
 
-			switch (bro.getBackground().getID())
-			{
-
-				case ::Legends.Backgrounds.getID(::Legends.Background.LegendCommanderTrader):
-					thetrader.push(bro);
-					break;
-				case ::Legends.Backgrounds.getID(::Legends.Background.Assassin):
-				case ::Legends.Backgrounds.getID(::Legends.Background.LegendCrusader):
-				case ::Legends.Backgrounds.getID(::Legends.Background.LegendBerserker):
-				case ::Legends.Backgrounds.getID(::Legends.Background.LegendNecro):
-				case ::Legends.Backgrounds.getID(::Legends.Background.LegendWitch):
-				case ::Legends.Backgrounds.getID(::Legends.Background.LegendTrader):
-				case ::Legends.Backgrounds.getID(::Legends.Background.LegendRanger):
-				case ::Legends.Backgrounds.getID(::Legends.Background.RegentInAbsentia):
-					candidate_opbackground.push(bro);
-					break;
-				default:
-					candidate_rest.push(bro);
+			if (::Legends.Backgrounds.has(bro, ::Legends.Background.LegendCommanderTrader)) {
+				thetrader.push(bro);
+				continue;
 			}
+
+			if (::Legends.Backgrounds.hasAny(bro,
+				::Legends.Background.Assassin,
+				::Legends.Background.LegendCrusader,
+				::Legends.Background.LegendBerserker,
+				::Legends.Background.LegendNecro,
+				::Legends.Background.LegendWitch,
+				::Legends.Background.LegendTrader,
+				::Legends.Background.LegendRanger,
+				::Legends.Background.RegentInAbsentia
+			)) {
+				candidate_opbackground.push(bro);
+				continue;
+			}
+			candidate_rest.push(bro);
 		}
+
 		if (candidate_opbackground.len() <= 2)
-		{
 			return;
-		}
 
 		this.m.Uniquebros = candidate_opbackground;
 		this.m.Regularbros = candidate_rest;
 		this.m.TraderCmr = thetrader;
 
-		local UniquebrosNumber = this.Math.floor(candidate_opbackground.len());
+		local UniquebrosNumber = ::Math.floor(candidate_opbackground.len());
 		local cash = this.World.Assets.getMoney();
-		this.m.Compensation = this.Math.round(0.05 * cash + (0.05 * UniquebrosNumber * cash));
+		this.m.Compensation = ::Math.round(0.05 * cash + (0.05 * UniquebrosNumber * cash));
 
-		local r = this.Math.rand(0, candidate_opbackground.len() - 1);
+		local r = ::Math.rand(0, candidate_opbackground.len() - 1);
 		this.m.OPBro1 = candidate_opbackground[r];
 		candidate_opbackground.remove(r);
-		r = this.Math.rand(0, candidate_opbackground.len() - 1);
+		r = ::Math.rand(0, candidate_opbackground.len() - 1);
 		this.m.OPBro2 = candidate_opbackground[r];
 		candidate_opbackground.remove(r);
-
-
 
 		this.m.Score = candidate_opbackground.len() * (this.World.Assets.getMoney() - 30000) * 0.0005;
 		// this.m.Score = 9999;
 	}
 
-	function onPrepareVariables( _vars )
-	{
+	function onPrepareVariables(_vars) {
 		_vars.push([
 			"bro1",
 			this.m.OPBro1.getName()
@@ -280,8 +214,7 @@ this.legends_player_is_rich_op_backgrounds_event <- this.inherit("scripts/events
 		]);
 	}
 
-	function onClear()
-	{
+	function onClear() {
 		this.m.OPBro1 = null;
 		this.m.OPBro2 = null;
 		this.m.TraderCmr = null;

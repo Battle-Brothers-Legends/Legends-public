@@ -142,13 +142,13 @@ this.legend_ardent_admirer_event <- this.inherit("scripts/events/event", {
 		this.m.Score = 9999;
 	}
 
-	function onPrepareVariables( _vars )
-	{
+	function onPrepare() {}
+
+	function onPrepareVariables(_vars) {
 		if (this.m.Gunner != null) {
 			_vars.push(["gunner", this.m.Gunner.getName()]);
 		}
 	}
-
 
 	function onClear() {
 		this.m.Fan = null;

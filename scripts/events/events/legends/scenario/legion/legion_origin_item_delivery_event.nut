@@ -1,7 +1,6 @@
 this.legion_origin_item_delivery_event <- this.inherit("scripts/events/event", {
 	m = {},
-	function create()
-	{
+	function create() {
 		this.m.ID = "event.legion_origin_item_delivery";
 		this.m.Title = "Along the way...";
 		this.m.Cooldown = 45.0 * this.World.getTime().SecondsPerDay; //cart arrives, delives 3 items chosen from an array. reoccours.
@@ -15,8 +14,7 @@ this.legion_origin_item_delivery_event <- this.inherit("scripts/events/event", {
 				Text = "Strange, but welcome.",
 				getResult = @(_event) 0
 			}],
-			function start( _event )
-			{
+			function start(_event) {
 				local items = [
 					::Const.World.Common.pickItem([
 						[1, "weapons/ancient/legend_broad_warscythe"],
@@ -51,8 +49,7 @@ this.legion_origin_item_delivery_event <- this.inherit("scripts/events/event", {
 		});
 	}
 
-	function onUpdateScore()
-	{
+	function onUpdateScore() {
 		//see 'static_fucntions' ::Legends.S.humansOnly for more details.
 		if (::World.Assets.getOrigin().getID() != "scenario.legend_risen_legion") {
 			return;
@@ -60,30 +57,21 @@ this.legion_origin_item_delivery_event <- this.inherit("scripts/events/event", {
 
 		local hasSkeleton = false;
 		foreach (bro in ::World.getPlayerRoster().getAll()) {
-    		if (bro.getFlags().has("PlayerSkeleton")) {
+			if (bro.getFlags().has("PlayerSkeleton")) {
 				hasSkeleton = true;
 				break;
 			}
 		}
 
 		if (!hasSkeleton) {
-    		return; 
+			return;
 		}
 
 		this.m.Score = 5;
 	}
 
-	function onPrepare()
-	{
-	}
-
-	function onPrepareVariables( _vars )
-	{
-	}
-
-	function onClear()
-	{
-	}
-
+	function onPrepare() {}
+	function onPrepareVariables(_vars) {}
+	function onClear() {}
 });
 

@@ -1,10 +1,8 @@
 this.legend_lonewolf_companion_blacksmith_event <- this.inherit("scripts/events/event", {
 	m = {
-		Dude = null,
-		Looted = 0
+		Dude = null
 	},
-	function create()
-	{
+	function create() {
 		this.m.ID = "event.legend_lonewolf_companion_blacksmith";
 		this.m.Title = "Last stand";
 		this.m.Cooldown = 45.0 * this.World.getTime().SecondsPerDay; //—
@@ -14,35 +12,17 @@ this.legend_lonewolf_companion_blacksmith_event <- this.inherit("scripts/events/
 			Image = "",
 			List = [],
 			Characters = [],
-			Options = [
-				{
-					Text = "Loot the houses while you have the chance!",
-					function getResult( _event )
-					{
-						return "B";
-					}
-
-				},
-				{
-					Text = "Ignore the homes, form a pointed formation to drive a wedge through to the blacksmith.",
-					function getResult( _event )
-					{
-						return "C";
-					}
-
-				},
-				{
-					Text = "Another normal day — let\'s get out of here.",
-					function getResult( _event )
-					{
-						return 0;
-					}
-
-				}
-			],
-			function start( _event )
-			{
-			}
+			Options = [{
+				Text = "Loot the houses while you have the chance!",
+				getResult = @(_event) "B"
+			}, {
+				Text = "Ignore the homes, form a pointed formation to drive a wedge through to the blacksmith.",
+				getResult = @(_event) "C"
+			}, {
+				Text = "Another normal day — let\'s get out of here.",
+				getResult = @(_event) 0
+			}],
+			function start(_event) {}
 
 		});
 		this.m.Screens.push({
@@ -51,83 +31,57 @@ this.legend_lonewolf_companion_blacksmith_event <- this.inherit("scripts/events/
 			Image = "",
 			List = [],
 			Characters = [],
-			Options = [
-				{
-					Text = "We should get out of here.",
-					function getResult( _event )
-					{
-						return 0;
-					}
+			Options = [{
+				Text = "We should get out of here.",
+				getResult = @(_event) 0
+			}],
+			function start(_event) {
+				this.List.push(::Legends.EventList.changeMoney(::Math.rand(152, 2331)));
 
-				}
-			],
-			function start( _event )
-			{
-				local money = this.Math.rand(152, 2331);
-				this.World.Assets.addMoney(money);
-
-				if (_event.m.Looted == 1)
-				{
-					local r = this.Math.rand(1, 5);
-					local item;
-
-					if (r == 1)
-					{
-						item = this.new("gemstones_item");
-						item = this.new("silverware_item");
-						item = this.new("golden_chalice_item");
-						item = this.new("wine_item");
-						item = this.new("arming_sword");
-						item = this.new("legend_cooking_spices_trade_item");
-					}
-					else if (r == 2)
-					{
-						item = this.new("ornate_tome_item");
-						item = this.new("cured_rations_item");
-						item = this.new("mead_item");
-						item = this.new("kite_shield");
-						item = this.new("golden_chalice_item");
-					}
-					else if (r == 3)
-					{
-						item = this.new("jade_broche_item");
-						item = this.new("legend_pie_item");
-						item = this.new("mead_item");
-						item = this.new("signet_ring_item");
-						item = this.new("signet_ring_item");
-					}
-					else if (r == 4)
-					{
-						item = this.new("signet_ring_item");
-						item = this.new("legend_medicine_small_item");
-						item = this.new("mead_item");
-						item = this.new("pitchfork");
-						item = this.new("smoked_ham_item");
-					}
-					else if (r == 5)
-					{
-						item = this.new("bread_item");
-						item = this.new("mead_item");
-						item = this.new("goat_cheese_item");
-						item = this.new("pitchfork");
-						item = this.new("legend_scythe");
-					}
-
-					this.World.Assets.getStash().add(item);
-					this.List.push({
-						id = 10,
-						icon = "ui/items/" + item.getIcon(),
-						text = "You gain " + this.Const.Strings.getArticle(item.getName()) + item.getName()
-					});
-					this.World.Assets.addMoney(money);
-					this.List.push({
-						id = 10,
-						icon = "ui/icons/asset_money.png",
-						text = "You gained [color=" + this.Const.UI.Color.PositiveEventValue + "]" + money + "[/color] Crowns"
-					});
+				local r = ::Math.rand(1, 5);
+				if (r == 1) {
+					this.List.extend(::Legends.EventList.addItems([
+						::new("scripts/items/loot/gemstones_item"),
+						::new("scripts/items/loot/silverware_item"),
+						::new("scripts/items/loot/golden_chalice_item"),
+						::new("scripts/items/supplies/wine_item"),
+						::new("scripts/items/weapons/arming_sword"),
+						::new("scripts/items/trade/legend_cooking_spices_trade_item"),
+					], ::World.Assets.getStash()));
+				} else if (r == 2) {
+					this.List.extend(::Legends.EventList.addItems([
+						::new("scripts/items/loot/ornate_tome_item"),
+						::new("scripts/items/supplies/cured_rations_item"),
+						::new("scripts/items/supplies/mead_item"),
+						::new("scripts/items/shields/kite_shield"),
+						::new("scripts/items/loot/golden_chalice_item"),
+					], ::World.Assets.getStash()));
+				} else if (r == 3) {
+					this.List.extend(::Legends.EventList.addItems([
+						::new("scripts/items/loot/jade_broche_item"),
+						::new("scripts/items/supplies/legend_pie_item"),
+						::new("scripts/items/supplies/mead_item"),
+						::new("scripts/items/loot/signet_ring_item"),
+						::new("scripts/items/loot/signet_ring_item"),
+					], ::World.Assets.getStash()));
+				} else if (r == 4) {
+					this.List.extend(::Legends.EventList.addItems([
+						::new("scripts/items/loot/signet_ring_item"),
+						::new("scripts/items/supplies/legend_medicine_small_item"),
+						::new("scripts/items/supplies/mead_item"),
+						::new("scripts/items/weapons/pitchfork"),
+						::new("scripts/items/supplies/smoked_ham_item"),
+					], ::World.Assets.getStash()));
+				} else if (r == 5) {
+					this.List.extend(::Legends.EventList.addItems([
+						::new("scripts/items/supplies/bread_item"),
+						::new("scripts/items/supplies/mead_item"),
+						::new("scripts/items/supplies/goat_cheese_item"),
+						::new("scripts/items/weapons/pitchfork"),
+						::new("scripts/items/weapons/legend_scythe")
+					], ::World.Assets.getStash()));
 				}
 			}
-
 		});
 		this.m.Screens.push({
 			ID = "C",
@@ -135,21 +89,16 @@ this.legend_lonewolf_companion_blacksmith_event <- this.inherit("scripts/events/
 			Image = "",
 			List = [],
 			Characters = [],
-			Options = [
-				{
-					Text = "We can introduce ourselves when they wake up.",
-					function getResult( _event )
-					{
-						this.World.getPlayerRoster().add(_event.m.Dude);
-						this.World.getTemporaryRoster().clear();
-						_event.m.Dude.onHired();
-						return 0;
-					}
-
+			Options = [{
+				Text = "We can introduce ourselves when they wake up.",
+				function getResult(_event) {
+					this.World.getPlayerRoster().add(_event.m.Dude);
+					this.World.getTemporaryRoster().clear();
+					_event.m.Dude.onHired();
+					return 0;
 				}
-			],
-			function start( _event )
-			{
+			}],
+			function start(_event) {
 				local roster = this.World.getTemporaryRoster();
 				_event.m.Dude = roster.create("scripts/entity/tactical/player");
 				_event.m.Dude.setStartValuesEx([::Legends.Background.LegendBlacksmith]);
@@ -163,9 +112,9 @@ this.legend_lonewolf_companion_blacksmith_event <- this.inherit("scripts/events/
 				_event.m.Dude.getBaseProperties().MeleeDefense += 5;
 				_event.m.Dude.getBaseProperties().RangedDefense += 5;
 				_event.m.Dude.getBaseProperties().Initiative += 5;
-				_event.m.Dude.getItems().unequip(_event.m.Dude.getItems().getItemAtSlot(this.Const.ItemSlot.Mainhand));
-				_event.m.Dude.getItems().unequip(_event.m.Dude.getItems().getItemAtSlot(this.Const.ItemSlot.Offhand));
-				_event.m.Dude.getItems().equip(this.new("scripts/items/weapons/shamshir"));
+				_event.m.Dude.getItems().unequip(_event.m.Dude.getItems().getItemAtSlot(::Const.ItemSlot.Mainhand));
+				_event.m.Dude.getItems().unequip(_event.m.Dude.getItems().getItemAtSlot(::Const.ItemSlot.Offhand));
+				_event.m.Dude.getItems().equip(::new("scripts/items/weapons/shamshir"));
 				_event.m.Dude.getBackground().m.RawDescription = "%name% specialized in forging exotic weapons for nobility — however their fighting style and skill tells you there is more to them than initially meets the eye, even if they don\'t want to talk about it.";
 				_event.m.Dude.addLightInjury();
 				this.Characters.push(_event.m.Dude.getImagePath());
@@ -178,54 +127,39 @@ this.legend_lonewolf_companion_blacksmith_event <- this.inherit("scripts/events/
 			Image = "",
 			List = [],
 			Characters = [],
-			Options = [
-				{
-					Text = "Life goes on.",
-					function getResult( _event )
-					{
-						return 0;
-					}
-
-				}
-			]
+			Options = [{
+				Text = "Life goes on.",
+				getResult = @(_event) 0
+			}]
 		});
 	}
 
-	function onUpdateScore()
-	{
-		if (this.World.Assets.getOrigin().getID() != "scenario.lone_wolf")
-		{
+	function onUpdateScore() {
+		if (this.World.Assets.getOrigin().getID() != "scenario.lone_wolf") {
 			return;
 		}
 
-		if (!this.World.getTime().IsDaytime)
-		{
+		if (!this.World.getTime().IsDaytime) {
 			return;
 		}
 
 		local brothers = this.World.getPlayerRoster().getAll();
 
-		if (this.World.getPlayerRoster().getSize() >= this.World.Assets.getBrothersMax())
-		{
+		if (this.World.getPlayerRoster().getSize() >= this.World.Assets.getBrothersMax()) {
 			return;
 		}
 
-		if (brothers.len() > 7)
-		{
+		if (brothers.len() > 7) {
 			return;
 		}
 
 		this.m.Score = 8;
 	}
 
-	function onPrepareVariables( _vars )
-	{
-	}
+	function onPrepareVariables(_vars) {}
 
-	function onClear()
-	{
+	function onClear() {
 		this.m.Dude = null;
-		this.m.Looted = null;
 	}
 
 });

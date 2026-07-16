@@ -1,7 +1,8 @@
 this.legend_barbarian_vs_shieldmaiden <- this.inherit("scripts/events/event", {
 	m = {
 		Barbarian = null,
-		Shieldmaiden = null
+		Shieldmaiden = null,
+		Flag = "legend_barbarian_vs_shieldmaiden"
 	},
 	function create()
 	{
@@ -14,159 +15,72 @@ this.legend_barbarian_vs_shieldmaiden <- this.inherit("scripts/events/event", {
 			Image = "",
 			List = [],
 			Characters = [],
-			Options = [
-				{
-					Text = "Are you both done?",
-					function getResult( _event )
-					{
-						return 0;
-					}
-
-				}
-			],
-			function start( _event )
-			{
-				local victorious = false;
-
-				if (this.Math.rand(1, 100) <= 50)
-				{
+			Options = [{
+				Text = "Are you both done?",
+				getResult = @(_event) 0
+			}],
+			function start(_event) {
+				if (::Math.rand(1, 100) <= 50) {
 					this.Text = this.Text + " %barbarian% rushes at %shieldmaiden% with a full swing of a weapon, as if trying to cut her in half, but she raises her shield to deftly deflect the blow and immedietly counters with a quick jab of her shield that stuns and knocks %barbarian% back.%SPEECH_ON%See I told you! you rush without thinking and now you are laying on the ground...%SPEECH_OFF%";
-					local MeleeDefense = this.Math.rand(2, 4);
-					_event.m.Shieldmaiden.getBaseProperties().MeleeDefense += MeleeDefense;
-					_event.m.Shieldmaiden.getSkills().update();
-					_event.markAsLearnedS();
-					_event.m.Shieldmaiden.improveMood(1.0, "victorious in a brawl");
-					_event.m.Shieldmaiden.addLightInjury();
-					local injury1 = _event.m.Barbarian.addInjury(this.Const.Injury.Brawl);
-					_event.m.Barbarian.worsenMood(0.5, "Overpowered by " + _event.m.Shieldmaiden.getName());
-					this.List = [
-						{
-							id = 16,
-							icon = "ui/icons/melee_defense.png",
-							text = _event.m.Shieldmaiden.getName() + " gains [color=" + this.Const.UI.Color.PositiveEventValue + "]+" + MeleeDefense + "[/color] Melee Defense"
-						},
-						{
-							id = 10,
-							icon = "ui/icons/days_wounded.png",
-							text = _event.m.Shieldmaiden.getName() + " suffers light wounds"
-						},
-						{
-							id = 10,
-							icon = injury1.getIcon(),
-							text = _event.m.Barbarian.getName() + " suffers " + injury1.getNameOnly()
-						},
-						{
-							id = 10,
-							icon = this.Const.MoodStateIcon[_event.m.Barbarian.getMoodState()],
-							text = _event.m.Barbarian.getName() + this.Const.MoodStateEvent[_event.m.Barbarian.getMoodState()]
-						}
-					];
-				}
-				else
-				{
+					_event.m.Shieldmaiden.getFlags().add(_event.m.Flag);
+					this.List.extend([
+						::Legends.EventList.changeMeleeDefense(_event.m.Shieldmaiden, ::Math.rand(2, 4)),
+						::Legends.EventList.addLightInjury(_event.m.Shieldmaiden),
+						::Legends.EventList.changeMood(_event.m.Shieldmaiden, 1.0, "Victorious in a brawl"),
+						::Legends.EventList.addInjury(_event.m.Barbarian, ::Const.Injury.Brawl)
+					]);
+					local entry = ::Legends.EventList.changeMood(_event.m.Barbarian, -0.5, "Overpowered by " + _event.m.Shieldmaiden.getName());
+					if (_event.m.Barbarian.getMoodState() < ::Const.MoodState.Neutral) {
+						this.List.push(entry);
+					}
+				} else {
 					this.Text = this.Text + " %barbarian% rushes at %shieldmaiden% who tries to react by blocking the blow with her shield but the Barbarian easily circumvents her defence and knocks her to the ground, before stopping a strike an inch from her head.%SPEECH_ON%See I told you! Best defence is a good offence%SPEECH_OFF%";
-					local meleeSkill = this.Math.rand(2, 4);
-					_event.m.Barbarian.getBaseProperties().MeleeSkill += meleeSkill;
-					_event.m.Barbarian.getSkills().update();
-					_event.markAsLearnedB();
-					_event.m.Barbarian.improveMood(1.0, "victorious in a brawl");
-					local injury2 = _event.m.Shieldmaiden.addInjury(this.Const.Injury.Brawl);
-					_event.m.Shieldmaiden.worsenMood(0.5, "Overpowered by " + _event.m.Barbarian.getName());
-					_event.m.Barbarian.addLightInjury();
-					this.List = [
-						{
-							id = 16,
-							icon = "ui/icons/melee_skill.png",
-							text = _event.m.Barbarian.getName() + " gains [color=" + this.Const.UI.Color.PositiveEventValue + "]+" + meleeSkill + "[/color] Melee Skill"
-						},
-						{
-							id = 10,
-							icon = "ui/icons/days_wounded.png",
-							text = _event.m.Barbarian.getName() + " suffers light wounds"
-						},
-						{
-							id = 10,
-							icon = injury2.getIcon(),
-							text = _event.m.Shieldmaiden.getName() + " suffers " + injury2.getNameOnly()
-						},
-						{
-							id = 10,
-							icon = this.Const.MoodStateIcon[_event.m.Shieldmaiden.getMoodState()],
-							text = _event.m.Shieldmaiden.getName() + this.Const.MoodStateEvent[_event.m.Shieldmaiden.getMoodState()]
-						}
-					];
+					_event.m.Barbarian.getFlags().add(_event.m.Flag);
+					this.List.extend([
+						::Legends.EventList.changeMeleeSkill(_event.m.Barbarian, ::Math.rand(2, 4)),
+						::Legends.EventList.addLightInjury(_event.m.Barbarian),
+						::Legends.EventList.changeMood(_event.m.Barbarian, 1.0, "Victorious in a brawl"),
+						::Legends.EventList.addInjury(_event.m.Shieldmaiden, ::Const.Injury.Brawl)
+					]);
+					local entry = ::Legends.EventList.changeMood(_event.m.Barbarian, -0.5, "Overpowered by " + _event.m.Barbarian.getName());
+					if (_event.m.Barbarian.getMoodState() < ::Const.MoodState.Neutral) {
+						this.List.push(entry);
+					}
 				}
 			}
-
 		});
 	}
 
-	function onUpdateScore()
-	{
-		local brothers = this.World.getPlayerRoster().getAll();
-
+	function onUpdateScore() {
+		local brothers = ::World.getPlayerRoster().getAll();
 		if (brothers.len() < 3)
-		{
 			return;
-		}
 
-		local Barbarian_candidates = [];
+		brothers = brothers.filter(@(_, bro) bro.getLevel() > 3 && !bro.getFlags().has(this.m.Flag));
 
-		foreach( bro in brothers )
-		{
-			if (bro.getLevel() <= 3)
-			{
-				continue;
-			}
+		local barbarian_candidates = brothers.filter(@(_, bro) ::Legends.Backgrounds.hasAny(bro,
+			::Legends.Background.Barbarian,
+			::Legends.Background.Raider
+		));
 
-			if ((bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.Barbarian) && !bro.getFlags().has("learned")) || (bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.Raider) && !bro.getFlags().has("learned")))
-			{
-				Barbarian_candidates.push(bro);
-				break;
-			}
-		}
-
-		if (Barbarian_candidates.len() == 0)
-		{
+		if (barbarian_candidates.len() == 0)
 			return;
-		}
 
-		local Shieldmaiden_candidates = [];
+		local shieldmaiden_candidates = brothers.filter(@(_, bro) ::Legends.Backgrounds.hasAny(bro,
+			::Legends.Background.LegendShieldmaiden
+		));
 
-		foreach( bro in brothers )
-		{
-			if (bro.getLevel() > 3 && bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.LegendShieldmaiden) && !bro.getFlags().has("learned"))
-			{
-				Shieldmaiden_candidates.push(bro);
-			}
-		}
-
-		if (Shieldmaiden_candidates.len() == 0)
-		{
+		if (shieldmaiden_candidates.len() == 0)
 			return;
-		}
 
-		this.m.Barbarian = Barbarian_candidates[this.Math.rand(0, Barbarian_candidates.len() - 1)];
-		this.m.Shieldmaiden = Shieldmaiden_candidates[this.Math.rand(0, Shieldmaiden_candidates.len() - 1)];
-		this.m.Score = (Barbarian_candidates.len() + Shieldmaiden_candidates.len()) * 3;
+		this.m.Barbarian = barbarian_candidates[::Math.rand(0, barbarian_candidates.len() - 1)];
+		this.m.Shieldmaiden = shieldmaiden_candidates[::Math.rand(0, shieldmaiden_candidates.len() - 1)];
+		this.m.Score = (barbarian_candidates.len() + shieldmaiden_candidates.len()) * 3;
 	}
 
-	function onPrepare()
-	{
-	}
+	function onPrepare() {}
 
-	function markAsLearnedB()
-	{
-		this.m.Barbarian.getFlags().add("learned");
-	}
-
-	function markAsLearnedS()
-	{
-		this.m.Shieldmaiden.getFlags().add("learned");
-	}
-
-	function onPrepareVariables( _vars )
-	{
+	function onPrepareVariables(_vars) {
 		_vars.push([
 			"shieldmaiden",
 			this.m.Shieldmaiden.getNameOnly()
@@ -177,11 +91,9 @@ this.legend_barbarian_vs_shieldmaiden <- this.inherit("scripts/events/event", {
 		]);
 	}
 
-	function onClear()
-	{
+	function onClear() {
 		this.m.Shieldmaiden = null;
 		this.m.Barbarian = null;
 	}
-
 });
 

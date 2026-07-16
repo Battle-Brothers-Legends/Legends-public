@@ -2,8 +2,7 @@ this.legends_fletcher_crafts_masterwork_event <- this.inherit("scripts/events/ev
 	m = {
 		Bowyer = null
 	},
-	function create()
-	{
+	function create() {
 		this.m.ID = "event.legends.fletcher_crafts_masterwork";
 		this.m.Title = "During camp...";
 		this.m.Cooldown = 999999.0 * this.World.getTime().SecondsPerDay;
@@ -13,26 +12,14 @@ this.legends_fletcher_crafts_masterwork_event <- this.inherit("scripts/events/ev
 			Image = "",
 			List = [],
 			Characters = [],
-			Options = [
-				{
-					Text = "Build me a quiver of legends!",
-					function getResult( _event )
-					{
-						return this.Math.rand(1, 100) <= 60 ? "B" : "C";
-					}
-
-				},
-				{
-					Text = "We don\'t have time for this.",
-					function getResult( _event )
-					{
-						return 0;
-					}
-
-				}
-			],
-			function start( _event )
-			{
+			Options = [{
+				Text = "Build me a quiver of legends!",
+				getResult = @(_event) ::Math.rand(1, 100) <= 60 ? "B" : "C"
+			}, {
+				Text = "We don\'t have time for this.",
+				getResult = @(_event) 0
+			}],
+			function start(_event) {
 				this.Characters.push(_event.m.Bowyer.getImagePath());
 			}
 
@@ -43,53 +30,22 @@ this.legends_fletcher_crafts_masterwork_event <- this.inherit("scripts/events/ev
 			Image = "",
 			List = [],
 			Characters = [],
-			Options = [
-				{
-					Text = "A masterwork!",
-					function getResult( _event )
-					{
-						return 0;
-					}
-
-				}
-			],
-			function start( _event )
-			{
+			Options = [{
+				Text = "A masterwork!",
+				getResult = @(_event) 0
+			}],
+			function start(_event) {
 				this.Characters.push(_event.m.Bowyer.getImagePath());
-				this.World.Assets.addMoney(-500);
-				this.List.push({
-					id = 10,
-					icon = "ui/icons/asset_money.png",
-					text = "You spend [color=" + this.Const.UI.Color.NegativeEventValue + "]500[/color] Crowns"
-				});
-				local stash = this.World.Assets.getStash().getItems();
 
-				foreach( i, item in stash )
-				{
-					if (item != null && item.getID() == "misc.unhold_hide")
-					{
-						stash[i] = null;
-						this.List.push({
-							id = 10,
-							icon = "ui/items/" + item.getIcon(),
-							text = "You lose " + item.getName()
-						});
-						break;
-					}
-				}
-				local item;
-				if (this.Math.rand(1, 2) == 1)
-					item = this.new("scripts/items/ammo/legend_huge_quiver_of_arrows");
-				else
-					item = this.new("scripts/items/ammo/legend_huge_quiver_of_bolts");
-
+				local item = ::Const.World.Common.pickItem([
+					[1, "ammo/legend_huge_quiver_of_arrows"],
+					[1, "ammo/legend_huge_quiver_of_bolts"]
+				], "scripts/items/");
 				item.m.Name = _event.m.Bowyer.getNameOnly() + "\'s " + item.m.Name;
-				this.World.Assets.getStash().add(item);
-				this.List.push({
-					id = 10,
-					icon = "ui/items/" + item.getIcon(),
-					text = "You gain " + item.getName()
-				});
+
+				this.List.push(::Legends.EventList.changeMoney(-500));
+				this.List.push(_event.loseHide());
+				this.List.extend(::Legends.EventList.addItems([item], ::World.Assets.getStash()));
 				this.List.push(::Legends.EventList.changeMood(_event.m.Bowyer, 2.0, "Created a masterwork"));
 			}
 
@@ -100,56 +56,22 @@ this.legends_fletcher_crafts_masterwork_event <- this.inherit("scripts/events/ev
 			Image = "",
 			List = [],
 			Characters = [],
-			Options = [
-				{
-					Text = "I see now why you\'re no longer working as a fletcher.",
-					function getResult( _event )
-					{
-						return 0;
-					}
-
-				}
-			],
-			function start( _event )
-			{
+			Options = [{
+				Text = "I see now why you\'re no longer working as a fletcher.",
+				getResult = @(_event) 0
+			}],
+			function start(_event) {
 				this.Characters.push(_event.m.Bowyer.getImagePath());
-				this.World.Assets.addMoney(-500);
-				this.List.push({
-					id = 10,
-					icon = "ui/icons/asset_money.png",
-					text = "You spend [color=" + this.Const.UI.Color.NegativeEventValue + "]500[/color] Crowns"
-				});
-				local stash = this.World.Assets.getStash().getItems();
 
-				foreach( i, item in stash )
-				{
-					if (item != null && item.getID() == "misc.unhold_hide")
-					{
-						stash[i] = null;
-						this.List.push({
-							id = 10,
-							icon = "ui/items/" + item.getIcon(),
-							text = "You lose " + item.getName()
-						});
-						break;
-					}
-				}
-
-				local item;
-				local r = this.Math.rand(1, 2);
-
-				if (this.Math.rand(1, 2) == 1)
-					item = this.new("scripts/items/ammo/quiver_of_arrows");
-				else
-					item = this.new("scripts/items/ammo/quiver_of_bolts");
-
+				local item = ::Const.World.Common.pickItem([
+					[1, "ammo/quiver_of_arrows"],
+					[1, "ammo/quiver_of_bolts"]
+				], "scripts/items/");
 				item.m.Name = _event.m.Bowyer.getNameOnly() + "\'s " + item.m.Name;
-				this.World.Assets.getStash().add(item);
-				this.List.push({
-					id = 10,
-					icon = "ui/items/" + item.getIcon(),
-					text = "You gain " + item.getName()
-				});
+
+				this.List.push(::Legends.EventList.changeMoney(-500));
+				this.List.push(_event.loseHide());
+				this.List.extend(::Legends.EventList.addItems([item], ::World.Assets.getStash()));
 				this.List.push(::Legends.EventList.changeMood(_event.m.Bowyer, -1.0, "Failed in creating a masterwork"));
 			}
 
@@ -160,18 +82,11 @@ this.legends_fletcher_crafts_masterwork_event <- this.inherit("scripts/events/ev
 			Image = "",
 			List = [],
 			Characters = [],
-			Options = [
-				{
-					Text = "Pull yourself together.",
-					function getResult( _event )
-					{
-						return 0;
-					}
-
-				}
-			],
-			function start( _event )
-			{
+			Options = [{
+				Text = "Pull yourself together.",
+				getResult = @(_event) 0
+			}],
+			function start(_event) {
 				this.Characters.push(_event.m.Bowyer.getImagePath());
 				this.List.push(::Legends.EventList.changeMood(_event.m.Bowyer, -2.0, "Was denied a request"));
 			}
@@ -179,66 +94,63 @@ this.legends_fletcher_crafts_masterwork_event <- this.inherit("scripts/events/ev
 		});
 	}
 
-	function onUpdateScore()
-	{
-		if (this.World.Assets.getMoney() < 2000)
-		{
-			return;
+	function loseHide() {
+		local stash = ::World.Assets.getStash().getItems();
+		foreach (i, item in stash) {
+			if (item != null && item.getID() == "misc.unhold_hide") {
+				stash[i] = null;
+				return {
+					id = 10,
+					icon = "ui/items/" + item.getIcon(),
+					text = "You lose " + item.getName()
+				};
+			}
 		}
+	}
+
+	function onUpdateScore() {
+		if (this.World.Assets.getMoney() < 2000)
+			return;
 
 		local brothers = this.World.getPlayerRoster().getAll();
-
 		if (brothers.len() < 3)
-		{
 			return;
-		}
 
 		local candidates = [];
-
-		foreach( bro in brothers )
-		{
-			if (bro.getLevel() >= 6 && bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.Bowyer))
-			{
+		foreach (bro in brothers) {
+			if (bro.getLevel() >= 6 && ::Legends.Backgrounds.has(bro, ::Legends.Background.Bowyer)) {
 				candidates.push(bro);
 			}
 		}
-
 		if (candidates.len() == 0)
-		{
 			return;
-		}
 
 		local stash = this.World.Assets.getStash().getItems();
 		local numWood = 0;
 
-		foreach( item in stash )
-		{
-			if (item != null && item.getID() == "misc.unhold_hide")
-			{
-				numWood = ++numWood;
+		foreach (item in stash) {
+			if (item != null && item.getID() == "misc.unhold_hide") {
+				numWood++;
 				break;
 			}
 		}
 
-		if (numWood == 0)
-		{
+		if (numWood == 0) {
 			return;
 		}
 
-		this.m.Bowyer = candidates[this.Math.rand(0, candidates.len() - 1)];
+		this.m.Bowyer = candidates[::Math.rand(0, candidates.len() - 1)];
 		this.m.Score = candidates.len() * 4;
 	}
 
-	function onPrepareVariables( _vars )
-	{
+	function onPrepareVariables(_vars) {
 		_vars.push([
 			"bowyer",
 			this.m.Bowyer.getNameOnly()
 		]);
 	}
 
-	function onClear()
-	{
+	function onClear() {
 		this.m.Bowyer = null;
 	}
 

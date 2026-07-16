@@ -2,8 +2,7 @@ this.legend_destroyed_caravan_event <- this.inherit("scripts/events/event", {
 	m = {
 		Items = []
 	},
-	function create()
-	{
+	function create() {
 		this.m.ID = "event.legend_destroyed_caravan";
 		this.m.Title = "Along the way...";
 		this.m.Cooldown = 999999.0 * this.World.getTime().SecondsPerDay;
@@ -13,56 +12,27 @@ this.legend_destroyed_caravan_event <- this.inherit("scripts/events/event", {
 			Image = "",
 			List = [],
 			Characters = [],
-			Options = [
-				{
-					Text = "We can use this.",
-					function getResult( _event )
-					{
-						return 0;
-					}
-
-				}
-			],
-			function start( _event )
-			{
-				local items = [];
-
-				items.push(this.Const.World.Common.pickArmor([
-					[1, ::Legends.Armor.Southern.cloth_sash]
-				]));
-				items.push(this.Const.World.Common.pickArmor([
-					[1, ::Legends.Armor.Southern.cloth_sash]
-				]));
-				items.push(this.Const.World.Common.pickHelmet([
-					[1, ::Legends.Helmet.Southern.gunner_hat]
-				]));
-
-				items.push(this.new("scripts/items/weapons/oriental/nomad_mace"));
-
-
-
-
-
-
-				local r = this.Math.rand(1, 2);
-				if (r == 1)
-				{
-					items.push(this.new("scripts/items/misc/hyena_fur_item"));
-				}
-				else if (r == 2)
-				{
-					items.push(this.new("scripts/items/misc/acidic_saliva_item"));
-				}
-
-				foreach(item in items)
-				{
-					this.World.Assets.getStash().add(item);
-					this.List.push({
-						id = 10,
-						icon = "ui/items/" + item.getIcon(),
-						text = "You gain " + this.Const.Strings.getArticle(item.getName()) + item.getName()
-					});
-				}
+			Options = [{
+				Text = "We can use this.",
+				getResult = @(_event) 0
+			}],
+			function start(_event) {
+				this.List.extend(::Legends.EventList.addItems([
+					::Const.World.Common.pickArmor([
+						[1, ::Legends.Armor.Southern.cloth_sash]
+					]),
+					::Const.World.Common.pickArmor([
+						[1, ::Legends.Armor.Southern.cloth_sash]
+					]),
+					::Const.World.Common.pickHelmet([
+						[1, ::Legends.Helmet.Southern.gunner_hat]
+					]),
+					::new("scripts/items/weapons/oriental/nomad_mace"),
+					::Const.World.Common.pickItem([
+						[1, "misc/hyena_fur_item"],
+						[1, "misc/acidic_saliva_item"]
+					], "scripts/items/")
+				], ::World.Assets.getStash()));
 			}
 
 		});
@@ -72,51 +42,27 @@ this.legend_destroyed_caravan_event <- this.inherit("scripts/events/event", {
 			Image = "",
 			List = [],
 			Characters = [],
-			Options = [
-				{
-					Text = "Let\'s hope we never meet what did this.",
-					function getResult( _event )
-					{
-						return 0;
-					}
-
-				}
-			],
-			function start( _event )
-			{
-				local items = [];
-
-				items.push(this.Const.World.Common.pickArmor([
-					[1, ::Legends.Armor.Standard.linen_tunic]
-				]));
-				items.push(this.Const.World.Common.pickArmor([
-					[1, ::Legends.Armor.Standard.wizard_robe]
-				]));
-				items.push(this.Const.World.Common.pickHelmet([
-					[1, ::Legends.Helmet.Standard.wizard_hat]
-				]));
-
-				items.push(this.new("scripts/items/weapons/bludgeon"));
-
-				local r = this.Math.rand(1, 2);
-				if (r == 1)
-				{
-					items.push(this.new("scripts/items/misc/werewolf_pelt_item"));
-				}
-				else if (r == 2)
-				{
-					items.push(this.new("scripts/items/misc/adrenaline_gland_item"));
-				}
-
-				foreach(item in items)
-				{
-					this.World.Assets.getStash().add(item);
-					this.List.push({
-						id = 10,
-						icon = "ui/items/" + item.getIcon(),
-						text = "You gain " + this.Const.Strings.getArticle(item.getName()) + item.getName()
-					});
-				}
+			Options = [{
+				Text = "Let\'s hope we never meet what did this.",
+				getResult = @(_event) 0
+			}],
+			function start(_event) {
+				this.List.extend(::Legends.EventList.addItems([
+					::Const.World.Common.pickArmor([
+						[1, ::Legends.Armor.Standard.linen_tunic]
+					]),
+					::Const.World.Common.pickArmor([
+						[1, ::Legends.Armor.Standard.wizard_robe]
+					]),
+					::Const.World.Common.pickHelmet([
+						[1, ::Legends.Helmet.Standard.wizard_hat]
+					]),
+					::new("scripts/items/weapons/bludgeon"),
+					::Const.World.Common.pickItem([
+						[1, "misc/werewolf_pelt_item"],
+						[1, "misc/adrenaline_gland_item"]
+					], "scripts/items/")
+				], ::World.Assets.getStash()));
 			}
 
 		});
@@ -126,91 +72,62 @@ this.legend_destroyed_caravan_event <- this.inherit("scripts/events/event", {
 			Image = "",
 			List = [],
 			Characters = [],
-			Options = [
-				{
-					Text = "The north is a dangerous place.",
-					function getResult( _event )
-					{
-						return 0;
-					}
-
-				}
-			],
-			function start( _event )
-			{
-				local items = [];
-
-				items.push(this.Const.World.Common.pickArmor([
-					[1, ::Legends.Armor.Standard.noble_tunic]
-				]));
-				items.push(this.Const.World.Common.pickArmor([
-					[1, ::Legends.Armor.Barbarian.hide_and_bone_armor]
-				]));
-				items.push(this.Const.World.Common.pickHelmet([
-					[1, ::Legends.Helmet.Standard.wizard_hat]
-				]));
-
-				items.push(this.new("scripts/items/weapons/barbarians/axehammer"));
-				items.push(this.new("scripts/items/misc/frost_unhold_fur_item"));
-
-				foreach(item in items)
-				{
-					this.World.Assets.getStash().add(item);
-					this.List.push({
-						id = 10,
-						icon = "ui/items/" + item.getIcon(),
-						imageOverlayPath = item.getIconOverlay(),
-						text = "You gain " + item.makeName()
-					});
-				}
+			Options = [{
+				Text = "The north is a dangerous place.",
+				getResult = @(_event) 0
+			}],
+			function start(_event) {
+				this.List.extend(::Legends.EventList.addItems([
+					::Const.World.Common.pickArmor([
+						[1, ::Legends.Armor.Standard.noble_tunic]
+					]),
+					::Const.World.Common.pickArmor([
+						[1, ::Legends.Armor.Barbarian.hide_and_bone_armor]
+					]),
+					::Const.World.Common.pickHelmet([
+						[1, ::Legends.Helmet.Standard.wizard_hat]
+					]),
+					::new("scripts/items/weapons/barbarians/axehammer"),
+					::new("scripts/items/misc/frost_unhold_fur_item")
+				], ::World.Assets.getStash()));
 			}
-
 		});
 	}
 
-	function onUpdateScore()
-	{
-		if (this.World.Assets.getOrigin().getID() != "scenario.legend_escaped_slaves")
-		{
+	function onUpdateScore() {
+		if (this.World.Assets.getOrigin().getID() != "scenario.legend_escaped_slaves") {
 			return;
 		}
 
-		if (this.World.getTime().Days > 20)
-		{
+		if (this.World.getTime().Days > 20) {
 			return;
 		}
 
 		local currentTile = this.World.State.getPlayer().getTile();
-
-		if (!currentTile.HasRoad)
-		{
+		if (!currentTile.HasRoad) {
 			return;
 		}
 
 		local towns = this.World.EntityManager.getSettlements();
 		local nearTown = false;
 
-		foreach( t in towns )
-		{
+		foreach (t in towns) {
 			local d = currentTile.getDistanceTo(t.getTile());
 
-			if (d <= 2)
-			{
+			if (d <= 2) {
 				nearTown = true;
 				break;
 			}
 		}
 
-		if (nearTown)
-		{
+		if (nearTown) {
 			return;
 		}
 
 		this.m.Score = 25;
 	}
 
-	function onDetermineStartScreen()
-	{
+	function onDetermineStartScreen() {
 		local currentTile = this.World.State.getPlayer().getTile();
 		if (currentTile.SquareCoords.Y < this.World.getMapSize().Y * 0.33)
 			return "South";
