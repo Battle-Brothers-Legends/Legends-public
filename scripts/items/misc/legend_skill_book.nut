@@ -98,7 +98,7 @@ this.legend_skill_book <- ::inherit("scripts/items/item", {
 				id = 10,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "Reading this will allow the user to learn a perk group, but the company does not have a Scholar to know which exactly",
+				text = "Reading this will allow the user to learn a perk group, but the company does not know anyone who can Interpret which one exactly",
 			});
 		}
 
@@ -129,7 +129,7 @@ this.legend_skill_book <- ::inherit("scripts/items/item", {
 					id = 10,
 					type = "text",
 					icon = "ui/icons/cancel.png",
-					text = "Cannot be used as this chracter has already read a skill book"
+					text = "Cannot be used as this character had enough of such scrolls"
 				});
 				return result;
 			}
@@ -139,7 +139,7 @@ this.legend_skill_book <- ::inherit("scripts/items/item", {
 					id = 10,
 					type = "text",
 					icon = "ui/icons/cancel.png",
-					text = "Cannot be used as this chracter has already read a skill book"
+					text = "Cannot be used as this character has already read a skill book"
 				});
 				return result;
 			}
@@ -150,7 +150,7 @@ this.legend_skill_book <- ::inherit("scripts/items/item", {
 
 	function getName()
 	{
-		if (this.m.HasToBeIdentified && ::World.Assets.m.HasScholars > 0 || !this.m.HasToBeIdentified)
+		if (this.m.HasToBeIdentified && ::World.Assets.m.ProfessionEffect.LegendInterpretation > 0 || !this.m.HasToBeIdentified)
 			return this.m.BookName + " " + this.m.PerkGroupSelection;
 		else
 			return this.m.BookName + " " + "Unidentified";
@@ -161,17 +161,17 @@ this.legend_skill_book <- ::inherit("scripts/items/item", {
 		local effect = ::Legends.Effects.get(_actor, ::Legends.Effect.LegendIrritable);
 		local injury = ::Legends.Effects.get(_actor, ::Legends.Effect.LegendHeadache);
 		if (injury != null)
-			return "Failed to use this item as the user will be recovering from the last reading for another [color=%negative%]" + injury.m.HealingTimeMin + "-" + injury.m.HealingTimeMax +"[/color] days because of [color=%status%]" + injury.getName() + "[/color].";
+			return _actor.getName() + "'s head still hurts after the previous time. ([color=%negative%]" + injury.m.HealingTimeMin + "-" + injury.m.HealingTimeMax +"[/color] days because of [color=%status%]" + injury.getName() + "[/color]).";
 		if (effect != null)
-			return "Failed to use this item as the user will be recovering from the last reading for another [color=%negative%]" + effect.m.HealingTime + "[/color] days because of [color=%status%]" + effect.getName() + "[/color].";
+			return _actor.getName() + " knocks your hand away, clearly irritated. ([color=%negative%]" + effect.m.HealingTime + "[/color] days because of [color=%status%]" + effect.getName() + "[/color]).";
 
 		if (_actor.isStabled())
-			return "Are you trying to make an animal read?";
+			return "Trying to make an animal read? Madness.";
 
 		if (!_actor.getFlags().has("LegendsSkillBookCount"))
 			return true;
 
-		return "This character cannot potentially learn anything from this.";
+		return _actor.getName() + "has had enough books for a lifetime.";
 	}
 
 	function onUse( _actor, _item = null )

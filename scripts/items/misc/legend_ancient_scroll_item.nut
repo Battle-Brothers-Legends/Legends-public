@@ -20,23 +20,22 @@ this.legend_ancient_scroll_item <- ::inherit("scripts/items/misc/legend_skill_bo
 		this.m.PerkGroupSelection = this.m.PerkGroups[this.Math.rand(0, this.m.PerkGroups.len() - 1)].Name;
 	}
 
-	function isAbleToUseScroll( _actor )
-	{
+	function isAbleToUseScroll( _actor ) {
 		local effect = ::Legends.Effects.get(_actor, ::Legends.Effect.LegendIrritable);
 		local injury = ::Legends.Effects.get(_actor, ::Legends.Effect.LegendHeadache);
 		if (injury != null)
-			return "Failed to use this item as the user will be recovering from the last reading for another [color=%negative%]" + injury.m.HealingTimeMin + "-" + injury.m.HealingTimeMax +"[/color] days because of [color=%status%]" + injury.getName() + "[/color].";
+			return _actor.getName() + "'s head still hurts after the previous time. ([color=%negative%]" + injury.m.HealingTimeMin + "-" + injury.m.HealingTimeMax +"[/color] days because of [color=%status%]" + injury.getName() + "[/color]).";
 		if (effect != null)
-			return "Failed to use this item as the user will be recovering from the last reading for another [color=%negative%]" + effect.m.HealingTime + "[/color] days because of [color=%status%]" + effect.getName() + "[/color].";
+			return _actor.getName() + " knocks your hand away, clearly irritated. ([color=%negative%]" + effect.m.HealingTime + "[/color] days because of [color=%status%]" + effect.getName() + "[/color]).";
 
 		if (_actor.getSkills().hasTrait(::Legends.Trait.Dumb))
-			return "Failed to use this item as the user has [color=%negative%]Dumb[/color] trait.";
+			return _actor.getName() + " is too [color=%negative%]Dumb[/color] to understand this.";
 
 		if (_actor.getSkills().hasSkill("injury.brain_damage"))
-			return "Failed to use this item as the user has [color=%negative%]Brain Damage[/color] injury.";
+			return _actor.getName() + " looks at you sideways. Reading comes hard to the [color=%negative%]Brain Damaged[/color].";
 
 		if (_actor.isStabled())
-			return "Are you trying to make an animal read?";
+			return "Trying to make an animal read? Madness.";
 
 		if (_actor.getFlags().getAsInt("LegendsScrollCount") < 1)
 			return true;
@@ -44,7 +43,7 @@ this.legend_ancient_scroll_item <- ::inherit("scripts/items/misc/legend_skill_bo
 		if (_actor.getSkills().hasTrait(::Legends.Trait.Bright) && _actor.getFlags().getAsInt("LegendsScrollCount") < 2)
 			return true;
 
-		return "This character cannot potentially learn anything from this.";
+		return _actor.getName() + "has had enough of such scrolls for a lifetime.";
 	}
 
 
