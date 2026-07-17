@@ -1,9 +1,10 @@
-::mods_hookExactClass("skills/actives/swing", function(o)
-{
+::mods_hookExactClass("skills/actives/swing", function (o) {
 	o.m.IsStaffSwing <- false;
+	o.m.TilesLeft <- 2;
+	o.m.TilesRight <- 0;
 
 	local create = o.create;
-	o.create = function() {
+	o.create = function () {
 		create();
 		this.m.HitChanceBonus = -5;
 	}
@@ -19,14 +20,14 @@
 		return ret;
 	}
 
-	o.onAfterUpdate = function ( _properties ) {
-		if (this.m.IsStaffSwing && ::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem())) {
+	o.onAfterUpdate = function (_properties) {
+		if (this.m.IsStaffSwing	&& ::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem())) {
 			this.m.ActionPointCost -= 1;
 		}
 		this.m.FatigueCostMult = ::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem()) ? this.Const.Combat.WeaponSpecFatigueMult : 1.0;
 	}
 
-	o.onAnySkillUsed = function ( _skill, _targetEntity, _properties ) {
+	o.onAnySkillUsed = function (_skill, _targetEntity, _properties) {
 		if (_skill == this) {
 			_properties.MeleeSkill -= 5;
 			if (::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem())) {
