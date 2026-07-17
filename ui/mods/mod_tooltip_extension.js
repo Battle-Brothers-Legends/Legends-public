@@ -1,6 +1,6 @@
 TooltipModule.prototype.setupUITooltip = function(_targetDIV, _data)
 {
-	if(_targetDIV === undefined)
+	if(_targetDIV === null || _targetDIV === undefined)
 		return;
 
 	var wnd = this.mParent; // $(window);
