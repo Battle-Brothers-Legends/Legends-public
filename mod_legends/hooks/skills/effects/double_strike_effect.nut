@@ -71,7 +71,7 @@
 			return;
 		}
 
-		if (!this.m.IsGarbage && this.m.TimeAdded + 0.1 < this.Time.getVirtualTimeF() && !_targetEntity.isAlliedWith(this.getContainer().getActor())) {
+		if (!this.m.IsGarbage && this.m.TimeAdded + 0.1 < ::Time.getVirtualTimeF() && !_targetEntity.isAlliedWith(this.getContainer().getActor())) {
 			local actor = this.getContainer().getActor();
 			local totalDamageMult = 1 + this.m.DoubleStrikeBonusDamageMult;
 			if (::Legends.Weapons.isDualWieldingWeaponType(actor, ::Const.Items.WeaponType.Dagger) && ::Legends.Weapons.isMainHandSkill(actor, _skill) && this.m.DualWieldBonusActive)	{
@@ -88,7 +88,7 @@
 			this.m.DualWieldBonusActive = false;
 		}
 
-		foreach (skill in this.getContainer().getAllSkillsOfType(this.Const.SkillType.Active)) {
+		foreach (skill in this.getContainer().getAllSkillsOfType(::Const.SkillType.Active)) {
 			if (skill.isAttack()) {
 				if (this.m.DualWieldBonusActive && ::Legends.Weapons.isMainHandSkill(actor, skill)) {
 					_properties.SkillCostAdjustments.push({
@@ -115,10 +115,17 @@
 		if (::Legends.Weapons.isDualWieldingWeaponType(actor, ::Const.Items.WeaponType.Dagger) && ::Legends.Weapons.isOffHandSkill(actor, _skill)) {
 			this.m.DualWieldBonusActive = true;
 		}
+		if (!::Legends.S.isEntityNullOrDead(actor)) {
+			actor.setDirty(true);
+		}
 	}
 
 	o.onTargetMissed <- function (_skill, _targetEntity) {
 		this.removeSelf();
+		local actor = _skill.getContainer().getActor();
+		if (!::Legends.S.isEntityNullOrDead(actor)) {
+			actor.setDirty(true);
+		}
 	}
 
 	o.onCombatFinished <- function () {
