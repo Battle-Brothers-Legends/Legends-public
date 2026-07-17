@@ -55,4 +55,41 @@
 		_list.push("legend_gladiator_prizefighter_background");
 	}
 
+	o.onClicked = function (_townScreen) {
+		if (!::World.getTime().IsDaytime) {
+			return;
+		}
+
+		if ((::World.Contracts.getActiveContract() == null || ::World.Contracts.getActiveContract().getType() == "contract.arena" || ::World.Contracts.getActiveContract().getType() == "contract.arena_tournament") && ::World.getTime().Days >= this.m.CooldownUntil)	{
+			local f = ::World.FactionManager.getFactionOfType(this.Const.Faction.Arena);
+			local contracts = f.getContracts();
+			local c;
+			if (::World.Contracts.getActiveContract() != null && (::World.Contracts.getActiveContract().getType() == "contract.arena" || ::World.Contracts.getActiveContract().getType() == "contract.arena_tournament")) {
+				c = ::World.Contracts.getActiveContract();
+			} else if (contracts.len() == 0) {
+				if (::World.State.getCurrentTown().hasSituation("situation.arena_tournament") && ::World.Assets.getStash().getNumberOfEmptySlots() >= 5) {
+					c = this.new("scripts/contracts/contracts/arena_tournament_contract");
+					c.setFaction(f.getID());
+					c.setHome(::World.State.getCurrentTown());
+					::World.Contracts.addContract(c);
+				} else if (::World.Assets.getStash().getNumberOfEmptySlots() >= 3) {
+					c = this.new("scripts/contracts/contracts/arena_contract");
+					c.setFaction(f.getID());
+					c.setHome(::World.State.getCurrentTown());
+					::World.Contracts.addContract(c);
+				} else {
+					return;
+				}
+			} else {
+				if ((!::World.State.getCurrentTown().hasSituation("situation.arena_tournament") && ::World.Assets.getStash().getNumberOfEmptySlots() >= 3) || ::World.Assets.getStash().getNumberOfEmptySlots() >= 5) {
+					c = contracts[0];
+				} else {
+					return;
+				}
+			}
+
+			c.setScreenForArena();
+			::World.Contracts.showContract(c);
+		}
+	}
 });

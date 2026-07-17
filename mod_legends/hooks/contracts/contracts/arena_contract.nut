@@ -127,7 +127,7 @@
 			{
 				s.Options.push(
 				{
-					Text = "{This isn\'t what I had in mind. | I\'ll sit this one out. | I\'ll wait for the next fight.}",
+					Text = "{I\'ll have to think it over.}",
 					function getResult()
 					{
 						this.Contract.getHome().getBuilding("building.arena").registerAttempt();
