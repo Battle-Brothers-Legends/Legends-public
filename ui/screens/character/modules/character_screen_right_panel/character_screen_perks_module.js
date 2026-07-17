@@ -32,6 +32,7 @@ var CharacterScreenPerksModule = function(_parent, _dataSource)
         Books: null,
         Scrolls: null
     };
+	this.mSelectedBrotherId = null;
 
     this.registerDatasourceListener();
 };
@@ -115,6 +116,8 @@ CharacterScreenPerksModule.prototype.destroyDIV = function ()
     this.mContainer.empty();
     this.mContainer.remove();
     this.mContainer = null;
+
+	this.mSelectedBrotherId = null;
 };
 
 
@@ -201,7 +204,7 @@ CharacterScreenPerksModule.prototype.resetPerkTree = function(_perkTree)
 		for (var i = 0; i < _perkTree[row].length; ++i)
 		{
 			var perk = _perkTree[row][i];
-			console.error(Object.keys(perk));
+			//console.error(Object.keys(perk));
 			perk.Unlocked = false;
 
 			perk.Image.attr('src', Path.GFX + perk.IconDisabled);
@@ -293,15 +296,23 @@ CharacterScreenPerksModule.prototype.updatePerkTreeLayout = function (_inventory
 
 CharacterScreenPerksModule.prototype.loadPerkTreesWithBrotherData = function (_brother)
 {
-    this.setupPerkTree(_brother[CharacterScreenIdentifier.Perk.Tree]);
+	var brotherId = _brother[CharacterScreenIdentifier.Entity.Id];
+    var fullSetup = (this.mSelectedBrotherId !== brotherId);
+
+	if (this.mPerkTree === null || fullSetup) {
+        this.mSelectedBrotherId = brotherId;
+        this.setupPerkTree(_brother[CharacterScreenIdentifier.Perk.Tree]);
+    }
+    else {
+        this.resetPerkTree(this.mPerkTree);
+    }
 
     if (CharacterScreenIdentifier.Perk.Key in _brother)
     {
         this.initPerkTree(this.mPerkTree, _brother[CharacterScreenIdentifier.Perk.Key]);
     }
 
-    if (CharacterScreenIdentifier.Entity.Id in _brother)
-    {
+    if (fullSetup && CharacterScreenIdentifier.Entity.Id in _brother) {
         this.setupPerkTreeTooltips(this.mPerkTree, _brother[CharacterScreenIdentifier.Entity.Id]);
     }
 
