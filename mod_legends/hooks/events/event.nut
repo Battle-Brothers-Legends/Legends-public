@@ -363,29 +363,10 @@
 
 	local fire = o.fire;
 	o.fire = function () {
-		if ("isValidForEncounter" in this.m) {
-			local self = this;
-			local tryFire;
-
-			tryFire = function (_retries) {
-				self.update();
-				if (self.m.isValidForEncounter) {
-					fire();
-					::World.Events.removeSpecialEvent(self.m.ID);
-				} else if (_retries > 0) {
-					::Time.scheduleEvent(::TimeUnit.Real, 50, function (_tag) {
-						::logDebug("Retrying encounter " + self.m.ID + " " + _retries +"...");
-						tryFire(_retries - 1);
-					}, null);
-				} else {
-					::logDebug("Encounter " + self.m.ID + " aborted.");
-					::World.Events.removeSpecialEvent(self.m.ID);
-					if (::World.Events.getActiveEvent() == self) {
-						::World.Events.clearActiveEvent();
-					}
-				}
-			};
-			tryFire(5);
+		if("isValidForEncounter" in this.m) {
+			this.update(); // force update for a case when game loaded and update didn't happen yet
+			fire();
+			::World.Events.removeSpecialEvent(this.m.ID);
 		} else {
 			fire();
 		}
