@@ -1405,7 +1405,7 @@
 			this.m.Hiring.Talents[i] = this.m.Hiring.Talents[j];
 			this.m.Hiring.Talents[j] = temp;
 		}
-		
+
 		foreach (s in this.m.Skills.m.Skills) {
 			if (s.getType() == ::Const.SkillType.Trait && !s.isHidden()) {
 					this.m.Hiring.Traits[s.getID()] <- ::Math.rand(1, 100);
@@ -2150,6 +2150,29 @@
 			_out.writeString(perkID);
 			_out.writeU8(state);
 		}
+
+		_out.writeU8(this.m.Hiring.Traits.len());
+    	foreach (traitID, state in this.m.Hiring.Traits) {
+        	_out.writeString(traitID);
+       		_out.writeI32(state);
+    	}
+
+    	_out.writeU8(this.m.Hiring.Talents.len());
+    	foreach (order in this.m.Hiring.Talents) {
+        	_out.writeU8(order);
+    	}
+
+    	_out.writeU8(this.m.Hiring.AttributeLimits.len());
+    	foreach (attributeID, limit in this.m.Hiring.AttributeLimits) {
+			_out.writeString(attributeID);
+			_out.writeI16(limit[0]); // min
+			_out.writeI16(limit[1]); // max
+		}
+
+    	foreach (attributeID, value in this.m.Hiring.AttributeBias) {
+        	_out.writeString(attributeID);
+        	_out.writeF32(value);
+    	}
 	}
 
 	// copied entirely because adjustHiringCostBasedOnEquipment is commented out
@@ -2177,5 +2200,24 @@
 			local perkID = _in.readString();
 			this.getPerkPlan()[perkID] <- _in.readU8();
 		}
+
+		local traitsLen = _in.readU8();
+        for (local i = 0; i < traitsLen; i++) {
+            this.m.Hiring.Traits[_in.readString()] <- _in.readI32();
+        }
+
+        local talentsLen = _in.readU8();
+        for (local i = 0; i < talentsLen; i++) {
+            this.m.Hiring.Talents.push(_in.readU8());
+        }
+
+        local attributesLen = _in.readU8();
+        for (local i = 0; i < attributesLen; i++) {
+            this.m.Hiring.AttributeLimits[_in.readString()] <- [_in.readI16(), _in.readI16()];
+        }
+
+        for (local i = 0; i < attributesLen; i++) {
+            this.m.Hiring.AttributeBias[_in.readString()] <- _in.readF32();
+        }
 	}
 });
