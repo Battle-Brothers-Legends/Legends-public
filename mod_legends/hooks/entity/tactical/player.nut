@@ -859,7 +859,9 @@
 			this.World.Assets.getOrigin().onUnlockPerk(this, _id);
 		}
 
-		delete this.getPerkPlan()[_id];
+		if (_id in this.getPerkPlan()) {
+			delete this.getPerkPlan()[_id];
+		}
 		//++this.m.PerkPoints //// DEBUG, UNCOMMENT FOR UNLIMITED UNLOCKS
 
 		return true;
