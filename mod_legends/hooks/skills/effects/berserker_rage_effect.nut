@@ -22,7 +22,7 @@
 			return;
 		}
 
-		_properties.DamageReceivedRegularMult *= this.Math.maxf(0.3, 1.0 - 0.02 * this.m.RageStacks);
+		_properties.DamageReceivedRegularMult *= this.Math.maxf(0.3, 1.0 - 0.01 * this.m.RageStacks);
 	}
 
 	o.onTurnStart = function () {
