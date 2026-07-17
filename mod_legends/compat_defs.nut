@@ -175,12 +175,13 @@
 ::Legends.Compat.HardIncompat.add("mod_origin_customizer", "2.2.4");
 ::Legends.Compat.HardIncompat.add("mod_pauseOnView", "3");
 ::Legends.Compat.HardIncompat.add("mod_legends_PTR", "2.2.2", "PTR ded, hue hue"); // PTR
-::Legends.Compat.HardIncompat.add("quicker", "1.3.1", "Use Swifter instead, found on Nexus");
 ::Legends.Compat.HardIncompat.add("quirks", "0.8.0");
 ::Legends.Compat.HardIncompat.add("mod_raided", "1.0");
 ::Legends.Compat.HardIncompat.add("mod_repeatableOguTrophyAmbitions", "1.0");
 ::Legends.Compat.HardIncompat.add("mod_Recruits", "2");
 ::Legends.Compat.HardIncompat.add("mod_reforged");
+::Legends.Compat.HardIncompat.add("mod_druid");
+::Legends.Compat.HardIncompat.add("mod_necro");
 // and reforged deps
 ::Legends.Compat.HardIncompat.add("mod_dynamic_perks");
 ::Legends.Compat.HardIncompat.add("mod_dynamic_spawns");
