@@ -193,7 +193,7 @@ CharacterScreenPerksModule.prototype.resetPerkTree = function(_perkTree)
 
 	for (var row = 0; row < this.mPerkRows.length; ++row)
 	{
-		this.mPerkRows[row].removeClass('is-unlocked').addClass('is-locked');
+		this.mPerkRows[row].removeClass('is-row-unlocked').addClass('is-row-locked');
 	}
 
 	for (var row = 0; row < _perkTree.length; ++row)
@@ -249,7 +249,7 @@ CharacterScreenPerksModule.prototype.initPerkTree = function (_perkTree, _perksU
 	{
 		if (row <= perkPointsSpent)
 		{
-			this.mPerkRows[row].addClass('is-unlocked').removeClass('is-locked');
+			this.mPerkRows[row].addClass('is-row-unlocked').removeClass('is-row-locked');
 		}
 		else
 		{
@@ -281,6 +281,10 @@ CharacterScreenPerksModule.prototype.setupPerkTree = function (_perkTree)
     this.createPerkTreeDIV(this.mPerkTree, this.mLeftColumn);
 
     this.setupPerksEventHandlers(this.mPerkTree);
+	for (var row = 0; row < this.mPerkRows.length; ++row)
+	{
+		this.mPerkRows[row].removeClass('is-row-unlocked').addClass('is-row-locked');
+	}
 };
 
 CharacterScreenPerksModule.prototype.updatePerkTreeLayout = function (_inventoryMode)
