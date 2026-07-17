@@ -21,12 +21,8 @@ this.legend_ancient_scroll_item <- ::inherit("scripts/items/misc/legend_skill_bo
 	}
 
 	function isAbleToUseScroll( _actor ) {
-		local effect = ::Legends.Effects.get(_actor, ::Legends.Effect.LegendIrritable);
-		local injury = ::Legends.Effects.get(_actor, ::Legends.Effect.LegendHeadache);
-		if (injury != null)
-			return _actor.getName() + "'s head still hurts after the previous time. ([color=%negative%]" + injury.m.HealingTimeMin + "-" + injury.m.HealingTimeMax +"[/color] days because of [color=%status%]" + injury.getName() + "[/color]).";
-		if (effect != null)
-			return _actor.getName() + " knocks your hand away, clearly irritated. ([color=%negative%]" + effect.m.HealingTime + "[/color] days because of [color=%status%]" + effect.getName() + "[/color]).";
+		if (_actor.getFlags().getAsInt("LegendsScrollCount") >= 1 && (!_actor.getSkills().hasTrait(::Legends.Trait.Bright) || _actor.getFlags().getAsInt("LegendsScrollCount") >= 2))
+			return _actor.getName() + "has had enough of such scrolls for a lifetime.";
 
 		if (_actor.getSkills().hasTrait(::Legends.Trait.Dumb))
 			return _actor.getName() + " is too [color=%negative%]Dumb[/color] to understand this.";
@@ -37,13 +33,14 @@ this.legend_ancient_scroll_item <- ::inherit("scripts/items/misc/legend_skill_bo
 		if (_actor.isStabled())
 			return "Trying to make an animal read? Madness.";
 
-		if (_actor.getFlags().getAsInt("LegendsScrollCount") < 1)
-			return true;
-
-		if (_actor.getSkills().hasTrait(::Legends.Trait.Bright) && _actor.getFlags().getAsInt("LegendsScrollCount") < 2)
-			return true;
-
-		return _actor.getName() + "has had enough of such scrolls for a lifetime.";
+		local effect = ::Legends.Effects.get(_actor, ::Legends.Effect.LegendIrritable);
+		local injury = ::Legends.Effects.get(_actor, ::Legends.Effect.LegendHeadache);
+		if (injury != null)
+			return _actor.getName() + "'s head still hurts after the previous time. ([color=%negative%]" + injury.m.HealingTimeMin + "-" + injury.m.HealingTimeMax +"[/color] days because of [color=%status%]" + injury.getName() + "[/color]).";
+		if (effect != null)
+			return _actor.getName() + " knocks your hand away, clearly irritated. ([color=%negative%]" + effect.m.HealingTime + "[/color] days because of [color=%status%]" + effect.getName() + "[/color]).";
+		
+		return true;
 	}
 
 

@@ -103,45 +103,44 @@ this.legend_skill_book <- ::inherit("scripts/items/item", {
 		}
 
 		local actor = ::World.State.m.CharacterScreen.getSelectedActor();
-		if (::World.State.isInCharacterScreen() && actor != null) {
+		if (actor != null) {
 			local injury = ::Legends.Effects.get(actor, ::Legends.Effect.LegendHeadache);
-			if (injury != null) {
-				result.push({
-					id = 10,
-					type = "text",
-					icon = "ui/icons/cancel.png",
-					text = "Cannot be used for next [color=%negative%]" + injury.m.HealingTimeMin + "-" + injury.m.HealingTimeMax + "[/color] days because of [color=%status%]" + injury.getName() + "[/color] status"
-				});
-				return result;
-			}
 			local effect = ::Legends.Effects.get(actor, ::Legends.Effect.LegendIrritable);
-			if (effect != null) {
-				result.push({
-					id = 10,
-					type = "text",
-					icon = "ui/icons/cancel.png",
-					text = "Cannot be used for next [color=%negative%]" + effect.m.HealingTime + "[/color] days because of [color=%status%]" + effect.getName() + "[/color] status"
-				});
-				return result;
-			}
 			if (this.m.ID.find("ancient_scroll") != null && (actor.getSkills().hasTrait(::Legends.Trait.Bright) && actor.getFlags().getAsInt("LegendsScrollCount") > 2 || actor.getFlags().getAsInt("LegendsScrollCount"))) {
 				result.push({
 					id = 10,
 					type = "text",
 					icon = "ui/icons/cancel.png",
-					text = "Cannot be used as this character had enough of such scrolls"
+					text = "Cannot be used as " + actor.getName() + " has had enough of such scrolls"
 				});
-				return result;
-			}
-			if (actor.getFlags().has("LegendsSkillBookCount") && this.m.ID.find("book") != null)
-			{
+			} else if (actor.getFlags().has("LegendsSkillBookCount") && this.m.ID.find("book") != null)	{
 				result.push({
 					id = 10,
 					type = "text",
 					icon = "ui/icons/cancel.png",
-					text = "Cannot be used as this character has already read a skill book"
+					text = "Cannot be used as " + actor.getName() + " has already read a skill book"
 				});
-				return result;
+			} else if (injury != null) {
+				result.push({
+					id = 10,
+					type = "text",
+					icon = "ui/icons/cancel.png",
+					text = actor.getName() + " has a headache and won't read for now. ([color=%negative%]" + injury.m.HealingTimeMin + "-" + injury.m.HealingTimeMax + "[/color] days because of a [color=%status%]" + injury.getName() + "[/color])"
+				});
+			} else if (effect != null) {
+				result.push({
+					id = 10,
+					type = "text",
+					icon = "ui/icons/cancel.png",
+					text = actor.getName() + " is irritable and won't read for now. ([color=%negative%]" + effect.m.HealingTime + "[/color] days because of [color=%status%]" + effect.getName() + "[/color])"
+				});
+			} else {
+				result.push({
+					id = 10,
+					type = "text",
+					icon = "ui/icons/unlocked_small.png",
+					text = actor.getName() + " can use this item"
+				});
 			}
 		}
 
@@ -156,8 +155,14 @@ this.legend_skill_book <- ::inherit("scripts/items/item", {
 			return this.m.BookName + " " + "Unidentified";
 	}
 
-	function isAbleToUseScroll( _actor )
-	{
+	function isAbleToUseScroll( _actor ) {
+		if (_actor.getFlags().has("LegendsSkillBookCount")){
+			return _actor.getName() + " has had enough books for a lifetime.";
+		}
+
+		if (_actor.isStabled())
+			return "Trying to make an animal read? Madness.";
+
 		local effect = ::Legends.Effects.get(_actor, ::Legends.Effect.LegendIrritable);
 		local injury = ::Legends.Effects.get(_actor, ::Legends.Effect.LegendHeadache);
 		if (injury != null)
@@ -165,13 +170,7 @@ this.legend_skill_book <- ::inherit("scripts/items/item", {
 		if (effect != null)
 			return _actor.getName() + " knocks your hand away, clearly irritated. ([color=%negative%]" + effect.m.HealingTime + "[/color] days because of [color=%status%]" + effect.getName() + "[/color]).";
 
-		if (_actor.isStabled())
-			return "Trying to make an animal read? Madness.";
-
-		if (!_actor.getFlags().has("LegendsSkillBookCount"))
-			return true;
-
-		return _actor.getName() + "has had enough books for a lifetime.";
+		return true;
 	}
 
 	function onUse( _actor, _item = null )
