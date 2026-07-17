@@ -186,7 +186,22 @@
 > newly acquired items with flags will automatically start be added to repair/salvage queue
 > flags are now visible in shop and loot screens
 > quickly loot items based on value (new button; ignores legendary, named, quest, food)
+> combine items to save inventory space with a single click with respect to automation state
 - sped up inventory load times by loading items in batches
+- recruitment window now shows some extra information about the recruit
+> ability to change between vague immersive text version and numerical values
+> improvements tied into the profession system
+- added a simple perk planning system
+> 3 states
+> shows the level needed to acquire the build
+> shows the number of optional perks picked
+- added a visual to display the number of books and scrolls read/available
+
+
+## Camping changes
+- made most dialogs shorter
+- crafting system has been overhauled
+- crafted items types reassigned in some cases to make it more intuitive
 
 ## Events
 - added a new town encounter during drought
@@ -205,7 +220,7 @@
 ## Bug Fixes
 - black market in town screens can now be highlighted on mouseover
 - text fixes
-- graphical fixes
+- graphical/ui fixes
 - bros can now use the basic training options until level 12 in town training halls instead of 11
 - fixed settlement situations applying twice
 - improved stability
@@ -219,3 +234,5 @@
 - legend_mage_background and legend_mage_commander_mage removed
 - human gender now randomized using randomizeHumanGender (separately on bgs and humans), which respects the new mod setting
 - enemy gender now randomized using randomizeEnemyGender, which respects the new mod setting
+- Tabbard -> Tabard | tabbard -> tabard
+- Hesistant -> Hesitant

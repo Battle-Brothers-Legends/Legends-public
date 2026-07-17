@@ -204,6 +204,19 @@
 			this.addProfessionsToUIData(_entity, _entity.getSkills().query(::Const.SkillType.Profession, true), result.professions);
 			result.perkTree = _entity.getBackground().getPerkTree();
 			result.professionTree = _entity.getBackground().getProfessionTree();
+			local perkPlan = _entity.getPerkPlan();
+			result.PerksPlan <- perkPlan;
+
+			local plannedCount = 0;
+    		local tentativeCount = 0;
+    		foreach(state in perkPlan) {
+        		if (state == 1) plannedCount++;
+        		else if (state == 2) tentativeCount++;
+    		}
+			result.PlannedLevelRequired <- plannedCount + _entity.getLevel() - _entity.getPerkPoints();
+    		result.TentativePerksCount <- tentativeCount;
+			result.BooksRead <- _entity.getFlags().getAsInt("LegendsSkillBookCount") + " / 1";
+			result.ScrollsRead <- _entity.getFlags().getAsInt("LegendsScrollCount") + " / " + (::Legends.Traits.has(_entity, ::Legends.Trait.Bright) ? 2 : (::Legends.Traits.has(_entity, ::Legends.Trait.Dumb) ? 0 : 1));
 		}
 
 		return result;

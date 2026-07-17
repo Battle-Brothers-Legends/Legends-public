@@ -158,6 +158,14 @@ var Asset =
     // UI Perk Images
     PERK_SELECTION_FRAME:                   'ui/perks/selection_frame.png',
 
+	PLAN_PLANNED:                   		'ui/perks/plan_planned.png',
+	PLAN_TENTATIVE:                   		'ui/perks/plan_tentative.png',
+	PLAN_EXCLUDED:                   		'ui/perks/plan_excluded.png',
+	PLAN_SCROLL:                   			'ui/perks/plan_scroll.png',
+	PLAN_BOOK:                   			'ui/perks/plan_book.png',
+	PLAN_LEVEL_COUNT:                   	'ui/perks/plan_level_count.png',
+	PLAN_TENTATIVE_COUNT:                   'ui/perks/plan_tentative_count.png',
+
 	// Slot Backgrounds
 	SLOT_BACKGROUND_EMPTY:					'ui/items/slots/inventory_slot_empty.png',
 	SLOT_BACKGROUND_BAG:					'ui/items/slots/inventory_slot_bag.png',

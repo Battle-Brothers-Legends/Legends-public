@@ -350,7 +350,11 @@ var TooltipIdentifier =
 			FormationButton: 'character-screen.right-panel-header-module.FormationButton',
 			ChangeFormationButton: 'character-screen.right-panel-header-module.ChangeFormation',
 			ClearFormationButton: 'character-screen.right-panel-header-module.ClearFormation',
-			ChangeFormationName: 'character-screen.right-panel-header-module.ChangeFormationName'
+			ChangeFormationName: 'character-screen.right-panel-header-module.ChangeFormationName',
+			PerkPlanScreenBooks: 'character-screen.right-panel-header-module.PerkPlanScreenBooks',
+			PerkPlanScreenScrolls: 'character-screen.right-panel-header-module.PerkPlanScreenScrolls',
+			PerkPlanScreenPlanned: 'character-screen.right-panel-header-module.PerkPlanScreenPlanned',
+			PerkPlanScreenTentative: 'character-screen.right-panel-header-module.PerkPlanScreenTentative',
 		},
 
 		BattleStartFooterModule:

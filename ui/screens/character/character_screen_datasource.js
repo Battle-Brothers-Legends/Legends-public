@@ -2350,6 +2350,12 @@ CharacterScreenDatasource.prototype.notifyBackendToggleUpgradeVisible = function
 	});
 };
 
+CharacterScreenDatasource.prototype.notifyBackendCyclePerkPlan = function (_data) {
+    var self = this;
+    SQ.call(this.mSQHandle, 'onCyclePerkPlan', _data, function (_brotherData) {
+        self.notifyEventListener(CharacterScreenDatasourceIdentifier.Brother.Updated, _brotherData);
+    });
+};
 
 CharacterScreenDatasource.prototype.notifyBackendAssignRider = function (_rider, _horse, _callback)
 {

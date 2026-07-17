@@ -3586,6 +3586,62 @@
 				}
 			];
 
+		case "character-screen.right-panel-header-module.PerkPlanScreenBooks":
+			return [
+				{
+					id = 1,
+					type = "title",
+					text = "Perk Books"
+				},
+				{
+					id = 2,
+					type = "description",
+					text = "Number of books read by this character."
+				}
+			];
+
+		case "character-screen.right-panel-header-module.PerkPlanScreenScrolls":
+			return [
+				{
+					id = 1,
+					type = "title",
+					text = "Perk Scrolls"
+				},
+				{
+					id = 2,
+					type = "description",
+					text = "Number of scrolls read by this character."
+				}
+			];
+
+		case "character-screen.right-panel-header-module.PerkPlanScreenPlanned":
+			return [
+				{
+					id = 1,
+					type = "title",
+					text = "Level Required"
+				},
+				{
+					id = 2,
+					type = "description",
+					text = "Level required for all the acquired and planned talents."
+				}
+			];
+
+		case "character-screen.right-panel-header-module.PerkPlanScreenTentative":
+			return [
+				{
+					id = 1,
+					type = "title",
+					text = "Tentative Perks"
+				},
+				{
+					id = 2,
+					type = "description",
+					text = "Number of perks marked as tentative."
+				}
+			];
+
 		case "character-screen.battle-start-footer-module.StartBattleButton":
 			return [
 				{

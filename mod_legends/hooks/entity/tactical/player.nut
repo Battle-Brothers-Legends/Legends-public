@@ -16,13 +16,19 @@
 	o.m.ProfessionPoints <- 0;
 	o.m.ProfessionPointsSpent <- 0;
 
-	// recruitment stuff
+	// recruitment
 	o.m.Hiring <- {};
 	o.m.Hiring.Traits <- {};
 	o.m.Hiring.Talents <- [];
 	o.m.Hiring.AttributeLimits <- {};
 	o.m.Hiring.AttributeBias <- {};
 
+	// perks plan
+	o.m.PerkPlan <- {};
+
+	o.getPerkPlan <- function () {
+		return this.m.PerkPlan;
+	}
 
 	o.getProfessionPoints <- function () {
 		return this.m.ProfessionPoints;
@@ -852,6 +858,8 @@
 		{
 			this.World.Assets.getOrigin().onUnlockPerk(this, _id);
 		}
+
+		delete this.getPerkPlan()[_id];
 		//++this.m.PerkPoints //// DEBUG, UNCOMMENT FOR UNLIMITED UNLOCKS
 
 		return true;
@@ -2134,15 +2142,19 @@
 		_out.writeU8(this.m.CompanyID);
 		_out.writeU8(this.m.ProfessionPoints);
 		_out.writeU8(this.m.ProfessionPointsSpent);
+		
+		_out.writeU16(this.getPerkPlan().len());
+		foreach (perkID, state in this.getPerkPlan()) {
+			_out.writeString(perkID);
+			_out.writeU8(state);
+		}
 	}
 
 	// copied entirely because adjustHiringCostBasedOnEquipment is commented out
 	local onDeserialize = o.onDeserialize;
-	o.onDeserialize = function ( _in )
-	{
+	o.onDeserialize = function (_in) {
 		onDeserialize(_in);
-		if (this.m.Background != null && this.m.Background.isBackgroundType(this.Const.BackgroundType.Female))
-		{
+		if (this.m.Background != null && this.m.Background.isBackgroundType(this.Const.BackgroundType.Female)) {
 			this.m.Gender = 1;
 			this.m.VoiceSet = this.Math.rand(0, this.Const.WomanSounds.len() - 1);
 		}
@@ -2157,5 +2169,11 @@
 		this.m.CompanyID = _in.readU8();
 		this.m.ProfessionPoints = _in.readU8();
 		this.m.ProfessionPointsSpent = _in.readU8();
+
+		local planSize = _in.readU16();
+		for (local i = 0; i < planSize; i++) {
+			local perkID = _in.readString();
+			this.getPerkPlan()[perkID] <- _in.readU8();
+		}
 	}
 });

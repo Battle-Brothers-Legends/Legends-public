@@ -743,6 +743,23 @@
 		return this.general_onUnlockProfession(_data);
 	}
 
+	o.onCyclePerkPlan <- function( _data ) {
+		local bro = ::Tactical.getEntityByID(_data[0])
+    	local perkPlan = bro.getPerkPlan();
+
+    	local perkID = _data[1];
+   		local currentState = perkID in perkPlan ? perkPlan[perkID] : 0; 
+    	local nextState = (currentState + 1) % 4;
+    
+    	if (nextState == 0) {
+        	delete perkPlan[perkID];
+    	} else {
+        	perkPlan[perkID] <- nextState;
+    	}
+    
+    	return ::UIDataHelper.convertEntityToUIData(bro, null); 
+	}
+
 	o.onFormationChanged <- function (_data) {
 		local index = _data[0];
 		this.World.Assets.changeFormation(index);

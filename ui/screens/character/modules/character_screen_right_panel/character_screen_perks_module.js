@@ -25,6 +25,14 @@ var CharacterScreenPerksModule = function(_parent, _dataSource)
     this.mPerkTree = null;
     this.mPerkRows = [];
 
+	this.mStatusBar = null;
+    this.mPlanLabels = {
+        Planned: null,
+        Tentative: null,
+        Books: null,
+        Scrolls: null
+    };
+
     this.registerDatasourceListener();
 };
 
@@ -64,6 +72,32 @@ CharacterScreenPerksModule.prototype.createDIV = function (_parentDiv)
     // create rows
     this.mLeftColumn = $('<div class="column"/>');
     this.mListScrollContainer.append(this.mLeftColumn);
+
+	this.mStatusBar = $('<div class="perk-plan-status-bar"/>');
+    this.mContainer.append(this.mStatusBar);
+
+    var createStatusItem = function(_iconPath, _tooltipId) {
+        var item = $('<div class="status-item"/>');
+        var img = $('<img/>').attr('src', Path.GFX + _iconPath);
+        var label = $('<div class="status-label text-font-small font-bold font-color-value"/>');
+        
+        item.append(img);
+        item.append(label);
+        
+        item.bindTooltip({ contentType: 'ui-element', elementId: _tooltipId });
+
+        return { container: item, label: label, img: img };
+    };
+
+    this.mPlanLabels.Books = createStatusItem(Asset.PLAN_BOOK, TooltipIdentifier.CharacterScreen.RightPanelHeaderModule.PerkPlanScreenBooks);
+    this.mPlanLabels.Scrolls = createStatusItem(Asset.PLAN_SCROLL, TooltipIdentifier.CharacterScreen.RightPanelHeaderModule.PerkPlanScreenScrolls);
+    this.mPlanLabels.Planned = createStatusItem(Asset.PLAN_LEVEL_COUNT, TooltipIdentifier.CharacterScreen.RightPanelHeaderModule.PerkPlanScreenPlanned);
+    this.mPlanLabels.Tentative = createStatusItem(Asset.PLAN_TENTATIVE_COUNT, TooltipIdentifier.CharacterScreen.RightPanelHeaderModule.PerkPlanScreenTentative); 
+
+    this.mStatusBar.append(this.mPlanLabels.Books.container);
+    this.mStatusBar.append(this.mPlanLabels.Scrolls.container);
+    this.mStatusBar.append(this.mPlanLabels.Planned.container);
+    this.mStatusBar.append(this.mPlanLabels.Tentative.container);
 };
 
 CharacterScreenPerksModule.prototype.destroyDIV = function ()
@@ -126,6 +160,9 @@ CharacterScreenPerksModule.prototype.createPerkTreeDIV = function (_perkTree, _p
 			perk.Image = $('<img class="perk-image-layer"/>');
 			perk.Image.attr('src', Path.GFX + perk.IconDisabled);
 			perk.Container.append(perk.Image);
+
+			perk.PlanImage = $('<img class="plan-image-layer display-none"/>');
+            perk.Container.append(perk.PlanImage);
 		}
 		
 		centerDIV.find(".l-perk-container").css({ 'width': '4.0rem' });
@@ -263,6 +300,8 @@ CharacterScreenPerksModule.prototype.loadPerkTreesWithBrotherData = function (_b
     {
         this.setupPerkTreeTooltips(this.mPerkTree, _brother[CharacterScreenIdentifier.Entity.Id]);
     }
+
+	this.updatePerkPlanVisuals(_brother);
 };
 
 CharacterScreenPerksModule.prototype.isPerkUnlockable = function (_perk)
@@ -277,6 +316,34 @@ CharacterScreenPerksModule.prototype.isPerkUnlockable = function (_perk)
 		return false;
 	}
 	return perkPoints > 0 && perkPointsSpent >= _perk.Unlocks;
+};
+
+CharacterScreenPerksModule.prototype.updatePerkPlanVisuals = function (_brother) {
+    var plan = _brother.PerksPlan || {};
+    
+    for (var row = 0; row < this.mPerkTree.length; ++row) {
+        for (var i = 0; i < this.mPerkTree[row].length; ++i) {
+            var perk = this.mPerkTree[row][i];
+            var state = plan[perk.ID] || 0;
+            
+            if (state === 0 || perk.Unlocked) {
+                perk.PlanImage.removeClass('display-block').addClass('display-none');
+            } else {
+                perk.PlanImage.removeClass('display-none').addClass('display-block');
+                
+                if (state === 1) perk.PlanImage.attr('src', Path.GFX + Asset.PLAN_PLANNED);
+                else if (state === 2) perk.PlanImage.attr('src', Path.GFX + Asset.PLAN_TENTATIVE);
+                else if (state === 3) perk.PlanImage.attr('src', Path.GFX + Asset.PLAN_EXCLUDED);
+            }
+        }
+    }
+    
+    if (CharacterScreenIdentifier.Entity.Character.Level in _brother[CharacterScreenIdentifier.Entity.Character.Key]) {
+        this.mPlanLabels.Books.label.text(_brother.BooksRead || "0 / 1");
+        this.mPlanLabels.Scrolls.label.text(_brother.ScrollsRead || "0 / 1");
+        this.mPlanLabels.Planned.label.text(_brother.PlannedLevelRequired || 0);
+        this.mPlanLabels.Tentative.label.text(_brother.TentativePerksCount || 0);
+    }
 };
 
 CharacterScreenPerksModule.prototype.attachEventHandler = function(_perk)
@@ -314,6 +381,15 @@ CharacterScreenPerksModule.prototype.attachEventHandler = function(_perk)
 			self.showPerkUnlockDialog(_perk);
 		}
 	});
+
+	_perk.Container.on('mousedown' + CharacterScreenIdentifier.KeyEvent.PerksModuleNamespace, null, this, function (_event) {
+		if (_event.which === 3) {
+			_event.preventDefault();
+			if (_perk.Unlocked) return false;
+			self.mDataSource.notifyBackendCyclePerkPlan([self.mDataSource.getSelectedBrother()[CharacterScreenIdentifier.Entity.Id], _perk.ID]);
+			return false;
+		}
+    });
 }
 
 CharacterScreenPerksModule.prototype.removePerksEventHandler = function (_perkTree)
