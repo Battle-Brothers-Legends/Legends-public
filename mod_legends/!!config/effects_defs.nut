@@ -1662,28 +1662,12 @@ effectsDefs.push({
 	Const = "LegendWhipFeint"
 });
 
-::Legends.Effect.LegendParryingDagger <- null;
-effectsDefs.push({
-	ID = "effects.legend_parrying_dagger",
-	Script = "scripts/skills/effects/legend_parrying_dagger_effect",
-	Name = "Parrying Dagger Defense",
-	Const = "LegendParryingDagger"
-});
-
 ::Legends.Effect.LegendBlooddrinker <- null;
 effectsDefs.push({
 	ID = "effects.legend_blooddrinker",
 	Script = "scripts/skills/effects/legend_blooddrinker_effect",
 	Name = "Blooddrinker",
 	Const = "LegendBlooddrinker"
-});
-
-::Legends.Effect.LegendParrying <- null;
-effectsDefs.push({
-	ID = "effects.legend_parrying",
-	Script = "scripts/skills/effects/legend_parrying_effect",
-	Name = "Parrying Stance",
-	Const = "LegendParrying"
 });
 
 ::Legends.Effect.LegendPeacefulReassured <- null;
