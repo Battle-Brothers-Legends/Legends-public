@@ -3,6 +3,24 @@
 	o.m.Points <- 0.0;
 	o.m.Queue <- 0;
 
+	o.getHealingTime = function() {
+		local time = this.getTime();
+		local properties = this.getContainer().getActor().getCurrentProperties();
+		local secondsPerDay = ::World.getTime().SecondsPerDay;
+		local mint = ::Math.max(1, (this.m.IsTreated ? this.m.HealingTimeMin * 0.5 : this.m.HealingTimeMin) - ::Math.ceil((time - this.m.TimeApplied) / secondsPerDay) + properties.AdditionalHealingDays);
+		local maxt = ::Math.max(1, (this.m.IsTreated ? this.m.HealingTimeMax * 0.5 : this.m.HealingTimeMax) - ::Math.floor((time - this.m.TimeApplied) / secondsPerDay) + properties.AdditionalHealingDays);
+
+		if (("State" in this.World) && this.World.State != null && ::World.Assets.m.ProfessionEffect.LegendFieldSurgery > 0) {
+			mint = this.Math.max(1, mint - 1);
+			maxt = this.Math.max(1, maxt - 1);
+		}
+
+		return {
+			Min = mint,
+			Max = maxt
+		};
+	}
+
 	o.getQueue <- function ()
 	{
 		return this.m.Queue;
@@ -161,7 +179,7 @@
 			local minTime = this.m.HealingTimeMin * (this.m.IsTreated ? 0.5 : (1.0 - 0.5 * this.getTreatedPercentage()));
 			local maxTime = this.m.HealingTimeMax * (this.m.IsTreated ? 0.5 : (1.0 - 0.5 * this.getTreatedPercentage()));
 
-			if (this.World.Retinue.hasFollower("follower.surgeon"))
+			if (::World.Assets.m.ProfessionEffect.LegendFieldSurgery > 0)
 			{
 				minTime = this.Math.max(1, minTime - 1);
 				maxTime = this.Math.max(1, maxTime - 1);

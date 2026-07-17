@@ -230,7 +230,9 @@ professionDefObjects.push({
     Tooltip = ::Const.Strings.ProfessionDescription.LegendEfficientPacking,
     Icon = "ui/professions/efficient_packing.png",
     IconDisabled = "ui/professions/efficient_packing_bw.png",
-    Const = "LegendEfficientPacking"
+    Const = "LegendEfficientPacking",
+    ScalingArray = [0, 8], // extra inventory space
+    ScalingFactor = 0.5
 });
 
 ::Legends.Profession.LegendEnchanter <- null;
@@ -276,7 +278,9 @@ professionDefObjects.push({
     Tooltip = ::Const.Strings.ProfessionDescription.LegendFieldSurgery,
     Icon = "ui/professions/field_surgery.png",
     IconDisabled = "ui/professions/field_surgery_bw.png",
-    Const = "LegendFieldSurgery"
+    Const = "LegendFieldSurgery",
+    ScalingArray = [0, 0.15, 0.2], // extra injury survival chance mult (base 33% * (1+val))
+    ScalingFactor = 0.05
 });
 
 ::Legends.Profession.LegendGathering <- null;
@@ -564,7 +568,9 @@ professionDefObjects.push({
     Tooltip = ::Const.Strings.ProfessionDescription.LegendSkillfulStacking,
     Icon = "ui/professions/skillful_stacking.png",
     IconDisabled = "ui/professions/skillful_stacking_bw.png",
-    Const = "LegendSkillfulStacking"
+    Const = "LegendSkillfulStacking",
+    ScalingArray = [0, 0.05], // extra inventory space percentage
+    ScalingFactor = 0.5
 });
 
 ::Legends.Profession.LegendSpareParts <- null;

@@ -596,6 +596,7 @@
 				}
 			}
 		}
+		this.getCurrentProperties().SurviveWithInjuryChanceMult *= (1 + ::World.Assets.m.ProfessionEffect.LegendFieldSurgery);
 		// call the original
 		local result = isReallyKilled(_fatalityType);
 		// return this array back to normal
@@ -1695,19 +1696,6 @@
 		if (background.getID() == ::Legends.Backgrounds.getID(::Legends.Background.LegendDonkey))
 		{
 			broStash += background.getModifier();
-		}
-
-		local skills = [
-			::Legends.Perk.LegendSkillfulStacking,
-			::Legends.Perk.LegendEfficientPacking
-		];
-		foreach( s in skills )
-		{
-			local skill = ::Legends.Perks.get(this, s);
-			if (skill != null)
-			{
-				broStash += skill.getModifier();
-			}
 		}
 
 		return broStash;

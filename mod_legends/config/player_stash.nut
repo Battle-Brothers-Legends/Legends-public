@@ -26,8 +26,10 @@
 	foreach (bro in ::World.getPlayerRoster().getAll()) {
 		size += bro.getStashModifier();
 	}
-	size += ::World.Retinue.hasFollower("follower.quartermaster") ? 27 : 0;
+	//size += ::World.Retinue.hasFollower("follower.quartermaster") ? 27 : 0;
 	size += ::World.Flags.getAsInt(::Legends.Stash.Flags.CaravanHandEvent);
 	size += ::World.Flags.getAsInt(::Legends.Stash.Flags.CartUpgrades) * 27;
+	size += ::World.Assets.m.ProfessionEffect.LegendEfficientPacking;
+	size = ::Math.round(size * (1 + ::World.Assets.m.ProfessionEffect.LegendSkillfulStacking));
 	return size;
 }

@@ -231,7 +231,9 @@ Nobody buries their valuables deep enough to hide them from a truly motivated lo
 Sew up the holes, saw off the rot, and pour boiling wine over whatever is left.
 
 [color=%passive%][u]Passive:[/u][/color]
-• Injuries take less time to heal.
+• Injuries take one less day to heal.
+
+• Increases the chance of a brother surviving with a permanent injury when struck down.
 ";
 
 ::Const.Strings.ProfessionDescription.LegendGathering <- @"
