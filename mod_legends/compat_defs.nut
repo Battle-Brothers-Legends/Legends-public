@@ -230,6 +230,7 @@
 //endregion
 
 //region SoftIncompat
+::Legends.Compat.SoftIncompat.add("mod_op_archers", "0.0.3", "Should work but has no compatibility for legends specific skills or any submods");
 ::Legends.Compat.SoftIncompat.add("advanced_grader"); // Needs to be updated with Legends specific things to work with Legends
 ::Legends.Compat.SoftIncompat.add("mod_BLPT", "0.1.2"); // Darx's Bad Luck Protection
 ::Legends.Compat.SoftIncompat.add("mod_bro_storage", "1.0.2");
