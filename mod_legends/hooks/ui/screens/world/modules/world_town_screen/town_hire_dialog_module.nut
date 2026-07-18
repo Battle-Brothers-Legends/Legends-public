@@ -6,8 +6,8 @@
 	o.onHireRosterEntry = function ( _entityID )
 	{
 		local original = ::World.Assets.m.HiringCostMult;
-		if (::World.Retinue.hasFollower("follower.recruiter"))
-			::World.Assets.m.HiringCostMult *= 0.9;
+		if (::World.Assets.m.ProfessionEffect.LegendSilverTongued > 0)
+			::World.Assets.m.HiringCostMult *= 1 / ::World.Assets.m.ProfessionEffect.LegendSilverTongued;
 		local ret = onHireRosterEntry(_entityID);
 		::World.Assets.m.HiringCostMult = original;
 		return ret;

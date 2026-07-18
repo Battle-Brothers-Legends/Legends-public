@@ -45,8 +45,8 @@
 	o.getTryoutCost = function ()
 	{
 		local cost = this.Math.max(10, this.Math.min(this.m.HiringCost - 25, 25 + this.m.HiringCost * this.Const.Tryouts.CostMult) * this.World.Assets.m.TryoutPriceMult);
-		if (::World.Retinue.hasFollower("follower.recruiter"))
-			cost *= 0.5;
+		if (::World.Assets.m.ProfessionEffect.LegendSilverTongued > 0)
+			cost /= ::World.Assets.m.ProfessionEffect.LegendSilverTongued;
 		return this.Math.ceil(cost);
 	}
 
@@ -597,6 +597,7 @@
 			}
 		}
 		this.getCurrentProperties().SurviveWithInjuryChanceMult *= (1 + ::World.Assets.m.ProfessionEffect.LegendFieldSurgery);
+		::World.Assets.m.IsSurvivalGuaranteed = (::World.Assets.m.ProfessionEffect.LegendButcherBarber > 0); // using this so there's no need to hook the entire thing and the flag is only used for this anyway so no need to revert to original value after
 		// call the original
 		local result = isReallyKilled(_fatalityType);
 		// return this array back to normal

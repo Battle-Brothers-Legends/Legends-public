@@ -72,7 +72,9 @@ professionDefObjects.push({
     Tooltip = ::Const.Strings.ProfessionDescription.LegendBalladeInTheMaking,
     Icon = "ui/professions/ballade_in_the_making.png",
     IconDisabled = "ui/professions/ballade_in_the_making_bw.png",
-    Const = "LegendBalladeInTheMaking"
+    Const = "LegendBalladeInTheMaking",
+    ScalingArray = [0, 0.1], // renown gain %
+    ScalingFactor = 0.5
 });
 
 ::Legends.Profession.LegendBigGameHunter <- null;
@@ -116,7 +118,9 @@ professionDefObjects.push({
     Tooltip = ::Const.Strings.ProfessionDescription.LegendBraggart,
     Icon = "ui/professions/braggart.png",
     IconDisabled = "ui/professions/braggart_bw.png",
-    Const = "LegendBraggart"
+    Const = "LegendBraggart",
+    ScalingArray = [0, 1], // extra recruits (x1 min x2 max)
+    ScalingFactor = 1
 });
 
 ::Legends.Profession.LegendButcherBarber <- null;
@@ -127,7 +131,9 @@ professionDefObjects.push({
     Tooltip = ::Const.Strings.ProfessionDescription.LegendButcherBarber,
     Icon = "ui/professions/butcher_barber.png",
     IconDisabled = "ui/professions/butcher_barber_bw.png",
-    Const = "LegendButcherBarber"
+    Const = "LegendButcherBarber",
+    ScalingArray = [0, 1], // NEEDS A SECONDARY SCALING EFFECT
+    ScalingFactor = 0
 });
 
 ::Legends.Profession.LegendCarouser <- null;
@@ -540,6 +546,8 @@ professionDefObjects.push({
     Icon = "ui/professions/shady_deals.png",
     IconDisabled = "ui/professions/shady_deals_bw.png",
     Const = "LegendShadyDeals"
+    ScalingArray = [0, 1.1], // lowers black market prices
+    ScalingFactor = 0.05
 });
 
 ::Legends.Profession.LegendSilverTongued <- null;
@@ -550,7 +558,9 @@ professionDefObjects.push({
     Tooltip = ::Const.Strings.ProfessionDescription.LegendSilverTongued,
     Icon = "ui/professions/silver_tongued.png",
     IconDisabled = "ui/professions/silver_tongued_bw.png",
-    Const = "LegendSilverTongued"
+    Const = "LegendSilverTongued",
+    ScalingArray = [0, 1.1], // divide recruitment and tryout costs
+    ScalingFactor = 0.05
 });
 
 ::Legends.Profession.LegendSizeThemUp <- null;

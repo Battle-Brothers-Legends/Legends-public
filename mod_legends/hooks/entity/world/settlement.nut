@@ -605,11 +605,9 @@
 
 				bro.getFlags().set("Legend_onGenerateBroPass", true);
 			}
-			if (::World.Retinue.hasFollower("follower.recruiter"))
-			{
-				::World.Assets.m.RosterSizeAdditionalMin += 2;
-				::World.Assets.m.RosterSizeAdditionalMax += 4;
-			}
+			
+			::World.Assets.m.RosterSizeAdditionalMin += ::World.Assets.m.ProfessionEffect.LegendBraggart;
+			::World.Assets.m.RosterSizeAdditionalMax += 2 * ::World.Assets.m.ProfessionEffect.LegendBraggart;
 
 			updateRoster(_force); // run the original function
 

@@ -50,8 +50,8 @@
 	o.addBusinessReputation = function( _f )
 	{
 		local original = this.m.BusinessReputationRate;
-		if (::World.Retinue.hasFollower("follower.minstrel"))
-			this.m.BusinessReputationRate *= 1.25; // should be taken into account (blacksmith influence)
+		if (::World.Assets.m.ProfessionEffect.LegendBalladeInTheMaking > 0)
+			this.m.BusinessReputationRate *= (1 + ::World.Assets.m.ProfessionEffect.LegendBalladeInTheMaking);
 		addBusinessReputation(_f);
 		this.m.BusinessReputationRate = original;
 	}
