@@ -12,6 +12,7 @@
 				::Const.Perks.MaceTree,
 				::Const.Perks.FlailTree,
 				::Const.Perks.HammerTree,
+				::Const.Perks.PolearmTree,
 				::Const.Perks.CrossbowTree
 			],
 			Defense = [
