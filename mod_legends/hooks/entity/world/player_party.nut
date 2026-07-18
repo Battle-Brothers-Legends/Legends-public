@@ -1,7 +1,6 @@
 ::mods_hookExactClass("entity/world/player_party", function(o)
 {
 	o.m.BarterMultiplier <- 0.0;
-	o.m.FoodMultiplier <- 0;
 	o.m.AmmoMultiplier <- 0;
 	o.m.ArmorPartsMultiplier <- 0;
 	o.m.MedsMultiplier <- 0;
@@ -308,11 +307,6 @@
 		return this.m.BarterMultiplier;
 	}
 
-	o.getFoodModifier <- function ()
-	{
-		return this.m.FoodMultiplier;
-	}
-
 	o.getAmmoModifier <- function ()
 	{
 		return this.m.AmmoMultiplier;
@@ -338,26 +332,10 @@
 		if (this.World.State.m.AppropriateTimeToRecalc == 1) //Leonion's fix
 		{
 			this.calculateBarterMult();
-			this.calculateFoodModifier();
 			this.calculateAmmoModifier();
 			this.calculateArmorPartsModifier();
 			this.calculateMedsModifier();
 			this.calculateStashModifier();
-		}
-	}
-
-	o.calculateFoodModifier <- function ()
-	{
-		if (this.World.State.m.AppropriateTimeToRecalc != 1)
-			return;
-
-		foreach( bro in this.World.getPlayerRoster().getAll() )
-		{
-			if (!bro.getSkills().hasPerk(::Legends.Perk.LegendQuartermaster))
-				continue;
-
-			this.m.FoodMultiplier = 1;
-			break;
 		}
 	}
 

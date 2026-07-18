@@ -54,22 +54,17 @@
 		if (!("State" in this.World)) {
 			return 0
 		}
-		local worldMult = this.World.State != null ? this.World.Assets.getDailyWageMult() : 1.0;
+		local worldMult = ::World.State != null ? this.World.Assets.getDailyWageMult() : 1.0;
 		local wageMult = (this.m.CurrentProperties.DailyWageMult * worldMult);
 		return this.Math.max(0, this.m.CurrentProperties.DailyWage * wageMult);
 	}
 
 	o.getDailyFood = function () {
-		local food = this.Math.maxf(0.0, this.m.CurrentProperties.DailyFood);
+		local food = ::Math.maxf(0.0, this.m.CurrentProperties.DailyFood) / ::World.Assets.m.ProfessionEffect.LegendRationing;
 		if (this.isInReserves() && !this.m.Skills.hasPerk(::Legends.Perk.LegendPeaceful)) {
 			food *= 2;
 		}
-		// See getDailyCost for the explanation behind this defensive check; technically it is not
-		// needed now, but if getDailyFood is ever used in a skill it would cause the same issue.
-		local player = this.World.State != null ? this.World.State.getPlayer() : null;
-		local foodModifier = player != null && ("getFoodModifier" in player) ? player.getFoodModifier() : 0.0;
-		food -= foodModifier;
-		return this.Math.maxf(0.0, food);
+		return ::Math.maxf(0.0, food);
 	}
 
 	o.isLeveled <- function () {

@@ -539,7 +539,9 @@ professionDefObjects.push({
     Tooltip = ::Const.Strings.ProfessionDescription.LegendRationing,
     Icon = "ui/professions/rationing.png",
     IconDisabled = "ui/professions/rationing_bw.png",
-    Const = "LegendRationing"
+    Const = "LegendRationing",
+    ScalingArray = [0, 1.1], // lowers food consumption
+    ScalingFactor = 0.05
 });
 
 ::Legends.Profession.LegendSapper <- null;
