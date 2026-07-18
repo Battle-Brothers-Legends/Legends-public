@@ -124,9 +124,8 @@ this.legend_sighthoundtracks_event <- this.inherit("scripts/events/event", {
 		if (!::World.getTime().IsDaytime)
 			return;
 
-		local playerTile = ::World.State.getPlayer().getTile();
 		local closestTown = ::Legends.S.getClosestSettlement(@(_, t) t.isAlliedWithPlayer());
-		if (closestTown.getTile().getDistanceTo(playerTile) > 4)
+		if (closestTown == null || closestTown.getTile().getDistanceTo(::World.State.getPlayer().getTile()) > 4)
 			return;
 
 		local brothers = ::World.getPlayerRoster().getAll();

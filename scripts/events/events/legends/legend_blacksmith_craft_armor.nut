@@ -152,7 +152,7 @@ this.legend_blacksmith_craft_armor <- this.inherit("scripts/events/event", {
 
 		local towns = ::World.EntityManager.getSettlements();
 		local closestTown = ::Legends.S.getClosestSettlement(@(_, t) t.getSize() >= 3 && t.isAlliedWithPlayer());
-		if (closestTown.getTile().getDistanceTo(::World.State.getPlayer().getTile()) > 3)
+		if (closestTown == null || closestTown.getTile().getDistanceTo(::World.State.getPlayer().getTile()) > 3)
 			return;
 
 		this.m.Town = closestTown;
