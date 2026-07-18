@@ -151,7 +151,7 @@ this.legends_player_is_rich_op_backgrounds_event <- this.inherit("scripts/events
 		local brothers = this.World.getPlayerRoster().getAll();
 		local candidate_opbackground = [];
 		local candidate_rest = [];
-		local thetrader;
+		local thetrader = null;
 
 		foreach (bro in brothers) {
 			if (bro.getSkills().hasTrait(::Legends.Trait.Player) && ::Legends.Backgrounds.has(bro, ::Legends.Background.LegendCommanderTrader))
@@ -161,7 +161,7 @@ this.legends_player_is_rich_op_backgrounds_event <- this.inherit("scripts/events
 				continue;
 
 			if (::Legends.Backgrounds.has(bro, ::Legends.Background.LegendCommanderTrader)) {
-				thetrader.push(bro);
+				thetrader = bro;
 				continue;
 			}
 

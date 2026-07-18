@@ -22,7 +22,6 @@ foreach(event in [
 	"witch_being_burned_event",
 	"dlc2/nightowl_catches_thief_event",
 	"dlc4/wild_dog_sounds_event",
-	"dlc6/arena_tournament_event",
 	"dlc8/anatomist_creeps_out_locals_event",
 	"dlc8/captured_oathbringer_event",
 	"dlc8/lindwurm_slayer_event",
@@ -37,6 +36,17 @@ foreach(event in [
 		o.onUpdateScore = function() {
 			onUpdateScore();
 			this.m.isValidForEncounter = this.m.Score > 0 && this.Time.getVirtualTimeF() > this.m.CooldownUntil;
+			this.m.Score = 0; // this disables event from happening normally
+		}
+	})
+}
+
+// these events were moved to encounters entirely, just disable them
+foreach(event in [
+	"dlc6/arena_tournament_event",
+]) {
+	::mods_hookExactClass("events/events/" + event, function(o) {
+		o.onUpdateScore = function() {
 			this.m.Score = 0; // this disables event from happening normally
 		}
 	})

@@ -425,7 +425,7 @@ Broad attacks are hard to avoid and you're using this to your advantage.
 Heavy armor, a trusty shield and your heels dug into the ground and you can weather any storm.
 
 [color=%passive%][u]Passive:[/u][/color]
-• For every 10 points of gear weight from all slot gain [color=%positive%]1[/color] Resolve and [color=%negative%]1%[/color] less damage ignoring armor.
+• For every 10 points of gear weight from all slots gain [color=%positive%]1[/color] Resolve and [color=%negative%]1%[/color] less damage ignoring armor.
 
 • If you have at least 50 gear weight any attack that would stun you will instead daze you.
 
@@ -2933,11 +2933,11 @@ Use your athletic skill to leap high and far.
 Make use of your acrobatic skill to dodge attacks and move out of trouble.
 
 [color=%passive%][u]Passive:[/u][/color]
-• As long as there's a free tile adjacent to you grant a chance to have any attacker require two successful attack rolls in order to hit. If the attack is ranged you will use your Melee Defense and if the attack is melee you will use your Ranged Defense for the reroll. On a successful reroll you will be moved to a random tile. 
+• As long as there's a free tile adjacent to you grant a chance to have any attacker require two successful attack rolls in order to hit. If the attack is ranged you will use your Melee Defense and if the attack is melee you will use your Ranged Defense for the reroll. On a successful reroll you will be moved to a random tile.
 
 • Disabled if you are rooted or stunned.
 
-• Stacks with 'Lucky' or [color=%perk%]Premonition[/color] with the chance of either being added to the chance to reroll. 
+• Stacks with 'Lucky' or [color=%perk%]Premonition[/color] with the chance of either being added to the chance to reroll.
 ";
 
 ::Const.Strings.PerkDescription.LegendHairSplitter <- @"
@@ -3251,7 +3251,7 @@ Gain enhanced vision and tactical advantages at night.
 [color=%passive%][u]Passive:[/u][/color]
 • Gain [color=%positive%]+1[/color] vision and become unaffected by night time penalties.
 
-• When attacking at night, adjacent enemies will lose [color=%negative%]10[/color] Resolve when adjacent to you.
+• When attacking at night, adjacent enemies will lose [color=%negative%]10[/color].
 
 • Gain [color=%positive%]+10%[/color] Melee and Ranged Skill while fighting at night.
 ";

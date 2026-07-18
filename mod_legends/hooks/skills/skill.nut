@@ -1433,16 +1433,26 @@
 			}
 		}
 
-		if (isHit && this.Math.rand(1, 100) <= defenderProperties.RerollDefenseChance)
-		{
-			r = this.Math.rand(1, 100);
-			isHit = r <= toHit;
-			if(!isHit) {
-				this.Tactical.EventLog.logEx(this.Const.UI.getColorizedEntityName(_targetEntity) + " got lucky.");
-			} else {
+		if (isHit && defenderProperties.RerollDefenseChance > 0) {
+			if (this.Math.rand(1, 100) <= defenderProperties.RerollDefenseChance) {
+				r = this.Math.rand(1, 100);
+				local tumble = ::Legends.Perks.get(this, ::Legends.Perk.LegendTumble);
+				isHit = r <= toHit;
+				if(!isHit) {
+					this.Tactical.EventLog.logEx(this.Const.UI.getColorizedEntityName(_user) + " uses " + this.getName() + " and " + this.Const.UI.getColorizedEntityName(_targetEntity) + " got lucky (Chance: " + this.Math.min(maximumHitChance, this.Math.max(minimumHitChance, toHit)) + ", Rolled: " + r + ")");
+					if (tumble) {
+						tumble.m.CanTeleport = true;
+					} 
+				}
+				else {
+					this.Tactical.EventLog.logEx(this.Const.UI.getColorizedEntityName(_user) + " uses " + this.getName() + " and " + this.Const.UI.getColorizedEntityName(_targetEntity) + " wasn\'t lucky enough (Chance: " + this.Math.min(maximumHitChance, this.Math.max(minimumHitChance, toHit)) + ", Rolled: " + r + ")");
+				}
+			}
+			else {
 				this.Tactical.EventLog.logEx(this.Const.UI.getColorizedEntityName(_targetEntity) + " wasn\'t lucky enough.");
 			}
 		}
+		
 
 		if (isHit)
 		{

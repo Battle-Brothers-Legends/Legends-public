@@ -50,5 +50,8 @@
 		{
 			this.m.Items.equip(item);
 		}
+		local b = this.m.BaseProperties;	
+		b.Armor[::Const.BodyPart.Head] = 50 - item.getArmorMax(); // set head armor of the conqueror to vanilla levels while respecting the outfit
+		b.ArmorMax[::Const.BodyPart.Head] = 50 - item.getArmorMax();
 	}
 });

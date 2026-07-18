@@ -38,7 +38,6 @@ this.perk_legend_tumble <- this.inherit("scripts/skills/skill", {
 		} else {
 			_properties.RerollDefenseChance += _properties.RangedDefense;
 		}
-		this.m.CanTeleport = true;
 	}
 
 	function onBeforeDamageReceived(_attacker, _skill, _hitInfo, _properties) {
@@ -118,42 +117,34 @@ this.perk_legend_tumble <- this.inherit("scripts/skills/skill", {
 
 	function onRepelled(_tag) {
 		if (!::Legends.S.isEntityNullOrDead(_tag.User) && !::Tactical.getNavigator().isTravelling(_tag.User))
-			::Tactical.getNavigator().teleport(_tag.User, _tag.TargetTile, null, null, false);
+			::Tactical.getNavigator().teleport(_tag.User, _tag.OldTile, null, null, false);
 		_tag.Skill.m.IsTumbling = false;
 	}
 
 	function onTeleportDone(_entity, _tag) {
 		_tag.Skill.m.IsTumbling = false;
 		local myTile = _entity.getTile();
-		local potentialVictims = [];
 		local betterThanNothing = null;
 		local ZOC = [];
 		local dirToTarget = _tag.OldTile.getDirectionTo(myTile);
 
 		for( local i = 0; i < 6; i++ ) {
-            if (!myTile.hasNextTile(i)) continue;
+			if (!myTile.hasNextTile(i)) {
+				continue;
+			}
 
-            local tile = myTile.getNextTile(i);
-            if (!tile.IsOccupiedByActor) continue;
+			local tile = myTile.getNextTile(i);
+			if (!tile.IsOccupiedByActor) {
+				continue;
+			}
 
-            local actor = tile.getEntity();
-            if (actor.isAlliedWith(_entity) || actor.getCurrentProperties().IsStunned) continue;
+			local actor = tile.getEntity();
+			if (actor.isAlliedWith(_entity) || actor.getCurrentProperties().IsStunned) {
+				continue;
+			}
 
-            ZOC.push(actor);
-
-            local dirLeft = (dirToTarget + 5) % 6;
-            local dirRight = (dirToTarget + 1) % 6;
-
-            if (i == dirToTarget || i == dirLeft || i == dirRight) {
-                if (betterThanNothing == null) {
-                    betterThanNothing = actor;
-                }
-
-                if (!actor.getCurrentProperties().IsImmuneToStun) {
-                    potentialVictims.push(actor);
-                }
-            }
-        }
+			ZOC.push(actor);
+		}
 
 		local zoc_fail = false;
 
@@ -161,49 +152,18 @@ this.perk_legend_tumble <- this.inherit("scripts/skills/skill", {
 			if (actor.onMovementInZoneOfControl(_entity, true)) {
 				if (actor.onAttackOfOpportunity(_entity, true)) {
 					zoc_fail = true;
-					local dir = myTile.getDirectionTo(_tag.OldTile);
-
-					if (myTile.hasNextTile(dir)) {
-						local tile = myTile.getNextTile(dir);
-
-						if (tile.IsEmpty && ::Math.abs(tile.Level - myTile.Level) <= 1 && tile.getDistanceTo(actor.getTile()) > 1) {
-							if (!::Legends.S.isEntityNullOrDead(_entity)) {
-								_tag.TargetTile = tile;
-								_tag.Skill.m.IsTumbling = true;
-								::Time.scheduleEvent(::TimeUnit.Virtual, 50, _tag.OnRepelled, _tag);
-							}
-
-							if (_tag.OldTile.IsVisibleForPlayer || myTile.IsVisibleForPlayer) {
-								::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(_entity) + " tumbles and is repelled");
-							}
-
-							return;
-						}
+					if (!::Legends.S.isEntityNullOrDead(_entity)) {
+						_tag.Skill.m.IsTumbling = true;
+						::Time.scheduleEvent(::TimeUnit.Virtual, 50, _tag.OnRepelled, _tag);
 					}
 
-					for( local i = 0; i < 6; i++ ) {
-                        if (!myTile.hasNextTile(i)) continue;
-                        local tile = myTile.getNextTile(i);
+					if (_tag.OldTile.IsVisibleForPlayer || myTile.IsVisibleForPlayer) {
+						::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(_entity) + " tumbles and is repelled");
+					}
 
-                        if (tile.IsEmpty && ::Math.abs(tile.Level - myTile.Level) <= 1) {
-                            if (!::Legends.S.isEntityNullOrDead(_entity)) {
-                                _tag.TargetTile = tile;
-								_tag.Skill.m.IsTumbling = true;
-                                ::Time.scheduleEvent(::TimeUnit.Virtual, 50, _tag.OnRepelled, _tag);
-                            }
-
-                            if (_tag.OldTile.IsVisibleForPlayer || myTile.IsVisibleForPlayer) {
-                                ::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(_entity) + " tumbles and is repelled");
-                            }
-                            return;
-                        }
-                    }
+					return;
 				}
 			}
-		}
-
-		if (potentialVictims.len() == 0 && betterThanNothing != null) {
-			potentialVictims.push(betterThanNothing);
 		}
 
 		if (_tag.OldTile.IsVisibleForPlayer || myTile.IsVisibleForPlayer) {

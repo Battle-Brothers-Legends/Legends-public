@@ -153,8 +153,17 @@
 
 ::Legends.Helmet.Ancient.ancient_laurels <- {
 	ID = "ancient/ancient_laurels",
-	Script = "scripts/items/legend_helmets/helmets/legend_ancient_laurels",
-	Sets = []
+	Script = "",
+	Sets = [{
+		Hoods = [
+			[1, "hood/legend_helmet_southern_headband_coin"]
+		],
+		Helms = [],
+		Tops = [],
+		Vanity = [
+			[1, "vanity/legend_helmet_wreath", [2]]
+		]
+	}]
 };
 ::Const.LegendMod.HelmObjs.push(::Legends.Helmet.Ancient.ancient_laurels);
 

@@ -60,8 +60,7 @@ this.legend_skin_armor <- this.inherit("scripts/items/legend_armor/legend_named_
 	function onCombatFinished()
 	{
 		local actor = this.getContainer().getActor();
-		if (actor == null)
-		{
+		if (::Legends.S.isEntityNullOrDead(actor)) {
 			return;
 		}
 
