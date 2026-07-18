@@ -1031,7 +1031,7 @@
 		local professionDefObject = clone ::Const.Professions.ProfessionDefObjects[_profession];
 
 		if (this.m.ProfessionTreeMap == null) {
-     	   this.buildProfessionTree(); 
+     	   this.buildProfessionTree();
     	}
 
 		// Don't add duplicates
@@ -1093,7 +1093,7 @@
 		}
 	}
 
-	o.removeProfession <- function (_profession) { 
+	o.removeProfession <- function (_profession) {
 		local professionDefObject = ::Const.Professions.ProfessionDefObjects[_profession];
 		if (!(professionDefObject.ID in this.m.ProfessionTreeMap)) {
 			return false;
@@ -1149,7 +1149,7 @@
 
 		for( local i = 0; i < villages.len(); i = ++i )
 		{
-			if (this.isKindOf(villages[i], "city_state"))
+			if (villages[i].isSouthern())
 			{
 				citystates.push(villages[i]);
 			}
@@ -1902,7 +1902,7 @@
 		this.m.CustomProfessionTree = [];
         local numProfRows = _in.readU8();
 		if (numProfRows == 0) {
-            this.m.CustomProfessionTree = null; 
+            this.m.CustomProfessionTree = null;
         }
 		else {
 			this.m.CustomProfessionTree = [];

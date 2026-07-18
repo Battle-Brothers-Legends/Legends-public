@@ -233,7 +233,7 @@ this.legends_nomad_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 
 	function onUpdateHiringRoster(_roster) {
 		local settlement = this.getCurrentSettlement();
-		if (::MSU.isKindOf(settlement, "city_state")) {
+		if (settlement.isSouthern()) {
 			this.addBroToRoster(_roster, ::Legends.Background.Nomad, 1);
 			this.addBroToRoster(_roster, ::Legends.Background.NomadRanged, 1);
 			this.addBroToRoster(_roster, ::Legends.Background.LegendBladedancer, 2);

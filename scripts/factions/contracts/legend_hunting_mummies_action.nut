@@ -37,11 +37,8 @@ this.legend_hunting_mummies_action <- this.inherit("scripts/factions/faction_act
 		}
 
 		local village = _faction.getSettlements()[0];
-
-		if (!this.isKindOf(village, "city_state"))
-		{
+		if (!village.isSouthern())
 			return;
-		}
 
 		this.m.Score = 1;
 	}

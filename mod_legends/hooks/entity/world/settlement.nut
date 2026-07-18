@@ -260,7 +260,7 @@
 		if (this.isMilitary())
 			baseLevel += 50.0;
 
-		if (this.isKindOf(this, "city_state"))
+		if (this.isSouthern())
 			baseLevel += 100;
 		return baseLevel;
 	}
@@ -605,7 +605,7 @@
 
 				bro.getFlags().set("Legend_onGenerateBroPass", true);
 			}
-			
+
 			::World.Assets.m.RosterSizeAdditionalMin += ::World.Assets.m.ProfessionEffect.LegendBraggart;
 			::World.Assets.m.RosterSizeAdditionalMax += 2 * ::World.Assets.m.ProfessionEffect.LegendBraggart;
 
@@ -870,7 +870,7 @@
 		local minResources = 50 + this.getSize() * 50;
 		if (this.isMilitary())
 			minResources = minResources + 50;
-		if (this.isKindOf(this, "city_state"))
+		if (this.isSouthern())
 			minResources = minResources + 100;
 		return minResources;
 	}

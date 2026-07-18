@@ -155,19 +155,13 @@
 		local military = [];
 		local civilian = [];
 
-		for( local i = 0; i < settlements.len(); i = ++i )
-		{
-			if (this.isKindOf(settlements[i], "city_state"))
-			{
-			}
-			else if (settlements[i].isMilitary())
-			{
-				military.push(settlements[i]);
-			}
+		foreach(t in settlements) {
+			if (t.isSouthern())
+				continue;
+			if (t.isMilitary())
+				military.push(t);
 			else
-			{
-				civilian.push(settlements[i]);
-			}
+				civilian.push(t);
 		}
 
 		military.sort(this.onSizeCompare);

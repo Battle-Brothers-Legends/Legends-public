@@ -43,7 +43,7 @@
 			possible_situations.push("warehouse_burned_down_situation");
 			possible_situations.push("public_executions_situation");
 
-			if (!this.isKindOf(this.m.Settlement, "city_state"))
+			if (!this.m.Settlement.isSouthern())
 			{
 				possible_situations.push("cultist_procession_situation");
 				possible_situations.push("archery_contest_situation");
@@ -74,7 +74,7 @@
 			}
 		}
 
-		if (this.m.Settlement.getSize() >= 3 && !::MSU.isKindOf(this.m.Settlement, "city_state"))
+		if (this.m.Settlement.getSize() >= 3 && !this.m.Settlement.isSouthern())
 		{
 			if (this.m.Settlement.hasSituation("situation.ambushed_trade_routes") || this.m.Settlement.hasSituation("situation.abducted_children") || this.m.Settlement.hasSituation("situation.disappearing_villagers") || this.m.Settlement.hasSituation("situation.raided") || this.m.Settlement.hasSituation("situation.unhold_attacks"))
 			{
@@ -87,7 +87,7 @@
 		{
 			possible_situations.push("local_holiday_situation");
 
-			if (!this.isKindOf(this.m.Settlement, "city_state"))
+			if (!this.m.Settlement.isSouthern())
 			{
 				possible_situations.push("witch_burnings_situation");
 				possible_situations.push("sickness_situation");
@@ -114,9 +114,9 @@
 			possible_situations.push("full_nets_situation");
 		}
 
-		if (this.isKindOf(this.m.Settlement, "legends_steppe_village") || this.isKindOf(this.m.Settlement, "legends_farming_village") || this.isKindOf(this.m.Settlement, "small_steppe_village") || this.isKindOf(this.m.Settlement, "medium_steppe_village") || this.isKindOf(this.m.Settlement, "large_steppe_village") || this.isKindOf(this.m.Settlement, "small_farming_village") || this.isKindOf(this.m.Settlement, "medium_farming_village") || this.isKindOf(this.m.Settlement, "large_farming_village") || this.isKindOf(this.m.Settlement, "city_state"))
+		if (this.isKindOf(this.m.Settlement, "legends_steppe_village") || this.isKindOf(this.m.Settlement, "legends_farming_village") || this.isKindOf(this.m.Settlement, "small_steppe_village") || this.isKindOf(this.m.Settlement, "medium_steppe_village") || this.isKindOf(this.m.Settlement, "large_steppe_village") || this.isKindOf(this.m.Settlement, "small_farming_village") || this.isKindOf(this.m.Settlement, "medium_farming_village") || this.isKindOf(this.m.Settlement, "large_farming_village") || this.m.Settlement.isSouthern())
 		{
-			if (!this.isKindOf(this.m.Settlement, "city_state"))
+			if (!this.m.Settlement.isSouthern())
 			{
 				possible_situations.push("draught_situation");
 			}

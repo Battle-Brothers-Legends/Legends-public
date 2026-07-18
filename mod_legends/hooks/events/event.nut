@@ -115,14 +115,10 @@
 		local citystates = [];
 		local northern = [];
 
-		for( local i = 0; i < villages.len(); i = ++i )
-		{
-			if (this.isKindOf(villages[i], "city_state"))
-			{
+		for (local i = 0; i < villages.len(); i = ++i) {
+			if (villages[i].isSouthern()) {
 				citystates.push(villages[i]);
-			}
-			else
-			{
+			} else {
 				northern.push(villages[i]);
 			}
 		}

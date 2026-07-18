@@ -27,7 +27,7 @@ this.legend_militant_townsfolk_situation <- this.inherit("scripts/entity/world/s
 	function onAdded( _settlement )
 	{
 		// This situation can only occur in Tier 1 and Tier 2 settlements (non-fort and non-city-state)
-		if ( _settlement.getSize() > 2 || _settlement.isMilitary() || ::MSU.isKindOf(_settlement, "city_state"))
+		if ( _settlement.getSize() > 2 || _settlement.isMilitary() || _settlement.isSouthern())
 		{
 			_settlement.removeSituationByID(this.getID());
 			return;
