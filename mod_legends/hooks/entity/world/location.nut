@@ -5,6 +5,46 @@
 		return this.m.IsShowingDefenders || this.World.Assets.getOrigin().getID() == "scenario.rangers" || this.World.Assets.getOrigin().getID() == "scenario.legends_rangers";
 	}
 
+	local getTooltip = o.getTooltip;
+	o.getTooltip = function () {
+		local ret = getTooltip();
+
+		if(this.getFlags().has("RevealedByLayOfTheLand")) {
+			local loot = this.m.Location.getLoot().getItems();
+
+			if (loot.len() == 0) {
+				ret.push({
+					id = 51,
+					type = "text",
+					text = "[color=%negative%][u]No extra items in the location[/u][/color]"
+				});
+			} else {
+				local num = ::Math.min(loot.len(), ::Math.round(::World.Assets.m.ProfessionEffect.LegendLayOfTheLand));
+				ret.push({
+					id = 51,
+					type = "text",
+					text = "[u]Items:[/u]"
+				});
+				for (local i = 0; i < num; ++i) {
+					ret.push({
+						id = 52 + i,
+						type = "text",
+						icon = "ui/items/" + loot[i].getIcon(),
+						text = loot[i].getName()
+					});
+				}
+				if (loot.len() > ::Math.round(::World.Assets.m.ProfessionEffect.LegendLayOfTheLand)) {
+					ret.push({
+						id = 53 + num,
+						type = "text",
+						text = "And " + (loot.len() - ::Math.round(::World.Assets.m.ProfessionEffect.LegendLayOfTheLand)) + " more item(s)"
+					});
+				}
+			}
+		}
+
+		return ret;
+	}
 
 	// named item chances:
 	// 10% shield

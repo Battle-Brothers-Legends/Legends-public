@@ -740,8 +740,14 @@
 		this.m.HitInfo = null; // yeet hit info that was saved earlier
 		if (this.getFlags().has("tail")) // ignore killer when is tail
 			kill(null, _skill, _fatalityType, _silent);
-		else
+		else {
+			if (this.isAlive() && this.m.IsMiniboss && !::Tactical.State.isScenarioMode() && !::Legends.S.isEntityNullOrDead(_killer) && _killer.isPlayerControlled()) {
+				if ((::Tactical.State.getStrategicProperties() == null || !::Tactical.State.getStrategicProperties().IsArenaMode) && ::World.Assets.m.ProfessionEffect.LegendBlackBook > 0) {
+					::World.Assets.addMoney(::Math.floor(this.getXPValue() * ::World.Assets.m.ProfessionEffect.LegendBlackBook));
+				}
+			}
 			kill(_killer, _skill, _fatalityType, _silent);
+		}
 	}
 
 	local onDeath = o.onDeath;

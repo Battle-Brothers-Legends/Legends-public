@@ -96,7 +96,9 @@ professionDefObjects.push({
     Tooltip = ::Const.Strings.ProfessionDescription.LegendBlackBook,
     Icon = "ui/professions/black_book.png",
     IconDisabled = "ui/professions/black_book_bw.png",
-    Const = "LegendBlackBook"
+    Const = "LegendBlackBook",
+    ScalingArray = [0, 0.85, 1.1, 1.3], // gold for champion slain (based on xp gained)
+    ScalingFactor = 0.1
 });
 
 ::Legends.Profession.LegendBountyHunter <- null;
@@ -107,7 +109,9 @@ professionDefObjects.push({
     Tooltip = ::Const.Strings.ProfessionDescription.LegendBountyHunter,
     Icon = "ui/professions/bounty_hunter.png",
     IconDisabled = "ui/professions/bounty_hunter_bw.png",
-    Const = "LegendBountyHunter"
+    Const = "LegendBountyHunter",
+    ScalingArray = [0, 2], // extra named enemy chance
+    ScalingFactor = 0.5
 });
 
 ::Legends.Profession.LegendBraggart <- null;
@@ -390,7 +394,9 @@ professionDefObjects.push({
     Tooltip = ::Const.Strings.ProfessionDescription.LegendLayOfTheLand,
     Icon = "ui/professions/lay_of_the_land.png",
     IconDisabled = "ui/professions/lay_of_the_land_bw.png",
-    Const = "LegendLayOfTheLand"
+    Const = "LegendLayOfTheLand",
+    ScalingArray = [0, 2], // items shown in a rumoured location's inventory
+    ScalingFactor = 0.5
 });
 
 ::Legends.Profession.LegendLeatherworking <- null;

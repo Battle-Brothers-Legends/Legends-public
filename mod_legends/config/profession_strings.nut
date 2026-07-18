@@ -180,7 +180,7 @@ Taking gristle, bone, and whatever else the dog dragged in, and confidently call
 Time is money, and pleasantries can cost the company a drink.
 
 [color=%passive%][u]Passive:[/u][/color]
-• Reveals the most expensive items in a rumoured location.
+// needs an effect
 ";
 
 ::Const.Strings.ProfessionDescription.LegendDogBreeder <- @"
@@ -297,7 +297,9 @@ Words have hidden meanings, and every silken lie hides a single thread of truth.
 Rumours of a fabled treasure are only rumours until one learns to connect the dots the right way.
 
 [color=%passive%][u]Passive:[/u][/color]
-• Receiving a rumour will reveal the location on the map.
+• Receiving a location rumour reveals it on the map.
+
+• Reveals the most expensive items in the rumoured location.
 ";
 
 ::Const.Strings.ProfessionDescription.LegendLeatherworking <- @"
@@ -314,6 +316,8 @@ Learn to find your enemies before they find you.
 
 [color=%passive%][u]Passive:[/u][/color]
 • Increases the sight radius on the world map.
+
+• Prevents sickness and accidents due to terrain.
 ";
 
 ::Const.Strings.ProfessionDescription.LegendMaterialist <- @"
@@ -346,6 +350,8 @@ Getting paid more for doing less is what one calls a successful negotiation.
 
 [color=%passive%][u]Passive:[/u][/color]
 • Improves the effects of negotiation.
+
+• Negotiation no longer affects relations.
 ";
 
 ::Const.Strings.ProfessionDescription.LegendOffBookDeal <- @"

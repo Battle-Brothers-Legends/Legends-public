@@ -389,7 +389,18 @@
 				}
 			}
 
-			rumor = rumor + "\n\n[color=#bcad8c]\"" + candidates[this.Math.rand(0, candidates.len() - 1)] + "\"[/color]\n\n";
+			rumor += "\n\n[color=#bcad8c]\"" + candidates[this.Math.rand(0, candidates.len() - 1)] + "\"[/color]\n\n";
+
+			if (::World.Assets.m.ProfessionEffect.LegendLayOfTheLand > 0 && this.m.Location != null && !this.m.Location.isNull()) {
+				if (!this.m.Location.isDiscovered()) {
+					this.m.Location.setDiscovered(true);
+					this.m.Location.onDiscovered();
+				}
+				::World.uncoverFogOfWar(this.m.Location.getPos(), 400.0);
+				this.m.Location.getFlags().set("RevealedByLayOfTheLand", true);
+				rumor += "You pinpoint the location on your map.\n\n";
+            }
+
 			rumor = this.buildText(rumor);
 			this.m.LastRumor = rumor;
 			return rumor;

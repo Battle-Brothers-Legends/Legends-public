@@ -535,7 +535,8 @@ if (!("World" in ::Const))
 		local chance = _minibossify;
 		chance += ::World.getTime().Days > 100 ? 0 : -1;
 		chance += ::Const.LegendMod.GetFavEnemyBossChance(troop.Type.ID);
-		chance += ::World.Assets.m.ChampionChanceAdditional;
+		chance += ::World.Assets.m.ChampionChanceAdditional; // used in party scenario
+		chance += ::World.Assets.m.ProfessionEffect.LegendBountyHunter;
 		minibossChanceMap[troop.Type.ID] <- chance;
 	}
 	return minibossChanceMap;
