@@ -32,7 +32,7 @@ this.legends_player_is_rich_op_backgrounds_event <- this.inherit("scripts/events
 					this.Options.push({
 						Text = "There\'s no need to argue, we can work it out.",
 						function getResult(_event) {
-							this.m.Compensation = ::Math.round(0.04 * UniquebrosNumber * cash);
+							this.m.Compensation = ::Math.round(0.04 * _event.m.Uniquebros.len() * ::World.Assets.getMoney());
 							return "D";
 						}
 					});
