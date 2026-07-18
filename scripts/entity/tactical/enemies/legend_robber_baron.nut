@@ -107,6 +107,7 @@ this.legend_robber_baron <- this.inherit("scripts/entity/tactical/human", {
 		{
 			local namedWeaponArray = clone ::Const.Items.NamedMeleeWeapons;
 			::MSU.Array.remove(namedWeaponArray, "weapons/named/named_dagger");
+			::MSU.Array.remove(namedWeaponArray, "weapons/named/named_estoc");
 			::MSU.Array.remove(namedWeaponArray, "weapons/named/");
 			this.getItems().equip(this.Const.World.Common.pickItem(namedWeaponArray.map(@(_it) [1, _it]), "scripts/items/"));
 		}
@@ -135,7 +136,6 @@ this.legend_robber_baron <- this.inherit("scripts/entity/tactical/human", {
 					"weapons/legend_swordstaff",
 					"weapons/greatsword",
 					"weapons/warbrand",
-					"weapons/estoc",
 					"weapons/legend_battle_glaive"
 				]);
 			}
