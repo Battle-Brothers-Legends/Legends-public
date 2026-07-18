@@ -405,10 +405,10 @@
 			return;
 
 		local s = 0;
-		foreach( bro in this.World.getPlayerRoster().getAll() )
-		{
+		foreach(bro in this.World.getPlayerRoster().getAll())	{
 			s += bro.getAmmoModifier();
 		}
+		s += ::World.Assets.m.ProfessionEffect.LegendReserveBundles;
 		this.m.AmmoMultiplier = s;
 	}
 
@@ -418,10 +418,10 @@
 			return;
 
 		local s = 0;
-		foreach( bro in this.World.getPlayerRoster().getAll() )
-		{
+		foreach(bro in this.World.getPlayerRoster().getAll())	{
 			s += bro.getArmorPartsModifier();
 		}
+		s += ::World.Assets.m.ProfessionEffect.LegendToolsDrawers;
 		this.m.ArmorPartsMultiplier = s;
 	}
 
@@ -435,6 +435,7 @@
 		{
 			s += bro.getMedsModifier();
 		}
+		s += ::World.Assets.m.ProfessionEffect.LegendBandageBales;
 		this.m.MedsMultiplier = s;
 	}
 

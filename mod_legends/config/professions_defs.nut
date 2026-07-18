@@ -77,6 +77,19 @@ professionDefObjects.push({
     ScalingFactor = 0.5
 });
 
+::Legends.Profession.LegendBandageBales <- null;
+professionDefObjects.push({
+    ID = "profession.legend_bandage_bales",
+    Script = "scripts/skills/professions/profession_legend_bandage_bales",
+    Name = ::Const.Strings.ProfessionName.LegendBandageBales,
+    Tooltip = ::Const.Strings.ProfessionDescription.LegendBandageBales,
+    Icon = "ui/professions/bandage_bales.png",
+    IconDisabled = "ui/professions/bandage_bales_bw.png",
+    Const = "LegendBandageBales",
+    ScalingArray = [0, 40], // medicine space
+    ScalingFactor = 0.2
+});
+
 ::Legends.Profession.LegendBigGameHunter <- null;
 professionDefObjects.push({
     ID = "profession.legend_big_game_hunter",
@@ -619,6 +632,19 @@ professionDefObjects.push({
     ScalingFactor = 0.05
 });
 
+::Legends.Profession.LegendReserveBundles <- null;
+professionDefObjects.push({
+    ID = "profession.legend_reserve_bundles",
+    Script = "scripts/skills/professions/profession_legend_reserve_bundles",
+    Name = ::Const.Strings.ProfessionName.LegendReserveBundles,
+    Tooltip = ::Const.Strings.ProfessionDescription.LegendReserveBundles,
+    Icon = "ui/professions/reserve_bundles.png",
+    IconDisabled = "ui/professions/reserve_bundles_bw.png",
+    Const = "LegendReserveBundles",
+    ScalingArray = [0, 80], // ammo space
+    ScalingFactor = 0.2
+});
+
 ::Legends.Profession.LegendTailoring <- null;
 professionDefObjects.push({
     ID = "profession.legend_tailoring",
@@ -649,7 +675,9 @@ professionDefObjects.push({
     Tooltip = ::Const.Strings.ProfessionDescription.LegendToolsDrawers,
     Icon = "ui/professions/tools_drawers.png",
     IconDisabled = "ui/professions/tools_drawers_bw.png",
-    Const = "LegendToolsDrawers"
+    Const = "LegendToolsDrawers",
+    ScalingArray = [0, 40], // tool space
+    ScalingFactor = 0.2
 });
 
 ::Legends.Profession.LegendTradesman <- null;

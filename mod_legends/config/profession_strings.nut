@@ -2,6 +2,7 @@
 ::Const.Strings.ProfessionName.LegendAlchemy <- "Alchemy";
 ::Const.Strings.ProfessionName.LegendAlcoholPreparation <- "Alcohol Preparation";
 ::Const.Strings.ProfessionName.LegendAmmoScrounger <- "Ammo Scrounger";
+::Const.Strings.ProfessionName.LegendBandageBales <- "Bandage Bales";
 ::Const.Strings.ProfessionName.LegendBalladeInTheMaking <- "Ballade In The Making";
 ::Const.Strings.ProfessionName.LegendBigGameHunter <- "Big Game Hunter";
 ::Const.Strings.ProfessionName.LegendBlackBook <- "Black Book";
@@ -40,6 +41,7 @@
 ::Const.Strings.ProfessionName.LegendPaymaster <- "Paymaster";
 ::Const.Strings.ProfessionName.LegendProsthetics <- "Prosthetics";
 ::Const.Strings.ProfessionName.LegendRationing <- "Rationing";
+::Const.Strings.ProfessionName.LegendReserveBundles <- "Reserve Bundles";
 ::Const.Strings.ProfessionName.LegendSapper <- "Sapper";
 ::Const.Strings.ProfessionName.LegendScholar <- "Scholar";
 ::Const.Strings.ProfessionName.LegendShadyDeals <- "Shady Deals";
@@ -94,6 +96,13 @@ A tale of gruesome slaughter sounds almost pleasant to the ear when set to a lut
 
 [color=%passive%][u]Passive:[/u][/color]
 • Increases the renown gained by the company.
+";
+
+::Const.Strings.ProfessionDescription.LegendBandageBales <- @"
+A heavy pack of clean linen and salves to close the deepest smiles a cleaver can open.
+
+[color=%passive%][u]Passive:[/u][/color]
+• Increases medicine capacity.
 ";
 
 ::Const.Strings.ProfessionDescription.LegendBigGameHunter <- @"
@@ -393,6 +402,13 @@ Discipline is what keeps the larder from emptying too soon.
 • Lowers the food consumption rate in the company.
 ";
 
+::Const.Strings.ProfessionDescription.LegendReserveBundles <- @"
+For when they simply don't stop coming.
+
+[color=%passive%][u]Passive:[/u][/color]
+• Increases ammunition capacity.
+";
+
 ::Const.Strings.ProfessionDescription.LegendSapper <- @"
 One can get used to everything. There comes a time when even explosions become mundane.
 
@@ -477,7 +493,7 @@ Why use it all when a small part will do? Wealth is built one coin at a time.
 A place for the right hammer for every nail.
 
 [color=%passive%][u]Passive:[/u][/color]
-• Increases tool efficiency.
+• Increases tool capacity.
 ";
 
 ::Const.Strings.ProfessionDescription.LegendTradesman <- @"
