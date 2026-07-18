@@ -507,9 +507,9 @@ Turning a tidy profit can do wonders for one's reputation.
 An experienced foot carves its own path instead of following winding roads.
 
 [color=%passive%][u]Passive:[/u][/color]
-• Reduces food consumption on difficult terrain.
+• Increases speed on difficult terrain.
 
-• Increases speed on difficult terrain
+• Prevents sickness and accidents due to terrain.
 ";
 
 ::Const.Strings.ProfessionDescription.LegendTraining <- @"

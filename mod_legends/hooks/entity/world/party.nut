@@ -206,7 +206,6 @@
 			local speed = this.m.BaseMovementSpeed;
 
 			local terrainTable = this.Const.World.TerrainTypeSpeedMult;
-			local wheelMaintenance = 0;
 			if (this.getFaction() == this.Const.Faction.Player)
 			{
 				local tTable = [];
@@ -227,27 +226,18 @@
 					{
 						tTable[i] += broTable[i];
 					}
-					if (bro.getSkills().hasPerk(::Legends.Perk.LegendWheelMaintenance))
-					{
-						wheelMaintenance += 1;
-					}
 				}
-				if (this.World.Retinue.hasFollower("follower.scout"))
-				{
+				if (::World.Assets.m.ProfessionEffect.LegendTrailblazer > 0) {
 					for (local i = 0; i < terrainTable.len(); ++i)
 					{
-						if (this.Const.World.TerrainTypeSpeedMult[i] <= 0.65 && this.Const.World.TerrainTypeSpeedMult[i] > 0.0)
-						{
-							tTable[i] *= (this.Const.World.TerrainTypeSpeedMult[i] + 0.15) / this.Const.World.TerrainTypeSpeedMult[i];
+						if (::Const.World.TerrainTypeSpeedMult[i] <= 1.0 && ::Const.World.TerrainTypeSpeedMult[i] > 0.0) {
+							tTable[i] *= ::Math.minf(1.0, (::Const.World.TerrainTypeSpeedMult[i] + ::World.Assets.m.ProfessionEffect.LegendTrailblazer)) / ::Const.World.TerrainTypeSpeedMult[i];
 						}
 					}
 				}
 
-				if (wheelMaintenance > 0) {
-					local globalMultiplier = 1.0 + (0.05 * wheelMaintenance.tofloat());
-					for (local i = 0; i < terrainTable.len(); ++i) {
-						tTable[i] *= globalMultiplier;
-					}
+				for (local i = 0; i < terrainTable.len(); ++i) {
+					tTable[i] *= (1 + ::World.Assets.m.ProfessionEffect.LegendWheelMaintenance);
 				}
 
 				terrainTable = tTable;

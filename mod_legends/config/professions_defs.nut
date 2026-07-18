@@ -692,7 +692,9 @@ professionDefObjects.push({
     Tooltip = ::Const.Strings.ProfessionDescription.LegendTradesman,
     Icon = "ui/professions/tradesman.png",
     IconDisabled = "ui/professions/tradesman_bw.png",
-    Const = "LegendTradesman"
+    Const = "LegendTradesman",
+    ScalingArray = [0, 0.5], // renown for selling trade goods 0.1 equals to 1 per 1k
+    ScalingFactor = 0.05
 });
 
 ::Legends.Profession.LegendTrailblazer <- null;
@@ -703,7 +705,9 @@ professionDefObjects.push({
     Tooltip = ::Const.Strings.ProfessionDescription.LegendTrailblazer,
     Icon = "ui/professions/trailblazer.png",
     IconDisabled = "ui/professions/trailblazer_bw.png",
-    Const = "LegendTrailblazer"
+    Const = "LegendTrailblazer",
+    ScalingArray = [0, 0.1], // extra speed on difficult terrain
+    ScalingFactor = 0.3
 });
 
 ::Legends.Profession.LegendTraining <- null;
@@ -751,7 +755,9 @@ professionDefObjects.push({
     Tooltip = ::Const.Strings.ProfessionDescription.LegendWheelMaintenance,
     Icon = "ui/professions/wheel_maintenance.png",
     IconDisabled = "ui/professions/wheel_maintenance_bw.png",
-    Const = "LegendWheelMaintenance"
+    Const = "LegendWheelMaintenance",
+    ScalingArray = [0, 0.05], // extra speed on world map
+    ScalingFactor = 0.5
 });
 
 ::Legends.Profession.LegendWhipThemIntoShape <- null;

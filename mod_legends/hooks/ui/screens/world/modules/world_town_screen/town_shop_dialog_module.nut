@@ -357,9 +357,9 @@
                     shopStash.add(removedItem);
                     removedItem.setSold(true);
 
-                    if (removedItem.isItemType(::Const.Items.ItemType.TradeGood)) {
+                    /*if (removedItem.isItemType(::Const.Items.ItemType.TradeGood)) {
                         ::World.Statistics.getFlags().increment("TradeGoodsSold");
-                    }
+                    }*/
                     
                     itemsSold++;
                 }

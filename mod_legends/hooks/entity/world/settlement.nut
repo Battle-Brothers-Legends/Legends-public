@@ -814,12 +814,11 @@
 					if (item == null) continue;
 					if (item.isSold() && !item.isBought())
 					{
-						if (item.isItemType(this.Const.Items.ItemType.TradeGood))
-						{
-							this.World.Statistics.getFlags().increment("TradeGoodsSold");
+						if (item.isItemType(::Const.Items.ItemType.TradeGood)) {
+							::World.Statistics.getFlags().increment("TradeGoodsSold");
+							::World.Assets.addBusinessReputation(::World.Assets.m.ProfessionEffect.LegendTradesman * item.getValue() * 0.01);
 
-							if (::Legends.Mod.ModSettings.getSetting("WorldEconomy").getValue())
-							{
+							if (::Legends.Mod.ModSettings.getSetting("WorldEconomy").getValue()) {
 								this.setResources(this.getResources() + item.getResourceValue());
 							}
 						}

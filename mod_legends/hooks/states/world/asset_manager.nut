@@ -1167,24 +1167,17 @@
 			});
 		}
 
-		if (this.World.Retinue.hasFollower("follower.scout")) {
+		if (::World.Assets.m.ProfessionEffect.LegendTrailblazer > 0) {
 			for (local i = 0; i < terrainIDs.len(); ++i) {
 				local terrainBaseSpeed = ::Const.World.TerrainTypeSpeedMult[terrainIDs[i]];
-				if (terrainBaseSpeed <= 0.65 && terrainBaseSpeed > 0.0) {
-					ret.TerrainModifiers[i][1] *= (terrainBaseSpeed + 0.15) / terrainBaseSpeed;
+				if (terrainBaseSpeed <= 1.0 && terrainBaseSpeed > 0.0) {
+					ret.TerrainModifiers[i][1] *= ::Math.minf(1.0, (terrainBaseSpeed + ::World.Assets.m.ProfessionEffect.LegendTrailblazer)) / terrainBaseSpeed;
 				}
 			}
 		}
 
-		local globalMultiplier = 1.0;
-		foreach (bro in ::World.getPlayerRoster().getAll()) {
-			if (bro.getSkills().hasPerk(::Legends.Perk.LegendWheelMaintenance)) {
-				globalMultiplier += 0.05;
-			}
-		}
-
 		foreach (terrain in ret.TerrainModifiers) {
-            terrain[1] *= globalMultiplier * 100.0;
+            terrain[1] *= (1 + ::World.Assets.m.ProfessionEffect.LegendWheelMaintenance) * 100.0;
         }
 
 		local sortfn = function (first, second)
