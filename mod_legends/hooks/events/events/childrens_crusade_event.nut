@@ -176,11 +176,9 @@
 		if (this.Const.DLC.Desert && currentTile.SquareCoords.Y < this.World.getMapSize().Y * 0.2)
 			return;
 
-		local towns = this.World.EntityManager.getSettlements();
-
-		foreach( t in towns )
-			if (t.getTile().getDistanceTo(currentTile) <= 5)
-				return;
+		local town = ::Legends.S.getClosestSettlement();
+		if (town == null || town.getTile().getDistanceTo(::World.State.getPlayer().getTile()) <= 5)
+			return;
 
 		local brothers = this.World.getPlayerRoster().getAll();
 		local candidates_monk = [];

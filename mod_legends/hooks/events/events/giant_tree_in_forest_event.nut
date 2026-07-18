@@ -23,17 +23,13 @@
 		}
 
 		local currentTile = this.World.State.getPlayer().getTile();
-
 		if (currentTile.Type != this.Const.World.TerrainType.Forest	&& currentTile.Type != this.Const.World.TerrainType.LeaveForest) {
 			return;
 		}
 
-		local towns = this.World.EntityManager.getSettlements();
-		local playerTile = this.World.State.getPlayer().getTile();
-
-		foreach (t in towns) if (t.getTile().getDistanceTo(playerTile) <= 6) {
-			return false;
-		}
+		local town = ::Legends.S.getClosestSettlement();
+		if (town == null || town.getTile().getDistanceTo(::World.State.getPlayer().getTile()) <= 6)
+			return;
 
 		local brothers = this.World.getPlayerRoster().getAll();
 		local monk_candidates = [];

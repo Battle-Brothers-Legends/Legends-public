@@ -3,20 +3,8 @@
 		if (this.World.getTime().Days < 10)
 			return;
 
-		local playerTile = this.World.State.getPlayer().getTile();
-		local towns = this.World.EntityManager.getSettlements();
-		local nearTown = false;
-
-		foreach( t in towns ) {
-			local d = playerTile.getDistanceTo(t.getTile());
-
-			if (d <= 8) {
-				nearTown = true;
-				break;
-			}
-		}
-
-		if (nearTown)
+		local town = ::Legends.S.getClosestSettlement();
+		if (town == null || town.getTile().getDistanceTo(::World.State.getPlayer().getTile()) > 8)
 			return;
 
 		local brothers = this.World.getPlayerRoster().getAll();

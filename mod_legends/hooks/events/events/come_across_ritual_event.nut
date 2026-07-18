@@ -103,19 +103,12 @@
 		if (this.World.getTime().Days <= 200)
 			return;
 
-		local playerTile = this.World.State.getPlayer().getTile();
-		local towns = this.World.EntityManager.getSettlements();
-		local nearTown = false;
+		local town = ::Legends.S.getClosestSettlement();
+		if (town == null)
+			return;
 
-		foreach( t in towns ) {
-			local d = playerTile.getDistanceTo(t.getTile());
-			if (d >= 4 && d <= 10) {
-				nearTown = true;
-				break;
-			}
-		}
-
-		if (!nearTown)
+		local distance = town.getTile().getDistanceTo(::World.State.getPlayer().getTile());
+		if (distance < 4 || distance > 10)
 			return;
 
 		if (!this.World.Assets.getStash().hasEmptySlot())

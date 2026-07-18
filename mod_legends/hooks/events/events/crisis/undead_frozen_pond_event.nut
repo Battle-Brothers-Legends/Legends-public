@@ -19,38 +19,27 @@
 	// Vanilla event has a bug where if the player has no brother with >= 130 initiative, the
 	// `candidates_lightweight` array ends up empty before it is read - hence why we override it.
 	o.onUpdateScore = function () {
-		if(!World.FactionManager.isUndeadScourge())
+		if(!::World.FactionManager.isUndeadScourge())
 			return;
 
 		// limit by terrain
-		local currentTile = World.State.getPlayer().getTile();
-			if(currentTile.Type != Const.World.TerrainType.Snow)
+		local currentTile = ::World.State.getPlayer().getTile();
+			if(currentTile.Type != ::Const.World.TerrainType.Snow)
 				return;
 
 		if(currentTile.HasRoad)
 			return;
 
 		// limit by stash space
-		if(!World.Assets.getStash().hasEmptySlot())
+		if(!::World.Assets.getStash().hasEmptySlot())
 			return;
 
 		// limit by terrain
-		local towns = World.EntityManager.getSettlements();
-		local nearTown = false;
-
-		foreach(t in towns)
-		{
-			if(t.getTile().getDistanceTo(currentTile) <= 6)
-			{
-				nearTown = true;
-				break;
-			}
-		}
-
-		if(nearTown)
+		local town = ::Legends.S.getClosestSettlement();
+		if (town == null || town.getTile().getDistanceTo(::World.State.getPlayer().getTile()) > 6)
 			return;
 
-		local brothers = World.getPlayerRoster().getAll();
+		local brothers = ::World.getPlayerRoster().getAll();
 
 		local candidates_lightweight = [];
 		local candidates = [];
@@ -67,9 +56,9 @@
 			return;
 
 		if(candidates_lightweight.len() > 0) {
-			m.Lightweight = candidates_lightweight[Math.rand(0, candidates_lightweight.len() - 1)];
+			this.m.Lightweight = candidates_lightweight[::Math.rand(0, candidates_lightweight.len() - 1)];
 		}
-		m.Other = candidates[Math.rand(0, candidates.len() - 1)];
-		m.Score = 20;
+		this.m.Other = candidates[::Math.rand(0, candidates.len() - 1)];
+		this.m.Score = 20;
 	}
 })

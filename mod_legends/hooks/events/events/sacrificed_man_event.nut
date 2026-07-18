@@ -48,20 +48,12 @@
 		if (this.World.getPlayerRoster().getSize() >= this.World.Assets.getBrothersMax())
 			return;
 
-		local playerTile = this.World.State.getPlayer().getTile();
-		local towns = this.World.EntityManager.getSettlements();
-		local nearTown = false;
+		local town = ::Legends.S.getClosestSettlement();
+		if (town == null)
+			return;
 
-		foreach( t in towns ) {
-			local d = playerTile.getDistanceTo(t.getTile());
-
-			if (d >= 6 && d <= 12) {
-				nearTown = true;
-				break;
-			}
-		}
-
-		if (!nearTown)
+		local distance = town.getTile().getDistanceTo(::World.State.getPlayer().getTile());
+		if (distance < 6 || distance > 12)
 			return;
 
 		if (!this.World.Assets.getStash().hasEmptySlot())

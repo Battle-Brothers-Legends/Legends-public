@@ -65,24 +65,11 @@
 		if (this.World.getPlayerRoster().getSize() >= this.World.Assets.getBrothersMax())
 			return;
 
-		local towns = this.World.EntityManager.getSettlements();
-		local nearTown = false;
-		local town;
-		local playerTile = this.World.State.getPlayer().getTile();
-
-		foreach( t in towns ) {
-			if (t.getSize() >= 2 && !t.isMilitary() && !t.isSouthern() && t.getTile().getDistanceTo(playerTile) <= 3 && t.isAlliedWithPlayer()) {
-				nearTown = true;
-				town = t;
-				break;
-			}
-		}
-
-		if (!nearTown)
+		local town = ::Legends.S.getClosestSettlement(@(_, t) t.getSize() >= 2 && !t.isMilitary() && !t.isSouthern() && t.isAlliedWithPlayer());
+		if (town == null || town.getTile().getDistanceTo(::World.State.getPlayer().getTile()) > 3)
 			return;
 
 		local brothers = this.World.getPlayerRoster().getAll();
-
 		if (brothers.len() < 3)
 			return;
 

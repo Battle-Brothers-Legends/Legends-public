@@ -310,26 +310,10 @@
 		if (this.World.Assets.getMoney() < 600)
 			return;
 
-		local towns = this.World.EntityManager.getSettlements();
-		local nearTown = false;
-		local town;
-		local playerTile = this.World.State.getPlayer().getTile();
-
-		foreach( t in towns ) {
-			if (t.isSouthern() || t.isMilitary())
-				continue;
-
-			if (t.getTile().getDistanceTo(playerTile) <= 3 && t.isAlliedWithPlayer()) {
-				nearTown = true;
-				town = t;
-				break;
-			}
-		}
-
-		if (!nearTown)
+		local town = ::Legends.S.getClosestSettlement(@(_, t) !t.isMilitary() && !t.isSouthern() && t.isAlliedWithPlayer());
+		if (town == null || town.getTile().getDistanceTo(::World.State.getPlayer().getTile()) > 3)
 			return;
 
-		this.m.Town = town;
 		local brothers = this.World.getPlayerRoster().getAll();
 		local candidates_wildchars = [];
 		local candidates_berserkers = [];
@@ -378,6 +362,7 @@
 		if (thetraders.len() != 0)
 			this.m.Trader = thetraders[this.Math.rand(0, thetraders.len() - 1)];
 
+		this.m.Town = town;
 		this.m.Score = candidates_wildchars.len() * 10 + candidates_berserkers.len() * 30;
 	}
 

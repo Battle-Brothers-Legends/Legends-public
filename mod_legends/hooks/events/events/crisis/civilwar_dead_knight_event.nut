@@ -2,21 +2,13 @@
 	local create = o.create;
 	o.create = function() {
 		create();
-		foreach (s in this.m.Screens) {
-			if (s.ID == "A") {
-				s.start <- function ( _event ) {
-					local item = this.Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Standard.faction_helm]]);
-					item.setCondition(27.0);
-					this.World.Assets.getStash().add(item);
-					this.List.push({
-						id = 10,
-						icon = "ui/items/" + item.getIcon(),
-						imageOverlayPath = item.getIconOverlay(),
-						text = "You gain " + item.makeName()
-					});
-				}
+		::Legends.Screens.hook(this, "A", function(_screen) {
+			_screen.start <- function(_event) {
+				local item = ::Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Standard.faction_helm]]);
+				item.setCondition(27.0);
+				this.List.extend(::Legends.EventList.addItems([item], ::World.Assets.getStash()));
 			}
-		}
+		});
 	}
 
 	o.onUpdateScore = function () {
@@ -26,21 +18,12 @@
 		if (!this.World.State.getPlayer().getTile().HasRoad)
 			return;
 
-		local towns = this.World.EntityManager.getSettlements();
-		local playerTile = this.World.State.getPlayer().getTile();
-		local nearTown = false;
+		local town = ::Legends.S.getClosestSettlement(@(_, t) !t.isSouthern() && t.isAlliedWithPlayer());
+		if (town == null)
+			return;
 
-		foreach( t in towns ) {
-			if (t.isSouthern())
-				continue;
-
-			if (t.getTile().getDistanceTo(playerTile) <= 10 && t.getTile().getDistanceTo(playerTile) >= 4 && t.isAlliedWithPlayer()) {
-				nearTown = true;
-				break;
-			}
-		}
-
-		if (!nearTown)
+		local distance = town.getTile().getDistanceTo(::World.State.getPlayer().getTile());
+		if (distance < 4 || distance > 10)
 			return;
 
 		local brothers = this.World.getPlayerRoster().getAll();
