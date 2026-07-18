@@ -42,9 +42,8 @@
 					});
 
 					this.Options.push({
-						Text = "Good luck, I guess. (Decrease Moral Reputation)",
+						Text = "Good luck, I guess.",
 						function getResult( _event ) {
-							this.World.Assets.addMoralReputation(-1);
 							return 0;
 						}
 					});
