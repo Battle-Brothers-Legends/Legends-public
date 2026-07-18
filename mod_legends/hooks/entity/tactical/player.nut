@@ -54,21 +54,8 @@
 		if (!("State" in this.World)) {
 			return 0
 		}
-		// getWageModifier needs a defensive check here but it's a bit convoluted why:
-		// - mods_hookExactClass only applies during class definition (::inherit()), not during
-		//   instance creation (::new()).
-		// - When deserializing, World.getPlayerEntity() recreates the player_party entity and
-		//   applies "new" hooks, but getWageModifier is in exact hooks, so it's not applied.
-		// - Each bro's onDeserialize() calls m.Skills.update(), which then calls onUpdate() on
-		//   all skills.
-		// - In the case of the greedy trait, onUpdate() calls getDailyCost() (here) to calculate
-		//   the  bonus, but getWageModifier doesn't exist yet => crash.
-		// In theory the onCampaignLoaded callback will reapply the hook and set the cost,
-		// but this check is needed to prevent crashes at load.
-		local player = this.World.State != null ? this.World.State.getPlayer() : null;
-		local wageModifier = player != null && ("getWageModifier" in player) ? player.getWageModifier() : 0.0;
 		local worldMult = this.World.State != null ? this.World.Assets.getDailyWageMult() : 1.0;
-		local wageMult = (this.m.CurrentProperties.DailyWageMult * worldMult) - wageModifier;
+		local wageMult = (this.m.CurrentProperties.DailyWageMult * worldMult);
 		return this.Math.max(0, this.m.CurrentProperties.DailyWage * wageMult);
 	}
 

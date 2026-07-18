@@ -26,7 +26,7 @@
 			return;
 		}
 
-		if (this.World.Retinue.hasFollower("follower.paymaster")) {
+		if (::World.Assets.m.ProfessionEffect.LegendPaymaster > 0) {
 			return;
 		}
 

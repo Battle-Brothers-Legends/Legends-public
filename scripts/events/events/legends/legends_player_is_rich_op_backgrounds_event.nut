@@ -144,7 +144,7 @@ this.legends_player_is_rich_op_backgrounds_event <- this.inherit("scripts/events
 			return;
 		}
 
-		if (this.World.Retinue.hasFollower("follower.paymaster")) {
+		if (::World.Assets.m.ProfessionEffect.LegendPaymaster > 0) {
 			return;
 		}
 

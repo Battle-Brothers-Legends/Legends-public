@@ -41,8 +41,9 @@
 		if (this.World.Assets.getOrigin().getID() == "scenario.lone_wolf")
 			return;
 
-		if (this.World.Retinue.hasFollower("follower.paymaster"))
+		if (::World.Assets.m.ProfessionEffect.LegendPaymaster > 0) {
 			return;
+		}
 
 		local brothers = this.World.getPlayerRoster().getAll();
 		local candidates = [];

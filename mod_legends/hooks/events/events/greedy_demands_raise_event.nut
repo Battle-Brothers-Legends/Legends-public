@@ -15,7 +15,7 @@
 
 	local onUpdateScore = o.onUpdateScore;
 	o.onUpdateScore = function () {
-		if (this.World.Assets.getOrigin().getID() == "scenario.lone_wolf") {
+		if (::World.Assets.getOrigin().getID() == "scenario.lone_wolf" || ::World.Assets.m.ProfessionEffect.LegendPaymaster > 0) {
 			return;
 		}
 		onUpdateScore();

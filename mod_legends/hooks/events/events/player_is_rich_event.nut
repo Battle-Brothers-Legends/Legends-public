@@ -9,8 +9,9 @@
 		if (this.World.getPlayerRoster().getSize() < 5)
 			return;
 
-		if (this.World.Retinue.hasFollower("follower.paymaster"))
+		if (::World.Assets.m.ProfessionEffect.LegendPaymaster > 0) {
 			return;
+		}
 
 		local brothers = this.World.getPlayerRoster().getAll();
 		local numBros = 0;

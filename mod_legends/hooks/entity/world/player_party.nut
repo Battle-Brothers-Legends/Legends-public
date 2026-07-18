@@ -1,7 +1,6 @@
 ::mods_hookExactClass("entity/world/player_party", function(o)
 {
 	o.m.BarterMultiplier <- 0.0;
-	o.m.WageMultiplier <- 0.0;
 	o.m.FoodMultiplier <- 0;
 	o.m.AmmoMultiplier <- 0;
 	o.m.ArmorPartsMultiplier <- 0;
@@ -309,11 +308,6 @@
 		return this.m.BarterMultiplier;
 	}
 
-	o.getWageModifier <- function ()
-	{
-		return this.m.WageMultiplier;
-	}
-
 	o.getFoodModifier <- function ()
 	{
 		return this.m.FoodMultiplier;
@@ -344,7 +338,6 @@
 		if (this.World.State.m.AppropriateTimeToRecalc == 1) //Leonion's fix
 		{
 			this.calculateBarterMult();
-			this.calculateWageModifier();
 			this.calculateFoodModifier();
 			this.calculateAmmoModifier();
 			this.calculateArmorPartsModifier();
@@ -365,20 +358,6 @@
 
 			this.m.FoodMultiplier = 1;
 			break;
-		}
-	}
-
-	o.calculateWageModifier <- function ()
-	{
-		if (this.World.State.m.AppropriateTimeToRecalc != 1)
-			return;
-
-		foreach( bro in this.World.getPlayerRoster().getAll() )
-		{
-			if (bro.getSkills().hasPerk(::Legends.Perk.LegendPaymaster)) {
-				this.m.WageMultiplier = bro.getBarterModifier();
-				return;
-			}
 		}
 	}
 

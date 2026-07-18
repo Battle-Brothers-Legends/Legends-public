@@ -515,7 +515,9 @@ professionDefObjects.push({
     Tooltip = ::Const.Strings.ProfessionDescription.LegendPaymaster,
     Icon = "ui/professions/paymaster.png",
     IconDisabled = "ui/professions/paymaster_bw.png",
-    Const = "LegendPaymaster"
+    Const = "LegendPaymaster",
+    ScalingArray = [0, 1.1], // lowers wages
+    ScalingFactor = 0.05
 });
 
 ::Legends.Profession.LegendProsthetics <- null;

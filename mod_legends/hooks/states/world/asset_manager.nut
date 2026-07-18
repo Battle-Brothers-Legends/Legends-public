@@ -309,10 +309,8 @@
 		return ret;
 	}
 
-	o.getDailyWageMult <- function ()
-	{
-		local modifier = ::World.Retinue.hasFollower("follower.paymaster") ? ::World.Retinue.getFollower("follower.paymaster").getMultiplier() : 1.0;
-		return this.m.DailyWageMult * modifier;
+	o.getDailyWageMult <- function () {
+		return ::World.Assets.m.ProfessionEffect.LegendPaymaster > 0 ? this.m.DailyWageMult * (1 / ::World.Assets.m.ProfessionEffect.LegendPaymaster) : this.m.DailyWageMult;
 	}
 
 	local resetToDefaults = o.resetToDefaults;
