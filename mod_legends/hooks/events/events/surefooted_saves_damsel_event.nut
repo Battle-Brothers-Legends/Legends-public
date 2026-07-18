@@ -22,8 +22,8 @@
 		if (candidates.len() == 0)
 			return;
 
-		local town = ::Legends.S.getClosestSettlement(@(_, t) !t.isMilitary() && t.getTile().getDistanceTo(playerTile) <= 3 && t.isAlliedWithPlayer());
-		if (town == null)
+		local town = ::Legends.S.getClosestSettlement(@(_, t) !t.isMilitary() && t.isAlliedWithPlayer());
+		if (town == null || town.getTile().getDistanceTo(::World.State.getPlayer().getTile()) > 3)
 			return;
 
 		this.m.Surefooted = candidates[this.Math.rand(0, candidates.len() - 1)];
