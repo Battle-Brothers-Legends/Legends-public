@@ -1038,22 +1038,12 @@
 			return ret;
 
 		case "assets.Money":
-			local money = this.World.Assets.getMoney();
+			local money = ::World.Assets.getMoney();
 			local dailyMoney = 0;
 			local barterMult = 0.0;
 			local brolist = [];
-			local greed = 1;
-
-			foreach(bro in this.World.getPlayerRoster().getAll())
-			{
-				if (bro.getSkills().hasPerk(::Legends.Perk.LegendBarterGreed))
-				{
-					greed += 1;
-				}
-			}
-
-			foreach( bro in this.World.getPlayerRoster().getAll() )
-			{
+			barterMult += ::World.Assets.m.ProfessionEffect.LegendConvincingProposals;
+			foreach( bro in ::World.getPlayerRoster().getAll() ) {
 				local L = [];
 				dailyMoney = dailyMoney + bro.getDailyCost();
 
@@ -1062,7 +1052,7 @@
 					bro.getName(),
 					bro.getBackground().getNameOnly()
 				];
-				local bm = this.Math.floor(bro.getBarterModifier() * 10000.0 / greed) / 100;
+				local bm = ::Math.floor(bro.getBarterModifier() * 10000.0) / 100;
 
 				if (bm > 0)
 				{
@@ -1073,7 +1063,7 @@
 				brolist.push(L);
 			}
 
-			local time = this.Math.floor(money / this.Math.max(1, dailyMoney));
+			local time = ::Math.floor(money / this.Math.max(1, dailyMoney));
 			local ret = [];
 
 			if (dailyMoney == 0)
