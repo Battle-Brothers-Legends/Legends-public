@@ -14,6 +14,8 @@
 	local onInit = o.onInit;
 	o.onInit = function () {
 		onInit();
+		local b = this.m.BaseProperties;
+		b.IsSpecializedInDaggers = true;
 		::Legends.Perks.grant(this, ::Legends.Perk.Dodge);
 		::Legends.Perks.grant(this, ::Legends.Perk.Footwork);
 		::Legends.Perks.grant(this, ::Legends.Perk.Recover);
