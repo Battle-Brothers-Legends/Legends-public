@@ -17,6 +17,8 @@
 	local onInit = o.onInit;
 	o.onInit = function () {
 		onInit();
+		local b = this.m.BaseProperties;
+		b.IsSpecializedInDaggers = true;
 		::Legends.Perks.remove(this, ::Legends.Perk.Anticipation);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendWindReader);
 		::Legends.Perks.grant(this, ::Legends.Perk.Dodge);
