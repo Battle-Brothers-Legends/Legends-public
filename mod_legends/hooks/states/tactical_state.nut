@@ -752,10 +752,10 @@
 
 		if (!isArena && !this.isScenarioMode())
 		{
-			if (this.Tactical.Entities.getAmmoSpent() > 0 && this.World.Assets.m.IsRecoveringAmmo)
+			if (this.Tactical.Entities.getAmmoSpent() > 0 && ::World.Assets.m.LegendAmmoScrounger > 0)
 			{
-				local amount = this.Math.max(1, this.Tactical.Entities.getAmmoSpent() * 0.2);
-				amount = this.Math.rand(amount / 2, amount);
+				local amount = ::Math.max(1, ::Tactical.Entities.getAmmoSpent() * ::World.Assets.m.LegendAmmoScrounger);
+				amount = ::Math.rand(amount / 2, amount);
 
 				if (amount > 0)
 				{
@@ -765,10 +765,10 @@
 				}
 			}
 
-			if (this.Tactical.Entities.getArmorParts() > 0 && this.World.Assets.m.IsRecoveringArmor)
+			if (this.Tactical.Entities.getArmorParts() > 0 && ::World.Assets.m.ProfessionEffect.LegendVulture > 0)
 			{
-				local amount = this.Math.min(60, this.Math.max(1, this.Tactical.Entities.getArmorParts() * this.Const.World.Assets.ArmorPartsPerArmor * 0.15));
-				amount = this.Math.rand(amount / 2, amount);
+				local amount = ::Math.min(60, this.Math.max(1, ::Tactical.Entities.getArmorParts() * ::Const.World.Assets.ArmorPartsPerArmor * ::World.Assets.m.ProfessionEffect.LegendVulture));
+				amount = ::Math.rand(amount / 2, amount);
 
 				if (amount > 0)
 				{

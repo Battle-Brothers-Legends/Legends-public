@@ -31,7 +31,7 @@ this.legend_hunting_white_direwolf_contract <- this.inherit("scripts/contracts/c
 			"Many consider white wolves to be myth, a campfire tale of the supernatural to scare new travelers with.",
 			"In traditional folklore tales, white wolves are always supernatural beings who herald doom.",
 		];
-		this.m.IsRandomlyAdded = ::Math.rand(1, 100) <= 5;
+		this.m.IsRandomlyAdded = ::Math.rand(1, 100) <= ::Math.floor(::World.Assets.m.ProfessionEffect.LegendBigGameHunter);
 	}
 
 	function onImportIntro()

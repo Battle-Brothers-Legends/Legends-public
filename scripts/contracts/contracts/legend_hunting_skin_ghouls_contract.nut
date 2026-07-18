@@ -21,7 +21,7 @@ this.legend_hunting_skin_ghouls_contract <- this.inherit("scripts/contracts/cont
 			"Skin ghouls are abominations of nature, their pallid forms and insatiable hunger for flesh making them a terror to encounter.",
 			"Skin ghouls are cursed beings, their rotting flesh and ravenous appetites make them a gruesome sight to behold.",
 		];
-		this.m.IsRandomlyAdded = ::Math.rand(1, 100) <= 5;
+		this.m.IsRandomlyAdded = ::Math.rand(1, 100) <= ::Math.floor(::World.Assets.m.ProfessionEffect.LegendBigGameHunter);
 	}
 
 	function getBanner()

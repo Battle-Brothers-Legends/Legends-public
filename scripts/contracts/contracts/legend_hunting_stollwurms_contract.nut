@@ -21,7 +21,7 @@ this.legend_hunting_stollwurms_contract <- this.inherit("scripts/contracts/contr
 			"Stollwurms scales are as hard as iron. Some tribes worship these apex predators as gods.",
 			"Blessed are the maker stollwurms, whose passage cleanses the world. You don\'t believe that farkin\' nonsense of course.",
 		];
-		this.m.IsRandomlyAdded = ::Math.rand(1, 100) <= 5;
+		this.m.IsRandomlyAdded = ::Math.rand(1, 100) <= ::Math.floor(::World.Assets.m.ProfessionEffect.LegendBigGameHunter);
 	}
 
 	function getBanner()

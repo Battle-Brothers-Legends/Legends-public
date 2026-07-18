@@ -21,7 +21,7 @@ this.legend_hunting_coven_leader_contract <- this.inherit("scripts/contracts/con
 			"The Coven is a cabal of dark souls and twisted minds, their sinister powers spreads their malevolent influence far and wide.",
 			"A Coven is a cesspit of dark magic and corruption. Burn them all, and quickly! Lest they claim your soul.",
 		];
-		this.m.IsRandomlyAdded = ::Math.rand(1, 100) <= 5;
+		this.m.IsRandomlyAdded = ::Math.rand(1, 100) <= ::Math.floor(::World.Assets.m.ProfessionEffect.LegendBigGameHunter);
 	}
 
 	function getBanner()

@@ -21,7 +21,7 @@ this.legend_hunting_demon_alps_contract <- this.inherit("scripts/contracts/contr
 			"Beware these souldrinkers, for they are cunning and elusive, wreathed in the flames of hell.",
 			"Flamewalkers are creatures of darkness and despair, their very touch draining the life force from their victims.",
 		];
-		this.m.IsRandomlyAdded = ::Math.rand(1, 100) <= 5;
+		this.m.IsRandomlyAdded = ::Math.rand(1, 100) <= ::Math.floor(::World.Assets.m.ProfessionEffect.LegendBigGameHunter);
 	}
 
 	function getBanner()

@@ -21,7 +21,7 @@ this.legend_hunting_redback_webknechts_contract <- this.inherit("scripts/contrac
 			"Bloated red bodies and gaping maws skitter through the darkness, hungry for blood.",
 			"Monstrous forms of red chitin haunt the dark, driven by an insatiable hunger to constantly feed.",
 		];
-		this.m.IsRandomlyAdded = ::Math.rand(1, 100) <= 5;
+		this.m.IsRandomlyAdded = ::Math.rand(1, 100) <= ::Math.floor(::World.Assets.m.ProfessionEffect.LegendBigGameHunter);
 	}
 
 	function getBanner()

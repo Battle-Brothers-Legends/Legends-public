@@ -32,7 +32,7 @@ this.legend_bandit_army_contract <- this.inherit("scripts/contracts/contract", {
 			"A new era dawns as brigand gangs across the land swear fealty to the banner of the underworld king, their unified front heralding a dark chapter in the history of the realm.",
 			"A charismatic new crime lord had united all the brigand gangs, marking a dark turning point for the realm.",
 		];
-		this.m.IsRandomlyAdded = ::Math.rand(1, 100) <= 5;
+		this.m.IsRandomlyAdded = ::Math.rand(1, 100) <= ::Math.floor(::World.Assets.m.ProfessionEffect.LegendBigGameHunter);
 	}
 
 	function generateName() {

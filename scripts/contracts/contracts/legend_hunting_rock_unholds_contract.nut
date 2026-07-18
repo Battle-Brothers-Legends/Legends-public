@@ -26,7 +26,7 @@ this.legend_hunting_rock_unholds_contract <- this.inherit("scripts/contracts/con
 			"Colossal footsteps shake the earth. Buildings have been shattered, the very landscape torn apart by primal fury.",
 			"Rampaging unholds have left a trail of devastation for miles. You can hear their thunderous roars from here.",
 		];
-		this.m.IsRandomlyAdded = ::Math.rand(1, 100) <= 5;
+		this.m.IsRandomlyAdded = ::Math.rand(1, 100) <= ::Math.floor(::World.Assets.m.ProfessionEffect.LegendBigGameHunter);
 	}
 
 	function getBanner()

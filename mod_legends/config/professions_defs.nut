@@ -61,7 +61,9 @@ professionDefObjects.push({
     Tooltip = ::Const.Strings.ProfessionDescription.LegendAmmoScrounger,
     Icon = "ui/professions/ammo_scrounger.png",
     IconDisabled = "ui/professions/ammo_scrounger_bw.png",
-    Const = "LegendAmmoScrounger"
+    Const = "LegendAmmoScrounger",
+    ScalingArray = [0, 0.2], // ammo recovered after combat
+    ScalingFactor = 0.1
 });
 
 ::Legends.Profession.LegendBalladeInTheMaking <- null;
@@ -98,7 +100,9 @@ professionDefObjects.push({
     Tooltip = ::Const.Strings.ProfessionDescription.LegendBigGameHunter,
     Icon = "ui/professions/big_game_hunter.png",
     IconDisabled = "ui/professions/big_game_hunter_bw.png",
-    Const = "LegendBigGameHunter"
+    Const = "LegendBigGameHunter",
+    ScalingArray = [0, 5], // gold for champion slain (based on xp gained)
+    ScalingFactor = 0.5
 });
 
 ::Legends.Profession.LegendBlackBook <- null;
@@ -734,7 +738,9 @@ professionDefObjects.push({
     Tooltip = ::Const.Strings.ProfessionDescription.LegendVulture,
     Icon = "ui/professions/vulture.png",
     IconDisabled = "ui/professions/vulture_bw.png",
-    Const = "LegendVulture"
+    Const = "LegendVulture",
+    ScalingArray = [0, 0.15], // tools recovered after combat
+    ScalingFactor = 0.1
 });
 
 ::Legends.Profession.LegendWheelMaintenance <- null;

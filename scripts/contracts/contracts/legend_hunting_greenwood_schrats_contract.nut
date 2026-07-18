@@ -21,7 +21,7 @@ this.legend_hunting_greenwood_schrats_contract <- this.inherit("scripts/contract
 			"A malevolent presence lurks in the heart of the forest, its dark aura spreading like a poison through the trees and soil.",
 			"Some locals talk about the heart of the forest is if it were alive, or perhaps a deity to be worshiped.",
 		];
-		this.m.IsRandomlyAdded = ::Math.rand(1, 100) <= 5;
+		this.m.IsRandomlyAdded = ::Math.rand(1, 100) <= ::Math.floor(::World.Assets.m.ProfessionEffect.LegendBigGameHunter);
 	}
 
 	function getBanner()
