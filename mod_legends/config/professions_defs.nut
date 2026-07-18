@@ -138,7 +138,9 @@ professionDefObjects.push({
     Tooltip = ::Const.Strings.ProfessionDescription.LegendCarouser,
     Icon = "ui/professions/carouser.png",
     IconDisabled = "ui/professions/carouser_bw.png",
-    Const = "LegendCarouser"
+    Const = "LegendCarouser",
+    ScalingArray = [0, 1], // extra tavern rumours
+    ScalingFactor = 0.5
 });
 
 ::Legends.Profession.LegendCartographer <- null;
@@ -149,7 +151,9 @@ professionDefObjects.push({
     Tooltip = ::Const.Strings.ProfessionDescription.LegendCartographer,
     Icon = "ui/professions/cartographer.png",
     IconDisabled = "ui/professions/cartographer_bw.png",
-    Const = "LegendCartographer"
+    Const = "LegendCartographer",
+    ScalingArray = [0, 0.85, 1.1, 1.3], // gold for location discovered (scaling * 100-400 based on distance)
+    ScalingFactor = 0.1
 });
 
 ::Legends.Profession.LegendCharlatan <- null;
@@ -171,7 +175,9 @@ professionDefObjects.push({
     Tooltip = ::Const.Strings.ProfessionDescription.LegendConvincingProposals,
     Icon = "ui/professions/convincing_proposals.png",
     IconDisabled = "ui/professions/convincing_proposals_bw.png",
-    Const = "LegendConvincingProposals"
+    Const = "LegendConvincingProposals",
+    ScalingArray = [0, 0.02], // extra xp for non veterans
+    ScalingFactor = 0.25
 });
 
 ::Legends.Profession.LegendCooking <- null;

@@ -96,6 +96,39 @@
 		}
 	}
 
+	o.onDiscovered = function () {
+		this.world_entity.onDiscovered();
+		this.getTile().clearAllBut(::Const.World.DetailType.Road | ::Const.World.DetailType.Shore);
+		this.getLabel("name").Visible = ::Const.World.AI.VisualizeNameOfLocations && this.m.IsShowingLabel;
+
+		if (!this.isHiddenToPlayer() && this.getTypeID() != "location.battlefield") {
+			::World.Statistics.getFlags().increment("LocationsDiscovered");
+
+			if (::World.Assets.m.ProfessionEffect.LegendCartographer > 0) {
+				local dist = 9999;
+
+				foreach (s in ::World.EntityManager.getSettlements()) {
+					local d = s.getTile().getDistanceTo(this.getTile());
+					dist = d < dist ? d : dist;
+				}
+
+				local reward = ::Math.min(::World.Assets.m.ProfessionEffect.LegendCartographer * 400, ::Math.max(::World.Assets.m.ProfessionEffect.LegendCartographer * 100, ::World.Assets.m.ProfessionEffect.LegendCartographer * 10 * dist));
+
+				if (this.isLocationType(::Const.World.LocationType.Unique)) {
+					reward = reward * 2;
+				}
+
+				::World.Assets.addMoney(reward);
+			}
+
+			::World.Ambitions.onLocationDiscovered(this);
+		}
+
+		if (this.m.OnDiscovered != null) {
+			::World.Events.fire(this.m.OnDiscovered);
+		}
+	}
+
 	o.createDefenders = function ()
 	{
 		local resources = this.m.Resources;

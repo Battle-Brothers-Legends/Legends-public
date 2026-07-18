@@ -1781,20 +1781,7 @@
 			return 0;
 		}
 		local mod = this.getBackground().getModifiers().Barter;
-		local skills = [
-			::Legends.Perk.LegendBarterTrustworthy,
-			::Legends.Perk.LegendBarterConvincing,
-			::Legends.Perk.LegendOffBookDeal
-		];
-
-		foreach( s in skills )
-		{
-			local skill = ::Legends.Perks.get(this, s);
-			if (skill != null)
-			{
-				mod += skill.getModifier();
-			}
-		}
+		
 		local skill = ::Legends.Traits.get(this, ::Legends.Trait.LegendSeductive);
 		if (skill != null) {
 			mod += skill.getModifier();

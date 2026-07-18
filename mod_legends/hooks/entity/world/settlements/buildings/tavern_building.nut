@@ -65,19 +65,19 @@
 
 	o.getDrinkResult = function ()
 	{
-		local bros = this.World.getPlayerRoster().getAll();
+		local bros = ::World.getPlayerRoster().getAll();
 
-		if (this.World.Assets.getMoney() < this.Math.round(bros.len() * 5 * this.m.Settlement.getBuyPriceMult()))
+		if (::World.Assets.getMoney() < this.Math.round(bros.len() * 5 * this.m.Settlement.getBuyPriceMult()))
 		{
 			return null;
 		}
 
-		this.Sound.play(this.Const.Sound.TavernRound[this.Math.rand(0, this.Const.Sound.TavernRound.len() - 1)]);
-		this.World.Assets.addMoney(this.Math.round(bros.len() * -5 * this.m.Settlement.getBuyPriceMult()));
+		this.Sound.play(::Const.Sound.TavernRound[this.Math.rand(0, ::Const.Sound.TavernRound.len() - 1)]);
+		::World.Assets.addMoney(this.Math.round(bros.len() * -5 * this.m.Settlement.getBuyPriceMult()));
 		++this.m.RoundsGiven;
-		this.m.LastRoundTime = this.Time.getVirtualTimeF();
+		this.m.LastRoundTime = ::Time.getVirtualTimeF();
 		local result = {
-			Intro = this.Const.Strings.PayTavernRoundIntro[this.Math.rand(0, this.Const.Strings.PayTavernRoundIntro.len() - 1)],
+			Intro = ::Const.Strings.PayTavernRoundIntro[this.Math.rand(0, ::Const.Strings.PayTavernRoundIntro.len() - 1)],
 			Result = []
 		};
 
@@ -89,7 +89,7 @@
 			}
 
 			local drunkChance = (this.m.RoundsGiven - 1) * 10;
-			if (this.World.Assets.getOrigin().getID() == "scenario.legends_troupe")
+			if (::World.Assets.getOrigin().getID() == "scenario.legends_troupe")
 			{
 			drunkChance = drunkChance * 0.5;
 			}
@@ -157,18 +157,243 @@
 				}.bindenv(this));
 			}
 
-			if ((b.getLastDrinkTime() == 0 || this.Time.getVirtualTimeF() - b.getLastDrinkTime() > this.World.getTime().SecondsPerDay) && this.Math.rand(1, 100) <= 35)
+			if ((b.getLastDrinkTime() == 0 || ::Time.getVirtualTimeF() - b.getLastDrinkTime() > ::World.getTime().SecondsPerDay) && this.Math.rand(1, 100) <= 35)
 			{
-				b.setLastDrinkTime(this.Time.getVirtualTimeF());
-				b.improveMood(this.Const.MoodChange.DrunkAtTavern, "Got drunk with the company");
+				b.setLastDrinkTime(::Time.getVirtualTimeF());
+				b.improveMood(::Const.MoodChange.DrunkAtTavern, "Got drunk with the company");
 				result.Result.push({
-					Icon = this.Const.MoodStateIcon[b.getMoodState()],
-					Text = b.getName() + this.Const.MoodStateEvent[b.getMoodState()]
+					Icon = ::Const.MoodStateIcon[b.getMoodState()],
+					Text = b.getName() + ::Const.MoodStateEvent[b.getMoodState()]
 				});
 			}
 		}
 
 		return result;
+	}
+
+	o.getRumor = function (_isPaidFor = false) {
+		if (_isPaidFor) {
+			if (::World.Assets.getMoney() < this.Math.round(20 * this.m.Settlement.getBuyPriceMult())) {
+				return null;
+			}
+
+			::World.Assets.addMoney(this.Math.round(-20 * this.m.Settlement.getBuyPriceMult()));
+			++this.m.RumorsGiven;
+			this.Sound.play(::Const.Sound.TavernRumor[this.Math.rand(0, ::Const.Sound.TavernRumor.len() - 1)]);
+		}
+
+		if (this.m.RumorsGiven > ::Math.round(3 * ::World.Assets.m.ProfessionEffect.LegendCarouser)) {
+			if (_isPaidFor) {
+				return "The patrons raise their cups to you, but it seems there is nothing more to be learned by talking to them tonight.";
+			} else {
+				return "The patrons talk about this and that.";
+			}
+		} else {
+			this.m.LastRumorTime = ::Time.getVirtualTimeF();
+			local rumor = "";
+
+			if (_isPaidFor) {
+				if (!this.m.Settlement.isMilitary()) {
+					::World.FactionManager.getFaction(this.m.Settlement.getFactions()[0]).addPlayerRelation(0.1);
+				}
+
+				rumor = rumor + ::Const.Strings.PayTavernRumorsIntro[this.Math.rand(0, ::Const.Strings.PayTavernRumorsIntro.len() - 1)];
+			} else if (this.m.LastRumor != "") {
+				return this.m.LastRumor;
+			} else {
+				rumor = rumor + "The patrons talk about this and that.";
+			}
+
+			local candidates = [];
+			local r = ::World.Assets.m.ProfessionEffect.LegendCarouser > 0 ? this.Math.rand(3, 6) : this.Math.rand(1, 6);
+
+			if (r <= 2) {
+				if (::World.FactionManager.isGreaterEvil()) {
+					candidates.extend(::Const.Strings.RumorsGreaterEvil[::World.FactionManager.getGreaterEvilType()]);
+					candidates.extend(::Const.Strings.RumorsGreaterEvil[::World.FactionManager.getGreaterEvilType()]);
+				} else {
+					candidates.extend(::Const.Strings.RumorsGeneral);
+				}
+
+				if (this.m.Settlement.isMilitary()) {
+					candidates.extend(::Const.Strings.RumorsMilitary);
+				} else {
+					candidates.extend(::Const.Strings.RumorsCivilian);
+				}
+
+				candidates.extend(this.m.Settlement.getRumors());
+			} else if (r == 3) {
+				local best;
+				local bestDist = 9000;
+
+				foreach (s in ::World.EntityManager.getSettlements()) {
+					if (s.isMilitary() || s.getID() == this.m.Settlement.getID()) {
+						continue;
+					}
+
+					if (::World.FactionManager.getFaction(s.getFactions()[0]).getContracts().len() != 0) {
+						local d = s.getTile().getDistanceTo(this.m.Settlement.getTile());
+
+						if (d < bestDist) {
+							bestDist = d;
+							best = s;
+						}
+					}
+
+					if (best != null) {
+						candidates.extend(::Const.Strings.RumorsContract);
+						this.m.ContractSettlement = this.WeakTableRef(best);
+					} else {
+						candidates.extend(::Const.Strings.RumorsGeneral);
+
+						if (this.m.Settlement.isMilitary()) {
+							candidates.extend(::Const.Strings.RumorsMilitary);
+						} else {
+							candidates.extend(::Const.Strings.RumorsCivilian);
+						}
+
+						candidates.extend(this.m.Settlement.getRumors());
+					}
+				}
+			} else if (r == 4) {
+				local best;
+				local bestDist = 9000;
+
+				foreach (s in ::World.EntityManager.getLocations()) {
+					if (s.isLocationType(::Const.World.LocationType.AttachedLocation) || s.isLocationType(::Const.World.LocationType.Unique) || s.isAlliedWithPlayer())	{
+						continue;
+					}
+
+					local d = s.getTile().getDistanceTo(this.m.Settlement.getTile()) - this.Math.rand(1, 10);
+
+					if (d < bestDist) {
+						bestDist = d;
+						best = s;
+					}
+				}
+
+				if (best != null) {
+					candidates.extend(::Const.Strings.RumorsLocation);
+					this.m.Location = this.WeakTableRef(best);
+				} else {
+					candidates.extend(::Const.Strings.RumorsGeneral);
+
+					if (this.m.Settlement.isMilitary()) {
+						candidates.extend(::Const.Strings.RumorsMilitary);
+					} else {
+						candidates.extend(::Const.Strings.RumorsCivilian);
+					}
+
+					candidates.extend(this.m.Settlement.getRumors());
+				}
+			} else if (r == 5) {
+				local best;
+				local bestDist = 9000;
+
+				foreach (s in ::World.EntityManager.getLocations()) {
+					if (s.isAlliedWithPlayer()) {
+						continue;
+					}
+
+					if (s.getLoot().isEmpty()) {
+						continue;
+					}
+
+					local d = s.getTile().getDistanceTo(this.m.Settlement.getTile()) - this.Math.rand(1, 10);
+
+					if (d > 20) {
+						continue;
+					}
+
+					if (d < bestDist) {
+						bestDist = d;
+						best = s;
+					}
+				}
+
+				if (best != null) {
+					local f = ::World.FactionManager.getFaction(best.getFaction());
+					local category = 0;
+
+					if (best.getLoot().getItems()[0].isItemType(::Const.Items.ItemType.Shield)) {
+						category = 1;
+					} else if (best.getLoot().getItems()[0].isItemType(::Const.Items.ItemType.Armor)
+						|| best.getLoot().getItems()[0].isItemType(::Const.Items.ItemType.Helmet))
+					{
+						category = 2;
+					}
+
+					if (f.getType() == ::Const.FactionType.Orcs) {
+						candidates.extend(::Const.Strings.RumorsItemsOrcs[category]);
+					} else if (f.getType() == ::Const.FactionType.Goblins) {
+						candidates.extend(::Const.Strings.RumorsItemsGoblins[category]);
+					} else if (f.getType() == ::Const.FactionType.Undead
+						|| f.getType() == ::Const.FactionType.Zombies)
+					{
+						candidates.extend(::Const.Strings.RumorsItemsUndead[category]);
+					} else if (f.getType() == ::Const.FactionType.Barbarians) {
+						candidates.extend(::Const.Strings.RumorsItemsBarbarians[category]);
+					} else if (f.getType() == ::Const.FactionType.OrientalBandits) {
+						candidates.extend(::Const.Strings.RumorsItemsNomads[category]);
+					} else {
+						candidates.extend(::Const.Strings.RumorsItemsBandits[category]);
+					}
+
+					this.m.Location = this.WeakTableRef(best);
+				} else {
+					candidates.extend(::Const.Strings.RumorsGeneral);
+
+					if (this.m.Settlement.isMilitary()) {
+						candidates.extend(::Const.Strings.RumorsMilitary);
+					} else {
+						candidates.extend(::Const.Strings.RumorsCivilian);
+					}
+
+					candidates.extend(this.m.Settlement.getRumors());
+				}
+			} else if (r == 6) {
+				local best;
+				local bestDist = 9000;
+
+				foreach (s in ::World.EntityManager.getSettlements()) {
+					if (s.getID() == this.m.Settlement.getID()) {
+						continue;
+					}
+
+					s.updateSituations();
+
+					if (s.getSituations().len() > 0) {
+						local d = s.getTile().getDistanceTo(this.m.Settlement.getTile());
+
+						if (d < bestDist) {
+							bestDist = d;
+							best = s;
+						}
+					}
+				}
+
+				if (best != null) {
+					local situation = best.getSituations()[this.Math.rand(0, best.getSituations().len() - 1)];
+					candidates.extend(situation.getRumors());
+					this.m.ContractSettlement = this.WeakTableRef(best);
+				} else {
+					candidates.extend(::Const.Strings.RumorsGeneral);
+
+					if (this.m.Settlement.isMilitary()) {
+						candidates.extend(::Const.Strings.RumorsMilitary);
+					} else {
+						candidates.extend(::Const.Strings.RumorsCivilian);
+					}
+
+					candidates.extend(this.m.Settlement.getRumors());
+				}
+			}
+
+			rumor = rumor + "\n\n[color=#bcad8c]\"" + candidates[this.Math.rand(0, candidates.len() - 1)] + "\"[/color]\n\n";
+			rumor = this.buildText(rumor);
+			this.m.LastRumor = rumor;
+			return rumor;
+		}
 	}
 
 	local buildText = o.buildText;
@@ -177,7 +402,7 @@
 		local vars = [
 			[
 				"direction_settlement",
-				this.m.ContractSettlement != null && !this.m.ContractSettlement.isNull() ? this.Const.Strings.Direction8[this.m.Settlement.getTile().getDirection8To(this.m.ContractSettlement.getTile())] : ""
+				this.m.ContractSettlement != null && !this.m.ContractSettlement.isNull() ? ::Const.Strings.Direction8[this.m.Settlement.getTile().getDirection8To(this.m.ContractSettlement.getTile())] : ""
 			],
 		];
 		return this.buildTextFromTemplate(text, vars);

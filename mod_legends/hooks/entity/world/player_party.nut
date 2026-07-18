@@ -388,18 +388,15 @@
 			return;
 
 		local barterMult = 0.0;
-		local greed = 1;
-		foreach (bro in this.World.getPlayerRoster().getAll())
-		{
+		foreach (bro in this.World.getPlayerRoster().getAll()) {
 			barterMult += bro.getBarterModifier();
-			if (bro.getSkills().hasPerk(::Legends.Perk.LegendBarterGreed))
-				greed += 1;
 		}
+		barterMult += ::World.Assets.m.ProfessionEffect.LegendConvincingProposals;
 
 		if (this.World.Assets.getOrigin().getID() == "scenario.trader")
 			barterMult = barterMult * 1.1;
 
-		this.m.BarterMultiplier = barterMult / greed;
+		this.m.BarterMultiplier = barterMult;
 	}
 
 	o.calculateAmmoModifier <- function ()

@@ -135,6 +135,8 @@ They say that practice makes perfect. It just so happens that this one favours p
 Nothing loosens the tongues like a good drink. And noone drinks like a mercenary.
 
 [color=%passive%][u]Passive:[/u][/color]
+• Increase the number of rumours available at taverns.
+
 • Tavern rumours are more likely to contain useful information.
 ";
 

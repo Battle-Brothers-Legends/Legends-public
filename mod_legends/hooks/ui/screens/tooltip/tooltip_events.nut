@@ -1056,10 +1056,6 @@
 			{
 				local L = [];
 				dailyMoney = dailyMoney + bro.getDailyCost();
-				if (bro.getSkills().hasPerk(::Legends.Perk.LegendBarterConvincing))
-				{
-					dailyMoney -= (10 + bro.getLevel());
-				}
 
 				local L = [
 					bro.getDailyCost(),
