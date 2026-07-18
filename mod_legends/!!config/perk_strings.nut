@@ -3245,7 +3245,7 @@ Gain enhanced vision and tactical advantages at night.
 [color=%passive%][u]Passive:[/u][/color]
 • Gain [color=%positive%]+1[/color] vision and become unaffected by night time penalties.
 
-• When attacking at night, adjacent enemies will lose [color=%negative%]10[/color] Resolve when adjacent to you.
+• When attacking at night, adjacent enemies will lose [color=%negative%]10[/color].
 
 • Gain [color=%positive%]+10%[/color] Melee and Ranged Skill while fighting at night.
 ";
