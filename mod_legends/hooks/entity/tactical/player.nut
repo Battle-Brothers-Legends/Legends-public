@@ -1689,76 +1689,21 @@
 		return broStash;
 	}
 
-	o.getAmmoModifier <- function ()
-	{
-		local mod = this.getBackground().getModifiers().Ammo;
-		local skills = [
-			::Legends.Perk.LegendAmmoBundles,
-			::Legends.Perk.LegendAmmoBinding
-		];
-
-		foreach( s in skills )
-		{
-			local skill = ::Legends.Perks.get(this, s);
-			if (skill != null)
-			{
-				mod = mod + skill.getModifier();
-			}
-		}
-
-		return mod;
+	o.getAmmoModifier <- function () {
+		return this.getBackground().getModifiers().Ammo;
 	}
 
 	o.getArmorPartsModifier <- function () {
-		local mod = this.getBackground().getModifiers().ArmorParts;
-		local skills = [
-			::Legends.Perk.LegendToolsDrawers,
-			::Legends.Perk.LegendToolsSpares
-		];
-		foreach (s in skills) {
-			local skill = ::Legends.Perks.get(this, s);
-			if (skill != null) {
-				mod += skill.getModifier();
-			}
-		}
-		return mod;
+		return this.getBackground().getModifiers().ArmorParts;
 	}
 
 	// Means repair efficiency
 	o.getToolEfficiencyModifier <- function () {
-		local mod = this.getBackground().getModifiers().ToolConsumption * 100;
-		local skills = [
-			::Legends.Perk.LegendToolsSpares,
-			::Legends.Perk.LegendToolsDrawers
-		];
-
-		foreach (s in skills) {
-			local skill = ::Legends.Perks.get(this, s);
-			if (skill != null) {
-				mod += skill.getToolEfficiencyModifier();
-			}
-		}
-		return mod;
+		return this.getBackground().getModifiers().ToolConsumption * 100;
 	}
 
-	o.getMedsModifier <- function ()
-	{
-		local mod = this.getBackground().getModifiers().Meds;
-		local skills = [
-			::Legends.Perk.LegendMedPackages,
-			::Legends.Perk.LegendMedIngredients
-		];
-
-		foreach( s in skills )
-		{
-			local skill = ::Legends.Perks.get(this, s);
-			if (skill != null)
-			{
-				mod = mod + skill.getModifier();
-			}
-		}
-
-		return mod;
+	o.getMedsModifier <- function () {
+		return this.getBackground().getModifiers().Meds;
 	}
 
 	o.getBarterModifier <- function ()
