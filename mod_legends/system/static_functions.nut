@@ -204,6 +204,7 @@
 	foreach (bro in ::World.getPlayerRoster().getAll()) {
 		toolEfficiencyModifier += bro.getToolEfficiencyModifier();
 	}
+	toolEfficiencyModifier += ::World.Assets.m.ProfessionEffect.LegendSpareParts;
 	// Repair tent adds ~25% efficiency (yields ~20 dura per tool instead of 15 ie. 33% increase).
 	if (::World.Assets.getStash().hasItem(::Legends.Camp.Tent.Repair)) {
 		toolEfficiencyModifier += 25;

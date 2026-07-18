@@ -325,8 +325,6 @@ Learn to find your enemies before they find you.
 
 [color=%passive%][u]Passive:[/u][/color]
 • Increases the sight radius on the world map.
-
-• Prevents sickness and accidents due to terrain.
 ";
 
 ::Const.Strings.ProfessionDescription.LegendMaterialist <- @"
@@ -463,7 +461,7 @@ By creating neat stacks and tying gear down well ensure not a single inch goes t
 A snapped spear shaft today is a surprisingly effective tent peg tomorrow.
 
 [color=%passive%][u]Passive:[/u][/color]
-• Reduces the rate at which tools are used.
+• Increases tool efficiency.
 ";
 
 ::Const.Strings.ProfessionDescription.LegendSpotTheTells <- @"

@@ -221,10 +221,10 @@
 	}
 
 	local getVisionRadius = o.getVisionRadius;
-	o.getVisionRadius = function ()
-	{
-		if (this.World.Assets.isCamping())
-			return this.World.Camp.getBuildingByID(this.Const.World.CampBuildings.Scout).getVisionRadius();
+	o.getVisionRadius = function ()	{
+		::World.Assets.m.VisionRadiusMult = 1 + ::World.Assets.m.ProfessionEffect.LegendLookout;
+		if (::World.Assets.isCamping())
+			return ::World.Camp.getBuildingByID(::Const.World.CampBuildings.Scout).getVisionRadius();
 		return getVisionRadius();
 	}
 

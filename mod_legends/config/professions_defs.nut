@@ -435,7 +435,9 @@ professionDefObjects.push({
     Tooltip = ::Const.Strings.ProfessionDescription.LegendLookout,
     Icon = "ui/professions/lookout.png",
     IconDisabled = "ui/professions/lookout_bw.png",
-    Const = "LegendLookout"
+    Const = "LegendLookout",
+    ScalingArray = [0, 0.2], // vision radius
+    ScalingFactor = 0.05
 });
 
 ::Legends.Profession.LegendMaterialist <- null;
@@ -620,7 +622,9 @@ professionDefObjects.push({
     Tooltip = ::Const.Strings.ProfessionDescription.LegendSpareParts,
     Icon = "ui/professions/spare_parts.png",
     IconDisabled = "ui/professions/spare_parts_bw.png",
-    Const = "LegendSpareParts"
+    Const = "LegendSpareParts",
+    ScalingArray = [0, 6], // tool efficiency
+    ScalingFactor = 0.5
 });
 
 ::Legends.Profession.LegendSpotTheTells <- null;
@@ -668,7 +672,9 @@ professionDefObjects.push({
     Tooltip = ::Const.Strings.ProfessionDescription.LegendThrifty,
     Icon = "ui/professions/thrifty.png",
     IconDisabled = "ui/professions/thrifty_bw.png",
-    Const = "LegendThrifty"
+    Const = "LegendThrifty",
+    ScalingArray = [0, 20], // tool space
+    ScalingFactor = 0.05
 });
 
 ::Legends.Profession.LegendToolsDrawers <- null;

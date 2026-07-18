@@ -314,36 +314,25 @@
 		return ret;
 	}
 
-	o.craft = function ()
-	{
-		if (!this.isQualified())
-		{
+	o.craft = function () {
+		if (!this.isQualified()) {
 			return;
 		}
 
 		this.updateAchievement("IMadeThis", 1, 1);
-		local stash = this.World.Assets.getStash();
-		local hasAlchemist = this.World.Retinue.hasFollower("follower.alchemist");
+		local stash = ::World.Assets.getStash();
 
-		foreach( c in this.m.PreviewComponents )
-		{
-			for( local j = 0; j < c.Num; j = j )
-			{
+		foreach (c in this.m.PreviewComponents) {
+			for (local j = 0; j < c.Num; j = j) {
 				local item = stash.getItemByID(c.Instance.getID());
 
-				if (!hasAlchemist || item.getMagicNumber() > 25)
-				{
-					if ("Uses" in item.m && item.m.Uses > 1)
-					{
+				if (::World.Assets.m.ProfessionEffect.LegendThrifty <= 0 || item.getMagicNumber() > ::World.Assets.m.ProfessionEffect.LegendThrifty * 100) {
+					if ("Uses" in item.m && item.m.Uses > 1) {
 						item.m.Uses -= 1;
-					}
-					else
-					{
+					} else {
 						stash.remove(item);
 					}
-				}
-				else
-				{
+				} else {
 					item.setMagicNumber(this.Math.rand(1, 100));
 				}
 
