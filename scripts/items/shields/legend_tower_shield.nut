@@ -73,16 +73,17 @@ this.legend_tower_shield <- this.inherit("scripts/items/shields/shield", {
 		this.m.Value = 1000;
 		this.m.MeleeDefense = 25;
 		this.m.RangedDefense = 20;
-		this.m.StaminaModifier = -30;
+		this.m.StaminaModifier = -20;
 		this.m.Condition = 96;
 		this.m.ConditionMax = 96;
+		this.m.Block = 30;
+		this.m.RegularDamage = 10;
+		this.m.RegularDamage = 25;
 	}
 
-	function addVariants()
-	{
+	function addVariants() {
 		local bannerID = 0;
-		foreach (banner in ::Const.PlayerBanners)
-		{
+		foreach (banner in ::Const.PlayerBanners) {
 			bannerID = banner.slice("banner_".len()).tointeger();
 			if (this.m.Variants.find(bannerID) == null)
 				this.m.Variants.push(bannerID);
@@ -90,8 +91,7 @@ this.legend_tower_shield <- this.inherit("scripts/items/shields/shield", {
 		this.m.Variants.sort();
 	}
 
-	function updateVariant()
-	{
+	function updateVariant() {
 		local variant = this.m.Variant < 10 ? "0" + this.m.Variant : this.m.Variant;
 		this.m.Sprite = "towershield_" + variant;
 		this.m.SpriteDamaged = "towershield_" + variant + "_damaged";
@@ -100,21 +100,21 @@ this.legend_tower_shield <- this.inherit("scripts/items/shields/shield", {
 		this.m.Icon = "shields/icon_towershield_" + variant + ".png";
 	}
 
-	function onEquip()
-	{
+	function onEquip() {
 		this.shield.onEquip();
-		::Legends.Actives.grant(this, ::Legends.Active.LegendFortify);
+		::Legends.Actives.grant(this, ::Legends.Active.ShieldWall, function (_skill) {
+			this.m.Icon = "skills/fortify_square.png";
+			this.m.IconDisabled = "skills/fortify_square_bw.png";
+		});
 		::Legends.Actives.grant(this, ::Legends.Active.LegendSafeguard);
 	}
 
-	function onPaintSpecificColor( _color )
-	{
+	function onPaintSpecificColor( _color ) {
 		this.setVariant(_color);
 		this.updateAppearance();
 	}
 
-	function onPaintInCompanyColors()
-	{
+	function onPaintInCompanyColors() {
 		local bannerID = this.World.Assets.getBannerID() > 100 ? this.World.Assets.getBannerID() : this.World.Assets.getBannerID() + 11;
 		this.setVariant(bannerID);
 		this.updateAppearance();

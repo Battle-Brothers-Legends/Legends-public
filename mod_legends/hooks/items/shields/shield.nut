@@ -1,8 +1,9 @@
 ::mods_hookExactClass("items/shields/shield", function(o) {
 	o.m.Variants <- [];
 	o.m.IsIndestructible <- false;
-	o.m.Block <- 0;
-	o.m.Damage <- 0;
+	o.m.Block <- 15;
+	o.m.RegularDamage <- 10;
+	o.m.RegularDamageMax <- 25;
 
 	o.getIconOverlay <- function ()
 	{
@@ -47,15 +48,6 @@
 			}
 		}
 
-		if (this.m.RangedDefense > 0)
-		{
-			result.push({
-				id = 11,
-				type = "text",
-				icon = "ui/icons/special.png",
-				text = "Reduces any ranged damage taken by [color=%negative%]-" + 2 * this.m.RangedDefense + "%[/color]"
-			});
-		}
 		if (this.isRuned())
 		{
 			result.push({
@@ -131,10 +123,8 @@
 	}
 
 	local onUpdateProperties = o.onUpdateProperties;
-	o.onUpdateProperties = function (_properties)
-	{
+	o.onUpdateProperties = function (_properties) {
 		onUpdateProperties(_properties);
-		_properties.DamageReceivedRangedMult *= 1 - (0.02 * this.m.RangedDefense);
 		_properties.Block = this.getBlock();
 	}
 

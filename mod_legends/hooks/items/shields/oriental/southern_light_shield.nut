@@ -7,7 +7,26 @@
 			2,
 			3
 		];
+		this.m.Block = 15;
+		this.m.RegularDamage = 10;
+		this.m.RegularDamage = 25;
 		this.m.Variant = this.m.Variants[this.Math.rand(0, this.m.Variants.len() - 1)];
 		this.updateVariant();
+	}
+
+	o.getTooltip <- function () {
+		local result = this.shield.getTooltip();
+		result.push({
+			id = 11,
+			type = "text",
+			icon = "ui/icons/special.png",
+			text = "Reduces any ranged damage taken by [color=%negative%]15%[/color]"
+		});
+		return result;
+	}
+
+	o.onUpdateProperties <- function (_properties) {
+		this.shield.onUpdateProperties(_properties);
+		_properties.DamageReceivedRangedMult *= 0.85;
 	}
 });

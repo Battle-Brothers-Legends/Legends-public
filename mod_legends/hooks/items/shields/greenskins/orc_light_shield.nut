@@ -1,20 +1,11 @@
-::mods_hookExactClass("items/shields/ancient/coffin_shield", function(o) {
+::mods_hookExactClass("items/shields/greenskins/orc_light_shield", function(o) {
 	local create = o.create;
-	o.create = function ()
-	{
+	o.create = function () {
 		create();
-		this.m.Variants = [
-			1,
-			2,
-			3,
-			4
-		];
-		this.m.Variant = this.m.Variants[this.Math.rand(0, this.m.Variants.len() - 1)];
-		this.m.MeleeDefense = 15;
-		this.m.RangedDefense = 20;
-		this.m.Condition = 36;
-		this.m.ConditionMax = 36;
-		this.m.Block = 25;
+		this.m.Value = 100;
+		this.m.Condition = 24;
+		this.m.ConditionMax = 24;
+		this.m.Block = 15;
 		this.m.RegularDamage = 10;
 		this.m.RegularDamage = 25;
 	}

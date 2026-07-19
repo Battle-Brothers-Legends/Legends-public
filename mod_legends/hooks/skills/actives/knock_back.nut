@@ -1,29 +1,12 @@
 ::mods_hookExactClass("skills/actives/knock_back", function(o)
 {
-	o.m.RegularDamage <- 10;
-	o.m.RegularDamageMax <- 25;
-
 	local create = o.create;
 	o.create = function()
 	{
 		create();
 		this.m.HitChanceBonus = 25;
 		this.m.FatigueCost = 15;
-	}
-
-	o.setDamage <- function (_extraShieldDamageMin, _extraShieldDamageMax)
-	{
-		if (this.m.IsBaseValuesSaved) {
-			setBaseValue("RegularDamage", getBaseValue("RegularDamage") + _extraShieldDamageMin);
-			setBaseValue("RegularDamageMax", getBaseValue("RegularDamageMax") + _extraShieldDamageMin);
-			this.m.RegularDamage = getBaseValue("RegularDamage");
-			this.m.RegularDamageMax = getBaseValue("RegularDamageMax");
-		}
-		else {
-			this.m.RegularDamage += _extraShieldDamageMin;
-			this.m.RegularDamageMax += _extraShieldDamageMax;
-			saveBaseValues();
-		}
+		this.m.DirectDamageMult = 0.2;
 	}
 
 	o.getTooltip = function ()
@@ -107,12 +90,15 @@
 		if (_properties.IsSpecializedInShields)
 			this.m.HitChanceBonus += 15;
 
+		_properties.DamageRegularMin = this.getItem().getRegularDamageMin();
+		_properties.DamageRegularMax = this.getItem().getRegularDamageMax();
+		_properties.DamageArmorMult = 0.5;
+		_properties.FatigueDealtPerHitMult += 1.0;
+
 		if (::Legends.Perks.has(this, ::Legends.Perk.ShieldBash))
 		{
-			local item = this.getContainer().getActor().getOffhandItem();
-			local shieldBonus = this.Math.min(10, item == null ? 0 : this.Math.floor(item.m.ConditionMax * 0.05));
-			_properties.DamageRegularMin = this.m.RegularDamage + shieldBonus;
-			_properties.DamageRegularMax = this.m.RegularDamageMax + shieldBonus;
+			_properties.DamageRegularMin = this.getItem().getRegularDamageMin();
+			_properties.DamageRegularMax = this.getItem().getRegularDamageMax();
 			_properties.DamageArmorMult = 0.5;
 			_properties.FatigueDealtPerHitMult += 1.0;
 		}

@@ -1,9 +1,8 @@
 ::mods_hookExactClass("items/shields/heater_shield", function(o) {
 	local create = o.create;
-	o.create = function ()
-	{
+	o.create = function () {
 		create();
-				this.m.Variants = [
+			this.m.Variants = [
 			1,
 			2,
 			3,
@@ -64,14 +63,15 @@
 			this.m.Variants.push(42);
 		this.addVariants();
 		this.m.Variant = this.Math.rand(1, 11); //random one is only 1-11 though
+		this.m.Block = 20;
+		this.m.RegularDamage = 15;
+		this.m.RegularDamage = 30;
 		this.updateVariant();
 	}
 
-	o.addVariants <- function ()
-	{
+	o.addVariants <- function () {
 		local bannerID = 0;
-		foreach (banner in ::Const.PlayerBanners)
-		{
+		foreach (banner in ::Const.PlayerBanners) {
 			bannerID = banner.slice("banner_".len()).tointeger();
 			bannerID = bannerID >= 50 ? bannerID : bannerID + 11;
 			if (this.m.Variants.find(bannerID) == null)
@@ -82,14 +82,12 @@
 		this.m.Variants.sort();
 	}
 
-	o.onPaintSpecificColor <- function ( _color )
-	{
+	o.onPaintSpecificColor <- function ( _color ) {
 		this.setVariant(_color);
 		this.updateAppearance();
 	}
 
-	o.onPaintInCompanyColors = function ()
-	{
+	o.onPaintInCompanyColors = function () {
 		local bannerID = this.World.Assets.getBannerID() >= 50 ? this.World.Assets.getBannerID() : this.World.Assets.getBannerID() + 11;
 		this.setVariant(bannerID);
 		this.updateAppearance();

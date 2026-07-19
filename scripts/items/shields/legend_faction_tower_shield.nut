@@ -2,8 +2,7 @@ this.legend_faction_tower_shield <- this.inherit("scripts/items/shields/shield",
 	m = {
 		Faction = 1
 	},
-	function create()
-	{
+	function create() {
 		this.shield.create();
 		this.m.ID = "shield.legend_faction_tower_shield";
 		this.m.Name = "Noble Tower Shield";
@@ -27,13 +26,15 @@ this.legend_faction_tower_shield <- this.inherit("scripts/items/shields/shield",
 		this.m.Value = 1000;
 		this.m.MeleeDefense = 25;
 		this.m.RangedDefense = 20;
-		this.m.StaminaModifier = -30;
+		this.m.StaminaModifier = -20;
 		this.m.Condition = 96;
 		this.m.ConditionMax = 96;
+		this.m.Block = 30;
+		this.m.RegularDamage = 10;
+		this.m.RegularDamage = 25;
 	}
 
-	function updateVariant()
-	{
+	function updateVariant() {
 		local variant = this.m.Variant < 10 ? "0" + this.m.Variant : this.m.Variant;
 		this.m.Sprite = "towershield_noble_" + variant;
 		this.m.SpriteDamaged = "towershield_noble_" + variant + "_damaged";
@@ -42,15 +43,16 @@ this.legend_faction_tower_shield <- this.inherit("scripts/items/shields/shield",
 		this.m.Icon = "shields/icon_faction_towershield_" + variant + ".png";
 	}
 
-	function onEquip()
-	{
+	function onEquip() {
 		this.shield.onEquip();
-		::Legends.Actives.grant(this, ::Legends.Active.LegendFortify);
+		::Legends.Actives.grant(this, ::Legends.Active.ShieldWall, function (_skill) {
+			this.m.Icon = "skills/fortify_square.png";
+			this.m.IconDisabled = "skills/fortify_square_bw.png";
+		});
 		::Legends.Actives.grant(this, ::Legends.Active.LegendSafeguard);
 	}
 
-	function setFaction( _f )
-	{
+	function setFaction( _f ) {
 		this.m.Faction = _f;
 		this.m.Variant = _f;
 		this.updateVariant();

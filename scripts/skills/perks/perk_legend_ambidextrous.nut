@@ -2,11 +2,6 @@ this.perk_legend_ambidextrous <- this.inherit("scripts/skills/skill", {
 	m = {
 		offHandSkill = null,
 		HandToHand = null,
-		ApplicableItems = [
-			"shield.buckler",
-			"shield.named_buckler",
-			"shield.legend_mummy_shield"
-		],
 	},
 
 	function getHandToHandSkill(){
@@ -15,15 +10,6 @@ this.perk_legend_ambidextrous <- this.inherit("scripts/skills/skill", {
     	skill = ::Legends.Actives.get(this, ::Legends.Active.GreaterFleshGolemAttack);
     	if (skill != null) return skill;
     	return ::Legends.Actives.get(this, ::Legends.Active.HandToHand);
-	}
-
-	// takes a weakTableRef
-	function setOffhandSkill(_a) {
-		this.m.offHandSkill = ::MSU.asWeakTableRef(_a);
-	}
-
-	function resetOffhandSkill() {
-		this.m.offHandSkill = null;
 	}
 
 	function create() {
@@ -201,28 +187,4 @@ this.perk_legend_ambidextrous <- this.inherit("scripts/skills/skill", {
 			_properties.MeleeSkill += 5;
 		}
 	}
-
-	function onAdded() {
-		local off = this.getContainer().getActor().getOffhandItem();
-		if (off != null) {
-			this.onEquip(off);
-		}
-	}
-
-	function onEquip(_item) {
-		if (this.m.ApplicableItems.find(_item.getID()) == null) {
-			return; // not a right one
-		}
-
-		setOffhandSkill(_item.getPrimaryOffhandAttack());
-	}
-
-	function onUnequip(_item) {
-		if (this.m.ApplicableItems.find(_item.getID()) == null) {
-			return; // not a right one
-		}
-
-		resetOffhandSkill();
-	}
-
 });

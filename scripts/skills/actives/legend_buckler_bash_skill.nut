@@ -31,7 +31,7 @@ this.legend_buckler_bash_skill <- this.inherit("scripts/skills/skill", {
 		this.m.IsWeaponSkill = false;
 		this.m.InjuriesOnBody = this.Const.Injury.BluntBody;
 		this.m.InjuriesOnHead = this.Const.Injury.BluntHead;
-		this.m.DirectDamageMult = 0.5;
+		this.m.DirectDamageMult = 0.2;
 		this.m.ActionPointCost = 4;
 		this.m.FatigueCost = 10;
 		this.m.MinRange = 1;
@@ -95,17 +95,15 @@ this.legend_buckler_bash_skill <- this.inherit("scripts/skills/skill", {
 		return success;
 	}
 
-	function onAnySkillUsed( _skill, _targetEntity, _properties )
-	{
-		if (_skill == this)
-		{
-			_properties.DamageRegularMin = 5;
-			_properties.DamageRegularMax = 10;
+	function onAnySkillUsed( _skill, _targetEntity, _properties ) {
+		if (_skill == this) {
+			_properties.DamageRegularMin = this.getItem().getRegularDamageMin();
+			_properties.DamageRegularMax = this.getItem().getRegularDamageMax();
+			_properties.DamageArmorMult = 0.5;
 			_properties.FatigueDealtPerHitMult += 1.0;
-			if (this.getContainer().hasPerk(::Legends.Perk.ShieldBash))
-			{
-				_properties.DamageRegularMin = 8;
-				_properties.DamageRegularMax = 15;
+			if (this.getContainer().hasPerk(::Legends.Perk.ShieldBash)) {
+				_properties.DamageRegularMin += 3;
+				_properties.DamageRegularMax += 5;
 			}
 		}
 	}

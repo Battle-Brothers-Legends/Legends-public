@@ -16,7 +16,7 @@
 		this.m.StaminaModifier = -18;
 		this.m.ArmorDamageMult = 1.2;
 		this.m.ShieldDamage = 0;
-		named_weapon.randomizeValues();
+		this.named_weapon.randomizeValues();
 	}
 
 	o.onEquip = function () {

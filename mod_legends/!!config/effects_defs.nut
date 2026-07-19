@@ -1126,14 +1126,6 @@ effectsDefs.push({
 	Const = "LegendGrappled"
 });
 
-::Legends.Effect.LegendFortify <- null;
-effectsDefs.push({
-	ID = "effects.legend_fortify",
-	Script = "scripts/skills/effects/legend_fortify_effect",
-	Name = "Fortify",
-	Const = "LegendFortify"
-});
-
 ::Legends.Effect.LegendSafeguarding <- null;
 effectsDefs.push({
 	ID = "effects.legend_safeguarding",

@@ -21,9 +21,12 @@ this.legend_mummy_shield <- this.inherit("scripts/items/shields/shield", {
 		this.m.Value = 200;
 		this.m.MeleeDefense = 8;
 		this.m.RangedDefense = 8;
+		this.m.Block = 12;
+		this.m.RegularDamage = 5;
+		this.m.RegularDamage = 10;
 		this.m.StaminaModifier = -6;
-		this.m.Condition = 26;
-		this.m.ConditionMax = 26;
+		this.m.Condition = 18;
+		this.m.ConditionMax = 18;
 	}
 
 	function updateVariant()
@@ -35,30 +38,14 @@ this.legend_mummy_shield <- this.inherit("scripts/items/shields/shield", {
 		this.m.Icon = "shields/icon_mummy_shield_0" + this.m.Variant + ".png";
 	}
 
-	function onEquip()
-	{
+	function onEquip() {
 		this.shield.onEquip();
-		::Legends.Actives.grant(this, ::Legends.Active.KnockBack);
-		::Legends.Actives.grant(this, ::Legends.Active.LegendBucklerBash, function (_skill) {
-			this.m.PrimaryOffhandAttack = ::MSU.asWeakTableRef(_skill);
-		}.bindenv(this));
+		::Legends.Actives.grant(this, ::Legends.Active.LegendBucklerBash);
 		::Legends.Effects.grant(this, ::Legends.Effect.LegendBuckler, function(_effect) {
 			_effect.m.Order = this.Const.SkillOrder.UtilityTargeted + 1;
 			_effect.setItem(this);
 			this.m.SkillPtrs.push(_effect);
 		}.bindenv(this));
 	}
-
-	function onUnequip ()
-	{
-		shield.onUnequip();
-		m.PrimaryOffhandAttack = null;
-	}
-
-	function getPrimaryOffhandAttack ()
-	{
-		return m.PrimaryOffhandAttack;
-	}
-
 });
 

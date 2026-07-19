@@ -19,9 +19,28 @@ this.legend_mummy_tower_shield <- this.inherit("scripts/items/shields/shield", {
 		this.m.Value = 850;
 		this.m.MeleeDefense = 15;
 		this.m.RangedDefense = 30;
-		this.m.StaminaModifier = -30;
+		this.m.StaminaModifier = -20;
 		this.m.Condition = 52;
 		this.m.ConditionMax = 52;
+		this.m.Block = 25;
+		this.m.RegularDamage = 10;
+		this.m.RegularDamage = 25;
+	}
+
+	function getTooltip () {
+		local result = this.shield.getTooltip();
+		result.push({
+			id = 11,
+			type = "text",
+			icon = "ui/icons/special.png",
+			text = "Reduces any ranged damage taken by [color=%negative%]30%[/color]"
+		});
+		return result;
+	}
+
+	o.onUpdateProperties <- function (_properties) {
+		this.shield.onUpdateProperties(_properties);
+		_properties.DamageReceivedRangedMult *= 0.7;
 	}
 
 	function updateVariant()
@@ -36,7 +55,10 @@ this.legend_mummy_tower_shield <- this.inherit("scripts/items/shields/shield", {
 	function onEquip()
 	{
 		this.shield.onEquip();
-		::Legends.Actives.grant(this, ::Legends.Active.LegendFortify);
+		::Legends.Actives.grant(this, ::Legends.Active.ShieldWall, function (_skill) {
+			this.m.Icon = "skills/fortify_square.png";
+			this.m.IconDisabled = "skills/fortify_square_bw.png";
+		});
 		::Legends.Actives.grant(this, ::Legends.Active.LegendSafeguard);
 	}
 

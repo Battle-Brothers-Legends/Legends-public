@@ -2310,14 +2310,6 @@ activesDefs.push({
 	Name = "Flogging",
 });
 
-::Legends.Active.LegendFortify <- null;
-activesDefs.push({
-	ID = "actives.legend_fortify",
-	Script = "scripts/skills/actives/legend_fortify_skill",
-	Const = "LegendFortify",
-	Name = "Fortify",
-});
-
 ::Legends.Active.LegendGrowGreenwoodShield <- null;
 activesDefs.push({
 	ID = "actives.legend_grow_greenwood_shield",

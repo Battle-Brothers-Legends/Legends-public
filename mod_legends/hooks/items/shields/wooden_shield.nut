@@ -1,9 +1,7 @@
 ::mods_hookExactClass("items/shields/wooden_shield", function(o) {
 	local create = o.create;
-	o.create = function ()
-	{
+	o.create = function () {
 		create();
-		this.m.Block = 15;
 		this.m.Variants = [
 			0,
 			1,
@@ -66,13 +64,14 @@
 		this.addVariants();
 		this.m.Variant = this.Math.rand(0, 9); //random one is only 1-9 though
 		this.updateVariant();
+		this.m.Block = 20;
+		this.m.RegularDamage = 10;
+		this.m.RegularDamage = 25;
 	}
 
-	o.addVariants <- function ()
-	{
+	o.addVariants <- function () {
 		local bannerID = 0;
-		foreach (banner in ::Const.PlayerBanners)
-		{
+		foreach (banner in ::Const.PlayerBanners) {
 			bannerID = banner.slice("banner_".len()).tointeger();
 			bannerID = bannerID >= 50 ? bannerID : bannerID + 10;
 			if (this.m.Variants.find(bannerID) == null)
@@ -84,14 +83,12 @@
 		this.m.Variants.sort();
 	}
 
-	o.onPaintSpecificColor <- function ( _color )
-	{
+	o.onPaintSpecificColor <- function ( _color ) {
 		this.setVariant(_color);
 		this.updateAppearance();
 	}
 
-	o.onPaintInCompanyColors = function ()
-	{
+	o.onPaintInCompanyColors = function () {
 		local bannerID = this.World.Assets.getBannerID() >= 50 ? this.World.Assets.getBannerID() : this.World.Assets.getBannerID() + 10;
 		this.setVariant(bannerID);
 		this.updateAppearance();
