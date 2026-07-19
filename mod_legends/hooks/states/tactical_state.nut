@@ -752,9 +752,9 @@
 
 		if (!isArena && !this.isScenarioMode())
 		{
-			if (this.Tactical.Entities.getAmmoSpent() > 0 && ::World.Assets.m.LegendAmmoScrounger > 0)
+			if (::Tactical.Entities.getAmmoSpent() > 0 && ::World.Assets.m.ProfessionEffect.LegendAmmoScrounger > 0)
 			{
-				local amount = ::Math.max(1, ::Tactical.Entities.getAmmoSpent() * ::World.Assets.m.LegendAmmoScrounger);
+				local amount = ::Math.max(1, ::Tactical.Entities.getAmmoSpent() * ::World.Assets.m.ProfessionEffect.LegendAmmoScrounger);
 				amount = ::Math.rand(amount / 2, amount);
 
 				if (amount > 0)
