@@ -60,9 +60,12 @@
 	}
 
 	o.getDailyFood = function () {
-		local food = ::Math.maxf(0.0, this.m.CurrentProperties.DailyFood) / ::World.Assets.m.ProfessionEffect.LegendRationing;
+		local food = ::Math.maxf(0.0, this.m.CurrentProperties.DailyFood);
 		if (this.isInReserves() && !this.m.Skills.hasPerk(::Legends.Perk.LegendPeaceful)) {
 			food *= 2;
+		}
+		if(::World.Assets.m.ProfessionEffect.LegendRationing > 0){
+			food /= ::World.Assets.m.ProfessionEffect.LegendRationing;
 		}
 		return ::Math.maxf(0.0, food);
 	}
