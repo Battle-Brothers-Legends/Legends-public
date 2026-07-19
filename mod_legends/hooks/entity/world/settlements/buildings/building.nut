@@ -101,8 +101,8 @@
 				}
 
 				num = ++num;
-
-				if (num >= 3 || !isTrader && num >= 2 && item.isItemType(::Const.Items.ItemType.TradeGood)) {
+				
+				if (num >= 3 || (num >= (2 + ((::World.Assets.m.ProfessionEffect.LegendFriendsInRightPlaces * 100).tointeger() + ::Math.rand(0, 99)) / 100) && item.isItemType(::Const.Items.ItemType.TradeGood))) {
 					break;
 				}
 			}

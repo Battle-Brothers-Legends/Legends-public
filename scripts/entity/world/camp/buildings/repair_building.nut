@@ -252,8 +252,8 @@ this.repair_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 
 		ret.Craft += this.m.BaseCraft;
 		ret.Craft = ret.Craft * this.World.Assets.m.RepairSpeedMult;
-		if (::World.Retinue.hasFollower("follower.blacksmith"))
-			ret.Craft *= 1.33; // should be taken into account (blacksmith influence)
+		if (::World.Assets.m.ProfessionEffect.LegendHammerThemOut > 0)
+			ret.Craft *= (1 + ::World.Assets.m.ProfessionEffect.LegendHammerThemOut);
 		local buff =  this.Math.ceil(this.World.getPlayerRoster().getAll().len() * this.Const.Difficulty.RepairMult[this.World.Assets.getEconomicDifficulty()] * this.World.Assets.m.RepairSpeedMult * (1.33 * this.Const.World.Assets.ArmorPerHour));
 		ret.Craft = ret.Craft + buff; // to buff it as a compensation for disabling asset_manager part while camping
 		if (this.getUpgraded())

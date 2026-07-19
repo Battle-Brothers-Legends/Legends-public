@@ -316,6 +316,32 @@ professionDefObjects.push({
     ScalingFactor = 0.05
 });
 
+::Legends.Profession.LegendFoodPreservation <- null;
+professionDefObjects.push({
+    ID = "profession.legend_food_preservation",
+    Script = "scripts/skills/professions/profession_legend_food_preservation",
+    Name = ::Const.Strings.ProfessionName.LegendFoodPreservation,
+    Tooltip = ::Const.Strings.ProfessionDescription.LegendFoodPreservation,
+    Icon = "ui/professions/food_preservation.png",
+    IconDisabled = "ui/professions/food_preservation_bw.png",
+    Const = "LegendFoodPreservation",
+    ScalingArray = [0, 2], // extra time before food spoils
+    ScalingFactor = 0.5
+});
+
+::Legends.Profession.LegendFriendsInRightPlaces <- null;
+professionDefObjects.push({
+    ID = "profession.legend_friends_in_right_places",
+    Script = "scripts/skills/professions/profession_legend_friends_in_right_places",
+    Name = ::Const.Strings.ProfessionName.LegendFriendsInRightPlaces,
+    Tooltip = ::Const.Strings.ProfessionDescription.LegendFriendsInRightPlaces,
+    Icon = "ui/professions/friends_in_right_places.png",
+    IconDisabled = "ui/professions/friends_in_right_places_bw.png",
+    Const = "LegendFriendsInRightPlaces",
+    ScalingArray = [0, 0.85], // extra trade goods in cities, fractions are a chance (1.15 = +1 and 15% chance of +2)
+    ScalingFactor = 0.1
+});
+
 ::Legends.Profession.LegendGathering <- null;
 professionDefObjects.push({
     ID = "profession.legend_gathering",
@@ -338,6 +364,19 @@ professionDefObjects.push({
     Const = "LegendGreasedPalms",
     ScalingArray = [0, 2], // items shown in a caravan's inventory
     ScalingFactor = 0.5
+});
+
+::Legends.Profession.LegendHammerThemOut <- null;
+professionDefObjects.push({
+    ID = "profession.legend_hammer_them_out",
+    Script = "scripts/skills/professions/profession_legend_hammer_them_out",
+    Name = ::Const.Strings.ProfessionName.LegendHammerThemOut,
+    Tooltip = ::Const.Strings.ProfessionDescription.LegendHammerThemOut,
+    Icon = "ui/professions/hammer_them_out.png",
+    IconDisabled = "ui/professions/hammer_them_out_bw.png",
+    Const = "LegendHammerThemOut",
+    ScalingArray = [0, 0.3], // repair speed bonus
+    ScalingFactor = 0.2
 });
 
 ::Legends.Profession.LegendHerbcraft <- null;

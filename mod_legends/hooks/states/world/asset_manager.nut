@@ -603,9 +603,9 @@
 				foreach (item in items) {
 					if (item.getRepair() < item.getRepairMax()) {
 						local d = this.Math.ceil(this.Math.minf(this.Const.World.Assets.ArmorPerHour * this.Const.Difficulty.RepairMult[this.World.Assets.getEconomicDifficulty()] * this.m.RepairSpeedMult, item.getRepairMax() - item.getRepair())); //rounding is crucial because otherwise it repairs nothing but eats tools if below 1, and in any case repair value has to be a round value
-						if (::World.Retinue.hasFollower("follower.blacksmith")) {
+						if (::World.Assets.m.ProfessionEffect.LegendHammerThemOut > 0) {
 							// Round blacksmith bonus for better determinism
-							d = this.Math.ceil(d * 1.33);
+							d = this.Math.ceil(d * (1 + ::World.Assets.m.ProfessionEffect.LegendHammerThemOut));
 						}
 						item.onRepair(item.getRepair() + d);
 						// Round to 3 decimal places for better determinism
@@ -635,8 +635,8 @@
 
 			 local items = this.m.Stash.getItems();
 			 local stashmaxrepairpotential = this.Math.ceil(roster.len() * this.Const.Difficulty.RepairMult[this.World.Assets.getEconomicDifficulty()] * this.m.RepairSpeedMult * this.Const.World.Assets.ArmorPerHour); //otherwise fixed version will be too good
-			 if (::World.Retinue.hasFollower("follower.blacksmith"))
-				stashmaxrepairpotential *= 1.33; // should be taken into account (blacksmith influence)
+			 if (::World.Assets.m.ProfessionEffect.LegendHammerThemOut > 0)
+				stashmaxrepairpotential *= (1 + ::World.Assets.m.ProfessionEffect.LegendHammerThemOut); // should be taken into account (blacksmith influence)
 			 foreach( item in items )
 			 {
 				if (this.isCamping()) //disable in camp, otherwise mess

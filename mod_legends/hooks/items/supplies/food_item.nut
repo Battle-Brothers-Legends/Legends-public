@@ -16,6 +16,10 @@
 		return this.Math.floor(1 * (this.getSpoilInDays() / (this.m.GoodForDays * 1.0)) * this.m.Value);
 	}
 
+	o.getBestBeforeTime = function () {
+		return this.m.BestBefore + (("State" in ::World) && ::World.State != null ? ::World.Assets.m.ProfessionEffect.FoodPreservation * ::World.getTime().SecondsPerDay : 0);
+	}
+
 	o.randomizeAmount = function() {
 		this.m.IsRandomized = true;
 		this.m.MaxStack = this.m.Amount;

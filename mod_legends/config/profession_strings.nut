@@ -22,8 +22,11 @@
 ::Const.Strings.ProfessionName.LegendEyeForTalent <- "Eye For Talent";
 ::Const.Strings.ProfessionName.LegendFerretItOut <- "Ferret It Out";
 ::Const.Strings.ProfessionName.LegendFieldSurgery <- "Field Surgery";
+::Const.Strings.ProfessionName.LegendFoodPreservation <- "Food Preservation";
+::Const.Strings.ProfessionName.LegendFriendsInRightPlaces <- "Friends in Right Places";
 ::Const.Strings.ProfessionName.LegendGathering <- "Gathering";
 ::Const.Strings.ProfessionName.LegendGreasedPalms <- "Greased Palms";
+::Const.Strings.ProfessionName.LegendHammerThemOut <- "Hammer Them Out";
 ::Const.Strings.ProfessionName.LegendHerbcraft <- "Herbcraft";
 ::Const.Strings.ProfessionName.LegendHighwayman <- "Highwayman";
 ::Const.Strings.ProfessionName.LegendHippology <- "Hippology";
@@ -247,6 +250,20 @@ Sew up the holes, saw off the rot, and pour boiling wine over whatever is left.
 • Increases the chance of a brother surviving with a permanent injury when struck down.
 ";
 
+::Const.Strings.ProfessionDescription.LegendFoodPreservation <- @"
+Salt, smoke, and careful packing ensure the food doesn't spoil prematurely.
+
+[color=%passive%][u]Passive:[/u][/color]
+• Makes all provisions last longer.
+";
+
+::Const.Strings.ProfessionDescription.LegendFriendsInRightPlaces <- @"
+The best wares are always kept in the back room, reserved for the very best clientele.
+
+[color=%passive%][u]Passive:[/u][/color]
+• Increases the amount of trade goods available for sale by in towns.
+";
+
 ::Const.Strings.ProfessionDescription.LegendGathering <- @"
 Knowledge of the landscape and vegetation provides a wealth of opportunities for those willing to take advantage.
 
@@ -259,6 +276,13 @@ A few extra coins slipped to a caravan guard can expose exactly which wagons are
 
 [color=%passive%][u]Passive:[/u][/color]
 • Reveals the most expensive items in a caravan.
+";
+
+::Const.Strings.ProfessionDescription.LegendHammerThemOut <- @"
+A shrewd mercenary learns to patch the holes in their gear swiftly whenever opportunity presents itself.
+
+[color=%passive%][u]Passive:[/u][/color]
+• Increases repair speed.
 ";
 
 ::Const.Strings.ProfessionDescription.LegendHerbcraft <- @"
