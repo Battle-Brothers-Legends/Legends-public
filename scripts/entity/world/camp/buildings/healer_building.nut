@@ -373,38 +373,40 @@ this.healer_building <- this.inherit("scripts/entity/world/camp/camp_building", 
         	}
 		}
 
-		foreach (i, obj in this.m.Queue) {
-			local r = obj.Injury;
+		if(modifiers.Assigned > 0) {
+			foreach (i, obj in this.m.Queue) {
+				local r = obj.Injury;
 
-			if (!r.isTreatable()) {
-				this.logError(r.getName() + " in healer tent queue");
-				continue;
-			}
-			if (r.isTreated()) {
-				this.healInjury(i);
-				continue;
-			}
+				if (!r.isTreatable()) {
+					this.logError(r.getName() + " in healer tent queue");
+					continue;
+				}
+				if (r.isTreated()) {
+					this.healInjury(i);
+					continue;
+				}
 
-			if (this.World.Assets.getMedicine() <= 0) {
-				continue;
-			}
+				if (this.World.Assets.getMedicine() <= 0) {
+					continue;
+				}
 
-			local needed = this.getCost(r) - r.getPoints();
-			if (modifiers.Craft < needed) {
-				needed = modifiers.Craft;
-			}
+				local needed = this.getCost(r) - r.getPoints();
+				if (modifiers.Craft < needed) {
+					needed = modifiers.Craft;
+				}
 
-			r.setPoints(r.getPoints() + needed);
-			modifiers.Craft -= needed;
+				r.setPoints(r.getPoints() + needed);
+				modifiers.Craft -= needed;
 
-			this.World.Assets.addMedicine(-needed);
+				this.World.Assets.addMedicine(-needed);
 
-			if (r.getPoints() >= this.getCost(r)) {
-				this.healInjury(i);
-			}
+				if (r.getPoints() >= this.getCost(r)) {
+					this.healInjury(i);
+				}
 
-			if (modifiers.Craft <= 0) {
-				break;
+				if (modifiers.Craft <= 0) {
+					break;
+				}
 			}
 		}
 
