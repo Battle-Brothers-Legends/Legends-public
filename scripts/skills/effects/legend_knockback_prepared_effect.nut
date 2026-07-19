@@ -2,8 +2,7 @@ this.legend_knockback_prepared_effect <- this.inherit("scripts/skills/skill", {
 	m = {
 		AttacksLeft = 1
 	},
-	function create()
-	{
+	function create() {
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendKnockbackPrepared);
 		this.m.Icon = "ui/perks/smackdown_circle.png";
 		this.m.IconMini = "mini_smackdown_circle";
@@ -13,13 +12,11 @@ this.legend_knockback_prepared_effect <- this.inherit("scripts/skills/skill", {
 		this.m.IsRemovedAfterBattle = true;
 	}
 
-	function getDescription()
-	{
+	function getDescription() {
 		return "This character is preparing an attack to inflict strong blow that will push the target back and baffle them if it connects.";
 	}
 
-	function getTooltip()
-	{
+	function getTooltip() {
 		return [
 			{
 				id = 1,
@@ -44,14 +41,20 @@ this.legend_knockback_prepared_effect <- this.inherit("scripts/skills/skill", {
 		this.m.AttacksLeft = 1;
 	}
 
-	function onTargetHit( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor )
-	{
-		if (!_skill.m.IsAttack || _skill.isRanged())
+	function onTargetHit( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor ) {
+		if (!_skill.m.IsAttack) {
 			return;
+		}
+
+		local item = _skill.getItem();
+		if (_skill.m.isRanged() && item != null && !item.isWeaponType(this.Const.Items.WeaponType.Throwing)) {
+			return;
+		}
 
 		--this.m.AttacksLeft;
-		if (this.m.AttacksLeft <= 0)
+		if (this.m.AttacksLeft <= 0) {
 			this.removeSelf();
+		}
 
 		if (::Legends.S.skillEntityAliveCheck(_targetEntity))
 			return;
@@ -59,8 +62,7 @@ this.legend_knockback_prepared_effect <- this.inherit("scripts/skills/skill", {
 		::Legends.Effects.grant(_targetEntity, ::Legends.Effect.LegendBaffled);
 	}
 
-	function onTargetMissed( _skill, _targetEntity )
-	{
+	function onTargetMissed( _skill, _targetEntity ) {
 		if (!_skill.m.IsAttack || _skill.isRanged())
 			return;
 
@@ -69,8 +71,7 @@ this.legend_knockback_prepared_effect <- this.inherit("scripts/skills/skill", {
 			this.removeSelf();
 	}
 
-	function findTileToKnockBackTo( _userTile, _targetTile )
-	{
+	function findTileToKnockBackTo( _userTile, _targetTile ) {
 		local dir = _userTile.getDirectionTo(_targetTile);
 
 		if (_targetTile.hasNextTile(dir))
@@ -83,8 +84,7 @@ this.legend_knockback_prepared_effect <- this.inherit("scripts/skills/skill", {
 
 		local altdir = dir - 1 >= 0 ? dir - 1 : 5;
 
-		if (_targetTile.hasNextTile(altdir))
-		{
+		if (_targetTile.hasNextTile(altdir)) {
 			local knockToTile = _targetTile.getNextTile(altdir);
 
 			if (knockToTile.IsEmpty && knockToTile.Level - _targetTile.Level <= 1)
@@ -93,8 +93,7 @@ this.legend_knockback_prepared_effect <- this.inherit("scripts/skills/skill", {
 
 		altdir = dir + 1 <= 5 ? dir + 1 : 0;
 
-		if (_targetTile.hasNextTile(altdir))
-		{
+		if (_targetTile.hasNextTile(altdir)) {
 			local knockToTile = _targetTile.getNextTile(altdir);
 
 			if (knockToTile.IsEmpty && knockToTile.Level - _targetTile.Level <= 1)
