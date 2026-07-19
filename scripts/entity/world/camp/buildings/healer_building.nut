@@ -398,7 +398,8 @@ this.healer_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 				r.setPoints(r.getPoints() + needed);
 				modifiers.Craft -= needed;
 
-				this.World.Assets.addMedicine(-needed);
+				::World.Assets.addMedicine(-needed);
+				this.m.MedsUsed += needed;
 
 				if (r.getPoints() >= this.getCost(r)) {
 					this.healInjury(i);
