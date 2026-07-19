@@ -71,24 +71,36 @@ this.perk_legend_smackdown <- this.inherit("scripts/skills/skill", {
 
 	function onTargetHit(_skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor) {
 		this.m.TilesUsed = [];
-		if (_skill.isRanged()) return;
+		local item = _skill.getItem();
+		if (_skill.isRanged() && item != null && !item.isWeaponType(this.Const.Items.WeaponType.Throwing)) {
+			return;
+		}
 
-		if (::Legends.S.skillEntityAliveCheck(_targetEntity)) return;
+		if (::Legends.S.skillEntityAliveCheck(_targetEntity)) {
+			return;
+		}
 
-		if (_targetEntity.isNonCombatant()) return;
+		if (_targetEntity.isNonCombatant()) {
+			return;
+		}
 
 		local user = _skill.getContainer().getActor();
 
-		if (!user.getSkills().hasEffect(::Legends.Effect.LegendKnockbackPrepared)) return;
-
-		if (_targetEntity.getCurrentProperties().IsRooted || _targetEntity.getCurrentProperties().IsImmuneToKnockBackAndGrab)
+		if (!user.getSkills().hasEffect(::Legends.Effect.LegendKnockbackPrepared)) {
 			return;
+		}
+
+		if (_targetEntity.getCurrentProperties().IsRooted || _targetEntity.getCurrentProperties().IsImmuneToKnockBackAndGrab) {
+			return;
+		}
 
 		local targetTile = _targetEntity.getTile();
 
 		local knockToTile = this.findTileToKnockBackTo(user.getTile(), targetTile);
 
-		if (knockToTile == null) return;
+		if (knockToTile == null) {
+			return;
+		}
 
 		this.m.TilesUsed.push(knockToTile.ID);
 
@@ -102,8 +114,9 @@ this.perk_legend_smackdown <- this.inherit("scripts/skills/skill", {
 	}
 
 	function onKnockedDown(_entity, _tag) {
-		if (_tag.Skill.m.SoundOnHit.len() != 0)
+		if (_tag.Skill.m.SoundOnHit.len() != 0) {
 			this.Sound.play(_tag.Skill.m.SoundOnHit[this.Math.rand(0, _tag.Skill.m.SoundOnHit.len() - 1)], this.Const.Sound.Volume.Skill, _entity.getPos());
+		}
 	}
 
 	function onUpdate(_properties) {

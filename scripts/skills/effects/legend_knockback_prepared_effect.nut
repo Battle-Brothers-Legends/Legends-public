@@ -47,7 +47,7 @@ this.legend_knockback_prepared_effect <- this.inherit("scripts/skills/skill", {
 		}
 
 		local item = _skill.getItem();
-		if (_skill.m.isRanged() && item != null && !item.isWeaponType(this.Const.Items.WeaponType.Throwing)) {
+		if (_skill.isRanged() && item != null && !item.isWeaponType(this.Const.Items.WeaponType.Throwing)) {
 			return;
 		}
 
