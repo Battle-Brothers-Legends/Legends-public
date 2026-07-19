@@ -885,9 +885,11 @@
 			return null;
 		}
 		local entity = ::Tactical.getEntityByID(this.m.SelectedBrotherID);
-		foreach (bro in ::World.getPlayerRoster().getAll()) {
-			if (bro.getID() == entity.getID()) {
-				return bro;
+		if (entity != null) {
+			foreach (bro in ::World.getPlayerRoster().getAll()) {
+				if (bro.getID() == entity.getID()) {
+					return bro;
+				}
 			}
 		}
 		return null;
