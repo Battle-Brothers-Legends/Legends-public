@@ -17,7 +17,7 @@
 	}
 
 	o.getBestBeforeTime = function () {
-		return this.m.BestBefore + (("State" in ::World) && ::World.State != null ? ::World.Assets.m.ProfessionEffect.FoodPreservation * ::World.getTime().SecondsPerDay : 0);
+		return this.m.BestBefore + (("State" in ::World) && ::World.State != null ? ::World.Assets.m.ProfessionEffect.LegendFoodPreservation * ::World.getTime().SecondsPerDay : 0);
 	}
 
 	o.randomizeAmount = function() {
