@@ -2,7 +2,7 @@
 {
 	o.m.Attempts <- [];
 
-	o.getMaxAttempts <- @() ::World.Assets.m.IsArenaTooled ? 3 : 1;
+	o.getMaxAttempts <- @() (1 + ((::World.Assets.m.ProfessionEffect.LegendBreadAndGames * 100).tointeger() + ::Math.rand(0, 99)) / 100);
 	o.getCurrentAttempts <- @() this.m.Attempts.len();
 
 	o.registerAttempt <- function() {

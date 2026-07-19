@@ -115,6 +115,11 @@
 		this.m.LastCampAssignment = _id;
 	}
 
+	local improveMood = o.improveMood;
+	o.improveMood = function (_a = 1.0, _reason = "") {
+		improveMood(_a * (1 + ::World.Assets.m.ProfessionEffect.LegendAmusingOurselvesToDeath), _reason);
+	}
+
 	o.getHiringTraits = function () {
 		local ret = [];
 

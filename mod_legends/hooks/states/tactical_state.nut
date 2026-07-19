@@ -357,7 +357,7 @@
 							bro.getLifetimeStats().BattlesWithoutMe = 0;
 							bro.improveMood(this.Const.MoodChange.BattleWon, "Won a battle");
 						}
-						else if (bro.getMoodState() > this.Const.MoodState.Concerned && !bro.getCurrentProperties().IsContentWithBeingInReserve && !this.World.Assets.m.IsDisciplined)
+						else if (bro.getMoodState() > this.Const.MoodState.Concerned && !bro.getCurrentProperties().IsContentWithBeingInReserve && ::World.Assets.m.ProfessionEffect.LegendBreadAndGames <= 0)
 						{
 							++bro.getLifetimeStats().BattlesWithoutMe;
 

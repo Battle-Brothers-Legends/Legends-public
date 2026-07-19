@@ -14,6 +14,27 @@
 		Wildcard = []
 	};
 
+	o.normalizeRelation = function () {
+		if (!this.m.IsRelationDecaying) {
+			return;
+		}
+
+		if (this.m.PlayerRelation > 50.0) {
+			this.setPlayerRelation(::Math.maxf(50.0, this.m.PlayerRelation - this.m.RelationDecayPerDay * ::World.Assets.m.RelationDecayGoodMult * (::World.Assets.m.ProfessionEffect.LegendDiplomat > 0 ? 0.85 : 1.0))); // relation decay mult kept for escaped slaves
+		} else if (this.m.PlayerRelation < 50.0) {
+			this.setPlayerRelation(this.Math.minf(50.0, this.m.PlayerRelation + this.m.RelationDecayPerDay * ::World.Assets.m.RelationDecayBadMult * (::World.Assets.m.ProfessionEffect.LegendDiplomat > 0 ? 1.15 : 1.0))); // relation decay mult kept for escaped slaves
+		}
+
+		if (this.m.PlayerRelationChanges.len() != 0	&& this.m.PlayerRelationChanges[this.m.PlayerRelationChanges.len() - 1].Time + ::Const.World.Assets.RelationTimeOut < ::Time.getVirtualTimeF())	{
+			this.m.PlayerRelationChanges.remove(this.m.PlayerRelationChanges.len() - 1);
+		}
+	}
+
+	local addPlayerRelation = o.addPlayerRelation;
+	o.addPlayerRelation = function(_r, _reason = "") {
+		addPlayerRelation(_r * (1 + ::World.Assets.m.ProfessionEffect.LegendDiplomat), _reason);
+	}
+
 	o.getPlayerRelationAsText = function ()
 	{
 		if (this.m.PlayerRelation <= 0)

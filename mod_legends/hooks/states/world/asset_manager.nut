@@ -107,6 +107,54 @@
 		this.refillAmmo();
 	}
 
+	o.checkDesertion = function () {
+		if (!::World.Events.canFireEvent()) {
+			return;
+		}
+
+		local candidates = [];
+
+		foreach (bro in ::World.getPlayerRoster().getAll()) {
+			if (bro.getDailyCost() == 0 || bro.getSkills().hasTrait(::Legends.Trait.Player)) {
+				continue;
+			}
+
+			if (bro.getMood() < 1.0) {
+				local chance = (1.0 - bro.getMood()) * 100;
+
+				if (bro.getSkills().hasTrait(::Legends.Trait.Loyal)) {
+					chance *= 0.5;
+				} else if (bro.getSkills().hasTrait(::Legends.Trait.Disloyal)) {
+					chance *= 2.0;
+				}
+
+				if (bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.Companion)) {
+					chance *= 0.5;
+				}
+
+				if (::World.Assets.m.ProfessionEffect.LegendAmusingOurselvesToDeath > 0) {
+					chance *= 0.5;
+				}
+
+				if (::Math.rand(1, 100) <= chance) {
+					candidates.push(bro);
+				}
+			}
+		}
+
+		if (candidates.len() != 0) {
+			local bro = candidates[::Math.rand(0, candidates.len() - 1)];
+
+			if (::World.getPlayerRoster().getSize() > 1) {
+				local event = ::World.Events.getEvent("event.desertion");
+				event.setDeserter(bro);
+				::World.Events.fire("event.desertion", false);
+			} else {
+				::World.State.showGameFinishScreen(false);
+			}
+		}
+	}
+
 	o.refillAmmo = function()
 	{
 		if (m.Ammo == 0)

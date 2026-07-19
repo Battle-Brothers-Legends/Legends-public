@@ -66,6 +66,19 @@ professionDefObjects.push({
     ScalingFactor = 0.1
 });
 
+::Legends.Profession.LegendAmusingOurselvesToDeath <- null;
+professionDefObjects.push({
+    ID = "profession.legend_amusing_ourselves_to_death",
+    Script = "scripts/skills/professions/profession_legend_amusing_ourselves_to_death",
+    Name = ::Const.Strings.ProfessionName.LegendAmusingOurselvesToDeath,
+    Tooltip = ::Const.Strings.ProfessionDescription.LegendAmusingOurselvesToDeath,
+    Icon = "ui/professions/amusing_ourselves_to_death.png",
+    IconDisabled = "ui/professions/amusing_ourselves_to_death_bw.png",
+    Const = "LegendAmusingOurselvesToDeath",
+    ScalingArray = [0, 0.1], // mood gain %
+    ScalingFactor = 0.5
+});
+
 ::Legends.Profession.LegendBalladeInTheMaking <- null;
 professionDefObjects.push({
     ID = "profession.legend_ballade_in_the_making",
@@ -142,6 +155,19 @@ professionDefObjects.push({
     Const = "LegendBraggart",
     ScalingArray = [0, 1], // extra recruits (x1 min x2 max)
     ScalingFactor = 1
+});
+
+::Legends.Profession.LegendBreadAndGames <- null;
+professionDefObjects.push({
+    ID = "profession.legend_bread_and_games",
+    Script = "scripts/skills/professions/profession_legend_bread_and_games",
+    Name = ::Const.Strings.ProfessionName.LegendBreadAndGames,
+    Tooltip = ::Const.Strings.ProfessionDescription.LegendBreadAndGames,
+    Icon = "ui/professions/bread_and_games.png",
+    IconDisabled = "ui/professions/bread_and_games_bw.png",
+    Const = "LegendBreadAndGames",
+    ScalingArray = [0, 1.5], // number of extra arena fights per day, fractions are a chance (1.15 = +1 and 15% chance of +2)
+    ScalingFactor = 0.1
 });
 
 ::Legends.Profession.LegendButcherBarber <- null;
@@ -229,6 +255,19 @@ professionDefObjects.push({
     Icon = "ui/professions/cut_to_the_chase.png",
     IconDisabled = "ui/professions/cut_to_the_chase_bw.png",
     Const = "LegendCutToTheChase"
+});
+
+::Legends.Profession.LegendDiplomat <- null;
+professionDefObjects.push({
+    ID = "profession.legend_diplomat",
+    Script = "scripts/skills/professions/profession_legend_diplomat",
+    Name = ::Const.Strings.ProfessionName.LegendDiplomat,
+    Tooltip = ::Const.Strings.ProfessionDescription.LegendDiplomat,
+    Icon = "ui/professions/diplomat.png",
+    IconDisabled = "ui/professions/diplomat_bw.png",
+    Const = "LegendDiplomat",
+    ScalingArray = [0, 0.1], // relation gain %
+    ScalingFactor = 0.5
 });
 
 ::Legends.Profession.LegendDogBreeder <- null;

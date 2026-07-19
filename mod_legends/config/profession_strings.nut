@@ -2,12 +2,14 @@
 ::Const.Strings.ProfessionName.LegendAlchemy <- "Alchemy";
 ::Const.Strings.ProfessionName.LegendAlcoholPreparation <- "Alcohol Preparation";
 ::Const.Strings.ProfessionName.LegendAmmoScrounger <- "Ammo Scrounger";
+::Const.Strings.ProfessionName.LegendAmusingOurselvesToDeath <- "Amusing Ourselves to Death";
 ::Const.Strings.ProfessionName.LegendBandageBales <- "Bandage Bales";
 ::Const.Strings.ProfessionName.LegendBalladeInTheMaking <- "Ballade In The Making";
 ::Const.Strings.ProfessionName.LegendBigGameHunter <- "Big Game Hunter";
 ::Const.Strings.ProfessionName.LegendBlackBook <- "Black Book";
 ::Const.Strings.ProfessionName.LegendBountyHunter <- "Bounty Hunter";
 ::Const.Strings.ProfessionName.LegendBraggart <- "Braggart";
+::Const.Strings.ProfessionName.LegendBreadAndGames <- "Bread and Games";
 ::Const.Strings.ProfessionName.LegendButcherBarber <- "Butcher Barber";
 ::Const.Strings.ProfessionName.LegendCarouser <- "Carouser";
 ::Const.Strings.ProfessionName.LegendCartographer <- "Cartographer";
@@ -15,6 +17,7 @@
 ::Const.Strings.ProfessionName.LegendConvincingProposals <- "Convincing Proposals";
 ::Const.Strings.ProfessionName.LegendCooking <- "Cooking";
 ::Const.Strings.ProfessionName.LegendCutToTheChase <- "Cut To The Chase";
+::Const.Strings.ProfessionName.LegendDiplomat <- "Diplomat";
 ::Const.Strings.ProfessionName.LegendDogBreeder <- "Dog Breeder";
 ::Const.Strings.ProfessionName.LegendDrillSergeant <- "Drill Sergeant";
 ::Const.Strings.ProfessionName.LegendEfficientPacking <- "Efficient Packing";
@@ -94,6 +97,15 @@ Digging through corpses to retrieve intact ammunition is just good economic sens
 • Recovers a part of all ammunition used during battle.
 ";
 
+::Const.Strings.ProfessionDescription.LegendAmusingOurselvesToDeath <- @"
+Shared japes and strong drink. Anything to keep the company from thinking ahead.
+
+[color=%passive%][u]Passive:[/u][/color]
+• Brothers enjoy themselves more.
+
+• Reduces the chance of desertion by 50%.
+";
+
 ::Const.Strings.ProfessionDescription.LegendBalladeInTheMaking <- @"
 A tale of gruesome slaughter sounds almost pleasant to the ear when set to a lute and heavily exaggerated.
 
@@ -134,6 +146,15 @@ It was ten feet tall, breathed fire and I killed it with a spoon. Obviously.
 
 [color=%passive%][u]Passive:[/u][/color]
 • Increases the number of available recruits.
+";
+
+::Const.Strings.ProfessionDescription.LegendBreadAndGames <- @"
+The thrill of the fight can keep everyone entertained, both those partaking in the fight and those cheering from the stands.
+
+[color=%passive%][u]Passive:[/u][/color]
+• Increases the number of arena fights the company is willing to partake in per day.
+
+• Makes mercenaries in reserve never lose mood from not taking part in battles.
 ";
 
 ::Const.Strings.ProfessionDescription.LegendButcherBarber <- @"
@@ -193,6 +214,17 @@ Time is money, and pleasantries can cost the company a drink.
 
 [color=%passive%][u]Passive:[/u][/color]
 // needs an effect
+";
+
+::Const.Strings.ProfessionDescription.LegendDiplomat <- @"
+Knowing when to bow, when to keep silent and when to laugh heartily can go a long way.
+
+[color=%passive%][u]Passive:[/u][/color]
+• Increases relation gains.
+
+• Good relations decay slower.
+
+• Bad relations recover faster.
 ";
 
 ::Const.Strings.ProfessionDescription.LegendDogBreeder <- @"
