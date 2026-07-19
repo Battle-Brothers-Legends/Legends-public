@@ -18,6 +18,7 @@
 	"dlc_desert",
 	"dlc_paladins",
 	"mod_events_delayed_fix_legends",
+	">blazing_deserts_plus(>=0.9)",
 	"!mod_tooltip_extension(<=1.01)"
 ].reduce(@(p, n) ::format("%s, %s", p, n)), function () {
 	::Legends.Mod <- ::MSU.Class.Mod(::Legends.ID, ::Legends.Version, ::Legends.Name);
@@ -25,6 +26,12 @@
 	::Legends.Mod.Registry.setUpdateSource(::MSU.System.Registry.ModSourceDomain.GitHub);
 	// loading mod files
 	::include("mod_legends/load.nut");
+
+	if (::mods_getRegisteredMod("blazing_deserts_plus") != null) {
+		::logInfo("Blazing Desert Plus detected, loading compatibility patch");
+		foreach (file in ::IO.enumerateFiles("mod_legends/patch/bdplus/"))
+			::include(file);
+	}
 });
 
 // some mods can be easily 'fixed' by loading after legends, that what it is for

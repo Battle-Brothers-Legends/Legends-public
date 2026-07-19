@@ -55,8 +55,14 @@
 		_list.push(::Legends.Background.LegendGladiatorPrizefighter);
 	}
 
+	local onClicked = o.onClicked;
 	o.onClicked = function (_townScreen) {
 		if (!::World.getTime().IsDaytime) {
+			return;
+		}
+
+		if (::mods_getRegisteredMod("blazing_deserts_plus")) {
+			onClicked(_townScreen);
 			return;
 		}
 
