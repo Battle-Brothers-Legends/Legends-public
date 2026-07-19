@@ -1,5 +1,8 @@
 # 19.5.0 - Name Pending
 
+## Blazing Desert Plus
+- added patch for BD+ by Sato
+
 ## Noble House Changes
 - introduced 40 new traits into the noble house trait system
 - expanded the number of mottos available to noble houses
