@@ -58,17 +58,9 @@
 			this.Options.push({
 				Text = _flavor.MoreButton,
 				function getResult() {
-					if (!::World.Retinue.hasFollower("follower.negotiator")) {
-						if (::Math.rand(1, 100) <= 66) {
-							::World.FactionManager.getFaction(this.Contract.getFaction()).addPlayerRelationEx(-0.5);
-						}
-					} else {
-						if (::Math.rand(1, 100) <= 10) {
-							::World.FactionManager.getFaction(this.Contract.getFaction()).addPlayerRelationEx(-0.5);
-						}
-					}
+					::Const.Contracts.Negotiation.addAskMalus(this.Contract, 10, 66);
 
-					this.Contract.m.Payment.Annoyance += this.Math.maxf(1.0, this.Math.rand(this.Const.Contracts.Settings.NegotiationAnnoyanceGainMin, this.Const.Contracts.Settings.NegotiationAnnoyanceGainMax) * this.World.Assets.m.NegotiationAnnoyanceMult);
+					this.Contract.m.Payment.Annoyance += this.Math.maxf(1.0, this.Math.rand(this.Const.Contracts.Settings.NegotiationAnnoyanceGainMin, this.Const.Contracts.Settings.NegotiationAnnoyanceGainMax) * (::World.Assets.m.ProfessionEffect.LegendNegotiator > 0 ? ::World.Assets.m.ProfessionEffect.LegendNegotiator.m.NegotiationAnnoyanceMult : 1.0));
 
 					if (this.Contract.m.Payment.Annoyance > this.Const.Contracts.Settings.NegotiationMaxAnnoyance) {
 						return "Negotiation.Fail";

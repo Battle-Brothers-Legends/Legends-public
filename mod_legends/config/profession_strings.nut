@@ -414,7 +414,7 @@ Getting paid more for doing less is what one calls a successful negotiation.
 [color=%passive%][u]Passive:[/u][/color]
 • Improves the effects of negotiation.
 
-• Negotiation no longer affects relations.
+• Negotiation has a smaller effect on relations.
 ";
 
 ::Const.Strings.ProfessionDescription.LegendOffBookDeal <- @"

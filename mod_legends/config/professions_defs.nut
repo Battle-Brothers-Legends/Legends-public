@@ -560,7 +560,9 @@ professionDefObjects.push({
     Tooltip = ::Const.Strings.ProfessionDescription.LegendNegotiator,
     Icon = "ui/professions/negotiator.png",
     IconDisabled = "ui/professions/negotiator_bw.png",
-    Const = "LegendNegotiator"
+    Const = "LegendNegotiator",
+    ScalingArray = [0, 1.2, 1.4, 1.6], // improves effect of asking for more money during negotiation
+    ScalingFactor = 0.05
 });
 
 ::Legends.Profession.LegendOffBookDeal <- null;
