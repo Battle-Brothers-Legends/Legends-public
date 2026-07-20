@@ -56,7 +56,8 @@ this.legend_barbarian_vs_shieldmaiden <- this.inherit("scripts/events/event", {
 		if (brothers.len() < 3)
 			return;
 
-		brothers = brothers.filter(@(_, bro) bro.getLevel() > 3 && !bro.getFlags().has(this.m.Flag));
+		local self = this;
+		brothers = brothers.filter(@(_, bro) bro.getLevel() > 3 && !bro.getFlags().has(self.m.Flag));
 
 		local barbarian_candidates = brothers.filter(@(_, bro) ::Legends.Backgrounds.hasAny(bro,
 			::Legends.Background.Barbarian,
