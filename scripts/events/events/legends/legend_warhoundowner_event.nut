@@ -295,9 +295,10 @@ this.legend_warhoundowner_event <- this.inherit("scripts/events/event", {
 			this.m.Merchant = candidate_Merchant[this.Math.rand(0, candidate_Merchant.len() - 1)];
 		}
 
-		foreach (bro in brothers) {
+		foreach (bro in brothers)
+		{
 			local item = bro.getItems().getItemAtSlot(::Const.ItemSlot.Accessory);
-			if (item != null && (item.getID() == "accessory.legend_warhound"))
+			if (item != null && (item.getID() == "accessory.legend_warhound") || item != null && (item.getID() == "accessory.legend_armored_warhound") || item != null && (item.getID() == "accessory.legend_heavily_armored_warhound"))
 			{
 				candidates.push(bro);
 			}
