@@ -212,7 +212,7 @@
 						pauldrons.setVariant(bannerVariants[banner]);
 						pauldrons.updateVariant();
 					}
-					armor.setUpgrade(pauldrons)
+					h.setUpgrade(pauldrons);
 				}
 			}
 
